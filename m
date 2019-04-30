@@ -2,65 +2,68 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93D8EDE9
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Apr 2019 02:34:42 +0200 (CEST)
-Received: from [::1] (port=34044 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF062F98F
+	for <lists+usrp-users@lfdr.de>; Tue, 30 Apr 2019 15:09:59 +0200 (CEST)
+Received: from [::1] (port=43332 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hLGjJ-0006KA-NJ; Mon, 29 Apr 2019 20:34:41 -0400
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:40499)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
- id 1hLGil-0006Ag-3C
- for usrp-users@lists.ettus.com; Mon, 29 Apr 2019 20:34:37 -0400
-Received: by mail-qk1-f172.google.com with SMTP id w20so7161337qka.7
- for <usrp-users@lists.ettus.com>; Mon, 29 Apr 2019 17:33:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=MmtB1L42GKwHjllWx4Ixrv0Q2r4bQwm1IB9YV0ukp0Q=;
- b=B4wOfTEcR2bKX6brbOpUsZ+geWvrKLrawRaEq17mcx0uEuiKX5DH/BQOeDRu95tprj
- 5nPCXaILeMDRbSsqXSNtNm7I3ae3r/o4RMWXC328Znx/5AJ5m1v2uhLUoKzeSdQrm2Fy
- x4TbiMLPFR1Sea/k5YHz4zZG29bOsnJOziSC3tnrxRGijVVt1Nd7/EkeAzZbiAhRwkF7
- rbde73knFb3L0H2eM9NhMkjfWvSMsduEd1y/5VaUPCEHDuG0YLw1YTXb03Bzizye0Y0A
- 7F7OMcQ/s4/1Xz7Zp4srfsc1TcFrxiE1gp/ZKnC2d+7wZzoX6J9DE+5Cs2ocWr3RXexk
- Gz8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=MmtB1L42GKwHjllWx4Ixrv0Q2r4bQwm1IB9YV0ukp0Q=;
- b=ODSqoveDQiBMeR549TB+P0nTQ2NWwt/u5YFIKSYjMzBy864R1p2bVnHWfV1rktBy4j
- nUSMzEmCESsolNhO3c7W8hyCKpAsSrSJKLk56HbJQf+Oxm5lY/yJVAluay+BzL2S69gZ
- EtpL6EWO5t2okXaezcS0TE2TTcLQPPnefA0Z+qOV2nXiv3YE3nNT5d+9mANHCt4HGnTU
- fEa4Jvvls8NNw14NLbw9nL6+e5G6RmaKv8YqKga3ryKDvOWynKgEI5xcwsNivb72Sdi9
- Bjl4zjbYY8tGUTzgYs6Zhch1NNG8oeqwPSSYKdflDvIhvkJ+8wPlQFgMHfKiCjw2Mvqy
- q6UQ==
-X-Gm-Message-State: APjAAAXmiX2qpx7a4SLOKJ7wSgWgZZL5wBqpVTg6nWRAioMAJiKgPXrN
- mAl6MHR57wkR01//qnsjjNUZ1jXMatj1Ag==
-X-Google-Smtp-Source: APXvYqyzRb3Hy8L4U0Jqjjd4Lm8YQtpIo7MpJeJwGiODB1NOCOWnoPKFrCNIsgVXtnwl0d2Ie0IRIw==
-X-Received: by 2002:a05:620a:1359:: with SMTP id
- c25mr10753736qkl.52.1556584406409; 
- Mon, 29 Apr 2019 17:33:26 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
- by smtp.googlemail.com with ESMTPSA id g50sm8737253qtg.83.2019.04.29.17.33.25
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 29 Apr 2019 17:33:25 -0700 (PDT)
-Message-ID: <5CC797D5.1070401@gmail.com>
-Date: Mon, 29 Apr 2019 20:33:25 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1hLSW8-0005iR-GW; Tue, 30 Apr 2019 09:09:52 -0400
+Received: from relay3.gtri.gatech.edu ([130.207.199.162]:50106)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.91) (envelope-from <daniel.lundberg@gtri.gatech.edu>)
+ id 1hLSVZ-0005b6-PU
+ for usrp-users@lists.ettus.com; Tue, 30 Apr 2019 09:09:47 -0400
+X-ASG-Debug-ID: 1556629715-0768e4144b6d4890002-5wTQH4
+Received: from hatteras.core.gtri.org (hatteras.core.gtri.org [10.41.22.72])
+ by relay3.gtri.gatech.edu with ESMTP id Ys87sy8Y5uEhL4Dv (version=TLSv1.2
+ cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=NO);
+ Tue, 30 Apr 2019 09:08:35 -0400 (EDT)
+X-Barracuda-Envelope-From: daniel.lundberg@gtri.gatech.edu
+Received: from kiawah.core.gtri.org (10.41.31.71) by hatteras.core.gtri.org
+ (10.41.22.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 30
+ Apr 2019 09:08:35 -0400
+Received: from kiawah.core.gtri.org ([fe80::c531:9662:df24:eb8f]) by
+ kiawah.core.gtri.org ([fe80::c531:9662:df24:eb8f%15]) with mapi id
+ 15.01.1713.004; Tue, 30 Apr 2019 09:08:35 -0400
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] How to periodically write files using USRP and
+ GNUradio
+X-ASG-Orig-Subj: RE: [USRP-users] How to periodically write files using USRP
+ and GNUradio
+Thread-Index: AQHU/ukDMadjjEsaLE6k9H6f1DvzOKZUG12AgACORGA=
+Date: Tue, 30 Apr 2019 13:08:35 +0000
+Message-ID: <c1a23ec59dd04f5c8040f4cd08af1047@gtri.gatech.edu>
+References: <CALLKLAPDtvLxHkVwea_c0S9oX3xFkOYwfpbhvS9HTxK+LiEkhg@mail.gmail.com>
+ <5CC795B9.4050401@gmail.com>
+In-Reply-To: <5CC795B9.4050401@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.41.0.30]
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <BL0PR12MB23407D3418F13ABDC01D6826AF390@BL0PR12MB2340.namprd12.prod.outlook.com>
-In-Reply-To: <BL0PR12MB23407D3418F13ABDC01D6826AF390@BL0PR12MB2340.namprd12.prod.outlook.com>
+X-Barracuda-Connect: hatteras.core.gtri.org[10.41.22.72]
+X-Barracuda-Start-Time: 1556629715
+X-Barracuda-Encrypted: ECDHE-RSA-AES128-SHA256
+X-Barracuda-URL: https://130.207.199.162:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at gtri.gatech.edu
+X-Barracuda-Scan-Msg-Size: 3158
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+ QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.70611
+ Rule breakdown below
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] E312 wrong sample rate
+Subject: Re: [USRP-users] How to periodically write files using USRP and
+ GNUradio
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -72,9 +75,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7999449181142437168=="
+From: "Lundberg, Daniel via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Lundberg, Daniel" <daniel.lundberg@gtri.gatech.edu>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,151 +93,81 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============7999449181142437168==
-Content-Type: multipart/alternative;
- boundary="------------030807040102010700080001"
+I had a similar problem where I wanted to measure the phase and magnitude stability of a system over long periods of time, but only needed small chunks of data to characterize the drift.  I solved this by creating a top block that uses the head block and a file sink to write a defined number of samples after doing some other processing.  That block was called by a loop like this:
 
-This is a multi-part message in MIME format.
---------------030807040102010700080001
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+def main(top_block_cls=phase_diff_measure_filechange, options=None):
 
-On 04/29/2019 03:28 PM, Jason Matusiak via USRP-users wrote:
-> I was debugging a problem with a flowgraph when I realized that I 
-> wasn't getting the amount of samples I expected passing out of the 
-> USRP source block.  If I set a sample rate too low, it tells me it has 
-> to set the sample rate to 0.125MSps.  Currently I have a single stream 
-> from my source block, 30MHz clock rate, 500kHz sample rate.
+    for x in range(0,600):
+        time.sleep(8)
+        tb = top_block_cls()
+        tb.start(1000000)
+        time.sleep(2)
+        tb.stop()
+        tb.wait()
+
+
+The only other trick was to make the file names of the files I was saving contain a time stamp, which was done within def __init__(self): in the variables section like this:
+self.file_phase = file_phase = path/phase"+datetime.now().strftime("%Y.%m.%d.%H.%M.%S") +".dat"
+self.file_mag = file_mag = path/mag"+datetime.now().strftime("%Y.%m.%d.%H.%M.%S") +".dat"
+
+Those timestamp commands required "import time"
+
+There's probably a more elegant way to do this, but it got the job done.
+
+Hope that helps,
+
+Daniel P. Lundberg, Ph.D.
+Senior Research Scientist
+Georgia Tech Research Institute
+Sensors and Electromagnetic Applications Laboratory
+Intelligence, Surveillance, & Reconnaissance Division
+404.407.7613
+daniel.lundberg@gtri.gatech.edu
+
+
+-----Original Message-----
+From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of Marcus D. Leech via USRP-users
+Sent: Monday, April 29, 2019 8:24 PM
+To: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] How to periodically write files using USRP and GNUradio
+
+On 04/29/2019 08:08 PM, Mark Wagner via USRP-users wrote:
+> Hey all,
 >
-> If I run for 20 seconds streaming the data to a file (unbuffered set 
-> to off) as a complex, I would expect to see 20s * 8B * 500KHz = 80MB 
-> of data in the file.
+> I'd like to know how to write short files of streamed USRP data 
+> periodically using GNUradio. For instance, I'd like the USRP to 
+> automatically record 5 seconds of data every 10 minutes. It does not 
+> matter to me whether the USRP is constantly on and most of the data is 
+> being discarded, or if the USRP wakes up every 10 minutes to record 
+> the data before sleeping. Whichever is easiest to achieve is fine by 
+> me. Does anyone have experience doing this kind of thing?
 >
-> Instead, running it empirically (so the numbers will have to be 
-> ballpark and not exact), I see file size of 116153944.  If I make the 
-> assumption that the sample rate was really 500kHz, that means it ran 
-> for 29.03s.  This is obviously off by 50%.  If I assume that 10s of 
-> data was really collected, that means I had an actual sample rate of 
-> 1.451924MSps.
+> -Mark
 >
-> If I run these tests with the minimal 125kHz sample rate, I see things 
-> off by about double what I would expect.
 >
-> Moving my sample rate around the 1MSps range seems to work closer to 
-> what I expect, but of course I can't write files that fast without 
-> getting 'O' on the screen.  Ultimately I need to use two receivers, so 
-> I don't believe that I can push the clock rate above 30.72MHz.
 >
-> I am running UHD-3_14 with RFNoC enabled (though I am not using RFNoC 
-> in this particular flowgraph).  What am I missing here?
+> --
+> Mark Wagner
+> University of California San Diego
+> Electrical and Computer Engineering
 >
-Have it write to /dev/null, and time how long it takes to gather some 
-large number of samples, and go from there.
-    If your delivered sample rate is 500ksps, I don't see why you need a 
-master clock rate as high as 30Msps, but perhaps you have
-    your reasons.
+>
+If you're using Gnu Radio, you can simply use the file sink, and have it record to "/dev/null" most of the time, then have something (perhaps via
+   the XMLRPC built-in feature) change the filename to whatever your desired filename is, and then revert it back to "/dev/null".
+
+I think I said the same thing on the discuss-gnuradio mailing list a few days ago.
+
+The usrp-users mailing list isn't the best place to ask Gnu Radio questions, a question like this, which is inherently radio-type agnostic, probably
+   belongs on the discuss-gnuradio mailng list, because it's more about "how do I make Gnu Radio dance".
 
 
---------------030807040102010700080001
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 04/29/2019 03:28 PM, Jason Matusiak
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:BL0PR12MB23407D3418F13ABDC01D6826AF390@BL0PR12MB2340.namprd12.prod.outlook.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        I was debugging a problem with a flowgraph when I realized that
-        I wasn't getting the amount of samples I expected passing out of
-        the USRP source block.  If I set a sample rate too low, it tells
-        me it has to set the sample rate to 0.125MSps.  Currently I have
-        a single stream from my source block, 30MHz clock rate, 500kHz
-        sample rate.</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        If I run for 20 seconds streaming the data to a file (unbuffered
-        set to off) as a complex, I would expect to see 20s * 8B *
-        500KHz = 80MB of data in the file.</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Instead, running it empirically (so the numbers will have to be
-        ballpark and not exact), I see file size of 116153944.  If I
-        make the assumption that the sample rate was really 500kHz, that
-        means it ran for 29.03s.  This is obviously off by 50%.  If I
-        assume that 10s of data was really collected, that means I had
-        an actual sample rate of 1.451924MSps.</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        If I run these tests with the minimal 125kHz sample rate, I see
-        things off by about double what I would expect.  </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Moving my sample rate around the 1MSps range seems to work
-        closer to what I expect, but of course I can't write files that
-        fast without getting 'O' on the screen.  Ultimately I need to
-        use two receivers, so I don't believe that I can push the clock
-        rate above 30.72MHz.  </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        I am running UHD-3_14 with RFNoC enabled (though I am not using
-        RFNoC in this particular flowgraph).  What am I missing here?</div>
-      <br>
-    </blockquote>
-    Have it write to /dev/null, and time how long it takes to gather
-    some large number of samples, and go from there.<br>
-       If your delivered sample rate is 500ksps, I don't see why you
-    need a master clock rate as high as 30Msps, but perhaps you have<br>
-       your reasons.  <br>
-    <br>
-  </body>
-</html>
-
---------------030807040102010700080001--
-
-
---===============7999449181142437168==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7999449181142437168==--
-
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
