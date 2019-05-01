@@ -2,54 +2,89 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80360105E1
-	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2019 09:30:06 +0200 (CEST)
-Received: from [::1] (port=46978 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9095410802
+	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2019 14:47:55 +0200 (CEST)
+Received: from [::1] (port=60156 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hLjgm-0004an-Tz; Wed, 01 May 2019 03:30:00 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:38591)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <neel.pandeya@ettus.com>)
- id 1hLjgF-0004VS-5C
- for usrp-users@lists.ettus.com; Wed, 01 May 2019 03:29:57 -0400
-Received: by mail-oi1-f176.google.com with SMTP id t70so7741336oif.5
- for <usrp-users@lists.ettus.com>; Wed, 01 May 2019 00:29:06 -0700 (PDT)
+	id 1hLoeJ-0007XY-4a; Wed, 01 May 2019 08:47:47 -0400
+Received: from otransport-12.outbound.emailsrv.net ([52.1.62.31]:59519)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.91) (envelope-from <jason@gardettoengineering.com>)
+ id 1hLodl-0007Qh-Fu
+ for usrp-users@lists.ettus.com; Wed, 01 May 2019 08:47:43 -0400
+Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
+ [10.4.3.253])
+ by otransport-12.outbound.emailsrv.net (Postfix) with ESMTPS id 0D0276162D
+ for <usrp-users@lists.ettus.com>; Wed,  1 May 2019 12:46:33 +0000 (UTC)
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+ (mail-by2nam03lp2055.outbound.protection.outlook.com [104.47.42.55])
+ by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id 7A76AA4033
+ for <usrp-users@lists.ettus.com>; Wed,  1 May 2019 12:46:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=p+wMGhK/rcLQtJ9z3Kqi8ySQWEDDatkojYBW+SSnG+A=;
- b=IDcYfXU80o8UCoWbVjrfOVda+iL79G71tToFtKhCGWiU4tXf0WWv2ynwsVs0PLH/KG
- A8KVPkxhligAPMfHqy2uBOWYPm+i+7sS8VdKosXKk9gdIPNB6WGvfJI6v1j24wdWPSNG
- WaEdW1edX/oMnfDTMR8EzXS4Dewq+usb4sQqRKyQYPdqL7wz+/8oNcFLOUFYPkls0eE3
- iUryQrJ8DxxZBrz5AuSBtp42hcS27ZhhyLT8JDKrldRZ/U3KGXn1uXjsq3VsfcqhNtQG
- GnzEaUwiagYtgYluo9p/4M9orKxQYAKSJmpF5+3zmcyvPkBhDrNmKwMKtGSMQYIRhxNf
- KBgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=p+wMGhK/rcLQtJ9z3Kqi8ySQWEDDatkojYBW+SSnG+A=;
- b=j8lJhvOT1w6VUxvbuoi+oF90CfrYiuLTipsUGA2YK+ZpHD9WECHXdR6QU8PR4PfRy3
- vJQglvy1O851Jn2S+EhrsTaQ+jkhJZcPLC22l/VX+mf9ysSIgWhha87tQ+Mcl6BHA/q7
- ZD1WoX/xGlziAsKZoyGI8best6C9aeJPVxDFulauxFpWf1Iqj1oK/zKw0NQmdXZuRXMK
- gY97KyxZkhrajysE8VUtV3MnEcqFZyP/XR3R7ktLoUIXt2nVy23ifA3L5DjWFldObvJL
- hOBnTjSAFa6VUQ4MWza2NLYNaSr5BxSpn1BHyAjpXVKIwFqdcaCXW98bmOOTzvvxzWkq
- EFwA==
-X-Gm-Message-State: APjAAAWC2rBtO61CuwbSSkKCFmdCOVdRCsbYeigs7WQp+TozaKNAql/7
- MWJ1/ZCd1w8cPNv2htQ+1NmTR/A0hRcs7obJMeXzxVOQsYVTUA==
-X-Google-Smtp-Source: APXvYqy7Gu3nypM6wgf+yRG+lG7N33g2/snMZRJO4nOxvQhCCNEZXwH6F/TL4bZEG5aJZYPMo/53AdOhhRBkf6bbulc=
-X-Received: by 2002:aca:c202:: with SMTP id s2mr5984521oif.91.1556695726073;
- Wed, 01 May 2019 00:28:46 -0700 (PDT)
+ d=gardettoengineering.onmicrosoft.com; s=selector1-gardettoengineering-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o3ieEjzkSXh4YWJz6/kgfKmyKrodq2hlQy2Y4Gvj2dw=;
+ b=eVrRuW68ZJi/QiWR5zzHn6Ob2EPQh1NSV3wYAN4lANAb2gChrLcgK9FMQD2TGuNy0C8f58y+JFmAjJxZLlUcZwPJuPoXx2/fpzXxVJchcMNu2ptR3GyCRL74iLrV0oksgTzBijygM2Ne06GyVJwPCc1NQjJET5FDe0PlJnhTubg=
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
+ BL0PR12MB2418.namprd12.prod.outlook.com (52.132.11.24) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.10; Wed, 1 May 2019 12:46:28 +0000
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::1d2e:7d8e:79f3:acc2]) by BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::1d2e:7d8e:79f3:acc2%4]) with mapi id 15.20.1835.018; Wed, 1 May 2019
+ 12:46:28 +0000
+To: Ettus Mail List <usrp-users@lists.ettus.com>
+Thread-Topic: E320 numpy missing?
+Thread-Index: AQHVABoTNnG79M7aUECTLuXK0wxQrQ==
+Date: Wed, 1 May 2019 12:46:28 +0000
+Message-ID: <BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0@BL0PR12MB2340.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=jason@gardettoengineering.com; 
+x-originating-ip: [65.127.220.137]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4cd03ae6-0da7-4b80-b649-08d6ce3307ac
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600141)(711020)(4605104)(2017052603328)(7193020);
+ SRVR:BL0PR12MB2418; 
+x-ms-traffictypediagnostic: BL0PR12MB2418:
+x-microsoft-antispam-prvs: <BL0PR12MB24188879E4879089DB4CF487AF3B0@BL0PR12MB2418.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:428;
+x-forefront-prvs: 00246AB517
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(366004)(136003)(346002)(376002)(396003)(39830400003)(199004)(189003)(68736007)(7736002)(7696005)(71190400001)(71200400001)(81166006)(14454004)(6916009)(52536014)(33656002)(6506007)(81156014)(256004)(102836004)(55016002)(74316002)(2906002)(9686003)(8676002)(54896002)(316002)(25786009)(3846002)(6436002)(99286004)(7116003)(6116002)(5660300002)(53936002)(105004)(86362001)(19627405001)(8936002)(186003)(26005)(476003)(66066001)(66476007)(66946007)(508600001)(66556008)(64756008)(66446008)(76116006)(486006)(73956011);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2418;
+ H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: gardettoengineering.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: cJ6RJc1wVNYo0VqL/RAc6qWFsOastrg4hQDB94Y3fbib3l2Y2PdAvIQS+HQY2jGAhZXeWY4LRjIWw/C2d2LcnDrvP/Hcfkvy4YDiSGm/7+EsvRDJ3HMn2ThwADzBV/1IQiDTHyvj8pBWewio0vssChMIiJQNLxBHBGEXmQdONpWB+gqEIBS+CoD6STxTFeMNOhxskw4O93Ni/fSaJDOitD2cl918d/QrZTxe8gwzyCMiE4rXP/fvk7ei+PK+N/NdJW+ZWR0oVK/Q/5LrGhasAazfSzEE82vdcmZ8PiJcWJGpxndZ7kUiJEAqNA2LwwUE+tHHr6GsmbwIQMk24S7XqlzV2UeQapqYBkMCtDUAUeEZxVXlv0dQDwKanfDjxDp0y6ej8K5CavH7EZ3H9YmJvEWM5hpcdTQE8Xs8C89DfAY=
 MIME-Version: 1.0
-Date: Wed, 1 May 2019 02:28:29 -0500
-Message-ID: <CACaXmv8g-3i5Cr9ezhWOzBJjAKq1xyRuJTXPOVk+PQHu=DkRNg@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4cd03ae6-0da7-4b80-b649-08d6ce3307ac
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 May 2019 12:46:28.6436 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2418
+X-Mailprotector-Decision: deliver
+X-Mailprotector-Connection: TLSv1.2|mail-by2nam03lp2055.outbound.protection.outlook.com|104.47.42.55|NAM03-BY2-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
+X-Mailprotector-Results: clean
+X-Mailprotector-Score: 0
+X-Mailprotector-IP-Analysis: 0, 104.47.42.55, Ugly c=0 p=0 Source New
+X-Mailprotector-Scan-Diagnostics: 0-0-0-13912-c
+X-Mailprotector-ID: 83159bf2-adce-4023-b59f-6f2acaa13342
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] Announcing NEWSDR at UMass-Boston on June 13/14
+Subject: [USRP-users] E320 numpy missing?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -61,9 +96,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
-Content-Type: multipart/mixed; boundary="===============6307099520392753921=="
+From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jason Matusiak <jason@gardettoengineering.com>
+Content-Type: multipart/mixed; boundary="===============2425174312047471425=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,399 +112,166 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6307099520392753921==
-Content-Type: multipart/alternative; boundary="000000000000c6b7500587ce7771"
+--===============2425174312047471425==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0BL0PR12MB2340namp_"
 
---000000000000c6b7500587ce7771
-Content-Type: text/plain; charset="UTF-8"
+--_000_BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0BL0PR12MB2340namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-*********************************************************************
-                        *** NEWSDR 2019 ***
-
-                         Free Registration
-
-    Offering technical Workshops, Symposium, Poster Presentations
-
-                     Call for Poster Presentations
-
-*********************************************************************
-                            NEWSDR 2019
-
-             New England Workshop on Software Defined Radio
-
-                           Ninth Annual
-
-                        Technical Workshops
-                         Thursday June 13
-                           16:00 to 21:00
-
-                             Symposium
-                           Friday June 14
-                           08:00 to 17:00
-
-                University of Massachusetts at Boston
-                    100 William T Morrissey Blvd
-                        Boston, MA, 02125, USA
-
-                      http://www.sdr-boston.org/
-
-                          Free Registration
-
-*********************************************************************
-                     INVITATION TO PARTICIPATE
-
-You are cordially invited to the 2019 New England Workshop on
-Software Defined Radio (NEWSDR 2019), which is the ninth installment
-of an annual series of symposium and workshop events organized by
-the Boston SDR User Group (SDR-Boston).
-
-This year, NEWSDR will be held at University of Massachusetts
-at Boston. It consists of a day-long symposium on Friday,
-as well as several hands-on short courses the evening before
-on Thursday. You are welcome to attend either or both events,
-which are entirely free.
-
-Attendance is typically about 100 people, and attendees come from
-both academia and industry.
-
-*********************************************************************
-                             WORKSHOPS
-
-                          Thursday June 13
-                           16:00 to 21:00
-
-                              Agenda
-
-16:00 to 17:00   Pizza/Soda and Attendee Networking
-
-17:00 to 21:00   Workshop Events
-
-Two workshops are being offered in parallel:
-
-* (title and abstract coming soon!)
-   by Analog Devices
-
-* "FPGA Programming on the USRP with the RFNoC Framework"
-   by Ettus Research / National Instruments
-
-Analog Devices and Ettus Research will each run a short course
-the evening before the main event. Short courses are technical,
-practical, hands-on activities. Attendance is free, but advance
-registration is required. Free pizza and soda will be provided.
-
-                         --------------------
-Title:
-FPGA Programming on the USRP using the RFNoC Framework
-
-Abstract:
-The RFNoC (RF Network-on-Chip) software framework from Ettus
-Research is meant to decrease the development time for experienced
-FPGA engineers seeking to integrate IP into the USRP signal
-processing chain. RFNoC is the architecture for USRP devices that
-use Xilinx 7-series FPGAs (E310, E312, E320, X300, X310, N310, N320).
-RFNoC is built around a packetized network infrastructure in the FPGA
-that handles the transport of control and sample data between the
-host CPU and the radio. Users target their custom algorithms to the
-FPGA in the form of Computation Engines (CE), which are processing
-blocks that attach to this network. CEs act as independent nodes on
-the network that can receive and transmit data to any other node
-(e.g., another CE, the radio block, or the host CPU). Users can create
-modular, FPGA-accelerated SDR applications by chaining CEs into a flow
-graph. RFNoC is supported in UHD and GNU Radio. In this workshop, we
-will present an interactive hands-on tutorial on RFNoC, including a
-discussion on its design and capabilities, demonstrations of several
-existing examples, and a walk-through on implementing a user-defined
-CE and integrating the CE into both UHD and GNU Radio.
-
-Prerequisites:
-Attendees should have some previous experience with Linux and using
-the Linux command line, and basic familiarity with a programming
-language such as C, C++, or Python, and have basic understanding
-of fundamental concepts in DSP and RF. Attendees should also have
-some basic familiarity with Verilog. Extensive or deep experience
-with these topics is not necessary.
-
-Attendees do not have to bring any USRP radios or laptop computers.
-All necessary hardware and software will be provided in the workshop.
-
-Attendees may optionally bring their own laptops and/or radios for use
-in the workshop. Please contact "support@ettus.com" for specific
-setup and configuration requirements.
-
-*********************************************************************
-                             SYMPOSIUM
-
-                           Friday June 14
-                           07:45 to 17:00
-
-                          Tentative Agenda
-                (check website next week for updates)
-
-07:45 =E2=80=93 08:30   Registration, Coffee,
-                Light Breakfast, Attendee Networking
-
-08:30 =E2=80=93 08:45   Welcome and Introduction
-
-08:45 =E2=80=93 10:15   Corporate Sponsor Presentations
-
-10:15 =E2=80=93 11:00   Network Session, Coffee,
-                Poster Sessions,Sponsor Exhibits/Demos
-
-11:00 =E2=80=93 12:00   Technical Presentation from MathWorks
-
-12:00 =E2=80=93 13:00   Lunch, Networking, Poster Sessions,
-                Sponsor Exhibits/Demos
-
-13:00 =E2=80=93 14:00   Invited Talk by Dr Pau Closas, Northeastern Univers=
-ity
-
-14:00 =E2=80=93 14:45   Poster Presenter Elevator Pitches
-
-14:45 =E2=80=93 15:30   Network Session, Coffee, Poster Sessions,
-                Sponsor Exhibits/Demos
-
-15:30 =E2=80=93 16:30   Technical Presentation from MediaTek
-
-16:30 =E2=80=93 17:00   Closing Remarks and Poster Awards
-
-Technical Poster Presentations:
- * Covering the recent work in SDR and cognitive radio technology
- * Poster presentations are now being solicited
- * See link at the bottom of this email to submit your abstract
-
-Corporate Sponsors (tentative):
- * MathWorks
- * Mediatek
- * Analog Devices
- * Ettus Research / National Instruments
- * University of Massachusetts at Boston,
-   College of Sciences and Mathematics
-
-The symposium features plenary speakers, technical poster
-presentation sessions, hardware and software demonstrations from the
-event sponsors, and workshops from the event sponsors, all focusing
-on recent work in SDR and cognitive radio technology. Free breakfast,
-lunch, and coffee will be provided. Attendance is free, but advance
-registration is required.
-
-The symposium provides an excellent networking opportunity and a
-terrific venue to exchange thoughts and ideas with other people
-working in the SDR space.
-
-*********************************************************************
-                           REGISTRATION
-
-* Register for the Symposium, or the Workshop, or both.
-
-* Registration is required but is completely free,
-  and includes free food.
-
-* Attendance and food are limited, so please register
-  online as soon as possible to secure your spot.
-
-* Attendee Event Registration deadline is Monday June 3.
-
-* Poster Abstract Submission deadline is Monday May 13.
-
-* See links below to register online.
-
-*********************************************************************
-                               LINKS
-
-Attendee Event Registration:
-https://forms.gle/FdSV3tTrqVEK6cDg7
-
-Poster Abstract Submission:
-https://forms.gle/xsRusPS2rJHnNqSXA
-
-*********************************************************************
-                      ADDITIONAL INFORMATION
-
-      More details and information can be found at our website:
-
-                    http://www.sdr-boston.org/
-
-*********************************************************************
-                                EOF
-*********************************************************************
-
---000000000000c6b7500587ce7771
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
-
-PGRpdiBkaXI9Imx0ciI+PGRpdiBkaXI9Imx0ciI+PGRpdiBjbGFzcz0iZ21haWxfZGVmYXVsdCI+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5Om1vbm9zcGFjZSxtb25vc3BhY2UiPioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-Kjxicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICoqKiBO
-RVdTRFIgMjAxOSAqKio8YnI+PGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBGcmVlIFJlZ2lzdHJhdGlvbjxicj48YnI+wqDCoMKgIE9mZmVyaW5nIHRl
-Y2huaWNhbCBXb3Jrc2hvcHMsIFN5bXBvc2l1bSwgUG9zdGVyIFByZXNlbnRhdGlvbnM8YnI+PGJy
-PsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgQ2FsbCBmb3IgUG9zdGVy
-IFByZXNlbnRhdGlvbnM8YnI+PGJyPioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKjxicj7CoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTkVXU0RSIDIwMTk8YnI+PGJyPsKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBOZXcgRW5nbGFuZCBXb3Jrc2hvcCBvbiBTb2Z0d2FyZSBE
-ZWZpbmVkIFJhZGlvPGJyPjxicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIE5pbnRoIEFubnVhbDxicj48YnI+wqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUZWNobmljYWwgV29ya3Nob3BzPGJyPsKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUaHVyc2RheSBKdW5lIDEz
-PGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-MTY6MDAgdG8gMjE6MDA8YnI+PGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIFN5bXBvc2l1bTxicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEZyaWRheSBKdW5lIDE0PGJyPsKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMDg6MDAgdG8gMTc6
-MDA8YnI+PGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBVbml2ZXJzaXR5IG9mIE1h
-c3NhY2h1c2V0dHMgYXQgQm9zdG9uPGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIDEwMCBXaWxsaWFtIFQgTW9ycmlzc2V5IEJsdmQ8YnI+wqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBCb3N0b24sIE1BLCAwMjEyNSwgVVNBPGJyPjxi
-cj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPGEgaHJlZj0iaHR0
-cDovL3d3dy5zZHItYm9zdG9uLm9yZy8iPmh0dHA6Ly93d3cuc2RyLWJvc3Rvbi5vcmcvPC9hPjxi
-cj48YnI+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-RnJlZSBSZWdpc3RyYXRpb248YnI+PGJyPioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKjxicj7CoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIElOVklUQVRJT04gVE8gUEFSVElDSVBBVEU8YnI+PGJy
-PllvdSBhcmUgY29yZGlhbGx5IGludml0ZWQgdG8gdGhlIDIwMTkgTmV3IEVuZ2xhbmQgV29ya3No
-b3Agb248YnI+U29mdHdhcmUgRGVmaW5lZCBSYWRpbyAoTkVXU0RSIDIwMTkpLCB3aGljaCBpcyB0
-aGUgbmludGggaW5zdGFsbG1lbnQ8YnI+b2YgYW4gYW5udWFsIHNlcmllcyBvZiBzeW1wb3NpdW0g
-YW5kIHdvcmtzaG9wIGV2ZW50cyBvcmdhbml6ZWQgYnk8YnI+dGhlIEJvc3RvbiBTRFIgVXNlciBH
-cm91cCAoU0RSLUJvc3RvbikuPGJyPjxicj5UaGlzIHllYXIsIE5FV1NEUiB3aWxsIGJlIGhlbGQg
-YXQgVW5pdmVyc2l0eSBvZiBNYXNzYWNodXNldHRzPGJyPmF0IEJvc3Rvbi4gSXQgY29uc2lzdHMg
-b2YgYSBkYXktbG9uZyBzeW1wb3NpdW0gb24gRnJpZGF5LDxicj5hcyB3ZWxsIGFzIHNldmVyYWwg
-aGFuZHMtb24gc2hvcnQgY291cnNlcyB0aGUgZXZlbmluZyBiZWZvcmU8YnI+b24gVGh1cnNkYXku
-IFlvdSBhcmUgd2VsY29tZSB0byBhdHRlbmQgZWl0aGVyIG9yIGJvdGggZXZlbnRzLDxicj53aGlj
-aCBhcmUgZW50aXJlbHkgZnJlZS48YnI+PGJyPkF0dGVuZGFuY2UgaXMgdHlwaWNhbGx5IGFib3V0
-IDEwMCBwZW9wbGUsIGFuZCBhdHRlbmRlZXMgY29tZSBmcm9tPGJyPmJvdGggYWNhZGVtaWEgYW5k
-IGluZHVzdHJ5Ljxicj48YnI+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqPGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFdPUktTSE9QUzxicj48YnI+wqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVGh1cnNkYXkgSnVu
-ZSAxMzxicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIDE2OjAwIHRvIDIxOjAwPGJyPjxicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEFnZW5kYTxicj48YnI+MTY6MDAgdG8gMTc6MDDC
-oMKgIFBpenphL1NvZGEgYW5kIEF0dGVuZGVlIE5ldHdvcmtpbmc8YnI+PGJyPjE3OjAwIHRvIDIx
-OjAwwqDCoCBXb3Jrc2hvcCBFdmVudHM8YnI+PGJyPlR3byB3b3Jrc2hvcHMgYXJlIGJlaW5nIG9m
-ZmVyZWQgaW4gcGFyYWxsZWw6PGJyPjxicj4qICh0aXRsZSBhbmQgYWJzdHJhY3QgY29taW5nIHNv
-b24hKTxicj7CoMKgIGJ5IEFuYWxvZyBEZXZpY2VzPGJyPjxicj4qICZxdW90O0ZQR0EgUHJvZ3Jh
-bW1pbmcgb24gdGhlIFVTUlAgd2l0aCB0aGUgUkZOb0MgRnJhbWV3b3JrJnF1b3Q7PGJyPsKgwqAg
-YnkgRXR0dXMgUmVzZWFyY2ggLyBOYXRpb25hbCBJbnN0cnVtZW50czxicj48YnI+QW5hbG9nIERl
-dmljZXMgYW5kIEV0dHVzIFJlc2VhcmNoIHdpbGwgZWFjaCBydW4gYSBzaG9ydCBjb3Vyc2U8YnI+
-dGhlIGV2ZW5pbmcgYmVmb3JlIHRoZSBtYWluIGV2ZW50LiBTaG9ydCBjb3Vyc2VzIGFyZSB0ZWNo
-bmljYWwsPGJyPnByYWN0aWNhbCwgaGFuZHMtb24gYWN0aXZpdGllcy4gQXR0ZW5kYW5jZSBpcyBm
-cmVlLCBidXQgYWR2YW5jZTxicj5yZWdpc3RyYXRpb24gaXMgcmVxdWlyZWQuIEZyZWUgcGl6emEg
-YW5kIHNvZGEgd2lsbCBiZSBwcm92aWRlZC48YnI+PGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtLS0tLS0tLS0tLS0tLS0tLS0tLTxicj5UaXRsZTo8
-YnI+RlBHQSBQcm9ncmFtbWluZyBvbiB0aGUgVVNSUCB1c2luZyB0aGUgUkZOb0MgRnJhbWV3b3Jr
-PGJyPjxicj5BYnN0cmFjdDo8YnI+VGhlIFJGTm9DIChSRiBOZXR3b3JrLW9uLUNoaXApIHNvZnR3
-YXJlIGZyYW1ld29yayBmcm9tIEV0dHVzPGJyPlJlc2VhcmNoIGlzIG1lYW50IHRvIGRlY3JlYXNl
-IHRoZSBkZXZlbG9wbWVudCB0aW1lIGZvciBleHBlcmllbmNlZDxicj5GUEdBIGVuZ2luZWVycyBz
-ZWVraW5nIHRvIGludGVncmF0ZSBJUCBpbnRvIHRoZSBVU1JQIHNpZ25hbDxicj5wcm9jZXNzaW5n
-IGNoYWluLiBSRk5vQyBpcyB0aGUgYXJjaGl0ZWN0dXJlIGZvciBVU1JQIGRldmljZXMgdGhhdDxi
-cj51c2UgWGlsaW54IDctc2VyaWVzIEZQR0FzIChFMzEwLCBFMzEyLCBFMzIwLCBYMzAwLCBYMzEw
-LCBOMzEwLCBOMzIwKS48YnI+UkZOb0MgaXMgYnVpbHQgYXJvdW5kIGEgcGFja2V0aXplZCBuZXR3
-b3JrIGluZnJhc3RydWN0dXJlIGluIHRoZSBGUEdBPGJyPnRoYXQgaGFuZGxlcyB0aGUgdHJhbnNw
-b3J0IG9mIGNvbnRyb2wgYW5kIHNhbXBsZSBkYXRhIGJldHdlZW4gdGhlPGJyPmhvc3QgQ1BVIGFu
-ZCB0aGUgcmFkaW8uIFVzZXJzIHRhcmdldCB0aGVpciBjdXN0b20gYWxnb3JpdGhtcyB0byB0aGU8
-YnI+RlBHQSBpbiB0aGUgZm9ybSBvZiBDb21wdXRhdGlvbiBFbmdpbmVzIChDRSksIHdoaWNoIGFy
-ZSBwcm9jZXNzaW5nPGJyPmJsb2NrcyB0aGF0IGF0dGFjaCB0byB0aGlzIG5ldHdvcmsuIENFcyBh
-Y3QgYXMgaW5kZXBlbmRlbnQgbm9kZXMgb248YnI+dGhlIG5ldHdvcmsgdGhhdCBjYW4gcmVjZWl2
-ZSBhbmQgdHJhbnNtaXQgZGF0YSB0byBhbnkgb3RoZXIgbm9kZTxicj4oZS5nLiwgYW5vdGhlciBD
-RSwgdGhlIHJhZGlvIGJsb2NrLCBvciB0aGUgaG9zdCBDUFUpLiBVc2VycyBjYW4gY3JlYXRlPGJy
-Pm1vZHVsYXIsIEZQR0EtYWNjZWxlcmF0ZWQgU0RSIGFwcGxpY2F0aW9ucyBieSBjaGFpbmluZyBD
-RXMgaW50byBhIGZsb3c8YnI+Z3JhcGguIFJGTm9DIGlzIHN1cHBvcnRlZCBpbiBVSEQgYW5kIEdO
-VSBSYWRpby4gSW4gdGhpcyB3b3Jrc2hvcCwgd2U8YnI+d2lsbCBwcmVzZW50IGFuIGludGVyYWN0
-aXZlIGhhbmRzLW9uIHR1dG9yaWFsIG9uIFJGTm9DLCBpbmNsdWRpbmcgYTxicj5kaXNjdXNzaW9u
-IG9uIGl0cyBkZXNpZ24gYW5kIGNhcGFiaWxpdGllcywgZGVtb25zdHJhdGlvbnMgb2Ygc2V2ZXJh
-bDxicj5leGlzdGluZyBleGFtcGxlcywgYW5kIGEgd2Fsay10aHJvdWdoIG9uIGltcGxlbWVudGlu
-ZyBhIHVzZXItZGVmaW5lZDxicj5DRSBhbmQgaW50ZWdyYXRpbmcgdGhlIENFIGludG8gYm90aCBV
-SEQgYW5kIEdOVSBSYWRpby48YnI+PGJyPlByZXJlcXVpc2l0ZXM6PGJyPkF0dGVuZGVlcyBzaG91
-bGQgaGF2ZSBzb21lIHByZXZpb3VzIGV4cGVyaWVuY2Ugd2l0aCBMaW51eCBhbmQgdXNpbmc8YnI+
-dGhlIExpbnV4IGNvbW1hbmQgbGluZSwgYW5kIGJhc2ljIGZhbWlsaWFyaXR5IHdpdGggYSBwcm9n
-cmFtbWluZzxicj5sYW5ndWFnZSBzdWNoIGFzIEMsIEMrKywgb3IgUHl0aG9uLCBhbmQgaGF2ZSBi
-YXNpYyB1bmRlcnN0YW5kaW5nPGJyPm9mIGZ1bmRhbWVudGFsIGNvbmNlcHRzIGluIERTUCBhbmQg
-UkYuIEF0dGVuZGVlcyBzaG91bGQgYWxzbyBoYXZlPGJyPnNvbWUgYmFzaWMgZmFtaWxpYXJpdHkg
-d2l0aCBWZXJpbG9nLiBFeHRlbnNpdmUgb3IgZGVlcCBleHBlcmllbmNlPGJyPndpdGggdGhlc2Ug
-dG9waWNzIGlzIG5vdCBuZWNlc3NhcnkuPGJyPjxicj5BdHRlbmRlZXMgZG8gbm90IGhhdmUgdG8g
-YnJpbmcgYW55IFVTUlAgcmFkaW9zIG9yIGxhcHRvcCBjb21wdXRlcnMuPGJyPkFsbCBuZWNlc3Nh
-cnkgaGFyZHdhcmUgYW5kIHNvZnR3YXJlIHdpbGwgYmUgcHJvdmlkZWQgaW4gdGhlIHdvcmtzaG9w
-Ljxicj48YnI+QXR0ZW5kZWVzIG1heSBvcHRpb25hbGx5IGJyaW5nIHRoZWlyIG93biBsYXB0b3Bz
-IGFuZC9vciByYWRpb3MgZm9yIHVzZTxicj5pbiB0aGUgd29ya3Nob3AuIFBsZWFzZSBjb250YWN0
-ICZxdW90OzxhIGhyZWY9Im1haWx0bzpzdXBwb3J0QGV0dHVzLmNvbSI+c3VwcG9ydEBldHR1cy5j
-b208L2E+JnF1b3Q7IGZvciBzcGVjaWZpYzxicj5zZXR1cCBhbmQgY29uZmlndXJhdGlvbiByZXF1
-aXJlbWVudHMuPGJyPjxicj4qKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKio8YnI+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgU1lNUE9TSVVNPGJyPjxicj7CoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEZyaWRheSBKdW5l
-IDE0PGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgMDc6NDUgdG8gMTc6MDA8YnI+PGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIFRlbnRhdGl2ZSBBZ2VuZGE8YnI+wqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIChjaGVjayB3ZWJzaXRlIG5leHQgd2VlayBmb3IgdXBkYXRlcyk8YnI+PGJy
-PjA3OjQ1IOKAkyAwODozMMKgwqAgUmVnaXN0cmF0aW9uLCBDb2ZmZWUsPGJyPsKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBMaWdodCBCcmVha2Zhc3QsIEF0dGVuZGVlIE5ldHdvcmtpbmc8
-YnI+PGJyPjA4OjMwIOKAkyAwODo0NcKgwqAgV2VsY29tZSBhbmQgSW50cm9kdWN0aW9uPGJyPjxi
-cj4wODo0NSDigJMgMTA6MTXCoMKgIENvcnBvcmF0ZSBTcG9uc29yIFByZXNlbnRhdGlvbnM8YnI+
-PGJyPjEwOjE1IOKAkyAxMTowMMKgwqAgTmV0d29yayBTZXNzaW9uLCBDb2ZmZWUsPGJyPsKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBQb3N0ZXIgU2Vzc2lvbnMsU3BvbnNvciBFeGhpYml0
-cy9EZW1vczxicj48YnI+MTE6MDAg4oCTIDEyOjAwwqDCoCBUZWNobmljYWwgUHJlc2VudGF0aW9u
-IGZyb20gTWF0aFdvcmtzPGJyPjxicj4xMjowMCDigJMgMTM6MDDCoMKgIEx1bmNoLCBOZXR3b3Jr
-aW5nLCBQb3N0ZXIgU2Vzc2lvbnMsPGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBT
-cG9uc29yIEV4aGliaXRzL0RlbW9zPGJyPjxicj4xMzowMCDigJMgMTQ6MDDCoMKgIEludml0ZWQg
-VGFsayBieSBEciBQYXUgQ2xvc2FzLCBOb3J0aGVhc3Rlcm4gVW5pdmVyc2l0eTxicj48YnI+MTQ6
-MDAg4oCTIDE0OjQ1wqDCoCBQb3N0ZXIgUHJlc2VudGVyIEVsZXZhdG9yIFBpdGNoZXM8YnI+PGJy
-PjE0OjQ1IOKAkyAxNTozMMKgwqAgTmV0d29yayBTZXNzaW9uLCBDb2ZmZWUsIFBvc3RlciBTZXNz
-aW9ucyw8YnI+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFNwb25zb3IgRXhoaWJpdHMv
-RGVtb3M8YnI+PGJyPjE1OjMwIOKAkyAxNjozMMKgwqAgVGVjaG5pY2FsIFByZXNlbnRhdGlvbiBm
-cm9tIE1lZGlhVGVrPGJyPjxicj4xNjozMCDigJMgMTc6MDDCoMKgIENsb3NpbmcgUmVtYXJrcyBh
-bmQgUG9zdGVyIEF3YXJkczxicj48YnI+VGVjaG5pY2FsIFBvc3RlciBQcmVzZW50YXRpb25zOjxi
-cj7CoCogQ292ZXJpbmcgdGhlIHJlY2VudCB3b3JrIGluIFNEUiBhbmQgY29nbml0aXZlIHJhZGlv
-IHRlY2hub2xvZ3k8YnI+wqAqIFBvc3RlciBwcmVzZW50YXRpb25zIGFyZSBub3cgYmVpbmcgc29s
-aWNpdGVkPGJyPsKgKiBTZWUgbGluayBhdCB0aGUgYm90dG9tIG9mIHRoaXMgZW1haWwgdG8gc3Vi
-bWl0IHlvdXIgYWJzdHJhY3Q8YnI+PGJyPkNvcnBvcmF0ZSBTcG9uc29ycyAodGVudGF0aXZlKTo8
-YnI+wqAqIE1hdGhXb3Jrczxicj7CoCogTWVkaWF0ZWs8YnI+wqAqIEFuYWxvZyBEZXZpY2VzPGJy
-PsKgKiBFdHR1cyBSZXNlYXJjaCAvIE5hdGlvbmFsIEluc3RydW1lbnRzPGJyPsKgKiBVbml2ZXJz
-aXR5IG9mIE1hc3NhY2h1c2V0dHMgYXQgQm9zdG9uLDxicj7CoMKgIENvbGxlZ2Ugb2YgU2NpZW5j
-ZXMgYW5kIE1hdGhlbWF0aWNzPGJyPjxicj5UaGUgc3ltcG9zaXVtIGZlYXR1cmVzIHBsZW5hcnkg
-c3BlYWtlcnMsIHRlY2huaWNhbCBwb3N0ZXI8YnI+cHJlc2VudGF0aW9uIHNlc3Npb25zLCBoYXJk
-d2FyZSBhbmQgc29mdHdhcmUgZGVtb25zdHJhdGlvbnMgZnJvbSB0aGU8YnI+ZXZlbnQgc3BvbnNv
-cnMsIGFuZCB3b3Jrc2hvcHMgZnJvbSB0aGUgZXZlbnQgc3BvbnNvcnMsIGFsbCBmb2N1c2luZzxi
-cj5vbiByZWNlbnQgd29yayBpbiBTRFIgYW5kIGNvZ25pdGl2ZSByYWRpbyB0ZWNobm9sb2d5LiBG
-cmVlIGJyZWFrZmFzdCw8YnI+bHVuY2gsIGFuZCBjb2ZmZWUgd2lsbCBiZSBwcm92aWRlZC4gQXR0
-ZW5kYW5jZSBpcyBmcmVlLCBidXQgYWR2YW5jZTxicj5yZWdpc3RyYXRpb24gaXMgcmVxdWlyZWQu
-PGJyPjxicj5UaGUgc3ltcG9zaXVtIHByb3ZpZGVzIGFuIGV4Y2VsbGVudCBuZXR3b3JraW5nIG9w
-cG9ydHVuaXR5IGFuZCBhPGJyPnRlcnJpZmljIHZlbnVlIHRvIGV4Y2hhbmdlIHRob3VnaHRzIGFu
-ZCBpZGVhcyB3aXRoIG90aGVyIHBlb3BsZTxicj53b3JraW5nIGluIHRoZSBTRFIgc3BhY2UuPGJy
-Pjxicj4qKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKio8YnI+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBSRUdJU1RSQVRJT048YnI+PGJyPiogUmVnaXN0ZXIgZm9yIHRoZSBT
-eW1wb3NpdW0sIG9yIHRoZSBXb3Jrc2hvcCwgb3IgYm90aC48YnI+PGJyPiogUmVnaXN0cmF0aW9u
-IGlzIHJlcXVpcmVkIGJ1dCBpcyBjb21wbGV0ZWx5IGZyZWUsPGJyPsKgIGFuZCBpbmNsdWRlcyBm
-cmVlIGZvb2QuPGJyPjxicj4qIEF0dGVuZGFuY2UgYW5kIGZvb2QgYXJlIGxpbWl0ZWQsIHNvIHBs
-ZWFzZSByZWdpc3Rlcjxicj7CoCBvbmxpbmUgYXMgc29vbiBhcyBwb3NzaWJsZSB0byBzZWN1cmUg
-eW91ciBzcG90Ljxicj48YnI+KiBBdHRlbmRlZSBFdmVudCBSZWdpc3RyYXRpb24gZGVhZGxpbmUg
-aXMgTW9uZGF5IEp1bmUgMy48YnI+PGJyPiogUG9zdGVyIEFic3RyYWN0IFN1Ym1pc3Npb24gZGVh
-ZGxpbmUgaXMgTW9uZGF5IE1heSAxMy48YnI+PGJyPiogU2VlIGxpbmtzIGJlbG93IHRvIHJlZ2lz
-dGVyIG9ubGluZS48YnI+PGJyPioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKjxicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTElOS1M8YnI+PGJyPkF0dGVu
-ZGVlIEV2ZW50IFJlZ2lzdHJhdGlvbjo8YnI+PGEgaHJlZj0iaHR0cHM6Ly9mb3Jtcy5nbGUvRmRT
-VjN0VHJxVkVLNmNEZzciPmh0dHBzOi8vZm9ybXMuZ2xlL0ZkU1YzdFRycVZFSzZjRGc3PC9hPjxi
-cj48YnI+UG9zdGVyIEFic3RyYWN0IFN1Ym1pc3Npb246PGJyPjxhIGhyZWY9Imh0dHBzOi8vZm9y
-bXMuZ2xlL3hzUnVzUFMyckpIbk5xU1hBIj5odHRwczovL2Zvcm1zLmdsZS94c1J1c1BTMnJKSG5O
-cVNYQTwvYT48YnI+PGJyPioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKjxicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgQURESVRJT05BTCBJTkZPUk1BVElPTjxicj48YnI+wqDCoMKgwqDC
-oCBNb3JlIGRldGFpbHMgYW5kIGluZm9ybWF0aW9uIGNhbiBiZSBmb3VuZCBhdCBvdXIgd2Vic2l0
-ZTo8YnI+PGJyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxhIGhyZWY9
-Imh0dHA6Ly93d3cuc2RyLWJvc3Rvbi5vcmcvIj5odHRwOi8vd3d3LnNkci1ib3N0b24ub3JnLzwv
-YT48YnI+PGJyPioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKjxicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBFT0Y8YnI+KioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqPGJyPjxi
-cj48YnI+PGJyPjwvc3Bhbj48L2Rpdj48L2Rpdj48L2Rpdj4NCg==
---000000000000c6b7500587ce7771--
-
-
---===============6307099520392753921==
+Finally got my E320 in and I cross-compiled a new setup.  I tried to fire u=
+p my flowgraph (which works fine on an E310) and it is complaining about nu=
+mpy missing.
+
+If I do a search from / on the E320, the only numpy that is showing up is:
+/usr/include/boost/python/numpy
+
+If I do a search from a good E310 in / I see:
+./usr/lib/python2.7/site-packages/numpy
+./usr/lib/python2.7/site-packages/numpy/core/include/numpy
+./usr/lib/python2.7/site-packages/Cython/Includes/numpy
+./usr/include/boost/python/numpy
+
+
+Back on the host machine, my E320 cross-compile prefix shows numpy:
+./sysroots/cortexa9hf-neon-oe-linux-gnueabi/usr/include/boost/python/numpy
+
+My good E310 prefix shows:
+./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1=
+-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy
+./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1=
+-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy/core/include/numpy
+./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1=
+-r0/numpy-1.13.1/numpy
+./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1=
+-r0/numpy-1.13.1/numpy/core/include/numpy
+./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages/C=
+ython/Includes/numpy
+./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages/n=
+umpy
+./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages/n=
+umpy/core/include/numpy
+./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/include/boost/python/numpy
+
+So, was numpy forgotten?  Left out for a reason?  I am going to attempt to =
+build it by hand, but I have a fear that I am going to go down dependency h=
+ell with this and other missing packages that GR might want.
+
+
+--_000_BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0BL0PR12MB2340namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Finally got my E320 in and I cross-compiled a new setup.&nbsp; I tried to f=
+ire up my flowgraph (which works fine on an E310) and it is complaining abo=
+ut numpy missing.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+If I do a search from / on the E320, the only numpy that is showing up is:&=
+nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+/usr/include/boost/python/numpy</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+If I do a search from a good E310 in / I see:&nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span>./usr/lib/python2.7/site-packages/numpy<br>
+</span>
+<div>./usr/lib/python2.7/site-packages/numpy/core/include/numpy<br>
+</div>
+<div>./usr/lib/python2.7/site-packages/Cython/Includes/numpy<br>
+</div>
+<div>./usr/include/boost/python/numpy<br>
+</div>
+<span></span><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Back on the host machine, my E320 cross-compile prefix shows numpy:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+./sysroots/cortexa9hf-neon-oe-linux-gnueabi/usr/include/boost/python/numpy<=
+br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+My good E310 prefix shows:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/=
+1.13.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy<br>
+</span>
+<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
+.13.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy/core/include/numpy<b=
+r>
+</div>
+<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
+.13.1-r0/numpy-1.13.1/numpy<br>
+</div>
+<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
+.13.1-r0/numpy-1.13.1/numpy/core/include/numpy<br>
+</div>
+<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packa=
+ges/Cython/Includes/numpy<br>
+</div>
+<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packa=
+ges/numpy<br>
+</div>
+<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packa=
+ges/numpy/core/include/numpy<br>
+</div>
+<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/include/boost/python/num=
+py<br>
+</div>
+<span></span><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+So, was numpy forgotten?&nbsp; Left out for a reason?&nbsp; I am going to a=
+ttempt to build it by hand, but I have a fear that I am going to go down de=
+pendency hell with this and other missing packages that GR might want.</div=
+>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+</body>
+</html>
+
+--_000_BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0BL0PR12MB2340namp_--
+
+
+--===============2425174312047471425==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -480,5 +282,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6307099520392753921==--
+--===============2425174312047471425==--
 
