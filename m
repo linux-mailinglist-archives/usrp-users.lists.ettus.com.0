@@ -2,89 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9095410802
-	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2019 14:47:55 +0200 (CEST)
-Received: from [::1] (port=60156 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B50A1083B
+	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2019 15:20:04 +0200 (CEST)
+Received: from [::1] (port=35948 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hLoeJ-0007XY-4a; Wed, 01 May 2019 08:47:47 -0400
-Received: from otransport-12.outbound.emailsrv.net ([52.1.62.31]:59519)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.91) (envelope-from <jason@gardettoengineering.com>)
- id 1hLodl-0007Qh-Fu
- for usrp-users@lists.ettus.com; Wed, 01 May 2019 08:47:43 -0400
-Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
- [10.4.3.253])
- by otransport-12.outbound.emailsrv.net (Postfix) with ESMTPS id 0D0276162D
- for <usrp-users@lists.ettus.com>; Wed,  1 May 2019 12:46:33 +0000 (UTC)
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com
- (mail-by2nam03lp2055.outbound.protection.outlook.com [104.47.42.55])
- by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id 7A76AA4033
- for <usrp-users@lists.ettus.com>; Wed,  1 May 2019 12:46:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com; s=selector1-gardettoengineering-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o3ieEjzkSXh4YWJz6/kgfKmyKrodq2hlQy2Y4Gvj2dw=;
- b=eVrRuW68ZJi/QiWR5zzHn6Ob2EPQh1NSV3wYAN4lANAb2gChrLcgK9FMQD2TGuNy0C8f58y+JFmAjJxZLlUcZwPJuPoXx2/fpzXxVJchcMNu2ptR3GyCRL74iLrV0oksgTzBijygM2Ne06GyVJwPCc1NQjJET5FDe0PlJnhTubg=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
- BL0PR12MB2418.namprd12.prod.outlook.com (52.132.11.24) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.10; Wed, 1 May 2019 12:46:28 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::1d2e:7d8e:79f3:acc2]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::1d2e:7d8e:79f3:acc2%4]) with mapi id 15.20.1835.018; Wed, 1 May 2019
- 12:46:28 +0000
-To: Ettus Mail List <usrp-users@lists.ettus.com>
-Thread-Topic: E320 numpy missing?
-Thread-Index: AQHVABoTNnG79M7aUECTLuXK0wxQrQ==
-Date: Wed, 1 May 2019 12:46:28 +0000
-Message-ID: <BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0@BL0PR12MB2340.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-originating-ip: [65.127.220.137]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4cd03ae6-0da7-4b80-b649-08d6ce3307ac
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600141)(711020)(4605104)(2017052603328)(7193020);
- SRVR:BL0PR12MB2418; 
-x-ms-traffictypediagnostic: BL0PR12MB2418:
-x-microsoft-antispam-prvs: <BL0PR12MB24188879E4879089DB4CF487AF3B0@BL0PR12MB2418.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:428;
-x-forefront-prvs: 00246AB517
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(366004)(136003)(346002)(376002)(396003)(39830400003)(199004)(189003)(68736007)(7736002)(7696005)(71190400001)(71200400001)(81166006)(14454004)(6916009)(52536014)(33656002)(6506007)(81156014)(256004)(102836004)(55016002)(74316002)(2906002)(9686003)(8676002)(54896002)(316002)(25786009)(3846002)(6436002)(99286004)(7116003)(6116002)(5660300002)(53936002)(105004)(86362001)(19627405001)(8936002)(186003)(26005)(476003)(66066001)(66476007)(66946007)(508600001)(66556008)(64756008)(66446008)(76116006)(486006)(73956011);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2418;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: cJ6RJc1wVNYo0VqL/RAc6qWFsOastrg4hQDB94Y3fbib3l2Y2PdAvIQS+HQY2jGAhZXeWY4LRjIWw/C2d2LcnDrvP/Hcfkvy4YDiSGm/7+EsvRDJ3HMn2ThwADzBV/1IQiDTHyvj8pBWewio0vssChMIiJQNLxBHBGEXmQdONpWB+gqEIBS+CoD6STxTFeMNOhxskw4O93Ni/fSaJDOitD2cl918d/QrZTxe8gwzyCMiE4rXP/fvk7ei+PK+N/NdJW+ZWR0oVK/Q/5LrGhasAazfSzEE82vdcmZ8PiJcWJGpxndZ7kUiJEAqNA2LwwUE+tHHr6GsmbwIQMk24S7XqlzV2UeQapqYBkMCtDUAUeEZxVXlv0dQDwKanfDjxDp0y6ej8K5CavH7EZ3H9YmJvEWM5hpcdTQE8Xs8C89DfAY=
+	id 1hLp9V-0000HL-4a; Wed, 01 May 2019 09:20:01 -0400
+Received: from mail-pf1-f177.google.com ([209.85.210.177]:35035)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <mike.piscopo@gmail.com>)
+ id 1hLp8x-000096-2N
+ for usrp-users@lists.ettus.com; Wed, 01 May 2019 09:19:57 -0400
+Received: by mail-pf1-f177.google.com with SMTP id t21so8610477pfh.2
+ for <usrp-users@lists.ettus.com>; Wed, 01 May 2019 06:19:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=nejNgh/LpxGNjicdLz6FcPqGgOFCMqUVfitaXxXeLtg=;
+ b=F/vgCK8P1/Uqz6yBvEltqLBmyDyPWK9fQJ4d9yOZPPBrc9GcvTwAdCilcLVWmIiJQE
+ h710fd5FBdXrqg6q0sXZ9o9+kYjCHo+JTShi71kw+Ex18wuDZbCC7yqQluTtNIKaIJmD
+ u68V1SWcimgEQ9otjvfjsQsdgvCAreQtT+Cvux2LsJSPkZ1HWxRQnBXellCiGsgcB4y8
+ cwIN5qDJRdRpWeaNqYZUoXVo+WhPrSLmAz3kXqZSrrfYdfAFQiFgnrIgJx/ce/9R21mJ
+ dw0fCZxwoTFSftg9Tp3J646Ylei8ouvOBiphm5w2Qy20kgcSQMhphWWQZalNbzIY7zos
+ PO6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=nejNgh/LpxGNjicdLz6FcPqGgOFCMqUVfitaXxXeLtg=;
+ b=fFvzII3QHkvaG/VHE/YKBZfz0p9Q1KJdljYf54YXMBP8jmbfkHCjTGv9n7HZiNBLgl
+ fltpVAQpdELf6YGTZ3tEHHKfAEqZLik/gtLQp+AZJMjP9iTC8mc6xAF+BVTbLLHWLXQ7
+ 6N6mUby7tZ01YfgZOqBBTXjBaW1s3kIxLGyA8wHyjR9XhJdJIH6+3Tg+JaOy+vubi9kF
+ j5M6xPd9GP5ug2WrCvQOrN9aMFiuCt6GeSHLNXASjoUrM3+VxmupN8cz3gEqva7orTxB
+ XX2cLH1V/NoJh/jdylErg/Q9MMZjZaJWwpAog7TY2hl9dQgDbhzt+ep6r+MsUmYTqZzQ
+ 4GTA==
+X-Gm-Message-State: APjAAAV8kSNPQk3hpoA41wmwfw9t7xmGGG5UIlAO64+pLi4qqM7DMpr4
+ WhhgDtjEaz9PpKhHIYusIGMfzfPZ9b2XacbURwA=
+X-Google-Smtp-Source: APXvYqyhqrHtRjyTlV6i31N2Zw3PWulmGQpVYkWY8NCMX0VLz4GFCSNEFseZuw7hAZfsICkZPxeJeQ9AFKiqNZjlG9Q=
+X-Received: by 2002:a62:6f02:: with SMTP id k2mr80582432pfc.136.1556716725371; 
+ Wed, 01 May 2019 06:18:45 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4cd03ae6-0da7-4b80-b649-08d6ce3307ac
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 May 2019 12:46:28.6436 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2418
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-by2nam03lp2055.outbound.protection.outlook.com|104.47.42.55|NAM03-BY2-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.42.55, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-13912-c
-X-Mailprotector-ID: 83159bf2-adce-4023-b59f-6f2acaa13342
+References: <CALLKLAPDtvLxHkVwea_c0S9oX3xFkOYwfpbhvS9HTxK+LiEkhg@mail.gmail.com>
+ <5CC795B9.4050401@gmail.com>
+In-Reply-To: <5CC795B9.4050401@gmail.com>
+Date: Wed, 1 May 2019 09:18:33 -0400
+Message-ID: <CAAY_VvEZR_a9bqOoq4Hk4Uo7ynEJ8Z06G8iKR0Se_qjOE8CK2A@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] E320 numpy missing?
+Subject: Re: [USRP-users] How to periodically write files using USRP and
+ GNUradio
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -96,9 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
-Content-Type: multipart/mixed; boundary="===============2425174312047471425=="
+From: GhostOp14 via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: GhostOp14 <ghostop14@gmail.com>
+Cc: Usrp Users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5206059945796253941=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -112,166 +82,169 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2425174312047471425==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0BL0PR12MB2340namp_"
+--===============5206059945796253941==
+Content-Type: multipart/alternative; boundary="0000000000006e8b430587d35bb9"
 
---_000_BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0BL0PR12MB2340namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--0000000000006e8b430587d35bb9
+Content-Type: text/plain; charset="UTF-8"
 
-Finally got my E320 in and I cross-compiled a new setup.  I tried to fire u=
-p my flowgraph (which works fine on an E310) and it is complaining about nu=
-mpy missing.
+Morning everyone, not sure my note yesterday hit the list correctly so I'm
+trying again.
 
-If I do a search from / on the E320, the only numpy that is showing up is:
-/usr/include/boost/python/numpy
-
-If I do a search from a good E310 in / I see:
-./usr/lib/python2.7/site-packages/numpy
-./usr/lib/python2.7/site-packages/numpy/core/include/numpy
-./usr/lib/python2.7/site-packages/Cython/Includes/numpy
-./usr/include/boost/python/numpy
-
-
-Back on the host machine, my E320 cross-compile prefix shows numpy:
-./sysroots/cortexa9hf-neon-oe-linux-gnueabi/usr/include/boost/python/numpy
-
-My good E310 prefix shows:
-./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1=
--r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy
-./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1=
--r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy/core/include/numpy
-./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1=
--r0/numpy-1.13.1/numpy
-./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1=
--r0/numpy-1.13.1/numpy/core/include/numpy
-./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages/C=
-ython/Includes/numpy
-./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages/n=
-umpy
-./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages/n=
-umpy/core/include/numpy
-./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/include/boost/python/numpy
-
-So, was numpy forgotten?  Left out for a reason?  I am going to attempt to =
-build it by hand, but I have a fear that I am going to go down dependency h=
-ell with this and other missing packages that GR might want.
+Mark: I have a solution for you.  I added a new block yesterday to
+gr-filerepeater (pybombs or github).  There's now a state timer block
+that'll generate a message based on block-specified timing.  Trigger time,
+cycle time, etc.  gr-filerepeater also has a new file sink block I've added
+in the past couple of weeks specifically to address the same kind of
+problem.  You can feed the timer msg out to the new sink msg in.  The new
+block will then key off the state (1/0) in the msg metadata and start/stop
+writing to a file.  You can specify a directory and a base file name, then
+every time a new file write is started it'll append a timestamp.  Should
+exactly match up to what you're trying to accomplish.  I'll post on the
+gnuradio list as well since they're gnuradio blocks.
 
 
---_000_BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0BL0PR12MB2340namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Finally got my E320 in and I cross-compiled a new setup.&nbsp; I tried to f=
-ire up my flowgraph (which works fine on an E310) and it is complaining abo=
-ut numpy missing.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-If I do a search from / on the E320, the only numpy that is showing up is:&=
-nbsp;</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-/usr/include/boost/python/numpy</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-If I do a search from a good E310 in / I see:&nbsp;</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span>./usr/lib/python2.7/site-packages/numpy<br>
-</span>
-<div>./usr/lib/python2.7/site-packages/numpy/core/include/numpy<br>
-</div>
-<div>./usr/lib/python2.7/site-packages/Cython/Includes/numpy<br>
-</div>
-<div>./usr/include/boost/python/numpy<br>
-</div>
-<span></span><br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Back on the host machine, my E320 cross-compile prefix shows numpy:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-./sysroots/cortexa9hf-neon-oe-linux-gnueabi/usr/include/boost/python/numpy<=
-br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-My good E310 prefix shows:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/=
-1.13.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy<br>
-</span>
-<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
-.13.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy/core/include/numpy<b=
-r>
-</div>
-<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
-.13.1-r0/numpy-1.13.1/numpy<br>
-</div>
-<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
-.13.1-r0/numpy-1.13.1/numpy/core/include/numpy<br>
-</div>
-<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packa=
-ges/Cython/Includes/numpy<br>
-</div>
-<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packa=
-ges/numpy<br>
-</div>
-<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packa=
-ges/numpy/core/include/numpy<br>
-</div>
-<div>./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/include/boost/python/num=
-py<br>
-</div>
-<span></span><br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-So, was numpy forgotten?&nbsp; Left out for a reason?&nbsp; I am going to a=
-ttempt to build it by hand, but I have a fear that I am going to go down de=
-pendency hell with this and other missing packages that GR might want.</div=
+On Mon, Apr 29, 2019 at 8:24 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 04/29/2019 08:08 PM, Mark Wagner via USRP-users wrote:
+> > Hey all,
+> >
+> > I'd like to know how to write short files of streamed USRP data
+> > periodically using GNUradio. For instance, I'd like the USRP to
+> > automatically record 5 seconds of data every 10 minutes. It does not
+> > matter to me whether the USRP is constantly on and most of the data is
+> > being discarded, or if the USRP wakes up every 10 minutes to record
+> > the data before sleeping. Whichever is easiest to achieve is fine by
+> > me. Does anyone have experience doing this kind of thing?
+> >
+> > -Mark
+> >
+> >
+> >
+> > --
+> > Mark Wagner
+> > University of California San Diego
+> > Electrical and Computer Engineering
+> >
+> >
+> If you're using Gnu Radio, you can simply use the file sink, and have it
+> record to "/dev/null" most of the time, then have something (perhaps via
+>    the XMLRPC built-in feature) change the filename to whatever your
+> desired filename is, and then revert it back to "/dev/null".
 >
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+> I think I said the same thing on the discuss-gnuradio mailing list a few
+> days ago.
+>
+> The usrp-users mailing list isn't the best place to ask Gnu Radio
+> questions, a question like this, which is inherently radio-type
+> agnostic, probably
+>    belongs on the discuss-gnuradio mailng list, because it's more about
+> "how do I make Gnu Radio dance".
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000006e8b430587d35bb9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Morning everyone, not sure my note y=
+esterday hit the list correctly so I&#39;m trying again.</div><div><br></di=
+v><div>Mark:
+ I have a solution for you.=C2=A0 I added a new block yesterday to=20
+gr-filerepeater (pybombs or github).=C2=A0 There&#39;s now a state timer bl=
+ock=20
+that&#39;ll generate a message based on block-specified timing.=C2=A0 Trigg=
+er=20
+time, cycle time, etc.=C2=A0 gr-filerepeater also has a new file sink block=
+=20
+I&#39;ve added in the past couple of weeks specifically to address the same=
+=20
+kind of problem.=C2=A0 You can feed the timer msg out to the new sink msg=
+=20
+in.=C2=A0 The new block will then key off the state (1/0) in the msg metada=
+ta
+ and start/stop writing to a file.=C2=A0 You can specify a directory and a=
+=20
+base file name, then every time a new file write is started it&#39;ll appen=
+d
+ a timestamp.=C2=A0 Should exactly match up to what you&#39;re trying to=20
+accomplish.=C2=A0 I&#39;ll post on the gnuradio list as well since they&#39=
+;re=20
+gnuradio blocks.</div><div><br></div><div><br></div></div></div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 29, 2=
+019 at 8:24 PM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-us=
+ers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex">On 04/29/2019 08:08 PM, Mark=
+ Wagner via USRP-users wrote:<br>
+&gt; Hey all,<br>
+&gt;<br>
+&gt; I&#39;d like to know how to write short files of streamed USRP data <b=
+r>
+&gt; periodically using GNUradio. For instance, I&#39;d like the USRP to <b=
+r>
+&gt; automatically record 5 seconds of data every 10 minutes. It does not <=
+br>
+&gt; matter to me whether the USRP is constantly on and most of the data is=
+ <br>
+&gt; being discarded, or if the USRP wakes up every 10 minutes to record <b=
+r>
+&gt; the data before sleeping. Whichever is easiest to achieve is fine by <=
+br>
+&gt; me. Does anyone have experience doing this kind of thing?<br>
+&gt;<br>
+&gt; -Mark<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; -- <br>
+&gt; Mark Wagner<br>
+&gt; University of California San Diego<br>
+&gt; Electrical and Computer Engineering<br>
+&gt;<br>
+&gt;<br>
+If you&#39;re using Gnu Radio, you can simply use the file sink, and have i=
+t <br>
+record to &quot;/dev/null&quot; most of the time, then have something (perh=
+aps via<br>
+=C2=A0 =C2=A0the XMLRPC built-in feature) change the filename to whatever y=
+our <br>
+desired filename is, and then revert it back to &quot;/dev/null&quot;.<br>
 <br>
-</div>
-</body>
-</html>
+I think I said the same thing on the discuss-gnuradio mailing list a few <b=
+r>
+days ago.<br>
+<br>
+The usrp-users mailing list isn&#39;t the best place to ask Gnu Radio <br>
+questions, a question like this, which is inherently radio-type <br>
+agnostic, probably<br>
+=C2=A0 =C2=A0belongs on the discuss-gnuradio mailng list, because it&#39;s =
+more about <br>
+&quot;how do I make Gnu Radio dance&quot;.<br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---_000_BL0PR12MB2340BD354F1A9FDB6CE37E97AF3B0BL0PR12MB2340namp_--
+--0000000000006e8b430587d35bb9--
 
 
---===============2425174312047471425==
+--===============5206059945796253941==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -282,5 +255,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2425174312047471425==--
+--===============5206059945796253941==--
 
