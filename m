@@ -2,61 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D6DFD56
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Apr 2019 18:00:22 +0200 (CEST)
-Received: from [::1] (port=36378 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 071E610567
+	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2019 08:06:32 +0200 (CEST)
+Received: from [::1] (port=41570 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hLVB6-0001Oz-Lr; Tue, 30 Apr 2019 12:00:20 -0400
-Received: from mail-lj1-f178.google.com ([209.85.208.178]:39463)
+	id 1hLiNr-0002ah-IC; Wed, 01 May 2019 02:06:23 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:39972)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <luke.whittlesey@gmail.com>)
- id 1hLVAJ-0000v4-Jt
- for usrp-users@lists.ettus.com; Tue, 30 Apr 2019 12:00:01 -0400
-Received: by mail-lj1-f178.google.com with SMTP id q10so13290813ljc.6
- for <usrp-users@lists.ettus.com>; Tue, 30 Apr 2019 08:59:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=glUqbeM4fN+Nwz2FbycWuIZfcz/mu37RRyHnz8epTLA=;
- b=tBWjO2/9hmxLYborxd4P9zWT4f9ImGtQQj1lhxG/+vskJC0YSU/t4jcO52n6qZDmww
- YLKbs2SdEC+lkoDjiN7nCieG8S4nj9SuinqS0Q/twcCzvl5aMhRHVKf8lnxhU/fLTOM2
- 88m6t3lBLeiedom3dd3SvzJgYlRZb8oHUbHUG+8fJkCAJTA5NHJaG6RIuDTiX4vb4swH
- VTYEk55YiCKgeMrZBGp44KDXVloPPb+6Lj+D9rDNNAKqEb5VzcpZ7V2PcdahXe4NFVix
- vJT0Ax6rIN4qcluf2R+sRm7/A2tJG73MWUql60JDGJSzk3/8UGy8vY8E81vBVrR2N9/J
- qs2g==
+ (Exim 4.91) (envelope-from <neel.pandeya@ettus.com>)
+ id 1hLiNJ-0002UX-SY
+ for usrp-users@lists.ettus.com; Wed, 01 May 2019 02:06:19 -0400
+Received: by mail-ot1-f48.google.com with SMTP id w6so14082708otl.7
+ for <usrp-users@lists.ettus.com>; Tue, 30 Apr 2019 23:05:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=ZvUfAWlRNqo3V8nXFhe6g35Lu629RyuuMv1bfJt2EmE=;
+ b=dvQNl4SOQSfgvRj/eQw8Oyk2lYMsdIH75dHy+ntNDIlTuBBEoPg9Mm7pM61ewvcdtO
+ 6hTYc8hwVJ+JJ+y2dmN+Pem0Bk1pNOnWZPRsmvpNv1c17gwfzcFe2SnXvAA9KG+ZYgag
+ JEXEZqj8LFLdDiyVkmL0ZfWONW/MZEscKjOKlHedL7AdjgUYZHczb/dpOdRkzgvkud+L
+ Mg20UOXmBDX0Sc2fMYMBUBYUrf37S5T1nroiEI2PEbY4ZAtakx4I3KLgtlsAddnwd9CS
+ h6kyHeepsvljpO+RsuECPI+YYjAqessgyPy53zWXfkkqL19nGoIBcHbtX524uU3DF8rk
+ 6SMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=glUqbeM4fN+Nwz2FbycWuIZfcz/mu37RRyHnz8epTLA=;
- b=o0WuEN8J5J5pqb8WDG6vt/wkCgI0rNibQPFFXV+Q9VSX5xx1HDaCLWgIwACH93pP2f
- JGYKwyIXa5kFYQ/RnHDvbxKieMJq/WGXIixOziZXwC5hfzYgMZsLYBFnt67HeHeyvMHB
- gPi70205biSmrnBOfFwAreKU7NSkx7Z9KkiJ5SalJQv3BacSCNeLHKESQ4RlKfTKODth
- j2i6uD1srqSXma0oGIT2blsga/kBBeQ4twf1bA/PIwz9cyUrdPCrSWSytZ7OllCOiYa4
- aH1aHXB2tYcuCrfhY/9hPOLFelOtjPxz1F3nujjcd40eitgjr8PuhQN3jnTYFeeltf7W
- IWBA==
-X-Gm-Message-State: APjAAAU34rak0hvPEd8H036Cak9JEjNfnt1Y+EGIfNq3umEnZnAgpuaY
- TltLz3IazVIEe1eI5crc6FHqTC/7pfHNTSwVI+g=
-X-Google-Smtp-Source: APXvYqx9ugkNc6HLHIC4gIv6Lyub84OZmAgFEZufD9bipGxfKksZrAyaGuOYSyJWvIQbSrpxDYqmmnm4IbMQj8j35QI=
-X-Received: by 2002:a2e:874d:: with SMTP id q13mr15351645ljj.110.1556639930139; 
- Tue, 30 Apr 2019 08:58:50 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=ZvUfAWlRNqo3V8nXFhe6g35Lu629RyuuMv1bfJt2EmE=;
+ b=K+oNeDe4JZiHIVnrzFgYwg2TjiPRb4yQNFgIVydA5UF14Pu/VpCUA5c0bwBeCPw2+x
+ do23FODpJKtDhSUkqOyxnCgddktcHEBh799PFvQ02KdLcaKJEc3QzwgcoB3yrfyd6uOG
+ DmY/3x45U5/XTZ+8d7m1C5rsfx0aSXvUV0ya985AFRJ0OTQZrTKXi0zpQc2rtfp2NbAQ
+ jiJc6P/I+QH1qohm2A1SIudzWdlUwJCiCjRdW9yv6uCDrWIX7OoRqk5D4jUIFtl/8GT6
+ /asfQ/5NqWpM46y3xvDWBk0lGbfz/O73RFsbwuXGoWCT7AdRYpdBOPXlQcqbVLynNU3U
+ W++Q==
+X-Gm-Message-State: APjAAAVL3zdvtoBKezWXXXy7NddOI8Cnf86+vu3JH0NVBSn89R6McYfx
+ pGqygRANyD4mhc6oHObiEkebnXLOGyGW4EfJ5bO5AcZ+0iba3A==
+X-Google-Smtp-Source: APXvYqwkDE+bgWVEFhp3ox8lJeRZarNtX083hwgjgauDVAah7alAcHg0+Wh7BHypuJNmYjX6cXOZyNLkJwnRKNsbMmg=
+X-Received: by 2002:a9d:7f0b:: with SMTP id j11mr35565905otq.132.1556690708614; 
+ Tue, 30 Apr 2019 23:05:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <BL0PR12MB23407D3418F13ABDC01D6826AF390@BL0PR12MB2340.namprd12.prod.outlook.com>
- <5CC797D5.1070401@gmail.com>
- <BL0PR12MB23408FC518AA7EBAE2D53176AF3A0@BL0PR12MB2340.namprd12.prod.outlook.com>
- <5CC8610E.5060007@gmail.com>
- <CA+ce6i2y0kRUgMnPHYo_6=0A4EbdWVWU236o3LEgjfRKuB34eA@mail.gmail.com>
- <5CC86EBB.2030902@gmail.com>
-In-Reply-To: <5CC86EBB.2030902@gmail.com>
-Date: Tue, 30 Apr 2019 11:58:25 -0400
-Message-ID: <CA+ce6i2LVuHZbp_ro+NFwyGQVL=_y5S2k8QJWQVXdKm=kSr9OA@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Date: Wed, 1 May 2019 01:04:52 -0500
+Message-ID: <CACaXmv-UW0aE1hVuXQ2fPR90Z7uNrnWLRsiXm-yb6b_iit4r9Q@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] E312 wrong sample rate
+Subject: [USRP-users] Announcing GNU Radio and RFNoC Workshops in Columbia,
+ Maryland
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,10 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Luke Whittlesey via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Luke Whittlesey <luke.whittlesey@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7943889693366454013=="
+From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
+Content-Type: multipart/mixed; boundary="===============0013754699836937653=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,338 +78,215 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7943889693366454013==
-Content-Type: multipart/alternative; boundary="0000000000001448be0587c17a49"
+--===============0013754699836937653==
+Content-Type: multipart/alternative; boundary="000000000000b6641f0587cd4c83"
 
---0000000000001448be0587c17a49
+--000000000000b6641f0587cd4c83
 Content-Type: text/plain; charset="UTF-8"
 
-> but there are diminishing returns
-True, it's only useful to the dynamic range of that 12-bit ADC.
-Is there a recommended minimum sample rate for the E310/12?
-Would this be dictated by the most narrow pre-selection filter?
+======================================================================
+         *** Announcing GNU Radio and RFNoC Workshops ***
 
-On Tue, Apr 30, 2019 at 11:50 AM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
+     Ettus Research will be running a series of free, hands-on,
+        technical workshops, and you are welcome to attend!
 
-> On 04/30/2019 11:43 AM, Luke Whittlesey wrote:
->
-> Just my 2cents, but I think that sometimes running at a higher ADC sample
-> rate and then digitally filtering may be desirable. I can't say anything
-> specifically about this example with the E312 because I'm not familiar with
-> the pre-selection filters and the analog filters in the AD9361, but a
-> higher sample rate generally allows the analog filter more rolloff before
-> the ADC aliases that energy back in.
->
-> Yes, and you end up with higher dynamic range as well--but there are
-> diminishing returns.
->
->
-> On Tue, Apr 30, 2019 at 10:53 AM Marcus D. Leech via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> On 04/30/2019 09:15 AM, Jason Matusiak wrote:
->>
->> I guess I would need a block to count samples if I am going to a null
->> sink?  Otherwise I am not sure how to guage how many samples have passed.
->>
->> I was just thinking to look at runtime--for a large enough sample-count,
->> the initial startup overhead would be a small fraction of the total
->>   runtime.
->>
->> You could use the "benchmark_rate" tool to do this as well.
->>
->>
->> Well, this is probably ignorant of me, but I assumed a higher master
->> clock rate would allow me some sort of speed benefit somewhere.  I guess I
->> can't say what since it has nothing to do with the Linux CPU speed....
->> What is the benefit to running at a slower rate?
->>
->> No, master_clock_rate has *nothing* to do with CPU speed.  It just
->> controls the rate that the ADC/DSP/DDC chain runs at in the radio section.
->>   There's nothing inherently *wrong* with running at a very high
->> decimation ratio, it's just that it isn't *necessary*.
->>
->>
->>
->> ------------------------------
->> *From:* USRP-users <usrp-users-bounces@lists.ettus.com>
->> <usrp-users-bounces@lists.ettus.com> on behalf of Marcus D. Leech via
->> USRP-users <usrp-users@lists.ettus.com> <usrp-users@lists.ettus.com>
->> *Sent:* Monday, April 29, 2019 8:33 PM
->> *To:* usrp-users@lists.ettus.com
->> *Subject:* Re: [USRP-users] E312 wrong sample rate
->>
->> On 04/29/2019 03:28 PM, Jason Matusiak via USRP-users wrote:
->>
->> I was debugging a problem with a flowgraph when I realized that I wasn't
->> getting the amount of samples I expected passing out of the USRP source
->> block.  If I set a sample rate too low, it tells me it has to set the
->> sample rate to 0.125MSps.  Currently I have a single stream from my source
->> block, 30MHz clock rate, 500kHz sample rate.
->>
->> If I run for 20 seconds streaming the data to a file (unbuffered set to
->> off) as a complex, I would expect to see 20s * 8B * 500KHz = 80MB of data
->> in the file.
->>
->> Instead, running it empirically (so the numbers will have to be ballpark
->> and not exact), I see file size of 116153944.  If I make the assumption
->> that the sample rate was really 500kHz, that means it ran for 29.03s.  This
->> is obviously off by 50%.  If I assume that 10s of data was really
->> collected, that means I had an actual sample rate of 1.451924MSps.
->>
->> If I run these tests with the minimal 125kHz sample rate, I see things
->> off by about double what I would expect.
->>
->> Moving my sample rate around the 1MSps range seems to work closer to what
->> I expect, but of course I can't write files that fast without getting 'O'
->> on the screen.  Ultimately I need to use two receivers, so I don't believe
->> that I can push the clock rate above 30.72MHz.
->>
->> I am running UHD-3_14 with RFNoC enabled (though I am not using RFNoC in
->> this particular flowgraph).  What am I missing here?
->>
->> Have it write to /dev/null, and time how long it takes to gather some
->> large number of samples, and go from there.
->>    If your delivered sample rate is 500ksps, I don't see why you need a
->> master clock rate as high as 30Msps, but perhaps you have
->>    your reasons.
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
->
+Location:
+National Instruments
+7125 Thomas Edison Drive, Suite 200
+Columbia, Maryland, 21046, USA
 
---0000000000001448be0587c17a49
+Dates:
+Tuesday May 14 -- GNU Radio Workshop
+Wednesday May 15 -- RFNoC Workshop
+
+Workshops will run from 09:00 to 17:00
+Coffee and donuts will be provided at 08:00
+Lunch will be provided at around 12:00
+
+Registration is required in advance, but is completely free:
+https://events.ni.com/profile/form/index.cfm?PKformID=0x380818abcd
+
+======================================================================
+GNU Radio Workshop Description:
+
+Full Title:
+Introduction to the USRP, UHD, and GNU Radio (Open-Source Toolchain)
+
+Abstract:
+This workshop will provide a thorough and practical introduction to
+the USRP hardware and the open-source software toolchain (UHD and
+GNU Radio). We will examine the hardware and architecture of the
+entire USRP family of software-defined radios. We will discuss topics
+such as how to get started using a new USRP device, how to install and
+configure the open-source software toolchain, programming the USRP
+using the UHD API from C++, using GNU Radio with the USRP and creating
+and running flowgraphs, using GNU Radio from both GRC and Python, and
+various debugging techniques. Several exercises will be performed,
+such as implementing an FM transmitter and receiver. Various
+demonstrations of wireless systems will be shown. A discussion of the
+embedded E310 radio and using embedded SDR will be included. Several
+other open-source tools will be discussed, such as GQRX, Fosphor,
+Inspectrum, and several Out-of-Tree (OOT) modules. A discussion of
+cellular applications, including OpenBTS and LTE stacks, as well as
+GPS/GNSS applications will be presented. Several other miscellaneous
+topics such as 10 Gigabit Ethernet networking, host system performance
+tuning, X300/X310 device recovery, and some best practices will be
+discussed. Attendees should come away with a solid foundation and
+practical understanding of how to configure, program, and use the USRP
+to implement a wide range range of wireless systems.
+
+======================================================================
+RFNoC Workshop Description:
+
+Full Title:
+FPGA Programming on the USRP with the RFNoC Framework
+
+Abstract:
+Ettus Research's RFNoC (RF Network-on-Chip) software framework is
+designed to decrease the development time for experienced FPGA
+engineers seeking to integrate IP into the USRP FPGA signal
+processing chain. RFNoC is the framework for USRP devices that use
+Xilinx 7-series FPGAs (E310, E312, X300, X310). RFNoC is built around
+a packetized network infrastructure in the FPGA that handles the
+transport of control and sample data between the host CPU and the
+radio. Users target their custom algorithms to the FPGA in the form
+of Computation Engines (CE), which are processing blocks that attach
+to this network. CEs act as independent nodes on the network that can
+receive and transmit data to any other node (e.g., another CE, the
+radio block, or the host CPU).  Users can create modular,
+FPGA-accelerated SDR applications by chaining CEs into a flow graph.
+RFNoC is supported in UHD and GNU Radio. In this workshop, we will
+present an interactive hands-on tutorial on RFNoC, including a
+discussion on its design and capabilities, demonstrations of several
+existing examples, and a walk-through on implementing a user-defined
+CE and integrating the CE into GNU Radio.
+
+======================================================================
+Details and Logistics:
+
+* The workshops are free, technical, and hands-on.
+
+* Laptop computers and USRP radios will be provided in the workshop.
+  Attendees do not need to bring or prepare anything.
+
+* Attendees may optionally bring their own equipment.
+  Contact "support@ettus.com" for specific setup requirements.
+
+* For the USRP/GNU Radio Workshop, attendees should have some previous
+experience with Linux and using the Linux command line, and basic
+familiarity with a programming language such as C, C++, or Python,
+and basic fundamental concepts in DSP and RF. For the RFNoC Workshop,
+attendees should also have some basic familiarity with Verilog.
+Extensive or deep experience with these topics is not necessary.
+
+* Space is limited and will be allocated
+  on a first-come,first-serve basis.
+
+* Registration is required in advance, but is completely free.
+https://events.ni.com/profile/form/index.cfm?PKformID=0x380818abcd
+
+======================================================================
+              We look forward to seeing you there!!
+
+======================================================================
+
+--000000000000b6641f0587cd4c83
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>&gt; but there are
-    diminishing returns</div><div>True, it&#39;s only useful to the dynamic=
- range of that 12-bit ADC. <br></div><div>Is there a recommended minimum sa=
-mple rate for the E310/12? <br></div><div>Would this be dictated by the mos=
-t narrow pre-selection filter?<br></div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 30, 2019 at 11:50 AM Ma=
-rcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@=
-gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div class=3D"gmail-m_1727769788739495707moz-cite-prefix">On 04/30/2019=
- 11:43 AM, Luke Whittlesey
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">Just my 2cents, but I think that sometimes running
-        at a higher ADC sample rate and then digitally filtering may be
-        desirable. I can&#39;t say anything specifically about this example
-        with the E312 because I&#39;m not familiar with the pre-selection
-        filters and the analog filters in the AD9361, but a higher
-        sample rate generally allows the analog filter more rolloff
-        before the ADC aliases that energy back in.<br>
-      </div>
-    </blockquote>
-    Yes, and you end up with higher dynamic range as well--but there are
-    diminishing returns.<br>
-    <br>
-    <blockquote type=3D"cite"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 30, 2019 at 10:53
-          AM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-user=
-s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div bgcolor=3D"#FFFFFF">
-            <div class=3D"gmail-m_1727769788739495707gmail-m_-6842141528856=
-248305moz-cite-prefix">On
-              04/30/2019 09:15 AM, Jason Matusiak wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;=
-font-size:12pt;color:rgb(0,0,0)">
-                I guess I would need a block to count samples if I am
-                going to a null sink?=C2=A0 Otherwise I am not sure how to
-                guage how many samples have passed.</div>
-            </blockquote>
-            I was just thinking to look at runtime--for a large enough
-            sample-count, the initial startup overhead would be a small
-            fraction of the total<br>
-            =C2=A0 runtime.<br>
-            <br>
-            You could use the &quot;benchmark_rate&quot; tool to do this as=
- well.<br>
-            <br>
-            <blockquote type=3D"cite">
-              <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;=
-font-size:12pt;color:rgb(0,0,0)">
-                <br>
-              </div>
-              <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;=
-font-size:12pt;color:rgb(0,0,0)">
-                Well, this is probably ignorant of me, but I assumed a
-                higher master clock rate would allow me some sort of
-                speed benefit somewhere.=C2=A0 I guess I can&#39;t say what=
- since
-                it has nothing to do with the Linux CPU speed....=C2=A0 Wha=
-t
-                is the benefit to running at a slower rate?</div>
-            </blockquote>
-            No, master_clock_rate has *nothing* to do with CPU speed.=C2=A0
-            It just controls the rate that the ADC/DSP/DDC chain runs at
-            in the radio section.<br>
-            =C2=A0 There&#39;s nothing inherently *wrong* with running at a=
- very
-            high decimation ratio, it&#39;s just that it isn&#39;t *necessa=
-ry*.<br>
-            <br>
-            <br>
-            <blockquote type=3D"cite">
-              <div id=3D"gmail-m_1727769788739495707gmail-m_-68421415288562=
-48305Signature">
-                <div>
-                  <div style=3D"font-family:Calibri,Arial,Helvetica,sans-se=
-rif;font-size:12pt;color:rgb(0,0,0)">
-                    <br>
-                  </div>
-                  <hr style=3D"display:inline-block;width:98%">
-                  <div id=3D"gmail-m_1727769788739495707gmail-m_-6842141528=
-856248305divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=3D"=
-Calibri, sans-serif" color=3D"#000000"><b>From:</b>
-                      USRP-users <a class=3D"gmail-m_1727769788739495707gma=
-il-m_-6842141528856248305moz-txt-link-rfc2396E" href=3D"mailto:usrp-users-b=
-ounces@lists.ettus.com" target=3D"_blank">&lt;usrp-users-bounces@lists.ettu=
-s.com&gt;</a>
-                      on behalf of Marcus D. Leech via USRP-users <a class=
-=3D"gmail-m_1727769788739495707gmail-m_-6842141528856248305moz-txt-link-rfc=
-2396E" href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">&lt;usr=
-p-users@lists.ettus.com&gt;</a><br>
-                      <b>Sent:</b> Monday, April 29, 2019 8:33 PM<br>
-                      <b>To:</b> <a class=3D"gmail-m_1727769788739495707gma=
-il-m_-6842141528856248305moz-txt-link-abbreviated" href=3D"mailto:usrp-user=
-s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-                      <b>Subject:</b> Re: [USRP-users] E312 wrong sample
-                      rate</font>
-                    <div>=C2=A0</div>
-                  </div>
-                  <div style=3D"background-color:rgb(255,255,255)">
-                    <div class=3D"gmail-m_1727769788739495707gmail-m_-68421=
-41528856248305x_moz-cite-prefix">On
-                      04/29/2019 03:28 PM, Jason Matusiak via USRP-users
-                      wrote:<br>
-                    </div>
-                    <blockquote type=3D"cite">
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        I was debugging a problem with a flowgraph when
-                        I realized that I wasn&#39;t getting the amount of
-                        samples I expected passing out of the USRP
-                        source block.=C2=A0 If I set a sample rate too low,
-                        it tells me it has to set the sample rate to
-                        0.125MSps.=C2=A0 Currently I have a single stream
-                        from my source block, 30MHz clock rate, 500kHz
-                        sample rate.</div>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        <br>
-                      </div>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        If I run for 20 seconds streaming the data to a
-                        file (unbuffered set to off) as a complex, I
-                        would expect to see 20s * 8B * 500KHz =3D 80MB of
-                        data in the file.</div>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        <br>
-                      </div>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        Instead, running it empirically (so the numbers
-                        will have to be ballpark and not exact), I see
-                        file size of=C2=A0116153944.=C2=A0 If I make the
-                        assumption that the sample rate was really
-                        500kHz, that means it ran for 29.03s.=C2=A0 This is
-                        obviously off by 50%.=C2=A0 If I assume that 10s of
-                        data was really collected, that means I had an
-                        actual sample rate of 1.451924MSps.</div>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        <br>
-                      </div>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        If I run these tests with the minimal 125kHz
-                        sample rate, I see things off by about double
-                        what I would expect.=C2=A0=C2=A0</div>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        <br>
-                      </div>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        Moving my sample rate around the 1MSps range
-                        seems to work closer to what I expect, but of
-                        course I can&#39;t write files that fast without
-                        getting &#39;O&#39; on the screen.=C2=A0 Ultimately=
- I need to
-                        use two receivers, so I don&#39;t believe that I ca=
-n
-                        push the clock rate above 30.72MHz.=C2=A0=C2=A0</di=
-v>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        <br>
-                      </div>
-                      <div style=3D"font-family:Calibri,Arial,Helvetica,san=
-s-serif;font-size:12pt;color:rgb(0,0,0)">
-                        I am running UHD-3_14 with RFNoC enabled (though
-                        I am not using RFNoC in this particular
-                        flowgraph).=C2=A0 What am I missing here?</div>
-                      <br>
-                    </blockquote>
-                    Have it write to /dev/null, and time how long it
-                    takes to gather some large number of samples, and go
-                    from there.<br>
-                    =C2=A0=C2=A0 If your delivered sample rate is 500ksps, =
-I don&#39;t
-                    see why you need a master clock rate as high as
-                    30Msps, but perhaps you have<br>
-                    =C2=A0=C2=A0 your reasons.=C2=A0 <br>
-                    <br>
-                  </div>
-                </div>
-              </div>
-            </blockquote>
-            <br>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">U=
-SRP-users@lists.ettus.com</a><br>
-          <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
-ts.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/m=
-ailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default"><font size=
+=3D"2"><span style=3D"font-family:monospace,monospace">=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 *** Announcing GNU Radio and RFNoC Workshops ***<br><=
+br>=C2=A0=C2=A0=C2=A0=C2=A0 Ettus Research will be running a series of free=
+, hands-on,<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 technical worksho=
+ps, and you are welcome to attend!<br><br>Location:<br>National Instruments=
+<br>7125 Thomas Edison Drive, Suite 200<br>Columbia, Maryland, 21046, USA<b=
+r><br>Dates:<br>Tuesday May 14 -- GNU Radio Workshop<br>Wednesday May 15 --=
+ RFNoC Workshop<br><br>Workshops will run from 09:00 to 17:00<br>Coffee and=
+ donuts will be provided at 08:00<br>Lunch will be provided at around 12:00=
+<br><br>Registration is required in advance, but is completely free:<br><a =
+href=3D"https://events.ni.com/profile/form/index.cfm?PKformID=3D0x380818abc=
+d">https://events.ni.com/profile/form/index.cfm?PKformID=3D0x380818abcd</a>=
+<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>GN=
+U Radio Workshop Description:<br><br>Full Title:<br>Introduction to the USR=
+P, UHD, and GNU Radio (Open-Source Toolchain)<br><br>Abstract:<br>This work=
+shop will provide a thorough and practical introduction to<br>the USRP hard=
+ware and the open-source software toolchain (UHD and<br>GNU Radio). We will=
+ examine the hardware and architecture of the<br>entire USRP family of soft=
+ware-defined radios. We will discuss topics<br>such as how to get started u=
+sing a new USRP device, how to install and<br>configure the open-source sof=
+tware toolchain, programming the USRP<br>using the UHD API from C++, using =
+GNU Radio with the USRP and creating<br>and running flowgraphs, using GNU R=
+adio from both GRC and Python, and<br>various debugging techniques. Several=
+ exercises will be performed,<br>such as implementing an FM transmitter and=
+ receiver. Various<br>demonstrations of wireless systems will be shown. A d=
+iscussion of the<br>embedded E310 radio and using embedded SDR will be incl=
+uded. Several<br>other open-source tools will be discussed, such as GQRX, F=
+osphor,<br>Inspectrum, and several Out-of-Tree (OOT) modules. A discussion =
+of<br>cellular applications, including OpenBTS and LTE stacks, as well as<b=
+r>GPS/GNSS applications will be presented. Several other miscellaneous<br>t=
+opics such as 10 Gigabit Ethernet networking, host system performance<br>tu=
+ning, X300/X310 device recovery, and some best practices will be<br>discuss=
+ed. Attendees should come away with a solid foundation and<br>practical und=
+erstanding of how to configure, program, and use the USRP<br>to implement a=
+ wide range range of wireless systems.<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>RFNoC Workshop Description:<br><br>Ful=
+l Title:<br>FPGA Programming on the USRP with the RFNoC Framework<br><br>Ab=
+stract:<br>Ettus Research&#39;s RFNoC (RF Network-on-Chip) software framewo=
+rk is<br>designed to decrease the development time for experienced FPGA<br>=
+engineers seeking to integrate IP into the USRP FPGA signal<br>processing c=
+hain. RFNoC is the framework for USRP devices that use<br>Xilinx 7-series F=
+PGAs (E310, E312, X300, X310). RFNoC is built around<br>a packetized networ=
+k infrastructure in the FPGA that handles the<br>transport of control and s=
+ample data between the host CPU and the<br>radio. Users target their custom=
+ algorithms to the FPGA in the form<br>of Computation Engines (CE), which a=
+re processing blocks that attach<br>to this network. CEs act as independent=
+ nodes on the network that can<br>receive and transmit data to any other no=
+de (e.g., another CE, the<br>radio block, or the host CPU).=C2=A0 Users can=
+ create modular,<br>FPGA-accelerated SDR applications by chaining CEs into =
+a flow graph.<br>RFNoC is supported in UHD and GNU Radio. In this workshop,=
+ we will<br>present an interactive hands-on tutorial on RFNoC, including a<=
+br>discussion on its design and capabilities, demonstrations of several<br>=
+existing examples, and a walk-through on implementing a user-defined<br>CE =
+and integrating the CE into GNU Radio.<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>Details and Logistics:<br><br>* The wo=
+rkshops are free, technical, and hands-on.<br><br>* Laptop computers and US=
+RP radios will be provided in the workshop.<br>=C2=A0 Attendees do not need=
+ to bring or prepare anything.<br><br>* Attendees may optionally bring thei=
+r own equipment.<br>=C2=A0 Contact &quot;<a href=3D"mailto:support@ettus.co=
+m">support@ettus.com</a>&quot; for specific setup requirements.<br><br>* Fo=
+r the USRP/GNU Radio Workshop, attendees should have some previous<br>exper=
+ience with Linux and using the Linux command line, and basic<br>familiarity=
+ with a programming language such as C, C++, or Python,<br>and basic fundam=
+ental concepts in DSP and RF. For the RFNoC Workshop,<br>attendees should a=
+lso have some basic familiarity with Verilog.<br>Extensive or deep experien=
+ce with these topics is not necessary.<br><br>* Space is limited and will b=
+e allocated<br>=C2=A0 on a first-come,first-serve basis.<br><br>* Registrat=
+ion is required in advance, but is completely free.<br><a href=3D"https://e=
+vents.ni.com/profile/form/index.cfm?PKformID=3D0x380818abcd">https://events=
+.ni.com/profile/form/index.cfm?PKformID=3D0x380818abcd</a><br><br>=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 We look forwar=
+d to seeing you there!!<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D<br><br><br></span></font></div></div></div>
 
-</blockquote></div>
-
---0000000000001448be0587c17a49--
+--000000000000b6641f0587cd4c83--
 
 
---===============7943889693366454013==
+--===============0013754699836937653==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -427,5 +297,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7943889693366454013==--
+--===============0013754699836937653==--
 
