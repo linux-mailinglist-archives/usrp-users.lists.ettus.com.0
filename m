@@ -2,69 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7089611B55
-	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2019 16:24:33 +0200 (CEST)
-Received: from [::1] (port=58450 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EB7711CC2
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2019 17:26:15 +0200 (CEST)
+Received: from [::1] (port=54638 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hMCdN-000184-Vt; Thu, 02 May 2019 10:24:25 -0400
-Received: from mailin.dlr.de ([194.94.201.12]:45999)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.91) (envelope-from <Robert.Poehlmann@dlr.de>)
- id 1hMCcp-0000rj-8W
- for usrp-users@lists.ettus.com; Thu, 02 May 2019 10:24:21 -0400
-IronPort-PHdr: =?us-ascii?q?9a23=3A7bJTohIIdvLySN4lstmcpTZWNBhigK39O0sv0r?=
- =?us-ascii?q?FitYgfL/rxwZ3uMQTl6Ol3ixeRBMOHsqsC1bud7P6ocFdDyK7JiGoFfp1IWk?=
- =?us-ascii?q?1NouQttCtkPvS4D1bmJuXhdS0wEZcKflZk+3amLRodQ56mNBXdrXKo8DEdBA?=
- =?us-ascii?q?j0OxZrKeTpAI7SiNm82/yv95HJbAhEmSexbalzIRiyognctMgbipZ+J6gszR?=
- =?us-ascii?q?fEvmFGcPlMy2NyIlKTkRf85sOu85Nm7i9dpfEv+dNeXKvjZ6g3QqBWAzogM2?=
- =?us-ascii?q?Au+c3krgLDQheV5nsdSWoZjBxFCBXY4R7gX5fxtiz6tvdh2CSfIMb7Q6w4VS?=
- =?us-ascii?q?ik4qx2ThLjlSUJOCMj8GzPisJ+kr9VoA6vqRJ8zY7bYoCVO+ZxcKzSZt4aWX?=
- =?us-ascii?q?FOU8JNWyBdHo+xbY0CBPcBM+ZCqIn9okMDoByiCwmrH+zg1CVIhmPs0aMg1O?=
- =?us-ascii?q?QuDwHG3AglH90UtnTUqs74O7oWUeCv1qXH0CvMYupQ1Dzg5obIdRUhruuNXb?=
- =?us-ascii?q?J2acfe1E4vGB/GjlqOs4zpJS+a1uMIs2SD4OpgVP6vi2o9pA5quDSg2sAsio?=
- =?us-ascii?q?zRioIay1DE6SV5wJsuKtGiVEF7ZtukHINOuCGGK4t2X9giT3t0tyY9z70Lv4?=
- =?us-ascii?q?OwcisSyJk/2hLTd+aLf5WL7x/sTuqdPDl1iXF/dL6imhq+6VWsxvHmWsWp01?=
- =?us-ascii?q?tHoTBJnsTCu30OzRDf9MiKR/Rl8ku82DuC0xrf5v9ELE07j6bWKoQtzqMump?=
- =?us-ascii?q?cRt0nIAzX4l1/sjKCMc0Up4u2o6+P6bbr4vpKcLIp0ih3mMqQph8y/Hfw0Mg?=
- =?us-ascii?q?gQUGif/uSxzLPt80v3TrtFjvM4kq7XvpPdK8oBuqK1HgBb3Yc95hqlDjem1s?=
- =?us-ascii?q?gYnWMdI15fZR2Hi5LpN0vTL//mFfu/glKsnyl3x/3eI7HtHo/BImXAnbruZ7?=
- =?us-ascii?q?px9kBRxQkpwdxC+p5YErQBL+jyWk/1utzYFBg5Mwmszuj7D9VyzZ0RWXiTAq?=
- =?us-ascii?q?ODKq3StkGH5uIrI+mJfoAVvjD9JuM46P7ql381g0IScrex0ZsNdH+4BuhmI1?=
- =?us-ascii?q?meYXf0n9gOD2IKsRQ6TOHxklKCVyJTa2yvX6I65zE3EZmpDZ3dSYConrOB2j?=
- =?us-ascii?q?23EYBIaWpeEFCDDW/od5mYW/cLcC+SP9RhkiYcVbS4Vo8hzg+htBXhy7d8Ku?=
- =?us-ascii?q?rU+zYYtY741NRv+eLTiQ0y9SFvD8iHz26NSGR0zSs0QGpi0K16rEhVw1Gfl7?=
- =?us-ascii?q?V+grlSD9FW6vUPXgpsZrDGyOkvX+r1UA/bYpGxT1umRtCvBzcZQtYrhdMDNR?=
- =?us-ascii?q?UuU+6+hwzOinL5S4QekKaGUcQ5?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2H9AwC3/Mpc/wuKuAplHgEGBwaBVAY?=
- =?us-ascii?q?LAYJoEYEsCoQGlSOaDzwoCwyBSYJ1AheGQDcGDgEDAQEFAQEBAQIBAQKBBQy?=
- =?us-ascii?q?COiIYBE07AwEBAQEBAQEBASQBAQEBAQEBAQEBAQEBAQEaAg03LAEBAQQBASE?=
- =?us-ascii?q?ROgsMBAIBCBEEAQEDAgYdAwICAiUBChQBCAgCBA4FCAwFgwqCGa1igS+KMYE?=
- =?us-ascii?q?LJwGNYYERRoFOfj6CYQEBA4EdQ4MIMoImBI1JmVsHAoEvhnSHUYRygg5hhVu?=
- =?us-ascii?q?DQIk3kmGKYx6FJF+BGnFPggRoCYENgTCDOIpTcgEBkzqBIQEB?=
-X-IronPort-AV: E=Sophos;i="5.60,421,1549926000"; d="scan'208";a="17173603"
-To: <demel@ant.uni-bremen.de>
-Thread-Topic: [USRP-users] Introducing Theseus Cores: Open source FPGA cores
- for DSP and SDR
-Thread-Index: AQHU/h63/GOBP3Y0x0SAfDyzs9Aee6ZXWssAgACM/zA=
-Date: Thu, 2 May 2019 14:23:07 +0000
-Message-ID: <2032979BBC82474D954F55A08A5408F9415C9C4F@DLDEFFMIMP03EXC.intra.dlr.de>
-References: <CADRnH23yQxEPTYysMECCwvgYvN7RZucmDH+x4QLPDJZcJUR4og@mail.gmail.com>
- <ef9bff18-8c8c-5a74-398d-9b50d0bfea9d@ant.uni-bremen.de>
-In-Reply-To: <ef9bff18-8c8c-5a74-398d-9b50d0bfea9d@ant.uni-bremen.de>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	id 1hMDbB-0007Gs-C9; Thu, 02 May 2019 11:26:13 -0400
+Received: from mail-ed1-f41.google.com ([209.85.208.41]:36722)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <toomz54@gmail.com>) id 1hMDac-00073z-3l
+ for usrp-users@lists.ettus.com; Thu, 02 May 2019 11:26:08 -0400
+Received: by mail-ed1-f41.google.com with SMTP id a8so2497299edx.3
+ for <usrp-users@lists.ettus.com>; Thu, 02 May 2019 08:25:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=lbHoLXBoksThML70e2uc0I2yAGijP5pdhkHsANJHiB8=;
+ b=Ra7RAprlxr7qJxF82Qtgs52JW+WuMUcA35LuAXZx53Nvd1w3cwUg21zX3O63Ev1Wvx
+ wIwhKI1bDse2wrfKe20PQ8malr4pnp3+8g18EUPMMwElmtOH9WhQs140y82C+M+l9Won
+ OVLUVEacXv5JnoqWVUUPF05BEl8RpC9pkVH1PG1VsDvOFbl95264FSutej0GX2CGs0vu
+ q7x7lTtHfk65oNEp5Ki5hEwre6h6XQqkIwG9K00DfOCwH5bk84I74unSHDuBxnuDTPOG
+ u3QyeuKPVlxzB5CWr9o8ZlJ0CbCWJtDkdVuLse5ksXDCwRvC7Ry9LGvjmz065bE7SPmd
+ uopg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=lbHoLXBoksThML70e2uc0I2yAGijP5pdhkHsANJHiB8=;
+ b=BKhaqFJmeNFmuUnmGjmG8QfJI7nAY235KCa9oq46royOcLz8sK71GYpe4vzHkE7TL2
+ LDY9CFESF0PIhgroTMrYaIsBU9mdE8Fz6hN9rWwtldrzJwMs0ZYWZ+0ly1171Uzku8AU
+ M4qaO1OcFlaUC9q1Vq9EI5plrpdCXw+w+6eJBsgn3tAQ+a2FFwaRp8t8qlUvqrXxQqx7
+ GlTJ+YxE4RkinCvsi3jq07Qn2ZlOAJsHkGldyrANk+LPXo1OcIZKCCS3ako12KLbyUud
+ 2wrZ+meXqh1yFNsamsdl971aB+5rWqpa2euAwagZ/HH291I4qwHCQwTOgwf4ZeuK52Zs
+ SOhw==
+X-Gm-Message-State: APjAAAWZtbPkTRssmyOdRKXpOFvtpUnciZ9IVSZVYSStA9suwTCbZsoo
+ TBGFo0g3FQIjWKt+x9BxNkY4AgzKHryhtpE0KCZsT0e0
+X-Google-Smtp-Source: APXvYqyjpQkePLTzzQTIYEf/ofjO89fc5WpbL5UXhfk5iN2rc8LIaBIKHe0wbYqlEOcrLZsaDXPL7vcyxqqnflXweEk=
+X-Received: by 2002:a50:b56a:: with SMTP id z39mr2971659edd.91.1556810696703; 
+ Thu, 02 May 2019 08:24:56 -0700 (PDT)
 MIME-Version: 1.0
+Date: Thu, 2 May 2019 10:24:45 -0500
+Message-ID: <CAFPG5GyK30dmcyKSiaWEkVoL35Oh8M=L9e8D94ejhch1fsQ1Rg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Introducing Theseus Cores: Open source FPGA cores
- for DSP and SDR
+Subject: [USRP-users] OpenBTS with x310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -76,11 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robert via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robert.Poehlmann@dlr.de
-Cc: usrp-users@lists.ettus.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Andrew Toomey via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Andrew Toomey <toomz54@gmail.com>
+Content-Type: multipart/mixed; boundary="===============9217113099897971784=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -94,88 +75,76 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkhDQoNCkkgYWdyZWUgd2l0aCBKb2hhbm5lcyB0aGF0IFNjaG1pZGwmQ294IE9GRE0gc3luYyB3
-b3VsZCBiZSBhIG5pY2UgZXh0ZW5zaW9uLiANCg0KRG8geW91IHBsYW4gdG8gcHJvdmlkZSBwcmUt
-YnVpbHQgRlBHQSBpbWFnZXMgY29udGFpbmluZyBUaGVzZXVzIENvcmVzIGluIHRoZSBmdXR1cmUg
-Zm9yIGNlcnRhaW4gVVNSUCBkZXZpY2VzPyBJIGd1ZXNzIHRoaXMgd291bGQgbWFrZSBpdCBldmVu
-IGVhc2llciBmb3IgZmlyc3QgdGltZSB1c2VycyBhbmQgd291bGQgd2VsbCBzdWl0IHRoZSAiYmF0
-dGVyaWVzIGluY2x1ZGVkIiBjb25jZXB0Lg0KDQpDaGVlcnMNClJvYmVydA0KDQotLS0tLU9yaWdp
-bmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogVVNSUC11c2VycyBbbWFpbHRvOnVzcnAtdXNlcnMtYm91
-bmNlc0BsaXN0cy5ldHR1cy5jb21dIE9uIEJlaGFsZiBPZiBKb2hhbm5lcyBEZW1lbCB2aWEgVVNS
-UC11c2Vycw0KU2VudDogVGh1cnNkYXksIE1heSAwMiwgMjAxOSA5OjU1IEFNDQpUbzogdXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gSW50cm9kdWNp
-bmcgVGhlc2V1cyBDb3JlczogT3BlbiBzb3VyY2UgRlBHQSBjb3JlcyBmb3IgRFNQIGFuZCBTRFIN
-Cg0KSGkgRUosDQoNCnRoaXMgc291bmRzIGxpa2UgYSB2ZXJ5IGludGVyZXN0aW5nIHByb2plY3Qu
-IFNpbmNlIHlvdSBhc2tlZCBmb3IgaWRlYXMsIA0KSSBndWVzcyBpdCB3b3VsZCBiZSBuaWNlIHRv
-IGhhdmUgYSBTY2htaWRsJkNveCBzdHlsZSBPRkRNIA0Kc3luY2hyb25pemF0aW9uIGJsb2NrLg0K
-DQpDaGVlcnMNCkpvaGFubmVzDQoNCkFtIDI5LjA0LjE5IHVtIDAyOjAwIHNjaHJpZWIgRUogS3Jl
-aW5hciB2aWEgVVNSUC11c2VyczoNCj4gSGkgYWxsLA0KPiANCj4gSSdtIHZlcnkgaGFwcHkgdG8g
-YW5ub3VuY2UgdGhlICh2ZXJ5IG1vZGVzdCkgcmVsZWFzZSBvZiB0aGUgVGhlc2V1cyANCj4gQ29y
-ZXMgcHJvamVjdDogaHR0cHM6Ly9naXRsYWIuY29tL3RoZXNldXMtY29yZXMvdGhlc2V1cy1jb3Jl
-cw0KPiANCj4gVGhlc2V1cyBDb3JlcyBpcyBkZXNpZ25lZCB0byBwcm92aWRlIG9wZW4gc291cmNl
-IEZQR0EgY29yZXMgZm9yIGRpZ2l0YWwgDQo+IHNpZ25hbCBwcm9jZXNzaW5nIGFuZCBzb2Z0d2Fy
-ZSBkZWZpbmVkIHJhZGlvLCBwbHVzIHRoZSBtZWFucyB0byAqdXNlKiANCj4gdGhlIEZQR0EgY29y
-ZXMgaW4gcmVhbCBsaWZlLi4uLiBJbiBwcmFjdGljZSwgdGhhdCBtb3N0bHkgbWVhbnMgRlBHQSBj
-b2RlIA0KPiBwcm9wYWdhdGVzIHVwIHRocm91Z2ggUkZOb0MgYmxvY2tzIHdoaWNoIGhhdmUgYm90
-aCBVSEQgYW5kIEdudXJhZGlvIA0KPiBzb2Z0d2FyZSBob29rcyBmb3IgdXNlcnMgdG8gYXR0YWNo
-IHRvLiBJbiB0aGUgZnV0dXJlIGl0IHdvdWxkIGJlIGdyZWF0IA0KPiB0byBzdXBwb3J0IG90aGVy
-IEZQR0EgcGxhdGZvcm1zIGlmIHRoZXJlJ3MgaW50ZXJlc3QgdG9vLg0KPiANCj4gU28gZmFyLCBU
-aGVzZXVzIENvcmVzIHByb3ZpZGVzIHRoZSBmb2xsb3dpbmcgUkZOb0MgRlBHQSBibG9ja3MgYW5k
-IA0KPiBjb3JyZXNwb25kaW5nIHNvZnR3YXJlOg0KPiAtICpQb2x5cGhhc2XCoE0vMiBDaGFubmVs
-aXplcio6IEEgcG9seXBoYXNlIGNoYW5uZWxpemVyIHdoZXJlIGVhY2ggDQo+IGNoYW5uZWwgb3V0
-cHV0cyAyeCBzYW1wbGUgcmF0ZSBhbmQgaXMgY29tcGF0aWJsZSB3aXRoIA0KPiBwZXJmZWN0LXJl
-Y29uc3RydWN0aW9uLiBUaGFua3MgdG8gUGhpbCBWYWxsYW5jZSBmb3IgcmUtaW1wbGVtZW50aW5n
-IHRoZSANCj4gY2hhbm5lbGl6ZXIgZGVzY3JpYmVkIGluIGhpcyBHUkNvbiAyMDE3IHByZXNlbnRh
-dGlvbi0tIGl0IHdvcmtzIQ0KPiAtICoiMS10by1OIiBEREMgQ2hhaW4qOiBQYXJhbWV0ZXJpemVk
-IGluc3RhbnRpYXRpb25zIG9mICJOIiBpbmRlcGVuZGVudCANCj4gRERDcywgd2hlcmUgZWFjaCBE
-REMgaXMgY29ubmVjdGVkIHRvIHRoZSAqZmlyc3QqIGlucHV0IChhIHZlcnkgYmFzaWMsIA0KPiBi
-cnV0ZSBmb3JjZSBjaGFubmVsaXplcikuIE5vdGUgSSd2ZSBzZWVuIHNldmVyYWwgbWFpbGluZyBs
-aXN0IA0KPiBkaXNjdXNzaW9ucyBpbiB0aGUgcGFzdCB5ZWFyIGFib3V0IDEtdG8tNCBvciAxLXRv
-LTggRERDIGNoYW5uZWxpemVycyAtLSANCj4gdGhpcyBibG9jayBwcm92aWRlcyB0aGUgZ2VuZXJh
-bGl6ZWQgdmVyc2lvbiBvZiB0aGF0IHNjZW5hcmlvLg0KPiAtICpEVUMgKyBEREMgUmF0aW9uYWwg
-UmVzYW1wbGVyKjogQSAiaGFja2VkIiByYXRpb25hbCByZXNhbXBsZXIsIA0KPiBjb25zaXN0aW5n
-IG9mIGEgRFVDIGFuZCBhIEREQyBiYWNrLXRvLWJhY2suIEl0J3Mgbm90IHByZXR0eSwgYnV0IGl0
-IGNhbiANCj4gb2NjYXNpb25hbGx5IGJlIGhlbHBmdWwuDQo+IA0KPiBGdXJ0aGVybW9yZSwgaW4g
-YW4gZWZmb3J0IHRvIFRSWSB0byBjcmVhdGUgYW4gb3BlbiBzb3VyY2UgRlBHQSBwcm9qZWN0IA0K
-PiB0aGF0IGRvZXNudCBjYXRhc3Ryb3BoaWNhbGx5IGJyZWFrIG9uIGEgcmVndWxhciBiYXNpcywg
-d2UndmUgc2V0IHVwIA0KPiBjb250aW51b3VzIGludGVncmF0aW9uIHRlc3RzIGZvciBib3RoIHNv
-ZnR3YXJlIGFuZCBGUEdBLiBEb2NrZXJmaWxlcyBhcmUgDQo+IHByb3ZpZGVkIGhlcmUgKGh0dHBz
-Oi8vZ2l0bGFiLmNvbS90aGVzZXVzLWNvcmVzL3RoZXNldXMtZG9ja2VyKS7CoFRoZXNldXMgDQo+
-IENvcmVzIGFsc28gcHVzaGVzIHRhZ2dlZCBkb2NrZXIgaW1hZ2VzIGZvciB2YXJpb3VzIHZlcnNp
-b25zIG9mIFVIRCBhbmQgDQo+IEdudXJhZGlvLCB3aGVyZSB0aGUgYnJhbmNoZXMgZm9yIFVIRC0z
-LjEzLCBVSEQtMy4xNCwgVUhEJ3MgbWFzdGVyLCBhbmQgDQo+IGdudXJhZGlvJ3MgbWFpbnQtMy43
-IGFyZSByZWJ1aWx0IHdlZWtseS4gVGhpcyBtYXkgYmUgb2YgYXV4aWxpYXJ5IHVzZSB0byANCj4g
-cGVvcGxlIGJ1aWxkaW5nIFVIRCBhbmQgZ251cmFkaW8gaW4gYSBDSSBzY2VuYXJpbzogDQo+IGh0
-dHBzOi8vaHViLmRvY2tlci5jb20vdS90aGVzZXVzY29yZXMNCj4gPGh0dHBzOi8vZ2l0aHViLmNv
-bS90aGVzZXVzLWNvcmVzL3RoZXNldXMtY29yZXM+DQo+ICpXaGF0J3MgbmV4dD8/KsKgSXQncyBh
-IG1vZGVzdCBsaXN0IG9mIGZlYXR1cmVzIHNvIGZhciwgYnV0IEknbSBzdXJlIHdlIA0KPiBjYW4g
-YWxsIHN5bXBhdGhpemUgdGhhdCB0aGluZ3MgbW92ZSBzbG93bHkgd2hlbiBkZXZlbG9waW5nIEZQ
-R0EgY29kZS4gDQo+IEhlcmUncyBhIHF1aWNrIHJ1bmRvd24gb2YgYSBmZXcgaWRlYXMgb24gdGhl
-IGhvcml6b246DQo+IC0gQXJiaXRyYXJ5IHJlc2FtcGxpbmcNCj4gLSBDaGFubmVsIGRvd25zZWxl
-Y3Rpb24gZm9yIHRoZSBNLzIgY2hhbm5lbGl6ZXIgKGN1cnJlbnRseSBhbGwgY2hhbm5lbHMgDQo+
-IG11c3QgYmUgb3V0cHV0Li4uIGl0J3MgZmFyIG1vcmUgdXNlZnVsIHRvIHNlbGVjdCBhIHN1YnNl
-dCBvZiBjaGFubmVscyB0byANCj4gcmV0dXJuIGFuZCBqdXN0IGdyYWIgdGhvc2UpDQo+IC0gQ2hh
-bm5lbCByZWNvbnNvbnN0cnVjdGlvbiAqYWZ0ZXIqIHRoZSBNLzIgY2hhbm5lbGl6ZXIgKG1heWJl
-KQ0KPiAtIE9GRE0gcmVjZWl2ZXIgKG1heWJlKQ0KPiANCj4gV2UgbmVlZCBtb3JlIGlkZWFzIGFu
-ZCBjb250cmlidXRvcnMhIE5vdyB0aGF0IHRoaXMgdGhpbmcgZXhpc3RzLCBJIHdvdWxkIA0KPiBM
-T1ZFIHRvIHNlZSBUaGVzZXVzIENvcmVzIGZpbGwgaXRzZWxmIG91dCB3aXRoIHNvbWUgb2YgdGhl
-IG1vcmUgY29tbW9uIA0KPiBEU1AgdXRpbGl0aWVzIHRoYXQgcmVhbGx5IHNob3VsZCBiZSBhdmFp
-bGFibGUgYXMgb3Blbi1zb3VyY2UuLi4gaXQgd291bGQgDQo+IGJlIGFic29sdXRlbHkgYW1hemlu
-ZyB0byBwcm92aWRlIGEgbGlicmFyeSBvZiBjb21wb25lbnRzIGFuZCANCj4gYXBwbGljYXRpb25z
-IGZvciBGUEdBIGRldmVsb3BlcnMgaW4gYSBzaW1pbGFyIHdheSB0aGF0IGdudXJhZGlvIHByb3Zp
-ZGVzIA0KPiBmb3IgdGhlIHNvZnR3YXJlIGNvbW11bml0eS4gUGxlYXNlIHJlYWNoIG91dCB3aXRo
-wqBzdWdnZXN0aW9ucyBmb3IgDQo+IHJlbGV2YW50IEZQR0EgdXRpbGl0aWVzIG9yIGFwcGxpY2F0
-aW9ucyB5b3UnZCBsaWtlIHRvIHNlZSAtLSBvciBldmVuIA0KPiBiZXR0ZXIsIGlmIHlvdSBoYXZl
-IGlkZWFzIG9yIGNvZGUgeW91J3JlIHdpbGxpbmcgdG8gc2hhcmUgd2l0aCB0aGUgDQo+IHByb2pl
-Y3QhIElmIHlvdSBhcmUgaW50ZXJlc3RlZCBpbiBnZXR0aW5nIGludm9sdmVkIGluIGFueSB3YXks
-IEkgd291bGQgDQo+IGJlIGhhcHB5IHRvIGhlYXIgZnJvbSB5b3UuDQo+IA0KPiBDaGVlcnMsDQo+
-IEVKDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bQ0KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
-aXN0cy5ldHR1cy5jb20NCj4gDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tDQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vy
-c19saXN0cy5ldHR1cy5jb20NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
-c3RzLmV0dHVzLmNvbQo=
+--===============9217113099897971784==
+Content-Type: multipart/alternative; boundary="0000000000008f43520587e93cdf"
+
+--0000000000008f43520587e93cdf
+Content-Type: text/plain; charset="UTF-8"
+
+USRP Forum,
+
+I am trying to get OpenBTS working with an x310 with UBX160 daughter cards
+inside. My test phone can see my network but when I try to connect the
+phone fails connection. I also have a B210 that is running on the same
+machine that does allow the phone to successfully connect to my fake
+network. I have noticed that the sample rate of the x310 cannot go as low
+as the sample rate of the GSM protocol so I think this may be a source of
+my problems. The sample rate of the B210 can reach the 270.833 KHz rate of
+GSM.
+
+My question is has anyone successfully created an OpenBTS network with an
+x310 and UBX160 daughter cards. I have seen sources say that the x310 can
+work with OpenBTS but have seen conflicting sources on which daughter cards
+are compatible.
+
+http://openbts.org/w/index.php?title=Ettus_Research_USRP  this source says
+the UBX is not supported
+
+https://kb.ettus.com/OpenBTS This sources says the UBS is supported
+
+Any info on this subject would be greatly appreciated.
+
+Thanks!
+Andrew Toomey
+
+--0000000000008f43520587e93cdf
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>USRP Forum,</div><div><br></div><div>I am trying to g=
+et OpenBTS=20
+working with an x310 with UBX160 daughter cards inside. My test phone=20
+can see my network but when I try to connect the phone fails connection.
+ I also have a B210 that is running on the same machine that does allow=20
+the phone to successfully connect to my fake network. I have noticed=20
+that the sample rate of the x310 cannot go as low as the sample rate of=20
+the GSM protocol so I think this may be a source of my problems. The sample=
+ rate of the B210 can reach the 270.833 KHz rate of GSM.<br><br>My
+ question is has anyone successfully created an OpenBTS=20
+network with an x310 and UBX160 daughter cards. I have seen sources say=20
+that the x310 can work with OpenBTS but have seen conflicting sources on
+ which daughter cards are compatible.</div><div><br></div><div><a href=3D"h=
+ttp://openbts.org/w/index.php?title=3DEttus_Research_USRP" target=3D"_blank=
+">http://openbts.org/w/index.php?title=3DEttus_Research_USRP</a>=C2=A0 this=
+ source says the UBX is not supported</div><div><br></div><div><a href=3D"h=
+ttps://kb.ettus.com/OpenBTS" target=3D"_blank">https://kb.ettus.com/OpenBTS=
+</a> This sources says the UBS is supported</div><div><br></div><div>Any in=
+fo on this subject would be greatly appreciated.</div><div><br></div><div>T=
+hanks!</div><div>Andrew Toomey</div></div>
+
+--0000000000008f43520587e93cdf--
+
+
+--===============9217113099897971784==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============9217113099897971784==--
+
