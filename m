@@ -2,32 +2,85 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F00AA110DA
-	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2019 03:23:10 +0200 (CEST)
-Received: from [::1] (port=40972 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EABC911499
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2019 09:55:57 +0200 (CEST)
+Received: from [::1] (port=39566 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hM0RH-0001k0-Mo; Wed, 01 May 2019 21:23:07 -0400
-Received: from web-atmail1.tpgi.com.au ([203.12.160.53]:46360)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.91) (envelope-from <gobbo@tpg.com.au>) id 1hM0Qi-0001OR-04
- for usrp-users@lists.ettus.com; Wed, 01 May 2019 21:23:02 -0400
-Received: from localhost (localhost [127.0.0.1])
- by web-atmail1.tpgi.com.au (8.14.4/8.14.4) with ESMTP id x421Lnww029251
- for <usrp-users@lists.ettus.com>; Thu, 2 May 2019 11:21:49 +1000
-Message-Id: <6fa189949d2b1453a3de4b15c25fc0b0a694151e@new-postoffice.tpg.com.au>
-To: "Ettus Mail List" <usrp-users@lists.ettus.com>
-X-Mailer: Atmail 7.2.0.14467
-X-Originating-IP: 138.44.192.14
-in-reply-to: <BL0PR12MB2340989655F5C62AE0F27E0DAF3B0@BL0PR12MB2340.namprd12.prod.outlook.com>
-Date: Thu, 02 May 2019 11:21:49 +1000
+	id 1hM6ZL-0004a4-Ff; Thu, 02 May 2019 03:55:51 -0400
+Received: from mail-eopbgr00104.outbound.protection.outlook.com
+ ([40.107.0.104]:15854 helo=EUR02-AM5-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+ (Exim 4.91) (envelope-from <demel@ant.uni-bremen.de>)
+ id 1hM6Yn-0004UY-K6
+ for usrp-users@lists.ettus.com; Thu, 02 May 2019 03:55:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=antunibremen.onmicrosoft.com; s=selector1-ant-unibremen-de01i;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ujS8vT9Io37HhEpBNncTaXLLR479HsijulCaDCHcQuM=;
+ b=VmSx/6dOIfOhO/y/ymK57jNHuaTVw09Uy6Uas71sZjXsX4jdoupbH1jK44xwUFozp7LB31Gbg4VY+MuQxMNRRqmmUw7nYhG94R/UasxSaYP/gLfrTQoQH/cq0clHmRb/O4XnyqxcWhPITMTxAb0Qb6EQDpGQUgypOCOdC6RKX9A=
+Received: from AM6PR0402MB3911.eurprd04.prod.outlook.com (52.133.30.10) by
+ AM6PR0402MB3461.eurprd04.prod.outlook.com (52.133.17.153) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.11; Thu, 2 May 2019 07:54:35 +0000
+Received: from AM6PR0402MB3911.eurprd04.prod.outlook.com
+ ([fe80::55cc:4406:327:9259]) by AM6PR0402MB3911.eurprd04.prod.outlook.com
+ ([fe80::55cc:4406:327:9259%3]) with mapi id 15.20.1835.018; Thu, 2 May 2019
+ 07:54:34 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Introducing Theseus Cores: Open source FPGA cores
+ for DSP and SDR
+Thread-Index: AQHU/h6z4YxwIMJifkKBRJISU99Fk6ZXfE+A
+Date: Thu, 2 May 2019 07:54:34 +0000
+Message-ID: <ef9bff18-8c8c-5a74-398d-9b50d0bfea9d@ant.uni-bremen.de>
+References: <CADRnH23yQxEPTYysMECCwvgYvN7RZucmDH+x4QLPDJZcJUR4og@mail.gmail.com>
+In-Reply-To: <CADRnH23yQxEPTYysMECCwvgYvN7RZucmDH+x4QLPDJZcJUR4og@mail.gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: AM6PR0502CA0048.eurprd05.prod.outlook.com
+ (2603:10a6:20b:56::25) To AM6PR0402MB3911.eurprd04.prod.outlook.com
+ (2603:10a6:209:1c::10)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=demel@ant.uni-bremen.de; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [134.102.176.97]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3f3d3538-35eb-42df-3159-08d6ced36adc
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7025125)(7027125)(7023125)(5600141)(711020)(4605104)(2017052603328)(7193020);
+ SRVR:AM6PR0402MB3461; 
+x-ms-traffictypediagnostic: AM6PR0402MB3461:
+x-ms-exchange-purlcount: 5
+x-microsoft-antispam-prvs: <AM6PR0402MB34615299E17E293AF8EE2ED9A9340@AM6PR0402MB3461.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0025434D2D
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(366004)(346002)(39830400003)(396003)(376002)(136003)(53754006)(199004)(189003)(2351001)(786003)(75402003)(508600001)(8676002)(316002)(31686004)(74826001)(81156014)(5660300002)(81166006)(305945005)(966005)(53936002)(99286004)(74482002)(7736002)(66446008)(86362001)(2906002)(31696002)(66476007)(64756008)(73956011)(66556008)(66946007)(5024004)(76176011)(229853002)(68736007)(186003)(6916009)(256004)(6486002)(11346002)(71190400001)(71200400001)(2501003)(66066001)(446003)(6246003)(6306002)(6512007)(14454004)(102836004)(8936002)(26005)(476003)(3846002)(6116002)(5640700003)(2616005)(6506007)(486006)(6436002)(25786009)(386003)(52116002);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:AM6PR0402MB3461;
+ H:AM6PR0402MB3911.eurprd04.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:0; MX:1; 
+received-spf: None (protection.outlook.com: ant.uni-bremen.de does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 2C/dMDsfadVlL/1ZcJSp1VMX+yMNe0P3won3KX63pWf+roH+YRQqYPhAgSjuRzt38Qjtk7cA0TZRTYkY1F3kogje1njGUQyo5qZYpbvSU9dj5kgq8kafZqRT98Fo9df7OpEO2P9D1kUO6TrUNx+BrBGB3fpQpAE/6zXgewrx2CVCshDkUO/5pi/RRT8GBpgqoU7oMBq3hv9Apm3HFEGdUDdaB5+x+WTfZvmx1+skwLEJLg9WjKrI4bQp9QDazLFZT+79MIR/nTiXCXSFZCTr/eNgMKkXHK25f9SEtGt8+UTzP+RJtRtY2OT+aycEmtj23r2XXWN6VXwljqBt1EJkErI+CuBXTwUxH3vyDdDe4dVQRSDyTID72nwHzvhLt7npHwGnNFpsd/x3haXtSTVa0VnX4c3YhBnS2VtXqk0wmLE=
+Content-ID: <723FE6C95DAAC54C8B12C56DE2274C55@eurprd04.prod.outlook.com>
 MIME-Version: 1.0
+X-OriginatorOrg: ant.uni-bremen.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f3d3538-35eb-42df-3159-08d6ced36adc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 May 2019 07:54:34.7892 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f018440b-2792-4fa0-b2bd-233acaf88ad2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0402MB3461
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] E320 numpy missing?
+Subject: Re: [USRP-users] Introducing Theseus Cores: Open source FPGA cores
+ for DSP and SDR
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -39,9 +92,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Chris Gobbett via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Chris Gobbett <gobbo@tpg.com.au>
-Content-Type: multipart/mixed; boundary="===============5103623578284749566=="
+From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -55,208 +109,74 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5103623578284749566==
-Content-Type: multipart/alternative;
- boundary="=_1bebca7e9536ffa7a665320433ce04d2"
-
---=_1bebca7e9536ffa7a665320433ce04d2
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-I've had similar problems since this post in March, and still waiting=0A=
-on a 'clean' way=0Aforwardhttp://lists.ettus.com/pipermail/usrp-users_li=
-sts.ettus.com/2019-March/059332.html=0AIn the interim I've done lots of=
- cross-compiling and also stealing=0Alibraries/binaries from working E31=
-0 images; many of the included=0Abinaries seem gimped or a step down fro=
-m what was on the E310.=0A=0A----- Original Message -----=0AFrom: "Jason=
- Matusiak" =0ATo:"Philip Balister" , "Ettus Mail List" =0ACc:=0ASent:Wed=
-, 1 May 2019 14:40:16 +0000=0ASubject:Re: [USRP-users] E320 numpy missin=
-g?=0A=0A I just double-checked and ENABLE_PYTHON is on in my system (whi=
-ch was=0Aapparently the default since I didn't spell it out in my cmake=
-=0Acommand).     =0A=0A-------------------------=0AFROM: Jason Matusiak=
-=0ASENT: Wednesday, May 1, 2019 10:36 AM=0ATO: Philip Balister; Ettus Ma=
-il List=0ASUBJECT: Re: [USRP-users] E320 numpy missing? =C2=A0    I actu=
-ally was=0Ausing a .sh file from earlier in April, but pulling down the=
- most=0Arecent:=C2=A0e3xx_e320_sdk_default-v3.13.0.2-20190415.zip, I sti=
-ll don't=0Asee pretty much any site-packages in the sysroot.  =0A  Those=
- things seem to be there automatically when using the .sh info=0Awith th=
-e e310 files.  =0A  I will try including python in the cmake path (which=
- I've never=0Aneeded to do before), but is that going to be enough?=C2=
-=A0 I feel like=0Athe back-and-forth you and I had last year with the ro=
-cko build for=0Athe E310 were for pretty similar issues.=C2=A0 But hones=
-tly, I need to=0Alook back at the emails for the exact issues at the tim=
-e.     =0A=0A-------------------------=0AFROM: Philip Balister =0ASENT:=
- Wednesday, May 1, 2019 10:31 AM=0ATO: Jason Matusiak; Ettus Mail List=
-=0ASUBJECT: Re: [USRP-users] E320 numpy missing? =C2=A0   On 05/01/2019=
- 09:55=0AAM, Jason Matusiak via USRP-users wrote:=0A > I also get a "Imp=
-ortError: No module named sip" when I try to run:=0Auhd_siggen_gui=0A >=
- =0A > So I think a few things might be missing from the cross-compile=
-=0Asetup.=0A=0A I took a few minutes and looked at the current state of=
- the BSP. It=0A looks like you might have this image:=0A=0Ahttps://githu=
-b.com/EttusResearch/meta-ettus/blob/master/meta-ettus-core/recipes-core/=
-images/developer-image.bb=0A[1]=0A=0A I forget where numpy is the gnurad=
-io dependency tree, but I'm going=0Ato=0A guess if you enable python sup=
-port in gnuradio (yes it might be=0Apossible=0A to use gnuradio without=
- python) you will need numpy to build/run.=0A=0A Philip=0A=0A > =0A > __=
-______________________________=0A > From: Jason Matusiak=0A > Sent: Wedn=
-esday, May 1, 2019 8:46 AM=0A > To: Ettus Mail List=0A > Subject: E320 n=
-umpy missing?=0A > =0A > Finally got my E320 in and I cross-compiled a n=
-ew setup.=C2=A0 I tried=0Ato fire up my flowgraph (which works fine on a=
-n E310) and it is=0Acomplaining about numpy missing.=0A > =0A > If I do=
- a search from / on the E320, the only numpy that is showing=0Aup is:=0A=
- > /usr/include/boost/python/numpy=0A > =0A > If I do a search from a go=
-od E310 in / I see:=0A > ./usr/lib/python2.7/site-packages/numpy=0A > ./=
-usr/lib/python2.7/site-packages/numpy/core/include/numpy=0A > ./usr/lib/=
-python2.7/site-packages/Cython/Includes/numpy=0A > ./usr/include/boost/p=
-ython/numpy=0A > =0A > =0A > Back on the host machine, my E320 cross-com=
-pile prefix shows numpy:=0A >=0A./sysroots/cortexa9hf-neon-oe-linux-gnue=
-abi/usr/include/boost/python/numpy=0A > =0A > My good E310 prefix shows:=
-=0A >=0A./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-n=
-umpy/1.13.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy=0A >=0A./sy=
-sroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1-=
-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy/core/include/numpy=0A >=
-=0A./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/=
-1.13.1-r0/numpy-1.13.1/numpy=0A >=0A./sysroots/armv7ahf-neon-oe-linux-gn=
-ueabi/usr/src/debug/python-numpy/1.13.1-r0/numpy-1.13.1/numpy/core/inclu=
-de/numpy=0A >=0A./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python=
-2.7/site-packages/Cython/Includes/numpy=0A >=0A./sysroots/armv7ahf-neon-=
-oe-linux-gnueabi/usr/lib/python2.7/site-packages/numpy=0A >=0A./sysroots=
-/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages/numpy/co=
-re/include/numpy=0A >=0A./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/in=
-clude/boost/python/numpy=0A > =0A > So, was numpy forgotten?=C2=A0 Left=
- out for a reason?=C2=A0 I am going to=0Aattempt to build it by hand, bu=
-t I have a fear that I am going to go=0Adown dependency hell with this a=
-nd other missing packages that GR=0Amight want.=0A > =0A > =0A > =0A >=
- =0A > _______________________________________________=0A > USRP-users m=
-ailing list=0A > USRP-users@lists.ettus.com=0A > http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com=0A[2]=0A > =0A       =0A=0AL=
-inks:=0A------=0A[1]=0Ahttps://github.com/EttusResearch/meta-ettus/blob/=
-master/meta-ettus-core/recipes-core/images/developer-image.bb=0A[2] http=
-://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=0A
-
---=_1bebca7e9536ffa7a665320433ce04d2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><body style=3D"font-family: 'Helvetica Neue',Helvetica,Arial,sans-=
-serif; font-size: 12px;">I've had similar problems since this post in Ma=
-rch, and still waiting on a 'clean' way forward<div>http://lists.ettus.c=
-om/pipermail/usrp-users_lists.ettus.com/2019-March/059332.html</div><div=
-><br /></div><div>In the interim I've done lots of cross-compiling and a=
-lso stealing libraries/binaries from working E310 images; many of the in=
-cluded binaries seem gimped or a step down from what was on the E310.<br=
- /></div><div><br /></div><blockquote>----- Original Message -----<br />=
-<div style=3D"width:100%;background:rgb(228,228,228);"><div style=3D"fon=
-t-weight:bold;">From:</div> "Jason Matusiak" &lt;jason@gardettoengineeri=
-ng.com&gt;</div><br /><div style=3D"font-weight:bold;">To:</div>"Philip=
- Balister" &lt;philip@balister.org&gt;, "Ettus Mail List" &lt;usrp-users=
-@lists.ettus.com&gt;<br /><div style=3D"font-weight:bold;">Cc:</div><br=
- /><div style=3D"font-weight:bold;">Sent:</div>Wed, 1 May 2019 14:40:16=
- +0000<br /><div style=3D"font-weight:bold;">Subject:</div>Re: [USRP-use=
-rs] E320 numpy missing?<br /><br /><br /><div style=3D"font-family:Calib=
-ri, Arial, Helvetica, sans-serif;font-size:12pt;color:rgb(0,0,0);">=0AI=
- just double-checked and ENABLE_PYTHON is on in my system (which was app=
-arently the default since I didn't spell it out in my cmake command).</d=
-iv>=0A<div>=0A<div>=0A<div></div>=0A<div style=3D"font-family:Calibri, A=
-rial, Helvetica, sans-serif;font-size:12pt;color:rgb(0,0,0);">=0A<br /><=
-/div>=0A<hr style=3D"width:98%;" /><div dir=3D"ltr"><font style=3D"font-=
-size:11pt;" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b>=
- Jason Matusiak<br /><b>Sent:</b> Wednesday, May 1, 2019 10:36 AM<br /><=
-b>To:</b> Philip Balister; Ettus Mail List<br /><b>Subject:</b> Re: [USR=
-P-users] E320 numpy missing?</font>=0A<div>=C2=A0</div>=0A</div>=0A<div=
- dir=3D"ltr">=0A<div style=3D"font-family:Calibri, Arial, Helvetica, san=
-s-serif;font-size:12pt;color:rgb(0,0,0);">=0AI actually was using a .sh=
- file from earlier in April, but pulling down the most recent:=C2=A0e3xx=
-_e320_sdk_default-v3.13.0.2-20190415.zip, I still don't see pretty much=
- any site-packages in the sysroot.</div>=0A<div style=3D"font-family:Cal=
-ibri, Arial, Helvetica, sans-serif;font-size:12pt;color:rgb(0,0,0);">=0A=
-<br /></div>=0A<div style=3D"font-family:Calibri, Arial, Helvetica, sans=
--serif;font-size:12pt;color:rgb(0,0,0);">=0AThose things seem to be ther=
-e automatically when using the .sh info with the e310 files.</div>=0A<di=
-v style=3D"font-family:Calibri, Arial, Helvetica, sans-serif;font-size:1=
-2pt;color:rgb(0,0,0);">=0A<br /></div>=0A<div style=3D"font-family:Calib=
-ri, Arial, Helvetica, sans-serif;font-size:12pt;color:rgb(0,0,0);">=0AI=
- will try including python in the cmake path (which I've never needed to=
- do before), but is that going to be enough?=C2=A0 I feel like the back-=
-and-forth you and I had last year with the rocko build for the E310 were=
- for pretty similar issues.=C2=A0 But honestly, I=0A need to look back a=
-t the emails for the exact issues at the time.</div>=0A<div>=0A<div>=0A<=
-div></div>=0A<div style=3D"font-family:Calibri, Arial, Helvetica, sans-s=
-erif;font-size:12pt;color:rgb(0,0,0);">=0A<br /></div>=0A<hr style=3D"wi=
-dth:98%;" /><div dir=3D"ltr"><font style=3D"font-size:11pt;" face=3D"Cal=
-ibri, sans-serif" color=3D"#000000"><b>From:</b> Philip Balister &lt;phi=
-lip@balister.org&gt;<br /><b>Sent:</b> Wednesday, May 1, 2019 10:31 AM<b=
-r /><b>To:</b> Jason Matusiak; Ettus Mail List<br /><b>Subject:</b> Re:=
- [USRP-users] E320 numpy missing?</font>=0A<div>=C2=A0</div>=0A</div>=0A=
-<div class=3D"x_BodyFragment"><font size=3D"2"><span style=3D"font-size:=
-11pt;">=0A</span></font><div class=3D"x_PlainText">On 05/01/2019 09:55 A=
-M, Jason Matusiak via USRP-users wrote:<br />=0A&gt; I also get a "Impor=
-tError: No module named sip" when I try to run: uhd_siggen_gui<br />=0A&=
-gt; <br />=0A&gt; So I think a few things might be missing from the cros=
-s-compile setup.<br /><br />=0AI took a few minutes and looked at the cu=
-rrent state of the BSP. It<br />=0Alooks like you might have this image:=
-<br /><br /><a href=3D"https://github.com/EttusResearch/meta-ettus/blob/=
-master/meta-ettus-core/recipes-core/images/developer-image.bb">https://g=
-ithub.com/EttusResearch/meta-ettus/blob/master/meta-ettus-core/recipes-c=
-ore/images/developer-image.bb</a><br /><br />=0AI forget where numpy is=
- the gnuradio dependency tree, but I'm going to<br />=0Aguess if you ena=
-ble python support in gnuradio (yes it might be possible<br />=0Ato use=
- gnuradio without python) you will need numpy to build/run.<br /><br />=
-=0APhilip<br /><br />=0A&gt; <br />=0A&gt; _____________________________=
-___<br />=0A&gt; From: Jason Matusiak<br />=0A&gt; Sent: Wednesday, May=
- 1, 2019 8:46 AM<br />=0A&gt; To: Ettus Mail List<br />=0A&gt; Subject:=
- E320 numpy missing?<br />=0A&gt; <br />=0A&gt; Finally got my E320 in a=
-nd I cross-compiled a new setup.=C2=A0 I tried to fire up my flowgraph (=
-which works fine on an E310) and it is complaining about numpy missing.<=
-br />=0A&gt; <br />=0A&gt; If I do a search from / on the E320, the only=
- numpy that is showing up is:<br />=0A&gt; /usr/include/boost/python/num=
-py<br />=0A&gt; <br />=0A&gt; If I do a search from a good E310 in / I s=
-ee:<br />=0A&gt; ./usr/lib/python2.7/site-packages/numpy<br />=0A&gt; ./=
-usr/lib/python2.7/site-packages/numpy/core/include/numpy<br />=0A&gt; ./=
-usr/lib/python2.7/site-packages/Cython/Includes/numpy<br />=0A&gt; ./usr=
-/include/boost/python/numpy<br />=0A&gt; <br />=0A&gt; <br />=0A&gt; Bac=
-k on the host machine, my E320 cross-compile prefix shows numpy:<br />=
-=0A&gt; ./sysroots/cortexa9hf-neon-oe-linux-gnueabi/usr/include/boost/py=
-thon/numpy<br />=0A&gt; <br />=0A&gt; My good E310 prefix shows:<br />=
-=0A&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-n=
-umpy/1.13.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy<br />=0A&gt=
-; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
-.13.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy/core/include/nump=
-y<br />=0A&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/p=
-ython-numpy/1.13.1-r0/numpy-1.13.1/numpy<br />=0A&gt; ./sysroots/armv7ah=
-f-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13.1-r0/numpy-1.13.=
-1/numpy/core/include/numpy<br />=0A&gt; ./sysroots/armv7ahf-neon-oe-linu=
-x-gnueabi/usr/lib/python2.7/site-packages/Cython/Includes/numpy<br />=0A=
-&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-pa=
-ckages/numpy<br />=0A&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/=
-lib/python2.7/site-packages/numpy/core/include/numpy<br />=0A&gt; ./sysr=
-oots/armv7ahf-neon-oe-linux-gnueabi/usr/include/boost/python/numpy<br />=
-=0A&gt; <br />=0A&gt; So, was numpy forgotten?=C2=A0 Left out for a reas=
-on?=C2=A0 I am going to attempt to build it by hand, but I have a fear t=
-hat I am going to go down dependency hell with this and other missing pa=
-ckages that GR might want.<br />=0A&gt; <br />=0A&gt; <br />=0A&gt; <br=
- />=0A&gt; <br />=0A&gt; _______________________________________________=
-<br />=0A&gt; USRP-users mailing list<br />=0A&gt; USRP-users@lists.ettu=
-s.com<br />=0A&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/us=
-rp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-u=
-sers_lists.ettus.com</a><br />=0A&gt; <br /></div>=0A</div>=0A</div>=0A<=
-/div>=0A</div>=0A</div>=0A</div>=0A</blockquote></body></html>
-
---=_1bebca7e9536ffa7a665320433ce04d2--
-
-
-
---===============5103623578284749566==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5103623578284749566==--
-
-
+SGkgRUosDQoNCnRoaXMgc291bmRzIGxpa2UgYSB2ZXJ5IGludGVyZXN0aW5nIHByb2plY3QuIFNp
+bmNlIHlvdSBhc2tlZCBmb3IgaWRlYXMsIA0KSSBndWVzcyBpdCB3b3VsZCBiZSBuaWNlIHRvIGhh
+dmUgYSBTY2htaWRsJkNveCBzdHlsZSBPRkRNIA0Kc3luY2hyb25pemF0aW9uIGJsb2NrLg0KDQpD
+aGVlcnMNCkpvaGFubmVzDQoNCkFtIDI5LjA0LjE5IHVtIDAyOjAwIHNjaHJpZWIgRUogS3JlaW5h
+ciB2aWEgVVNSUC11c2VyczoNCj4gSGkgYWxsLA0KPiANCj4gSSdtIHZlcnkgaGFwcHkgdG8gYW5u
+b3VuY2UgdGhlICh2ZXJ5IG1vZGVzdCkgcmVsZWFzZSBvZiB0aGUgVGhlc2V1cyANCj4gQ29yZXMg
+cHJvamVjdDogaHR0cHM6Ly9naXRsYWIuY29tL3RoZXNldXMtY29yZXMvdGhlc2V1cy1jb3Jlcw0K
+PiANCj4gVGhlc2V1cyBDb3JlcyBpcyBkZXNpZ25lZCB0byBwcm92aWRlIG9wZW4gc291cmNlIEZQ
+R0EgY29yZXMgZm9yIGRpZ2l0YWwgDQo+IHNpZ25hbCBwcm9jZXNzaW5nIGFuZCBzb2Z0d2FyZSBk
+ZWZpbmVkIHJhZGlvLCBwbHVzIHRoZSBtZWFucyB0byAqdXNlKiANCj4gdGhlIEZQR0EgY29yZXMg
+aW4gcmVhbCBsaWZlLi4uLiBJbiBwcmFjdGljZSwgdGhhdCBtb3N0bHkgbWVhbnMgRlBHQSBjb2Rl
+IA0KPiBwcm9wYWdhdGVzIHVwIHRocm91Z2ggUkZOb0MgYmxvY2tzIHdoaWNoIGhhdmUgYm90aCBV
+SEQgYW5kIEdudXJhZGlvIA0KPiBzb2Z0d2FyZSBob29rcyBmb3IgdXNlcnMgdG8gYXR0YWNoIHRv
+LiBJbiB0aGUgZnV0dXJlIGl0IHdvdWxkIGJlIGdyZWF0IA0KPiB0byBzdXBwb3J0IG90aGVyIEZQ
+R0EgcGxhdGZvcm1zIGlmIHRoZXJlJ3MgaW50ZXJlc3QgdG9vLg0KPiANCj4gU28gZmFyLCBUaGVz
+ZXVzIENvcmVzIHByb3ZpZGVzIHRoZSBmb2xsb3dpbmcgUkZOb0MgRlBHQSBibG9ja3MgYW5kIA0K
+PiBjb3JyZXNwb25kaW5nIHNvZnR3YXJlOg0KPiAtICpQb2x5cGhhc2XCoE0vMiBDaGFubmVsaXpl
+cio6IEEgcG9seXBoYXNlIGNoYW5uZWxpemVyIHdoZXJlIGVhY2ggDQo+IGNoYW5uZWwgb3V0cHV0
+cyAyeCBzYW1wbGUgcmF0ZSBhbmQgaXMgY29tcGF0aWJsZSB3aXRoIA0KPiBwZXJmZWN0LXJlY29u
+c3RydWN0aW9uLiBUaGFua3MgdG8gUGhpbCBWYWxsYW5jZSBmb3IgcmUtaW1wbGVtZW50aW5nIHRo
+ZSANCj4gY2hhbm5lbGl6ZXIgZGVzY3JpYmVkIGluIGhpcyBHUkNvbiAyMDE3IHByZXNlbnRhdGlv
+bi0tIGl0IHdvcmtzIQ0KPiAtICoiMS10by1OIiBEREMgQ2hhaW4qOiBQYXJhbWV0ZXJpemVkIGlu
+c3RhbnRpYXRpb25zIG9mICJOIiBpbmRlcGVuZGVudCANCj4gRERDcywgd2hlcmUgZWFjaCBEREMg
+aXMgY29ubmVjdGVkIHRvIHRoZSAqZmlyc3QqIGlucHV0IChhIHZlcnkgYmFzaWMsIA0KPiBicnV0
+ZSBmb3JjZSBjaGFubmVsaXplcikuIE5vdGUgSSd2ZSBzZWVuIHNldmVyYWwgbWFpbGluZyBsaXN0
+IA0KPiBkaXNjdXNzaW9ucyBpbiB0aGUgcGFzdCB5ZWFyIGFib3V0IDEtdG8tNCBvciAxLXRvLTgg
+RERDIGNoYW5uZWxpemVycyAtLSANCj4gdGhpcyBibG9jayBwcm92aWRlcyB0aGUgZ2VuZXJhbGl6
+ZWQgdmVyc2lvbiBvZiB0aGF0IHNjZW5hcmlvLg0KPiAtICpEVUMgKyBEREMgUmF0aW9uYWwgUmVz
+YW1wbGVyKjogQSAiaGFja2VkIiByYXRpb25hbCByZXNhbXBsZXIsIA0KPiBjb25zaXN0aW5nIG9m
+IGEgRFVDIGFuZCBhIEREQyBiYWNrLXRvLWJhY2suIEl0J3Mgbm90IHByZXR0eSwgYnV0IGl0IGNh
+biANCj4gb2NjYXNpb25hbGx5IGJlIGhlbHBmdWwuDQo+IA0KPiBGdXJ0aGVybW9yZSwgaW4gYW4g
+ZWZmb3J0IHRvIFRSWSB0byBjcmVhdGUgYW4gb3BlbiBzb3VyY2UgRlBHQSBwcm9qZWN0IA0KPiB0
+aGF0IGRvZXNudCBjYXRhc3Ryb3BoaWNhbGx5IGJyZWFrIG9uIGEgcmVndWxhciBiYXNpcywgd2Un
+dmUgc2V0IHVwIA0KPiBjb250aW51b3VzIGludGVncmF0aW9uIHRlc3RzIGZvciBib3RoIHNvZnR3
+YXJlIGFuZCBGUEdBLiBEb2NrZXJmaWxlcyBhcmUgDQo+IHByb3ZpZGVkIGhlcmUgKGh0dHBzOi8v
+Z2l0bGFiLmNvbS90aGVzZXVzLWNvcmVzL3RoZXNldXMtZG9ja2VyKS7CoFRoZXNldXMgDQo+IENv
+cmVzIGFsc28gcHVzaGVzIHRhZ2dlZCBkb2NrZXIgaW1hZ2VzIGZvciB2YXJpb3VzIHZlcnNpb25z
+IG9mIFVIRCBhbmQgDQo+IEdudXJhZGlvLCB3aGVyZSB0aGUgYnJhbmNoZXMgZm9yIFVIRC0zLjEz
+LCBVSEQtMy4xNCwgVUhEJ3MgbWFzdGVyLCBhbmQgDQo+IGdudXJhZGlvJ3MgbWFpbnQtMy43IGFy
+ZSByZWJ1aWx0IHdlZWtseS4gVGhpcyBtYXkgYmUgb2YgYXV4aWxpYXJ5IHVzZSB0byANCj4gcGVv
+cGxlIGJ1aWxkaW5nIFVIRCBhbmQgZ251cmFkaW8gaW4gYSBDSSBzY2VuYXJpbzogDQo+IGh0dHBz
+Oi8vaHViLmRvY2tlci5jb20vdS90aGVzZXVzY29yZXMNCj4gPGh0dHBzOi8vZ2l0aHViLmNvbS90
+aGVzZXVzLWNvcmVzL3RoZXNldXMtY29yZXM+DQo+ICpXaGF0J3MgbmV4dD8/KsKgSXQncyBhIG1v
+ZGVzdCBsaXN0IG9mIGZlYXR1cmVzIHNvIGZhciwgYnV0IEknbSBzdXJlIHdlIA0KPiBjYW4gYWxs
+IHN5bXBhdGhpemUgdGhhdCB0aGluZ3MgbW92ZSBzbG93bHkgd2hlbiBkZXZlbG9waW5nIEZQR0Eg
+Y29kZS4gDQo+IEhlcmUncyBhIHF1aWNrIHJ1bmRvd24gb2YgYSBmZXcgaWRlYXMgb24gdGhlIGhv
+cml6b246DQo+IC0gQXJiaXRyYXJ5IHJlc2FtcGxpbmcNCj4gLSBDaGFubmVsIGRvd25zZWxlY3Rp
+b24gZm9yIHRoZSBNLzIgY2hhbm5lbGl6ZXIgKGN1cnJlbnRseSBhbGwgY2hhbm5lbHMgDQo+IG11
+c3QgYmUgb3V0cHV0Li4uIGl0J3MgZmFyIG1vcmUgdXNlZnVsIHRvIHNlbGVjdCBhIHN1YnNldCBv
+ZiBjaGFubmVscyB0byANCj4gcmV0dXJuIGFuZCBqdXN0IGdyYWIgdGhvc2UpDQo+IC0gQ2hhbm5l
+bCByZWNvbnNvbnN0cnVjdGlvbiAqYWZ0ZXIqIHRoZSBNLzIgY2hhbm5lbGl6ZXIgKG1heWJlKQ0K
+PiAtIE9GRE0gcmVjZWl2ZXIgKG1heWJlKQ0KPiANCj4gV2UgbmVlZCBtb3JlIGlkZWFzIGFuZCBj
+b250cmlidXRvcnMhIE5vdyB0aGF0IHRoaXMgdGhpbmcgZXhpc3RzLCBJIHdvdWxkIA0KPiBMT1ZF
+IHRvIHNlZSBUaGVzZXVzIENvcmVzIGZpbGwgaXRzZWxmIG91dCB3aXRoIHNvbWUgb2YgdGhlIG1v
+cmUgY29tbW9uIA0KPiBEU1AgdXRpbGl0aWVzIHRoYXQgcmVhbGx5IHNob3VsZCBiZSBhdmFpbGFi
+bGUgYXMgb3Blbi1zb3VyY2UuLi4gaXQgd291bGQgDQo+IGJlIGFic29sdXRlbHkgYW1hemluZyB0
+byBwcm92aWRlIGEgbGlicmFyeSBvZiBjb21wb25lbnRzIGFuZCANCj4gYXBwbGljYXRpb25zIGZv
+ciBGUEdBIGRldmVsb3BlcnMgaW4gYSBzaW1pbGFyIHdheSB0aGF0IGdudXJhZGlvIHByb3ZpZGVz
+IA0KPiBmb3IgdGhlIHNvZnR3YXJlIGNvbW11bml0eS4gUGxlYXNlIHJlYWNoIG91dCB3aXRowqBz
+dWdnZXN0aW9ucyBmb3IgDQo+IHJlbGV2YW50IEZQR0EgdXRpbGl0aWVzIG9yIGFwcGxpY2F0aW9u
+cyB5b3UnZCBsaWtlIHRvIHNlZSAtLSBvciBldmVuIA0KPiBiZXR0ZXIsIGlmIHlvdSBoYXZlIGlk
+ZWFzIG9yIGNvZGUgeW91J3JlIHdpbGxpbmcgdG8gc2hhcmUgd2l0aCB0aGUgDQo+IHByb2plY3Qh
+IElmIHlvdSBhcmUgaW50ZXJlc3RlZCBpbiBnZXR0aW5nIGludm9sdmVkIGluIGFueSB3YXksIEkg
+d291bGQgDQo+IGJlIGhhcHB5IHRvIGhlYXIgZnJvbSB5b3UuDQo+IA0KPiBDaGVlcnMsDQo+IEVK
+DQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0K
+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0
+cy5ldHR1cy5jb20NCj4gDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0
+cy5ldHR1cy5jb20K
