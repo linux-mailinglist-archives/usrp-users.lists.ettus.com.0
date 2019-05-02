@@ -2,50 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D01B10E9D
-	for <lists+usrp-users@lfdr.de>; Wed,  1 May 2019 23:37:38 +0200 (CEST)
-Received: from [::1] (port=52664 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09372110CE
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2019 02:53:46 +0200 (CEST)
+Received: from [::1] (port=60624 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hLwuv-0006Db-VQ; Wed, 01 May 2019 17:37:29 -0400
-Received: from mail-it1-f173.google.com ([209.85.166.173]:51384)
+	id 1hLzyl-000813-Ap; Wed, 01 May 2019 20:53:39 -0400
+Received: from mail-pl1-f171.google.com ([209.85.214.171]:40676)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <sdormian@eng.ucsd.edu>)
- id 1hLwuN-00064b-31
- for usrp-users@lists.ettus.com; Wed, 01 May 2019 17:37:25 -0400
-Received: by mail-it1-f173.google.com with SMTP id s3so887589itk.1
- for <usrp-users@lists.ettus.com>; Wed, 01 May 2019 14:36:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=eng.ucsd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=dFf1HEM2b5lw0KBs+mOQbWVzu20fy5c3qSTHtPXonY8=;
- b=Y/jZooUC3Lu/vGVy2Ud1PmiNWt2+/Kd8lS+4JFVb1oarIMPjW8X7U/1ywOJgfplg98
- 88YFrIwM4GaeX33nagSuN7oOa9lQSRTKHknCchfzt27q8U0hI6oQ04uOF+nwZeGhjB7f
- LWGpOU3c3TMvS2VFVsbJs5j3feH3r9YuBXX/0=
+ (Exim 4.91) (envelope-from <mike.piscopo@gmail.com>)
+ id 1hLzyD-0007wE-Iz
+ for usrp-users@lists.ettus.com; Wed, 01 May 2019 20:53:35 -0400
+Received: by mail-pl1-f171.google.com with SMTP id b3so204433plr.7
+ for <usrp-users@lists.ettus.com>; Wed, 01 May 2019 17:52:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3iTfF6ExZzxu8vptupaif4G0AhznvPTZe50gCEeeCHw=;
+ b=sJQFNNEKKckgvHlUWNTT4zQaHmg44L5Z34nr2aY8+PPmBvPiQSOSwnTFyD9zJ39u12
+ V7mnSG0GJZVf00JhgfXSF5wYIBpP71L2nKYnlYIqAWYCuYjGONM9Pybt9HOcFP6LdOEw
+ +iBizJ2ynAqIcyOLgiIseENpZs5sRq6EL04fDr07SNXSlLJNWnYc9kN2HAH80imWOB2y
+ NhClkCdEbNxNmXOhPXYBOfXVgK4ekBHO/s1I6FLFiWq/3Jc6j9oc3+fVPIDmxYpESHc6
+ 9S9T4XdwZNRW0/Xwe7BV2pAJZX6fXOv7GuJA84Hz1BJAxdX0SdE3oKAH5wtEgnVFESI0
+ m4UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=dFf1HEM2b5lw0KBs+mOQbWVzu20fy5c3qSTHtPXonY8=;
- b=pBdNRrbjPsqT1JJfWLujlg04BObpSuMImNwxcKhYqQxC6sZTlSGuzcYphFAZHLBxuB
- 2GKgUf/qYEDRDNzJRSi9PvlqkMxiFN013tRq0fjZImPdjG6e9P/8cRh1tCDR4cM/ZL/k
- nHL1DA2QYbOhMgfmiEfQA2XjbgLjcmN7BXDSLn3c+fxEUIYspRD6f7l7zYD6y8keSAol
- 1W27timI0mH3zVtceysfDpRbpfoenzex2EDrspgJ/yvpj3S+PI+t5SuiSyuOOJtZ4RZC
- Q5qt99VeIfrImPOw/NfmdOGsWw676H9NSIALWFeiLicXdOh7+EyKQ74/FMJ0cncv/JJw
- 1AKA==
-X-Gm-Message-State: APjAAAWDiNBSCiX4T65AVViRj8cK7D4a4vS5stRnq+2J6NjN/KplJ1jQ
- kyhXS6DD4tRnT7LmFeB/92kOwR1Hb1duUV3Cba/qWA==
-X-Google-Smtp-Source: APXvYqxi27dkTHDDgeFLyInRG30+pPIiiWbhA6Lhj1//7GESB9tOEaGrrBqWLUfOm1LxlcuRKydvpfakUJxN47jA+pc=
-X-Received: by 2002:a24:59c1:: with SMTP id
- p184mr10599630itb.158.1556746574012; 
- Wed, 01 May 2019 14:36:14 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=3iTfF6ExZzxu8vptupaif4G0AhznvPTZe50gCEeeCHw=;
+ b=R2wrsitXyzfOGiD5HIWUpQBx0iR0yD/qRc9W9YTvTH6wX+66+6a1/sb165//eo7j35
+ 2Ab1MFvU4etsYXLjXQLnQeTFqBPWohNHskRSGs80ycsCMntxD5eNWMw2bvrxO2iniiX+
+ GC5huF4RRJA0lghZXvHmr4zASUn5GP+IQqLtKD5B5PvgHKA7IOSx0CQ3BfEeO1NIlESb
+ 8FiQQ/44Sdb6d2rCf5BiVlNAQ8FCRa9bm5sawyzLNy4+yrmVzdQgvVbU6sK2avUxWuY/
+ d3qKn/YHVRQs9AKYqAvSJ+DvBvhbrhQIl1yuS7l8EdJIv/XYnCUsE9umn/1pnzMOVzQL
+ Dssw==
+X-Gm-Message-State: APjAAAUb8/Eb4rJnXhMJ0RNC0rG0l2aAnt2tc06OVVvKvMHG2w0PdWRt
+ YK1+Q3zJXfofwG8XpH9H1XLbDYI6FHCtyybjEcU=
+X-Google-Smtp-Source: APXvYqzLH4P2mYF3kSSvDPCCQl4RhBbQeKflIzqe/NIAFJd51/PNtNMaYOihxGImug/k3WJYiCbE2Bub+9d3RHNPhCY=
+X-Received: by 2002:a17:902:d708:: with SMTP id
+ w8mr594101ply.231.1556758344415; 
+ Wed, 01 May 2019 17:52:24 -0700 (PDT)
 MIME-Version: 1.0
 References: <CALLKLAPDtvLxHkVwea_c0S9oX3xFkOYwfpbhvS9HTxK+LiEkhg@mail.gmail.com>
  <5CC795B9.4050401@gmail.com>
  <CAAY_VvEZR_a9bqOoq4Hk4Uo7ynEJ8Z06G8iKR0Se_qjOE8CK2A@mail.gmail.com>
-In-Reply-To: <CAAY_VvEZR_a9bqOoq4Hk4Uo7ynEJ8Z06G8iKR0Se_qjOE8CK2A@mail.gmail.com>
-Date: Wed, 1 May 2019 14:35:37 -0700
-Message-ID: <CANaxSir2Ezd7BzxWyxRs-aHbMwXQW0tGDCJwSEQuni9f_GKQWA@mail.gmail.com>
-To: GhostOp14 <ghostop14@gmail.com>, usrp-users <usrp-users@lists.ettus.com>
+ <CANaxSir2Ezd7BzxWyxRs-aHbMwXQW0tGDCJwSEQuni9f_GKQWA@mail.gmail.com>
+In-Reply-To: <CANaxSir2Ezd7BzxWyxRs-aHbMwXQW0tGDCJwSEQuni9f_GKQWA@mail.gmail.com>
+Date: Wed, 1 May 2019 20:52:12 -0400
+Message-ID: <CAAY_VvGM5=PduLJX0MbB=92a8gpM++peKrBih+-1sZs8_k1Q_g@mail.gmail.com>
+To: Ali Dormiani <sdormian@eng.ucsd.edu>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -64,9 +68,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ali Dormiani via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ali Dormiani <sdormian@eng.ucsd.edu>
-Content-Type: multipart/mixed; boundary="===============4592846421289411370=="
+From: GhostOp14 via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: GhostOp14 <ghostop14@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============9030964482041081744=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,133 +85,150 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4592846421289411370==
-Content-Type: multipart/alternative; boundary="0000000000008cb42d0587da4e01"
+--===============9030964482041081744==
+Content-Type: multipart/alternative; boundary="0000000000001ebea70587dd0cb7"
 
---0000000000008cb42d0587da4e01
+--0000000000001ebea70587dd0cb7
 Content-Type: text/plain; charset="UTF-8"
 
-Hello GhostOp14 and USRP users,
+Thanks Ali,
 
-Your oot blocks are amazing. They do exactly what we need in a clean way.
-In testing, we have found that there are rare anomalies though (occur like
-a rare Poisson process).
-
-1. Sometimes the advanced file sink will create an empty file of 0 bytes.
-
-2. Sometimes the state timer messes up. We avoid a runaway data capture by
-using the 'max file size' parameter in the advanced file sink.
-
-Overall, this solution is very good and eliminates a lot of variables from
-our experiments. All of our USRP devices are initialized once and
-constantly stream data (only some of which is saved). Our phase calibration
-is a lot more consistent now.
-
-Thank you again for providing these oot blocks on Github. My own custom
-embedded python block was inelegant and inconsistent.
-
-Cheers,
-
-Ali
+I'll take a look at what you found with inconsistencies and see if I can
+hunt them down.
 
 
-On Wed, May 1, 2019 at 6:19 AM GhostOp14 via USRP-users <
-usrp-users@lists.ettus.com> wrote:
 
-> Morning everyone, not sure my note yesterday hit the list correctly so I'm
-> trying again.
+On Wed, May 1, 2019 at 5:35 PM Ali Dormiani <sdormian@eng.ucsd.edu> wrote:
+
+> Hello GhostOp14 and USRP users,
 >
-> Mark: I have a solution for you.  I added a new block yesterday to
-> gr-filerepeater (pybombs or github).  There's now a state timer block
-> that'll generate a message based on block-specified timing.  Trigger time,
-> cycle time, etc.  gr-filerepeater also has a new file sink block I've added
-> in the past couple of weeks specifically to address the same kind of
-> problem.  You can feed the timer msg out to the new sink msg in.  The new
-> block will then key off the state (1/0) in the msg metadata and start/stop
-> writing to a file.  You can specify a directory and a base file name, then
-> every time a new file write is started it'll append a timestamp.  Should
-> exactly match up to what you're trying to accomplish.  I'll post on the
-> gnuradio list as well since they're gnuradio blocks.
+> Your oot blocks are amazing. They do exactly what we need in a clean way.
+> In testing, we have found that there are rare anomalies though (occur like
+> a rare Poisson process).
+>
+> 1. Sometimes the advanced file sink will create an empty file of 0 bytes.
+>
+> 2. Sometimes the state timer messes up. We avoid a runaway data capture by
+> using the 'max file size' parameter in the advanced file sink.
+>
+> Overall, this solution is very good and eliminates a lot of variables from
+> our experiments. All of our USRP devices are initialized once and
+> constantly stream data (only some of which is saved). Our phase calibration
+> is a lot more consistent now.
+>
+> Thank you again for providing these oot blocks on Github. My own custom
+> embedded python block was inelegant and inconsistent.
+>
+> Cheers,
+>
+> Ali
 >
 >
->
-> On Mon, Apr 29, 2019 at 8:24 PM Marcus D. Leech via USRP-users <
+> On Wed, May 1, 2019 at 6:19 AM GhostOp14 via USRP-users <
 > usrp-users@lists.ettus.com> wrote:
 >
->> On 04/29/2019 08:08 PM, Mark Wagner via USRP-users wrote:
->> > Hey all,
->> >
->> > I'd like to know how to write short files of streamed USRP data
->> > periodically using GNUradio. For instance, I'd like the USRP to
->> > automatically record 5 seconds of data every 10 minutes. It does not
->> > matter to me whether the USRP is constantly on and most of the data is
->> > being discarded, or if the USRP wakes up every 10 minutes to record
->> > the data before sleeping. Whichever is easiest to achieve is fine by
->> > me. Does anyone have experience doing this kind of thing?
->> >
->> > -Mark
->> >
->> >
->> >
->> > --
->> > Mark Wagner
->> > University of California San Diego
->> > Electrical and Computer Engineering
->> >
->> >
->> If you're using Gnu Radio, you can simply use the file sink, and have it
->> record to "/dev/null" most of the time, then have something (perhaps via
->>    the XMLRPC built-in feature) change the filename to whatever your
->> desired filename is, and then revert it back to "/dev/null".
+>> Morning everyone, not sure my note yesterday hit the list correctly so
+>> I'm trying again.
 >>
->> I think I said the same thing on the discuss-gnuradio mailing list a few
->> days ago.
->>
->> The usrp-users mailing list isn't the best place to ask Gnu Radio
->> questions, a question like this, which is inherently radio-type
->> agnostic, probably
->>    belongs on the discuss-gnuradio mailng list, because it's more about
->> "how do I make Gnu Radio dance".
+>> Mark: I have a solution for you.  I added a new block yesterday to
+>> gr-filerepeater (pybombs or github).  There's now a state timer block
+>> that'll generate a message based on block-specified timing.  Trigger time,
+>> cycle time, etc.  gr-filerepeater also has a new file sink block I've added
+>> in the past couple of weeks specifically to address the same kind of
+>> problem.  You can feed the timer msg out to the new sink msg in.  The new
+>> block will then key off the state (1/0) in the msg metadata and start/stop
+>> writing to a file.  You can specify a directory and a base file name, then
+>> every time a new file write is started it'll append a timestamp.  Should
+>> exactly match up to what you're trying to accomplish.  I'll post on the
+>> gnuradio list as well since they're gnuradio blocks.
 >>
 >>
 >>
+>> On Mon, Apr 29, 2019 at 8:24 PM Marcus D. Leech via USRP-users <
+>> usrp-users@lists.ettus.com> wrote:
+>>
+>>> On 04/29/2019 08:08 PM, Mark Wagner via USRP-users wrote:
+>>> > Hey all,
+>>> >
+>>> > I'd like to know how to write short files of streamed USRP data
+>>> > periodically using GNUradio. For instance, I'd like the USRP to
+>>> > automatically record 5 seconds of data every 10 minutes. It does not
+>>> > matter to me whether the USRP is constantly on and most of the data is
+>>> > being discarded, or if the USRP wakes up every 10 minutes to record
+>>> > the data before sleeping. Whichever is easiest to achieve is fine by
+>>> > me. Does anyone have experience doing this kind of thing?
+>>> >
+>>> > -Mark
+>>> >
+>>> >
+>>> >
+>>> > --
+>>> > Mark Wagner
+>>> > University of California San Diego
+>>> > Electrical and Computer Engineering
+>>> >
+>>> >
+>>> If you're using Gnu Radio, you can simply use the file sink, and have it
+>>> record to "/dev/null" most of the time, then have something (perhaps via
+>>>    the XMLRPC built-in feature) change the filename to whatever your
+>>> desired filename is, and then revert it back to "/dev/null".
+>>>
+>>> I think I said the same thing on the discuss-gnuradio mailing list a few
+>>> days ago.
+>>>
+>>> The usrp-users mailing list isn't the best place to ask Gnu Radio
+>>> questions, a question like this, which is inherently radio-type
+>>> agnostic, probably
+>>>    belongs on the discuss-gnuradio mailng list, because it's more about
+>>> "how do I make Gnu Radio dance".
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
 >> _______________________________________________
 >> USRP-users mailing list
 >> USRP-users@lists.ettus.com
 >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---0000000000008cb42d0587da4e01
+--0000000000001ebea70587dd0cb7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello GhostOp14 and USRP users,</div><div><br></div><=
-div>Your oot blocks are amazing. They do exactly what we need in a clean wa=
-y. In testing, we have found that there are rare anomalies though (occur li=
-ke a rare Poisson process).</div><div><br></div><div>1. Sometimes the advan=
-ced file sink will create an empty file of 0 bytes. <br></div><div><br></di=
-v><div>2. Sometimes the state timer messes up. We avoid a runaway data capt=
-ure by using the &#39;max file size&#39; parameter in the advanced file sin=
-k.</div><div><br></div><div>Overall, this solution is very good and elimina=
-tes a lot of variables from our experiments. All of our USRP devices are in=
-itialized once and constantly stream data (only some of which is saved). Ou=
-r phase calibration is a lot more consistent now.<br></div><div><br></div><=
-div>Thank you again for providing these oot blocks on Github. My own custom=
- embedded python block was inelegant and inconsistent. <br></div><div><br><=
-/div><div>Cheers,</div><div><br></div><div>Ali<br></div></div><div dir=3D"l=
-tr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Wed, May 1, 2019 at 6:19 AM GhostOp14 via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div>Morning everyone, not sure m=
-y note yesterday hit the list correctly so I&#39;m trying again.</div><div>=
-<br></div><div>Mark:
+<div dir=3D"ltr"><div>Thanks Ali,</div><div><br></div><div>I&#39;ll take a =
+look at what you found with inconsistencies and see if I can hunt them down=
+.</div><div><br></div><div><br></div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 1, 2019 at 5:35 PM Ali Dor=
+miani &lt;<a href=3D"mailto:sdormian@eng.ucsd.edu">sdormian@eng.ucsd.edu</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"ltr"><div>Hello GhostOp14 and USRP users,</div><div><br></div><div=
+>Your oot blocks are amazing. They do exactly what we need in a clean way. =
+In testing, we have found that there are rare anomalies though (occur like =
+a rare Poisson process).</div><div><br></div><div>1. Sometimes the advanced=
+ file sink will create an empty file of 0 bytes. <br></div><div><br></div><=
+div>2. Sometimes the state timer messes up. We avoid a runaway data capture=
+ by using the &#39;max file size&#39; parameter in the advanced file sink.<=
+/div><div><br></div><div>Overall, this solution is very good and eliminates=
+ a lot of variables from our experiments. All of our USRP devices are initi=
+alized once and constantly stream data (only some of which is saved). Our p=
+hase calibration is a lot more consistent now.<br></div><div><br></div><div=
+>Thank you again for providing these oot blocks on Github. My own custom em=
+bedded python block was inelegant and inconsistent. <br></div><div><br></di=
+v><div>Cheers,</div><div><br></div><div>Ali<br></div></div><div dir=3D"ltr"=
+><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Wed, May 1, 2019 at 6:19 AM GhostOp14 via USRP-users &lt;<a href=3D=
+"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettu=
+s.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div>Morning everyone, not sure my n=
+ote yesterday hit the list correctly so I&#39;m trying again.</div><div><br=
+></div><div>Mark:
  I have a solution for you.=C2=A0 I added a new block yesterday to=20
 gr-filerepeater (pybombs or github).=C2=A0 There&#39;s now a state timer bl=
 ock=20
@@ -297,11 +319,12 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
 
---0000000000008cb42d0587da4e01--
+--0000000000001ebea70587dd0cb7--
 
 
---===============4592846421289411370==
+--===============9030964482041081744==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -312,5 +335,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4592846421289411370==--
+--===============9030964482041081744==--
 
