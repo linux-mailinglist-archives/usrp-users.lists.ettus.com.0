@@ -2,58 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51DA11FB1
-	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2019 18:05:19 +0200 (CEST)
-Received: from [::1] (port=35190 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1419212148
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2019 19:52:42 +0200 (CEST)
+Received: from [::1] (port=36488 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hMECy-00079V-HT; Thu, 02 May 2019 12:05:16 -0400
-Received: from mail-lj1-f170.google.com ([209.85.208.170]:46900)
+	id 1hMFsq-0006NC-4T; Thu, 02 May 2019 13:52:36 -0400
+Received: from mail-qk1-f181.google.com ([209.85.222.181]:33900)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <luke.whittlesey@gmail.com>)
- id 1hMECQ-0006zq-57
- for usrp-users@lists.ettus.com; Thu, 02 May 2019 12:05:12 -0400
-Received: by mail-lj1-f170.google.com with SMTP id h21so2642425ljk.13
- for <usrp-users@lists.ettus.com>; Thu, 02 May 2019 09:04:21 -0700 (PDT)
+ (Exim 4.91) (envelope-from <superme991@gmail.com>)
+ id 1hMFsI-00069I-DR
+ for usrp-users@lists.ettus.com; Thu, 02 May 2019 13:52:32 -0400
+Received: by mail-qk1-f181.google.com with SMTP id n68so2023028qka.1
+ for <usrp-users@lists.ettus.com>; Thu, 02 May 2019 10:51:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lX5iM+yILeBQQ5JEZFjXF2wBbePwiTkHoI4LfKTCnHg=;
- b=peKDUFjz4O7ECQl4ikQSP8KC+re67fpJ8cTOakWUHI13kOMNdzFVvLqHzf0vnXAs8w
- RC/0RlH5I1JO792+hcGdkCivBVne0Od4ZoY+ZsdxuF/NvQeokD0CpQ475d1/OlJV++lb
- zJyGiAwkGjanoLg9xXZxsK+8IqV/6QE5ExIPuxUkRZLyzQECAYQEOdkNtdezzfyvtfaH
- sqyorhJNLQxU5IXPSRPpRkdP0PyRAGTo/D8RJXef4CQmQ5qZAuBzQtRtf83RKLcqLY6n
- LE/9huyH4M+/ykVeNmZEypru9YYnMvVpmg8SpqDdsnjUufoMTz2zwfC9cHgL8TPCGsAw
- 0ROw==
+ :cc; bh=xzLDAomZ3stsrLYArWT5xO8uQvfOVjMGN7qLR0p8s60=;
+ b=NWkoQq3OYTzeAVkeloFLsTFV5EHeRjpmlQVnwBi+6pYGPJSwhid1GwiBJcMNRFsTXN
+ 5O8FRj17VKZlmMOl7suk5UWxDYHRcwMba7HTelEBEU6zlrlZkietp3AW3Pr/AxroOduF
+ /5ms/1CIMsVgjkqaO2co2WbSqEiwTX/D8p2JhLcwgOycap1QJefRHz9/w7F4ioS1E+g+
+ Bk9QWMZA4zWW8MQ96K/a31NCOBs7pddyxnQyQXR72k4mqP6CJ2Zpp0GqbeyPub6+/vra
+ CGAF1ji/JxLWTBcnCgW05MJQ8lHjeqDS91BwoJ7QkQ+ICtVNu40Li2E+A1ehxDGFnGWZ
+ yxhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=lX5iM+yILeBQQ5JEZFjXF2wBbePwiTkHoI4LfKTCnHg=;
- b=PbXphmXQIKQdTwsmowLISnbOQ59UKuGQn14DwfAyFROHlhFYK9EIZ9L43RQfOI/FlX
- 5qnLiQAKBNS/1i38a4NkOyLFXaGIkJK8ay22jIdP6PlWcLpjWaTSoQ4Ipf9PEaAaTcLd
- Miuda4vuemgWMK6PyQeNmdSldsi2CoLqxNc/wkqp3ESk9cWEAJrNP16elyS1Gw440wz6
- HeCLn3hiN1WdoLt28xpiHZaErMJVTQ9ocx7dR7nC4BucjH2j3oKAxhlO/yrdsJfiQAnV
- ZBjU+9tJ6hsowuFArUNe29yLXSdNnrke5HjXep8Dxk32Ktx20UNMRQNdO2SlPb3eELyo
- rUVg==
-X-Gm-Message-State: APjAAAXmAQrEuPy8PK4mV6Eqm9YyjviskEjZ05WMlxu4uLbvV2Bz8UiV
- IvygkJ506qyKUlJVfQTCUNnyUrjnWTDLUkuO/vk=
-X-Google-Smtp-Source: APXvYqzEHKSTUWzcTTbASCo92cgBzdC/2wZ/jakm7y7uaGxW7+IY6TboegNh/1pt7QDnLVv6CKZFuVd8r68DpE4Ydkk=
-X-Received: by 2002:a2e:9ac8:: with SMTP id p8mr2141488ljj.79.1556813040500;
- Thu, 02 May 2019 09:04:00 -0700 (PDT)
+ bh=xzLDAomZ3stsrLYArWT5xO8uQvfOVjMGN7qLR0p8s60=;
+ b=Eqb+IpG9HoK98Rdx9VacqdONarFIMZfESt0KcwmL7DohB62ivzxuAvAG8wKuy4DCNX
+ ZTZ+RdQy+TwvT8Nh023+oCiFObcLIg2E1y9cIhWIg3Ge1zpo63ImRkfxWnxlKI35hzJc
+ tLAT0ttT/XFw5DBWcYreqjvVMNriHVT1wGrZs9SLhRrDwEJ0e99RwgXsT1G61aby/OVs
+ 9kAweCRlM5X1JuGcVK1/sl+GtLG4H/48ws2iVGxYoocS6WbsdvI7Vemyk9MULoPaESz1
+ pFJ0jr/uTwakqWG4abaSTbI9Y3j+Py7ijXk7WTS27pLDbXA1GhQkt7YmTgusRpzVwl9H
+ /9ZQ==
+X-Gm-Message-State: APjAAAVs/u3JbOyh+op0D7aXdX9eOYyf5x4TK94lfomgerP1We8fFipH
+ YIo33QdCK/YMDTavzwcEuBGRxuDmOL2kRJE94UQ=
+X-Google-Smtp-Source: APXvYqw8+Ban4v4QCt0EMHTUR+3bg2UiD+SZSsdaNBavGIIee3VJx/I0liVs6t55ABx3umIBmfbcNooJrfpI3JlU9GE=
+X-Received: by 2002:a37:a44d:: with SMTP id n74mr4265921qke.244.1556819481679; 
+ Thu, 02 May 2019 10:51:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <2489f2eb-d1a4-2156-04b3-bf4611f16a57@mpb.li>
- <2c9b1761-ed34-e991-b10a-4d73a04368cc@comcast.net>
-In-Reply-To: <2c9b1761-ed34-e991-b10a-4d73a04368cc@comcast.net>
-Date: Thu, 2 May 2019 12:03:32 -0400
-Message-ID: <CA+ce6i1J0tGrBg0w-EewEb9Na0meQ0yAk7qeV05e6syPRY-HuA@mail.gmail.com>
-To: Ron Economos <w6rz@comcast.net>
+References: <CAJKWE_dGPwMCtm-+pQsy92p9drQbFE+DTuigX243TptdhX11dQ@mail.gmail.com>
+In-Reply-To: <CAJKWE_dGPwMCtm-+pQsy92p9drQbFE+DTuigX243TptdhX11dQ@mail.gmail.com>
+Date: Fri, 3 May 2019 01:51:13 +0800
+Message-ID: <CALbO1t2JjvMCKvocmsBniY+C140esBX4DFrYtZxuAP6_q2tUHg@mail.gmail.com>
+To: Neharika Valecha <neharikavalecha@gmail.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Plagued by sporadic TX underruns on some systems,
- B200
+Subject: Re: [USRP-users] N310 Multi Device Configuration
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,10 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Luke Whittlesey via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Luke Whittlesey <luke.whittlesey@gmail.com>
-Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============7179959630327415393=="
+From: Jorge Chen via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jorge Chen <superme991@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3091838615360761121=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,273 +80,247 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7179959630327415393==
-Content-Type: multipart/alternative; boundary="00000000000042c7730587e9c8e5"
+--===============3091838615360761121==
+Content-Type: multipart/alternative; boundary="0000000000002f639c0587eb48a7"
 
---00000000000042c7730587e9c8e5
+--0000000000002f639c0587eb48a7
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I've had similar issues on the e310 with similar sample rates. On the e310
-no usb is involved. Unfortunately I have not been able to fully get rid of
-the underrun issues as well.
+Hi, Neharika and All,
 
-So far I have tried:
-- separate threads with ping-pong buffers: this helped
-- linux real-time scheduling
-- increasing the linux process nice value : this helped
-- compiling with -O3 : this helped because I forgot initially
-- making the buffers a multiple of tx_streamer::get_max_num_samps() :
-https://github.com/EttusResearch/uhd/issues/128 : didn't help
+I met some problems on controlling 2 N310s too.
 
-With all of this I still get about 1 underrun an hour, but it is sporadic.
+But first of all, the argument "second_addr" indicates the IP addr. of
+the second
+SFP+ port on that device, and is set in the case of dual 10G streaming.
+I think the first way you wrote is the right way to access the 2 N310s,
+even though it is not listed in the Multiple USRP Configuration page.
+(https://files.ettus.com/manual/page_multiple.html)
+With that, I can control them (set rf parameters and receive signal on all
+8 channels) without the error message you mentioned, what version of the
+UHD you're using? (UHD 3.13.1, 3.14 worked for me)
 
-From here I'm a bit stumped in looking for a software solution. Unless
-there is something in UHD?
+My only problem is that they stop working (hang) at transmitting.
+An alternative way  is that I create 2 usrp objects to control them as the
+commands below.
 
-Some things that I haven't yet tried.
-- increasing buffering on the FPGA : should give me more time before an
-underrun
-- pushing more of the work to the FPGA to reduce burden on the pc
+*uhd::usrp::multi_usrp::sptr tx_usrp_1
+=3D uhd::usrp::multi_usrp::make("addr=3D192.168.30.3,master_clock_rate=3D12=
+2.88e6,clock_source=3Dexternal,time_source=3Dexternal")
+uhd::usrp::multi_usrp::sptr
+tx_usrp_2
+=3D uhd::usrp::multi_usrp::make("addr=3D192.168.40.3,master_clock_rate=3D12=
+2.88e6,clock_source=3Dexternal,time_source=3Dexternal")*
+Even though it works ( transmit signal simultaneously on all channels ), I
+don't think it's the best way (or right way) to use multiple USRPs.
 
-On Thu, May 2, 2019 at 11:26 AM Ron Economos via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Has anyone done this before? or any suggestion?
 
-> Setting a large number of UHD buffers can help quite a bit. In the GRC
-> UHD Sink block device address:
+Thanks
+Jorge
+
+
+
+Neharika Valecha via USRP-users <usrp-users@lists.ettus.com> =E6=96=BC 2019=
+=E5=B9=B45=E6=9C=882=E6=97=A5 =E9=80=B1=E5=9B=9B
+=E4=B8=8B=E5=8D=889:20=E5=AF=AB=E9=81=93=EF=BC=9A
+
+> Hello,
 >
-> "num_send_frames=3D256"
+> I am using two N310 USRP's to create an 8x8 MIMO setup. But, I am unable
+> to make both of them work together. I am using an example program from
+> the UHD driver - txrx_loopback_to_file.
 >
-> In Python:
+> I give the following command:
 >
->          self.uhd_usrp_sink_0_0 =3D uhd.usrp_sink(
->              ",".join(("num_send_frames=3D256", "")),
->              uhd.stream_args(
->                  cpu_format=3D"fc32",
->                  channels=3Drange(1),
->              ),
->          )
+> ./txrx_loopback_to_file --tx-rate 7.68e6 --rx-rate 7.68e6 --tx-freq 2.60e=
+9
+> --rx-freq 2.60e9 --tx-gain 70 --rx-gain 60 --tx-channels "0,1,2,3"
+> --rx-channels "0,1,2,3" --tx-args "addr=3D192.168.10.2,second_addr=3D192.=
+168.20.2,time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=
+=3D122.88e6"
+> --rx-args
+> "addr=3D192.168.10.2,second_addr=3D192.168.20.2,time_source=3Dexternal,cl=
+ock_source=3Dexternal,master_clock_rate=3D122.88e6"
+> --settling 1
 >
-> Ron
+> and only one USRP turns on.
+> In USRP X300 there were two ways to use multiple USRP's,
+> 1. Use --tx-args and --rx-args to specify "addr0,addr1" to access two
+> different USRP's with --tx-channels and --rx-channels as "0,1". I tried
+> that here but it gives an error, "Error message: Someone tried to claim
+> this device again".
 >
-> On 5/2/19 05:18, Matthias Br=C3=A4ndli via USRP-users wrote:
-> > Dear all,
-> >
-> > I'm maintaining ODR-DabMod[1], a Digital Audio Broadcasting modulator
-> > which uses UHD to drive a USRP at 2048ksps, in most applications a B200=
-.
-> >
-> > ODR-DabMod runs the modulator and the UHD output in separate threads, t=
-o
-> > ensure that a few modulated frames are always ready when the USRP needs
-> > one[2]. It requests realtime scheduling[3]. The system runs headless (n=
-o
-> > X11 running), and generally doesn't have anything else running.
-> >
-> > On some systems, we observe sporadic underruns. They occur in irregular
-> > intervals, something like once a minute, sometimes rarer. Seen with bot=
-h
-> > USB2 and USB3 hosts, over several UHD versions. Until now we've mostly
-> > been able to avoid the issue by selecting machines that don't show the
-> > issue, but we hope we can find a mitigation in software.
-> >
-> > Both the data source the modulator connects to and the USRP have a
-> > disciplined time reference, implying there is no rate drift (plus, that
-> > would trigger regular underruns, not sporadic ones).
-> >
-> >
-> > There are some parameters described in USB Transport Parameters[4], doe=
-s
-> > it make sense to change those?
-> >
-> > Could CPU frequency scaling lead to interruptions?
-> >
-> > Are there other knobs to turn that I'm not aware of? Device, stream or
-> > linux kernel settings?
-> >
-> > Is the approach of using a separate thread for UHD output beneficial?
-> >
-> > Anything else?
-> >
-> > Sorry for the vague description of the issue and the many questions, bu=
-t
-> > I'm a bit out of ideas about how to approach that. If anybody had
-> > similar problems I'd be curious to hear your experiences.
-> >
-> > Cheers
-> > mpb
-> >
-> > [1]
-> > https://github.com/Opendigitalradio/ODR-DabMod
-> >
-> > [2]
-> > Look for m_queue in
-> >
-> https://github.com/Opendigitalradio/ODR-DabMod/blob/master/src/output/SDR=
-.cpp
-> >
-> > [3]
-> > For all threads involved in DSP and the SDR output thread. Grep for
-> > `set_realtime_prio`.
-> >
-> > [4]
-> > https://files.ettus.com/manual/page_transport.html#transport_usb
-> >
-> > Default send_frame_size seems to be on line 85 of
-> > https://files.ettus.com/manual/b200__impl_8hpp_source.html
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >
+> 2. To define just one "addr" in --tx-args and --rx-args but have
+> --tx-channels and --rx-channels as "0,1,2,3" (as X300 is 2x2). When tried
+> with N310 with channel values "0,1,2,3,4,5,6,7" it gives an error that Tx
+> channels invalid.
 >
+> So, could you tell me what is the correct syntax to access two USRP's?
+>
+> Thank you
+> Neharika
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---00000000000042c7730587e9c8e5
+--0000000000002f639c0587eb48a7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>I&#39;ve had similar issues on the e=
-310 with similar sample rates. On the e310 no usb is involved. Unfortunatel=
-y I have not been able to fully get rid of the underrun issues as well.<br>=
-</div><div><br></div><div>So far I have tried:</div><div>- separate threads=
- with ping-pong buffers: this helped<br></div><div>- linux real-time schedu=
-ling</div><div>- increasing the linux process nice value : this helped</div=
-><div>- compiling with -O3 : this helped because I forgot initially</div><d=
-iv>- making the buffers a multiple of tx_streamer::get_max_num_samps() : <a=
- href=3D"https://github.com/EttusResearch/uhd/issues/128">https://github.co=
-m/EttusResearch/uhd/issues/128</a> : didn&#39;t help<br></div><div><br></di=
-v><div>With all of this I still get about 1 underrun an hour, but it is spo=
-radic.</div><div><br></div><div>From here I&#39;m a bit stumped in looking =
-for a software solution. Unless there is something in UHD?<br></div><div><b=
-r></div><div>Some things that I haven&#39;t yet tried. <br></div><div>- inc=
-reasing buffering on the FPGA : should give me more time before an underrun=
-<br></div><div>- pushing more of the work to the FPGA to reduce burden on t=
-he pc<br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">On Thu, May 2, 2019 at 11:26 AM Ron Economos via USRP-=
-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.et=
-tus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex">Setting a large number of UHD buffers can help quite a bit. In the G=
-RC <br>
-UHD Sink block device address:<br>
-<br>
-&quot;num_send_frames=3D256&quot;<br>
-<br>
-In Python:<br>
-<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.uhd_usrp_sink_0_0 =3D=
- uhd.usrp_sink(<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 &quot;,=
-&quot;.join((&quot;num_send_frames=3D256&quot;, &quot;&quot;)),<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 uhd.str=
-eam_args(<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=
-=C2=A0=C2=A0 cpu_format=3D&quot;fc32&quot;,<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=
-=C2=A0=C2=A0 channels=3Drange(1),<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ),<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 )<br>
-<br>
-Ron<br>
-<br>
-On 5/2/19 05:18, Matthias Br=C3=A4ndli via USRP-users wrote:<br>
-&gt; Dear all,<br>
-&gt;<br>
-&gt; I&#39;m maintaining ODR-DabMod[1], a Digital Audio Broadcasting modula=
-tor<br>
-&gt; which uses UHD to drive a USRP at 2048ksps, in most applications a B20=
-0.<br>
-&gt;<br>
-&gt; ODR-DabMod runs the modulator and the UHD output in separate threads, =
-to<br>
-&gt; ensure that a few modulated frames are always ready when the USRP need=
-s<br>
-&gt; one[2]. It requests realtime scheduling[3]. The system runs headless (=
-no<br>
-&gt; X11 running), and generally doesn&#39;t have anything else running.<br=
->
-&gt;<br>
-&gt; On some systems, we observe sporadic underruns. They occur in irregula=
-r<br>
-&gt; intervals, something like once a minute, sometimes rarer. Seen with bo=
-th<br>
-&gt; USB2 and USB3 hosts, over several UHD versions. Until now we&#39;ve mo=
-stly<br>
-&gt; been able to avoid the issue by selecting machines that don&#39;t show=
- the<br>
-&gt; issue, but we hope we can find a mitigation in software.<br>
-&gt;<br>
-&gt; Both the data source the modulator connects to and the USRP have a<br>
-&gt; disciplined time reference, implying there is no rate drift (plus, tha=
-t<br>
-&gt; would trigger regular underruns, not sporadic ones).<br>
-&gt;<br>
-&gt;<br>
-&gt; There are some parameters described in USB Transport Parameters[4], do=
-es<br>
-&gt; it make sense to change those?<br>
-&gt;<br>
-&gt; Could CPU frequency scaling lead to interruptions?<br>
-&gt;<br>
-&gt; Are there other knobs to turn that I&#39;m not aware of? Device, strea=
-m or<br>
-&gt; linux kernel settings?<br>
-&gt;<br>
-&gt; Is the approach of using a separate thread for UHD output beneficial?<=
-br>
-&gt;<br>
-&gt; Anything else?<br>
-&gt;<br>
-&gt; Sorry for the vague description of the issue and the many questions, b=
-ut<br>
-&gt; I&#39;m a bit out of ideas about how to approach that. If anybody had<=
-br>
-&gt; similar problems I&#39;d be curious to hear your experiences.<br>
-&gt;<br>
-&gt; Cheers<br>
-&gt; mpb<br>
-&gt;<br>
-&gt; [1]<br>
-&gt; <a href=3D"https://github.com/Opendigitalradio/ODR-DabMod" rel=3D"nore=
-ferrer" target=3D"_blank">https://github.com/Opendigitalradio/ODR-DabMod</a=
-><br>
-&gt;<br>
-&gt; [2]<br>
-&gt; Look for m_queue in<br>
-&gt; <a href=3D"https://github.com/Opendigitalradio/ODR-DabMod/blob/master/=
-src/output/SDR.cpp" rel=3D"noreferrer" target=3D"_blank">https://github.com=
-/Opendigitalradio/ODR-DabMod/blob/master/src/output/SDR.cpp</a><br>
-&gt;<br>
-&gt; [3]<br>
-&gt; For all threads involved in DSP and the SDR output thread. Grep for<br=
->
-&gt; `set_realtime_prio`.<br>
-&gt;<br>
-&gt; [4]<br>
-&gt; <a href=3D"https://files.ettus.com/manual/page_transport.html#transpor=
-t_usb" rel=3D"noreferrer" target=3D"_blank">https://files.ettus.com/manual/=
-page_transport.html#transport_usb</a><br>
-&gt;<br>
-&gt; Default send_frame_size seems to be on line 85 of<br>
-&gt; <a href=3D"https://files.ettus.com/manual/b200__impl_8hpp_source.html"=
- rel=3D"noreferrer" target=3D"_blank">https://files.ettus.com/manual/b200__=
-impl_8hpp_source.html</a><br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;<br>
-<br>
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi,=C2=A0<span style=3D"=
+color:rgb(0,0,0);font-family:arial,helvetica,sans-serif;text-decoration-sty=
+le:initial;text-decoration-color:initial;float:none;display:inline">Neharik=
+a and All,</span><div><span style=3D"color:rgb(0,0,0);font-family:arial,hel=
+vetica,sans-serif;text-decoration-style:initial;text-decoration-color:initi=
+al;float:none;display:inline"><br></span></div><div><span style=3D"color:rg=
+b(0,0,0);font-family:arial,helvetica,sans-serif;text-decoration-style:initi=
+al;text-decoration-color:initial;float:none;display:inline">I met some prob=
+lems on controlling 2 N310s too.</span></div><div><span style=3D"color:rgb(=
+0,0,0);font-family:arial,helvetica,sans-serif;text-decoration-style:initial=
+;text-decoration-color:initial;float:none;display:inline"><br></span></div>=
+<div><span style=3D"color:rgb(0,0,0);font-family:arial,helvetica,sans-serif=
+;text-decoration-style:initial;text-decoration-color:initial;float:none;dis=
+play:inline">But first of all, the=C2=A0argument &quot;<span style=3D"font-=
+family:Roboto,sans-serif;font-size:14px;background-color:rgb(255,255,255);t=
+ext-decoration-style:initial;text-decoration-color:initial;float:none;displ=
+ay:inline">second_addr&quot; indicates the IP addr. of the=C2=A0<span style=
+=3D"text-decoration-style:initial;text-decoration-color:initial;float:none;=
+display:inline">second SFP+ port on that device, and is set in the case of =
+dual 10G streaming.</span></span></span></div><div><span style=3D"color:rgb=
+(0,0,0);font-family:arial,helvetica,sans-serif;text-decoration-style:initia=
+l;text-decoration-color:initial;float:none;display:inline"><span style=3D"f=
+ont-family:Roboto,sans-serif;font-size:14px;background-color:rgb(255,255,25=
+5);text-decoration-style:initial;text-decoration-color:initial;float:none;d=
+isplay:inline"><span style=3D"text-decoration-style:initial;text-decoration=
+-color:initial;float:none;display:inline">I think the first way you wrote i=
+s the right way to access the 2 N310s, even though it is not listed in the =
+Multiple USRP Configuration page.<br>(<a href=3D"https://files.ettus.com/ma=
+nual/page_multiple.html">https://files.ettus.com/manual/page_multiple.html<=
+/a>)<br>With that, I can control them (set rf parameters and receive signal=
+ on all 8 channels) without the error message you mentioned, what version o=
+f the UHD you&#39;re using? (UHD 3.13.1, 3.14 worked for me)<br><br></span>=
+</span></span></div><div><span style=3D"color:rgb(0,0,0);font-family:arial,=
+helvetica,sans-serif;text-decoration-style:initial;text-decoration-color:in=
+itial;float:none;display:inline"><span style=3D"font-family:Roboto,sans-ser=
+if;font-size:14px;background-color:rgb(255,255,255);text-decoration-style:i=
+nitial;text-decoration-color:initial;float:none;display:inline"><span style=
+=3D"text-decoration-style:initial;text-decoration-color:initial;float:none;=
+display:inline">My only problem is that they stop working (hang) at transmi=
+tting.<br>
+
+<div style=3D"color:rgb(34,34,34);font-family:Arial,Helvetica,sans-serif;fo=
+nt-size:small;background-color:rgb(255,255,255);text-decoration-style:initi=
+al;text-decoration-color:initial">An alternative way=C2=A0 is that I create=
+ 2 usrp objects to control them as the commands below.</div><span class=3D"=
+gmail-im" style=3D"color:rgb(80,0,80);font-family:Arial,Helvetica,sans-seri=
+f;font-size:small;background-color:rgb(255,255,255);text-decoration-style:i=
+nitial;text-decoration-color:initial"><i><b><font size=3D"1">uhd::usrp::mul=
+ti_usrp::sptr tx_usrp_1 =3D=C2=A0uhd::usrp::multi_usrp::make(&quot;addr=3D1=
+92.168.30.3<font face=3D"arial, helvetica, sans-serif">,<span style=3D"colo=
+r:rgb(0,0,0);white-space:pre-wrap">master_clock_rate=3D122.88e6,clock_sourc=
+e=3Dexternal,time_source=3Dexternal&quot;</span></font>)<span>=C2=A0</span>=
+<br class=3D"gmail-m_-1800548767396613609m_595261457471305121m_332267181924=
+9650700gmail-m_-3888277657015760414gmail-Apple-interchange-newline">uhd::us=
+rp::multi_usrp::sptr tx_usrp_2 =3D=C2=A0uhd::usrp::multi_usrp::make(&quot;a=
+ddr=3D192.168.40.3<font face=3D"arial, helvetica, sans-serif">,<span style=
+=3D"color:rgb(0,0,0);white-space:pre-wrap">master_clock_rate=3D122.88e6,clo=
+ck_source=3Dexternal,time_source=3Dexternal&quot;</span></font>)</font></b>=
+</i></span>
+
+<br><span style=3D"font-family:arial,helvetica,sans-serif;font-size:small;b=
+ackground-color:rgb(255,255,255);text-decoration-style:initial;text-decorat=
+ion-color:initial;float:none;display:inline"><span style=3D"color:rgb(34,34=
+,34);font-family:Arial,Helvetica,sans-serif;text-decoration-style:initial;t=
+ext-decoration-color:initial;float:none;display:inline">Even though it work=
+s ( transmit signal simultaneously on all channels ),</span>=C2=A0I don&#39=
+;t think it&#39;s the best way=C2=A0<span style=3D"text-decoration-style:in=
+itial;text-decoration-color:initial;float:none;display:inline">(or right wa=
+y)</span>
+
+ to use multiple USRPs.</span><br><br>Has anyone done this before? or any s=
+uggestion?</span></span></span></div><div><span style=3D"color:rgb(0,0,0);f=
+ont-family:arial,helvetica,sans-serif;text-decoration-style:initial;text-de=
+coration-color:initial;float:none;display:inline"><span style=3D"font-famil=
+y:Roboto,sans-serif;font-size:14px;background-color:rgb(255,255,255);text-d=
+ecoration-style:initial;text-decoration-color:initial;float:none;display:in=
+line"><span style=3D"text-decoration-style:initial;text-decoration-color:in=
+itial;float:none;display:inline"><br></span></span></span></div><div><span =
+style=3D"color:rgb(0,0,0);font-family:arial,helvetica,sans-serif;text-decor=
+ation-style:initial;text-decoration-color:initial;float:none;display:inline=
+"><span style=3D"font-family:Roboto,sans-serif;font-size:14px;background-co=
+lor:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:in=
+itial;float:none;display:inline"><span style=3D"text-decoration-style:initi=
+al;text-decoration-color:initial;float:none;display:inline">Thanks</span></=
+span></span></div><div><span style=3D"color:rgb(0,0,0);font-family:arial,he=
+lvetica,sans-serif;text-decoration-style:initial;text-decoration-color:init=
+ial;float:none;display:inline"><span style=3D"font-family:Roboto,sans-serif=
+;font-size:14px;background-color:rgb(255,255,255);text-decoration-style:ini=
+tial;text-decoration-color:initial;float:none;display:inline"><span style=
+=3D"text-decoration-style:initial;text-decoration-color:initial;float:none;=
+display:inline">Jorge<br><br><br></span></span></span></div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Neharika Valech=
+a via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-use=
+rs@lists.ettus.com</a>&gt; =E6=96=BC 2019=E5=B9=B45=E6=9C=882=E6=97=A5 =E9=
+=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:20=E5=AF=AB=E9=81=93=EF=BC=9A<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><font fa=
+ce=3D"arial, helvetica, sans-serif"><span style=3D"color:rgb(0,0,0);font-si=
+ze:13px">Hello,</span><br style=3D"padding:0px;margin:0px;color:rgb(0,0,0);=
+font-size:13px"><br style=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-s=
+ize:13px"><span style=3D"color:rgb(0,0,0);font-size:13px">I am using two N3=
+10 USRP&#39;s to create an 8x8 MIMO setup. But, I am unable to make both of=
+=C2=A0</span><span style=3D"color:rgb(0,0,0);font-size:13px">them work toge=
+ther. I am using an example program from the UHD driver -=C2=A0</span><span=
+ style=3D"color:rgb(0,0,0);font-size:13px">txrx_loopback_to_file.</span><br=
+ style=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><br style=
+=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><span style=3D"=
+color:rgb(0,0,0);font-size:13px">I give the following command:</span><br st=
+yle=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><br style=3D=
+"padding:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><span style=3D"col=
+or:rgb(0,0,0);font-size:13px">./txrx_loopback_to_file --tx-rate 7.68e6 --rx=
+-rate 7.68e6 --tx-freq 2.60e9 --rx-freq=C2=A0</span><span style=3D"color:rg=
+b(0,0,0);font-size:13px">2.60e9 --tx-gain 70 --rx-gain 60 --tx-channels &qu=
+ot;0,1,2,3&quot; --rx-channels &quot;0,1,2,3&quot;=C2=A0</span><span style=
+=3D"color:rgb(0,0,0);font-size:13px">--tx-args=C2=A0</span><span style=3D"c=
+olor:rgb(0,0,0);font-size:13px">&quot;addr=3D192.168.10.2,second_addr=3D192=
+.168.20.2,time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=
+=3D122.88e6&quot; --rx-args=C2=A0</span><span style=3D"color:rgb(0,0,0);fon=
+t-size:13px">&quot;addr=3D192.168.10.2,second_addr=3D192.168.20.2,time_sour=
+ce=3Dexternal,clock_source=3Dexternal,master_clock_rate=3D122.88e6&quot;=C2=
+=A0</span><span style=3D"color:rgb(0,0,0);font-size:13px">--settling=C2=A0<=
+/span><span style=3D"color:rgb(0,0,0);font-size:13px">1</span><br style=3D"=
+padding:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><br style=3D"paddin=
+g:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><span style=3D"color:rgb(=
+0,0,0);font-size:13px">and only one USRP turns on.</span><br style=3D"paddi=
+ng:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><span style=3D"color:rgb=
+(0,0,0);font-size:13px">In USRP X300 there were two ways to use multiple US=
+RP&#39;s,</span><br style=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-s=
+ize:13px"><span style=3D"color:rgb(0,0,0);font-size:13px">1. Use --tx-args =
+and --rx-args to specify &quot;addr0,addr1&quot; to access two different US=
+RP&#39;s=C2=A0</span><span style=3D"color:rgb(0,0,0);font-size:13px">with -=
+-tx-channels and --rx-channels as &quot;0,1&quot;. I tried that here but it=
+ gives an error,=C2=A0</span><span style=3D"color:rgb(0,0,0);font-size:13px=
+">&quot;Error message: Someone tried to claim this device again&quot;.</spa=
+n><br style=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><br =
+style=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><span styl=
+e=3D"color:rgb(0,0,0);font-size:13px">2. To define just one &quot;addr&quot=
+; in --tx-args and --rx-args but have --tx-channels and=C2=A0</span><span s=
+tyle=3D"color:rgb(0,0,0);font-size:13px">--rx-channels as &quot;0,1,2,3&quo=
+t; (as X300 is 2x2). When tried with N310 with channel values=C2=A0</span><=
+span style=3D"color:rgb(0,0,0);font-size:13px">&quot;0,1,2,3,4,5,6,7&quot; =
+it gives an error that Tx channels invalid.</span><br style=3D"padding:0px;=
+margin:0px;color:rgb(0,0,0);font-size:13px"><br style=3D"padding:0px;margin=
+:0px;color:rgb(0,0,0);font-size:13px"><span style=3D"color:rgb(0,0,0);font-=
+size:13px">So, could you tell me what is the correct syntax to access two U=
+SRP&#39;s?</span><br style=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-=
+size:13px"><br style=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-size:1=
+3px"><span style=3D"color:rgb(0,0,0);font-size:13px">Thank you</span><br st=
+yle=3D"padding:0px;margin:0px;color:rgb(0,0,0);font-size:13px"><span style=
+=3D"color:rgb(0,0,0);font-size:13px">Neharika</span></font></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -356,12 +328,12 @@ lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div></div></div>
 
---00000000000042c7730587e9c8e5--
+--0000000000002f639c0587eb48a7--
 
 
---===============7179959630327415393==
+--===============3091838615360761121==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -372,5 +344,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7179959630327415393==--
+--===============3091838615360761121==--
 
