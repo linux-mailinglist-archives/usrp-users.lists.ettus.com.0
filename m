@@ -2,52 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EB7711CC2
-	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2019 17:26:15 +0200 (CEST)
-Received: from [::1] (port=54638 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B87511CC3
+	for <lists+usrp-users@lfdr.de>; Thu,  2 May 2019 17:26:48 +0200 (CEST)
+Received: from [::1] (port=56334 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hMDbB-0007Gs-C9; Thu, 02 May 2019 11:26:13 -0400
-Received: from mail-ed1-f41.google.com ([209.85.208.41]:36722)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <toomz54@gmail.com>) id 1hMDac-00073z-3l
- for usrp-users@lists.ettus.com; Thu, 02 May 2019 11:26:08 -0400
-Received: by mail-ed1-f41.google.com with SMTP id a8so2497299edx.3
- for <usrp-users@lists.ettus.com>; Thu, 02 May 2019 08:25:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=lbHoLXBoksThML70e2uc0I2yAGijP5pdhkHsANJHiB8=;
- b=Ra7RAprlxr7qJxF82Qtgs52JW+WuMUcA35LuAXZx53Nvd1w3cwUg21zX3O63Ev1Wvx
- wIwhKI1bDse2wrfKe20PQ8malr4pnp3+8g18EUPMMwElmtOH9WhQs140y82C+M+l9Won
- OVLUVEacXv5JnoqWVUUPF05BEl8RpC9pkVH1PG1VsDvOFbl95264FSutej0GX2CGs0vu
- q7x7lTtHfk65oNEp5Ki5hEwre6h6XQqkIwG9K00DfOCwH5bk84I74unSHDuBxnuDTPOG
- u3QyeuKPVlxzB5CWr9o8ZlJ0CbCWJtDkdVuLse5ksXDCwRvC7Ry9LGvjmz065bE7SPmd
- uopg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=lbHoLXBoksThML70e2uc0I2yAGijP5pdhkHsANJHiB8=;
- b=BKhaqFJmeNFmuUnmGjmG8QfJI7nAY235KCa9oq46royOcLz8sK71GYpe4vzHkE7TL2
- LDY9CFESF0PIhgroTMrYaIsBU9mdE8Fz6hN9rWwtldrzJwMs0ZYWZ+0ly1171Uzku8AU
- M4qaO1OcFlaUC9q1Vq9EI5plrpdCXw+w+6eJBsgn3tAQ+a2FFwaRp8t8qlUvqrXxQqx7
- GlTJ+YxE4RkinCvsi3jq07Qn2ZlOAJsHkGldyrANk+LPXo1OcIZKCCS3ako12KLbyUud
- 2wrZ+meXqh1yFNsamsdl971aB+5rWqpa2euAwagZ/HH291I4qwHCQwTOgwf4ZeuK52Zs
- SOhw==
-X-Gm-Message-State: APjAAAWZtbPkTRssmyOdRKXpOFvtpUnciZ9IVSZVYSStA9suwTCbZsoo
- TBGFo0g3FQIjWKt+x9BxNkY4AgzKHryhtpE0KCZsT0e0
-X-Google-Smtp-Source: APXvYqyjpQkePLTzzQTIYEf/ofjO89fc5WpbL5UXhfk5iN2rc8LIaBIKHe0wbYqlEOcrLZsaDXPL7vcyxqqnflXweEk=
-X-Received: by 2002:a50:b56a:: with SMTP id z39mr2971659edd.91.1556810696703; 
- Thu, 02 May 2019 08:24:56 -0700 (PDT)
-MIME-Version: 1.0
-Date: Thu, 2 May 2019 10:24:45 -0500
-Message-ID: <CAFPG5GyK30dmcyKSiaWEkVoL35Oh8M=L9e8D94ejhch1fsQ1Rg@mail.gmail.com>
+	id 1hMDbj-0007bh-Ae; Thu, 02 May 2019 11:26:47 -0400
+Received: from resqmta-po-12v.sys.comcast.net ([96.114.154.171]:38028)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.91) (envelope-from <w6rz@comcast.net>) id 1hMDbB-00077H-19
+ for usrp-users@lists.ettus.com; Thu, 02 May 2019 11:26:43 -0400
+Received: from resomta-po-08v.sys.comcast.net ([96.114.154.232])
+ by resqmta-po-12v.sys.comcast.net with ESMTP
+ id MBJphEvcpZhYwMDaVholPj; Thu, 02 May 2019 15:25:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+ s=20190202a; t=1556810731;
+ bh=zUr/w2uYlj0nldrLQ/prj0jSd5XlI0/nBW95iEHgXSI=;
+ h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
+ Content-Type;
+ b=DYjyVfbyUHEjQbres2LmUbwgua+1LINzP2EB58IBsPcvaDWdP47O4sUKkSbfMxOF0
+ sd8NQKS9FS6cSwcJXSKRWXpaPS1d/Q6Pg8yNMgywlnkMfVtJRUG+ZSkZEQ5Vmj8Xwu
+ BStDxlewZE6cWihqd66hCSlBVpue1dPr3aCYiYLk9qDWI1TEFIg7smt91OswOnl5Tw
+ 68j0y6GzhaAcUeh8R9w9Hwfcp8dueEZsd5yj5O1WEu+3RlQZHa4DV5ZA8wVXLGx4Ga
+ jWTjJ0mkp4/xoPwDJ8/nS8l/Ry5hFiKanL4B6smQRdYT+SJkbGRCqKP4jXhpKPSemX
+ jTE2k6NQWHJgQ==
+Received: from [IPv6:2601:647:4200:ea30:55dc:82a8:c404:b5e7]
+ ([IPv6:2601:647:4200:ea30:55dc:82a8:c404:b5e7])
+ by resomta-po-08v.sys.comcast.net with ESMTPSA
+ id MDaUhzlbssilZMDaVhKPqF; Thu, 02 May 2019 15:25:31 +0000
+X-Xfinity-VMeta: sc=0;st=legit
 To: usrp-users@lists.ettus.com
+References: <2489f2eb-d1a4-2156-04b3-bf4611f16a57@mpb.li>
+Message-ID: <2c9b1761-ed34-e991-b10a-4d73a04368cc@comcast.net>
+Date: Thu, 2 May 2019 08:25:30 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <2489f2eb-d1a4-2156-04b3-bf4611f16a57@mpb.li>
+Content-Language: en-US
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] OpenBTS with x310
+Subject: Re: [USRP-users] Plagued by sporadic TX underruns on some systems,
+ B200
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,9 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Andrew Toomey via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Andrew Toomey <toomz54@gmail.com>
-Content-Type: multipart/mixed; boundary="===============9217113099897971784=="
+From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ron Economos <w6rz@comcast.net>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,76 +75,54 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9217113099897971784==
-Content-Type: multipart/alternative; boundary="0000000000008f43520587e93cdf"
-
---0000000000008f43520587e93cdf
-Content-Type: text/plain; charset="UTF-8"
-
-USRP Forum,
-
-I am trying to get OpenBTS working with an x310 with UBX160 daughter cards
-inside. My test phone can see my network but when I try to connect the
-phone fails connection. I also have a B210 that is running on the same
-machine that does allow the phone to successfully connect to my fake
-network. I have noticed that the sample rate of the x310 cannot go as low
-as the sample rate of the GSM protocol so I think this may be a source of
-my problems. The sample rate of the B210 can reach the 270.833 KHz rate of
-GSM.
-
-My question is has anyone successfully created an OpenBTS network with an
-x310 and UBX160 daughter cards. I have seen sources say that the x310 can
-work with OpenBTS but have seen conflicting sources on which daughter cards
-are compatible.
-
-http://openbts.org/w/index.php?title=Ettus_Research_USRP  this source says
-the UBX is not supported
-
-https://kb.ettus.com/OpenBTS This sources says the UBS is supported
-
-Any info on this subject would be greatly appreciated.
-
-Thanks!
-Andrew Toomey
-
---0000000000008f43520587e93cdf
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>USRP Forum,</div><div><br></div><div>I am trying to g=
-et OpenBTS=20
-working with an x310 with UBX160 daughter cards inside. My test phone=20
-can see my network but when I try to connect the phone fails connection.
- I also have a B210 that is running on the same machine that does allow=20
-the phone to successfully connect to my fake network. I have noticed=20
-that the sample rate of the x310 cannot go as low as the sample rate of=20
-the GSM protocol so I think this may be a source of my problems. The sample=
- rate of the B210 can reach the 270.833 KHz rate of GSM.<br><br>My
- question is has anyone successfully created an OpenBTS=20
-network with an x310 and UBX160 daughter cards. I have seen sources say=20
-that the x310 can work with OpenBTS but have seen conflicting sources on
- which daughter cards are compatible.</div><div><br></div><div><a href=3D"h=
-ttp://openbts.org/w/index.php?title=3DEttus_Research_USRP" target=3D"_blank=
-">http://openbts.org/w/index.php?title=3DEttus_Research_USRP</a>=C2=A0 this=
- source says the UBX is not supported</div><div><br></div><div><a href=3D"h=
-ttps://kb.ettus.com/OpenBTS" target=3D"_blank">https://kb.ettus.com/OpenBTS=
-</a> This sources says the UBS is supported</div><div><br></div><div>Any in=
-fo on this subject would be greatly appreciated.</div><div><br></div><div>T=
-hanks!</div><div>Andrew Toomey</div></div>
-
---0000000000008f43520587e93cdf--
-
-
---===============9217113099897971784==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============9217113099897971784==--
-
+U2V0dGluZyBhIGxhcmdlIG51bWJlciBvZiBVSEQgYnVmZmVycyBjYW4gaGVscCBxdWl0ZSBhIGJp
+dC4gSW4gdGhlIEdSQyAKVUhEIFNpbmsgYmxvY2sgZGV2aWNlIGFkZHJlc3M6CgoibnVtX3NlbmRf
+ZnJhbWVzPTI1NiIKCkluIFB5dGhvbjoKCiDCoMKgwqDCoMKgwqDCoCBzZWxmLnVoZF91c3JwX3Np
+bmtfMF8wID0gdWhkLnVzcnBfc2luaygKIMKgwqDCoMKgwqDCoMKgIMKgwqDCoCAiLCIuam9pbigo
+Im51bV9zZW5kX2ZyYW1lcz0yNTYiLCAiIikpLAogwqDCoMKgwqDCoMKgwqAgwqDCoMKgIHVoZC5z
+dHJlYW1fYXJncygKIMKgwqDCoMKgwqDCoMKgIMKgwqDCoCDCoMKgwqAgY3B1X2Zvcm1hdD0iZmMz
+MiIsCiDCoMKgwqDCoMKgwqDCoCDCoMKgwqAgwqDCoMKgIGNoYW5uZWxzPXJhbmdlKDEpLAogwqDC
+oMKgwqDCoMKgwqAgwqDCoMKgICksCiDCoMKgwqDCoMKgwqDCoCApCgpSb24KCk9uIDUvMi8xOSAw
+NToxOCwgTWF0dGhpYXMgQnLDpG5kbGkgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gRGVhciBhbGws
+Cj4KPiBJJ20gbWFpbnRhaW5pbmcgT0RSLURhYk1vZFsxXSwgYSBEaWdpdGFsIEF1ZGlvIEJyb2Fk
+Y2FzdGluZyBtb2R1bGF0b3IKPiB3aGljaCB1c2VzIFVIRCB0byBkcml2ZSBhIFVTUlAgYXQgMjA0
+OGtzcHMsIGluIG1vc3QgYXBwbGljYXRpb25zIGEgQjIwMC4KPgo+IE9EUi1EYWJNb2QgcnVucyB0
+aGUgbW9kdWxhdG9yIGFuZCB0aGUgVUhEIG91dHB1dCBpbiBzZXBhcmF0ZSB0aHJlYWRzLCB0bwo+
+IGVuc3VyZSB0aGF0IGEgZmV3IG1vZHVsYXRlZCBmcmFtZXMgYXJlIGFsd2F5cyByZWFkeSB3aGVu
+IHRoZSBVU1JQIG5lZWRzCj4gb25lWzJdLiBJdCByZXF1ZXN0cyByZWFsdGltZSBzY2hlZHVsaW5n
+WzNdLiBUaGUgc3lzdGVtIHJ1bnMgaGVhZGxlc3MgKG5vCj4gWDExIHJ1bm5pbmcpLCBhbmQgZ2Vu
+ZXJhbGx5IGRvZXNuJ3QgaGF2ZSBhbnl0aGluZyBlbHNlIHJ1bm5pbmcuCj4KPiBPbiBzb21lIHN5
+c3RlbXMsIHdlIG9ic2VydmUgc3BvcmFkaWMgdW5kZXJydW5zLiBUaGV5IG9jY3VyIGluIGlycmVn
+dWxhcgo+IGludGVydmFscywgc29tZXRoaW5nIGxpa2Ugb25jZSBhIG1pbnV0ZSwgc29tZXRpbWVz
+IHJhcmVyLiBTZWVuIHdpdGggYm90aAo+IFVTQjIgYW5kIFVTQjMgaG9zdHMsIG92ZXIgc2V2ZXJh
+bCBVSEQgdmVyc2lvbnMuIFVudGlsIG5vdyB3ZSd2ZSBtb3N0bHkKPiBiZWVuIGFibGUgdG8gYXZv
+aWQgdGhlIGlzc3VlIGJ5IHNlbGVjdGluZyBtYWNoaW5lcyB0aGF0IGRvbid0IHNob3cgdGhlCj4g
+aXNzdWUsIGJ1dCB3ZSBob3BlIHdlIGNhbiBmaW5kIGEgbWl0aWdhdGlvbiBpbiBzb2Z0d2FyZS4K
+Pgo+IEJvdGggdGhlIGRhdGEgc291cmNlIHRoZSBtb2R1bGF0b3IgY29ubmVjdHMgdG8gYW5kIHRo
+ZSBVU1JQIGhhdmUgYQo+IGRpc2NpcGxpbmVkIHRpbWUgcmVmZXJlbmNlLCBpbXBseWluZyB0aGVy
+ZSBpcyBubyByYXRlIGRyaWZ0IChwbHVzLCB0aGF0Cj4gd291bGQgdHJpZ2dlciByZWd1bGFyIHVu
+ZGVycnVucywgbm90IHNwb3JhZGljIG9uZXMpLgo+Cj4KPiBUaGVyZSBhcmUgc29tZSBwYXJhbWV0
+ZXJzIGRlc2NyaWJlZCBpbiBVU0IgVHJhbnNwb3J0IFBhcmFtZXRlcnNbNF0sIGRvZXMKPiBpdCBt
+YWtlIHNlbnNlIHRvIGNoYW5nZSB0aG9zZT8KPgo+IENvdWxkIENQVSBmcmVxdWVuY3kgc2NhbGlu
+ZyBsZWFkIHRvIGludGVycnVwdGlvbnM/Cj4KPiBBcmUgdGhlcmUgb3RoZXIga25vYnMgdG8gdHVy
+biB0aGF0IEknbSBub3QgYXdhcmUgb2Y/IERldmljZSwgc3RyZWFtIG9yCj4gbGludXgga2VybmVs
+IHNldHRpbmdzPwo+Cj4gSXMgdGhlIGFwcHJvYWNoIG9mIHVzaW5nIGEgc2VwYXJhdGUgdGhyZWFk
+IGZvciBVSEQgb3V0cHV0IGJlbmVmaWNpYWw/Cj4KPiBBbnl0aGluZyBlbHNlPwo+Cj4gU29ycnkg
+Zm9yIHRoZSB2YWd1ZSBkZXNjcmlwdGlvbiBvZiB0aGUgaXNzdWUgYW5kIHRoZSBtYW55IHF1ZXN0
+aW9ucywgYnV0Cj4gSSdtIGEgYml0IG91dCBvZiBpZGVhcyBhYm91dCBob3cgdG8gYXBwcm9hY2gg
+dGhhdC4gSWYgYW55Ym9keSBoYWQKPiBzaW1pbGFyIHByb2JsZW1zIEknZCBiZSBjdXJpb3VzIHRv
+IGhlYXIgeW91ciBleHBlcmllbmNlcy4KPgo+IENoZWVycwo+IG1wYgo+Cj4gWzFdCj4gaHR0cHM6
+Ly9naXRodWIuY29tL09wZW5kaWdpdGFscmFkaW8vT0RSLURhYk1vZAo+Cj4gWzJdCj4gTG9vayBm
+b3IgbV9xdWV1ZSBpbgo+IGh0dHBzOi8vZ2l0aHViLmNvbS9PcGVuZGlnaXRhbHJhZGlvL09EUi1E
+YWJNb2QvYmxvYi9tYXN0ZXIvc3JjL291dHB1dC9TRFIuY3BwCj4KPiBbM10KPiBGb3IgYWxsIHRo
+cmVhZHMgaW52b2x2ZWQgaW4gRFNQIGFuZCB0aGUgU0RSIG91dHB1dCB0aHJlYWQuIEdyZXAgZm9y
+Cj4gYHNldF9yZWFsdGltZV9wcmlvYC4KPgo+IFs0XQo+IGh0dHBzOi8vZmlsZXMuZXR0dXMuY29t
+L21hbnVhbC9wYWdlX3RyYW5zcG9ydC5odG1sI3RyYW5zcG9ydF91c2IKPgo+IERlZmF1bHQgc2Vu
+ZF9mcmFtZV9zaXplIHNlZW1zIHRvIGJlIG9uIGxpbmUgODUgb2YKPiBodHRwczovL2ZpbGVzLmV0
+dHVzLmNvbS9tYW51YWwvYjIwMF9faW1wbF84aHBwX3NvdXJjZS5odG1sCj4KPiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMu
+Y29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWls
+aW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNv
+bS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
