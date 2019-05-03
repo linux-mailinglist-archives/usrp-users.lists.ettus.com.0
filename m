@@ -2,56 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2163D12530
-	for <lists+usrp-users@lfdr.de>; Fri,  3 May 2019 01:38:11 +0200 (CEST)
-Received: from [::1] (port=53632 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A09291255A
+	for <lists+usrp-users@lfdr.de>; Fri,  3 May 2019 02:08:34 +0200 (CEST)
+Received: from [::1] (port=57452 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hMLH6-00013X-QO; Thu, 02 May 2019 19:38:00 -0400
-Received: from mail-io1-f52.google.com ([209.85.166.52]:34177)
+	id 1hMLkd-0002Gc-NV; Thu, 02 May 2019 20:08:31 -0400
+Received: from mail-it1-f182.google.com ([209.85.166.182]:33980)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <dan.cajacob@gmail.com>)
- id 1hMLGZ-0000y3-5O
- for USRP-users@lists.ettus.com; Thu, 02 May 2019 19:37:57 -0400
-Received: by mail-io1-f52.google.com with SMTP id h26so3786226ioj.1
- for <USRP-users@lists.ettus.com>; Thu, 02 May 2019 16:37:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.91) (envelope-from <sdormian@eng.ucsd.edu>)
+ id 1hMLk6-00026U-0w
+ for usrp-users@lists.ettus.com; Thu, 02 May 2019 20:08:28 -0400
+Received: by mail-it1-f182.google.com with SMTP id p18so6879995itm.1
+ for <usrp-users@lists.ettus.com>; Thu, 02 May 2019 17:07:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=eng.ucsd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6olFzCbTpKitiOsdCbb9uBCC6ytpnzr2FWc5hqNbojk=;
- b=W7XXGFi2IZlYyFNhz9soEJ5CkckY5keJnFNnTQ1dR9wmZ1ej40+lLlMdM2wltzjvOo
- OGvOOQhVmqGLtifW67/ln6bkONaSN7yArGF2u6P8imFaF9Cp81KqrK9sZZ+XUqHjQ1Jb
- PHu6OpHC9cJH1L5lFszokDXhD5HoR6EEOmW282Tj4V7alzUT/R2/uPDKX8AgSkgOMLp6
- aJirrAo5gvvbD27l9IlDj6kQvJpfEZPKG7mhmEqKey5hJKeroi/fZn/VaXmMwU89ULCf
- ZpH9A6JqJToajpYd2jIZ4JsDfFK1/MSRCHP8qzmYqob0WkgvRZ5o0Wq8RhuTBWsbAjEl
- CJ+Q==
+ :cc; bh=mVJSfflnLvbI2cANjEvQ6I4sNAQWrIRhyMCoS0+Bcjk=;
+ b=gIT88e6j3iUZRwDyje6FpZsl6oxTYne++/r3EzFNtBnmF0YECcsESiCSWxpqc2gW2H
+ gPpZRkhcmyT21yPKJMoRpGUrdxYcGPzP2tqL0O+PaCEdABju7r0DYBJPfk4NU4a9Ya3R
+ 47gD+uthJbixuolmf3TWU8CTD9EkvMzCjdKb8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=6olFzCbTpKitiOsdCbb9uBCC6ytpnzr2FWc5hqNbojk=;
- b=N5nPsQyj/cnQb5xO/FeeWv5u/f/SNsHDNnFjP4ypI6whIwvOXO+xHsxJzab04N53SV
- 5OikhXw1RJovRCwUMTg0esgLZFFq3dxReRSpRnzucU2vf/tJ1FECawr4O0uwO9Nrexly
- hkff1kCFhs3YGuPVFSJBPNmFlZ7Fdc2rrcXdWa/nJipnilUfQuCmItZXs0TKOJ76CD2r
- Nz9pM9Y6kKUNB5qPyFsxSULeP3C91VGX7wbQ639RdvPmN0qkdeF1FKoEolJ6W+DKMhhk
- JWZ0mVuXIghJ2ibt+LCsR/HQD1MJZNP4k1tXqrtndTJM2jNgZxtAba+MbuLjSmUdEhFH
- mg2Q==
-X-Gm-Message-State: APjAAAUhAcfEegucdIXH8BZN9YBQj6iQ0I7j+lRFlzCwQ7w4LrDCnNC6
- pLJvmHhBohsikK6kZYPs7hsl+44aLIZcNAml18CB6rSr
-X-Google-Smtp-Source: APXvYqwC+y3etxYhi8FloZUVabpWUDunJASV0lyb881ioCAG/bntBhTk+7bygyhwbqbBwnqR2FChPeJiKc67kwjsPqM=
-X-Received: by 2002:a5d:8f8c:: with SMTP id l12mr4505810iol.205.1556840206191; 
- Thu, 02 May 2019 16:36:46 -0700 (PDT)
+ bh=mVJSfflnLvbI2cANjEvQ6I4sNAQWrIRhyMCoS0+Bcjk=;
+ b=txln7y8A/sb13STQojycOmrweQUvQ8NauVK6aGdOCsTNSjfcL4b3eYYUR5haOfiSZ2
+ iZzRhOD1fcLDoO0f3B1QKJfXPoV5YZ+AAh/3j52ydnl6LFF4pcy6v6Blr6B0Y7QE7n0/
+ oc5zPgTUCDWP4EgrKTSxfyt8cPR9uKIau8WOvQaOvZf4Kvf4cAy2k73kkZj/kblunmRb
+ 6pccFqCxRyE8KoQ3e/EOPyZMF0q8AYQjsMH2XhqRPneHBg3KwrJsfCxS/SmyDgRIqJmQ
+ 7EyjQHMixgRHlqY/8DMwPjjo77IaJ2QLFshe8l1bkqtkWqLpC4NQpLQCM1gJf4pGEdxG
+ E+bg==
+X-Gm-Message-State: APjAAAXZx16M9VhT6HZiGVt2GKldWXNeM4bCqI3+t/cjoLzqNRkdZBZl
+ tolLQC0MD4Yk5KyN0P8GFSKieCzW6wLIQdcccqt30A==
+X-Google-Smtp-Source: APXvYqxZmcKUPMZYnJmI7kAWl3/qRmoxWEiGza0IckUEWsquu7zIL6eMOhBtagbePY0A1UWQSjibxv56LWqSlrcC/sg=
+X-Received: by 2002:a02:8585:: with SMTP id d5mr5006804jai.69.1556842037179;
+ Thu, 02 May 2019 17:07:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <BL0PR12MB234044BC5B1A1DABAE6496C9AF3A0@BL0PR12MB2340.namprd12.prod.outlook.com>
-In-Reply-To: <BL0PR12MB234044BC5B1A1DABAE6496C9AF3A0@BL0PR12MB2340.namprd12.prod.outlook.com>
-Date: Thu, 2 May 2019 19:36:34 -0400
-Message-ID: <CAMOmJOBgAXGr83tgoVn=6mkyZ1RQLRbf4dBPe0PG1VhyU+tzoQ@mail.gmail.com>
-To: Jason Matusiak <jason@gardettoengineering.com>
+References: <CAJKWE_dGPwMCtm-+pQsy92p9drQbFE+DTuigX243TptdhX11dQ@mail.gmail.com>
+ <CALbO1t2JjvMCKvocmsBniY+C140esBX4DFrYtZxuAP6_q2tUHg@mail.gmail.com>
+In-Reply-To: <CALbO1t2JjvMCKvocmsBniY+C140esBX4DFrYtZxuAP6_q2tUHg@mail.gmail.com>
+Date: Thu, 2 May 2019 17:06:39 -0700
+Message-ID: <CANaxSipi3e0ibwwW55iDQ7c2EPhsjvmXFZZftWi7AgcYTBJ61w@mail.gmail.com>
+To: Jorge Chen <superme991@gmail.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] E310 not locking on GPS
+Subject: Re: [USRP-users] N310 Multi Device Configuration
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,10 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Dan CaJacob via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Dan CaJacob <dan.cajacob@gmail.com>
-Cc: USRP List <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1712244797538468349=="
+From: Ali Dormiani via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ali Dormiani <sdormian@eng.ucsd.edu>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7834372245637376050=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,353 +78,296 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1712244797538468349==
-Content-Type: multipart/alternative; boundary="00000000000076521e0587f01b59"
+--===============7834372245637376050==
+Content-Type: multipart/alternative; boundary="0000000000009909a80587f08847"
 
---00000000000076521e0587f01b59
+--0000000000009909a80587f08847
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-GPS doesn't like to go back in time. You probably need to reset the almanac
-and a reboot is doing that.
+Hello fellow N310 users. My lab has 6 N310's all operating and streaming to
+a single data server (10 Gbe links).
 
-On Tue, Apr 30, 2019, 9:53 AM Jason Matusiak via USRP-users <
+We use GNU Radio for everything. The software is great for controlling
+multiple devices with many antennas easily (highly recommended). My
+experience with native C++ UHD driver commands is rather limited.
+
+
+Maybe RF mapping is the problem? There was a recent change where UHD 3.13 +
+redid that stuff.
+
+The N310 antenna mapping is available from here:
+
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#N310_2
+
+Never used it but it seems that UHD is expecting letters.
+
+
+
+On Thu, May 2, 2019 at 10:52 AM Jorge Chen via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> I've seen this a few times, but I cannot seem to lock it down to any
-> particular reason.  While sitting at my desk with a GPS simulator (so I
-> have a known good signal), I will be doing testing and everything is fine
-> (it seems to be walking around the place where the unit was built).  I wi=
-ll
-> turn off the GPS unit for the night and then the next day when I turn it
-> on, I never get a fix.  I've seen this numerous times and the only way I
-> can fix it is to reboot the E310.  It is like the GPS is getting into a
-> mucked up stated.  Data comes streaming through, but it is just the last
-> good signal.
+> Hi, Neharika and All,
 >
-> I can't figure out a way to reset the GPS without rebooting it, does
-> anyone know of a way?  I tried killing and restarting the daemon, but tha=
-t
-> doesn't seem to do anything.  I really think it is the GPS module, but
-> rebooting it everytime I want to run things "just in case."
+> I met some problems on controlling 2 N310s too.
 >
-> One other weird thing, when I run gpsmon in this screwed up state, it
-> mostly looks OK, but it has weird characters displayed throughout the ASC=
-II
-> heading (for lack of a better term).
+> But first of all, the argument "second_addr" indicates the IP addr. of
+> the second SFP+ port on that device, and is set in the case of dual 10G
+> streaming.
+> I think the first way you wrote is the right way to access the 2 N310s,
+> even though it is not listed in the Multiple USRP Configuration page.
+> (https://files.ettus.com/manual/page_multiple.html)
+> With that, I can control them (set rf parameters and receive signal on al=
+l
+> 8 channels) without the error message you mentioned, what version of the
+> UHD you're using? (UHD 3.13.1, 3.14 worked for me)
 >
-> This is a good setup on a different unit (so I don't expect to see a fix)=
-:
-> tcp://localhost:2947          u-blox>
-> =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=90=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
-> or":11}
-> =E2=94=82Ch PRN  Az  El S/N Flag U =E2=94=82=E2=94=82ECEF Pos: +6378137.0=
-0m  +0.00m      +0.00m
-> =E2=94=82
-> er":"u-blox","subtype":"Unknown","activated":"2018-10-10T06:21:07.701Z","=
-flags":1,"native":1,"bps":9600,"parity":"N","stopbits":1,"cycle":1.00,"minc=
-ycle":0.25}]}
-> =E2=94=82 0   1   0 165   0 0110   =E2=94=82=E2=94=82ECEF Vel:     +0.00m=
-/s     +0.00m/s
-> +0.00m/s =E2=94=82 false,"timing":false,"split24":false,"pps":true}
-> =E2=94=82 1   2   0 165   0 0110   =E2=94=82=E2=94=82
->     =E2=94=82
-> =E2=94=82 2   4   0 165   0 0110   =E2=94=82=E2=94=82LTP Pos:   0.0000000=
-00=C2=B0   0.000000000=C2=B0
-> -18.00m =E2=94=82
-> =E2=94=82 3   6   0 165  23 0310   =E2=94=82=E2=94=82LTP Vel:    0.00m/s =
-  0.0=C2=B0   0.00m/s
->     =E2=94=82
-> =E2=94=82 4   7   0 165   0 0110   =E2=94=82=E2=94=82
->     =E2=94=82
-> =E2=94=82 5   9   0 165  23 0310   =E2=94=82=E2=94=82Time: 0 00:00:00.00
->    =E2=94=82
-> =E2=94=82 6  14   0 165  22 0310   =E2=94=82=E2=94=82Time GPS:           =
-          Day:
->     =E2=94=82
-> =E2=94=82 7  19   0 165  22 0310   =E2=94=82=E2=94=82
->     =E2=94=82
-> =E2=94=82 8  20   0 165  21 0310   =E2=94=82=E2=94=82Est Pos Err9999998.7=
-2st Vel Err   0.00m/s
->    =E2=94=82
-> =E2=94=82 9  21   0 165   0 0110   =E2=94=82=E2=94=82PRNs:  0 PDOP:100.0 =
-Fix 0x00 Flags 0x40
->    =E2=94=82
-> =E2=94=8210  22   0 165   0 0110   =E2=94=82=E2=94=94=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80 NAV_SOL
-> =E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
-> =E2=94=8211  23   0 165   0 0110
-> =E2=94=82=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=90
-> =E2=94=8212  24   0 165   0 0110   =E2=94=82=E2=94=82DOP [H] 100.0[V] 100=
-.0[P] 100.0[T] 100.0[G]
-> 100.0=E2=94=82
-> =E2=94=8213  28   0 165  23 0310   =E2=94=82=E2=94=94=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80 NAV_DOP
-> =E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
-> =E2=94=8214  30   0 165   0 0110
-> =E2=94=82=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=90
-> =E2=94=8215 136   0 165   0 0110   =E2=94=82=E2=94=82TOFF: > 1 day       =
-     PPS:
->    =E2=94=82
+> My only problem is that they stop working (hang) at transmitting.
+> An alternative way  is that I create 2 usrp objects to control them as th=
+e
+> commands below.
 >
-> There are lines around the different sections (they look like lines, not
-> dashes and bars).
+> *uhd::usrp::multi_usrp::sptr tx_usrp_1
+> =3D uhd::usrp::multi_usrp::make("addr=3D192.168.30.3,master_clock_rate=3D=
+122.88e6,clock_source=3Dexternal,time_source=3Dexternal") uhd::usrp::multi_=
+usrp::sptr
+> tx_usrp_2
+> =3D uhd::usrp::multi_usrp::make("addr=3D192.168.40.3,master_clock_rate=3D=
+122.88e6,clock_source=3Dexternal,time_source=3Dexternal")*
+> Even though it works ( transmit signal simultaneously on all channels ), =
+I
+> don't think it's the best way (or right way) to use multiple USRPs.
+>
+> Has anyone done this before? or any suggestion?
+>
+> Thanks
+> Jorge
 >
 >
-> and then on the unit that is hosed:
-> tcp://localhost:2947          u-blox>
-> lqqqqqqqqqqqqqqqqqqqqqqqqqqklqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq=
-qqqqqk
-> or":11}
-> xCh PRN  Az  El S/N Flag U xxECEF Pos: -2414806.17m +5389584.51m
-> +2400650.28m x
-> er":"u-blox","subtype":"Unknown","activated":"2019-01-08T14:52:40.454Z","=
-flags":1,"native":1,"bps":9600,"parity":"N","stopbits":1,"cycle":1.00,"minc=
-ycle":0.25}]}
-> x 0   2   0 165  50 0700   xxECEF Vel:     +0.00m/s     +0.00m/s
-> +0.00m/s x false,"timing":false,"split24":false,"pps":true}
-> x 1   4   0 165  50 0700   xx
->     x
-> x 2   5   0 165  50 0700   xxLTP Pos:  22.2557151134f 114.134790532f
->  20.19m x
-> x 3   8   0 165   0 0100   xxLTP Vel:    0.00m/s   0.0f   0.00m/s
->     x
-> x 4   9   0 165  50 0700   xx
->     x
-> x 5  10   0 165  50 0700   xxTime: 61 06:13:40.00
->     x
-> x 6  12   0 165  50 0700   xxTime GPS: 1877+529282.000     Day: 6
->     x
-> x 7  13   0 165  50 0600   xx
->     x
-> x 8  17   0 165  50 0700   xxEst Pos Err2238690.24st Vel Err   0.00m/s
->    x
-> x 9  20   0 165  50 0700   xxPRNs:  0 PDOP:100.0 Fix 0x00 Flags 0xdc
->    x
-> x10  23   0 165  50 0700   xmqqqqqqqqqqqqqqqqqqq NAV_SOL
-> qqqqqqqqqqqqqqqqqqqqqj
-> x11  24   0 165   0 0110
-> xlqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
-> x12  27   0 165  50 0700   xxDOP [H] 100.0[V] 100.0[P] 100.0[T] 100.0[G]
-> 100.0x
-> x13  28   0 165  50 0700   xmqqqqqqqqqqqqqqqqqqq NAV_DOP
-> qqqqqqqqqqqqqqqqqqqqqj
-> x14 129 127  51   0 0110
-> xlqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
-> x15                        xxTOFF: > 1 day            PPS:
->    x
-> mqqqqqq NAV_SVINFO
-> qqqqqqqqjmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
 >
-> Not that instead of lines, I see characters.  What is up with that????
+> Neharika Valecha via USRP-users <usrp-users@lists.ettus.com> =E6=96=BC 20=
+19=E5=B9=B45=E6=9C=882=E6=97=A5
+> =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:20=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+>> Hello,
+>>
+>> I am using two N310 USRP's to create an 8x8 MIMO setup. But, I am unable
+>> to make both of them work together. I am using an example program from
+>> the UHD driver - txrx_loopback_to_file.
+>>
+>> I give the following command:
+>>
+>> ./txrx_loopback_to_file --tx-rate 7.68e6 --rx-rate 7.68e6 --tx-freq
+>> 2.60e9 --rx-freq 2.60e9 --tx-gain 70 --rx-gain 60 --tx-channels
+>> "0,1,2,3" --rx-channels "0,1,2,3" --tx-args "addr=3D192.168.10.2,second_=
+addr=3D192.168.20.2,time_source=3Dexternal,clock_source=3Dexternal,master_c=
+lock_rate=3D122.88e6"
+>> --rx-args
+>> "addr=3D192.168.10.2,second_addr=3D192.168.20.2,time_source=3Dexternal,c=
+lock_source=3Dexternal,master_clock_rate=3D122.88e6"
+>> --settling 1
+>>
+>> and only one USRP turns on.
+>> In USRP X300 there were two ways to use multiple USRP's,
+>> 1. Use --tx-args and --rx-args to specify "addr0,addr1" to access two
+>> different USRP's with --tx-channels and --rx-channels as "0,1". I tried
+>> that here but it gives an error, "Error message: Someone tried to claim
+>> this device again".
+>>
+>> 2. To define just one "addr" in --tx-args and --rx-args but have
+>> --tx-channels and --rx-channels as "0,1,2,3" (as X300 is 2x2). When
+>> tried with N310 with channel values "0,1,2,3,4,5,6,7" it gives an error
+>> that Tx channels invalid.
+>>
+>> So, could you tell me what is the correct syntax to access two USRP's?
+>>
+>> Thank you
+>> Neharika
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
+>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---00000000000076521e0587f01b59
+--0000000000009909a80587f08847
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 
-PGRpdiBkaXI9ImF1dG8iPkdQUyBkb2VzbiYjMzk7dCBsaWtlIHRvIGdvIGJhY2sgaW4gdGltZS4g
-WW91IHByb2JhYmx5IG5lZWQgdG8gcmVzZXQgdGhlIGFsbWFuYWMgYW5kIGEgcmVib290IGlzIGRv
-aW5nIHRoYXQuPC9kaXY+PGJyPjxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIj48ZGl2IGRpcj0ibHRy
-IiBjbGFzcz0iZ21haWxfYXR0ciI+T24gVHVlLCBBcHIgMzAsIDIwMTksIDk6NTMgQU0gSmFzb24g
-TWF0dXNpYWsgdmlhIFVTUlAtdXNlcnMgJmx0OzxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+Jmd0OyB3cm90ZTo8
-YnI+PC9kaXY+PGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjAg
-MCAwIC44ZXg7Ym9yZGVyLWxlZnQ6MXB4ICNjY2Mgc29saWQ7cGFkZGluZy1sZWZ0OjFleCI+DQoN
-Cg0KDQoNCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxB
-cmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjtmb250LXNpemU6MTJwdDtjb2xvcjpyZ2IoMCwwLDAp
-Ij4NCkkmIzM5O3ZlIHNlZW4gdGhpcyBhIGZldyB0aW1lcywgYnV0IEkgY2Fubm90IHNlZW0gdG8g
-bG9jayBpdCBkb3duIHRvIGFueSBwYXJ0aWN1bGFyIHJlYXNvbi7CoCBXaGlsZSBzaXR0aW5nIGF0
-IG15IGRlc2sgd2l0aCBhIEdQUyBzaW11bGF0b3IgKHNvIEkgaGF2ZSBhIGtub3duIGdvb2Qgc2ln
-bmFsKSwgSSB3aWxsIGJlIGRvaW5nIHRlc3RpbmcgYW5kIGV2ZXJ5dGhpbmcgaXMgZmluZSAoaXQg
-c2VlbXMgdG8gYmUgd2Fsa2luZyBhcm91bmQgdGhlIHBsYWNlIHdoZXJlDQogdGhlIHVuaXQgd2Fz
-IGJ1aWx0KS7CoCBJIHdpbGwgdHVybiBvZmYgdGhlIEdQUyB1bml0IGZvciB0aGUgbmlnaHQgYW5k
-IHRoZW4gdGhlIG5leHQgZGF5IHdoZW4gSSB0dXJuIGl0IG9uLCBJIG5ldmVyIGdldCBhIGZpeC7C
-oCBJJiMzOTt2ZSBzZWVuIHRoaXMgbnVtZXJvdXMgdGltZXMgYW5kIHRoZSBvbmx5IHdheSBJIGNh
-biBmaXggaXQgaXMgdG8gcmVib290IHRoZSBFMzEwLsKgIEl0IGlzIGxpa2UgdGhlIEdQUyBpcyBn
-ZXR0aW5nIGludG8gYSBtdWNrZWQgdXANCiBzdGF0ZWQuwqAgRGF0YSBjb21lcyBzdHJlYW1pbmcg
-dGhyb3VnaCwgYnV0IGl0IGlzIGp1c3QgdGhlIGxhc3QgZ29vZCBzaWduYWwuPC9kaXY+DQo8ZGl2
-IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmO2Zv
-bnQtc2l6ZToxMnB0O2NvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxl
-PSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmO2ZvbnQtc2l6
-ZToxMnB0O2NvbG9yOnJnYigwLDAsMCkiPg0KSSBjYW4mIzM5O3QgZmlndXJlIG91dCBhIHdheSB0
-byByZXNldCB0aGUgR1BTIHdpdGhvdXQgcmVib290aW5nIGl0LCBkb2VzIGFueW9uZSBrbm93IG9m
-IGEgd2F5P8KgIEkgdHJpZWQga2lsbGluZyBhbmQgcmVzdGFydGluZyB0aGUgZGFlbW9uLCBidXQg
-dGhhdCBkb2VzbiYjMzk7dCBzZWVtIHRvIGRvIGFueXRoaW5nLsKgIEkgcmVhbGx5IHRoaW5rIGl0
-IGlzIHRoZSBHUFMgbW9kdWxlLCBidXQgcmVib290aW5nIGl0IGV2ZXJ5dGltZSBJIHdhbnQgdG8g
-cnVuIHRoaW5ncw0KICZxdW90O2p1c3QgaW4gY2FzZS4mcXVvdDs8L2Rpdj4NCjxkaXYgc3R5bGU9
-ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7Zm9udC1zaXpl
-OjEycHQ7Y29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQt
-ZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEycHQ7
-Y29sb3I6cmdiKDAsMCwwKSI+DQpPbmUgb3RoZXIgd2VpcmQgdGhpbmcsIHdoZW4gSSBydW4gZ3Bz
-bW9uIGluIHRoaXMgc2NyZXdlZCB1cCBzdGF0ZSwgaXQgbW9zdGx5IGxvb2tzIE9LLCBidXQgaXQg
-aGFzIHdlaXJkIGNoYXJhY3RlcnMgZGlzcGxheWVkIHRocm91Z2hvdXQgdGhlIEFTQ0lJIGhlYWRp
-bmcgKGZvciBsYWNrIG9mIGEgYmV0dGVyIHRlcm0pLjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1m
-YW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjtmb250LXNpemU6MTJwdDtj
-b2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6
-Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjtmb250LXNpemU6MTJwdDtjb2xvcjpy
-Z2IoMCwwLDApIj4NClRoaXMgaXMgYSBnb29kIHNldHVwIG9uIGEgZGlmZmVyZW50IHVuaXQgKHNv
-IEkgZG9uJiMzOTt0IGV4cGVjdCB0byBzZWUgYSBmaXgpOjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9u
-dC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjtmb250LXNpemU6MTJw
-dDtjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuPnRjcDovL2xvY2FsaG9zdDoyOTQ3IMKgIMKgIMKg
-IMKgIMKgdS1ibG94Jmd0Ozxicj4NCjwvc3Bhbj4NCjxkaXY+4pSM4pSA4pSA4pSA4pSA4pSA4pSA
-4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
-4pSA4pSQ4pSM4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
-4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
-4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSQIG9yJnF1b3Q7OjEx
-fTxicj4NCjwvZGl2Pg0KPGRpdj7ilIJDaCBQUk4gwqBBeiDCoEVsIFMvTiBGbGFnIFUg4pSC4pSC
-RUNFRiBQb3M6ICs2Mzc4MTM3LjAwbSDCoCswLjAwbSDCoCDCoCDCoCswLjAwbSDCoCDilIIgZXIm
-cXVvdDs6JnF1b3Q7dS1ibG94JnF1b3Q7LCZxdW90O3N1YnR5cGUmcXVvdDs6JnF1b3Q7VW5rbm93
-biZxdW90OywmcXVvdDthY3RpdmF0ZWQmcXVvdDs6JnF1b3Q7MjAxOC0xMC0xMFQwNjoyMTowNy43
-MDFaJnF1b3Q7LCZxdW90O2ZsYWdzJnF1b3Q7OjEsJnF1b3Q7bmF0aXZlJnF1b3Q7OjEsJnF1b3Q7
-YnBzJnF1b3Q7Ojk2MDAsJnF1b3Q7cGFyaXR5JnF1b3Q7OiZxdW90O04mcXVvdDssJnF1b3Q7c3Rv
-cGJpdHMmcXVvdDs6MSwmcXVvdDtjeWNsZSZxdW90OzoxLjAwLCZxdW90O21pbmN5Y2xlJnF1b3Q7
-OjAuMjV9XX08YnI+DQo8L2Rpdj4NCjxkaXY+4pSCIDAgwqAgMSDCoCAwIDE2NSDCoCAwIDAxMTAg
-wqAg4pSC4pSCRUNFRiBWZWw6IMKgIMKgICswLjAwbS9zIMKgIMKgICswLjAwbS9zIMKgIMKgICsw
-LjAwbS9zIOKUgiBmYWxzZSwmcXVvdDt0aW1pbmcmcXVvdDs6ZmFsc2UsJnF1b3Q7c3BsaXQyNCZx
-dW90OzpmYWxzZSwmcXVvdDtwcHMmcXVvdDs6dHJ1ZX08YnI+DQo8L2Rpdj4NCjxkaXY+4pSCIDEg
-wqAgMiDCoCAwIDE2NSDCoCAwIDAxMTAgwqAg4pSC4pSCIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIOKUgjxicj4N
-CjwvZGl2Pg0KPGRpdj7ilIIgMiDCoCA0IMKgIDAgMTY1IMKgIDAgMDExMCDCoCDilILilIJMVFAg
-UG9zOiDCoCAwLjAwMDAwMDAwMMKwIMKgIDAuMDAwMDAwMDAwwrAgwqAgLTE4LjAwbSDilII8YnI+
-DQo8L2Rpdj4NCjxkaXY+4pSCIDMgwqAgNiDCoCAwIDE2NSDCoDIzIDAzMTAgwqAg4pSC4pSCTFRQ
-IFZlbDogwqAgwqAwLjAwbS9zIMKgIDAuMMKwIMKgIDAuMDBtL3MgwqAgwqAgwqAgwqAgwqAgwqAg
-4pSCPGJyPg0KPC9kaXY+DQo8ZGl2PuKUgiA0IMKgIDcgwqAgMCAxNjUgwqAgMCAwMTEwIMKgIOKU
-guKUgiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDilII8YnI+DQo8L2Rpdj4NCjxkaXY+4pSCIDUgwqAgOSDCoCAw
-IDE2NSDCoDIzIDAzMTAgwqAg4pSC4pSCVGltZTogMCAwMDowMDowMC4wMCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoOKUgjxicj4NCjwvZGl2Pg0KPGRpdj7ilIIg
-NiDCoDE0IMKgIDAgMTY1IMKgMjIgMDMxMCDCoCDilILilIJUaW1lIEdQUzogwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgRGF5OiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDilII8YnI+DQo8L2Rp
-dj4NCjxkaXY+4pSCIDcgwqAxOSDCoCAwIDE2NSDCoDIyIDAzMTAgwqAg4pSC4pSCIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIOKUgjxicj4NCjwvZGl2Pg0KPGRpdj7ilIIgOCDCoDIwIMKgIDAgMTY1IMKgMjEgMDMx
-MCDCoCDilILilIJFc3QgUG9zIEVycjk5OTk5OTguNzJzdCBWZWwgRXJyIMKgIDAuMDBtL3MgwqAg
-wqAgwqAgwqDilII8YnI+DQo8L2Rpdj4NCjxkaXY+4pSCIDkgwqAyMSDCoCAwIDE2NSDCoCAwIDAx
-MTAgwqAg4pSC4pSCUFJOczogwqAwIFBET1A6MTAwLjAgRml4IDB4MDAgRmxhZ3MgMHg0MCDCoCDC
-oCDCoCDCoCDCoOKUgjxicj4NCjwvZGl2Pg0KPGRpdj7ilIIxMCDCoDIyIMKgIDAgMTY1IMKgIDAg
-MDExMCDCoCDilILilJTilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDi
-lIDilIDilIDilIDilIAgTkFWX1NPTCDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDi
-lIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilJg8YnI+DQo8L2Rpdj4NCjxkaXY+4pSCMTEg
-wqAyMyDCoCAwIDE2NSDCoCAwIDAxMTAgwqAg4pSC4pSM4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
-4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
-4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
-4pSA4pSA4pSA4pSQPGJyPg0KPC9kaXY+DQo8ZGl2PuKUgjEyIMKgMjQgwqAgMCAxNjUgwqAgMCAw
-MTEwIMKgIOKUguKUgkRPUCBbSF0gMTAwLjBbVl0gMTAwLjBbUF0gMTAwLjBbVF0gMTAwLjBbR10g
-MTAwLjDilII8YnI+DQo8L2Rpdj4NCjxkaXY+4pSCMTMgwqAyOCDCoCAwIDE2NSDCoDIzIDAzMTAg
-wqAg4pSC4pSU4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
-4pSA4pSA4pSAIE5BVl9ET1Ag4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
-4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSYPGJyPg0KPC9kaXY+DQo8ZGl2PuKUgjE0IMKgMzAg
-wqAgMCAxNjUgwqAgMCAwMTEwIMKgIOKUguKUjOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKU
-gOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKU
-gOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKU
-gOKUgOKUkDxicj4NCjwvZGl2Pg0KPGRpdj7ilIIxNSAxMzYgwqAgMCAxNjUgwqAgMCAwMTEwIMKg
-IOKUguKUglRPRkY6ICZndDsgMSBkYXkgwqAgwqAgwqAgwqAgwqAgwqBQUFM6IMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKg4pSCPGJyPg0KPC9kaXY+DQo8c3Bhbj48L3NwYW4+PGJyPg0KPC9k
-aXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5z
-LXNlcmlmO2ZvbnQtc2l6ZToxMnB0O2NvbG9yOnJnYigwLDAsMCkiPg0KVGhlcmUgYXJlIGxpbmVz
-IGFyb3VuZCB0aGUgZGlmZmVyZW50IHNlY3Rpb25zICh0aGV5IGxvb2sgbGlrZSBsaW5lcywgbm90
-IGRhc2hlcyBhbmQgYmFycykuPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJp
-LEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMnB0O2NvbG9yOnJnYigwLDAs
-MCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFs
-LEhlbHZldGljYSxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMnB0O2NvbG9yOnJnYigwLDAsMCkiPg0K
-PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZl
-dGljYSxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMnB0O2NvbG9yOnJnYigwLDAsMCkiPg0KYW5kIHRo
-ZW4gb24gdGhlIHVuaXQgdGhhdCBpcyBob3NlZDo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFt
-aWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEycHQ7Y29s
-b3I6cmdiKDAsMCwwKSI+DQo8c3Bhbj50Y3A6Ly9sb2NhbGhvc3Q6Mjk0NyDCoCDCoCDCoCDCoCDC
-oHUtYmxveCZndDs8YnI+DQo8L3NwYW4+DQo8ZGl2PmxxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFx
-cWtscXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcWsgb3Im
-cXVvdDs6MTF9PGJyPg0KPC9kaXY+DQo8ZGl2PnhDaCBQUk4gwqBBeiDCoEVsIFMvTiBGbGFnIFUg
-eHhFQ0VGIFBvczogLTI0MTQ4MDYuMTdtICs1Mzg5NTg0LjUxbSArMjQwMDY1MC4yOG0geCBlciZx
-dW90OzomcXVvdDt1LWJsb3gmcXVvdDssJnF1b3Q7c3VidHlwZSZxdW90OzomcXVvdDtVbmtub3du
-JnF1b3Q7LCZxdW90O2FjdGl2YXRlZCZxdW90OzomcXVvdDsyMDE5LTAxLTA4VDE0OjUyOjQwLjQ1
-NFomcXVvdDssJnF1b3Q7ZmxhZ3MmcXVvdDs6MSwmcXVvdDtuYXRpdmUmcXVvdDs6MSwmcXVvdDti
-cHMmcXVvdDs6OTYwMCwmcXVvdDtwYXJpdHkmcXVvdDs6JnF1b3Q7TiZxdW90OywmcXVvdDtzdG9w
-Yml0cyZxdW90OzoxLCZxdW90O2N5Y2xlJnF1b3Q7OjEuMDAsJnF1b3Q7bWluY3ljbGUmcXVvdDs6
-MC4yNX1dfTxicj4NCjwvZGl2Pg0KPGRpdj54IDAgwqAgMiDCoCAwIDE2NSDCoDUwIDA3MDAgwqAg
-eHhFQ0VGIFZlbDogwqAgwqAgKzAuMDBtL3MgwqAgwqAgKzAuMDBtL3MgwqAgwqAgKzAuMDBtL3Mg
-eCBmYWxzZSwmcXVvdDt0aW1pbmcmcXVvdDs6ZmFsc2UsJnF1b3Q7c3BsaXQyNCZxdW90OzpmYWxz
-ZSwmcXVvdDtwcHMmcXVvdDs6dHJ1ZX08YnI+DQo8L2Rpdj4NCjxkaXY+eCAxIMKgIDQgwqAgMCAx
-NjUgwqA1MCAwNzAwIMKgIHh4IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIHg8YnI+DQo8L2Rpdj4NCjxkaXY+eCAy
-IMKgIDUgwqAgMCAxNjUgwqA1MCAwNzAwIMKgIHh4TFRQIFBvczrCoCAyMi4yNTU3MTUxMTM0ZiAx
-MTQuMTM0NzkwNTMyZiDCoCDCoDIwLjE5bSB4PGJyPg0KPC9kaXY+DQo8ZGl2PnggMyDCoCA4IMKg
-IDAgMTY1IMKgIDAgMDEwMCDCoCB4eExUUCBWZWw6IMKgIMKgMC4wMG0vcyDCoCAwLjBmIMKgIDAu
-MDBtL3MgwqAgwqAgwqAgwqAgwqAgwqAgeDxicj4NCjwvZGl2Pg0KPGRpdj54IDQgwqAgOSDCoCAw
-IDE2NSDCoDUwIDA3MDAgwqAgeHggwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgeDxicj4NCjwvZGl2Pg0KPGRpdj54
-IDUgwqAxMCDCoCAwIDE2NSDCoDUwIDA3MDAgwqAgeHhUaW1lOiA2MSAwNjoxMzo0MC4wMCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCB4PGJyPg0KPC9kaXY+DQo8ZGl2
-PnggNiDCoDEyIMKgIDAgMTY1IMKgNTAgMDcwMCDCoCB4eFRpbWUgR1BTOiAxODc3KzUyOTI4Mi4w
-MDAgwqAgwqAgRGF5OiA2IMKgIMKgIMKgIMKgIMKgIMKgIHg8YnI+DQo8L2Rpdj4NCjxkaXY+eCA3
-IMKgMTMgwqAgMCAxNjUgwqA1MCAwNjAwIMKgIHh4IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIHg8YnI+DQo8L2Rp
-dj4NCjxkaXY+eCA4IMKgMTcgwqAgMCAxNjUgwqA1MCAwNzAwIMKgIHh4RXN0IFBvcyBFcnIyMjM4
-NjkwLjI0c3QgVmVsIEVyciDCoCAwLjAwbS9zIMKgIMKgIMKgIMKgeDxicj4NCjwvZGl2Pg0KPGRp
-dj54IDkgwqAyMCDCoCAwIDE2NSDCoDUwIDA3MDAgwqAgeHhQUk5zOiDCoDAgUERPUDoxMDAuMCBG
-aXggMHgwMCBGbGFncyAweGRjIMKgIMKgIMKgIMKgIMKgeDxicj4NCjwvZGl2Pg0KPGRpdj54MTAg
-wqAyMyDCoCAwIDE2NSDCoDUwIDA3MDAgwqAgeG1xcXFxcXFxcXFxcXFxcXFxcXFxIE5BVl9TT0wg
-cXFxcXFxcXFxcXFxcXFxcXFxcXFxajxicj4NCjwvZGl2Pg0KPGRpdj54MTEgwqAyNCDCoCAwIDE2
-NSDCoCAwIDAxMTAgwqAgeGxxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFx
-cXFxcXFxcXFxazxicj4NCjwvZGl2Pg0KPGRpdj54MTIgwqAyNyDCoCAwIDE2NSDCoDUwIDA3MDAg
-wqAgeHhET1AgW0hdIDEwMC4wW1ZdIDEwMC4wW1BdIDEwMC4wW1RdIDEwMC4wW0ddIDEwMC4weDxi
-cj4NCjwvZGl2Pg0KPGRpdj54MTMgwqAyOCDCoCAwIDE2NSDCoDUwIDA3MDAgwqAgeG1xcXFxcXFx
-cXFxcXFxcXFxcXFxIE5BVl9ET1AgcXFxcXFxcXFxcXFxcXFxcXFxcXFxajxicj4NCjwvZGl2Pg0K
-PGRpdj54MTQgMTI5IDEyNyDCoDUxIMKgIDAgMDExMCDCoCB4bHFxcXFxcXFxcXFxcXFxcXFxcXFx
-cXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFrPGJyPg0KPC9kaXY+DQo8ZGl2PngxNSDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoHh4VE9GRjogJmd0OyAxIGRheSDCoCDCoCDC
-oCDCoCDCoCDCoFBQUzogwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqB4PGJyPg0KPC9kaXY+
-DQo8ZGl2Pm1xcXFxcXEgTkFWX1NWSU5GTyBxcXFxcXFxcWptcXFxcXFxcXFxcXFxcXFxcXFxcXFx
-cXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcWo8YnI+DQo8L2Rpdj4NCjxzcGFuPjwvc3Bhbj48
-YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0
-aWNhLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEycHQ7Y29sb3I6cmdiKDAsMCwwKSI+DQpOb3QgdGhh
-dCBpbnN0ZWFkIG9mIGxpbmVzLCBJIHNlZSBjaGFyYWN0ZXJzLsKgIFdoYXQgaXMgdXAgd2l0aCB0
-aGF0Pz8/PzwvZGl2Pg0KPC9kaXY+DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Q8YnI+DQo8YSBocmVm
-PSJtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIiByZWw9
-Im5vcmVmZXJyZXIiPlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjxhIGhyZWY9
-Imh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3Rz
-LmV0dHVzLmNvbSIgcmVsPSJub3JlZmVycmVyIG5vcmVmZXJyZXIiIHRhcmdldD0iX2JsYW5rIj5o
-dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
-dHR1cy5jb208L2E+PGJyPg0KPC9ibG9ja3F1b3RlPjwvZGl2Pg0K
---00000000000076521e0587f01b59--
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hello fellow N310 users. My lab has =
+6 N310&#39;s all operating and streaming to a single data server (10 Gbe li=
+nks).</div><div><br></div><div>We use GNU Radio for everything. The softwar=
+e is great for controlling multiple devices with many antennas easily (high=
+ly recommended). My experience with native C++ UHD driver commands is rathe=
+r limited.</div><div><br></div><div><br></div><div>Maybe RF mapping is the =
+problem? There was a recent change where UHD 3.13=C2=A0+ redid that stuff.<=
+/div><div><br></div><div>The N310 antenna mapping is available from here:</=
+div><div><br></div><div><a href=3D"https://kb.ettus.com/USRP_N300/N310/N320=
+/N321_Getting_Started_Guide#N310_2">https://kb.ettus.com/USRP_N300/N310/N32=
+0/N321_Getting_Started_Guide#N310_2</a></div><div><br></div><div>Never used=
+ it but it seems that UHD is expecting letters.</div><div><br></div><div><b=
+r></div></div></div><br><div class=3D"gmail_quote"><div class=3D"gmail_attr=
+" dir=3D"ltr">On Thu, May 2, 2019 at 10:52 AM Jorge Chen via USRP-users &lt=
+;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;padding-left:1ex;border-left-color:rgb(204,204,204);border-=
+left-width:1px;border-left-style:solid"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr">Hi,=C2=A0<span style=3D"color:rgb(0,0,0);font-family:arial,=
+helvetica,sans-serif;display:inline;float:none">Neharika and All,</span><di=
+v><span style=3D"color:rgb(0,0,0);font-family:arial,helvetica,sans-serif;di=
+splay:inline;float:none"><br></span></div><div><span style=3D"color:rgb(0,0=
+,0);font-family:arial,helvetica,sans-serif;display:inline;float:none">I met=
+ some problems on controlling 2 N310s too.</span></div><div><span style=3D"=
+color:rgb(0,0,0);font-family:arial,helvetica,sans-serif;display:inline;floa=
+t:none"><br></span></div><div><span style=3D"color:rgb(0,0,0);font-family:a=
+rial,helvetica,sans-serif;display:inline;float:none">But first of all, the=
+=C2=A0argument &quot;<span style=3D"font-family:Roboto,sans-serif;font-size=
+:14px;display:inline;float:none;background-color:rgb(255,255,255)">second_a=
+ddr&quot; indicates the IP addr. of the=C2=A0<span style=3D"display:inline;=
+float:none">second SFP+ port on that device, and is set in the case of dual=
+ 10G streaming.</span></span></span></div><div><span style=3D"color:rgb(0,0=
+,0);font-family:arial,helvetica,sans-serif;display:inline;float:none"><span=
+ style=3D"font-family:Roboto,sans-serif;font-size:14px;display:inline;float=
+:none;background-color:rgb(255,255,255)"><span style=3D"display:inline;floa=
+t:none">I think the first way you wrote is the right way to access the 2 N3=
+10s, even though it is not listed in the Multiple USRP Configuration page.<=
+br>(<a href=3D"https://files.ettus.com/manual/page_multiple.html" target=3D=
+"_blank">https://files.ettus.com/manual/page_multiple.html</a>)<br>With tha=
+t, I can control them (set rf parameters and receive signal on all 8 channe=
+ls) without the error message you mentioned, what version of the UHD you&#3=
+9;re using? (UHD 3.13.1, 3.14 worked for me)<br><br></span></span></span></=
+div><div><span style=3D"color:rgb(0,0,0);font-family:arial,helvetica,sans-s=
+erif;display:inline;float:none"><span style=3D"font-family:Roboto,sans-seri=
+f;font-size:14px;display:inline;float:none;background-color:rgb(255,255,255=
+)"><span style=3D"display:inline;float:none">My only problem is that they s=
+top working (hang) at transmitting.<br>
+
+<div style=3D"color:rgb(34,34,34);font-family:Arial,Helvetica,sans-serif;fo=
+nt-size:small;background-color:rgb(255,255,255)">An alternative way=C2=A0 i=
+s that I create 2 usrp objects to control them as the commands below.</div>=
+<span class=3D"gmail-m_1366929011187976480gmail-im" style=3D"color:rgb(80,0=
+,80);font-family:Arial,Helvetica,sans-serif;font-size:small;background-colo=
+r:rgb(255,255,255)"><i><b><font size=3D"1">uhd::usrp::multi_usrp::sptr tx_u=
+srp_1 =3D=C2=A0uhd::usrp::multi_usrp::make(&quot;addr=3D192.168.30.3<font f=
+ace=3D"arial, helvetica, sans-serif">,<span style=3D"color:rgb(0,0,0);white=
+-space:pre-wrap">master_clock_rate=3D122.88e6,clock_source=3Dexternal,time_=
+source=3Dexternal&quot;</span></font>)<span>=C2=A0</span><br class=3D"gmail=
+-m_1366929011187976480gmail-m_-1800548767396613609m_595261457471305121m_332=
+2671819249650700gmail-m_-3888277657015760414gmail-Apple-interchange-newline=
+">uhd::usrp::multi_usrp::sptr tx_usrp_2 =3D=C2=A0uhd::usrp::multi_usrp::mak=
+e(&quot;addr=3D192.168.40.3<font face=3D"arial, helvetica, sans-serif">,<sp=
+an style=3D"color:rgb(0,0,0);white-space:pre-wrap">master_clock_rate=3D122.=
+88e6,clock_source=3Dexternal,time_source=3Dexternal&quot;</span></font>)</f=
+ont></b></i></span>
+
+<br><span style=3D"font-family:arial,helvetica,sans-serif;font-size:small;d=
+isplay:inline;float:none;background-color:rgb(255,255,255)"><span style=3D"=
+color:rgb(34,34,34);font-family:Arial,Helvetica,sans-serif;display:inline;f=
+loat:none">Even though it works ( transmit signal simultaneously on all cha=
+nnels ),</span>=C2=A0I don&#39;t think it&#39;s the best way=C2=A0<span sty=
+le=3D"display:inline;float:none">(or right way)</span>
+
+ to use multiple USRPs.</span><br><br>Has anyone done this before? or any s=
+uggestion?</span></span></span></div><div><span style=3D"color:rgb(0,0,0);f=
+ont-family:arial,helvetica,sans-serif;display:inline;float:none"><span styl=
+e=3D"font-family:Roboto,sans-serif;font-size:14px;display:inline;float:none=
+;background-color:rgb(255,255,255)"><span style=3D"display:inline;float:non=
+e"><br></span></span></span></div><div><span style=3D"color:rgb(0,0,0);font=
+-family:arial,helvetica,sans-serif;display:inline;float:none"><span style=
+=3D"font-family:Roboto,sans-serif;font-size:14px;display:inline;float:none;=
+background-color:rgb(255,255,255)"><span style=3D"display:inline;float:none=
+">Thanks</span></span></span></div><div><span style=3D"color:rgb(0,0,0);fon=
+t-family:arial,helvetica,sans-serif;display:inline;float:none"><span style=
+=3D"font-family:Roboto,sans-serif;font-size:14px;display:inline;float:none;=
+background-color:rgb(255,255,255)"><span style=3D"display:inline;float:none=
+">Jorge<br><br><br></span></span></span></div></div><br><div class=3D"gmail=
+_quote"><div class=3D"gmail_attr" dir=3D"ltr">Neharika Valecha via USRP-use=
+rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp=
+-users@lists.ettus.com</a>&gt; =E6=96=BC 2019=E5=B9=B45=E6=9C=882=E6=97=A5 =
+=E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:20=E5=AF=AB=E9=81=93=EF=BC=9A<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;padd=
+ing-left:1ex;border-left-color:rgb(204,204,204);border-left-width:1px;borde=
+r-left-style:solid"><div dir=3D"ltr"><font face=3D"arial, helvetica, sans-s=
+erif"><span style=3D"color:rgb(0,0,0);font-size:13px">Hello,</span><br styl=
+e=3D"margin:0px;padding:0px;color:rgb(0,0,0);font-size:13px"><br style=3D"m=
+argin:0px;padding:0px;color:rgb(0,0,0);font-size:13px"><span style=3D"color=
+:rgb(0,0,0);font-size:13px">I am using two N310 USRP&#39;s to create an 8x8=
+ MIMO setup. But, I am unable to make both of=C2=A0</span><span style=3D"co=
+lor:rgb(0,0,0);font-size:13px">them work together. I am using an example pr=
+ogram from the UHD driver -=C2=A0</span><span style=3D"color:rgb(0,0,0);fon=
+t-size:13px">txrx_loopback_to_file.</span><br style=3D"margin:0px;padding:0=
+px;color:rgb(0,0,0);font-size:13px"><br style=3D"margin:0px;padding:0px;col=
+or:rgb(0,0,0);font-size:13px"><span style=3D"color:rgb(0,0,0);font-size:13p=
+x">I give the following command:</span><br style=3D"margin:0px;padding:0px;=
+color:rgb(0,0,0);font-size:13px"><br style=3D"margin:0px;padding:0px;color:=
+rgb(0,0,0);font-size:13px"><span style=3D"color:rgb(0,0,0);font-size:13px">=
+./txrx_loopback_to_file --tx-rate 7.68e6 --rx-rate 7.68e6 --tx-freq 2.60e9 =
+--rx-freq=C2=A0</span><span style=3D"color:rgb(0,0,0);font-size:13px">2.60e=
+9 --tx-gain 70 --rx-gain 60 --tx-channels &quot;0,1,2,3&quot; --rx-channels=
+ &quot;0,1,2,3&quot;=C2=A0</span><span style=3D"color:rgb(0,0,0);font-size:=
+13px">--tx-args=C2=A0</span><span style=3D"color:rgb(0,0,0);font-size:13px"=
+>&quot;addr=3D192.168.10.2,second_addr=3D192.168.20.2,time_source=3Dexterna=
+l,clock_source=3Dexternal,master_clock_rate=3D122.88e6&quot; --rx-args=C2=
+=A0</span><span style=3D"color:rgb(0,0,0);font-size:13px">&quot;addr=3D192.=
+168.10.2,second_addr=3D192.168.20.2,time_source=3Dexternal,clock_source=3De=
+xternal,master_clock_rate=3D122.88e6&quot;=C2=A0</span><span style=3D"color=
+:rgb(0,0,0);font-size:13px">--settling=C2=A0</span><span style=3D"color:rgb=
+(0,0,0);font-size:13px">1</span><br style=3D"margin:0px;padding:0px;color:r=
+gb(0,0,0);font-size:13px"><br style=3D"margin:0px;padding:0px;color:rgb(0,0=
+,0);font-size:13px"><span style=3D"color:rgb(0,0,0);font-size:13px">and onl=
+y one USRP turns on.</span><br style=3D"margin:0px;padding:0px;color:rgb(0,=
+0,0);font-size:13px"><span style=3D"color:rgb(0,0,0);font-size:13px">In USR=
+P X300 there were two ways to use multiple USRP&#39;s,</span><br style=3D"m=
+argin:0px;padding:0px;color:rgb(0,0,0);font-size:13px"><span style=3D"color=
+:rgb(0,0,0);font-size:13px">1. Use --tx-args and --rx-args to specify &quot=
+;addr0,addr1&quot; to access two different USRP&#39;s=C2=A0</span><span sty=
+le=3D"color:rgb(0,0,0);font-size:13px">with --tx-channels and --rx-channels=
+ as &quot;0,1&quot;. I tried that here but it gives an error,=C2=A0</span><=
+span style=3D"color:rgb(0,0,0);font-size:13px">&quot;Error message: Someone=
+ tried to claim this device again&quot;.</span><br style=3D"margin:0px;padd=
+ing:0px;color:rgb(0,0,0);font-size:13px"><br style=3D"margin:0px;padding:0p=
+x;color:rgb(0,0,0);font-size:13px"><span style=3D"color:rgb(0,0,0);font-siz=
+e:13px">2. To define just one &quot;addr&quot; in --tx-args and --rx-args b=
+ut have --tx-channels and=C2=A0</span><span style=3D"color:rgb(0,0,0);font-=
+size:13px">--rx-channels as &quot;0,1,2,3&quot; (as X300 is 2x2). When trie=
+d with N310 with channel values=C2=A0</span><span style=3D"color:rgb(0,0,0)=
+;font-size:13px">&quot;0,1,2,3,4,5,6,7&quot; it gives an error that Tx chan=
+nels invalid.</span><br style=3D"margin:0px;padding:0px;color:rgb(0,0,0);fo=
+nt-size:13px"><br style=3D"margin:0px;padding:0px;color:rgb(0,0,0);font-siz=
+e:13px"><span style=3D"color:rgb(0,0,0);font-size:13px">So, could you tell =
+me what is the correct syntax to access two USRP&#39;s?</span><br style=3D"=
+margin:0px;padding:0px;color:rgb(0,0,0);font-size:13px"><br style=3D"margin=
+:0px;padding:0px;color:rgb(0,0,0);font-size:13px"><span style=3D"color:rgb(=
+0,0,0);font-size:13px">Thank you</span><br style=3D"margin:0px;padding:0px;=
+color:rgb(0,0,0);font-size:13px"><span style=3D"color:rgb(0,0,0);font-size:=
+13px">Neharika</span></font></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank" rel=3D"noreferrer">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank" rel=3D"noreferrer">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000009909a80587f08847--
 
 
---===============1712244797538468349==
+--===============7834372245637376050==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -437,5 +378,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1712244797538468349==--
+--===============7834372245637376050==--
 
