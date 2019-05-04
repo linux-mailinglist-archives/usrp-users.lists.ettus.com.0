@@ -2,53 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82C113713
-	for <lists+usrp-users@lfdr.de>; Sat,  4 May 2019 04:50:28 +0200 (CEST)
-Received: from [::1] (port=44654 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C978F13720
+	for <lists+usrp-users@lfdr.de>; Sat,  4 May 2019 05:37:50 +0200 (CEST)
+Received: from [::1] (port=50624 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hMkkp-0001pg-Gy; Fri, 03 May 2019 22:50:23 -0400
-Received: from mail-it1-f173.google.com ([209.85.166.173]:54679)
+	id 1hMlUh-0003Zb-Pt; Fri, 03 May 2019 23:37:47 -0400
+Received: from mail-pf1-f170.google.com ([209.85.210.170]:42354)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <james.jordan.fun@gmail.com>)
- id 1hMkkH-0001k5-J2
- for usrp-users@lists.ettus.com; Fri, 03 May 2019 22:50:19 -0400
-Received: by mail-it1-f173.google.com with SMTP id a190so12365046ite.4
- for <usrp-users@lists.ettus.com>; Fri, 03 May 2019 19:49:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=9wkf+hdIOUQKkR972dqpnmcaczTksw7NCFScDueiceY=;
- b=PLa8Sg8QeWJ/6Ye4TYHvcAN8vcWE4OOwUPuleUlqVz5RBa0wCJ85QNdmQWi1WRSHpr
- +4ZNkTFQlim8Et7VeczjZYFX6BcLqZzzxYCmEE/e0H3VQaC2Tyd+qJIDXXp9Bs7nB79J
- 27Wj8t1E8lmYj3pFptcPgOnKdTuz7P+haiK3ivtZXa6a04W6/COByjL6GmkPigNsAC1g
- G6Oyx3j/B30Fd1bWxQIt9hVA1AnKWfKPh0grQJl/0OhkhcDsXq+iGU3X8SoVhi/8UWVK
- peClAWWw66f6t/nCmawNDtnqXACbqMW4wFhEZvxYA1Y6vkEVLu2tuUNwBFUBCYDsnhtD
- l+YQ==
+ (Exim 4.91) (envelope-from <ianb@ionconcepts.com>)
+ id 1hMlU9-0003RJ-Gw
+ for usrp-users@lists.ettus.com; Fri, 03 May 2019 23:37:43 -0400
+Received: by mail-pf1-f170.google.com with SMTP id 13so3553204pfw.9
+ for <usrp-users@lists.ettus.com>; Fri, 03 May 2019 20:36:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ionconcepts-com.20150623.gappssmtp.com; s=20150623;
+ h=from:message-id:mime-version:subject:date:in-reply-to:cc:to
+ :references; bh=quVfhjoRo6qetN6szDPdFrL04vnvlzqMDuXE+Su6o1A=;
+ b=ASFHqwodeumrSkI6QvamxF9QU+bw9ZJ5qshP5Ma5ZjwoD2ETgE0b9oMgBA6Cki/g0S
+ 26Avqu3YUgDCXEMKcX8/3S6XaJHGv7tu+lD4+85eVHXhdUra7d0huerHf1jBBy17IK8U
+ TT/V1E4Jihw6PYe6wchHRx1AbuvQEhh5oW7bAj45sgn+PJvWaCZ4sVGbUxmwHEK/L73H
+ 4BgjyMuedZUjYDr9E4fWMGR08y3BCm2KOyx7m+yzUYOP5/3JOBxe3VbEmJnmgVYNGeDD
+ htSVY9ma1ZDpP6rX9VBVdvDCqI5uLEoGLoOteMKAjw/mMrQerOs6YwedpK1/hlGEn48L
+ A5cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=9wkf+hdIOUQKkR972dqpnmcaczTksw7NCFScDueiceY=;
- b=oGUuYLnPkwnzFEfP7JwXSRCBMjoH+rtBuom0jtejjvDyBKeLKm/J+n5XvW/MXZz+rC
- hLtaFMgbY9+FYwMeVCe18/gyKo1/bnHSyPCJcyKg3SLXZvME4hPhywzh484HKf+MEFJ4
- MZaRyVgqW/qsYsz/IbHSWWHbFPpeE9SYzaCBoryG/N4JH7VDWgY4UJjn7C2+oCof16a8
- QC1L0fFfGCNfj1GI/iCfZNCPbBHX+Bt6MPk3FBzR7sXf5V4cWBgofL9Bb+3tJjIlIV8c
- p+Us3YBRQXjwHQoRY/pqlxVrNvHyn8tHjWoXLsLGPeI+SUKGXanyA5GeDLwUpq8EsJ/Z
- rUKw==
-X-Gm-Message-State: APjAAAVW4WIr2i91KswnGWHVA/w1QEHVoaEhWgAKjXVxEvB/m3GpPa96
- 5+OrPeMMHKPqbZ+CMU2k6rKK6g5btCVLMjbDnJ/JXg==
-X-Google-Smtp-Source: APXvYqxkuCrr13pZ/ssXP/HNfgadMY/qX0pt7F+t4dGDKGDRWHnVl/60xAULSr3vk3TDtVuznumvsnrX3twKrN7/arA=
-X-Received: by 2002:a24:1052:: with SMTP id 79mr10633561ity.158.1556938148847; 
- Fri, 03 May 2019 19:49:08 -0700 (PDT)
-MIME-Version: 1.0
-Date: Sat, 4 May 2019 10:48:58 +0800
-Message-ID: <CAFBh5UG1_VL89hqwUney40LMud4i_MBrPK7Kha3FRGouwwfOYQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
+ h=x-gm-message-state:from:message-id:mime-version:subject:date
+ :in-reply-to:cc:to:references;
+ bh=quVfhjoRo6qetN6szDPdFrL04vnvlzqMDuXE+Su6o1A=;
+ b=R+Jwzcyn5mBSrrsgOPz/XWtpmzHtM9K4Nd84uxgu9on6H6Aey/uQVFbtVijwtnoL00
+ zy7X5OeUjCM9mhLFnEn1ZgHisbSo1yLKaJH33XbOpuZaR9M+WHWKuli3pxdLW/nT8jpj
+ 8WDio2VCRxNTMYflw/rrMRVXhS98mbIE04V+166G9RNk/OKQUMzD36gEXqm50+7rMiCM
+ zSYGpZeHEylsRTuxrSB5yjvxQiRPoMMomOBK08dhD8RyeWwS+UXMmaLay2AD01LyYVhR
+ UDWx1awq5EdxK7Ux4J0GDbef6JOG9iqFLEu6cBtO6MY5Qot2PNfKJI8WkjuhU8la5zzA
+ +d8Q==
+X-Gm-Message-State: APjAAAWhyIfxuaOkxZDR2f6lYze30EbRKxjEVNP5W7TDKGz7nxOIQ2fR
+ 0ShrAriOVkEMQQ7igQqPnnoCjQ==
+X-Google-Smtp-Source: APXvYqyTpDEXh38JRV9tvuhCcq0Y6riEWUFNJJF6VBvg/vXEro+ZE2+42KqGoSY3ZeoOr2al8fTJLA==
+X-Received: by 2002:a63:5a4b:: with SMTP id k11mr15322343pgm.119.1556940992429; 
+ Fri, 03 May 2019 20:36:32 -0700 (PDT)
+Received: from pox-laden-system.ionconcepts.com
+ (c-73-222-38-19.hsd1.ca.comcast.net. [73.222.38.19])
+ by smtp.gmail.com with ESMTPSA id f71sm6763778pfc.109.2019.05.03.20.36.31
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 03 May 2019 20:36:31 -0700 (PDT)
+Message-Id: <2D1EC1DB-D227-496B-A3BA-85C2C7B98359@ionconcepts.com>
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+Date: Fri, 3 May 2019 20:36:30 -0700
+In-Reply-To: <CAFBh5UG1_VL89hqwUney40LMud4i_MBrPK7Kha3FRGouwwfOYQ@mail.gmail.com>
+To: James Jordan <james.jordan.fun@gmail.com>
+References: <CAFBh5UG1_VL89hqwUney40LMud4i_MBrPK7Kha3FRGouwwfOYQ@mail.gmail.com>
+X-Mailer: Apple Mail (2.3273)
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] what is the difference between UBX and UBX REVC
+Subject: Re: [USRP-users] what is the difference between UBX and UBX REVC
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -60,9 +70,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: James Jordan via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: James Jordan <james.jordan.fun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1550065042954919448=="
+From: Ian Buckley via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ian Buckley <ianb@ionconcepts.com>
+Cc: usrp-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============7350079075012882788=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,26 +87,67 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1550065042954919448==
-Content-Type: multipart/alternative; boundary="0000000000004ca32b058806e900"
 
---0000000000004ca32b058806e900
-Content-Type: text/plain; charset="UTF-8"
+--===============7350079075012882788==
+Content-Type: multipart/alternative;
+ boundary="Apple-Mail=_5632F5C0-A8FB-48E8-8678-DCDB51205B92"
 
-Hi,
-i want to know the difference between UBX and UBX rev-c.
 
---0000000000004ca32b058806e900
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail=_5632F5C0-A8FB-48E8-8678-DCDB51205B92
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-<div dir=3D"ltr">Hi,<div>i want to know the difference between UBX and UBX =
-rev-c.=C2=A0</div></div>
+Did you look at the schematics? The change block indicates that they had =
+to replace one (of the many=E2=80=A6) parts that Avago has made =
+end-of-life.
+ So new LNA, upgraded T/R switch it seems.
+https://files.ettus.com/schematics/ubx/ubx_revC.pdf =
+<https://files.ettus.com/schematics/ubx/ubx_revC.pdf>
 
---0000000000004ca32b058806e900--
+> On May 3, 2019, at 7:48 PM, James Jordan via USRP-users =
+<usrp-users@lists.ettus.com> wrote:
+>=20
+> Hi,
+> i want to know the difference between UBX and UBX rev-c.=20
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
 
---===============1550065042954919448==
+--Apple-Mail=_5632F5C0-A8FB-48E8-8678-DCDB51205B92
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">Did you look at the schematics? The change block indicates =
+that they had to replace one (of the many=E2=80=A6) parts that Avago has =
+made end-of-life.<div class=3D"">&nbsp;So new LNA, upgraded T/R switch =
+it seems.</div><div class=3D""><a =
+href=3D"https://files.ettus.com/schematics/ubx/ubx_revC.pdf" =
+class=3D"">https://files.ettus.com/schematics/ubx/ubx_revC.pdf</a><br =
+class=3D""><div class=3D""><br class=3D""><div><blockquote type=3D"cite" =
+class=3D""><div class=3D"">On May 3, 2019, at 7:48 PM, James Jordan via =
+USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
+class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
+class=3D"">Hi,<div class=3D"">i want to know the difference between UBX =
+and UBX rev-c.&nbsp;</div></div>
+_______________________________________________<br class=3D"">USRP-users =
+mailing list<br class=3D""><a href=3D"mailto:USRP-users@lists.ettus.com" =
+class=3D"">USRP-users@lists.ettus.com</a><br =
+class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
+com<br class=3D""></div></blockquote></div><br =
+class=3D""></div></div></body></html>=
+
+--Apple-Mail=_5632F5C0-A8FB-48E8-8678-DCDB51205B92--
+
+
+--===============7350079075012882788==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,5 +158,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1550065042954919448==--
+--===============7350079075012882788==--
 
