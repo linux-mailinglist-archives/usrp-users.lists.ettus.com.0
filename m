@@ -2,69 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F3DA1377E
-	for <lists+usrp-users@lfdr.de>; Sat,  4 May 2019 06:40:17 +0200 (CEST)
-Received: from [::1] (port=57582 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3C201377F
+	for <lists+usrp-users@lfdr.de>; Sat,  4 May 2019 06:42:07 +0200 (CEST)
+Received: from [::1] (port=59010 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hMmT8-0005nx-EI; Sat, 04 May 2019 00:40:14 -0400
-Received: from mail-ed1-f50.google.com ([209.85.208.50]:40695)
+	id 1hMmUw-00067N-Mn; Sat, 04 May 2019 00:42:06 -0400
+Received: from mail-qt1-f179.google.com ([209.85.160.179]:35367)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <robin.coxe@ettus.com>)
- id 1hMmSa-0005f5-Fn
- for usrp-users@lists.ettus.com; Sat, 04 May 2019 00:40:10 -0400
-Received: by mail-ed1-f50.google.com with SMTP id e56so8423614ede.7
- for <usrp-users@lists.ettus.com>; Fri, 03 May 2019 21:39:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:subject:thread-topic:thread-index:date:message-id
- :references:in-reply-to:accept-language:content-language
- :mime-version; bh=WzySG+zqczrakHqzOznQzujXi+QSdONXO4HBWm3gaTk=;
- b=JjGfb/EpxtnpwCylLVVN0IUupS3VqVE39xaQ/1L6UUM57WXbkWDWKYHPX6jE7gXUWA
- rwUWI8zHx/kew6Ez+zWN6OV25WpSUq7HMrf0eXOBjYjM85Y74yawjCv9kDmm0jF0ZQT6
- J5FboXv2XII7e5g+AZrIDeoJ5q7iXM3PPr2XHCInFAvZpu8rZD9D7+mgeYzjGRHn/dQo
- hO7OInD25xXlxcBKUWtSZ6Ts/7n9neVgGg0uhGgku0Bszu6VcikE32aGurDCOPoUo7j2
- 9BByC2+BRBUYvURm9Cbnyk7avBUJVJAJG55t7/UoQHUsRTHUJC5GyJ5P1ZV48XscIclv
- ERIQ==
+ (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hMmUO-0005yZ-OV
+ for usrp-users@lists.ettus.com; Sat, 04 May 2019 00:42:02 -0400
+Received: by mail-qt1-f179.google.com with SMTP id e5so9159898qtq.2
+ for <usrp-users@lists.ettus.com>; Fri, 03 May 2019 21:41:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=VB0jj4gAKN/vceqYWtp1YSP8dEHL+mcCxy5jODFnW6Q=;
+ b=gcTTTQgd52BV7tTijK/OY+5gtKLRYrrRqJjRL2icyhoecrfiKMjppIl+Jk0TaouB3f
+ L/3k3YNxJNMl5rHqlyMysD7jJE1ZQGfjcVfYLyL+qmWdG1AC4Br+XelB+Env5CxM2LF5
+ WYRF+er7JUN+PMIngW4Zb59nTaZfRir3ANicvrQ0goPFjvipAHTemsKtqFRKVhVoudVX
+ dATryTOTEIR5NHpTQ3P2KLM0GFsii68GS4mlJkGX7ivaEY7SFaHVLP1KNUDTW4CVipit
+ DarFMwIPe99pQSkWImztzH+6plLWpmyhBscFMlIs5swRDxLHzPG/+5WXqc6cXGl9BLo4
+ Ih0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:thread-topic:thread-index:date
- :message-id:references:in-reply-to:accept-language:content-language
- :mime-version;
- bh=WzySG+zqczrakHqzOznQzujXi+QSdONXO4HBWm3gaTk=;
- b=XisGf6XqUNyK/fBw3ze5D42hvwOlQu8Z2WDeb/QdRINmxELOMGo6aMzMV/4e0z38lc
- gv3vSLyXZJFRTdBqp9PyF/lcZeH+w18N4RFtv6IEFs3tdAESK1398w0vdMc4QCm3OhNo
- /fHD47qpMx5YmM4OtZkuI6NCTKsb4gZNvjpREfCoqyJRIbF19UnOVyTiG0Vq5+HMoFaF
- U//kom9pyVok632ks4b3irMSj+XKcr8AvviV8MIw9Socl40udYJ7nlUSPpn1zinSNOM+
- VdUWjF1u0BV9/BN4dWwNkFf51bMTR1L03hb0C+WPESS7UOtbxTrs/6p99AjZq8BSlVhu
- d4GA==
-X-Gm-Message-State: APjAAAWnIwgU9WkuxqRTkdapEUaPGq/9AIQXVmUVloy1nTu1LUPPHwe0
- r+dsJEgO8LpB8AOQPeuda1BXMOBI
-X-Google-Smtp-Source: APXvYqxgsVx5Ag3B2Q4dGNKHd8iPbrnQRJI5WmkzbZjjo1gq/32ivulIr3S+64Ib7SJbyUm1SGg8PQ==
-X-Received: by 2002:a17:906:685:: with SMTP id
- u5mr9496012ejb.125.1556944739374; 
- Fri, 03 May 2019 21:38:59 -0700 (PDT)
-Received: from DM6PR03MB4556.namprd03.prod.outlook.com ([52.96.21.61])
- by smtp.gmail.com with ESMTPSA id u20sm562274ejn.69.2019.05.03.21.38.57
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=VB0jj4gAKN/vceqYWtp1YSP8dEHL+mcCxy5jODFnW6Q=;
+ b=ScmDOrXPlcyHVvmswlqYrYkxkqjxCayT2vkNG0YQSOfPJCgBsWe9E7IZD989WWV6hE
+ uSytEOQtcy8uvBUz0+uq9zUqFJaidNO2+uYsntfkWnqKLfhD3Vl19ZLUwI3lqtlfm+qi
+ kaA3vQtCPOuZzHbgJTLeZN/ERyyzGcqWPmlvBXRZXwYxXnDEf7S3JfedBwuIN5jxVFLR
+ 0tAz/scDTuXX7hXScHDpzII5e+u5F2PU4OiTnK7+n/RYu3ZqrLyzamBasSWtYOZoi6pF
+ Cg6PkMDItbpvgPIZKXUoWZG/y++XMb+wlflnPQq65hq93gzI6xavgqZ3z4qXHSHXTD14
+ hGOA==
+X-Gm-Message-State: APjAAAV3nOQAW/37pn4QmV+/CBOdFbgHiLOyrG1vZaUOmEKtNDydHuDo
+ 8E8KC4pYjwH8dDlzKwhskKg8DKDAQfk=
+X-Google-Smtp-Source: APXvYqwleGEpGP1VKisEPIkP8laMNEXWokMyAhjfMTmSlrTXuPMsuARNwfjgar81g8U6QUCTdbeETA==
+X-Received: by 2002:aed:3802:: with SMTP id j2mr12133952qte.201.1556944852074; 
+ Fri, 03 May 2019 21:40:52 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id a12sm2928540qta.85.2019.05.03.21.40.51
+ for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 03 May 2019 21:38:58 -0700 (PDT)
-To: Rensi Mathew <rensisam@yahoo.co.in>, Vsr Ravi via USRP-users
- <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] B200 Overrun
-Thread-Index: AWY2OTI3eCATKI0dxJWfk8JJxUYz/DQzMTY02/ZZrFA=
-X-MS-Exchange-MessageSentRepresentingType: 1
-Date: Sat, 4 May 2019 04:38:55 +0000
-Message-ID: <DM6PR03MB45560C798154B6FD08C115F4F2360@DM6PR03MB4556.namprd03.prod.outlook.com>
-References: <1432742277.62002.1556943355674.ref@mail.yahoo.com>,
+ Fri, 03 May 2019 21:40:51 -0700 (PDT)
+Message-ID: <5CCD17D2.8050809@gmail.com>
+Date: Sat, 04 May 2019 00:40:50 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
+References: <1432742277.62002.1556943355674.ref@mail.yahoo.com>
  <1432742277.62002.1556943355674@mail.yahoo.com>
 In-Reply-To: <1432742277.62002.1556943355674@mail.yahoo.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-Exchange-Organization-SCL: -1
-X-MS-TNEF-Correlator: 
-X-MS-Exchange-Organization-RecordReviewCfmType: 0
-MIME-Version: 1.0
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -82,9 +72,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robin Coxe <robin.coxe@ettus.com>
-Content-Type: multipart/mixed; boundary="===============7067094999779367704=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0988412824509065472=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -98,113 +88,136 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7067094999779367704==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============0988412824509065472==
 Content-Type: multipart/alternative;
-	boundary="_000_DM6PR03MB45560C798154B6FD08C115F4F2360DM6PR03MB4556namp_"
+ boundary="------------040301000007030502010402"
 
---_000_DM6PR03MB45560C798154B6FD08C115F4F2360DM6PR03MB4556namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------040301000007030502010402
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Are you using USB 3.0?  USB 2.0 will max out at about 8 Ms/s.
+On 05/04/2019 12:15 AM, Rensi Mathew via USRP-users wrote:
+> Dear sir
+> I am using B200 SDR to run the program usrp_spectrum_sense.py with a 
+> sampling frequency of 16e6.
+> I think I am using a fairly low sampling rate.
+> Still I am getting some 'OOOO'.
+>
+> Could someone tell me the possible reasons for the same? And how I can 
+> avoid the same?
+Overruns mean that your computer isn't keeping up with the sample flow 
+from the radio.  Sometimes, you can increase the buffering
+   in the USB driver to reduce the occurrence of this:
+
+https://files.ettus.com/manual/page_transport.html#transport_usb_params
+
+In particular, "num_recv_frames" can help--I'd suggest 128 or 256.
+
+What type of computer are you using?  Are you setting your CPU governor 
+to "performance" mode?
+
+Whether any given sample-rate is "fairly low" depends VERY much on what 
+your computer is *doing* with those samples--the more complex
+   the operations that are happening at the input sample rate, the 
+harder your computer is working.
 
 
-
-Robin Coxe | Chief R&D Program Manager, SDR | Santa Clara, CA | 408.610.636=
-3
-
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Rensi Ma=
-thew via USRP-users <usrp-users@lists.ettus.com>
-Sent: Friday, May 3, 2019 9:17 PM
-To: Vsr Ravi via USRP-users
-Subject: [USRP-users] B200 Overrun
-
-Dear sir
-I am using B200 SDR to run the program usrp_spectrum_sense.py with a sampli=
-ng frequency of 16e6.
-I think I am using a fairly low sampling rate.
-Still I am getting some 'OOOO'.
-
-Could someone tell me the possible reasons for the same? And how I can avoi=
-d the same?
-
-Thanking you
-Rensi Sam
+>
+> Thanking you
+> Rensi Sam
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
 
---_000_DM6PR03MB45560C798154B6FD08C115F4F2360DM6PR03MB4556namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------040301000007030502010402
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body>
-<div>
-<div>
-<div>
-<div style=3D"direction: ltr;">Are you using USB 3.0? &nbsp;USB 2.0 will ma=
-x out at about 8 Ms/s. &nbsp;</div>
-<div><br>
-</div>
-<div style=3D"direction: ltr;"></div>
-<div><br>
-</div>
-</div>
-<div><br>
-</div>
-<div class=3D"ms-outlook-ios-signature">
-<div style=3D"direction: ltr;">Robin Coxe | Chief R&amp;D Program Manager, =
-SDR | Santa Clara, CA | 408.610.6363</div>
-</div>
-</div>
-<div>&nbsp;</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"dir=3D&quot;ltr&quot;"><font face=3D"Calib=
-ri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USR=
-P-users &lt;usrp-users-bounces@lists.ettus.com&gt; on behalf of Rensi Mathe=
-w via USRP-users &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Sent:</b> Friday, May 3, 2019 9:17 PM<br>
-<b>To:</b> Vsr Ravi via USRP-users<br>
-<b>Subject:</b> [USRP-users] B200 Overrun
-<div>&nbsp;</div>
-</font></div>
-<meta content=3D"text/html; charset=3Dutf-8">
-<div class=3D"yahoo-style-wrap" style=3D"font-family:Helvetica Neue,Helveti=
-ca,Arial,sans-serif; font-size:16px">
-<div>
-<div>
-<div>Dear sir</div>
-<div>I am using B200 SDR to run the program usrp_spectrum_sense.py with a s=
-ampling frequency of 16e6.</div>
-<div>I think I am using a fairly low sampling rate.<br>
-</div>
-<div>Still I am getting some 'OOOO'.</div>
-<div><br>
-</div>
-<div>Could someone tell me the possible reasons for the same? And how I can=
- avoid the same?</div>
-<div><br>
-</div>
-<div>Thanking you</div>
-<div>Rensi Sam<br>
-</div>
-</div>
-<br>
-</div>
-</div>
-</div>
-</body>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 05/04/2019 12:15 AM, Rensi Mathew
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote cite="mid:1432742277.62002.1556943355674@mail.yahoo.com"
+      type="cite">
+      <div class="yahoo-style-wrap" style="font-family:Helvetica Neue,
+        Helvetica, Arial, sans-serif;font-size:16px;">
+        <div>
+          <div>
+            <div>Dear sir</div>
+            <div>I am using B200 SDR to run the program
+              usrp_spectrum_sense.py with a sampling frequency of 16e6.</div>
+            <div>I think I am using a fairly low sampling rate.<br>
+            </div>
+            <div>Still I am getting some 'OOOO'.</div>
+            <div><br>
+            </div>
+            <div>Could someone tell me the possible reasons for the
+              same? And how I can avoid the same?</div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    Overruns mean that your computer isn't keeping up with the sample
+    flow from the radio.  Sometimes, you can increase the buffering<br>
+      in the USB driver to reduce the occurrence of this:<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://files.ettus.com/manual/page_transport.html#transport_usb_params">https://files.ettus.com/manual/page_transport.html#transport_usb_params</a><br>
+    <br>
+    In particular, "num_recv_frames" can help--I'd suggest 128 or 256.<br>
+    <br>
+    What type of computer are you using?  Are you setting your CPU
+    governor to "performance" mode?<br>
+    <br>
+    Whether any given sample-rate is "fairly low" depends VERY much on
+    what your computer is *doing* with those samples--the more complex<br>
+      the operations that are happening at the input sample rate, the
+    harder your computer is working.<br>
+    <br>
+    <br>
+    <blockquote cite="mid:1432742277.62002.1556943355674@mail.yahoo.com"
+      type="cite">
+      <div class="yahoo-style-wrap" style="font-family:Helvetica Neue,
+        Helvetica, Arial, sans-serif;font-size:16px;">
+        <div>
+          <div>
+            <div><br>
+            </div>
+            <div>Thanking you</div>
+            <div>Rensi Sam<br>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_DM6PR03MB45560C798154B6FD08C115F4F2360DM6PR03MB4556namp_--
+--------------040301000007030502010402--
 
 
---===============7067094999779367704==
+--===============0988412824509065472==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -215,5 +228,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7067094999779367704==--
+--===============0988412824509065472==--
 
