@@ -2,67 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3738613A6A
-	for <lists+usrp-users@lfdr.de>; Sat,  4 May 2019 15:44:44 +0200 (CEST)
-Received: from [::1] (port=46944 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E96C213EE4
+	for <lists+usrp-users@lfdr.de>; Sun,  5 May 2019 12:36:51 +0200 (CEST)
+Received: from [::1] (port=41110 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hMuxw-0007Bo-Vc; Sat, 04 May 2019 09:44:36 -0400
-Received: from mail-wr1-f49.google.com ([209.85.221.49]:38112)
+	id 1hNEVL-0003Zj-PC; Sun, 05 May 2019 06:36:23 -0400
+Received: from mail-qt1-f179.google.com ([209.85.160.179]:44634)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <marcus.mueller@ettus.com>)
- id 1hMuxO-00075a-QD
- for usrp-users@lists.ettus.com; Sat, 04 May 2019 09:44:32 -0400
-Received: by mail-wr1-f49.google.com with SMTP id k16so11313726wrn.5
- for <usrp-users@lists.ettus.com>; Sat, 04 May 2019 06:43:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:date:in-reply-to:references:user-agent
- :mime-version:content-transfer-encoding;
- bh=mCUpS0rk8cByL5YAWdcrdSiu6yfk9Cj4CjPPgmX+4GI=;
- b=snnf3/C4bxCHm27QPphHYjeZY25y68+wmy5G7nsR0gu2YqcYKU6CU2aAYQtyllIalV
- iYKOdyFGZQ5T/z/phDX7FtzGJBiBp0b4kS3a8mkPxu3+hK2if9wS1P0G07rqnW5n7e0B
- aqeGMmLXPfuHlMJOIwGtw5W4HNhL4/sVSgR85h+De3Bj9MkeBgMkG6yu/kxiQFzt0Vta
- Y/dXJcSwC6/zm97ZsbFq+kGPxLd8+iCgWhGAZT0mRNu0OD7Ow7PIn/sls6uezKZ2xIn5
- k1NATtZlYmMiJezByZukPlmLH8QgWD61Axa1FgjI+pjrX1zHHyZ4TvMTw0T3pupiN8yC
- 7XmQ==
+ (Exim 4.91) (envelope-from <mite.engr11@gmail.com>)
+ id 1hNEUo-0003UQ-Cv
+ for usrp-users@lists.ettus.com; Sun, 05 May 2019 06:36:20 -0400
+Received: by mail-qt1-f179.google.com with SMTP id f24so1215576qtk.11
+ for <usrp-users@lists.ettus.com>; Sun, 05 May 2019 03:35:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=EngDqtOESDE9Ef7LFh1fUt09C0bp/HWPyGmQbTLQdQw=;
+ b=rA8NaivyOkee504y1xpUmyYk3YUR+AvnaCXHjIbdsPmJAtPnXMzovkHAmGLJuNOlyx
+ 8rq4hHMY+3mfgvqpVUOEWcyGh2oyAIhOiEiQnmKuwcpiC7rsgmYUmgRuctgUXlWDOT8w
+ r+HNBkXShrAaHzXg3rPF1fVN6vIGDq8neFxBWyNAh+wiT6+TMSgjPOMsBjhvFFtsE1eG
+ 8o1W+b9IBGKiZPBihvKEqRmAxRU/N8Qz4e0/6H+hVyyYOksMDs60lNZLcgUDAPwjLQtq
+ lnq3bJ3SqB9dDp6PPst/J91lgz++j3pOe/EmSPrmqfud7uSmJ9C9WLcPQ2mFcC73Ugd0
+ JSgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=mCUpS0rk8cByL5YAWdcrdSiu6yfk9Cj4CjPPgmX+4GI=;
- b=uJ80+EIWiwK90k8XH8kQfbGxWLIaze/NdYFMiucZaENgo63+bX3ZGxrWFt5hPyYcrf
- xo7asdWiQjzeSBBU7vCseQo62jZZzOUWHtunQu2p+bjxUdmp+JAErfXcyrREo93AgSln
- ySgzk4mcP2hNJPh8YIezLtxt1TDFwuS+YunbLKGcGWLjPLZ/wE5RQ1zI8VaYVRHVLuQy
- wIO5LtpPvk0LlUQe5GRX4m0VkjoxRtZIBnkDOZMkSwprT06O8UGW7uQlQlooMHonRqvw
- +pJwUlewcb7fwQgoiw8rHXdCWAr0l+Bt7rob99cvJShnyWuC6BVryxGIr0Lk3sX9nlKl
- yNXw==
-X-Gm-Message-State: APjAAAV6Pl7EB+T74ovuxdZYcoAjnHlWw3azjiPx/dlN0henPo5ITdhA
- bv5UjNedJLadU2TyO7ePOzHkzsfD
-X-Google-Smtp-Source: APXvYqxSs1mjkjVv2NQQbaSJ61OPgcDo0vko+wBKqCvBw52v7+rbptmPFsOV2r25j7VsqG1mESqV/g==
-X-Received: by 2002:a05:6000:10:: with SMTP id
- h16mr11032684wrx.151.1556977401646; 
- Sat, 04 May 2019 06:43:21 -0700 (PDT)
-Received: from workhorse.lan (ip-37-201-4-220.hsi13.unitymediagroup.de.
- [37.201.4.220])
- by smtp.googlemail.com with ESMTPSA id 195sm10267351wme.32.2019.05.04.06.43.20
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Sat, 04 May 2019 06:43:20 -0700 (PDT)
-Message-ID: <26baba59a3468cb6e980b63e5c88ec1a6af459c1.camel@ettus.com>
-To: Rensi Mathew <rensisam@yahoo.co.in>, Vsr Ravi via USRP-users
- <usrp-users@lists.ettus.com>
-Date: Sat, 04 May 2019 15:43:19 +0200
-In-Reply-To: <1432742277.62002.1556943355674@mail.yahoo.com>
-References: <1432742277.62002.1556943355674.ref@mail.yahoo.com>
- <1432742277.62002.1556943355674@mail.yahoo.com>
-User-Agent: Evolution 3.30.4 (3.30.4-1.fc29) 
-Mime-Version: 1.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=EngDqtOESDE9Ef7LFh1fUt09C0bp/HWPyGmQbTLQdQw=;
+ b=qcXm7GFvbBd+iEhYwTAuiTTujzkOtEPCdWP0uv+wIU8V0RfiNS6x3WjPnO13r/dZ5v
+ YwBdmZabikNM6yVGaVwk9KkuQx1oUgsrra/HXlAcftRy7HJzGEF6XdDlfiJEwzvS2hoz
+ htlwjnEhPqoF6v+KOyuTi2BVE/dia9MxZjNZqbQAg2/rFOrVTci7xatX5VvREhxVG3Ot
+ FdLiHizMcq1xkFWcUPmQt94Sl0UGG+YgyKqQZA5JqxhZMhk1sd1i72+bbyRah+SAwHOk
+ kK/2vm0xsw/p6qMH0/mhPqnZrgCqccHCUXH3SGtoNb0Wl0iuk4I1OFo7F2Yp3fruKndF
+ 0JSA==
+X-Gm-Message-State: APjAAAUvVpn2dQ7Q9MipabIhCJhuyXs9ZcWTJjZacfuz+cj553YX0aEc
+ o4ZPOLXtyYcGdQ/iWFGY81wrxWdYK+/p2WKO1i2cDQ==
+X-Google-Smtp-Source: APXvYqysvNYJvQnSSP1r2FoBgHUSmCj3yPmxKB7PJt/836y+4PMAmVVuBsMUBujqxbqoxXFT1V5/xhFTtADPgG3A3H8=
+X-Received: by 2002:ac8:25bc:: with SMTP id e57mr16681603qte.167.1557052509721; 
+ Sun, 05 May 2019 03:35:09 -0700 (PDT)
+MIME-Version: 1.0
+Date: Sun, 5 May 2019 15:34:58 +0500
+Message-ID: <CAPhW9TROoM1BBEd_8qu-LdT7tFzqcz-hWDzuye=dJXg_N_OiGg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] B200 Overrun
+Subject: [USRP-users] Vivado versions for RFNoC
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -74,11 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Sam mite via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam mite <mite.engr11@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5996727112138743589=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -92,38 +76,42 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Dear Rensi, 
+--===============5996727112138743589==
+Content-Type: multipart/alternative; boundary="000000000000bd169605882189b7"
 
-16 MS/s is actually pretty decent; modern PCs should be up to that,
-yes, but considering that is 512 Mb/s in pure data, imperformant
-hardware or OS parts might be a real showstopper here. 
-So, what is your computer, its USB3 controller? What are the settings
-of usrp_spectrum_sense that you use? FFTs aren't "free",
-computationally...
+--000000000000bd169605882189b7
+Content-Type: text/plain; charset="UTF-8"
 
-Best regards
-Marcus
+I want to know what are the current supported vivado versions for X300 and
+X310 and also for E310 and E320 for generating RFNoC images?
+-- 
 
-On Sat, 2019-05-04 at 04:15 +0000, Rensi Mathew via USRP-users wrote:
-> Dear sir
-> I am using B200 SDR to run the program usrp_spectrum_sense.py with a
-> sampling frequency of 16e6.
-> I think I am using a fairly low sampling rate.
-> Still I am getting some 'OOOO'.
-> 
-> Could someone tell me the possible reasons for the same? And how I
-> can avoid the same?
-> 
-> Thanking you
-> Rensi Sam
-> 
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+Best Regards,
 
+Sam
+
+--000000000000bd169605882189b7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I want to know what are the current supported vivado =
+versions for X300 and X310 and also for E310 and E320 for generating RFNoC =
+images?</div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartma=
+il=3D"gmail_signature"><br>Best Regards,<br><br>Sam<br></div></div>
+
+--000000000000bd169605882189b7--
+
+
+--===============5996727112138743589==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5996727112138743589==--
+
