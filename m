@@ -2,45 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DDD214155
-	for <lists+usrp-users@lfdr.de>; Sun,  5 May 2019 19:14:04 +0200 (CEST)
-Received: from [::1] (port=37356 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA8D4141F9
+	for <lists+usrp-users@lfdr.de>; Sun,  5 May 2019 20:52:38 +0200 (CEST)
+Received: from [::1] (port=51336 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hNKiB-0008UN-A7; Sun, 05 May 2019 13:14:03 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:44996)
+	id 1hNMFU-0003qS-GS; Sun, 05 May 2019 14:52:32 -0400
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:46620)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <bpadalino@gmail.com>) id 1hNKhd-0008Ls-KR
- for usrp-users@lists.ettus.com; Sun, 05 May 2019 13:13:59 -0400
-Received: by mail-ot1-f47.google.com with SMTP id d10so4398965otp.11
- for <usrp-users@lists.ettus.com>; Sun, 05 May 2019 10:13:09 -0700 (PDT)
+ (Exim 4.91) (envelope-from <digitalturtle2010@gmail.com>)
+ id 1hNMEw-0003kR-90
+ for usrp-users@lists.ettus.com; Sun, 05 May 2019 14:52:28 -0400
+Received: by mail-ua1-f46.google.com with SMTP id n23so3858772uap.13
+ for <usrp-users@lists.ettus.com>; Sun, 05 May 2019 11:51:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=GXpEGQIPc1eiV5g60ULNMlZP/HzsmLthL+iwNX72bUk=;
- b=HhcHiHaXa0oCcgDTXe4BgY+9LAwMMns4prkbn8UUtfJsR2mqXj4XvA3Gyj3K+yQCAi
- WnE2bTmZam4WaLypv2wWuiXI5A4iVRldsch0mBuosarxYG3OBRrlSOnSUM010SzWRNuI
- kovkJupuZUVuzPk+LryEvQGQNEx6OzqTlAYWwT8SFH4yQI0v6mtS6q4bBL7edtYwo0KM
- 3s5ODwwqWD5De6MgT5qiywGuGarDhOQ3D9LNN6S2WmqA0ha2rtm4ngcut9Nhhc7gBKq4
- 1rKAI8v5SSzbHMuf50KJelCS5cSOxdvE+PbXAA/2HeiW9BbULaXt73EcNVUusO2xLFQB
- TRsg==
+ h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+ :cc; bh=BEEFEoHZMWEu9eOBrz4eK2z4dskrLdgnfVf1aAnPWfs=;
+ b=kVJxUMjqfOUxIBPgx/anW4JzPR2yKFDixrSWDDf66VUcTiah2C7B4MG/uVx4CUFf/8
+ 7XAoSv+MuVG+Dr0MRXsWJMuNVcVpBiBo8ci2csX+5gauZql4us+bVMZu+5qkzeZyZivV
+ gQT3ntnpNYpeDuiXkz9AUglmu+DKNDXdfkxB0PTb8CxS8Uspj5/HJ/JFUA5VMscQX4xx
+ lBpyIcNkY278kZmH6SJM9TIEBFsJME08yUpmMaDSEnTFZj7jYvivszoNOHHWAzsLoGQa
+ 4dKa3URkfe1wv+0AU8U7zsxk/uyDqanErzywDYRih8r8KUkQobcmJWZJcEO0KKPf57bI
+ 35yA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ h=x-gm-message-state:mime-version:in-reply-to:references:from:date
  :message-id:subject:to:cc;
- bh=GXpEGQIPc1eiV5g60ULNMlZP/HzsmLthL+iwNX72bUk=;
- b=rqVjYVfuWovMOJC/xYpgll6Q7sf1XLWeGBlqIz7Hys3dBJedF3SebMXL9ypLtS/8/H
- j58bk+RdgYIkAZnVdo7u7EjHo8kYkj6RYtSrzjPFH9O+lTB90MOF//2ym8KFJwfZHuZB
- aM91nZPnHKf9gM95EyGKh5nmpDYAe1CreksM+HWwYtSrU2u+cBWrJCQT4uCH4d5a4oeU
- nROj5Eoeb/7FIxW5fqL6hATLS40DY379LPPTuVcdEh7Q2jwzUSHOUCl3afCHAOL9T0fj
- wz6WIqO/cPUMXw4vfjk+ckG1B+cT1vrON8OktBDpqLALfP2jJ3+UMXhnjGzqh4ooQAjf
- vPHA==
-X-Gm-Message-State: APjAAAVq1WbcTRf+RqKQGpr92y0I5IyrY0TzUgvUOJ3ww2ru+PbywO4a
- JkJyEm2zyJxkhuNG6cOyjXZJxRh2jYNHbccwqU4=
-X-Google-Smtp-Source: APXvYqzhUPjUxu735fWNmTVQ/rRusTGZgzteVShaCguXzr7y1TzrA32LYVWpKHamIW7cQxfF7LTLfa3vTDMLb3AMgSM=
-X-Received: by 2002:a05:6830:1158:: with SMTP id
- x24mr14407388otq.278.1557076368885; 
- Sun, 05 May 2019 10:12:48 -0700 (PDT)
+ bh=BEEFEoHZMWEu9eOBrz4eK2z4dskrLdgnfVf1aAnPWfs=;
+ b=mY9wPBvSFeV3QysDTYGfne+ite0V8ukxFKCQeCdQEcHAy2L3Ner3t51FATBe0qEu7y
+ fjwdGzMvIaYiiZF3vWz4eO+UrL7lithbvK6V8Nvb7WkMc7nKQyDsTx/FLb3q+EyUVAJt
+ Utt1PVHmQbkV9hJkqNXjM13pMSuia8pjH+Fkw813dzSDX2fp6Y8e5+r/dLU1KDBNjdwf
+ CfY1K+4ZypuwiW7YmlIotvE7je0uxHLKaHpJZRqCcmpUTlp4GX12v004GrsIgfOCl1iD
+ 2hlWA8zlvj7vGaPmDE6JEjQbRnllw00VZ1zPOf7y4x0ws4Jed+9sElLZWR0ttZve4iBU
+ 1s7A==
+X-Gm-Message-State: APjAAAW2ARsBciupfdj/8jXQxiNdsCMCNqjaacTZ31e8F/W3WRPXlpeD
+ ExNSF+wQVbFHnhHZkN5SkvqB+ir8xhsO+d9gyos=
+X-Google-Smtp-Source: APXvYqyZ26XfFTJi2IFaeENkmy7IHD5mkAPAepXn7wgB6sCoqmXlGzQTlhiZH343FjHEiciKKpXWRWLPVAHF9ETWcPo=
+X-Received: by 2002:ab0:130b:: with SMTP id g11mr10955652uae.74.1557082277650; 
+ Sun, 05 May 2019 11:51:17 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 2002:ab0:644b:0:0:0:0:0 with HTTP;
+ Sun, 5 May 2019 11:51:17 -0700 (PDT)
+Received: by 2002:ab0:644b:0:0:0:0:0 with HTTP;
+ Sun, 5 May 2019 11:51:17 -0700 (PDT)
+In-Reply-To: <CAEXYVK78kiSyrcxz5D5Zp_0XTOZ1yVQh9oLpOjH77TrVNmMF4Q@mail.gmail.com>
 References: <CADE5U-e_T08OHwSMWA1bf=ZowbfBnG8OAtY+Sk+A8ZgeEsX_Lg@mail.gmail.com>
  <CADE5U-f05s5shd-JBRLrYKZYcjitk4rJ2VUhH-LgJ4GWgFbc7Q@mail.gmail.com>
  <CADE5U-dEzm-uRTfx1oK4KPYJOcP-uZzfSjs=V9hdLWwnU9Mb8w@mail.gmail.com>
@@ -55,10 +60,10 @@ References: <CADE5U-e_T08OHwSMWA1bf=ZowbfBnG8OAtY+Sk+A8ZgeEsX_Lg@mail.gmail.com>
  <5AEC47DB-1CD7-43C1-A284-885D9A6B40A9@gmail.com>
  <CADE5U-e2BZR_v8-e0nvcOkYof-YOT2vVqQxLPFZCFC0g=bHTLA@mail.gmail.com>
  <CADE5U-fgECvK4tc_QRwRin12x+F3MNWAh1rABWMa-z8q8=UYsQ@mail.gmail.com>
-In-Reply-To: <CADE5U-fgECvK4tc_QRwRin12x+F3MNWAh1rABWMa-z8q8=UYsQ@mail.gmail.com>
-Date: Sun, 5 May 2019 13:12:36 -0400
-Message-ID: <CAEXYVK78kiSyrcxz5D5Zp_0XTOZ1yVQh9oLpOjH77TrVNmMF4Q@mail.gmail.com>
-To: franz kurniawan <digitalturtle2010@gmail.com>
+ <CAEXYVK78kiSyrcxz5D5Zp_0XTOZ1yVQh9oLpOjH77TrVNmMF4Q@mail.gmail.com>
+Date: Mon, 6 May 2019 01:51:17 +0700
+Message-ID: <CADE5U-e63Lwe-rSQq8AOLjbmFyyi0LJjeg88yAxcLOZq9W0LuQ@mail.gmail.com>
+To: Brian Padalino <bpadalino@gmail.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -76,10 +81,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5248364011500192368=="
+From: franz kurniawan via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: franz kurniawan <digitalturtle2010@gmail.com>
+Cc: usrp-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============2038516231262259936=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -93,11 +98,25 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5248364011500192368==
-Content-Type: multipart/alternative; boundary="000000000000db0a4c0588271758"
+--===============2038516231262259936==
+Content-Type: multipart/alternative; boundary="0000000000000ba4ca0588287859"
 
---000000000000db0a4c0588271758
+--0000000000000ba4ca0588287859
 Content-Type: text/plain; charset="UTF-8"
+
+Hi brian,
+
+You are absolutely correct !
+after i shifted 2Khz , i can get the expected signal..
+
+In term of usrp sink (AM Tx), do you think that the same condition might
+occurred?
+
+Thank you
+
+
+
+On May 6, 2019 12:12 AM, "Brian Padalino" <bpadalino@gmail.com> wrote:
 
 Since it's AM, try shifting your center frequency by a little bit.
 
@@ -221,79 +240,90 @@ usrp-users@lists.ettus.com> wrote:
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000db0a4c0588271758
+--0000000000000ba4ca0588287859
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Since it&#39;s AM, try shifting your center frequency by a=
- little bit.<div><br></div><div>Extract the envelope the same way, though.<=
-/div><div><br></div><div>My thought is the DC cancellation circuitry in the=
- 9361 is killing your AM waveform, so use a low-IF approach instead.</div><=
-div><br></div><div>Brian</div></div><br><div class=3D"gmail_quote"><div dir=
+<div dir=3D"auto"><div>Hi brian,</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">You are absolutely correct !</div><div dir=3D"auto">after i shift=
+ed 2Khz , i can get the expected signal..</div><div dir=3D"auto"><br></div>=
+<div dir=3D"auto">In term of usrp sink (AM Tx), do you think that the same =
+condition might occurred?</div><div dir=3D"auto"><br></div><div dir=3D"auto=
+">Thank you</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br><div cla=
+ss=3D"gmail_extra" dir=3D"auto"><br><div class=3D"gmail_quote">On May 6, 20=
+19 12:12 AM, &quot;Brian Padalino&quot; &lt;<a href=3D"mailto:bpadalino@gma=
+il.com">bpadalino@gmail.com</a>&gt; wrote:<br type=3D"attribution"><blockqu=
+ote class=3D"quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex"><div dir=3D"ltr">Since it&#39;s AM, try shifting your cent=
+er frequency by a little bit.<div><br></div><div>Extract the envelope the s=
+ame way, though.</div><div><br></div><div>My thought is the DC cancellation=
+ circuitry in the 9361 is killing your AM waveform, so use a low-IF approac=
+h instead.</div><font color=3D"#888888"><div><br></div><div>Brian</div></fo=
+nt></div><div class=3D"elided-text"><br><div class=3D"gmail_quote"><div dir=
 =3D"ltr" class=3D"gmail_attr">On Sun, May 5, 2019 at 1:05 PM franz kurniawa=
-n via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-use=
-rs@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex"><div dir=3D"auto">I reduced to -40db, -50db and have the =
-same result..<div dir=3D"auto"><br></div><div dir=3D"auto">I attached the p=
-ictures of b200mini vs other SDR with the same signal generator..</div><div=
- dir=3D"auto"><br></div><div dir=3D"auto">I expect the same result with the=
- &#39;other SDR&#39; result..</div><div dir=3D"auto">The IQ data of b200 is=
- seems to be incorrect (imbalance? )</div><div dir=3D"auto"><br></div><div =
-dir=3D"auto">I have tried the uhd of these version :</div><div dir=3D"auto"=
->v3.14.0.0-rc3 ,=C2=A0</div><div dir=3D"auto">release_003_007_001,=C2=A0</d=
-iv><div dir=3D"auto">release_003_010_001_000</div><div dir=3D"auto"><br></d=
-iv><div dir=3D"auto">But all have the same result..</div><div dir=3D"auto">=
-<br></div><div dir=3D"auto">I tried to disable the set_auto_iq_balance to b=
-oth false and true, but have no effect..</div><div dir=3D"auto"><br></div><=
-div dir=3D"auto">Thank you</div></div><div class=3D"gmail_extra"><br><div c=
-lass=3D"gmail_quote">On May 5, 2019 11:27 PM, &quot;Marcus D Leech&quot; &l=
-t;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbrau=
-n@gmail.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gma=
-il-m_1464258312546627213quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">-20dBM is =
-loud. Try backing the generator down to -40dBm<div><br><br><div id=3D"gmail=
+n via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
+=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">I reduced to -40db,=
+ -50db and have the same result..<div dir=3D"auto"><br></div><div dir=3D"au=
+to">I attached the pictures of b200mini vs other SDR with the same signal g=
+enerator..</div><div dir=3D"auto"><br></div><div dir=3D"auto">I expect the =
+same result with the &#39;other SDR&#39; result..</div><div dir=3D"auto">Th=
+e IQ data of b200 is seems to be incorrect (imbalance? )</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">I have tried the uhd of these version :</d=
+iv><div dir=3D"auto">v3.14.0.0-rc3 ,=C2=A0</div><div dir=3D"auto">release_0=
+03_007_001,=C2=A0</div><div dir=3D"auto">release_003_010_001_000</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">But all have the same result..</di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">I tried to disable the set_=
+auto_iq_balance to both false and true, but have no effect..</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Thank you</div></div><div class=3D"gm=
+ail_extra"><br><div class=3D"gmail_quote">On May 5, 2019 11:27 PM, &quot;Ma=
+rcus D Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D=
+"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<br type=3D"attribution"><bl=
+ockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"auto">-20dBM is loud. Try backing the =
+generator down to -40dBm<div><br><br><div id=3D"m_-6603432633178987640gmail=
 -m_1464258312546627213m_2029498226510055085AppleMailSignature" dir=3D"ltr">=
-Sent from my iPhone</div><div class=3D"gmail-m_1464258312546627213elided-te=
-xt"><div dir=3D"ltr"><br>On May 5, 2019, at 12:14 PM, franz kurniawan &lt;<=
-a href=3D"mailto:digitalturtle2010@gmail.com" target=3D"_blank">digitalturt=
-le2010@gmail.com</a>&gt; wrote:<br><br></div><blockquote type=3D"cite"><div=
- dir=3D"ltr"><div dir=3D"auto">I set the generator at -20db and b200 gain a=
-t 50..<div dir=3D"auto">I check that there is no cutoff at the usrp output =
-and the input to AM demod block..</div><div dir=3D"auto"><br></div><div dir=
-=3D"auto">Below are the setting of uhd block in gnuradio</div><div dir=3D"a=
-uto">Samp rate 500k</div><div dir=3D"auto">Output type float32</div><div di=
-r=3D"auto">Sync PC clock</div><div dir=3D"auto">Clock rate 10 Mhz external<=
-/div><div dir=3D"auto">Freq 121MHz</div><div dir=3D"auto">Gain 50</div><div=
- dir=3D"auto">Ch0 Bandwidth 200000</div><div dir=3D"auto"><br></div><div di=
-r=3D"auto"><br></div><div dir=3D"auto">Thank you</div></div><div class=3D"g=
-mail_extra"><br><div class=3D"gmail_quote">On May 5, 2019 11:05 PM, &quot;M=
-arcus D Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=
-=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<br type=3D"attribution">=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">What ou=
-tput level for the generator? What gain setting on the b205?<div><br><br><d=
-iv id=3D"gmail-m_1464258312546627213m_2029498226510055085m_-886065304005254=
-3334AppleMailSignature" dir=3D"ltr">Sent from my iPhone</div><div dir=3D"lt=
-r"><br>On May 5, 2019, at 11:58 AM, franz kurniawan &lt;<a href=3D"mailto:d=
-igitalturtle2010@gmail.com" target=3D"_blank">digitalturtle2010@gmail.com</=
-a>&gt; wrote:<br><br></div><blockquote type=3D"cite"><div dir=3D"ltr"><div =
-dir=3D"auto"><div>So, i try to make AM receiver..</div><div dir=3D"auto">An=
-d the resulted demodulated audio was distorted from its original signal..</=
-div><div dir=3D"auto">So, at this experiment i used signal generator to mak=
-e AM with sine wave modulated signal..</div><div dir=3D"auto">I expect to g=
-et pure sine wave signal after AM demod process..</div><div dir=3D"auto">Ho=
-wever, the sine wave is distorted as attached picture</div><div dir=3D"auto=
-"><br></div><div dir=3D"auto">I compared with another brand SDR and can get=
- my expected signal..</div><div dir=3D"auto">So i guess there is some probl=
-em with the b210mini</div><div dir=3D"auto"><br></div><div dir=3D"auto">Tha=
-nk you</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br><div class=3D=
-"gmail_extra" dir=3D"auto"><br><div class=3D"gmail_quote">On May 5, 2019 10=
-:28 PM, &quot;Marcus D. Leech via USRP-users&quot; &lt;<a href=3D"mailto:us=
-rp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&=
-gt; wrote:<br type=3D"attribution"><blockquote style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>On 05/0=
-5/2019 10:53 AM, franz kurniawan via USRP-users wrote:<br>
+Sent from my iPhone</div><div><div dir=3D"ltr"><br>On May 5, 2019, at 12:14=
+ PM, franz kurniawan &lt;<a href=3D"mailto:digitalturtle2010@gmail.com" tar=
+get=3D"_blank">digitalturtle2010@gmail.com</a>&gt; wrote:<br><br></div><blo=
+ckquote type=3D"cite"><div dir=3D"ltr"><div dir=3D"auto">I set the generato=
+r at -20db and b200 gain at 50..<div dir=3D"auto">I check that there is no =
+cutoff at the usrp output and the input to AM demod block..</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Below are the setting of uhd block in=
+ gnuradio</div><div dir=3D"auto">Samp rate 500k</div><div dir=3D"auto">Outp=
+ut type float32</div><div dir=3D"auto">Sync PC clock</div><div dir=3D"auto"=
+>Clock rate 10 Mhz external</div><div dir=3D"auto">Freq 121MHz</div><div di=
+r=3D"auto">Gain 50</div><div dir=3D"auto">Ch0 Bandwidth 200000</div><div di=
+r=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Thank yo=
+u</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On M=
+ay 5, 2019 11:05 PM, &quot;Marcus D Leech&quot; &lt;<a href=3D"mailto:patch=
+vonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote=
+:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"auto">What output level for the generator? What gain setting o=
+n the b205?<div><br><br><div id=3D"m_-6603432633178987640gmail-m_1464258312=
+546627213m_2029498226510055085m_-8860653040052543334AppleMailSignature" dir=
+=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br>On May 5, 2019, at 1=
+1:58 AM, franz kurniawan &lt;<a href=3D"mailto:digitalturtle2010@gmail.com"=
+ target=3D"_blank">digitalturtle2010@gmail.com</a>&gt; wrote:<br><br></div>=
+<blockquote type=3D"cite"><div dir=3D"ltr"><div dir=3D"auto"><div>So, i try=
+ to make AM receiver..</div><div dir=3D"auto">And the resulted demodulated =
+audio was distorted from its original signal..</div><div dir=3D"auto">So, a=
+t this experiment i used signal generator to make AM with sine wave modulat=
+ed signal..</div><div dir=3D"auto">I expect to get pure sine wave signal af=
+ter AM demod process..</div><div dir=3D"auto">However, the sine wave is dis=
+torted as attached picture</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">I compared with another brand SDR and can get my expected signal..</div>=
+<div dir=3D"auto">So i guess there is some problem with the b210mini</div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">Thank you</div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto"><br><div class=3D"gmail_extra" dir=3D"auto">=
+<br><div class=3D"gmail_quote">On May 5, 2019 10:28 PM, &quot;Marcus D. Lee=
+ch via USRP-users&quot; &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" t=
+arget=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br type=3D"attri=
+bution"><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><div>On 05/05/2019 10:53 AM, franz kurn=
+iawan via USRP-users wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
 left:1px solid rgb(204,204,204);padding-left:1ex">
 Dear USRP users,<br>
@@ -316,30 +346,31 @@ Could you describe what it is you&#39;re trying to do?=C2=A0 Something with=
 <br>
 <br>
 <br>
-_______________________________________________<br>
+______________________________<wbr>_________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/<wbr>mailma=
+n/listinfo/usrp-users_<wbr>lists.ettus.com</a><br>
 </blockquote></div><br></div></div></div>
 </div></blockquote><blockquote type=3D"cite"><div dir=3D"ltr">&lt;IMG-20190=
 505-WA0001.jpg&gt;</div></blockquote></div></div></blockquote></div></div>
 </div></blockquote></div></div></div></blockquote></div><br></div>
-_______________________________________________<br>
+______________________________<wbr>_________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/<wbr>mailma=
+n/listinfo/usrp-users_<wbr>lists.ettus.com</a><br>
 </blockquote></div>
+</div></blockquote></div><br></div></div></div>
 
---000000000000db0a4c0588271758--
+--0000000000000ba4ca0588287859--
 
 
---===============5248364011500192368==
+--===============2038516231262259936==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -350,5 +381,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5248364011500192368==--
+--===============2038516231262259936==--
 
