@@ -2,78 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B53914208
-	for <lists+usrp-users@lfdr.de>; Sun,  5 May 2019 21:11:17 +0200 (CEST)
-Received: from [::1] (port=55304 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2396514217
+	for <lists+usrp-users@lfdr.de>; Sun,  5 May 2019 21:25:14 +0200 (CEST)
+Received: from [::1] (port=58212 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hNMXX-0004rE-Pf; Sun, 05 May 2019 15:11:11 -0400
-Received: from mail-qt1-f175.google.com ([209.85.160.175]:35040)
+	id 1hNMl5-0005VY-Nd; Sun, 05 May 2019 15:25:11 -0400
+Received: from sonic307-21.consmr.mail.sg3.yahoo.com ([106.10.241.38]:37226)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
- id 1hNMWz-0004jD-NY
- for usrp-users@lists.ettus.com; Sun, 05 May 2019 15:11:07 -0400
-Received: by mail-qt1-f175.google.com with SMTP id d20so2376046qto.2
- for <usrp-users@lists.ettus.com>; Sun, 05 May 2019 12:10:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=QsXRTCs7fH8oeUX8E/dGrUBvm4Z6xg2wkhV4GjUJ1vM=;
- b=Tu+j+K2X8anvioovOdXHBeHPlR1mf3suvXVuZzE2GjxegM3HeLLGiA4eChzXvW5G7W
- eHPj8rAjE1QFME6lFvd8Lt5nnBAFJLRBR/ZvvtnChrnFsVB6h6o1lWzj2QzBajQfwe/4
- xP2PBYrCYDmgZBW5gUMoOSxyxX3IbckWrZMkHhsq40Fbt6FJsH3sE3p9nY/LViUQuUxm
- gZwzHYmEhJh+eYAfXt1tSZbs4s4QFukqljZB3rgAsqJJzU+NOe+U1+yIR4IjQ80/EIQ2
- Xbp8viwLKNi7t87TlbHL1+vl2wzlyfLBrKdplIoJhkt2BOJKrVQOpxXUWhRbGgafkxh4
- LOFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=QsXRTCs7fH8oeUX8E/dGrUBvm4Z6xg2wkhV4GjUJ1vM=;
- b=IAcdBI2n/AIh3dAUriAtujn2ag8/j4SrOEQz138Rie/uImJFNl3nalcfvGfcTkIsNo
- Bo34fpsZfrfc5dsxDtmP7cCxbXCR+I2vykpvkW62reh63RMbxSmt2cl1otbL0MBG46ZW
- c9fSEItfop94GR/QOteiJMrhOZDj1RTNaLwpxAUwpcGD5P2+wSuqOD/6Gy0pKoeKb5Pu
- cnZM2Fd9rfSq1gCDst0vfqngp20KyMN0xDkykmH4htBnOQ9cNuhYFj8LMwdf/INPR1zR
- uGnFMfcMr2rUgpADnWXT96sqDqc6HTL9rPZl7Smif8gO5wP38An7sNkzMK82yjufCx2l
- mHCg==
-X-Gm-Message-State: APjAAAUQQRHw+R+744c/Ph5Ig7DTyHN3AgQfyGvQPxr2o4KnG+Vm+DRh
- adW2zMBqKSjjMCY2i6uJRIsgvH5NgWI=
-X-Google-Smtp-Source: APXvYqw18xOWHypmbGlsBiJTHA2o7quVd3kRUyp8SK9BPHCh34rjWa5D3utHaplfB4nfsCiz7x13XQ==
-X-Received: by 2002:ac8:2f8f:: with SMTP id l15mr15081688qta.137.1557083397018; 
- Sun, 05 May 2019 12:09:57 -0700 (PDT)
-Received: from lab.localdomain ([24.146.32.18])
- by smtp.googlemail.com with ESMTPSA id o44sm6957179qto.36.2019.05.05.12.09.56
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 05 May 2019 12:09:56 -0700 (PDT)
-Message-ID: <5CCF3503.9070803@gmail.com>
-Date: Sun, 05 May 2019 15:09:55 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ (Exim 4.91) (envelope-from <rensisam@yahoo.co.in>)
+ id 1hNMkX-0005EE-9s
+ for usrp-users@lists.ettus.com; Sun, 05 May 2019 15:25:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.co.in; s=s2048;
+ t=1557084234; bh=L3dQh0bXsv/C5h8UeRIHWilSJjotyDAR6J/Q4JdDZUE=;
+ h=Date:From:To:In-Reply-To:References:Subject:From:Subject;
+ b=Neh/Yy81OlDz4owD8g+dC/ay4QkXCukMo1UBSeoYEPwe+5gSt2lU8pwPN831pJWZLr7rwb9nH9NE2AAbixiVKgNpD/VAM88CaFDHmWS9j1cV9goqWaETix4XndZ66iYQrgGOw54wQmOjuvIwx+IanDQqULdIT4YUVoCJ74+zxB/vdgT25QRUhfSe6g7SIP11O1T/34U8Dy30IYcclfpieyeWjvuLQYjWAplnTCcCwM9tg+JyAIKjvF47ov9+bKiS+3O4flM4Qqj7D2GAbV4C4UkHBbH2tlX23CXw8TbtVIk1C6NC3tXHncoUY+KOidoW9C/mmmHPRr6vCu2MzyYn6g==
+X-YMail-OSG: tPxDaSwVM1lneiEHGq7_Z.iMmBB14UrTkxDsSUIMv2RIMfVIUKNZe.rjFzABe.J
+ B0_efZVw0NQv3EEItygVQ0gjgXxB1_jnBJNxjXBhD5FGifXS5x4LNvyd_INcKF.odXISb9iL12aG
+ C.NNiT.T5dxq_zbdG_O_hg40iyWJE_2xLzCaA.lfQ9FqO5_y_915pq4mCYiMSKJkQBB2kgDamVIh
+ BuE.JXzUeP80qT4xT2VfXJB.uSb1xiJY5LVem2vWXxmk5JAN6Q.7hP9EBswzS1aRPWPEyBH3rJTn
+ JtwWheXmWz9oDFs2oCZnOl7tYtWBLe64Mn0HIRG6gRY0KzpQU9Wk4pCsDXCdWhfc4qwlaImJI07F
+ QR9ZyyHMrOFNRwJZg9s_P9kwu69Da30k6RwOtLasRpri1QxIWJiN65.xR7yUQMGQFL4JqrQiUHoI
+ 43NtKPCo1tXQzdAw.pBSbigGjOL1tmS4hxgS3fq2vouw_2U0Xw_w8XohS9fmYqI6l56sFs8J8b_6
+ daO7AFNN46ZsXwfh68aEq0tXB94eDdkiaLz4XOoGDOqwuB4RNRYZ9.Wc7BZ352FghY2ldaVP5UOg
+ wN8axb.vU3bZe0ypsyzltRke840KBZlRHVmziWcyz3N7_Xf.Uw4zf4dSlljcCeLH2NdOR8xrR8zO
+ NDiBdQJROfuGotsxWMVZnjXozgHIZ_Te6eNFG1TTbCiTML9W1We_bM6pTxx9EJSv9xBWiv.dKtO3
+ d00OMsgX0xl47xU8lSNfYs50Ez0Tk0z6UbqJOJaa4pA2avxI2_N27BfiK7mShKIjBiwydaNfXkY.
+ 9GNTtcniDlGcDHklTtPdBqRb9B5I5KqSC6YHvxWddwTOqoDsDbNcDSbmpGq.ttm2z68MJdAtPKyN
+ BPUHfxemKIHhAV7UIMXbdsF2.jBSQE0o8JKtD8k2EPs3n90OCNibfKzUrlKX1Mxc6Y7B1CNZgcX9
+ aRWuT.YuIMRtrqiZqrDyyGafUbtu7SaQpFgdezhoiLYFBUPoJCdYVsy72ITq2404bbSWMrkpguvQ
+ zyCgWhTt6kqXRkWgfNNfoytYgtofIcMhjbzuG8Iw6PTlAwSfWNBXNGMULMSAGsQt.QilWOC3f.PK
+ 0tYNRC1n9pBDLB6jkEsEm.gCXBzFVTQuaDG3_fmCA1Sn9twEYSvdZGlPC0bZMC4.Pk.wnKR4rJXF
+ 7ShSF3wsKuCGea5025aPWn5I-
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic307.consmr.mail.sg3.yahoo.com with HTTP; Sun, 5 May 2019 19:23:54 +0000
+Date: Sun, 5 May 2019 19:23:49 +0000 (UTC)
+To: Vsr Ravi via USRP-users <usrp-users@lists.ettus.com>, 
+ Robin Coxe <robin.coxe@ettus.com>
+Message-ID: <1512147364.461598.1557084229705@mail.yahoo.com>
+In-Reply-To: <DM6PR03MB45560C798154B6FD08C115F4F2360@DM6PR03MB4556.namprd03.prod.outlook.com>
+References: <1432742277.62002.1556943355674.ref@mail.yahoo.com>
+ <1432742277.62002.1556943355674@mail.yahoo.com>
+ <DM6PR03MB45560C798154B6FD08C115F4F2360@DM6PR03MB4556.namprd03.prod.outlook.com>
 MIME-Version: 1.0
-To: Brian Padalino <bpadalino@gmail.com>, 
- franz kurniawan <digitalturtle2010@gmail.com>
-References: <CADE5U-e_T08OHwSMWA1bf=ZowbfBnG8OAtY+Sk+A8ZgeEsX_Lg@mail.gmail.com>
- <CADE5U-f05s5shd-JBRLrYKZYcjitk4rJ2VUhH-LgJ4GWgFbc7Q@mail.gmail.com>
- <CADE5U-dEzm-uRTfx1oK4KPYJOcP-uZzfSjs=V9hdLWwnU9Mb8w@mail.gmail.com>
- <CADE5U-eMh9P6oeWaYddeaVpBgWw+hGwrsKZsW1dr+TF7q9AYzg@mail.gmail.com>
- <CADE5U-f5C+KmqQ5AmDDk0PW163e4Zoe26G2mDLv0HZUEkiTUuw@mail.gmail.com>
- <CADE5U-d6qmUvvKz7e5NUdscuFntTXY5CTQnOp=Su5VZ3wnmatA@mail.gmail.com>
- <CADE5U-cHS-Q-2j3U9jfjNaanFG2YDvBWPyGQxTW81HESSbWyxg@mail.gmail.com>
- <5CCF00B6.7010407@gmail.com>
- <CADE5U-eKkLJhyWBhkoqq96iTMcFo2Z_NE7eUi4y8FyWocPaP4A@mail.gmail.com>
- <BA29EA88-EE05-41A1-BDC1-4206E31AA443@gmail.com>
- <CADE5U-emV9YVgecLrZRR54S8407hP7xMaFA5t+uf-ARGeDVmAQ@mail.gmail.com>
- <5AEC47DB-1CD7-43C1-A284-885D9A6B40A9@gmail.com>
- <CADE5U-e2BZR_v8-e0nvcOkYof-YOT2vVqQxLPFZCFC0g=bHTLA@mail.gmail.com>
- <CADE5U-fgECvK4tc_QRwRin12x+F3MNWAh1rABWMa-z8q8=UYsQ@mail.gmail.com>
- <CAEXYVK78kiSyrcxz5D5Zp_0XTOZ1yVQh9oLpOjH77TrVNmMF4Q@mail.gmail.com>
-In-Reply-To: <CAEXYVK78kiSyrcxz5D5Zp_0XTOZ1yVQh9oLpOjH77TrVNmMF4Q@mail.gmail.com>
+X-Mailer: WebService/1.1.13583 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
+ x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131
+ Safari/537.36
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] B210 mini I/Q imbalance?
+Subject: Re: [USRP-users] B200 Overrun
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -85,10 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4910920462910811545=="
+From: Rensi Mathew via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rensi Mathew <rensisam@yahoo.co.in>
+Content-Type: multipart/mixed; boundary="===============8804172550715313014=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -102,467 +81,136 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4910920462910811545==
-Content-Type: multipart/alternative;
- boundary="------------020500090301040900010801"
+--===============8804172550715313014==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_461597_442798020.1557084229704"
+Content-Length: 4871
 
-This is a multi-part message in MIME format.
---------------020500090301040900010801
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+------=_Part_461597_442798020.1557084229704
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 05/05/2019 01:12 PM, Brian Padalino wrote:
-> Since it's AM, try shifting your center frequency by a little bit.
->
-> Extract the envelope the same way, though.
->
-> My thought is the DC cancellation circuitry in the 9361 is killing 
-> your AM waveform, so use a low-IF approach instead.
->
-> Brian
-You beat me to it.  Yes, this will be true of most direct-conversion 
-architectures--there will be DC-offset removal in the analog
-   (or digital) pathways before samples are delivered to the host. That 
-removal process will turn the DC anomaly from a large
-   spur to a notch, so if you are doing narrow-band AM demodulation at 
-"DC" in the complex signal domain, some of that signal
-   will have  been removed.   Offset tuning eliminates this issue.
+ Yes USB 3.0.=C2=A0
+
+The OS is Ubuntu 16.04 LTS=C2=A064-bit
+Intel=C2=AE Core=E2=84=A2 i5-4570 CPU @ 3.20GHz =C3=97 4=C2=A0
+Disk 309.6 GB
+Memory=C2=A03.6 GiB
+Could it because of memory problem?The yellow/orange light in the system bl=
+inks when USRP runs(showing heavily loaded).
+Rensi    On Saturday, 4 May, 2019, 10:09:03 am IST, Robin Coxe <robin.coxe@=
+ettus.com> wrote: =20
+=20
+ Are you using USB 3.0? =C2=A0USB 2.0 will max out at about 8 Ms/s. =C2=A0
 
 
->
-> On Sun, May 5, 2019 at 1:05 PM franz kurniawan via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     I reduced to -40db, -50db and have the same result..
->
->     I attached the pictures of b200mini vs other SDR with the same
->     signal generator..
->
->     I expect the same result with the 'other SDR' result..
->     The IQ data of b200 is seems to be incorrect (imbalance? )
->
->     I have tried the uhd of these version :
->     v3.14.0.0-rc3 ,
->     release_003_007_001,
->     release_003_010_001_000
->
->     But all have the same result..
->
->     I tried to disable the set_auto_iq_balance to both false and true,
->     but have no effect..
->
->     Thank you
->
->     On May 5, 2019 11:27 PM, "Marcus D Leech" <patchvonbraun@gmail.com
->     <mailto:patchvonbraun@gmail.com>> wrote:
->
->         -20dBM is loud. Try backing the generator down to -40dBm
->
->
->         Sent from my iPhone
->
->         On May 5, 2019, at 12:14 PM, franz kurniawan
->         <digitalturtle2010@gmail.com
->         <mailto:digitalturtle2010@gmail.com>> wrote:
->
->>         I set the generator at -20db and b200 gain at 50..
->>         I check that there is no cutoff at the usrp output and the
->>         input to AM demod block..
->>
->>         Below are the setting of uhd block in gnuradio
->>         Samp rate 500k
->>         Output type float32
->>         Sync PC clock
->>         Clock rate 10 Mhz external
->>         Freq 121MHz
->>         Gain 50
->>         Ch0 Bandwidth 200000
->>
->>
->>         Thank you
->>
->>         On May 5, 2019 11:05 PM, "Marcus D Leech"
->>         <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->>
->>             What output level for the generator? What gain setting on
->>             the b205?
->>
->>
->>             Sent from my iPhone
->>
->>             On May 5, 2019, at 11:58 AM, franz kurniawan
->>             <digitalturtle2010@gmail.com
->>             <mailto:digitalturtle2010@gmail.com>> wrote:
->>
->>>             So, i try to make AM receiver..
->>>             And the resulted demodulated audio was distorted from
->>>             its original signal..
->>>             So, at this experiment i used signal generator to make
->>>             AM with sine wave modulated signal..
->>>             I expect to get pure sine wave signal after AM demod
->>>             process..
->>>             However, the sine wave is distorted as attached picture
->>>
->>>             I compared with another brand SDR and can get my
->>>             expected signal..
->>>             So i guess there is some problem with the b210mini
->>>
->>>             Thank you
->>>
->>>
->>>
->>>             On May 5, 2019 10:28 PM, "Marcus D. Leech via
->>>             USRP-users" <usrp-users@lists.ettus.com
->>>             <mailto:usrp-users@lists.ettus.com>> wrote:
->>>
->>>                 On 05/05/2019 10:53 AM, franz kurniawan via
->>>                 USRP-users wrote:
->>>
->>>                     Dear USRP users,
->>>
->>>                     I used b210mini and encounter I/Q imbalance as
->>>                     below picture..
->>>                     As a result, the analog signal demodulation was
->>>                     distorted and result a crappy sound..
->>>                     I
->>>                     Is there any workaround regarding this issue?
->>>
->>>                     Thank you
->>>
->>>
->>>                 Not sure what you mean.  The I/Q seem to be about
->>>                 90deg out of phase wrt one another, which is exactly
->>>                 what you'd expect.
->>>
->>>                 Could you describe what it is you're trying to do?
->>>                 Something with an audio demodulator?
->>>
->>>
->>>
->>>                 _______________________________________________
->>>                 USRP-users mailing list
->>>                 USRP-users@lists.ettus.com
->>>                 <mailto:USRP-users@lists.ettus.com>
->>>                 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>>
->>>             <IMG-20190505-WA0001.jpg>
->>
->
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+Robin Coxe | Chief R&D Program Manager, SDR | Santa Clara, CA | 408.610.636=
+3=C2=A0From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of R=
+ensi Mathew via USRP-users <usrp-users@lists.ettus.com>
+Sent: Friday, May 3, 2019 9:17 PM
+To: Vsr Ravi via USRP-users
+Subject: [USRP-users] B200 Overrun=C2=A0Dear sirI am using B200 SDR to run =
+the program usrp_spectrum_sense.py with a sampling frequency of 16e6.I thin=
+k I am using a fairly low sampling rate.
+Still I am getting some 'OOOO'.
+Could someone tell me the possible reasons for the same? And how I can avoi=
+d the same?
+Thanking youRensi Sam
 
+ =20
+------=_Part_461597_442798020.1557084229704
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---------------020500090301040900010801
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 05/05/2019 01:12 PM, Brian Padalino
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAEXYVK78kiSyrcxz5D5Zp_0XTOZ1yVQh9oLpOjH77TrVNmMF4Q@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Since it's AM, try shifting your center frequency
-        by a little bit.
-        <div><br>
-        </div>
-        <div>Extract the envelope the same way, though.</div>
-        <div><br>
-        </div>
-        <div>My thought is the DC cancellation circuitry in the 9361 is
-          killing your AM waveform, so use a low-IF approach instead.</div>
-        <div><br>
-        </div>
-        <div>Brian</div>
-      </div>
-    </blockquote>
-    You beat me to it.  Yes, this will be true of most direct-conversion
-    architectures--there will be DC-offset removal in the analog<br>
-      (or digital) pathways before samples are delivered to the host. 
-    That removal process will turn the DC anomaly from a large<br>
-      spur to a notch, so if you are doing narrow-band AM demodulation
-    at "DC" in the complex signal domain, some of that signal<br>
-      will have  been removed.   Offset tuning eliminates this issue.<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CAEXYVK78kiSyrcxz5D5Zp_0XTOZ1yVQh9oLpOjH77TrVNmMF4Q@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Sun, May 5, 2019 at 1:05 PM
-          franz kurniawan via USRP-users &lt;<a moz-do-not-send="true"
-            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir="auto">I reduced to -40db, -50db and have the same
-            result..
-            <div dir="auto"><br>
-            </div>
-            <div dir="auto">I attached the pictures of b200mini vs other
-              SDR with the same signal generator..</div>
-            <div dir="auto"><br>
-            </div>
-            <div dir="auto">I expect the same result with the 'other
-              SDR' result..</div>
-            <div dir="auto">The IQ data of b200 is seems to be incorrect
-              (imbalance? )</div>
-            <div dir="auto"><br>
-            </div>
-            <div dir="auto">I have tried the uhd of these version :</div>
-            <div dir="auto">v3.14.0.0-rc3 , </div>
-            <div dir="auto">release_003_007_001, </div>
-            <div dir="auto">release_003_010_001_000</div>
-            <div dir="auto"><br>
-            </div>
-            <div dir="auto">But all have the same result..</div>
-            <div dir="auto"><br>
-            </div>
-            <div dir="auto">I tried to disable the set_auto_iq_balance
-              to both false and true, but have no effect..</div>
-            <div dir="auto"><br>
-            </div>
-            <div dir="auto">Thank you</div>
-          </div>
-          <div class="gmail_extra"><br>
-            <div class="gmail_quote">On May 5, 2019 11:27 PM, "Marcus D
-              Leech" &lt;<a moz-do-not-send="true"
-                href="mailto:patchvonbraun@gmail.com" target="_blank">patchvonbraun@gmail.com</a>&gt;
-              wrote:<br type="attribution">
-              <blockquote class="gmail-m_1464258312546627213quote"
-                style="margin:0px 0px 0px 0.8ex;border-left:1px solid
-                rgb(204,204,204);padding-left:1ex">
-                <div dir="auto">-20dBM is loud. Try backing the
-                  generator down to -40dBm
-                  <div><br>
-                    <br>
-                    <div
-                      id="gmail-m_1464258312546627213m_2029498226510055085AppleMailSignature"
-                      dir="ltr">Sent from my iPhone</div>
-                    <div class="gmail-m_1464258312546627213elided-text">
-                      <div dir="ltr"><br>
-                        On May 5, 2019, at 12:14 PM, franz kurniawan
-                        &lt;<a moz-do-not-send="true"
-                          href="mailto:digitalturtle2010@gmail.com"
-                          target="_blank">digitalturtle2010@gmail.com</a>&gt;
-                        wrote:<br>
-                        <br>
-                      </div>
-                      <blockquote type="cite">
-                        <div dir="ltr">
-                          <div dir="auto">I set the generator at -20db
-                            and b200 gain at 50..
-                            <div dir="auto">I check that there is no
-                              cutoff at the usrp output and the input to
-                              AM demod block..</div>
-                            <div dir="auto"><br>
-                            </div>
-                            <div dir="auto">Below are the setting of uhd
-                              block in gnuradio</div>
-                            <div dir="auto">Samp rate 500k</div>
-                            <div dir="auto">Output type float32</div>
-                            <div dir="auto">Sync PC clock</div>
-                            <div dir="auto">Clock rate 10 Mhz external</div>
-                            <div dir="auto">Freq 121MHz</div>
-                            <div dir="auto">Gain 50</div>
-                            <div dir="auto">Ch0 Bandwidth 200000</div>
-                            <div dir="auto"><br>
-                            </div>
-                            <div dir="auto"><br>
-                            </div>
-                            <div dir="auto">Thank you</div>
-                          </div>
-                          <div class="gmail_extra"><br>
-                            <div class="gmail_quote">On May 5, 2019
-                              11:05 PM, "Marcus D Leech" &lt;<a
-                                moz-do-not-send="true"
-                                href="mailto:patchvonbraun@gmail.com"
-                                target="_blank">patchvonbraun@gmail.com</a>&gt;
-                              wrote:<br type="attribution">
-                              <blockquote class="gmail_quote"
-                                style="margin:0px 0px 0px
-                                0.8ex;border-left:1px solid
-                                rgb(204,204,204);padding-left:1ex">
-                                <div dir="auto">What output level for
-                                  the generator? What gain setting on
-                                  the b205?
-                                  <div><br>
-                                    <br>
-                                    <div
-id="gmail-m_1464258312546627213m_2029498226510055085m_-8860653040052543334AppleMailSignature"
-                                      dir="ltr">Sent from my iPhone</div>
-                                    <div dir="ltr"><br>
-                                      On May 5, 2019, at 11:58 AM, franz
-                                      kurniawan &lt;<a
-                                        moz-do-not-send="true"
-                                        href="mailto:digitalturtle2010@gmail.com"
-                                        target="_blank">digitalturtle2010@gmail.com</a>&gt;
-                                      wrote:<br>
-                                      <br>
-                                    </div>
-                                    <blockquote type="cite">
-                                      <div dir="ltr">
-                                        <div dir="auto">
-                                          <div>So, i try to make AM
-                                            receiver..</div>
-                                          <div dir="auto">And the
-                                            resulted demodulated audio
-                                            was distorted from its
-                                            original signal..</div>
-                                          <div dir="auto">So, at this
-                                            experiment i used signal
-                                            generator to make AM with
-                                            sine wave modulated signal..</div>
-                                          <div dir="auto">I expect to
-                                            get pure sine wave signal
-                                            after AM demod process..</div>
-                                          <div dir="auto">However, the
-                                            sine wave is distorted as
-                                            attached picture</div>
-                                          <div dir="auto"><br>
-                                          </div>
-                                          <div dir="auto">I compared
-                                            with another brand SDR and
-                                            can get my expected signal..</div>
-                                          <div dir="auto">So i guess
-                                            there is some problem with
-                                            the b210mini</div>
-                                          <div dir="auto"><br>
-                                          </div>
-                                          <div dir="auto">Thank you</div>
-                                          <div dir="auto"><br>
-                                          </div>
-                                          <div dir="auto"><br>
-                                            <div class="gmail_extra"
-                                              dir="auto"><br>
-                                              <div class="gmail_quote">On
-                                                May 5, 2019 10:28 PM,
-                                                "Marcus D. Leech via
-                                                USRP-users" &lt;<a
-                                                  moz-do-not-send="true"
-href="mailto:usrp-users@lists.ettus.com" target="_blank">usrp-users@lists.ettus.com</a>&gt;
-                                                wrote:<br
-                                                  type="attribution">
-                                                <blockquote
-                                                  style="margin:0px 0px
-                                                  0px
-                                                  0.8ex;border-left:1px
-                                                  solid
-                                                  rgb(204,204,204);padding-left:1ex">
-                                                  <div>On 05/05/2019
-                                                    10:53 AM, franz
-                                                    kurniawan via
-                                                    USRP-users wrote:<br>
-                                                    <blockquote
-                                                      class="gmail_quote"
-                                                      style="margin:0px
-                                                      0px 0px
-                                                      0.8ex;border-left:1px
-                                                      solid
-                                                      rgb(204,204,204);padding-left:1ex">
-                                                      Dear USRP users,<br>
-                                                      <br>
-                                                      I used b210mini
-                                                      and encounter I/Q
-                                                      imbalance as below
-                                                      picture..<br>
-                                                      As a result, the
-                                                      analog signal
-                                                      demodulation was
-                                                      distorted and
-                                                      result a crappy
-                                                      sound..<br>
-                                                      I<br>
-                                                      Is there any
-                                                      workaround
-                                                      regarding this
-                                                      issue?<br>
-                                                      <br>
-                                                      Thank you<br>
-                                                      <br>
-                                                      <br>
-                                                    </blockquote>
-                                                  </div>
-                                                  Not sure what you
-                                                  mean.  The I/Q seem to
-                                                  be about 90deg out of
-                                                  phase wrt one another,
-                                                  which is exactly what
-                                                  you'd expect.<br>
-                                                  <br>
-                                                  Could you describe
-                                                  what it is you're
-                                                  trying to do? 
-                                                  Something with an
-                                                  audio demodulator?<br>
-                                                  <br>
-                                                  <br>
-                                                  <br>
-_______________________________________________<br>
-                                                  USRP-users mailing
-                                                  list<br>
-                                                  <a
-                                                    moz-do-not-send="true"
-href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-                                                  <a
-                                                    moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                                                    rel="noreferrer"
-                                                    target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-                                                </blockquote>
-                                              </div>
-                                              <br>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </blockquote>
-                                    <blockquote type="cite">
-                                      <div dir="ltr">&lt;IMG-20190505-WA0001.jpg&gt;</div>
-                                    </blockquote>
-                                  </div>
-                                </div>
-                              </blockquote>
-                            </div>
-                          </div>
-                        </div>
-                      </blockquote>
-                    </div>
-                  </div>
+<html><head></head><body><div class=3D"ydpefd2b12cyahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div><div><div style=3D"font-family: Helvetica Neue, Helvetica, Ari=
+al, sans-serif; font-size: 16px;">Yes USB 3.0.&nbsp;<br clear=3D"none"></di=
+v><div style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif; =
+font-size: 16px;"><br clear=3D"none"></div><div style=3D"font-family: Helve=
+tica Neue, Helvetica, Arial, sans-serif; font-size: 16px;">The OS is Ubuntu=
+ 16.04 LTS&nbsp;64-bit<br clear=3D"none"></div><div style=3D"font-family: H=
+elvetica Neue, Helvetica, Arial, sans-serif; font-size: 16px;">Intel=C2=AE =
+Core=E2=84=A2 i5-4570 CPU @ 3.20GHz =C3=97 4&nbsp;<br clear=3D"none"><div>D=
+isk 309.6 GB<br clear=3D"none"></div><div><div>Memory&nbsp;3.6 GiB</div><di=
+v><br clear=3D"none"></div><div>Could it because of memory problem?</div><d=
+iv>The yellow/orange light in the system blinks when USRP runs(showing heav=
+ily loaded).</div></div></div></div><br></div><div>Rensi</div>
+       =20
+        </div><div id=3D"yahoo_quoted_7795705303" class=3D"yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                    On Saturday, 4 May, 2019, 10:09:03 am IST, Robin Coxe &=
+lt;robin.coxe@ettus.com&gt; wrote:
                 </div>
-              </blockquote>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"yiv1710050451"><div>
+<div>
+<div>
+<div>
+<div style=3D"direction:ltr;">Are you using USB 3.0? &nbsp;USB 2.0 will max=
+ out at about 8 Ms/s. &nbsp;</div>
+<div><br clear=3D"none">
+</div>
+<div style=3D"direction:ltr;"></div>
+<div><br clear=3D"none">
+</div>
+</div>
+<div><br clear=3D"none">
+</div>
+<div class=3D"yiv1710050451ms-outlook-ios-signature">
+<div style=3D"direction:ltr;">Robin Coxe | Chief R&amp;D Program Manager, S=
+DR | Santa Clara, CA | 408.610.6363</div>
+</div>
+</div>
+<div>&nbsp;</div>
+<hr style=3D"display:inline-block;width:98%;" tabindex=3D"-1">
+<div class=3D"yiv1710050451yqt0926039493" id=3D"yiv1710050451yqt92703"><div=
+ id=3D"yiv1710050451divRplyFwdMsg"><font face=3D"Calibri, sans-serif" style=
+=3D"font-size:11pt;" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-use=
+rs-bounces@lists.ettus.com&gt; on behalf of Rensi Mathew via USRP-users &lt=
+;usrp-users@lists.ettus.com&gt;<br clear=3D"none">
+<b>Sent:</b> Friday, May 3, 2019 9:17 PM<br clear=3D"none">
+<b>To:</b> Vsr Ravi via USRP-users<br clear=3D"none">
+<b>Subject:</b> [USRP-users] B200 Overrun
+</font><div>&nbsp;</div>
+</div></div>
+</div></div><div class=3D"yiv1710050451yqt0926039493" id=3D"yiv1710050451yq=
+t51987"><div><div class=3D"yiv1710050451yahoo-style-wrap" style=3D"font-fam=
+ily:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;">
+<div>
+<div>
+<div>Dear sir</div>
+<div>I am using B200 SDR to run the program usrp_spectrum_sense.py with a s=
+ampling frequency of 16e6.</div>
+<div>I think I am using a fairly low sampling rate.<br clear=3D"none">
+</div>
+<div>Still I am getting some 'OOOO'.</div>
+<div><br clear=3D"none">
+</div>
+<div>Could someone tell me the possible reasons for the same? And how I can=
+ avoid the same?</div>
+<div><br clear=3D"none">
+</div>
+<div>Thanking you</div>
+<div>Rensi Sam<br clear=3D"none">
+</div>
+</div>
+<br clear=3D"none">
+</div>
+</div>
+
+</div></div></div></div>
             </div>
-            <br>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a moz-do-not-send="true"
-            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------020500090301040900010801--
+        </div></body></html>
+------=_Part_461597_442798020.1557084229704--
 
 
---===============4910920462910811545==
+--===============8804172550715313014==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -573,5 +221,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4910920462910811545==--
+--===============8804172550715313014==--
 
