@@ -2,95 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5256514B37
-	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2019 15:50:51 +0200 (CEST)
-Received: from [::1] (port=49296 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5407514C7A
+	for <lists+usrp-users@lfdr.de>; Mon,  6 May 2019 16:41:12 +0200 (CEST)
+Received: from [::1] (port=58672 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hNe0x-0001yD-Fs; Mon, 06 May 2019 09:50:43 -0400
-Received: from otransport-4.outbound.emailsrv.net ([54.84.14.167]:50574)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.91) (envelope-from <jason@gardettoengineering.com>)
- id 1hNe0P-0001rP-5G
- for usrp-users@lists.ettus.com; Mon, 06 May 2019 09:50:39 -0400
-Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
- [10.4.3.253])
- by otransport-4.outbound.emailsrv.net (Postfix) with ESMTPS id C50E76167D;
- Mon,  6 May 2019 13:49:28 +0000 (UTC)
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com
- (mail-by2nam03lp2057.outbound.protection.outlook.com [104.47.42.57])
- by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id 49D02A4045;
- Mon,  6 May 2019 13:49:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com; s=selector1-gardettoengineering-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Oa6BUh3NdhVUEGuv3/KU7zbqFlUZs9u2LpckezTaaE=;
- b=MatcNIlv7TEPoyJmJspQbPbgtHZ9OYXitEk40bHP+YPrbqst4KyzVrVPQRdC8DoUTub0Ode1tRjYqZOYjARi+qGbZwGYwRVDykX76essos2qjuokWhQvvK3KHYwQ8rgHOja9hkHyf8yf6lN7qj4MabxeoNvwriQq87nJ1qw4hk4=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
- BL0PR12MB2529.namprd12.prod.outlook.com (52.132.11.156) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.12; Mon, 6 May 2019 13:49:09 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::5570:e6c8:1b85:dbc5]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::5570:e6c8:1b85:dbc5%7]) with mapi id 15.20.1856.012; Mon, 6 May 2019
- 13:49:09 +0000
-To: Neel Pandeya <neel.pandeya@ettus.com>
-Thread-Topic: [USRP-users] E320 numpy missing?
-Thread-Index: AQHVABoTNnG79M7aUECTLuXK0wxQraZWSqj+gAAKSYCAAABtIYAAAcsOgACzd4CAAMNCrYACpPAAgAOxu54=
-Date: Mon, 6 May 2019 13:49:09 +0000
-Message-ID: <BL0PR12MB23401D1C40D0DA4157173649AF300@BL0PR12MB2340.namprd12.prod.outlook.com>
-References: <BL0PR12MB2340989655F5C62AE0F27E0DAF3B0@BL0PR12MB2340.namprd12.prod.outlook.com>
- <6fa189949d2b1453a3de4b15c25fc0b0a694151e@new-postoffice.tpg.com.au>
- <BL0PR12MB2340A2AF29C7DB1E6E28EB79AF340@BL0PR12MB2340.namprd12.prod.outlook.com>,
- <CACaXmv-cp6BtiY74qvmkycTZqdqb9ZehqfWQ8FrerXC7Rfh7yw@mail.gmail.com>
-In-Reply-To: <CACaXmv-cp6BtiY74qvmkycTZqdqb9ZehqfWQ8FrerXC7Rfh7yw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-originating-ip: [65.127.220.137]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 16922b36-32de-46b4-9af3-08d6d2299d4d
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600141)(711020)(4605104)(2017052603328)(7193020);
- SRVR:BL0PR12MB2529; 
-x-ms-traffictypediagnostic: BL0PR12MB2529:
-x-ms-exchange-purlcount: 3
-x-microsoft-antispam-prvs: <BL0PR12MB25291F22420CB922CD46AE67AF300@BL0PR12MB2529.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 0029F17A3F
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(136003)(376002)(346002)(39830400003)(366004)(396003)(189003)(199004)(13464003)(71190400001)(236005)(66446008)(5070765005)(71200400001)(54896002)(6306002)(66476007)(66556008)(64756008)(9686003)(7696005)(76176011)(4326008)(5660300002)(76116006)(73956011)(256004)(14444005)(105004)(66066001)(19627405001)(476003)(606006)(2906002)(6246003)(486006)(11346002)(21615005)(52536014)(54906003)(33656002)(68736007)(99286004)(14454004)(86362001)(229853002)(74316002)(53936002)(66946007)(102836004)(53546011)(25786009)(6916009)(7736002)(81166006)(81156014)(55016002)(446003)(8676002)(6436002)(6506007)(8936002)(186003)(6116002)(3846002)(316002)(966005)(26005)(508600001);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2529;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 4iobMb7jbb7qR+80lG+STo0bpgmyT4CrcRlsllRsGdCW1tp1MXNv28jL1PJnDJor2txIe5plhcbjElX5SrfD8Zr24fvjmGjeE8oSdVqGr8G75FBuydl0efcwhJpfYfxVd9/m70D9KYr2y+10PTM76ZSCVPIeFJM2HqFtlJg48RNF5s+3dT+UWfqF+seyJ4mrdi3yO0BG6fA8wEunAG3Hjmrqyh19Tq7YNf84GM7ked5IRln07O5mSON41YwWOiY60CLesikyPGk6RX133uyXCx7qITSR0tzi7Gwn/xNHKs8bQds5SRMbMuTLbzZ+QqgYa5GS8QsKilbrPfsrgLejmEVbUlHwEPSrz+s+hWt0iCuyEkKyyHyP6H09QsV/WR/aiBA25GCAe4+vEz/S3olQbUyzGaTd0u/nQtrg/wB/8vw=
+	id 1hNenk-0004Wc-9c; Mon, 06 May 2019 10:41:08 -0400
+Received: from mail-qt1-f179.google.com ([209.85.160.179]:40650)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <zenghuacheng@gmail.com>)
+ id 1hNenC-0004Ms-R2
+ for usrp-users@lists.ettus.com; Mon, 06 May 2019 10:41:04 -0400
+Received: by mail-qt1-f179.google.com with SMTP id k24so11148309qtq.7
+ for <usrp-users@lists.ettus.com>; Mon, 06 May 2019 07:40:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=D21E5POfaKqQewRQcoFNjdzbDhiP7+WVoFhDiQde570=;
+ b=H2Iur1dNVK9Z/OYP5mb2Kj0ZxbjDBC6QB2QUOjYvPhcTfYpERkNqqUeZHKdJCudcB2
+ wFI7R+M+IDfbemhbQpycxa5EJT0+ana9NNh5/fpSVFR6Wmlhkr9moURFz8KsGw2gV5qg
+ fkp4YKlDwSU7E9HfQrqYGnPBigvTov5YfHo4qy7IxQ559zkw780KLrcalNUZXZ8+03Zc
+ bUi+8/uppk880VrnoIRa0Gm7N2GPpX56qglzs59/T4Zk96mFvGn91SNSPFlnb2C29lAY
+ saP7WLeXXGEoApcI5wgNEzuF/YEZgklVdzR0vRxJmvnLEMRYM7vuq2BFa2DVqAU5Ghvv
+ 0eFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=D21E5POfaKqQewRQcoFNjdzbDhiP7+WVoFhDiQde570=;
+ b=a4ZbtgFjDHQ+rENAe4+lIUzVFP8W2oRpEbZo04cPRfx8Wb2Zx6vkqxpM5ayl4ChN9N
+ KiQF1JZRI6+ojiYO7BXerNqOpdWV8+L31UsW6LmKbDBQPAszTocnCFdGP/yI9UMIxWxt
+ fnv2dyFDe5/4vkXX94o03tTWQjdQdBDtvBZA3UTFvlLZyY/4Rd16WVlCJb6wa+Bdetdk
+ RfnV7NyfVFKTZ8b1I4ytQQDVa0sb9WsIxCAvDKNbU5t3hfdEjhj2FAHFMVgRprz4wR8z
+ XU7gjxYDgf2EbSC70z00Q1AlX6HHJDNxAGvz8hVD0TYQhcX/sTkbDgyeIrmOYJlcLgYv
+ hGJg==
+X-Gm-Message-State: APjAAAXr8fdBsD48ul5WtDsgLVMxGACBXHk5vi4NZGPQiqTCLq/koJw8
+ plHZKqTAY/TTrSeVlEc/3q4xQakB9gA6TsqurbkfIXHFmKI=
+X-Google-Smtp-Source: APXvYqyJ3caEclW0psaZYV/+XFTUsqTKuA0iWfdv1DYI5GjbaHg9uzCIyt7Rt91TQ7rX6JV6kQliqWGlaNOW43IuB0k=
+X-Received: by 2002:ac8:7a85:: with SMTP id x5mr13194471qtr.0.1557153593892;
+ Mon, 06 May 2019 07:39:53 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16922b36-32de-46b4-9af3-08d6d2299d4d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2019 13:49:09.2245 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2529
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-by2nam03lp2057.outbound.protection.outlook.com|104.47.42.57|NAM03-BY2-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.42.57, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-32767-c
-X-Mailprotector-ID: ce2f7e13-aa38-44e2-adc0-ed2aa114229e
+Date: Mon, 6 May 2019 10:39:43 -0400
+Message-ID: <CAOR0_ujmQ3poAON=sxihVFa7-+dgOcRdAOWAYuUvzm7MQj5EyQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] E320 numpy missing?
+Subject: [USRP-users] Bursty packet transmission
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -102,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3687551229109350797=="
+From: Huacheng Zeng via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Huacheng Zeng <zenghuacheng@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7393810730862433449=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -119,525 +76,153 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3687551229109350797==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB23401D1C40D0DA4157173649AF300BL0PR12MB2340namp_"
+--===============7393810730862433449==
+Content-Type: multipart/alternative; boundary="000000000000d3291e0588391254"
 
---_000_BL0PR12MB23401D1C40D0DA4157173649AF300BL0PR12MB2340namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000d3291e0588391254
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+I am using USRP N210 for bursty packet transmission, and have difficulty to
+understand "tx_md.end_of_burst = true" in C++ code. I am attaching my code
+at the end and hope someone can help.
+
+The problem is:
+1. when I comment out "tx_md.end_of_burst = true" and use the function for
+transmission periodically, my receiver can decode the packet successfully.
+But it seems that it can only detect N - 1 packet, where N is the number of
+packets that I sent at the transmitter. For example, when I send 3 packets,
+the receiver can only decode 2 packets, and so forth. Not sure what is the
+reason behind this.
+
+2. When I uncomment "tx_md.end_of_burst = true" (either the one inside the
+WHILE loop or outside one), my receiver cannot decode the packets anymore.
+When I use spectrum analyzer to see the signal, I can see that the
+transmitter does send the signal into the air and the waveform shape looks
+right. However, the signal cannot be decoded.
+
+
+Any suggestions?
+
+Thank you!
+
+Hua
+
+
+
+
+
+=========================
+
+size_t sdr_dev::usrp_transmit(vector<complex<float>*> tx_buff_ptr, size_t
+requested_num_samps) {
+
+    tx_md.start_of_burst = true;
+    tx_md.end_of_burst = false;
+    tx_md.has_time_spec = false;
+    tx_md.time_spec = uhd::time_spec_t(1.0); //0.1
+
+    //the first call to send() will block this many seconds before sending:
+    timeout = seconds_in_future + 0.1; //timeout (delay before transmit +
+padding)
+
+    vector<complex<float>*> tx_buff_ptr_tmp = tx_buff_ptr;
+
+    size_t acc_num_samps = 0; //number of accumulated samples
+    size_t total_num_samps = requested_num_samps;
+    while(acc_num_samps < total_num_samps) {
+        size_t samps_to_send = total_num_samps - acc_num_samps;
+        if (samps_to_send > tx_max_num_samps) {
+            samps_to_send = tx_max_num_samps;
+        }
+        else {
+            //tx_md.end_of_burst = true;
+        }
+
+        for (int i = 0; i < tx_buff_ptr.size(); i++) tx_buff_ptr_tmp[i] =
+&tx_buff_ptr[i][acc_num_samps];
+
+        //send a single packet
+        size_t num_tx_samps = tx_stream->send(tx_buff_ptr_tmp,
+samps_to_send, tx_md, timeout);
+
+        //do not use time spec for subsequent packets
+        tx_md.has_time_spec = false;
+        tx_md.start_of_burst = false;
+
+        acc_num_samps += num_tx_samps;
+    }
+
+    //tx_md.end_of_burst = true;
+    tx_stream->send("", 0, tx_md);
+
+    return acc_num_samps;
+}
+==============================
+
+--000000000000d3291e0588391254
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Neel, I will keep an eye out for updates.
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi, <br></div><div><br></div><div>I =
+am using USRP N210 for bursty packet transmission, and have difficulty to u=
+nderstand &quot;tx_md.end_of_burst =3D true&quot; in C++ code. I am attachi=
+ng my code at the end and hope someone can help.</div><div><br></div><div>T=
+he problem is: <br></div><div>1. when I comment out &quot;tx_md.end_of_burs=
+t =3D true&quot; and use the function for transmission periodically, my rec=
+eiver can decode the packet successfully. But it seems that it can only det=
+ect N - 1 packet, where N is the number of packets that I sent at the trans=
+mitter. For example, when I send 3 packets, the receiver can only decode 2 =
+packets, and so forth. Not sure what is the reason behind this. <br></div><=
+div><br></div><div>2. When I uncomment &quot;tx_md.end_of_burst =3D true&qu=
+ot; (either the one inside the WHILE loop or outside one), my receiver cann=
+ot decode the packets anymore. When I use spectrum analyzer to see the sign=
+al, I can see that the transmitter does send the signal into the air and th=
+e waveform shape looks right. However, the signal cannot be decoded. <br></=
+div><div><br></div><div><br></div><div>Any suggestions?</div><div><br></div=
+><div>Thank you!</div><div><br></div><div>Hua<br></div><div><br></div><div>=
+<br></div><div><br></div><div><br></div><div><br></div><div>=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div><br>=
+size_t sdr_dev::usrp_transmit(vector&lt;complex&lt;float&gt;*&gt; tx_buff_p=
+tr, size_t requested_num_samps) {<br><br>=C2=A0=C2=A0=C2=A0 tx_md.start_of_=
+burst =3D true;<br>=C2=A0=C2=A0=C2=A0 tx_md.end_of_burst =3D false;<br>=C2=
+=A0=C2=A0=C2=A0 tx_md.has_time_spec =3D false;=C2=A0=C2=A0 <br>=C2=A0=C2=A0=
+=C2=A0 tx_md.time_spec =3D uhd::time_spec_t(1.0); //0.1=C2=A0 <br><br>=C2=
+=A0=C2=A0=C2=A0 //the first call to send() will block this many seconds bef=
+ore sending:<br>=C2=A0=C2=A0=C2=A0 timeout =3D seconds_in_future + 0.1; //t=
+imeout (delay before transmit + padding)<br><br>=C2=A0=C2=A0=C2=A0 vector&l=
+t;complex&lt;float&gt;*&gt; tx_buff_ptr_tmp =3D tx_buff_ptr;<br><br>=C2=A0=
+=C2=A0=C2=A0 size_t acc_num_samps =3D 0; //number of accumulated samples<br=
+>=C2=A0=C2=A0=C2=A0 size_t total_num_samps =3D requested_num_samps;<br>=C2=
+=A0=C2=A0=C2=A0 while(acc_num_samps &lt; total_num_samps) {<br>=C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0 size_t samps_to_send =3D total_num_samps - acc_nu=
+m_samps;<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 if (samps_to_send &gt; tx=
+_max_num_samps) {<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=
+=A0 samps_to_send =3D tx_max_num_samps;<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 } <br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 else {<br>=C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 //tx_md.end_of_burst =3D true;=
+<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 }<br><br>=C2=A0=C2=A0=C2=A0 =C2=
+=A0=C2=A0=C2=A0 for (int i =3D 0; i &lt; tx_buff_ptr.size(); i++) tx_buff_p=
+tr_tmp[i] =3D &amp;tx_buff_ptr[i][acc_num_samps];<br><br>=C2=A0=C2=A0=C2=A0=
+ =C2=A0=C2=A0=C2=A0 //send a single packet<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=
+=A0=C2=A0 size_t num_tx_samps =3D tx_stream-&gt;send(tx_buff_ptr_tmp, samps=
+_to_send, tx_md, timeout);<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 <br>=C2=
+=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 //do not use time spec for subsequent pa=
+ckets<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 tx_md.has_time_spec =3D fals=
+e;<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 tx_md.start_of_burst =3D false;=
+<br><br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 acc_num_samps +=3D num_tx_sam=
+ps;<br>=C2=A0=C2=A0=C2=A0 }<br>=C2=A0=C2=A0=C2=A0 <br>=C2=A0=C2=A0=C2=A0 //=
+tx_md.end_of_burst =3D true;<br>=C2=A0=C2=A0=C2=A0 tx_stream-&gt;send(&quot=
+;&quot;, 0, tx_md);<br>=C2=A0=C2=A0=C2=A0 <br>=C2=A0=C2=A0=C2=A0 return acc=
+_num_samps;<br>}<br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br></div><div><br></div><d=
+iv><br></div><div><br></div></div></div>
 
-________________________________
-From: Neel Pandeya <neel.pandeya@ettus.com>
-Sent: Saturday, May 4, 2019 1:23 AM
-To: Jason Matusiak
-Cc: Ettus Mail List; Chris Gobbett
-Subject: Re: [USRP-users] E320 numpy missing?
-
-Hello Jason and Chris:
-
-I understand your frustration. We are working on instructions for adding GN=
-U Radio support to the E320, and we will provide you with a filesystem. We =
-should have something ready for you by the middle of next week. I can be yo=
-ur point-of-contact on this issue, and feel free to contact me directly. I =
-will make a follow-on post as well to update the mailing list.
-
---Neel Pandeya
-
-
-
-On Thu, 2 May 2019 at 08:07, Jason Matusiak via USRP-users <usrp-users@list=
-s.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-Chris,
-
-It is a shame that the E320 doesn't seem to have complete support, but mayb=
-e someone from Ettus will chime in at some point (though it has already bee=
-n over a month since you posted).  As of now, these are paperweights in our=
- office and I have to switch gears to a different project with a different =
-vendor until it gets updated.  I am not sure who we can even ping at Ettus =
-on the embedded front in case they aren't monitoring the mailing list.  Do =
-you have a contact there on the embedded side?
-
-You don't happen to have a series of steps posted somewhere that you use to=
- try to get the E320 to a usable state do you?
-
-
-
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com<mailto:usrp-users-boun=
-ces@lists.ettus.com>> on behalf of Chris Gobbett via USRP-users <usrp-users=
-@lists.ettus.com<mailto:usrp-users@lists.ettus.com>>
-Sent: Wednesday, May 1, 2019 9:21 PM
-To: Ettus Mail List
-Subject: Re: [USRP-users] E320 numpy missing?
-
-I've had similar problems since this post in March, and still waiting on a =
-'clean' way forward
-http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-March/0593=
-32.html
-
-In the interim I've done lots of cross-compiling and also stealing librarie=
-s/binaries from working E310 images; many of the included binaries seem gim=
-ped or a step down from what was on the E310.
-
------ Original Message -----
-From:
-"Jason Matusiak" <jason@gardettoengineering.com<mailto:jason@gardettoengine=
-ering.com>>
-
-To:
-"Philip Balister" <philip@balister.org<mailto:philip@balister.org>>, "Ettus=
- Mail List" <usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>>
-Cc:
-
-Sent:
-Wed, 1 May 2019 14:40:16 +0000
-Subject:
-Re: [USRP-users] E320 numpy missing?
+--000000000000d3291e0588391254--
 
 
-I just double-checked and ENABLE_PYTHON is on in my system (which was appar=
-ently the default since I didn't spell it out in my cmake command).
-
-________________________________
-From: Jason Matusiak
-Sent: Wednesday, May 1, 2019 10:36 AM
-To: Philip Balister; Ettus Mail List
-Subject: Re: [USRP-users] E320 numpy missing?
-
-I actually was using a .sh file from earlier in April, but pulling down the=
- most recent: e3xx_e320_sdk_default-v3.13.0.2-20190415.zip, I still don't s=
-ee pretty much any site-packages in the sysroot.
-
-Those things seem to be there automatically when using the .sh info with th=
-e e310 files.
-
-I will try including python in the cmake path (which I've never needed to d=
-o before), but is that going to be enough?  I feel like the back-and-forth =
-you and I had last year with the rocko build for the E310 were for pretty s=
-imilar issues.  But honestly, I need to look back at the emails for the exa=
-ct issues at the time.
-
-________________________________
-From: Philip Balister <philip@balister.org<mailto:philip@balister.org>>
-Sent: Wednesday, May 1, 2019 10:31 AM
-To: Jason Matusiak; Ettus Mail List
-Subject: Re: [USRP-users] E320 numpy missing?
-
-On 05/01/2019 09:55 AM, Jason Matusiak via USRP-users wrote:
-> I also get a "ImportError: No module named sip" when I try to run: uhd_si=
-ggen_gui
->
-> So I think a few things might be missing from the cross-compile setup.
-
-I took a few minutes and looked at the current state of the BSP. It
-looks like you might have this image:
-
-https://github.com/EttusResearch/meta-ettus/blob/master/meta-ettus-core/rec=
-ipes-core/images/developer-image.bb
-
-I forget where numpy is the gnuradio dependency tree, but I'm going to
-guess if you enable python support in gnuradio (yes it might be possible
-to use gnuradio without python) you will need numpy to build/run.
-
-Philip
-
->
-> ________________________________
-> From: Jason Matusiak
-> Sent: Wednesday, May 1, 2019 8:46 AM
-> To: Ettus Mail List
-> Subject: E320 numpy missing?
->
-> Finally got my E320 in and I cross-compiled a new setup.  I tried to fire=
- up my flowgraph (which works fine on an E310) and it is complaining about =
-numpy missing.
->
-> If I do a search from / on the E320, the only numpy that is showing up is=
-:
-> /usr/include/boost/python/numpy
->
-> If I do a search from a good E310 in / I see:
-> ./usr/lib/python2.7/site-packages/numpy
-> ./usr/lib/python2.7/site-packages/numpy/core/include/numpy
-> ./usr/lib/python2.7/site-packages/Cython/Includes/numpy
-> ./usr/include/boost/python/numpy
->
->
-> Back on the host machine, my E320 cross-compile prefix shows numpy:
-> ./sysroots/cortexa9hf-neon-oe-linux-gnueabi/usr/include/boost/python/nump=
-y
->
-> My good E310 prefix shows:
-> ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13=
-.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy
-> ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13=
-.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy/core/include/numpy
-> ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13=
-.1-r0/numpy-1.13.1/numpy
-> ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1.13=
-.1-r0/numpy-1.13.1/numpy/core/include/numpy
-> ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages=
-/Cython/Includes/numpy
-> ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages=
-/numpy
-> ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packages=
-/numpy/core/include/numpy
-> ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/include/boost/python/numpy
->
-> So, was numpy forgotten?  Left out for a reason?  I am going to attempt t=
-o build it by hand, but I have a fear that I am going to go down dependency=
- hell with this and other missing packages that GR might want.
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---_000_BL0PR12MB23401D1C40D0DA4157173649AF300BL0PR12MB2340namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks&nbsp;Neel, I will keep an eye out for updates.</div>
-<div id=3D"Signature">
-<div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Neel Pandeya &lt;neel=
-.pandeya@ettus.com&gt;<br>
-<b>Sent:</b> Saturday, May 4, 2019 1:23 AM<br>
-<b>To:</b> Jason Matusiak<br>
-<b>Cc:</b> Ettus Mail List; Chris Gobbett<br>
-<b>Subject:</b> Re: [USRP-users] E320 numpy missing?</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div class=3D"x_gmail_default" style=3D"font-family:verdana,sans-serif">Hel=
-lo Jason and Chris:</div>
-<div class=3D"x_gmail_default" style=3D"font-family:verdana,sans-serif"><br=
->
-</div>
-<div class=3D"x_gmail_default" style=3D"font-family:verdana,sans-serif">I u=
-nderstand your frustration. We are working on instructions for adding GNU R=
-adio support to the E320, and we will provide you with a filesystem. We sho=
-uld have something ready for you by
- the middle of next week. I can be your point-of-contact on this issue, and=
- feel free to contact me directly. I will make a follow-on post as well to =
-update the mailing list.<br>
-</div>
-<div class=3D"x_gmail_default" style=3D"font-family:verdana,sans-serif"><br=
->
-</div>
-<div class=3D"x_gmail_default" style=3D"font-family:verdana,sans-serif">--N=
-eel Pandeya</div>
-<div class=3D"x_gmail_default" style=3D"font-family:verdana,sans-serif"><br=
->
-</div>
-<div class=3D"x_gmail_default" style=3D"font-family:verdana,sans-serif"><br=
->
-</div>
-</div>
-<br>
-<div class=3D"x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail_attr">On Thu, 2 May 2019 at 08:07, Jason =
-Matusiak via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">u=
-srp-users@lists.ettus.com</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
-er-left:1px solid rgb(204,204,204); padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Chris,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-It is a shame that the E320 doesn't seem to have complete support, but mayb=
-e someone from Ettus will chime in at some point (though it has already bee=
-n over a month since you posted).&nbsp; As of now, these are paperweights i=
-n our office and I have to switch gears
- to a different project with a different vendor until it gets updated.&nbsp=
-; I am not sure who we can even ping at Ettus on the embedded front in case=
- they aren't monitoring the mailing list.&nbsp; Do you have a contact there=
- on the embedded side?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-You don't happen to have a series of steps posted somewhere that you use to=
- try to get the E320 to a usable state do you?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div id=3D"x_gmail-m_7291063076868061659Signature">
-<div>
-<div id=3D"x_gmail-m_7291063076868061659appendonsend"></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"x_gmail-m_7291063076868061659divRplyFwdMsg" dir=3D"ltr"><font fa=
-ce=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>Fr=
-om:</b> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus.com=
-" target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt;
- on behalf of Chris Gobbett via USRP-users &lt;<a href=3D"mailto:usrp-users=
-@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Sent:</b> Wednesday, May 1, 2019 9:21 PM<br>
-<b>To:</b> Ettus Mail List<br>
-<b>Subject:</b> Re: [USRP-users] E320 numpy missing?</font>
-<div>&nbsp;</div>
-</div>
-<div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-s=
-erif; font-size:12px">
-I've had similar problems since this post in March, and still waiting on a =
-'clean' way forward
-<div><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com=
-/2019-March/059332.html" target=3D"_blank">http://lists.ettus.com/pipermail=
-/usrp-users_lists.ettus.com/2019-March/059332.html</a></div>
-<div><br>
-</div>
-<div>In the interim I've done lots of cross-compiling and also stealing lib=
-raries/binaries from working E310 images; many of the included binaries see=
-m gimped or a step down from what was on the E310.<br>
-</div>
-<div><br>
-</div>
-<blockquote>----- Original Message -----<br>
-<div style=3D"width:100%; background:rgb(228,228,228) none repeat scroll 0%=
- 0%">
-<div style=3D"font-weight:bold">From:</div>
-&quot;Jason Matusiak&quot; &lt;<a href=3D"mailto:jason@gardettoengineering.=
-com" target=3D"_blank">jason@gardettoengineering.com</a>&gt;</div>
-<br>
-<div style=3D"font-weight:bold">To:</div>
-&quot;Philip Balister&quot; &lt;<a href=3D"mailto:philip@balister.org" targ=
-et=3D"_blank">philip@balister.org</a>&gt;, &quot;Ettus Mail List&quot; &lt;=
-<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@=
-lists.ettus.com</a>&gt;<br>
-<div style=3D"font-weight:bold">Cc:</div>
-<br>
-<div style=3D"font-weight:bold">Sent:</div>
-Wed, 1 May 2019 14:40:16 &#43;0000<br>
-<div style=3D"font-weight:bold">Subject:</div>
-Re: [USRP-users] E320 numpy missing?<br>
-<br>
-<br>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I just double-checked and ENABLE_PYTHON is on in my system (which was appar=
-ently the default since I didn't spell it out in my cmake command).</div>
-<div>
-<div>
-<div></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<hr style=3D"width:98%">
-<div dir=3D"ltr"><font face=3D"Calibri, sans-serif" color=3D"#000000" style=
-=3D"font-size:11pt"><b>From:</b> Jason Matusiak<br>
-<b>Sent:</b> Wednesday, May 1, 2019 10:36 AM<br>
-<b>To:</b> Philip Balister; Ettus Mail List<br>
-<b>Subject:</b> Re: [USRP-users] E320 numpy missing?</font>
-<div>&nbsp;</div>
-</div>
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I actually was using a .sh file from earlier in April, but pulling down the=
- most recent:&nbsp;e3xx_e320_sdk_default-v3.13.0.2-20190415.zip, I still do=
-n't see pretty much any site-packages in the sysroot.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Those things seem to be there automatically when using the .sh info with th=
-e e310 files.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I will try including python in the cmake path (which I've never needed to d=
-o before), but is that going to be enough?&nbsp; I feel like the back-and-f=
-orth you and I had last year with the rocko build for the E310 were for pre=
-tty similar issues.&nbsp; But honestly, I
- need to look back at the emails for the exact issues at the time.</div>
-<div>
-<div>
-<div></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<hr style=3D"width:98%">
-<div dir=3D"ltr"><font face=3D"Calibri, sans-serif" color=3D"#000000" style=
-=3D"font-size:11pt"><b>From:</b> Philip Balister &lt;<a href=3D"mailto:phil=
-ip@balister.org" target=3D"_blank">philip@balister.org</a>&gt;<br>
-<b>Sent:</b> Wednesday, May 1, 2019 10:31 AM<br>
-<b>To:</b> Jason Matusiak; Ettus Mail List<br>
-<b>Subject:</b> Re: [USRP-users] E320 numpy missing?</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"x_gmail-m_7291063076868061659x_x_BodyFragment"><font size=3D"=
-2"><span style=3D"font-size:11pt"></span></font>
-<div class=3D"x_gmail-m_7291063076868061659x_x_PlainText">On 05/01/2019 09:=
-55 AM, Jason Matusiak via USRP-users wrote:<br>
-&gt; I also get a &quot;ImportError: No module named sip&quot; when I try t=
-o run: uhd_siggen_gui<br>
-&gt; <br>
-&gt; So I think a few things might be missing from the cross-compile setup.=
-<br>
-<br>
-I took a few minutes and looked at the current state of the BSP. It<br>
-looks like you might have this image:<br>
-<br>
-<a href=3D"https://github.com/EttusResearch/meta-ettus/blob/master/meta-ett=
-us-core/recipes-core/images/developer-image.bb" target=3D"_blank">https://g=
-ithub.com/EttusResearch/meta-ettus/blob/master/meta-ettus-core/recipes-core=
-/images/developer-image.bb</a><br>
-<br>
-I forget where numpy is the gnuradio dependency tree, but I'm going to<br>
-guess if you enable python support in gnuradio (yes it might be possible<br=
->
-to use gnuradio without python) you will need numpy to build/run.<br>
-<br>
-Philip<br>
-<br>
-&gt; <br>
-&gt; ________________________________<br>
-&gt; From: Jason Matusiak<br>
-&gt; Sent: Wednesday, May 1, 2019 8:46 AM<br>
-&gt; To: Ettus Mail List<br>
-&gt; Subject: E320 numpy missing?<br>
-&gt; <br>
-&gt; Finally got my E320 in and I cross-compiled a new setup.&nbsp; I tried=
- to fire up my flowgraph (which works fine on an E310) and it is complainin=
-g about numpy missing.<br>
-&gt; <br>
-&gt; If I do a search from / on the E320, the only numpy that is showing up=
- is:<br>
-&gt; /usr/include/boost/python/numpy<br>
-&gt; <br>
-&gt; If I do a search from a good E310 in / I see:<br>
-&gt; ./usr/lib/python2.7/site-packages/numpy<br>
-&gt; ./usr/lib/python2.7/site-packages/numpy/core/include/numpy<br>
-&gt; ./usr/lib/python2.7/site-packages/Cython/Includes/numpy<br>
-&gt; ./usr/include/boost/python/numpy<br>
-&gt; <br>
-&gt; <br>
-&gt; Back on the host machine, my E320 cross-compile prefix shows numpy:<br=
->
-&gt; ./sysroots/cortexa9hf-neon-oe-linux-gnueabi/usr/include/boost/python/n=
-umpy<br>
-&gt; <br>
-&gt; My good E310 prefix shows:<br>
-&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
-.13.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy<br>
-&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
-.13.1-r0/numpy-1.13.1/build/src.linux-x86_64-2.7/numpy/core/include/numpy<b=
-r>
-&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
-.13.1-r0/numpy-1.13.1/numpy<br>
-&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/src/debug/python-numpy/1=
-.13.1-r0/numpy-1.13.1/numpy/core/include/numpy<br>
-&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packa=
-ges/Cython/Includes/numpy<br>
-&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packa=
-ges/numpy<br>
-&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/lib/python2.7/site-packa=
-ges/numpy/core/include/numpy<br>
-&gt; ./sysroots/armv7ahf-neon-oe-linux-gnueabi/usr/include/boost/python/num=
-py<br>
-&gt; <br>
-&gt; So, was numpy forgotten?&nbsp; Left out for a reason?&nbsp; I am going=
- to attempt to build it by hand, but I have a fear that I am going to go do=
-wn dependency hell with this and other missing packages that GR might want.=
-<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" target=3D"_blank">
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt; <br>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_BL0PR12MB23401D1C40D0DA4157173649AF300BL0PR12MB2340namp_--
-
-
---===============3687551229109350797==
+--===============7393810730862433449==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -648,5 +233,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3687551229109350797==--
+--===============7393810730862433449==--
 
