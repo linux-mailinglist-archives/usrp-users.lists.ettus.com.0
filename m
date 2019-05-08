@@ -2,42 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47EED17900
-	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2019 14:03:59 +0200 (CEST)
-Received: from [::1] (port=60312 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B5717A22
+	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2019 15:13:44 +0200 (CEST)
+Received: from [::1] (port=48524 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOLIh-0000qn-Ec; Wed, 08 May 2019 08:03:55 -0400
-Received: from forward101o.mail.yandex.net ([37.140.190.181]:57071)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.91) (envelope-from <ramazan.cetin@gohm.com.tr>)
- id 1hOLI9-0000i7-F6
- for usrp-users@lists.ettus.com; Wed, 08 May 2019 08:03:51 -0400
-Received: from mxback18j.mail.yandex.net (mxback18j.mail.yandex.net
- [IPv6:2a02:6b8:0:1619::94])
- by forward101o.mail.yandex.net (Yandex) with ESMTP id 706223C00D60;
- Wed,  8 May 2019 15:02:39 +0300 (MSK)
-Received: from smtp4p.mail.yandex.net (smtp4p.mail.yandex.net
- [2a02:6b8:0:1402::15:6])
- by mxback18j.mail.yandex.net (nwsmtp/Yandex) with ESMTP id vYsN4spBo7-2dB4PP3V;
- Wed, 08 May 2019 15:02:39 +0300
-Received: by smtp4p.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id
- WbHWIdgKae-2comMc2r; Wed, 08 May 2019 15:02:38 +0300
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (Client certificate not present)
-To: Ettus Research Support <support@ettus.com>, usrp-users@lists.ettus.com
-Message-ID: <49b1b11e-15ac-e733-6643-549679512c09@gohm.com.tr>
-Date: Wed, 8 May 2019 15:02:37 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+	id 1hOMO8-0005Ge-Uq; Wed, 08 May 2019 09:13:36 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:43447)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <bpadalino@gmail.com>) id 1hOMNa-00057X-4B
+ for usrp-users@lists.ettus.com; Wed, 08 May 2019 09:13:32 -0400
+Received: by mail-oi1-f179.google.com with SMTP id j9so14337581oie.10
+ for <usrp-users@lists.ettus.com>; Wed, 08 May 2019 06:12:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=qYE//C831oDBHE9kwj+eFDVCvvkYUD4yH4CKC3fv1Es=;
+ b=g9/Prp2zLq78EhH3SH1D+f9R1R5ZDODwgBZ4BwacwnpU5n49nRAhjcPDZq3rOTZkzd
+ DoQ+OOlHwXMYjZW5dtVgzF5M8ND9XHUSG5WA2+eH+X/k6dxbJyD/o9Npx0+atIQ6YjY+
+ 3zcSZVJwV63wJMr6Q5L8oIFs7zE3EvZIOllYplNpWI88xvptN6i+R4BYsyguSLrdGJBs
+ zHSMLiOREO4x4gi8QJewmRXhbawsLnfcA73DjmtyjdJeyVlnU+76HsbXkPkJJ3g3ug5V
+ TE6I72PClJJtp3Qc3qwbMR72RsS3jwXDIPSCRXuhm/jUgUfVTnrf247Xx6g3CP+LK3gj
+ 8dqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=qYE//C831oDBHE9kwj+eFDVCvvkYUD4yH4CKC3fv1Es=;
+ b=Wlv+HOmR5B/jC58P1c5fLkZC7fTCMBlmu2vAOEc0xIFKCzdJUkKgy+RPk8aZU+dVGa
+ a2OY4hJPdJkW+boTWR2tPrNwoY3b/+amMNJFrGESXmUF2URhQFLClb3u6OknLbFH2Tn8
+ L3TaogQvAS+7T2fUmOruU9qYUCp4r4seAMjQTnjg/1rkILRJuuz139GsEbT4jyZO1saE
+ RmT+A78Jy3Fqekut1XeLHfchjX9zfN/ZIquu2wCNiC+JJ6AxVBUiEN0ISU2DsfqMmQK5
+ EuTINxHwnWKgH0sM1u1o7vXBB6v+IeB85L8m3cXRrF/hlvNi4lF0syriDVZkVw3isOin
+ 3atw==
+X-Gm-Message-State: APjAAAUrqXNzqP11gzWeg8ifgEWF/IfOgnKn69020gnzpw78phFPRIu5
+ bEJks89vFrbup/wBJQ3nE+E9+q2ShD6WIQLRnA1LwXum
+X-Google-Smtp-Source: APXvYqwkR97u2iMfuS9kEyNCm7oR3mTSWHXpqRZ8ULfm9L1WHcvI2TmlhFVhwayTcExyJghatx/xOVM/r+vghjk3dtk=
+X-Received: by 2002:aca:ef82:: with SMTP id n124mr2148746oih.177.1557321141231; 
+ Wed, 08 May 2019 06:12:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: en-US
+References: <c60adc662b64d17b8d862d9557d4700c@iem.thm.de>
+In-Reply-To: <c60adc662b64d17b8d862d9557d4700c@iem.thm.de>
+Date: Wed, 8 May 2019 09:12:09 -0400
+Message-ID: <CAEXYVK5Tcb_wJLxu17Kry8WLAVc6tqzifJaCE=7n34UDTrP_4A@mail.gmail.com>
+To: Marwa Boukhari <Marwa.Boukhari@iem.thm.de>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] Running E310 in Network Mode
+Subject: Re: [USRP-users] how can i receive 2 different signals with the
+ USRP B210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -49,11 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Ramazan_=C3=87etin_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Ramazan_=c3=87etin?= <ramazan.cetin@gohm.com.tr>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Brian Padalino <bpadalino@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============1326531815429084964=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -67,22 +80,62 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hello,
+--===============1326531815429084964==
+Content-Type: multipart/alternative; boundary="0000000000006ca56c05886015a6"
 
-We want to run USRP E310 in network mode. I think the samples coming 
-from FPGA passing through CPU before sending to network. This decreases 
-bandwidth because of CPU limitations.
+--0000000000006ca56c05886015a6
+Content-Type: text/plain; charset="UTF-8"
+
+On Wed, May 8, 2019 at 5:43 AM Marwa Boukhari via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+> I want to send and receive a Signal  at the frequency 900MHz with the
+> Channel 0 , and want to receive another Signal from the generator at the
+> frequency 5,68GHz with the other channel.
+> I tried to realize this but it didn't work.
+> Has someone maybe an idea what's the problem is.
+>
+
+The two receivers use a shared LO, so this won't work.
+
+To receive two different frequencies, you need two radios.
+
+Brian
+
+--0000000000006ca56c05886015a6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Wed, May 8, 2019 at 5:43 AM Marwa Bouk=
+hari via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-=
+users@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>
+I want to send and receive a Signal=C2=A0 at the frequency 900MHz with the =
+<br>
+Channel 0 , and want to receive another Signal from the generator at the <b=
+r>
+frequency 5,68GHz with the other channel.<br>
+I tried to realize this but it didn&#39;t work.<br>
+Has someone maybe an idea what&#39;s the problem is.<br></blockquote><div><=
+br></div><div>The two receivers use a shared LO, so this won&#39;t work.</d=
+iv><div><br></div><div>To receive two different frequencies, you need two r=
+adios.</div><div><br></div><div>Brian</div></div></div>
+
+--0000000000006ca56c05886015a6--
 
 
-So, is there any ettus image or suggestions that we can run E310 
-directly from FPGA to network without speed limitations? (like N210 or B210)
-
-Best regards.
-
-Ramazan
-
+--===============1326531815429084964==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1326531815429084964==--
+
