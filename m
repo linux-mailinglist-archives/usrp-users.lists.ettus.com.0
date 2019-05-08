@@ -2,47 +2,76 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A9721812C
-	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2019 22:41:47 +0200 (CEST)
-Received: from [::1] (port=40986 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 273D41815D
+	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2019 22:56:29 +0200 (CEST)
+Received: from [::1] (port=45534 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOTNq-0007V8-3N; Wed, 08 May 2019 16:41:46 -0400
-Received: from atl4mhob20.registeredsite.com ([209.17.115.114]:35360)
- by mm2.emwd.com with esmtp (Exim 4.91)
- (envelope-from <k5so@k5so.com>) id 1hOTNH-0007LR-MF
- for usrp-users@lists.ettus.com; Wed, 08 May 2019 16:41:41 -0400
-Received: from mailpod.hostingplatform.com
- (atl4qobmail02pod3.registeredsite.com [10.30.77.68])
- by atl4mhob20.registeredsite.com (8.14.4/8.14.4) with ESMTP id x48KeTNP048327
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
- for <usrp-users@lists.ettus.com>; Wed, 8 May 2019 16:40:29 -0400
-Received: (qmail 18606 invoked by uid 0); 8 May 2019 20:40:29 -0000
-X-TCPREMOTEIP: 192.206.203.10
-X-Authenticated-UID: k5so@k5so.com
-Received: from unknown (HELO ?192.168.1.76?) (k5so@k5so.com@192.206.203.10)
- by 0 with ESMTPA; 8 May 2019 20:40:28 -0000
-Message-Id: <19BFE8B3-662A-4DC0-BB72-557E7495F6D0@k5so.com>
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Date: Wed, 8 May 2019 14:40:26 -0600
-In-Reply-To: <CA+JMMq9+WVXGDRwBd9WAcwXHXDynDsUYy4nOXuryttxvNKbXCA@mail.gmail.com>
-To: Nick Foster <bistromath@gmail.com>
-References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
- <BL0PR12MB2340E831A1782ED0958D6DBAAF320@BL0PR12MB2340.namprd12.prod.outlook.com>
- <84C6BD1A-2901-4FFC-834C-55B481EB7045@k5so.com>
- <CA+JMMq9oRqxDSVgyACAZucejC2Z3hKwciNCjX_YEJ6taCgUQ-g@mail.gmail.com>
- <CA+JMMq8N5XP6Z9CDUO0JHZxJotHRPfQRRqsvJT5-XwZZVWRv+w@mail.gmail.com>
- <A0F0F533-AE85-4802-A676-EA4C39C9372F@k5so.com>
- <B98CD290-9E92-49CE-AD7D-E19FE82B5657@k5so.com>
- <CA+JMMq9+WVXGDRwBd9WAcwXHXDynDsUYy4nOXuryttxvNKbXCA@mail.gmail.com>
-X-Mailer: Apple Mail (2.3445.9.1)
+	id 1hOTc0-0008WB-5r; Wed, 08 May 2019 16:56:24 -0400
+Received: from ppa02.jpl.nasa.gov ([128.149.137.113]:58150)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.91) (envelope-from <lorenzo.minutolo@jpl.nasa.gov>)
+ id 1hOTbS-0008Fv-KK
+ for usrp-users@lists.ettus.com; Wed, 08 May 2019 16:56:20 -0400
+Received: from pps.filterd (ppa02.jpl.nasa.gov [127.0.0.1])
+ by ppa02.jpl.nasa.gov (8.16.0.27/8.16.0.27) with SMTP id x48KoA6b084229
+ for <usrp-users@lists.ettus.com>; Wed, 8 May 2019 13:55:09 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jpl.nasa.gov;
+ h=from : to : subject
+ : date : message-id : content-type : content-id :
+ content-transfer-encoding : mime-version; s=JPL1810;
+ bh=SiFtcbUEWDRCnqitWykfi/3Gqh5GlMW3WoZ0HiXHvdM=;
+ b=X+90eKrFVx5T++8zyLhfcmVVcpo602jIeKsiTNmM4jugJtYJtCT1KqSE/a4JX+qBLZIo
+ 8v0Icc98VgW1tv78OkJ4esoohsVsG6YTnEGqg91prwr6G/hJZJaZOl72z4MaiGC4HxYb
+ Oq4IdpkEXLwMH37SoXdFAzhPpF/KUbNk/An4Jpj9M+ykLCuHFviUDHQIHw/1I4hVfIzl
+ T6oYpc82nohZUxeSSBg9fX0ypOA+ApaNlYe37E5dm75iR+WgpcGkH2J3IxuSrJ117rMs
+ 4tDz0dYPrBp1hQZOY+Lhd1ICNcWiTmCbISyq4Ax2XzqaLJatc8zobWjMx8YYRr3v2XnZ nw== 
+Received: from mail.jpl.nasa.gov (altphysenclup02.jpl.nasa.gov
+ [128.149.137.53]) by ppa02.jpl.nasa.gov with ESMTP id 2sbs302k59-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Wed, 08 May 2019 13:55:09 -0700
+Received: from ap-embx16-sp10.RES.AD.JPL (ap-embx16-sp10.jpl.nasa.gov
+ [128.149.137.83])
+ by smtp.jpl.nasa.gov (Sentrion-MTA-4.3.1/Sentrion-MTA-4.3.1) with ESMTP id
+ x48Kt8l4026784
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128 bits) verified FAIL)
+ for <usrp-users@lists.ettus.com>; Wed, 8 May 2019 13:55:08 -0700
+Received: from ap-embx16-sp30.RES.AD.JPL (2002:8095:8955::8095:8955) by
+ ap-embx16-sp10.RES.AD.JPL (2002:8095:8953::8095:8953) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1591.10; Wed, 8 May 2019 13:55:08 -0700
+Received: from ap-embx16-sp30.RES.AD.JPL ([fe80::ec3d:4aec:4990:1f68]) by
+ ap-embx16-sp30.RES.AD.JPL ([fe80::ec3d:4aec:4990:1f68%13]) with mapi id
+ 15.01.1591.008; Wed, 8 May 2019 13:55:08 -0700
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: USRP N320 and N321 questions
+Thread-Index: AQHVBeBRBEJbVsdQ3UyuEp00QOSPng==
+Date: Wed, 8 May 2019 20:55:08 +0000
+Message-ID: <B00A224D-E7A3-4053-9E56-BC44A01A9522@jpl.nasa.gov>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [207.151.104.72]
+Content-ID: <BB3DA6567B193043AEBC9712599F1239@ad.jpl>
+MIME-Version: 1.0
+X-Source-IP: ap-embx16-sp10.jpl.nasa.gov [128.149.137.83]
+X-Source-Sender: lorenzo.minutolo@jpl.nasa.gov
+X-AUTH: Authorized
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+ definitions=2019-05-08_12:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=619 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1905080127
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Bringing an elderly N210 to life by loading
- current firmware/fpga images
+Subject: [USRP-users] USRP N320 and N321 questions
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -54,10 +83,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Joe Martin <k5so@k5so.com>
-Cc: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0369698665217643793=="
+From: "Minutolo, Lorenzo \(389I\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Minutolo, Lorenzo \(389I\)" <lorenzo.minutolo@jpl.nasa.gov>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,432 +100,13 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
---===============0369698665217643793==
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_AFDA6F25-A0D2-4A00-95CE-A1984C313249"
-
-
---Apple-Mail=_AFDA6F25-A0D2-4A00-95CE-A1984C313249
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-Okay, thanks, that=E2=80=99s what I thought but that isn=E2=80=99t =
-useful for me until I find a UHD version that can communicate with it.  =
-I=E2=80=99ve been trying to build older UHD versions from =
-003_007_002_rc1 forward but all so far fail to build due to compiler =
-errors.  Am up to 003_008_005_rc1 now, moving forward until I can =
-successfully build one to try.  Are there any old pre-built versions I =
-could simply try without having to build each one myself?
-
-Joe
-
-> On May 8, 2019, at 2:31 PM, Nick Foster <bistromath@gmail.com> wrote:
->=20
-> Yes, code loaded over JTAG is gone at next boot. I can't think of an =
-easy way to figure out what image is loaded other than asking UHD to =
-query it for FPGA compat number.
->=20
-> On Wed, May 8, 2019 at 1:04 PM Joe Martin <k5so@k5so.com =
-<mailto:k5so@k5so.com>> wrote:
-> I guess the proper way to ask is =E2=80=9CIs there a way to determine =
-what fpga .bin file is in the N210?=E2=80=9D, since the .bit file that I =
-loaded into the fpga is volatile code that disappears upon power cycling =
-to be reloaded from an EEPROM or something, yes?
->=20
-> Joe
->=20
->> On May 8, 2019, at 1:55 PM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>=20
->> Hi Nick,=20
->>=20
->> Thanks for the comments.  Is there a way to determine what bit file =
-is currently in the N210?  If so, how please?
->>=20
->> Joe
->>=20
->>> On May 8, 2019, at 1:33 PM, Nick Foster <bistromath@gmail.com =
-<mailto:bistromath@gmail.com>> wrote:
->>>=20
->>> I see you got there already! If you're still having trouble, I'll =
-see what I can dig up over here.
->>>=20
->>> On Wed, May 8, 2019 at 12:31 PM Nick Foster <bistromath@gmail.com =
-<mailto:bistromath@gmail.com>> wrote:
->>> You might be best off reverting to a UHD old enough to support the =
-bitfile currently loaded on your N210. You could then bootstrap your =
-N210 by using the old UHD to load a newer FPGA image.
->>>=20
->>> Otherwise, it's fairly simple to convert the binfiles (which still =
-exist -- usrp_n210_r2_fpga.bin) to bitfiles. You can take the header =
-from usrp_n210_r3_fpga.bit and just stick it onto the front of =
-usrp_n210_r2_fpga.bin, and call the output usrp_n210_r2_fpga.bit. The =
-header is everything up until FF FF FF FF AA 99 55 66.
->>>=20
->>> Lastly, the source is all there, so building using ISE should still =
-be possible.
->>>=20
->>> Nick
->>>=20
->>> On Wed, May 8, 2019 at 9:57 AM Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>> Wow, okay; that=E2=80=99s disheartening.  Thanks much for the info, =
-Jason.  Nope, the Rev3 bit file doesn=E2=80=99t work; tried it.  I=E2=80=99=
-ll see if the support email adr can be of use. =20
->>>=20
->>> Joe
->>>=20
->>>> On May 8, 2019, at 10:44 AM, Jason Matusiak =
-<jason@gardettoengineering.com <mailto:jason@gardettoengineering.com>> =
-wrote:
->>>>=20
->>>> Joe, I think you might be SOL.  If you take a look at this thread =
-from me last year, I had no luck: =
-http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-April/056=
-223.html =
-<http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-April/05=
-6223.html>
->>>>=20
->>>>=20
->>>> Also, when I pinged Ettus directly, here is some info I got back =
-from them (from two different emails in the thread):
->>>> "we've been having some trouble tracking down Rev2 bitfiles, =
-because no
->>>> one here was around when that was built. If you're trying to =
-unbrick
->>>> them, Rev3 bitfiles might be OK, but I'm not completely sure.
->>>>=20
->>>> support@ettus.com <mailto:support@ettus.com> might know more by =
-know.
->>>> really sorry, but those Rev2s are just so old. And all the people =
-from
->>>> that era seem to be gone. Sorry, can't help you with those Rev2s."
->>>>=20
->>>> From: USRP-users <usrp-users-bounces@lists.ettus.com =
-<mailto:usrp-users-bounces@lists.ettus.com>> on behalf of Joe Martin via =
-USRP-users <usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>>
->>>> Sent: Wednesday, May 8, 2019 11:55 AM
->>>> To: Joe Martin via USRP-users
->>>> Subject: [USRP-users] Bringing an elderly N210 to life by loading =
-current firmware/fpga images
->>>> =20
->>>> I am trying to bring an elderly N210 r2.0 with unknown history to =
-life by loading current UHD firmware and fpga images from a 1Gigabit =
-ethernet connection on an AMD 2950X, 3.4GHz, 2TB SSD PC running Ubuntu =
-18.04 with UHD 3.14.0.HEAD-0-gd20a7ae2 software but having difficulty.=20=
-
->>>>=20
->>>> Following instructions in =E2=80=9CUSRP Hardware Driver and USRP =
-Manual: USRP2 and N2x0 Series=E2=80=9D:
->>>>=20
->>>> My initial action was to load the =E2=80=9Cusrp_n210_r4_fpga.bit" =
-file into the N210 xc3sd3400a FPGA using a Xilinx Platform Cable USB II =
-JTAG programming cable from a Win7 PC running Xilinx ISE iMPACT, which =
-reported =E2=80=9CProgram Succeeded=E2=80=9D for the action.  Ethernet =
-LEDs on the N210 are variously lighted showing activity on the =
-connection port.
->>>>=20
->>>> With the N210 connected to the Linux PC 1Gbps ethernet port, =
-issuing the following commands result in the responses shown in the =
-screenshot image below:=20
->>>>=20
->>>> <Screenshot from 2019-05-08 08-46-52.png>
->>>>=20
->>>> My (naive!) interpretation of the above responses is that the FPGA =
-may not actually have been programmed with the *.bit code even though =
-iMPACT reported success in programming.  Can someone assist me in =
-understanding whether my interpretation is correct or not and, most =
-importantly, suggest what I might try next to bring this N210 to life? =20=
-
->>>>=20
->>>> The =E2=80=9CPlease run:=E2=80=9D suggestion results in the =
-=E2=80=9CReceived invalid reply 32 from device=E2=80=9D error.  It seems =
-no matter what I try the =E2=80=9CReceived invalid reply 32 from =
-device=E2=80=9D RuntimeError is reported back when I try to load any new =
-firmware/FPGA images. =20
->>>>=20
->>>> Thanks!
->>>>=20
->>>> Joe
->>>=20
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>=20
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->=20
-
-
---Apple-Mail=_AFDA6F25-A0D2-4A00-95CE-A1984C313249
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D"">Okay,=
- thanks, that=E2=80=99s what I thought but that isn=E2=80=99t useful for =
-me until I find a UHD version that can communicate with it. &nbsp;I=E2=80=99=
-ve been trying to build older UHD versions from 003_007_002_rc1 forward =
-but all so far fail to build due to compiler errors. &nbsp;Am up to =
-003_008_005_rc1 now, moving forward until I can successfully build one =
-to try. &nbsp;Are there any old pre-built versions I could simply try =
-without having to build each one myself?<div class=3D""><br =
-class=3D""></div><div class=3D"">Joe<br class=3D""><div><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On May =
-8, 2019, at 2:31 PM, Nick Foster &lt;<a =
-href=3D"mailto:bistromath@gmail.com" =
-class=3D"">bistromath@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D"">Yes, code loaded over JTAG is gone at next boot. I can't =
-think of an easy way to figure out what image is loaded other than =
-asking UHD to query it for FPGA compat number.<br class=3D""></div><br =
-class=3D""><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">On Wed, May 8, 2019 at 1:04 PM Joe Martin &lt;<a =
-href=3D"mailto:k5so@k5so.com" class=3D"">k5so@k5so.com</a>&gt; wrote:<br =
-class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div style=3D"overflow-wrap: =
-break-word;" class=3D"">I guess the proper way to ask is =E2=80=9CIs =
-there a way to determine what fpga .bin file is in the N210?=E2=80=9D, =
-since the .bit file that I loaded into the fpga is volatile code that =
-disappears upon power cycling to be reloaded from an EEPROM or =
-something, yes?<div class=3D""><br class=3D""></div><div class=3D"">Joe<br=
- class=3D""><div class=3D""><br class=3D""><blockquote type=3D"cite" =
-class=3D""><div class=3D"">On May 8, 2019, at 1:55 PM, Joe Martin via =
-USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" class=3D"">usrp-users@lists.ettus.com</a>&gt; =
-wrote:</div><br =
-class=3D"gmail-m_8060179659594778536Apple-interchange-newline"><div =
-class=3D""><div style=3D"overflow-wrap: break-word;" class=3D"">Hi =
-Nick,&nbsp;<div class=3D""><br class=3D""></div><div class=3D"">Thanks =
-for the comments.&nbsp; Is there a way to determine what bit file is =
-currently in the N210?&nbsp; If so, how please?</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Joe<br class=3D""><div class=3D""><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On May =
-8, 2019, at 1:33 PM, Nick Foster &lt;<a =
-href=3D"mailto:bistromath@gmail.com" target=3D"_blank" =
-class=3D"">bistromath@gmail.com</a>&gt; wrote:</div><br =
-class=3D"gmail-m_8060179659594778536Apple-interchange-newline"><div =
-class=3D""><div dir=3D"ltr" class=3D"">I see you got there already! If =
-you're still having trouble, I'll see what I can dig up over here.<br =
-class=3D""></div><br class=3D""><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Wed, May 8, 2019 at 12:31 PM Nick =
-Foster &lt;<a href=3D"mailto:bistromath@gmail.com" target=3D"_blank" =
-class=3D"">bistromath@gmail.com</a>&gt; wrote:<br =
-class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr" class=3D""><div =
-class=3D"">You might be best off reverting to a UHD old enough to =
-support the bitfile currently loaded on your N210. You could then =
-bootstrap your N210 by using the old UHD to load a newer FPGA image.<br =
-class=3D""></div><div class=3D""><br class=3D""></div><div =
-class=3D"">Otherwise, it's fairly simple to convert the binfiles (which =
-still exist -- usrp_n210_r2_fpga.bin) to bitfiles. You can take the =
-header from usrp_n210_r3_fpga.bit and just stick it onto the front of =
-usrp_n210_r2_fpga.bin, and call the output usrp_n210_r2_fpga.bit. The =
-header is everything up until FF FF FF FF AA 99 55 66.</div><div =
-class=3D""><br class=3D""></div><div class=3D"">Lastly, the source is =
-all there, so building using ISE should still be possible.<br =
-class=3D""></div><div class=3D""><br class=3D""></div><div =
-class=3D"">Nick<br class=3D""></div></div><br class=3D""><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May =
-8, 2019 at 9:57 AM Joe Martin via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:<br =
-class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div class=3D"">Wow, okay; that=E2=80=99=
-s disheartening.&nbsp; Thanks much for the info, Jason.&nbsp; Nope, the =
-Rev3 bit file doesn=E2=80=99t work; tried it.&nbsp; I=E2=80=99ll see if =
-the support email adr can be of use. &nbsp;<div class=3D""><br =
-class=3D""></div><div class=3D"">Joe<br class=3D""><div class=3D""><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On May =
-8, 2019, at 10:44 AM, Jason Matusiak &lt;<a =
-href=3D"mailto:jason@gardettoengineering.com" target=3D"_blank" =
-class=3D"">jason@gardettoengineering.com</a>&gt; wrote:</div><br =
-class=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15=
-6105540658111525Apple-interchange-newline"><div class=3D""><div =
-style=3D"font-style:normal;font-variant-caps:normal;font-weight:normal;let=
-ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
-ite-space:normal;word-spacing:0px;text-decoration:none;font-family:Calibri=
-,Arial,Helvetica,sans-serif;font-size:12pt" class=3D"">Joe, I think you =
-might be SOL.&nbsp; If you take a look at this thread from me last year, =
-I had no luck:&nbsp;<a =
-href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-A=
-pril/056223.html" target=3D"_blank" =
-class=3D"">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/201=
-8-April/056223.html</a></div><div =
-style=3D"font-style:normal;font-variant-caps:normal;font-weight:normal;let=
-ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
-ite-space:normal;word-spacing:0px;text-decoration:none;font-family:Calibri=
-,Arial,Helvetica,sans-serif;font-size:12pt" class=3D""><br =
-class=3D""></div><div =
-style=3D"font-style:normal;font-variant-caps:normal;font-weight:normal;let=
-ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
-ite-space:normal;word-spacing:0px;text-decoration:none;font-family:Calibri=
-,Arial,Helvetica,sans-serif;font-size:12pt" class=3D""><br =
-class=3D""></div><div =
-style=3D"font-style:normal;font-variant-caps:normal;font-weight:normal;let=
-ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
-ite-space:normal;word-spacing:0px;text-decoration:none;font-family:Calibri=
-,Arial,Helvetica,sans-serif;font-size:12pt" class=3D"">Also, when I =
-pinged Ettus directly, here is some info I got back from them (from two =
-different emails in the thread):</div><div =
-style=3D"font-style:normal;font-variant-caps:normal;font-weight:normal;let=
-ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
-ite-space:normal;word-spacing:0px;text-decoration:none;font-family:Calibri=
-,Arial,Helvetica,sans-serif;font-size:12pt" class=3D"">"<span =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255);display:inline" class=3D"">we've been having some trouble =
-tracking down Rev2 bitfiles, because no</span><br =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255)" class=3D""><span =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255);display:inline" class=3D"">one here was around when that was =
-built. If you're trying to unbrick</span><br =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255)" class=3D""><span =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255);display:inline" class=3D"">them, Rev3 bitfiles might be OK, but =
-I'm not completely sure.</span></div><div =
-style=3D"font-style:normal;font-variant-caps:normal;font-weight:normal;let=
-ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
-ite-space:normal;word-spacing:0px;text-decoration:none;font-family:Calibri=
-,Arial,Helvetica,sans-serif;font-size:12pt" class=3D""><br =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255)" class=3D""><span =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255);display:inline" class=3D""><a href=3D"mailto:support@ettus.com" =
-target=3D"_blank" class=3D"">support@ettus.com</a><span =
-class=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15=
-6105540658111525Apple-converted-space">&nbsp;</span>might know more by =
-know.</span></div><div =
-style=3D"font-style:normal;font-variant-caps:normal;font-weight:normal;let=
-ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
-ite-space:normal;word-spacing:0px;text-decoration:none;font-family:Calibri=
-,Arial,Helvetica,sans-serif;font-size:12pt" class=3D""><span =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255);display:inline" class=3D"">really sorry, but those Rev2s are =
-just so old. And all the people from</span><br =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255)" class=3D""><span =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,=
-255,255);display:inline" class=3D"">that era seem to be gone. Sorry, =
-can't help you with those Rev2s."</span></div><div =
-id=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15610=
-5540658111525Signature" =
-style=3D"font-family:Helvetica;font-size:12px;font-style:normal;font-varia=
-nt-caps:normal;font-weight:normal;letter-spacing:normal;text-align:start;t=
-ext-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;tex=
-t-decoration:none" class=3D""><div class=3D""><div =
-id=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15610=
-5540658111525appendonsend" class=3D""></div><div =
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt" =
-class=3D""><br class=3D""></div><hr =
-style=3D"display:inline-block;width:1284.77px" class=3D""><div =
-id=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15610=
-5540658111525divRplyFwdMsg" dir=3D"ltr" class=3D""><font =
-style=3D"font-size:11pt" face=3D"Calibri, sans-serif" class=3D""><b =
-class=3D"">From:</b><span =
-class=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15=
-6105540658111525Apple-converted-space">&nbsp;</span>USRP-users &lt;<a =
-href=3D"mailto:usrp-users-bounces@lists.ettus.com" target=3D"_blank" =
-class=3D"">usrp-users-bounces@lists.ettus.com</a>&gt; on behalf of Joe =
-Martin via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" class=3D"">usrp-users@lists.ettus.com</a>&gt;<br =
-class=3D""><b class=3D"">Sent:</b><span =
-class=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15=
-6105540658111525Apple-converted-space">&nbsp;</span>Wednesday, May 8, =
-2019 11:55 AM<br class=3D""><b class=3D"">To:</b><span =
-class=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15=
-6105540658111525Apple-converted-space">&nbsp;</span>Joe Martin via =
-USRP-users<br class=3D""><b class=3D"">Subject:</b><span =
-class=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15=
-6105540658111525Apple-converted-space">&nbsp;</span>[USRP-users] =
-Bringing an elderly N210 to life by loading current firmware/fpga =
-images</font><div class=3D"">&nbsp;</div></div><div class=3D"">I am =
-trying to bring an elderly N210 r2.0 with unknown history to life by =
-loading current UHD firmware and fpga images from a 1Gigabit ethernet =
-connection on an AMD 2950X, 3.4GHz, 2TB SSD PC running Ubuntu 18.04 with =
-UHD 3.14.0.HEAD-0-gd20a7ae2 software but having difficulty.&nbsp;<div =
-class=3D""><br class=3D""></div><div class=3D"">Following instructions =
-in =E2=80=9CUSRP Hardware Driver and USRP Manual: USRP2 and N2x0 =
-Series=E2=80=9D:</div><div class=3D""><br class=3D""></div><div =
-class=3D"">My initial action was to load the =E2=80=9Cusrp_n210_r4_fpga.bi=
-t" file into the N210 xc3sd3400a FPGA using a Xilinx Platform Cable USB =
-II JTAG programming cable from a Win7 PC running Xilinx ISE iMPACT, =
-which reported =E2=80=9CProgram Succeeded=E2=80=9D for the action.&nbsp; =
-Ethernet LEDs on the N210 are variously lighted showing activity on the =
-connection port.</div><div class=3D""><br class=3D""></div><div =
-class=3D"">With the N210 connected to the Linux PC 1Gbps ethernet port, =
-issuing the following commands result in the responses shown in the =
-screenshot image below:&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D""><span =
-id=3D"gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15610=
-5540658111525cid:70A3E5A1-EF1B-4D99-B156-F8CD7369666A" =
-class=3D"">&lt;Screenshot from 2019-05-08 =
-08-46-52.png&gt;</span></div><div class=3D""><br class=3D""></div><div =
-class=3D""><div class=3D"">My (naive!) interpretation of the above =
-responses is that the FPGA may not actually have been programmed with =
-the *.bit code even though iMPACT reported success in programming.&nbsp; =
-Can someone assist me in understanding whether my interpretation is =
-correct or not and, most importantly, suggest what I might try next to =
-bring this N210 to life? &nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D"">The =E2=80=9CPlease run:=E2=80=9D =
-suggestion results in the =E2=80=9CReceived invalid reply 32 from =
-device=E2=80=9D error.&nbsp; It seems no matter what I try the =
-=E2=80=9CReceived invalid reply 32 from device=E2=80=9D RuntimeError is =
-reported back when I try to load any new firmware/FPGA images. =
-&nbsp;</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Thanks!</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Joe</div></div></div></div></div></div></blockquote></div><br =
-class=3D""></div></div>_______________________________________________<br =
-class=3D"">
-USRP-users mailing list<br class=3D"">
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
-<a =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" rel=3D"noreferrer" target=3D"_blank" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D"">
-</blockquote></div>
-</blockquote></div>
-</div></blockquote></div><br =
-class=3D""></div></div>_______________________________________________<br =
-class=3D"">USRP-users mailing list<br class=3D""><a =
-href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D""><a =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" target=3D"_blank" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D""></div></blockquote></div><br =
-class=3D""></div></div></blockquote></div>
-</div></blockquote></div><br class=3D""></div></body></html>=
-
---Apple-Mail=_AFDA6F25-A0D2-4A00-95CE-A1984C313249--
-
-
---===============0369698665217643793==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============0369698665217643793==--
-
+SGksDQpJIGhhdmUgc29tZSBxdWVzdGlvbiBhYm91dCB5b3VyIG5ldyBwcm9kdWN0cy4NCg0KMSkg
+V2hhdCBpcyB0aGUgc3VnZ2VzdGVkIGhhcmR3YXJlIGZvciBjb21tdW5pY2F0aW5nIHdpdGggdGhl
+IFFTRlArIHBvcnQ/IEFzIEkgdW5kZXJzdGFuZCB0aGlzIGEgbm9ybWFsIDQwIEdiaXQgUENJZSBj
+YXJkIHdvbuKAmXQgd29yay4NCg0KMikgRG9lcyB0aGUgZW1iZWRkZWQgbGludXggc3lzdGVtIGdp
+dmVzIGFueSBlcnJvciB3aGlsZSBoYW5kbGluZyB0d28gY2hhbm5lbHMgYXQgMjAwTXNwcyBmdWxs
+IGR1cGxleCB3aXRob3V0IGFueSBzaWduYWwgcHJvY2Vzc2luZyAoaS5lLiBiZW5jaG1hcmsgcmF0
+ZSk/DQoNCkxvcmVuem8KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20K
+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29tCg==
