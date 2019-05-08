@@ -2,46 +2,22 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D331E181B6
-	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2019 23:41:50 +0200 (CEST)
-Received: from [::1] (port=38324 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 254DF181E5
+	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 00:03:44 +0200 (CEST)
+Received: from [::1] (port=42954 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOUJx-0004y8-9l; Wed, 08 May 2019 17:41:49 -0400
-Received: from mail-lj1-f170.google.com ([209.85.208.170]:34939)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <robin.coxe@ettus.com>)
- id 1hOUJO-0004hA-6y
- for usrp-users@lists.ettus.com; Wed, 08 May 2019 17:41:44 -0400
-Received: by mail-lj1-f170.google.com with SMTP id m20so222616lji.2
- for <usrp-users@lists.ettus.com>; Wed, 08 May 2019 14:40:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=iFHcQgW+Qwl09OZCw7uaLlL1TnWeVd6NbAnhYRDqtr4=;
- b=KXJipKsNw15bGrkxajzLFEEi7ITZSOSud8r9SUgzZ1RtZNDMD5fxSur3h1/Jnd1mr9
- I6RZKBJ9ytNQUiBfFsQpn67UaDskiZAZGjX+LF7mO9UKObm6UPFFWTDm5oW6MiftHQJ2
- XPDlbh3TKDl4czz4HwoV+rsXtRcYgs3s6012moeucwtClpIswUotOyg52HMux41DOJqf
- U/sgP2oOS30nA4wqRLfRXPLpvdRMEHtpu07P/u77sDahHo5ZamzXUFV2mNMYOlFwFULK
- Hg72wDmBGaGUNGwPI+9JpnYcLQ51T0V91nxgUhA/IodeOeZMFOpNZSWHkDD8c82eJ/b5
- GvNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=iFHcQgW+Qwl09OZCw7uaLlL1TnWeVd6NbAnhYRDqtr4=;
- b=GPx7TZ+JbYh5/4BIcNW8aYpMQEj5ELYqpPmBYs6fnwT1moAiD5FdSXloYDII4ZNvL+
- NaAQIaHQyy22UE+PEpj6oSMByNcFPA6gvw/ry/tTFdOipfCBop+OD5FyR+1oFhhH4i4T
- GH4janLLZ9UBo1OrztZqn7l8PIzWBqog0VJzk5tX9Z4TPnAzfsjC/3urh4ueJ03cQCP4
- 4RdHXP3iDew93eo9eOnLuQZH/NwguTzigkCP2n1ieJVYB/M6f4qQSptKE1g4Bqk6VNpc
- 0Lwc5xy+7CJ/82XKN3u03dztxH5M67rNIWSp+BoFtU9iCpx7lxZbYVBGQnd5emC1A60n
- p2Eg==
-X-Gm-Message-State: APjAAAXLl+paj4tk1nEFAfMM9PzK2BYwxZHgl4qwj7LCE+bjXA5l6zHA
- L1j8AyjoGZ0LLll5R40PxUIZqDl6H4sFCMXw2utMZz2p1OynvmRs
-X-Google-Smtp-Source: APXvYqxCmjOpXuqSGNHBy33zge1aalfR3YYMS5APKyA4D5fnAIK8BUsjlhgqL0SxXm0s0WTTyPKYeH6OjoypSuUNjMM=
-X-Received: by 2002:a2e:1311:: with SMTP id 17mr43417ljt.75.1557351632803;
- Wed, 08 May 2019 14:40:32 -0700 (PDT)
-MIME-Version: 1.0
+	id 1hOUf9-0006DK-1b; Wed, 08 May 2019 18:03:43 -0400
+Received: from starfish.geekisp.com ([216.168.135.166]:11027)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.91) (envelope-from <philip@balister.org>) id 1hOUea-00065I-NA
+ for usrp-users@lists.ettus.com; Wed, 08 May 2019 18:03:38 -0400
+Received: (qmail 23559 invoked by uid 1003); 8 May 2019 22:02:25 -0000
+Received: from unknown (HELO ?192.168.11.100?)
+ (philip@opensdr.com@73.152.143.112)
+ by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+ 8 May 2019 22:02:24 -0000
+To: Robin Coxe <robin.coxe@ettus.com>, Joe Martin <k5so@k5so.com>
 References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
  <BL0PR12MB2340E831A1782ED0958D6DBAAF320@BL0PR12MB2340.namprd12.prod.outlook.com>
  <84C6BD1A-2901-4FFC-834C-55B481EB7045@k5so.com>
@@ -52,10 +28,39 @@ References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
  <CA+JMMq9+WVXGDRwBd9WAcwXHXDynDsUYy4nOXuryttxvNKbXCA@mail.gmail.com>
  <19BFE8B3-662A-4DC0-BB72-557E7495F6D0@k5so.com>
  <5F41CEE9-58DF-4868-89C2-5F88876803DF@k5so.com>
-In-Reply-To: <5F41CEE9-58DF-4868-89C2-5F88876803DF@k5so.com>
-Date: Wed, 8 May 2019 14:40:20 -0700
-Message-ID: <CAGVTi8VOeNG5B9X-WaMQrvbxkt96UFhm5a6-++9znYCzexfRtQ@mail.gmail.com>
-To: Joe Martin <k5so@k5so.com>
+ <CAGVTi8VOeNG5B9X-WaMQrvbxkt96UFhm5a6-++9znYCzexfRtQ@mail.gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+ xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+ HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+ rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+ 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+ fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+ AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
+ CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+ nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+ 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+ YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+ 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+ yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
+ gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+ GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+ uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+ LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+ gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
+ WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+ 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+ ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+ icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+ ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+ 6eUfr0u7CwnEyqiQ
+Message-ID: <9f223faf-add7-74cc-faa1-d4a0ed95e28a@balister.org>
+Date: Wed, 8 May 2019 18:02:24 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.5.2
+MIME-Version: 1.0
+In-Reply-To: <CAGVTi8VOeNG5B9X-WaMQrvbxkt96UFhm5a6-++9znYCzexfRtQ@mail.gmail.com>
+Content-Language: en-MW
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -74,10 +79,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robin Coxe <robin.coxe@ettus.com>
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
 Cc: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1814185842101239859=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -91,456 +97,143 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1814185842101239859==
-Content-Type: multipart/alternative; boundary="000000000000dd2ac80588672efd"
-
---000000000000dd2ac80588672efd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-You could try using the .deb or .rpm pre-built binaries if you're running
-on Linux.  See, for instance:
-http://files.ettus.com/binaries/uhd/uhd_003.004.000-release/
-
-On Wed, May 8, 2019 at 2:09 PM Joe Martin via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> I=E2=80=99ve successfully built UHD v3.9.0 but it has the same error as 3=
-.14.0 did
-> before (=E2=80=9CReceived invalid reply 32 from device=E2=80=9D) and uhd_=
-usrp_probe still
-> complains that it is expecting compatibility number 11 but is receiving 6=
-.
-> So I think that means I need an earlier version of UHD than 3.9.0.
->
-> I will dig into the earliest version in the git tag -l, namely
-> 003_007_002_rc1, that would not build without errors and try to work out
-> the compiler errors then.  Unless someone has a better idea to try.
-> Thanks!
->
-> Regards,
->
-> Joe
->
-> On May 8, 2019, at 2:40 PM, Joe Martin via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> Okay, thanks, that=E2=80=99s what I thought but that isn=E2=80=99t useful=
- for me until I
-> find a UHD version that can communicate with it.  I=E2=80=99ve been tryin=
-g to build
-> older UHD versions from 003_007_002_rc1 forward but all so far fail to
-> build due to compiler errors.  Am up to 003_008_005_rc1 now, moving forwa=
-rd
-> until I can successfully build one to try.  Are there any old pre-built
-> versions I could simply try without having to build each one myself?
->
-> Joe
->
-> On May 8, 2019, at 2:31 PM, Nick Foster <bistromath@gmail.com> wrote:
->
-> Yes, code loaded over JTAG is gone at next boot. I can't think of an easy
-> way to figure out what image is loaded other than asking UHD to query it
-> for FPGA compat number.
->
-> On Wed, May 8, 2019 at 1:04 PM Joe Martin <k5so@k5so.com> wrote:
->
->> I guess the proper way to ask is =E2=80=9CIs there a way to determine wh=
-at fpga
->> .bin file is in the N210?=E2=80=9D, since the .bit file that I loaded in=
-to the fpga
->> is volatile code that disappears upon power cycling to be reloaded from =
-an
->> EEPROM or something, yes?
->>
->> Joe
->>
->> On May 8, 2019, at 1:55 PM, Joe Martin via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->> Hi Nick,
->>
->> Thanks for the comments.  Is there a way to determine what bit file is
->> currently in the N210?  If so, how please?
->>
->> Joe
->>
->> On May 8, 2019, at 1:33 PM, Nick Foster <bistromath@gmail.com> wrote:
->>
->> I see you got there already! If you're still having trouble, I'll see
->> what I can dig up over here.
->>
->> On Wed, May 8, 2019 at 12:31 PM Nick Foster <bistromath@gmail.com> wrote=
-:
->>
->>> You might be best off reverting to a UHD old enough to support the
->>> bitfile currently loaded on your N210. You could then bootstrap your N2=
-10
->>> by using the old UHD to load a newer FPGA image.
->>>
->>> Otherwise, it's fairly simple to convert the binfiles (which still exis=
-t
->>> -- usrp_n210_r2_fpga.bin) to bitfiles. You can take the header from
->>> usrp_n210_r3_fpga.bit and just stick it onto the front of
->>> usrp_n210_r2_fpga.bin, and call the output usrp_n210_r2_fpga.bit. The
->>> header is everything up until FF FF FF FF AA 99 55 66.
->>>
->>> Lastly, the source is all there, so building using ISE should still be
->>> possible.
->>>
->>> Nick
->>>
->>> On Wed, May 8, 2019 at 9:57 AM Joe Martin via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> Wow, okay; that=E2=80=99s disheartening.  Thanks much for the info, Ja=
-son.
->>>> Nope, the Rev3 bit file doesn=E2=80=99t work; tried it.  I=E2=80=99ll =
-see if the support
->>>> email adr can be of use.
->>>>
->>>> Joe
->>>>
->>>> On May 8, 2019, at 10:44 AM, Jason Matusiak <
->>>> jason@gardettoengineering.com> wrote:
->>>>
->>>> Joe, I think you might be SOL.  If you take a look at this thread from
->>>> me last year, I had no luck:
->>>> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-April=
-/056223.html
->>>>
->>>>
->>>> Also, when I pinged Ettus directly, here is some info I got back from
->>>> them (from two different emails in the thread):
->>>> "we've been having some trouble tracking down Rev2 bitfiles, because n=
-o
->>>> one here was around when that was built. If you're trying to unbrick
->>>> them, Rev3 bitfiles might be OK, but I'm not completely sure.
->>>>
->>>> support@ettus.com might know more by know.
->>>> really sorry, but those Rev2s are just so old. And all the people from
->>>> that era seem to be gone. Sorry, can't help you with those Rev2s."
->>>>
->>>> ------------------------------
->>>> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of
->>>> Joe Martin via USRP-users <usrp-users@lists.ettus.com>
->>>> *Sent:* Wednesday, May 8, 2019 11:55 AM
->>>> *To:* Joe Martin via USRP-users
->>>> *Subject:* [USRP-users] Bringing an elderly N210 to life by loading
->>>> current firmware/fpga images
->>>>
->>>> I am trying to bring an elderly N210 r2.0 with unknown history to life
->>>> by loading current UHD firmware and fpga images from a 1Gigabit ethern=
-et
->>>> connection on an AMD 2950X, 3.4GHz, 2TB SSD PC running Ubuntu 18.04 wi=
-th
->>>> UHD 3.14.0.HEAD-0-gd20a7ae2 software but having difficulty.
->>>>
->>>> Following instructions in =E2=80=9CUSRP Hardware Driver and USRP Manua=
-l: USRP2
->>>> and N2x0 Series=E2=80=9D:
->>>>
->>>> My initial action was to load the =E2=80=9Cusrp_n210_r4_fpga.bit" file=
- into the
->>>> N210 xc3sd3400a FPGA using a Xilinx Platform Cable USB II JTAG program=
-ming
->>>> cable from a Win7 PC running Xilinx ISE iMPACT, which reported =E2=80=
-=9CProgram
->>>> Succeeded=E2=80=9D for the action.  Ethernet LEDs on the N210 are vari=
-ously lighted
->>>> showing activity on the connection port.
->>>>
->>>> With the N210 connected to the Linux PC 1Gbps ethernet port, issuing
->>>> the following commands result in the responses shown in the screenshot
->>>> image below:
->>>>
->>>> <Screenshot from 2019-05-08 08-46-52.png>
->>>>
->>>> My (naive!) interpretation of the above responses is that the FPGA may
->>>> not actually have been programmed with the *.bit code even though iMPA=
-CT
->>>> reported success in programming.  Can someone assist me in understandi=
-ng
->>>> whether my interpretation is correct or not and, most importantly, sug=
-gest
->>>> what I might try next to bring this N210 to life?
->>>>
->>>> The =E2=80=9CPlease run:=E2=80=9D suggestion results in the =E2=80=9CR=
-eceived invalid reply 32
->>>> from device=E2=80=9D error.  It seems no matter what I try the =E2=80=
-=9CReceived invalid
->>>> reply 32 from device=E2=80=9D RuntimeError is reported back when I try=
- to load any
->>>> new firmware/FPGA images.
->>>>
->>>> Thanks!
->>>>
->>>> Joe
->>>>
->>>>
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->>
->>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000dd2ac80588672efd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">You could try using the .deb or .rpm pre-built binaries if=
- you&#39;re running on Linux.=C2=A0 See, for instance:<div><a href=3D"http:=
-//files.ettus.com/binaries/uhd/uhd_003.004.000-release/">http://files.ettus=
-.com/binaries/uhd/uhd_003.004.000-release/</a>=C2=A0=C2=A0<br></div></div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed,=
- May 8, 2019 at 2:09 PM Joe Martin via USRP-users &lt;<a href=3D"mailto:usr=
-p-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex"><div style=3D"overflow-w=
-rap: break-word;">I=E2=80=99ve successfully built UHD v3.9.0 but it has the=
- same error as 3.14.0 did before (=E2=80=9CReceived invalid reply 32 from d=
-evice=E2=80=9D) and uhd_usrp_probe still complains that it is expecting com=
-patibility number 11 but is receiving 6.=C2=A0 So I think that means I need=
- an earlier version of UHD than 3.9.0. =C2=A0<div><br></div><div>I will dig=
- into the earliest version in the git tag -l, namely 003_007_002_rc1, that =
-would not build without errors and try to work out the compiler errors then=
-.=C2=A0 Unless someone has a better idea to try. =C2=A0 Thanks!<div><br></d=
-iv><div>Regards,=C2=A0</div><div><br></div><div>Joe<br><div><br><blockquote=
- type=3D"cite"><div>On May 8, 2019, at 2:40 PM, Joe Martin via USRP-users &=
-lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-use=
-rs@lists.ettus.com</a>&gt; wrote:</div><br class=3D"gmail-m_855281972317889=
-7174Apple-interchange-newline"><div><div style=3D"overflow-wrap: break-word=
-;">Okay, thanks, that=E2=80=99s what I thought but that isn=E2=80=99t usefu=
-l for me until I find a UHD version that can communicate with it.=C2=A0 I=
-=E2=80=99ve been trying to build older UHD versions from 003_007_002_rc1 fo=
-rward but all so far fail to build due to compiler errors.=C2=A0 Am up to 0=
-03_008_005_rc1 now, moving forward until I can successfully build one to tr=
-y.=C2=A0 Are there any old pre-built versions I could simply try without ha=
-ving to build each one myself?<div><br></div><div>Joe<br><div><br><blockquo=
-te type=3D"cite"><div>On May 8, 2019, at 2:31 PM, Nick Foster &lt;<a href=
-=3D"mailto:bistromath@gmail.com" target=3D"_blank">bistromath@gmail.com</a>=
-&gt; wrote:</div><br class=3D"gmail-m_8552819723178897174Apple-interchange-=
-newline"><div><div dir=3D"ltr">Yes, code loaded over JTAG is gone at next b=
-oot. I can&#39;t think of an easy way to figure out what image is loaded ot=
-her than asking UHD to query it for FPGA compat number.<br></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 8, 2=
-019 at 1:04 PM Joe Martin &lt;<a href=3D"mailto:k5so@k5so.com" target=3D"_b=
-lank">k5so@k5so.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div>I guess the proper way to ask is =E2=80=9CIs there =
-a way to determine what fpga .bin file is in the N210?=E2=80=9D, since the =
-.bit file that I loaded into the fpga is volatile code that disappears upon=
- power cycling to be reloaded from an EEPROM or something, yes?<div><br></d=
-iv><div>Joe<br><div><br><blockquote type=3D"cite"><div>On May 8, 2019, at 1=
-:55 PM, Joe Martin via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.et=
-tus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:</div><=
-br class=3D"gmail-m_8552819723178897174gmail-m_8060179659594778536Apple-int=
-erchange-newline"><div><div>Hi Nick,=C2=A0<div><br></div><div>Thanks for th=
-e comments.=C2=A0 Is there a way to determine what bit file is currently in=
- the N210?=C2=A0 If so, how please?</div><div><br></div><div>Joe<br><div><b=
-r><blockquote type=3D"cite"><div>On May 8, 2019, at 1:33 PM, Nick Foster &l=
-t;<a href=3D"mailto:bistromath@gmail.com" target=3D"_blank">bistromath@gmai=
-l.com</a>&gt; wrote:</div><br class=3D"gmail-m_8552819723178897174gmail-m_8=
-060179659594778536Apple-interchange-newline"><div><div dir=3D"ltr">I see yo=
-u got there already! If you&#39;re still having trouble, I&#39;ll see what =
-I can dig up over here.<br></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Wed, May 8, 2019 at 12:31 PM Nick Foster &lt;=
-<a href=3D"mailto:bistromath@gmail.com" target=3D"_blank">bistromath@gmail.=
-com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><div dir=3D"ltr"><div>You might be best off reverting to a UHD old enoug=
-h to support the bitfile currently loaded on your N210. You could then boot=
-strap your N210 by using the old UHD to load a newer FPGA image.<br></div><=
-div><br></div><div>Otherwise, it&#39;s fairly simple to convert the binfile=
-s (which still exist -- usrp_n210_r2_fpga.bin) to bitfiles. You can take th=
-e header from usrp_n210_r3_fpga.bit and just stick it onto the front of usr=
-p_n210_r2_fpga.bin, and call the output usrp_n210_r2_fpga.bit. The header i=
-s everything up until FF FF FF FF AA 99 55 66.</div><div><br></div><div>Las=
-tly, the source is all there, so building using ISE should still be possibl=
-e.<br></div><div><br></div><div>Nick<br></div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 8, 2019 at 9:57 A=
-M Joe Martin via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div>Wow, okay; that=E2=80=
-=99s disheartening.=C2=A0 Thanks much for the info, Jason.=C2=A0 Nope, the =
-Rev3 bit file doesn=E2=80=99t work; tried it.=C2=A0 I=E2=80=99ll see if the=
- support email adr can be of use. =C2=A0<div><br></div><div>Joe<br><div><br=
-><blockquote type=3D"cite"><div>On May 8, 2019, at 10:44 AM, Jason Matusiak=
- &lt;<a href=3D"mailto:jason@gardettoengineering.com" target=3D"_blank">jas=
-on@gardettoengineering.com</a>&gt; wrote:</div><br class=3D"gmail-m_8552819=
-723178897174gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-=
-156105540658111525Apple-interchange-newline"><div><div style=3D"font-style:=
-normal;font-variant-caps:normal;font-weight:normal;letter-spacing:normal;te=
-xt-align:start;text-indent:0px;text-transform:none;white-space:normal;word-=
-spacing:0px;text-decoration:none;font-family:Calibri,Arial,Helvetica,sans-s=
-erif;font-size:12pt">Joe, I think you might be SOL.=C2=A0 If you take a loo=
-k at this thread from me last year, I had no luck:=C2=A0<a href=3D"http://l=
-ists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-April/056223.html"=
- target=3D"_blank">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.=
-com/2018-April/056223.html</a></div><div style=3D"font-style:normal;font-va=
-riant-caps:normal;font-weight:normal;letter-spacing:normal;text-align:start=
-;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;te=
-xt-decoration:none;font-family:Calibri,Arial,Helvetica,sans-serif;font-size=
-:12pt"><br></div><div style=3D"font-style:normal;font-variant-caps:normal;f=
-ont-weight:normal;letter-spacing:normal;text-align:start;text-indent:0px;te=
-xt-transform:none;white-space:normal;word-spacing:0px;text-decoration:none;=
-font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt"><br></div><d=
-iv style=3D"font-style:normal;font-variant-caps:normal;font-weight:normal;l=
-etter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;w=
-hite-space:normal;word-spacing:0px;text-decoration:none;font-family:Calibri=
-,Arial,Helvetica,sans-serif;font-size:12pt">Also, when I pinged Ettus direc=
-tly, here is some info I got back from them (from two different emails in t=
-he thread):</div><div style=3D"font-style:normal;font-variant-caps:normal;f=
-ont-weight:normal;letter-spacing:normal;text-align:start;text-indent:0px;te=
-xt-transform:none;white-space:normal;word-spacing:0px;text-decoration:none;=
-font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt">&quot;<span =
-style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb(255,2=
-55,255);display:inline">we&#39;ve been having some trouble tracking down Re=
-v2 bitfiles, because no</span><br style=3D"color:rgb(32,31,30);font-size:14=
-.6667px;background-color:rgb(255,255,255)"><span style=3D"color:rgb(32,31,3=
-0);font-size:14.6667px;background-color:rgb(255,255,255);display:inline">on=
-e here was around when that was built. If you&#39;re trying to unbrick</spa=
-n><br style=3D"color:rgb(32,31,30);font-size:14.6667px;background-color:rgb=
-(255,255,255)"><span style=3D"color:rgb(32,31,30);font-size:14.6667px;backg=
-round-color:rgb(255,255,255);display:inline">them, Rev3 bitfiles might be O=
-K, but I&#39;m not completely sure.</span></div><div style=3D"font-style:no=
-rmal;font-variant-caps:normal;font-weight:normal;letter-spacing:normal;text=
--align:start;text-indent:0px;text-transform:none;white-space:normal;word-sp=
-acing:0px;text-decoration:none;font-family:Calibri,Arial,Helvetica,sans-ser=
-if;font-size:12pt"><br style=3D"color:rgb(32,31,30);font-size:14.6667px;bac=
-kground-color:rgb(255,255,255)"><span style=3D"color:rgb(32,31,30);font-siz=
-e:14.6667px;background-color:rgb(255,255,255);display:inline"><a href=3D"ma=
-ilto:support@ettus.com" target=3D"_blank">support@ettus.com</a><span class=
-=3D"gmail-m_8552819723178897174gmail-m_8060179659594778536gmail-m_480385781=
-8538028017gmail-m_-156105540658111525Apple-converted-space">=C2=A0</span>mi=
-ght know more by know.</span></div><div style=3D"font-style:normal;font-var=
-iant-caps:normal;font-weight:normal;letter-spacing:normal;text-align:start;=
-text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;tex=
-t-decoration:none;font-family:Calibri,Arial,Helvetica,sans-serif;font-size:=
-12pt"><span style=3D"color:rgb(32,31,30);font-size:14.6667px;background-col=
-or:rgb(255,255,255);display:inline">really sorry, but those Rev2s are just =
-so old. And all the people from</span><br style=3D"color:rgb(32,31,30);font=
--size:14.6667px;background-color:rgb(255,255,255)"><span style=3D"color:rgb=
-(32,31,30);font-size:14.6667px;background-color:rgb(255,255,255);display:in=
-line">that era seem to be gone. Sorry, can&#39;t help you with those Rev2s.=
-&quot;</span></div><div id=3D"gmail-m_8552819723178897174gmail-m_8060179659=
-594778536gmail-m_4803857818538028017gmail-m_-156105540658111525Signature" s=
-tyle=3D"font-family:Helvetica;font-size:12px;font-style:normal;font-variant=
--caps:normal;font-weight:normal;letter-spacing:normal;text-align:start;text=
--indent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-de=
-coration:none"><div><div id=3D"gmail-m_8552819723178897174gmail-m_806017965=
-9594778536gmail-m_4803857818538028017gmail-m_-156105540658111525appendonsen=
-d"></div><div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-=
-size:12pt"><br></div><hr style=3D"display:inline-block;width:1284.77px"><di=
-v id=3D"gmail-m_8552819723178897174gmail-m_8060179659594778536gmail-m_48038=
-57818538028017gmail-m_-156105540658111525divRplyFwdMsg" dir=3D"ltr"><font s=
-tyle=3D"font-size:11pt" face=3D"Calibri, sans-serif"><b>From:</b><span clas=
-s=3D"gmail-m_8552819723178897174gmail-m_8060179659594778536gmail-m_48038578=
-18538028017gmail-m_-156105540658111525Apple-converted-space">=C2=A0</span>U=
-SRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus.com" target=
-=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt; on behalf of Joe Mar=
-tin via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br><b>Sent:</b><span class=
-=3D"gmail-m_8552819723178897174gmail-m_8060179659594778536gmail-m_480385781=
-8538028017gmail-m_-156105540658111525Apple-converted-space">=C2=A0</span>We=
-dnesday, May 8, 2019 11:55 AM<br><b>To:</b><span class=3D"gmail-m_855281972=
-3178897174gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-15=
-6105540658111525Apple-converted-space">=C2=A0</span>Joe Martin via USRP-use=
-rs<br><b>Subject:</b><span class=3D"gmail-m_8552819723178897174gmail-m_8060=
-179659594778536gmail-m_4803857818538028017gmail-m_-156105540658111525Apple-=
-converted-space">=C2=A0</span>[USRP-users] Bringing an elderly N210 to life=
- by loading current firmware/fpga images</font><div>=C2=A0</div></div><div>=
-I am trying to bring an elderly N210 r2.0 with unknown history to life by l=
-oading current UHD firmware and fpga images from a 1Gigabit ethernet connec=
-tion on an AMD 2950X, 3.4GHz, 2TB SSD PC running Ubuntu 18.04 with UHD 3.14=
-.0.HEAD-0-gd20a7ae2 software but having difficulty.=C2=A0<div><br></div><di=
-v>Following instructions in =E2=80=9CUSRP Hardware Driver and USRP Manual: =
-USRP2 and N2x0 Series=E2=80=9D:</div><div><br></div><div>My initial action =
-was to load the =E2=80=9Cusrp_n210_r4_fpga.bit&quot; file into the N210 xc3=
-sd3400a FPGA using a Xilinx Platform Cable USB II JTAG programming cable fr=
-om a Win7 PC running Xilinx ISE iMPACT, which reported =E2=80=9CProgram Suc=
-ceeded=E2=80=9D for the action.=C2=A0 Ethernet LEDs on the N210 are various=
-ly lighted showing activity on the connection port.</div><div><br></div><di=
-v>With the N210 connected to the Linux PC 1Gbps ethernet port, issuing the =
-following commands result in the responses shown in the screenshot image be=
-low:=C2=A0</div><div><br></div><div><span id=3D"gmail-m_8552819723178897174=
-gmail-m_8060179659594778536gmail-m_4803857818538028017gmail-m_-156105540658=
-111525cid:70A3E5A1-EF1B-4D99-B156-F8CD7369666A">&lt;Screenshot from 2019-05=
--08 08-46-52.png&gt;</span></div><div><br></div><div><div>My (naive!) inter=
-pretation of the above responses is that the FPGA may not actually have bee=
-n programmed with the *.bit code even though iMPACT reported success in pro=
-gramming.=C2=A0 Can someone assist me in understanding whether my interpret=
-ation is correct or not and, most importantly, suggest what I might try nex=
-t to bring this N210 to life? =C2=A0</div><div><br></div><div>The =E2=80=9C=
-Please run:=E2=80=9D suggestion results in the =E2=80=9CReceived invalid re=
-ply 32 from device=E2=80=9D error.=C2=A0 It seems no matter what I try the =
-=E2=80=9CReceived invalid reply 32 from device=E2=80=9D RuntimeError is rep=
-orted back when I try to load any new firmware/FPGA images. =C2=A0</div><di=
-v><br></div><div>Thanks!</div><div><br></div><div>Joe</div></div></div></di=
-v></div></div></blockquote></div><br></div></div>__________________________=
-_____________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</div></blockquote></div><br></div></div>__________________________________=
-_____________<br>USRP-users mailing list<br><a href=3D"mailto:USRP-users@li=
-sts.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br><a href=
-=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" tar=
-get=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ett=
-us.com</a><br></div></blockquote></div><br></div></div></blockquote></div>
-</div></blockquote></div><br></div></div>__________________________________=
-_____________<br>USRP-users mailing list<br><a href=3D"mailto:USRP-users@li=
-sts.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br><a href=
-=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" tar=
-get=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ett=
-us.com</a><br></div></blockquote></div><br></div></div></div>______________=
-_________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000dd2ac80588672efd--
-
-
---===============1814185842101239859==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1814185842101239859==--
-
+SSd2ZSBnb3QgdGhlIDMuOC40IGltYWdlcyB6aXBmaWxlIGx5aW5nIGFyb3VuZCBpbiBteSBPRSBk
+b3dubG9hZApkaXJlY3RvcnksIGlmIGl0IGhlbHBzIEkgY2FuIHB1dCBpdCBvbiBkcm9wYm94LiBJ
+IG1pZ2h0IGJlIGFibGUgdG8gZmluZApzb21lIG9sZGVyIG9uZXMgaWYgbmVlZGVkLgoKWWVhaCwg
+SSBzYXZlIGFuY2llbnQgc291cmNlIGluIGNhc2Ugb2YgYSBHUEwgY29tcGxpYW5jZSBleGVyY2lz
+ZSA6KQoKUGhpbGlwCgpPbiAwNS8wOC8yMDE5IDA1OjQwIFBNLCBSb2JpbiBDb3hlIHZpYSBVU1JQ
+LXVzZXJzIHdyb3RlOgo+IFlvdSBjb3VsZCB0cnkgdXNpbmcgdGhlIC5kZWIgb3IgLnJwbSBwcmUt
+YnVpbHQgYmluYXJpZXMgaWYgeW91J3JlIHJ1bm5pbmcKPiBvbiBMaW51eC4gIFNlZSwgZm9yIGlu
+c3RhbmNlOgo+IGh0dHA6Ly9maWxlcy5ldHR1cy5jb20vYmluYXJpZXMvdWhkL3VoZF8wMDMuMDA0
+LjAwMC1yZWxlYXNlLwo+IAo+IE9uIFdlZCwgTWF5IDgsIDIwMTkgYXQgMjowOSBQTSBKb2UgTWFy
+dGluIHZpYSBVU1JQLXVzZXJzIDwKPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6
+Cj4gCj4+IEnigJl2ZSBzdWNjZXNzZnVsbHkgYnVpbHQgVUhEIHYzLjkuMCBidXQgaXQgaGFzIHRo
+ZSBzYW1lIGVycm9yIGFzIDMuMTQuMCBkaWQKPj4gYmVmb3JlICjigJxSZWNlaXZlZCBpbnZhbGlk
+IHJlcGx5IDMyIGZyb20gZGV2aWNl4oCdKSBhbmQgdWhkX3VzcnBfcHJvYmUgc3RpbGwKPj4gY29t
+cGxhaW5zIHRoYXQgaXQgaXMgZXhwZWN0aW5nIGNvbXBhdGliaWxpdHkgbnVtYmVyIDExIGJ1dCBp
+cyByZWNlaXZpbmcgNi4KPj4gU28gSSB0aGluayB0aGF0IG1lYW5zIEkgbmVlZCBhbiBlYXJsaWVy
+IHZlcnNpb24gb2YgVUhEIHRoYW4gMy45LjAuCj4+Cj4+IEkgd2lsbCBkaWcgaW50byB0aGUgZWFy
+bGllc3QgdmVyc2lvbiBpbiB0aGUgZ2l0IHRhZyAtbCwgbmFtZWx5Cj4+IDAwM18wMDdfMDAyX3Jj
+MSwgdGhhdCB3b3VsZCBub3QgYnVpbGQgd2l0aG91dCBlcnJvcnMgYW5kIHRyeSB0byB3b3JrIG91
+dAo+PiB0aGUgY29tcGlsZXIgZXJyb3JzIHRoZW4uICBVbmxlc3Mgc29tZW9uZSBoYXMgYSBiZXR0
+ZXIgaWRlYSB0byB0cnkuCj4+IFRoYW5rcyEKPj4KPj4gUmVnYXJkcywKPj4KPj4gSm9lCj4+Cj4+
+IE9uIE1heSA4LCAyMDE5LCBhdCAyOjQwIFBNLCBKb2UgTWFydGluIHZpYSBVU1JQLXVzZXJzIDwK
+Pj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+Pgo+PiBPa2F5LCB0aGFua3Ms
+IHRoYXTigJlzIHdoYXQgSSB0aG91Z2h0IGJ1dCB0aGF0IGlzbuKAmXQgdXNlZnVsIGZvciBtZSB1
+bnRpbCBJCj4+IGZpbmQgYSBVSEQgdmVyc2lvbiB0aGF0IGNhbiBjb21tdW5pY2F0ZSB3aXRoIGl0
+LiAgSeKAmXZlIGJlZW4gdHJ5aW5nIHRvIGJ1aWxkCj4+IG9sZGVyIFVIRCB2ZXJzaW9ucyBmcm9t
+IDAwM18wMDdfMDAyX3JjMSBmb3J3YXJkIGJ1dCBhbGwgc28gZmFyIGZhaWwgdG8KPj4gYnVpbGQg
+ZHVlIHRvIGNvbXBpbGVyIGVycm9ycy4gIEFtIHVwIHRvIDAwM18wMDhfMDA1X3JjMSBub3csIG1v
+dmluZyBmb3J3YXJkCj4+IHVudGlsIEkgY2FuIHN1Y2Nlc3NmdWxseSBidWlsZCBvbmUgdG8gdHJ5
+LiAgQXJlIHRoZXJlIGFueSBvbGQgcHJlLWJ1aWx0Cj4+IHZlcnNpb25zIEkgY291bGQgc2ltcGx5
+IHRyeSB3aXRob3V0IGhhdmluZyB0byBidWlsZCBlYWNoIG9uZSBteXNlbGY/Cj4+Cj4+IEpvZQo+
+Pgo+PiBPbiBNYXkgOCwgMjAxOSwgYXQgMjozMSBQTSwgTmljayBGb3N0ZXIgPGJpc3Ryb21hdGhA
+Z21haWwuY29tPiB3cm90ZToKPj4KPj4gWWVzLCBjb2RlIGxvYWRlZCBvdmVyIEpUQUcgaXMgZ29u
+ZSBhdCBuZXh0IGJvb3QuIEkgY2FuJ3QgdGhpbmsgb2YgYW4gZWFzeQo+PiB3YXkgdG8gZmlndXJl
+IG91dCB3aGF0IGltYWdlIGlzIGxvYWRlZCBvdGhlciB0aGFuIGFza2luZyBVSEQgdG8gcXVlcnkg
+aXQKPj4gZm9yIEZQR0EgY29tcGF0IG51bWJlci4KPj4KPj4gT24gV2VkLCBNYXkgOCwgMjAxOSBh
+dCAxOjA0IFBNIEpvZSBNYXJ0aW4gPGs1c29AazVzby5jb20+IHdyb3RlOgo+Pgo+Pj4gSSBndWVz
+cyB0aGUgcHJvcGVyIHdheSB0byBhc2sgaXMg4oCcSXMgdGhlcmUgYSB3YXkgdG8gZGV0ZXJtaW5l
+IHdoYXQgZnBnYQo+Pj4gLmJpbiBmaWxlIGlzIGluIHRoZSBOMjEwP+KAnSwgc2luY2UgdGhlIC5i
+aXQgZmlsZSB0aGF0IEkgbG9hZGVkIGludG8gdGhlIGZwZ2EKPj4+IGlzIHZvbGF0aWxlIGNvZGUg
+dGhhdCBkaXNhcHBlYXJzIHVwb24gcG93ZXIgY3ljbGluZyB0byBiZSByZWxvYWRlZCBmcm9tIGFu
+Cj4+PiBFRVBST00gb3Igc29tZXRoaW5nLCB5ZXM/Cj4+Pgo+Pj4gSm9lCj4+Pgo+Pj4gT24gTWF5
+IDgsIDIwMTksIGF0IDE6NTUgUE0sIEpvZSBNYXJ0aW4gdmlhIFVTUlAtdXNlcnMgPAo+Pj4gdXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+Pj4KPj4+IEhpIE5pY2ssCj4+Pgo+Pj4g
+VGhhbmtzIGZvciB0aGUgY29tbWVudHMuICBJcyB0aGVyZSBhIHdheSB0byBkZXRlcm1pbmUgd2hh
+dCBiaXQgZmlsZSBpcwo+Pj4gY3VycmVudGx5IGluIHRoZSBOMjEwPyAgSWYgc28sIGhvdyBwbGVh
+c2U/Cj4+Pgo+Pj4gSm9lCj4+Pgo+Pj4gT24gTWF5IDgsIDIwMTksIGF0IDE6MzMgUE0sIE5pY2sg
+Rm9zdGVyIDxiaXN0cm9tYXRoQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pgo+Pj4gSSBzZWUgeW91IGdv
+dCB0aGVyZSBhbHJlYWR5ISBJZiB5b3UncmUgc3RpbGwgaGF2aW5nIHRyb3VibGUsIEknbGwgc2Vl
+Cj4+PiB3aGF0IEkgY2FuIGRpZyB1cCBvdmVyIGhlcmUuCj4+Pgo+Pj4gT24gV2VkLCBNYXkgOCwg
+MjAxOSBhdCAxMjozMSBQTSBOaWNrIEZvc3RlciA8YmlzdHJvbWF0aEBnbWFpbC5jb20+IHdyb3Rl
+Ogo+Pj4KPj4+PiBZb3UgbWlnaHQgYmUgYmVzdCBvZmYgcmV2ZXJ0aW5nIHRvIGEgVUhEIG9sZCBl
+bm91Z2ggdG8gc3VwcG9ydCB0aGUKPj4+PiBiaXRmaWxlIGN1cnJlbnRseSBsb2FkZWQgb24geW91
+ciBOMjEwLiBZb3UgY291bGQgdGhlbiBib290c3RyYXAgeW91ciBOMjEwCj4+Pj4gYnkgdXNpbmcg
+dGhlIG9sZCBVSEQgdG8gbG9hZCBhIG5ld2VyIEZQR0EgaW1hZ2UuCj4+Pj4KPj4+PiBPdGhlcndp
+c2UsIGl0J3MgZmFpcmx5IHNpbXBsZSB0byBjb252ZXJ0IHRoZSBiaW5maWxlcyAod2hpY2ggc3Rp
+bGwgZXhpc3QKPj4+PiAtLSB1c3JwX24yMTBfcjJfZnBnYS5iaW4pIHRvIGJpdGZpbGVzLiBZb3Ug
+Y2FuIHRha2UgdGhlIGhlYWRlciBmcm9tCj4+Pj4gdXNycF9uMjEwX3IzX2ZwZ2EuYml0IGFuZCBq
+dXN0IHN0aWNrIGl0IG9udG8gdGhlIGZyb250IG9mCj4+Pj4gdXNycF9uMjEwX3IyX2ZwZ2EuYmlu
+LCBhbmQgY2FsbCB0aGUgb3V0cHV0IHVzcnBfbjIxMF9yMl9mcGdhLmJpdC4gVGhlCj4+Pj4gaGVh
+ZGVyIGlzIGV2ZXJ5dGhpbmcgdXAgdW50aWwgRkYgRkYgRkYgRkYgQUEgOTkgNTUgNjYuCj4+Pj4K
+Pj4+PiBMYXN0bHksIHRoZSBzb3VyY2UgaXMgYWxsIHRoZXJlLCBzbyBidWlsZGluZyB1c2luZyBJ
+U0Ugc2hvdWxkIHN0aWxsIGJlCj4+Pj4gcG9zc2libGUuCj4+Pj4KPj4+PiBOaWNrCj4+Pj4KPj4+
+PiBPbiBXZWQsIE1heSA4LCAyMDE5IGF0IDk6NTcgQU0gSm9lIE1hcnRpbiB2aWEgVVNSUC11c2Vy
+cyA8Cj4+Pj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+Pj4+Cj4+Pj4+IFdv
+dywgb2theTsgdGhhdOKAmXMgZGlzaGVhcnRlbmluZy4gIFRoYW5rcyBtdWNoIGZvciB0aGUgaW5m
+bywgSmFzb24uCj4+Pj4+IE5vcGUsIHRoZSBSZXYzIGJpdCBmaWxlIGRvZXNu4oCZdCB3b3JrOyB0
+cmllZCBpdC4gIEnigJlsbCBzZWUgaWYgdGhlIHN1cHBvcnQKPj4+Pj4gZW1haWwgYWRyIGNhbiBi
+ZSBvZiB1c2UuCj4+Pj4+Cj4+Pj4+IEpvZQo+Pj4+Pgo+Pj4+PiBPbiBNYXkgOCwgMjAxOSwgYXQg
+MTA6NDQgQU0sIEphc29uIE1hdHVzaWFrIDwKPj4+Pj4gamFzb25AZ2FyZGV0dG9lbmdpbmVlcmlu
+Zy5jb20+IHdyb3RlOgo+Pj4+Pgo+Pj4+PiBKb2UsIEkgdGhpbmsgeW91IG1pZ2h0IGJlIFNPTC4g
+IElmIHlvdSB0YWtlIGEgbG9vayBhdCB0aGlzIHRocmVhZCBmcm9tCj4+Pj4+IG1lIGxhc3QgeWVh
+ciwgSSBoYWQgbm8gbHVjazoKPj4+Pj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9waXBlcm1haWwv
+dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20vMjAxOC1BcHJpbC8wNTYyMjMuaHRtbAo+Pj4+Pgo+
+Pj4+Pgo+Pj4+PiBBbHNvLCB3aGVuIEkgcGluZ2VkIEV0dHVzIGRpcmVjdGx5LCBoZXJlIGlzIHNv
+bWUgaW5mbyBJIGdvdCBiYWNrIGZyb20KPj4+Pj4gdGhlbSAoZnJvbSB0d28gZGlmZmVyZW50IGVt
+YWlscyBpbiB0aGUgdGhyZWFkKToKPj4+Pj4gIndlJ3ZlIGJlZW4gaGF2aW5nIHNvbWUgdHJvdWJs
+ZSB0cmFja2luZyBkb3duIFJldjIgYml0ZmlsZXMsIGJlY2F1c2Ugbm8KPj4+Pj4gb25lIGhlcmUg
+d2FzIGFyb3VuZCB3aGVuIHRoYXQgd2FzIGJ1aWx0LiBJZiB5b3UncmUgdHJ5aW5nIHRvIHVuYnJp
+Y2sKPj4+Pj4gdGhlbSwgUmV2MyBiaXRmaWxlcyBtaWdodCBiZSBPSywgYnV0IEknbSBub3QgY29t
+cGxldGVseSBzdXJlLgo+Pj4+Pgo+Pj4+PiBzdXBwb3J0QGV0dHVzLmNvbSBtaWdodCBrbm93IG1v
+cmUgYnkga25vdy4KPj4+Pj4gcmVhbGx5IHNvcnJ5LCBidXQgdGhvc2UgUmV2MnMgYXJlIGp1c3Qg
+c28gb2xkLiBBbmQgYWxsIHRoZSBwZW9wbGUgZnJvbQo+Pj4+PiB0aGF0IGVyYSBzZWVtIHRvIGJl
+IGdvbmUuIFNvcnJ5LCBjYW4ndCBoZWxwIHlvdSB3aXRoIHRob3NlIFJldjJzLiIKPj4+Pj4KPj4+
+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4+Pj4+ICpGcm9tOiogVVNSUC11c2Vy
+cyA8dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbT4gb24gYmVoYWxmIG9mCj4+Pj4+
+IEpvZSBNYXJ0aW4gdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+
+Pj4+PiAqU2VudDoqIFdlZG5lc2RheSwgTWF5IDgsIDIwMTkgMTE6NTUgQU0KPj4+Pj4gKlRvOiog
+Sm9lIE1hcnRpbiB2aWEgVVNSUC11c2Vycwo+Pj4+PiAqU3ViamVjdDoqIFtVU1JQLXVzZXJzXSBC
+cmluZ2luZyBhbiBlbGRlcmx5IE4yMTAgdG8gbGlmZSBieSBsb2FkaW5nCj4+Pj4+IGN1cnJlbnQg
+ZmlybXdhcmUvZnBnYSBpbWFnZXMKPj4+Pj4KPj4+Pj4gSSBhbSB0cnlpbmcgdG8gYnJpbmcgYW4g
+ZWxkZXJseSBOMjEwIHIyLjAgd2l0aCB1bmtub3duIGhpc3RvcnkgdG8gbGlmZQo+Pj4+PiBieSBs
+b2FkaW5nIGN1cnJlbnQgVUhEIGZpcm13YXJlIGFuZCBmcGdhIGltYWdlcyBmcm9tIGEgMUdpZ2Fi
+aXQgZXRoZXJuZXQKPj4+Pj4gY29ubmVjdGlvbiBvbiBhbiBBTUQgMjk1MFgsIDMuNEdIeiwgMlRC
+IFNTRCBQQyBydW5uaW5nIFVidW50dSAxOC4wNCB3aXRoCj4+Pj4+IFVIRCAzLjE0LjAuSEVBRC0w
+LWdkMjBhN2FlMiBzb2Z0d2FyZSBidXQgaGF2aW5nIGRpZmZpY3VsdHkuCj4+Pj4+Cj4+Pj4+IEZv
+bGxvd2luZyBpbnN0cnVjdGlvbnMgaW4g4oCcVVNSUCBIYXJkd2FyZSBEcml2ZXIgYW5kIFVTUlAg
+TWFudWFsOiBVU1JQMgo+Pj4+PiBhbmQgTjJ4MCBTZXJpZXPigJ06Cj4+Pj4+Cj4+Pj4+IE15IGlu
+aXRpYWwgYWN0aW9uIHdhcyB0byBsb2FkIHRoZSDigJx1c3JwX24yMTBfcjRfZnBnYS5iaXQiIGZp
+bGUgaW50byB0aGUKPj4+Pj4gTjIxMCB4YzNzZDM0MDBhIEZQR0EgdXNpbmcgYSBYaWxpbnggUGxh
+dGZvcm0gQ2FibGUgVVNCIElJIEpUQUcgcHJvZ3JhbW1pbmcKPj4+Pj4gY2FibGUgZnJvbSBhIFdp
+bjcgUEMgcnVubmluZyBYaWxpbnggSVNFIGlNUEFDVCwgd2hpY2ggcmVwb3J0ZWQg4oCcUHJvZ3Jh
+bQo+Pj4+PiBTdWNjZWVkZWTigJ0gZm9yIHRoZSBhY3Rpb24uICBFdGhlcm5ldCBMRURzIG9uIHRo
+ZSBOMjEwIGFyZSB2YXJpb3VzbHkgbGlnaHRlZAo+Pj4+PiBzaG93aW5nIGFjdGl2aXR5IG9uIHRo
+ZSBjb25uZWN0aW9uIHBvcnQuCj4+Pj4+Cj4+Pj4+IFdpdGggdGhlIE4yMTAgY29ubmVjdGVkIHRv
+IHRoZSBMaW51eCBQQyAxR2JwcyBldGhlcm5ldCBwb3J0LCBpc3N1aW5nCj4+Pj4+IHRoZSBmb2xs
+b3dpbmcgY29tbWFuZHMgcmVzdWx0IGluIHRoZSByZXNwb25zZXMgc2hvd24gaW4gdGhlIHNjcmVl
+bnNob3QKPj4+Pj4gaW1hZ2UgYmVsb3c6Cj4+Pj4+Cj4+Pj4+IDxTY3JlZW5zaG90IGZyb20gMjAx
+OS0wNS0wOCAwOC00Ni01Mi5wbmc+Cj4+Pj4+Cj4+Pj4+IE15IChuYWl2ZSEpIGludGVycHJldGF0
+aW9uIG9mIHRoZSBhYm92ZSByZXNwb25zZXMgaXMgdGhhdCB0aGUgRlBHQSBtYXkKPj4+Pj4gbm90
+IGFjdHVhbGx5IGhhdmUgYmVlbiBwcm9ncmFtbWVkIHdpdGggdGhlICouYml0IGNvZGUgZXZlbiB0
+aG91Z2ggaU1QQUNUCj4+Pj4+IHJlcG9ydGVkIHN1Y2Nlc3MgaW4gcHJvZ3JhbW1pbmcuICBDYW4g
+c29tZW9uZSBhc3Npc3QgbWUgaW4gdW5kZXJzdGFuZGluZwo+Pj4+PiB3aGV0aGVyIG15IGludGVy
+cHJldGF0aW9uIGlzIGNvcnJlY3Qgb3Igbm90IGFuZCwgbW9zdCBpbXBvcnRhbnRseSwgc3VnZ2Vz
+dAo+Pj4+PiB3aGF0IEkgbWlnaHQgdHJ5IG5leHQgdG8gYnJpbmcgdGhpcyBOMjEwIHRvIGxpZmU/
+Cj4+Pj4+Cj4+Pj4+IFRoZSDigJxQbGVhc2UgcnVuOuKAnSBzdWdnZXN0aW9uIHJlc3VsdHMgaW4g
+dGhlIOKAnFJlY2VpdmVkIGludmFsaWQgcmVwbHkgMzIKPj4+Pj4gZnJvbSBkZXZpY2XigJ0gZXJy
+b3IuICBJdCBzZWVtcyBubyBtYXR0ZXIgd2hhdCBJIHRyeSB0aGUg4oCcUmVjZWl2ZWQgaW52YWxp
+ZAo+Pj4+PiByZXBseSAzMiBmcm9tIGRldmljZeKAnSBSdW50aW1lRXJyb3IgaXMgcmVwb3J0ZWQg
+YmFjayB3aGVuIEkgdHJ5IHRvIGxvYWQgYW55Cj4+Pj4+IG5ldyBmaXJtd2FyZS9GUEdBIGltYWdl
+cy4KPj4+Pj4KPj4+Pj4gVGhhbmtzIQo+Pj4+Pgo+Pj4+PiBKb2UKPj4+Pj4KPj4+Pj4KPj4+Pj4g
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+Pj4gVVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QKPj4+Pj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4+
+Pj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tCj4+Pj4+Cj4+Pj4KPj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+Pj4gVVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+Pj4KPj4+Cj4+Pgo+PiBfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiBodHRwOi8vbGlzdHMu
+ZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4K
+Pj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4g
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4g
+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29tCj4+Cj4gCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
+cC11c2Vyc19saXN0cy5ldHR1cy5jb20K
