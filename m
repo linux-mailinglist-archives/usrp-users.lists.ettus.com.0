@@ -2,34 +2,44 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694D517CE5
-	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2019 17:12:29 +0200 (CEST)
-Received: from [::1] (port=57742 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F293817D57
+	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2019 17:33:18 +0200 (CEST)
+Received: from [::1] (port=34664 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOOFA-0005p8-3o; Wed, 08 May 2019 11:12:28 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:58467)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.91) (envelope-from <zluudg@zluudg.xyz>) id 1hOOEb-0005Ef-Lh
- for usrp-users@lists.ettus.com; Wed, 08 May 2019 11:12:23 -0400
-X-Originating-IP: 193.10.67.214
-Received: from [10.114.72.219] (guestway.sics.se [193.10.67.214])
- (Authenticated sender: zluudg@zluudg.xyz)
- by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id BA216E0009
- for <usrp-users@lists.ettus.com>; Wed,  8 May 2019 15:11:09 +0000 (UTC)
-To: usrp-users@lists.ettus.com
-Message-ID: <7f08d2de-bc0f-33f6-7b76-448cfae47524@zluudg.xyz>
-Date: Wed, 8 May 2019 17:11:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-Content-Language: en-US
+	id 1hOOZJ-00078g-QH; Wed, 08 May 2019 11:33:17 -0400
+Received: from atl4mhob08.registeredsite.com ([209.17.115.46]:39276)
+ by mm2.emwd.com with esmtp (Exim 4.91)
+ (envelope-from <k5so@k5so.com>) id 1hOOYl-0006yt-7h
+ for usrp-users@lists.ettus.com; Wed, 08 May 2019 11:33:13 -0400
+Received: from mailpod.hostingplatform.com
+ (atl4qobmail01pod3.registeredsite.com [10.30.77.67])
+ by atl4mhob08.registeredsite.com (8.14.4/8.14.4) with ESMTP id x48FW270022933
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
+ for <usrp-users@lists.ettus.com>; Wed, 8 May 2019 11:32:02 -0400
+Received: (qmail 23050 invoked by uid 0); 8 May 2019 15:32:01 -0000
+X-TCPREMOTEIP: 192.206.203.10
+X-Authenticated-UID: k5so@k5so.com
+Received: from unknown (HELO ?192.168.1.76?) (k5so@k5so.com@192.206.203.10)
+ by 0 with ESMTPA; 8 May 2019 15:32:01 -0000
+Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
+In-Reply-To: <AEAB6769-1A27-40BE-B50B-5DD35782BEE8@gmail.com>
+Date: Wed, 8 May 2019 09:31:59 -0600
+Message-Id: <AA193122-48A3-4E41-93AA-A59BD7FC2B2B@k5so.com>
+References: <CANjdKgy8EcF6uXpgV4ttSkOCojPy-zSU92kvV0jDEYb8Az3C6A@mail.gmail.com>
+ <CAEXYVK7dugiG1gMoj3KzRpp9DEcBZgkGcH0uc2qiZT0SHYNwtg@mail.gmail.com>
+ <CANjdKgymrtDCi7=NNffBtcg5+4fa7An4y-Okc7OkN2cQThFy_g@mail.gmail.com>
+ <7BDAB43E-06BC-43E8-9F11-5499CBBDFF09@k5so.com>
+ <AEAB6769-1A27-40BE-B50B-5DD35782BEE8@gmail.com>
+To: Joe Martin <joe.martin.k5so@gmail.com>
+X-Mailer: Apple Mail (2.3445.9.1)
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] X310 RFNoC transmission issues
+Subject: Re: [USRP-users] Bringing an elderly N210 to life with current
+ firmware/fpga images
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -41,10 +51,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: zluudg via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: zluudg <zluudg@zluudg.xyz>
+From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Joe Martin <k5so@k5so.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -58,31 +69,38 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGVsbG8hCgpJJ20gaGF2aW5nIHNvbWUgaXNzdWVzIHdoaWxlIHRyeWluZyB0byB0cmFuc21pdCBh
-IHNpZ25hbCB1c2luZyB0aGUgClJGTm9DOiBSYWRpbyBibG9jayBpbiBHbnVyYWRpby4gTXkgYmxv
-Y2sgZGlhZ3JhbSBpczoKCgogwqDCoMKgwqDCoMKgwqAgU2lnbmFsIFNvdXJjZSAoY29uc3RhbnQp
-IC0+IFJGTm9DOiBEbWFGSUZPIC0+IFJGTm9DOiBSYWRpbyAoaW4gClRYIG1vZGUpLgoKCkkgcnVu
-IHRoZSBibG9jayBkaWFncmFtIGJ5IGNhbGxpbmcgInB5dGhvbiB0b3BfYmxvY2sucHkiIGZyb20g
-dGhlIApjb21tYW5kIGxpbmUgYW5kIEknbSBub3QgZ2V0dGluZyBhbnkgZXJyb3JzIHdoaWxlIGl0
-J3MgcnVubmluZyAuIApIb3dldmVyLCBJJ20gdW5hYmxlIHRvIHF1aXQgaXQgcHJvcGVybHkgd2l0
-aG91dCBoYXZpbmcgdG8gY2xvc2UgdGhlIAp0ZXJtaW5hbCB3aW5kb3cgYW5kIHBvd2VyLWN5Y2xl
-IHRoZSBVU1JQLiBXaGVuIGNvbm5lY3RpbmcgdGhlIFVTUlAgdG8gYSAKc3BlY3RydW0gYW5hbHl6
-ZXIgSSBzZWUgbm8gc2lnbmFsIHdoYXRzb2V2ZXIgKEkgZXhwZWN0IHRvIHNlZSBhIHBlYWsgYXQg
-CjIuNCBHSHopLgoKClJlbW92aW5nIHRoZSBEbWFGSUZPIGRvZXMgbm90IHNlZW0gdG8gbWFrZSBh
-bnkgZGlmZmVyZW5jZS4gTXkgRlBHQSBpbWFnZSAKaXMgYSBjdXN0b20gaW1hZ2Ugd2l0aCBzb21l
-IG9mIG15IENFcywgYnV0IGl0IHdhcyBidWlsdCBzbW9vdGhseSB1c2luZyAKdGhlICJ1aGRfaW1h
-Z2VfYnVpbGRlci5weSIgc2NyaXB0LiBJJ3ZlIGFsc28gZXhwZXJpZW5jZWQgc2ltaWxhciAKcHJv
-YmxlbXMgd2hpbGUgaGF2aW5nIGEgUkZOb0M6IERVQyBiZXR3ZWVuIHRoZSBEbWFGSUZPIGFuZCB0
-aGUgUmFkaW8gCmJsb2NrLCBhbHNvIHdpdGggYSBjdXN0b20gRlBHQSBpbWFnZS4gV2l0aCB0aGUg
-c3RvY2sgRlBHQSBpbWFnZSBJIHdhcyAKYWJsZSB0byBnZXQgYSBzaWduYWwgd2l0aCBtb3JlIG9y
-IGxlc3MgdGhlIHNhbWUgR251cmFkaW8gYmxvY2sgZGlhZ3JhbS4KCgpXaHkgYW0gSSBub3Qgc2Vl
-aW5nIGFueSBvdXRwdXQgd2l0aCBteSBjdXN0b20gRlBHQSBpbWFnZXM/IEFsbCAKc3VnZ2VzdGlv
-bnMgYXBwcmVjaWF0ZWQuCgoKSSdsbCBoYXBwaWx5IHByb3ZpZGUgbW9yZSBpbmZvIGlmIG5lZWRl
-ZCwgc28gZG9uJ3QgaGVzaXRhdGUgdG8gYXNrLiBGb3IgCmtub3csIEknbGwganVzdCBwcm92aWRl
-IHRoZSBiYXNpY3M6CgoKIMKgwqDCoMKgwqDCoMKgIE9TOiBVYnVudHUgMTguMDQKCiDCoMKgwqDC
-oMKgwqDCoCB1aGQ6IHJmbm9jLWRldmVsLCBlZWMyNGQ3YjAKCiDCoMKgwqDCoMKgwqDCoCBnbnVy
-YWRpbzogbWFpbnQtMy43LCBjNmM1NzUzMDkKCiDCoMKgwqDCoMKgwqDCoCBnci1ldHR1czogbWFz
-dGVyLCBhOTA5NDQ3CgoKVGhhbmtzIGluIGFkdmFuY2UhCgovLwoKTGVvbgoKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBs
-aXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFp
-bG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+QXBvbG9naWVzLCB0aGUgaW5zdHJ1Y3Rpb24gZG9jdW1lbnQgSeKAmW0gZm9sbG93aW5nIGlzIOKA
+nFVTUlBfSGFyZHdhcmUgRHJpdmVyIGFuZCBVU1JQIE1hbnVhbDogVVNEUlAyIGFuZCBOMngwIFNl
+cmllc+KAnSBub3Qgd2hhdCBpcyBtZW50aW9uZWQgYmVsb3cuCgpKb2UKCj4gT24gTWF5IDgsIDIw
+MTksIGF0IDk6MTEgQU0sIEpvZSBNYXJ0aW4gPGpvZS5tYXJ0aW4uazVzb0BnbWFpbC5jb20+IHdy
+b3RlOgo+IAo+IEkgYW0gdHJ5aW5nIHRvIGJyaW5nIGFuIGVsZGVybHkgTjIxMCByMi4wIHdpdGgg
+dW5rbm93biBoaXN0b3J5IHRvIGxpZmUgYnkgbG9hZGluZyBjdXJyZW50IFVIRCBmaXJtd2FyZSBh
+bmQgZnBnYSBpbWFnZXMgZnJvbSBhIDFHaWdhYml0IGV0aGVybmV0IGNvbm5lY3Rpb24gb24gYW4g
+QU1EIDI5NTBYLCAzLjRHSHosIDJUQiBTU0QgUEMgcnVubmluZyBVYnVudHUgMTguMDQgd2l0aCBV
+SEQgMy4xNC4wLkhFQUQtMC1nZDIwYTdhZTIgc29mdHdhcmUgYnV0IGhhdmluZyBkaWZmaWN1bHR5
+LiAKPiAKPiBGb2xsb3dpbmcgaW5zdHJ1Y3Rpb25zIGluIOKAnFVTUlAgSGFyZHdhcmUgRHJpdmVy
+IGFuZCBVU1JQIE1hbnVhbDogSW50ZXJuYWwgR1BTRE8gKFVTUlAtTjJ4MC9FMVgwIE1vZGVscyni
+gJ06Cj4gCj4gTXkgaW5pdGlhbCBhY3Rpb24gd2FzIHRvIGxvYWQgdGhlIOKAnHVzcnBfbjIxMF9y
+NF9mcGdhLmJpdCIgZmlsZSBpbnRvIHRoZSBOMjEwIHhjM3NkMzQwMGEgRlBHQSB1c2luZyBhIFhp
+bGlueCBQbGF0Zm9ybSBDYWJsZSBVU0IgSUkgSlRBRyBwcm9ncmFtbWluZyBjYWJsZSBmcm9tIGEg
+V2luNyBQQyBydW5uaW5nIFhpbGlueCBJU0UgaU1QQUNULCB3aGljaCByZXBvcnRlZCDigJxQcm9n
+cmFtIFN1Y2NlZWRlZOKAnSBmb3IgdGhlIGFjdGlvbi4gIEV0aGVybmV0IExFRHMgb24gdGhlIE4y
+MTAgYXJlIHZhcmlvdXNseSBsaWdodGVkIHNob3dpbmcgYWN0aXZpdHkgb24gdGhlIGNvbm5lY3Rp
+b24gcG9ydC4KPiAKPiBXaXRoIHRoZSBOMjEwIGNvbm5lY3RlZCB0byB0aGUgTGludXggUEMgMUdi
+cHMgZXRoZXJuZXQgcG9ydCwgaXNzdWluZyB0aGUgZm9sbG93aW5nIGNvbW1hbmRzIHJlc3VsdCBp
+biB0aGUgcmVzcG9uc2VzIHNob3duIGluIHRoZSBzY3JlZW5zaG90IGltYWdlIGJlbG93OiAKPiAK
+PiA8U2NyZWVuc2hvdCBmcm9tIDIwMTktMDUtMDggMDgtNDYtNTIucG5nPgo+IAo+IE15IChuYWl2
+ZSEpIGludGVycHJldGF0aW9uIG9mIHRoZSBhYm92ZSByZXNwb25zZXMgaXMgdGhhdCB0aGUgRlBH
+QSBtYXkgbm90IGFjdHVhbGx5IGhhdmUgYmVlbiBwcm9ncmFtbWVkIHdpdGggdGhlICouYml0IGNv
+ZGUgZXZlbiB0aG91Z2ggaU1QQUNUIHJlcG9ydGVkIHN1Y2Nlc3MgaW4gcHJvZ3JhbW1pbmcuICBD
+YW4gc29tZW9uZSBhc3Npc3QgbWUgaW4gdW5kZXJzdGFuZGluZyB3aGV0aGVyIG15IGludGVycHJl
+dGF0aW9uIGlzIGNvcnJlY3Qgb3Igbm90IGFuZCwgbW9zdCBpbXBvcnRhbnRseSwgc3VnZ2VzdCB3
+aGF0IEkgbWlnaHQgdHJ5IG5leHQgdG8gYnJpbmcgdGhpcyBOMjEwIHRvIGxpZmU/ICAKPiAKPiBU
+aGUg4oCcUGxlYXNlIHJ1bjrigJ0gc3VnZ2VzdGlvbiByZXN1bHRzIGluIHRoZSDigJxSZWNlaXZl
+ZCBpbnZhbGlkIHJlcGx5IDMyIGZyb20gZGV2aWNl4oCdIGVycm9yLiAgSXQgc2VlbXMgbm8gbWF0
+dGVyIHdoYXQgSSB0cnkgdGhlIOKAnFJlY2VpdmVkIGludmFsaWQgcmVwbHkgMzIgZnJvbSBkZXZp
+Y2XigJ0gUnVudGltZUVycm9yIGlzIHJlcG9ydGVkIGJhY2sgd2hlbiBJIHRyeSB0byBsb2FkIGFu
+eSBuZXcgZmlybXdhcmUvRlBHQSBpbWFnZXMuICAKPiAKPiBUaGFua3MhCj4gCj4gSm9lCj4gCgoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2Vy
+cyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0
+dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
