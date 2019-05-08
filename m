@@ -2,51 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2315A17F13
-	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2019 19:29:52 +0200 (CEST)
-Received: from [::1] (port=47996 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA64A17F18
+	for <lists+usrp-users@lfdr.de>; Wed,  8 May 2019 19:31:22 +0200 (CEST)
+Received: from [::1] (port=50024 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOQO7-00060B-50; Wed, 08 May 2019 13:29:51 -0400
-Received: from mail-qt1-f172.google.com ([209.85.160.172]:40126)
+	id 1hOQPZ-0006Pm-Eg; Wed, 08 May 2019 13:31:21 -0400
+Received: from mail-qt1-f172.google.com ([209.85.160.172]:33652)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
- id 1hOQNY-0005nX-Go
- for usrp-users@lists.ettus.com; Wed, 08 May 2019 13:29:46 -0400
-Received: by mail-qt1-f172.google.com with SMTP id k24so6964640qtq.7
- for <usrp-users@lists.ettus.com>; Wed, 08 May 2019 10:28:56 -0700 (PDT)
+ id 1hOQP1-0006Gj-5t
+ for usrp-users@lists.ettus.com; Wed, 08 May 2019 13:31:17 -0400
+Received: by mail-qt1-f172.google.com with SMTP id m32so21077989qtf.0
+ for <usrp-users@lists.ettus.com>; Wed, 08 May 2019 10:30:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:cc:subject
  :references:in-reply-to;
- bh=0cEAI4WAJlVAQ11McJ921u5HKxKaQGYac+RUjaoo2y4=;
- b=rZDD5tLKrF5/sSzdUArZ/YxG5lHZqVB+efOFAuIFR10xEcFCAsHKzwwVth7k1zDNdL
- 57jkw6tpxd30RPEqhZuZcLYT9eOlgW454TFcV1D3cyls2z5axrRiCHrwhYNcMv0UPejh
- ziq0nIYOEwMuu3eW80VgvYtJPNtGd66oUrfQ9MzBU4co2u5tW0M5Wwv40J8ZdXo0lcU9
- t9fWESgCvA/EtLmfflLW6ZnV23cloPP797FGonFy3vC1oTHf38HFsetTSPq4drvJtGDX
- 2VU5USjD13ews+K5hLgAxcHS7pe7aVDuiL9xU4zwIp2g0gIc+Eb/VzBNkNBxFhioqt1L
- m0ig==
+ bh=X0kcwAP64IN16gpnWKiLqwqBN3DY7yqFgalAGf7sSdg=;
+ b=kwK41e/MoC3sd3Qa0/Mayw0UvqdBKJgtv5repC3QMCY4qTybTgzQpasu8Iz3g894wi
+ YeyLcIEHIsS+RkCes9RrN1qdzkm6UVaCgSkgtohtoK/YuKliEVo5/uBSH1jGbaMpzpan
+ uFmrO9Ys3N4gRn9fvPB9YYJwnEfQh+WFyrvNjrvEVOUbYCJGjhWKRya/0n4pZa1AIq2h
+ lPJsynbkWkcAb2euj0WiYcu+Boelxja4uZmDkP0yZEodyJ1CvywBtWaoECZA0C5d+Omh
+ FySvOGRIxtJ+CO4yU8u2ZO2+q/CtojuBSelJ7hNuToc9mo4OsIip85LS8ALjR3J5dlX2
+ c+JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :cc:subject:references:in-reply-to;
- bh=0cEAI4WAJlVAQ11McJ921u5HKxKaQGYac+RUjaoo2y4=;
- b=nmSBqbTasxIQfXTLROy/vNAZVsbEg1O34cbhSaTZcjAgQqJvDQwPuDv28M5oUAHiUu
- EeEM/Q9vEixgFtJ6A9GPZTwvgflKTKsecfx0Tafh8WR3I+i+3ajzMLJt3bD9aN5/I2OQ
- vmZGKGcGe6iA8LatKlh4zrpB8KPHDghIbEM3d7Oc9H6yWBAYUcY8oi9kxBQXmnQTss3c
- YtD7IN1ykbjlUH9sttaxmLHOqIDRJb3B/ZHmBorQ0twmgVx1SR1ejGCHXM2bPNhAP/o0
- RdjrmFTtSuY7XpJ/jK908USD1Xtrs7k4o5vxDplIg5oJhmRQYeltad0fW8niBNJwWRz7
- E6+g==
-X-Gm-Message-State: APjAAAWszSKtjPxhhwxblERkQhzX4Oq/CkvWDToHluEuFnZKB54/cDQf
- XGKcDnrElG8PWRdEBD/elTO6w2ANLX0=
-X-Google-Smtp-Source: APXvYqwX7jNio0E+/+Trj23vAyTMWB7J8SiTMzuVzHIQ+Zcgd8USczLvPtNIN4Du9e6mdkrGTvY/6A==
-X-Received: by 2002:a0c:e587:: with SMTP id t7mr31761592qvm.114.1557336515608; 
- Wed, 08 May 2019 10:28:35 -0700 (PDT)
+ bh=X0kcwAP64IN16gpnWKiLqwqBN3DY7yqFgalAGf7sSdg=;
+ b=E30czXuw4qq9ROkyxMNu0C9Q4bUZBonO4xWTSFzToXbabSXdQkapcNzwHEQW1Y7qv+
+ m2HLS4lj5f9UnguZLaKDPqxqV4AgtvkZLyRHBdtMQZKGnwREVOZTMQzW+fv0wtzTxR/F
+ P00UQTvcJFg2n6KQr01FJJS8qPQvTFhbQiUq1VCJdBhM1aPlntfO/VV8kNzAnkl4VSzi
+ jp44/g0OqIhY55Vj1/INugjzZkHa8bVIiB/ntbfblutb+eJfU316xQlnwBsZzgK67XDv
+ roXVEYcWL6cwfSu5z8yg/wx3t3oSWuKT0Wy3e/6zBrdnGuG1zJeI1+bgGYMeJX3bwqCE
+ C4mg==
+X-Gm-Message-State: APjAAAV2h1PKVH+P3VPlLd9gLwGbY7k8bHTE0gmaPUyLdy/KYfb6KviB
+ kCYc2sYrw62DH7DSLwjlb9DxhmSx5n0=
+X-Google-Smtp-Source: APXvYqxDDQb2YZZ9DgI5ncUZkXC/rrVkwgyOv9ZZU5hvt3O0TCtQm7wKBqMnuksV10Kvmn+Hr0k3Gw==
+X-Received: by 2002:ac8:3804:: with SMTP id q4mr4610984qtb.139.1557336606554; 
+ Wed, 08 May 2019 10:30:06 -0700 (PDT)
 Received: from lab.localdomain ([24.146.32.18])
- by smtp.googlemail.com with ESMTPSA id t39sm11622792qtt.96.2019.05.08.10.28.34
+ by smtp.googlemail.com with ESMTPSA id y64sm9994343qkd.71.2019.05.08.10.30.05
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 08 May 2019 10:28:35 -0700 (PDT)
-Message-ID: <5CD311C2.9090805@gmail.com>
-Date: Wed, 08 May 2019 13:28:34 -0400
+ Wed, 08 May 2019 10:30:06 -0700 (PDT)
+Message-ID: <5CD3121D.6040508@gmail.com>
+Date: Wed, 08 May 2019 13:30:05 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -77,7 +77,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: USRP-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5680860136585998549=="
+Content-Type: multipart/mixed; boundary="===============2675172679950586551=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -92,12 +92,12 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============5680860136585998549==
+--===============2675172679950586551==
 Content-Type: multipart/alternative;
- boundary="------------040303020708090107050604"
+ boundary="------------010209080300070905000102"
 
 This is a multi-part message in MIME format.
---------------040303020708090107050604
+--------------010209080300070905000102
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
@@ -118,11 +118,13 @@ On 05/08/2019 01:24 PM, Robin Coxe wrote:
 > still works, but you might want to take a look.
 >
 > -Robin
+I'm going to go through some old disk drives on mine from "back in the 
+day", and see if I have the r2 .bit files.
+
+That can't happen until the weekend, however...
+
+
 >
-Unfortunately, the *.bit* files aren't in that images collection--only 
-the .bin files.
-
-
 >
 >
 > On Wed, May 8, 2019 at 10:02 AM Marcus D. Leech via USRP-users 
@@ -221,7 +223,7 @@ the .bin files.
 >
 
 
---------------040303020708090107050604
+--------------010209080300070905000102
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -262,14 +264,14 @@ href="http://files.ettus.com/binaries/images/uhd-images_003.008.000-18-g6647f8cc
             <div><br>
             </div>
             <div>-Robin</div>
-            <div><br>
-            </div>
           </div>
         </div>
       </div>
     </blockquote>
-    Unfortunately, the *.bit* files aren't in that images
-    collection--only the .bin files.<br>
+    I'm going to go through some old disk drives on mine from "back in
+    the day", and see if I have the r2 .bit files.<br>
+    <br>
+    That can't happen until the weekend, however...<br>
     <br>
     <br>
     <blockquote
@@ -278,6 +280,8 @@ cite="mid:CAGVTi8UrRix7wt_BxCN8rNBvFGD8d4Uz8Td7hWHGpg+G_=quAw@mail.gmail.com"
       <div dir="ltr">
         <div dir="ltr">
           <div dir="ltr">
+            <div><br>
+            </div>
             <div><br>
             </div>
           </div>
@@ -503,10 +507,10 @@ href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
   </body>
 </html>
 
---------------040303020708090107050604--
+--------------010209080300070905000102--
 
 
---===============5680860136585998549==
+--===============2675172679950586551==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -517,5 +521,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5680860136585998549==--
+--===============2675172679950586551==--
 
