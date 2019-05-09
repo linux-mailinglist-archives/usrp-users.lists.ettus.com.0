@@ -2,53 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63567182E6
-	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 02:44:16 +0200 (CEST)
-Received: from [::1] (port=51462 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CAD118324
+	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 03:12:27 +0200 (CEST)
+Received: from [::1] (port=55686 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOXAV-0007J2-Be; Wed, 08 May 2019 20:44:15 -0400
-Received: from atl4mhob04.registeredsite.com ([209.17.115.42]:48390)
- by mm2.emwd.com with esmtp (Exim 4.91)
- (envelope-from <k5so@k5so.com>) id 1hOX9w-0006tF-5n
- for usrp-users@lists.ettus.com; Wed, 08 May 2019 20:44:10 -0400
-Received: from mailpod.hostingplatform.com
- (atl4qobmail02pod3.registeredsite.com [10.30.77.68])
- by atl4mhob04.registeredsite.com (8.14.4/8.14.4) with ESMTP id x490gvUv014573
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
- for <usrp-users@lists.ettus.com>; Wed, 8 May 2019 20:42:57 -0400
-Received: (qmail 10181 invoked by uid 0); 9 May 2019 00:42:56 -0000
-X-TCPREMOTEIP: 192.206.203.10
-X-Authenticated-UID: k5so@k5so.com
-Received: from unknown (HELO ?192.168.1.76?) (k5so@k5so.com@192.206.203.10)
- by 0 with ESMTPA; 9 May 2019 00:42:56 -0000
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-In-Reply-To: <4F25C7C9-CB61-46DF-9163-2CB0CF86DDCF@k5so.com>
-Date: Wed, 8 May 2019 18:42:54 -0600
-Message-Id: <F19914AE-5635-4F61-A19B-13C16AE6CE8D@k5so.com>
-References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
- <BL0PR12MB2340E831A1782ED0958D6DBAAF320@BL0PR12MB2340.namprd12.prod.outlook.com>
- <84C6BD1A-2901-4FFC-834C-55B481EB7045@k5so.com>
- <CA+JMMq9oRqxDSVgyACAZucejC2Z3hKwciNCjX_YEJ6taCgUQ-g@mail.gmail.com>
- <CA+JMMq8N5XP6Z9CDUO0JHZxJotHRPfQRRqsvJT5-XwZZVWRv+w@mail.gmail.com>
- <A0F0F533-AE85-4802-A676-EA4C39C9372F@k5so.com>
- <B98CD290-9E92-49CE-AD7D-E19FE82B5657@k5so.com>
- <CA+JMMq9+WVXGDRwBd9WAcwXHXDynDsUYy4nOXuryttxvNKbXCA@mail.gmail.com>
- <19BFE8B3-662A-4DC0-BB72-557E7495F6D0@k5so.com>
- <5F41CEE9-58DF-4868-89C2-5F88876803DF@k5so.com>
- <CAGVTi8VOeNG5B9X-WaMQrvbxkt96UFhm5a6-++9znYCzexfRtQ@mail.gmail.com>
- <9f223faf-add7-74cc-faa1-d4a0ed95e28a@balister.org>
- <2C9C895D-DD6D-4456-9F1D-557F699AB391@k5so.com> <5CD36887.5050805@gmail.com>
- <4F25C7C9-CB61-46DF-9163-2CB0CF86DDCF@k5so.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-X-Mailer: Apple Mail (2.3445.9.1)
+	id 1hOXbj-0008Qm-7F; Wed, 08 May 2019 21:12:23 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:38744)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <bpadalino@gmail.com>) id 1hOXbA-0008Io-Jb
+ for usrp-users@lists.ettus.com; Wed, 08 May 2019 21:12:18 -0400
+Received: by mail-ot1-f52.google.com with SMTP id s19so742172otq.5
+ for <usrp-users@lists.ettus.com>; Wed, 08 May 2019 18:11:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=5SUZ2OgwveAJ9c8/HsqL7x2nu1/3dYFB+TMCDeQ5oxg=;
+ b=V1Pb4ftmut6SkrFDcH1GZk82MZDXLd1S47KcKdAdCtWanqa2dSPQ5GVdiyqGDSi/Ds
+ XBrSkJeLbegFr8Qwj7DUyFSaMuGsl/gR41wf7q1VaR6iPS/PNBl52uoqLVNRMOIpP1th
+ 0B5qrXLFUQP75zs6Jhu2qRIiTDQ4Tg2MnvoLlHLEMQykmnG+RLzcbiyBb7yVyyqUanIw
+ n+ibmiwqul9/giR3Q/9sWte21qaqJ1Db+6EPkIslY6vzdVJaQuPLnitUpDXvdM0art2k
+ XyenUJvkuuD/obkc66kWlcUkW5eOzec8rgUCfU+M7z/YRDP5kyHma6J0XlKPJLeRcAkK
+ 1cOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=5SUZ2OgwveAJ9c8/HsqL7x2nu1/3dYFB+TMCDeQ5oxg=;
+ b=RMdLKdNRQYac7asweK8SZf4SboOcgPQAkaKRYfXfRmo7ObKnLYRwK5JNvN4xa1CP3v
+ KVmOdwesEvVBQK+ehscBtjZVNHr9ZnPCiZfincB0R3XnbDVdl+AkVfTWPJaaT5n/dJaW
+ 9deeqe2VQSROPA/ge1uLun7EFLVKqINcEYa8aVp+iEk5U7dE8o6q0FTZJ0WXXvTBZdJn
+ oYQCqOLpBXxgpBu5gNhn5QKPX0FmlEogm8O5SiTIJ4lytVUfhRXv4BxPa8fRdlyI79x2
+ d66WDIv9UGvqTKVM2dYbfWaKS/jtBE9OVRZbvr5tZHF0Mve7+MgPbkALbBEmKtxmos2m
+ oevA==
+X-Gm-Message-State: APjAAAWCOdh7OoEx4D3qPeO0R69TIfE4UR7aKlwWjfV8rWqkg+xzDlId
+ PnHaEII9s+k9Ohi0eS4lPctt5sdDSu6FmMBYarM4J3Me
+X-Google-Smtp-Source: APXvYqyeVtKQtSWpP5bBE+u+DDCJruNeWyNsthBObByhploZxi0SDEOu8x6kA+h2Hv3aSZmq8fB8oj/kDFLdbkEfeJc=
+X-Received: by 2002:a9d:3608:: with SMTP id w8mr483149otb.189.1557364267731;
+ Wed, 08 May 2019 18:11:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <003201d505f5$b2dfb770$189f2650$@sysware.com>
+ <CAEXYVK4np9o7NAPctbMuoMaJX3xVwgvThf99jQpP1_1g1xMywQ@mail.gmail.com>
+ <004a01d505f9$c7b437d0$571ca770$@sysware.com>
+In-Reply-To: <004a01d505f9$c7b437d0$571ca770$@sysware.com>
+Date: Wed, 8 May 2019 21:10:55 -0400
+Message-ID: <CAEXYVK6A1rF0xvNNAi5HsBjpVFdfQw=aekVP4OU++Zby9+ov=g@mail.gmail.com>
+To: Michael Deacon <michaeld@sysware.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Bringing an elderly N210 to life by loading
- current firmware/fpga images
+Subject: Re: [USRP-users] Relationship between IQ values,
+ gain and noise on B205mini transmitter
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -60,11 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Joe Martin <k5so@k5so.com>
-Cc: usrp-users@lists.ettus.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Brian Padalino <bpadalino@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3079858412587933507=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,186 +82,136 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-VGhhbmtzLCBNYXJjdXMuCgpKb2UKCj4gT24gTWF5IDgsIDIwMTksIGF0IDY6NDEgUE0sIEpvZSBN
-YXJ0aW4gPGs1c29AazVzby5jb20+IHdyb3RlOgo+IAo+IEkgc2VlLiAgT2theS4gIEkgd291bGQg
-bGlrZSB0byBpbnZlc3RpZ2F0ZSB0aGUgcHJlY29tcGlsZWQgcGFja2FnZXMgYmFjayBhcyBmYXIg
-YXMgdGhlIEV0dHVzIHJlcG9zaXRvcnkgaGFzIHRoZW0gYnV0IGJlaW5nIG5ldyB0byBMaW51eCBJ
-4oCZbSBpZ25vcmFudCBhYm91dCBob3cgdG8gdXNlIFBQQXMgdG8gYWN0dWFsbHkgZ2V0IHRvIHRo
-ZSBjb2RlIEkgbmVlZCBhbmQgdXNlIGl0IHNvIEnigJlsbCBuZWVkIHRvIGRvIHNvbWUgaW50ZW5z
-aXZlIHJlc2VhcmNoIHRvIGZpbmQgYSB0dXRvcmlhbCBvciBpbnN0cnVjdGlvbnMgYXMgdG8gaG93
-IHRvIHVzZSB0aGVtLiAgU28gdGhpcyB3aWxsIHRha2UgbWUgYSBsaXR0bGUgd2hpbGUgdG8gY29t
-ZSB1cCB0byBzcGVlZCBvbiBpdC4KPiAKPiBKb2UKPiAKPj4gT24gTWF5IDgsIDIwMTksIGF0IDU6
-MzggUE0sIE1hcmN1cyBELiBMZWVjaCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20+IHdyb3RlOgo+PiAKPj4gT24gMDUvMDgvMjAxOSAwNzozNCBQTSwgSm9lIE1hcnRp
-biB2aWEgVVNSUC11c2VycyB3cm90ZToKPj4+IFRoYW5rcyBQaGlsaXAsIEnigJlsbCBjaGVjayBv
-dXQgdGhlIHByZWNvbXBpbGVkIHZlcnNpb25zIG9uIHRoZSBsaW5rIFJvYmluIHByb3ZpZGVkLCB0
-byBzZWUgaWYgdGhleSBnbyBiYWNrIGZhciBlbm91Z2ggZmlyc3QuICBJIHRyaWVkIHRoZSAzLjku
-MCBzbyBJ4oCZbSB0aGlua2luZyAzLjgueCBtaWdodCBzdGlsbCBiZSB0b28gcmVjZW50IGJ1dCBp
-ZiBub25lIG9mIHRoZXNlIHdvcmsgcGVyaGFwcyBJIGNhbiBhc2sgeW91IHRvIHRha2UgYSBsb29r
-IGZvciBzb21ldGhpbmcgZWFybGllci4gIFRoYW5rcyEKPj4+IAo+Pj4gSm9lCj4+IFRoZSBiYXNp
-YyBpc3N1ZSBpcyB0aGF0IHRoZXJlIG5ldmVyIHdlcmUgdGhhdCBtYW55IFIycyBhYm91dCB0aGF0
-IEkgcmVjYWxsLCBiZWZvcmUgdGhlIFIzIGFuZCB0aGUgQURDIGlucHV0IGNoYW5nZSB3YXMgbWFk
-ZSwgc28gSSBkb24ndCB0aGluayB0aGVyZQo+PiB3YXMgbXVjaCBwdXNoIHRvIHJldGFpbiBjb21w
-YXRpYmlsaXR5IGZvciBtb2Rlcm4gdmVyc2lvbnMuCj4+IAo+PiAKPj4+IAo+Pj4+IE9uIE1heSA4
-LCAyMDE5LCBhdCA0OjAyIFBNLCBQaGlsaXAgQmFsaXN0ZXIgPHBoaWxpcEBiYWxpc3Rlci5vcmc+
-IHdyb3RlOgo+Pj4+IAo+Pj4+IEkndmUgZ290IHRoZSAzLjguNCBpbWFnZXMgemlwZmlsZSBseWlu
-ZyBhcm91bmQgaW4gbXkgT0UgZG93bmxvYWQKPj4+PiBkaXJlY3RvcnksIGlmIGl0IGhlbHBzIEkg
-Y2FuIHB1dCBpdCBvbiBkcm9wYm94LiBJIG1pZ2h0IGJlIGFibGUgdG8gZmluZAo+Pj4+IHNvbWUg
-b2xkZXIgb25lcyBpZiBuZWVkZWQuCj4+Pj4gCj4+Pj4gWWVhaCwgSSBzYXZlIGFuY2llbnQgc291
-cmNlIGluIGNhc2Ugb2YgYSBHUEwgY29tcGxpYW5jZSBleGVyY2lzZSA6KQo+Pj4+IAo+Pj4+IFBo
-aWxpcAo+Pj4+IAo+Pj4+IE9uIDA1LzA4LzIwMTkgMDU6NDAgUE0sIFJvYmluIENveGUgdmlhIFVT
-UlAtdXNlcnMgd3JvdGU6Cj4+Pj4+IFlvdSBjb3VsZCB0cnkgdXNpbmcgdGhlIC5kZWIgb3IgLnJw
-bSBwcmUtYnVpbHQgYmluYXJpZXMgaWYgeW91J3JlIHJ1bm5pbmcKPj4+Pj4gb24gTGludXguICBT
-ZWUsIGZvciBpbnN0YW5jZToKPj4+Pj4gaHR0cDovL2ZpbGVzLmV0dHVzLmNvbS9iaW5hcmllcy91
-aGQvdWhkXzAwMy4wMDQuMDAwLXJlbGVhc2UvCj4+Pj4+IAo+Pj4+PiBPbiBXZWQsIE1heSA4LCAy
-MDE5IGF0IDI6MDkgUE0gSm9lIE1hcnRpbiB2aWEgVVNSUC11c2VycyA8Cj4+Pj4+IHVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToKPj4+Pj4gCj4+Pj4+PiBJ4oCZdmUgc3VjY2Vzc2Z1
-bGx5IGJ1aWx0IFVIRCB2My45LjAgYnV0IGl0IGhhcyB0aGUgc2FtZSBlcnJvciBhcyAzLjE0LjAg
-ZGlkCj4+Pj4+PiBiZWZvcmUgKOKAnFJlY2VpdmVkIGludmFsaWQgcmVwbHkgMzIgZnJvbSBkZXZp
-Y2XigJ0pIGFuZCB1aGRfdXNycF9wcm9iZSBzdGlsbAo+Pj4+Pj4gY29tcGxhaW5zIHRoYXQgaXQg
-aXMgZXhwZWN0aW5nIGNvbXBhdGliaWxpdHkgbnVtYmVyIDExIGJ1dCBpcyByZWNlaXZpbmcgNi4K
-Pj4+Pj4+IFNvIEkgdGhpbmsgdGhhdCBtZWFucyBJIG5lZWQgYW4gZWFybGllciB2ZXJzaW9uIG9m
-IFVIRCB0aGFuIDMuOS4wLgo+Pj4+Pj4gCj4+Pj4+PiBJIHdpbGwgZGlnIGludG8gdGhlIGVhcmxp
-ZXN0IHZlcnNpb24gaW4gdGhlIGdpdCB0YWcgLWwsIG5hbWVseQo+Pj4+Pj4gMDAzXzAwN18wMDJf
-cmMxLCB0aGF0IHdvdWxkIG5vdCBidWlsZCB3aXRob3V0IGVycm9ycyBhbmQgdHJ5IHRvIHdvcmsg
-b3V0Cj4+Pj4+PiB0aGUgY29tcGlsZXIgZXJyb3JzIHRoZW4uICBVbmxlc3Mgc29tZW9uZSBoYXMg
-YSBiZXR0ZXIgaWRlYSB0byB0cnkuCj4+Pj4+PiBUaGFua3MhCj4+Pj4+PiAKPj4+Pj4+IFJlZ2Fy
-ZHMsCj4+Pj4+PiAKPj4+Pj4+IEpvZQo+Pj4+Pj4gCj4+Pj4+PiBPbiBNYXkgOCwgMjAxOSwgYXQg
-Mjo0MCBQTSwgSm9lIE1hcnRpbiB2aWEgVVNSUC11c2VycyA8Cj4+Pj4+PiB1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4+Pj4+PiAKPj4+Pj4+IE9rYXksIHRoYW5rcywgdGhhdOKA
-mXMgd2hhdCBJIHRob3VnaHQgYnV0IHRoYXQgaXNu4oCZdCB1c2VmdWwgZm9yIG1lIHVudGlsIEkK
-Pj4+Pj4+IGZpbmQgYSBVSEQgdmVyc2lvbiB0aGF0IGNhbiBjb21tdW5pY2F0ZSB3aXRoIGl0LiAg
-SeKAmXZlIGJlZW4gdHJ5aW5nIHRvIGJ1aWxkCj4+Pj4+PiBvbGRlciBVSEQgdmVyc2lvbnMgZnJv
-bSAwMDNfMDA3XzAwMl9yYzEgZm9yd2FyZCBidXQgYWxsIHNvIGZhciBmYWlsIHRvCj4+Pj4+PiBi
-dWlsZCBkdWUgdG8gY29tcGlsZXIgZXJyb3JzLiAgQW0gdXAgdG8gMDAzXzAwOF8wMDVfcmMxIG5v
-dywgbW92aW5nIGZvcndhcmQKPj4+Pj4+IHVudGlsIEkgY2FuIHN1Y2Nlc3NmdWxseSBidWlsZCBv
-bmUgdG8gdHJ5LiAgQXJlIHRoZXJlIGFueSBvbGQgcHJlLWJ1aWx0Cj4+Pj4+PiB2ZXJzaW9ucyBJ
-IGNvdWxkIHNpbXBseSB0cnkgd2l0aG91dCBoYXZpbmcgdG8gYnVpbGQgZWFjaCBvbmUgbXlzZWxm
-Pwo+Pj4+Pj4gCj4+Pj4+PiBKb2UKPj4+Pj4+IAo+Pj4+Pj4gT24gTWF5IDgsIDIwMTksIGF0IDI6
-MzEgUE0sIE5pY2sgRm9zdGVyIDxiaXN0cm9tYXRoQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4+PiAK
-Pj4+Pj4+IFllcywgY29kZSBsb2FkZWQgb3ZlciBKVEFHIGlzIGdvbmUgYXQgbmV4dCBib290LiBJ
-IGNhbid0IHRoaW5rIG9mIGFuIGVhc3kKPj4+Pj4+IHdheSB0byBmaWd1cmUgb3V0IHdoYXQgaW1h
-Z2UgaXMgbG9hZGVkIG90aGVyIHRoYW4gYXNraW5nIFVIRCB0byBxdWVyeSBpdAo+Pj4+Pj4gZm9y
-IEZQR0EgY29tcGF0IG51bWJlci4KPj4+Pj4+IAo+Pj4+Pj4gT24gV2VkLCBNYXkgOCwgMjAxOSBh
-dCAxOjA0IFBNIEpvZSBNYXJ0aW4gPGs1c29AazVzby5jb20+IHdyb3RlOgo+Pj4+Pj4gCj4+Pj4+
-Pj4gSSBndWVzcyB0aGUgcHJvcGVyIHdheSB0byBhc2sgaXMg4oCcSXMgdGhlcmUgYSB3YXkgdG8g
-ZGV0ZXJtaW5lIHdoYXQgZnBnYQo+Pj4+Pj4+IC5iaW4gZmlsZSBpcyBpbiB0aGUgTjIxMD/igJ0s
-IHNpbmNlIHRoZSAuYml0IGZpbGUgdGhhdCBJIGxvYWRlZCBpbnRvIHRoZSBmcGdhCj4+Pj4+Pj4g
-aXMgdm9sYXRpbGUgY29kZSB0aGF0IGRpc2FwcGVhcnMgdXBvbiBwb3dlciBjeWNsaW5nIHRvIGJl
-IHJlbG9hZGVkIGZyb20gYW4KPj4+Pj4+PiBFRVBST00gb3Igc29tZXRoaW5nLCB5ZXM/Cj4+Pj4+
-Pj4gCj4+Pj4+Pj4gSm9lCj4+Pj4+Pj4gCj4+Pj4+Pj4gT24gTWF5IDgsIDIwMTksIGF0IDE6NTUg
-UE0sIEpvZSBNYXJ0aW4gdmlhIFVTUlAtdXNlcnMgPAo+Pj4+Pj4+IHVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPiB3cm90ZToKPj4+Pj4+PiAKPj4+Pj4+PiBIaSBOaWNrLAo+Pj4+Pj4+IAo+Pj4+
-Pj4+IFRoYW5rcyBmb3IgdGhlIGNvbW1lbnRzLiAgSXMgdGhlcmUgYSB3YXkgdG8gZGV0ZXJtaW5l
-IHdoYXQgYml0IGZpbGUgaXMKPj4+Pj4+PiBjdXJyZW50bHkgaW4gdGhlIE4yMTA/ICBJZiBzbywg
-aG93IHBsZWFzZT8KPj4+Pj4+PiAKPj4+Pj4+PiBKb2UKPj4+Pj4+PiAKPj4+Pj4+PiBPbiBNYXkg
-OCwgMjAxOSwgYXQgMTozMyBQTSwgTmljayBGb3N0ZXIgPGJpc3Ryb21hdGhAZ21haWwuY29tPiB3
-cm90ZToKPj4+Pj4+PiAKPj4+Pj4+PiBJIHNlZSB5b3UgZ290IHRoZXJlIGFscmVhZHkhIElmIHlv
-dSdyZSBzdGlsbCBoYXZpbmcgdHJvdWJsZSwgSSdsbCBzZWUKPj4+Pj4+PiB3aGF0IEkgY2FuIGRp
-ZyB1cCBvdmVyIGhlcmUuCj4+Pj4+Pj4gCj4+Pj4+Pj4gT24gV2VkLCBNYXkgOCwgMjAxOSBhdCAx
-MjozMSBQTSBOaWNrIEZvc3RlciA8YmlzdHJvbWF0aEBnbWFpbC5jb20+IHdyb3RlOgo+Pj4+Pj4+
-IAo+Pj4+Pj4+PiBZb3UgbWlnaHQgYmUgYmVzdCBvZmYgcmV2ZXJ0aW5nIHRvIGEgVUhEIG9sZCBl
-bm91Z2ggdG8gc3VwcG9ydCB0aGUKPj4+Pj4+Pj4gYml0ZmlsZSBjdXJyZW50bHkgbG9hZGVkIG9u
-IHlvdXIgTjIxMC4gWW91IGNvdWxkIHRoZW4gYm9vdHN0cmFwIHlvdXIgTjIxMAo+Pj4+Pj4+PiBi
-eSB1c2luZyB0aGUgb2xkIFVIRCB0byBsb2FkIGEgbmV3ZXIgRlBHQSBpbWFnZS4KPj4+Pj4+Pj4g
-Cj4+Pj4+Pj4+IE90aGVyd2lzZSwgaXQncyBmYWlybHkgc2ltcGxlIHRvIGNvbnZlcnQgdGhlIGJp
-bmZpbGVzICh3aGljaCBzdGlsbCBleGlzdAo+Pj4+Pj4+PiAtLSB1c3JwX24yMTBfcjJfZnBnYS5i
-aW4pIHRvIGJpdGZpbGVzLiBZb3UgY2FuIHRha2UgdGhlIGhlYWRlciBmcm9tCj4+Pj4+Pj4+IHVz
-cnBfbjIxMF9yM19mcGdhLmJpdCBhbmQganVzdCBzdGljayBpdCBvbnRvIHRoZSBmcm9udCBvZgo+
-Pj4+Pj4+PiB1c3JwX24yMTBfcjJfZnBnYS5iaW4sIGFuZCBjYWxsIHRoZSBvdXRwdXQgdXNycF9u
-MjEwX3IyX2ZwZ2EuYml0LiBUaGUKPj4+Pj4+Pj4gaGVhZGVyIGlzIGV2ZXJ5dGhpbmcgdXAgdW50
-aWwgRkYgRkYgRkYgRkYgQUEgOTkgNTUgNjYuCj4+Pj4+Pj4+IAo+Pj4+Pj4+PiBMYXN0bHksIHRo
-ZSBzb3VyY2UgaXMgYWxsIHRoZXJlLCBzbyBidWlsZGluZyB1c2luZyBJU0Ugc2hvdWxkIHN0aWxs
-IGJlCj4+Pj4+Pj4+IHBvc3NpYmxlLgo+Pj4+Pj4+PiAKPj4+Pj4+Pj4gTmljawo+Pj4+Pj4+PiAK
-Pj4+Pj4+Pj4gT24gV2VkLCBNYXkgOCwgMjAxOSBhdCA5OjU3IEFNIEpvZSBNYXJ0aW4gdmlhIFVT
-UlAtdXNlcnMgPAo+Pj4+Pj4+PiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4+
-Pj4+Pj4+IAo+Pj4+Pj4+Pj4gV293LCBva2F5OyB0aGF04oCZcyBkaXNoZWFydGVuaW5nLiAgVGhh
-bmtzIG11Y2ggZm9yIHRoZSBpbmZvLCBKYXNvbi4KPj4+Pj4+Pj4+IE5vcGUsIHRoZSBSZXYzIGJp
-dCBmaWxlIGRvZXNu4oCZdCB3b3JrOyB0cmllZCBpdC4gIEnigJlsbCBzZWUgaWYgdGhlIHN1cHBv
-cnQKPj4+Pj4+Pj4+IGVtYWlsIGFkciBjYW4gYmUgb2YgdXNlLgo+Pj4+Pj4+Pj4gCj4+Pj4+Pj4+
-PiBKb2UKPj4+Pj4+Pj4+IAo+Pj4+Pj4+Pj4gT24gTWF5IDgsIDIwMTksIGF0IDEwOjQ0IEFNLCBK
-YXNvbiBNYXR1c2lhayA8Cj4+Pj4+Pj4+PiBqYXNvbkBnYXJkZXR0b2VuZ2luZWVyaW5nLmNvbT4g
-d3JvdGU6Cj4+Pj4+Pj4+PiAKPj4+Pj4+Pj4+IEpvZSwgSSB0aGluayB5b3UgbWlnaHQgYmUgU09M
-LiAgSWYgeW91IHRha2UgYSBsb29rIGF0IHRoaXMgdGhyZWFkIGZyb20KPj4+Pj4+Pj4+IG1lIGxh
-c3QgeWVhciwgSSBoYWQgbm8gbHVjazoKPj4+Pj4+Pj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20v
-cGlwZXJtYWlsL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tLzIwMTgtQXByaWwvMDU2MjIzLmh0
-bWwKPj4+Pj4+Pj4+IAo+Pj4+Pj4+Pj4gCj4+Pj4+Pj4+PiBBbHNvLCB3aGVuIEkgcGluZ2VkIEV0
-dHVzIGRpcmVjdGx5LCBoZXJlIGlzIHNvbWUgaW5mbyBJIGdvdCBiYWNrIGZyb20KPj4+Pj4+Pj4+
-IHRoZW0gKGZyb20gdHdvIGRpZmZlcmVudCBlbWFpbHMgaW4gdGhlIHRocmVhZCk6Cj4+Pj4+Pj4+
-PiAid2UndmUgYmVlbiBoYXZpbmcgc29tZSB0cm91YmxlIHRyYWNraW5nIGRvd24gUmV2MiBiaXRm
-aWxlcywgYmVjYXVzZSBubwo+Pj4+Pj4+Pj4gb25lIGhlcmUgd2FzIGFyb3VuZCB3aGVuIHRoYXQg
-d2FzIGJ1aWx0LiBJZiB5b3UncmUgdHJ5aW5nIHRvIHVuYnJpY2sKPj4+Pj4+Pj4+IHRoZW0sIFJl
-djMgYml0ZmlsZXMgbWlnaHQgYmUgT0ssIGJ1dCBJJ20gbm90IGNvbXBsZXRlbHkgc3VyZS4KPj4+
-Pj4+Pj4+IAo+Pj4+Pj4+Pj4gc3VwcG9ydEBldHR1cy5jb20gbWlnaHQga25vdyBtb3JlIGJ5IGtu
-b3cuCj4+Pj4+Pj4+PiByZWFsbHkgc29ycnksIGJ1dCB0aG9zZSBSZXYycyBhcmUganVzdCBzbyBv
-bGQuIEFuZCBhbGwgdGhlIHBlb3BsZSBmcm9tCj4+Pj4+Pj4+PiB0aGF0IGVyYSBzZWVtIHRvIGJl
-IGdvbmUuIFNvcnJ5LCBjYW4ndCBoZWxwIHlvdSB3aXRoIHRob3NlIFJldjJzLiIKPj4+Pj4+Pj4+
-IAo+Pj4+Pj4+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4+Pj4+Pj4+PiAqRnJv
-bToqIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+IG9uIGJl
-aGFsZiBvZgo+Pj4+Pj4+Pj4gSm9lIE1hcnRpbiB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20+Cj4+Pj4+Pj4+PiAqU2VudDoqIFdlZG5lc2RheSwgTWF5IDgsIDIwMTkg
-MTE6NTUgQU0KPj4+Pj4+Pj4+ICpUbzoqIEpvZSBNYXJ0aW4gdmlhIFVTUlAtdXNlcnMKPj4+Pj4+
-Pj4+ICpTdWJqZWN0OiogW1VTUlAtdXNlcnNdIEJyaW5naW5nIGFuIGVsZGVybHkgTjIxMCB0byBs
-aWZlIGJ5IGxvYWRpbmcKPj4+Pj4+Pj4+IGN1cnJlbnQgZmlybXdhcmUvZnBnYSBpbWFnZXMKPj4+
-Pj4+Pj4+IAo+Pj4+Pj4+Pj4gSSBhbSB0cnlpbmcgdG8gYnJpbmcgYW4gZWxkZXJseSBOMjEwIHIy
-LjAgd2l0aCB1bmtub3duIGhpc3RvcnkgdG8gbGlmZQo+Pj4+Pj4+Pj4gYnkgbG9hZGluZyBjdXJy
-ZW50IFVIRCBmaXJtd2FyZSBhbmQgZnBnYSBpbWFnZXMgZnJvbSBhIDFHaWdhYml0IGV0aGVybmV0
-Cj4+Pj4+Pj4+PiBjb25uZWN0aW9uIG9uIGFuIEFNRCAyOTUwWCwgMy40R0h6LCAyVEIgU1NEIFBD
-IHJ1bm5pbmcgVWJ1bnR1IDE4LjA0IHdpdGgKPj4+Pj4+Pj4+IFVIRCAzLjE0LjAuSEVBRC0wLWdk
-MjBhN2FlMiBzb2Z0d2FyZSBidXQgaGF2aW5nIGRpZmZpY3VsdHkuCj4+Pj4+Pj4+PiAKPj4+Pj4+
-Pj4+IEZvbGxvd2luZyBpbnN0cnVjdGlvbnMgaW4g4oCcVVNSUCBIYXJkd2FyZSBEcml2ZXIgYW5k
-IFVTUlAgTWFudWFsOiBVU1JQMgo+Pj4+Pj4+Pj4gYW5kIE4yeDAgU2VyaWVz4oCdOgo+Pj4+Pj4+
-Pj4gCj4+Pj4+Pj4+PiBNeSBpbml0aWFsIGFjdGlvbiB3YXMgdG8gbG9hZCB0aGUg4oCcdXNycF9u
-MjEwX3I0X2ZwZ2EuYml0IiBmaWxlIGludG8gdGhlCj4+Pj4+Pj4+PiBOMjEwIHhjM3NkMzQwMGEg
-RlBHQSB1c2luZyBhIFhpbGlueCBQbGF0Zm9ybSBDYWJsZSBVU0IgSUkgSlRBRyBwcm9ncmFtbWlu
-Zwo+Pj4+Pj4+Pj4gY2FibGUgZnJvbSBhIFdpbjcgUEMgcnVubmluZyBYaWxpbnggSVNFIGlNUEFD
-VCwgd2hpY2ggcmVwb3J0ZWQg4oCcUHJvZ3JhbQo+Pj4+Pj4+Pj4gU3VjY2VlZGVk4oCdIGZvciB0
-aGUgYWN0aW9uLiAgRXRoZXJuZXQgTEVEcyBvbiB0aGUgTjIxMCBhcmUgdmFyaW91c2x5IGxpZ2h0
-ZWQKPj4+Pj4+Pj4+IHNob3dpbmcgYWN0aXZpdHkgb24gdGhlIGNvbm5lY3Rpb24gcG9ydC4KPj4+
-Pj4+Pj4+IAo+Pj4+Pj4+Pj4gV2l0aCB0aGUgTjIxMCBjb25uZWN0ZWQgdG8gdGhlIExpbnV4IFBD
-IDFHYnBzIGV0aGVybmV0IHBvcnQsIGlzc3VpbmcKPj4+Pj4+Pj4+IHRoZSBmb2xsb3dpbmcgY29t
-bWFuZHMgcmVzdWx0IGluIHRoZSByZXNwb25zZXMgc2hvd24gaW4gdGhlIHNjcmVlbnNob3QKPj4+
-Pj4+Pj4+IGltYWdlIGJlbG93Ogo+Pj4+Pj4+Pj4gCj4+Pj4+Pj4+PiA8U2NyZWVuc2hvdCBmcm9t
-IDIwMTktMDUtMDggMDgtNDYtNTIucG5nPgo+Pj4+Pj4+Pj4gCj4+Pj4+Pj4+PiBNeSAobmFpdmUh
-KSBpbnRlcnByZXRhdGlvbiBvZiB0aGUgYWJvdmUgcmVzcG9uc2VzIGlzIHRoYXQgdGhlIEZQR0Eg
-bWF5Cj4+Pj4+Pj4+PiBub3QgYWN0dWFsbHkgaGF2ZSBiZWVuIHByb2dyYW1tZWQgd2l0aCB0aGUg
-Ki5iaXQgY29kZSBldmVuIHRob3VnaCBpTVBBQ1QKPj4+Pj4+Pj4+IHJlcG9ydGVkIHN1Y2Nlc3Mg
-aW4gcHJvZ3JhbW1pbmcuICBDYW4gc29tZW9uZSBhc3Npc3QgbWUgaW4gdW5kZXJzdGFuZGluZwo+
-Pj4+Pj4+Pj4gd2hldGhlciBteSBpbnRlcnByZXRhdGlvbiBpcyBjb3JyZWN0IG9yIG5vdCBhbmQs
-IG1vc3QgaW1wb3J0YW50bHksIHN1Z2dlc3QKPj4+Pj4+Pj4+IHdoYXQgSSBtaWdodCB0cnkgbmV4
-dCB0byBicmluZyB0aGlzIE4yMTAgdG8gbGlmZT8KPj4+Pj4+Pj4+IAo+Pj4+Pj4+Pj4gVGhlIOKA
-nFBsZWFzZSBydW464oCdIHN1Z2dlc3Rpb24gcmVzdWx0cyBpbiB0aGUg4oCcUmVjZWl2ZWQgaW52
-YWxpZCByZXBseSAzMgo+Pj4+Pj4+Pj4gZnJvbSBkZXZpY2XigJ0gZXJyb3IuICBJdCBzZWVtcyBu
-byBtYXR0ZXIgd2hhdCBJIHRyeSB0aGUg4oCcUmVjZWl2ZWQgaW52YWxpZAo+Pj4+Pj4+Pj4gcmVw
-bHkgMzIgZnJvbSBkZXZpY2XigJ0gUnVudGltZUVycm9yIGlzIHJlcG9ydGVkIGJhY2sgd2hlbiBJ
-IHRyeSB0byBsb2FkIGFueQo+Pj4+Pj4+Pj4gbmV3IGZpcm13YXJlL0ZQR0EgaW1hZ2VzLgo+Pj4+
-Pj4+Pj4gCj4+Pj4+Pj4+PiBUaGFua3MhCj4+Pj4+Pj4+PiAKPj4+Pj4+Pj4+IEpvZQo+Pj4+Pj4+
-Pj4gCj4+Pj4+Pj4+PiAKPj4+Pj4+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCj4+Pj4+Pj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+Pj4+Pj4+
-Pj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4+Pj4+Pj4+IGh0dHA6Ly9saXN0cy5ldHR1
-cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+Pj4+Pj4+
-Pj4gCj4+Pj4+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KPj4+Pj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+Pj4+Pj4+IFVTUlAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tCj4+Pj4+Pj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
-bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4+Pj4+Pj4gCj4+Pj4+Pj4gCj4+Pj4+Pj4g
-Cj4+Pj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
-Pj4+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4+Pj4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tCj4+Pj4+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
-cC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4+Pj4+IAo+Pj4+Pj4gCj4+Pj4+PiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4+Pj4gVVNSUC11c2VycyBt
-YWlsaW5nIGxpc3QKPj4+Pj4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+Pj4+PiBodHRw
-Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
-cy5jb20KPj4+Pj4+IAo+Pj4+PiAKPj4+Pj4gCj4+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCj4+Pj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+
-Pj4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+Pj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5j
-b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+Pj4+PiAKPj4+
-IAo+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+
-IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+
-Pj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
-dHMuZXR0dXMuY29tCj4+IAo+PiAKPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20KPj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZv
-L3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZv
-L3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============3079858412587933507==
+Content-Type: multipart/alternative; boundary="000000000000f6ce9d05886a1fee"
+
+--000000000000f6ce9d05886a1fee
+Content-Type: text/plain; charset="UTF-8"
+
+What does the signal look like in the time domain?
+
+Is it driving the amplifier on the B205mini into saturation?
+
+Brian
+
+On Wed, May 8, 2019 at 7:57 PM Michael Deacon <michaeld@sysware.com> wrote:
+
+> I added some attenuation. The overload is gone but the condition persists.
+>
+>
+>
+> Thanks,
+>
+>
+>
+> Mike
+>
+>
+>
+> *From:* Brian Padalino <bpadalino@gmail.com>
+> *Sent:* Wednesday, May 8, 2019 4:37 PM
+> *To:* Michael Deacon <michaeld@sysware.com>
+> *Cc:* usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] Relationship between IQ values, gain and
+> noise on B205mini transmitter
+>
+>
+>
+> On Wed, May 8, 2019 at 7:28 PM Michael Deacon via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+> Hello,
+>
+>
+>
+> I have a simple transmitter consisting of a file source connected to a
+> USRP sink (attached image radio.png). The file contains interleaved
+> floating point IQ representing a few seconds of LTE. The IQ amplitude
+> values are normalized between +1.0 and -1.0. The sink is configured to
+> 60db, 7.5MHz sample rate, 385MHz center frequency and 5MHz bandwidth. The
+> output looks exactly like the original on a spectrum analyzer (see attached
+> good.jpg). If I turn up the gain on the sink or increase the amplitude of
+> the IQ data I get what looks to be noise on either side of the signal
+> spectrum (see attached bad.jpg). Any idea what is going on here?
+>
+>
+>
+> Your bad.jpg picture has the spectrum analyzer saying OLVD.  Try changing
+> your reference level of the spectrum analyzer to be higher so you don't
+> saturate the input of the spectrum analyzer.
+>
+>
+>
+> Tell us if that fixes it for you.
+>
+>
+>
+> Brian
+>
+
+--000000000000f6ce9d05886a1fee
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">What does the signal look like in the time domain?<div><br=
+></div><div>Is it driving the amplifier on the B205mini into saturation?</d=
+iv><div><br></div><div>Brian</div></div><br><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Wed, May 8, 2019 at 7:57 PM Michael De=
+acon &lt;<a href=3D"mailto:michaeld@sysware.com">michaeld@sysware.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div l=
+ang=3D"EN-US"><div class=3D"gmail-m_7608036553212458599WordSection1"><p cla=
+ss=3D"MsoNormal">I added some attenuation. The overload is gone but the con=
+dition persists.<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></=
+u></p><p class=3D"MsoNormal">Thanks,<u></u><u></u></p><p class=3D"MsoNormal=
+"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">Mike<u></u><u></u></p><p c=
+lass=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal"><b>From:<=
+/b> Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_bl=
+ank">bpadalino@gmail.com</a>&gt; <br><b>Sent:</b> Wednesday, May 8, 2019 4:=
+37 PM<br><b>To:</b> Michael Deacon &lt;<a href=3D"mailto:michaeld@sysware.c=
+om" target=3D"_blank">michaeld@sysware.com</a>&gt;<br><b>Cc:</b> <a href=3D=
+"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettu=
+s.com</a><br><b>Subject:</b> Re: [USRP-users] Relationship between IQ value=
+s, gain and noise on B205mini transmitter<u></u><u></u></p><p class=3D"MsoN=
+ormal"><u></u>=C2=A0<u></u></p><div><div><p class=3D"MsoNormal">On Wed, May=
+ 8, 2019 at 7:28 PM Michael Deacon via USRP-users &lt;<a href=3D"mailto:usr=
+p-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&g=
+t; wrote:<u></u><u></u></p></div><div><blockquote style=3D"border-top:none;=
+border-right:none;border-bottom:none;border-left:1pt solid rgb(204,204,204)=
+;padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in"><div><div><p c=
+lass=3D"MsoNormal">Hello,<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u>=
+</u><u></u></p><p class=3D"MsoNormal">I have a simple transmitter consistin=
+g of a file source connected to a USRP sink (attached image radio.png). The=
+ file contains interleaved floating point IQ representing a few seconds of =
+LTE. The IQ amplitude values are normalized between +1.0 and -1.0. The sink=
+ is configured to 60db, 7.5MHz sample rate, 385MHz center frequency and 5MH=
+z bandwidth. The output looks exactly like the original on a spectrum analy=
+zer (see attached good.jpg). If I turn up the gain on the sink or increase =
+the amplitude of the IQ data I get what looks to be noise on either side of=
+ the signal spectrum (see attached bad.jpg). Any idea what is going on here=
+?<u></u><u></u></p></div></div></blockquote><div><p class=3D"MsoNormal"><u>=
+</u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">Your bad.jpg picture=
+ has the spectrum analyzer saying OLVD.=C2=A0 Try changing your reference l=
+evel of the spectrum analyzer to be higher so you don&#39;t saturate the in=
+put of the spectrum analyzer.<u></u><u></u></p></div><div><p class=3D"MsoNo=
+rmal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">Tell us if =
+that fixes it for you.<u></u><u></u></p></div><div><p class=3D"MsoNormal"><=
+u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">Brian<u></u><u></u=
+></p></div></div></div></div></div></blockquote></div>
+
+--000000000000f6ce9d05886a1fee--
+
+
+--===============3079858412587933507==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3079858412587933507==--
+
