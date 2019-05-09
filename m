@@ -2,109 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38E6618BA4
-	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 16:23:42 +0200 (CEST)
-Received: from [::1] (port=53332 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6379B18BBD
+	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 16:29:46 +0200 (CEST)
+Received: from [::1] (port=55188 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOjwc-0001SP-LM; Thu, 09 May 2019 10:22:46 -0400
-Received: from otransport-8.outbound.emailsrv.net ([52.20.59.36]:50495)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.91) (envelope-from <jason@gardettoengineering.com>)
- id 1hOjw4-0001Iw-Ne
- for usrp-users@lists.ettus.com; Thu, 09 May 2019 10:22:42 -0400
-Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
- [10.4.3.253])
- by otransport-8.outbound.emailsrv.net (Postfix) with ESMTPS id 57DA3616D2;
- Thu,  9 May 2019 14:21:32 +0000 (UTC)
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam01lp2052.outbound.protection.outlook.com [104.47.32.52])
- by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id E7832A40B1;
- Thu,  9 May 2019 14:20:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com; s=selector1-gardettoengineering-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8jcwO3x/UdatJpUWkvAxodTR7byr5eIJV4xjQHeXeyg=;
- b=PNwjNljigSxyCUvDWRC63x+YE8eSnuEfTJX/9QJGoh//gengjKPvHaLvH16b5dexqsjf+e11XJwI5CDq7ocEGlcPJHKxbVEzqYZ7lKHlzB+pq5s7Xppj0IEzRYjWpYF2it07vKZdUNXL2EQiQ/XifBC3UIsN5AnhZXXBJxQS6/U=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
- BL0PR12MB2529.namprd12.prod.outlook.com (52.132.11.156) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.12; Thu, 9 May 2019 14:20:10 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::5570:e6c8:1b85:dbc5]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::5570:e6c8:1b85:dbc5%7]) with mapi id 15.20.1856.012; Thu, 9 May 2019
- 14:20:10 +0000
-To: Joe Martin <k5so@k5so.com>
-Thread-Topic: [USRP-users] Need a little help with running legacy prebuilt UHD
- versions
-Thread-Index: AQHVBm7RX9ZL6047eUCP7trk/EXp+qZi15cI
-Date: Thu, 9 May 2019 14:20:09 +0000
-Message-ID: <BL0PR12MB2340B79E071584EF5599E398AF330@BL0PR12MB2340.namprd12.prod.outlook.com>
-References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
- <BL0PR12MB2340E831A1782ED0958D6DBAAF320@BL0PR12MB2340.namprd12.prod.outlook.com>
- <84C6BD1A-2901-4FFC-834C-55B481EB7045@k5so.com>
- <CA+JMMq9oRqxDSVgyACAZucejC2Z3hKwciNCjX_YEJ6taCgUQ-g@mail.gmail.com>
- <CA+JMMq8N5XP6Z9CDUO0JHZxJotHRPfQRRqsvJT5-XwZZVWRv+w@mail.gmail.com>
- <A0F0F533-AE85-4802-A676-EA4C39C9372F@k5so.com>
- <B98CD290-9E92-49CE-AD7D-E19FE82B5657@k5so.com>
- <CA+JMMq9+WVXGDRwBd9WAcwXHXDynDsUYy4nOXuryttxvNKbXCA@mail.gmail.com>
- <19BFE8B3-662A-4DC0-BB72-557E7495F6D0@k5so.com>
- <5F41CEE9-58DF-4868-89C2-5F88876803DF@k5so.com>
- <CAGVTi8VOeNG5B9X-WaMQrvbxkt96UFhm5a6-++9znYCzexfRtQ@mail.gmail.com>
- <9f223faf-add7-74cc-faa1-d4a0ed95e28a@balister.org>
- <2C9C895D-DD6D-4456-9F1D-557F699AB391@k5so.com> <5CD36887.5050805@gmail.com>
- <4F25C7C9-CB61-46DF-9163-2CB0CF86DDCF@k5so.com>
- <F19914AE-5635-4F61-A19B-13C16AE6CE8D@k5so.com>,
- <2BBEC239-22F9-4F4C-B777-222484DEC314@k5so.com>
-In-Reply-To: <2BBEC239-22F9-4F4C-B777-222484DEC314@k5so.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-originating-ip: [65.127.220.137]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 07acb3a7-3b6b-4773-72d2-08d6d489719c
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600141)(711020)(4605104)(2017052603328)(7193020);
- SRVR:BL0PR12MB2529; 
-x-ms-traffictypediagnostic: BL0PR12MB2529:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BL0PR12MB2529BA42DBAC67E9FB15C5EEAF330@BL0PR12MB2529.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 003245E729
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(136003)(396003)(346002)(366004)(376002)(39830400003)(199004)(189003)(68736007)(256004)(74316002)(14454004)(7736002)(25786009)(99286004)(561924002)(5660300002)(6916009)(6246003)(71190400001)(71200400001)(19627405001)(7696005)(76176011)(73956011)(66946007)(66476007)(76116006)(66556008)(53936002)(64756008)(66446008)(54896002)(19273905006)(6306002)(86362001)(316002)(9686003)(236005)(508600001)(8676002)(66066001)(52536014)(4326008)(102836004)(33656002)(6436002)(105004)(11346002)(446003)(6506007)(53546011)(26005)(6116002)(186003)(3846002)(2906002)(606006)(486006)(476003)(55016002)(81156014)(81166006)(8936002)(229853002);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2529;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: abe8qrom7ykUVi3XjJaNZgFbeDiTqoT/shpaqXAlx+W+Oxv90AKMmEW9rJQmRac5aBZzIcAy/TbQOFyC1R0X6wHy2rNh8Oewu8TPEfOKsJ60EUhxEh7vF5DsZveQKrWZNQnYMKU2sfR87TOH2GeQD6oDjndXj4TD6tHhv/dFY2Fau38X1RyKn0jQ9xaiwrCSFiQBo4XrSqgmckoZOxIAes/xwPS5dbN3aricKWQyatxxJwlIPEFroyWwTImwVr8rwHnaeMgy+estviazYDPq2mXalKgitzZ1648g5QI+AxyQsjqggd1FU0BCDYvoBvyi9l+77y6isnEjcOyKWmu35Qdwf9kcWEnbBnda+dNmH6Dp50/tgfnxc1Un/UVmprdQAF415zwXLLd1+xumqdYIcOHCjSdb4Tzx4NDy03fGzv8=
+	id 1hOk3N-0001zf-7q; Thu, 09 May 2019 10:29:45 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:38433)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <rkossler@nd.edu>) id 1hOk2o-0001qB-GO
+ for usrp-users@lists.ettus.com; Thu, 09 May 2019 10:29:40 -0400
+Received: by mail-ot1-f43.google.com with SMTP id s19so2464472otq.5
+ for <usrp-users@lists.ettus.com>; Thu, 09 May 2019 07:28:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=s6uyKMqQd5XUR4afV7tWC0ijONsc4kJZhxRfwWWfOVw=;
+ b=OZAsckG56lIZHafd7ixstaou1Gmx4KE9cH2FMBlFoCe4mOmx5LV5AQ67PNEB1jd+b7
+ NJJy/4M3FK71AdRUbrKaogqfc6+vuaXaiuxCy4AwroQ7I/daXm4vDQvsXIDgHpcgZsou
+ zKIUpBymt+ZnNQy0KPJlr7SPSXFvoxzJA50qq6eIxuts1rMMd/IImwoYy0BFts7+dIpM
+ G3pcPCQmx2CADfxLerbErK1JB6KsMPK43Evsm4V8QEeXAu0E+YmGoiUFEe0DzJT/nNd+
+ zIeFgoBnozB2EFABoggSKLFNDYvm8CXBlsliR3ytR2V8mM4gBLOwvIX8uySy9TikzwPV
+ H25Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=s6uyKMqQd5XUR4afV7tWC0ijONsc4kJZhxRfwWWfOVw=;
+ b=BiMFcbbK0dHvA8aWadiNkunRr2AcTO/mZC8SAiLBqXxKV8iw58mUwNN7LCVXhZD7zz
+ gE4Miou3O2P6CARaXf1IDqtRjIPXhNZDJ82eMSWvzioypn8I/EYvVT2+K+is9nX4TgQN
+ Ibd+OopDeHnL5Sz8mqbjdfEUV4aYGec9vW2utgoi9I+k/Ssy3MGpe8gHLMWIIuxJDjtU
+ SV1EWR4fjeE03sc3oc/0bmthd+nqU+fkzqxcFbbPxXeJ80doQSJChm1P4Rf8Kp49oROv
+ ZZvt5uO6MmrCjoJdRK+WVBDGA5GYJf2iaPW4+q9VUwvAmncv5qtJf2fCslULWcbiIhfa
+ fL4g==
+X-Gm-Message-State: APjAAAWQyXYqOiNInsqnsMKyGRByS7A+X/VtKr5HVGfk94b/uUYIHSy2
+ DM13wf7H8npY5WKaSOhG/aSQpn0cCmqOK79PBrqzEw==
+X-Google-Smtp-Source: APXvYqwvll4JZksDpq93Mfkvi/QVvAX9hz8fMWezRd0Vxv3QE4dM78G80xQSwKnrnwPM0NPbwITQFen+RRIhTHiOoZ0=
+X-Received: by 2002:a9d:5e07:: with SMTP id d7mr2563312oti.21.1557412109657;
+ Thu, 09 May 2019 07:28:29 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07acb3a7-3b6b-4773-72d2-08d6d489719c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2019 14:20:09.9531 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2529
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-sn1nam01lp2052.outbound.protection.outlook.com|104.47.32.52|NAM01-SN1-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: subject_50_chars subject_10_spaces clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.32.52, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-13022-c
-X-Mailprotector-ID: 5477dd5f-e66b-4e75-bcc5-31500c118e39
+References: <467ab47ac30943458c17957c0f605687@TELMBXC13BA020.telecomitalia.local>
+ <5CD4326A.1050705@gmail.com>
+In-Reply-To: <5CD4326A.1050705@gmail.com>
+Date: Thu, 9 May 2019 10:28:18 -0400
+Message-ID: <CAB__hTQAH2mNnE=ZR4RtGOZGbOyEg9HJJYjsXyPhnZypQyYXyQ@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Need a little help with running legacy prebuilt
- UHD versions
+Subject: Re: [USRP-users] Configuration in sysctl.conf
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -116,10 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8548828932073455985=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7232811675420018656=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -133,125 +80,358 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8548828932073455985==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB2340B79E071584EF5599E398AF330BL0PR12MB2340namp_"
+--===============7232811675420018656==
+Content-Type: multipart/related; boundary="00000000000091111d0588754366"
 
---_000_BL0PR12MB2340B79E071584EF5599E398AF330BL0PR12MB2340namp_
-Content-Type: text/plain; charset="Windows-1252"
+--00000000000091111d0588754366
+Content-Type: multipart/alternative; boundary="00000000000091111b0588754365"
+
+--00000000000091111b0588754365
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Maybe try running a VM of a version of Ubuntu that is roughly the vintage o=
-f that version of UHD?
+Have you done the same for "rmem_max"?   Perhaps the continued warning
+messages are related to this rather than wmem_max?
 
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Joe Mart=
-in via USRP-users <usrp-users@lists.ettus.com>
-Sent: Thursday, May 9, 2019 9:53 AM
-To: Joe Martin
-Cc: usrp-users@lists.ettus.com
-Subject: [USRP-users] Need a little help with running legacy prebuilt UHD v=
-ersions
+Rob
 
-I need a bit of help to understand how to run legacy prebuilt UHD versions =
-from the files.ettus.com/binaries/uhd<http://files.ettus.com/binaries/uhd> =
-repository.
+On Thu, May 9, 2019 at 10:01 AM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-I would like to try various UHD versions to try to find a version that will=
- run with an elderly (Rev 2) N210 with unknown firmware/fpga images in it. =
- After downloading a legacy version, e.g., uhd_003.004.000-release_Ubuntu-1=
-1.10-x86_64.deb, and clicking =93install=94 I am not understanding what I n=
-eed to do next to actually run the version, as uhd_usrp_probe =97version re=
-ports the version of UHD that I originally had installed, not the legacy ve=
-rsion I intended to install.
+> On 05/09/2019 08:25 AM, Disco Daniele via USRP-users wrote:
+>
+> Hi!
+>
+> I=E2=80=99m using a X310 on a linux box UBUNTU 18.04
+>
+>
+>
+> Executing the command =E2=80=9Cuhd_usrp_probe=E2=80=9D
+>
+> I obtain a lot of [WARNING][UDP] related to the dimension of the send
+> buffer
+>
+> Then there is the sentence:
+>
+> Please run: sudo sysctl -w net.core.wmem_max=3D24862979
+>
+>
+>
+> So I=E2=80=99ve written in the file /etc/sysctl.conf, at the end
+>
+> net.core.wmem_max=3D24862979
+>
+>
+>
+> I restarted the host but rerunning uhd_usrp_probe I reobtain the same
+> warning.
+>
+>
+>
+> Could you help me?
+>
+>
+>
+> PS: Now I=E2=80=99m using a 10GB Ethernet board plugged in the workstatio=
+n, using
+> a couple of fiber optics between the X310 and the work station
+>
+>
+>
+> Thank you
+>
+> Perhaps you have a syntax error in your sysctl file?
+>
+>
+>
+>
+> _____________________________________________
+>
+> [image: logo1]
+>
+> Direzione e Coordinamento Vivendi SA
+>
+>
+> *Daniele Disco*
+> *CT.TA.EI*
+>
+>
+> Via Reiss Romoli, 274 =E2=80=93 10148 Torino
+> tel . +39 011 228 7271
+> cell. +39 331 600 1113
+>
+> Fax. +39 06 4186 5196
+> Tim Official: *Facebook* <https://www.facebook.com/TimOfficialPage> -
+> *Twitter* <https://twitter.com/tim_official>
+> *www.tim.it* <http://www.tim.it/>
+>
+>
+>
+>
+> Questo messaggio e i suoi allegati sono indirizzati esclusivamente alle
+> persone indicate. La diffusione, copia o qualsiasi altra azione derivante
+> dalla conoscenza di queste informazioni sono rigorosamente vietate. Qualo=
+ra
+> abbiate ricevuto questo documento per errore siete cortesemente pregati d=
+i
+> darne immediata comunicazione al mittente e di provvedere alla sua
+> distruzione, Grazie.
+>
+> * This e-mail and any attachments is confidential and may contain
+> privileged information intended for the addressee(s) only. Dissemination,
+> copying, printing or use by anybody else is unauthorised. If you are not
+> the intended recipient, please delete this message and any attachments an=
+d
+> advise the sender by return e-mail, Thanks. *
+>
+> *Rispetta l'ambiente. Non stampare questa mail se non =C3=A8 necessario.*
+>
+> _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/m=
+ailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-I am running Ubuntu 18.04, should I expect to be able to run the legacy ver=
-sions labeled, for example, *_Ubuntu-11.10-x86_64.deb, as in the example ab=
-ove ?
-
-Clearly I=92m missing something fundamental, and likely simple, in my under=
-standing about how to use these prebuilt older versions.  I have had no pro=
-blem building, installing, and running UHD versions from source but I have =
-never tried to run a =93prebuilt=94 version before.
-
-Joe
-
---_000_BL0PR12MB2340B79E071584EF5599E398AF330BL0PR12MB2340namp_
-Content-Type: text/html; charset="Windows-1252"
+--00000000000091111b0588754365
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Maybe try running a VM of a version of Ubuntu that is roughly the vintage o=
-f that version of UHD?</div>
-<div id=3D"Signature">
-<div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div dir=3D"ltr"><div dir=3D"ltr">Have you done the same for &quot;rmem_max=
+&quot;?=C2=A0 =C2=A0Perhaps the continued warning messages are related to t=
+his rather than wmem_max?<div><br></div><div>Rob</div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 9, 2019 =
+at 10:01 AM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users=
+@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div class=3D"gmail-m_-8380757819678932710moz-cite-prefix">On 05/09/201=
+9 08:25 AM, Disco Daniele
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+     =20
+     =20
+     =20
+      <div class=3D"gmail-m_-8380757819678932710WordSection1">
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Hi!<u></u><u></u></span=
+></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">I=E2=80=99m using a X31=
+0 on a
+            linux box UBUNTU 18.04<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
+pan></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Executing the command
+            =E2=80=9Cuhd_usrp_probe=E2=80=9D<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">I obtain a lot of
+            [WARNING][UDP] related to the dimension of the send buffer<u></=
+u><u></u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Then there is the
+            sentence:<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Please run: sudo sysctl
+            -w net.core.wmem_max=3D24862979<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
+pan></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">So I=E2=80=99ve written=
+ in the
+            file /etc/sysctl.conf, at the end<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">net.core.wmem_max=3D248=
+62979<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
+pan></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">I restarted the host bu=
+t
+            rerunning uhd_usrp_probe I reobtain the same warning.<u></u><u>=
+</u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
+pan></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Could you help me?<u></=
+u><u></u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
+pan></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">PS: Now I=E2=80=99m usi=
+ng a 10GB
+            Ethernet board plugged in the workstation, using a couple of
+            fiber optics between the X310 and the work station<u></u><u></u=
+></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
+pan></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you</span></p>
+      </div>
+    </blockquote>
+    Perhaps you have a syntax error in your sysctl file?<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div class=3D"gmail-m_-8380757819678932710WordSection1">
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u><u></u></span></=
+p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
+pan></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
+elvetica,sans-serif;color:rgb(1,33,105)">__________________________________=
+___________</span><b><span style=3D"font-size:10pt;font-family:Helvetica,sa=
+ns-serif;color:rgb(218,41,28)"><u></u><u></u></span></b></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
+elvetica,sans-serif;color:rgb(1,33,105)" lang=3D"EN-US"><img style=3D"width=
+: 0.5937in; height: 0.1875in;" id=3D"gmail-m_-8380757819678932710Immagine_x=
+0020_5" src=3D"cid:16a9cfdf1cbc204bfcc1" alt=3D"logo1" height=3D"18" width=
+=3D"57"></span><span style=3D"font-size:7.5pt;font-family:Helvetica,sans-se=
+rif;color:rgb(1,33,105)"><u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
+elvetica,sans-serif;color:rgb(1,33,105)">Direzione
+            e Coordinamento Vivendi SA<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><b><span style=3D"font-size:7.5pt;font-famil=
+y:Verdana,sans-serif"><br>
+            </span></b><b><span style=3D"font-size:7.5pt;font-family:Helvet=
+ica,sans-serif;color:rgb(1,33,105)">Daniele
+              Disco</span></b><span style=3D"font-size:7.5pt;font-family:He=
+lvetica,sans-serif;color:rgb(1,33,105)"><br>
+            <b>CT.TA.EI</b><u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
+elvetica,sans-serif;color:rgb(1,33,105)"><br>
+            Via Reiss Romoli, 274 =E2=80=93 10148 Torino<br>
+            tel . </span><span style=3D"font-size:7.5pt;font-family:Helveti=
+ca,sans-serif;color:rgb(1,33,105)" lang=3D"EN-US">+39 011 228 7271<br>
+            cell. +39 331 600 1113<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
+elvetica,sans-serif;color:rgb(1,33,105)" lang=3D"EN-US">Fax. +39 06 4186 51=
+96<br>
+            Tim Official: <a href=3D"https://www.facebook.com/TimOfficialPa=
+ge" target=3D"_blank">
+              <b><span style=3D"color:rgb(1,33,105)">Facebook</span></b></a=
+> - <a href=3D"https://twitter.com/tim_official" target=3D"_blank">
+              <b><span style=3D"color:rgb(1,33,105)">Twitter</span></b></a>=
 <br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> USRP-users &lt;usrp-u=
-sers-bounces@lists.ettus.com&gt; on behalf of Joe Martin via USRP-users &lt=
-;usrp-users@lists.ettus.com&gt;<br>
-<b>Sent:</b> Thursday, May 9, 2019 9:53 AM<br>
-<b>To:</b> Joe Martin<br>
-<b>Cc:</b> usrp-users@lists.ettus.com<br>
-<b>Subject:</b> [USRP-users] Need a little help with running legacy prebuil=
-t UHD versions</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"" style=3D"word-wrap:break-word">I need a bit of help to unde=
-rstand how to run legacy prebuilt UHD versions from the
-<a href=3D"http://files.ettus.com/binaries/uhd" class=3D"">files.ettus.com/=
-binaries/uhd</a>&nbsp;repository. &nbsp;
-<div class=3D""><br class=3D"">
-</div>
-<div class=3D"">I would like to try various UHD versions to try to find a v=
-ersion that will run with an elderly (Rev 2) N210 with unknown firmware/fpg=
-a images in it. &nbsp;After downloading a legacy version, e.g., uhd_003.004=
-.000-release_Ubuntu-11.10-x86_64.deb, and
- clicking =93install=94 I am not understanding what I need to do next to ac=
-tually run the version, as uhd_usrp_probe =97version reports the version of=
- UHD that I originally had installed, not the legacy version I intended to =
-install. &nbsp;
-<div class=3D""><br class=3D"">
-</div>
-<div class=3D"">I am running Ubuntu 18.04, should I expect to be able to ru=
-n the legacy versions labeled, for example, *_Ubuntu-11.10-x86_64.deb, as i=
-n the example above ?&nbsp;</div>
-<div class=3D""><br class=3D"">
-</div>
-<div class=3D"">Clearly I=92m missing something fundamental, and likely sim=
-ple, in my understanding about how to use these prebuilt older versions. &n=
-bsp;I have had no problem building, installing, and running UHD versions fr=
-om source but I have never tried to run a
- =93prebuilt=94 version before.&nbsp;</div>
-<div class=3D""><br class=3D"">
-</div>
-<div class=3D"">Joe</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+            <a href=3D"http://www.tim.it/" target=3D"_blank"><b><span style=
+=3D"color:rgb(1,33,105)">www.tim.it</span></b></a></span><span lang=3D"EN-U=
+S"><u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
+pan></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
+pan></p>
+      </div>
+      <table style=3D"width:600px">
+        <tbody>
+          <tr>
+            <td style=3D"width:585px;font-family:Verdana;font-size:7.5pt;co=
+lor:rgb(0,0,0);text-align:justify" width=3D"395"> Questo messaggio e i suoi=
+ allegati sono
+              indirizzati esclusivamente alle persone indicate. La
+              diffusione, copia o qualsiasi altra azione derivante dalla
+              conoscenza di queste informazioni sono rigorosamente
+              vietate. Qualora abbiate ricevuto questo documento per
+              errore siete cortesemente pregati di darne immediata
+              comunicazione al mittente e di provvedere alla sua
+              distruzione, Grazie. <br>
+              <br>
+              <i> This e-mail and any attachments is confidential and
+                may contain privileged information intended for the
+                addressee(s) only. Dissemination, copying, printing or
+                use by anybody else is unauthorised. If you are not the
+                intended recipient, please delete this message and any
+                attachments and advise the sender by return e-mail,
+                Thanks. </i> <br>
+              <br>
+              <b>Rispetta l&#39;ambiente. Non stampare questa mail se non =
+=C3=A8
+                necessario.</b> </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <fieldset class=3D"gmail-m_-8380757819678932710mimeAttachmentHeader">=
+</fieldset>
+      <br>
+      <pre>_______________________________________________
+USRP-users mailing list
+<a class=3D"gmail-m_-8380757819678932710moz-txt-link-abbreviated" href=3D"m=
+ailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.=
+com</a>
+<a class=3D"gmail-m_-8380757819678932710moz-txt-link-freetext" href=3D"http=
+://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"_=
+blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</=
+a>
+</pre>
+    </blockquote>
+    <br>
+  </div>
 
---_000_BL0PR12MB2340B79E071584EF5599E398AF330BL0PR12MB2340namp_--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--00000000000091111b0588754365--
+--00000000000091111d0588754366
+Content-Type: image/jpeg; name=noname
+Content-Disposition: inline; filename=noname
+Content-Transfer-Encoding: base64
+Content-ID: <16a9cfdf1cbc204bfcc1>
+X-Attachment-Id: 16a9cfdf1cbc204bfcc1
+
+/9j/4AAQSkZJRgABAQEAYABgAAD/4QPARXhpZgAATU0AKgAAAAgADwD+AAQAAAABAAAAAAEAAAQA
+AAABAAADMwEBAAQAAAABAAABzAECAAMAAAADAAAAwgEDAAMAAAABAAUAAAEGAAMAAAABAAIAAAER
+AAQAAABcAAAAyAEVAAMAAAABAAMAAAEWAAQAAAABAAAABQEXAAQAAABcAAACOAEaAAUAAAABAAAD
+qAEbAAUAAAABAAADsAEcAAMAAAABAAEAAAEoAAMAAAABAAIAAAE9AAMAAAABAAIAAAAAAAAACAAI
+AAgAAAAIAAADGQAABaQAAAfvAAAKlAAADVcAAA9QAAARSQAAFAYAABdXAAAalAAAHgkAACE5AAAj
+cAAAJaYAAChhAAArbAAALaUAADADAAAzjgAANEsAADUIAAA1xQAANoIAADc/AAA3/AAAOLkAADl2
+AAA6MwAAOvAAADutAAA8agAAPScAAD3kAAA+oQAAP14AAEAbAABA2AAAQZUAAEJSAABDDwAAQ8wA
+AESJAABFRgAARgMAAEbAAABHfQAASDoAAEj3AABJtAAASnEAAEsuAABL6wAATKgAAE1lAABOIgAA
+Tt8AAE+cAABQWQAAURYAAFHTAABSkAAAU00AAFQKAABUxwAAVYQAAFZBAABW/gAAV7sAAFh4AABZ
+NQAAWfIAAFqvAABbbAAAXCkAAFzmAABdowAAXmAAAF8dAABf2gAAYJcAAGFUAABiEQAAYs4AAGOL
+AABkSAAAZQUAAGXCAABmfwAAZzwAAGf5AABotgAAAxEAAAKLAAACSwAAAqUAAALDAAAB+QAAAfkA
+AAK9AAADUQAAAz0AAAN1AAADMAAAAjcAAAI2AAACuwAAAwsAAAI5AAACXgAAA4sAAAC9AAAAvQAA
+AL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAA
+vQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9
+AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0A
+AAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAA
+AL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAAAvQAAAL0AAAC9AAF3
+AAAAA+gAAXcAAAAD6P/bAEMAAgEBAgEBAgICAgICAgIDBQMDAwMDBgQEAwUHBgcHBwYHBwgJCwkI
+CAoIBwcKDQoKCwwMDAwHCQ4PDQwOCwwMDP/bAEMBAgICAwMDBgMDBgwIBwgMDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDP/AABEIABIAOQMBIgACEQEDEQH/
+xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMA
+BBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVG
+R0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0
+tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEB
+AQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2Fx
+EyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZ
+WmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TF
+xsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/APZvGX7JHwf8Y/GH
+WYF/bw1iDV9X124iXT1u53eKeW5YC34uQGKu2zgAccAdKufG3/gmr4D/AGbvGUXh7x5+274m8K63
+PZpfpZX8txHK0DvIiSAfavulopAD/sGucg/an/ZPb9qpNPj/AGbfEMHiD/hNDaJfvqhjWO8/tAoJ
+zHn5QJPn2dhxXt3/AAWM+Pf7P3wy/a70/Tfil8F9Y+IXiZ/Cdlcxapa6kbeOK0a7vljg2Z6q6TNn
+v5g9K+R9nh3SnU9y6a6ztr313P7K/tXiSlmmByyH1pQq0pS5fY4LnfKlZw93l5V15nzWtY900H9j
+Cx/aZ/4JU+H/AIV+Dvjp4i1CwuTHNafEPT5pZby8EOotcOoInV9oZWgx5vyqmOcYr8xv2Zf+CfXj
+P9o7/gor8WvgJJ+0H8UtIt/htaXFxFraaneyyX5iubeDDQ/awEyJieGP3RX7Hf8ABNzxZ4Q8b/sS
+eANW8BeFLvwR4SvbWd9P0W5YtJZr9qmDksfvB5A8gb+ISA96+E/+CZ0Mq/8ABw1+1S3kzBBpl/lz
+GwXnUrHbyRjnBx64OOlfrvCGa4jD5ZiYUpJKNNSjonaV4K6um9uj/M/ifxCwEavEMniFLmdeopXf
+LLebtJQagpX35dL6LQm13XPEXgj/AIOUPg94MHizxRd6JZeEfss1o+q3Is70x6Df/vJLfzDGzM6L
+Icg/MA2cgGvl/wDYc/bt8Wfs7/8ABZvW/wDhIfFPirUPAPizxzqvg/U4dQ1e5urKza5vZVs5FSWQ
+xxmOdYhkAYiaTHAxX0/8Vo5T/wAHVHwwPkz7P+EcnYv5TbAP7C1IZ3YxjOBnPU4618x/s5/sMap+
+35rX7bHgvQRbWfi+w8ZW2s+HbnUGltbaK7i1O/3o8oRmUSQPIuVBKs0bYO3B+wwcsIsN/taXJLD0
+k3ppzTkub5Xv30PhsQsS66WHbvGtUaWuvLFO3z27XNX/AILEftyeKvin/wAFVND8N+FvE3ijSPCP
+w117S/DbDS9VubK3u9RN1FJdlxDIquy7liwwyPLcdDX7yV+A37cn7Evin9jH4bfs5Wfju5tta+Jf
+jz4rX3iXxTf2DyXcNxdT3dtsUSmNGc7cuSVB3TOAMAV+/NfL8WfVlhMHDC25Yqcbr7XLJJy+bu16
+nvcPfWPrGJlib8zcXb+W62+XXzGOP3dIg4/E0UV8SfUCH73+fSlHKA9zRRUoQDiMfWhh8v1oopRL
+BO/tRRRVxJe5/9k=
+--00000000000091111d0588754366--
 
 
---===============8548828932073455985==
+--===============7232811675420018656==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -262,5 +442,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8548828932073455985==--
+--===============7232811675420018656==--
 
