@@ -2,57 +2,45 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB2FC183F3
-	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 05:03:27 +0200 (CEST)
-Received: from [::1] (port=48952 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B67291855D
+	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 08:21:10 +0200 (CEST)
+Received: from [::1] (port=33732 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOZL5-0005fj-MO; Wed, 08 May 2019 23:03:19 -0400
-Received: from mail-lf1-f44.google.com ([209.85.167.44]:45447)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1hOZKX-0005Xn-4H
- for usrp-users@lists.ettus.com; Wed, 08 May 2019 23:03:15 -0400
-Received: by mail-lf1-f44.google.com with SMTP id n22so390175lfe.12
- for <usrp-users@lists.ettus.com>; Wed, 08 May 2019 20:02:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=47McHdnNfGEdq3NXnEYPdtPyv9FSWjaE8yoGtZvwoak=;
- b=qz8CjlCWndseXBXw9q7kefMUmDFR9VoIHlmrIixQXtuBtCdiPHkS59hljpk0pLzRaA
- iuZ6LXsH+FPdNOo7VXLagP36AajazKp1MOtNfMeVDFvzTsW+cXfhV4tqr+7HezBTxJAp
- tttrFjDlusvBVZtZq8HqGWmREPLRU/NPrkpuDGodf/IHYbXeilP/aDAYcJ9K5SkGBQQy
- 5Pv8uqyqhAc4FIbHQBR+6b5wArWcgpBDr//3ggEmNhtBMUQJnGhf2mlJGoFOmmiblOCk
- aWsWdqc1i+S64ZwkXhmkIc9jv4yP4COq1AtznjMRkmEATyb6tqeiadvtAxbnXhOA977o
- q6wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=47McHdnNfGEdq3NXnEYPdtPyv9FSWjaE8yoGtZvwoak=;
- b=lNfp9bB8LM+JN/GEdzRxmjKjfaKjpBZYoFZP8z1yXIUPJr9tJnPYkEqc1V+3Hibhfx
- sFXYCqfS2U8yuetytbN92q+Eox5v2i5xDUFJbSa193QEsIysF7sHFM4m2VkQt112NgYB
- EX8RIVPVmVcwlTmDOdwZgY6L2qWNiRytwVhLdxgJZ1Rt5SUOZBVBg8Vh4nX7CpRdHZKI
- +XT/iPIcwnUHx1Z/dAZhE7iu53OvNqiL43V/rDXJHo7zDkLu652XV+mjLjGpRV7BaWDS
- tCWXubnaTXIoUhyHE0EOJG6L47lKNzt7tPRHv8towRCIr4pgRaUVnFFu4bAeViryq5u0
- gmgg==
-X-Gm-Message-State: APjAAAUg+wNEv3Co92OHuDdyAXOvXWSSeK2+zyfscDjy/SBsIIjSOzel
- KVNtzmiDU8p+3uTo9a+qo7cT7wf1juqEYjZhp1k3zDI6
-X-Google-Smtp-Source: APXvYqyNkRmaep8ZzCgfxnREL9PBz2m7VH+K+JIZokOxMGUesP4ResJWejHNE4jyW0O/sSiWU/7O8ETX6Czx20HdOwM=
-X-Received: by 2002:a19:196:: with SMTP id 144mr865455lfb.35.1557370923791;
- Wed, 08 May 2019 20:02:03 -0700 (PDT)
+	id 1hOcQS-0003Qi-3A; Thu, 09 May 2019 02:21:04 -0400
+Received: from forward104p.mail.yandex.net ([77.88.28.107]:58488)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.91) (envelope-from <ramazan.cetin@gohm.com.tr>)
+ id 1hOcPu-0003LP-0E
+ for usrp-users@lists.ettus.com; Thu, 09 May 2019 02:21:00 -0400
+Received: from mxback3j.mail.yandex.net (mxback3j.mail.yandex.net
+ [IPv6:2a02:6b8:0:1619::10c])
+ by forward104p.mail.yandex.net (Yandex) with ESMTP id 315174B00579;
+ Thu,  9 May 2019 09:19:48 +0300 (MSK)
+Received: from smtp3p.mail.yandex.net (smtp3p.mail.yandex.net
+ [2a02:6b8:0:1472:2741:0:8b6:8])
+ by mxback3j.mail.yandex.net (nwsmtp/Yandex) with ESMTP id 4Ij6bOBlGq-Jmau9jgI; 
+ Thu, 09 May 2019 09:19:48 +0300
+Received: by smtp3p.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id
+ f93V3snwl1-JlHWiiR0; Thu, 09 May 2019 09:19:47 +0300
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (Client certificate not present)
+To: Jason Matusiak <jason@gardettoengineering.com>, usrp-users@lists.ettus.com
+References: <49b1b11e-15ac-e733-6643-549679512c09@gohm.com.tr>
+ <BL0PR12MB2340D4EC35F3885332A766A8AF320@BL0PR12MB2340.namprd12.prod.outlook.com>
+Message-ID: <2031afcb-51ef-007c-efd8-b8bf77aa1d25@gohm.com.tr>
+Date: Thu, 9 May 2019 09:19:46 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <7f08d2de-bc0f-33f6-7b76-448cfae47524@zluudg.xyz>
-In-Reply-To: <7f08d2de-bc0f-33f6-7b76-448cfae47524@zluudg.xyz>
-Date: Thu, 9 May 2019 12:01:27 +0900
-Message-ID: <CAL7q81vM7CO+hh14Dk5xE2OhM5wBJ_dBGmG7t=jp12Y80pfRNw@mail.gmail.com>
-To: zluudg <zluudg@zluudg.xyz>
+In-Reply-To: <BL0PR12MB2340D4EC35F3885332A766A8AF320@BL0PR12MB2340.namprd12.prod.outlook.com>
+Content-Language: en-US
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] X310 RFNoC transmission issues
+Subject: Re: [USRP-users] Running E310 in Network Mode
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -64,10 +52,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2871379264492614735=="
+From: =?utf-8?q?Ramazan_=C3=87etin_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Ramazan_=c3=87etin?= <ramazan.cetin@gohm.com.tr>
+Content-Type: multipart/mixed; boundary="===============1269664278209455584=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -81,162 +69,149 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2871379264492614735==
-Content-Type: multipart/alternative; boundary="000000000000b24b0105886bac83"
+This is a multi-part message in MIME format.
+--===============1269664278209455584==
+Content-Type: multipart/alternative;
+ boundary="------------B40003EFE779366EB3C4D414"
+Content-Language: en-US
 
---000000000000b24b0105886bac83
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------B40003EFE779366EB3C4D414
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hello Leon,
+Hello Jason,
 
-Did you check to see if your custom image failed timing?
+Thank you for your answer. Actually, i have investigated this link. But, 
+i would like to remove limitations on network mode and use USRP E310 
+line USRP N210. Passing samples directly from FPGA to network. Is it 
+possible?
 
-Jonathon
 
-On Thu, May 9, 2019 at 12:12 AM zluudg via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Regards.
 
-> Hello!
->
-> I'm having some issues while trying to transmit a signal using the
-> RFNoC: Radio block in Gnuradio. My block diagram is:
->
->
->          Signal Source (constant) -> RFNoC: DmaFIFO -> RFNoC: Radio (in
-> TX mode).
+On 8.05.2019 17:14, Jason Matusiak wrote:
+> See here: 
+> https://files.ettus.com/manual/page_usrp_e3x0.html#e3x0_network_mode
 >
 >
-> I run the block diagram by calling "python top_block.py" from the
-> command line and I'm not getting any errors while it's running .
-> However, I'm unable to quit it properly without having to close the
-> terminal window and power-cycle the USRP. When connecting the USRP to a
-> spectrum analyzer I see no signal whatsoever (I expect to see a peak at
-> 2.4 GHz).
+> ------------------------------------------------------------------------
+> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of 
+> Ramazan Çetin via USRP-users <usrp-users@lists.ettus.com>
+> *Sent:* Wednesday, May 8, 2019 8:02 AM
+> *To:* Ettus Research Support; usrp-users@lists.ettus.com
+> *Subject:* [USRP-users] Running E310 in Network Mode
+> Hello,
+>
+> We want to run USRP E310 in network mode. I think the samples coming
+> from FPGA passing through CPU before sending to network. This decreases
+> bandwidth because of CPU limitations.
 >
 >
-> Removing the DmaFIFO does not seem to make any difference. My FPGA image
-> is a custom image with some of my CEs, but it was built smoothly using
-> the "uhd_image_builder.py" script. I've also experienced similar
-> problems while having a RFNoC: DUC between the DmaFIFO and the Radio
-> block, also with a custom FPGA image. With the stock FPGA image I was
-> able to get a signal with more or less the same Gnuradio block diagram.
+> So, is there any ettus image or suggestions that we can run E310
+> directly from FPGA to network without speed limitations? (like N210 or 
+> B210)
 >
+> Best regards.
 >
-> Why am I not seeing any output with my custom FPGA images? All
-> suggestions appreciated.
->
->
-> I'll happily provide more info if needed, so don't hesitate to ask. For
-> know, I'll just provide the basics:
->
->
->          OS: Ubuntu 18.04
->
->          uhd: rfnoc-devel, eec24d7b0
->
->          gnuradio: maint-3.7, c6c575309
->
->          gr-ettus: master, a909447
->
->
-> Thanks in advance!
->
-> //
->
-> Leon
+> Ramazan
 >
 >
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
 
---000000000000b24b0105886bac83
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------B40003EFE779366EB3C4D414
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-<div dir=3D"ltr">Hello Leon,<div><br></div><div>Did you check to see if you=
-r custom image failed timing?</div><div><br></div><div>Jonathon</div></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu=
-, May 9, 2019 at 12:12 AM zluudg via USRP-users &lt;<a href=3D"mailto:usrp-=
-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex">Hello!<br>
-<br>
-I&#39;m having some issues while trying to transmit a signal using the <br>
-RFNoC: Radio block in Gnuradio. My block diagram is:<br>
-<br>
-<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Signal Source (constant) -=
-&gt; RFNoC: DmaFIFO -&gt; RFNoC: Radio (in <br>
-TX mode).<br>
-<br>
-<br>
-I run the block diagram by calling &quot;python top_block.py&quot; from the=
- <br>
-command line and I&#39;m not getting any errors while it&#39;s running . <b=
-r>
-However, I&#39;m unable to quit it properly without having to close the <br=
->
-terminal window and power-cycle the USRP. When connecting the USRP to a <br=
->
-spectrum analyzer I see no signal whatsoever (I expect to see a peak at <br=
->
-2.4 GHz).<br>
-<br>
-<br>
-Removing the DmaFIFO does not seem to make any difference. My FPGA image <b=
-r>
-is a custom image with some of my CEs, but it was built smoothly using <br>
-the &quot;uhd_image_builder.py&quot; script. I&#39;ve also experienced simi=
-lar <br>
-problems while having a RFNoC: DUC between the DmaFIFO and the Radio <br>
-block, also with a custom FPGA image. With the stock FPGA image I was <br>
-able to get a signal with more or less the same Gnuradio block diagram.<br>
-<br>
-<br>
-Why am I not seeing any output with my custom FPGA images? All <br>
-suggestions appreciated.<br>
-<br>
-<br>
-I&#39;ll happily provide more info if needed, so don&#39;t hesitate to ask.=
- For <br>
-know, I&#39;ll just provide the basics:<br>
-<br>
-<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 OS: Ubuntu 18.04<br>
-<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uhd: rfnoc-devel, eec24d7b=
-0<br>
-<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gnuradio: maint-3.7, c6c57=
-5309<br>
-<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gr-ettus: master, a909447<=
-br>
-<br>
-<br>
-Thanks in advance!<br>
-<br>
-//<br>
-<br>
-Leon<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hello Jason,</p>
+    <p>Thank you for your answer. Actually, i have investigated this
+      link. But, i would like to remove limitations on network mode and
+      use USRP E310 line USRP N210. Passing samples directly from FPGA
+      to network. Is it possible?</p>
+    <p><br>
+    </p>
+    <p>Regards.<br>
+    </p>
+    <div class="moz-cite-prefix">On 8.05.2019 17:14, Jason Matusiak
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:BL0PR12MB2340D4EC35F3885332A766A8AF320@BL0PR12MB2340.namprd12.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        See here: <a
+href="https://files.ettus.com/manual/page_usrp_e3x0.html#e3x0_network_mode"
+          moz-do-not-send="true">https://files.ettus.com/manual/page_usrp_e3x0.html#e3x0_network_mode</a></div>
+      <br>
+      <div id="Signature">
+        <div>
+          <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+            font-size:12pt; color:rgb(0,0,0)">
+            <br>
+          </div>
+          <hr tabindex="-1" style="display:inline-block; width:98%">
+          <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
+              face="Calibri, sans-serif" color="#000000"><b>From:</b>
+              USRP-users <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users-bounces@lists.ettus.com">&lt;usrp-users-bounces@lists.ettus.com&gt;</a> on
+              behalf of Ramazan Çetin via USRP-users
+              <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
+              <b>Sent:</b> Wednesday, May 8, 2019 8:02 AM<br>
+              <b>To:</b> Ettus Research Support;
+              <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+              <b>Subject:</b> [USRP-users] Running E310 in Network Mode</font>
+            <div> </div>
+          </div>
+          <div class="BodyFragment"><font size="2"><span
+                style="font-size:11pt">
+                <div class="PlainText">Hello,<br>
+                  <br>
+                  We want to run USRP E310 in network mode. I think the
+                  samples coming <br>
+                  from FPGA passing through CPU before sending to
+                  network. This decreases <br>
+                  bandwidth because of CPU limitations.<br>
+                  <br>
+                  <br>
+                  So, is there any ettus image or suggestions that we
+                  can run E310 <br>
+                  directly from FPGA to network without speed
+                  limitations? (like N210 or B210)<br>
+                  <br>
+                  Best regards.<br>
+                  <br>
+                  Ramazan<br>
+                  <br>
+                  <br>
+                  _______________________________________________<br>
+                  USRP-users mailing list<br>
+                  <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
+                  <a
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                    moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+                </div>
+              </span></font></div>
+        </div>
+      </div>
+    </blockquote>
+  </body>
+</html>
 
---000000000000b24b0105886bac83--
+--------------B40003EFE779366EB3C4D414--
 
 
---===============2871379264492614735==
+--===============1269664278209455584==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -247,5 +222,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2871379264492614735==--
+--===============1269664278209455584==--
 
