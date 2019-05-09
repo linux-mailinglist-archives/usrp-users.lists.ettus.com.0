@@ -2,41 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D86019344
-	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 22:19:29 +0200 (CEST)
-Received: from [::1] (port=48410 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 300F319359
+	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 22:25:11 +0200 (CEST)
+Received: from [::1] (port=50346 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOpVo-0002IP-30; Thu, 09 May 2019 16:19:28 -0400
-Received: from atl4mhob11.registeredsite.com ([209.17.115.49]:40784)
- by mm2.emwd.com with esmtp (Exim 4.91)
- (envelope-from <k5so@k5so.com>) id 1hOpVG-00028l-5U
- for usrp-users@lists.ettus.com; Thu, 09 May 2019 16:19:24 -0400
-Received: from mailpod.hostingplatform.com
- (atl4qobmail01pod3.registeredsite.com [10.30.77.67])
- by atl4mhob11.registeredsite.com (8.14.4/8.14.4) with ESMTP id x49KIBT8011890
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
- for <usrp-users@lists.ettus.com>; Thu, 9 May 2019 16:18:11 -0400
-Received: (qmail 35824 invoked by uid 0); 9 May 2019 20:18:11 -0000
-X-TCPREMOTEIP: 192.206.203.10
-X-Authenticated-UID: k5so@k5so.com
-Received: from unknown (HELO ?192.168.1.76?) (k5so@k5so.com@192.206.203.10)
- by 0 with ESMTPA; 9 May 2019 20:18:11 -0000
-Message-Id: <E4163757-B40B-4716-888F-2328596BB5B6@k5so.com>
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Date: Thu, 9 May 2019 14:18:09 -0600
-In-Reply-To: <691F0564-B5AA-48C6-9258-D15F006E9F7D@k5so.com>
-To: Joe Martin <k5so@k5so.com>
+	id 1hOpbJ-0002oR-EV; Thu, 09 May 2019 16:25:09 -0400
+Received: from mail-qt1-f177.google.com ([209.85.160.177]:39056)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hOpal-0002e9-8g
+ for usrp-users@lists.ettus.com; Thu, 09 May 2019 16:25:05 -0400
+Received: by mail-qt1-f177.google.com with SMTP id y42so4093240qtk.6
+ for <usrp-users@lists.ettus.com>; Thu, 09 May 2019 13:24:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=w7DXvJP8SR0grUt0XW2L28qQZuFCHSO0TlIMgymWmx8=;
+ b=jj0RMW6V6xNyid4J47Ctp2roHqMbj+fgWCoMp+1DR88IZ/oPTH+j45JkBwQyNYfMoS
+ hS91V6pEC1slB40G4cvsjNH+GhYtlve6alEOj7lgZ0LbYG+LyUo8EqOT3IWmJcoqIcXa
+ DGpwVMuAg0MX0GC2rECX2kgUGDIvRhKl4ofscLKe8qYkqqLl9x0MTpeFLA3dILy3iS5z
+ rIgbsKZlAkMeT/NuCdexR4xyRGvTVBiNdzGm1q+4uzMUzSWE+AhXrKiSWplO0TxTB8xF
+ uAwiSxBxmFvXJHZMaJWghtRepPZ+HVwBch1pDvZ6IjsoMlugTNrAikc6ktYWDca7MWkV
+ qANw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=w7DXvJP8SR0grUt0XW2L28qQZuFCHSO0TlIMgymWmx8=;
+ b=O6XVcnPhJ3ZmRvaCUAs+f0wz2VnGAwZoFA+xrWJZFBEiPz0W6McWXiz7Nf4AY4Fqkh
+ 160MFyV1jHBW6woWabD23YSErNRW3d9smSro4JBQmc255/oR6RczGnD26c8B0KxIhMkG
+ H/6VLd6GIt50xaArEiA505O/Mp6GS5JpIbM2kIycCFqz1HemFOuKBV4SBmE2kCG9WC6b
+ sooBPljq2xwKPBYjsm8LOlRW70NBuxY30lelA4MAJkDKU+3804kvEqqg1phfWxSt6mqA
+ cPVDri8/BynLVcwx8aqQL/1EON8rUUTvHGHoIbTKWWy4pS+AWIqF0vTxVvEr65pAbAi/
+ hFdw==
+X-Gm-Message-State: APjAAAVO/7hZehPDf6cLbHsCGSi7jmwKnd/3R9hXyXc1Tm+r1Ip0M5Pp
+ +Aw6ZixwI+eVjlUV3uhDWvcgtxUoqKk=
+X-Google-Smtp-Source: APXvYqzlOduYLIM2kEr4RgB2M18iz3QnZGxS2fDUzwEVXXVRKrpUtXChkNDcClwqLeI+vvSbZMInjw==
+X-Received: by 2002:a0c:d251:: with SMTP id o17mr5211463qvh.181.1557433434475; 
+ Thu, 09 May 2019 13:23:54 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id e3sm1324978qkn.93.2019.05.09.13.23.53
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 09 May 2019 13:23:53 -0700 (PDT)
+Message-ID: <5CD48C58.9050302@gmail.com>
+Date: Thu, 09 May 2019 16:23:52 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
- <BL0PR12MB2340E831A1782ED0958D6DBAAF320@BL0PR12MB2340.namprd12.prod.outlook.com>
- <84C6BD1A-2901-4FFC-834C-55B481EB7045@k5so.com>
- <CA+JMMq9oRqxDSVgyACAZucejC2Z3hKwciNCjX_YEJ6taCgUQ-g@mail.gmail.com>
- <CA+JMMq8N5XP6Z9CDUO0JHZxJotHRPfQRRqsvJT5-XwZZVWRv+w@mail.gmail.com>
- <A0F0F533-AE85-4802-A676-EA4C39C9372F@k5so.com>
- <B98CD290-9E92-49CE-AD7D-E19FE82B5657@k5so.com>
- <CA+JMMq9+WVXGDRwBd9WAcwXHXDynDsUYy4nOXuryttxvNKbXCA@mail.gmail.com>
- <19BFE8B3-662A-4DC0-BB72-557E7495F6D0@k5so.com>
- <5F41CEE9-58DF-4868-89C2-5F88876803DF@k5so.com>
  <CAGVTi8VOeNG5B9X-WaMQrvbxkt96UFhm5a6-++9znYCzexfRtQ@mail.gmail.com>
  <9f223faf-add7-74cc-faa1-d4a0ed95e28a@balister.org>
  <2C9C895D-DD6D-4456-9F1D-557F699AB391@k5so.com> <5CD36887.5050805@gmail.com>
@@ -52,7 +68,8 @@ References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
  <A01FCD5D-DFB6-4E9F-AA41-5D2CF9B00EEA@k5so.com>
  <CA+JMMq_wYJYoenP=wX2ruK-KSHTT6EQdM6K+ksrGFLZZEe+5jQ@mail.gmail.com>
  <691F0564-B5AA-48C6-9258-D15F006E9F7D@k5so.com>
-X-Mailer: Apple Mail (2.3445.9.1)
+ <E4163757-B40B-4716-888F-2328596BB5B6@k5so.com>
+In-Reply-To: <E4163757-B40B-4716-888F-2328596BB5B6@k5so.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -71,10 +88,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Joe Martin <k5so@k5so.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0602836576348654740=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2696927633616906393=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,243 +104,518 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
---===============0602836576348654740==
+This is a multi-part message in MIME format.
+--===============2696927633616906393==
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_FCA32CFB-3FC9-48D4-AE7C-AAB54F821DA5"
+ boundary="------------090906090108020108030804"
 
+This is a multi-part message in MIME format.
+--------------090906090108020108030804
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
---Apple-Mail=_FCA32CFB-3FC9-48D4-AE7C-AAB54F821DA5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-Nick, Ian,=20
-
-If this unit happens to be incorrectly labeled as a rev 2 N210 and it is =
-actually a rev 3 N210, is there hope in being able to load rev 3 =
-firmware and fpga images (which I have located previously and tried =
-actually) with some available UHD version?  If so, would you be able to =
-tell me which UHD version(s) might be able to communicate with it? =20
-
-Joe
-
-> On May 9, 2019, at 2:12 PM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com> wrote:
->=20
-> Okay.  I=E2=80=99ve asserted from the outset that it=E2=80=99s a rev =
-2, based on the factory label.  Is this N210 a lost cause if it is =
-actually a Rev2 N210?=20
->=20
+On 05/09/2019 04:18 PM, Joe Martin via USRP-users wrote:
+> Nick, Ian,
+>
+> If this unit happens to be incorrectly labeled as a rev 2 N210 and it 
+> is actually a rev 3 N210, is there hope in being able to load rev 3 
+> firmware and fpga images (which I have located previously and tried 
+> actually) with some available UHD version?  If so, would you be able 
+> to tell me which UHD version(s) might be able to communicate with it?
+>
 > Joe
->=20
->> On May 9, 2019, at 2:05 PM, Nick Foster <bistromath@gmail.com =
-<mailto:bistromath@gmail.com>> wrote:
->>=20
->> Well, it's not a rev 4. It's either 2 or 3 in terms of hardware =
-revision.=20
->>=20
->> On Thu, May 9, 2019 at 12:58 PM Joe Martin <k5so@k5so.com =
-<mailto:k5so@k5so.com>> wrote:
->> =E2=80=A6able to ping 192.168.10.2 successfully.
->>=20
->>> On May 9, 2019, at 1:54 PM, Joe Martin <k5so@k5so.com =
-<mailto:k5so@k5so.com>> wrote:
->>>=20
->>> Ian,=20
->>>=20
->>> Yes, I have tried many times to boot in safe mode, same result =
-regardless.  Yes, I am able to pin to 192.168.10.2 successfully.=20
->>>=20
->>> Joe
->>>=20
->>>> On May 9, 2019, at 1:47 PM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>=20
->>>> Ian and Nick,=20
->>>>=20
->>>> Thanks for the assistance.  Attached are dropbox links to two =
-snapshot photos:  1) the factory label on the back of the N210, showing =
-N210 r:2.0 and 2) a top side view of the N210.=20
->>>>=20
->>>> 1) =
-https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0 =
-<https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0>
->>>> 2) =
-https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0 =
-<https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0>
->>>>=20
->>>> Seems this unit is indeed a rev 2 N210, yes?=20
->>>>=20
->>>> Joe
->>>>=20
->>>>> On May 9, 2019, at 12:40 PM, Nick Foster <bistromath@gmail.com =
-<mailto:bistromath@gmail.com>> wrote:
->>>>>=20
->>>>> Moreover, the best "tell" is to look at the N210 motherboard. If =
-the SRAM chip is on the top side, it's a rev 2/3. If the SRAM is on the =
-bottom side, it's a rev 4. If you send a picture along of the top of the =
-N210, I can tell you if it's early or late rev.
->>>>>=20
->>>>> On Thu, May 9, 2019 at 11:36 AM Ian Buckley via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>> Joe,
->>>>> So I scratched my head about this a little late last night and =
-looked back through the development repository for the N210 and as far =
-as I can tell there was never customer facing FPGA code for a Rev2 N210. =
-Chatting with Matt this morning he shared my feeling that a Rev2 wasn't =
-sold to customers, so I'm curious if you have a unit that has a factory =
-label that says N210Rev2 or if you have seen "usrp2 rev2.0" on the PCB =
-(which can be missleading).
->>>>>=20
->>>>> Also have you tried booting into the safe image and verifying that =
-it at least pings on 192.168.10.2?
->>>>>=20
->>>>> If we can conclusively identify which rev of h/w you have I can =
-probably help further.
->>>>>=20
->>>>> Ian
->>>>=20
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>=20
->>=20
->=20
+>
+Theoretically, most versions in the last several years should be able to 
+talk to it.  In *general* UHD never drops support for older hardware,
+   and tries to maintain compatibility.  Now, it is the case that newer 
+features are almost never "back-ported", but basic functionality should
+   always be there.
+
+What this *should* mean is that you should be able to use the firmware 
+tools once the device is in "safe mode" to get yourself to where you
+   want to be.  If that doesn't work, that may well mean that the 
+hardware is broken, and it's unlikely to be economical to repair.
+
+
+>> On May 9, 2019, at 2:12 PM, Joe Martin via USRP-users 
+>> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+>>
+>> Okay.  I’ve asserted from the outset that it’s a rev 2, based on the 
+>> factory label.  Is this N210 a lost cause if it is actually a Rev2 N210?
+>>
+>> Joe
+>>
+>>> On May 9, 2019, at 2:05 PM, Nick Foster <bistromath@gmail.com 
+>>> <mailto:bistromath@gmail.com>> wrote:
+>>>
+>>> Well, it's not a rev 4. It's either 2 or 3 in terms of hardware 
+>>> revision.
+>>>
+>>> On Thu, May 9, 2019 at 12:58 PM Joe Martin <k5so@k5so.com 
+>>> <mailto:k5so@k5so.com>> wrote:
+>>>
+>>>     …able to ping 192.168.10.2 successfully.
+>>>
+>>>>     On May 9, 2019, at 1:54 PM, Joe Martin <k5so@k5so.com
+>>>>     <mailto:k5so@k5so.com>> wrote:
+>>>>
+>>>>     Ian,
+>>>>
+>>>>     Yes, I have tried many times to boot in safe mode, same result
+>>>>     regardless.  Yes, I am able to pin to 192.168.10.2 successfully.
+>>>>
+>>>>     Joe
+>>>>
+>>>>>     On May 9, 2019, at 1:47 PM, Joe Martin via USRP-users
+>>>>>     <usrp-users@lists.ettus.com
+>>>>>     <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>
+>>>>>     Ian and Nick,
+>>>>>
+>>>>>     Thanks for the assistance. Attached are dropbox links to two
+>>>>>     snapshot photos:  1) the factory label on the back of the
+>>>>>     N210, showing N210 r:2.0 and 2) a top side view of the N210.
+>>>>>
+>>>>>     1)
+>>>>>     https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0
+>>>>>     2)
+>>>>>     https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0
+>>>>>
+>>>>>     Seems this unit is indeed a rev 2 N210, yes?
+>>>>>
+>>>>>     Joe
+>>>>>
+>>>>>>     On May 9, 2019, at 12:40 PM, Nick Foster
+>>>>>>     <bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
+>>>>>>
+>>>>>>     Moreover, the best "tell" is to look at the N210 motherboard.
+>>>>>>     If the SRAM chip is on the top side, it's a rev 2/3. If the
+>>>>>>     SRAM is on the bottom side, it's a rev 4. If you send a
+>>>>>>     picture along of the top of the N210, I can tell you if it's
+>>>>>>     early or late rev.
+>>>>>>
+>>>>>>     On Thu, May 9, 2019 at 11:36 AM Ian Buckley via USRP-users
+>>>>>>     <usrp-users@lists.ettus.com
+>>>>>>     <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>
+>>>>>>         Joe,
+>>>>>>         So I scratched my head about this a little late last
+>>>>>>         night and looked back through the development repository
+>>>>>>         for the N210 and as far as I can tell there was never
+>>>>>>         customer facing FPGA code for a Rev2 N210. Chatting with
+>>>>>>         Matt this morning he shared my feeling that a Rev2 wasn't
+>>>>>>         sold to customers, so I'm curious if you have a unit that
+>>>>>>         has a factory label that says N210Rev2 or if you have
+>>>>>>         seen "usrp2 rev2.0" on the PCB (which can be missleading).
+>>>>>>
+>>>>>>         Also have you tried booting into the safe image and
+>>>>>>         verifying that it at least pings on 192.168.10.2?
+>>>>>>
+>>>>>>         If we can conclusively identify which rev of h/w you have
+>>>>>>         I can probably help further.
+>>>>>>
+>>>>>>         Ian
+>>>>>>
+>>>>>
+>>>>>     _______________________________________________
+>>>>>     USRP-users mailing list
+>>>>>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>>>>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>
+>>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
 
---Apple-Mail=_FCA32CFB-3FC9-48D4-AE7C-AAB54F821DA5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
+--------------090906090108020108030804
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D"">Nick,=
- Ian,&nbsp;<div class=3D""><br class=3D""></div><div class=3D"">If this =
-unit happens to be incorrectly labeled as a rev 2 N210 and it is =
-actually a rev 3 N210, is there hope in being able to load rev 3 =
-firmware and fpga images (which I have located previously and tried =
-actually) with some available UHD version? &nbsp;If so, would you be =
-able to tell me which UHD version(s) might be able to communicate with =
-it? &nbsp;</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Joe<br class=3D""><div><br class=3D""><blockquote type=3D"cite"=
- class=3D""><div class=3D"">On May 9, 2019, at 2:12 PM, Joe Martin via =
-USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><meta =
-http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" =
-class=3D""><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
-space; line-break: after-white-space;" class=3D"">Okay. &nbsp;I=E2=80=99ve=
- asserted from the outset that it=E2=80=99s a rev 2, based on the =
-factory label. &nbsp;Is this N210 a lost cause if it is actually a Rev2 =
-N210?&nbsp;<div class=3D""><br class=3D""></div><div class=3D"">Joe<br =
-class=3D""><div class=3D""><br class=3D""><blockquote type=3D"cite" =
-class=3D""><div class=3D"">On May 9, 2019, at 2:05 PM, Nick Foster =
-&lt;<a href=3D"mailto:bistromath@gmail.com" =
-class=3D"">bistromath@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D"">Well, it's not a rev 4. It's either 2 or 3 in terms of =
-hardware revision. <br class=3D""></div><br class=3D""><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May =
-9, 2019 at 12:58 PM Joe Martin &lt;<a href=3D"mailto:k5so@k5so.com" =
-class=3D"">k5so@k5so.com</a>&gt; wrote:<br class=3D""></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex"><div style=3D"overflow-wrap: =
-break-word;" class=3D"">=E2=80=A6able to ping 192.168.10.2 =
-successfully.<br class=3D""><div class=3D""><br class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D"">On May 9, 2019, at 1:54 PM, Joe =
-Martin &lt;<a href=3D"mailto:k5so@k5so.com" target=3D"_blank" =
-class=3D"">k5so@k5so.com</a>&gt; wrote:</div><br =
-class=3D"gmail-m_-2513206580084366361Apple-interchange-newline"><div =
-class=3D""><div style=3D"overflow-wrap: break-word;" =
-class=3D"">Ian,&nbsp;<div class=3D""><br class=3D""></div><div =
-class=3D"">Yes, I have tried many times to boot in safe mode, same =
-result regardless.&nbsp; Yes, I am able to pin to 192.168.10.2 =
-successfully.&nbsp;</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Joe<br class=3D""><div class=3D""><br class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D"">On May 9, 2019, at 1:47 PM, Joe =
-Martin via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" class=3D"">usrp-users@lists.ettus.com</a>&gt; =
-wrote:</div><br =
-class=3D"gmail-m_-2513206580084366361Apple-interchange-newline"><div =
-class=3D""><div style=3D"overflow-wrap: break-word;" class=3D"">Ian and =
-Nick,&nbsp;<div class=3D""><br class=3D""></div><div class=3D"">Thanks =
-for the assistance.&nbsp; Attached are dropbox links to two snapshot =
-photos: &nbsp;1) the factory label on the back of the N210, showing N210 =
-r:2.0 and 2) a top side view of the N210.&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D"">1)&nbsp;<a =
-href=3D"https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D=
-0" target=3D"_blank" =
-class=3D"">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?d=
-l=3D0</a></div><div class=3D"">2)&nbsp;<a =
-href=3D"https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D=
-0" target=3D"_blank" =
-class=3D"">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?d=
-l=3D0</a></div><div class=3D""><br class=3D""></div><div class=3D"">Seems =
-this unit is indeed a rev 2 N210, yes?&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Joe<br class=3D""><div class=3D""><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On May =
-9, 2019, at 12:40 PM, Nick Foster &lt;<a =
-href=3D"mailto:bistromath@gmail.com" target=3D"_blank" =
-class=3D"">bistromath@gmail.com</a>&gt; wrote:</div><br =
-class=3D"gmail-m_-2513206580084366361Apple-interchange-newline"><div =
-class=3D""><div dir=3D"ltr" class=3D"">Moreover, the best "tell" is to =
-look at the N210 motherboard. If the SRAM chip is on the top side, it's =
-a rev 2/3. If the SRAM is on the bottom side, it's a rev 4. If you send =
-a picture along of the top of the N210, I can tell you if it's early or =
-late rev.<br class=3D""></div><br class=3D""><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May =
-9, 2019 at 11:36 AM Ian Buckley via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:<br =
-class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div dir=3D"auto" class=3D"">Joe,<div =
-dir=3D"auto" class=3D"">So I scratched my head about this a little late =
-last night and looked back through the development repository for the =
-N210 and as far as I can tell there was never customer facing FPGA code =
-for a Rev2 N210. Chatting with Matt this&nbsp;morning he shared my =
-feeling that a Rev2 wasn't sold to customers, so I'm curious if you have =
-a unit that has a factory label that says N210Rev2 or if you have seen =
-"usrp2 rev2.0" on the PCB (which can be missleading).</div><div =
-dir=3D"auto" class=3D""><br class=3D""></div><div dir=3D"auto" =
-class=3D"">Also have you tried booting into the safe image and verifying =
-that it at least pings on 192.168.10.2?</div><div dir=3D"auto" =
-class=3D""><br class=3D""></div><div dir=3D"auto" class=3D"">If we can =
-conclusively identify which rev of h/w you have I can probably help =
-further.</div><div dir=3D"auto" class=3D""><br class=3D""></div><div =
-dir=3D"auto" =
-class=3D"">Ian</div></div></blockquote></div></div></blockquote></div><br =
-class=3D""></div></div>_______________________________________________<br =
-class=3D"">USRP-users mailing list<br class=3D""><a =
-href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D""><a =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" target=3D"_blank" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D""></div></blockquote></div><br =
-class=3D""></div></div></div></blockquote></div><br =
-class=3D""></div></blockquote></div>
-</div></blockquote></div><br =
-class=3D""></div></div>_______________________________________________<br =
-class=3D"">USRP-users mailing list<br class=3D""><a =
-href=3D"mailto:USRP-users@lists.ettus.com" =
-class=3D"">USRP-users@lists.ettus.com</a><br =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com<br class=3D""></div></blockquote></div><br =
-class=3D""></div></body></html>=
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 05/09/2019 04:18 PM, Joe Martin via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote cite="mid:E4163757-B40B-4716-888F-2328596BB5B6@k5so.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      Nick, Ian, 
+      <div class=""><br class="">
+      </div>
+      <div class="">If this unit happens to be incorrectly labeled as a
+        rev 2 N210 and it is actually a rev 3 N210, is there hope in
+        being able to load rev 3 firmware and fpga images (which I have
+        located previously and tried actually) with some available UHD
+        version?  If so, would you be able to tell me which UHD
+        version(s) might be able to communicate with it?  </div>
+      <div class=""><br class="">
+      </div>
+      <div class="">Joe<br class="">
+        <div><br class="">
+        </div>
+      </div>
+    </blockquote>
+    Theoretically, most versions in the last several years should be
+    able to talk to it.  In *general* UHD never drops support for older
+    hardware,<br>
+      and tries to maintain compatibility.  Now, it is the case that
+    newer features are almost never "back-ported", but basic
+    functionality should<br>
+      always be there.  <br>
+    <br>
+    What this *should* mean is that you should be able to use the
+    firmware tools once the device is in "safe mode" to get yourself to
+    where you<br>
+      want to be.  If that doesn't work, that may well mean that the
+    hardware is broken, and it's unlikely to be economical to repair.<br>
+    <br>
+    <br>
+    <blockquote cite="mid:E4163757-B40B-4716-888F-2328596BB5B6@k5so.com"
+      type="cite">
+      <div class="">
+        <div>
+          <blockquote type="cite" class="">
+            <div class="">On May 9, 2019, at 2:12 PM, Joe Martin via
+              USRP-users &lt;<a moz-do-not-send="true"
+                href="mailto:usrp-users@lists.ettus.com" class="">usrp-users@lists.ettus.com</a>&gt;
+              wrote:</div>
+            <br class="Apple-interchange-newline">
+            <div class="">
+              <meta http-equiv="Content-Type" content="text/html;
+                charset=windows-1252" class="">
+              <div style="word-wrap: break-word; -webkit-nbsp-mode:
+                space; line-break: after-white-space;" class="">Okay.
+                 I’ve asserted from the outset that it’s a rev 2, based
+                on the factory label.  Is this N210 a lost cause if it
+                is actually a Rev2 N210? 
+                <div class=""><br class="">
+                </div>
+                <div class="">Joe<br class="">
+                  <div class=""><br class="">
+                    <blockquote type="cite" class="">
+                      <div class="">On May 9, 2019, at 2:05 PM, Nick
+                        Foster &lt;<a moz-do-not-send="true"
+                          href="mailto:bistromath@gmail.com" class="">bistromath@gmail.com</a>&gt;
+                        wrote:</div>
+                      <br class="Apple-interchange-newline">
+                      <div class="">
+                        <div dir="ltr" class="">Well, it's not a rev 4.
+                          It's either 2 or 3 in terms of hardware
+                          revision. <br class="">
+                        </div>
+                        <br class="">
+                        <div class="gmail_quote">
+                          <div dir="ltr" class="gmail_attr">On Thu, May
+                            9, 2019 at 12:58 PM Joe Martin &lt;<a
+                              moz-do-not-send="true"
+                              href="mailto:k5so@k5so.com" class="">k5so@k5so.com</a>&gt;
+                            wrote:<br class="">
+                          </div>
+                          <blockquote class="gmail_quote"
+                            style="margin:0px 0px 0px
+                            0.8ex;border-left:1px solid
+                            rgb(204,204,204);padding-left:1ex">
+                            <div style="overflow-wrap: break-word;"
+                              class="">…able to ping 192.168.10.2
+                              successfully.<br class="">
+                              <div class=""><br class="">
+                                <blockquote type="cite" class="">
+                                  <div class="">On May 9, 2019, at 1:54
+                                    PM, Joe Martin &lt;<a
+                                      moz-do-not-send="true"
+                                      href="mailto:k5so@k5so.com"
+                                      target="_blank" class="">k5so@k5so.com</a>&gt;
+                                    wrote:</div>
+                                  <br
+                                    class="gmail-m_-2513206580084366361Apple-interchange-newline">
+                                  <div class="">
+                                    <div style="overflow-wrap:
+                                      break-word;" class="">Ian, 
+                                      <div class=""><br class="">
+                                      </div>
+                                      <div class="">Yes, I have tried
+                                        many times to boot in safe mode,
+                                        same result regardless.  Yes, I
+                                        am able to pin to 192.168.10.2
+                                        successfully. </div>
+                                      <div class=""><br class="">
+                                      </div>
+                                      <div class="">Joe<br class="">
+                                        <div class=""><br class="">
+                                          <blockquote type="cite"
+                                            class="">
+                                            <div class="">On May 9,
+                                              2019, at 1:47 PM, Joe
+                                              Martin via USRP-users &lt;<a
+                                                moz-do-not-send="true"
+                                                href="mailto:usrp-users@lists.ettus.com"
+                                                target="_blank" class="">usrp-users@lists.ettus.com</a>&gt;
+                                              wrote:</div>
+                                            <br
+                                              class="gmail-m_-2513206580084366361Apple-interchange-newline">
+                                            <div class="">
+                                              <div style="overflow-wrap:
+                                                break-word;" class="">Ian
+                                                and Nick, 
+                                                <div class=""><br
+                                                    class="">
+                                                </div>
+                                                <div class="">Thanks for
+                                                  the assistance. 
+                                                  Attached are dropbox
+                                                  links to two snapshot
+                                                  photos:  1) the
+                                                  factory label on the
+                                                  back of the N210,
+                                                  showing N210 r:2.0 and
+                                                  2) a top side view of
+                                                  the N210. </div>
+                                                <div class=""><br
+                                                    class="">
+                                                </div>
+                                                <div class="">1) <a
+                                                    moz-do-not-send="true"
+href="https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0"
+                                                    target="_blank"
+                                                    class="">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0</a></div>
+                                                <div class="">2) <a
+                                                    moz-do-not-send="true"
+href="https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0"
+                                                    target="_blank"
+                                                    class="">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0</a></div>
+                                                <div class=""><br
+                                                    class="">
+                                                </div>
+                                                <div class="">Seems this
+                                                  unit is indeed a rev 2
+                                                  N210, yes? </div>
+                                                <div class=""><br
+                                                    class="">
+                                                </div>
+                                                <div class="">Joe<br
+                                                    class="">
+                                                  <div class=""><br
+                                                      class="">
+                                                    <blockquote
+                                                      type="cite"
+                                                      class="">
+                                                      <div class="">On
+                                                        May 9, 2019, at
+                                                        12:40 PM, Nick
+                                                        Foster &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" class="">bistromath@gmail.com</a>&gt;
+                                                        wrote:</div>
+                                                      <br
+                                                        class="gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                      <div class="">
+                                                        <div dir="ltr"
+                                                          class="">Moreover,
+                                                          the best
+                                                          "tell" is to
+                                                          look at the
+                                                          N210
+                                                          motherboard.
+                                                          If the SRAM
+                                                          chip is on the
+                                                          top side, it's
+                                                          a rev 2/3. If
+                                                          the SRAM is on
+                                                          the bottom
+                                                          side, it's a
+                                                          rev 4. If you
+                                                          send a picture
+                                                          along of the
+                                                          top of the
+                                                          N210, I can
+                                                          tell you if
+                                                          it's early or
+                                                          late rev.<br
+                                                          class="">
+                                                        </div>
+                                                        <br class="">
+                                                        <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 11:36 AM Ian Buckley via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank" class="">usrp-users@lists.ettus.com</a>&gt;
+                                                          wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:0px
+                                                          0px 0px
+                                                          0.8ex;border-left:1px
+                                                          solid
+                                                          rgb(204,204,204);padding-left:1ex">
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Joe,
+                                                          <div
+                                                          dir="auto"
+                                                          class="">So I
+                                                          scratched my
+                                                          head about
+                                                          this a little
+                                                          late last
+                                                          night and
+                                                          looked back
+                                                          through the
+                                                          development
+                                                          repository for
+                                                          the N210 and
+                                                          as far as I
+                                                          can tell there
+                                                          was never
+                                                          customer
+                                                          facing FPGA
+                                                          code for a
+                                                          Rev2 N210.
+                                                          Chatting with
+                                                          Matt
+                                                          this morning
+                                                          he shared my
+                                                          feeling that a
+                                                          Rev2 wasn't
+                                                          sold to
+                                                          customers, so
+                                                          I'm curious if
+                                                          you have a
+                                                          unit that has
+                                                          a factory
+                                                          label that
+                                                          says N210Rev2
+                                                          or if you have
+                                                          seen "usrp2
+                                                          rev2.0" on the
+                                                          PCB (which can
+                                                          be
+                                                          missleading).</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Also
+                                                          have you tried
+                                                          booting into
+                                                          the safe image
+                                                          and verifying
+                                                          that it at
+                                                          least pings on
+                                                          192.168.10.2?</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">If we
+                                                          can
+                                                          conclusively
+                                                          identify which
+                                                          rev of h/w you
+                                                          have I can
+                                                          probably help
+                                                          further.</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Ian</div>
+                                                          </div>
+                                                          </blockquote>
+                                                        </div>
+                                                      </div>
+                                                    </blockquote>
+                                                  </div>
+                                                  <br class="">
+                                                </div>
+                                              </div>
+_______________________________________________<br class="">
+                                              USRP-users mailing list<br
+                                                class="">
+                                              <a moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" target="_blank" class="">USRP-users@lists.ettus.com</a><br
+                                                class="">
+                                              <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                                                target="_blank" class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                class="">
+                                            </div>
+                                          </blockquote>
+                                        </div>
+                                        <br class="">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </blockquote>
+                              </div>
+                              <br class="">
+                            </div>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                  <br class="">
+                </div>
+              </div>
+              _______________________________________________<br
+                class="">
+              USRP-users mailing list<br class="">
+              <a moz-do-not-send="true"
+                href="mailto:USRP-users@lists.ettus.com" class="">USRP-users@lists.ettus.com</a><br
+                class="">
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                class="">
+            </div>
+          </blockquote>
+        </div>
+        <br class="">
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
---Apple-Mail=_FCA32CFB-3FC9-48D4-AE7C-AAB54F821DA5--
+--------------090906090108020108030804--
 
 
---===============0602836576348654740==
+--===============2696927633616906393==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -335,5 +626,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0602836576348654740==--
+--===============2696927633616906393==--
 
