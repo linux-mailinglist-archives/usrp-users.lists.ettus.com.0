@@ -2,56 +2,72 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6379B18BBD
-	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 16:29:46 +0200 (CEST)
-Received: from [::1] (port=55188 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84EB418BC2
+	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 16:30:29 +0200 (CEST)
+Received: from [::1] (port=57078 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOk3N-0001zf-7q; Thu, 09 May 2019 10:29:45 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:38433)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <rkossler@nd.edu>) id 1hOk2o-0001qB-GO
- for usrp-users@lists.ettus.com; Thu, 09 May 2019 10:29:40 -0400
-Received: by mail-ot1-f43.google.com with SMTP id s19so2464472otq.5
- for <usrp-users@lists.ettus.com>; Thu, 09 May 2019 07:28:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=s6uyKMqQd5XUR4afV7tWC0ijONsc4kJZhxRfwWWfOVw=;
- b=OZAsckG56lIZHafd7ixstaou1Gmx4KE9cH2FMBlFoCe4mOmx5LV5AQ67PNEB1jd+b7
- NJJy/4M3FK71AdRUbrKaogqfc6+vuaXaiuxCy4AwroQ7I/daXm4vDQvsXIDgHpcgZsou
- zKIUpBymt+ZnNQy0KPJlr7SPSXFvoxzJA50qq6eIxuts1rMMd/IImwoYy0BFts7+dIpM
- G3pcPCQmx2CADfxLerbErK1JB6KsMPK43Evsm4V8QEeXAu0E+YmGoiUFEe0DzJT/nNd+
- zIeFgoBnozB2EFABoggSKLFNDYvm8CXBlsliR3ytR2V8mM4gBLOwvIX8uySy9TikzwPV
- H25Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=s6uyKMqQd5XUR4afV7tWC0ijONsc4kJZhxRfwWWfOVw=;
- b=BiMFcbbK0dHvA8aWadiNkunRr2AcTO/mZC8SAiLBqXxKV8iw58mUwNN7LCVXhZD7zz
- gE4Miou3O2P6CARaXf1IDqtRjIPXhNZDJ82eMSWvzioypn8I/EYvVT2+K+is9nX4TgQN
- Ibd+OopDeHnL5Sz8mqbjdfEUV4aYGec9vW2utgoi9I+k/Ssy3MGpe8gHLMWIIuxJDjtU
- SV1EWR4fjeE03sc3oc/0bmthd+nqU+fkzqxcFbbPxXeJ80doQSJChm1P4Rf8Kp49oROv
- ZZvt5uO6MmrCjoJdRK+WVBDGA5GYJf2iaPW4+q9VUwvAmncv5qtJf2fCslULWcbiIhfa
- fL4g==
-X-Gm-Message-State: APjAAAWQyXYqOiNInsqnsMKyGRByS7A+X/VtKr5HVGfk94b/uUYIHSy2
- DM13wf7H8npY5WKaSOhG/aSQpn0cCmqOK79PBrqzEw==
-X-Google-Smtp-Source: APXvYqwvll4JZksDpq93Mfkvi/QVvAX9hz8fMWezRd0Vxv3QE4dM78G80xQSwKnrnwPM0NPbwITQFen+RRIhTHiOoZ0=
-X-Received: by 2002:a9d:5e07:: with SMTP id d7mr2563312oti.21.1557412109657;
- Thu, 09 May 2019 07:28:29 -0700 (PDT)
-MIME-Version: 1.0
+	id 1hOk44-0002Iu-La; Thu, 09 May 2019 10:30:28 -0400
+Received: from mx05.telecomitalia.it ([156.54.232.21]:56446)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.91) (envelope-from <daniele.disco@telecomitalia.it>)
+ id 1hOk3V-0001r3-Sa
+ for usrp-users@lists.ettus.com; Thu, 09 May 2019 10:30:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=telecomitalia.it; s=selector1;
+ c=relaxed/relaxed; 
+ q=dns/txt; i=@telecomitalia.it; t=1557412155; x=2421325755;
+ h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=ekLaQxgikc1hXDUF2AVMZAfGZbfVQAlOjOG8mAdGLOE=;
+ b=TTkkVqLRXE5Un3EP2BqervHYhf/t5jlyF8W2x/DmmllD7izK0kbTDt1OQLO67vWX
+ CtIe7YHDq7XlPkcDmfoWkVvV+XELf2BelP6uTplX15z852AMn/VFGxPjHRhPywd/
+ FdYNPBaujSQcM28nLDv9EJqk99dirOuig3v5ProDc3CbT78+LCzfnkirwBguTDll
+ h0ZkO2tzwPyIuLz19GLovuOlTTNigY3C3V83DW0gWsmsbbtgz76hoW9Lqrdrv5aS
+ 0kjbnPlC4QzElyO5OHo7zPx05K23SUerjIGFh/Y1m+Y2LhiQ7ybLfNstgOxhablh
+ YTZ26fsXtKC9dRTNWsmacw==;
+X-AuditID: 0a5a2d15-fcbff700000010d1-fa-5cd4393b7011
+Received: from TELMBXC10BA020.telecomitalia.local ( [10.90.43.42])
+ (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+ (Client did not present a certificate)
+ by mx05.telecomitalia.it () with SMTP id 37.A0.04305.B3934DC5;
+ Thu,  9 May 2019 16:29:15 +0200 (CEST)
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [EXT] Re: [USRP-users] Configuration in sysctl.conf
+Thread-Index: AdUGYSuQftZ8E+PaT52lNj6l9V8BQP//+ykA///WupA=
+Date: Thu, 9 May 2019 14:29:10 +0000
+Message-ID: <680e9479da024a509e290cf83c9e2fea@TELMBXC13BA020.telecomitalia.local>
 References: <467ab47ac30943458c17957c0f605687@TELMBXC13BA020.telecomitalia.local>
  <5CD4326A.1050705@gmail.com>
 In-Reply-To: <5CD4326A.1050705@gmail.com>
-Date: Thu, 9 May 2019 10:28:18 -0400
-Message-ID: <CAB__hTQAH2mNnE=ZR4RtGOZGbOyEg9HJJYjsXyPhnZypQyYXyQ@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Accept-Language: it-IT, en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.14.252.254]
+x-ti-disclaimer: Disclaimer1
+MIME-Version: 1.0
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHIsWRmVeSWpSXmKPExsXCFaWtpWtteSXG4Fy3gMWFzjnsDoweE1ce
+ Yg5gjOKySUnNySxLLdK3S+DKeNpynL1gwR3GimNH3rE0MM46ztjFyMkhIWAisfXvLrYuRi4O
+ IYEpTBJfT64CS7ABJa6/nM0KYosI2Eo8+HWUCcQWFnCQ+NbexwgRd5Q40TeXCcK2kri7ZiUz
+ iM0ioCKx8dt+MJtXIFDi99YGMFtIoEDiUdcMoGUcHJwCmhIbT4eBhBkFZCUm7F4ENpJZQFzi
+ 1pP5TBC3iUg8vHiaDcIWlXj5+B8rhG0gsXXpPhYIW1HiwvKjULaMxMIjk1lBfmEW6GaU6J/4
+ gwniBkGJkzOfsEDcoC2x98tH1gmMorOQ7JuFrGcWkh6IonyJmbtesEPYehI3pk5hg7C1JZYt
+ fM0MYetKzPh3iAWb+PQJR5ggbEWJ2ctfMUIsW8ooMbHxHCNEQkei+ewlFpiiKd0P2Rcw8q5i
+ FM2tMDDVK0nNSU3Oz80sSczJTNTLLNnECI55XdEdjG9uOB9iFOBgVOLhbVO6EiPEmlhWXJl7
+ iFEFaM6jDasvMEqx5OXnpSqJ8BbpAKV5UxIrq1KL8uOLSnNSiw8xSnOwKInz2vEBpQTSE0tS
+ s1NTC1KLYLJMHJxSDYxrvvyr3xKbVu2ndM7zcP5TzqQ1Eb8/Mmw4vMKg33TOnsRVsxKEZk3i
+ tVs5yfLs9c9VnwWZa8V2+c3xnXDgceT//XO0UtqeXZQp5Tz1qJojVObxoZ8hH24fSlV6Wblv
+ p1/iIr8Dh007Xj2xcfjucm5B02GJewenHJ4XzxYi/nK2o5zw5GnBPJZiSizFGYmGWsxFxYkA
+ +ufxzAEDAAA=
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Configuration in sysctl.conf
+Subject: Re: [USRP-users] [EXT] Re:  Configuration in sysctl.conf
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,10 +79,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7232811675420018656=="
+From: Disco Daniele via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Disco Daniele <daniele.disco@telecomitalia.it>
+Content-Type: multipart/mixed; boundary="===============0457505539782387743=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,308 +95,568 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7232811675420018656==
-Content-Type: multipart/related; boundary="00000000000091111d0588754366"
+--===============0457505539782387743==
+Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_004_680e9479da024a509e290cf83c9e2feaTELMBXC13BA020telecomit_";
+	type="multipart/alternative"
 
---00000000000091111d0588754366
-Content-Type: multipart/alternative; boundary="00000000000091111b0588754365"
+--_004_680e9479da024a509e290cf83c9e2feaTELMBXC13BA020telecomit_
+Content-Type: multipart/alternative;
+	boundary="_000_680e9479da024a509e290cf83c9e2feaTELMBXC13BA020telecomit_"
 
---00000000000091111b0588754365
-Content-Type: text/plain; charset="UTF-8"
+--_000_680e9479da024a509e290cf83c9e2feaTELMBXC13BA020telecomit_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Have you done the same for "rmem_max"?   Perhaps the continued warning
-messages are related to this rather than wmem_max?
+#
+# /etc/sysctl.conf - Configuration file for setting system variables
+# See /etc/sysctl.d/ for additional system variables.
+# See sysctl.conf (5) for information.
+#
 
-Rob
+#kernel.domainname =3D example.com
 
-On Thu, May 9, 2019 at 10:01 AM Marcus D. Leech via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+# Uncomment the following to stop low-level messages on console
+#kernel.printk =3D 3 4 1 3
 
-> On 05/09/2019 08:25 AM, Disco Daniele via USRP-users wrote:
->
-> Hi!
->
-> I=E2=80=99m using a X310 on a linux box UBUNTU 18.04
->
->
->
-> Executing the command =E2=80=9Cuhd_usrp_probe=E2=80=9D
->
-> I obtain a lot of [WARNING][UDP] related to the dimension of the send
-> buffer
->
-> Then there is the sentence:
->
-> Please run: sudo sysctl -w net.core.wmem_max=3D24862979
->
->
->
-> So I=E2=80=99ve written in the file /etc/sysctl.conf, at the end
->
-> net.core.wmem_max=3D24862979
->
->
->
-> I restarted the host but rerunning uhd_usrp_probe I reobtain the same
-> warning.
->
->
->
-> Could you help me?
->
->
->
-> PS: Now I=E2=80=99m using a 10GB Ethernet board plugged in the workstatio=
-n, using
-> a couple of fiber optics between the X310 and the work station
->
->
->
-> Thank you
->
-> Perhaps you have a syntax error in your sysctl file?
->
->
->
->
-> _____________________________________________
->
-> [image: logo1]
->
-> Direzione e Coordinamento Vivendi SA
->
->
-> *Daniele Disco*
-> *CT.TA.EI*
->
->
-> Via Reiss Romoli, 274 =E2=80=93 10148 Torino
-> tel . +39 011 228 7271
-> cell. +39 331 600 1113
->
-> Fax. +39 06 4186 5196
-> Tim Official: *Facebook* <https://www.facebook.com/TimOfficialPage> -
-> *Twitter* <https://twitter.com/tim_official>
-> *www.tim.it* <http://www.tim.it/>
->
->
->
->
-> Questo messaggio e i suoi allegati sono indirizzati esclusivamente alle
-> persone indicate. La diffusione, copia o qualsiasi altra azione derivante
-> dalla conoscenza di queste informazioni sono rigorosamente vietate. Qualo=
-ra
-> abbiate ricevuto questo documento per errore siete cortesemente pregati d=
-i
-> darne immediata comunicazione al mittente e di provvedere alla sua
-> distruzione, Grazie.
->
-> * This e-mail and any attachments is confidential and may contain
-> privileged information intended for the addressee(s) only. Dissemination,
-> copying, printing or use by anybody else is unauthorised. If you are not
-> the intended recipient, please delete this message and any attachments an=
-d
-> advise the sender by return e-mail, Thanks. *
->
-> *Rispetta l'ambiente. Non stampare questa mail se non =C3=A8 necessario.*
->
-> _______________________________________________
-> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/m=
-ailman/listinfo/usrp-users_lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+##############################################################3
+# Functions previously found in netbase
+#
 
---00000000000091111b0588754365
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+# Uncomment the next two lines to enable Spoof protection (reverse-path fil=
+ter)
+# Turn on Source Address Verification in all interfaces to
+# prevent some spoofing attacks
+#net.ipv4.conf.default.rp_filter=3D1
+#net.ipv4.conf.all.rp_filter=3D1
 
-<div dir=3D"ltr"><div dir=3D"ltr">Have you done the same for &quot;rmem_max=
-&quot;?=C2=A0 =C2=A0Perhaps the continued warning messages are related to t=
-his rather than wmem_max?<div><br></div><div>Rob</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 9, 2019 =
-at 10:01 AM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users=
-@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div class=3D"gmail-m_-8380757819678932710moz-cite-prefix">On 05/09/201=
-9 08:25 AM, Disco Daniele
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-     =20
-     =20
-     =20
-      <div class=3D"gmail-m_-8380757819678932710WordSection1">
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Hi!<u></u><u></u></span=
-></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">I=E2=80=99m using a X31=
-0 on a
-            linux box UBUNTU 18.04<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
-pan></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Executing the command
-            =E2=80=9Cuhd_usrp_probe=E2=80=9D<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">I obtain a lot of
-            [WARNING][UDP] related to the dimension of the send buffer<u></=
-u><u></u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Then there is the
-            sentence:<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Please run: sudo sysctl
-            -w net.core.wmem_max=3D24862979<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
-pan></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">So I=E2=80=99ve written=
- in the
-            file /etc/sysctl.conf, at the end<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">net.core.wmem_max=3D248=
-62979<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
-pan></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">I restarted the host bu=
-t
-            rerunning uhd_usrp_probe I reobtain the same warning.<u></u><u>=
-</u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
-pan></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Could you help me?<u></=
-u><u></u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
-pan></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">PS: Now I=E2=80=99m usi=
-ng a 10GB
-            Ethernet board plugged in the workstation, using a couple of
-            fiber optics between the X310 and the work station<u></u><u></u=
-></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
-pan></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you</span></p>
-      </div>
-    </blockquote>
-    Perhaps you have a syntax error in your sysctl file?<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite">
-      <div class=3D"gmail-m_-8380757819678932710WordSection1">
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u><u></u></span></=
-p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
-pan></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
-elvetica,sans-serif;color:rgb(1,33,105)">__________________________________=
-___________</span><b><span style=3D"font-size:10pt;font-family:Helvetica,sa=
-ns-serif;color:rgb(218,41,28)"><u></u><u></u></span></b></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
-elvetica,sans-serif;color:rgb(1,33,105)" lang=3D"EN-US"><img style=3D"width=
-: 0.5937in; height: 0.1875in;" id=3D"gmail-m_-8380757819678932710Immagine_x=
-0020_5" src=3D"cid:16a9cfdf1cbc204bfcc1" alt=3D"logo1" height=3D"18" width=
-=3D"57"></span><span style=3D"font-size:7.5pt;font-family:Helvetica,sans-se=
-rif;color:rgb(1,33,105)"><u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
-elvetica,sans-serif;color:rgb(1,33,105)">Direzione
-            e Coordinamento Vivendi SA<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><b><span style=3D"font-size:7.5pt;font-famil=
-y:Verdana,sans-serif"><br>
-            </span></b><b><span style=3D"font-size:7.5pt;font-family:Helvet=
-ica,sans-serif;color:rgb(1,33,105)">Daniele
-              Disco</span></b><span style=3D"font-size:7.5pt;font-family:He=
-lvetica,sans-serif;color:rgb(1,33,105)"><br>
-            <b>CT.TA.EI</b><u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
-elvetica,sans-serif;color:rgb(1,33,105)"><br>
-            Via Reiss Romoli, 274 =E2=80=93 10148 Torino<br>
-            tel . </span><span style=3D"font-size:7.5pt;font-family:Helveti=
-ca,sans-serif;color:rgb(1,33,105)" lang=3D"EN-US">+39 011 228 7271<br>
-            cell. +39 331 600 1113<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:H=
-elvetica,sans-serif;color:rgb(1,33,105)" lang=3D"EN-US">Fax. +39 06 4186 51=
-96<br>
-            Tim Official: <a href=3D"https://www.facebook.com/TimOfficialPa=
-ge" target=3D"_blank">
-              <b><span style=3D"color:rgb(1,33,105)">Facebook</span></b></a=
-> - <a href=3D"https://twitter.com/tim_official" target=3D"_blank">
-              <b><span style=3D"color:rgb(1,33,105)">Twitter</span></b></a>=
-<br>
-            <a href=3D"http://www.tim.it/" target=3D"_blank"><b><span style=
-=3D"color:rgb(1,33,105)">www.tim.it</span></b></a></span><span lang=3D"EN-U=
-S"><u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
-pan></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></s=
-pan></p>
-      </div>
-      <table style=3D"width:600px">
-        <tbody>
-          <tr>
-            <td style=3D"width:585px;font-family:Verdana;font-size:7.5pt;co=
-lor:rgb(0,0,0);text-align:justify" width=3D"395"> Questo messaggio e i suoi=
- allegati sono
-              indirizzati esclusivamente alle persone indicate. La
-              diffusione, copia o qualsiasi altra azione derivante dalla
-              conoscenza di queste informazioni sono rigorosamente
-              vietate. Qualora abbiate ricevuto questo documento per
-              errore siete cortesemente pregati di darne immediata
-              comunicazione al mittente e di provvedere alla sua
-              distruzione, Grazie. <br>
-              <br>
-              <i> This e-mail and any attachments is confidential and
-                may contain privileged information intended for the
-                addressee(s) only. Dissemination, copying, printing or
-                use by anybody else is unauthorised. If you are not the
-                intended recipient, please delete this message and any
-                attachments and advise the sender by return e-mail,
-                Thanks. </i> <br>
-              <br>
-              <b>Rispetta l&#39;ambiente. Non stampare questa mail se non =
-=C3=A8
-                necessario.</b> </td>
-          </tr>
-        </tbody>
-      </table>
-      <br>
-      <fieldset class=3D"gmail-m_-8380757819678932710mimeAttachmentHeader">=
-</fieldset>
-      <br>
-      <pre>_______________________________________________
+# Uncomment the next line to enable TCP/IP SYN cookies
+# See http://lwn.net/Articles/277146/
+# Note: This may impact IPv6 TCP sessions too
+#net.ipv4.tcp_syncookies=3D1
+
+# Uncomment the next line to enable packet forwarding for IPv4
+#net.ipv4.ip_forward=3D1
+
+# Uncomment the next line to enable packet forwarding for IPv6
+#  Enabling this option disables Stateless Address Autoconfiguration
+#  based on Router Advertisements for this host
+#net.ipv6.conf.all.forwarding=3D1
+
+
+###################################################################
+# Additional settings - these settings can improve the network
+# security of the host and prevent against some network attacks
+# including spoofing attacks and man in the middle attacks through
+# redirection. Some network environments, however, require that these
+# settings are disabled so review and enable them as needed.
+#
+# Do not accept ICMP redirects (prevent MITM attacks)
+#net.ipv4.conf.all.accept_redirects =3D 0
+#net.ipv6.conf.all.accept_redirects =3D 0
+# _or_
+# Accept ICMP redirects only for gateways listed in our default
+# gateway list (enabled by default)
+# net.ipv4.conf.all.secure_redirects =3D 1
+#
+# Do not send ICMP redirects (we are not a router)
+#net.ipv4.conf.all.send_redirects =3D 0
+#
+# Do not accept IP source route packets (we are not a router)
+#net.ipv4.conf.all.accept_source_route =3D 0
+#net.ipv6.conf.all.accept_source_route =3D 0
+#
+# Log Martian Packets
+#net.ipv4.conf.all.log_martians =3D 1
+#
+net.core.wmem_max=3D24862979
+net.core.rmem_max=3D806648177
+
+
+
+What du you think about?
+
+
+From: USRP-users [mailto:usrp-users-bounces@lists.ettus.com] On Behalf Of M=
+arcus D. Leech via USRP-users
+Sent: gioved=EC 9 maggio 2019 16:00
+To: usrp-users@lists.ettus.com
+Subject: [EXT] Re: [USRP-users] Configuration in sysctl.conf
+
+On 05/09/2019 08:25 AM, Disco Daniele via USRP-users wrote:
+Hi!
+I'm using a X310 on a linux box UBUNTU 18.04
+
+Executing the command "uhd_usrp_probe"
+I obtain a lot of [WARNING][UDP] related to the dimension of the send buffe=
+r
+Then there is the sentence:
+Please run: sudo sysctl -w net.core.wmem_max=3D24862979
+
+So I've written in the file /etc/sysctl.conf, at the end
+net.core.wmem_max=3D24862979
+
+I restarted the host but rerunning uhd_usrp_probe I reobtain the same warni=
+ng.
+
+Could you help me?
+
+PS: Now I'm using a 10GB Ethernet board plugged in the workstation, using a=
+ couple of fiber optics between the X310 and the work station
+
+Thank you
+Perhaps you have a syntax error in your sysctl file?
+
+
+
+
+_____________________________________________
+[logo1]
+Direzione e Coordinamento Vivendi SA
+
+Daniele Disco
+CT.TA.EI
+
+Via Reiss Romoli, 274 - 10148 Torino
+tel . +39 011 228 7271
+cell. +39 331 600 1113
+Fax. +39 06 4186 5196
+Tim Official: Facebook<https://www.facebook.com/TimOfficialPage> - Twitter<=
+https://twitter.com/tim_official>
+www.tim.it<http://www.tim.it/>
+
+
+Questo messaggio e i suoi allegati sono indirizzati esclusivamente alle per=
+sone indicate. La diffusione, copia o qualsiasi altra azione derivante dall=
+a conoscenza di queste informazioni sono rigorosamente vietate. Qualora abb=
+iate ricevuto questo documento per errore siete cortesemente pregati di dar=
+ne immediata comunicazione al mittente e di provvedere alla sua distruzione=
+, Grazie.
+
+This e-mail and any attachments is confidential and may contain privileged =
+information intended for the addressee(s) only. Dissemination, copying, pri=
+nting or use by anybody else is unauthorised. If you are not the intended r=
+ecipient, please delete this message and any attachments and advise the sen=
+der by return e-mail, Thanks.
+
+Rispetta l'ambiente. Non stampare questa mail se non =E8 necessario.
+
+
+
+
+
+_______________________________________________
+
 USRP-users mailing list
-<a class=3D"gmail-m_-8380757819678932710moz-txt-link-abbreviated" href=3D"m=
-ailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.=
-com</a>
-<a class=3D"gmail-m_-8380757819678932710moz-txt-link-freetext" href=3D"http=
-://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"_=
-blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</=
-a>
-</pre>
-    </blockquote>
-    <br>
-  </div>
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
 
---00000000000091111b0588754365--
---00000000000091111d0588754366
-Content-Type: image/jpeg; name=noname
-Content-Disposition: inline; filename=noname
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+--_000_680e9479da024a509e290cf83c9e2feaTELMBXC13BA020telecomit_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	color:black;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;
+	color:black;
+	mso-fareast-language:EN-US;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body bgcolor=3D"white" lang=3D"IT" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># /e=
+tc/sysctl.conf - Configuration file for setting system variables<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Se=
+e /etc/sysctl.d/ for additional system variables.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Se=
+e sysctl.conf (5) for information.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#ker=
+nel.domainname =3D example.com<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Un=
+comment the following to stop low-level messages on console<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#ker=
+nel.printk =3D 3 4 1 3<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">####=
+##########################################################3<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Fu=
+nctions previously found in netbase<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Un=
+comment the next two lines to enable Spoof protection (reverse-path filter)=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Tu=
+rn on Source Address Verification in all interfaces to<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># pr=
+event some spoofing attacks<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv4.conf.default.rp_filter=3D1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv4.conf.all.rp_filter=3D1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Un=
+comment the next line to enable TCP/IP SYN cookies<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Se=
+e <a href=3D"http://lwn.net/Articles/277146/">
+http://lwn.net/Articles/277146/</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># No=
+te: This may impact IPv6 TCP sessions too<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv4.tcp_syncookies=3D1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Un=
+comment the next line to enable packet forwarding for IPv4<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv4.ip_forward=3D1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Un=
+comment the next line to enable packet forwarding for IPv6<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#&nb=
+sp; Enabling this option disables Stateless Address Autoconfiguration<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#&nb=
+sp; based on Router Advertisements for this host<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv6.conf.all.forwarding=3D1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">####=
+###############################################################<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Ad=
+ditional settings - these settings can improve the network<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># se=
+curity of the host and prevent against some network attacks<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># in=
+cluding spoofing attacks and man in the middle attacks through<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># re=
+direction. Some network environments, however, require that these<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># se=
+ttings are disabled so review and enable them as needed.<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Do=
+ not accept ICMP redirects (prevent MITM attacks)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv4.conf.all.accept_redirects =3D 0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv6.conf.all.accept_redirects =3D 0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># _o=
+r_<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Ac=
+cept ICMP redirects only for gateways listed in our default<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># ga=
+teway list (enabled by default)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># ne=
+t.ipv4.conf.all.secure_redirects =3D 1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Do=
+ not send ICMP redirects (we are not a router)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv4.conf.all.send_redirects =3D 0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Do=
+ not accept IP source route packets (we are not a router)<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv4.conf.all.accept_source_route =3D 0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv6.conf.all.accept_source_route =3D 0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"># Lo=
+g Martian Packets<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#net=
+.ipv4.conf.all.log_martians =3D 1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">#<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">net.=
+core.wmem_max=3D24862979<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">net.=
+core.rmem_max=3D806648177<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext">What=
+ du you think about?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:windowtext"><o:p=
+>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"color:windowtext;ms=
+o-fareast-language:IT">From:</span></b><span lang=3D"EN-US" style=3D"color:=
+windowtext;mso-fareast-language:IT"> USRP-users [mailto:usrp-users-bounces@=
+lists.ettus.com]
+<b>On Behalf Of </b>Marcus D. Leech via USRP-users<br>
+<b>Sent:</b> gioved=EC 9 maggio 2019 16:00<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> [EXT] Re: [USRP-users] Configuration in sysctl.conf<o:p></o=
+:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On 05/09/2019 08:25 AM, Disco Daniele via USRP-users=
+ wrote:<span style=3D"mso-fareast-language:IT"><o:p></o:p></span></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi!</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;m using a X310 on a lin=
+ux box UBUNTU 18.04</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Executing the command &#8220;uh=
+d_usrp_probe&#8221;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I obtain a lot of [WARNING][UDP=
+] related to the dimension of the send buffer</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Then there is the sentence:</sp=
+an><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Please run: sudo sysctl -w net.=
+core.wmem_max=3D24862979</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">So I&#8217;ve written in the fi=
+le /etc/sysctl.conf, at the end</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">net.core.wmem_max=3D24862979</s=
+pan><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I restarted the host but rerunn=
+ing uhd_usrp_probe I reobtain the same warning.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Could you help me?</span><o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">PS: Now I&#8217;m using a 10GB =
+Ethernet board plugged in the workstation, using a couple of fiber optics b=
+etween the X310 and the work station</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you</span><o:p></o:p></p>
+</blockquote>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:IT">Perhaps you =
+have a syntax error in your sysctl file?<br>
+<br>
+<br>
+<br>
+<o:p></o:p></span></p>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:7.5pt;font-family:&quot;Helvetica&quot;,s=
+ans-serif;color:#012169;mso-fareast-language:IT">__________________________=
+___________________</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-f=
+amily:&quot;Helvetica&quot;,sans-serif;color:#012169;mso-fareast-language:I=
+T"><img border=3D"0" width=3D"57" height=3D"18" style=3D"width:.5937in;heig=
+ht:.1875in" id=3D"Immagine_x0020_5" src=3D"cid:image001.jpg@01D50684.546FCB=
+00" alt=3D"logo1"></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Hel=
+vetica&quot;,sans-serif;color:#012169;mso-fareast-language:IT">Direzione e =
+Coordinamento Vivendi SA</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:7.5pt;font-family:&quot;=
+Verdana&quot;,sans-serif;mso-fareast-language:IT"><br>
+</span></b><b><span style=3D"font-size:7.5pt;font-family:&quot;Helvetica&qu=
+ot;,sans-serif;color:#012169;mso-fareast-language:IT">Daniele Disco</span><=
+/b><span style=3D"font-size:7.5pt;font-family:&quot;Helvetica&quot;,sans-se=
+rif;color:#012169;mso-fareast-language:IT"><br>
+<b>CT.TA.EI</b></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Hel=
+vetica&quot;,sans-serif;color:#012169;mso-fareast-language:IT"><br>
+Via Reiss Romoli, 274 &#8211; 10148 Torino<br>
+tel . </span><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-family:&quo=
+t;Helvetica&quot;,sans-serif;color:#012169;mso-fareast-language:IT">&#43;39=
+ 011 228 7271<br>
+cell. &#43;39 331 600 1113</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-f=
+amily:&quot;Helvetica&quot;,sans-serif;color:#012169;mso-fareast-language:I=
+T">Fax. &#43;39 06 4186 5196<br>
+Tim Official: <a href=3D"https://www.facebook.com/TimOfficialPage" target=
+=3D"_blank">
+<b><span style=3D"color:#012169">Facebook</span></b></a> - <a href=3D"https=
+://twitter.com/tim_official" target=3D"_blank">
+<b><span style=3D"color:#012169">Twitter</span></b></a><br>
+<a href=3D"http://www.tim.it/" target=3D"_blank"><b><span style=3D"color:#0=
+12169">www.tim.it</span></b></a></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-fareast-language:I=
+T">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><o:p></o:p></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellpadding=3D"0" width=3D"600=
+" style=3D"width:450.0pt">
+<tbody>
+<tr>
+<td width=3D"585" style=3D"width:438.75pt;padding:.75pt .75pt .75pt .75pt">
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:7.5pt;font-family:&quot;Verdana&quot;,sans-serif;mso-fareast-language:IT"=
+>Questo messaggio e i suoi allegati sono indirizzati esclusivamente alle pe=
+rsone indicate. La diffusione, copia o qualsiasi
+ altra azione derivante dalla conoscenza di queste informazioni sono rigoro=
+samente vietate. Qualora abbiate ricevuto questo documento per errore siete=
+ cortesemente pregati di darne immediata comunicazione al mittente e di pro=
+vvedere alla sua distruzione, Grazie.
+<br>
+<br>
+<i>This e-mail and any attachments is confidential and may contain privileg=
+ed information intended for the addressee(s) only. Dissemination, copying, =
+printing or use by anybody else is unauthorised. If you are not the intende=
+d recipient, please delete this
+ message and any attachments and advise the sender by return e-mail, Thanks=
+. </i>
+<br>
+<br>
+<b>Rispetta l'ambiente. Non stampare questa mail se non =E8 necessario.</b>=
+ <o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:IT"><br>
+<br>
+<br>
+<o:p></o:p></span></p>
+<pre>_______________________________________________<o:p></o:p></pre>
+<pre>USRP-users mailing list<o:p></o:p></pre>
+<pre><a href=3D"mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.c=
+om</a><o:p></o:p></pre>
+<pre><a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
+</a><o:p></o:p></pre>
+</blockquote>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:IT"><o:p>&nbsp;<=
+/o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_680e9479da024a509e290cf83c9e2feaTELMBXC13BA020telecomit_--
+
+--_004_680e9479da024a509e290cf83c9e2feaTELMBXC13BA020telecomit_
+Content-Type: image/jpeg; name="image001.jpg"
+Content-Description: image001.jpg
+Content-Disposition: inline; filename="image001.jpg"; size=2519;
+	creation-date="Thu, 09 May 2019 14:29:10 GMT";
+	modification-date="Thu, 09 May 2019 14:29:10 GMT"
+Content-ID: <image001.jpg@01D50684.546FCB00>
 Content-Transfer-Encoding: base64
-Content-ID: <16a9cfdf1cbc204bfcc1>
-X-Attachment-Id: 16a9cfdf1cbc204bfcc1
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/4QPARXhpZgAATU0AKgAAAAgADwD+AAQAAAABAAAAAAEAAAQA
 AAABAAADMwEBAAQAAAABAAABzAECAAMAAAADAAAAwgEDAAMAAAABAAUAAAEGAAMAAAABAAIAAAER
@@ -428,10 +703,11 @@ w117S/DbDS9VubK3u9RN1FJdlxDIquy7liwwyPLcdDX7yV+A37cn7Evin9jH4bfs5Wfju5tta+Jf
 jz4rX3iXxTf2DyXcNxdT3dtsUSmNGc7cuSVB3TOAMAV+/NfL8WfVlhMHDC25Yqcbr7XLJJy+bu16
 nvcPfWPrGJlib8zcXb+W62+XXzGOP3dIg4/E0UV8SfUCH73+fSlHKA9zRRUoQDiMfWhh8v1oopRL
 BO/tRRRVxJe5/9k=
---00000000000091111d0588754366--
+
+--_004_680e9479da024a509e290cf83c9e2feaTELMBXC13BA020telecomit_--
 
 
---===============7232811675420018656==
+--===============0457505539782387743==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -442,5 +718,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7232811675420018656==--
+--===============0457505539782387743==--
 
