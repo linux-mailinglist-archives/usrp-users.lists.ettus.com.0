@@ -2,61 +2,71 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF5D619321
-	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 21:59:26 +0200 (CEST)
-Received: from [::1] (port=40218 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5838619325
+	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 22:00:28 +0200 (CEST)
+Received: from [::1] (port=41584 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOpCP-0000Ji-QS; Thu, 09 May 2019 15:59:25 -0400
-Received: from atl4mhob18.registeredsite.com ([209.17.115.111]:39106)
- by mm2.emwd.com with esmtp (Exim 4.91)
- (envelope-from <k5so@k5so.com>) id 1hOpBr-00009h-VJ
- for usrp-users@lists.ettus.com; Thu, 09 May 2019 15:59:22 -0400
-Received: from mailpod.hostingplatform.com
- (atl4qobmail01pod3.registeredsite.com [10.30.77.67])
- by atl4mhob18.registeredsite.com (8.14.4/8.14.4) with ESMTP id x49Jw9Dv030227
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
- for <usrp-users@lists.ettus.com>; Thu, 9 May 2019 15:58:09 -0400
-Received: (qmail 27431 invoked by uid 0); 9 May 2019 19:58:09 -0000
-X-TCPREMOTEIP: 192.206.203.10
-X-Authenticated-UID: k5so@k5so.com
-Received: from unknown (HELO ?192.168.1.76?) (k5so@k5so.com@192.206.203.10)
- by 0 with ESMTPA; 9 May 2019 19:58:09 -0000
-Message-Id: <A01FCD5D-DFB6-4E9F-AA41-5D2CF9B00EEA@k5so.com>
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Date: Thu, 9 May 2019 13:58:07 -0600
-In-Reply-To: <52565C8B-D078-414F-A560-3672BEADE596@k5so.com>
-To: Joe Martin <k5so@k5so.com>
-References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
- <BL0PR12MB2340E831A1782ED0958D6DBAAF320@BL0PR12MB2340.namprd12.prod.outlook.com>
- <84C6BD1A-2901-4FFC-834C-55B481EB7045@k5so.com>
- <CA+JMMq9oRqxDSVgyACAZucejC2Z3hKwciNCjX_YEJ6taCgUQ-g@mail.gmail.com>
- <CA+JMMq8N5XP6Z9CDUO0JHZxJotHRPfQRRqsvJT5-XwZZVWRv+w@mail.gmail.com>
- <A0F0F533-AE85-4802-A676-EA4C39C9372F@k5so.com>
- <B98CD290-9E92-49CE-AD7D-E19FE82B5657@k5so.com>
- <CA+JMMq9+WVXGDRwBd9WAcwXHXDynDsUYy4nOXuryttxvNKbXCA@mail.gmail.com>
- <19BFE8B3-662A-4DC0-BB72-557E7495F6D0@k5so.com>
- <5F41CEE9-58DF-4868-89C2-5F88876803DF@k5so.com>
- <CAGVTi8VOeNG5B9X-WaMQrvbxkt96UFhm5a6-++9znYCzexfRtQ@mail.gmail.com>
- <9f223faf-add7-74cc-faa1-d4a0ed95e28a@balister.org>
- <2C9C895D-DD6D-4456-9F1D-557F699AB391@k5so.com> <5CD36887.5050805@gmail.com>
- <4F25C7C9-CB61-46DF-9163-2CB0CF86DDCF@k5so.com>
- <F19914AE-5635-4F61-A19B-13C16AE6CE8D@k5so.com>
- <2BBEC239-22F9-4F4C-B777-222484DEC314@k5so.com>
- <BL0PR12MB2340B79E071584EF5599E398AF330@BL0PR12MB2340.namprd12.prod.outlook.com>
- <84612E15-1A0B-40FF-9AA3-A810D7500BE3@k5so.com>
- <CAM_0ocHPiAfxGGUND037U3mzSDoN_+odmwZX=tzDLq-=_JjH7A@mail.gmail.com>
- <CA+JMMq9dzg+FqLVgGJRZOBW4KMmYq2ZrCOOnLEVndKCtovF+PA@mail.gmail.com>
- <73C37420-AD11-4E22-9730-493E6FC41678@k5so.com>
- <52565C8B-D078-414F-A560-3672BEADE596@k5so.com>
-X-Mailer: Apple Mail (2.3445.9.1)
+	id 1hOpDP-0000bm-4J; Thu, 09 May 2019 16:00:27 -0400
+Received: from mail-qt1-f172.google.com ([209.85.160.172]:37563)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hOpCq-0000BU-Mj
+ for usrp-users@lists.ettus.com; Thu, 09 May 2019 16:00:22 -0400
+Received: by mail-qt1-f172.google.com with SMTP id o7so4022587qtp.4
+ for <usrp-users@lists.ettus.com>; Thu, 09 May 2019 12:59:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=bNXFx0XcJsXqxccOTJJLcQjq64TdGTzLIKWBmrbse+Q=;
+ b=Kv0t6U4RR6z5W178s1lAC0Z3xRVXWc37uVn8/6NArP4zuSaR7D3Ee15WgfY7z8Pc74
+ sGrKhp7yqHH6jTtSP23XGbZMB0iU5naS08+VGmq97xhBI/2bx4NWqXFS1/bd+Ui61vS+
+ oEWnR3YKJ763rOVqbH43mqIN41EDwpuk3l+otOaEn0KvtJ68qVZuyo2AiEKOSjcHh0WB
+ pe+pvkZlmnAoV9hWC/xR6En3SItbB2IRrevUN3aq+zR4aAEwMfv8RWZ3hqNuQUPYmoMl
+ mCjA2PW+q0Og4tUFdIK5qpSxq6jBmQfCh/JcQMB3mA5XP7E4pPsL1XiYcA2djeShBv1K
+ gwTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=bNXFx0XcJsXqxccOTJJLcQjq64TdGTzLIKWBmrbse+Q=;
+ b=o4rZ+vU9yjXpIilrtTSZWfzTXrkUlssnCChpvPB2xyPX9JLGGO0B8+GPz5Vdi/wwfY
+ b9creh7XCWUclPkeR4ArQM9xeh4ws4axuW76qX5yBgVhbXj+Ioe4oAEblOXWazr5EyXE
+ NpF1z6WfSm+MjJm9z0824aeeWUahDayFdxek0QYUGrZJAYtVqVt/nDKqWUell7Vhv2Hy
+ hAm90qouMiMn3h3oCnYqIYtQy/oD7KFo9dvx0dWBPvTqpRUNvXebA8xDZ0WjlLDiMMvo
+ odwLtisIaionqDZHgLZ/gqbAZ4Z2C2cI8QwHYReiwD8Wn4u9AIs29BO5MAxjmdw5fwqZ
+ 50Rw==
+X-Gm-Message-State: APjAAAVbuuiyVno9uOQJtvnZSOW09CetGOMUmhD8QzWbyvbh7lioEG0m
+ 8sLzlqAKsp/2s/dkIAkMrR44lAVy5UY=
+X-Google-Smtp-Source: APXvYqxEgGh65ICj8l2+wRfzvJerQUnAwhSuk6f26VewemO0nAHsYaCqqy+j998ib7wItDoQsGWlyg==
+X-Received: by 2002:ac8:4a84:: with SMTP id l4mr5682185qtq.374.1557431952012; 
+ Thu, 09 May 2019 12:59:12 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id t124sm1516648qkh.29.2019.05.09.12.59.11
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 09 May 2019 12:59:11 -0700 (PDT)
+Message-ID: <5CD4868E.6030808@gmail.com>
+Date: Thu, 09 May 2019 15:59:10 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
+References: <003201d505f5$b2dfb770$189f2650$@sysware.com>
+ <CAEXYVK4np9o7NAPctbMuoMaJX3xVwgvThf99jQpP1_1g1xMywQ@mail.gmail.com>
+ <004a01d505f9$c7b437d0$571ca770$@sysware.com>
+ <CAEXYVK6A1rF0xvNNAi5HsBjpVFdfQw=aekVP4OU++Zby9+ov=g@mail.gmail.com>
+ <00ba01d50689$0fe41630$2fac4290$@sysware.com>
+ <CAEXYVK65edB=XQnAokDuCfxj7tABXVOzHJOiOY-Ew-U9NU8ORQ@mail.gmail.com>
+In-Reply-To: <CAEXYVK65edB=XQnAokDuCfxj7tABXVOzHJOiOY-Ew-U9NU8ORQ@mail.gmail.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Need a little help with running legacy prebuilt
- UHD versions
+Subject: Re: [USRP-users] Relationship between IQ values,
+ gain and noise on B205mini transmitter
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,10 +78,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Joe Martin <k5so@k5so.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8527988751432635480=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,178 +95,20 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
---===============8527988751432635480==
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_E0945AC8-F887-4F6F-8294-6ED93E247BB4"
-
-
---Apple-Mail=_E0945AC8-F887-4F6F-8294-6ED93E247BB4
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-=E2=80=A6able to ping 192.168.10.2 successfully.
-
-> On May 9, 2019, at 1:54 PM, Joe Martin <k5so@k5so.com> wrote:
->=20
-> Ian,=20
->=20
-> Yes, I have tried many times to boot in safe mode, same result =
-regardless.  Yes, I am able to pin to 192.168.10.2 successfully.=20
->=20
-> Joe
->=20
->> On May 9, 2019, at 1:47 PM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>=20
->> Ian and Nick,=20
->>=20
->> Thanks for the assistance.  Attached are dropbox links to two =
-snapshot photos:  1) the factory label on the back of the N210, showing =
-N210 r:2.0 and 2) a top side view of the N210.=20
->>=20
->> 1) https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0=
- <https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0>
->> 2) https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0=
- <https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0>
->>=20
->> Seems this unit is indeed a rev 2 N210, yes?=20
->>=20
->> Joe
->>=20
->>> On May 9, 2019, at 12:40 PM, Nick Foster <bistromath@gmail.com =
-<mailto:bistromath@gmail.com>> wrote:
->>>=20
->>> Moreover, the best "tell" is to look at the N210 motherboard. If the =
-SRAM chip is on the top side, it's a rev 2/3. If the SRAM is on the =
-bottom side, it's a rev 4. If you send a picture along of the top of the =
-N210, I can tell you if it's early or late rev.
->>>=20
->>> On Thu, May 9, 2019 at 11:36 AM Ian Buckley via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>> Joe,
->>> So I scratched my head about this a little late last night and =
-looked back through the development repository for the N210 and as far =
-as I can tell there was never customer facing FPGA code for a Rev2 N210. =
-Chatting with Matt this morning he shared my feeling that a Rev2 wasn't =
-sold to customers, so I'm curious if you have a unit that has a factory =
-label that says N210Rev2 or if you have seen "usrp2 rev2.0" on the PCB =
-(which can be missleading).
->>>=20
->>> Also have you tried booting into the safe image and verifying that =
-it at least pings on 192.168.10.2?
->>>=20
->>> If we can conclusively identify which rev of h/w you have I can =
-probably help further.
->>>=20
->>> Ian
->>=20
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->=20
+On 05/09/2019 03:01 PM, Brian Padalino via USRP-users wrote:
+>
+> I'd much prefer to see an IQ constellation diagram.  For OFDM it'll 
+> just look like a big Gaussian meatball unless you hit some clipping or 
+> weirdness, then you'll see it square up or look strange.
+>
+> Brian
+>
+If "Big Gaussian Meatball" isn't the title of someone's next album, it 
+really should be :) :)
 
 
---Apple-Mail=_E0945AC8-F887-4F6F-8294-6ED93E247BB4
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D"">=E2=80=A6able to ping 192.168.10.2 successfully.<br =
-class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On May 9, 2019, at 1:54 PM, Joe Martin &lt;<a =
-href=3D"mailto:k5so@k5so.com" class=3D"">k5so@k5so.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><meta =
-http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii" =
-class=3D""><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
-space; line-break: after-white-space;" class=3D"">Ian,&nbsp;<div =
-class=3D""><br class=3D""></div><div class=3D"">Yes, I have tried many =
-times to boot in safe mode, same result regardless. &nbsp;Yes, I am able =
-to pin to 192.168.10.2 successfully.&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Joe<br class=3D""><div class=3D""><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On May =
-9, 2019, at 1:47 PM, Joe Martin via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><meta =
-http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii" =
-class=3D""><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
-space; line-break: after-white-space;" class=3D"">Ian and =
-Nick,&nbsp;<div class=3D""><br class=3D""></div><div class=3D"">Thanks =
-for the assistance. &nbsp;Attached are dropbox links to two snapshot =
-photos: &nbsp;1) the factory label on the back of the N210, showing N210 =
-r:2.0 and 2) a top side view of the N210.&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D"">1)&nbsp;<a =
-href=3D"https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D=
-0" =
-class=3D"">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?d=
-l=3D0</a></div><div class=3D"">2)&nbsp;<a =
-href=3D"https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D=
-0" =
-class=3D"">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?d=
-l=3D0</a></div><div class=3D""><br class=3D""></div><div class=3D"">Seems =
-this unit is indeed a rev 2 N210, yes?&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Joe<br class=3D""><div class=3D""><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On May =
-9, 2019, at 12:40 PM, Nick Foster &lt;<a =
-href=3D"mailto:bistromath@gmail.com" =
-class=3D"">bistromath@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D"">Moreover, the best "tell" is to look at the N210 motherboard. =
-If the SRAM chip is on the top side, it's a rev 2/3. If the SRAM is on =
-the bottom side, it's a rev 4. If you send a picture along of the top of =
-the N210, I can tell you if it's early or late rev.<br =
-class=3D""></div><br class=3D""><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Thu, May 9, 2019 at 11:36 AM Ian =
-Buckley via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:<br =
-class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div dir=3D"auto" class=3D"">Joe,<div =
-dir=3D"auto" class=3D"">So I scratched my head about this a little late =
-last night and looked back through the development repository for the =
-N210 and as far as I can tell there was never customer facing FPGA code =
-for a Rev2 N210. Chatting with Matt this&nbsp;morning he shared my =
-feeling that a Rev2 wasn't sold to customers, so I'm curious if you have =
-a unit that has a factory label that says N210Rev2 or if you have seen =
-"usrp2 rev2.0" on the PCB (which can be missleading).</div><div =
-dir=3D"auto" class=3D""><br class=3D""></div><div dir=3D"auto" =
-class=3D"">Also have you tried booting into the safe image and verifying =
-that it at least pings on 192.168.10.2?</div><div dir=3D"auto" =
-class=3D""><br class=3D""></div><div dir=3D"auto" class=3D"">If we can =
-conclusively identify which rev of h/w you have I can probably help =
-further.</div><div dir=3D"auto" class=3D""><br class=3D""></div><div =
-dir=3D"auto" =
-class=3D"">Ian</div></div></blockquote></div></div></blockquote></div><br =
-class=3D""></div></div>_______________________________________________<br =
-class=3D"">USRP-users mailing list<br class=3D""><a =
-href=3D"mailto:USRP-users@lists.ettus.com" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D""><a =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D""></div></blockquote></div><br =
-class=3D""></div></div></div></blockquote></div><br =
-class=3D""></body></html>=
-
---Apple-Mail=_E0945AC8-F887-4F6F-8294-6ED93E247BB4--
-
-
---===============8527988751432635480==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8527988751432635480==--
-
