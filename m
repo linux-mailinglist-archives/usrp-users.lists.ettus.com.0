@@ -2,54 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F36D0191FE
-	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 21:03:08 +0200 (CEST)
-Received: from [::1] (port=49146 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA1BC19218
+	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 21:04:44 +0200 (CEST)
+Received: from [::1] (port=51854 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOoJs-0003ZF-9w; Thu, 09 May 2019 15:03:04 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:38351)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <bpadalino@gmail.com>) id 1hOoJJ-0003UX-J0
- for usrp-users@lists.ettus.com; Thu, 09 May 2019 15:02:59 -0400
-Received: by mail-ot1-f44.google.com with SMTP id s19so3313241otq.5
- for <usrp-users@lists.ettus.com>; Thu, 09 May 2019 12:02:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=s5OrS7IDH2flcGH+T++IoucsEXUEhvkeaODMxOcLdWQ=;
- b=KIEIjjSxfVfwVCJFEUmGdSZiRLDPXAEsXSIrflUGSLsgrFtfBNhxhCK5DZdUObTs9T
- 2ounBErQhGBwVVEw/X7qazx9/CFmO2i5jKmQYIwhYYNJFxwJ3wHqJyvNgrxdaAQVy6nb
- 7owKLfQRaKTD5xT22M80aIi4WZJp7R21nykWZ5CQXjpNAyxwMydpsP6Sc590VI5Rswm1
- grRPkhYa4PR+74ejFXkPnjBHR9ErXkENZherQkhXMJt0waotI6fqSmGgRNXli7EK+rTK
- TMMElgEJHHd1PGZDVJTeQI2+z9GCGuOBdWFAZxfHno36dyU1bluJ0EBo6ogwEYUZE1GU
- 5fkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=s5OrS7IDH2flcGH+T++IoucsEXUEhvkeaODMxOcLdWQ=;
- b=iSWXylJqQ0aS2DbW15Ffv2hEwaoxtd3XLG60Ewii+022CYsJJOCsOmDGIEGQNMwJCg
- ErnFhZkcrX3XuKkJWz/kKNeSpRDYylXzqoslNtjNFER4yfI1TudnIKaW6XrvAlgZLN+R
- q/yktofWW5XZJZ0XQcM6Lw8efvZPmBE2D3ISOBIyxZhFF8uMWOQpJ10twYgNfq3QaZWZ
- 63t+RnvFAqzAfOZjKsUgumWUyUXZNmeuXaZE5Vcx/MuYIImYUykfN2CplUVmnyDGFucl
- iD2XPN7xpnEj1YgDjuP2M9mvy2kPfZ4q3rsQwb5gC0wVNqwlwUojtQYQBxhiPBQT34lz
- L0HA==
-X-Gm-Message-State: APjAAAULG+rSxSqRTMvWT9EVA5+RiyOt//Uifj5MKof4W0+w714PDrX0
- 9TlEXPxe7ut34x2+sprJ3TLDXCkgoUZ+KnA86KfZuKJs
-X-Google-Smtp-Source: APXvYqxzfvNxtaH2dPrO07i7uh5t+kUNrWRjwypJtdQhh45kHgwE9bVrUcG9/6V1cpUERTf0HbOuJ51BP6PQ9TtjUG4=
-X-Received: by 2002:a05:6830:196:: with SMTP id
- q22mr3480772ota.127.1557428508686; 
- Thu, 09 May 2019 12:01:48 -0700 (PDT)
-MIME-Version: 1.0
+	id 1hOoLT-00044i-WF; Thu, 09 May 2019 15:04:44 -0400
+Received: from resqmta-po-11v.sys.comcast.net ([96.114.154.170]:42742)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.91) (envelope-from <w6rz@comcast.net>) id 1hOoKv-0003my-I3
+ for usrp-users@lists.ettus.com; Thu, 09 May 2019 15:04:39 -0400
+Received: from resomta-po-12v.sys.comcast.net ([96.114.154.236])
+ by resqmta-po-11v.sys.comcast.net with ESMTP
+ id On80hjOehVIRHOoKGhMuf5; Thu, 09 May 2019 19:03:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+ s=20190202a; t=1557428608;
+ bh=o54mmoA6T2urPym89xIjyyzzS+k6duxKcF8HvaRYrGc=;
+ h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
+ Content-Type;
+ b=vYFF2E1arixYkTOXFSQTJLIM+mcG65I2ayRgeOLXexkkYak1aSFc1py2XyNINuwy0
+ iBij9IXr+mz1NhIBw0gijykt0ac+TsHdw2NIZ29m+19E9lhtRhRW7rE3c6HfLFlGLw
+ Np8m5dKiPbwNmvy3T9ZxD4x/esJWLxTtcF90Zj0ELdvOVqHU27gsPB9UyhPN2J1joS
+ K79Ea+HBjeimu1vL55xtE8ifZIfbPEiVv4gbdBzhKl8nVRIPvjOLCq66tSNzY9yLgz
+ kynTIMuyF9cS+fILJsglRffdNRD/09eVoRO3ejEOZYB4Te8tLesXCJZyUqWOvj1XAW
+ Q9yOLyoMPOi1g==
+Received: from [IPv6:2601:647:4200:ea30:3897:9673:4fbc:5084]
+ ([IPv6:2601:647:4200:ea30:3897:9673:4fbc:5084])
+ by resomta-po-12v.sys.comcast.net with ESMTPSA
+ id OoKEhb0fM3i74OoKFhV2gH; Thu, 09 May 2019 19:03:27 +0000
+X-Xfinity-VMeta: sc=0;st=legit
+To: usrp-users@lists.ettus.com
 References: <003201d505f5$b2dfb770$189f2650$@sysware.com>
  <CAEXYVK4np9o7NAPctbMuoMaJX3xVwgvThf99jQpP1_1g1xMywQ@mail.gmail.com>
  <004a01d505f9$c7b437d0$571ca770$@sysware.com>
  <CAEXYVK6A1rF0xvNNAi5HsBjpVFdfQw=aekVP4OU++Zby9+ov=g@mail.gmail.com>
  <00ba01d50689$0fe41630$2fac4290$@sysware.com>
+Message-ID: <8cbae5e7-2ddc-8ed1-15c1-c04141670680@comcast.net>
+Date: Thu, 9 May 2019 12:03:26 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
 In-Reply-To: <00ba01d50689$0fe41630$2fac4290$@sysware.com>
-Date: Thu, 9 May 2019 15:01:35 -0400
-Message-ID: <CAEXYVK65edB=XQnAokDuCfxj7tABXVOzHJOiOY-Ew-U9NU8ORQ@mail.gmail.com>
-To: Michael Deacon <michaeld@sysware.com>
+Content-Language: en-US
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -68,10 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3182229451774794533=="
+From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ron Economos <w6rz@comcast.net>
+Content-Type: multipart/mixed; boundary="===============6285110221231900211=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,50 +78,339 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3182229451774794533==
-Content-Type: multipart/alternative; boundary="00000000000005ffaa05887915a3"
+This is a multi-part message in MIME format.
+--===============6285110221231900211==
+Content-Type: multipart/alternative;
+ boundary="------------2D39A9B1ACA26177559C6ADD"
+Content-Language: en-US
 
---00000000000005ffaa05887915a3
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------2D39A9B1ACA26177559C6ADD
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, May 9, 2019 at 1:03 PM Michael Deacon <michaeld@sysware.com> wrote:
+You can use the DTV component in GNU Radio to output a known good OFDM 
+signal.
 
-> I hope this is what you are looking for. Would clipping here be an
+There are many DVB-T2 flow graphs in 
+<install_dir>/share/gnuradio/examples/dtv
+
+Try vv009-4kfft.grc. A link to the test input file can be found in 
+README.dvbt2.
+
+Depending on which version of UHD you're using, you may have to delete 
+the parameter "send_frame_size=65536" in the device address.
+
+You should just start to see distortion at a gain setting over 78.
+
+Ron
+
+On 5/9/19 10:03, Michael Deacon via USRP-users wrote:
+>
+> I hope this is what you are looking for. Would clipping here be an 
 > indication of saturation?
 >
+> Thanks,
+>
+> Mike
+>
+> *From:* Brian Padalino <bpadalino@gmail.com>
+> *Sent:* Wednesday, May 8, 2019 6:11 PM
+> *To:* Michael Deacon <michaeld@sysware.com>
+> *Cc:* usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] Relationship between IQ values, gain and 
+> noise on B205mini transmitter
+>
+> What does the signal look like in the time domain?
+>
+> Is it driving the amplifier on the B205mini into saturation?
+>
+> Brian
+>
+> On Wed, May 8, 2019 at 7:57 PM Michael Deacon <michaeld@sysware.com 
+> <mailto:michaeld@sysware.com>> wrote:
+>
+>     I added some attenuation. The overload is gone but the condition
+>     persists.
+>
+>     Thanks,
+>
+>     Mike
+>
+>     *From:* Brian Padalino <bpadalino@gmail.com
+>     <mailto:bpadalino@gmail.com>>
+>     *Sent:* Wednesday, May 8, 2019 4:37 PM
+>     *To:* Michael Deacon <michaeld@sysware.com
+>     <mailto:michaeld@sysware.com>>
+>     *Cc:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
+>     *Subject:* Re: [USRP-users] Relationship between IQ values, gain
+>     and noise on B205mini transmitter
+>
+>     On Wed, May 8, 2019 at 7:28 PM Michael Deacon via USRP-users
+>     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
+>     wrote:
+>
+>         Hello,
+>
+>         I have a simple transmitter consisting of a file source
+>         connected to a USRP sink (attached image radio.png). The file
+>         contains interleaved floating point IQ representing a few
+>         seconds of LTE. The IQ amplitude values are normalized between
+>         +1.0 and -1.0. The sink is configured to 60db, 7.5MHz sample
+>         rate, 385MHz center frequency and 5MHz bandwidth. The output
+>         looks exactly like the original on a spectrum analyzer (see
+>         attached good.jpg). If I turn up the gain on the sink or
+>         increase the amplitude of the IQ data I get what looks to be
+>         noise on either side of the signal spectrum (see attached
+>         bad.jpg). Any idea what is going on here?
+>
+>     Your bad.jpg picture has the spectrum analyzer saying OLVD.  Try
+>     changing your reference level of the spectrum analyzer to be
+>     higher so you don't saturate the input of the spectrum analyzer.
+>
+>     Tell us if that fixes it for you.
+>
+>     Brian
+>
 
-Not quite.  You may be able to look at the CCDF of the output and see if it
-hits a brick wall versus the "good" picture.
+--------------2D39A9B1ACA26177559C6ADD
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-I'd much prefer to see an IQ constellation diagram.  For OFDM it'll just
-look like a big Gaussian meatball unless you hit some clipping or
-weirdness, then you'll see it square up or look strange.
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>You can use the DTV component in GNU Radio to output a known good
+      OFDM signal.</p>
+    <p>There are many DVB-T2 flow graphs in
+      &lt;install_dir&gt;/share/gnuradio/examples/dtv</p>
+    <p>Try vv009-4kfft.grc. A link to the test input file can be found
+      in README.dvbt2.</p>
+    <p>Depending on which version of UHD you're using, you may have to
+      delete the parameter "send_frame_size=65536" in the device
+      address.</p>
+    <p>You should just start to see distortion at a gain setting over
+      78.</p>
+    <p>Ron</p>
+    <div class="moz-cite-prefix">On 5/9/19 10:03, Michael Deacon via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:00ba01d50689$0fe41630$2fac4290$@sysware.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">I hope this is what you are looking for.
+          Would clipping here be an indication of saturation?<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Thanks,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Mike<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal"><b>From:</b> Brian Padalino
+          <a class="moz-txt-link-rfc2396E" href="mailto:bpadalino@gmail.com">&lt;bpadalino@gmail.com&gt;</a> <br>
+          <b>Sent:</b> Wednesday, May 8, 2019 6:11 PM<br>
+          <b>To:</b> Michael Deacon <a class="moz-txt-link-rfc2396E" href="mailto:michaeld@sysware.com">&lt;michaeld@sysware.com&gt;</a><br>
+          <b>Cc:</b> <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+          <b>Subject:</b> Re: [USRP-users] Relationship between IQ
+          values, gain and noise on B205mini transmitter<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <div>
+          <p class="MsoNormal">What does the signal look like in the
+            time domain?<o:p></o:p></p>
+          <div>
+            <p class="MsoNormal"><o:p> </o:p></p>
+          </div>
+          <div>
+            <p class="MsoNormal">Is it driving the amplifier on the
+              B205mini into saturation?<o:p></o:p></p>
+          </div>
+          <div>
+            <p class="MsoNormal"><o:p> </o:p></p>
+          </div>
+          <div>
+            <p class="MsoNormal">Brian<o:p></o:p></p>
+          </div>
+        </div>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <div>
+          <div>
+            <p class="MsoNormal">On Wed, May 8, 2019 at 7:57 PM Michael
+              Deacon &lt;<a href="mailto:michaeld@sysware.com"
+                moz-do-not-send="true">michaeld@sysware.com</a>&gt;
+              wrote:<o:p></o:p></p>
+          </div>
+          <blockquote style="border:none;border-left:solid #CCCCCC
+            1.0pt;padding:0in 0in 0in
+            6.0pt;margin-left:4.8pt;margin-right:0in">
+            <div>
+              <div>
+                <p class="MsoNormal"
+                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">I
+                  added some attenuation. The overload is gone but the
+                  condition persists.<o:p></o:p></p>
+                <p class="MsoNormal"
+                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
+                <p class="MsoNormal"
+                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Thanks,<o:p></o:p></p>
+                <p class="MsoNormal"
+                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
+                <p class="MsoNormal"
+                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Mike<o:p></o:p></p>
+                <p class="MsoNormal"
+                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
+                <p class="MsoNormal"
+                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"><b>From:</b>
+                  Brian Padalino &lt;<a
+                    href="mailto:bpadalino@gmail.com" target="_blank"
+                    moz-do-not-send="true">bpadalino@gmail.com</a>&gt; <br>
+                  <b>Sent:</b> Wednesday, May 8, 2019 4:37 PM<br>
+                  <b>To:</b> Michael Deacon &lt;<a
+                    href="mailto:michaeld@sysware.com" target="_blank"
+                    moz-do-not-send="true">michaeld@sysware.com</a>&gt;<br>
+                  <b>Cc:</b> <a
+                    href="mailto:usrp-users@lists.ettus.com"
+                    target="_blank" moz-do-not-send="true">usrp-users@lists.ettus.com</a><br>
+                  <b>Subject:</b> Re: [USRP-users] Relationship between
+                  IQ values, gain and noise on B205mini transmitter<o:p></o:p></p>
+                <p class="MsoNormal"
+                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
+                <div>
+                  <div>
+                    <p class="MsoNormal"
+                      style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">On
+                      Wed, May 8, 2019 at 7:28 PM Michael Deacon via
+                      USRP-users &lt;<a
+                        href="mailto:usrp-users@lists.ettus.com"
+                        target="_blank" moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
+                      wrote:<o:p></o:p></p>
+                  </div>
+                  <div>
+                    <blockquote style="border:none;border-left:solid
+                      #CCCCCC 1.0pt;padding:0in 0in 0in
+6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt">
+                      <div>
+                        <div>
+                          <p class="MsoNormal"
+                            style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Hello,<o:p></o:p></p>
+                          <p class="MsoNormal"
+                            style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
+                          <p class="MsoNormal"
+                            style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">I
+                            have a simple transmitter consisting of a
+                            file source connected to a USRP sink
+                            (attached image radio.png). The file
+                            contains interleaved floating point IQ
+                            representing a few seconds of LTE. The IQ
+                            amplitude values are normalized between +1.0
+                            and -1.0. The sink is configured to 60db,
+                            7.5MHz sample rate, 385MHz center frequency
+                            and 5MHz bandwidth. The output looks exactly
+                            like the original on a spectrum analyzer
+                            (see attached good.jpg). If I turn up the
+                            gain on the sink or increase the amplitude
+                            of the IQ data I get what looks to be noise
+                            on either side of the signal spectrum (see
+                            attached bad.jpg). Any idea what is going on
+                            here?<o:p></o:p></p>
+                        </div>
+                      </div>
+                    </blockquote>
+                    <div>
+                      <p class="MsoNormal"
+                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
+                    </div>
+                    <div>
+                      <p class="MsoNormal"
+                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Your
+                        bad.jpg picture has the spectrum analyzer saying
+                        OLVD.  Try changing your reference level of the
+                        spectrum analyzer to be higher so you don't
+                        saturate the input of the spectrum analyzer.<o:p></o:p></p>
+                    </div>
+                    <div>
+                      <p class="MsoNormal"
+                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
+                    </div>
+                    <div>
+                      <p class="MsoNormal"
+                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Tell
+                        us if that fixes it for you.<o:p></o:p></p>
+                    </div>
+                    <div>
+                      <p class="MsoNormal"
+                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
+                    </div>
+                    <div>
+                      <p class="MsoNormal"
+                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Brian<o:p></o:p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </blockquote>
+  </body>
+</html>
 
-Brian
-
---00000000000005ffaa05887915a3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, May 9, 2019 at 1:03 PM Michael De=
-acon &lt;<a href=3D"mailto:michaeld@sysware.com">michaeld@sysware.com</a>&g=
-t; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_-31217955008=
-9952674WordSection1"><p class=3D"MsoNormal">I hope this is what you are loo=
-king for. Would clipping here be an indication of saturation?</p></div></di=
-v></blockquote><div><br></div><div>Not quite.=C2=A0 You may be able to look=
- at the CCDF of the output and see if it hits a brick wall versus the &quot=
-;good&quot; picture.</div><div><br></div><div>I&#39;d much prefer to see an=
- IQ constellation diagram.=C2=A0 For OFDM it&#39;ll just look like a big Ga=
-ussian meatball unless you hit some clipping or weirdness, then you&#39;ll =
-see it square up or look strange.</div><div><br></div><div>Brian</div></div=
-></div>
-
---00000000000005ffaa05887915a3--
+--------------2D39A9B1ACA26177559C6ADD--
 
 
---===============3182229451774794533==
+--===============6285110221231900211==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -139,5 +421,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3182229451774794533==--
+--===============6285110221231900211==--
 
