@@ -2,55 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1BC19218
-	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 21:04:44 +0200 (CEST)
-Received: from [::1] (port=51854 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E58B51930A
+	for <lists+usrp-users@lfdr.de>; Thu,  9 May 2019 21:49:07 +0200 (CEST)
+Received: from [::1] (port=35480 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hOoLT-00044i-WF; Thu, 09 May 2019 15:04:44 -0400
-Received: from resqmta-po-11v.sys.comcast.net ([96.114.154.170]:42742)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.91) (envelope-from <w6rz@comcast.net>) id 1hOoKv-0003my-I3
- for usrp-users@lists.ettus.com; Thu, 09 May 2019 15:04:39 -0400
-Received: from resomta-po-12v.sys.comcast.net ([96.114.154.236])
- by resqmta-po-11v.sys.comcast.net with ESMTP
- id On80hjOehVIRHOoKGhMuf5; Thu, 09 May 2019 19:03:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
- s=20190202a; t=1557428608;
- bh=o54mmoA6T2urPym89xIjyyzzS+k6duxKcF8HvaRYrGc=;
- h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
- Content-Type;
- b=vYFF2E1arixYkTOXFSQTJLIM+mcG65I2ayRgeOLXexkkYak1aSFc1py2XyNINuwy0
- iBij9IXr+mz1NhIBw0gijykt0ac+TsHdw2NIZ29m+19E9lhtRhRW7rE3c6HfLFlGLw
- Np8m5dKiPbwNmvy3T9ZxD4x/esJWLxTtcF90Zj0ELdvOVqHU27gsPB9UyhPN2J1joS
- K79Ea+HBjeimu1vL55xtE8ifZIfbPEiVv4gbdBzhKl8nVRIPvjOLCq66tSNzY9yLgz
- kynTIMuyF9cS+fILJsglRffdNRD/09eVoRO3ejEOZYB4Te8tLesXCJZyUqWOvj1XAW
- Q9yOLyoMPOi1g==
-Received: from [IPv6:2601:647:4200:ea30:3897:9673:4fbc:5084]
- ([IPv6:2601:647:4200:ea30:3897:9673:4fbc:5084])
- by resomta-po-12v.sys.comcast.net with ESMTPSA
- id OoKEhb0fM3i74OoKFhV2gH; Thu, 09 May 2019 19:03:27 +0000
-X-Xfinity-VMeta: sc=0;st=legit
-To: usrp-users@lists.ettus.com
-References: <003201d505f5$b2dfb770$189f2650$@sysware.com>
- <CAEXYVK4np9o7NAPctbMuoMaJX3xVwgvThf99jQpP1_1g1xMywQ@mail.gmail.com>
- <004a01d505f9$c7b437d0$571ca770$@sysware.com>
- <CAEXYVK6A1rF0xvNNAi5HsBjpVFdfQw=aekVP4OU++Zby9+ov=g@mail.gmail.com>
- <00ba01d50689$0fe41630$2fac4290$@sysware.com>
-Message-ID: <8cbae5e7-2ddc-8ed1-15c1-c04141670680@comcast.net>
-Date: Thu, 9 May 2019 12:03:26 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <00ba01d50689$0fe41630$2fac4290$@sysware.com>
-Content-Language: en-US
+	id 1hOp2L-0007mc-5U; Thu, 09 May 2019 15:49:01 -0400
+Received: from atl4mhob16.registeredsite.com ([209.17.115.109]:41538)
+ by mm2.emwd.com with esmtp (Exim 4.91)
+ (envelope-from <k5so@k5so.com>) id 1hOp1m-0007RW-35
+ for usrp-users@lists.ettus.com; Thu, 09 May 2019 15:48:56 -0400
+Received: from mailpod.hostingplatform.com
+ (atl4qobmail01pod3.registeredsite.com [10.30.77.67])
+ by atl4mhob16.registeredsite.com (8.14.4/8.14.4) with ESMTP id x49JliFs027756
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
+ for <usrp-users@lists.ettus.com>; Thu, 9 May 2019 15:47:44 -0400
+Received: (qmail 2026 invoked by uid 0); 9 May 2019 19:47:44 -0000
+X-TCPREMOTEIP: 192.206.203.10
+X-Authenticated-UID: k5so@k5so.com
+Received: from unknown (HELO ?192.168.1.76?) (k5so@k5so.com@192.206.203.10)
+ by 0 with ESMTPA; 9 May 2019 19:47:43 -0000
+Message-Id: <73C37420-AD11-4E22-9730-493E6FC41678@k5so.com>
+Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
+Date: Thu, 9 May 2019 13:47:41 -0600
+In-Reply-To: <CA+JMMq9dzg+FqLVgGJRZOBW4KMmYq2ZrCOOnLEVndKCtovF+PA@mail.gmail.com>
+To: Nick Foster <bistromath@gmail.com>
+References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
+ <BL0PR12MB2340E831A1782ED0958D6DBAAF320@BL0PR12MB2340.namprd12.prod.outlook.com>
+ <84C6BD1A-2901-4FFC-834C-55B481EB7045@k5so.com>
+ <CA+JMMq9oRqxDSVgyACAZucejC2Z3hKwciNCjX_YEJ6taCgUQ-g@mail.gmail.com>
+ <CA+JMMq8N5XP6Z9CDUO0JHZxJotHRPfQRRqsvJT5-XwZZVWRv+w@mail.gmail.com>
+ <A0F0F533-AE85-4802-A676-EA4C39C9372F@k5so.com>
+ <B98CD290-9E92-49CE-AD7D-E19FE82B5657@k5so.com>
+ <CA+JMMq9+WVXGDRwBd9WAcwXHXDynDsUYy4nOXuryttxvNKbXCA@mail.gmail.com>
+ <19BFE8B3-662A-4DC0-BB72-557E7495F6D0@k5so.com>
+ <5F41CEE9-58DF-4868-89C2-5F88876803DF@k5so.com>
+ <CAGVTi8VOeNG5B9X-WaMQrvbxkt96UFhm5a6-++9znYCzexfRtQ@mail.gmail.com>
+ <9f223faf-add7-74cc-faa1-d4a0ed95e28a@balister.org>
+ <2C9C895D-DD6D-4456-9F1D-557F699AB391@k5so.com> <5CD36887.5050805@gmail.com>
+ <4F25C7C9-CB61-46DF-9163-2CB0CF86DDCF@k5so.com>
+ <F19914AE-5635-4F61-A19B-13C16AE6CE8D@k5so.com>
+ <2BBEC239-22F9-4F4C-B777-222484DEC314@k5so.com>
+ <BL0PR12MB2340B79E071584EF5599E398AF330@BL0PR12MB2340.namprd12.prod.outlook.com>
+ <84612E15-1A0B-40FF-9AA3-A810D7500BE3@k5so.com>
+ <CAM_0ocHPiAfxGGUND037U3mzSDoN_+odmwZX=tzDLq-=_JjH7A@mail.gmail.com>
+ <CA+JMMq9dzg+FqLVgGJRZOBW4KMmYq2ZrCOOnLEVndKCtovF+PA@mail.gmail.com>
+X-Mailer: Apple Mail (2.3445.9.1)
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Relationship between IQ values,
- gain and noise on B205mini transmitter
+Subject: Re: [USRP-users] Need a little help with running legacy prebuilt
+ UHD versions
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -62,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ron Economos <w6rz@comcast.net>
-Content-Type: multipart/mixed; boundary="===============6285110221231900211=="
+From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Joe Martin <k5so@k5so.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5285765327913489945=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,339 +83,119 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============6285110221231900211==
+
+--===============5285765327913489945==
 Content-Type: multipart/alternative;
- boundary="------------2D39A9B1ACA26177559C6ADD"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------2D39A9B1ACA26177559C6ADD
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-You can use the DTV component in GNU Radio to output a known good OFDM 
-signal.
-
-There are many DVB-T2 flow graphs in 
-<install_dir>/share/gnuradio/examples/dtv
-
-Try vv009-4kfft.grc. A link to the test input file can be found in 
-README.dvbt2.
-
-Depending on which version of UHD you're using, you may have to delete 
-the parameter "send_frame_size=65536" in the device address.
-
-You should just start to see distortion at a gain setting over 78.
-
-Ron
-
-On 5/9/19 10:03, Michael Deacon via USRP-users wrote:
->
-> I hope this is what you are looking for. Would clipping here be an 
-> indication of saturation?
->
-> Thanks,
->
-> Mike
->
-> *From:* Brian Padalino <bpadalino@gmail.com>
-> *Sent:* Wednesday, May 8, 2019 6:11 PM
-> *To:* Michael Deacon <michaeld@sysware.com>
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Relationship between IQ values, gain and 
-> noise on B205mini transmitter
->
-> What does the signal look like in the time domain?
->
-> Is it driving the amplifier on the B205mini into saturation?
->
-> Brian
->
-> On Wed, May 8, 2019 at 7:57 PM Michael Deacon <michaeld@sysware.com 
-> <mailto:michaeld@sysware.com>> wrote:
->
->     I added some attenuation. The overload is gone but the condition
->     persists.
->
->     Thanks,
->
->     Mike
->
->     *From:* Brian Padalino <bpadalino@gmail.com
->     <mailto:bpadalino@gmail.com>>
->     *Sent:* Wednesday, May 8, 2019 4:37 PM
->     *To:* Michael Deacon <michaeld@sysware.com
->     <mailto:michaeld@sysware.com>>
->     *Cc:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
->     *Subject:* Re: [USRP-users] Relationship between IQ values, gain
->     and noise on B205mini transmitter
->
->     On Wed, May 8, 2019 at 7:28 PM Michael Deacon via USRP-users
->     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
->     wrote:
->
->         Hello,
->
->         I have a simple transmitter consisting of a file source
->         connected to a USRP sink (attached image radio.png). The file
->         contains interleaved floating point IQ representing a few
->         seconds of LTE. The IQ amplitude values are normalized between
->         +1.0 and -1.0. The sink is configured to 60db, 7.5MHz sample
->         rate, 385MHz center frequency and 5MHz bandwidth. The output
->         looks exactly like the original on a spectrum analyzer (see
->         attached good.jpg). If I turn up the gain on the sink or
->         increase the amplitude of the IQ data I get what looks to be
->         noise on either side of the signal spectrum (see attached
->         bad.jpg). Any idea what is going on here?
->
->     Your bad.jpg picture has the spectrum analyzer saying OLVD.  Try
->     changing your reference level of the spectrum analyzer to be
->     higher so you don't saturate the input of the spectrum analyzer.
->
->     Tell us if that fixes it for you.
->
->     Brian
->
-
---------------2D39A9B1ACA26177559C6ADD
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>You can use the DTV component in GNU Radio to output a known good
-      OFDM signal.</p>
-    <p>There are many DVB-T2 flow graphs in
-      &lt;install_dir&gt;/share/gnuradio/examples/dtv</p>
-    <p>Try vv009-4kfft.grc. A link to the test input file can be found
-      in README.dvbt2.</p>
-    <p>Depending on which version of UHD you're using, you may have to
-      delete the parameter "send_frame_size=65536" in the device
-      address.</p>
-    <p>You should just start to see distortion at a gain setting over
-      78.</p>
-    <p>Ron</p>
-    <div class="moz-cite-prefix">On 5/9/19 10:03, Michael Deacon via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:00ba01d50689$0fe41630$2fac4290$@sysware.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">I hope this is what you are looking for.
-          Would clipping here be an indication of saturation?<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Thanks,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Mike<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal"><b>From:</b> Brian Padalino
-          <a class="moz-txt-link-rfc2396E" href="mailto:bpadalino@gmail.com">&lt;bpadalino@gmail.com&gt;</a> <br>
-          <b>Sent:</b> Wednesday, May 8, 2019 6:11 PM<br>
-          <b>To:</b> Michael Deacon <a class="moz-txt-link-rfc2396E" href="mailto:michaeld@sysware.com">&lt;michaeld@sysware.com&gt;</a><br>
-          <b>Cc:</b> <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-          <b>Subject:</b> Re: [USRP-users] Relationship between IQ
-          values, gain and noise on B205mini transmitter<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <div>
-          <p class="MsoNormal">What does the signal look like in the
-            time domain?<o:p></o:p></p>
-          <div>
-            <p class="MsoNormal"><o:p> </o:p></p>
-          </div>
-          <div>
-            <p class="MsoNormal">Is it driving the amplifier on the
-              B205mini into saturation?<o:p></o:p></p>
-          </div>
-          <div>
-            <p class="MsoNormal"><o:p> </o:p></p>
-          </div>
-          <div>
-            <p class="MsoNormal">Brian<o:p></o:p></p>
-          </div>
-        </div>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <div>
-          <div>
-            <p class="MsoNormal">On Wed, May 8, 2019 at 7:57 PM Michael
-              Deacon &lt;<a href="mailto:michaeld@sysware.com"
-                moz-do-not-send="true">michaeld@sysware.com</a>&gt;
-              wrote:<o:p></o:p></p>
-          </div>
-          <blockquote style="border:none;border-left:solid #CCCCCC
-            1.0pt;padding:0in 0in 0in
-            6.0pt;margin-left:4.8pt;margin-right:0in">
-            <div>
-              <div>
-                <p class="MsoNormal"
-                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">I
-                  added some attenuation. The overload is gone but the
-                  condition persists.<o:p></o:p></p>
-                <p class="MsoNormal"
-                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
-                <p class="MsoNormal"
-                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Thanks,<o:p></o:p></p>
-                <p class="MsoNormal"
-                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
-                <p class="MsoNormal"
-                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Mike<o:p></o:p></p>
-                <p class="MsoNormal"
-                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
-                <p class="MsoNormal"
-                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"><b>From:</b>
-                  Brian Padalino &lt;<a
-                    href="mailto:bpadalino@gmail.com" target="_blank"
-                    moz-do-not-send="true">bpadalino@gmail.com</a>&gt; <br>
-                  <b>Sent:</b> Wednesday, May 8, 2019 4:37 PM<br>
-                  <b>To:</b> Michael Deacon &lt;<a
-                    href="mailto:michaeld@sysware.com" target="_blank"
-                    moz-do-not-send="true">michaeld@sysware.com</a>&gt;<br>
-                  <b>Cc:</b> <a
-                    href="mailto:usrp-users@lists.ettus.com"
-                    target="_blank" moz-do-not-send="true">usrp-users@lists.ettus.com</a><br>
-                  <b>Subject:</b> Re: [USRP-users] Relationship between
-                  IQ values, gain and noise on B205mini transmitter<o:p></o:p></p>
-                <p class="MsoNormal"
-                  style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
-                <div>
-                  <div>
-                    <p class="MsoNormal"
-                      style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">On
-                      Wed, May 8, 2019 at 7:28 PM Michael Deacon via
-                      USRP-users &lt;<a
-                        href="mailto:usrp-users@lists.ettus.com"
-                        target="_blank" moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
-                      wrote:<o:p></o:p></p>
-                  </div>
-                  <div>
-                    <blockquote style="border:none;border-left:solid
-                      #CCCCCC 1.0pt;padding:0in 0in 0in
-6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt">
-                      <div>
-                        <div>
-                          <p class="MsoNormal"
-                            style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Hello,<o:p></o:p></p>
-                          <p class="MsoNormal"
-                            style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
-                          <p class="MsoNormal"
-                            style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">I
-                            have a simple transmitter consisting of a
-                            file source connected to a USRP sink
-                            (attached image radio.png). The file
-                            contains interleaved floating point IQ
-                            representing a few seconds of LTE. The IQ
-                            amplitude values are normalized between +1.0
-                            and -1.0. The sink is configured to 60db,
-                            7.5MHz sample rate, 385MHz center frequency
-                            and 5MHz bandwidth. The output looks exactly
-                            like the original on a spectrum analyzer
-                            (see attached good.jpg). If I turn up the
-                            gain on the sink or increase the amplitude
-                            of the IQ data I get what looks to be noise
-                            on either side of the signal spectrum (see
-                            attached bad.jpg). Any idea what is going on
-                            here?<o:p></o:p></p>
-                        </div>
-                      </div>
-                    </blockquote>
-                    <div>
-                      <p class="MsoNormal"
-                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
-                    </div>
-                    <div>
-                      <p class="MsoNormal"
-                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Your
-                        bad.jpg picture has the spectrum analyzer saying
-                        OLVD.  Try changing your reference level of the
-                        spectrum analyzer to be higher so you don't
-                        saturate the input of the spectrum analyzer.<o:p></o:p></p>
-                    </div>
-                    <div>
-                      <p class="MsoNormal"
-                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
-                    </div>
-                    <div>
-                      <p class="MsoNormal"
-                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Tell
-                        us if that fixes it for you.<o:p></o:p></p>
-                    </div>
-                    <div>
-                      <p class="MsoNormal"
-                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"> <o:p></o:p></p>
-                    </div>
-                    <div>
-                      <p class="MsoNormal"
-                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Brian<o:p></o:p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-  </body>
-</html>
-
---------------2D39A9B1ACA26177559C6ADD--
+	boundary="Apple-Mail=_B95A0770-AAA7-4E74-8092-6531BD164C61"
 
 
---===============6285110221231900211==
+--Apple-Mail=_B95A0770-AAA7-4E74-8092-6531BD164C61
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+Ian and Nick,=20
+
+Thanks for the assistance.  Attached are dropbox links to two snapshot =
+photos:  1) the factory label on the back of the N210, showing N210 =
+r:2.0 and 2) a top side view of the N210.=20
+
+1) https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0 =
+<https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0>
+2) https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0 =
+<https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0>
+
+Seems this unit is indeed a rev 2 N210, yes?=20
+
+Joe
+
+> On May 9, 2019, at 12:40 PM, Nick Foster <bistromath@gmail.com> wrote:
+>=20
+> Moreover, the best "tell" is to look at the N210 motherboard. If the =
+SRAM chip is on the top side, it's a rev 2/3. If the SRAM is on the =
+bottom side, it's a rev 4. If you send a picture along of the top of the =
+N210, I can tell you if it's early or late rev.
+>=20
+> On Thu, May 9, 2019 at 11:36 AM Ian Buckley via USRP-users =
+<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+> Joe,
+> So I scratched my head about this a little late last night and looked =
+back through the development repository for the N210 and as far as I can =
+tell there was never customer facing FPGA code for a Rev2 N210. Chatting =
+with Matt this morning he shared my feeling that a Rev2 wasn't sold to =
+customers, so I'm curious if you have a unit that has a factory label =
+that says N210Rev2 or if you have seen "usrp2 rev2.0" on the PCB (which =
+can be missleading).
+>=20
+> Also have you tried booting into the safe image and verifying that it =
+at least pings on 192.168.10.2?
+>=20
+> If we can conclusively identify which rev of h/w you have I can =
+probably help further.
+>=20
+> Ian
+
+
+--Apple-Mail=_B95A0770-AAA7-4E74-8092-6531BD164C61
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D"">Ian =
+and Nick,&nbsp;<div class=3D""><br class=3D""></div><div class=3D"">Thanks=
+ for the assistance. &nbsp;Attached are dropbox links to two snapshot =
+photos: &nbsp;1) the factory label on the back of the N210, showing N210 =
+r:2.0 and 2) a top side view of the N210.&nbsp;</div><div class=3D""><br =
+class=3D""></div><div class=3D"">1)&nbsp;<a =
+href=3D"https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D=
+0" =
+class=3D"">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?d=
+l=3D0</a></div><div class=3D"">2)&nbsp;<a =
+href=3D"https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D=
+0" =
+class=3D"">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?d=
+l=3D0</a></div><div class=3D""><br class=3D""></div><div class=3D"">Seems =
+this unit is indeed a rev 2 N210, yes?&nbsp;</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Joe<br class=3D""><div><br =
+class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On May =
+9, 2019, at 12:40 PM, Nick Foster &lt;<a =
+href=3D"mailto:bistromath@gmail.com" =
+class=3D"">bistromath@gmail.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
+class=3D"">Moreover, the best "tell" is to look at the N210 motherboard. =
+If the SRAM chip is on the top side, it's a rev 2/3. If the SRAM is on =
+the bottom side, it's a rev 4. If you send a picture along of the top of =
+the N210, I can tell you if it's early or late rev.<br =
+class=3D""></div><br class=3D""><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Thu, May 9, 2019 at 11:36 AM Ian =
+Buckley via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
+class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:<br =
+class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div dir=3D"auto" class=3D"">Joe,<div =
+dir=3D"auto" class=3D"">So I scratched my head about this a little late =
+last night and looked back through the development repository for the =
+N210 and as far as I can tell there was never customer facing FPGA code =
+for a Rev2 N210. Chatting with Matt this&nbsp;morning he shared my =
+feeling that a Rev2 wasn't sold to customers, so I'm curious if you have =
+a unit that has a factory label that says N210Rev2 or if you have seen =
+"usrp2 rev2.0" on the PCB (which can be missleading).</div><div =
+dir=3D"auto" class=3D""><br class=3D""></div><div dir=3D"auto" =
+class=3D"">Also have you tried booting into the safe image and verifying =
+that it at least pings on 192.168.10.2?</div><div dir=3D"auto" =
+class=3D""><br class=3D""></div><div dir=3D"auto" class=3D"">If we can =
+conclusively identify which rev of h/w you have I can probably help =
+further.</div><div dir=3D"auto" class=3D""><br class=3D""></div><div =
+dir=3D"auto" =
+class=3D"">Ian</div></div></blockquote></div></div></blockquote></div><br =
+class=3D""></div></body></html>=
+
+--Apple-Mail=_B95A0770-AAA7-4E74-8092-6531BD164C61--
+
+
+--===============5285765327913489945==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -421,5 +206,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6285110221231900211==--
+--===============5285765327913489945==--
 
