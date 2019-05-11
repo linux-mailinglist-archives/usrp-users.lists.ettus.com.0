@@ -2,59 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797251A970
-	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 22:40:56 +0200 (CEST)
-Received: from [::1] (port=56520 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 351E41A915
+	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 20:32:54 +0200 (CEST)
+Received: from [::1] (port=57338 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hPYnZ-0004Ln-JP; Sat, 11 May 2019 16:40:49 -0400
-Received: from mail-lf1-f42.google.com ([209.85.167.42]:40564)
+	id 1hPWng-0005ko-Rn; Sat, 11 May 2019 14:32:48 -0400
+Received: from mail-lj1-f173.google.com ([209.85.208.173]:38023)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <adray0001@gmail.com>) id 1hPYn1-0004DN-MZ
- for usrp-users@lists.ettus.com; Sat, 11 May 2019 16:40:45 -0400
-Received: by mail-lf1-f42.google.com with SMTP id h13so6414139lfc.7
- for <usrp-users@lists.ettus.com>; Sat, 11 May 2019 13:39:55 -0700 (PDT)
+ (Exim 4.91) (envelope-from <adray0001@gmail.com>) id 1hPWn8-0005fs-5e
+ for usrp-users@lists.ettus.com; Sat, 11 May 2019 14:32:44 -0400
+Received: by mail-lj1-f173.google.com with SMTP id 14so7698454ljj.5
+ for <usrp-users@lists.ettus.com>; Sat, 11 May 2019 11:31:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=ZQK8gwjQ2BUArcGskw3LR9ZMcRDkklPjhSQyfVvs5cM=;
- b=rddsjxgDpAHMt0aauLdFPm6w0io/QSoszER1IquVnFu5uOKaENpEmmiJDWMoJPmRDD
- qDD4SfyzfiWvX67Ua9DzF2qB1onJf40+OYrviCnzFKwTl+iru5iaAE/sm4D1O8hrVBRZ
- KLuZ5oXpM+YKJfn4LC83h/ykMqo+2lwBR4wLUK1TdHbcSriVz4/Wi4KpHsLsY4dKrwaz
- 98RDqp5npWC4RHk4JpORrwtjeE8v0d+PyL/t1FqKSj49+j9u1vMCuqujdJ1wb2b65YCh
- 3UInBiFI2y8toPcZYfjvKX2mDRi5WbghtSZj0tNFYeT8r227WLIWJUOrHV2P8xJOL7SB
- g/CQ==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=WYWJVRUdO7ZQ4dYc237/oLuko9cswZi8Z7ofJnLWpeg=;
+ b=qO6AShyfIXdHSh7B+hJleRUOO2m4YWkQGhC+LZ4Q1d/sRUkQOY0aMpkeM7KDmEyM+d
+ uZREv7xWEKfAWJreE2+ldgWmUm6vT740/UW2XVikwDm51MDP/ls1Y+6nUrZI2Uzo1j8z
+ /ct3FVutH72CZNAXdOjll/MDMq2j2I8bL8k2vwz3001EMZzNqLbOjor0/DxOF1jeEQfD
+ /KDLYLleRbzcJ9EUrpt8//an7+ya+zIN27a+iM01MAUx+jCz8t146DVClbWAJgn4f8qO
+ BFvqLpSV8HAk3KVpDBq74CsfsoRQtT8g3lOpf5rK1BYD8HXbJaJYL9RVBXSHpGlQ7udw
+ 6mow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=ZQK8gwjQ2BUArcGskw3LR9ZMcRDkklPjhSQyfVvs5cM=;
- b=SP1tFV1h7OuZyyEDAr/SWI7yI77FwT9+0CA/beXrn9KsrHeBfUHatuvHEIm1BKyOQq
- AG9X6cNGMkIj3575d41KpV4Nb0IlrdfwkhSFvuAxzrDypMhsJkeCQKd0PesYN2g4CXgb
- E4DqR6VDxa+X0kSKwcVSrlq3OLNIOUtvfxeQQVSoGHqYniPO8i6CeqgrXvCOCMvQpwOv
- jS5QwZbgD4KUT85Ab65DsIjt/26BuQ4ars/l64zja2cZmn2YdnacYOwBIisQC9URUylT
- 2w7fvYLGtEWMNWXvzk2zgyS3eMIE+PtHWd6Dg6p2wO4846Vr+iaRHS3ocpxrY5Fh9CS3
- WMqw==
-X-Gm-Message-State: APjAAAVcUd0OlCIAUU1bJ/C5bJ/A+ade7a3J0/1kpyxGcN2zIRqbTVvo
- NHbifamxfq5EUZEIAg6HfBuaIuceJzEBbvQUcH4=
-X-Google-Smtp-Source: APXvYqzXtQ5EPFgieFH0EbsZQz16IfjL2areU7qPorBbBgMV+oNpkG/ZvPWuWe27o0aYpyFnXh+8Rn1pWBeblxKjcmE=
-X-Received: by 2002:a19:ee11:: with SMTP id g17mr9143881lfb.5.1557607174321;
- Sat, 11 May 2019 13:39:34 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=WYWJVRUdO7ZQ4dYc237/oLuko9cswZi8Z7ofJnLWpeg=;
+ b=Q2VqMxKm5Ug4EJ1e13tAiTQnrtJi1Sn5W017nYwmWLvt9YUzsFn6dusve5rzqHikbZ
+ FrnOL/vd5zH9MTcIc4w3VrkITIiDO2qpc6jHiRUQ+mi/xaEB8aRtwj+9/93vTIBrIkjG
+ X3AtNXQQiOify96e9jdXxoTvd3JjcpGy8OY1xq41nFYnZ83YwDoXmPh8tlelgQ2K7drU
+ EwU8liVy0IsK3FRQ/msV2n4iTEUhxjrw87BQmPrqe+mUj6LegcAmz5XQMY9/THhbSbSZ
+ vp+b3RxBneKEnSvnZ9GSGe38rS2WT0xAMymKeDlwwmXdO+0oKutm4KBevGezZjYBl8DD
+ HL2Q==
+X-Gm-Message-State: APjAAAVQj8qwi/dGaz4pVJfEYGVA8eACeqwWiZVPuh2QLL59RudNXako
+ D1ozMPajSLa/Yq4m8enzOU/ivct7RTyrIurM4jWtJKRI
+X-Google-Smtp-Source: APXvYqyJ8zFmrbeQ2WgKhN5TF1dCWeD/iqbcvKIV8ujGDi/IRAzSDA4gXhmqCUj3nmaqwtk/8vtcwMfp1VAf49UtijU=
+X-Received: by 2002:a2e:97d8:: with SMTP id m24mr176362ljj.52.1557599492544;
+ Sat, 11 May 2019 11:31:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAPRRyxuCDNGcewqw7Y6A=a-cgU8DN9s6Sbg7JVSHbuYHJBD=hA@mail.gmail.com>
- <5db613d9e0f5e53ad04b8e730a3aa4d9b25df12c.camel@ettus.com>
- <CAPRRyxtWDcpUEoJF6teLPVN8nrNXEuH0HULt2orMetOvCzEf8w@mail.gmail.com>
- <03752f22403f1915dd13039b82d10ca12ca69458.camel@ettus.com>
-In-Reply-To: <03752f22403f1915dd13039b82d10ca12ca69458.camel@ettus.com>
-Date: Sat, 11 May 2019 20:39:23 +0300
-Message-ID: <CAPRRyxvntD=kxZc6xnAx3HYRBVxpTrzCwYLOg74t1rRzSapWeg@mail.gmail.com>
-To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>, 
- usrp-users <usrp-users@lists.ettus.com>
+Date: Sat, 11 May 2019 21:31:21 +0300
+Message-ID: <CAPRRyxuCDNGcewqw7Y6A=a-cgU8DN9s6Sbg7JVSHbuYHJBD=hA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Reading samples with b200 using num_sams_and_done
+Subject: [USRP-users] Reading samples with b200 using num_sams_and_done
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,7 +61,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1022004205308001711=="
+Content-Type: multipart/mixed; boundary="===============4386967872921549410=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,632 +75,389 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1022004205308001711==
-Content-Type: multipart/alternative; boundary="000000000000533cbc0588a2aed5"
+--===============4386967872921549410==
+Content-Type: multipart/alternative; boundary="000000000000749ad20588a0e43f"
 
---000000000000533cbc0588a2aed5
+--000000000000749ad20588a0e43f
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thanks for the help. I will try to fix everything tomorrow and see the
-result. But tell me, maybe I don=E2=80=99t fully understand how num_sams_an=
-d_done
-works. If I understand correctly, this method does not send a continuous
-stream of data but simply gives a certain number of samples upon request.
-And in this case, we are not tied to system performance. Maybe I do not
-understand this. Could you clarify this?
+Hello. My task is to make a broadband spectrum analyzer on the usrp b200
+board. For this, the standard functions for reading samples in python are
+not suitable for me. Therefore, I edited them. When reading samples using
+the start_con method, I cannot specify a band greater than 5 MHz.
+Therefore, I use the num_sams_and_done method. But I have problems with
+him. The fact is that my frequency which I know appears in the wrong place.
+For example, I generate a frequency of 910 MHz and it appears at 930 MHz
+(with a bandwidth of 20 MHz). I can not understand what caused it. Here are
+my reading functions in two ways. I would be extremely grateful for the
+help.
 
-=D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 23:19, Marcus M=C3=
-=BCller <marcus.mueller@ettus.com>:
 
-> Dear Ivan,
->
-> On Sat, 2019-05-11 at 20:00 +0300, Ivan Zahartchuk wrote:
-> > Sorry I did not specify. When working with the start_cont mode with a
-> > frequency of more than 5 MHz, I have an overflow error.
->
-> Which probably happens due to the inefficient way you handle the data;
-> your program simply is too slow.
->
-> > That leads to a chaotic change in the spectrum. I agree about the
-> > wrong allocation of memory, but I created my own data array and ran
-> > it through the whole chain of changes and additions and had what I
-> > expected at the output.
->
-> Huh? When using offline data, your computationally load doesn't matter;
-> I'm not sure I'm understanding you correctly here!
->
-> > Moreover, the data array was much more than what I get from the
-> > board. In this regard, I decided that the matter is in the reading
-> > from the board.
->
-> I'll allow myself to doubt that: Again, the fact that your data array
-> runs through smoothly is no indication for your software being fast
-> enough to keep up with the torrent of samples UHD will give you! When
-> it doesn't keep up, you see exactly what you're describing: UHD
-> reporting overflows due to your software not fetching samples fast
-> enough. Overflows aren't UHD bugs, they are problems in the way you use
-> UHD!
->
-> >  I have seen examples, but start_cont mode is used there and there
-> > are not so many frequency adjustments. Therefore, I decided to use
-> > the num_sams_and_done mode, but there is also a problem with it which
-> > is described in the previous message. If you have more suggestions, I
-> > will be very grateful to you.
->
-> Well, exactly what I wrote in my previous mail: you need to make your
-> software fast enough. Preallocate the buffer; don't append to its end.
->
-> Aside from that, do some profiling. Under linux, `perf top -ag python
-> yourscript.py` is your friend to figure out where your program spends
-> its CPU cycles.
->
-> Best regards,
-> Marcus
->
-> >
-> > =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 22:27, Marcus M=
-=C3=BCller <marcus.mueller@ettus.com>:
-> > > Dear Ivan,
-> > >
-> > > it's not clear what you've modified. I'm not aware of any UHD
-> > > function
-> > > that restricts any frequency to 5 MHz.
-> > > Could you elaborate on which code you're basing this on?
-> > >
-> > > Also, while I really like the Python interface, if you're really
-> > > after
-> > > high-rate sampling, it might simply not be the optimal thing to
-> > > use:
-> > > You'd have to be very careful in Pythonland to not run into
-> > > performance
-> > > problems once you've gotten the samples from UHD:
-> > >
-> > >         complex_buffs=3Dnp.append(complex_buffs,result).ravel()
-> > >
-> > > A very bad idea. You're constantly re-allocating buffers here.
-> > > Don't do
-> > > that. No matter in which programming language you'd do this, you'd
-> > > make
-> > > sure that the buffer is large enough for your data collection to
-> > > begin
-> > > with and then tell the UHD library to fill the appropriate part in
-> > > that
-> > > buffer to avoid a) having to ask for a larger buffer regularly and
-> > > b)
-> > > avoid copying data.
-> > > Asking for an appended version of your last buffer means that
-> > > something
-> > > has to allocate a larger buffer =E2=80=93 which comes at very large c=
-ost!
-> > >
-> > > Best regards,
-> > > Marcus
-> > >
-> > > On Sat, 2019-05-11 at 21:31 +0300, Ivan Zahartchuk via USRP-users
-> > > wrote:
-> > > > Hello. My task is to make a broadband spectrum analyzer on the
-> > > usrp
-> > > > b200 board. For this, the standard functions for reading samples
-> > > in
-> > > > python are not suitable for me. Therefore, I edited them. When
-> > > > reading samples using the start_con method, I cannot specify a
-> > > band
-> > > > greater than 5 MHz. Therefore, I use the num_sams_and_done
-> > > method.
-> > > > But I have problems with him. The fact is that my frequency which
-> > > I
-> > > > know appears in the wrong place. For example, I generate a
-> > > frequency
-> > > > of 910 MHz and it appears at 930 MHz (with a bandwidth of 20
-> > > MHz). I
-> > > > can not understand what caused it. Here are my reading functions
-> > > in
-> > > > two ways. I would be extremely grateful for the help.
-> > > >
-> > > >
-> > > >
-> > > >
-> > > > def test_reciev(self,freq,bandwich):
-> > > >     complex_buffs=3Dnp.array([])
-> > > >     buffs =3D np.array([])
-> > > >     result =3D np.empty((len([0]), self.samples),
-> > > dtype=3Dnp.complex64)
-> > > >
-> > > >     for i, freqq in enumerate(freq):
-> > > >
-> > > >         recv_samps =3D 0
-> > > >         #self.usrp.set_rx_rate(bandwich[i])
-> > > >         k=3Duhd.types.TuneRequest(freqq)
-> > > >         #k.args(uhd.types.device_addr("mode_n=3Dinteger"))
-> > > >         self.usrp.set_rx_freq(k)
-> > > >         self.stream_cmd =3D
-> > > > uhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
-> > > >         self.stream_cmd.stream_now =3D True
-> > > >         self.streamer_rx.issue_stream_cmd(self.stream_cmd)
-> > > >         while self.usrp.get_rx_sensor("lo_locked").to_bool() !=3D
-> > > True:
-> > > >             continue
-> > > >
-> > > >         samps =3D np.array([], dtype=3Dnp.complex64)
-> > > >         while recv_samps < self.samples:
-> > > >
-> > > >             samps =3D self.streamer_rx.recv(self.recv_buff,
-> > > > self.metadata_rx)
-> > > >             if self.metadata_rx.error_code !=3D
-> > > > lib.types.rx_metadata_error_code.none:
-> > > >                 print(self.metadata_rx.strerror())
-> > > >             if samps:
-> > > >                 real_samps =3D min(self.samples - recv_samps,
-> > > samps)
-> > > >                 result[:, recv_samps:recv_samps + real_samps] =3D
-> > > > self.recv_buff[:, 0:real_samps]
-> > > >                 recv_samps +=3D real_samps
-> > > >         #print (self.usrp.get_rx_sensor('rssi'))
-> > > >         #print(self.streamer_rx.get_max_num_samps())
-> > > >         #while samps:
-> > > >         #    samps =3D self.streamer_rx.recv(self.recv_buff,
-> > > > self.metadata_rx)
-> > > >
-> > > >
-> > > >         #self.stream_cmd.time_spec =3D lib.types.time_spec(0)
-> > > >         self.stream_cmd =3D
-> > > > lib.types.stream_cmd(lib.types.stream_mode.stop_cont)
-> > > >         self.streamer_rx.issue_stream_cmd(self.stream_cmd)
-> > > >
-> > > >         complex_buffs=3Dnp.append(complex_buffs,result).ravel()
-> > > >         #correct_result=3Dresult
-> > > >         correct_result_1=3Dresult-
-> > > > (np.mean(result.real)+np.mean(result.imag)*1j)
-> > > >         #correct_result.real=3Dresult.real-np.mean(result.real)
-> > > >         #correct_result.imag =3D result.imag - np.mean(result.imag)
-> > > >
-> > > >         PSD =3D  self.fft_test(result)
-> > > >
-> > > >
-> > > >         #PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])
-> > > >
-> > > >
-> > > >         buffs =3D np.append(buffs,PSD)
-> > > >
-> > > >
-> > > >
-> > > >     return complex_buffs,
-> > > > buffs#np.append(buffs[value.samples:],buffs[:value.samples])
-> > > >
-> > > >
-> > > >
-> > > > def test_reciev(self,freq,bandwich):
-> > > >     complex_buffs=3Dnp.array([])
-> > > >     buffs =3D np.array([])
-> > > >     result =3D np.empty((len([0]), self.samples),
-> > > dtype=3Dnp.complex64)
-> > > >
-> > > >     for i, freqq in enumerate(freq):
-> > > >
-> > > >         recv_samps =3D 0
-> > > >         #self.usrp.set_rx_rate(bandwich[i])
-> > > >         k=3Duhd.types.TuneRequest(freqq)
-> > > >         #k.args(uhd.types.device_addr("mode_n=3Dinteger"))
-> > > >         self.usrp.set_rx_freq(k)
-> > > >
-> > > >         while self.usrp.get_rx_sensor("lo_locked").to_bool() !=3D
-> > > True:
-> > > >             continue
-> > > >
-> > > >
-> > > >         while recv_samps < self.samples:
-> > > >
-> > > >             samps =3D self.streamer_rx.recv(self.recv_buff,
-> > > > self.metadata_rx)
-> > > >             if self.metadata_rx.error_code !=3D
-> > > > lib.types.rx_metadata_error_code.none:
-> > > >                 print(self.metadata_rx.strerror())
-> > > >             if samps:
-> > > >                 real_samps =3D min(self.samples - recv_samps,
-> > > samps)
-> > > >                 result[:, recv_samps:recv_samps + real_samps] =3D
-> > > > self.recv_buff[:, 0:real_samps]
-> > > >                 recv_samps +=3D real_samps
-> > > >         #print (self.usrp.get_rx_sensor('rssi'))
-> > > >
-> > > >
-> > > >         self.stream_cmd.time_spec =3D lib.types.time_spec(0)
-> > > >         self.streamer_rx.issue_stream_cmd(self.stream_cmd)
-> > > >
-> > > >         complex_buffs=3Dnp.append(complex_buffs,result).ravel()
-> > > >         correct_result=3Dresult
-> > > >         correct_result_1=3Dresult-
-> > > > (np.mean(result.real)+np.mean(result.imag)*1j)
-> > > >         correct_result.real=3Dresult.real-np.mean(result.real)
-> > > >         correct_result.imag =3D result.imag - np.mean(result.imag)
-> > > >
-> > > >         PSD =3D  self.fft_test(result)
-> > > >
-> > > >
-> > > >         #PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])
-> > > >
-> > > >
-> > > >         buffs =3D np.append(buffs,PSD)
-> > > >
-> > > >
-> > > >
-> > > >     return complex_buffs,
-> > > > buffs#np.append(buffs[value.samples:],buffs[:value.samples])
-> > > >
-> > > >
-> > > >
-> > > >
-> > > >
-> > > >
-> > > >
-> > > >
-> > > > _______________________________________________
-> > > > USRP-users mailing list
-> > > > USRP-users@lists.ettus.com
-> > > >
-> > > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> > >
->
->
 
---000000000000533cbc0588a2aed5
+
+
+def test_reciev(self,freq,bandwich):
+    complex_buffs=np.array([])
+    buffs = np.array([])
+    result = np.empty((len([0]), self.samples), dtype=np.complex64)
+
+    for i, freqq in enumerate(freq):
+
+        recv_samps = 0
+        #self.usrp.set_rx_rate(bandwich[i])
+        k=uhd.types.TuneRequest(freqq)
+        #k.args(uhd.types.device_addr("mode_n=integer"))
+        self.usrp.set_rx_freq(k)
+        self.stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
+        self.stream_cmd.stream_now = True
+        self.streamer_rx.issue_stream_cmd(self.stream_cmd)
+        while self.usrp.get_rx_sensor("lo_locked").to_bool() != True:
+            continue
+
+        samps = np.array([], dtype=np.complex64)
+        while recv_samps < self.samples:
+
+            samps = self.streamer_rx.recv(self.recv_buff, self.metadata_rx)
+            if self.metadata_rx.error_code !=
+lib.types.rx_metadata_error_code.none:
+                print(self.metadata_rx.strerror())
+            if samps:
+                real_samps = min(self.samples - recv_samps, samps)
+                result[:, recv_samps:recv_samps + real_samps] =
+self.recv_buff[:, 0:real_samps]
+                recv_samps += real_samps
+        #print (self.usrp.get_rx_sensor('rssi'))
+        #print(self.streamer_rx.get_max_num_samps())
+        #while samps:
+        #    samps = self.streamer_rx.recv(self.recv_buff, self.metadata_rx)
+
+
+        #self.stream_cmd.time_spec = lib.types.time_spec(0)
+        self.stream_cmd = lib.types.stream_cmd(lib.types.stream_mode.stop_cont)
+        self.streamer_rx.issue_stream_cmd(self.stream_cmd)
+
+        complex_buffs=np.append(complex_buffs,result).ravel()
+        #correct_result=result
+        correct_result_1=result-(np.mean(result.real)+np.mean(result.imag)*1j)
+        #correct_result.real=result.real-np.mean(result.real)
+        #correct_result.imag = result.imag - np.mean(result.imag)
+
+        PSD =  self.fft_test(result)
+
+
+        #PSD[8188:8202]=np.mean(PSD[8180:8188])
+
+
+        buffs = np.append(buffs,PSD)
+
+
+
+    return complex_buffs,
+buffs#np.append(buffs[value.samples:],buffs[:value.samples])
+
+
+
+def test_reciev(self,freq,bandwich):
+    complex_buffs=np.array([])
+    buffs = np.array([])
+    result = np.empty((len([0]), self.samples), dtype=np.complex64)
+
+    for i, freqq in enumerate(freq):
+
+        recv_samps = 0
+        #self.usrp.set_rx_rate(bandwich[i])
+        k=uhd.types.TuneRequest(freqq)
+        #k.args(uhd.types.device_addr("mode_n=integer"))
+        self.usrp.set_rx_freq(k)
+
+        while self.usrp.get_rx_sensor("lo_locked").to_bool() != True:
+            continue
+
+
+        while recv_samps < self.samples:
+
+            samps = self.streamer_rx.recv(self.recv_buff, self.metadata_rx)
+            if self.metadata_rx.error_code !=
+lib.types.rx_metadata_error_code.none:
+                print(self.metadata_rx.strerror())
+            if samps:
+                real_samps = min(self.samples - recv_samps, samps)
+                result[:, recv_samps:recv_samps + real_samps] =
+self.recv_buff[:, 0:real_samps]
+                recv_samps += real_samps
+        #print (self.usrp.get_rx_sensor('rssi'))
+
+
+        self.stream_cmd.time_spec = lib.types.time_spec(0)
+        self.streamer_rx.issue_stream_cmd(self.stream_cmd)
+
+        complex_buffs=np.append(complex_buffs,result).ravel()
+        correct_result=result
+        correct_result_1=result-(np.mean(result.real)+np.mean(result.imag)*1j)
+        correct_result.real=result.real-np.mean(result.real)
+        correct_result.imag = result.imag - np.mean(result.imag)
+
+        PSD =  self.fft_test(result)
+
+
+        #PSD[8188:8202]=np.mean(PSD[8180:8188])
+
+
+        buffs = np.append(buffs,PSD)
+
+
+
+    return complex_buffs,
+buffs#np.append(buffs[value.samples:],buffs[:value.samples])
+
+--000000000000749ad20588a0e43f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Thanks for the help. I will try to fix ev=
-erything tomorrow and see the result. But tell me, maybe I don=E2=80=99t fu=
-lly understand how num_sams_and_done works. If I understand correctly, this=
- method does not send a continuous stream of data but simply gives a certai=
-n number of samples upon request. And in this case, we are not tied to syst=
-em performance. Maybe I do not understand this. Could you clarify this?<br>=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">=D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 23:19, Marcus=
- M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com">marcus.mueller=
-@ettus.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">Dear Ivan,<br>
-<br>
-On Sat, 2019-05-11 at 20:00 +0300, Ivan Zahartchuk wrote:<br>
-&gt; Sorry I did not specify. When working with the start_cont mode with a<=
-br>
-&gt; frequency of more than 5 MHz, I have an overflow error. <br>
-<br>
-Which probably happens due to the inefficient way you handle the data;<br>
-your program simply is too slow.<br>
-<br>
-&gt; That leads to a chaotic change in the spectrum. I agree about the<br>
-&gt; wrong allocation of memory, but I created my own data array and ran<br=
->
-&gt; it through the whole chain of changes and additions and had what I<br>
-&gt; expected at the output. <br>
-<br>
-Huh? When using offline data, your computationally load doesn&#39;t matter;=
-<br>
-I&#39;m not sure I&#39;m understanding you correctly here! <br>
-<br>
-&gt; Moreover, the data array was much more than what I get from the<br>
-&gt; board. In this regard, I decided that the matter is in the reading<br>
-&gt; from the board.<br>
-<br>
-I&#39;ll allow myself to doubt that: Again, the fact that your data array<b=
-r>
-runs through smoothly is no indication for your software being fast<br>
-enough to keep up with the torrent of samples UHD will give you! When<br>
-it doesn&#39;t keep up, you see exactly what you&#39;re describing: UHD<br>
-reporting overflows due to your software not fetching samples fast<br>
-enough. Overflows aren&#39;t UHD bugs, they are problems in the way you use=
-<br>
-UHD!<br>
-<br>
-&gt;=C2=A0 I have seen examples, but start_cont mode is used there and ther=
-e<br>
-&gt; are not so many frequency adjustments. Therefore, I decided to use<br>
-&gt; the num_sams_and_done mode, but there is also a problem with it which<=
-br>
-&gt; is described in the previous message. If you have more suggestions, I<=
-br>
-&gt; will be very grateful to you.<br>
-<br>
-Well, exactly what I wrote in my previous mail: you need to make your<br>
-software fast enough. Preallocate the buffer; don&#39;t append to its end.<=
-br>
-<br>
-Aside from that, do some profiling. Under linux, `perf top -ag python<br>
-yourscript.py` is your friend to figure out where your program spends<br>
-its CPU cycles.<br>
-<br>
-Best regards,<br>
-Marcus<br>
-<br>
-&gt; <br>
-&gt; =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 22:27, Marcus =
-M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com" target=3D"_blan=
-k">marcus.mueller@ettus.com</a>&gt;:<br>
-&gt; &gt; Dear Ivan,<br>
-&gt; &gt; <br>
-&gt; &gt; it&#39;s not clear what you&#39;ve modified. I&#39;m not aware of=
- any UHD<br>
-&gt; &gt; function<br>
-&gt; &gt; that restricts any frequency to 5 MHz.<br>
-&gt; &gt; Could you elaborate on which code you&#39;re basing this on?<br>
-&gt; &gt; <br>
-&gt; &gt; Also, while I really like the Python interface, if you&#39;re rea=
-lly<br>
-&gt; &gt; after<br>
-&gt; &gt; high-rate sampling, it might simply not be the optimal thing to<b=
-r>
-&gt; &gt; use:<br>
-&gt; &gt; You&#39;d have to be very careful in Pythonland to not run into<b=
-r>
-&gt; &gt; performance<br>
-&gt; &gt; problems once you&#39;ve gotten the samples from UHD:<br>
-&gt; &gt; <br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0complex_buffs=3Dnp.append(comple=
-x_buffs,result).ravel()<br>
-&gt; &gt; <br>
-&gt; &gt; A very bad idea. You&#39;re constantly re-allocating buffers here=
-.<br>
-&gt; &gt; Don&#39;t do<br>
-&gt; &gt; that. No matter in which programming language you&#39;d do this, =
-you&#39;d<br>
-&gt; &gt; make<br>
-&gt; &gt; sure that the buffer is large enough for your data collection to<=
-br>
-&gt; &gt; begin<br>
-&gt; &gt; with and then tell the UHD library to fill the appropriate part i=
-n<br>
-&gt; &gt; that<br>
-&gt; &gt; buffer to avoid a) having to ask for a larger buffer regularly an=
-d<br>
-&gt; &gt; b)<br>
-&gt; &gt; avoid copying data.<br>
-&gt; &gt; Asking for an appended version of your last buffer means that<br>
-&gt; &gt; something<br>
-&gt; &gt; has to allocate a larger buffer =E2=80=93 which comes at very lar=
-ge cost!<br>
-&gt; &gt; <br>
-&gt; &gt; Best regards,<br>
-&gt; &gt; Marcus <br>
-&gt; &gt; <br>
-&gt; &gt; On Sat, 2019-05-11 at 21:31 +0300, Ivan Zahartchuk via USRP-users=
-<br>
-&gt; &gt; wrote:<br>
-&gt; &gt; &gt; Hello. My task is to make a broadband spectrum analyzer on t=
-he<br>
-&gt; &gt; usrp<br>
-&gt; &gt; &gt; b200 board. For this, the standard functions for reading sam=
-ples<br>
-&gt; &gt; in<br>
-&gt; &gt; &gt; python are not suitable for me. Therefore, I edited them. Wh=
-en<br>
-&gt; &gt; &gt; reading samples using the start_con method, I cannot specify=
- a<br>
-&gt; &gt; band<br>
-&gt; &gt; &gt; greater than 5 MHz. Therefore, I use the num_sams_and_done<b=
-r>
-&gt; &gt; method.<br>
-&gt; &gt; &gt; But I have problems with him. The fact is that my frequency =
-which<br>
-&gt; &gt; I<br>
-&gt; &gt; &gt; know appears in the wrong place. For example, I generate a<b=
-r>
-&gt; &gt; frequency<br>
-&gt; &gt; &gt; of 910 MHz and it appears at 930 MHz (with a bandwidth of 20=
-<br>
-&gt; &gt; MHz). I<br>
-&gt; &gt; &gt; can not understand what caused it. Here are my reading funct=
-ions<br>
-&gt; &gt; in<br>
-&gt; &gt; &gt; two ways. I would be extremely grateful for the help.<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; def test_reciev(self,freq,bandwich):<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0complex_buffs=3Dnp.array([])<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0buffs =3D np.array([])<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0result =3D np.empty((len([0]), self.sampl=
-es),<br>
-&gt; &gt; dtype=3Dnp.complex64)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0for i, freqq in enumerate(freq):<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0recv_samps =3D 0<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#self.usrp.set_rx_rate(band=
-wich[i])<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0k=3Duhd.types.TuneRequest(f=
-reqq)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#k.args(uhd.types.device_ad=
-dr(&quot;mode_n=3Dinteger&quot;))<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.usrp.set_rx_freq(k)<br=
->
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.stream_cmd =3D<br>
-&gt; &gt; &gt; uhd.types.StreamCMD(uhd.types.StreamMode.start_cont)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.stream_cmd.stream_now =
-=3D True<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.streamer_rx.issue_stre=
-am_cmd(self.stream_cmd)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0while self.usrp.get_rx_sens=
-or(&quot;lo_locked&quot;).to_bool() !=3D<br>
-&gt; &gt; True:<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0continue<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0samps =3D np.array([], dtyp=
-e=3Dnp.complex64)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0while recv_samps &lt; self.=
-samples:<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0samps =3D sel=
-f.streamer_rx.recv(self.recv_buff,<br>
-&gt; &gt; &gt; self.metadata_rx)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if self.metad=
-ata_rx.error_code !=3D<br>
-&gt; &gt; &gt; lib.types.rx_metadata_error_code.none:<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0print(self.metadata_rx.strerror())<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if samps:<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0real_samps =3D min(self.samples - recv_samps,<br>
-&gt; &gt; samps)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0result[:, recv_samps:recv_samps + real_samps] =3D<br>
-&gt; &gt; &gt; self.recv_buff[:, 0:real_samps]<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0recv_samps +=3D real_samps<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#print (self.usrp.get_rx_se=
-nsor(&#39;rssi&#39;))<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#print(self.streamer_rx.get=
-_max_num_samps())<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#while samps:<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#=C2=A0 =C2=A0 samps =3D se=
-lf.streamer_rx.recv(self.recv_buff,<br>
-&gt; &gt; &gt; self.metadata_rx)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#self.stream_cmd.time_spec =
-=3D lib.types.time_spec(0)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.stream_cmd =3D<br>
-&gt; &gt; &gt; lib.types.stream_cmd(lib.types.stream_mode.stop_cont)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.streamer_rx.issue_stre=
-am_cmd(self.stream_cmd)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0complex_buffs=3Dnp.append(c=
-omplex_buffs,result).ravel()<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#correct_result=3Dresult<br=
->
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result_1=3Dresult-<=
-br>
-&gt; &gt; &gt; (np.mean(result.real)+np.mean(result.imag)*1j)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#correct_result.real=3Dresu=
-lt.real-np.mean(result.real)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#correct_result.imag =3D re=
-sult.imag - np.mean(result.imag)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PSD =3D=C2=A0 self.fft_test=
-(result)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#PSD[8188:8202]=3Dnp.mean(P=
-SD[8180:8188])<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0buffs =3D np.append(buffs,P=
-SD)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0return complex_buffs,<br>
-&gt; &gt; &gt; buffs#np.append(buffs[value.samples:],buffs[:value.samples])=
-<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; def test_reciev(self,freq,bandwich):<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0complex_buffs=3Dnp.array([])<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0buffs =3D np.array([])<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0result =3D np.empty((len([0]), self.sampl=
-es),<br>
-&gt; &gt; dtype=3Dnp.complex64)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0for i, freqq in enumerate(freq):<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0recv_samps =3D 0<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#self.usrp.set_rx_rate(band=
-wich[i])<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0k=3Duhd.types.TuneRequest(f=
-reqq)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#k.args(uhd.types.device_ad=
-dr(&quot;mode_n=3Dinteger&quot;))<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.usrp.set_rx_freq(k)<br=
->
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0while self.usrp.get_rx_sens=
-or(&quot;lo_locked&quot;).to_bool() !=3D<br>
-&gt; &gt; True:<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0continue<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0while recv_samps &lt; self.=
-samples:<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0samps =3D sel=
-f.streamer_rx.recv(self.recv_buff,<br>
-&gt; &gt; &gt; self.metadata_rx)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if self.metad=
-ata_rx.error_code !=3D<br>
-&gt; &gt; &gt; lib.types.rx_metadata_error_code.none:<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0print(self.metadata_rx.strerror())<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if samps:<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0real_samps =3D min(self.samples - recv_samps,<br>
-&gt; &gt; samps)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0result[:, recv_samps:recv_samps + real_samps] =3D<br>
-&gt; &gt; &gt; self.recv_buff[:, 0:real_samps]<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0recv_samps +=3D real_samps<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#print (self.usrp.get_rx_se=
-nsor(&#39;rssi&#39;))<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.stream_cmd.time_spec =
-=3D lib.types.time_spec(0)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.streamer_rx.issue_stre=
-am_cmd(self.stream_cmd)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0complex_buffs=3Dnp.append(c=
-omplex_buffs,result).ravel()<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result=3Dresult<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result_1=3Dresult-<=
-br>
-&gt; &gt; &gt; (np.mean(result.real)+np.mean(result.imag)*1j)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result.real=3Dresul=
-t.real-np.mean(result.real)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result.imag =3D res=
-ult.imag - np.mean(result.imag)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PSD =3D=C2=A0 self.fft_test=
-(result)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#PSD[8188:8202]=3Dnp.mean(P=
-SD[8180:8188])<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0buffs =3D np.append(buffs,P=
-SD)<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0return complex_buffs,<br>
-&gt; &gt; &gt; buffs#np.append(buffs[value.samples:],buffs[:value.samples])=
-<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; _______________________________________________<br>
-&gt; &gt; &gt; USRP-users mailing list<br>
-&gt; &gt; &gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_bla=
-nk">USRP-users@lists.ettus.com</a><br>
-&gt; &gt; &gt; <br>
-&gt; &gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
-ts.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/m=
-ailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt; &gt; <br>
-<br>
-</blockquote></div>
+<div dir=3D"ltr"><div class=3D"gmail-text-wrap gmail-tlid-copy-target"><div=
+ class=3D"gmail-result-shield-container gmail-tlid-copy-target" tabindex=3D=
+"0"><span class=3D"gmail-tlid-translation gmail-translation" lang=3D"en">He=
+llo. My task is to make a broadband spectrum analyzer on the usrp b200 boar=
+d. For this, the standard functions for reading samples in python are not s=
+uitable for me. Therefore, I edited them. When reading samples using the st=
+art_con method, I cannot specify a band greater than 5 MHz. Therefore, I us=
+e the num_sams_and_done method. But I have problems with him. The fact is t=
+hat my frequency which I know appears in the wrong place. For example, I ge=
+nerate a frequency of 910 MHz and it appears at 930 MHz (with a bandwidth o=
+f 20 MHz). I can not understand what caused it. Here are my reading functio=
+ns in two ways. I would be extremely grateful for the help.</span><span cla=
+ss=3D"gmail-tlid-translation-gender-indicator gmail-translation-gender-indi=
+cator"></span></div></div><pre style=3D"background-color:rgb(39,40,34);colo=
+r:rgb(248,248,242);font-family:&quot;DejaVu Sans Mono&quot;"><span style=3D=
+"color:rgb(102,217,239);font-style:italic"><br><br><br><br>def </span><span=
+ style=3D"color:rgb(166,226,46)">test_reciev</span>(<span style=3D"color:rg=
+b(148,85,141)">self</span>,<span style=3D"color:rgb(253,151,31);font-style:=
+italic">freq</span>,<span style=3D"color:rgb(128,128,127)">bandwich</span>)=
+<span style=3D"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(=
+249,38,114)">    </span>complex_buffs<span style=3D"color:rgb(249,38,114)">=
+=3D</span>np.<span style=3D"color:rgb(102,217,239)">array</span>([])<br>   =
+ buffs <span style=3D"color:rgb(249,38,114)">=3D </span>np.<span style=3D"c=
+olor:rgb(102,217,239)">array</span>([])<br>    result <span style=3D"color:=
+rgb(249,38,114)">=3D </span>np.<span style=3D"color:rgb(102,217,239)">empty=
+</span>((<span style=3D"color:rgb(102,217,239)">len</span>([<span style=3D"=
+color:rgb(174,129,255)">0</span>]), <span style=3D"color:rgb(148,85,141)">s=
+elf</span>.samples), <span style=3D"color:rgb(170,73,38)">dtype</span><span=
+ style=3D"color:rgb(249,38,114)">=3D</span>np.complex64)<br><br>    <span s=
+tyle=3D"color:rgb(102,217,239);font-style:italic">for </span>i, freqq <span=
+ style=3D"color:rgb(102,217,239);font-style:italic">in </span><span style=
+=3D"color:rgb(102,217,239)">enumerate</span>(<span style=3D"color:rgb(253,1=
+51,31);font-style:italic">freq</span>)<span style=3D"color:rgb(249,38,114)"=
+>:<br></span><span style=3D"color:rgb(249,38,114)"><br></span><span style=
+=3D"color:rgb(249,38,114)">        </span>recv_samps <span style=3D"color:r=
+gb(249,38,114)">=3D </span><span style=3D"color:rgb(174,129,255)">0<br></sp=
+an><span style=3D"color:rgb(174,129,255)">        </span><span style=3D"col=
+or:rgb(117,113,94)">#self.usrp.set_rx_rate(bandwich[i])<br></span><span sty=
+le=3D"color:rgb(117,113,94)">        </span>k<span style=3D"color:rgb(249,3=
+8,114)">=3D</span>uhd.types.<span style=3D"color:rgb(102,217,239)">TuneRequ=
+est</span>(freqq)<br>        <span style=3D"color:rgb(117,113,94)">#k.args(=
+uhd.types.device_addr(&quot;mode_n=3Dinteger&quot;))<br></span><span style=
+=3D"color:rgb(117,113,94)">        </span><span style=3D"color:rgb(148,85,1=
+41)">self</span>.usrp.<span style=3D"color:rgb(102,217,239)">set_rx_freq</s=
+pan>(k)<br>        <span style=3D"color:rgb(148,85,141)">self</span>.stream=
+_cmd <span style=3D"color:rgb(249,38,114)">=3D </span>uhd.types.<span style=
+=3D"color:rgb(102,217,239)">StreamCMD</span>(uhd.types.StreamMode.start_con=
+t)<br>        <span style=3D"color:rgb(148,85,141)">self</span>.stream_cmd.=
+stream_now <span style=3D"color:rgb(249,38,114)">=3D </span><span style=3D"=
+color:rgb(102,217,239)">True<br></span><span style=3D"color:rgb(102,217,239=
+)">        </span><span style=3D"color:rgb(148,85,141)">self</span>.streame=
+r_rx.<span style=3D"color:rgb(102,217,239)">issue_stream_cmd</span>(<span s=
+tyle=3D"color:rgb(148,85,141)">self</span>.stream_cmd)<br>        <span sty=
+le=3D"color:rgb(102,217,239);font-style:italic">while </span><span style=3D=
+"color:rgb(148,85,141)">self</span>.usrp.<span style=3D"color:rgb(102,217,2=
+39)">get_rx_sensor</span>(<span style=3D"color:rgb(165,194,97)">&quot;lo_lo=
+cked&quot;</span>).<span style=3D"color:rgb(102,217,239)">to_bool</span>() =
+<span style=3D"color:rgb(249,38,114)">!=3D </span><span style=3D"color:rgb(=
+102,217,239)">True</span><span style=3D"color:rgb(249,38,114)">:<br></span>=
+<span style=3D"color:rgb(249,38,114)">            </span><span style=3D"col=
+or:rgb(102,217,239);font-style:italic">continue<br></span><span style=3D"co=
+lor:rgb(102,217,239);font-style:italic"><br></span><span style=3D"color:rgb=
+(102,217,239);font-style:italic">        </span><span style=3D"color:rgb(12=
+8,128,127)">samps </span><span style=3D"color:rgb(249,38,114)">=3D </span>n=
+p.<span style=3D"color:rgb(102,217,239)">array</span>([], <span style=3D"co=
+lor:rgb(170,73,38)">dtype</span><span style=3D"color:rgb(249,38,114)">=3D</=
+span>np.complex64)<br>        <span style=3D"color:rgb(102,217,239);font-st=
+yle:italic">while </span>recv_samps <span style=3D"color:rgb(249,38,114)">&=
+lt; </span><span style=3D"color:rgb(148,85,141)">self</span>.samples<span s=
+tyle=3D"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(249,38,=
+114)"><br></span><span style=3D"color:rgb(249,38,114)">            </span>s=
+amps <span style=3D"color:rgb(249,38,114)">=3D </span><span style=3D"color:=
+rgb(148,85,141)">self</span>.streamer_rx.<span style=3D"color:rgb(102,217,2=
+39)">recv</span>(<span style=3D"color:rgb(148,85,141)">self</span>.recv_buf=
+f, <span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx)<br>      =
+      <span style=3D"color:rgb(102,217,239);font-style:italic">if </span><s=
+pan style=3D"color:rgb(148,85,141)">self</span>.metadata_rx.error_code <spa=
+n style=3D"color:rgb(249,38,114)">!=3D </span>lib.types.rx_metadata_error_c=
+ode.none<span style=3D"color:rgb(249,38,114)">:<br></span><span style=3D"co=
+lor:rgb(249,38,114)">                </span><span style=3D"color:rgb(102,21=
+7,239);font-style:italic">print</span>(<span style=3D"color:rgb(148,85,141)=
+">self</span>.metadata_rx.<span style=3D"color:rgb(102,217,239)">strerror</=
+span>())<br>            <span style=3D"color:rgb(102,217,239);font-style:it=
+alic">if </span>samps<span style=3D"color:rgb(249,38,114)">:<br></span><spa=
+n style=3D"color:rgb(249,38,114)">                </span>real_samps <span s=
+tyle=3D"color:rgb(249,38,114)">=3D </span><span style=3D"color:rgb(102,217,=
+239)">min</span>(<span style=3D"color:rgb(148,85,141)">self</span>.samples =
+<span style=3D"color:rgb(249,38,114)">- </span>recv_samps, samps)<br>      =
+          result[<span style=3D"color:rgb(249,38,114)">:</span>, recv_samps=
+<span style=3D"color:rgb(249,38,114)">:</span>recv_samps <span style=3D"col=
+or:rgb(249,38,114)">+ </span>real_samps] <span style=3D"color:rgb(249,38,11=
+4)">=3D </span><span style=3D"color:rgb(148,85,141)">self</span>.recv_buff[=
+<span style=3D"color:rgb(249,38,114)">:</span>, <span style=3D"color:rgb(17=
+4,129,255)">0</span><span style=3D"color:rgb(249,38,114)">:</span>real_samp=
+s]<br>                recv_samps <span style=3D"color:rgb(249,38,114)">+=3D=
+ </span>real_samps<br>        <span style=3D"color:rgb(117,113,94)">#print =
+(self.usrp.get_rx_sensor(&#39;rssi&#39;))<br></span><span style=3D"color:rg=
+b(117,113,94)">        #print(self.streamer_rx.get_max_num_samps())<br></sp=
+an><span style=3D"color:rgb(117,113,94)">        #while samps:<br></span><s=
+pan style=3D"color:rgb(117,113,94)">        #    samps =3D self.streamer_rx=
+.recv(self.recv_buff, self.metadata_rx)<br></span><span style=3D"color:rgb(=
+117,113,94)"><br></span><span style=3D"color:rgb(117,113,94)"><br></span><s=
+pan style=3D"color:rgb(117,113,94)">        #self.stream_cmd.time_spec =3D =
+lib.types.time_spec(0)<br></span><span style=3D"color:rgb(117,113,94)">    =
+    </span><span style=3D"color:rgb(148,85,141)">self</span>.stream_cmd <sp=
+an style=3D"color:rgb(249,38,114)">=3D </span>lib.types.<span style=3D"colo=
+r:rgb(102,217,239)">stream_cmd</span>(lib.types.stream_mode.stop_cont)<br> =
+       <span style=3D"color:rgb(148,85,141)">self</span>.streamer_rx.<span =
+style=3D"color:rgb(102,217,239)">issue_stream_cmd</span>(<span style=3D"col=
+or:rgb(148,85,141)">self</span>.stream_cmd)<br><br>        complex_buffs<sp=
+an style=3D"color:rgb(249,38,114)">=3D</span>np.<span style=3D"color:rgb(10=
+2,217,239)">append</span>(complex_buffs,result).<span style=3D"color:rgb(10=
+2,217,239)">ravel</span>()<br>        <span style=3D"color:rgb(117,113,94)"=
+>#correct_result=3Dresult<br></span><span style=3D"color:rgb(117,113,94)"> =
+       </span><span style=3D"color:rgb(128,128,127)">correct_result_1</span=
+><span style=3D"color:rgb(249,38,114)">=3D</span>result<span style=3D"color=
+:rgb(249,38,114)">-</span>(np.<span style=3D"color:rgb(102,217,239)">mean</=
+span>(result.real)<span style=3D"color:rgb(249,38,114)">+</span>np.<span st=
+yle=3D"color:rgb(102,217,239)">mean</span>(result.imag)<span style=3D"color=
+:rgb(249,38,114)">*</span><span style=3D"color:rgb(174,129,255)">1j</span>)=
+<br>        <span style=3D"color:rgb(117,113,94)">#correct_result.real=3Dre=
+sult.real-np.mean(result.real)<br></span><span style=3D"color:rgb(117,113,9=
+4)">        #correct_result.imag =3D result.imag - np.mean(result.imag)<br>=
+</span><span style=3D"color:rgb(117,113,94)"><br></span><span style=3D"colo=
+r:rgb(117,113,94)">        </span>PSD <span style=3D"color:rgb(249,38,114)"=
+>=3D  </span><span style=3D"color:rgb(148,85,141)">self</span>.<span style=
+=3D"color:rgb(102,217,239)">fft_test</span>(result)<br><br><br>        <spa=
+n style=3D"color:rgb(117,113,94)">#PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])=
+<br></span><span style=3D"color:rgb(117,113,94)"><br></span><span style=3D"=
+color:rgb(117,113,94)"><br></span><span style=3D"color:rgb(117,113,94)">   =
+     </span>buffs <span style=3D"color:rgb(249,38,114)">=3D </span>np.<span=
+ style=3D"color:rgb(102,217,239)">append</span>(buffs,PSD)<br><br><br><br> =
+   <span style=3D"color:rgb(102,217,239);font-style:italic">return </span>c=
+omplex_buffs, buffs<span style=3D"color:rgb(117,113,94)">#np.append(buffs[v=
+alue.samples:],buffs[:value.samples])<br><br><br><br><span style=3D"color:r=
+gb(102,217,239);font-style:italic">def </span><span style=3D"color:rgb(166,=
+226,46)">test_reciev</span>(<span style=3D"color:rgb(148,85,141)">self</spa=
+n>,<span style=3D"color:rgb(253,151,31);font-style:italic">freq</span>,<spa=
+n style=3D"color:rgb(128,128,127)">bandwich</span>)<span style=3D"color:rgb=
+(249,38,114)">:<br></span><span style=3D"color:rgb(249,38,114)">    </span>=
+complex_buffs<span style=3D"color:rgb(249,38,114)">=3D</span>np.<span style=
+=3D"color:rgb(102,217,239)">array</span>([])<br>    buffs <span style=3D"co=
+lor:rgb(249,38,114)">=3D </span>np.<span style=3D"color:rgb(102,217,239)">a=
+rray</span>([])<br>    result <span style=3D"color:rgb(249,38,114)">=3D </s=
+pan>np.<span style=3D"color:rgb(102,217,239)">empty</span>((<span style=3D"=
+color:rgb(102,217,239)">len</span>([<span style=3D"color:rgb(174,129,255)">=
+0</span>]), <span style=3D"color:rgb(148,85,141)">self</span>.samples), <sp=
+an style=3D"color:rgb(170,73,38)">dtype</span><span style=3D"color:rgb(249,=
+38,114)">=3D</span>np.complex64)<br><br>    <span style=3D"color:rgb(102,21=
+7,239);font-style:italic">for </span>i, freqq <span style=3D"color:rgb(102,=
+217,239);font-style:italic">in </span><span style=3D"color:rgb(102,217,239)=
+">enumerate</span>(<span style=3D"color:rgb(253,151,31);font-style:italic">=
+freq</span>)<span style=3D"color:rgb(249,38,114)">:<br></span><span style=
+=3D"color:rgb(249,38,114)"><br></span><span style=3D"color:rgb(249,38,114)"=
+>        </span>recv_samps <span style=3D"color:rgb(249,38,114)">=3D </span=
+><span style=3D"color:rgb(174,129,255)">0<br></span><span style=3D"color:rg=
+b(174,129,255)">        </span><span style=3D"color:rgb(117,113,94)">#self.=
+usrp.set_rx_rate(bandwich[i])<br></span><span style=3D"color:rgb(117,113,94=
+)">        </span>k<span style=3D"color:rgb(249,38,114)">=3D</span>uhd.type=
+s.<span style=3D"color:rgb(102,217,239)">TuneRequest</span>(freqq)<br>     =
+   <span style=3D"color:rgb(117,113,94)">#k.args(uhd.types.device_addr(&quo=
+t;mode_n=3Dinteger&quot;))<br></span><span style=3D"color:rgb(117,113,94)">=
+        </span><span style=3D"color:rgb(148,85,141)">self</span>.usrp.<span=
+ style=3D"color:rgb(102,217,239)">set_rx_freq</span>(k)<br><br>        <spa=
+n style=3D"color:rgb(102,217,239);font-style:italic">while </span><span sty=
+le=3D"color:rgb(148,85,141)">self</span>.usrp.<span style=3D"color:rgb(102,=
+217,239)">get_rx_sensor</span>(<span style=3D"color:rgb(165,194,97)">&quot;=
+lo_locked&quot;</span>).<span style=3D"color:rgb(102,217,239)">to_bool</spa=
+n>() <span style=3D"color:rgb(249,38,114)">!=3D </span><span style=3D"color=
+:rgb(102,217,239)">True</span><span style=3D"color:rgb(249,38,114)">:<br></=
+span><span style=3D"color:rgb(249,38,114)">            </span><span style=
+=3D"color:rgb(102,217,239);font-style:italic">continue<br></span><span styl=
+e=3D"color:rgb(102,217,239);font-style:italic"><br></span><span style=3D"co=
+lor:rgb(102,217,239);font-style:italic">       <br></span><span style=3D"co=
+lor:rgb(102,217,239);font-style:italic">        while </span>recv_samps <sp=
+an style=3D"color:rgb(249,38,114)">&lt; </span><span style=3D"color:rgb(148=
+,85,141)">self</span>.samples<span style=3D"color:rgb(249,38,114)">:<br></s=
+pan><span style=3D"color:rgb(249,38,114)"><br></span><span style=3D"color:r=
+gb(249,38,114)">            </span>samps <span style=3D"color:rgb(249,38,11=
+4)">=3D </span><span style=3D"color:rgb(148,85,141)">self</span>.streamer_r=
+x.<span style=3D"color:rgb(102,217,239)">recv</span>(<span style=3D"color:r=
+gb(148,85,141)">self</span>.recv_buff, <span style=3D"color:rgb(148,85,141)=
+">self</span>.metadata_rx)<br>            <span style=3D"color:rgb(102,217,=
+239);font-style:italic">if </span><span style=3D"color:rgb(148,85,141)">sel=
+f</span>.metadata_rx.error_code <span style=3D"color:rgb(249,38,114)">!=3D =
+</span>lib.types.rx_metadata_error_code.none<span style=3D"color:rgb(249,38=
+,114)">:<br></span><span style=3D"color:rgb(249,38,114)">                </=
+span><span style=3D"color:rgb(102,217,239);font-style:italic">print</span>(=
+<span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx.<span style=
+=3D"color:rgb(102,217,239)">strerror</span>())<br>            <span style=
+=3D"color:rgb(102,217,239);font-style:italic">if </span>samps<span style=3D=
+"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(249,38,114)"> =
+               </span>real_samps <span style=3D"color:rgb(249,38,114)">=3D =
+</span><span style=3D"color:rgb(102,217,239)">min</span>(<span style=3D"col=
+or:rgb(148,85,141)">self</span>.samples <span style=3D"color:rgb(249,38,114=
+)">- </span>recv_samps, samps)<br>                result[<span style=3D"col=
+or:rgb(249,38,114)">:</span>, recv_samps<span style=3D"color:rgb(249,38,114=
+)">:</span>recv_samps <span style=3D"color:rgb(249,38,114)">+ </span>real_s=
+amps] <span style=3D"color:rgb(249,38,114)">=3D </span><span style=3D"color=
+:rgb(148,85,141)">self</span>.recv_buff[<span style=3D"color:rgb(249,38,114=
+)">:</span>, <span style=3D"color:rgb(174,129,255)">0</span><span style=3D"=
+color:rgb(249,38,114)">:</span>real_samps]<br>                recv_samps <s=
+pan style=3D"color:rgb(249,38,114)">+=3D </span>real_samps<br>        <span=
+ style=3D"color:rgb(117,113,94)">#print (self.usrp.get_rx_sensor(&#39;rssi&=
+#39;))<br></span><span style=3D"color:rgb(117,113,94)"><br></span><span sty=
+le=3D"color:rgb(117,113,94)"><br></span><span style=3D"color:rgb(117,113,94=
+)">        </span><span style=3D"color:rgb(148,85,141)">self</span>.stream_=
+cmd.time_spec <span style=3D"color:rgb(249,38,114)">=3D </span>lib.types.<s=
+pan style=3D"color:rgb(102,217,239)">time_spec</span>(<span style=3D"color:=
+rgb(174,129,255)">0</span>)<br>        <span style=3D"color:rgb(148,85,141)=
+">self</span>.streamer_rx.<span style=3D"color:rgb(102,217,239)">issue_stre=
+am_cmd</span>(<span style=3D"color:rgb(148,85,141)">self</span>.stream_cmd)=
+<br><br>        complex_buffs<span style=3D"color:rgb(249,38,114)">=3D</spa=
+n>np.<span style=3D"color:rgb(102,217,239)">append</span>(complex_buffs,res=
+ult).<span style=3D"color:rgb(102,217,239)">ravel</span>()<br>        corre=
+ct_result<span style=3D"color:rgb(249,38,114)">=3D</span>result<br>        =
+<span style=3D"color:rgb(128,128,127)">correct_result_1</span><span style=
+=3D"color:rgb(249,38,114)">=3D</span>result<span style=3D"color:rgb(249,38,=
+114)">-</span>(np.<span style=3D"color:rgb(102,217,239)">mean</span>(result=
+.real)<span style=3D"color:rgb(249,38,114)">+</span>np.<span style=3D"color=
+:rgb(102,217,239)">mean</span>(result.imag)<span style=3D"color:rgb(249,38,=
+114)">*</span><span style=3D"color:rgb(174,129,255)">1j</span>)<br>        =
+correct_result.real<span style=3D"color:rgb(249,38,114)">=3D</span>result.r=
+eal<span style=3D"color:rgb(249,38,114)">-</span>np.<span style=3D"color:rg=
+b(102,217,239)">mean</span>(result.real)<br>        correct_result.imag <sp=
+an style=3D"color:rgb(249,38,114)">=3D </span>result.imag <span style=3D"co=
+lor:rgb(249,38,114)">- </span>np.<span style=3D"color:rgb(102,217,239)">mea=
+n</span>(result.imag)<br><br>        PSD <span style=3D"color:rgb(249,38,11=
+4)">=3D  </span><span style=3D"color:rgb(148,85,141)">self</span>.<span sty=
+le=3D"color:rgb(102,217,239)">fft_test</span>(result)<br><br><br>        <s=
+pan style=3D"color:rgb(117,113,94)">#PSD[8188:8202]=3Dnp.mean(PSD[8180:8188=
+])<br></span><span style=3D"color:rgb(117,113,94)"><br></span><span style=
+=3D"color:rgb(117,113,94)"><br></span><span style=3D"color:rgb(117,113,94)"=
+>        </span>buffs <span style=3D"color:rgb(249,38,114)">=3D </span>np.<=
+span style=3D"color:rgb(102,217,239)">append</span>(buffs,PSD)<br><br><br><=
+br>    <span style=3D"color:rgb(102,217,239);font-style:italic">return </sp=
+an>complex_buffs, buffs<span style=3D"color:rgb(117,113,94)">#np.append(buf=
+fs[value.samples:],buffs[:value.samples])<br></span><br><br><br><br><br><br=
+><br><br></span></pre></div>
 
---000000000000533cbc0588a2aed5--
+--000000000000749ad20588a0e43f--
 
 
---===============1022004205308001711==
+--===============4386967872921549410==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -718,5 +468,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1022004205308001711==--
+--===============4386967872921549410==--
 
