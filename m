@@ -2,55 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309BD1A9AF
-	for <lists+usrp-users@lfdr.de>; Sun, 12 May 2019 00:30:42 +0200 (CEST)
-Received: from [::1] (port=40946 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA02D1A95F
+	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 22:21:16 +0200 (CEST)
+Received: from [::1] (port=51662 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hPaVs-0008Cr-SQ; Sat, 11 May 2019 18:30:40 -0400
-Received: from mail-lj1-f174.google.com ([209.85.208.174]:41147)
+	id 1hPYUb-00039j-Lk; Sat, 11 May 2019 16:21:13 -0400
+Received: from mail-wm1-f46.google.com ([209.85.128.46]:37826)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <adray0001@gmail.com>) id 1hPaVK-000856-OP
- for usrp-users@lists.ettus.com; Sat, 11 May 2019 18:30:37 -0400
-Received: by mail-lj1-f174.google.com with SMTP id k8so7886656lja.8
- for <usrp-users@lists.ettus.com>; Sat, 11 May 2019 15:29:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=lPIa70mRF7T+kV2yV208nvnjr3XyC+Rg6VqyhwNZpG0=;
- b=E4B5itG8j2BYHp2BfGPA0hc4MxPEJaG8NyKixmOrKEIVvl0mFmibfqt1RoSLRQ0ahV
- 46kNxp9WDPO9N6wyduYOv+VP6CAY5eGuIwZGx8JUpLMgOp1B/WrGmpby+upBeahKF7Q4
- glciN/6vqPHkS/dP4qV+kTRDK9x7y8LdumBW1o42GDG3+yn+PJQjVZbQyPPPgomwoTLp
- vgCmYpYY5PvQQtSD7TPqiYRSvxHM7R4xrS2eTF7ekZR7OJAwgI/CjuCaZJjTF0FFCUjK
- bRAUGEMzCh8T6c2441ZweVK4X3eO3zZFRgMhwzjgWoAf3VmvJVgh3YZsgQMG3+7lUwcF
- kheQ==
+ (Exim 4.91) (envelope-from <marcus.mueller@ettus.com>)
+ id 1hPYU3-00031p-M1
+ for usrp-users@lists.ettus.com; Sat, 11 May 2019 16:21:09 -0400
+Received: by mail-wm1-f46.google.com with SMTP id 7so4297251wmo.2
+ for <usrp-users@lists.ettus.com>; Sat, 11 May 2019 13:20:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=gTrlsRpWBnT7lujffv508ZHEG5zJPZyX8SoOOjz96yE=;
+ b=b0MyURTbLlVlO3GgxPhTAqrxNKQvIVMS4I9rCxGXZtk20G8uFi1nmWhZJW43kWWNTC
+ W4OW9xpotHFvRXY9MZtS+ejJGHlQvmgddwhO/1wocnCSFy2lBV9DdH8s/qhH6sOZZC65
+ 8+Ck2Xgw02f6UHLXBOJzwY81CD6dhGpAcJn20jWc5Emyywhp1DSTZ+FhPnDLTvr3QTGG
+ Yi2DRwrzjnCSyZwU4VZ2Ihj82jARn0ISnRS3OmCRqq0iNCqrhgINxCG6kUcUdvbAvTD+
+ WhPEFPkkOxgtqwnJjIEAXek2Jv+V00OQDctJSraj28oILwphC/+5KAvO5qQ2CI9fulmu
+ uCdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=lPIa70mRF7T+kV2yV208nvnjr3XyC+Rg6VqyhwNZpG0=;
- b=ZsM99X4GjLHb6vLrdhDJV7CNXdlN5J/ni4nJ+8WzglJllL9X8N+x1yDBsweCAze5uM
- puVI1LdSmh5vTyKP3VhKnQ8e8mG653mI9pTJBVMmEc5ynz0yZMyrXZR+S3f4o1cVdhJH
- lgvFt5qJPtCV2srtWoR+S0gzABkjhH5cfuhqu6ZTESR86dP6ccnyFUI9769dSeSo1uRN
- IXqQh83goZP+0xyOe64cQ2BCuPCi/Xv6Su33yA8aQgBgC8qZrhDUW/X4avUawwOJavC6
- qNpyRXr/QCMDaq232u6anxHElFSZMlDmtl/qRLJTuXrMjrRFjcjoAACXvmmnWaNNZhZQ
- XH9w==
-X-Gm-Message-State: APjAAAXJAt/MzH6oNk6EnVA/vprG+W0Qb5pCHk0kZsV6GkjIgzcF8CSo
- fAJjkTgw7JfDq3LaAdfiZwYFmdAFQLtJJu5o1fk=
-X-Google-Smtp-Source: APXvYqxqMpGmQUEn5qEj9wcAJm9gWpTQ9Su7XMUpAf4rewYH/3bWgXEAGB/BdiswyO2HRrhpLqSw12+F5pkTFu6AjAY=
-X-Received: by 2002:a2e:7f13:: with SMTP id a19mr9649112ljd.35.1557613765408; 
- Sat, 11 May 2019 15:29:25 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=gTrlsRpWBnT7lujffv508ZHEG5zJPZyX8SoOOjz96yE=;
+ b=li6Bp0UynhgLXEn+oS7zh8H3xGwEsTfgTcplSJ/ndzj+GhlF3jAHP9FVDJHfO46ElQ
+ RNz95QcnTQwQ3LUzqvvkElrXgncjifRV/oWmATM+cJt76mriTWznhTP2RnYSzb+tgN80
+ 240XJqQtpxGaX9J8+8zA9LGWP8uD1dRMX6SLvznwuXZOFaVj8MPE6T146UoOwc2QTo8V
+ 0AZ4Co10AG9RA/2UOYWfYiKZbRSU3UYwO2725BcCfi9a6wqyLNk1ribnkfQRUUVXoaTT
+ pwBFH53VX77pdADzywGL1+XvjU48uyU0gOAPMIK+NUnNvUnwsc3PuyQE31zp+cC3rARq
+ 7q0w==
+X-Gm-Message-State: APjAAAV5gmdJzVUhJggqqHWRed9aWTVGvMPLVmEO+pGIrUdYMH+TAeZf
+ UdWiVArjnBtTRO4vR6xAIGbWiniA
+X-Google-Smtp-Source: APXvYqy0qwdkePMPLr95V/aRonhlVynx2/iE4kwHr304hpDvgdU2UehWuItF8vPxmnQcmVAJPZla/Q==
+X-Received: by 2002:a7b:c3c3:: with SMTP id t3mr10766366wmj.88.1557605998562; 
+ Sat, 11 May 2019 13:19:58 -0700 (PDT)
+Received: from workhorse.lan (ip-37-201-4-220.hsi13.unitymediagroup.de.
+ [37.201.4.220])
+ by smtp.googlemail.com with ESMTPSA id p6sm5638149wrs.6.2019.05.11.13.19.57
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Sat, 11 May 2019 13:19:57 -0700 (PDT)
+Message-ID: <03752f22403f1915dd13039b82d10ca12ca69458.camel@ettus.com>
+To: Ivan Zahartchuk <adray0001@gmail.com>, usrp-users
+ <usrp-users@lists.ettus.com>
+Date: Sat, 11 May 2019 22:19:56 +0200
+In-Reply-To: <CAPRRyxtWDcpUEoJF6teLPVN8nrNXEuH0HULt2orMetOvCzEf8w@mail.gmail.com>
 References: <CAPRRyxuCDNGcewqw7Y6A=a-cgU8DN9s6Sbg7JVSHbuYHJBD=hA@mail.gmail.com>
  <5db613d9e0f5e53ad04b8e730a3aa4d9b25df12c.camel@ettus.com>
  <CAPRRyxtWDcpUEoJF6teLPVN8nrNXEuH0HULt2orMetOvCzEf8w@mail.gmail.com>
- <03752f22403f1915dd13039b82d10ca12ca69458.camel@ettus.com>
- <CAPRRyxvntD=kxZc6xnAx3HYRBVxpTrzCwYLOg74t1rRzSapWeg@mail.gmail.com>
- <9472ddef448b23a98a4b80e14151ad48206c534a.camel@ettus.com>
-In-Reply-To: <9472ddef448b23a98a4b80e14151ad48206c534a.camel@ettus.com>
-Date: Sat, 11 May 2019 22:29:14 +0300
-Message-ID: <CAPRRyxvqe-n9W12pK4uQJxkuVy7c2XY+zyif=mAjA0+pBDaGNw@mail.gmail.com>
-To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>, 
- usrp-users <usrp-users@lists.ettus.com>
+User-Agent: Evolution 3.30.4 (3.30.4-1.fc29) 
+Mime-Version: 1.0
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -68,9 +74,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4512546228995004976=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,787 +92,161 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4512546228995004976==
-Content-Type: multipart/alternative; boundary="0000000000002f3e4d0588a43724"
-
---0000000000002f3e4d0588a43724
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-No, I meant that all system performance is enabled only when we make a
-request and not all the time. And we no longer care what we do next with
-these samples, they are just an array and the board does not require
-constant reading.
-
-=D0=B2=D1=81, 12 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 01:03, Marcus M=C3=
-=BCller <marcus.mueller@ettus.com>:
-
-> I'm not quite sure how you come to the conclusion that we wouldn't be
-> tied to system performance in that case: that number of samples still
-> needs to be received by the software running on the computer.
->
-> Best regards,
-> Marcus
->
-> On Sat, 2019-05-11 at 20:39 +0300, Ivan Zahartchuk wrote:
-> > Thanks for the help. I will try to fix everything tomorrow and see
-> > the result. But tell me, maybe I don=E2=80=99t fully understand how
-> > num_sams_and_done works. If I understand correctly, this method does
-> > not send a continuous stream of data but simply gives a certain
-> > number of samples upon request. And in this case, we are not tied to
-> > system performance. Maybe I do not understand this. Could you clarify
-> > this?
-> >
-> > =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 23:19, Marcus M=
-=C3=BCller <marcus.mueller@ettus.com>:
-> > > Dear Ivan,
-> > >
-> > > On Sat, 2019-05-11 at 20:00 +0300, Ivan Zahartchuk wrote:
-> > > > Sorry I did not specify. When working with the start_cont mode
-> > > with a
-> > > > frequency of more than 5 MHz, I have an overflow error.
-> > >
-> > > Which probably happens due to the inefficient way you handle the
-> > > data;
-> > > your program simply is too slow.
-> > >
-> > > > That leads to a chaotic change in the spectrum. I agree about the
-> > > > wrong allocation of memory, but I created my own data array and
-> > > ran
-> > > > it through the whole chain of changes and additions and had what
-> > > I
-> > > > expected at the output.
-> > >
-> > > Huh? When using offline data, your computationally load doesn't
-> > > matter;
-> > > I'm not sure I'm understanding you correctly here!
-> > >
-> > > > Moreover, the data array was much more than what I get from the
-> > > > board. In this regard, I decided that the matter is in the
-> > > reading
-> > > > from the board.
-> > >
-> > > I'll allow myself to doubt that: Again, the fact that your data
-> > > array
-> > > runs through smoothly is no indication for your software being fast
-> > > enough to keep up with the torrent of samples UHD will give you!
-> > > When
-> > > it doesn't keep up, you see exactly what you're describing: UHD
-> > > reporting overflows due to your software not fetching samples fast
-> > > enough. Overflows aren't UHD bugs, they are problems in the way you
-> > > use
-> > > UHD!
-> > >
-> > > >  I have seen examples, but start_cont mode is used there and
-> > > there
-> > > > are not so many frequency adjustments. Therefore, I decided to
-> > > use
-> > > > the num_sams_and_done mode, but there is also a problem with it
-> > > which
-> > > > is described in the previous message. If you have more
-> > > suggestions, I
-> > > > will be very grateful to you.
-> > >
-> > > Well, exactly what I wrote in my previous mail: you need to make
-> > > your
-> > > software fast enough. Preallocate the buffer; don't append to its
-> > > end.
-> > >
-> > > Aside from that, do some profiling. Under linux, `perf top -ag
-> > > python
-> > > yourscript.py` is your friend to figure out where your program
-> > > spends
-> > > its CPU cycles.
-> > >
-> > > Best regards,
-> > > Marcus
-> > >
-> > > >
-> > > > =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 22:27, Marc=
-us M=C3=BCller <
-> > > marcus.mueller@ettus.com>:
-> > > > > Dear Ivan,
-> > > > >
-> > > > > it's not clear what you've modified. I'm not aware of any UHD
-> > > > > function
-> > > > > that restricts any frequency to 5 MHz.
-> > > > > Could you elaborate on which code you're basing this on?
-> > > > >
-> > > > > Also, while I really like the Python interface, if you're
-> > > really
-> > > > > after
-> > > > > high-rate sampling, it might simply not be the optimal thing to
-> > > > > use:
-> > > > > You'd have to be very careful in Pythonland to not run into
-> > > > > performance
-> > > > > problems once you've gotten the samples from UHD:
-> > > > >
-> > > > >         complex_buffs=3Dnp.append(complex_buffs,result).ravel()
-> > > > >
-> > > > > A very bad idea. You're constantly re-allocating buffers here.
-> > > > > Don't do
-> > > > > that. No matter in which programming language you'd do this,
-> > > you'd
-> > > > > make
-> > > > > sure that the buffer is large enough for your data collection
-> > > to
-> > > > > begin
-> > > > > with and then tell the UHD library to fill the appropriate part
-> > > in
-> > > > > that
-> > > > > buffer to avoid a) having to ask for a larger buffer regularly
-> > > and
-> > > > > b)
-> > > > > avoid copying data.
-> > > > > Asking for an appended version of your last buffer means that
-> > > > > something
-> > > > > has to allocate a larger buffer =E2=80=93 which comes at very lar=
-ge
-> > > cost!
-> > > > >
-> > > > > Best regards,
-> > > > > Marcus
-> > > > >
-> > > > > On Sat, 2019-05-11 at 21:31 +0300, Ivan Zahartchuk via USRP-
-> > > users
-> > > > > wrote:
-> > > > > > Hello. My task is to make a broadband spectrum analyzer on
-> > > the
-> > > > > usrp
-> > > > > > b200 board. For this, the standard functions for reading
-> > > samples
-> > > > > in
-> > > > > > python are not suitable for me. Therefore, I edited them.
-> > > When
-> > > > > > reading samples using the start_con method, I cannot specify
-> > > a
-> > > > > band
-> > > > > > greater than 5 MHz. Therefore, I use the num_sams_and_done
-> > > > > method.
-> > > > > > But I have problems with him. The fact is that my frequency
-> > > which
-> > > > > I
-> > > > > > know appears in the wrong place. For example, I generate a
-> > > > > frequency
-> > > > > > of 910 MHz and it appears at 930 MHz (with a bandwidth of 20
-> > > > > MHz). I
-> > > > > > can not understand what caused it. Here are my reading
-> > > functions
-> > > > > in
-> > > > > > two ways. I would be extremely grateful for the help.
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > > def test_reciev(self,freq,bandwich):
-> > > > > >     complex_buffs=3Dnp.array([])
-> > > > > >     buffs =3D np.array([])
-> > > > > >     result =3D np.empty((len([0]), self.samples),
-> > > > > dtype=3Dnp.complex64)
-> > > > > >
-> > > > > >     for i, freqq in enumerate(freq):
-> > > > > >
-> > > > > >         recv_samps =3D 0
-> > > > > >         #self.usrp.set_rx_rate(bandwich[i])
-> > > > > >         k=3Duhd.types.TuneRequest(freqq)
-> > > > > >         #k.args(uhd.types.device_addr("mode_n=3Dinteger"))
-> > > > > >         self.usrp.set_rx_freq(k)
-> > > > > >         self.stream_cmd =3D
-> > > > > > uhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
-> > > > > >         self.stream_cmd.stream_now =3D True
-> > > > > >         self.streamer_rx.issue_stream_cmd(self.stream_cmd)
-> > > > > >         while self.usrp.get_rx_sensor("lo_locked").to_bool()
-> > > !=3D
-> > > > > True:
-> > > > > >             continue
-> > > > > >
-> > > > > >         samps =3D np.array([], dtype=3Dnp.complex64)
-> > > > > >         while recv_samps < self.samples:
-> > > > > >
-> > > > > >             samps =3D self.streamer_rx.recv(self.recv_buff,
-> > > > > > self.metadata_rx)
-> > > > > >             if self.metadata_rx.error_code !=3D
-> > > > > > lib.types.rx_metadata_error_code.none:
-> > > > > >                 print(self.metadata_rx.strerror())
-> > > > > >             if samps:
-> > > > > >                 real_samps =3D min(self.samples - recv_samps,
-> > > > > samps)
-> > > > > >                 result[:, recv_samps:recv_samps + real_samps]
-> > > =3D
-> > > > > > self.recv_buff[:, 0:real_samps]
-> > > > > >                 recv_samps +=3D real_samps
-> > > > > >         #print (self.usrp.get_rx_sensor('rssi'))
-> > > > > >         #print(self.streamer_rx.get_max_num_samps())
-> > > > > >         #while samps:
-> > > > > >         #    samps =3D self.streamer_rx.recv(self.recv_buff,
-> > > > > > self.metadata_rx)
-> > > > > >
-> > > > > >
-> > > > > >         #self.stream_cmd.time_spec =3D lib.types.time_spec(0)
-> > > > > >         self.stream_cmd =3D
-> > > > > > lib.types.stream_cmd(lib.types.stream_mode.stop_cont)
-> > > > > >         self.streamer_rx.issue_stream_cmd(self.stream_cmd)
-> > > > > >
-> > > > > >         complex_buffs=3Dnp.append(complex_buffs,result).ravel()
-> > > > > >         #correct_result=3Dresult
-> > > > > >         correct_result_1=3Dresult-
-> > > > > > (np.mean(result.real)+np.mean(result.imag)*1j)
-> > > > > >         #correct_result.real=3Dresult.real-np.mean(result.real)
-> > > > > >         #correct_result.imag =3D result.imag -
-> > > np.mean(result.imag)
-> > > > > >
-> > > > > >         PSD =3D  self.fft_test(result)
-> > > > > >
-> > > > > >
-> > > > > >         #PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])
-> > > > > >
-> > > > > >
-> > > > > >         buffs =3D np.append(buffs,PSD)
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >     return complex_buffs,
-> > > > > > buffs#np.append(buffs[value.samples:],buffs[:value.samples])
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > > def test_reciev(self,freq,bandwich):
-> > > > > >     complex_buffs=3Dnp.array([])
-> > > > > >     buffs =3D np.array([])
-> > > > > >     result =3D np.empty((len([0]), self.samples),
-> > > > > dtype=3Dnp.complex64)
-> > > > > >
-> > > > > >     for i, freqq in enumerate(freq):
-> > > > > >
-> > > > > >         recv_samps =3D 0
-> > > > > >         #self.usrp.set_rx_rate(bandwich[i])
-> > > > > >         k=3Duhd.types.TuneRequest(freqq)
-> > > > > >         #k.args(uhd.types.device_addr("mode_n=3Dinteger"))
-> > > > > >         self.usrp.set_rx_freq(k)
-> > > > > >
-> > > > > >         while self.usrp.get_rx_sensor("lo_locked").to_bool()
-> > > !=3D
-> > > > > True:
-> > > > > >             continue
-> > > > > >
-> > > > > >
-> > > > > >         while recv_samps < self.samples:
-> > > > > >
-> > > > > >             samps =3D self.streamer_rx.recv(self.recv_buff,
-> > > > > > self.metadata_rx)
-> > > > > >             if self.metadata_rx.error_code !=3D
-> > > > > > lib.types.rx_metadata_error_code.none:
-> > > > > >                 print(self.metadata_rx.strerror())
-> > > > > >             if samps:
-> > > > > >                 real_samps =3D min(self.samples - recv_samps,
-> > > > > samps)
-> > > > > >                 result[:, recv_samps:recv_samps + real_samps]
-> > > =3D
-> > > > > > self.recv_buff[:, 0:real_samps]
-> > > > > >                 recv_samps +=3D real_samps
-> > > > > >         #print (self.usrp.get_rx_sensor('rssi'))
-> > > > > >
-> > > > > >
-> > > > > >         self.stream_cmd.time_spec =3D lib.types.time_spec(0)
-> > > > > >         self.streamer_rx.issue_stream_cmd(self.stream_cmd)
-> > > > > >
-> > > > > >         complex_buffs=3Dnp.append(complex_buffs,result).ravel()
-> > > > > >         correct_result=3Dresult
-> > > > > >         correct_result_1=3Dresult-
-> > > > > > (np.mean(result.real)+np.mean(result.imag)*1j)
-> > > > > >         correct_result.real=3Dresult.real-np.mean(result.real)
-> > > > > >         correct_result.imag =3D result.imag -
-> > > np.mean(result.imag)
-> > > > > >
-> > > > > >         PSD =3D  self.fft_test(result)
-> > > > > >
-> > > > > >
-> > > > > >         #PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])
-> > > > > >
-> > > > > >
-> > > > > >         buffs =3D np.append(buffs,PSD)
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >     return complex_buffs,
-> > > > > > buffs#np.append(buffs[value.samples:],buffs[:value.samples])
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > > _______________________________________________
-> > > > > > USRP-users mailing list
-> > > > > > USRP-users@lists.ettus.com
-> > > > > >
-> > > > >
-> > > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> > > > >
-> > >
->
->
-
---0000000000002f3e4d0588a43724
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">No, I meant that all system performance i=
-s enabled only when we make a request and not all the time. And we no longe=
-r care what we do next with these samples, they are just an array and the b=
-oard does not require constant reading.<br></div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=D0=B2=D1=81, 12 =D0=BC=D0=
-=B0=D1=8F 2019 =D0=B3. =D0=B2 01:03, Marcus M=C3=BCller &lt;<a href=3D"mail=
-to:marcus.mueller@ettus.com">marcus.mueller@ettus.com</a>&gt;:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">I&#39;m not quite sure how y=
-ou come to the conclusion that we wouldn&#39;t be<br>
-tied to system performance in that case: that number of samples still<br>
-needs to be received by the software running on the computer.<br>
-<br>
-Best regards,<br>
-Marcus<br>
-<br>
-On Sat, 2019-05-11 at 20:39 +0300, Ivan Zahartchuk wrote:<br>
-&gt; Thanks for the help. I will try to fix everything tomorrow and see<br>
-&gt; the result. But tell me, maybe I don=E2=80=99t fully understand how<br=
->
-&gt; num_sams_and_done works. If I understand correctly, this method does<b=
-r>
-&gt; not send a continuous stream of data but simply gives a certain<br>
-&gt; number of samples upon request. And in this case, we are not tied to<b=
-r>
-&gt; system performance. Maybe I do not understand this. Could you clarify<=
-br>
-&gt; this?<br>
-&gt; <br>
-&gt; =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 23:19, Marcus =
-M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com" target=3D"_blan=
-k">marcus.mueller@ettus.com</a>&gt;:<br>
-&gt; &gt; Dear Ivan,<br>
-&gt; &gt; <br>
-&gt; &gt; On Sat, 2019-05-11 at 20:00 +0300, Ivan Zahartchuk wrote:<br>
-&gt; &gt; &gt; Sorry I did not specify. When working with the start_cont mo=
-de<br>
-&gt; &gt; with a<br>
-&gt; &gt; &gt; frequency of more than 5 MHz, I have an overflow error. <br>
-&gt; &gt; <br>
-&gt; &gt; Which probably happens due to the inefficient way you handle the<=
-br>
-&gt; &gt; data;<br>
-&gt; &gt; your program simply is too slow.<br>
-&gt; &gt; <br>
-&gt; &gt; &gt; That leads to a chaotic change in the spectrum. I agree abou=
-t the<br>
-&gt; &gt; &gt; wrong allocation of memory, but I created my own data array =
-and<br>
-&gt; &gt; ran<br>
-&gt; &gt; &gt; it through the whole chain of changes and additions and had =
-what<br>
-&gt; &gt; I<br>
-&gt; &gt; &gt; expected at the output. <br>
-&gt; &gt; <br>
-&gt; &gt; Huh? When using offline data, your computationally load doesn&#39=
-;t<br>
-&gt; &gt; matter;<br>
-&gt; &gt; I&#39;m not sure I&#39;m understanding you correctly here! <br>
-&gt; &gt; <br>
-&gt; &gt; &gt; Moreover, the data array was much more than what I get from =
-the<br>
-&gt; &gt; &gt; board. In this regard, I decided that the matter is in the<b=
-r>
-&gt; &gt; reading<br>
-&gt; &gt; &gt; from the board.<br>
-&gt; &gt; <br>
-&gt; &gt; I&#39;ll allow myself to doubt that: Again, the fact that your da=
-ta<br>
-&gt; &gt; array<br>
-&gt; &gt; runs through smoothly is no indication for your software being fa=
-st<br>
-&gt; &gt; enough to keep up with the torrent of samples UHD will give you!<=
-br>
-&gt; &gt; When<br>
-&gt; &gt; it doesn&#39;t keep up, you see exactly what you&#39;re describin=
-g: UHD<br>
-&gt; &gt; reporting overflows due to your software not fetching samples fas=
-t<br>
-&gt; &gt; enough. Overflows aren&#39;t UHD bugs, they are problems in the w=
-ay you<br>
-&gt; &gt; use<br>
-&gt; &gt; UHD!<br>
-&gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 I have seen examples, but start_cont mode is used ther=
-e and<br>
-&gt; &gt; there<br>
-&gt; &gt; &gt; are not so many frequency adjustments. Therefore, I decided =
-to<br>
-&gt; &gt; use<br>
-&gt; &gt; &gt; the num_sams_and_done mode, but there is also a problem with=
- it<br>
-&gt; &gt; which<br>
-&gt; &gt; &gt; is described in the previous message. If you have more<br>
-&gt; &gt; suggestions, I<br>
-&gt; &gt; &gt; will be very grateful to you.<br>
-&gt; &gt; <br>
-&gt; &gt; Well, exactly what I wrote in my previous mail: you need to make<=
-br>
-&gt; &gt; your<br>
-&gt; &gt; software fast enough. Preallocate the buffer; don&#39;t append to=
- its<br>
-&gt; &gt; end.<br>
-&gt; &gt; <br>
-&gt; &gt; Aside from that, do some profiling. Under linux, `perf top -ag<br=
->
-&gt; &gt; python<br>
-&gt; &gt; yourscript.py` is your friend to figure out where your program<br=
->
-&gt; &gt; spends<br>
-&gt; &gt; its CPU cycles.<br>
-&gt; &gt; <br>
-&gt; &gt; Best regards,<br>
-&gt; &gt; Marcus<br>
-&gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 22:2=
-7, Marcus M=C3=BCller &lt;<br>
-&gt; &gt; <a href=3D"mailto:marcus.mueller@ettus.com" target=3D"_blank">mar=
-cus.mueller@ettus.com</a>&gt;:<br>
-&gt; &gt; &gt; &gt; Dear Ivan,<br>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; it&#39;s not clear what you&#39;ve modified. I&#39;m no=
-t aware of any UHD<br>
-&gt; &gt; &gt; &gt; function<br>
-&gt; &gt; &gt; &gt; that restricts any frequency to 5 MHz.<br>
-&gt; &gt; &gt; &gt; Could you elaborate on which code you&#39;re basing thi=
-s on?<br>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; Also, while I really like the Python interface, if you&=
-#39;re<br>
-&gt; &gt; really<br>
-&gt; &gt; &gt; &gt; after<br>
-&gt; &gt; &gt; &gt; high-rate sampling, it might simply not be the optimal =
-thing to<br>
-&gt; &gt; &gt; &gt; use:<br>
-&gt; &gt; &gt; &gt; You&#39;d have to be very careful in Pythonland to not =
-run into<br>
-&gt; &gt; &gt; &gt; performance<br>
-&gt; &gt; &gt; &gt; problems once you&#39;ve gotten the samples from UHD:<b=
-r>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0complex_buffs=3Dnp.app=
-end(complex_buffs,result).ravel()<br>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; A very bad idea. You&#39;re constantly re-allocating bu=
-ffers here.<br>
-&gt; &gt; &gt; &gt; Don&#39;t do<br>
-&gt; &gt; &gt; &gt; that. No matter in which programming language you&#39;d=
- do this,<br>
-&gt; &gt; you&#39;d<br>
-&gt; &gt; &gt; &gt; make<br>
-&gt; &gt; &gt; &gt; sure that the buffer is large enough for your data coll=
-ection<br>
-&gt; &gt; to<br>
-&gt; &gt; &gt; &gt; begin<br>
-&gt; &gt; &gt; &gt; with and then tell the UHD library to fill the appropri=
-ate part<br>
-&gt; &gt; in<br>
-&gt; &gt; &gt; &gt; that<br>
-&gt; &gt; &gt; &gt; buffer to avoid a) having to ask for a larger buffer re=
-gularly<br>
-&gt; &gt; and<br>
-&gt; &gt; &gt; &gt; b)<br>
-&gt; &gt; &gt; &gt; avoid copying data.<br>
-&gt; &gt; &gt; &gt; Asking for an appended version of your last buffer mean=
-s that<br>
-&gt; &gt; &gt; &gt; something<br>
-&gt; &gt; &gt; &gt; has to allocate a larger buffer =E2=80=93 which comes a=
-t very large<br>
-&gt; &gt; cost!<br>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; Best regards,<br>
-&gt; &gt; &gt; &gt; Marcus <br>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; On Sat, 2019-05-11 at 21:31 +0300, Ivan Zahartchuk via =
-USRP-<br>
-&gt; &gt; users<br>
-&gt; &gt; &gt; &gt; wrote:<br>
-&gt; &gt; &gt; &gt; &gt; Hello. My task is to make a broadband spectrum ana=
-lyzer on<br>
-&gt; &gt; the<br>
-&gt; &gt; &gt; &gt; usrp<br>
-&gt; &gt; &gt; &gt; &gt; b200 board. For this, the standard functions for r=
-eading<br>
-&gt; &gt; samples<br>
-&gt; &gt; &gt; &gt; in<br>
-&gt; &gt; &gt; &gt; &gt; python are not suitable for me. Therefore, I edite=
-d them.<br>
-&gt; &gt; When<br>
-&gt; &gt; &gt; &gt; &gt; reading samples using the start_con method, I cann=
-ot specify<br>
-&gt; &gt; a<br>
-&gt; &gt; &gt; &gt; band<br>
-&gt; &gt; &gt; &gt; &gt; greater than 5 MHz. Therefore, I use the num_sams_=
-and_done<br>
-&gt; &gt; &gt; &gt; method.<br>
-&gt; &gt; &gt; &gt; &gt; But I have problems with him. The fact is that my =
-frequency<br>
-&gt; &gt; which<br>
-&gt; &gt; &gt; &gt; I<br>
-&gt; &gt; &gt; &gt; &gt; know appears in the wrong place. For example, I ge=
-nerate a<br>
-&gt; &gt; &gt; &gt; frequency<br>
-&gt; &gt; &gt; &gt; &gt; of 910 MHz and it appears at 930 MHz (with a bandw=
-idth of 20<br>
-&gt; &gt; &gt; &gt; MHz). I<br>
-&gt; &gt; &gt; &gt; &gt; can not understand what caused it. Here are my rea=
-ding<br>
-&gt; &gt; functions<br>
-&gt; &gt; &gt; &gt; in<br>
-&gt; &gt; &gt; &gt; &gt; two ways. I would be extremely grateful for the he=
-lp.<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; def test_reciev(self,freq,bandwich):<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0complex_buffs=3Dnp.array([])<br=
->
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0buffs =3D np.array([])<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0result =3D np.empty((len([0]), =
-self.samples),<br>
-&gt; &gt; &gt; &gt; dtype=3Dnp.complex64)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0for i, freqq in enumerate(freq)=
-:<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0recv_samps =3D 0<=
-br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#self.usrp.set_rx=
-_rate(bandwich[i])<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0k=3Duhd.types.Tun=
-eRequest(freqq)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#k.args(uhd.types=
-.device_addr(&quot;mode_n=3Dinteger&quot;))<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.usrp.set_rx_=
-freq(k)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.stream_cmd =
-=3D<br>
-&gt; &gt; &gt; &gt; &gt; uhd.types.StreamCMD(uhd.types.StreamMode.start_con=
-t)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.stream_cmd.s=
-tream_now =3D True<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.streamer_rx.=
-issue_stream_cmd(self.stream_cmd)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0while self.usrp.g=
-et_rx_sensor(&quot;lo_locked&quot;).to_bool()<br>
-&gt; &gt; !=3D<br>
-&gt; &gt; &gt; &gt; True:<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0con=
-tinue<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0samps =3D np.arra=
-y([], dtype=3Dnp.complex64)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0while recv_samps =
-&lt; self.samples:<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sam=
-ps =3D self.streamer_rx.recv(self.recv_buff,<br>
-&gt; &gt; &gt; &gt; &gt; self.metadata_rx)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if =
-self.metadata_rx.error_code !=3D<br>
-&gt; &gt; &gt; &gt; &gt; lib.types.rx_metadata_error_code.none:<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0print(self.metadata_rx.strerror())<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if =
-samps:<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0real_samps =3D min(self.samples - recv_samps,<br>
-&gt; &gt; &gt; &gt; samps)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0result[:, recv_samps:recv_samps + real_samps]<br>
-&gt; &gt; =3D<br>
-&gt; &gt; &gt; &gt; &gt; self.recv_buff[:, 0:real_samps]<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0recv_samps +=3D real_samps<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#print (self.usrp=
-.get_rx_sensor(&#39;rssi&#39;))<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#print(self.strea=
-mer_rx.get_max_num_samps())<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#while samps:<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#=C2=A0 =C2=A0 sa=
-mps =3D self.streamer_rx.recv(self.recv_buff,<br>
-&gt; &gt; &gt; &gt; &gt; self.metadata_rx)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#self.stream_cmd.=
-time_spec =3D lib.types.time_spec(0)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.stream_cmd =
-=3D<br>
-&gt; &gt; &gt; &gt; &gt; lib.types.stream_cmd(lib.types.stream_mode.stop_co=
-nt)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.streamer_rx.=
-issue_stream_cmd(self.stream_cmd)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0complex_buffs=3Dn=
-p.append(complex_buffs,result).ravel()<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#correct_result=
-=3Dresult<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result_1=
-=3Dresult-<br>
-&gt; &gt; &gt; &gt; &gt; (np.mean(result.real)+np.mean(result.imag)*1j)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#correct_result.r=
-eal=3Dresult.real-np.mean(result.real)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#correct_result.i=
-mag =3D result.imag -<br>
-&gt; &gt; np.mean(result.imag)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PSD =3D=C2=A0 sel=
-f.fft_test(result)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#PSD[8188:8202]=
-=3Dnp.mean(PSD[8180:8188])<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0buffs =3D np.appe=
-nd(buffs,PSD)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0return complex_buffs,<br>
-&gt; &gt; &gt; &gt; &gt; buffs#np.append(buffs[value.samples:],buffs[:value=
-.samples])<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; def test_reciev(self,freq,bandwich):<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0complex_buffs=3Dnp.array([])<br=
->
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0buffs =3D np.array([])<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0result =3D np.empty((len([0]), =
-self.samples),<br>
-&gt; &gt; &gt; &gt; dtype=3Dnp.complex64)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0for i, freqq in enumerate(freq)=
-:<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0recv_samps =3D 0<=
-br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#self.usrp.set_rx=
-_rate(bandwich[i])<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0k=3Duhd.types.Tun=
-eRequest(freqq)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#k.args(uhd.types=
-.device_addr(&quot;mode_n=3Dinteger&quot;))<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.usrp.set_rx_=
-freq(k)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0while self.usrp.g=
-et_rx_sensor(&quot;lo_locked&quot;).to_bool()<br>
-&gt; &gt; !=3D<br>
-&gt; &gt; &gt; &gt; True:<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0con=
-tinue<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0while recv_samps =
-&lt; self.samples:<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sam=
-ps =3D self.streamer_rx.recv(self.recv_buff,<br>
-&gt; &gt; &gt; &gt; &gt; self.metadata_rx)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if =
-self.metadata_rx.error_code !=3D<br>
-&gt; &gt; &gt; &gt; &gt; lib.types.rx_metadata_error_code.none:<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0print(self.metadata_rx.strerror())<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if =
-samps:<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0real_samps =3D min(self.samples - recv_samps,<br>
-&gt; &gt; &gt; &gt; samps)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0result[:, recv_samps:recv_samps + real_samps]<br>
-&gt; &gt; =3D<br>
-&gt; &gt; &gt; &gt; &gt; self.recv_buff[:, 0:real_samps]<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0recv_samps +=3D real_samps<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#print (self.usrp=
-.get_rx_sensor(&#39;rssi&#39;))<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.stream_cmd.t=
-ime_spec =3D lib.types.time_spec(0)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.streamer_rx.=
-issue_stream_cmd(self.stream_cmd)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0complex_buffs=3Dn=
-p.append(complex_buffs,result).ravel()<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result=3D=
-result<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result_1=
-=3Dresult-<br>
-&gt; &gt; &gt; &gt; &gt; (np.mean(result.real)+np.mean(result.imag)*1j)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result.re=
-al=3Dresult.real-np.mean(result.real)<br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0correct_result.im=
-ag =3D result.imag -<br>
-&gt; &gt; np.mean(result.imag)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PSD =3D=C2=A0 sel=
-f.fft_test(result)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#PSD[8188:8202]=
-=3Dnp.mean(PSD[8180:8188])<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0buffs =3D np.appe=
-nd(buffs,PSD)<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0return complex_buffs,<br>
-&gt; &gt; &gt; &gt; &gt; buffs#np.append(buffs[value.samples:],buffs[:value=
-.samples])<br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; &gt; _______________________________________________<br=
->
-&gt; &gt; &gt; &gt; &gt; USRP-users mailing list<br>
-&gt; &gt; &gt; &gt; &gt; <a href=3D"mailto:USRP-users@lists.ettus.com" targ=
-et=3D"_blank">USRP-users@lists.ettus.com</a><br>
-&gt; &gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
-ts.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/m=
-ailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; <br>
-<br>
-</blockquote></div>
-
---0000000000002f3e4d0588a43724--
-
-
---===============4512546228995004976==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4512546228995004976==--
-
+RGVhciBJdmFuLAoKT24gU2F0LCAyMDE5LTA1LTExIGF0IDIwOjAwICswMzAwLCBJdmFuIFphaGFy
+dGNodWsgd3JvdGU6Cj4gU29ycnkgSSBkaWQgbm90IHNwZWNpZnkuIFdoZW4gd29ya2luZyB3aXRo
+IHRoZSBzdGFydF9jb250IG1vZGUgd2l0aCBhCj4gZnJlcXVlbmN5IG9mIG1vcmUgdGhhbiA1IE1I
+eiwgSSBoYXZlIGFuIG92ZXJmbG93IGVycm9yLiAKCldoaWNoIHByb2JhYmx5IGhhcHBlbnMgZHVl
+IHRvIHRoZSBpbmVmZmljaWVudCB3YXkgeW91IGhhbmRsZSB0aGUgZGF0YTsKeW91ciBwcm9ncmFt
+IHNpbXBseSBpcyB0b28gc2xvdy4KCj4gVGhhdCBsZWFkcyB0byBhIGNoYW90aWMgY2hhbmdlIGlu
+IHRoZSBzcGVjdHJ1bS4gSSBhZ3JlZSBhYm91dCB0aGUKPiB3cm9uZyBhbGxvY2F0aW9uIG9mIG1l
+bW9yeSwgYnV0IEkgY3JlYXRlZCBteSBvd24gZGF0YSBhcnJheSBhbmQgcmFuCj4gaXQgdGhyb3Vn
+aCB0aGUgd2hvbGUgY2hhaW4gb2YgY2hhbmdlcyBhbmQgYWRkaXRpb25zIGFuZCBoYWQgd2hhdCBJ
+Cj4gZXhwZWN0ZWQgYXQgdGhlIG91dHB1dC4gCgpIdWg/IFdoZW4gdXNpbmcgb2ZmbGluZSBkYXRh
+LCB5b3VyIGNvbXB1dGF0aW9uYWxseSBsb2FkIGRvZXNuJ3QgbWF0dGVyOwpJJ20gbm90IHN1cmUg
+SSdtIHVuZGVyc3RhbmRpbmcgeW91IGNvcnJlY3RseSBoZXJlISAKCj4gTW9yZW92ZXIsIHRoZSBk
+YXRhIGFycmF5IHdhcyBtdWNoIG1vcmUgdGhhbiB3aGF0IEkgZ2V0IGZyb20gdGhlCj4gYm9hcmQu
+IEluIHRoaXMgcmVnYXJkLCBJIGRlY2lkZWQgdGhhdCB0aGUgbWF0dGVyIGlzIGluIHRoZSByZWFk
+aW5nCj4gZnJvbSB0aGUgYm9hcmQuCgpJJ2xsIGFsbG93IG15c2VsZiB0byBkb3VidCB0aGF0OiBB
+Z2FpbiwgdGhlIGZhY3QgdGhhdCB5b3VyIGRhdGEgYXJyYXkKcnVucyB0aHJvdWdoIHNtb290aGx5
+IGlzIG5vIGluZGljYXRpb24gZm9yIHlvdXIgc29mdHdhcmUgYmVpbmcgZmFzdAplbm91Z2ggdG8g
+a2VlcCB1cCB3aXRoIHRoZSB0b3JyZW50IG9mIHNhbXBsZXMgVUhEIHdpbGwgZ2l2ZSB5b3UhIFdo
+ZW4KaXQgZG9lc24ndCBrZWVwIHVwLCB5b3Ugc2VlIGV4YWN0bHkgd2hhdCB5b3UncmUgZGVzY3Jp
+YmluZzogVUhECnJlcG9ydGluZyBvdmVyZmxvd3MgZHVlIHRvIHlvdXIgc29mdHdhcmUgbm90IGZl
+dGNoaW5nIHNhbXBsZXMgZmFzdAplbm91Z2guIE92ZXJmbG93cyBhcmVuJ3QgVUhEIGJ1Z3MsIHRo
+ZXkgYXJlIHByb2JsZW1zIGluIHRoZSB3YXkgeW91IHVzZQpVSEQhCgo+ICBJIGhhdmUgc2VlbiBl
+eGFtcGxlcywgYnV0IHN0YXJ0X2NvbnQgbW9kZSBpcyB1c2VkIHRoZXJlIGFuZCB0aGVyZQo+IGFy
+ZSBub3Qgc28gbWFueSBmcmVxdWVuY3kgYWRqdXN0bWVudHMuIFRoZXJlZm9yZSwgSSBkZWNpZGVk
+IHRvIHVzZQo+IHRoZSBudW1fc2Ftc19hbmRfZG9uZSBtb2RlLCBidXQgdGhlcmUgaXMgYWxzbyBh
+IHByb2JsZW0gd2l0aCBpdCB3aGljaAo+IGlzIGRlc2NyaWJlZCBpbiB0aGUgcHJldmlvdXMgbWVz
+c2FnZS4gSWYgeW91IGhhdmUgbW9yZSBzdWdnZXN0aW9ucywgSQo+IHdpbGwgYmUgdmVyeSBncmF0
+ZWZ1bCB0byB5b3UuCgpXZWxsLCBleGFjdGx5IHdoYXQgSSB3cm90ZSBpbiBteSBwcmV2aW91cyBt
+YWlsOiB5b3UgbmVlZCB0byBtYWtlIHlvdXIKc29mdHdhcmUgZmFzdCBlbm91Z2guIFByZWFsbG9j
+YXRlIHRoZSBidWZmZXI7IGRvbid0IGFwcGVuZCB0byBpdHMgZW5kLgoKQXNpZGUgZnJvbSB0aGF0
+LCBkbyBzb21lIHByb2ZpbGluZy4gVW5kZXIgbGludXgsIGBwZXJmIHRvcCAtYWcgcHl0aG9uCnlv
+dXJzY3JpcHQucHlgIGlzIHlvdXIgZnJpZW5kIHRvIGZpZ3VyZSBvdXQgd2hlcmUgeW91ciBwcm9n
+cmFtIHNwZW5kcwppdHMgQ1BVIGN5Y2xlcy4KCkJlc3QgcmVnYXJkcywKTWFyY3VzCgo+IAo+INGB
+0LEsIDExINC80LDRjyAyMDE5INCzLiDQsiAyMjoyNywgTWFyY3VzIE3DvGxsZXIgPG1hcmN1cy5t
+dWVsbGVyQGV0dHVzLmNvbT46Cj4gPiBEZWFyIEl2YW4sCj4gPiAKPiA+IGl0J3Mgbm90IGNsZWFy
+IHdoYXQgeW91J3ZlIG1vZGlmaWVkLiBJJ20gbm90IGF3YXJlIG9mIGFueSBVSEQKPiA+IGZ1bmN0
+aW9uCj4gPiB0aGF0IHJlc3RyaWN0cyBhbnkgZnJlcXVlbmN5IHRvIDUgTUh6Lgo+ID4gQ291bGQg
+eW91IGVsYWJvcmF0ZSBvbiB3aGljaCBjb2RlIHlvdSdyZSBiYXNpbmcgdGhpcyBvbj8KPiA+IAo+
+ID4gQWxzbywgd2hpbGUgSSByZWFsbHkgbGlrZSB0aGUgUHl0aG9uIGludGVyZmFjZSwgaWYgeW91
+J3JlIHJlYWxseQo+ID4gYWZ0ZXIKPiA+IGhpZ2gtcmF0ZSBzYW1wbGluZywgaXQgbWlnaHQgc2lt
+cGx5IG5vdCBiZSB0aGUgb3B0aW1hbCB0aGluZyB0bwo+ID4gdXNlOgo+ID4gWW91J2QgaGF2ZSB0
+byBiZSB2ZXJ5IGNhcmVmdWwgaW4gUHl0aG9ubGFuZCB0byBub3QgcnVuIGludG8KPiA+IHBlcmZv
+cm1hbmNlCj4gPiBwcm9ibGVtcyBvbmNlIHlvdSd2ZSBnb3R0ZW4gdGhlIHNhbXBsZXMgZnJvbSBV
+SEQ6Cj4gPiAKPiA+ICAgICAgICAgY29tcGxleF9idWZmcz1ucC5hcHBlbmQoY29tcGxleF9idWZm
+cyxyZXN1bHQpLnJhdmVsKCkKPiA+IAo+ID4gQSB2ZXJ5IGJhZCBpZGVhLiBZb3UncmUgY29uc3Rh
+bnRseSByZS1hbGxvY2F0aW5nIGJ1ZmZlcnMgaGVyZS4KPiA+IERvbid0IGRvCj4gPiB0aGF0LiBO
+byBtYXR0ZXIgaW4gd2hpY2ggcHJvZ3JhbW1pbmcgbGFuZ3VhZ2UgeW91J2QgZG8gdGhpcywgeW91
+J2QKPiA+IG1ha2UKPiA+IHN1cmUgdGhhdCB0aGUgYnVmZmVyIGlzIGxhcmdlIGVub3VnaCBmb3Ig
+eW91ciBkYXRhIGNvbGxlY3Rpb24gdG8KPiA+IGJlZ2luCj4gPiB3aXRoIGFuZCB0aGVuIHRlbGwg
+dGhlIFVIRCBsaWJyYXJ5IHRvIGZpbGwgdGhlIGFwcHJvcHJpYXRlIHBhcnQgaW4KPiA+IHRoYXQK
+PiA+IGJ1ZmZlciB0byBhdm9pZCBhKSBoYXZpbmcgdG8gYXNrIGZvciBhIGxhcmdlciBidWZmZXIg
+cmVndWxhcmx5IGFuZAo+ID4gYikKPiA+IGF2b2lkIGNvcHlpbmcgZGF0YS4KPiA+IEFza2luZyBm
+b3IgYW4gYXBwZW5kZWQgdmVyc2lvbiBvZiB5b3VyIGxhc3QgYnVmZmVyIG1lYW5zIHRoYXQKPiA+
+IHNvbWV0aGluZwo+ID4gaGFzIHRvIGFsbG9jYXRlIGEgbGFyZ2VyIGJ1ZmZlciDigJMgd2hpY2gg
+Y29tZXMgYXQgdmVyeSBsYXJnZSBjb3N0IQo+ID4gCj4gPiBCZXN0IHJlZ2FyZHMsCj4gPiBNYXJj
+dXMgCj4gPiAKPiA+IE9uIFNhdCwgMjAxOS0wNS0xMSBhdCAyMTozMSArMDMwMCwgSXZhbiBaYWhh
+cnRjaHVrIHZpYSBVU1JQLXVzZXJzCj4gPiB3cm90ZToKPiA+ID4gSGVsbG8uIE15IHRhc2sgaXMg
+dG8gbWFrZSBhIGJyb2FkYmFuZCBzcGVjdHJ1bSBhbmFseXplciBvbiB0aGUKPiA+IHVzcnAKPiA+
+ID4gYjIwMCBib2FyZC4gRm9yIHRoaXMsIHRoZSBzdGFuZGFyZCBmdW5jdGlvbnMgZm9yIHJlYWRp
+bmcgc2FtcGxlcwo+ID4gaW4KPiA+ID4gcHl0aG9uIGFyZSBub3Qgc3VpdGFibGUgZm9yIG1lLiBU
+aGVyZWZvcmUsIEkgZWRpdGVkIHRoZW0uIFdoZW4KPiA+ID4gcmVhZGluZyBzYW1wbGVzIHVzaW5n
+IHRoZSBzdGFydF9jb24gbWV0aG9kLCBJIGNhbm5vdCBzcGVjaWZ5IGEKPiA+IGJhbmQKPiA+ID4g
+Z3JlYXRlciB0aGFuIDUgTUh6LiBUaGVyZWZvcmUsIEkgdXNlIHRoZSBudW1fc2Ftc19hbmRfZG9u
+ZQo+ID4gbWV0aG9kLgo+ID4gPiBCdXQgSSBoYXZlIHByb2JsZW1zIHdpdGggaGltLiBUaGUgZmFj
+dCBpcyB0aGF0IG15IGZyZXF1ZW5jeSB3aGljaAo+ID4gSQo+ID4gPiBrbm93IGFwcGVhcnMgaW4g
+dGhlIHdyb25nIHBsYWNlLiBGb3IgZXhhbXBsZSwgSSBnZW5lcmF0ZSBhCj4gPiBmcmVxdWVuY3kK
+PiA+ID4gb2YgOTEwIE1IeiBhbmQgaXQgYXBwZWFycyBhdCA5MzAgTUh6ICh3aXRoIGEgYmFuZHdp
+ZHRoIG9mIDIwCj4gPiBNSHopLiBJCj4gPiA+IGNhbiBub3QgdW5kZXJzdGFuZCB3aGF0IGNhdXNl
+ZCBpdC4gSGVyZSBhcmUgbXkgcmVhZGluZyBmdW5jdGlvbnMKPiA+IGluCj4gPiA+IHR3byB3YXlz
+LiBJIHdvdWxkIGJlIGV4dHJlbWVseSBncmF0ZWZ1bCBmb3IgdGhlIGhlbHAuCj4gPiA+IAo+ID4g
+PiAKPiA+ID4gCj4gPiA+IAo+ID4gPiBkZWYgdGVzdF9yZWNpZXYoc2VsZixmcmVxLGJhbmR3aWNo
+KToKPiA+ID4gICAgIGNvbXBsZXhfYnVmZnM9bnAuYXJyYXkoW10pCj4gPiA+ICAgICBidWZmcyA9
+IG5wLmFycmF5KFtdKQo+ID4gPiAgICAgcmVzdWx0ID0gbnAuZW1wdHkoKGxlbihbMF0pLCBzZWxm
+LnNhbXBsZXMpLAo+ID4gZHR5cGU9bnAuY29tcGxleDY0KQo+ID4gPiAKPiA+ID4gICAgIGZvciBp
+LCBmcmVxcSBpbiBlbnVtZXJhdGUoZnJlcSk6Cj4gPiA+IAo+ID4gPiAgICAgICAgIHJlY3Zfc2Ft
+cHMgPSAwCj4gPiA+ICAgICAgICAgI3NlbGYudXNycC5zZXRfcnhfcmF0ZShiYW5kd2ljaFtpXSkK
+PiA+ID4gICAgICAgICBrPXVoZC50eXBlcy5UdW5lUmVxdWVzdChmcmVxcSkKPiA+ID4gICAgICAg
+ICAjay5hcmdzKHVoZC50eXBlcy5kZXZpY2VfYWRkcigibW9kZV9uPWludGVnZXIiKSkKPiA+ID4g
+ICAgICAgICBzZWxmLnVzcnAuc2V0X3J4X2ZyZXEoaykKPiA+ID4gICAgICAgICBzZWxmLnN0cmVh
+bV9jbWQgPQo+ID4gPiB1aGQudHlwZXMuU3RyZWFtQ01EKHVoZC50eXBlcy5TdHJlYW1Nb2RlLnN0
+YXJ0X2NvbnQpCj4gPiA+ICAgICAgICAgc2VsZi5zdHJlYW1fY21kLnN0cmVhbV9ub3cgPSBUcnVl
+Cj4gPiA+ICAgICAgICAgc2VsZi5zdHJlYW1lcl9yeC5pc3N1ZV9zdHJlYW1fY21kKHNlbGYuc3Ry
+ZWFtX2NtZCkKPiA+ID4gICAgICAgICB3aGlsZSBzZWxmLnVzcnAuZ2V0X3J4X3NlbnNvcigibG9f
+bG9ja2VkIikudG9fYm9vbCgpICE9Cj4gPiBUcnVlOgo+ID4gPiAgICAgICAgICAgICBjb250aW51
+ZQo+ID4gPiAKPiA+ID4gICAgICAgICBzYW1wcyA9IG5wLmFycmF5KFtdLCBkdHlwZT1ucC5jb21w
+bGV4NjQpCj4gPiA+ICAgICAgICAgd2hpbGUgcmVjdl9zYW1wcyA8IHNlbGYuc2FtcGxlczoKPiA+
+ID4gCj4gPiA+ICAgICAgICAgICAgIHNhbXBzID0gc2VsZi5zdHJlYW1lcl9yeC5yZWN2KHNlbGYu
+cmVjdl9idWZmLAo+ID4gPiBzZWxmLm1ldGFkYXRhX3J4KQo+ID4gPiAgICAgICAgICAgICBpZiBz
+ZWxmLm1ldGFkYXRhX3J4LmVycm9yX2NvZGUgIT0KPiA+ID4gbGliLnR5cGVzLnJ4X21ldGFkYXRh
+X2Vycm9yX2NvZGUubm9uZToKPiA+ID4gICAgICAgICAgICAgICAgIHByaW50KHNlbGYubWV0YWRh
+dGFfcnguc3RyZXJyb3IoKSkKPiA+ID4gICAgICAgICAgICAgaWYgc2FtcHM6Cj4gPiA+ICAgICAg
+ICAgICAgICAgICByZWFsX3NhbXBzID0gbWluKHNlbGYuc2FtcGxlcyAtIHJlY3Zfc2FtcHMsCj4g
+PiBzYW1wcykKPiA+ID4gICAgICAgICAgICAgICAgIHJlc3VsdFs6LCByZWN2X3NhbXBzOnJlY3Zf
+c2FtcHMgKyByZWFsX3NhbXBzXSA9Cj4gPiA+IHNlbGYucmVjdl9idWZmWzosIDA6cmVhbF9zYW1w
+c10KPiA+ID4gICAgICAgICAgICAgICAgIHJlY3Zfc2FtcHMgKz0gcmVhbF9zYW1wcwo+ID4gPiAg
+ICAgICAgICNwcmludCAoc2VsZi51c3JwLmdldF9yeF9zZW5zb3IoJ3Jzc2knKSkKPiA+ID4gICAg
+ICAgICAjcHJpbnQoc2VsZi5zdHJlYW1lcl9yeC5nZXRfbWF4X251bV9zYW1wcygpKQo+ID4gPiAg
+ICAgICAgICN3aGlsZSBzYW1wczoKPiA+ID4gICAgICAgICAjICAgIHNhbXBzID0gc2VsZi5zdHJl
+YW1lcl9yeC5yZWN2KHNlbGYucmVjdl9idWZmLAo+ID4gPiBzZWxmLm1ldGFkYXRhX3J4KQo+ID4g
+PiAKPiA+ID4gCj4gPiA+ICAgICAgICAgI3NlbGYuc3RyZWFtX2NtZC50aW1lX3NwZWMgPSBsaWIu
+dHlwZXMudGltZV9zcGVjKDApCj4gPiA+ICAgICAgICAgc2VsZi5zdHJlYW1fY21kID0KPiA+ID4g
+bGliLnR5cGVzLnN0cmVhbV9jbWQobGliLnR5cGVzLnN0cmVhbV9tb2RlLnN0b3BfY29udCkKPiA+
+ID4gICAgICAgICBzZWxmLnN0cmVhbWVyX3J4Lmlzc3VlX3N0cmVhbV9jbWQoc2VsZi5zdHJlYW1f
+Y21kKQo+ID4gPiAKPiA+ID4gICAgICAgICBjb21wbGV4X2J1ZmZzPW5wLmFwcGVuZChjb21wbGV4
+X2J1ZmZzLHJlc3VsdCkucmF2ZWwoKQo+ID4gPiAgICAgICAgICNjb3JyZWN0X3Jlc3VsdD1yZXN1
+bHQKPiA+ID4gICAgICAgICBjb3JyZWN0X3Jlc3VsdF8xPXJlc3VsdC0KPiA+ID4gKG5wLm1lYW4o
+cmVzdWx0LnJlYWwpK25wLm1lYW4ocmVzdWx0LmltYWcpKjFqKQo+ID4gPiAgICAgICAgICNjb3Jy
+ZWN0X3Jlc3VsdC5yZWFsPXJlc3VsdC5yZWFsLW5wLm1lYW4ocmVzdWx0LnJlYWwpCj4gPiA+ICAg
+ICAgICAgI2NvcnJlY3RfcmVzdWx0LmltYWcgPSByZXN1bHQuaW1hZyAtIG5wLm1lYW4ocmVzdWx0
+LmltYWcpCj4gPiA+IAo+ID4gPiAgICAgICAgIFBTRCA9ICBzZWxmLmZmdF90ZXN0KHJlc3VsdCkK
+PiA+ID4gCj4gPiA+IAo+ID4gPiAgICAgICAgICNQU0RbODE4ODo4MjAyXT1ucC5tZWFuKFBTRFs4
+MTgwOjgxODhdKQo+ID4gPiAKPiA+ID4gCj4gPiA+ICAgICAgICAgYnVmZnMgPSBucC5hcHBlbmQo
+YnVmZnMsUFNEKQo+ID4gPiAKPiA+ID4gCj4gPiA+IAo+ID4gPiAgICAgcmV0dXJuIGNvbXBsZXhf
+YnVmZnMsCj4gPiA+IGJ1ZmZzI25wLmFwcGVuZChidWZmc1t2YWx1ZS5zYW1wbGVzOl0sYnVmZnNb
+OnZhbHVlLnNhbXBsZXNdKQo+ID4gPiAKPiA+ID4gCj4gPiA+IAo+ID4gPiBkZWYgdGVzdF9yZWNp
+ZXYoc2VsZixmcmVxLGJhbmR3aWNoKToKPiA+ID4gICAgIGNvbXBsZXhfYnVmZnM9bnAuYXJyYXko
+W10pCj4gPiA+ICAgICBidWZmcyA9IG5wLmFycmF5KFtdKQo+ID4gPiAgICAgcmVzdWx0ID0gbnAu
+ZW1wdHkoKGxlbihbMF0pLCBzZWxmLnNhbXBsZXMpLAo+ID4gZHR5cGU9bnAuY29tcGxleDY0KQo+
+ID4gPiAKPiA+ID4gICAgIGZvciBpLCBmcmVxcSBpbiBlbnVtZXJhdGUoZnJlcSk6Cj4gPiA+IAo+
+ID4gPiAgICAgICAgIHJlY3Zfc2FtcHMgPSAwCj4gPiA+ICAgICAgICAgI3NlbGYudXNycC5zZXRf
+cnhfcmF0ZShiYW5kd2ljaFtpXSkKPiA+ID4gICAgICAgICBrPXVoZC50eXBlcy5UdW5lUmVxdWVz
+dChmcmVxcSkKPiA+ID4gICAgICAgICAjay5hcmdzKHVoZC50eXBlcy5kZXZpY2VfYWRkcigibW9k
+ZV9uPWludGVnZXIiKSkKPiA+ID4gICAgICAgICBzZWxmLnVzcnAuc2V0X3J4X2ZyZXEoaykKPiA+
+ID4gCj4gPiA+ICAgICAgICAgd2hpbGUgc2VsZi51c3JwLmdldF9yeF9zZW5zb3IoImxvX2xvY2tl
+ZCIpLnRvX2Jvb2woKSAhPQo+ID4gVHJ1ZToKPiA+ID4gICAgICAgICAgICAgY29udGludWUKPiA+
+ID4gCj4gPiA+ICAgICAgICAKPiA+ID4gICAgICAgICB3aGlsZSByZWN2X3NhbXBzIDwgc2VsZi5z
+YW1wbGVzOgo+ID4gPiAKPiA+ID4gICAgICAgICAgICAgc2FtcHMgPSBzZWxmLnN0cmVhbWVyX3J4
+LnJlY3Yoc2VsZi5yZWN2X2J1ZmYsCj4gPiA+IHNlbGYubWV0YWRhdGFfcngpCj4gPiA+ICAgICAg
+ICAgICAgIGlmIHNlbGYubWV0YWRhdGFfcnguZXJyb3JfY29kZSAhPQo+ID4gPiBsaWIudHlwZXMu
+cnhfbWV0YWRhdGFfZXJyb3JfY29kZS5ub25lOgo+ID4gPiAgICAgICAgICAgICAgICAgcHJpbnQo
+c2VsZi5tZXRhZGF0YV9yeC5zdHJlcnJvcigpKQo+ID4gPiAgICAgICAgICAgICBpZiBzYW1wczoK
+PiA+ID4gICAgICAgICAgICAgICAgIHJlYWxfc2FtcHMgPSBtaW4oc2VsZi5zYW1wbGVzIC0gcmVj
+dl9zYW1wcywKPiA+IHNhbXBzKQo+ID4gPiAgICAgICAgICAgICAgICAgcmVzdWx0WzosIHJlY3Zf
+c2FtcHM6cmVjdl9zYW1wcyArIHJlYWxfc2FtcHNdID0KPiA+ID4gc2VsZi5yZWN2X2J1ZmZbOiwg
+MDpyZWFsX3NhbXBzXQo+ID4gPiAgICAgICAgICAgICAgICAgcmVjdl9zYW1wcyArPSByZWFsX3Nh
+bXBzCj4gPiA+ICAgICAgICAgI3ByaW50IChzZWxmLnVzcnAuZ2V0X3J4X3NlbnNvcigncnNzaScp
+KQo+ID4gPiAKPiA+ID4gCj4gPiA+ICAgICAgICAgc2VsZi5zdHJlYW1fY21kLnRpbWVfc3BlYyA9
+IGxpYi50eXBlcy50aW1lX3NwZWMoMCkKPiA+ID4gICAgICAgICBzZWxmLnN0cmVhbWVyX3J4Lmlz
+c3VlX3N0cmVhbV9jbWQoc2VsZi5zdHJlYW1fY21kKQo+ID4gPiAKPiA+ID4gICAgICAgICBjb21w
+bGV4X2J1ZmZzPW5wLmFwcGVuZChjb21wbGV4X2J1ZmZzLHJlc3VsdCkucmF2ZWwoKQo+ID4gPiAg
+ICAgICAgIGNvcnJlY3RfcmVzdWx0PXJlc3VsdAo+ID4gPiAgICAgICAgIGNvcnJlY3RfcmVzdWx0
+XzE9cmVzdWx0LQo+ID4gPiAobnAubWVhbihyZXN1bHQucmVhbCkrbnAubWVhbihyZXN1bHQuaW1h
+ZykqMWopCj4gPiA+ICAgICAgICAgY29ycmVjdF9yZXN1bHQucmVhbD1yZXN1bHQucmVhbC1ucC5t
+ZWFuKHJlc3VsdC5yZWFsKQo+ID4gPiAgICAgICAgIGNvcnJlY3RfcmVzdWx0LmltYWcgPSByZXN1
+bHQuaW1hZyAtIG5wLm1lYW4ocmVzdWx0LmltYWcpCj4gPiA+IAo+ID4gPiAgICAgICAgIFBTRCA9
+ICBzZWxmLmZmdF90ZXN0KHJlc3VsdCkKPiA+ID4gCj4gPiA+IAo+ID4gPiAgICAgICAgICNQU0Rb
+ODE4ODo4MjAyXT1ucC5tZWFuKFBTRFs4MTgwOjgxODhdKQo+ID4gPiAKPiA+ID4gCj4gPiA+ICAg
+ICAgICAgYnVmZnMgPSBucC5hcHBlbmQoYnVmZnMsUFNEKQo+ID4gPiAKPiA+ID4gCj4gPiA+IAo+
+ID4gPiAgICAgcmV0dXJuIGNvbXBsZXhfYnVmZnMsCj4gPiA+IGJ1ZmZzI25wLmFwcGVuZChidWZm
+c1t2YWx1ZS5zYW1wbGVzOl0sYnVmZnNbOnZhbHVlLnNhbXBsZXNdKQo+ID4gPiAKPiA+ID4gCj4g
+PiA+IAo+ID4gPiAKPiA+ID4gCj4gPiA+IAo+ID4gPiAKPiA+ID4gCj4gPiA+IF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiA+IFVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0Cj4gPiA+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gPiA+IAo+ID4gaHR0
+cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0
+dXMuY29tCj4gPiAKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20K
