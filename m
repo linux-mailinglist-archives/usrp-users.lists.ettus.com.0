@@ -2,34 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B23C91A642
-	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 03:58:08 +0200 (CEST)
-Received: from [::1] (port=46984 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 123881A644
+	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 04:03:58 +0200 (CEST)
+Received: from [::1] (port=48962 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hPHH4-0008WQ-Ar; Fri, 10 May 2019 21:58:06 -0400
-Received: from atl4mhob07.registeredsite.com ([209.17.115.45]:36618)
- by mm2.emwd.com with esmtp (Exim 4.91)
- (envelope-from <k5so@k5so.com>) id 1hPHH0-0008Nw-1j
- for usrp-users@lists.ettus.com; Fri, 10 May 2019 21:58:02 -0400
-Received: from mailpod.hostingplatform.com
- (atl4qobmail01pod3.registeredsite.com [10.30.77.67])
- by atl4mhob07.registeredsite.com (8.14.4/8.14.4) with ESMTP id x4B1vFMa006775
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
- for <usrp-users@lists.ettus.com>; Fri, 10 May 2019 21:57:15 -0400
-Received: (qmail 46072 invoked by uid 0); 11 May 2019 01:57:14 -0000
-X-TCPREMOTEIP: 192.206.203.10
-X-Authenticated-UID: k5so@k5so.com
-Received: from unknown (HELO ?192.168.1.76?) (k5so@k5so.com@192.206.203.10)
- by 0 with ESMTPA; 11 May 2019 01:57:13 -0000
-Message-Id: <C4F03C96-4C2D-41A8-A115-BED8FF73F85B@k5so.com>
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Date: Fri, 10 May 2019 19:57:11 -0600
-In-Reply-To: <5CD627A4.3040206@gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+	id 1hPHMj-0000S3-3O; Fri, 10 May 2019 22:03:57 -0400
+Received: from mail-qt1-f182.google.com ([209.85.160.182]:43562)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hPHMe-0000JU-FB
+ for usrp-users@lists.ettus.com; Fri, 10 May 2019 22:03:52 -0400
+Received: by mail-qt1-f182.google.com with SMTP id r3so8809895qtp.10
+ for <usrp-users@lists.ettus.com>; Fri, 10 May 2019 19:03:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=UAP38EpxG4IYn9xxlQO2D1eRnG6pXEC4nh6hcMJz+uw=;
+ b=rjn58YPNnTZR1WZWcRGqf0lyGqqHC75t73qK+qVEU9m2ri6unhtXMru76Gewd8Fsdq
+ oWCBs+chZ3UdZFJj4EJKsG72p7gjv63uAHUEya8d5G2wRwz8IhhJANAwWxYLSESDLnqv
+ pW0G3IFMeM7knrS+Th9s8iUPZP9TxjsgWwLNnbUesysGJD09MJNTisPbLAODRIonmwzm
+ pI6FmGR3nCXlMEFyyjbxVgDjQV9hfi8jsshjkFGJpGD1KTfUnhCTi/WpEjsLOTrLIR+H
+ J7WvWfWOuc0aQtUoennNx7kyLdpT0BOafvp1sUAq9DZoWF6ingmxBwbxf+DKgdylCA5p
+ kpBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=UAP38EpxG4IYn9xxlQO2D1eRnG6pXEC4nh6hcMJz+uw=;
+ b=tdD9QEhvCuguJutSaaHX4Kc4ZP8uMys6hdZzV3xekWcq5lF83FAHWisKrYTMI+Ou/3
+ 5I1mUH3CQwSHWOlviSsKRxSozOKfRdN8ZIN2pPKMzhqkKCB34Yb//9EN2ckhAERovWON
+ VbFyaGsh6sqnHC5kCi3+dPgWAfIdRd8lr+EByY9YgyWJot+mMIok5GMbx9EhA1SVxaUC
+ 2UoT1jiB9oUqWZEtrl2NysRcnplY1Lr+InkDm500MKpnNolaF+v3TMctoFlW1U1xFGbw
+ 5YWM27MyW4tr8NEpD4iOdySalziDpcHs+8r6usN1FsDAgT/mqDhfMSBDeBISXEN4tpUC
+ Pm3g==
+X-Gm-Message-State: APjAAAWr+G9jTDmILVH4FrYnHhy9LZ4dC2Zfr3eoEh++vXL7RZrB8SzZ
+ U7lTi8iEsWsNj5/sazZTDY4gncOT
+X-Google-Smtp-Source: APXvYqwMnN0GYyrobHXBxzGRu1L2dD/Wqr8CxDMk0lleVh2oF7yoGTWSozt5Ze9m6uMz0n45mYzmFg==
+X-Received: by 2002:ac8:91b:: with SMTP id t27mr13287620qth.107.1557540191508; 
+ Fri, 10 May 2019 19:03:11 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id x47sm4307879qth.68.2019.05.10.19.03.10
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 10 May 2019 19:03:10 -0700 (PDT)
+Message-ID: <5CD62D5D.7050403@gmail.com>
+Date: Fri, 10 May 2019 22:03:09 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: Joe Martin <k5so@k5so.com>
 References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
- <A01FCD5D-DFB6-4E9F-AA41-5D2CF9B00EEA@k5so.com>
- <CA+JMMq_wYJYoenP=wX2ruK-KSHTT6EQdM6K+ksrGFLZZEe+5jQ@mail.gmail.com>
  <691F0564-B5AA-48C6-9258-D15F006E9F7D@k5so.com>
  <E4163757-B40B-4716-888F-2328596BB5B6@k5so.com> <5CD48C58.9050302@gmail.com>
  <8481269A-B583-40D7-B93C-1BDDFD50D338@k5so.com>
@@ -44,7 +67,8 @@ References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
  <365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com> <5CD61E2C.5020703@gmail.com>
  <6A14E23C-AAFE-43EF-A207-C830BFD62642@k5so.com> <5CD6229D.30805@gmail.com>
  <0A955663-E38A-4677-BE65-B53476BBD503@k5so.com> <5CD627A4.3040206@gmail.com>
-X-Mailer: Apple Mail (2.3445.9.1)
+ <C4F03C96-4C2D-41A8-A115-BED8FF73F85B@k5so.com>
+In-Reply-To: <C4F03C96-4C2D-41A8-A115-BED8FF73F85B@k5so.com>
 Subject: Re: [USRP-users] Need a little help with running legacy prebuilt
  UHD versions
 X-BeenThere: usrp-users@lists.ettus.com
@@ -58,10 +82,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Joe Martin <k5so@k5so.com>
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============9013546648779396213=="
+Content-Type: multipart/mixed; boundary="===============1908173158884000174=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,1309 +99,1532 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
---===============9013546648779396213==
+This is a multi-part message in MIME format.
+--===============1908173158884000174==
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_E793F4D1-C901-4E69-A8EC-AFD4DFA46450"
+ boundary="------------090606020105020803030709"
+
+This is a multi-part message in MIME format.
+--------------090606020105020803030709
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 05/10/2019 09:57 PM, Joe Martin wrote:
+> Okay, Marcus, thanks for the info.  I’m not aware of their 
+> organizational details although I’m in very regular communications 
+> with the current president of DSES.  They have installed permanent 
+> commercial power to the site once again and I was under the impression 
+> DSES actually owns the site, but I don’t know any of those details so 
+> perhaps my impressions are not totally correct.  I’m simply helping 
+> the president to get some of the data acquisition functionality and a 
+> bit of the tracking functionality in place.  I’ve never been to the 
+> site.  This N210 will help them a lot!
+>
+> Joe
+They had a site on Table Mountain, CO -- this new site they own, near 
+Haswell.  It sat dormant for many years, but it looks like significant
+   progress has been made, and it is an 18m dish--similar to the one 
+SBRAC had.
+
+I visited their original site years ago, back when I was still doing 
+SBRAC.  I happened to be in Colorado for an IETF meeting, and made a
+   side-trip.
+
+All very encouraging, for sure.
+
+I still think collections of smaller, more-manageable, dishes are better 
+:) :)
 
 
---Apple-Mail=_E793F4D1-C901-4E69-A8EC-AFD4DFA46450
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-Okay, Marcus, thanks for the info.  I=E2=80=99m not aware of their =
-organizational details although I=E2=80=99m in very regular =
-communications with the current president of DSES.  They have installed =
-permanent commercial power to the site once again and I was under the =
-impression DSES actually owns the site, but I don=E2=80=99t know any of =
-those details so perhaps my impressions are not totally correct.  I=E2=80=99=
-m simply helping the president to get some of the data acquisition =
-functionality and a bit of the tracking functionality in place.  I=E2=80=99=
-ve never been to the site.  This N210 will help them a lot!
-
-Joe
-
-> On May 10, 2019, at 7:38 PM, Marcus D. Leech <patchvonbraun@gmail.com> =
-wrote:
->=20
-> On 05/10/2019 09:29 PM, Joe Martin wrote:
->> Yes, they have a 21cm feedhorn with optical cable from the LNA to the =
-control room and have been doing hydrogen line work and some SETI-type =
-drift scan observations with that 60=E2=80=99 dish.  They are itching to =
-do some pulsar work now!
-> The early instantiation of DSES was a lot like SBRAC--access to dishes =
-on a controlled government site, which they ultimately lost and had
->   to move to a different site.
->=20
-> When *we* Phoenixed, we came back as CCERA with a formal legal =
-structure...
->=20
->=20
->>=20
->>> On May 10, 2019, at 7:17 PM, Marcus D. Leech =
-<patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->>>=20
->>> On 05/10/2019 09:15 PM, Joe Martin wrote:
->>>> Yes, Nick=E2=80=99s suggestion concerning S2 was certainly the key! =
- I learned a ton about this from all of you guys though and do sincerely =
-appreciate the patient and helpful manner you all have exhibited to me. =20=
-
->>>>=20
->>>> The daughter card is the DBSRX2 that they=E2=80=99ll use for =
-hydrogen-line work and some pulsar work in the 1400MHz range and they =
-also have a GPSDO board installed.  As an alternate daughter card they =
-also have a TVRX2 that could replace the DBSRX2 if they wish. =20
->>>>=20
->>>> This will be fun!
->>>>=20
->>>> Joe
->>> I haven't kept up with their progress for years--is the "new" site =
-now operational?  It was certainly a "project" last time I saw any news =
-of it...
->>>=20
->>>=20
->>>>=20
->>>>> On May 10, 2019, at 6:58 PM, Marcus D. Leech via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>=20
->>>>> On 05/10/2019 07:53 PM, Joe Martin via USRP-users wrote:
->>>>>> Holy smoke!  SUCCESS!!  Nick pointed out that there are two =
-switches on the N210; S1 and S2 and S1 is a reset, so an upload of FPGA =
-code fails if that is held (which I was holding for his suggested =
-test!).  Holding S2 during iMPACT loading of the .bit image results in =
-the uhd_image_loader step being SUCCESSFUL!!  I am so happy to see that! =
- Uhd_usrp_probe works wonderfully.  Finally.  We now can put this little =
-to work doing some tough things! =20
->>>>>>=20
->>>>>> Thank you all SO MUCH for your assistance with reviving this =
-N210.  A monumental achievement in my book!   I don=E2=80=99t know what =
-to say except that we TOTALLY appreciate you efforts to get us running.  =
-You guys are GREAT!=20
->>>>>>=20
->>>>>> Very best wishes to you each and every one!  =20
->>>>>>=20
->>>>>> Joe
->>>>> I think Nick deserves most of the credit--he was in Ettus R&D =
-during the N210 development days.
->>>>>=20
->>>>> Hopefully DSES will now have a receiver -- what daughtercard do =
-they have in it?
->>>>>=20
->>>>>=20
->>>>>>> On May 10, 2019, at 5:30 PM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>=20
->>>>>>> Ian and all,=20
->>>>>>>=20
->>>>>>> I have been very careful to avoid the pitfalls you detailed.  I =
-began with a fresh installation of Ubuntu 18.04 then performed a =
-successful build of UHD 3.9.7, then used command:
->>>>>>>=20
->>>>>>> uhd_images_downloader
->>>>>>>=20
->>>>>>> to load the appropriate/associated images into the PC.=20
->>>>>>>=20
->>>>>>> Then used ISE iMPACT to load the =E2=80=9Cusrp_n210_r3_fpga.bit=E2=
-=80=9D file into the FPGA of the N210.  iMPACT reports =E2=80=9CPROGRAM =
-SUCCESSFUL=E2=80=9D.=20
->>>>>>>=20
->>>>>>> Then without power cycling the N210 used the command:=20
->>>>>>>=20
->>>>>>> usrp_image_loader =
-=E2=80=94args=3D=E2=80=9Ctype=3Dusrp2,addr=3D192.168.10.2,overwrite-safe=E2=
-=80=9D =E2=80=94fw-path=3D/usr/local/share/uhd/images/usrp_n210_fw.bin =
-=E2=80=94fpga-path=3D/usr/local/share/uhd/images/usrp_n210_r3_fpga.bin
->>>>>>>=20
->>>>>>> To load the non-volatile memory of the N210 but I always get the =
-=E2=80=9CRuntimeError: Received invalid 32 reply from device=E2=80=9D =
-error when running usrp_image_loader.=20
->>>>>>>=20
->>>>>>> I am able to successfully ping 192.168.10.2 but no matter what =
-combinations of r2 or r3 .bit file and firmware and fpga image .bin =
-files I use the response when invoking the usrp_image_loader is always =
-the same, namely =E2=80=9Cinvalid reply 32 from device=E2=80=9D. =20
->>>>>>>=20
->>>>>>> The command uhd_find_devices returns by reporting it can find a =
-usrp2 device at address 192.168.10.2, as you would hope. =20
->>>>>>>=20
->>>>>>> After trying every conceivable combination of these actions with =
-numerous versions of UHD and r2/r3 .bit FPGA files and r2/r3 .bin files =
-on several fresh installations of Ubuntu 18.04 and 16.04 the result is =
-always the same in that things proceed normally as the various documents =
-concerning un-bricking an N210 explains, until the step of using the =
-usrp_image_loader is executed, at which point a RuntimeError returns =
-stating that the =E2=80=9Cinvalid 32 reply=E2=80=9D has occurred. =20
->>>>>>>=20
->>>>>>> I was hopeful that careful use of rev3 .bit and .bin files with =
-UHD 3.9.7 would do the trick but alas that is not the case. =20
->>>>>>>=20
->>>>>>> I suspect that you are near the bottom of the list of =
-suggestions for me and I do appreciate the time and thinking you have =
-afforded me on this issue.  If there is anything remaining to try I=E2=80=99=
-d be most willing to try it.=20
->>>>>>>=20
->>>>>>> BTW, the suggestion made by someone earlier to try holding the =
-safe button down during the loading of the FPGA from iMPACT causes the =
-programming to fail (as reported by iMPACT), so that=E2=80=99s =
-apparently not a good thing to do.  But one can recover from that state =
-by simply by re-programming with the safe button not held but the =
-fundamental problem with the uhd_image_loader step in the unbricking =
-process always seems to result.=20
->>>>>>>=20
+>
+>> On May 10, 2019, at 7:38 PM, Marcus D. Leech <patchvonbraun@gmail.com 
+>> <mailto:patchvonbraun@gmail.com>> wrote:
+>>
+>> On 05/10/2019 09:29 PM, Joe Martin wrote:
+>>> Yes, they have a 21cm feedhorn with optical cable from the LNA to 
+>>> the control room and have been doing hydrogen line work and some 
+>>> SETI-type drift scan observations with that 60’ dish.  They are 
+>>> itching to do some pulsar work now!
+>> The early instantiation of DSES was a lot like SBRAC--access to 
+>> dishes on a controlled government site, which they ultimately lost 
+>> and had
+>>   to move to a different site.
+>>
+>> When *we* Phoenixed, we came back as CCERA with a formal legal 
+>> structure...
+>>
+>>
+>>>
+>>>> On May 10, 2019, at 7:17 PM, Marcus D. Leech 
+>>>> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+>>>>
+>>>> On 05/10/2019 09:15 PM, Joe Martin wrote:
+>>>>> Yes, Nick’s suggestion concerning S2 was certainly the key!  I 
+>>>>> learned a ton about this from all of you guys though and do 
+>>>>> sincerely appreciate the patient and helpful manner you all have 
+>>>>> exhibited to me.
+>>>>>
+>>>>> The daughter card is the DBSRX2 that they’ll use for hydrogen-line 
+>>>>> work and some pulsar work in the 1400MHz range and they also have 
+>>>>> a GPSDO board installed.  As an alternate daughter card they also 
+>>>>> have a TVRX2 that could replace the DBSRX2 if they wish.
+>>>>>
+>>>>> This will be fun!
+>>>>>
+>>>>> Joe
+>>>> I haven't kept up with their progress for years--is the "new" site 
+>>>> now operational?  It was certainly a "project" last time I saw any 
+>>>> news of it...
+>>>>
+>>>>
+>>>>>
+>>>>>> On May 10, 2019, at 6:58 PM, Marcus D. Leech via USRP-users 
+>>>>>> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> 
+>>>>>> wrote:
+>>>>>>
+>>>>>> On 05/10/2019 07:53 PM, Joe Martin via USRP-users wrote:
+>>>>>>> Holy smoke!  SUCCESS!!  Nick pointed out that there are two 
+>>>>>>> switches on the N210; S1 and S2 and S1 is a reset, so an upload 
+>>>>>>> of FPGA code fails if that is held (which I was holding for his 
+>>>>>>> suggested test!).  Holding S2 during iMPACT loading of the .bit 
+>>>>>>> image results in the uhd_image_loader step being SUCCESSFUL!!  I 
+>>>>>>> am so happy to see that!  Uhd_usrp_probe works wonderfully. 
+>>>>>>>  Finally.  We now can put this little to work doing some tough 
+>>>>>>> things!
+>>>>>>>
+>>>>>>> Thank you all SO MUCH for your assistance with reviving this 
+>>>>>>> N210.  A monumental achievement in my book!   I don’t know what 
+>>>>>>> to say except that we TOTALLY appreciate you efforts to get us 
+>>>>>>> running.  You guys are GREAT!
+>>>>>>>
+>>>>>>> Very best wishes to you each and every one!
+>>>>>>>
 >>>>>>> Joe
->>>>>>>=20
->>>>>>>> On May 10, 2019, at 9:31 AM, Ian Buckley <ian.buckley@gmail.com =
-<mailto:ian.buckley@gmail.com>> wrote:
->>>>>>>>=20
->>>>>>>> Joe,=20
->>>>>>>> To save you time, It may well be worth you trying jumping to =
-the 3) step initially and seeing if your current loaded image or safe =
-image is capable of being upgraded =E2=80=A6it likely is since that =
-protocol is widely compatible across UHD variants. The key here I have =
-to emphasize (since you appear to have been previously getting stuck =
-with incompatibility between whatever is loaded in the USRP and your =
-host UHD installation) is to be sure your new UHD installation is the =
-only one on your system, and that you have the binary images that are =
-version matched with it=E2=80=A6people often get caught out by reminants =
-of various UHD versions installed in various system directories from =
-different install methods.
->>>>>>>> -Ian
->>>>>>>>=20
->>>>>>>>> On May 10, 2019, at 5:58 AM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>=20
->>>>>>>>> Ian,=20
->>>>>>>>>=20
->>>>>>>>> Very good, that=E2=80=99s encouraging at least.  Yes, I am =
-familiar with using ISE iMPACT to load the FPGA with .bit code and even =
-how to create the .bit from the associated .bin file and did try doing =
-that earlier but perhaps not identically to your prescribed steps below. =
- I=E2=80=99ll revisit it.  I successfully built UHD 003_009_000 earlier =
-so I can probably also successfully build UHD 003_009_007 too.  I=E2=80=99=
-ll do that and give it a go.  I am familiar with the documents you =
-mentioned.  Generally things have gone exactly as described right up =
-until UHD needs to communicate with the stored images at which point it =
-never does; so far anyway.
->>>>>>>>>=20
->>>>>>>>> Thanks much for the additional information.  I=E2=80=99ll =
-certainly hammer on it some more now that I have a few more pertinent =
-details under my belt to guide the process appropriately.=20
->>>>>>>>>=20
->>>>>>>>> Joe
->>>>>>>>>=20
->>>>>>>>>> On May 10, 2019, at 12:32 AM, Ian Buckley =
-<ian.buckley@gmail.com <mailto:ian.buckley@gmail.com>> wrote:
->>>>>>>>>>=20
->>>>>>>>>> Joe,=20
->>>>>>>>>> This is generally all good news and somewhat hopeful. The =
-fact you can ping 192.168.10.2 in safe mode tell=E2=80=99s you that the =
-FPGA has loaded an image from Flash, that it=E2=80=99s passed CRC and =
-booted the embedded micro controller on the FPGA and run the firmware =
-that replies to ICMP packets=E2=80=A6that=E2=80=99s a sign the hardware =
-is in reasonable shape, regardless of what actually version of image ins =
-currently loaded. If you had the internal UART connected to a 3.3V =
-interface you would be seeing the FPGA and FW compatibility numbers for =
-this image printed at boot if it got this far.
->>>>>>>>>> (Sorry if I=E2=80=99m telling you stuff you know here, too =
-many messages in this thread to go reread them)
->>>>>>>>>>=20
->>>>>>>>>> You should now refer to these 2 pages:
->>>>>>>>>> https://kb.ettus.com/N200/N210_Device_Recovery =
-<https://kb.ettus.com/N200/N210_Device_Recovery>
->>>>>>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load =
-<http://files.ettus.com/manual/page_usrp2.html#usrp2_load> (N-series =
-sections, not USRP2)
->>>>>>>>>>=20
->>>>>>>>>> The general outline of what to try is as follows:
->>>>>>>>>> 1) Start with a relatively modern and stable UHD version: Any =
-3.9.x version is pretty ideal, it=E2=80=99s well supported in Gnuradio, =
-is perhaps the most stable, and has N210 support. If you are building =
-UHD yourself from GitHub, then checkout the tag =
-=E2=80=9Crelease_003_009_007=E2=80=9D.
->>>>>>>>>> (Note there is no reason to look for old UHD versions to =
-support your H/W, the N210 specific code has changed very little for =
-some time, but you will benefit from much improved general UHD =
-functionality and much better community support)
->>>>>>>>>> 2. (Given you understand how to load a new image via JTAG) =
-Follow the procedure outlined in =E2=80=9CUnbricking an N Series =
-Device=E2=80=9D. Run =E2=80=9Cuhd_images_downloader=E2=80=9D under =
-UHD3.9.x to be sure you have a compatible set of FPGA images for this =
-version of UHD. Use an R3                                                =
-           .bit file (Stay away from R4 images since we know that is =
-electrically incompatible with your H/W) and load this via JTAG. Verify =
-you can ping this once it=E2=80=99s loaded. Remember this is a volatile =
-load, no flash has changed yet, if you reset the H/W this download is =
-lost. The goal now is to use the embedded firmware in this JTAG image to =
-load the same images in .bin format via the ethernet network and update =
-both slot=E2=80=99s in the flash memory with non-volatile images that =
-load automatically after reset/power cycle.
->>>>>>>>>> 3) Follow the instructions in =
-http://files.ettus.com/manual/page_usrp2.html#usrp2_load =
-<http://files.ettus.com/manual/page_usrp2.html#usrp2_load> to perform =
-the image update via the network. You can also take a peek at the =
-settings in your EEPROM (=E2=80=9CRecovery process=E2=80=9D =
-instructions) to verify that all fields are sane and match               =
-                                            your case label.
->>>>>>>>>> 4) At this point, if all has gone as intended, USRP and UHD =
-should be in sync, power cycling H/W should work, and tools like =
-=E2=80=9Cuhd_usrp_probe=E2=80=9D should find the USRP and print it=E2=80=99=
-s detailed H/W config. There are a few common useful things to check in =
-the =E2=80=9CTroubleshooting=E2=80=9D section if things still don=E2=80=99=
-t seem to have worked.
->>>>>>>>>>=20
->>>>>>>>>> -Ian
->>>>>>>>>>=20
->>>>>>>>>>=20
->>>>>>>>>>> On May 9, 2019, at 2:48 PM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>=20
->>>>>>>>>>> Oh, okay, I didn=E2=80=99t get that.  Understood now.  I =
-have UHD 3.14.0 running on my main machine so I could try again some =
-newer .bit files into the FPGA than I previously have tried (I tried the =
-current version of UHD and N210 usrp_n210_r4_fpga.bit to no avail) to =
-see if any of them are compatible.  I also was able to build UHD 3.9.0 =
-on a different machine so I can try that too with some of the other .bit =
-files.  Will hold the safe button down while loading the FPGA this time =
-around. =20
->>>>>>>>>>>=20
->>>>>>>>>>> Joe
->>>>>>>>>>>=20
->>>>>>>>>>>> On May 9, 2019, at 3:38 PM, Nick Foster =
-<bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
->>>>>>>>>>>>=20
->>>>>>>>>>>> I'm saying that you might try to continue the effort to =
-JTAG load a more modern FPGA image. It's possible you have to hold down =
-the safe mode button while loading the image.=20
->>>>>>>>>>>>=20
->>>>>>>>>>>> On Thu, May 9, 2019, 2:22 PM Joe Martin <k5so@k5so.com =
-<mailto:k5so@k5so.com>> wrote:
->>>>>>>>>>>> Thanks for digging into that for us, Nick.  Interesting.  =
-As the hardware change to rev4 occurred around mid 2011 and the earliest =
-UHD version that exists on the files.ettus.com/uhd =
-<http://files.ettus.com/uhd> page is Feb 2104, what is the likelihood in =
-your opinion that the UHD version will be compatible with the rev2/3 =
-hardware from 2011?  =20
->>>>>>>>>>>>=20
->>>>>>>>>>>> So far I=E2=80=99ve not been successful in reviving the =
-2014 UHD version so I=E2=80=99m asking to determine whether continued =
-effort to do so is likely to yield anything positive with respect to =
-interfacing with the 2011 hardware. =20
->>>>>>>>>>>>=20
+>>>>>> I think Nick deserves most of the credit--he was in Ettus R&D 
+>>>>>> during the N210 development days.
+>>>>>>
+>>>>>> Hopefully DSES will now have a receiver -- what daughtercard do 
+>>>>>> they have in it?
+>>>>>>
+>>>>>>
+>>>>>>>> On May 10, 2019, at 5:30 PM, Joe Martin via USRP-users 
+>>>>>>>> <usrp-users@lists.ettus.com 
+>>>>>>>> <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>
+>>>>>>>> Ian and all,
+>>>>>>>>
+>>>>>>>> I have been very careful to avoid the pitfalls you detailed.  I 
+>>>>>>>> began with a fresh installation of Ubuntu 18.04 then performed 
+>>>>>>>> a successful build of UHD 3.9.7, then used command:
+>>>>>>>>
+>>>>>>>> uhd_images_downloader
+>>>>>>>>
+>>>>>>>> to load the appropriate/associated images into the PC.
+>>>>>>>>
+>>>>>>>> Then used ISE iMPACT to load the “usrp_n210_r3_fpga.bit” file 
+>>>>>>>> into the FPGA of the N210.  iMPACT reports “PROGRAM SUCCESSFUL”.
+>>>>>>>>
+>>>>>>>> Then without power cycling the N210 used the command:
+>>>>>>>>
+>>>>>>>> usrp_image_loader 
+>>>>>>>> —args=“type=usrp2,addr=192.168.10.2,overwrite-safe” 
+>>>>>>>> —fw-path=/usr/local/share/uhd/images/usrp_n210_fw.bin 
+>>>>>>>> —fpga-path=/usr/local/share/uhd/images/usrp_n210_r3_fpga.bin
+>>>>>>>>
+>>>>>>>> To load the non-volatile memory of the N210 but I always get 
+>>>>>>>> the “RuntimeError: Received invalid 32 reply from device” error 
+>>>>>>>> when running usrp_image_loader.
+>>>>>>>>
+>>>>>>>> I am able to successfully ping 192.168.10.2 but no matter what 
+>>>>>>>> combinations of r2 or r3 .bit file and firmware and fpga image 
+>>>>>>>> .bin files I use the response when invoking the 
+>>>>>>>> usrp_image_loader is always the same, namely “invalid reply 32 
+>>>>>>>> from device”.
+>>>>>>>>
+>>>>>>>> The command uhd_find_devices returns by reporting it can find a 
+>>>>>>>> usrp2 device at address 192.168.10.2, as you would hope.
+>>>>>>>>
+>>>>>>>> After trying every conceivable combination of these actions 
+>>>>>>>> with numerous versions of UHD and r2/r3 .bit FPGA files and 
+>>>>>>>> r2/r3 .bin files on several fresh installations of Ubuntu 18.04 
+>>>>>>>> and 16.04 the result is always the same in that things proceed 
+>>>>>>>> normally as the various documents concerning un-bricking an 
+>>>>>>>> N210 explains, until the step of using the usrp_image_loader is 
+>>>>>>>> executed, at which point a RuntimeError returns stating that 
+>>>>>>>> the “invalid 32 reply” has occurred.
+>>>>>>>>
+>>>>>>>> I was hopeful that careful use of rev3 .bit and .bin files with 
+>>>>>>>> UHD 3.9.7 would do the trick but alas that is not the case.
+>>>>>>>>
+>>>>>>>> I suspect that you are near the bottom of the list of 
+>>>>>>>> suggestions for me and I do appreciate the time and thinking 
+>>>>>>>> you have afforded me on this issue.  If there is anything 
+>>>>>>>> remaining to try I’d be most willing to try it.
+>>>>>>>>
+>>>>>>>> BTW, the suggestion made by someone earlier to try holding the 
+>>>>>>>> safe button down during the loading of the FPGA from iMPACT 
+>>>>>>>> causes the programming to fail (as reported by iMPACT), so 
+>>>>>>>> that’s apparently not a good thing to do.  But one can recover 
+>>>>>>>> from that state by simply by re-programming with the safe 
+>>>>>>>> button not held but the fundamental problem with the 
+>>>>>>>> uhd_image_loader step in the unbricking process always seems to 
+>>>>>>>> result.
+>>>>>>>>
+>>>>>>>> Joe
+>>>>>>>>
+>>>>>>>>> On May 10, 2019, at 9:31 AM, Ian Buckley 
+>>>>>>>>> <ian.buckley@gmail.com <mailto:ian.buckley@gmail.com>> wrote:
+>>>>>>>>>
+>>>>>>>>> Joe,
+>>>>>>>>> To save you time, It may well be worth you trying jumping to 
+>>>>>>>>> the 3) step initially and seeing if your current loaded image 
+>>>>>>>>> or safe image is capable of being upgraded …it likely is since 
+>>>>>>>>> that protocol is widely compatible across UHD variants. The 
+>>>>>>>>> key here I have to emphasize (since you appear to have been 
+>>>>>>>>> previously getting stuck with incompatibility between whatever 
+>>>>>>>>> is loaded in the USRP and your host UHD installation) is to be 
+>>>>>>>>> sure your new UHD installation is the only one on your system, 
+>>>>>>>>> and that you have the binary images that are version matched 
+>>>>>>>>> with it…people often get caught out by reminants of various 
+>>>>>>>>> UHD versions installed in various system directories from 
+>>>>>>>>> different install methods.
+>>>>>>>>> -Ian
+>>>>>>>>>
+>>>>>>>>>> On May 10, 2019, at 5:58 AM, Joe Martin via USRP-users 
+>>>>>>>>>> <usrp-users@lists.ettus.com 
+>>>>>>>>>> <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>
+>>>>>>>>>> Ian,
+>>>>>>>>>>
+>>>>>>>>>> Very good, that’s encouraging at least.  Yes, I am familiar 
+>>>>>>>>>> with using ISE iMPACT to load the FPGA with .bit code and 
+>>>>>>>>>> even how to create the .bit from the associated .bin file and 
+>>>>>>>>>> did try doing that earlier but perhaps not identically to 
+>>>>>>>>>> your prescribed steps below.  I’ll revisit it.  I 
+>>>>>>>>>> successfully built UHD 003_009_000 earlier so I can probably 
+>>>>>>>>>> also successfully build UHD 003_009_007 too.  I’ll do that 
+>>>>>>>>>> and give it a go.  I am familiar with the documents you 
+>>>>>>>>>> mentioned.  Generally things have gone exactly as described 
+>>>>>>>>>> right up until UHD needs to communicate with the stored 
+>>>>>>>>>> images at which point it never does; so far anyway.
+>>>>>>>>>>
+>>>>>>>>>> Thanks much for the additional information.  I’ll certainly 
+>>>>>>>>>> hammer on it some more now that I have a few more pertinent 
+>>>>>>>>>> details under my belt to guide the process appropriately.
+>>>>>>>>>>
+>>>>>>>>>> Joe
+>>>>>>>>>>
+>>>>>>>>>>> On May 10, 2019, at 12:32 AM, Ian Buckley 
+>>>>>>>>>>> <ian.buckley@gmail.com <mailto:ian.buckley@gmail.com>> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>> Joe,
+>>>>>>>>>>> This is generally all good news and somewhat hopeful. The 
+>>>>>>>>>>> fact you can ping 192.168.10.2 in safe mode tell’s you that 
+>>>>>>>>>>> the FPGA has loaded an image from Flash, that it’s passed 
+>>>>>>>>>>> CRC and booted the embedded micro controller on the FPGA and 
+>>>>>>>>>>> run the firmware that replies to ICMP packets…that’s a sign 
+>>>>>>>>>>> the hardware is in reasonable shape, regardless of what 
+>>>>>>>>>>> actually version of image ins currently loaded. If you had 
+>>>>>>>>>>> the internal UART connected to a 3.3V interface you would be 
+>>>>>>>>>>> seeing the FPGA and FW compatibility numbers for this image 
+>>>>>>>>>>> printed at boot if it got this far.
+>>>>>>>>>>> (Sorry if I’m telling you stuff you know here, too many 
+>>>>>>>>>>> messages in this thread to go reread them)
+>>>>>>>>>>>
+>>>>>>>>>>> You should now refer to these 2 pages:
+>>>>>>>>>>> https://kb.ettus.com/N200/N210_Device_Recovery
+>>>>>>>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load (N-series 
+>>>>>>>>>>> sections, not USRP2)
+>>>>>>>>>>>
+>>>>>>>>>>> The general outline of what to try is as follows:
+>>>>>>>>>>> 1) Start with a relatively modern and stable UHD version: 
+>>>>>>>>>>> Any 3.9.x version is pretty ideal, it’s well supported in 
+>>>>>>>>>>> Gnuradio, is perhaps the most stable, and has N210 support. 
+>>>>>>>>>>> If you are building UHD yourself from GitHub, then checkout 
+>>>>>>>>>>> the tag “release_003_009_007”.
+>>>>>>>>>>> (Note there is no reason to look for old UHD versions to 
+>>>>>>>>>>> support your H/W, the N210 specific code has changed very 
+>>>>>>>>>>> little for some time, but you will benefit from much 
+>>>>>>>>>>> improved general UHD functionality and much better community 
+>>>>>>>>>>> support)
+>>>>>>>>>>> 2. (Given you understand how to load a new image via JTAG) 
+>>>>>>>>>>> Follow the procedure outlined in “Unbricking an N Series 
+>>>>>>>>>>> Device”. Run “uhd_images_downloader” under UHD3.9.x to be 
+>>>>>>>>>>> sure you have a compatible set of FPGA images for this 
+>>>>>>>>>>> version of UHD. Use an R3 .bit file (Stay away from R4 
+>>>>>>>>>>> images since we know that is electrically incompatible with 
+>>>>>>>>>>> your H/W) and load this via JTAG. Verify you can ping this 
+>>>>>>>>>>> once it’s loaded. Remember this is a volatile load, no flash 
+>>>>>>>>>>> has changed yet, if you reset the H/W this download is lost. 
+>>>>>>>>>>> The goal now is to use the embedded firmware in this JTAG 
+>>>>>>>>>>> image to load the same images in .bin format via the 
+>>>>>>>>>>> ethernet network and update both slot’s in the flash memory 
+>>>>>>>>>>> with non-volatile images that load automatically after 
+>>>>>>>>>>> reset/power cycle.
+>>>>>>>>>>> 3) Follow the instructions in 
+>>>>>>>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load to 
+>>>>>>>>>>> perform the image update via the network. You can also take 
+>>>>>>>>>>> a peek at the settings in your EEPROM (“Recovery process” 
+>>>>>>>>>>> instructions) to verify that all fields are sane and match 
+>>>>>>>>>>> your case label.
+>>>>>>>>>>> 4) At this point, if all has gone as intended, USRP and UHD 
+>>>>>>>>>>> should be in sync, power cycling H/W should work, and tools 
+>>>>>>>>>>> like “uhd_usrp_probe” should find the USRP and print it’s 
+>>>>>>>>>>> detailed H/W config. There are a few common useful things to 
+>>>>>>>>>>> check in the “Troubleshooting” section if things still don’t 
+>>>>>>>>>>> seem to have worked.
+>>>>>>>>>>>
+>>>>>>>>>>> -Ian
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>> On May 9, 2019, at 2:48 PM, Joe Martin via USRP-users 
+>>>>>>>>>>>> <usrp-users@lists.ettus.com 
+>>>>>>>>>>>> <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>
+>>>>>>>>>>>> Oh, okay, I didn’t get that.  Understood now.  I have UHD 
+>>>>>>>>>>>> 3.14.0 running on my main machine so I could try again some 
+>>>>>>>>>>>> newer .bit files into the FPGA than I previously have tried 
+>>>>>>>>>>>> (I tried the current version of UHD and N210 
+>>>>>>>>>>>> usrp_n210_r4_fpga.bit to no avail) to see if any of them 
+>>>>>>>>>>>> are compatible.  I also was able to build UHD 3.9.0 on a 
+>>>>>>>>>>>> different machine so I can try that too with some of the 
+>>>>>>>>>>>> other .bit files.  Will hold the safe button down while 
+>>>>>>>>>>>> loading the FPGA this time around.
+>>>>>>>>>>>>
 >>>>>>>>>>>> Joe
->>>>>>>>>>>>=20
->>>>>>>>>>>>> On May 9, 2019, at 3:06 PM, Nick Foster =
-<bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> So I really dug into the old archives here and literally =
-pulled an old hard drive out of a closet, and found a copy of the old =
-hardware repository from back in the days when N210 was called "USRP2+". =
-Best that I can tell, we only ever released two versions to the public. =
-We might have sold R3 stickered as R2 -- I don't see anything in the =
-repository that would indicate otherwise. Rev 2/3 was sold until around =
-June or July 2011, when we moved to rev 4. The only firmware/host code =
-changes I can see between any of the versions are that R4 used LVDS =
-clocking to the daughterboard where previous versions used CMOS. So I =
-think you should be able to run r3 firmware on your N210.
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> That said, the very very old N210s with very very old =
-firmware might not have used the same safe/production firmware/fpga =
-image arrangement that we later arrived at. The hardware is still fine, =
-but you might be in for a bit of a deep dive to get it all running =
-again.
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> If you have a TTL-serial adapter or a logic analyzer that =
-works as such, you can connect to the debug UART header and get printout =
-information from the firmware at boot time. Another good idea would be =
-to take a video of the front panel LEDs as you                           =
-                                apply power -- the boot LED lights give =
-good indication of the firmware/FPGA image loading process.
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> Nick
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> On Thu, May 9, 2019 at 1:42 PM Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>> Thanks for the info, Marcus.  However, seeing that Jason =
-went through this last year with a couple of N210 he has it would seem =
-unlikely that all three of the N210 are broken.  That being said and =
-considering what you jus said it seems that I should=E2=80=99ve been =
-able to find some version of UHD that will successfully communicate with =
-the firmware and fpga images stored in the unit;  I have not, using UHD =
-versions from 3.9.0 to 3.14.0. =20
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> I wanted to try with even earlier versions of UHD but am =
-finding trouble in utilizing UHD v3.4.0 (earliest version I could find) =
-as it seems that =E2=80=9Cprebuilt=E2=80=9D v3.4.0 needs only Ubuntu =
-10.10 or 11.10 which so far I=E2=80=99m not able to successfully install =
-and run.   Seems we=E2=80=99re running out of option on this one so the =
-Deep Space Exploration Society, who I=E2=80=99m trying to help with =
-this, may have to come to grasps with the notion that their N210 is a =
-true brick.=20
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> Joe
->>>>>>>>>>>>>=20
->>>>>>>>>>>>>> On May 9, 2019, at 2:23 PM, Marcus D. Leech via =
-USRP-users <usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>>>=20
->>>>>>>>>>>>>> On 05/09/2019 04:18 PM, Joe Martin via USRP-users wrote:
->>>>>>>>>>>>>>> Nick, Ian,=20
->>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>> If this unit happens to be incorrectly labeled as a rev =
-2 N210 and it is actually a rev 3 N210, is there hope in being able to =
-load rev 3 firmware and fpga images (which I have located previously and =
-tried actually) with some available UHD version?  If so, would you be =
-able to tell me which UHD version(s) might be able to communicate with =
-it? =20
->>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>> Joe
->>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>> Theoretically, most versions in the last several years =
-should be able to talk to it.  In *general* UHD never drops support for  =
-                                                         older hardware,
->>>>>>>>>>>>>>   and tries to maintain compatibility.  Now, it is the =
-case that newer features are almost never "back-ported", but basic =
-functionality should
->>>>>>>>>>>>>>   always be there. =20
->>>>>>>>>>>>>>=20
->>>>>>>>>>>>>> What this *should* mean is that you should be able to use =
-the firmware tools once the device is in "safe mode" to get yourself to =
-where you
->>>>>>>>>>>>>>   want to be.  If that doesn't work, that may well mean =
-that the hardware is broken, and it's unlikely to be economical to =
-repair.
->>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>> On May 9, 2019, at 2:12 PM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>> Okay.  I=E2=80=99ve asserted from the outset that =
-it=E2=80=99s a rev 2, based on the factory label.  Is this N210 a lost =
-cause if it is actually a Rev2 N210?=20
->>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>> Joe
->>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>> On May 9, 2019, at 2:05 PM, Nick Foster =
-<bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
->>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>> Well, it's not a rev 4. It's either 2 or 3 in terms of =
-hardware revision.=20
->>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>> On Thu, May 9, 2019 at 12:58 PM Joe Martin =
-<k5so@k5so.com <mailto:k5so@k5so.com>> wrote:
->>>>>>>>>>>>>>>>> =E2=80=A6able to ping 192.168.10.2 successfully.
->>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>> On May 9, 2019, at 1:54 PM, Joe Martin <k5so@k5so.com =
-<mailto:k5so@k5so.com>> wrote:
->>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>> Ian,=20
->>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>> Yes, I have tried many times to boot in safe mode, =
-same result regardless.  Yes, I am able to pin to 192.168.10.2 =
-successfully.=20
->>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>> Joe
->>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> On May 9, 2019, at 1:47 PM, Joe Martin via =
-USRP-users <usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> Ian and Nick,=20
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> Thanks for the assistance.  Attached are dropbox =
-links to two snapshot photos:  1) the factory label on the back of the =
-N210, showing N210 r:2.0 and 2) a top side view of the N210.=20
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> 1) =
-https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0 =
-<https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0>
->>>>>>>>>>>>>>>>>>> 2) =
-https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0 =
-<https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0>
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> Seems this unit is indeed a rev 2 N210, yes?=20
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> Joe
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> On May 9, 2019, at 12:40 PM, Nick Foster =
-<bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> Moreover, the best "tell" is to look at the N210 =
-motherboard. If the SRAM chip is on the top side, it's a rev 2/3. If the =
-SRAM is on the bottom side, it's a rev 4. If you send a picture along of =
-the top of the N210, I can tell you if it's early or late rev.
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> On Thu, May 9, 2019 at 11:36 AM Ian Buckley via =
-USRP-users <usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>>>>>>>>> Joe,
->>>>>>>>>>>>>>>>>>>> So I scratched my head about this a little late =
-last night and looked back through the development repository for the =
-N210 and as far as I can tell there was never customer facing FPGA code =
-for a Rev2 N210. Chatting with Matt this morning he shared my feeling =
-that a Rev2 wasn't sold to customers, so I'm curious if you have a unit =
-that has a factory label that says N210Rev2 or if you have seen "usrp2 =
-rev2.0" on the PCB (which can be missleading).
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> Also have you tried booting into the safe image and =
-verifying that it at least pings on 192.168.10.2?
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> If we can conclusively identify which rev of h/w =
-you have I can probably help further.
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> Ian
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> _______________________________________________
->>>>>>>>>>>>>>>>>>> USRP-users mailing list
->>>>>>>>>>>>>>>>>>> USRP-users@lists.ettus.com =
-<mailto:USRP-users@lists.ettus.com>
->>>>>>>>>>>>>>>>>>> =
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>> _______________________________________________
->>>>>>>>>>>>>>>> USRP-users mailing list
->>>>>>>>>>>>>>>> USRP-users@lists.ettus.com =
-<mailto:USRP-users@lists.ettus.com>
->>>>>>>>>>>>>>>> =
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>> _______________________________________________
->>>>>>>>>>>>>>> USRP-users mailing list
->>>>>>>>>>>>>>> USRP-users@lists.ettus.com =
-<mailto:USRP-users@lists.ettus.com>
->>>>>>>>>>>>>>> =
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>>>>>>>>>>>=20
->>>>>>>>>>>>>> _______________________________________________
->>>>>>>>>>>>>> USRP-users mailing list
->>>>>>>>>>>>>> USRP-users@lists.ettus.com =
-<mailto:USRP-users@lists.ettus.com>
->>>>>>>>>>>>>> =
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> _______________________________________________
->>>>>>>>>>>>> USRP-users mailing list
->>>>>>>>>>>>> USRP-users@lists.ettus.com =
-<mailto:USRP-users@lists.ettus.com>
->>>>>>>>>>>>> =
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>>>>>>>>>=20
->>>>>>>>>>>=20
->>>>>>>>>>> _______________________________________________
->>>>>>>>>>> USRP-users mailing list
->>>>>>>>>>> USRP-users@lists.ettus.com =
-<mailto:USRP-users@lists.ettus.com>
->>>>>>>>>>> =
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>>>>>>>=20
->>>>>>>>>=20
->>>>>>>>> _______________________________________________
->>>>>>>>> USRP-users mailing list
->>>>>>>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>>>>>>>> =
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>>>>>=20
->>>>>>>=20
->>>>>>>=20
->>>>>>>> On May 10, 2019, at 9:31 AM, Ian Buckley <ian.buckley@gmail.com =
-<mailto:ian.buckley@gmail.com>> wrote:
->>>>>>>>=20
->>>>>>>> Joe,=20
->>>>>>>> To save you time, It may well be worth you trying jumping to =
-the 3) step initially and seeing if your current loaded image or safe =
-image is capable of being upgraded =E2=80=A6it likely is since that =
-protocol is widely compatible across UHD variants. The key here I have =
-to emphasize (since you appear to have been previously getting stuck =
-with incompatibility between whatever is loaded in the USRP and your =
-host UHD installation) is to be sure your new UHD installation is the =
-only one on your system, and that you have the binary images that are =
-version matched with it=E2=80=A6people often get caught out by reminants =
-of various UHD versions installed in various system directories from =
-different install methods.
->>>>>>>> -Ian
->>>>>>>>=20
->>>>>>>>> On May 10, 2019, at 5:58 AM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>=20
->>>>>>>>> Ian,=20
->>>>>>>>>=20
->>>>>>>>> Very good, that=E2=80=99s encouraging at least.  Yes, I am =
-familiar with using ISE iMPACT to load the FPGA with .bit code and even =
-how to create the .bit from the associated .bin file and did try doing =
-that earlier but perhaps not identically to your prescribed steps below. =
- I=E2=80=99ll revisit it.  I successfully built UHD 003_009_000 earlier =
-so I can probably also successfully build UHD 003_009_007 too.  I=E2=80=99=
-ll do that and give it a go.  I am familiar with the documents you =
-mentioned.  Generally things have gone exactly as described right up =
-until UHD needs to communicate with the stored images at which point it =
-never does; so far anyway.
->>>>>>>>>=20
->>>>>>>>> Thanks much for the additional information.  I=E2=80=99ll =
-certainly hammer on it some more now that I have a few more pertinent =
-details under my belt to guide the process appropriately.=20
->>>>>>>>>=20
->>>>>>>>> Joe
->>>>>>>>>=20
->>>>>>>>>> On May 10, 2019, at 12:32 AM, Ian Buckley =
-<ian.buckley@gmail.com <mailto:ian.buckley@gmail.com>> wrote:
->>>>>>>>>>=20
->>>>>>>>>> Joe,=20
->>>>>>>>>> This is generally all good news and somewhat hopeful. The =
-fact you can ping 192.168.10.2 in safe mode tell=E2=80=99s you that the =
-FPGA has loaded an image from Flash, that it=E2=80=99s passed CRC and =
-booted the embedded micro controller on the FPGA and run the firmware =
-that replies to ICMP packets=E2=80=A6that=E2=80=99s a sign the hardware =
-is in reasonable shape, regardless of what actually version of image ins =
-currently loaded. If you had the internal UART connected to a 3.3V =
-interface you would be seeing the FPGA and FW compatibility numbers for =
-this image printed at boot if it got this far.
->>>>>>>>>> (Sorry if I=E2=80=99m telling you stuff you know here, too =
-many messages in this thread to go reread them)
->>>>>>>>>>=20
->>>>>>>>>> You should now refer to these 2 pages:
->>>>>>>>>> https://kb.ettus.com/N200/N210_Device_Recovery =
-<https://kb.ettus.com/N200/N210_Device_Recovery>
->>>>>>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load =
-<http://files.ettus.com/manual/page_usrp2.html#usrp2_load> (N-series =
-sections, not USRP2)
->>>>>>>>>>=20
->>>>>>>>>> The general outline of what to try is as follows:
->>>>>>>>>> 1) Start with a relatively modern and stable UHD version: Any =
-3.9.x version is pretty ideal, it=E2=80=99s well supported in Gnuradio, =
-is perhaps the most stable, and has N210 support. If you are building =
-UHD yourself from GitHub, then checkout the tag =
-=E2=80=9Crelease_003_009_007=E2=80=9D.
->>>>>>>>>> (Note there is no reason to look for old UHD versions to =
-support your H/W, the N210 specific code has changed very little for =
-some time, but you will benefit from much improved general UHD =
-functionality and much better community support)
->>>>>>>>>> 2. (Given you understand how to load a new image via JTAG) =
-Follow the procedure outlined in =E2=80=9CUnbricking an N Series =
-Device=E2=80=9D. Run =E2=80=9Cuhd_images_downloader=E2=80=9D under =
-UHD3.9.x to be sure you have a compatible set of FPGA images for this =
-version of UHD. Use an R3                                                =
-           .bit file (Stay away from R4 images since we know that is =
-electrically incompatible with your H/W) and load this via JTAG. Verify =
-you can ping this once it=E2=80=99s loaded. Remember this is a volatile =
-load, no flash has changed yet, if you reset the H/W this download is =
-lost. The goal now is to use the embedded firmware in this JTAG image to =
-load the same images in .bin format via the ethernet network and update =
-both slot=E2=80=99s in the flash memory with non-volatile images that =
-load automatically after reset/power cycle.
->>>>>>>>>> 3) Follow the instructions in =
-http://files.ettus.com/manual/page_usrp2.html#usrp2_load =
-<http://files.ettus.com/manual/page_usrp2.html#usrp2_load> to perform =
-the image update via the network. You can also take a peek at the =
-settings in your EEPROM (=E2=80=9CRecovery process=E2=80=9D =
-instructions) to verify that all fields are sane and match               =
-                                            your case label.
->>>>>>>>>> 4) At this point, if all has gone as intended, USRP and UHD =
-should be in sync, power cycling H/W should work, and tools like =
-=E2=80=9Cuhd_usrp_probe=E2=80=9D should find the USRP and print it=E2=80=99=
-s detailed H/W config. There are a few common useful things to check in =
-the =E2=80=9CTroubleshooting=E2=80=9D section if things still don=E2=80=99=
-t seem to have worked.
->>>>>>>>>>=20
->>>>>>>>>> -Ian
->>>>>>>>>>=20
->>>>>>>>>>=20
->>>>>>>>>>> On May 9, 2019, at 2:48 PM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>=20
->>>>>>>>>>> Oh, okay, I didn=E2=80=99t get that.  Understood now.  I =
-have UHD 3.14.0 running on my main machine so I could try again some =
-newer .bit files into the FPGA than I previously have tried (I tried the =
-current version of UHD and N210 usrp_n210_r4_fpga.bit to no avail) to =
-see if any of them are compatible.  I also was able to build UHD 3.9.0 =
-on a different machine so I can try that too with some of the other .bit =
-files.  Will hold the safe button down while loading the FPGA this time =
-around. =20
->>>>>>>>>>>=20
->>>>>>>>>>> Joe
->>>>>>>>>>>=20
->>>>>>>>>>>> On May 9, 2019, at 3:38 PM, Nick Foster =
-<bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
->>>>>>>>>>>>=20
->>>>>>>>>>>> I'm saying that you might try to continue the effort to =
-JTAG load a more modern FPGA image. It's possible you have to hold down =
-the safe mode button while loading the image.=20
->>>>>>>>>>>>=20
->>>>>>>>>>>> On Thu, May 9, 2019, 2:22 PM Joe Martin <k5so@k5so.com =
-<mailto:k5so@k5so.com>> wrote:
->>>>>>>>>>>> Thanks for digging into that for us, Nick.  Interesting.  =
-As the hardware change to rev4 occurred around mid 2011 and the earliest =
-UHD version that exists on the files.ettus.com/uhd =
-<http://files.ettus.com/uhd> page is Feb 2104, what is the likelihood in =
-your opinion that the UHD version will be compatible with the rev2/3 =
-hardware from 2011?  =20
->>>>>>>>>>>>=20
->>>>>>>>>>>> So far I=E2=80=99ve not been successful in reviving the =
-2014 UHD version so I=E2=80=99m asking to determine whether continued =
-effort to do so is likely to yield anything positive with respect to =
-interfacing with the 2011 hardware. =20
->>>>>>>>>>>>=20
+>>>>>>>>>>>>
+>>>>>>>>>>>>> On May 9, 2019, at 3:38 PM, Nick Foster 
+>>>>>>>>>>>>> <bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> I'm saying that you might try to continue the effort to 
+>>>>>>>>>>>>> JTAG load a more modern FPGA image. It's possible you have 
+>>>>>>>>>>>>> to hold down the safe mode button while loading the image.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> On Thu, May 9, 2019, 2:22 PM Joe Martin <k5so@k5so.com 
+>>>>>>>>>>>>> <mailto:k5so@k5so.com>> wrote:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>     Thanks for digging into that for us, Nick.
+>>>>>>>>>>>>>     Interesting. As the hardware change to rev4 occurred
+>>>>>>>>>>>>>     around mid 2011 and the earliest UHD version that
+>>>>>>>>>>>>>     exists on the files.ettus.com/uhd
+>>>>>>>>>>>>>     <http://files.ettus.com/uhd> page is Feb 2104, what is
+>>>>>>>>>>>>>     the likelihood in your opinion that the UHD version
+>>>>>>>>>>>>>     will be compatible with the rev2/3 hardware from 2011?
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>     So far I’ve not been successful in reviving the 2014
+>>>>>>>>>>>>>     UHD version so I’m asking to determine whether
+>>>>>>>>>>>>>     continued effort to do so is likely to yield anything
+>>>>>>>>>>>>>     positive with respect to interfacing with the 2011
+>>>>>>>>>>>>>     hardware.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>     Joe
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     On May 9, 2019, at 3:06 PM, Nick Foster
+>>>>>>>>>>>>>>     <bistromath@gmail.com <mailto:bistromath@gmail.com>>
+>>>>>>>>>>>>>>     wrote:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     So I really dug into the old archives here and
+>>>>>>>>>>>>>>     literally pulled an old hard drive out of a closet,
+>>>>>>>>>>>>>>     and found a copy of the old hardware repository from
+>>>>>>>>>>>>>>     back in the days when N210 was called "USRP2+". Best
+>>>>>>>>>>>>>>     that I can tell, we only ever released two versions
+>>>>>>>>>>>>>>     to the public. We might have sold R3 stickered as R2
+>>>>>>>>>>>>>>     -- I don't see anything in the repository that would
+>>>>>>>>>>>>>>     indicate otherwise. Rev 2/3 was sold until around
+>>>>>>>>>>>>>>     June or July 2011, when we moved to rev 4. The only
+>>>>>>>>>>>>>>     firmware/host code changes I can see between any of
+>>>>>>>>>>>>>>     the versions are that R4 used LVDS clocking to the
+>>>>>>>>>>>>>>     daughterboard where previous versions used CMOS. So I
+>>>>>>>>>>>>>>     think you should be able to run r3 firmware on your N210.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     That said, the very very old N210s with very very old
+>>>>>>>>>>>>>>     firmware might not have used the same safe/production
+>>>>>>>>>>>>>>     firmware/fpga image arrangement that we later arrived
+>>>>>>>>>>>>>>     at. The hardware is still fine, but you might be in
+>>>>>>>>>>>>>>     for a bit of a deep dive to get it all running again.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     If you have a TTL-serial adapter or a logic analyzer
+>>>>>>>>>>>>>>     that works as such, you can connect to the debug UART
+>>>>>>>>>>>>>>     header and get printout information from the firmware
+>>>>>>>>>>>>>>     at boot time. Another good idea would be to take a
+>>>>>>>>>>>>>>     video of the front panel LEDs as you apply power --
+>>>>>>>>>>>>>>     the boot LED lights give good indication of the
+>>>>>>>>>>>>>>     firmware/FPGA image loading process.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     Nick
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     On Thu, May 9, 2019 at 1:42 PM Joe Martin via
+>>>>>>>>>>>>>>     USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>     <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>         Thanks for the info, Marcus. However, seeing that
+>>>>>>>>>>>>>>         Jason went through this last year with a couple
+>>>>>>>>>>>>>>         of N210 he has it would seem unlikely that all
+>>>>>>>>>>>>>>         three of the N210 are broken.  That being said
+>>>>>>>>>>>>>>         and considering what you jus said it seems that I
+>>>>>>>>>>>>>>         should’ve been able to find some version of UHD
+>>>>>>>>>>>>>>         that will successfully communicate with the
+>>>>>>>>>>>>>>         firmware and fpga images stored in the unit;  I
+>>>>>>>>>>>>>>         have not, using UHD versions from 3.9.0 to 3.14.0.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>         I wanted to try with even earlier versions of UHD
+>>>>>>>>>>>>>>         but am finding trouble in utilizing UHD v3.4.0
+>>>>>>>>>>>>>>         (earliest version I could find) as it seems that
+>>>>>>>>>>>>>>         “prebuilt” v3.4.0 needs only Ubuntu 10.10 or
+>>>>>>>>>>>>>>         11.10 which so far I’m not able to successfully
+>>>>>>>>>>>>>>         install and run.   Seems we’re running out of
+>>>>>>>>>>>>>>         option on this one so the Deep Space Exploration
+>>>>>>>>>>>>>>         Society, who I’m trying to help with this, may
+>>>>>>>>>>>>>>         have to come to grasps with the notion that their
+>>>>>>>>>>>>>>         N210 is a true brick.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>         Joe
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>         On May 9, 2019, at 2:23 PM, Marcus D. Leech via
+>>>>>>>>>>>>>>>         USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>         On 05/09/2019 04:18 PM, Joe Martin via
+>>>>>>>>>>>>>>>         USRP-users wrote:
+>>>>>>>>>>>>>>>>         Nick, Ian,
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>         If this unit happens to be incorrectly labeled
+>>>>>>>>>>>>>>>>         as a rev 2 N210 and it is actually a rev 3
+>>>>>>>>>>>>>>>>         N210, is there hope in being able to load rev 3
+>>>>>>>>>>>>>>>>         firmware and fpga images (which I have located
+>>>>>>>>>>>>>>>>         previously and tried actually) with some
+>>>>>>>>>>>>>>>>         available UHD version? If so, would you be able
+>>>>>>>>>>>>>>>>         to tell me which UHD version(s) might be able
+>>>>>>>>>>>>>>>>         to communicate with it?
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>         Joe
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>         Theoretically, most versions in the last several
+>>>>>>>>>>>>>>>         years should be able to talk to it.  In
+>>>>>>>>>>>>>>>         *general* UHD never drops support for older
+>>>>>>>>>>>>>>>         hardware,
+>>>>>>>>>>>>>>>           and tries to maintain compatibility. Now, it
+>>>>>>>>>>>>>>>         is the case that newer features are almost never
+>>>>>>>>>>>>>>>         "back-ported", but basic functionality should
+>>>>>>>>>>>>>>>           always be there.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>         What this *should* mean is that you should be
+>>>>>>>>>>>>>>>         able to use the firmware tools once the device
+>>>>>>>>>>>>>>>         is in "safe mode" to get yourself to where you
+>>>>>>>>>>>>>>>           want to be. If that doesn't work, that may
+>>>>>>>>>>>>>>>         well mean that the hardware is broken, and it's
+>>>>>>>>>>>>>>>         unlikely to be economical to repair.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>         On May 9, 2019, at 2:12 PM, Joe Martin via
+>>>>>>>>>>>>>>>>>         USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>         Okay.  I’ve asserted from the outset that it’s
+>>>>>>>>>>>>>>>>>         a rev 2, based on the factory label.  Is this
+>>>>>>>>>>>>>>>>>         N210 a lost cause if it is actually a Rev2 N210?
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>         Joe
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>         On May 9, 2019, at 2:05 PM, Nick Foster
+>>>>>>>>>>>>>>>>>>         <bistromath@gmail.com
+>>>>>>>>>>>>>>>>>>         <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>         Well, it's not a rev 4. It's either 2 or 3 in
+>>>>>>>>>>>>>>>>>>         terms of hardware revision.
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>         On Thu, May 9, 2019 at 12:58 PM Joe Martin
+>>>>>>>>>>>>>>>>>>         <k5so@k5so.com <mailto:k5so@k5so.com>> wrote:
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>             …able to ping 192.168.10.2 successfully.
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>             On May 9, 2019, at 1:54 PM, Joe Martin
+>>>>>>>>>>>>>>>>>>>             <k5so@k5so.com <mailto:k5so@k5so.com>>
+>>>>>>>>>>>>>>>>>>>             wrote:
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>             Ian,
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>             Yes, I have tried many times to boot in
+>>>>>>>>>>>>>>>>>>>             safe mode, same result regardless. Yes,
+>>>>>>>>>>>>>>>>>>>             I am able to pin to 192.168.10.2
+>>>>>>>>>>>>>>>>>>>             successfully.
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>             Joe
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             On May 9, 2019, at 1:47 PM, Joe Martin
+>>>>>>>>>>>>>>>>>>>>             via USRP-users
+>>>>>>>>>>>>>>>>>>>>             <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>>>>             <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             Ian and Nick,
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             Thanks for the assistance. Attached are
+>>>>>>>>>>>>>>>>>>>>             dropbox links to two snapshot photos:
+>>>>>>>>>>>>>>>>>>>>              1) the factory label on the back of
+>>>>>>>>>>>>>>>>>>>>             the N210, showing N210 r:2.0 and 2) a
+>>>>>>>>>>>>>>>>>>>>             top side view of the N210.
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             1)
+>>>>>>>>>>>>>>>>>>>>             https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0
+>>>>>>>>>>>>>>>>>>>>             2)
+>>>>>>>>>>>>>>>>>>>>             https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             Seems this unit is indeed a rev 2 N210,
+>>>>>>>>>>>>>>>>>>>>             yes?
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             Joe
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>             On May 9, 2019, at 12:40 PM, Nick
+>>>>>>>>>>>>>>>>>>>>>             Foster <bistromath@gmail.com
+>>>>>>>>>>>>>>>>>>>>>             <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>             Moreover, the best "tell" is to look
+>>>>>>>>>>>>>>>>>>>>>             at the N210 motherboard. If the SRAM
+>>>>>>>>>>>>>>>>>>>>>             chip is on the top side, it's a rev
+>>>>>>>>>>>>>>>>>>>>>             2/3. If the SRAM is on the bottom
+>>>>>>>>>>>>>>>>>>>>>             side, it's a rev 4. If you send a
+>>>>>>>>>>>>>>>>>>>>>             picture along of the top of the N210,
+>>>>>>>>>>>>>>>>>>>>>             I can tell you if it's early or late rev.
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>             On Thu, May 9, 2019 at 11:36 AM Ian
+>>>>>>>>>>>>>>>>>>>>>             Buckley via USRP-users
+>>>>>>>>>>>>>>>>>>>>>             <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>>>>>             <mailto:usrp-users@lists.ettus.com>>
+>>>>>>>>>>>>>>>>>>>>>             wrote:
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>                 Joe,
+>>>>>>>>>>>>>>>>>>>>>                 So I scratched my head about this
+>>>>>>>>>>>>>>>>>>>>>                 a little late last night and
+>>>>>>>>>>>>>>>>>>>>>                 looked back through the
+>>>>>>>>>>>>>>>>>>>>>                 development repository for the
+>>>>>>>>>>>>>>>>>>>>>                 N210 and as far as I can tell
+>>>>>>>>>>>>>>>>>>>>>                 there was never customer facing
+>>>>>>>>>>>>>>>>>>>>>                 FPGA code for a Rev2 N210.
+>>>>>>>>>>>>>>>>>>>>>                 Chatting with Matt this morning he
+>>>>>>>>>>>>>>>>>>>>>                 shared my feeling that a Rev2
+>>>>>>>>>>>>>>>>>>>>>                 wasn't sold to customers, so I'm
+>>>>>>>>>>>>>>>>>>>>>                 curious if you have a unit that
+>>>>>>>>>>>>>>>>>>>>>                 has a factory label that says
+>>>>>>>>>>>>>>>>>>>>>                 N210Rev2 or if you have seen
+>>>>>>>>>>>>>>>>>>>>>                 "usrp2 rev2.0" on the PCB (which
+>>>>>>>>>>>>>>>>>>>>>                 can be missleading).
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>                 Also have you tried booting into
+>>>>>>>>>>>>>>>>>>>>>                 the safe image and verifying that
+>>>>>>>>>>>>>>>>>>>>>                 it at least pings on 192.168.10.2?
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>                 If we can conclusively identify
+>>>>>>>>>>>>>>>>>>>>>                 which rev of h/w you have I can
+>>>>>>>>>>>>>>>>>>>>>                 probably help further.
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>                 Ian
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             _______________________________________________
+>>>>>>>>>>>>>>>>>>>>             USRP-users mailing list
+>>>>>>>>>>>>>>>>>>>>             USRP-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>>>>             <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>>>>>>>>>>>>             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>         _______________________________________________
+>>>>>>>>>>>>>>>>>         USRP-users mailing list
+>>>>>>>>>>>>>>>>>         USRP-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>         <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>>>>>>>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>         _______________________________________________
+>>>>>>>>>>>>>>>>         USRP-users mailing list
+>>>>>>>>>>>>>>>>         USRP-users@lists.ettus.com  <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>>>>>>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>         _______________________________________________
+>>>>>>>>>>>>>>>         USRP-users mailing list
+>>>>>>>>>>>>>>>         USRP-users@lists.ettus.com
+>>>>>>>>>>>>>>>         <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>>>>>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>         _______________________________________________
+>>>>>>>>>>>>>>         USRP-users mailing list
+>>>>>>>>>>>>>>         USRP-users@lists.ettus.com
+>>>>>>>>>>>>>>         <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>>>>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>> _______________________________________________
+>>>>>>>>>>>> USRP-users mailing list
+>>>>>>>>>>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> _______________________________________________
+>>>>>>>>>> USRP-users mailing list
+>>>>>>>>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>>> On May 10, 2019, at 9:31 AM, Ian Buckley 
+>>>>>>>>> <ian.buckley@gmail.com <mailto:ian.buckley@gmail.com>> wrote:
+>>>>>>>>>
+>>>>>>>>> Joe,
+>>>>>>>>> To save you time, It may well be worth you trying jumping to 
+>>>>>>>>> the 3) step initially and seeing if your current loaded image 
+>>>>>>>>> or safe image is capable of being upgraded …it likely is since 
+>>>>>>>>> that protocol is widely compatible across UHD variants. The 
+>>>>>>>>> key here I have to emphasize (since you appear to have been 
+>>>>>>>>> previously getting stuck with incompatibility between whatever 
+>>>>>>>>> is loaded in the USRP and your host UHD installation) is to be 
+>>>>>>>>> sure your new UHD installation is the only one on your system, 
+>>>>>>>>> and that you have the binary images that are version matched 
+>>>>>>>>> with it…people often get caught out by reminants of various 
+>>>>>>>>> UHD versions installed in various system directories from 
+>>>>>>>>> different install methods.
+>>>>>>>>> -Ian
+>>>>>>>>>
+>>>>>>>>>> On May 10, 2019, at 5:58 AM, Joe Martin via USRP-users 
+>>>>>>>>>> <usrp-users@lists.ettus.com 
+>>>>>>>>>> <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>
+>>>>>>>>>> Ian,
+>>>>>>>>>>
+>>>>>>>>>> Very good, that’s encouraging at least.  Yes, I am familiar 
+>>>>>>>>>> with using ISE iMPACT to load the FPGA with .bit code and 
+>>>>>>>>>> even how to create the .bit from the associated .bin file and 
+>>>>>>>>>> did try doing that earlier but perhaps not identically to 
+>>>>>>>>>> your prescribed steps below.  I’ll revisit it.  I 
+>>>>>>>>>> successfully built UHD 003_009_000 earlier so I can probably 
+>>>>>>>>>> also successfully build UHD 003_009_007 too.  I’ll do that 
+>>>>>>>>>> and give it a go.  I am familiar with the documents you 
+>>>>>>>>>> mentioned.  Generally things have gone exactly as described 
+>>>>>>>>>> right up until UHD needs to communicate with the stored 
+>>>>>>>>>> images at which point it never does; so far anyway.
+>>>>>>>>>>
+>>>>>>>>>> Thanks much for the additional information.  I’ll certainly 
+>>>>>>>>>> hammer on it some more now that I have a few more pertinent 
+>>>>>>>>>> details under my belt to guide the process appropriately.
+>>>>>>>>>>
+>>>>>>>>>> Joe
+>>>>>>>>>>
+>>>>>>>>>>> On May 10, 2019, at 12:32 AM, Ian Buckley 
+>>>>>>>>>>> <ian.buckley@gmail.com <mailto:ian.buckley@gmail.com>> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>> Joe,
+>>>>>>>>>>> This is generally all good news and somewhat hopeful. The 
+>>>>>>>>>>> fact you can ping 192.168.10.2 in safe mode tell’s you that 
+>>>>>>>>>>> the FPGA has loaded an image from Flash, that it’s passed 
+>>>>>>>>>>> CRC and booted the embedded micro controller on the FPGA and 
+>>>>>>>>>>> run the firmware that replies to ICMP packets…that’s a sign 
+>>>>>>>>>>> the hardware is in reasonable shape, regardless of what 
+>>>>>>>>>>> actually version of image ins currently loaded. If you had 
+>>>>>>>>>>> the internal UART connected to a 3.3V interface you would be 
+>>>>>>>>>>> seeing the FPGA and FW compatibility numbers for this image 
+>>>>>>>>>>> printed at boot if it got this far.
+>>>>>>>>>>> (Sorry if I’m telling you stuff you know here, too many 
+>>>>>>>>>>> messages in this thread to go reread them)
+>>>>>>>>>>>
+>>>>>>>>>>> You should now refer to these 2 pages:
+>>>>>>>>>>> https://kb.ettus.com/N200/N210_Device_Recovery
+>>>>>>>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load (N-series 
+>>>>>>>>>>> sections, not USRP2)
+>>>>>>>>>>>
+>>>>>>>>>>> The general outline of what to try is as follows:
+>>>>>>>>>>> 1) Start with a relatively modern and stable UHD version: 
+>>>>>>>>>>> Any 3.9.x version is pretty ideal, it’s well supported in 
+>>>>>>>>>>> Gnuradio, is perhaps the most stable, and has N210 support. 
+>>>>>>>>>>> If you are building UHD yourself from GitHub, then checkout 
+>>>>>>>>>>> the tag “release_003_009_007”.
+>>>>>>>>>>> (Note there is no reason to look for old UHD versions to 
+>>>>>>>>>>> support your H/W, the N210 specific code has changed very 
+>>>>>>>>>>> little for some time, but you will benefit from much 
+>>>>>>>>>>> improved general UHD functionality and much better community 
+>>>>>>>>>>> support)
+>>>>>>>>>>> 2. (Given you understand how to load a new image via JTAG) 
+>>>>>>>>>>> Follow the procedure outlined in “Unbricking an N Series 
+>>>>>>>>>>> Device”. Run “uhd_images_downloader” under UHD3.9.x to be 
+>>>>>>>>>>> sure you have a compatible set of FPGA images for this 
+>>>>>>>>>>> version of UHD. Use an R3 .bit file (Stay away from R4 
+>>>>>>>>>>> images since we know that is electrically incompatible with 
+>>>>>>>>>>> your H/W) and load this via JTAG. Verify you can ping this 
+>>>>>>>>>>> once it’s loaded. Remember this is a volatile load, no flash 
+>>>>>>>>>>> has changed yet, if you reset the H/W this download is lost. 
+>>>>>>>>>>> The goal now is to use the embedded firmware in this JTAG 
+>>>>>>>>>>> image to load the same images in .bin format via the 
+>>>>>>>>>>> ethernet network and update both slot’s in the flash memory 
+>>>>>>>>>>> with non-volatile images that load automatically after 
+>>>>>>>>>>> reset/power cycle.
+>>>>>>>>>>> 3) Follow the instructions in 
+>>>>>>>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load to 
+>>>>>>>>>>> perform the image update via the network. You can also take 
+>>>>>>>>>>> a peek at the settings in your EEPROM (“Recovery process” 
+>>>>>>>>>>> instructions) to verify that all fields are sane and match 
+>>>>>>>>>>> your case label.
+>>>>>>>>>>> 4) At this point, if all has gone as intended, USRP and UHD 
+>>>>>>>>>>> should be in sync, power cycling H/W should work, and tools 
+>>>>>>>>>>> like “uhd_usrp_probe” should find the USRP and print it’s 
+>>>>>>>>>>> detailed H/W config. There are a few common useful things to 
+>>>>>>>>>>> check in the “Troubleshooting” section if things still don’t 
+>>>>>>>>>>> seem to have worked.
+>>>>>>>>>>>
+>>>>>>>>>>> -Ian
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>> On May 9, 2019, at 2:48 PM, Joe Martin via USRP-users 
+>>>>>>>>>>>> <usrp-users@lists.ettus.com 
+>>>>>>>>>>>> <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>
+>>>>>>>>>>>> Oh, okay, I didn’t get that.  Understood now.  I have UHD 
+>>>>>>>>>>>> 3.14.0 running on my main machine so I could try again some 
+>>>>>>>>>>>> newer .bit files into the FPGA than I previously have tried 
+>>>>>>>>>>>> (I tried the current version of UHD and N210 
+>>>>>>>>>>>> usrp_n210_r4_fpga.bit to no avail) to see if any of them 
+>>>>>>>>>>>> are compatible.  I also was able to build UHD 3.9.0 on a 
+>>>>>>>>>>>> different machine so I can try that too with some of the 
+>>>>>>>>>>>> other .bit files.  Will hold the safe button down while 
+>>>>>>>>>>>> loading the FPGA this time around.
+>>>>>>>>>>>>
 >>>>>>>>>>>> Joe
->>>>>>>>>>>>=20
->>>>>>>>>>>>> On May 9, 2019, at 3:06 PM, Nick Foster =
-<bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> So I really dug into the old archives here and literally =
-pulled an old hard drive out of a closet, and found a copy of the old =
-hardware repository from back in the days when N210 was called "USRP2+". =
-Best that I can tell, we only ever released two versions to the public. =
-We might have sold R3 stickered as R2 -- I don't see anything in the =
-repository that would indicate otherwise. Rev 2/3 was sold until around =
-June or July 2011, when we moved to rev 4. The only firmware/host code =
-changes I can see between any of the versions are that R4 used LVDS =
-clocking to the daughterboard where previous versions used CMOS. So I =
-think you should be able to run r3 firmware on your N210.
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> That said, the very very old N210s with very very old =
-firmware might not have used the same safe/production firmware/fpga =
-image arrangement that we later arrived at. The hardware is still fine, =
-but you might be in for a bit of a deep dive to get it all running =
-again.
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> If you have a TTL-serial adapter or a logic analyzer that =
-works as such, you can connect to the debug UART header and get printout =
-information from the firmware at boot time. Another good idea would be =
-to take a video of the front panel LEDs as you                           =
-                                apply power -- the boot LED lights give =
-good indication of the firmware/FPGA image loading process.
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> Nick
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> On Thu, May 9, 2019 at 1:42 PM Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>> Thanks for the info, Marcus.  However, seeing that Jason =
-went through this last year with a couple of N210 he has it would seem =
-unlikely that all three of the N210 are broken.  That being said and =
-considering what you jus said it seems that I should=E2=80=99ve been =
-able to find some version of UHD that will successfully communicate with =
-the firmware and fpga images stored in the unit;  I have not, using UHD =
-versions from 3.9.0 to 3.14.0. =20
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> I wanted to try with even earlier versions of UHD but am =
-finding trouble in utilizing UHD v3.4.0 (earliest version I could find) =
-as it seems that =E2=80=9Cprebuilt=E2=80=9D v3.4.0 needs only Ubuntu =
-10.10 or 11.10 which so far I=E2=80=99m not able to successfully install =
-and run.   Seems we=E2=80=99re running out of option on this one so the =
-Deep Space Exploration Society, who I=E2=80=99m trying to help with =
-this, may have to come to grasps with the notion that their N210 is a =
-true brick.=20
->>>>>>>>>>>>>=20
->>>>>>>>>>>>> Joe
->>>>>>>>>>>>>=20
->>>>>>>>>>>>>> On May 9, 2019, at 2:23 PM, Marcus D. Leech via =
-USRP-users <usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>>>=20
->>>>>>>>>>>>>> On 05/09/2019 04:18 PM, Joe Martin via USRP-users wrote:
->>>>>>>>>>>>>>> Nick, Ian,=20
->>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>> If this unit happens to be incorrectly labeled as a rev =
-2 N210 and it is actually a rev 3 N210, is there hope in being able to =
-load rev 3 firmware and fpga images (which I have located previously and =
-tried actually) with some available UHD version?  If so, would you be =
-able to tell me which UHD version(s) might be able to communicate with =
-it? =20
->>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>> Joe
->>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>> Theoretically, most versions in the last several years =
-should be able to talk to it.  In *general* UHD never drops support for  =
-                                                         older hardware,
->>>>>>>>>>>>>>   and tries to maintain compatibility.  Now, it is the =
-case that newer features are almost never "back-ported", but basic =
-functionality should
->>>>>>>>>>>>>>   always be there. =20
->>>>>>>>>>>>>>=20
->>>>>>>>>>>>>> What this *should* mean is that you should be able to use =
-the firmware tools once the device is in "safe mode" to get yourself to =
-where you
->>>>>>>>>>>>>>   want to be.  If that doesn't work, that may well mean =
-that the hardware is broken, and it's unlikely to be economical to =
-repair.
->>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>> On May 9, 2019, at 2:12 PM, Joe Martin via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>> Okay.  I=E2=80=99ve asserted from the outset that =
-it=E2=80=99s a rev 2, based on the factory label.  Is this N210 a lost =
-cause if it is actually a Rev2 N210?=20
->>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>> Joe
->>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>> On May 9, 2019, at 2:05 PM, Nick Foster =
-<bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
->>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>> Well, it's not a rev 4. It's either 2 or 3 in terms of =
-hardware revision.=20
->>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>> On Thu, May 9, 2019 at 12:58 PM Joe Martin =
-<k5so@k5so.com <mailto:k5so@k5so.com>> wrote:
->>>>>>>>>>>>>>>>> =E2=80=A6able to ping 192.168.10.2 successfully.
->>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>> On May 9, 2019, at 1:54 PM, Joe Martin <k5so@k5so.com =
-<mailto:k5so@k5so.com>> wrote:
->>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>> Ian,=20
->>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>> Yes, I have tried many times to boot in safe mode, =
-same result regardless.  Yes, I am able to pin to 192.168.10.2 =
-successfully.=20
->>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>> Joe
->>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> On May 9, 2019, at 1:47 PM, Joe Martin via =
-USRP-users <usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> Ian and Nick,=20
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> Thanks for the assistance.  Attached are dropbox =
-links to two snapshot photos:  1) the factory label on the back of the =
-N210, showing N210 r:2.0 and 2) a top side view of the N210.=20
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> 1) =
-https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0 =
-<https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D0>
->>>>>>>>>>>>>>>>>>> 2) =
-https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0 =
-<https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D0>
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> Seems this unit is indeed a rev 2 N210, yes?=20
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>> Joe
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> On May 9, 2019, at 12:40 PM, Nick Foster =
-<bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> Moreover, the best "tell" is to look at the N210 =
-motherboard. If the SRAM chip is on the top side, it's a rev 2/3. If the =
-SRAM is on the bottom side, it's a rev 4. If you send a picture along of =
-the top of the N210, I can tell you if it's early or late rev.
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> On Thu, May 9, 2019 at 11:36 AM Ian Buckley via =
-USRP-users <usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>> wrote:
->>>>>>>>>>>>>>>>>>>> Joe,
->>>>>>>>>>>>>>>>>>>> So I scratched my head about this a little late =
-last night and looked back through the development repository for the =
-N210 and as far as I can tell there was never customer facing FPGA code =
-for a Rev2 N210. Chatting with Matt this morning he shared my feeling =
-that a Rev2 wasn't sold to customers, so I'm curious if you have a unit =
-that has a factory label that says N210Rev2 or if you have seen "usrp2 =
-rev2.0" on the PCB (which can be missleading).
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> Also have you tried booting into the safe image and =
-verifying that it at least pings on 192.168.10.2?
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> If we can conclusively identify which rev of h/w =
-you have I can probably help further.
->>>>>>>>>>>>>>>>>>>>=20
->>>>>>>>>>>>>>>>>>>> Ian
->>>>>>>>>>>>>>>>>>>=20
->>>>>>>=20
+>>>>>>>>>>>>
+>>>>>>>>>>>>> On May 9, 2019, at 3:38 PM, Nick Foster 
+>>>>>>>>>>>>> <bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> I'm saying that you might try to continue the effort to 
+>>>>>>>>>>>>> JTAG load a more modern FPGA image. It's possible you have 
+>>>>>>>>>>>>> to hold down the safe mode button while loading the image.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> On Thu, May 9, 2019, 2:22 PM Joe Martin <k5so@k5so.com 
+>>>>>>>>>>>>> <mailto:k5so@k5so.com>> wrote:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>     Thanks for digging into that for us, Nick.
+>>>>>>>>>>>>>     Interesting. As the hardware change to rev4 occurred
+>>>>>>>>>>>>>     around mid 2011 and the earliest UHD version that
+>>>>>>>>>>>>>     exists on the files.ettus.com/uhd
+>>>>>>>>>>>>>     <http://files.ettus.com/uhd> page is Feb 2104, what is
+>>>>>>>>>>>>>     the likelihood in your opinion that the UHD version
+>>>>>>>>>>>>>     will be compatible with the rev2/3 hardware from 2011?
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>     So far I’ve not been successful in reviving the 2014
+>>>>>>>>>>>>>     UHD version so I’m asking to determine whether
+>>>>>>>>>>>>>     continued effort to do so is likely to yield anything
+>>>>>>>>>>>>>     positive with respect to interfacing with the 2011
+>>>>>>>>>>>>>     hardware.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>     Joe
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     On May 9, 2019, at 3:06 PM, Nick Foster
+>>>>>>>>>>>>>>     <bistromath@gmail.com <mailto:bistromath@gmail.com>>
+>>>>>>>>>>>>>>     wrote:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     So I really dug into the old archives here and
+>>>>>>>>>>>>>>     literally pulled an old hard drive out of a closet,
+>>>>>>>>>>>>>>     and found a copy of the old hardware repository from
+>>>>>>>>>>>>>>     back in the days when N210 was called "USRP2+". Best
+>>>>>>>>>>>>>>     that I can tell, we only ever released two versions
+>>>>>>>>>>>>>>     to the public. We might have sold R3 stickered as R2
+>>>>>>>>>>>>>>     -- I don't see anything in the repository that would
+>>>>>>>>>>>>>>     indicate otherwise. Rev 2/3 was sold until around
+>>>>>>>>>>>>>>     June or July 2011, when we moved to rev 4. The only
+>>>>>>>>>>>>>>     firmware/host code changes I can see between any of
+>>>>>>>>>>>>>>     the versions are that R4 used LVDS clocking to the
+>>>>>>>>>>>>>>     daughterboard where previous versions used CMOS. So I
+>>>>>>>>>>>>>>     think you should be able to run r3 firmware on your N210.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     That said, the very very old N210s with very very old
+>>>>>>>>>>>>>>     firmware might not have used the same safe/production
+>>>>>>>>>>>>>>     firmware/fpga image arrangement that we later arrived
+>>>>>>>>>>>>>>     at. The hardware is still fine, but you might be in
+>>>>>>>>>>>>>>     for a bit of a deep dive to get it all running again.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     If you have a TTL-serial adapter or a logic analyzer
+>>>>>>>>>>>>>>     that works as such, you can connect to the debug UART
+>>>>>>>>>>>>>>     header and get printout information from the firmware
+>>>>>>>>>>>>>>     at boot time. Another good idea would be to take a
+>>>>>>>>>>>>>>     video of the front panel LEDs as you apply power --
+>>>>>>>>>>>>>>     the boot LED lights give good indication of the
+>>>>>>>>>>>>>>     firmware/FPGA image loading process.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     Nick
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>     On Thu, May 9, 2019 at 1:42 PM Joe Martin via
+>>>>>>>>>>>>>>     USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>     <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>         Thanks for the info, Marcus. However, seeing that
+>>>>>>>>>>>>>>         Jason went through this last year with a couple
+>>>>>>>>>>>>>>         of N210 he has it would seem unlikely that all
+>>>>>>>>>>>>>>         three of the N210 are broken.  That being said
+>>>>>>>>>>>>>>         and considering what you jus said it seems that I
+>>>>>>>>>>>>>>         should’ve been able to find some version of UHD
+>>>>>>>>>>>>>>         that will successfully communicate with the
+>>>>>>>>>>>>>>         firmware and fpga images stored in the unit;  I
+>>>>>>>>>>>>>>         have not, using UHD versions from 3.9.0 to 3.14.0.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>         I wanted to try with even earlier versions of UHD
+>>>>>>>>>>>>>>         but am finding trouble in utilizing UHD v3.4.0
+>>>>>>>>>>>>>>         (earliest version I could find) as it seems that
+>>>>>>>>>>>>>>         “prebuilt” v3.4.0 needs only Ubuntu 10.10 or
+>>>>>>>>>>>>>>         11.10 which so far I’m not able to successfully
+>>>>>>>>>>>>>>         install and run.   Seems we’re running out of
+>>>>>>>>>>>>>>         option on this one so the Deep Space Exploration
+>>>>>>>>>>>>>>         Society, who I’m trying to help with this, may
+>>>>>>>>>>>>>>         have to come to grasps with the notion that their
+>>>>>>>>>>>>>>         N210 is a true brick.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>         Joe
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>         On May 9, 2019, at 2:23 PM, Marcus D. Leech via
+>>>>>>>>>>>>>>>         USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>         On 05/09/2019 04:18 PM, Joe Martin via
+>>>>>>>>>>>>>>>         USRP-users wrote:
+>>>>>>>>>>>>>>>>         Nick, Ian,
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>         If this unit happens to be incorrectly labeled
+>>>>>>>>>>>>>>>>         as a rev 2 N210 and it is actually a rev 3
+>>>>>>>>>>>>>>>>         N210, is there hope in being able to load rev 3
+>>>>>>>>>>>>>>>>         firmware and fpga images (which I have located
+>>>>>>>>>>>>>>>>         previously and tried actually) with some
+>>>>>>>>>>>>>>>>         available UHD version? If so, would you be able
+>>>>>>>>>>>>>>>>         to tell me which UHD version(s) might be able
+>>>>>>>>>>>>>>>>         to communicate with it?
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>         Joe
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>         Theoretically, most versions in the last several
+>>>>>>>>>>>>>>>         years should be able to talk to it.  In
+>>>>>>>>>>>>>>>         *general* UHD never drops support for older
+>>>>>>>>>>>>>>>         hardware,
+>>>>>>>>>>>>>>>           and tries to maintain compatibility. Now, it
+>>>>>>>>>>>>>>>         is the case that newer features are almost never
+>>>>>>>>>>>>>>>         "back-ported", but basic functionality should
+>>>>>>>>>>>>>>>           always be there.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>         What this *should* mean is that you should be
+>>>>>>>>>>>>>>>         able to use the firmware tools once the device
+>>>>>>>>>>>>>>>         is in "safe mode" to get yourself to where you
+>>>>>>>>>>>>>>>           want to be. If that doesn't work, that may
+>>>>>>>>>>>>>>>         well mean that the hardware is broken, and it's
+>>>>>>>>>>>>>>>         unlikely to be economical to repair.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>         On May 9, 2019, at 2:12 PM, Joe Martin via
+>>>>>>>>>>>>>>>>>         USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>         Okay.  I’ve asserted from the outset that it’s
+>>>>>>>>>>>>>>>>>         a rev 2, based on the factory label.  Is this
+>>>>>>>>>>>>>>>>>         N210 a lost cause if it is actually a Rev2 N210?
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>         Joe
+>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>         On May 9, 2019, at 2:05 PM, Nick Foster
+>>>>>>>>>>>>>>>>>>         <bistromath@gmail.com
+>>>>>>>>>>>>>>>>>>         <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>         Well, it's not a rev 4. It's either 2 or 3 in
+>>>>>>>>>>>>>>>>>>         terms of hardware revision.
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>         On Thu, May 9, 2019 at 12:58 PM Joe Martin
+>>>>>>>>>>>>>>>>>>         <k5so@k5so.com <mailto:k5so@k5so.com>> wrote:
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>             …able to ping 192.168.10.2 successfully.
+>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>             On May 9, 2019, at 1:54 PM, Joe Martin
+>>>>>>>>>>>>>>>>>>>             <k5so@k5so.com <mailto:k5so@k5so.com>>
+>>>>>>>>>>>>>>>>>>>             wrote:
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>             Ian,
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>             Yes, I have tried many times to boot in
+>>>>>>>>>>>>>>>>>>>             safe mode, same result regardless. Yes,
+>>>>>>>>>>>>>>>>>>>             I am able to pin to 192.168.10.2
+>>>>>>>>>>>>>>>>>>>             successfully.
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>             Joe
+>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             On May 9, 2019, at 1:47 PM, Joe Martin
+>>>>>>>>>>>>>>>>>>>>             via USRP-users
+>>>>>>>>>>>>>>>>>>>>             <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>>>>             <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             Ian and Nick,
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             Thanks for the assistance. Attached are
+>>>>>>>>>>>>>>>>>>>>             dropbox links to two snapshot photos:
+>>>>>>>>>>>>>>>>>>>>              1) the factory label on the back of
+>>>>>>>>>>>>>>>>>>>>             the N210, showing N210 r:2.0 and 2) a
+>>>>>>>>>>>>>>>>>>>>             top side view of the N210.
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             1)
+>>>>>>>>>>>>>>>>>>>>             https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0
+>>>>>>>>>>>>>>>>>>>>             2)
+>>>>>>>>>>>>>>>>>>>>             https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             Seems this unit is indeed a rev 2 N210,
+>>>>>>>>>>>>>>>>>>>>             yes?
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>             Joe
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>             On May 9, 2019, at 12:40 PM, Nick
+>>>>>>>>>>>>>>>>>>>>>             Foster <bistromath@gmail.com
+>>>>>>>>>>>>>>>>>>>>>             <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>             Moreover, the best "tell" is to look
+>>>>>>>>>>>>>>>>>>>>>             at the N210 motherboard. If the SRAM
+>>>>>>>>>>>>>>>>>>>>>             chip is on the top side, it's a rev
+>>>>>>>>>>>>>>>>>>>>>             2/3. If the SRAM is on the bottom
+>>>>>>>>>>>>>>>>>>>>>             side, it's a rev 4. If you send a
+>>>>>>>>>>>>>>>>>>>>>             picture along of the top of the N210,
+>>>>>>>>>>>>>>>>>>>>>             I can tell you if it's early or late rev.
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>             On Thu, May 9, 2019 at 11:36 AM Ian
+>>>>>>>>>>>>>>>>>>>>>             Buckley via USRP-users
+>>>>>>>>>>>>>>>>>>>>>             <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>>>>>>>             <mailto:usrp-users@lists.ettus.com>>
+>>>>>>>>>>>>>>>>>>>>>             wrote:
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>                 Joe,
+>>>>>>>>>>>>>>>>>>>>>                 So I scratched my head about this
+>>>>>>>>>>>>>>>>>>>>>                 a little late last night and
+>>>>>>>>>>>>>>>>>>>>>                 looked back through the
+>>>>>>>>>>>>>>>>>>>>>                 development repository for the
+>>>>>>>>>>>>>>>>>>>>>                 N210 and as far as I can tell
+>>>>>>>>>>>>>>>>>>>>>                 there was never customer facing
+>>>>>>>>>>>>>>>>>>>>>                 FPGA code for a Rev2 N210.
+>>>>>>>>>>>>>>>>>>>>>                 Chatting with Matt this morning he
+>>>>>>>>>>>>>>>>>>>>>                 shared my feeling that a Rev2
+>>>>>>>>>>>>>>>>>>>>>                 wasn't sold to customers, so I'm
+>>>>>>>>>>>>>>>>>>>>>                 curious if you have a unit that
+>>>>>>>>>>>>>>>>>>>>>                 has a factory label that says
+>>>>>>>>>>>>>>>>>>>>>                 N210Rev2 or if you have seen
+>>>>>>>>>>>>>>>>>>>>>                 "usrp2 rev2.0" on the PCB (which
+>>>>>>>>>>>>>>>>>>>>>                 can be missleading).
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>                 Also have you tried booting into
+>>>>>>>>>>>>>>>>>>>>>                 the safe image and verifying that
+>>>>>>>>>>>>>>>>>>>>>                 it at least pings on 192.168.10.2?
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>                 If we can conclusively identify
+>>>>>>>>>>>>>>>>>>>>>                 which rev of h/w you have I can
+>>>>>>>>>>>>>>>>>>>>>                 probably help further.
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>                 Ian
+>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>
+>>>>>>>> _______________________________________________
+>>>>>>>> USRP-users mailing list
+>>>>>>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>
+>>>>>>>
+>>>>>>>
 >>>>>>> _______________________________________________
 >>>>>>> USRP-users mailing list
->>>>>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>>>>>> =
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>>>=20
->>>>>>=20
->>>>>>=20
+>>>>>>> USRP-users@lists.ettus.com
+>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>
 >>>>>> _______________________________________________
 >>>>>> USRP-users mailing list
 >>>>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>>>>> =
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>>=20
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>>>=20
->>>=20
->>=20
->=20
+>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>
+>>>>
+>>>
+>>
+>
 
 
---Apple-Mail=_E793F4D1-C901-4E69-A8EC-AFD4DFA46450
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
+--------------090606020105020803030709
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D"">Okay,=
- Marcus, thanks for the info. &nbsp;I=E2=80=99m not aware of their =
-organizational details although I=E2=80=99m in very regular =
-communications with the current president of DSES. &nbsp;They have =
-installed permanent commercial power to the site once again and I was =
-under the impression DSES actually owns the site, but I don=E2=80=99t =
-know any of those details so perhaps my impressions are not totally =
-correct. &nbsp;I=E2=80=99m simply helping the president to get some of =
-the data acquisition functionality and a bit of the tracking =
-functionality in place. &nbsp;I=E2=80=99ve never been to the site. =
-&nbsp;This N210 will help them a lot!<div class=3D""><br =
-class=3D""></div><div class=3D"">Joe<br class=3D""><div><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On May =
-10, 2019, at 7:38 PM, Marcus D. Leech &lt;<a =
-href=3D"mailto:patchvonbraun@gmail.com" =
-class=3D"">patchvonbraun@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D"">
- =20
-    <meta content=3D"text/html; charset=3Dutf-8" =
-http-equiv=3D"Content-Type" class=3D"">
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000" class=3D"">
-    <div class=3D"moz-cite-prefix">On 05/10/2019 09:29 PM, Joe Martin
-      wrote:<br class=3D"">
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 05/10/2019 09:57 PM, Joe Martin
+      wrote:<br>
     </div>
-    <blockquote cite=3D"mid:0A955663-E38A-4677-BE65-B53476BBD503@k5so.com"=
- type=3D"cite" class=3D"">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8" class=3D"">
-      Yes, they have a 21cm feedhorn with optical cable from the LNA to
-      the control room and have been doing hydrogen line work and some
-      SETI-type drift scan observations with that 60=E2=80=99 dish. =
-&nbsp;They are
-      itching to do some pulsar work now!<br class=3D"">
+    <blockquote cite="mid:C4F03C96-4C2D-41A8-A115-BED8FF73F85B@k5so.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      Okay, Marcus, thanks for the info.  I’m not aware of their
+      organizational details although I’m in very regular communications
+      with the current president of DSES.  They have installed permanent
+      commercial power to the site once again and I was under the
+      impression DSES actually owns the site, but I don’t know any of
+      those details so perhaps my impressions are not totally correct.
+       I’m simply helping the president to get some of the data
+      acquisition functionality and a bit of the tracking functionality
+      in place.  I’ve never been to the site.  This N210 will help them
+      a lot!
+      <div class=""><br class="">
+      </div>
+      <div class="">Joe<br class="">
+      </div>
     </blockquote>
-    The early instantiation of DSES was a lot like SBRAC--access to
-    dishes on a controlled government site, which they ultimately lost
-    and had<br class=3D"">
-    &nbsp; to move to a different site.<br class=3D"">
-    <br class=3D"">
-    When *we* Phoenixed, we came back as CCERA with a formal legal
-    structure...<br class=3D"">
-    <br class=3D"">
-    <br class=3D"">
-    <blockquote cite=3D"mid:0A955663-E38A-4677-BE65-B53476BBD503@k5so.com"=
- type=3D"cite" class=3D"">
-      <div class=3D""><br class=3D"">
-        <blockquote type=3D"cite" class=3D"">
-          <div class=3D"">On May 10, 2019, at 7:17 PM, Marcus D. Leech
-            &lt;<a moz-do-not-send=3D"true" =
-href=3D"mailto:patchvonbraun@gmail.com" =
-class=3D"">patchvonbraun@gmail.com</a>&gt;
-            wrote:</div>
-          <br class=3D"Apple-interchange-newline">
-          <div class=3D"">
-            <meta content=3D"text/html; charset=3Dutf-8" =
-http-equiv=3D"Content-Type" class=3D"">
-            <div bgcolor=3D"#FFFFFF" text=3D"#000000" class=3D"">
-              <div class=3D"moz-cite-prefix">On 05/10/2019 09:15 PM, Joe
-                Martin wrote:<br class=3D"">
-              </div>
-              <blockquote =
-cite=3D"mid:6A14E23C-AAFE-43EF-A207-C830BFD62642@k5so.com" type=3D"cite" =
-class=3D"">
-                <meta http-equiv=3D"Content-Type" content=3D"text/html;
-                  charset=3Dutf-8" class=3D"">
-                Yes, Nick=E2=80=99s suggestion concerning S2 was =
-certainly the
-                key! &nbsp;I learned a ton about this from all of you =
-guys
-                though and do sincerely appreciate the patient and
-                helpful manner you all have exhibited to me. &nbsp;
-                <div class=3D""><br class=3D"">
+    They had a site on Table Mountain, CO -- this new site they own,
+    near Haswell.  It sat dormant for many years, but it looks like
+    significant<br>
+      progress has been made, and it is an 18m dish--similar to the one
+    SBRAC had.<br>
+    <br>
+    I visited their original site years ago, back when I was still doing
+    SBRAC.  I happened to be in Colorado for an IETF meeting, and made a<br>
+      side-trip.  <br>
+    <br>
+    All very encouraging, for sure.<br>
+    <br>
+    I still think collections of smaller, more-manageable, dishes are
+    better :) :)<br>
+    <br>
+    <br>
+    <blockquote cite="mid:C4F03C96-4C2D-41A8-A115-BED8FF73F85B@k5so.com"
+      type="cite">
+      <div class="">
+        <div><br class="">
+          <blockquote type="cite" class="">
+            <div class="">On May 10, 2019, at 7:38 PM, Marcus D. Leech
+              &lt;<a moz-do-not-send="true"
+                href="mailto:patchvonbraun@gmail.com" class="">patchvonbraun@gmail.com</a>&gt;
+              wrote:</div>
+            <br class="Apple-interchange-newline">
+            <div class="">
+              <meta content="text/html; charset=utf-8"
+                http-equiv="Content-Type" class="">
+              <div bgcolor="#FFFFFF" text="#000000" class="">
+                <div class="moz-cite-prefix">On 05/10/2019 09:29 PM, Joe
+                  Martin wrote:<br class="">
                 </div>
-                <div class=3D"">The daughter card is the DBSRX2 that
-                  they=E2=80=99ll use for hydrogen-line work and some =
-pulsar
-                  work in the 1400MHz range and they also have a GPSDO
-                  board installed. &nbsp;As an alternate daughter card =
-they
-                  also have a TVRX2 that could replace the DBSRX2 if
-                  they wish. &nbsp;
-                  <div class=3D""><br class=3D"">
-                  </div>
-                  <div class=3D"">This will be fun!</div>
-                  <div class=3D""><br class=3D"">
-                  </div>
-                  <div class=3D"">Joe</div>
-                </div>
-              </blockquote>
-              I haven't kept up with their progress for years--is the
-              "new" site now operational?&nbsp; It was certainly a =
-"project"
-              last time I saw any news of it...<br class=3D"">
-              <br class=3D"">
-              <br class=3D"">
-              <blockquote =
-cite=3D"mid:6A14E23C-AAFE-43EF-A207-C830BFD62642@k5so.com" type=3D"cite" =
-class=3D"">
-                <div class=3D"">
-                  <div class=3D"">
-                    <div class=3D""><br class=3D"">
-                      <blockquote type=3D"cite" class=3D"">
-                        <div class=3D"">On May 10, 2019, at 6:58 PM,
-                          Marcus D. Leech via USRP-users &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
-                          wrote:</div>
-                        <br class=3D"Apple-interchange-newline">
-                        <div class=3D"">
-                          <meta content=3D"text/html; charset=3Dutf-8" =
-http-equiv=3D"Content-Type" class=3D"">
-                          <div bgcolor=3D"#FFFFFF" text=3D"#000000" =
-class=3D"">
-                            <div class=3D"moz-cite-prefix">On 05/10/2019
-                              07:53 PM, Joe Martin via USRP-users =
-wrote:<br class=3D"">
-                            </div>
-                            <blockquote =
-cite=3D"mid:365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com" type=3D"cite" =
-class=3D"">
-                              <meta http-equiv=3D"Content-Type" =
-content=3D"text/html; charset=3Dutf-8" class=3D"">
-                              Holy smoke! &nbsp;SUCCESS!! &nbsp;Nick =
-pointed out
-                              that there are two switches on the N210;
-                              S1 and S2 and S1 is a reset, so an upload
-                              of FPGA code fails if that is held (which
-                              I was holding for his suggested test!).
-                              &nbsp;Holding S2 during iMPACT loading of =
-the
-                              .bit image results in the uhd_image_loader
-                              step being SUCCESSFUL!! &nbsp;I am so =
-happy to
-                              see that! &nbsp;Uhd_usrp_probe works
-                              wonderfully. &nbsp;Finally. &nbsp;We now =
-can put
-                              this little to work doing some tough
-                              things! &nbsp;
-                              <div class=3D""><br class=3D"">
-                              </div>
-                              <div class=3D"">Thank you all SO MUCH for
-                                your assistance with reviving this N210.
-                                &nbsp;A monumental achievement in my =
-book! &nbsp;
-                                I don=E2=80=99t know what to say except =
-that we
-                                TOTALLY appreciate you efforts to get us
-                                running. &nbsp;You guys are =
-GREAT!&nbsp;</div>
-                              <div class=3D""><br class=3D"">
-                              </div>
-                              <div class=3D"">Very best wishes to you =
-each
-                                and every one! &nbsp;&nbsp;</div>
-                              <div class=3D""><br class=3D"">
-                              </div>
-                              <div class=3D"">Joe<br class=3D"">
-                              </div>
-                            </blockquote>
-                            I think Nick deserves most of the credit--he
-                            was in Ettus R&amp;D during the N210
-                            development days.<br class=3D"">
-                            <br class=3D"">
-                            Hopefully DSES will now have a receiver --
-                            what daughtercard do they have in it?<br =
-class=3D"">
-                            <br class=3D"">
-                            <br class=3D"">
-                            <blockquote =
-cite=3D"mid:365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com" type=3D"cite" =
-class=3D"">
-                              <div class=3D"">
-                                <div class=3D"">
-                                  <blockquote type=3D"cite" class=3D"">
-                                    <div class=3D"">On May 10, 2019, at
-                                      5:30 PM, Joe Martin via USRP-users
-                                      &lt;<a moz-do-not-send=3D"true" =
-href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                <blockquote
+                  cite="mid:0A955663-E38A-4677-BE65-B53476BBD503@k5so.com"
+                  type="cite" class="">
+                  <meta http-equiv="Content-Type" content="text/html;
+                    charset=utf-8" class="">
+                  Yes, they have a 21cm feedhorn with optical cable from
+                  the LNA to the control room and have been doing
+                  hydrogen line work and some SETI-type drift scan
+                  observations with that 60’ dish.  They are itching to
+                  do some pulsar work now!<br class="">
+                </blockquote>
+                The early instantiation of DSES was a lot like
+                SBRAC--access to dishes on a controlled government site,
+                which they ultimately lost and had<br class="">
+                  to move to a different site.<br class="">
+                <br class="">
+                When *we* Phoenixed, we came back as CCERA with a formal
+                legal structure...<br class="">
+                <br class="">
+                <br class="">
+                <blockquote
+                  cite="mid:0A955663-E38A-4677-BE65-B53476BBD503@k5so.com"
+                  type="cite" class="">
+                  <div class=""><br class="">
+                    <blockquote type="cite" class="">
+                      <div class="">On May 10, 2019, at 7:17 PM, Marcus
+                        D. Leech &lt;<a moz-do-not-send="true"
+                          href="mailto:patchvonbraun@gmail.com" class="">patchvonbraun@gmail.com</a>&gt;
 
+                        wrote:</div>
+                      <br class="Apple-interchange-newline">
+                      <div class="">
+                        <meta content="text/html; charset=utf-8"
+                          http-equiv="Content-Type" class="">
+                        <div bgcolor="#FFFFFF" text="#000000" class="">
+                          <div class="moz-cite-prefix">On 05/10/2019
+                            09:15 PM, Joe Martin wrote:<br class="">
+                          </div>
+                          <blockquote
+                            cite="mid:6A14E23C-AAFE-43EF-A207-C830BFD62642@k5so.com"
+                            type="cite" class="">
+                            <meta http-equiv="Content-Type"
+                              content="text/html; charset=utf-8"
+                              class="">
+                            Yes, Nick’s suggestion concerning S2 was
+                            certainly the key!  I learned a ton about
+                            this from all of you guys though and do
+                            sincerely appreciate the patient and helpful
+                            manner you all have exhibited to me.  
+                            <div class=""><br class="">
+                            </div>
+                            <div class="">The daughter card is the
+                              DBSRX2 that they’ll use for hydrogen-line
+                              work and some pulsar work in the 1400MHz
+                              range and they also have a GPSDO board
+                              installed.  As an alternate daughter card
+                              they also have a TVRX2 that could replace
+                              the DBSRX2 if they wish.  
+                              <div class=""><br class="">
+                              </div>
+                              <div class="">This will be fun!</div>
+                              <div class=""><br class="">
+                              </div>
+                              <div class="">Joe</div>
+                            </div>
+                          </blockquote>
+                          I haven't kept up with their progress for
+                          years--is the "new" site now operational?  It
+                          was certainly a "project" last time I saw any
+                          news of it...<br class="">
+                          <br class="">
+                          <br class="">
+                          <blockquote
+                            cite="mid:6A14E23C-AAFE-43EF-A207-C830BFD62642@k5so.com"
+                            type="cite" class="">
+                            <div class="">
+                              <div class="">
+                                <div class=""><br class="">
+                                  <blockquote type="cite" class="">
+                                    <div class="">On May 10, 2019, at
+                                      6:58 PM, Marcus D. Leech via
+                                      USRP-users &lt;<a
+                                        moz-do-not-send="true"
+                                        href="mailto:usrp-users@lists.ettus.com"
+                                        class="">usrp-users@lists.ettus.com</a>&gt;
 
                                       wrote:</div>
-                                    <br =
-class=3D"Apple-interchange-newline">
-                                    <div class=3D"">
-                                      <meta http-equiv=3D"Content-Type" =
-content=3D"text/html;
-                                        charset=3Dutf-8" class=3D"">
-                                      <div style=3D"word-wrap: =
-break-word;
-                                        -webkit-nbsp-mode: space;
-                                        line-break: after-white-space;" =
-class=3D"">Ian and all,&nbsp;
-                                        <div class=3D""><br class=3D"">
+                                    <br
+                                      class="Apple-interchange-newline">
+                                    <div class="">
+                                      <meta content="text/html;
+                                        charset=utf-8"
+                                        http-equiv="Content-Type"
+                                        class="">
+                                      <div bgcolor="#FFFFFF"
+                                        text="#000000" class="">
+                                        <div class="moz-cite-prefix">On
+                                          05/10/2019 07:53 PM, Joe
+                                          Martin via USRP-users wrote:<br
+                                            class="">
                                         </div>
-                                        <div class=3D"">I have been very
-                                          careful to avoid the pitfalls
-                                          you detailed. &nbsp;I began =
-with a
-                                          fresh installation of Ubuntu
-                                          18.04 then performed a
-                                          successful build of UHD 3.9.7,
-                                          then used command:</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div =
-class=3D"">uhd_images_downloader</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">to load the
-                                          appropriate/associated images
-                                          into the PC.&nbsp;</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">Then used ISE
-                                          iMPACT to load the
-                                          =E2=80=9Cusrp_n210_r3_fpga.bit=E2=
-=80=9D file
-                                          into the FPGA of the N210.
-                                          &nbsp;iMPACT reports =
-=E2=80=9CPROGRAM
-                                          SUCCESSFUL=E2=80=9D.&nbsp;</div>=
-
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">Then without =
-power
-                                          cycling the N210 used the
-                                          command:&nbsp;</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">usrp_image_loader
-=E2=80=94args=3D=E2=80=9Ctype=3Dusrp2,addr=3D192.168.10.2,overwrite-safe=E2=
-=80=9D
-=E2=80=94fw-path=3D/usr/local/share/uhd/images/usrp_n210_fw.bin
-=E2=80=94fpga-path=3D/usr/local/share/uhd/images/usrp_n210_r3_fpga.bin</di=
-v>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">To load the
-                                          non-volatile memory of the
-                                          N210 but I always get the
-                                          =E2=80=9CRuntimeError: =
-Received
-                                          invalid 32 reply from =
-device=E2=80=9D
-                                          error when running
-                                          usrp_image_loader.&nbsp;</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">I am able to
-                                          successfully ping 192.168.10.2
-                                          but no matter what
-                                          combinations of r2 or r3 .bit
-                                          file and firmware and fpga
-                                          image .bin files I use the
-                                          response when invoking the
-                                          usrp_image_loader is always
-                                          the same, namely =E2=80=9Cinvali=
-d
-                                          reply 32 from device=E2=80=9D. =
-&nbsp;</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">The command
-                                          uhd_find_devices returns by
-                                          reporting it can find a usrp2
-                                          device at address
-                                          192.168.10.2, as you would
-                                          hope. &nbsp;</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">After trying =
-every
-                                          conceivable combination of
-                                          these actions with numerous
-                                          versions of UHD and r2/r3 .bit
-                                          FPGA files and r2/r3 .bin
-                                          files on several fresh
-                                          installations of Ubuntu 18.04
-                                          and 16.04 the result is always
-                                          the same in that things
-                                          proceed normally as the
-                                          various documents concerning
-                                          un-bricking an N210 explains,
-                                          until the step of using the
-                                          usrp_image_loader is executed,
-                                          at which point a RuntimeError
-                                          returns stating that the
-                                          =E2=80=9Cinvalid 32 reply=E2=80=9D=
- has
-                                          occurred. &nbsp;</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">I was hopeful =
-that
-                                          careful use of rev3 .bit and
-                                          .bin files with UHD 3.9.7
-                                          would do the trick but alas
-                                          that is not the case. =
-&nbsp;</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">I suspect that =
-you
-                                          are near the bottom of the
-                                          list of suggestions for me and
-                                          I do appreciate the time and
-                                          thinking you have afforded me
-                                          on this issue. &nbsp;If there =
-is
-                                          anything remaining to try =
-I=E2=80=99d
-                                          be most willing to try =
-it.&nbsp;</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">BTW, the
-                                          suggestion made by someone
-                                          earlier to try holding the
-                                          safe button down during the
-                                          loading of the FPGA from
-                                          iMPACT causes the programming
-                                          to fail (as reported by
-                                          iMPACT), so that=E2=80=99s =
-apparently
-                                          not a good thing to do. =
-&nbsp;But
-                                          one can recover from that
-                                          state by simply by
-                                          re-programming with the safe
-                                          button not held but the
-                                          fundamental problem with the
-                                          uhd_image_loader step in the
-                                          unbricking process always
-                                          seems to result.&nbsp;</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">Joe</div>
-                                        <div class=3D""><br class=3D"">
-                                        </div>
-                                        <div class=3D"">
-                                          <div class=3D"">
-                                            <blockquote type=3D"cite" =
-class=3D"">
-                                              <div class=3D"">On May 10,
-                                                2019, at 9:31 AM, Ian
-                                                Buckley &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:ian.buckley@gmail.com" =
-class=3D"">ian.buckley@gmail.com</a>&gt;
+                                        <blockquote
+                                          cite="mid:365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com"
+                                          type="cite" class="">
+                                          <meta
+                                            http-equiv="Content-Type"
+                                            content="text/html;
+                                            charset=utf-8" class="">
+                                          Holy smoke!  SUCCESS!!  Nick
+                                          pointed out that there are two
+                                          switches on the N210; S1 and
+                                          S2 and S1 is a reset, so an
+                                          upload of FPGA code fails if
+                                          that is held (which I was
+                                          holding for his suggested
+                                          test!).  Holding S2 during
+                                          iMPACT loading of the .bit
+                                          image results in the
+                                          uhd_image_loader step being
+                                          SUCCESSFUL!!  I am so happy to
+                                          see that!  Uhd_usrp_probe
+                                          works wonderfully.  Finally.
+                                           We now can put this little to
+                                          work doing some tough things!
+                                           
+                                          <div class=""><br class="">
+                                          </div>
+                                          <div class="">Thank you all SO
+                                            MUCH for your assistance
+                                            with reviving this N210.  A
+                                            monumental achievement in my
+                                            book!   I don’t know what to
+                                            say except that we TOTALLY
+                                            appreciate you efforts to
+                                            get us running.  You guys
+                                            are GREAT! </div>
+                                          <div class=""><br class="">
+                                          </div>
+                                          <div class="">Very best wishes
+                                            to you each and every one!
+                                              </div>
+                                          <div class=""><br class="">
+                                          </div>
+                                          <div class="">Joe<br class="">
+                                          </div>
+                                        </blockquote>
+                                        I think Nick deserves most of
+                                        the credit--he was in Ettus
+                                        R&amp;D during the N210
+                                        development days.<br class="">
+                                        <br class="">
+                                        Hopefully DSES will now have a
+                                        receiver -- what daughtercard do
+                                        they have in it?<br class="">
+                                        <br class="">
+                                        <br class="">
+                                        <blockquote
+                                          cite="mid:365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com"
+                                          type="cite" class="">
+                                          <div class="">
+                                            <div class="">
+                                              <blockquote type="cite"
+                                                class="">
+                                                <div class="">On May 10,
+                                                  2019, at 5:30 PM, Joe
+                                                  Martin via USRP-users
+                                                  &lt;<a
+                                                    moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" class="">usrp-users@lists.ettus.com</a>&gt;
 
 
-                                                wrote:</div>
-                                              <br =
-class=3D"Apple-interchange-newline">
-                                              <div class=3D"">
-                                                <div class=3D"" =
-style=3D"word-wrap:
-                                                  break-word;
-                                                  -webkit-nbsp-mode:
-                                                  space; line-break:
-                                                  =
-after-white-space;">Joe,&nbsp;
 
-                                                  <div class=3D"">To =
-save
-                                                    you time, It may
-                                                    well be worth you
-                                                    trying jumping to
-                                                    the 3) step
-                                                    initially and seeing
-                                                    if your current
-                                                    loaded image or safe
-                                                    image is capable of
-                                                    being upgraded =E2=80=A6=
-it
-                                                    likely is since that
-                                                    protocol is widely
-                                                    compatible across
-                                                    UHD variants. The
-                                                    key here I have to
-                                                    emphasize (since you
-                                                    appear to have been
-                                                    previously getting
-                                                    stuck with
-                                                    incompatibility
-                                                    between whatever is
-                                                    loaded in the USRP
-                                                    and your host UHD
-                                                    installation) is to
-                                                    be sure your new UHD
-                                                    installation is the
-                                                    only one on your
-                                                    system, and that you
-                                                    have the binary
-                                                    images that are
-                                                    version matched with
-                                                    it=E2=80=A6people =
-often get
-                                                    caught out by
-                                                    reminants of various
-                                                    UHD versions
-                                                    installed in various
-                                                    system directories
-                                                    from different
-                                                    install =
-methods.</div>
-                                                  <div =
-class=3D"">-Ian</div>
-                                                  <div class=3D""><br =
-class=3D"">
-                                                    <div class=3D"">
-                                                      <blockquote =
-type=3D"cite" class=3D"">
-                                                        <div class=3D"">On=
+                                                  wrote:</div>
+                                                <br
+                                                  class="Apple-interchange-newline">
+                                                <div class="">
+                                                  <meta
+                                                    http-equiv="Content-Type"
+                                                    content="text/html;
+                                                    charset=utf-8"
+                                                    class="">
+                                                  <div style="word-wrap:
+                                                    break-word;
+                                                    -webkit-nbsp-mode:
+                                                    space; line-break:
+                                                    after-white-space;"
+                                                    class="">Ian and
+                                                    all, 
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">I have
+                                                      been very careful
+                                                      to avoid the
+                                                      pitfalls you
+                                                      detailed.  I began
+                                                      with a fresh
+                                                      installation of
+                                                      Ubuntu 18.04 then
+                                                      performed a
+                                                      successful build
+                                                      of UHD 3.9.7, then
+                                                      used command:</div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">uhd_images_downloader</div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">to
+                                                      load the
+                                                      appropriate/associated
+                                                      images into the
+                                                      PC. </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">Then
+                                                      used ISE iMPACT to
+                                                      load the
+                                                      “usrp_n210_r3_fpga.bit”
+                                                      file into the FPGA
+                                                      of the N210.
+                                                       iMPACT reports
+                                                      “PROGRAM
+                                                      SUCCESSFUL”. </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">Then
+                                                      without power
+                                                      cycling the N210
+                                                      used the command: </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">usrp_image_loader
+—args=“type=usrp2,addr=192.168.10.2,overwrite-safe”
+—fw-path=/usr/local/share/uhd/images/usrp_n210_fw.bin
+—fpga-path=/usr/local/share/uhd/images/usrp_n210_r3_fpga.bin</div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">To
+                                                      load the
+                                                      non-volatile
+                                                      memory of the N210
+                                                      but I always get
+                                                      the “RuntimeError:
+                                                      Received invalid
+                                                      32 reply from
+                                                      device” error when
+                                                      running
+                                                      usrp_image_loader. </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">I am
+                                                      able to
+                                                      successfully ping
+                                                      192.168.10.2 but
+                                                      no matter what
+                                                      combinations of r2
+                                                      or r3 .bit file
+                                                      and firmware and
+                                                      fpga image .bin
+                                                      files I use the
+                                                      response when
+                                                      invoking the
+                                                      usrp_image_loader
+                                                      is always the
+                                                      same, namely
+                                                      “invalid reply 32
+                                                      from device”.  </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">The
+                                                      command
+                                                      uhd_find_devices
+                                                      returns by
+                                                      reporting it can
+                                                      find a usrp2
+                                                      device at address
+                                                      192.168.10.2, as
+                                                      you would hope.  </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">After
+                                                      trying every
+                                                      conceivable
+                                                      combination of
+                                                      these actions with
+                                                      numerous versions
+                                                      of UHD and r2/r3
+                                                      .bit FPGA files
+                                                      and r2/r3 .bin
+                                                      files on several
+                                                      fresh
+                                                      installations of
+                                                      Ubuntu 18.04 and
+                                                      16.04 the result
+                                                      is always the same
+                                                      in that things
+                                                      proceed normally
+                                                      as the various
+                                                      documents
+                                                      concerning
+                                                      un-bricking an
+                                                      N210 explains,
+                                                      until the step of
+                                                      using the
+                                                      usrp_image_loader
+                                                      is executed, at
+                                                      which point a
+                                                      RuntimeError
+                                                      returns stating
+                                                      that the “invalid
+                                                      32 reply” has
+                                                      occurred.  </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">I was
+                                                      hopeful that
+                                                      careful use of
+                                                      rev3 .bit and .bin
+                                                      files with UHD
+                                                      3.9.7 would do the
+                                                      trick but alas
+                                                      that is not the
+                                                      case.  </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">I
+                                                      suspect that you
+                                                      are near the
+                                                      bottom of the list
+                                                      of suggestions for
+                                                      me and I do
+                                                      appreciate the
+                                                      time and thinking
+                                                      you have afforded
+                                                      me on this issue.
+                                                       If there is
+                                                      anything remaining
+                                                      to try I’d be most
+                                                      willing to try
+                                                      it. </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">BTW,
+                                                      the suggestion
+                                                      made by someone
+                                                      earlier to try
+                                                      holding the safe
+                                                      button down during
+                                                      the loading of the
+                                                      FPGA from iMPACT
+                                                      causes the
+                                                      programming to
+                                                      fail (as reported
+                                                      by iMPACT), so
+                                                      that’s apparently
+                                                      not a good thing
+                                                      to do.  But one
+                                                      can recover from
+                                                      that state by
+                                                      simply by
+                                                      re-programming
+                                                      with the safe
+                                                      button not held
+                                                      but the
+                                                      fundamental
+                                                      problem with the
+                                                      uhd_image_loader
+                                                      step in the
+                                                      unbricking process
+                                                      always seems to
+                                                      result. </div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">Joe</div>
+                                                    <div class=""><br
+                                                        class="">
+                                                    </div>
+                                                    <div class="">
+                                                      <div class="">
+                                                        <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 10, 2019,
+                                                          at 9:31 AM,
+                                                          Ian Buckley
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:ian.buckley@gmail.com" class="">ian.buckley@gmail.com</a>&gt;
+
+
+
+                                                          wrote:</div>
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class=""
+                                                          style="word-wrap:
+
+                                                          break-word;
+                                                          -webkit-nbsp-mode:
+                                                          space;
+                                                          line-break:
+                                                          after-white-space;">Joe, 
+
+
+                                                          <div class="">To
+                                                          save you time,
+                                                          It may well be
+                                                          worth you
+                                                          trying jumping
+                                                          to the 3) step
+                                                          initially and
+                                                          seeing if your
+                                                          current loaded
+                                                          image or safe
+                                                          image is
+                                                          capable of
+                                                          being upgraded
+                                                          …it likely is
+                                                          since that
+                                                          protocol is
+                                                          widely
+                                                          compatible
+                                                          across UHD
+                                                          variants. The
+                                                          key here I
+                                                          have to
+                                                          emphasize
+                                                          (since you
+                                                          appear to have
+                                                          been
+                                                          previously
+                                                          getting stuck
+                                                          with
+                                                          incompatibility
+                                                          between
+                                                          whatever is
+                                                          loaded in the
+                                                          USRP and your
+                                                          host UHD
+                                                          installation)
+                                                          is to be sure
+                                                          your new UHD
+                                                          installation
+                                                          is the only
+                                                          one on your
+                                                          system, and
+                                                          that you have
+                                                          the binary
+                                                          images that
+                                                          are version
+                                                          matched with
+                                                          it…people
+                                                          often get
+                                                          caught out by
+                                                          reminants of
+                                                          various UHD
+                                                          versions
+                                                          installed in
+                                                          various system
+                                                          directories
+                                                          from different
+                                                          install
+                                                          methods.</div>
+                                                          <div class="">-Ian</div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          <div class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
 
                                                           May 10, 2019,
                                                           at 5:58 AM,
                                                           Joe Martin via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" class="">usrp-users@lists.ettus.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                        <br =
-class=3D"Apple-interchange-newline">
-                                                        <div class=3D"">
-                                                          <div class=3D"" =
-style=3D"word-wrap:
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class=""
+                                                          style="word-wrap:
+
 
                                                           break-word;
-                                                          =
--webkit-nbsp-mode:
+                                                          -webkit-nbsp-mode:
                                                           space;
                                                           line-break:
-                                                          =
-after-white-space;">Ian,&nbsp;
+                                                          after-white-space;">Ian, 
 
 
-                                                          <div =
-class=3D""><br class=3D"">
+
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Very
+                                                          <div class="">Very
 
-                                                          good, that=E2=80=
-=99s
+
+                                                          good, that’s
                                                           encouraging at
-                                                          least. =
-&nbsp;Yes, I
+                                                          least.  Yes, I
                                                           am familiar
                                                           with using ISE
                                                           iMPACT to load
@@ -1396,9 +1643,8 @@ class=3D"">Very
                                                           your
                                                           prescribed
                                                           steps below.
-                                                          &nbsp;I=E2=80=99=
-ll revisit
-                                                          it. &nbsp;I
+                                                           I’ll revisit
+                                                          it.  I
                                                           successfully
                                                           built UHD
                                                           003_009_000
@@ -1408,16 +1654,13 @@ ll revisit
                                                           successfully
                                                           build UHD
                                                           003_009_007
-                                                          too. =
-&nbsp;I=E2=80=99ll do
+                                                          too.  I’ll do
                                                           that and give
-                                                          it a go. =
-&nbsp;I am
+                                                          it a go.  I am
                                                           familiar with
                                                           the documents
                                                           you mentioned.
-                                                          =
-&nbsp;Generally
+                                                           Generally
                                                           things have
                                                           gone exactly
                                                           as described
@@ -1428,19 +1671,17 @@ ll revisit
                                                           stored images
                                                           at which point
                                                           it never does;
-                                                          so far =
-anyway.</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          so far anyway.</div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Thanks
+                                                          <div class="">Thanks
+
 
                                                           much for the
                                                           additional
                                                           information.
-                                                          &nbsp;I=E2=80=99=
-ll
+                                                           I’ll
                                                           certainly
                                                           hammer on it
                                                           some more now
@@ -1451,48 +1692,48 @@ ll
                                                           my belt to
                                                           guide the
                                                           process
-                                                          =
-appropriately.&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          appropriately. </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
                                                           May 10, 2019,
                                                           at 12:32 AM,
                                                           Ian Buckley
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:ian.buckley@gmail.com" =
-class=3D"">ian.buckley@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:ian.buckley@gmail.com" class="">ian.buckley@gmail.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"Apple-interchange-newline">
-                                                          <div class=3D"">=
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class=""
+                                                          style="word-wrap:
 
-                                                          <div class=3D"" =
-style=3D"word-wrap:
 
 
                                                           break-word;
-                                                          =
--webkit-nbsp-mode:
+                                                          -webkit-nbsp-mode:
                                                           space;
                                                           line-break:
-                                                          =
-after-white-space;">Joe,&nbsp;
+                                                          after-white-space;">Joe, 
 
 
-                                                          <div =
-class=3D"">This
+
+                                                          <div class="">This
+
 
                                                           is generally
                                                           all good news
@@ -1502,14 +1743,12 @@ class=3D"">This
                                                           ping
                                                           192.168.10.2
                                                           in safe mode
-                                                          tell=E2=80=99s =
-you
+                                                          tell’s you
                                                           that the FPGA
                                                           has loaded an
                                                           image from
                                                           Flash, that
-                                                          it=E2=80=99s =
-passed
+                                                          it’s passed
                                                           CRC and booted
                                                           the embedded
                                                           micro
@@ -1519,8 +1758,7 @@ passed
                                                           firmware that
                                                           replies to
                                                           ICMP
-                                                          =
-packets=E2=80=A6that=E2=80=99s
+                                                          packets…that’s
                                                           a sign the
                                                           hardware is in
                                                           reasonable
@@ -1543,54 +1781,51 @@ packets=E2=80=A6that=E2=80=99s
                                                           this image
                                                           printed at
                                                           boot if it got
-                                                          this =
-far.</div>
-                                                          <div =
-class=3D"">(Sorry
+                                                          this far.</div>
+                                                          <div class="">(Sorry
 
-                                                          if I=E2=80=99m =
-telling
+
+                                                          if I’m telling
                                                           you stuff you
                                                           know here, too
                                                           many messages
                                                           in this thread
                                                           to go reread
                                                           them)</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">You
+                                                          <div class="">You
+
 
                                                           should now
                                                           refer to these
                                                           2 pages:</div>
-                                                          <div =
-class=3D""><a moz-do-not-send=3D"true" =
-href=3D"https://kb.ettus.com/N200/N210_Device_Recovery" =
-class=3D"">https://kb.ettus.com/N200/N210_Device_Recovery</a></div>
-                                                          <div =
-class=3D""><a moz-do-not-send=3D"true" =
-href=3D"http://files.ettus.com/manual/page_usrp2.html#usrp2_load" =
-class=3D"">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a>&nb=
-sp;(N-series
+                                                          <div class=""><a
+moz-do-not-send="true"
+                                                          href="https://kb.ettus.com/N200/N210_Device_Recovery"
+                                                          class="">https://kb.ettus.com/N200/N210_Device_Recovery</a></div>
+                                                          <div class=""><a
+moz-do-not-send="true"
+                                                          href="http://files.ettus.com/manual/page_usrp2.html#usrp2_load"
+                                                          class="">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a> (N-series
+
 
 
                                                           sections, not
                                                           USRP2)</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">The
+                                                          <div class="">The
+
 
                                                           general
                                                           outline of
                                                           what to try is
-                                                          as =
-follows:</div>
-                                                          <div =
-class=3D"">1)
+                                                          as follows:</div>
+                                                          <div class="">1)
+
 
                                                           Start with a
                                                           relatively
@@ -1599,8 +1834,7 @@ class=3D"">1)
                                                           version: Any
                                                           3.9.x version
                                                           is pretty
-                                                          ideal, it=E2=80=99=
-s
+                                                          ideal, it’s
                                                           well supported
                                                           in Gnuradio,
                                                           is perhaps the
@@ -1613,10 +1847,9 @@ s
                                                           GitHub, then
                                                           checkout the
                                                           tag
-                                                          =
-=E2=80=9Crelease_003_009_007=E2=80=9D.</div>
-                                                          <div =
-class=3D"">(Note
+                                                          “release_003_009_007”.</div>
+                                                          <div class="">(Note
+
 
                                                           there is no
                                                           reason to look
@@ -1637,8 +1870,8 @@ class=3D"">(Note
                                                           better
                                                           community
                                                           support)</div>
-                                                          <div =
-class=3D"">2.
+                                                          <div class="">2.
+
 
                                                           (Given you
                                                           understand how
@@ -1647,13 +1880,10 @@ class=3D"">2.
                                                           JTAG) Follow
                                                           the procedure
                                                           outlined in
-                                                          =E2=80=9CUnbrick=
-ing an
+                                                          “Unbricking an
                                                           N Series
-                                                          Device=E2=80=9D.=
- Run
-                                                          =
-=E2=80=9Cuhd_images_downloader=E2=80=9D
+                                                          Device”. Run
+                                                          “uhd_images_downloader”
                                                           under UHD3.9.x
                                                           to be sure you
                                                           have a
@@ -1674,8 +1904,7 @@ ing an
                                                           via JTAG.
                                                           Verify you can
                                                           ping this once
-                                                          it=E2=80=99s =
-loaded.
+                                                          it’s loaded.
                                                           Remember this
                                                           is a volatile
                                                           load, no flash
@@ -1696,8 +1925,7 @@ loaded.
                                                           ethernet
                                                           network and
                                                           update both
-                                                          slot=E2=80=99s =
-in the
+                                                          slot’s in the
                                                           flash memory
                                                           with
                                                           non-volatile
@@ -1707,16 +1935,15 @@ in the
                                                           after
                                                           reset/power
                                                           cycle.</div>
-                                                          <div =
-class=3D"">3)
+                                                          <div class="">3)
+
 
                                                           Follow the
                                                           instructions
-                                                          in&nbsp;<a =
-moz-do-not-send=3D"true" =
-href=3D"http://files.ettus.com/manual/page_usrp2.html#usrp2_load" =
-class=3D"">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a>&nb=
-sp;to
+                                                          in <a
+                                                          moz-do-not-send="true"
+href="http://files.ettus.com/manual/page_usrp2.html#usrp2_load" class="">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a> to
+
 
 
                                                           perform the
@@ -1727,18 +1954,16 @@ sp;to
                                                           a peek at the
                                                           settings in
                                                           your EEPROM
-                                                          (=E2=80=9CRecove=
-ry
-                                                          process=E2=80=9D=
-
+                                                          (“Recovery
+                                                          process”
                                                           instructions)
                                                           to verify that
                                                           all fields are
                                                           sane and match
                                                           your case
                                                           label.</div>
-                                                          <div =
-class=3D"">4)
+                                                          <div class="">4)
+
 
                                                           At this point,
                                                           if all has
@@ -1750,80 +1975,70 @@ class=3D"">4)
                                                           H/W should
                                                           work, and
                                                           tools like
-                                                          =
-=E2=80=9Cuhd_usrp_probe=E2=80=9D
+                                                          “uhd_usrp_probe”
                                                           should find
                                                           the USRP and
-                                                          print it=E2=80=99=
-s
+                                                          print it’s
                                                           detailed H/W
                                                           config. There
                                                           are a few
                                                           common useful
                                                           things to
                                                           check in the
-                                                          =
-=E2=80=9CTroubleshooting=E2=80=9D
+                                                          “Troubleshooting”
                                                           section if
                                                           things still
-                                                          don=E2=80=99t =
-seem to
-                                                          have =
-worked.</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          don’t seem to
+                                                          have worked.</div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">-Ian</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class="">-Ian</div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div class=3D"">=
+                                                          <div class="">
+                                                          <div class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
 
-                                                          <div class=3D"">=
-
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
 
                                                           May 9, 2019,
                                                           at 2:48 PM,
                                                           Joe Martin via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" class="">usrp-users@lists.ettus.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"Apple-interchange-newline">
-                                                          <div class=3D"">=
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class=""
+                                                          style="word-wrap:
 
-                                                          <div class=3D"" =
-style=3D"word-wrap:
 
 
                                                           break-word;
-                                                          =
--webkit-nbsp-mode:
+                                                          -webkit-nbsp-mode:
                                                           space;
                                                           line-break:
-                                                          =
-after-white-space;">Oh,
+                                                          after-white-space;">Oh,
 
 
-                                                          okay, I =
-didn=E2=80=99t
+
+                                                          okay, I didn’t
                                                           get that.
-                                                          =
-&nbsp;Understood
-                                                          now. &nbsp;I =
-have
+                                                           Understood
+                                                          now.  I have
                                                           UHD 3.14.0
                                                           running on my
                                                           main machine
@@ -1838,13 +2053,11 @@ have
                                                           current
                                                           version of UHD
                                                           and N210
-                                                          =
-usrp_n210_r4_fpga.bit
+                                                          usrp_n210_r4_fpga.bit
                                                           to no avail)
                                                           to see if any
                                                           of them are
-                                                          compatible. =
-&nbsp;I
+                                                          compatible.  I
                                                           also was able
                                                           to build UHD
                                                           3.9.0 on a
@@ -1854,39 +2067,39 @@ usrp_n210_r4_fpga.bit
                                                           too with some
                                                           of the other
                                                           .bit files.
-                                                          &nbsp;Will =
-hold the
+                                                           Will hold the
                                                           safe button
                                                           down while
                                                           loading the
                                                           FPGA this time
-                                                          around. &nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          around.  
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
                                                           at 3:38 PM,
                                                           Nick Foster
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:bistromath@gmail.com" =
-class=3D"">bistromath@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" class="">bistromath@gmail.com</a>&gt;
                                                           wrote:</div>
-                                                          <br =
-class=3D"Apple-interchange-newline">
-                                                          <div class=3D"">=
-
-                                                          <div =
-dir=3D"auto" class=3D"">I'm
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div
+                                                          dir="auto"
+                                                          class="">I'm
                                                           saying that
                                                           you might try
                                                           to continue
@@ -1900,48 +2113,45 @@ dir=3D"auto" class=3D"">I'm
                                                           safe mode
                                                           button while
                                                           loading the
-                                                          =
-image.&nbsp;</div>
-                                                          <br class=3D"">
-                                                          <div =
-class=3D"gmail_quote">
-                                                          <div dir=3D"ltr"=
- class=3D"gmail_attr">On Thu, May 9, 2019, 2:22 PM Joe Martin &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:k5so@k5so.com" =
-class=3D"">k5so@k5so.com</a>&gt; wrote:<br class=3D"">
+                                                          image. </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019, 2:22 PM Joe Martin &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" class="">k5so@k5so.com</a>&gt; wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-class=3D"gmail_quote" style=3D"margin:
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:
                                                           0px 0px 0px
                                                           0.8ex;
-                                                          =
-border-left-width:
+                                                          border-left-width:
                                                           1px;
-                                                          =
-border-left-style:
+                                                          border-left-style:
                                                           solid;
-                                                          =
-border-left-color:
+                                                          border-left-color:
                                                           rgb(204, 204,
                                                           204);
                                                           padding-left:
                                                           1ex;">
-                                                          <div class=3D"" =
-style=3D"word-wrap:
+                                                          <div class=""
+                                                          style="word-wrap:
+
 
 
                                                           break-word;
                                                           line-break:
-                                                          =
-after-white-space;">Thanks
+                                                          after-white-space;">Thanks
+
 
 
                                                           for digging
                                                           into that for
-                                                          us, =
-Nick.&nbsp;
-                                                          =
-Interesting.&nbsp;
+                                                          us, Nick. 
+                                                          Interesting. 
                                                           As the
                                                           hardware
                                                           change to rev4
@@ -1950,10 +2160,9 @@ Interesting.&nbsp;
                                                           2011 and the
                                                           earliest UHD
                                                           version that
-                                                          exists on =
-the&nbsp;<a moz-do-not-send=3D"true" href=3D"http://files.ettus.com/uhd" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">files.ettus.com/uhd</a>&nbsp;page is Feb 2104, what
+                                                          exists on the <a
+moz-do-not-send="true" href="http://files.ettus.com/uhd" target="_blank"
+rel="noreferrer" class="">files.ettus.com/uhd</a> page is Feb 2104, what
                                                           is the
                                                           likelihood in
                                                           your opinion
@@ -1963,23 +2172,20 @@ class=3D"">files.ettus.com/uhd</a>&nbsp;page is Feb 2104, what
                                                           with the
                                                           rev2/3
                                                           hardware from
-                                                          2011? =
-&nbsp;&nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          2011?   
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">So
+                                                          <div class="">So
 
 
-                                                          far I=E2=80=99ve=
- not
+
+                                                          far I’ve not
                                                           been
                                                           successful in
                                                           reviving the
                                                           2014 UHD
-                                                          version so =
-I=E2=80=99m
+                                                          version so I’m
                                                           asking to
                                                           determine
                                                           whether
@@ -1992,41 +2198,40 @@ I=E2=80=99m
                                                           respect to
                                                           interfacing
                                                           with the 2011
-                                                          hardware. =
-&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          hardware.  </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div class=3D"">=
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
 
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
 
 
                                                           May 9, 2019,
                                                           at 3:06 PM,
                                                           Nick Foster
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:bistromath@gmail.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">bistromath@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084Apple-interchange-newline">
-                                                          <div class=3D"">=
+                                                          <br
+                                                          class="m_3343428221959612084Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">
+                                                          <div class="">So
 
-                                                          <div dir=3D"ltr"=
- class=3D"">
-                                                          <div =
-class=3D"">So
 
 
                                                           I really dug
@@ -2083,13 +2288,12 @@ class=3D"">So
                                                           should be able
                                                           to run r3
                                                           firmware on
-                                                          your =
-N210.</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          your N210.</div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">That
+                                                          <div class="">That
+
 
 
                                                           said, the very
@@ -2098,8 +2302,8 @@ class=3D"">That
                                                           old firmware
                                                           might not have
                                                           used the same
-                                                          =
-safe/production
+                                                          safe/production
+
 
 
                                                           firmware/fpga
@@ -2115,11 +2319,11 @@ safe/production
                                                           dive to get it
                                                           all running
                                                           again.</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">If
+                                                          <div class="">If
+
 
 
                                                           you have a
@@ -2150,53 +2354,53 @@ class=3D"">If
                                                           the
                                                           firmware/FPGA
                                                           image loading
-                                                          process.<br =
-class=3D"">
+                                                          process.<br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Nick<br class=3D"">
+                                                          <div class="">Nick<br
+                                                          class="">
                                                           </div>
                                                           </div>
-                                                          <br class=3D"">
-                                                          <div =
-class=3D"gmail_quote">
-                                                          <div dir=3D"ltr"=
- class=3D"gmail_attr">On Thu, May 9, 2019 at 1:42 PM Joe Martin via
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 1:42 PM Joe Martin via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
 
 
-                                                          wrote:<br =
-class=3D"">
+
+                                                          wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-class=3D"gmail_quote" style=3D"margin:
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:
                                                           0px 0px 0px
                                                           0.8ex;
-                                                          =
-border-left-width:
+                                                          border-left-width:
                                                           1px;
-                                                          =
-border-left-style:
+                                                          border-left-style:
                                                           solid;
-                                                          =
-border-left-color:
+                                                          border-left-color:
                                                           rgb(204, 204,
                                                           204);
                                                           padding-left:
                                                           1ex;">
-                                                          <div =
-class=3D"">Thanks
+                                                          <div class="">Thanks
+
 
 
                                                           for the info,
-                                                          Marcus.&nbsp;
+                                                          Marcus. 
                                                           However,
                                                           seeing that
                                                           Jason went
@@ -2208,15 +2412,13 @@ class=3D"">Thanks
                                                           unlikely that
                                                           all three of
                                                           the N210 are
-                                                          broken.&nbsp; =
-That
+                                                          broken.  That
                                                           being said and
                                                           considering
                                                           what you jus
                                                           said it seems
                                                           that I
-                                                          should=E2=80=99v=
-e been
+                                                          should’ve been
                                                           able to find
                                                           some version
                                                           of UHD that
@@ -2227,17 +2429,15 @@ e been
                                                           firmware and
                                                           fpga images
                                                           stored in the
-                                                          unit; &nbsp;I =
-have
+                                                          unit;  I have
                                                           not, using UHD
                                                           versions from
                                                           3.9.0 to
-                                                          3.14.0. &nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          3.14.0.  
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">I
+                                                          <div class="">I
                                                           wanted to try
                                                           with even
                                                           earlier
@@ -2251,28 +2451,23 @@ class=3D"">I
                                                           version I
                                                           could find) as
                                                           it seems that
-                                                          =E2=80=9Cprebuil=
-t=E2=80=9D
+                                                          “prebuilt”
                                                           v3.4.0 needs
                                                           only Ubuntu
                                                           10.10 or 11.10
                                                           which so far
-                                                          I=E2=80=99m =
-not able
+                                                          I’m not able
                                                           to
                                                           successfully
                                                           install and
-                                                          run. &nbsp; =
-Seems
-                                                          we=E2=80=99re =
-running
+                                                          run.   Seems
+                                                          we’re running
                                                           out of option
                                                           on this one so
                                                           the Deep Space
                                                           Exploration
                                                           Society, who
-                                                          I=E2=80=99m =
-trying to
+                                                          I’m trying to
                                                           help with
                                                           this, may have
                                                           to come to
@@ -2280,19 +2475,19 @@ trying to
                                                           the notion
                                                           that their
                                                           N210 is a true
-                                                          =
-brick.&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          brick. </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
@@ -2300,40 +2495,42 @@ class=3D"">On
                                                           Marcus D.
                                                           Leech via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386Apple-interchange=
--newline">
-                                                          <div class=3D"">=
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div
+                                                          bgcolor="#FFFFFF"
+                                                          class="">
+                                                          <div
+                                                          class="m_3343428221959612084gmail-m_3428410372027926386moz-cite-prefix">On
 
-                                                          <div =
-bgcolor=3D"#FFFFFF" class=3D"">
-                                                          <div =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386moz-cite-prefix">=
-On
 
 
                                                           05/09/2019
                                                           04:18 PM, Joe
                                                           Martin via
                                                           USRP-users
-                                                          wrote:<br =
-class=3D"">
+                                                          wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-type=3D"cite" class=3D"">Nick,
-                                                          Ian,&nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">Nick,
+                                                          Ian, 
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">If
+                                                          <div class="">If
+
 
 
                                                           this unit
@@ -2354,23 +2551,21 @@ class=3D"">If
                                                           tried
                                                           actually) with
                                                           some available
-                                                          UHD =
-version?&nbsp;
+                                                          UHD version? 
                                                           If so, would
                                                           you be able to
                                                           tell me which
                                                           UHD version(s)
                                                           might be able
                                                           to communicate
-                                                          with it? =
-&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          with it?  </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
                                                           </div>
                                                           </blockquote>
@@ -2380,18 +2575,16 @@ class=3D""><br class=3D"">
                                                           several years
                                                           should be able
                                                           to talk to
-                                                          it.&nbsp; In
+                                                          it.  In
                                                           *general* UHD
                                                           never drops
                                                           support for
                                                           older
-                                                          hardware,<br =
-class=3D"">
-                                                          &nbsp; and =
-tries to
+                                                          hardware,<br
+                                                          class="">
+                                                            and tries to
                                                           maintain
-                                                          =
-compatibility.&nbsp;
+                                                          compatibility. 
                                                           Now, it is the
                                                           case that
                                                           newer features
@@ -2400,13 +2593,12 @@ compatibility.&nbsp;
                                                           "back-ported",
                                                           but basic
                                                           functionality
-                                                          should<br =
-class=3D"">
-                                                          &nbsp; always =
-be
-                                                          =
-there.&nbsp;&nbsp;<br class=3D"">
-                                                          <br class=3D"">
+                                                          should<br
+                                                          class="">
+                                                            always be
+                                                          there.  <br
+                                                          class="">
+                                                          <br class="">
                                                           What this
                                                           *should* mean
                                                           is that you
@@ -2417,10 +2609,9 @@ there.&nbsp;&nbsp;<br class=3D"">
                                                           device is in
                                                           "safe mode" to
                                                           get yourself
-                                                          to where =
-you<br class=3D"">
-                                                          &nbsp; want to =
-be.&nbsp;
+                                                          to where you<br
+                                                          class="">
+                                                            want to be. 
                                                           If that
                                                           doesn't work,
                                                           that may well
@@ -2430,162 +2621,157 @@ be.&nbsp;
                                                           it's unlikely
                                                           to be
                                                           economical to
-                                                          repair.<br =
-class=3D"">
-                                                          <br class=3D"">
-                                                          <br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div class=3D"">=
+                                                          repair.<br
+                                                          class="">
+                                                          <br class="">
+                                                          <br class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">
+                                                          <div class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
 
-                                                          <div class=3D"">=
-
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
 
 
                                                           May 9, 2019,
                                                           at 2:12 PM,
                                                           Joe Martin via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386Apple-interchange=
--newline">
-                                                          <div class=3D"">=
-
-                                                          <div =
-class=3D"">Okay.
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Okay.
 
 
-                                                          &nbsp;I=E2=80=99=
-ve asserted
+
+                                                           I’ve asserted
                                                           from the
                                                           outset that
-                                                          it=E2=80=99s a =
-rev 2,
+                                                          it’s a rev 2,
                                                           based on the
                                                           factory
-                                                          label.&nbsp; =
-Is
+                                                          label.  Is
                                                           this N210 a
                                                           lost cause if
                                                           it is actually
-                                                          a Rev2 =
-N210?&nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          a Rev2 N210? 
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
                                                           at 2:05 PM,
                                                           Nick Foster
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:bistromath@gmail.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">bistromath@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386Apple-interchange=
--newline">
-                                                          <div class=3D"">=
-
-                                                          <div dir=3D"ltr"=
- class=3D"">Well,
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">Well,
                                                           it's not a rev
                                                           4. It's either
                                                           2 or 3 in
                                                           terms of
                                                           hardware
-                                                          =
-revision.&nbsp;<br class=3D"">
+                                                          revision. <br
+                                                          class="">
                                                           </div>
-                                                          <br class=3D"">
-                                                          <div =
-class=3D"gmail_quote">
-                                                          <div dir=3D"ltr"=
- class=3D"gmail_attr">On Thu, May 9, 2019 at 12:58 PM Joe Martin &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:k5so@k5so.com" target=3D"_blank" =
-rel=3D"noreferrer" class=3D"">k5so@k5so.com</a>&gt;
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 12:58 PM Joe Martin &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" target="_blank" rel="noreferrer" class="">k5so@k5so.com</a>&gt;
 
 
-                                                          wrote:<br =
-class=3D"">
+
+                                                          wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-class=3D"gmail_quote" style=3D"margin:
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:
                                                           0px 0px 0px
                                                           0.8ex;
-                                                          =
-border-left-width:
+                                                          border-left-width:
                                                           1px;
-                                                          =
-border-left-style:
+                                                          border-left-style:
                                                           solid;
-                                                          =
-border-left-color:
+                                                          border-left-color:
                                                           rgb(204, 204,
                                                           204);
                                                           padding-left:
                                                           1ex;">
-                                                          <div =
-class=3D"">=E2=80=A6able
+                                                          <div class="">…able
+
 
 
                                                           to ping
                                                           192.168.10.2
-                                                          =
-successfully.<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          successfully.<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
                                                           at 1:54 PM,
                                                           Joe Martin
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:k5so@k5so.com" target=3D"_blank" =
-rel=3D"noreferrer" class=3D"">k5so@k5so.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" target="_blank" rel="noreferrer" class="">k5so@k5so.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386gmail-m_-25132065=
-80084366361Apple-interchange-newline">
-                                                          <div class=3D"">=
-
-                                                          <div =
-class=3D"">Ian,&nbsp;
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Ian, 
 
 
-                                                          <div =
-class=3D""><br class=3D"">
+
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Yes,
+                                                          <div class="">Yes,
+
 
 
                                                           I have tried
@@ -2593,64 +2779,60 @@ class=3D"">Yes,
                                                           boot in safe
                                                           mode, same
                                                           result
-                                                          =
-regardless.&nbsp;
+                                                          regardless. 
                                                           Yes, I am able
                                                           to pin to
                                                           192.168.10.2
-                                                          =
-successfully.&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          successfully. </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
                                                           at 1:47 PM,
                                                           Joe Martin via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386gmail-m_-25132065=
-80084366361Apple-interchange-newline">
-                                                          <div class=3D"">=
-
-                                                          <div =
-class=3D"">Ian
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Ian
 
 
-                                                          and =
-Nick,&nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+
+                                                          and Nick, 
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Thanks
+                                                          <div class="">Thanks
+
 
 
                                                           for the
-                                                          =
-assistance.&nbsp;
+                                                          assistance. 
                                                           Attached are
                                                           dropbox links
                                                           to two
                                                           snapshot
-                                                          photos: =
-&nbsp;1)
+                                                          photos:  1)
                                                           the factory
                                                           label on the
                                                           back of the
@@ -2658,64 +2840,59 @@ assistance.&nbsp;
                                                           N210 r:2.0 and
                                                           2) a top side
                                                           view of the
-                                                          =
-N210.&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          N210. </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">1)&nbsp;<a moz-do-not-send=3D"true" =
-href=3D"https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D=
-0" target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?d=
-l=3D0</a></div>
-                                                          <div =
-class=3D"">2)&nbsp;<a moz-do-not-send=3D"true" =
-href=3D"https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D=
-0" target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?d=
-l=3D0</a></div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class="">1) <a
+moz-do-not-send="true"
+href="https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0"
+target="_blank" rel="noreferrer" class="">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0</a></div>
+                                                          <div class="">2) <a
+moz-do-not-send="true"
+href="https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0"
+target="_blank" rel="noreferrer" class="">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0</a></div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Seems
+                                                          <div class="">Seems
+
 
 
                                                           this unit is
                                                           indeed a rev 2
-                                                          N210, =
-yes?&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          N210, yes? </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
                                                           at 12:40 PM,
                                                           Nick Foster
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:bistromath@gmail.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">bistromath@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386gmail-m_-25132065=
-80084366361Apple-interchange-newline">
-                                                          <div class=3D"">=
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">Moreover,
 
-                                                          <div dir=3D"ltr"=
- class=3D"">Moreover,
 
 
                                                           the best
@@ -2737,44 +2914,46 @@ class=3D"m_3343428221959612084gmail-m_3428410372027926386gmail-m_-25132065=
                                                           N210, I can
                                                           tell you if
                                                           it's early or
-                                                          late rev.<br =
-class=3D"">
+                                                          late rev.<br
+                                                          class="">
                                                           </div>
-                                                          <br class=3D"">
-                                                          <div =
-class=3D"gmail_quote">
-                                                          <div dir=3D"ltr"=
- class=3D"gmail_attr">On Thu, May 9, 2019 at 11:36 AM Ian Buckley via
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 11:36 AM Ian Buckley via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
 
 
-                                                          wrote:<br =
-class=3D"">
+
+                                                          wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-class=3D"gmail_quote" style=3D"margin:
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:
                                                           0px 0px 0px
                                                           0.8ex;
-                                                          =
-border-left-width:
+                                                          border-left-width:
                                                           1px;
-                                                          =
-border-left-style:
+                                                          border-left-style:
                                                           solid;
-                                                          =
-border-left-color:
+                                                          border-left-color:
                                                           rgb(204, 204,
                                                           204);
                                                           padding-left:
                                                           1ex;">
-                                                          <div =
-dir=3D"auto" class=3D"">Joe,
-                                                          <div =
-dir=3D"auto" class=3D"">So I
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Joe,
+                                                          <div
+                                                          dir="auto"
+                                                          class="">So I
                                                           scratched my
                                                           head about
                                                           this a little
@@ -2794,8 +2973,7 @@ dir=3D"auto" class=3D"">So I
                                                           Rev2 N210.
                                                           Chatting with
                                                           Matt
-                                                          =
-this&nbsp;morning
+                                                          this morning
                                                           he shared my
                                                           feeling that a
                                                           Rev2 wasn't
@@ -2812,26 +2990,30 @@ this&nbsp;morning
                                                           rev2.0" on the
                                                           PCB (which can
                                                           be
-                                                          =
-missleading).</div>
-                                                          <div =
-dir=3D"auto" class=3D""><br class=3D"">
+                                                          missleading).</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-dir=3D"auto" class=3D"">Also
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Also
                                                           have you tried
                                                           booting into
                                                           the safe image
                                                           and verifying
                                                           that it at
                                                           least pings on
-                                                          =
-192.168.10.2?</div>
-                                                          <div =
-dir=3D"auto" class=3D""><br class=3D"">
+                                                          192.168.10.2?</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-dir=3D"auto" class=3D"">If we
+                                                          <div
+                                                          dir="auto"
+                                                          class="">If we
                                                           can
                                                           conclusively
                                                           identify which
@@ -2839,141 +3021,138 @@ dir=3D"auto" class=3D"">If we
                                                           have I can
                                                           probably help
                                                           further.</div>
-                                                          <div =
-dir=3D"auto" class=3D""><br class=3D"">
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-dir=3D"auto" class=3D"">Ian</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Ian</div>
                                                           </div>
                                                           </blockquote>
                                                           </div>
                                                           </div>
                                                           </blockquote>
                                                           </div>
-                                                          <br class=3D"">
+                                                          <br class="">
                                                           </div>
                                                           </div>
-_______________________________________________<br class=3D"">
+_______________________________________________<br class="">
                                                           USRP-users
-                                                          mailing =
-list<br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" href=3D"mailto:USRP-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D"">
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+target="_blank" rel="noreferrer" class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
                                                           </div>
                                                           </blockquote>
                                                           </div>
-                                                          <br class=3D"">
+                                                          <br class="">
                                                           </div>
-                                                          </div>
-                                                          </div>
-                                                          </blockquote>
-                                                          </div>
-                                                          <br class=3D"">
-                                                          </div>
-                                                          </blockquote>
                                                           </div>
                                                           </div>
                                                           </blockquote>
                                                           </div>
-                                                          <br class=3D"">
+                                                          <br class="">
+                                                          </div>
+                                                          </blockquote>
                                                           </div>
                                                           </div>
-_______________________________________________<br class=3D"">
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          </div>
+_______________________________________________<br class="">
                                                           USRP-users
-                                                          mailing =
-list<br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" href=3D"mailto:USRP-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386moz-txt-link-free=
-text" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" target=3D"_blank" =
-rel=3D"noreferrer">http://lists.ettus.com/mailman/listinfo/usrp-users_list=
-s.ettus.com</a><br class=3D"">
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+class="m_3343428221959612084gmail-m_3428410372027926386moz-txt-link-freetext"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+target="_blank" rel="noreferrer">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
                                                           </div>
                                                           </blockquote>
                                                           </div>
-                                                          <br class=3D"">
+                                                          <br class="">
                                                           </div>
-                                                          <br class=3D"">
-                                                          <fieldset =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386mimeAttachmentHea=
-der"></fieldset>
-                                                          <br class=3D"">
-                                                          <pre =
-class=3D"">_______________________________________________
+                                                          <br class="">
+                                                          <fieldset
+class="m_3343428221959612084gmail-m_3428410372027926386mimeAttachmentHeader"></fieldset>
+                                                          <br class="">
+                                                          <pre class="">_______________________________________________
 USRP-users mailing list
-<a moz-do-not-send=3D"true" =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386moz-txt-link-abbr=
-eviated" href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" =
-rel=3D"noreferrer">USRP-users@lists.ettus.com</a>
-<a moz-do-not-send=3D"true" =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386moz-txt-link-free=
-text" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" target=3D"_blank" =
-rel=3D"noreferrer">http://lists.ettus.com/mailman/listinfo/usrp-users_list=
-s.ettus.com</a>
+<a moz-do-not-send="true" class="m_3343428221959612084gmail-m_3428410372027926386moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com" target="_blank" rel="noreferrer">USRP-users@lists.ettus.com</a>
+<a moz-do-not-send="true" class="m_3343428221959612084gmail-m_3428410372027926386moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target="_blank" rel="noreferrer">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
 </pre>
                                                           </blockquote>
-                                                          <br class=3D"">
+                                                          <br class="">
                                                           </div>
-_______________________________________________<br class=3D"">
+_______________________________________________<br class="">
                                                           USRP-users
-                                                          mailing =
-list<br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" href=3D"mailto:USRP-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D"">
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+target="_blank" rel="noreferrer" class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
                                                           </div>
                                                           </blockquote>
                                                           </div>
-                                                          <br class=3D"">
+                                                          <br class="">
                                                           </div>
                                                           </div>
-_______________________________________________<br class=3D"">
+_______________________________________________<br class="">
                                                           USRP-users
-                                                          mailing =
-list<br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" href=3D"mailto:USRP-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" rel=3D"noreferrer
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                                                          rel="noreferrer
 
 
-                                                          noreferrer" =
-target=3D"_blank" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D"">
+
+                                                          noreferrer"
+                                                          target="_blank"
+                                                          class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
                                                           </blockquote>
                                                           </div>
                                                           </div>
                                                           </blockquote>
                                                           </div>
-                                                          <br class=3D"">
+                                                          <br class="">
                                                           </div>
                                                           </div>
                                                           </div>
@@ -2982,163 +3161,191 @@ com</a><br class=3D"">
                                                           </div>
                                                           </blockquote>
                                                           </div>
-                                                          <br class=3D"">
+                                                          <br class="">
                                                           </div>
                                                           </div>
-_______________________________________________<br class=3D"">
+_______________________________________________<br class="">
                                                           USRP-users
-                                                          mailing =
-list<br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" href=3D"mailto:USRP-users@lists.ettus.com" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D"">
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                                                          class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
                                                           </div>
                                                           </blockquote>
                                                           </div>
-                                                          <br class=3D"">
+                                                          <br class="">
                                                           </div>
                                                           </div>
                                                           </div>
                                                           </blockquote>
                                                           </div>
-                                                          <br class=3D"">
+                                                          <br class="">
                                                           </div>
                                                           </div>
-_______________________________________________<br class=3D"">
+_______________________________________________<br class="">
                                                           USRP-users
-                                                          mailing =
-list<br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" href=3D"mailto:USRP-users@lists.ettus.com" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
-                                                          <a =
-moz-do-not-send=3D"true" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D"">
-                                                        </div>
-                                                      </blockquote>
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                                                          class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                        </blockquote>
+                                                      </div>
                                                     </div>
-                                                    <br class=3D"">
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </blockquote>
-                                          </div>
-                                        </div>
-                                        <div class=3D""><br class=3D"">
-                                          <blockquote type=3D"cite" =
-class=3D"">
-                                            <div class=3D"">On May 10,
-                                              2019, at 9:31 AM, Ian
-                                              Buckley &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:ian.buckley@gmail.com" =
-class=3D"">ian.buckley@gmail.com</a>&gt;
+                                                    <div class=""><br
+                                                        class="">
+                                                      <blockquote
+                                                        type="cite"
+                                                        class="">
+                                                        <div class="">On
+                                                          May 10, 2019,
+                                                          at 9:31 AM,
+                                                          Ian Buckley
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:ian.buckley@gmail.com" class="">ian.buckley@gmail.com</a>&gt;
 
 
-                                              wrote:</div>
-                                            <br =
-class=3D"Apple-interchange-newline">
-                                            <div class=3D"">
-                                              <meta =
-http-equiv=3D"Content-Type" content=3D"text/html;
-                                                charset=3Dutf-8" =
-class=3D"">
-                                              <div style=3D"word-wrap:
-                                                break-word;
-                                                -webkit-nbsp-mode:
-                                                space;
-                                                -webkit-line-break:
-                                                after-white-space;" =
-class=3D"">Joe,&nbsp;
-                                                <div class=3D"">To save
-                                                  you time, It may well
-                                                  be worth you trying
-                                                  jumping to the 3) step
-                                                  initially and seeing
-                                                  if your current loaded
-                                                  image or safe image is
-                                                  capable of being
-                                                  upgraded =E2=80=A6it =
-likely is
-                                                  since that protocol is
-                                                  widely compatible
-                                                  across UHD variants.
-                                                  The key here I have to
-                                                  emphasize (since you
-                                                  appear to have been
-                                                  previously getting
-                                                  stuck with
-                                                  incompatibility
-                                                  between whatever is
-                                                  loaded in the USRP and
-                                                  your host UHD
-                                                  installation) is to be
-                                                  sure your new UHD
-                                                  installation is the
-                                                  only one on your
-                                                  system, and that you
-                                                  have the binary images
-                                                  that are version
-                                                  matched with =
-it=E2=80=A6people
-                                                  often get caught out
-                                                  by reminants of
-                                                  various UHD versions
-                                                  installed in various
-                                                  system directories
-                                                  from different install
-                                                  methods.</div>
-                                                <div class=3D"">-Ian</div>=
 
-                                                <div class=3D""><br =
-class=3D"">
-                                                  <div class=3D"">
-                                                    <blockquote =
-type=3D"cite" class=3D"">
-                                                      <div class=3D"">On
-                                                        May 10, 2019, at
-                                                        5:58 AM, Joe
-                                                        Martin via
-                                                        USRP-users =
-&lt;<a moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com"=
- class=3D"">usrp-users@lists.ettus.com</a>&gt;
-
-
-                                                        wrote:</div>
-                                                      <br =
-class=3D"Apple-interchange-newline">
-                                                      <div class=3D"">
-                                                        <meta =
-http-equiv=3D"Content-Type" content=3D"text/html;
-                                                          charset=3Dutf-8"=
- class=3D"">
-                                                        <div =
-style=3D"word-wrap:
+                                                          wrote:</div>
+                                                        <br
+                                                          class="Apple-interchange-newline">
+                                                        <div class="">
+                                                          <meta
+                                                          http-equiv="Content-Type"
+                                                          content="text/html;
+                                                          charset=utf-8"
+                                                          class="">
+                                                          <div
+                                                          style="word-wrap:
                                                           break-word;
-                                                          =
--webkit-nbsp-mode:
+                                                          -webkit-nbsp-mode:
+                                                          space;
+                                                          -webkit-line-break:
+after-white-space;" class="">Joe, 
+                                                          <div class="">To
+                                                          save you time,
+                                                          It may well be
+                                                          worth you
+                                                          trying jumping
+                                                          to the 3) step
+                                                          initially and
+                                                          seeing if your
+                                                          current loaded
+                                                          image or safe
+                                                          image is
+                                                          capable of
+                                                          being upgraded
+                                                          …it likely is
+                                                          since that
+                                                          protocol is
+                                                          widely
+                                                          compatible
+                                                          across UHD
+                                                          variants. The
+                                                          key here I
+                                                          have to
+                                                          emphasize
+                                                          (since you
+                                                          appear to have
+                                                          been
+                                                          previously
+                                                          getting stuck
+                                                          with
+                                                          incompatibility
+                                                          between
+                                                          whatever is
+                                                          loaded in the
+                                                          USRP and your
+                                                          host UHD
+                                                          installation)
+                                                          is to be sure
+                                                          your new UHD
+                                                          installation
+                                                          is the only
+                                                          one on your
+                                                          system, and
+                                                          that you have
+                                                          the binary
+                                                          images that
+                                                          are version
+                                                          matched with
+                                                          it…people
+                                                          often get
+                                                          caught out by
+                                                          reminants of
+                                                          various UHD
+                                                          versions
+                                                          installed in
+                                                          various system
+                                                          directories
+                                                          from different
+                                                          install
+                                                          methods.</div>
+                                                          <div class="">-Ian</div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          <div class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
+                                                          May 10, 2019,
+                                                          at 5:58 AM,
+                                                          Joe Martin via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" class="">usrp-users@lists.ettus.com</a>&gt;
+
+
+
+                                                          wrote:</div>
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <meta
+                                                          http-equiv="Content-Type"
+                                                          content="text/html;
+                                                          charset=utf-8"
+                                                          class="">
+                                                          <div
+                                                          style="word-wrap:
+                                                          break-word;
+                                                          -webkit-nbsp-mode:
                                                           space;
                                                           line-break:
-                                                          =
-after-white-space;" class=3D"">Ian,&nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          after-white-space;"
+                                                          class="">Ian, 
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Very
-                                                          good, that=E2=80=
-=99s
+                                                          <div class="">Very
+
+                                                          good, that’s
                                                           encouraging at
-                                                          least. =
-&nbsp;Yes, I
+                                                          least.  Yes, I
                                                           am familiar
                                                           with using ISE
                                                           iMPACT to load
@@ -3157,9 +3364,8 @@ class=3D"">Very
                                                           your
                                                           prescribed
                                                           steps below.
-                                                          &nbsp;I=E2=80=99=
-ll revisit
-                                                          it. &nbsp;I
+                                                           I’ll revisit
+                                                          it.  I
                                                           successfully
                                                           built UHD
                                                           003_009_000
@@ -3169,16 +3375,13 @@ ll revisit
                                                           successfully
                                                           build UHD
                                                           003_009_007
-                                                          too. =
-&nbsp;I=E2=80=99ll do
+                                                          too.  I’ll do
                                                           that and give
-                                                          it a go. =
-&nbsp;I am
+                                                          it a go.  I am
                                                           familiar with
                                                           the documents
                                                           you mentioned.
-                                                          =
-&nbsp;Generally
+                                                           Generally
                                                           things have
                                                           gone exactly
                                                           as described
@@ -3189,19 +3392,17 @@ ll revisit
                                                           stored images
                                                           at which point
                                                           it never does;
-                                                          so far =
-anyway.</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          so far anyway.</div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Thanks
+                                                          <div class="">Thanks
+
 
                                                           much for the
                                                           additional
                                                           information.
-                                                          &nbsp;I=E2=80=99=
-ll
+                                                           I’ll
                                                           certainly
                                                           hammer on it
                                                           some more now
@@ -3212,48 +3413,47 @@ ll
                                                           my belt to
                                                           guide the
                                                           process
-                                                          =
-appropriately.&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          appropriately. </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
                                                           May 10, 2019,
                                                           at 12:32 AM,
                                                           Ian Buckley
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:ian.buckley@gmail.com" =
-class=3D"">ian.buckley@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:ian.buckley@gmail.com" class="">ian.buckley@gmail.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"Apple-interchange-newline">
-                                                          <div class=3D"">=
-
-                                                          <meta =
-http-equiv=3D"Content-Type" content=3D"text/html;
-                                                          charset=3Dutf-8"=
- class=3D"">
-                                                          <div =
-style=3D"word-wrap:
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <meta
+                                                          http-equiv="Content-Type"
+                                                          content="text/html;
+                                                          charset=utf-8"
+                                                          class="">
+                                                          <div
+                                                          style="word-wrap:
                                                           break-word;
-                                                          =
--webkit-nbsp-mode:
+                                                          -webkit-nbsp-mode:
                                                           space;
-                                                          =
--webkit-line-break:
-after-white-space;" class=3D"">Joe,&nbsp;
-                                                          <div =
-class=3D"">This
+                                                          -webkit-line-break:
+after-white-space;" class="">Joe, 
+                                                          <div class="">This
+
 
                                                           is generally
                                                           all good news
@@ -3263,14 +3463,12 @@ class=3D"">This
                                                           ping
                                                           192.168.10.2
                                                           in safe mode
-                                                          tell=E2=80=99s =
-you
+                                                          tell’s you
                                                           that the FPGA
                                                           has loaded an
                                                           image from
                                                           Flash, that
-                                                          it=E2=80=99s =
-passed
+                                                          it’s passed
                                                           CRC and booted
                                                           the embedded
                                                           micro
@@ -3280,8 +3478,7 @@ passed
                                                           firmware that
                                                           replies to
                                                           ICMP
-                                                          =
-packets=E2=80=A6that=E2=80=99s
+                                                          packets…that’s
                                                           a sign the
                                                           hardware is in
                                                           reasonable
@@ -3304,54 +3501,51 @@ packets=E2=80=A6that=E2=80=99s
                                                           this image
                                                           printed at
                                                           boot if it got
-                                                          this =
-far.</div>
-                                                          <div =
-class=3D"">(Sorry
+                                                          this far.</div>
+                                                          <div class="">(Sorry
 
-                                                          if I=E2=80=99m =
-telling
+
+                                                          if I’m telling
                                                           you stuff you
                                                           know here, too
                                                           many messages
                                                           in this thread
                                                           to go reread
                                                           them)</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">You
+                                                          <div class="">You
+
 
                                                           should now
                                                           refer to these
                                                           2 pages:</div>
-                                                          <div =
-class=3D""><a moz-do-not-send=3D"true" =
-href=3D"https://kb.ettus.com/N200/N210_Device_Recovery" =
-class=3D"">https://kb.ettus.com/N200/N210_Device_Recovery</a></div>
-                                                          <div =
-class=3D""><a moz-do-not-send=3D"true" =
-href=3D"http://files.ettus.com/manual/page_usrp2.html#usrp2_load" =
-class=3D"">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a>&nb=
-sp;(N-series
+                                                          <div class=""><a
+moz-do-not-send="true"
+                                                          href="https://kb.ettus.com/N200/N210_Device_Recovery"
+                                                          class="">https://kb.ettus.com/N200/N210_Device_Recovery</a></div>
+                                                          <div class=""><a
+moz-do-not-send="true"
+                                                          href="http://files.ettus.com/manual/page_usrp2.html#usrp2_load"
+                                                          class="">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a> (N-series
+
 
 
                                                           sections, not
                                                           USRP2)</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">The
+                                                          <div class="">The
+
 
                                                           general
                                                           outline of
                                                           what to try is
-                                                          as =
-follows:</div>
-                                                          <div =
-class=3D"">1)
+                                                          as follows:</div>
+                                                          <div class="">1)
+
 
                                                           Start with a
                                                           relatively
@@ -3360,8 +3554,7 @@ class=3D"">1)
                                                           version: Any
                                                           3.9.x version
                                                           is pretty
-                                                          ideal, it=E2=80=99=
-s
+                                                          ideal, it’s
                                                           well supported
                                                           in Gnuradio,
                                                           is perhaps the
@@ -3374,10 +3567,9 @@ s
                                                           GitHub, then
                                                           checkout the
                                                           tag
-                                                          =
-=E2=80=9Crelease_003_009_007=E2=80=9D.</div>
-                                                          <div =
-class=3D"">(Note
+                                                          “release_003_009_007”.</div>
+                                                          <div class="">(Note
+
 
                                                           there is no
                                                           reason to look
@@ -3398,8 +3590,8 @@ class=3D"">(Note
                                                           better
                                                           community
                                                           support)</div>
-                                                          <div =
-class=3D"">2.
+                                                          <div class="">2.
+
 
                                                           (Given you
                                                           understand how
@@ -3408,13 +3600,10 @@ class=3D"">2.
                                                           JTAG) Follow
                                                           the procedure
                                                           outlined in
-                                                          =E2=80=9CUnbrick=
-ing an
+                                                          “Unbricking an
                                                           N Series
-                                                          Device=E2=80=9D.=
- Run
-                                                          =
-=E2=80=9Cuhd_images_downloader=E2=80=9D
+                                                          Device”. Run
+                                                          “uhd_images_downloader”
                                                           under UHD3.9.x
                                                           to be sure you
                                                           have a
@@ -3435,8 +3624,7 @@ ing an
                                                           via JTAG.
                                                           Verify you can
                                                           ping this once
-                                                          it=E2=80=99s =
-loaded.
+                                                          it’s loaded.
                                                           Remember this
                                                           is a volatile
                                                           load, no flash
@@ -3457,8 +3645,7 @@ loaded.
                                                           ethernet
                                                           network and
                                                           update both
-                                                          slot=E2=80=99s =
-in the
+                                                          slot’s in the
                                                           flash memory
                                                           with
                                                           non-volatile
@@ -3468,16 +3655,15 @@ in the
                                                           after
                                                           reset/power
                                                           cycle.</div>
-                                                          <div =
-class=3D"">3)
+                                                          <div class="">3)
+
 
                                                           Follow the
                                                           instructions
-                                                          in&nbsp;<a =
-moz-do-not-send=3D"true" =
-href=3D"http://files.ettus.com/manual/page_usrp2.html#usrp2_load" =
-class=3D"">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a>&nb=
-sp;to
+                                                          in <a
+                                                          moz-do-not-send="true"
+href="http://files.ettus.com/manual/page_usrp2.html#usrp2_load" class="">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a> to
+
 
 
                                                           perform the
@@ -3488,18 +3674,16 @@ sp;to
                                                           a peek at the
                                                           settings in
                                                           your EEPROM
-                                                          (=E2=80=9CRecove=
-ry
-                                                          process=E2=80=9D=
-
+                                                          (“Recovery
+                                                          process”
                                                           instructions)
                                                           to verify that
                                                           all fields are
                                                           sane and match
                                                           your case
                                                           label.</div>
-                                                          <div =
-class=3D"">4)
+                                                          <div class="">4)
+
 
                                                           At this point,
                                                           if all has
@@ -3511,75 +3695,66 @@ class=3D"">4)
                                                           H/W should
                                                           work, and
                                                           tools like
-                                                          =
-=E2=80=9Cuhd_usrp_probe=E2=80=9D
+                                                          “uhd_usrp_probe”
                                                           should find
                                                           the USRP and
-                                                          print it=E2=80=99=
-s
+                                                          print it’s
                                                           detailed H/W
                                                           config. There
                                                           are a few
                                                           common useful
                                                           things to
                                                           check in the
-                                                          =
-=E2=80=9CTroubleshooting=E2=80=9D
+                                                          “Troubleshooting”
                                                           section if
                                                           things still
-                                                          don=E2=80=99t =
-seem to
-                                                          have =
-worked.</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          don’t seem to
+                                                          have worked.</div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">-Ian</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class="">-Ian</div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div class=3D"">=
+                                                          <div class="">
+                                                          <div class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
 
-                                                          <div class=3D"">=
-
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
 
                                                           May 9, 2019,
                                                           at 2:48 PM,
                                                           Joe Martin via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" class="">usrp-users@lists.ettus.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"Apple-interchange-newline">
-                                                          <div class=3D"">=
-
-                                                          <meta =
-http-equiv=3D"Content-Type" content=3D"text/html;
-                                                          charset=3Dutf-8"=
- class=3D"">
-                                                          <div =
-style=3D"word-wrap:
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <meta
+                                                          http-equiv="Content-Type"
+                                                          content="text/html;
+                                                          charset=utf-8"
+                                                          class="">
+                                                          <div
+                                                          style="word-wrap:
                                                           break-word;
-                                                          =
--webkit-nbsp-mode:
+                                                          -webkit-nbsp-mode:
                                                           space;
                                                           line-break:
-after-white-space;" class=3D"">Oh, okay, I didn=E2=80=99t get that. =
-&nbsp;Understood
-                                                          now. &nbsp;I =
-have
+after-white-space;" class="">Oh, okay, I didn’t get that.  Understood
+                                                          now.  I have
                                                           UHD 3.14.0
                                                           running on my
                                                           main machine
@@ -3594,13 +3769,11 @@ have
                                                           current
                                                           version of UHD
                                                           and N210
-                                                          =
-usrp_n210_r4_fpga.bit
+                                                          usrp_n210_r4_fpga.bit
                                                           to no avail)
                                                           to see if any
                                                           of them are
-                                                          compatible. =
-&nbsp;I
+                                                          compatible.  I
                                                           also was able
                                                           to build UHD
                                                           3.9.0 on a
@@ -3610,39 +3783,39 @@ usrp_n210_r4_fpga.bit
                                                           too with some
                                                           of the other
                                                           .bit files.
-                                                          &nbsp;Will =
-hold the
+                                                           Will hold the
                                                           safe button
                                                           down while
                                                           loading the
                                                           FPGA this time
-                                                          around. &nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          around.  
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
                                                           at 3:38 PM,
                                                           Nick Foster
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:bistromath@gmail.com" =
-class=3D"">bistromath@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" class="">bistromath@gmail.com</a>&gt;
                                                           wrote:</div>
-                                                          <br =
-class=3D"Apple-interchange-newline">
-                                                          <div class=3D"">=
-
-                                                          <div =
-dir=3D"auto" class=3D"">I'm
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div
+                                                          dir="auto"
+                                                          class="">I'm
                                                           saying that
                                                           you might try
                                                           to continue
@@ -3656,37 +3829,36 @@ dir=3D"auto" class=3D"">I'm
                                                           safe mode
                                                           button while
                                                           loading the
-                                                          =
-image.&nbsp;</div>
-                                                          <br class=3D"">
-                                                          <div =
-class=3D"gmail_quote">
-                                                          <div dir=3D"ltr"=
- class=3D"gmail_attr">On Thu, May 9, 2019, 2:22 PM Joe Martin &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:k5so@k5so.com" =
-class=3D"">k5so@k5so.com</a>&gt; wrote:<br class=3D"">
+                                                          image. </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019, 2:22 PM Joe Martin &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" class="">k5so@k5so.com</a>&gt; wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-class=3D"gmail_quote" style=3D"margin:0
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:0
+
 
 
                                                           0 0
-                                                          =
-.8ex;border-left:1px
+                                                          .8ex;border-left:1px
                                                           #ccc
-                                                          =
-solid;padding-left:1ex">
-                                                          <div =
-style=3D"word-wrap:break-word;line-break:after-white-space" =
-class=3D"">Thanks
+                                                          solid;padding-left:1ex">
+                                                          <div
+                                                          style="word-wrap:break-word;line-break:after-white-space"
+                                                          class="">Thanks
+
 
 
                                                           for digging
                                                           into that for
-                                                          us, =
-Nick.&nbsp;
-                                                          =
-Interesting.&nbsp;
+                                                          us, Nick. 
+                                                          Interesting. 
                                                           As the
                                                           hardware
                                                           change to rev4
@@ -3696,10 +3868,11 @@ Interesting.&nbsp;
                                                           earliest UHD
                                                           version that
                                                           exists on the
-                                                          <a =
-moz-do-not-send=3D"true" href=3D"http://files.ettus.com/uhd" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">files.ettus.com/uhd</a>&nbsp;page
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://files.ettus.com/uhd" target="_blank" rel="noreferrer"
+                                                          class="">files.ettus.com/uhd</a> page
+
 
 
                                                           is Feb 2104,
@@ -3712,23 +3885,20 @@ class=3D"">files.ettus.com/uhd</a>&nbsp;page
                                                           with the
                                                           rev2/3
                                                           hardware from
-                                                          2011? =
-&nbsp;&nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          2011?   
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">So
+                                                          <div class="">So
 
 
-                                                          far I=E2=80=99ve=
- not
+
+                                                          far I’ve not
                                                           been
                                                           successful in
                                                           reviving the
                                                           2014 UHD
-                                                          version so =
-I=E2=80=99m
+                                                          version so I’m
                                                           asking to
                                                           determine
                                                           whether
@@ -3741,41 +3911,40 @@ I=E2=80=99m
                                                           respect to
                                                           interfacing
                                                           with the 2011
-                                                          hardware. =
-&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          hardware.  </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div class=3D"">=
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
 
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
 
 
                                                           May 9, 2019,
                                                           at 3:06 PM,
                                                           Nick Foster
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:bistromath@gmail.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">bistromath@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084Apple-interchange-newline">
-                                                          <div class=3D"">=
+                                                          <br
+                                                          class="m_3343428221959612084Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">
+                                                          <div class="">So
 
-                                                          <div dir=3D"ltr"=
- class=3D"">
-                                                          <div =
-class=3D"">So
 
 
                                                           I really dug
@@ -3832,13 +4001,12 @@ class=3D"">So
                                                           should be able
                                                           to run r3
                                                           firmware on
-                                                          your =
-N210.</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          your N210.</div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">That
+                                                          <div class="">That
+
 
 
                                                           said, the very
@@ -3847,8 +4015,8 @@ class=3D"">That
                                                           old firmware
                                                           might not have
                                                           used the same
-                                                          =
-safe/production
+                                                          safe/production
+
 
 
                                                           firmware/fpga
@@ -3864,11 +4032,11 @@ safe/production
                                                           dive to get it
                                                           all running
                                                           again.</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">If
+                                                          <div class="">If
+
 
 
                                                           you have a
@@ -3899,47 +4067,49 @@ class=3D"">If
                                                           the
                                                           firmware/FPGA
                                                           image loading
-                                                          process.<br =
-class=3D"">
+                                                          process.<br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Nick<br class=3D"">
+                                                          <div class="">Nick<br
+                                                          class="">
                                                           </div>
                                                           </div>
-                                                          <br class=3D"">
-                                                          <div =
-class=3D"gmail_quote">
-                                                          <div dir=3D"ltr"=
- class=3D"gmail_attr">On Thu, May 9, 2019 at 1:42 PM Joe Martin via
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 1:42 PM Joe Martin via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
 
 
-                                                          wrote:<br =
-class=3D"">
+
+                                                          wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-class=3D"gmail_quote" style=3D"margin:0px
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:0px
+
 
 
                                                           0px 0px
-                                                          =
-0.8ex;border-left:1px
+                                                          0.8ex;border-left:1px
                                                           solid
-                                                          =
-rgb(204,204,204);padding-left:1ex">
-                                                          <div =
-class=3D"">Thanks
+                                                          rgb(204,204,204);padding-left:1ex">
+                                                          <div class="">Thanks
+
 
 
                                                           for the info,
-                                                          Marcus.&nbsp;
+                                                          Marcus. 
                                                           However,
                                                           seeing that
                                                           Jason went
@@ -3951,15 +4121,13 @@ class=3D"">Thanks
                                                           unlikely that
                                                           all three of
                                                           the N210 are
-                                                          broken.&nbsp; =
-That
+                                                          broken.  That
                                                           being said and
                                                           considering
                                                           what you jus
                                                           said it seems
                                                           that I
-                                                          should=E2=80=99v=
-e been
+                                                          should’ve been
                                                           able to find
                                                           some version
                                                           of UHD that
@@ -3970,17 +4138,15 @@ e been
                                                           firmware and
                                                           fpga images
                                                           stored in the
-                                                          unit; &nbsp;I =
-have
+                                                          unit;  I have
                                                           not, using UHD
                                                           versions from
                                                           3.9.0 to
-                                                          3.14.0. &nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          3.14.0.  
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">I
+                                                          <div class="">I
                                                           wanted to try
                                                           with even
                                                           earlier
@@ -3994,28 +4160,23 @@ class=3D"">I
                                                           version I
                                                           could find) as
                                                           it seems that
-                                                          =E2=80=9Cprebuil=
-t=E2=80=9D
+                                                          “prebuilt”
                                                           v3.4.0 needs
                                                           only Ubuntu
                                                           10.10 or 11.10
                                                           which so far
-                                                          I=E2=80=99m =
-not able
+                                                          I’m not able
                                                           to
                                                           successfully
                                                           install and
-                                                          run. &nbsp; =
-Seems
-                                                          we=E2=80=99re =
-running
+                                                          run.   Seems
+                                                          we’re running
                                                           out of option
                                                           on this one so
                                                           the Deep Space
                                                           Exploration
                                                           Society, who
-                                                          I=E2=80=99m =
-trying to
+                                                          I’m trying to
                                                           help with
                                                           this, may have
                                                           to come to
@@ -4023,19 +4184,19 @@ trying to
                                                           the notion
                                                           that their
                                                           N210 is a true
-                                                          =
-brick.&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          brick. </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
@@ -4043,41 +4204,42 @@ class=3D"">On
                                                           Marcus D.
                                                           Leech via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386Apple-interchange=
--newline">
-                                                          <div class=3D"">=
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div
+                                                          bgcolor="#FFFFFF"
+                                                          class="">
+                                                          <div
+                                                          class="m_3343428221959612084gmail-m_3428410372027926386moz-cite-prefix">On
 
-                                                          <div =
-bgcolor=3D"#FFFFFF" class=3D"">
-                                                          <div =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386moz-cite-prefix">=
-On
 
 
                                                           05/09/2019
                                                           04:18 PM, Joe
                                                           Martin via
                                                           USRP-users
-                                                          wrote:<br =
-class=3D"">
+                                                          wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          Nick, =
-Ian,&nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          Nick, Ian, 
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">If
+                                                          <div class="">If
+
 
 
                                                           this unit
@@ -4098,23 +4260,21 @@ class=3D"">If
                                                           tried
                                                           actually) with
                                                           some available
-                                                          UHD =
-version?&nbsp;
+                                                          UHD version? 
                                                           If so, would
                                                           you be able to
                                                           tell me which
                                                           UHD version(s)
                                                           might be able
                                                           to communicate
-                                                          with it? =
-&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          with it?  </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
                                                           </div>
                                                           </blockquote>
@@ -4124,18 +4284,16 @@ class=3D""><br class=3D"">
                                                           several years
                                                           should be able
                                                           to talk to
-                                                          it.&nbsp; In
+                                                          it.  In
                                                           *general* UHD
                                                           never drops
                                                           support for
                                                           older
-                                                          hardware,<br =
-class=3D"">
-                                                          &nbsp; and =
-tries to
+                                                          hardware,<br
+                                                          class="">
+                                                            and tries to
                                                           maintain
-                                                          =
-compatibility.&nbsp;
+                                                          compatibility. 
                                                           Now, it is the
                                                           case that
                                                           newer features
@@ -4144,13 +4302,12 @@ compatibility.&nbsp;
                                                           "back-ported",
                                                           but basic
                                                           functionality
-                                                          should<br =
-class=3D"">
-                                                          &nbsp; always =
-be
-                                                          there.&nbsp; =
-<br class=3D"">
-                                                          <br class=3D"">
+                                                          should<br
+                                                          class="">
+                                                            always be
+                                                          there.  <br
+                                                          class="">
+                                                          <br class="">
                                                           What this
                                                           *should* mean
                                                           is that you
@@ -4161,10 +4318,9 @@ be
                                                           device is in
                                                           "safe mode" to
                                                           get yourself
-                                                          to where =
-you<br class=3D"">
-                                                          &nbsp; want to =
-be.&nbsp;
+                                                          to where you<br
+                                                          class="">
+                                                            want to be. 
                                                           If that
                                                           doesn't work,
                                                           that may well
@@ -4174,162 +4330,159 @@ be.&nbsp;
                                                           it's unlikely
                                                           to be
                                                           economical to
-                                                          repair.<br =
-class=3D"">
-                                                          <br class=3D"">
-                                                          <br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div class=3D"">=
+                                                          repair.<br
+                                                          class="">
+                                                          <br class="">
+                                                          <br class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">
+                                                          <div class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
 
-                                                          <div class=3D"">=
-
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
 
 
                                                           May 9, 2019,
                                                           at 2:12 PM,
                                                           Joe Martin via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+
 
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386Apple-interchange=
--newline">
-                                                          <div class=3D"">=
-
-                                                          <div =
-class=3D"">Okay.
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Okay.
 
 
 
-                                                          &nbsp;I=E2=80=99=
-ve asserted
+
+                                                           I’ve asserted
                                                           from the
                                                           outset that
-                                                          it=E2=80=99s a =
-rev 2,
+                                                          it’s a rev 2,
                                                           based on the
                                                           factory
-                                                          label.&nbsp; =
-Is
+                                                          label.  Is
                                                           this N210 a
                                                           lost cause if
                                                           it is actually
-                                                          a Rev2 =
-N210?&nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          a Rev2 N210? 
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
                                                           at 2:05 PM,
                                                           Nick Foster
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:bistromath@gmail.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">bistromath@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+
 
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386Apple-interchange=
--newline">
-                                                          <div class=3D"">=
-
-                                                          <div dir=3D"ltr"=
- class=3D"">Well,
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">Well,
                                                           it's not a rev
                                                           4. It's either
                                                           2 or 3 in
                                                           terms of
                                                           hardware
-                                                          revision. <br =
-class=3D"">
+                                                          revision. <br
+                                                          class="">
                                                           </div>
-                                                          <br class=3D"">
-                                                          <div =
-class=3D"gmail_quote">
-                                                          <div dir=3D"ltr"=
- class=3D"gmail_attr">On Thu, May 9, 2019 at 12:58 PM Joe Martin &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:k5so@k5so.com" target=3D"_blank" =
-rel=3D"noreferrer" class=3D"">k5so@k5so.com</a>&gt;
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 12:58 PM Joe Martin &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" target="_blank" rel="noreferrer" class="">k5so@k5so.com</a>&gt;
 
 
 
-                                                          wrote:<br =
-class=3D"">
+
+                                                          wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-class=3D"gmail_quote" style=3D"margin:0px
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:0px
+
 
 
                                                           0px 0px
-                                                          =
-0.8ex;border-left:1px
+                                                          0.8ex;border-left:1px
                                                           solid
-                                                          =
-rgb(204,204,204);padding-left:1ex">
-                                                          <div =
-class=3D"">=E2=80=A6able
+                                                          rgb(204,204,204);padding-left:1ex">
+                                                          <div class="">…able
+
 
 
                                                           to ping
                                                           192.168.10.2
-                                                          =
-successfully.<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          successfully.<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
                                                           at 1:54 PM,
                                                           Joe Martin
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:k5so@k5so.com" target=3D"_blank" =
-rel=3D"noreferrer" class=3D"">k5so@k5so.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" target="_blank" rel="noreferrer" class="">k5so@k5so.com</a>&gt;
+
 
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386gmail-m_-25132065=
-80084366361Apple-interchange-newline">
-                                                          <div class=3D"">=
-
-                                                          <div =
-class=3D"">Ian,&nbsp;
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Ian, 
 
 
 
-                                                          <div =
-class=3D""><br class=3D"">
+
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Yes,
+                                                          <div class="">Yes,
+
 
 
                                                           I have tried
@@ -4337,66 +4490,62 @@ class=3D"">Yes,
                                                           boot in safe
                                                           mode, same
                                                           result
-                                                          =
-regardless.&nbsp;
+                                                          regardless. 
                                                           Yes, I am able
                                                           to pin to
                                                           192.168.10.2
-                                                          =
-successfully.&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          successfully. </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
                                                           May 9, 2019,
                                                           at 1:47 PM,
                                                           Joe Martin via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+
 
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386gmail-m_-25132065=
-80084366361Apple-interchange-newline">
-                                                          <div class=3D"">=
-
-                                                          <div =
-class=3D"">Ian
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Ian
 
 
 
-                                                          and =
-Nick,&nbsp;
-                                                          <div =
-class=3D""><br class=3D"">
+
+                                                          and Nick, 
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Thanks
+                                                          <div class="">Thanks
+
 
 
                                                           for the
-                                                          =
-assistance.&nbsp;
+                                                          assistance. 
                                                           Attached are
                                                           dropbox links
                                                           to two
                                                           snapshot
-                                                          photos: =
-&nbsp;1)
+                                                          photos:  1)
                                                           the factory
                                                           label on the
                                                           back of the
@@ -4404,66 +4553,61 @@ assistance.&nbsp;
                                                           N210 r:2.0 and
                                                           2) a top side
                                                           view of the
-                                                          =
-N210.&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          N210. </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">1)&nbsp;<a moz-do-not-send=3D"true" =
-href=3D"https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=3D=
-0" target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?d=
-l=3D0</a></div>
-                                                          <div =
-class=3D"">2)&nbsp;<a moz-do-not-send=3D"true" =
-href=3D"https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=3D=
-0" target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?d=
-l=3D0</a></div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          <div class="">1) <a
+moz-do-not-send="true"
+href="https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0"
+target="_blank" rel="noreferrer" class="">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0</a></div>
+                                                          <div class="">2) <a
+moz-do-not-send="true"
+href="https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0"
+target="_blank" rel="noreferrer" class="">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0</a></div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Seems
+                                                          <div class="">Seems
+
 
 
                                                           this unit is
                                                           indeed a rev 2
-                                                          N210, =
-yes?&nbsp;</div>
-                                                          <div =
-class=3D""><br class=3D"">
+                                                          N210, yes? </div>
+                                                          <div class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-class=3D"">Joe<br class=3D"">
-                                                          <div =
-class=3D""><br class=3D"">
-                                                          <blockquote =
-type=3D"cite" class=3D"">
-                                                          <div =
-class=3D"">On
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
 
 
 
                                                           May 9, 2019,
                                                           at 12:40 PM,
                                                           Nick Foster
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:bistromath@gmail.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">bistromath@gmail.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+
 
 
 
                                                           wrote:</div>
-                                                          <br =
-class=3D"m_3343428221959612084gmail-m_3428410372027926386gmail-m_-25132065=
-80084366361Apple-interchange-newline">
-                                                          <div class=3D"">=
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">Moreover,
 
-                                                          <div dir=3D"ltr"=
- class=3D"">Moreover,
 
 
 
@@ -4486,39 +4630,43 @@ class=3D"m_3343428221959612084gmail-m_3428410372027926386gmail-m_-25132065=
                                                           N210, I can
                                                           tell you if
                                                           it's early or
-                                                          late rev.<br =
-class=3D"">
+                                                          late rev.<br
+                                                          class="">
                                                           </div>
-                                                          <br class=3D"">
-                                                          <div =
-class=3D"gmail_quote">
-                                                          <div dir=3D"ltr"=
- class=3D"gmail_attr">On Thu, May 9, 2019 at 11:36 AM Ian Buckley via
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 11:36 AM Ian Buckley via
                                                           USRP-users
-                                                          &lt;<a =
-moz-do-not-send=3D"true" href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" rel=3D"noreferrer" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt;
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
 
 
 
-                                                          wrote:<br =
-class=3D"">
+
+                                                          wrote:<br
+                                                          class="">
                                                           </div>
-                                                          <blockquote =
-class=3D"gmail_quote" style=3D"margin:0px
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:0px
+
 
 
                                                           0px 0px
-                                                          =
-0.8ex;border-left:1px
+                                                          0.8ex;border-left:1px
                                                           solid
-                                                          =
-rgb(204,204,204);padding-left:1ex">
-                                                          <div =
-dir=3D"auto" class=3D"">Joe,
-                                                          <div =
-dir=3D"auto" class=3D"">So I
+                                                          rgb(204,204,204);padding-left:1ex">
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Joe,
+                                                          <div
+                                                          dir="auto"
+                                                          class="">So I
                                                           scratched my
                                                           head about
                                                           this a little
@@ -4538,8 +4686,7 @@ dir=3D"auto" class=3D"">So I
                                                           Rev2 N210.
                                                           Chatting with
                                                           Matt
-                                                          =
-this&nbsp;morning
+                                                          this morning
                                                           he shared my
                                                           feeling that a
                                                           Rev2 wasn't
@@ -4556,26 +4703,30 @@ this&nbsp;morning
                                                           rev2.0" on the
                                                           PCB (which can
                                                           be
-                                                          =
-missleading).</div>
-                                                          <div =
-dir=3D"auto" class=3D""><br class=3D"">
+                                                          missleading).</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-dir=3D"auto" class=3D"">Also
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Also
                                                           have you tried
                                                           booting into
                                                           the safe image
                                                           and verifying
                                                           that it at
                                                           least pings on
-                                                          =
-192.168.10.2?</div>
-                                                          <div =
-dir=3D"auto" class=3D""><br class=3D"">
+                                                          192.168.10.2?</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-dir=3D"auto" class=3D"">If we
+                                                          <div
+                                                          dir="auto"
+                                                          class="">If we
                                                           can
                                                           conclusively
                                                           identify which
@@ -4583,30 +4734,22 @@ dir=3D"auto" class=3D"">If we
                                                           have I can
                                                           probably help
                                                           further.</div>
-                                                          <div =
-dir=3D"auto" class=3D""><br class=3D"">
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
                                                           </div>
-                                                          <div =
-dir=3D"auto" class=3D"">Ian</div>
-                                                          </div>
-                                                          </blockquote>
-                                                          </div>
-                                                          </div>
-                                                          </blockquote>
-                                                          </div>
-                                                          <br class=3D"">
-                                                          </div>
-                                                          </div>
-                                                          </div>
-                                                          </blockquote>
-                                                          </div>
-                                                          </div>
-                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Ian</div>
                                                           </div>
                                                           </blockquote>
                                                           </div>
                                                           </div>
                                                           </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
                                                           </div>
                                                           </div>
                                                           </blockquote>
@@ -4624,6 +4767,17 @@ dir=3D"auto" class=3D"">Ian</div>
                                                           </div>
                                                           </div>
                                                           </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </div>
                                                           </blockquote>
                                                           </div>
                                                           </div>
@@ -4646,84 +4800,89 @@ dir=3D"auto" class=3D"">Ian</div>
                                                           </div>
                                                           </div>
                                                           </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
                                                           </div>
                                                           </div>
                                                         </div>
-                                                      </div>
-                                                    </blockquote>
+                                                      </blockquote>
+                                                    </div>
+                                                    <br class="">
                                                   </div>
+_______________________________________________<br class="">
+                                                  USRP-users mailing
+                                                  list<br class="">
+                                                  <a
+                                                    moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" class="">USRP-users@lists.ettus.com</a><br
+                                                    class="">
+                                                  <a
+                                                    moz-do-not-send="true"
+class="moz-txt-link-freetext"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                    class="">
                                                 </div>
-                                              </div>
+                                              </blockquote>
                                             </div>
-                                          </blockquote>
-                                        </div>
-                                        <br class=3D"">
+                                            <br class="">
+                                          </div>
+                                          <br class="">
+                                          <fieldset
+                                            class="mimeAttachmentHeader"></fieldset>
+                                          <br class="">
+                                          <pre class="" wrap="">_______________________________________________
+USRP-users mailing list
+<a moz-do-not-send="true" class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a moz-do-not-send="true" class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+                                        </blockquote>
+                                        <br class="">
                                       </div>
-_______________________________________________<br class=3D"">
-                                      USRP-users mailing list<br =
-class=3D"">
-                                      <a moz-do-not-send=3D"true" =
-href=3D"mailto:USRP-users@lists.ettus.com" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
-                                      <a moz-do-not-send=3D"true" =
-class=3D"moz-txt-link-freetext" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><b=
-r class=3D"">
+_______________________________________________<br class="">
+                                      USRP-users mailing list<br
+                                        class="">
+                                      <a moz-do-not-send="true"
+                                        href="mailto:USRP-users@lists.ettus.com"
+                                        class="">USRP-users@lists.ettus.com</a><br
+                                        class="">
+                                      <a moz-do-not-send="true"
+                                        class="moz-txt-link-freetext"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                        class="">
                                     </div>
                                   </blockquote>
                                 </div>
-                                <br class=3D"">
+                                <br class="">
                               </div>
-                              <br class=3D"">
-                              <fieldset =
-class=3D"mimeAttachmentHeader"></fieldset>
-                              <br class=3D"">
-                              <pre class=3D"" =
-wrap=3D"">_______________________________________________
-USRP-users mailing list
-<a moz-do-not-send=3D"true" class=3D"moz-txt-link-abbreviated" =
-href=3D"mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-                            </blockquote>
-                            <br class=3D"">
-                          </div>
-_______________________________________________<br class=3D"">
-                          USRP-users mailing list<br class=3D"">
-                          <a moz-do-not-send=3D"true" =
-href=3D"mailto:USRP-users@lists.ettus.com" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
-                          <a moz-do-not-send=3D"true" =
-class=3D"moz-txt-link-freetext" =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><b=
-r class=3D"">
+                            </div>
+                          </blockquote>
+                          <br class="">
                         </div>
-                      </blockquote>
-                    </div>
-                    <br class=3D"">
+                      </div>
+                    </blockquote>
                   </div>
-                </div>
-              </blockquote>
-              <br class=3D"">
+                  <br class="">
+                </blockquote>
+                <br class="">
+              </div>
             </div>
-          </div>
-        </blockquote>
+          </blockquote>
+        </div>
+        <br class="">
       </div>
-      <br class=3D"">
     </blockquote>
-    <br class=3D"">
-  </div>
+    <br>
+  </body>
+</html>
 
-</div></blockquote></div><br class=3D""></div></body></html>=
-
---Apple-Mail=_E793F4D1-C901-4E69-A8EC-AFD4DFA46450--
+--------------090606020105020803030709--
 
 
---===============9013546648779396213==
+--===============1908173158884000174==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -4734,5 +4893,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9013546648779396213==--
+--===============1908173158884000174==--
 
