@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65CCE1A635
-	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 03:35:54 +0200 (CEST)
-Received: from [::1] (port=41660 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 307C51A639
+	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 03:39:32 +0200 (CEST)
+Received: from [::1] (port=43514 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hPGvZ-0007FG-FL; Fri, 10 May 2019 21:35:53 -0400
-Received: from mail-qt1-f180.google.com ([209.85.160.180]:39563)
+	id 1hPGz5-0007f8-5X; Fri, 10 May 2019 21:39:31 -0400
+Received: from mail-qt1-f171.google.com ([209.85.160.171]:35743)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
- id 1hPGvU-00077A-5i
- for usrp-users@lists.ettus.com; Fri, 10 May 2019 21:35:48 -0400
-Received: by mail-qt1-f180.google.com with SMTP id y42so8791852qtk.6
- for <usrp-users@lists.ettus.com>; Fri, 10 May 2019 18:35:27 -0700 (PDT)
+ id 1hPGz0-0007Vn-M5
+ for usrp-users@lists.ettus.com; Fri, 10 May 2019 21:39:26 -0400
+Received: by mail-qt1-f171.google.com with SMTP id a39so7998251qtk.2
+ for <usrp-users@lists.ettus.com>; Fri, 10 May 2019 18:39:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:cc:subject
  :references:in-reply-to;
- bh=1eJjFr083zQduIkcDbSnKetVgZbxfgPycMEfhl9wtsY=;
- b=qPzxWMaQQDDggupZbp8sl33sPxjZqFjQtIoQr/exxvJG+PDtJPSjlXFb72arTUtlz9
- 2bxO+D3denC8e0qT26c4BNiDFPdvb7ImX6wZzDXm2MXGfMH5Q5S3YGdN/0IgjAmxahpt
- N1lIGlL5wvk3Q0pnkCkWrZoeHhSDBlkt1UQ+2nz/IwG81BlWsZ0GpwlJKuxwIUV+dTwn
- arkF27snh40PQNdexSzKPFQaK0Pjq7wmobH6g8uZek/9jD1xWx3RmIw4G/iYrKBdIUV2
- 2A4zfin7qUDvUz4WVzY4O/3Wo6Ek4iqsZbalrAKltWW6eZM5E/qbmwB/12lYeKyjjIHQ
- U1pw==
+ bh=woT97MZVGw0ZAgyh6WVuAo3C1PD5c6IAioJ1oBkgFfQ=;
+ b=XtM4rXIO8FZxPX2UK3MmS7+Bve56QWP87xe+XqEmododo6wo5BytidDR4dsp5aGfE+
+ Gz0YgaFum+9VuJ5rO4mFEBZnrisIGdAigcpH3xlbH8xvamJ4CYo8wOSV7eSLyWJa5J9t
+ jbwLjKid++A0yQKBE92AOiIO6A5j3E1IZLA23xgKU4iuohezCtu3mZ0qlZXKL4cMpGyN
+ NAx4cs6i1n3WmOcryv0aPbbBe3lmGabof0E65rPIS6foErLUP4pEyYqW/Y9sOEZFLxa2
+ Wt4sVeju16YfSW0EwATbqBOW1I+XkBLy6Mn4ix4iVHJU/pFHzNj0hY0Zni4zu+gUGM8K
+ GPcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :cc:subject:references:in-reply-to;
- bh=1eJjFr083zQduIkcDbSnKetVgZbxfgPycMEfhl9wtsY=;
- b=rIDqM387FbWSa0/UQ1z1f9AgbB6ujeVV348sXt1HbN7FR/0KWHaK6NfNGtNeXLxgnO
- FYIuzaEyso23PzqLT8HWN+5y5m5NdCOA83pyaGAcHl1ApaJCXjoATQNobBBuIAxssoTg
- irIw79CEDwBNE2swDvI9vEffO/KVOPIRG5R7QnPwt5QkeG91ch3oH/w6BMu0RiEWr8Wx
- ZCPomjYF28UiElEnFqIcUMWmM4Ze9maRm0J2MlygFOLpvrPSoCT1w1ndzI6pQVcE8Qpe
- JTiTnbM4iByOC/zVXgg6hK90vgG36W7azdmyeY8j8/KUA4Fusos+znQL7toSRBzuI1dC
- WNdw==
-X-Gm-Message-State: APjAAAU0YC93MLT0iYM+QLatTPVAmVieENFVuO1tKe+MvbaOuLx5cMat
- PueAxDkO91cpsFP7hAcpWolqV0n+
-X-Google-Smtp-Source: APXvYqxvnT/5EgMh9Zr1OYyXTN/RfteDHonDEP2bTNzN0LUssqWpj1kdCW6QSLHS/L5Ezm4RsCwG3Q==
-X-Received: by 2002:a0c:a361:: with SMTP id u88mr11611500qvu.224.1557538507137; 
- Fri, 10 May 2019 18:35:07 -0700 (PDT)
+ bh=woT97MZVGw0ZAgyh6WVuAo3C1PD5c6IAioJ1oBkgFfQ=;
+ b=rXj9ibb0lup+yoa4KLmv7mo60fHNa4AWEmqs/kyM/cfHtd6u8hzVe6gSIklytaEhzK
+ 2a28rI1BFXlwIVtAynAJCWnU22mv/R5MmT+HA1rWV1ZQghF6eCvmA2hbotJ/sxgTA1vY
+ u+qF3VTg+GSTBM0fQTtJrMnLFxfoR3kGbMjwf8Sxge4XoJx5O1d/PXaEtcZ2nM3xhSc0
+ B+McW47UN+pV3wPJjn7W7zovyUE7ifeZ3iLcdtAARy6Q2fu5HdmqpefBgqthnEKG/PLv
+ PDWIgvwLjaLCQOFa9YaTMtZWqGO+ymR9Ii/TumX+XcnNjTyonTm5PmrT5Fm3KGv55npn
+ hH5w==
+X-Gm-Message-State: APjAAAWcj4Y6fkCAWvJqhIarKG1OirxSlV0hKOK+ihny2lgx9VQAzTlt
+ huRvSJJc/amFbPKveMtLlw5PNIGV
+X-Google-Smtp-Source: APXvYqygc+Qb4Rt2nxWs3E/rBuWYGeR5q5JZIVIRkvzN3kNN28BE/ya1k7AOV6zDikOl+HmXDY7UWw==
+X-Received: by 2002:a0c:ace5:: with SMTP id n34mr12227265qvc.191.1557538725786; 
+ Fri, 10 May 2019 18:38:45 -0700 (PDT)
 Received: from [192.168.2.12]
  (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
- by smtp.googlemail.com with ESMTPSA id k127sm3615053qkb.96.2019.05.10.18.35.05
+ by smtp.googlemail.com with ESMTPSA id m17sm3178652qkk.44.2019.05.10.18.38.44
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 10 May 2019 18:35:05 -0700 (PDT)
-Message-ID: <5CD626C8.9050105@gmail.com>
-Date: Fri, 10 May 2019 21:35:04 -0400
+ Fri, 10 May 2019 18:38:45 -0700 (PDT)
+Message-ID: <5CD627A4.3040206@gmail.com>
+Date: Fri, 10 May 2019 21:38:44 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -86,7 +86,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============0597875355897522385=="
+Content-Type: multipart/mixed; boundary="===============5322672017987854093=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -101,12 +101,12 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============0597875355897522385==
+--===============5322672017987854093==
 Content-Type: multipart/alternative;
- boundary="------------000905050005040605000301"
+ boundary="------------090608030405060808020501"
 
 This is a multi-part message in MIME format.
---------------000905050005040605000301
+--------------090608030405060808020501
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
@@ -115,8 +115,12 @@ On 05/10/2019 09:29 PM, Joe Martin wrote:
 > control room and have been doing hydrogen line work and some SETI-type 
 > drift scan observations with that 60’ dish.  They are itching to do 
 > some pulsar work now!
-Ah.  Their website hasn't been updated in a while  (heck, CCERA is also 
-guilty of that! ).
+The early instantiation of DSES was a lot like SBRAC--access to dishes 
+on a controlled government site, which they ultimately lost and had
+   to move to a different site.
+
+When *we* Phoenixed, we came back as CCERA with a formal legal structure...
+
 
 >
 >> On May 10, 2019, at 7:17 PM, Marcus D. Leech <patchvonbraun@gmail.com 
@@ -978,7 +982,7 @@ guilty of that! ).
 >
 
 
---------------000905050005040605000301
+--------------090608030405060808020501
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -998,8 +1002,14 @@ Content-Transfer-Encoding: 8bit
       SETI-type drift scan observations with that 60’ dish.  They are
       itching to do some pulsar work now!<br class="">
     </blockquote>
-    Ah.  Their website hasn't been updated in a while  (heck, CCERA is
-    also guilty of that! ).<br>
+    The early instantiation of DSES was a lot like SBRAC--access to
+    dishes on a controlled government site, which they ultimately lost
+    and had<br>
+      to move to a different site.<br>
+    <br>
+    When *we* Phoenixed, we came back as CCERA with a formal legal
+    structure...<br>
+    <br>
     <br>
     <blockquote cite="mid:0A955663-E38A-4677-BE65-B53476BBD503@k5so.com"
       type="cite">
@@ -4460,10 +4470,10 @@ href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http:/
   </body>
 </html>
 
---------------000905050005040605000301--
+--------------090608030405060808020501--
 
 
---===============0597875355897522385==
+--===============5322672017987854093==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -4474,5 +4484,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0597875355897522385==--
+--===============5322672017987854093==--
 
