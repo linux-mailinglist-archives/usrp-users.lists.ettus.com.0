@@ -2,52 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351E41A915
-	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 20:32:54 +0200 (CEST)
-Received: from [::1] (port=57338 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EFE91A943
+	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 21:28:47 +0200 (CEST)
+Received: from [::1] (port=41658 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hPWng-0005ko-Rn; Sat, 11 May 2019 14:32:48 -0400
-Received: from mail-lj1-f173.google.com ([209.85.208.173]:38023)
+	id 1hPXfn-0000do-W1; Sat, 11 May 2019 15:28:43 -0400
+Received: from mail-wr1-f45.google.com ([209.85.221.45]:34920)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <adray0001@gmail.com>) id 1hPWn8-0005fs-5e
- for usrp-users@lists.ettus.com; Sat, 11 May 2019 14:32:44 -0400
-Received: by mail-lj1-f173.google.com with SMTP id 14so7698454ljj.5
- for <usrp-users@lists.ettus.com>; Sat, 11 May 2019 11:31:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=WYWJVRUdO7ZQ4dYc237/oLuko9cswZi8Z7ofJnLWpeg=;
- b=qO6AShyfIXdHSh7B+hJleRUOO2m4YWkQGhC+LZ4Q1d/sRUkQOY0aMpkeM7KDmEyM+d
- uZREv7xWEKfAWJreE2+ldgWmUm6vT740/UW2XVikwDm51MDP/ls1Y+6nUrZI2Uzo1j8z
- /ct3FVutH72CZNAXdOjll/MDMq2j2I8bL8k2vwz3001EMZzNqLbOjor0/DxOF1jeEQfD
- /KDLYLleRbzcJ9EUrpt8//an7+ya+zIN27a+iM01MAUx+jCz8t146DVClbWAJgn4f8qO
- BFvqLpSV8HAk3KVpDBq74CsfsoRQtT8g3lOpf5rK1BYD8HXbJaJYL9RVBXSHpGlQ7udw
- 6mow==
+ (Exim 4.91) (envelope-from <marcus.mueller@ettus.com>)
+ id 1hPXfF-0008Tv-OJ
+ for usrp-users@lists.ettus.com; Sat, 11 May 2019 15:28:39 -0400
+Received: by mail-wr1-f45.google.com with SMTP id w12so11140223wrp.2
+ for <usrp-users@lists.ettus.com>; Sat, 11 May 2019 12:27:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=gxJEKhYc2VxxfIaClBYYWBYQ79fGz7UEhPxEzbzAoLQ=;
+ b=ICA8duLzPeuQbQL6xwfd01KSDZNR+0saFlNv92CKX8qaoBUZFwdyg6i/1GjDpHy6nE
+ 0SqQ1V0S4vM0AIy86N1ec+Wkzv90J1CL3YHW0Zr+TcaDT4U9xypG/xGvrm/7yNZ1VOjV
+ rw8DcGWjX/fXBcaiqFVU4dggtgjOmgeyg8JsA25RVnwSSBeGN21SP4yDgeusGhNbY7AR
+ iUhvAoxONdamcmQwKuFYKPXjYO09juFgEns04HMAm+jnFRPrTqVdtgYqsnQPQW7cavKW
+ NXtUWgB+EoD9e+n4dSXbCBQo0DKvLo41kvlDD31YGh+oD6rOYIqfdOQkzn1z2f/qLy+k
+ gABw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=WYWJVRUdO7ZQ4dYc237/oLuko9cswZi8Z7ofJnLWpeg=;
- b=Q2VqMxKm5Ug4EJ1e13tAiTQnrtJi1Sn5W017nYwmWLvt9YUzsFn6dusve5rzqHikbZ
- FrnOL/vd5zH9MTcIc4w3VrkITIiDO2qpc6jHiRUQ+mi/xaEB8aRtwj+9/93vTIBrIkjG
- X3AtNXQQiOify96e9jdXxoTvd3JjcpGy8OY1xq41nFYnZ83YwDoXmPh8tlelgQ2K7drU
- EwU8liVy0IsK3FRQ/msV2n4iTEUhxjrw87BQmPrqe+mUj6LegcAmz5XQMY9/THhbSbSZ
- vp+b3RxBneKEnSvnZ9GSGe38rS2WT0xAMymKeDlwwmXdO+0oKutm4KBevGezZjYBl8DD
- HL2Q==
-X-Gm-Message-State: APjAAAVQj8qwi/dGaz4pVJfEYGVA8eACeqwWiZVPuh2QLL59RudNXako
- D1ozMPajSLa/Yq4m8enzOU/ivct7RTyrIurM4jWtJKRI
-X-Google-Smtp-Source: APXvYqyJ8zFmrbeQ2WgKhN5TF1dCWeD/iqbcvKIV8ujGDi/IRAzSDA4gXhmqCUj3nmaqwtk/8vtcwMfp1VAf49UtijU=
-X-Received: by 2002:a2e:97d8:: with SMTP id m24mr176362ljj.52.1557599492544;
- Sat, 11 May 2019 11:31:32 -0700 (PDT)
-MIME-Version: 1.0
-Date: Sat, 11 May 2019 21:31:21 +0300
-Message-ID: <CAPRRyxuCDNGcewqw7Y6A=a-cgU8DN9s6Sbg7JVSHbuYHJBD=hA@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=gxJEKhYc2VxxfIaClBYYWBYQ79fGz7UEhPxEzbzAoLQ=;
+ b=AoQSF5ud5LNxybynGEtGHrQj9O4NxYuK+IIZWqYL5vNu/HK2xVAUClipKXU7VbBxeR
+ 7DSCqJcLr2k4478BrzMpP49WCh8y2tfPcS2I4o6m1xK1w8pf3juRU7a9bliAE7s/v4Ad
+ ilX/+gnb7WwHmzatczegOiyBZMvhi/RPSpdG/vLqQeILMKa/8raCPTe7ta4pK8E2sK/A
+ HisOFv/LS7Ev3Pi2wXpFocpZsGiLCaXS8B3+prqzeCh0fnbOVvBRodsvrQYna5q8WAZC
+ 2zy+G/1JfFxQ994S6oRBVBv72g3wu8Ib69qA1eDPwL8Seou4ZG9HmETz8Bm6Nj2rUzFa
+ GHdA==
+X-Gm-Message-State: APjAAAWlCNQaUUbpzuEdZTssD77IfFNmQZCa9BJ4iltCsapXIZuTx+fJ
+ 4Xg8LAjjkU/48lIhd+SXKznCjr2Q
+X-Google-Smtp-Source: APXvYqz6UvjT3PCoFPgN2YQ2DaWS68WzShO8CqfqpqK330nlb6PFoCHJXsEi2sXh3e0HfGonfVrxXw==
+X-Received: by 2002:adf:ba10:: with SMTP id o16mr2483146wrg.89.1557602848784; 
+ Sat, 11 May 2019 12:27:28 -0700 (PDT)
+Received: from workhorse.lan (ip-37-201-4-220.hsi13.unitymediagroup.de.
+ [37.201.4.220])
+ by smtp.googlemail.com with ESMTPSA id a6sm8290427wrp.49.2019.05.11.12.27.27
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Sat, 11 May 2019 12:27:28 -0700 (PDT)
+Message-ID: <5db613d9e0f5e53ad04b8e730a3aa4d9b25df12c.camel@ettus.com>
+To: Ivan Zahartchuk <adray0001@gmail.com>, usrp-users
+ <usrp-users@lists.ettus.com>
+Date: Sat, 11 May 2019 21:27:27 +0200
+In-Reply-To: <CAPRRyxuCDNGcewqw7Y6A=a-cgU8DN9s6Sbg7JVSHbuYHJBD=hA@mail.gmail.com>
+References: <CAPRRyxuCDNGcewqw7Y6A=a-cgU8DN9s6Sbg7JVSHbuYHJBD=hA@mail.gmail.com>
+User-Agent: Evolution 3.30.4 (3.30.4-1.fc29) 
+Mime-Version: 1.0
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] Reading samples with b200 using num_sams_and_done
+Subject: Re: [USRP-users] Reading samples with b200 using num_sams_and_done
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,9 +72,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4386967872921549410=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,398 +90,112 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4386967872921549410==
-Content-Type: multipart/alternative; boundary="000000000000749ad20588a0e43f"
-
---000000000000749ad20588a0e43f
-Content-Type: text/plain; charset="UTF-8"
-
-Hello. My task is to make a broadband spectrum analyzer on the usrp b200
-board. For this, the standard functions for reading samples in python are
-not suitable for me. Therefore, I edited them. When reading samples using
-the start_con method, I cannot specify a band greater than 5 MHz.
-Therefore, I use the num_sams_and_done method. But I have problems with
-him. The fact is that my frequency which I know appears in the wrong place.
-For example, I generate a frequency of 910 MHz and it appears at 930 MHz
-(with a bandwidth of 20 MHz). I can not understand what caused it. Here are
-my reading functions in two ways. I would be extremely grateful for the
-help.
-
-
-
-
-
-def test_reciev(self,freq,bandwich):
-    complex_buffs=np.array([])
-    buffs = np.array([])
-    result = np.empty((len([0]), self.samples), dtype=np.complex64)
-
-    for i, freqq in enumerate(freq):
-
-        recv_samps = 0
-        #self.usrp.set_rx_rate(bandwich[i])
-        k=uhd.types.TuneRequest(freqq)
-        #k.args(uhd.types.device_addr("mode_n=integer"))
-        self.usrp.set_rx_freq(k)
-        self.stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
-        self.stream_cmd.stream_now = True
-        self.streamer_rx.issue_stream_cmd(self.stream_cmd)
-        while self.usrp.get_rx_sensor("lo_locked").to_bool() != True:
-            continue
-
-        samps = np.array([], dtype=np.complex64)
-        while recv_samps < self.samples:
-
-            samps = self.streamer_rx.recv(self.recv_buff, self.metadata_rx)
-            if self.metadata_rx.error_code !=
-lib.types.rx_metadata_error_code.none:
-                print(self.metadata_rx.strerror())
-            if samps:
-                real_samps = min(self.samples - recv_samps, samps)
-                result[:, recv_samps:recv_samps + real_samps] =
-self.recv_buff[:, 0:real_samps]
-                recv_samps += real_samps
-        #print (self.usrp.get_rx_sensor('rssi'))
-        #print(self.streamer_rx.get_max_num_samps())
-        #while samps:
-        #    samps = self.streamer_rx.recv(self.recv_buff, self.metadata_rx)
-
-
-        #self.stream_cmd.time_spec = lib.types.time_spec(0)
-        self.stream_cmd = lib.types.stream_cmd(lib.types.stream_mode.stop_cont)
-        self.streamer_rx.issue_stream_cmd(self.stream_cmd)
-
-        complex_buffs=np.append(complex_buffs,result).ravel()
-        #correct_result=result
-        correct_result_1=result-(np.mean(result.real)+np.mean(result.imag)*1j)
-        #correct_result.real=result.real-np.mean(result.real)
-        #correct_result.imag = result.imag - np.mean(result.imag)
-
-        PSD =  self.fft_test(result)
-
-
-        #PSD[8188:8202]=np.mean(PSD[8180:8188])
-
-
-        buffs = np.append(buffs,PSD)
-
-
-
-    return complex_buffs,
-buffs#np.append(buffs[value.samples:],buffs[:value.samples])
-
-
-
-def test_reciev(self,freq,bandwich):
-    complex_buffs=np.array([])
-    buffs = np.array([])
-    result = np.empty((len([0]), self.samples), dtype=np.complex64)
-
-    for i, freqq in enumerate(freq):
-
-        recv_samps = 0
-        #self.usrp.set_rx_rate(bandwich[i])
-        k=uhd.types.TuneRequest(freqq)
-        #k.args(uhd.types.device_addr("mode_n=integer"))
-        self.usrp.set_rx_freq(k)
-
-        while self.usrp.get_rx_sensor("lo_locked").to_bool() != True:
-            continue
-
-
-        while recv_samps < self.samples:
-
-            samps = self.streamer_rx.recv(self.recv_buff, self.metadata_rx)
-            if self.metadata_rx.error_code !=
-lib.types.rx_metadata_error_code.none:
-                print(self.metadata_rx.strerror())
-            if samps:
-                real_samps = min(self.samples - recv_samps, samps)
-                result[:, recv_samps:recv_samps + real_samps] =
-self.recv_buff[:, 0:real_samps]
-                recv_samps += real_samps
-        #print (self.usrp.get_rx_sensor('rssi'))
-
-
-        self.stream_cmd.time_spec = lib.types.time_spec(0)
-        self.streamer_rx.issue_stream_cmd(self.stream_cmd)
-
-        complex_buffs=np.append(complex_buffs,result).ravel()
-        correct_result=result
-        correct_result_1=result-(np.mean(result.real)+np.mean(result.imag)*1j)
-        correct_result.real=result.real-np.mean(result.real)
-        correct_result.imag = result.imag - np.mean(result.imag)
-
-        PSD =  self.fft_test(result)
-
-
-        #PSD[8188:8202]=np.mean(PSD[8180:8188])
-
-
-        buffs = np.append(buffs,PSD)
-
-
-
-    return complex_buffs,
-buffs#np.append(buffs[value.samples:],buffs[:value.samples])
-
---000000000000749ad20588a0e43f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail-text-wrap gmail-tlid-copy-target"><div=
- class=3D"gmail-result-shield-container gmail-tlid-copy-target" tabindex=3D=
-"0"><span class=3D"gmail-tlid-translation gmail-translation" lang=3D"en">He=
-llo. My task is to make a broadband spectrum analyzer on the usrp b200 boar=
-d. For this, the standard functions for reading samples in python are not s=
-uitable for me. Therefore, I edited them. When reading samples using the st=
-art_con method, I cannot specify a band greater than 5 MHz. Therefore, I us=
-e the num_sams_and_done method. But I have problems with him. The fact is t=
-hat my frequency which I know appears in the wrong place. For example, I ge=
-nerate a frequency of 910 MHz and it appears at 930 MHz (with a bandwidth o=
-f 20 MHz). I can not understand what caused it. Here are my reading functio=
-ns in two ways. I would be extremely grateful for the help.</span><span cla=
-ss=3D"gmail-tlid-translation-gender-indicator gmail-translation-gender-indi=
-cator"></span></div></div><pre style=3D"background-color:rgb(39,40,34);colo=
-r:rgb(248,248,242);font-family:&quot;DejaVu Sans Mono&quot;"><span style=3D=
-"color:rgb(102,217,239);font-style:italic"><br><br><br><br>def </span><span=
- style=3D"color:rgb(166,226,46)">test_reciev</span>(<span style=3D"color:rg=
-b(148,85,141)">self</span>,<span style=3D"color:rgb(253,151,31);font-style:=
-italic">freq</span>,<span style=3D"color:rgb(128,128,127)">bandwich</span>)=
-<span style=3D"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(=
-249,38,114)">    </span>complex_buffs<span style=3D"color:rgb(249,38,114)">=
-=3D</span>np.<span style=3D"color:rgb(102,217,239)">array</span>([])<br>   =
- buffs <span style=3D"color:rgb(249,38,114)">=3D </span>np.<span style=3D"c=
-olor:rgb(102,217,239)">array</span>([])<br>    result <span style=3D"color:=
-rgb(249,38,114)">=3D </span>np.<span style=3D"color:rgb(102,217,239)">empty=
-</span>((<span style=3D"color:rgb(102,217,239)">len</span>([<span style=3D"=
-color:rgb(174,129,255)">0</span>]), <span style=3D"color:rgb(148,85,141)">s=
-elf</span>.samples), <span style=3D"color:rgb(170,73,38)">dtype</span><span=
- style=3D"color:rgb(249,38,114)">=3D</span>np.complex64)<br><br>    <span s=
-tyle=3D"color:rgb(102,217,239);font-style:italic">for </span>i, freqq <span=
- style=3D"color:rgb(102,217,239);font-style:italic">in </span><span style=
-=3D"color:rgb(102,217,239)">enumerate</span>(<span style=3D"color:rgb(253,1=
-51,31);font-style:italic">freq</span>)<span style=3D"color:rgb(249,38,114)"=
->:<br></span><span style=3D"color:rgb(249,38,114)"><br></span><span style=
-=3D"color:rgb(249,38,114)">        </span>recv_samps <span style=3D"color:r=
-gb(249,38,114)">=3D </span><span style=3D"color:rgb(174,129,255)">0<br></sp=
-an><span style=3D"color:rgb(174,129,255)">        </span><span style=3D"col=
-or:rgb(117,113,94)">#self.usrp.set_rx_rate(bandwich[i])<br></span><span sty=
-le=3D"color:rgb(117,113,94)">        </span>k<span style=3D"color:rgb(249,3=
-8,114)">=3D</span>uhd.types.<span style=3D"color:rgb(102,217,239)">TuneRequ=
-est</span>(freqq)<br>        <span style=3D"color:rgb(117,113,94)">#k.args(=
-uhd.types.device_addr(&quot;mode_n=3Dinteger&quot;))<br></span><span style=
-=3D"color:rgb(117,113,94)">        </span><span style=3D"color:rgb(148,85,1=
-41)">self</span>.usrp.<span style=3D"color:rgb(102,217,239)">set_rx_freq</s=
-pan>(k)<br>        <span style=3D"color:rgb(148,85,141)">self</span>.stream=
-_cmd <span style=3D"color:rgb(249,38,114)">=3D </span>uhd.types.<span style=
-=3D"color:rgb(102,217,239)">StreamCMD</span>(uhd.types.StreamMode.start_con=
-t)<br>        <span style=3D"color:rgb(148,85,141)">self</span>.stream_cmd.=
-stream_now <span style=3D"color:rgb(249,38,114)">=3D </span><span style=3D"=
-color:rgb(102,217,239)">True<br></span><span style=3D"color:rgb(102,217,239=
-)">        </span><span style=3D"color:rgb(148,85,141)">self</span>.streame=
-r_rx.<span style=3D"color:rgb(102,217,239)">issue_stream_cmd</span>(<span s=
-tyle=3D"color:rgb(148,85,141)">self</span>.stream_cmd)<br>        <span sty=
-le=3D"color:rgb(102,217,239);font-style:italic">while </span><span style=3D=
-"color:rgb(148,85,141)">self</span>.usrp.<span style=3D"color:rgb(102,217,2=
-39)">get_rx_sensor</span>(<span style=3D"color:rgb(165,194,97)">&quot;lo_lo=
-cked&quot;</span>).<span style=3D"color:rgb(102,217,239)">to_bool</span>() =
-<span style=3D"color:rgb(249,38,114)">!=3D </span><span style=3D"color:rgb(=
-102,217,239)">True</span><span style=3D"color:rgb(249,38,114)">:<br></span>=
-<span style=3D"color:rgb(249,38,114)">            </span><span style=3D"col=
-or:rgb(102,217,239);font-style:italic">continue<br></span><span style=3D"co=
-lor:rgb(102,217,239);font-style:italic"><br></span><span style=3D"color:rgb=
-(102,217,239);font-style:italic">        </span><span style=3D"color:rgb(12=
-8,128,127)">samps </span><span style=3D"color:rgb(249,38,114)">=3D </span>n=
-p.<span style=3D"color:rgb(102,217,239)">array</span>([], <span style=3D"co=
-lor:rgb(170,73,38)">dtype</span><span style=3D"color:rgb(249,38,114)">=3D</=
-span>np.complex64)<br>        <span style=3D"color:rgb(102,217,239);font-st=
-yle:italic">while </span>recv_samps <span style=3D"color:rgb(249,38,114)">&=
-lt; </span><span style=3D"color:rgb(148,85,141)">self</span>.samples<span s=
-tyle=3D"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(249,38,=
-114)"><br></span><span style=3D"color:rgb(249,38,114)">            </span>s=
-amps <span style=3D"color:rgb(249,38,114)">=3D </span><span style=3D"color:=
-rgb(148,85,141)">self</span>.streamer_rx.<span style=3D"color:rgb(102,217,2=
-39)">recv</span>(<span style=3D"color:rgb(148,85,141)">self</span>.recv_buf=
-f, <span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx)<br>      =
-      <span style=3D"color:rgb(102,217,239);font-style:italic">if </span><s=
-pan style=3D"color:rgb(148,85,141)">self</span>.metadata_rx.error_code <spa=
-n style=3D"color:rgb(249,38,114)">!=3D </span>lib.types.rx_metadata_error_c=
-ode.none<span style=3D"color:rgb(249,38,114)">:<br></span><span style=3D"co=
-lor:rgb(249,38,114)">                </span><span style=3D"color:rgb(102,21=
-7,239);font-style:italic">print</span>(<span style=3D"color:rgb(148,85,141)=
-">self</span>.metadata_rx.<span style=3D"color:rgb(102,217,239)">strerror</=
-span>())<br>            <span style=3D"color:rgb(102,217,239);font-style:it=
-alic">if </span>samps<span style=3D"color:rgb(249,38,114)">:<br></span><spa=
-n style=3D"color:rgb(249,38,114)">                </span>real_samps <span s=
-tyle=3D"color:rgb(249,38,114)">=3D </span><span style=3D"color:rgb(102,217,=
-239)">min</span>(<span style=3D"color:rgb(148,85,141)">self</span>.samples =
-<span style=3D"color:rgb(249,38,114)">- </span>recv_samps, samps)<br>      =
-          result[<span style=3D"color:rgb(249,38,114)">:</span>, recv_samps=
-<span style=3D"color:rgb(249,38,114)">:</span>recv_samps <span style=3D"col=
-or:rgb(249,38,114)">+ </span>real_samps] <span style=3D"color:rgb(249,38,11=
-4)">=3D </span><span style=3D"color:rgb(148,85,141)">self</span>.recv_buff[=
-<span style=3D"color:rgb(249,38,114)">:</span>, <span style=3D"color:rgb(17=
-4,129,255)">0</span><span style=3D"color:rgb(249,38,114)">:</span>real_samp=
-s]<br>                recv_samps <span style=3D"color:rgb(249,38,114)">+=3D=
- </span>real_samps<br>        <span style=3D"color:rgb(117,113,94)">#print =
-(self.usrp.get_rx_sensor(&#39;rssi&#39;))<br></span><span style=3D"color:rg=
-b(117,113,94)">        #print(self.streamer_rx.get_max_num_samps())<br></sp=
-an><span style=3D"color:rgb(117,113,94)">        #while samps:<br></span><s=
-pan style=3D"color:rgb(117,113,94)">        #    samps =3D self.streamer_rx=
-.recv(self.recv_buff, self.metadata_rx)<br></span><span style=3D"color:rgb(=
-117,113,94)"><br></span><span style=3D"color:rgb(117,113,94)"><br></span><s=
-pan style=3D"color:rgb(117,113,94)">        #self.stream_cmd.time_spec =3D =
-lib.types.time_spec(0)<br></span><span style=3D"color:rgb(117,113,94)">    =
-    </span><span style=3D"color:rgb(148,85,141)">self</span>.stream_cmd <sp=
-an style=3D"color:rgb(249,38,114)">=3D </span>lib.types.<span style=3D"colo=
-r:rgb(102,217,239)">stream_cmd</span>(lib.types.stream_mode.stop_cont)<br> =
-       <span style=3D"color:rgb(148,85,141)">self</span>.streamer_rx.<span =
-style=3D"color:rgb(102,217,239)">issue_stream_cmd</span>(<span style=3D"col=
-or:rgb(148,85,141)">self</span>.stream_cmd)<br><br>        complex_buffs<sp=
-an style=3D"color:rgb(249,38,114)">=3D</span>np.<span style=3D"color:rgb(10=
-2,217,239)">append</span>(complex_buffs,result).<span style=3D"color:rgb(10=
-2,217,239)">ravel</span>()<br>        <span style=3D"color:rgb(117,113,94)"=
->#correct_result=3Dresult<br></span><span style=3D"color:rgb(117,113,94)"> =
-       </span><span style=3D"color:rgb(128,128,127)">correct_result_1</span=
-><span style=3D"color:rgb(249,38,114)">=3D</span>result<span style=3D"color=
-:rgb(249,38,114)">-</span>(np.<span style=3D"color:rgb(102,217,239)">mean</=
-span>(result.real)<span style=3D"color:rgb(249,38,114)">+</span>np.<span st=
-yle=3D"color:rgb(102,217,239)">mean</span>(result.imag)<span style=3D"color=
-:rgb(249,38,114)">*</span><span style=3D"color:rgb(174,129,255)">1j</span>)=
-<br>        <span style=3D"color:rgb(117,113,94)">#correct_result.real=3Dre=
-sult.real-np.mean(result.real)<br></span><span style=3D"color:rgb(117,113,9=
-4)">        #correct_result.imag =3D result.imag - np.mean(result.imag)<br>=
-</span><span style=3D"color:rgb(117,113,94)"><br></span><span style=3D"colo=
-r:rgb(117,113,94)">        </span>PSD <span style=3D"color:rgb(249,38,114)"=
->=3D  </span><span style=3D"color:rgb(148,85,141)">self</span>.<span style=
-=3D"color:rgb(102,217,239)">fft_test</span>(result)<br><br><br>        <spa=
-n style=3D"color:rgb(117,113,94)">#PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])=
-<br></span><span style=3D"color:rgb(117,113,94)"><br></span><span style=3D"=
-color:rgb(117,113,94)"><br></span><span style=3D"color:rgb(117,113,94)">   =
-     </span>buffs <span style=3D"color:rgb(249,38,114)">=3D </span>np.<span=
- style=3D"color:rgb(102,217,239)">append</span>(buffs,PSD)<br><br><br><br> =
-   <span style=3D"color:rgb(102,217,239);font-style:italic">return </span>c=
-omplex_buffs, buffs<span style=3D"color:rgb(117,113,94)">#np.append(buffs[v=
-alue.samples:],buffs[:value.samples])<br><br><br><br><span style=3D"color:r=
-gb(102,217,239);font-style:italic">def </span><span style=3D"color:rgb(166,=
-226,46)">test_reciev</span>(<span style=3D"color:rgb(148,85,141)">self</spa=
-n>,<span style=3D"color:rgb(253,151,31);font-style:italic">freq</span>,<spa=
-n style=3D"color:rgb(128,128,127)">bandwich</span>)<span style=3D"color:rgb=
-(249,38,114)">:<br></span><span style=3D"color:rgb(249,38,114)">    </span>=
-complex_buffs<span style=3D"color:rgb(249,38,114)">=3D</span>np.<span style=
-=3D"color:rgb(102,217,239)">array</span>([])<br>    buffs <span style=3D"co=
-lor:rgb(249,38,114)">=3D </span>np.<span style=3D"color:rgb(102,217,239)">a=
-rray</span>([])<br>    result <span style=3D"color:rgb(249,38,114)">=3D </s=
-pan>np.<span style=3D"color:rgb(102,217,239)">empty</span>((<span style=3D"=
-color:rgb(102,217,239)">len</span>([<span style=3D"color:rgb(174,129,255)">=
-0</span>]), <span style=3D"color:rgb(148,85,141)">self</span>.samples), <sp=
-an style=3D"color:rgb(170,73,38)">dtype</span><span style=3D"color:rgb(249,=
-38,114)">=3D</span>np.complex64)<br><br>    <span style=3D"color:rgb(102,21=
-7,239);font-style:italic">for </span>i, freqq <span style=3D"color:rgb(102,=
-217,239);font-style:italic">in </span><span style=3D"color:rgb(102,217,239)=
-">enumerate</span>(<span style=3D"color:rgb(253,151,31);font-style:italic">=
-freq</span>)<span style=3D"color:rgb(249,38,114)">:<br></span><span style=
-=3D"color:rgb(249,38,114)"><br></span><span style=3D"color:rgb(249,38,114)"=
->        </span>recv_samps <span style=3D"color:rgb(249,38,114)">=3D </span=
-><span style=3D"color:rgb(174,129,255)">0<br></span><span style=3D"color:rg=
-b(174,129,255)">        </span><span style=3D"color:rgb(117,113,94)">#self.=
-usrp.set_rx_rate(bandwich[i])<br></span><span style=3D"color:rgb(117,113,94=
-)">        </span>k<span style=3D"color:rgb(249,38,114)">=3D</span>uhd.type=
-s.<span style=3D"color:rgb(102,217,239)">TuneRequest</span>(freqq)<br>     =
-   <span style=3D"color:rgb(117,113,94)">#k.args(uhd.types.device_addr(&quo=
-t;mode_n=3Dinteger&quot;))<br></span><span style=3D"color:rgb(117,113,94)">=
-        </span><span style=3D"color:rgb(148,85,141)">self</span>.usrp.<span=
- style=3D"color:rgb(102,217,239)">set_rx_freq</span>(k)<br><br>        <spa=
-n style=3D"color:rgb(102,217,239);font-style:italic">while </span><span sty=
-le=3D"color:rgb(148,85,141)">self</span>.usrp.<span style=3D"color:rgb(102,=
-217,239)">get_rx_sensor</span>(<span style=3D"color:rgb(165,194,97)">&quot;=
-lo_locked&quot;</span>).<span style=3D"color:rgb(102,217,239)">to_bool</spa=
-n>() <span style=3D"color:rgb(249,38,114)">!=3D </span><span style=3D"color=
-:rgb(102,217,239)">True</span><span style=3D"color:rgb(249,38,114)">:<br></=
-span><span style=3D"color:rgb(249,38,114)">            </span><span style=
-=3D"color:rgb(102,217,239);font-style:italic">continue<br></span><span styl=
-e=3D"color:rgb(102,217,239);font-style:italic"><br></span><span style=3D"co=
-lor:rgb(102,217,239);font-style:italic">       <br></span><span style=3D"co=
-lor:rgb(102,217,239);font-style:italic">        while </span>recv_samps <sp=
-an style=3D"color:rgb(249,38,114)">&lt; </span><span style=3D"color:rgb(148=
-,85,141)">self</span>.samples<span style=3D"color:rgb(249,38,114)">:<br></s=
-pan><span style=3D"color:rgb(249,38,114)"><br></span><span style=3D"color:r=
-gb(249,38,114)">            </span>samps <span style=3D"color:rgb(249,38,11=
-4)">=3D </span><span style=3D"color:rgb(148,85,141)">self</span>.streamer_r=
-x.<span style=3D"color:rgb(102,217,239)">recv</span>(<span style=3D"color:r=
-gb(148,85,141)">self</span>.recv_buff, <span style=3D"color:rgb(148,85,141)=
-">self</span>.metadata_rx)<br>            <span style=3D"color:rgb(102,217,=
-239);font-style:italic">if </span><span style=3D"color:rgb(148,85,141)">sel=
-f</span>.metadata_rx.error_code <span style=3D"color:rgb(249,38,114)">!=3D =
-</span>lib.types.rx_metadata_error_code.none<span style=3D"color:rgb(249,38=
-,114)">:<br></span><span style=3D"color:rgb(249,38,114)">                </=
-span><span style=3D"color:rgb(102,217,239);font-style:italic">print</span>(=
-<span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx.<span style=
-=3D"color:rgb(102,217,239)">strerror</span>())<br>            <span style=
-=3D"color:rgb(102,217,239);font-style:italic">if </span>samps<span style=3D=
-"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(249,38,114)"> =
-               </span>real_samps <span style=3D"color:rgb(249,38,114)">=3D =
-</span><span style=3D"color:rgb(102,217,239)">min</span>(<span style=3D"col=
-or:rgb(148,85,141)">self</span>.samples <span style=3D"color:rgb(249,38,114=
-)">- </span>recv_samps, samps)<br>                result[<span style=3D"col=
-or:rgb(249,38,114)">:</span>, recv_samps<span style=3D"color:rgb(249,38,114=
-)">:</span>recv_samps <span style=3D"color:rgb(249,38,114)">+ </span>real_s=
-amps] <span style=3D"color:rgb(249,38,114)">=3D </span><span style=3D"color=
-:rgb(148,85,141)">self</span>.recv_buff[<span style=3D"color:rgb(249,38,114=
-)">:</span>, <span style=3D"color:rgb(174,129,255)">0</span><span style=3D"=
-color:rgb(249,38,114)">:</span>real_samps]<br>                recv_samps <s=
-pan style=3D"color:rgb(249,38,114)">+=3D </span>real_samps<br>        <span=
- style=3D"color:rgb(117,113,94)">#print (self.usrp.get_rx_sensor(&#39;rssi&=
-#39;))<br></span><span style=3D"color:rgb(117,113,94)"><br></span><span sty=
-le=3D"color:rgb(117,113,94)"><br></span><span style=3D"color:rgb(117,113,94=
-)">        </span><span style=3D"color:rgb(148,85,141)">self</span>.stream_=
-cmd.time_spec <span style=3D"color:rgb(249,38,114)">=3D </span>lib.types.<s=
-pan style=3D"color:rgb(102,217,239)">time_spec</span>(<span style=3D"color:=
-rgb(174,129,255)">0</span>)<br>        <span style=3D"color:rgb(148,85,141)=
-">self</span>.streamer_rx.<span style=3D"color:rgb(102,217,239)">issue_stre=
-am_cmd</span>(<span style=3D"color:rgb(148,85,141)">self</span>.stream_cmd)=
-<br><br>        complex_buffs<span style=3D"color:rgb(249,38,114)">=3D</spa=
-n>np.<span style=3D"color:rgb(102,217,239)">append</span>(complex_buffs,res=
-ult).<span style=3D"color:rgb(102,217,239)">ravel</span>()<br>        corre=
-ct_result<span style=3D"color:rgb(249,38,114)">=3D</span>result<br>        =
-<span style=3D"color:rgb(128,128,127)">correct_result_1</span><span style=
-=3D"color:rgb(249,38,114)">=3D</span>result<span style=3D"color:rgb(249,38,=
-114)">-</span>(np.<span style=3D"color:rgb(102,217,239)">mean</span>(result=
-.real)<span style=3D"color:rgb(249,38,114)">+</span>np.<span style=3D"color=
-:rgb(102,217,239)">mean</span>(result.imag)<span style=3D"color:rgb(249,38,=
-114)">*</span><span style=3D"color:rgb(174,129,255)">1j</span>)<br>        =
-correct_result.real<span style=3D"color:rgb(249,38,114)">=3D</span>result.r=
-eal<span style=3D"color:rgb(249,38,114)">-</span>np.<span style=3D"color:rg=
-b(102,217,239)">mean</span>(result.real)<br>        correct_result.imag <sp=
-an style=3D"color:rgb(249,38,114)">=3D </span>result.imag <span style=3D"co=
-lor:rgb(249,38,114)">- </span>np.<span style=3D"color:rgb(102,217,239)">mea=
-n</span>(result.imag)<br><br>        PSD <span style=3D"color:rgb(249,38,11=
-4)">=3D  </span><span style=3D"color:rgb(148,85,141)">self</span>.<span sty=
-le=3D"color:rgb(102,217,239)">fft_test</span>(result)<br><br><br>        <s=
-pan style=3D"color:rgb(117,113,94)">#PSD[8188:8202]=3Dnp.mean(PSD[8180:8188=
-])<br></span><span style=3D"color:rgb(117,113,94)"><br></span><span style=
-=3D"color:rgb(117,113,94)"><br></span><span style=3D"color:rgb(117,113,94)"=
->        </span>buffs <span style=3D"color:rgb(249,38,114)">=3D </span>np.<=
-span style=3D"color:rgb(102,217,239)">append</span>(buffs,PSD)<br><br><br><=
-br>    <span style=3D"color:rgb(102,217,239);font-style:italic">return </sp=
-an>complex_buffs, buffs<span style=3D"color:rgb(117,113,94)">#np.append(buf=
-fs[value.samples:],buffs[:value.samples])<br></span><br><br><br><br><br><br=
-><br><br></span></pre></div>
-
---000000000000749ad20588a0e43f--
-
-
---===============4386967872921549410==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4386967872921549410==--
-
+RGVhciBJdmFuLAoKaXQncyBub3QgY2xlYXIgd2hhdCB5b3UndmUgbW9kaWZpZWQuIEknbSBub3Qg
+YXdhcmUgb2YgYW55IFVIRCBmdW5jdGlvbgp0aGF0IHJlc3RyaWN0cyBhbnkgZnJlcXVlbmN5IHRv
+IDUgTUh6LgpDb3VsZCB5b3UgZWxhYm9yYXRlIG9uIHdoaWNoIGNvZGUgeW91J3JlIGJhc2luZyB0
+aGlzIG9uPwoKQWxzbywgd2hpbGUgSSByZWFsbHkgbGlrZSB0aGUgUHl0aG9uIGludGVyZmFjZSwg
+aWYgeW91J3JlIHJlYWxseSBhZnRlcgpoaWdoLXJhdGUgc2FtcGxpbmcsIGl0IG1pZ2h0IHNpbXBs
+eSBub3QgYmUgdGhlIG9wdGltYWwgdGhpbmcgdG8gdXNlOgpZb3UnZCBoYXZlIHRvIGJlIHZlcnkg
+Y2FyZWZ1bCBpbiBQeXRob25sYW5kIHRvIG5vdCBydW4gaW50byBwZXJmb3JtYW5jZQpwcm9ibGVt
+cyBvbmNlIHlvdSd2ZSBnb3R0ZW4gdGhlIHNhbXBsZXMgZnJvbSBVSEQ6CgogICAgICAgIGNvbXBs
+ZXhfYnVmZnM9bnAuYXBwZW5kKGNvbXBsZXhfYnVmZnMscmVzdWx0KS5yYXZlbCgpCgpBIHZlcnkg
+YmFkIGlkZWEuIFlvdSdyZSBjb25zdGFudGx5IHJlLWFsbG9jYXRpbmcgYnVmZmVycyBoZXJlLiBE
+b24ndCBkbwp0aGF0LiBObyBtYXR0ZXIgaW4gd2hpY2ggcHJvZ3JhbW1pbmcgbGFuZ3VhZ2UgeW91
+J2QgZG8gdGhpcywgeW91J2QgbWFrZQpzdXJlIHRoYXQgdGhlIGJ1ZmZlciBpcyBsYXJnZSBlbm91
+Z2ggZm9yIHlvdXIgZGF0YSBjb2xsZWN0aW9uIHRvIGJlZ2luCndpdGggYW5kIHRoZW4gdGVsbCB0
+aGUgVUhEIGxpYnJhcnkgdG8gZmlsbCB0aGUgYXBwcm9wcmlhdGUgcGFydCBpbiB0aGF0CmJ1ZmZl
+ciB0byBhdm9pZCBhKSBoYXZpbmcgdG8gYXNrIGZvciBhIGxhcmdlciBidWZmZXIgcmVndWxhcmx5
+IGFuZCBiKQphdm9pZCBjb3B5aW5nIGRhdGEuCkFza2luZyBmb3IgYW4gYXBwZW5kZWQgdmVyc2lv
+biBvZiB5b3VyIGxhc3QgYnVmZmVyIG1lYW5zIHRoYXQgc29tZXRoaW5nCmhhcyB0byBhbGxvY2F0
+ZSBhIGxhcmdlciBidWZmZXIg4oCTIHdoaWNoIGNvbWVzIGF0IHZlcnkgbGFyZ2UgY29zdCEKCkJl
+c3QgcmVnYXJkcywKTWFyY3VzIAoKT24gU2F0LCAyMDE5LTA1LTExIGF0IDIxOjMxICswMzAwLCBJ
+dmFuIFphaGFydGNodWsgdmlhIFVTUlAtdXNlcnMKd3JvdGU6Cj4gSGVsbG8uIE15IHRhc2sgaXMg
+dG8gbWFrZSBhIGJyb2FkYmFuZCBzcGVjdHJ1bSBhbmFseXplciBvbiB0aGUgdXNycAo+IGIyMDAg
+Ym9hcmQuIEZvciB0aGlzLCB0aGUgc3RhbmRhcmQgZnVuY3Rpb25zIGZvciByZWFkaW5nIHNhbXBs
+ZXMgaW4KPiBweXRob24gYXJlIG5vdCBzdWl0YWJsZSBmb3IgbWUuIFRoZXJlZm9yZSwgSSBlZGl0
+ZWQgdGhlbS4gV2hlbgo+IHJlYWRpbmcgc2FtcGxlcyB1c2luZyB0aGUgc3RhcnRfY29uIG1ldGhv
+ZCwgSSBjYW5ub3Qgc3BlY2lmeSBhIGJhbmQKPiBncmVhdGVyIHRoYW4gNSBNSHouIFRoZXJlZm9y
+ZSwgSSB1c2UgdGhlIG51bV9zYW1zX2FuZF9kb25lIG1ldGhvZC4KPiBCdXQgSSBoYXZlIHByb2Js
+ZW1zIHdpdGggaGltLiBUaGUgZmFjdCBpcyB0aGF0IG15IGZyZXF1ZW5jeSB3aGljaCBJCj4ga25v
+dyBhcHBlYXJzIGluIHRoZSB3cm9uZyBwbGFjZS4gRm9yIGV4YW1wbGUsIEkgZ2VuZXJhdGUgYSBm
+cmVxdWVuY3kKPiBvZiA5MTAgTUh6IGFuZCBpdCBhcHBlYXJzIGF0IDkzMCBNSHogKHdpdGggYSBi
+YW5kd2lkdGggb2YgMjAgTUh6KS4gSQo+IGNhbiBub3QgdW5kZXJzdGFuZCB3aGF0IGNhdXNlZCBp
+dC4gSGVyZSBhcmUgbXkgcmVhZGluZyBmdW5jdGlvbnMgaW4KPiB0d28gd2F5cy4gSSB3b3VsZCBi
+ZSBleHRyZW1lbHkgZ3JhdGVmdWwgZm9yIHRoZSBoZWxwLgo+IAo+IAo+IAo+IAo+IGRlZiB0ZXN0
+X3JlY2lldihzZWxmLGZyZXEsYmFuZHdpY2gpOgo+ICAgICBjb21wbGV4X2J1ZmZzPW5wLmFycmF5
+KFtdKQo+ICAgICBidWZmcyA9IG5wLmFycmF5KFtdKQo+ICAgICByZXN1bHQgPSBucC5lbXB0eSgo
+bGVuKFswXSksIHNlbGYuc2FtcGxlcyksIGR0eXBlPW5wLmNvbXBsZXg2NCkKPiAKPiAgICAgZm9y
+IGksIGZyZXFxIGluIGVudW1lcmF0ZShmcmVxKToKPiAKPiAgICAgICAgIHJlY3Zfc2FtcHMgPSAw
+Cj4gICAgICAgICAjc2VsZi51c3JwLnNldF9yeF9yYXRlKGJhbmR3aWNoW2ldKQo+ICAgICAgICAg
+az11aGQudHlwZXMuVHVuZVJlcXVlc3QoZnJlcXEpCj4gICAgICAgICAjay5hcmdzKHVoZC50eXBl
+cy5kZXZpY2VfYWRkcigibW9kZV9uPWludGVnZXIiKSkKPiAgICAgICAgIHNlbGYudXNycC5zZXRf
+cnhfZnJlcShrKQo+ICAgICAgICAgc2VsZi5zdHJlYW1fY21kID0KPiB1aGQudHlwZXMuU3RyZWFt
+Q01EKHVoZC50eXBlcy5TdHJlYW1Nb2RlLnN0YXJ0X2NvbnQpCj4gICAgICAgICBzZWxmLnN0cmVh
+bV9jbWQuc3RyZWFtX25vdyA9IFRydWUKPiAgICAgICAgIHNlbGYuc3RyZWFtZXJfcnguaXNzdWVf
+c3RyZWFtX2NtZChzZWxmLnN0cmVhbV9jbWQpCj4gICAgICAgICB3aGlsZSBzZWxmLnVzcnAuZ2V0
+X3J4X3NlbnNvcigibG9fbG9ja2VkIikudG9fYm9vbCgpICE9IFRydWU6Cj4gICAgICAgICAgICAg
+Y29udGludWUKPiAKPiAgICAgICAgIHNhbXBzID0gbnAuYXJyYXkoW10sIGR0eXBlPW5wLmNvbXBs
+ZXg2NCkKPiAgICAgICAgIHdoaWxlIHJlY3Zfc2FtcHMgPCBzZWxmLnNhbXBsZXM6Cj4gCj4gICAg
+ICAgICAgICAgc2FtcHMgPSBzZWxmLnN0cmVhbWVyX3J4LnJlY3Yoc2VsZi5yZWN2X2J1ZmYsCj4g
+c2VsZi5tZXRhZGF0YV9yeCkKPiAgICAgICAgICAgICBpZiBzZWxmLm1ldGFkYXRhX3J4LmVycm9y
+X2NvZGUgIT0KPiBsaWIudHlwZXMucnhfbWV0YWRhdGFfZXJyb3JfY29kZS5ub25lOgo+ICAgICAg
+ICAgICAgICAgICBwcmludChzZWxmLm1ldGFkYXRhX3J4LnN0cmVycm9yKCkpCj4gICAgICAgICAg
+ICAgaWYgc2FtcHM6Cj4gICAgICAgICAgICAgICAgIHJlYWxfc2FtcHMgPSBtaW4oc2VsZi5zYW1w
+bGVzIC0gcmVjdl9zYW1wcywgc2FtcHMpCj4gICAgICAgICAgICAgICAgIHJlc3VsdFs6LCByZWN2
+X3NhbXBzOnJlY3Zfc2FtcHMgKyByZWFsX3NhbXBzXSA9Cj4gc2VsZi5yZWN2X2J1ZmZbOiwgMDpy
+ZWFsX3NhbXBzXQo+ICAgICAgICAgICAgICAgICByZWN2X3NhbXBzICs9IHJlYWxfc2FtcHMKPiAg
+ICAgICAgICNwcmludCAoc2VsZi51c3JwLmdldF9yeF9zZW5zb3IoJ3Jzc2knKSkKPiAgICAgICAg
+ICNwcmludChzZWxmLnN0cmVhbWVyX3J4LmdldF9tYXhfbnVtX3NhbXBzKCkpCj4gICAgICAgICAj
+d2hpbGUgc2FtcHM6Cj4gICAgICAgICAjICAgIHNhbXBzID0gc2VsZi5zdHJlYW1lcl9yeC5yZWN2
+KHNlbGYucmVjdl9idWZmLAo+IHNlbGYubWV0YWRhdGFfcngpCj4gCj4gCj4gICAgICAgICAjc2Vs
+Zi5zdHJlYW1fY21kLnRpbWVfc3BlYyA9IGxpYi50eXBlcy50aW1lX3NwZWMoMCkKPiAgICAgICAg
+IHNlbGYuc3RyZWFtX2NtZCA9Cj4gbGliLnR5cGVzLnN0cmVhbV9jbWQobGliLnR5cGVzLnN0cmVh
+bV9tb2RlLnN0b3BfY29udCkKPiAgICAgICAgIHNlbGYuc3RyZWFtZXJfcnguaXNzdWVfc3RyZWFt
+X2NtZChzZWxmLnN0cmVhbV9jbWQpCj4gCj4gICAgICAgICBjb21wbGV4X2J1ZmZzPW5wLmFwcGVu
+ZChjb21wbGV4X2J1ZmZzLHJlc3VsdCkucmF2ZWwoKQo+ICAgICAgICAgI2NvcnJlY3RfcmVzdWx0
+PXJlc3VsdAo+ICAgICAgICAgY29ycmVjdF9yZXN1bHRfMT1yZXN1bHQtCj4gKG5wLm1lYW4ocmVz
+dWx0LnJlYWwpK25wLm1lYW4ocmVzdWx0LmltYWcpKjFqKQo+ICAgICAgICAgI2NvcnJlY3RfcmVz
+dWx0LnJlYWw9cmVzdWx0LnJlYWwtbnAubWVhbihyZXN1bHQucmVhbCkKPiAgICAgICAgICNjb3Jy
+ZWN0X3Jlc3VsdC5pbWFnID0gcmVzdWx0LmltYWcgLSBucC5tZWFuKHJlc3VsdC5pbWFnKQo+IAo+
+ICAgICAgICAgUFNEID0gIHNlbGYuZmZ0X3Rlc3QocmVzdWx0KQo+IAo+IAo+ICAgICAgICAgI1BT
+RFs4MTg4OjgyMDJdPW5wLm1lYW4oUFNEWzgxODA6ODE4OF0pCj4gCj4gCj4gICAgICAgICBidWZm
+cyA9IG5wLmFwcGVuZChidWZmcyxQU0QpCj4gCj4gCj4gCj4gICAgIHJldHVybiBjb21wbGV4X2J1
+ZmZzLAo+IGJ1ZmZzI25wLmFwcGVuZChidWZmc1t2YWx1ZS5zYW1wbGVzOl0sYnVmZnNbOnZhbHVl
+LnNhbXBsZXNdKQo+IAo+IAo+IAo+IGRlZiB0ZXN0X3JlY2lldihzZWxmLGZyZXEsYmFuZHdpY2gp
+Ogo+ICAgICBjb21wbGV4X2J1ZmZzPW5wLmFycmF5KFtdKQo+ICAgICBidWZmcyA9IG5wLmFycmF5
+KFtdKQo+ICAgICByZXN1bHQgPSBucC5lbXB0eSgobGVuKFswXSksIHNlbGYuc2FtcGxlcyksIGR0
+eXBlPW5wLmNvbXBsZXg2NCkKPiAKPiAgICAgZm9yIGksIGZyZXFxIGluIGVudW1lcmF0ZShmcmVx
+KToKPiAKPiAgICAgICAgIHJlY3Zfc2FtcHMgPSAwCj4gICAgICAgICAjc2VsZi51c3JwLnNldF9y
+eF9yYXRlKGJhbmR3aWNoW2ldKQo+ICAgICAgICAgaz11aGQudHlwZXMuVHVuZVJlcXVlc3QoZnJl
+cXEpCj4gICAgICAgICAjay5hcmdzKHVoZC50eXBlcy5kZXZpY2VfYWRkcigibW9kZV9uPWludGVn
+ZXIiKSkKPiAgICAgICAgIHNlbGYudXNycC5zZXRfcnhfZnJlcShrKQo+IAo+ICAgICAgICAgd2hp
+bGUgc2VsZi51c3JwLmdldF9yeF9zZW5zb3IoImxvX2xvY2tlZCIpLnRvX2Jvb2woKSAhPSBUcnVl
+Ogo+ICAgICAgICAgICAgIGNvbnRpbnVlCj4gCj4gICAgICAgIAo+ICAgICAgICAgd2hpbGUgcmVj
+dl9zYW1wcyA8IHNlbGYuc2FtcGxlczoKPiAKPiAgICAgICAgICAgICBzYW1wcyA9IHNlbGYuc3Ry
+ZWFtZXJfcngucmVjdihzZWxmLnJlY3ZfYnVmZiwKPiBzZWxmLm1ldGFkYXRhX3J4KQo+ICAgICAg
+ICAgICAgIGlmIHNlbGYubWV0YWRhdGFfcnguZXJyb3JfY29kZSAhPQo+IGxpYi50eXBlcy5yeF9t
+ZXRhZGF0YV9lcnJvcl9jb2RlLm5vbmU6Cj4gICAgICAgICAgICAgICAgIHByaW50KHNlbGYubWV0
+YWRhdGFfcnguc3RyZXJyb3IoKSkKPiAgICAgICAgICAgICBpZiBzYW1wczoKPiAgICAgICAgICAg
+ICAgICAgcmVhbF9zYW1wcyA9IG1pbihzZWxmLnNhbXBsZXMgLSByZWN2X3NhbXBzLCBzYW1wcykK
+PiAgICAgICAgICAgICAgICAgcmVzdWx0WzosIHJlY3Zfc2FtcHM6cmVjdl9zYW1wcyArIHJlYWxf
+c2FtcHNdID0KPiBzZWxmLnJlY3ZfYnVmZls6LCAwOnJlYWxfc2FtcHNdCj4gICAgICAgICAgICAg
+ICAgIHJlY3Zfc2FtcHMgKz0gcmVhbF9zYW1wcwo+ICAgICAgICAgI3ByaW50IChzZWxmLnVzcnAu
+Z2V0X3J4X3NlbnNvcigncnNzaScpKQo+IAo+IAo+ICAgICAgICAgc2VsZi5zdHJlYW1fY21kLnRp
+bWVfc3BlYyA9IGxpYi50eXBlcy50aW1lX3NwZWMoMCkKPiAgICAgICAgIHNlbGYuc3RyZWFtZXJf
+cnguaXNzdWVfc3RyZWFtX2NtZChzZWxmLnN0cmVhbV9jbWQpCj4gCj4gICAgICAgICBjb21wbGV4
+X2J1ZmZzPW5wLmFwcGVuZChjb21wbGV4X2J1ZmZzLHJlc3VsdCkucmF2ZWwoKQo+ICAgICAgICAg
+Y29ycmVjdF9yZXN1bHQ9cmVzdWx0Cj4gICAgICAgICBjb3JyZWN0X3Jlc3VsdF8xPXJlc3VsdC0K
+PiAobnAubWVhbihyZXN1bHQucmVhbCkrbnAubWVhbihyZXN1bHQuaW1hZykqMWopCj4gICAgICAg
+ICBjb3JyZWN0X3Jlc3VsdC5yZWFsPXJlc3VsdC5yZWFsLW5wLm1lYW4ocmVzdWx0LnJlYWwpCj4g
+ICAgICAgICBjb3JyZWN0X3Jlc3VsdC5pbWFnID0gcmVzdWx0LmltYWcgLSBucC5tZWFuKHJlc3Vs
+dC5pbWFnKQo+IAo+ICAgICAgICAgUFNEID0gIHNlbGYuZmZ0X3Rlc3QocmVzdWx0KQo+IAo+IAo+
+ICAgICAgICAgI1BTRFs4MTg4OjgyMDJdPW5wLm1lYW4oUFNEWzgxODA6ODE4OF0pCj4gCj4gCj4g
+ICAgICAgICBidWZmcyA9IG5wLmFwcGVuZChidWZmcyxQU0QpCj4gCj4gCj4gCj4gICAgIHJldHVy
+biBjb21wbGV4X2J1ZmZzLAo+IGJ1ZmZzI25wLmFwcGVuZChidWZmc1t2YWx1ZS5zYW1wbGVzOl0s
+YnVmZnNbOnZhbHVlLnNhbXBsZXNdKQo+IAo+IAo+IAo+IAo+IAo+IAo+IAo+IAo+IF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWls
+aW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1
+cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5j
+b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
