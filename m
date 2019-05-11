@@ -2,71 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F0D71A5B9
-	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 02:14:25 +0200 (CEST)
-Received: from [::1] (port=52550 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBE9F1A5FA
+	for <lists+usrp-users@lfdr.de>; Sat, 11 May 2019 02:59:09 +0200 (CEST)
+Received: from [::1] (port=57608 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hPFei-00032g-1c; Fri, 10 May 2019 20:14:24 -0400
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:53927)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.91) (envelope-from <michael.dickens@ettus.com>)
- id 1hPFe9-0002ul-Ua
- for usrp-users@lists.ettus.com; Fri, 10 May 2019 20:14:19 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailout.nyi.internal (Postfix) with ESMTP id B2FEB23967;
- Fri, 10 May 2019 20:13:09 -0400 (EDT)
-Received: from imap8 ([10.202.2.58])
- by compute3.internal (MEProxy); Fri, 10 May 2019 20:13:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=7J+N+s
- O+VlzgoobPzCheMnS3zmvSF9epSFY8z29chcw=; b=awUZbrtISqnsloB5yq4Fra
- Yx78qjNY7a0lpQVrBj9IGMpiWo+QIt8ruLj3sQZHVWUzVitOtTQKxG8QrVUaztlp
- weV3sdvDAgehWjyeVJis2kRGD+IkKIjbyZ6Ejuwao07wfwNJPw6/UH3JqgAI6Dzj
- I9MxRzAg3ku5Y19lw+yqnLFB1dKKUkEbYSwzGx5nfUiGy2wO/R/oEd0On/cMe+GC
- gY1XcIKC/PxTIaAWy/3PcGGiUXlZzmLxZVsVqZxL5fwaGBBbYeADNv5qN0jMQBuY
- 3zkK+7+ZWq6ygLO/pW6RpcdmC7UqeciByHyyP7625+TBvwcqrChqzJEj9oOb4mNQ
- ==
-X-ME-Sender: <xms:lRPWXFIH83Ba06Q3_2qoRGkM-0aWG8pOxYNbx4nF0Zol26qgIJ8JnQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddrkeelgdeffecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpefofgggkfgjfhffhffvufgtsegrtderreerreejnecuhfhrohhmpedfofhitghh
- rggvlhcuffhitghkvghnshdfuceomhhitghhrggvlhdrughitghkvghnshesvghtthhush
- drtghomheqnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmihgthhgrvghlrdguihgtkhgv
- nhhssegvthhtuhhsrdgtohhmnecuvehluhhsthgvrhfuihiivgeptd
-X-ME-Proxy: <xmx:lRPWXPY8EQEnj36Y9IOm_ofJlMDJi9fm2mbDVN8mrbSslQLpGRYG0A>
- <xmx:lRPWXH180H5bgqsFrI_gnotVU349X64cPQNLGeRxZgvz4PXkrV6EgA>
- <xmx:lRPWXCyqu0cw7rrePQapUmm6h7gSXBLPaPofcFAU_5-DXK_Waxj1UA>
- <xmx:lRPWXLYDcbURDW_SnR3go22LuMJA1Z1ejiXFkQyaB9Z75-NYqUzpPQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id 592D770A7E; Fri, 10 May 2019 20:13:09 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-449-gfb3fc5a-fmstable-20190430v1
-Mime-Version: 1.0
-Message-Id: <c722a229-d064-4b74-988a-a28a2dc98d79@www.fastmail.com>
-In-Reply-To: <365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com>
+	id 1hPGLz-0004VT-Ek; Fri, 10 May 2019 20:59:07 -0400
+Received: from mail-qt1-f173.google.com ([209.85.160.173]:33051)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hPGLv-0004Nh-IL
+ for usrp-users@lists.ettus.com; Fri, 10 May 2019 20:59:03 -0400
+Received: by mail-qt1-f173.google.com with SMTP id m32so5697353qtf.0
+ for <usrp-users@lists.ettus.com>; Fri, 10 May 2019 17:58:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=+G4n+OYHL1Xg/9nLfKlVBxzGaEgSA/QufSY4zEFRsrU=;
+ b=ZmFkDB4KfcgRKDoUNJTNMZqZVKWIRogil9cuC47O1wB0cQ0+Rh50lumT/yldO7LaYV
+ PVw4UG9aoNIrBjK/NxQYi50Qb83SEE8b+HFyXPqJhfn6BE3UsiBULhg2aY+Ex3CbXm++
+ LqEW6Q6VcTohF2qt3L25CHlG4+fKz8MXkgouy2Rnqvi4dderOU4+FRnH5u3chxfOTj6L
+ Cd/emUbLiaK2v/zesl+XDwp/SpDoTYZArLa5gsKnjndIMHE+Aptvei2NA7R51G0UkaZg
+ YLav27OonImj986QhyiRbv0kRZv+ddcRZ+Vp6BESILerh0xDZ0hqHjbiEWvXk5+wVF3c
+ C7PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=+G4n+OYHL1Xg/9nLfKlVBxzGaEgSA/QufSY4zEFRsrU=;
+ b=Yrzz+wP8pvJa7/ERWj+5zNcKRDAH2MjK79dwGya0D/x4YFT5iLzprfrw4PtJDgUYrM
+ qG4kvV6zz5lP7S1nS4Dk823yPEW80YCLLhcvJaRah77pGj4rwLJl1j5R9ZiN78YLoN5k
+ dBePD5tE0N47gWfYg+mr8CCF+qfFWLXy6m+vFbj2+4Qn/ZZuYe3d49lXAFcPUuTdR1VO
+ s9fz2bBInsIWmHU3IKupFx/SWjmvGv+MhSojIkRcXUiGJef1TR2dU1JGRJtO7kE7T7vS
+ 2L+BGJB8s551SeFQJ1urPxsxH+g5pb10kI3wvWH0YQpOA+3uumTstMB4VKUXhV+NMm57
+ tGpg==
+X-Gm-Message-State: APjAAAWn9y8bBckRSHbjRy4z6iAX6V7aFBVo/wiOB+T72xQXFPftsAjY
+ 7d0LLrZwIeub5/B3Gt+mj4OVqW8G
+X-Google-Smtp-Source: APXvYqzF5dzCcte/jgBG1QZ00w0UIQwV7fzeuOQ63bNfHubUhgbuB2svWmUlb2vqHe4rFLnfQzs5dQ==
+X-Received: by 2002:a0c:adf1:: with SMTP id x46mr11478037qvc.180.1557536302504; 
+ Fri, 10 May 2019 17:58:22 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id k53sm4144789qtb.65.2019.05.10.17.58.21
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 10 May 2019 17:58:21 -0700 (PDT)
+Message-ID: <5CD61E2C.5020703@gmail.com>
+Date: Fri, 10 May 2019 20:58:20 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
- <CAGVTi8VOeNG5B9X-WaMQrvbxkt96UFhm5a6-++9znYCzexfRtQ@mail.gmail.com>
- <9f223faf-add7-74cc-faa1-d4a0ed95e28a@balister.org>
- <2C9C895D-DD6D-4456-9F1D-557F699AB391@k5so.com>
- <5CD36887.5050805@gmail.com>
- <4F25C7C9-CB61-46DF-9163-2CB0CF86DDCF@k5so.com>
- <F19914AE-5635-4F61-A19B-13C16AE6CE8D@k5so.com>
- <2BBEC239-22F9-4F4C-B777-222484DEC314@k5so.com>
- <BL0PR12MB2340B79E071584EF5599E398AF330@BL0PR12MB2340.namprd12.prod.outlook.com>
- <84612E15-1A0B-40FF-9AA3-A810D7500BE3@k5so.com>
- <CAM_0ocHPiAfxGGUND037U3mzSDoN_+odmwZX=tzDLq-=_JjH7A@mail.gmail.com>
  <CA+JMMq9dzg+FqLVgGJRZOBW4KMmYq2ZrCOOnLEVndKCtovF+PA@mail.gmail.com>
  <73C37420-AD11-4E22-9730-493E6FC41678@k5so.com>
  <52565C8B-D078-414F-A560-3672BEADE596@k5so.com>
  <A01FCD5D-DFB6-4E9F-AA41-5D2CF9B00EEA@k5so.com>
  <CA+JMMq_wYJYoenP=wX2ruK-KSHTT6EQdM6K+ksrGFLZZEe+5jQ@mail.gmail.com>
  <691F0564-B5AA-48C6-9258-D15F006E9F7D@k5so.com>
- <E4163757-B40B-4716-888F-2328596BB5B6@k5so.com>
- <5CD48C58.9050302@gmail.com>
+ <E4163757-B40B-4716-888F-2328596BB5B6@k5so.com> <5CD48C58.9050302@gmail.com>
  <8481269A-B583-40D7-B93C-1BDDFD50D338@k5so.com>
  <CA+JMMq_h4jKhUH7d6_WiMCstfC8anxeamESGAQ7Q=YLaaKG59A@mail.gmail.com>
  <31E31040-1F5D-4C84-BD3B-65CC609519A9@k5so.com>
@@ -77,16 +70,9 @@ References: <556BBE2D-2BA6-40A3-BFF5-F5FA2351DB06@k5so.com>
  <82C6C97F-F209-435E-8C4C-37E43E71B827@gmail.com>
  <A0D159D0-D4D7-4645-8132-44768EF28D22@k5so.com>
  <365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com>
-Date: Fri, 10 May 2019 20:12:45 -0400
-To: "Joe Martin" <k5so@k5so.com>
-X-Spam-Status: No, score=
-X-Spam-Score: 
-X-Spam-Bar: 
-X-Ham-Report: 
-X-Spam-Flag: NO
-Subject: Re: [USRP-users] 
- =?utf-8?q?Need_a_little_help_with_running_legacy_pr?=
- =?utf-8?q?ebuilt_UHD_versions?=
+In-Reply-To: <365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com>
+Subject: Re: [USRP-users] Need a little help with running legacy prebuilt
+ UHD versions
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -98,11 +84,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: Ian Buckley <ian.buckley@gmail.com>,
- USRP Users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3490076235118940862=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6134947136453111782=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -116,65 +100,3488 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3490076235118940862==
+This is a multi-part message in MIME format.
+--===============6134947136453111782==
 Content-Type: multipart/alternative;
- boundary=a32e44ed2f9743a8bf5e536d6dd85385
+ boundary="------------030708010904070609020100"
 
---a32e44ed2f9743a8bf5e536d6dd85385
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------030708010904070609020100
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Excellent news, Joe! You're welcome for the assistance; any time! Congra=
-ts on persisting & now: have fun! - MLD
-
-On Fri, May 10, 2019, at 7:55 PM, Joe Martin via USRP-users wrote:
-> Holy smoke! SUCCESS!! Nick pointed out that there are two switches on =
-the N210; S1 and S2 and S1 is a reset, so an upload of FPGA code fails i=
-f that is held (which I was holding for his suggested test!). Holding S2=
- during iMPACT loading of the .bit image results in the uhd_image_loader=
- step being SUCCESSFUL!! I am so happy to see that! Uhd_usrp_probe works=
- wonderfully. Finally. We now can put this little to work doing some tou=
-gh things!=20
->=20
-> Thank you all SO MUCH for your assistance with reviving this N210. A m=
-onumental achievement in my book! I don=E2=80=99t know what to say excep=
-t that we TOTALLY appreciate you efforts to get us running. You guys are=
- GREAT!=20
->=20
-> Very best wishes to you each and every one!=20
->=20
+On 05/10/2019 07:53 PM, Joe Martin via USRP-users wrote:
+> Holy smoke!  SUCCESS!!  Nick pointed out that there are two switches 
+> on the N210; S1 and S2 and S1 is a reset, so an upload of FPGA code 
+> fails if that is held (which I was holding for his suggested test!). 
+>  Holding S2 during iMPACT loading of the .bit image results in the 
+> uhd_image_loader step being SUCCESSFUL!!  I am so happy to see that! 
+>  Uhd_usrp_probe works wonderfully.  Finally.  We now can put this 
+> little to work doing some tough things!
+>
+> Thank you all SO MUCH for your assistance with reviving this N210.  A 
+> monumental achievement in my book!   I don’t know what to say except 
+> that we TOTALLY appreciate you efforts to get us running.  You guys 
+> are GREAT!
+>
+> Very best wishes to you each and every one!
+>
 > Joe
+I think Nick deserves most of the credit--he was in Ettus R&D during the 
+N210 development days.
 
---a32e44ed2f9743a8bf5e536d6dd85385
-Content-Type: text/html;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.Mso=
-Normal,p.MsoNoSpacing{margin:0}</style></head><body><div style=3D"font-f=
-amily:Arial;">Excellent news, Joe! You're welcome for the assistance; an=
-y time! Congrats on persisting &amp; now: have fun! - MLD<br></div><div =
-style=3D"font-family:Arial;"><br></div><div>On Fri, May 10, 2019, at 7:5=
-5 PM, Joe Martin via USRP-users wrote:<br></div><blockquote type=3D"cite=
-" id=3D"qt"><div style=3D"font-family:Arial;">Holy smoke! &nbsp;SUCCESS!=
-! &nbsp;Nick pointed out that there are two switches on the N210; S1 and=
- S2 and S1 is a reset, so an upload of FPGA code fails if that is held (=
-which I was holding for his suggested test!). &nbsp;Holding S2 during iM=
-PACT loading of the .bit image results in the uhd_image_loader step bein=
-g SUCCESSFUL!! &nbsp;I am so happy to see that! &nbsp;Uhd_usrp_probe wor=
-ks wonderfully. &nbsp;Finally. &nbsp;We now can put this little to work =
-doing some tough things! &nbsp;<br></div><div class=3D"qt-"><br></div><d=
-iv class=3D"qt-">Thank you all SO MUCH for your assistance with reviving=
- this N210. &nbsp;A monumental achievement in my book! &nbsp; I don=E2=80=
-=99t know what to say except that we TOTALLY appreciate you efforts to g=
-et us running. &nbsp;You guys are GREAT!&nbsp;<br></div><div class=3D"qt=
--"><br></div><div class=3D"qt-">Very best wishes to you each and every o=
-ne! &nbsp;&nbsp;<br></div><div class=3D"qt-"><br></div><div class=3D"qt-=
-"><div style=3D"font-family:Arial;">Joe<br></div></div></blockquote><div=
- style=3D"font-family:Arial;"><br></div></body></html>
---a32e44ed2f9743a8bf5e536d6dd85385--
+Hopefully DSES will now have a receiver -- what daughtercard do they 
+have in it?
 
 
---===============3490076235118940862==
+>> On May 10, 2019, at 5:30 PM, Joe Martin via USRP-users 
+>> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+>>
+>> Ian and all,
+>>
+>> I have been very careful to avoid the pitfalls you detailed.  I began 
+>> with a fresh installation of Ubuntu 18.04 then performed a successful 
+>> build of UHD 3.9.7, then used command:
+>>
+>> uhd_images_downloader
+>>
+>> to load the appropriate/associated images into the PC.
+>>
+>> Then used ISE iMPACT to load the “usrp_n210_r3_fpga.bit” file into 
+>> the FPGA of the N210.  iMPACT reports “PROGRAM SUCCESSFUL”.
+>>
+>> Then without power cycling the N210 used the command:
+>>
+>> usrp_image_loader —args=“type=usrp2,addr=192.168.10.2,overwrite-safe” 
+>> —fw-path=/usr/local/share/uhd/images/usrp_n210_fw.bin 
+>> —fpga-path=/usr/local/share/uhd/images/usrp_n210_r3_fpga.bin
+>>
+>> To load the non-volatile memory of the N210 but I always get the 
+>> “RuntimeError: Received invalid 32 reply from device” error when 
+>> running usrp_image_loader.
+>>
+>> I am able to successfully ping 192.168.10.2 but no matter what 
+>> combinations of r2 or r3 .bit file and firmware and fpga image .bin 
+>> files I use the response when invoking the usrp_image_loader is 
+>> always the same, namely “invalid reply 32 from device”.
+>>
+>> The command uhd_find_devices returns by reporting it can find a usrp2 
+>> device at address 192.168.10.2, as you would hope.
+>>
+>> After trying every conceivable combination of these actions with 
+>> numerous versions of UHD and r2/r3 .bit FPGA files and r2/r3 .bin 
+>> files on several fresh installations of Ubuntu 18.04 and 16.04 the 
+>> result is always the same in that things proceed normally as the 
+>> various documents concerning un-bricking an N210 explains, until the 
+>> step of using the usrp_image_loader is executed, at which point a 
+>> RuntimeError returns stating that the “invalid 32 reply” has occurred.
+>>
+>> I was hopeful that careful use of rev3 .bit and .bin files with UHD 
+>> 3.9.7 would do the trick but alas that is not the case.
+>>
+>> I suspect that you are near the bottom of the list of suggestions for 
+>> me and I do appreciate the time and thinking you have afforded me on 
+>> this issue.  If there is anything remaining to try I’d be most 
+>> willing to try it.
+>>
+>> BTW, the suggestion made by someone earlier to try holding the safe 
+>> button down during the loading of the FPGA from iMPACT causes the 
+>> programming to fail (as reported by iMPACT), so that’s apparently not 
+>> a good thing to do.  But one can recover from that state by simply by 
+>> re-programming with the safe button not held but the fundamental 
+>> problem with the uhd_image_loader step in the unbricking process 
+>> always seems to result.
+>>
+>> Joe
+>>
+>>> On May 10, 2019, at 9:31 AM, Ian Buckley <ian.buckley@gmail.com 
+>>> <mailto:ian.buckley@gmail.com>> wrote:
+>>>
+>>> Joe,
+>>> To save you time, It may well be worth you trying jumping to the 3) 
+>>> step initially and seeing if your current loaded image or safe image 
+>>> is capable of being upgraded …it likely is since that protocol is 
+>>> widely compatible across UHD variants. The key here I have to 
+>>> emphasize (since you appear to have been previously getting stuck 
+>>> with incompatibility between whatever is loaded in the USRP and your 
+>>> host UHD installation) is to be sure your new UHD installation is 
+>>> the only one on your system, and that you have the binary images 
+>>> that are version matched with it…people often get caught out by 
+>>> reminants of various UHD versions installed in various system 
+>>> directories from different install methods.
+>>> -Ian
+>>>
+>>>> On May 10, 2019, at 5:58 AM, Joe Martin via USRP-users 
+>>>> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>
+>>>> Ian,
+>>>>
+>>>> Very good, that’s encouraging at least.  Yes, I am familiar with 
+>>>> using ISE iMPACT to load the FPGA with .bit code and even how to 
+>>>> create the .bit from the associated .bin file and did try doing 
+>>>> that earlier but perhaps not identically to your prescribed steps 
+>>>> below.  I’ll revisit it.  I successfully built UHD 003_009_000 
+>>>> earlier so I can probably also successfully build UHD 003_009_007 
+>>>> too.  I’ll do that and give it a go.  I am familiar with the 
+>>>> documents you mentioned.  Generally things have gone exactly as 
+>>>> described right up until UHD needs to communicate with the stored 
+>>>> images at which point it never does; so far anyway.
+>>>>
+>>>> Thanks much for the additional information.  I’ll certainly hammer 
+>>>> on it some more now that I have a few more pertinent details under 
+>>>> my belt to guide the process appropriately.
+>>>>
+>>>> Joe
+>>>>
+>>>>> On May 10, 2019, at 12:32 AM, Ian Buckley <ian.buckley@gmail.com 
+>>>>> <mailto:ian.buckley@gmail.com>> wrote:
+>>>>>
+>>>>> Joe,
+>>>>> This is generally all good news and somewhat hopeful. The fact you 
+>>>>> can ping 192.168.10.2 in safe mode tell’s you that the FPGA has 
+>>>>> loaded an image from Flash, that it’s passed CRC and booted the 
+>>>>> embedded micro controller on the FPGA and run the firmware that 
+>>>>> replies to ICMP packets…that’s a sign the hardware is in 
+>>>>> reasonable shape, regardless of what actually version of image ins 
+>>>>> currently loaded. If you had the internal UART connected to a 3.3V 
+>>>>> interface you would be seeing the FPGA and FW compatibility 
+>>>>> numbers for this image printed at boot if it got this far.
+>>>>> (Sorry if I’m telling you stuff you know here, too many messages 
+>>>>> in this thread to go reread them)
+>>>>>
+>>>>> You should now refer to these 2 pages:
+>>>>> https://kb.ettus.com/N200/N210_Device_Recovery
+>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load (N-series 
+>>>>> sections, not USRP2)
+>>>>>
+>>>>> The general outline of what to try is as follows:
+>>>>> 1) Start with a relatively modern and stable UHD version: Any 
+>>>>> 3.9.x version is pretty ideal, it’s well supported in Gnuradio, is 
+>>>>> perhaps the most stable, and has N210 support. If you are building 
+>>>>> UHD yourself from GitHub, then checkout the tag “release_003_009_007”.
+>>>>> (Note there is no reason to look for old UHD versions to support 
+>>>>> your H/W, the N210 specific code has changed very little for some 
+>>>>> time, but you will benefit from much improved general UHD 
+>>>>> functionality and much better community support)
+>>>>> 2. (Given you understand how to load a new image via JTAG) Follow 
+>>>>> the procedure outlined in “Unbricking an N Series Device”. Run 
+>>>>> “uhd_images_downloader” under UHD3.9.x to be sure you have a 
+>>>>> compatible set of FPGA images for this version of UHD. Use an R3 
+>>>>> .bit file (Stay away from R4 images since we know that is 
+>>>>> electrically incompatible with your H/W) and load this via JTAG. 
+>>>>> Verify you can ping this once it’s loaded. Remember this is a 
+>>>>> volatile load, no flash has changed yet, if you reset the H/W this 
+>>>>> download is lost. The goal now is to use the embedded firmware in 
+>>>>> this JTAG image to load the same images in .bin format via the 
+>>>>> ethernet network and update both slot’s in the flash memory with 
+>>>>> non-volatile images that load automatically after reset/power cycle.
+>>>>> 3) Follow the instructions in 
+>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load to 
+>>>>> perform the image update via the network. You can also take a peek 
+>>>>> at the settings in your EEPROM (“Recovery process” instructions) 
+>>>>> to verify that all fields are sane and match your case label.
+>>>>> 4) At this point, if all has gone as intended, USRP and UHD should 
+>>>>> be in sync, power cycling H/W should work, and tools like 
+>>>>> “uhd_usrp_probe” should find the USRP and print it’s detailed H/W 
+>>>>> config. There are a few common useful things to check in the 
+>>>>> “Troubleshooting” section if things still don’t seem to have worked.
+>>>>>
+>>>>> -Ian
+>>>>>
+>>>>>
+>>>>>> On May 9, 2019, at 2:48 PM, Joe Martin via USRP-users 
+>>>>>> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> 
+>>>>>> wrote:
+>>>>>>
+>>>>>> Oh, okay, I didn’t get that.  Understood now.  I have UHD 3.14.0 
+>>>>>> running on my main machine so I could try again some newer .bit 
+>>>>>> files into the FPGA than I previously have tried (I tried the 
+>>>>>> current version of UHD and N210 usrp_n210_r4_fpga.bit to no 
+>>>>>> avail) to see if any of them are compatible.  I also was able to 
+>>>>>> build UHD 3.9.0 on a different machine so I can try that too with 
+>>>>>> some of the other .bit files.  Will hold the safe button down 
+>>>>>> while loading the FPGA this time around.
+>>>>>>
+>>>>>> Joe
+>>>>>>
+>>>>>>> On May 9, 2019, at 3:38 PM, Nick Foster <bistromath@gmail.com 
+>>>>>>> <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>
+>>>>>>> I'm saying that you might try to continue the effort to JTAG 
+>>>>>>> load a more modern FPGA image. It's possible you have to hold 
+>>>>>>> down the safe mode button while loading the image.
+>>>>>>>
+>>>>>>> On Thu, May 9, 2019, 2:22 PM Joe Martin <k5so@k5so.com 
+>>>>>>> <mailto:k5so@k5so.com>> wrote:
+>>>>>>>
+>>>>>>>     Thanks for digging into that for us, Nick. Interesting. As
+>>>>>>>     the hardware change to rev4 occurred around mid 2011 and the
+>>>>>>>     earliest UHD version that exists on the files.ettus.com/uhd
+>>>>>>>     <http://files.ettus.com/uhd> page is Feb 2104, what is the
+>>>>>>>     likelihood in your opinion that the UHD version will be
+>>>>>>>     compatible with the rev2/3 hardware from 2011?
+>>>>>>>
+>>>>>>>     So far I’ve not been successful in reviving the 2014 UHD
+>>>>>>>     version so I’m asking to determine whether continued effort
+>>>>>>>     to do so is likely to yield anything positive with respect
+>>>>>>>     to interfacing with the 2011 hardware.
+>>>>>>>
+>>>>>>>     Joe
+>>>>>>>
+>>>>>>>>     On May 9, 2019, at 3:06 PM, Nick Foster
+>>>>>>>>     <bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>
+>>>>>>>>     So I really dug into the old archives here and literally
+>>>>>>>>     pulled an old hard drive out of a closet, and found a copy
+>>>>>>>>     of the old hardware repository from back in the days when
+>>>>>>>>     N210 was called "USRP2+". Best that I can tell, we only
+>>>>>>>>     ever released two versions to the public. We might have
+>>>>>>>>     sold R3 stickered as R2 -- I don't see anything in the
+>>>>>>>>     repository that would indicate otherwise. Rev 2/3 was sold
+>>>>>>>>     until around June or July 2011, when we moved to rev 4. The
+>>>>>>>>     only firmware/host code changes I can see between any of
+>>>>>>>>     the versions are that R4 used LVDS clocking to the
+>>>>>>>>     daughterboard where previous versions used CMOS. So I think
+>>>>>>>>     you should be able to run r3 firmware on your N210.
+>>>>>>>>
+>>>>>>>>     That said, the very very old N210s with very very old
+>>>>>>>>     firmware might not have used the same safe/production
+>>>>>>>>     firmware/fpga image arrangement that we later arrived at.
+>>>>>>>>     The hardware is still fine, but you might be in for a bit
+>>>>>>>>     of a deep dive to get it all running again.
+>>>>>>>>
+>>>>>>>>     If you have a TTL-serial adapter or a logic analyzer that
+>>>>>>>>     works as such, you can connect to the debug UART header and
+>>>>>>>>     get printout information from the firmware at boot time.
+>>>>>>>>     Another good idea would be to take a video of the front
+>>>>>>>>     panel LEDs as you apply power -- the boot LED lights give
+>>>>>>>>     good indication of the firmware/FPGA image loading process.
+>>>>>>>>
+>>>>>>>>     Nick
+>>>>>>>>
+>>>>>>>>     On Thu, May 9, 2019 at 1:42 PM Joe Martin via USRP-users
+>>>>>>>>     <usrp-users@lists.ettus.com
+>>>>>>>>     <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>
+>>>>>>>>         Thanks for the info, Marcus. However, seeing that Jason
+>>>>>>>>         went through this last year with a couple of N210 he
+>>>>>>>>         has it would seem unlikely that all three of the N210
+>>>>>>>>         are broken.  That being said and considering what you
+>>>>>>>>         jus said it seems that I should’ve been able to find
+>>>>>>>>         some version of UHD that will successfully communicate
+>>>>>>>>         with the firmware and fpga images stored in the unit;
+>>>>>>>>          I have not, using UHD versions from 3.9.0 to 3.14.0.
+>>>>>>>>
+>>>>>>>>         I wanted to try with even earlier versions of UHD but
+>>>>>>>>         am finding trouble in utilizing UHD v3.4.0 (earliest
+>>>>>>>>         version I could find) as it seems that “prebuilt”
+>>>>>>>>         v3.4.0 needs only Ubuntu 10.10 or 11.10 which so far
+>>>>>>>>         I’m not able to successfully install and run.   Seems
+>>>>>>>>         we’re running out of option on this one so the Deep
+>>>>>>>>         Space Exploration Society, who I’m trying to help with
+>>>>>>>>         this, may have to come to grasps with the notion that
+>>>>>>>>         their N210 is a true brick.
+>>>>>>>>
+>>>>>>>>         Joe
+>>>>>>>>
+>>>>>>>>>         On May 9, 2019, at 2:23 PM, Marcus D. Leech via
+>>>>>>>>>         USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>
+>>>>>>>>>         On 05/09/2019 04:18 PM, Joe Martin via USRP-users wrote:
+>>>>>>>>>>         Nick, Ian,
+>>>>>>>>>>
+>>>>>>>>>>         If this unit happens to be incorrectly labeled as a
+>>>>>>>>>>         rev 2 N210 and it is actually a rev 3 N210, is there
+>>>>>>>>>>         hope in being able to load rev 3 firmware and fpga
+>>>>>>>>>>         images (which I have located previously and tried
+>>>>>>>>>>         actually) with some available UHD version? If so,
+>>>>>>>>>>         would you be able to tell me which UHD version(s)
+>>>>>>>>>>         might be able to communicate with it?
+>>>>>>>>>>
+>>>>>>>>>>         Joe
+>>>>>>>>>>
+>>>>>>>>>         Theoretically, most versions in the last several years
+>>>>>>>>>         should be able to talk to it.  In *general* UHD never
+>>>>>>>>>         drops support for older hardware,
+>>>>>>>>>           and tries to maintain compatibility. Now, it is the
+>>>>>>>>>         case that newer features are almost never
+>>>>>>>>>         "back-ported", but basic functionality should
+>>>>>>>>>           always be there.
+>>>>>>>>>
+>>>>>>>>>         What this *should* mean is that you should be able to
+>>>>>>>>>         use the firmware tools once the device is in "safe
+>>>>>>>>>         mode" to get yourself to where you
+>>>>>>>>>           want to be. If that doesn't work, that may well mean
+>>>>>>>>>         that the hardware is broken, and it's unlikely to be
+>>>>>>>>>         economical to repair.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>>>         On May 9, 2019, at 2:12 PM, Joe Martin via
+>>>>>>>>>>>         USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>         Okay.  I’ve asserted from the outset that it’s a rev
+>>>>>>>>>>>         2, based on the factory label.  Is this N210 a lost
+>>>>>>>>>>>         cause if it is actually a Rev2 N210?
+>>>>>>>>>>>
+>>>>>>>>>>>         Joe
+>>>>>>>>>>>
+>>>>>>>>>>>>         On May 9, 2019, at 2:05 PM, Nick Foster
+>>>>>>>>>>>>         <bistromath@gmail.com
+>>>>>>>>>>>>         <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>
+>>>>>>>>>>>>         Well, it's not a rev 4. It's either 2 or 3 in terms
+>>>>>>>>>>>>         of hardware revision.
+>>>>>>>>>>>>
+>>>>>>>>>>>>         On Thu, May 9, 2019 at 12:58 PM Joe Martin
+>>>>>>>>>>>>         <k5so@k5so.com <mailto:k5so@k5so.com>> wrote:
+>>>>>>>>>>>>
+>>>>>>>>>>>>             …able to ping 192.168.10.2 successfully.
+>>>>>>>>>>>>
+>>>>>>>>>>>>>             On May 9, 2019, at 1:54 PM, Joe Martin
+>>>>>>>>>>>>>             <k5so@k5so.com <mailto:k5so@k5so.com>> wrote:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>             Ian,
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>             Yes, I have tried many times to boot in safe
+>>>>>>>>>>>>>             mode, same result regardless. Yes, I am able
+>>>>>>>>>>>>>             to pin to 192.168.10.2 successfully.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>             Joe
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             On May 9, 2019, at 1:47 PM, Joe Martin via
+>>>>>>>>>>>>>>             USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>             <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             Ian and Nick,
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             Thanks for the assistance. Attached are
+>>>>>>>>>>>>>>             dropbox links to two snapshot photos:  1) the
+>>>>>>>>>>>>>>             factory label on the back of the N210,
+>>>>>>>>>>>>>>             showing N210 r:2.0 and 2) a top side view of
+>>>>>>>>>>>>>>             the N210.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             1)
+>>>>>>>>>>>>>>             https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0
+>>>>>>>>>>>>>>             2)
+>>>>>>>>>>>>>>             https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             Seems this unit is indeed a rev 2 N210, yes?
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             Joe
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>             On May 9, 2019, at 12:40 PM, Nick Foster
+>>>>>>>>>>>>>>>             <bistromath@gmail.com
+>>>>>>>>>>>>>>>             <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>             Moreover, the best "tell" is to look at the
+>>>>>>>>>>>>>>>             N210 motherboard. If the SRAM chip is on the
+>>>>>>>>>>>>>>>             top side, it's a rev 2/3. If the SRAM is on
+>>>>>>>>>>>>>>>             the bottom side, it's a rev 4. If you send a
+>>>>>>>>>>>>>>>             picture along of the top of the N210, I can
+>>>>>>>>>>>>>>>             tell you if it's early or late rev.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>             On Thu, May 9, 2019 at 11:36 AM Ian Buckley
+>>>>>>>>>>>>>>>             via USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>             <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>                 Joe,
+>>>>>>>>>>>>>>>                 So I scratched my head about this a
+>>>>>>>>>>>>>>>                 little late last night and looked back
+>>>>>>>>>>>>>>>                 through the development repository for
+>>>>>>>>>>>>>>>                 the N210 and as far as I can tell there
+>>>>>>>>>>>>>>>                 was never customer facing FPGA code for
+>>>>>>>>>>>>>>>                 a Rev2 N210. Chatting with Matt
+>>>>>>>>>>>>>>>                 this morning he shared my feeling that a
+>>>>>>>>>>>>>>>                 Rev2 wasn't sold to customers, so I'm
+>>>>>>>>>>>>>>>                 curious if you have a unit that has a
+>>>>>>>>>>>>>>>                 factory label that says N210Rev2 or if
+>>>>>>>>>>>>>>>                 you have seen "usrp2 rev2.0" on the PCB
+>>>>>>>>>>>>>>>                 (which can be missleading).
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>                 Also have you tried booting into the
+>>>>>>>>>>>>>>>                 safe image and verifying that it at
+>>>>>>>>>>>>>>>                 least pings on 192.168.10.2?
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>                 If we can conclusively identify which
+>>>>>>>>>>>>>>>                 rev of h/w you have I can probably help
+>>>>>>>>>>>>>>>                 further.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>                 Ian
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             _______________________________________________
+>>>>>>>>>>>>>>             USRP-users mailing list
+>>>>>>>>>>>>>>             USRP-users@lists.ettus.com
+>>>>>>>>>>>>>>             <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>>>>>>             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>         _______________________________________________
+>>>>>>>>>>>         USRP-users mailing list
+>>>>>>>>>>>         USRP-users@lists.ettus.com
+>>>>>>>>>>>         <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>>         _______________________________________________
+>>>>>>>>>>         USRP-users mailing list
+>>>>>>>>>>         USRP-users@lists.ettus.com  <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>
+>>>>>>>>>         _______________________________________________
+>>>>>>>>>         USRP-users mailing list
+>>>>>>>>>         USRP-users@lists.ettus.com
+>>>>>>>>>         <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>
+>>>>>>>>         _______________________________________________
+>>>>>>>>         USRP-users mailing list
+>>>>>>>>         USRP-users@lists.ettus.com
+>>>>>>>>         <mailto:USRP-users@lists.ettus.com>
+>>>>>>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>
+>>>>>>>
+>>>>>>
+>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list
+>>>>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>
+>>>>
+>>>> _______________________________________________
+>>>> USRP-users mailing list
+>>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
+>>
+>>> On May 10, 2019, at 9:31 AM, Ian Buckley <ian.buckley@gmail.com 
+>>> <mailto:ian.buckley@gmail.com>> wrote:
+>>>
+>>> Joe,
+>>> To save you time, It may well be worth you trying jumping to the 3) 
+>>> step initially and seeing if your current loaded image or safe image 
+>>> is capable of being upgraded …it likely is since that protocol is 
+>>> widely compatible across UHD variants. The key here I have to 
+>>> emphasize (since you appear to have been previously getting stuck 
+>>> with incompatibility between whatever is loaded in the USRP and your 
+>>> host UHD installation) is to be sure your new UHD installation is 
+>>> the only one on your system, and that you have the binary images 
+>>> that are version matched with it…people often get caught out by 
+>>> reminants of various UHD versions installed in various system 
+>>> directories from different install methods.
+>>> -Ian
+>>>
+>>>> On May 10, 2019, at 5:58 AM, Joe Martin via USRP-users 
+>>>> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>
+>>>> Ian,
+>>>>
+>>>> Very good, that’s encouraging at least.  Yes, I am familiar with 
+>>>> using ISE iMPACT to load the FPGA with .bit code and even how to 
+>>>> create the .bit from the associated .bin file and did try doing 
+>>>> that earlier but perhaps not identically to your prescribed steps 
+>>>> below.  I’ll revisit it.  I successfully built UHD 003_009_000 
+>>>> earlier so I can probably also successfully build UHD 003_009_007 
+>>>> too.  I’ll do that and give it a go.  I am familiar with the 
+>>>> documents you mentioned.  Generally things have gone exactly as 
+>>>> described right up until UHD needs to communicate with the stored 
+>>>> images at which point it never does; so far anyway.
+>>>>
+>>>> Thanks much for the additional information.  I’ll certainly hammer 
+>>>> on it some more now that I have a few more pertinent details under 
+>>>> my belt to guide the process appropriately.
+>>>>
+>>>> Joe
+>>>>
+>>>>> On May 10, 2019, at 12:32 AM, Ian Buckley <ian.buckley@gmail.com 
+>>>>> <mailto:ian.buckley@gmail.com>> wrote:
+>>>>>
+>>>>> Joe,
+>>>>> This is generally all good news and somewhat hopeful. The fact you 
+>>>>> can ping 192.168.10.2 in safe mode tell’s you that the FPGA has 
+>>>>> loaded an image from Flash, that it’s passed CRC and booted the 
+>>>>> embedded micro controller on the FPGA and run the firmware that 
+>>>>> replies to ICMP packets…that’s a sign the hardware is in 
+>>>>> reasonable shape, regardless of what actually version of image ins 
+>>>>> currently loaded. If you had the internal UART connected to a 3.3V 
+>>>>> interface you would be seeing the FPGA and FW compatibility 
+>>>>> numbers for this image printed at boot if it got this far.
+>>>>> (Sorry if I’m telling you stuff you know here, too many messages 
+>>>>> in this thread to go reread them)
+>>>>>
+>>>>> You should now refer to these 2 pages:
+>>>>> https://kb.ettus.com/N200/N210_Device_Recovery
+>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load (N-series 
+>>>>> sections, not USRP2)
+>>>>>
+>>>>> The general outline of what to try is as follows:
+>>>>> 1) Start with a relatively modern and stable UHD version: Any 
+>>>>> 3.9.x version is pretty ideal, it’s well supported in Gnuradio, is 
+>>>>> perhaps the most stable, and has N210 support. If you are building 
+>>>>> UHD yourself from GitHub, then checkout the tag “release_003_009_007”.
+>>>>> (Note there is no reason to look for old UHD versions to support 
+>>>>> your H/W, the N210 specific code has changed very little for some 
+>>>>> time, but you will benefit from much improved general UHD 
+>>>>> functionality and much better community support)
+>>>>> 2. (Given you understand how to load a new image via JTAG) Follow 
+>>>>> the procedure outlined in “Unbricking an N Series Device”. Run 
+>>>>> “uhd_images_downloader” under UHD3.9.x to be sure you have a 
+>>>>> compatible set of FPGA images for this version of UHD. Use an R3 
+>>>>> .bit file (Stay away from R4 images since we know that is 
+>>>>> electrically incompatible with your H/W) and load this via JTAG. 
+>>>>> Verify you can ping this once it’s loaded. Remember this is a 
+>>>>> volatile load, no flash has changed yet, if you reset the H/W this 
+>>>>> download is lost. The goal now is to use the embedded firmware in 
+>>>>> this JTAG image to load the same images in .bin format via the 
+>>>>> ethernet network and update both slot’s in the flash memory with 
+>>>>> non-volatile images that load automatically after reset/power cycle.
+>>>>> 3) Follow the instructions in 
+>>>>> http://files.ettus.com/manual/page_usrp2.html#usrp2_load to 
+>>>>> perform the image update via the network. You can also take a peek 
+>>>>> at the settings in your EEPROM (“Recovery process” instructions) 
+>>>>> to verify that all fields are sane and match your case label.
+>>>>> 4) At this point, if all has gone as intended, USRP and UHD should 
+>>>>> be in sync, power cycling H/W should work, and tools like 
+>>>>> “uhd_usrp_probe” should find the USRP and print it’s detailed H/W 
+>>>>> config. There are a few common useful things to check in the 
+>>>>> “Troubleshooting” section if things still don’t seem to have worked.
+>>>>>
+>>>>> -Ian
+>>>>>
+>>>>>
+>>>>>> On May 9, 2019, at 2:48 PM, Joe Martin via USRP-users 
+>>>>>> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> 
+>>>>>> wrote:
+>>>>>>
+>>>>>> Oh, okay, I didn’t get that.  Understood now.  I have UHD 3.14.0 
+>>>>>> running on my main machine so I could try again some newer .bit 
+>>>>>> files into the FPGA than I previously have tried (I tried the 
+>>>>>> current version of UHD and N210 usrp_n210_r4_fpga.bit to no 
+>>>>>> avail) to see if any of them are compatible.  I also was able to 
+>>>>>> build UHD 3.9.0 on a different machine so I can try that too with 
+>>>>>> some of the other .bit files.  Will hold the safe button down 
+>>>>>> while loading the FPGA this time around.
+>>>>>>
+>>>>>> Joe
+>>>>>>
+>>>>>>> On May 9, 2019, at 3:38 PM, Nick Foster <bistromath@gmail.com 
+>>>>>>> <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>
+>>>>>>> I'm saying that you might try to continue the effort to JTAG 
+>>>>>>> load a more modern FPGA image. It's possible you have to hold 
+>>>>>>> down the safe mode button while loading the image.
+>>>>>>>
+>>>>>>> On Thu, May 9, 2019, 2:22 PM Joe Martin <k5so@k5so.com 
+>>>>>>> <mailto:k5so@k5so.com>> wrote:
+>>>>>>>
+>>>>>>>     Thanks for digging into that for us, Nick. Interesting. As
+>>>>>>>     the hardware change to rev4 occurred around mid 2011 and the
+>>>>>>>     earliest UHD version that exists on the files.ettus.com/uhd
+>>>>>>>     <http://files.ettus.com/uhd> page is Feb 2104, what is the
+>>>>>>>     likelihood in your opinion that the UHD version will be
+>>>>>>>     compatible with the rev2/3 hardware from 2011?
+>>>>>>>
+>>>>>>>     So far I’ve not been successful in reviving the 2014 UHD
+>>>>>>>     version so I’m asking to determine whether continued effort
+>>>>>>>     to do so is likely to yield anything positive with respect
+>>>>>>>     to interfacing with the 2011 hardware.
+>>>>>>>
+>>>>>>>     Joe
+>>>>>>>
+>>>>>>>>     On May 9, 2019, at 3:06 PM, Nick Foster
+>>>>>>>>     <bistromath@gmail.com <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>
+>>>>>>>>     So I really dug into the old archives here and literally
+>>>>>>>>     pulled an old hard drive out of a closet, and found a copy
+>>>>>>>>     of the old hardware repository from back in the days when
+>>>>>>>>     N210 was called "USRP2+". Best that I can tell, we only
+>>>>>>>>     ever released two versions to the public. We might have
+>>>>>>>>     sold R3 stickered as R2 -- I don't see anything in the
+>>>>>>>>     repository that would indicate otherwise. Rev 2/3 was sold
+>>>>>>>>     until around June or July 2011, when we moved to rev 4. The
+>>>>>>>>     only firmware/host code changes I can see between any of
+>>>>>>>>     the versions are that R4 used LVDS clocking to the
+>>>>>>>>     daughterboard where previous versions used CMOS. So I think
+>>>>>>>>     you should be able to run r3 firmware on your N210.
+>>>>>>>>
+>>>>>>>>     That said, the very very old N210s with very very old
+>>>>>>>>     firmware might not have used the same safe/production
+>>>>>>>>     firmware/fpga image arrangement that we later arrived at.
+>>>>>>>>     The hardware is still fine, but you might be in for a bit
+>>>>>>>>     of a deep dive to get it all running again.
+>>>>>>>>
+>>>>>>>>     If you have a TTL-serial adapter or a logic analyzer that
+>>>>>>>>     works as such, you can connect to the debug UART header and
+>>>>>>>>     get printout information from the firmware at boot time.
+>>>>>>>>     Another good idea would be to take a video of the front
+>>>>>>>>     panel LEDs as you apply power -- the boot LED lights give
+>>>>>>>>     good indication of the firmware/FPGA image loading process.
+>>>>>>>>
+>>>>>>>>     Nick
+>>>>>>>>
+>>>>>>>>     On Thu, May 9, 2019 at 1:42 PM Joe Martin via USRP-users
+>>>>>>>>     <usrp-users@lists.ettus.com
+>>>>>>>>     <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>
+>>>>>>>>         Thanks for the info, Marcus. However, seeing that Jason
+>>>>>>>>         went through this last year with a couple of N210 he
+>>>>>>>>         has it would seem unlikely that all three of the N210
+>>>>>>>>         are broken.  That being said and considering what you
+>>>>>>>>         jus said it seems that I should’ve been able to find
+>>>>>>>>         some version of UHD that will successfully communicate
+>>>>>>>>         with the firmware and fpga images stored in the unit;
+>>>>>>>>          I have not, using UHD versions from 3.9.0 to 3.14.0.
+>>>>>>>>
+>>>>>>>>         I wanted to try with even earlier versions of UHD but
+>>>>>>>>         am finding trouble in utilizing UHD v3.4.0 (earliest
+>>>>>>>>         version I could find) as it seems that “prebuilt”
+>>>>>>>>         v3.4.0 needs only Ubuntu 10.10 or 11.10 which so far
+>>>>>>>>         I’m not able to successfully install and run.   Seems
+>>>>>>>>         we’re running out of option on this one so the Deep
+>>>>>>>>         Space Exploration Society, who I’m trying to help with
+>>>>>>>>         this, may have to come to grasps with the notion that
+>>>>>>>>         their N210 is a true brick.
+>>>>>>>>
+>>>>>>>>         Joe
+>>>>>>>>
+>>>>>>>>>         On May 9, 2019, at 2:23 PM, Marcus D. Leech via
+>>>>>>>>>         USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>
+>>>>>>>>>         On 05/09/2019 04:18 PM, Joe Martin via USRP-users wrote:
+>>>>>>>>>>         Nick, Ian,
+>>>>>>>>>>
+>>>>>>>>>>         If this unit happens to be incorrectly labeled as a
+>>>>>>>>>>         rev 2 N210 and it is actually a rev 3 N210, is there
+>>>>>>>>>>         hope in being able to load rev 3 firmware and fpga
+>>>>>>>>>>         images (which I have located previously and tried
+>>>>>>>>>>         actually) with some available UHD version? If so,
+>>>>>>>>>>         would you be able to tell me which UHD version(s)
+>>>>>>>>>>         might be able to communicate with it?
+>>>>>>>>>>
+>>>>>>>>>>         Joe
+>>>>>>>>>>
+>>>>>>>>>         Theoretically, most versions in the last several years
+>>>>>>>>>         should be able to talk to it.  In *general* UHD never
+>>>>>>>>>         drops support for older hardware,
+>>>>>>>>>           and tries to maintain compatibility. Now, it is the
+>>>>>>>>>         case that newer features are almost never
+>>>>>>>>>         "back-ported", but basic functionality should
+>>>>>>>>>           always be there.
+>>>>>>>>>
+>>>>>>>>>         What this *should* mean is that you should be able to
+>>>>>>>>>         use the firmware tools once the device is in "safe
+>>>>>>>>>         mode" to get yourself to where you
+>>>>>>>>>           want to be. If that doesn't work, that may well mean
+>>>>>>>>>         that the hardware is broken, and it's unlikely to be
+>>>>>>>>>         economical to repair.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>>>         On May 9, 2019, at 2:12 PM, Joe Martin via
+>>>>>>>>>>>         USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>         Okay.  I’ve asserted from the outset that it’s a rev
+>>>>>>>>>>>         2, based on the factory label.  Is this N210 a lost
+>>>>>>>>>>>         cause if it is actually a Rev2 N210?
+>>>>>>>>>>>
+>>>>>>>>>>>         Joe
+>>>>>>>>>>>
+>>>>>>>>>>>>         On May 9, 2019, at 2:05 PM, Nick Foster
+>>>>>>>>>>>>         <bistromath@gmail.com
+>>>>>>>>>>>>         <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>
+>>>>>>>>>>>>         Well, it's not a rev 4. It's either 2 or 3 in terms
+>>>>>>>>>>>>         of hardware revision.
+>>>>>>>>>>>>
+>>>>>>>>>>>>         On Thu, May 9, 2019 at 12:58 PM Joe Martin
+>>>>>>>>>>>>         <k5so@k5so.com <mailto:k5so@k5so.com>> wrote:
+>>>>>>>>>>>>
+>>>>>>>>>>>>             …able to ping 192.168.10.2 successfully.
+>>>>>>>>>>>>
+>>>>>>>>>>>>>             On May 9, 2019, at 1:54 PM, Joe Martin
+>>>>>>>>>>>>>             <k5so@k5so.com <mailto:k5so@k5so.com>> wrote:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>             Ian,
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>             Yes, I have tried many times to boot in safe
+>>>>>>>>>>>>>             mode, same result regardless. Yes, I am able
+>>>>>>>>>>>>>             to pin to 192.168.10.2 successfully.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>             Joe
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             On May 9, 2019, at 1:47 PM, Joe Martin via
+>>>>>>>>>>>>>>             USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>             <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             Ian and Nick,
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             Thanks for the assistance. Attached are
+>>>>>>>>>>>>>>             dropbox links to two snapshot photos:  1) the
+>>>>>>>>>>>>>>             factory label on the back of the N210,
+>>>>>>>>>>>>>>             showing N210 r:2.0 and 2) a top side view of
+>>>>>>>>>>>>>>             the N210.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             1)
+>>>>>>>>>>>>>>             https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0
+>>>>>>>>>>>>>>             2)
+>>>>>>>>>>>>>>             https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             Seems this unit is indeed a rev 2 N210, yes?
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>             Joe
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>             On May 9, 2019, at 12:40 PM, Nick Foster
+>>>>>>>>>>>>>>>             <bistromath@gmail.com
+>>>>>>>>>>>>>>>             <mailto:bistromath@gmail.com>> wrote:
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>             Moreover, the best "tell" is to look at the
+>>>>>>>>>>>>>>>             N210 motherboard. If the SRAM chip is on the
+>>>>>>>>>>>>>>>             top side, it's a rev 2/3. If the SRAM is on
+>>>>>>>>>>>>>>>             the bottom side, it's a rev 4. If you send a
+>>>>>>>>>>>>>>>             picture along of the top of the N210, I can
+>>>>>>>>>>>>>>>             tell you if it's early or late rev.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>             On Thu, May 9, 2019 at 11:36 AM Ian Buckley
+>>>>>>>>>>>>>>>             via USRP-users <usrp-users@lists.ettus.com
+>>>>>>>>>>>>>>>             <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>                 Joe,
+>>>>>>>>>>>>>>>                 So I scratched my head about this a
+>>>>>>>>>>>>>>>                 little late last night and looked back
+>>>>>>>>>>>>>>>                 through the development repository for
+>>>>>>>>>>>>>>>                 the N210 and as far as I can tell there
+>>>>>>>>>>>>>>>                 was never customer facing FPGA code for
+>>>>>>>>>>>>>>>                 a Rev2 N210. Chatting with Matt
+>>>>>>>>>>>>>>>                 this morning he shared my feeling that a
+>>>>>>>>>>>>>>>                 Rev2 wasn't sold to customers, so I'm
+>>>>>>>>>>>>>>>                 curious if you have a unit that has a
+>>>>>>>>>>>>>>>                 factory label that says N210Rev2 or if
+>>>>>>>>>>>>>>>                 you have seen "usrp2 rev2.0" on the PCB
+>>>>>>>>>>>>>>>                 (which can be missleading).
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>                 Also have you tried booting into the
+>>>>>>>>>>>>>>>                 safe image and verifying that it at
+>>>>>>>>>>>>>>>                 least pings on 192.168.10.2?
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>                 If we can conclusively identify which
+>>>>>>>>>>>>>>>                 rev of h/w you have I can probably help
+>>>>>>>>>>>>>>>                 further.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>                 Ian
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+--------------030708010904070609020100
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 05/10/2019 07:53 PM, Joe Martin via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote cite="mid:365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      Holy smoke!  SUCCESS!!  Nick pointed out that there are two
+      switches on the N210; S1 and S2 and S1 is a reset, so an upload of
+      FPGA code fails if that is held (which I was holding for his
+      suggested test!).  Holding S2 during iMPACT loading of the .bit
+      image results in the uhd_image_loader step being SUCCESSFUL!!  I
+      am so happy to see that!  Uhd_usrp_probe works wonderfully.
+       Finally.  We now can put this little to work doing some tough
+      things!  
+      <div class=""><br class="">
+      </div>
+      <div class="">Thank you all SO MUCH for your assistance with
+        reviving this N210.  A monumental achievement in my book!   I
+        don’t know what to say except that we TOTALLY appreciate you
+        efforts to get us running.  You guys are GREAT! </div>
+      <div class=""><br class="">
+      </div>
+      <div class="">Very best wishes to you each and every one!   </div>
+      <div class=""><br class="">
+      </div>
+      <div class="">Joe<br class="">
+      </div>
+    </blockquote>
+    I think Nick deserves most of the credit--he was in Ettus R&amp;D
+    during the N210 development days.<br>
+    <br>
+    Hopefully DSES will now have a receiver -- what daughtercard do they
+    have in it?<br>
+    <br>
+    <br>
+    <blockquote cite="mid:365E5ED3-897E-402B-B5BA-D8F9A217B3EF@k5so.com"
+      type="cite">
+      <div class="">
+        <div>
+          <blockquote type="cite" class="">
+            <div class="">On May 10, 2019, at 5:30 PM, Joe Martin via
+              USRP-users &lt;<a moz-do-not-send="true"
+                href="mailto:usrp-users@lists.ettus.com" class="">usrp-users@lists.ettus.com</a>&gt;
+              wrote:</div>
+            <br class="Apple-interchange-newline">
+            <div class="">
+              <meta http-equiv="Content-Type" content="text/html;
+                charset=windows-1252" class="">
+              <div style="word-wrap: break-word; -webkit-nbsp-mode:
+                space; line-break: after-white-space;" class="">Ian and
+                all, 
+                <div class=""><br class="">
+                </div>
+                <div class="">I have been very careful to avoid the
+                  pitfalls you detailed.  I began with a fresh
+                  installation of Ubuntu 18.04 then performed a
+                  successful build of UHD 3.9.7, then used command:</div>
+                <div class=""><br class="">
+                </div>
+                <div class="">uhd_images_downloader</div>
+                <div class=""><br class="">
+                </div>
+                <div class="">to load the appropriate/associated images
+                  into the PC. </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">Then used ISE iMPACT to load the
+                  “usrp_n210_r3_fpga.bit” file into the FPGA of the
+                  N210.  iMPACT reports “PROGRAM SUCCESSFUL”. </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">Then without power cycling the N210 used
+                  the command: </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">usrp_image_loader
+                  —args=“type=usrp2,addr=192.168.10.2,overwrite-safe”
+                  —fw-path=/usr/local/share/uhd/images/usrp_n210_fw.bin
+—fpga-path=/usr/local/share/uhd/images/usrp_n210_r3_fpga.bin</div>
+                <div class=""><br class="">
+                </div>
+                <div class="">To load the non-volatile memory of the
+                  N210 but I always get the “RuntimeError: Received
+                  invalid 32 reply from device” error when running
+                  usrp_image_loader. </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">I am able to successfully ping
+                  192.168.10.2 but no matter what combinations of r2 or
+                  r3 .bit file and firmware and fpga image .bin files I
+                  use the response when invoking the usrp_image_loader
+                  is always the same, namely “invalid reply 32 from
+                  device”.  </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">The command uhd_find_devices returns by
+                  reporting it can find a usrp2 device at address
+                  192.168.10.2, as you would hope.  </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">After trying every conceivable combination
+                  of these actions with numerous versions of UHD and
+                  r2/r3 .bit FPGA files and r2/r3 .bin files on several
+                  fresh installations of Ubuntu 18.04 and 16.04 the
+                  result is always the same in that things proceed
+                  normally as the various documents concerning
+                  un-bricking an N210 explains, until the step of using
+                  the usrp_image_loader is executed, at which point a
+                  RuntimeError returns stating that the “invalid 32
+                  reply” has occurred.  </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">I was hopeful that careful use of rev3
+                  .bit and .bin files with UHD 3.9.7 would do the trick
+                  but alas that is not the case.  </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">I suspect that you are near the bottom of
+                  the list of suggestions for me and I do appreciate the
+                  time and thinking you have afforded me on this issue.
+                   If there is anything remaining to try I’d be most
+                  willing to try it. </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">BTW, the suggestion made by someone
+                  earlier to try holding the safe button down during the
+                  loading of the FPGA from iMPACT causes the programming
+                  to fail (as reported by iMPACT), so that’s apparently
+                  not a good thing to do.  But one can recover from that
+                  state by simply by re-programming with the safe button
+                  not held but the fundamental problem with the
+                  uhd_image_loader step in the unbricking process always
+                  seems to result. </div>
+                <div class=""><br class="">
+                </div>
+                <div class="">Joe</div>
+                <div class=""><br class="">
+                </div>
+                <div class="">
+                  <div class="">
+                    <blockquote type="cite" class="">
+                      <div class="">On May 10, 2019, at 9:31 AM, Ian
+                        Buckley &lt;<a moz-do-not-send="true"
+                          href="mailto:ian.buckley@gmail.com" class="">ian.buckley@gmail.com</a>&gt;
+                        wrote:</div>
+                      <br class="Apple-interchange-newline">
+                      <div class="">
+                        <div class="" style="word-wrap: break-word;
+                          -webkit-nbsp-mode: space; line-break:
+                          after-white-space;">Joe, 
+                          <div class="">To save you time, It may well be
+                            worth you trying jumping to the 3) step
+                            initially and seeing if your current loaded
+                            image or safe image is capable of being
+                            upgraded …it likely is since that protocol
+                            is widely compatible across UHD variants.
+                            The key here I have to emphasize (since you
+                            appear to have been previously getting stuck
+                            with incompatibility between whatever is
+                            loaded in the USRP and your host UHD
+                            installation) is to be sure your new UHD
+                            installation is the only one on your system,
+                            and that you have the binary images that are
+                            version matched with it…people often get
+                            caught out by reminants of various UHD
+                            versions installed in various system
+                            directories from different install methods.</div>
+                          <div class="">-Ian</div>
+                          <div class=""><br class="">
+                            <div class="">
+                              <blockquote type="cite" class="">
+                                <div class="">On May 10, 2019, at 5:58
+                                  AM, Joe Martin via USRP-users &lt;<a
+                                    moz-do-not-send="true"
+                                    href="mailto:usrp-users@lists.ettus.com"
+                                    class="">usrp-users@lists.ettus.com</a>&gt;
+                                  wrote:</div>
+                                <br class="Apple-interchange-newline">
+                                <div class="">
+                                  <div class="" style="word-wrap:
+                                    break-word; -webkit-nbsp-mode:
+                                    space; line-break:
+                                    after-white-space;">Ian, 
+                                    <div class=""><br class="">
+                                    </div>
+                                    <div class="">Very good, that’s
+                                      encouraging at least.  Yes, I am
+                                      familiar with using ISE iMPACT to
+                                      load the FPGA with .bit code and
+                                      even how to create the .bit from
+                                      the associated .bin file and did
+                                      try doing that earlier but perhaps
+                                      not identically to your prescribed
+                                      steps below.  I’ll revisit it.  I
+                                      successfully built UHD 003_009_000
+                                      earlier so I can probably also
+                                      successfully build UHD 003_009_007
+                                      too.  I’ll do that and give it a
+                                      go.  I am familiar with the
+                                      documents you mentioned.
+                                       Generally things have gone
+                                      exactly as described right up
+                                      until UHD needs to communicate
+                                      with the stored images at which
+                                      point it never does; so far
+                                      anyway.</div>
+                                    <div class=""><br class="">
+                                    </div>
+                                    <div class="">Thanks much for the
+                                      additional information.  I’ll
+                                      certainly hammer on it some more
+                                      now that I have a few more
+                                      pertinent details under my belt to
+                                      guide the process appropriately. </div>
+                                    <div class=""><br class="">
+                                    </div>
+                                    <div class="">Joe<br class="">
+                                      <div class=""><br class="">
+                                        <blockquote type="cite" class="">
+                                          <div class="">On May 10, 2019,
+                                            at 12:32 AM, Ian Buckley
+                                            &lt;<a
+                                              moz-do-not-send="true"
+                                              href="mailto:ian.buckley@gmail.com"
+                                              class="">ian.buckley@gmail.com</a>&gt;
+                                            wrote:</div>
+                                          <br
+                                            class="Apple-interchange-newline">
+                                          <div class="">
+                                            <div class=""
+                                              style="word-wrap:
+                                              break-word;
+                                              -webkit-nbsp-mode: space;
+                                              line-break:
+                                              after-white-space;">Joe, 
+                                              <div class="">This is
+                                                generally all good news
+                                                and somewhat hopeful.
+                                                The fact you can ping
+                                                192.168.10.2 in safe
+                                                mode tell’s you that the
+                                                FPGA has loaded an image
+                                                from Flash, that it’s
+                                                passed CRC and booted
+                                                the embedded micro
+                                                controller on the FPGA
+                                                and run the firmware
+                                                that replies to ICMP
+                                                packets…that’s a sign
+                                                the hardware is in
+                                                reasonable shape,
+                                                regardless of what
+                                                actually version of
+                                                image ins currently
+                                                loaded. If you had the
+                                                internal UART connected
+                                                to a 3.3V interface you
+                                                would be seeing the FPGA
+                                                and FW compatibility
+                                                numbers for this image
+                                                printed at boot if it
+                                                got this far.</div>
+                                              <div class="">(Sorry if
+                                                I’m telling you stuff
+                                                you know here, too many
+                                                messages in this thread
+                                                to go reread them)</div>
+                                              <div class=""><br class="">
+                                              </div>
+                                              <div class="">You should
+                                                now refer to these 2
+                                                pages:</div>
+                                              <div class=""><a
+                                                  moz-do-not-send="true"
+href="https://kb.ettus.com/N200/N210_Device_Recovery" class="">https://kb.ettus.com/N200/N210_Device_Recovery</a></div>
+                                              <div class=""><a
+                                                  moz-do-not-send="true"
+href="http://files.ettus.com/manual/page_usrp2.html#usrp2_load" class="">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a> (N-series
+                                                sections, not USRP2)</div>
+                                              <div class=""><br class="">
+                                              </div>
+                                              <div class="">The general
+                                                outline of what to try
+                                                is as follows:</div>
+                                              <div class="">1) Start
+                                                with a relatively modern
+                                                and stable UHD version:
+                                                Any 3.9.x version is
+                                                pretty ideal, it’s well
+                                                supported in Gnuradio,
+                                                is perhaps the most
+                                                stable, and has N210
+                                                support. If you are
+                                                building UHD yourself
+                                                from GitHub, then
+                                                checkout the tag
+                                                “release_003_009_007”.</div>
+                                              <div class="">(Note there
+                                                is no reason to look for
+                                                old UHD versions to
+                                                support your H/W, the
+                                                N210 specific code has
+                                                changed very little for
+                                                some time, but you will
+                                                benefit from much
+                                                improved general UHD
+                                                functionality and much
+                                                better community
+                                                support)</div>
+                                              <div class="">2. (Given
+                                                you understand how to
+                                                load a new image via
+                                                JTAG) Follow the
+                                                procedure outlined in
+                                                “Unbricking an N Series
+                                                Device”. Run
+                                                “uhd_images_downloader”
+                                                under UHD3.9.x to be
+                                                sure you have a
+                                                compatible set of FPGA
+                                                images for this version
+                                                of UHD. Use an R3 .bit
+                                                file (Stay away from R4
+                                                images since we know
+                                                that is electrically
+                                                incompatible with your
+                                                H/W) and load this via
+                                                JTAG. Verify you can
+                                                ping this once it’s
+                                                loaded. Remember this is
+                                                a volatile load, no
+                                                flash has changed yet,
+                                                if you reset the H/W
+                                                this download is lost.
+                                                The goal now is to use
+                                                the embedded firmware in
+                                                this JTAG image to load
+                                                the same images in .bin
+                                                format via the ethernet
+                                                network and update both
+                                                slot’s in the flash
+                                                memory with non-volatile
+                                                images that load
+                                                automatically after
+                                                reset/power cycle.</div>
+                                              <div class="">3) Follow
+                                                the instructions in <a
+                                                  moz-do-not-send="true"
+href="http://files.ettus.com/manual/page_usrp2.html#usrp2_load" class="">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a> to
+                                                perform the image update
+                                                via the network. You can
+                                                also take a peek at the
+                                                settings in your EEPROM
+                                                (“Recovery process”
+                                                instructions) to verify
+                                                that all fields are sane
+                                                and match your case
+                                                label.</div>
+                                              <div class="">4) At this
+                                                point, if all has gone
+                                                as intended, USRP and
+                                                UHD should be in sync,
+                                                power cycling H/W should
+                                                work, and tools like
+                                                “uhd_usrp_probe” should
+                                                find the USRP and print
+                                                it’s detailed H/W
+                                                config. There are a few
+                                                common useful things to
+                                                check in the
+                                                “Troubleshooting”
+                                                section if things still
+                                                don’t seem to have
+                                                worked.</div>
+                                              <div class=""><br class="">
+                                              </div>
+                                              <div class="">-Ian</div>
+                                              <div class=""><br class="">
+                                              </div>
+                                              <div class=""><br class="">
+                                              </div>
+                                              <div class="">
+                                                <div class="">
+                                                  <blockquote
+                                                    type="cite" class="">
+                                                    <div class="">On May
+                                                      9, 2019, at 2:48
+                                                      PM, Joe Martin via
+                                                      USRP-users &lt;<a
+moz-do-not-send="true" href="mailto:usrp-users@lists.ettus.com" class="">usrp-users@lists.ettus.com</a>&gt;
+                                                      wrote:</div>
+                                                    <br
+                                                      class="Apple-interchange-newline">
+                                                    <div class="">
+                                                      <div class=""
+                                                        style="word-wrap:
+                                                        break-word;
+                                                        -webkit-nbsp-mode:
+                                                        space;
+                                                        line-break:
+                                                        after-white-space;">Oh,
+                                                        okay, I didn’t
+                                                        get that.
+                                                         Understood now.
+                                                         I have UHD
+                                                        3.14.0 running
+                                                        on my main
+                                                        machine so I
+                                                        could try again
+                                                        some newer .bit
+                                                        files into the
+                                                        FPGA than I
+                                                        previously have
+                                                        tried (I tried
+                                                        the current
+                                                        version of UHD
+                                                        and N210
+                                                        usrp_n210_r4_fpga.bit
+                                                        to no avail) to
+                                                        see if any of
+                                                        them are
+                                                        compatible.  I
+                                                        also was able to
+                                                        build UHD 3.9.0
+                                                        on a different
+                                                        machine so I can
+                                                        try that too
+                                                        with some of the
+                                                        other .bit
+                                                        files.  Will
+                                                        hold the safe
+                                                        button down
+                                                        while loading
+                                                        the FPGA this
+                                                        time around.  
+                                                        <div class=""><br
+                                                          class="">
+                                                        </div>
+                                                        <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 3:38 PM,
+                                                          Nick Foster
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" class="">bistromath@gmail.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div
+                                                          dir="auto"
+                                                          class="">I'm
+                                                          saying that
+                                                          you might try
+                                                          to continue
+                                                          the effort to
+                                                          JTAG load a
+                                                          more modern
+                                                          FPGA image.
+                                                          It's possible
+                                                          you have to
+                                                          hold down the
+                                                          safe mode
+                                                          button while
+                                                          loading the
+                                                          image. </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019, 2:22 PM Joe Martin &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" class="">k5so@k5so.com</a>&gt; wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:
+                                                          0px 0px 0px
+                                                          0.8ex;
+                                                          border-left-width:
+                                                          1px;
+                                                          border-left-style:
+                                                          solid;
+                                                          border-left-color:
+                                                          rgb(204, 204,
+                                                          204);
+                                                          padding-left:
+                                                          1ex;">
+                                                          <div class=""
+                                                          style="word-wrap:
+                                                          break-word;
+                                                          line-break:
+                                                          after-white-space;">Thanks
+                                                          for digging
+                                                          into that for
+                                                          us, Nick. 
+                                                          Interesting. 
+                                                          As the
+                                                          hardware
+                                                          change to rev4
+                                                          occurred
+                                                          around mid
+                                                          2011 and the
+                                                          earliest UHD
+                                                          version that
+                                                          exists on the <a
+moz-do-not-send="true" href="http://files.ettus.com/uhd" target="_blank"
+rel="noreferrer" class="">files.ettus.com/uhd</a> page is Feb 2104, what
+                                                          is the
+                                                          likelihood in
+                                                          your opinion
+                                                          that the UHD
+                                                          version will
+                                                          be compatible
+                                                          with the
+                                                          rev2/3
+                                                          hardware from
+                                                          2011?   
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">So
+                                                          far I’ve not
+                                                          been
+                                                          successful in
+                                                          reviving the
+                                                          2014 UHD
+                                                          version so I’m
+                                                          asking to
+                                                          determine
+                                                          whether
+                                                          continued
+                                                          effort to do
+                                                          so is likely
+                                                          to yield
+                                                          anything
+                                                          positive with
+                                                          respect to
+                                                          interfacing
+                                                          with the 2011
+                                                          hardware.  </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 3:06 PM,
+                                                          Nick Foster
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+                                                          class="m_3343428221959612084Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">
+                                                          <div class="">So
+                                                          I really dug
+                                                          into the old
+                                                          archives here
+                                                          and literally
+                                                          pulled an old
+                                                          hard drive out
+                                                          of a closet,
+                                                          and found a
+                                                          copy of the
+                                                          old hardware
+                                                          repository
+                                                          from back in
+                                                          the days when
+                                                          N210 was
+                                                          called
+                                                          "USRP2+". Best
+                                                          that I can
+                                                          tell, we only
+                                                          ever released
+                                                          two versions
+                                                          to the public.
+                                                          We might have
+                                                          sold R3
+                                                          stickered as
+                                                          R2 -- I don't
+                                                          see anything
+                                                          in the
+                                                          repository
+                                                          that would
+                                                          indicate
+                                                          otherwise. Rev
+                                                          2/3 was sold
+                                                          until around
+                                                          June or July
+                                                          2011, when we
+                                                          moved to rev
+                                                          4. The only
+                                                          firmware/host
+                                                          code changes I
+                                                          can see
+                                                          between any of
+                                                          the versions
+                                                          are that R4
+                                                          used LVDS
+                                                          clocking to
+                                                          the
+                                                          daughterboard
+                                                          where previous
+                                                          versions used
+                                                          CMOS. So I
+                                                          think you
+                                                          should be able
+                                                          to run r3
+                                                          firmware on
+                                                          your N210.</div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">That
+                                                          said, the very
+                                                          very old N210s
+                                                          with very very
+                                                          old firmware
+                                                          might not have
+                                                          used the same
+                                                          safe/production
+                                                          firmware/fpga
+                                                          image
+                                                          arrangement
+                                                          that we later
+                                                          arrived at.
+                                                          The hardware
+                                                          is still fine,
+                                                          but you might
+                                                          be in for a
+                                                          bit of a deep
+                                                          dive to get it
+                                                          all running
+                                                          again.</div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">If
+                                                          you have a
+                                                          TTL-serial
+                                                          adapter or a
+                                                          logic analyzer
+                                                          that works as
+                                                          such, you can
+                                                          connect to the
+                                                          debug UART
+                                                          header and get
+                                                          printout
+                                                          information
+                                                          from the
+                                                          firmware at
+                                                          boot time.
+                                                          Another good
+                                                          idea would be
+                                                          to take a
+                                                          video of the
+                                                          front panel
+                                                          LEDs as you
+                                                          apply power --
+                                                          the boot LED
+                                                          lights give
+                                                          good
+                                                          indication of
+                                                          the
+                                                          firmware/FPGA
+                                                          image loading
+                                                          process.<br
+                                                          class="">
+                                                          </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Nick<br
+                                                          class="">
+                                                          </div>
+                                                          </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 1:42 PM Joe Martin via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+                                                          wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:
+                                                          0px 0px 0px
+                                                          0.8ex;
+                                                          border-left-width:
+                                                          1px;
+                                                          border-left-style:
+                                                          solid;
+                                                          border-left-color:
+                                                          rgb(204, 204,
+                                                          204);
+                                                          padding-left:
+                                                          1ex;">
+                                                          <div class="">Thanks
+                                                          for the info,
+                                                          Marcus. 
+                                                          However,
+                                                          seeing that
+                                                          Jason went
+                                                          through this
+                                                          last year with
+                                                          a couple of
+                                                          N210 he has it
+                                                          would seem
+                                                          unlikely that
+                                                          all three of
+                                                          the N210 are
+                                                          broken.  That
+                                                          being said and
+                                                          considering
+                                                          what you jus
+                                                          said it seems
+                                                          that I
+                                                          should’ve been
+                                                          able to find
+                                                          some version
+                                                          of UHD that
+                                                          will
+                                                          successfully
+                                                          communicate
+                                                          with the
+                                                          firmware and
+                                                          fpga images
+                                                          stored in the
+                                                          unit;  I have
+                                                          not, using UHD
+                                                          versions from
+                                                          3.9.0 to
+                                                          3.14.0.  
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">I
+                                                          wanted to try
+                                                          with even
+                                                          earlier
+                                                          versions of
+                                                          UHD but am
+                                                          finding
+                                                          trouble in
+                                                          utilizing UHD
+                                                          v3.4.0
+                                                          (earliest
+                                                          version I
+                                                          could find) as
+                                                          it seems that
+                                                          “prebuilt”
+                                                          v3.4.0 needs
+                                                          only Ubuntu
+                                                          10.10 or 11.10
+                                                          which so far
+                                                          I’m not able
+                                                          to
+                                                          successfully
+                                                          install and
+                                                          run.   Seems
+                                                          we’re running
+                                                          out of option
+                                                          on this one so
+                                                          the Deep Space
+                                                          Exploration
+                                                          Society, who
+                                                          I’m trying to
+                                                          help with
+                                                          this, may have
+                                                          to come to
+                                                          grasps with
+                                                          the notion
+                                                          that their
+                                                          N210 is a true
+                                                          brick. </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 2:23 PM,
+                                                          Marcus D.
+                                                          Leech via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div
+                                                          bgcolor="#FFFFFF"
+                                                          class="">
+                                                          <div
+                                                          class="m_3343428221959612084gmail-m_3428410372027926386moz-cite-prefix">On
+                                                          05/09/2019
+                                                          04:18 PM, Joe
+                                                          Martin via
+                                                          USRP-users
+                                                          wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">Nick,
+                                                          Ian, 
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">If
+                                                          this unit
+                                                          happens to be
+                                                          incorrectly
+                                                          labeled as a
+                                                          rev 2 N210 and
+                                                          it is actually
+                                                          a rev 3 N210,
+                                                          is there hope
+                                                          in being able
+                                                          to load rev 3
+                                                          firmware and
+                                                          fpga images
+                                                          (which I have
+                                                          located
+                                                          previously and
+                                                          tried
+                                                          actually) with
+                                                          some available
+                                                          UHD version? 
+                                                          If so, would
+                                                          you be able to
+                                                          tell me which
+                                                          UHD version(s)
+                                                          might be able
+                                                          to communicate
+                                                          with it?  </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          Theoretically,
+                                                          most versions
+                                                          in the last
+                                                          several years
+                                                          should be able
+                                                          to talk to
+                                                          it.  In
+                                                          *general* UHD
+                                                          never drops
+                                                          support for
+                                                          older
+                                                          hardware,<br
+                                                          class="">
+                                                            and tries to
+                                                          maintain
+                                                          compatibility. 
+                                                          Now, it is the
+                                                          case that
+                                                          newer features
+                                                          are almost
+                                                          never
+                                                          "back-ported",
+                                                          but basic
+                                                          functionality
+                                                          should<br
+                                                          class="">
+                                                            always be
+                                                          there.  <br
+                                                          class="">
+                                                          <br class="">
+                                                          What this
+                                                          *should* mean
+                                                          is that you
+                                                          should be able
+                                                          to use the
+                                                          firmware tools
+                                                          once the
+                                                          device is in
+                                                          "safe mode" to
+                                                          get yourself
+                                                          to where you<br
+                                                          class="">
+                                                            want to be. 
+                                                          If that
+                                                          doesn't work,
+                                                          that may well
+                                                          mean that the
+                                                          hardware is
+                                                          broken, and
+                                                          it's unlikely
+                                                          to be
+                                                          economical to
+                                                          repair.<br
+                                                          class="">
+                                                          <br class="">
+                                                          <br class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">
+                                                          <div class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 2:12 PM,
+                                                          Joe Martin via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Okay.
+                                                           I’ve asserted
+                                                          from the
+                                                          outset that
+                                                          it’s a rev 2,
+                                                          based on the
+                                                          factory
+                                                          label.  Is
+                                                          this N210 a
+                                                          lost cause if
+                                                          it is actually
+                                                          a Rev2 N210? 
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 2:05 PM,
+                                                          Nick Foster
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">Well,
+                                                          it's not a rev
+                                                          4. It's either
+                                                          2 or 3 in
+                                                          terms of
+                                                          hardware
+                                                          revision. <br
+                                                          class="">
+                                                          </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 12:58 PM Joe Martin &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" target="_blank" rel="noreferrer" class="">k5so@k5so.com</a>&gt;
+                                                          wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:
+                                                          0px 0px 0px
+                                                          0.8ex;
+                                                          border-left-width:
+                                                          1px;
+                                                          border-left-style:
+                                                          solid;
+                                                          border-left-color:
+                                                          rgb(204, 204,
+                                                          204);
+                                                          padding-left:
+                                                          1ex;">
+                                                          <div class="">…able
+                                                          to ping
+                                                          192.168.10.2
+                                                          successfully.<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 1:54 PM,
+                                                          Joe Martin
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" target="_blank" rel="noreferrer" class="">k5so@k5so.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Ian, 
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Yes,
+                                                          I have tried
+                                                          many times to
+                                                          boot in safe
+                                                          mode, same
+                                                          result
+                                                          regardless. 
+                                                          Yes, I am able
+                                                          to pin to
+                                                          192.168.10.2
+                                                          successfully. </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 1:47 PM,
+                                                          Joe Martin via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Ian
+                                                          and Nick, 
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Thanks
+                                                          for the
+                                                          assistance. 
+                                                          Attached are
+                                                          dropbox links
+                                                          to two
+                                                          snapshot
+                                                          photos:  1)
+                                                          the factory
+                                                          label on the
+                                                          back of the
+                                                          N210, showing
+                                                          N210 r:2.0 and
+                                                          2) a top side
+                                                          view of the
+                                                          N210. </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">1) <a
+moz-do-not-send="true"
+href="https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0"
+target="_blank" rel="noreferrer" class="">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0</a></div>
+                                                          <div class="">2) <a
+moz-do-not-send="true"
+href="https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0"
+target="_blank" rel="noreferrer" class="">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0</a></div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Seems
+                                                          this unit is
+                                                          indeed a rev 2
+                                                          N210, yes? </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 12:40 PM,
+                                                          Nick Foster
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">Moreover,
+                                                          the best
+                                                          "tell" is to
+                                                          look at the
+                                                          N210
+                                                          motherboard.
+                                                          If the SRAM
+                                                          chip is on the
+                                                          top side, it's
+                                                          a rev 2/3. If
+                                                          the SRAM is on
+                                                          the bottom
+                                                          side, it's a
+                                                          rev 4. If you
+                                                          send a picture
+                                                          along of the
+                                                          top of the
+                                                          N210, I can
+                                                          tell you if
+                                                          it's early or
+                                                          late rev.<br
+                                                          class="">
+                                                          </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 11:36 AM Ian Buckley via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+                                                          wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:
+                                                          0px 0px 0px
+                                                          0.8ex;
+                                                          border-left-width:
+                                                          1px;
+                                                          border-left-style:
+                                                          solid;
+                                                          border-left-color:
+                                                          rgb(204, 204,
+                                                          204);
+                                                          padding-left:
+                                                          1ex;">
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Joe,
+                                                          <div
+                                                          dir="auto"
+                                                          class="">So I
+                                                          scratched my
+                                                          head about
+                                                          this a little
+                                                          late last
+                                                          night and
+                                                          looked back
+                                                          through the
+                                                          development
+                                                          repository for
+                                                          the N210 and
+                                                          as far as I
+                                                          can tell there
+                                                          was never
+                                                          customer
+                                                          facing FPGA
+                                                          code for a
+                                                          Rev2 N210.
+                                                          Chatting with
+                                                          Matt
+                                                          this morning
+                                                          he shared my
+                                                          feeling that a
+                                                          Rev2 wasn't
+                                                          sold to
+                                                          customers, so
+                                                          I'm curious if
+                                                          you have a
+                                                          unit that has
+                                                          a factory
+                                                          label that
+                                                          says N210Rev2
+                                                          or if you have
+                                                          seen "usrp2
+                                                          rev2.0" on the
+                                                          PCB (which can
+                                                          be
+                                                          missleading).</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Also
+                                                          have you tried
+                                                          booting into
+                                                          the safe image
+                                                          and verifying
+                                                          that it at
+                                                          least pings on
+                                                          192.168.10.2?</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">If we
+                                                          can
+                                                          conclusively
+                                                          identify which
+                                                          rev of h/w you
+                                                          have I can
+                                                          probably help
+                                                          further.</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Ian</div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          </div>
+_______________________________________________<br class="">
+                                                          USRP-users
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+target="_blank" rel="noreferrer" class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          </div>
+_______________________________________________<br class="">
+                                                          USRP-users
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+class="m_3343428221959612084gmail-m_3428410372027926386moz-txt-link-freetext"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+target="_blank" rel="noreferrer">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          <br class="">
+                                                          <fieldset
+class="m_3343428221959612084gmail-m_3428410372027926386mimeAttachmentHeader"></fieldset>
+                                                          <br class="">
+                                                          <pre class="">_______________________________________________
+USRP-users mailing list
+<a moz-do-not-send="true" class="m_3343428221959612084gmail-m_3428410372027926386moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com" target="_blank" rel="noreferrer">USRP-users@lists.ettus.com</a>
+<a moz-do-not-send="true" class="m_3343428221959612084gmail-m_3428410372027926386moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target="_blank" rel="noreferrer">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+                                                          </blockquote>
+                                                          <br class="">
+                                                          </div>
+_______________________________________________<br class="">
+                                                          USRP-users
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+target="_blank" rel="noreferrer" class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          </div>
+_______________________________________________<br class="">
+                                                          USRP-users
+                                                          mailing list<br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">USRP-users@lists.ettus.com</a><br
+                                                          class="">
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                                                          rel="noreferrer
+                                                          noreferrer"
+                                                          target="_blank"
+                                                          class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                          class="">
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                        </div>
+                                                      </div>
+_______________________________________________<br class="">
+                                                      USRP-users mailing
+                                                      list<br class="">
+                                                      <a
+                                                        moz-do-not-send="true"
+href="mailto:USRP-users@lists.ettus.com" class="">USRP-users@lists.ettus.com</a><br
+                                                        class="">
+                                                      <a
+                                                        moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                                                        class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                                        class="">
+                                                    </div>
+                                                  </blockquote>
+                                                </div>
+                                                <br class="">
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </blockquote>
+                                      </div>
+                                      <br class="">
+                                    </div>
+                                  </div>
+_______________________________________________<br class="">
+                                  USRP-users mailing list<br class="">
+                                  <a moz-do-not-send="true"
+                                    href="mailto:USRP-users@lists.ettus.com"
+                                    class="">USRP-users@lists.ettus.com</a><br
+                                    class="">
+                                  <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                                    class="">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                                    class="">
+                                </div>
+                              </blockquote>
+                            </div>
+                            <br class="">
+                          </div>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                </div>
+                <div class=""><br class="">
+                  <blockquote type="cite" class="">
+                    <div class="">On May 10, 2019, at 9:31 AM, Ian
+                      Buckley &lt;<a moz-do-not-send="true"
+                        href="mailto:ian.buckley@gmail.com" class="">ian.buckley@gmail.com</a>&gt;
+                      wrote:</div>
+                    <br class="Apple-interchange-newline">
+                    <div class="">
+                      <meta http-equiv="Content-Type"
+                        content="text/html; charset=windows-1252"
+                        class="">
+                      <div style="word-wrap: break-word;
+                        -webkit-nbsp-mode: space; -webkit-line-break:
+                        after-white-space;" class="">Joe, 
+                        <div class="">To save you time, It may well be
+                          worth you trying jumping to the 3) step
+                          initially and seeing if your current loaded
+                          image or safe image is capable of being
+                          upgraded …it likely is since that protocol is
+                          widely compatible across UHD variants. The key
+                          here I have to emphasize (since you appear to
+                          have been previously getting stuck with
+                          incompatibility between whatever is loaded in
+                          the USRP and your host UHD installation) is to
+                          be sure your new UHD installation is the only
+                          one on your system, and that you have the
+                          binary images that are version matched with
+                          it…people often get caught out by reminants of
+                          various UHD versions installed in various
+                          system directories from different install
+                          methods.</div>
+                        <div class="">-Ian</div>
+                        <div class=""><br class="">
+                          <div class="">
+                            <blockquote type="cite" class="">
+                              <div class="">On May 10, 2019, at 5:58 AM,
+                                Joe Martin via USRP-users &lt;<a
+                                  moz-do-not-send="true"
+                                  href="mailto:usrp-users@lists.ettus.com"
+                                  class="">usrp-users@lists.ettus.com</a>&gt;
+                                wrote:</div>
+                              <br class="Apple-interchange-newline">
+                              <div class="">
+                                <meta http-equiv="Content-Type"
+                                  content="text/html;
+                                  charset=windows-1252" class="">
+                                <div style="word-wrap: break-word;
+                                  -webkit-nbsp-mode: space; line-break:
+                                  after-white-space;" class="">Ian, 
+                                  <div class=""><br class="">
+                                  </div>
+                                  <div class="">Very good, that’s
+                                    encouraging at least.  Yes, I am
+                                    familiar with using ISE iMPACT to
+                                    load the FPGA with .bit code and
+                                    even how to create the .bit from the
+                                    associated .bin file and did try
+                                    doing that earlier but perhaps not
+                                    identically to your prescribed steps
+                                    below.  I’ll revisit it.  I
+                                    successfully built UHD 003_009_000
+                                    earlier so I can probably also
+                                    successfully build UHD 003_009_007
+                                    too.  I’ll do that and give it a go.
+                                     I am familiar with the documents
+                                    you mentioned.  Generally things
+                                    have gone exactly as described right
+                                    up until UHD needs to communicate
+                                    with the stored images at which
+                                    point it never does; so far anyway.</div>
+                                  <div class=""><br class="">
+                                  </div>
+                                  <div class="">Thanks much for the
+                                    additional information.  I’ll
+                                    certainly hammer on it some more now
+                                    that I have a few more pertinent
+                                    details under my belt to guide the
+                                    process appropriately. </div>
+                                  <div class=""><br class="">
+                                  </div>
+                                  <div class="">Joe<br class="">
+                                    <div class=""><br class="">
+                                      <blockquote type="cite" class="">
+                                        <div class="">On May 10, 2019,
+                                          at 12:32 AM, Ian Buckley &lt;<a
+                                            moz-do-not-send="true"
+                                            href="mailto:ian.buckley@gmail.com"
+                                            class="">ian.buckley@gmail.com</a>&gt;
+                                          wrote:</div>
+                                        <br
+                                          class="Apple-interchange-newline">
+                                        <div class="">
+                                          <meta
+                                            http-equiv="Content-Type"
+                                            content="text/html;
+                                            charset=windows-1252"
+                                            class="">
+                                          <div style="word-wrap:
+                                            break-word;
+                                            -webkit-nbsp-mode: space;
+                                            -webkit-line-break:
+                                            after-white-space;" class="">Joe, 
+                                            <div class="">This is
+                                              generally all good news
+                                              and somewhat hopeful. The
+                                              fact you can ping
+                                              192.168.10.2 in safe mode
+                                              tell’s you that the FPGA
+                                              has loaded an image from
+                                              Flash, that it’s passed
+                                              CRC and booted the
+                                              embedded micro controller
+                                              on the FPGA and run the
+                                              firmware that replies to
+                                              ICMP packets…that’s a sign
+                                              the hardware is in
+                                              reasonable shape,
+                                              regardless of what
+                                              actually version of image
+                                              ins currently loaded. If
+                                              you had the internal UART
+                                              connected to a 3.3V
+                                              interface you would be
+                                              seeing the FPGA and FW
+                                              compatibility numbers for
+                                              this image printed at boot
+                                              if it got this far.</div>
+                                            <div class="">(Sorry if I’m
+                                              telling you stuff you know
+                                              here, too many messages in
+                                              this thread to go reread
+                                              them)</div>
+                                            <div class=""><br class="">
+                                            </div>
+                                            <div class="">You should now
+                                              refer to these 2 pages:</div>
+                                            <div class=""><a
+                                                moz-do-not-send="true"
+                                                href="https://kb.ettus.com/N200/N210_Device_Recovery"
+                                                class="">https://kb.ettus.com/N200/N210_Device_Recovery</a></div>
+                                            <div class=""><a
+                                                moz-do-not-send="true"
+                                                href="http://files.ettus.com/manual/page_usrp2.html#usrp2_load"
+                                                class="">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a> (N-series
+                                              sections, not USRP2)</div>
+                                            <div class=""><br class="">
+                                            </div>
+                                            <div class="">The general
+                                              outline of what to try is
+                                              as follows:</div>
+                                            <div class="">1) Start with
+                                              a relatively modern and
+                                              stable UHD version: Any
+                                              3.9.x version is pretty
+                                              ideal, it’s well supported
+                                              in Gnuradio, is perhaps
+                                              the most stable, and has
+                                              N210 support. If you are
+                                              building UHD yourself from
+                                              GitHub, then checkout the
+                                              tag “release_003_009_007”.</div>
+                                            <div class="">(Note there is
+                                              no reason to look for old
+                                              UHD versions to support
+                                              your H/W, the N210
+                                              specific code has changed
+                                              very little for some time,
+                                              but you will benefit from
+                                              much improved general UHD
+                                              functionality and much
+                                              better community support)</div>
+                                            <div class="">2. (Given you
+                                              understand how to load a
+                                              new image via JTAG) Follow
+                                              the procedure outlined in
+                                              “Unbricking an N Series
+                                              Device”. Run
+                                              “uhd_images_downloader”
+                                              under UHD3.9.x to be sure
+                                              you have a compatible set
+                                              of FPGA images for this
+                                              version of UHD. Use an R3
+                                              .bit file (Stay away from
+                                              R4 images since we know
+                                              that is electrically
+                                              incompatible with your
+                                              H/W) and load this via
+                                              JTAG. Verify you can ping
+                                              this once it’s loaded.
+                                              Remember this is a
+                                              volatile load, no flash
+                                              has changed yet, if you
+                                              reset the H/W this
+                                              download is lost. The goal
+                                              now is to use the embedded
+                                              firmware in this JTAG
+                                              image to load the same
+                                              images in .bin format via
+                                              the ethernet network and
+                                              update both slot’s in the
+                                              flash memory with
+                                              non-volatile images that
+                                              load automatically after
+                                              reset/power cycle.</div>
+                                            <div class="">3) Follow the
+                                              instructions in <a
+                                                moz-do-not-send="true"
+                                                href="http://files.ettus.com/manual/page_usrp2.html#usrp2_load"
+                                                class="">http://files.ettus.com/manual/page_usrp2.html#usrp2_load</a> to
+                                              perform the image update
+                                              via the network. You can
+                                              also take a peek at the
+                                              settings in your EEPROM
+                                              (“Recovery process”
+                                              instructions) to verify
+                                              that all fields are sane
+                                              and match your case label.</div>
+                                            <div class="">4) At this
+                                              point, if all has gone as
+                                              intended, USRP and UHD
+                                              should be in sync, power
+                                              cycling H/W should work,
+                                              and tools like
+                                              “uhd_usrp_probe” should
+                                              find the USRP and print
+                                              it’s detailed H/W config.
+                                              There are a few common
+                                              useful things to check in
+                                              the “Troubleshooting”
+                                              section if things still
+                                              don’t seem to have worked.</div>
+                                            <div class=""><br class="">
+                                            </div>
+                                            <div class="">-Ian</div>
+                                            <div class=""><br class="">
+                                            </div>
+                                            <div class=""><br class="">
+                                            </div>
+                                            <div class="">
+                                              <div class="">
+                                                <blockquote type="cite"
+                                                  class="">
+                                                  <div class="">On May
+                                                    9, 2019, at 2:48 PM,
+                                                    Joe Martin via
+                                                    USRP-users &lt;<a
+                                                      moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" class="">usrp-users@lists.ettus.com</a>&gt;
+                                                    wrote:</div>
+                                                  <br
+                                                    class="Apple-interchange-newline">
+                                                  <div class="">
+                                                    <meta
+                                                      http-equiv="Content-Type"
+                                                      content="text/html;
+charset=windows-1252" class="">
+                                                    <div
+                                                      style="word-wrap:
+                                                      break-word;
+                                                      -webkit-nbsp-mode:
+                                                      space; line-break:
+after-white-space;" class="">Oh, okay, I didn’t get that.  Understood
+                                                      now.  I have UHD
+                                                      3.14.0 running on
+                                                      my main machine so
+                                                      I could try again
+                                                      some newer .bit
+                                                      files into the
+                                                      FPGA than I
+                                                      previously have
+                                                      tried (I tried the
+                                                      current version of
+                                                      UHD and N210
+                                                      usrp_n210_r4_fpga.bit
+                                                      to no avail) to
+                                                      see if any of them
+                                                      are compatible.  I
+                                                      also was able to
+                                                      build UHD 3.9.0 on
+                                                      a different
+                                                      machine so I can
+                                                      try that too with
+                                                      some of the other
+                                                      .bit files.  Will
+                                                      hold the safe
+                                                      button down while
+                                                      loading the FPGA
+                                                      this time around.
+                                                       
+                                                      <div class=""><br
+                                                          class="">
+                                                      </div>
+                                                      <div class="">Joe<br
+                                                          class="">
+                                                        <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 3:38 PM,
+                                                          Nick Foster
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" class="">bistromath@gmail.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+                                                          class="Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div
+                                                          dir="auto"
+                                                          class="">I'm
+                                                          saying that
+                                                          you might try
+                                                          to continue
+                                                          the effort to
+                                                          JTAG load a
+                                                          more modern
+                                                          FPGA image.
+                                                          It's possible
+                                                          you have to
+                                                          hold down the
+                                                          safe mode
+                                                          button while
+                                                          loading the
+                                                          image. </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019, 2:22 PM Joe Martin &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" class="">k5so@k5so.com</a>&gt; wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:0
+                                                          0 0
+                                                          .8ex;border-left:1px
+                                                          #ccc
+                                                          solid;padding-left:1ex">
+                                                          <div
+                                                          style="word-wrap:break-word;line-break:after-white-space"
+                                                          class="">Thanks
+                                                          for digging
+                                                          into that for
+                                                          us, Nick. 
+                                                          Interesting. 
+                                                          As the
+                                                          hardware
+                                                          change to rev4
+                                                          occurred
+                                                          around mid
+                                                          2011 and the
+                                                          earliest UHD
+                                                          version that
+                                                          exists on the
+                                                          <a
+                                                          moz-do-not-send="true"
+href="http://files.ettus.com/uhd" target="_blank" rel="noreferrer"
+                                                          class="">files.ettus.com/uhd</a> page
+                                                          is Feb 2104,
+                                                          what is the
+                                                          likelihood in
+                                                          your opinion
+                                                          that the UHD
+                                                          version will
+                                                          be compatible
+                                                          with the
+                                                          rev2/3
+                                                          hardware from
+                                                          2011?   
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">So
+                                                          far I’ve not
+                                                          been
+                                                          successful in
+                                                          reviving the
+                                                          2014 UHD
+                                                          version so I’m
+                                                          asking to
+                                                          determine
+                                                          whether
+                                                          continued
+                                                          effort to do
+                                                          so is likely
+                                                          to yield
+                                                          anything
+                                                          positive with
+                                                          respect to
+                                                          interfacing
+                                                          with the 2011
+                                                          hardware.  </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 3:06 PM,
+                                                          Nick Foster
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+                                                          class="m_3343428221959612084Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">
+                                                          <div class="">So
+                                                          I really dug
+                                                          into the old
+                                                          archives here
+                                                          and literally
+                                                          pulled an old
+                                                          hard drive out
+                                                          of a closet,
+                                                          and found a
+                                                          copy of the
+                                                          old hardware
+                                                          repository
+                                                          from back in
+                                                          the days when
+                                                          N210 was
+                                                          called
+                                                          "USRP2+". Best
+                                                          that I can
+                                                          tell, we only
+                                                          ever released
+                                                          two versions
+                                                          to the public.
+                                                          We might have
+                                                          sold R3
+                                                          stickered as
+                                                          R2 -- I don't
+                                                          see anything
+                                                          in the
+                                                          repository
+                                                          that would
+                                                          indicate
+                                                          otherwise. Rev
+                                                          2/3 was sold
+                                                          until around
+                                                          June or July
+                                                          2011, when we
+                                                          moved to rev
+                                                          4. The only
+                                                          firmware/host
+                                                          code changes I
+                                                          can see
+                                                          between any of
+                                                          the versions
+                                                          are that R4
+                                                          used LVDS
+                                                          clocking to
+                                                          the
+                                                          daughterboard
+                                                          where previous
+                                                          versions used
+                                                          CMOS. So I
+                                                          think you
+                                                          should be able
+                                                          to run r3
+                                                          firmware on
+                                                          your N210.</div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">That
+                                                          said, the very
+                                                          very old N210s
+                                                          with very very
+                                                          old firmware
+                                                          might not have
+                                                          used the same
+                                                          safe/production
+                                                          firmware/fpga
+                                                          image
+                                                          arrangement
+                                                          that we later
+                                                          arrived at.
+                                                          The hardware
+                                                          is still fine,
+                                                          but you might
+                                                          be in for a
+                                                          bit of a deep
+                                                          dive to get it
+                                                          all running
+                                                          again.</div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">If
+                                                          you have a
+                                                          TTL-serial
+                                                          adapter or a
+                                                          logic analyzer
+                                                          that works as
+                                                          such, you can
+                                                          connect to the
+                                                          debug UART
+                                                          header and get
+                                                          printout
+                                                          information
+                                                          from the
+                                                          firmware at
+                                                          boot time.
+                                                          Another good
+                                                          idea would be
+                                                          to take a
+                                                          video of the
+                                                          front panel
+                                                          LEDs as you
+                                                          apply power --
+                                                          the boot LED
+                                                          lights give
+                                                          good
+                                                          indication of
+                                                          the
+                                                          firmware/FPGA
+                                                          image loading
+                                                          process.<br
+                                                          class="">
+                                                          </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Nick<br
+                                                          class="">
+                                                          </div>
+                                                          </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 1:42 PM Joe Martin via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+                                                          wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:0px
+                                                          0px 0px
+                                                          0.8ex;border-left:1px
+                                                          solid
+                                                          rgb(204,204,204);padding-left:1ex">
+                                                          <div class="">Thanks
+                                                          for the info,
+                                                          Marcus. 
+                                                          However,
+                                                          seeing that
+                                                          Jason went
+                                                          through this
+                                                          last year with
+                                                          a couple of
+                                                          N210 he has it
+                                                          would seem
+                                                          unlikely that
+                                                          all three of
+                                                          the N210 are
+                                                          broken.  That
+                                                          being said and
+                                                          considering
+                                                          what you jus
+                                                          said it seems
+                                                          that I
+                                                          should’ve been
+                                                          able to find
+                                                          some version
+                                                          of UHD that
+                                                          will
+                                                          successfully
+                                                          communicate
+                                                          with the
+                                                          firmware and
+                                                          fpga images
+                                                          stored in the
+                                                          unit;  I have
+                                                          not, using UHD
+                                                          versions from
+                                                          3.9.0 to
+                                                          3.14.0.  
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">I
+                                                          wanted to try
+                                                          with even
+                                                          earlier
+                                                          versions of
+                                                          UHD but am
+                                                          finding
+                                                          trouble in
+                                                          utilizing UHD
+                                                          v3.4.0
+                                                          (earliest
+                                                          version I
+                                                          could find) as
+                                                          it seems that
+                                                          “prebuilt”
+                                                          v3.4.0 needs
+                                                          only Ubuntu
+                                                          10.10 or 11.10
+                                                          which so far
+                                                          I’m not able
+                                                          to
+                                                          successfully
+                                                          install and
+                                                          run.   Seems
+                                                          we’re running
+                                                          out of option
+                                                          on this one so
+                                                          the Deep Space
+                                                          Exploration
+                                                          Society, who
+                                                          I’m trying to
+                                                          help with
+                                                          this, may have
+                                                          to come to
+                                                          grasps with
+                                                          the notion
+                                                          that their
+                                                          N210 is a true
+                                                          brick. </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 2:23 PM,
+                                                          Marcus D.
+                                                          Leech via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div
+                                                          bgcolor="#FFFFFF"
+                                                          class="">
+                                                          <div
+                                                          class="m_3343428221959612084gmail-m_3428410372027926386moz-cite-prefix">On
+                                                          05/09/2019
+                                                          04:18 PM, Joe
+                                                          Martin via
+                                                          USRP-users
+                                                          wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          Nick, Ian, 
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">If
+                                                          this unit
+                                                          happens to be
+                                                          incorrectly
+                                                          labeled as a
+                                                          rev 2 N210 and
+                                                          it is actually
+                                                          a rev 3 N210,
+                                                          is there hope
+                                                          in being able
+                                                          to load rev 3
+                                                          firmware and
+                                                          fpga images
+                                                          (which I have
+                                                          located
+                                                          previously and
+                                                          tried
+                                                          actually) with
+                                                          some available
+                                                          UHD version? 
+                                                          If so, would
+                                                          you be able to
+                                                          tell me which
+                                                          UHD version(s)
+                                                          might be able
+                                                          to communicate
+                                                          with it?  </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          Theoretically,
+                                                          most versions
+                                                          in the last
+                                                          several years
+                                                          should be able
+                                                          to talk to
+                                                          it.  In
+                                                          *general* UHD
+                                                          never drops
+                                                          support for
+                                                          older
+                                                          hardware,<br
+                                                          class="">
+                                                            and tries to
+                                                          maintain
+                                                          compatibility. 
+                                                          Now, it is the
+                                                          case that
+                                                          newer features
+                                                          are almost
+                                                          never
+                                                          "back-ported",
+                                                          but basic
+                                                          functionality
+                                                          should<br
+                                                          class="">
+                                                            always be
+                                                          there.  <br
+                                                          class="">
+                                                          <br class="">
+                                                          What this
+                                                          *should* mean
+                                                          is that you
+                                                          should be able
+                                                          to use the
+                                                          firmware tools
+                                                          once the
+                                                          device is in
+                                                          "safe mode" to
+                                                          get yourself
+                                                          to where you<br
+                                                          class="">
+                                                            want to be. 
+                                                          If that
+                                                          doesn't work,
+                                                          that may well
+                                                          mean that the
+                                                          hardware is
+                                                          broken, and
+                                                          it's unlikely
+                                                          to be
+                                                          economical to
+                                                          repair.<br
+                                                          class="">
+                                                          <br class="">
+                                                          <br class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">
+                                                          <div class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 2:12 PM,
+                                                          Joe Martin via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Okay.
+
+                                                           I’ve asserted
+                                                          from the
+                                                          outset that
+                                                          it’s a rev 2,
+                                                          based on the
+                                                          factory
+                                                          label.  Is
+                                                          this N210 a
+                                                          lost cause if
+                                                          it is actually
+                                                          a Rev2 N210? 
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 2:05 PM,
+                                                          Nick Foster
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">Well,
+                                                          it's not a rev
+                                                          4. It's either
+                                                          2 or 3 in
+                                                          terms of
+                                                          hardware
+                                                          revision. <br
+                                                          class="">
+                                                          </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 12:58 PM Joe Martin &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" target="_blank" rel="noreferrer" class="">k5so@k5so.com</a>&gt;
+
+                                                          wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:0px
+                                                          0px 0px
+                                                          0.8ex;border-left:1px
+                                                          solid
+                                                          rgb(204,204,204);padding-left:1ex">
+                                                          <div class="">…able
+                                                          to ping
+                                                          192.168.10.2
+                                                          successfully.<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 1:54 PM,
+                                                          Joe Martin
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:k5so@k5so.com" target="_blank" rel="noreferrer" class="">k5so@k5so.com</a>&gt;
+
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Ian, 
+
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Yes,
+                                                          I have tried
+                                                          many times to
+                                                          boot in safe
+                                                          mode, same
+                                                          result
+                                                          regardless. 
+                                                          Yes, I am able
+                                                          to pin to
+                                                          192.168.10.2
+                                                          successfully. </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+                                                          May 9, 2019,
+                                                          at 1:47 PM,
+                                                          Joe Martin via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div class="">Ian
+
+                                                          and Nick, 
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Thanks
+                                                          for the
+                                                          assistance. 
+                                                          Attached are
+                                                          dropbox links
+                                                          to two
+                                                          snapshot
+                                                          photos:  1)
+                                                          the factory
+                                                          label on the
+                                                          back of the
+                                                          N210, showing
+                                                          N210 r:2.0 and
+                                                          2) a top side
+                                                          view of the
+                                                          N210. </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">1) <a
+moz-do-not-send="true"
+href="https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0"
+target="_blank" rel="noreferrer" class="">https://www.dropbox.com/s/u92x02rni71kfb3/20190509_133253.jpg?dl=0</a></div>
+                                                          <div class="">2) <a
+moz-do-not-send="true"
+href="https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0"
+target="_blank" rel="noreferrer" class="">https://www.dropbox.com/s/1p8ocqf4qcr9ohb/20190509_133800.jpg?dl=0</a></div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Seems
+                                                          this unit is
+                                                          indeed a rev 2
+                                                          N210, yes? </div>
+                                                          <div class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div class="">Joe<br
+                                                          class="">
+                                                          <div class=""><br
+                                                          class="">
+                                                          <blockquote
+                                                          type="cite"
+                                                          class="">
+                                                          <div class="">On
+
+                                                          May 9, 2019,
+                                                          at 12:40 PM,
+                                                          Nick Foster
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:bistromath@gmail.com" target="_blank" rel="noreferrer"
+                                                          class="">bistromath@gmail.com</a>&gt;
+
+                                                          wrote:</div>
+                                                          <br
+class="m_3343428221959612084gmail-m_3428410372027926386gmail-m_-2513206580084366361Apple-interchange-newline">
+                                                          <div class="">
+                                                          <div dir="ltr"
+                                                          class="">Moreover,
+
+                                                          the best
+                                                          "tell" is to
+                                                          look at the
+                                                          N210
+                                                          motherboard.
+                                                          If the SRAM
+                                                          chip is on the
+                                                          top side, it's
+                                                          a rev 2/3. If
+                                                          the SRAM is on
+                                                          the bottom
+                                                          side, it's a
+                                                          rev 4. If you
+                                                          send a picture
+                                                          along of the
+                                                          top of the
+                                                          N210, I can
+                                                          tell you if
+                                                          it's early or
+                                                          late rev.<br
+                                                          class="">
+                                                          </div>
+                                                          <br class="">
+                                                          <div
+                                                          class="gmail_quote">
+                                                          <div dir="ltr"
+class="gmail_attr">On Thu, May 9, 2019 at 11:36 AM Ian Buckley via
+                                                          USRP-users
+                                                          &lt;<a
+                                                          moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank"
+                                                          rel="noreferrer"
+                                                          class="">usrp-users@lists.ettus.com</a>&gt;
+
+                                                          wrote:<br
+                                                          class="">
+                                                          </div>
+                                                          <blockquote
+                                                          class="gmail_quote"
+                                                          style="margin:0px
+                                                          0px 0px
+                                                          0.8ex;border-left:1px
+                                                          solid
+                                                          rgb(204,204,204);padding-left:1ex">
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Joe,
+                                                          <div
+                                                          dir="auto"
+                                                          class="">So I
+                                                          scratched my
+                                                          head about
+                                                          this a little
+                                                          late last
+                                                          night and
+                                                          looked back
+                                                          through the
+                                                          development
+                                                          repository for
+                                                          the N210 and
+                                                          as far as I
+                                                          can tell there
+                                                          was never
+                                                          customer
+                                                          facing FPGA
+                                                          code for a
+                                                          Rev2 N210.
+                                                          Chatting with
+                                                          Matt
+                                                          this morning
+                                                          he shared my
+                                                          feeling that a
+                                                          Rev2 wasn't
+                                                          sold to
+                                                          customers, so
+                                                          I'm curious if
+                                                          you have a
+                                                          unit that has
+                                                          a factory
+                                                          label that
+                                                          says N210Rev2
+                                                          or if you have
+                                                          seen "usrp2
+                                                          rev2.0" on the
+                                                          PCB (which can
+                                                          be
+                                                          missleading).</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Also
+                                                          have you tried
+                                                          booting into
+                                                          the safe image
+                                                          and verifying
+                                                          that it at
+                                                          least pings on
+                                                          192.168.10.2?</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">If we
+                                                          can
+                                                          conclusively
+                                                          identify which
+                                                          rev of h/w you
+                                                          have I can
+                                                          probably help
+                                                          further.</div>
+                                                          <div
+                                                          dir="auto"
+                                                          class=""><br
+                                                          class="">
+                                                          </div>
+                                                          <div
+                                                          dir="auto"
+                                                          class="">Ian</div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          <br class="">
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                          </div>
+                                                          </div>
+                                                          </blockquote>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </blockquote>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </blockquote>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </blockquote>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </blockquote>
+                </div>
+                <br class="">
+              </div>
+              _______________________________________________<br
+                class="">
+              USRP-users mailing list<br class="">
+              <a moz-do-not-send="true"
+                href="mailto:USRP-users@lists.ettus.com" class="">USRP-users@lists.ettus.com</a><br
+                class="">
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br
+                class="">
+            </div>
+          </blockquote>
+        </div>
+        <br class="">
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------030708010904070609020100--
+
+
+--===============6134947136453111782==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,5 +3592,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3490076235118940862==--
+--===============6134947136453111782==--
 
