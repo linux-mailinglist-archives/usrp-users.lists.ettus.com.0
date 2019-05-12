@@ -2,56 +2,44 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6681A9C8
-	for <lists+usrp-users@lfdr.de>; Sun, 12 May 2019 01:36:27 +0200 (CEST)
-Received: from [::1] (port=53042 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6161AB7E
+	for <lists+usrp-users@lfdr.de>; Sun, 12 May 2019 11:42:55 +0200 (CEST)
+Received: from [::1] (port=58244 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hPbXV-0002yh-OO; Sat, 11 May 2019 19:36:25 -0400
-Received: from mail-wm1-f51.google.com ([209.85.128.51]:38506)
+	id 1hPl0G-0000hY-C5; Sun, 12 May 2019 05:42:44 -0400
+Received: from mail-lj1-f172.google.com ([209.85.208.172]:39142)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <marcus.mueller@ettus.com>)
- id 1hPbWx-0002qj-J9
- for usrp-users@lists.ettus.com; Sat, 11 May 2019 19:36:21 -0400
-Received: by mail-wm1-f51.google.com with SMTP id f2so10475122wmj.3
- for <usrp-users@lists.ettus.com>; Sat, 11 May 2019 16:35:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:date:in-reply-to:references:user-agent
- :mime-version:content-transfer-encoding;
- bh=0jIuzA48rP29Z61kyPm3bwtMue1zuQpNzeuYc+1jOhI=;
- b=ENFQFgKIEYgsU28lRUy54wfgPgnU4NoCtpK/C7PvAxVvYIWPpaBPY2+ug2VSnSeu0r
- 3HLOi2a27NkVNStEv5yMe1uk4KsqJMdDuCCtEot4yyl5qp6VYetP1cn4qlDzX3XcQjN8
- IqKw94/aFtQehm+SiG1nA2fMJtWFGFx7DFBGvIbxtgUsO90TZ85Vr4IkCIlvXZ+vE5gA
- X8iC41O+qIOt0B/EikzrCJjh/MBybIpIKBLzepkibSTVXSOfg8/zc5477PDMY4EpW64t
- 4Te/td+iNXqb8Z1RP5UyKCTboRqXgzMhritCsyPTPf+dL00TA5mTS3Wxp4hkn1Xxt13r
- 6qjg==
+ (Exim 4.91) (envelope-from <adray0001@gmail.com>) id 1hPkzh-0000XZ-Qv
+ for usrp-users@lists.ettus.com; Sun, 12 May 2019 05:42:40 -0400
+Received: by mail-lj1-f172.google.com with SMTP id a10so457947ljf.6
+ for <usrp-users@lists.ettus.com>; Sun, 12 May 2019 02:41:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=bw9/wbXh3SM1i3huUmWlmzjCe+SHmAhsj3oW/fA4R68=;
+ b=F1SnAgQn5hbvuPmUskLGWvHnw1INtE9jwAVSGRKVV3pZqQaC6uGx2jsLJjmtS64ZTW
+ metUMfmDOx2PPWNs1SGZkyzXgMEI0Ge4ZLLBbESPI2AXY1yuvYEX3xLNosq3sy/XiClJ
+ +565Vck9C6ifC0YF5tZHJhf9Gy6HawqWCFntXMY9N1qupVdOif4n508tPXiuqwtJBoxH
+ fGz1r6EjUKOqt6tiL2XeBAUo4kv+AZDPoSTDhEI5nLgqP1/GGis1VVs+VFOhqziHHmGA
+ czBS/titKtp57INvg3JQeL45rt6tgITRTEpueSYTGnZBdIto5TljK0UXXFZR3RzjZgri
+ yd7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=0jIuzA48rP29Z61kyPm3bwtMue1zuQpNzeuYc+1jOhI=;
- b=R7vPm9dybllobkvKiZ+BVsHFtYfJB2Aqt+eStGoiKnb2kPi31z4HDWj5XgLbkzGcSN
- T1+AMfeTRxI1MB0iL/1rdCoDLqYL1gNi87B5u/IrL7aWnGscfv9oYtoRBoEz7e1N8rqG
- dAOgIs9U9jS/5EOGRZJgUI96TN1XxdsGpUq6JBGXvzyt0rIHrGPVtE14rGAu/qj0eCZ8
- lWnCfdV3LkU6fUC5S4ff2z9H3dkrPc6pStwRa2obcZ/KLgDeQtMYxmTZevj10WZIvt8r
- TlbtiBvYq5hMGWd7sUVpHCZ334a+CbuhHKzDs4oE0578AVjZzDsBDAVJngcTGcp27tz/
- N+Lw==
-X-Gm-Message-State: APjAAAVnAEHtXdHodMr/K1RdfBRElN7dPKYyoGeREjo104FIEB11K47u
- F+zcnk/dqpMhQEYlCCUTo7+wqCXP
-X-Google-Smtp-Source: APXvYqy6Z7FBEFMj2f9wj2mtAXSO7amzY/c29JDw9//wnYJe4Y/WpWFXjVXgwSXmwEtCca6uh58MTw==
-X-Received: by 2002:a1c:a914:: with SMTP id s20mr11458736wme.55.1557617710513; 
- Sat, 11 May 2019 16:35:10 -0700 (PDT)
-Received: from workhorse.lan (ip-37-201-4-220.hsi13.unitymediagroup.de.
- [37.201.4.220])
- by smtp.googlemail.com with ESMTPSA id l14sm6157380wrt.57.2019.05.11.16.35.09
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Sat, 11 May 2019 16:35:09 -0700 (PDT)
-Message-ID: <3034c6f859aca3fa5aa6f053fef111025a6c52e6.camel@ettus.com>
-To: Ivan Zahartchuk <adray0001@gmail.com>, usrp-users
- <usrp-users@lists.ettus.com>
-Date: Sun, 12 May 2019 01:35:09 +0200
-In-Reply-To: <26c877406a7aaa5a4ce9a775bfc5322019b907ea.camel@ettus.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=bw9/wbXh3SM1i3huUmWlmzjCe+SHmAhsj3oW/fA4R68=;
+ b=qPxw/qwg2KccfTOBeyxbLf7p9ZS+dfWh3MC9Y++PTMD+WrvOuRnONCF6Y24vEn1Ufy
+ gK65X3lEAQyHhwVjOwn0ral99hKlZMs5aHhuLDo8b72Vt//9P9ubn4O6+yKVG1XITeZ4
+ P7FMaCJ2Z414engdICWdulAXB1LGjuBO5CLGlFKgy+1EjdXnE3geWb15ko5Lx6DlajYr
+ mDAP3Rd8ZOCR2E7CG6wp0uJK6uYCJtX0yFMdSVK1RjXOzinXNOYA/uudjx/SIjpE+rib
+ Bbli683ZimnJTOKuUc3KN+69/LVg3483HFRmXHbVeHPCgwL76SLrbHuuyMePr/ceFFIK
+ c3+g==
+X-Gm-Message-State: APjAAAXWp6vY/JZWoVggTGKS7+wBhO0ecGFqrOgffUbRCWo4HZbF0nsH
+ aBhMy8IeJ/P4llaXcaG0AFEqFN0/tii2grujEvR4HLAw
+X-Google-Smtp-Source: APXvYqydpp0XPHSfpV+FJ66MDbyQQTHcrXgL95PJ1PRJRPiHEsfylv4QeH1hmQbK4oqABGLjSdU8zURQ0dwIlB38sSk=
+X-Received: by 2002:a2e:9583:: with SMTP id w3mr5205577ljh.150.1557654088322; 
+ Sun, 12 May 2019 02:41:28 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAPRRyxuCDNGcewqw7Y6A=a-cgU8DN9s6Sbg7JVSHbuYHJBD=hA@mail.gmail.com>
  <5db613d9e0f5e53ad04b8e730a3aa4d9b25df12c.camel@ettus.com>
  <CAPRRyxtWDcpUEoJF6teLPVN8nrNXEuH0HULt2orMetOvCzEf8w@mail.gmail.com>
@@ -60,8 +48,12 @@ References: <CAPRRyxuCDNGcewqw7Y6A=a-cgU8DN9s6Sbg7JVSHbuYHJBD=hA@mail.gmail.com>
  <9472ddef448b23a98a4b80e14151ad48206c534a.camel@ettus.com>
  <CAPRRyxvqe-n9W12pK4uQJxkuVy7c2XY+zyif=mAjA0+pBDaGNw@mail.gmail.com>
  <26c877406a7aaa5a4ce9a775bfc5322019b907ea.camel@ettus.com>
-User-Agent: Evolution 3.30.4 (3.30.4-1.fc29) 
-Mime-Version: 1.0
+ <3034c6f859aca3fa5aa6f053fef111025a6c52e6.camel@ettus.com>
+In-Reply-To: <3034c6f859aca3fa5aa6f053fef111025a6c52e6.camel@ettus.com>
+Date: Sun, 12 May 2019 12:41:17 +0300
+Message-ID: <CAPRRyxs4k5WJfbmwpTyhQr+z6RFriEsUYXjr2mP988EDCV9Onw@mail.gmail.com>
+To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>, 
+ usrp-users <usrp-users@lists.ettus.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -79,11 +71,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2156823377392538433=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -97,248 +87,1205 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-QWgsIEkgc2VlIHlvdSB0aGluayB0aGF0IHRoaXMgYnVyc3QgY2FuJ3QgYmUgdG9vIGhhcmQgb24g
-eW91ciBjb21wdXRlciwKYmVjYXVzZSBpdCBhcnJpdmVzICJhdCBvbmNlIj8gVGhhdCdzIG5vdCB0
-aGUgY2FzZS4KT24gU3VuLCAyMDE5LTA1LTEyIGF0IDAxOjE4ICswMjAwLCBNYXJjdXMgTcO8bGxl
-ciB3cm90ZToKPiBVbSwgc29ycnksIEkgZG9uJ3QgdW5kZXJzdGFuZCB5b3VyIHNlbnRlbmNlLiBP
-ZiBjb3Vyc2Ugd2UgaGF2ZSB0bwo+IGNhcmUKPiBhYm91dCB0aGVzZSBzYW1wbGVzLiBPdGhlcndp
-c2UsIHdlIGdldCBhbiBvdmVyZmxvdy4gVGhhdCBpcyBsaXRlcmFsbHkKPiB3aGF0IG92ZXJmbG93
-IG1lYW5zOiBTYW1wbGVzIG5vdCBnZXR0aW5nIHJlY2VpdmVkIGJ5IHRoZSBwcm9ncmFtCj4gdXNp
-bmcKPiBVSEQgaW4gdGltZSBiZWZvcmUgYSBidWZmZXIgb3ZlcmZsb3dzLgo+IAo+IE9uIFNhdCwg
-MjAxOS0wNS0xMSBhdCAyMjoyOSArMDMwMCwgSXZhbiBaYWhhcnRjaHVrIHdyb3RlOgo+ID4gTm8s
-IEkgbWVhbnQgdGhhdCBhbGwgc3lzdGVtIHBlcmZvcm1hbmNlIGlzIGVuYWJsZWQgb25seSB3aGVu
-IHdlCj4gPiBtYWtlCj4gPiBhIHJlcXVlc3QgYW5kIG5vdCBhbGwgdGhlIHRpbWUuIEFuZCB3ZSBu
-byBsb25nZXIgY2FyZSB3aGF0IHdlIGRvCj4gPiBuZXh0Cj4gPiB3aXRoIHRoZXNlIHNhbXBsZXMs
-IHRoZXkgYXJlIGp1c3QgYW4gYXJyYXkgYW5kIHRoZSBib2FyZCBkb2VzIG5vdAo+ID4gcmVxdWly
-ZSBjb25zdGFudCByZWFkaW5nLgo+ID4gCj4gPiDQstGBLCAxMiDQvNCw0Y8gMjAxOSDQsy4g0LIg
-MDE6MDMsIE1hcmN1cyBNw7xsbGVyIDxtYXJjdXMubXVlbGxlckBldHR1cy5jb20KPiA+ID46Cj4g
-PiA+IEknbSBub3QgcXVpdGUgc3VyZSBob3cgeW91IGNvbWUgdG8gdGhlIGNvbmNsdXNpb24gdGhh
-dCB3ZQo+ID4gPiB3b3VsZG4ndAo+ID4gPiBiZQo+ID4gPiB0aWVkIHRvIHN5c3RlbSBwZXJmb3Jt
-YW5jZSBpbiB0aGF0IGNhc2U6IHRoYXQgbnVtYmVyIG9mIHNhbXBsZXMKPiA+ID4gc3RpbGwKPiA+
-ID4gbmVlZHMgdG8gYmUgcmVjZWl2ZWQgYnkgdGhlIHNvZnR3YXJlIHJ1bm5pbmcgb24gdGhlIGNv
-bXB1dGVyLgo+ID4gPiAKPiA+ID4gQmVzdCByZWdhcmRzLAo+ID4gPiBNYXJjdXMKPiA+ID4gCj4g
-PiA+IE9uIFNhdCwgMjAxOS0wNS0xMSBhdCAyMDozOSArMDMwMCwgSXZhbiBaYWhhcnRjaHVrIHdy
-b3RlOgo+ID4gPiA+IFRoYW5rcyBmb3IgdGhlIGhlbHAuIEkgd2lsbCB0cnkgdG8gZml4IGV2ZXJ5
-dGhpbmcgdG9tb3Jyb3cgYW5kCj4gPiA+IHNlZQo+ID4gPiA+IHRoZSByZXN1bHQuIEJ1dCB0ZWxs
-IG1lLCBtYXliZSBJIGRvbuKAmXQgZnVsbHkgdW5kZXJzdGFuZCBob3cKPiA+ID4gPiBudW1fc2Ft
-c19hbmRfZG9uZSB3b3Jrcy4gSWYgSSB1bmRlcnN0YW5kIGNvcnJlY3RseSwgdGhpcyBtZXRob2QK
-PiA+ID4gZG9lcwo+ID4gPiA+IG5vdCBzZW5kIGEgY29udGludW91cyBzdHJlYW0gb2YgZGF0YSBi
-dXQgc2ltcGx5IGdpdmVzIGEgY2VydGFpbgo+ID4gPiA+IG51bWJlciBvZiBzYW1wbGVzIHVwb24g
-cmVxdWVzdC4gQW5kIGluIHRoaXMgY2FzZSwgd2UgYXJlIG5vdAo+ID4gPiA+IHRpZWQKPiA+ID4g
-dG8KPiA+ID4gPiBzeXN0ZW0gcGVyZm9ybWFuY2UuIE1heWJlIEkgZG8gbm90IHVuZGVyc3RhbmQg
-dGhpcy4gQ291bGQgeW91Cj4gPiA+IGNsYXJpZnkKPiA+ID4gPiB0aGlzPwo+ID4gPiA+IAo+ID4g
-PiA+INGB0LEsIDExINC80LDRjyAyMDE5INCzLiDQsiAyMzoxOSwgTWFyY3VzIE3DvGxsZXIgPAo+
-ID4gPiBtYXJjdXMubXVlbGxlckBldHR1cy5jb20+Ogo+ID4gPiA+ID4gRGVhciBJdmFuLAo+ID4g
-PiA+ID4gCj4gPiA+ID4gPiBPbiBTYXQsIDIwMTktMDUtMTEgYXQgMjA6MDAgKzAzMDAsIEl2YW4g
-WmFoYXJ0Y2h1ayB3cm90ZToKPiA+ID4gPiA+ID4gU29ycnkgSSBkaWQgbm90IHNwZWNpZnkuIFdo
-ZW4gd29ya2luZyB3aXRoIHRoZSBzdGFydF9jb250Cj4gPiA+IG1vZGUKPiA+ID4gPiA+IHdpdGgg
-YQo+ID4gPiA+ID4gPiBmcmVxdWVuY3kgb2YgbW9yZSB0aGFuIDUgTUh6LCBJIGhhdmUgYW4gb3Zl
-cmZsb3cgZXJyb3IuIAo+ID4gPiA+ID4gCj4gPiA+ID4gPiBXaGljaCBwcm9iYWJseSBoYXBwZW5z
-IGR1ZSB0byB0aGUgaW5lZmZpY2llbnQgd2F5IHlvdSBoYW5kbGUKPiA+ID4gdGhlCj4gPiA+ID4g
-PiBkYXRhOwo+ID4gPiA+ID4geW91ciBwcm9ncmFtIHNpbXBseSBpcyB0b28gc2xvdy4KPiA+ID4g
-PiA+IAo+ID4gPiA+ID4gPiBUaGF0IGxlYWRzIHRvIGEgY2hhb3RpYyBjaGFuZ2UgaW4gdGhlIHNw
-ZWN0cnVtLiBJIGFncmVlCj4gPiA+ID4gPiA+IGFib3V0Cj4gPiA+IHRoZQo+ID4gPiA+ID4gPiB3
-cm9uZyBhbGxvY2F0aW9uIG9mIG1lbW9yeSwgYnV0IEkgY3JlYXRlZCBteSBvd24gZGF0YSBhcnJh
-eQo+ID4gPiBhbmQKPiA+ID4gPiA+IHJhbgo+ID4gPiA+ID4gPiBpdCB0aHJvdWdoIHRoZSB3aG9s
-ZSBjaGFpbiBvZiBjaGFuZ2VzIGFuZCBhZGRpdGlvbnMgYW5kIGhhZAo+ID4gPiB3aGF0Cj4gPiA+
-ID4gPiBJCj4gPiA+ID4gPiA+IGV4cGVjdGVkIGF0IHRoZSBvdXRwdXQuIAo+ID4gPiA+ID4gCj4g
-PiA+ID4gPiBIdWg/IFdoZW4gdXNpbmcgb2ZmbGluZSBkYXRhLCB5b3VyIGNvbXB1dGF0aW9uYWxs
-eSBsb2FkCj4gPiA+ID4gPiBkb2Vzbid0Cj4gPiA+ID4gPiBtYXR0ZXI7Cj4gPiA+ID4gPiBJJ20g
-bm90IHN1cmUgSSdtIHVuZGVyc3RhbmRpbmcgeW91IGNvcnJlY3RseSBoZXJlISAKPiA+ID4gPiA+
-IAo+ID4gPiA+ID4gPiBNb3Jlb3ZlciwgdGhlIGRhdGEgYXJyYXkgd2FzIG11Y2ggbW9yZSB0aGFu
-IHdoYXQgSSBnZXQgZnJvbQo+ID4gPiB0aGUKPiA+ID4gPiA+ID4gYm9hcmQuIEluIHRoaXMgcmVn
-YXJkLCBJIGRlY2lkZWQgdGhhdCB0aGUgbWF0dGVyIGlzIGluIHRoZQo+ID4gPiA+ID4gcmVhZGlu
-Zwo+ID4gPiA+ID4gPiBmcm9tIHRoZSBib2FyZC4KPiA+ID4gPiA+IAo+ID4gPiA+ID4gSSdsbCBh
-bGxvdyBteXNlbGYgdG8gZG91YnQgdGhhdDogQWdhaW4sIHRoZSBmYWN0IHRoYXQgeW91cgo+ID4g
-PiA+ID4gZGF0YQo+ID4gPiA+ID4gYXJyYXkKPiA+ID4gPiA+IHJ1bnMgdGhyb3VnaCBzbW9vdGhs
-eSBpcyBubyBpbmRpY2F0aW9uIGZvciB5b3VyIHNvZnR3YXJlCj4gPiA+ID4gPiBiZWluZwo+ID4g
-PiBmYXN0Cj4gPiA+ID4gPiBlbm91Z2ggdG8ga2VlcCB1cCB3aXRoIHRoZSB0b3JyZW50IG9mIHNh
-bXBsZXMgVUhEIHdpbGwgZ2l2ZQo+ID4gPiB5b3UhCj4gPiA+ID4gPiBXaGVuCj4gPiA+ID4gPiBp
-dCBkb2Vzbid0IGtlZXAgdXAsIHlvdSBzZWUgZXhhY3RseSB3aGF0IHlvdSdyZSBkZXNjcmliaW5n
-Ogo+ID4gPiA+ID4gVUhECj4gPiA+ID4gPiByZXBvcnRpbmcgb3ZlcmZsb3dzIGR1ZSB0byB5b3Vy
-IHNvZnR3YXJlIG5vdCBmZXRjaGluZyBzYW1wbGVzCj4gPiA+IGZhc3QKPiA+ID4gPiA+IGVub3Vn
-aC4gT3ZlcmZsb3dzIGFyZW4ndCBVSEQgYnVncywgdGhleSBhcmUgcHJvYmxlbXMgaW4gdGhlCj4g
-PiA+ID4gPiB3YXkKPiA+ID4geW91Cj4gPiA+ID4gPiB1c2UKPiA+ID4gPiA+IFVIRCEKPiA+ID4g
-PiA+IAo+ID4gPiA+ID4gPiAgSSBoYXZlIHNlZW4gZXhhbXBsZXMsIGJ1dCBzdGFydF9jb250IG1v
-ZGUgaXMgdXNlZCB0aGVyZQo+ID4gPiA+ID4gPiBhbmQKPiA+ID4gPiA+IHRoZXJlCj4gPiA+ID4g
-PiA+IGFyZSBub3Qgc28gbWFueSBmcmVxdWVuY3kgYWRqdXN0bWVudHMuIFRoZXJlZm9yZSwgSSBk
-ZWNpZGVkCj4gPiA+IHRvCj4gPiA+ID4gPiB1c2UKPiA+ID4gPiA+ID4gdGhlIG51bV9zYW1zX2Fu
-ZF9kb25lIG1vZGUsIGJ1dCB0aGVyZSBpcyBhbHNvIGEgcHJvYmxlbQo+ID4gPiA+ID4gPiB3aXRo
-Cj4gPiA+IGl0Cj4gPiA+ID4gPiB3aGljaAo+ID4gPiA+ID4gPiBpcyBkZXNjcmliZWQgaW4gdGhl
-IHByZXZpb3VzIG1lc3NhZ2UuIElmIHlvdSBoYXZlIG1vcmUKPiA+ID4gPiA+IHN1Z2dlc3Rpb25z
-LCBJCj4gPiA+ID4gPiA+IHdpbGwgYmUgdmVyeSBncmF0ZWZ1bCB0byB5b3UuCj4gPiA+ID4gPiAK
-PiA+ID4gPiA+IFdlbGwsIGV4YWN0bHkgd2hhdCBJIHdyb3RlIGluIG15IHByZXZpb3VzIG1haWw6
-IHlvdSBuZWVkIHRvCj4gPiA+IG1ha2UKPiA+ID4gPiA+IHlvdXIKPiA+ID4gPiA+IHNvZnR3YXJl
-IGZhc3QgZW5vdWdoLiBQcmVhbGxvY2F0ZSB0aGUgYnVmZmVyOyBkb24ndCBhcHBlbmQgdG8KPiA+
-ID4gaXRzCj4gPiA+ID4gPiBlbmQuCj4gPiA+ID4gPiAKPiA+ID4gPiA+IEFzaWRlIGZyb20gdGhh
-dCwgZG8gc29tZSBwcm9maWxpbmcuIFVuZGVyIGxpbnV4LCBgcGVyZiB0b3AKPiA+ID4gPiA+IC1h
-Zwo+ID4gPiA+ID4gcHl0aG9uCj4gPiA+ID4gPiB5b3Vyc2NyaXB0LnB5YCBpcyB5b3VyIGZyaWVu
-ZCB0byBmaWd1cmUgb3V0IHdoZXJlIHlvdXIKPiA+ID4gPiA+IHByb2dyYW0KPiA+ID4gPiA+IHNw
-ZW5kcwo+ID4gPiA+ID4gaXRzIENQVSBjeWNsZXMuCj4gPiA+ID4gPiAKPiA+ID4gPiA+IEJlc3Qg
-cmVnYXJkcywKPiA+ID4gPiA+IE1hcmN1cwo+ID4gPiA+ID4gCj4gPiA+ID4gPiA+INGB0LEsIDEx
-INC80LDRjyAyMDE5INCzLiDQsiAyMjoyNywgTWFyY3VzIE3DvGxsZXIgPAo+ID4gPiA+ID4gbWFy
-Y3VzLm11ZWxsZXJAZXR0dXMuY29tPjoKPiA+ID4gPiA+ID4gPiBEZWFyIEl2YW4sCj4gPiA+ID4g
-PiA+ID4gCj4gPiA+ID4gPiA+ID4gaXQncyBub3QgY2xlYXIgd2hhdCB5b3UndmUgbW9kaWZpZWQu
-IEknbSBub3QgYXdhcmUgb2YgYW55Cj4gPiA+IFVIRAo+ID4gPiA+ID4gPiA+IGZ1bmN0aW9uCj4g
-PiA+ID4gPiA+ID4gdGhhdCByZXN0cmljdHMgYW55IGZyZXF1ZW5jeSB0byA1IE1Iei4KPiA+ID4g
-PiA+ID4gPiBDb3VsZCB5b3UgZWxhYm9yYXRlIG9uIHdoaWNoIGNvZGUgeW91J3JlIGJhc2luZyB0
-aGlzIG9uPwo+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+IEFsc28sIHdoaWxlIEkgcmVhbGx5
-IGxpa2UgdGhlIFB5dGhvbiBpbnRlcmZhY2UsIGlmIHlvdSdyZQo+ID4gPiA+ID4gcmVhbGx5Cj4g
-PiA+ID4gPiA+ID4gYWZ0ZXIKPiA+ID4gPiA+ID4gPiBoaWdoLXJhdGUgc2FtcGxpbmcsIGl0IG1p
-Z2h0IHNpbXBseSBub3QgYmUgdGhlIG9wdGltYWwKPiA+ID4gdGhpbmcgdG8KPiA+ID4gPiA+ID4g
-PiB1c2U6Cj4gPiA+ID4gPiA+ID4gWW91J2QgaGF2ZSB0byBiZSB2ZXJ5IGNhcmVmdWwgaW4gUHl0
-aG9ubGFuZCB0byBub3QgcnVuCj4gPiA+ID4gPiA+ID4gaW50bwo+ID4gPiA+ID4gPiA+IHBlcmZv
-cm1hbmNlCj4gPiA+ID4gPiA+ID4gcHJvYmxlbXMgb25jZSB5b3UndmUgZ290dGVuIHRoZSBzYW1w
-bGVzIGZyb20gVUhEOgo+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+ICAgICAgIAo+ID4gPiAg
-Y29tcGxleF9idWZmcz1ucC5hcHBlbmQoY29tcGxleF9idWZmcyxyZXN1bHQpLnJhdmVsKCkKPiA+
-ID4gPiA+ID4gPiBBIHZlcnkgYmFkIGlkZWEuIFlvdSdyZSBjb25zdGFudGx5IHJlLWFsbG9jYXRp
-bmcgYnVmZmVycwo+ID4gPiBoZXJlLgo+ID4gPiA+ID4gPiA+IERvbid0IGRvCj4gPiA+ID4gPiA+
-ID4gdGhhdC4gTm8gbWF0dGVyIGluIHdoaWNoIHByb2dyYW1taW5nIGxhbmd1YWdlIHlvdSdkIGRv
-Cj4gPiA+IHRoaXMsCj4gPiA+ID4gPiB5b3UnZAo+ID4gPiA+ID4gPiA+IG1ha2UKPiA+ID4gPiA+
-ID4gPiBzdXJlIHRoYXQgdGhlIGJ1ZmZlciBpcyBsYXJnZSBlbm91Z2ggZm9yIHlvdXIgZGF0YQo+
-ID4gPiBjb2xsZWN0aW9uCj4gPiA+ID4gPiB0bwo+ID4gPiA+ID4gPiA+IGJlZ2luCj4gPiA+ID4g
-PiA+ID4gd2l0aCBhbmQgdGhlbiB0ZWxsIHRoZSBVSEQgbGlicmFyeSB0byBmaWxsIHRoZQo+ID4g
-PiA+ID4gPiA+IGFwcHJvcHJpYXRlCj4gPiA+IHBhcnQKPiA+ID4gPiA+IGluCj4gPiA+ID4gPiA+
-ID4gdGhhdAo+ID4gPiA+ID4gPiA+IGJ1ZmZlciB0byBhdm9pZCBhKSBoYXZpbmcgdG8gYXNrIGZv
-ciBhIGxhcmdlciBidWZmZXIKPiA+ID4gcmVndWxhcmx5Cj4gPiA+ID4gPiBhbmQKPiA+ID4gPiA+
-ID4gPiBiKQo+ID4gPiA+ID4gPiA+IGF2b2lkIGNvcHlpbmcgZGF0YS4KPiA+ID4gPiA+ID4gPiBB
-c2tpbmcgZm9yIGFuIGFwcGVuZGVkIHZlcnNpb24gb2YgeW91ciBsYXN0IGJ1ZmZlciBtZWFucwo+
-ID4gPiB0aGF0Cj4gPiA+ID4gPiA+ID4gc29tZXRoaW5nCj4gPiA+ID4gPiA+ID4gaGFzIHRvIGFs
-bG9jYXRlIGEgbGFyZ2VyIGJ1ZmZlciDigJMgd2hpY2ggY29tZXMgYXQgdmVyeQo+ID4gPiA+ID4g
-PiA+IGxhcmdlCj4gPiA+ID4gPiBjb3N0IQo+ID4gPiA+ID4gPiA+IEJlc3QgcmVnYXJkcywKPiA+
-ID4gPiA+ID4gPiBNYXJjdXMgCj4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gT24gU2F0LCAy
-MDE5LTA1LTExIGF0IDIxOjMxICswMzAwLCBJdmFuIFphaGFydGNodWsgdmlhCj4gPiA+IFVTUlAt
-Cj4gPiA+ID4gPiB1c2Vycwo+ID4gPiA+ID4gPiA+IHdyb3RlOgo+ID4gPiA+ID4gPiA+ID4gSGVs
-bG8uIE15IHRhc2sgaXMgdG8gbWFrZSBhIGJyb2FkYmFuZCBzcGVjdHJ1bSBhbmFseXplcgo+ID4g
-PiBvbgo+ID4gPiA+ID4gdGhlCj4gPiA+ID4gPiA+ID4gdXNycAo+ID4gPiA+ID4gPiA+ID4gYjIw
-MCBib2FyZC4gRm9yIHRoaXMsIHRoZSBzdGFuZGFyZCBmdW5jdGlvbnMgZm9yCj4gPiA+ID4gPiA+
-ID4gPiByZWFkaW5nCj4gPiA+ID4gPiBzYW1wbGVzCj4gPiA+ID4gPiA+ID4gaW4KPiA+ID4gPiA+
-ID4gPiA+IHB5dGhvbiBhcmUgbm90IHN1aXRhYmxlIGZvciBtZS4gVGhlcmVmb3JlLCBJIGVkaXRl
-ZAo+ID4gPiA+ID4gPiA+ID4gdGhlbS4KPiA+ID4gPiA+IFdoZW4KPiA+ID4gPiA+ID4gPiA+IHJl
-YWRpbmcgc2FtcGxlcyB1c2luZyB0aGUgc3RhcnRfY29uIG1ldGhvZCwgSSBjYW5ub3QKPiA+ID4g
-c3BlY2lmeQo+ID4gPiA+ID4gYQo+ID4gPiA+ID4gPiA+IGJhbmQKPiA+ID4gPiA+ID4gPiA+IGdy
-ZWF0ZXIgdGhhbiA1IE1Iei4gVGhlcmVmb3JlLCBJIHVzZSB0aGUKPiA+ID4gbnVtX3NhbXNfYW5k
-X2RvbmUKPiA+ID4gPiA+ID4gPiBtZXRob2QuCj4gPiA+ID4gPiA+ID4gPiBCdXQgSSBoYXZlIHBy
-b2JsZW1zIHdpdGggaGltLiBUaGUgZmFjdCBpcyB0aGF0IG15Cj4gPiA+IGZyZXF1ZW5jeQo+ID4g
-PiA+ID4gd2hpY2gKPiA+ID4gPiA+ID4gPiBJCj4gPiA+ID4gPiA+ID4gPiBrbm93IGFwcGVhcnMg
-aW4gdGhlIHdyb25nIHBsYWNlLiBGb3IgZXhhbXBsZSwgSQo+ID4gPiA+ID4gPiA+ID4gZ2VuZXJh
-dGUKPiA+ID4gYQo+ID4gPiA+ID4gPiA+IGZyZXF1ZW5jeQo+ID4gPiA+ID4gPiA+ID4gb2YgOTEw
-IE1IeiBhbmQgaXQgYXBwZWFycyBhdCA5MzAgTUh6ICh3aXRoIGEgYmFuZHdpZHRoCj4gPiA+ID4g
-PiA+ID4gPiBvZgo+ID4gPiAyMAo+ID4gPiA+ID4gPiA+IE1IeikuIEkKPiA+ID4gPiA+ID4gPiA+
-IGNhbiBub3QgdW5kZXJzdGFuZCB3aGF0IGNhdXNlZCBpdC4gSGVyZSBhcmUgbXkgcmVhZGluZwo+
-ID4gPiA+ID4gZnVuY3Rpb25zCj4gPiA+ID4gPiA+ID4gaW4KPiA+ID4gPiA+ID4gPiA+IHR3byB3
-YXlzLiBJIHdvdWxkIGJlIGV4dHJlbWVseSBncmF0ZWZ1bCBmb3IgdGhlIGhlbHAuCj4gPiA+ID4g
-PiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4g
-PiAKPiA+ID4gPiA+ID4gPiA+IGRlZiB0ZXN0X3JlY2lldihzZWxmLGZyZXEsYmFuZHdpY2gpOgo+
-ID4gPiA+ID4gPiA+ID4gICAgIGNvbXBsZXhfYnVmZnM9bnAuYXJyYXkoW10pCj4gPiA+ID4gPiA+
-ID4gPiAgICAgYnVmZnMgPSBucC5hcnJheShbXSkKPiA+ID4gPiA+ID4gPiA+ICAgICByZXN1bHQg
-PSBucC5lbXB0eSgobGVuKFswXSksIHNlbGYuc2FtcGxlcyksCj4gPiA+ID4gPiA+ID4gZHR5cGU9
-bnAuY29tcGxleDY0KQo+ID4gPiA+ID4gPiA+ID4gICAgIGZvciBpLCBmcmVxcSBpbiBlbnVtZXJh
-dGUoZnJlcSk6Cj4gPiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgcmVjdl9z
-YW1wcyA9IDAKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgI3NlbGYudXNycC5zZXRfcnhfcmF0ZShi
-YW5kd2ljaFtpXSkKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgaz11aGQudHlwZXMuVHVuZVJlcXVl
-c3QoZnJlcXEpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICNrLmFyZ3ModWhkLnR5cGVzLmRldmlj
-ZV9hZGRyKCJtb2RlX249aW50ZWdlciIpCj4gPiA+ID4gPiA+ID4gPiApCj4gPiA+ID4gPiA+ID4g
-PiAgICAgICAgIHNlbGYudXNycC5zZXRfcnhfZnJlcShrKQo+ID4gPiA+ID4gPiA+ID4gICAgICAg
-ICBzZWxmLnN0cmVhbV9jbWQgPQo+ID4gPiA+ID4gPiA+ID4gdWhkLnR5cGVzLlN0cmVhbUNNRCh1
-aGQudHlwZXMuU3RyZWFtTW9kZS5zdGFydF9jb250KQo+ID4gPiA+ID4gPiA+ID4gICAgICAgICBz
-ZWxmLnN0cmVhbV9jbWQuc3RyZWFtX25vdyA9IFRydWUKPiA+ID4gPiA+ID4gPiA+ICAgICAgIAo+
-ID4gPiAgc2VsZi5zdHJlYW1lcl9yeC5pc3N1ZV9zdHJlYW1fY21kKHNlbGYuc3RyZWFtX2NtZCkK
-PiA+ID4gPiA+ID4gPiA+ICAgICAgICAgd2hpbGUKPiA+ID4gc2VsZi51c3JwLmdldF9yeF9zZW5z
-b3IoImxvX2xvY2tlZCIpLnRvX2Jvb2woKQo+ID4gPiA+ID4gIT0KPiA+ID4gPiA+ID4gPiBUcnVl
-Ogo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAgICAgY29udGludWUKPiA+ID4gPiA+ID4gPiA+IAo+
-ID4gPiA+ID4gPiA+ID4gICAgICAgICBzYW1wcyA9IG5wLmFycmF5KFtdLCBkdHlwZT1ucC5jb21w
-bGV4NjQpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgIHdoaWxlIHJlY3Zfc2FtcHMgPCBzZWxmLnNh
-bXBsZXM6Cj4gPiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgICAgIHNhbXBz
-ID0KPiA+ID4gPiA+ID4gPiA+IHNlbGYuc3RyZWFtZXJfcngucmVjdihzZWxmLnJlY3ZfYnVmZiwK
-PiA+ID4gPiA+ID4gPiA+IHNlbGYubWV0YWRhdGFfcngpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAg
-ICAgICBpZiBzZWxmLm1ldGFkYXRhX3J4LmVycm9yX2NvZGUgIT0KPiA+ID4gPiA+ID4gPiA+IGxp
-Yi50eXBlcy5yeF9tZXRhZGF0YV9lcnJvcl9jb2RlLm5vbmU6Cj4gPiA+ID4gPiA+ID4gPiAgICAg
-ICAgICAgICAgICAgcHJpbnQoc2VsZi5tZXRhZGF0YV9yeC5zdHJlcnJvcigpKQo+ID4gPiA+ID4g
-PiA+ID4gICAgICAgICAgICAgaWYgc2FtcHM6Cj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICAgICAg
-ICAgcmVhbF9zYW1wcyA9IG1pbihzZWxmLnNhbXBsZXMgLQo+ID4gPiByZWN2X3NhbXBzLAo+ID4g
-PiA+ID4gPiA+IHNhbXBzKQo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgIHJlc3VsdFs6
-LCByZWN2X3NhbXBzOnJlY3Zfc2FtcHMgKwo+ID4gPiByZWFsX3NhbXBzXQo+ID4gPiA+ID4gPQo+
-ID4gPiA+ID4gPiA+ID4gc2VsZi5yZWN2X2J1ZmZbOiwgMDpyZWFsX3NhbXBzXQo+ID4gPiA+ID4g
-PiA+ID4gICAgICAgICAgICAgICAgIHJlY3Zfc2FtcHMgKz0gcmVhbF9zYW1wcwo+ID4gPiA+ID4g
-PiA+ID4gICAgICAgICAjcHJpbnQgKHNlbGYudXNycC5nZXRfcnhfc2Vuc29yKCdyc3NpJykpCj4g
-PiA+ID4gPiA+ID4gPiAgICAgICAgICNwcmludChzZWxmLnN0cmVhbWVyX3J4LmdldF9tYXhfbnVt
-X3NhbXBzKCkpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICN3aGlsZSBzYW1wczoKPiA+ID4gPiA+
-ID4gPiA+ICAgICAgICAgIyAgICBzYW1wcyA9Cj4gPiA+IHNlbGYuc3RyZWFtZXJfcngucmVjdihz
-ZWxmLnJlY3ZfYnVmZiwKPiA+ID4gPiA+ID4gPiA+IHNlbGYubWV0YWRhdGFfcngpCj4gPiA+ID4g
-PiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAjc2VsZi5z
-dHJlYW1fY21kLnRpbWVfc3BlYyA9Cj4gPiA+IGxpYi50eXBlcy50aW1lX3NwZWMoMCkKPiA+ID4g
-PiA+ID4gPiA+ICAgICAgICAgc2VsZi5zdHJlYW1fY21kID0KPiA+ID4gPiA+ID4gPiA+IGxpYi50
-eXBlcy5zdHJlYW1fY21kKGxpYi50eXBlcy5zdHJlYW1fbW9kZS5zdG9wX2NvbnQpCj4gPiA+ID4g
-PiA+ID4gPiAgICAgICAKPiA+ID4gIHNlbGYuc3RyZWFtZXJfcnguaXNzdWVfc3RyZWFtX2NtZChz
-ZWxmLnN0cmVhbV9jbWQpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAKPiA+ID4gIGNvbXBsZXhfYnVm
-ZnM9bnAuYXBwZW5kKGNvbXBsZXhfYnVmZnMscmVzdWx0KS5yYXZlbCgpCj4gPiA+ID4gPiA+ID4g
-PiAgICAgICAgICNjb3JyZWN0X3Jlc3VsdD1yZXN1bHQKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAg
-Y29ycmVjdF9yZXN1bHRfMT1yZXN1bHQtCj4gPiA+ID4gPiA+ID4gPiAobnAubWVhbihyZXN1bHQu
-cmVhbCkrbnAubWVhbihyZXN1bHQuaW1hZykqMWopCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICNj
-b3JyZWN0X3Jlc3VsdC5yZWFsPXJlc3VsdC5yZWFsLQo+ID4gPiBucC5tZWFuKHJlc3VsdC5yZWFs
-KQo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAjY29ycmVjdF9yZXN1bHQuaW1hZyA9IHJlc3VsdC5p
-bWFnIC0KPiA+ID4gPiA+IG5wLm1lYW4ocmVzdWx0LmltYWcpCj4gPiA+ID4gPiA+ID4gPiAgICAg
-ICAgIFBTRCA9ICBzZWxmLmZmdF90ZXN0KHJlc3VsdCkKPiA+ID4gPiA+ID4gPiA+IAo+ID4gPiA+
-ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICNQU0RbODE4ODo4MjAyXT1ucC5tZWFu
-KFBTRFs4MTgwOjgxODhdKQo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gPiAKPiA+ID4g
-PiA+ID4gPiA+ICAgICAgICAgYnVmZnMgPSBucC5hcHBlbmQoYnVmZnMsUFNEKQo+ID4gPiA+ID4g
-PiA+ID4gCj4gPiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+ID4g
-ICAgIHJldHVybiBjb21wbGV4X2J1ZmZzLAo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+IGJ1ZmZzI25w
-LmFwcGVuZChidWZmc1t2YWx1ZS5zYW1wbGVzOl0sYnVmZnNbOnZhbHVlLnNhbXBsZXNdKQo+ID4g
-PiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+IGRlZiB0ZXN0X3Jl
-Y2lldihzZWxmLGZyZXEsYmFuZHdpY2gpOgo+ID4gPiA+ID4gPiA+ID4gICAgIGNvbXBsZXhfYnVm
-ZnM9bnAuYXJyYXkoW10pCj4gPiA+ID4gPiA+ID4gPiAgICAgYnVmZnMgPSBucC5hcnJheShbXSkK
-PiA+ID4gPiA+ID4gPiA+ICAgICByZXN1bHQgPSBucC5lbXB0eSgobGVuKFswXSksIHNlbGYuc2Ft
-cGxlcyksCj4gPiA+ID4gPiA+ID4gZHR5cGU9bnAuY29tcGxleDY0KQo+ID4gPiA+ID4gPiA+ID4g
-ICAgIGZvciBpLCBmcmVxcSBpbiBlbnVtZXJhdGUoZnJlcSk6Cj4gPiA+ID4gPiA+ID4gPiAKPiA+
-ID4gPiA+ID4gPiA+ICAgICAgICAgcmVjdl9zYW1wcyA9IDAKPiA+ID4gPiA+ID4gPiA+ICAgICAg
-ICAgI3NlbGYudXNycC5zZXRfcnhfcmF0ZShiYW5kd2ljaFtpXSkKPiA+ID4gPiA+ID4gPiA+ICAg
-ICAgICAgaz11aGQudHlwZXMuVHVuZVJlcXVlc3QoZnJlcXEpCj4gPiA+ID4gPiA+ID4gPiAgICAg
-ICAgICNrLmFyZ3ModWhkLnR5cGVzLmRldmljZV9hZGRyKCJtb2RlX249aW50ZWdlciIpCj4gPiA+
-ID4gPiA+ID4gPiApCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgIHNlbGYudXNycC5zZXRfcnhfZnJl
-cShrKQo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgIHdoaWxlCj4gPiA+
-IHNlbGYudXNycC5nZXRfcnhfc2Vuc29yKCJsb19sb2NrZWQiKS50b19ib29sKCkKPiA+ID4gPiA+
-ICE9Cj4gPiA+ID4gPiA+ID4gVHJ1ZToKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgICAgIGNvbnRp
-bnVlCj4gPiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAKPiA+ID4gPiA+ID4g
-PiA+ICAgICAgICAgd2hpbGUgcmVjdl9zYW1wcyA8IHNlbGYuc2FtcGxlczoKPiA+ID4gPiA+ID4g
-PiA+IAo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAgICAgc2FtcHMgPQo+ID4gPiA+ID4gPiA+ID4g
-c2VsZi5zdHJlYW1lcl9yeC5yZWN2KHNlbGYucmVjdl9idWZmLAo+ID4gPiA+ID4gPiA+ID4gc2Vs
-Zi5tZXRhZGF0YV9yeCkKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgICAgIGlmIHNlbGYubWV0YWRh
-dGFfcnguZXJyb3JfY29kZSAhPQo+ID4gPiA+ID4gPiA+ID4gbGliLnR5cGVzLnJ4X21ldGFkYXRh
-X2Vycm9yX2NvZGUubm9uZToKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgICBwcmludChz
-ZWxmLm1ldGFkYXRhX3J4LnN0cmVycm9yKCkpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICAgICBp
-ZiBzYW1wczoKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgICByZWFsX3NhbXBzID0gbWlu
-KHNlbGYuc2FtcGxlcyAtCj4gPiA+IHJlY3Zfc2FtcHMsCj4gPiA+ID4gPiA+ID4gc2FtcHMpCj4g
-PiA+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgcmVzdWx0WzosIHJlY3Zfc2FtcHM6cmVjdl9z
-YW1wcyArCj4gPiA+IHJlYWxfc2FtcHNdCj4gPiA+ID4gPiA9Cj4gPiA+ID4gPiA+ID4gPiBzZWxm
-LnJlY3ZfYnVmZls6LCAwOnJlYWxfc2FtcHNdCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICAgICAg
-ICAgcmVjdl9zYW1wcyArPSByZWFsX3NhbXBzCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICNwcmlu
-dCAoc2VsZi51c3JwLmdldF9yeF9zZW5zb3IoJ3Jzc2knKSkKPiA+ID4gPiA+ID4gPiA+IAo+ID4g
-PiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgIHNlbGYuc3RyZWFtX2NtZC50aW1l
-X3NwZWMgPQo+ID4gPiBsaWIudHlwZXMudGltZV9zcGVjKDApCj4gPiA+ID4gPiA+ID4gPiAgICAg
-ICAKPiA+ID4gIHNlbGYuc3RyZWFtZXJfcnguaXNzdWVfc3RyZWFtX2NtZChzZWxmLnN0cmVhbV9j
-bWQpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAKPiA+ID4gIGNvbXBsZXhfYnVmZnM9bnAuYXBwZW5k
-KGNvbXBsZXhfYnVmZnMscmVzdWx0KS5yYXZlbCgpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgIGNv
-cnJlY3RfcmVzdWx0PXJlc3VsdAo+ID4gPiA+ID4gPiA+ID4gICAgICAgICBjb3JyZWN0X3Jlc3Vs
-dF8xPXJlc3VsdC0KPiA+ID4gPiA+ID4gPiA+IChucC5tZWFuKHJlc3VsdC5yZWFsKStucC5tZWFu
-KHJlc3VsdC5pbWFnKSoxaikKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgY29ycmVjdF9yZXN1bHQu
-cmVhbD1yZXN1bHQucmVhbC0KPiA+ID4gbnAubWVhbihyZXN1bHQucmVhbCkKPiA+ID4gPiA+ID4g
-PiA+ICAgICAgICAgY29ycmVjdF9yZXN1bHQuaW1hZyA9IHJlc3VsdC5pbWFnIC0KPiA+ID4gPiA+
-IG5wLm1lYW4ocmVzdWx0LmltYWcpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgIFBTRCA9ICBzZWxm
-LmZmdF90ZXN0KHJlc3VsdCkKPiA+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+
-ID4gPiA+ID4gPiAgICAgICAgICNQU0RbODE4ODo4MjAyXT1ucC5tZWFuKFBTRFs4MTgwOjgxODhd
-KQo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+ICAgICAg
-ICAgYnVmZnMgPSBucC5hcHBlbmQoYnVmZnMsUFNEKQo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+ID4g
-PiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+ID4gICAgIHJldHVybiBjb21w
-bGV4X2J1ZmZzLAo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+IGJ1ZmZzI25wLmFwcGVuZChidWZmc1t2
-YWx1ZS5zYW1wbGVzOl0sYnVmZnNbOnZhbHVlLnNhbXBsZXNdKQo+ID4gPiA+ID4gPiA+ID4gCj4g
-PiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+ID4g
-PiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4g
-PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gPiA+
-ID4gPiA+ID4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiA+ID4gPiA+ID4gPiA+IFVTUlAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tCj4gPiA+ID4gPiA+ID4gPiAKPiA+ID4gaHR0cDovL2xpc3RzLmV0
-dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBt
-YWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVz
-LmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============2156823377392538433==
+Content-Type: multipart/alternative; boundary="0000000000009e13510588ad9a4a"
+
+--0000000000009e13510588ad9a4a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Good morning. Thanks for your answers, I fixed the record in the data
+array. But
+it did not help me. But I noticed that everything works for me when I add a
+cycle
+  while samps:
+                 samps =3D self.streamer_rx.recv (self.recv_buff,
+self.metadata_rx)
+after
+self.stream_cmd =3D lib.types.stream_cmd (lib.types.stream_mode.stop_cont)
+             self.streamer_rx.issue_stream_cmd (self.stream_cmd).
+I don=E2=80=99t fully understand why this cycle after closing reads and bes=
+ides it
+very much slows down the work of the program, which for me is a critical
+moment.
+
+
+def test_reciev_2(self, freq, bandwich):
+    complex_buffs =3D np.empty((len([0]), self.samples * len(freq)))
+    buffs =3D np.empty((len([0]), self.samples * len(freq)))
+    result =3D np.empty((len([0]), self.samples), dtype=3Dnp.complex64)
+
+    for i, freqq in enumerate(freq):
+
+        recv_samps =3D 0
+        # self.usrp.set_rx_rate(bandwich[i])
+        k =3D uhd.types.TuneRequest(freqq)
+        # k.args(uhd.types.device_addr("mode_n=3Dinteger"))
+        self.usrp.set_rx_freq(k)
+        self.stream_cmd =3D uhd.types.StreamCMD(uhd.types.StreamMode.start_=
+cont)
+        self.stream_cmd.stream_now =3D True
+        self.streamer_rx.issue_stream_cmd(self.stream_cmd)
+        while self.usrp.get_rx_sensor("lo_locked").to_bool() !=3D True:
+            continue
+
+        samps =3D np.array([], dtype=3Dnp.complex64)
+        while recv_samps < self.samples:
+
+            samps =3D self.streamer_rx.recv(self.recv_buff, self.metadata_r=
+x)
+            if self.metadata_rx.error_code !=3D
+lib.types.rx_metadata_error_code.none:
+                print(self.metadata_rx.strerror())
+            if samps:
+                real_samps =3D min(self.samples - recv_samps, samps)
+                result[:, recv_samps:recv_samps + real_samps] =3D
+self.recv_buff[:, 0:real_samps]
+                recv_samps +=3D real_samps
+        # print (self.usrp.get_rx_sensor('rssi'))
+        # print(self.streamer_rx.get_max_num_samps())
+
+        # self.stream_cmd.time_spec =3D lib.types.time_spec(0)
+        self.stream_cmd =3D lib.types.stream_cmd(lib.types.stream_mode.stop=
+_cont)
+        self.streamer_rx.issue_stream_cmd(self.stream_cmd)
+
+        while samps:
+            samps =3D self.streamer_rx.recv(self.recv_buff, self.metadata_r=
+x)
+
+        #complex_buffs =3D np.append(complex_buffs, result).ravel()
+        # correct_result=3Dresult
+        #correct_result_1 =3D result - (np.mean(result.real) +
+np.mean(result.imag) * 1j)
+        # correct_result.real=3Dresult.real-np.mean(result.real)
+        # correct_result.imag =3D result.imag - np.mean(result.imag)
+
+        PSD =3D self.fft_test(result)
+
+        # PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])
+
+        buffs[:, i * value.samples:value.samples * i + value.samples]
+=3D PSD[:, 0:value.samples]
+
+    return complex_buffs, buffs.ravel()
+
+
+=D0=B2=D1=81, 12 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 02:35, Marcus M=C3=
+=BCller <marcus.mueller@ettus.com>:
+
+> Ah, I see you think that this burst can't be too hard on your computer,
+> because it arrives "at once"? That's not the case.
+> On Sun, 2019-05-12 at 01:18 +0200, Marcus M=C3=BCller wrote:
+> > Um, sorry, I don't understand your sentence. Of course we have to
+> > care
+> > about these samples. Otherwise, we get an overflow. That is literally
+> > what overflow means: Samples not getting received by the program
+> > using
+> > UHD in time before a buffer overflows.
+> >
+> > On Sat, 2019-05-11 at 22:29 +0300, Ivan Zahartchuk wrote:
+> > > No, I meant that all system performance is enabled only when we
+> > > make
+> > > a request and not all the time. And we no longer care what we do
+> > > next
+> > > with these samples, they are just an array and the board does not
+> > > require constant reading.
+> > >
+> > > =D0=B2=D1=81, 12 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 01:03, Marcus=
+ M=C3=BCller <marcus.mueller@ettus.com
+> > > >:
+> > > > I'm not quite sure how you come to the conclusion that we
+> > > > wouldn't
+> > > > be
+> > > > tied to system performance in that case: that number of samples
+> > > > still
+> > > > needs to be received by the software running on the computer.
+> > > >
+> > > > Best regards,
+> > > > Marcus
+> > > >
+> > > > On Sat, 2019-05-11 at 20:39 +0300, Ivan Zahartchuk wrote:
+> > > > > Thanks for the help. I will try to fix everything tomorrow and
+> > > > see
+> > > > > the result. But tell me, maybe I don=E2=80=99t fully understand h=
+ow
+> > > > > num_sams_and_done works. If I understand correctly, this method
+> > > > does
+> > > > > not send a continuous stream of data but simply gives a certain
+> > > > > number of samples upon request. And in this case, we are not
+> > > > > tied
+> > > > to
+> > > > > system performance. Maybe I do not understand this. Could you
+> > > > clarify
+> > > > > this?
+> > > > >
+> > > > > =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 23:19, Ma=
+rcus M=C3=BCller <
+> > > > marcus.mueller@ettus.com>:
+> > > > > > Dear Ivan,
+> > > > > >
+> > > > > > On Sat, 2019-05-11 at 20:00 +0300, Ivan Zahartchuk wrote:
+> > > > > > > Sorry I did not specify. When working with the start_cont
+> > > > mode
+> > > > > > with a
+> > > > > > > frequency of more than 5 MHz, I have an overflow error.
+> > > > > >
+> > > > > > Which probably happens due to the inefficient way you handle
+> > > > the
+> > > > > > data;
+> > > > > > your program simply is too slow.
+> > > > > >
+> > > > > > > That leads to a chaotic change in the spectrum. I agree
+> > > > > > > about
+> > > > the
+> > > > > > > wrong allocation of memory, but I created my own data array
+> > > > and
+> > > > > > ran
+> > > > > > > it through the whole chain of changes and additions and had
+> > > > what
+> > > > > > I
+> > > > > > > expected at the output.
+> > > > > >
+> > > > > > Huh? When using offline data, your computationally load
+> > > > > > doesn't
+> > > > > > matter;
+> > > > > > I'm not sure I'm understanding you correctly here!
+> > > > > >
+> > > > > > > Moreover, the data array was much more than what I get from
+> > > > the
+> > > > > > > board. In this regard, I decided that the matter is in the
+> > > > > > reading
+> > > > > > > from the board.
+> > > > > >
+> > > > > > I'll allow myself to doubt that: Again, the fact that your
+> > > > > > data
+> > > > > > array
+> > > > > > runs through smoothly is no indication for your software
+> > > > > > being
+> > > > fast
+> > > > > > enough to keep up with the torrent of samples UHD will give
+> > > > you!
+> > > > > > When
+> > > > > > it doesn't keep up, you see exactly what you're describing:
+> > > > > > UHD
+> > > > > > reporting overflows due to your software not fetching samples
+> > > > fast
+> > > > > > enough. Overflows aren't UHD bugs, they are problems in the
+> > > > > > way
+> > > > you
+> > > > > > use
+> > > > > > UHD!
+> > > > > >
+> > > > > > >  I have seen examples, but start_cont mode is used there
+> > > > > > > and
+> > > > > > there
+> > > > > > > are not so many frequency adjustments. Therefore, I decided
+> > > > to
+> > > > > > use
+> > > > > > > the num_sams_and_done mode, but there is also a problem
+> > > > > > > with
+> > > > it
+> > > > > > which
+> > > > > > > is described in the previous message. If you have more
+> > > > > > suggestions, I
+> > > > > > > will be very grateful to you.
+> > > > > >
+> > > > > > Well, exactly what I wrote in my previous mail: you need to
+> > > > make
+> > > > > > your
+> > > > > > software fast enough. Preallocate the buffer; don't append to
+> > > > its
+> > > > > > end.
+> > > > > >
+> > > > > > Aside from that, do some profiling. Under linux, `perf top
+> > > > > > -ag
+> > > > > > python
+> > > > > > yourscript.py` is your friend to figure out where your
+> > > > > > program
+> > > > > > spends
+> > > > > > its CPU cycles.
+> > > > > >
+> > > > > > Best regards,
+> > > > > > Marcus
+> > > > > >
+> > > > > > > =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 22:27=
+, Marcus M=C3=BCller <
+> > > > > > marcus.mueller@ettus.com>:
+> > > > > > > > Dear Ivan,
+> > > > > > > >
+> > > > > > > > it's not clear what you've modified. I'm not aware of any
+> > > > UHD
+> > > > > > > > function
+> > > > > > > > that restricts any frequency to 5 MHz.
+> > > > > > > > Could you elaborate on which code you're basing this on?
+> > > > > > > >
+> > > > > > > > Also, while I really like the Python interface, if you're
+> > > > > > really
+> > > > > > > > after
+> > > > > > > > high-rate sampling, it might simply not be the optimal
+> > > > thing to
+> > > > > > > > use:
+> > > > > > > > You'd have to be very careful in Pythonland to not run
+> > > > > > > > into
+> > > > > > > > performance
+> > > > > > > > problems once you've gotten the samples from UHD:
+> > > > > > > >
+> > > > > > > >
+> > > >  complex_buffs=3Dnp.append(complex_buffs,result).ravel()
+> > > > > > > > A very bad idea. You're constantly re-allocating buffers
+> > > > here.
+> > > > > > > > Don't do
+> > > > > > > > that. No matter in which programming language you'd do
+> > > > this,
+> > > > > > you'd
+> > > > > > > > make
+> > > > > > > > sure that the buffer is large enough for your data
+> > > > collection
+> > > > > > to
+> > > > > > > > begin
+> > > > > > > > with and then tell the UHD library to fill the
+> > > > > > > > appropriate
+> > > > part
+> > > > > > in
+> > > > > > > > that
+> > > > > > > > buffer to avoid a) having to ask for a larger buffer
+> > > > regularly
+> > > > > > and
+> > > > > > > > b)
+> > > > > > > > avoid copying data.
+> > > > > > > > Asking for an appended version of your last buffer means
+> > > > that
+> > > > > > > > something
+> > > > > > > > has to allocate a larger buffer =E2=80=93 which comes at ve=
+ry
+> > > > > > > > large
+> > > > > > cost!
+> > > > > > > > Best regards,
+> > > > > > > > Marcus
+> > > > > > > >
+> > > > > > > > On Sat, 2019-05-11 at 21:31 +0300, Ivan Zahartchuk via
+> > > > USRP-
+> > > > > > users
+> > > > > > > > wrote:
+> > > > > > > > > Hello. My task is to make a broadband spectrum analyzer
+> > > > on
+> > > > > > the
+> > > > > > > > usrp
+> > > > > > > > > b200 board. For this, the standard functions for
+> > > > > > > > > reading
+> > > > > > samples
+> > > > > > > > in
+> > > > > > > > > python are not suitable for me. Therefore, I edited
+> > > > > > > > > them.
+> > > > > > When
+> > > > > > > > > reading samples using the start_con method, I cannot
+> > > > specify
+> > > > > > a
+> > > > > > > > band
+> > > > > > > > > greater than 5 MHz. Therefore, I use the
+> > > > num_sams_and_done
+> > > > > > > > method.
+> > > > > > > > > But I have problems with him. The fact is that my
+> > > > frequency
+> > > > > > which
+> > > > > > > > I
+> > > > > > > > > know appears in the wrong place. For example, I
+> > > > > > > > > generate
+> > > > a
+> > > > > > > > frequency
+> > > > > > > > > of 910 MHz and it appears at 930 MHz (with a bandwidth
+> > > > > > > > > of
+> > > > 20
+> > > > > > > > MHz). I
+> > > > > > > > > can not understand what caused it. Here are my reading
+> > > > > > functions
+> > > > > > > > in
+> > > > > > > > > two ways. I would be extremely grateful for the help.
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > > def test_reciev(self,freq,bandwich):
+> > > > > > > > >     complex_buffs=3Dnp.array([])
+> > > > > > > > >     buffs =3D np.array([])
+> > > > > > > > >     result =3D np.empty((len([0]), self.samples),
+> > > > > > > > dtype=3Dnp.complex64)
+> > > > > > > > >     for i, freqq in enumerate(freq):
+> > > > > > > > >
+> > > > > > > > >         recv_samps =3D 0
+> > > > > > > > >         #self.usrp.set_rx_rate(bandwich[i])
+> > > > > > > > >         k=3Duhd.types.TuneRequest(freqq)
+> > > > > > > > >         #k.args(uhd.types.device_addr("mode_n=3Dinteger")
+> > > > > > > > > )
+> > > > > > > > >         self.usrp.set_rx_freq(k)
+> > > > > > > > >         self.stream_cmd =3D
+> > > > > > > > > uhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
+> > > > > > > > >         self.stream_cmd.stream_now =3D True
+> > > > > > > > >
+> > > >  self.streamer_rx.issue_stream_cmd(self.stream_cmd)
+> > > > > > > > >         while
+> > > > self.usrp.get_rx_sensor("lo_locked").to_bool()
+> > > > > > !=3D
+> > > > > > > > True:
+> > > > > > > > >             continue
+> > > > > > > > >
+> > > > > > > > >         samps =3D np.array([], dtype=3Dnp.complex64)
+> > > > > > > > >         while recv_samps < self.samples:
+> > > > > > > > >
+> > > > > > > > >             samps =3D
+> > > > > > > > > self.streamer_rx.recv(self.recv_buff,
+> > > > > > > > > self.metadata_rx)
+> > > > > > > > >             if self.metadata_rx.error_code !=3D
+> > > > > > > > > lib.types.rx_metadata_error_code.none:
+> > > > > > > > >                 print(self.metadata_rx.strerror())
+> > > > > > > > >             if samps:
+> > > > > > > > >                 real_samps =3D min(self.samples -
+> > > > recv_samps,
+> > > > > > > > samps)
+> > > > > > > > >                 result[:, recv_samps:recv_samps +
+> > > > real_samps]
+> > > > > > =3D
+> > > > > > > > > self.recv_buff[:, 0:real_samps]
+> > > > > > > > >                 recv_samps +=3D real_samps
+> > > > > > > > >         #print (self.usrp.get_rx_sensor('rssi'))
+> > > > > > > > >         #print(self.streamer_rx.get_max_num_samps())
+> > > > > > > > >         #while samps:
+> > > > > > > > >         #    samps =3D
+> > > > self.streamer_rx.recv(self.recv_buff,
+> > > > > > > > > self.metadata_rx)
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >         #self.stream_cmd.time_spec =3D
+> > > > lib.types.time_spec(0)
+> > > > > > > > >         self.stream_cmd =3D
+> > > > > > > > > lib.types.stream_cmd(lib.types.stream_mode.stop_cont)
+> > > > > > > > >
+> > > >  self.streamer_rx.issue_stream_cmd(self.stream_cmd)
+> > > > > > > > >
+> > > >  complex_buffs=3Dnp.append(complex_buffs,result).ravel()
+> > > > > > > > >         #correct_result=3Dresult
+> > > > > > > > >         correct_result_1=3Dresult-
+> > > > > > > > > (np.mean(result.real)+np.mean(result.imag)*1j)
+> > > > > > > > >         #correct_result.real=3Dresult.real-
+> > > > np.mean(result.real)
+> > > > > > > > >         #correct_result.imag =3D result.imag -
+> > > > > > np.mean(result.imag)
+> > > > > > > > >         PSD =3D  self.fft_test(result)
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >         #PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >         buffs =3D np.append(buffs,PSD)
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >     return complex_buffs,
+> > > > > > > > >
+> > > > buffs#np.append(buffs[value.samples:],buffs[:value.samples])
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > > def test_reciev(self,freq,bandwich):
+> > > > > > > > >     complex_buffs=3Dnp.array([])
+> > > > > > > > >     buffs =3D np.array([])
+> > > > > > > > >     result =3D np.empty((len([0]), self.samples),
+> > > > > > > > dtype=3Dnp.complex64)
+> > > > > > > > >     for i, freqq in enumerate(freq):
+> > > > > > > > >
+> > > > > > > > >         recv_samps =3D 0
+> > > > > > > > >         #self.usrp.set_rx_rate(bandwich[i])
+> > > > > > > > >         k=3Duhd.types.TuneRequest(freqq)
+> > > > > > > > >         #k.args(uhd.types.device_addr("mode_n=3Dinteger")
+> > > > > > > > > )
+> > > > > > > > >         self.usrp.set_rx_freq(k)
+> > > > > > > > >
+> > > > > > > > >         while
+> > > > self.usrp.get_rx_sensor("lo_locked").to_bool()
+> > > > > > !=3D
+> > > > > > > > True:
+> > > > > > > > >             continue
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >         while recv_samps < self.samples:
+> > > > > > > > >
+> > > > > > > > >             samps =3D
+> > > > > > > > > self.streamer_rx.recv(self.recv_buff,
+> > > > > > > > > self.metadata_rx)
+> > > > > > > > >             if self.metadata_rx.error_code !=3D
+> > > > > > > > > lib.types.rx_metadata_error_code.none:
+> > > > > > > > >                 print(self.metadata_rx.strerror())
+> > > > > > > > >             if samps:
+> > > > > > > > >                 real_samps =3D min(self.samples -
+> > > > recv_samps,
+> > > > > > > > samps)
+> > > > > > > > >                 result[:, recv_samps:recv_samps +
+> > > > real_samps]
+> > > > > > =3D
+> > > > > > > > > self.recv_buff[:, 0:real_samps]
+> > > > > > > > >                 recv_samps +=3D real_samps
+> > > > > > > > >         #print (self.usrp.get_rx_sensor('rssi'))
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >         self.stream_cmd.time_spec =3D
+> > > > lib.types.time_spec(0)
+> > > > > > > > >
+> > > >  self.streamer_rx.issue_stream_cmd(self.stream_cmd)
+> > > > > > > > >
+> > > >  complex_buffs=3Dnp.append(complex_buffs,result).ravel()
+> > > > > > > > >         correct_result=3Dresult
+> > > > > > > > >         correct_result_1=3Dresult-
+> > > > > > > > > (np.mean(result.real)+np.mean(result.imag)*1j)
+> > > > > > > > >         correct_result.real=3Dresult.real-
+> > > > np.mean(result.real)
+> > > > > > > > >         correct_result.imag =3D result.imag -
+> > > > > > np.mean(result.imag)
+> > > > > > > > >         PSD =3D  self.fft_test(result)
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >         #PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >         buffs =3D np.append(buffs,PSD)
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >     return complex_buffs,
+> > > > > > > > >
+> > > > buffs#np.append(buffs[value.samples:],buffs[:value.samples])
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > > > _______________________________________________
+> > > > > > > > > USRP-users mailing list
+> > > > > > > > > USRP-users@lists.ettus.com
+> > > > > > > > >
+> > > > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+
+--0000000000009e13510588ad9a4a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span class=3D"gmail-tlid-translation gmail-translation" l=
+ang=3D"en"><span title=3D"">Good morning.</span> <span title=3D"">Thanks fo=
+r your answers, I fixed the record in the data array.</span> <span title=3D=
+"">But it did not help me.</span> <span title=3D"">But I noticed that every=
+thing works for me when I add a cycle</span><br>=C2=A0 <span title=3D"">whi=
+le samps:</span><br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <span title=3D"">samps =3D self.=
+streamer_rx.recv (self.recv_buff, self.metadata_rx)</span><br><span title=
+=3D"">after</span><br><span title=3D"">self.stream_cmd =3D lib.types.stream=
+_cmd (lib.types.stream_mode.stop_cont)</span><br>=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <span title=3D"">self.stre=
+amer_rx.issue_stream_cmd (self.stream_cmd).</span><br></span><div><span cla=
+ss=3D"gmail-tlid-translation gmail-translation" lang=3D"en"><span title=3D"=
+" class=3D"gmail-">I don=E2=80=99t fully understand why this cycle after cl=
+osing reads and besides it very much slows down the work of the program, wh=
+ich for me is a critical moment.</span></span></div><div><span class=3D"gma=
+il-tlid-translation gmail-translation" lang=3D"en"><span title=3D"" class=
+=3D"gmail-"><br></span></span></div><div><span class=3D"gmail-tlid-translat=
+ion gmail-translation" lang=3D"en"><span title=3D"" class=3D"gmail-"><br></=
+span></span></div><div><pre style=3D"background-color:rgb(39,40,34);color:r=
+gb(248,248,242);font-family:&quot;DejaVu Sans Mono&quot;"><span style=3D"co=
+lor:rgb(102,217,239);font-style:italic">def </span><span style=3D"color:rgb=
+(166,226,46)">test_reciev_2</span>(<span style=3D"color:rgb(148,85,141)">se=
+lf</span>, <span style=3D"color:rgb(253,151,31);font-style:italic">freq</sp=
+an>, <span style=3D"color:rgb(128,128,127)">bandwich</span>)<span style=3D"=
+color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(249,38,114)">  =
+  </span>complex_buffs <span style=3D"color:rgb(249,38,114)">=3D </span>np.=
+<span style=3D"color:rgb(102,217,239)">empty</span>((<span style=3D"color:r=
+gb(102,217,239)">len</span>([<span style=3D"color:rgb(174,129,255)">0</span=
+>]), <span style=3D"color:rgb(148,85,141)">self</span>.samples <span style=
+=3D"color:rgb(249,38,114)">* </span><span style=3D"color:rgb(102,217,239)">=
+len</span>(<span style=3D"color:rgb(253,151,31);font-style:italic">freq</sp=
+an>)))<br>    buffs <span style=3D"color:rgb(249,38,114)">=3D </span>np.<sp=
+an style=3D"color:rgb(102,217,239)">empty</span>((<span style=3D"color:rgb(=
+102,217,239)">len</span>([<span style=3D"color:rgb(174,129,255)">0</span>])=
+, <span style=3D"color:rgb(148,85,141)">self</span>.samples <span style=3D"=
+color:rgb(249,38,114)">* </span><span style=3D"color:rgb(102,217,239)">len<=
+/span>(<span style=3D"color:rgb(253,151,31);font-style:italic">freq</span>)=
+))<br>    result <span style=3D"color:rgb(249,38,114)">=3D </span>np.<span =
+style=3D"color:rgb(102,217,239)">empty</span>((<span style=3D"color:rgb(102=
+,217,239)">len</span>([<span style=3D"color:rgb(174,129,255)">0</span>]), <=
+span style=3D"color:rgb(148,85,141)">self</span>.samples), <span style=3D"c=
+olor:rgb(170,73,38)">dtype</span><span style=3D"color:rgb(249,38,114)">=3D<=
+/span>np.complex64)<br><br>    <span style=3D"color:rgb(102,217,239);font-s=
+tyle:italic">for </span>i, freqq <span style=3D"color:rgb(102,217,239);font=
+-style:italic">in </span><span style=3D"color:rgb(102,217,239)">enumerate</=
+span>(<span style=3D"color:rgb(253,151,31);font-style:italic">freq</span>)<=
+span style=3D"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(2=
+49,38,114)"><br></span><span style=3D"color:rgb(249,38,114)">        </span=
+>recv_samps <span style=3D"color:rgb(249,38,114)">=3D </span><span style=3D=
+"color:rgb(174,129,255)">0<br></span><span style=3D"color:rgb(174,129,255)"=
+>        </span><span style=3D"color:rgb(117,113,94)"># self.usrp.set_rx_ra=
+te(bandwich[i])<br></span><span style=3D"color:rgb(117,113,94)">        </s=
+pan>k <span style=3D"color:rgb(249,38,114)">=3D </span>uhd.types.<span styl=
+e=3D"color:rgb(102,217,239)">TuneRequest</span>(freqq)<br>        <span sty=
+le=3D"color:rgb(117,113,94)"># k.args(uhd.types.device_addr(&quot;mode_n=3D=
+integer&quot;))<br></span><span style=3D"color:rgb(117,113,94)">        </s=
+pan><span style=3D"color:rgb(148,85,141)">self</span>.usrp.<span style=3D"c=
+olor:rgb(102,217,239)">set_rx_freq</span>(k)<br>        <span style=3D"colo=
+r:rgb(148,85,141)">self</span>.stream_cmd <span style=3D"color:rgb(249,38,1=
+14)">=3D </span>uhd.types.<span style=3D"color:rgb(102,217,239)">StreamCMD<=
+/span>(uhd.types.StreamMode.start_cont)<br>        <span style=3D"color:rgb=
+(148,85,141)">self</span>.stream_cmd.stream_now <span style=3D"color:rgb(24=
+9,38,114)">=3D </span><span style=3D"color:rgb(102,217,239)">True<br></span=
+><span style=3D"color:rgb(102,217,239)">        </span><span style=3D"color=
+:rgb(148,85,141)">self</span>.streamer_rx.<span style=3D"color:rgb(102,217,=
+239)">issue_stream_cmd</span>(<span style=3D"color:rgb(148,85,141)">self</s=
+pan>.stream_cmd)<br>        <span style=3D"color:rgb(102,217,239);font-styl=
+e:italic">while </span><span style=3D"color:rgb(148,85,141)">self</span>.us=
+rp.<span style=3D"color:rgb(102,217,239)">get_rx_sensor</span>(<span style=
+=3D"color:rgb(165,194,97)">&quot;lo_locked&quot;</span>).<span style=3D"col=
+or:rgb(102,217,239)">to_bool</span>() <span style=3D"color:rgb(249,38,114)"=
+>!=3D </span><span style=3D"color:rgb(102,217,239)">True</span><span style=
+=3D"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(249,38,114)=
+">            </span><span style=3D"color:rgb(102,217,239);font-style:itali=
+c">continue<br></span><span style=3D"color:rgb(102,217,239);font-style:ital=
+ic"><br></span><span style=3D"color:rgb(102,217,239);font-style:italic">   =
+     </span>samps <span style=3D"color:rgb(249,38,114)">=3D </span>np.<span=
+ style=3D"color:rgb(102,217,239)">array</span>([], <span style=3D"color:rgb=
+(170,73,38)">dtype</span><span style=3D"color:rgb(249,38,114)">=3D</span>np=
+.complex64)<br>        <span style=3D"color:rgb(102,217,239);font-style:ita=
+lic">while </span>recv_samps <span style=3D"color:rgb(249,38,114)">&lt; </s=
+pan><span style=3D"color:rgb(148,85,141)">self</span>.samples<span style=3D=
+"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb(249,38,114)"><=
+br></span><span style=3D"color:rgb(249,38,114)">            </span>samps <s=
+pan style=3D"color:rgb(249,38,114)">=3D </span><span style=3D"color:rgb(148=
+,85,141)">self</span>.streamer_rx.<span style=3D"color:rgb(102,217,239)">re=
+cv</span>(<span style=3D"color:rgb(148,85,141)">self</span>.recv_buff, <spa=
+n style=3D"color:rgb(148,85,141)">self</span>.metadata_rx)<br>            <=
+span style=3D"color:rgb(102,217,239);font-style:italic">if </span><span sty=
+le=3D"color:rgb(148,85,141)">self</span>.metadata_rx.error_code <span style=
+=3D"color:rgb(249,38,114)">!=3D </span>lib.types.rx_metadata_error_code.non=
+e<span style=3D"color:rgb(249,38,114)">:<br></span><span style=3D"color:rgb=
+(249,38,114)">                </span><span style=3D"color:rgb(102,217,239);=
+font-style:italic">print</span>(<span style=3D"color:rgb(148,85,141)">self<=
+/span>.metadata_rx.<span style=3D"color:rgb(102,217,239)">strerror</span>()=
+)<br>            <span style=3D"color:rgb(102,217,239);font-style:italic">i=
+f </span>samps<span style=3D"color:rgb(249,38,114)">:<br></span><span style=
+=3D"color:rgb(249,38,114)">                </span>real_samps <span style=3D=
+"color:rgb(249,38,114)">=3D </span><span style=3D"color:rgb(102,217,239)">m=
+in</span>(<span style=3D"color:rgb(148,85,141)">self</span>.samples <span s=
+tyle=3D"color:rgb(249,38,114)">- </span>recv_samps, samps)<br>             =
+   result[<span style=3D"color:rgb(249,38,114)">:</span>, recv_samps<span s=
+tyle=3D"color:rgb(249,38,114)">:</span>recv_samps <span style=3D"color:rgb(=
+249,38,114)">+ </span>real_samps] <span style=3D"color:rgb(249,38,114)">=3D=
+ </span><span style=3D"color:rgb(148,85,141)">self</span>.recv_buff[<span s=
+tyle=3D"color:rgb(249,38,114)">:</span>, <span style=3D"color:rgb(174,129,2=
+55)">0</span><span style=3D"color:rgb(249,38,114)">:</span>real_samps]<br> =
+               recv_samps <span style=3D"color:rgb(249,38,114)">+=3D </span=
+>real_samps<br>        <span style=3D"color:rgb(117,113,94)"># print (self.=
+usrp.get_rx_sensor(&#39;rssi&#39;))<br></span><span style=3D"color:rgb(117,=
+113,94)">        # print(self.streamer_rx.get_max_num_samps())<br></span><s=
+pan style=3D"color:rgb(117,113,94)"><br></span><span style=3D"color:rgb(117=
+,113,94)">        # self.stream_cmd.time_spec =3D lib.types.time_spec(0)<br=
+></span><span style=3D"color:rgb(117,113,94)">        </span><span style=3D=
+"color:rgb(148,85,141)">self</span>.stream_cmd <span style=3D"color:rgb(249=
+,38,114)">=3D </span>lib.types.<span style=3D"color:rgb(102,217,239)">strea=
+m_cmd</span>(lib.types.stream_mode.stop_cont)<br>        <span style=3D"col=
+or:rgb(148,85,141)">self</span>.streamer_rx.<span style=3D"color:rgb(102,21=
+7,239)">issue_stream_cmd</span>(<span style=3D"color:rgb(148,85,141)">self<=
+/span>.stream_cmd)<br><br>        <span style=3D"color:rgb(102,217,239);fon=
+t-style:italic">while </span>samps<span style=3D"color:rgb(249,38,114)">:<b=
+r></span><span style=3D"color:rgb(249,38,114)">            </span>samps <sp=
+an style=3D"color:rgb(249,38,114)">=3D </span><span style=3D"color:rgb(148,=
+85,141)">self</span>.streamer_rx.<span style=3D"color:rgb(102,217,239)">rec=
+v</span>(<span style=3D"color:rgb(148,85,141)">self</span>.recv_buff, <span=
+ style=3D"color:rgb(148,85,141)">self</span>.metadata_rx)<br><br>        <s=
+pan style=3D"color:rgb(117,113,94)">#complex_buffs =3D np.append(complex_bu=
+ffs, result).ravel()<br></span><span style=3D"color:rgb(117,113,94)">      =
+  # correct_result=3Dresult<br></span><span style=3D"color:rgb(117,113,94)"=
+>        #correct_result_1 =3D result - (np.mean(result.real) + np.mean(res=
+ult.imag) * 1j)<br></span><span style=3D"color:rgb(117,113,94)">        # c=
+orrect_result.real=3Dresult.real-np.mean(result.real)<br></span><span style=
+=3D"color:rgb(117,113,94)">        # correct_result.imag =3D result.imag - =
+np.mean(result.imag)<br></span><span style=3D"color:rgb(117,113,94)"><br></=
+span><span style=3D"color:rgb(117,113,94)">        </span>PSD <span style=
+=3D"color:rgb(249,38,114)">=3D </span><span style=3D"color:rgb(148,85,141)"=
+>self</span>.<span style=3D"color:rgb(102,217,239)">fft_test</span>(result)=
+<br><br>        <span style=3D"color:rgb(117,113,94)"># PSD[8188:8202]=3Dnp=
+.mean(PSD[8180:8188])<br></span><span style=3D"color:rgb(117,113,94)"><br><=
+/span><span style=3D"color:rgb(117,113,94)">        </span>buffs[<span styl=
+e=3D"color:rgb(249,38,114)">:</span>, i <span style=3D"color:rgb(249,38,114=
+)">* </span>value.samples<span style=3D"color:rgb(249,38,114)">:</span>valu=
+e.samples <span style=3D"color:rgb(249,38,114)">* </span>i <span style=3D"c=
+olor:rgb(249,38,114)">+ </span>value.samples] <span style=3D"color:rgb(249,=
+38,114)">=3D </span>PSD[<span style=3D"color:rgb(249,38,114)">:</span>, <sp=
+an style=3D"color:rgb(174,129,255)">0</span><span style=3D"color:rgb(249,38=
+,114)">:</span>value.samples]<br><br>    <span style=3D"color:rgb(102,217,2=
+39);font-style:italic">return </span>complex_buffs, buffs.<span style=3D"co=
+lor:rgb(102,217,239)">ravel</span>()</pre><span class=3D"gmail-tlid-transla=
+tion gmail-translation" lang=3D"en"><span title=3D"" class=3D"gmail-"></spa=
+n></span></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">=D0=B2=D1=81, 12 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 02:=
+35, Marcus M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com">marc=
+us.mueller@ettus.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex">Ah, I see you think that this burst can&#39;t be too hard on =
+your computer,<br>
+because it arrives &quot;at once&quot;? That&#39;s not the case.<br>
+On Sun, 2019-05-12 at 01:18 +0200, Marcus M=C3=BCller wrote:<br>
+&gt; Um, sorry, I don&#39;t understand your sentence. Of course we have to<=
+br>
+&gt; care<br>
+&gt; about these samples. Otherwise, we get an overflow. That is literally<=
+br>
+&gt; what overflow means: Samples not getting received by the program<br>
+&gt; using<br>
+&gt; UHD in time before a buffer overflows.<br>
+&gt; <br>
+&gt; On Sat, 2019-05-11 at 22:29 +0300, Ivan Zahartchuk wrote:<br>
+&gt; &gt; No, I meant that all system performance is enabled only when we<b=
+r>
+&gt; &gt; make<br>
+&gt; &gt; a request and not all the time. And we no longer care what we do<=
+br>
+&gt; &gt; next<br>
+&gt; &gt; with these samples, they are just an array and the board does not=
+<br>
+&gt; &gt; require constant reading.<br>
+&gt; &gt; <br>
+&gt; &gt; =D0=B2=D1=81, 12 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 01:03, Ma=
+rcus M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com" target=3D"=
+_blank">marcus.mueller@ettus.com</a><br>
+&gt; &gt; &gt;:<br>
+&gt; &gt; &gt; I&#39;m not quite sure how you come to the conclusion that w=
+e<br>
+&gt; &gt; &gt; wouldn&#39;t<br>
+&gt; &gt; &gt; be<br>
+&gt; &gt; &gt; tied to system performance in that case: that number of samp=
+les<br>
+&gt; &gt; &gt; still<br>
+&gt; &gt; &gt; needs to be received by the software running on the computer=
+.<br>
+&gt; &gt; &gt; <br>
+&gt; &gt; &gt; Best regards,<br>
+&gt; &gt; &gt; Marcus<br>
+&gt; &gt; &gt; <br>
+&gt; &gt; &gt; On Sat, 2019-05-11 at 20:39 +0300, Ivan Zahartchuk wrote:<br=
+>
+&gt; &gt; &gt; &gt; Thanks for the help. I will try to fix everything tomor=
+row and<br>
+&gt; &gt; &gt; see<br>
+&gt; &gt; &gt; &gt; the result. But tell me, maybe I don=E2=80=99t fully un=
+derstand how<br>
+&gt; &gt; &gt; &gt; num_sams_and_done works. If I understand correctly, thi=
+s method<br>
+&gt; &gt; &gt; does<br>
+&gt; &gt; &gt; &gt; not send a continuous stream of data but simply gives a=
+ certain<br>
+&gt; &gt; &gt; &gt; number of samples upon request. And in this case, we ar=
+e not<br>
+&gt; &gt; &gt; &gt; tied<br>
+&gt; &gt; &gt; to<br>
+&gt; &gt; &gt; &gt; system performance. Maybe I do not understand this. Cou=
+ld you<br>
+&gt; &gt; &gt; clarify<br>
+&gt; &gt; &gt; &gt; this?<br>
+&gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2=
+ 23:19, Marcus M=C3=BCller &lt;<br>
+&gt; &gt; &gt; <a href=3D"mailto:marcus.mueller@ettus.com" target=3D"_blank=
+">marcus.mueller@ettus.com</a>&gt;:<br>
+&gt; &gt; &gt; &gt; &gt; Dear Ivan,<br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; On Sat, 2019-05-11 at 20:00 +0300, Ivan Zahartchuk=
+ wrote:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; Sorry I did not specify. When working with th=
+e start_cont<br>
+&gt; &gt; &gt; mode<br>
+&gt; &gt; &gt; &gt; &gt; with a<br>
+&gt; &gt; &gt; &gt; &gt; &gt; frequency of more than 5 MHz, I have an overf=
+low error. <br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; Which probably happens due to the inefficient way =
+you handle<br>
+&gt; &gt; &gt; the<br>
+&gt; &gt; &gt; &gt; &gt; data;<br>
+&gt; &gt; &gt; &gt; &gt; your program simply is too slow.<br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; That leads to a chaotic change in the spectru=
+m. I agree<br>
+&gt; &gt; &gt; &gt; &gt; &gt; about<br>
+&gt; &gt; &gt; the<br>
+&gt; &gt; &gt; &gt; &gt; &gt; wrong allocation of memory, but I created my =
+own data array<br>
+&gt; &gt; &gt; and<br>
+&gt; &gt; &gt; &gt; &gt; ran<br>
+&gt; &gt; &gt; &gt; &gt; &gt; it through the whole chain of changes and add=
+itions and had<br>
+&gt; &gt; &gt; what<br>
+&gt; &gt; &gt; &gt; &gt; I<br>
+&gt; &gt; &gt; &gt; &gt; &gt; expected at the output. <br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; Huh? When using offline data, your computationally=
+ load<br>
+&gt; &gt; &gt; &gt; &gt; doesn&#39;t<br>
+&gt; &gt; &gt; &gt; &gt; matter;<br>
+&gt; &gt; &gt; &gt; &gt; I&#39;m not sure I&#39;m understanding you correct=
+ly here! <br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; Moreover, the data array was much more than w=
+hat I get from<br>
+&gt; &gt; &gt; the<br>
+&gt; &gt; &gt; &gt; &gt; &gt; board. In this regard, I decided that the mat=
+ter is in the<br>
+&gt; &gt; &gt; &gt; &gt; reading<br>
+&gt; &gt; &gt; &gt; &gt; &gt; from the board.<br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; I&#39;ll allow myself to doubt that: Again, the fa=
+ct that your<br>
+&gt; &gt; &gt; &gt; &gt; data<br>
+&gt; &gt; &gt; &gt; &gt; array<br>
+&gt; &gt; &gt; &gt; &gt; runs through smoothly is no indication for your so=
+ftware<br>
+&gt; &gt; &gt; &gt; &gt; being<br>
+&gt; &gt; &gt; fast<br>
+&gt; &gt; &gt; &gt; &gt; enough to keep up with the torrent of samples UHD =
+will give<br>
+&gt; &gt; &gt; you!<br>
+&gt; &gt; &gt; &gt; &gt; When<br>
+&gt; &gt; &gt; &gt; &gt; it doesn&#39;t keep up, you see exactly what you&#=
+39;re describing:<br>
+&gt; &gt; &gt; &gt; &gt; UHD<br>
+&gt; &gt; &gt; &gt; &gt; reporting overflows due to your software not fetch=
+ing samples<br>
+&gt; &gt; &gt; fast<br>
+&gt; &gt; &gt; &gt; &gt; enough. Overflows aren&#39;t UHD bugs, they are pr=
+oblems in the<br>
+&gt; &gt; &gt; &gt; &gt; way<br>
+&gt; &gt; &gt; you<br>
+&gt; &gt; &gt; &gt; &gt; use<br>
+&gt; &gt; &gt; &gt; &gt; UHD!<br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 I have seen examples, but start_cont mo=
+de is used there<br>
+&gt; &gt; &gt; &gt; &gt; &gt; and<br>
+&gt; &gt; &gt; &gt; &gt; there<br>
+&gt; &gt; &gt; &gt; &gt; &gt; are not so many frequency adjustments. Theref=
+ore, I decided<br>
+&gt; &gt; &gt; to<br>
+&gt; &gt; &gt; &gt; &gt; use<br>
+&gt; &gt; &gt; &gt; &gt; &gt; the num_sams_and_done mode, but there is also=
+ a problem<br>
+&gt; &gt; &gt; &gt; &gt; &gt; with<br>
+&gt; &gt; &gt; it<br>
+&gt; &gt; &gt; &gt; &gt; which<br>
+&gt; &gt; &gt; &gt; &gt; &gt; is described in the previous message. If you =
+have more<br>
+&gt; &gt; &gt; &gt; &gt; suggestions, I<br>
+&gt; &gt; &gt; &gt; &gt; &gt; will be very grateful to you.<br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; Well, exactly what I wrote in my previous mail: yo=
+u need to<br>
+&gt; &gt; &gt; make<br>
+&gt; &gt; &gt; &gt; &gt; your<br>
+&gt; &gt; &gt; &gt; &gt; software fast enough. Preallocate the buffer; don&=
+#39;t append to<br>
+&gt; &gt; &gt; its<br>
+&gt; &gt; &gt; &gt; &gt; end.<br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; Aside from that, do some profiling. Under linux, `=
+perf top<br>
+&gt; &gt; &gt; &gt; &gt; -ag<br>
+&gt; &gt; &gt; &gt; &gt; python<br>
+&gt; &gt; &gt; &gt; &gt; yourscript.py` is your friend to figure out where =
+your<br>
+&gt; &gt; &gt; &gt; &gt; program<br>
+&gt; &gt; &gt; &gt; &gt; spends<br>
+&gt; &gt; &gt; &gt; &gt; its CPU cycles.<br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; Best regards,<br>
+&gt; &gt; &gt; &gt; &gt; Marcus<br>
+&gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; =D1=81=D0=B1, 11 =D0=BC=D0=B0=D1=8F 2019 =D0=
+=B3. =D0=B2 22:27, Marcus M=C3=BCller &lt;<br>
+&gt; &gt; &gt; &gt; &gt; <a href=3D"mailto:marcus.mueller@ettus.com" target=
+=3D"_blank">marcus.mueller@ettus.com</a>&gt;:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; Dear Ivan,<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; it&#39;s not clear what you&#39;ve modif=
+ied. I&#39;m not aware of any<br>
+&gt; &gt; &gt; UHD<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; function<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; that restricts any frequency to 5 MHz.<b=
+r>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; Could you elaborate on which code you&#3=
+9;re basing this on?<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; Also, while I really like the Python int=
+erface, if you&#39;re<br>
+&gt; &gt; &gt; &gt; &gt; really<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; after<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; high-rate sampling, it might simply not =
+be the optimal<br>
+&gt; &gt; &gt; thing to<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; use:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; You&#39;d have to be very careful in Pyt=
+honland to not run<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; into<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; performance<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; problems once you&#39;ve gotten the samp=
+les from UHD:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
+&gt; &gt; &gt;=C2=A0 complex_buffs=3Dnp.append(complex_buffs,result).ravel(=
+)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; A very bad idea. You&#39;re constantly r=
+e-allocating buffers<br>
+&gt; &gt; &gt; here.<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; Don&#39;t do<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; that. No matter in which programming lan=
+guage you&#39;d do<br>
+&gt; &gt; &gt; this,<br>
+&gt; &gt; &gt; &gt; &gt; you&#39;d<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; make<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; sure that the buffer is large enough for=
+ your data<br>
+&gt; &gt; &gt; collection<br>
+&gt; &gt; &gt; &gt; &gt; to<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; begin<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; with and then tell the UHD library to fi=
+ll the<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; appropriate<br>
+&gt; &gt; &gt; part<br>
+&gt; &gt; &gt; &gt; &gt; in<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; that<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; buffer to avoid a) having to ask for a l=
+arger buffer<br>
+&gt; &gt; &gt; regularly<br>
+&gt; &gt; &gt; &gt; &gt; and<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; b)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; avoid copying data.<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; Asking for an appended version of your l=
+ast buffer means<br>
+&gt; &gt; &gt; that<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; something<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; has to allocate a larger buffer =E2=80=
+=93 which comes at very<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; large<br>
+&gt; &gt; &gt; &gt; &gt; cost!<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; Best regards,<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; Marcus <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; On Sat, 2019-05-11 at 21:31 +0300, Ivan =
+Zahartchuk via<br>
+&gt; &gt; &gt; USRP-<br>
+&gt; &gt; &gt; &gt; &gt; users<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; wrote:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; Hello. My task is to make a broadba=
+nd spectrum analyzer<br>
+&gt; &gt; &gt; on<br>
+&gt; &gt; &gt; &gt; &gt; the<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; usrp<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; b200 board. For this, the standard =
+functions for<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; reading<br>
+&gt; &gt; &gt; &gt; &gt; samples<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; in<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; python are not suitable for me. The=
+refore, I edited<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; them.<br>
+&gt; &gt; &gt; &gt; &gt; When<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; reading samples using the start_con=
+ method, I cannot<br>
+&gt; &gt; &gt; specify<br>
+&gt; &gt; &gt; &gt; &gt; a<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; band<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; greater than 5 MHz. Therefore, I us=
+e the<br>
+&gt; &gt; &gt; num_sams_and_done<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; method.<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; But I have problems with him. The f=
+act is that my<br>
+&gt; &gt; &gt; frequency<br>
+&gt; &gt; &gt; &gt; &gt; which<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; I<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; know appears in the wrong place. Fo=
+r example, I<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; generate<br>
+&gt; &gt; &gt; a<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; frequency<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; of 910 MHz and it appears at 930 MH=
+z (with a bandwidth<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; of<br>
+&gt; &gt; &gt; 20<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; MHz). I<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; can not understand what caused it. =
+Here are my reading<br>
+&gt; &gt; &gt; &gt; &gt; functions<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; in<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; two ways. I would be extremely grat=
+eful for the help.<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; def test_reciev(self,freq,bandwich)=
+:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0complex_buffs=3D=
+np.array([])<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0buffs =3D np.arr=
+ay([])<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0result =3D np.em=
+pty((len([0]), self.samples),<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; dtype=3Dnp.complex64)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0for i, freqq in =
+enumerate(freq):<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0re=
+cv_samps =3D 0<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#s=
+elf.usrp.set_rx_rate(bandwich[i])<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0k=
+=3Duhd.types.TuneRequest(freqq)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#k=
+.args(uhd.types.device_addr(&quot;mode_n=3Dinteger&quot;)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; )<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0se=
+lf.usrp.set_rx_freq(k)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0se=
+lf.stream_cmd =3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; uhd.types.StreamCMD(uhd.types.Strea=
+mMode.start_cont)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0se=
+lf.stream_cmd.stream_now =3D True<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
+&gt; &gt; &gt;=C2=A0 self.streamer_rx.issue_stream_cmd(self.stream_cmd)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0wh=
+ile<br>
+&gt; &gt; &gt; self.usrp.get_rx_sensor(&quot;lo_locked&quot;).to_bool()<br>
+&gt; &gt; &gt; &gt; &gt; !=3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; True:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0continue<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sa=
+mps =3D np.array([], dtype=3Dnp.complex64)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0wh=
+ile recv_samps &lt; self.samples:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0samps =3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; self.streamer_rx.recv(self.recv_buf=
+f,<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; self.metadata_rx)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0if self.metadata_rx.error_code !=3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; lib.types.rx_metadata_error_code.no=
+ne:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0print(self.metadata_rx.strerror())<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0if samps:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0real_samps =3D min(self.samples -<br>
+&gt; &gt; &gt; recv_samps,<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; samps)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0result[:, recv_samps:recv_samps +<br>
+&gt; &gt; &gt; real_samps]<br>
+&gt; &gt; &gt; &gt; &gt; =3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; self.recv_buff[:, 0:real_samps]<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0recv_samps +=3D real_samps<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#p=
+rint (self.usrp.get_rx_sensor(&#39;rssi&#39;))<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#p=
+rint(self.streamer_rx.get_max_num_samps())<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#w=
+hile samps:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#=
+=C2=A0 =C2=A0 samps =3D<br>
+&gt; &gt; &gt; self.streamer_rx.recv(self.recv_buff,<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; self.metadata_rx)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#s=
+elf.stream_cmd.time_spec =3D<br>
+&gt; &gt; &gt; lib.types.time_spec(0)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0se=
+lf.stream_cmd =3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; lib.types.stream_cmd(lib.types.stre=
+am_mode.stop_cont)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
+&gt; &gt; &gt;=C2=A0 self.streamer_rx.issue_stream_cmd(self.stream_cmd)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
+&gt; &gt; &gt;=C2=A0 complex_buffs=3Dnp.append(complex_buffs,result).ravel(=
+)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#c=
+orrect_result=3Dresult<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0co=
+rrect_result_1=3Dresult-<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; (np.mean(result.real)+np.mean(resul=
+t.imag)*1j)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#c=
+orrect_result.real=3Dresult.real-<br>
+&gt; &gt; &gt; np.mean(result.real)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#c=
+orrect_result.imag =3D result.imag -<br>
+&gt; &gt; &gt; &gt; &gt; np.mean(result.imag)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PS=
+D =3D=C2=A0 self.fft_test(result)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#P=
+SD[8188:8202]=3Dnp.mean(PSD[8180:8188])<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bu=
+ffs =3D np.append(buffs,PSD)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0return complex_b=
+uffs,<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; buffs#np.append(buffs[value.samples:],buffs[:value.samples])=
+<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; def test_reciev(self,freq,bandwich)=
+:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0complex_buffs=3D=
+np.array([])<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0buffs =3D np.arr=
+ay([])<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0result =3D np.em=
+pty((len([0]), self.samples),<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; dtype=3Dnp.complex64)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0for i, freqq in =
+enumerate(freq):<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0re=
+cv_samps =3D 0<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#s=
+elf.usrp.set_rx_rate(bandwich[i])<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0k=
+=3Duhd.types.TuneRequest(freqq)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#k=
+.args(uhd.types.device_addr(&quot;mode_n=3Dinteger&quot;)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; )<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0se=
+lf.usrp.set_rx_freq(k)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0wh=
+ile<br>
+&gt; &gt; &gt; self.usrp.get_rx_sensor(&quot;lo_locked&quot;).to_bool()<br>
+&gt; &gt; &gt; &gt; &gt; !=3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; True:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0continue<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0wh=
+ile recv_samps &lt; self.samples:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0samps =3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; self.streamer_rx.recv(self.recv_buf=
+f,<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; self.metadata_rx)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0if self.metadata_rx.error_code !=3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; lib.types.rx_metadata_error_code.no=
+ne:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0print(self.metadata_rx.strerror())<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0if samps:<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0real_samps =3D min(self.samples -<br>
+&gt; &gt; &gt; recv_samps,<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; samps)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0result[:, recv_samps:recv_samps +<br>
+&gt; &gt; &gt; real_samps]<br>
+&gt; &gt; &gt; &gt; &gt; =3D<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; self.recv_buff[:, 0:real_samps]<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0recv_samps +=3D real_samps<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#p=
+rint (self.usrp.get_rx_sensor(&#39;rssi&#39;))<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0se=
+lf.stream_cmd.time_spec =3D<br>
+&gt; &gt; &gt; lib.types.time_spec(0)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
+&gt; &gt; &gt;=C2=A0 self.streamer_rx.issue_stream_cmd(self.stream_cmd)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
+&gt; &gt; &gt;=C2=A0 complex_buffs=3Dnp.append(complex_buffs,result).ravel(=
+)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0co=
+rrect_result=3Dresult<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0co=
+rrect_result_1=3Dresult-<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; (np.mean(result.real)+np.mean(resul=
+t.imag)*1j)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0co=
+rrect_result.real=3Dresult.real-<br>
+&gt; &gt; &gt; np.mean(result.real)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0co=
+rrect_result.imag =3D result.imag -<br>
+&gt; &gt; &gt; &gt; &gt; np.mean(result.imag)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PS=
+D =3D=C2=A0 self.fft_test(result)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#P=
+SD[8188:8202]=3Dnp.mean(PSD[8180:8188])<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bu=
+ffs =3D np.append(buffs,PSD)<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0return complex_b=
+uffs,<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; buffs#np.append(buffs[value.samples:],buffs[:value.samples])=
+<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; ___________________________________=
+____________<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; USRP-users mailing list<br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <a href=3D"mailto:USRP-users@lists.=
+ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; <br>
+&gt; &gt; &gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-user=
+s_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.=
+com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+<br>
+</blockquote></div>
+
+--0000000000009e13510588ad9a4a--
+
+
+--===============2156823377392538433==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2156823377392538433==--
+
