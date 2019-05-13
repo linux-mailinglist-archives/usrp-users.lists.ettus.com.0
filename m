@@ -2,56 +2,66 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D89091AEB9
-	for <lists+usrp-users@lfdr.de>; Mon, 13 May 2019 03:31:52 +0200 (CEST)
-Received: from [::1] (port=37014 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF4A21B42D
+	for <lists+usrp-users@lfdr.de>; Mon, 13 May 2019 12:43:14 +0200 (CEST)
+Received: from [::1] (port=47590 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hPzog-0005qm-Ux; Sun, 12 May 2019 21:31:46 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:39120)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <neel.pandeya@ettus.com>)
- id 1hPzo8-0005ly-Kf
- for usrp-users@lists.ettus.com; Sun, 12 May 2019 21:31:42 -0400
-Received: by mail-ot1-f51.google.com with SMTP id r7so5793394otn.6
- for <usrp-users@lists.ettus.com>; Sun, 12 May 2019 18:30:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=3X0Y8d87AC5f85Losa53DJ6j+wbwV8Zx5wGgBFsA+FQ=;
- b=ezgz+XGq4E8gtjB8ixnHg8NE0SfaJoiYtBlCrL++ouFZl25ddfkHnpcUu849fm7ovJ
- B0iaj1PoX2cZdEgKcU1wY6qet3pCoPcZq2XW8LFQxlYfpLw0x9AtGqhiE/3NRWI7sdJN
- VF5r3Em7pKIzieiXjG5Jx1zxYNVqzfI80dTpmp8e4mBQdVIZeid2lT5rcXWXO37XDmhq
- mqN5TQX++nb2rfY9w9mQnsyNrswXIK4ogaG18N+c+a61hBJK1YBI04LSjyQ56sL+nMPy
- gz+CGxbKIIhib6ZtnKamWC9zUeZNg+AOIolypVLz9DPKiDvNv6A6J96794vDc1u0j2at
- 3Bhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=3X0Y8d87AC5f85Losa53DJ6j+wbwV8Zx5wGgBFsA+FQ=;
- b=MQlpdZiky2GwPZK6bxggTFAjI04eTCz+De+njC97VV2/iAVqxTXVEIO8L5PRsUu0Jo
- VvbuG0B+zX6bRXWfzopRa2YMe5fza5TM/rspvls/AHVYELXYUpWq9UfY9jUbCUn3LoZE
- 1mLIAnUrRSF1fhHKk+tmJt4adpYaMdeujgLcZ6H/ydPGMB0B9jZ505yL8Kr5LKPsp1iM
- me2/iz99kyNcNBphzEC7Q9qAHMaMtXCYSzYmW851F4blDPCr+0VGayjJ6yIsjE9Nm4CO
- zrDYLaXRJEpVfpsmVbRtExhkpHhrV5x6FvvPSMCIon+KFpptxfvMa54DPVWz4Yw/N13h
- QB/Q==
-X-Gm-Message-State: APjAAAUC4ffQBxCIndyTHgcpDpP6Yn6QQc+EkepkWYygcFSbUYHrRDw/
- wcVoz25LEKyN9hSei+TbCoewLKxxrkXqlIwo0EBIxrwn+uQPcA==
-X-Google-Smtp-Source: APXvYqwL42//C4QgRvQL3kEtN2j75xpFpX5eC+4uyb2Ip+h/cwGgKNtGhDqdQFDXxUFLfaiQvjol+Pt3eZl8V8zoayw=
-X-Received: by 2002:a05:6830:2085:: with SMTP id
- y5mr5065271otq.68.1557711031585; 
- Sun, 12 May 2019 18:30:31 -0700 (PDT)
+	id 1hQ8QF-00044F-FM; Mon, 13 May 2019 06:43:07 -0400
+Received: from mail-relay.contabo.net ([213.136.95.143]:44746)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.91) (envelope-from <fabian@opencode.eu>) id 1hQ8Ph-0003zy-Hn
+ for usrp-users@lists.ettus.com; Mon, 13 May 2019 06:43:03 -0400
+Received: by mail-relay.contabo.net (Postfix, from userid 103)
+ id E4916205B8; Mon, 13 May 2019 12:41:51 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on vmd4985.contabo.net
+X-Spam-Level: 
+Received: from m1331.contabo.net (m1331.contabo.net [91.194.91.204])
+ by mail-relay.contabo.net (Postfix) with ESMTPS id 0BE17201C0
+ for <usrp-users@lists.ettus.com>; Mon, 13 May 2019 12:41:51 +0200 (CEST)
+Received: from x5f7050bd.dyn.telefonica.de ([95.112.80.189]:57058
+ helo=[192.168.10.42])
+ by m1331.contabo.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <fabian@opencode.eu>) id 1hQ8P1-006Dgv-Ba
+ for usrp-users@lists.ettus.com; Mon, 13 May 2019 12:41:54 +0200
+Cc: usrp-users <usrp-users@lists.ettus.com>
+References: <883459ac-4408-76f5-37af-c6859c16a1e6@opencode.eu>
+ <5CBF2EFA.9060302@gmail.com>
+ <138cfa0f-aaa2-99a7-fded-41ebf1148fa0@opencode.eu>
+ <5CBF42A1.2060803@gmail.com>
+ <9b42df4d-1ce9-3d0d-8171-526c534b4441@opencode.eu>
+ <5CBF4788.9060009@gmail.com>
+ <e00a6d17-a7da-2a32-2430-bd98c888a54c@opencode.eu>
+ <16f93e08-ab6b-a729-1bec-b603c8a27988@opencode.eu>
+ <9bbb117f-aff7-1a60-e3c2-362d516915d2@opencode.eu>
+ <CAB__hTQA1Gb6ux23i1NjQ8PFu3+ug6FSdhEyO8LhTopWz5djUg@mail.gmail.com>
+Openpgp: preference=signencrypt
+Message-ID: <d1cc0e25-68a8-1e27-f907-560308e692c4@opencode.eu>
+Date: Mon, 13 May 2019 12:41:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Date: Sun, 12 May 2019 20:30:15 -0500
-Message-ID: <CACaXmv9VRzgAMhcnDDQPOfX=gC6Q3yY3Y-4yjb_0-uzkax3Zxg@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
+In-Reply-To: <CAB__hTQA1Gb6ux23i1NjQ8PFu3+ug6FSdhEyO8LhTopWz5djUg@mail.gmail.com>
+Content-Language: de-AT-frami
+X-OutGoing-Spam-Status: No, score=1.0
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - m1331.contabo.net
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - opencode.eu
+X-Get-Message-Sender-Via: m1331.contabo.net: authenticated_id:
+ fabian@opencode.eu
+X-Authenticated-Sender: m1331.contabo.net: fabian@opencode.eu
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] GNU Radio and RFNoC Workshops in Columbia Maryland
- This Week
+Subject: Re: [USRP-users] USRPs time wrong by factor of two
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,9 +73,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
-Content-Type: multipart/mixed; boundary="===============4887385129734953725=="
+From: Fabian Schwartau via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Fabian Schwartau <fabian@opencode.eu>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,225 +90,135 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4887385129734953725==
-Content-Type: multipart/alternative; boundary="000000000000b360810588badce6"
-
---000000000000b360810588badce6
-Content-Type: text/plain; charset="UTF-8"
-
-======================================================================
-         *** Announcing GNU Radio and RFNoC Workshops ***
-
-                         ** This Week **
-
-     Ettus Research will be running a series of free, hands-on,
-        technical workshops, and you are welcome to attend!
-
-Location:
-National Instruments
-7125 Thomas Edison Drive, Suite 200
-Columbia, Maryland, 21046, USA
-
-Dates:
-Tuesday May 14 -- GNU Radio Workshop
-Wednesday May 15 -- RFNoC Workshop
-
-Workshops will run from 09:00 to 17:00
-
-Registration is required in advance, but is completely free:
-https://events.ni.com/profile/form/index.cfm?PKformID=0x380818abcd
-
-======================================================================
-GNU Radio Workshop Description:
-
-Full Title:
-Introduction to the USRP, UHD, and GNU Radio (Open-Source Toolchain)
-
-Abstract:
-This workshop will provide a thorough and practical introduction to
-the USRP hardware and the open-source software toolchain (UHD and
-GNU Radio). We will examine the hardware and architecture of the
-entire USRP family of software-defined radios. We will discuss topics
-such as how to get started using a new USRP device, how to install and
-configure the open-source software toolchain, programming the USRP
-using the UHD API from C++, using GNU Radio with the USRP and creating
-and running flowgraphs, using GNU Radio from both GRC and Python, and
-various debugging techniques. Several exercises will be performed,
-such as implementing an FM transmitter and receiver. Various
-demonstrations of wireless systems will be shown. A discussion of the
-embedded E310 radio and using embedded SDR will be included. Several
-other open-source tools will be discussed, such as GQRX, Fosphor,
-Inspectrum, and several Out-of-Tree (OOT) modules. A discussion of
-cellular applications, including OpenBTS and LTE stacks, as well as
-GPS/GNSS applications will be presented. Several other miscellaneous
-topics such as 10 Gigabit Ethernet networking, host system performance
-tuning, X300/X310 device recovery, and some best practices will be
-discussed. Attendees should come away with a solid foundation and
-practical understanding of how to configure, program, and use the USRP
-to implement a wide range range of wireless systems.
-
-======================================================================
-RFNoC Workshop Description:
-
-Full Title:
-FPGA Programming on the USRP with the RFNoC Framework
-
-Abstract:
-Ettus Research's RFNoC (RF Network-on-Chip) software framework is
-designed to decrease the development time for experienced FPGA
-engineers seeking to integrate IP into the USRP FPGA signal
-processing chain. RFNoC is the framework for USRP devices that use
-Xilinx 7-series FPGAs (E310, E312, X300, X310). RFNoC is built around
-a packetized network infrastructure in the FPGA that handles the
-transport of control and sample data between the host CPU and the
-radio. Users target their custom algorithms to the FPGA in the form
-of Computation Engines (CE), which are processing blocks that attach
-to this network. CEs act as independent nodes on the network that can
-receive and transmit data to any other node (e.g., another CE, the
-radio block, or the host CPU).  Users can create modular,
-FPGA-accelerated SDR applications by chaining CEs into a flow graph.
-RFNoC is supported in UHD and GNU Radio. In this workshop, we will
-present an interactive hands-on tutorial on RFNoC, including a
-discussion on its design and capabilities, demonstrations of several
-existing examples, and a walk-through on implementing a user-defined
-CE and integrating the CE into GNU Radio.
-
-======================================================================
-Details and Logistics:
-
-* The workshops are free, technical, and hands-on.
-
-* Laptop computers and USRP radios will be provided in the workshop.
-  Attendees do not need to bring or prepare anything.
-
-* Attendees may optionally bring their own equipment.
-  Contact "support@ettus.com" for specific setup requirements.
-
-* For the USRP/GNU Radio Workshop, attendees should have some previous
-experience with Linux and using the Linux command line, and basic
-familiarity with a programming language such as C, C++, or Python,
-and basic fundamental concepts in DSP and RF. For the RFNoC Workshop,
-attendees should also have some basic familiarity with Verilog.
-Extensive or deep experience with these topics is not necessary.
-
-* Space is limited and will be allocated
-  on a first-come,first-serve basis.
-
-* Registration is required in advance, but is completely free.
-https://events.ni.com/profile/form/index.cfm?PKformID=0x380818abcd
-
-======================================================================
-              We look forward to seeing you there!!
-
-======================================================================
-
---000000000000b360810588badce6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default"><span style=
-=3D"font-family:courier new,monospace">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 *** Announcing GNU Radio and RFNoC Workshops ***<br><br>=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ** This Week **<br><=
-br>=C2=A0=C2=A0=C2=A0=C2=A0 Ettus Research will be running a series of free=
-, hands-on,<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 technical worksho=
-ps, and you are welcome to attend!<br><br>Location:<br>National Instruments=
-<br>7125 Thomas Edison Drive, Suite 200<br>Columbia, Maryland, 21046, USA<b=
-r><br>Dates:<br>Tuesday May 14 -- GNU Radio Workshop<br>Wednesday May 15 --=
- RFNoC Workshop<br><br>Workshops will run from 09:00 to 17:00<br><br>Regist=
-ration is required in advance, but is completely free:<br><a href=3D"https:=
-//events.ni.com/profile/form/index.cfm?PKformID=3D0x380818abcd">https://eve=
-nts.ni.com/profile/form/index.cfm?PKformID=3D0x380818abcd</a><br><br>=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>GNU Radio Worksho=
-p Description:<br><br>Full Title:<br>Introduction to the USRP, UHD, and GNU=
- Radio (Open-Source Toolchain)<br><br>Abstract:<br>This workshop will provi=
-de a thorough and practical introduction to<br>the USRP hardware and the op=
-en-source software toolchain (UHD and<br>GNU Radio). We will examine the ha=
-rdware and architecture of the<br>entire USRP family of software-defined ra=
-dios. We will discuss topics<br>such as how to get started using a new USRP=
- device, how to install and<br>configure the open-source software toolchain=
-, programming the USRP<br>using the UHD API from C++, using GNU Radio with =
-the USRP and creating<br>and running flowgraphs, using GNU Radio from both =
-GRC and Python, and<br>various debugging techniques. Several exercises will=
- be performed,<br>such as implementing an FM transmitter and receiver. Vari=
-ous<br>demonstrations of wireless systems will be shown. A discussion of th=
-e<br>embedded E310 radio and using embedded SDR will be included. Several<b=
-r>other open-source tools will be discussed, such as GQRX, Fosphor,<br>Insp=
-ectrum, and several Out-of-Tree (OOT) modules. A discussion of<br>cellular =
-applications, including OpenBTS and LTE stacks, as well as<br>GPS/GNSS appl=
-ications will be presented. Several other miscellaneous<br>topics such as 1=
-0 Gigabit Ethernet networking, host system performance<br>tuning, X300/X310=
- device recovery, and some best practices will be<br>discussed. Attendees s=
-hould come away with a solid foundation and<br>practical understanding of h=
-ow to configure, program, and use the USRP<br>to implement a wide range ran=
-ge of wireless systems.<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D<br>RFNoC Workshop Description:<br><br>Full Title:<br>FPG=
-A Programming on the USRP with the RFNoC Framework<br><br>Abstract:<br>Ettu=
-s Research&#39;s RFNoC (RF Network-on-Chip) software framework is<br>design=
-ed to decrease the development time for experienced FPGA<br>engineers seeki=
-ng to integrate IP into the USRP FPGA signal<br>processing chain. RFNoC is =
-the framework for USRP devices that use<br>Xilinx 7-series FPGAs (E310, E31=
-2, X300, X310). RFNoC is built around<br>a packetized network infrastructur=
-e in the FPGA that handles the<br>transport of control and sample data betw=
-een the host CPU and the<br>radio. Users target their custom algorithms to =
-the FPGA in the form<br>of Computation Engines (CE), which are processing b=
-locks that attach<br>to this network. CEs act as independent nodes on the n=
-etwork that can<br>receive and transmit data to any other node (e.g., anoth=
-er CE, the<br>radio block, or the host CPU).=C2=A0 Users can create modular=
-,<br>FPGA-accelerated SDR applications by chaining CEs into a flow graph.<b=
-r>RFNoC is supported in UHD and GNU Radio. In this workshop, we will<br>pre=
-sent an interactive hands-on tutorial on RFNoC, including a<br>discussion o=
-n its design and capabilities, demonstrations of several<br>existing exampl=
-es, and a walk-through on implementing a user-defined<br>CE and integrating=
- the CE into GNU Radio.<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D<br>Details and Logistics:<br><br>* The workshops are fre=
-e, technical, and hands-on.<br><br>* Laptop computers and USRP radios will =
-be provided in the workshop.<br>=C2=A0 Attendees do not need to bring or pr=
-epare anything.<br><br>* Attendees may optionally bring their own equipment=
-.<br>=C2=A0 Contact &quot;<a href=3D"mailto:support@ettus.com">support@ettu=
-s.com</a>&quot; for specific setup requirements.<br><br>* For the USRP/GNU =
-Radio Workshop, attendees should have some previous<br>experience with Linu=
-x and using the Linux command line, and basic<br>familiarity with a program=
-ming language such as C, C++, or Python,<br>and basic fundamental concepts =
-in DSP and RF. For the RFNoC Workshop,<br>attendees should also have some b=
-asic familiarity with Verilog.<br>Extensive or deep experience with these t=
-opics is not necessary.<br><br>* Space is limited and will be allocated<br>=
-=C2=A0 on a first-come,first-serve basis.<br><br>* Registration is required=
- in advance, but is completely free.<br><a href=3D"https://events.ni.com/pr=
-ofile/form/index.cfm?PKformID=3D0x380818abcd">https://events.ni.com/profile=
-/form/index.cfm?PKformID=3D0x380818abcd</a><br><br>=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 We look forward to seeing you=
- there!!<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D<br><br><br></span></div></div></div>
-
---000000000000b360810588badce6--
-
-
---===============4887385129734953725==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4887385129734953725==--
-
+VGhhbmtzIGZvciB0aGF0LiBJVCBpcyBxdWl0ZSBpbnRlcmVzdGluZywgdGhhdCBpdCBhbHNvIGRv
+ZXMgbm90IHdvcmsKd2l0aCB0aGVpciBvd24gZXhhbXBsZS4gSSB3b3VsZCBleHBlY3QgdGhhdCBh
+bGwgZXhhbXBsZXMgd291bGQgYmUgcnVuIG9uCmRpZmZlcmVudCB0ZXN0IGJlZHMgYmVmb3JlIHJl
+bGVhc2luZyAic3RhYmxlIiBzb2Z0d2FyZSB2ZXJzaW9ucy4uLgpIb3dldmVyLCBwbGVhc2Uga2Vl
+cCB1cyB1cCB0byBkYXRlLCBpZiB5b3UgZ2V0IGFueSBuZXcgaW5mb3JtYXRpb24uCgpCZXN0IHJl
+Z2FyZHMsCkZhYmlhbgoKQW0gMDkuMDUuMTkgdW0gMTk6MzMgc2NocmllYiBSb2IgS29zc2xlcjoK
+PiBGYWJpYW4sCj4gTXkgY29sbGVhZ3VlIGFsc28gZW5jb3VudGVyZWQgdGhpcyAiZmFjdG9yIG9m
+IDIiIGJ1ZyBhbmQgZGV0ZXJtaW5lZCB0aGF0Cj4gaXQgaXMgcHJlc2VudCBzdGFydGluZyBpbiAz
+LjE0LiBJdCdzIHJlbGF0ZWQgdG8gdGhlIHRpY2svc2FtcGxlIHJhdGVzIGluCj4gdGhlIFR3aW5S
+eCBSYWRpbywgYW5kIGRvZXMgYWZmZWN0IHRpbWVkIGNvbW1hbmRzIGFzIHlvdSBzdWdnZXN0LiBJ
+bgo+IGZhY3QsIHRoZSBpc3N1ZSBjYW4gYWN0dWFsbHkgYmUgZGVtb25zdHJhdGVkIHVzaW5nIEV0
+dHVzJ3MgZXhhbXBsZQo+IHByb2dyYW0gInRlc3RfdGltZWRfY29tbWFuZHMiLCB3aGljaCBkb2Vz
+IG5vdCBydW4gc3VjY2Vzc2Z1bGx5IGZvciBhCj4gVHdpblJ4IGluIDMuMTQgYW5kIGxhdGVyLiBI
+ZSBhY3R1YWxseSBqdXN0IHN1Ym1pdHRlZCB0aGlzIGlzc3VlIHRvCj4gc3VwcG9ydEBldHR1cy5j
+b20gPG1haWx0bzpzdXBwb3J0QGV0dHVzLmNvbT4gYSBmZXcgZGF5cyBhZ28gYW5kIGlzCj4gY3Vy
+cmVudGx5IHdhaXRpbmcgb24gYSByZXNwb25zZSBmcm9tIHRoZW0uCj4gUm9iCj4gCj4gCj4gT24g
+VGh1LCBNYXkgOSwgMjAxOSBhdCA5OjA2IEFNIEZhYmlhbiBTY2h3YXJ0YXUgdmlhIFVTUlAtdXNl
+cnMKPiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbT4+IHdyb3RlOgo+IAo+ICAgICBIaSwKPiAgICAgaXMgdGhlcmUgYW55IHVwZGF0
+ZSByZWdhcmRpbmcgdGhpcyBpc3N1ZT8KPiAKPiAgICAgQW0gMjYuMDQuMjAxOSB1bSAxMToyNyBz
+Y2hyaWViIEZhYmlhbiBTY2h3YXJ0YXUgdmlhIFVTUlAtdXNlcnM6Cj4gICAgID4gSGksCj4gICAg
+ID4KPiAgICAgPiBpcyBpdCB0byBiZSBleHBlY3RlZCB0aGF0IHRoaXMgd2lsbCBiZSBmaXhlZCBz
+b29uPyBJcyBzb21lb25lIGF0Cj4gICAgIEV0dHVzCj4gICAgID4gd29ya2luZyBvbiB0aGlzPwo+
+ICAgICA+Cj4gICAgID4gQmVzdCByZWdhcmRzLAo+ICAgICA+IEZhYmlhbgo+ICAgICA+Cj4gICAg
+ID4gQW0gMjMuMDQuMjAxOSB1bSAxOTozNCBzY2hyaWViIEZhYmlhbiBTY2h3YXJ0YXUgdmlhIFVT
+UlAtdXNlcnM6Cj4gICAgID4+IE9LLCBJIGp1c3QgcmV2ZXJ0ZWQgdGhlIHN5c3RlbSB0byB0aGUg
+b2xkIHZlcnNpb24gYW5kIHRoYXQgd29ya3MKPiAgICAgPj4gcGVyZmVjdGx5LiBUaGUgVVNSUCB0
+aW1lIGlzIGluY3JlbWVudGVkIGluIGZ1bGwgc2Vjb25kcyBsaWtlCj4gICAgIGV4cGVjdGVkLgo+
+ICAgICA+PiBTbyBzb21ldGhpbmcgY2hhbmdlZCBzb21ld2hlcmUgaW4gdGhlIGxpYi9mcGdhIGlt
+YWdlLgo+ICAgICA+PiBUaGUgdmVyc2lvbiBJIGFtIHVzaW5nIG5vdyBpczoKPiAgICAgPj4gbGlu
+dXg7IEdOVSBDKysgdmVyc2lvbiA1LjQuMCAyMDE2MDYwOTsgQm9vc3RfMTA1ODAwOwo+ICAgICA+
+PiBVSERfMDAzLjAxMC4wMDIuSEVBRC0wLWdiZDZlMjFkYwo+ICAgICA+PiBIb3BlIHRoYXQgaGVs
+cHMuCj4gICAgID4+Cj4gICAgID4+IEFtIDIzLjA0LjIwMTkgdW0gMTk6MTIgc2NocmllYiBNYXJj
+dXMgRC4gTGVlY2ggdmlhIFVTUlAtdXNlcnM6Cj4gICAgID4+PiBPbiAwNC8yMy8yMDE5IDAxOjEw
+IFBNLCBGYWJpYW4gU2Nod2FydGF1IHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+ICAgICA+Pj4+IFdp
+bGwgdGhlIGZwZ2EgaW1hZ2UgZG93bmxvYWRlciBmcm9tIHRoZSBvbGQgdmVyc2lvbiBhbHNvIGRv
+d25sb2FkCj4gICAgID4+Pj4gdGhlIG9sZCBmcGdhIGltYWdlcz8gT3Igd2hlcmUgY2FuIEkgZ2V0
+IHRoZW0/Cj4gICAgID4+Pj4gSSBkb24ndCBrbm93IGlmIEkgd2lsbCBkbyBpdC4gSSBhbSBhZnJh
+aWQgb2YgYnJlYWtpbmcgbXkgc3lzdGVtCj4gICAgID4+Pj4gYW5kL29yIGludmVzdGluZyBhIGxv
+dCBvZiB0aW1lIHdpdGggdGhpcyBhcyBJIGFtIHVuZGVyIHF1aXRlIGEgbG90Cj4gICAgID4+Pj4g
+b2YgdGltZSBwcmVhc3VyZSBhbmQgSSBhbSBiYXNpY2FsbHkgd29ya2luZyBvbiB0aGUgcHJvZHVj
+dGlvbgo+ICAgICBzeXN0ZW0KPiAgICAgPj4+PiB3aGljaCBoYXMgdG8gYm8gcm9sbGVkIG91dCBp
+biBhIGZldyBkYXlzLiBJZiBJIGJyaWNrIGl0LCBJIHdpbGwKPiAgICAgZ2V0Cj4gICAgID4+Pj4g
+aW4gdHJvdWJsZSA7KQo+ICAgICA+Pj4gVGhlIHVoZF9pbWFnZXNfZG93bmxvYWRlciB0b29sIHdp
+bGwgYWx3YXlzIGRvd25sb2FkIHRoZSBpbWFnZXMgdGhhdAo+ICAgICA+Pj4gbWF0Y2ggdGhlIGxp
+YnJhcnkgdmVyc2lvbi4KPiAgICAgPj4+Cj4gICAgID4+Pgo+ICAgICA+Pj4+Cj4gICAgID4+Pj4g
+QW0gMjMuMDQuMjAxOSB1bSAxODo1MSBzY2hyaWViIE1hcmN1cyBELiBMZWVjaCB2aWEgVVNSUC11
+c2VyczoKPiAgICAgPj4+Pj4gT24gMDQvMjMvMjAxOSAxMTo0OCBBTSwgRmFiaWFuIFNjaHdhcnRh
+dSB2aWEgVVNSUC11c2VycyB3cm90ZToKPiAgICAgPj4+Pj4+IEhpLAo+ICAgICA+Pj4+Pj4gaXRz
+IHRoZSBzYW1lLiBJIGZvdW5kIHRoZSBidWcgYmVjYXVzZSB0aGUgdGltZWQgY29tbWFuZHMgdG9v
+awo+ICAgICBtdWNoCj4gICAgID4+Pj4+PiBsb25nZXIgdGhhbiBleHBlY3RlZCwgc28gdGhlIFVT
+UlAgY2xvY2sgaXMgYWN0dWFsbHkgcnVubmluZyBhdCBhCj4gICAgID4+Pj4+PiBsb3dlciByYXRl
+LiBIb3dldmVyLCB0aGUgc3BlY3RyYSBsb29rZWQgb2sgYW5kIGV2ZXJ5dGhpbmcgZWxzZQo+ICAg
+ICA+Pj4+Pj4gc2VlbXMgdG8gYmUgd29ya2luZyBhcyB1c3VhbCwgZXhjZXB0IHRoZXJlIGlzIGEg
+bGFyZ2VyIGRlbGF5Cj4gICAgID4+Pj4+PiBiZXR3ZWVuIHRoZSBjb21tYW5kcy4gU28gdGhlIFVT
+UlAgaXMgbm90IHJ1bm5pbmcgYXQgYSB3cm9uZwo+ICAgICBjbG9jawo+ICAgICA+Pj4+Pj4gb3Ig
+c29tZXRoaW5nIGxpa2UgdGhhdC4gVGhhdCB3b3VsZCBwcm9iYWJseSBjYXVzZSBtdWNoIGxhcmdl
+cgo+ICAgICBpc3N1ZXMuCj4gICAgID4+Pj4+Pgo+ICAgICA+Pj4+Pj4gQmVzdCByZWdhcmRzLAo+
+ICAgICA+Pj4+Pj4gRmFiaWFuCj4gICAgID4+Pj4+IElmIHlvdSByZXZlcnQgdG8gYSBwcmV2aW91
+cyByZWxlYXNlLCBkb2VzIHRoZSBwcm9ibGVtIGdvIGF3YXk/Cj4gICAgID4+Pj4+Cj4gICAgID4+
+Pj4+Cj4gICAgID4+Pj4+Pgo+ICAgICA+Pj4+Pj4KPiAgICAgPj4+Pj4+IEFtIDIzLjA0LjIwMTkg
+dW0gMTc6Mjcgc2NocmllYiBNYXJjdXMgRC4gTGVlY2ggdmlhIFVTUlAtdXNlcnM6Cj4gICAgID4+
+Pj4+Pj4gT24gMDQvMjMvMjAxOSAwOTo0NyBBTSwgRmFiaWFuIFNjaHdhcnRhdSB2aWEgVVNSUC11
+c2VycyB3cm90ZToKPiAgICAgPj4+Pj4+Pj4gSGkgZXZlcnlvbmUsCj4gICAgID4+Pj4+Pj4+Cj4g
+ICAgID4+Pj4+Pj4+IEkganVzdCBmb3VuZCBhIHZlcnkgc3RyYWdlIGJ1ZyBhbmQgd291bGQgbGlr
+ZSB0byBjb25maXJtIHRoYXQKPiAgICAgPj4+Pj4+Pj4gdGhpcyBpcyBhIGJ1ZyBhbmQgaWYgc29t
+ZW9uZSBjYW4gZXhwbGFpbi9maXggdGhpcy4KPiAgICAgPj4+Pj4+Pj4gSSByZWFkIHRoZSB0aW1l
+IGZyb20gdGhlIFVTUlAgdXNpbmcgZ2V0X3RpbWVfbm93KCkgYW5kIGRvIGEKPiAgICAgbG90Cj4g
+ICAgID4+Pj4+Pj4+IG9mIHN0dWZmIHdpdGggaXQuIE1haW5seSB0byB0aW1lIGNvbW1hbmRzIGxp
+a2UgZnJlcXVlbmN5Cj4gICAgIGhvcHBpbmcKPiAgICAgPj4+Pj4+Pj4gYW5kIHN0YXJ0aW5nIG9m
+IHN0cmVhbXMuIEkgbm90aWNlZCB0aGF0IHRoZSB0aW1lIGluIHRoZSBVU1JQCj4gICAgID4+Pj4+
+Pj4+IHNlZW1lZCB0byBydW4gc2xvd2VyIHRoYW4gZXhwZWN0ZWQsIGFjdHVhbGx5IGJ5IGEgZmFj
+dG9yIG9mCj4gICAgIHR3by4KPiAgICAgPj4+Pj4+Pj4gUGxlYXNlIGZpbmQgYSBwcm9ncmFtIGF0
+dGFjaGVkIHRoYXQgZGVtb25zdHJhdGVzIHRoaXMKPiAgICAgZWZmZWN0LiBJdAo+ICAgICA+Pj4+
+Pj4+PiBwcmludHMgdGhlIGludGVybmFsIFVTUlAgdGltZSByb3VnaGx5IGV2ZXJ5IHNlY29uZCAo
+dXNpbmcKPiAgICAgc2xlZXApCj4gICAgID4+Pj4+Pj4+IGJ1dCB0aGUgVVNSUCB0aW1lIGluY3Jl
+bWVudHMgb25seSBieSAwLjUgc2Vjb25kcyBpbiBlYWNoIHN0ZXAuCj4gICAgID4+Pj4+Pj4+IFdo
+YXQgaXMgZ29pbmcgb24/Cj4gICAgID4+Pj4+Pj4+Cj4gICAgID4+Pj4+Pj4+IFRoZSBwcm9ncmFt
+IGNhbiBiZSBjb21waWxlZCB1c2luZzoKPiAgICAgPj4+Pj4+Pj4gZysrIC1zdGQ9YysrMTQgLU8y
+IG1haW4uY3BwIC1sdWhkIC1sYm9vc3Rfc3lzdGVtIC1vIG1haW4KPiAgICAgPj4+Pj4+Pj4KPiAg
+ICAgPj4+Pj4+Pj4gSSBhbSB1c2luZyBhIHNpbmdsZSAob3IgbXVsdGlwbGUgLSBkb2VzIG5vdCBo
+YXZlIGFuIGVmZmVjdCkKPiAgICAgWDMxMAo+ICAgICA+Pj4+Pj4+PiB3aXRoIHR3byBUd2luUlgu
+IFVIRCBpcyAibGludXg7IEdOVSBDKysgdmVyc2lvbiA1LjUuMAo+ICAgICAyMDE3MTAxMDsKPiAg
+ICAgPj4+Pj4+Pj4gQm9vc3RfMTA1ODAwOyBVSERfMy4xNS4wLmdpdC04OS1nZjkzYzUyMjciIGZy
+b20geWVzdGVyZGF5Lgo+ICAgICBGUEdBCj4gICAgID4+Pj4+Pj4+IGltYWdlIGlzIGFsc28gZnJv
+bSB5ZXN0ZXJkYXkgdXNpbmcgdGhlIGRvd25sb2FkIHNjcmlwdCAtIHdoZXJlCj4gICAgID4+Pj4+
+Pj4+IGNhbiBJIGZpbmQgdGhlIHZlcnNpb24gbnVtYmVyPyBJIGFtIHJ1bm5pbmcgYW4gdXAtdG8t
+ZGF0ZQo+ICAgICBVYnVudHUKPiAgICAgPj4+Pj4+Pj4gMTYuMDQuCj4gICAgID4+Pj4+Pj4gQ291
+bGQgeW91IHRyeSB0aGUgcHJpbnQgYXMgYSBnZXRfZnJhY19zZWNzKCkgYW5kCj4gICAgIGdldF9m
+dWxsX3NlY3MoKQo+ICAgICA+Pj4+Pj4+IGluc3RlYWQ/wqDCoCBUbyBkaXNhbWJpZ3VhdGUgd2hl
+dGhlciB0aGlzIGlzIGFuIGFjdHVhbCBoYXJkd2FyZQo+ICAgICA+Pj4+Pj4+IGNsb2NrIG1hbmFn
+ZW1lbnQKPiAgICAgPj4+Pj4+PiDCoMKgIGlzc3VlIG9yIGp1c3QgYSBmb3JtYXR0aW5nIGlzc3Vl
+Lgo+ICAgICA+Pj4+Pj4+Cj4gICAgID4+Pj4+Pj4KPiAgICAgPj4+Pj4+Pgo+ICAgICA+Pj4+Pj4+
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gICAgID4+
+Pj4+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiAgICAgPj4+Pj4+PiBVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+ICAgICA+
+Pj4+Pj4+Cj4gICAgIGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3Jw
+LXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+ICAgICA+Pj4+Pj4KPiAgICAgPj4+Pj4+IF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gICAgID4+Pj4+PiBVU1JQ
+LXVzZXJzIG1haWxpbmcgbGlzdAo+ICAgICA+Pj4+Pj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPiAgICAgPj4+Pj4+Cj4gICAg
+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3Rz
+LmV0dHVzLmNvbQo+ICAgICA+Pj4+Pgo+ICAgICA+Pj4+Pgo+ICAgICA+Pj4+PiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ICAgICA+Pj4+PiBVU1JQLXVz
+ZXJzIG1haWxpbmcgbGlzdAo+ICAgICA+Pj4+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8
+bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+ICAgICA+Pj4+PiBodHRwOi8vbGlz
+dHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+PiAgICAgPj4+Pgo+ICAgICA+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCj4gICAgID4+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiAgICAgPj4+
+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPgo+ICAgICA+Pj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5m
+by91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+ICAgICA+Pj4KPiAgICAgPj4+Cj4gICAgID4+
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ICAgICA+
+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiAgICAgPj4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4gICAgID4+PiBodHRw
+Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
+cy5jb20KPiAgICAgPj4KPiAgICAgPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KPiAgICAgPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiAgICAgPj4g
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4KPiAgICAgPj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gICAgID4KPiAgICAgPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ICAgICA+IFVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0Cj4gICAgID4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbT4KPiAgICAgPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKPiAgICAgX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiAgICAgVVNSUC11c2VycyBt
+YWlsaW5nIGxpc3QKPiAgICAgVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPiAgICAgaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
+bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlz
+dApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
