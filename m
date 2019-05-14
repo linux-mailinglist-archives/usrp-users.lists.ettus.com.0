@@ -2,87 +2,74 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75DEF1C8F7
-	for <lists+usrp-users@lfdr.de>; Tue, 14 May 2019 14:42:01 +0200 (CEST)
-Received: from [::1] (port=49408 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB8A1C941
+	for <lists+usrp-users@lfdr.de>; Tue, 14 May 2019 15:16:04 +0200 (CEST)
+Received: from [::1] (port=58516 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hQWkl-0006ic-GC; Tue, 14 May 2019 08:41:55 -0400
-Received: from otransport-4.outbound.emailsrv.net ([54.84.14.167]:57234)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.91) (envelope-from <jason@gardettoengineering.com>)
- id 1hQWkC-0006aj-R0
- for usrp-users@lists.ettus.com; Tue, 14 May 2019 08:41:50 -0400
-Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
- [10.4.3.253])
- by otransport-4.outbound.emailsrv.net (Postfix) with ESMTPS id 43F1261723;
- Tue, 14 May 2019 12:40:40 +0000 (UTC)
-Received: from NAM05-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam05lp2057.outbound.protection.outlook.com [104.47.49.57])
- by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id DC6FEA2641;
- Tue, 14 May 2019 12:40:39 +0000 (UTC)
+	id 1hQXHn-0000M0-8I; Tue, 14 May 2019 09:16:03 -0400
+Received: from mail-eopbgr1390115.outbound.protection.outlook.com
+ ([40.107.139.115]:18800 helo=IND01-BO1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+ (Exim 4.91) (envelope-from <koyel.das@vehere.com>)
+ id 1hQXHE-0000EF-KA
+ for usrp-users@lists.ettus.com; Tue, 14 May 2019 09:15:59 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com; s=selector1-gardettoengineering-com;
+ d=vehereinteractive.onmicrosoft.com; s=selector1-vehere-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xO0EdCnKz7jF1wR5D3zCrejKe2MXGVrDHbZLCS5hcwE=;
- b=yPn3OCx65vNSgNCo2rQXcmzSNiQXcAOV3A3WFW60n7bqyxjnGdVTsdzyv4+QIX04JJQszrwZ2gBZAaWcGmU5r/eK7G/jLUQFDCvFiLkoL3Y9wKZ7q9p/Rs8TQcyQL6s9wQ6nKKleaqzJZTCXrdJPJRpGbmJJ8PjqdMV84suWxfM=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
- BL0PR12MB2436.namprd12.prod.outlook.com (52.132.11.30) with Microsoft SMTP
+ bh=Xr6UkAXMI2JQlwrmbhSr8Kjy9l4ciuXRdj36MroBouo=;
+ b=bIieAXMISh2e82fnPkc50hX5bfEBPI31YQ7+r/xvYrP+gP6xDSUXd+eN6mInChNeWXxtOVU0JGGwI+pcXpkZUQ5djNlTB809LdOqMa6RiSh3tdcCzFJyWx37EhrXrqITFE+cLVx2xzurqP8I5Hhk8TnFQyOpDk+z8/xrYyNfZWA=
+Received: from BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM (10.174.210.147) by
+ BM1PR01MB4019.INDPRD01.PROD.OUTLOOK.COM (52.133.238.212) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1878.22; Tue, 14 May 2019 12:40:38 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::5570:e6c8:1b85:dbc5]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::5570:e6c8:1b85:dbc5%7]) with mapi id 15.20.1878.024; Tue, 14 May 2019
- 12:40:38 +0000
-To: "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>, "Koyel Das
- (Vehere)" <koyel.das@vehere.com>
+ 15.20.1878.22; Tue, 14 May 2019 13:14:45 +0000
+Received: from BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::e134:121:21f0:7218]) by BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::e134:121:21f0:7218%5]) with mapi id 15.20.1878.024; Tue, 14 May 2019
+ 13:14:45 +0000
+To: Jason Matusiak <jason@gardettoengineering.com>,
+ "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
 Thread-Topic: vert 2450 quarter wave monopole?
-Thread-Index: AQHVCjmUtNzjpV94kECUvxMD29gWJKZqj+Sl
-Date: Tue, 14 May 2019 12:40:38 +0000
-Message-ID: <BL0PR12MB23409F2DBB6EC943F6D1ED9BAF080@BL0PR12MB2340.namprd12.prod.outlook.com>
-References: <BM1PR01MB07059D1A9462238627D2B9DD90080@BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <BM1PR01MB07059D1A9462238627D2B9DD90080@BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM>
+Thread-Index: AQHVCjmUtNzjpV94kECUvxMD29gWJKZqj+SlgAAJd/A=
+Date: Tue, 14 May 2019 13:14:45 +0000
+Message-ID: <BM1PR01MB07054FF843D76439C283FB6190080@BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM>
+References: <BM1PR01MB07059D1A9462238627D2B9DD90080@BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM>,
+ <BL0PR12MB23409F2DBB6EC943F6D1ED9BAF080@BL0PR12MB2340.namprd12.prod.outlook.com>
+In-Reply-To: <BL0PR12MB23409F2DBB6EC943F6D1ED9BAF080@BL0PR12MB2340.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-originating-ip: [65.127.220.137]
+ smtp.mailfrom=koyel.das@vehere.com; 
+x-originating-ip: [42.110.138.138]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f384fbd9-770d-4144-3a5d-08d6d8695e51
+x-ms-office365-filtering-correlation-id: 3e0a58a6-f9d2-4fd2-7daf-08d6d86e2254
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600141)(711020)(4605104)(2017052603328)(7193020);
- SRVR:BL0PR12MB2436; 
-x-ms-traffictypediagnostic: BL0PR12MB2436:
+ SRVR:BM1PR01MB4019; 
+x-ms-traffictypediagnostic: BM1PR01MB4019:
 x-ms-exchange-purlcount: 5
-x-microsoft-antispam-prvs: <BL0PR12MB2436C911E429AF4DEED0BACBAF080@BL0PR12MB2436.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-microsoft-antispam-prvs: <BM1PR01MB4019C82771E9668E97C838B590080@BM1PR01MB4019.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-forefront-prvs: 0037FD6480
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(346002)(136003)(366004)(376002)(396003)(39830400003)(365934003)(199004)(189003)(446003)(73956011)(8936002)(11346002)(74316002)(66946007)(68736007)(66066001)(316002)(66476007)(76116006)(64756008)(66556008)(66446008)(7736002)(54896002)(105004)(53936002)(6436002)(6306002)(8676002)(9686003)(733005)(33656002)(55016002)(476003)(81166006)(81156014)(76176011)(486006)(52536014)(6246003)(5660300002)(966005)(236005)(102836004)(25786009)(606006)(2906002)(71200400001)(26005)(3846002)(508600001)(6116002)(71190400001)(99286004)(256004)(19627405001)(5024004)(14454004)(7696005)(14444005)(110136005)(53546011)(186003)(66574012)(6506007)(86362001)(229853002)(491001);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2436;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10019020)(376002)(346002)(396003)(39830400003)(366004)(136003)(199004)(189003)(365934003)(81166006)(71190400001)(66066001)(8936002)(81156014)(6116002)(733005)(55016002)(66574012)(6506007)(53936002)(25786009)(74316002)(3846002)(33656002)(54896002)(476003)(6436002)(110136005)(71200400001)(966005)(102836004)(5660300002)(8676002)(236005)(508600001)(11346002)(53546011)(7736002)(9686003)(606006)(446003)(486006)(256004)(14444005)(5024004)(6306002)(7696005)(26005)(6246003)(86362001)(68736007)(14454004)(99286004)(52536014)(76116006)(186003)(73956011)(66946007)(66446008)(64756008)(19627405001)(66556008)(66476007)(229853002)(15974865002)(2906002)(76176011)(316002)(491001);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BM1PR01MB4019;
+ H:BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
+received-spf: None (protection.outlook.com: vehere.com does not designate
+ permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Pu7maxlVtbXXOG0CarSZAdSNHVpIcQD/mhA4eqlLlurbbckKWdBWNQaaz3nFGwxqozchXo2jRhisFdiDr6AF5np5MVt+l/6ofCRjCbVHgfVZrcf4yt37npMkrEpRVde4yPCY/6+PzQbpQeswi82z5AZFwD2DcHG0nhGoUzSACjHOfd36GsAehSu7Js9iSyyaVWQ09OE3zuAjwmscwEXmTM6+B9ji3t676W24ra9HeoybF9eFz6BqrzwfQtWOG6b08FtVqDElEeqLZma9UxhpqBtElWvEYulq+y/ybeKU2KLBOb9bHtGGGKlDj9Y8lKfKySRWnyhS2ognxcPuXoz3sZVGxFwiA32JTuVYZN0sqhAIk6sbJxhYTqgjA7XXbHNiNCCysAnRSqOk7lRjHVmcwL4ZeZWX6zAUmqWyTH5vKgY=
+x-microsoft-antispam-message-info: Tx34Ib9bxpRwUlZPe811gtRNmzWT8uLDGHzYfDzL801xwjv5wWbmofq1D3uWjW+cu9xLBS6oR8rK466sEjuRPgoxi2YeSoZC2a9/zj2zo+t04UVJSPGNk/oJZPLQMrvh7vMhUaYrInXiZK8HgP12JK0cWhxLZNi4GxKP6ux2k6JVzOQQeY1g4UP5Y4TLzKPmEqsRVmC2M6fCm1ShvUEjiXlMyLHcmwtFyymOUXTP+ll1DavBbsQgeUdjGrmusCSJSVQ/yTd7bACC7BJa+azTzKVDZpwoR0wCc+YzMugBtZJOyaP5GGAFBGccBoY5v8hJIPHIvqnS5tSEJ9T+cSeh0C9czc1Yv7SfZT0EYJHZpKumQraSsg7RPpriOApwaQCO6W9ifaIpnyfSZCCoUXrul6M3pbwdVq+6kHm1bpFmG1s=
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f384fbd9-770d-4144-3a5d-08d6d8695e51
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2019 12:40:38.4661 (UTC)
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e0a58a6-f9d2-4fd2-7daf-08d6d86e2254
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2019 13:14:45.2007 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2436
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-dm3nam05lp2057.outbound.protection.outlook.com|104.47.49.57|NAM05-DM3-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.49.57, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-19550-c
-X-Mailprotector-ID: fd4629d3-3d7e-4c58-bbba-9c2b3a6dea7a
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BM1PR01MB4019
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -100,9 +87,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
-Content-Type: multipart/mixed; boundary="===============4176335305408627077=="
+From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
+Content-Type: multipart/mixed; boundary="===============6865437409825320514=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -116,14 +103,52 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4176335305408627077==
+--===============6865437409825320514==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB23409F2DBB6EC943F6D1ED9BAF080BL0PR12MB2340namp_"
+	boundary="_000_BM1PR01MB07054FF843D76439C283FB6190080BM1PR01MB0705INDP_"
 
---_000_BL0PR12MB23409F2DBB6EC943F6D1ED9BAF080BL0PR12MB2340namp_
+--_000_BM1PR01MB07054FF843D76439C283FB6190080BM1PR01MB0705INDP_
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+Ok it=92s a quarter wave dipole. Thanks!
+
+Regards,
+Koyel Das
+Senior =96 Product Engineer
+Vehere | Proactive Communications Intelligence & Cyber Defence
+M: +919051132173 | T: +91 33 40545454 | F: +91 33 40545455 | W: www.vehere.=
+com
+
+
+
+Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
+rds in India & Asia since 2012!
+
+The content of this e-mail is confidential and intended solely for the use =
+of the addressee. The text of this email (including any attachments) may co=
+ntain information, which is proprietary and/or confidential or privileged i=
+n nature belonging to Vehere Interactive Pvt Ltd and/or its associates/ gro=
+up companies/ subsidiaries. If you are not the addressee, or the person res=
+ponsible for delivering it to the addressee, any disclosure, copying, distr=
+ibution or any action taken or omitted to be taken in reliance on it is pro=
+hibited and may be unlawful. If you have received this e-mail in error, ple=
+ase notify the sender and remove this communication entirely from your syst=
+em. The recipient acknowledges that no guarantee or any warranty is given a=
+s to completeness and accuracy of the content of the email. The recipient f=
+urther acknowledges that the views contained in the email message are those=
+ of the sender and may not necessarily reflect those of Vehere Interactive =
+Pvt Ltd. Before opening and accessing the attachment please check and scan =
+for virus. WARNING: Computer viruses can be transmitted via email. The reci=
+pient should check this email and any attachments for the presence of virus=
+es. The company accepts no liability for any damage caused by any virus tra=
+nsmitted by this email.
+________________________________
+From: Jason Matusiak <jason@gardettoengineering.com>
+Sent: Tuesday, May 14, 2019 6:10:38 PM
+To: 'USRP-users@lists.ettus.com'; Koyel Das (Vehere)
+Subject: Re: vert 2450 quarter wave monopole?
 
 According to this, it is a dipole: https://kb.ettus.com/images/9/9e/ettus_r=
 esearch_vert2450_datasheet.pdf
@@ -178,7 +203,7 @@ pient should check this email and any attachments for the presence of virus=
 es. The company accepts no liability for any damage caused by any virus tra=
 nsmitted by this email.
 
---_000_BL0PR12MB23409F2DBB6EC943F6D1ED9BAF080BL0PR12MB2340namp_
+--_000_BM1PR01MB07054FF843D76439C283FB6190080BM1PR01MB0705INDP_
 Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
@@ -186,60 +211,109 @@ Content-Transfer-Encoding: quoted-printable
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
 252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
 </head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<body>
+Ok it=92s a quarter wave dipole. Thanks!<br>
+<br>
+Regards,<br>
+Koyel Das<br>
+Senior =96 Product Engineer<br>
+Vehere | Proactive Communications Intelligence &amp; Cyber Defence<br>
+M: &#43;919051132173 | T: &#43;91 33 40545454 | F: &#43;91 33 40545455 | W:=
+ www.vehere.com<br>
+<br>
+<br>
+<br>
+Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
+rds in India &amp; Asia since 2012!<br>
+<br>
+The content of this e-mail is confidential and intended solely for the use =
+of the addressee. The text of this email (including any attachments) may co=
+ntain information, which is proprietary and/or confidential or privileged i=
+n nature belonging to Vehere Interactive
+ Pvt Ltd and/or its associates/ group companies/ subsidiaries. If you are n=
+ot the addressee, or the person responsible for delivering it to the addres=
+see, any disclosure, copying, distribution or any action taken or omitted t=
+o be taken in reliance on it is
+ prohibited and may be unlawful. If you have received this e-mail in error,=
+ please notify the sender and remove this communication entirely from your =
+system. The recipient acknowledges that no guarantee or any warranty is giv=
+en as to completeness and accuracy
+ of the content of the email. The recipient further acknowledges that the v=
+iews contained in the email message are those of the sender and may not nec=
+essarily reflect those of Vehere Interactive Pvt Ltd. Before opening and ac=
+cessing the attachment please check
+ and scan for virus. WARNING: Computer viruses can be transmitted via email=
+. The recipient should check this email and any attachments for the presenc=
+e of viruses. The company accepts no liability for any damage caused by any=
+ virus transmitted by this email.<br>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jason Matusiak &lt;ja=
+son@gardettoengineering.com&gt;<br>
+<b>Sent:</b> Tuesday, May 14, 2019 6:10:38 PM<br>
+<b>To:</b> 'USRP-users@lists.ettus.com'; Koyel Das (Vehere)<br>
+<b>Subject:</b> Re: vert 2450 quarter wave monopole?</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 According to this, it is a dipole:&nbsp;<a href=3D"https://kb.ettus.com/ima=
 ges/9/9e/ettus_research_vert2450_datasheet.pdf">https://kb.ettus.com/images=
 /9/9e/ettus_research_vert2450_datasheet.pdf</a></div>
-<div id=3D"Signature">
+<div id=3D"x_Signature">
 <div>
-<div id=3D"appendonsend"></div>
+<div id=3D"x_appendonsend"></div>
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
 t; color:rgb(0,0,0)">
 <br>
 </div>
 <hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> USRP-users &lt;usrp-u=
-sers-bounces@lists.ettus.com&gt; on behalf of Koyel Das (Vehere) via USRP-u=
-sers &lt;usrp-users@lists.ettus.com&gt;<br>
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> USRP-users &lt;usrp=
+-users-bounces@lists.ettus.com&gt; on behalf of Koyel Das (Vehere) via USRP=
+-users &lt;usrp-users@lists.ettus.com&gt;<br>
 <b>Sent:</b> Tuesday, May 14, 2019 5:45 AM<br>
 <b>To:</b> 'USRP-users@lists.ettus.com'<br>
 <b>Subject:</b> [USRP-users] vert 2450 quarter wave monopole?</font>
 <div>&nbsp;</div>
 </div>
 <div dir=3D"ltr">
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
-or:#000000; font-family:Calibri,Helvetica,sans-serif">
-<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0; margin-bottom=
-:0">Hi,</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0; margin-bottom=
-:0"><br>
+<div id=3D"x_x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; c=
+olor:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p style=3D"margin-top:0px; margin-bottom:0px; margin-top:0; margin-bottom:=
+0">Hi,</p>
+<p style=3D"margin-top:0px; margin-bottom:0px; margin-top:0; margin-bottom:=
+0"><br>
 </p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0; margin-bottom=
-:0">Can someone tell me if vert 2450 is quarter wave monopole antenna? Or w=
-hat is it?</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0; margin-bottom=
-:0"><br>
+<p style=3D"margin-top:0px; margin-bottom:0px; margin-top:0; margin-bottom:=
+0">Can someone tell me if vert 2450 is quarter wave monopole antenna? Or wh=
+at is it?</p>
+<p style=3D"margin-top:0px; margin-bottom:0px; margin-top:0; margin-bottom:=
+0"><br>
 </p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0; margin-bottom=
-:0">Regards,</p>
-<div id=3D"x_Signature">
+<p style=3D"margin-top:0px; margin-bottom:0px; margin-top:0; margin-bottom:=
+0">Regards,</p>
+<div id=3D"x_x_Signature">
 <meta content=3D"text/html; charset=3DUTF-8">
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
-or:rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;App=
-le Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe =
-UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols">
-<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0; margin-bottom=
-:0"></p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;font-family:Calibri,Helveti=
-ca,sans-serif,EmojiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&=
-quot;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,=
-EmojiSymbols; font-size:16px; line-height:16px">
+<div id=3D"x_x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; c=
+olor:rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;A=
+pple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Sego=
+e UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols">
+<p style=3D"margin-top:0px; margin-bottom:0px; margin-top:0; margin-bottom:=
+0"></p>
+<p style=3D"margin-top:0px; margin-bottom:0px; font-family:Calibri,Helvetic=
+a,sans-serif,EmojiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&q=
+uot;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,E=
+mojiSymbols; font-size:16px; line-height:16px">
 <font face=3D"Tahoma,serif"><font style=3D"font-size:9pt">Koyel Das &nbsp;&=
 nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
 p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
@@ -319,7 +393,8 @@ cessing the attachment please check
 . The recipient should check this email and any attachments for the presenc=
 e of viruses. The company accepts no liability for any damage caused by any=
  virus transmitted by this email.</font></font><br>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;"></p>
+<p style=3D"margin-top:0px; margin-bottom:0px"></p>
+</div>
 </div>
 </div>
 </div>
@@ -329,10 +404,10 @@ e of viruses. The company accepts no liability for any damage caused by any=
 </body>
 </html>
 
---_000_BL0PR12MB23409F2DBB6EC943F6D1ED9BAF080BL0PR12MB2340namp_--
+--_000_BM1PR01MB07054FF843D76439C283FB6190080BM1PR01MB0705INDP_--
 
 
---===============4176335305408627077==
+--===============6865437409825320514==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -343,5 +418,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4176335305408627077==--
+--===============6865437409825320514==--
 
