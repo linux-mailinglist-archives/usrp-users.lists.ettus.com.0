@@ -2,39 +2,68 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6971520E37
-	for <lists+usrp-users@lfdr.de>; Thu, 16 May 2019 19:50:28 +0200 (CEST)
-Received: from [::1] (port=46024 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B38B20F5C
+	for <lists+usrp-users@lfdr.de>; Thu, 16 May 2019 21:53:31 +0200 (CEST)
+Received: from [::1] (port=53978 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hRKWR-0002th-6H; Thu, 16 May 2019 13:50:27 -0400
-Received: from [141.226.237.60] (port=36329 helo=netlinetech.com)
- by mm2.emwd.com with esmtp (Exim 4.91)
- (envelope-from <Ilayn@netlinetech.com>) id 1hRKVs-0002lM-Tt
- for usrp-users@lists.ettus.com; Thu, 16 May 2019 13:50:23 -0400
-Received: from Internal Mail-Server by Mail-SeCure (envelope-from
- Ilayn@netlinetech.com) with SMTP; 16 May 2019 18:33:43 +0000
-Received: from NCTSERVER5.netline.co.il ([::1]) by nctserver5.netline.co.il
- ([::1]) with mapi id 14.03.0439.000; Thu, 16 May 2019 20:47:35 +0300
-To: "support@ettus.com" <support@ettus.com>, "usrp-users@lists.ettus.com"
- <usrp-users@lists.ettus.com>
-Thread-Topic: x310 gpsdo get_time_now()
-Thread-Index: AdUMDxkMkokvUA0pT8qCFPsaOns4gA==
-Date: Thu, 16 May 2019 17:47:34 +0000
-Message-ID: <EBDEC4BDBD1F534686BED262D988D715086560DD@nctserver5.netline.co.il>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.1.173]
-x-c2processedorg: b6f1b805-3509-4939-a2f1-63107df1a371
+	id 1hRMRN-00053F-TL; Thu, 16 May 2019 15:53:21 -0400
+Received: from mail-qt1-f175.google.com ([209.85.160.175]:41032)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hRMQq-0004v0-Kf
+ for usrp-users@lists.ettus.com; Thu, 16 May 2019 15:53:18 -0400
+Received: by mail-qt1-f175.google.com with SMTP id y22so5391461qtn.8
+ for <usrp-users@lists.ettus.com>; Thu, 16 May 2019 12:52:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=WH4OcNoCgNVtoNjQUML6wpHlYgcci9IDzvTnQ72BILA=;
+ b=dJg5H2eslOZhMBSj5ZOEAddxdXUo8ocPg71eNiukogmdXkI0MIrXyZ8GqV1xIihlJS
+ oJ0AewOlQy3PAwIfybHEdeHjZDipKUUkgKkjn7zeYlICtrW8UWzXk2DUXdlWIR2Pcuhn
+ V7AssBNeTxerQ2d2DxxPSj6hvE8H4mM5VxQUAK+KJWNJD9U6kBqVZ9OSUUp1rhW5uePU
+ aS0WwXUp7GlXPd2jjQC39f5FS/hoUlEyekf29+SzuWY2DcDWhuSNxQ2q4oI5OXdOBsv/
+ KlHZ9W1YWoJnA5XIL7w2M2uV0Lxjwik0rQO+1VCeqeu8qOb8SuTwreDOmkH6psuN4c1q
+ ZzYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=WH4OcNoCgNVtoNjQUML6wpHlYgcci9IDzvTnQ72BILA=;
+ b=dxUhWhOCUDLNXWHSr68kggpCSxwApwRbTqmv15DSHCr+2hnRGqky/vca/uIhEKRFyc
+ hl+XU8JCvwdNwInZH5J1cyz9ENaOavyYKwnst1Pt6WPHzNwoIYwQznt3PpfNp7jfVawn
+ 1OjXkOSBEmeDrx+tQpTLmDsAsg/mi/kqwj7SEWVvY0VxFMOjo6b7NsbQGEHEqp8EIVpN
+ Iiu4DyvpBBtVJDpBYxChaHdRI7oKB2TMH/gA5Kge0Fjef9qUgvq9drtdkY60Ao6N8pj0
+ ldtTAerS9jX1QVXFNX3IJIlEsxgQQgbGDVrWGBDg8n+bICnQ5FBcn19s07i2w1RzerkG
+ epwQ==
+X-Gm-Message-State: APjAAAUxxZ0aRIRbnX7XVbky7t8HT+v+gxuxIcxRIXygK1KTQMFMGpri
+ GPoxxasxxnpHCS3zDOdCj3TonER/
+X-Google-Smtp-Source: APXvYqwotJzPUGKJtTLGHVGJJABzlKV1NTrMedpQkxL06a1UbG1W4caUPQRPP5Cd490oBWfuqRLNvg==
+X-Received: by 2002:a0c:8ae9:: with SMTP id 38mr42286195qvw.157.1558036327951; 
+ Thu, 16 May 2019 12:52:07 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id u46sm4492936qtu.57.2019.05.16.12.52.06
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 16 May 2019 12:52:07 -0700 (PDT)
+Message-ID: <5CDDBF66.8030004@gmail.com>
+Date: Thu, 16 May 2019 15:52:06 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
+References: <5C962B24-32A4-4F26-BE53-67D6DD7F66E7@lmco.com>
+ <CAANLyubLL9ZxzhRd72jzi3knoL_TwV91BUKoTH0+0Bm81s=DhA@mail.gmail.com>
+ <CAANLyuYD_Rg+3kgM17kzvXA_1icZq2HKNNBXEkeTmsp2qS4_AA@mail.gmail.com>
+ <5CDB11C2.1040600@gmail.com>
+ <CAANLyuZMVtRv7X67uvbAT7bMnzmifiMz8jKB4v-=RziQaUu2og@mail.gmail.com>
+In-Reply-To: <CAANLyuZMVtRv7X67uvbAT7bMnzmifiMz8jKB4v-=RziQaUu2og@mail.gmail.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] x310 gpsdo get_time_now()
+Subject: Re: [USRP-users] X310 witn TwinRX: master_clock_rate issue
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -46,10 +75,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ilay Nissim via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ilay Nissim <Ilayn@netlinetech.com>
-Cc: Ilay Nissim <Ilayn@netlinetech.com>
-Content-Type: multipart/mixed; boundary="===============7597812040542092872=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6008671094055015142=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -63,171 +91,521 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7597812040542092872==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============6008671094055015142==
 Content-Type: multipart/alternative;
-	boundary="_000_EBDEC4BDBD1F534686BED262D988D715086560DDnctserver5netli_"
+ boundary="------------090209090004050002090909"
 
---_000_EBDEC4BDBD1F534686BED262D988D715086560DDnctserver5netli_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------090209090004050002090909
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi
-I have an x310 connected to gpsdo UHD ver14.0
-I sync to gpsdo at start of bringup
-Than use get_time_now() to follow usrp time
-It look like usrp time is2x slow
-Meaning if 100 seocnds should have passed - 50 seconds pass
-
-
-For example
-Using clock source - gpsdo time source gpsdo
- if on  init gps time is
-1558028200
-And usrp is
-1558028200
-
-After 100 seconds
-Usrptime is
-1558028250
-And gps time is
-1558028300
-
-Would be happy to get feedback
-Regards,
-Ilay Nissim
-RT Embedded Team Leader
-Netline Communications Technologies Ltd
-Tel: + (972) 36068171<tel:+972%203-606-8161>
-Fax: + (972) 36068101<tel:+972%203-606-8101>
-http://www.netlinetech.com/
-Azrieli Circular Tower , Menachem Begin 132, Tel-Aviv 67021, ISRAEL
-
-
-This email and the associated attachments may contain information that is p=
-roprietary, privileged, confidential or otherwise protected from disclosure=
-. If you are not the intended recipient or otherwise have received this mes=
-sage in error, you are not authorized to read, print, retain, copy or disse=
-minate this message or any part of it. If you are not the intended recipien=
-t or otherwise have received this message in error, please notify me immedi=
-ately, destroy any paper copies and delete all electronic files of the mess=
-age.
-
---_000_EBDEC4BDBD1F534686BED262D988D715086560DDnctserver5netli_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 05/16/2019 01:34 PM, Devin Kelly via USRP-users wrote:
+> So when i I try to set the master clock rate to 100 MHz directly I get 
+> an error and when I don't set it I get a warning.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi <o:p></o:p></p>
-<p class=3D"MsoNormal">I have an x310 connected to gpsdo UHD ver14.0<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">I sync to gpsdo at start of bringup<o:p></o:p></p>
-<p class=3D"MsoNormal">Than use get_time_now() to follow usrp time<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">It look like usrp time is2x slow<o:p></o:p></p>
-<p class=3D"MsoNormal">Meaning if 100 seocnds should have passed &#8211; 50=
- seconds pass<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">For example<o:p></o:p></p>
-<p class=3D"MsoNormal">Using clock source &#8211; gpsdo time source gpsdo <=
-o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;if on&nbsp; init gps time is <o:p></o:p></p>
-<p class=3D"MsoNormal">1558028200<o:p></o:p></p>
-<p class=3D"MsoNormal">And usrp is<o:p></o:p></p>
-<p class=3D"MsoNormal">1558028200<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">After 100 seconds<o:p></o:p></p>
-<p class=3D"MsoNormal">Usrptime is <o:p></o:p></p>
-<p class=3D"MsoNormal">1558028250<o:p></o:p></p>
-<p class=3D"MsoNormal">And gps time is<o:p></o:p></p>
-<p class=3D"MsoNormal">1558028300<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Would be happy to get feedback<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot=
-;;color:#1F497D">Regards,<br>
-Ilay Nissim <br>
-RT Embedded Team Leader</span><span lang=3D"SV"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot=
-;;color:gray">Netline Communications Technologies Ltd
-<br>
-Tel: <a href=3D"tel:&#43;972%203-606-8161" target=3D"_blank"><span style=3D=
-"color:blue">&#43; (972) 36068171</span></a><br>
-Fax: <a href=3D"tel:&#43;972%203-606-8101" target=3D"_blank"><span style=3D=
-"color:blue">&#43; (972) 36068101</span></a><br>
-</span><a href=3D"http://www.netlinetech.com/" target=3D"_blank"><span styl=
-e=3D"color:blue">http://www.netlinetech.com/</span></a><span style=3D"color=
-:blue"><br>
-</span><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;=
-color:gray">Azrieli Circular Tower , Menachem Begin 132, Tel-Aviv 67021, IS=
-RAEL</span><span lang=3D"SV"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<p style=3D"FONT-SIZE: 10pt; FONT-FAMILY: ARIAL">This email and the associa=
-ted attachments may contain information that is proprietary, privileged, co=
-nfidential or otherwise protected from disclosure. If you are not the inten=
-ded recipient or otherwise have received
- this message in error, you are not authorized to read, print, retain, copy=
- or disseminate this message or any part of it. If you are not the intended=
- recipient or otherwise have received this message in error, please notify =
-me immediately, destroy any paper
- copies and delete all electronic files of the message. </p>
-</body>
+> Can I just disregard the warning or is there something else going on here?
+Yes, you can disregard the warning.   That's just internal UHD 
+machinations not properly accounting for one another and
+   producing a warning that you can ignore.
+
+A more recent UHD wil likely fix this.
+
+
+>
+> $ uhd_rx_cfile -r 10e6 -f 850e6 -g 10 -a 
+> 'args=192.168.40.2,master_clock_rate=100e6' tmp.dat
+> [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-36); 
+> Boost_105300; UHD_3.12.0.heads-v3.12.0.0-0-gec786351
+> Traceback (most recent call last):
+>   File "/test/bin/bin/uhd_rx_cfile", line 263, in <module>
+>     tb = rx_cfile_block(options, filename)
+>   File "/test/bin/bin/uhd_rx_cfile", line 77, in __init__
+>     channels=self.channels,
+>   File 
+> "/test/bin/lib64/python2.7/site-packages/gnuradio/uhd/__init__.py", 
+> line 122, in constructor_interceptor
+>     return old_constructor(*args)
+>   File 
+> "/test/bin/lib64/python2.7/site-packages/gnuradio/uhd/uhd_swig.py", 
+> line 2334, in make
+>     return _uhd_swig.usrp_source_make(*args)
+> RuntimeError: RuntimeError: Invalid master clock rate: 100.00 MHz.
+> Valid master clock rates when using a 10.000000 MHz reference clock are:
+> 120 MHz, 184.32 MHz and 200 MHz.
+>
+>
+> $ uhd_rx_cfile -r 10e6 -f 850e6 -g 10 -a 'args=192.168.40.2' tmp.dat
+> [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-36); 
+> Boost_105300; UHD_3.12.0.heads-v3.12.0.0-0-gec786351
+> [WARNING] [X300] Cannot update master clock rate! X300 Series does not 
+> allow changing the clock rate during runtime.
+> [WARNING] [X300 RADIO] Requesting invalid sampling rate from device: 
+> 200 MHz. Actual rate is: 100 MHz.
+> [WARNING] [X300 RADIO] Requesting invalid sampling rate from device: 
+> 200 MHz. Actual rate is: 100 MHz.
+> ^C
+>
+>
+> On Tue, May 14, 2019 at 3:08 PM Marcus D. Leech via USRP-users 
+> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+>
+>     On 05/14/2019 11:26 AM, Devin Kelly via USRP-users wrote:
+>>     Does anyone have any ideas on this?  Is uhd_rx_cfile not the
+>>     right tool to be using?
+>>
+>>     Devin
+>>
+>     The TwinRX *MUST* run with a master clock of effectively 100MHz,
+>     because of the way the ADCs are shared, and the DDC structure in the
+>       FPGA.  Further, the fixed analog filtering is designed for a
+>     100MHz clock frequency, and the synthesizers on the board require
+>     a 100MHz
+>       clock (AFAIR).
+>
+>     Simply don't specify the master clock rate when using
+>     uhd_rx_cfile, and the correct default *should* happen.
+>
+>
+>
+>
+>>     On Thu, May 9, 2019 at 10:39 AM Devin Kelly <dwwkelly@gmail.com
+>>     <mailto:dwwkelly@gmail.com>> wrote:
+>>
+>>
+>>         Sorry to revive an old post but I'm having the same problem
+>>         with UHD 3.12.0.0.  Am I doing something wrong with
+>>         uhd_rx_cfile or should I just upgrade to a newer UHD?
+>>
+>>         $ uhd_rx_cfile -r 10e6 -f 850e6 -a
+>>         'args=192.168.40.2,master_clock_rate=200e6' tmp.dat
+>>         [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat
+>>         4.8.5-36); Boost_105300; UHD_3.12.0.heads-v3.12.0.0-0-gec786351
+>>         [WARNING] [X300] Cannot update master clock rate! X300 Series
+>>         does not allow changing the clock rate during runtime.
+>>         [WARNING] [X300 RADIO] Requesting invalid sampling rate from
+>>         device: 200 MHz. Actual rate is: 100 MHz.
+>>         [WARNING] [X300 RADIO] Requesting invalid sampling rate from
+>>         device: 200 MHz. Actual rate is: 100 MHz.
+>>         [UHD_RX] Defaulting to mid-point gains:
+>>         [UHD_RX] Channel 0 gain: 49.5 dB
+>>         ^C
+>>
+>>         Thanks,
+>>         Devin
+>>
+>>         On Thu, Jan 17, 2019 at 12:48 PM Rigney, Kevin E via
+>>         USRP-users <usrp-users@lists.ettus.com
+>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>
+>>             I’m working with the TwinRX and am having the same
+>>             results as Emanuel. I was ignoring the warning about the
+>>             sample rate but you said that it must run at 200MHz. Can
+>>             you explain why UHD sets the sample rate to 100MHz if 200
+>>             is required?
+>>
+>>             Thanks,
+>>
+>>             -Kevin
+>>
+>>             On Mon, 14 Jan 2019 at 7:06 AM Emanuel via USRP-users
+>>             <usrp-users@lists.ettus.com
+>>             <mailto:usrp-users@lists.ettus.com><mailto:usrp-users@lists.ettus.com
+>>             <mailto:usrp-users@lists.ettus.com>>> wrote:
+>>
+>>             Dear Martin,
+>>
+>>             thank you for clarification. Yes, please add this to the
+>>             manual. We bought those TwinRX for some phase-coherent
+>>             LTE signal reception, and now they seem to be not useful
+>>             at all (without effort spent in sample rate conversion in
+>>             post-processing etc.)
+>>
+>>             I'm still wondering about the master clock rate though: I
+>>             tried the benchmark with the following settings:
+>>             ./benchmark_rate --args "master_clock_rate=200e6"
+>>             --rx_subdev A:0 --rx_rate 10e6
+>>             The TwinRX is mounted on slot A and a CBX-120 is mounted
+>>             on slot B. I simply wanted a streaming test on the first
+>>             TwinRX channel.
+>>             During device initialization I get the following
+>>             warnings, see below. Can you please comment on them?
+>>
+>>             [INFO] [0/DUC_1] Initializing block control (NOC ID:
+>>             0xD0C0000000000000)
+>>             [WARNING] [X300] Cannot update master clock rate! X300
+>>             Series does not allow changing the clock rate during runtime.
+>>             [WARNING] [X300 RADIO] Requesting invalid sampling rate
+>>             from device: 200 MHz. Actual rate is: 100 MHz.
+>>             Using Device: Single USRP:
+>>               Device: X-Series Device
+>>               Mboard 0: X310
+>>               RX Channel: 0
+>>                 RX DSP: 0
+>>                 RX Dboard: A
+>>                 RX Subdev: TwinRX RX0
+>>               TX Channel: 0
+>>                 TX DSP: 0
+>>                 TX Dboard: A
+>>                 TX Subdev: Unknown (0x0094) - 0
+>>               TX Channel: 1
+>>                 TX DSP: 0
+>>                 TX Dboard: B
+>>                 TX Subdev: CBX-120 TX
+>>
+>>             [00:00:05.874991] Setting device timestamp to 0...
+>>             .....
+>>
+>>             Cheers,
+>>             Emanuel
+>>
+>>             _______________________________________________
+>>             USRP-users mailing list
+>>             USRP-users@lists.ettus.com
+>>             <mailto:USRP-users@lists.ettus.com>
+>>             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>>
+>>
+>>     _______________________________________________
+>>     USRP-users mailing list
+>>     USRP-users@lists.ettus.com  <mailto:USRP-users@lists.ettus.com>
+>>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>     _______________________________________________
+>     USRP-users mailing list
+>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+--------------090209090004050002090909
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 05/16/2019 01:34 PM, Devin Kelly via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAANLyuZMVtRv7X67uvbAT7bMnzmifiMz8jKB4v-=RziQaUu2og@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div dir="ltr">
+          <div>So when i I try to set the master clock rate to 100 MHz
+            directly I get an error and when I don't set it I get a
+            warning.  <br>
+          </div>
+          <div><br>
+          </div>
+          <div>Can I just disregard the warning or is there something
+            else going on here?<br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    Yes, you can disregard the warning.   That's just internal UHD
+    machinations not properly accounting for one another and<br>
+      producing a warning that you can ignore.<br>
+    <br>
+    A more recent UHD wil likely fix this.<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CAANLyuZMVtRv7X67uvbAT7bMnzmifiMz8jKB4v-=RziQaUu2og@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div dir="ltr">
+          <div><br>
+          </div>
+          <div>$ uhd_rx_cfile -r 10e6 -f 850e6 -g 10 -a
+            'args=192.168.40.2,master_clock_rate=100e6'
+            tmp.dat                                                                                                                                                                                                                                                                       
+            <br>
+            [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat
+            4.8.5-36); Boost_105300;
+            UHD_3.12.0.heads-v3.12.0.0-0-gec786351<br>
+            Traceback (most recent call last):<br>
+              File "/test/bin/bin/uhd_rx_cfile", line 263, in
+            &lt;module&gt;<br>
+                tb = rx_cfile_block(options, filename)<br>
+              File "/test/bin/bin/uhd_rx_cfile", line 77, in __init__<br>
+                channels=self.channels,<br>
+              File
+            "/test/bin/lib64/python2.7/site-packages/gnuradio/uhd/__init__.py",
+            line 122, in constructor_interceptor<br>
+                return old_constructor(*args)<br>
+              File
+            "/test/bin/lib64/python2.7/site-packages/gnuradio/uhd/uhd_swig.py",
+            line 2334, in make<br>
+                return _uhd_swig.usrp_source_make(*args)<br>
+            RuntimeError: RuntimeError: Invalid master clock rate:
+            100.00 MHz.<br>
+            Valid master clock rates when using a 10.000000 MHz
+            reference clock are:<br>
+            120 MHz, 184.32 MHz and 200 MHz.<br>
+          </div>
+          <div><br>
+          </div>
+          <div><br>
+          </div>
+          <div>$ uhd_rx_cfile -r 10e6 -f 850e6 -g 10 -a
+            'args=192.168.40.2'
+            tmp.dat                                                                                                                                                                                                                                                                                               
+            <br>
+            [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat
+            4.8.5-36); Boost_105300;
+            UHD_3.12.0.heads-v3.12.0.0-0-gec786351<br>
+            [WARNING] [X300] Cannot update master clock rate! X300
+            Series does not allow changing the clock rate during
+            runtime.<br>
+            [WARNING] [X300 RADIO] Requesting invalid sampling rate from
+            device: 200 MHz. Actual rate is: 100 MHz.<br>
+            [WARNING] [X300 RADIO] Requesting invalid sampling rate from
+            device: 200 MHz. Actual rate is: 100 MHz.<br>
+            ^C<br>
+            <br>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Tue, May 14, 2019 at 3:08
+          PM Marcus D. Leech via USRP-users &lt;<a
+            moz-do-not-send="true"
+            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div bgcolor="#FFFFFF">
+            <div class="gmail-m_6624613924714119179moz-cite-prefix">On
+              05/14/2019 11:26 AM, Devin Kelly via USRP-users wrote:<br>
+            </div>
+            <blockquote type="cite">
+              <div dir="ltr">
+                <div>Does anyone have any ideas on this?  Is
+                  uhd_rx_cfile not the right tool to be using?</div>
+                <div><br>
+                </div>
+                <div>Devin<br>
+                </div>
+              </div>
+              <br>
+            </blockquote>
+            The TwinRX *MUST* run with a master clock of effectively
+            100MHz, because of the way the ADCs are shared, and the DDC
+            structure in the<br>
+              FPGA.  Further, the fixed analog filtering is designed for
+            a 100MHz clock frequency, and the synthesizers on the board
+            require a 100MHz<br>
+              clock (AFAIR).<br>
+            <br>
+            Simply don't specify the master clock rate when using
+            uhd_rx_cfile, and the correct default *should* happen.<br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <blockquote type="cite">
+              <div class="gmail_quote">
+                <div dir="ltr" class="gmail_attr">On Thu, May 9, 2019 at
+                  10:39 AM Devin Kelly &lt;<a moz-do-not-send="true"
+                    href="mailto:dwwkelly@gmail.com" target="_blank">dwwkelly@gmail.com</a>&gt;
+
+                  wrote:<br>
+                </div>
+                <blockquote class="gmail_quote" style="margin:0px 0px
+                  0px 0.8ex;border-left:1px solid
+                  rgb(204,204,204);padding-left:1ex">
+                  <div dir="ltr">
+                    <div dir="ltr">
+                      <div dir="ltr">
+                        <div><br>
+                        </div>
+                        <div>Sorry to revive an old post but I'm having
+                          the same problem with UHD 3.12.0.0.  Am I
+                          doing something wrong with uhd_rx_cfile or
+                          should I just upgrade to a newer UHD?<br>
+                        </div>
+                        <div><br>
+                        </div>
+                        <div style="margin-left:40px">$ uhd_rx_cfile -r
+                          10e6 -f 850e6 -a
+                          'args=192.168.40.2,master_clock_rate=200e6'
+                          tmp.dat<br>
+                          [INFO] [UHD] linux; GNU C++ version 4.8.5
+                          20150623 (Red Hat 4.8.5-36); Boost_105300;
+                          UHD_3.12.0.heads-v3.12.0.0-0-gec786351<br>
+                          [WARNING] [X300] Cannot update master clock
+                          rate! X300 Series does not allow changing the
+                          clock rate during runtime.<br>
+                          [WARNING] [X300 RADIO] Requesting invalid
+                          sampling rate from device: 200 MHz. Actual
+                          rate is: 100 MHz.<br>
+                          [WARNING] [X300 RADIO] Requesting invalid
+                          sampling rate from device: 200 MHz. Actual
+                          rate is: 100 MHz.<br>
+                          [UHD_RX] Defaulting to mid-point gains:<br>
+                          [UHD_RX] Channel 0 gain: 49.5 dB<br>
+                          ^C<br>
+                        </div>
+                      </div>
+                    </div>
+                    <div><br>
+                    </div>
+                    <div>Thanks,</div>
+                    <div>Devin<br>
+                    </div>
+                    <div><br>
+                    </div>
+                    <div class="gmail_quote">
+                      <div dir="ltr" class="gmail_attr">On Thu, Jan 17,
+                        2019 at 12:48 PM Rigney, Kevin E via USRP-users
+                        &lt;<a moz-do-not-send="true"
+                          href="mailto:usrp-users@lists.ettus.com"
+                          target="_blank">usrp-users@lists.ettus.com</a>&gt;
+
+                        wrote:<br>
+                      </div>
+                      <blockquote class="gmail_quote" style="margin:0px
+                        0px 0px 0.8ex;border-left:1px solid
+                        rgb(204,204,204);padding-left:1ex">I’m working
+                        with the TwinRX and am having the same results
+                        as Emanuel. I was ignoring the warning about the
+                        sample rate but you said that it must run at
+                        200MHz. Can you explain why UHD sets the sample
+                        rate to 100MHz if 200 is required?<br>
+                        <br>
+                        Thanks,<br>
+                        <br>
+                        -Kevin<br>
+                        <br>
+                        On Mon, 14 Jan 2019 at 7:06 AM Emanuel via
+                        USRP-users &lt;<a moz-do-not-send="true"
+                          href="mailto:usrp-users@lists.ettus.com"
+                          target="_blank">usrp-users@lists.ettus.com</a>&lt;mailto:<a
+                          moz-do-not-send="true"
+                          href="mailto:usrp-users@lists.ettus.com"
+                          target="_blank">usrp-users@lists.ettus.com</a>&gt;&gt;
+
+                        wrote:<br>
+                        <br>
+                        Dear Martin,<br>
+                        <br>
+                        thank you for clarification. Yes, please add
+                        this to the manual. We bought those TwinRX for
+                        some phase-coherent LTE signal reception, and
+                        now they seem to be not useful at all (without
+                        effort spent in sample rate conversion in
+                        post-processing etc.)<br>
+                        <br>
+                        I'm still wondering about the master clock rate
+                        though: I tried the benchmark with the following
+                        settings: ./benchmark_rate --args
+                        "master_clock_rate=200e6" --rx_subdev A:0
+                        --rx_rate 10e6<br>
+                        The TwinRX is mounted on slot A and a CBX-120 is
+                        mounted on slot B. I simply wanted a streaming
+                        test on the first TwinRX channel.<br>
+                        During device initialization I get the following
+                        warnings, see below. Can you please comment on
+                        them?<br>
+                        <br>
+                        [INFO] [0/DUC_1] Initializing block control (NOC
+                        ID: 0xD0C0000000000000)<br>
+                        [WARNING] [X300] Cannot update master clock
+                        rate! X300 Series does not allow changing the
+                        clock rate during runtime.<br>
+                        [WARNING] [X300 RADIO] Requesting invalid
+                        sampling rate from device: 200 MHz. Actual rate
+                        is: 100 MHz.<br>
+                        Using Device: Single USRP:<br>
+                          Device: X-Series Device<br>
+                          Mboard 0: X310<br>
+                          RX Channel: 0<br>
+                            RX DSP: 0<br>
+                            RX Dboard: A<br>
+                            RX Subdev: TwinRX RX0<br>
+                          TX Channel: 0<br>
+                            TX DSP: 0<br>
+                            TX Dboard: A<br>
+                            TX Subdev: Unknown (0x0094) - 0<br>
+                          TX Channel: 1<br>
+                            TX DSP: 0<br>
+                            TX Dboard: B<br>
+                            TX Subdev: CBX-120 TX<br>
+                        <br>
+                        [00:00:05.874991] Setting device timestamp to
+                        0...<br>
+                        .....<br>
+                        <br>
+                        Cheers,<br>
+                        Emanuel<br>
+                        <br>
+                        _______________________________________________<br>
+                        USRP-users mailing list<br>
+                        <a moz-do-not-send="true"
+                          href="mailto:USRP-users@lists.ettus.com"
+                          target="_blank">USRP-users@lists.ettus.com</a><br>
+                        <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                          rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+                      </blockquote>
+                    </div>
+                  </div>
+                </blockquote>
+              </div>
+              <br>
+              <fieldset
+                class="gmail-m_6624613924714119179mimeAttachmentHeader"></fieldset>
+              <br>
+              <pre>_______________________________________________
+USRP-users mailing list
+<a moz-do-not-send="true" class="gmail-m_6624613924714119179moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a>
+<a moz-do-not-send="true" class="gmail-m_6624613924714119179moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+            </blockquote>
+            <br>
+          </div>
+          _______________________________________________<br>
+          USRP-users mailing list<br>
+          <a moz-do-not-send="true"
+            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
+          <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_EBDEC4BDBD1F534686BED262D988D715086560DDnctserver5netli_--
+--------------090209090004050002090909--
 
 
---===============7597812040542092872==
+--===============6008671094055015142==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -238,5 +616,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7597812040542092872==--
+--===============6008671094055015142==--
 
