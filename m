@@ -2,50 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF5F1257E1
-	for <lists+usrp-users@lfdr.de>; Tue, 21 May 2019 20:57:57 +0200 (CEST)
-Received: from [::1] (port=52656 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC64D25818
+	for <lists+usrp-users@lfdr.de>; Tue, 21 May 2019 21:15:29 +0200 (CEST)
+Received: from [::1] (port=57246 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hT9xP-0003pn-PY; Tue, 21 May 2019 14:57:51 -0400
-Received: from mail-wm1-f54.google.com ([209.85.128.54]:38140)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <246tnt@gmail.com>) id 1hT9wr-0003jA-QD
- for usrp-users@lists.ettus.com; Tue, 21 May 2019 14:57:47 -0400
-Received: by mail-wm1-f54.google.com with SMTP id t5so3943201wmh.3
- for <usrp-users@lists.ettus.com>; Tue, 21 May 2019 11:56:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8jI4INeSkrWOK4Sw01z1K2wsFJqtrh0juc2HqCxEXW4=;
- b=YlMKBcXmtAtuv55E0iChPoUjpIqnoMzcLwuFwAibx5SsIhADZLGEIsYJmzq0rb1p6l
- JzpIcCE6/vZy9Hkyywj9gtftQ+DW3Hayc8Eeiu1/7ZDiYU4gKQXfiT/aApuOWAy50fSj
- x0j6jcG6xB5uVaWThIx/kIdFlnc5F6SXGnusYkwhGoV13l8UiSqFJk7CoyYXqmEU8+Q/
- 9LKi4Mxn4QnFLK7e0tqnBPM2o2OXhkiKCVlJLYjQbl03vfIuCv29zxVCO9xmp/Wn+DBu
- Y+R7Ljc5WKoa9iEUtx+DlP2Z52z32HLXkqzOPq6gJIaOms2i9MBz3GD6JG6eqn+ZgDkg
- 0G8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8jI4INeSkrWOK4Sw01z1K2wsFJqtrh0juc2HqCxEXW4=;
- b=fZKPhZx1kd8UTdRU+prCBA+ChojrkzJH77cIOcflKnvmlDdT24kKQQuu5K1FX2OwBM
- MLBqkK2qrwIRQKLpgTMfkE4AkAMttHjGiGsFqfgeNfafquad+XBm2MEKUJOkF+smWMIx
- CgRXbow1yq26f4Jesmji+5KleJ+1MwPWx1b702VG0/Wbc6/fp/giyn1xDXU16oo1a+9O
- gpKo3lCUE1kQsAv6ckStZsIFMmsqSgyQrrrZNGWLo0QmNx6PUPimZKle67OrDxg1oPXh
- TivQ/w/7hFjXVRmKB2YJkHBG1uyRzYZntv8Q6Cd3y27jM1w5wGn8rkdVg4rjORf38W+z
- hexA==
-X-Gm-Message-State: APjAAAWYqPuen49wdJ5dJUGofkEk4FljcNqecy83m4BO7T1Y0lP97jQU
- m9PMRsj6bzGck0/2EviIvak2lWuS+Xf8BoGnZRA=
-X-Google-Smtp-Source: APXvYqwZXDPCAGcn68iaQaSx8C4Q8B8lB05zZbLKFzLAh/9hJ+PO0UUuBj2Qc+Kb4DV3c8Wkb3XZX0QLp/Km/9il5AU=
-X-Received: by 2002:a7b:cb85:: with SMTP id m5mr4588874wmi.85.1558464996709;
- Tue, 21 May 2019 11:56:36 -0700 (PDT)
-MIME-Version: 1.0
+	id 1hTAES-00051c-HL; Tue, 21 May 2019 15:15:28 -0400
+Received: from sanddollar.geekisp.com ([216.168.135.167]:37075)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.91) (envelope-from <philip@balister.org>) id 1hTADu-0004qo-J6
+ for usrp-users@lists.ettus.com; Tue, 21 May 2019 15:15:24 -0400
+Received: (qmail 29734 invoked by uid 1003); 21 May 2019 19:14:18 -0000
+Received: from unknown (HELO ?192.168.11.100?)
+ (philip@opensdr.com@73.152.143.112)
+ by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+ 21 May 2019 19:14:18 -0000
+To: Sylvain Munaut <246tnt@gmail.com>
 References: <0104e380-0a7d-7fa6-acb0-105a97aef28b@gohm.com.tr>
  <855b8f3d-82d4-da13-0d6b-a0a133394bbd@balister.org>
-In-Reply-To: <855b8f3d-82d4-da13-0d6b-a0a133394bbd@balister.org>
-Date: Tue, 21 May 2019 20:56:51 +0200
-Message-ID: <CAHL+j08ae65mjteEWQwQpEPAinFzwjF0rJ8Fp1Oy8hZKV9=biQ@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
+ <CAHL+j08ae65mjteEWQwQpEPAinFzwjF0rJ8Fp1Oy8hZKV9=biQ@mail.gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+ xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+ HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+ rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+ 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+ fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+ AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
+ CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+ nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+ 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+ YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+ 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+ yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
+ gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+ GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+ uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+ LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+ gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
+ WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+ 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+ ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+ icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+ ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+ 6eUfr0u7CwnEyqiQ
+Message-ID: <ad523e90-d470-9052-d224-aacb74e895d9@balister.org>
+Date: Tue, 21 May 2019 15:14:11 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.5.2
+MIME-Version: 1.0
+In-Reply-To: <CAHL+j08ae65mjteEWQwQpEPAinFzwjF0rJ8Fp1Oy8hZKV9=biQ@mail.gmail.com>
+Content-Language: en-MW
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
@@ -63,11 +70,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sylvain Munaut via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sylvain Munaut <246tnt@gmail.com>
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
 Cc: Ettus Research Support <support@ettus.com>,
  usrp-users <usrp-users@lists.ettus.com>,
- =?UTF-8?Q?Ramazan_=C3=87etin?= <ramazan.cetin@gohm.com.tr>
+ =?UTF-8?Q?Ramazan_=c3=87etin?= <ramazan.cetin@gohm.com.tr>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
@@ -83,19 +90,26 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi,
+On 05/21/2019 02:56 PM, Sylvain Munaut wrote:
+> Hi,
+> 
+> Yes, it's connected to the PS and not the PL.
+> _However_ ... you could just remove the ethernet driver from the linux
+> side, then drive the built-in ethernet mac from the FPGA by just
+> acting as an AXI master.
+> 
+> None of this is trivial however ...
 
-Yes, it's connected to the PS and not the PL.
-_However_ ... you could just remove the ethernet driver from the linux
-side, then drive the built-in ethernet mac from the FPGA by just
-acting as an AXI master.
+But it is possible. I'd love to see someone try it.
 
-None of this is trivial however ...
+Philip
 
-
-Cheers,
-
-    Sylvain
+> 
+> 
+> Cheers,
+> 
+>     Sylvain
+> 
 
 _______________________________________________
 USRP-users mailing list
