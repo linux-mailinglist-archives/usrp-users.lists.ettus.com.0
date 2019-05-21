@@ -2,24 +2,24 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0F825252
-	for <lists+usrp-users@lfdr.de>; Tue, 21 May 2019 16:38:28 +0200 (CEST)
-Received: from [::1] (port=56830 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 352F025254
+	for <lists+usrp-users@lfdr.de>; Tue, 21 May 2019 16:40:33 +0200 (CEST)
+Received: from [::1] (port=58338 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hT5uN-0000Co-DF; Tue, 21 May 2019 10:38:27 -0400
-Received: from starfish.geekisp.com ([216.168.135.166]:26030)
+	id 1hT5wN-0000XK-Ea; Tue, 21 May 2019 10:40:31 -0400
+Received: from starfish.geekisp.com ([216.168.135.166]:21481)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.91) (envelope-from <philip@balister.org>) id 1hT5tp-0008Ue-74
- for usrp-users@lists.ettus.com; Tue, 21 May 2019 10:38:23 -0400
-Received: (qmail 8107 invoked by uid 1003); 21 May 2019 14:37:10 -0000
+ (Exim 4.91) (envelope-from <philip@balister.org>) id 1hT5vp-0000Oj-Ku
+ for usrp-users@lists.ettus.com; Tue, 21 May 2019 10:40:27 -0400
+Received: (qmail 451 invoked by uid 1003); 21 May 2019 14:39:17 -0000
 Received: from unknown (HELO ?192.168.11.100?)
  (philip@opensdr.com@73.152.143.112)
  by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 21 May 2019 14:37:10 -0000
-To: =?UTF-8?Q?Ramazan_=c3=87etin?= <ramazan.cetin@gohm.com.tr>,
- usrp-users@lists.ettus.com, Ettus Research Support <support@ettus.com>
-References: <0104e380-0a7d-7fa6-acb0-105a97aef28b@gohm.com.tr>
+ 21 May 2019 14:39:17 -0000
+To: Jason Matusiak <jason@gardettoengineering.com>,
+ Ettus Mail List <usrp-users@lists.ettus.com>
+References: <BL0PR12MB2340105F797573EE26E8A94BAF070@BL0PR12MB2340.namprd12.prod.outlook.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
  xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
@@ -45,19 +45,19 @@ Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
  icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
  ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
  6eUfr0u7CwnEyqiQ
-Message-ID: <855b8f3d-82d4-da13-0d6b-a0a133394bbd@balister.org>
-Date: Tue, 21 May 2019 10:37:06 -0400
+Message-ID: <171e841b-4b5b-9906-5170-b5b572ecd1e8@balister.org>
+Date: Tue, 21 May 2019 10:39:16 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
  Thunderbird/52.5.2
 MIME-Version: 1.0
-In-Reply-To: <0104e380-0a7d-7fa6-acb0-105a97aef28b@gohm.com.tr>
+In-Reply-To: <BL0PR12MB2340105F797573EE26E8A94BAF070@BL0PR12MB2340.namprd12.prod.outlook.com>
 Content-Language: en-MW
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Connect Eth Phy to FPGA
+Subject: Re: [USRP-users] GR in the E320
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -71,8 +71,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Philip Balister <philip@balister.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,19 +86,49 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-WW91IHNob3VsZCBjaGVjayB0aGUgc2NoZW1hdGljLCBidXQgYXMgSSByZWNhbGwgdGhlIGV0aGVy
-bmV0IGludGVyZmFjZQppcyBjb25uZWN0ZWQgZGlyZWN0bHkgdG8gdGhlIEFSTSBhbmQgbm90IHZp
-YSB0aGUgRlBHQSBmYWJyaWMuCgpQaGlsaXAKCk9uIDA1LzIxLzIwMTkgMTA6MzIgQU0sIFJhbWF6
-YW4gw4dldGluIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+IEhlbGxvLAo+IAo+IFdlIHdhbnQgdG8g
-dXNlIEUzMTAgYXMgYSBwZXJpcGhlcmFsIG5ldHdvcmsgZGV2aWNlIGxpa2UgTjIxMC4gV2Ugd2Fu
-dAo+IHRoZSBSRiBzYW1wbGVzIGNvbWUgdG8gZXRoZXJuZXQgaW50ZXJmYWNlIHRocm91Z2ggRlBH
-QSB3aXRob3V0IHBhc3NpbmcKPiBmcm9tIENQVS4gSW4gc2hvcnQsIHdlIGRvbid0IHdhbnQgdG8g
-dXNlIENQVS4gU28sIGNhbiB3ZSBjb25maWd1cmUgRlBHQQo+IHRvIGFjaGlldmUgdGhpcyB0YXNr
-PyAoQ29ubmVjdGluZyBldGhlcm5ldCBpbnRlcmZhY2UgZGlyZWN0bHkgdG8gRlBHQSkKPiAKPiBC
-ZXN0IHJlZ2FyZHMuCj4gCj4gCj4gCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
-bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGlu
-Zm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+You need the meta-sdr layer. Choosing a branch may be tricky, only the
+older ones have 3.7 support. My recent work in master is all in support
+of transitioning to the unreleased 3.8 gnuradio, which is much better
+for embedded builds.
+
+Might also be some pain due to Ettus forking the uhd recipe.
+
+Philip
+
+On 05/21/2019 10:30 AM, Jason Matusiak via USRP-users wrote:
+> OK, so I am a total newbie when it comes to open-embedded.  I know that the docker to build doesn't include a gnuradio-image bitbake option (only developer-image), so I tried to make one.  I created a new gnuradio-image.bb file and added gnuradio to the list of things to build.  Sadly, I appear to need to do more than that as it won't build:
+> 
+> oe-builder@b3d40f15af25:~$ bitbake gnuradio-image --verbose
+> Loading cache: 100% |##########################################################################################################################################################################################################################| Time: 0:00:00
+> Loaded 2964 entries from dependency cache.
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: selecting opkg-utils-native to satisfy virtual/update-alternatives-native due to PREFERRED_PROVIDERS
+> NOTE: selecting linux-yocto to satisfy virtual/kernel due to PREFERRED_PROVIDERS
+> NOTE: selecting pseudo-native to satisfy virtual/fakeroot-native due to PREFERRED_PROVIDERS
+> NOTE: selecting opkg-native to satisfy opkg-native due to PREFERRED_PROVIDERS
+> NOTE: selecting nativesdk-glibc to satisfy runtime nativesdk-glibc due to PREFERRED_PROVIDER_virtual/nativesdk-libc = nativesdk-glibc
+> ERROR: Nothing RPROVIDES 'gnuradio' (but /home/oe-builder/meta-ettus/meta-ettus-core/recipes-core/images/gnuradio-image.bb RDEPENDS on or otherwise requires it)
+> NOTE: Runtime target 'gnuradio' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['gnuradio']
+> NOTE: Target 'gnuradio-image' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['gnuradio-image', 'gnuradio']
+> ERROR: Required build target 'gnuradio-image' has no buildable providers.
+> Missing or unbuildable dependency chain was: ['gnuradio-image', 'gnuradio']
+> 
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+> 
+> Anyone know how to do add it (once that works, I'll want to add some of my own OOT packages as well)?
+> 
+> 
+> 
+> 
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> 
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
