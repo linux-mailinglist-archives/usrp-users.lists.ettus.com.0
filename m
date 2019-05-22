@@ -2,66 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 447B4259DD
-	for <lists+usrp-users@lfdr.de>; Tue, 21 May 2019 23:21:47 +0200 (CEST)
-Received: from [::1] (port=58100 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4A9E25E99
+	for <lists+usrp-users@lfdr.de>; Wed, 22 May 2019 09:18:54 +0200 (CEST)
+Received: from [::1] (port=39428 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hTCCZ-00045O-8a; Tue, 21 May 2019 17:21:39 -0400
-Received: from mail-wr1-f53.google.com ([209.85.221.53]:40092)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <marcus.mueller@ettus.com>)
- id 1hTCC1-00040i-RA
- for USRP-users@lists.ettus.com; Tue, 21 May 2019 17:21:35 -0400
-Received: by mail-wr1-f53.google.com with SMTP id f10so4789902wre.7
- for <USRP-users@lists.ettus.com>; Tue, 21 May 2019 14:20:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=m5R0S6VMyH8LVX6gE3i+7ZEllOAf9PqUNf4j1sHR/uE=;
- b=l+/9+QWNWwmI5JJVT5zpuNwuuAq6ufzRNjZiWqttf+LPnn0tyUCCgLn3H/zTqK2Qj6
- zMY1dc7OliizZGZ6kyJbSTDb9g1b4jr154AKn2QUm1Qh7Vb5IZiKxGBRbDhSWAKcG6qm
- CIXOC/IulGn7VEMTPmwoAvM0xfInNmwZ9PYtBHLNcxCsGL2O0eNa77dYFFrOiynW2KC7
- q3zzylX1QfD8JFj/q1QqsD2H/aFbbzULbqtupbBdhpPoHa5yhE38hKHSNtfMmV2AireF
- ExDe9j7c3ee5ZkyMm+wT903u+zNMAMi3GBETo2YiJUNKSx12HRld1DrwIw4P8jLDos6V
- tpVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=m5R0S6VMyH8LVX6gE3i+7ZEllOAf9PqUNf4j1sHR/uE=;
- b=iqDlsWWHxPzaG+61N4d4Kd9KEFhtTIAvXbGdoz1EbN/MLdpCfS8I8yVJWYOZ4V691f
- DjHmKgwXtm4cA20s1TWNnHcofPJ2CfP72jVwNMsLEZ/IirosdHuHr7VllVs38vcqthSa
- Zf+n5bRG2I19/BuP9h4NVQGoz28gsSZbxNorFpNHLXjINPNzswIZYfwAElwjPrp4LcV2
- EJeuW/qk/2/mOK1mNjfYlZEGERMHt/YdI7vQtdsNg+FLiB14xUexTJcDtNs+V8rOZz/o
- te0+kAD/riSp29x9cvB6j41FpHzOUviBkqefm2ByQYJRoz08J0lu73VnGF7BKTHKIjLn
- vGWg==
-X-Gm-Message-State: APjAAAXujMfsKiPaMBD2x4aBwWP6mbYgIXJtbDp7foLBW9APAK0yhpcC
- 9XM6j2Y5KUc1XrCwnegrN4LVkr/m
-X-Google-Smtp-Source: APXvYqw+mciFNY/d74rXQFEhXrOMwgY/8LdfaZvbKFB1wIBByAjmP+CSx7iqF11KKy+Ma6XH/+5bDw==
-X-Received: by 2002:adf:efc3:: with SMTP id i3mr35560344wrp.45.1558473624721; 
- Tue, 21 May 2019 14:20:24 -0700 (PDT)
-Received: from workhorse.lan (ip-37-201-4-220.hsi13.unitymediagroup.de.
- [37.201.4.220])
- by smtp.googlemail.com with ESMTPSA id j206sm6250797wma.47.2019.05.21.14.20.23
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 21 May 2019 14:20:24 -0700 (PDT)
-Message-ID: <40288cfce222e4cc01de551dbe26236b4bcb66d1.camel@ettus.com>
-To: MASDR GS <masdrgs@gmail.com>
-Date: Tue, 21 May 2019 23:20:23 +0200
-In-Reply-To: <CAH2gDtmfdzkjpGZP7VYBjECiFTWjfpN+23wHAQfwaSoCASfu+A@mail.gmail.com>
-References: <CAH2gDtmquSDVaR3yyZWW8Ri-KmXnxrREL6oPEnDWKejkiDGN9w@mail.gmail.com>
- <b1c1fd3ce159c46e19c09f914a1312315e5171e0.camel@ettus.com>
- <CAH2gDtmfdzkjpGZP7VYBjECiFTWjfpN+23wHAQfwaSoCASfu+A@mail.gmail.com>
-User-Agent: Evolution 3.30.4 (3.30.4-1.fc29) 
-Mime-Version: 1.0
+	id 1hTLWM-0000SQ-2O; Wed, 22 May 2019 03:18:42 -0400
+Received: from forward105p.mail.yandex.net ([77.88.28.108]:46914)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.91) (envelope-from <ramazan.cetin@gohm.com.tr>)
+ id 1hTLVo-0000O2-CV
+ for usrp-users@lists.ettus.com; Wed, 22 May 2019 03:18:38 -0400
+Received: from mxback12o.mail.yandex.net (mxback12o.mail.yandex.net
+ [IPv6:2a02:6b8:0:1a2d::63])
+ by forward105p.mail.yandex.net (Yandex) with ESMTP id 9E5784D40161;
+ Wed, 22 May 2019 10:17:26 +0300 (MSK)
+Received: from smtp1o.mail.yandex.net (smtp1o.mail.yandex.net
+ [2a02:6b8:0:1a2d::25])
+ by mxback12o.mail.yandex.net (nwsmtp/Yandex) with ESMTP id Org8dDaCA2-HPdmsedk;
+ Wed, 22 May 2019 10:17:26 +0300
+Received: by smtp1o.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id
+ WCS2D5aPNu-HORaKKH1; Wed, 22 May 2019 10:17:24 +0300
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (Client certificate not present)
+To: Philip Balister <philip@balister.org>
+References: <0104e380-0a7d-7fa6-acb0-105a97aef28b@gohm.com.tr>
+ <855b8f3d-82d4-da13-0d6b-a0a133394bbd@balister.org>
+ <CAHL+j08ae65mjteEWQwQpEPAinFzwjF0rJ8Fp1Oy8hZKV9=biQ@mail.gmail.com>
+ <ad523e90-d470-9052-d224-aacb74e895d9@balister.org>
+Message-ID: <1fd7cf58-f0d0-9e47-0310-48b5ef034f11@gohm.com.tr>
+Date: Wed, 22 May 2019 10:17:23 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <ad523e90-d470-9052-d224-aacb74e895d9@balister.org>
+Content-Language: en-US
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Running network mode on E310 and N300
+Subject: Re: [USRP-users] Connect Eth Phy to FPGA
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -73,12 +54,12 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+From: =?utf-8?q?Ramazan_=C3=87etin_via_USRP-users?=
  <usrp-users@lists.ettus.com>
-Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
-Cc: USRP-users@lists.ettus.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: =?UTF-8?Q?Ramazan_=c3=87etin?= <ramazan.cetin@gohm.com.tr>
+Cc: usrp-users@lists.ettus.com, Ettus Research Support <support@ettus.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -92,76 +73,39 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SG0sIGlmIHlvdSBoYXZlIHRvIHByb3ZpZGUgYSB1bmlmb3JtIGludGVyZmFjZSwgYnV0IG5lZWQg
-dG8gdXNlCmRpZmZlcmVudCB2ZXJzaW9ucyBvZiBVSEQgdW5kZXJuZWF0aDogV2hhdCBhYm91dCBz
-aW1wbHkgYnVpbGRpbmcgdHdvCmlkZW50aWNhbCBsaWJyYXJpZXMgdGhhdCB1c2UgdGhlIHR3byBu
-ZWNlc3NhcnkgdmVyc2lvbnMgb2YgVUhELCBhbmQKb25seSBydW50aW1lLWxpbmsgKHBsdWdpbi1z
-dHlsZSkgZWl0aGVyIHNoYXJlZCBvYmplY3QgYXQgcnVuIHRpbWUsCmRlcGVuZGluZyBvbiB3aGlj
-aCBVU1JQIHlvdSBuZWVkIHRvIHRhbGsgdG8/CgpCZXN0IHJlZ2FyZHMsCk1hcmN1cwpPbiBNb24s
-IDIwMTktMDUtMjAgYXQgMTI6NDUgLTEwMDAsIE1BU0RSIEdTIHdyb3RlOgo+IEhpIE1hcmN1cywK
-PiAKPiBUaGFuayB5b3UgZm9yIHlvdXIgcmVzcG9uc2UuIFVuZm9ydHVuYXRlbHkgb3VyIE4zMDBz
-IGhhdmUgUmV2IEgKPiBtb3RoZXJib2FyZHMgc28gdmVyc2lvbiAzLjEyIGRvZXNuJ3Qgc2VlbSB0
-byBiZSBhbiBvcHRpb24gZm9yIHVzLgo+IAo+IFJlZ2FyZGluZyBvdXIgYXBwbGljYXRpb24sIHdl
-IGhhdmUgYmVlbiB1c2luZyB0aGUgRTMxMHMgZm9yIG91cgo+IHdhdmVmb3JtIGFwcGxpY2F0aW9u
-IGRldmVsb3BtZW50IG92ZXIgdGhlIHBhc3QgZmV3IHllYXJzIGFuZCByZWNlbnRseQo+IHJlY2Vp
-dmVkIHR3byBuZXcgTjMwMHMgdG8gcHJvdmlkZSBpbXByb3ZlZCBwZXJmb3JtYW5jZSBpbiBuZXR3
-b3JrCj4gbW9kZS4gIFdlIGFyZSBjdXJyZW50bHkgd29ya2luZyB3aXRoIG9uZSBsaWNlbnNlIGZv
-ciBhIHNvZnR3YXJlCj4gZGV2ZWxvcG1lbnQgdG9vbCB0aGF0IHJlc3RyaWN0cyB1cyB0byBuZXR3
-b3JrIG1vZGUgb25seSBkdWUgdG8KPiBsaWNlbnNpbmcgcmVzdHJpY3Rpb25zLiAgT25lIG9mIG91
-ciBwcm9qZWN0IG9iamVjdGl2ZXMgaXMgdG8gZGV2ZWxvcAo+IHBvcnRhYmxlLCBoYXJkd2FyZSBh
-Z25vc3RpYyB3YXZlZm9ybSBhcHBsaWNhdGlvbnMgc28gdGhhdCB3ZSBjYW4KPiBjb25jZWl2YWJs
-eSB1c2Ugb3VyIGFwcGxpY2F0aW9ucyBvbiB2YXJpb3VzIFNEUiBwbGF0Zm9ybXMuICBUaGVyZWZv
-cmUKPiB3ZSdkIGxpa2UgdG8gaGF2ZSB0aGUgZmxleGliaWxpdHkgdG8gc3dpdGNoIGJldHdlZW4g
-Ym90aCB0aGUgZTMxMCBhbmQKPiBOMzAwIGZvciBkZXZlbG9wbWVudCBwdXJwb3NlcyBhbmQgZGVt
-b25zdHJhdGUgc29mdHdhcmUgcG9ydGFiaWxpdHkuIAo+IEFwcHJlY2lhdGUgYW55IHN1Z2dlc3Rp
-b25zL2ZlZWRiYWNrIG9uIGFsdGVybmF0aXZlIG9wdGlvbnMgeW91IG1heQo+IGhhdmUgdGhhdCB3
-b3VsZCBhbGxvdyB1cyB0byB1c2UgYm90aCBTRFJzIGZyb20gb25lIGhvc3QgbWFjaGluZS4gIAo+
-IAo+IAo+IAo+ICAgICAKPiAKPiBPbiBTdW4sIE1heSAxOSwgMjAxOSBhdCA4OjM0IEFNIE1hcmN1
-cyBNw7xsbGVyIDwKPiBtYXJjdXMubXVlbGxlckBldHR1cy5jb20+IHdyb3RlOgo+ID4gSGkhCj4g
-PiAKPiA+IE5ldHdvcmsgbW9kZSBvbiBFMzEwIHdhcyBoaWdobHkgdW5kZXNpcmFibGUgKHJlbGlh
-YmxlIHJhdGVzIGJlbG93Cj4gPiAyTVMvcykgYW5kIG5vdCBjb21wYXRpYmxlIHdpdGggUkZOb0Ms
-IGFuZCBoZW5jZSBoYXMgYmVlbiBkaXNhYmxlZAo+ID4gaW4KPiA+IHJlY2VudCB2ZXJzaW9ucyBv
-ZiBVSEQuIEkndmUgYWx3YXlzIGNvbnNpZGVyZWQgTmV0d29yayBNb2RlIG9uIHRoZQo+ID4gRTMx
-MAo+ID4gdG8gYmUgYSB0ZXN0aW5nIHRvb2wsIG5vdCBzb21ldGhpbmcgeW91J2Qgd2FudCB0byBk
-byBmb3Igc3RyZWFtaW5nLAo+ID4gdG8KPiA+IGJlIGNvbXBsZXRlbHkgaG9uZXN0IQo+ID4gCj4g
-PiBUaGUgTjMwMCdzIG5ldHdvcmsgaW50ZXJmYWNpbmcgaXMgZnVuZGFtZW50YWxseSBkaWZmZXJl
-bnQgYW5kCj4gPiBvcHRpbWl6ZWQKPiA+IGZvciBuZXR3b3JrIHN0cmVhbWluZy4gVGhlIHR5cGlj
-YWwgdXNlIGNhc2UgZm9yIHRoZSBOMzAwIHdvdWxkIHVzZQo+ID4gb25lCj4gPiBvZiB0aGUgKHVw
-IHRvIDEwR2IvcykgU0ZQKyBwb3J0cyBmb3IgbmV0d29yayBzYW1wbGUgc3RyZWFtaW5nLCBhbmQK
-PiA+IHRoZQo+ID4gMUdiL3MgUko0NSBldGhlcm5ldCBwb3J0IHRvICJ0YWxrIiB0byB0aGUgQVJN
-IGhvc3QgaW5zaWRlLCBmb3IKPiA+IGNvbnRyb2wuIAo+ID4gVmVyc2lvbnMgb2YgVUhEIHN1cHBv
-cnRpbmcgdGhlIE4zMDAgc3RhcnQgYXQgMy4xMi4wLjAgKGJ1dCBvbmx5IGZvcgo+ID4gaGFyZHdh
-cmUgcmV2aXNpb25zIHVwIHRvIG1vdGhlcmJvYXJkIHJldmlzaW9uIEc7IHlvdSdsbCBuZWVkCj4g
-PiAzLjEzLjAuMgo+ID4gZm9yIHRoYXQpOyBzdGFydGluZyB3aXRoIDMuMTMuMC4wLCB0aGVyZSBp
-cyBubyBuZXR3b3JrIG1vZGUgb24gdGhlCj4gPiBFMzEwLgo+ID4gSSdsbCBiZSBob25lc3QgYW5k
-IHNheTogd2hpbGUgdGhpcyBzb3VuZHMgbGlrZSB5b3UgY291bGQgYmUgdXNpbmcKPiA+IDMuMTIu
-MC4wIHRvIHJ1biB5b3VyIEUzMTAgaW4gbmV0d29yayBtb2RlIGFuZCBzdGlsbCB1c2UgeW91ciBO
-MzAwCj4gPiAoZ2l2ZW4gaXQncyBub3QgcmV2IEcgb3IgbGF0ZXIpLCB0aGF0IHdvdWxkIGJlIGEg
-c3Vib3B0aW1hbAo+ID4gc29sdXRpb24KPiA+IGNvbnNpZGVyaW5nIHRoZSBOM3h4IGltcHJvdmVt
-ZW50cyB0aGF0IHdlcmUgaW50cm9kdWNlZCB3aXRoIDMuMTMuCj4gPiBhbmQKPiA+IDMuMTQuMC4w
-Lgo+ID4gCj4gPiBTbywgbWF5YmUgeW91IGNvdWxkIGVsYWJvcmF0ZSBvbiB0aGUgYXBwbGljYXRp
-b24geW91J3JlIGhhdmluZyBmb3IKPiA+IHRoZQo+ID4gRTMxMCBuZXR3b3JrIG1vZGUgaW4gY29t
-YmluYXRpb24gd2l0aCBOMzAwPyBUaGVyZSBtaWdodCBiZSBhbiBlYXN5Cj4gPiB3YXkKPiA+IGFy
-b3VuZCB0aGUgb2JzdGFjbGUgeW91J3JlIGVuY291bnRlcmluZywgYnV0IEkgZG9uJ3QgcmVhbGx5
-IGtub3cKPiA+IHdoYXQKPiA+IHlvdSdyZSBwbGFubmluZyB0byBkbyBmcm9tIGhlcmUuCj4gPiAK
-PiA+IEJlc3QgcmVnYXJkcywKPiA+IE1hcmN1cwo+ID4gCj4gPiBPbiBXZWQsIDIwMTktMDUtMTUg
-YXQgMTI6NTMgLTEwMDAsIE1BU0RSIEdTIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+ID4gPiBXb3Vs
-ZCBpdCBiZSBwb3NzaWJsZSB0byBydW4gbmV0d29yayBtb2RlIG9uIGJvdGggRTMxMCBhbmQgTjMw
-MAo+ID4gdXNpbmcKPiA+ID4gdGhlIGxhdGVzdCBVSEQgZHJpdmVyIHYzLjE0LjA/Cj4gPiA+IAo+
-ID4gPiBUaGUgTjMwMCByZXF1aXJlcyB2My4xMi4wIG9yIGdyZWF0ZXIgdG8gcnVuIGhvc3QgbW9k
-ZSBhbmQgSQo+ID4gY3VycmVudGx5Cj4gPiA+IGhhdmUgcmVsZWFzZS00IHdpdGggYSBVSEQgdmVy
-c2lvbiB2My45LjIgb24gdGhlIEUzMTAuIEJ1dCB0aGUKPiA+ID4gY29uZGl0aW9uIHRvIHJ1biBu
-ZXR3b3JrIG1vZGUgaXMgdGhhdCB0aGUgVUhEIGRyaXZlcnMgb2YgcmFkaW8KPiA+IGFuZAo+ID4g
-PiBob3N0IG1hY2hpbmUgbXVzdCBtYXRjaC4gSSBjb3VsZG4ndCBmaW5kIGFueSBpbmZvcm1hdGlv
-biBvbiBob3cKPiA+IHRvCj4gPiA+IHVwZGF0ZSB0aGUgRTMxMCBVSEQgZHJpdmVycyBkaXJlY3Rs
-eSwgYnV0IEkgaGF2ZSB0cmllZCBjcmVhdGluZyBhCj4gPiBTREsKPiA+ID4gdmVyc2lvbiB1c2lu
-ZyByZWxlYXNlLTQgYnVpbGRpbmcgVUhEIHYzLjE0LjAgYnV0IHdhc24ndAo+ID4gc3VjY2Vzc2Z1
-bAo+ID4gPiBydW5uaW5nIG5ldHdvcmsgbW9kZSB3aXRoIEUzMTAuIEFueSBzdWdnZXN0aW9ucyBv
-ciBoZWxwIHdvdWxkIGJlCj4gPiA+IHJlYWxseSBhcHByZWNpYXRlZC4KPiA+ID4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+ID4gVVNSUC11c2VycyBt
-YWlsaW5nIGxpc3QKPiA+ID4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiA+ID4gCj4gPiBo
-dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
-dHR1cy5jb20KPiA+IAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-Cmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3Rz
-LmV0dHVzLmNvbQo=
+Hello,
+
+Thank you for your answers. Actually, we need to achieve this task.
+
+
+This task should be performed in B210 (I guess, ethernet MAC is drived 
+by FPGA in here). So, how can i start to this task ? Where can i find an 
+example or some information to drive built-in ethernet MAC in FPGA ? It 
+will be appreciated, if you can give a point to start.
+
+Best regards.
+
+On 21.05.2019 22:14, Philip Balister wrote:
+> On 05/21/2019 02:56 PM, Sylvain Munaut wrote:
+>> Hi,
+>>
+>> Yes, it's connected to the PS and not the PL.
+>> _However_ ... you could just remove the ethernet driver from the linux
+>> side, then drive the built-in ethernet mac from the FPGA by just
+>> acting as an AXI master.
+>>
+>> None of this is trivial however ...
+> But it is possible. I'd love to see someone try it.
+>
+> Philip
+>
+>>
+>> Cheers,
+>>
+>>      Sylvain
+>>
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
