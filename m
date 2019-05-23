@@ -2,67 +2,66 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E9728185
-	for <lists+usrp-users@lfdr.de>; Thu, 23 May 2019 17:44:54 +0200 (CEST)
-Received: from [::1] (port=57544 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E563C2819E
+	for <lists+usrp-users@lfdr.de>; Thu, 23 May 2019 17:48:44 +0200 (CEST)
+Received: from [::1] (port=59960 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hTptk-0007ZH-Cg; Thu, 23 May 2019 11:44:52 -0400
-Received: from starfish.geekisp.com ([216.168.135.166]:11008)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.91) (envelope-from <philip@balister.org>) id 1hTptC-0007J1-1C
- for usrp-users@lists.ettus.com; Thu, 23 May 2019 11:44:48 -0400
-Received: (qmail 2589 invoked by uid 1003); 23 May 2019 15:43:36 -0000
-Received: from unknown (HELO ?192.168.11.100?)
- (philip@opensdr.com@73.152.143.112)
- by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 23 May 2019 15:43:36 -0000
-To: Jason Matusiak <jason@gardettoengineering.com>,
- Ettus Mail List <usrp-users@lists.ettus.com>
-References: <BL0PR12MB2340105F797573EE26E8A94BAF070@BL0PR12MB2340.namprd12.prod.outlook.com>
- <171e841b-4b5b-9906-5170-b5b572ecd1e8@balister.org>
- <BL0PR12MB23405B101450C7833CFCBC16AF070@BL0PR12MB2340.namprd12.prod.outlook.com>
- <508d4b7c-b2ad-de58-d294-be80d2845e33@balister.org>
- <BL0PR12MB23400161A1572DF6798C2903AF070@BL0PR12MB2340.namprd12.prod.outlook.com>
- <BL0PR12MB2340408E4880262FA37CF3FAAF010@BL0PR12MB2340.namprd12.prod.outlook.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
- xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
- HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
- rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
- 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
- fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
- AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
- CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
- nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
- 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
- YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
- 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
- yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
- gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
- GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
- uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
- LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
- gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
- WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
- 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
- ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
- icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
- ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
- 6eUfr0u7CwnEyqiQ
-Message-ID: <151d15f6-d8c7-a3b2-7a60-bbe76223384a@balister.org>
-Date: Thu, 23 May 2019 11:43:35 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.5.2
+	id 1hTpxT-00087L-DT; Thu, 23 May 2019 11:48:43 -0400
+Received: from mail-qt1-f181.google.com ([209.85.160.181]:39454)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hTpwv-0007rw-5z
+ for usrp-users@lists.ettus.com; Thu, 23 May 2019 11:48:39 -0400
+Received: by mail-qt1-f181.google.com with SMTP id y42so7283302qtk.6
+ for <usrp-users@lists.ettus.com>; Thu, 23 May 2019 08:47:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=0NdDWFaRXIFIgnXR2ysK7r3rhD0ygYvJTXIqgmnq7Xc=;
+ b=Vgsi5vSWEvFSTzn3UQdSyrRPSKiID1sPv58Kg2PVnKG9PKhRwDCv2HJcWxCmE9PCPU
+ wZsS20DDEXGitpwFxdbq5urDHQByclgFxS90CSpalPgqYpgyHPfbWiII8ZwsnHnkLT3/
+ rUuWbHJku+008e0ZnDbo+EkkC+92WNLaSjM63bS1TEHQPlQvUcXmzmXj2PH50PpHkqFq
+ SE9MmK5GAGfOTM1KUkSuaMk0yEJLFQFw/SkqvSksmS6Y5kmj+CNvaXZZyRAp94Kqw0n+
+ v8cQxsxa31Hc3RF3vLVUYyongxpHZjnf7djvXIWavW9Qk0A7ya5V3OrOfOPi1C06Ud5j
+ zMYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=0NdDWFaRXIFIgnXR2ysK7r3rhD0ygYvJTXIqgmnq7Xc=;
+ b=PGVSWw5gmrkaFfyRvNk7wn8MZ0+z3KvTISJ4oO9VG+2eCe5lNTglqOQMDYYIhhl74T
+ VAXc4UjzKCD9oR550Vxzkf/6zd+9f9v7yu0ms8L4Rabw6kDjC7DbXs9ZJSkxsdWVd/39
+ nNBwPi2AvLw0lX90Hpv4hsKLcE+kQiwst0FyXam03YSNe7FLmrcYfuwNy/yACzY2gTNi
+ jgUe81Ks/+nSbgDoQ9e5urmRowdWYALuvdBMEQYJqvrmBsBmtnre8yj7K2oBoGIs73gw
+ ymyMMvQhuTCs3hoLP4NOf/4XX3UGE/sN/qHTJIuncAyxRiNI6aNZSRfDjo1o177aQ3dY
+ TPPw==
+X-Gm-Message-State: APjAAAWdvZXuP0bofoeqVTy2ck5CjVw3SHpLYZEFswVIr77UeZGVL/Vo
+ jxgE6C4zRfzBNIN5i3nuW9fym9BnaLI=
+X-Google-Smtp-Source: APXvYqwioTv9ILLVNzqli2aTtk18c3DZCfB/5R7Tg+WH6xRVVNaS3yYBZAQCuQ2S7rumoRM/XdCLnw==
+X-Received: by 2002:a0c:932f:: with SMTP id d44mr70334912qvd.187.1558626448515; 
+ Thu, 23 May 2019 08:47:28 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id m8sm18050096qta.10.2019.05.23.08.47.27
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 23 May 2019 08:47:28 -0700 (PDT)
+Message-ID: <5CE6C08E.8050302@gmail.com>
+Date: Thu, 23 May 2019 11:47:26 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-In-Reply-To: <BL0PR12MB2340408E4880262FA37CF3FAAF010@BL0PR12MB2340.namprd12.prod.outlook.com>
-Content-Language: en-MW
+To: usrp-users@lists.ettus.com
+References: <e83f1284-23a4-ac57-8943-993b9d6201b5@gmail.com>
+ <f57ef582-b99a-aaf9-0f0c-0e724dffacad@gmail.com>
+In-Reply-To: <f57ef582-b99a-aaf9-0f0c-0e724dffacad@gmail.com>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] GR in the E320
+Subject: Re: [USRP-users] Multiple TX streams
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -74,10 +73,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@balister.org>
-Content-Type: text/plain; charset="us-ascii"
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -91,114 +90,56 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Oops, replied to copy in my inbox ...
+On 05/23/2019 05:39 AM, Vladica Sark via USRP-users wrote:
+> Hi again,
+>
+> I found an easy way to reproduce the problem. I use two x310's and run 
+> the tx_timed_samples as:
+>
+> tx_timed_samples --args "addr0=192.168.50.2,addr1=192.168.130.2" 
+> --secs 0.5 --nsamps 1000000
+>
+> sometimes it fails, sometimes it works. I use larger number of samples 
+> to be able to notice the LED blinking.
+>
+> BR,
+> Vladica
+Are you getting any under-run indication?  What type of ethernet 
+interface are you using, and at what sample rates?
 
-Adding meta-sdr to pick up gnuradio shouldn't have changed any machine
-specific config.
 
-Regarding mender, it is great if you have a rack of usrp's to update,
-but if you are working with one, I'd skip it and write cards by hand.
-From what I understand this would be much quicker.
-
-I don't have an E320, so pretty much flying blind regarding hardware issues.
-
-Philip
-
-On 05/23/2019 11:16 AM, Jason Matusiak via USRP-users wrote:
-> Philip, before building one of your images, does anything need to be done to get ethernet to work?  It seems like after using mender to setup a new image and rebooting, I cannot bring up sfp0 to save my life.  It won't work until I reboot again, but I think that that drops the mender image reverts to the old one since I didn't commit it.   Any steps I am missing?
-> 
-> 
-> ________________________________
-> From: Jason Matusiak
-> Sent: Tuesday, May 21, 2019 11:18 AM
-> To: Philip Balister; Ettus Mail List
-> Subject: Re: [USRP-users] GR in the E320
-> 
-> OK, that seems to be building (who knows if it will succeed), thanks.
-> 
-> I can't seem to find directions online about how to add in my own recipes, or those written up somewhere?  Basically, I am trying to figure out how I can add something like gr-my_blocks to the project (either part of bitbake, or as a stand-alone build I move over to the device afterwards.
-> 
-> ________________________________
-> From: Philip Balister <philip@balister.org>
-> Sent: Tuesday, May 21, 2019 11:05 AM
-> To: Jason Matusiak; Ettus Mail List
-> Subject: Re: [USRP-users] GR in the E320
-> 
-> Edit bblayers.conf in your conf directory. There is also an add layer
-> command, but I'm old fashioned :)
-> 
-> Philip
-> 
-> On 05/21/2019 10:50 AM, Jason Matusiak via USRP-users wrote:
->> Interesting, thanks.  They are using sumo, so I will try to check that branch out and see how it works.
+>
+>
+> On 23.05.19 08:36, Vladica Sark wrote:
+>> Hi folks,
 >>
->> I will need to research how to add it in and build it as I see pulling it down and checking out sumo alone isn't enough.
+>> I have 2x X310 connected to Octoclock (10 MHz + PPS), each with 2x 
+>> UBX frontends. I control them from a C/C++ program. Since there are 4 
+>> channels, I create 4 tx streamers in order to transmit timed samples 
+>> on each of them. The transmissions are not at the same time and this 
+>> is the reason for using 4 tx streamers. The problem is that when I 
+>> schedule timed transmissions on all of the channels (at the same time 
+>> for test), sometimes I do not get anything with recv_async_msg, i.e. 
+>> the timeout expires. This also happens even when I schedule only a 
+>> single transmission from single tx streamer (all 4 streamers are 
+>> created).
+>> Sometimes it happens that everything is working without problems, 
+>> i.e. I make 200 transmissions on each of the channels and I get the 
+>> proper response from the recv_async_msg, but many times, restarting 
+>> the same program leads to just recv_async_msg with expired timeout. I 
+>> am using UHD 3.13.0.
 >>
->> Thanks for the insights.
+>> I can probably use one streamer and transmitting 0's on the rest of 
+>> the channels, but I would like to avoid LO leakage in the air.
 >>
->> ________________________________
->> From: Philip Balister <philip@balister.org>
->> Sent: Tuesday, May 21, 2019 10:39 AM
->> To: Jason Matusiak; Ettus Mail List
->> Subject: Re: [USRP-users] GR in the E320
->>
->> You need the meta-sdr layer. Choosing a branch may be tricky, only the
->> older ones have 3.7 support. My recent work in master is all in support
->> of transitioning to the unreleased 3.8 gnuradio, which is much better
->> for embedded builds.
->>
->> Might also be some pain due to Ettus forking the uhd recipe.
->>
->> Philip
->>
->> On 05/21/2019 10:30 AM, Jason Matusiak via USRP-users wrote:
->>> OK, so I am a total newbie when it comes to open-embedded.  I know that the docker to build doesn't include a gnuradio-image bitbake option (only developer-image), so I tried to make one.  I created a new gnuradio-image.bb file and added gnuradio to the list of things to build.  Sadly, I appear to need to do more than that as it won't build:
->>>
->>> oe-builder@b3d40f15af25:~$ bitbake gnuradio-image --verbose
->>> Loading cache: 100% |##########################################################################################################################################################################################################################| Time: 0:00:00
->>> Loaded 2964 entries from dependency cache.
->>> NOTE: Resolving any missing task queue dependencies
->>> NOTE: selecting opkg-utils-native to satisfy virtual/update-alternatives-native due to PREFERRED_PROVIDERS
->>> NOTE: selecting linux-yocto to satisfy virtual/kernel due to PREFERRED_PROVIDERS
->>> NOTE: selecting pseudo-native to satisfy virtual/fakeroot-native due to PREFERRED_PROVIDERS
->>> NOTE: selecting opkg-native to satisfy opkg-native due to PREFERRED_PROVIDERS
->>> NOTE: selecting nativesdk-glibc to satisfy runtime nativesdk-glibc due to PREFERRED_PROVIDER_virtual/nativesdk-libc = nativesdk-glibc
->>> ERROR: Nothing RPROVIDES 'gnuradio' (but /home/oe-builder/meta-ettus/meta-ettus-core/recipes-core/images/gnuradio-image.bb RDEPENDS on or otherwise requires it)
->>> NOTE: Runtime target 'gnuradio' is unbuildable, removing...
->>> Missing or unbuildable dependency chain was: ['gnuradio']
->>> NOTE: Target 'gnuradio-image' is unbuildable, removing...
->>> Missing or unbuildable dependency chain was: ['gnuradio-image', 'gnuradio']
->>> ERROR: Required build target 'gnuradio-image' has no buildable providers.
->>> Missing or unbuildable dependency chain was: ['gnuradio-image', 'gnuradio']
->>>
->>> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
->>>
->>> Anyone know how to do add it (once that works, I'll want to add some of my own OOT packages as well)?
->>>
->>>
->>>
->>>
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
-> 
-> 
-> 
+>> Best regards,
+>> Vladica
+>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> 
+
 
 _______________________________________________
 USRP-users mailing list
