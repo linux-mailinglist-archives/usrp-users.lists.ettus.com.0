@@ -2,58 +2,67 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A3628F27
-	for <lists+usrp-users@lfdr.de>; Fri, 24 May 2019 04:34:39 +0200 (CEST)
-Received: from [::1] (port=33762 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59379290A2
+	for <lists+usrp-users@lfdr.de>; Fri, 24 May 2019 07:58:09 +0200 (CEST)
+Received: from [::1] (port=45472 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hU02Q-0002at-4e; Thu, 23 May 2019 22:34:30 -0400
-Received: from mail-vs1-f54.google.com ([209.85.217.54]:42646)
+	id 1hU3DQ-0007yE-9Y; Fri, 24 May 2019 01:58:04 -0400
+Received: from mail-ed1-f48.google.com ([209.85.208.48]:39892)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <ejkreinar@gmail.com>) id 1hU01s-0002V4-Gz
- for usrp-users@lists.ettus.com; Thu, 23 May 2019 22:34:26 -0400
-Received: by mail-vs1-f54.google.com with SMTP id z11so4811132vsq.9
- for <usrp-users@lists.ettus.com>; Thu, 23 May 2019 19:33:36 -0700 (PDT)
+ (Exim 4.91) (envelope-from <vladicasark@gmail.com>)
+ id 1hU3Cs-0007tD-TM
+ for usrp-users@lists.ettus.com; Fri, 24 May 2019 01:58:01 -0400
+Received: by mail-ed1-f48.google.com with SMTP id e24so12649685edq.6
+ for <usrp-users@lists.ettus.com>; Thu, 23 May 2019 22:57:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=GZcKi6KMW0yR8WTX9ZewUdKrQB8jCGah6cX0+MJ2iXc=;
- b=iJVAx4GYvdJ4IyDED0fVf4bIkuYTaaI9oyM4tS5hyXpsKlxffXEymRWLVh/CCPZqXx
- jISernXRHJ0DyF59vGH8KUAAWYkeQ+uK3ZnnLkzLb2mbglMFgWGCz1g5CiIqDHLvqrqq
- 5PvrbyneZiYWJSeYqrE4dIqMPQnKtR+GMSDQh2LnDaN3uwinaE8nB5LiD23yZyipxl+U
- Ccdm8W+YoPd3ls2Jm2v2puwvUB4QIVgHGWxfaTvtjeAXHX8VaPyVuMmOJ/uytmwA3dn8
- z5OuWA2KAATcRZWGZCEbkrS81OTT2zRwoLe1k+Gejdd4t3u1zWzaYTgkbS5R1fsrx4JK
- OiGg==
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=MqECLFTkdDGjgL+Mr+lT/7TIfOAI02aO6n5Sg8Ewjdg=;
+ b=jmL9xAra3Tu5KftN0piFPzMosDqT3KgntMumE8BCUmK+U6udun+JYix/z47HLlLRp6
+ WKcgzH7YhHP1WlGW6QhnhQlVcnZWixWdUmT0LozH8ZYKQ9nhdcDdsHqH5oGzadQ623QV
+ qER98kSXxqPT1EIhOrPPI5oV66G/wIAS5EYTnBASnTVhFu/+M7hrbcdHTjxO/DXeu8TA
+ lyulfwgL5IOYaZToix1+Pqd3WENARXC3khRxhezGFPyWYYGfFJqnEutJVvssWKnzQfoD
+ cVNcfnqJHiPUnnE711Z3S+pgd4szRjtPnHYtZpvwLgLoAicIfY81wtdxF52ziz5PMQp2
+ Ti7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=GZcKi6KMW0yR8WTX9ZewUdKrQB8jCGah6cX0+MJ2iXc=;
- b=r8J5UmdMoDa7hlq+1xuktYUUQ6oezs5baKrn6Rwr7Tlhz8uzCVwUIiSRMB+mjV5D8r
- tTpjIvDvhrvNNc2VJff4iCa2ZwRSGapMYuKOURsrwvK9ZBr0r+HXvY0HvgxVxwOpt75b
- DbfdX7U48ZBbDT7EC13yAma6OmWxHT0ki+g7hN+Zh5J/u1dxSlAbfcjl/tZOLMkV5yMO
- qEGcHu4AN4/wg1/4WxTvy+Qm+eNy22Tk4WQ3lrBvry4OvLSlY7EA63MJRkr9ndnvc0Sq
- 7vAuM3dNLQqqzVulHeucyxPnKry7efMxhDtJS8i1EWYLkuYvyVW+uj3OJGlTTNNGgBme
- rTAw==
-X-Gm-Message-State: APjAAAV37yr72zJi5ekL7iwmHBVzK5S8MBgRYE2nsXTpgpJ+d9eoLhia
- h5BD+Ajbx2eNxzxx20QcgEGH8L4ofuhVoqhgBdKbXAGZ
-X-Google-Smtp-Source: APXvYqzRpvPEzPfyeQVVTnDVDWCsDfloeSIcQmMl7kRHab/34TvGvMYXgfE2mqXEzKCWi6k/+OWdXr5d7V4BIkUYMUQ=
-X-Received: by 2002:a67:d293:: with SMTP id z19mr17157650vsi.104.1558665195689; 
- Thu, 23 May 2019 19:33:15 -0700 (PDT)
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=MqECLFTkdDGjgL+Mr+lT/7TIfOAI02aO6n5Sg8Ewjdg=;
+ b=iYdwfnZ2XEO9C7WknkSxqt+EEskm8kHibkIoXY7bRbXcUoCjSkbrU2llS5yil2UJBj
+ 0yUT2MLrF+Riw379/40VKVCfuhJDOmQHYcu1YDcs4by+j+Rf1Cw/SJEhCCwoVbPRSK5E
+ 6F7+Ljg8qNM+DguSxI4fp1OoI/xUlJ8pynTE01XEpENhl7dui6dV05bocyok/MjcH1wj
+ UrIPAuBfFpa1iIirvq7PDCKsSWehoInkEOh9hYPnIKe1UcoJAc3xky2eqKwhABk0VjP6
+ gUlVEtP5Nc7+pLYZwNLbV8ne4RyP7Pdyut8BOQ7ezJiTimPoCSd+6+HEfGyLc2wGv4Yz
+ sWWA==
+X-Gm-Message-State: APjAAAXnXoEVJLKGet1aTG9nFUFa3NhwzRmzMBNOrZRNAKyxnS2frPQN
+ 6PrfmwkXtDs086wrj792IJTQbG2z
+X-Google-Smtp-Source: APXvYqyK5JE1/IYtMrRtHoJJZ9ZSUikwKsMzj3o5v0p75ImryLPNLgZIJMLWPS4pSAx4Uk42PkWjyA==
+X-Received: by 2002:a50:a522:: with SMTP id y31mr101567389edb.69.1558677409706; 
+ Thu, 23 May 2019 22:56:49 -0700 (PDT)
+Received: from [141.20.182.193] ([141.20.182.193])
+ by smtp.gmail.com with ESMTPSA id i33sm471225ede.47.2019.05.23.22.56.48
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 23 May 2019 22:56:48 -0700 (PDT)
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
+References: <e83f1284-23a4-ac57-8943-993b9d6201b5@gmail.com>
+ <f57ef582-b99a-aaf9-0f0c-0e724dffacad@gmail.com> <5CE6C08E.8050302@gmail.com>
+ <61986861-6b31-6286-6d98-7e4d4f66c8da@gmail.com> <5CE6D3D2.3090209@gmail.com>
+Message-ID: <9034bd4c-ce76-56fb-21cc-f40769a0da00@gmail.com>
+Date: Fri, 24 May 2019 07:56:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <CADRnH23yQxEPTYysMECCwvgYvN7RZucmDH+x4QLPDJZcJUR4og@mail.gmail.com>
- <ef9bff18-8c8c-5a74-398d-9b50d0bfea9d@ant.uni-bremen.de>
- <2032979BBC82474D954F55A08A5408F9415C9C4F@DLDEFFMIMP03EXC.intra.dlr.de>
-In-Reply-To: <2032979BBC82474D954F55A08A5408F9415C9C4F@DLDEFFMIMP03EXC.intra.dlr.de>
-Date: Thu, 23 May 2019 22:33:03 -0400
-Message-ID: <CADRnH23UBy3CYJ3tE44hDaCCFhLryrcYx7eA3655mSftUq3rWw@mail.gmail.com>
-To: Robert.Poehlmann@dlr.de
+In-Reply-To: <5CE6D3D2.3090209@gmail.com>
+Content-Language: en-US
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Introducing Theseus Cores: Open source FPGA cores
- for DSP and SDR
+Subject: Re: [USRP-users] Multiple TX streams
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,10 +74,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: EJ Kreinar <ejkreinar@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5235877619967750274=="
+From: Vladica Sark via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Vladica Sark <vladicasark@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,345 +91,117 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5235877619967750274==
-Content-Type: multipart/alternative; boundary="00000000000050200605899905df"
-
---00000000000050200605899905df
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Robert,
-
-Thanks for the feedback!
-
-> Do you plan to provide pre-built FPGA images containing Theseus Cores in
-the future for certain USRP devices? I guess this would make it even easier
-for first time users and would well suit the "batteries included" concept.
-
-I've been considering this idea for a while now. I really like the concept
-of having a few prebuilt bitstreams available, especially for usrp users
-who maybe haven't gotten into rfnoc or FPGA builds.
-
-On the other hand, I'd need a license to build images for the relevant
-targets, and I'm afraid I don't have access to a license I can use in that
-capacity. Also the permutations of cores and devices gets pretty large to
-support.
-
-So before I chase this idea down any further, I'm curious if there's
-broader interest in having prebuilt downloadable bitstreams with a wider
-selection of rfnoc cores... As a quick audience poll: anyone interested?
-And what devices/configurations would you most like to see?
-
-EJ
-
-On Thu, May 2, 2019, 10:24 AM Robert via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi!
->
-> I agree with Johannes that Schmidl&Cox OFDM sync would be a nice
-> extension.
->
-> Do you plan to provide pre-built FPGA images containing Theseus Cores in
-> the future for certain USRP devices? I guess this would make it even easier
-> for first time users and would well suit the "batteries included" concept.
->
-> Cheers
-> Robert
->
-> -----Original Message-----
-> From: USRP-users [mailto:usrp-users-bounces@lists.ettus.com] On Behalf Of
-> Johannes Demel via USRP-users
-> Sent: Thursday, May 02, 2019 9:55 AM
-> To: usrp-users@lists.ettus.com
-> Subject: Re: [USRP-users] Introducing Theseus Cores: Open source FPGA
-> cores for DSP and SDR
->
-> Hi EJ,
->
-> this sounds like a very interesting project. Since you asked for ideas,
-> I guess it would be nice to have a Schmidl&Cox style OFDM
-> synchronization block.
->
-> Cheers
-> Johannes
->
-> Am 29.04.19 um 02:00 schrieb EJ Kreinar via USRP-users:
-> > Hi all,
-> >
-> > I'm very happy to announce the (very modest) release of the Theseus
-> > Cores project: https://gitlab.com/theseus-cores/theseus-cores
-> >
-> > Theseus Cores is designed to provide open source FPGA cores for digital
-> > signal processing and software defined radio, plus the means to *use*
-> > the FPGA cores in real life.... In practice, that mostly means FPGA code
-> > propagates up through RFNoC blocks which have both UHD and Gnuradio
-> > software hooks for users to attach to. In the future it would be great
-> > to support other FPGA platforms if there's interest too.
-> >
-> > So far, Theseus Cores provides the following RFNoC FPGA blocks and
-> > corresponding software:
-> > - *Polyphase M/2 Channelizer*: A polyphase channelizer where each
-> > channel outputs 2x sample rate and is compatible with
-> > perfect-reconstruction. Thanks to Phil Vallance for re-implementing the
-> > channelizer described in his GRCon 2017 presentation-- it works!
-> > - *"1-to-N" DDC Chain*: Parameterized instantiations of "N" independent
-> > DDCs, where each DDC is connected to the *first* input (a very basic,
-> > brute force channelizer). Note I've seen several mailing list
-> > discussions in the past year about 1-to-4 or 1-to-8 DDC channelizers --
-> > this block provides the generalized version of that scenario.
-> > - *DUC + DDC Rational Resampler*: A "hacked" rational resampler,
-> > consisting of a DUC and a DDC back-to-back. It's not pretty, but it can
-> > occasionally be helpful.
-> >
-> > Furthermore, in an effort to TRY to create an open source FPGA project
-> > that doesnt catastrophically break on a regular basis, we've set up
-> > continuous integration tests for both software and FPGA. Dockerfiles are
-> > provided here (https://gitlab.com/theseus-cores/theseus-docker). Theseus
->
-> > Cores also pushes tagged docker images for various versions of UHD and
-> > Gnuradio, where the branches for UHD-3.13, UHD-3.14, UHD's master, and
-> > gnuradio's maint-3.7 are rebuilt weekly. This may be of auxiliary use to
-> > people building UHD and gnuradio in a CI scenario:
-> > https://hub.docker.com/u/theseuscores
-> > <https://github.com/theseus-cores/theseus-cores>
-> > *What's next??* It's a modest list of features so far, but I'm sure we
-> > can all sympathize that things move slowly when developing FPGA code.
-> > Here's a quick rundown of a few ideas on the horizon:
-> > - Arbitrary resampling
-> > - Channel downselection for the M/2 channelizer (currently all channels
-> > must be output... it's far more useful to select a subset of channels to
-> > return and just grab those)
-> > - Channel reconsonstruction *after* the M/2 channelizer (maybe)
-> > - OFDM receiver (maybe)
-> >
-> > We need more ideas and contributors! Now that this thing exists, I would
-> > LOVE to see Theseus Cores fill itself out with some of the more common
-> > DSP utilities that really should be available as open-source... it would
-> > be absolutely amazing to provide a library of components and
-> > applications for FPGA developers in a similar way that gnuradio provides
-> > for the software community. Please reach out with suggestions for
-> > relevant FPGA utilities or applications you'd like to see -- or even
-> > better, if you have ideas or code you're willing to share with the
-> > project! If you are interested in getting involved in any way, I would
-> > be happy to hear from you.
-> >
-> > Cheers,
-> > EJ
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---00000000000050200605899905df
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Hi Robert,<div dir=3D"auto"><br></div><div dir=3D"auto">T=
-hanks for the feedback!<br><div dir=3D"auto"><br></div><div dir=3D"auto">&g=
-t;=C2=A0Do you plan to provide pre-built FPGA images containing Theseus Cor=
-es in the future for certain USRP devices? I guess this would make it even =
-easier for first time users and would well suit the &quot;batteries include=
-d&quot; concept.</div><br style=3D"font-family:sans-serif;font-size:12.8px"=
-><div dir=3D"auto">I&#39;ve been considering this idea for a while now. I r=
-eally like the concept of having a few prebuilt bitstreams available, espec=
-ially for usrp users who maybe haven&#39;t gotten into rfnoc or FPGA builds=
-.</div><div dir=3D"auto"><br></div><div dir=3D"auto">On the other hand, I&#=
-39;d need a license to build images for the relevant targets, and I&#39;m a=
-fraid I don&#39;t have access to a license I can use in that capacity. Also=
- the permutations of cores and devices gets pretty large to support.</div><=
-div dir=3D"auto"><br></div><div dir=3D"auto">So before I chase this idea do=
-wn any further, I&#39;m curious if there&#39;s broader interest in having p=
-rebuilt downloadable bitstreams with a wider selection of rfnoc cores... As=
- a quick audience poll: anyone interested? And what devices/configurations =
-would you most like to see?</div><div dir=3D"auto"><br></div><div dir=3D"au=
-to">EJ</div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Thu, May 2, 2019, 10:24 AM Robert via USRP-users &lt;<=
-a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"noref=
-errer">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">Hi!<br>
-<br>
-I agree with Johannes that Schmidl&amp;Cox OFDM sync would be a nice extens=
-ion. <br>
-<br>
-Do you plan to provide pre-built FPGA images containing Theseus Cores in th=
-e future for certain USRP devices? I guess this would make it even easier f=
-or first time users and would well suit the &quot;batteries included&quot; =
-concept.<br>
-<br>
-Cheers<br>
-Robert<br>
-<br>
------Original Message-----<br>
-From: USRP-users [mailto:<a href=3D"mailto:usrp-users-bounces@lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">usrp-users-bounces@list=
-s.ettus.com</a>] On Behalf Of Johannes Demel via USRP-users<br>
-Sent: Thursday, May 02, 2019 9:55 AM<br>
-To: <a href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer norefer=
-rer" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-Subject: Re: [USRP-users] Introducing Theseus Cores: Open source FPGA cores=
- for DSP and SDR<br>
-<br>
-Hi EJ,<br>
-<br>
-this sounds like a very interesting project. Since you asked for ideas, <br=
->
-I guess it would be nice to have a Schmidl&amp;Cox style OFDM <br>
-synchronization block.<br>
-<br>
-Cheers<br>
-Johannes<br>
-<br>
-Am 29.04.19 um 02:00 schrieb EJ Kreinar via USRP-users:<br>
-&gt; Hi all,<br>
-&gt; <br>
-&gt; I&#39;m very happy to announce the (very modest) release of the Theseu=
-s <br>
-&gt; Cores project: <a href=3D"https://gitlab.com/theseus-cores/theseus-cor=
-es" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">https://gitl=
-ab.com/theseus-cores/theseus-cores</a><br>
-&gt; <br>
-&gt; Theseus Cores is designed to provide open source FPGA cores for digita=
-l <br>
-&gt; signal processing and software defined radio, plus the means to *use* =
-<br>
-&gt; the FPGA cores in real life.... In practice, that mostly means FPGA co=
-de <br>
-&gt; propagates up through RFNoC blocks which have both UHD and Gnuradio <b=
-r>
-&gt; software hooks for users to attach to. In the future it would be great=
- <br>
-&gt; to support other FPGA platforms if there&#39;s interest too.<br>
-&gt; <br>
-&gt; So far, Theseus Cores provides the following RFNoC FPGA blocks and <br=
->
-&gt; corresponding software:<br>
-&gt; - *Polyphase=C2=A0M/2 Channelizer*: A polyphase channelizer where each=
- <br>
-&gt; channel outputs 2x sample rate and is compatible with <br>
-&gt; perfect-reconstruction. Thanks to Phil Vallance for re-implementing th=
-e <br>
-&gt; channelizer described in his GRCon 2017 presentation-- it works!<br>
-&gt; - *&quot;1-to-N&quot; DDC Chain*: Parameterized instantiations of &quo=
-t;N&quot; independent <br>
-&gt; DDCs, where each DDC is connected to the *first* input (a very basic, =
-<br>
-&gt; brute force channelizer). Note I&#39;ve seen several mailing list <br>
-&gt; discussions in the past year about 1-to-4 or 1-to-8 DDC channelizers -=
-- <br>
-&gt; this block provides the generalized version of that scenario.<br>
-&gt; - *DUC + DDC Rational Resampler*: A &quot;hacked&quot; rational resamp=
-ler, <br>
-&gt; consisting of a DUC and a DDC back-to-back. It&#39;s not pretty, but i=
-t can <br>
-&gt; occasionally be helpful.<br>
-&gt; <br>
-&gt; Furthermore, in an effort to TRY to create an open source FPGA project=
- <br>
-&gt; that doesnt catastrophically break on a regular basis, we&#39;ve set u=
-p <br>
-&gt; continuous integration tests for both software and FPGA. Dockerfiles a=
-re <br>
-&gt; provided here (<a href=3D"https://gitlab.com/theseus-cores/theseus-doc=
-ker" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">https://git=
-lab.com/theseus-cores/theseus-docker</a>).=C2=A0Theseus <br>
-&gt; Cores also pushes tagged docker images for various versions of UHD and=
- <br>
-&gt; Gnuradio, where the branches for UHD-3.13, UHD-3.14, UHD&#39;s master,=
- and <br>
-&gt; gnuradio&#39;s maint-3.7 are rebuilt weekly. This may be of auxiliary =
-use to <br>
-&gt; people building UHD and gnuradio in a CI scenario: <br>
-&gt; <a href=3D"https://hub.docker.com/u/theseuscores" rel=3D"noreferrer no=
-referrer noreferrer" target=3D"_blank">https://hub.docker.com/u/theseuscore=
-s</a><br>
-&gt; &lt;<a href=3D"https://github.com/theseus-cores/theseus-cores" rel=3D"=
-noreferrer noreferrer noreferrer" target=3D"_blank">https://github.com/thes=
-eus-cores/theseus-cores</a>&gt;<br>
-&gt; *What&#39;s next??*=C2=A0It&#39;s a modest list of features so far, bu=
-t I&#39;m sure we <br>
-&gt; can all sympathize that things move slowly when developing FPGA code. =
-<br>
-&gt; Here&#39;s a quick rundown of a few ideas on the horizon:<br>
-&gt; - Arbitrary resampling<br>
-&gt; - Channel downselection for the M/2 channelizer (currently all channel=
-s <br>
-&gt; must be output... it&#39;s far more useful to select a subset of chann=
-els to <br>
-&gt; return and just grab those)<br>
-&gt; - Channel reconsonstruction *after* the M/2 channelizer (maybe)<br>
-&gt; - OFDM receiver (maybe)<br>
-&gt; <br>
-&gt; We need more ideas and contributors! Now that this thing exists, I wou=
-ld <br>
-&gt; LOVE to see Theseus Cores fill itself out with some of the more common=
- <br>
-&gt; DSP utilities that really should be available as open-source... it wou=
-ld <br>
-&gt; be absolutely amazing to provide a library of components and <br>
-&gt; applications for FPGA developers in a similar way that gnuradio provid=
-es <br>
-&gt; for the software community. Please reach out with=C2=A0suggestions for=
- <br>
-&gt; relevant FPGA utilities or applications you&#39;d like to see -- or ev=
-en <br>
-&gt; better, if you have ideas or code you&#39;re willing to share with the=
- <br>
-&gt; project! If you are interested in getting involved in any way, I would=
- <br>
-&gt; be happy to hear from you.<br>
-&gt; <br>
-&gt; Cheers,<br>
-&gt; EJ<br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer norefe=
-rrer" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://=
-lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt; <br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
- target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
-.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
- target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
-.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000050200605899905df--
-
-
---===============5235877619967750274==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5235877619967750274==--
-
+SGksCgpIZXJlIGlzIHRoZSBvdXRwdXQgZnJvbSB0aGUgdHhfdGltZWRfc2FtcGxlcyB3aGVuIGl0
+IGZhaWxzLiBBbnl3YXksIGl0IApkb2VzIG5vdCBmYWlsIGFsd2F5cy4gU29tZXRpbWVzIGV2ZXJ5
+dGhpbmcgd29ya3MgZmluZS4KCnR4X3RpbWVkX3NhbXBsZXMgLS1hcmdzICJhZGRyMD0xOTIuMTY4
+LjEzMC4yLGFkZHIxPTE5Mi4xNjguNTAuMiIKCkNyZWF0aW5nIHRoZSB1c3JwIGRldmljZSB3aXRo
+OiBhZGRyMD0xOTIuMTY4LjEzMC4yLGFkZHIxPTE5Mi4xNjguNTAuMi4uLgpbSU5GT10gW1VIRF0g
+bGludXg7IEdOVSBDKysgdmVyc2lvbiA3LjMuMDsgQm9vc3RfMTA2NTAxOyAKVUhEXzMuMTMuMC5I
+RUFELTAtZ2YxMTRjZmEwCltJTkZPXSBbWDMwMF0gWDMwMCBpbml0aWFsaXphdGlvbiBzZXF1ZW5j
+ZS4uLgpbSU5GT10gW1gzMDBdIE1heGltdW0gZnJhbWUgc2l6ZTogMTQ3MiBieXRlcy4KW0lORk9d
+IFtYMzAwXSBNYXhpbXVtIGZyYW1lIHNpemU6IDE0NzIgYnl0ZXMuCltJTkZPXSBbWDMwMF0gUmFk
+aW8gMXggY2xvY2s6IDIwMCBNSHoKW0lORk9dIFsxL0RtYUZJRk9fMF0gSW5pdGlhbGl6aW5nIGJs
+b2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwRDAwMDAwMDAwMDAwKQpbSU5GT10gWzEvRG1hRklG
+T18wXSBCSVNUIHBhc3NlZCAoVGhyb3VnaHB1dDogMTMwNCBNQi9zKQpbSU5GT10gWzEvRG1hRklG
+T18wXSBCSVNUIHBhc3NlZCAoVGhyb3VnaHB1dDogMTMyMiBNQi9zKQpbSU5GT10gWzEvUmFkaW9f
+MF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDAwMDAx
+KQpbSU5GT10gWzEvUmFkaW9fMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDog
+MHgxMkFEMTAwMDAwMDAwMDAxKQpbSU5GT10gWzEvRERDXzBdIEluaXRpYWxpemluZyBibG9jayBj
+b250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFsxL0REQ18xXSBJbml0
+aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAwMDApCltJTkZP
+XSBbMS9EVUNfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAw
+MDAwMDAwMDAwKQpbSU5GT10gWzEvRFVDXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChO
+T0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFtYMzAwXSBSYWRpbyAxeCBjbG9jazog
+MjAwIE1IegpbSU5GT10gWzAvRG1hRklGT18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAo
+Tk9DIElEOiAweEYxRjBEMDAwMDAwMDAwMDApCltJTkZPXSBbMC9EbWFGSUZPXzBdIEJJU1QgcGFz
+c2VkIChUaHJvdWdocHV0OiAxMzE5IE1CL3MpCltJTkZPXSBbMC9EbWFGSUZPXzBdIEJJU1QgcGFz
+c2VkIChUaHJvdWdocHV0OiAxMzA2IE1CL3MpCltJTkZPXSBbMC9SYWRpb18wXSBJbml0aWFsaXpp
+bmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDEyQUQxMDAwMDAwMDAwMDEpCltJTkZPXSBbMC9S
+YWRpb18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDEyQUQxMDAwMDAw
+MDAwMDEpCltJTkZPXSBbMC9ERENfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJ
+RDogMHhEREMwMDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvRERDXzFdIEluaXRpYWxpemluZyBibG9j
+ayBjb250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFswL0RVQ18wXSBJ
+bml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDApCltJ
+TkZPXSBbMC9EVUNfMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMw
+MDAwMDAwMDAwMDAwKQpVc2luZyBEZXZpY2U6IE11bHRpIFVTUlA6CiAgIERldmljZTogWC1TZXJp
+ZXMgRGV2aWNlCiAgIE1ib2FyZCAwOiBYMzEwCiAgIE1ib2FyZCAxOiBYMzEwCiAgIFJYIENoYW5u
+ZWw6IDAKICAgICBSWCBEU1A6IDAKICAgICBSWCBEYm9hcmQ6IEEKICAgICBSWCBTdWJkZXY6IFVC
+WCBSWAogICBSWCBDaGFubmVsOiAxCiAgICAgUlggRFNQOiAwCiAgICAgUlggRGJvYXJkOiBCCiAg
+ICAgUlggU3ViZGV2OiBVQlggUlgKICAgUlggQ2hhbm5lbDogMgogICAgIFJYIERTUDogMAogICAg
+IFJYIERib2FyZDogQQogICAgIFJYIFN1YmRldjogVUJYIFJYCiAgIFJYIENoYW5uZWw6IDMKICAg
+ICBSWCBEU1A6IDAKICAgICBSWCBEYm9hcmQ6IEIKICAgICBSWCBTdWJkZXY6IFVCWCBSWAogICBU
+WCBDaGFubmVsOiAwCiAgICAgVFggRFNQOiAwCiAgICAgVFggRGJvYXJkOiBBCiAgICAgVFggU3Vi
+ZGV2OiBVQlggVFgKICAgVFggQ2hhbm5lbDogMQogICAgIFRYIERTUDogMAogICAgIFRYIERib2Fy
+ZDogQgogICAgIFRYIFN1YmRldjogVUJYIFRYCiAgIFRYIENoYW5uZWw6IDIKICAgICBUWCBEU1A6
+IDAKICAgICBUWCBEYm9hcmQ6IEEKICAgICBUWCBTdWJkZXY6IFVCWCBUWAogICBUWCBDaGFubmVs
+OiAzCiAgICAgVFggRFNQOiAwCiAgICAgVFggRGJvYXJkOiBCCiAgICAgVFggU3ViZGV2OiBVQlgg
+VFgKClNldHRpbmcgVFggUmF0ZTogNi4yNTAwMDAgTXNwcy4uLgpBY3R1YWwgVFggUmF0ZTogNi4y
+NTAwMDAgTXNwcy4uLgoKU2V0dGluZyBkZXZpY2UgdGltZXN0YW1wIHRvIDAuLi4KU2VudCBwYWNr
+ZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0
+IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxl
+cwpTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQg
+cGFja2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6
+IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNh
+bXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpT
+ZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFj
+a2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2
+NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNhbXBs
+ZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpTZW50
+IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0
+OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDE3MiBz
+YW1wbGVzCgpXYWl0aW5nIGZvciBhc3luYyBidXJzdCBBQ0suLi4gZmFpbAoKRG9uZSEKCk9uIDIz
+LjA1LjE5IDE5OjA5LCBNYXJjdXMgRC4gTGVlY2ggd3JvdGU6Cj4gT24gMDUvMjMvMjAxOSAwMTow
+MiBQTSwgVmxhZGljYSBTYXJrIHdyb3RlOgo+PiBJIGFtIHVzaW5nIDEgR2IgRVRIIGludGVyZmFj
+ZS4gVGhlIHNhbXBsZSByYXRlIGlzIHRoZSBkZWZhdWx0IGZvciAKPj4gdHhfdGltZWRfc2FtcGxl
+cywgaS5lLiA2LjI1IE1TcHMuIEkgYW0gZ2V0dGluZyBubyB1bmRlcnJ1biBpbmRpY2F0aW9uLgo+
+PiBUaGUgdHhfdGltZWRfc2FtcGxlcyBzZW5kcyB0aGUgc2FtcGxlcyB0byB0aGUgcmFkaW8gYW5k
+IHNjaGVkdWxlcyB0aGUgCj4+IHRyYW5zbWlzc2lvbiAxLjUgc2Vjb25kcyBpbiBmdXR1cmUuIElm
+IEkgcHV0IG9ubHkgMSByYWRpbywgaS5lLiBvbmUgSVAgCj4+IGFkZHJlc3MsIGV2ZXJ5dGhpbmcg
+d29ya3MgcGVyZmVjdC4KPj4gV2l0aCAyIElQIGFkZHJlc3NlcyAodHdvIHJhZGlvcyksIHNvbWV0
+aW1lcyByZXBvcnRzIHN1Y2Nlc3Mgc29tZXRpbWVzIAo+PiBmYWlsLiBJdCBzZWVtcyBjb21wbGV0
+ZWx5IHVuZGV0ZXJtaW5lZC4KPiBDb3VsZCB5b3Ugc2hhcmUgdGhlIGVycm9yIG91dHB1dCB3aXRo
+IHVzIHdoZW4geW91IHVzZSB0eF90aW1lZF9zYW1wbGVzPwo+IAo+IAo+Pgo+PiBCUiwKPj4gVmxh
+ZGljYQo+Pgo+Pgo+PiBPbiAyMy4wNS4xOSAxNzo0NywgTWFyY3VzIEQuIExlZWNoIHZpYSBVU1JQ
+LXVzZXJzIHdyb3RlOgo+Pj4gT24gMDUvMjMvMjAxOSAwNTozOSBBTSwgVmxhZGljYSBTYXJrIHZp
+YSBVU1JQLXVzZXJzIHdyb3RlOgo+Pj4+IEhpIGFnYWluLAo+Pj4+Cj4+Pj4gSSBmb3VuZCBhbiBl
+YXN5IHdheSB0byByZXByb2R1Y2UgdGhlIHByb2JsZW0uIEkgdXNlIHR3byB4MzEwJ3MgYW5kIAo+
+Pj4+IHJ1biB0aGUgdHhfdGltZWRfc2FtcGxlcyBhczoKPj4+Pgo+Pj4+IHR4X3RpbWVkX3NhbXBs
+ZXMgLS1hcmdzICJhZGRyMD0xOTIuMTY4LjUwLjIsYWRkcjE9MTkyLjE2OC4xMzAuMiIgCj4+Pj4g
+LS1zZWNzIDAuNSAtLW5zYW1wcyAxMDAwMDAwCj4+Pj4KPj4+PiBzb21ldGltZXMgaXQgZmFpbHMs
+IHNvbWV0aW1lcyBpdCB3b3Jrcy4gSSB1c2UgbGFyZ2VyIG51bWJlciBvZiAKPj4+PiBzYW1wbGVz
+IHRvIGJlIGFibGUgdG8gbm90aWNlIHRoZSBMRUQgYmxpbmtpbmcuCj4+Pj4KPj4+PiBCUiwKPj4+
+PiBWbGFkaWNhCj4+PiBBcmUgeW91IGdldHRpbmcgYW55IHVuZGVyLXJ1biBpbmRpY2F0aW9uP8Kg
+IFdoYXQgdHlwZSBvZiBldGhlcm5ldCAKPj4+IGludGVyZmFjZSBhcmUgeW91IHVzaW5nLCBhbmQg
+YXQgd2hhdCBzYW1wbGUgcmF0ZXM/Cj4+Pgo+Pj4KPj4+Pgo+Pj4+Cj4+Pj4gT24gMjMuMDUuMTkg
+MDg6MzYsIFZsYWRpY2EgU2FyayB3cm90ZToKPj4+Pj4gSGkgZm9sa3MsCj4+Pj4+Cj4+Pj4+IEkg
+aGF2ZSAyeCBYMzEwIGNvbm5lY3RlZCB0byBPY3RvY2xvY2sgKDEwIE1IeiArIFBQUyksIGVhY2gg
+d2l0aCAyeCAKPj4+Pj4gVUJYIGZyb250ZW5kcy4gSSBjb250cm9sIHRoZW0gZnJvbSBhIEMvQysr
+IHByb2dyYW0uIFNpbmNlIHRoZXJlIGFyZSAKPj4+Pj4gNCBjaGFubmVscywgSSBjcmVhdGUgNCB0
+eCBzdHJlYW1lcnMgaW4gb3JkZXIgdG8gdHJhbnNtaXQgdGltZWQgCj4+Pj4+IHNhbXBsZXMgb24g
+ZWFjaCBvZiB0aGVtLiBUaGUgdHJhbnNtaXNzaW9ucyBhcmUgbm90IGF0IHRoZSBzYW1lIHRpbWUg
+Cj4+Pj4+IGFuZCB0aGlzIGlzIHRoZSByZWFzb24gZm9yIHVzaW5nIDQgdHggc3RyZWFtZXJzLiBU
+aGUgcHJvYmxlbSBpcyAKPj4+Pj4gdGhhdCB3aGVuIEkgc2NoZWR1bGUgdGltZWQgdHJhbnNtaXNz
+aW9ucyBvbiBhbGwgb2YgdGhlIGNoYW5uZWxzIChhdCAKPj4+Pj4gdGhlIHNhbWUgdGltZSBmb3Ig
+dGVzdCksIHNvbWV0aW1lcyBJIGRvIG5vdCBnZXQgYW55dGhpbmcgd2l0aCAKPj4+Pj4gcmVjdl9h
+c3luY19tc2csIGkuZS4gdGhlIHRpbWVvdXQgZXhwaXJlcy4gVGhpcyBhbHNvIGhhcHBlbnMgZXZl
+biAKPj4+Pj4gd2hlbiBJIHNjaGVkdWxlIG9ubHkgYSBzaW5nbGUgdHJhbnNtaXNzaW9uIGZyb20g
+c2luZ2xlIHR4IHN0cmVhbWVyIAo+Pj4+PiAoYWxsIDQgc3RyZWFtZXJzIGFyZSBjcmVhdGVkKS4K
+Pj4+Pj4gU29tZXRpbWVzIGl0IGhhcHBlbnMgdGhhdCBldmVyeXRoaW5nIGlzIHdvcmtpbmcgd2l0
+aG91dCBwcm9ibGVtcywgCj4+Pj4+IGkuZS4gSSBtYWtlIDIwMCB0cmFuc21pc3Npb25zIG9uIGVh
+Y2ggb2YgdGhlIGNoYW5uZWxzIGFuZCBJIGdldCB0aGUgCj4+Pj4+IHByb3BlciByZXNwb25zZSBm
+cm9tIHRoZSByZWN2X2FzeW5jX21zZywgYnV0IG1hbnkgdGltZXMsIHJlc3RhcnRpbmcgCj4+Pj4+
+IHRoZSBzYW1lIHByb2dyYW0gbGVhZHMgdG8ganVzdCByZWN2X2FzeW5jX21zZyB3aXRoIGV4cGly
+ZWQgdGltZW91dC4gCj4+Pj4+IEkgYW0gdXNpbmcgVUhEIDMuMTMuMC4KPj4+Pj4KPj4+Pj4gSSBj
+YW4gcHJvYmFibHkgdXNlIG9uZSBzdHJlYW1lciBhbmQgdHJhbnNtaXR0aW5nIDAncyBvbiB0aGUg
+cmVzdCBvZiAKPj4+Pj4gdGhlIGNoYW5uZWxzLCBidXQgSSB3b3VsZCBsaWtlIHRvIGF2b2lkIExP
+IGxlYWthZ2UgaW4gdGhlIGFpci4KPj4+Pj4KPj4+Pj4gQmVzdCByZWdhcmRzLAo+Pj4+PiBWbGFk
+aWNhCj4+Pj4KPj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwo+Pj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+Pj4gVVNSUC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20KPj4+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
+cC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4+Cj4+Pgo+Pj4gX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+
+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
+YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21h
+aWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
