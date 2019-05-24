@@ -2,43 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8358229935
-	for <lists+usrp-users@lfdr.de>; Fri, 24 May 2019 15:46:39 +0200 (CEST)
-Received: from [::1] (port=55876 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E572029A8F
+	for <lists+usrp-users@lfdr.de>; Fri, 24 May 2019 17:02:17 +0200 (CEST)
+Received: from [::1] (port=45468 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hUAWq-0004vZ-Hx; Fri, 24 May 2019 09:46:36 -0400
-Received: from mxout4.rambler.ru ([81.19.78.115]:28352)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.91) (envelope-from <andrew4010@rambler.ru>)
- id 1hUAWI-0004nd-AB
- for usrp-users@lists.ettus.com; Fri, 24 May 2019 09:46:32 -0400
-Received: from saddam3.rambler.ru (saddam3.rambler.ru [10.32.16.3])
- by mxout4.rambler.ru (Postfix) with ESMTP id 43DF6140250
- for <usrp-users@lists.ettus.com>; Fri, 24 May 2019 16:45:20 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rambler.ru; s=mail;
- t=1558705520; bh=/HHAi1xaavwKRMuhwzSu9vaXHDgD9WPUg5r9o0L5fOg=;
- h=From:To:Reply-To:Subject:Date;
- b=l/nnoyV5TWBv3e3iKGvovG4iLeoU9Uk1ZLTVkedi8cuXbMIY+VWKKW57UnRzTbKZh
- U0CFyR/zFQnjdfSkKYBCTQvlGqQkf5vuOiwdL7F+MQqWwxHzMRbYj52HhYslUbWa7z
- wcfSduPKt107xH5GfyKw7ZjHNwYpYOht04tJLApk=
-Received: from localhost.localdomain (localhost [127.0.0.1])
- by saddam3.rambler.ru (Postfix) with ESMTP id 2604CC3930A
- for <usrp-users@lists.ettus.com>; Fri, 24 May 2019 16:45:20 +0300 (MSK)
-Received: from [79.171.124.155] by mail.rambler.ru with HTTP;
- Fri, 24 May 2019 16:45:20 +0300
-To: "Usrp Users" <usrp-users@lists.ettus.com>
-Date: Fri, 24 May 2019 16:45:20 +0300
-Message-Id: <1558705520.107201.10964.51254@mail.rambler.ru>
+	id 1hUBhz-0001TD-Hh; Fri, 24 May 2019 11:02:11 -0400
+Received: from mail-yb1-f175.google.com ([209.85.219.175]:33421)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.91) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hUBhS-0001O9-G7
+ for usrp-users@lists.ettus.com; Fri, 24 May 2019 11:02:08 -0400
+Received: by mail-yb1-f175.google.com with SMTP id w127so1861910yba.0
+ for <usrp-users@lists.ettus.com>; Fri, 24 May 2019 08:01:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=/UI4AkB5iX+nNrVbr2golhnhf/9XddWj3iwnzAMDaqc=;
+ b=DhVgZ9SyqdmKYQWXVAfi7kG720ljCHsToBw7/0t2eYehE9H6TXIi3gZ6bHSFvsvvHj
+ jbOjD10rbLC6Ua0L2QusvEkOwUMsaD9zAASn43Anwz/kkOVPw4tyBPuXUBW9A0JI4ae7
+ DYcAW2G1T+Vxj7gcI564SD+Cft39cu9gc8oZUb8n+I4HsCU9eRcDW/twlbqp5ZQ9/65N
+ Y3I+utLFNUF92rxoE8+LC2vx37pUvYg0VzB5xf2FkNDUDK8WBo9K4V+7pNUmclZ+i8lW
+ R/3TbOVW2XCDmqiEIq70eJlawgxVu9f8vFXzNNkcni4Z+AeRJ4JYJ1Tf/n2rNiovP94g
+ Ozqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=/UI4AkB5iX+nNrVbr2golhnhf/9XddWj3iwnzAMDaqc=;
+ b=r/ThHxDAYGwSvgkJd177JqXFLDchaWf7Bno0P05MCMnsREXwZNMOZBd0sPf4pUQ+KW
+ uXLbphlRLwv0f7saTlmKnRqJ52Jcw04/2l9f4YA3BklvKFFRYnc5BW//faADjHin+lmj
+ HRvW4OmZS7G4jbnZUFDtAYlEP8y0PS78EF5+kQEsKFGxkRhX5tONysT+LRT/DY7LfqLD
+ uiFM6ZB+RAgnTlla/U8fuiTBsPkszXtsTHY0a8/BU5HrAc5YwKZOJBkD0v3di84Xrnen
+ 2YLJ4Cn4Fw4nikYVsl21FW063WehT9o3ncK92XqL/yW2oW+H59njugFsOSwwvyJQPQU5
+ W8Ew==
+X-Gm-Message-State: APjAAAXgZXx6gTi62xSPFe1CePwuqFSDNSWxd2+K4/6xf8FcS0NmQ010
+ N+pYVyhvKSK2HU7RgM3V224P1rgG7oI=
+X-Google-Smtp-Source: APXvYqyo2uL6B/M/ola9lHrqqVIg7sf/KZv3YuuZfvEaZLsrjB6410Hh4cPxw4ui22CLwltzLcjuXw==
+X-Received: by 2002:a25:a28f:: with SMTP id c15mr12877774ybi.408.1558710057510; 
+ Fri, 24 May 2019 08:00:57 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id 207sm698791ywo.98.2019.05.24.08.00.56
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 24 May 2019 08:00:56 -0700 (PDT)
+Message-ID: <5CE80727.9090600@gmail.com>
+Date: Fri, 24 May 2019 11:00:55 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-Mailer: Rambler WebMail, http://mail.rambler.ru/
-X-Rambler-User: andrew4010@rambler.ru/79.171.124.155
+To: usrp-users@lists.ettus.com
+References: <1558705520.107201.10964.51254@mail.rambler.ru>
+In-Reply-To: <1558705520.107201.10964.51254@mail.rambler.ru>
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: [USRP-users] TwinRX min frequency
+Subject: Re: [USRP-users] TwinRX min frequency
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -50,10 +72,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?0JDQvdC00YDQtdC5IDEgdmlhIFVTUlAtdXNlcnM=?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?koi8-r?B?4c7E0sXKIDE=?= <andrew4010@rambler.ru>
-Content-Type: multipart/mixed; boundary="===============6547669746947359113=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -67,57 +89,14 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
-This is a multi-part message in MIME format.
-
---===============6547669746947359113==
-Content-Transfer-Encoding: 7bit
-Content-Type: multipart/alternative; boundary="_----------=_15587055201096431"
-
-
-This is a multi-part message in MIME format.
-
---_----------=_15587055201096431
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-
-this is my tuning code
-tune_request.target_freq =3D Frequency*MHzToHz;tune_request.rf_freq_policy =
-=3D
-UHD_TUNE_REQUEST_POLICY_AUTO;
-tune_request.dsp_freq_policy =3D UHD_TUNE_REQUEST_POLICY_AUTO;
-
-if frequency is less 50 MHz signal in spectrum is out (banwidth 1 MHz)
-
-.
-
---_----------=_15587055201096431
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset="utf-8"
-
-<div><div>this is my tuning code</div><div><br data-mce-bogus=3D"1"></div><=
-div>tune_request.target_freq =3D Frequency*MHzToHz;</div><div>tune_request.=
-rf_freq_policy =3D UHD_TUNE_REQUEST_POLICY_AUTO;<br> tune_request.dsp_freq_=
-policy =3D UHD_TUNE_REQUEST_POLICY_AUTO;<br> </div><div><br data-mce-bogus=
-=3D"1"></div><div>if frequency is less 50 MHz signal in spectrum is out (ba=
-nwidth 1 MHz)</div></div><div><br></div><div><br></div><div>.</div><div><br=
-></div>=
-
---_----------=_15587055201096431--
-
-
---===============6547669746947359113==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6547669746947359113==--
-
+T24gMDUvMjQvMjAxOSAwOTo0NSBBTSwg0JDQvdC00YDQtdC5IDEgdmlhIFVTUlAtdXNlcnMgd3Jv
+dGU6Cj4gdGhpcyBpcyBteSB0dW5pbmcgY29kZQo+Cj4gdHVuZV9yZXF1ZXN0LnRhcmdldF9mcmVx
+ID0gRnJlcXVlbmN5Kk1IelRvSHo7Cj4gdHVuZV9yZXF1ZXN0LnJmX2ZyZXFfcG9saWN5ID0gVUhE
+X1RVTkVfUkVRVUVTVF9QT0xJQ1lfQVVUTzsKPiB0dW5lX3JlcXVlc3QuZHNwX2ZyZXFfcG9saWN5
+ID0gVUhEX1RVTkVfUkVRVUVTVF9QT0xJQ1lfQVVUTzsKPgo+IGlmIGZyZXF1ZW5jeSBpcyBsZXNz
+IDUwIE1IeiBzaWduYWwgaW4gc3BlY3RydW0gaXMgb3V0IChiYW53aWR0aCAxIE1IeikKPgo+CkNv
+dWxkIHlvdSBnaXZlIHVzIGEgbGlzdGluZyBvZjoKCnVoZF91c3JwX3Byb2JlIC0tYXJncyBhZGRy
+PTx5b3VyIGRldmljZSBpcD4KCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
+bGlzdHMuZXR0dXMuY29tCg==
