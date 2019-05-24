@@ -2,67 +2,43 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59379290A2
-	for <lists+usrp-users@lfdr.de>; Fri, 24 May 2019 07:58:09 +0200 (CEST)
-Received: from [::1] (port=45472 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F8D296F7
+	for <lists+usrp-users@lfdr.de>; Fri, 24 May 2019 13:20:23 +0200 (CEST)
+Received: from [::1] (port=36702 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.91)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hU3DQ-0007yE-9Y; Fri, 24 May 2019 01:58:04 -0400
-Received: from mail-ed1-f48.google.com ([209.85.208.48]:39892)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.91) (envelope-from <vladicasark@gmail.com>)
- id 1hU3Cs-0007tD-TM
- for usrp-users@lists.ettus.com; Fri, 24 May 2019 01:58:01 -0400
-Received: by mail-ed1-f48.google.com with SMTP id e24so12649685edq.6
- for <usrp-users@lists.ettus.com>; Thu, 23 May 2019 22:57:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=MqECLFTkdDGjgL+Mr+lT/7TIfOAI02aO6n5Sg8Ewjdg=;
- b=jmL9xAra3Tu5KftN0piFPzMosDqT3KgntMumE8BCUmK+U6udun+JYix/z47HLlLRp6
- WKcgzH7YhHP1WlGW6QhnhQlVcnZWixWdUmT0LozH8ZYKQ9nhdcDdsHqH5oGzadQ623QV
- qER98kSXxqPT1EIhOrPPI5oV66G/wIAS5EYTnBASnTVhFu/+M7hrbcdHTjxO/DXeu8TA
- lyulfwgL5IOYaZToix1+Pqd3WENARXC3khRxhezGFPyWYYGfFJqnEutJVvssWKnzQfoD
- cVNcfnqJHiPUnnE711Z3S+pgd4szRjtPnHYtZpvwLgLoAicIfY81wtdxF52ziz5PMQp2
- Ti7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=MqECLFTkdDGjgL+Mr+lT/7TIfOAI02aO6n5Sg8Ewjdg=;
- b=iYdwfnZ2XEO9C7WknkSxqt+EEskm8kHibkIoXY7bRbXcUoCjSkbrU2llS5yil2UJBj
- 0yUT2MLrF+Riw379/40VKVCfuhJDOmQHYcu1YDcs4by+j+Rf1Cw/SJEhCCwoVbPRSK5E
- 6F7+Ljg8qNM+DguSxI4fp1OoI/xUlJ8pynTE01XEpENhl7dui6dV05bocyok/MjcH1wj
- UrIPAuBfFpa1iIirvq7PDCKsSWehoInkEOh9hYPnIKe1UcoJAc3xky2eqKwhABk0VjP6
- gUlVEtP5Nc7+pLYZwNLbV8ne4RyP7Pdyut8BOQ7ezJiTimPoCSd+6+HEfGyLc2wGv4Yz
- sWWA==
-X-Gm-Message-State: APjAAAXnXoEVJLKGet1aTG9nFUFa3NhwzRmzMBNOrZRNAKyxnS2frPQN
- 6PrfmwkXtDs086wrj792IJTQbG2z
-X-Google-Smtp-Source: APXvYqyK5JE1/IYtMrRtHoJJZ9ZSUikwKsMzj3o5v0p75ImryLPNLgZIJMLWPS4pSAx4Uk42PkWjyA==
-X-Received: by 2002:a50:a522:: with SMTP id y31mr101567389edb.69.1558677409706; 
- Thu, 23 May 2019 22:56:49 -0700 (PDT)
-Received: from [141.20.182.193] ([141.20.182.193])
- by smtp.gmail.com with ESMTPSA id i33sm471225ede.47.2019.05.23.22.56.48
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 23 May 2019 22:56:48 -0700 (PDT)
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
-References: <e83f1284-23a4-ac57-8943-993b9d6201b5@gmail.com>
- <f57ef582-b99a-aaf9-0f0c-0e724dffacad@gmail.com> <5CE6C08E.8050302@gmail.com>
- <61986861-6b31-6286-6d98-7e4d4f66c8da@gmail.com> <5CE6D3D2.3090209@gmail.com>
-Message-ID: <9034bd4c-ce76-56fb-21cc-f40769a0da00@gmail.com>
-Date: Fri, 24 May 2019 07:56:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+	id 1hU8FG-0007GZ-AK; Fri, 24 May 2019 07:20:18 -0400
+Received: from mxout3.rambler.ru ([81.19.78.102]:47586)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.91) (envelope-from <andrew4010@rambler.ru>)
+ id 1hU8Ei-0007CW-Ih
+ for usrp-users@lists.ettus.com; Fri, 24 May 2019 07:20:14 -0400
+Received: from saddam2.rambler.ru (saddam2.rambler.ru [10.32.16.2])
+ by mxout3.rambler.ru (Postfix) with ESMTP id E1C767C0306
+ for <usrp-users@lists.ettus.com>; Fri, 24 May 2019 14:19:02 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rambler.ru; s=mail;
+ t=1558696742; bh=DdQ7pVnU2QmJGV9xHZkHsujTD3Oh0AqAO3ggzSPWkUY=;
+ h=From:To:Reply-To:Subject:Date;
+ b=jmckiIfkbS77X6beFvke0GLCSqt7VBzd0SwmtmNNhnvCFQfxVzDphlxEtp03veWmS
+ X/D+yngjSSHQmY9oPvEFvxm+bppG9TnLmdri3CXb4t4e58xRkqalH7yv75CE0cRxZh
+ gcUc/CGSGnQD6PY4t6cWarArAh3XyaDzU/5u/Fvc=
+Received: from localhost.localdomain (localhost [127.0.0.1])
+ by saddam2.rambler.ru (Postfix) with ESMTP id B886CC7B65D
+ for <usrp-users@lists.ettus.com>; Fri, 24 May 2019 14:19:02 +0300 (MSK)
+Received: from [79.171.124.155] by mail.rambler.ru with HTTP;
+ Fri, 24 May 2019 14:19:02 +0300
+To: "Usrp Users" <usrp-users@lists.ettus.com>
+Date: Fri, 24 May 2019 14:19:02 +0300
+Message-Id: <1558696742.740476.25076.50204@mail.rambler.ru>
 MIME-Version: 1.0
-In-Reply-To: <5CE6D3D2.3090209@gmail.com>
-Content-Language: en-US
+X-Mailer: Rambler WebMail, http://mail.rambler.ru/
+X-Rambler-User: andrew4010@rambler.ru/79.171.124.155
 X-Spam-Status: No, score=
 X-Spam-Score: 
 X-Spam-Bar: 
 X-Ham-Report: 
 X-Spam-Flag: NO
-Subject: Re: [USRP-users] Multiple TX streams
+Subject: [USRP-users] TwinRX min frequency
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -74,10 +50,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Vladica Sark via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Vladica Sark <vladicasark@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: =?utf-8?b?0JDQvdC00YDQtdC5IDEgdmlhIFVTUlAtdXNlcnM=?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?koi8-r?B?4c7E0sXKIDE=?= <andrew4010@rambler.ru>
+Content-Type: multipart/mixed; boundary="===============5789190952729891499=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -91,117 +67,58 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGksCgpIZXJlIGlzIHRoZSBvdXRwdXQgZnJvbSB0aGUgdHhfdGltZWRfc2FtcGxlcyB3aGVuIGl0
-IGZhaWxzLiBBbnl3YXksIGl0IApkb2VzIG5vdCBmYWlsIGFsd2F5cy4gU29tZXRpbWVzIGV2ZXJ5
-dGhpbmcgd29ya3MgZmluZS4KCnR4X3RpbWVkX3NhbXBsZXMgLS1hcmdzICJhZGRyMD0xOTIuMTY4
-LjEzMC4yLGFkZHIxPTE5Mi4xNjguNTAuMiIKCkNyZWF0aW5nIHRoZSB1c3JwIGRldmljZSB3aXRo
-OiBhZGRyMD0xOTIuMTY4LjEzMC4yLGFkZHIxPTE5Mi4xNjguNTAuMi4uLgpbSU5GT10gW1VIRF0g
-bGludXg7IEdOVSBDKysgdmVyc2lvbiA3LjMuMDsgQm9vc3RfMTA2NTAxOyAKVUhEXzMuMTMuMC5I
-RUFELTAtZ2YxMTRjZmEwCltJTkZPXSBbWDMwMF0gWDMwMCBpbml0aWFsaXphdGlvbiBzZXF1ZW5j
-ZS4uLgpbSU5GT10gW1gzMDBdIE1heGltdW0gZnJhbWUgc2l6ZTogMTQ3MiBieXRlcy4KW0lORk9d
-IFtYMzAwXSBNYXhpbXVtIGZyYW1lIHNpemU6IDE0NzIgYnl0ZXMuCltJTkZPXSBbWDMwMF0gUmFk
-aW8gMXggY2xvY2s6IDIwMCBNSHoKW0lORk9dIFsxL0RtYUZJRk9fMF0gSW5pdGlhbGl6aW5nIGJs
-b2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwRDAwMDAwMDAwMDAwKQpbSU5GT10gWzEvRG1hRklG
-T18wXSBCSVNUIHBhc3NlZCAoVGhyb3VnaHB1dDogMTMwNCBNQi9zKQpbSU5GT10gWzEvRG1hRklG
-T18wXSBCSVNUIHBhc3NlZCAoVGhyb3VnaHB1dDogMTMyMiBNQi9zKQpbSU5GT10gWzEvUmFkaW9f
-MF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDAwMDAx
-KQpbSU5GT10gWzEvUmFkaW9fMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDog
-MHgxMkFEMTAwMDAwMDAwMDAxKQpbSU5GT10gWzEvRERDXzBdIEluaXRpYWxpemluZyBibG9jayBj
-b250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFsxL0REQ18xXSBJbml0
-aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAwMDApCltJTkZP
-XSBbMS9EVUNfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAw
-MDAwMDAwMDAwKQpbSU5GT10gWzEvRFVDXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChO
-T0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFtYMzAwXSBSYWRpbyAxeCBjbG9jazog
-MjAwIE1IegpbSU5GT10gWzAvRG1hRklGT18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAo
-Tk9DIElEOiAweEYxRjBEMDAwMDAwMDAwMDApCltJTkZPXSBbMC9EbWFGSUZPXzBdIEJJU1QgcGFz
-c2VkIChUaHJvdWdocHV0OiAxMzE5IE1CL3MpCltJTkZPXSBbMC9EbWFGSUZPXzBdIEJJU1QgcGFz
-c2VkIChUaHJvdWdocHV0OiAxMzA2IE1CL3MpCltJTkZPXSBbMC9SYWRpb18wXSBJbml0aWFsaXpp
-bmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDEyQUQxMDAwMDAwMDAwMDEpCltJTkZPXSBbMC9S
-YWRpb18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDEyQUQxMDAwMDAw
-MDAwMDEpCltJTkZPXSBbMC9ERENfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJ
-RDogMHhEREMwMDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvRERDXzFdIEluaXRpYWxpemluZyBibG9j
-ayBjb250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFswL0RVQ18wXSBJ
-bml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDApCltJ
-TkZPXSBbMC9EVUNfMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMw
-MDAwMDAwMDAwMDAwKQpVc2luZyBEZXZpY2U6IE11bHRpIFVTUlA6CiAgIERldmljZTogWC1TZXJp
-ZXMgRGV2aWNlCiAgIE1ib2FyZCAwOiBYMzEwCiAgIE1ib2FyZCAxOiBYMzEwCiAgIFJYIENoYW5u
-ZWw6IDAKICAgICBSWCBEU1A6IDAKICAgICBSWCBEYm9hcmQ6IEEKICAgICBSWCBTdWJkZXY6IFVC
-WCBSWAogICBSWCBDaGFubmVsOiAxCiAgICAgUlggRFNQOiAwCiAgICAgUlggRGJvYXJkOiBCCiAg
-ICAgUlggU3ViZGV2OiBVQlggUlgKICAgUlggQ2hhbm5lbDogMgogICAgIFJYIERTUDogMAogICAg
-IFJYIERib2FyZDogQQogICAgIFJYIFN1YmRldjogVUJYIFJYCiAgIFJYIENoYW5uZWw6IDMKICAg
-ICBSWCBEU1A6IDAKICAgICBSWCBEYm9hcmQ6IEIKICAgICBSWCBTdWJkZXY6IFVCWCBSWAogICBU
-WCBDaGFubmVsOiAwCiAgICAgVFggRFNQOiAwCiAgICAgVFggRGJvYXJkOiBBCiAgICAgVFggU3Vi
-ZGV2OiBVQlggVFgKICAgVFggQ2hhbm5lbDogMQogICAgIFRYIERTUDogMAogICAgIFRYIERib2Fy
-ZDogQgogICAgIFRYIFN1YmRldjogVUJYIFRYCiAgIFRYIENoYW5uZWw6IDIKICAgICBUWCBEU1A6
-IDAKICAgICBUWCBEYm9hcmQ6IEEKICAgICBUWCBTdWJkZXY6IFVCWCBUWAogICBUWCBDaGFubmVs
-OiAzCiAgICAgVFggRFNQOiAwCiAgICAgVFggRGJvYXJkOiBCCiAgICAgVFggU3ViZGV2OiBVQlgg
-VFgKClNldHRpbmcgVFggUmF0ZTogNi4yNTAwMDAgTXNwcy4uLgpBY3R1YWwgVFggUmF0ZTogNi4y
-NTAwMDAgTXNwcy4uLgoKU2V0dGluZyBkZXZpY2UgdGltZXN0YW1wIHRvIDAuLi4KU2VudCBwYWNr
-ZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0
-IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxl
-cwpTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQg
-cGFja2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6
-IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNh
-bXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpT
-ZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFj
-a2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2
-NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNhbXBs
-ZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0OiAzNjQgc2FtcGxlcwpTZW50
-IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDM2NCBzYW1wbGVzClNlbnQgcGFja2V0
-OiAzNjQgc2FtcGxlcwpTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKU2VudCBwYWNrZXQ6IDE3MiBz
-YW1wbGVzCgpXYWl0aW5nIGZvciBhc3luYyBidXJzdCBBQ0suLi4gZmFpbAoKRG9uZSEKCk9uIDIz
-LjA1LjE5IDE5OjA5LCBNYXJjdXMgRC4gTGVlY2ggd3JvdGU6Cj4gT24gMDUvMjMvMjAxOSAwMTow
-MiBQTSwgVmxhZGljYSBTYXJrIHdyb3RlOgo+PiBJIGFtIHVzaW5nIDEgR2IgRVRIIGludGVyZmFj
-ZS4gVGhlIHNhbXBsZSByYXRlIGlzIHRoZSBkZWZhdWx0IGZvciAKPj4gdHhfdGltZWRfc2FtcGxl
-cywgaS5lLiA2LjI1IE1TcHMuIEkgYW0gZ2V0dGluZyBubyB1bmRlcnJ1biBpbmRpY2F0aW9uLgo+
-PiBUaGUgdHhfdGltZWRfc2FtcGxlcyBzZW5kcyB0aGUgc2FtcGxlcyB0byB0aGUgcmFkaW8gYW5k
-IHNjaGVkdWxlcyB0aGUgCj4+IHRyYW5zbWlzc2lvbiAxLjUgc2Vjb25kcyBpbiBmdXR1cmUuIElm
-IEkgcHV0IG9ubHkgMSByYWRpbywgaS5lLiBvbmUgSVAgCj4+IGFkZHJlc3MsIGV2ZXJ5dGhpbmcg
-d29ya3MgcGVyZmVjdC4KPj4gV2l0aCAyIElQIGFkZHJlc3NlcyAodHdvIHJhZGlvcyksIHNvbWV0
-aW1lcyByZXBvcnRzIHN1Y2Nlc3Mgc29tZXRpbWVzIAo+PiBmYWlsLiBJdCBzZWVtcyBjb21wbGV0
-ZWx5IHVuZGV0ZXJtaW5lZC4KPiBDb3VsZCB5b3Ugc2hhcmUgdGhlIGVycm9yIG91dHB1dCB3aXRo
-IHVzIHdoZW4geW91IHVzZSB0eF90aW1lZF9zYW1wbGVzPwo+IAo+IAo+Pgo+PiBCUiwKPj4gVmxh
-ZGljYQo+Pgo+Pgo+PiBPbiAyMy4wNS4xOSAxNzo0NywgTWFyY3VzIEQuIExlZWNoIHZpYSBVU1JQ
-LXVzZXJzIHdyb3RlOgo+Pj4gT24gMDUvMjMvMjAxOSAwNTozOSBBTSwgVmxhZGljYSBTYXJrIHZp
-YSBVU1JQLXVzZXJzIHdyb3RlOgo+Pj4+IEhpIGFnYWluLAo+Pj4+Cj4+Pj4gSSBmb3VuZCBhbiBl
-YXN5IHdheSB0byByZXByb2R1Y2UgdGhlIHByb2JsZW0uIEkgdXNlIHR3byB4MzEwJ3MgYW5kIAo+
-Pj4+IHJ1biB0aGUgdHhfdGltZWRfc2FtcGxlcyBhczoKPj4+Pgo+Pj4+IHR4X3RpbWVkX3NhbXBs
-ZXMgLS1hcmdzICJhZGRyMD0xOTIuMTY4LjUwLjIsYWRkcjE9MTkyLjE2OC4xMzAuMiIgCj4+Pj4g
-LS1zZWNzIDAuNSAtLW5zYW1wcyAxMDAwMDAwCj4+Pj4KPj4+PiBzb21ldGltZXMgaXQgZmFpbHMs
-IHNvbWV0aW1lcyBpdCB3b3Jrcy4gSSB1c2UgbGFyZ2VyIG51bWJlciBvZiAKPj4+PiBzYW1wbGVz
-IHRvIGJlIGFibGUgdG8gbm90aWNlIHRoZSBMRUQgYmxpbmtpbmcuCj4+Pj4KPj4+PiBCUiwKPj4+
-PiBWbGFkaWNhCj4+PiBBcmUgeW91IGdldHRpbmcgYW55IHVuZGVyLXJ1biBpbmRpY2F0aW9uP8Kg
-IFdoYXQgdHlwZSBvZiBldGhlcm5ldCAKPj4+IGludGVyZmFjZSBhcmUgeW91IHVzaW5nLCBhbmQg
-YXQgd2hhdCBzYW1wbGUgcmF0ZXM/Cj4+Pgo+Pj4KPj4+Pgo+Pj4+Cj4+Pj4gT24gMjMuMDUuMTkg
-MDg6MzYsIFZsYWRpY2EgU2FyayB3cm90ZToKPj4+Pj4gSGkgZm9sa3MsCj4+Pj4+Cj4+Pj4+IEkg
-aGF2ZSAyeCBYMzEwIGNvbm5lY3RlZCB0byBPY3RvY2xvY2sgKDEwIE1IeiArIFBQUyksIGVhY2gg
-d2l0aCAyeCAKPj4+Pj4gVUJYIGZyb250ZW5kcy4gSSBjb250cm9sIHRoZW0gZnJvbSBhIEMvQysr
-IHByb2dyYW0uIFNpbmNlIHRoZXJlIGFyZSAKPj4+Pj4gNCBjaGFubmVscywgSSBjcmVhdGUgNCB0
-eCBzdHJlYW1lcnMgaW4gb3JkZXIgdG8gdHJhbnNtaXQgdGltZWQgCj4+Pj4+IHNhbXBsZXMgb24g
-ZWFjaCBvZiB0aGVtLiBUaGUgdHJhbnNtaXNzaW9ucyBhcmUgbm90IGF0IHRoZSBzYW1lIHRpbWUg
-Cj4+Pj4+IGFuZCB0aGlzIGlzIHRoZSByZWFzb24gZm9yIHVzaW5nIDQgdHggc3RyZWFtZXJzLiBU
-aGUgcHJvYmxlbSBpcyAKPj4+Pj4gdGhhdCB3aGVuIEkgc2NoZWR1bGUgdGltZWQgdHJhbnNtaXNz
-aW9ucyBvbiBhbGwgb2YgdGhlIGNoYW5uZWxzIChhdCAKPj4+Pj4gdGhlIHNhbWUgdGltZSBmb3Ig
-dGVzdCksIHNvbWV0aW1lcyBJIGRvIG5vdCBnZXQgYW55dGhpbmcgd2l0aCAKPj4+Pj4gcmVjdl9h
-c3luY19tc2csIGkuZS4gdGhlIHRpbWVvdXQgZXhwaXJlcy4gVGhpcyBhbHNvIGhhcHBlbnMgZXZl
-biAKPj4+Pj4gd2hlbiBJIHNjaGVkdWxlIG9ubHkgYSBzaW5nbGUgdHJhbnNtaXNzaW9uIGZyb20g
-c2luZ2xlIHR4IHN0cmVhbWVyIAo+Pj4+PiAoYWxsIDQgc3RyZWFtZXJzIGFyZSBjcmVhdGVkKS4K
-Pj4+Pj4gU29tZXRpbWVzIGl0IGhhcHBlbnMgdGhhdCBldmVyeXRoaW5nIGlzIHdvcmtpbmcgd2l0
-aG91dCBwcm9ibGVtcywgCj4+Pj4+IGkuZS4gSSBtYWtlIDIwMCB0cmFuc21pc3Npb25zIG9uIGVh
-Y2ggb2YgdGhlIGNoYW5uZWxzIGFuZCBJIGdldCB0aGUgCj4+Pj4+IHByb3BlciByZXNwb25zZSBm
-cm9tIHRoZSByZWN2X2FzeW5jX21zZywgYnV0IG1hbnkgdGltZXMsIHJlc3RhcnRpbmcgCj4+Pj4+
-IHRoZSBzYW1lIHByb2dyYW0gbGVhZHMgdG8ganVzdCByZWN2X2FzeW5jX21zZyB3aXRoIGV4cGly
-ZWQgdGltZW91dC4gCj4+Pj4+IEkgYW0gdXNpbmcgVUhEIDMuMTMuMC4KPj4+Pj4KPj4+Pj4gSSBj
-YW4gcHJvYmFibHkgdXNlIG9uZSBzdHJlYW1lciBhbmQgdHJhbnNtaXR0aW5nIDAncyBvbiB0aGUg
-cmVzdCBvZiAKPj4+Pj4gdGhlIGNoYW5uZWxzLCBidXQgSSB3b3VsZCBsaWtlIHRvIGF2b2lkIExP
-IGxlYWthZ2UgaW4gdGhlIGFpci4KPj4+Pj4KPj4+Pj4gQmVzdCByZWdhcmRzLAo+Pj4+PiBWbGFk
-aWNhCj4+Pj4KPj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwo+Pj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+Pj4gVVNSUC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20KPj4+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
-cC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4+Cj4+Pgo+Pj4gX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+
-PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
-YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcg
-bGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21h
-aWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+
+This is a multi-part message in MIME format.
+
+--===============5789190952729891499==
+Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative; boundary="_----------=_1558696742250764"
+
+
+This is a multi-part message in MIME format.
+
+--_----------=_1558696742250764
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+
+Hello
+In documatation indicates that minimum frequency of receiver TwinRX is 10MH=
+z but
+when I tune in 49 MHz there is no signal.
+What exactly minimum tunable frequncy og TwinRX ?If it means that min =3D f=
+requency
+- band / 2 ?How in this case will tune in to a frequency below 5MHz ?
+Thank you
+
+.
+
+--_----------=_1558696742250764
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<div>Hello</div><div><br data-mce-bogus=3D"1"></div><div>In documatation in=
+dicates that minimum frequency of receiver TwinRX is 10MHz but when I tune =
+in 49 MHz there is no signal.</div><div><br data-mce-bogus=3D"1"></div><div=
+>What exactly minimum tunable frequncy og TwinRX ?</div><div>If it means th=
+at min =3D frequency - band / 2 ?</div><div>How in this case will tune in t=
+o a frequency below 5MHz ?</div><div><br data-mce-bogus=3D"1"></div><div>Th=
+ank you</div><div><br></div><div><br></div><div>.</div><div><br></div>=
+
+--_----------=_1558696742250764--
+
+
+--===============5789190952729891499==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5789190952729891499==--
+
