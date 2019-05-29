@@ -2,64 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28FBB2D784
-	for <lists+usrp-users@lfdr.de>; Wed, 29 May 2019 10:20:04 +0200 (CEST)
-Received: from [::1] (port=46420 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E59892E01A
+	for <lists+usrp-users@lfdr.de>; Wed, 29 May 2019 16:49:35 +0200 (CEST)
+Received: from [::1] (port=42486 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hVtoX-0006Lb-4q; Wed, 29 May 2019 04:20:01 -0400
-Received: from mail-ed1-f53.google.com ([209.85.208.53]:45976)
+	id 1hVztO-0006GN-4M; Wed, 29 May 2019 10:49:26 -0400
+Received: from mail-lj1-f175.google.com ([209.85.208.175]:39257)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <vladicasark@gmail.com>)
- id 1hVtoT-0006Er-HK
- for usrp-users@lists.ettus.com; Wed, 29 May 2019 04:19:57 -0400
-Received: by mail-ed1-f53.google.com with SMTP id f20so2333006edt.12
- for <usrp-users@lists.ettus.com>; Wed, 29 May 2019 01:19:37 -0700 (PDT)
+ (Exim 4.92) (envelope-from <ferondylan@gmail.com>)
+ id 1hVztK-0006CO-PH
+ for usrp-users@lists.ettus.com; Wed, 29 May 2019 10:49:22 -0400
+Received: by mail-lj1-f175.google.com with SMTP id a10so2752220ljf.6
+ for <usrp-users@lists.ettus.com>; Wed, 29 May 2019 07:49:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:from:to:references:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=tIzsCLmsUOnfiKSF3LGeBR2qaKuSRJwaa0gbpdOOHEA=;
- b=cWkJ7a1AXsmqdj97RWy+d49xhN8ThhfnohdyF2pPpnsFIu802RoYnhxs7xCgS3Oja7
- z37iuvVTJP/MmTY5k5vIufilLPJzDKvhN+zcF/ZkE264uKm5eYv/vUhnESzUonG8ZePN
- kc5lY6BQhJsNWoZUWgRl4++aq6VF9I8ZvTZ6R981Q3vhDA4Pusa6tP+kMp9mCE6bcLhL
- KOVeznrz2UmImsvhCaAU3pPCzYB3WdKwUqZmmfUpwB57Hy0FdzTD2bMjzUFjBK+q7+3T
- 4pFJegYLs+iqCOjO+KYRTTi8A8QwiVWh9jTTUoX1R2UQE0JgaP3/ejYveHgfqbbDDy1F
- 6v/A==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=e5pB2XMpQJBn1AQUw0sUDMa/kSAp+q60oj71ESTldEw=;
+ b=oOuvIhPLByBXTqVZ0bEG+wwtAFtHDqU4diBhfbaVox1NLiTY5C+hPAyjMNnUPVFBzc
+ gp53egzQxCIzgNEr+r7OsHJ9p7ERfgRw43sBGsmxwFVVWKAioNLjORxAQky9DelxtCzN
+ oDiajXr39+b0TvGk40H0Gj0ohsQ4Fd/6WNfSJMFd0antOU/IUsxheFtp7p4ylIsYHH//
+ 2HvuF9T60RCgmXdcdAkJVP3qqxPIGO+WbQurWr+HBTO7q7TYsi9jr6b5E/tEZh+A6kD9
+ +YQJKqyJzklIGVUN7vKCj44aT1R6vs2WuFAHCobgJywSWSCrabrzwr6je1fVQX6Bg1wV
+ AwPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:to:references:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=tIzsCLmsUOnfiKSF3LGeBR2qaKuSRJwaa0gbpdOOHEA=;
- b=tb7fbkomBGMDMGVAlVqkdkD2mm5kjbcz+u3H1PVRQDCitow+BMJ2golK5sYFcJSDZo
- KI4YqCpj/2laZCYRa0OzFAWuSCyVRTYzSzIuwTqrzcEDb5kov9h0Ptjac2IfBiO3MHVB
- DuJ93Q6gz9NO8I+xM/HTNzK0t8bSXwuNXf6E2NklAsxZQfZZ4kS6urm+Rx06+iaOBNSK
- y2Mun4fEqU36XAkqsSBtxrbEJasRK9zY83OqJzxHqlu0/ALGgsQzEYTpe0ccLu0qI9YK
- bY6IB5XV3j+++CmRwHi7X3GMhR5gKk9MYxt3wED7B43+Drpsewiw1o7urt+Fi7zfECUl
- N7Gw==
-X-Gm-Message-State: APjAAAWANngmHc2wxqJPKZ6VUd+FFoQX/jUYK55YwRXApOovebnPf1oQ
- gXqRdnZXp/eHsEJNyFg4VuBvMeA0SnE=
-X-Google-Smtp-Source: APXvYqy6XsXggj9NeeM4Limol/7DOnkYa4BxzuXFVkW5sFlsDzDqc+PRe+X72Nya8bbdo5l+dVa+WA==
-X-Received: by 2002:a17:906:5d12:: with SMTP id
- g18mr93805681ejt.286.1559117956312; 
- Wed, 29 May 2019 01:19:16 -0700 (PDT)
-Received: from [141.20.183.104] ([141.20.183.104])
- by smtp.gmail.com with ESMTPSA id n8sm2677232ejk.45.2019.05.29.01.19.14
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 29 May 2019 01:19:15 -0700 (PDT)
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
-References: <e83f1284-23a4-ac57-8943-993b9d6201b5@gmail.com>
- <f57ef582-b99a-aaf9-0f0c-0e724dffacad@gmail.com> <5CE6C08E.8050302@gmail.com>
- <61986861-6b31-6286-6d98-7e4d4f66c8da@gmail.com> <5CE6D3D2.3090209@gmail.com>
- <9034bd4c-ce76-56fb-21cc-f40769a0da00@gmail.com>
-Message-ID: <eaea8ee1-e66a-aec1-46d5-4fe57990519d@gmail.com>
-Date: Wed, 29 May 2019 10:19:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=e5pB2XMpQJBn1AQUw0sUDMa/kSAp+q60oj71ESTldEw=;
+ b=ZXFJ+3vAsqfI4KjR50hLjAgREKFb+BKKBH876wGJe8C/NXUEJ+kDocp2CWcqn7tVBr
+ I7JIfFDufUaXVGJZ5TONqis1SP7tqLuIatbXxIZwIFe+WCBifNhXXbgKisO1wwQx+od3
+ KXtt1e/kNkz1U97YZJ7K6yEgWUE7wu/tTiHAST9Hr/OpnI3Wxlj8d7mqwH0BPl4KTc6f
+ S1uvQjzThzcYIh/gKs0mYM3Nm/E2uhpSgknoaB/osaj1hFQphaVPmHpKoiDloVxfxiST
+ dahDb2F8h9ne39ZRs/Niu/MB3fBn9HfkcmkwoYy7frt+HIoSp7JOFkLlQQxzzbqzT5Ir
+ MhAQ==
+X-Gm-Message-State: APjAAAUBJQhSlq4DdwKz91o3Dub2ln4FwUx1bhFp1Lb2NaLp8d2fdccg
+ W3EN/IPb6Y74FswhMG8A3A6dsEE9ZcFkUbJ/gxs/Hrdsbmo=
+X-Google-Smtp-Source: APXvYqy6Ep45YeEdMDvntVbJ/4FYarOfW6XvEyFSUdMajmBjATW4BuqV4G3z+AF/43ZVfXrunPjUCYX05ZeOgkT0Nlg=
+X-Received: by 2002:a2e:9f44:: with SMTP id v4mr16351289ljk.85.1559141321077; 
+ Wed, 29 May 2019 07:48:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <9034bd4c-ce76-56fb-21cc-f40769a0da00@gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] Multiple TX streams
+Date: Wed, 29 May 2019 16:48:27 +0200
+Message-ID: <CAOV5X-VZ6a4rHs7GxNC0FhBaDpvOgEPz+D7pMroZUsmFB4fG7A@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Communication between two USRP : mismatched spectra
+ between transmission and reception
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -71,10 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Vladica Sark via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Vladica Sark <vladicasark@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Dylan Feron via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Dylan Feron <ferondylan@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7388782924886931870=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,125 +72,98 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGksCgpBbnkgd29ya2Fyb3VuZCByZWdhcmRpbmcgdGhpcyBpc3N1ZT8KCkJSLApWbGFkaWNhCgoK
-T24gMjQuMDUuMTkgMDc6NTYsIFZsYWRpY2EgU2FyayB3cm90ZToKPiBIaSwKPiAKPiBIZXJlIGlz
-IHRoZSBvdXRwdXQgZnJvbSB0aGUgdHhfdGltZWRfc2FtcGxlcyB3aGVuIGl0IGZhaWxzLiBBbnl3
-YXksIGl0IAo+IGRvZXMgbm90IGZhaWwgYWx3YXlzLiBTb21ldGltZXMgZXZlcnl0aGluZyB3b3Jr
-cyBmaW5lLgo+IAo+IHR4X3RpbWVkX3NhbXBsZXMgLS1hcmdzICJhZGRyMD0xOTIuMTY4LjEzMC4y
-LGFkZHIxPTE5Mi4xNjguNTAuMiIKPiAKPiBDcmVhdGluZyB0aGUgdXNycCBkZXZpY2Ugd2l0aDog
-YWRkcjA9MTkyLjE2OC4xMzAuMixhZGRyMT0xOTIuMTY4LjUwLjIuLi4KPiBbSU5GT10gW1VIRF0g
-bGludXg7IEdOVSBDKysgdmVyc2lvbiA3LjMuMDsgQm9vc3RfMTA2NTAxOyAKPiBVSERfMy4xMy4w
-LkhFQUQtMC1nZjExNGNmYTAKPiBbSU5GT10gW1gzMDBdIFgzMDAgaW5pdGlhbGl6YXRpb24gc2Vx
-dWVuY2UuLi4KPiBbSU5GT10gW1gzMDBdIE1heGltdW0gZnJhbWUgc2l6ZTogMTQ3MiBieXRlcy4K
-PiBbSU5GT10gW1gzMDBdIE1heGltdW0gZnJhbWUgc2l6ZTogMTQ3MiBieXRlcy4KPiBbSU5GT10g
-W1gzMDBdIFJhZGlvIDF4IGNsb2NrOiAyMDAgTUh6Cj4gW0lORk9dIFsxL0RtYUZJRk9fMF0gSW5p
-dGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogCj4gMHhGMUYwRDAwMDAwMDAwMDAwKQo+
-IFtJTkZPXSBbMS9EbWFGSUZPXzBdIEJJU1QgcGFzc2VkIChUaHJvdWdocHV0OiAxMzA0IE1CL3Mp
-Cj4gW0lORk9dIFsxL0RtYUZJRk9fMF0gQklTVCBwYXNzZWQgKFRocm91Z2hwdXQ6IDEzMjIgTUIv
-cykKPiBbSU5GT10gWzEvUmFkaW9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJ
-RDogMHgxMkFEMTAwMDAwMDAwMDAxKQo+IFtJTkZPXSBbMS9SYWRpb18xXSBJbml0aWFsaXppbmcg
-YmxvY2sgY29udHJvbCAoTk9DIElEOiAweDEyQUQxMDAwMDAwMDAwMDEpCj4gW0lORk9dIFsxL0RE
-Q18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAw
-MDApCj4gW0lORk9dIFsxL0REQ18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElE
-OiAweEREQzAwMDAwMDAwMDAwMDApCj4gW0lORk9dIFsxL0RVQ18wXSBJbml0aWFsaXppbmcgYmxv
-Y2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDApCj4gW0lORk9dIFsxL0RVQ18x
-XSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDAp
-Cj4gW0lORk9dIFtYMzAwXSBSYWRpbyAxeCBjbG9jazogMjAwIE1Iego+IFtJTkZPXSBbMC9EbWFG
-SUZPXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IAo+IDB4RjFGMEQwMDAw
-MDAwMDAwMCkKPiBbSU5GT10gWzAvRG1hRklGT18wXSBCSVNUIHBhc3NlZCAoVGhyb3VnaHB1dDog
-MTMxOSBNQi9zKQo+IFtJTkZPXSBbMC9EbWFGSUZPXzBdIEJJU1QgcGFzc2VkIChUaHJvdWdocHV0
-OiAxMzA2IE1CL3MpCj4gW0lORk9dIFswL1JhZGlvXzBdIEluaXRpYWxpemluZyBibG9jayBjb250
-cm9sIChOT0MgSUQ6IDB4MTJBRDEwMDAwMDAwMDAwMSkKPiBbSU5GT10gWzAvUmFkaW9fMV0gSW5p
-dGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDAwMDAxKQo+IFtJ
-TkZPXSBbMC9ERENfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEREMw
-MDAwMDAwMDAwMDAwKQo+IFtJTkZPXSBbMC9ERENfMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRy
-b2wgKE5PQyBJRDogMHhEREMwMDAwMDAwMDAwMDAwKQo+IFtJTkZPXSBbMC9EVUNfMF0gSW5pdGlh
-bGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAwMDAwMDAwMDAwKQo+IFtJTkZP
-XSBbMC9EVUNfMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAw
-MDAwMDAwMDAwKQo+IFVzaW5nIERldmljZTogTXVsdGkgVVNSUDoKPiAgwqAgRGV2aWNlOiBYLVNl
-cmllcyBEZXZpY2UKPiAgwqAgTWJvYXJkIDA6IFgzMTAKPiAgwqAgTWJvYXJkIDE6IFgzMTAKPiAg
-wqAgUlggQ2hhbm5lbDogMAo+ICDCoMKgwqAgUlggRFNQOiAwCj4gIMKgwqDCoCBSWCBEYm9hcmQ6
-IEEKPiAgwqDCoMKgIFJYIFN1YmRldjogVUJYIFJYCj4gIMKgIFJYIENoYW5uZWw6IDEKPiAgwqDC
-oMKgIFJYIERTUDogMAo+ICDCoMKgwqAgUlggRGJvYXJkOiBCCj4gIMKgwqDCoCBSWCBTdWJkZXY6
-IFVCWCBSWAo+ICDCoCBSWCBDaGFubmVsOiAyCj4gIMKgwqDCoCBSWCBEU1A6IDAKPiAgwqDCoMKg
-IFJYIERib2FyZDogQQo+ICDCoMKgwqAgUlggU3ViZGV2OiBVQlggUlgKPiAgwqAgUlggQ2hhbm5l
-bDogMwo+ICDCoMKgwqAgUlggRFNQOiAwCj4gIMKgwqDCoCBSWCBEYm9hcmQ6IEIKPiAgwqDCoMKg
-IFJYIFN1YmRldjogVUJYIFJYCj4gIMKgIFRYIENoYW5uZWw6IDAKPiAgwqDCoMKgIFRYIERTUDog
-MAo+ICDCoMKgwqAgVFggRGJvYXJkOiBBCj4gIMKgwqDCoCBUWCBTdWJkZXY6IFVCWCBUWAo+ICDC
-oCBUWCBDaGFubmVsOiAxCj4gIMKgwqDCoCBUWCBEU1A6IDAKPiAgwqDCoMKgIFRYIERib2FyZDog
-Qgo+ICDCoMKgwqAgVFggU3ViZGV2OiBVQlggVFgKPiAgwqAgVFggQ2hhbm5lbDogMgo+ICDCoMKg
-wqAgVFggRFNQOiAwCj4gIMKgwqDCoCBUWCBEYm9hcmQ6IEEKPiAgwqDCoMKgIFRYIFN1YmRldjog
-VUJYIFRYCj4gIMKgIFRYIENoYW5uZWw6IDMKPiAgwqDCoMKgIFRYIERTUDogMAo+ICDCoMKgwqAg
-VFggRGJvYXJkOiBCCj4gIMKgwqDCoCBUWCBTdWJkZXY6IFVCWCBUWAo+IAo+IFNldHRpbmcgVFgg
-UmF0ZTogNi4yNTAwMDAgTXNwcy4uLgo+IEFjdHVhbCBUWCBSYXRlOiA2LjI1MDAwMCBNc3BzLi4u
-Cj4gCj4gU2V0dGluZyBkZXZpY2UgdGltZXN0YW1wIHRvIDAuLi4KPiBTZW50IHBhY2tldDogMzY0
-IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNh
-bXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBs
-ZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMK
-PiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBT
-ZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50
-IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBh
-Y2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tl
-dDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDog
-MzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0
-IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNh
-bXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBs
-ZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMK
-PiBTZW50IHBhY2tldDogMzY0IHNhbXBsZXMKPiBTZW50IHBhY2tldDogMTcyIHNhbXBsZXMKPiAK
-PiBXYWl0aW5nIGZvciBhc3luYyBidXJzdCBBQ0suLi4gZmFpbAo+IAo+IERvbmUhCj4gCj4gT24g
-MjMuMDUuMTkgMTk6MDksIE1hcmN1cyBELiBMZWVjaCB3cm90ZToKPj4gT24gMDUvMjMvMjAxOSAw
-MTowMiBQTSwgVmxhZGljYSBTYXJrIHdyb3RlOgo+Pj4gSSBhbSB1c2luZyAxIEdiIEVUSCBpbnRl
-cmZhY2UuIFRoZSBzYW1wbGUgcmF0ZSBpcyB0aGUgZGVmYXVsdCBmb3IgCj4+PiB0eF90aW1lZF9z
-YW1wbGVzLCBpLmUuIDYuMjUgTVNwcy4gSSBhbSBnZXR0aW5nIG5vIHVuZGVycnVuIGluZGljYXRp
-b24uCj4+PiBUaGUgdHhfdGltZWRfc2FtcGxlcyBzZW5kcyB0aGUgc2FtcGxlcyB0byB0aGUgcmFk
-aW8gYW5kIHNjaGVkdWxlcyB0aGUgCj4+PiB0cmFuc21pc3Npb24gMS41IHNlY29uZHMgaW4gZnV0
-dXJlLiBJZiBJIHB1dCBvbmx5IDEgcmFkaW8sIGkuZS4gb25lIAo+Pj4gSVAgYWRkcmVzcywgZXZl
-cnl0aGluZyB3b3JrcyBwZXJmZWN0Lgo+Pj4gV2l0aCAyIElQIGFkZHJlc3NlcyAodHdvIHJhZGlv
-cyksIHNvbWV0aW1lcyByZXBvcnRzIHN1Y2Nlc3Mgc29tZXRpbWVzIAo+Pj4gZmFpbC4gSXQgc2Vl
-bXMgY29tcGxldGVseSB1bmRldGVybWluZWQuCj4+IENvdWxkIHlvdSBzaGFyZSB0aGUgZXJyb3Ig
-b3V0cHV0IHdpdGggdXMgd2hlbiB5b3UgdXNlIHR4X3RpbWVkX3NhbXBsZXM/Cj4+Cj4+Cj4+Pgo+
-Pj4gQlIsCj4+PiBWbGFkaWNhCj4+Pgo+Pj4KPj4+IE9uIDIzLjA1LjE5IDE3OjQ3LCBNYXJjdXMg
-RC4gTGVlY2ggdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+Pj4gT24gMDUvMjMvMjAxOSAwNTozOSBB
-TSwgVmxhZGljYSBTYXJrIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+Pj4+PiBIaSBhZ2FpbiwKPj4+
-Pj4KPj4+Pj4gSSBmb3VuZCBhbiBlYXN5IHdheSB0byByZXByb2R1Y2UgdGhlIHByb2JsZW0uIEkg
-dXNlIHR3byB4MzEwJ3MgYW5kIAo+Pj4+PiBydW4gdGhlIHR4X3RpbWVkX3NhbXBsZXMgYXM6Cj4+
-Pj4+Cj4+Pj4+IHR4X3RpbWVkX3NhbXBsZXMgLS1hcmdzICJhZGRyMD0xOTIuMTY4LjUwLjIsYWRk
-cjE9MTkyLjE2OC4xMzAuMiIgCj4+Pj4+IC0tc2VjcyAwLjUgLS1uc2FtcHMgMTAwMDAwMAo+Pj4+
-Pgo+Pj4+PiBzb21ldGltZXMgaXQgZmFpbHMsIHNvbWV0aW1lcyBpdCB3b3Jrcy4gSSB1c2UgbGFy
-Z2VyIG51bWJlciBvZiAKPj4+Pj4gc2FtcGxlcyB0byBiZSBhYmxlIHRvIG5vdGljZSB0aGUgTEVE
-IGJsaW5raW5nLgo+Pj4+Pgo+Pj4+PiBCUiwKPj4+Pj4gVmxhZGljYQo+Pj4+IEFyZSB5b3UgZ2V0
-dGluZyBhbnkgdW5kZXItcnVuIGluZGljYXRpb24/wqAgV2hhdCB0eXBlIG9mIGV0aGVybmV0IAo+
-Pj4+IGludGVyZmFjZSBhcmUgeW91IHVzaW5nLCBhbmQgYXQgd2hhdCBzYW1wbGUgcmF0ZXM/Cj4+
-Pj4KPj4+Pgo+Pj4+Pgo+Pj4+Pgo+Pj4+PiBPbiAyMy4wNS4xOSAwODozNiwgVmxhZGljYSBTYXJr
-IHdyb3RlOgo+Pj4+Pj4gSGkgZm9sa3MsCj4+Pj4+Pgo+Pj4+Pj4gSSBoYXZlIDJ4IFgzMTAgY29u
-bmVjdGVkIHRvIE9jdG9jbG9jayAoMTAgTUh6ICsgUFBTKSwgZWFjaCB3aXRoIDJ4IAo+Pj4+Pj4g
-VUJYIGZyb250ZW5kcy4gSSBjb250cm9sIHRoZW0gZnJvbSBhIEMvQysrIHByb2dyYW0uIFNpbmNl
-IHRoZXJlIAo+Pj4+Pj4gYXJlIDQgY2hhbm5lbHMsIEkgY3JlYXRlIDQgdHggc3RyZWFtZXJzIGlu
-IG9yZGVyIHRvIHRyYW5zbWl0IHRpbWVkIAo+Pj4+Pj4gc2FtcGxlcyBvbiBlYWNoIG9mIHRoZW0u
-IFRoZSB0cmFuc21pc3Npb25zIGFyZSBub3QgYXQgdGhlIHNhbWUgCj4+Pj4+PiB0aW1lIGFuZCB0
-aGlzIGlzIHRoZSByZWFzb24gZm9yIHVzaW5nIDQgdHggc3RyZWFtZXJzLiBUaGUgcHJvYmxlbSAK
-Pj4+Pj4+IGlzIHRoYXQgd2hlbiBJIHNjaGVkdWxlIHRpbWVkIHRyYW5zbWlzc2lvbnMgb24gYWxs
-IG9mIHRoZSBjaGFubmVscyAKPj4+Pj4+IChhdCB0aGUgc2FtZSB0aW1lIGZvciB0ZXN0KSwgc29t
-ZXRpbWVzIEkgZG8gbm90IGdldCBhbnl0aGluZyB3aXRoIAo+Pj4+Pj4gcmVjdl9hc3luY19tc2cs
-IGkuZS4gdGhlIHRpbWVvdXQgZXhwaXJlcy4gVGhpcyBhbHNvIGhhcHBlbnMgZXZlbiAKPj4+Pj4+
-IHdoZW4gSSBzY2hlZHVsZSBvbmx5IGEgc2luZ2xlIHRyYW5zbWlzc2lvbiBmcm9tIHNpbmdsZSB0
-eCBzdHJlYW1lciAKPj4+Pj4+IChhbGwgNCBzdHJlYW1lcnMgYXJlIGNyZWF0ZWQpLgo+Pj4+Pj4g
-U29tZXRpbWVzIGl0IGhhcHBlbnMgdGhhdCBldmVyeXRoaW5nIGlzIHdvcmtpbmcgd2l0aG91dCBw
-cm9ibGVtcywgCj4+Pj4+PiBpLmUuIEkgbWFrZSAyMDAgdHJhbnNtaXNzaW9ucyBvbiBlYWNoIG9m
-IHRoZSBjaGFubmVscyBhbmQgSSBnZXQgCj4+Pj4+PiB0aGUgcHJvcGVyIHJlc3BvbnNlIGZyb20g
-dGhlIHJlY3ZfYXN5bmNfbXNnLCBidXQgbWFueSB0aW1lcywgCj4+Pj4+PiByZXN0YXJ0aW5nIHRo
-ZSBzYW1lIHByb2dyYW0gbGVhZHMgdG8ganVzdCByZWN2X2FzeW5jX21zZyB3aXRoIAo+Pj4+Pj4g
-ZXhwaXJlZCB0aW1lb3V0LiBJIGFtIHVzaW5nIFVIRCAzLjEzLjAuCj4+Pj4+Pgo+Pj4+Pj4gSSBj
-YW4gcHJvYmFibHkgdXNlIG9uZSBzdHJlYW1lciBhbmQgdHJhbnNtaXR0aW5nIDAncyBvbiB0aGUg
-cmVzdCAKPj4+Pj4+IG9mIHRoZSBjaGFubmVscywgYnV0IEkgd291bGQgbGlrZSB0byBhdm9pZCBM
-TyBsZWFrYWdlIGluIHRoZSBhaXIuCj4+Pj4+Pgo+Pj4+Pj4gQmVzdCByZWdhcmRzLAo+Pj4+Pj4g
-VmxhZGljYQo+Pj4+Pgo+Pj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwo+Pj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+Pj4+PiBVU1JQLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbQo+Pj4+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
-dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4+Pgo+Pj4+Cj4+Pj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+PiBVU1JQLXVzZXJzIG1h
-aWxpbmcgbGlzdAo+Pj4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+Pj4gaHR0cDovL2xp
-c3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29t
-Cj4+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlz
-dHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============7388782924886931870==
+Content-Type: multipart/alternative; boundary="00000000000098f647058a07e0d2"
+
+--00000000000098f647058a07e0d2
+Content-Type: text/plain; charset="UTF-8"
+
+Hello everyone,
+
+I am trying to make two USRP communicate between each other : for the
+transmission, I'm using an HackRF One USRP and for the reception a NI 2921
+USRP.
+As a first test, I'm trying to send different basic signals like sine
+waves, square waves, triangle waves,... with the HackRF One and receive it
+with the NI 2921 USRP at a carrier frequency of 2.43GHz.
+1) Here is the block diagram for transmission, the time signal and FFT plot
+: Transmission pictures (block diagram + FFT + time signal)
+<https://photos.app.goo.gl/p9wuCYGHviSaV5cT7>
+I'm sending the signal at 2.43GHz with a sample rate of 200kHz. Here the
+signal sent is a composition of a real component which is a square wave at
+15kHz and an imaginary component which is a cosine wave at 10kHz.
+2) Here is the block diagram for reception, the time signal and FFT plot
+(once when I am not sending any signal and once when I am transmitting the
+composition of signals described above, such that we can see that the peak
+detected is well due to my emission) : Reception pictures (block diagram +
+FFT + time signal) <https://photos.app.goo.gl/m9eUAXxezY6wMDq66>
+I'm sampling at 200kHz and my center frequency is at 2.43GHz.
+Whatever the signal I'm sending (a DC signal, a sine wave, a triangle
+wave,...), I always get the same peak (and only one) like the one on the
+picture. Normally, I should receive the same FFT as the one showed at
+emission on the picture.
+I notice also that this peak is located at a weird position (2.43GHz +
+46kHz) compared to the center frequency (2.43GHz) with no link with the
+frequency of the signals sent. Moreover whatever the frequency of the
+signal emitted, the peak will always be located at this same position as
+well.
+I seems like they manage to communicate between each other given that there
+is this peak appearing when I am transmitting the signals but I do not
+understand the logic behind the spectrum received..
+Can somebody enlighten me?
+
+Thank you for your precious time and your help,
+Dylan
+
+--00000000000098f647058a07e0d2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello everyone,<div><br></div><div>I am trying to make two=
+ USRP communicate between each other : for the transmission, I&#39;m using =
+an HackRF One USRP and for the reception a NI 2921 USRP.</div><div>As a fir=
+st test, I&#39;m trying to send different basic signals like sine waves, sq=
+uare waves, triangle waves,... with the HackRF One and receive it with the =
+NI 2921 USRP at a carrier frequency of 2.43GHz.=C2=A0</div><div>1) Here is =
+the block diagram for transmission, the time signal and FFT plot :=C2=A0<a =
+href=3D"https://photos.app.goo.gl/p9wuCYGHviSaV5cT7">Transmission pictures =
+(block diagram + FFT + time signal)</a></div><div>I&#39;m sending the signa=
+l at 2.43GHz with a sample rate of 200kHz. Here the signal sent is a compos=
+ition of a real component which is a square wave at 15kHz and an imaginary =
+component which is a cosine wave at 10kHz.=C2=A0</div><div>2) Here is the b=
+lock diagram for reception, the time signal and FFT plot (once when I am no=
+t sending any signal and once when I am transmitting the composition of sig=
+nals described above, such that we can see that the peak detected is well d=
+ue to my emission) :=C2=A0<a href=3D"https://photos.app.goo.gl/m9eUAXxezY6w=
+MDq66">Reception pictures (block diagram + FFT + time signal)</a></div><div=
+>I&#39;m sampling at 200kHz and my center frequency is at 2.43GHz.=C2=A0<br=
+></div><div>Whatever the signal I&#39;m sending (a DC signal, a sine wave, =
+a triangle wave,...), I always get the same peak (and only one) like the on=
+e on the picture. Normally, I should receive the same FFT as the one showed=
+ at emission on the picture.=C2=A0</div><div>I notice also that this peak i=
+s located at a weird position (2.43GHz + 46kHz) compared to the center freq=
+uency (2.43GHz) with no link with the frequency of the signals sent. Moreov=
+er whatever the frequency of the signal emitted, the peak will always be lo=
+cated at this same position as well.</div><div>I seems like they manage to =
+communicate between each other given that there is this peak appearing when=
+ I am transmitting the signals but I do not understand the logic behind the=
+ spectrum received..=C2=A0</div><div>Can somebody enlighten me?</div><div><=
+br></div><div>Thank you for your precious time and your help,</div><div>Dyl=
+an</div></div>
+
+--00000000000098f647058a07e0d2--
+
+
+--===============7388782924886931870==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7388782924886931870==--
+
