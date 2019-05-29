@@ -2,32 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00532E223
-	for <lists+usrp-users@lfdr.de>; Wed, 29 May 2019 18:18:57 +0200 (CEST)
-Received: from [::1] (port=52988 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 545962E30E
+	for <lists+usrp-users@lfdr.de>; Wed, 29 May 2019 19:20:26 +0200 (CEST)
+Received: from [::1] (port=42476 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hW1Hu-0006lC-Ax; Wed, 29 May 2019 12:18:50 -0400
-Received: from smtp77.ord1c.emailsrvr.com ([108.166.43.77]:45526)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <jasonr@3db-labs.com>) id 1hW1Hq-0006gU-UQ
- for usrp-users@lists.ettus.com; Wed, 29 May 2019 12:18:46 -0400
-X-Auth-ID: jasonr@3db-labs.com
-Received: by smtp18.relay.ord1c.emailsrvr.com (Authenticated sender:
- jasonr-AT-3db-labs.com) with ESMTPSA id 41E01E0395
- for <usrp-users@lists.ettus.com>; Wed, 29 May 2019 12:18:06 -0400 (EDT)
-X-Sender-Id: jasonr@3db-labs.com
-Received: from [192.168.101.19] (rrcs-74-142-203-226.central.biz.rr.com
- [74.142.203.226]) (using TLSv1.2 with cipher AES128-SHA)
- by 0.0.0.0:587 (trex/5.7.12); Wed, 29 May 2019 12:18:06 -0400
-To: usrp-users@lists.ettus.com
-Message-ID: <813cfe18-1c46-adf1-8a41-ecc536a1b907@3db-labs.com>
-Date: Wed, 29 May 2019 12:18:05 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+	id 1hW2FP-0002wj-Cn; Wed, 29 May 2019 13:20:19 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:34566)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1hW2FK-0002po-UU
+ for usrp-users@lists.ettus.com; Wed, 29 May 2019 13:20:14 -0400
+Received: by mail-oi1-f178.google.com with SMTP id u64so2731625oib.1
+ for <usrp-users@lists.ettus.com>; Wed, 29 May 2019 10:19:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=z8PiAll/deue1FLZyy7YWFr3nlJid6z9xosqx+2OTgQ=;
+ b=I1nuVdWB3qgPLOl4WmPahALUBsUstRh7RrDFx1hJwG2m3Liuw7uGUbXW5baGwq9OCa
+ FG/X61dazuqUA9GXgkmng9YhZ5gh2aTFtrfgNN4Qpy0xValQ3RrtHOJwjb+ZKED0pFsJ
+ J2P8Cqa7XIH6RcJsQFH36Awj6wIWSa9z6bjETHuRZlidd7jWjc85aXIiOP505IOenRdh
+ CElppapeqh3wqIUxRJC1GcoUQodPMfBph+DgmsXrmPrAUMK8SdJ9H5KLnltcBI8nmd8Z
+ YWTg5nrJ0eTPq4sU+eP3HWn7YYOlkq0fqdjK8dWRL6hByF5m+S0nAftVWaXgYb7mITHx
+ 3rpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=z8PiAll/deue1FLZyy7YWFr3nlJid6z9xosqx+2OTgQ=;
+ b=uJsoqLcQto4T0DFlXro7SH3Ap70xQ85c6KXKZfFXP7rvnrpXAop/lMF3yEqk4lddZJ
+ O1cIbO9trl6hOViEz0OKggjjWloHamRPcHrTBFUiTuAu0VIHKvGhjDWP4fv1xV6uxP1k
+ nVapcNWwgTryH3Tj4vRnEvmyXl5bgOMCknWeScdtiVn3BMHQDlpw4t9ZdArKJZ0vxSjM
+ yNUyIcDh0GG5p5nMa4MegEWPVhTeRomdC86j2AjegMqm8zPCf9QKXy+uSkLW7LNH2zhd
+ zWQiCkdSJzYMa5yLOnc3jZDG1RcbjDyxlbDvHZ/VsbXFcS7N2uZGHWMW2OzLvf9wqpJD
+ 6nWQ==
+X-Gm-Message-State: APjAAAX9VQ7w0jFJBdUTvuoL7KGnN5AtXJWJTkUWJBv3eU85VSr/jw/e
+ lIUs0KZij9LW372HJI4pSxxM6QyJbh/QNICTQVPIWtPkeKs=
+X-Google-Smtp-Source: APXvYqwRrItSudRdTEzU3AR87Gf4swPLrQsOYmvP3IMygRfpOkjzoN5ar08Uxmik+Q9e1F7xPBaf0WZcJpTPEOGgjkU=
+X-Received: by 2002:aca:e044:: with SMTP id x65mr7018136oig.70.1559150373937; 
+ Wed, 29 May 2019 10:19:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: en-US
-Subject: [USRP-users] X300 with TwinRX and LFRX under UHD v3.14
+Date: Wed, 29 May 2019 13:19:23 -0400
+Message-ID: <CAB__hTQcJ7178QKtSu6fiZE=63bVRKKeC12=ABSQ1nfc9O28xA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] finding the blocks on RFNoC FPGA image
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -39,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Roehm via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Roehm <jasonr@3db-labs.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============2310596280675537602=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -56,53 +70,81 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Some time back, I had an exchange on this list regarding how to 
-configure an X300 to stream data from a TwinRX and LFRX daughterboard 
-simultaneously. The previous thread is archived here:
+--===============2310596280675537602==
+Content-Type: multipart/alternative; boundary="000000000000312fb8058a09fc8f"
 
-http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2017-February/051672.html
+--000000000000312fb8058a09fc8f
+Content-Type: text/plain; charset="UTF-8"
 
-Specifically, I would like to synchronously stream both TwinRX channels 
-at 100 MSPS complex, while streaming both LFRX channels as a single 100 
-MSPS complex stream as well. To do that, I am:
+Hi,
+I need to determine which blocks are on a given FPGA image (using UHD).  I
+had hoped to use the device3->find_blocks() function for this purpose, but
+this function seems to require that you know the names of the blocks in
+advance (because of the corresponding block_id_t::match() function that is
+called).
 
-- Creating three multi_usrp objects initialized with identical 
-arguments, with the subdev specification "A:0 A:1 B:AB".
+I was able to implement the code below in order to enumerate the blocks,
+but this implementation doesn't seem like a great solution to me since it
+requires me to know the property tree structure.  I had hoped to find a
+function that would not require me to know the tree.
 
-- Obtaining one rx_streamer object from each multi_usrp (passing a 
-different channel number 0, 1, or 2 to each), then calling 
-issue_stream_cmd() with stream_now = false and time_spec some time in 
-the future (say 2 seconds away to ensure much more than enough time to 
-finish setting up the stream). This should ensure that they all start 
-streaming simultaneously so I get time-coincident samples
+Please let me know if there is a better method.  If not, is there a chance
+Ettus would implement one or alternatively modify the existing
+device3->find_blocks() such that you don't need to know the names of the
+blocks in advance?
+Rob
 
-- Using the rx_streamer objects to receive data on each channel, use 
-recv() to stream data in.
+std::vector<uhd::rfnoc::block_id_t> blk_ids;
+for (size_t mb = 0; mb<usrp->get_num_mboards(); mb++) {
+  uhd::fs_path path("/mboards/" + std::to_string(mb) + "/xbar/");
+  std::vector<std::string> names =
+    usrp->get_device3()->get_tree()->list(path);
+  for (auto name: names) {
+    uhd::rfnoc::block_id_t id(name);
+    id.set_device_no(mb);
+    blk_ids.push_back(id);
+  }
+}
 
-I have run this setup for over a year with no issues under UHD 
-v3.10.3.0. I updated my application to use UHD v3.14.0.0 in order to get 
-access to TwinRX bugfixes and more Ettus hardware support.
+--000000000000312fb8058a09fc8f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-After the UHD upgrade, the above setup does not work. I do get data 
-streaming from the 2 TwinRX channels at the desired rate, but I never 
-get data from the LFRX. Instead, the first call to recv() in the thread 
-that is reading the LFRX data returns ERROR_CODE_LATE_COMMAND, then the 
-subsequent calls time out (I have the timeout set to 5 seconds).
+<div dir=3D"ltr">Hi,<div>I need to determine which blocks are on a given FP=
+GA image (using UHD).=C2=A0 I had hoped to use the device3-&gt;find_blocks(=
+) function for this purpose, but this function seems to require that you kn=
+ow the names of the blocks in advance (because of the corresponding block_i=
+d_t::match() function that is called).=C2=A0</div><div><br></div><div>I was=
+ able to implement the code below in order to enumerate the blocks, but thi=
+s implementation doesn&#39;t seem like a great solution to me since it requ=
+ires me to know the property tree structure.=C2=A0 I had hoped to find a fu=
+nction that would not require me to know the tree.</div><div><br></div><div=
+>Please let me know if there is a better method.=C2=A0 If not, is there a c=
+hance Ettus would implement one or alternatively modify the existing device=
+3-&gt;find_blocks() such that you don&#39;t need to know the names of the b=
+locks in advance?</div><div>Rob</div><div><br></div><div><font face=3D"cour=
+ier new, monospace">std::vector&lt;uhd::rfnoc::block_id_t&gt; blk_ids;<br>	=
+		for (size_t mb =3D 0; mb&lt;usrp-&gt;get_num_mboards(); mb++) {<br>=C2=A0=
+ uhd::fs_path path(&quot;/mboards/&quot; + std::to_string(mb) + &quot;/xbar=
+/&quot;);<br>=C2=A0 std::vector&lt;std::string&gt; names =3D <br>=C2=A0 =C2=
+=A0 usrp-&gt;get_device3()-&gt;get_tree()-&gt;list(path);<br>=C2=A0 for (au=
+to name: names) {<br>=C2=A0 =C2=A0 uhd::rfnoc::block_id_t id(name);<br>=C2=
+=A0 =C2=A0 id.set_device_no(mb);<br>=C2=A0 =C2=A0 blk_ids.push_back(id);<br=
+>=C2=A0 }<br>			}</font><br></div></div>
 
-Notably, if I set stream_now = true in the stream command, then I get 
-data from all of the channels as expected at the desired rate. However, 
-this method is incompatible with time alignment across channels, so it 
-is not an option.
+--000000000000312fb8058a09fc8f--
 
-How can I get time-aligned streaming from TwinRX/LFRX working under UHD 
-v3.14?
 
-Thank you.
-
-Jason
-
+--===============2310596280675537602==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2310596280675537602==--
+
