@@ -2,57 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D612FC5B
-	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2019 15:30:20 +0200 (CEST)
-Received: from [::1] (port=33630 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 220082FCC5
+	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2019 15:59:00 +0200 (CEST)
+Received: from [::1] (port=40114 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hWL8D-0005v6-F8; Thu, 30 May 2019 09:30:09 -0400
-Received: from llmx2.ll.mit.edu ([129.55.12.48]:42112)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <prvs=10534528ad=mfreedman@ll.mit.edu>)
- id 1hWL8A-0005qy-63
- for usrp-users@lists.ettus.com; Thu, 30 May 2019 09:30:06 -0400
-Received: from LLE2K16-MBX03.mitll.ad.local (LLE2K16-MBX03.mitll.ad.local) by
- llmx2.ll.mit.edu (unknown) with ESMTPS id x4UDTPR7021328 for
- <usrp-users@lists.ettus.com>; Thu, 30 May 2019 09:29:25 -0400
-To: <usrp-users@lists.ettus.com>
-References: <52d1e2cd-c7fd-c7c6-67df-40eea9a53663@ll.mit.edu>
- <757b9f155bf97dd5141224d9da636606fe903582.camel@ettus.com>
- <764B29A5-8AC1-4B9E-8657-D20172B8D904@ll.mit.edu>
- <5C97D942.1010906@gmail.com>
- <30523ca7-350e-1cf7-762c-1ffbc978600e@ll.mit.edu>
- <CA+JMMq8i9R03HDe=5f+EjLs=DS3nnAJ4khOZvd9cNeqHbWsSZw@mail.gmail.com>
- <20a82229-e454-707b-9dc7-ccc0b2a3b138@ll.mit.edu>
- <9e9c3223-beab-df2a-18c0-3993caccb52c@ll.mit.edu>
- <5C9B9249.4090709@gmail.com>
- <7d33f068-495e-c934-591e-5a8b43753014@ll.mit.edu>
- <5C9BD20F.9040405@gmail.com>
- <6bba8fa9-b9fc-f21e-953a-dd2a3043c922@ll.mit.edu>
- <5C9BE3E4.6090602@gmail.com>
- <f3ebc81a-27e5-77cb-735a-13ff70ca955e@ll.mit.edu>
- <5CA8A277.9080304@gmail.com>
- <186E96A5-8C47-469D-8F2A-65ECBEE2C23B@ll.mit.edu>
- <77f0a849-033f-cc30-dfd8-62ebd4e211dd@o2.pl>
- <7fede558-5f2e-2d04-5b57-93ca84d4f015@ll.mit.edu>
- <395d1d73-c042-8df7-c1ae-3b15f42bc7a8@o2.pl>
- <CAM4xKrr+7ktqm896UQuT+C=A_UY8aSobnm5G8-M4Kku9YKPQmg@mail.gmail.com>
- <5CEF2F2D.7040303@gmail.com>
-Message-ID: <4ef03d42-7fe0-31c1-ee0a-c5f78cd2affb@ll.mit.edu>
-Date: Thu, 30 May 2019 09:29:23 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.9.1
+	id 1hWLa6-0007Tb-Q3; Thu, 30 May 2019 09:58:58 -0400
+Received: from mail-lj1-f170.google.com ([209.85.208.170]:39227)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <ferondylan@gmail.com>)
+ id 1hWLa3-0007MY-2h
+ for usrp-users@lists.ettus.com; Thu, 30 May 2019 09:58:55 -0400
+Received: by mail-lj1-f170.google.com with SMTP id a10so2928864ljf.6
+ for <usrp-users@lists.ettus.com>; Thu, 30 May 2019 06:58:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=Si03RoMXdzfJDzgK0BeESoXtM5MeMXO+A5AxJ+gx5xA=;
+ b=lvgvEbdyy37UmBo+EM3I2q0KU6w9PZ86IE0qw8ISny73pzVRj0EKzTon14gijcA511
+ vQSoPm9ZYxds4NziUx8nc5ED3xdU6gQ7k9ghgaAHERv5mHGd6MZ7mX0kyue1VfFJWYcm
+ n/tLtI3wH9sdQbwUGNiPShOTr4ojb4+sSVyzCSlVD3YPgmOCLvNgAsADekkgAgQrDtbV
+ Zs5uhWS+jC5SeDjiBa2aTAKyGxOb04o+ZV/NJGnllXTC8bLgc7/MjTDhM6P85XRSRPFD
+ mQaQ4r3cdrIOQu13D9roO4n58NFqDjUR0TyvAnUS8o361wI511p8QfGxRC97qIqaCO/Q
+ PFgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=Si03RoMXdzfJDzgK0BeESoXtM5MeMXO+A5AxJ+gx5xA=;
+ b=IrSyUhwJNlxEL9q1y2Y3mrIGEs6X1R7BDjRTYB85Pm/DvHIl9XDENBKQQeH+uG+Fjc
+ U4bZ5eNoEoWdHtcdm9wdQGqYmIYGxnqD/U0EK0AOX70W7j1thY3erytdk+FhjyBF6Lo7
+ uXYx5o3KzkB8jPpsVNI5ZtTzkUGhJN7y3qyTX04MwpGaUxP6W9z0dfvfwMsRU+lkYm4+
+ buowoeHyCG4qwtT38Q3LP0jAsyQD3+z1lFKhL4Pv9cZ7lbO3bQ+UXNCoE8TzIn9wOMpp
+ HTCzC2E4AP4b/KuP9XEJumfLmGbjVQrWrQM7sZZJTE36iF+qisZfxT6qn25SGOmYEMuP
+ j+6A==
+X-Gm-Message-State: APjAAAVPiegk1tjSkO1vWbDy0jtI8QYGXTkowca5S8scVuP1j1eNM2kd
+ eqf65g0ZGRGkqvtwQTewDYKgJ7NbwTQD+hs5gsY30VtY
+X-Google-Smtp-Source: APXvYqx9Fwkhtuk7QP7UZWiaomS9YYYMVSBZeBxuQqUMhifcLZqjyMLHem8Ufxk7DivNsOuPWiouhIoFTfOtRG9PrM8=
+X-Received: by 2002:a2e:960e:: with SMTP id v14mr2270955ljh.31.1559224693370; 
+ Thu, 30 May 2019 06:58:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <5CEF2F2D.7040303@gmail.com>
-Content-Language: en-US
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
- definitions=2019-05-30_07:, , signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1905300098
-Subject: Re: [USRP-users] UBX coherence between TX and RX
+Date: Thu, 30 May 2019 15:58:00 +0200
+Message-ID: <CAOV5X-V_zQoxTruu5z8t4mbxKF6obDOShp9V4bCNkuWwi8tmfg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Error message when trying to send signals with HackRF
+ One on GRC
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -64,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Michael R. Freedman via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Michael R. Freedman" <mfreedman@ll.mit.edu>
-Content-Type: multipart/mixed; boundary="===============8540114244314011043=="
+From: Dylan Feron via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Dylan Feron <ferondylan@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1365545587904654538=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,1353 +72,97 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8540114244314011043==
-Content-Type: multipart/alternative;
-	boundary="------------FFE45077A3F1CED809D136DF"
-Content-Language: en-US
+--===============1365545587904654538==
+Content-Type: multipart/alternative; boundary="000000000000f933f2058a1b4977"
 
---------------FFE45077A3F1CED809D136DF
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000f933f2058a1b4977
+Content-Type: text/plain; charset="UTF-8"
 
-I believe if you don't set the end of burst flag it won't reset the 
-accumulator.
+Hello,
 
+I am using a HackRF One to transmit signals to an USRP NI 2921 which
+receives the signal. Whatever the signal I am sending (sine, cosine,
+triangle,...) and whatever the frequency of the signal sent, I always
+obtain the same peak located at the same frequency (around the frequency
+carrier shifted of 50 kHz) in the FFT received on the NI 2921.
+I am using GNURadio Companion as the software processing the signals. Here
+is the message I obtain in the console of the transmitting signal on GRC :
 
-On another note, how difficult would it be to reset the accumulator at 
-the start of burst.  While doing it at the end makes it coherent with 
-itself, the xmit waveform still has a starting phase change from pulse 
-to pulse.  Typically we would reset it at the beginning ( or initialize 
-it to a known phase ) at the beginning of the pulse so that it can be 
-controlled regardless of timing.
+*Warning: failed to XInitThreads() linux; GNU C++ version 7.3.0;
+Boost_106501; UHD_003.010.003.000-0-unknown gr-osmosdr 0.1.4 (0.1.4)
+gnuradio 3.7.11 built-in sink types: uhd hackrf bladerf soapy redpitaya
+freesrp file Cannot connect to server socket err = No such file or
+directory Cannot connect to server request channel jack server is not
+running or cannot be started JackShmReadWritePtr::~JackShmReadWritePtr -
+Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping
+unlock Using HackRF One with firmware 2018.01.1*
 
+Can somebody enlighten me?
 
-Mike
+Thank you in advance,
+Dylan
 
+--000000000000f933f2058a1b4977
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 05/29/2019 09:17 PM, Marcus D. Leech via USRP-users wrote:
-> On 05/29/2019 06:49 PM, Michael West via USRP-users wrote:
->> Thanks to Michael's persistence, we did find an issue in the DUC and 
->> DDC where the phase accumulator was the wrong resolution (24-bit 
->> instead of 32-bit) and was not being reset at the end of each burst.  
->> The fix is now available on the head of the UHD-3.14 branch and will 
->> be included in the upcoming 3.14.1.0 release.
->>
->> Phase may change each time streamers are created, but the phase 
->> between TX and RX should remain consistent during streaming.  Tuning 
->> must be done with timed commands and a consistent time delta between 
->> the tune time of TX and RX must be maintained that is greater than 
->> 500us to maintain the coherence across re-tunes.
->>
->> Regards,
->> Michael
-> My recollection is that there are a class of users who want the phase 
-> accumulator to continue to spin between bursts.  So this fix may break
->   other types of applications.  Just a dim recollection at this point....
->
->
->>
->> On Tue, Apr 9, 2019 at 12:21 AM Piotr Krysik via USRP-users 
->> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>
->>     Hi Mike,
->>
->>     Let's keep the discussion on the mailing list. I attach the
->>     scripts as
->>     they are quite small. There is however a data folder with two 4MB
->>     files
->>     containing noise in complex short format. The version of the archive
->>     with those files is here:
->>     https://app.box.com/s/xfpwro8wybog4f1yo1l6yh665tg4sx0r
->>
->>     First you run:
->>     ./record.sh
->>
->>     then:
->>     ./show_figures.m
->>
->>     (you need to have octave installed for the second script).
->>
->>     Best Regards,
->>     Piotr Krysik
->>
->>     W dniu 08.04.2019 o 18:30, Michael R. Freedman pisze:
->>     > That would be wonderful if I could get your scripts to run.
->>     >
->>     >
->>     > Thanks a bunch for the info!
->>     >
->>     >
->>     > Mike
->>     >
->>     >
->>     > On 04/08/2019 09:56 AM, Piotr Krysik via USRP-users wrote:
->>     >> Hi all,
->>     >>
->>     >> I looked at this thread and it reminded me of something.
->>     >>
->>     >> Once we purchased few X310 with UBX160 daughter-boards.
->>     >>
->>     >> One of them had some frequency offset on Tx channel, that
->>     decreased over
->>     >> time it was running, but very slowly.
->>     >>
->>     >> The daughter-board was then replaced by National Intruments
->>     (after some
->>     >> adventures ;) ). The replacement one had exactly the same
->>     issue so it
->>     >> was also replaced. The next one was ok. So it seemed it was some
->>     >> manufacturing issue with UBX.
->>     >>
->>     >> I don't know if it's the same issue (i.e. due to lack of
->>     data), but I
->>     >> attach part of the report that was sent to National Instruments:
->>     >> -phase offset of the received signal in relation to digital
->>     waveform for
->>     >> a single X310 with UBX160 for all TX and RX combinations:
->>     >> https://imgur.com/a/ODBtT4o
->>     >> -schematic:
->>     >> https://imgur.com/a/si9fJZp
->>     >>
->>     >> I got also scripts that were used for recording and plotting that
->>     >> figure. If you are interested I can post it somewhere.
->>     >>
->>     >> What seems different from situation here is that for us it
->>     seemed the
->>     >> effect wasn't depending on frequency (but I didn't do any
->>     extensive
->>     >> tests and might not remember).
->>     >>
->>     >> --
->>     >> Best Regards,
->>     >> Piotr Krysik
->>     >>
->>     >> W dniu 07.04.2019 o 03:00, Freedman, Michael - 1008 - MITLL via
->>     >> USRP-users pisze:
->>     >>> I have switched and am currently running the release 3.14.0.0
->>     >>>
->>     >>> Sent from my iPhone
->>     >>>
->>     >>> On Apr 6, 2019, at 8:58 AM, Marcus D. Leech
->>     <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>
->>     >>> <mailto:patchvonbraun@gmail.com
->>     <mailto:patchvonbraun@gmail.com>>> wrote:
->>     >>>
->>     >>> On 04/05/2019 11:43 AM, Michael R. Freedman wrote:
->>     >>>> Hello,
->>     >>>>
->>     >>>>
->>     >>>> If I remove the DSP from the equation by setting the DSP tuning
->>     >>>> policy to manual and assigning it to zero, I am coherent
->>     from tx to
->>     >>>> rx on all frequencies.  I'm now beginning to think that the
->>     DSP is
->>     >>>> doing it's tuning differently for tx and rx.  Or there is an
->>     >>>> accumulated error in opposite directions for both.  Thoughts?
->>     >>>>
->>     >>>>
->>     >>>> Leaving the DSP to zero is not a good solution however as
->>     there is
->>     >>>> too much LO leakage.
->>     >>>>
->>     >>>>
->>     >>> Could you try UHD 3.14.0.0?
->>     >>>
->>     >>> I think that you're using the -rc3 version at the moment.
->>     >>>
->>     >>>
->>     >>>> Mike
->>     >>>>
->>     >>>>
->>     >>>> On 03/27/2019 04:58 PM, Marcus D. Leech wrote:
->>     >>>>> On 03/27/2019 04:48 PM, Michael R. Freedman wrote:
->>     >>>>>> This is on a single UBX card within a single USRP.
->>     >>>>>>
->>     >>>>>>
->>     >>>>>> ./uhd_usrp_probe --args=addr=192.168.40.100
->>     >>>>>> [INFO] [UHD] linux; GNU C++ version 7.3.0; Boost_106501;
->>     >>>>>> UHD_3.14.0.0-0-unknown
->>     >>>>>> [INFO] [X300] X300 initialization sequence...
->>     >>>>>> [INFO] [X300] Maximum frame size: 8000 bytes.
->>     >>>>>> [INFO] [X300] Radio 1x clock: 200 MHz
->>     >>>>>> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
->>     >>>>>> 0xF1F0D00000000000)
->>     >>>>>> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1320 MB/s)
->>     >>>>>> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1294 MB/s)
->>     >>>>>> [INFO] [0/Radio_0] Initializing block control (NOC ID:
->>     >>>>>> 0x12AD100000000001)
->>     >>>>>> [INFO] [0/Radio_1] Initializing block control (NOC ID:
->>     >>>>>> 0x12AD100000000001)
->>     >>>>>> [INFO] [0/DDC_0] Initializing block control (NOC ID:
->>     >>>>>> 0xDDC0000000000000)
->>     >>>>>> [INFO] [0/DDC_1] Initializing block control (NOC ID:
->>     >>>>>> 0xDDC0000000000000)
->>     >>>>>> [INFO] [0/DUC_0] Initializing block control (NOC ID:
->>     >>>>>> 0xD0C0000000000000)
->>     >>>>>> [INFO] [0/DUC_1] Initializing block control (NOC ID:
->>     >>>>>> 0xD0C0000000000000)
->>     >>>>>> _____________________________________________________
->>     >>>>>>   /
->>     >>>>>> |       Device: X-Series Device
->>     >>>>>> | _____________________________________________________
->>     >>>>>> |    /
->>     >>>>>> |   |       Mboard: X310
->>     >>>>>> |   |   revision: 6
->>     >>>>>> |   |   product: 30410
->>     >>>>>> |   |   mac-addr0: 00:80:2f:0a:ff:98
->>     >>>>>> |   |   mac-addr1: 00:80:2f:0a:ff:99
->>     >>>>>> |   |   gateway: 192.168.10.1
->>     >>>>>> |   |   ip-addr0: 192.168.10.100
->>     >>>>>> |   |   subnet0: 255.255.255.0
->>     >>>>>> |   |   ip-addr1: 192.168.20.100
->>     >>>>>> |   |   subnet1: 255.255.255.0
->>     >>>>>> |   |   ip-addr2: 192.168.30.100
->>     >>>>>> |   |   subnet2: 255.255.255.0
->>     >>>>>> |   |   ip-addr3: 192.168.40.100
->>     >>>>>> |   |   subnet3: 255.255.255.0
->>     >>>>>> |   |   serial: F5BE45
->>     >>>>>> |   |   FW Version: 6.0
->>     >>>>>> |   |   FPGA Version: 35.1
->>     >>>>>> |   |   FPGA git hash: 4c165a5
->>     >>>>>> |   |   RFNoC capable: Yes
->>     >>>>>> |   |
->>     >>>>>> |   |   Time sources:  internal, external, gpsdo
->>     >>>>>> |   |   Clock sources: internal, external, gpsdo
->>     >>>>>> |   |   Sensors: ref_locked
->>     >>>>>> |   | _____________________________________________________
->>     >>>>>> |   |    /
->>     >>>>>> |   |   |       RX Dboard: A
->>     >>>>>> |   |   |   ID: UBX-40 v2 (0x007c)
->>     >>>>>> |   |   |   Serial: 313C181
->>     >>>>>> |   |   |
->>     _____________________________________________________
->>     >>>>>> |   |   |    /
->>     >>>>>> |   |   |   |       RX Frontend: 0
->>     >>>>>> |   |   |   |   Name: UBX RX
->>     >>>>>> |   |   |   |   Antennas: TX/RX, RX2, CAL
->>     >>>>>> |   |   |   |   Sensors: lo_locked
->>     >>>>>> |   |   |   |   Freq range: 10.000 to 6000.000 MHz
->>     >>>>>> |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
->>     >>>>>> |   |   |   |   Bandwidth range: 40000000.0 to 40000000.0 step
->>     >>>>>> 0.0 Hz
->>     >>>>>> |   |   |   |   Connection Type: IQ
->>     >>>>>> |   |   |   |   Uses LO offset: No
->>     >>>>>> |   |   |
->>     _____________________________________________________
->>     >>>>>> |   |   |    /
->>     >>>>>> |   |   |   |       RX Codec: A
->>     >>>>>> |   |   |   |   Name: ads62p48
->>     >>>>>> |   |   |   |   Gain range digital: 0.0 to 6.0 step 0.5 dB
->>     >>>>>> |   | _____________________________________________________
->>     >>>>>> |   |    /
->>     >>>>>> |   |   |       RX Dboard: B
->>     >>>>>> |   |   |   ID: UBX-40 v2 (0x007c)
->>     >>>>>> |   |   |   Serial: 313C191
->>     >>>>>> |   |   |
->>     _____________________________________________________
->>     >>>>>> |   |   |    /
->>     >>>>>> |   |   |   |       RX Frontend: 0
->>     >>>>>> |   |   |   |   Name: UBX RX
->>     >>>>>> |   |   |   |   Antennas: TX/RX, RX2, CAL
->>     >>>>>> |   |   |   |   Sensors: lo_locked
->>     >>>>>> |   |   |   |   Freq range: 10.000 to 6000.000 MHz
->>     >>>>>> |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
->>     >>>>>> |   |   |   |   Bandwidth range: 40000000.0 to 40000000.0 step
->>     >>>>>> 0.0 Hz
->>     >>>>>> |   |   |   |   Connection Type: IQ
->>     >>>>>> |   |   |   |   Uses LO offset: No
->>     >>>>>> |   |   |
->>     _____________________________________________________
->>     >>>>>> |   |   |    /
->>     >>>>>> |   |   |   |       RX Codec: B
->>     >>>>>> |   |   |   |   Name: ads62p48
->>     >>>>>> |   |   |   |   Gain range digital: 0.0 to 6.0 step 0.5 dB
->>     >>>>>> |   | _____________________________________________________
->>     >>>>>> |   |    /
->>     >>>>>> |   |   |       TX Dboard: A
->>     >>>>>> |   |   |   ID: UBX-40 v2 (0x007b)
->>     >>>>>> |   |   |   Serial: 313C181
->>     >>>>>> |   |   |
->>     _____________________________________________________
->>     >>>>>> |   |   |    /
->>     >>>>>> |   |   |   |       TX Frontend: 0
->>     >>>>>> |   |   |   |   Name: UBX TX
->>     >>>>>> |   |   |   |   Antennas: TX/RX, CAL
->>     >>>>>> |   |   |   |   Sensors: lo_locked
->>     >>>>>> |   |   |   |   Freq range: 10.000 to 6000.000 MHz
->>     >>>>>> |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
->>     >>>>>> |   |   |   |   Bandwidth range: 40000000.0 to 40000000.0 step
->>     >>>>>> 0.0 Hz
->>     >>>>>> |   |   |   |   Connection Type: QI
->>     >>>>>> |   |   |   |   Uses LO offset: No
->>     >>>>>> |   |   |
->>     _____________________________________________________
->>     >>>>>> |   |   |    /
->>     >>>>>> |   |   |   |       TX Codec: A
->>     >>>>>> |   |   |   |   Name: ad9146
->>     >>>>>> |   |   |   |   Gain Elements: None
->>     >>>>>> |   | _____________________________________________________
->>     >>>>>> |   |    /
->>     >>>>>> |   |   |       TX Dboard: B
->>     >>>>>> |   |   |   ID: UBX-40 v2 (0x007b)
->>     >>>>>> |   |   |   Serial: 313C191
->>     >>>>>> |   |   |
->>     _____________________________________________________
->>     >>>>>> |   |   |    /
->>     >>>>>> |   |   |   |       TX Frontend: 0
->>     >>>>>> |   |   |   |   Name: UBX TX
->>     >>>>>> |   |   |   |   Antennas: TX/RX, CAL
->>     >>>>>> |   |   |   |   Sensors: lo_locked
->>     >>>>>> |   |   |   |   Freq range: 10.000 to 6000.000 MHz
->>     >>>>>> |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
->>     >>>>>> |   |   |   |   Bandwidth range: 40000000.0 to 40000000.0 step
->>     >>>>>> 0.0 Hz
->>     >>>>>> |   |   |   |   Connection Type: QI
->>     >>>>>> |   |   |   |   Uses LO offset: No
->>     >>>>>> |   |   |
->>     _____________________________________________________
->>     >>>>>> |   |   |    /
->>     >>>>>> |   |   |   |       TX Codec: B
->>     >>>>>> |   |   |   |   Name: ad9146
->>     >>>>>> |   |   |   |   Gain Elements: None
->>     >>>>>> |   | _____________________________________________________
->>     >>>>>> |   |    /
->>     >>>>>> |   |   |       RFNoC blocks on this device:
->>     >>>>>> |   |   |
->>     >>>>>> |   |   |   * DmaFIFO_0
->>     >>>>>> |   |   |   * Radio_0
->>     >>>>>> |   |   |   * Radio_1
->>     >>>>>> |   |   |   * DDC_0
->>     >>>>>> |   |   |   * DDC_1
->>     >>>>>> |   |   |   * DUC_0
->>     >>>>>> |   |   |   * DUC_1
->>     >>>>>>
->>     >>>>>>
->>     >>>>>>
->>     >>>>>> Mike
->>     >>>>>>
->>     >>>>> OK, so could you use the tx_waveforms example in
->>     multi-channel mode
->>     >>>>> and confirm correct output on a spectrum analyser,
->>     >>>>>    or another X310 doing receive?
->>     >>>>>
->>     >>>>>
->>     >>>>>>
->>     >>>>>> On 03/27/2019 03:42 PM, Marcus D. Leech via USRP-users wrote:
->>     >>>>>>> On 03/27/2019 03:39 PM, Michael R. Freedman via
->>     USRP-users wrote:
->>     >>>>>>>> Marcus,
->>     >>>>>>>>
->>     >>>>>>>>
->>     >>>>>>>> I tried a 10MHz LOOffset with no change.  I also tried it at
->>     >>>>>>>> 1155.0MHz and 1160.0MHz. At 1155 the phase rolls... at
->>     1160 it
->>     >>>>>>>> does not.
->>     >>>>>>>>
->>     >>>>>>>>
->>     >>>>>>>> Mike
->>     >>>>>>>>
->>     >>>>>>> Could you give us a dump of uhd_usrp_probe for an X310 that
->>     >>>>>>> displays this issue?  What version of UHD?   Also, to be
->>     clear,
->>     >>>>>>> this is within
->>     >>>>>>>    a *single* X310, correct?
->>     >>>>>>>
->>     >>>>>>>
->>     >>>>>>>> On 03/27/2019 11:10 AM, Marcus D. Leech via USRP-users
->>     wrote:
->>     >>>>>>>>> On 03/27/2019 10:41 AM, Michael R. Freedman via
->>     USRP-users wrote:
->>     >>>>>>>>>> Any thoughts on this?
->>     >>>>>>>>>>
->>     >>>>>>>>>>
->>     >>>>>>>>>> Mike
->>     >>>>>>>>>>
->>     >>>>>>>>> Given that in this case, the incoming carrier will be
->>     fighting
->>     >>>>>>>>> DC-offset removal rather hard, I wonder if this is a weird
->>     >>>>>>>>> artifact of DC-offset
->>     >>>>>>>>>    removal?
->>     >>>>>>>>>
->>     >>>>>>>>> If you use offset tuning on the RX, do you still see a
->>     >>>>>>>>> significant phase roll?
->>     >>>>>>>>>
->>     >>>>>>>>>
->>     >>>>>>>>>> On 03/25/2019 01:04 PM, Michael R. Freedman via USRP-users
->>     >>>>>>>>>> wrote:
->>     >>>>>>>>>>> Marcus,
->>     >>>>>>>>>>>
->>     >>>>>>>>>>>     190Hz is what we calculated.  I have attached a
->>     text file
->>     >>>>>>>>>>> with the data we used.  This is a single UBX40 tuned
->>     to 155MHz
->>     >>>>>>>>>>> sampling at 2MHz.
->>     >>>>>>>>>>>
->>     >>>>>>>>>>>
->>     >>>>>>>>>>> Mike
->>     >>>>>>>>>>>
->>     >>>>>>>>>>>
->>     >>>>>>>>>>> On 03/25/2019 12:34 PM, Nick Foster wrote:
->>     >>>>>>>>>>>> Well, according to your description, you could
->>     transmit a
->>     >>>>>>>>>>>> carrier from TX to RX (through an attenuator) with
->>     both sides
->>     >>>>>>>>>>>> set to the same frequency. Your received signal
->>     should look
->>     >>>>>>>>>>>> like a sine wave at the frequency of the offset.
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>> On Mon, Mar 25, 2019 at 9:16 AM Michael R. Freedman via
->>     >>>>>>>>>>>> USRP-users <usrp-users@lists.ettus.com
->>     <mailto:usrp-users@lists.ettus.com>
->>     >>>>>>>>>>>> <mailto:usrp-users@lists.ettus.com
->>     <mailto:usrp-users@lists.ettus.com>>> wrote:
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>      Hello,
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>      Do you have any suggestions as to how to
->>     measure the
->>     >>>>>>>>>>>> frequency delta between the transmit channel and the
->>     >>>>>>>>>>>> receive channel?
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>      As I sat down to do this, I realized I have no
->>     real way
->>     >>>>>>>>>>>>      to do that.
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>      Mike
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>      On 03/24/2019 03:23 PM, Marcus D. Leech via
->>     USRP-users
->>     >>>>>>>>>>>> wrote:
->>     >>>>>>>>>>>>>      On 03/24/2019 02:39 PM, Freedman, Michael -
->>     1008 - MITLL
->>     >>>>>>>>>>>>> via USRP-users wrote:
->>     >>>>>>>>>>>>>>      It is not just a phase offset. It is a frequency
->>     >>>>>>>>>>>>>> offset. The phase drifts between the two. I can
->>     tolerate
->>     >>>>>>>>>>>>>> a phase offset at startup. A freq offset however is
->>     >>>>>>>>>>>>>> causing problems.
->>     >>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>      Mike
->>     >>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>      Sent from my iPhone
->>     >>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>      On Mar 24, 2019, at 4:28 AM, Marcus Müller
->>     >>>>>>>>>>>>>> <marcus.mueller@ettus.com
->>     <mailto:marcus.mueller@ettus.com>>
->>     >>>>>>>>>>>>>> <mailto:marcus.mueller@ettus.com
->>     <mailto:marcus.mueller@ettus.com>> wrote:
->>     >>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>      Can you elaborate on what "not coherent" means to
->>     >>>>>>>>>>>>>> you – the relative
->>     >>>>>>>>>>>>>>      phase should be constant after each tune, but
->>     if you
->>     >>>>>>>>>>>>>> don't tune
->>     >>>>>>>>>>>>>>      simultaneously, i.e. with timed commands,
->>     random at
->>     >>>>>>>>>>>>>> each tune.
->>     >>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>      Best regards,
->>     >>>>>>>>>>>>>>      Marcus
->>     >>>>>>>>>>>>> Also, what version of UHD?  What hardware rev of UBX
->>     >>>>>>>>>>>>> cards?
->>     >>>>>>>>>>>>>
->>     >>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>      On Sat, 2019-03-23 at 17:06 -0400, Michael R.
->>     >>>>>>>>>>>>>> Freedman via USRP-users
->>     >>>>>>>>>>>>>>      wrote:
->>     >>>>>>>>>>>>>>>      Hello,
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>      I have an issue where I tune both the TX and RX
->>     >>>>>>>>>>>>>>> side of a UBX40 card
->>     >>>>>>>>>>>>>>>      in
->>     >>>>>>>>>>>>>>>      an X310 to the same frequency and find that the
->>     >>>>>>>>>>>>>>> transmitted signal
->>     >>>>>>>>>>>>>>>      and
->>     >>>>>>>>>>>>>>>      what is received are not coherent.  I am
->>     using an
->>     >>>>>>>>>>>>>>> external 10MHz
->>     >>>>>>>>>>>>>>>      reference and have tried the documented
->>     suggestions.
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>      at 150MHz it is coherent.
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>      at 155MHz it is NOT coherent.
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>      I have tried setting the dboard_clock_rate to
->>     >>>>>>>>>>>>>>> 20MHz.  This made the
->>     >>>>>>>>>>>>>>>      problem appear at 150MHz as well.  I've tried
->>     >>>>>>>>>>>>>>> integer_n tuning.
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>      I have verified that the ref_lock and
->>     lo_lock are
->>     >>>>>>>>>>>>>>> both true.
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>      Any suggestions?
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>      Mike
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>      _______________________________________________
->>     >>>>>>>>>>>>>>>      USRP-users mailing list
->>     >>>>>>>>>>>>>>> USRP-users@lists.ettus.com
->>     <mailto:USRP-users@lists.ettus.com>
->>     >>>>>>>>>>>>>>> <mailto:USRP-users@lists.ettus.com
->>     <mailto:USRP-users@lists.ettus.com>>
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>>
->>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>     >>>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>      _______________________________________________
->>     >>>>>>>>>>>>>>      USRP-users mailing list
->>     >>>>>>>>>>>>>> USRP-users@lists.ettus.com
->>     <mailto:USRP-users@lists.ettus.com>
->>     >>>>>>>>>>>>>> <mailto:USRP-users@lists.ettus.com
->>     <mailto:USRP-users@lists.ettus.com>>
->>     >>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>>
->>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>     >>>>>>>>>>>>>>
->>     >>>>>>>>>>>>>
->>     >>>>>>>>>>>>>
->>     >>>>>>>>>>>>> _______________________________________________
->>     >>>>>>>>>>>>> USRP-users mailing list
->>     >>>>>>>>>>>>> USRP-users@lists.ettus.com
->>     <mailto:USRP-users@lists.ettus.com>
->>     >>>>>>>>>>>>> <mailto:USRP-users@lists.ettus.com
->>     <mailto:USRP-users@lists.ettus.com>>
->>     >>>>>>>>>>>>>
->>     >>>>>>>>>>>>>
->>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>     >>>>>>>>>>>>>
->>     >>>>>>>>>>>> _______________________________________________
->>     >>>>>>>>>>>> USRP-users mailing list
->>     >>>>>>>>>>>> USRP-users@lists.ettus.com
->>     <mailto:USRP-users@lists.ettus.com>
->>     >>>>>>>>>>>> <mailto:USRP-users@lists.ettus.com
->>     <mailto:USRP-users@lists.ettus.com>>
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>
->>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>>
->>     >>>>>>>>>>>
->>     >>>>>>>>>>>
->>     >>>>>>>>>>> _______________________________________________
->>     >>>>>>>>>>> USRP-users mailing list
->>     >>>>>>>>>>> USRP-users@lists.ettus.com
->>     <mailto:USRP-users@lists.ettus.com>
->>     >>>>>>>>>>>
->>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>     >>>>>>>>>>>
->>     >>>>>>>>>>
->>     >>>>>>>>>>
->>
->>     _______________________________________________
->>     USRP-users mailing list
->>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+<div dir=3D"ltr"><div><font color=3D"#242729" face=3D"Arial, Helvetica Neue=
+, Helvetica, sans-serif"><span style=3D"font-size:15px">Hello,</span></font=
+></div><div><font color=3D"#242729" face=3D"Arial, Helvetica Neue, Helvetic=
+a, sans-serif"><span style=3D"font-size:15px"><br></span></font></div><div>=
+<font color=3D"#242729" face=3D"Arial, Helvetica Neue, Helvetica, sans-seri=
+f"><span style=3D"font-size:15px">I am using a HackRF One to transmit signa=
+ls to an USRP NI 2921 which receives the signal. Whatever the signal I am s=
+ending (sine, cosine, triangle,...) and whatever the frequency of the signa=
+l sent, I always obtain the same peak located at the same frequency (around=
+ the frequency carrier shifted of 50 kHz) in the FFT received on the NI 292=
+1.=C2=A0</span></font></div><span style=3D"margin:0px;padding:0px;border:0p=
+x;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-stretch=
+:inherit;line-height:inherit;font-family:Arial,&quot;Helvetica Neue&quot;,H=
+elvetica,sans-serif;font-size:15px;vertical-align:baseline;box-sizing:inher=
+it;color:rgb(36,39,41)"><div style=3D""><span style=3D"margin:0px;padding:0=
+px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;=
+font-stretch:inherit;line-height:inherit;font-family:Arial,&quot;Helvetica =
+Neue&quot;,Helvetica,sans-serif;font-size:15px;vertical-align:baseline;box-=
+sizing:inherit;color:rgb(36,39,41)">I am using GNURadio Companion as the so=
+ftware processing the signals. Here is the message I obtain in the console =
+of the transmitting signal on GRC :=C2=A0</span></div><div style=3D""><br><=
+/div><i>Warning: failed to XInitThreads() linux; GNU C++ version 7.3.0; Boo=
+st_106501; UHD_003.010.003.000-0-unknown gr-osmosdr 0.1.4 (0.1.4) gnuradio =
+3.7.11 built-in sink types: uhd hackrf bladerf soapy redpitaya freesrp file=
+ Cannot connect to server socket err =3D No such file or directory Cannot c=
+onnect to server request channel jack server is not running or cannot be st=
+arted JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, ski=
+pping unlock JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for =
+-1, skipping unlock Using HackRF One with firmware 2018.01.1</i></span><br>=
+<div><span style=3D"margin:0px;padding:0px;border:0px;font-variant-numeric:=
+inherit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:in=
+herit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;fon=
+t-size:15px;vertical-align:baseline;box-sizing:inherit;color:rgb(36,39,41)"=
+><i><br></i></span></div><div><span style=3D"margin:0px;padding:0px;border:=
+0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-stret=
+ch:inherit;line-height:inherit;font-family:Arial,&quot;Helvetica Neue&quot;=
+,Helvetica,sans-serif;font-size:15px;vertical-align:baseline;box-sizing:inh=
+erit;color:rgb(36,39,41)">Can somebody enlighten me?=C2=A0</span></div><div=
+><span style=3D"margin:0px;padding:0px;border:0px;font-variant-numeric:inhe=
+rit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:inheri=
+t;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font-si=
+ze:15px;vertical-align:baseline;box-sizing:inherit;color:rgb(36,39,41)"><br=
+></span></div><div><span style=3D"margin:0px;padding:0px;border:0px;font-va=
+riant-numeric:inherit;font-variant-east-asian:inherit;font-stretch:inherit;=
+line-height:inherit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,=
+sans-serif;font-size:15px;vertical-align:baseline;box-sizing:inherit;color:=
+rgb(36,39,41)">Thank you in advance,</span></div><div><span style=3D"margin=
+:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-=
+asian:inherit;font-stretch:inherit;line-height:inherit;font-family:Arial,&q=
+uot;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:15px;vertical-align=
+:baseline;box-sizing:inherit;color:rgb(36,39,41)">Dylan</span></div></div>
+
+--000000000000f933f2058a1b4977--
 
 
---------------FFE45077A3F1CED809D136DF
-Content-Type: text/html; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;
-      charset=windows-1252">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p>I believe if you don't set the end of burst flag it won't reset
-      the accumulator.  <br>
-    </p>
-    <p><br>
-    </p>
-    <p>On another note, how difficult would it be to reset the
-      accumulator at the start of burst.  While doing it at the end
-      makes it coherent with itself, the xmit waveform still has a
-      starting phase change from pulse to pulse.  Typically we would
-      reset it at the beginning ( or initialize it to a known phase ) at
-      the beginning of the pulse so that it can be controlled regardless
-      of timing.</p>
-    <p><br>
-    </p>
-    <p>Mike<br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 05/29/2019 09:17 PM, Marcus D. Leech
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:5CEF2F2D.7040303@gmail.com">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <div class="moz-cite-prefix">On 05/29/2019 06:49 PM, Michael West
-        via USRP-users wrote:<br>
-      </div>
-      <blockquote
-cite="mid:CAM4xKrr+7ktqm896UQuT+C=A_UY8aSobnm5G8-M4Kku9YKPQmg@mail.gmail.com"
-        type="cite">
-        <div dir="ltr">
-          <div>Thanks to Michael's persistence, we did find an issue in
-            the DUC and DDC where the phase accumulator was the wrong
-            resolution (24-bit instead of 32-bit) and was not being
-            reset at the end of each burst.  The fix is now available on
-            the head of the UHD-3.14 branch and will be included in the
-            upcoming 3.14.1.0 release.</div>
-          <div><br>
-          </div>
-          <div>Phase may change each time streamers are created, but the
-            phase between TX and RX should remain consistent during
-            streaming.  Tuning must be done with timed commands and a
-            consistent time delta between the tune time of TX and RX
-            must be maintained that is greater than 500us to maintain
-            the coherence across re-tunes.<br>
-          </div>
-          <div><br>
-          </div>
-          <div>Regards,</div>
-          <div>Michael<br>
-          </div>
-        </div>
-      </blockquote>
-      My recollection is that there are a class of users who want the
-      phase accumulator to continue to spin between bursts.  So this fix
-      may break<br>
-        other types of applications.  Just a dim recollection at this
-      point....<br>
-      <br>
-      <br>
-      <blockquote
-cite="mid:CAM4xKrr+7ktqm896UQuT+C=A_UY8aSobnm5G8-M4Kku9YKPQmg@mail.gmail.com"
-        type="cite"><br>
-        <div class="gmail_quote">
-          <div dir="ltr" class="gmail_attr">On Tue, Apr 9, 2019 at 12:21
-            AM Piotr Krysik via USRP-users &lt;<a moz-do-not-send="true"
-              href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">Hi Mike,<br>
-            <br>
-            Let's keep the discussion on the mailing list. I attach the
-            scripts as<br>
-            they are quite small. There is however a data folder with
-            two 4MB files<br>
-            containing noise in complex short format. The version of the
-            archive<br>
-            with those files is here:<br>
-            <a moz-do-not-send="true"
-              href="https://app.box.com/s/xfpwro8wybog4f1yo1l6yh665tg4sx0r"
-              rel="noreferrer" target="_blank">https://app.box.com/s/xfpwro8wybog4f1yo1l6yh665tg4sx0r</a><br>
-            <br>
-            First you run:<br>
-            ./record.sh<br>
-            <br>
-            then:<br>
-            ./show_figures.m<br>
-            <br>
-            (you need to have octave installed for the second script).<br>
-            <br>
-            Best Regards,<br>
-            Piotr Krysik<br>
-            <br>
-            W dniu 08.04.2019 o 18:30, Michael R. Freedman pisze:<br>
-            &gt; That would be wonderful if I could get your scripts to
-            run.<br>
-            &gt;<br>
-            &gt;<br>
-            &gt; Thanks a bunch for the info!<br>
-            &gt;<br>
-            &gt;<br>
-            &gt; Mike<br>
-            &gt;<br>
-            &gt;<br>
-            &gt; On 04/08/2019 09:56 AM, Piotr Krysik via USRP-users
-            wrote:<br>
-            &gt;&gt; Hi all,<br>
-            &gt;&gt;<br>
-            &gt;&gt; I looked at this thread and it reminded me of
-            something.<br>
-            &gt;&gt;<br>
-            &gt;&gt; Once we purchased few X310 with UBX160
-            daughter-boards.<br>
-            &gt;&gt;<br>
-            &gt;&gt; One of them had some frequency offset on Tx
-            channel, that decreased over<br>
-            &gt;&gt; time it was running, but very slowly.<br>
-            &gt;&gt;<br>
-            &gt;&gt; The daughter-board was then replaced by National
-            Intruments (after some<br>
-            &gt;&gt; adventures ;) ). The replacement one had exactly
-            the same issue so it<br>
-            &gt;&gt; was also replaced. The next one was ok. So it
-            seemed it was some<br>
-            &gt;&gt; manufacturing issue with UBX.<br>
-            &gt;&gt;<br>
-            &gt;&gt; I don't know if it's the same issue (i.e. due to
-            lack of data), but I<br>
-            &gt;&gt; attach part of the report that was sent to National
-            Instruments:<br>
-            &gt;&gt; -phase offset of the received signal in relation to
-            digital waveform for<br>
-            &gt;&gt; a single X310 with UBX160 for all TX and RX
-            combinations:<br>
-            &gt;&gt; <a moz-do-not-send="true"
-              href="https://imgur.com/a/ODBtT4o" rel="noreferrer"
-              target="_blank">https://imgur.com/a/ODBtT4o</a><br>
-            &gt;&gt; -schematic:<br>
-            &gt;&gt; <a moz-do-not-send="true"
-              href="https://imgur.com/a/si9fJZp" rel="noreferrer"
-              target="_blank">https://imgur.com/a/si9fJZp</a><br>
-            &gt;&gt;<br>
-            &gt;&gt; I got also scripts that were used for recording and
-            plotting that<br>
-            &gt;&gt; figure. If you are interested I can post it
-            somewhere.<br>
-            &gt;&gt;<br>
-            &gt;&gt; What seems different from situation here is that
-            for us it seemed the<br>
-            &gt;&gt; effect wasn't depending on frequency (but I didn't
-            do any extensive<br>
-            &gt;&gt; tests and might not remember).<br>
-            &gt;&gt;<br>
-            &gt;&gt; -- <br>
-            &gt;&gt; Best Regards,<br>
-            &gt;&gt; Piotr Krysik<br>
-            &gt;&gt;<br>
-            &gt;&gt; W dniu 07.04.2019 o 03:00, Freedman, Michael - 1008
-            - MITLL via<br>
-            &gt;&gt; USRP-users pisze:<br>
-            &gt;&gt;&gt; I have switched and am currently running the
-            release 3.14.0.0<br>
-            &gt;&gt;&gt;<br>
-            &gt;&gt;&gt; Sent from my iPhone<br>
-            &gt;&gt;&gt;<br>
-            &gt;&gt;&gt; On Apr 6, 2019, at 8:58 AM, Marcus D. Leech
-            &lt;<a moz-do-not-send="true"
-              href="mailto:patchvonbraun@gmail.com" target="_blank">patchvonbraun@gmail.com</a><br>
-            &gt;&gt;&gt; &lt;mailto:<a moz-do-not-send="true"
-              href="mailto:patchvonbraun@gmail.com" target="_blank">patchvonbraun@gmail.com</a>&gt;&gt;
-            wrote:<br>
-            &gt;&gt;&gt;<br>
-            &gt;&gt;&gt; On 04/05/2019 11:43 AM, Michael R. Freedman
-            wrote:<br>
-            &gt;&gt;&gt;&gt; Hello,<br>
-            &gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt; If I remove the DSP from the equation by
-            setting the DSP tuning<br>
-            &gt;&gt;&gt;&gt; policy to manual and assigning it to zero,
-            I am coherent from tx to<br>
-            &gt;&gt;&gt;&gt; rx on all frequencies.  I'm now beginning
-            to think that the DSP is<br>
-            &gt;&gt;&gt;&gt; doing it's tuning differently for tx and
-            rx.  Or there is an<br>
-            &gt;&gt;&gt;&gt; accumulated error in opposite directions
-            for both.  Thoughts?<br>
-            &gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt; Leaving the DSP to zero is not a good
-            solution however as there is<br>
-            &gt;&gt;&gt;&gt; too much LO leakage.<br>
-            &gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt; Could you try UHD 3.14.0.0?<br>
-            &gt;&gt;&gt;<br>
-            &gt;&gt;&gt; I think that you're using the -rc3 version at
-            the moment.<br>
-            &gt;&gt;&gt;<br>
-            &gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt; Mike<br>
-            &gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt; On 03/27/2019 04:58 PM, Marcus D. Leech
-            wrote:<br>
-            &gt;&gt;&gt;&gt;&gt; On 03/27/2019 04:48 PM, Michael R.
-            Freedman wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; This is on a single UBX card within
-            a single USRP.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; ./uhd_usrp_probe
-            --args=addr=192.168.40.100<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [UHD] linux; GNU C++ version
-            7.3.0; Boost_106501;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; UHD_3.14.0.0-0-unknown<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [X300] X300 initialization
-            sequence...<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [X300] Maximum frame size:
-            8000 bytes.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [X300] Radio 1x clock: 200
-            MHz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [0/DmaFIFO_0] Initializing
-            block control (NOC ID:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0xF1F0D00000000000)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [0/DmaFIFO_0] BIST passed
-            (Throughput: 1320 MB/s)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [0/DmaFIFO_0] BIST passed
-            (Throughput: 1294 MB/s)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [0/Radio_0] Initializing
-            block control (NOC ID:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0x12AD100000000001)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [0/Radio_1] Initializing
-            block control (NOC ID:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0x12AD100000000001)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [0/DDC_0] Initializing block
-            control (NOC ID:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0xDDC0000000000000)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [0/DDC_1] Initializing block
-            control (NOC ID:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0xDDC0000000000000)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [0/DUC_0] Initializing block
-            control (NOC ID:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0xD0C0000000000000)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; [INFO] [0/DUC_1] Initializing block
-            control (NOC ID:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0xD0C0000000000000)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;   
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;   /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |       Device: X-Series Device<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |       Mboard: X310<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   revision: 6<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   product: 30410<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   mac-addr0:
-            00:80:2f:0a:ff:98<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   mac-addr1:
-            00:80:2f:0a:ff:99<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   gateway: 192.168.10.1<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   ip-addr0: 192.168.10.100<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   subnet0: 255.255.255.0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   ip-addr1: 192.168.20.100<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   subnet1: 255.255.255.0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   ip-addr2: 192.168.30.100<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   subnet2: 255.255.255.0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   ip-addr3: 192.168.40.100<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   subnet3: 255.255.255.0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   serial: F5BE45<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   FW Version: 6.0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   FPGA Version: 35.1<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   FPGA git hash: 4c165a5<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   RFNoC capable: Yes<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   Time sources:  internal,
-            external, gpsdo<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   Clock sources: internal,
-            external, gpsdo<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   Sensors: ref_locked<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |       RX Dboard: A<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   ID: UBX-40 v2 (0x007c)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   Serial: 313C181<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |       RX Frontend: 0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Name: UBX RX<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Antennas: TX/RX,
-            RX2, CAL<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Sensors: lo_locked<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Freq range: 10.000
-            to 6000.000 MHz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Gain range PGA0:
-            0.0 to 31.5 step 0.5 dB<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Bandwidth range:
-            40000000.0 to 40000000.0 step<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0.0 Hz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Connection Type: IQ<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Uses LO offset: No<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |       RX Codec: A<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Name: ads62p48<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Gain range digital:
-            0.0 to 6.0 step 0.5 dB<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |       RX Dboard: B<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   ID: UBX-40 v2 (0x007c)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   Serial: 313C191<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |       RX Frontend: 0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Name: UBX RX<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Antennas: TX/RX,
-            RX2, CAL<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Sensors: lo_locked<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Freq range: 10.000
-            to 6000.000 MHz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Gain range PGA0:
-            0.0 to 31.5 step 0.5 dB<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Bandwidth range:
-            40000000.0 to 40000000.0 step<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0.0 Hz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Connection Type: IQ<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Uses LO offset: No<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |       RX Codec: B<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Name: ads62p48<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Gain range digital:
-            0.0 to 6.0 step 0.5 dB<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |       TX Dboard: A<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   ID: UBX-40 v2 (0x007b)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   Serial: 313C181<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |       TX Frontend: 0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Name: UBX TX<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Antennas: TX/RX,
-            CAL<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Sensors: lo_locked<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Freq range: 10.000
-            to 6000.000 MHz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Gain range PGA0:
-            0.0 to 31.5 step 0.5 dB<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Bandwidth range:
-            40000000.0 to 40000000.0 step<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0.0 Hz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Connection Type: QI<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Uses LO offset: No<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |       TX Codec: A<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Name: ad9146<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Gain Elements: None<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |       TX Dboard: B<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   ID: UBX-40 v2 (0x007b)<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   Serial: 313C191<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |       TX Frontend: 0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Name: UBX TX<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Antennas: TX/RX,
-            CAL<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Sensors: lo_locked<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Freq range: 10.000
-            to 6000.000 MHz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Gain range PGA0:
-            0.0 to 31.5 step 0.5 dB<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Bandwidth range:
-            40000000.0 to 40000000.0 step<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; 0.0 Hz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Connection Type: QI<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Uses LO offset: No<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |       TX Codec: B<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Name: ad9146<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   |   Gain Elements: None<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    
-            _____________________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |    /<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |       RFNoC blocks on
-            this device:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   * DmaFIFO_0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   * Radio_0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   * Radio_1<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   * DDC_0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   * DDC_1<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   * DUC_0<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; |   |   |   * DUC_1<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; Mike<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt; OK, so could you use the tx_waveforms
-            example in multi-channel mode<br>
-            &gt;&gt;&gt;&gt;&gt; and confirm correct output on a
-            spectrum analyser,<br>
-            &gt;&gt;&gt;&gt;&gt;    or another X310 doing receive?<br>
-            &gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt; On 03/27/2019 03:42 PM, Marcus D.
-            Leech via USRP-users wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt; On 03/27/2019 03:39 PM, Michael
-            R. Freedman via USRP-users wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Marcus,<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I tried a 10MHz LOOffset
-            with no change.  I also tried it at<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1155.0MHz and 1160.0MHz. 
-            At 1155 the phase rolls... at 1160 it<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; does not.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Mike<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt; Could you give us a dump of
-            uhd_usrp_probe for an X310 that<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt; displays this issue?  What
-            version of UHD?   Also, to be clear,<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt; this is within<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;    a *single* X310, correct?<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; On 03/27/2019 11:10 AM,
-            Marcus D. Leech via USRP-users wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; On 03/27/2019 10:41 AM,
-            Michael R. Freedman via USRP-users wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Any thoughts on
-            this?<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Mike<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Given that in this
-            case, the incoming carrier will be fighting<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; DC-offset removal
-            rather hard, I wonder if this is a weird<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; artifact of DC-offset<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;    removal?<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; If you use offset
-            tuning on the RX, do you still see a<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; significant phase roll?<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; On 03/25/2019 01:04
-            PM, Michael R. Freedman via USRP-users<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Marcus,<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     190Hz is
-            what we calculated.  I have attached a text file<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; with the data
-            we used.  This is a single UBX40 tuned to 155MHz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; sampling at
-            2MHz.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Mike<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; On 03/25/2019
-            12:34 PM, Nick Foster wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Well,
-            according to your description, you could transmit a<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; carrier
-            from TX to RX (through an attenuator) with both sides<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; set to the
-            same frequency. Your received signal should look<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; like a sine
-            wave at the frequency of the offset.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; On Mon, Mar
-            25, 2019 at 9:16 AM Michael R. Freedman via<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; USRP-users
-            &lt;<a moz-do-not-send="true"
-              href="mailto:usrp-users@lists.ettus.com" target="_blank">usrp-users@lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;mailto:<a
-              moz-do-not-send="true"
-              href="mailto:usrp-users@lists.ettus.com" target="_blank">usrp-users@lists.ettus.com</a>&gt;&gt;
-            wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;      Hello,<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;      Do you
-            have any suggestions as to how to measure the<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     
-            frequency delta between the transmit channel and the<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     
-            receive channel?<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;      As I
-            sat down to do this, I realized I have no real way<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;      to do
-            that.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;      Mike<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;      On
-            03/24/2019 03:23 PM, Marcus D. Leech via USRP-users<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;      On
-            03/24/2019 02:39 PM, Freedman, Michael - 1008 - MITLL<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     
-            via USRP-users wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 It is not just a phase offset. It is a frequency<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            offset. The phase drifts between the two. I can tolerate<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; a
-            phase offset at startup. A freq offset however is<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            causing problems.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 Mike<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 Sent from my iPhone<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 On Mar 24, 2019, at 4:28 AM, Marcus Müller<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            &lt;<a moz-do-not-send="true"
-              href="mailto:marcus.mueller@ettus.com" target="_blank">marcus.mueller@ettus.com</a>&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            &lt;mailto:<a moz-do-not-send="true"
-              href="mailto:marcus.mueller@ettus.com" target="_blank">marcus.mueller@ettus.com</a>&gt;
-            wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 Can you elaborate on what "not coherent" means to<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; you
-            – the relative<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 phase should be constant after each tune, but if you<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            don't tune<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 simultaneously, i.e. with timed commands, random at<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            each tune.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 Best regards,<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 Marcus<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     
-            Also, what version of UHD?  What hardware rev of UBX<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; cards?<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 On Sat, 2019-03-23 at 17:06 -0400, Michael R.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            Freedman via USRP-users<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 wrote:<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 Hello,<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 I have an issue where I tune both the TX and RX<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            side of a UBX40 card<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 in<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 an X310 to the same frequency and find that the<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            transmitted signal<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 and<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 what is received are not coherent.  I am using an<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            external 10MHz<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 reference and have tried the documented suggestions.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 at 150MHz it is coherent.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 at 155MHz it is NOT coherent.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 I have tried setting the dboard_clock_rate to<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            20MHz.  This made the<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 problem appear at 150MHz as well.  I've tried<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            integer_n tuning.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 I have verified that the ref_lock and lo_lock are<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            both true.<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 Any suggestions?<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 Mike<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 _______________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 USRP-users mailing list<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 <a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            &lt;mailto:<a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a>&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                <br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 _______________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 USRP-users mailing list<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                 <a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            &lt;mailto:<a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a>&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                <br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <a
-              moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     
-            _______________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     
-            USRP-users mailing list<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;      <a
-              moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            &lt;mailto:<a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a>&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     <br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <a
-              moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     
-            _______________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     
-            USRP-users mailing list<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;      <a
-              moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     
-            &lt;mailto:<a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a>&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;     <br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <a
-              moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-            _______________________________________________<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; USRP-users
-            mailing list<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <a
-              moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <a
-              moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-            <br>
-            _______________________________________________<br>
-            USRP-users mailing list<br>
-            <a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-            <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-          </blockquote>
-        </div>
-        <br>
-        <fieldset class="mimeAttachmentHeader"></fieldset>
-        <br>
-        <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com" moz-do-not-send="true">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-      </blockquote>
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------FFE45077A3F1CED809D136DF--
-
-
---===============8540114244314011043==
+--===============1365545587904654538==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1437,5 +173,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8540114244314011043==--
+--===============1365545587904654538==--
 
