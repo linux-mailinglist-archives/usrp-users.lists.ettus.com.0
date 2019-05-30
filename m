@@ -2,60 +2,71 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C78BA2FCE5
-	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2019 16:08:50 +0200 (CEST)
-Received: from [::1] (port=42272 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF7F30142
+	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2019 19:52:39 +0200 (CEST)
+Received: from [::1] (port=57458 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hWLjd-00081Y-N2; Thu, 30 May 2019 10:08:49 -0400
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:43765)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
- id 1hWLjZ-0007r7-Us
- for usrp-users@lists.ettus.com; Thu, 30 May 2019 10:08:46 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailout.west.internal (Postfix) with ESMTP id E9DDC45B;
- Thu, 30 May 2019 10:08:04 -0400 (EDT)
-Received: from imap8 ([10.202.2.58])
- by compute3.internal (MEProxy); Thu, 30 May 2019 10:08:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=6k2EqC
- z2TaTWW6g33KjSunjoRRX3sR2PT+RrRL0emhE=; b=Q0V1dPzWUmiOqALHF0qQ4W
- ZImHWjp2IQKy11F7z2zpWtQxUVmK83O1y/l/qk181Y5dU8/tcxdxS9+dzWf/x3+f
- 0cvQ2VQhklGANUl0Dm6y5xnTFynT27ntMSDk7qlmp7USvzzGGLzeKKWKaCsxrRDP
- R5Qfmefx3ATz1OAGpWawScAxaIp/RrphwHHOEKPSqCN9pY3+JO4SoDn9LjgmTjPw
- AtErOp2Tnacll29rX7vTg7xHGPO2iMADz2wwdZQxqqhPaGgvY5Km7u0epWRD9A7t
- Ws8nBylLlEPEuV7xY99mH50ANkiGva4QmqX5GgyGXywp3E8C2/VsJIr/iecCPNfQ
- ==
-X-ME-Sender: <xms:xOPvXOaB6bmgS4EQCsnJvaPRhHx6CO2VGLp3YaxYgXNNb_VciTm3Dw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddvledgjedvucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepofgfggfkjghffffhvffutgesrgdtreerreerjeenucfhrhhomhepfdfoihgt
- hhgrvghlucffihgtkhgvnhhsfdcuoehmihgthhgrvghlrdguihgtkhgvnhhssegvthhtuh
- hsrdgtohhmqeenucffohhmrghinhepvghtthhushdrtghomhdpghhrvggrthhstghothht
- ghgrughgvghtshdrtghomhenucfrrghrrghmpehmrghilhhfrhhomhepmhhitghhrggvlh
- drughitghkvghnshesvghtthhushdrtghomhenucevlhhushhtvghrufhiiigvpedt
-X-ME-Proxy: <xmx:xOPvXDf52VMHVp1kPgyB90ToOW3bccdgHXwkbU7mO3tyO2auTKnpSA>
- <xmx:xOPvXDDO1W1v2BmaIs1tjqhePi1laxK2jPFsuAAAOFSWUc5zgh0YIQ>
- <xmx:xOPvXLXVMJVNEVGesg0EDMBKupzpqiO5dZ6deSgzOmlhHGeM-aBFLA>
- <xmx:xOPvXDbiJRJhPYq799qyb5utsk6U63R2czVKDiKWhJeu0uJPonKIBA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id 15234520093; Thu, 30 May 2019 10:08:04 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-555-g49357e1-fmstable-20190528v2
-Mime-Version: 1.0
-Message-Id: <57c5f3c4-3ae5-4ff6-ac4f-e2283b0296bb@www.fastmail.com>
-In-Reply-To: <CAOV5X-V_zQoxTruu5z8t4mbxKF6obDOShp9V4bCNkuWwi8tmfg@mail.gmail.com>
-References: <CAOV5X-V_zQoxTruu5z8t4mbxKF6obDOShp9V4bCNkuWwi8tmfg@mail.gmail.com>
-Date: Thu, 30 May 2019 10:07:54 -0400
-To: "Dylan Feron" <ferondylan@gmail.com>,
- "USRP Users" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] 
- =?utf-8?q?Error_message_when_trying_to_send_signals?=
- =?utf-8?q?_with_HackRF_One_on_GRC?=
+	id 1hWPDQ-0000cJ-Cw; Thu, 30 May 2019 13:51:48 -0400
+Received: from mail-eopbgr720114.outbound.protection.outlook.com
+ ([40.107.72.114]:3632 helo=NAM05-CO1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <fzj28@psu.edu>) id 1hWPDM-0000WW-Oa
+ for usrp-users@lists.ettus.com; Thu, 30 May 2019 13:51:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=PennStateOffice365.onmicrosoft.com;
+ s=selector1-PennStateOffice365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=64/LEIGnr8RJzxAAsmcgN5n/FFTczqHsR1aQt1roZDE=;
+ b=eqf3K4EKcIGg6UYOT1i+zj2qMyy2weZQJo93cmJbeSZFNEg+Nxjg4YxvhXaBuD5SatECiCCvvbH5iXLdtGYOJQWMdofOhASwt3gjXtSCmU4K2qedD88HpPAmo2B2Egzdh3yuZiTbBXF70lQMU2bHBVlAUDnzomkbURbYB9S317Y=
+Received: from CY4PR02MB2647.namprd02.prod.outlook.com (10.173.40.139) by
+ CY4PR02MB2709.namprd02.prod.outlook.com (10.175.80.9) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.18; Thu, 30 May 2019 17:51:02 +0000
+Received: from CY4PR02MB2647.namprd02.prod.outlook.com
+ ([fe80::858e:30f5:e9d:bd78]) by CY4PR02MB2647.namprd02.prod.outlook.com
+ ([fe80::858e:30f5:e9d:bd78%9]) with mapi id 15.20.1922.021; Thu, 30 May 2019
+ 17:51:02 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: A problem on transmitting data using 5GHz
+Thread-Index: AQHVFw3318LFvAxTVE2UsO7HMrUPGw==
+Date: Thu, 30 May 2019 17:51:02 +0000
+Message-ID: <CY4PR02MB2647FF653200BAACB6D1102CAA180@CY4PR02MB2647.namprd02.prod.outlook.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is ) smtp.mailfrom=fzj28@psu.edu; 
+x-originating-ip: [130.203.38.20]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bf646fa3-822b-408d-e7a1-08d6e52761e8
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
+ SRVR:CY4PR02MB2709; 
+x-ms-traffictypediagnostic: CY4PR02MB2709:
+x-ms-exchange-purlcount: 3
+x-microsoft-antispam-prvs: <CY4PR02MB270990579CFB4E609EFFDE6CAA180@CY4PR02MB2709.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 00531FAC2C
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(39860400002)(396003)(366004)(346002)(376002)(136003)(40764003)(189003)(199004)(53754006)(606006)(8676002)(66476007)(81166006)(71200400001)(105004)(81156014)(66066001)(478600001)(66946007)(76116006)(73956011)(55016002)(6306002)(186003)(66446008)(66556008)(71190400001)(2351001)(2906002)(64756008)(966005)(7736002)(91956017)(88552002)(8936002)(3846002)(14454004)(6116002)(68736007)(7696005)(5640700003)(75432002)(786003)(19627405001)(86362001)(476003)(33656002)(53936002)(256004)(99286004)(2501003)(52536014)(54896002)(5660300002)(9686003)(486006)(6506007)(102836004)(74316002)(6436002)(4744005)(25786009)(6916009)(236005)(316002)(26005);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:CY4PR02MB2709;
+ H:CY4PR02MB2647.namprd02.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: psu.edu does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: NGp9oZGyH0a0Hn7zdIJJSzWVfYksuIwEzitGhI2C/vsPwfv/R+dDvOtzlSff/F5utYIhscg1T7rvbQsys6yoagEjMvaJ50ZMGIW9qUw25+QoXLrP/gwfrfe0TB5VzOVMzErqyAfp9gDAgWi6suE3AflZjSWmdU68v+0eci92zkNyDdcmnjYndTM9xJrNS9LJCJVQ+e22Gj/qax/GAGxEdFm2zUduPiILFg/mRIROKWd1w4ZX51v9jFSzoWZI6Xcn0Dc+1wplk2p1oz2qKGrAFW8+ggq8BwOzRbNDFCIEboeqPbpvAL9KfMesApSiBTN/14NBUH+E4Lolt5ngFBniMdWarqTpHr0Es2Aet5vdVs53pl/FHsapG/sBQneZp4gxu100tBapXNkMwhSkpZuc0YeuBvI/1rfmfL3SQucanXY=
+MIME-Version: 1.0
+X-OriginatorOrg: psu.edu
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf646fa3-822b-408d-e7a1-08d6e52761e8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 May 2019 17:51:02.7141 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7cf48d45-3ddb-4389-a9c1-c115526eb52e
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fzj28@psu.edu
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR02MB2709
+Subject: [USRP-users] A problem on transmitting data using 5GHz
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -67,9 +78,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Content-Type: multipart/mixed; boundary="===============8616155296573394896=="
+From: "Jiang, Fengyang via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Jiang, Fengyang" <fzj28@psu.edu>
+Content-Type: multipart/mixed; boundary="===============0774091060511737115=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,108 +94,95 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8616155296573394896==
+--===============0774091060511737115==
+Content-Language: zh-CN
 Content-Type: multipart/alternative;
- boundary=e972419bde304cba9f56cd04c4f40411
+	boundary="_000_CY4PR02MB2647FF653200BAACB6D1102CAA180CY4PR02MB2647namp_"
 
---e972419bde304cba9f56cd04c4f40411
-Content-Type: text/plain
+--_000_CY4PR02MB2647FF653200BAACB6D1102CAA180CY4PR02MB2647namp_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-Hi Dylan - From what you've posted, it sounds like you have an issue with the HackRF One, not the NI USRP; could be configuring it, or some runtime issue; really not clear. Given that this is the -USRP- users list, I'd advise you to look to GSG about what's going on; this website provides some good options for someone looking for such help: < https://greatscottgadgets.com/hackrf/ >. Hope this is useful! - MLD
+SGkgQWxsLA0KDQpJJ20gdXNpbmcgdHdvIHVzcnBzIHRvIHRyYW5zbWl0IGEgcHJlYW1ibGUgZnJv
+bSBvbmUgdG8gdGhlIG90aGVyLiBXaGVuIEkgdXNlIDIuNDM3R0h6LCAyLjQ1R0h6IGFuZCAyLjVH
+SHosIGl0IHdvcmtzLCBidXQgaWYgSSB1c2UgNUdIeiwgNS4zR0h6LCA1LjhHSHosIEkgd2lsbCBn
+ZXQgbm90aGluZyBhdCB0aGUgcmVjZWl2ZXIgc2lkZS4gV2hhdCBjb3VsZCBiZSB0aGUgcHJvYmxl
+bT8NCg0KRGV2aWNlcyBiZWluZyB1c2VkOg0KVVNSUCBOMjEwLiBodHRwczovL3d3dy5ldHR1cy5j
+b20vYWxsLXByb2R1Y3RzL1VOMjEwLUtJVC8NCkNCWCBVU1JQIERhdWdodGVyYm9hcmQgKDEuMkdI
+eiAtIDZHSHopIGh0dHBzOi8vd3d3LmV0dHVzLmNvbS9hbGwtcHJvZHVjdHMvQ0JYLw0KVkVSVDI0
+NTAgQW50ZW5uYSAoMi40IC0gMi41R0h6ICYgNC45IC0gNS45R0h6KSBodHRwczovL3d3dy5ldHR1
+cy5jb20vYWxsLXByb2R1Y3RzL1ZFUlQyNDUwLw0KDQpSZWFsbHkgdGhhbmtzIGZvciB5b3VyIGhl
+bHAhDQoNCkJlc3QgcmVnYXJkcywNCkZlbmd5YW5nDQo=
 
-On Thu, May 30, 2019, at 9:59 AM, Dylan Feron via USRP-users wrote:
-> Hello,
-> 
-> I am using a HackRF One to transmit signals to an USRP NI 2921 which receives the signal. Whatever the signal I am sending (sine, cosine, triangle,...) and whatever the frequency of the signal sent, I always obtain the same peak located at the same frequency (around the frequency carrier shifted of 50 kHz) in the FFT received on the NI 2921. 
-> I am using GNURadio Companion as the software processing the signals. Here is the message I obtain in the console of the transmitting signal on GRC : 
-> 
-> *Warning: failed to XInitThreads() linux; GNU C++ version 7.3.0; Boost_106501; UHD_003.010.003.000-0-unknown gr-osmosdr 0.1.4 (0.1.4) gnuradio 3.7.11 built-in sink types: uhd hackrf bladerf soapy redpitaya freesrp file Cannot connect to server socket err = No such file or directory Cannot connect to server request channel jack server is not running or cannot be started JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock Using HackRF One with firmware 2018.01.1*
-> **
-> Can somebody enlighten me? 
-> 
-> Thank you in advance,
-> Dylan
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> 
-
---e972419bde304cba9f56cd04c4f40411
-Content-Type: text/html
+--_000_CY4PR02MB2647FF653200BAACB6D1102CAA180CY4PR02MB2647namp_
+Content-Type: text/html; charset="gb2312"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.Mso=
-Normal,p.MsoNoSpacing{margin:0}</style></head><body><div style=3D"font-f=
-amily:Arial;">Hi&nbsp;Dylan - From what you've posted, it sounds like yo=
-u have an issue with the HackRF One, not the NI USRP; could be configuri=
-ng it, or some runtime issue; really not clear. Given that this is the -=
-USRP- users list, I'd advise you to look to GSG about what's going on; t=
-his website provides some good options for someone looking for such help=
-: &lt;&nbsp;<a href=3D"https://greatscottgadgets.com/hackrf/">https://gr=
-eatscottgadgets.com/hackrf/</a>&nbsp;&gt;. Hope this is useful! - MLD</d=
-iv><div style=3D"font-family:Arial;"><br></div><div style=3D"font-family=
-:Arial;"><span style=3D"font-family: &quot;Source Sans Pro&quot;, sans-s=
-erif;">On Thu, May 30, 2019, at 9:59 AM, Dylan Feron via USRP-users wrot=
-e:</span><br></div><blockquote type=3D"cite" id=3D"qt"><div dir=3D"ltr">=
-<div><span style=3D"font-family:Arial, Helvetica Neue, Helvetica, sans-s=
-erif" class=3D"font"><span style=3D"color:#242729" class=3D"colour"><spa=
-n style=3D"font-size:15px" class=3D"size">Hello,</span></span></span><br=
-></div><div><span style=3D"font-family:Arial, Helvetica Neue, Helvetica,=
- sans-serif" class=3D"font"><span style=3D"color:#242729" class=3D"colou=
-r"><span style=3D"font-size:15px" class=3D"size"></span></span></span><b=
-r></div><div><span style=3D"font-family:Arial, Helvetica Neue, Helvetica=
-, sans-serif" class=3D"font"><span style=3D"color:#242729" class=3D"colo=
-ur"><span style=3D"font-size:15px" class=3D"size">I am using a HackRF On=
-e to transmit signals to an USRP NI 2921 which receives the signal. What=
-ever the signal I am sending (sine, cosine, triangle,...) and whatever t=
-he frequency of the signal sent, I always obtain the same peak located a=
-t the same frequency (around the frequency carrier shifted of 50 kHz) in=
- the FFT received on the NI 2921.&nbsp;</span></span></span><br></div><s=
-pan style=3D"color:rgb(36, 39, 41)" class=3D"colour"><span style=3D"font=
--family:Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif" class=3D=
-"font"><span style=3D"font-size:15px" class=3D"size"><div style=3D""><sp=
-an style=3D"color:rgb(36, 39, 41)" class=3D"colour"><span style=3D"font-=
-family:Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif" class=3D=
-"font"><span style=3D"font-size:15px" class=3D"size">I am using GNURadio=
- Companion as the software processing the signals. Here is the message I=
- obtain in the console of the transmitting signal on GRC :&nbsp;</span><=
-/span></span><br></div><div style=3D""><br></div><div style=3D"font-fami=
-ly:Arial;"><i>Warning: failed to XInitThreads() linux; GNU C++ version 7=
-.3.0; Boost_106501; UHD_003.010.003.000-0-unknown gr-osmosdr 0.1.4 (0.1.=
-4) gnuradio 3.7.11 built-in sink types: uhd hackrf bladerf soapy redpita=
-ya freesrp file Cannot connect to server socket err =3D No such file or =
-directory Cannot connect to server request channel jack server is not ru=
-nning or cannot be started JackShmReadWritePtr::~JackShmReadWritePtr - I=
-nit not done for -1, skipping unlock JackShmReadWritePtr::~JackShmReadWr=
-itePtr - Init not done for -1, skipping unlock Using HackRF One with fir=
-mware 2018.01.1</i><br></div></span></span></span><div><span style=3D"co=
-lor:rgb(36, 39, 41)" class=3D"colour"><span style=3D"font-family:Arial, =
-&quot;Helvetica Neue&quot;, Helvetica, sans-serif" class=3D"font"><span =
-style=3D"font-size:15px" class=3D"size"><i></i></span></span></span><br>=
-</div><div><span style=3D"color:rgb(36, 39, 41)" class=3D"colour"><span =
-style=3D"font-family:Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-=
-serif" class=3D"font"><span style=3D"font-size:15px" class=3D"size">Can =
-somebody enlighten me?&nbsp;</span></span></span><br></div><div><span st=
-yle=3D"color:rgb(36, 39, 41)" class=3D"colour"><span style=3D"font-famil=
-y:Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif" class=3D"fon=
-t"><span style=3D"font-size:15px" class=3D"size"></span></span></span><b=
-r></div><div><span style=3D"color:rgb(36, 39, 41)" class=3D"colour"><spa=
-n style=3D"font-family:Arial, &quot;Helvetica Neue&quot;, Helvetica, san=
-s-serif" class=3D"font"><span style=3D"font-size:15px" class=3D"size">Th=
-ank you in advance,</span></span></span><br></div><div><span style=3D"co=
-lor:rgb(36, 39, 41)" class=3D"colour"><span style=3D"font-family:Arial, =
-&quot;Helvetica Neue&quot;, Helvetica, sans-serif" class=3D"font"><span =
-style=3D"font-size:15px" class=3D"size">Dylan</span></span></span><br></=
-div></div><div>_______________________________________________<br></div>=
-<div>USRP-users mailing list<br></div><div>USRP-users@lists.ettus.com<br=
-></div><div>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ett=
-us.com<br></div><div><br></div></blockquote><div style=3D"font-family:Ar=
-ial;"><br></div></body></html>
---e972419bde304cba9f56cd04c4f40411--
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi All,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I'm using two usrps to transmit a preamble from one to the other. When I us=
+e 2.437GHz, 2.45GHz and 2.5GHz, it works, but if I use 5GHz, 5.3GHz, 5.8GHz=
+, I will get nothing at the receiver side. What could be the problem?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Devices being used:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+USRP N210.&nbsp;<a href=3D"https://www.ettus.com/all-products/UN210-KIT/" i=
+d=3D"LPNoLP858021">https://www.ettus.com/all-products/UN210-KIT/</a></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+CBX USRP Daughterboard (1.2GHz - 6GHz)&nbsp;<a href=3D"https://www.ettus.co=
+m/all-products/CBX/" id=3D"LPNoLP477081">https://www.ettus.com/all-products=
+/CBX/</a></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+VERT2450 Antenna (2.4 - 2.5GHz &amp; 4.9 - 5.9GHz) <a href=3D"https://www.e=
+ttus.com/all-products/VERT2450/" id=3D"LPNoLP644247">
+https://www.ettus.com/all-products/VERT2450/</a><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Really thanks for your help!</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Best regards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Fengyang</div>
+</body>
+</html>
+
+--_000_CY4PR02MB2647FF653200BAACB6D1102CAA180CY4PR02MB2647namp_--
 
 
---===============8616155296573394896==
+--===============0774091060511737115==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -195,5 +193,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8616155296573394896==--
+--===============0774091060511737115==--
 
