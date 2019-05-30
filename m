@@ -2,53 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6AB02EAF6
-	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2019 05:06:41 +0200 (CEST)
-Received: from [::1] (port=55426 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631822F76C
+	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2019 08:21:32 +0200 (CEST)
+Received: from [::1] (port=36814 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hWBOp-0007eT-Oe; Wed, 29 May 2019 23:06:39 -0400
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:36238)
+	id 1hWERK-0005Dx-4c; Thu, 30 May 2019 02:21:26 -0400
+Received: from mail-lf1-f45.google.com ([209.85.167.45]:41523)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <masdrgs@gmail.com>) id 1hWBOl-0007Wm-Sc
- for USRP-users@lists.ettus.com; Wed, 29 May 2019 23:06:35 -0400
-Received: by mail-qt1-f173.google.com with SMTP id u12so5277920qth.3
- for <USRP-users@lists.ettus.com>; Wed, 29 May 2019 20:06:15 -0700 (PDT)
+ (Exim 4.92) (envelope-from <adray0001@gmail.com>) id 1hWERG-00058T-Cq
+ for usrp-users@lists.ettus.com; Thu, 30 May 2019 02:21:22 -0400
+Received: by mail-lf1-f45.google.com with SMTP id 136so4057035lfa.8
+ for <usrp-users@lists.ettus.com>; Wed, 29 May 2019 23:21:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=V7aO1cuWJT7zjyYi4/sUD1FA7Eynxf9nSBJHl79T220=;
- b=s/2+6v3KogCfSnUwZ9uybx/h0WlHcJiy6bTi6cHDdIB7WqlcdlAc7wWzYbm/TPgWFC
- Dn7JDR7Gm/oyaGty4NSwKK7aROMseAknZA4Wtojgfsxh5ky7yyUikW6w9IQZidSC0hA1
- Dr83sXwc6XhPlPcKs6F9hTsJojITmY5gKp7HyVCtNNSIj+grSvzbl8xdOnxnqytjt1gh
- 3ly0Hxt9luHjMUGh3alXky3xOcSCgHN0DuxrGY8oZaJF68iWmYLKI5fnWpZ+3NnAMbOU
- Js58nGpljSodEus18JkSs2Ktp5yCy1yL0ZaLhHia01L1xLGBSBaQhcb/qPR3TAjfxrav
- BjVQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=6C/8zPT3LtIrAvNJFD4xI0e7ID1S/2z0Y8hmneUGDDE=;
+ b=YfT/+78FqLsmXM3cGsHsoFwnA1dvpCxRhwigzIwupuD/4NexXBoFyECE6TNcfUN71f
+ d5WUMRJqhtBRlemRXpOFb5uUzpEFs6VKiieqIc0mjlyUBb33BJpKq4iCCcNUkFrz91Ml
+ myshya5d/ZyY/CQqV/jXpm5ZnGOuxnjmzZp0CpTwUzzsXcWcuvUAhEsNKcpA47Ex5sYj
+ aMxoTi2mC2/uJBMw1aAb3X8buT0ku+rhlJIzvGn1A4tjR4lte2FGHewu6ByJo5vHTRDM
+ k+isFI6zATv149VBqVqggnXuak/WlLQpZbFZtaPsC5aAtyUsS6W0Ut3mluJgHT1G55DU
+ JcWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=V7aO1cuWJT7zjyYi4/sUD1FA7Eynxf9nSBJHl79T220=;
- b=YvpQ8O3aI0UOIxA3xO6gdXZ/AcS8Ox1KLvoupPMuF0NvaB9znMZmuHbQAqorrMWL0Z
- yMLmytvzc1zrSpXFJycfYvcMLgyUGJeFfF41/YYYyWRObQr3qVvf2aFq9d+uiqqgJN8Z
- pLHna2Zuuw2W4UudAML6DTjjf4vjlteilWnEYibn+vFgv/iiO9659NhfTNX6OauJMyYB
- jVDgqbFbLkufRhm8jiWwQ9Tu7+auKvFDcvEaudjJsS6cTD3v99EDdKXjIbDm5KMhyC9S
- pXEvea8j9zcF2VRK0sdSrLq8nhK8llp7NCgNkciFM0EfK2qWoVGf+gmo2tjqxu84LeN/
- puoA==
-X-Gm-Message-State: APjAAAWQu5Vc5gadDQzY3cP6HVLb39PYrOMMOHKdv1kIBlWJYCUU+LSC
- +uJn+XdiDhu6VOY3snlwBEOdptHKF+TP+xa6HBSl6bMt
-X-Google-Smtp-Source: APXvYqwGX9TBPZgUNQB8wCWPUBNaE3nK0j7ZzEM4/KH0SygemIH7WX0k8sNV1oSjZogJDpwbnO52ix3DWARSCKzE1HM=
-X-Received: by 2002:aed:3bcf:: with SMTP id s15mr1262768qte.105.1559185555171; 
- Wed, 29 May 2019 20:05:55 -0700 (PDT)
+ :message-id:subject:to;
+ bh=6C/8zPT3LtIrAvNJFD4xI0e7ID1S/2z0Y8hmneUGDDE=;
+ b=htGiFaIrQk72SSuqQo2+ZdWAT25Rl+GdGFAq6LQKRSpmmRHusv/DL85nPMr/CmQGdr
+ EI5frPnysxEC1kaWq47D35YY13qApQaowsiuzzuZtVN1vY0g6cahf/zkRbcqUTyszami
+ D11AcRvavrpwsMpnUz1JiPMYtdI35a7GzTzM9TWDSFIGCHpe8LFoWeDaOQ/4zerJe905
+ tZIm9orArQWaIUmqaPRcX5EXBT9O2+HSJv+abGN+vQdoqM/DdXYik7HKBbWs7XswKtds
+ J2QyghBa/gOa8AiIVvYglXl8+mPDx0NsLa1rj6qsaVjzgU0fRYJNugIpxKuk9jPhUA1/
+ MYPQ==
+X-Gm-Message-State: APjAAAVXxnfUqG0Fo7ExbUausZh90ICWFa2xCJEy+TlWZCvaGrmzPUo4
+ YbOfUPHGfxH4GgDqLADnIC+Qxc3uIC1+5MZKrvc=
+X-Google-Smtp-Source: APXvYqybTsc6VCkEaKNssIPV27TSIlxwdMBOjBZJLVSE46VDTGcur6sgMdB7ohNXFeqrwZhEBUUoi+PF15N1z+fuhiA=
+X-Received: by 2002:ac2:5490:: with SMTP id t16mr1056853lfk.154.1559197240907; 
+ Wed, 29 May 2019 23:20:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAH2gDtmquSDVaR3yyZWW8Ri-KmXnxrREL6oPEnDWKejkiDGN9w@mail.gmail.com>
- <b1c1fd3ce159c46e19c09f914a1312315e5171e0.camel@ettus.com>
- <CAH2gDtmfdzkjpGZP7VYBjECiFTWjfpN+23wHAQfwaSoCASfu+A@mail.gmail.com>
- <40288cfce222e4cc01de551dbe26236b4bcb66d1.camel@ettus.com>
-In-Reply-To: <40288cfce222e4cc01de551dbe26236b4bcb66d1.camel@ettus.com>
-Date: Wed, 29 May 2019 17:05:43 -1000
-Message-ID: <CAH2gDt=8N9gS7eUPYda0xY3ejhW-BO4Zc-wvPSgE3R94UuytXA@mail.gmail.com>
-To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-Subject: Re: [USRP-users] Running network mode on E310 and N300
+References: <CAPRRyxvvqL9BcOW3zWNVHpuo5ZqU5ML7kGjaig9mDbxB0+jJog@mail.gmail.com>
+ <5CEBFCCE.5040702@gmail.com>
+ <CAPRRyxvzjOHxFgwtUh4iRRc3a8y_1W8KOLO82O--OrrzqKT2Sw@mail.gmail.com>
+ <5CEDD070.3000101@gmail.com>
+ <CAPRRyxsmaWpU9Z8bettAgavkmfqeZ6voceM8ajxdjkPM=ki2jQ@mail.gmail.com>
+ <CAPRRyxu2m=u9QAyCkBQ76DZN1vKy-FP9soRiMO3Oib9JZcvjXw@mail.gmail.com>
+ <5CEEE3D1.1050607@gmail.com>
+In-Reply-To: <5CEEE3D1.1050607@gmail.com>
+Date: Thu, 30 May 2019 09:20:47 +0300
+Message-ID: <CAPRRyxsyBYJ=7kFpdq07ChH43uc1E5hCO41TH0c7NcncpM6k8Q@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
+ usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Fwd: How to escape from overflow error?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -60,10 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: MASDR GS via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: MASDR GS <masdrgs@gmail.com>
-Cc: USRP-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============5570729109711241376=="
+From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3848343227393745664=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,284 +80,517 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5570729109711241376==
-Content-Type: multipart/alternative; boundary="00000000000027ad7d058a122d23"
+--===============3848343227393745664==
+Content-Type: multipart/alternative; boundary="000000000000addcff058a14e580"
 
---00000000000027ad7d058a122d23
+--000000000000addcff058a14e580
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thank you! I used the ettus reference below to create two libraries, one
-for each USRP.
-https://kb.ettus.com/Building_and_Installing_UHD_and_GNU_Radio_to_a_Custom_=
-Prefix
+Unfortunately, Python is the only programming language I know. And I
+somehow difficult to imagine how without delay delays frequency tuning and
+continuous reading. I think that the NUM_AND_DONE mode will help me, but I
+do not know how to insist on it correctly and whether my reasoning on this
+is correct. Can you tell me some way out of this situation? I think I'm not
+the first to want to implement such a project on Ettus boards.
 
-On Tue, May 21, 2019 at 11:20 AM Marcus M=C3=BCller <marcus.mueller@ettus.c=
-om>
-wrote:
+=D1=81=D1=80, 29 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 22:56, Marcus D. Le=
+ech via USRP-users <
+usrp-users@lists.ettus.com>:
 
-> Hm, if you have to provide a uniform interface, but need to use
-> different versions of UHD underneath: What about simply building two
-> identical libraries that use the two necessary versions of UHD, and
-> only runtime-link (plugin-style) either shared object at run time,
-> depending on which USRP you need to talk to?
->
-> Best regards,
-> Marcus
-> On Mon, 2019-05-20 at 12:45 -1000, MASDR GS wrote:
-> > Hi Marcus,
-> >
-> > Thank you for your response. Unfortunately our N300s have Rev H
-> > motherboards so version 3.12 doesn't seem to be an option for us.
-> >
-> > Regarding our application, we have been using the E310s for our
-> > waveform application development over the past few years and recently
-> > received two new N300s to provide improved performance in network
-> > mode.  We are currently working with one license for a software
-> > development tool that restricts us to network mode only due to
-> > licensing restrictions.  One of our project objectives is to develop
-> > portable, hardware agnostic waveform applications so that we can
-> > conceivably use our applications on various SDR platforms.  Therefore
-> > we'd like to have the flexibility to switch between both the e310 and
-> > N300 for development purposes and demonstrate software portability.
-> > Appreciate any suggestions/feedback on alternative options you may
-> > have that would allow us to use both SDRs from one host machine.
-> >
-> >
-> >
-> >
-> >
-> > On Sun, May 19, 2019 at 8:34 AM Marcus M=C3=BCller <
-> > marcus.mueller@ettus.com> wrote:
-> > > Hi!
-> > >
-> > > Network mode on E310 was highly undesirable (reliable rates below
-> > > 2MS/s) and not compatible with RFNoC, and hence has been disabled
-> > > in
-> > > recent versions of UHD. I've always considered Network Mode on the
-> > > E310
-> > > to be a testing tool, not something you'd want to do for streaming,
-> > > to
-> > > be completely honest!
-> > >
-> > > The N300's network interfacing is fundamentally different and
-> > > optimized
-> > > for network streaming. The typical use case for the N300 would use
-> > > one
-> > > of the (up to 10Gb/s) SFP+ ports for network sample streaming, and
-> > > the
-> > > 1Gb/s RJ45 ethernet port to "talk" to the ARM host inside, for
-> > > control.
-> > > Versions of UHD supporting the N300 start at 3.12.0.0 (but only for
-> > > hardware revisions up to motherboard revision G; you'll need
-> > > 3.13.0.2
-> > > for that); starting with 3.13.0.0, there is no network mode on the
-> > > E310.
-> > > I'll be honest and say: while this sounds like you could be using
-> > > 3.12.0.0 to run your E310 in network mode and still use your N300
-> > > (given it's not rev G or later), that would be a suboptimal
-> > > solution
-> > > considering the N3xx improvements that were introduced with 3.13.
-> > > and
-> > > 3.14.0.0.
-> > >
-> > > So, maybe you could elaborate on the application you're having for
-> > > the
-> > > E310 network mode in combination with N300? There might be an easy
-> > > way
-> > > around the obstacle you're encountering, but I don't really know
-> > > what
-> > > you're planning to do from here.
-> > >
-> > > Best regards,
-> > > Marcus
-> > >
-> > > On Wed, 2019-05-15 at 12:53 -1000, MASDR GS via USRP-users wrote:
-> > > > Would it be possible to run network mode on both E310 and N300
-> > > using
-> > > > the latest UHD driver v3.14.0?
-> > > >
-> > > > The N300 requires v3.12.0 or greater to run host mode and I
-> > > currently
-> > > > have release-4 with a UHD version v3.9.2 on the E310. But the
-> > > > condition to run network mode is that the UHD drivers of radio
-> > > and
-> > > > host machine must match. I couldn't find any information on how
-> > > to
-> > > > update the E310 UHD drivers directly, but I have tried creating a
-> > > SDK
-> > > > version using release-4 building UHD v3.14.0 but wasn't
-> > > successful
-> > > > running network mode with E310. Any suggestions or help would be
-> > > > really appreciated.
-> > > > _______________________________________________
-> > > > USRP-users mailing list
-> > > > USRP-users@lists.ettus.com
-> > > >
-> > > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> > >
+> On 05/29/2019 03:29 AM, Ivan Zahartchuk via USRP-users wrote:
 >
 >
+>
+> Yes, I expanded the buffer as suggested in the driver. I made a test file
+> for working with the board, here is its code.
+>
+> import uhdimport numpy as npfrom uhd import libpyuhd as libimport timeimp=
+ort scipy.signal as signalimport pyqtgraph as pg
+> pw =3D pg.plot()import time
+>
+> num_samps=3D363*5usrp =3D uhd.usrp.MultiUSRP('')
+> usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec('A:0'))print(usrp.get_pp_stri=
+ng())
+> usrp.set_rx_rate(25e6)print(usrp.get_rx_rate()/1e6)
+>
+> stream_args=3Duhd.usrp.StreamArgs("fc32",'sc16')
+> stream_args.channels=3D[0]
+> rx_streamer=3Dusrp.get_rx_stream(stream_args)
+> stream_cmd=3Duhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
+> stream_cmd.num_samps=3Dnum_samps
+> stream_cmd.stream_now=3DFalseusrp.set_time_now(uhd.types.TimeSpec(0.0))
+> stream_cmd.time_spec=3Duhd.types.TimeSpec(0.001)
+> rx_streamer.issue_stream_cmd(stream_cmd)
+> md =3D uhd.types.RXMetadata()
+> buffer_samps =3D rx_streamer.get_max_num_samps()
+> recv_buffer =3D np.zeros((len([0]), buffer_samps), dtype=3Dnp.complex64)
+> result =3D np.empty((len([0]), num_samps), dtype=3Dnp.complex64)
+>
+> def fft_slices(x):
+>     #        x =3D self.butter_bandpass_filter(x, -12.5e6, 12.5e6, 100e6,=
+ order=3D6)    window =3D signal.hanning(363*5)
+>     fx =3D np.fft.fftshift(np.fft.fft(window[np.newaxis, :] * x, axis=3D1=
+))
+>
+>     Pxx =3D np.abs(fx) ** 2 / (np.abs(window) ** 2).sum()
+>     Pxx[:, 1:-1] *=3D 2    Pxx =3D 20 * np.log10(Pxx ** 0.5)
+>     return Pxxdef fft_test(x):
+>
+>         sample_freq,power=3Dsignal.welch(x,fs=3D25e6,window=3D"hamm", npe=
+rseg=3Dnum_samps,scaling=3D"spectrum")
+>         power=3Dnp.fft.fftshift(power)/1.5        return 10 * np.log10(po=
+wer)
+>
+>
+>
+> while True:
+>
+>     result =3D np.empty((len([0]), num_samps), dtype=3Dnp.complex64)
+>     k =3D uhd.types.TuneRequest(np.random.randint(900e6, 1000e6))
+>     usrp.set_rx_freq(k)
+>     while usrp.get_rx_sensor("lo_locked").to_bool() !=3D True:
+>         continue    #print(usrp.get_rx_freq())    recv_samps =3D 0    whi=
+le recv_samps < num_samps:
+>
+>         samps =3D rx_streamer.recv(recv_buffer, md)
+>         time.sleep(0.001)
+>
+>         if md.error_code !=3D lib.types.rx_metadata_error_code.none:
+>             print(md.strerror())
+>         if samps:
+>             real_samps =3D min(num_samps - recv_samps, samps)
+>             result[:, recv_samps:recv_samps + real_samps] =3D recv_buffer=
+[:, 0:real_samps]
+>             recv_samps +=3D real_samps
+>         usrp.set_time_now(uhd.types.TimeSpec(0.0))
+>         stream_cmd.time_spec =3D uhd.types.TimeSpec(0.001)
+>         rx_streamer.issue_stream_cmd(stream_cmd)
+>
+>     k1=3Dfft_test(result).ravel()
+>
+>     if str(k1[0]) =3D=3D 'nan':
+>         print(k1[0])
+>     else:
+>         pw.plot(k1, clear=3DTrue)
+>         pg.QtGui.QApplication.processEvents()
+>
+> But as far as I still understand, in this case I open a continuous stream=
+ of reading. And I would like to read samples on request since I need to tu=
+ne the frequency and type an array with several subranges.
+>
+> def test_reciev_2(self, freq, bandwich):
+>     #complex_buffs =3D np.empty((len([0]), self.samples * len(freq)))    =
+buffs =3D np.empty((len([0]), self.samples * len(freq)))
+>     result =3D np.empty((len([0]), self.samples), dtype=3Dnp.complex64)
+>
+>     for i, freqq in enumerate(freq):
+>
+>
+>         # self.usrp.set_rx_rate(bandwich[i])        k =3D uhd.types.TuneR=
+equest(freqq)
+>         # k.args(uhd.types.device_addr("mode_n=3Dinteger"))        self.u=
+srp.set_rx_freq(k,0)
+>
+>         self.streamer_rx.issue_stream_cmd(self.stream_cmd)
+>         while self.usrp.get_rx_sensor("lo_locked").to_bool() !=3D True:
+>             continue        recv_samps =3D 0        while recv_samps < se=
+lf.samples:
+>
+>             samps =3D self.streamer_rx.recv(self.recv_buff, self.metadata=
+_rx)
+>             if self.metadata_rx.error_code !=3D lib.types.rx_metadata_err=
+or_code.none:
+>                 print(self.metadata_rx.strerror())
+>             if samps:
+>                 real_samps =3D min(self.samples - recv_samps, samps)
+>                 result[:, recv_samps:recv_samps + real_samps] =3D self.re=
+cv_buff[:, 0:real_samps]
+>                 recv_samps +=3D real_samps
+>         # print (self.usrp.get_rx_sensor('rssi'))        # print(self.str=
+eamer_rx.get_max_num_samps())        # self.stream_cmd.time_spec =3D lib.ty=
+pes.time_spec(0)        #self.stream_cmd.stream_now =3D False        #self.=
+stream_cmd =3D lib.types.stream_cmd(lib.types.stream_mode.stop_cont)       =
+ #self.streamer_rx.issue_stream_cmd(self.stream_cmd)        while samps:
+>             samps =3D self.streamer_rx.recv(self.recv_buff, self.metadata=
+_rx)
+>
+>         #complex_buffs =3D np.append(complex_buffs, result).ravel()      =
+  # correct_result=3Dresult        #correct_result_1 =3D result - (np.mean(=
+result.real) + np.mean(result.imag) * 1j)        # correct_result.real=3Dre=
+sult.real-np.mean(result.real)        # correct_result.imag =3D result.imag=
+ - np.mean(result.imag)        PSD =3D self.fft_test(result)
+>
+>         # PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])        buffs[:, i * va=
+lue.samples:value.samples * i + value.samples] =3D PSD[:, 0:value.samples]
+>
+>     return complex_buffs, buffs.ravel()  # np.append(buffs[value.samples:=
+],buffs[:value.samples])
+>
+>
+> You are going to need to reconsider your code structure.
+>
+>
+> (A) The Python API is *NOT* the way to process high-sample-rate data (and
+> 25Msps is high-sample-rate in this context)
+> (B) You intermingle tuning and (continuous) streaming in the same thread,
+> AND, insert small sleeps after receiving samples--at
+>       25Msps, every 1millisecond you aren't "paying attention" to the
+> receive stream, there's 25,000 samples building up.
+>       Tuning takes a finite amount of time--it's a fundamentally analog
+> process, so several milliseconds of latency for tuning
+>       is not unusual.
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---00000000000027ad7d058a122d23
+--000000000000addcff058a14e580
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thank you! I used the ettus reference below to create two =
-libraries, one for each USRP.<div><a href=3D"https://kb.ettus.com/Building_=
-and_Installing_UHD_and_GNU_Radio_to_a_Custom_Prefix">https://kb.ettus.com/B=
-uilding_and_Installing_UHD_and_GNU_Radio_to_a_Custom_Prefix</a><br></div></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Tue, May 21, 2019 at 11:20 AM Marcus M=C3=BCller &lt;<a href=3D"mailto:mar=
-cus.mueller@ettus.com">marcus.mueller@ettus.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">Hm, if you have to provide a=
- uniform interface, but need to use<br>
-different versions of UHD underneath: What about simply building two<br>
-identical libraries that use the two necessary versions of UHD, and<br>
-only runtime-link (plugin-style) either shared object at run time,<br>
-depending on which USRP you need to talk to?<br>
-<br>
-Best regards,<br>
-Marcus<br>
-On Mon, 2019-05-20 at 12:45 -1000, MASDR GS wrote:<br>
-&gt; Hi Marcus,<br>
-&gt; <br>
-&gt; Thank you for your response. Unfortunately our N300s have Rev H<br>
-&gt; motherboards so version 3.12 doesn&#39;t seem to be an option for us.<=
-br>
-&gt; <br>
-&gt; Regarding our application, we have been using the E310s for our<br>
-&gt; waveform application development over the past few years and recently<=
-br>
-&gt; received two new N300s to provide improved performance in network<br>
-&gt; mode.=C2=A0 We are currently working with one license for a software<b=
-r>
-&gt; development tool that restricts us to network mode only due to<br>
-&gt; licensing restrictions.=C2=A0 One of our project objectives is to deve=
-lop<br>
-&gt; portable, hardware agnostic waveform applications so that we can<br>
-&gt; conceivably use our applications on various SDR platforms.=C2=A0 There=
-fore<br>
-&gt; we&#39;d like to have the flexibility to switch between both the e310 =
-and<br>
-&gt; N300 for development purposes and demonstrate software portability. <b=
-r>
-&gt; Appreciate any suggestions/feedback on alternative options you may<br>
-&gt; have that would allow us to use both SDRs from one host machine.=C2=A0=
- <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0<br>
-&gt; <br>
-&gt; On Sun, May 19, 2019 at 8:34 AM Marcus M=C3=BCller &lt;<br>
-&gt; <a href=3D"mailto:marcus.mueller@ettus.com" target=3D"_blank">marcus.m=
-ueller@ettus.com</a>&gt; wrote:<br>
-&gt; &gt; Hi!<br>
-&gt; &gt; <br>
-&gt; &gt; Network mode on E310 was highly undesirable (reliable rates below=
-<br>
-&gt; &gt; 2MS/s) and not compatible with RFNoC, and hence has been disabled=
-<br>
-&gt; &gt; in<br>
-&gt; &gt; recent versions of UHD. I&#39;ve always considered Network Mode o=
-n the<br>
-&gt; &gt; E310<br>
-&gt; &gt; to be a testing tool, not something you&#39;d want to do for stre=
-aming,<br>
-&gt; &gt; to<br>
-&gt; &gt; be completely honest!<br>
-&gt; &gt; <br>
-&gt; &gt; The N300&#39;s network interfacing is fundamentally different and=
-<br>
-&gt; &gt; optimized<br>
-&gt; &gt; for network streaming. The typical use case for the N300 would us=
-e<br>
-&gt; &gt; one<br>
-&gt; &gt; of the (up to 10Gb/s) SFP+ ports for network sample streaming, an=
-d<br>
-&gt; &gt; the<br>
-&gt; &gt; 1Gb/s RJ45 ethernet port to &quot;talk&quot; to the ARM host insi=
-de, for<br>
-&gt; &gt; control. <br>
-&gt; &gt; Versions of UHD supporting the N300 start at 3.12.0.0 (but only f=
-or<br>
-&gt; &gt; hardware revisions up to motherboard revision G; you&#39;ll need<=
-br>
-&gt; &gt; 3.13.0.2<br>
-&gt; &gt; for that); starting with 3.13.0.0, there is no network mode on th=
-e<br>
-&gt; &gt; E310.<br>
-&gt; &gt; I&#39;ll be honest and say: while this sounds like you could be u=
-sing<br>
-&gt; &gt; 3.12.0.0 to run your E310 in network mode and still use your N300=
-<br>
-&gt; &gt; (given it&#39;s not rev G or later), that would be a suboptimal<b=
-r>
-&gt; &gt; solution<br>
-&gt; &gt; considering the N3xx improvements that were introduced with 3.13.=
-<br>
-&gt; &gt; and<br>
-&gt; &gt; 3.14.0.0.<br>
-&gt; &gt; <br>
-&gt; &gt; So, maybe you could elaborate on the application you&#39;re havin=
-g for<br>
-&gt; &gt; the<br>
-&gt; &gt; E310 network mode in combination with N300? There might be an eas=
-y<br>
-&gt; &gt; way<br>
-&gt; &gt; around the obstacle you&#39;re encountering, but I don&#39;t real=
-ly know<br>
-&gt; &gt; what<br>
-&gt; &gt; you&#39;re planning to do from here.<br>
-&gt; &gt; <br>
-&gt; &gt; Best regards,<br>
-&gt; &gt; Marcus<br>
-&gt; &gt; <br>
-&gt; &gt; On Wed, 2019-05-15 at 12:53 -1000, MASDR GS via USRP-users wrote:=
-<br>
-&gt; &gt; &gt; Would it be possible to run network mode on both E310 and N3=
-00<br>
-&gt; &gt; using<br>
-&gt; &gt; &gt; the latest UHD driver v3.14.0?<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; The N300 requires v3.12.0 or greater to run host mode and I<=
-br>
-&gt; &gt; currently<br>
-&gt; &gt; &gt; have release-4 with a UHD version v3.9.2 on the E310. But th=
-e<br>
-&gt; &gt; &gt; condition to run network mode is that the UHD drivers of rad=
-io<br>
-&gt; &gt; and<br>
-&gt; &gt; &gt; host machine must match. I couldn&#39;t find any information=
- on how<br>
-&gt; &gt; to<br>
-&gt; &gt; &gt; update the E310 UHD drivers directly, but I have tried creat=
-ing a<br>
-&gt; &gt; SDK<br>
-&gt; &gt; &gt; version using release-4 building UHD v3.14.0 but wasn&#39;t<=
-br>
-&gt; &gt; successful<br>
-&gt; &gt; &gt; running network mode with E310. Any suggestions or help woul=
-d be<br>
-&gt; &gt; &gt; really appreciated.<br>
-&gt; &gt; &gt; _______________________________________________<br>
-&gt; &gt; &gt; USRP-users mailing list<br>
-&gt; &gt; &gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_bla=
-nk">USRP-users@lists.ettus.com</a><br>
-&gt; &gt; &gt; <br>
-&gt; &gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
-ts.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/m=
-ailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt; &gt; <br>
-<br>
+<div dir=3D"ltr"><span class=3D"gmail-tlid-translation gmail-translation" l=
+ang=3D"en"><span title=3D"">Unfortunately, Python is the only programming l=
+anguage I know.</span> <span title=3D"">And I somehow difficult to imagine =
+how without delay delays frequency tuning and continuous reading.</span> <s=
+pan title=3D"">I think that the NUM_AND_DONE mode will help me, but I do no=
+t know how to insist on it correctly and whether my reasoning on this is co=
+rrect.</span> <span title=3D"">Can you tell me some way out of this situati=
+on?</span> <span title=3D"" class=3D"gmail-">I think I&#39;m not the first =
+to want to implement such a project on Ettus boards.</span></span></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=D1=81=D1=
+=80, 29 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 22:56, Marcus D. Leech via U=
+SRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@list=
+s.ettus.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div class=3D"gmail-m_7720495069907110318moz-cite-prefix">On 05/29/2019=
+ 03:29 AM, Ivan Zahartchuk
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr"><br>
+        <div class=3D"gmail_quote"><br>
+          <div dir=3D"ltr">
+            <div><span class=3D"gmail-m_7720495069907110318m_-9075795585464=
+824595gmail-tlid-translation gmail-m_7720495069907110318m_-9075795585464824=
+595gmail-translation" lang=3D"en"><span title=3D"">Yes, I expanded the buff=
+er as suggested in
+                  the driver.</span> <span title=3D"" class=3D"gmail-m_7720=
+495069907110318m_-9075795585464824595gmail-">I made a test
+                  file for working with the board, here is its code.</span>=
+</span></div>
+            <div>
+              <pre style=3D"background-color:rgb(255,255,255);color:rgb(0,0=
+,0);font-family:&quot;DejaVu Sans Mono&quot;"><span style=3D"color:rgb(0,0,=
+128);font-weight:bold">import </span>uhd
+<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>numpy <sp=
+an style=3D"color:rgb(0,0,128);font-weight:bold">as </span>np
+<span style=3D"color:rgb(0,0,128);font-weight:bold">from </span>uhd <span s=
+tyle=3D"color:rgb(0,0,128);font-weight:bold">import </span>libpyuhd <span s=
+tyle=3D"color:rgb(0,0,128);font-weight:bold">as </span>lib
+<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>time
+<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>scipy.sig=
+nal <span style=3D"color:rgb(0,0,128);font-weight:bold">as </span>signal
+<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>pyqtgraph=
+ <span style=3D"color:rgb(0,0,128);font-weight:bold">as </span>pg
+pw =3D pg.plot()
+<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>time
+
+num_samps=3D<span style=3D"color:rgb(0,0,255)">363</span>*<span style=3D"co=
+lor:rgb(0,0,255)">5
+</span>usrp =3D uhd.usrp.MultiUSRP(<span style=3D"color:rgb(0,128,0);font-w=
+eight:bold">&#39;&#39;</span>)
+usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec(<span style=3D"color:rgb(0,128,=
+0);font-weight:bold">&#39;A:0&#39;</span>))
+<span style=3D"color:rgb(0,0,128);font-weight:bold">print</span>(usrp.get_p=
+p_string())
+usrp.set_rx_rate(<span style=3D"color:rgb(0,0,255)">25e6</span>)
+<span style=3D"color:rgb(0,0,128);font-weight:bold">print</span>(usrp.get_r=
+x_rate()/<span style=3D"color:rgb(0,0,255)">1e6</span>)
+
+stream_args=3Duhd.usrp.StreamArgs(<span style=3D"color:rgb(0,128,0);font-we=
+ight:bold">&quot;fc32&quot;</span>,<span style=3D"color:rgb(0,128,0);font-w=
+eight:bold">&#39;sc16&#39;</span>)
+stream_args.channels=3D[<span style=3D"color:rgb(0,0,255)">0</span>]
+rx_streamer=3Dusrp.get_rx_stream(stream_args)
+stream_cmd=3Duhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
+stream_cmd.num_samps=3Dnum_samps
+stream_cmd.stream_now=3D<span style=3D"color:rgb(0,0,128)">False
+</span>usrp.set_time_now(uhd.types.TimeSpec(<span style=3D"color:rgb(0,0,25=
+5)">0.0</span>))
+stream_cmd.time_spec=3Duhd.types.TimeSpec(<span style=3D"color:rgb(0,0,255)=
+">0.001</span>)
+rx_streamer.issue_stream_cmd(stream_cmd)
+md =3D uhd.types.RXMetadata()
+buffer_samps =3D rx_streamer.get_max_num_samps()
+recv_buffer =3D np.zeros((<span style=3D"color:rgb(0,0,128)">len</span>([<s=
+pan style=3D"color:rgb(0,0,255)">0</span>]), buffer_samps), <span style=3D"=
+color:rgb(102,0,153)">dtype</span>=3Dnp.complex64)
+result =3D np.empty((<span style=3D"color:rgb(0,0,128)">len</span>([<span s=
+tyle=3D"color:rgb(0,0,255)">0</span>]), num_samps), <span style=3D"color:rg=
+b(102,0,153)">dtype</span>=3Dnp.complex64)
+
+
+<span style=3D"color:rgb(0,0,128);font-weight:bold">def </span>fft_slices(x=
+):
+    <span style=3D"color:rgb(128,128,128);font-style:italic">#        x =3D=
+ self.butter_bandpass_filter(x, -12.5e6, 12.5e6, 100e6, order=3D6)
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">    </span>=
+window =3D signal.hanning(<span style=3D"color:rgb(0,0,255)">363</span>*<sp=
+an style=3D"color:rgb(0,0,255)">5</span>)
+    fx =3D np.fft.fftshift(np.fft.fft(window[np.newaxis, :] * x, <span styl=
+e=3D"color:rgb(102,0,153)">axis</span>=3D<span style=3D"color:rgb(0,0,255)"=
+>1</span>))
+
+    Pxx =3D np.abs(fx) ** <span style=3D"color:rgb(0,0,255)">2 </span>/ (np=
+.abs(window) ** <span style=3D"color:rgb(0,0,255)">2</span>).sum()
+    Pxx[:, <span style=3D"color:rgb(0,0,255)">1</span>:-<span style=3D"colo=
+r:rgb(0,0,255)">1</span>] *=3D <span style=3D"color:rgb(0,0,255)">2
+</span><span style=3D"color:rgb(0,0,255)">
+</span><span style=3D"color:rgb(0,0,255)">    </span>Pxx =3D <span style=3D=
+"color:rgb(0,0,255)">20 </span>* np.log10(Pxx ** <span style=3D"color:rgb(0=
+,0,255)">0.5</span>)
+    <span style=3D"color:rgb(0,0,128);font-weight:bold">return </span>Pxx
+<span style=3D"color:rgb(0,0,128);font-weight:bold">def </span>fft_test(x):
+
+        sample_freq,power=3Dsignal.welch(x,<span style=3D"color:rgb(102,0,1=
+53)">fs</span>=3D<span style=3D"color:rgb(0,0,255)">25e6</span>,<span style=
+=3D"color:rgb(102,0,153)">window</span>=3D<span style=3D"color:rgb(0,128,0)=
+;font-weight:bold">&quot;hamm&quot;</span>, <span style=3D"color:rgb(102,0,=
+153)">nperseg</span>=3Dnum_samps,<span style=3D"color:rgb(102,0,153)">scali=
+ng</span>=3D<span style=3D"color:rgb(0,128,0);font-weight:bold">&quot;spect=
+rum&quot;</span>)
+        power=3Dnp.fft.fftshift(power)/<span style=3D"color:rgb(0,0,255)">1=
+.5
+</span><span style=3D"color:rgb(0,0,255)">        </span><span style=3D"col=
+or:rgb(0,0,128);font-weight:bold">return </span><span style=3D"color:rgb(0,=
+0,255)">10 </span>* np.log10(power)
+
+
+
+
+<span style=3D"color:rgb(0,0,128);font-weight:bold">while </span><span styl=
+e=3D"color:rgb(0,0,128)">True</span>:
+
+    result =3D np.empty((<span style=3D"color:rgb(0,0,128)">len</span>([<sp=
+an style=3D"color:rgb(0,0,255)">0</span>]), num_samps), <span style=3D"colo=
+r:rgb(102,0,153)">dtype</span>=3Dnp.complex64)
+    k =3D uhd.types.TuneRequest(np.random.randint(<span style=3D"color:rgb(=
+0,0,255)">900e6</span>, <span style=3D"color:rgb(0,0,255)">1000e6</span>))
+    usrp.set_rx_freq(k)
+    <span style=3D"color:rgb(0,0,128);font-weight:bold">while </span>usrp.g=
+et_rx_sensor(<span style=3D"color:rgb(0,128,0);font-weight:bold">&quot;lo_l=
+ocked&quot;</span>).to_bool() !=3D <span style=3D"color:rgb(0,0,128)">True<=
+/span>:
+        <span style=3D"color:rgb(0,0,128);font-weight:bold">continue
+</span><span style=3D"color:rgb(0,0,128);font-weight:bold">    </span><span=
+ style=3D"color:rgb(128,128,128);font-style:italic">#print(usrp.get_rx_freq=
+())
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">    </span>=
+recv_samps =3D <span style=3D"color:rgb(0,0,255)">0
+</span><span style=3D"color:rgb(0,0,255)">
+</span><span style=3D"color:rgb(0,0,255)">    </span><span style=3D"color:r=
+gb(0,0,128);font-weight:bold">while </span>recv_samps &lt; num_samps:
+
+        samps =3D rx_streamer.recv(recv_buffer, md)
+        time.sleep(<span style=3D"color:rgb(0,0,255)">0.001</span>)
+
+        <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span>md.er=
+ror_code !=3D lib.types.rx_metadata_error_code.none:
+            <span style=3D"color:rgb(0,0,128);font-weight:bold">print</span=
+>(md.strerror())
+        <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span>samps=
+:
+            real_samps =3D <span style=3D"color:rgb(0,0,128)">min</span>(nu=
+m_samps - recv_samps, samps)
+            result[:, recv_samps:recv_samps + real_samps] =3D recv_buffer[:=
+, <span style=3D"color:rgb(0,0,255)">0</span>:real_samps]
+            recv_samps +=3D real_samps
+        usrp.set_time_now(uhd.types.TimeSpec(<span style=3D"color:rgb(0,0,2=
+55)">0.0</span>))
+        stream_cmd.time_spec =3D uhd.types.TimeSpec(<span style=3D"color:rg=
+b(0,0,255)">0.001</span>)
+        rx_streamer.issue_stream_cmd(stream_cmd)
+
+    k1=3Dfft_test(result).ravel()
+
+    <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span><span sty=
+le=3D"color:rgb(0,0,128)">str</span>(k1[<span style=3D"color:rgb(0,0,255)">=
+0</span>]) =3D=3D <span style=3D"color:rgb(0,128,0);font-weight:bold">&#39;=
+nan&#39;</span>:
+        <span style=3D"color:rgb(0,0,128);font-weight:bold">print</span>(k1=
+[<span style=3D"color:rgb(0,0,255)">0</span>])
+    <span style=3D"color:rgb(0,0,128);font-weight:bold">else</span>:
+        pw.plot(k1, <span style=3D"color:rgb(102,0,153)">clear</span>=3D<sp=
+an style=3D"color:rgb(0,0,128)">True</span>)
+        pg.QtGui.QApplication.processEvents()
+
+
+<span class=3D"gmail-m_7720495069907110318m_-9075795585464824595gmail-tlid-=
+translation gmail-m_7720495069907110318m_-9075795585464824595gmail-translat=
+ion" lang=3D"en"><span title=3D"" class=3D"gmail-m_7720495069907110318m_-90=
+75795585464824595gmail-">But as far as I still understand, in this case I o=
+pen a continuous stream of reading.</span> <span title=3D"" class=3D"gmail-=
+m_7720495069907110318m_-9075795585464824595gmail-">And I would like to read=
+ samples on request since I need to tune the frequency and type an array wi=
+th several subranges.
+<span style=3D"color:rgb(0,0,128);font-weight:bold">
+
+def </span>test_reciev_2(<span style=3D"color:rgb(148,85,141)">self</span>,=
+ freq, <span style=3D"color:rgb(128,128,128)">bandwich</span>):
+    <span style=3D"color:rgb(128,128,128);font-style:italic">#complex_buffs=
+ =3D np.empty((len([0]), self.samples * len(freq)))
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">    </span>=
+buffs =3D np.empty((<span style=3D"color:rgb(0,0,128)">len</span>([<span st=
+yle=3D"color:rgb(0,0,255)">0</span>]), <span style=3D"color:rgb(148,85,141)=
+">self</span>.samples * <span style=3D"color:rgb(0,0,128)">len</span>(freq)=
+))
+    result =3D np.empty((<span style=3D"color:rgb(0,0,128)">len</span>([<sp=
+an style=3D"color:rgb(0,0,255)">0</span>]), <span style=3D"color:rgb(148,85=
+,141)">self</span>.samples), <span style=3D"color:rgb(102,0,153)">dtype</sp=
+an>=3Dnp.complex64)
+
+    <span style=3D"color:rgb(0,0,128);font-weight:bold">for </span>i, freqq=
+ <span style=3D"color:rgb(0,0,128);font-weight:bold">in </span><span style=
+=3D"color:rgb(0,0,128)">enumerate</span>(freq):
+
+
+        <span style=3D"color:rgb(128,128,128);font-style:italic"># self.usr=
+p.set_rx_rate(bandwich[i])
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
+pan>k =3D uhd.types.TuneRequest(freqq)
+        <span style=3D"color:rgb(128,128,128);font-style:italic"># k.args(u=
+hd.types.device_addr(&quot;mode_n=3Dinteger&quot;))
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
+pan><span style=3D"color:rgb(148,85,141)">self</span>.usrp.set_rx_freq(k,<s=
+pan style=3D"color:rgb(0,0,255)">0</span>)
+
+        <span style=3D"color:rgb(148,85,141)">self</span>.streamer_rx.issue=
+_stream_cmd(<span style=3D"color:rgb(148,85,141)">self</span>.stream_cmd)
+        <span style=3D"color:rgb(0,0,128);font-weight:bold">while </span><s=
+pan style=3D"color:rgb(148,85,141)">self</span>.usrp.get_rx_sensor(<span st=
+yle=3D"color:rgb(0,128,0);font-weight:bold">&quot;lo_locked&quot;</span>).t=
+o_bool() !=3D <span style=3D"color:rgb(0,0,128)">True</span>:
+            <span style=3D"color:rgb(0,0,128);font-weight:bold">continue
+</span><span style=3D"color:rgb(0,0,128);font-weight:bold">        </span>r=
+ecv_samps =3D <span style=3D"color:rgb(0,0,255)">0
+</span><span style=3D"color:rgb(0,0,255)">
+</span><span style=3D"color:rgb(0,0,255)">        </span><span style=3D"col=
+or:rgb(0,0,128);font-weight:bold">while </span>recv_samps &lt; <span style=
+=3D"color:rgb(148,85,141)">self</span>.samples:
+
+            samps =3D <span style=3D"color:rgb(148,85,141)">self</span>.str=
+eamer_rx.recv(<span style=3D"color:rgb(148,85,141)">self</span>.recv_buff, =
+<span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx)
+            <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span><=
+span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx.error_code !=
+=3D lib.types.rx_metadata_error_code.none:
+                <span style=3D"color:rgb(0,0,128);font-weight:bold">print</=
+span>(<span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx.strerro=
+r())
+            <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span>s=
+amps:
+                real_samps =3D <span style=3D"color:rgb(0,0,128)">min</span=
+>(<span style=3D"color:rgb(148,85,141)">self</span>.samples - recv_samps, s=
+amps)
+                result[:, recv_samps:recv_samps + real_samps] =3D <span sty=
+le=3D"color:rgb(148,85,141)">self</span>.recv_buff[:, <span style=3D"color:=
+rgb(0,0,255)">0</span>:real_samps]
+                recv_samps +=3D real_samps
+        <span style=3D"color:rgb(128,128,128);font-style:italic"># print (s=
+elf.usrp.get_rx_sensor(&#39;rssi&#39;))
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # p=
+rint(self.streamer_rx.get_max_num_samps())
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # s=
+elf.stream_cmd.time_spec =3D lib.types.time_spec(0)
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        #se=
+lf.stream_cmd.stream_now =3D False
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        #se=
+lf.stream_cmd =3D lib.types.stream_cmd(lib.types.stream_mode.stop_cont)
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        #se=
+lf.streamer_rx.issue_stream_cmd(self.stream_cmd)
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
+pan><span style=3D"color:rgb(0,0,128);font-weight:bold">while </span>samps:
+            samps =3D <span style=3D"color:rgb(148,85,141)">self</span>.str=
+eamer_rx.recv(<span style=3D"color:rgb(148,85,141)">self</span>.recv_buff, =
+<span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx)
+
+        <span style=3D"color:rgb(128,128,128);font-style:italic">#complex_b=
+uffs =3D np.append(complex_buffs, result).ravel()
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # c=
+orrect_result=3Dresult
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        #co=
+rrect_result_1 =3D result - (np.mean(result.real) + np.mean(result.imag) * =
+1j)
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # c=
+orrect_result.real=3Dresult.real-np.mean(result.real)
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # c=
+orrect_result.imag =3D result.imag - np.mean(result.imag)
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
+pan>PSD =3D <span style=3D"color:rgb(148,85,141)">self</span>.fft_test(resu=
+lt)
+
+        <span style=3D"color:rgb(128,128,128);font-style:italic"># PSD[8188=
+:8202]=3Dnp.mean(PSD[8180:8188])
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">
+</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
+pan>buffs[:, i * value.samples:value.samples * i + value.samples] =3D PSD[:=
+, <span style=3D"color:rgb(0,0,255)">0</span>:value.samples]
+
+    <span style=3D"color:rgb(0,0,128);font-weight:bold">return </span>compl=
+ex_buffs, buffs.ravel()  <span style=3D"color:rgb(128,128,128);font-style:i=
+talic"># np.append(buffs[value.samples:],buffs[:value.samples])
+</span></span></span></pre>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    You are going to need to reconsider your code structure.<br>
+    <br>
+    <br>
+    (A) The Python API is *NOT* the way to process high-sample-rate data
+    (and 25Msps is high-sample-rate in this context)<br>
+    (B) You intermingle tuning and (continuous) streaming in the same
+    thread, AND, insert small sleeps after receiving samples--at<br>
+    =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 25Msps, every 1millisecond you aren&#39;=
+t &quot;paying attention&quot; to
+    the receive stream, there&#39;s 25,000 samples building up.<br>
+    =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Tuning takes a finite amount of time--it=
+&#39;s a fundamentally
+    analog process, so several milliseconds of latency for tuning<br>
+    =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 is not unusual.<br>
+    <br>
+    <br>
+  </div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---00000000000027ad7d058a122d23--
+--000000000000addcff058a14e580--
 
 
---===============5570729109711241376==
+--===============3848343227393745664==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -365,5 +601,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5570729109711241376==--
+--===============3848343227393745664==--
 
