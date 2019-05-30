@@ -2,44 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631822F76C
-	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2019 08:21:32 +0200 (CEST)
-Received: from [::1] (port=36814 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 495982F97C
+	for <lists+usrp-users@lfdr.de>; Thu, 30 May 2019 11:34:05 +0200 (CEST)
+Received: from [::1] (port=43912 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hWERK-0005Dx-4c; Thu, 30 May 2019 02:21:26 -0400
-Received: from mail-lf1-f45.google.com ([209.85.167.45]:41523)
+	id 1hWHRb-00011I-A9; Thu, 30 May 2019 05:33:55 -0400
+Received: from mail-wm1-f41.google.com ([209.85.128.41]:34666)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <adray0001@gmail.com>) id 1hWERG-00058T-Cq
- for usrp-users@lists.ettus.com; Thu, 30 May 2019 02:21:22 -0400
-Received: by mail-lf1-f45.google.com with SMTP id 136so4057035lfa.8
- for <usrp-users@lists.ettus.com>; Wed, 29 May 2019 23:21:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=6C/8zPT3LtIrAvNJFD4xI0e7ID1S/2z0Y8hmneUGDDE=;
- b=YfT/+78FqLsmXM3cGsHsoFwnA1dvpCxRhwigzIwupuD/4NexXBoFyECE6TNcfUN71f
- d5WUMRJqhtBRlemRXpOFb5uUzpEFs6VKiieqIc0mjlyUBb33BJpKq4iCCcNUkFrz91Ml
- myshya5d/ZyY/CQqV/jXpm5ZnGOuxnjmzZp0CpTwUzzsXcWcuvUAhEsNKcpA47Ex5sYj
- aMxoTi2mC2/uJBMw1aAb3X8buT0ku+rhlJIzvGn1A4tjR4lte2FGHewu6ByJo5vHTRDM
- k+isFI6zATv149VBqVqggnXuak/WlLQpZbFZtaPsC5aAtyUsS6W0Ut3mluJgHT1G55DU
- JcWQ==
+ (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
+ id 1hWHRX-0000v7-MY
+ for usrp-users@lists.ettus.com; Thu, 30 May 2019 05:33:51 -0400
+Received: by mail-wm1-f41.google.com with SMTP id e19so5639312wme.1
+ for <usrp-users@lists.ettus.com>; Thu, 30 May 2019 02:33:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=8ecSVzTLSQkv3LeBsXjoU5yh1zsNCaLFYH4nafxsPDg=;
+ b=cUI7v9h2dVxKESHd1Atrm53MQAxbsKi/irxaTFxcny8wgmowBpKrxT6O0zun/fmXwN
+ IbGXy/VqCFL33kzIQTrwVNRtdrIv5BqZoh5g9tGZcAzppCvwVQL1p9D/Sc/KcNlYHBnO
+ J9+hitB8EXXhE0gmPhosvtUUq3xjTaqwDXRAJrfMndiKrHt5rsgDW7ZW/cFBULSsqAQx
+ YlbsHX0RamA1XkOidDgjBpVQnWq/IXwAJ7QVsni7Xf9E1bbJPlb77awFZ9uARFc2Jiqa
+ L/JamJ9498Xk2LhO6Chm25QZvkpDbI67cwT7NAEXtH3w0rkDN9Pg6iY/I/B2kpDht1K3
+ lG3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=6C/8zPT3LtIrAvNJFD4xI0e7ID1S/2z0Y8hmneUGDDE=;
- b=htGiFaIrQk72SSuqQo2+ZdWAT25Rl+GdGFAq6LQKRSpmmRHusv/DL85nPMr/CmQGdr
- EI5frPnysxEC1kaWq47D35YY13qApQaowsiuzzuZtVN1vY0g6cahf/zkRbcqUTyszami
- D11AcRvavrpwsMpnUz1JiPMYtdI35a7GzTzM9TWDSFIGCHpe8LFoWeDaOQ/4zerJe905
- tZIm9orArQWaIUmqaPRcX5EXBT9O2+HSJv+abGN+vQdoqM/DdXYik7HKBbWs7XswKtds
- J2QyghBa/gOa8AiIVvYglXl8+mPDx0NsLa1rj6qsaVjzgU0fRYJNugIpxKuk9jPhUA1/
- MYPQ==
-X-Gm-Message-State: APjAAAVXxnfUqG0Fo7ExbUausZh90ICWFa2xCJEy+TlWZCvaGrmzPUo4
- YbOfUPHGfxH4GgDqLADnIC+Qxc3uIC1+5MZKrvc=
-X-Google-Smtp-Source: APXvYqybTsc6VCkEaKNssIPV27TSIlxwdMBOjBZJLVSE46VDTGcur6sgMdB7ohNXFeqrwZhEBUUoi+PF15N1z+fuhiA=
-X-Received: by 2002:ac2:5490:: with SMTP id t16mr1056853lfk.154.1559197240907; 
- Wed, 29 May 2019 23:20:40 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=8ecSVzTLSQkv3LeBsXjoU5yh1zsNCaLFYH4nafxsPDg=;
+ b=fqfBpCzXZQy7X5ODXTmZciwvMhyh/U13pD4ZYgJL3C6zrMnlUKyVINwkl5HSa5VfeX
+ s1dx2uDktBv3HkDSRN4mwpyI/SF7lGVTZzT4B40Kg7co5wOFXF2lcXAYxlccpagFn+bQ
+ UtnU5M+cM1I6BcqWt/1PDSaRk7DaDnCOSrzlbRYnoH4GtJxAT4PytdOXNW2hx5olTJMU
+ ebGku2vqkNhuzslhca5yMTVmuTREYC/PPAXQ13SDBNDhFX3WctgvGkLpCUrR6X/PuVEb
+ o2w+I+8Pwxnx0uwNbzY0BOXfFbTUPn1ZWV8+U13WPTLOkn1VB5VsMkwrDS2U0VCozeqc
+ oitQ==
+X-Gm-Message-State: APjAAAW4OIxDcu0Rns3ZqD1pq5ZlslIdnbnmzyJmCbVYdZdulBUwSVgc
+ BjfeUNd+NY4ll0H/HSI7103dvlDzga0RMw==
+X-Google-Smtp-Source: APXvYqykU6gdiSJ74Q84Rwo/VfheyiBhKCY3Y+tJ7Duo6wc2ytcZKVdoUiCFGkf1edygYRYBM5LJrQ==
+X-Received: by 2002:a1c:63d7:: with SMTP id x206mr1664670wmb.19.1559208790485; 
+ Thu, 30 May 2019 02:33:10 -0700 (PDT)
+Received: from workhorse.lan (ip-37-201-4-220.hsi13.unitymediagroup.de.
+ [37.201.4.220])
+ by smtp.googlemail.com with ESMTPSA id o12sm1476516wmh.27.2019.05.30.02.33.08
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Thu, 30 May 2019 02:33:08 -0700 (PDT)
+Message-ID: <c577fbf8579dfd5c505307c9d26413e0e558d492.camel@ettus.com>
+To: Ivan Zahartchuk <adray0001@gmail.com>, "Marcus D. Leech"
+ <patchvonbraun@gmail.com>, usrp-users <usrp-users@lists.ettus.com>
+Date: Thu, 30 May 2019 11:33:07 +0200
+In-Reply-To: <CAPRRyxsyBYJ=7kFpdq07ChH43uc1E5hCO41TH0c7NcncpM6k8Q@mail.gmail.com>
 References: <CAPRRyxvvqL9BcOW3zWNVHpuo5ZqU5ML7kGjaig9mDbxB0+jJog@mail.gmail.com>
  <5CEBFCCE.5040702@gmail.com>
  <CAPRRyxvzjOHxFgwtUh4iRRc3a8y_1W8KOLO82O--OrrzqKT2Sw@mail.gmail.com>
@@ -47,11 +59,9 @@ References: <CAPRRyxvvqL9BcOW3zWNVHpuo5ZqU5ML7kGjaig9mDbxB0+jJog@mail.gmail.com>
  <CAPRRyxsmaWpU9Z8bettAgavkmfqeZ6voceM8ajxdjkPM=ki2jQ@mail.gmail.com>
  <CAPRRyxu2m=u9QAyCkBQ76DZN1vKy-FP9soRiMO3Oib9JZcvjXw@mail.gmail.com>
  <5CEEE3D1.1050607@gmail.com>
-In-Reply-To: <5CEEE3D1.1050607@gmail.com>
-Date: Thu, 30 May 2019 09:20:47 +0300
-Message-ID: <CAPRRyxsyBYJ=7kFpdq07ChH43uc1E5hCO41TH0c7NcncpM6k8Q@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
- usrp-users <usrp-users@lists.ettus.com>
+ <CAPRRyxsyBYJ=7kFpdq07ChH43uc1E5hCO41TH0c7NcncpM6k8Q@mail.gmail.com>
+User-Agent: Evolution 3.30.4 (3.30.4-1.fc29) 
+Mime-Version: 1.0
 Subject: Re: [USRP-users] Fwd: How to escape from overflow error?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -64,9 +74,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3848343227393745664=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,526 +92,174 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3848343227393745664==
-Content-Type: multipart/alternative; boundary="000000000000addcff058a14e580"
-
---000000000000addcff058a14e580
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Unfortunately, Python is the only programming language I know. And I
-somehow difficult to imagine how without delay delays frequency tuning and
-continuous reading. I think that the NUM_AND_DONE mode will help me, but I
-do not know how to insist on it correctly and whether my reasoning on this
-is correct. Can you tell me some way out of this situation? I think I'm not
-the first to want to implement such a project on Ettus boards.
-
-=D1=81=D1=80, 29 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 22:56, Marcus D. Le=
-ech via USRP-users <
-usrp-users@lists.ettus.com>:
-
-> On 05/29/2019 03:29 AM, Ivan Zahartchuk via USRP-users wrote:
->
->
->
-> Yes, I expanded the buffer as suggested in the driver. I made a test file
-> for working with the board, here is its code.
->
-> import uhdimport numpy as npfrom uhd import libpyuhd as libimport timeimp=
-ort scipy.signal as signalimport pyqtgraph as pg
-> pw =3D pg.plot()import time
->
-> num_samps=3D363*5usrp =3D uhd.usrp.MultiUSRP('')
-> usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec('A:0'))print(usrp.get_pp_stri=
-ng())
-> usrp.set_rx_rate(25e6)print(usrp.get_rx_rate()/1e6)
->
-> stream_args=3Duhd.usrp.StreamArgs("fc32",'sc16')
-> stream_args.channels=3D[0]
-> rx_streamer=3Dusrp.get_rx_stream(stream_args)
-> stream_cmd=3Duhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
-> stream_cmd.num_samps=3Dnum_samps
-> stream_cmd.stream_now=3DFalseusrp.set_time_now(uhd.types.TimeSpec(0.0))
-> stream_cmd.time_spec=3Duhd.types.TimeSpec(0.001)
-> rx_streamer.issue_stream_cmd(stream_cmd)
-> md =3D uhd.types.RXMetadata()
-> buffer_samps =3D rx_streamer.get_max_num_samps()
-> recv_buffer =3D np.zeros((len([0]), buffer_samps), dtype=3Dnp.complex64)
-> result =3D np.empty((len([0]), num_samps), dtype=3Dnp.complex64)
->
-> def fft_slices(x):
->     #        x =3D self.butter_bandpass_filter(x, -12.5e6, 12.5e6, 100e6,=
- order=3D6)    window =3D signal.hanning(363*5)
->     fx =3D np.fft.fftshift(np.fft.fft(window[np.newaxis, :] * x, axis=3D1=
-))
->
->     Pxx =3D np.abs(fx) ** 2 / (np.abs(window) ** 2).sum()
->     Pxx[:, 1:-1] *=3D 2    Pxx =3D 20 * np.log10(Pxx ** 0.5)
->     return Pxxdef fft_test(x):
->
->         sample_freq,power=3Dsignal.welch(x,fs=3D25e6,window=3D"hamm", npe=
-rseg=3Dnum_samps,scaling=3D"spectrum")
->         power=3Dnp.fft.fftshift(power)/1.5        return 10 * np.log10(po=
-wer)
->
->
->
-> while True:
->
->     result =3D np.empty((len([0]), num_samps), dtype=3Dnp.complex64)
->     k =3D uhd.types.TuneRequest(np.random.randint(900e6, 1000e6))
->     usrp.set_rx_freq(k)
->     while usrp.get_rx_sensor("lo_locked").to_bool() !=3D True:
->         continue    #print(usrp.get_rx_freq())    recv_samps =3D 0    whi=
-le recv_samps < num_samps:
->
->         samps =3D rx_streamer.recv(recv_buffer, md)
->         time.sleep(0.001)
->
->         if md.error_code !=3D lib.types.rx_metadata_error_code.none:
->             print(md.strerror())
->         if samps:
->             real_samps =3D min(num_samps - recv_samps, samps)
->             result[:, recv_samps:recv_samps + real_samps] =3D recv_buffer=
-[:, 0:real_samps]
->             recv_samps +=3D real_samps
->         usrp.set_time_now(uhd.types.TimeSpec(0.0))
->         stream_cmd.time_spec =3D uhd.types.TimeSpec(0.001)
->         rx_streamer.issue_stream_cmd(stream_cmd)
->
->     k1=3Dfft_test(result).ravel()
->
->     if str(k1[0]) =3D=3D 'nan':
->         print(k1[0])
->     else:
->         pw.plot(k1, clear=3DTrue)
->         pg.QtGui.QApplication.processEvents()
->
-> But as far as I still understand, in this case I open a continuous stream=
- of reading. And I would like to read samples on request since I need to tu=
-ne the frequency and type an array with several subranges.
->
-> def test_reciev_2(self, freq, bandwich):
->     #complex_buffs =3D np.empty((len([0]), self.samples * len(freq)))    =
-buffs =3D np.empty((len([0]), self.samples * len(freq)))
->     result =3D np.empty((len([0]), self.samples), dtype=3Dnp.complex64)
->
->     for i, freqq in enumerate(freq):
->
->
->         # self.usrp.set_rx_rate(bandwich[i])        k =3D uhd.types.TuneR=
-equest(freqq)
->         # k.args(uhd.types.device_addr("mode_n=3Dinteger"))        self.u=
-srp.set_rx_freq(k,0)
->
->         self.streamer_rx.issue_stream_cmd(self.stream_cmd)
->         while self.usrp.get_rx_sensor("lo_locked").to_bool() !=3D True:
->             continue        recv_samps =3D 0        while recv_samps < se=
-lf.samples:
->
->             samps =3D self.streamer_rx.recv(self.recv_buff, self.metadata=
-_rx)
->             if self.metadata_rx.error_code !=3D lib.types.rx_metadata_err=
-or_code.none:
->                 print(self.metadata_rx.strerror())
->             if samps:
->                 real_samps =3D min(self.samples - recv_samps, samps)
->                 result[:, recv_samps:recv_samps + real_samps] =3D self.re=
-cv_buff[:, 0:real_samps]
->                 recv_samps +=3D real_samps
->         # print (self.usrp.get_rx_sensor('rssi'))        # print(self.str=
-eamer_rx.get_max_num_samps())        # self.stream_cmd.time_spec =3D lib.ty=
-pes.time_spec(0)        #self.stream_cmd.stream_now =3D False        #self.=
-stream_cmd =3D lib.types.stream_cmd(lib.types.stream_mode.stop_cont)       =
- #self.streamer_rx.issue_stream_cmd(self.stream_cmd)        while samps:
->             samps =3D self.streamer_rx.recv(self.recv_buff, self.metadata=
-_rx)
->
->         #complex_buffs =3D np.append(complex_buffs, result).ravel()      =
-  # correct_result=3Dresult        #correct_result_1 =3D result - (np.mean(=
-result.real) + np.mean(result.imag) * 1j)        # correct_result.real=3Dre=
-sult.real-np.mean(result.real)        # correct_result.imag =3D result.imag=
- - np.mean(result.imag)        PSD =3D self.fft_test(result)
->
->         # PSD[8188:8202]=3Dnp.mean(PSD[8180:8188])        buffs[:, i * va=
-lue.samples:value.samples * i + value.samples] =3D PSD[:, 0:value.samples]
->
->     return complex_buffs, buffs.ravel()  # np.append(buffs[value.samples:=
-],buffs[:value.samples])
->
->
-> You are going to need to reconsider your code structure.
->
->
-> (A) The Python API is *NOT* the way to process high-sample-rate data (and
-> 25Msps is high-sample-rate in this context)
-> (B) You intermingle tuning and (continuous) streaming in the same thread,
-> AND, insert small sleeps after receiving samples--at
->       25Msps, every 1millisecond you aren't "paying attention" to the
-> receive stream, there's 25,000 samples building up.
->       Tuning takes a finite amount of time--it's a fundamentally analog
-> process, so several milliseconds of latency for tuning
->       is not unusual.
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000addcff058a14e580
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span class=3D"gmail-tlid-translation gmail-translation" l=
-ang=3D"en"><span title=3D"">Unfortunately, Python is the only programming l=
-anguage I know.</span> <span title=3D"">And I somehow difficult to imagine =
-how without delay delays frequency tuning and continuous reading.</span> <s=
-pan title=3D"">I think that the NUM_AND_DONE mode will help me, but I do no=
-t know how to insist on it correctly and whether my reasoning on this is co=
-rrect.</span> <span title=3D"">Can you tell me some way out of this situati=
-on?</span> <span title=3D"" class=3D"gmail-">I think I&#39;m not the first =
-to want to implement such a project on Ettus boards.</span></span></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=D1=81=D1=
-=80, 29 =D0=BC=D0=B0=D1=8F 2019 =D0=B3. =D0=B2 22:56, Marcus D. Leech via U=
-SRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@list=
-s.ettus.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div class=3D"gmail-m_7720495069907110318moz-cite-prefix">On 05/29/2019=
- 03:29 AM, Ivan Zahartchuk
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr"><br>
-        <div class=3D"gmail_quote"><br>
-          <div dir=3D"ltr">
-            <div><span class=3D"gmail-m_7720495069907110318m_-9075795585464=
-824595gmail-tlid-translation gmail-m_7720495069907110318m_-9075795585464824=
-595gmail-translation" lang=3D"en"><span title=3D"">Yes, I expanded the buff=
-er as suggested in
-                  the driver.</span> <span title=3D"" class=3D"gmail-m_7720=
-495069907110318m_-9075795585464824595gmail-">I made a test
-                  file for working with the board, here is its code.</span>=
-</span></div>
-            <div>
-              <pre style=3D"background-color:rgb(255,255,255);color:rgb(0,0=
-,0);font-family:&quot;DejaVu Sans Mono&quot;"><span style=3D"color:rgb(0,0,=
-128);font-weight:bold">import </span>uhd
-<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>numpy <sp=
-an style=3D"color:rgb(0,0,128);font-weight:bold">as </span>np
-<span style=3D"color:rgb(0,0,128);font-weight:bold">from </span>uhd <span s=
-tyle=3D"color:rgb(0,0,128);font-weight:bold">import </span>libpyuhd <span s=
-tyle=3D"color:rgb(0,0,128);font-weight:bold">as </span>lib
-<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>time
-<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>scipy.sig=
-nal <span style=3D"color:rgb(0,0,128);font-weight:bold">as </span>signal
-<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>pyqtgraph=
- <span style=3D"color:rgb(0,0,128);font-weight:bold">as </span>pg
-pw =3D pg.plot()
-<span style=3D"color:rgb(0,0,128);font-weight:bold">import </span>time
-
-num_samps=3D<span style=3D"color:rgb(0,0,255)">363</span>*<span style=3D"co=
-lor:rgb(0,0,255)">5
-</span>usrp =3D uhd.usrp.MultiUSRP(<span style=3D"color:rgb(0,128,0);font-w=
-eight:bold">&#39;&#39;</span>)
-usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec(<span style=3D"color:rgb(0,128,=
-0);font-weight:bold">&#39;A:0&#39;</span>))
-<span style=3D"color:rgb(0,0,128);font-weight:bold">print</span>(usrp.get_p=
-p_string())
-usrp.set_rx_rate(<span style=3D"color:rgb(0,0,255)">25e6</span>)
-<span style=3D"color:rgb(0,0,128);font-weight:bold">print</span>(usrp.get_r=
-x_rate()/<span style=3D"color:rgb(0,0,255)">1e6</span>)
-
-stream_args=3Duhd.usrp.StreamArgs(<span style=3D"color:rgb(0,128,0);font-we=
-ight:bold">&quot;fc32&quot;</span>,<span style=3D"color:rgb(0,128,0);font-w=
-eight:bold">&#39;sc16&#39;</span>)
-stream_args.channels=3D[<span style=3D"color:rgb(0,0,255)">0</span>]
-rx_streamer=3Dusrp.get_rx_stream(stream_args)
-stream_cmd=3Duhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
-stream_cmd.num_samps=3Dnum_samps
-stream_cmd.stream_now=3D<span style=3D"color:rgb(0,0,128)">False
-</span>usrp.set_time_now(uhd.types.TimeSpec(<span style=3D"color:rgb(0,0,25=
-5)">0.0</span>))
-stream_cmd.time_spec=3Duhd.types.TimeSpec(<span style=3D"color:rgb(0,0,255)=
-">0.001</span>)
-rx_streamer.issue_stream_cmd(stream_cmd)
-md =3D uhd.types.RXMetadata()
-buffer_samps =3D rx_streamer.get_max_num_samps()
-recv_buffer =3D np.zeros((<span style=3D"color:rgb(0,0,128)">len</span>([<s=
-pan style=3D"color:rgb(0,0,255)">0</span>]), buffer_samps), <span style=3D"=
-color:rgb(102,0,153)">dtype</span>=3Dnp.complex64)
-result =3D np.empty((<span style=3D"color:rgb(0,0,128)">len</span>([<span s=
-tyle=3D"color:rgb(0,0,255)">0</span>]), num_samps), <span style=3D"color:rg=
-b(102,0,153)">dtype</span>=3Dnp.complex64)
-
-
-<span style=3D"color:rgb(0,0,128);font-weight:bold">def </span>fft_slices(x=
-):
-    <span style=3D"color:rgb(128,128,128);font-style:italic">#        x =3D=
- self.butter_bandpass_filter(x, -12.5e6, 12.5e6, 100e6, order=3D6)
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">    </span>=
-window =3D signal.hanning(<span style=3D"color:rgb(0,0,255)">363</span>*<sp=
-an style=3D"color:rgb(0,0,255)">5</span>)
-    fx =3D np.fft.fftshift(np.fft.fft(window[np.newaxis, :] * x, <span styl=
-e=3D"color:rgb(102,0,153)">axis</span>=3D<span style=3D"color:rgb(0,0,255)"=
->1</span>))
-
-    Pxx =3D np.abs(fx) ** <span style=3D"color:rgb(0,0,255)">2 </span>/ (np=
-.abs(window) ** <span style=3D"color:rgb(0,0,255)">2</span>).sum()
-    Pxx[:, <span style=3D"color:rgb(0,0,255)">1</span>:-<span style=3D"colo=
-r:rgb(0,0,255)">1</span>] *=3D <span style=3D"color:rgb(0,0,255)">2
-</span><span style=3D"color:rgb(0,0,255)">
-</span><span style=3D"color:rgb(0,0,255)">    </span>Pxx =3D <span style=3D=
-"color:rgb(0,0,255)">20 </span>* np.log10(Pxx ** <span style=3D"color:rgb(0=
-,0,255)">0.5</span>)
-    <span style=3D"color:rgb(0,0,128);font-weight:bold">return </span>Pxx
-<span style=3D"color:rgb(0,0,128);font-weight:bold">def </span>fft_test(x):
-
-        sample_freq,power=3Dsignal.welch(x,<span style=3D"color:rgb(102,0,1=
-53)">fs</span>=3D<span style=3D"color:rgb(0,0,255)">25e6</span>,<span style=
-=3D"color:rgb(102,0,153)">window</span>=3D<span style=3D"color:rgb(0,128,0)=
-;font-weight:bold">&quot;hamm&quot;</span>, <span style=3D"color:rgb(102,0,=
-153)">nperseg</span>=3Dnum_samps,<span style=3D"color:rgb(102,0,153)">scali=
-ng</span>=3D<span style=3D"color:rgb(0,128,0);font-weight:bold">&quot;spect=
-rum&quot;</span>)
-        power=3Dnp.fft.fftshift(power)/<span style=3D"color:rgb(0,0,255)">1=
-.5
-</span><span style=3D"color:rgb(0,0,255)">        </span><span style=3D"col=
-or:rgb(0,0,128);font-weight:bold">return </span><span style=3D"color:rgb(0,=
-0,255)">10 </span>* np.log10(power)
-
-
-
-
-<span style=3D"color:rgb(0,0,128);font-weight:bold">while </span><span styl=
-e=3D"color:rgb(0,0,128)">True</span>:
-
-    result =3D np.empty((<span style=3D"color:rgb(0,0,128)">len</span>([<sp=
-an style=3D"color:rgb(0,0,255)">0</span>]), num_samps), <span style=3D"colo=
-r:rgb(102,0,153)">dtype</span>=3Dnp.complex64)
-    k =3D uhd.types.TuneRequest(np.random.randint(<span style=3D"color:rgb(=
-0,0,255)">900e6</span>, <span style=3D"color:rgb(0,0,255)">1000e6</span>))
-    usrp.set_rx_freq(k)
-    <span style=3D"color:rgb(0,0,128);font-weight:bold">while </span>usrp.g=
-et_rx_sensor(<span style=3D"color:rgb(0,128,0);font-weight:bold">&quot;lo_l=
-ocked&quot;</span>).to_bool() !=3D <span style=3D"color:rgb(0,0,128)">True<=
-/span>:
-        <span style=3D"color:rgb(0,0,128);font-weight:bold">continue
-</span><span style=3D"color:rgb(0,0,128);font-weight:bold">    </span><span=
- style=3D"color:rgb(128,128,128);font-style:italic">#print(usrp.get_rx_freq=
-())
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">    </span>=
-recv_samps =3D <span style=3D"color:rgb(0,0,255)">0
-</span><span style=3D"color:rgb(0,0,255)">
-</span><span style=3D"color:rgb(0,0,255)">    </span><span style=3D"color:r=
-gb(0,0,128);font-weight:bold">while </span>recv_samps &lt; num_samps:
-
-        samps =3D rx_streamer.recv(recv_buffer, md)
-        time.sleep(<span style=3D"color:rgb(0,0,255)">0.001</span>)
-
-        <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span>md.er=
-ror_code !=3D lib.types.rx_metadata_error_code.none:
-            <span style=3D"color:rgb(0,0,128);font-weight:bold">print</span=
->(md.strerror())
-        <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span>samps=
-:
-            real_samps =3D <span style=3D"color:rgb(0,0,128)">min</span>(nu=
-m_samps - recv_samps, samps)
-            result[:, recv_samps:recv_samps + real_samps] =3D recv_buffer[:=
-, <span style=3D"color:rgb(0,0,255)">0</span>:real_samps]
-            recv_samps +=3D real_samps
-        usrp.set_time_now(uhd.types.TimeSpec(<span style=3D"color:rgb(0,0,2=
-55)">0.0</span>))
-        stream_cmd.time_spec =3D uhd.types.TimeSpec(<span style=3D"color:rg=
-b(0,0,255)">0.001</span>)
-        rx_streamer.issue_stream_cmd(stream_cmd)
-
-    k1=3Dfft_test(result).ravel()
-
-    <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span><span sty=
-le=3D"color:rgb(0,0,128)">str</span>(k1[<span style=3D"color:rgb(0,0,255)">=
-0</span>]) =3D=3D <span style=3D"color:rgb(0,128,0);font-weight:bold">&#39;=
-nan&#39;</span>:
-        <span style=3D"color:rgb(0,0,128);font-weight:bold">print</span>(k1=
-[<span style=3D"color:rgb(0,0,255)">0</span>])
-    <span style=3D"color:rgb(0,0,128);font-weight:bold">else</span>:
-        pw.plot(k1, <span style=3D"color:rgb(102,0,153)">clear</span>=3D<sp=
-an style=3D"color:rgb(0,0,128)">True</span>)
-        pg.QtGui.QApplication.processEvents()
-
-
-<span class=3D"gmail-m_7720495069907110318m_-9075795585464824595gmail-tlid-=
-translation gmail-m_7720495069907110318m_-9075795585464824595gmail-translat=
-ion" lang=3D"en"><span title=3D"" class=3D"gmail-m_7720495069907110318m_-90=
-75795585464824595gmail-">But as far as I still understand, in this case I o=
-pen a continuous stream of reading.</span> <span title=3D"" class=3D"gmail-=
-m_7720495069907110318m_-9075795585464824595gmail-">And I would like to read=
- samples on request since I need to tune the frequency and type an array wi=
-th several subranges.
-<span style=3D"color:rgb(0,0,128);font-weight:bold">
-
-def </span>test_reciev_2(<span style=3D"color:rgb(148,85,141)">self</span>,=
- freq, <span style=3D"color:rgb(128,128,128)">bandwich</span>):
-    <span style=3D"color:rgb(128,128,128);font-style:italic">#complex_buffs=
- =3D np.empty((len([0]), self.samples * len(freq)))
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">    </span>=
-buffs =3D np.empty((<span style=3D"color:rgb(0,0,128)">len</span>([<span st=
-yle=3D"color:rgb(0,0,255)">0</span>]), <span style=3D"color:rgb(148,85,141)=
-">self</span>.samples * <span style=3D"color:rgb(0,0,128)">len</span>(freq)=
-))
-    result =3D np.empty((<span style=3D"color:rgb(0,0,128)">len</span>([<sp=
-an style=3D"color:rgb(0,0,255)">0</span>]), <span style=3D"color:rgb(148,85=
-,141)">self</span>.samples), <span style=3D"color:rgb(102,0,153)">dtype</sp=
-an>=3Dnp.complex64)
-
-    <span style=3D"color:rgb(0,0,128);font-weight:bold">for </span>i, freqq=
- <span style=3D"color:rgb(0,0,128);font-weight:bold">in </span><span style=
-=3D"color:rgb(0,0,128)">enumerate</span>(freq):
-
-
-        <span style=3D"color:rgb(128,128,128);font-style:italic"># self.usr=
-p.set_rx_rate(bandwich[i])
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
-pan>k =3D uhd.types.TuneRequest(freqq)
-        <span style=3D"color:rgb(128,128,128);font-style:italic"># k.args(u=
-hd.types.device_addr(&quot;mode_n=3Dinteger&quot;))
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
-pan><span style=3D"color:rgb(148,85,141)">self</span>.usrp.set_rx_freq(k,<s=
-pan style=3D"color:rgb(0,0,255)">0</span>)
-
-        <span style=3D"color:rgb(148,85,141)">self</span>.streamer_rx.issue=
-_stream_cmd(<span style=3D"color:rgb(148,85,141)">self</span>.stream_cmd)
-        <span style=3D"color:rgb(0,0,128);font-weight:bold">while </span><s=
-pan style=3D"color:rgb(148,85,141)">self</span>.usrp.get_rx_sensor(<span st=
-yle=3D"color:rgb(0,128,0);font-weight:bold">&quot;lo_locked&quot;</span>).t=
-o_bool() !=3D <span style=3D"color:rgb(0,0,128)">True</span>:
-            <span style=3D"color:rgb(0,0,128);font-weight:bold">continue
-</span><span style=3D"color:rgb(0,0,128);font-weight:bold">        </span>r=
-ecv_samps =3D <span style=3D"color:rgb(0,0,255)">0
-</span><span style=3D"color:rgb(0,0,255)">
-</span><span style=3D"color:rgb(0,0,255)">        </span><span style=3D"col=
-or:rgb(0,0,128);font-weight:bold">while </span>recv_samps &lt; <span style=
-=3D"color:rgb(148,85,141)">self</span>.samples:
-
-            samps =3D <span style=3D"color:rgb(148,85,141)">self</span>.str=
-eamer_rx.recv(<span style=3D"color:rgb(148,85,141)">self</span>.recv_buff, =
-<span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx)
-            <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span><=
-span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx.error_code !=
-=3D lib.types.rx_metadata_error_code.none:
-                <span style=3D"color:rgb(0,0,128);font-weight:bold">print</=
-span>(<span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx.strerro=
-r())
-            <span style=3D"color:rgb(0,0,128);font-weight:bold">if </span>s=
-amps:
-                real_samps =3D <span style=3D"color:rgb(0,0,128)">min</span=
->(<span style=3D"color:rgb(148,85,141)">self</span>.samples - recv_samps, s=
-amps)
-                result[:, recv_samps:recv_samps + real_samps] =3D <span sty=
-le=3D"color:rgb(148,85,141)">self</span>.recv_buff[:, <span style=3D"color:=
-rgb(0,0,255)">0</span>:real_samps]
-                recv_samps +=3D real_samps
-        <span style=3D"color:rgb(128,128,128);font-style:italic"># print (s=
-elf.usrp.get_rx_sensor(&#39;rssi&#39;))
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # p=
-rint(self.streamer_rx.get_max_num_samps())
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # s=
-elf.stream_cmd.time_spec =3D lib.types.time_spec(0)
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        #se=
-lf.stream_cmd.stream_now =3D False
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        #se=
-lf.stream_cmd =3D lib.types.stream_cmd(lib.types.stream_mode.stop_cont)
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        #se=
-lf.streamer_rx.issue_stream_cmd(self.stream_cmd)
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
-pan><span style=3D"color:rgb(0,0,128);font-weight:bold">while </span>samps:
-            samps =3D <span style=3D"color:rgb(148,85,141)">self</span>.str=
-eamer_rx.recv(<span style=3D"color:rgb(148,85,141)">self</span>.recv_buff, =
-<span style=3D"color:rgb(148,85,141)">self</span>.metadata_rx)
-
-        <span style=3D"color:rgb(128,128,128);font-style:italic">#complex_b=
-uffs =3D np.append(complex_buffs, result).ravel()
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # c=
-orrect_result=3Dresult
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        #co=
-rrect_result_1 =3D result - (np.mean(result.real) + np.mean(result.imag) * =
-1j)
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # c=
-orrect_result.real=3Dresult.real-np.mean(result.real)
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        # c=
-orrect_result.imag =3D result.imag - np.mean(result.imag)
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
-pan>PSD =3D <span style=3D"color:rgb(148,85,141)">self</span>.fft_test(resu=
-lt)
-
-        <span style=3D"color:rgb(128,128,128);font-style:italic"># PSD[8188=
-:8202]=3Dnp.mean(PSD[8180:8188])
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">
-</span><span style=3D"color:rgb(128,128,128);font-style:italic">        </s=
-pan>buffs[:, i * value.samples:value.samples * i + value.samples] =3D PSD[:=
-, <span style=3D"color:rgb(0,0,255)">0</span>:value.samples]
-
-    <span style=3D"color:rgb(0,0,128);font-weight:bold">return </span>compl=
-ex_buffs, buffs.ravel()  <span style=3D"color:rgb(128,128,128);font-style:i=
-talic"># np.append(buffs[value.samples:],buffs[:value.samples])
-</span></span></span></pre>
-              <br>
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    You are going to need to reconsider your code structure.<br>
-    <br>
-    <br>
-    (A) The Python API is *NOT* the way to process high-sample-rate data
-    (and 25Msps is high-sample-rate in this context)<br>
-    (B) You intermingle tuning and (continuous) streaming in the same
-    thread, AND, insert small sleeps after receiving samples--at<br>
-    =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 25Msps, every 1millisecond you aren&#39;=
-t &quot;paying attention&quot; to
-    the receive stream, there&#39;s 25,000 samples building up.<br>
-    =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Tuning takes a finite amount of time--it=
-&#39;s a fundamentally
-    analog process, so several milliseconds of latency for tuning<br>
-    =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 is not unusual.<br>
-    <br>
-    <br>
-  </div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000addcff058a14e580--
-
-
---===============3848343227393745664==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3848343227393745664==--
-
+SGkgSXZhbiwKCm5vdyB5b3UndmUgZ290IHR3byBNYXJjdXNlcyBoYXZpbmcgdG9sZCB5b3UgdGhh
+dCB0aGUgUHl0aG9uIEFQSSBpcyBub3QKdGhlIHdheSB0byBnbzsgSSdtIGFmcmFpZCB0aGF0IG1l
+YW5zIHRoYXQgZm9yIHRoZSB0aW1lIGJlaW5nLCBJJ2xsIGhhdmUKdG8gcmVtaW5kIHlvdSB0aGF0
+LCBhbGJlaXQgYmVpbmcgYSBtaWdodHkgYW5kIGNvbXBsZXggcHJvZ3JhbW1pbmcKbGFuZ3VhZ2Us
+IEMrKyB3aWxsIGJlIHRoZSBsYW5ndWFnZSBvZiBjaG9pY2UuIFVIRCBjb21lcyB3aXRoIHF1aXRl
+IGEKZmV3IHJlYWR5LXRvLXVzZSBleGFtcGxlcyB0aGF0IHlvdSBjYW4gbW9kaWZ5LiAKClJlZ2Fy
+ZGluZyB5b3VyIHByb2JsZW0gaW1hZ2luaW5nIGhvdyB0byB3b3JrIHdpdGhvdXQgZGVsYXlzOgpZ
+b3UgaGF2ZSBhIGRldmljZSB0aGF0IHN1cHBvcnRzIHRpbWVkIGNvbW1hbmRzLiBZb3UgbmVlZCBu
+byBkZWxheXMgYXQKYWxsISBTaW1wbHkgdXNlIHRpbWVkIGNvbW1hbmRzIHRvIHNwZWNpZnkgdGhl
+IHRpbWUgYXQgd2hpY2ggdHVuaW5nCnNob3VsZCB0YWtlIHBsYWNlLCBhbmQgdGhlIE4yMTAgd2ls
+bCBkbyB0aGF0IHR1bmluZyBmb3IgeW91LiBObyBtYXR0ZXIKd2hhdCB5b3UgZG8sIE5FVkVSIGJs
+b2NrIGluIHRoZSByZWN2KCkgbG9vcDsgeW91J3JlIHRoZSBvbmUgcGVyc29uYWxseQpjYXVzaW5n
+IHRoZSBvdmVyZmxvd3MgaGVyZSEKCkFsc28sIEkgdGhpbmsgSSd2ZSBzcGVudCBhIHdob2xlIGVt
+YWlsIHRocmVhZCBleHBsYWluaW5nIHRoYXQKTlVNX0FORF9ET05FIGRvZXMgaW4gZmFjdCBub3Qg
+aGVscCB5b3UuCgpTbywgdG8gY29uY2x1ZGU6Cgo+IENhbiB5b3UgdGVsbCBtZSBzb21lIHdheSBv
+dXQgb2YgdGhpcyBzaXR1YXRpb24/IAoKKiBVc2UgQysrLCBub3QgUHl0aG9uLiBUaGlzIHdpbGwg
+cmVxdWlyZSB5b3UgdG8gbGVhcm4gYSBuZXcgbGFuZ3VhZ2UuCiogVXNlIHRpbWVkIGNvbW1hbmRz
+IGZvciB0dW5pbmcuIFlvdSBzaG91bGQgcHJvYmFibHkgbW92ZSB0aGF0IHRvIGEKc2VwYXJhdGUg
+dGhyZWFkIHRoYW4gdGhlIGxvb3Agb3ZlciByZWN2KCkKKiBEb24ndCBleHBlY3QgTlVNX1NBTVBT
+X0FORF9ET05FIHRvIHJlbW92ZSB5b3VyIHByb2dyYW0ncwpyZXNwb25zaWJpbGl0eSB0byBjYWxs
+IHJlY3YoKSBhcyBmYXN0IGFzIGl0IGNhbiB1bnRpbCBhbGwgc2FtcGxlcyBhcmUKcmVjZWl2ZWQK
+KiBVc2UgZXhpc3RpbmcgQysrIGV4YW1wbGVzCiogQ29uc2lkZXIgc3RhcnRpbmcgZnVuZGFtZW50
+YWxseSBzaW1wbGVyOiB5b3VyIE5VTV9TQU1QU19BTkRfRE9ORQpkb2Vzbid0IGFsbGV2aWF0ZSBh
+bnkgcHJvYmxlbSwgc28gaXQganVzdCBtYWtlcyBpdCBoYXJkZXIgZm9yIHlvdSB0bwpidWlsZCBh
+IHdvcmtpbmcgc29sdXRpb24uIFN0YXJ0IHdpdGggYSBjb250aW51b3VzIHJlY2VpdmUgaW1wbGVt
+ZW50ZWQKYnkgU1RBUlRfQ09OVElOVU9VUyBhbmQgYW4gaW5maW5pdGUgbG9vcCBvZiByZWN2KCkg
+aW4gb25lIHRocmVhZCwgYW5kCnR1bmUgd2l0aCB0aGUgb3RoZXIgdGhyZWFkLiAKCkFzIGEgbWF0
+dGVyIG9mIGZhY3QsIHRoZXJlIGlzIGFscmVhZHkgc29mdHdhcmUgdGhhdCBpbXBsZW1lbnRzIHRo
+ZSBsYXN0CnBvaW50OiBUaGUgVUhEIFVTUlAgU291cmNlIGluIEdOVSBSYWRpby4gWW91IGNvdWxk
+IHNpbXBseSBjbGljawp0b2dldGhlciBhIHNtYWxsIEdOVSBSYWRpbyBmbG93IGdyYXBoIGNvbnNp
+c3Rpbmcgb2Ygbm90aGluZyBidXQgYSBVU1JQClNvdXJjZSBhbmQgYSBmaWxlIHNpbmssIGFuZCBh
+ZGQgYSBweXRob24gYmxvY2sgdGhhdCBwZXJpb2RpY2FsbHkgc2VuZHMKbWVzc2FnZXMgdG8gdGhl
+IFVTUlAgU291cmNlIGluc3RydWN0aW5nIGl0IHRvIHR1bmUuIAoKQmVzdCByZWdhcmRzLApNYXJj
+dXMgTQoKT24gVGh1LCAyMDE5LTA1LTMwIGF0IDA5OjIwICswMzAwLCBJdmFuIFphaGFydGNodWsg
+dmlhIFVTUlAtdXNlcnMKd3JvdGU6Cj4gVW5mb3J0dW5hdGVseSwgUHl0aG9uIGlzIHRoZSBvbmx5
+IHByb2dyYW1taW5nIGxhbmd1YWdlIEkga25vdy4gQW5kIEkKPiBzb21laG93IGRpZmZpY3VsdCB0
+byBpbWFnaW5lIGhvdyB3aXRob3V0IGRlbGF5IGRlbGF5cyBmcmVxdWVuY3kKPiB0dW5pbmcgYW5k
+IGNvbnRpbnVvdXMgcmVhZGluZy4gSSB0aGluayB0aGF0IHRoZSBOVU1fQU5EX0RPTkUgbW9kZQo+
+IHdpbGwgaGVscCBtZSwgYnV0IEkgZG8gbm90IGtub3cgaG93IHRvIGluc2lzdCBvbiBpdCBjb3Jy
+ZWN0bHkgYW5kCj4gd2hldGhlciBteSByZWFzb25pbmcgb24gdGhpcyBpcyBjb3JyZWN0LiBDYW4g
+eW91IHRlbGwgbWUgc29tZSB3YXkgb3V0Cj4gb2YgdGhpcyBzaXR1YXRpb24/IEkgdGhpbmsgSSdt
+IG5vdCB0aGUgZmlyc3QgdG8gd2FudCB0byBpbXBsZW1lbnQKPiBzdWNoIGEgcHJvamVjdCBvbiBF
+dHR1cyBib2FyZHMuCj4gCj4g0YHRgCwgMjkg0LzQsNGPIDIwMTkg0LMuINCyIDIyOjU2LCBNYXJj
+dXMgRC4gTGVlY2ggdmlhIFVTUlAtdXNlcnMgPAo+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+PjoKPiA+IE9uIDA1LzI5LzIwMTkgMDM6MjkgQU0sIEl2YW4gWmFoYXJ0Y2h1ayB2aWEgVVNSUC11
+c2VycyB3cm90ZToKPiA+ID4gCj4gPiA+IFllcywgSSBleHBhbmRlZCB0aGUgYnVmZmVyIGFzIHN1
+Z2dlc3RlZCBpbiB0aGUgZHJpdmVyLiBJIG1hZGUgYQo+ID4gPiB0ZXN0IGZpbGUgZm9yIHdvcmtp
+bmcgd2l0aCB0aGUgYm9hcmQsIGhlcmUgaXMgaXRzIGNvZGUuCj4gPiA+IGltcG9ydCB1aGQKPiA+
+ID4gaW1wb3J0IG51bXB5IGFzIG5wCj4gPiA+IGZyb20gdWhkIGltcG9ydCBsaWJweXVoZCBhcyBs
+aWIKPiA+ID4gaW1wb3J0IHRpbWUKPiA+ID4gaW1wb3J0IHNjaXB5LnNpZ25hbCBhcyBzaWduYWwK
+PiA+ID4gaW1wb3J0IHB5cXRncmFwaCBhcyBwZwo+ID4gPiBwdyA9IHBnLnBsb3QoKQo+ID4gPiBp
+bXBvcnQgdGltZQo+ID4gPiAKPiA+ID4gbnVtX3NhbXBzPTM2Myo1Cj4gPiA+IHVzcnAgPSB1aGQu
+dXNycC5NdWx0aVVTUlAoJycpCj4gPiA+IHVzcnAuc2V0X3J4X3N1YmRldl9zcGVjKHVoZC51c3Jw
+LlN1YmRldlNwZWMoJ0E6MCcpKQo+ID4gPiBwcmludCh1c3JwLmdldF9wcF9zdHJpbmcoKSkKPiA+
+ID4gdXNycC5zZXRfcnhfcmF0ZSgyNWU2KQo+ID4gPiBwcmludCh1c3JwLmdldF9yeF9yYXRlKCkv
+MWU2KQo+ID4gPiAKPiA+ID4gc3RyZWFtX2FyZ3M9dWhkLnVzcnAuU3RyZWFtQXJncygiZmMzMiIs
+J3NjMTYnKQo+ID4gPiBzdHJlYW1fYXJncy5jaGFubmVscz1bMF0KPiA+ID4gcnhfc3RyZWFtZXI9
+dXNycC5nZXRfcnhfc3RyZWFtKHN0cmVhbV9hcmdzKQo+ID4gPiBzdHJlYW1fY21kPXVoZC50eXBl
+cy5TdHJlYW1DTUQodWhkLnR5cGVzLlN0cmVhbU1vZGUuc3RhcnRfY29udCkKPiA+ID4gc3RyZWFt
+X2NtZC5udW1fc2FtcHM9bnVtX3NhbXBzCj4gPiA+IHN0cmVhbV9jbWQuc3RyZWFtX25vdz1GYWxz
+ZQo+ID4gPiB1c3JwLnNldF90aW1lX25vdyh1aGQudHlwZXMuVGltZVNwZWMoMC4wKSkKPiA+ID4g
+c3RyZWFtX2NtZC50aW1lX3NwZWM9dWhkLnR5cGVzLlRpbWVTcGVjKDAuMDAxKQo+ID4gPiByeF9z
+dHJlYW1lci5pc3N1ZV9zdHJlYW1fY21kKHN0cmVhbV9jbWQpCj4gPiA+IG1kID0gdWhkLnR5cGVz
+LlJYTWV0YWRhdGEoKQo+ID4gPiBidWZmZXJfc2FtcHMgPSByeF9zdHJlYW1lci5nZXRfbWF4X251
+bV9zYW1wcygpCj4gPiA+IHJlY3ZfYnVmZmVyID0gbnAuemVyb3MoKGxlbihbMF0pLCBidWZmZXJf
+c2FtcHMpLAo+ID4gPiBkdHlwZT1ucC5jb21wbGV4NjQpCj4gPiA+IHJlc3VsdCA9IG5wLmVtcHR5
+KChsZW4oWzBdKSwgbnVtX3NhbXBzKSwgZHR5cGU9bnAuY29tcGxleDY0KQo+ID4gPiAKPiA+ID4g
+Cj4gPiA+IGRlZiBmZnRfc2xpY2VzKHgpOgo+ID4gPiAgICAgIyAgICAgICAgeCA9IHNlbGYuYnV0
+dGVyX2JhbmRwYXNzX2ZpbHRlcih4LCAtMTIuNWU2LCAxMi41ZTYsCj4gPiA+IDEwMGU2LCBvcmRl
+cj02KQo+ID4gPiAgICAgd2luZG93ID0gc2lnbmFsLmhhbm5pbmcoMzYzKjUpCj4gPiA+ICAgICBm
+eCA9IG5wLmZmdC5mZnRzaGlmdChucC5mZnQuZmZ0KHdpbmRvd1tucC5uZXdheGlzLCA6XSAqIHgs
+Cj4gPiA+IGF4aXM9MSkpCj4gPiA+IAo+ID4gPiAgICAgUHh4ID0gbnAuYWJzKGZ4KSAqKiAyIC8g
+KG5wLmFicyh3aW5kb3cpICoqIDIpLnN1bSgpCj4gPiA+ICAgICBQeHhbOiwgMTotMV0gKj0gMgo+
+ID4gPiAKPiA+ID4gICAgIFB4eCA9IDIwICogbnAubG9nMTAoUHh4ICoqIDAuNSkKPiA+ID4gICAg
+IHJldHVybiBQeHgKPiA+ID4gZGVmIGZmdF90ZXN0KHgpOgo+ID4gPiAKPiA+ID4gICAgICAgICBz
+YW1wbGVfZnJlcSxwb3dlcj1zaWduYWwud2VsY2goeCxmcz0yNWU2LHdpbmRvdz0iaGFtbSIsCj4g
+PiA+IG5wZXJzZWc9bnVtX3NhbXBzLHNjYWxpbmc9InNwZWN0cnVtIikKPiA+ID4gICAgICAgICBw
+b3dlcj1ucC5mZnQuZmZ0c2hpZnQocG93ZXIpLzEuNQo+ID4gPiAgICAgICAgIHJldHVybiAxMCAq
+IG5wLmxvZzEwKHBvd2VyKQo+ID4gPiAKPiA+ID4gCj4gPiA+IAo+ID4gPiAKPiA+ID4gd2hpbGUg
+VHJ1ZToKPiA+ID4gCj4gPiA+ICAgICByZXN1bHQgPSBucC5lbXB0eSgobGVuKFswXSksIG51bV9z
+YW1wcyksIGR0eXBlPW5wLmNvbXBsZXg2NCkKPiA+ID4gICAgIGsgPSB1aGQudHlwZXMuVHVuZVJl
+cXVlc3QobnAucmFuZG9tLnJhbmRpbnQoOTAwZTYsIDEwMDBlNikpCj4gPiA+ICAgICB1c3JwLnNl
+dF9yeF9mcmVxKGspCj4gPiA+ICAgICB3aGlsZSB1c3JwLmdldF9yeF9zZW5zb3IoImxvX2xvY2tl
+ZCIpLnRvX2Jvb2woKSAhPSBUcnVlOgo+ID4gPiAgICAgICAgIGNvbnRpbnVlCj4gPiA+ICAgICAj
+cHJpbnQodXNycC5nZXRfcnhfZnJlcSgpKQo+ID4gPiAgICAgcmVjdl9zYW1wcyA9IDAKPiA+ID4g
+Cj4gPiA+ICAgICB3aGlsZSByZWN2X3NhbXBzIDwgbnVtX3NhbXBzOgo+ID4gPiAKPiA+ID4gICAg
+ICAgICBzYW1wcyA9IHJ4X3N0cmVhbWVyLnJlY3YocmVjdl9idWZmZXIsIG1kKQo+ID4gPiAgICAg
+ICAgIHRpbWUuc2xlZXAoMC4wMDEpCj4gPiA+IAo+ID4gPiAgICAgICAgIGlmIG1kLmVycm9yX2Nv
+ZGUgIT0KPiA+ID4gbGliLnR5cGVzLnJ4X21ldGFkYXRhX2Vycm9yX2NvZGUubm9uZToKPiA+ID4g
+ICAgICAgICAgICAgcHJpbnQobWQuc3RyZXJyb3IoKSkKPiA+ID4gICAgICAgICBpZiBzYW1wczoK
+PiA+ID4gICAgICAgICAgICAgcmVhbF9zYW1wcyA9IG1pbihudW1fc2FtcHMgLSByZWN2X3NhbXBz
+LCBzYW1wcykKPiA+ID4gICAgICAgICAgICAgcmVzdWx0WzosIHJlY3Zfc2FtcHM6cmVjdl9zYW1w
+cyArIHJlYWxfc2FtcHNdID0KPiA+ID4gcmVjdl9idWZmZXJbOiwgMDpyZWFsX3NhbXBzXQo+ID4g
+PiAgICAgICAgICAgICByZWN2X3NhbXBzICs9IHJlYWxfc2FtcHMKPiA+ID4gICAgICAgICB1c3Jw
+LnNldF90aW1lX25vdyh1aGQudHlwZXMuVGltZVNwZWMoMC4wKSkKPiA+ID4gICAgICAgICBzdHJl
+YW1fY21kLnRpbWVfc3BlYyA9IHVoZC50eXBlcy5UaW1lU3BlYygwLjAwMSkKPiA+ID4gICAgICAg
+ICByeF9zdHJlYW1lci5pc3N1ZV9zdHJlYW1fY21kKHN0cmVhbV9jbWQpCj4gPiA+IAo+ID4gPiAg
+ICAgazE9ZmZ0X3Rlc3QocmVzdWx0KS5yYXZlbCgpCj4gPiA+IAo+ID4gPiAgICAgaWYgc3RyKGsx
+WzBdKSA9PSAnbmFuJzoKPiA+ID4gICAgICAgICBwcmludChrMVswXSkKPiA+ID4gICAgIGVsc2U6
+Cj4gPiA+ICAgICAgICAgcHcucGxvdChrMSwgY2xlYXI9VHJ1ZSkKPiA+ID4gICAgICAgICBwZy5R
+dEd1aS5RQXBwbGljYXRpb24ucHJvY2Vzc0V2ZW50cygpCj4gPiA+IAo+ID4gPiAKPiA+ID4gQnV0
+IGFzIGZhciBhcyBJIHN0aWxsIHVuZGVyc3RhbmQsIGluIHRoaXMgY2FzZSBJIG9wZW4gYQo+ID4g
+PiBjb250aW51b3VzIHN0cmVhbSBvZiByZWFkaW5nLiBBbmQgSSB3b3VsZCBsaWtlIHRvIHJlYWQg
+c2FtcGxlcyBvbgo+ID4gPiByZXF1ZXN0IHNpbmNlIEkgbmVlZCB0byB0dW5lIHRoZSBmcmVxdWVu
+Y3kgYW5kIHR5cGUgYW4gYXJyYXkgd2l0aAo+ID4gPiBzZXZlcmFsIHN1YnJhbmdlcy4KPiA+ID4g
+Cj4gPiA+IAo+ID4gPiBkZWYgdGVzdF9yZWNpZXZfMihzZWxmLCBmcmVxLCBiYW5kd2ljaCk6Cj4g
+PiA+ICAgICAjY29tcGxleF9idWZmcyA9IG5wLmVtcHR5KChsZW4oWzBdKSwgc2VsZi5zYW1wbGVz
+ICoKPiA+ID4gbGVuKGZyZXEpKSkKPiA+ID4gCj4gPiA+ICAgICBidWZmcyA9IG5wLmVtcHR5KChs
+ZW4oWzBdKSwgc2VsZi5zYW1wbGVzICogbGVuKGZyZXEpKSkKPiA+ID4gICAgIHJlc3VsdCA9IG5w
+LmVtcHR5KChsZW4oWzBdKSwgc2VsZi5zYW1wbGVzKSwKPiA+ID4gZHR5cGU9bnAuY29tcGxleDY0
+KQo+ID4gPiAKPiA+ID4gICAgIGZvciBpLCBmcmVxcSBpbiBlbnVtZXJhdGUoZnJlcSk6Cj4gPiA+
+IAo+ID4gPiAKPiA+ID4gICAgICAgICAjIHNlbGYudXNycC5zZXRfcnhfcmF0ZShiYW5kd2ljaFtp
+XSkKPiA+ID4gICAgICAgICBrID0gdWhkLnR5cGVzLlR1bmVSZXF1ZXN0KGZyZXFxKQo+ID4gPiAg
+ICAgICAgICMgay5hcmdzKHVoZC50eXBlcy5kZXZpY2VfYWRkcigibW9kZV9uPWludGVnZXIiKSkK
+PiA+ID4gICAgICAgICBzZWxmLnVzcnAuc2V0X3J4X2ZyZXEoaywwKQo+ID4gPiAKPiA+ID4gICAg
+ICAgICBzZWxmLnN0cmVhbWVyX3J4Lmlzc3VlX3N0cmVhbV9jbWQoc2VsZi5zdHJlYW1fY21kKQo+
+ID4gPiAgICAgICAgIHdoaWxlIHNlbGYudXNycC5nZXRfcnhfc2Vuc29yKCJsb19sb2NrZWQiKS50
+b19ib29sKCkgIT0KPiA+ID4gVHJ1ZToKPiA+ID4gICAgICAgICAgICAgY29udGludWUKPiA+ID4g
+ICAgICAgICByZWN2X3NhbXBzID0gMAo+ID4gPiAKPiA+ID4gICAgICAgICB3aGlsZSByZWN2X3Nh
+bXBzIDwgc2VsZi5zYW1wbGVzOgo+ID4gPiAKPiA+ID4gICAgICAgICAgICAgc2FtcHMgPSBzZWxm
+LnN0cmVhbWVyX3J4LnJlY3Yoc2VsZi5yZWN2X2J1ZmYsCj4gPiA+IHNlbGYubWV0YWRhdGFfcngp
+Cj4gPiA+ICAgICAgICAgICAgIGlmIHNlbGYubWV0YWRhdGFfcnguZXJyb3JfY29kZSAhPQo+ID4g
+PiBsaWIudHlwZXMucnhfbWV0YWRhdGFfZXJyb3JfY29kZS5ub25lOgo+ID4gPiAgICAgICAgICAg
+ICAgICAgcHJpbnQoc2VsZi5tZXRhZGF0YV9yeC5zdHJlcnJvcigpKQo+ID4gPiAgICAgICAgICAg
+ICBpZiBzYW1wczoKPiA+ID4gICAgICAgICAgICAgICAgIHJlYWxfc2FtcHMgPSBtaW4oc2VsZi5z
+YW1wbGVzIC0gcmVjdl9zYW1wcywKPiA+ID4gc2FtcHMpCj4gPiA+ICAgICAgICAgICAgICAgICBy
+ZXN1bHRbOiwgcmVjdl9zYW1wczpyZWN2X3NhbXBzICsgcmVhbF9zYW1wc10gPQo+ID4gPiBzZWxm
+LnJlY3ZfYnVmZls6LCAwOnJlYWxfc2FtcHNdCj4gPiA+ICAgICAgICAgICAgICAgICByZWN2X3Nh
+bXBzICs9IHJlYWxfc2FtcHMKPiA+ID4gICAgICAgICAjIHByaW50IChzZWxmLnVzcnAuZ2V0X3J4
+X3NlbnNvcigncnNzaScpKQo+ID4gPiAgICAgICAgICMgcHJpbnQoc2VsZi5zdHJlYW1lcl9yeC5n
+ZXRfbWF4X251bV9zYW1wcygpKQo+ID4gPiAKPiA+ID4gICAgICAgICAjIHNlbGYuc3RyZWFtX2Nt
+ZC50aW1lX3NwZWMgPSBsaWIudHlwZXMudGltZV9zcGVjKDApCj4gPiA+ICAgICAgICAgI3NlbGYu
+c3RyZWFtX2NtZC5zdHJlYW1fbm93ID0gRmFsc2UKPiA+ID4gCj4gPiA+ICAgICAgICAgI3NlbGYu
+c3RyZWFtX2NtZCA9Cj4gPiA+IGxpYi50eXBlcy5zdHJlYW1fY21kKGxpYi50eXBlcy5zdHJlYW1f
+bW9kZS5zdG9wX2NvbnQpCj4gPiA+ICAgICAgICAgI3NlbGYuc3RyZWFtZXJfcnguaXNzdWVfc3Ry
+ZWFtX2NtZChzZWxmLnN0cmVhbV9jbWQpCj4gPiA+IAo+ID4gPiAgICAgICAgIHdoaWxlIHNhbXBz
+Ogo+ID4gPiAgICAgICAgICAgICBzYW1wcyA9IHNlbGYuc3RyZWFtZXJfcngucmVjdihzZWxmLnJl
+Y3ZfYnVmZiwKPiA+ID4gc2VsZi5tZXRhZGF0YV9yeCkKPiA+ID4gCj4gPiA+ICAgICAgICAgI2Nv
+bXBsZXhfYnVmZnMgPSBucC5hcHBlbmQoY29tcGxleF9idWZmcywgcmVzdWx0KS5yYXZlbCgpCj4g
+PiA+ICAgICAgICAgIyBjb3JyZWN0X3Jlc3VsdD1yZXN1bHQKPiA+ID4gICAgICAgICAjY29ycmVj
+dF9yZXN1bHRfMSA9IHJlc3VsdCAtIChucC5tZWFuKHJlc3VsdC5yZWFsKSArCj4gPiA+IG5wLm1l
+YW4ocmVzdWx0LmltYWcpICogMWopCj4gPiA+ICAgICAgICAgIyBjb3JyZWN0X3Jlc3VsdC5yZWFs
+PXJlc3VsdC5yZWFsLW5wLm1lYW4ocmVzdWx0LnJlYWwpCj4gPiA+ICAgICAgICAgIyBjb3JyZWN0
+X3Jlc3VsdC5pbWFnID0gcmVzdWx0LmltYWcgLQo+ID4gPiBucC5tZWFuKHJlc3VsdC5pbWFnKQo+
+ID4gPiAKPiA+ID4gICAgICAgICBQU0QgPSBzZWxmLmZmdF90ZXN0KHJlc3VsdCkKPiA+ID4gCj4g
+PiA+ICAgICAgICAgIyBQU0RbODE4ODo4MjAyXT1ucC5tZWFuKFBTRFs4MTgwOjgxODhdKQo+ID4g
+PiAKPiA+ID4gICAgICAgICBidWZmc1s6LCBpICogdmFsdWUuc2FtcGxlczp2YWx1ZS5zYW1wbGVz
+ICogaSArCj4gPiA+IHZhbHVlLnNhbXBsZXNdID0gUFNEWzosIDA6dmFsdWUuc2FtcGxlc10KPiA+
+ID4gCj4gPiA+ICAgICByZXR1cm4gY29tcGxleF9idWZmcywgYnVmZnMucmF2ZWwoKSAgIwo+ID4g
+PiBucC5hcHBlbmQoYnVmZnNbdmFsdWUuc2FtcGxlczpdLGJ1ZmZzWzp2YWx1ZS5zYW1wbGVzXSkK
+PiA+ID4gCj4gPiAgWW91IGFyZSBnb2luZyB0byBuZWVkIHRvIHJlY29uc2lkZXIgeW91ciBjb2Rl
+IHN0cnVjdHVyZS4KPiA+IAo+ID4gCj4gPiAoQSkgVGhlIFB5dGhvbiBBUEkgaXMgKk5PVCogdGhl
+IHdheSB0byBwcm9jZXNzIGhpZ2gtc2FtcGxlLXJhdGUKPiA+IGRhdGEgKGFuZCAyNU1zcHMgaXMg
+aGlnaC1zYW1wbGUtcmF0ZSBpbiB0aGlzIGNvbnRleHQpCj4gPiAoQikgWW91IGludGVybWluZ2xl
+IHR1bmluZyBhbmQgKGNvbnRpbnVvdXMpIHN0cmVhbWluZyBpbiB0aGUgc2FtZQo+ID4gdGhyZWFk
+LCBBTkQsIGluc2VydCBzbWFsbCBzbGVlcHMgYWZ0ZXIgcmVjZWl2aW5nIHNhbXBsZXMtLWF0Cj4g
+PiAgICAgICAyNU1zcHMsIGV2ZXJ5IDFtaWxsaXNlY29uZCB5b3UgYXJlbid0ICJwYXlpbmcgYXR0
+ZW50aW9uIiB0bwo+ID4gdGhlIHJlY2VpdmUgc3RyZWFtLCB0aGVyZSdzIDI1LDAwMCBzYW1wbGVz
+IGJ1aWxkaW5nIHVwLgo+ID4gICAgICAgVHVuaW5nIHRha2VzIGEgZmluaXRlIGFtb3VudCBvZiB0
+aW1lLS1pdCdzIGEgZnVuZGFtZW50YWxseQo+ID4gYW5hbG9nIHByb2Nlc3MsIHNvIHNldmVyYWwg
+bWlsbGlzZWNvbmRzIG9mIGxhdGVuY3kgZm9yIHR1bmluZwo+ID4gICAgICAgaXMgbm90IHVudXN1
+YWwuCj4gPiAKPiA+IAo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KPiA+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gPiBVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbQo+ID4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
+bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZv
+L3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
