@@ -2,46 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78EC367D8
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Jun 2019 01:23:55 +0200 (CEST)
-Received: from [::1] (port=50436 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8101C367D9
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Jun 2019 01:24:21 +0200 (CEST)
+Received: from [::1] (port=51858 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hYfG6-0004fM-PS; Wed, 05 Jun 2019 19:23:54 -0400
-Received: from resqmta-po-08v.sys.comcast.net ([96.114.154.167]:50856)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <w6rz@comcast.net>) id 1hYfG3-0004WZ-Ih
- for usrp-users@lists.ettus.com; Wed, 05 Jun 2019 19:23:51 -0400
-Received: from resomta-po-17v.sys.comcast.net ([96.114.154.241])
- by resqmta-po-08v.sys.comcast.net with ESMTP
- id YeSbhFZYOFpWYYfFOhbrTY; Wed, 05 Jun 2019 23:23:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
- s=20190202a; t=1559776990;
- bh=qV5G49XrHrvBFGtEPy4c+cd7IkZwlWrra62UaR7bcg4=;
- h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
- Content-Type;
- b=vPWHN2k6Om0g/nWME4x/XHiODmv817sm23NYJSD2eNQEfBzc7YRyBOY3P9O7EVrnc
- dWUx7N5ZzKJ9F01j0WtH2ekj1i2Ssft34Vk4I5GlAn6o36xz1WFtiIDXi7ZDgDOHSF
- glQ1MrrslrmDb6jQUzFvzPk5FgVYIn0h0n+XtyKIW732KgWIs96HrYthGs526ntJHg
- 8d1hOuWVT+adi6B9WRCE/5TGV6DGZUEJrBb4Vp8QfHjjr4L4nXNvydciCTUXnK9L4U
- ufbTIVyP4OVQjvhNwpH4FnIbKPSfbjj91QIUj9HNP3BE3Sw5OQzlU+PhJl8hZFj27u
- eRc9RUTLHpj8w==
-Received: from [IPv6:2601:647:4200:ea30:c950:2825:22a9:6257]
- ([IPv6:2601:647:4200:ea30:c950:2825:22a9:6257])
- by resomta-po-17v.sys.comcast.net with ESMTPSA
- id YfFMh3WGb0ExbYfFOhBIrs; Wed, 05 Jun 2019 23:23:10 +0000
-X-Xfinity-VMeta: sc=0;st=legit
-To: usrp-users@lists.ettus.com
+	id 1hYfGW-0004wt-Gv; Wed, 05 Jun 2019 19:24:20 -0400
+Received: from mail-qt1-f177.google.com ([209.85.160.177]:33759)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hYfGS-0004Wp-JZ
+ for usrp-users@lists.ettus.com; Wed, 05 Jun 2019 19:24:16 -0400
+Received: by mail-qt1-f177.google.com with SMTP id 14so631570qtf.0
+ for <usrp-users@lists.ettus.com>; Wed, 05 Jun 2019 16:23:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=loP5eHS8PXb+q/2rMQe1zDKISuTrIE0IXn31FVGMdHs=;
+ b=BqxPL1yAws6Cg1zx1w9V6Dm1oiE1DFr2zXQEWl2unTR40i7k1/WAwmo9B24lKplXNo
+ XB2lbvjpYuqBgw2lZ3ydw1ldoBcQvMRF7jAj2+n01D0VKGSt5Gg0TPw8yqMpdSyTErFy
+ ffuOQPaJNm3dtuwdn0YwpmisCIFbIvdJhU/dDaiEov+Ux/R2ePNNdBCB3RWX9vKrCwoy
+ T51wenkCkJfGSwj8Ugby8fSaBMVCDCBYZ7E5noBn5tIJJ3gTFmNoY5thgpJIXckiDSp9
+ 8R8WWMq1Rp8R6uwHX5X8cc07sr7kCzvWBxrr7NNuYR3k9XzqgFSEJh072AeWf2firWrb
+ dBbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=loP5eHS8PXb+q/2rMQe1zDKISuTrIE0IXn31FVGMdHs=;
+ b=KIq66/x0YqQjjx9Pkz5rOIjITq8ZFdJRf3UybDsbc/h3eBFkvsRTbEvxHUYjW7Y8L4
+ K5iH5ZLaCSZXxhJxPsluGucMOXohzDJWauC2ueVBp/oiVFp0b4hiqakMBOXYx0IxQ9c2
+ 0fyozDEyEOJ1/tssjzAjteZ+nwNRJBJgsphOv6LPAWo/rSZDg4Zn5vFRoPT4hVpR7h1D
+ duj9XVNT0eGkWdFQWAZDgSmcrQGpqtQIN6glwTANoKmGNNTMKNldF7kODZKGKi16JvpT
+ midLwY8nPAZ5dIIzLr1SwC44GtMr44nKXt/37K1S+wzl+U9OJAlcwYAbgXgmDACnRi3s
+ QpGg==
+X-Gm-Message-State: APjAAAWPZfYoZi64Ab3W43ENv56ZtSyOdV4iUhg2FxLLv2n8DObMGRUd
+ CmRD0X9nQD8McwtM7+pBZZ26rjpswNk=
+X-Google-Smtp-Source: APXvYqwwhP6pUC/AdAj7RD2B4i7/D0NZi9oTkIkB37jIQw+aXHdUgLFB/ILf87iwkgJ3Khndh8tPBg==
+X-Received: by 2002:a0c:d01b:: with SMTP id u27mr18184568qvg.88.1559777015902; 
+ Wed, 05 Jun 2019 16:23:35 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id g188sm24250qkc.52.2019.06.05.16.23.35
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 05 Jun 2019 16:23:35 -0700 (PDT)
+Message-ID: <5CF84EF6.1030906@gmail.com>
+Date: Wed, 05 Jun 2019 19:23:34 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: Dario Fertonani <dario.fertonani@gmail.com>
 References: <CAJGEdAjVmhPXK2=nd0FKSZ_t8MeWMgKTmmNqoZJR3mZL6th+cQ@mail.gmail.com>
  <5CF8330D.3050309@gmail.com>
  <CAJGEdAgMnNpnE6Q=J3j3Qke3x+AytyPiJ-xQ_9rx-pVFhbQ42Q@mail.gmail.com>
-Message-ID: <3e33c11a-ac28-02c3-f8c0-b10cdf067e0f@comcast.net>
-Date: Wed, 5 Jun 2019 16:23:08 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
 In-Reply-To: <CAJGEdAgMnNpnE6Q=J3j3Qke3x+AytyPiJ-xQ_9rx-pVFhbQ42Q@mail.gmail.com>
-Content-Language: en-US
 Subject: Re: [USRP-users] Use of dsp_freq in uhd::tune_request_t
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -54,9 +68,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ron Economos <w6rz@comcast.net>
-Content-Type: multipart/mixed; boundary="===============0344964665488581911=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6451140894605877622=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,25 +86,24 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============0344964665488581911==
+--===============6451140894605877622==
 Content-Type: multipart/alternative;
- boundary="------------788647B81B62E356EC2118D0"
-Content-Language: en-US
+ boundary="------------070202060006090304020109"
 
 This is a multi-part message in MIME format.
---------------788647B81B62E356EC2118D0
+--------------070202060006090304020109
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-10 MHz is a lot of offset. The master clock rate probably needs to be 40 
-MHz or above.
-
-Ron
-
-On 6/5/19 16:12, Dario Fertonani via USRP-users wrote:
+On 06/05/2019 07:12 PM, Dario Fertonani wrote:
 > Thank you Marcus. I should have mentioned that I tried removing that 
 > line, with no success. With non-zero dsp_freq, the power spectrum 
 > looks OK but the (coherent) signal quality is terrible.
+OK, that's a different level of problem.
+
+You're trying to maintain coherence across more than one B210?
+
+
 >
 > On Wed, Jun 5, 2019 at 2:25 PM Marcus D. Leech via USRP-users 
 > <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
@@ -98,8 +112,8 @@ On 6/5/19 16:12, Dario Fertonani via USRP-users wrote:
 >>     I'm trying to move the "DC offset" out of the main spectrum by
 >>     using the dsp_freq field in uhd::tune_request_t. This doesn't
 >>     seem to work on B210, meaning that the following code functions
->>     properly with DcOffset_Hz=0 but not, for example,
->>     with DcOffset_Hz=10e6. In all these tests the master clock rate
+>>     properly with DcOffset_Hz=0 but not, for example,
+>>     with DcOffset_Hz=10e6. In all these tests the master clock rate
 >>     is large enough to fit DcOffset_Hz and the spectrum of interest
 >>     easily. Anything obviously wrong?
 >>
@@ -107,13 +121,13 @@ On 6/5/19 16:12, Dario Fertonani via USRP-users wrote:
 >>     Dario
 >>
 >>     uhd::tune_request_t uhdTuneRequest( const double &CarrierFreq_Hz
->>     , const double &DcOffset_Hz )
+>>     , const double &DcOffset_Hz )
 >>     {
->>         uhd::tune_request_t tuneRequest( CarrierFreq_Hz - DcOffset_Hz );
->>         tuneRequest.args = uhd::device_addr_t( "mode_n=integer" );
->>         tuneRequest.dsp_freq_policy = uhd::tune_request_t::POLICY_MANUAL;
->>         tuneRequest.dsp_freq = DcOffset_Hz;
->>         return tuneRequest;
+>>         uhd::tune_request_t tuneRequest( CarrierFreq_Hz - DcOffset_Hz );
+>>         tuneRequest.args = uhd::device_addr_t( "mode_n=integer" );
+>>         tuneRequest.dsp_freq_policy = uhd::tune_request_t::POLICY_MANUAL;
+>>         tuneRequest.dsp_freq = DcOffset_Hz;
+>>         return tuneRequest;
 >>     }
 >>
 >>
@@ -129,42 +143,44 @@ On 6/5/19 16:12, Dario Fertonani via USRP-users wrote:
 >     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
 >     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---------------788647B81B62E356EC2118D0
+
+--------------070202060006090304020109
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>10 MHz is a lot of offset. The master clock rate probably needs
-      to be 40 MHz or above.</p>
-    <p>Ron<br>
-    </p>
-    <div class="moz-cite-prefix">On 6/5/19 16:12, Dario Fertonani via
-      USRP-users wrote:<br>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 06/05/2019 07:12 PM, Dario Fertonani
+      wrote:<br>
     </div>
-    <blockquote type="cite"
-cite="mid:CAJGEdAgMnNpnE6Q=J3j3Qke3x+AytyPiJ-xQ_9rx-pVFhbQ42Q@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <blockquote
+cite="mid:CAJGEdAgMnNpnE6Q=J3j3Qke3x+AytyPiJ-xQ_9rx-pVFhbQ42Q@mail.gmail.com"
+      type="cite">
       <div dir="ltr">
         <div>Thank you Marcus. I should have mentioned that I tried
           removing that line, with no success. With non-zero dsp_freq,
           the power spectrum looks OK but the (coherent) signal quality
           is terrible.</div>
-        <br>
+      </div>
+    </blockquote>
+    OK, that's a different level of problem.<br>
+    <br>
+    You're trying to maintain coherence across more than one B210?<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CAJGEdAgMnNpnE6Q=J3j3Qke3x+AytyPiJ-xQ_9rx-pVFhbQ42Q@mail.gmail.com"
+      type="cite">
+      <div dir="ltr"><br>
         <div class="gmail_quote">
           <div dir="ltr" class="gmail_attr">On Wed, Jun 5, 2019 at 2:25
             PM Marcus D. Leech via USRP-users &lt;<a
-              href="mailto:usrp-users@lists.ettus.com"
-              moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
+              moz-do-not-send="true"
+              href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
             wrote:<br>
           </div>
           <blockquote class="gmail_quote" style="margin:0px 0px 0px
@@ -217,39 +233,33 @@ cite="mid:CAJGEdAgMnNpnE6Q=J3j3Qke3x+AytyPiJ-xQ_9rx-pVFhbQ42Q@mail.gmail.com">
               You shouldn't need to use POLICY_MANUAL at all, since the
               tune_request_t supports offset-tuning directly:<br>
               <br>
-              <a
+              <a moz-do-not-send="true"
                 class="gmail-m_8104242665193802923moz-txt-link-freetext"
 href="https://files.ettus.com/manual/structuhd_1_1tune__request__t.html"
-                target="_blank" moz-do-not-send="true">https://files.ettus.com/manual/structuhd_1_1tune__request__t.html</a><br>
+                target="_blank">https://files.ettus.com/manual/structuhd_1_1tune__request__t.html</a><br>
               <br>
               <br>
               <br>
             </div>
             _______________________________________________<br>
             USRP-users mailing list<br>
-            <a href="mailto:USRP-users@lists.ettus.com" target="_blank"
-              moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
-            <a
+            <a moz-do-not-send="true"
+              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
+            <a moz-do-not-send="true"
 href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank" moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
           </blockquote>
         </div>
       </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
     </blockquote>
+    <br>
   </body>
 </html>
 
---------------788647B81B62E356EC2118D0--
+--------------070202060006090304020109--
 
 
---===============0344964665488581911==
+--===============6451140894605877622==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -260,5 +270,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0344964665488581911==--
+--===============6451140894605877622==--
 
