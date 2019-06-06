@@ -2,86 +2,75 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D67C37BD0
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Jun 2019 20:05:44 +0200 (CEST)
-Received: from [::1] (port=56638 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC8037BD7
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Jun 2019 20:06:52 +0200 (CEST)
+Received: from [::1] (port=58476 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hYwlj-0007DP-Ib; Thu, 06 Jun 2019 14:05:43 -0400
-Received: from otransport-16.outbound.emailsrv.net ([18.232.37.98]:48264)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
- id 1hYwle-0006xL-6M
- for usrp-users@lists.ettus.com; Thu, 06 Jun 2019 14:05:38 -0400
-Received: from ogate-2.outbound.emailservice.io (ip-10-4-2-5.ec2.internal
- [10.4.2.5])
- by otransport-16.outbound.emailsrv.net (Postfix) with ESMTPS id A28B46127C
- for <usrp-users@lists.ettus.com>; Thu,  6 Jun 2019 18:04:57 +0000 (UTC)
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam03lp2058.outbound.protection.outlook.com [104.47.41.58])
- by ogate-2.outbound.emailservice.io (Postfix) with ESMTPS id 47FC01E0004
- for <usrp-users@lists.ettus.com>; Thu,  6 Jun 2019 18:04:57 +0000 (UTC)
+	id 1hYwmp-0007Zr-85; Thu, 06 Jun 2019 14:06:51 -0400
+Received: from mail-eopbgr720089.outbound.protection.outlook.com
+ ([40.107.72.89]:19138 helo=NAM05-CO1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <mark.koenig@iubelttechnologies.com>)
+ id 1hYwmk-0007Mg-Jt
+ for usrp-users@lists.ettus.com; Thu, 06 Jun 2019 14:06:46 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector1-gardettoengineering-onmicrosoft-com;
+ d=NETORG330411.onmicrosoft.com; s=selector1-NETORG330411-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tFabDrxAcoOoBIcpM+M0z2XqUEHY8QDh0MGKGg8M9og=;
- b=SEN+UMNKZgpqTqOsnJ8iQuPwlYievgKzpQIC25He5RWKJv2aGXXWR4ftYx3QsBe4lpQErT2zALTrnrTsE4zdp0nT2IHLHIUv83K85/5GN2S9sovYjpiCjajJKykepCI5gY8BaTAWPdGGGKjjRDZ3jCMCGSxOeD613+LzGRrQcy8=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
- BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) with Microsoft SMTP
+ bh=7TnAXq7e+Of5SaZ3KXTsbLyTkNau7zDflAhD5v1/EAs=;
+ b=fBD17zGFaaZhvsfabmwjVrHul6etyKkLJZyLEGkFjowVUWcDfeIM3Ne9ZKpslbi4GgXEsLeSeXaaqzJZTQJveUNDGrPtrEhThyn3dNLhG8l+KL33gNfS4SPWeoj6T5Jm5BFu+/RCGDqrVLuuaGBbgqgFFC7726SS/TTeEszx/M4=
+Received: from SN1PR12MB2432.namprd12.prod.outlook.com (52.132.195.147) by
+ SN1PR12MB2445.namprd12.prod.outlook.com (52.132.195.148) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1943.22; Thu, 6 Jun 2019 18:04:53 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0%4]) with mapi id 15.20.1943.023; Thu, 6 Jun 2019
- 18:04:53 +0000
-To: Ettus Mail List <usrp-users@lists.ettus.com>
-Thread-Topic: problem with custom E320 FPGA image
-Thread-Index: AQHVHJCk5ppGk2QLBUCwi9BaNPeFMg==
-Date: Thu, 6 Jun 2019 18:04:53 +0000
-Message-ID: <BL0PR12MB23403F712D9336AC115D0073AF170@BL0PR12MB2340.namprd12.prod.outlook.com>
+ 15.20.1965.14; Thu, 6 Jun 2019 18:06:04 +0000
+Received: from SN1PR12MB2432.namprd12.prod.outlook.com
+ ([fe80::b040:7493:ffed:b451]) by SN1PR12MB2432.namprd12.prod.outlook.com
+ ([fe80::b040:7493:ffed:b451%7]) with mapi id 15.20.1965.011; Thu, 6 Jun 2019
+ 18:06:04 +0000
+To: Neel Pandeya <neel.pandeya@ettus.com>
+Thread-Topic: [USRP-users] UHD Comms Error
+Thread-Index: AQHVHI/NVIyvbznEhECJ70bjpgmcY6aO6jEA//++sAA=
+Date: Thu, 6 Jun 2019 18:06:04 +0000
+Message-ID: <06307D27-B3BA-4D7C-9922-C0396FD764F7@iubelttechnologies.com>
+References: <8415D3F8-C584-4C83-A315-C9941AD31D30@contoso.com>
+ <CACaXmv8D+NtFt0+ctcuQifEF9sU5-WNeL-fH5JvgrSO-W_4czw@mail.gmail.com>
+In-Reply-To: <CACaXmv8D+NtFt0+ctcuQifEF9sU5-WNeL-fH5JvgrSO-W_4czw@mail.gmail.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-originating-ip: [65.127.220.137]
+ smtp.mailfrom=mark.koenig@iubelttechnologies.com; 
+x-originating-ip: [50.233.168.36]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2461ad92-3eed-4a87-aa69-08d6eaa979f4
+x-ms-office365-filtering-correlation-id: 6cb32a54-eb2e-47c6-c3e3-08d6eaa9a474
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
- SRVR:BL0PR12MB2340; 
-x-ms-traffictypediagnostic: BL0PR12MB2340:
-x-microsoft-antispam-prvs: <BL0PR12MB2340D4795652FDC4D5FA795BAF170@BL0PR12MB2340.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
+ SRVR:SN1PR12MB2445; 
+x-ms-traffictypediagnostic: SN1PR12MB2445:
+x-ms-exchange-purlcount: 3
+x-microsoft-antispam-prvs: <SN1PR12MB2445FEF2B31BBFFB9B966D568C170@SN1PR12MB2445.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
 x-forefront-prvs: 00603B7EEF
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(376002)(346002)(136003)(396003)(39830400003)(366004)(189003)(199004)(66066001)(186003)(6606003)(6916009)(14454004)(476003)(26005)(7696005)(68736007)(99286004)(316002)(102836004)(6506007)(6116002)(508600001)(3846002)(2906002)(486006)(33656002)(25786009)(19627405001)(6436002)(8676002)(7736002)(86362001)(5660300002)(71190400001)(14444005)(256004)(73956011)(64756008)(76116006)(8936002)(66556008)(66476007)(66946007)(66446008)(52536014)(55016002)(74316002)(53936002)(81166006)(81156014)(71200400001)(54896002)(9686003);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2340;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
+ SFS:(10009020)(366004)(346002)(396003)(136003)(376002)(39830400003)(199004)(189003)(6916009)(606006)(2906002)(229853002)(446003)(8936002)(486006)(186003)(236005)(44832011)(36756003)(26005)(11346002)(476003)(2616005)(81166006)(6116002)(9326002)(3846002)(54896002)(8676002)(81156014)(86362001)(7736002)(76116006)(91956017)(5660300002)(66946007)(73956011)(53936002)(66446008)(64756008)(66556008)(66476007)(6306002)(6512007)(6246003)(6486002)(102836004)(76176011)(966005)(256004)(508600001)(14444005)(316002)(25786009)(66066001)(6436002)(6506007)(53546011)(4326008)(83716004)(71190400001)(71200400001)(82746002)(68736007)(33656002)(99286004)(14454004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:SN1PR12MB2445;
+ H:SN1PR12MB2432.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: iubelttechnologies.com does not
  designate permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 38fULZkx6ZKkJsgUQ80AJE5eRvRIkDxGaa51iF/S0nQ0Amhiqg3RxiTSMWl6562YKhN3o+FI1bxlnwC+JotLyP3q58Ha1OWumZt5kVPJ3iEt2vO6EAS8xXH6jmC2XfE3dH+6oEFw2DSRZm2/zHH1RCUvyQbPkC2T8fJow/bdatOzR7gF8ZyVxp+PEV+Kw8JqLveYBKn5ZL4sSJUev/b8WxbII2pgiJlu2w9z2MfWdfnI3l4iy05vb3GLxhFQcufGlKA+x/p3gSY0GxT/SSqNyoh4yimN+o72giYg6qEYJPNmxOp2FMHQ3DDLt/cd/yr0fXgHx4ccGetfsApx+ViCWSBEUHzfbWFLQGHXvV5g9x/fiI2mLRid9ishDcgot7nrEECTP+VJ3mf3rXNAxPtpbm/7Y66RAm1Qakeu6a0bhS4=
+x-microsoft-antispam-message-info: GmoAoCInNNfrRQzqGVIZjKtGpkgSqd6dc5mu2Qa+ImQtpdeQvqUexelEqbMxEN4Xje+7GiLJbonIstGazRU/zC5yfPlRaGDTtUoivpQxUEEcd1rTm4PAvqU+CVD9cG6BAYR7IrAXE5ODSNRVtdDT9q1gff6296Dj+4rzT1vGbHS7UhTLv02O8LuirZFRSojFiKngw0KDcVei22/N5860BiEVs2N3+goUStU7BfiV5aZUIFdpatZbcQGOswgb2+lfjaPp5oAQCLc+hntO0ZpWb/ejDoXo7nvbdDFyGXMnpfHlAG7Yvbz+y4dbLPuVbdvLxpeqIiaohcCLp9of3eS0zO+AXkI13y+pMUWT/7lm7TEjoZtPprRC2wENeSaIduFgUKe74BxuyASGmC2zSSmRWNDyi7lhEib/SEjsi6aIdUE=
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2461ad92-3eed-4a87-aa69-08d6eaa979f4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 18:04:53.4055 (UTC)
+X-OriginatorOrg: iubelttechnologies.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6cb32a54-eb2e-47c6-c3e3-08d6eaa9a474
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 18:06:04.7722 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-id: 1a86298a-7d59-4320-a7f5-798264e69360
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2340
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-dm3nam03lp2058.outbound.protection.outlook.com|104.47.41.58|NAM03-DM3-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.41.58, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-20716-c
-X-Mailprotector-ID: d7f8d5aa-fe8f-4e60-96ce-7a67edd818f9
-Subject: [USRP-users] problem with custom E320 FPGA image
+X-MS-Exchange-CrossTenant-userprincipalname: mark.koenig@iubelttechnologies.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2445
+Subject: Re: [USRP-users] UHD Comms Error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -93,9 +82,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
-Content-Type: multipart/mixed; boundary="===============6117838410758394125=="
+From: Mark Koenig via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mark Koenig <mark.koenig@iubelttechnologies.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5099433316740603743=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -109,216 +99,186 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6117838410758394125==
+--===============5099433316740603743==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB23403F712D9336AC115D0073AF170BL0PR12MB2340namp_"
+	boundary="_000_06307D27B3BA4D7C9922C0396FD764F7iubelttechnologiescom_"
 
---_000_BL0PR12MB23403F712D9336AC115D0073AF170BL0PR12MB2340namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--_000_06307D27B3BA4D7C9922C0396FD764F7iubelttechnologiescom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I've seen chatter on this around here before (an I think I might have been =
-involved with it during my failed N310 project a while back), but I haven't=
- come up with a solution yet.
+SGkgTmVlbCwNCg0KWWVzLCBJIGFtIHVzaW5nIG15IG93biBwcm9ncmFtIGFuZCB5ZXMgaXQgb2Nj
+dXJzIGR1cmluZyBhIHR1bmUgcmVxdWVzdCwgYnV0IG5vdCBldmVyeSB0aW1lLiAgRm9yIGV4YW1w
+bGUsIEkgY291bGQgYmUgZG9pbmcgYSBjb2xsZWN0aW9uIGFuZCBzY2FubmluZyBmcmVxdWVuY2ll
+cyBldmVyeSAxMCBzZWNvbmRzLCBidXQgbm90IHNlZSB0aGUgZXJyb3Igb25jZSBpbiBhIDItaG91
+ciBjb2xsZWN0aW9uLiAgT25jZSB0aGUgZXJyb3IgaXMgc2VlbiwgdGhlbiBjb21tdW5pY2F0aW9u
+IGlzIGxvc3QgYW5kIEkgd2lsbCBnZXQgdGhlIHNhbWUgZXJyb3Igb3ZlciBhbmQgb3ZlciBhZ2Fp
+bi4NCg0KSSBhbSBydW5uaW5nIEdOUkFESU8gMy43LjQsIGRvZXMgVUhEIDMuMTQgcmVxdWlyZSBh
+IEdOVVJBRElPIHVwZGF0ZT8gIEkgd291bGQgcHJlZmVyIG5vdCB0byB1cGdyYWRlIEdOVVJBRElP
+LCBkdWUgdG8gdGhlIGZhY3QgbXkgcHJvZ3JhbSByZWxpZXMgb24gSUNFIGFuZCBpZiBHTlVSQURJ
+TyBpcyB1cGRhdGVkIHRoZW4gVEhSSUZUIG11c3QgYmUgaW5zdGFsbGVkIGFuZCByZXBsYWNlcyBJ
+Q0UuDQoNClRoYW5rcw0KDQpNYXJrDQoNCkZyb206IE5lZWwgUGFuZGV5YSA8bmVlbC5wYW5kZXlh
+QGV0dHVzLmNvbT4NCkRhdGU6IFRodXJzZGF5LCBKdW5lIDYsIDIwMTkgYXQgMjowMCBQTQ0KVG86
+IE1hcmsgS29lbmlnIDxtYXJrLmtvZW5pZ0BpdWJlbHR0ZWNobm9sb2dpZXMuY29tPg0KQ2M6ICJ1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0K
+U3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBVSEQgQ29tbXMgRXJyb3INCg0KSGVsbG8gTWFyazoN
+Cg0KVGhpcyBtYXkgaW5kaWNhdGUgYSBoYXJkd2FyZSBwcm9ibGVtLiAgV2hhdCBpcyBzcGVjaWZp
+Y2FsbHkgZWxpY2l0aW5nIHRoZSBlcnJvcj8gIERvZXMgaXQgb2NjdXIgd2l0aCBldmVyeSB0aW1l
+IHRoYXQgdGhlcmUgaXMgYSB0dW5lIHJlcXVlc3Q/ICBBcmUgeW91IHJ1bm5pbmcgeW91ciBvd24g
+cHJvZ3JhbSwgb3Igb25lIHRoZSBleGFtcGxlIHByb2dyYW1zLCBzdWNoIGFzICJyeF9zYW1wbGVz
+X3RvX2ZpbGUiPyAgQ291bGQgeW91IHBsZWFzZSB0cnkgdXBncmFkaW5nIHRvIFVIRCAzLjE0LjAu
+MCwgYW5kIHJlLXJ1bm5pbmcgeW91ciB0ZXN0LCBhbmQgbGV0IG1lIGtub3cgeW91ciByZXN1bHRz
+Pw0KDQotLU5lZWwgUGFuZGV5YQ0KDQoNCg0KT24gVGh1LCA2IEp1biAyMDE5IGF0IDEyOjQ3LCBN
+YXJrIEtvZW5pZyB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFp
+bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3JvdGU6DQpQbGVhc2UgaGVscCwgd2l0
+aCB0aGUgZXJyb3IgSSBhbSBzZWVpbmcuDQoNCkkgYW0gY3VycmVudGx5IHVzaW5nIGFuIFgzMTAg
+d2l0aCBhIFVCWDE2MCBkYXVnaHRlcmNhcmQgYW5kIEkgZ2V0IHRoZSBlcnJvciBiZWxvdyB3aGVu
+IGNoYW5naW5nIHRoZSBmcmVxdWVuY3kgcGFyYW1ldGVycyBvZiB0aGUgcmFkaW8uDQoNClJ1bnRp
+bWVFcnJvcjogRW52aXJvbm1lbnRFcnJvcjogSU9FcnJvcjogUmFkaW8gY3RybCAoQSkgcGFja2V0
+IHBhcnNlIGVycm9yIC0gQXNzZXJ0aW9uRXJyb3I6IHBhY2tldF9pbmZvLnBhY2tldF9jb3VudCA9
+PSAoc2VxX3RvX2FjayAmIDB4ZmZmKQ0KICBpbiB1aW50NjRfdCByYWRpb19jdHJsX2NvcmVfMzAw
+MF9pbXBsOjp3YWl0X2Zvcl9hY2soYm9vbCkNCg0KDQpJIGFtIGN1cnJlbnRseSBydW5uaW5nIFVI
+RCAzLjkuNywgYnV0IGhhdmUgYWxzbyBzZWVuIGEgc2ltaWxhciBlcnJvciB3aXRoIDMuMTAuMg0K
+DQpUaGFua3MNCg0KTWFyaw0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0DQpVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbTxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpodHRwOi8vbGlzdHMuZXR0
+dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
 
+--_000_06307D27B3BA4D7C9922C0396FD764F7iubelttechnologiescom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <DAE0F188057F8A4CB85D4591B5C2B29B@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-I have a custom RFNoC bitfile I want to use on the E320.  I set things up a=
-nd built it with the mods in rfnoc_ce_auto_inst_e320.v to fix the clk like =
-is done in rfnoc_ce_default_inst_e320.v.
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
+dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
+KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
+CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6VmVyZGFuYTsNCglwYW5vc2UtMToyIDExIDYgNCAz
+IDUgNCA0IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0K
+CXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWls
+eTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERl
+ZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJ
+e21hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMS4wcHQ7
+DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5
+cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRl
+Y29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dl
+ZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3Jh
+dGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVy
+c29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6
+d2luZG93dGV4dDt9DQpzcGFuLm1zb0lucw0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsN
+Cgltc28tc3R5bGUtbmFtZToiIjsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lOw0KCWNvbG9y
+OnRlYWw7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJ
+Zm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4w
+aW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjEN
+Cgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT4NCjwvaGVhZD4NCjxib2R5IGJnY29s
+b3I9IndoaXRlIiBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2
+IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgTmVlbCw8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+WWVzLCBJIGFtIHVzaW5nIG15IG93biBwcm9ncmFtIGFuZCB5
+ZXMgaXQgb2NjdXJzIGR1cmluZyBhIHR1bmUgcmVxdWVzdCwgYnV0IG5vdCBldmVyeSB0aW1lLiZu
+YnNwOyBGb3IgZXhhbXBsZSwgSSBjb3VsZCBiZSBkb2luZyBhIGNvbGxlY3Rpb24gYW5kIHNjYW5u
+aW5nIGZyZXF1ZW5jaWVzIGV2ZXJ5IDEwIHNlY29uZHMsIGJ1dCBub3Qgc2VlIHRoZSBlcnJvciBv
+bmNlIGluIGEgMi1ob3VyIGNvbGxlY3Rpb24uJm5ic3A7IE9uY2UNCiB0aGUgZXJyb3IgaXMgc2Vl
+biwgdGhlbiBjb21tdW5pY2F0aW9uIGlzIGxvc3QgYW5kIEkgd2lsbCBnZXQgdGhlIHNhbWUgZXJy
+b3Igb3ZlciBhbmQgb3ZlciBhZ2Fpbi48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBhbSBydW5u
+aW5nIEdOUkFESU8gMy43LjQsIGRvZXMgVUhEIDMuMTQgcmVxdWlyZSBhIEdOVVJBRElPIHVwZGF0
+ZT8mbmJzcDsgSSB3b3VsZCBwcmVmZXIgbm90IHRvIHVwZ3JhZGUgR05VUkFESU8sIGR1ZSB0byB0
+aGUgZmFjdCBteSBwcm9ncmFtIHJlbGllcyBvbiBJQ0UgYW5kIGlmIEdOVVJBRElPIGlzIHVwZGF0
+ZWQgdGhlbiBUSFJJRlQgbXVzdCBiZSBpbnN0YWxsZWQgYW5kIHJlcGxhY2VzIElDRS48bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+VGhhbmtzPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk1hcms8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3Bh
+ZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPkZyb206IDwvc3Bhbj48L2I+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPk5lZWwgUGFuZGV5YSAmbHQ7
+bmVlbC5wYW5kZXlhQGV0dHVzLmNvbSZndDs8YnI+DQo8Yj5EYXRlOiA8L2I+VGh1cnNkYXksIEp1
+bmUgNiwgMjAxOSBhdCAyOjAwIFBNPGJyPg0KPGI+VG86IDwvYj5NYXJrIEtvZW5pZyAmbHQ7bWFy
+ay5rb2VuaWdAaXViZWx0dGVjaG5vbG9naWVzLmNvbSZndDs8YnI+DQo8Yj5DYzogPC9iPiZxdW90
+O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJnF1b3Q7ICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OiA8L2I+UmU6IFtVU1JQLXVzZXJzXSBVSEQgQ29t
+bXMgRXJyb3I8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFu
+YSZxdW90OyxzYW5zLXNlcmlmIj5IZWxsbyBNYXJrOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWls
+eTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWYiPlRoaXMgbWF5IGluZGlj
+YXRlIGEgaGFyZHdhcmUgcHJvYmxlbS4mbmJzcDsgV2hhdCBpcyBzcGVjaWZpY2FsbHkgZWxpY2l0
+aW5nIHRoZSBlcnJvcj8mbmJzcDsgRG9lcyBpdCBvY2N1ciB3aXRoIGV2ZXJ5IHRpbWUgdGhhdCB0
+aGVyZSBpcyBhIHR1bmUgcmVxdWVzdD8mbmJzcDsgQXJlIHlvdSBydW5uaW5nIHlvdXIgb3duIHBy
+b2dyYW0sIG9yIG9uZSB0aGUgZXhhbXBsZQ0KIHByb2dyYW1zLCBzdWNoIGFzICZxdW90O3J4X3Nh
+bXBsZXNfdG9fZmlsZSZxdW90Oz8mbmJzcDsgQ291bGQgeW91IHBsZWFzZSB0cnkgdXBncmFkaW5n
+IHRvIFVIRCAzLjE0LjAuMCwgYW5kIHJlLXJ1bm5pbmcgeW91ciB0ZXN0LCBhbmQgbGV0IG1lIGtu
+b3cgeW91ciByZXN1bHRzPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtWZXJkYW5h
+JnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVv
+dDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWYiPi0tTmVlbCBQYW5kZXlhPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZiI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZiI+PG86
+cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5PbiBUaHUsIDYgSnVuIDIwMTkgYXQgMTI6NDcsIE1hcmsgS29lbmlnIHZpYSBVU1JQ
+LXVzZXJzICZsdDs8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPnVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAj
+Q0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7
+bWFyZ2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+
+UGxlYXNlIGhlbHAsIHdpdGggdGhlIGVycm9yIEkgYW0gc2VlaW5nLjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRv
+bS1hbHQ6YXV0byI+SSBhbSBjdXJyZW50bHkgdXNpbmcgYW4gWDMxMCB3aXRoIGEgVUJYMTYwIGRh
+dWdodGVyY2FyZCBhbmQgSSBnZXQgdGhlIGVycm9yIGJlbG93IHdoZW4gY2hhbmdpbmcgdGhlIGZy
+ZXF1ZW5jeSBwYXJhbWV0ZXJzIG9mIHRoZSByYWRpby48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPlJ1bnRpbWVFcnJvcjogRW52aXJvbm1lbnRFcnJvcjogSU9FcnJvcjogUmFkaW8gY3RybCAo
+QSkgcGFja2V0IHBhcnNlIGVycm9yIC0gQXNzZXJ0aW9uRXJyb3I6IHBhY2tldF9pbmZvLnBhY2tl
+dF9jb3VudCA9PSAoc2VxX3RvX2FjayAmYW1wOyAweGZmZik8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
+LWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7IGluIHVpbnQ2NF90IHJhZGlvX2N0cmxfY29yZV8zMDAw
+X2ltcGw6OndhaXRfZm9yX2Fjayhib29sKTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFs
+dDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5i
+c3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdp
+bi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkkgYW0gY3VycmVudGx5
+IHJ1bm5pbmcgVUhEIDMuOS43LCBidXQgaGF2ZSBhbHNvIHNlZW4gYSBzaW1pbGFyIGVycm9yIHdp
+dGggMy4xMC4yPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNv
+LW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
+LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5UaGFua3M8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1i
+b3R0b20tYWx0OmF1dG8iPk1hcms8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRv
+OlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+VVNSUC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPGEgaHJlZj0iaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
+YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFu
+ayI+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8
+L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-
-It builds fine and I scp it over to the E320.  I then load it up with the c=
-ommand: uhd_image_loader --args=3D"type=3De3xx" --fpga-path=3D"/home/root/e=
-320.bit"
-
-
-It acts like everything worked fine, but then when I probe it, it errors ou=
-t:
-
-root@ni-e320-318B090:~# uhd_usrp_probe
-[INFO] [UHD] linux; GNU C++ version 7.3.0; Boost_106600; UHD_3.14.1.HEAD-0-=
-g5491b80e
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-27.0.0.1,type=3De3xx,product=3De320,serial=3D318B090,claimed=3DFalse
-[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D00000000000=
-)
-[INFO] [MPM.PeriphManager] init() called with device args `mgmt_addr=3D127.=
-0.0.1,product=3De320'.
-[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1313 MB/s)
-[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1337 MB/s)
-[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000003320)
-[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000001)
-[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000001)
-[INFO] [0/DDC_2] Initializing block control (NOC ID: 0xDDC0000000000001)
-[INFO] [0/DDC_3] Initializing block control (NOC ID: 0xDDC0000000000001)
-[WARNING] [RFNOC] Can't find a block controller for key keepMinN, using def=
-ault block controller!
-[INFO] [0/keepMinN_0] Initializing block control (NOC ID: 0x229C30C91927522=
-0)
-[WARNING] [RFNOC] Can't find a block controller for key keepMinN, using def=
-ault block controller!
-[INFO] [0/keepMinN_1] Initializing block control (NOC ID: 0x229C30C91927522=
-0)
-[WARNING] [RFNOC] Can't find a block controller for key SplitStream, using =
-default block controller!
-[INFO] [0/SplitStream_0] Initializing block control (NOC ID: 0x575700000000=
-0000)
-[ERROR] [UHD] Exception caught in safe-call.
-  in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with uhd::endianness=
-_t _endianness =3D (uhd::endianness_t)1]
-  at /opt/gnuradio/e320/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:52
-this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl (C=
-E_08_Port_A1) no response packet - AssertionError: bool(buff)
-  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [wit=
-h uhd::endianness_t _endianness =3D (uhd::endianness_t)1; uint64_t =3D long=
- long unsigned int]
-  at /opt/gnuradio/e320/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142
-
-[ERROR] [MPMD] Failure during block enumeration: EnvironmentError: IOError:=
- [0/SplitStream_0] sr_read64() failed: EnvironmentError: IOError: Block ctr=
-l (CE_08_Port_A1) no response packet - AssertionError: bool(buff)
-  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [wit=
-h uhd::endianness_t _endianness =3D (uhd::endianness_t)1; uint64_t =3D long=
- long unsigned int]
-  at /opt/gnuradio/e320/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142
-
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
-root@ni-e320-318B090:~#
-
-
-
-I thought that this error was due to the clocks in the inst file being wron=
-g, but I've made that mod already.  Any other thoughts?  What is a little w=
-eird to me is that it is complaining about CE_08_Port_A1, but I only have 8=
- CEs, so I would have thought my largest one would be CE_07.
-
-
-
---_000_BL0PR12MB23403F712D9336AC115D0073AF170BL0PR12MB2340namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">I've seen chatter on this around =
-here before (an I think I might have been involved with it during my failed=
- N310 project a while back), but I haven't come up with a solution yet.&nbs=
-p;&nbsp;</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">I have a custom RFNoC bitfile I w=
-ant to use on the E320.&nbsp; I set things up and built it with the mods in=
-&nbsp;<span>rfnoc_ce_auto_inst_e320.v to fix the clk like is done in&nbsp;<=
-span>rfnoc_ce_default_inst_e320.v.</span></span></p>
-<p style=3D"margin-top:0;margin-bottom:0"><span><span><br>
-</span></span></p>
-<p style=3D"margin-top:0;margin-bottom:0"><span><span>It builds fine and I =
-scp it over to the E320.&nbsp; I then load it up with the command:&nbsp;<sp=
-an>uhd_image_loader --args=3D&quot;type=3De3xx&quot; --fpga-path=3D&quot;/h=
-ome/root/e320.bit&quot;</span></span></span></p>
-<p style=3D"margin-top:0;margin-bottom:0"><span><span><span><br>
-</span></span></span></p>
-<p style=3D"margin-top:0;margin-bottom:0"><span><span><span>It acts like ev=
-erything worked fine, but then when I probe it, it errors out:</span></span=
-></span></p>
-<p style=3D"margin-top:0;margin-bottom:0"><span><span><span></p>
-<div>root@ni-e320-318B090:~# uhd_usrp_probe&nbsp;</div>
-<div>[INFO] [UHD] linux; GNU C&#43;&#43; version 7.3.0; Boost_106600; UHD_3=
-.14.1.HEAD-0-g5491b80e</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3De3xx,product=3De320,serial=3D318B090,claimed=3DFalse</=
-div>
-<div>[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D000000=
-00000)</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `mgmt_addr=
-=3D127.0.0.1,product=3De320'.</div>
-<div>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1313 MB/s)</div>
-<div>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1337 MB/s)</div>
-<div>[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000003=
-320)</div>
-<div>[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC000000000000=
-1)</div>
-<div>[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC000000000000=
-1)</div>
-<div>[INFO] [0/DDC_2] Initializing block control (NOC ID: 0xDDC000000000000=
-1)</div>
-<div>[INFO] [0/DDC_3] Initializing block control (NOC ID: 0xDDC000000000000=
-1)</div>
-<div>[WARNING] [RFNOC] Can't find a block controller for key keepMinN, usin=
-g default block controller!</div>
-<div>[INFO] [0/keepMinN_0] Initializing block control (NOC ID: 0x229C30C919=
-275220)</div>
-<div>[WARNING] [RFNOC] Can't find a block controller for key keepMinN, usin=
-g default block controller!</div>
-<div>[INFO] [0/keepMinN_1] Initializing block control (NOC ID: 0x229C30C919=
-275220)</div>
-<div>[WARNING] [RFNOC] Can't find a block controller for key SplitStream, u=
-sing default block controller!</div>
-<div>[INFO] [0/SplitStream_0] Initializing block control (NOC ID: 0x5757000=
-000000000)</div>
-<div>[ERROR] [UHD] Exception caught in safe-call.</div>
-<div>&nbsp; in ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl() [with=
- uhd::endianness_t _endianness =3D (uhd::endianness_t)1]</div>
-<div>&nbsp; at /opt/gnuradio/e320/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:52<=
-/div>
-<div>this-&gt;send_cmd_pkt(0, 0, true); -&gt; EnvironmentError: IOError: Bl=
-ock ctrl (CE_08_Port_A1) no response packet - AssertionError: bool(buff)</d=
-iv>
-<div>&nbsp; in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bo=
-ol, double) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)1; u=
-int64_t =3D long long unsigned int]</div>
-<div>&nbsp; at /opt/gnuradio/e320/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142=
-</div>
-<div><br>
-</div>
-<div>[ERROR] [MPMD] Failure during block enumeration: EnvironmentError: IOE=
-rror: [0/SplitStream_0] sr_read64() failed: EnvironmentError: IOError: Bloc=
-k ctrl (CE_08_Port_A1) no response packet - AssertionError: bool(buff)</div=
->
-<div>&nbsp; in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bo=
-ol, double) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)1; u=
-int64_t =3D long long unsigned int]</div>
-<div>&nbsp; at /opt/gnuradio/e320/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142=
-</div>
-<div><br>
-</div>
-<div>Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()</div>
-<div>root@ni-e320-318B090:~#&nbsp;</div>
-<div><br>
-</div>
-<br>
-</span></span></span>
-<p></p>
-<p style=3D"margin-top:0;margin-bottom:0"><span><span><span>I thought that =
-this error was due to the clocks in the inst file being wrong, but I've mad=
-e that mod already.&nbsp; Any other thoughts?&nbsp; What is a little weird =
-to me is that it is complaining about&nbsp;<span style=3D"font-family: Cali=
-bri, Helvetica, sans-serif, EmojiFont, &quot;Apple Color Emoji&quot;, &quot=
-;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;A=
-ndroid Emoji&quot;, EmojiSymbols; font-size: 16px;">CE_08_Port_A1,
- but I only have 8 CEs, so I would have thought my largest one would be CE_=
-07.</span></span></span></span></p>
-<p style=3D"margin-top:0;margin-bottom:0"><span><span><span><br>
-</span></span></span></p>
-<p style=3D"margin-top:0;margin-bottom:0"><span><span><span><br>
-</span></span></span></p>
-</div>
-</body>
-</html>
-
---_000_BL0PR12MB23403F712D9336AC115D0073AF170BL0PR12MB2340namp_--
+--_000_06307D27B3BA4D7C9922C0396FD764F7iubelttechnologiescom_--
 
 
---===============6117838410758394125==
+--===============5099433316740603743==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -329,5 +289,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6117838410758394125==--
+--===============5099433316740603743==--
 
