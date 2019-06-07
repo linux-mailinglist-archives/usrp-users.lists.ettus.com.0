@@ -2,91 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF36D391A7
-	for <lists+usrp-users@lfdr.de>; Fri,  7 Jun 2019 18:10:26 +0200 (CEST)
-Received: from [::1] (port=43714 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96923391BE
+	for <lists+usrp-users@lfdr.de>; Fri,  7 Jun 2019 18:17:03 +0200 (CEST)
+Received: from [::1] (port=48064 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hZHRh-0001dT-R2; Fri, 07 Jun 2019 12:10:25 -0400
-Received: from otransport-3.outbound.emailsrv.net ([52.1.182.179]:55148)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
- id 1hZHRd-0001Us-Eq
- for usrp-users@lists.ettus.com; Fri, 07 Jun 2019 12:10:21 -0400
-Received: from ogate-2.outbound.emailservice.io (ip-10-4-2-5.ec2.internal
- [10.4.2.5])
- by otransport-3.outbound.emailsrv.net (Postfix) with ESMTPS id C77D9616E1;
- Fri,  7 Jun 2019 16:09:40 +0000 (UTC)
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam03lp2050.outbound.protection.outlook.com [104.47.40.50])
- by ogate-2.outbound.emailservice.io (Postfix) with ESMTPS id 257011E000D;
- Fri,  7 Jun 2019 16:09:40 +0000 (UTC)
+	id 1hZHY6-0002aX-GJ; Fri, 07 Jun 2019 12:17:02 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:45683)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1hZHY2-0002HE-Ef
+ for usrp-users@lists.ettus.com; Fri, 07 Jun 2019 12:16:58 -0400
+Received: by mail-oi1-f172.google.com with SMTP id m206so1794222oib.12
+ for <usrp-users@lists.ettus.com>; Fri, 07 Jun 2019 09:16:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector1-gardettoengineering-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bb+4lXOVpLPP0eXeu3Oup44VljdRRzFiOeZnEzTnJjI=;
- b=XrTK/mdiCpe0z92dSdLyz46iKcztcq3eykO6XHxz0DBK2upwJNw2w+Q/N7ycvtZaUmVIh/I23bI3jyev3Qsv6lafrd6mhzn+joiSZtDQn5fTihECIBiNLxaKar4BReC3sS9h2W237TF49DmR8EEvPbz4qU0J+m5DzVn4Ll0I6fs=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
- BL0PR12MB2436.namprd12.prod.outlook.com (52.132.11.30) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.12; Fri, 7 Jun 2019 16:09:38 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0%4]) with mapi id 15.20.1965.011; Fri, 7 Jun 2019
- 16:09:38 +0000
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] E320 hogging the network
-Thread-Index: AQHVHSVQvR0MNdahwUyWSEU1EgcN/qaQS+aAgAALXZaAAAMIAIAAAXc7
-Date: Fri, 7 Jun 2019 16:09:38 +0000
-Message-ID: <BL0PR12MB2340AA2DD249B609B88CBFE3AF100@BL0PR12MB2340.namprd12.prod.outlook.com>
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=IBoKagkeLYH/lbJx+jEdBDvpqCYULwDU27ZB2Vo1dY4=;
+ b=njVmgI4zd+AaX/RPkkIfXi5MhU/Tu5wfRdlTmnYJFGeZv7Zzu+Fo3DHvMAcDXUeR9g
+ Wa/rOJiwg5MS4+CE8AMLaD0NAB+kijllGwUlB5jMg+kGJTKUhsae/Y5LFWdkFixYC8KC
+ 0M9VOxmMXahkYRsEAPQPWHizz1LWGYMn5+Gz9vb3tW7A3j48Sdrk/n8rjj03v2NMEZzI
+ JW/82eBsbHPuWUzdPL5NVIS+ibrPpimOFZBfphZKKgQ2TceOwH6xFbHkekKddxJlDsCR
+ 8IptI0v9zaAmJz2QCzpuvXiMgyPovwC2+IUPUFCIOj8eznkNlD8guNLVL0fOODJrtpoM
+ ddFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=IBoKagkeLYH/lbJx+jEdBDvpqCYULwDU27ZB2Vo1dY4=;
+ b=XI7Gu+MIGL3wHDbA4i3Jgfn5rrK35YE5cy8pFu9U/xWHf5aRnnKy7e0kuslfMKJjwx
+ hwec8YhU7/aIj9w9zqcapDGIgQtGYJiR/jJctTpxGBLvKYKr2xuJqSiZo9LPH66rsPeW
+ b/ZMpfw/mnwh9oSMv5vydhEcF9f+xxt8BY4sNVx3rEylbkH1L0QBd/gOjtC86kuE8BS3
+ YUW74yQjDwmPCOPBeA9dRh/Laz0oybT2dnO/me15sjRtr8fES45yu//ZVdUIRCz0fdMb
+ UxybqWsXxDObq9fMuQYfdAVhN43hClHebumlfMj7IvWD6FBRgLxPrtBhDl6ZE7ZY/gWi
+ XpfQ==
+X-Gm-Message-State: APjAAAUJ+ECpOZoFeQXs8AU7JLomGGdk3+OqakX3i3bUqtwZaQM9YKlT
+ LtSw9G6llPI3UxJ6dl/m7cVaaMSprh4M+mXyGj43ys1C
+X-Google-Smtp-Source: APXvYqw4cjEmN8pK/jQAQOtYcSp/NTjWuCZk6yJ487mQwkpfoqEwlyp+CFuK/JmZllxKuUM1ekIxd5AO7YlQNcJqxx4=
+X-Received: by 2002:aca:ecc1:: with SMTP id k184mr4389342oih.82.1559924177716; 
+ Fri, 07 Jun 2019 09:16:17 -0700 (PDT)
+MIME-Version: 1.0
 References: <BL0PR12MB2340FE595800AEE988A97927AF100@BL0PR12MB2340.namprd12.prod.outlook.com>
  <97385c33-0632-9752-41ab-9190d3b59bb3@balister.org>
- <BL0PR12MB23407505B7EFEE3FAF0A34BBAF100@BL0PR12MB2340.namprd12.prod.outlook.com>,
+ <BL0PR12MB23407505B7EFEE3FAF0A34BBAF100@BL0PR12MB2340.namprd12.prod.outlook.com>
  <6406FA1A-8520-4DE3-914C-00634F2AF194@gmail.com>
-In-Reply-To: <6406FA1A-8520-4DE3-914C-00634F2AF194@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-originating-ip: [65.127.220.137]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b5e7829b-d328-4570-86b4-08d6eb628a6f
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
- SRVR:BL0PR12MB2436; 
-x-ms-traffictypediagnostic: BL0PR12MB2436:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: <BL0PR12MB243699274C72BB9588C50DE8AF100@BL0PR12MB2436.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 0061C35778
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(366004)(346002)(376002)(39830400003)(396003)(136003)(199004)(189003)(6606003)(6246003)(7736002)(6916009)(74316002)(53386004)(606006)(53936002)(1015004)(81166006)(966005)(476003)(256004)(33656002)(14454004)(486006)(229853002)(3846002)(6436002)(446003)(81156014)(11346002)(66946007)(73956011)(66446008)(76116006)(64756008)(66556008)(66476007)(6116002)(508600001)(316002)(4326008)(8936002)(25786009)(54896002)(55016002)(6306002)(236005)(9686003)(2906002)(68736007)(102836004)(99286004)(186003)(5660300002)(71200400001)(76176011)(52536014)(53546011)(71190400001)(7696005)(1411001)(6506007)(86362001)(19627405001)(54906003)(66066001)(26005)(8676002);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2436;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: IdnQujP1MLCESOijlP4nAMZeH/WrUlQUYQAiQ6EmDKIQwUK9qzN8eWjpBihSS+anVFyMlVXuLlTaX+TPX3C/uEGVlfr1b6a2ssNw9ctYDKl1/DY2xTEeCi3Zjz5vIH8950HXSW8gIBDvWmxuUtsawQTswybkEPWgxlbr8b5qE85kiRJmemywEi0kA0npEGMehbPMwy4+dprq0Pe2W5TpEOy0YFca2moHrVojXnVJ++btga8itDp4/FQF6GRodyndGbgZFw6iBrl/W1c7TJijRMVFD9+2dckWQ08RISACy7ggF8z/qK9vptiVE7VmD5ueArjNd3mV+5tkszGADG2vBf6jverSyK7Gl3fpm+iTuzxm8aY3ZvJtAT4OYlGSvBypyz66DyNaxW7g8fosz8/J75kMnOK+PLeCXNb4GftC7TY=
-MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5e7829b-d328-4570-86b4-08d6eb628a6f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2019 16:09:38.0341 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2436
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-co1nam03lp2050.outbound.protection.outlook.com|104.47.40.50|NAM03-CO1-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.40.50, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-25738-c
-X-Mailprotector-ID: d4aa3192-ebbf-4035-929e-a52bc50d3a59
+ <BL0PR12MB2340AA2DD249B609B88CBFE3AF100@BL0PR12MB2340.namprd12.prod.outlook.com>
+In-Reply-To: <BL0PR12MB2340AA2DD249B609B88CBFE3AF100@BL0PR12MB2340.namprd12.prod.outlook.com>
+Date: Fri, 7 Jun 2019 09:17:11 -0700
+Message-ID: <CAL263iw1aYQYx7C6N5t0LtrL3hDUu7zp_jamkRa8aXnE6SiENQ@mail.gmail.com>
+To: Jason Matusiak <jason@gardettoengineering.com>
 Subject: Re: [USRP-users] E320 hogging the network
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -99,11 +63,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
 Cc: Philip Balister <philip@balister.org>,
  Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2877930616179363618=="
+Content-Type: multipart/mixed; boundary="===============2344591124581757934=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -117,243 +81,274 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2877930616179363618==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB2340AA2DD249B609B88CBFE3AF100BL0PR12MB2340namp_"
+--===============2344591124581757934==
+Content-Type: multipart/alternative; boundary="0000000000007d89c5058abe2665"
 
---_000_BL0PR12MB2340AA2DD249B609B88CBFE3AF100BL0PR12MB2340namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--0000000000007d89c5058abe2665
+Content-Type: text/plain; charset="UTF-8"
 
-Darn, I was hoping that was it, but I don't think so.
+Hi Jason,
 
+On the E310, if you pass the device arg addr with 127.0.0.1 does it work as
+expected?
 
-Here is the result from my E310:
-
-eth0      Link encap:Ethernet  HWaddr 00:80:2F:25:44:46
-
-and now the E320:
-
-sfp0      Link encap:Ethernet  HWaddr 00:80:2F:24:C2:FB
-
-If I ping each device on my host, then run arp, I see this (the mac address=
-es match up correctly):
-
-Address                  HWtype  HWaddress           Flags Mask            =
-Iface
-192.168.10.45            ether   00:80:2f:24:c2:fb   C                     =
-p4p1
-192.168.10.95            ether   00:80:2f:25:44:46   C                     =
-p4p1
-
-I figured that that would be fine though because I have the same issue when=
- I am running commands ON my E310.  And if it was a routing issue, it would=
- mean that both my machine and the E310 and the E320 were being screwed up.
+uhd_usrp_probe --args "addr=127.0.0.1"
 
 
-________________________________
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Sent: Friday, June 7, 2019 12:01 PM
-To: Jason Matusiak
-Cc: Philip Balister; Ettus Mail List
-Subject: Re: [USRP-users] E320 hogging the network
+Regards,
+Nate Temple
 
-Check the MAC addresses.
+On Fri, Jun 7, 2019 at 9:10 AM Jason Matusiak via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-I know that on some ARM platforms that has to be programmed in at boot and =
-perhaps these system images have it set to the same value.
-
-Sent from my iPhone
-
-On Jun 7, 2019, at 11:52 AM, Jason Matusiak via USRP-users <usrp-users@list=
-s.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-
-
-Philip,
-
-
-They have unique addresses (10.95 and 10.45).  It is really weird that when=
- I am on the E310, and set the ip-addr to himself, that he would even look =
-off the device....
-
-
-They both have hostnames and they are not similar to each other at all.
-
-
-________________________________
-From: Philip Balister <philip@balister.org<mailto:philip@balister.org>>
-Sent: Friday, June 7, 2019 11:10 AM
-To: Jason Matusiak; Ettus Mail List
-Subject: Re: [USRP-users] E320 hogging the network
-
-Check each ones ip address, likely by running ifconfig. In the back of
-my mind, I recall something like this in the E100 days. Do they have the
-same hostname?
-
-Philip
-
-On 06/07/2019 07:37 AM, Jason Matusiak via USRP-users wrote:
-> It looks like I am misunderstanding something with how the E320 handles t=
-he network.
+> Darn, I was hoping that was it, but I don't think so.
 >
 >
-> I have my E320 on my subnet with the sfp0 assigned to 10.45 (instead of t=
-he default 10.2).  I can ssh into it and things seem to run fine in embedde=
-d mode.
+> Here is the result from my E310:
+>
+> eth0      Link encap:Ethernet  HWaddr 00:80:2F:25:44:46
+>
+> and now the E320:
+>
+> sfp0      Link encap:Ethernet  HWaddr 00:80:2F:24:C2:FB
+>
+> If I ping each device on my host, then run arp, I see this (the mac
+> addresses match up correctly):
+>
+> Address                  HWtype  HWaddress           Flags Mask
+> Iface
+> 192.168.10.45            ether   00:80:2f:24:c2:fb   C
+>  p4p1
+> 192.168.10.95            ether   00:80:2f:25:44:46   C
+>  p4p1
+>
+> I figured that that would be fine though because I have the same issue
+> when I am running commands ON my E310.  And if it was a routing issue, it
+> would mean that both my machine and the E310 and the E320 were being
+> screwed up.
 >
 >
-> Now, if I ssh onto an E312 that is on the same network (IP 10.95), it doe=
-sn't work right as long as the E320 is plugged in.  When I do a probe or ru=
-n any other UHD-type commands on the E310, it seems to always talk to the E=
-320 first and it screws everything up.  It doesn't matter if I put the E310=
-'s address into the command or not, the E320 responds.  I also remember see=
-ing this occur when I was on my host machine running commands (the E320 bul=
-lied its way into being the main attraction).
+>
+> ------------------------------
+> *From:* Marcus D Leech <patchvonbraun@gmail.com>
+> *Sent:* Friday, June 7, 2019 12:01 PM
+> *To:* Jason Matusiak
+> *Cc:* Philip Balister; Ettus Mail List
+> *Subject:* Re: [USRP-users] E320 hogging the network
+>
+> Check the MAC addresses.
+>
+> I know that on some ARM platforms that has to be programmed in at boot and
+> perhaps these system images have it set to the same value.
+>
+> Sent from my iPhone
+>
+> On Jun 7, 2019, at 11:52 AM, Jason Matusiak via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+> Philip,
 >
 >
-> My current work-around is to unplug Ethernet from the E320, run my comman=
-d on the E310, plug back into the E320, then run its command.  This seems t=
-o allow things to work as I intended, but is obviously not ideal and is fai=
-rly difficult to do when devices are remote.
+> They have unique addresses (10.95 and 10.45).  It is really weird that
+> when I am on the E310, and set the ip-addr to himself, that he would even
+> look off the device....
 >
 >
-> So what am I missing here?
+> They both have hostnames and they are not similar to each other at all.
 >
 >
+>
+> ------------------------------
+> *From:* Philip Balister <philip@balister.org>
+> *Sent:* Friday, June 7, 2019 11:10 AM
+> *To:* Jason Matusiak; Ettus Mail List
+> *Subject:* Re: [USRP-users] E320 hogging the network
+>
+> Check each ones ip address, likely by running ifconfig. In the back of
+> my mind, I recall something like this in the E100 days. Do they have the
+> same hostname?
+>
+> Philip
+>
+> On 06/07/2019 07:37 AM, Jason Matusiak via USRP-users wrote:
+> > It looks like I am misunderstanding something with how the E320 handles
+> the network.
+> >
+> >
+> > I have my E320 on my subnet with the sfp0 assigned to 10.45 (instead of
+> the default 10.2).  I can ssh into it and things seem to run fine in
+> embedded mode.
+> >
+> >
+> > Now, if I ssh onto an E312 that is on the same network (IP 10.95), it
+> doesn't work right as long as the E320 is plugged in.  When I do a probe or
+> run any other UHD-type commands on the E310, it seems to always talk to the
+> E320 first and it screws everything up.  It doesn't matter if I put the
+> E310's address into the command or not, the E320 responds.  I also remember
+> seeing this occur when I was on my host machine running commands (the E320
+> bullied its way into being the main attraction).
+> >
+> >
+> > My current work-around is to unplug Ethernet from the E320, run my
+> command on the E310, plug back into the E320, then run its command.  This
+> seems to allow things to work as I intended, but is obviously not ideal and
+> is fairly difficult to do when devices are remote.
+> >
+> >
+> > So what am I missing here?
+> >
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> USRP-users Info Page - Ettus
+> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
+> lists.ettus.com
+> To see the collection of prior postings to the list, visit the USRP-users
+> Archives.. Using USRP-users: To post a message to all the list members,
+> send email to usrp-users@lists.ettus.com. You can subscribe to the list,
+> or change your existing subscription, in the sections below.
+>
+>
+> >
 >
 > _______________________________________________
 > USRP-users mailing list
-> USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+> USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-USRP-users Info Page - Ettus<http://lists.ettus.com/mailman/listinfo/usrp-u=
-sers_lists.ettus.com>
-lists.ettus.com<http://lists.ettus.com>
-To see the collection of prior postings to the list, visit the USRP-users A=
-rchives.. Using USRP-users: To post a message to all the list members, send=
- email to usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>. Yo=
-u can subscribe to the list, or change your existing subscription, in the s=
-ections below.
-
-
 >
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---_000_BL0PR12MB2340AA2DD249B609B88CBFE3AF100BL0PR12MB2340namp_
-Content-Type: text/html; charset="iso-8859-1"
+--0000000000007d89c5058abe2665
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">Darn, I was hoping that was it, b=
-ut I don't think so.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi Jason,<br><br>On the E310, if you pass the device ar=
+g addr with 127.0.0.1 does it work as expected?<br><br>uhd_usrp_probe --arg=
+s &quot;addr=3D127.0.0.1&quot; <br><br><br>Regards,<br>Nate Temple</div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Fri, Jun 7, 2019 at 9:10 AM Jason Matusiak via USRP-users &lt;<a href=3D"ma=
+ilto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div id=3D"gmail-m_-717118252188596494divtagdefaultwrapper" style=3D"font-s=
+ize:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D"=
+ltr">
+<p style=3D"margin-top:0px;margin-bottom:0px">Darn, I was hoping that was i=
+t, but I don&#39;t think so.</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
 </p>
-<p style=3D"margin-top:0;margin-bottom:0">Here is the result from my E310:<=
-/p>
-<p style=3D"margin-top:0;margin-bottom:0"></p>
-<div>eth0&nbsp; &nbsp; &nbsp; Link encap:Ethernet&nbsp; HWaddr 00:80:2F:25:=
-44:46&nbsp;&nbsp;</div>
+<p style=3D"margin-top:0px;margin-bottom:0px">Here is the result from my E3=
+10:</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"></p>
+<div>eth0=C2=A0 =C2=A0 =C2=A0 Link encap:Ethernet=C2=A0 HWaddr 00:80:2F:25:=
+44:46=C2=A0=C2=A0</div>
 <div><br>
 </div>
 and now the E320:
 <p></p>
-<p style=3D"margin-top:0;margin-bottom:0"></p>
-<div>sfp0&nbsp; &nbsp; &nbsp; Link encap:Ethernet&nbsp; HWaddr 00:80:2F:24:=
-C2:FB&nbsp;&nbsp;</div>
+<p style=3D"margin-top:0px;margin-bottom:0px"></p>
+<div>sfp0=C2=A0 =C2=A0 =C2=A0 Link encap:Ethernet=C2=A0 HWaddr 00:80:2F:24:=
+C2:FB=C2=A0=C2=A0</div>
 <div><br>
 </div>
 If I ping each device on my host, then run arp, I see this (the mac address=
 es match up correctly):
 <p></p>
-<p style=3D"margin-top:0;margin-bottom:0"></p>
-<div>Address&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-HWtype&nbsp; HWaddress&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Flags Mask&n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Iface</div>
-<div><span style=3D"font-size: 12pt;">192.168.10.45&nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; ether&nbsp; &nbsp;00:80:2f:24:c2:fb&nbsp; &nbsp;C&nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;p4p1</s=
-pan><br>
+<p style=3D"margin-top:0px;margin-bottom:0px"></p>
+<div>Address=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+HWtype=C2=A0 HWaddress=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Flags Mask=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Iface</div>
+<div><span style=3D"font-size:12pt">192.168.10.45=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 ether=C2=A0 =C2=A000:80:2f:24:c2:fb=C2=A0 =C2=A0C=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0p4p1</=
+span><br>
 </div>
-<div>192.168.10.95&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ether&nbsp; &nb=
-sp;00:80:2f:25:44:46&nbsp; &nbsp;C&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;p4p1</div>
+<div>192.168.10.95=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ether=C2=A0 =C2=
+=A000:80:2f:25:44:46=C2=A0 =C2=A0C=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0p4p1</div>
 <div><br>
 </div>
 I figured that that would be fine though because I have the same issue when=
- I am running commands ON my E310.&nbsp; And if it was a routing issue, it =
+ I am running commands ON my E310.=C2=A0 And if it was a routing issue, it =
 would mean that both my machine and the E310 and the E320 were being screwe=
 d up.
 <p></p>
 <br>
 <br>
-<div style=3D"color: rgb(0, 0, 0);">
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Marcus D Leech &lt;pa=
-tchvonbraun@gmail.com&gt;<br>
+<div style=3D"color:rgb(0,0,0)">
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-717118252188596494divRplyFwdMsg" dir=3D"ltr"><font styl=
+e=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From=
+:</b> Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=
+=3D"_blank">patchvonbraun@gmail.com</a>&gt;<br>
 <b>Sent:</b> Friday, June 7, 2019 12:01 PM<br>
 <b>To:</b> Jason Matusiak<br>
 <b>Cc:</b> Philip Balister; Ettus Mail List<br>
 <b>Subject:</b> Re: [USRP-users] E320 hogging the network</font>
-<div>&nbsp;</div>
+<div>=C2=A0</div>
 </div>
-<div dir=3D"auto">Check the MAC addresses.&nbsp;
+<div dir=3D"auto">Check the MAC addresses.=C2=A0
 <div><br>
 </div>
 <div>I know that on some ARM platforms that has to be programmed in at boot=
- and perhaps these system images have it set to the same value.&nbsp;<br>
+ and perhaps these system images have it set to the same value.=C2=A0<br>
 <br>
-<div id=3D"x_AppleMailSignature" dir=3D"ltr">Sent from my iPhone</div>
+<div id=3D"gmail-m_-717118252188596494x_AppleMailSignature" dir=3D"ltr">Sen=
+t from my iPhone</div>
 <div dir=3D"ltr"><br>
 On Jun 7, 2019, at 11:52 AM, Jason Matusiak via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com" id=3D"LPlnk639361" class=3D"OWAAutoLink" =
-previewremoved=3D"true">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
+ailto:usrp-users@lists.ettus.com" id=3D"gmail-m_-717118252188596494LPlnk639=
+361" class=3D"gmail-m_-717118252188596494OWAAutoLink" target=3D"_blank">usr=
+p-users@lists.ettus.com</a>&gt; wrote:<br>
 <br>
 </div>
 <blockquote type=3D"cite">
 <div dir=3D"ltr">
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
-or:#000000; font-family:Calibri,Helvetica,sans-serif">
-<p style=3D"margin-top:0; margin-bottom:0">Philip,</p>
-<p style=3D"margin-top:0; margin-bottom:0"><br>
+<div id=3D"gmail-m_-717118252188596494x_divtagdefaultwrapper" dir=3D"ltr" s=
+tyle=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-=
+serif">
+<p style=3D"margin-top:0px;margin-bottom:0px">Philip,</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
 </p>
-<p style=3D"margin-top:0; margin-bottom:0">They have unique addresses (10.9=
-5 and 10.45).&nbsp; It is really weird that when I am on the E310, and set =
-the ip-addr to himself, that he would even look off the device....</p>
-<p style=3D"margin-top:0; margin-bottom:0"><br>
+<p style=3D"margin-top:0px;margin-bottom:0px">They have unique addresses (1=
+0.95 and 10.45).=C2=A0 It is really weird that when I am on the E310, and s=
+et the ip-addr to himself, that he would even look off the device....</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
 </p>
-<p style=3D"margin-top:0; margin-bottom:0">They both have hostnames and the=
-y are not similar to each other at all.</p>
-<p style=3D"margin-top:0; margin-bottom:0"><br>
+<p style=3D"margin-top:0px;margin-bottom:0px">They both have hostnames and =
+they are not similar to each other at all.</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
 </p>
 <br>
 <div style=3D"color:rgb(0,0,0)">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Philip Balister &lt=
-;<a href=3D"mailto:philip@balister.org" id=3D"LPlnk882867" class=3D"OWAAuto=
-Link" previewremoved=3D"true">philip@balister.org</a>&gt;<br>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-717118252188596494x_divRplyFwdMsg" dir=3D"ltr"><font st=
+yle=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>Fr=
+om:</b> Philip Balister &lt;<a href=3D"mailto:philip@balister.org" id=3D"gm=
+ail-m_-717118252188596494LPlnk882867" class=3D"gmail-m_-717118252188596494O=
+WAAutoLink" target=3D"_blank">philip@balister.org</a>&gt;<br>
 <b>Sent:</b> Friday, June 7, 2019 11:10 AM<br>
 <b>To:</b> Jason Matusiak; Ettus Mail List<br>
 <b>Subject:</b> Re: [USRP-users] E320 hogging the network</font>
-<div>&nbsp;</div>
+<div>=C2=A0</div>
 </div>
-<div class=3D"x_BodyFragment"><font size=3D"2"><span style=3D"font-size:11p=
-t">
-<div class=3D"x_PlainText">Check each ones ip address, likely by running if=
-config. In the back of<br>
+<div class=3D"gmail-m_-717118252188596494x_BodyFragment"><font size=3D"2"><=
+span style=3D"font-size:11pt">
+<div class=3D"gmail-m_-717118252188596494x_PlainText">Check each ones ip ad=
+dress, likely by running ifconfig. In the back of<br>
 my mind, I recall something like this in the E100 days. Do they have the<br=
 >
 same hostname?<br>
@@ -366,22 +361,22 @@ s the network.<br>
 &gt; <br>
 &gt; <br>
 &gt; I have my E320 on my subnet with the sfp0 assigned to 10.45 (instead o=
-f the default 10.2).&nbsp; I can ssh into it and things seem to run fine in=
+f the default 10.2).=C2=A0 I can ssh into it and things seem to run fine in=
  embedded mode.<br>
 &gt; <br>
 &gt; <br>
 &gt; Now, if I ssh onto an E312 that is on the same network (IP 10.95), it =
-doesn't work right as long as the E320 is plugged in.&nbsp; When I do a pro=
-be or run any other UHD-type commands on the E310, it seems to always talk =
-to the E320 first and it screws everything
- up.&nbsp; It doesn't matter if I put the E310's address into the command o=
-r not, the E320 responds.&nbsp; I also remember seeing this occur when I wa=
-s on my host machine running commands (the E320 bullied its way into being =
-the main attraction).<br>
+doesn&#39;t work right as long as the E320 is plugged in.=C2=A0 When I do a=
+ probe or run any other UHD-type commands on the E310, it seems to always t=
+alk to the E320 first and it screws everything
+ up.=C2=A0 It doesn&#39;t matter if I put the E310&#39;s address into the c=
+ommand or not, the E320 responds.=C2=A0 I also remember seeing this occur w=
+hen I was on my host machine running commands (the E320 bullied its way int=
+o being the main attraction).<br>
 &gt; <br>
 &gt; <br>
 &gt; My current work-around is to unplug Ethernet from the E320, run my com=
-mand on the E310, plug back into the E320, then run its command.&nbsp; This=
+mand on the E310, plug back into the E320, then run its command.=C2=A0 This=
  seems to allow things to work as I intended, but is obviously not ideal an=
 d is fairly difficult to do when devices
  are remote.<br>
@@ -393,48 +388,56 @@ d is fairly difficult to do when devices
 &gt; <br>
 &gt; _______________________________________________<br>
 &gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" id=3D"LPlnk624958" class=
-=3D"OWAAutoLink" previewremoved=3D"true">
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" id=3D"gmail-m_-717118252=
+188596494LPlnk624958" class=3D"gmail-m_-717118252188596494OWAAutoLink" targ=
+et=3D"_blank">
 USRP-users@lists.ettus.com</a><br>
 &gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" id=3D"LPlnk737468" class=3D"x_OWAAutoLink" previewremoved=3D"true"=
->
+tus.com" id=3D"gmail-m_-717118252188596494LPlnk737468" class=3D"gmail-m_-71=
+7118252188596494x_OWAAutoLink" target=3D"_blank">
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-<div id=3D"LPBorder_GT_15599226502150.13089060943563968" style=3D"margin-bo=
-ttom:20px; overflow:auto; width:100%; text-indent:0px">
-<table id=3D"LPContainer_15599226502120.04792581257573203" role=3D"presenta=
-tion" cellspacing=3D"0" style=3D"width:90%; background-color:rgb(255,255,25=
-5); overflow:auto; padding-top:20px; padding-bottom:20px; margin-top:20px; =
-border-top:1px dotted rgb(200,200,200); border-bottom:1px dotted rgb(200,20=
-0,200)">
+<div id=3D"gmail-m_-717118252188596494LPBorder_GT_15599226502150.1308906094=
+3563968" style=3D"margin-bottom:20px;overflow:auto;width:100%;text-indent:0=
+px">
+<table id=3D"gmail-m_-717118252188596494LPContainer_15599226502120.04792581=
+257573203" style=3D"width:90%;background-color:rgb(255,255,255);overflow:au=
+to;padding-top:20px;padding-bottom:20px;margin-top:20px;border-top:1px dott=
+ed rgb(200,200,200);border-bottom:1px dotted rgb(200,200,200)" cellspacing=
+=3D"0">
 <tbody>
-<tr valign=3D"top" style=3D"border-spacing:0px">
-<td id=3D"x_TextCell_15599226502130.8981442849088146" colspan=3D"2" style=
-=3D"vertical-align: top; padding: 0px; display: table-cell; position: relat=
-ive;">
-<div id=3D"LPRemovePreviewContainer_15599226502130.8567687510464137"></div>
-<div id=3D"LPTitle_15599226502130.9834956850385919" style=3D"top:0px; color=
-:rgb(47,144,196); font-weight:400; font-size:21px; font-family:wf_segoe-ui_=
-light,&quot;Segoe UI Light&quot;,&quot;Segoe WP Light&quot;,&quot;Segoe UI&=
-quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif; line-height:21px">
-<a id=3D"LPUrlAnchor_15599226502140.7551838018712569" href=3D"http://lists.=
-ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"_blank" st=
-yle=3D"text-decoration:none">USRP-users Info Page - Ettus</a></div>
-<div id=3D"LPMetadata_15599226502140.4985541427536597" style=3D"margin:10px=
- 0px 16px; color:rgb(102,102,102); font-weight:400; font-family:wf_segoe-ui=
-_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif; =
-font-size:14px; line-height:14px">
-<a href=3D"http://lists.ettus.com" id=3D"LPlnk749581" class=3D"OWAAutoLink"=
- previewremoved=3D"true">lists.ettus.com</a></div>
-<div id=3D"LPDescription_15599226502150.3645585643269975" style=3D"display:=
-block; color:rgb(102,102,102); font-weight:400; font-family:wf_segoe-ui_nor=
-mal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif; font=
--size:14px; line-height:20px; max-height:100px; overflow:hidden">
+<tr style=3D"border-spacing:0px" valign=3D"top">
+<td id=3D"gmail-m_-717118252188596494x_TextCell_15599226502130.898144284908=
+8146" colspan=3D"2" style=3D"vertical-align:top;padding:0px;display:table-c=
+ell">
+<div id=3D"gmail-m_-717118252188596494LPRemovePreviewContainer_155992265021=
+30.8567687510464137"></div>
+<div id=3D"gmail-m_-717118252188596494LPTitle_15599226502130.98349568503859=
+19" style=3D"color:rgb(47,144,196);font-weight:400;font-size:21px;font-fami=
+ly:wf_segoe-ui_light,&quot;Segoe UI Light&quot;,&quot;Segoe WP Light&quot;,=
+&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif;line-heig=
+ht:21px">
+<a id=3D"gmail-m_-717118252188596494LPUrlAnchor_15599226502140.755183801871=
+2569" href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettu=
+s.com" style=3D"text-decoration:none" target=3D"_blank">USRP-users Info Pag=
+e - Ettus</a></div>
+<div id=3D"gmail-m_-717118252188596494LPMetadata_15599226502140.49855414275=
+36597" style=3D"margin:10px 0px 16px;color:rgb(102,102,102);font-weight:400=
+;font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,T=
+ahoma,Arial,sans-serif;font-size:14px;line-height:14px">
+<a href=3D"http://lists.ettus.com" id=3D"gmail-m_-717118252188596494LPlnk74=
+9581" class=3D"gmail-m_-717118252188596494OWAAutoLink" target=3D"_blank">li=
+sts.ettus.com</a></div>
+<div id=3D"gmail-m_-717118252188596494LPDescription_15599226502150.36455856=
+43269975" style=3D"display:block;color:rgb(102,102,102);font-weight:400;fon=
+t-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahom=
+a,Arial,sans-serif;font-size:14px;line-height:20px;max-height:100px;overflo=
+w:hidden">
 To see the collection of prior postings to the list, visit the USRP-users A=
 rchives.. Using USRP-users: To post a message to all the list members, send=
  email to
-<a href=3D"mailto:usrp-users@lists.ettus.com" id=3D"LPlnk519634" class=3D"O=
-WAAutoLink" previewremoved=3D"true">
+<a href=3D"mailto:usrp-users@lists.ettus.com" id=3D"gmail-m_-71711825218859=
+6494LPlnk519634" class=3D"gmail-m_-717118252188596494OWAAutoLink" target=3D=
+"_blank">
 usrp-users@lists.ettus.com</a>. You can subscribe to the list, or change yo=
 ur existing subscription, in the sections below.</div>
 </td>
@@ -455,26 +458,34 @@ ur existing subscription, in the sections below.</div>
 <div dir=3D"ltr"><span>_______________________________________________</spa=
 n><br>
 <span>USRP-users mailing list</span><br>
-<span><a href=3D"mailto:USRP-users@lists.ettus.com" id=3D"LPlnk365189" clas=
-s=3D"OWAAutoLink" previewremoved=3D"true">USRP-users@lists.ettus.com</a></s=
-pan><br>
+<span><a href=3D"mailto:USRP-users@lists.ettus.com" id=3D"gmail-m_-71711825=
+2188596494LPlnk365189" class=3D"gmail-m_-717118252188596494OWAAutoLink" tar=
+get=3D"_blank">USRP-users@lists.ettus.com</a></span><br>
 <span><a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.e=
-ttus.com" id=3D"LPlnk448224" class=3D"OWAAutoLink" previewremoved=3D"true">=
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></spa=
-n><br>
+ttus.com" id=3D"gmail-m_-717118252188596494LPlnk448224" class=3D"gmail-m_-7=
+17118252188596494OWAAutoLink" target=3D"_blank">http://lists.ettus.com/mail=
+man/listinfo/usrp-users_lists.ettus.com</a></span><br>
 </div>
 </blockquote>
 </div>
 </div>
 </div>
 </div>
-</body>
-</html>
+</div>
 
---_000_BL0PR12MB2340AA2DD249B609B88CBFE3AF100BL0PR12MB2340namp_--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000007d89c5058abe2665--
 
 
---===============2877930616179363618==
+--===============2344591124581757934==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -485,5 +496,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2877930616179363618==--
+--===============2344591124581757934==--
 
