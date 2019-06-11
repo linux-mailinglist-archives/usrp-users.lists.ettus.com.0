@@ -2,48 +2,89 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76C23C48F
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Jun 2019 08:57:14 +0200 (CEST)
-Received: from [::1] (port=45768 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DF953CDEE
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Jun 2019 16:05:18 +0200 (CEST)
+Received: from [::1] (port=45774 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1haaiQ-0001Uz-5f; Tue, 11 Jun 2019 02:57:06 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:42086)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <kailash.kain@gmail.com>)
- id 1haaiM-0001Pr-VE
- for usrp-users@lists.ettus.com; Tue, 11 Jun 2019 02:57:03 -0400
-Received: by mail-oi1-f193.google.com with SMTP id s184so8120313oie.9
- for <usrp-users@lists.ettus.com>; Mon, 10 Jun 2019 23:56:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=UjvZInR509m7QmVxrJSWIQiQIYH2DcN7C8EL9BPNYqk=;
- b=nyxKair9QEa3xPZ7t3IWyptj+NIw3nv7ighO0QNMef0XB5Wo9SYAU9ol/sotV38OOK
- qmNEaSQMhIGldiPJjL/vJRY1GhOi95Xv/C5rxbH/36dm2TgUjIyav70q2OF7RvUsTKE6
- kjwVLeqM9IXGPk8o/H4lLqRZDrahdg0vDt/d/4ytXFEm7Y4jeRpyR3BZUAdWKnNOOgPq
- DNQDT9z0u6Zsyy4rIS3Ty93hk4iJlMcXMCpPBwd1grGJ82EQG8x+tcPJjlj0nXEGFpvN
- uFun/hs9H7heE7qWzHIcIEMxafrDZRkdSGZAJbO4MlpQwTMwH4TjJXvm2GjleMDh0UR4
- NZ4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=UjvZInR509m7QmVxrJSWIQiQIYH2DcN7C8EL9BPNYqk=;
- b=hzUkqjIv8duadC21DcHwASiDQXufOw5ESaTt+inHVLHvM2PmaabgfKibehwbG6+k3t
- 57huC16q9u4WHciFROGanf6Ic5iqrSWdPM5MFBJHXgX2WWWvXq5jf02PsVxAlpioHC9T
- /82zVSnQy3V45iCsFFzC5/fNa+vEwNHABkDYlmQFJ1Fy4b48fNIRIJwPIaVSbAETdEqF
- EnWkWW2AC0ah/k2Y77xa/D5Djd+ogZm7Wl14EnGdnR0ffZHvwbwg5shrbRb19OKGnY9g
- cJ380qv+WfGqBpO9GJ+sP3OwQS7+vZzTPAFADtgBUW7O7pW0ep70NIi5mGccLQWoGMF4
- ufzw==
-X-Gm-Message-State: APjAAAWRqQAd/defd8BWH/7uesMyqeJAiB4oXzl5tJfw6niUzb8us3JK
- CCuQWz44dhPaLI3GnLYb3T/wdVNtEGJdN0sWgjVuYT2t
-X-Google-Smtp-Source: APXvYqz31wLH8wqftiLfoQKwI3RDfhmNe0oy0uS1Qvx/wjhHfhc6Mv45PAeekPrBTSzisuJu2HEniyLE/Tn8xxqS4s4=
-X-Received: by 2002:aca:4e16:: with SMTP id c22mr14150161oib.161.1560236181936; 
- Mon, 10 Jun 2019 23:56:21 -0700 (PDT)
+	id 1hahOh-0004c1-Cr; Tue, 11 Jun 2019 10:05:11 -0400
+Received: from otransport-23.outbound.emailsrv.net ([18.214.85.87]:57066)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
+ id 1hahOd-0004W5-He
+ for usrp-users@lists.ettus.com; Tue, 11 Jun 2019 10:05:07 -0400
+Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
+ [10.4.3.253])
+ by otransport-23.outbound.emailsrv.net (Postfix) with ESMTPS id DD79C616DA;
+ Tue, 11 Jun 2019 14:04:26 +0000 (UTC)
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam01lp2053.outbound.protection.outlook.com [104.47.32.53])
+ by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id 45B7BA2451;
+ Tue, 11 Jun 2019 14:04:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector1-gardettoengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e8hP/NbRY3nMBZ5ZCkLzKca2qlF1ORZf1iSWueY1/HM=;
+ b=gMbgrFgpXR59X8VbZ/i7TsfZkUoKmJ1+MOXNbPDkGpBy8wgfQXcO/hm79+34FbXaTvHzrtp0DyIZkGcJrXTwHjFY9z0zFblFThJ9zB6s281j72czdaN0PNgOTZp7srnxxVHyUoEMPikEEXVescPp0nbCUaQ/6IaYzWOz5stt5jw=
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
+ BL0PR12MB2386.namprd12.prod.outlook.com (52.132.11.16) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.17; Tue, 11 Jun 2019 14:04:23 +0000
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::dc23:15da:4ad9:4ca0]) by BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::dc23:15da:4ad9:4ca0%4]) with mapi id 15.20.1965.017; Tue, 11 Jun 2019
+ 14:04:23 +0000
+To: kailash kumar <kailash.kain@gmail.com>
+Thread-Topic: [USRP-users] Unable to detect X310 over pcie
+Thread-Index: AQHVICLiEnRqFHE9ikewOodYPiw7WKaWfJfZ
+Date: Tue, 11 Jun 2019 14:04:23 +0000
+Message-ID: <BL0PR12MB23408981B63633BE13A89707AFED0@BL0PR12MB2340.namprd12.prod.outlook.com>
+References: <CAAMvqVEabgQrw=sp_EmTwfXPG+pVF5yigwioHf8v6pT+jz=rhQ@mail.gmail.com>
+In-Reply-To: <CAAMvqVEabgQrw=sp_EmTwfXPG+pVF5yigwioHf8v6pT+jz=rhQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=jason@gardettoengineering.com; 
+x-originating-ip: [65.127.220.137]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3b7a18c7-94c7-4085-d1aa-08d6ee75b4da
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
+ SRVR:BL0PR12MB2386; 
+x-ms-traffictypediagnostic: BL0PR12MB2386:
+x-ms-exchange-purlcount: 2
+x-microsoft-antispam-prvs: <BL0PR12MB2386CCC608CD3044B07346B3AFED0@BL0PR12MB2386.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-forefront-prvs: 006546F32A
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(6019001)(396003)(39830400003)(346002)(366004)(136003)(376002)(279900001)(199004)(189003)(81166006)(81156014)(71190400001)(6506007)(86362001)(71200400001)(11346002)(508600001)(4326008)(8676002)(66066001)(966005)(6116002)(446003)(476003)(19627405001)(3846002)(7736002)(14454004)(5660300002)(2906002)(486006)(21615005)(52536014)(73956011)(76116006)(316002)(6246003)(33656002)(66476007)(606006)(1015004)(68736007)(66556008)(6436002)(64756008)(26005)(8936002)(74316002)(102836004)(66446008)(14444005)(6916009)(7696005)(76176011)(6306002)(54896002)(9686003)(229853002)(6606003)(186003)(66946007)(53546011)(236005)(53936002)(55016002)(256004)(99286004)(25786009)(1549645003)(256605007);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2386;
+ H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: gardettoengineering.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: xA1Do4XzrKDzh40dgyxzFcvcOqo//IDcDLlLrTQwpbekin0qV8zFqfphI3OGNzHhi648n0IY8kgm2YcFWb4B4/nEOUkfmcetxSHBAZP+Mo7YKHGcS8GUyZkbgUu9xZqHe/qlsQjdgtZ71tJ1EIxmVX6Id5G5YmZ/vZFPSziDRAQeWGqTN/e9DACcW8ubpn6r1II5KNLuEcW3E//j8dlmDSr+tS09cIZA8cL7CMpvCXEWYMmee7Lj7BeGvrenCzaILtuZr9jzIqUZrnRWZYnuR+WyTKAu69+HDaotALRvwbGNNVzddhTboF9VGXmKuea9ubgohlviBkvfsPr+ZO6eMRf5aECFRjqD3qxjZfXhDqSwj2kTx+L3BIheYxPoTkzflbo8rVrXj2CoRIZhweoE/UMtQs0OoVqVbjIvQJAZ8i8=
 MIME-Version: 1.0
-Date: Tue, 11 Jun 2019 12:25:56 +0530
-Message-ID: <CAAMvqVEabgQrw=sp_EmTwfXPG+pVF5yigwioHf8v6pT+jz=rhQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Unable to detect X310 over pcie
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b7a18c7-94c7-4085-d1aa-08d6ee75b4da
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2019 14:04:23.1258 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2386
+X-Mailprotector-Decision: deliver
+X-Mailprotector-Connection: TLSv1.2|mail-sn1nam01lp2053.outbound.protection.outlook.com|104.47.32.53|NAM01-SN1-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
+X-Mailprotector-Results: clean
+X-Mailprotector-Score: 0
+X-Mailprotector-IP-Analysis: 0, 104.47.32.53, Ugly c=0 p=0 Source New
+X-Mailprotector-Scan-Diagnostics: 0-0-0-17297-c
+X-Mailprotector-ID: d38f499b-b4b9-4761-86a1-ecab1ab52c99
+Subject: Re: [USRP-users] Unable to detect X310 over pcie
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -55,9 +96,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: kailash kumar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: kailash kumar <kailash.kain@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0605802194597018850=="
+From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jason Matusiak <jason@gardettoengineering.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6787426109220477224=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,22 +113,37 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0605802194597018850==
-Content-Type: multipart/alternative; boundary="00000000000063e0fc058b06cbc4"
+--===============6787426109220477224==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BL0PR12MB23408981B63633BE13A89707AFED0BL0PR12MB2340namp_"
 
---00000000000063e0fc058b06cbc4
-Content-Type: text/plain; charset="UTF-8"
+--_000_BL0PR12MB23408981B63633BE13A89707AFED0BL0PR12MB2340namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+I had similar issues (that I never overcame).  Here was some tips I receive=
+d back in FEB when I tried: http://lists.ettus.com/pipermail/usrp-users_lis=
+ts.ettus.com/2019-February/059114.html
+
+
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of kailash =
+kumar via USRP-users <usrp-users@lists.ettus.com>
+Sent: Tuesday, June 11, 2019 2:55 AM
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Unable to detect X310 over pcie
 
 Hi,
 
-I am unable to detect X310 over pcie. I have installed uhd(v3.14.0.0) and
-compiled and installed RIO drivers as well. Below is my configuration:
+I am unable to detect X310 over pcie. I have installed uhd(v3.14.0.0) and c=
+ompiled and installed RIO drivers as well. Below is my configuration:
 
 UHD RIO Installer version:
 niusrprio-installer-18.0.0
 
-[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ sudo
-niusrprio_pcie start
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ sudo niusrprio_p=
+cie start
 Making sure drivers are up to date...
 Module nikal is up-to-date
 Module nibds is up-to-date
@@ -96,7 +153,7 @@ Module niusrpriok is up-to-date
 Loading: NiRioSrv niusrpriok
 Starting: niusrpriorpc
 
-[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ lsmod | grep -i
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ lsmod | grep -i =
 ni
 niusrpriok            417792  0
 NiRioSrv              942080  0
@@ -110,15 +167,15 @@ nikal                  98304  4 niusrpriok,NiRioSrv,nistreamk,nibds
 [pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ ls /dev/ni/
 'nistreamk:0\nistreamk\0'
 
-[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ sudo netstat
--anp| grep 5444
-tcp        0      0 0.0.0.0:5444            0.0.0.0:*               LISTEN
-     1845/niusrpriorpc
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ sudo netstat -an=
+p| grep 5444
+tcp        0      0 0.0.0.0:5444<http://0.0.0.0:5444>            0.0.0.0:* =
+              LISTEN      1845/niusrpriorpc
 
-[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ uhd_usrp_probe
---args "type=x300,resource=RIO0"
-[INFO] [UHD] linux; GNU C++ version 9.1.1 20190605 gcc-9-branch@271943;
-Boost_106800; UHD_3.14.0.HEAD-0-g6875d061
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ uhd_usrp_probe -=
+-args "type=3Dx300,resource=3DRIO0"
+[INFO] [UHD] linux; GNU C++ version 9.1.1 20190605 gcc-9-branch@271943; Boo=
+st_106800; UHD_3.14.0.HEAD-0-g6875d061
 [ERROR] [UHD] Device discovery error: input stream error
 Error: LookupError: KeyError: No devices found for ----->
 Device Address:
@@ -130,67 +187,142 @@ HEAD detached at v3.14.0.0
 
 Digging through uhd code
 lib/usrp/x300/x300_impl.cpp (x300_find_pcie ) ->
-lib/usrp/x300/x300_impl.cpp (niusrprio_session::enumerate(rpc_port_name,
-dev_info_vtr)) ->
-lib/transport/nirio/niusrprio_session.cpp
-(nirio_status_chain(temp_rpc_client.niusrprio_enumerate(device_info_vtr),
-status)) ->
-lib/transport/nirio/rpc/usrprio_rpc_client.cpp
- (usrprio_rpc_client::niusrprio_enumerate(NIUSRPRIO_ENUMERATE_ARGS))
+lib/usrp/x300/x300_impl.cpp (niusrprio_session::enumerate(rpc_port_name, de=
+v_info_vtr)) ->
+lib/transport/nirio/niusrprio_session.cpp (nirio_status_chain(temp_rpc_clie=
+nt.niusrprio_enumerate(device_info_vtr), status)) ->
+lib/transport/nirio/rpc/usrprio_rpc_client.cpp  (usrprio_rpc_client::niusrp=
+rio_enumerate(NIUSRPRIO_ENUMERATE_ARGS))
 
 out_args >> status; -> This returns status as -52012
 
 Thanks
 Kailash
 
---00000000000063e0fc058b06cbc4
-Content-Type: text/html; charset="UTF-8"
+--_000_BL0PR12MB23408981B63633BE13A89707AFED0BL0PR12MB2340namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I am unable to detect X3=
-10 over pcie. I have installed uhd(v3.14.0.0) and compiled and installed RI=
-O drivers as well. Below is my configuration:</div><div><br>UHD RIO Install=
-er version:<br>niusrprio-installer-18.0.0</div><div><br></div><div>[pretlis=
-t@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ sudo niusrprio_pcie star=
-t<br>Making sure drivers are up to date...<br>Module nikal is up-to-date<br=
->Module nibds is up-to-date<br>Module nistreamk is up-to-date<br>Module NiR=
-ioSrv is up-to-date<br>Module niusrpriok is up-to-date<br>Loading: NiRioSrv=
- niusrpriok <br>Starting: niusrpriorpc<br><br>[pretlist@clr-85a7812169e346e=
-6b143a228fe1b9641 Downloads]$ lsmod | grep -i ni<br>niusrpriok =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0417792 =C2=A00<br>NiRioSrv =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0942080 =C2=A00<br>nistreamk =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 131072 =C2=A02 niusrpriok,NiRioSrv<br>nibds =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A057344 =C2=A02 ni=
-usrpriok,NiRioSrv<br>nikal =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A098304 =C2=A04 niusrpriok,NiRioSrv,nistreamk,nibds<br><br>[pre=
-tlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ uname -r<br>4.19.48-=
-48.lts2018<br><br>[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]=
-$ ls /dev/ni/<br>&#39;nistreamk:0\nistreamk\0&#39;<br><br>[pretlist@clr-85a=
-7812169e346e6b143a228fe1b9641 Downloads]$ sudo netstat -anp| grep 5444<br>t=
-cp =C2=A0 =C2=A0 =C2=A0 =C2=A00 =C2=A0 =C2=A0 =C2=A00 <a href=3D"http://0.0=
-.0.0:5444">0.0.0.0:5444</a> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.0.0.=
-0:* =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 LISTEN =C2=A0 =C2=A0 =
-=C2=A01845/niusrpriorpc =C2=A0 <br><br>[pretlist@clr-85a7812169e346e6b143a2=
-28fe1b9641 Downloads]$ uhd_usrp_probe --args &quot;type=3Dx300,resource=3DR=
-IO0&quot;<br>[INFO] [UHD] linux; GNU C++ version 9.1.1 20190605 gcc-9-branc=
-h@271943; Boost_106800; UHD_3.14.0.HEAD-0-g6875d061<br>[ERROR] [UHD] Device=
- discovery error: input stream error<br>Error: LookupError: KeyError: No de=
-vices found for -----&gt;<br>Device Address:<br>=C2=A0 =C2=A0 type: x300<br=
->=C2=A0 =C2=A0 resource: RIO0<br><br>[pretlist@clr-85a7812169e346e6b143a228=
-fe1b9641 uhd]$ git status<br>HEAD detached at v3.14.0.0<br><br>Digging thro=
-ugh uhd code<br>lib/usrp/x300/x300_impl.cpp (x300_find_pcie ) -&gt; =C2=A0<=
-br>lib/usrp/x300/x300_impl.cpp (niusrprio_session::enumerate(rpc_port_name,=
- dev_info_vtr)) -&gt; <br>lib/transport/nirio/niusrprio_session.cpp (nirio_=
-status_chain(temp_rpc_client.niusrprio_enumerate(device_info_vtr), status))=
- -&gt; =C2=A0<br>lib/transport/nirio/rpc/usrprio_rpc_client.cpp =C2=A0(usrp=
-rio_rpc_client::niusrprio_enumerate(NIUSRPRIO_ENUMERATE_ARGS))<br><br>out_a=
-rgs &gt;&gt; status; -&gt; This returns status as -52012</div><div><br></di=
-v><div>Thanks</div><div>Kailash<br></div></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">I had similar issues (that I neve=
+r overcame).&nbsp; Here was some tips I received back in FEB when I tried:&=
+nbsp;<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com=
+/2019-February/059114.html" class=3D"OWAAutoLink" id=3D"LPlnk789450" previe=
+wremoved=3D"true">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.c=
+om/2019-February/059114.html</a></p>
+<br>
+<br>
+<div style=3D"color: rgb(0, 0, 0);">
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
+sers-bounces@lists.ettus.com&gt; on behalf of kailash kumar via USRP-users =
+&lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Tuesday, June 11, 2019 2:55 AM<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> [USRP-users] Unable to detect X310 over pcie</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div>Hi,</div>
+<div><br>
+</div>
+<div>I am unable to detect X310 over pcie. I have installed uhd(v3.14.0.0) =
+and compiled and installed RIO drivers as well. Below is my configuration:<=
+/div>
+<div><br>
+UHD RIO Installer version:<br>
+niusrprio-installer-18.0.0</div>
+<div><br>
+</div>
+<div>[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ sudo niusrp=
+rio_pcie start<br>
+Making sure drivers are up to date...<br>
+Module nikal is up-to-date<br>
+Module nibds is up-to-date<br>
+Module nistreamk is up-to-date<br>
+Module NiRioSrv is up-to-date<br>
+Module niusrpriok is up-to-date<br>
+Loading: NiRioSrv niusrpriok <br>
+Starting: niusrpriorpc<br>
+<br>
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ lsmod | grep -i =
+ni<br>
+niusrpriok &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;417792 &nbsp;0<br>
+NiRioSrv &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;942080 &nbsp;0<br>
+nistreamk &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 131072 &nbsp;2 niusrpri=
+ok,NiRioSrv<br>
+nibds &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;57344 &=
+nbsp;2 niusrpriok,NiRioSrv<br>
+nikal &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;98304 &=
+nbsp;4 niusrpriok,NiRioSrv,nistreamk,nibds<br>
+<br>
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ uname -r<br>
+4.19.48-48.lts2018<br>
+<br>
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ ls /dev/ni/<br>
+'nistreamk:0\nistreamk\0'<br>
+<br>
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ sudo netstat -an=
+p| grep 5444<br>
+tcp &nbsp; &nbsp; &nbsp; &nbsp;0 &nbsp; &nbsp; &nbsp;0 <a href=3D"http://0.=
+0.0.0:5444" id=3D"LPlnk747836" class=3D"OWAAutoLink" previewremoved=3D"true=
+">
+0.0.0.0:5444</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0.0.0.0:* &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LISTEN &nbsp; &nbsp; &nbsp;1845/n=
+iusrpriorpc &nbsp;
+<br>
+<br>
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ uhd_usrp_probe -=
+-args &quot;type=3Dx300,resource=3DRIO0&quot;<br>
+[INFO] [UHD] linux; GNU C&#43;&#43; version 9.1.1 20190605 gcc-9-branch@271=
+943; Boost_106800; UHD_3.14.0.HEAD-0-g6875d061<br>
+[ERROR] [UHD] Device discovery error: input stream error<br>
+Error: LookupError: KeyError: No devices found for -----&gt;<br>
+Device Address:<br>
+&nbsp; &nbsp; type: x300<br>
+&nbsp; &nbsp; resource: RIO0<br>
+<br>
+[pretlist@clr-85a7812169e346e6b143a228fe1b9641 uhd]$ git status<br>
+HEAD detached at v3.14.0.0<br>
+<br>
+Digging through uhd code<br>
+lib/usrp/x300/x300_impl.cpp (x300_find_pcie ) -&gt; &nbsp;<br>
+lib/usrp/x300/x300_impl.cpp (niusrprio_session::enumerate(rpc_port_name, de=
+v_info_vtr)) -&gt;
+<br>
+lib/transport/nirio/niusrprio_session.cpp (nirio_status_chain(temp_rpc_clie=
+nt.niusrprio_enumerate(device_info_vtr), status)) -&gt; &nbsp;<br>
+lib/transport/nirio/rpc/usrprio_rpc_client.cpp &nbsp;(usrprio_rpc_client::n=
+iusrprio_enumerate(NIUSRPRIO_ENUMERATE_ARGS))<br>
+<br>
+out_args &gt;&gt; status; -&gt; This returns status as -52012</div>
+<div><br>
+</div>
+<div>Thanks</div>
+<div>Kailash<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
 
---00000000000063e0fc058b06cbc4--
+--_000_BL0PR12MB23408981B63633BE13A89707AFED0BL0PR12MB2340namp_--
 
 
---===============0605802194597018850==
+--===============6787426109220477224==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -201,5 +333,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0605802194597018850==--
+--===============6787426109220477224==--
 
