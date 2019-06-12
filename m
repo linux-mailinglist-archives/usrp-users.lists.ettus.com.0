@@ -2,47 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E448E42444
-	for <lists+usrp-users@lfdr.de>; Wed, 12 Jun 2019 13:44:35 +0200 (CEST)
-Received: from [::1] (port=39824 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB1F42561
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Jun 2019 14:18:48 +0200 (CEST)
+Received: from [::1] (port=42702 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hb1g6-0007Ge-Ei; Wed, 12 Jun 2019 07:44:30 -0400
-Received: from mail-it1-f174.google.com ([209.85.166.174]:53613)
+	id 1hb2DG-0008Qb-MK; Wed, 12 Jun 2019 08:18:46 -0400
+Received: from mail-ed1-f54.google.com ([209.85.208.54]:36505)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ssibio2@gmail.com>) id 1hb1g2-0007CI-Vf
- for usrp-users@lists.ettus.com; Wed, 12 Jun 2019 07:44:27 -0400
-Received: by mail-it1-f174.google.com with SMTP id m187so10191592ite.3
- for <usrp-users@lists.ettus.com>; Wed, 12 Jun 2019 04:44:06 -0700 (PDT)
+ (Exim 4.92) (envelope-from <ejcspii@gmail.com>) id 1hb2DC-0008Ir-1e
+ for usrp-users@lists.ettus.com; Wed, 12 Jun 2019 08:18:42 -0400
+Received: by mail-ed1-f54.google.com with SMTP id k21so22075010edq.3
+ for <usrp-users@lists.ettus.com>; Wed, 12 Jun 2019 05:18:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to;
- bh=a7bCFfm2NrIjXD8EtnPxrN5ujNzqfStKPrMv6Sf6lYc=;
- b=tTnldk+zNRV8gJ46fN+fUM7SP/RsNhBwM1K0WdOr6qbBeVkyqALA+JBT1PXpmzk0Bb
- Ln+wvn5oYuJxcI6UDRiRmOQqvq6hSyL6mgp5XMlskmowYc3V1fZTYL3zToz5biNpYr2L
- x05xloFiBlCYvVerzGMKT6JVMLzk7Ni1tpj5Wr8DIPf1ZpUqz6yRQt4DM/yTNm+mkuO6
- fvqIP7Fxy/tuqiAz8RChdtGeXioL9HTuo1JXvxpUAOjbvE0UsEDhP9DI7Xb6oCCXke0z
- N9/qBfJzsZltSmrxkyNc1KdrnffR66Zvdvvf/II6NwtiE7GaB80GllFycXGBy+q5RP3T
- lMGA==
+ bh=isv/5YtujSxepHNPuSt1SfbHwwjLejv6jvhF51w/Z2g=;
+ b=R0bX5EX36dfhvO5CIW++lLG0S/21UWBAO7KWq7M21yapj0/iqtuSI12tHTJQmaCVqk
+ V1kLeNegC7RMiYoomq34FplSRw56CgKFHnaSBLBqndZwTA/W4JduNkgM5iZ9QGTHmQ6G
+ lG6dx4eneOtOJwnVV2XPk0sY9YyMjDTh3O+izybuLKlcg/aTg4/QTgBS4cmWLmqsLkcU
+ Sm5ZdCX/q3wDOoo1eyAmvCgdOYvc76gg0aRrjS6WoeHKbMwkBUgzBCZkowHmdEU5IL3m
+ IsSoVYjoBiwVcASD3YJjvH0E45w+f4TqUvS1r4nwRmSF0kKYkKJ1gNBeCpoIQschAn7J
+ 1WxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=a7bCFfm2NrIjXD8EtnPxrN5ujNzqfStKPrMv6Sf6lYc=;
- b=L5grEgwS67LsRf/KnaP8RkgsLMcDlv5TVEqTMqctuylk8pivvJKS/qBLR1YJSWYiZ3
- 0InxKpiX+5h/WIzCfKkbobnHLXx9EYpfKpyxiGYIXUg8Tmas848UhZBIz4VydUsMeDee
- 6Z+hoorvDRqBGwF9otr4Y7xCVjntER4gUr+fzCxlc3v4NPfi3UwEA0t85fWBpQdMy02a
- h96h4xA3dPI/RNo/sSBEJ+78danM8nibUah2/VYpo5Lwxeajzc0Mq2fp9PwlUmPlvExl
- UZFdCYYsUgVXZtHmgrX6JsTLTqPWwUBdjdXmXMOWOdhdD9kf0hIrBuZFcEmaNTAvRPcs
- RDuw==
-X-Gm-Message-State: APjAAAXJ8WOstXp/LHTMWbm4BOmIUKY6oF8X0Lno1e7PKCWMYT62hrhn
- /hpS7kImSN0iZ07cR6OVfhfXdiSlrVxxn4dWDBaEEvkr
-X-Google-Smtp-Source: APXvYqzDwZffasc8/rKA+XWwUtNfwERYAKyblLfTJjHmiYlML7JdlHedEuhTDloVdz6OdiQUovAu5T4vIOOzwVSNGwo=
-X-Received: by 2002:a24:3a50:: with SMTP id m77mr22604929itm.110.1560339826106; 
- Wed, 12 Jun 2019 04:43:46 -0700 (PDT)
+ bh=isv/5YtujSxepHNPuSt1SfbHwwjLejv6jvhF51w/Z2g=;
+ b=HYINtWqr/eU3RtvBshxOg2dcABQkMf084m8a1GcdbadDQBE7rwm3kYLm6tTc94Jiih
+ lE0n5vqA1HNe9s/y0XqZlY8WxdSC9JAws+jZ/zoK36kMWA7qqaKo62nasAFtjxihUVrV
+ I33F9mDwrnKXm260SlT85zKO4zA0U5wlNOyi2JkI4rLXAm1EzAUSMa7eKN4j+Z41AI9a
+ KzPAOZTMrzNcm+92wQQOzoQjPPCQ38nRcbMWr3BPW0i8LxV1pNPfdQ1arPhyR/6oYfqJ
+ qnFSNHkToU5c8S22pT0l3rRCUHOm5sHAY/atFC84Pi3EyJ7tsmeoBDKu2qjt90P8dODz
+ D2yA==
+X-Gm-Message-State: APjAAAUlW8899K8sEgzXIS+Rx6/d7QetDroRuCHSWS0P6T6yJz+teMmB
+ 8a/++88B+Im3bpPr09nO4+g9qJ87oWwxRm1IpVCO2hADPnU=
+X-Google-Smtp-Source: APXvYqw/IY2p8cHP1G2OaNbhES11jWgzaoY+87KhFaYpd4Hvm7sumY4pCnClv937VdF/vTDnEBMq229/Ma1XJztVatk=
+X-Received: by 2002:a50:84a1:: with SMTP id 30mr87876454edq.105.1560341880747; 
+ Wed, 12 Jun 2019 05:18:00 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 12 Jun 2019 12:43:04 +0200
-Message-ID: <CALSxwQEFudQbJff7uSEM84ex-s+kLNkGztsd+UDoW=8Q5+EBxA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] converting an X310 into an NI-USRP RIO
+Date: Wed, 12 Jun 2019 14:17:49 +0200
+Message-ID: <CAGtDtzxDiv0y5joQzVXkSfsTu7Xo_=_RCjHw76MyX50bY2-EGA@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] RFNoC multi-driven nets
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -54,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Simona Sibio via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Simona Sibio <ssibio2@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7383731671065214036=="
+From: Peter Horvath via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Peter Horvath <ejcspii@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8554064667663705426=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,65 +70,82 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7383731671065214036==
-Content-Type: multipart/alternative; boundary="0000000000001062bd058b1eedb3"
+--===============8554064667663705426==
+Content-Type: multipart/alternative; boundary="00000000000087bc23058b1f67c2"
 
---0000000000001062bd058b1eedb3
+--00000000000087bc23058b1f67c2
 Content-Type: text/plain; charset="UTF-8"
 
-Dear Sir/Madam,
+Hello,
+I'm trying to bake an RFNoC image from the latest master, using Vivado
+2018.3. However, I get DRC errors:
 
-My name is Simona and I am trying to convert my x-310 usrp to an NI-usrp
-rio to be able to use it with Labview. In order to do that, I am following
-the documentation which can be found in:
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ce_clk with 1st
+driver pin 'bus_clk_gen/CLK_OUT4' [/home/x/fpga/usrp3/top/x300/x300.v:284]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ce_clk with 2nd
+driver pin 'radio_clk_gen/CLK_OUT1' [/home/x/fpga/usrp3/top/x300/x300.v:381]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ce_rst with 1st
+driver pin
+'ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q'
+[/home/x/fpga/usrp3/lib/control/synchronizer_impl.v:33]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ce_rst with 2nd
+driver pin
+'radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q'
+[/home/x/fpga/usrp3/lib/control/synchronizer_impl.v:33]
 
-https://kb.ettus.com/Converting_an_X310_into_an_NI-USRP_Rio
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_clk_gen/inst/CLK_OUT4 has
+multiple drivers: bus_clk_gen/inst/clkout4_buf/O, and
+radio_clk_gen/inst/clkout1_buf/O.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net
+radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has
+multiple drivers:
+ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q,
+and
+radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q.
 
-But I have found the following problem:
-Error-1074100607 ocurred at getDeviceInfoFromScs.vi. Device enumeration
-error. Either no devices were found or more than one device was found with
-the resource name you entered. Verify that the resource name matches the
-device name is MAX.
-
-I have checked that the device does not appear in MAX, NI people has
-suggested to contact USRP people, they do not know about the problem and I
-have updated already the FPGA image by using the NI-USRP configuration
-utilities.
-
-Please, I would be really glad if you could help me solve this problem.
-
-Thank you so much in advance!
-
+By looking at x300.v, it is not clear why these nets would be multiply
+driven. No custom modules, freshly cloned repo, with the command line:
+./uhd_image_builder.py duc ddc --device X310 --target X310_RFNOC_XG
+Is the latest master considered to be usable? Am I missing something?
+Any help appreciated.
 Best regards,
+Peter
 
-Simona
-
---0000000000001062bd058b1eedb3
+--00000000000087bc23058b1f67c2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Dear Sir/Madam,</div><div><br></div>=
-<div>My name is Simona and I am trying to convert my x-310 usrp to an NI-us=
-rp rio to be able to use it with Labview. In order to do that, I am followi=
-ng the documentation which can be found in:</div><div><br></div><div><a hre=
-f=3D"https://kb.ettus.com/Converting_an_X310_into_an_NI-USRP_Rio">https://k=
-b.ettus.com/Converting_an_X310_into_an_NI-USRP_Rio</a><br></div><div><br></=
-div><div>But I have found the following problem:</div><div>Error-1074100607=
- ocurred at getDeviceInfoFromScs.vi. Device enumeration error. Either no de=
-vices were found or more than one device was found with the resource name y=
-ou entered. Verify that the resource name matches the device name is MAX.</=
-div><div><br></div><div>I have checked that the device does not appear in M=
-AX, NI people has suggested to contact USRP people, they do not know about =
-the problem and I have updated already the FPGA image by using the NI-USRP =
-configuration utilities.</div><div><br></div><div>Please, I would be really=
- glad if you could help me solve this problem.</div><div><br></div><div>Tha=
-nk you so much in advance!</div><div><br></div><div>Best regards,</div><div=
-><br></div><div>Simona</div></div></div>
+<div dir=3D"ltr"><div>Hello,</div><div>I&#39;m trying to bake an RFNoC imag=
+e from the latest master, using Vivado 2018.3. However, I get DRC errors:</=
+div><div><br></div><div>CRITICAL WARNING: [Synth 8-6859] multi-driven net o=
+n pin ce_clk with 1st driver pin &#39;bus_clk_gen/CLK_OUT4&#39; [/home/x/fp=
+ga/usrp3/top/x300/x300.v:284]<br>CRITICAL WARNING: [Synth 8-6859] multi-dri=
+ven net on pin ce_clk with 2nd driver pin &#39;radio_clk_gen/CLK_OUT1&#39; =
+[/home/x/fpga/usrp3/top/x300/x300.v:381]<br>CRITICAL WARNING: [Synth 8-6859=
+] multi-driven net on pin ce_rst with 1st driver pin &#39;ce_reset_sync/res=
+et_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q&#39; [/h=
+ome/x/fpga/usrp3/lib/control/synchronizer_impl.v:33]<br>CRITICAL WARNING: [=
+Synth 8-6859] multi-driven net on pin ce_rst with 2nd driver pin &#39;radio=
+_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9=
+][0]/Q&#39; [/home/x/fpga/usrp3/lib/control/synchronizer_impl.v:33]</div><d=
+iv><br></div><div>ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_clk_gen=
+/inst/CLK_OUT4 has multiple drivers: bus_clk_gen/inst/clkout4_buf/O, and ra=
+dio_clk_gen/inst/clkout1_buf/O.<br>ERROR: [DRC MDRV-1] Multiple Driver Nets=
+: Net radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9=
+ has multiple drivers: ce_reset_sync/reset_double_sync/synchronizer_false_p=
+ath/stages[9].value_reg[9][0]/Q, and radio_reset_sync/reset_double_sync/syn=
+chronizer_false_path/stages[9].value_reg[9][0]/Q.</div><div><br></div><div>=
+By looking at x300.v, it is not clear why these nets would be multiply driv=
+en. No custom modules, freshly cloned repo, with the command line:</div><di=
+v>./uhd_image_builder.py duc ddc --device X310 --target X310_RFNOC_XG <br><=
+/div><div>Is the latest master considered to be usable? Am I missing someth=
+ing?<br></div><div>Any help appreciated.</div><div>Best regards,</div><div>=
+Peter</div><div><br></div><div><br></div></div>
 
---0000000000001062bd058b1eedb3--
+--00000000000087bc23058b1f67c2--
 
 
---===============7383731671065214036==
+--===============8554064667663705426==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -139,5 +156,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7383731671065214036==--
+--===============8554064667663705426==--
 
