@@ -2,86 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DCBF42953
-	for <lists+usrp-users@lfdr.de>; Wed, 12 Jun 2019 16:33:50 +0200 (CEST)
-Received: from [::1] (port=37090 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F770429F1
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Jun 2019 16:52:51 +0200 (CEST)
+Received: from [::1] (port=41506 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hb4Jr-0007KS-Nr; Wed, 12 Jun 2019 10:33:43 -0400
-Received: from otransport-6.outbound.emailsrv.net ([54.152.160.215]:50812)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
- id 1hb4Jn-0007ED-UJ
- for usrp-users@lists.ettus.com; Wed, 12 Jun 2019 10:33:39 -0400
-Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
- [10.4.3.253])
- by otransport-6.outbound.emailsrv.net (Postfix) with ESMTPS id 5374F61659
- for <usrp-users@lists.ettus.com>; Wed, 12 Jun 2019 14:32:59 +0000 (UTC)
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam04lp2057.outbound.protection.outlook.com [104.47.45.57])
- by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id CE49CA4033
- for <usrp-users@lists.ettus.com>; Wed, 12 Jun 2019 14:32:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector1-gardettoengineering-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CcZvcaikZQlRa9c9OqAoW6ytGplG2pNcX/lsDZRvheU=;
- b=NFb3M7OhDzRXFxHlQZsQC8Xoq73Q5jqTcCP8bG8fw+GV0JO/PtTNPp8HQIXeaajLoJcAc0nldy5E7sjHuhw3sNxJALST4uecukwzA3oyPoCYzSy3i9ocz20VPTa1G9OtFmhokO+I1iLM1FRZZrZ/MMpC4R5CSjIogk3+Q55nwZ8=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
- BL0PR12MB2338.namprd12.prod.outlook.com (52.132.10.156) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.15; Wed, 12 Jun 2019 14:32:56 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0%4]) with mapi id 15.20.1965.017; Wed, 12 Jun 2019
- 14:32:56 +0000
-To: Ettus Mail List <usrp-users@lists.ettus.com>
-Thread-Topic: UHD not seeing E320
-Thread-Index: AQHVISpb+KEg0d3b/0qA1Ho1mXQbBg==
-Date: Wed, 12 Jun 2019 14:32:56 +0000
-Message-ID: <BL0PR12MB2340075EA81B6C386742FD8CAFEC0@BL0PR12MB2340.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-originating-ip: [65.127.220.137]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 83a5c4ea-0284-4aac-c461-08d6ef42dc7d
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
- SRVR:BL0PR12MB2338; 
-x-ms-traffictypediagnostic: BL0PR12MB2338:
-x-microsoft-antispam-prvs: <BL0PR12MB23383FA8EDCCD2354CBB5E56AFEC0@BL0PR12MB2338.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0066D63CE6
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(39830400003)(376002)(396003)(136003)(346002)(366004)(31014005)(189003)(199004)(486006)(186003)(99286004)(102836004)(76116006)(26005)(6506007)(68736007)(73956011)(66446008)(66476007)(66946007)(66556008)(19627405001)(64756008)(316002)(6606003)(6916009)(25786009)(476003)(4744005)(7696005)(8936002)(81156014)(81166006)(66066001)(256004)(9686003)(2906002)(55016002)(54896002)(86362001)(53936002)(33656002)(6436002)(8676002)(71200400001)(14454004)(52536014)(71190400001)(7736002)(74316002)(508600001)(5660300002)(3846002)(6116002);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2338;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: wrpN+GBcBqcHjIv+nXxl7kyezO+8uHLTFkpAeAY82k6VXjX2zb0nRJ5rCZcDErM0oBVDJpjI1vJWyu8NarrCtXyR+xffh711ApNnOrBd7iTpusp2DayJzmj1jFsCIRW+GyuXhJYFwiyHUlA4JXL7DC7cETe7UbFybrhcYb7Ro5kPzDw1Y1a3vLb2Ch1By46ml5mvplJGJ2dy77wk/cQW5HM6EKa+vE1solx4ULFTCmkbp7dx5XffnB/KaQKlNcbRkOhVIchpJwwVFPwqAc7zXJa5pXX/SZ07vP+HN4TAZZTHNvhlWRdAwSWRcioQmNE95Ziwjb4+L9+hJclyLpOz8+DAa9aoN7PT0qhZbUkm2JiYpCo8I1M9ZEHZANMHVZG+80K8rndCa/By1NwVRompCgN49ArdgCCx7bMMeP0JwGY=
+	id 1hb4cK-0000R4-Fy; Wed, 12 Jun 2019 10:52:48 -0400
+Received: from mail-qt1-f182.google.com ([209.85.160.182]:46973)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hb4cG-0000IW-As
+ for usrp-users@lists.ettus.com; Wed, 12 Jun 2019 10:52:44 -0400
+Received: by mail-qt1-f182.google.com with SMTP id h21so18772045qtn.13
+ for <usrp-users@lists.ettus.com>; Wed, 12 Jun 2019 07:52:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=3es1dk1PtZZ19/xkGJJauj07eaZqNlEz1Aiuw1OZ5o0=;
+ b=lgt/81MG6QOx/tNjrwLH586pr/ccM2NV6Jd6bTVNGvHLYioI6lq1dc4ysjp0FeBFtB
+ h5gyOuLVkf/pLqSoR37un+Ly5TkhsjCauWx1hPaA5dFwqcTP5rx2F4eApY7rIyLIUupD
+ Jxqr6FOn77IAj+W2zHSS+vi3Ar1m9+aCiyaKqoYkINitcZjAZmGeUyM2X5QYdyDoNU7v
+ /BqSmOrXMI8PlbALYaSYYs3Cv7WSs5zvXomoFSB7TufGP7Lxu8ttf3Mn6qRa5Foxou7P
+ gMIdEzGfr2yH6YtiXLkO+YakFv/mSXGksj0gQYnQ2JC9NfwZJwmIGlX4xmC9fkygvt5i
+ gl8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=3es1dk1PtZZ19/xkGJJauj07eaZqNlEz1Aiuw1OZ5o0=;
+ b=Q/2ZtxhqzDYREKRboujwnS2XWSQuecKjElRwSzx0Adx8cmH+Zh0iu3+p79wMUVHCqm
+ kprIxSmjjYPdBfpv3TuhD9v34VwCQFe8sb/Y850tm7PslAlx6Y3LfTgi1+q9D1fJKOZe
+ 12bwSH/s2ee4nYDrzPX61+noI4TuINT4syshxtFyBqOWpm9UIxXdz2W8GQiu8QAyz/XZ
+ nOJJQDLyAck7c8/GK2/N3aBNKkjjmtBdkT4m3U6k+BmdVhKHACqs4l8lFTwalPFOLCYo
+ f7e2yanEyVR2LnS5DdzpVyq6zarQTkeM+CMsV42uq32xcm4XhAUqyMOdz/8RTufIn/TA
+ iwTQ==
+X-Gm-Message-State: APjAAAV+AnR0iz3RENtStPfi7K7rNRX5xOnP+gb1/1sDLg0MCnVylBB+
+ ypd6s9SOIEQTA4BILuzXuP7zs7hSuPY=
+X-Google-Smtp-Source: APXvYqwqVAAHDsloNNa1Ic58LZQgl1ziZWcsA4D3HBWpkqi4dxXA+Ias3toU8r1wP1f9WBOLEsoPag==
+X-Received: by 2002:ac8:7652:: with SMTP id i18mr61821300qtr.10.1560351123595; 
+ Wed, 12 Jun 2019 07:52:03 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
+ by smtp.googlemail.com with ESMTPSA id w16sm4890qtc.41.2019.06.12.07.52.02
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 12 Jun 2019 07:52:03 -0700 (PDT)
+Message-ID: <5D011192.8050704@gmail.com>
+Date: Wed, 12 Jun 2019 10:52:02 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83a5c4ea-0284-4aac-c461-08d6ef42dc7d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2019 14:32:56.3225 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2338
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-co1nam04lp2057.outbound.protection.outlook.com|104.47.45.57|NAM04-CO1-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.45.57, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-9112-c
-X-Mailprotector-ID: ceb37c87-ccaa-4eb0-a7e9-2d141e6df4fc
-Subject: [USRP-users] UHD not seeing E320
+To: Paolo Palana <p.palana@itsystems.it>, usrp-users@lists.ettus.com
+References: <1cc193d7-d0c0-4605-8bf2-e8b6dab5c3ec@itsystems.it>
+ <5CFFD96E.8040504@gmail.com>
+ <1da87304-f048-3055-61d1-8df695a04e8b@itsystems.it>
+In-Reply-To: <1da87304-f048-3055-61d1-8df695a04e8b@itsystems.it>
+Subject: Re: [USRP-users] problem configuring n310 using jtag
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -93,9 +68,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
-Content-Type: multipart/mixed; boundary="===============1961732464156300672=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -109,85 +85,102 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1961732464156300672==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB2340075EA81B6C386742FD8CAFEC0BL0PR12MB2340namp_"
+On 06/12/2019 03:34 AM, Paolo Palana wrote:
+> Hello Marcus, thank you for your reply.You are perfectly right. The
+> configuration is as follow.
+>
+> 1) I've my devel machine
+>
+> 2) on the same LAN (through gigabit switch) there is the machine where
+> the n310 is connected.
+>
+> 3) Both machines have ubuntu 16.04 amd64 and vivavdo tools 2017.4
+>
+> 4) on the machine with the n310 is running hw_server (launched as root
+> with the option -d)
+>
+> 5) I connect, with the vivado hardware manager from my devel machine to
+> the remote machine with the n310.
+>
+> 6) the configuration bitstream is then "programmed" from my devel machine.
+>
+> NOTES:
+>
+> * the communication between my machine and remote machine seems to be
+> ok. I can read from the vivado gui the values of the device properties
+> (e.g. the dna value).
+>
+> * I can ssh into the n310 and works fine also the serial console (tested
+> with screes as described here
+> https://files.ettus.com/manual/page_usrp_n3xx.html)
+>
+> * all file in /dev/seria/by-id are present
+>
+> * with the same machines involved I'm perfectly able to configure my X310.
+>
+> LOGS:
+>
+> start_gui
+> open_hw
+> INFO: [IP_Flow 19-234] Refreshing IP repositories
+> INFO: [IP_Flow 19-1704] No user IP repositories specified
+> connect_hw_server -url xxx.xxx.xxx.xxx:3121
+> INFO: [Labtools 27-2285] Connecting to hw_server url
+> TCP:xxx.xxx.xxx.xxx:3121
+> current_hw_target [get_hw_targets */xilinx_tcf/Digilent/xxxxxxxxxxxxx]
+> set_property PARAM.FREQUENCY 15000000 [get_hw_targets
+> */xilinx_tcf/Digilent/xxxxxxxxxxxxx]
+> open_hw_target
+> INFO: [Labtoolstcl 44-466] Opening hw_target
+> 10.10.0.167:3121/xilinx_tcf/Digilent/xxxxxxxxxxxxx
+> current_hw_device [get_hw_devices xc7z100_1]
+> refresh_hw_device -update_hw_probes false [lindex [get_hw_devices
+> xc7z100_1] 0]
+> INFO: [Labtools 27-1434] Device xc7z100 (JTAG device index = 1) is
+> programmed with a design that has no supported debug core(s) in it.
+> WARNING: [Labtools 27-3361] The debug hub core was not detected.
+> Resolution:
+> 1. Make sure the clock connected to the debug hub (dbg_hub) core is a
+> free running clock and is active.
+> 2. Make sure the BSCAN_SWITCH_USER_MASK device property in Vivado
+> Hardware Manager reflects the user scan chain setting in the design and
+> refresh the device.  To determine the user scan chain setting in the
+> design, open the implemented design and use 'get_property
+> C_USER_SCAN_CHAIN [get_debug_cores dbg_hub]'.
+> For more details on setting the scan chain property, consult the Vivado
+> Debug and Programming User Guide (UG908).
+> set_property PROBES.FILE {} [get_hw_devices xc7z100_1]
+> set_property FULL_PROBES.FILE {} [get_hw_devices xc7z100_1]
+> set_property PROGRAM.FILE {/tmp/usrp_n310_fpga_XG.bit} [get_hw_devices
+> xc7z100_1]
+> program_hw_devices [get_hw_devices xc7z100_1]
+> ERROR: [Labtools 27-3165] End of startup status: LOW
+> program_hw_devices: Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 .
+> Memory (MB): peak = 6656.473 ; gain = 0.000 ; free physical = 26786 ;
+> free virtual = 62498
+> ERROR: [Common 17-39] 'program_hw_devices' failed due to earlier errors.
+>
+>
+> If are necessary more informations please let me know.
+>
+> Have a good day.
+>
+> Paolo
+>
+>
+So, the "process flow" you've chosen, JTAGing the FPGA image into place, 
+is not a usual method for updating the FPGA image on the N310.
+   The N310 is itself a computer platform, so has other mechanisms for 
+updating the FPGA image:
 
---_000_BL0PR12MB2340075EA81B6C386742FD8CAFEC0BL0PR12MB2340namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Updating_the_FPGA_Image
 
-I have a new issue with my E320.  I loaded up an E320 with an SD card image=
- that I have used on a different working E320.
+In fact, I'd spend some time with the entire getting-started guide, 
+since the N310 is quite different than the X310.
 
 
-On my personal machine, I am using a 1G image that seems to work fine and u=
-hd_find_device (and probe) seems to be working fine.  I change the IP and l=
-oad up an XG image onto it.  I move it physically to a server that uses 10G=
-.  The particular ethernet port works fine with my X310 I had had hooked up=
- to it.  I disconnected my X310 and plugged in my E320.  I can ping and SSH=
- the device fine.  When I run a probe or a a find devices, I don't find a U=
-HD device.  I tried with different versions of UHD and they all seem to hav=
-e the same problem.  When I am ssh'ed onto the device, probes and finds wor=
-k fine internally.
-
-
-Is there something I am missing here?  The port worked with an X310 complet=
-ely, and can talk to an E320, but that is all; I am very perplexed.
-
---_000_BL0PR12MB2340075EA81B6C386742FD8CAFEC0BL0PR12MB2340namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">I have a new issue with my E320.&=
-nbsp; I loaded up an E320 with an SD card image that I have used on a diffe=
-rent working E320.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">On my personal machine, I am usin=
-g a 1G image that seems to work fine and uhd_find_device (and probe) seems =
-to be working fine.&nbsp; I change the IP and load up an XG image onto it.&=
-nbsp; I move it physically to a server that
- uses 10G.&nbsp; The particular ethernet port works fine with my X310 I had=
- had hooked up to it.&nbsp; I disconnected my X310 and plugged in my E320.&=
-nbsp; I can ping and SSH the device fine.&nbsp; When I run a probe or a a f=
-ind devices, I don't find a UHD device.&nbsp; I tried with
- different versions of UHD and they all seem to have the same problem.&nbsp=
-; When I am ssh'ed onto the device, probes and finds work fine internally.<=
-/p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Is there something I am missing h=
-ere?&nbsp; The port worked with an X310 completely, and can talk to an E320=
-, but that is all; I am very perplexed.</p>
-</div>
-</body>
-</html>
-
---_000_BL0PR12MB2340075EA81B6C386742FD8CAFEC0BL0PR12MB2340namp_--
-
-
---===============1961732464156300672==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1961732464156300672==--
-
