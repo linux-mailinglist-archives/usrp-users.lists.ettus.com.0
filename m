@@ -2,59 +2,30 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5255A491E1
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Jun 2019 23:01:11 +0200 (CEST)
-Received: from [::1] (port=53048 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DB88491E8
+	for <lists+usrp-users@lfdr.de>; Mon, 17 Jun 2019 23:02:19 +0200 (CEST)
+Received: from [::1] (port=54428 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hcykY-0002np-BA; Mon, 17 Jun 2019 17:01:10 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:36649)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hcykT-0002f7-Vl
- for usrp-users@lists.ettus.com; Mon, 17 Jun 2019 17:01:06 -0400
-Received: by mail-qk1-f173.google.com with SMTP id g18so7156300qkl.3
- for <usrp-users@lists.ettus.com>; Mon, 17 Jun 2019 14:00:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=p7P4PmzGJlT0hjdxppq6F9mza2P7qoMygItPWgmQq9c=;
- b=J9Kp89cOh9XW75H/4EGkwlCJDZQr0mn5hMucWFE8dxvFbEqjbN1AEI+w0eDZcDgXNd
- 9RTwLUg9leHRlQizd48jAq1QVIiqV2Y7vzRwZl/XQL34qQSX9li8qufUXTdr7Sx1TIkT
- FI2IjYFx+uDKBGRWC2LbY82yPOJsAVNVdnSineUcpfQIEvjtGB2pnqmFywXvSt8wwD6o
- /hv2nhjpixIBa1uh0vfUPOZWMpZRdowJ2jE1wcp7SQZKs+OI5QbiBrJTjqaXZnK1XIIJ
- VXS9im+SlGnU4ObgyEYo3V0f9DCmDzmQ1H9Ky7vEw/SRTnoPx2F0Fb3V2OJu2D+LYGyD
- xXGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=p7P4PmzGJlT0hjdxppq6F9mza2P7qoMygItPWgmQq9c=;
- b=mroNQcCG6WLFxOHK8g+uGnyp7ZMPaHHeBEnHThO+/IoUUZYcHjNgHgvMnD4tvTGMEo
- I3/sqChvEjtOEV5n6hYQIEDm/HAU9fSVOLSmu5wFV/PdKxl2U6Ywk+e/aWg30cOAVbcz
- OAkXLdc/7mMh3SNlgEV2hkDOSH/vHeIq/Zj0IFxZ7p1jySFqMWezyTynborlmHBBy7M5
- ln3A2H2Y8uLR5YiHfQl22a6kywsjdRFLegzw9hNFczPUCzkP4a1VHRAjSwolxY7ZJSEj
- zx1j/QwGIV1HUxnbjXC9hy8chFD4LsYeGPMirhwDJvL1e6s3XiI9QdHu7mCJF7asKaXi
- wWIA==
-X-Gm-Message-State: APjAAAUvR21Wp9ip/KTqMK9QIRIxw5QY1VaSXP8LWfiCGDhG2oxF030l
- 0CDiyAXU/IWSsluJuyEdN11CJpHr
-X-Google-Smtp-Source: APXvYqxmrwVBRgB26EeiST35P4fH5rIhwvq64J67dPTbRoH9jqSHNJKPlAA4I41dcjy2aoRxjb+gZA==
-X-Received: by 2002:a37:ad0f:: with SMTP id f15mr92435993qkm.68.1560805225450; 
- Mon, 17 Jun 2019 14:00:25 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
- by smtp.googlemail.com with ESMTPSA id d31sm9161518qta.39.2019.06.17.14.00.25
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 17 Jun 2019 14:00:25 -0700 (PDT)
-Message-ID: <5D07FF68.9080804@gmail.com>
-Date: Mon, 17 Jun 2019 17:00:24 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAO_1D1XtztkMvVKD2VG9CXFi+U492yWKakfmfaWS54Fxp5wywQ@mail.gmail.com>
+	id 1hcyle-00037K-91; Mon, 17 Jun 2019 17:02:18 -0400
+Received: from sanddollar.geekisp.com ([216.168.135.167]:37728)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <philip@opensdr.com>) id 1hcyla-0002xQ-4z
+ for usrp-users@lists.ettus.com; Mon, 17 Jun 2019 17:02:14 -0400
+Received: (qmail 32556 invoked by uid 1003); 17 Jun 2019 21:01:38 -0000
+Received: from unknown (HELO ?11.66.208.236?)
+ (philip@opensdr.com@99.203.32.138)
+ by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+ 17 Jun 2019 21:01:38 -0000
+Date: Mon, 17 Jun 2019 16:01:30 -0500
+User-Agent: K-9 Mail for Android
 In-Reply-To: <CAO_1D1XtztkMvVKD2VG9CXFi+U492yWKakfmfaWS54Fxp5wywQ@mail.gmail.com>
+References: <CAO_1D1XtztkMvVKD2VG9CXFi+U492yWKakfmfaWS54Fxp5wywQ@mail.gmail.com>
+MIME-Version: 1.0
+To: Donnie C <dbc23910@gmail.com>,
+ Donnie C via USRP-users <usrp-users@lists.ettus.com>,
+ usrp-users@lists.ettus.com
+Message-ID: <767D238E-54EC-4DCC-BC77-9C96533F8EAA@opensdr.com>
 Subject: Re: [USRP-users] E310 Startup/Boot not working
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -67,10 +38,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@opensdr.com>
+Content-Type: multipart/mixed; boundary="===============9163618611386405646=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,25 +54,71 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 06/17/2019 04:52 PM, Donnie C via USRP-users wrote:
-> Hello,
+--===============9163618611386405646==
+Content-Type: multipart/alternative; boundary="----7QUPVGQ7CKJE7VOIUI7CBNQAAG0QE2"
+Content-Transfer-Encoding: 7bit
+
+------7QUPVGQ7CKJE7VOIUI7CBNQAAG0QE2
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+As I recall, the LEDs default tonon and then an image is loaded into the fp=
+ha that turns them off=2E If they stay on, it suggests things are going wro=
+ng very early=20
+
+Philip
+
+On June 17, 2019 3:52:54 PM CDT, Donnie C via USRP-users <usrp-users@lists=
+=2Eettus=2Ecom> wrote:
+>Hello,
 >
-> I'm currently trying to get the E310 to boot with the most recent 
-> image release ( 
-> http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg1/sdimage-gnuradio-demo.direct.xz 
-> ) which I burned onto an microSD card using bitmap, but I cannot 
-> serial connect into it and the device has all the antennae LEDs on. I 
-> cannot find what the LEDs mean or why the E310 wont boot
->
->
-I'm going to guess that either something went wrong when you burned the 
-card image, or you're using the wrong image--make sure it matches
-   the speed-grade of the hardware.
+>I'm currently trying to get the E310 to boot with the most recent image
+>release (
+>http://files=2Eettus=2Ecom/e3xx_images/e3xx-release-4/ettus-e3xx-sg1/sdim=
+age-gnuradio-demo=2Edirect=2Exz
+>) which I burned onto an microSD card using bitmap, but I cannot serial
+>connect into it and the device has all the antennae LEDs on=2E I cannot
+>find
+>what the LEDs mean or why the E310 wont boot
+
+--=20
+Sent from my Android device with K-9 Mail=2E Please excuse my brevity=2E
+------7QUPVGQ7CKJE7VOIUI7CBNQAAG0QE2
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body>As I recall, the LEDs default tonon and then an im=
+age is loaded into the fpha that turns them off=2E If they stay on, it sugg=
+ests things are going wrong very early <br><br>Philip<br><br><div class=3D"=
+gmail_quote">On June 17, 2019 3:52:54 PM CDT, Donnie C via USRP-users &lt;u=
+srp-users@lists=2Eettus=2Ecom&gt; wrote:<blockquote class=3D"gmail_quote" s=
+tyle=3D"margin: 0pt 0pt 0pt 0=2E8ex; border-left: 1px solid rgb(204, 204, 2=
+04); padding-left: 1ex;">
+<div dir=3D"ltr">Hello,<div><br></div><div>I'm currently trying to get the=
+ E310 to boot with the most recent image release ( <a href=3D"http://files=
+=2Eettus=2Ecom/e3xx_images/e3xx-release-4/ettus-e3xx-sg1/sdimage-gnuradio-d=
+emo=2Edirect=2Exz">http://files=2Eettus=2Ecom/e3xx_images/e3xx-release-4/et=
+tus-e3xx-sg1/sdimage-gnuradio-demo=2Edirect=2Exz</a> ) which I burned onto =
+an microSD card using bitmap, but I cannot serial connect into it and the d=
+evice has all the antennae LEDs on=2E I cannot find what the LEDs mean or w=
+hy the E310 wont boot</div></div>
+</blockquote></div><br>-- <br>Sent from my Android device with K-9 Mail=2E=
+ Please excuse my brevity=2E</body></html>
+------7QUPVGQ7CKJE7VOIUI7CBNQAAG0QE2--
 
 
-
+--===============9163618611386405646==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============9163618611386405646==--
+
