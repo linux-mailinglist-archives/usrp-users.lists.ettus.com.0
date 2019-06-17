@@ -2,60 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E9814923D
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Jun 2019 23:18:00 +0200 (CEST)
-Received: from [::1] (port=35890 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E0249379
+	for <lists+usrp-users@lfdr.de>; Mon, 17 Jun 2019 23:31:26 +0200 (CEST)
+Received: from [::1] (port=39294 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hcz0p-00054F-5g; Mon, 17 Jun 2019 17:17:59 -0400
-Received: from mail-qt1-f175.google.com ([209.85.160.175]:41083)
+	id 1hczDn-0005s2-P3; Mon, 17 Jun 2019 17:31:23 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:37452)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hcz0l-0004wc-SR
- for usrp-users@lists.ettus.com; Mon, 17 Jun 2019 17:17:55 -0400
-Received: by mail-qt1-f175.google.com with SMTP id d17so7690167qtj.8
- for <usrp-users@lists.ettus.com>; Mon, 17 Jun 2019 14:17:35 -0700 (PDT)
+ id 1hczDj-0005kR-Oh
+ for usrp-users@lists.ettus.com; Mon, 17 Jun 2019 17:31:19 -0400
+Received: by mail-qt1-f196.google.com with SMTP id y57so12731484qtk.4
+ for <usrp-users@lists.ettus.com>; Mon, 17 Jun 2019 14:30:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=7RgLiXwSW3Lm+sNEOQ+P45N0AtWPEP2W4QUYwSMdNHM=;
- b=a1g7TkdxmmhsRLExveOsVIf+0371GrN3Tg3Z9T9iEQkNU8kXF1JBLN5UQhB4N/uZ3l
- M1rYVpVymCU8c/UqWk56JgQDXzYzmwShx1FmYmQKCs9xKUE4qahUpvN7vpdXcnCnGuuK
- XRkoTpzZOaNJ4rXVJpX5FI9msTNlS4kvgy15V2BxQ3fpwfhGLWYP5apxcVSoo9slgFeJ
- JYHUYInk2UPSsXtQJj5ELfggkVCgngXQWwGE7hMvBCYQfL/3Jz1mxjibXL5h3nWdHprs
- o4eJI3sTng1/yRb3Vp37CQn0zbEoV//fezy6xDzx7EUNGXaIUdjEJOH8mzzVY2tqszSj
- T7zQ==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=kHnPHeN9jvFc7aRx771TzHDLEM2hFPdzOlZ9IU+SYII=;
+ b=pQbKn3tHz29d5im/QBWqY/uD7UQjB4Oc/vSbaXfCnkddkULp0cPmalK3j4z34KhHOs
+ asb3pxaVuX1zDnjl9OoR0HSy2pU98XxpKo2uVN7c6bUPrxPkLAgCAM+H6zFXwn0nA99x
+ Ws8TarTHXYBtBJFBlorNDMXgGGxVOE+qapeiiup8HFUiITpiaVVWfPFLa2YxAZydrjEn
+ BiRM8vpaWd6BAcGwiY5XFG+qej3KIlA7TPowm7SBOgFuKrEZa4vc0NI6BfogEuHpOY56
+ Mwhlo2M2SmfDf0fAf8AxOhgrlLFTSi+AXrtxaF9ohzwhTVnZVqOQr2O7/Wbimy0K6Bsh
+ qgdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=7RgLiXwSW3Lm+sNEOQ+P45N0AtWPEP2W4QUYwSMdNHM=;
- b=uOHZW2aiLzeAAWrfevBzxTzY15i82jggHipqw926GVFZ6m4gFWCKPSU7l5HK+M+i0h
- X7Uzm+t52Gb++xW72hPonPIhKTDZ4fQuZd/zuO16y7o1KmBodikMFlDnXsyqKFeIpYTl
- Pv1R0fh7zW16WYJl7k0l+CuAIyLUeTzQEGkBTkDtg0WvKWgvoOjreuEeu6OIP0zVXPoX
- 2XNfGsh30t0Q/A5mbRXPb3uKf4H+RAJmSgg/JAr+rcfejxakNfz9VUshCeH/MSsoIgmw
- uHs1gLD1CTDR0WIQcVM/9zaU/rrZyjtDgNr7k5cn54hspRx1oNpcAh1/8pDfNbnAYXfV
- aRYQ==
-X-Gm-Message-State: APjAAAWEKla8DrYpG2Wm5H9DCZTgcNWZqiZ2MDDr75u4Bi+MHLHxp7hR
- 2poL3sGETzRrtSqUdWnggtGr7YSn
-X-Google-Smtp-Source: APXvYqxS7lVSgwVodDJ+WgCGtQRbMvKxi6BYvxGIHj4uOY8At0zZESQtVWSkym6NbnOaoDq0w3tb5w==
-X-Received: by 2002:ac8:2535:: with SMTP id 50mr57428051qtm.373.1560806235300; 
- Mon, 17 Jun 2019 14:17:15 -0700 (PDT)
+ :subject:references:in-reply-to;
+ bh=kHnPHeN9jvFc7aRx771TzHDLEM2hFPdzOlZ9IU+SYII=;
+ b=sokjWz+G1EV9x0bESyHotJhromCF9ZTDy6TDjRMcvCsu55X1q5EO2CxpjTdWkShrTH
+ sxMo9mU/RIKRLkffnEqNBGzIlC8TIiaMxU3jngnZ0EuuSqiJDFwcorZ1r4JnKIg8ZeQ2
+ 6k5yc8JJm+MfMGdcnKOY63G/U9gRR3y5zkpp7S1CKmunhyuNd0q5lIxr8m/2mKZQ1vnK
+ v9jeR4niuBMWaqz5Q77YJVqAh1Cuy2LWUz1Tp4DX8ZmABBcY59FLusscJshLcXhEFsLw
+ D9SH6rdnKqGlQCCKp0fpOnokmPUDT0xJsIHb257RPYC8VrEYqiSHQKgW1EAI30vXs9Go
+ +Jyg==
+X-Gm-Message-State: APjAAAWf+jqAnKMb2J5+UePoVKkdnIpQ+yzQVVsP3a8uAvqESPzIHVeG
+ CvZ6pipIZtokRni7o5g/m/v9+uLP
+X-Google-Smtp-Source: APXvYqyjqxoiynorOkukojVVvYHba3t2z6/WLFVEZughAX/es4oJ9UD7HNpq86TVn3RP6n+iJ2xwQQ==
+X-Received: by 2002:a0c:d1e2:: with SMTP id k31mr23976357qvh.173.1560807039204; 
+ Mon, 17 Jun 2019 14:30:39 -0700 (PDT)
 Received: from [192.168.2.12]
  (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
- by smtp.googlemail.com with ESMTPSA id i35sm1252947qtc.9.2019.06.17.14.17.14
+ by smtp.googlemail.com with ESMTPSA id a11sm6918811qkn.26.2019.06.17.14.30.38
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 17 Jun 2019 14:17:14 -0700 (PDT)
-Message-ID: <5D080359.8070609@gmail.com>
-Date: Mon, 17 Jun 2019 17:17:13 -0400
+ Mon, 17 Jun 2019 14:30:38 -0700 (PDT)
+Message-ID: <5D08067E.90306@gmail.com>
+Date: Mon, 17 Jun 2019 17:30:38 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-To: Donnie C <dbc23910@gmail.com>
+To: Donnie C <dbc23910@gmail.com>, 
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 References: <CAO_1D1XtztkMvVKD2VG9CXFi+U492yWKakfmfaWS54Fxp5wywQ@mail.gmail.com>
  <5D07FF68.9080804@gmail.com>
  <CAO_1D1W9h1hg_182mQ5oDZbaVqHNgFnu9gjPnMZ08ZLd0eSNgA@mail.gmail.com>
-In-Reply-To: <CAO_1D1W9h1hg_182mQ5oDZbaVqHNgFnu9gjPnMZ08ZLd0eSNgA@mail.gmail.com>
+ <5D080359.8070609@gmail.com>
+ <CAO_1D1Web8+vG02Sqra-eBxnHTZiMEFnwc2rDzSjuL=-VryCLQ@mail.gmail.com>
+In-Reply-To: <CAO_1D1Web8+vG02Sqra-eBxnHTZiMEFnwc2rDzSjuL=-VryCLQ@mail.gmail.com>
 Subject: Re: [USRP-users] E310 Startup/Boot not working
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -70,9 +72,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============6098198247833753252=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,18 +86,123 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 06/17/2019 05:09 PM, Donnie C wrote:
-> Im pretty sure the speed grade matches so it must be an incorrect sd 
-> card burn, but as far as I can tell I followed the ettus tutorial for 
-> sd image burning, is there any extra steps involved they don't go over?
-Bad card?  Bad card burner?  Pulled the card before the I/O had been 
-fully flushed out to it?  Downloaded the image in text mode?  Got the
-   device name wrong when burning, and now you have a large file under 
-/dev, instead of written out to the actual card?
+This is a multi-part message in MIME format.
+--===============6098198247833753252==
+Content-Type: multipart/alternative;
+ boundary="------------040102070706010407080003"
+
+This is a multi-part message in MIME format.
+--------------040102070706010407080003
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 06/17/2019 05:27 PM, Donnie C wrote:
+> Its definitely being written to the right place /dev folder doesnt 
+> have anything large under it, but how would you check if the image was 
+> downloaded in text mode?
+Some windows FTP clients default to text mode, even when downloading 
+binary data.  But that would only apply if you used FTP.
+
+You sure your download didn't fail in the middle?  Compare the sizes.
 
 
+>
+> On Mon, Jun 17, 2019 at 3:17 PM Marcus D. Leech 
+> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+>
+>     On 06/17/2019 05:09 PM, Donnie C wrote:
+>     > Im pretty sure the speed grade matches so it must be an
+>     incorrect sd
+>     > card burn, but as far as I can tell I followed the ettus
+>     tutorial for
+>     > sd image burning, is there any extra steps involved they don't
+>     go over?
+>     Bad card?  Bad card burner?  Pulled the card before the I/O had been
+>     fully flushed out to it?  Downloaded the image in text mode?  Got the
+>        device name wrong when burning, and now you have a large file
+>     under
+>     /dev, instead of written out to the actual card?
+>
+>
+
+
+--------------040102070706010407080003
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 06/17/2019 05:27 PM, Donnie C wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAO_1D1Web8+vG02Sqra-eBxnHTZiMEFnwc2rDzSjuL=-VryCLQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>Its definitely being written to the right place /dev folder
+          doesnt have anything large under it, but how would you check
+          if the image was downloaded in text mode?</div>
+      </div>
+    </blockquote>
+    Some windows FTP clients default to text mode, even when downloading
+    binary data.  But that would only apply if you used FTP.<br>
+    <br>
+    You sure your download didn't fail in the middle?  Compare the
+    sizes.<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CAO_1D1Web8+vG02Sqra-eBxnHTZiMEFnwc2rDzSjuL=-VryCLQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr"><br>
+        <div class="gmail_quote">
+          <div dir="ltr" class="gmail_attr">On Mon, Jun 17, 2019 at 3:17
+            PM Marcus D. Leech &lt;<a moz-do-not-send="true"
+              href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class="gmail_quote" style="margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">On 06/17/2019 05:09 PM,
+            Donnie C wrote:<br>
+            &gt; Im pretty sure the speed grade matches so it must be an
+            incorrect sd <br>
+            &gt; card burn, but as far as I can tell I followed the
+            ettus tutorial for <br>
+            &gt; sd image burning, is there any extra steps involved
+            they don't go over?<br>
+            Bad card?  Bad card burner?  Pulled the card before the I/O
+            had been <br>
+            fully flushed out to it?  Downloaded the image in text
+            mode?  Got the<br>
+               device name wrong when burning, and now you have a large
+            file under <br>
+            /dev, instead of written out to the actual card?<br>
+            <br>
+            <br>
+          </blockquote>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------040102070706010407080003--
+
+
+--===============6098198247833753252==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============6098198247833753252==--
+
