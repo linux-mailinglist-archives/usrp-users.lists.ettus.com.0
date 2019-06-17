@@ -2,15 +2,15 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DB88491E8
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Jun 2019 23:02:19 +0200 (CEST)
-Received: from [::1] (port=54428 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F41491E9
+	for <lists+usrp-users@lfdr.de>; Mon, 17 Jun 2019 23:02:23 +0200 (CEST)
+Received: from [::1] (port=56138 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hcyle-00037K-91; Mon, 17 Jun 2019 17:02:18 -0400
-Received: from sanddollar.geekisp.com ([216.168.135.167]:37728)
+	id 1hcyli-0003O1-5F; Mon, 17 Jun 2019 17:02:22 -0400
+Received: from sanddollar.geekisp.com ([216.168.135.167]:28235)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <philip@opensdr.com>) id 1hcyla-0002xQ-4z
+ (Exim 4.92) (envelope-from <philip@opensdr.com>) id 1hcyla-0002xP-O0
  for usrp-users@lists.ettus.com; Mon, 17 Jun 2019 17:02:14 -0400
 Received: (qmail 32556 invoked by uid 1003); 17 Jun 2019 21:01:38 -0000
 Received: from unknown (HELO ?11.66.208.236?)
@@ -40,7 +40,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Philip Balister <philip@opensdr.com>
-Content-Type: multipart/mixed; boundary="===============9163618611386405646=="
+Content-Type: multipart/mixed; boundary="===============6932102327157272165=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -54,7 +54,7 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9163618611386405646==
+--===============6932102327157272165==
 Content-Type: multipart/alternative; boundary="----7QUPVGQ7CKJE7VOIUI7CBNQAAG0QE2"
 Content-Transfer-Encoding: 7bit
 
@@ -109,7 +109,7 @@ hy the E310 wont boot</div></div>
 ------7QUPVGQ7CKJE7VOIUI7CBNQAAG0QE2--
 
 
---===============9163618611386405646==
+--===============6932102327157272165==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,5 +120,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9163618611386405646==--
+--===============6932102327157272165==--
 
