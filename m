@@ -2,46 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4606F49FA1
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Jun 2019 13:49:53 +0200 (CEST)
-Received: from [::1] (port=53366 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 640CA4A258
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Jun 2019 15:35:36 +0200 (CEST)
+Received: from [::1] (port=43080 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hdCcT-00059I-1J; Tue, 18 Jun 2019 07:49:45 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:36691)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ee13m1032@iith.ac.in>)
- id 1hdCcP-00050w-TL
- for usrp-users@lists.ettus.com; Tue, 18 Jun 2019 07:49:41 -0400
-Received: by mail-ot1-f66.google.com with SMTP id r6so14027826oti.3
- for <usrp-users@lists.ettus.com>; Tue, 18 Jun 2019 04:49:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iith.ac.in; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=gwu3SD/l3+rLQZx8tEhU8ONFUuL88j4CrS7OOirUaWU=;
- b=Y2Ir+wRMEzk2YjV1piAbSuqMCkHtqgJfC+LlIWDSCCFY2E90wxe7U2udqFR2iptRF9
- oGMhhm/k24DTGZlnS5Pkl/B2CafsdVg65KuisNTqPT3T1Z4K8UMK2mrJH+b+YoxFVJvx
- /Vc+TMYM0Ogj14a/NgMfn7Al68M6ihyysjCw4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=gwu3SD/l3+rLQZx8tEhU8ONFUuL88j4CrS7OOirUaWU=;
- b=jiaX6RGB+d3+pWE5lkj9Syo615idw9SvviQSI2Kza5PYaygdej6VlUvnX+O4Wc1RtT
- UwXQ19DZprXldSk/JdDQcP8M0Y1NwLXaXVW1W2wDlRttRoXTnBNhpLvrT5bNUQ0A7gqW
- XgCOihjlqS7z/dL+KNJ4X32jvW2gDg5676dOyVcelzeHsMXFcCIW69+KYOYLAKyGvGDj
- 4iApZLA8dhWdDqC36XY7vZL6uNeWRLWx/rS5inX3adrM3Ozhzv/13kqYhDT9ctHgkzNf
- o3gnvTxb0U94EMq9rQV+iNNDyQg0kyGhhKEAB8L1PQNUfPNInAtouA7C8lYTca4Wvoia
- 3tjg==
-X-Gm-Message-State: APjAAAUoqnr74erPNzQL1zZk+pSej8rucDKBexpC4a5j21bPwPSTZonl
- ETF6JRqf9pa3mUtCsCqXrGHYXirwZwATdqX2xaG+DZGhCNo=
-X-Google-Smtp-Source: APXvYqxH9DWeOT8b5fVoqLLWbGGZo68eC6M0rDAZUoeVbRZ0/SqlwMHef7itO7nP1w8Bqh2U2BpjJfRHVq0H1E6zXdI=
-X-Received: by 2002:a05:6830:128e:: with SMTP id
- z14mr14482172otp.172.1560858539795; 
- Tue, 18 Jun 2019 04:48:59 -0700 (PDT)
-MIME-Version: 1.0
-Date: Tue, 18 Jun 2019 17:18:49 +0530
-Message-ID: <CAEFPu364hymUhonvr9ijfbfUGkWzLiWy3iaY9wodP=ryHDY2hQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] UHD 3.14.1-rc1 Build failure
+	id 1hdEGo-0002Vx-6V; Tue, 18 Jun 2019 09:35:30 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:54833)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1hdEGk-0002MB-Lr
+ for usrp-users@lists.ettus.com; Tue, 18 Jun 2019 09:35:26 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailout.nyi.internal (Postfix) with ESMTP id 5E2532220A;
+ Tue, 18 Jun 2019 09:34:46 -0400 (EDT)
+Received: from imap8 ([10.202.2.58])
+ by compute3.internal (MEProxy); Tue, 18 Jun 2019 09:34:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=pGV4qv
+ Ivhi1L75vpt0WaXgxUSeZvM+o0FMzVsYH1iOo=; b=ZwXHyGdSdkptRo6fxuCSYg
+ pBG21kfNmv3NoNtD4LkiSA1jwSdNP8X0suVcM9eCtup6DXlL1TGea7QAyAKXZTKu
+ yBhC4QBsAMeo27ooYPMrIFYgNERwf3QhgRo3jhrPt4hKEFTtRaNSt05wXouOmtRX
+ t4qFOpqZFmqHirLVl6dG7csS7pvcKMR7r5mGTWq65CFbpqgHFy0U8WStjmbmjwZS
+ IU4SaTESYnVZYUDqOuL1SgUJ8iZPlT4TwcGdWuiykPsnktec5YnA+K9rOMceIxo8
+ WmMH1saXIw2FG0X9Bb0Xixpp8oNlfngPgrCRK2crHVh+A+uPKL0PWWPaLMhkOxMg
+ ==
+X-ME-Sender: <xms:degIXUeOfkbNrsm3d0AZhRUWx467ZzNHYUtATJ55JJ3bAgs-DkvCqQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrtddtgdefhecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpefofgggkfgjfhffhffvufgtsegrtderreerredtnecuhfhrohhmpedfofhitghh
+ rggvlhcuffhitghkvghnshdfuceomhhitghhrggvlhdrughitghkvghnshesvghtthhush
+ drtghomheqnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmihgthhgrvghlrdguihgtkhgv
+ nhhssegvthhtuhhsrdgtohhmnecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:degIXeF4_8VOOR3NjHJUlOEj_0jP9p-oI0MhQn9Uy6iKgX89T8d8bw>
+ <xmx:degIXUUI4i7yxwXgEADzjcF0_m_7HdFxIW3lDgsubFUvC03oktvCog>
+ <xmx:degIXQDRHbyPJrLurs6Sf2xr68dqNepTVMTHLn6NXi4ncBspYJd6FA>
+ <xmx:dugIXRTZBNmNEJ73ybsaArn1_c_6pUEl9fil6Z_uDpm6kadXbLYYUQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id D2224520096; Tue, 18 Jun 2019 09:34:45 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-666-gb2312fa-fmstable-20190614v4
+Mime-Version: 1.0
+Message-Id: <c0667c6a-e02c-46da-87f6-48519f4836f3@www.fastmail.com>
+In-Reply-To: <CALSxwQFTeiix0DqsfcQSdeHVrtnakjNkjB=rANMHb-rmXK2OQg@mail.gmail.com>
+References: <mailman.55.1560787202.16100.usrp-users_lists.ettus.com@lists.ettus.com>
+ <CALSxwQFTeiix0DqsfcQSdeHVrtnakjNkjB=rANMHb-rmXK2OQg@mail.gmail.com>
+Date: Tue, 18 Jun 2019 09:34:45 -0400
+To: "Simona Sibio" <ssibio2@gmail.com>,
+ "USRP Users" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Waveform Shape Not Accurate
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -53,9 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Varala Sathish via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Varala Sathish <ee13m1032@iith.ac.in>
-Content-Type: multipart/mixed; boundary="===============4158744221131606805=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Content-Type: multipart/mixed; boundary="===============1597298055769386775=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -69,183 +81,183 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4158744221131606805==
-Content-Type: multipart/alternative; boundary="000000000000cf3e96058b97b2da"
+--===============1597298055769386775==
+Content-Type: multipart/alternative;
+ boundary=de1f72d2a4314dfb836ca39183ca04e7
 
---000000000000cf3e96058b97b2da
-Content-Type: text/plain; charset="UTF-8"
+--de1f72d2a4314dfb836ca39183ca04e7
+Content-Type: text/plain
+
+Hi Simona - Can you please educate us as to a few items?
+
+* your setup: you have an N200 + some daughterboard (which one) + some spectrum analyzer (which one), connected ?somehow? -> are you doing actual wireless Tx -> Rx, or do you have a cable hooked up between the N200 & spectrum analyzer?
+
+* what waveform you're trying to generate, and what is the actual flowgraph you're using for GNU Radio? how are you generating the waveform in MATLAB?
+
+* which version of GNU Radio and UHD are you trying to use?
+
+* which version of MATLAB and it's UHD are you trying to use?
+
+The above might help someone to diagnose your issue ... without it, we can make some guesses but not much in the way of specifics.
+
+Please remember to "reply all", so that others can see your response and be able to chime in to provide help. - MLD
+
+On Tue, Jun 18, 2019, at 8:42 AM, Simona Sibio via USRP-users wrote:
+> Dear Sir/Madam,
+> 
+> I am Simona Sibio, a student in Heriot Watt University. 
+> I am working with USRPs both on Matlab and on Gnuradio, and with both softwares I have the same problem: the shape (generated by N200+daughterboard 10 MHz to 6 GHz) is not accurate, in attacched some photos.
+> At 1 GHz, the shape is worst than when the carrier frequency is 3GHz.
+> It is not possible to measure the amplitude and frequency because, also at 3 GHz, it is not stable.
+> Could you help me?
+> 
+> Thank you in advance.
+> 
+> Best Regards,
+> 
+> Simona
+
+--de1f72d2a4314dfb836ca39183ca04e7
+Content-Type: text/html
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.Mso=
+Normal,p.MsoNoSpacing{margin:0}</style></head><body><div style=3D"font-f=
+amily:Arial;">Hi&nbsp;Simona - Can you please educate us as to a few ite=
+ms?<br></div><div style=3D"font-family:Arial;"><br></div><div style=3D"f=
+ont-family:Arial;">* your setup: you have an N200 + some daughterboard (=
+which one) + some spectrum analyzer (which one), connected ?somehow? -&g=
+t; are you doing actual wireless Tx -&gt; Rx, or do you have a cable hoo=
+ked up between the N200 &amp; spectrum analyzer?<br></div><div style=3D"=
+font-family:Arial;"><br></div><div style=3D"font-family:Arial;">* what w=
+aveform you're trying to generate, and what is the actual flowgraph you'=
+re using for GNU Radio? how are you generating the waveform in MATLAB?<b=
+r></div><div style=3D"font-family:Arial;"><br></div><div style=3D"font-f=
+amily:Arial;">* which version of GNU Radio and UHD are you trying to use=
+?<br></div><div style=3D"font-family:Arial;"><br></div><div style=3D"fon=
+t-family:Arial;">* which version of MATLAB and it's UHD are you trying t=
+o use?<br></div><div style=3D"font-family:Arial;"><br></div><div style=3D=
+"font-family:Arial;">The above might help someone to diagnose your issue=
+ ... without it, we can make some guesses but not much in the way of spe=
+cifics.<br></div><div style=3D"font-family:Arial;"><br></div><div style=3D=
+"font-family:Arial;">Please remember to "reply all", so that others can =
+see your response and be able to chime in to provide help. - MLD</div><d=
+iv style=3D"font-family:Arial;"><br></div><div>On Tue, Jun 18, 2019, at =
+8:42 AM, Simona Sibio via USRP-users wrote:<br></div><blockquote type=3D=
+"cite" id=3D"qt"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"font-st=
+yle:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-v=
+ariant-numeric:normal;font-variant-east-asian:normal;font-weight:400;fon=
+t-size:13.33px;line-height:19.99px;font-family:Arial, Helvetica, sans-se=
+rif;text-align:left;color:rgb(34, 34, 34);text-transform:none;text-inden=
+t:0px;letter-spacing:normal;overflow-x:visible;overflow-y:visible;text-d=
+ecoration-line:none;text-decoration-style:initial;text-decoration-color:=
+initial;word-spacing:0px;white-space:normal;font-stretch:100%;background=
+-color:transparent;">Dear Sir/Madam,<br></div><div style=3D"font-style:n=
+ormal;font-variant-caps:normal;font-variant-ligatures:normal;font-varian=
+t-numeric:normal;font-variant-east-asian:normal;font-weight:400;font-siz=
+e:13.33px;line-height:19.99px;font-family:Arial, Helvetica, sans-serif;t=
+ext-align:left;color:rgb(34, 34, 34);text-transform:none;text-indent:0px=
+;letter-spacing:normal;overflow-x:visible;overflow-y:visible;text-decora=
+tion-line:none;text-decoration-style:initial;text-decoration-color:initi=
+al;word-spacing:0px;white-space:normal;font-stretch:100%;background-colo=
+r:transparent;"><br></div><div style=3D"font-style:normal;font-variant-c=
+aps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-weight:400;font-size:13.33px;line-heigh=
+t:19.99px;font-family:Arial, Helvetica, sans-serif;text-align:left;color=
+:rgb(34, 34, 34);text-transform:none;text-indent:0px;letter-spacing:norm=
+al;overflow-x:visible;overflow-y:visible;text-decoration-line:none;text-=
+decoration-style:initial;text-decoration-color:initial;word-spacing:0px;=
+white-space:normal;font-stretch:100%;background-color:transparent;">I am=
+ Simona Sibio, a student in Heriot Watt University.&nbsp;<br></div><div =
+style=3D"font-style:normal;font-variant-caps:normal;font-variant-ligatur=
+es:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-weight:400;font-size:13.33px;line-height:19.99px;font-family:Arial, He=
+lvetica, sans-serif;text-align:left;color:rgb(34, 34, 34);text-transform=
+:none;text-indent:0px;letter-spacing:normal;overflow-x:visible;overflow-=
+y:visible;text-decoration-line:none;text-decoration-style:initial;text-d=
+ecoration-color:initial;word-spacing:0px;white-space:normal;font-stretch=
+:100%;background-color:transparent;">I am working with USRPs both on Mat=
+lab and on Gnuradio, and with both softwares I have the same problem: th=
+e shape (generated by N200+daughterboard 10 MHz to 6 GHz) is not accurat=
+e, in attacched some photos.<br></div><div style=3D"font-style:normal;fo=
+nt-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeri=
+c:normal;font-variant-east-asian:normal;font-weight:400;font-size:13.33p=
+x;line-height:19.99px;font-family:Arial, Helvetica, sans-serif;text-alig=
+n:left;color:rgb(34, 34, 34);text-transform:none;text-indent:0px;letter-=
+spacing:normal;overflow-x:visible;overflow-y:visible;text-decoration-lin=
+e:none;text-decoration-style:initial;text-decoration-color:initial;word-=
+spacing:0px;white-space:normal;font-stretch:100%;background-color:transp=
+arent;">At 1 GHz, the shape is worst than when the carrier frequency is =
+3GHz.<br></div><div style=3D"font-style:normal;font-variant-caps:normal;=
+font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-e=
+ast-asian:normal;font-weight:400;font-size:13.33px;line-height:19.99px;f=
+ont-family:Arial, Helvetica, sans-serif;text-align:left;color:rgb(34, 34=
+, 34);text-transform:none;text-indent:0px;letter-spacing:normal;overflow=
+-x:visible;overflow-y:visible;text-decoration-line:none;text-decoration-=
+style:initial;text-decoration-color:initial;word-spacing:0px;white-space=
+:normal;font-stretch:100%;background-color:transparent;">It is not possi=
+ble to measure the amplitude and frequency because, also at 3 GHz, it is=
+ not stable.<br></div><div style=3D"font-style:normal;font-variant-caps:=
+normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-va=
+riant-east-asian:normal;font-weight:400;font-size:13.33px;line-height:19=
+.99px;font-family:Arial, Helvetica, sans-serif;text-align:left;color:rgb=
+(34, 34, 34);text-transform:none;text-indent:0px;letter-spacing:normal;o=
+verflow-x:visible;overflow-y:visible;text-decoration-line:none;text-deco=
+ration-style:initial;text-decoration-color:initial;word-spacing:0px;whit=
+e-space:normal;font-stretch:100%;background-color:transparent;">Could yo=
+u help me?<br></div><div style=3D"font-style:normal;font-variant-caps:no=
+rmal;font-variant-ligatures:normal;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;font-weight:400;font-size:13.33px;line-height:19.9=
+9px;font-family:Arial, Helvetica, sans-serif;text-align:left;color:rgb(3=
+4, 34, 34);text-transform:none;text-indent:0px;letter-spacing:normal;ove=
+rflow-x:visible;overflow-y:visible;text-decoration-line:none;text-decora=
+tion-style:initial;text-decoration-color:initial;word-spacing:0px;white-=
+space:normal;font-stretch:100%;background-color:transparent;"><br></div>=
+<div style=3D"font-style:normal;font-variant-caps:normal;font-variant-li=
+gatures:normal;font-variant-numeric:normal;font-variant-east-asian:norma=
+l;font-weight:400;font-size:13.33px;line-height:19.99px;font-family:Aria=
+l, Helvetica, sans-serif;text-align:left;color:rgb(34, 34, 34);text-tran=
+sform:none;text-indent:0px;letter-spacing:normal;overflow-x:visible;over=
+flow-y:visible;text-decoration-line:none;text-decoration-style:initial;t=
+ext-decoration-color:initial;word-spacing:0px;white-space:normal;font-st=
+retch:100%;background-color:transparent;">Thank you in advance.<br></div=
+><div style=3D"font-style:normal;font-variant-caps:normal;font-variant-l=
+igatures:normal;font-variant-numeric:normal;font-variant-east-asian:norm=
+al;font-weight:400;font-size:13.33px;line-height:19.99px;font-family:Ari=
+al, Helvetica, sans-serif;text-align:left;color:rgb(34, 34, 34);text-tra=
+nsform:none;text-indent:0px;letter-spacing:normal;overflow-x:visible;ove=
+rflow-y:visible;text-decoration-line:none;text-decoration-style:initial;=
+text-decoration-color:initial;word-spacing:0px;white-space:normal;font-s=
+tretch:100%;background-color:transparent;"><br></div><div style=3D"font-=
+style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font=
+-variant-numeric:normal;font-variant-east-asian:normal;font-weight:400;f=
+ont-size:13.33px;line-height:19.99px;font-family:Arial, Helvetica, sans-=
+serif;text-align:left;color:rgb(34, 34, 34);text-transform:none;text-ind=
+ent:0px;letter-spacing:normal;overflow-x:visible;overflow-y:visible;text=
+-decoration-line:none;text-decoration-style:initial;text-decoration-colo=
+r:initial;word-spacing:0px;white-space:normal;font-stretch:100%;backgrou=
+nd-color:transparent;">Best Regards,<br></div><div style=3D"font-style:n=
+ormal;font-variant-caps:normal;font-variant-ligatures:normal;font-varian=
+t-numeric:normal;font-variant-east-asian:normal;font-weight:400;font-siz=
+e:13.33px;line-height:19.99px;font-family:Arial, Helvetica, sans-serif;t=
+ext-align:left;color:rgb(34, 34, 34);text-transform:none;text-indent:0px=
+;letter-spacing:normal;overflow-x:visible;overflow-y:visible;text-decora=
+tion-line:none;text-decoration-style:initial;text-decoration-color:initi=
+al;word-spacing:0px;white-space:normal;font-stretch:100%;background-colo=
+r:transparent;"><br></div><div style=3D"font-style:normal;font-variant-c=
+aps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-weight:400;font-size:13.33px;line-heigh=
+t:19.99px;font-family:Arial, Helvetica, sans-serif;text-align:left;color=
+:rgb(34, 34, 34);text-transform:none;text-indent:0px;letter-spacing:norm=
+al;overflow-x:visible;overflow-y:visible;text-decoration-line:none;text-=
+decoration-style:initial;text-decoration-color:initial;word-spacing:0px;=
+white-space:normal;font-stretch:100%;background-color:transparent;">Simo=
+na<br></div></div></div></blockquote><div style=3D"font-family:Arial;"><=
+br></div></body></html>
+--de1f72d2a4314dfb836ca39183ca04e7--
 
 
-
-I am  getting following failure when trying to build *UHD tests* for
-3.14.1-rc1.
-
-
-
-CMakeFiles/sph_send_test.dir/sph_send_test.cpp.o: In function
-`test_sph_send_one_channel_one_packet_mode::test_method()':
-
-sph_send_test.cpp:(.text+0x231): undefined reference to
-`mock_zero_copy::mock_zero_copy(uhd::transport::vrt::if_packet_info_t::link=
-_type_t,
-unsigned long, unsigned long)'
-
-CMakeFiles/sph_send_test.dir/sph_send_test.cpp.o: In function
-`test_sph_send_one_channel_full_buffer_mode::test_method()':
-
-sph_send_test.cpp:(.text+0x4681): undefined reference to
-`mock_zero_copy::mock_zero_copy(uhd::transport::vrt::if_packet_info_t::link=
-_type_t,
-unsigned long, unsigned long)'
-
-CMakeFiles/sph_send_test.dir/sph_send_test.cpp.o: In function
-`mock_zero_copy::~mock_zero_copy()':
-
-sph_send_test.cpp:(.text._ZN14mock_zero_copyD2Ev[_ZN14mock_zero_copyD5Ev]+0=
-x3):
-undefined reference to `vtable for mock_zero_copy'
-
-CMakeFiles/sph_send_test.dir/sph_send_test.cpp.o: In function
-`mock_zero_copy::~mock_zero_copy()':
-
-sph_send_test.cpp:(.text._ZN14mock_zero_copyD0Ev[_ZN14mock_zero_copyD5Ev]+0=
-x3):
-undefined reference to `vtable for mock_zero_copy'
-
-collect2: error: ld returned 1 exit status
-
-
-The failure is arising  when Linking CXX executable for =E2=80=98sph_send_t=
-est=E2=80=99
-
-
-Following are the versions of the dependencies that are used for the build.
-
-   - GCC 6.3.0
-   - CMake =E2=80=93 3.10. 2
-   - Boost 1.65.1
-   - LibUSB 1.0
-   - Python 2.7
-
-
-Is this failure is happening because of Version mismatch of this components=
-?
-
---000000000000cf3e96058b97b2da
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;fo=
-nt-size:11pt;font-family:Calibri,sans-serif">Hi all,</p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:11pt">=C2=A0</span></p=
->
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif">I am=C2=A0 getting following failure when=C2=A0=
-<span style=3D"font-size:14.6667px">trying to build=C2=A0</span><b style=3D=
-"font-size:14.6667px">UHD tests</b><span style=3D"font-size:14.6667px">=C2=
-=A0for 3.14.1-rc1.</span><span style=3D"font-size:11pt">=C2=A0=C2=A0</span>=
-</p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif">=C2=A0</p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot=
-;Courier New&quot;;color:black">CMakeFiles/sph_send_test.dir/sph_send_test.=
-cpp.o: In function
-`test_sph_send_one_channel_one_packet_mode::test_method()&#39;:</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot=
-;Courier New&quot;;color:black">sph_send_test.cpp:(.text+0x231): undefined =
-reference to
-`mock_zero_copy::mock_zero_copy(uhd::transport::vrt::if_packet_info_t::link=
-_type_t,
-unsigned long, unsigned long)&#39;</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot=
-;Courier New&quot;;color:black">CMakeFiles/sph_send_test.dir/sph_send_test.=
-cpp.o: In function
-`test_sph_send_one_channel_full_buffer_mode::test_method()&#39;:</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot=
-;Courier New&quot;;color:black">sph_send_test.cpp:(.text+0x4681): undefined=
- reference to
-`mock_zero_copy::mock_zero_copy(uhd::transport::vrt::if_packet_info_t::link=
-_type_t,
-unsigned long, unsigned long)&#39;</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot=
-;Courier New&quot;;color:black">CMakeFiles/sph_send_test.dir/sph_send_test.=
-cpp.o: In function
-`mock_zero_copy::~mock_zero_copy()&#39;:</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot=
-;Courier New&quot;;color:black">sph_send_test.cpp:(.text._ZN14mock_zero_cop=
-yD2Ev[_ZN14mock_zero_copyD5Ev]+0x3):
-<span style=3D"background:yellow">undefined reference to
-`vtable for mock_zero_copy&#39;</span></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot=
-;Courier New&quot;;color:black">CMakeFiles/sph_send_test.dir/sph_send_test.=
-cpp.o: In function
-`mock_zero_copy::~mock_zero_copy()&#39;:</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot=
-;Courier New&quot;;color:black">sph_send_test.cpp:(.text._ZN14mock_zero_cop=
-yD0Ev[_ZN14mock_zero_copyD5Ev]+0x3):
-<span style=3D"background:yellow">undefined reference to
-`vtable for mock_zero_copy&#39;</span></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot=
-;Courier New&quot;;color:black">collect2: error: ld returned 1 exit status<=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><br></p><p class=3D"MsoNormal" style=3D"margin:=
-0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,sans-serif">The failure=
- is arising=C2=A0 when=C2=A0<span style=3D"font-size:14.6667px">Linking CXX=
- executable for =E2=80=98sph_send_test=E2=80=99</span></p><p class=3D"MsoNo=
-rmal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,s=
-ans-serif"><span style=3D"font-size:11pt"><br></span></p><p class=3D"MsoNor=
-mal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,sa=
-ns-serif"><span style=3D"font-size:11pt">Following are the versions of the =
-dependencies that are used for the build.</span><br></p><ul type=3D"disc" s=
-tyle=3D"margin-top:0in;margin-bottom:0in"><li class=3D"gmail-MsoListParagra=
-ph" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,san=
-s-serif">GCC 6.3.0</li><li class=3D"gmail-MsoListParagraph" style=3D"margin=
-:0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,sans-serif">CMake =E2=
-=80=93 3.10. 2</li><li class=3D"gmail-MsoListParagraph" style=3D"margin:0in=
- 0in 0.0001pt;font-size:11pt;font-family:Calibri,sans-serif">Boost 1.65.1</=
-li><li class=3D"gmail-MsoListParagraph" style=3D"margin:0in 0in 0.0001pt;fo=
-nt-size:11pt;font-family:Calibri,sans-serif">LibUSB 1.0</li><li class=3D"gm=
-ail-MsoListParagraph" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font-=
-family:Calibri,sans-serif">Python 2.7</li></ul><p class=3D"MsoNormal" style=
-=3D"margin:0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,sans-serif">=
-<br></p><p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:1=
-1pt;font-family:Calibri,sans-serif">Is this failure is happening because of=
- Version mismatch of this components?</p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif">=C2=A0</p></div>
-
---000000000000cf3e96058b97b2da--
-
-
---===============4158744221131606805==
+--===============1597298055769386775==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -256,5 +268,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4158744221131606805==--
+--===============1597298055769386775==--
 
