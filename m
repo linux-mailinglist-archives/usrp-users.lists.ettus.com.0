@@ -2,51 +2,86 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E5B4BA74
-	for <lists+usrp-users@lfdr.de>; Wed, 19 Jun 2019 15:47:10 +0200 (CEST)
-Received: from [::1] (port=58332 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C97744BE35
+	for <lists+usrp-users@lfdr.de>; Wed, 19 Jun 2019 18:30:29 +0200 (CEST)
+Received: from [::1] (port=41116 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hdavc-0002sl-1D; Wed, 19 Jun 2019 09:47:08 -0400
-Received: from mail-io1-f53.google.com ([209.85.166.53]:42970)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bistromath@gmail.com>)
- id 1hdavY-0002jr-5M
- for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 09:47:04 -0400
-Received: by mail-io1-f53.google.com with SMTP id u19so38176326ior.9
- for <usrp-users@lists.ettus.com>; Wed, 19 Jun 2019 06:46:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=OMLQcS+3+kSpg8AxzTP2hJuSbdZmlkgAMBCKZKmlN+c=;
- b=hmrr1RvIjdoZ1UcCDnGCY006rDqMFis9hw4288mkJYPeEJ9yHUsqCqG2/ppzRI53ip
- xFVaBZiJYhb+SN7AFiwBTps5LG9IJvTP0Morz9guftmFpnFlNK6yCDMK4AyXTfdkswp1
- N8wWm9gus0ObaL8xzqMugq+aep5S9zXi6jluKKPY4wJe/7N4hepgGWMZmVhvv7F6mF2e
- 1HIGIZ01lqddke4U35kuGS0L39p+QdaacKeF/vEP1yhgUSVC3clBqycl0X79AiQe72Kd
- tkUmhlZlr3v80khNW02OmGYpA5cK4QgiQxuk/aJm+TxGN+KwgcVh3clWEdMrUCm4LBBB
- +i4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=OMLQcS+3+kSpg8AxzTP2hJuSbdZmlkgAMBCKZKmlN+c=;
- b=jCE/JYGpU70Lz7prKYBGYOtltJTCPX8kWPY1nz9zatcoCC6va6qouq9TNjEo1k+m5M
- X5T6K+94yC718udvGS0nRvtleoAUjBAHsmHTOGRYTH7qRkPU9UFbdOJ+uI5SNUxMauvj
- oI8Jf7VTAb1icK++kOJUkE3IlKA+Nh4iOUI3N3q/VD3UnCt8oB4cOzgNvvbLEq3AxG6j
- IGoO9emCX7aPXHPDio5Bbqc+NLtDYv7BraIILEyZsJTsB7aREw8CsuxhB1SWax5+I5P2
- DqXaO2XVyBgWZdZLXFsTl3YAq1EVhanfMYuH4Drdk8+3mmTJS+M6nmHBU6GFmZqcH4JN
- SsBw==
-X-Gm-Message-State: APjAAAVt2hQ03kvn/KsKB62YiVjyxjN1zvcz6FM1sEHGq/USkPNpMeym
- MdadIkkghXApg/Uq76hx2EBysWITonBlpohbvPA=
-X-Google-Smtp-Source: APXvYqyEA9Nf/sTMX9DQLqwkH1b3de6SHBI7ATIB7MvXFFKlyrIJRhl4z4lny/k5e/NTDjE3NWL2fC3pGzyvgQBaK2o=
-X-Received: by 2002:a5d:8252:: with SMTP id n18mr2400557ioo.230.1560951983500; 
- Wed, 19 Jun 2019 06:46:23 -0700 (PDT)
+	id 1hddTd-0003Xo-Ub; Wed, 19 Jun 2019 12:30:25 -0400
+Received: from otransport-30.outbound.emailsrv.net ([3.209.239.254]:57738)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
+ id 1hddTZ-0003Py-9H
+ for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 12:30:21 -0400
+Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
+ [10.4.3.253])
+ by otransport-30.outbound.emailsrv.net (Postfix) with ESMTPS id AE9EA616F1
+ for <usrp-users@lists.ettus.com>; Wed, 19 Jun 2019 16:29:40 +0000 (UTC)
+Received: from NAM05-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam05lp2052.outbound.protection.outlook.com [104.47.49.52])
+ by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id 2DF1DA246C
+ for <usrp-users@lists.ettus.com>; Wed, 19 Jun 2019 16:29:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector1-gardettoengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GMVng5gGCDDlO9iQMc/JuLcC6GBbL39rYXES9jA0nWw=;
+ b=Z1bUxthryzeC4Kl6to04bAE+NmKyY5h9ukQJvKFSy0HXZIUi5chefCHcC85/VyP9TONlwDldTWbAx3RIpWKV0nvzNBF0MYFH6PJz+stHn4w9u2uB04zqnon0mo0jjb+01vK4wCoGAwIIU0CBLgtOsxAy/5BbzrNJF/ndWnKp+hc=
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
+ BL0PR12MB2546.namprd12.prod.outlook.com (52.132.11.161) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.12; Wed, 19 Jun 2019 16:29:38 +0000
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::dc23:15da:4ad9:4ca0]) by BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::dc23:15da:4ad9:4ca0%4]) with mapi id 15.20.1987.014; Wed, 19 Jun 2019
+ 16:29:38 +0000
+To: Ettus Mail List <usrp-users@lists.ettus.com>
+Thread-Topic: E320 with larger SD card
+Thread-Index: AQHVJrwXtVhqj8KwE0ewAOiKvLySvw==
+Date: Wed, 19 Jun 2019 16:29:38 +0000
+Message-ID: <BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50@BL0PR12MB2340.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=jason@gardettoengineering.com; 
+x-originating-ip: [65.127.220.137]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a9c1b6a0-f15c-4fa9-de71-08d6f4d352ce
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
+ SRVR:BL0PR12MB2546; 
+x-ms-traffictypediagnostic: BL0PR12MB2546:
+x-microsoft-antispam-prvs: <BL0PR12MB254662B2EA4EEA8B1DE4EC70AFE50@BL0PR12MB2546.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0073BFEF03
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(366004)(396003)(376002)(346002)(136003)(39830400003)(199004)(189003)(68736007)(14454004)(52536014)(8676002)(256004)(55016002)(316002)(74316002)(7736002)(33656002)(9686003)(54896002)(53936002)(66556008)(66946007)(66476007)(8936002)(64756008)(81156014)(66446008)(5660300002)(73956011)(76116006)(19627405001)(86362001)(508600001)(6116002)(3846002)(2906002)(6606003)(66066001)(6916009)(81166006)(99286004)(7696005)(186003)(102836004)(6506007)(26005)(486006)(25786009)(6436002)(476003)(71200400001)(71190400001)(4744005);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2546;
+ H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: gardettoengineering.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: VVNUpjniSbUELyp1ImsUpP9avG+sTUWz8I411LRcqz2gkN9q6FYnfX9J9XKBRUkZMXfJrHngOlsdg65Pw791Bacg/wn9JOwRWZUPGxeETHlBr8TEXrHfVDNryAn6R1CzjRC2MjTpUHQfTC3ed6WgbInAUyWHcLdTFWU64Y1DF58gSwT8zXTWFM+iohPTbcMfpeuC3WHl47lphIpVWKUrmk4yALTUF5o9udpO/imBlqEEidTX2MFEWrl8RiWXYoX9GPhpzD+AABMIViwmPpoyhPTADClKHMcrlgTlEdiI1jb0fX9m8skUHYQ8LLEYVtUIxDQ1K50J9jWmz5Gp3QO+j/pM2/b94qnew77GzpA/B9KswhO6XFX/z5yNfV+Hu2i/0P1R+zuYqB7eot3S1h5yZOC8qUAXTYHez1oxVNE5bek=
 MIME-Version: 1.0
-References: <CACV8bbcuwx4eT6YtJZEpnUBgZUcZjZLeWw1UZAABM0VK8+iAPQ@mail.gmail.com>
-In-Reply-To: <CACV8bbcuwx4eT6YtJZEpnUBgZUcZjZLeWw1UZAABM0VK8+iAPQ@mail.gmail.com>
-Date: Wed, 19 Jun 2019 06:43:14 -0700
-Message-ID: <CA+JMMq9FDObYNq+0KPf+E7MmQb5-fQJWGGBecVGLw=KbgFWrmA@mail.gmail.com>
-To: Christian Valledor <cavalledor@gmail.com>
-Subject: Re: [USRP-users] Registering Block Controllers to UHD
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a9c1b6a0-f15c-4fa9-de71-08d6f4d352ce
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2019 16:29:38.2640 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2546
+X-Mailprotector-Decision: deliver
+X-Mailprotector-Connection: TLSv1.2|mail-dm3nam05lp2052.outbound.protection.outlook.com|104.47.49.52|NAM05-DM3-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
+X-Mailprotector-Results: clean
+X-Mailprotector-Score: 0
+X-Mailprotector-IP-Analysis: 0, 104.47.49.52, Ugly c=0 p=0 Source New
+X-Mailprotector-Scan-Diagnostics: 0-0-0-8136-c
+X-Mailprotector-ID: adf5952a-44d0-4829-bee8-30cd8d4192d1
+Subject: [USRP-users] E320 with larger SD card
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -58,10 +93,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nick Foster <bistromath@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3737753895143281391=="
+From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jason Matusiak <jason@gardettoengineering.com>
+Content-Type: multipart/mixed; boundary="===============0021659933913008684=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,81 +109,72 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3737753895143281391==
-Content-Type: multipart/alternative; boundary="0000000000007cf109058bad748e"
+--===============0021659933913008684==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50BL0PR12MB2340namp_"
 
---0000000000007cf109058bad748e
-Content-Type: text/plain; charset="UTF-8"
-
-This thread might be helpful:
-
-https://www.mail-archive.com/usrp-users@lists.ettus.com/msg07959.html
-
-Nick
-
-On Wed, Jun 19, 2019 at 6:35 AM Christian Valledor via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi All,
->
-> I'm developing a few custom RFNoC Blocks for a UHD application I'm working
-> on, and I've hit a snag getting UHD to work with my block controllers. Note
-> that I went the C++ route instead of using nocscript and the default block
-> controller to handle some more complex cases.
->
-> The only way I have been able to get my application to work is if I move
-> my custom controller files into the UHD directory, and re-compile.
-> Otherwise it sees my block and XML, but doesn't register a key, and loads
-> the default block controller.
->
-> Is there another way to get UHD to play nice with my block without
-> re-compiling it each time?
->
-> thanks,
-> -Christian
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000007cf109058bad748e
-Content-Type: text/html; charset="UTF-8"
+--_000_BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50BL0PR12MB2340namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>This thread might be helpful: <br></div><div><br></di=
-v><div><a href=3D"https://www.mail-archive.com/usrp-users@lists.ettus.com/m=
-sg07959.html">https://www.mail-archive.com/usrp-users@lists.ettus.com/msg07=
-959.html</a></div><div><br></div><div>Nick<br></div></div><br><div class=3D=
-"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 19, 2019 at=
- 6:35 AM Christian Valledor via USRP-users &lt;<a href=3D"mailto:usrp-users=
-@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
-tr"><div>Hi All,<br></div><div><br></div><div>I&#39;m developing a few cust=
-om RFNoC Blocks for a UHD application I&#39;m working on, and I&#39;ve hit =
-a snag getting UHD to work with my block controllers. Note that I went the =
-C++ route instead of using nocscript and the default block controller to ha=
-ndle some more complex cases.</div><div><br></div><div>The only way I have =
-been able to get my application to work is if I move my custom controller f=
-iles into the UHD directory, and re-compile. Otherwise it sees my block and=
- XML, but doesn&#39;t register a key, and loads the default block controlle=
-r.</div><div><br></div><div>Is there another way to get UHD to play nice wi=
-th my block without re-compiling it each time?</div><div><br></div><div>tha=
-nks,</div><div>-Christian</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000007cf109058bad748e--
+I wanted to use a larger SD card than the one that as supplied, but I am ha=
+ving issues.  I loaded up the card, and then extended the data partition to=
+ use up the rest of the free space (about 100GB).  But then it doesn't boot=
+.
 
 
---===============3737753895143281391==
+I am wondering if the change to a partition size screwed up something in a =
+config file somewhere.  Is there a way to fix this without rebuilding a doc=
+ker image?  I am using the UHD 3.14.0.0. that has the smaller data partitio=
+n (UHD 3.14.1.0 has a larger data partition, but doesn't include any GR/pyt=
+hon packages, so I need to use the older image).
+
+
+Thanks.
+
+--_000_BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50BL0PR12MB2340namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">I wanted to use a larger SD card =
+than the one that as supplied, but I am having issues.&nbsp; I loaded up th=
+e card, and then extended the data partition to use up the rest of the free=
+ space (about 100GB).&nbsp; But then it doesn't
+ boot.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">I am wondering if the change to a=
+ partition size screwed up something in a config file somewhere.&nbsp; Is t=
+here a way to fix this without rebuilding a docker image?&nbsp; I am using =
+the UHD 3.14.0.0. that has the smaller data
+ partition (UHD 3.14.1.0 has a larger data partition, but doesn't include a=
+ny GR/python packages<span style=3D"font-family: Calibri, Helvetica, sans-s=
+erif, EmojiFont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;,=
+ NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, Em=
+ojiSymbols; font-size: 16px;">,
+ so I need to use the older image</span>).</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Thanks.</p>
+</div>
+</body>
+</html>
+
+--_000_BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50BL0PR12MB2340namp_--
+
+
+--===============0021659933913008684==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -160,5 +185,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3737753895143281391==--
+--===============0021659933913008684==--
 
