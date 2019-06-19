@@ -2,58 +2,89 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D41ED4BE50
-	for <lists+usrp-users@lfdr.de>; Wed, 19 Jun 2019 18:33:57 +0200 (CEST)
-Received: from [::1] (port=46300 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 925564BE7B
+	for <lists+usrp-users@lfdr.de>; Wed, 19 Jun 2019 18:44:51 +0200 (CEST)
+Received: from [::1] (port=55140 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hddX2-0004d4-Oc; Wed, 19 Jun 2019 12:33:56 -0400
-Received: from mail-qt1-f172.google.com ([209.85.160.172]:35530)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hddWz-0003yz-Id
- for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 12:33:53 -0400
-Received: by mail-qt1-f172.google.com with SMTP id d23so20687652qto.2
- for <usrp-users@lists.ettus.com>; Wed, 19 Jun 2019 09:33:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=Uo9J9ZvfQCeiLGrygow+FK27FzAS/W1OICvPK1nicD4=;
- b=akPKblh1VrmHJWHWM5k45TOFrdHLC6k/Mvh4u1EXaBvslbZ2B4cqExG8srqBGy0Hj0
- mbTOvay5CB+E6BpM1hqbgfmm7U/XuqSQcEfDlnUk0DSnw+rPPJMEiWE7letsAv2Cc0nH
- 9pIFId7XE/k8OUninN4VsAe85PONDLH9ftO4qPxv+XnRjrpNj0XIibq8fgP72/bYtwoB
- 5WF6ioX/jJMo4bWWFV2Stwy60r1e83sTlBiNE8EYAUVCyEA2/jAjgTUElyfXiV+v3I1G
- 3HBxLiGRrnJEDCWsW8JIFsS2ozsOqfW69hNMaoEAtGz6Fs3xBfhoKjnTb/BIos3LHE1s
- hu6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=Uo9J9ZvfQCeiLGrygow+FK27FzAS/W1OICvPK1nicD4=;
- b=a3CbFSo/ZAt+7Y1saEWnh7BwP7qZR3vgLN/4an0c4sQfX7yaUTksNpVwtf0Z6uEPY1
- pyRoCqEeTEPfgwN9zvGi4nlss8f19ouEhrpFHLoAG0TzB2Qr2TBQafkIkqHk5OQsxuIU
- msW00aRT+R6+MlS856LEl7hEp2BBNC/ntXhKDdhmRD5xSB5s9c/cEdxfhnyYhXl0hHEz
- /P5tT0E0bLKZSuA47DP/dy+zdr9/XtYaTyRUp1/O381ZAXzUwmahFGRnlZSN11Bz6f7l
- A87LpyQ1uiHYW1/RXhXnJqHD8d8Ye1kx3URZ7x8HPfOTemma9F+CMSJpHuXrKvIeBkR9
- ldzA==
-X-Gm-Message-State: APjAAAWpU+dlNpNOl0Xvn5ggjU0o6Yj/14rMIsJsOq4NmOY0HZ4CghaJ
- uBt6GdhBow2mhar9WW7S2TE69A9e
-X-Google-Smtp-Source: APXvYqwKy7zg6tzGN0zzUMAYdGUnJVjT9OpBFHxxxfWnqZGvGXSpxe7SUs+vuZBqtirEn35M0N1DKw==
-X-Received: by 2002:a0c:9233:: with SMTP id a48mr33547463qva.66.1560961992799; 
- Wed, 19 Jun 2019 09:33:12 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
- by smtp.googlemail.com with ESMTPSA id 2sm12666555qtz.73.2019.06.19.09.33.12
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 19 Jun 2019 09:33:12 -0700 (PDT)
-Message-ID: <5D0A63C7.7080004@gmail.com>
-Date: Wed, 19 Jun 2019 12:33:11 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1hddha-0006hp-B3; Wed, 19 Jun 2019 12:44:50 -0400
+Received: from otransport-15.outbound.emailsrv.net ([18.204.234.187]:32847)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
+ id 1hddhW-0006Zx-K1
+ for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 12:44:46 -0400
+Received: from ogate-2.outbound.emailservice.io (ip-10-4-2-5.ec2.internal
+ [10.4.2.5])
+ by otransport-15.outbound.emailsrv.net (Postfix) with ESMTPS id 31E1261725;
+ Wed, 19 Jun 2019 16:44:06 +0000 (UTC)
+Received: from NAM05-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam05lp2054.outbound.protection.outlook.com [104.47.48.54])
+ by ogate-2.outbound.emailservice.io (Postfix) with ESMTPS id 9F6541E0007;
+ Wed, 19 Jun 2019 16:44:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector1-gardettoengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KTFET9B0NyCMfUT2xB1PuY8Zg0Tfp9PD/1XEa4Zg9hc=;
+ b=NzXgaQKCSz7vtKfL0XCc7SZQGji23oJPo7dmjMvQCVaY4//UvH7xoeJNXNE6gUKn76dCHQ7iVP0bYHXoYZVydEU7F3NsIvh6V9EDrzj0I3haqmvd5fLHDPOaL+fJzJb3e8UT2SDDDm49hCqQRgXJaJU9LdVt7XNV67rTuz9kZAA=
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
+ BL0PR12MB2435.namprd12.prod.outlook.com (52.132.11.29) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.15; Wed, 19 Jun 2019 16:44:03 +0000
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::dc23:15da:4ad9:4ca0]) by BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::dc23:15da:4ad9:4ca0%4]) with mapi id 15.20.1987.014; Wed, 19 Jun 2019
+ 16:44:03 +0000
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] E320 with larger SD card
+Thread-Index: AQHVJrwXtVhqj8KwE0ewAOiKvLySv6ajK+WAgAABwwg=
+Date: Wed, 19 Jun 2019 16:44:02 +0000
+Message-ID: <BL0PR12MB2340261564BEEC740712C9BCAFE50@BL0PR12MB2340.namprd12.prod.outlook.com>
+References: <BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50@BL0PR12MB2340.namprd12.prod.outlook.com>,
+ <5D0A63C7.7080004@gmail.com>
+In-Reply-To: <5D0A63C7.7080004@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=jason@gardettoengineering.com; 
+x-originating-ip: [65.127.220.137]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 72ffcaca-3cd9-4fc9-f3c6-08d6f4d5563d
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
+ SRVR:BL0PR12MB2435; 
+x-ms-traffictypediagnostic: BL0PR12MB2435:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BL0PR12MB2435286B1AFCFAE38E183F76AFE50@BL0PR12MB2435.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0073BFEF03
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(366004)(39830400003)(376002)(136003)(396003)(346002)(199004)(189003)(81156014)(229853002)(33656002)(11346002)(81166006)(446003)(14454004)(6116002)(8936002)(86362001)(186003)(6606003)(476003)(1411001)(1015004)(966005)(19627405001)(26005)(66556008)(73956011)(68736007)(66946007)(6436002)(53936002)(606006)(3846002)(76176011)(71200400001)(236005)(486006)(99286004)(71190400001)(5660300002)(76116006)(74316002)(6246003)(66476007)(66446008)(6506007)(64756008)(66066001)(102836004)(25786009)(53546011)(6306002)(54896002)(6916009)(52536014)(256004)(2906002)(9686003)(508600001)(14444005)(55016002)(7736002)(7696005)(4326008)(8676002)(316002);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2435;
+ H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: gardettoengineering.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: RFiVg5/NyhK2KcyfCuzd+4kwbusuV2eqLCPICh7LBlvkbneTkmFCqQNcXfeYa/LbOxDf3slUMneElX0DwQmoeqWe/XVB5X3Fpr5vrSG8ZfXvAdWgZeFAczZEm1aq8LygGsNgwsiuAEsNWZ9DBFMjWJEL4qVCSNcXa1F6f7W4pC6Uwr1D60iLUPK/fUuimgH7xJXDVSTrA4PdSMT0VR9eD4CVukkliR+jMwPjOXccjFBz8tsfK+Yext7+UEMj76Eb3IX8IN+25Bfd2EFxgAwajH+KyypajlfGgdcb1OFeDUXSke4JwV1Ift55WzDVRsiGkRIKcvl70O3YJspa+4IOF5R6zKVb+cE6j3caeEw1c+pGpfbKJGy4GV1Z5RN5Ft2ACl4Uc0bKqW6iHT38xIg5B44vOLGyQkpqw8ZXTKHwJ3s=
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50@BL0PR12MB2340.namprd12.prod.outlook.com>
-In-Reply-To: <BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50@BL0PR12MB2340.namprd12.prod.outlook.com>
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72ffcaca-3cd9-4fc9-f3c6-08d6f4d5563d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2019 16:44:03.0066 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2435
+X-Mailprotector-Decision: deliver
+X-Mailprotector-Connection: TLSv1.2|mail-co1nam05lp2054.outbound.protection.outlook.com|104.47.48.54|NAM05-CO1-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
+X-Mailprotector-Results: clean
+X-Mailprotector-Score: 0
+X-Mailprotector-IP-Analysis: 0, 104.47.48.54, Ugly c=0 p=0 Source New
+X-Mailprotector-Scan-Diagnostics: 0-0-0-13980-c
+X-Mailprotector-ID: 1f3f0658-1c06-4faf-94b5-583987942215
 Subject: Re: [USRP-users] E320 with larger SD card
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -66,9 +97,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3557014345447623520=="
+From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jason Matusiak <jason@gardettoengineering.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7344170378594876833=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,116 +114,193 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3557014345447623520==
+--===============7344170378594876833==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="------------090903080703050405070500"
+	boundary="_000_BL0PR12MB2340261564BEEC740712C9BCAFE50BL0PR12MB2340namp_"
 
-This is a multi-part message in MIME format.
---------------090903080703050405070500
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--_000_BL0PR12MB2340261564BEEC740712C9BCAFE50BL0PR12MB2340namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+I used bmaptool to write the image and I used gparted to extend it.  I just=
+ tried again and still no dice.
+
+
+I just tried to boot with the serial terminal on and I see this on the scre=
+en (no LED ever comes on):
+
+
+U-Boot SPL 2018.01 (May 10 2019 - 13:20:55)
+mmc boot
+Trying to boot from MMC1
+reading u-boot.img
+reading u-boot.img
+
+
+U-Boot 2018.01 (May 10 2019 - 13:20:55 +0000)
+
+Model: NI Ettus Research Project NEON SDR
+DRAM:  ECC disabled 1 GiB
+MMC:   sdhci@e0100000: 0
+
+
+
+
+
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Marcus D=
+. Leech via USRP-users <usrp-users@lists.ettus.com>
+Sent: Wednesday, June 19, 2019 12:33 PM
+To: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] E320 with larger SD card
 
 On 06/19/2019 12:29 PM, Jason Matusiak via USRP-users wrote:
->
-> I wanted to use a larger SD card than the one that as supplied, but I 
-> am having issues.  I loaded up the card, and then extended the data 
-> partition to use up the rest of the free space (about 100GB). But then 
-> it doesn't boot.
->
+
+I wanted to use a larger SD card than the one that as supplied, but I am ha=
+ving issues.  I loaded up the card, and then extended the data partition to=
+ use up the rest of the free space (about 100GB).  But then it doesn't boot=
+.
+
 What steps did you take to extend the partition?
 
 
->
-> I am wondering if the change to a partition size screwed up something 
-> in a config file somewhere.  Is there a way to fix this without 
-> rebuilding a docker image?  I am using the UHD 3.14.0.0. that has the 
-> smaller data partition (UHD 3.14.1.0 has a larger data partition, but 
-> doesn't include any GR/python packages, so I need to use the older image).
->
->
-> Thanks.
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
 
---------------090903080703050405070500
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+I am wondering if the change to a partition size screwed up something in a =
+config file somewhere.  Is there a way to fix this without rebuilding a doc=
+ker image?  I am using the UHD 3.14.0.0. that has the smaller data partitio=
+n (UHD 3.14.1.0 has a larger data partition, but doesn't include any GR/pyt=
+hon packages, so I need to use the older image).
+
+
+Thanks.
+
+
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+
+--_000_BL0PR12MB2340261564BEEC740712C9BCAFE50BL0PR12MB2340namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 06/19/2019 12:29 PM, Jason Matusiak
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50@BL0PR12MB2340.namprd12.prod.outlook.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <style type="text/css" style="display:none;"><!-- P {margin-top:0;margin-bottom:0;} --></style>
-      <div id="divtagdefaultwrapper"
-style="font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-serif;"
-        dir="ltr">
-        <p style="margin-top:0;margin-bottom:0">I wanted to use a larger
-          SD card than the one that as supplied, but I am having
-          issues.  I loaded up the card, and then extended the data
-          partition to use up the rest of the free space (about 100GB). 
-          But then it doesn't boot.</p>
-      </div>
-    </blockquote>
-    What steps did you take to extend the partition?<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50@BL0PR12MB2340.namprd12.prod.outlook.com"
-      type="cite">
-      <div id="divtagdefaultwrapper"
-style="font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-serif;"
-        dir="ltr">
-        <p style="margin-top:0;margin-bottom:0"><br>
-        </p>
-        <p style="margin-top:0;margin-bottom:0">I am wondering if the
-          change to a partition size screwed up something in a config
-          file somewhere.  Is there a way to fix this without rebuilding
-          a docker image?  I am using the UHD 3.14.0.0. that has the
-          smaller data partition (UHD 3.14.1.0 has a larger data
-          partition, but doesn't include any GR/python packages<span
-            style="font-family: Calibri, Helvetica, sans-serif,
-            EmojiFont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI
-            Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;,
-            &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16px;">,
-            so I need to use the older image</span>).</p>
-        <p style="margin-top:0;margin-bottom:0"><br>
-        </p>
-        <p style="margin-top:0;margin-bottom:0">Thanks.</p>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">I used bmaptool to write the imag=
+e and&nbsp;I used gparted to extend it.&nbsp; I just tried again and still =
+no dice.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">I just tried to boot with the ser=
+ial terminal on and I see this on the screen (no LED ever comes on):</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0"></p>
+<div>U-Boot SPL 2018.01 (May 10 2019 - 13:20:55)</div>
+<div>mmc boot</div>
+<div>Trying to boot from MMC1</div>
+<div>reading u-boot.img</div>
+<div>reading u-boot.img</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>U-Boot 2018.01 (May 10 2019 - 13:20:55 &#43;0000)</div>
+<div><br>
+</div>
+<div>Model: NI Ettus Research Project NEON SDR</div>
+<div>DRAM:&nbsp; ECC disabled 1 GiB</div>
+<div>MMC:&nbsp; &nbsp;sdhci@e0100000: 0</div>
+<div><br>
+</div>
+<br>
+<p></p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<br>
+<div style=3D"color: rgb(0, 0, 0);">
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
+sers-bounces@lists.ettus.com&gt; on behalf of Marcus D. Leech via USRP-user=
+s &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Wednesday, June 19, 2019 12:33 PM<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> Re: [USRP-users] E320 with larger SD card</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"background-color:#FFFFFF">
+<div class=3D"x_moz-cite-prefix">On 06/19/2019 12:29 PM, Jason Matusiak via=
+ USRP-users wrote:<br>
+</div>
+<blockquote type=3D"cite">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p style=3D"margin-top:0; margin-bottom:0">I wanted to use a larger SD card=
+ than the one that as supplied, but I am having issues.&nbsp; I loaded up t=
+he card, and then extended the data partition to use up the rest of the fre=
+e space (about 100GB).&nbsp; But then it doesn't
+ boot.</p>
+</div>
+</blockquote>
+What steps did you take to extend the partition?<br>
+<br>
+<br>
+<blockquote type=3D"cite">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p style=3D"margin-top:0; margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0; margin-bottom:0">I am wondering if the change to =
+a partition size screwed up something in a config file somewhere.&nbsp; Is =
+there a way to fix this without rebuilding a docker image?&nbsp; I am using=
+ the UHD 3.14.0.0. that has the smaller data
+ partition (UHD 3.14.1.0 has a larger data partition, but doesn't include a=
+ny GR/python packages<span style=3D"">, so I need to use the older image</s=
+pan>).</p>
+<p style=3D"margin-top:0; margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0; margin-bottom:0">Thanks.</p>
+</div>
+<br>
+<fieldset class=3D"x_mimeAttachmentHeader"></fieldset> <br>
+<pre>_______________________________________________=0A=
+USRP-users mailing list=0A=
+<a class=3D"x_moz-txt-link-abbreviated OWAAutoLink" href=3D"mailto:USRP-use=
+rs@lists.ettus.com" id=3D"LPlnk62513" previewremoved=3D"true">USRP-users@li=
+sts.ettus.com</a>=0A=
+<a class=3D"x_moz-txt-link-freetext OWAAutoLink" href=3D"http://lists.ettus=
+.com/mailman/listinfo/usrp-users_lists.ettus.com" id=3D"LPlnk941573" previe=
+wremoved=3D"true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.=
+ettus.com</a>=0A=
 </pre>
-    </blockquote>
-    <br>
-  </body>
+</blockquote>
+<br>
+</div>
+</div>
+</div>
+</body>
 </html>
 
---------------090903080703050405070500--
+--_000_BL0PR12MB2340261564BEEC740712C9BCAFE50BL0PR12MB2340namp_--
 
 
---===============3557014345447623520==
+--===============7344170378594876833==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -202,5 +311,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3557014345447623520==--
+--===============7344170378594876833==--
 
