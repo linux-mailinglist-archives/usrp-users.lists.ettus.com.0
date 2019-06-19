@@ -2,61 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DEB4BF6B
-	for <lists+usrp-users@lfdr.de>; Wed, 19 Jun 2019 19:14:42 +0200 (CEST)
-Received: from [::1] (port=43904 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B70674BF6D
+	for <lists+usrp-users@lfdr.de>; Wed, 19 Jun 2019 19:15:15 +0200 (CEST)
+Received: from [::1] (port=45482 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hdeAS-0002Fq-KH; Wed, 19 Jun 2019 13:14:40 -0400
-Received: from mail-pl1-f174.google.com ([209.85.214.174]:39328)
+	id 1hdeB0-0002aQ-QH; Wed, 19 Jun 2019 13:15:14 -0400
+Received: from mail-qt1-f170.google.com ([209.85.160.170]:34803)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <mitch@silverblocksystems.net>)
- id 1hdeAO-00028l-GT
- for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 13:14:36 -0400
-Received: by mail-pl1-f174.google.com with SMTP id b7so75273pls.6
- for <usrp-users@lists.ettus.com>; Wed, 19 Jun 2019 10:14:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=silverblocksystems-net.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=mqINJNaqb7qFByFj2gns4smiArGeIOt9HFLvXF1Dmoo=;
- b=Jk6o6GOjniNhWu8y5jHw6k93wIGrQBUYjQcuSx/KpcR0BSdIApToOJ6Ja8n9wxPfQg
- CGHnfpxY2fiDVww9gHxJw5l23aDVclgjBZOX3V9OWb0pHzGnfmTxDAhht9MXmzrSpwrV
- mZx5oD/dCdp3irzdeEv2xo34qN8B/n/niM4Y2BverTIwHyyPyRDNiTnsavh0kNoxpgHw
- 7TDVBb1nVvPUHPGBSdkhFTRuhEWNkGklqDqhaIusfNO17VWCtuHCyIZdTRF/x4kss+7m
- fgawEe5uNpSkYllI2BeDrjBT0WXy+T4zHT5sZJiEpFhvj+NrEnOq4g1OM2m3/Bo8w38h
- kq9w==
+ (Exim 4.92) (envelope-from <cavalledor@gmail.com>)
+ id 1hdeAv-00028w-VX
+ for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 13:15:09 -0400
+Received: by mail-qt1-f170.google.com with SMTP id m29so20863737qtu.1
+ for <usrp-users@lists.ettus.com>; Wed, 19 Jun 2019 10:14:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=77LEfkqx16hY6DoN9TuiE7RymclzmAmaDRs6GF9gTB0=;
+ b=ap+djGNDGtLd4cqYSqYPmkNqi7uWq30gZz617UeghdyVL6T5ogPBfQ/Hzh3TkEyZ/u
+ QoUREmKuRQbq++vql5kehw8kvwP8IxLWsLzQZG/wHlRZJyR5HR5G+Pjtlj70JrlGnsAD
+ t7GiDyNl95rU01l55mpstOyC5gq69sSK3wS9kIFqjWNefMj/Qh6JaXwRDj50v3cSC0C7
+ knzrPjxY2UKx2LjD5uhP6/pbGOjPG9XXujqSn1+NwN6ttdQnHqadMJMvqGHe9ZxTXmPT
+ jBlRUlmB/l5841b5gRLeF8eqF1Gs7DiM2/L7cuf7UnPec526kZWiyLwBJC1TwC6bMr49
+ bHEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=mqINJNaqb7qFByFj2gns4smiArGeIOt9HFLvXF1Dmoo=;
- b=a5hEeRSwwVio5CDaQa3BsHVnVNBXWJlgDp5NV8J3GUMkqrV+ZSQ7Qy7kacI0Dwse8I
- vV3aAPD/hdltSTGsqyawgRSU04v+uKjMb/O4bDRPv8gexnkdD41ErFY6FVpvkjOFoPCw
- UDZOX9eMTcfLcIXht+PS0eNfzUt8Gs0sv8h0/ICBvQT6p+nP4P5D8KS0DX/B9KauVZpw
- 1tveFvCrrukNnKtoD4I/8eyVfPys0gBssB3xt+efv+s1QKR++Ye0r4Zp08iMt0Dt5lhk
- audx4OXukWrGPDnBZ8nwpvvSmQBh4AH4R6iZdepb4gqu1Ou81e6e/ghuSJKB1RDDpE7a
- WFnA==
-X-Gm-Message-State: APjAAAXhbbzu64zEASKLeLnh/qTLkzTsrokysp4GPoG8Lif/MdXKNf1s
- BN/aZ/dwHKhY4YHKF/elPmDKKg==
-X-Google-Smtp-Source: APXvYqw5RBQCliNXj13gh92mJ+tFB93GPTh8Cz0opwIZM3QaBaRZ1po4KbtoOJmvZeY2LNu6yWCW1A==
-X-Received: by 2002:a17:902:467:: with SMTP id
- 94mr64326357ple.131.1560964435192; 
- Wed, 19 Jun 2019 10:13:55 -0700 (PDT)
-Received: from mitch-laptop.silverblock.net (ip70-160-244-242.hr.hr.cox.net.
- [70.160.244.242])
- by smtp.gmail.com with ESMTPSA id j14sm19130216pfe.10.2019.06.19.10.13.54
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Wed, 19 Jun 2019 10:13:54 -0700 (PDT)
-Message-ID: <861fdd8b6fef8a1f7af3efa3784be59a47e4c882.camel@silverblocksystems.net>
-To: Roberto Michio Marques Kagami <robertomk@inatel.br>
-Date: Wed, 19 Jun 2019 13:13:52 -0400
-In-Reply-To: <BY5PR02MB60191C8CE67A2BE9C0AAFAC5AAE50@BY5PR02MB6019.namprd02.prod.outlook.com>
-References: <4ae5b15d06564dc5d1df676f52c389a2b5c9a8ac.camel@silverblocksystems.net>
- <BY5PR02MB60191C8CE67A2BE9C0AAFAC5AAE50@BY5PR02MB6019.namprd02.prod.outlook.com>
-User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=77LEfkqx16hY6DoN9TuiE7RymclzmAmaDRs6GF9gTB0=;
+ b=FXeiXDe3OJQbph3u1grJtA6oX5ArlLmyGMn7fj9aQLbrcZ10itDq+neOZt3Z+HJfVr
+ DszZUIsIymPbVJqGcEj+wn6GXvY1TZ4Pe+AMwG12LtLBWbm3CSaPIPGkziRSrXOGCn9r
+ 7wRQtt9zxbLYdIlL5uQh0a2W9hAkPNBx+mrqLwtSYNmzKiQ7K9zzrp3/NeFBBJTq6NV3
+ dEIVf7pXmGGAJY1CZCnhkt6b2trkpCM9l3nC+WBzCCYMHr0j29B0fAo0OmLWpcC9BODk
+ wbT507WQQmdbI0IJvMpMO8TfbmYM4so1gu2HfcxPPt0twOZ/oVjmCQR9q45p3B4Cg7Vd
+ DFHA==
+X-Gm-Message-State: APjAAAW+bQ+FVV8M+f5m0wQ1D7J6Vez8/ShuFNefLp0jmPOmkfbBTGFK
+ 2pLcOJk2EmC3aNgxJ5GreeVk3jAyJIrHCmq0Rj8=
+X-Google-Smtp-Source: APXvYqwYCB3KRqX7JjcibY3hSfUltYDrIa5kFh1TfkBp5n1xCK42M2XT9YmGh2hiZNA9WnyHEOnqZ7PVTqaD1I4Gyu8=
+X-Received: by 2002:ac8:30c4:: with SMTP id w4mr103876146qta.314.1560964469323; 
+ Wed, 19 Jun 2019 10:14:29 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [USRP-users] RFNoC multi-driven nets
+References: <CACV8bbcuwx4eT6YtJZEpnUBgZUcZjZLeWw1UZAABM0VK8+iAPQ@mail.gmail.com>
+ <CA+JMMq9FDObYNq+0KPf+E7MmQb5-fQJWGGBecVGLw=KbgFWrmA@mail.gmail.com>
+In-Reply-To: <CA+JMMq9FDObYNq+0KPf+E7MmQb5-fQJWGGBecVGLw=KbgFWrmA@mail.gmail.com>
+Date: Wed, 19 Jun 2019 13:14:17 -0400
+Message-ID: <CACV8bbfLvEX5UF+yor_YifbiwnokjxR5A=yi2nCYvMHHXJjW+w@mail.gmail.com>
+To: Nick Foster <bistromath@gmail.com>
+Subject: Re: [USRP-users] Registering Block Controllers to UHD
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,11 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mitch Davis via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mitch Davis <mitch@silverblocksystems.net>
+From: Christian Valledor via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Christian Valledor <cavalledor@gmail.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0485889080356559699=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,79 +76,111 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Roberto,
+--===============0485889080356559699==
+Content-Type: multipart/alternative; boundary="000000000000b37d34058bb05ca0"
 
-Just to clarify, the commit that I used that resulted in successful
-build is f6890f227b40687b356c1e6c10d9eec2184691d0
+--000000000000b37d34058bb05ca0
+Content-Type: text/plain; charset="UTF-8"
 
-This requires Vivado 2017.4
+That was it!
 
-Did you try f6890f22 or 118a45d63?
+Looks like there was some linker magic going on. So once I added the
+--whole-archive option it worked.
 
-I don't have the bandwidth to spare with any bisection to determine
-what the actual fault may be.  I've found f6890f22 to yield
-satisfactory results.
+Thanks,
+-Christian
 
-This is built in a CentOS 7 native install (with EPEL and some other
-extra repos enabled).
 
-Regards,
+On Wed, Jun 19, 2019 at 9:46 AM Nick Foster <bistromath@gmail.com> wrote:
 
-Mitch
+> This thread might be helpful:
+>
+> https://www.mail-archive.com/usrp-users@lists.ettus.com/msg07959.html
+>
+> Nick
+>
+> On Wed, Jun 19, 2019 at 6:35 AM Christian Valledor via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hi All,
+>>
+>> I'm developing a few custom RFNoC Blocks for a UHD application I'm
+>> working on, and I've hit a snag getting UHD to work with my block
+>> controllers. Note that I went the C++ route instead of using nocscript and
+>> the default block controller to handle some more complex cases.
+>>
+>> The only way I have been able to get my application to work is if I move
+>> my custom controller files into the UHD directory, and re-compile.
+>> Otherwise it sees my block and XML, but doesn't register a key, and loads
+>> the default block controller.
+>>
+>> Is there another way to get UHD to play nice with my block without
+>> re-compiling it each time?
+>>
+>> thanks,
+>> -Christian
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
-On Wed, 2019-06-19 at 17:08 +0000, Roberto Michio Marques Kagami wrote:
-> Hello, Mitch!
-> 
-> I've faced the same problem.
-> I've tried the first commit after f6890f22 including Vivado version
-> 2018.3 and the error is the same.
-> Did you received any reply for this failure?
-> I would appreciate any information.
-> Thanks!
-> 
-> Regards,
-> Roberto Kagami
-> De: USRP-users <usrp-users-bounces@lists.ettus.com> em nome de Mitch
-> Davis via USRP-users <usrp-users@lists.ettus.com>
-> Enviado: segunda-feira, 17 de junho de 2019 15:44:07
-> Para: usrp-users@lists.ettus.com
-> Assunto: Re: [USRP-users] RFNoC multi-driven nets
->  
-> My apologies for not connecting this message to the OP, I didn't
-> register this email account to the list until after the post. 
-> However,
-> Peter had posted that he was having issues building the latest X310
-> RFNOC image (with an RFNOC block) with an error of multiple-drivers
-> on
-> two nets (ce_clk and ce_rst):
-> 
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-June/060013.html
-> 
-> I too encountered this same error.
-> 
-> On a hunch, I reverted the repo to the commit just before the Vivado
-> 2018.3 update: f6890f227b40687b356c1e6c10d9eec2184691d0
-> 
-> I was able to build the X310 RFNOC image with an RFNOC block using
-> that
-> commit without failure.
-> 
-> I haven't attempted a bisection yet.  Is there anyone else that has
-> observed similar build failures?
-> 
-> 
-> Regards,
-> 
-> Mitch Davis
-> 
-> 
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+--000000000000b37d34058bb05ca0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">That was it!=C2=A0<div><br></div><div>Looks like there was=
+ some linker magic going on. So once I added the --whole-archive option it =
+worked.</div><div><br></div><div>Thanks,</div><div>-Christian</div><div><br=
+></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Wed, Jun 19, 2019 at 9:46 AM Nick Foster &lt;<a href=3D"mailto:bi=
+stromath@gmail.com">bistromath@gmail.com</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>This thread m=
+ight be helpful: <br></div><div><br></div><div><a href=3D"https://www.mail-=
+archive.com/usrp-users@lists.ettus.com/msg07959.html" target=3D"_blank">htt=
+ps://www.mail-archive.com/usrp-users@lists.ettus.com/msg07959.html</a></div=
+><div><br></div><div>Nick<br></div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 19, 2019 at 6:35 AM Christia=
+n Valledor via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"=
+ target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi All,<=
+br></div><div><br></div><div>I&#39;m developing a few custom RFNoC Blocks f=
+or a UHD application I&#39;m working on, and I&#39;ve hit a snag getting UH=
+D to work with my block controllers. Note that I went the C++ route instead=
+ of using nocscript and the default block controller to handle some more co=
+mplex cases.</div><div><br></div><div>The only way I have been able to get =
+my application to work is if I move my custom controller files into the UHD=
+ directory, and re-compile. Otherwise it sees my block and XML, but doesn&#=
+39;t register a key, and loads the default block controller.</div><div><br>=
+</div><div>Is there another way to get UHD to play nice with my block witho=
+ut re-compiling it each time?</div><div><br></div><div>thanks,</div><div>-C=
+hristian</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000b37d34058bb05ca0--
+
+
+--===============0485889080356559699==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0485889080356559699==--
+
