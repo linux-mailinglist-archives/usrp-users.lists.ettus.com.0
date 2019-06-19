@@ -2,48 +2,28 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C331F4C2E3
-	for <lists+usrp-users@lfdr.de>; Wed, 19 Jun 2019 23:22:28 +0200 (CEST)
-Received: from [::1] (port=34818 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14DD54C3E1
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Jun 2019 00:57:24 +0200 (CEST)
+Received: from [::1] (port=44830 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hdi2B-0000DU-IL; Wed, 19 Jun 2019 17:22:23 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:45004)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bistromath@gmail.com>)
- id 1hdi28-00008X-VS
- for USRP-users@lists.ettus.com; Wed, 19 Jun 2019 17:22:21 -0400
-Received: by mail-io1-f45.google.com with SMTP id s7so263762iob.11
- for <USRP-users@lists.ettus.com>; Wed, 19 Jun 2019 14:22:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=5jupzGZ2hTFZtqkEX2L2jm4W9RcfyOx+hLlvBSfZ9po=;
- b=EtxOjxYtLy+9W1ak5wtYqFE50o1czv2QQ4raEaQM1SOS8SorzTI0mc1aQCCg1HwHpy
- Q/Wja8A9opX7RiNQQFI4wXKh8LGKo9TKob1Tkn9kiY8B5U4k2SEMifvbjiTHSYBy7dOS
- RmjFLcko43fhg7/NfPxDtoREuLrT9jsL06I3nsrqe6Dh9SkA1i6R6znVXQxKaRrwKRkW
- aWKtiEeTA5UuqirA2V0a0EQrwgyvywuqLvBW/as285ixgEgPZfTHJuEoKebzEnjzJrJC
- 4cxYOiAkHGV2xHUvp67AN0Sv28T0BO6QEVqqGsq7Cdpb+02/PnN4DPTX83dAdGFKe/3O
- 3ajg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=5jupzGZ2hTFZtqkEX2L2jm4W9RcfyOx+hLlvBSfZ9po=;
- b=nP/p69OZOxrDJao64V4VFOzetsloVvTaDLgk3VtYOcMvIZt+mR/nt5t3BftTXV8PF6
- tQU8Azsq5UuVV3KqCLgwr2synEZCaysz31NCouRno83Ohqm59ff+aIo1HrbVhwOUymJh
- yoxbB+f1t2yuKyzzDiFBpwuyjdcjraHTYcv1QD0Y3bWvzh8osjBkMSsd1eC1hI1TwomA
- IeAM/9XizikRDHIJDUMP2zb0RDyqxbdF7aCSz8h04QPxjnNjxXo1OlZzYpWids2HccwV
- g19DEVTmJnIUnutry95d5TyBA2+h0UNWXxdpvgqEG4XKvX372q8c3P+EWAACxtUzaTAV
- dPuw==
-X-Gm-Message-State: APjAAAXhFaI8kx5mnRBWhXPlO+vgEr7Lg43SZmMPB9dPvOvAMzRUijhN
- sH7D/eGyAvr6/oq00aZQrn/CQhjxcEZ1n7fSCmaI9g==
-X-Google-Smtp-Source: APXvYqz5AQL0Ab+A0QevCkng6APb8Bn92VoIvG9gMvc6OuMbmTVjXZA2z3zhWorxaWlnAgAXtHQwK30i5bZdmv0PcWs=
-X-Received: by 2002:a5e:9241:: with SMTP id z1mr28194701iop.39.1560979300126; 
- Wed, 19 Jun 2019 14:21:40 -0700 (PDT)
+	id 1hdjW4-0004Nw-6x; Wed, 19 Jun 2019 18:57:20 -0400
+Received: from web-atmail1.tpgi.com.au ([203.12.160.53]:59135)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <gobbo@tpg.com.au>) id 1hdjVz-0004I0-OC
+ for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 18:57:16 -0400
+Received: from localhost (localhost [127.0.0.1])
+ by web-atmail1.tpgi.com.au (8.14.4/8.14.4) with ESMTP id x5JMuSog014687;
+ Thu, 20 Jun 2019 08:56:28 +1000
+Message-Id: <d69386c0f5b0f1339eee9da920334aed03a817ac@new-postoffice.tpg.com.au>
+To: "Jason Matusiak" <jason@gardettoengineering.com>,
+ "Ettus Mail List" <usrp-users@lists.ettus.com>
+X-Mailer: Atmail 7.2.0.14467
+X-Originating-IP: 203.6.69.2
+in-reply-to: <BL0PR12MB23409479CB3FBD5B7DCAAC19AFE50@BL0PR12MB2340.namprd12.prod.outlook.com>
+Date: Thu, 20 Jun 2019 08:56:28 +1000
 MIME-Version: 1.0
-Date: Wed, 19 Jun 2019 14:18:31 -0700
-Message-ID: <CA+JMMq8Vjq3sKBwAE11FBBKD0ZoSFS=McV-5njkL3U7LbskzYg@mail.gmail.com>
-To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Subject: [USRP-users] Receiving response packets via UHD
+Subject: Re: [USRP-users] E320 with larger SD card
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -55,9 +35,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nick Foster <bistromath@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5163212454469504304=="
+From: Chris Gobbett via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Chris Gobbett <gobbo@tpg.com.au>
+Content-Type: multipart/mixed; boundary="===============7520582707077229699=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,45 +51,89 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5163212454469504304==
-Content-Type: multipart/alternative; boundary="000000000000af969c058bb3d028"
+--===============7520582707077229699==
+Content-Type: multipart/alternative;
+ boundary="=_5ec6c8ce6cb4217c2e82a0acf00ed5de"
 
---000000000000af969c058bb3d028
-Content-Type: text/plain; charset="UTF-8"
-
-Hi all,
-
-I've created an RFNoC block which sends back a response to indicate whether
-a transmission successfully occurred or not, via the cmdout interface of
-noc_shell. The Verilog is all fine and the testbench works using
-pull_resp_pkt() to retrieve the data. I'm wondering how to receive that
-same data in my host-side application. Do I need to create an rx streamer
-for the block? This block doesn't send any sample data back to the host,
-just the command response.
-
-Any examples where I can see this done?
-
-Thanks!
-Nick
-
---000000000000af969c058bb3d028
-Content-Type: text/html; charset="UTF-8"
+--=_5ec6c8ce6cb4217c2e82a0acf00ed5de
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi all,</div><br><div>I&#39;ve created an RFNoC block=
- which sends back a response to indicate whether a transmission successfull=
-y occurred or not, via the cmdout interface of noc_shell. The Verilog is al=
-l fine and the testbench works using pull_resp_pkt() to retrieve the data. =
-I&#39;m wondering how to receive that same data in my host-side application=
-. Do I need to create an rx streamer for the block? This block doesn&#39;t =
-send any sample data back to the host, just the command response.<br></div>=
-<div><br></div><div>Any examples where I can see this done?</div><div><br><=
-/div><div>Thanks!<br></div><div>Nick<br></div></div>
+=C2=A0=0AHi Jason,=0AI've had luck with the following:- backup/clone the=
+ original SDCard=0Aimage to disk and/or larger SDCard (using dd or other=
+wise)- on the new=0Acard, resize/shift the data partion to the end of th=
+e card (using=0Agparted)- resize the two filesystem/kernel partitions to=
+ fill in the=0Aempty space in the middle, but they need to be the same s=
+ize (using=0Agparted)=0ARead up on Mender for more info on the partition=
+ layout=0A(https://docs.mender.io/1.7/devices/general-system-requirement=
+s#partition-layout).=0AIt's a pain that they went with Mender for the de=
+fault E320 card; it=0Acuts the 'usable' file system space in half, at th=
+e benefit of having=0A2 independent filesystem partitions... I haven't h=
+ad time to fiddle=0Aaround and ditch the mender for a 'normal' partition=
+ layout, but I'd=0Aassume it's possible.=0ACheers,Chris=0A=0A----- Origi=
+nal Message -----=0AFrom: "Jason Matusiak" =0ATo:"Ettus Mail List" =0ACc=
+:=0ASent:Wed, 19 Jun 2019 16:29:38 +0000=0ASubject:[USRP-users] E320 wit=
+h larger SD card=0A=0A=09I wanted to use a larger SD card than the one t=
+hat as supplied, but I=0Aam having issues.=C2=A0 I loaded up the card, a=
+nd then extended the data=0Apartition to use up the rest of the free spa=
+ce (about 100GB).=C2=A0 But=0Athen it doesn't boot. =0A=0A=09I am wonder=
+ing if the change to a partition size screwed up something=0Ain a config=
+ file somewhere.=C2=A0 Is there a way to fix this without=0Arebuilding a=
+ docker image?=C2=A0 I am using the UHD 3.14.0.0. that has the=0Asmaller=
+ data partition (UHD 3.14.1.0 has a larger data partition, but=0Adoesn't=
+ include any GR/python packages, so I need to use the older=0Aimage).=
+ =0A=0A=09Thanks.
 
---000000000000af969c058bb3d028--
+--=_5ec6c8ce6cb4217c2e82a0acf00ed5de
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body style=3D"font-family: 'Helvetica Neue',Helvetica,Arial,sans-=
+serif; font-size: 12px;">=C2=A0<br />Hi Jason,<div><br /></div><div>I've=
+ had luck with the following:</div><div>- backup/clone the original SDCa=
+rd image to disk and/or larger SDCard (using dd or otherwise)</div><div>=
+- on the new card, resize/shift the data partion to the end of the card=
+ (using gparted)</div><div>- resize the two filesystem/kernel partitions=
+ to fill in the empty space in the middle, but they need to be the same=
+ size (using gparted)</div><div><br /></div><div>Read up on Mender for m=
+ore info on the partition layout (https://docs.mender.io/1.7/devices/gen=
+eral-system-requirements#partition-layout). It's a pain that they went w=
+ith Mender for the default E320 card; it cuts the 'usable' file system s=
+pace in half, at the benefit of having 2 independent filesystem partitio=
+ns... I haven't had time to fiddle around and ditch the mender for a 'no=
+rmal' partition layout, but I'd assume it's possible.</div><div><br /></=
+div><div>Cheers,</div><div>Chris</div><div><br /><br /><blockquote><br /=
+>----- Original Message -----<br /><div style=3D"width:100%;background:r=
+gb(228,228,228);"><div style=3D"font-weight:bold;">From:</div> "Jason Ma=
+tusiak" &lt;jason@gardettoengineering.com&gt;</div><br /><div style=3D"f=
+ont-weight:bold;">To:</div>"Ettus Mail List" &lt;usrp-users@lists.ettus.=
+com&gt;<br /><div style=3D"font-weight:bold;">Cc:</div><br /><div style=
+=3D"font-weight:bold;">Sent:</div>Wed, 19 Jun 2019 16:29:38 +0000<br /><=
+div style=3D"font-weight:bold;">Subject:</div>[USRP-users] E320 with lar=
+ger SD card<br /><br /><br /><div style=3D"font-size:12pt;color:#000000;=
+font-family:Calibri, Helvetica, sans-serif;" dir=3D"ltr">=0A<p style=3D"=
+margin-top:0;margin-bottom:0;">I wanted to use a larger SD card than the=
+ one that as supplied, but I am having issues.=C2=A0 I loaded up the car=
+d, and then extended the data partition to use up the rest of the free s=
+pace (about 100GB).=C2=A0 But then it doesn't=0A boot.</p>=0A<p style=3D=
+"margin-top:0;margin-bottom:0;"><br /></p>=0A<p style=3D"margin-top:0;ma=
+rgin-bottom:0;">I am wondering if the change to a partition size screwed=
+ up something in a config file somewhere.=C2=A0 Is there a way to fix th=
+is without rebuilding a docker image?=C2=A0 I am using the UHD 3.14.0.0.=
+ that has the smaller data=0A partition (UHD 3.14.1.0 has a larger data=
+ partition, but doesn't include any GR/python packages<span style=3D"fon=
+t-family:Calibri, Helvetica, sans-serif, EmojiFont, 'Apple Color Emoji',=
+ 'Segoe UI Emoji', NotoColorEmoji, 'Segoe UI Symbol', 'Android Emoji', E=
+mojiSymbols;font-size:16px;">,=0A so I need to use the older image</span=
+>).</p>=0A<p style=3D"margin-top:0;margin-bottom:0;"><br /></p>=0A<p sty=
+le=3D"margin-top:0;margin-bottom:0;">Thanks.</p>=0A</div>=0A</blockquote=
+></div></body></html>
+
+--=_5ec6c8ce6cb4217c2e82a0acf00ed5de--
 
 
---===============5163212454469504304==
+
+--===============7520582707077229699==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,5 +144,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5163212454469504304==--
+--===============7520582707077229699==--
+
 
