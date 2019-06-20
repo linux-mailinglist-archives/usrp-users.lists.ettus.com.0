@@ -2,96 +2,73 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91E954C473
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Jun 2019 02:33:20 +0200 (CEST)
-Received: from [::1] (port=34308 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E773F4CC3D
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Jun 2019 12:49:31 +0200 (CEST)
+Received: from [::1] (port=60654 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hdl0w-0001MD-MM; Wed, 19 Jun 2019 20:33:18 -0400
-Received: from otransport-1.outbound.emailsrv.net ([52.1.23.3]:51944)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
- id 1hdl0s-0001D6-HB
- for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 20:33:14 -0400
-Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
- [10.4.3.253])
- by otransport-1.outbound.emailsrv.net (Postfix) with ESMTPS id EB43A6160F;
- Thu, 20 Jun 2019 00:32:33 +0000 (UTC)
-Received: from NAM05-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam05lp2051.outbound.protection.outlook.com [104.47.48.51])
- by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id 6979DA2660;
- Thu, 20 Jun 2019 00:32:33 +0000 (UTC)
+	id 1hdudD-0007D9-U8; Thu, 20 Jun 2019 06:49:27 -0400
+Received: from mail-eopbgr1380134.outbound.protection.outlook.com
+ ([40.107.138.134]:47856 helo=IND01-MA1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <koyel.das@vehere.com>)
+ id 1hdudA-00078v-Cw
+ for usrp-users@lists.ettus.com; Thu, 20 Jun 2019 06:49:24 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector1-gardettoengineering-onmicrosoft-com;
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector1-vehereinteractive-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5R61V4WX8UkCFysMaACBqiOW8niVSXHxzFMOWljWvrE=;
- b=E5Yh9LMmJs0AbSIdqiTw3TH4udilGmQUGB7q68fWaYu4cOcAq+fJrHRnpSdqL71/Nqhpruwqt/gYNlHXEYgafsNBKAyioUi5WC+5KIbuQQhq+D35MzlZpZTn6rmy/Jxc39QFx+h5gAGYsaHeNg98tf/ame6rFTIKLgzb3j5eAQ4=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
- BL0PR12MB2516.namprd12.prod.outlook.com (52.132.11.155) with Microsoft SMTP
+ bh=FvyAuyewwf+47MhnP3FTskvSsdtkUrZeqgLolse5+VI=;
+ b=iRSrd1cbRWjAQnLRCikz6hB1U1/OtcP1nr2/cwO6CXNhZyhdmutjJZOA82esS2FtG87A3XlJQo+UoSYFbC/7cdVer/YcKMovNRHksCL6UHtNfLuWXvlBwsFOzcByQqDWtdttqKp7fI/L2lG5EjNA0KOgVyVYEmfXn3aBHUtbEeY=
+Received: from BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM (10.174.210.147) by
+ BM1PR01MB2769.INDPRD01.PROD.OUTLOOK.COM (20.178.173.149) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.12; Thu, 20 Jun 2019 00:32:30 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0%4]) with mapi id 15.20.1987.014; Thu, 20 Jun 2019
- 00:32:30 +0000
-To: Chris Gobbett <gobbo@tpg.com.au>
-Thread-Topic: Re: [USRP-users] E320 with larger SD card
-Thread-Index: AQHVJv4VYKtKw5BHWEGmE1+eknNVuaajsTGA
-Date: Thu, 20 Jun 2019 00:32:30 +0000
-Message-ID: <ee9bf2f5-4fa1-4fa2-b213-c3da7cc1dacb@gardettoengineering.com>
-References: <89fd7840a5b67527cbfe0709d2cbcf0ccc3c9311@new-postoffice.tpg.com.au>
-In-Reply-To: <89fd7840a5b67527cbfe0709d2cbcf0ccc3c9311@new-postoffice.tpg.com.au>
+ 15.20.1987.13; Thu, 20 Jun 2019 10:48:40 +0000
+Received: from BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::80f5:cd86:93ce:4262]) by BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::80f5:cd86:93ce:4262%3]) with mapi id 15.20.1987.014; Thu, 20 Jun 2019
+ 10:48:40 +0000
+To: "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+Thread-Topic: USRP gain refers to which amplifier
+Thread-Index: AQHVJ1WK/ApWd/NCjkKXYaWKwyB6IQ==
+Date: Thu, 20 Jun 2019 10:48:40 +0000
+Message-ID: <BM1PR01MB0705C8B2232B5566D41DE1CE90E40@BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: BL0PR1501CA0008.namprd15.prod.outlook.com
- (2603:10b6:207:17::21) To BL0PR12MB2340.namprd12.prod.outlook.com
- (2603:10b6:207:4c::30)
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-referenced-uid: 2768
-x-is-generated-message-id: true
-x-local-message-id: <ee9bf2f5-4fa1-4fa2-b213-c3da7cc1dacb@gardettoengineering.com>
-x-originating-ip: [2601:14f:0:1f02:75c6:2a4c:12bd:d0c6]
+ smtp.mailfrom=koyel.das@vehere.com; 
+x-originating-ip: [14.143.49.210]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 53e68d89-201b-4e0e-88dd-08d6f516c78d
+x-ms-office365-filtering-correlation-id: 078364ed-65f2-425c-3df1-08d6f56cdb5b
 x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(5600148)(711020)(4605104)(1401327)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(2017052603328)(7193020);
- SRVR:BL0PR12MB2516; 
-x-ms-traffictypediagnostic: BL0PR12MB2516:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BL0PR12MB25160BA53A16974C613EB25EAFE40@BL0PR12MB2516.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
+ RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(7168020)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
+ SRVR:BM1PR01MB2769; 
+x-ms-traffictypediagnostic: BM1PR01MB2769:
+x-ms-exchange-purlcount: 4
+x-microsoft-antispam-prvs: <BM1PR01MB27693299BBD05A3C0A43189590E40@BM1PR01MB2769.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 0074BBE012
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(396003)(39830400003)(366004)(376002)(346002)(136003)(189003)(51914003)(13464003)(199004)(76176011)(81156014)(486006)(4326008)(68736007)(14454004)(6246003)(25786009)(316002)(53936002)(508600001)(31686004)(36756003)(236005)(2906002)(6512007)(54896002)(7736002)(6486002)(81166006)(6436002)(186003)(229853002)(5660300002)(8936002)(6306002)(99286004)(31696002)(52116002)(6116002)(8676002)(86362001)(64756008)(6506007)(256004)(14444005)(66556008)(2616005)(66476007)(53546011)(386003)(11346002)(102836004)(46003)(71200400001)(66946007)(66446008)(73956011)(6916009)(476003)(446003)(71190400001);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2516;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
+ SFS:(10019020)(376002)(136003)(346002)(39830400003)(396003)(366004)(199004)(189003)(365934003)(316002)(14454004)(6306002)(66476007)(733005)(8936002)(26005)(81166006)(55016002)(74316002)(6436002)(99286004)(86362001)(508600001)(53936002)(52536014)(66556008)(19627405001)(2906002)(256004)(7696005)(486006)(66446008)(476003)(73956011)(5024004)(14444005)(6506007)(66574012)(606006)(25786009)(76116006)(66946007)(55236004)(91956017)(64756008)(81156014)(5660300002)(6916009)(7736002)(54896002)(33656002)(6606003)(66066001)(68736007)(71190400001)(71200400001)(9686003)(3846002)(6116002)(186003)(8676002)(861006)(236005)(102836004)(78486014)(491001);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BM1PR01MB2769;
+ H:BM1PR01MB0705.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: vehere.com does not designate
+ permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Me1epuBbQe0PRO34pvayemHfb+RX25XBuIBYgN5/BgA68LnwlztrkaLXZNLOg9Q3L+9TEuccOooLetIMnspdfNNvxPobjGHamPYdsAb5MC39MJKHKtLCzLeykkoepPBVBITOaltQIyxSIgKX+hZhsisxgAX1vXEK9ujX8kj1OfBrhhtianoyWbOK8dYs8gHIVmQKvI+QowvNgIdG6beRKlTRG1n7jhLtY/ktVbnFPEoeOmmQWmzknhNCA2yGgjDm2SKiVDxHghui4B2jzDzeMo/CoPBWyr/30rLLbyqHtgEmIzmhDXBe8/NMW7kezGzGMNyZOnIlWU2sPuzYaE2DVykbwBI8YrEe6tzO70UqPv0c0W6QASStL4/hXWIKopkKj/+ppcr0Dh91fk7Nik9X97yD+iv5Ig2HMKw8istsIok=
+x-microsoft-antispam-message-info: PqrddvSfLfJ/FcsJnT58gXTK9Vd+1dezX0YXQ3P/xpAJupoLkxJLgbaUUpK9Fjd5LgyaEKOJp67RmPYhRX41PF+owUJX48+xBxKbxsaJ2U8jrlSL3T1fHpD2M/hZkFisU9EQMSDmcVK9nNdNBqGF9As3Xdu+IhN4uNS6Sto5NGfmc67o7O3KZCXgq7Vd1mxIWzvaUOm2tslSLQtgQKXGk0FBBJvGwWtDFkEVLvv8IcO7Wxsr1o/5sTm27mcxrcrt3kmczL50mMc9S5sYekO9GWlXYukHhphhgumxcCJ0DrDQJ8HpZvEKzmRAOZUrsL1ROlciTOMEvMzfxuDKlisPZrVQVPm7vDOIwfyb8zUNs44P3nHmtGaf8wRsHmnjlWd0K4ZNJDwy0mRouFfWly9H74+IwK5YM28bTStNThv8d1s=
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53e68d89-201b-4e0e-88dd-08d6f516c78d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2019 00:32:30.8389 (UTC)
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 078364ed-65f2-425c-3df1-08d6f56cdb5b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2019 10:48:40.3785 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2516
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-co1nam05lp2051.outbound.protection.outlook.com|104.47.48.51|NAM05-CO1-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.48.51, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-25084-c
-X-Mailprotector-ID: d1768135-0b7a-43a0-9827-b56052282fb1
-Subject: Re: [USRP-users] E320 with larger SD card
+X-MS-Exchange-CrossTenant-userprincipalname: koyel.das@vehere.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BM1PR01MB2769
+Subject: [USRP-users] USRP gain refers to which amplifier
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -103,10 +80,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
-Cc: Ettus List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0687167111716874001=="
+From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
+Content-Type: multipart/mixed; boundary="===============0581613722895499055=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -120,232 +96,183 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0687167111716874001==
+--===============0581613722895499055==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_ee9bf2f54fa14fa2b213c3da7cc1dacbgardettoengineeringcom_"
+	boundary="_000_BM1PR01MB0705C8B2232B5566D41DE1CE90E40BM1PR01MB0705INDP_"
 
---_000_ee9bf2f54fa14fa2b213c3da7cc1dacbgardettoengineeringcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_BM1PR01MB0705C8B2232B5566D41DE1CE90E40BM1PR01MB0705INDP_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-T0ssIEkgc2VlIG5vdyB3aGF0IHlvdSB3ZXJlIGRvaW5nIGRpZmZlcmVudC4gSSB0aGluayBJIGNv
-dWxkIGRlYWwgd2l0aCBsZWF2aW5nIHRoZSAvZGF0YSBwYXJ0aXRpb24gdGhlIHNhbWUgc2l6ZSBh
-bmQgaW5jcmVhc2luZyB0aGUgdHdvIGZpbGVzeXN0ZW1zLiBJIHdhcyBqdXN0IHRyeWluZyB0byBz
-YXZlIG15c2VsZiB0aGUgaGFzc2xlIG9mIHBlcmZvcm1pbmcgYSBtZW5kZXIgdXBkYXRlIGRvd24g
-dGhlIHJvYWQgYW5kIGZvcmdldHRpbmcgdGhhdCB0aGUgZGF0YSBpbiB+LyB3YXNuJ3QgcGVyc2lz
-dGVudC4NCg0KSSBndWVzcyBpdCBpcyBzb21ldGhpbmcgdG8gdHJ5IGZvciBub3cgKHRvbW9ycm93
-KSwgYW5kIHRoZW4gZmxlc2ggb3V0IHRoZSAvZGF0YSBwcm9ibGVtIGFmdGVyIGhhdmluZyBhIGJl
-dHRlciB1bmRlcnN0YW5kaW5nIG9mIHdoYXQgaXMgZ29pbmcgb24gKGhvcGVmdWxseSkuDQpPbiBK
-dW4gMTksIDIwMTksIGF0IDg6MjEgUE0sIENocmlzIEdvYmJldHQgPGdvYmJvQHRwZy5jb20uYXU8
-bWFpbHRvOmdvYmJvQHRwZy5jb20uYXU+PiB3cm90ZToNCg0KTXkgdW5kZXJzdGFuZGluZyBvZiB0
-aGUgcGFydGlpdG9ucyBvbiB0aGUgY2FyZCBhcmUgKGluIG9yZGVyKTsNCg0KPGJvb3Q+PGZpbGVz
-eXN0ZW0ra2VybmVsIEE+PGZpbGVzeXN0ZW0ra2VybmVsIEI+PHBlcnNpc3RlbnQgZGF0YT48ZW1w
-dHkgc3BhY2U+DQoNCk1lbmRlciBhbGxvd3MgeW91IHRvIGJvb3QgZnJvbSBvbmUgb2YgdGhlIEEv
-QiBwYXJ0aXRpb25zIGFzIHlvdXIgcHJpbWFyeSBmaWxlc3lzdGVtIChtb3VudGVkIGFzIC8pLCBw
-bHVzIHRoZSBwZXJzaXN0ZW50IGRhdGEgKG1vdW50ZWQgYXMgL2hvbWUvIG9yIC9kYXRhIG9yIHNp
-bWlsYXIpLg0KDQpNeSBleHBlcmllbmNlIGlzIGlmIHlvdSBwZXJmb3JtIHJlc2l6aW5nIHdoaWxl
-IGtlZXBpbmcgdGhlIHBhcnRpdGlvbnMgY29udGlndW91cyAobm8gZnJlZSBzcGFjZSBiZXR3ZWVu
-IHRoZW0pLCBhbmQgaGF2ZSB0aGUgQSBhbmQgQiBwYXJ0aXRpb25zIGlkZW50aWNhbCBpbiBzaXpl
-LCBpdCAianVzdCB3b3JrcyIuIFNvIG15IHN0ZXBzIGluIHRoZSBwcmV2aW91cyByZXBseSB3b3Vs
-ZCBsb29rIGxpa2U6DQogICA8Ym9vdD48ZmlsZXN5c3RlbStrZXJuZWwgQT48ZmlsZXN5c3RlbStr
-ZXJuZWwgQj48cGVyc2lzdGVudCBkYXRhPjwtLS0tLS0tLS0tZW1wdHkgc3BhY2UtLS0tLS0tLS0t
-LS0tLS0+ICAjIG9yaWdpbmFsIGltYWdlIG9uIGxhcmdlIFNEIENhcmQNCiAgIDxib290PjxmaWxl
-c3lzdGVtK2tlcm5lbCBBPjxmaWxlc3lzdGVtK2tlcm5lbCBCPjwtLS0tLS0tLS0tLS0tZW1wdHkg
-c3BhY2UtLS0tLS0tLS0tLS0+PHBlcnNpc3RlbnQgZGF0YT4gICMgc2hpZnQgcGVyc2lzdGVudCBk
-YXRhIHRvIHRoZSBlbmQNCiAgIDxib290PjwtLS0tLS0tLS0tZmlsZXN5c3RlbStrZXJuZWwgQS0t
-LS0tLS0tLT48LS0tLS0tLS0tLWZpbGVzeXN0ZW0ra2VybmVsIEItLS0tLS0tLS0+PHBlcnNpc3Rl
-bnQgZGF0YT4gICMgbWF4aW1pc2UgQS9CIHBhcnRpdGlvbnMsIGtlZXBpbmcgQSBhbmQgQiB0aGUg
-c2FtZSBzaXplDQoNClJhdGhlciB0aGFuIGV4dGVuZGluZyB0aGUgZGF0YSBwYXJ0aXRpb24sIEkg
-d2FudGVkIHRvIGFkZCBuZXcgbGlicmFyaWVzIGFuZCBhcHBsaWNhdGlvbnMgaW4gL3Vzciwgd2hp
-Y2ggaXMgbG9jYXRlZCBvbiB0aGUgQS9CIHBhcnRpdGlvbnMuIEhlbmNlIG15IGluc3RydWN0aW9u
-cyBpbnZvbHZlIG1lIHJlc2l6aW5nIHRob3NlIHBhcnRpdGlvbnMgaW5zdGVhZCBvZiB0aGUgZGF0
-YSBwYXJ0aXRpb24uDQoNCklmIHlvdSdyZSBzaW1wbHkgZXh0ZW5kaW5nIHRoZSBzaXplIG9mIHRo
-ZSBwZXJzaXN0ZW50IGRhdGEgcGFydGl0aW9uIHdpdGhvdXQgc2hpZnRpbmcgaXQncyBzdGFydCBw
-b2ludCAod2hpbGUgbGVhdmluZyB0aGUgb3RoZXIgcGFydGl0aW9ucyBhbG9uZSkgSSdtIGF0IGEg
-bG9zcyBhcyB0byB3aHkgaXQgd291bGRuJ3Qgd29yay4gQnV0IHdoZW4geW91IGRvIHRoaXMgeW91
-IG1heSBuZWVkIHNvbWUgZXh0cmEgbGludXgtZnUgdG8gc2hpZnQgeW91ciBuZXcgYmluYXJ5L2xp
-YnJhcnkgbG9jYXRpb25zIHRvIHRoYXQgcGFydGl0aW9uIHJhdGhlciB0aGFuIHRoZSBkZWZhdWx0
-IC91c3IuDQoNCkNoZWVycywNCkNocmlzDQoNCi0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0N
-CkZyb206DQoiSmFzb24gTWF0dXNpYWsiIDxqYXNvbkBnYXJkZXR0b2VuZ2luZWVyaW5nLmNvbT4N
-Cg0KVG86DQoiQ2hyaXMgR29iYmV0dCIgPGdvYmJvQHRwZy5jb20uYXU+DQpDYzoNCiJFdHR1cyBN
-YWlsIExpc3QiIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClNlbnQ6DQpXZWQsIDE5IEp1
-biAyMDE5IDIzOjEyOjQwICswMDAwDQpTdWJqZWN0Og0KUmU6IFtVU1JQLXVzZXJzXSBFMzIwIHdp
-dGggbGFyZ2VyIFNEIGNhcmQNCg0KDQpDaHJpcywgdGhhbmtzIGZvciB0aGUgdGlwcy4NCg0KU28g
-SSBwdXQgYSBmcmVzaCBsb2FkIG9uIGEgY2FyZCwgdGhlbiB1c2VkIGdwYXJ0ZWQgdG8gZXh0ZW5k
-IHRoZSBkYXRhIHBhcnRpdGlvbiB0byBmaWxsIHRoaW5ncyBvdXQuIFRoYXQgaXNuJ3QgZW5vdWdo
-LCBhbmQgeW91ciBpbnN0cnVjdGlvbnMgY2VydGFpbmx5IHNob3cgbW9yZSBzdGVwcy4gQnV0IEkg
-ZG9uJ3QgdW5kZXJzdGFuZCB3aGF0IHlvdSBtZWFuIHdpdGggdGhlIHBhcnRpdGlvbnMgaW4gdGhl
-IG1pZGRsZS4NCg0KSSdsbCByZWFkIHVwIG9uIE1lbmRlciBhbmQgc2VlIGlmIHRoYXQgYW5zd2Vy
-cyBpdCBmb3IgbWUuIFRoYW5rcyBhZ2Fpbi4NCk9uIEp1biAxOSwgMjAxOSwgYXQgNjo1NiBQTSwg
-Q2hyaXMgR29iYmV0dCA8IGdvYmJvQHRwZy5jb20uYXU8bWFpbHRvOmdvYmJvQHRwZy5jb20uYXU+
-PiB3cm90ZToNCg0KSGkgSmFzb24sDQoNCkkndmUgaGFkIGx1Y2sgd2l0aCB0aGUgZm9sbG93aW5n
-Og0KLSBiYWNrdXAvY2xvbmUgdGhlIG9yaWdpbmFsIFNEQ2FyZCBpbWFnZSB0byBkaXNrIGFuZC9v
-ciBsYXJnZXIgU0RDYXJkICh1c2luZyBkZCBvciBvdGhlcndpc2UpDQotIG9uIHRoZSBuZXcgY2Fy
-ZCwgcmVzaXplL3NoaWZ0IHRoZSBkYXRhIHBhcnRpb24gdG8gdGhlIGVuZCBvZiB0aGUgY2FyZCAo
-dXNpbmcgZ3BhcnRlZCkNCi0gcmVzaXplIHRoZSB0d28gZmlsZXN5c3RlbS9rZXJuZWwgcGFydGl0
-aW9ucyB0byBmaWxsIGluIHRoZSBlbXB0eSBzcGFjZSBpbiB0aGUgbWlkZGxlLCBidXQgdGhleSBu
-ZWVkIHRvIGJlIHRoZSBzYW1lIHNpemUgKHVzaW5nIGdwYXJ0ZWQpDQoNClJlYWQgdXAgb24gTWVu
-ZGVyIGZvciBtb3JlIGluZm8gb24gdGhlIHBhcnRpdGlvbiBsYXlvdXQgKGh0dHBzOi8vZG9jcy5t
-ZW5kZXIuaW8vMS43L2RldmljZXMvZ2VuZXJhbC1zeXN0ZW0tcmVxdWlyZW1lbnRzI3BhcnRpdGlv
-bi1sYXlvdXQpLiBJdCdzIGEgcGFpbiB0aGF0IHRoZXkgd2VudCB3aXRoIE1lbmRlciBmb3IgdGhl
-IGRlZmF1bHQgRTMyMCBjYXJkOyBpdCBjdXRzIHRoZSAndXNhYmxlJyBmaWxlIHN5c3RlbSBzcGFj
-ZSBpbiBoYWxmLCBhdCB0aGUgYmVuZWZpdCBvZiBoYXZpbmcgMiBpbmRlcGVuZGVudCBmaWxlc3lz
-dGVtIHBhcnRpdGlvbnMuLi4gSSBoYXZlbid0IGhhZCB0aW1lIHRvIGZpZGRsZSBhcm91bmQgYW5k
-IGRpdGNoIHRoZSBtZW5kZXIgZm9yIGEgJ25vcm1hbCcgcGFydGl0aW9uIGxheW91dCwgYnV0IEkn
-ZCBhc3N1bWUgaXQncyBwb3NzaWJsZS4NCg0KQ2hlZXJzLA0KQ2hyaXMNCg0KDQoNCi0tLS0tIE9y
-aWdpbmFsIE1lc3NhZ2UgLS0tLS0NCkZyb206DQoiSmFzb24gTWF0dXNpYWsiIDxqYXNvbkBnYXJk
-ZXR0b2VuZ2luZWVyaW5nLmNvbT4NCg0KVG86DQoiRXR0dXMgTWFpbCBMaXN0IiA8dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20+DQpDYzoNCg0KU2VudDoNCldlZCwgMTkgSnVuIDIwMTkgMTY6Mjk6
-MzggKzAwMDANClN1YmplY3Q6DQpbVVNSUC11c2Vyc10gRTMyMCB3aXRoIGxhcmdlciBTRCBjYXJk
-DQoNCg0KDQpJIHdhbnRlZCB0byB1c2UgYSBsYXJnZXIgU0QgY2FyZCB0aGFuIHRoZSBvbmUgdGhh
-dCBhcyBzdXBwbGllZCwgYnV0IEkgYW0gaGF2aW5nIGlzc3Vlcy4gIEkgbG9hZGVkIHVwIHRoZSBj
-YXJkLCBhbmQgdGhlbiBleHRlbmRlZCB0aGUgZGF0YSBwYXJ0aXRpb24gdG8gdXNlIHVwIHRoZSBy
-ZXN0IG9mIHRoZSBmcmVlIHNwYWNlIChhYm91dCAxMDBHQikuICBCdXQgdGhlbiBpdCBkb2Vzbid0
-IGJvb3QuDQoNCg0KSSBhbSB3b25kZXJpbmcgaWYgdGhlIGNoYW5nZSB0byBhIHBhcnRpdGlvbiBz
-aXplIHNjcmV3ZWQgdXAgc29tZXRoaW5nIGluIGEgY29uZmlnIGZpbGUgc29tZXdoZXJlLiAgSXMg
-dGhlcmUgYSB3YXkgdG8gZml4IHRoaXMgd2l0aG91dCByZWJ1aWxkaW5nIGEgZG9ja2VyIGltYWdl
-PyAgSSBhbSB1c2luZyB0aGUgVUhEIDMuMTQuMC4wLiB0aGF0IGhhcyB0aGUgc21hbGxlciBkYXRh
-IHBhcnRpdGlvbiAoVUhEIDMuMTQuMS4wIGhhcyBhIGxhcmdlciBkYXRhIHBhcnRpdGlvbiwgYnV0
-IGRvZXNuJ3QgaW5jbHVkZSBhbnkgR1IvcHl0aG9uIHBhY2thZ2VzLCBzbyBJIG5lZWQgdG8gdXNl
-IHRoZSBvbGRlciBpbWFnZSkuDQoNCg0KVGhhbmtzLg0K
-
---_000_ee9bf2f54fa14fa2b213c3da7cc1dacbgardettoengineeringcom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <6AEDA218E1EDA943AB2552492A993863@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
-
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdiBkaXI9ImF1
-dG8iPk9LLCBJIHNlZSBub3cgd2hhdCB5b3Ugd2VyZSBkb2luZyBkaWZmZXJlbnQuIEkgdGhpbmsg
-SSBjb3VsZCBkZWFsIHdpdGggbGVhdmluZyB0aGUgL2RhdGEgcGFydGl0aW9uIHRoZSBzYW1lIHNp
-emUgYW5kIGluY3JlYXNpbmcgdGhlIHR3byBmaWxlc3lzdGVtcy4gSSB3YXMganVzdCB0cnlpbmcg
-dG8gc2F2ZSBteXNlbGYgdGhlIGhhc3NsZSBvZiBwZXJmb3JtaW5nIGEgbWVuZGVyIHVwZGF0ZSBk
-b3duIHRoZSByb2FkIGFuZA0KIGZvcmdldHRpbmcgdGhhdCB0aGUgZGF0YSBpbiB+LyB3YXNuJ3Qg
-cGVyc2lzdGVudC4gPGJyPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+SSBndWVzcyBp
-dCBpcyBzb21ldGhpbmcgdG8gdHJ5IGZvciBub3cgKHRvbW9ycm93KSwgYW5kIHRoZW4gZmxlc2gg
-b3V0IHRoZSAvZGF0YSBwcm9ibGVtIGFmdGVyIGhhdmluZyBhIGJldHRlciB1bmRlcnN0YW5kaW5n
-IG9mIHdoYXQgaXMgZ29pbmcgb24gKGhvcGVmdWxseSkuPGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNz
-PSJnbWFpbF9xdW90ZSI+T24gSnVuIDE5LCAyMDE5LCBhdCA4OjIxIFBNLCBDaHJpcyBHb2JiZXR0
-ICZsdDs8YSBocmVmPSJtYWlsdG86Z29iYm9AdHBnLmNvbS5hdSIgdGFyZ2V0PSJfYmxhbmsiPmdv
-YmJvQHRwZy5jb20uYXU8L2E+Jmd0OyB3cm90ZToNCjxibG9ja3F1b3RlIGNsYXNzPSJnbWFpbF9x
-dW90ZSIgc3R5bGU9Im1hcmdpbjogMHB0IDBwdCAwcHQgMC44ZXg7IGJvcmRlci1sZWZ0OiAxcHgg
-c29saWQgcmdiKDIwNCwgMjA0LCAyMDQpOyBwYWRkaW5nLWxlZnQ6IDFleDsiPg0KJm5ic3A7IDxi
-cj4NCk15IHVuZGVyc3RhbmRpbmcgb2YgdGhlIHBhcnRpaXRvbnMgb24gdGhlIGNhcmQgYXJlIChp
-biBvcmRlcik7DQo8ZGl2Pjxicj4NCjxkaXY+Jmx0O2Jvb3QmZ3Q7Jmx0O2ZpbGVzeXN0ZW0mIzQz
-O2tlcm5lbCBBJmd0OyZsdDtmaWxlc3lzdGVtJiM0MztrZXJuZWwgQiZndDsmbHQ7cGVyc2lzdGVu
-dCBkYXRhJmd0OyZsdDtlbXB0eSBzcGFjZSZndDsNCjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4N
-CjxkaXY+TWVuZGVyIGFsbG93cyB5b3UgdG8gYm9vdCBmcm9tIG9uZSBvZiB0aGUgQS9CIHBhcnRp
-dGlvbnMgYXMgeW91ciBwcmltYXJ5IGZpbGVzeXN0ZW0gKG1vdW50ZWQgYXMgLyksIHBsdXMgdGhl
-IHBlcnNpc3RlbnQgZGF0YSAobW91bnRlZCBhcyAvaG9tZS8gb3IgL2RhdGEgb3Igc2ltaWxhciku
-Jm5ic3A7DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pk15IGV4cGVyaWVuY2UgaXMg
-aWYgeW91IHBlcmZvcm0gcmVzaXppbmcgd2hpbGUga2VlcGluZyB0aGUgcGFydGl0aW9ucyBjb250
-aWd1b3VzIChubyBmcmVlIHNwYWNlIGJldHdlZW4gdGhlbSksIGFuZCBoYXZlIHRoZSBBIGFuZCBC
-IHBhcnRpdGlvbnMgaWRlbnRpY2FsIGluIHNpemUsIGl0ICZxdW90O2p1c3Qgd29ya3MmcXVvdDsu
-IFNvIG15IHN0ZXBzIGluIHRoZSBwcmV2aW91cyByZXBseSB3b3VsZCBsb29rIGxpa2U6DQo8L2Rp
-dj4NCjxkaXY+DQo8ZGl2PiZuYnNwOyAmbmJzcDsmbHQ7Ym9vdCZndDsmbHQ7ZmlsZXN5c3RlbSYj
-NDM7a2VybmVsIEEmZ3Q7Jmx0O2ZpbGVzeXN0ZW0mIzQzO2tlcm5lbCBCJmd0OyZsdDtwZXJzaXN0
-ZW50IGRhdGEmZ3Q7Jmx0Oy0tLS0tLS0tLS1lbXB0eSBzcGFjZS0tLS0tLS0tLS0tLS0tLSZndDsm
-bmJzcDsgIyBvcmlnaW5hbCBpbWFnZSBvbiBsYXJnZSBTRCBDYXJkDQo8L2Rpdj4NCjxkaXY+Jm5i
-c3A7ICZuYnNwOyZsdDtib290Jmd0OyZsdDtmaWxlc3lzdGVtJiM0MztrZXJuZWwgQSZndDsmbHQ7
-ZmlsZXN5c3RlbSYjNDM7a2VybmVsIEImZ3Q7Jmx0Oy0tLS0tLS0tLS0tLS1lbXB0eSBzcGFjZS0t
-LS0tLS0tLS0tLSZndDsmbHQ7cGVyc2lzdGVudCBkYXRhJmd0OyZuYnNwOyAjIHNoaWZ0IHBlcnNp
-c3RlbnQgZGF0YSB0byB0aGUgZW5kDQo8L2Rpdj4NCjxkaXY+Jm5ic3A7ICZuYnNwOyZsdDtib290
-Jmd0OyZsdDstLS0tLS0tLS0tZmlsZXN5c3RlbSYjNDM7a2VybmVsIEEtLS0tLS0tLS0mZ3Q7Jmx0
-Oy0tLS0tLS0tLS1maWxlc3lzdGVtJiM0MztrZXJuZWwgQi0tLS0tLS0tLSZndDsmbHQ7cGVyc2lz
-dGVudCBkYXRhJmd0OyZuYnNwOyAjIG1heGltaXNlIEEvQiBwYXJ0aXRpb25zLCBrZWVwaW5nIEEg
-YW5kIEIgdGhlIHNhbWUgc2l6ZQ0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8
-ZGl2PlJhdGhlciB0aGFuIGV4dGVuZGluZyB0aGUgZGF0YSBwYXJ0aXRpb24sIEkgd2FudGVkIHRv
-IGFkZCBuZXcgbGlicmFyaWVzIGFuZCBhcHBsaWNhdGlvbnMgaW4gL3Vzciwgd2hpY2ggaXMgbG9j
-YXRlZCBvbiB0aGUgQS9CIHBhcnRpdGlvbnMuIEhlbmNlIG15IGluc3RydWN0aW9ucyBpbnZvbHZl
-IG1lIHJlc2l6aW5nIHRob3NlIHBhcnRpdGlvbnMgaW5zdGVhZCBvZiB0aGUgZGF0YSBwYXJ0aXRp
-b24uJm5ic3A7DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5JZiB5b3Un
-cmUgc2ltcGx5IGV4dGVuZGluZyB0aGUgc2l6ZSBvZiB0aGUgcGVyc2lzdGVudCBkYXRhIHBhcnRp
-dGlvbiB3aXRob3V0IHNoaWZ0aW5nIGl0J3Mgc3RhcnQgcG9pbnQgKHdoaWxlIGxlYXZpbmcgdGhl
-IG90aGVyIHBhcnRpdGlvbnMgYWxvbmUpIEknbSBhdCBhIGxvc3MgYXMgdG8gd2h5IGl0IHdvdWxk
-bid0IHdvcmsuIEJ1dCB3aGVuIHlvdSBkbyB0aGlzIHlvdSBtYXkgbmVlZCBzb21lIGV4dHJhIGxp
-bnV4LWZ1IHRvIHNoaWZ0IHlvdXINCiBuZXcgYmluYXJ5L2xpYnJhcnkgbG9jYXRpb25zIHRvIHRo
-YXQgcGFydGl0aW9uIHJhdGhlciB0aGFuIHRoZSBkZWZhdWx0IC91c3IuIDwvZGl2Pg0KPGRpdj48
-YnI+DQo8L2Rpdj4NCjxkaXY+Q2hlZXJzLCA8L2Rpdj4NCjxkaXY+Q2hyaXMgPGJyPg0KPGJsb2Nr
-cXVvdGU+PGJyPg0KLS0tLS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0tLSA8YnI+DQo8ZGl2IHN0eWxl
-PSJ3aWR0aDoxMDAlO2JhY2tncm91bmQ6cmdiKDIyOCwyMjgsMjI4KTsiPg0KPGRpdiBzdHlsZT0i
-Zm9udC13ZWlnaHQ6Ym9sZDsiPkZyb206IDwvZGl2Pg0KJnF1b3Q7SmFzb24gTWF0dXNpYWsmcXVv
-dDsgJmx0O2phc29uQGdhcmRldHRvZW5naW5lZXJpbmcuY29tJmd0OyA8L2Rpdj4NCjxicj4NCjxk
-aXYgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Ij5UbzogPC9kaXY+DQomcXVvdDtDaHJpcyBHb2Ji
-ZXR0JnF1b3Q7ICZsdDtnb2Jib0B0cGcuY29tLmF1Jmd0OyA8YnI+DQo8ZGl2IHN0eWxlPSJmb250
-LXdlaWdodDpib2xkOyI+Q2M6IDwvZGl2Pg0KJnF1b3Q7RXR0dXMgTWFpbCBMaXN0JnF1b3Q7ICZs
-dDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsgPGJyPg0KPGRpdiBzdHlsZT0iZm9udC13
-ZWlnaHQ6Ym9sZDsiPlNlbnQ6IDwvZGl2Pg0KV2VkLCAxOSBKdW4gMjAxOSAyMzoxMjo0MCAmIzQz
-OzAwMDAgPGJyPg0KPGRpdiBzdHlsZT0iZm9udC13ZWlnaHQ6Ym9sZDsiPlN1YmplY3Q6IDwvZGl2
-Pg0KUmU6IFtVU1JQLXVzZXJzXSBFMzIwIHdpdGggbGFyZ2VyIFNEIGNhcmQgPGJyPg0KPGJyPg0K
-PGJyPg0KPGRpdj5DaHJpcywgdGhhbmtzIGZvciB0aGUgdGlwcy4gPGJyPg0KPGJyPg0KPC9kaXY+
-DQo8ZGl2PlNvIEkgcHV0IGEgZnJlc2ggbG9hZCBvbiBhIGNhcmQsIHRoZW4gdXNlZCBncGFydGVk
-IHRvIGV4dGVuZCB0aGUgZGF0YSBwYXJ0aXRpb24gdG8gZmlsbCB0aGluZ3Mgb3V0LiBUaGF0IGlz
-bid0IGVub3VnaCwgYW5kIHlvdXIgaW5zdHJ1Y3Rpb25zIGNlcnRhaW5seSBzaG93IG1vcmUgc3Rl
-cHMuIEJ1dCBJIGRvbid0IHVuZGVyc3RhbmQgd2hhdCB5b3UgbWVhbiB3aXRoIHRoZSBwYXJ0aXRp
-b25zIGluIHRoZSBtaWRkbGUuDQo8YnI+DQo8YnI+DQo8L2Rpdj4NCjxkaXY+SSdsbCByZWFkIHVw
-IG9uIE1lbmRlciBhbmQgc2VlIGlmIHRoYXQgYW5zd2VycyBpdCBmb3IgbWUuIFRoYW5rcyBhZ2Fp
-bi4gPC9kaXY+DQo8ZGl2IGNsYXNzPSJnbWFpbF9xdW90ZSI+T24gSnVuIDE5LCAyMDE5LCBhdCA2
-OjU2IFBNLCBDaHJpcyBHb2JiZXR0ICZsdDsgPGEgaHJlZj0ibWFpbHRvOmdvYmJvQHRwZy5jb20u
-YXUiPg0KZ29iYm9AdHBnLmNvbS5hdTwvYT4mZ3Q7IHdyb3RlOg0KPGJsb2NrcXVvdGUgY2xhc3M9
-ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBwdCAwcHQgMHB0IC44ZXg7Ym9yZGVyLWxlZnQ6
-MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7cGFkZGluZy1sZWZ0OjFleDsiPg0KJm5ic3A7IDxi
-cj4NCkhpIEphc29uLA0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+SSd2ZSBoYWQgbHVjayB3aXRo
-IHRoZSBmb2xsb3dpbmc6IDwvZGl2Pg0KPGRpdj4tIGJhY2t1cC9jbG9uZSB0aGUgb3JpZ2luYWwg
-U0RDYXJkIGltYWdlIHRvIGRpc2sgYW5kL29yIGxhcmdlciBTRENhcmQgKHVzaW5nIGRkIG9yIG90
-aGVyd2lzZSkNCjwvZGl2Pg0KPGRpdj4tIG9uIHRoZSBuZXcgY2FyZCwgcmVzaXplL3NoaWZ0IHRo
-ZSBkYXRhIHBhcnRpb24gdG8gdGhlIGVuZCBvZiB0aGUgY2FyZCAodXNpbmcgZ3BhcnRlZCkNCjwv
-ZGl2Pg0KPGRpdj4tIHJlc2l6ZSB0aGUgdHdvIGZpbGVzeXN0ZW0va2VybmVsIHBhcnRpdGlvbnMg
-dG8gZmlsbCBpbiB0aGUgZW1wdHkgc3BhY2UgaW4gdGhlIG1pZGRsZSwgYnV0IHRoZXkgbmVlZCB0
-byBiZSB0aGUgc2FtZSBzaXplICh1c2luZyBncGFydGVkKQ0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
-ZGl2Pg0KPGRpdj5SZWFkIHVwIG9uIE1lbmRlciBmb3IgbW9yZSBpbmZvIG9uIHRoZSBwYXJ0aXRp
-b24gbGF5b3V0IChodHRwczovL2RvY3MubWVuZGVyLmlvLzEuNy9kZXZpY2VzL2dlbmVyYWwtc3lz
-dGVtLXJlcXVpcmVtZW50cyNwYXJ0aXRpb24tbGF5b3V0KS4gSXQncyBhIHBhaW4gdGhhdCB0aGV5
-IHdlbnQgd2l0aCBNZW5kZXIgZm9yIHRoZSBkZWZhdWx0IEUzMjAgY2FyZDsgaXQgY3V0cyB0aGUg
-J3VzYWJsZScgZmlsZSBzeXN0ZW0gc3BhY2UgaW4gaGFsZiwNCiBhdCB0aGUgYmVuZWZpdCBvZiBo
-YXZpbmcgMiBpbmRlcGVuZGVudCBmaWxlc3lzdGVtIHBhcnRpdGlvbnMuLi4gSSBoYXZlbid0IGhh
-ZCB0aW1lIHRvIGZpZGRsZSBhcm91bmQgYW5kIGRpdGNoIHRoZSBtZW5kZXIgZm9yIGEgJ25vcm1h
-bCcgcGFydGl0aW9uIGxheW91dCwgYnV0IEknZCBhc3N1bWUgaXQncyBwb3NzaWJsZS4NCjwvZGl2
-Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+Q2hlZXJzLCA8L2Rpdj4NCjxkaXY+Q2hyaXMgPC9k
-aXY+DQo8ZGl2Pjxicj4NCjxicj4NCjxibG9ja3F1b3RlPjxicj4NCi0tLS0tIE9yaWdpbmFsIE1l
-c3NhZ2UgLS0tLS0gPGJyPg0KPGRpdiBzdHlsZT0id2lkdGg6MTAwJTtiYWNrZ3JvdW5kOnJnYigy
-MjgsMjI4LDIyOCk7Ij4NCjxkaXYgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Ij5Gcm9tOiA8L2Rp
-dj4NCiZxdW90O0phc29uIE1hdHVzaWFrJnF1b3Q7ICZsdDtqYXNvbkBnYXJkZXR0b2VuZ2luZWVy
-aW5nLmNvbSZndDsgPC9kaXY+DQo8YnI+DQo8ZGl2IHN0eWxlPSJmb250LXdlaWdodDpib2xkOyI+
-VG86IDwvZGl2Pg0KJnF1b3Q7RXR0dXMgTWFpbCBMaXN0JnF1b3Q7ICZsdDt1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbSZndDsgPGJyPg0KPGRpdiBzdHlsZT0iZm9udC13ZWlnaHQ6Ym9sZDsiPkNj
-OiA8L2Rpdj4NCjxicj4NCjxkaXYgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Ij5TZW50OiA8L2Rp
-dj4NCldlZCwgMTkgSnVuIDIwMTkgMTY6Mjk6MzggJiM0MzswMDAwIDxicj4NCjxkaXYgc3R5bGU9
-ImZvbnQtd2VpZ2h0OmJvbGQ7Ij5TdWJqZWN0OiA8L2Rpdj4NCltVU1JQLXVzZXJzXSBFMzIwIHdp
-dGggbGFyZ2VyIFNEIGNhcmQgPGJyPg0KPGJyPg0KPGJyPg0KPGRpdiBzdHlsZT0iZm9udC1zaXpl
-OjEycHQ7Y29sb3I6IzAwMDAwMDtmb250LWZhbWlseTpDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMt
-c2VyaWY7IiBkaXI9Imx0ciI+DQo8cCBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206
-MDsiPkkgd2FudGVkIHRvIHVzZSBhIGxhcmdlciBTRCBjYXJkIHRoYW4gdGhlIG9uZSB0aGF0IGFz
-IHN1cHBsaWVkLCBidXQgSSBhbSBoYXZpbmcgaXNzdWVzLiZuYnNwOyBJIGxvYWRlZCB1cCB0aGUg
-Y2FyZCwgYW5kIHRoZW4gZXh0ZW5kZWQgdGhlIGRhdGEgcGFydGl0aW9uIHRvIHVzZSB1cCB0aGUg
-cmVzdCBvZiB0aGUgZnJlZSBzcGFjZSAoYWJvdXQgMTAwR0IpLiZuYnNwOyBCdXQgdGhlbiBpdCBk
-b2Vzbid0DQogYm9vdC48L3A+DQo8cCBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206
-MDsiPjxicj4NCjwvcD4NCjxwIHN0eWxlPSJtYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowOyI+
-SSBhbSB3b25kZXJpbmcgaWYgdGhlIGNoYW5nZSB0byBhIHBhcnRpdGlvbiBzaXplIHNjcmV3ZWQg
-dXAgc29tZXRoaW5nIGluIGEgY29uZmlnIGZpbGUgc29tZXdoZXJlLiZuYnNwOyBJcyB0aGVyZSBh
-IHdheSB0byBmaXggdGhpcyB3aXRob3V0IHJlYnVpbGRpbmcgYSBkb2NrZXIgaW1hZ2U/Jm5ic3A7
-IEkgYW0gdXNpbmcgdGhlIFVIRCAzLjE0LjAuMC4gdGhhdCBoYXMgdGhlIHNtYWxsZXIgZGF0YQ0K
-IHBhcnRpdGlvbiAoVUhEIDMuMTQuMS4wIGhhcyBhIGxhcmdlciBkYXRhIHBhcnRpdGlvbiwgYnV0
-IGRvZXNuJ3QgaW5jbHVkZSBhbnkgR1IvcHl0aG9uIHBhY2thZ2VzPHNwYW4gc3R5bGU9ImZvbnQt
-ZmFtaWx5OkNhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZiwgRW1vamlGb250LCAnQXBwbGUg
-Q29sb3IgRW1vamknLCAnU2Vnb2UgVUkgRW1vamknLCBOb3RvQ29sb3JFbW9qaSwgJ1NlZ29lIFVJ
-IFN5bWJvbCcsICdBbmRyb2lkIEVtb2ppJywgRW1vamlTeW1ib2xzO2ZvbnQtc2l6ZToxNnB4OyI+
-LA0KIHNvIEkgbmVlZCB0byB1c2UgdGhlIG9sZGVyIGltYWdlPC9zcGFuPikuPC9wPg0KPHAgc3R5
-bGU9Im1hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7Ij48YnI+DQo8L3A+DQo8cCBzdHlsZT0i
-bWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPlRoYW5rcy48L3A+DQo8L2Rpdj4NCjwvYmxv
-Y2txdW90ZT4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
-aHRtbD4NCg==
-
---_000_ee9bf2f54fa14fa2b213c3da7cc1dacbgardettoengineeringcom_--
+Hi,
 
 
---===============0687167111716874001==
+When we set the gain of USRP does that mean we are increasing the gain of a=
+mplifier just after the antenna or the gain is spread across various amplif=
+iers in the chain?
+
+
+Regards,
+
+Koyel Das
+Senior =96 Product Engineer
+
+Vehere | Proactive Communications Intelligence & Cyber Defence
+M: +919051132173 | T: +91 33 40545454 | F: +91 33 40545455 | W: www.vehere.=
+com<http://www.vehere.com/>
+
+[unnamed]<https://www.linkedin.com/company/vehere-interactive-p-ltd> [unnam=
+ed (1)] <https://twitter.com/VehereIndia>  [unnamed (2)] <https://www.faceb=
+ook.com/VehereIndia/>
+
+Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
+rds in India & Asia since 2012!
+
+The content of this e-mail is confidential and intended solely for the use =
+of the addressee. The text of this email (including any attachments) may co=
+ntain information, which is proprietary and/or confidential or privileged i=
+n nature belonging to Vehere Interactive Pvt Ltd and/or its associates/ gro=
+up companies/ subsidiaries. If you are not the addressee, or the person res=
+ponsible for delivering it to the addressee, any disclosure, copying, distr=
+ibution or any action taken or omitted to be taken in reliance on it is pro=
+hibited and may be unlawful. If you have received this e-mail in error, ple=
+ase notify the sender and remove this communication entirely from your syst=
+em. The recipient acknowledges that no guarantee or any warranty is given a=
+s to completeness and accuracy of the content of the email. The recipient f=
+urther acknowledges that the views contained in the email message are those=
+ of the sender and may not necessarily reflect those of Vehere Interactive =
+Pvt Ltd. Before opening and accessing the attachment please check and scan =
+for virus. WARNING: Computer viruses can be transmitted via email. The reci=
+pient should check this email and any attachments for the presence of virus=
+es. The company accepts no liability for any damage caused by any virus tra=
+nsmitted by this email.
+
+--_000_BM1PR01MB0705C8B2232B5566D41DE1CE90E40BM1PR01MB0705INDP_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">Hi,</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">When we set the gain of USRP does=
+ that mean we are increasing the gain of amplifier just after the antenna o=
+r the gain is spread across various amplifiers in the chain?</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Regards,</p>
+<div id=3D"Signature">
+<meta content=3D"text/html; charset=3DUTF-8">
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
+r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, &q=
+uot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &q=
+uot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<p style=3D"margin-top:0; margin-bottom:0"></p>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px; line-h=
+eight:16px">
+<font face=3D"Tahoma,serif"><font style=3D"font-size:9pt">Koyel Das &nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Senior =96 Product Engineer</font></font></p>
+<font face=3D"Tahoma,serif" style=3D"font-size:16px"><font style=3D"font-si=
+ze:9pt">Vehere | Proactive Communications Intelligence &amp; Cyber Defence<=
+/font></font><font face=3D"Tahoma,serif" style=3D"font-size:16px"><font sty=
+le=3D"font-size:9pt"><br>
+M: &#43;919051132173&nbsp;|&nbsp;</font></font><font face=3D"Tahoma,serif" =
+style=3D"font-size:16px"><font style=3D"font-size:9pt">T: &#43;91&nbsp;33 4=
+0545454 | F: &#43;91&nbsp;33 40545455 | W:&nbsp;<a href=3D"http://www.veher=
+e.com/" target=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP">www.veh=
+ere.com</a></font></font><font face=3D"Tahoma,serif" style=3D"font-size:16p=
+x"><font style=3D"font-size:9pt"><i><br>
+</i></font></font><br style=3D"font-family:Calibri,Helvetica,sans-serif,Emo=
+jiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEm=
+oji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; fon=
+t-size:16px">
+<font face=3D"Tahoma,serif" style=3D"font-size:16px"><font style=3D"font-si=
+ze:9pt"><i><a href=3D"https://www.linkedin.com/company/vehere-interactive-p=
+-ltd" target=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP"><span sty=
+le=3D"color:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,se=
+rif,EmojiFont; text-decoration-line:none"><img border=3D"0" alt=3D"unnamed"=
+ style=3D"width: 18pt; height: 18pt; user-select: none;" src=3D"https://mai=
+l.google.com/mail/u/0/?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D=
+15cd46f4a213fe89&amp;attid=3D0.1&amp;disp=3Demb&amp;attbid=3DANGjdJ_cw8QOmJ=
+OuH5dOGgYLOxSybsCNVtf-NS_WwKXHuMOvYfeSER9hREJrjlPeF3OcG8GnDWaciM5m8KcKUu6kc=
+oQwHmymFim1kkqNhKdcHOplQP4e4KtrWgsZRDQ&amp;sz=3Dw48-h48&amp;ats=3D149821924=
+5179&amp;rm=3D15cd46f4a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=
+=3D"color:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,seri=
+f,EmojiFont">&nbsp;</span><a href=3D"https://twitter.com/VehereIndia" targe=
+t=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP"><span style=3D"color=
+:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,EmojiFo=
+nt; text-decoration-line:none"><img border=3D"0" alt=3D"unnamed (1)" style=
+=3D"width: 18pt; height: 18pt; user-select: none;" src=3D"https://mail.goog=
+le.com/mail/u/0/?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D15cd46=
+f4a213fe89&amp;attid=3D0.2&amp;disp=3Demb&amp;attbid=3DANGjdJ9np2yLYTWiL8_6=
+6KixMdVQ5nVZKUBvlRtQ_pTYQysvBjAQVxtHSIbIzZfOj-plEkGO73mWlh0cet3WXZglkDC-aWF=
+dkAnUmOv3L6NAaCgYTaxHO_-lXXFvlK4&amp;sz=3Dw48-h48&amp;ats=3D1498219245179&a=
+mp;rm=3D15cd46f4a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=3D"col=
+or:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,Emoji=
+Font">&nbsp;</span><a href=3D"https://www.facebook.com/VehereIndia/" target=
+=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP"><span style=3D"color:=
+rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,EmojiFon=
+t; text-decoration-line:none"><img border=3D"0" alt=3D"unnamed (2)" style=
+=3D"width: 18pt; height: 18pt; user-select: none;" src=3D"https://mail.goog=
+le.com/mail/u/0/?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D15cd46=
+f4a213fe89&amp;attid=3D0.3&amp;disp=3Demb&amp;attbid=3DANGjdJ9JZdmekO-R6DmU=
+lgNehr-eRw41OXSOu3PfaFGXC98wY0jrXYMynJ1Fl8O89Y6zdclhyH28j5k5hjwSBYH5RwgNDRH=
+Aoz8EfzpBBa4gm0Wk9Ke6qojICfael_k&amp;sz=3Dw48-h48&amp;ats=3D1498219245179&a=
+mp;rm=3D15cd46f4a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=3D"col=
+or:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,Emoji=
+Font">&nbsp;&nbsp;</span><span style=3D"color:rgb(34,34,34); font-family:Ta=
+homa,sans-serif,serif,EmojiFont"><br>
+</span><br>
+Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
+rds in India &amp; Asia since 2012!</i></font></font><font face=3D"Tahoma,s=
+erif" style=3D"font-size:16px"><font style=3D"font-size:9pt"><br>
+<br>
+The content of this e-mail is confidential and intended solely for the use =
+of the addressee. The text of this email (including any attachments) may co=
+ntain information, which is proprietary and/or confidential or privileged i=
+n nature belonging to Vehere Interactive
+ Pvt Ltd and/or its associates/ group companies/ subsidiaries. If you are n=
+ot the addressee, or the person responsible for delivering it to the addres=
+see, any disclosure, copying, distribution or any action taken or omitted t=
+o be taken in reliance on it is
+ prohibited and may be unlawful. If you have received this e-mail in error,=
+ please notify the sender and remove this communication entirely from your =
+system. The recipient acknowledges that no guarantee or any warranty is giv=
+en as to completeness and accuracy
+ of the content of the email. The recipient further acknowledges that the v=
+iews contained in the email message are those of the sender and may not nec=
+essarily reflect those of Vehere Interactive Pvt Ltd. Before opening and ac=
+cessing the attachment please check
+ and scan for virus. WARNING: Computer viruses can be transmitted via email=
+. The recipient should check this email and any attachments for the presenc=
+e of viruses. The company accepts no liability for any damage caused by any=
+ virus transmitted by this email.</font></font><br>
+<p></p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_BM1PR01MB0705C8B2232B5566D41DE1CE90E40BM1PR01MB0705INDP_--
+
+
+--===============0581613722895499055==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -356,5 +283,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0687167111716874001==--
+--===============0581613722895499055==--
 
