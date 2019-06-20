@@ -2,95 +2,27 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A84F4C3FE
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Jun 2019 01:13:27 +0200 (CEST)
-Received: from [::1] (port=47428 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB724C46A
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Jun 2019 02:22:05 +0200 (CEST)
+Received: from [::1] (port=60272 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hdjld-00058f-UW; Wed, 19 Jun 2019 19:13:25 -0400
-Received: from otransport-10.outbound.emailsrv.net ([52.22.72.116]:44109)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
- id 1hdjla-00050T-Kz
- for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 19:13:22 -0400
-Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
- [10.4.3.253])
- by otransport-10.outbound.emailsrv.net (Postfix) with ESMTPS id 1CAD2616CF;
- Wed, 19 Jun 2019 23:12:42 +0000 (UTC)
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam03lp2055.outbound.protection.outlook.com [104.47.41.55])
- by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id BC991A2441;
- Wed, 19 Jun 2019 23:12:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector1-gardettoengineering-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uQKQAgixOE8gS94o8Med60/qBidIEA6zcgOQwcdaBZY=;
- b=Q1fneob6Yu/KN2+KzvgwGrbs8C+WKJEyMVhBA5N0xOpIX39AEnn+Tiy8ItKz+8N1URjdkdCA1GuwSt+fO//3nsskQzDgORLZ286VgD7Yo1pcVVsuDhf9Fz+b9KDkOO2LVXRG9V04ZE6vskSwpig6tknmXsrIzn0/4Yq7xBl9hhI=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
- BL0PR12MB2435.namprd12.prod.outlook.com (52.132.11.29) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.15; Wed, 19 Jun 2019 23:12:40 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::dc23:15da:4ad9:4ca0%4]) with mapi id 15.20.1987.014; Wed, 19 Jun 2019
- 23:12:40 +0000
-To: Chris Gobbett <gobbo@tpg.com.au>
-Thread-Topic: Re: [USRP-users] E320 with larger SD card
-Thread-Index: AQHVJrwXtVhqj8KwE0ewAOiKvLySv6ajlvwAgAAEg4A=
-Date: Wed, 19 Jun 2019 23:12:40 +0000
-Message-ID: <2ec7c512-449a-4d1b-8db7-5c0d013dba79@gardettoengineering.com>
-References: <d69386c0f5b0f1339eee9da920334aed03a817ac@new-postoffice.tpg.com.au>
-In-Reply-To: <d69386c0f5b0f1339eee9da920334aed03a817ac@new-postoffice.tpg.com.au>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: BL0PR01CA0026.prod.exchangelabs.com (2603:10b6:208:71::39)
- To BL0PR12MB2340.namprd12.prod.outlook.com
- (2603:10b6:207:4c::30)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-referenced-uid: 2765
-x-is-generated-message-id: true
-x-local-message-id: <2ec7c512-449a-4d1b-8db7-5c0d013dba79@gardettoengineering.com>
-x-originating-ip: [2601:14f:0:1f02:75c6:2a4c:12bd:d0c6]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 73739b3d-545f-404d-aa58-08d6f50ba028
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
- SRVR:BL0PR12MB2435; 
-x-ms-traffictypediagnostic: BL0PR12MB2435:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BL0PR12MB2435A4618FB24F37ECF7FA8AAFE50@BL0PR12MB2435.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0073BFEF03
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(366004)(346002)(39830400003)(376002)(136003)(396003)(51914003)(13464003)(199004)(189003)(14454004)(229853002)(81156014)(81166006)(11346002)(86362001)(6116002)(446003)(8936002)(31696002)(186003)(476003)(2616005)(46003)(73956011)(31686004)(66556008)(68736007)(66946007)(53936002)(6436002)(76176011)(71200400001)(486006)(236005)(5660300002)(6246003)(99286004)(52116002)(71190400001)(6486002)(386003)(6506007)(66476007)(66446008)(64756008)(25786009)(102836004)(7736002)(6306002)(54896002)(53546011)(6916009)(256004)(2906002)(6512007)(508600001)(8676002)(36756003)(4326008)(316002);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2435;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: b5U4uyRisyBJb3viZzmo49hXFj3plzLOAg7yp8ft51pZyOqf2JUdlIFEkzOgnuvapMrUXPIMi73h0ZRN6KpxQZHKMrZmgssGpd+M3uo9Xwc2lrpMnkkQwwOvOUY1vjzIQda0j7POz42iQJ0TWP3wQTWk3R69GaZF7Y/jcMvppEaDfvFr6GagBT81/b7i2uyot9Q3+NCK6qpuI6JzYvkDUJknqgpn+JiXIFHJLfJV2bxk5Xn5hrUJRIm9nmYdbnpUD6yi0cSeR1simgMhCdGbhrRxnej27iMUZLFbvj7QQ8Km5KYDS4v+mrPDDIg+EiSSGmUHyEM1zmSL/3sPKWDMg6Y2zXPD9o1yTRoOzfNYTa01sF/sq/lVEm4Eb7h74Eqh9Y2yWPsj3aL3rjIONT2JMg0HGkLawNXlkBgz6nQjrr8=
+	id 1hdkq0-0000g6-AK; Wed, 19 Jun 2019 20:22:00 -0400
+Received: from web-atmail2.tpgi.com.au ([203.12.160.131]:45589)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <gobbo@tpg.com.au>) id 1hdkpw-0000aK-8Y
+ for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 20:21:56 -0400
+Received: from localhost (localhost [127.0.0.1])
+ by web-atmail2.tpgi.com.au (8.14.4/8.14.4) with ESMTP id x5K0L8iZ021704;
+ Thu, 20 Jun 2019 10:21:09 +1000
+Message-Id: <89fd7840a5b67527cbfe0709d2cbcf0ccc3c9311@new-postoffice.tpg.com.au>
+To: "Jason Matusiak" <jason@gardettoengineering.com>,
+ "Ettus List" <usrp-users@lists.ettus.com>
+X-Mailer: Atmail 7.2.0.14467
+X-Originating-IP: 203.6.69.2
+in-reply-to: <2ec7c512-449a-4d1b-8db7-5c0d013dba79@gardettoengineering.com>
+Date: Thu, 20 Jun 2019 10:21:08 +1000
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73739b3d-545f-404d-aa58-08d6f50ba028
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2019 23:12:40.3107 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2435
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-dm3nam03lp2055.outbound.protection.outlook.com|104.47.41.55|NAM03-DM3-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.41.55, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-14999-c
-X-Mailprotector-ID: acb8efd0-87c3-4041-9ab7-b0ae8c24d8d7
 Subject: Re: [USRP-users] E320 with larger SD card
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -103,10 +35,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
+From: Chris Gobbett via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Chris Gobbett <gobbo@tpg.com.au>
 Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4997615011225603524=="
+Content-Type: multipart/mixed; boundary="===============5272895431159910924=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -120,128 +52,164 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4997615011225603524==
-Content-Language: en-US
+--===============5272895431159910924==
 Content-Type: multipart/alternative;
-	boundary="_000_2ec7c512449a4d1b8db75c0d013dba79gardettoengineeringcom_"
+ boundary="=_906ff1968deb6535ca880940016b5991"
 
---_000_2ec7c512449a4d1b8db75c0d013dba79gardettoengineeringcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--=_906ff1968deb6535ca880940016b5991
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Q2hyaXMsIHRoYW5rcyBmb3IgdGhlIHRpcHMuDQoNClNvIEkgcHV0IGEgZnJlc2ggbG9hZCBvbiBh
-IGNhcmQsIHRoZW4gdXNlZCBncGFydGVkIHRvIGV4dGVuZCB0aGUgZGF0YSBwYXJ0aXRpb24gdG8g
-ZmlsbCB0aGluZ3Mgb3V0LiBUaGF0IGlzbid0IGVub3VnaCwgYW5kIHlvdXIgaW5zdHJ1Y3Rpb25z
-IGNlcnRhaW5seSBzaG93IG1vcmUgc3RlcHMuIEJ1dCBJIGRvbid0IHVuZGVyc3RhbmQgd2hhdCB5
-b3UgbWVhbiB3aXRoIHRoZSBwYXJ0aXRpb25zIGluIHRoZSBtaWRkbGUuDQoNCkknbGwgcmVhZCB1
-cCBvbiBNZW5kZXIgYW5kIHNlZSBpZiB0aGF0IGFuc3dlcnMgaXQgZm9yIG1lLiBUaGFua3MgYWdh
-aW4uDQpPbiBKdW4gMTksIDIwMTksIGF0IDY6NTYgUE0sIENocmlzIEdvYmJldHQgPGdvYmJvQHRw
-Zy5jb20uYXU8bWFpbHRvOmdvYmJvQHRwZy5jb20uYXU+PiB3cm90ZToNCg0KSGkgSmFzb24sDQoN
-CkkndmUgaGFkIGx1Y2sgd2l0aCB0aGUgZm9sbG93aW5nOg0KLSBiYWNrdXAvY2xvbmUgdGhlIG9y
-aWdpbmFsIFNEQ2FyZCBpbWFnZSB0byBkaXNrIGFuZC9vciBsYXJnZXIgU0RDYXJkICh1c2luZyBk
-ZCBvciBvdGhlcndpc2UpDQotIG9uIHRoZSBuZXcgY2FyZCwgcmVzaXplL3NoaWZ0IHRoZSBkYXRh
-IHBhcnRpb24gdG8gdGhlIGVuZCBvZiB0aGUgY2FyZCAodXNpbmcgZ3BhcnRlZCkNCi0gcmVzaXpl
-IHRoZSB0d28gZmlsZXN5c3RlbS9rZXJuZWwgcGFydGl0aW9ucyB0byBmaWxsIGluIHRoZSBlbXB0
-eSBzcGFjZSBpbiB0aGUgbWlkZGxlLCBidXQgdGhleSBuZWVkIHRvIGJlIHRoZSBzYW1lIHNpemUg
-KHVzaW5nIGdwYXJ0ZWQpDQoNClJlYWQgdXAgb24gTWVuZGVyIGZvciBtb3JlIGluZm8gb24gdGhl
-IHBhcnRpdGlvbiBsYXlvdXQgKGh0dHBzOi8vZG9jcy5tZW5kZXIuaW8vMS43L2RldmljZXMvZ2Vu
-ZXJhbC1zeXN0ZW0tcmVxdWlyZW1lbnRzI3BhcnRpdGlvbi1sYXlvdXQpLiBJdCdzIGEgcGFpbiB0
-aGF0IHRoZXkgd2VudCB3aXRoIE1lbmRlciBmb3IgdGhlIGRlZmF1bHQgRTMyMCBjYXJkOyBpdCBj
-dXRzIHRoZSAndXNhYmxlJyBmaWxlIHN5c3RlbSBzcGFjZSBpbiBoYWxmLCBhdCB0aGUgYmVuZWZp
-dCBvZiBoYXZpbmcgMiBpbmRlcGVuZGVudCBmaWxlc3lzdGVtIHBhcnRpdGlvbnMuLi4gSSBoYXZl
-bid0IGhhZCB0aW1lIHRvIGZpZGRsZSBhcm91bmQgYW5kIGRpdGNoIHRoZSBtZW5kZXIgZm9yIGEg
-J25vcm1hbCcgcGFydGl0aW9uIGxheW91dCwgYnV0IEknZCBhc3N1bWUgaXQncyBwb3NzaWJsZS4N
-Cg0KQ2hlZXJzLA0KQ2hyaXMNCg0KDQoNCi0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0NCkZy
-b206DQoiSmFzb24gTWF0dXNpYWsiIDxqYXNvbkBnYXJkZXR0b2VuZ2luZWVyaW5nLmNvbT4NCg0K
-VG86DQoiRXR0dXMgTWFpbCBMaXN0IiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpDYzoN
-Cg0KU2VudDoNCldlZCwgMTkgSnVuIDIwMTkgMTY6Mjk6MzggKzAwMDANClN1YmplY3Q6DQpbVVNS
-UC11c2Vyc10gRTMyMCB3aXRoIGxhcmdlciBTRCBjYXJkDQoNCg0KDQpJIHdhbnRlZCB0byB1c2Ug
-YSBsYXJnZXIgU0QgY2FyZCB0aGFuIHRoZSBvbmUgdGhhdCBhcyBzdXBwbGllZCwgYnV0IEkgYW0g
-aGF2aW5nIGlzc3Vlcy4gIEkgbG9hZGVkIHVwIHRoZSBjYXJkLCBhbmQgdGhlbiBleHRlbmRlZCB0
-aGUgZGF0YSBwYXJ0aXRpb24gdG8gdXNlIHVwIHRoZSByZXN0IG9mIHRoZSBmcmVlIHNwYWNlIChh
-Ym91dCAxMDBHQikuICBCdXQgdGhlbiBpdCBkb2Vzbid0IGJvb3QuDQoNCg0KSSBhbSB3b25kZXJp
-bmcgaWYgdGhlIGNoYW5nZSB0byBhIHBhcnRpdGlvbiBzaXplIHNjcmV3ZWQgdXAgc29tZXRoaW5n
-IGluIGEgY29uZmlnIGZpbGUgc29tZXdoZXJlLiAgSXMgdGhlcmUgYSB3YXkgdG8gZml4IHRoaXMg
-d2l0aG91dCByZWJ1aWxkaW5nIGEgZG9ja2VyIGltYWdlPyAgSSBhbSB1c2luZyB0aGUgVUhEIDMu
-MTQuMC4wLiB0aGF0IGhhcyB0aGUgc21hbGxlciBkYXRhIHBhcnRpdGlvbiAoVUhEIDMuMTQuMS4w
-IGhhcyBhIGxhcmdlciBkYXRhIHBhcnRpdGlvbiwgYnV0IGRvZXNuJ3QgaW5jbHVkZSBhbnkgR1Iv
-cHl0aG9uIHBhY2thZ2VzLCBzbyBJIG5lZWQgdG8gdXNlIHRoZSBvbGRlciBpbWFnZSkuDQoNCg0K
-VGhhbmtzLg0K
+=C2=A0=0AMy understanding of the partiitons on the card are (in order);=
+=0A=0AMender allows you to boot from one of the A/B partitions as your=
+=0Aprimary filesystem (mounted as /), plus the persistent data (mounted=
+=0Aas /home/ or /data or similar).=C2=A0=0AMy experience is if you perfo=
+rm resizing while keeping the partitions=0Acontiguous (no free space bet=
+ween them), and have the A and B=0Apartitions identical in size, it "jus=
+t works". So my steps in the=0Aprevious reply would look like:=C2=A0 =C2=
+=A0=C2=A0 # original image on large SD=0ACard=C2=A0 =C2=A0=C2=A0 # shift=
+ persistent data to the end=C2=A0 =C2=A0=C2=A0 # maximise A/B=0Apartitio=
+ns, keeping A and B the same size=0ARather than extending the data parti=
+tion, I wanted to add new=0Alibraries and applications in /usr, which is=
+ located on the A/B=0Apartitions. Hence my instructions involve me resiz=
+ing those partitions=0Ainstead of the data partition.=C2=A0=0AIf you're=
+ simply extending the size of the persistent data partition=0Awithout sh=
+ifting it's start point (while leaving the other partitions=0Aalone) I'm=
+ at a loss as to why it wouldn't work. But when you do this=0Ayou may ne=
+ed some extra linux-fu to shift your new binary/library=0Alocations to t=
+hat partition rather than the default /usr.=0ACheers,Chris=0A=0A----- Or=
+iginal Message -----=0AFrom: "Jason Matusiak" =0ATo:"Chris Gobbett" =0AC=
+c:"Ettus Mail List" =0ASent:Wed, 19 Jun 2019 23:12:40 +0000=0ASubject:Re=
+: [USRP-users] E320 with larger SD card=0A=0AChris, thanks for the tips.=
+=0A=0A So I put a fresh load on a card, then used gparted to extend the=
+ data=0Apartition to fill things out. That isn't enough, and your instru=
+ctions=0Acertainly show more steps. But I don't understand what you mean=
+ with=0Athe partitions in the middle. =0A=0A I'll read up on Mender and=
+ see if that answers it for me. Thanks=0Aagain. On Jun 19, 2019, at 6:56=
+ PM, Chris Gobbett  wrote:  =C2=A0 =0A Hi Jason, =0A I've had luck with=
+ the following:  - backup/clone the original SDCard=0Aimage to disk and/=
+or larger SDCard (using dd or otherwise)  - on the=0Anew card, resize/sh=
+ift the data partion to the end of the card (using=0Agparted)  - resize=
+ the two filesystem/kernel partitions to fill in the=0Aempty space in th=
+e middle, but they need to be the same size (using=0Agparted)  =0A Read=
+ up on Mender for more info on the partition layout=0A(https://docs.mend=
+er.io/1.7/devices/general-system-requirements#partition-layout).=0AIt's=
+ a pain that they went with Mender for the default E320 card; it=0Acuts=
+ the 'usable' file system space in half, at the benefit of having=0A2 in=
+dependent filesystem partitions... I haven't had time to fiddle=0Aaround=
+ and ditch the mender for a 'normal' partition layout, but I'd=0Aassume=
+ it's possible.  =0A Cheers,  Chris  =0A=0A ----- Original Message -----=
+ =0A From:  "Jason Matusiak"   =0ATo:  "Ettus Mail List"  =0ACc:  =0ASen=
+t:  Wed, 19 Jun 2019 16:29:38 +0000 =0ASubject:  [USRP-users] E320 with=
+ larger SD card =0A=0A=09I wanted to use a larger SD card than the one t=
+hat as supplied, but I=0Aam having issues.=C2=A0 I loaded up the card, a=
+nd then extended the data=0Apartition to use up the rest of the free spa=
+ce (about 100GB).=C2=A0 But=0Athen it doesn't boot. =0A=0A=09I am wonder=
+ing if the change to a partition size screwed up something=0Ain a config=
+ file somewhere.=C2=A0 Is there a way to fix this without=0Arebuilding a=
+ docker image?=C2=A0 I am using the UHD 3.14.0.0. that has the=0Asmaller=
+ data partition (UHD 3.14.1.0 has a larger data partition, but=0Adoesn't=
+ include any GR/python packages, so I need to use the older=0Aimage).=
+ =0A=0A=09Thanks.      =0A=0ALinks:=0A------=0A[1] mailto:gobbo@tpg.com.=
+au=0A
 
---_000_2ec7c512449a4d1b8db75c0d013dba79gardettoengineeringcom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <02ABEC792E14B145A3E2DD8EE4C8F874@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+--=_906ff1968deb6535ca880940016b5991
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ6b29tOiAw
-JTsiPg0KPGRpdiBkaXI9ImF1dG8iPkNocmlzLCB0aGFua3MgZm9yIHRoZSB0aXBzLjxicj4NCjxi
-cj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPlNvIEkgcHV0IGEgZnJlc2ggbG9hZCBvbiBhIGNh
-cmQsIHRoZW4gdXNlZCBncGFydGVkIHRvIGV4dGVuZCB0aGUgZGF0YSBwYXJ0aXRpb24gdG8gZmls
-bCB0aGluZ3Mgb3V0LiBUaGF0IGlzbid0IGVub3VnaCwgYW5kIHlvdXIgaW5zdHJ1Y3Rpb25zIGNl
-cnRhaW5seSBzaG93IG1vcmUgc3RlcHMuIEJ1dCBJIGRvbid0IHVuZGVyc3RhbmQgd2hhdCB5b3Ug
-bWVhbiB3aXRoIHRoZSBwYXJ0aXRpb25zIGluIHRoZSBtaWRkbGUuDQo8YnI+DQo8YnI+DQo8L2Rp
-dj4NCjxkaXYgZGlyPSJhdXRvIj5JJ2xsIHJlYWQgdXAgb24gTWVuZGVyIGFuZCBzZWUgaWYgdGhh
-dCBhbnN3ZXJzIGl0IGZvciBtZS4gVGhhbmtzIGFnYWluLjwvZGl2Pg0KPGRpdiBjbGFzcz0iZ21h
-aWxfcXVvdGUiPk9uIEp1biAxOSwgMjAxOSwgYXQgNjo1NiBQTSwgQ2hyaXMgR29iYmV0dCAmbHQ7
-PGEgaHJlZj0ibWFpbHRvOmdvYmJvQHRwZy5jb20uYXUiIHRhcmdldD0iX2JsYW5rIj5nb2Jib0B0
-cGcuY29tLmF1PC9hPiZndDsgd3JvdGU6DQo8YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUi
-IHN0eWxlPSJtYXJnaW46IDBwdCAwcHQgMHB0IDAuOGV4OyBib3JkZXItbGVmdDogMXB4IHNvbGlk
-IHJnYigyMDQsIDIwNCwgMjA0KTsgcGFkZGluZy1sZWZ0OiAxZXg7Ij4NCiZuYnNwOyA8YnI+DQpI
-aSBKYXNvbiwNCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkkndmUgaGFkIGx1Y2sgd2l0aCB0aGUg
-Zm9sbG93aW5nOiA8L2Rpdj4NCjxkaXY+LSBiYWNrdXAvY2xvbmUgdGhlIG9yaWdpbmFsIFNEQ2Fy
-ZCBpbWFnZSB0byBkaXNrIGFuZC9vciBsYXJnZXIgU0RDYXJkICh1c2luZyBkZCBvciBvdGhlcndp
-c2UpDQo8L2Rpdj4NCjxkaXY+LSBvbiB0aGUgbmV3IGNhcmQsIHJlc2l6ZS9zaGlmdCB0aGUgZGF0
-YSBwYXJ0aW9uIHRvIHRoZSBlbmQgb2YgdGhlIGNhcmQgKHVzaW5nIGdwYXJ0ZWQpDQo8L2Rpdj4N
-CjxkaXY+LSByZXNpemUgdGhlIHR3byBmaWxlc3lzdGVtL2tlcm5lbCBwYXJ0aXRpb25zIHRvIGZp
-bGwgaW4gdGhlIGVtcHR5IHNwYWNlIGluIHRoZSBtaWRkbGUsIGJ1dCB0aGV5IG5lZWQgdG8gYmUg
-dGhlIHNhbWUgc2l6ZSAodXNpbmcgZ3BhcnRlZCkNCjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4N
-CjxkaXY+UmVhZCB1cCBvbiBNZW5kZXIgZm9yIG1vcmUgaW5mbyBvbiB0aGUgcGFydGl0aW9uIGxh
-eW91dCAoaHR0cHM6Ly9kb2NzLm1lbmRlci5pby8xLjcvZGV2aWNlcy9nZW5lcmFsLXN5c3RlbS1y
-ZXF1aXJlbWVudHMjcGFydGl0aW9uLWxheW91dCkuIEl0J3MgYSBwYWluIHRoYXQgdGhleSB3ZW50
-IHdpdGggTWVuZGVyIGZvciB0aGUgZGVmYXVsdCBFMzIwIGNhcmQ7IGl0IGN1dHMgdGhlICd1c2Fi
-bGUnIGZpbGUgc3lzdGVtIHNwYWNlIGluIGhhbGYsDQogYXQgdGhlIGJlbmVmaXQgb2YgaGF2aW5n
-IDIgaW5kZXBlbmRlbnQgZmlsZXN5c3RlbSBwYXJ0aXRpb25zLi4uIEkgaGF2ZW4ndCBoYWQgdGlt
-ZSB0byBmaWRkbGUgYXJvdW5kIGFuZCBkaXRjaCB0aGUgbWVuZGVyIGZvciBhICdub3JtYWwnIHBh
-cnRpdGlvbiBsYXlvdXQsIGJ1dCBJJ2QgYXNzdW1lIGl0J3MgcG9zc2libGUuDQo8L2Rpdj4NCjxk
-aXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkNoZWVycywgPC9kaXY+DQo8ZGl2PkNocmlzIDwvZGl2Pg0K
-PGRpdj48YnI+DQo8YnI+DQo8YmxvY2txdW90ZT48YnI+DQotLS0tLSBPcmlnaW5hbCBNZXNzYWdl
-IC0tLS0tIDxicj4NCjxkaXYgc3R5bGU9IndpZHRoOjEwMCU7YmFja2dyb3VuZDpyZ2IoMjI4LDIy
-OCwyMjgpOyI+DQo8ZGl2IHN0eWxlPSJmb250LXdlaWdodDpib2xkOyI+RnJvbTogPC9kaXY+DQom
-cXVvdDtKYXNvbiBNYXR1c2lhayZxdW90OyAmbHQ7amFzb25AZ2FyZGV0dG9lbmdpbmVlcmluZy5j
-b20mZ3Q7IDwvZGl2Pg0KPGJyPg0KPGRpdiBzdHlsZT0iZm9udC13ZWlnaHQ6Ym9sZDsiPlRvOiA8
-L2Rpdj4NCiZxdW90O0V0dHVzIE1haWwgTGlzdCZxdW90OyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20mZ3Q7IDxicj4NCjxkaXYgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Ij5DYzogPC9k
-aXY+DQo8YnI+DQo8ZGl2IHN0eWxlPSJmb250LXdlaWdodDpib2xkOyI+U2VudDogPC9kaXY+DQpX
-ZWQsIDE5IEp1biAyMDE5IDE2OjI5OjM4ICYjNDM7MDAwMCA8YnI+DQo8ZGl2IHN0eWxlPSJmb250
-LXdlaWdodDpib2xkOyI+U3ViamVjdDogPC9kaXY+DQpbVVNSUC11c2Vyc10gRTMyMCB3aXRoIGxh
-cmdlciBTRCBjYXJkIDxicj4NCjxicj4NCjxicj4NCjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMnB0
-O2NvbG9yOiMwMDAwMDA7Zm9udC1mYW1pbHk6Q2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlm
-OyIgZGlyPSJsdHIiPg0KPHAgc3R5bGU9Im1hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7Ij5J
-IHdhbnRlZCB0byB1c2UgYSBsYXJnZXIgU0QgY2FyZCB0aGFuIHRoZSBvbmUgdGhhdCBhcyBzdXBw
-bGllZCwgYnV0IEkgYW0gaGF2aW5nIGlzc3Vlcy4mbmJzcDsgSSBsb2FkZWQgdXAgdGhlIGNhcmQs
-IGFuZCB0aGVuIGV4dGVuZGVkIHRoZSBkYXRhIHBhcnRpdGlvbiB0byB1c2UgdXAgdGhlIHJlc3Qg
-b2YgdGhlIGZyZWUgc3BhY2UgKGFib3V0IDEwMEdCKS4mbmJzcDsgQnV0IHRoZW4gaXQgZG9lc24n
-dA0KIGJvb3QuPC9wPg0KPHAgc3R5bGU9Im1hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7Ij48
-YnI+DQo8L3A+DQo8cCBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPkkgYW0g
-d29uZGVyaW5nIGlmIHRoZSBjaGFuZ2UgdG8gYSBwYXJ0aXRpb24gc2l6ZSBzY3Jld2VkIHVwIHNv
-bWV0aGluZyBpbiBhIGNvbmZpZyBmaWxlIHNvbWV3aGVyZS4mbmJzcDsgSXMgdGhlcmUgYSB3YXkg
-dG8gZml4IHRoaXMgd2l0aG91dCByZWJ1aWxkaW5nIGEgZG9ja2VyIGltYWdlPyZuYnNwOyBJIGFt
-IHVzaW5nIHRoZSBVSEQgMy4xNC4wLjAuIHRoYXQgaGFzIHRoZSBzbWFsbGVyIGRhdGENCiBwYXJ0
-aXRpb24gKFVIRCAzLjE0LjEuMCBoYXMgYSBsYXJnZXIgZGF0YSBwYXJ0aXRpb24sIGJ1dCBkb2Vz
-bid0IGluY2x1ZGUgYW55IEdSL3B5dGhvbiBwYWNrYWdlczxzcGFuIHN0eWxlPSJmb250LWZhbWls
-eTpDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYsIEVtb2ppRm9udCwgJ0FwcGxlIENvbG9y
-IEVtb2ppJywgJ1NlZ29lIFVJIEVtb2ppJywgTm90b0NvbG9yRW1vamksICdTZWdvZSBVSSBTeW1i
-b2wnLCAnQW5kcm9pZCBFbW9qaScsIEVtb2ppU3ltYm9scztmb250LXNpemU6MTZweDsiPiwNCiBz
-byBJIG5lZWQgdG8gdXNlIHRoZSBvbGRlciBpbWFnZTwvc3Bhbj4pLjwvcD4NCjxwIHN0eWxlPSJt
-YXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowOyI+PGJyPg0KPC9wPg0KPHAgc3R5bGU9Im1hcmdp
-bi10b3A6MDttYXJnaW4tYm90dG9tOjA7Ij5UaGFua3MuPC9wPg0KPC9kaXY+DQo8L2Jsb2NrcXVv
-dGU+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+<html><body style=3D"font-family: 'Helvetica Neue',Helvetica,Arial,sans-=
+serif; font-size: 12px;">=C2=A0<br />My understanding of the partiitons=
+ on the card are (in order);<div><br /><div>&lt;boot&gt;&lt;filesystem+k=
+ernel A&gt;&lt;filesystem+kernel B&gt;&lt;persistent data&gt;&lt;empty s=
+pace&gt;</div><div><br /></div><div>Mender allows you to boot from one o=
+f the A/B partitions as your primary filesystem (mounted as /), plus the=
+ persistent data (mounted as /home/ or /data or similar).=C2=A0</div><di=
+v><br /></div><div>My experience is if you perform resizing while keepin=
+g the partitions contiguous (no free space between them), and have the A=
+ and B partitions identical in size, it "just works". So my steps in the=
+ previous reply would look like:</div><div><div>=C2=A0 =C2=A0&lt;boot&gt=
+;&lt;filesystem+kernel A&gt;&lt;filesystem+kernel B&gt;&lt;persistent da=
+ta&gt;&lt;----------empty space---------------&gt;=C2=A0 # original imag=
+e on large SD Card</div><div>=C2=A0 =C2=A0&lt;boot&gt;&lt;filesystem+ker=
+nel A&gt;&lt;filesystem+kernel B&gt;&lt;-------------empty space--------=
+----&gt;&lt;persistent data&gt;=C2=A0 # shift persistent data to the end=
+</div><div>=C2=A0 =C2=A0&lt;boot&gt;&lt;----------filesystem+kernel A---=
+------&gt;&lt;----------filesystem+kernel B---------&gt;&lt;persistent d=
+ata&gt;=C2=A0 # maximise A/B partitions, keeping A and B the same size</=
+div></div><div><br /></div><div>Rather than extending the data partition=
+, I wanted to add new libraries and applications in /usr, which is locat=
+ed on the A/B partitions. Hence my instructions involve me resizing thos=
+e partitions instead of the data partition.=C2=A0</div><div><div><br /><=
+/div><div>If you're simply extending the size of the persistent data par=
+tition without shifting it's start point (while leaving the other partit=
+ions alone) I'm at a loss as to why it wouldn't work. But when you do th=
+is you may need some extra linux-fu to shift your new binary/library loc=
+ations to that partition rather than the default /usr.</div><div><br /><=
+/div><div>Cheers,</div><div>Chris<br /><blockquote><br />----- Original=
+ Message -----<br /><div style=3D"width:100%;background:rgb(228,228,228)=
+;"><div style=3D"font-weight:bold;">From:</div> "Jason Matusiak" &lt;jas=
+on@gardettoengineering.com&gt;</div><br /><div style=3D"font-weight:bold=
+;">To:</div>"Chris Gobbett" &lt;gobbo@tpg.com.au&gt;<br /><div style=3D"=
+font-weight:bold;">Cc:</div>"Ettus Mail List" &lt;usrp-users@lists.ettus=
+.com&gt;<br /><div style=3D"font-weight:bold;">Sent:</div>Wed, 19 Jun 20=
+19 23:12:40 +0000<br /><div style=3D"font-weight:bold;">Subject:</div>Re=
+: [USRP-users] E320 with larger SD card<br /><br /><br /><div>Chris, tha=
+nks for the tips.<br /><br /></div>=0A<div>So I put a fresh load on a ca=
+rd, then used gparted to extend the data partition to fill things out. T=
+hat isn't enough, and your instructions certainly show more steps. But I=
+ don't understand what you mean with the partitions in the middle.=0A<br=
+ /><br /></div>=0A<div>I'll read up on Mender and see if that answers it=
+ for me. Thanks again.</div>=0A<div class=3D"gmail_quote">On Jun 19, 201=
+9, at 6:56 PM, Chris Gobbett &lt;<a href=3D"mailto:gobbo@tpg.com.au">gob=
+bo@tpg.com.au</a>&gt; wrote:=0A<blockquote class=3D"gmail_quote" style=
+=3D"margin:0pt 0pt 0pt .8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex;">=0A=C2=A0 <br />=0AHi Jason,=0A<div><br /></div>=0A<div>I'=
+ve had luck with the following: </div>=0A<div>- backup/clone the origina=
+l SDCard image to disk and/or larger SDCard (using dd or otherwise)=0A</=
+div>=0A<div>- on the new card, resize/shift the data partion to the end=
+ of the card (using gparted)=0A</div>=0A<div>- resize the two filesystem=
+/kernel partitions to fill in the empty space in the middle, but they ne=
+ed to be the same size (using gparted)=0A</div>=0A<div><br /></div>=0A<d=
+iv>Read up on Mender for more info on the partition layout (https://docs=
+.mender.io/1.7/devices/general-system-requirements#partition-layout). It=
+'s a pain that they went with Mender for the default E320 card; it cuts=
+ the 'usable' file system space in half,=0A at the benefit of having 2 i=
+ndependent filesystem partitions... I haven't had time to fiddle around=
+ and ditch the mender for a 'normal' partition layout, but I'd assume it=
+'s possible.=0A</div>=0A<div><br /></div>=0A<div>Cheers, </div>=0A<div>C=
+hris </div>=0A<div><br /><br /><blockquote><br />=0A----- Original Messa=
+ge ----- <br /><div style=3D"width:100%;background:rgb(228,228,228);">=
+=0A<div style=3D"font-weight:bold;">From: </div>=0A"Jason Matusiak" &lt;=
+jason@gardettoengineering.com&gt; </div>=0A<br /><div style=3D"font-weig=
+ht:bold;">To: </div>=0A"Ettus Mail List" &lt;usrp-users@lists.ettus.com&=
+gt; <br /><div style=3D"font-weight:bold;">Cc: </div>=0A<br /><div style=
+=3D"font-weight:bold;">Sent: </div>=0AWed, 19 Jun 2019 16:29:38 +0000 <b=
+r /><div style=3D"font-weight:bold;">Subject: </div>=0A[USRP-users] E320=
+ with larger SD card <br /><br /><br /><div style=3D"font-size:12pt;colo=
+r:#000000;font-family:Calibri, Helvetica, sans-serif;" dir=3D"ltr">=0A<p=
+ style=3D"margin-top:0;margin-bottom:0;">I wanted to use a larger SD car=
+d than the one that as supplied, but I am having issues.=C2=A0 I loaded=
+ up the card, and then extended the data partition to use up the rest of=
+ the free space (about 100GB).=C2=A0 But then it doesn't=0A boot.</p>=0A=
+<p style=3D"margin-top:0;margin-bottom:0;"><br /></p>=0A<p style=3D"marg=
+in-top:0;margin-bottom:0;">I am wondering if the change to a partition s=
+ize screwed up something in a config file somewhere.=C2=A0 Is there a wa=
+y to fix this without rebuilding a docker image?=C2=A0 I am using the UH=
+D 3.14.0.0. that has the smaller data=0A partition (UHD 3.14.1.0 has a l=
+arger data partition, but doesn't include any GR/python packages<span st=
+yle=3D"font-family:Calibri, Helvetica, sans-serif, EmojiFont, 'Apple Col=
+or Emoji', 'Segoe UI Emoji', NotoColorEmoji, 'Segoe UI Symbol', 'Android=
+ Emoji', EmojiSymbols;font-size:16px;">,=0A so I need to use the older i=
+mage</span>).</p>=0A<p style=3D"margin-top:0;margin-bottom:0;"><br /></p=
+>=0A<p style=3D"margin-top:0;margin-bottom:0;">Thanks.</p>=0A</div>=0A</=
+blockquote>=0A</div>=0A</blockquote>=0A</div>=0A</blockquote></div></div=
+></div></body></html>
 
---_000_2ec7c512449a4d1b8db75c0d013dba79gardettoengineeringcom_--
+--=_906ff1968deb6535ca880940016b5991--
 
 
---===============4997615011225603524==
+
+--===============5272895431159910924==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -252,5 +220,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4997615011225603524==--
+--===============5272895431159910924==--
+
 
