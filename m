@@ -2,27 +2,95 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDB724C46A
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Jun 2019 02:22:05 +0200 (CEST)
-Received: from [::1] (port=60272 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E954C473
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Jun 2019 02:33:20 +0200 (CEST)
+Received: from [::1] (port=34308 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hdkq0-0000g6-AK; Wed, 19 Jun 2019 20:22:00 -0400
-Received: from web-atmail2.tpgi.com.au ([203.12.160.131]:45589)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <gobbo@tpg.com.au>) id 1hdkpw-0000aK-8Y
- for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 20:21:56 -0400
-Received: from localhost (localhost [127.0.0.1])
- by web-atmail2.tpgi.com.au (8.14.4/8.14.4) with ESMTP id x5K0L8iZ021704;
- Thu, 20 Jun 2019 10:21:09 +1000
-Message-Id: <89fd7840a5b67527cbfe0709d2cbcf0ccc3c9311@new-postoffice.tpg.com.au>
-To: "Jason Matusiak" <jason@gardettoengineering.com>,
- "Ettus List" <usrp-users@lists.ettus.com>
-X-Mailer: Atmail 7.2.0.14467
-X-Originating-IP: 203.6.69.2
-in-reply-to: <2ec7c512-449a-4d1b-8db7-5c0d013dba79@gardettoengineering.com>
-Date: Thu, 20 Jun 2019 10:21:08 +1000
+	id 1hdl0w-0001MD-MM; Wed, 19 Jun 2019 20:33:18 -0400
+Received: from otransport-1.outbound.emailsrv.net ([52.1.23.3]:51944)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
+ id 1hdl0s-0001D6-HB
+ for usrp-users@lists.ettus.com; Wed, 19 Jun 2019 20:33:14 -0400
+Received: from ogate-1.outbound.emailservice.io (ip-10-4-3-253.ec2.internal
+ [10.4.3.253])
+ by otransport-1.outbound.emailsrv.net (Postfix) with ESMTPS id EB43A6160F;
+ Thu, 20 Jun 2019 00:32:33 +0000 (UTC)
+Received: from NAM05-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam05lp2051.outbound.protection.outlook.com [104.47.48.51])
+ by ogate-1.outbound.emailservice.io (Postfix) with ESMTPS id 6979DA2660;
+ Thu, 20 Jun 2019 00:32:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector1-gardettoengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5R61V4WX8UkCFysMaACBqiOW8niVSXHxzFMOWljWvrE=;
+ b=E5Yh9LMmJs0AbSIdqiTw3TH4udilGmQUGB7q68fWaYu4cOcAq+fJrHRnpSdqL71/Nqhpruwqt/gYNlHXEYgafsNBKAyioUi5WC+5KIbuQQhq+D35MzlZpZTn6rmy/Jxc39QFx+h5gAGYsaHeNg98tf/ame6rFTIKLgzb3j5eAQ4=
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.10.158) by
+ BL0PR12MB2516.namprd12.prod.outlook.com (52.132.11.155) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.12; Thu, 20 Jun 2019 00:32:30 +0000
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::dc23:15da:4ad9:4ca0]) by BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::dc23:15da:4ad9:4ca0%4]) with mapi id 15.20.1987.014; Thu, 20 Jun 2019
+ 00:32:30 +0000
+To: Chris Gobbett <gobbo@tpg.com.au>
+Thread-Topic: Re: [USRP-users] E320 with larger SD card
+Thread-Index: AQHVJv4VYKtKw5BHWEGmE1+eknNVuaajsTGA
+Date: Thu, 20 Jun 2019 00:32:30 +0000
+Message-ID: <ee9bf2f5-4fa1-4fa2-b213-c3da7cc1dacb@gardettoengineering.com>
+References: <89fd7840a5b67527cbfe0709d2cbcf0ccc3c9311@new-postoffice.tpg.com.au>
+In-Reply-To: <89fd7840a5b67527cbfe0709d2cbcf0ccc3c9311@new-postoffice.tpg.com.au>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: BL0PR1501CA0008.namprd15.prod.outlook.com
+ (2603:10b6:207:17::21) To BL0PR12MB2340.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::30)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=jason@gardettoengineering.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-referenced-uid: 2768
+x-is-generated-message-id: true
+x-local-message-id: <ee9bf2f5-4fa1-4fa2-b213-c3da7cc1dacb@gardettoengineering.com>
+x-originating-ip: [2601:14f:0:1f02:75c6:2a4c:12bd:d0c6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 53e68d89-201b-4e0e-88dd-08d6f516c78d
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(5600148)(711020)(4605104)(1401327)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(2017052603328)(7193020);
+ SRVR:BL0PR12MB2516; 
+x-ms-traffictypediagnostic: BL0PR12MB2516:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BL0PR12MB25160BA53A16974C613EB25EAFE40@BL0PR12MB2516.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0074BBE012
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(396003)(39830400003)(366004)(376002)(346002)(136003)(189003)(51914003)(13464003)(199004)(76176011)(81156014)(486006)(4326008)(68736007)(14454004)(6246003)(25786009)(316002)(53936002)(508600001)(31686004)(36756003)(236005)(2906002)(6512007)(54896002)(7736002)(6486002)(81166006)(6436002)(186003)(229853002)(5660300002)(8936002)(6306002)(99286004)(31696002)(52116002)(6116002)(8676002)(86362001)(64756008)(6506007)(256004)(14444005)(66556008)(2616005)(66476007)(53546011)(386003)(11346002)(102836004)(46003)(71200400001)(66946007)(66446008)(73956011)(6916009)(476003)(446003)(71190400001);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2516;
+ H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: gardettoengineering.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Me1epuBbQe0PRO34pvayemHfb+RX25XBuIBYgN5/BgA68LnwlztrkaLXZNLOg9Q3L+9TEuccOooLetIMnspdfNNvxPobjGHamPYdsAb5MC39MJKHKtLCzLeykkoepPBVBITOaltQIyxSIgKX+hZhsisxgAX1vXEK9ujX8kj1OfBrhhtianoyWbOK8dYs8gHIVmQKvI+QowvNgIdG6beRKlTRG1n7jhLtY/ktVbnFPEoeOmmQWmzknhNCA2yGgjDm2SKiVDxHghui4B2jzDzeMo/CoPBWyr/30rLLbyqHtgEmIzmhDXBe8/NMW7kezGzGMNyZOnIlWU2sPuzYaE2DVykbwBI8YrEe6tzO70UqPv0c0W6QASStL4/hXWIKopkKj/+ppcr0Dh91fk7Nik9X97yD+iv5Ig2HMKw8istsIok=
 MIME-Version: 1.0
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53e68d89-201b-4e0e-88dd-08d6f516c78d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2019 00:32:30.8389 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2516
+X-Mailprotector-Decision: deliver
+X-Mailprotector-Connection: TLSv1.2|mail-co1nam05lp2051.outbound.protection.outlook.com|104.47.48.51|NAM05-CO1-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
+X-Mailprotector-Results: clean
+X-Mailprotector-Score: 0
+X-Mailprotector-IP-Analysis: 0, 104.47.48.51, Ugly c=0 p=0 Source New
+X-Mailprotector-Scan-Diagnostics: 0-0-0-25084-c
+X-Mailprotector-ID: d1768135-0b7a-43a0-9827-b56052282fb1
 Subject: Re: [USRP-users] E320 with larger SD card
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -35,10 +103,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Chris Gobbett via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Chris Gobbett <gobbo@tpg.com.au>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5272895431159910924=="
+From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jason Matusiak <jason@gardettoengineering.com>
+Cc: Ettus List <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0687167111716874001=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -52,164 +120,232 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5272895431159910924==
+--===============0687167111716874001==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="=_906ff1968deb6535ca880940016b5991"
+	boundary="_000_ee9bf2f54fa14fa2b213c3da7cc1dacbgardettoengineeringcom_"
 
---=_906ff1968deb6535ca880940016b5991
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_ee9bf2f54fa14fa2b213c3da7cc1dacbgardettoengineeringcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-=C2=A0=0AMy understanding of the partiitons on the card are (in order);=
-=0A=0AMender allows you to boot from one of the A/B partitions as your=
-=0Aprimary filesystem (mounted as /), plus the persistent data (mounted=
-=0Aas /home/ or /data or similar).=C2=A0=0AMy experience is if you perfo=
-rm resizing while keeping the partitions=0Acontiguous (no free space bet=
-ween them), and have the A and B=0Apartitions identical in size, it "jus=
-t works". So my steps in the=0Aprevious reply would look like:=C2=A0 =C2=
-=A0=C2=A0 # original image on large SD=0ACard=C2=A0 =C2=A0=C2=A0 # shift=
- persistent data to the end=C2=A0 =C2=A0=C2=A0 # maximise A/B=0Apartitio=
-ns, keeping A and B the same size=0ARather than extending the data parti=
-tion, I wanted to add new=0Alibraries and applications in /usr, which is=
- located on the A/B=0Apartitions. Hence my instructions involve me resiz=
-ing those partitions=0Ainstead of the data partition.=C2=A0=0AIf you're=
- simply extending the size of the persistent data partition=0Awithout sh=
-ifting it's start point (while leaving the other partitions=0Aalone) I'm=
- at a loss as to why it wouldn't work. But when you do this=0Ayou may ne=
-ed some extra linux-fu to shift your new binary/library=0Alocations to t=
-hat partition rather than the default /usr.=0ACheers,Chris=0A=0A----- Or=
-iginal Message -----=0AFrom: "Jason Matusiak" =0ATo:"Chris Gobbett" =0AC=
-c:"Ettus Mail List" =0ASent:Wed, 19 Jun 2019 23:12:40 +0000=0ASubject:Re=
-: [USRP-users] E320 with larger SD card=0A=0AChris, thanks for the tips.=
-=0A=0A So I put a fresh load on a card, then used gparted to extend the=
- data=0Apartition to fill things out. That isn't enough, and your instru=
-ctions=0Acertainly show more steps. But I don't understand what you mean=
- with=0Athe partitions in the middle. =0A=0A I'll read up on Mender and=
- see if that answers it for me. Thanks=0Aagain. On Jun 19, 2019, at 6:56=
- PM, Chris Gobbett  wrote:  =C2=A0 =0A Hi Jason, =0A I've had luck with=
- the following:  - backup/clone the original SDCard=0Aimage to disk and/=
-or larger SDCard (using dd or otherwise)  - on the=0Anew card, resize/sh=
-ift the data partion to the end of the card (using=0Agparted)  - resize=
- the two filesystem/kernel partitions to fill in the=0Aempty space in th=
-e middle, but they need to be the same size (using=0Agparted)  =0A Read=
- up on Mender for more info on the partition layout=0A(https://docs.mend=
-er.io/1.7/devices/general-system-requirements#partition-layout).=0AIt's=
- a pain that they went with Mender for the default E320 card; it=0Acuts=
- the 'usable' file system space in half, at the benefit of having=0A2 in=
-dependent filesystem partitions... I haven't had time to fiddle=0Aaround=
- and ditch the mender for a 'normal' partition layout, but I'd=0Aassume=
- it's possible.  =0A Cheers,  Chris  =0A=0A ----- Original Message -----=
- =0A From:  "Jason Matusiak"   =0ATo:  "Ettus Mail List"  =0ACc:  =0ASen=
-t:  Wed, 19 Jun 2019 16:29:38 +0000 =0ASubject:  [USRP-users] E320 with=
- larger SD card =0A=0A=09I wanted to use a larger SD card than the one t=
-hat as supplied, but I=0Aam having issues.=C2=A0 I loaded up the card, a=
-nd then extended the data=0Apartition to use up the rest of the free spa=
-ce (about 100GB).=C2=A0 But=0Athen it doesn't boot. =0A=0A=09I am wonder=
-ing if the change to a partition size screwed up something=0Ain a config=
- file somewhere.=C2=A0 Is there a way to fix this without=0Arebuilding a=
- docker image?=C2=A0 I am using the UHD 3.14.0.0. that has the=0Asmaller=
- data partition (UHD 3.14.1.0 has a larger data partition, but=0Adoesn't=
- include any GR/python packages, so I need to use the older=0Aimage).=
- =0A=0A=09Thanks.      =0A=0ALinks:=0A------=0A[1] mailto:gobbo@tpg.com.=
-au=0A
+T0ssIEkgc2VlIG5vdyB3aGF0IHlvdSB3ZXJlIGRvaW5nIGRpZmZlcmVudC4gSSB0aGluayBJIGNv
+dWxkIGRlYWwgd2l0aCBsZWF2aW5nIHRoZSAvZGF0YSBwYXJ0aXRpb24gdGhlIHNhbWUgc2l6ZSBh
+bmQgaW5jcmVhc2luZyB0aGUgdHdvIGZpbGVzeXN0ZW1zLiBJIHdhcyBqdXN0IHRyeWluZyB0byBz
+YXZlIG15c2VsZiB0aGUgaGFzc2xlIG9mIHBlcmZvcm1pbmcgYSBtZW5kZXIgdXBkYXRlIGRvd24g
+dGhlIHJvYWQgYW5kIGZvcmdldHRpbmcgdGhhdCB0aGUgZGF0YSBpbiB+LyB3YXNuJ3QgcGVyc2lz
+dGVudC4NCg0KSSBndWVzcyBpdCBpcyBzb21ldGhpbmcgdG8gdHJ5IGZvciBub3cgKHRvbW9ycm93
+KSwgYW5kIHRoZW4gZmxlc2ggb3V0IHRoZSAvZGF0YSBwcm9ibGVtIGFmdGVyIGhhdmluZyBhIGJl
+dHRlciB1bmRlcnN0YW5kaW5nIG9mIHdoYXQgaXMgZ29pbmcgb24gKGhvcGVmdWxseSkuDQpPbiBK
+dW4gMTksIDIwMTksIGF0IDg6MjEgUE0sIENocmlzIEdvYmJldHQgPGdvYmJvQHRwZy5jb20uYXU8
+bWFpbHRvOmdvYmJvQHRwZy5jb20uYXU+PiB3cm90ZToNCg0KTXkgdW5kZXJzdGFuZGluZyBvZiB0
+aGUgcGFydGlpdG9ucyBvbiB0aGUgY2FyZCBhcmUgKGluIG9yZGVyKTsNCg0KPGJvb3Q+PGZpbGVz
+eXN0ZW0ra2VybmVsIEE+PGZpbGVzeXN0ZW0ra2VybmVsIEI+PHBlcnNpc3RlbnQgZGF0YT48ZW1w
+dHkgc3BhY2U+DQoNCk1lbmRlciBhbGxvd3MgeW91IHRvIGJvb3QgZnJvbSBvbmUgb2YgdGhlIEEv
+QiBwYXJ0aXRpb25zIGFzIHlvdXIgcHJpbWFyeSBmaWxlc3lzdGVtIChtb3VudGVkIGFzIC8pLCBw
+bHVzIHRoZSBwZXJzaXN0ZW50IGRhdGEgKG1vdW50ZWQgYXMgL2hvbWUvIG9yIC9kYXRhIG9yIHNp
+bWlsYXIpLg0KDQpNeSBleHBlcmllbmNlIGlzIGlmIHlvdSBwZXJmb3JtIHJlc2l6aW5nIHdoaWxl
+IGtlZXBpbmcgdGhlIHBhcnRpdGlvbnMgY29udGlndW91cyAobm8gZnJlZSBzcGFjZSBiZXR3ZWVu
+IHRoZW0pLCBhbmQgaGF2ZSB0aGUgQSBhbmQgQiBwYXJ0aXRpb25zIGlkZW50aWNhbCBpbiBzaXpl
+LCBpdCAianVzdCB3b3JrcyIuIFNvIG15IHN0ZXBzIGluIHRoZSBwcmV2aW91cyByZXBseSB3b3Vs
+ZCBsb29rIGxpa2U6DQogICA8Ym9vdD48ZmlsZXN5c3RlbStrZXJuZWwgQT48ZmlsZXN5c3RlbStr
+ZXJuZWwgQj48cGVyc2lzdGVudCBkYXRhPjwtLS0tLS0tLS0tZW1wdHkgc3BhY2UtLS0tLS0tLS0t
+LS0tLS0+ICAjIG9yaWdpbmFsIGltYWdlIG9uIGxhcmdlIFNEIENhcmQNCiAgIDxib290PjxmaWxl
+c3lzdGVtK2tlcm5lbCBBPjxmaWxlc3lzdGVtK2tlcm5lbCBCPjwtLS0tLS0tLS0tLS0tZW1wdHkg
+c3BhY2UtLS0tLS0tLS0tLS0+PHBlcnNpc3RlbnQgZGF0YT4gICMgc2hpZnQgcGVyc2lzdGVudCBk
+YXRhIHRvIHRoZSBlbmQNCiAgIDxib290PjwtLS0tLS0tLS0tZmlsZXN5c3RlbStrZXJuZWwgQS0t
+LS0tLS0tLT48LS0tLS0tLS0tLWZpbGVzeXN0ZW0ra2VybmVsIEItLS0tLS0tLS0+PHBlcnNpc3Rl
+bnQgZGF0YT4gICMgbWF4aW1pc2UgQS9CIHBhcnRpdGlvbnMsIGtlZXBpbmcgQSBhbmQgQiB0aGUg
+c2FtZSBzaXplDQoNClJhdGhlciB0aGFuIGV4dGVuZGluZyB0aGUgZGF0YSBwYXJ0aXRpb24sIEkg
+d2FudGVkIHRvIGFkZCBuZXcgbGlicmFyaWVzIGFuZCBhcHBsaWNhdGlvbnMgaW4gL3Vzciwgd2hp
+Y2ggaXMgbG9jYXRlZCBvbiB0aGUgQS9CIHBhcnRpdGlvbnMuIEhlbmNlIG15IGluc3RydWN0aW9u
+cyBpbnZvbHZlIG1lIHJlc2l6aW5nIHRob3NlIHBhcnRpdGlvbnMgaW5zdGVhZCBvZiB0aGUgZGF0
+YSBwYXJ0aXRpb24uDQoNCklmIHlvdSdyZSBzaW1wbHkgZXh0ZW5kaW5nIHRoZSBzaXplIG9mIHRo
+ZSBwZXJzaXN0ZW50IGRhdGEgcGFydGl0aW9uIHdpdGhvdXQgc2hpZnRpbmcgaXQncyBzdGFydCBw
+b2ludCAod2hpbGUgbGVhdmluZyB0aGUgb3RoZXIgcGFydGl0aW9ucyBhbG9uZSkgSSdtIGF0IGEg
+bG9zcyBhcyB0byB3aHkgaXQgd291bGRuJ3Qgd29yay4gQnV0IHdoZW4geW91IGRvIHRoaXMgeW91
+IG1heSBuZWVkIHNvbWUgZXh0cmEgbGludXgtZnUgdG8gc2hpZnQgeW91ciBuZXcgYmluYXJ5L2xp
+YnJhcnkgbG9jYXRpb25zIHRvIHRoYXQgcGFydGl0aW9uIHJhdGhlciB0aGFuIHRoZSBkZWZhdWx0
+IC91c3IuDQoNCkNoZWVycywNCkNocmlzDQoNCi0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0N
+CkZyb206DQoiSmFzb24gTWF0dXNpYWsiIDxqYXNvbkBnYXJkZXR0b2VuZ2luZWVyaW5nLmNvbT4N
+Cg0KVG86DQoiQ2hyaXMgR29iYmV0dCIgPGdvYmJvQHRwZy5jb20uYXU+DQpDYzoNCiJFdHR1cyBN
+YWlsIExpc3QiIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClNlbnQ6DQpXZWQsIDE5IEp1
+biAyMDE5IDIzOjEyOjQwICswMDAwDQpTdWJqZWN0Og0KUmU6IFtVU1JQLXVzZXJzXSBFMzIwIHdp
+dGggbGFyZ2VyIFNEIGNhcmQNCg0KDQpDaHJpcywgdGhhbmtzIGZvciB0aGUgdGlwcy4NCg0KU28g
+SSBwdXQgYSBmcmVzaCBsb2FkIG9uIGEgY2FyZCwgdGhlbiB1c2VkIGdwYXJ0ZWQgdG8gZXh0ZW5k
+IHRoZSBkYXRhIHBhcnRpdGlvbiB0byBmaWxsIHRoaW5ncyBvdXQuIFRoYXQgaXNuJ3QgZW5vdWdo
+LCBhbmQgeW91ciBpbnN0cnVjdGlvbnMgY2VydGFpbmx5IHNob3cgbW9yZSBzdGVwcy4gQnV0IEkg
+ZG9uJ3QgdW5kZXJzdGFuZCB3aGF0IHlvdSBtZWFuIHdpdGggdGhlIHBhcnRpdGlvbnMgaW4gdGhl
+IG1pZGRsZS4NCg0KSSdsbCByZWFkIHVwIG9uIE1lbmRlciBhbmQgc2VlIGlmIHRoYXQgYW5zd2Vy
+cyBpdCBmb3IgbWUuIFRoYW5rcyBhZ2Fpbi4NCk9uIEp1biAxOSwgMjAxOSwgYXQgNjo1NiBQTSwg
+Q2hyaXMgR29iYmV0dCA8IGdvYmJvQHRwZy5jb20uYXU8bWFpbHRvOmdvYmJvQHRwZy5jb20uYXU+
+PiB3cm90ZToNCg0KSGkgSmFzb24sDQoNCkkndmUgaGFkIGx1Y2sgd2l0aCB0aGUgZm9sbG93aW5n
+Og0KLSBiYWNrdXAvY2xvbmUgdGhlIG9yaWdpbmFsIFNEQ2FyZCBpbWFnZSB0byBkaXNrIGFuZC9v
+ciBsYXJnZXIgU0RDYXJkICh1c2luZyBkZCBvciBvdGhlcndpc2UpDQotIG9uIHRoZSBuZXcgY2Fy
+ZCwgcmVzaXplL3NoaWZ0IHRoZSBkYXRhIHBhcnRpb24gdG8gdGhlIGVuZCBvZiB0aGUgY2FyZCAo
+dXNpbmcgZ3BhcnRlZCkNCi0gcmVzaXplIHRoZSB0d28gZmlsZXN5c3RlbS9rZXJuZWwgcGFydGl0
+aW9ucyB0byBmaWxsIGluIHRoZSBlbXB0eSBzcGFjZSBpbiB0aGUgbWlkZGxlLCBidXQgdGhleSBu
+ZWVkIHRvIGJlIHRoZSBzYW1lIHNpemUgKHVzaW5nIGdwYXJ0ZWQpDQoNClJlYWQgdXAgb24gTWVu
+ZGVyIGZvciBtb3JlIGluZm8gb24gdGhlIHBhcnRpdGlvbiBsYXlvdXQgKGh0dHBzOi8vZG9jcy5t
+ZW5kZXIuaW8vMS43L2RldmljZXMvZ2VuZXJhbC1zeXN0ZW0tcmVxdWlyZW1lbnRzI3BhcnRpdGlv
+bi1sYXlvdXQpLiBJdCdzIGEgcGFpbiB0aGF0IHRoZXkgd2VudCB3aXRoIE1lbmRlciBmb3IgdGhl
+IGRlZmF1bHQgRTMyMCBjYXJkOyBpdCBjdXRzIHRoZSAndXNhYmxlJyBmaWxlIHN5c3RlbSBzcGFj
+ZSBpbiBoYWxmLCBhdCB0aGUgYmVuZWZpdCBvZiBoYXZpbmcgMiBpbmRlcGVuZGVudCBmaWxlc3lz
+dGVtIHBhcnRpdGlvbnMuLi4gSSBoYXZlbid0IGhhZCB0aW1lIHRvIGZpZGRsZSBhcm91bmQgYW5k
+IGRpdGNoIHRoZSBtZW5kZXIgZm9yIGEgJ25vcm1hbCcgcGFydGl0aW9uIGxheW91dCwgYnV0IEkn
+ZCBhc3N1bWUgaXQncyBwb3NzaWJsZS4NCg0KQ2hlZXJzLA0KQ2hyaXMNCg0KDQoNCi0tLS0tIE9y
+aWdpbmFsIE1lc3NhZ2UgLS0tLS0NCkZyb206DQoiSmFzb24gTWF0dXNpYWsiIDxqYXNvbkBnYXJk
+ZXR0b2VuZ2luZWVyaW5nLmNvbT4NCg0KVG86DQoiRXR0dXMgTWFpbCBMaXN0IiA8dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20+DQpDYzoNCg0KU2VudDoNCldlZCwgMTkgSnVuIDIwMTkgMTY6Mjk6
+MzggKzAwMDANClN1YmplY3Q6DQpbVVNSUC11c2Vyc10gRTMyMCB3aXRoIGxhcmdlciBTRCBjYXJk
+DQoNCg0KDQpJIHdhbnRlZCB0byB1c2UgYSBsYXJnZXIgU0QgY2FyZCB0aGFuIHRoZSBvbmUgdGhh
+dCBhcyBzdXBwbGllZCwgYnV0IEkgYW0gaGF2aW5nIGlzc3Vlcy4gIEkgbG9hZGVkIHVwIHRoZSBj
+YXJkLCBhbmQgdGhlbiBleHRlbmRlZCB0aGUgZGF0YSBwYXJ0aXRpb24gdG8gdXNlIHVwIHRoZSBy
+ZXN0IG9mIHRoZSBmcmVlIHNwYWNlIChhYm91dCAxMDBHQikuICBCdXQgdGhlbiBpdCBkb2Vzbid0
+IGJvb3QuDQoNCg0KSSBhbSB3b25kZXJpbmcgaWYgdGhlIGNoYW5nZSB0byBhIHBhcnRpdGlvbiBz
+aXplIHNjcmV3ZWQgdXAgc29tZXRoaW5nIGluIGEgY29uZmlnIGZpbGUgc29tZXdoZXJlLiAgSXMg
+dGhlcmUgYSB3YXkgdG8gZml4IHRoaXMgd2l0aG91dCByZWJ1aWxkaW5nIGEgZG9ja2VyIGltYWdl
+PyAgSSBhbSB1c2luZyB0aGUgVUhEIDMuMTQuMC4wLiB0aGF0IGhhcyB0aGUgc21hbGxlciBkYXRh
+IHBhcnRpdGlvbiAoVUhEIDMuMTQuMS4wIGhhcyBhIGxhcmdlciBkYXRhIHBhcnRpdGlvbiwgYnV0
+IGRvZXNuJ3QgaW5jbHVkZSBhbnkgR1IvcHl0aG9uIHBhY2thZ2VzLCBzbyBJIG5lZWQgdG8gdXNl
+IHRoZSBvbGRlciBpbWFnZSkuDQoNCg0KVGhhbmtzLg0K
 
---=_906ff1968deb6535ca880940016b5991
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_ee9bf2f54fa14fa2b213c3da7cc1dacbgardettoengineeringcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <6AEDA218E1EDA943AB2552492A993863@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-<html><body style=3D"font-family: 'Helvetica Neue',Helvetica,Arial,sans-=
-serif; font-size: 12px;">=C2=A0<br />My understanding of the partiitons=
- on the card are (in order);<div><br /><div>&lt;boot&gt;&lt;filesystem+k=
-ernel A&gt;&lt;filesystem+kernel B&gt;&lt;persistent data&gt;&lt;empty s=
-pace&gt;</div><div><br /></div><div>Mender allows you to boot from one o=
-f the A/B partitions as your primary filesystem (mounted as /), plus the=
- persistent data (mounted as /home/ or /data or similar).=C2=A0</div><di=
-v><br /></div><div>My experience is if you perform resizing while keepin=
-g the partitions contiguous (no free space between them), and have the A=
- and B partitions identical in size, it "just works". So my steps in the=
- previous reply would look like:</div><div><div>=C2=A0 =C2=A0&lt;boot&gt=
-;&lt;filesystem+kernel A&gt;&lt;filesystem+kernel B&gt;&lt;persistent da=
-ta&gt;&lt;----------empty space---------------&gt;=C2=A0 # original imag=
-e on large SD Card</div><div>=C2=A0 =C2=A0&lt;boot&gt;&lt;filesystem+ker=
-nel A&gt;&lt;filesystem+kernel B&gt;&lt;-------------empty space--------=
-----&gt;&lt;persistent data&gt;=C2=A0 # shift persistent data to the end=
-</div><div>=C2=A0 =C2=A0&lt;boot&gt;&lt;----------filesystem+kernel A---=
-------&gt;&lt;----------filesystem+kernel B---------&gt;&lt;persistent d=
-ata&gt;=C2=A0 # maximise A/B partitions, keeping A and B the same size</=
-div></div><div><br /></div><div>Rather than extending the data partition=
-, I wanted to add new libraries and applications in /usr, which is locat=
-ed on the A/B partitions. Hence my instructions involve me resizing thos=
-e partitions instead of the data partition.=C2=A0</div><div><div><br /><=
-/div><div>If you're simply extending the size of the persistent data par=
-tition without shifting it's start point (while leaving the other partit=
-ions alone) I'm at a loss as to why it wouldn't work. But when you do th=
-is you may need some extra linux-fu to shift your new binary/library loc=
-ations to that partition rather than the default /usr.</div><div><br /><=
-/div><div>Cheers,</div><div>Chris<br /><blockquote><br />----- Original=
- Message -----<br /><div style=3D"width:100%;background:rgb(228,228,228)=
-;"><div style=3D"font-weight:bold;">From:</div> "Jason Matusiak" &lt;jas=
-on@gardettoengineering.com&gt;</div><br /><div style=3D"font-weight:bold=
-;">To:</div>"Chris Gobbett" &lt;gobbo@tpg.com.au&gt;<br /><div style=3D"=
-font-weight:bold;">Cc:</div>"Ettus Mail List" &lt;usrp-users@lists.ettus=
-.com&gt;<br /><div style=3D"font-weight:bold;">Sent:</div>Wed, 19 Jun 20=
-19 23:12:40 +0000<br /><div style=3D"font-weight:bold;">Subject:</div>Re=
-: [USRP-users] E320 with larger SD card<br /><br /><br /><div>Chris, tha=
-nks for the tips.<br /><br /></div>=0A<div>So I put a fresh load on a ca=
-rd, then used gparted to extend the data partition to fill things out. T=
-hat isn't enough, and your instructions certainly show more steps. But I=
- don't understand what you mean with the partitions in the middle.=0A<br=
- /><br /></div>=0A<div>I'll read up on Mender and see if that answers it=
- for me. Thanks again.</div>=0A<div class=3D"gmail_quote">On Jun 19, 201=
-9, at 6:56 PM, Chris Gobbett &lt;<a href=3D"mailto:gobbo@tpg.com.au">gob=
-bo@tpg.com.au</a>&gt; wrote:=0A<blockquote class=3D"gmail_quote" style=
-=3D"margin:0pt 0pt 0pt .8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex;">=0A=C2=A0 <br />=0AHi Jason,=0A<div><br /></div>=0A<div>I'=
-ve had luck with the following: </div>=0A<div>- backup/clone the origina=
-l SDCard image to disk and/or larger SDCard (using dd or otherwise)=0A</=
-div>=0A<div>- on the new card, resize/shift the data partion to the end=
- of the card (using gparted)=0A</div>=0A<div>- resize the two filesystem=
-/kernel partitions to fill in the empty space in the middle, but they ne=
-ed to be the same size (using gparted)=0A</div>=0A<div><br /></div>=0A<d=
-iv>Read up on Mender for more info on the partition layout (https://docs=
-.mender.io/1.7/devices/general-system-requirements#partition-layout). It=
-'s a pain that they went with Mender for the default E320 card; it cuts=
- the 'usable' file system space in half,=0A at the benefit of having 2 i=
-ndependent filesystem partitions... I haven't had time to fiddle around=
- and ditch the mender for a 'normal' partition layout, but I'd assume it=
-'s possible.=0A</div>=0A<div><br /></div>=0A<div>Cheers, </div>=0A<div>C=
-hris </div>=0A<div><br /><br /><blockquote><br />=0A----- Original Messa=
-ge ----- <br /><div style=3D"width:100%;background:rgb(228,228,228);">=
-=0A<div style=3D"font-weight:bold;">From: </div>=0A"Jason Matusiak" &lt;=
-jason@gardettoengineering.com&gt; </div>=0A<br /><div style=3D"font-weig=
-ht:bold;">To: </div>=0A"Ettus Mail List" &lt;usrp-users@lists.ettus.com&=
-gt; <br /><div style=3D"font-weight:bold;">Cc: </div>=0A<br /><div style=
-=3D"font-weight:bold;">Sent: </div>=0AWed, 19 Jun 2019 16:29:38 +0000 <b=
-r /><div style=3D"font-weight:bold;">Subject: </div>=0A[USRP-users] E320=
- with larger SD card <br /><br /><br /><div style=3D"font-size:12pt;colo=
-r:#000000;font-family:Calibri, Helvetica, sans-serif;" dir=3D"ltr">=0A<p=
- style=3D"margin-top:0;margin-bottom:0;">I wanted to use a larger SD car=
-d than the one that as supplied, but I am having issues.=C2=A0 I loaded=
- up the card, and then extended the data partition to use up the rest of=
- the free space (about 100GB).=C2=A0 But then it doesn't=0A boot.</p>=0A=
-<p style=3D"margin-top:0;margin-bottom:0;"><br /></p>=0A<p style=3D"marg=
-in-top:0;margin-bottom:0;">I am wondering if the change to a partition s=
-ize screwed up something in a config file somewhere.=C2=A0 Is there a wa=
-y to fix this without rebuilding a docker image?=C2=A0 I am using the UH=
-D 3.14.0.0. that has the smaller data=0A partition (UHD 3.14.1.0 has a l=
-arger data partition, but doesn't include any GR/python packages<span st=
-yle=3D"font-family:Calibri, Helvetica, sans-serif, EmojiFont, 'Apple Col=
-or Emoji', 'Segoe UI Emoji', NotoColorEmoji, 'Segoe UI Symbol', 'Android=
- Emoji', EmojiSymbols;font-size:16px;">,=0A so I need to use the older i=
-mage</span>).</p>=0A<p style=3D"margin-top:0;margin-bottom:0;"><br /></p=
->=0A<p style=3D"margin-top:0;margin-bottom:0;">Thanks.</p>=0A</div>=0A</=
-blockquote>=0A</div>=0A</blockquote>=0A</div>=0A</blockquote></div></div=
-></div></body></html>
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdiBkaXI9ImF1
+dG8iPk9LLCBJIHNlZSBub3cgd2hhdCB5b3Ugd2VyZSBkb2luZyBkaWZmZXJlbnQuIEkgdGhpbmsg
+SSBjb3VsZCBkZWFsIHdpdGggbGVhdmluZyB0aGUgL2RhdGEgcGFydGl0aW9uIHRoZSBzYW1lIHNp
+emUgYW5kIGluY3JlYXNpbmcgdGhlIHR3byBmaWxlc3lzdGVtcy4gSSB3YXMganVzdCB0cnlpbmcg
+dG8gc2F2ZSBteXNlbGYgdGhlIGhhc3NsZSBvZiBwZXJmb3JtaW5nIGEgbWVuZGVyIHVwZGF0ZSBk
+b3duIHRoZSByb2FkIGFuZA0KIGZvcmdldHRpbmcgdGhhdCB0aGUgZGF0YSBpbiB+LyB3YXNuJ3Qg
+cGVyc2lzdGVudC4gPGJyPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+SSBndWVzcyBp
+dCBpcyBzb21ldGhpbmcgdG8gdHJ5IGZvciBub3cgKHRvbW9ycm93KSwgYW5kIHRoZW4gZmxlc2gg
+b3V0IHRoZSAvZGF0YSBwcm9ibGVtIGFmdGVyIGhhdmluZyBhIGJldHRlciB1bmRlcnN0YW5kaW5n
+IG9mIHdoYXQgaXMgZ29pbmcgb24gKGhvcGVmdWxseSkuPGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNz
+PSJnbWFpbF9xdW90ZSI+T24gSnVuIDE5LCAyMDE5LCBhdCA4OjIxIFBNLCBDaHJpcyBHb2JiZXR0
+ICZsdDs8YSBocmVmPSJtYWlsdG86Z29iYm9AdHBnLmNvbS5hdSIgdGFyZ2V0PSJfYmxhbmsiPmdv
+YmJvQHRwZy5jb20uYXU8L2E+Jmd0OyB3cm90ZToNCjxibG9ja3F1b3RlIGNsYXNzPSJnbWFpbF9x
+dW90ZSIgc3R5bGU9Im1hcmdpbjogMHB0IDBwdCAwcHQgMC44ZXg7IGJvcmRlci1sZWZ0OiAxcHgg
+c29saWQgcmdiKDIwNCwgMjA0LCAyMDQpOyBwYWRkaW5nLWxlZnQ6IDFleDsiPg0KJm5ic3A7IDxi
+cj4NCk15IHVuZGVyc3RhbmRpbmcgb2YgdGhlIHBhcnRpaXRvbnMgb24gdGhlIGNhcmQgYXJlIChp
+biBvcmRlcik7DQo8ZGl2Pjxicj4NCjxkaXY+Jmx0O2Jvb3QmZ3Q7Jmx0O2ZpbGVzeXN0ZW0mIzQz
+O2tlcm5lbCBBJmd0OyZsdDtmaWxlc3lzdGVtJiM0MztrZXJuZWwgQiZndDsmbHQ7cGVyc2lzdGVu
+dCBkYXRhJmd0OyZsdDtlbXB0eSBzcGFjZSZndDsNCjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4N
+CjxkaXY+TWVuZGVyIGFsbG93cyB5b3UgdG8gYm9vdCBmcm9tIG9uZSBvZiB0aGUgQS9CIHBhcnRp
+dGlvbnMgYXMgeW91ciBwcmltYXJ5IGZpbGVzeXN0ZW0gKG1vdW50ZWQgYXMgLyksIHBsdXMgdGhl
+IHBlcnNpc3RlbnQgZGF0YSAobW91bnRlZCBhcyAvaG9tZS8gb3IgL2RhdGEgb3Igc2ltaWxhciku
+Jm5ic3A7DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pk15IGV4cGVyaWVuY2UgaXMg
+aWYgeW91IHBlcmZvcm0gcmVzaXppbmcgd2hpbGUga2VlcGluZyB0aGUgcGFydGl0aW9ucyBjb250
+aWd1b3VzIChubyBmcmVlIHNwYWNlIGJldHdlZW4gdGhlbSksIGFuZCBoYXZlIHRoZSBBIGFuZCBC
+IHBhcnRpdGlvbnMgaWRlbnRpY2FsIGluIHNpemUsIGl0ICZxdW90O2p1c3Qgd29ya3MmcXVvdDsu
+IFNvIG15IHN0ZXBzIGluIHRoZSBwcmV2aW91cyByZXBseSB3b3VsZCBsb29rIGxpa2U6DQo8L2Rp
+dj4NCjxkaXY+DQo8ZGl2PiZuYnNwOyAmbmJzcDsmbHQ7Ym9vdCZndDsmbHQ7ZmlsZXN5c3RlbSYj
+NDM7a2VybmVsIEEmZ3Q7Jmx0O2ZpbGVzeXN0ZW0mIzQzO2tlcm5lbCBCJmd0OyZsdDtwZXJzaXN0
+ZW50IGRhdGEmZ3Q7Jmx0Oy0tLS0tLS0tLS1lbXB0eSBzcGFjZS0tLS0tLS0tLS0tLS0tLSZndDsm
+bmJzcDsgIyBvcmlnaW5hbCBpbWFnZSBvbiBsYXJnZSBTRCBDYXJkDQo8L2Rpdj4NCjxkaXY+Jm5i
+c3A7ICZuYnNwOyZsdDtib290Jmd0OyZsdDtmaWxlc3lzdGVtJiM0MztrZXJuZWwgQSZndDsmbHQ7
+ZmlsZXN5c3RlbSYjNDM7a2VybmVsIEImZ3Q7Jmx0Oy0tLS0tLS0tLS0tLS1lbXB0eSBzcGFjZS0t
+LS0tLS0tLS0tLSZndDsmbHQ7cGVyc2lzdGVudCBkYXRhJmd0OyZuYnNwOyAjIHNoaWZ0IHBlcnNp
+c3RlbnQgZGF0YSB0byB0aGUgZW5kDQo8L2Rpdj4NCjxkaXY+Jm5ic3A7ICZuYnNwOyZsdDtib290
+Jmd0OyZsdDstLS0tLS0tLS0tZmlsZXN5c3RlbSYjNDM7a2VybmVsIEEtLS0tLS0tLS0mZ3Q7Jmx0
+Oy0tLS0tLS0tLS1maWxlc3lzdGVtJiM0MztrZXJuZWwgQi0tLS0tLS0tLSZndDsmbHQ7cGVyc2lz
+dGVudCBkYXRhJmd0OyZuYnNwOyAjIG1heGltaXNlIEEvQiBwYXJ0aXRpb25zLCBrZWVwaW5nIEEg
+YW5kIEIgdGhlIHNhbWUgc2l6ZQ0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8
+ZGl2PlJhdGhlciB0aGFuIGV4dGVuZGluZyB0aGUgZGF0YSBwYXJ0aXRpb24sIEkgd2FudGVkIHRv
+IGFkZCBuZXcgbGlicmFyaWVzIGFuZCBhcHBsaWNhdGlvbnMgaW4gL3Vzciwgd2hpY2ggaXMgbG9j
+YXRlZCBvbiB0aGUgQS9CIHBhcnRpdGlvbnMuIEhlbmNlIG15IGluc3RydWN0aW9ucyBpbnZvbHZl
+IG1lIHJlc2l6aW5nIHRob3NlIHBhcnRpdGlvbnMgaW5zdGVhZCBvZiB0aGUgZGF0YSBwYXJ0aXRp
+b24uJm5ic3A7DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5JZiB5b3Un
+cmUgc2ltcGx5IGV4dGVuZGluZyB0aGUgc2l6ZSBvZiB0aGUgcGVyc2lzdGVudCBkYXRhIHBhcnRp
+dGlvbiB3aXRob3V0IHNoaWZ0aW5nIGl0J3Mgc3RhcnQgcG9pbnQgKHdoaWxlIGxlYXZpbmcgdGhl
+IG90aGVyIHBhcnRpdGlvbnMgYWxvbmUpIEknbSBhdCBhIGxvc3MgYXMgdG8gd2h5IGl0IHdvdWxk
+bid0IHdvcmsuIEJ1dCB3aGVuIHlvdSBkbyB0aGlzIHlvdSBtYXkgbmVlZCBzb21lIGV4dHJhIGxp
+bnV4LWZ1IHRvIHNoaWZ0IHlvdXINCiBuZXcgYmluYXJ5L2xpYnJhcnkgbG9jYXRpb25zIHRvIHRo
+YXQgcGFydGl0aW9uIHJhdGhlciB0aGFuIHRoZSBkZWZhdWx0IC91c3IuIDwvZGl2Pg0KPGRpdj48
+YnI+DQo8L2Rpdj4NCjxkaXY+Q2hlZXJzLCA8L2Rpdj4NCjxkaXY+Q2hyaXMgPGJyPg0KPGJsb2Nr
+cXVvdGU+PGJyPg0KLS0tLS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0tLSA8YnI+DQo8ZGl2IHN0eWxl
+PSJ3aWR0aDoxMDAlO2JhY2tncm91bmQ6cmdiKDIyOCwyMjgsMjI4KTsiPg0KPGRpdiBzdHlsZT0i
+Zm9udC13ZWlnaHQ6Ym9sZDsiPkZyb206IDwvZGl2Pg0KJnF1b3Q7SmFzb24gTWF0dXNpYWsmcXVv
+dDsgJmx0O2phc29uQGdhcmRldHRvZW5naW5lZXJpbmcuY29tJmd0OyA8L2Rpdj4NCjxicj4NCjxk
+aXYgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Ij5UbzogPC9kaXY+DQomcXVvdDtDaHJpcyBHb2Ji
+ZXR0JnF1b3Q7ICZsdDtnb2Jib0B0cGcuY29tLmF1Jmd0OyA8YnI+DQo8ZGl2IHN0eWxlPSJmb250
+LXdlaWdodDpib2xkOyI+Q2M6IDwvZGl2Pg0KJnF1b3Q7RXR0dXMgTWFpbCBMaXN0JnF1b3Q7ICZs
+dDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsgPGJyPg0KPGRpdiBzdHlsZT0iZm9udC13
+ZWlnaHQ6Ym9sZDsiPlNlbnQ6IDwvZGl2Pg0KV2VkLCAxOSBKdW4gMjAxOSAyMzoxMjo0MCAmIzQz
+OzAwMDAgPGJyPg0KPGRpdiBzdHlsZT0iZm9udC13ZWlnaHQ6Ym9sZDsiPlN1YmplY3Q6IDwvZGl2
+Pg0KUmU6IFtVU1JQLXVzZXJzXSBFMzIwIHdpdGggbGFyZ2VyIFNEIGNhcmQgPGJyPg0KPGJyPg0K
+PGJyPg0KPGRpdj5DaHJpcywgdGhhbmtzIGZvciB0aGUgdGlwcy4gPGJyPg0KPGJyPg0KPC9kaXY+
+DQo8ZGl2PlNvIEkgcHV0IGEgZnJlc2ggbG9hZCBvbiBhIGNhcmQsIHRoZW4gdXNlZCBncGFydGVk
+IHRvIGV4dGVuZCB0aGUgZGF0YSBwYXJ0aXRpb24gdG8gZmlsbCB0aGluZ3Mgb3V0LiBUaGF0IGlz
+bid0IGVub3VnaCwgYW5kIHlvdXIgaW5zdHJ1Y3Rpb25zIGNlcnRhaW5seSBzaG93IG1vcmUgc3Rl
+cHMuIEJ1dCBJIGRvbid0IHVuZGVyc3RhbmQgd2hhdCB5b3UgbWVhbiB3aXRoIHRoZSBwYXJ0aXRp
+b25zIGluIHRoZSBtaWRkbGUuDQo8YnI+DQo8YnI+DQo8L2Rpdj4NCjxkaXY+SSdsbCByZWFkIHVw
+IG9uIE1lbmRlciBhbmQgc2VlIGlmIHRoYXQgYW5zd2VycyBpdCBmb3IgbWUuIFRoYW5rcyBhZ2Fp
+bi4gPC9kaXY+DQo8ZGl2IGNsYXNzPSJnbWFpbF9xdW90ZSI+T24gSnVuIDE5LCAyMDE5LCBhdCA2
+OjU2IFBNLCBDaHJpcyBHb2JiZXR0ICZsdDsgPGEgaHJlZj0ibWFpbHRvOmdvYmJvQHRwZy5jb20u
+YXUiPg0KZ29iYm9AdHBnLmNvbS5hdTwvYT4mZ3Q7IHdyb3RlOg0KPGJsb2NrcXVvdGUgY2xhc3M9
+ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBwdCAwcHQgMHB0IC44ZXg7Ym9yZGVyLWxlZnQ6
+MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7cGFkZGluZy1sZWZ0OjFleDsiPg0KJm5ic3A7IDxi
+cj4NCkhpIEphc29uLA0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+SSd2ZSBoYWQgbHVjayB3aXRo
+IHRoZSBmb2xsb3dpbmc6IDwvZGl2Pg0KPGRpdj4tIGJhY2t1cC9jbG9uZSB0aGUgb3JpZ2luYWwg
+U0RDYXJkIGltYWdlIHRvIGRpc2sgYW5kL29yIGxhcmdlciBTRENhcmQgKHVzaW5nIGRkIG9yIG90
+aGVyd2lzZSkNCjwvZGl2Pg0KPGRpdj4tIG9uIHRoZSBuZXcgY2FyZCwgcmVzaXplL3NoaWZ0IHRo
+ZSBkYXRhIHBhcnRpb24gdG8gdGhlIGVuZCBvZiB0aGUgY2FyZCAodXNpbmcgZ3BhcnRlZCkNCjwv
+ZGl2Pg0KPGRpdj4tIHJlc2l6ZSB0aGUgdHdvIGZpbGVzeXN0ZW0va2VybmVsIHBhcnRpdGlvbnMg
+dG8gZmlsbCBpbiB0aGUgZW1wdHkgc3BhY2UgaW4gdGhlIG1pZGRsZSwgYnV0IHRoZXkgbmVlZCB0
+byBiZSB0aGUgc2FtZSBzaXplICh1c2luZyBncGFydGVkKQ0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
+ZGl2Pg0KPGRpdj5SZWFkIHVwIG9uIE1lbmRlciBmb3IgbW9yZSBpbmZvIG9uIHRoZSBwYXJ0aXRp
+b24gbGF5b3V0IChodHRwczovL2RvY3MubWVuZGVyLmlvLzEuNy9kZXZpY2VzL2dlbmVyYWwtc3lz
+dGVtLXJlcXVpcmVtZW50cyNwYXJ0aXRpb24tbGF5b3V0KS4gSXQncyBhIHBhaW4gdGhhdCB0aGV5
+IHdlbnQgd2l0aCBNZW5kZXIgZm9yIHRoZSBkZWZhdWx0IEUzMjAgY2FyZDsgaXQgY3V0cyB0aGUg
+J3VzYWJsZScgZmlsZSBzeXN0ZW0gc3BhY2UgaW4gaGFsZiwNCiBhdCB0aGUgYmVuZWZpdCBvZiBo
+YXZpbmcgMiBpbmRlcGVuZGVudCBmaWxlc3lzdGVtIHBhcnRpdGlvbnMuLi4gSSBoYXZlbid0IGhh
+ZCB0aW1lIHRvIGZpZGRsZSBhcm91bmQgYW5kIGRpdGNoIHRoZSBtZW5kZXIgZm9yIGEgJ25vcm1h
+bCcgcGFydGl0aW9uIGxheW91dCwgYnV0IEknZCBhc3N1bWUgaXQncyBwb3NzaWJsZS4NCjwvZGl2
+Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+Q2hlZXJzLCA8L2Rpdj4NCjxkaXY+Q2hyaXMgPC9k
+aXY+DQo8ZGl2Pjxicj4NCjxicj4NCjxibG9ja3F1b3RlPjxicj4NCi0tLS0tIE9yaWdpbmFsIE1l
+c3NhZ2UgLS0tLS0gPGJyPg0KPGRpdiBzdHlsZT0id2lkdGg6MTAwJTtiYWNrZ3JvdW5kOnJnYigy
+MjgsMjI4LDIyOCk7Ij4NCjxkaXYgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Ij5Gcm9tOiA8L2Rp
+dj4NCiZxdW90O0phc29uIE1hdHVzaWFrJnF1b3Q7ICZsdDtqYXNvbkBnYXJkZXR0b2VuZ2luZWVy
+aW5nLmNvbSZndDsgPC9kaXY+DQo8YnI+DQo8ZGl2IHN0eWxlPSJmb250LXdlaWdodDpib2xkOyI+
+VG86IDwvZGl2Pg0KJnF1b3Q7RXR0dXMgTWFpbCBMaXN0JnF1b3Q7ICZsdDt1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbSZndDsgPGJyPg0KPGRpdiBzdHlsZT0iZm9udC13ZWlnaHQ6Ym9sZDsiPkNj
+OiA8L2Rpdj4NCjxicj4NCjxkaXYgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Ij5TZW50OiA8L2Rp
+dj4NCldlZCwgMTkgSnVuIDIwMTkgMTY6Mjk6MzggJiM0MzswMDAwIDxicj4NCjxkaXYgc3R5bGU9
+ImZvbnQtd2VpZ2h0OmJvbGQ7Ij5TdWJqZWN0OiA8L2Rpdj4NCltVU1JQLXVzZXJzXSBFMzIwIHdp
+dGggbGFyZ2VyIFNEIGNhcmQgPGJyPg0KPGJyPg0KPGJyPg0KPGRpdiBzdHlsZT0iZm9udC1zaXpl
+OjEycHQ7Y29sb3I6IzAwMDAwMDtmb250LWZhbWlseTpDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMt
+c2VyaWY7IiBkaXI9Imx0ciI+DQo8cCBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206
+MDsiPkkgd2FudGVkIHRvIHVzZSBhIGxhcmdlciBTRCBjYXJkIHRoYW4gdGhlIG9uZSB0aGF0IGFz
+IHN1cHBsaWVkLCBidXQgSSBhbSBoYXZpbmcgaXNzdWVzLiZuYnNwOyBJIGxvYWRlZCB1cCB0aGUg
+Y2FyZCwgYW5kIHRoZW4gZXh0ZW5kZWQgdGhlIGRhdGEgcGFydGl0aW9uIHRvIHVzZSB1cCB0aGUg
+cmVzdCBvZiB0aGUgZnJlZSBzcGFjZSAoYWJvdXQgMTAwR0IpLiZuYnNwOyBCdXQgdGhlbiBpdCBk
+b2Vzbid0DQogYm9vdC48L3A+DQo8cCBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206
+MDsiPjxicj4NCjwvcD4NCjxwIHN0eWxlPSJtYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowOyI+
+SSBhbSB3b25kZXJpbmcgaWYgdGhlIGNoYW5nZSB0byBhIHBhcnRpdGlvbiBzaXplIHNjcmV3ZWQg
+dXAgc29tZXRoaW5nIGluIGEgY29uZmlnIGZpbGUgc29tZXdoZXJlLiZuYnNwOyBJcyB0aGVyZSBh
+IHdheSB0byBmaXggdGhpcyB3aXRob3V0IHJlYnVpbGRpbmcgYSBkb2NrZXIgaW1hZ2U/Jm5ic3A7
+IEkgYW0gdXNpbmcgdGhlIFVIRCAzLjE0LjAuMC4gdGhhdCBoYXMgdGhlIHNtYWxsZXIgZGF0YQ0K
+IHBhcnRpdGlvbiAoVUhEIDMuMTQuMS4wIGhhcyBhIGxhcmdlciBkYXRhIHBhcnRpdGlvbiwgYnV0
+IGRvZXNuJ3QgaW5jbHVkZSBhbnkgR1IvcHl0aG9uIHBhY2thZ2VzPHNwYW4gc3R5bGU9ImZvbnQt
+ZmFtaWx5OkNhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZiwgRW1vamlGb250LCAnQXBwbGUg
+Q29sb3IgRW1vamknLCAnU2Vnb2UgVUkgRW1vamknLCBOb3RvQ29sb3JFbW9qaSwgJ1NlZ29lIFVJ
+IFN5bWJvbCcsICdBbmRyb2lkIEVtb2ppJywgRW1vamlTeW1ib2xzO2ZvbnQtc2l6ZToxNnB4OyI+
+LA0KIHNvIEkgbmVlZCB0byB1c2UgdGhlIG9sZGVyIGltYWdlPC9zcGFuPikuPC9wPg0KPHAgc3R5
+bGU9Im1hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7Ij48YnI+DQo8L3A+DQo8cCBzdHlsZT0i
+bWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPlRoYW5rcy48L3A+DQo8L2Rpdj4NCjwvYmxv
+Y2txdW90ZT4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
+aHRtbD4NCg==
 
---=_906ff1968deb6535ca880940016b5991--
+--_000_ee9bf2f54fa14fa2b213c3da7cc1dacbgardettoengineeringcom_--
 
 
-
---===============5272895431159910924==
+--===============0687167111716874001==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -220,6 +356,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5272895431159910924==--
-
+--===============0687167111716874001==--
 
