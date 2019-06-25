@@ -2,18 +2,18 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 670F65574C
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2019 20:38:04 +0200 (CEST)
-Received: from [::1] (port=41856 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB09B55750
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2019 20:39:40 +0200 (CEST)
+Received: from [::1] (port=43374 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hfqKR-0006Zp-GZ; Tue, 25 Jun 2019 14:38:03 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:39248)
+	id 1hfqLz-0006uD-N4; Tue, 25 Jun 2019 14:39:39 -0400
+Received: from mail-io1-f43.google.com ([209.85.166.43]:37001)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <coxe@close-haul.com>) id 1hfqKM-0006R0-Vb
- for usrp-users@lists.ettus.com; Tue, 25 Jun 2019 14:37:59 -0400
-Received: by mail-io1-f50.google.com with SMTP id r185so1173503iod.6
- for <usrp-users@lists.ettus.com>; Tue, 25 Jun 2019 11:37:38 -0700 (PDT)
+ (Exim 4.92) (envelope-from <coxe@close-haul.com>) id 1hfqLv-0006lE-6O
+ for usrp-users@lists.ettus.com; Tue, 25 Jun 2019 14:39:35 -0400
+Received: by mail-io1-f43.google.com with SMTP id e5so2512044iok.4
+ for <usrp-users@lists.ettus.com>; Tue, 25 Jun 2019 11:39:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quanttux-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
@@ -29,14 +29,14 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
  bh=Lg/Pc6YP6MtLTa5w77bn3lDMJ6TsDvaDGNMgKz45sDw=;
- b=dDg2OxrAOmPzJxndO8wkx+yU/6TETiSoSSsoONNLZZI0ETlEiWu3VZ0wArVCFOT42g
- tX1PLd23m3pmKaBfEK8B/xgbOosmsG0odvckSGbGEmRwY1cw98WW+YOIKkOXmh19LdLR
- HEKp3lR93NyI9U7JT596k7UuzZeVPWvIfo+XIsyerLN7Ssuxm9+LFHofticchMS1Y0Zp
- p/rdAcZZqXNXJz6YH5UlZihxzrgHytD+L0EJoJgc3KKPcttnCd5dYCveRFZFtTmNSsjz
- dczjxFtY+L152e8k/XszOERztI3b4tM8cP1WvQrw1jVVFd0byxj0JphmwlOwpQt4TFP1
- yO1w==
-X-Gm-Message-State: APjAAAU2vb3MgPCJV1l5BPCMEdkpAGFWkHfXm18ZnoFXAUH2nhyI/1Os
- ksLTlrm6c7KNg/Uj5VeubDdblcY3igvCan0l4tfJXw==
+ b=jO9rdOD1QwKwG/UK76L0PW4v0OAqtlfFKKsOgk/7Av53BQKjpwaMyI4AsRMvjh8i3V
+ hUMXOn9wN12l21zk1j3yeEijmtXBJnw1GaepZZnWJQqN+KeC2fd73eAO2PPHVJvNefOd
+ WQ155CcribrwOyBQYd9NFWT/Qn/oPDCXR79z8W4AlMVClyDvsB3AYJqU0odnrxoeh22k
+ 2sfz3BNlAdaMeXVJrvI20j0BctzGvNNQ0YhLZuSKKlw5tl/zTSShilBUA4a/GvMl8WlW
+ +o2GVJ7Zcflv6TLfCkQT5MYsN/myHB3VbbgZf2NXRMwPXb2LpuAPsR5iiNUD1dqymg3w
+ kN/Q==
+X-Gm-Message-State: APjAAAXLVGlXYubXPsK01aHM5sBagFQ18Uvn/aOPE80Ti2Z5cOmIDvWK
+ g/U+x8Sf+s8guVh2aA8Y7KwaWtykYZpvvyc0vfukydOV4A4=
 X-Google-Smtp-Source: APXvYqxFrIsQyXACMsP7QFphEL/afIQsAZydVvpql36/xUtyQRcB7nTyndU+C7b3ZGKVlubrwnandq6b6GN5mqO1EA4=
 X-Received: by 2002:a6b:ce19:: with SMTP id p25mr615033iob.201.1561487838202; 
  Tue, 25 Jun 2019 11:37:18 -0700 (PDT)
@@ -61,7 +61,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Robin Coxe <coxe@quanttux.com>
 Cc: "usrp-users \(usrp-users@lists.ettus.com\)" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7457189314794125193=="
+Content-Type: multipart/mixed; boundary="===============6177367009603580801=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,7 +75,7 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7457189314794125193==
+--===============6177367009603580801==
 Content-Type: multipart/alternative; boundary="000000000000eaeae1058c2a37ef"
 
 --000000000000eaeae1058c2a37ef
@@ -172,7 +172,7 @@ tinfo/usrp-users_lists.ettus.com</a><br>
 --000000000000eaeae1058c2a37ef--
 
 
---===============7457189314794125193==
+--===============6177367009603580801==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -183,5 +183,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7457189314794125193==--
+--===============6177367009603580801==--
 
