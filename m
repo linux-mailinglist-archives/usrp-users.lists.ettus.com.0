@@ -2,79 +2,46 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A4705502B
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2019 15:23:45 +0200 (CEST)
-Received: from [::1] (port=40212 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A7EF550BD
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Jun 2019 15:50:53 +0200 (CEST)
+Received: from [::1] (port=44282 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hflQF-0001gb-WD; Tue, 25 Jun 2019 09:23:44 -0400
-Received: from buffalo.u-blox.com ([195.34.89.137]:36209)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jonas.manthey@u-blox.com>)
- id 1hflQB-0001TO-Lx
- for usrp-users@lists.ettus.com; Tue, 25 Jun 2019 09:23:39 -0400
-Received: from mail_filter (localhost [127.0.0.1])
- by buffalo.u-blox.com (PF_LO_10026) with ESMTP id 2F67E39E66
- for <usrp-users@lists.ettus.com>; Tue, 25 Jun 2019 15:22:58 +0200 (CEST)
-Received: from ASSP.nospam (localhost [127.0.0.1])
- by buffalo.u-blox.com (Postfix) with ESMTP id E91A539E44;
- Tue, 25 Jun 2019 15:22:57 +0200 (CEST)
-Received: from unknown ([127.0.0.1] helo=anyhost.local) by ASSP.nospam with
- SMTP (2.4.7); 25 Jun 2019 15:22:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ubloxcom.onmicrosoft.com; s=selector1-ubloxcom-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nv29/vzUW9pkuTCKCpoqqox3RtbBTBFuDpCbYZd1oUE=;
- b=laFetfH47pSRpAYlntKHqow7CiVqsb499869sgM2Rg/NgB4cHiiUrrpv/dyIJQko4xxUuq2EmyNHSXfUzhzkdIQ5m27CGwp4Vs2hIQu62xA9mKONBPTY6zGedC5/Ie2zTzkKGrfhfR0AewPly/TQdV+J0a36+bCWJh95roazmsE=
-To: Adria <adria.amezaga@upc.edu>, "usrp-users@lists.ettus.com"
- <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Samples do not get through RFNoC stream splitter
-Thread-Index: AQHVK1b5FUmGafhfb0uPzGHAIC2u8qasWxWQ
-Date: Tue, 25 Jun 2019 13:22:56 +0000
-Message-ID: <sig.0079038766.CWXP265MB1143974874542068E9A474C8C1E30@CWXP265MB1143.GBRP265.PROD.OUTLOOK.COM>
+	id 1hflq9-00038d-2i; Tue, 25 Jun 2019 09:50:29 -0400
+Received: from dash.upc.es ([147.83.2.50]:56593)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <adria.amezaga@upc.edu>)
+ id 1hflq4-0002xm-IP
+ for usrp-users@lists.ettus.com; Tue, 25 Jun 2019 09:50:24 -0400
+Received: from ackerman2.upc.es (ackerman2.upc.es [147.83.2.244])
+ by dash.upc.es (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id x5PDngkJ019292
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+ Tue, 25 Jun 2019 15:49:43 +0200
+Received: from [192.168.2.14] (185-160-170-114.ipv4.xta.cat [185.160.170.114]
+ (may be forged)) (authenticated bits=0)
+ by ackerman2.upc.es (8.14.4/8.14.4) with ESMTP id x5PDng4g027617
+ (version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=NO);
+ Tue, 25 Jun 2019 15:49:42 +0200
+To: Jonas Manthey <jonas.manthey@u-blox.com>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 References: <ef1b9d55-f392-7e20-9420-22aa8d15fa27@upc.edu>
-In-Reply-To: <ef1b9d55-f392-7e20-9420-22aa8d15fa27@upc.edu>
-Accept-Language: de-CH, en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jonas.manthey@u-blox.com; 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 62ecd1e4-1934-4266-f159-08d6f9703c91
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(49563074)(7193020);
- SRVR:CWXP265MB1495; 
-x-ms-traffictypediagnostic: CWXP265MB1495:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: <CWXP265MB1495C1ADBDF3EB7FB55176B6C1E30@CWXP265MB1495.GBRP265.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0079056367
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(346002)(39850400004)(396003)(366004)(376002)(136003)(189003)(199004)(476003)(66574012)(33656002)(229853002)(14454004)(99936001)(44832011)(25786009)(81166006)(236005)(71190400001)(68736007)(733005)(53376002)(6246003)(2171002)(446003)(486006)(606006)(71200400001)(6436002)(9326002)(110136005)(19273905006)(790700001)(11346002)(53936002)(8676002)(6306002)(6506007)(76116006)(9686003)(7696005)(55016002)(74316002)(316002)(76176011)(52536014)(256004)(53546011)(478600001)(8936002)(66616009)(2906002)(2501003)(66476007)(186003)(81156014)(99286004)(5660300002)(26005)(66446008)(64756008)(102836004)(66556008)(73956011)(66946007)(86362001)(54896002)(54556002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CWXP265MB1495;
- H:CWXP265MB1143.GBRP265.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: u-blox.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: YpVRRFJ/BuDFIRDnv5kpAOuDRYhkYw5EwuwXSDiHsxwgo697lg0sHVMYw4Oe1mt6aWnGYuUT2iKTRAgmlczrV2MZ/q8NXusqInhjOtPm2ZK3P937lxX/Yabopm07/I2/GllpubEGKLX+WUsPYafhYhV9o416ogSI22GpGrD2/ofaQiFuheU8aLIYzXC6nbD2pX19Pl0/bsIZDDRDHjE6FfK3ttOqv04gg/WHKU9bmVCut6SoaeOWIWEqZjeqSebLfYa6gV9iPy8YnlUJmLnjnXMDTf5Gw8cqzAj+FNPtWCE9Cjsr0mfJp9LXNFtkXbFacBOw++T6Q2FghtzP8z4DsRU4seNnmhFPwXD65UC9paTG9PNEdciOq+c8v9CDhzUssnPcb9Wqvn6fY//inWum73yh8fA4N3mgOEViGUSL6KI=
+ <sig.0079038766.CWXP265MB1143974874542068E9A474C8C1E30@CWXP265MB1143.GBRP265.PROD.OUTLOOK.COM>
+Message-ID: <b217ae97-19d1-2a51-cf6f-a2ae4719c4ff@upc.edu>
+Date: Tue, 25 Jun 2019 15:49:42 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62ecd1e4-1934-4266-f159-08d6f9703c91
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2019 13:22:56.6055 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 80c4ffa6-7511-4bba-9f03-e5872a660c9b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jonas.manthey@u-blox.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB1495
-X-OriginatorOrg: u-blox.com
-X-Assp-Version: 2.4.7(16004) on ASSP.nospam
-X-Assp-ID: ASSP.nospam 68977-00436
-X-Assp-Session: 8A5C6A1C (mail 1)
-X-Assp-Original-Subject: RE: [USRP-users] Samples do not get through RFNoC
- stream splitter
-X-Assp-Client-TLS: yes
-X-Virus-Scanned: clamav-milter 0.99.4 at buffalo
+In-Reply-To: <sig.0079038766.CWXP265MB1143974874542068E9A474C8C1E30@CWXP265MB1143.GBRP265.PROD.OUTLOOK.COM>
+Content-Language: es-ES
+X-Antivirus: Avast (VPS 190624-4, 06/24/2019), Outbound message
+X-Antivirus-Status: Clean
+X-Greylist: IP, sender and recipient auto-whitelisted, not delayed by
+ milter-greylist-4.3.9 (dash.upc.es [147.83.2.50]);
+ Tue, 25 Jun 2019 15:49:43 +0200 (CEST)
+X-Greylist: Default is to whitelist mail, not delayed by milter-greylist-4.4.3
+ (ackerman2.upc.es [147.83.2.244]); Tue, 25 Jun 2019 15:49:42 +0200 (CEST)
+X-Scanned-By: MIMEDefang 2.70 on 147.83.2.244
+X-Virus-Scanned: clamav-milter 0.100.2 at dash
 X-Virus-Status: Clean
 Subject: Re: [USRP-users] Samples do not get through RFNoC stream splitter
 X-BeenThere: usrp-users@lists.ettus.com
@@ -88,9 +55,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonas Manthey via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonas Manthey <jonas.manthey@u-blox.com>
-Content-Type: multipart/mixed; boundary="===============8938794638381898671=="
+From: =?utf-8?q?Adri=C3=A0_Am=C3=A9zaga_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?QWRyacOgIEFtw6l6YWdh?= <adria.amezaga@upc.edu>
+Content-Type: multipart/mixed; boundary="===============6405070667665013228=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -104,247 +72,285 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8938794638381898671==
-Content-Language: en-US
-Content-Type: multipart/related;
-	boundary="_004_CWXP265MB1143974874542068E9A474C8C1E30CWXP265MB1143GBRP_";
-	type="multipart/alternative"
-
---_004_CWXP265MB1143974874542068E9A474C8C1E30CWXP265MB1143GBRP_
+This is a multi-part message in MIME format.
+--===============6405070667665013228==
 Content-Type: multipart/alternative;
-	boundary="_000_CWXP265MB1143974874542068E9A474C8C1E30CWXP265MB1143GBRP_"
+ boundary="------------9843B8FA51133EF093B0567C"
+Content-Language: es-ES
 
---_000_CWXP265MB1143974874542068E9A474C8C1E30CWXP265MB1143GBRP_
-Content-Type: text/plain; charset="utf-8"
+This is a multi-part message in MIME format.
+--------------9843B8FA51133EF093B0567C
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hi Jonas,
+
+I use the full sampling rate for the TX sweeps since most of the 
+instantaneous bandwidth of the UBX is used.
+
+Transmitting at these rates over 1Gig Ethernet would not be possible, so 
+I generate them using an RFNoC block inside the FPGA.
+
+Adrià
+
+El 6/25/2019 a las 3:22 PM, Jonas Manthey escribió:
+>
+> Hi,
+>
+> I cannot answer your question, but out of curiosity: why do you use a 
+> RFNoC? Seems like overkill to me.
+>
+> Cheers,
+>
+> Jonas
+>
+> *From:*USRP-users [mailto:usrp-users-bounces@lists.ettus.com] *On 
+> Behalf Of *Adria via USRP-users
+> *Sent:* Dienstag, 25. Juni 2019 15:07
+> *To:* usrp-users@lists.ettus.com
+> *Subject:* [USRP-users] Samples do not get through RFNoC stream splitter
+>
+> Dear all,
+>
+> I am working on an application where I need to transmit a frequency 
+> ramp through two UBX-160 using different carrier frequencies.
+>
+> I use a split_stream RFNoC block to copy the samples of a ramp 
+> generator like this:
+>
+> [Ramp Generator] ---> [Split Stream] --> Radio 0
+>
+> '-> Radio 1
+>
+> However, I see no activity on the radio outputs. If I replace the 
+> splitter with, for instance, a DigitalGain block or I remove it, data 
+> is transmitted correctly through any of the two daughterboards.
+>
+> Here is how I connect the blocks:
+>
+> /  //Connect DDS sweeper to splitter
+>   graph->connect(dds_src_ctrl->get_block_id(), splitter_id);
+>   //Connect splitter to radios
+>   graph->connect(splitter_id, 0, radio_ctrl_id_b, 0);
+>   graph->connect(splitter_id, 1, radio_ctrl_id_a, 0);/
+>
+> Any help would be appreciated, thanks!
+>
+> Image removed by sender. 
+> <https://www.avast.com/sig-email?utm_medium=email&utm_source=link&utm_campaign=sig-email&utm_content=emailclient&utm_term=icon>
+>
+> 	
+>
+> Virus-free. www.avast.com 
+> <https://www.avast.com/sig-email?utm_medium=email&utm_source=link&utm_campaign=sig-email&utm_content=emailclient&utm_term=link> 
+>
+>
+
+
+---
+This email has been checked for viruses by Avast antivirus software.
+https://www.avast.com/antivirus
+
+--------------9843B8FA51133EF093B0567C
+Content-Type: multipart/related;
+ boundary="------------FBB2BEF79C6F8B9566020069"
+
+
+--------------FBB2BEF79C6F8B9566020069
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hi Jonas, <br>
+    </p>
+    <p>I use the full sampling rate for the TX sweeps since most of the
+      instantaneous bandwidth of the UBX is used.</p>
+    <p>Transmitting at these rates over 1Gig Ethernet would not be
+      possible, so I generate them using an RFNoC block inside the FPGA.</p>
+    <p>Adrià</p>
+    <div class="moz-cite-prefix">El 6/25/2019 a las 3:22 PM, Jonas
+      Manthey escribió:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:sig.0079038766.CWXP265MB1143974874542068E9A474C8C1E30@CWXP265MB1143.GBRP265.PROD.OUTLOOK.COM">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]-->
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Hi,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">I
+            cannot answer your question, but out of curiosity: why do
+            you use a RFNoC? Seems like overkill to me.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Cheers,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Jonas<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p> </o:p></span></p>
+        <div>
+          <div style="border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0cm 0cm 0cm">
+            <p class="MsoNormal"><b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:windowtext"
+                  lang="EN-US">From:</span></b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:windowtext"
+                lang="EN-US"> USRP-users
+                [<a class="moz-txt-link-freetext" href="mailto:usrp-users-bounces@lists.ettus.com">mailto:usrp-users-bounces@lists.ettus.com</a>]
+                <b>On Behalf Of </b>Adria via USRP-users<br>
+                <b>Sent:</b> Dienstag, 25. Juni 2019 15:07<br>
+                <b>To:</b> <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+                <b>Subject:</b> [USRP-users] Samples do not get through
+                RFNoC stream splitter<o:p></o:p></span></p>
+          </div>
+        </div>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p>Dear all,<o:p></o:p></p>
+        <p>I am working on an application where I need to transmit a
+          frequency ramp through two UBX-160 using different carrier
+          frequencies.<o:p></o:p></p>
+        <p>I use a split_stream RFNoC block to copy the samples of a
+          ramp generator like this:<o:p></o:p></p>
+        <p>[Ramp Generator] ---&gt; [Split Stream] --&gt; Radio 0<o:p></o:p></p>
+        <p>                                                                  
+          '-&gt; Radio 1<o:p></o:p></p>
+        <p>However, I see no activity on the radio outputs. If I replace
+          the splitter with, for instance, a DigitalGain block or I
+          remove it, data is transmitted correctly through any of the
+          two daughterboards.<o:p></o:p></p>
+        <p>Here is how I connect the blocks:<o:p></o:p></p>
+        <p><i><span style="font-size:10.0pt">  //Connect DDS sweeper to
+              splitter<br>
+                graph-&gt;connect(dds_src_ctrl-&gt;get_block_id(),
+              splitter_id);<br>
+                //Connect splitter to radios<br>
+                graph-&gt;connect(splitter_id, 0, radio_ctrl_id_b, 0);<br>
+                graph-&gt;connect(splitter_id, 1, radio_ctrl_id_a, 0);</span></i><o:p></o:p></p>
+        <p>Any help would be appreciated, thanks!<o:p></o:p></p>
+        <div id="DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2">
+          <p class="MsoNormal"><o:p> </o:p></p>
+          <table class="MsoNormalTable"
+            style="border:none;border-top:solid #D3D4DE 1.0pt"
+            cellpadding="0" border="1">
+            <tbody>
+              <tr>
+                <td style="width:41.25pt;border:none;padding:9.75pt
+                  .75pt .75pt .75pt" width="58">
+                  <p class="MsoNormal"><a
+href="https://www.avast.com/sig-email?utm_medium=email&amp;utm_source=link&amp;utm_campaign=sig-email&amp;utm_content=emailclient&amp;utm_term=icon"
+                      target="_blank" moz-do-not-send="true"><span
+                        style="border:solid windowtext
+                        1.0pt;padding:0cm;text-decoration:none"><img
+                          id="_x0000_i1025"
+                          src="cid:part1.8A92FD8A.E65E3EEA@upc.edu"
+                          alt="Image removed by sender." class=""
+                          width="46" height="29" border="0"></span></a><o:p></o:p></p>
+                </td>
+                <td style="width:352.5pt;border:none;padding:9.0pt .75pt
+                  .75pt .75pt" width="473">
+                  <p class="MsoNormal" style="line-height:13.5pt"><span
+style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#41424E">Virus-free.
+                      <a
+href="https://www.avast.com/sig-email?utm_medium=email&amp;utm_source=link&amp;utm_campaign=sig-email&amp;utm_content=emailclient&amp;utm_term=link"
+                        target="_blank" moz-do-not-send="true">
+                        <span style="color:#4453EA">www.avast.com</span></a>
+                      <o:p></o:p></span></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="MsoNormal"><span style="color:windowtext"><o:p> </o:p></span></p>
+        </div>
+      </div>
+    </blockquote>
+  </body>
+</html>
+
+--------------FBB2BEF79C6F8B9566020069
+Content-Type: image/jpeg;
+ name="image001.jpg"
 Content-Transfer-Encoding: base64
+Content-ID: <part1.8A92FD8A.E65E3EEA@upc.edu>
+Content-Disposition: inline;
+ filename="image001.jpg"
 
-SGksDQoNCkkgY2Fubm90IGFuc3dlciB5b3VyIHF1ZXN0aW9uLCBidXQgb3V0IG9mIGN1cmlvc2l0
-eTogd2h5IGRvIHlvdSB1c2UgYSBSRk5vQz8gU2VlbXMgbGlrZSBvdmVya2lsbCB0byBtZS4NCg0K
-Q2hlZXJzLA0KSm9uYXMNCg0KRnJvbTogVVNSUC11c2VycyBbbWFpbHRvOnVzcnAtdXNlcnMtYm91
-bmNlc0BsaXN0cy5ldHR1cy5jb21dIE9uIEJlaGFsZiBPZiBBZHJpYSB2aWEgVVNSUC11c2Vycw0K
-U2VudDogRGllbnN0YWcsIDI1LiBKdW5pIDIwMTkgMTU6MDcNClRvOiB1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbQ0KU3ViamVjdDogW1VTUlAtdXNlcnNdIFNhbXBsZXMgZG8gbm90IGdldCB0aHJv
-dWdoIFJGTm9DIHN0cmVhbSBzcGxpdHRlcg0KDQoNCkRlYXIgYWxsLA0KDQpJIGFtIHdvcmtpbmcg
-b24gYW4gYXBwbGljYXRpb24gd2hlcmUgSSBuZWVkIHRvIHRyYW5zbWl0IGEgZnJlcXVlbmN5IHJh
-bXAgdGhyb3VnaCB0d28gVUJYLTE2MCB1c2luZyBkaWZmZXJlbnQgY2FycmllciBmcmVxdWVuY2ll
-cy4NCg0KSSB1c2UgYSBzcGxpdF9zdHJlYW0gUkZOb0MgYmxvY2sgdG8gY29weSB0aGUgc2FtcGxl
-cyBvZiBhIHJhbXAgZ2VuZXJhdG9yIGxpa2UgdGhpczoNCg0KW1JhbXAgR2VuZXJhdG9yXSAtLS0+
-IFtTcGxpdCBTdHJlYW1dIC0tPiBSYWRpbyAwDQoNCiAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnLT4gUmFkaW8gMQ0KDQpI
-b3dldmVyLCBJIHNlZSBubyBhY3Rpdml0eSBvbiB0aGUgcmFkaW8gb3V0cHV0cy4gSWYgSSByZXBs
-YWNlIHRoZSBzcGxpdHRlciB3aXRoLCBmb3IgaW5zdGFuY2UsIGEgRGlnaXRhbEdhaW4gYmxvY2sg
-b3IgSSByZW1vdmUgaXQsIGRhdGEgaXMgdHJhbnNtaXR0ZWQgY29ycmVjdGx5IHRocm91Z2ggYW55
-IG9mIHRoZSB0d28gZGF1Z2h0ZXJib2FyZHMuDQoNCkhlcmUgaXMgaG93IEkgY29ubmVjdCB0aGUg
-YmxvY2tzOg0KDQogIC8vQ29ubmVjdCBERFMgc3dlZXBlciB0byBzcGxpdHRlcg0KICBncmFwaC0+
-Y29ubmVjdChkZHNfc3JjX2N0cmwtPmdldF9ibG9ja19pZCgpLCBzcGxpdHRlcl9pZCk7DQogIC8v
-Q29ubmVjdCBzcGxpdHRlciB0byByYWRpb3MNCiAgZ3JhcGgtPmNvbm5lY3Qoc3BsaXR0ZXJfaWQs
-IDAsIHJhZGlvX2N0cmxfaWRfYiwgMCk7DQogIGdyYXBoLT5jb25uZWN0KHNwbGl0dGVyX2lkLCAx
-LCByYWRpb19jdHJsX2lkX2EsIDApOw0KDQpBbnkgaGVscCB3b3VsZCBiZSBhcHByZWNpYXRlZCwg
-dGhhbmtzIQ0KDQpbSW1hZ2UgcmVtb3ZlZCBieSBzZW5kZXIuXTxodHRwczovL3d3dy5hdmFzdC5j
-b20vc2lnLWVtYWlsP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1saW5rJnV0bV9jYW1wYWln
-bj1zaWctZW1haWwmdXRtX2NvbnRlbnQ9ZW1haWxjbGllbnQmdXRtX3Rlcm09aWNvbj4NClZpcnVz
-LWZyZWUuIHd3dy5hdmFzdC5jb208aHR0cHM6Ly93d3cuYXZhc3QuY29tL3NpZy1lbWFpbD91dG1f
-bWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9bGluayZ1dG1fY2FtcGFpZ249c2lnLWVtYWlsJnV0bV9j
-b250ZW50PWVtYWlsY2xpZW50JnV0bV90ZXJtPWxpbms+DQoNCg==
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8l
+JCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/wAALCAAdAC4BAREA/8QAHwAA
+AQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQR
+BRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RF
+RkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ip
+qrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/9oACAEB
+AAA/APZqKKKKKKKKKKKKKKKKKKKKKKK//9k=
+--------------FBB2BEF79C6F8B9566020069--
 
---_000_CWXP265MB1143974874542068E9A474C8C1E30CWXP265MB1143GBRP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6eD0idXJuOnNjaGVtYXMtbWljcm9z
-b2Z0LWNvbTpvZmZpY2U6ZXhjZWwiIHhtbG5zOnA9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206
-b2ZmaWNlOnBvd2VycG9pbnQiIHhtbG5zOmE9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2Zm
-aWNlOmFjY2VzcyIgeG1sbnM6ZHQ9InV1aWQ6QzJGNDEwMTAtNjVCMy0xMWQxLUEyOUYtMDBBQTAw
-QzE0ODgyIiB4bWxuczpzPSJ1dWlkOkJEQzZFM0YwLTZEQTMtMTFkMS1BMkEzLTAwQUEwMEMxNDg4
-MiIgeG1sbnM6cnM9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206cm93c2V0IiB4bWxuczpiPSJ1
-cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTpwdWJsaXNoZXIiIHhtbG5zOnNzPSJ1cm46
-c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTpzcHJlYWRzaGVldCIgeG1sbnM6Yz0idXJuOnNj
-aGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6Y29tcG9uZW50OnNwcmVhZHNoZWV0IiB4bWxuczpv
-ZGM9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9kYyIgeG1sbnM6b2E9InVybjpz
-Y2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOmFjdGl2YXRpb24iIHhtbG5zOmh0bWw9Imh0dHA6
-Ly93d3cudzMub3JnL1RSL1JFQy1odG1sNDAiIHhtbG5zOnE9Imh0dHA6Ly9zY2hlbWFzLnhtbHNv
-YXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpydGM9Imh0dHA6Ly9taWNyb3NvZnQuY29tL29m
-ZmljZW5ldC9jb25mZXJlbmNpbmciIHhtbG5zOkQ9IkRBVjoiIHhtbG5zOlJlcGw9Imh0dHA6Ly9z
-Y2hlbWFzLm1pY3Jvc29mdC5jb20vcmVwbC8iIHhtbG5zOm10PSJodHRwOi8vc2NoZW1hcy5taWNy
-b3NvZnQuY29tL3NoYXJlcG9pbnQvc29hcC9tZWV0aW5ncy8iIHhtbG5zOngyPSJodHRwOi8vc2No
-ZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS9leGNlbC8yMDAzL3htbCIgeG1sbnM6cHBkYT0iaHR0
-cDovL3d3dy5wYXNzcG9ydC5jb20vTmFtZVNwYWNlLnhzZCIgeG1sbnM6b2lzPSJodHRwOi8vc2No
-ZW1hcy5taWNyb3NvZnQuY29tL3NoYXJlcG9pbnQvc29hcC9vaXMvIiB4bWxuczpkaXI9Imh0dHA6
-Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2hhcmVwb2ludC9zb2FwL2RpcmVjdG9yeS8iIHhtbG5z
-OmRzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjIiB4bWxuczpkc3A9Imh0dHA6
-Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2hhcmVwb2ludC9kc3AiIHhtbG5zOnVkYz0iaHR0cDov
-L3NjaGVtYXMubWljcm9zb2Z0LmNvbS9kYXRhL3VkYyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3Lncz
-Lm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6c3ViPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQu
-Y29tL3NoYXJlcG9pbnQvc29hcC8yMDAyLzEvYWxlcnRzLyIgeG1sbnM6ZWM9Imh0dHA6Ly93d3cu
-dzMub3JnLzIwMDEvMDQveG1sZW5jIyIgeG1sbnM6c3A9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29m
-dC5jb20vc2hhcmVwb2ludC8iIHhtbG5zOnNwcz0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNv
-bS9zaGFyZXBvaW50L3NvYXAvIiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1M
-U2NoZW1hLWluc3RhbmNlIiB4bWxuczp1ZGNzPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29t
-L2RhdGEvdWRjL3NvYXAiIHhtbG5zOnVkY3hmPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29t
-L2RhdGEvdWRjL3htbGZpbGUiIHhtbG5zOnVkY3AycD0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0
-LmNvbS9kYXRhL3VkYy9wYXJ0dG9wYXJ0IiB4bWxuczp3Zj0iaHR0cDovL3NjaGVtYXMubWljcm9z
-b2Z0LmNvbS9zaGFyZXBvaW50L3NvYXAvd29ya2Zsb3cvIiB4bWxuczpkc3NzPSJodHRwOi8vc2No
-ZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA2L2RpZ3NpZy1zZXR1cCIgeG1sbnM6ZHNzaT0i
-aHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9vZmZpY2UvMjAwNi9kaWdzaWciIHhtbG5zOm1k
-c3NpPSJodHRwOi8vc2NoZW1hcy5vcGVueG1sZm9ybWF0cy5vcmcvcGFja2FnZS8yMDA2L2RpZ2l0
-YWwtc2lnbmF0dXJlIiB4bWxuczptdmVyPSJodHRwOi8vc2NoZW1hcy5vcGVueG1sZm9ybWF0cy5v
-cmcvbWFya3VwLWNvbXBhdGliaWxpdHkvMjAwNiIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxuczptcmVscz0iaHR0cDovL3NjaGVt
-YXMub3BlbnhtbGZvcm1hdHMub3JnL3BhY2thZ2UvMjAwNi9yZWxhdGlvbnNoaXBzIiB4bWxuczpz
-cHdwPSJodHRwOi8vbWljcm9zb2Z0LmNvbS9zaGFyZXBvaW50L3dlYnBhcnRwYWdlcyIgeG1sbnM6
-ZXgxMnQ9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vZXhjaGFuZ2Uvc2VydmljZXMvMjAw
-Ni90eXBlcyIgeG1sbnM6ZXgxMm09Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vZXhjaGFu
-Z2Uvc2VydmljZXMvMjAwNi9tZXNzYWdlcyIgeG1sbnM6cHB0c2w9Imh0dHA6Ly9zY2hlbWFzLm1p
-Y3Jvc29mdC5jb20vc2hhcmVwb2ludC9zb2FwL1NsaWRlTGlicmFyeS8iIHhtbG5zOnNwc2w9Imh0
-dHA6Ly9taWNyb3NvZnQuY29tL3dlYnNlcnZpY2VzL1NoYXJlUG9pbnRQb3J0YWxTZXJ2ZXIvUHVi
-bGlzaGVkTGlua3NTZXJ2aWNlIiB4bWxuczpaPSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOiIg
-eG1sbnM6dGF4PSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NoYXJlcG9pbnQvdGF4b25v
-bXkvc29hcC8iIHhtbG5zOnRucz0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9zaGFyZXBv
-aW50L3NvYXAvcmVjb3Jkc3JlcG9zaXRvcnkvIiB4bWxuczpzcHN1cD0iaHR0cDovL21pY3Jvc29m
-dC5jb20vd2Vic2VydmljZXMvU2hhcmVQb2ludFBvcnRhbFNlcnZlci9Vc2VyUHJvZmlsZVNlcnZp
-Y2UiIHhtbG5zOm1tbD0iaHR0cDovL3d3dy53My5vcmcvMTk5OC9NYXRoL01hdGhNTCIgeG1sbnM6
-c3Q9IiYjMTsiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFk
-Pg0KPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNo
-YXJzZXQ9dXRmLTgiPg0KPG1ldGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQg
-V29yZCAxNSAoZmlsdGVyZWQgbWVkaXVtKSI+DQo8IS0tW2lmICFtc29dPjxzdHlsZT52XDoqIHti
-ZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQpvXDoqIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQj
-Vk1MKTt9DQp3XDoqIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQouc2hhcGUge2JlaGF2
-aW9yOnVybCgjZGVmYXVsdCNWTUwpO30NCjwvc3R5bGU+PCFbZW5kaWZdLS0+PHN0eWxlPjwhLS0N
-Ci8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJy
-aWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0K
-LyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5N
-c29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1z
-aXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjsNCgljb2xv
-cjpibGFjazt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0
-eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNp
-dGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsN
-Cgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwDQoJe21zby1z
-dHlsZS1wcmlvcml0eTo5OTsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmln
-aHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsN
-Cglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlm
-Ow0KCWNvbG9yOmJsYWNrO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBl
-cnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9y
-OiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7
-DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0
-IDc5Mi4wcHQ7DQoJbWFyZ2luOjcwLjg1cHQgNzAuODVwdCAyLjBjbSA3MC44NXB0O30NCmRpdi5X
-b3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0
-ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEw
-MjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNo
-YXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAv
-Pg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgYmdj
-b2xvcj0id2hpdGUiIGxhbmc9IkVOLUdCIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxk
-aXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
-c2VyaWY7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+SGksPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2Nv
-bG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
-MUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5JIGNhbm5vdCBhbnN3ZXIgeW91ciBx
-dWVzdGlvbiwgYnV0IG91dCBvZiBjdXJpb3NpdHk6IHdoeSBkbyB5b3UgdXNlIGEgUkZOb0M/IFNl
-ZW1zIGxpa2Ugb3ZlcmtpbGwgdG8gbWUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdl
-OkVOLVVTIj5DaGVlcnMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
-VVMiPkpvbmFzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9u
-ZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBj
-bSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-O2NvbG9yOndpbmRvd3RleHQiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOndpbmRvd3RleHQiPiBVU1JQLXVzZXJzIFttYWlsdG86dXNycC11c2Vycy1i
-b3VuY2VzQGxpc3RzLmV0dHVzLmNvbV0NCjxiPk9uIEJlaGFsZiBPZiA8L2I+QWRyaWEgdmlhIFVT
-UlAtdXNlcnM8YnI+DQo8Yj5TZW50OjwvYj4gRGllbnN0YWcsIDI1LiBKdW5pIDIwMTkgMTU6MDc8
-YnI+DQo8Yj5Ubzo8L2I+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVj
-dDo8L2I+IFtVU1JQLXVzZXJzXSBTYW1wbGVzIGRvIG5vdCBnZXQgdGhyb3VnaCBSRk5vQyBzdHJl
-YW0gc3BsaXR0ZXI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cD5EZWFyIGFsbCw8bzpwPjwv
-bzpwPjwvcD4NCjxwPkkgYW0gd29ya2luZyBvbiBhbiBhcHBsaWNhdGlvbiB3aGVyZSBJIG5lZWQg
-dG8gdHJhbnNtaXQgYSBmcmVxdWVuY3kgcmFtcCB0aHJvdWdoIHR3byBVQlgtMTYwIHVzaW5nIGRp
-ZmZlcmVudCBjYXJyaWVyIGZyZXF1ZW5jaWVzLjxvOnA+PC9vOnA+PC9wPg0KPHA+SSB1c2UgYSBz
-cGxpdF9zdHJlYW0gUkZOb0MgYmxvY2sgdG8gY29weSB0aGUgc2FtcGxlcyBvZiBhIHJhbXAgZ2Vu
-ZXJhdG9yIGxpa2UgdGhpczo8bzpwPjwvbzpwPjwvcD4NCjxwPltSYW1wIEdlbmVyYXRvcl0gLS0t
-Jmd0OyBbU3BsaXQgU3RyZWFtXSAtLSZndDsgUmFkaW8gMDxvOnA+PC9vOnA+PC9wPg0KPHA+Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICctJmd0
-OyBSYWRpbyAxPG86cD48L286cD48L3A+DQo8cD5Ib3dldmVyLCBJIHNlZSBubyBhY3Rpdml0eSBv
-biB0aGUgcmFkaW8gb3V0cHV0cy4gSWYgSSByZXBsYWNlIHRoZSBzcGxpdHRlciB3aXRoLCBmb3Ig
-aW5zdGFuY2UsIGEgRGlnaXRhbEdhaW4gYmxvY2sgb3IgSSByZW1vdmUgaXQsIGRhdGEgaXMgdHJh
-bnNtaXR0ZWQgY29ycmVjdGx5IHRocm91Z2ggYW55IG9mIHRoZSB0d28gZGF1Z2h0ZXJib2FyZHMu
-PG86cD48L286cD48L3A+DQo8cD5IZXJlIGlzIGhvdyBJIGNvbm5lY3QgdGhlIGJsb2Nrczo8bzpw
-PjwvbzpwPjwvcD4NCjxwPjxpPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0Ij4mbmJzcDsg
-Ly9Db25uZWN0IEREUyBzd2VlcGVyIHRvIHNwbGl0dGVyPGJyPg0KJm5ic3A7IGdyYXBoLSZndDtj
-b25uZWN0KGRkc19zcmNfY3RybC0mZ3Q7Z2V0X2Jsb2NrX2lkKCksIHNwbGl0dGVyX2lkKTs8YnI+
-DQombmJzcDsgLy9Db25uZWN0IHNwbGl0dGVyIHRvIHJhZGlvczxicj4NCiZuYnNwOyBncmFwaC0m
-Z3Q7Y29ubmVjdChzcGxpdHRlcl9pZCwgMCwgcmFkaW9fY3RybF9pZF9iLCAwKTs8YnI+DQombmJz
-cDsgZ3JhcGgtJmd0O2Nvbm5lY3Qoc3BsaXR0ZXJfaWQsIDEsIHJhZGlvX2N0cmxfaWRfYSwgMCk7
-PC9zcGFuPjwvaT48bzpwPjwvbzpwPjwvcD4NCjxwPkFueSBoZWxwIHdvdWxkIGJlIGFwcHJlY2lh
-dGVkLCB0aGFua3MhPG86cD48L286cD48L3A+DQo8ZGl2IGlkPSJEQUI0RkFEOC0yREQ3LTQwQkIt
-QTFCOC00RTJBQTFGOUZERjIiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8dGFibGUgY2xhc3M9Ik1zb05vcm1hbFRhYmxlIiBib3JkZXI9IjEiIGNlbGxwYWRk
-aW5nPSIwIiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRDNENERFIDEuMHB0
-Ij4NCjx0Ym9keT4NCjx0cj4NCjx0ZCB3aWR0aD0iNTgiIHN0eWxlPSJ3aWR0aDo0MS4yNXB0O2Jv
-cmRlcjpub25lO3BhZGRpbmc6OS43NXB0IC43NXB0IC43NXB0IC43NXB0Ij4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxhIGhyZWY9Imh0dHBzOi8vd3d3LmF2YXN0LmNvbS9zaWctZW1haWw/dXRtX21l
-ZGl1bT1lbWFpbCZhbXA7dXRtX3NvdXJjZT1saW5rJmFtcDt1dG1fY2FtcGFpZ249c2lnLWVtYWls
-JmFtcDt1dG1fY29udGVudD1lbWFpbGNsaWVudCZhbXA7dXRtX3Rlcm09aWNvbiIgdGFyZ2V0PSJf
-YmxhbmsiPjxzcGFuIHN0eWxlPSJib3JkZXI6c29saWQgd2luZG93dGV4dCAxLjBwdDtwYWRkaW5n
-OjBjbTt0ZXh0LWRlY29yYXRpb246bm9uZSI+PGltZyBib3JkZXI9IjAiIHdpZHRoPSI0NiIgaGVp
-Z2h0PSIyOSIgaWQ9Il94MDAwMF9pMTAyNSIgc3JjPSJjaWQ6aW1hZ2UwMDEuanBnQDAxRDUyQjY5
-LkRDQUFBOEYwIiBhbHQ9IkltYWdlIHJlbW92ZWQgYnkgc2VuZGVyLiI+PC9zcGFuPjwvYT48bzpw
-PjwvbzpwPjwvcD4NCjwvdGQ+DQo8dGQgd2lkdGg9IjQ3MyIgc3R5bGU9IndpZHRoOjM1Mi41cHQ7
-Ym9yZGVyOm5vbmU7cGFkZGluZzo5LjBwdCAuNzVwdCAuNzVwdCAuNzVwdCI+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIiBzdHlsZT0ibGluZS1oZWlnaHQ6MTMuNXB0Ij48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiM0MTQyNEUiPlZpcnVzLWZyZWUuDQo8YSBocmVmPSJodHRwczovL3d3dy5hdmFzdC5jb20vc2ln
-LWVtYWlsP3V0bV9tZWRpdW09ZW1haWwmYW1wO3V0bV9zb3VyY2U9bGluayZhbXA7dXRtX2NhbXBh
-aWduPXNpZy1lbWFpbCZhbXA7dXRtX2NvbnRlbnQ9ZW1haWxjbGllbnQmYW1wO3V0bV90ZXJtPWxp
-bmsiIHRhcmdldD0iX2JsYW5rIj4NCjxzcGFuIHN0eWxlPSJjb2xvcjojNDQ1M0VBIj53d3cuYXZh
-c3QuY29tPC9zcGFuPjwvYT4gPG86cD48L286cD48L3NwYW4+PC9wPg0KPC90ZD4NCjwvdHI+DQo8
-L3Rib2R5Pg0KPC90YWJsZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xv
-cjp3aW5kb3d0ZXh0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
-
---_000_CWXP265MB1143974874542068E9A474C8C1E30CWXP265MB1143GBRP_--
-
---_004_CWXP265MB1143974874542068E9A474C8C1E30CWXP265MB1143GBRP_
-Content-Type: image/jpeg; name="image001.jpg"
-Content-Description: image001.jpg
-Content-Disposition: inline; filename="image001.jpg"; size=350;
-	creation-date="Tue, 25 Jun 2019 13:22:56 GMT";
-	modification-date="Tue, 25 Jun 2019 13:22:56 GMT"
-Content-ID: <image001.jpg@01D52B69.DCAAA8F0>
-Content-Transfer-Encoding: base64
-
-/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIf
-IiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/wAALCAAdAC4BAREA/8QAHwAAAQUBAQEB
-AQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1Fh
-ByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZ
-WmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXG
-x8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/9oACAEBAAA/APZqKKKKKKKKKKKKKKKK
-KKKKKKK//9k=
-
---_004_CWXP265MB1143974874542068E9A474C8C1E30CWXP265MB1143GBRP_--
+--------------9843B8FA51133EF093B0567C--
 
 
---===============8938794638381898671==
+--===============6405070667665013228==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -355,5 +361,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8938794638381898671==--
+--===============6405070667665013228==--
 
