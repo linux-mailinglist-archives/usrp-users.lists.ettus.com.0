@@ -2,49 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D275556201
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Jun 2019 08:06:32 +0200 (CEST)
-Received: from [::1] (port=57800 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11EDB574D3
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Jun 2019 01:17:05 +0200 (CEST)
+Received: from [::1] (port=49068 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hg14c-0007yY-Un; Wed, 26 Jun 2019 02:06:26 -0400
-Received: from mail-io1-f49.google.com ([209.85.166.49]:39217)
+	id 1hgH9w-0006pW-Rq; Wed, 26 Jun 2019 19:17:00 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:36052)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <bistromath@gmail.com>)
- id 1hg14V-0007qY-G1
- for USRP-users@lists.ettus.com; Wed, 26 Jun 2019 02:06:19 -0400
-Received: by mail-io1-f49.google.com with SMTP id r185so2451568iod.6
- for <USRP-users@lists.ettus.com>; Tue, 25 Jun 2019 23:05:59 -0700 (PDT)
+ id 1hgH9o-0006Xt-Bd
+ for USRP-users@lists.ettus.com; Wed, 26 Jun 2019 19:16:52 -0400
+Received: by mail-io1-f54.google.com with SMTP id h6so574718ioh.3
+ for <USRP-users@lists.ettus.com>; Wed, 26 Jun 2019 16:16:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=MHLDHViOZzX9c8WSo96KmDN3ew0JhPgTvqCqnH2ROnU=;
- b=Pw+ic23Ic0bNPrABHy8UBZGBD5jQ0ROR1yUCh+6dg4QvNuLrLHps+ohtFjLQK96Mk+
- r/GlNNNE7OLPUfd87+7TaaDQv3hrCYLC2FvqXY+tlAAyRLF4O/wTXPG7Vrnh3TGFx7mU
- +ayki7Qv2KnMdSpu4qxEDvCTGH4o/7/e1B0oxkPDw2tWXQY5XLjHulG28kiojaQPz5K2
- hVSbaDecOtRmeQsW4no8VJYjzZYb2q4OT4xsZL8I94HYImtEGHiEcHJIg7nko4Jq3c5d
- v5a4aq0+v2JXJZOo5No7xN85wY9iUMWkJPEGD9I46gp5w7eAeJ5TJhxvH0Q4/fLKnAOb
- C7uw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=ytwlh7F2PSYhd6OmoYaoLcGAPKKBUToCF58B1VRAz84=;
+ b=nNyZOFagf3/x/6KrWmqaX9ivFCqglvd399yb53FerEcgNJnkbZRv8+ByS1TXCvxrS7
+ wAhrlv/fv3zLmyKMNdXLwYITMVgZ0Q9qQHfbcnWMIvJ8kyDpk/UoGIMaCYj2MeKBTkZY
+ V0uCfjvRyQnR9JxH2w6o3XJU5BT1a5ZbOaGkYJQs82mhaovdv6pKoXzPtyoHhOO0Qw8b
+ xBqSFizWO8RHKTOtUpok9jG0rOMfMlbR1EwBd39mBVZXLfLQHi/pjqAmodfPzTchZbl4
+ GZl/Qx1Q+U8BSs86uFYqTEOtcz6g55eUSnq3R8a8ANonDIpAjlubxdtkg3dNYOWFE9nI
+ jDHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=MHLDHViOZzX9c8WSo96KmDN3ew0JhPgTvqCqnH2ROnU=;
- b=d/Sz/lK3Qoqyc0i7kbHGoJ5xGkKPF4gXXxv5D58v+8cycqBdFSyxt9jstiD0KIpMkq
- BID5Fg2nSKZCScU7kRzP71Jo+auFr3dJIj49loD88EG8d8zBjApzA3CzOyciiMvoIifZ
- Fmbvtdty4h59v7egUzm9yE31nIH0u0rI8sV/mgYeFqy4sowr5mLzpAx2iLPodmZnvGTX
- 6Tp68WQVDyN3fRZZZOHNI1aHthlhp64WPqCsbOOtG/aNPfh6wnBne/+ya+JdGxiyR40r
- GSk14JVxRq4evzFhVi6qmzb9tEqVRqybuzH9hiBixxiZq/aBw3Cg/2hkAfAy3lkoB3Wa
- +uXA==
-X-Gm-Message-State: APjAAAXk8gWyl25Bkww+B8LTV9prrDt1BqyeoN7DIy8/dvMwcCK/ugK6
- jNBNn3k3tr91aqTtba0V2iZEL10OQSE8GYjb7oemmDJi
-X-Google-Smtp-Source: APXvYqy75pGsHGh+7s0DOfc3HMGnsx9q0e+CTsoKwZd0Dce1+B9kJtbm3KOmIwoINBeZJ1KaxBM3rWBDykfnM3d0b7Y=
-X-Received: by 2002:a02:c728:: with SMTP id h8mr2900383jao.52.1561529137659;
- Tue, 25 Jun 2019 23:05:37 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=ytwlh7F2PSYhd6OmoYaoLcGAPKKBUToCF58B1VRAz84=;
+ b=JH6VrEym9eF1Mnm7ZhfiRolTDdjLJDUZ/mQy6NTgC4fa4If5mPgsUgV5VFMB7FCWXW
+ 9njo5TuZFPZSKrLYyFydOjwyM1I3ljWsrnUmP+HNEB9nblsQ93SzPIb8S6WCNLZLhc7f
+ J3Hz/GXMyt2YXH/ZiDm5bEpmT6U25Mn8RmGlZVFOYZ+km0p7FRqXB6vQg8v64senEhrE
+ l8WbU3c1QIANUQzqkseVndt8pG3IqQKPbmXYX38BvUBCuXHQFFEGT4ufkHS1yaV+Y4j0
+ fpBRd3eKGIAH1NjJz1AnKS8CsByjOR4M6R9wYZASX3ThZFgzPqbxJ8NCipf9IzwxL5YD
+ qAEQ==
+X-Gm-Message-State: APjAAAV5W4vV1EtLQLQVeGCokRIVGF4Ww8jJMZID7QowPmAeURZWaiQI
+ fIDsq3sGmmmjnow7vyLNzAKtAYTNdxV0ORUwaxJnnOcS
+X-Google-Smtp-Source: APXvYqy5Kcd3RGLl/rFKdEcj+mgtYMRnfM25ZgKqo9//HFYPXmOJnnCIPqCPh8eHuTpd0hA/eQJLTm5rFMoG+GRWxoA=
+X-Received: by 2002:a02:c728:: with SMTP id h8mr724742jao.52.1561590971160;
+ Wed, 26 Jun 2019 16:16:11 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 25 Jun 2019 23:02:26 -0700
-Message-ID: <CA+JMMq8Fb93vyJ+mse0M4=hNHoHW6LdzvYK6dYcoBTo2UCLY2g@mail.gmail.com>
+References: <CA+JMMq8Fb93vyJ+mse0M4=hNHoHW6LdzvYK6dYcoBTo2UCLY2g@mail.gmail.com>
+In-Reply-To: <CA+JMMq8Fb93vyJ+mse0M4=hNHoHW6LdzvYK6dYcoBTo2UCLY2g@mail.gmail.com>
+Date: Wed, 26 Jun 2019 16:12:59 -0700
+Message-ID: <CA+JMMq_RGmkwmUNiRYFD0iHK0p6FnJZxcpL1sX7UW9cjKW5iUg@mail.gmail.com>
 To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="0000000000008f64b5058c33d589"
-Subject: [USRP-users] Retrieving RFNoC async responses
+Subject: Re: [USRP-users] Retrieving RFNoC async responses
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -58,6 +60,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Nick Foster <bistromath@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1350131931003611178=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,109 +74,193 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---0000000000008f64b5058c33d589
-Content-Type: multipart/related; boundary="0000000000008f64b4058c33d588"
+--===============1350131931003611178==
+Content-Type: multipart/related; boundary="0000000000001f09ce058c423b64"
 
---0000000000008f64b4058c33d588
-Content-Type: multipart/alternative; boundary="0000000000008f64b2058c33d587"
+--0000000000001f09ce058c423b64
+Content-Type: multipart/alternative; boundary="0000000000001f09cd058c423b63"
 
---0000000000008f64b2058c33d587
+--0000000000001f09cd058c423b63
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
+Still digging. I think the problem might be in device3_impl::create_graph().
 
-I'm still quixotically trying to get command response packets working here,
-after getting distracted by some other bugs. It's my understanding that I
-should be able to use tx_streamer::recv_async_msg() to retrieve the
-resulting messages, but the call never returns anything. I've attached a
-Wireshark pcap showing that the packets are being emitted from the X310,
-and they show correct stream sources/destinations. Interestingly, the
-command response packets emitted by my block are eliciting ICMP dest
-unreach responses from the host, despite being sent to the same UDP port
-(obviously, since the port is controlled by the device itself and set in
-the UDP transport make()) as the TX radio ACKs, which appear to be coming
-through just fine. Confused? Me too!
+I was able to determine that async messages are coming back fine for
+tx_bursts, which uses the legacy interface. No async messages are coming
+back into the host successfully for devices using the device3 interface in
+UHD 3.15.0, so far as I can tell. This seems like a problem.
 
-Here's a complete transaction. First, we send a chunk of data to my block:
-[image: image.png]
+tx_bursts via the legacy interface sets up two transports: 0.12 > 2.144,
+and 0.13 > 2.144. Reply messages from the TX radio come back into 0.13 and
+are correctly picked up by recv_async_msg().
 
-Next, my block (SID 2.96) does its Special Thing (it's connected,
-eventually, to a TX radio at SID 2.64) and sends some samples to the radio.
-Those samples are correctly transmitted. Next, my block tries to send an
-async message back to the host, confirming that things went A-OK:
-[image: image.png]
+My application using device3 sets up three transports: 0.11 > 2.96, 0.12 >
+2.96, and 0.13 > 2.0. My async messages are coming back to (and being
+bounced from) the port assigned to 0.13. netstat -udp shows that the ports
+assigned to 0.11 and 0.12 are listening, but the port assigned to 0.13 is
+*not*, despite the following messages at init:
 
-Great! That response field shows an event code 0x40, or
-EVENT_CODE_USER_PAYLOAD (from include/uhd/types/metadata.hpp), just like my
-RFNoC block told it to. The VITA time field matches the send time from the
-sent packet, which allows me to disambiguate responses. So far, everything
-is coming up Milhouse. But wait! What's this?
-[image: image.png]
+[TRACE] [DEVICE3] Creating async message handler for graph `txdbb'...
+[TRACE] [X300] done router config for sid 0.13>2.0
+[TRACE] [UDP] Creating UDP transport to 192.168.31.10:49153
+[TRACE] [UDP] Local UDP socket endpoint: 192.168.30.8:57586
+[TRACE] [UDP] Target/actual recv sock buff size: 24266666/212992 bytes
+[TRACE] [UDP] Target/actual send sock buff size: 24266666/212992 bytes
+[DEBUG] [X300] programming packet for new xport on 192.168.31.10 sid
+0.13>2.0
+[TRACE] [X300] reprogram the ethernet dispatcher's udp port
+[TRACE] [DEVICE3]  Async transport ready.
+[TRACE] [DEVICE3] Async message has address 0.13>2.0
 
-That's an ICMP dest unreach, specifically a port unreach (type 3). But port
-50154 is wide open, as shown by the next incoming packet, which is a reply
-from the TX radio ACKing the burst:
-[image: image.png]
-No further ICMP unreach is emitted, and since the whole transport doesn't
-fall down I'm assuming UHD has heard and processed the burst ACK. I can't
-comprehend why I'd get an ICMP unreach from one CHDR packet but not
-another. Maybe it's a red herring, and tx_streamer::recv_async_msg() isn't
-supposed to return my custom async data? It sure looks like it should, but
-maybe it's set up such that it only returns data coming from the furthest
-endpoint (i.e., the radio)? If so, how should I retrieve async messages
-from other blocks in the chain?
+My reply messages have a SID of 2.96.0.13. TX radio reply messages have a
+SID of 2.64.0.13. Both those appear correct to me. So I have a couple of
+questions:
 
-Would really appreciate help with this one.
+   1. Where does the fixed async message source SID of 2.0 in
+   device3_impl.cpp come from?
+   2. Can anyone at Ettus *please* confirm that they are able to
+   successfully receive async messages from any application using the device3
+   interface?
 
 Nick
 
---0000000000008f64b2058c33d587
+On Tue, Jun 25, 2019 at 11:02 PM Nick Foster <bistromath@gmail.com> wrote:
+
+> Hi all,
+>
+> I'm still quixotically trying to get command response packets working
+> here, after getting distracted by some other bugs. It's my understanding
+> that I should be able to use tx_streamer::recv_async_msg() to retrieve the
+> resulting messages, but the call never returns anything. I've attached a
+> Wireshark pcap showing that the packets are being emitted from the X310,
+> and they show correct stream sources/destinations. Interestingly, the
+> command response packets emitted by my block are eliciting ICMP dest
+> unreach responses from the host, despite being sent to the same UDP port
+> (obviously, since the port is controlled by the device itself and set in
+> the UDP transport make()) as the TX radio ACKs, which appear to be coming
+> through just fine. Confused? Me too!
+>
+> Here's a complete transaction. First, we send a chunk of data to my block:
+> [image: image.png]
+>
+> Next, my block (SID 2.96) does its Special Thing (it's connected,
+> eventually, to a TX radio at SID 2.64) and sends some samples to the radio.
+> Those samples are correctly transmitted. Next, my block tries to send an
+> async message back to the host, confirming that things went A-OK:
+> [image: image.png]
+>
+> Great! That response field shows an event code 0x40, or
+> EVENT_CODE_USER_PAYLOAD (from include/uhd/types/metadata.hpp), just like my
+> RFNoC block told it to. The VITA time field matches the send time from the
+> sent packet, which allows me to disambiguate responses. So far, everything
+> is coming up Milhouse. But wait! What's this?
+> [image: image.png]
+>
+> That's an ICMP dest unreach, specifically a port unreach (type 3). But
+> port 50154 is wide open, as shown by the next incoming packet, which is a
+> reply from the TX radio ACKing the burst:
+> [image: image.png]
+> No further ICMP unreach is emitted, and since the whole transport doesn't
+> fall down I'm assuming UHD has heard and processed the burst ACK. I can't
+> comprehend why I'd get an ICMP unreach from one CHDR packet but not
+> another. Maybe it's a red herring, and tx_streamer::recv_async_msg() isn't
+> supposed to return my custom async data? It sure looks like it should, but
+> maybe it's set up such that it only returns data coming from the furthest
+> endpoint (i.e., the radio)? If so, how should I retrieve async messages
+> from other blocks in the chain?
+>
+> Would really appreciate help with this one.
+>
+> Nick
+>
+>
+>
+
+--0000000000001f09cd058c423b63
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I&#39;m still quixot=
-ically trying to get command response packets working here, after getting d=
-istracted by some other bugs. It&#39;s my understanding that I should be ab=
-le to use tx_streamer::recv_async_msg() to retrieve the resulting messages,=
- but the call never returns anything. I&#39;ve attached a Wireshark pcap sh=
-owing that the packets are being emitted from the X310, and they show corre=
-ct stream sources/destinations. Interestingly, the command response packets=
- emitted by my block are eliciting ICMP dest unreach responses from the hos=
-t, despite being sent to the same UDP port (obviously, since the port is co=
-ntrolled by the device itself and set in the UDP transport make()) as the T=
-X radio ACKs, which appear to be coming through just fine. Confused? Me too=
-!<br></div><div><br></div><div>Here&#39;s a complete transaction. First, we=
- send a chunk of data to my block:</div><div><div><img src=3D"cid:ii_jxct4g=
-xw0" alt=3D"image.png" width=3D"566" height=3D"213"></div><div><br></div><d=
-iv>Next, my block (SID 2.96) does its Special Thing (it&#39;s connected, ev=
-entually, to a TX radio at SID 2.64) and sends some samples to the radio. T=
-hose samples are correctly transmitted. Next, my block tries to send an asy=
-nc message back to the host, confirming that things went A-OK:</div><div><d=
-iv><img src=3D"cid:ii_jxct6as81" alt=3D"image.png" width=3D"566" height=3D"=
-213"></div><div><br></div><div>Great! That response field shows an event co=
-de 0x40, or EVENT_CODE_USER_PAYLOAD (from include/uhd/types/metadata.hpp), =
-just like my RFNoC block told it to. The VITA time field matches the send t=
-ime from the sent packet, which allows me to disambiguate responses. So far=
-, everything is coming up Milhouse. But wait! What&#39;s this?</div><div><d=
-iv><img src=3D"cid:ii_jxct8w3h2" alt=3D"image.png" width=3D"566" height=3D"=
-213"></div><div><br></div><div>That&#39;s an ICMP dest unreach, specificall=
-y a port unreach (type 3). But port 50154 is wide open, as shown by the nex=
-t incoming packet, which is a reply from the TX radio ACKing the burst:</di=
-v><div><div><img src=3D"cid:ii_jxctbhbd3" alt=3D"image.png" width=3D"566" h=
-eight=3D"213"></div><div>No further ICMP unreach is emitted, and since the =
-whole transport doesn&#39;t fall down I&#39;m assuming UHD has heard and pr=
-ocessed the burst ACK. I can&#39;t comprehend why I&#39;d get an ICMP unrea=
-ch from one CHDR packet but not another. Maybe it&#39;s a red herring, and =
-tx_streamer::recv_async_msg() isn&#39;t supposed to return my custom async =
-data? It sure looks like it should, but maybe it&#39;s set up such that it =
-only returns data coming from the furthest endpoint (i.e., the radio)? If s=
-o, how should I retrieve async messages from other blocks in the chain?<br>=
-</div><div><br></div><div>Would really appreciate help with this one.</div>=
-<div><br></div><div>Nick<br></div><div><br></div></div></div><div><br></div=
-></div></div></div>
+<div dir=3D"ltr"><div>Still digging. I think the problem might be in device=
+3_impl::create_graph().</div><div><br></div><div>I was able to determine th=
+at async messages are coming back fine for tx_bursts, which uses the legacy=
+ interface. No async messages are coming back into the host successfully fo=
+r devices using the device3 interface in UHD 3.15.0, so far as I can tell. =
+This seems like a problem.<br></div><div><br></div><div>tx_bursts via the l=
+egacy interface sets up two transports: 0.12 &gt; 2.144, and 0.13 &gt; 2.14=
+4. Reply messages from the TX radio come back into 0.13 and are correctly p=
+icked up by recv_async_msg().<br></div><div><br></div><div>My application u=
+sing device3 sets up three transports: 0.11 &gt; 2.96, 0.12 &gt; 2.96, and =
+0.13 &gt; 2.0. My async messages are coming back to (and being bounced from=
+) the port assigned to 0.13. <span style=3D"font-family:courier new,monospa=
+ce">netstat -udp</span> shows that the ports assigned to 0.11 and 0.12 are =
+listening, but the port assigned to 0.13 is <b>not</b>, despite the followi=
+ng messages at init:</div><div><br></div><div><span style=3D"font-family:co=
+urier new,monospace">[TRACE] [DEVICE3] Creating async message handler for g=
+raph `txdbb&#39;...<br>[TRACE] [X300] done router config for sid 0.13&gt;2.=
+0<br>[TRACE] [UDP] Creating UDP transport to <a href=3D"http://192.168.31.1=
+0:49153">192.168.31.10:49153</a><br>[TRACE] [UDP] Local UDP socket endpoint=
+: <a href=3D"http://192.168.30.8:57586">192.168.30.8:57586</a><br>[TRACE] [=
+UDP] Target/actual recv sock buff size: 24266666/212992 bytes<br>[TRACE] [U=
+DP] Target/actual send sock buff size: 24266666/212992 bytes<br>[DEBUG] [X3=
+00] programming packet for new xport on 192.168.31.10 sid 0.13&gt;2.0<br>[T=
+RACE] [X300] reprogram the ethernet dispatcher&#39;s udp port<br>[TRACE] [D=
+EVICE3] =C2=A0Async transport ready.</span><br><span style=3D"font-family:c=
+ourier new,monospace">[TRACE] [DEVICE3] Async message has address 0.13&gt;2=
+.0</span><br></div><div><br></div><div>My reply messages have a SID of 2.96=
+.0.13. TX radio reply messages have a SID of 2.64.0.13. Both those appear c=
+orrect to me. So I have a couple of questions:</div><div></div><div><ol><li=
+>Where does the fixed async message source SID of 2.0 in device3_impl.cpp c=
+ome from?<br></li><li>Can anyone at Ettus <b>please</b> confirm that they a=
+re able to successfully receive async messages from any application using t=
+he device3 interface?</li></ol><div>Nick<br></div></div></div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 25, 201=
+9 at 11:02 PM Nick Foster &lt;<a href=3D"mailto:bistromath@gmail.com">bistr=
+omath@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I&#39=
+;m still quixotically trying to get command response packets working here, =
+after getting distracted by some other bugs. It&#39;s my understanding that=
+ I should be able to use tx_streamer::recv_async_msg() to retrieve the resu=
+lting messages, but the call never returns anything. I&#39;ve attached a Wi=
+reshark pcap showing that the packets are being emitted from the X310, and =
+they show correct stream sources/destinations. Interestingly, the command r=
+esponse packets emitted by my block are eliciting ICMP dest unreach respons=
+es from the host, despite being sent to the same UDP port (obviously, since=
+ the port is controlled by the device itself and set in the UDP transport m=
+ake()) as the TX radio ACKs, which appear to be coming through just fine. C=
+onfused? Me too!<br></div><div><br></div><div>Here&#39;s a complete transac=
+tion. First, we send a chunk of data to my block:</div><div><div><img src=
+=3D"cid:ii_jxct4gxw0" alt=3D"image.png" width=3D"566" height=3D"213"></div>=
+<div><br></div><div>Next, my block (SID 2.96) does its Special Thing (it&#3=
+9;s connected, eventually, to a TX radio at SID 2.64) and sends some sample=
+s to the radio. Those samples are correctly transmitted. Next, my block tri=
+es to send an async message back to the host, confirming that things went A=
+-OK:</div><div><div><img src=3D"cid:ii_jxct6as81" alt=3D"image.png" width=
+=3D"566" height=3D"213"></div><div><br></div><div>Great! That response fiel=
+d shows an event code 0x40, or EVENT_CODE_USER_PAYLOAD (from include/uhd/ty=
+pes/metadata.hpp), just like my RFNoC block told it to. The VITA time field=
+ matches the send time from the sent packet, which allows me to disambiguat=
+e responses. So far, everything is coming up Milhouse. But wait! What&#39;s=
+ this?</div><div><div><img src=3D"cid:ii_jxct8w3h2" alt=3D"image.png" width=
+=3D"566" height=3D"213"></div><div><br></div><div>That&#39;s an ICMP dest u=
+nreach, specifically a port unreach (type 3). But port 50154 is wide open, =
+as shown by the next incoming packet, which is a reply from the TX radio AC=
+King the burst:</div><div><div><img src=3D"cid:ii_jxctbhbd3" alt=3D"image.p=
+ng" width=3D"566" height=3D"213"></div><div>No further ICMP unreach is emit=
+ted, and since the whole transport doesn&#39;t fall down I&#39;m assuming U=
+HD has heard and processed the burst ACK. I can&#39;t comprehend why I&#39;=
+d get an ICMP unreach from one CHDR packet but not another. Maybe it&#39;s =
+a red herring, and tx_streamer::recv_async_msg() isn&#39;t supposed to retu=
+rn my custom async data? It sure looks like it should, but maybe it&#39;s s=
+et up such that it only returns data coming from the furthest endpoint (i.e=
+., the radio)? If so, how should I retrieve async messages from other block=
+s in the chain?<br></div><div><br></div><div>Would really appreciate help w=
+ith this one.</div><div><br></div><div>Nick<br></div><div><br></div></div><=
+/div><div><br></div></div></div></div>
+</blockquote></div>
 
---0000000000008f64b2058c33d587--
---0000000000008f64b4058c33d588
+--0000000000001f09cd058c423b63--
+--0000000000001f09ce058c423b64
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -3193,7 +3280,7 @@ dG6f3G9strrmOgQcAg4Bh4BDwCFQCYH/CSLnn0z1exZ8uIFxwc99KZwvnXPzwSHgEHAIOAQcAg4B
 h8BvFYH/CSL3WwXftdsh4BBwCDgEHAIOAYfAf4LAb36P3H/SeZfXIeAQcAg4BBwCDgGHwG8ZAUfk
 fsuj59ruEHAIOAQcAg4Bh8ApjYAjcqf08LvOOwQcAg4Bh4BDwCHwW0bg/wEQ5c+bLJL5LwAAAABJ
 RU5ErkJggg==
---0000000000008f64b4058c33d588
+--0000000000001f09ce058c423b64
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -6220,7 +6307,7 @@ CiaZiwCZudtvGYfa1cujJcFfmzbt0Jxg9LobJ7BCFHpRVTnhhutw0Xk90Jz9Hj5+EtOnTzdZXHpJ
 H7Rp3QStWjbH4EsvQ9eevRmfjmA4IhaV6tXDS395BlNvGY+WjevimmuvxHk9uyOxPB8pOq2YDhf5
 WTh25AByCszf1FdlS74aJ1XMOgwVCYahRDr2Oh9jrhmBARf1RLOWZ3MdzsXo0dd6DJ3qGtPItgxr
 ImcHGSZaztSQitrvz0Ccv7alzwgOAgkEEggkEEggkMAZLIH/BW/YQ05ILJOyAAAAAElFTkSuQmCC
---0000000000008f64b4058c33d588
+--0000000000001f09ce058c423b64
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -9546,7 +9633,7 @@ jYZmR2axSdPrp8zqD2aaxKrBpmpMFFKiVzUVo5qZ4GpNzQuvz8bQJ0zGtlWmV4+ekFs9k5jY1Lz4
 8lvaZx5eJVlHzNhbUkztOnGmSmKSGXjr/Wb/Sa4BN4tQK3uvGdSpjbnqzqfMPlzK0a0rgqQKsNYC
 lVsh1lkMfakphtQLD5j1814yYb4BJiK8iomLjTeVKsWYajXrmi++3sLGKpti7cWoPIv1ubBy0meh
 3DPhVOcvr3gS8CTgScCTgCeB/zcJ/C8CAOGWTB/00QAAAABJRU5ErkJggg==
---0000000000008f64b4058c33d588
+--0000000000001f09ce058c423b64
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -12546,92 +12633,10 @@ olljX/0oHGSZFBzgEfAxtTHt6y69aDpaN09EJsFfz5690ZVg9MxzL2CHGAwbNYoOHWfiyMMPQ1fS
 3b5nL2688UbjxcSxR6Fnj050POiKCROPxaChI1DJeHUeA/U2btcO999zFy6/aAYyM9ri9DNOweFD
 hyAlkVNKV1pNh4t9xcjfsRWlFYo4Vxd+xPhcW/QceKM4LPtKMP3UE9GhaWscedRofPLxh8jo1A0D
 Dh2HXYX+89lvbHgTciDkQMiBkAMhB0IO/FAO/D8Oqa41OSkKvgAAAABJRU5ErkJggg==
---0000000000008f64b4058c33d588--
---0000000000008f64b5058c33d589
-Content-Type: application/x-pcapng; name="txdbb.pcapng"
-Content-Disposition: attachment; filename="txdbb.pcapng"
-Content-Transfer-Encoding: base64
-Content-ID: <f_jxctifmu4>
-X-Attachment-Id: f_jxctifmu4
+--0000000000001f09ce058c423b64--
 
-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
---0000000000008f64b5058c33d589
+
+--===============1350131931003611178==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -12642,5 +12647,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---0000000000008f64b5058c33d589--
+--===============1350131931003611178==--
 
