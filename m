@@ -2,52 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301C158A85
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Jun 2019 21:01:01 +0200 (CEST)
-Received: from [::1] (port=43666 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A2275964C
+	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2019 10:44:10 +0200 (CEST)
+Received: from [::1] (port=44510 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hgZdf-00009c-Ly; Thu, 27 Jun 2019 15:00:55 -0400
-Received: from mail-lf1-f54.google.com ([209.85.167.54]:46290)
+	id 1hgmUF-0004XC-K1; Fri, 28 Jun 2019 04:44:03 -0400
+Received: from mail-qt1-f178.google.com ([209.85.160.178]:43302)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bhilburn@gnuradio.org>)
- id 1hgZdb-0008UM-F4
- for usrp-users@lists.ettus.com; Thu, 27 Jun 2019 15:00:51 -0400
-Received: by mail-lf1-f54.google.com with SMTP id z15so2252511lfh.13
- for <usrp-users@lists.ettus.com>; Thu, 27 Jun 2019 12:00:31 -0700 (PDT)
+ (Exim 4.92) (envelope-from <saimanoj.katta@cumucore.com>)
+ id 1hgmUB-0004TN-80
+ for usrp-users@lists.ettus.com; Fri, 28 Jun 2019 04:43:59 -0400
+Received: by mail-qt1-f178.google.com with SMTP id w17so5392177qto.10
+ for <usrp-users@lists.ettus.com>; Fri, 28 Jun 2019 01:43:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gnuradio-org.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=e180bfVgjQnKj7TI611wQu3Rycp+DUwf7CE9x+HEg+g=;
- b=M4O/tbqlZ5s8ysf0nVRBb0wAtt66jAlvjGBf4NSuaRVqJGY68FakM0dNk78VxPlBWc
- 7gfi5mAGWGPY8iMyTSar9UuTp6iqLbiJMq1qswzQm4WwCMcAARdxbGBb3lZasNXkNnjZ
- gr50+Bwzecr3WtrZgOuwE+M3uYUnbWiL20lCU3f6uqDtvsNiK/E43afhEJmkIP5jMio4
- ilZEh0KINIxB14mQLPVCz9fCfgEHwxmN8usLc1i6Hj6wfVbB+IzYlRbATw0jtb+ekeEE
- ySA9lhjOS7g91Q+tWH0l0quTCBVZeCYPHehO6Y5BDBnbzoa2/vQnDMFzAhWzHmSnSXAn
- E8Ig==
+ d=cumucore-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=nqjnW14HSI4u1q+n8xCF3XjKD38FW0I7+T8yhvO1NxA=;
+ b=gPo5chocIEOEg0KfGnFXZem6IuTsncLcvdLA7d9l3Ru/+xv/LVh0H/BaLlKaCCpfJi
+ TSv4Q8uZPl38vCFbkoPwLDfqDJzz1uex0fUBdtYZ9RO1kKmEOGHkqox8+VEF0xrOyy1i
+ iygGiyqq37vcgo69sLzXm0sJf/0gpBR2ovBfeu2ZWFhJnW4a2f2zaR+u/tArTXqdWyWs
+ kKQJ7JR6HWBjFuPvTaa/mYi+TFhruQgjfZEAvY1LPzUyi5jDOToY23HzdzgEmM6eMoMp
+ tmLo5uZjCbY+UpZ5V6diRqIPeyCWQzeSZ5tVyAqOo6HTe0ywwJVx1VmE1SZyyRbJ42eU
+ YG3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=e180bfVgjQnKj7TI611wQu3Rycp+DUwf7CE9x+HEg+g=;
- b=gUVZ+Mduvy18pmhe2zDDrIhqZRs9q8qwVyKroEoRbioONb5ttkvrSZQJeEDkkA+uLd
- eEHM9hiRakMM+799QXR/JmnAFHo6GZPzxg5ouUXxALAU9VlJXEtuFho3+9JMK8Vfr+uE
- FxnuDBSmVxuwUykXO4alMUQ+ulW2J5GyAq2BUhR81QpBDBZZII3sn0uI7gcQpPRXR5dx
- vMy2dQViD5fZnrN5jpHkOj9iwCC1g2/pP+wjYdJ9Wr1pWoPAXkRQQe4JlQ4sU1woZH0y
- 2f77rzZ0EeX7rcf6pPru0Rqjodl6sNzCqMQB/ArXha33D+er0UE83uKtUkVLx7kpwH5G
- Aa7Q==
-X-Gm-Message-State: APjAAAXLK6vp3AnRG2qFHj4ZOg/I5GTpWk7CsAKxy/42SF0+6/3s8VKL
- 7pFhx1+OQJNtPlzCZ9qOCuO+68ye5dj22P3O00o9/nyXBwQ=
-X-Google-Smtp-Source: APXvYqzOZHMu43QinAxIUopjyRvjYztClF9efk1TcHmZBXolfjA4Yx14PrbgFL+3Smmah897jNyKTfqhK0SQ2a3nPRU=
-X-Received: by 2002:ac2:499b:: with SMTP id f27mr2885503lfl.88.1561662009929; 
- Thu, 27 Jun 2019 12:00:09 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=nqjnW14HSI4u1q+n8xCF3XjKD38FW0I7+T8yhvO1NxA=;
+ b=EBuEl+SSlI2iO4lAauy1PZjZD5+Ohv2Q3HZ981t+jZOiy8IkWc3UNA3A8HVnvb3jXX
+ DRSqJIuFVpKFf7tRidYt2uQA3n9SRTEUc9hnE1vPuBbQIhwolNjsfju5YTPHA1mxyc4k
+ joIhq7TCRWvurAqeAjzu0Vkvk113QaQNc+QEvYlB0NtRDtH1kmoIpeaX+B5GCWA2QyX/
+ xAMzohUUE0Q4Hn9eHoumfzqC2sXgqiTx39583JFt0FHVrCyYcQpVHRRHf81dEFwSZ1Ff
+ 8IIQGzuys3HCBDcBiWL6eKwLKwi07gVsoneVbRFrSXccS4PIT0rx6AfeMvJezlO4P2tX
+ hgBg==
+X-Gm-Message-State: APjAAAUPruR5WdyydtI/nSaS2V/IzaHMt5VrGOXxmK2Ym6qQyFvh9sXH
+ NWAamRKGg/rtg5m2k23E3Ti4LhRuRE12U7Bo2qHxNzGiops=
+X-Google-Smtp-Source: APXvYqyKA56/XlJlPZ3kJSu8LPF5zxd++NSgiiH9uvqjM6/BX9NI5ZQ3W6GJJRJA8aLYgker+45x/JzGYoKSL50SC4s=
+X-Received: by 2002:ac8:45d0:: with SMTP id e16mr6908859qto.337.1561711398239; 
+ Fri, 28 Jun 2019 01:43:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAJH_qMGx+dnmQibA-q-Tc-RuXqzoJx=F7vHnGbkf_-ELt28-dA@mail.gmail.com>
-In-Reply-To: <CAJH_qMGx+dnmQibA-q-Tc-RuXqzoJx=F7vHnGbkf_-ELt28-dA@mail.gmail.com>
-Date: Thu, 27 Jun 2019 14:59:58 -0400
-Message-ID: <CAJH_qMGYqXzXqEk8OgDxAOju2JVRy52HpJmq0aSHh8EG53FSpA@mail.gmail.com>
-To: USRP-Users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] GRCon19 Updates & Reminders
+Date: Fri, 28 Jun 2019 11:43:07 +0300
+Message-ID: <CABO=5Rr_+Z16RqPV6cHt9n3KmhyUf1vgwL55ST4bHpW+nFQL6Q@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Regarding USRP X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ben Hilburn via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ben Hilburn <bhilburn@gnuradio.org>
-Content-Type: multipart/mixed; boundary="===============6833802841144594175=="
+From: Saimanoj Katta via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Saimanoj Katta <saimanoj.katta@cumucore.com>
+Content-Type: multipart/mixed; boundary="===============3114028498670860333=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,109 +72,178 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6833802841144594175==
-Content-Type: multipart/alternative; boundary="0000000000005c8a14058c52c585"
+--===============3114028498670860333==
+Content-Type: multipart/alternative; boundary="000000000000225318058c5e45df"
 
---0000000000005c8a14058c52c585
+--000000000000225318058c5e45df
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all!
+Hi all,
 
-This year's keynotes have been announced! This year, our keynote speakers
-will be:
+I have been using USRP X310 for almost more than a month. I had no problems
+until two days ago. USRP detects only when it is powered on. It gives
+various errors when I tried to execute it with srsLTE or OAI codes. *Each
+time, I have to use it, I tend to restart it. I am concerned about this
+erratic behaviour.* uhd_find_devices and uhd_images_downloader works
+fine. *When
+I restart the USRP, these errors vanish apparently. *
 
-   - Travis Goodspeed
-   - Mark Shuttleworth, Canonical
-   - Robert Suggs, Marshall Space Flight Center
-   - Mark Spencer, Digium
+Sometimes, with uhd_usrp_probe, this is occured.
 
-You can see more details about the conference program on the website, located
-here
-<https://openconf.org/GRCon19/modules/request.php?module=oc_program&action=program.php&p=program>.
-Note that talks & submitted tutorials have not yet been added to the
-program!
+ubuntu@ubuntu-Zephyrus-GX501GI:~$ sudo uhd_usrp_probe
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+UHD_3.15.0.git-1-gf83faf28
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 1472 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+[ERROR] [UHD] Exception caught in safe-call.
+  in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with
+uhd::endianness_t _endianness = (uhd::endianness_t)0]
+  at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_iface.cpp:52
+this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl
+(CE_00_Port_30) no response packet - AssertionError: bool(buff)
+  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
+[with uhd::endianness_t _endianness = (uhd::endianness_t)0; uint64_t = long
+unsigned int]
+  at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_iface.cpp:142
 
-Next up, the first deadline for submissions to GRCon is next Monday 1 July!
-Please get your talk, poster, and paper submissions in as soon as you can.
-The submission website is here:
+Error: EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no response
+packet - AssertionError: bool(buff)
+  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
+[with uhd::endianness_t _endianness = (uhd::endianness_t)0; uint64_t = long
+unsigned int]
+  at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_iface.cpp:142
 
-https://openconf.org/GRCon19/openconf.php
+*Any suggestions would be appreciated. *
 
-Remember that GRCon maintains a policy that you do not have to present at
-the conference to publish in the technical proceedings. If you're
-submitting a presentation or poster, we encourage you to also submit a
-paper to the proceedings. If you're unable to make the event but would like
-to publish and share your work, you can submit a paper alone, which if
-accepted will be posted with this year's TP at pubs.gnuradio.org.
+*The errors are described as follows below*. This is either of the
+following reasons: Exception caught in safe call, Failed to find device
+auto with args auto, An unexpected exception was caught in a task loop.
 
-Lastly, per my annual call to register earlier, please register as soon as
-you can! Conference registration can be found here:
+1) [ERROR] [UHD] Exception caught in safe-call.
+  in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with
+uhd::endianness_t _endianness = (uhd::endianness_t)0]
+  at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_iface.cpp:52
+this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl
+(CE_01_Port_40) no response packet - AssertionError: bool(buff)
+  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
+[with uhd::endianness_t _endianness = (uhd::endianness_t)0; uint64_t = long
+unsigned int]
+  at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_iface.cpp:142
 
-https://tickets.gnuradio.org/grcon19/
+Error opening UHD: code 30
+/home/ubuntu/srsLTE-issuefix_format1c/lib/src/phy/rf/rf_imp.c.126: No
+compatible RF frontend found
 
-Please note that
-*prices will go up on August 1st.*
+/home/ubuntu/srsLTE-issuefix_format1c/lib/src/radio/radio.cc.38: Error
+opening RF device
 
-If you haven't booked your hotel, yet, you can book in our discounted room
-block at the conference hotel using this link:
+Failed to find device auto with args auto
 
-https://www.marriott.com/events/start.mi?id=1553879040993&key=GRP
+2) Failed to Attach
+/home/ubuntu/srsLTE-issuefix_format1c/lib/src/phy/rf/rf_uhd_imp.c.839:
+Error timed out while receiving samples from UHD.
 
-As usual, if you have any questions, please don't hesitate to reach out!
-You can reach the organizing team at grcon@gnuradio.org
+/home/ubuntu/srsLTE-issuefix_format1c/lib/src/phy/ue/ue_sync.c.727: Error
+receiving samples
 
-Cheers,
-Ben
+/home/ubuntu/srsLTE-issuefix_format1c/lib/src/phy/rf/rf_uhd_imp.c.839:
+Error timed out while receiving samples from UHD.
 
---0000000000005c8a14058c52c585
+/home/ubuntu/srsLTE-issuefix_format1c/lib/src/phy/ue/ue_sync.c.727: Error
+receiving samples
+
+^CStopping srsUE... Press Ctrl+C 9 more times to force stop
+
+3) [ERROR] [X300] 192.168.50.2: x300 fw communication failure #1
+EnvironmentError: IOError: x300 fw poke32 - reply timed out
+[ERROR] [X300] 192.168.50.2: x300 fw communication failure #2
+EnvironmentError: IOError: x300 fw poke32 - reply timed out
+[ERROR] [X300] 192.168.50.2: x300 fw communication failure #3
+EnvironmentError: IOError: x300 fw poke32 - reply timed out
+[ERROR] [UHD] An unexpected exception was caught in a task loop.The task
+loop will now exit, things may not work.EnvironmentError: IOError:
+192.168.50.2: x300 fw communication failure #3
+EnvironmentError: IOError: x300 fw poke32 - reply timed out
+^Z
+
+
+Regards,
+Saimanoj
+
+--000000000000225318058c5e45df
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_quote">Hi all!<div dir=3D"ltr"><di=
-v><br></div><div>This year&#39;s keynotes have been announced! This year, o=
-ur keynote speakers will be:</div><div><ul><li>Travis Goodspeed<br></li><li=
->Mark Shuttleworth, Canonical<br></li><li>Robert Suggs, <span class=3D"m_-1=
-203554984611438779gmail-oc_program_singleSessionInfo">Marshall Space Flight=
- Center</span></li><li><span class=3D"m_-1203554984611438779gmail-oc_progra=
-m_singleSessionInfo">Mark Spencer, Digium</span></li></ul><div>You can see =
-more details about the conference program on the website, <a href=3D"https:=
-//openconf.org/GRCon19/modules/request.php?module=3Doc_program&amp;action=
-=3Dprogram.php&amp;p=3Dprogram" target=3D"_blank">located here</a>. Note th=
-at talks &amp; submitted tutorials have not yet been added to the program!<=
-br></div><div><br></div><div>Next up, the first deadline for submissions to=
- GRCon is next Monday 1 July! Please get your talk, poster, and paper submi=
-ssions in as soon as you can. The submission website is here:</div><div><br=
-></div><div style=3D"margin-left:40px"><a href=3D"https://openconf.org/GRCo=
-n19/openconf.php" target=3D"_blank">https://openconf.org/GRCon19/openconf.p=
-hp</a></div><div style=3D"margin-left:40px"><br></div>Remember that GRCon m=
-aintains a policy that you do not have to present at the conference to publ=
-ish in the technical proceedings. If you&#39;re submitting a presentation o=
-r poster, we encourage you to also submit a paper to the proceedings. If yo=
-u&#39;re unable to make the event but would like to publish and share your =
-work, you can submit a paper alone, which if accepted will be posted with t=
-his year&#39;s TP at <a href=3D"http://pubs.gnuradio.org" target=3D"_blank"=
->pubs.gnuradio.org</a>.</div><div><br></div><div>Lastly, per my annual call=
- to register earlier, please register as soon as you can! Conference regist=
-ration can be found here:=C2=A0</div><div><br></div><div style=3D"margin-le=
-ft:40px"><a href=3D"https://tickets.gnuradio.org/grcon19/" target=3D"_blank=
-">https://tickets.gnuradio.org/grcon19/</a></div><div style=3D"margin-left:=
-40px"><br></div><div>Please note that <b>prices will go up on August 1st.<b=
-r></b></div><div><br></div><div>If you haven&#39;t booked your hotel, yet, =
-you can book in our discounted room block at the conference hotel using thi=
-s link:</div><div><br></div><div style=3D"margin-left:40px"><a href=3D"http=
-s://www.marriott.com/events/start.mi?id=3D1553879040993&amp;key=3DGRP" targ=
-et=3D"_blank">https://www.marriott.com/events/start.mi?id=3D1553879040993&a=
-mp;key=3DGRP</a></div><div><br></div><div>As usual, if you have any questio=
-ns, please don&#39;t hesitate to reach out! You can reach the organizing te=
-am at <a href=3D"mailto:grcon@gnuradio.org" target=3D"_blank">grcon@gnuradi=
-o.org</a></div><div><br></div><div>Cheers,</div><div>Ben<br></div><div><b><=
-/b></div><br></div>
-</div></div>
+<div dir=3D"ltr"><div>Hi all, <br></div><div><br></div><div>I have been usi=
+ng USRP X310 for almost more than a month. I had no problems until two days=
+ ago. USRP detects only when it is powered on. It gives various errors when=
+ I tried to execute it with srsLTE or OAI codes. <b><i>Each time, I have to=
+ use it, I tend to restart it. I am concerned about this erratic behaviour.=
+</i></b> uhd_find_devices and uhd_images_downloader works fine. <b>When I r=
+estart the USRP, these errors vanish apparently. </b></div><div><br></div><=
+div>Sometimes, with uhd_usrp_probe, this is occured. <br></div><div><br></d=
+iv><div>ubuntu@ubuntu-Zephyrus-GX501GI:~$ sudo uhd_usrp_probe <br>[INFO] [U=
+HD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.15.0.git-1-gf83faf28<=
+br>[INFO] [X300] X300 initialization sequence...<br>[INFO] [X300] Maximum f=
+rame size: 1472 bytes.<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>[INFO] [=
+GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a<br>[ERROR] [UHD] E=
+xception caught in safe-call.<br>=C2=A0 in ctrl_iface_impl&lt;_endianness&g=
+t;::~ctrl_iface_impl() [with uhd::endianness_t _endianness =3D (uhd::endian=
+ness_t)0]<br>=C2=A0 at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_iface.cpp:52<br=
+>this-&gt;send_cmd_pkt(0, 0, true); -&gt; EnvironmentError: IOError: Block =
+ctrl (CE_00_Port_30) no response packet - AssertionError: bool(buff)<br>=C2=
+=A0 in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, doub=
+le) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =
+=3D long unsigned int]<br>=C2=A0 at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_if=
+ace.cpp:142<br><br>Error: EnvironmentError: IOError: Block ctrl (CE_00_Port=
+_30) no response packet - AssertionError: bool(buff)<br>=C2=A0 in uint64_t =
+ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double) [with uhd::e=
+ndianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D long unsigne=
+d int]<br>=C2=A0 at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_iface.cpp:142<br><=
+/div><div><br></div><div> <b>Any suggestions would be appreciated. </b><br>=
+</div><div><b><br></b></div><div><b>The errors are described as follows bel=
+ow</b>. This is either of the following reasons: Exception caught in safe c=
+all, Failed to find device auto with args auto, An unexpected exception was=
+ caught in a task loop. <br></div><div><br></div><div>1) [ERROR] [UHD] Exce=
+ption caught in safe-call.<br>=C2=A0 in ctrl_iface_impl&lt;_endianness&gt;:=
+:~ctrl_iface_impl() [with uhd::endianness_t _endianness =3D (uhd::endiannes=
+s_t)0]<br>=C2=A0 at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_iface.cpp:52<br>th=
+is-&gt;send_cmd_pkt(0, 0, true); -&gt; EnvironmentError: IOError: Block ctr=
+l (CE_01_Port_40) no response packet - AssertionError: bool(buff)<br>=C2=A0=
+ in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double)=
+ [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D=
+ long unsigned int]<br>=C2=A0 at /home/ubuntu/uhd/host/lib/rfnoc/ctrl_iface=
+.cpp:142<br><br>Error opening UHD: code 30<br>/home/ubuntu/srsLTE-issuefix_=
+format1c/lib/src/phy/rf/rf_imp.c.126: No compatible RF frontend found<br><b=
+r>/home/ubuntu/srsLTE-issuefix_format1c/lib/src/radio/radio.cc.38: Error op=
+ening RF device<br><br>Failed to find device auto with args auto</div><div>=
+<br></div><div>2) Failed to Attach<br>/home/ubuntu/srsLTE-issuefix_format1c=
+/lib/src/phy/rf/rf_uhd_imp.c.839: Error timed out while receiving samples f=
+rom UHD.<br><br>/home/ubuntu/srsLTE-issuefix_format1c/lib/src/phy/ue/ue_syn=
+c.c.727: Error receiving samples<br><br>/home/ubuntu/srsLTE-issuefix_format=
+1c/lib/src/phy/rf/rf_uhd_imp.c.839: Error timed out while receiving samples=
+ from UHD.<br><br>/home/ubuntu/srsLTE-issuefix_format1c/lib/src/phy/ue/ue_s=
+ync.c.727: Error receiving samples<br><br>^CStopping srsUE... Press Ctrl+C =
+9 more times to force stop</div><div><br></div><div>3) [ERROR] [X300] <a hr=
+ef=3D"http://192.168.50.2">192.168.50.2</a>: x300 fw communication failure =
+#1<br>EnvironmentError: IOError: x300 fw poke32 - reply timed out<br>[ERROR=
+] [X300] <a href=3D"http://192.168.50.2">192.168.50.2</a>: x300 fw communic=
+ation failure #2<br>EnvironmentError: IOError: x300 fw poke32 - reply timed=
+ out<br>[ERROR] [X300] <a href=3D"http://192.168.50.2">192.168.50.2</a>: x3=
+00 fw communication failure #3<br>EnvironmentError: IOError: x300 fw poke32=
+ - reply timed out<br>[ERROR] [UHD] An unexpected exception was caught in a=
+ task loop.The task loop will now exit, things may not work.EnvironmentErro=
+r: IOError: <a href=3D"http://192.168.50.2">192.168.50.2</a>: x300 fw commu=
+nication failure #3<br>EnvironmentError: IOError: x300 fw poke32 - reply ti=
+med out<br>^Z</div><div><br></div><div><br></div><div>Regards, <br></div><d=
+iv>Saimanoj<br></div></div>
 
---0000000000005c8a14058c52c585--
+--000000000000225318058c5e45df--
 
 
---===============6833802841144594175==
+--===============3114028498670860333==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -188,5 +254,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6833802841144594175==--
+--===============3114028498670860333==--
 
