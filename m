@@ -2,67 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C82215A716
-	for <lists+usrp-users@lfdr.de>; Sat, 29 Jun 2019 00:39:40 +0200 (CEST)
-Received: from [::1] (port=48098 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35EDD5A73C
+	for <lists+usrp-users@lfdr.de>; Sat, 29 Jun 2019 00:58:02 +0200 (CEST)
+Received: from [::1] (port=51340 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hgzWl-0001dP-HF; Fri, 28 Jun 2019 18:39:31 -0400
-Received: from mail-oln040092064025.outbound.protection.outlook.com
- ([40.92.64.25]:36094 helo=EUR01-DB5-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
- (Exim 4.92) (envelope-from <andrewjohn83@outlook.com>)
- id 1hgzWh-0001Yj-7O
- for usrp-users@lists.ettus.com; Fri, 28 Jun 2019 18:39:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VMI7Ewht5xHxxTZMn5QNaAAcUq1Pji57KmNA13e4Jec=;
- b=fItUnWN/NdGxr6m1HAjVf2kXKTbjvO+AvLmPlGMwFmMuvPzRhEmlRMIE37lN4wuweukWnm6PLRNG7gARO3PBqjRE0Vd1yrASP1i4lGBPk9f1kwkQEMVHHxzNKvnsLhShy1M3IdMQmhMmhJ4ufJpaeEamQPpUh+eNvf29ynoL8PBdDAO943HwJRqjqJGIfOaoWae3PoGFJyraY2hTIWxRJgX0/xGheqPoTIWUUPZfudzJLRGzfbL4DXtaNCh0+QGC5Dv0fixYTTenN+9AOH/s4vLPWvqTMQbBDbOQYN4Iwo3+bi4c+vQcHobfmSRX+6MqS/70g/XW3zNVa5C7fZW2oA==
-Received: from HE1EUR01FT038.eop-EUR01.prod.protection.outlook.com
- (10.152.0.51) by HE1EUR01HT130.eop-EUR01.prod.protection.outlook.com
- (10.152.1.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2032.15; Fri, 28 Jun
- 2019 22:38:45 +0000
-Received: from AM6PR04MB5222.eurprd04.prod.outlook.com (10.152.0.58) by
- HE1EUR01FT038.mail.protection.outlook.com (10.152.1.93) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2032.15 via Frontend Transport; Fri, 28 Jun 2019 22:38:45 +0000
-Received: from AM6PR04MB5222.eurprd04.prod.outlook.com
- ([fe80::9556:bac5:be47:fa74]) by AM6PR04MB5222.eurprd04.prod.outlook.com
- ([fe80::9556:bac5:be47:fa74%6]) with mapi id 15.20.2008.017; Fri, 28 Jun 2019
- 22:38:45 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: UHD Version
-Thread-Index: AQHVLgIVYXBUDKgcbkKwh/P15PWO2w==
-Date: Fri, 28 Jun 2019 22:38:45 +0000
-Message-ID: <AM6PR04MB5222C69E5980F3B69F765129DFFC0@AM6PR04MB5222.eurprd04.prod.outlook.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:38CEE0D8FE07EB4B851D1D9F94D6AA4012CC1FA609BCCE5DBB37C2AC8F7DE1FD;
- UpperCasedChecksum:4F361B40E413700D0B33ACA40B9FF6C0BBDDE957FFF0E48CB56E758A23B5794F;
- SizeAsReceived:6631; Count:40
-x-tmn: [YmGlgRVEAh/UVlAOx30M14PcJk+FgybdRSM36S09Ryje3unJ2Au5AGXsfQyy7tXK]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 40
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031322404)(2017031323274)(2017031324274)(1601125500)(1603101475)(1701031045);
- SRVR:HE1EUR01HT130; 
-x-ms-traffictypediagnostic: HE1EUR01HT130:
-x-microsoft-antispam-message-info: DJyjORBtKlSSUPwEGtHTykWFdf6UAej5mdXfmiMeYlgh5xmVVmG2E+zEUKrwKsyFuYDAVcDYTBJsWh8nW0iAS5X46B+00mMOZKelOyJOdaq4MBDSotAsmexHmG4V6lBMwRK/0yF432MMDfCvf03hZroWYB4ZS80+spzQXgRwUfow+eo4+ukCbHlhanpax6YB
+	id 1hgzoe-0002YE-Pk; Fri, 28 Jun 2019 18:58:00 -0400
+Received: from mail-io1-f49.google.com ([209.85.166.49]:45366)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <coxe@close-haul.com>) id 1hgzoa-0002Qn-UC
+ for usrp-users@lists.ettus.com; Fri, 28 Jun 2019 18:57:56 -0400
+Received: by mail-io1-f49.google.com with SMTP id e3so15810777ioc.12
+ for <usrp-users@lists.ettus.com>; Fri, 28 Jun 2019 15:57:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quanttux-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=n6wy2m+6RFFUgU5ltF0P18KPc+b2ZobyzAtYTYQZZSg=;
+ b=nlnLWFWQrxbmot7W7218f+Mh/1aKk36auR9oUKgJhhgIS717GWEExzF4nNaIJrwv5i
+ RrVB/SE9iQF6YiGPa7nUCxTheF3k4yspP19VKVv66iT+sNjZ0GOcF2s1u0iVO03S+wX5
+ 6C+7r8H1HVBH5tIKQ+9M1JBgaFLNBVYwVicbv/uU/gPSvLDWh6hD+QZKkPxPO8tvXOaQ
+ tWJACnrk3aIvM+zekdm2RCWp3/eoaOaFY2CNTs7WmqExg/l6mUI8Dz9vteeIUuJ1U2HC
+ Co6570UyZr8s4hW0wT87g1DtuR6dNiaY9CRbBjCD5n4UHcUDtOMGB/6yscjJLczyma1L
+ 0PXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=n6wy2m+6RFFUgU5ltF0P18KPc+b2ZobyzAtYTYQZZSg=;
+ b=dq1dnKuPSshOurO6BChr+a3Ruv07ekQk2Z8EKf2oS7x0ZCCO4oN95pyOesVDg0P2x9
+ 0U4Zxm7ZWqLdnz8tpsQEHiUirLml6PnHrOlRTyNTmiSkTZ7dycjI65Fm8PRzHILXjmBc
+ AJ6F8cpXgbYmeLZaheHex5mWXEEYWH5kxbwMRQW6psDklgrwK2SEQe707bhObKTBvL/j
+ T8XTVIlgnrt31iVZYgq7UyM5IeGqu82zn6pg/+O0PLMgaFGjSE7+jrMa+SLuqjgLv4v/
+ iprmRI47qyQ6MK3Allx+rniTH3M+m5z8bGAB8KugL1Uml2u+y5dkFxknICB1x1ZElIx0
+ VMiw==
+X-Gm-Message-State: APjAAAWx975EQrNJRoaV2I42e28zUvqC3p7XjW/pdl6SClRPaqRwFK1K
+ DvyPrQorRGruGsMcumQ7oimKb9hXS+jgtvAgeFOrpA==
+X-Google-Smtp-Source: APXvYqwFbWz/n2WNHDHkRI2dffcuULDwUsMNB6WBxdsqlZGdF4DEFWF/KEjC4s+uZos/wg8WZq157/Yun9cTAZaL2tk=
+X-Received: by 2002:a5e:c803:: with SMTP id y3mr5404511iol.308.1561762636111; 
+ Fri, 28 Jun 2019 15:57:16 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87c1b3d5-1b08-44a1-21d7-08d6fc196172
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2019 22:38:45.7506 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR01HT130
-Subject: [USRP-users] UHD Version
+References: <AM6PR04MB5222C69E5980F3B69F765129DFFC0@AM6PR04MB5222.eurprd04.prod.outlook.com>
+In-Reply-To: <AM6PR04MB5222C69E5980F3B69F765129DFFC0@AM6PR04MB5222.eurprd04.prod.outlook.com>
+Date: Fri, 28 Jun 2019 15:57:05 -0700
+Message-ID: <CAKJyDk+TqOWy93b8a46-tynUHMuxi=FOmKxfDDY7akhvMJkiLw@mail.gmail.com>
+To: Andrew Thommesen <andrewjohn83@outlook.com>
+Subject: Re: [USRP-users] UHD Version
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -74,9 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Andrew Thommesen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Andrew Thommesen <andrewjohn83@outlook.com>
-Content-Type: multipart/mixed; boundary="===============0387167461466822367=="
+From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robin Coxe <coxe@quanttux.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0319085326451322059=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -90,80 +75,102 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0387167461466822367==
-Content-Language: en-GB
-Content-Type: multipart/alternative;
-	boundary="_000_AM6PR04MB5222C69E5980F3B69F765129DFFC0AM6PR04MB5222eurp_"
+--===============0319085326451322059==
+Content-Type: multipart/alternative; boundary="0000000000002637dc058c6a330a"
 
---_000_AM6PR04MB5222C69E5980F3B69F765129DFFC0AM6PR04MB5222eurp_
-Content-Type: text/plain; charset="iso-8859-1"
+--0000000000002637dc058c6a330a
+Content-Type: text/plain; charset="UTF-8"
+
+After cloning the gnuradio repo, you can edit this file:
+https://github.com/gnuradio/gr-recipes/blob/master/uhd.lwr
+
+On Fri, Jun 28, 2019 at 3:39 PM Andrew Thommesen via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+>
+> When installing rfnoc using pybombs is it possible to specify the version
+> of UHD that you want to install? If so, how?
+>
+> Thanks,
+>
+> Andy
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000002637dc058c6a330a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"ltr">After cloning the gnuradio repo, you can edit this file:=
+=C2=A0<a href=3D"https://github.com/gnuradio/gr-recipes/blob/master/uhd.lwr=
+">https://github.com/gnuradio/gr-recipes/blob/master/uhd.lwr</a></div><br><=
+div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun=
+ 28, 2019 at 3:39 PM Andrew Thommesen via USRP-users &lt;<a href=3D"mailto:=
+usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex">
 
-When installing rfnoc using pybombs is it possible to specify the version o=
-f UHD that you want to install? If so, how?
-
-Thanks,
-
-Andy
 
 
 
---_000_AM6PR04MB5222C69E5980F3B69F765129DFFC0AM6PR04MB5222eurp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 Hi,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 When installing rfnoc using pybombs is it possible to specify the version o=
 f UHD that you want to install? If so, how?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 Thanks,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 Andy</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div id=3D"Signature">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; ba=
-ckground-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif">
+<div id=3D"gmail-m_-8013295402690349942Signature">
+<div id=3D"gmail-m_-8013295402690349942divtagdefaultwrapper" style=3D"font-=
+size:12pt;color:rgb(0,0,0);background-color:rgb(255,255,255);font-family:Ca=
+libri,Arial,Helvetica,sans-serif">
 <br>
 </div>
 </div>
-</body>
-</html>
+</div>
 
---_000_AM6PR04MB5222C69E5980F3B69F765129DFFC0AM6PR04MB5222eurp_--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000002637dc058c6a330a--
 
 
---===============0387167461466822367==
+--===============0319085326451322059==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -174,5 +181,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0387167461466822367==--
+--===============0319085326451322059==--
 
