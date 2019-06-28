@@ -2,105 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD7A598B3
-	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2019 12:46:10 +0200 (CEST)
-Received: from [::1] (port=55052 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D9C59CC0
+	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2019 15:15:08 +0200 (CEST)
+Received: from [::1] (port=48522 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hgoOM-0000Ky-Hn; Fri, 28 Jun 2019 06:46:06 -0400
-Received: from mx1.itsystems.it ([62.94.30.103]:41448)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <p.palana@itsystems.it>)
- id 1hgoOI-0000Gy-I8
- for usrp-users@lists.ettus.com; Fri, 28 Jun 2019 06:46:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=itsystems.it; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=M3eTOU1DCiKpZ7+6Gy3fsACB4hKR9HeVm8PrH+3pKxw=; b=F7zHpsy55Mc/Q7/kUkNP9q/edP
- 4l+UfHNZJTrenAV9Aaypi6BiTlFaO/+MB/XTvrXugI93vaC8bHEl4ZgCq3jKo+Y0p65IbyVq2Kg5k
- 1sJ6DfJRPAOK27UpS//hm8bEuwEcTn8Zjno6REtFacNjrbGhVCApaZn+QwrRQpBJc+Rs=;
-Received: from [10.10.0.138]
- by mx1.itsystems.it with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.90_1) (envelope-from <p.palana@itsystems.it>)
- id 1hgoMt-0003DS-P9; Fri, 28 Jun 2019 10:44:36 +0000
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
-References: <1cc193d7-d0c0-4605-8bf2-e8b6dab5c3ec@itsystems.it>
- <5CFFD96E.8040504@gmail.com>
- <1da87304-f048-3055-61d1-8df695a04e8b@itsystems.it>
- <5D011192.8050704@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=p.palana@itsystems.it; prefer-encrypt=mutual; keydata=
- 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
- YdrDHPAoRmQ=
-Message-ID: <ea0d1138-250c-d75f-3940-c0dfe839b741@itsystems.it>
-Date: Fri, 28 Jun 2019 12:45:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+	id 1hgqiV-0006jw-SI; Fri, 28 Jun 2019 09:15:03 -0400
+Received: from sonic301-10.consmr.mail.ne1.yahoo.com ([66.163.184.243]:46008)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1hgqiS-0006fX-5d
+ for usrp-users@lists.ettus.com; Fri, 28 Jun 2019 09:15:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+ t=1561727659; bh=UGJ5redXbfjbxhtqcvteKPO3s1zQU09SMDwRzVudtwA=;
+ h=Subject:From:To:Date:From:Subject;
+ b=POU7zWUHKXTcGOhzfvEc51vC57XA0PFkUdTPzqVfPHsy5ckRUzn/48zY1T8B3xc4AKZdRzO/wDUwh86cnqaj1qI/Ea0HuDo70zfoK3gnQXq7+yYDHVfqIK1WSjcT4FSA9iLQXJTitivPcNwENKx8TyeY8ZqGYs3cERCTDlfzjamK2Nyq8D/+jRy++kLNEJI0+ibNVL/Ts20i7LUhKvGav87bysPcL7odJOorydL9R3CiBoE0ZDTiOH2KOui4R3T0fFLHi1RieWj4B73idR9gqTkDFx1JHq1omzy5juYST6grxcbaGjj9VVokEuKtpc4khRarDkZzzVZ3HH21A1Jh1w==
+X-YMail-OSG: QhyA2t8VM1l_QzfJrkAS9a0HAspnx8gAdD0nMTdplaW66kvWGRrwkggKWDfOhWa
+ S6b.fpGLMUGuYKzig59VZOUTFspuZM5q_XTnJjjsvyeIn5gV3lnQtsWocO6YP_x_PwWCzjlY8llH
+ fJoAwtYPINrKl_XKjdBWWqo5SDKgwCPyYOuawbHTVfwLKxEpxUIqzx6Arr7MAl4UDNkR.yuOVd44
+ .DanPfTacHRKA8kggsz80PpfehNkdg9mFBHM2Hn_sHnXK_P__O0ZinZqXvALp3PcHXnSSWBwQRZd
+ lnpiUsgEL2qsJOn4IlL1hxF91J7SnZr3JtJtydfTac21waCWlBQAyzKHz6lJrSrKVgIRsl68l9iU
+ 4o1hbH2bR8Xgq1vvzLMqdt4yRTP5UZdOFx6W3ZbTbtH2l43wfm5UCdbI1q78pj6GP1XA0pwsgWPg
+ PvA0ZWXFUQfBvuhRALlHBYlmkdg1IGFO5Is.J7QnJHguatscfkgHPtIcDl4_N0.YNi3Zgozv7oQG
+ i3VLBNRdcn4pyZCzSXVhfVivZEoVeptVQdBkqJQvHDM0IuhWX5xsz.d58rZZ8RhqkFKuziAu2BEe
+ kue.ZoSOQO81zsWiwioJHIvp_4rzWwNN3a8INpyfge_j8I13A5dDfwcOqVmeX.8NI.7Lg55jMCaq
+ iKIUC2BmAmWH8s.sjIaKVOOyFOakBCG7n4wWbb82E5I_7FmXq00FEKN2ptNqPf70_w_gRIMKjaYg
+ aOwoYG_1oprphWUb3au8OFsU1iD2wmYgjv2Wz.hrLCd4MmEC3rD8thvaO0OsDhKhRZFUWeMv4I0T
+ 0tUrSffMfT0QLMlmzxTSO0jTFjIcQWii7aQHz5fScM53PsABcSRgZSG.lakvhqLjKXnys5Q8gWOi
+ 3sH98XLx5jGLS3uXixsG2ITo9JsZ0pO_cI_igATtkhU7AuFEqsX1LLJekpgZF8snTzafFpT8AHRx
+ dis6jlpd1vNnDmfCxCPZlh_7oL1H5bnvQpYIsRCbLCHqrUdxtSHXUlrinmD2N1yuK1OTLWoFzfL.
+ tsGCjBQbcVHMRaZK5A8HQi9m_pXQsqVmx3Vd2iBl4Je5KmV.7VHIeHuZ0P3jyagbjTiofMmPcsK.
+ wQxWiW.QZYtHHql2Y6L8SaD7hfRHC3I2mkYxmRFB6ed8MD8w84MQhZWwUwtamS98DpSAnaH7RCOS
+ B4vkW97Wh2Ajv1z_Ud5eqsG1xVlGBTSGCWxr.s6k0ibXcBZ6liDig7bdCyMUtE7y.IvU0w_U684w
+ sUh2zXUSInne3WiAp4CV7
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic301.consmr.mail.ne1.yahoo.com with HTTP; Fri, 28 Jun 2019 13:14:19 +0000
+Received: from 65-123-201-146.dia.static.qwest.net (EHLO Serenity2)
+ ([65.123.201.146])
+ by smtp416.mail.ne1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA ID
+ 08631104a7073688714065b8f7a9b76b for <usrp-users@lists.ettus.com>;
+ Fri, 28 Jun 2019 13:12:18 +0000 (UTC)
+Message-ID: <732f0af3de67dcc002938e9d954e3cebc0cd4ec8.camel@sbcglobal.net>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Fri, 28 Jun 2019 13:12:16 +0000
+User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
 MIME-Version: 1.0
-In-Reply-To: <5D011192.8050704@gmail.com>
-Content-Language: en-US
-X-Spam-Score: -2.9 (--)
-X-Spam-Report: Spam detection software, running on the system "v-mx.virt.itsystems.it",
- has NOT identified this incoming email as spam.  The original
- message has been attached to this so you can view it or label
- similar future email.  If you have any questions, see
- the administrator of that system for details.
- 
- Content preview:  > So, the "process flow" you've chosen, JTAGing the FPGA image
-    into > place, is not a usual method for updating the FPGA image on the N310.
-    >   The N310 is itself a computer platform, so has other me [...] 
- 
- Content analysis details:   (-2.9 points, 5.0 required)
- 
-  pts rule name              description
- ---- ---------------------- --------------------------------------------------
- -1.0 ALL_TRUSTED            Passed through trusted hosts only via SMTP
- -1.9 BAYES_00               BODY: Bayes spam probability is 0 to 1%
-                             [score: 0.0000]
-Subject: Re: [USRP-users] problem configuring n310 using jtag
+Subject: [USRP-users] E310 v3.15.0.0 pre-release
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -112,10 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Paolo Palana via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Paolo Palana <p.palana@itsystems.it>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: "d.des via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "d.des" <d.des@sbcglobal.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -129,17 +75,32 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-PiBTbywgdGhlICJwcm9jZXNzIGZsb3ciIHlvdSd2ZSBjaG9zZW4sIEpUQUdpbmcgdGhlIEZQR0Eg
-aW1hZ2UgaW50bwo+IHBsYWNlLCBpcyBub3QgYSB1c3VhbCBtZXRob2QgZm9yIHVwZGF0aW5nIHRo
-ZSBGUEdBIGltYWdlIG9uIHRoZSBOMzEwLgo+IMKgIFRoZSBOMzEwIGlzIGl0c2VsZiBhIGNvbXB1
-dGVyIHBsYXRmb3JtLCBzbyBoYXMgb3RoZXIgbWVjaGFuaXNtcyBmb3IKPiB1cGRhdGluZyB0aGUg
-RlBHQSBpbWFnZToKPgo+IGh0dHBzOi8va2IuZXR0dXMuY29tL1VTUlBfTjMwMC9OMzEwL04zMjAv
-TjMyMV9HZXR0aW5nX1N0YXJ0ZWRfR3VpZGUjVXBkYXRpbmdfdGhlX0ZQR0FfSW1hZ2UKPgo+Cj4g
-SW4gZmFjdCwgSSdkIHNwZW5kIHNvbWUgdGltZSB3aXRoIHRoZSBlbnRpcmUgZ2V0dGluZy1zdGFy
-dGVkIGd1aWRlLAo+IHNpbmNlIHRoZSBOMzEwIGlzIHF1aXRlIGRpZmZlcmVudCB0aGFuIHRoZSBY
-MzEwLgo+Cj4KSGVsbG8gTWFyY3VzLAoKdGhhbmsgeW91IGZvciB5b3VyIHJlcGx5LgoKWW91IGFy
-ZSByaWdodCBpbmRlZWQsIEkgd2FzIG1pc2xlZCBiZWNhdXNlIHRoZSBjb21tZW5kcyBuYW1lLi4u
-IGp1c3QgbXkKZmF1bHQuCgpUaGFuayB5b3UKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
-cC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+I found the new SD image and cross-compiler described in 
+http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-May/059897.html
+and it seems to work well for the UHD that's pre-installed. I was also
+able to build the v3.15.0.0 pre-release host code from git and run it
+from a sshfs "newinstall" directory using the old instructions as a
+guide. rx_samples_to_file and rfnoc_rx_to_file seem to make valid
+recordings. I used the script in fpga-src...scripts to generate some
+FPGA images with different RFNOC blocks and they seemed build OK with
+Vivado 2018.3 but I can't figure out how to load them into uhd on the
+E310. uhd_usrp_probe, using either the baseline SD version of uhd or my
+cross-compiled version, always shows the same modules (DDC_0, DUC_0)
+regardless of what .bit files are in the UHD_IMAGES_DIR or where I try
+to point it with --args="fpga=..." I've gone so far as to delete all of
+the .bit images that I can find on the SD card and uhd still finds that
+same fpga image whether I use the baseline or the newinstall version.
+It's as if that particular FPGA image is baked into the uhd build or
+some other location that updatedb...locate can't find rather than being
+read from a file that I can change.
+
+In general, is there a way to see which RFNOC modules are built into an
+fpga .bit image other than uhd_usrp_probe?
+
+
+
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
