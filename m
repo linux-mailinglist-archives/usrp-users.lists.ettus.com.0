@@ -2,59 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D755A239
-	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2019 19:25:08 +0200 (CEST)
-Received: from [::1] (port=37976 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE105A5AD
+	for <lists+usrp-users@lfdr.de>; Fri, 28 Jun 2019 22:09:11 +0200 (CEST)
+Received: from [::1] (port=42752 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hgucP-0000ej-1a; Fri, 28 Jun 2019 13:25:01 -0400
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:37981)
+	id 1hgxBA-0001OM-7H; Fri, 28 Jun 2019 16:09:04 -0400
+Received: from sonic309-46.consmr.mail.bf2.yahoo.com ([74.6.129.220]:45096)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hgucL-0000Z3-Rp
- for usrp-users@lists.ettus.com; Fri, 28 Jun 2019 13:24:57 -0400
-Received: by mail-qk1-f171.google.com with SMTP id a27so5469033qkk.5
- for <usrp-users@lists.ettus.com>; Fri, 28 Jun 2019 10:24:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=zgAE1NcZQUvtyJByc7r94JTmaO45ZrzzhL/iX5sfZts=;
- b=K7e3ufdrkcdt7Fqb9cNnoL8Oiopbn/RCqiz93fB8Jn7KomZCfuTdkA5x2jfHlmviUk
- YgjQyVGNOGCzzD7EqKxeAXMI5eX3gP74airjtCVXopuJOQ2HPt+qgYHHT2MmPrJX0Hpn
- VYJdZXiFGOz6/9yrlq+qDfGRtEJ/im2CwGpVAribFAA9icSbFdu8AaEVgOFbVqcsMU18
- QBXalxFgQUzkTLY7eh88vWFkgGBGHEcgFN8qNvsmz/yEq1vQbO8We+6sSU3BXu2Qn5mn
- s0py6YAgJ02BK+GMsuNQJ8EzcNvlMKQEYJ6TleUb8LUu6fzXzfqQlW4RB7yVxLJqjGmu
- QEWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=zgAE1NcZQUvtyJByc7r94JTmaO45ZrzzhL/iX5sfZts=;
- b=PPYkh4JJIJIIeXIy+QO8blOslBQAgTX6NQhd4yH67XzquXtgKSN1fxH4d7ggGUhOFK
- jQOtpjZa37jf2TPxCj4Y7FeG2eXum39lYViUl44WwgQH7x4YIj08fvwBNCxarK83wWKb
- /vdX48qqjlfi7fvhVnc6R3Hg0TtW+vAG6WiXMFAwI1kvXVs68AmL8eaiA9PC/0WnEtvm
- i4zszT/ZSBRBe6rYugxH2Nv5NgRblwL2NEg62hmBPZSj6lM7uMmJBTBUPkil1/ObyNS4
- zCdMHeAZdXg1eKsFL3dyjl+DgF5Ot+K24roXCiPI1B1Zf3KwVuNMPRFp1BCZjR4okQKt
- PsgA==
-X-Gm-Message-State: APjAAAWtUMlKrcOsuBG09oj85gV8SRd6T2Wp4UjnPHbOG5WpakUhJCht
- 1aafipNVTHJGjasVB8DwFy9j4OmH
-X-Google-Smtp-Source: APXvYqx+jRCqjdn/1vWBEciYXaeW4gx/+ZbSB/edBwTjgu5A9O625gNTIoGZp/Tj/1gciDlgaJeHIA==
-X-Received: by 2002:a37:4f47:: with SMTP id d68mr9765788qkb.104.1561742657280; 
- Fri, 28 Jun 2019 10:24:17 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp140-02-174-95-204-168.dsl.bell.ca. [174.95.204.168])
- by smtp.googlemail.com with ESMTPSA id m44sm1317353qtm.54.2019.06.28.10.24.16
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 28 Jun 2019 10:24:16 -0700 (PDT)
-Message-ID: <5D164D40.5060506@gmail.com>
-Date: Fri, 28 Jun 2019 13:24:16 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1hgxB6-0001KH-5h
+ for usrp-users@lists.ettus.com; Fri, 28 Jun 2019 16:09:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+ t=1561752498; bh=scoe8AsnLFLniy/tQ1PTCwoh3ksN16mA30PiCAhpSAU=;
+ h=Subject:From:To:Date:From:Subject;
+ b=Bkk6qoILpw7++Rq+k/vg5IvezhYVJtz7NmJY41uCYO52IRaU1fBuGEs0o4utCUoa1Bm/JKomo+AyYQzRofXY8mq2XlEqXElgzG2S3GsH3+fXz0+N7u3dD5x/vEGPwI2mV4zLwFwtq20B9PIc0CYi5BSz+MBzSzmpZWz4N1RAXliIrqwAg/xrpXuyWTyoZC/ZfDIwsgAh3MGK3q40xxDzCM8b4Qhr4n0TKL+5TRnlQb52AstjnEZQzQ45sH9dMwmqWB4bo6l04aUdrWVDp/nUgHQ4ZALmk9nB2Q6skjZ61z2nR2sh+gqeXuQiVj2yuzKkH2hDmLqME56XfnaVBUKvKQ==
+X-YMail-OSG: Z0Zto7cVM1n8oy.NG53RpM4ztLEbAFDOLd9al485Xtjllkh6rh6hzTzcN4bUf.e
+ qUPx3hquc92qhW5QUTagcdQi45wn8Pmg3MSkMlpOw8p3NIhCVGgYD28entJa6KM_cESoINm8Hozy
+ JiNp1JOeXA7plFbxYs7kv4_4ujbyLRS6XButVN3_QLD26wtxChipLQ3Ki4AMg8lb4OKVUU8qBvvh
+ Dyz9P7zZ5P5K7Z17q59CyNdqlMrrYwfV6szOlsAGpHH.iz23Lfcyl0x1GVyukXxyxDjtcifH.5Oa
+ DZ.hFj9QNoYc.V6CxbqHmGKfS0zbA1Ndd4oKCh2qKyBeL.LcKrl6yTyE5sce57OJMkkH4DAHyftY
+ WzJCkdWLBHqKaU19KYJ3PbSCol9NdCOz3j3aTxTiG0x_epTEFO.7951NoldnHMcXYZROLHCunaa1
+ dgxSG5z4IZXLL.OTn.VoH6L4Kni0e1o6Vq1to2k7IfkXbgUGcVhd79NA6Kbw3yNqMzcNREsdP8Cg
+ 1pZTSkOhsG.Ihi3.kFC6CZaiBsxS63ggBgErTxREodanI1X1WdJSOggaZkp6I6OtO2H_XQMEgq6z
+ Rzx7oZhmVNN2BQhxDiT3.7UtNAnRugl1eGVq9fZTb7uBF5_v9gXXRBlaJgLDp0_7nQFoheTXYPsx
+ HhwIoySrnx6fnIeXw_yZcS.UtgJTRNocQJ1tlXP_rje71I5dYjMEn2RxdhtBlm1I86GopPJiT7AH
+ 3PBgt3GnY8kPMQdeRDkiNefUerm7jEt3aCSaG6ldLatfaHqPGcyQIXebL4i6UEoPnt9C2eDyvjxC
+ zfzKrWejTpQ4Dl9tdxsG93QQrMVH.bkJGzghHj8krkKAWnTqfwxtEGbtpwLCOIpJHcTcr9qciEZ9
+ 1W06myHOdNdkbWxOLavJQXQTu0gpI42GUH_qGnrZylfWcdlmU8xykeLrEKCQq2mVJ7iAU6DTJs7Q
+ I.qSKWm7HZ3w_sZLOd1l3kC3HsOQQ5t1n1jf.i.e2EN0dzs552d5ACttpX_KnLweE3mjHmA.jBfs
+ 7va1vUdPro6RdPuqZ7hg9EyOrRF4Bpt6Xf7jb7VzDB5mNLH9CPya9_8Bq5tR8UXd_uo3QNpvJgQb
+ FfMR5KRju44nsuI1M18Tvo5UvDPTN0rgzI8mUfhDMzYjJ3a0Jmx7dDbDfbvleSYBQC8zuKkfktXI
+ 9xDMjTI2ehtv5vdfrK0MzuXleS8uQp3.Digb4F33xjFJgf8ckhy15bDLclaLZRAlDzXRh31aRM3F
+ HuFMPwvY.MijIrZkX1LEMag--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic309.consmr.mail.bf2.yahoo.com with HTTP; Fri, 28 Jun 2019 20:08:18 +0000
+Received: by smtp431.mail.bf1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
+ ID 150ffa8b3010cfc738073d344f1c1a55; 
+ Fri, 28 Jun 2019 20:06:18 +0000 (UTC)
+Message-ID: <149ce38836fec873c616f0818ed2d0e70616c0be.camel@sbcglobal.net>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Fri, 28 Jun 2019 20:06:17 +0000
+User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <732f0af3de67dcc002938e9d954e3cebc0cd4ec8.camel@sbcglobal.net>
-In-Reply-To: <732f0af3de67dcc002938e9d954e3cebc0cd4ec8.camel@sbcglobal.net>
 Subject: Re: [USRP-users] E310 v3.15.0.0 pre-release
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -67,10 +56,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+From: "d.des via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "d.des" <d.des@sbcglobal.net>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,35 +73,304 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 06/28/2019 09:12 AM, d.des via USRP-users wrote:
-> I found the new SD image and cross-compiler described in
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-May/059897.html
-> and it seems to work well for the UHD that's pre-installed. I was also
-> able to build the v3.15.0.0 pre-release host code from git and run it
-> from a sshfs "newinstall" directory using the old instructions as a
-> guide. rx_samples_to_file and rfnoc_rx_to_file seem to make valid
-> recordings. I used the script in fpga-src...scripts to generate some
-> FPGA images with different RFNOC blocks and they seemed build OK with
-> Vivado 2018.3 but I can't figure out how to load them into uhd on the
-> E310. uhd_usrp_probe, using either the baseline SD version of uhd or my
-> cross-compiled version, always shows the same modules (DDC_0, DUC_0)
-> regardless of what .bit files are in the UHD_IMAGES_DIR or where I try
-> to point it with --args="fpga=..." I've gone so far as to delete all of
-> the .bit images that I can find on the SD card and uhd still finds that
-> same fpga image whether I use the baseline or the newinstall version.
-> It's as if that particular FPGA image is baked into the uhd build or
-> some other location that updatedb...locate can't find rather than being
-> read from a file that I can change.
->
-> In general, is there a way to see which RFNOC modules are built into an
-> fpga .bit image other than uhd_usrp_probe?
->
->
->
->
-See this thread here:
+Marcus Leach wrote:
+> See this thread here:
 
+> 
 http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2016-March/046784.html
+
+
+I understand how it's supposed to work, and it's always worked that way
+before including in the outdated 
+http://files.ettus.com/e3xx_images/e3xx-release-4/ setup. With this new
+image and toolchain (from 
+http://files.ettus.com/binaries/cache/e3xx/meta-ettus-v3.15.0.0-e310_prerelease/
+), though, I can't seen to find out where uhd is getting the image it's
+loading let alone change it. No matter what files are in standard
+images path or $UHD_IMAGES_DIR or what I tell args="fpga="...
+uhd_usrp_probe gives the exact same output that indicates 1 DDC and one
+DUC.
+
+logging doesn't seem to be working (maybe related to the first error)
+so I've been attempting to use print statements (see "ddd" comments) to
+trace the long and winding path that "args" takes as it makes its way
+to MPM and eventually the function loads the fpga. I haven't found it
+yet. I've gone so far as to delete all the existing fpga images I can
+find but still uhd finds this one. That's what made me think that it
+had been somehow baked into the uhd executable.
+
+Here are a few outputs, first for uhd_usrp_probe and then for
+uhd_config_info:
+
+root@ni-e31x-*******:~/newinstall# uhd_usrp_probe 
+Error opening log file: basic_ios::clear: iostream error
+[INFO] [UHD] linux; GNU C++ version 7.3.0; Boost_106600;
+UHD_3.15.0.HEAD-0-g6563c537
+ddd in rpc.hpp mb_args=
+[ERROR] [UHD] Device discovery error: AssertionError:
+libusb_init(&_context) == 0
+  in libusb_session_impl::libusb_session_impl()
+  at /home/mal/315/src/uhd/host/lib/transport/libusb1_base.cpp:36
+
+[ERROR] [UHD] Device discovery error: AssertionError:
+libusb_init(&_context) == 0
+  in libusb_session_impl::libusb_session_impl()
+  at /home/mal/315/src/uhd/host/lib/transport/libusb1_base.cpp:36
+
+[ERROR] [UHD] Device discovery error: AssertionError:
+libusb_init(&_context) == 0
+  in libusb_session_impl::libusb_session_impl()
+  at /home/mal/315/src/uhd/host/lib/transport/libusb1_base.cpp:36
+
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=127.0.0.1,type=e3xx,product=e310_sg1,serial=309C7C2,claimed=F
+alse
+
+[ddd
+mb_args=mgmt_addr=127.0.0.1,type=e3xx,product=e310_sg1,serial=309C7C2,c
+laimed=False
+INFO] [MPMD dddddd in mpmd_mboard_impl.cpp mb_args=49601  size=4
+] ddd in rpc.hpp mb_args=
+MPMD Claiming mboard 0
+[INFO] [MPMD ddd] Device args:
+`mgmt_addr=127.0.0.1,type=e3xx,product=e310_sg1,serial=309C7C2,claimed=
+False'. RPC address: 127.0.0.1
+ddd in mpmd_mboard_impl.cpp mb_args=49601  size=4
+ddd in rpc.hpp mb_args=
+[INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
+[INFO] [MPMD ddd] just called setup_mb
+
+[INFO] [MPMD ddd] just called init_property_tree
+
+[INFO] [MPMD] Mboard 0 reports 1 crossbar(s).
+
+
+[INFO] [MPMD ddd] Enumerating RFNoC blocks for xbar 0. Total blocks: 3
+Base port: 1 Local address: 2
+[INFO] [0/Radio_0] Initializing block control (NOC ID:
+0x12AD100000003310)
+[INFO] [MPM.PeriphManager] init() called with device args
+`mgmt_addr=127.0.0.1,product=e310_sg1'.
+[INFO] [0/DDC_0] Initializing block control (NOC ID:
+0xDDC0000000000000)
+[INFO] [0/DUC_0] Initializing block control (NOC ID:
+0xD0C0000000000002)
+[INFO] [MPMD ddd] just called setup_rfnoc_blocks
+
+[INFO] [0/Radio_0] RX freq = 2.4e+09
+[INFO] [0/Radio_0] RX band = 6
+[INFO] [0/Radio_0] RX SW1 = 5
+[INFO] [0/Radio_0] RX SWC = 0
+[INFO] [0/Radio_0] RX SWB = 1
+[INFO] [0/Radio_0] RX VCRX_SW = 1
+[INFO] [0/Radio_0] RX VCTXRX_SW = 0
+[INFO] [0/Radio_0] RX freq = 2.4e+09
+[INFO] [0/Radio_0] RX band = 6
+[INFO] [0/Radio_0] RX SW1 = 5
+[INFO] [0/Radio_0] RX SWC = 0
+[INFO] [0/Radio_0] RX SWB = 1
+[INFO] [0/Radio_0] RX VCRX_SW = 1
+[INFO] [0/Radio_0] RX VCTXRX_SW = 0
+[INFO] [0/Radio_0] RX freq = 2.4e+09
+[INFO] [0/Radio_0] RX band = 6
+[INFO] [0/Radio_0] RX SW1 = 5
+[INFO] [0/Radio_0] RX SWC = 0
+[INFO] [0/Radio_0] RX SWB = 1
+[INFO] [0/Radio_0] RX VCRX_SW = 1
+[INFO] [0/Radio_0] RX VCTXRX_SW = 0
+[INFO] [0/Radio_0] RX freq = 2.4e+09
+[INFO] [0/Radio_0] RX band = 6
+[INFO] [0/Radio_0] RX SW1 = 5
+[INFO] [0/Radio_0] RX SWC = 0
+[INFO] [0/Radio_0] RX SWB = 1
+[INFO] [0/Radio_0] RX VCRX_SW = 1
+[INFO] [0/Radio_0] RX VCTXRX_SW = 0
+[INFO] [0/Radio_0] RX freq = 2.4e+09
+[INFO] [0/Radio_0] RX band = 6
+[INFO] [0/Radio_0] RX SW1 = 5
+[INFO] [0/Radio_0] RX SWC = 0
+[INFO] [0/Radio_0] RX SWB = 1
+[INFO] [0/Radio_0] RX VCRX_SW = 1
+[INFO] [0/Radio_0] RX VCTXRX_SW = 0
+[INFO] [0/Radio_0] RX freq = 2.4e+09
+[INFO] [0/Radio_0] RX band = 6
+[INFO] [0/Radio_0] RX SW1 = 5
+[INFO] [0/Radio_0] RX SWC = 0
+[INFO] [0/Radio_0] RX SWB = 1
+[INFO] [0/Radio_0] RX VCRX_SW = 1
+[INFO] [0/Radio_0] RX VCTXRX_SW = 0
+[INFO] [0/Radio_0] Performing CODEC loopback test... 
+[INFO] [0/Radio_0] CODEC loopback test passed
+[INFO] [0/Radio_0] Performing CODEC loopback test... 
+[INFO] [0/Radio_0] CODEC loopback test passed
+[INFO] [MPMD ddd] just called setup_rpc_blocks
+
+[INFO] [MPMD ddd] done
+
+  _____________________________________________________
+ /
+|       Device: E300-Series Device
+|     _____________________________________________________
+|    /
+|   |       Mboard: ni-e31x-309C7C2F
+|   |   mpm_version: 3.15.0.git-g6563c537
+|   |   pid: 30674
+|   |   product: e310_sg1
+|   |   rev: 4
+|   |   rpc_connection: local
+|   |   serial: 309C7C2
+|   |   type: e3xx
+|   |   MPM Version: 1.2
+|   |   FPGA Version: 1.0
+|   |   FPGA git hash: f52a643.clean
+|   |   RFNoC capable: Yes
+|   |   
+|   |   Time sources:  internal, external, gpsdo
+|   |   Clock sources: internal
+|   |   Sensors: temp_mb, temp_fpga, ref_locked
+|   |     _____________________________________________________
+|   |    /
+|   |   |       RX Dboard: A
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       RX Frontend: 0
+|   |   |   |   Name: E3xx
+|   |   |   |   Antennas: RX2, TX/RX
+|   |   |   |   Sensors: lo_locked, rssi, lo_lock, ad9361_temperature
+|   |   |   |   Freq range: 70.000 to 6000.000 MHz
+|   |   |   |   Gain range PGA: 0.0 to 76.0 step 1.0 dB
+|   |   |   |   Bandwidth range: 20000000.0 to 40000000.0 step 0.0 Hz
+|   |   |   |   Connection Type: IQ
+|   |   |   |   Uses LO offset: No
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       RX Frontend: 1
+|   |   |   |   Name: E3xx
+|   |   |   |   Antennas: RX2, TX/RX
+|   |   |   |   Sensors: lo_locked, rssi, lo_lock, ad9361_temperature
+|   |   |   |   Freq range: 70.000 to 6000.000 MHz
+|   |   |   |   Gain range PGA: 0.0 to 76.0 step 1.0 dB
+|   |   |   |   Bandwidth range: 20000000.0 to 40000000.0 step 0.0 Hz
+|   |   |   |   Connection Type: IQ
+|   |   |   |   Uses LO offset: No
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       RX Codec: A
+|   |   |   |   Name: AD9361 Dual ADC
+|   |   |   |   Gain Elements: None
+|   |     _____________________________________________________
+|   |    /
+|   |   |       TX Dboard: A
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       TX Frontend: 0
+|   |   |   |   Name: E3xx
+|   |   |   |   Antennas: TX/RX
+|   |   |   |   Sensors: lo_locked, ad9361_temperature
+|   |   |   |   Freq range: 47.000 to 6000.000 MHz
+|   |   |   |   Gain range PGA: 0.0 to 89.8 step 0.2 dB
+|   |   |   |   Bandwidth range: 20000000.0 to 40000000.0 step 0.0 Hz
+|   |   |   |   Connection Type: IQ
+|   |   |   |   Uses LO offset: No
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       TX Frontend: 1
+|   |   |   |   Name: E3xx
+|   |   |   |   Antennas: TX/RX
+|   |   |   |   Sensors: lo_locked, ad9361_temperature
+|   |   |   |   Freq range: 47.000 to 6000.000 MHz
+|   |   |   |   Gain range PGA: 0.0 to 89.8 step 0.2 dB
+|   |   |   |   Bandwidth range: 20000000.0 to 40000000.0 step 0.0 Hz
+|   |   |   |   Connection Type: IQ
+|   |   |   |   Uses LO offset: No
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       TX Codec: A
+|   |   |   |   Name: AD9361 Dual DAC
+|   |   |   |   Gain Elements: None
+|   |     _____________________________________________________
+|   |    /
+|   |   |       RFNoC blocks on this device:
+|   |   |   
+|   |   |   * Radio_0
+|   |   |   * DDC_0
+|   |   |   * DUC_0
+
+
+first, using my und cross-compiled build:
+
+root@ni-e31x-*******:~/newinstall# uhd_config_info --print-all
+UHD 3.15.0.HEAD-0-g6563c537
+Build date: Thu, 27 Jun 2019 13:41:23
+C compiler: GNU 7.3.0
+C++ compiler: GNU 7.3.0
+C flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1
+-DUHD_LOG_CONSOLE_LEVEL=2 -DUHD_LOG_FILE_LEVEL=2
+-DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO -O2 -pipe -g -feliminate-unused-
+debug-types 
+C++ flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1
+-DUHD_LOG_CONSOLE_LEVEL=2 -DUHD_LOG_FILE_LEVEL=2
+-DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO -O2 -pipe -g -feliminate-unused-
+debug-types  -fvisibility=hidden -fvisibility-inlines-hidden
+Enabled components: LibUHD, LibUHD - C API, LibUHD - Python API,
+Examples, Utils, Tests, LIBERIO, USB, B100, B200, USRP1, USRP2, X300,
+N230, MPMD, N300, N320, E320, E300, OctoClock
+Install prefix: /usr/local
+Boost version: 1.66
+Libusb version: 1.0.23
+Package path: /usr/local
+Images directory: /home/root/newinstall/usr/local/share/uhd/images
+ABI version string: 3.15.0
+
+then, using the version of uhd on the image from a fresh boot:
+root@ni-e31x-********:~# uhd_config_info --print-all
+UHD 3.15.0.git-0-g6563c537
+Build date: Fri, 24 May 2019 20:20:44
+C compiler: GNU 7.3.0
+C++ compiler: GNU 7.3.0
+C flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1
+-DUHD_LOG_CONSOLE_LEVEL=2 -DUHD_LOG_FILE_LEVEL=2
+-DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO -march=armv7-a -marm -mfpu=neon
+-mfloat-abi=hard -mcpu=cortex-a9  --sysroot=/home/oe-builder/build/tmp-
+glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.15.0.0-
+e310_prerelease/recipe-sysroot  -O2 -pipe -g -feliminate-unused-debug-
+types -fdebug-prefix-map=/home/oe-builder/build/tmp-
+glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.15.0.0-
+e310_prerelease=/usr/src/debug/uhd/3.15.0.0-e310_prerelease -fdebug-
+prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-
+linux-gnueabi/uhd/3.15.0.0-e310_prerelease/recipe-sysroot= -fdebug-
+prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-
+linux-gnueabi/uhd/3.15.0.0-e310_prerelease/recipe-sysroot-native=   -
+march=armv7-a -marm -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9  
+--sysroot=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-
+linux-gnueabi/uhd/3.15.0.0-e310_prerelease/recipe-sysroot
+C++ flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1
+-DUHD_LOG_CONSOLE_LEVEL=2 -DUHD_LOG_FILE_LEVEL=2
+-DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO -march=armv7-a -marm -mfpu=neon
+-mfloat-abi=hard -mcpu=cortex-a9  --sysroot=/home/oe-builder/build/tmp-
+glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.15.0.0-
+e310_prerelease/recipe-sysroot  -O2 -pipe -g -feliminate-unused-debug-
+types -fdebug-prefix-map=/home/oe-builder/build/tmp-
+glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.15.0.0-
+e310_prerelease=/usr/src/debug/uhd/3.15.0.0-e310_prerelease -fdebug-
+prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-
+linux-gnueabi/uhd/3.15.0.0-e310_prerelease/recipe-sysroot= -fdebug-
+prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-
+linux-gnueabi/uhd/3.15.0.0-e310_prerelease/recipe-sysroot-native=  -
+fvisibility-inlines-hidden  -march=armv7-a -marm -mfpu=neon -mfloat-
+abi=hard -mcpu=cortex-a9  --sysroot=/home/oe-builder/build/tmp-
+glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.15.0.0-
+e310_prerelease/recipe-sysroot -fvisibility=hidden -fvisibility-
+inlines-hidden
+Enabled components: LibUHD, LibUHD - C API, Examples, Utils, Tests,
+LIBERIO, USB, GPSD, MPMD, N300, N320, E320, E300, OctoClock
+Install prefix: /usr
+Boost version: 1.66
+Libusb version: 1.0.23
+Package path: /usr
+Images directory: 
+ABI version string: 3.15.0
+
 
 
 
