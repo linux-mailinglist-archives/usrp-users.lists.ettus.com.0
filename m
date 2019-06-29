@@ -2,46 +2,46 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E8CF5A7DB
-	for <lists+usrp-users@lfdr.de>; Sat, 29 Jun 2019 02:26:21 +0200 (CEST)
-Received: from [::1] (port=35792 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D665A7DD
+	for <lists+usrp-users@lfdr.de>; Sat, 29 Jun 2019 02:27:04 +0200 (CEST)
+Received: from [::1] (port=37532 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hh1C2-0006Zn-Co; Fri, 28 Jun 2019 20:26:14 -0400
-Received: from sonic314-46.consmr.mail.bf2.yahoo.com ([74.6.132.220]:46571)
+	id 1hh1Cp-0006uo-Gv; Fri, 28 Jun 2019 20:27:03 -0400
+Received: from sonic314-46.consmr.mail.bf2.yahoo.com ([74.6.132.220]:40632)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1hh1By-0006Ud-U8
- for usrp-users@lists.ettus.com; Fri, 28 Jun 2019 20:26:10 -0400
+ (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1hh1Cl-0006l4-Np
+ for usrp-users@lists.ettus.com; Fri, 28 Jun 2019 20:26:59 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
- t=1561767930; bh=Y/Je0az6EaULZG2ZfYm9v9VeWX6oUuLwt2niRF7DcjM=;
+ t=1561767979; bh=IlVx+blYLAfApbtgxZ2ymWCjgq2ZI3TL63KgSApd+4o=;
  h=Subject:From:To:Date:From:Subject;
- b=KsJ9U8xm01TwD2BNtFaPNJW4hfUnI/SJJVKobz3d3KCpA6ZJb8r6dI5a9lbvPhcrLy/pMvvnzpBekzQuKVP5Sc/xBIvIXMbgjjNGS7dqVba9WSkOliUfPKFtiY96Mzv8Yt2NrOUOH3SEPlDjy0MPEx1eascBEM/WIXXDRAxv6ylzWGrcYaNH+huB8yzX17DY9yKD85a8fM9Ibc4HnBWTYY7NpFMdtnAaKyDaAhHCm9K8+rnU3QfN+CNgqSaEDjdBXuY+TOOmNMgowYfMHZYRJSgycwYVxywAzOUuvRh2XNOdYSKczb0wf4L6Vta+gyQFu70p9Y0tc1dlpBBu5UQ4Lw==
-X-YMail-OSG: UrUsGJwVM1nDGes1j74XhWWMioLJXC0SuLZN7Hbe4LlkCPWhkId.5Y0KkJqVN8E
- eOuKp4xgI6JB7CnNSrUsZ6LARsND0l8XslM2JxF89.xH9eW6J3fwJdcXiOmHaBSoJtsPTOFteohe
- lUgXDu.ddkuJ4cpXUUK6dVST.r3bFzcEaRusgMzT3JGiG_fGtqObC9MRQGOt5VcIQC541pPq2RNj
- mWiVtSjL339gsvAc0fSeYTVIq1eipz3_B_qOb0axUH9vUht.nLBKeWTVZjUu0YKtDSi9oz55f18k
- yp9ndzsE6SLwN4FCL9Bl11MRQ45icowFS9z.QZJeypW.LQSztqwF7oYrLm2T5I6.g5fFC1WRhYfR
- ui1H_MP51gQDpeJyiLi7tF8A2HtYnxSP3DFNcr_UtFtM_npCYJ8xT4Tdi_h0nZ6jvZsMx3GXsOYu
- HtQIU08._RwzyuKpbHn_6DSDFgBGSSJPJUGnDtvDTHSfqjM2E7Wj2zR977VVIO_Jvhi9XTkj9vmq
- coKqBmFH_CRoic1Iv8Yy7.SIJquG5r25Lqyv7dupJbFZx2YUCeoeOpJgSNKdCghsM7dmUq6Ccp3e
- kR6JVkENvHKNWw.ax8jg873gXKMfe0lgMMew_3sRV0HYlVvvaeZHFObDJ03SLqCjCkL5GrWGTkbC
- jo22kCMzU4zYgmTKQ04QhLdazBNChctiFICW0vkKstwxdj._vJP9h3x3hYLbiKL9IE_Hs_m7j_Di
- B1dNrjT9tt.0HpDZSOMrZffONnCplc39KfNOQ_iZUlt7X15BIaOyEmHnl0FN57RrqTPFgqoGO5iK
- anPRU1A_8L4gsxU1QWN6sUmm8QJStf56t3i3aAhEoDXQ_vuAyPTQ5g3nees7i5DXtfR7fz49xCpG
- qucd.OudT8HsAjdsn4aG41x4urowNN0ytNbD7cPY.9jMTXW_Ns_tRwsetITUn5CQBI_8_UBuDc07
- qTIRAFLSM_IyQ_YgBwJLcpYGp5dc0pPq.N7QDK1yDzJbk_iEEh_4rVxZKxlOeAUXTuEi4IkgP4fC
- E5ZdsIXw60b1f11Uzz0zv8879rZsuutlFT9VU1f5uglsLGfEmZive_CuKildxFt5iwp.f7lmqr_o
- gg6j1VMeOICk6SBxlpLEwJN6ezk1XrBu9OlbkHI8tF_fKxXzYKM1F0lDYESXPO1ONPzlPxMqcr00
- b_3TvuzddJWXp5NVDjumZltDJIXHo65elaWWgRL5QshNsNGS8zB4Zrpc5_Th0jNBR8SpoJEH1GWh
- zZV8zkXNiV02XXeY6O6u3G0nfGA--
+ b=XElOtczbQuBHK0q/AjCMV8pQPdUmmRcPHshv9uW07vT+Q4h70Jpwhzs8V2V57U1OvBKZlKqKkbV3tXuiLNa9LHXSH+0kp04rItX+EuqQ+XRgE/9pFd6PDoGQvUBrlizJ7neo8z7fCnuStS//V20PIjzIPoy4dqhEhC3QqlHTym3+IiM1VxijKCxczhgjIttNdtCXtZCRR6/gAGW/w/DOiTgjvCudJvsOkoX293MUnsavbNfnBAN3rGjjLuBKViLMmVwQIZx1/oKZxYf4b7bqkM4SaJb3SHcrldUDoZyfN9rHJ0/9TfEFugDdfHaeithBsT7QE5bbaf0AKWiHosFFcg==
+X-YMail-OSG: WqYUC6YVM1nMaZ.NMrDBsSpz0kyGg_WTYNLqPy07LeXDAnoCyUsVEHghzLpuwQx
+ GCiGGRlSvqVMh1b6qjgJ7jGvOhecy8VQpY1HgozYQ757LWLWM_.t7CF56vzN2nYD4NfJL_UqNgOG
+ PqdYAsgNzYEasKO3YjRnD5VVQpNY.9YL7RNJdGAo22dFlr3NllsfhGMfJP7HW.dDbO9bIYcI0Kh7
+ OelYIboJqCr.L4jYe.gi2Ie93VXXOGPY2Mrcm341jWtrLamT8C0pNYEo8MXtqDsmAKGfcutKthiF
+ MfYQqxwiP8FSHsn6hdzbhfEXygZLyitccj1nSUggduI8y58bkQg7rvNo3FEzt301i3PTwytRmogb
+ dSAk0t2HVCgwv1CYO8l0Pn4OL2jSdKOba8bpYeIrhrf4QUMPCwXq0NubcZHy_063Ye78DiF6p8Z3
+ LHLNdY0CRdKaXVTZGfKnPYzyBYwjT2gaNilJO38eGU5GAuFLxpR7zcgLyd2BzREyaUw1UMeU7XMo
+ 233ZkjQhU0Q3fzW6TfFIhcPIVNXH1k_jQZtYesUv8taTiQuHxQrmptAEZE8fTslgAJdVYu5gGZ0W
+ F1Amtxn81SJHadaOvKo5m.iJ0efP3mNnKL9ZgQz_tcarG9E57puuzAhNsiTk5HG6O.do52N4Dnvw
+ 99.yWmTjWfx1i2gO74zI2S8_OGhyiR1nihNDbO0VEB8UJwRlQ7CNbs3QjNHztIL7lHXU_bsWLUxm
+ 0llGserap6L.458D7nB1WCHbQmw25Y56f3SZuqgn29dNTlt.IysREc7uwBU0GnDa3CX8.K8fGXYe
+ WEUYHUGHRBChcthHpOEX83Y._9kSn7HXHrgdI5Qlh8DoGEmn6CHNuax6nk0wx5ZMJswS3uRnzN3Z
+ Xfe8e1BviV0FfvHWG7g0ydCDqH9wQFp64IQQThSY.auTvVSHHwf3vlMV1hixQgem6vd7mafNGyWC
+ g5civVCZ7YKApCMUsiC4.0htQK7HpIF1SmClY0XvjfphzdZMNyJGJkeVHp9vRAkOEX2chhA_XQCW
+ FnPhl33ipEBat2OhfomieWOUKH98Z0iWtXnafGSuTFzPP.CFgM9k_p5.hTrxe9Ty4V4Wtgv7BLX9
+ r7XAB3crE.daRuY04CPKrzfb0TZhn0Cs061KjmhV53OV2y0O.mR_dr0llv1rYBfjRGqEqqO3tGYn
+ nj6uwJNti4Pi0t0ImLe4oumDKMdg73OzYgkadjxW2doWjOfreqNcTKECXa0mC2ylr1lQL0OOZi8R
+ vAzd4Z00F6W90UT_p4pnhfe9S
 Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic314.consmr.mail.bf2.yahoo.com with HTTP; Sat, 29 Jun 2019 00:25:30 +0000
-Received: by smtp408.mail.bf1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
- ID 5a0cfb4686a087e488997074c082044a; 
- Sat, 29 Jun 2019 00:23:30 +0000 (UTC)
-Message-ID: <a18dce5ac5ba4430cb951cc8d42ddee8828c59e0.camel@sbcglobal.net>
+ sonic314.consmr.mail.bf2.yahoo.com with HTTP; Sat, 29 Jun 2019 00:26:19 +0000
+Received: by smtp429.mail.bf1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
+ ID 8086f4821310127a46cbdbcb9ba5dcbc; 
+ Sat, 29 Jun 2019 00:24:19 +0000 (UTC)
+Message-ID: <1bb09baf0472e7f3f2dcf70dc366ed5be2e91429.camel@sbcglobal.net>
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Sat, 29 Jun 2019 00:23:18 +0000
+Date: Sat, 29 Jun 2019 00:24:12 +0000
 User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
 MIME-Version: 1.0
 Subject: Re: [USRP-users] E310 v3.15.0.0 pre-release
@@ -87,8 +87,7 @@ I'm using the version on the referenced SD image from Ettus's site, not
 bit-baking the latest from meta-ettus.
 
 Here's the result for the pre-compiled uhd that was on the SD image at
-debug log level 0: The results are similar on the one I compiled from
-git.
+debug log level 0: The results are similar on 
 
 root@ni-e31x-309C7C2F:~# uhd_usrp_probe --
 args="fpga=filethatdoesntexist"
