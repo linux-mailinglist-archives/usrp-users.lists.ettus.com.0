@@ -2,44 +2,45 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFC795D44A
-	for <lists+usrp-users@lfdr.de>; Tue,  2 Jul 2019 18:33:52 +0200 (CEST)
-Received: from [::1] (port=59712 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D10C55D46A
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Jul 2019 18:39:13 +0200 (CEST)
+Received: from [::1] (port=34032 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hiLj4-0002p4-Ph; Tue, 02 Jul 2019 12:33:50 -0400
-Received: from mail-lj1-f182.google.com ([209.85.208.182]:44957)
+	id 1hiLoG-0003HT-8Q; Tue, 02 Jul 2019 12:39:12 -0400
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:32869)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <guanjunfeng1019@gmail.com>)
- id 1hiLiz-0002cI-48
- for usrp-users@lists.ettus.com; Tue, 02 Jul 2019 12:33:45 -0400
-Received: by mail-lj1-f182.google.com with SMTP id k18so17535793ljc.11
- for <usrp-users@lists.ettus.com>; Tue, 02 Jul 2019 09:33:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.92) (envelope-from <neel.pandeya@ettus.com>)
+ id 1hiLoA-00037o-SL
+ for usrp-users@lists.ettus.com; Tue, 02 Jul 2019 12:39:07 -0400
+Received: by mail-oi1-f170.google.com with SMTP id u15so13461019oiv.0
+ for <usrp-users@lists.ettus.com>; Tue, 02 Jul 2019 09:38:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=N/UgqDzGFw6P9AT6cKjebDvV8CxWHA8gLZeSL5ucJDc=;
- b=JELWLayRrNDjY71ICely/ZpYEM66M1WRjTnPM4+MhlIqofEeq7ct4bEPN2OIoNSsCx
- +fF3nAJZg18Jf6bmOrfQpLr9DQynAT70WGtv+SI6MWq5v5QeySdFTzWqFwRusntI4TLB
- uCs/PTVp7X/fKRlJOoP/1BD3DfBZG6FVp0D0MZWTUbiUpR4yK1zrnII96B4lQOZo5TGr
- lRhwjEE0bInn7nUjSzshLyUNfJhhEjIGYUcKvkH9zT769wtg8IC3UINva35+s8Fq89KC
- jz2i3vZK8tVrgQdoJyNWgvIxIOudKSOEuNIaPy/HEjcOaF4qcSurnxpAeAlVaH1Xc1Gu
- tBWw==
+ :cc; bh=ZeD2tmvG+hyrsi4Y0lMsslgSR0HGSWSMdkdZnOTkBh0=;
+ b=X+XvVQmBlIaX+Oo52LjxiwH0pF1sgPTzCFis6YBKCDoQV774VRSKIJUyFxLCsx5bdo
+ qzgVi4nu+1dChyNXu/+YjYxVS74FZrTZpkW0126BBU464HS12vxXg/Tbaa0cJP+1AjD2
+ 4ZOoJlnLNGtEyrmrZwbmACkdCR9IsFs6ROcxWxHoc3GRjYmsaK4GxjOAVtpk0Ki2VeGs
+ waZweCBgeDGT25YQuPtbvlM7TOWG86r5JSD3M5/Jcr0fOhGCVlc/ivCAnxRTOnbK6/SS
+ iP7aKZ5RjRQyhcktQu7JdISZDWSfoDIXNTs+HBudpWMaixHZ0nbhU6qFRZAQpjkABa3d
+ CLCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=N/UgqDzGFw6P9AT6cKjebDvV8CxWHA8gLZeSL5ucJDc=;
- b=iTn2/9K7iMM7JNj4mXt/Y/4eCHtfz6hTda09W5rUtHP5WAVQboJm1GHThT2J/AkQ4w
- F7PIyc5+vokyKIgygTngN3jJ0nDa1DzVtkG/vd2TwW0rlsulE7YHdZ5o5WlkHsU4LB7J
- Fwao+kE59S9MpQLUJ0ogAWNSnHXJWR+tTfSbDgRA7gRPcUB42j74hoiaf+YQ6VEz22VD
- /Scfvg76z5BHamybqaweFo1xUQbDAi6ELZcX/4GONe9MFcx1ySFj59lsdj25D8TWkeXL
- bG9DDGLIx6Qc/pFNLY8Fn7Xs8OJQmwPBUCSlm0bIi4wN27mWKBGmtRYKLZ6UjL6k2ccU
- jkdA==
-X-Gm-Message-State: APjAAAUNNIdtfLBFPQfaby24AKIPzxQRExjltjHnqKIgtT8KK0oazVhd
- iZrmp80kVpmevJfGZzAd5ljqkz2pFCv6KgL4GGe8nQ==
-X-Google-Smtp-Source: APXvYqwpF5CU+VNAvTIN+iGBeh0OxG7WmfputIDW9/MyEx0xgJwPwvfoOOtBlwSFuVsy7VQ4SY68FZzIPbfpqMqVeRc=
-X-Received: by 2002:a2e:9211:: with SMTP id k17mr18190018ljg.157.1562085183827; 
- Tue, 02 Jul 2019 09:33:03 -0700 (PDT)
+ bh=ZeD2tmvG+hyrsi4Y0lMsslgSR0HGSWSMdkdZnOTkBh0=;
+ b=PAiFORTx4oLeuL6hDd4QeEQAd9ZLTRgxeaqFGlpAkVAKXuDhB2giYpF5VjZv7FrwYo
+ JYH5NO1t66OssGiqq3fhCTSIohHk15G7NU3ot5dR/Sz/o+3b7aqZ9WcQvGCX8ApYC6gR
+ AWBYtdwgFtcHoeQP/05IJ+1OnssXk8my/E6jzrAd8X44fBhlvXj046+8dyKNYRDRzxq1
+ HAIHMUgKfwXhwBHe5FH3rrzoZKoF96yaLzXjRP06XBS+KH0SixBc+ZctPoT3tQy5E6Fj
+ 3TDymmDziGYpjDkdx4TqItjug2JZDORdYREtBCzvRijO+NsdBE4SXkqfnpPdAL0W1Uct
+ DDsQ==
+X-Gm-Message-State: APjAAAWCxSYFpX1a+8OwPHnDLM5xCvHNY9pjPqc7H1iYePKXiyBZADRa
+ mvZETJhHa36BZ0xNDYmg2gt5YYADtwsPEzS0utihp4Fc
+X-Google-Smtp-Source: APXvYqw3zxiEJWD3ycUj61X+XXAqrhISlq7eboVYUUymcVt2y1OIT2pIV+Xy78D3vQifsmk43+7u+6LmIxB46LamS7U=
+X-Received: by 2002:aca:90c:: with SMTP id 12mr3437830oij.91.1562085505933;
+ Tue, 02 Jul 2019 09:38:25 -0700 (PDT)
 MIME-Version: 1.0
 References: <CABgcKP8Dt0XwgvmE_S7En36-Cs_SjZRo176YdMd2TO59SqkN2Q@mail.gmail.com>
  <5D1B7C20.9050600@gmail.com>
@@ -51,10 +52,11 @@ References: <CABgcKP8Dt0XwgvmE_S7En36-Cs_SjZRo176YdMd2TO59SqkN2Q@mail.gmail.com>
  <5D1B8157.2070502@gmail.com>
  <CABgcKP9KozD4-hXSqwRF2=dMVGr0KYuh76nh0K3Tnp+ktnkQLw@mail.gmail.com>
  <5D1B8514.90405@gmail.com>
-In-Reply-To: <5D1B8514.90405@gmail.com>
-Date: Tue, 2 Jul 2019 12:32:51 -0400
-Message-ID: <CABgcKP8n_59EuttLqcpvRaL8R5+-Es7ybAhK-x_vB_1xMPhUww@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+ <CABgcKP8n_59EuttLqcpvRaL8R5+-Es7ybAhK-x_vB_1xMPhUww@mail.gmail.com>
+In-Reply-To: <CABgcKP8n_59EuttLqcpvRaL8R5+-Es7ybAhK-x_vB_1xMPhUww@mail.gmail.com>
+Date: Tue, 2 Jul 2019 11:38:08 -0500
+Message-ID: <CACaXmv_5ORA+3vsBtKg4TU8g6DJ5yhmkm-OMPOW=itw+v-4mKg@mail.gmail.com>
+To: =?UTF-8?B?5YWz6ZKn5Liw?= <guanjunfeng1019@gmail.com>
 Subject: Re: [USRP-users] x310 PCIe on Ubuntu desktop
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -67,10 +69,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?5YWz6ZKn5LiwIHZpYSBVU1JQLXVzZXJz?= <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?5YWz6ZKn5Liw?= <guanjunfeng1019@gmail.com>
-Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============6599631473215830845=="
+From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8464108760970740753=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,154 +86,179 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6599631473215830845==
-Content-Type: multipart/related; boundary="0000000000007dd7f7058cb54c1d"
+--===============8464108760970740753==
+Content-Type: multipart/related; boundary="000000000000b15ff8058cb55fb2"
 
---0000000000007dd7f7058cb54c1d
-Content-Type: multipart/alternative; boundary="0000000000007dd7f6058cb54c1c"
+--000000000000b15ff8058cb55fb2
+Content-Type: multipart/alternative; boundary="000000000000b15ff6058cb55fb1"
 
---0000000000007dd7f6058cb54c1c
+--000000000000b15ff6058cb55fb1
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thank you Marcus,
+A 1 Gbps Ethernet connection can provide a maximum of approximately 20 to
+25 Msps, depending on the host computer.
 
-I'm able to get Ethernet connection to work. Could you please also let me
-know what is the highest throughput you can get from 1 GiGe Ethernet?
+--Neel Pandeya
 
-Best,
-Jayden
 
-On Tue, Jul 2, 2019 at 12:23 PM Marcus D. Leech <patchvonbraun@gmail.com>
+
+On Tue, 2 Jul 2019 at 11:33, =E5=85=B3=E9=92=A7=E4=B8=B0 via USRP-users <us=
+rp-users@lists.ettus.com>
 wrote:
 
-> On 07/02/2019 12:10 PM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:
+> Thank you Marcus,
 >
-> Could you please teach how to setup the Ethernet connection? e.g. change
-> the x310 IP addr. I used usrp2_recovery.py for N210s but I suppose that
-> won't work for x310, does it?
+> I'm able to get Ethernet connection to work. Could you please also let me
+> know what is the highest throughput you can get from 1 GiGe Ethernet?
 >
-> Thank you very much,
+> Best,
 > Jayden
 >
-> See:
->
->
-> https://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x0cfg_hostpc_=
-netcfg
-> https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_setup_change_ip
->
->
-> On Tue, Jul 2, 2019 at 12:07 PM Marcus D. Leech <patchvonbraun@gmail.com>
+> On Tue, Jul 2, 2019 at 12:23 PM Marcus D. Leech <patchvonbraun@gmail.com>
 > wrote:
 >
->> On 07/02/2019 12:03 PM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:
+>> On 07/02/2019 12:10 PM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:
 >>
->> Yes, I have tried 2 x310s, 2 NI PCIe-8371 cards, 2 PCIe slots on the
->> host, quite desperate lol.
->> BTW, are you able to use the SFP to Ethernet adapter to connect x310?
+>> Could you please teach how to setup the Ethernet connection? e.g. change
+>> the x310 IP addr. I used usrp2_recovery.py for N210s but I suppose that
+>> won't work for x310, does it?
 >>
->> Yes, I use ethernet--just the 1GiGe interface.  Works just fine.
+>> Thank you very much,
+>> Jayden
+>>
+>> See:
 >>
 >>
+>> https://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x0cfg_hostpc=
+_netcfg
+>> https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_setup_change_ip
 >>
->> On Tue, Jul 2, 2019 at 11:59 AM Marcus D. Leech <patchvonbraun@gmail.com=
+>>
+>> On Tue, Jul 2, 2019 at 12:07 PM Marcus D. Leech <patchvonbraun@gmail.com=
 >
 >> wrote:
 >>
->>> On 07/02/2019 11:53 AM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:
+>>> On 07/02/2019 12:03 PM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:
 >>>
->>> Yes, it was. I've used x310 via PCIe on windows 7, ubuntu 16 laptop, bu=
-t
->>> just couldn't get it to work on the Ubuntu desktop.
+>>> Yes, I have tried 2 x310s, 2 NI PCIe-8371 cards, 2 PCIe slots on the
+>>> host, quite desperate lol.
+>>> BTW, are you able to use the SFP to Ethernet adapter to connect x310?
 >>>
->>> I don't use the PCIe with mine, so I'm working a little bit "blind"
->>> here.   Have you tried a different PCIe slot on the motherboard?
->>>
+>>> Yes, I use ethernet--just the 1GiGe interface.  Works just fine.
 >>>
 >>>
->>> On Tue, Jul 2, 2019 at 11:52 AM Marcus D. Leech <patchvonbraun@gmail.co=
+>>>
+>>> On Tue, Jul 2, 2019 at 11:59 AM Marcus D. Leech <patchvonbraun@gmail.co=
 m>
 >>> wrote:
 >>>
->>>> On 07/02/2019 11:47 AM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:
+>>>> On 07/02/2019 11:53 AM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:
 >>>>
->>>> Yes, its loaded, this is the lsmod result:
->>>> [image: Screenshot from 2019-07-02 11:46:14.png]
+>>>> Yes, it was. I've used x310 via PCIe on windows 7, ubuntu 16 laptop,
+>>>> but just couldn't get it to work on the Ubuntu desktop.
 >>>>
->>>> OK, so next thing to check.   Was the X310 *powered up* when you boote=
-d
->>>> the system?
->>>>
+>>>> I don't use the PCIe with mine, so I'm working a little bit "blind"
+>>>> here.   Have you tried a different PCIe slot on the motherboard?
 >>>>
 >>>>
->>>> On Tue, Jul 2, 2019 at 11:46 AM Marcus D. Leech via USRP-users <
->>>> usrp-users@lists.ettus.com> wrote:
 >>>>
->>>>> On 07/02/2019 11:32 AM, =E5=85=B3=E9=92=A7=E4=B8=B0 via USRP-users wr=
-ote:
->>>>> > Hi,
->>>>> >
->>>>> > I'm wondering if anyone has successful experience with PCIe
->>>>> > connectivity with x310 USRP on a Ubuntu desktop via the NI PCIe-837=
-1
->>>>> card.
->>>>> > I was not able to find x310 with uhd_find_devices, and the "lspci -=
-k
->>>>> > -d 1093:c4c4" result does not have kernel driver or kernel module
->>>>> > information.
->>>>> > I noticed the ettus website says niusrprio only supports linux
->>>>> kernel
->>>>> > driver 4.2, and I tried Ubuntu 14.04.2 but it did not work as Ubunt=
-u
->>>>> > 16 and 18.
->>>>> >
->>>>> > However, I did got it to work on a Ubuntu 16 laptop with the NI
->>>>> > ExpressCard-8360 Host Card.
->>>>> >
->>>>> > I really appreciate your help and concern. BTW, its my first time
->>>>> post
->>>>> > to this mailing list, please let me know if I did anything wrong.
->>>>> >
->>>>> > Best regards,
->>>>> > Jayden
->>>>> >
->>>>> Also, did you use the installer shown here:
+>>>> On Tue, Jul 2, 2019 at 11:52 AM Marcus D. Leech <
+>>>> patchvonbraun@gmail.com> wrote:
+>>>>
+>>>>> On 07/02/2019 11:47 AM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:
 >>>>>
->>>>> https://files.ettus.com/manual/page_ni_rio_kernel.html#linux_rio
+>>>>> Yes, its loaded, this is the lsmod result:
+>>>>> [image: Screenshot from 2019-07-02 11:46:14.png]
+>>>>>
+>>>>> OK, so next thing to check.   Was the X310 *powered up* when you
+>>>>> booted the system?
 >>>>>
 >>>>>
 >>>>>
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>> On Tue, Jul 2, 2019 at 11:46 AM Marcus D. Leech via USRP-users <
+>>>>> usrp-users@lists.ettus.com> wrote:
 >>>>>
->>>>
+>>>>>> On 07/02/2019 11:32 AM, =E5=85=B3=E9=92=A7=E4=B8=B0 via USRP-users w=
+rote:
+>>>>>> > Hi,
+>>>>>> >
+>>>>>> > I'm wondering if anyone has successful experience with PCIe
+>>>>>> > connectivity with x310 USRP on a Ubuntu desktop via the NI
+>>>>>> PCIe-8371 card.
+>>>>>> > I was not able to find x310 with uhd_find_devices, and the "lspci
+>>>>>> -k
+>>>>>> > -d 1093:c4c4" result does not have kernel driver or kernel module
+>>>>>> > information.
+>>>>>> > I noticed the ettus website says niusrprio only supports linux
+>>>>>> kernel
+>>>>>> > driver 4.2, and I tried Ubuntu 14.04.2 but it did not work as
+>>>>>> Ubuntu
+>>>>>> > 16 and 18.
+>>>>>> >
+>>>>>> > However, I did got it to work on a Ubuntu 16 laptop with the NI
+>>>>>> > ExpressCard-8360 Host Card.
+>>>>>> >
+>>>>>> > I really appreciate your help and concern. BTW, its my first time
+>>>>>> post
+>>>>>> > to this mailing list, please let me know if I did anything wrong.
+>>>>>> >
+>>>>>> > Best regards,
+>>>>>> > Jayden
+>>>>>> >
+>>>>>> Also, did you use the installer shown here:
+>>>>>>
+>>>>>> https://files.ettus.com/manual/page_ni_rio_kernel.html#linux_rio
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list
+>>>>>> USRP-users@lists.ettus.com
+>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>
+>>>>>
+>>>>>
 >>>>
 >>>
->>
+>> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---0000000000007dd7f6058cb54c1c
+--000000000000b15ff6058cb55fb1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Thank you Marcus,</div><div><br></div><div>I&#39;m ab=
-le to get Ethernet connection to work. Could you please also let me know wh=
-at is the highest throughput you can get from 1 GiGe Ethernet?</div><div><b=
-r></div><div>Best,</div><div>Jayden<br></div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 2, 2019 at 12:23 P=
-M Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbr=
-aun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex">
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
+sans-serif">A 1 Gbps Ethernet connection can provide a maximum of approxima=
+tely 20 to 25 Msps, depending on the host computer.</div><div class=3D"gmai=
+l_default" style=3D"font-family:verdana,sans-serif"><br></div><div class=3D=
+"gmail_default" style=3D"font-family:verdana,sans-serif">--Neel Pandeya</di=
+v><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br=
+></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif=
+"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Tue, 2 Jul 2019 at 11:33, =E5=85=B3=E9=92=A7=E4=B8=B0 via US=
+RP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists=
+.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div>Thank you Marcus,</div><div><br></div><div=
+>I&#39;m able to get Ethernet connection to work. Could you please also let=
+ me know what is the highest throughput you can get from 1 GiGe Ethernet?</=
+div><div><br></div><div>Best,</div><div>Jayden<br></div></div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 2, 2019=
+ at 12:23 PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com"=
+ target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex">
  =20
    =20
  =20
   <div bgcolor=3D"#FFFFFF">
-    <div class=3D"gmail-m_-6230927813896603053moz-cite-prefix">On 07/02/201=
-9 12:10 PM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:<br>
+    <div class=3D"gmail-m_784184976413003895gmail-m_-6230927813896603053moz=
+-cite-prefix">On 07/02/2019 12:10 PM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:<br=
+>
     </div>
     <blockquote type=3D"cite">
       <div dir=3D"ltr">
@@ -248,14 +275,14 @@ ng-left:1ex">
     </blockquote>
     See:<br>
     <br>
-<a class=3D"gmail-m_-6230927813896603053moz-txt-link-freetext" href=3D"http=
-s://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x0cfg_hostpc_netcfg=
-" target=3D"_blank">https://files.ettus.com/manual/page_usrp_x3x0_config.ht=
-ml#x3x0cfg_hostpc_netcfg</a><br>
-<a class=3D"gmail-m_-6230927813896603053moz-txt-link-freetext" href=3D"http=
-s://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_setup_change_ip" target=
-=3D"_blank">https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_setup_c=
-hange_ip</a><br>
+<a class=3D"gmail-m_784184976413003895gmail-m_-6230927813896603053moz-txt-l=
+ink-freetext" href=3D"https://files.ettus.com/manual/page_usrp_x3x0_config.=
+html#x3x0cfg_hostpc_netcfg" target=3D"_blank">https://files.ettus.com/manua=
+l/page_usrp_x3x0_config.html#x3x0cfg_hostpc_netcfg</a><br>
+<a class=3D"gmail-m_784184976413003895gmail-m_-6230927813896603053moz-txt-l=
+ink-freetext" href=3D"https://files.ettus.com/manual/page_usrp_x3x0.html#x3=
+x0_setup_change_ip" target=3D"_blank">https://files.ettus.com/manual/page_u=
+srp_x3x0.html#x3x0_setup_change_ip</a><br>
     <br>
     <br>
     <blockquote type=3D"cite">
@@ -268,8 +295,8 @@ hange_ip</a><br>
         <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
 ;border-left:1px solid rgb(204,204,204);padding-left:1ex">
           <div bgcolor=3D"#FFFFFF">
-            <div class=3D"gmail-m_-6230927813896603053gmail-m_6132373193564=
-171883moz-cite-prefix">On
+            <div class=3D"gmail-m_784184976413003895gmail-m_-62309278138966=
+03053gmail-m_6132373193564171883moz-cite-prefix">On
               07/02/2019 12:03 PM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrote:<br>
             </div>
             <blockquote type=3D"cite">
@@ -297,8 +324,9 @@ aun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
                 <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
 px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                   <div bgcolor=3D"#FFFFFF">
-                    <div class=3D"gmail-m_-6230927813896603053gmail-m_61323=
-73193564171883gmail-m_2330026719762365318moz-cite-prefix">On
+                    <div class=3D"gmail-m_784184976413003895gmail-m_-623092=
+7813896603053gmail-m_6132373193564171883gmail-m_2330026719762365318moz-cite=
+-prefix">On
 
                       07/02/2019 11:53 AM, =E5=85=B3=E9=92=A7=E4=B8=B0 wrot=
 e:<br>
@@ -331,9 +359,9 @@ ailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a=
                         <blockquote class=3D"gmail_quote" style=3D"margin:0=
 px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                           <div bgcolor=3D"#FFFFFF">
-                            <div class=3D"gmail-m_-6230927813896603053gmail=
--m_6132373193564171883gmail-m_2330026719762365318gmail-m_177906699057470617=
-4moz-cite-prefix">On
+                            <div class=3D"gmail-m_784184976413003895gmail-m=
+_-6230927813896603053gmail-m_6132373193564171883gmail-m_2330026719762365318=
+gmail-m_1779066990574706174moz-cite-prefix">On
 
 
                               07/02/2019 11:47 AM, =E5=85=B3=E9=92=A7=E4=B8=
@@ -443,9 +471,17 @@ http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
   </div>
 
 </blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---0000000000007dd7f6058cb54c1c--
---0000000000007dd7f7058cb54c1d
+--000000000000b15ff6058cb55fb1--
+--000000000000b15ff8058cb55fb2
 Content-Type: image/png; name=noname
 Content-Disposition: inline; filename=noname
 Content-Transfer-Encoding: base64
@@ -5423,10 +5459,10 @@ KaWU+nkEYpkyxYqLSWKBMVO8rLl0pwt/s8BSYbRNkwVkE2aKdc84eHfBuNhssb0I43XUsTmp5HDs
 lHLAoXjszNoEWimllFJKKaWUUkoppX6ROB71HrQRIJXq+3zQxoAlt2ODS+fHB9722e4ZhJIv/7jt
 BC1+rbTEHgY6YPghmxOWLMYcvge1UkoppZRSSimllFJKqZ/Z/wPdfHDlKm5dQQAAAABJRU5ErkJg
 gg==
---0000000000007dd7f7058cb54c1d--
+--000000000000b15ff8058cb55fb2--
 
 
---===============6599631473215830845==
+--===============8464108760970740753==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -5437,5 +5473,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6599631473215830845==--
+--===============8464108760970740753==--
 
