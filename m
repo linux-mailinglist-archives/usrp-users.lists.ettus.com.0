@@ -2,51 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38A95D634
-	for <lists+usrp-users@lfdr.de>; Tue,  2 Jul 2019 20:36:08 +0200 (CEST)
-Received: from [::1] (port=53232 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8325D637
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Jul 2019 20:37:38 +0200 (CEST)
+Received: from [::1] (port=54808 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hiNdP-00060e-Py; Tue, 02 Jul 2019 14:36:07 -0400
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:46027)
+	id 1hiNer-0006N7-Tw; Tue, 02 Jul 2019 14:37:37 -0400
+Received: from mail-qk1-f177.google.com ([209.85.222.177]:44436)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
- id 1hiNdL-0005rJ-Qb
- for usrp-users@lists.ettus.com; Tue, 02 Jul 2019 14:36:03 -0400
-Received: by mail-oi1-f173.google.com with SMTP id m206so13914493oib.12
- for <usrp-users@lists.ettus.com>; Tue, 02 Jul 2019 11:35:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=PwJl6LxZSDHKCtaB+pa20UVz7dRfwtYVBHcNTPnaOA4=;
- b=RmIwgNnot3cyXqQwgF+e/OnxEA2FpUPtaK4iQ4Gl3a9f61U8iH+Ds+fmYHR0/2f+E3
- tKmmqLb34pHzVKIxAmgaempFSrODP2y1L44EXlYZ7pHcTk7TrUvGd22YagCvM1LAlskB
- yMo9mZ8vdUyy32yrnL+iwO+k6ss33rRSPJIiFpKYz3Q36gFyiRVPQLvDeo3SE3Kh/TLK
- k+7VnQcVKBbOObAxug9EUGLLYZQfRbPY6owGbloxDZfT2ajBUlmde6Hp1hKYofG7/PjR
- IRiRZYEWeSqh8+Czj3itQNCJqNi3nXKj6VTBlZjtJy9F+k6tQX0caSKDBU9ZC4WZT+x/
- oAMQ==
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hiNen-0006Dh-S3
+ for usrp-users@lists.ettus.com; Tue, 02 Jul 2019 14:37:33 -0400
+Received: by mail-qk1-f177.google.com with SMTP id p144so15072656qke.11
+ for <usrp-users@lists.ettus.com>; Tue, 02 Jul 2019 11:37:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=HC3VqbYBWZQthKch0nt5uoYNaMFNkOw6K/J/sCr2/mo=;
+ b=IxuaRpSuKyW4BGoomu1tnMLjSIGPPlaBvOXS49NEMlLE7ZYtfxrzZHjDnMapoGdY3v
+ e5fE92OEc1njHgSP0eSZgNdnG3PTNJIiOCp/Lc6rS1OR/5cESPOAxaM2IJKI7emkR+SP
+ hdtVvbOjR0Hnic0KTb/gkBOei50xcf0Y+CXkzLBhkNenh1/iNAxCRnBkPdfDHWT6t9fH
+ nU2kqy0L5l2jqzqHKDVJ8LimMefQ3AKdJ8k5Pf/6K214K3/QA3UHm0AB0NlZ7DDJWTEz
+ vc+ChcxRSIaGSFTDsRpmf2mlmtn1UZj4dr07kDQF+cZL3UqeOYFzzjFnQiFyyfBE+LjR
+ Oq/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=PwJl6LxZSDHKCtaB+pa20UVz7dRfwtYVBHcNTPnaOA4=;
- b=prEy/nYRMj5T0k2zISE0PNRbCg05elVof5u7VFwAbCn+7vixBFIHqDG1yZPihA7jVv
- ClM4LSzN48hCGpgd+q+Q+DzqP38X0hN+SPVNDyKvGU177moHVkqyxR13Ab3oZyHmrSF3
- ZntLZ6aBN13MxBR3+iWprIvYefdXrWqN5L4nyEEZEEIFyQtJbo8IZ9Z8iCxMJEty6tTP
- V7K1yMi0b8D8UdrMYaKRrEpZpJBUL3dbC0fvNihf3CmNgpkQem89pI/qRqxzF+B7XuCt
- svljSVtTmXos6B3Pa/iIPAiSCOZibrw/6P8AWV3t5W8lMs/pt58BoocBXzOMsDTW/pNg
- LbIg==
-X-Gm-Message-State: APjAAAUuMvDTtf9zH3hMr1ybYPcTPaOd2vs1XlaQoZ3BHyEMn1VeuXXt
- 0oVf0MwGLZzelhQ6hW6MSHQ24B4iTS8s8BBiw49MQZL1
-X-Google-Smtp-Source: APXvYqzDjaWNXty1378oyeBJgyderjWrbJ17ZjCOB0SEBqY14G2R9BJuxn3MISXoZutsUuT4jt92vQTgmraqfP6KMMg=
-X-Received: by 2002:aca:4a4e:: with SMTP id x75mr3844819oia.154.1562092523238; 
- Tue, 02 Jul 2019 11:35:23 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=HC3VqbYBWZQthKch0nt5uoYNaMFNkOw6K/J/sCr2/mo=;
+ b=W+/wIee68q61m/Sh/w7M00ViwMCzYKAtxgX6n0tXH5j/aVBHOal4cID6nBjJxMbMi0
+ BXyh4NulTcIhPRN4PQShXhqVs7KX+Oy+lLkZND8i611Du0velB1xxkXtkTs8mlFoEBjT
+ vx5IEA+9TUjjK3alrmB9Gwwm3Ujt/4EQFRUon/tZz2NkHG0Wg4BL/+OcdsnVpVgGU7P7
+ fL4CdhMHemmSVJ8D+2FWKSfhcSIYzFSyHlDPHNWcTsZO2YQ5vxShd6oGVKQeEYQzkIUY
+ Gf8VpK/3wd7qFOUXlO0AzimMGF6ONo5+o5FyrJXPaQkGItKN3i+x0BQfAeYArL/2fK6j
+ nnYg==
+X-Gm-Message-State: APjAAAXqjq+p3C557tRzIWnANhAym0zpXMt3a693jN1w/X/vaU7PAZc4
+ vKBNvtlU5RVfZFKMB0nNjzr6244c
+X-Google-Smtp-Source: APXvYqz6lDIfvK0vK2a9cU0bGo4UUFVX9d+juj6yPprRcVLRDbVZsM90T3w3rg4QoqJ1w1YjS1j+vA==
+X-Received: by 2002:a37:9d1:: with SMTP id 200mr26199616qkj.306.1562092613309; 
+ Tue, 02 Jul 2019 11:36:53 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
+ [174.95.14.20])
+ by smtp.googlemail.com with ESMTPSA id i27sm5513824qkk.58.2019.07.02.11.36.52
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 02 Jul 2019 11:36:52 -0700 (PDT)
+Message-ID: <5D1BA444.3060401@gmail.com>
+Date: Tue, 02 Jul 2019 14:36:52 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <CAPkENw_ZqqrYix4Wci0b6=57vvMgSzcAmQJOMcLBfqwt89k8_A@mail.gmail.com>
 In-Reply-To: <CAPkENw_ZqqrYix4Wci0b6=57vvMgSzcAmQJOMcLBfqwt89k8_A@mail.gmail.com>
-Date: Tue, 2 Jul 2019 11:35:56 -0700
-Message-ID: <CAL263ixDeShrtbxXqRU5rYi_t7RduPenH8-2aTTa58A8yDWgmw@mail.gmail.com>
-To: Alex Roberts <alex.roberts@ieee.org>
 Subject: Re: [USRP-users] Meaning of "S" output
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -59,10 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nate Temple <nate.temple@ettus.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2348049465493270295=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,93 +84,30 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2348049465493270295==
-Content-Type: multipart/alternative; boundary="000000000000f44ecf058cb7015f"
-
---000000000000f44ecf058cb7015f
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Alex,
-
-The S is for a sequence error, which are generally a bad thing to observe.
-
-What version of UHD are you using?
-
-Do you have the N210 directly connected to your host? Do you have any other
-networking gear in between (switch/router/hubs?)
-
-What NIC do you have on your host machine?
-
-
-
-
-Regards,
-Nate Temple
-
-On Tue, Jul 2, 2019 at 11:11 AM Alex Roberts via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
+On 07/02/2019 02:10 PM, Alex Roberts via USRP-users wrote:
 > Hello,
 >
-> I have N210 device that outputs a stream of a couple dozen "S" to the
-> console before it stops processing samples. I say "stops processing
-> samples" because when I use a GUI sink in gnuradio-companion to look at
-> complex values being sent to the USRP, it updates once or twice, then goes
-> static after the stream of "S" is complete. What does "S" mean? I can't
-> find any documentation on it.
+> I have N210 device that outputs a stream of a couple dozen "S" to the 
+> console before it stops processing samples. I say "stops processing 
+> samples" because when I use a GUI sink in gnuradio-companion to look 
+> at complex values being sent to the USRP, it updates once or twice, 
+> then goes static after the stream of "S" is complete. What does "S" 
+> mean? I can't find any documentation on it.
 >
 > Thanks!
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
+>
+I think this indicates a sequence-number mismatch, probably due to your 
+underlying ethernet hardware dropping frames.
 
---000000000000f44ecf058cb7015f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Can you share your flow-graph?
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hi Alex,<br><br>The S is for a sequence error, which ar=
-e generally a bad thing to observe.<br><br>What version of UHD are you usin=
-g?<br><br>Do you have the N210 directly connected to your host? Do you have=
- any other networking gear in between (switch/router/hubs?)<br><br>What NIC=
- do you have on your host machine?<br><br><br><br><br>Regards,<br>Nate Temp=
-le<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
-gmail_attr">On Tue, Jul 2, 2019 at 11:11 AM Alex Roberts via USRP-users &lt=
-;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv dir=3D"ltr"><div>Hello,</div><div><br></div><div>I have N210 device that=
- outputs a stream of a couple dozen &quot;S&quot; to the console before it =
-stops processing samples. I say &quot;stops processing samples&quot; becaus=
-e when I use a GUI sink in gnuradio-companion to look at complex values bei=
-ng sent to the USRP, it updates once or twice, then goes static after the s=
-tream of &quot;S&quot; is complete. What does &quot;S&quot; mean? I can&#39=
-;t find any documentation on it.=C2=A0</div><div><br></div><div>Thanks!</di=
-v></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000f44ecf058cb7015f--
+What type of computer?  What type of ethernet interface?
 
 
---===============2348049465493270295==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2348049465493270295==--
-
