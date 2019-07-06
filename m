@@ -2,59 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E1460879
-	for <lists+usrp-users@lfdr.de>; Fri,  5 Jul 2019 16:54:36 +0200 (CEST)
-Received: from [::1] (port=55910 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E39F561237
+	for <lists+usrp-users@lfdr.de>; Sat,  6 Jul 2019 18:44:21 +0200 (CEST)
+Received: from [::1] (port=40154 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hjPbY-000310-HR; Fri, 05 Jul 2019 10:54:28 -0400
-Received: from mail-qt1-f182.google.com ([209.85.160.182]:47012)
+	id 1hjnnK-0000Mr-09; Sat, 06 Jul 2019 12:44:14 -0400
+Received: from mail-pf1-f177.google.com ([209.85.210.177]:37040)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hjPbV-0002wC-30
- for usrp-users@lists.ettus.com; Fri, 05 Jul 2019 10:54:25 -0400
-Received: by mail-qt1-f182.google.com with SMTP id h21so9201220qtn.13
- for <usrp-users@lists.ettus.com>; Fri, 05 Jul 2019 07:54:04 -0700 (PDT)
+ (Exim 4.92) (envelope-from <tom.n5eg@gmail.com>) id 1hjnnG-0000IV-6G
+ for usrp-users@lists.ettus.com; Sat, 06 Jul 2019 12:44:10 -0400
+Received: by mail-pf1-f177.google.com with SMTP id 19so5587375pfa.4
+ for <usrp-users@lists.ettus.com>; Sat, 06 Jul 2019 09:43:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=ULNQ7ThmWHCD6k/ITj9tcSpXfpfP6jIWnPiDEQnaAyE=;
- b=tlIGlhW91K9BzhaZPekHXJQtbWCb4XywejkH05IeLX1+4ors3kNANMiGB2tIQI9k6x
- 6YpBeG6vYjjhgnomrv/a0MS3bxsP4HFK39UQwjqUOnyxXJ60xfMImhwNfu4K/9afkV45
- vVE4drQYOSEINoPs+Ps0sqR5BSY9w1Izl9OHe2PxUYbEaHUuAnMmfQzoECjjJh0drYup
- OqmHqsZffGZIVSB+a7jlsc2sO4Ujy0LX6z3arVxlkqDVVUfNaNyMNk0MCdCtdBOyWp7L
- 9T32A4XWv1l+vDl06Fduli5/wCqZufznUavJar0u8DHAoTeHnLZqGMGEgvfiNc22o+nC
- 8tRA==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=54ZxrfhD3W1j09JYbuB1X4hqK9zNksTxkE9R6V2YWaU=;
+ b=Chn65wAU36ejmUuxiydGLG8yG2BdFDf0BQEt8cKpI0WuQEY0Vt4fpsIeoRIIDx+ncQ
+ jiOCjmSy4EO5u43ZYRsVFxYgTZU1+y1p9S4dbkk1UJZxlmQ7CSc2eiDKEk4Mp8IW/pku
+ UcP2/AVaFb6YlzlYaE/utv9U0GwJPqh//c2b5P6fAO7C6WmE0iCg1lu4wA1c+U5vOXtv
+ mblpoquoctJNBL9wdPlJ/KNE1ULA2lgFpk75WrNWLU39dvotjJKWUJ14cuT95e7CGr5h
+ 8WsLJfO9INQKJYlM4Y0K+J1JnMKEpjVbs9MfZxAhpa2eECJt7BPaMr9ChFRucTXrdrk/
+ o7mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=ULNQ7ThmWHCD6k/ITj9tcSpXfpfP6jIWnPiDEQnaAyE=;
- b=fWOxq0wzbgPSLupUWjbQwh3P3inxgwxIujt70as10sVAbiKWucoUiIfRq4i8jeI1Vk
- iZjJGF+wKO7hDrXparEVpbqFm7Dw3DILquq+EUUO6u4vJbvafa18za83PBZxpET/QV2R
- a/z48h5Uc4oZ0pALM8sUpDuOLE/GDFI+35NyM7KkvNsBZOGXyXsOyPDMp9Abldggr/r3
- OBtU5Wnr3WpM8v6ju5DKydZOgKupcMSlWvmYpiUIUuUBwlo/ZVA7mcmrf2ihIuq4QQMX
- sqZjUfC9UF6gVEJoOfXCpQLdn1ydE/Svg36Sym6alOk+0sVw2xnAkWmCi0tfgFcd67cJ
- A0PA==
-X-Gm-Message-State: APjAAAXm2c2fjXPEZxxeUK0ZkWcgS2rmknvo/1/Wzu/KUDNsN3Y0mS1p
- Y44uLEaIjjhzrbbBO5mFwQK7OzOc
-X-Google-Smtp-Source: APXvYqw/mC3FXcY6CUJTuNDVS+ZpA/Na18LriMxVqk+sqrGN4navoowbM2/uvHmUPzuvKhRH9iycvQ==
-X-Received: by 2002:ac8:252e:: with SMTP id 43mr3035082qtm.61.1562338424583;
- Fri, 05 Jul 2019 07:53:44 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
- [174.95.14.20])
- by smtp.googlemail.com with ESMTPSA id j6sm3619781qkf.119.2019.07.05.07.53.43
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 05 Jul 2019 07:53:43 -0700 (PDT)
-Message-ID: <5D1F6476.9040104@gmail.com>
-Date: Fri, 05 Jul 2019 10:53:42 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=54ZxrfhD3W1j09JYbuB1X4hqK9zNksTxkE9R6V2YWaU=;
+ b=iO5HrtdztX791WaC3u1p8VnEgw8DWaHzHeVCR5m/yMVJrRZ1psHPNtBm+Lz3vCFRsY
+ 25x/0pT32xNou3NQQxrwQ02T3mVuW3N5LrqiwjpITxuErUtkvQweiN8XGX7TY3t48H1U
+ 14qkaNLlvujrz4xnqjhVCCNfaRbd25f/ieqpB/3lXjGQ7LOwY9Ycgthm2RBEimQLlRPZ
+ PD1TvNhliM/aW24js2it5XTUIqT6nPubYdKHXmMqQUb2bxZGGctZKLaLWIwLhf7cQRBf
+ Zewe5bSK0d9U36Bxf30fP8qR/rAG+4ExsFG/HSdLbblrpZuIUry/pPZKuKWf+JqUKdc8
+ w8fg==
+X-Gm-Message-State: APjAAAWA3c10G+3NwnvxS9o0YtteKTYGVI6qLi9ueAt2xEkEERfQt0sg
+ PKYzAuPB6dVBHM1XYTCz7SCNHDYnJbdB0MxOrSeeampX
+X-Google-Smtp-Source: APXvYqzCkHmsZdYPPqf3d8I+V6ieBXxjY2DwSVTw6bEE7GTTEcd/nqwGs4dsmdgCCfrrE5HZ6PikPHk0kNL9qvQuSFE=
+X-Received: by 2002:a63:181:: with SMTP id 123mr3011399pgb.63.1562431408788;
+ Sat, 06 Jul 2019 09:43:28 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com, 
- "Discuss-gnuradio@gnu.org" <Discuss-gnuradio@gnu.org>
-References: <CACO3nRT7r1iZg3Gv8jSBPbUp9wDQCHNYF=fQTYuuCwA71GAuqw@mail.gmail.com>
-In-Reply-To: <CACO3nRT7r1iZg3Gv8jSBPbUp9wDQCHNYF=fQTYuuCwA71GAuqw@mail.gmail.com>
-Subject: Re: [USRP-users] B205mini half-duplex? (GRC)
+Date: Sat, 6 Jul 2019 09:42:53 -0700
+Message-ID: <CACO3nRQK6FgDo+gb1dD-GPOGFDphOHX_dUgXdDOV21pAyj0JxA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] CLUES : B205 Half-Duplex problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -66,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7602137806053709232=="
+From: Tom McDermott via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Tom McDermott <tom.n5eg@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4973156044816302505=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,258 +70,126 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============7602137806053709232==
-Content-Type: multipart/alternative;
- boundary="------------070209020205010506050202"
+--===============4973156044816302505==
+Content-Type: multipart/alternative; boundary="0000000000001b5859058d05e969"
 
-This is a multi-part message in MIME format.
---------------070209020205010506050202
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000001b5859058d05e969
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/05/2019 09:36 AM, Tom McDermott via USRP-users wrote:
-> Hi Marcus - thanks for the link to the documentation.  Messages don't have
-> the required functionality, so I have tried to insert tx_sob and tx_eob tags.
-> This unfortunately has not changed anything.  This is what the tag debug shows,
-> are these formatted correctly for UHD USRP sink?
->
-> ----------------------------------------------------------------------
-> Tag Debug:
-> Input Stream: 00
->    Offset: 139250  Source: burst_tagger4     Key: tx_sob   Value: #t
-> ----------------------------------------------------------------------
->
-> ----------------------------------------------------------------------
-> Tag Debug:
-> Input Stream: 00
->    Offset: 196587  Source: burst_tagger4     Key: tx_eob   Value: #t
-> ----------------------------------------------------------------------
->
-> I have to stop streaming samples to the USRP Sink to get it to stop transmitting and
-> switch TX/RX over to RX - the tags aren't enough.  However the next time back to Tx,
-> the problem with transmitter underruns and weird oscillating T/R behavior resumes.
->
-> Still looking for advice as to how to T/R switch the unit without the TX going nuts?
->
-> -- Tom, N5EG
->
-Indeed, if there are ANY samples after a tx_eob, the USRP will go back 
-into transmitting mode.
+Finally identified the B205 Half-Duplex problem I think.  No packets
+involved
+here - everything is streaming. No Tags, no Messages.
 
-I'm copying the discuss-gnuradio mailing list, since this is really an 
-issue of how to make tagged streams behave
-   as-expected with GRC-derived flow-graphs.
+My hypothesis is that when the B205 transmitter starts (the 2nd and later
+times)
+it tries to fill up something like a TX FIFO, sucking samples out of the
+flowgraph
+way faster than they can be provided. This causes the TX to underrun going
+back
+to receive. Then it catches back up and switches to transmit, bouncing back
+and forth.
 
-I've never implemented a half-duplex TX scheme out of GRC myself, but 
-there are folks on the discuss-gnuradio mailing list
-   who have.
+The first time the TX starts (on flowgraph startup) it seems to pace the TX
+correctly.
+After switching to RX then back to TX (by stopping TX samples the
+restarting) is when
+the problem occurs.
 
+A number of different approaches seem to yield the same behavior:
 
->
->
-> On 07/04/2019 11:14 PM, Tom McDermott via USRP-users wrote:
-> >/  I am trying to use a B205mini in half-duplex mode through the TX/RX
-> />/  connector
-> />/  from a GRC flowgraph.  Gnuradio 3.7.13.4.  Very slow switching,
-> />/  manually implemented.
-> />/
-> />/  The flowgraph implements a simple half-duplex transceiver. In order to
-> />/  switch
-> />/  the TX/RX antenna switch, I am starting and stopping samples to the
-> />/  USRP sink
-> />/  using the Copy block.  When the Copy block is enabled it passes
-> />/  samples to the USRP sink,
-> />/  and when disabled it does not copy samples to the USRP sink.
-> />/
-> />/  If the Copy block is statically enabled, then the USRP transmits (RED
-> />/  led 'On' for TX/RX)
-> />/  continuously without any underruns.
-> />/
-> />/  If the Copy is statically disabled, then USRP goes into receive mode
-> />/  (GREEN led 'On' for TX/RX)
-> />/  and stays in that mode.
-> />/
-> />/  So far so good.
-> />/
-> />/  However if I toggle the enable/disable on the copy block to disable
-> />/  the TX/RX switches as it should
-> />/  from red to green, but after I re-enable the Copy block and leave it
-> />/  enabled, the TX/RX  LED goes red
-> />/  for awhile, then rapidly flashes red/green/red etc. while printing
-> />/  UUUUUUU  on the GRC console, then
-> />/  goes RED for about 5 seconds without underruns, then flashes RED/GREEN
-> />/  rapidly for 5 or 10 seconds
-> />/  and underruns, back and forth ad infinitum.
-> />/
-> />/  So Copy appears not to be a good way to implement T/R switching.
-> />/
-> />/  There is a message port on the USRP sink block.  Can this be used to
-> />/  implement T/R switching?
-> />/  Is there some place that the messages that this port accepts defined?
-> />/  I cannot seem to find
-> />/  the syntax for the message definitions in the USRP documentation, so I
-> />/  must be looking in the wrong place.
-> />/
-> />/  -- Tom, N5EG
-> />/
-> />/
-> /There's some documentation here:
->
-> https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.html
->
->
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+1) I used an Audio Source block (microphone) to feed a multiplier
+(frequency shifter)
+that feeds the TX. If I remove that and replace it with a signal source
+block sinewave
+(something that does not involve real time) then the TX can suck samples as
+fast as
+it wants, and everything T/R switches correctly.
 
+2) The original flowgraph used a Signal Source Block as a L.O. feeding two
+multipliers:
+one in the RX chain, and one in the TX chain.   The receiver is feeding
+samples
+to it's multiplier at a constant rate, which limits how fast the buffer on
+the L.O. has
+samples pulled. That same L.O. is also feeding a multiplier in the transmit
+chain,
+which drains all the buffers in the TX path up to that point.
 
---------------070209020205010506050202
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+I created two gnuradio Signal Source blocks, with identical input
+parameters but
+instantiated as two separate blocks in the flowgraph.  One feeds the
+receiver
+multiplier, one feeds the transmit multiplier - this avoids any common path
+that could slow down samples to the TX. As long as the TX side has no
+real-time
+sources then it T/R switches correctly.  Using the Audio Source block in
+the TX chain
+causes the problem to resurface.
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/05/2019 09:36 AM, Tom McDermott
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CACO3nRT7r1iZg3Gv8jSBPbUp9wDQCHNYF=fQTYuuCwA71GAuqw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <pre>Hi Marcus - thanks for the link to the documentation.  Messages don't have
-the required functionality, so I have tried to insert tx_sob and tx_eob tags.
-This unfortunately has not changed anything.  This is what the tag debug shows,
-are these formatted correctly for UHD USRP sink?
+This seems to confirm the hypothesis.
 
-----------------------------------------------------------------------
-Tag Debug: 
-Input Stream: 00
-  Offset: 139250  Source: burst_tagger4     Key: tx_sob   Value: #t
-----------------------------------------------------------------------
+My opinion is that this is probably a BUG in the B205 FPGA code.  It should
+attempt
+to pull samples at a rate close to the sample rate of the transmitter when
+restarting.
 
-----------------------------------------------------------------------
-Tag Debug: 
-Input Stream: 00
-  Offset: 196587  Source: burst_tagger4     Key: tx_eob   Value: #t
-----------------------------------------------------------------------
+-- Tom, N5EG
 
-</pre>
-        <pre>I have to stop streaming samples to the USRP Sink to get it to stop transmitting and
-switch TX/RX over to RX - the tags aren't enough.  However the next time back to Tx,
-the problem with transmitter underruns and weird oscillating T/R behavior resumes.
+--0000000000001b5859058d05e969
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-</pre>
-        <pre>Still looking for advice as to how to T/R switch the unit without the TX going nuts?
+<div dir=3D"ltr"><div dir=3D"ltr"><div><br></div><div>Finally identified th=
+e B205 Half-Duplex problem I think.=C2=A0 No packets involved</div><div>her=
+e - everything is streaming. No Tags, no Messages.</div><div><br></div><div=
+>My hypothesis is that when the B205 transmitter starts (the 2nd and later =
+times)</div><div>it tries to fill up something like a TX FIFO, sucking samp=
+les out of the flowgraph</div><div>way faster than they can be provided. Th=
+is causes the TX to underrun going back</div><div>to receive. Then it catch=
+es back up and switches to transmit, bouncing back and forth.</div><div><br=
+></div><div><div style=3D"text-align:left;color:rgb(34,34,34);text-transfor=
+m:none;text-indent:0px;letter-spacing:normal;font-family:Arial,Helvetica,sa=
+ns-serif;font-size:13.33px;font-style:normal;font-variant:normal;font-weigh=
+t:400;text-decoration:none;word-spacing:0px;white-space:normal">The first t=
+ime the TX starts (on flowgraph startup) it seems to pace the TX correctly.=
+</div><div style=3D"text-align:left;color:rgb(34,34,34);text-transform:none=
+;text-indent:0px;letter-spacing:normal;font-family:Arial,Helvetica,sans-ser=
+if;font-size:13.33px;font-style:normal;font-variant:normal;font-weight:400;=
+text-decoration:none;word-spacing:0px;white-space:normal">After switching t=
+o RX then back to TX (by stopping TX samples the restarting) is when</div><=
+div style=3D"text-align:left;color:rgb(34,34,34);text-transform:none;text-i=
+ndent:0px;letter-spacing:normal;font-family:Arial,Helvetica,sans-serif;font=
+-size:13.33px;font-style:normal;font-variant:normal;font-weight:400;text-de=
+coration:none;word-spacing:0px;white-space:normal">the problem occurs.<br><=
+/div></div><div><br></div><div>A number of different approaches seem to yie=
+ld the same behavior:</div><div><br></div><div>1) I used an Audio Source bl=
+ock (microphone) to feed a multiplier (frequency shifter)</div><div>that fe=
+eds the TX. If I remove that and replace it with a signal source block sine=
+wave</div><div>(something that does not involve real time) then the TX can =
+suck samples as fast as</div><div>it wants, and everything T/R switches cor=
+rectly.</div><div><br></div><div>2) The original flowgraph used a Signal So=
+urce Block as a L.O. feeding two multipliers:</div><div>one in the RX chain=
+, and one in the TX chain. =C2=A0 The receiver is feeding samples</div><div=
+>to it&#39;s multiplier at a constant rate, which limits how fast the buffe=
+r on the L.O. has</div><div>samples pulled. That same L.O. is also feeding =
+a multiplier in the transmit chain,</div><div>which drains all the buffers =
+in the TX path up to that point.</div><div><br></div><div>I created two gnu=
+radio Signal Source blocks, with identical input parameters but</div><div>i=
+nstantiated as two separate blocks in the flowgraph.=C2=A0 One feeds the re=
+ceiver</div><div>multiplier, one feeds the transmit multiplier - this avoid=
+s any common path</div><div>that could slow down samples to the TX. As long=
+ as the TX side has no real-time</div><div>sources then it T/R switches cor=
+rectly.=C2=A0 Using the Audio Source block in the TX chain</div><div>causes=
+ the problem to resurface.</div><div><br></div><div>This seems to confirm t=
+he hypothesis.</div><div><br></div><div>My opinion is that this is probably=
+ a BUG in the B205 FPGA code.=C2=A0 It should attempt</div><div>to pull sam=
+ples at a rate close to the sample rate of the transmitter when restarting.=
+</div><div><br></div><div>-- Tom, N5EG<br><br></div></div></div>
 
-</pre>
-        <pre>-- Tom, N5EG
-
-</pre>
-      </div>
-    </blockquote>
-    Indeed, if there are ANY samples after a tx_eob, the USRP will go
-    back into transmitting mode.<br>
-    <br>
-    I'm copying the discuss-gnuradio mailing list, since this is really
-    an issue of how to make tagged streams behave<br>
-      as-expected with GRC-derived flow-graphs.<br>
-    <br>
-    I've never implemented a half-duplex TX scheme out of GRC myself,
-    but there are folks on the discuss-gnuradio mailing list<br>
-      who have.<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CACO3nRT7r1iZg3Gv8jSBPbUp9wDQCHNYF=fQTYuuCwA71GAuqw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <pre>
+--0000000000001b5859058d05e969--
 
 
-</pre>
-        <pre>
-On 07/04/2019 11:14 PM, Tom McDermott via USRP-users wrote:
-&gt;<i> I am trying to use a B205mini in half-duplex mode through the TX/RX 
-</i>&gt;<i> connector
-</i>&gt;<i> from a GRC flowgraph.  Gnuradio 3.7.13.4.  Very slow switching, 
-</i>&gt;<i> manually implemented.
-</i>&gt;<i>
-</i>&gt;<i> The flowgraph implements a simple half-duplex transceiver. In order to 
-</i>&gt;<i> switch
-</i>&gt;<i> the TX/RX antenna switch, I am starting and stopping samples to the 
-</i>&gt;<i> USRP sink
-</i>&gt;<i> using the Copy block.  When the Copy block is enabled it passes 
-</i>&gt;<i> samples to the USRP sink,
-</i>&gt;<i> and when disabled it does not copy samples to the USRP sink.
-</i>&gt;<i>
-</i>&gt;<i> If the Copy block is statically enabled, then the USRP transmits (RED 
-</i>&gt;<i> led 'On' for TX/RX)
-</i>&gt;<i> continuously without any underruns.
-</i>&gt;<i>
-</i>&gt;<i> If the Copy is statically disabled, then USRP goes into receive mode 
-</i>&gt;<i> (GREEN led 'On' for TX/RX)
-</i>&gt;<i> and stays in that mode.
-</i>&gt;<i>
-</i>&gt;<i> So far so good.
-</i>&gt;<i>
-</i>&gt;<i> However if I toggle the enable/disable on the copy block to disable 
-</i>&gt;<i> the TX/RX switches as it should
-</i>&gt;<i> from red to green, but after I re-enable the Copy block and leave it 
-</i>&gt;<i> enabled, the TX/RX  LED goes red
-</i>&gt;<i> for awhile, then rapidly flashes red/green/red etc. while printing 
-</i>&gt;<i> UUUUUUU  on the GRC console, then
-</i>&gt;<i> goes RED for about 5 seconds without underruns, then flashes RED/GREEN 
-</i>&gt;<i> rapidly for 5 or 10 seconds
-</i>&gt;<i> and underruns, back and forth ad infinitum.
-</i>&gt;<i>
-</i>&gt;<i> So Copy appears not to be a good way to implement T/R switching.
-</i>&gt;<i>
-</i>&gt;<i> There is a message port on the USRP sink block.  Can this be used to 
-</i>&gt;<i> implement T/R switching?
-</i>&gt;<i> Is there some place that the messages that this port accepts defined?  
-</i>&gt;<i> I cannot seem to find
-</i>&gt;<i> the syntax for the message definitions in the USRP documentation, so I 
-</i>&gt;<i> must be looking in the wrong place.
-</i>&gt;<i>
-</i>&gt;<i> -- Tom, N5EG
-</i>&gt;<i>
-</i>&gt;<i>
-</i>There's some documentation here:
-
-<a moz-do-not-send="true" href="https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.html">https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.html</a>
-
-
-
-
-</pre>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------070209020205010506050202--
-
-
---===============7602137806053709232==
+--===============4973156044816302505==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -344,5 +200,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7602137806053709232==--
+--===============4973156044816302505==--
 
