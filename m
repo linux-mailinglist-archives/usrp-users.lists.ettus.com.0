@@ -2,51 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EFF2612FB
-	for <lists+usrp-users@lfdr.de>; Sat,  6 Jul 2019 22:55:16 +0200 (CEST)
-Received: from [::1] (port=44644 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B2B626F6
+	for <lists+usrp-users@lfdr.de>; Mon,  8 Jul 2019 19:17:37 +0200 (CEST)
+Received: from [::1] (port=55926 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hjri5-0005lI-Rg; Sat, 06 Jul 2019 16:55:05 -0400
-Received: from sonic306-23.consmr.mail.gq1.yahoo.com ([98.137.68.86]:34816)
+	id 1hkXGe-0004og-VU; Mon, 08 Jul 2019 13:17:32 -0400
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:45115)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1hjri2-0005gG-Le
- for usrp-users@lists.ettus.com; Sat, 06 Jul 2019 16:55:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
- t=1562446461; bh=nzafhQAAGVa/HNH+/ZDQ4j6X4SQWkIhmZ6sj3wV5NEo=;
- h=Subject:From:To:Date:In-Reply-To:References:From:Subject;
- b=pdqy9Y3ZmOtqwKPHNGMQ9T9/sYqVA25MxekGBpGQGhQgvJZ4uIFu2FyGWo5lko9tJuPs/xK+X3LAOVtia43sSgnYy5CdUKSvnlKty8aS10bw1AIuBwXUnBdRVSsPb0kmXypnh1+67LZHN0IHrdMJ8PCaRyC7khvLeIctHZ7nMtyp42KOZb20BFg3iPTPD+euxsycH4AbHe/kdkxakYIcklxn6Ky3IdShtGHhSjhZYIZIs7ZW+ahPX0znHkgIqPOHEXSme5xdyYupUQLQpGH2UKV7WB4mRIJrCzOCVVniFQBl63M760GHHcgv5/hOUeSCnzEj5criAJJlMScKcJENWA==
-X-YMail-OSG: SS3lbKoVM1lPrN4TS1L8t1CtCfagim9uEoudm8CPs0gqNZq2IyoTfLJy0rvzBn4
- UAwks.5pk9IR41.7IHlE0L6REsyz1W32YYCQFuKfm93F3igDi1QdSMLChvqgAATkcYz5DL9WVrcy
- vM1VlwLBarVGM6YyhOZ5AeNeynjCOMvbGXywb0nIO.0Z9nZi0hbXwTKitzT2yxk3rKP0qjjCbYlw
- JsVfiDUwLSN1MCaJB8WBZQ780VGR3AZTsnkxZZeEdsaAhnKvkxL.yzWtX2TUQZC1GxZAjUIV3opj
- poWx4Sdcv1msD39Svu8InYb7MLW1L4ABAq2HNVxA2paaXqSCQDN8C0_bkBBfzHW0MjY59sgblj0H
- wpCw0WzGZOpl7vJspqzhWql9yU7waAji3akGymjqSb7kP8VSGGjtgqztIzIvNr38pLXx2Qie0gBQ
- nLAcSkaXmHee6biimZCWVjZBPwMNFBmb2qmEOdN6r5TumZx4XTywK.AGxL5YSVsIwEOPAR.oH5L3
- YHQNzJKUf1_BS.7qijq0z.E2eXOLAAKQuWfzlcWPdislWSpSjf2VBbR2jFy7K9t0THVtieXpfaEk
- 31HTBaiOKi9nMZZnT248qo9FTADAfeKJLpo.g7pdhfrO0Fv01Kt8ZvEEZGKIt2I4z018fIRLbAyb
- 488.8fUM61iC5HykwZUrzCkUEVDVfwMvRrD1lKg.3ENuGzZ.0CaMBFqVZNJF2BKE9ixocKD6A64x
- 0GPamkxN5yMJuDkUn4APdBqWe3W30XN2CnXq12u75qipRwOVX9IbuJPyChd1RorqyToYjLdAyS__
- gBVF9oi8XfapZ7tQNO57S9g1Zuin76Kkksx.ckdustZY8hBXIIVN1_Ol4rfsI3dWOV_CYKLyIOtl
- uyVmd0.5qu0DgVUEH.sFpop2EvGsQD3S5oMLHnKn9A_.KYl9algRIdNtg49Y9s_sJ5XXpLmGKypI
- Znmrubyq6cC4_aflZviLfQRSnF3GyueG_OmPfowmr4eTSPg2K_2H2KRUqUzH.H3irLicfiPOoZPU
- _r4TjFi0p5.Y238ynkUnvLV9PfVxczZCBLD8kDCZ3qV_hjkFBtAFLcuXx19SgpQKtMWs5RxYUynX
- 3S1jecObdmRzSRBtFcSYNHuPR2Wd10l8zksznhE7qqcv4EMrJd0G2dgFb5n4vEpLij.0LWl8_pCP
- ZUBOK86bwcXFioXw_Pi7ud2WKBVFe8V5oowb4shTDDk9_VuBoI.0EzzS1
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic306.consmr.mail.gq1.yahoo.com with HTTP; Sat, 6 Jul 2019 20:54:21 +0000
-Received: by smtp430.mail.gq1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
- ID 684df502fe8226dd0108b8d3c777480b; 
- Sat, 06 Jul 2019 20:54:17 +0000 (UTC)
-Message-ID: <831a326144598fd5b50c3fa217b073cbc5411ba1.camel@sbcglobal.net>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Sat, 06 Jul 2019 20:54:15 +0000
-In-Reply-To: <9386c5638ac8cad2e327dcf47ea7dfbb6af57f7c.camel@sbcglobal.net>
-References: <9386c5638ac8cad2e327dcf47ea7dfbb6af57f7c.camel@sbcglobal.net>
-User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
+ (Exim 4.92) (envelope-from <qiu.guowang007@gmail.com>)
+ id 1hkXGb-0004gS-FR
+ for usrp-users@lists.ettus.com; Mon, 08 Jul 2019 13:17:29 -0400
+Received: by mail-qk1-f173.google.com with SMTP id s22so13866257qkj.12
+ for <usrp-users@lists.ettus.com>; Mon, 08 Jul 2019 10:17:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to:cc;
+ bh=X0MUNAWBSxuz8E3AWlzkeovnUSNfw855MPG2pitmf5E=;
+ b=igLFcgXQxQkhxW/tNHBYLoVB8cmoBCLi+viS033bsh3SdWslamUczBkrTLhJhU36tj
+ vSWAAkkEuVQ5rMhQ3Uf0gyhDGMWUKWiXkBDqXVwwEbSrGoBtW9g4K5b8k/23Ggcagpcm
+ avGRMgEihNTRVa3W7XRLFCpRPbQXchMnJ/ZAcxQhLq4d8wjjKStEvL7sQDTA0ZcamU5o
+ dB1kidUUWat7dTSrNqAfXDjt5Zi+SZOFXSymCYWI014WOzE2AILdjTZKliRsLfS0fnyO
+ yGZCbKAQX6zGpZL9NAJR3IkifH/aT04x/wWsw66TQ2Rv1iKudl1i1V1YcPBSs5Nj1aXW
+ koPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+ bh=X0MUNAWBSxuz8E3AWlzkeovnUSNfw855MPG2pitmf5E=;
+ b=K8dAUwpUbkBxcfAoC6FTarWPVQMm7r4zcqkwa/4OzlH0KNz8KduVDmnL+aaWr0mAtJ
+ LevhW0x3ymBhcM6GJwudJ2SflEkNh3MEdEFeFGs0CKO6gQ5tBZTfHHIilzqsTYSbbEJA
+ lkfJ9f88ZxWVnWDwSd88VAY0yofJwwb2XOSlx04GfCDTLzrbox0Zf1YX0fjck6XzMYgM
+ yztdsasdKwNjP9oGwdCs2Qvw7vHdUI9Qx0zkJDJUGQgnroB91kukMlxeCgXN/OfuQ0O9
+ giQHwNasNHufNlJk3stsGdoeJy6y2afzSjspZs5N2A0bK9h8ce9F3b5srOJZIKsp6IrJ
+ gR3Q==
+X-Gm-Message-State: APjAAAVX3iHcGXGJcvQLFiqNHWx4iMZLX0o9Db2Z85dVWjQOTaVwphAY
+ 2BBTgt3Z6R+L6xeG9QwRc++PQn4h4i5BeXuZ+5WShtKRwY8=
+X-Google-Smtp-Source: APXvYqyuBhgWxgyoYPu1hJ/+uFNyr9UAfhsw5XF1n71fMS2c4S1qlWDZ69PeaF2pPMugKhSkmkZaMg3DchbTkb6D8ZQ=
+X-Received: by 2002:a05:620a:1519:: with SMTP id
+ i25mr15386275qkk.331.1562606208749; 
+ Mon, 08 Jul 2019 10:16:48 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [USRP-users] E310 v3.15.0.0 pre-release rfnoc fpga images build
- but modules not recognized
+Date: Tue, 9 Jul 2019 01:16:37 +0800
+Message-ID: <CACjmV_kUgASTCpxxTE52nX0e+cZRwTitXOWQRZouUVKUtUEUVQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Two separate applications with USRP N310s using dpdk
+ in the same host
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -58,10 +57,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "d.des via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "d.des" <d.des@sbcglobal.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: guowang qiu via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: guowang qiu <qiu.guowang007@gmail.com>
+Cc: Damon Qiu <qiu.guowang007@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1829156419364902419=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,35 +74,36 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-It turns out that I was building the same image over and over again. 
+--===============1829156419364902419==
+Content-Type: multipart/alternative; boundary="000000000000ff144d058d2e9bd1"
 
-uhd_image_builder.py doesn't work out of the box for the e310 because
-of the directory name change at top from e300 to e31x. I'd modified a
-line:
+--000000000000ff144d058d2e9bd1
+Content-Type: text/plain; charset="UTF-8"
 
-   build_dir = {
-:
- #        'e310':'e300',
-        'e310':'e31x',
-:
+Hi all,
+Is it possible to run two separate applications with USRP N310s using dpdk
+in the same host? If the answer is yes, how to do it?
+Best regards,
+Damon
 
-This caused
+--000000000000ff144d058d2e9bd1
+Content-Type: text/html; charset="UTF-8"
 
-uhd_image_builder.py window fft -d e310 -t E310_RFNOC -m 5
+<div dir="ltr">Hi all,<div>Is it possible to run two separate applications with USRP N310s using dpdk in the same host? If the answer is yes, how to do it?<br></div><div>Best regards,</div><div>Damon</div></div>
 
-to generate a new rfnoc_ce_auto_inst_e310.v with every invocation but
-then proceed to call the same old rfnoc_ce_auto_inst_e31x.v. that was
-left over from some previous run.
-
-I made link from the file that python generates to the one that the
-Vivado build script wants and now images made from noc_block_*.v build
-and enumerate to show correct modules.
+--000000000000ff144d058d2e9bd1--
 
 
-
-
+--===============1829156419364902419==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1829156419364902419==--
+
