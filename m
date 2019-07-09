@@ -2,59 +2,33 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0691D631A3
-	for <lists+usrp-users@lfdr.de>; Tue,  9 Jul 2019 09:10:50 +0200 (CEST)
-Received: from [::1] (port=46120 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76B3163425
+	for <lists+usrp-users@lfdr.de>; Tue,  9 Jul 2019 12:21:38 +0200 (CEST)
+Received: from [::1] (port=36168 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hkkGz-0003g0-Ve; Tue, 09 Jul 2019 03:10:45 -0400
-Received: from core.mpb.li ([91.121.108.132]:49006)
+	id 1hknFc-0002j4-Ap; Tue, 09 Jul 2019 06:21:32 -0400
+Received: from neon-v1.ccupm.upm.es ([138.100.198.71]:48291)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <matthias@mpb.li>) id 1hkkGr-0003Sf-EQ
- for usrp-users@lists.ettus.com; Tue, 09 Jul 2019 03:10:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mpb.li;
- s=20161108; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version
- :Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=INK2FNyepKqvMmVpXUMGIjOcw2qcyoJs0P/248Q9RI0=; b=Fy7ea96C8I1R7dBuEcBZ+S3Hfo
- T1gJPRF/AkdycWaGkKHho0mEux8eo5TEQNT5eyVCVHanenPWAFV5TvNuBL56DTjFqoJ+uqcXAcng9
- sexW/oKhm/bFObvJfeEk6+gKINQkYPpmAX+7h5C6KNOYAxyVtNnCXYYlhZusvSZZ86l0=;
-Received: from [2001:1620:e6f:99:3341:cc0:da95:7b7e]
- by core.mpb.li with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.89) (envelope-from <matthias@mpb.li>) id 1hkkGC-0001Ra-8Q
- for usrp-users@lists.ettus.com; Tue, 09 Jul 2019 09:09:56 +0200
-To: usrp-users@lists.ettus.com
-References: <CAM4xKrrb4MNYu8PZmt29f8R5FbSpiik7Q95XPqVMtBqQO7ZtPQ@mail.gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=matthias@mpb.li; prefer-encrypt=mutual; keydata=
- mQGiBEYMuHcRBACA+gOZ2kLr+D9EbTZaM+8FKSrB+W92gi82LlSnWIx5vQ2bs4u+3ZMGT4WB
- +euKj49/bQ99CoEDB94dGWDrVol3Qxx39UIhL8VSJpHMKQZaa7fHJgOeZLCyjM+qTm/yWcIC
- ND2n8CgJc6oRqmD8l/nRQqHTceSaYPJSIc82QC05zwCgsL7inGV7Xhb8kSJt4B1vOLUG1XMD
- /2swxqZ3QkER90QFGwThUhsPbscl7jVBUWalqHb8n7aM+CrxMuevS/dpOVRA1nEGGgWzEtfs
- UGEKMR7feOf9dnajULnUogLUboIlUrlL+JAwR0uGvI+wynOHMJEcWYhIZG43BQPLJrMitHyE
- HnTjCvZSEsnrDE31GBSCyIyLCkwtA/97MwVUBw0LxsLWK9fnNhuymjWWA07b2keNVUmETVPj
- KeyicE7d8xZUeyrm5JnBj61wm7PeeZBf+pq2mEDqdputuNNPuh8o7rYxua1Vc3HKbz068gN+
- YmA3yVLAEs1aJ5s+5KyP/aGVygSi5td0mNnqzlCfFntIPj3v1LS21pI+SrQjTWF0dGhpYXMg
- QnLDpG5kbGkgPG1hdHRoaWFzQG1wYi5saT6IggQTEQIAQgIbIwYLCQgHAwIGFQgCCQoLBBYC
- AwECHgECF4ACGQEWIQRQgfjVU8jOSc2gZI3uThRyhIPRdAUCXGq2XwUJGiBk6AAKCRDuThRy
- hIPRdA4gAJ90A0IL44gVL09jh3zq8hiT0rQ0XgCgnCYTCybgTT3KDcVV8gUPb8yMXB65AQ0E
- Rgy4eRAEAM99KgY6ujv19er4CU9lTx1Cuc6B9jHqlDutB921+1BKeCJcniz1d0z94+ZfTbJd
- UI/1TnXDPOPjJ3tJB4Nca/p2vwoOruW62yw9rCGV8qgFKSWEg+MqGs7Ks9Zk+xNHqL7Pg8Nr
- 1rxkjTFNiDJABAHNuhg+U/2krnSP0ws25m+XAAQLA/9ibdsVCgSqCFkgnFTLnydQOSr4f6aT
- PeH1cZB6vgIZemt4mtnVrCKIYNSyUEwN05mlNR2hcXfaRyFRw2hhAVmqO5bYkLtrvXn2BLs9
- 6lgyF/12tF7x7LydFPcdTPiu4MsP+rzOYlHUk5onqippMMfY6hv6exTB2dWSaeLgPqPclYhm
- BBgRAgAmAhsMFiEEUIH41VPIzknNoGSN7k4UcoSD0XQFAlxqtnMFCRogZPoACgkQ7k4UcoSD
- 0XR1jgCdFz+aNIwDAbw75m0bivIINrQWIOcAn3s0DBAg48EhAFrPUuloCtLKbKm4
-Message-ID: <e50bf1f7-0bb6-84a2-edfa-0188a229fc63@mpb.li>
-Date: Tue, 9 Jul 2019 09:09:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+ (Exim 4.92) (envelope-from <pablo.mdiaz@alumnos.upm.es>)
+ id 1hknFY-0002f8-9M
+ for usrp-users@lists.ettus.com; Tue, 09 Jul 2019 06:21:28 -0400
+Received: from www.upm.es (webmail01.dcupm [10.20.20.20])
+ by neon-v1.ccupm.upm.es (8.14.4/8.14.4/neon-v1-002) with ESMTP id
+ x69AKk1v012122
+ for <usrp-users@lists.ettus.com>; Tue, 9 Jul 2019 12:20:46 +0200
 MIME-Version: 1.0
-In-Reply-To: <CAM4xKrrb4MNYu8PZmt29f8R5FbSpiik7Q95XPqVMtBqQO7ZtPQ@mail.gmail.com>
-Content-Language: en-US-large
-Subject: Re: [USRP-users] [UHD] 3.14.1.0 Release Announcement
+Content-Type: multipart/mixed;
+ boundary="=_2172bcac6586fe243b49811e10cb848f"
+Date: Tue, 09 Jul 2019 12:20:46 +0200
+To: usrp-users@lists.ettus.com
+Message-ID: <22eff1fccc74ab3d4e16bac2f481f11e@alumnos.upm.es>
+X-Sender: pablo.mdiaz@alumnos.upm.es
+User-Agent: Webmail UPM Alumnos
+X-Originating-IP: 138.100.9.10
+X-BitDefender-Scanner: Clean,
+ Agent: BitDefender Milter 3.1.6 on neon-v1.ccupm.upm.es, sigver: 7.81545
+Subject: [USRP-users] Zeros at beggining of samples
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -66,11 +40,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Matthias_Br=C3=A4ndli_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Matthias_Br=c3=a4ndli?= <matthias@mpb.li>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: "pablo.mdiaz via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "pablo.mdiaz" <pablo.mdiaz@alumnos.upm.es>
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,23 +55,115 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Dear Michael,
+--=_2172bcac6586fe243b49811e10cb848f
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 
-First of all, thanks for the new UHD release to all people involved!
+Hi all,
 
-On 08/07/2019 20:35, Michael West wrote:
-> This release includes [...] a new bootloader for B200
+We have a X310 SDR and we are obtaining IQ samples from 4 channels. To 
+do that we created 4 buffers to store them and for debug purposes write 
+them in a file.
 
-Is there more information about this change? Does this solve a specific
-issue? I had a look at the relevant commits, but I am trying to
-understand why it was implemented and if there's any impact for our
-application.
+The problem we have is that at the beginning of the buffers they appear 
+to be empty (full of zeros), the attached file contains a memory dump of 
+all the buffers.
 
-Best regards
-mpb
+The following code is the initialization of the SDR, maybe we are 
+forgetting to initialize some parameters.
 
+     std::string device_args = "RIO0";
+     std::string subdev = "A:0 A:1 B:0 B:1";
+     std::string clock_source = "internal";
+
+     usrp = uhd::usrp::multi_usrp::make(device_args);
+     usrp->set_clock_source(clock_source);
+     usrp->set_rx_subdev_spec(subdev);
+
+     uhd::tune_request_t tune_request(freq);
+
+     for (int i = 0; i < CHANNELS; i++) {
+         usrp->set_rx_rate(rate,i);
+         usrp->set_rx_freq(tune_request,i);
+         usrp->set_rx_gain(gain,i);
+         usrp->set_rx_bandwidth(bw,i);
+     }
+
+     uhd::stream_args_t stream_args("fc32", "sc16");
+     stream_args.channels = {0, 1, 2, 3};
+     stream_args.args["spp"] = "512";
+     rx_stream = usrp->get_rx_stream(stream_args);
+     const int spp = rx_stream->get_max_num_samps();
+
+     std::vector<std::vector<std::complex<float>>> buffs (
+         num_channels,
+         std::vector<std::complex<float>> (spp)
+     );
+
+     for(int i = 0; i< buffs.size(); i++)
+         buffPtrs.push_back(buffs[i].data());
+
+     uhd::stream_cmd_t stream_cmd = 
+uhd::stream_cmd_t::STREAM_MODE_START_CONTINUOUS;
+     stream_cmd.stream_now = false;
+
+
+//We suspect this block is causing the odd behavior
+{
+     stream_cmd.time_spec = uhd::time_spec_t (1.9);
+     rx_stream->issue_stream_cmd(stream_cmd);
+     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+}
+
+Then this function is called multiple times to gather the IQ samples
+
+     read = rx_stream->recv(buffPtrs, 512, rx_metadata, 2);
+
+Hope you can help us, thanks beforehand.
+
+Pablo (Universidad Politécnica de Madrid)
+
+--=_2172bcac6586fe243b49811e10cb848f
+Content-Transfer-Encoding: base64
+Content-Type: text/plain;
+ name=Samples
+Content-Disposition: attachment;
+ filename=Samples;
+ size=1168
+
+Q2hhbm5lbCAwCgowMDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAKMDAwMCAw
+MDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAwCjAwMDAgMDAwMCAwMDAwIDAwMDAgMDAw
+MCAwMDAwIDAwMDAgMDAwMAowMDAwIDAwMDAgZTRmZSBmZjM3IDAwMDAgMDAwMCBlNGZlIGZmYjcK
+MDAwMCAwMDAwIDJiZmYgYmYzOCAwMDAwIDAwMDAgNGVmZiAxZmI5CjAwMDAgMDAwMCA2MGZmIDhm
+MzkgZTRmZSBmZjM3IDA4ZmYgZGZiOQplNGZlIGZmYjcgM2RmZiAyZjNhIGU0ZmUgZmYzNyA2ZWZm
+IDgzYmEKCkNoYW5uZWwgMQoKMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAw
+CjAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMAowMDAwIDAwMDAgMDAwMCAw
+MDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAKZTRmZSBmZmI3IGU0ZmUgZmYzNyBlNGZlIGZmMzcgZTRm
+ZSBmZmI3CmU0ZmUgN2ZiOCBlNGZlIDdmMzggZTRmZSBmZjM4IDJiZmYgYmZiOAoyYmZmIDNmYjkg
+MmJmZiAzZjM5IDRlZmYgOWYzOSA2MGZmIDhmYjkKZjZmZSBlZmI5IGY2ZmUgZWYzOSAzZGZmIDJm
+M2EgM2RmZiAyZmJhCgpDaGFubmVsIDIKCjAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAwIDAw
+MDAgMDAwMAowMDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAKMDAwMCAwMDAw
+IDAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAwCmU0ZmUgZmYzNyAwMDAwIDAwMDAgZTRmZSBm
+ZmI3IDAwMDAgMDAwMAoyYmZmIGJmMzggZTRmZSBmZmI3IDRlZmYgMWZiOSBlNGZlIDdmMzgKNjBm
+ZiA4ZjM5IGU0ZmUgZmZiOCAwOGZmIGRmYjkgMmJmZiAzZjM5CjNkZmYgMmYzYSA2MGZmIDhmYjkg
+NmVmZiA4M2JhIDA4ZmYgZGYzOQoKCkNoYW5uZWwgMwoKMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAw
+IDAwMDAgMDAwMCAwMDAwCjAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMAow
+MDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAgMDAwMCAwMDAwIDAwMDAKZTRmZSBmZmI3IGU0ZmUgZmZi
+NyBlNGZlIGZmMzcgZTRmZSBmZjM3CmU0ZmUgN2ZiOCBlNGZlIDdmYjggMmJmZiBiZjM4IDRlZmYg
+MWYzOQoyYmZmIDNmYjkgMDhmZiA1ZmI5IGU0ZmUgN2YzOSAyYmZmIGJmMzkKMTlmZiBjZmI5IDYw
+ZmYgMGZiYSA0ZWZmIDFmM2EgMDhmZiA1ZjNhCg==
+--=_2172bcac6586fe243b49811e10cb848f
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--=_2172bcac6586fe243b49811e10cb848f--
+
+
