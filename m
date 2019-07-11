@@ -2,65 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDDBA64D25
-	for <lists+usrp-users@lfdr.de>; Wed, 10 Jul 2019 22:04:05 +0200 (CEST)
-Received: from [::1] (port=48236 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 226E365126
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Jul 2019 06:28:40 +0200 (CEST)
+Received: from [::1] (port=36586 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hlIot-0000Fb-MK; Wed, 10 Jul 2019 16:04:03 -0400
-Received: from mail-edges23.fraunhofer.de ([153.97.7.23]:48049)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <matthias.kollmann@iosb.fraunhofer.de>)
- id 1hlICF-0006sl-ID
- for usrp-users@lists.ettus.com; Wed, 10 Jul 2019 15:24:07 -0400
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2HctgDDOiZd/xmnZsBlHQEBGAEGBQG?=
- =?us-ascii?q?BTgUBAwGBLQIBAQEBAQ1TgT8vMoQSiB5dpGaBegkBAQEBAQEBAQEGAQEtAgE?=
- =?us-ascii?q?BhFmCOCM8Ag0BAwEBBQEBAQEFAgJphT0LhXURVwEiAiYCBDAVEgSDNYIKAQE?=
- =?us-ascii?q?DAa4DgTKFR4RvgQwmAgEBAQEBAQGLWIFYPoE4H4pYMoImBI5um2gDBAICgTd?=
- =?us-ascii?q?ilAcbghwBixGKVI0wl0ICERQBgX4LgVhxeQGCQpEEgXohjV0BgSABAQ?=
-X-IPAS-Result: =?us-ascii?q?A2HctgDDOiZd/xmnZsBlHQEBGAEGBQGBTgUBAwGBLQIBA?=
- =?us-ascii?q?QEBAQ1TgT8vMoQSiB5dpGaBegkBAQEBAQEBAQEGAQEtAgEBhFmCOCM8Ag0BA?=
- =?us-ascii?q?wEBBQEBAQEFAgJphT0LhXURVwEiAiYCBDAVEgSDNYIKAQEDAa4DgTKFR4Rvg?=
- =?us-ascii?q?QwmAgEBAQEBAQGLWIFYPoE4H4pYMoImBI5um2gDBAICgTdilAcbghwBixGKV?=
- =?us-ascii?q?I0wl0ICERQBgX4LgVhxeQGCQpEEgXohjV0BgSABAQ?=
-X-IronPort-AV: E=Sophos;i="5.63,475,1557180000"; d="scan'208";a="11914371"
-Received: from mail-mtadd25.fraunhofer.de ([192.102.167.25])
- by mail-edgeS23.fraunhofer.de with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2019 21:23:11 +0200
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0COfABSOiZd/wUMYJllHQEBGAEGBQG?=
- =?us-ascii?q?BTgUBAwGBLQIBAQEBAQ1TgT4wMoQSiB5diWCbBoF6CQEDAQEBAQEGAQEtAgE?=
- =?us-ascii?q?BhFmCNyM8Ag0BAwEBBAEBAgEFbYU9C4V0EVcBIgImAgQwFRIEgzWCCgIDAa4?=
- =?us-ascii?q?DgTKFR4RvgQwmAgEBAQEBAQGLWIFYPoE4H4pYMoImBI5um2gDBAICgTdilAc?=
- =?us-ascii?q?bghwBixGKVI0wl0ICERQBgX4KgVhxeQGCQpEEQYE5IY1dAYEgAQE?=
-X-IronPort-AV: E=Sophos;i="5.63,475,1557180000"; d="scan'208";a="51601418"
-Received: from smtpi.iosb.fraunhofer.de ([153.96.12.5])
- by mail-mtaDD25.fraunhofer.de with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 10 Jul 2019 21:23:09 +0200
-Received: from webmail.iosb.fraunhofer.de (ms3casht2.iosb.fraunhofer.de
- [153.96.14.96])
- by smtpi.iosb.fraunhofer.de (8.14.3/8.14.3/SuSE Linux 0.8) with ESMTP id
- x6AJN802017800
- (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK)
- for <usrp-users@lists.ettus.com>; Wed, 10 Jul 2019 21:23:08 +0200
-Received: from MS3MBX2.ms3.corp ([fe80::1069:4b5f:8a30:a47e]) by
- ms3casht2.ms3.corp ([fe80::a593:4fc7:feac:6944%15]) with mapi id
- 14.03.0468.000; Wed, 10 Jul 2019 21:23:08 +0200
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: E320 GPS issues
-Thread-Index: AQHVN1TnLl91xxnX+0Cn8u7zWKqyXQ==
-Date: Wed, 10 Jul 2019 19:23:08 +0000
-Message-ID: <60C06761-D9AE-4D97-8A01-B9D3195A40F9@iosb.fraunhofer.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [46.223.18.21]
-Content-ID: <5F890DA70E9D364B8B972DA9C2193FD4@ms3.corp>
+	id 1hlQhA-0000KA-L1; Thu, 11 Jul 2019 00:28:36 -0400
+Received: from mail-lf1-f52.google.com ([209.85.167.52]:36326)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <zidane2006@gmail.com>)
+ id 1hlQh6-0000Gm-PH
+ for usrp-users@lists.ettus.com; Thu, 11 Jul 2019 00:28:32 -0400
+Received: by mail-lf1-f52.google.com with SMTP id q26so3082799lfc.3
+ for <usrp-users@lists.ettus.com>; Wed, 10 Jul 2019 21:28:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=vB0JcWh3J3vsduqpMepyftG9IJDSgl6eY1Iv8cWnlsA=;
+ b=OFKNHJI9BG3LJCd1BW6cMyR2x4ZUoXbafQPKuUcyhyW77kw59K9Bv3EsRSIAIeMsSi
+ 7PCsC3nVYoWBvyqYrOvSHgclfEQTtwlIJ5+uU/eT3Ll6Ca0tvzac3MTP8OHCovfH87Pc
+ jx+YSDiiGBK8u+zrvu0aPFiEsxBKOynqcxv/Lc2AeyUEuPIovacZjo1PwMoVQ9Y/W7dE
+ Gqq8nSegP5IpbR3ylkejZ+vd+AOiSsIwP9CjIdckdgQppyt5HYIxmRoquPf5ZjO6OEGj
+ xS4By6B/KC20zqzrbygwA0qeaN575oBV2+iLW3Wq7NwFUKO3CkZ+84s152efqYy9A8WA
+ FJCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=vB0JcWh3J3vsduqpMepyftG9IJDSgl6eY1Iv8cWnlsA=;
+ b=RkqEZDnpm2fPkTo4bPxif7GI1ORo4vxeWJ99B2OgTTAJJtbf/WUtRGBMw5WBFhFbMz
+ sU+gNITgduuyBpgLz5/sxdaTD1OfKCYS1SKEahPgtKTG31e0VlPHLLzl3EXU/PO/6FaJ
+ /FkC5fBFRo8aYsX49bXDb91gTqfvgjvClk6QUsCyKI062TgMgl2NUJr5Z7wNamjlxHEe
+ hxjU0RRm0MoClo/7epv9/5hNYq8a2gA4Q9QqoESQpipG+eeNuW306YoyhXnNRlmPnuCX
+ X4Oi+S5S2ouIkWRInrk5Qd1KdEEhiuojFmUZ1bsfI2V3r62pzA1qWuO/rZDFtGD5dTwN
+ IK/w==
+X-Gm-Message-State: APjAAAX8oz0lh968MAhFeL9Lrz7j3arFT88VKBz3WeZ3jwam3Y9bTZN8
+ /asTGB6wvgXLnwRF1GE5Be8eSi+zP/2Gdhlf41QRkw==
+X-Google-Smtp-Source: APXvYqyUn6IxHmXege6wNOXlsYs+o0mAWcE66PuuHfY0hz/17IdBR2SNciwkUjjYWLM6/US9lkweNk9TV0CoFC0IeiE=
+X-Received: by 2002:ac2:50cd:: with SMTP id h13mr644622lfm.36.1562819270625;
+ Wed, 10 Jul 2019 21:27:50 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 10 Jul 2019 16:04:00 -0400
-Subject: [USRP-users] E320 GPS issues
+Date: Wed, 10 Jul 2019 21:27:13 -0700
+Message-ID: <CAHP8DwK0jVZWxnDmXfVBiyJ2DzJDs6xXFOoRbhRmgWGv7HNO_w@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] [B210] Read raw ADC data directly in Matlab
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -72,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Kollmann, Matthias via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Kollmann, Matthias" <matthias.kollmann@iosb.fraunhofer.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: lc via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: lc <zidane2006@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8179180914216614187=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,15 +71,47 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgYWxsLA0KDQpJIGFtIGN1cnJlbnRseSB0cnlpbmcgdG8gc3luY2hyb25pemUgdGhlIHJlY2Vw
-dGlvbiB0aW1lIG9mIHR3byBFMzIwIHVzaW5nIHRoZWlyIEdQUy4gQnV0IG1vc3Qgb2YgdGhlIHRp
-bWUgdGhlIFVIRCB0ZWxscyBtZSB0aGVyZSBpcyBubyBmaXggYWx0aG91Z2ggdGhlIGdwc2Qgb2Yg
-dGhlIEUzMjAgc2hvd3MgMTArIHNhdGVsbGl0ZXMgYW5kIGEgZ29vZCBmaXggLiBJIGFtIHRlc3Rp
-bmcgd2l0aCBVSEQgMy4xNC4xIGFuZCB0aGUgcXVlcnlfZ3BzZG9fc2Vuc29ycyB1dGlsLiBDYW4g
-c29tZWJvZHkgdGVsbCBtZSB3aGF04oCZcyB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIGEgVUhEIEdQ
-UyBsb2NrIGFuZCBhIG5vcm1hbCBvbmUgYW5kIGhvdyB0byBhcmNoaXZlIGEgc3RhYmxlIFVIRCBH
-UFMgbG9jaz8gT3VyIFgzMTAgZG9lcyBub3QgaGF2ZSB0aGVzZSBpc3N1ZXMgb24gdGhlIHNhbWUg
-c3BvdC4gDQoNClJlZ2FyZHMgDQpNYXR0aGlhcw0KDQpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
-dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============8179180914216614187==
+Content-Type: multipart/alternative; boundary="000000000000794d5c058d60379e"
+
+--000000000000794d5c058d60379e
+Content-Type: text/plain; charset="UTF-8"
+
+Hi all,
+
+I'm using B210, and try to dump the raw ADC data, feed it into matlab to
+test the design.
+Is it possible to do this in matlab without hacking the UHD?
+(I think the data output shown in the simulink is from FPGA?)
+
+Best wishes;
+Chao Liao
+
+--000000000000794d5c058d60379e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi all,<div><br></div><div>I&#39;m using B210, and try to =
+dump the raw ADC data, feed it into matlab to test the design.</div><div>Is=
+ it possible to do this in matlab without hacking the UHD?<br></div><div>(I=
+ think the data output shown in the simulink is from FPGA?)=C2=A0</div><div=
+><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature" data-sma=
+rtmail=3D"gmail_signature">Best wishes;<br>Chao Liao</div></div></div></div=
+>
+
+--000000000000794d5c058d60379e--
+
+
+--===============8179180914216614187==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8179180914216614187==--
+
