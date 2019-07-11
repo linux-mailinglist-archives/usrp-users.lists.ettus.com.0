@@ -2,47 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5CB8660BB
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jul 2019 22:35:26 +0200 (CEST)
-Received: from [::1] (port=54210 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F98660BA
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Jul 2019 22:35:21 +0200 (CEST)
+Received: from [::1] (port=52648 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hlfml-0000Cz-Cc; Thu, 11 Jul 2019 16:35:23 -0400
-Received: from mail-yw1-f51.google.com ([209.85.161.51]:34087)
+	id 1hlfmh-0008Mb-Pi; Thu, 11 Jul 2019 16:35:19 -0400
+Received: from mail-yw1-f49.google.com ([209.85.161.49]:35552)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <mikedon1@gmail.com>) id 1hlfmg-0008Hm-10
- for usrp-users@lists.ettus.com; Thu, 11 Jul 2019 16:35:18 -0400
-Received: by mail-yw1-f51.google.com with SMTP id q128so4383309ywc.1
+ (Exim 4.92) (envelope-from <mikedon1@gmail.com>) id 1hlfmd-0008Hl-Tt
+ for usrp-users@lists.ettus.com; Thu, 11 Jul 2019 16:35:15 -0400
+Received: by mail-yw1-f49.google.com with SMTP id g19so3744346ywe.2
  for <usrp-users@lists.ettus.com>; Thu, 11 Jul 2019 13:34:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to;
  bh=zC1AC08LghuJ+qHIb2UyEKoGUjbTGHY60N2OtCsCl38=;
- b=EczaPHWjGpWJLnbMUBprn331pqG9maZNja6LMWXIK65HlbFXRdMwlO8vEfeXzyF6Fp
- OpN6aQsj7qxL9aEJRIXmjp7QncjRPpuG2u04QXtxF72t5x1Wo/qgxC6UgIPoXlkShdR3
- HjkSuou8lKRz+lRVY1/mOrc2I3jaP63g9wNJVqbPVP2h5v+gYmFULpVO+c9xG7469oBN
- pHaUjE9zi9zHYotLGsBGj1Z1XWih+qPTgQqx15dPbWoWMxZShjzCdDtT/gNKquxsbYBU
- SARZua99B3zRiZSVel+h4QxvDvoCRoI6aiclX4WDbgJUOoLSXh8y1h6hxNu49VezeCuc
- mxEA==
+ b=IEE9A6hjymH9Ctl8Jgsu70T72zyGKYhzQmcW59MiZsfx1cGveRQlJCwYafgj0fGmky
+ zpKmMVDVprqKdVb1vFqw4ov2SxwqXm9SfuC2Io7+DEBSF0az7IEJ2fo8XiWgsPucbE5K
+ p+ume1GvwnyX3+9CX7qSFtDKCDsnquYCbNMDtf2hSuhQRqqmCkIt4By9IVTs+0QsYNKZ
+ DQesW5uGSmrfrbf+Q0UWm5bmYvOH2xWjC0Np6AOk+dFYc/VwS7o5cf+GT+PH802HS/xM
+ UMVWyBW9guiXYrUZZH69Yuc+9QHBdufyiM8eL0RqEtnOs6M0/X4Q/DOHzsHF3m375xWY
+ JIpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
  bh=zC1AC08LghuJ+qHIb2UyEKoGUjbTGHY60N2OtCsCl38=;
- b=iCShOZDycBe5Zgbfe+JtI/+FpjMuJ+2AwGExH8elESqRh+obtioElX/4ucYT3hHQ/N
- L8Dc0yrC3sMrJCOa8HbmUzOvv2qqfUmK6Qlsb6dhS6kzuWqRIN/9+4rJ77Pmx/Kf9bVh
- uRjr7wUO2TDR+MiHKBSws3ILa5nsd/zLjWEr0fhnIIzUbn1LLkrc18PyNNBAJPxp0k/t
- Ym795ML4yrb/UuXNWm0CiIl3r3zKyUIE81ykk8BpB4TBZZJzrPSIV70T44WEA2B5+dCk
- 1WwTTh1975M4KGYZ2UWwBeXKK8R0OUZhZ78XRu+nrtm3uNjO0Jp+N2Ffqssyn0O9QLPg
- GyMQ==
-X-Gm-Message-State: APjAAAUj5fRfcPwa1nyzHDeSPmAsi/PtZ8/BGHmPg8tpgYbnvjw4LW0f
- aQpj4GTrV2ehsui5Ko3p6p9cKgxOKuhEMQjdGi1iioqK
-X-Google-Smtp-Source: APXvYqzEjGMV33QP9AdiHymmZmC3XnwVBB7XrTj3meI5B5ZB+lByoDObQoMvqU5uOjDY9k/KyH88faEv3JOBPTtFA0I=
-X-Received: by 2002:a81:a491:: with SMTP id b139mr3660488ywh.148.1562877274899; 
+ b=ZfLfMZYRnZxhBDpmBH/mknvPfXrJer7sbLqR8Brt1G5Uaaw+6YYL+K/J4mkmj/YMfK
+ UtCPOFtmkXfWZ9VL8Y1PTj9yh1GQ9nQrrZ0uloE1GGe0yjkUWXksRRI8H2au4oj/qqTH
+ nI3a5522Mi8QWNwmImnbCi14BblqzK+LFl3DuOB0/145rqrDBp4dg8o6qIsLwW+vHYN+
+ 9Y0MYi9y4rq9AcXo+xuMkbhZRVe+Zu9fLJGe0v4enS4+loXQoioXJ1tr0xB6TekhBhuv
+ 6ATO2wz+huM39rZuOe1podZGuZUwhfHv996xfTsRL8T9LbVIc1yoCPRi2LTPhjskHDnQ
+ AlKA==
+X-Gm-Message-State: APjAAAUlyetFCC252MmJyZSeot2TyitV7ezfuStbeSVBPqnXYtmPL2Tb
+ MqrYbkq8U47cH6OEQxneufx0WgmkC9Blm8PPsH0oD4O7
+X-Google-Smtp-Source: APXvYqxtepBLCr2KdXAEeEMWFi08TDADOaYLTV7yvMEZ9S4o3Hfc9ulqsfoEZrLfKfTEobjWv84R69Luj04WQizjMwI=
+X-Received: by 2002:a81:50c:: with SMTP id 12mr3721862ywf.380.1562877274884;
  Thu, 11 Jul 2019 13:34:34 -0700 (PDT)
 MIME-Version: 1.0
 Received: by 2002:a25:9982:0:0:0:0:0 with HTTP; Thu, 11 Jul 2019 13:34:34
  -0700 (PDT)
 Date: Thu, 11 Jul 2019 16:34:34 -0400
-Message-ID: <CAFTvvjP6==EsAqLiEW0RKE5j1-oADxQEGCKX=FNmss-Bq1jm5w@mail.gmail.com>
+Message-ID: <CAFTvvjN+tyOUPJKKOBbjZOYSPATFwg=79hDVuy5H56syyHe+Ag@mail.gmail.com>
 To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 Subject: [USRP-users] rx error code: 1
 X-BeenThere: usrp-users@lists.ettus.com
