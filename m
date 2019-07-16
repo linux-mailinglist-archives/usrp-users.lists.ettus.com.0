@@ -2,59 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A90C6ABD4
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Jul 2019 17:32:54 +0200 (CEST)
-Received: from [::1] (port=46498 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C47C86AD9F
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Jul 2019 19:28:13 +0200 (CEST)
+Received: from [::1] (port=35142 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hnPRk-00025b-0y; Tue, 16 Jul 2019 11:32:52 -0400
-Received: from mail-qt1-f172.google.com ([209.85.160.172]:42354)
+	id 1hnRFM-0005H6-4h; Tue, 16 Jul 2019 13:28:12 -0400
+Received: from mail-vk1-f169.google.com ([209.85.221.169]:38507)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hnPRg-0001yI-Jo
- for usrp-users@lists.ettus.com; Tue, 16 Jul 2019 11:32:48 -0400
-Received: by mail-qt1-f172.google.com with SMTP id h18so19981278qtm.9
- for <usrp-users@lists.ettus.com>; Tue, 16 Jul 2019 08:32:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=Ku9cChvqGpjh74nnL58ZuylmUz4sw9rWbRwwOx4HWNU=;
- b=eqUlpebjW4pUV9uIG1yir8WrPM1asGeYL3gtvIv0+pCu1ST9KhmUGEYTLFz/ER6win
- r2aW4MuoU0OeBOTuBqEnZWcU8OyG1iJVDK7X7vjsljtwkIsILGmjn+J4t3EgqaVfXkG1
- Oi42N+vrIT3Af9o7vTba2UAvOaj5W/0Nvi8CHgOig2oIH9tCQwhGazcRnpn1qsIkAWa8
- F2N/PQ0qU4QDOLkzZ845qBOaV4Vu+Xk3VwJH5aXdWij4tuQqM4Z6nJ+GcM8NbWOSApqV
- tMc0ts/ESlWAvh6bl8RRy13PY9kNVQGtD1MpgdgQZR7NnTuxWmkq3+UvWmOwLCENfK8/
- 4pbA==
+ (Exim 4.92) (envelope-from <smullin2@nd.edu>) id 1hnRFH-0005D0-VA
+ for usrp-users@lists.ettus.com; Tue, 16 Jul 2019 13:28:07 -0400
+Received: by mail-vk1-f169.google.com with SMTP id f68so4340752vkf.5
+ for <usrp-users@lists.ettus.com>; Tue, 16 Jul 2019 10:27:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=dpUB59LGJDnt62AtFmvf30Iz3JHvyPWHaDhRlGIEVY0=;
+ b=chE+WbvF8iGznNKsu1kqP1IjH4qGg1ZHDPTOl/YnFS0l7edSvytKXreYaOis/pVInN
+ W76F0GoYxD8GGJSWKAtzOalu5j5V5uLh9TA3PZ4y38NBGKdi9GcZo2kQLoKq9S7wlz/O
+ 5Q2SQotWsLYofKCpy44p+HtvEKOZChOsIDRiC+S24/V9E5Uj2DACfTyMMllXZki581/h
+ COOvIKUNJyNwJ3KvxIZdbZg9xE+H17LWeZs2WTmV4F4W52ZU854KtcxrxNDjkmqJApjH
+ geOxi8Tz5lYc0K3H6GFRqs4S2itohLY1uNo86qbfZ+cqnWklTbVJUjoVLXns9QAAQ5jt
+ zajQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=Ku9cChvqGpjh74nnL58ZuylmUz4sw9rWbRwwOx4HWNU=;
- b=KdaicZB25Ez+1ofqMRHJmSLdQHgCwJzpx30vVMcZ8WaLYMMWG28sPXiX1Ph9iBcrol
- ytzFVqabwJQYBkl/ckSzHJPCIgDbNDUgyWFGPeC7wSZD6OCGCLYkcwCd7yAj7e5uLCA7
- xsWpC5lCsBNT3RflitGH0E2uZwvxufvHXQULmCr279S37r5CmovbWpZhTbq2Uq7yyHPF
- gLKA2uy7CsFOd3sBGfCgEKSTBAqSp1y3V7o9JgmHyXwHmTNtMH0VxHwR+w/v6npD9xT+
- czSchdbIQej2kWzN4S2nI5JJJxzmgdMifq9Uz6ei6MZEN5bIJ/LzHJ1TJZUBo/c93MKJ
- 1LWg==
-X-Gm-Message-State: APjAAAWZ/+14m+uCbgWuXLKIjfsvUuGK/WQOOr88qYuyzUXuCUuoobd5
- eLW+8zxPIC3cBDLOMTnwd1O8v2Kc
-X-Google-Smtp-Source: APXvYqzRZkSZ49a0p/0N0f9qYEf5AkUgFUVD4F1VhiFeD3+bAiCMZc+9742lzgxpgKwh6z6dVA2opA==
-X-Received: by 2002:ac8:65d4:: with SMTP id t20mr18223232qto.249.1563291127836; 
- Tue, 16 Jul 2019 08:32:07 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
- [174.95.14.20])
- by smtp.googlemail.com with ESMTPSA id g3sm9023119qkk.125.2019.07.16.08.32.07
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 16 Jul 2019 08:32:07 -0700 (PDT)
-Message-ID: <5D2DEDEC.60103@gmail.com>
-Date: Tue, 16 Jul 2019 11:31:56 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=dpUB59LGJDnt62AtFmvf30Iz3JHvyPWHaDhRlGIEVY0=;
+ b=uiL7rDEueSYN5t7nDWI9cicF9iudDTQxNTQnRd0YTyoittjpyFkv+GZD20IhUM24v2
+ SMCi2dBL0zz+B2GwyQbSE2aSYrcm4BgEgGRh5DCzP59gtjaM3DL+RJK+I7n8DiQoNAbT
+ 2RKxdTeHcuPcjAPd9lQy1PBZpO9Wmo7PuautFAyb3BCUmPMvUgBDwguPhloQvXNQ3tj1
+ 86GgL1YOZ0g3HVvGV6iJvpHavzd2JbN3fxDpzks/MQVEnEVgvCcllj7jvCeoH1rY7MSc
+ yTyLZ9qrptHAHIcITORtQvACZC36g9LB2De/GY8HBmbX9WEhujxTTj0ZmyGHqV2o+qMa
+ K9sA==
+X-Gm-Message-State: APjAAAVvmSZpgoC470R1tz8K1uTMJsYujGQKkCzdtnw2sF7qhe+rUcWE
+ I009T0dkgO1U61NolCFzgVEgLwTJpoHIKWEfE+68VQcX
+X-Google-Smtp-Source: APXvYqzhlShSsvx3kDS2ObN08bsqyau6RwKGOCDxkSgCgqAbLqCk27iJmSYSxnpSXOVoseUZA/RUeny/lPWA+ZgmBgg=
+X-Received: by 2002:a1f:160a:: with SMTP id 10mr3590110vkw.43.1563298046858;
+ Tue, 16 Jul 2019 10:27:26 -0700 (PDT)
 MIME-Version: 1.0
+Date: Tue, 16 Jul 2019 13:27:16 -0400
+Message-ID: <CALVKaGf-6NCbGO2ACQ+Oaz_4GYgpMPOU=BsAe5AcigmzdH7w9w@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <db91a3a1-ddb9-b31d-d2d9-8490dd8f751b@iqo.uni-hannover.de>
-In-Reply-To: <db91a3a1-ddb9-b31d-d2d9-8490dd8f751b@iqo.uni-hannover.de>
-Subject: Re: [USRP-users] randomness in a trigger to the GPIO at the x310
+Subject: [USRP-users] Noc_block_Schmidl_cox Timing error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -66,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0310425451385520257=="
+From: Scott Mullin via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Scott Mullin <smullin2@nd.edu>
+Content-Type: multipart/mixed; boundary="===============9029805852180948195=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,198 +70,44 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0310425451385520257==
-Content-Type: multipart/alternative;
- boundary="------------010802030405000208070801"
+--===============9029805852180948195==
+Content-Type: multipart/alternative; boundary="000000000000c30a5b058dcfb0d2"
 
-This is a multi-part message in MIME format.
---------------010802030405000208070801
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000c30a5b058dcfb0d2
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/16/2019 09:39 AM, Knut Stolzenberg via USRP-users wrote:
->
-> Hey everyone,
->
-> I experience some randomness in the timing of the ouput of my SDR, 
-> when applying a TTL signal to the GPIO. The TTL signal is fed to Pin 2 
-> of the GPIO and has a Voltage of ~3V. It also is of arbitrary length 
-> (~10 microseconds - several seconds). When the trigger is active it 
-> takes between 0.25 - 20 ms until the SDR starts streaming the data 
-> (measured with an oscilloscope, comparing the starting time of the 
-> trigger and streamed data). The data streamed is made of several 
-> hundred buffers and contains a modulation of the carrier frequency.
->
-> Is there any way to control the starting time of streaming, when the 
-> trigger was applied?
->
-> Below is a part of the code, where the "trigger" is applied. It is 
-> pretty much based on the tx_waveforms example code/./
->
->
-> #define MAN_GPIO_MASK (1 << 2)
-> #define ATR_MASKS (AMP_GPIO_MASK | MAN_GPIO_MASK)
-> // set up our values for ATR control: 1 for ATR, 0 for manual
-> #define ATR_CONTROL (AMP_GPIO_MASK & ~MAN_GPIO_MASK)
-> // set up the GPIO directions: 1 for output, 0 for input
-> #define GPIO_DDR  (AMP_GPIO_MASK & ~MAN_GPIO_MASK)
->
->
-> .....
->
-> Buffer production & stuff
->
-> ...
->
->
-> uhd::tx_metadata_t md;
->     md.start_of_burst = true;
->     md.end_of_burst = true;
->     md.has_time_spec = false;
->
->
->     usrp->set_gpio_attr("FP0", "CTRL", 0);
->     usrp->set_gpio_attr("FP0", "DDR", 0);
->
->
->     while (true) {
->         int readback = 0;
->         if (stop_signal_called) break;
->         int initialise = usrp->get_gpio_attr("FP0", "READBACK", 0);
->         if (readback != initialise) {
->             readback = initialise;
->             if (initialise = 1)
->             {
->                 for (int i = 0; i < line; i++) {
->                     tx_stream->send(
->                         buff_ptrs[i], spb, md
->                     );
->                 }
->             }
->         }
-> boost::this_thread::sleep(boost::posix_time::microseconds(1));
->     }
->
->
-You will *NEVER* get predictable latency this way--you're relying on 
-your host operating system having very-predictable latency, and that's 
-simply
-   not possible on a computer running a general-purpose, multi-process, 
-multi-user operating system.
+Hello,
 
-You might want to look into an FPGA-based implementation, where timing 
-is predictable.
+I am trying to use the schmidl_cox noc block but when I build an fpga image
+for an x310 with uhd_image_builder I get a timing error.  I have tried
+building an fpga image with only one CE, the scmidl_cox noc block, and it
+still gives me a timing error, so its not due to resource utilization,
+which is when I typically get a timing error.
 
-If the GPIO trigger input is actually just a regularly-timed event, you 
-might also want to look into timed commands.
+Has anyone else had this issue? Any help would be appreciated.
+
+-- 
+Scott Mullin
+
+--000000000000c30a5b058dcfb0d2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I am trying to use th=
+e schmidl_cox noc block but when I build an fpga image for an x310 with uhd=
+_image_builder I get a timing error.=C2=A0 I have tried building an fpga im=
+age with only one CE, the scmidl_cox noc block, and it still gives me a tim=
+ing error, so its not due to resource utilization, which is when I typicall=
+y get a timing error.=C2=A0 <br></div><div><br></div><div>Has anyone else h=
+ad this issue? Any help would be appreciated.</div><div></div><br>-- <br><d=
+iv dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"=
+><div dir=3D"ltr"><div style=3D"font-size:small">Scott Mullin</div><br></di=
+v></div></div>
+
+--000000000000c30a5b058dcfb0d2--
 
 
-
-
---------------010802030405000208070801
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/16/2019 09:39 AM, Knut
-      Stolzenberg via USRP-users wrote:<br>
-    </div>
-    <blockquote
-      cite="mid:db91a3a1-ddb9-b31d-d2d9-8490dd8f751b@iqo.uni-hannover.de"
-      type="cite">
-      <meta http-equiv="content-type" content="text/html;
-        charset=windows-1252">
-      <p>Hey everyone,</p>
-      <p>I experience some randomness in the timing of the ouput of my
-        SDR, when applying a TTL signal to the GPIO. The TTL signal is
-        fed to Pin 2 of the GPIO and has a Voltage of ~3V. It also is of
-        arbitrary length (~10 microseconds - several seconds). When the
-        trigger is active it takes between 0.25 - 20 ms until the SDR
-        starts streaming the data (measured with an oscilloscope,
-        comparing the starting time of the trigger and streamed data).
-        The data streamed is made of several hundred buffers and
-        contains a modulation of the carrier frequency.</p>
-      <p>Is there any way to control the starting time of streaming,
-        when the trigger was applied?</p>
-      <p>Below is a part of the code, where the "trigger" is applied. It
-        is pretty much based on the tx_waveforms example code<i>.</i><br>
-      </p>
-      <p><br>
-      </p>
-      <p>#define MAN_GPIO_MASK (1 &lt;&lt; 2)<br>
-        #define ATR_MASKS (AMP_GPIO_MASK | MAN_GPIO_MASK)<br>
-        // set up our values for ATR control: 1 for ATR, 0 for manual<br>
-        #define ATR_CONTROL (AMP_GPIO_MASK &amp; ~MAN_GPIO_MASK)<br>
-        // set up the GPIO directions: 1 for output, 0 for input<br>
-        #define GPIO_DDR  (AMP_GPIO_MASK &amp; ~MAN_GPIO_MASK) <br>
-      </p>
-      <p><br>
-      </p>
-      <p>.....</p>
-      <p>Buffer production &amp; stuff</p>
-      <p>...</p>
-      <p><br>
-      </p>
-      <p>uhd::tx_metadata_t md;<br>
-            md.start_of_burst = true;<br>
-            md.end_of_burst = true;<br>
-            md.has_time_spec = false;<br>
-          <br>
-           <br>
-            usrp-&gt;set_gpio_attr("FP0", "CTRL", 0);<br>
-            usrp-&gt;set_gpio_attr("FP0", "DDR", 0);<br>
-        <br>
-            <br>
-            while (true) {<br>
-                int readback = 0;<br>
-                if (stop_signal_called) break;<br>
-                int initialise = usrp-&gt;get_gpio_attr("FP0",
-        "READBACK", 0);<br>
-                if (readback != initialise) {<br>
-                    readback = initialise;<br>
-                    if (initialise = 1)<br>
-                    {    <br>
-                        for (int i = 0; i &lt; line; i++) {<br>
-                            tx_stream-&gt;send(<br>
-                                buff_ptrs[i], spb, md<br>
-                            );<br>
-                        }<br>
-                    }<br>
-                }<br>
-               
-        boost::this_thread::sleep(boost::posix_time::microseconds(1));<br>
-            }<br>
-        <br>
-      </p>
-      <br>
-    </blockquote>
-    You will *NEVER* get predictable latency this way--you're relying on
-    your host operating system having very-predictable latency, and
-    that's simply<br>
-      not possible on a computer running a general-purpose,
-    multi-process, multi-user operating system.<br>
-    <br>
-    You might want to look into an FPGA-based implementation, where
-    timing is predictable.<br>
-    <br>
-    If the GPIO trigger input is actually just a regularly-timed event,
-    you might also want to look into timed commands.<br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------010802030405000208070801--
-
-
---===============0310425451385520257==
+--===============9029805852180948195==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -284,5 +118,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0310425451385520257==--
+--===============9029805852180948195==--
 
