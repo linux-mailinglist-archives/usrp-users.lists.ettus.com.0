@@ -2,61 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2886BB54
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Jul 2019 13:27:42 +0200 (CEST)
-Received: from [::1] (port=34776 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B966BBBF
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jul 2019 13:46:51 +0200 (CEST)
+Received: from [::1] (port=38668 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hni60-0003yk-3f; Wed, 17 Jul 2019 07:27:40 -0400
-Received: from mail-relay.contabo.net ([207.180.247.207]:53883)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <fabian@opencode.eu>) id 1hni5w-0003tY-Lp
- for usrp-users@lists.ettus.com; Wed, 17 Jul 2019 07:27:36 -0400
-Received: from pxmg1.contabo.net (localhost.localdomain [127.0.0.1])
- by mail-relay.contabo.net (Proxmox) with ESMTP id 41F1E8156F
- for <usrp-users@lists.ettus.com>; Wed, 17 Jul 2019 13:26:55 +0200 (CEST)
-Received: from m12305.contabo.net (m12305.contabo.net [213.136.93.162])
- by mail-relay.contabo.net (Proxmox) with ESMTPS id 7A2A781565
- for <usrp-users@lists.ettus.com>; Wed, 17 Jul 2019 13:26:52 +0200 (CEST)
-Received: from [134.169.78.184] (port=56380)
- by m12305.contabo.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <fabian@opencode.eu>) id 1hni5D-0004Zz-Dx
- for usrp-users@lists.ettus.com; Wed, 17 Jul 2019 13:26:52 +0200
-To: usrp-users@lists.ettus.com
-References: <883459ac-4408-76f5-37af-c6859c16a1e6@opencode.eu>
- <5CBF2EFA.9060302@gmail.com>
- <138cfa0f-aaa2-99a7-fded-41ebf1148fa0@opencode.eu>
- <5CBF42A1.2060803@gmail.com>
- <9b42df4d-1ce9-3d0d-8171-526c534b4441@opencode.eu>
- <5CBF4788.9060009@gmail.com>
- <e00a6d17-a7da-2a32-2430-bd98c888a54c@opencode.eu>
- <16f93e08-ab6b-a729-1bec-b603c8a27988@opencode.eu>
- <9bbb117f-aff7-1a60-e3c2-362d516915d2@opencode.eu>
- <CAB__hTQA1Gb6ux23i1NjQ8PFu3+ug6FSdhEyO8LhTopWz5djUg@mail.gmail.com>
- <d1cc0e25-68a8-1e27-f907-560308e692c4@opencode.eu>
- <846df26e-f8a1-7df2-b3e4-2f1a2e2d86f8@opencode.eu>
-Message-ID: <f55926df-fef0-3628-c3e8-c7a45e3db502@opencode.eu>
-Date: Wed, 17 Jul 2019 13:26:50 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+	id 1hniOY-00058p-6L; Wed, 17 Jul 2019 07:46:50 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:46008)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <cogwsn@gmail.com>) id 1hniOU-0004ll-QN
+ for usrp-users@lists.ettus.com; Wed, 17 Jul 2019 07:46:46 -0400
+Received: by mail-ot1-f46.google.com with SMTP id x21so24627466otq.12
+ for <usrp-users@lists.ettus.com>; Wed, 17 Jul 2019 04:46:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/DahtCtS5iweC2AG+nFnQOV2EUNkEteIEzz0qC2QK2E=;
+ b=Mqv1bElLj6bgde1Mtz7iRcvXeFsPy4GPbMkU/qOMRmATGBaE79YpUAr/yb1hd9HTtc
+ eDr9zHbsC9XcMCRzRnS2xACh0CNRctfV+VgP2We+sl4PLr4xGvtnVCf+WDfh9totw3FD
+ GGDc2sE8hzWW6tugrfJMiEkzieGuGevwOyOD0tG8LkAQeqOI7GxnuVcweOlsN1YjddZS
+ q3n7M6mif6P3YhiGO2lVIuP50avsjeXyDtdt/AG7KEaANGzR5RAzExr9NaENzcaMwt9H
+ CfzYw1zR7vDw4YwsGeLuqW0QM3fQSDnwO6jUg4g74m19QnAXrYdnErf4MARTCLC9J4FZ
+ zkGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/DahtCtS5iweC2AG+nFnQOV2EUNkEteIEzz0qC2QK2E=;
+ b=FhLSuWVQ9Z4t7B1SQQDqcOD+XD+U9jgjVnsJG8ofABi+/TMiTVqbh4MEACWL4kvZg7
+ nskSEVf3x7ah3NvaGVjaQujMkseBib3cFcDWtIE+oEeh/RUtYR5fWtrJhHm8JvmVCaL/
+ PUHgCKodvzsBIyaNlLXBMHLv7MOssvXEeRvApEsMba/nzFSSW8EYbMaENwUJCaBTl/WQ
+ fhFBrcgfdv94ngfpUNyayCePL7o0Cv47J7LuTD28101lh/RdyMyRlGaP7vXsSrLIseIY
+ e7gfpbtojnCQMjmWt7PHdOle30maTbB1TmPDNW6AjRIIHGhUegZr7ASaXymqh++3BUP9
+ gFzA==
+X-Gm-Message-State: APjAAAWz63KICJzKFXzQW12T+rqPCicwmQXunUPUAwtc3Hf5R4iFn0ZE
+ 3R/5Ujmo0I7znEVZM5p4mIhe0mgIJZp/lujohKQt6Q==
+X-Google-Smtp-Source: APXvYqyS5Wy+egFqufFGPMSZiIUXIxBFy0UdbYkoDHxRS8ZJEk7ZqHlgGcCby1t5Av8c1iRnPlE81AMsQyxWG5FBzGY=
+X-Received: by 2002:a9d:6f91:: with SMTP id h17mr21845898otq.67.1563363966178; 
+ Wed, 17 Jul 2019 04:46:06 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <846df26e-f8a1-7df2-b3e4-2f1a2e2d86f8@opencode.eu>
-X-Antivirus: AVG (VPS 190717-0, 17.07.2019), Outbound message
-X-Antivirus-Status: Clean
-X-OutGoing-Spam-Status: No, score=-0.2
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - m12305.contabo.net
-X-AntiAbuse: Original Domain - lists.ettus.com
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - opencode.eu
-X-Get-Message-Sender-Via: m12305.contabo.net: authenticated_id:
- fabian@opencode.eu
-X-Authenticated-Sender: m12305.contabo.net: fabian@opencode.eu
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: [USRP-users] USRPs time wrong by factor of two
+References: <CAOExtcQtL_gri3uWw9_NyXPEOwS6Gpc+NqSs07Vwmdc4gbHQTg@mail.gmail.com>
+ <BL0PR12MB2340A337C6CBB311E990C16CAFC90@BL0PR12MB2340.namprd12.prod.outlook.com>
+In-Reply-To: <BL0PR12MB2340A337C6CBB311E990C16CAFC90@BL0PR12MB2340.namprd12.prod.outlook.com>
+Date: Wed, 17 Jul 2019 13:45:55 +0200
+Message-ID: <CAOExtcRbYo-15C2eVcmJNz98=0vK5nJEJsdZt6MUd0ViUhcQZQ@mail.gmail.com>
+To: Jason Matusiak <jason@gardettoengineering.com>
+Subject: Re: [USRP-users] Sequence Errors N200
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,10 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Fabian Schwartau via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Fabian Schwartau <fabian@opencode.eu>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Sumit Kumar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sumit Kumar <cogwsn@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3928363118771963531=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,169 +75,242 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SSBqb3N0IGdvdCBhIHJlc3BvbnNlIGZyb20gRXR0dXMuIFRoZSBwcm9ibGVtIGlzIGZpeGVkIGNv
-bW1pdCA1Zjc1ZjczIAoocmVsZWFzZSAzLjE0LjEuMCkuIEkgdGVzdGVkIGl0IHdpdGggbXkgZWFy
-bGllciBzdXBwbGllZCBzY3JpcHQgYW5kIGl0IAp3b3Jrcy4KTWF5YmUgdGhpcyBpbmZvIHdpbGwg
-YmUgaGVscGZ1bCBmb3Igc29tZW9uZSBlbHNlLgoKQW0gMDQuMDYuMjAxOSB1bSAwOTo1NCBzY2hy
-aWViIEZhYmlhbiBTY2h3YXJ0YXUgdmlhIFVTUlAtdXNlcnM6Cj4gRG9lcyBhbnlvbmUga25vdyBp
-ZiB0aGlzIHByb2JsZW0gaXMgZml4ZWQgaW4gdGhlIGN1cnJlbnQgbWFzdGVyPwo+IAo+IEFtIDEz
-LjA1LjIwMTkgdW0gMTI6NDEgc2NocmllYiBGYWJpYW4gU2Nod2FydGF1IHZpYSBVU1JQLXVzZXJz
-Ogo+PiBUaGFua3MgZm9yIHRoYXQuIElUIGlzIHF1aXRlIGludGVyZXN0aW5nLCB0aGF0IGl0IGFs
-c28gZG9lcyBub3Qgd29yawo+PiB3aXRoIHRoZWlyIG93biBleGFtcGxlLiBJIHdvdWxkIGV4cGVj
-dCB0aGF0IGFsbCBleGFtcGxlcyB3b3VsZCBiZSBydW4gb24KPj4gZGlmZmVyZW50IHRlc3QgYmVk
-cyBiZWZvcmUgcmVsZWFzaW5nICJzdGFibGUiIHNvZnR3YXJlIHZlcnNpb25zLi4uCj4+IEhvd2V2
-ZXIsIHBsZWFzZSBrZWVwIHVzIHVwIHRvIGRhdGUsIGlmIHlvdSBnZXQgYW55IG5ldyBpbmZvcm1h
-dGlvbi4KPj4KPj4gQmVzdCByZWdhcmRzLAo+PiBGYWJpYW4KPj4KPj4gQW0gMDkuMDUuMTkgdW0g
-MTk6MzMgc2NocmllYiBSb2IgS29zc2xlcjoKPj4+IEZhYmlhbiwKPj4+IE15IGNvbGxlYWd1ZSBh
-bHNvIGVuY291bnRlcmVkIHRoaXMgImZhY3RvciBvZiAyIiBidWcgYW5kIGRldGVybWluZWQgdGhh
-dAo+Pj4gaXQgaXMgcHJlc2VudCBzdGFydGluZyBpbiAzLjE0LiBJdCdzIHJlbGF0ZWQgdG8gdGhl
-IHRpY2svc2FtcGxlIHJhdGVzIGluCj4+PiB0aGUgVHdpblJ4IFJhZGlvLCBhbmQgZG9lcyBhZmZl
-Y3QgdGltZWQgY29tbWFuZHMgYXMgeW91IHN1Z2dlc3QuIEluCj4+PiBmYWN0LCB0aGUgaXNzdWUg
-Y2FuIGFjdHVhbGx5IGJlIGRlbW9uc3RyYXRlZCB1c2luZyBFdHR1cydzIGV4YW1wbGUKPj4+IHBy
-b2dyYW0gInRlc3RfdGltZWRfY29tbWFuZHMiLCB3aGljaCBkb2VzIG5vdCBydW4gc3VjY2Vzc2Z1
-bGx5IGZvciBhCj4+PiBUd2luUnggaW4gMy4xNCBhbmQgbGF0ZXIuIEhlIGFjdHVhbGx5IGp1c3Qg
-c3VibWl0dGVkIHRoaXMgaXNzdWUgdG8KPj4+IHN1cHBvcnRAZXR0dXMuY29tIDxtYWlsdG86c3Vw
-cG9ydEBldHR1cy5jb20+IGEgZmV3IGRheXMgYWdvIGFuZCBpcwo+Pj4gY3VycmVudGx5IHdhaXRp
-bmcgb24gYSByZXNwb25zZSBmcm9tIHRoZW0uCj4+PiBSb2IKPj4+Cj4+Pgo+Pj4gT24gVGh1LCBN
-YXkgOSwgMjAxOSBhdCA5OjA2IEFNIEZhYmlhbiBTY2h3YXJ0YXUgdmlhIFVTUlAtdXNlcnMKPj4+
-IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPj4gd3JvdGU6Cj4+Pgo+Pj4gwqDCoMKgwqAgSGksCj4+PiDCoMKgwqDCoCBpcyB0aGVy
-ZSBhbnkgdXBkYXRlIHJlZ2FyZGluZyB0aGlzIGlzc3VlPwo+Pj4KPj4+IMKgwqDCoMKgIEFtIDI2
-LjA0LjIwMTkgdW0gMTE6Mjcgc2NocmllYiBGYWJpYW4gU2Nod2FydGF1IHZpYSBVU1JQLXVzZXJz
-Ogo+Pj4gwqDCoMKgwqAgPiBIaSwKPj4+IMKgwqDCoMKgID4KPj4+IMKgwqDCoMKgID4gaXMgaXQg
-dG8gYmUgZXhwZWN0ZWQgdGhhdCB0aGlzIHdpbGwgYmUgZml4ZWQgc29vbj8gSXMgc29tZW9uZSBh
-dAo+Pj4gwqDCoMKgwqAgRXR0dXMKPj4+IMKgwqDCoMKgID4gd29ya2luZyBvbiB0aGlzPwo+Pj4g
-wqDCoMKgwqAgPgo+Pj4gwqDCoMKgwqAgPiBCZXN0IHJlZ2FyZHMsCj4+PiDCoMKgwqDCoCA+IEZh
-Ymlhbgo+Pj4gwqDCoMKgwqAgPgo+Pj4gwqDCoMKgwqAgPiBBbSAyMy4wNC4yMDE5IHVtIDE5OjM0
-IHNjaHJpZWIgRmFiaWFuIFNjaHdhcnRhdSB2aWEgVVNSUC11c2VyczoKPj4+IMKgwqDCoMKgID4+
-IE9LLCBJIGp1c3QgcmV2ZXJ0ZWQgdGhlIHN5c3RlbSB0byB0aGUgb2xkIHZlcnNpb24gYW5kIHRo
-YXQgd29ya3MKPj4+IMKgwqDCoMKgID4+IHBlcmZlY3RseS4gVGhlIFVTUlAgdGltZSBpcyBpbmNy
-ZW1lbnRlZCBpbiBmdWxsIHNlY29uZHMgbGlrZQo+Pj4gwqDCoMKgwqAgZXhwZWN0ZWQuCj4+PiDC
-oMKgwqDCoCA+PiBTbyBzb21ldGhpbmcgY2hhbmdlZCBzb21ld2hlcmUgaW4gdGhlIGxpYi9mcGdh
-IGltYWdlLgo+Pj4gwqDCoMKgwqAgPj4gVGhlIHZlcnNpb24gSSBhbSB1c2luZyBub3cgaXM6Cj4+
-PiDCoMKgwqDCoCA+PiBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDUuNC4wIDIwMTYwNjA5OyBCb29z
-dF8xMDU4MDA7Cj4+PiDCoMKgwqDCoCA+PiBVSERfMDAzLjAxMC4wMDIuSEVBRC0wLWdiZDZlMjFk
-Ywo+Pj4gwqDCoMKgwqAgPj4gSG9wZSB0aGF0IGhlbHBzLgo+Pj4gwqDCoMKgwqAgPj4KPj4+IMKg
-wqDCoMKgID4+IEFtIDIzLjA0LjIwMTkgdW0gMTk6MTIgc2NocmllYiBNYXJjdXMgRC4gTGVlY2gg
-dmlhIFVTUlAtdXNlcnM6Cj4+PiDCoMKgwqDCoCA+Pj4gT24gMDQvMjMvMjAxOSAwMToxMCBQTSwg
-RmFiaWFuIFNjaHdhcnRhdSB2aWEgVVNSUC11c2VycyB3cm90ZToKPj4+IMKgwqDCoMKgID4+Pj4g
-V2lsbCB0aGUgZnBnYSBpbWFnZSBkb3dubG9hZGVyIGZyb20gdGhlIG9sZCB2ZXJzaW9uIGFsc28g
-Cj4+PiBkb3dubG9hZAo+Pj4gwqDCoMKgwqAgPj4+PiB0aGUgb2xkIGZwZ2EgaW1hZ2VzPyBPciB3
-aGVyZSBjYW4gSSBnZXQgdGhlbT8KPj4+IMKgwqDCoMKgID4+Pj4gSSBkb24ndCBrbm93IGlmIEkg
-d2lsbCBkbyBpdC4gSSBhbSBhZnJhaWQgb2YgYnJlYWtpbmcgbXkgCj4+PiBzeXN0ZW0KPj4+IMKg
-wqDCoMKgID4+Pj4gYW5kL29yIGludmVzdGluZyBhIGxvdCBvZiB0aW1lIHdpdGggdGhpcyBhcyBJ
-IGFtIHVuZGVyIAo+Pj4gcXVpdGUgYSBsb3QKPj4+IMKgwqDCoMKgID4+Pj4gb2YgdGltZSBwcmVh
-c3VyZSBhbmQgSSBhbSBiYXNpY2FsbHkgd29ya2luZyBvbiB0aGUgcHJvZHVjdGlvbgo+Pj4gwqDC
-oMKgwqAgc3lzdGVtCj4+PiDCoMKgwqDCoCA+Pj4+IHdoaWNoIGhhcyB0byBibyByb2xsZWQgb3V0
-IGluIGEgZmV3IGRheXMuIElmIEkgYnJpY2sgaXQsIEkgCj4+PiB3aWxsCj4+PiDCoMKgwqDCoCBn
-ZXQKPj4+IMKgwqDCoMKgID4+Pj4gaW4gdHJvdWJsZSA7KQo+Pj4gwqDCoMKgwqAgPj4+IFRoZSB1
-aGRfaW1hZ2VzX2Rvd25sb2FkZXIgdG9vbCB3aWxsIGFsd2F5cyBkb3dubG9hZCB0aGUgCj4+PiBp
-bWFnZXMgdGhhdAo+Pj4gwqDCoMKgwqAgPj4+IG1hdGNoIHRoZSBsaWJyYXJ5IHZlcnNpb24uCj4+
-PiDCoMKgwqDCoCA+Pj4KPj4+IMKgwqDCoMKgID4+Pgo+Pj4gwqDCoMKgwqAgPj4+Pgo+Pj4gwqDC
-oMKgwqAgPj4+PiBBbSAyMy4wNC4yMDE5IHVtIDE4OjUxIHNjaHJpZWIgTWFyY3VzIEQuIExlZWNo
-IHZpYSBVU1JQLXVzZXJzOgo+Pj4gwqDCoMKgwqAgPj4+Pj4gT24gMDQvMjMvMjAxOSAxMTo0OCBB
-TSwgRmFiaWFuIFNjaHdhcnRhdSB2aWEgVVNSUC11c2VycyAKPj4+IHdyb3RlOgo+Pj4gwqDCoMKg
-wqAgPj4+Pj4+IEhpLAo+Pj4gwqDCoMKgwqAgPj4+Pj4+IGl0cyB0aGUgc2FtZS4gSSBmb3VuZCB0
-aGUgYnVnIGJlY2F1c2UgdGhlIHRpbWVkIGNvbW1hbmRzIAo+Pj4gdG9vawo+Pj4gwqDCoMKgwqAg
-bXVjaAo+Pj4gwqDCoMKgwqAgPj4+Pj4+IGxvbmdlciB0aGFuIGV4cGVjdGVkLCBzbyB0aGUgVVNS
-UCBjbG9jayBpcyBhY3R1YWxseSAKPj4+IHJ1bm5pbmcgYXQgYQo+Pj4gwqDCoMKgwqAgPj4+Pj4+
-IGxvd2VyIHJhdGUuIEhvd2V2ZXIsIHRoZSBzcGVjdHJhIGxvb2tlZCBvayBhbmQgZXZlcnl0aGlu
-ZyAKPj4+IGVsc2UKPj4+IMKgwqDCoMKgID4+Pj4+PiBzZWVtcyB0byBiZSB3b3JraW5nIGFzIHVz
-dWFsLCBleGNlcHQgdGhlcmUgaXMgYSBsYXJnZXIgZGVsYXkKPj4+IMKgwqDCoMKgID4+Pj4+PiBi
-ZXR3ZWVuIHRoZSBjb21tYW5kcy4gU28gdGhlIFVTUlAgaXMgbm90IHJ1bm5pbmcgYXQgYSB3cm9u
-Zwo+Pj4gwqDCoMKgwqAgY2xvY2sKPj4+IMKgwqDCoMKgID4+Pj4+PiBvciBzb21ldGhpbmcgbGlr
-ZSB0aGF0LiBUaGF0IHdvdWxkIHByb2JhYmx5IGNhdXNlIG11Y2ggCj4+PiBsYXJnZXIKPj4+IMKg
-wqDCoMKgIGlzc3Vlcy4KPj4+IMKgwqDCoMKgID4+Pj4+Pgo+Pj4gwqDCoMKgwqAgPj4+Pj4+IEJl
-c3QgcmVnYXJkcywKPj4+IMKgwqDCoMKgID4+Pj4+PiBGYWJpYW4KPj4+IMKgwqDCoMKgID4+Pj4+
-IElmIHlvdSByZXZlcnQgdG8gYSBwcmV2aW91cyByZWxlYXNlLCBkb2VzIHRoZSBwcm9ibGVtIGdv
-IAo+Pj4gYXdheT8KPj4+IMKgwqDCoMKgID4+Pj4+Cj4+PiDCoMKgwqDCoCA+Pj4+Pgo+Pj4gwqDC
-oMKgwqAgPj4+Pj4+Cj4+PiDCoMKgwqDCoCA+Pj4+Pj4KPj4+IMKgwqDCoMKgID4+Pj4+PiBBbSAy
-My4wNC4yMDE5IHVtIDE3OjI3IHNjaHJpZWIgTWFyY3VzIEQuIExlZWNoIHZpYSAKPj4+IFVTUlAt
-dXNlcnM6Cj4+PiDCoMKgwqDCoCA+Pj4+Pj4+IE9uIDA0LzIzLzIwMTkgMDk6NDcgQU0sIEZhYmlh
-biBTY2h3YXJ0YXUgdmlhIFVTUlAtdXNlcnMgCj4+PiB3cm90ZToKPj4+IMKgwqDCoMKgID4+Pj4+
-Pj4+IEhpIGV2ZXJ5b25lLAo+Pj4gwqDCoMKgwqAgPj4+Pj4+Pj4KPj4+IMKgwqDCoMKgID4+Pj4+
-Pj4+IEkganVzdCBmb3VuZCBhIHZlcnkgc3RyYWdlIGJ1ZyBhbmQgd291bGQgbGlrZSB0byAKPj4+
-IGNvbmZpcm0gdGhhdAo+Pj4gwqDCoMKgwqAgPj4+Pj4+Pj4gdGhpcyBpcyBhIGJ1ZyBhbmQgaWYg
-c29tZW9uZSBjYW4gZXhwbGFpbi9maXggdGhpcy4KPj4+IMKgwqDCoMKgID4+Pj4+Pj4+IEkgcmVh
-ZCB0aGUgdGltZSBmcm9tIHRoZSBVU1JQIHVzaW5nIGdldF90aW1lX25vdygpIGFuZCAKPj4+IGRv
-IGEKPj4+IMKgwqDCoMKgIGxvdAo+Pj4gwqDCoMKgwqAgPj4+Pj4+Pj4gb2Ygc3R1ZmYgd2l0aCBp
-dC4gTWFpbmx5IHRvIHRpbWUgY29tbWFuZHMgbGlrZSBmcmVxdWVuY3kKPj4+IMKgwqDCoMKgIGhv
-cHBpbmcKPj4+IMKgwqDCoMKgID4+Pj4+Pj4+IGFuZCBzdGFydGluZyBvZiBzdHJlYW1zLiBJIG5v
-dGljZWQgdGhhdCB0aGUgdGltZSBpbiB0aGUgCj4+PiBVU1JQCj4+PiDCoMKgwqDCoCA+Pj4+Pj4+
-PiBzZWVtZWQgdG8gcnVuIHNsb3dlciB0aGFuIGV4cGVjdGVkLCBhY3R1YWxseSBieSBhIAo+Pj4g
-ZmFjdG9yIG9mCj4+PiDCoMKgwqDCoCB0d28uCj4+PiDCoMKgwqDCoCA+Pj4+Pj4+PiBQbGVhc2Ug
-ZmluZCBhIHByb2dyYW0gYXR0YWNoZWQgdGhhdCBkZW1vbnN0cmF0ZXMgdGhpcwo+Pj4gwqDCoMKg
-wqAgZWZmZWN0LiBJdAo+Pj4gwqDCoMKgwqAgPj4+Pj4+Pj4gcHJpbnRzIHRoZSBpbnRlcm5hbCBV
-U1JQIHRpbWUgcm91Z2hseSBldmVyeSBzZWNvbmQgKHVzaW5nCj4+PiDCoMKgwqDCoCBzbGVlcCkK
-Pj4+IMKgwqDCoMKgID4+Pj4+Pj4+IGJ1dCB0aGUgVVNSUCB0aW1lIGluY3JlbWVudHMgb25seSBi
-eSAwLjUgc2Vjb25kcyBpbiAKPj4+IGVhY2ggc3RlcC4KPj4+IMKgwqDCoMKgID4+Pj4+Pj4+IFdo
-YXQgaXMgZ29pbmcgb24/Cj4+PiDCoMKgwqDCoCA+Pj4+Pj4+Pgo+Pj4gwqDCoMKgwqAgPj4+Pj4+
-Pj4gVGhlIHByb2dyYW0gY2FuIGJlIGNvbXBpbGVkIHVzaW5nOgo+Pj4gwqDCoMKgwqAgPj4+Pj4+
-Pj4gZysrIC1zdGQ9YysrMTQgLU8yIG1haW4uY3BwIC1sdWhkIC1sYm9vc3Rfc3lzdGVtIC1vIG1h
-aW4KPj4+IMKgwqDCoMKgID4+Pj4+Pj4+Cj4+PiDCoMKgwqDCoCA+Pj4+Pj4+PiBJIGFtIHVzaW5n
-IGEgc2luZ2xlIChvciBtdWx0aXBsZSAtIGRvZXMgbm90IGhhdmUgYW4gCj4+PiBlZmZlY3QpCj4+
-PiDCoMKgwqDCoCBYMzEwCj4+PiDCoMKgwqDCoCA+Pj4+Pj4+PiB3aXRoIHR3byBUd2luUlguIFVI
-RCBpcyAibGludXg7IEdOVSBDKysgdmVyc2lvbiA1LjUuMAo+Pj4gwqDCoMKgwqAgMjAxNzEwMTA7
-Cj4+PiDCoMKgwqDCoCA+Pj4+Pj4+PiBCb29zdF8xMDU4MDA7IFVIRF8zLjE1LjAuZ2l0LTg5LWdm
-OTNjNTIyNyIgZnJvbSB5ZXN0ZXJkYXkuCj4+PiDCoMKgwqDCoCBGUEdBCj4+PiDCoMKgwqDCoCA+
-Pj4+Pj4+PiBpbWFnZSBpcyBhbHNvIGZyb20geWVzdGVyZGF5IHVzaW5nIHRoZSBkb3dubG9hZCBz
-Y3JpcHQgCj4+PiAtIHdoZXJlCj4+PiDCoMKgwqDCoCA+Pj4+Pj4+PiBjYW4gSSBmaW5kIHRoZSB2
-ZXJzaW9uIG51bWJlcj8gSSBhbSBydW5uaW5nIGFuIHVwLXRvLWRhdGUKPj4+IMKgwqDCoMKgIFVi
-dW50dQo+Pj4gwqDCoMKgwqAgPj4+Pj4+Pj4gMTYuMDQuCj4+PiDCoMKgwqDCoCA+Pj4+Pj4+IENv
-dWxkIHlvdSB0cnkgdGhlIHByaW50IGFzIGEgZ2V0X2ZyYWNfc2VjcygpIGFuZAo+Pj4gwqDCoMKg
-wqAgZ2V0X2Z1bGxfc2VjcygpCj4+PiDCoMKgwqDCoCA+Pj4+Pj4+IGluc3RlYWQ/wqDCoCBUbyBk
-aXNhbWJpZ3VhdGUgd2hldGhlciB0aGlzIGlzIGFuIGFjdHVhbCAKPj4+IGhhcmR3YXJlCj4+PiDC
-oMKgwqDCoCA+Pj4+Pj4+IGNsb2NrIG1hbmFnZW1lbnQKPj4+IMKgwqDCoMKgID4+Pj4+Pj4gwqDC
-oCBpc3N1ZSBvciBqdXN0IGEgZm9ybWF0dGluZyBpc3N1ZS4KPj4+IMKgwqDCoMKgID4+Pj4+Pj4K
-Pj4+IMKgwqDCoMKgID4+Pj4+Pj4KPj4+IMKgwqDCoMKgID4+Pj4+Pj4KPj4+IMKgwqDCoMKgID4+
-Pj4+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+
-IMKgwqDCoMKgID4+Pj4+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4+IMKgwqDCoMKgID4+
-Pj4+Pj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gCj4+PiA8bWFpbHRvOlVTUlAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tPgo+Pj4gwqDCoMKgwqAgPj4+Pj4+Pgo+Pj4gwqDCoMKgwqAgaHR0cDov
-L2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMu
-Y29tCj4+PiDCoMKgwqDCoCA+Pj4+Pj4KPj4+IMKgwqDCoMKgID4+Pj4+PiBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gwqDCoMKgwqAgPj4+Pj4+IFVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+PiDCoMKgwqDCoCA+Pj4+Pj4gVVNSUC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20gCj4+PiA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+Pj4g
-wqDCoMKgwqAgPj4+Pj4+Cj4+PiDCoMKgwqDCoCBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
-YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4+IMKgwqDCoMKgID4+Pj4+
-Cj4+PiDCoMKgwqDCoCA+Pj4+Pgo+Pj4gwqDCoMKgwqAgPj4+Pj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IMKgwqDCoMKgID4+Pj4+IFVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0Cj4+PiDCoMKgwqDCoCA+Pj4+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbSAKPj4+IDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4+PiDCoMKgwqDC
-oCA+Pj4+PiAKPj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3Jw
-LXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+Pj4gwqDCoMKgwqAgPj4+Pgo+Pj4gwqDCoMKgwqAgPj4+
-PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gwqDC
-oMKgwqAgPj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+Pj4gwqDCoMKgwqAgPj4+PiBVU1JQ
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-Pgo+Pj4gwqDCoMKgwqAgPj4+PiAKPj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
-aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+Pj4gwqDCoMKgwqAgPj4+Cj4+PiDC
-oMKgwqDCoCA+Pj4KPj4+IMKgwqDCoMKgID4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+Pj4gwqDCoMKgwqAgPj4+IFVTUlAtdXNlcnMgbWFpbGluZyBs
-aXN0Cj4+PiDCoMKgwqDCoCA+Pj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpV
-U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPj4+IMKgwqDCoMKgID4+PiAKPj4+IGh0dHA6Ly9s
-aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
-bQo+Pj4gwqDCoMKgwqAgPj4KPj4+IMKgwqDCoMKgID4+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCj4+PiDCoMKgwqDCoCA+PiBVU1JQLXVzZXJzIG1haWxp
-bmcgbGlzdAo+Pj4gwqDCoMKgwqAgPj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0
-bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPj4+IMKgwqDCoMKgID4+IAo+Pj4gaHR0cDov
-L2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMu
-Y29tCj4+PiDCoMKgwqDCoCA+Cj4+PiDCoMKgwqDCoCA+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCj4+PiDCoMKgwqDCoCA+IFVTUlAtdXNlcnMgbWFpbGlu
-ZyBsaXN0Cj4+PiDCoMKgwqDCoCA+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxtYWlsdG86
-VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4+PiDCoMKgwqDCoCA+IAo+Pj4gaHR0cDovL2xp
-c3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29t
-Cj4+Pgo+Pj4gwqDCoMKgwqAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KPj4+IMKgwqDCoMKgIFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+PiDCoMKgwqDC
-oCBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPgo+Pj4gwqDCoMKgwqAgaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
-bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4+Pgo+Pgo+PiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlz
-dAo+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29t
-L21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4KPiAKPiBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMg
-bWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMu
-ZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJz
-IG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0
-dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============3928363118771963531==
+Content-Type: multipart/alternative; boundary="000000000000dbd8fb058ddf0917"
+
+--000000000000dbd8fb058ddf0917
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Jason,
+
+Yes they are consistent, I mean the output of uhd_usrp_probe for both N200
+is exactly the same (except the ip, serial and mac addr).
+I do not know where the problem is! Hardware or software
+
+Regards
+Sumit
+
+On Wed, Jul 17, 2019 at 1:19 PM Jason Matusiak <
+jason@gardettoengineering.com> wrote:
+
+> I am not really an N-series guy, so this probably won't be helpful.  Have
+> you tried doing a uhd_usrp_probe on both devices and seen that the
+> responses are consistent?
+>
+> ------------------------------
+> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of
+> Sumit Kumar via USRP-users <usrp-users@lists.ettus.com>
+> *Sent:* Wednesday, July 17, 2019 7:15 AM
+> *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* [USRP-users] Sequence Errors N200
+>
+> Hi,
+> I am trying transmit using Ettus N200 (call it A) but getting this error
+> message on the console
+>
+>
+> SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSUSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+..................................
+>
+> I looked for it on google and found these links
+>
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2014-May/0374=
+95.html
+>
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2012-July/032=
+838.html
+>
+> Both the links  suggested problem related to the gigabit port. Then I
+> connected another USRP N200 (call it B) to the same laptop and tried
+> transmitting using that as there were no such sequence error messages.
+>
+> This makes me believe there is some problem with the first USRP, i.e., A.
+>
+> Further I tried with different versions of UHD 3.11, UHD 3.15.. but its
+> the same.
+>
+> Receive is good only transmit is throwing error.
+>
+> Not only with UHD, even in labview, when I transmit, I see nothing coming
+> out from the N200 (A).
+>
+> I am using SBXv2 daughter board.
+>
+> Any clue!
+>
+> Regards
+> --
+> --
+> Sumit kumar
+> Postdoc
+> SnT, Luxembourg
+>
+>
+>
+
+--=20
+--=20
+Sumit kumar
+Postdoc
+SnT, Luxembourg
+
+--000000000000dbd8fb058ddf0917
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Jason,<div><br><div>Yes they are consistent, I mean the=
+ output of uhd_usrp_probe for both N200 is exactly=C2=A0the same (except th=
+e ip, serial and mac addr).</div><div>I do not know where the problem is! H=
+ardware or software=C2=A0</div><div><br></div><div>Regards</div><div>Sumit=
+=C2=A0=C2=A0</div></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Wed, Jul 17, 2019 at 1:19 PM Jason Matusiak &lt;=
+<a href=3D"mailto:jason@gardettoengineering.com">jason@gardettoengineering.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+I am not really an N-series guy, so this probably won&#39;t be helpful.=C2=
+=A0 Have you tried doing a uhd_usrp_probe on both devices and seen that the=
+ responses are consistent?</div>
+<div id=3D"gmail-m_9014729813065413461Signature">
+<div>
+<div id=3D"gmail-m_9014729813065413461appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_9014729813065413461divRplyFwdMsg" dir=3D"ltr"><font face=
+=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>From=
+:</b> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus.com" =
+target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt; on behalf of S=
+umit Kumar via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"=
+ target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Sent:</b> Wednesday, July 17, 2019 7:15 AM<br>
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> [USRP-users] Sequence Errors N200</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">Hi,=C2=A0
+<div>I am trying transmit using Ettus N200 (call it A) but getting this err=
+or message on the console=C2=A0</div>
+<div><br>
+</div>
+<div>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSUSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS.............................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+.....................................<br>
+</div>
+<div><br>
+</div>
+<div>I looked for it on google and found these links=C2=A0</div>
+<div><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com=
+/2014-May/037495.html" target=3D"_blank">http://lists.ettus.com/pipermail/u=
+srp-users_lists.ettus.com/2014-May/037495.html</a><br>
+</div>
+<div><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com=
+/2012-July/032838.html" target=3D"_blank">http://lists.ettus.com/pipermail/=
+usrp-users_lists.ettus.com/2012-July/032838.html</a><br>
+</div>
+<div><br>
+</div>
+<div>Both the links=C2=A0 suggested problem related to the gigabit port. Th=
+en I connected another USRP N200 (call it B) to the same laptop and tried t=
+ransmitting using that as there were no such sequence error messages.</div>
+<div><br>
+</div>
+<div>This makes me believe there is some problem with the first USRP, i.e.,=
+ A.=C2=A0<br>
+</div>
+<div><br>
+</div>
+<div>Further I tried with different versions of UHD 3.11, UHD 3.15.. but it=
+s the same.=C2=A0</div>
+<div><br>
+</div>
+<div>Receive is good only transmit is throwing error.=C2=A0</div>
+<div><br>
+</div>
+<div>Not only with UHD, even in labview, when I transmit, I see nothing com=
+ing out from the N200 (A).=C2=A0</div>
+<div><br>
+</div>
+<div>I am using SBXv2 daughter board.=C2=A0</div>
+<div><br>
+</div>
+<div>Any clue!</div>
+<div><br>
+</div>
+<div>Regards</div>
+<div>-- <br>
+<div dir=3D"ltr" class=3D"gmail-m_9014729813065413461x_gmail_signature">
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr"><span style=3D"color:rgb(136,136,136);font-size:12.8px">--=
+=C2=A0</span><br style=3D"color:rgb(136,136,136);font-size:12.8px">
+<div style=3D"color:rgb(136,136,136);font-size:12.8px">Sumit kumar<br>
+Postdoc</div>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px">SnT, Luxembourg</div=
+>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px"><br>
+</div>
+<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span sty=
+le=3D"color:rgb(136,136,136);font-size:12.8px">--=C2=A0</span><br style=3D"=
+color:rgb(136,136,136);font-size:12.8px"><div style=3D"color:rgb(136,136,13=
+6);font-size:12.8px">Sumit kumar<br>Postdoc</div><div style=3D"color:rgb(13=
+6,136,136);font-size:12.8px">SnT, Luxembourg</div><div style=3D"color:rgb(1=
+36,136,136);font-size:12.8px"><br></div><br></div></div></div></div>
+
+--000000000000dbd8fb058ddf0917--
+
+
+--===============3928363118771963531==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3928363118771963531==--
+
