@@ -2,60 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD176D632
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 23:04:45 +0200 (CEST)
-Received: from [::1] (port=45830 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A239E6D641
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 23:09:36 +0200 (CEST)
+Received: from [::1] (port=48382 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hoDZz-0004Cb-Sy; Thu, 18 Jul 2019 17:04:43 -0400
-Received: from mail-wr1-f47.google.com ([209.85.221.47]:39084)
+	id 1hoDeg-0004lx-N7; Thu, 18 Jul 2019 17:09:34 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:42648)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
- id 1hoDZu-0003ym-RE
- for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 17:04:38 -0400
-Received: by mail-wr1-f47.google.com with SMTP id x4so30108115wrt.6
- for <usrp-users@lists.ettus.com>; Thu, 18 Jul 2019 14:04:18 -0700 (PDT)
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1hoDec-0004d6-QT
+ for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 17:09:30 -0400
+Received: by mail-oi1-f172.google.com with SMTP id s184so22650246oie.9
+ for <usrp-users@lists.ettus.com>; Thu, 18 Jul 2019 14:09:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:date:in-reply-to:references:user-agent
- :mime-version:content-transfer-encoding;
- bh=DLcI/BvqAkE7tRt/3wjX6oumVGZb7ZD0zcXs5Cb1K3Y=;
- b=usMjwe6m7s5KVQUOHwzW49+d0Izik3uFuMD6PMtJ8roGT2jSEzb2QGBdHQ8y/pP0CL
- PKKanX68RkjXLMtqNX+6YacBAX8+/7RIcbG1cjNupdFK4Vnu9J/WzHhsU8Ck3Zzu45my
- Q4xEqB4kRmnqe5w5n+OiWhQBSohQzEmH/vsTy9C+DLeZN7S8QZVROvCtVtuYfkY4g0Ml
- ZH4Fr0UxODIKdXjDug+sDLwZ0Cew4QfJeQjY4pea6aKQsRTACG83GF+dMGozVARBVv3I
- c1qQP9mQfFHSp2D66biKfDTrQe4w8D8FVNkTdfMttALqOSt1fM96pNrmyXYGy2ToBVDp
- s4Ug==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9HCXfPUMIxlY0qgVy/jA83pQhEjSUQ5DQujw4Lpansk=;
+ b=gcqJ+sV5HWQ+pTvt2vCgKB4PeAg405mEc/riZMh+uwokFzjFVBGmfhDDHRiYHh7UIY
+ c8RkS2XtyPdCLXuqzg638cLt/WkytTfp5PrOfoqXSgFDgSBlTzTNgQCMe+TNE8eeaLnc
+ RpY0tYpotmZhiOFO0PFm3k7MQhadq68qsaoc4G2Xj4RWRwV7j64C5Q9vVzfellVp8K9c
+ dgI+HjR/HfOHSd95cPHgJCOFq/JZCQyF+r6KMZaBmEvPJ/wVagTUn58Xhk7C5IpSPPQW
+ xnrB/X8npZi7od4KAHNntk7HyvxFY60wsmYOqvyX4CPVparYwMzLoopSu8LrOIjJjnah
+ 0z9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=DLcI/BvqAkE7tRt/3wjX6oumVGZb7ZD0zcXs5Cb1K3Y=;
- b=R030Mmu7tfND4mo8t3wRWHs/FAbciG+kab15PeK207uk6WKYVv65P+zHh9+xGFYEP6
- z2GSzkHfdBR1/a4GvXtI09UzWRl+xHGQ4h5etQI9/urjLYA7/PClteXlHgLdczMv/jmB
- HebDFSkvIV+4jOMNF5ARh1s3mvtyH+2g4FdfPUH1OSlwoM4BJIfJsdGcxiqCyPLIhOeU
- tqAwiRh15f6pqaSBO6TbP9CU2sNuTqUOCINTFMkO5CY2O7cAYdEXxvNVel1b2ZKhraQs
- N88aQRE0Lk0b13AQIzneM1bwUJmyPlH4E/BZMCWzbcs2WXsn7vMyLuBDEVeoD7R/f4fD
- bELw==
-X-Gm-Message-State: APjAAAWlvlRQdZ97HVdHZ4fbVdOOD2kpRuCdfy5s4fZYMWgx3RowYuSX
- 0fgr5RDHzwy1eBYYHFRtJpybFbWZ
-X-Google-Smtp-Source: APXvYqyoca8Hcx8h3v18Df3b0q8ABwZeeWuSceQm/A+w15oZYTiiCnARibimXIkALk4tsOxnsQ9gOw==
-X-Received: by 2002:adf:ed8a:: with SMTP id c10mr53310591wro.33.1563483837796; 
- Thu, 18 Jul 2019 14:03:57 -0700 (PDT)
-Received: from workhorse.lan
- (HSI-KBW-046-005-003-059.hsi8.kabel-badenwuerttemberg.de. [46.5.3.59])
- by smtp.googlemail.com with ESMTPSA id
- t185sm21790545wma.11.2019.07.18.14.03.56
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Thu, 18 Jul 2019 14:03:57 -0700 (PDT)
-Message-ID: <b738183536799608fb8bc13ed55756a67ad03bba.camel@ettus.com>
-To: =?ISO-8859-1?Q?C=E9dric?= Hannotier <Cedric.Hannotier@ulb.ac.be>, 
- usrp-users@lists.ettus.com
-Date: Thu, 18 Jul 2019 23:03:56 +0200
-In-Reply-To: <fa2116e1dbbe2b6fa62a181551995721@imapproxy.vub.ac.be>
-References: <fa2116e1dbbe2b6fa62a181551995721@imapproxy.vub.ac.be>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9HCXfPUMIxlY0qgVy/jA83pQhEjSUQ5DQujw4Lpansk=;
+ b=PEwKqZ5H+aJzlVz1qgRFMPsAkmCRx0efALvado3BofxUAiAE2eOCahyk5v8wD7j0oD
+ I/gk7UrCw0HoY4J92/7ZQqjvCTq6a3Eu4Y7m/t2OaaTfTPpyMLAfIW2k8K1PZPOReiGi
+ a9izKnjUZYNCbTD5HOUfP/0puJGnFWg1R0gnIInBzCfF+HUNxvX34nh76IsW4hnMgVUu
+ SaEBFVMxWpAasAJ/zThXDBrBeiNawBuJT1RaxrSfHmtzjIEa2V3qsxlBVCxBU8H6IDXP
+ mIFxngj63/4z6QhTYLpz6528aUu2TOB7Oujqs6y/pwgrKZbopY0nDytzSEcaIoEfdJH3
+ 04gg==
+X-Gm-Message-State: APjAAAXzJNInCdS4s0vu/3gG3N7Dbbm1cxcRhMrETHvUBjwRItIAYQcb
+ jpfSynYAnFITI2rfFDrgT+0TqOxx7OBXBXOiRC2Wby6n
+X-Google-Smtp-Source: APXvYqxJtTR+oPnc6GSMH32Q84Jbao0MnSuozWetJ0OfcRE0/TwMSsgnDzBjYgmsHOVPxNcBwKOBJkj5Rpw7HUSbDRI=
+X-Received: by 2002:aca:ecc1:: with SMTP id k184mr23741706oih.82.1563484130103; 
+ Thu, 18 Jul 2019 14:08:50 -0700 (PDT)
 MIME-Version: 1.0
+References: <fa2116e1dbbe2b6fa62a181551995721@imapproxy.vub.ac.be>
+ <b738183536799608fb8bc13ed55756a67ad03bba.camel@ettus.com>
+In-Reply-To: <b738183536799608fb8bc13ed55756a67ad03bba.camel@ettus.com>
+Date: Thu, 18 Jul 2019 14:09:07 -0700
+Message-ID: <CAL263ixXc7fVj5EG3gkoGJQHMCxFX2_rgFeuLRjeh5oLseBqSw@mail.gmail.com>
+To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
 Subject: Re: [USRP-users] USRP X310 send period
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -68,11 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3408840186087607528=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,66 +77,293 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-QXQgdGhlIHZlcnkgYmVuaWduIDIwIE1TL3MsIEknZCByZWFsbHkgc2F5IHlvdXIgZmlyc3Qgb3B0
-aW9uIGlzIHRoZSB3YXkKdG8gZ28uIFRoZSByZXN0IHByb2JhYmx5IHdvbid0IHdvcmsgdmVyeSB3
-ZWxsIGR1IHRvIHR1cm4gb24vb2ZmCmJlaGF2aW91ciByZXF1aXJpbmcgeW91IHRvIHplcm8gcGFk
-IGEgYml0IHRvIGZsdXNoIHlvdXIgVFggZGF0YSBjaGFpbnMuCgpZb3UgY2FuIG9mIGNvdXJzZSBh
-bHNvIHdyaXRlIGFuIFJGTm9DIGJsb2NrIHRvIHN0b3JlIGFuZCBnZW5lcmF0ZSBkYXRhCmluLUZQ
-R0EsIGJ1dCByZWFsbHk6IGF0IDIwTVMvcyBqdXN0IGNvbnRpbm91c2x5IHN0cmVhbS4gRXZlbiBh
-IGJvZy0Kbm9ybWFsIEdpZ2FiaXQgRXRoZXJuZXQgY2FyZCBoYXMgcGxlbnR5IGVub3VnaCBiYW5k
-d2lkdGggdG8gZG8gdGhhdC4gSQpkb3VidCBzZW5kaW5nIGEgc2VxdWVuY2UgZnJvbSBSQU0gd2ls
-bCBvY2N1cHkgbXVjaCBDUFUgb24geW91ciBob3N0IFBDLgoKQmVzdCByZWdhcmRzLApNYXJjdXMK
-Ck9uIFRodSwgMjAxOS0wNy0xOCBhdCAyMjo1OCArMDIwMCwgQ8OpZHJpYyBIYW5ub3RpZXIgdmlh
-IFVTUlAtdXNlcnMKd3JvdGU6Cj4gRGVhciBhbGwsCj4gCj4gSSB3b3VsZCBsaWtlIHRvIHBlcmlv
-ZGljYWxseSBzZW5kIGEgZnJhbWUgd2l0aCBhbiBVU1JQIFgzMTAgKGZyYW1lIAo+IGxlbmd0aDog
-MzIwIHNhbXBsZXMsIHJhdGU6IDIwIE1TL3MsIHBlcmlvZDogMS01MDAgbXMpLiBIb3dldmVyLCBJ
-IAo+IHN0cnVnZ2xlIHRvIGZpbmQgdGhlIGJlc3Qgd2F5IHRvIGltcGxlbWVudCBpdC4gV2hhdCBJ
-IGhhdmUgdHJpZWQgc28KPiBmYXI6Cj4gCj4gICAxLiBBcHBlbmQgemVyb3MgdG8gdGhlIGZyYW1l
-IHRvIHJlYWNoIHRoZSBleHBlY3RlZCBwZXJpb2QuCj4gSG93ZXZlciwgCj4gdGhpcyBjb25zdW1l
-cyB0b28gbXVjaCBiYW5kd2lkdGggZHVlIHRvIHRoZSB6ZXJvcy4KPiAKPiAgIDIuIFVzZSB0eF9z
-dHJlYW1lci0+c2VuZCgpIHdpdGggYSB0eF9tZXRhZGF0YV90LnRpbWVfc3BlYyBhbmQgCj4gdHhf
-c3RyZWFtZXItPnJlY3ZfYXN5bmNfbXNnKCkuIFVzaW5nIHRoYXQsIG9ubHkgdGhlIGZyYW1lIGlz
-IHNlbnQsIAo+IHNhdmluZyBtb3N0IG9mIHRoZSBiYW5kd2lkdGguIEhvd2V2ZXIsIHdpdGggc21h
-bGwgcGVyaW9kcywgaXQgdGVuZHMKPiB0byAKPiBwcmludCBzb21lICdMJy4KPiAKPiAgIDMuIEJ1
-ZmZlciBhIGJhdGNoIG9mIHNlbmQgcmVxdWVzdCBvbiB0aGUgVVNSUCwgdGhlbiB3YWl0IGEKPiBz
-cGVjaWZpYyAKPiB0aW1lICh1c2luZyBlZy4gcmVjdl9hc3luY19tc2coKSB1bnRpbCB0aGUgcmV0
-dXJuZWQgbWV0YWRhdGEKPiBjb250YWlucyAKPiB0aGUgcGVudWx0aW1hdGUgdGltZV9zcGVjIChJ
-IGV4cGVjdCB0aGF0IHRoZSB0aW1lX3NwZWMgcmV0dXJuZWQgaXMKPiB0aGUgCj4gb25lIHNwZWNp
-ZmllZCBpbiB0aGUgc2VuZCBtZXRhZGF0YSkpIGFuZCByZWRvLiBUaGUgaXNzdWUgaXMgdGhhdCBJ
-Cj4gd2FzIAo+IG5vdCBhYmxlIHRvIGZpbmQgdGhlIGJ1ZmZlciBzaXplIChpcyBpdCByZWxhdGVk
-IHRvIHRoZSAKPiB0eF9zdHJlYW1lci0+Z2V0X21heF9udW1fc2FtcHMoKT8pLiBJIHdvdWxkIGxp
-a2UgdG8gZmlsbCB0aGUgYnVmZmVyIAo+IHdpdGhvdXQgb3ZlcmZsb3cuCj4gCj4gSSB3YXMgaG9w
-aW5nIHRoYXQgSSBjb3VsZCBzYXZlIHRoZSBmcmFtZSBpbiBhbiBVU1JQJ3MgbWVtb3J5LCBhbmQK
-PiB0aGVuIAo+IGFzayBpdCB0byBwZXJpb2RpY2FsbHkgc2VuZCB0aGUgZnJhbWUgd2l0aCBhIHNw
-ZWNpZmljIHBlcmlvZC4gSXMgaXQgCj4gcG9zc2libGU/Cj4gCj4gSGVyZSBpcyBhbiBleGFtcGxl
-IG9mICgyKToKPiAKPiB0ZW1wbGF0ZSA8dHlwZW5hbWUgc2FtcF90eXBlPgo+IHZvaWQgc2VuZF9m
-cm9tX2ZpbGUoY29uc3QgdWhkOjp1c3JwOjptdWx0aV91c3JwOjpzcHRyICZ1c3JwLAo+ICAgICAg
-ICAgICAgICAgICAgICAgIHVoZDo6dHhfc3RyZWFtZXI6OnNwdHIgdHhfc3RyZWFtLCBjb25zdAo+
-IHN0ZDo6c3RyaW5nJiAKPiBmaWxlLAo+ICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IGRvdWJs
-ZSBwZXJpb2QpCj4gewo+IHNpemVfdCBkYXRhX3NpemUgPSBnZXRfZmlsZV9zaXplPHNhbXBfdHlw
-ZT4oZmlsZSk7Cj4gc3RkOjppZnN0cmVhbSBpbmZpbGUoZmlsZSwgc3RkOjppZnN0cmVhbTo6Ymlu
-YXJ5KTsKPiBzdGQ6OnZlY3RvcjxzYW1wX3R5cGU+IGJ1ZmYoZGF0YV9zaXplKTsKPiBpbmZpbGUu
-cmVhZChyZWludGVycHJldF9jYXN0PGNoYXIqPihidWZmLmRhdGEoKSksIAo+IChzdGQ6OnN0cmVh
-bXNpemUpKGJ1ZmYuc2l6ZSgpKnNpemVvZihzYW1wX3R5cGUpKSk7Cj4gaW5maWxlLmNsb3NlKCk7
-Cj4gc2l6ZV90IG51bV90eF9zYW1wcyA9IGJ1ZmYuc2l6ZSgpOwo+IHN0ZDo6Y291dCA8PCBmaWxl
-IDw8ICIgIiA8PCBidWZmWzBdIDw8ICIgIiA8PCBudW1fdHhfc2FtcHMgPDwKPiBzdGQ6OmVuZGw7
-Cj4gCj4gdWhkOjp0eF9tZXRhZGF0YV90IG1kOwo+IG1kLnN0YXJ0X29mX2J1cnN0ID0gdHJ1ZTsK
-PiBtZC5lbmRfb2ZfYnVyc3QgICA9IHRydWU7Cj4gbWQuaGFzX3RpbWVfc3BlYyAgPSB0cnVlOwo+
-IG1kLnRpbWVfc3BlYyAgICA9IHVzcnAtPmdldF90aW1lX2xhc3RfcHBzKCkrNS47Cj4gZG91Ymxl
-IHRpbWVvdXQgPSBtZC50aW1lX3NwZWMuZ2V0X3JlYWxfc2VjcygpOwo+IHVoZDo6YXN5bmNfbWV0
-YWRhdGFfdCBtZF9zdGF0dXM7Cj4gCj4gd2hpbGUgKG5vdCBzdG9wX3NpZ25hbF9jYWxsZWQpIHsK
-PiAJdHhfc3RyZWFtLT5zZW5kKCZidWZmLmZyb250KCksIG51bV90eF9zYW1wcywgbWQpOwo+IAlp
-ZiAodHhfc3RyZWFtLT5yZWN2X2FzeW5jX21zZyhtZF9zdGF0dXMsIHRpbWVvdXQpKSB7Cj4gCQlp
-ZiAobWRfc3RhdHVzLmV2ZW50X2NvZGUgIT0gCj4gdWhkOjphc3luY19tZXRhZGF0YV90OjpldmVu
-dF9jb2RlX3Q6OkVWRU5UX0NPREVfQlVSU1RfQUNLKSB7Cj4gCQkJc3RkOjpjZXJyIDw8ICJFcnJv
-cjogIiA8PCBtZF9zdGF0dXMuZXZlbnRfY29kZQo+IDw8IHN0ZDo6ZW5kbDsKPiAJCQlleGl0KEVY
-SVRfRkFJTFVSRSk7Cj4gCQl9Cj4gCX0gZWxzZSB7Cj4gCQlzdGQ6OmNlcnIgPDwgInRpbWVvdXQg
-YmVmb3JlIHNlbnQiIDw8IHN0ZDo6ZW5kbDsKPiAJCWV4aXQoRVhJVF9GQUlMVVJFKTsKPiAJfQo+
-IAo+IAl0aW1lb3V0ID0gMC4xOwo+IAltZC50aW1lX3NwZWMgKz0gcGVyaW9kOwo+IH0KPiB9Cj4g
-Cj4gCj4gCj4gQmVzdCBSZWdhcmRzLAo+IEPDqWRyaWMKPiAKPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4g
-VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
-YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApV
-U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4v
-bGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============3408840186087607528==
+Content-Type: multipart/alternative; boundary="0000000000002fe652058dfb0421"
+
+--0000000000002fe652058dfb0421
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+The RFNoC Replay block would be a good starting point, if you want to do
+this all in the FPGA.
+
+On Thu, Jul 18, 2019 at 2:04 PM Marcus M=C3=BCller via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> At the very benign 20 MS/s, I'd really say your first option is the way
+> to go. The rest probably won't work very well du to turn on/off
+> behaviour requiring you to zero pad a bit to flush your TX data chains.
+>
+> You can of course also write an RFNoC block to store and generate data
+> in-FPGA, but really: at 20MS/s just continously stream. Even a bog-
+> normal Gigabit Ethernet card has plenty enough bandwidth to do that. I
+> doubt sending a sequence from RAM will occupy much CPU on your host PC.
+>
+> Best regards,
+> Marcus
+>
+> On Thu, 2019-07-18 at 22:58 +0200, C=C3=A9dric Hannotier via USRP-users
+> wrote:
+> > Dear all,
+> >
+> > I would like to periodically send a frame with an USRP X310 (frame
+> > length: 320 samples, rate: 20 MS/s, period: 1-500 ms). However, I
+> > struggle to find the best way to implement it. What I have tried so
+> > far:
+> >
+> >   1. Append zeros to the frame to reach the expected period.
+> > However,
+> > this consumes too much bandwidth due to the zeros.
+> >
+> >   2. Use tx_streamer->send() with a tx_metadata_t.time_spec and
+> > tx_streamer->recv_async_msg(). Using that, only the frame is sent,
+> > saving most of the bandwidth. However, with small periods, it tends
+> > to
+> > print some 'L'.
+> >
+> >   3. Buffer a batch of send request on the USRP, then wait a
+> > specific
+> > time (using eg. recv_async_msg() until the returned metadata
+> > contains
+> > the penultimate time_spec (I expect that the time_spec returned is
+> > the
+> > one specified in the send metadata)) and redo. The issue is that I
+> > was
+> > not able to find the buffer size (is it related to the
+> > tx_streamer->get_max_num_samps()?). I would like to fill the buffer
+> > without overflow.
+> >
+> > I was hoping that I could save the frame in an USRP's memory, and
+> > then
+> > ask it to periodically send the frame with a specific period. Is it
+> > possible?
+> >
+> > Here is an example of (2):
+> >
+> > template <typename samp_type>
+> > void send_from_file(const uhd::usrp::multi_usrp::sptr &usrp,
+> >                      uhd::tx_streamer::sptr tx_stream, const
+> > std::string&
+> > file,
+> >                      const double period)
+> > {
+> > size_t data_size =3D get_file_size<samp_type>(file);
+> > std::ifstream infile(file, std::ifstream::binary);
+> > std::vector<samp_type> buff(data_size);
+> > infile.read(reinterpret_cast<char*>(buff.data()),
+> > (std::streamsize)(buff.size()*sizeof(samp_type)));
+> > infile.close();
+> > size_t num_tx_samps =3D buff.size();
+> > std::cout << file << " " << buff[0] << " " << num_tx_samps <<
+> > std::endl;
+> >
+> > uhd::tx_metadata_t md;
+> > md.start_of_burst =3D true;
+> > md.end_of_burst   =3D true;
+> > md.has_time_spec  =3D true;
+> > md.time_spec    =3D usrp->get_time_last_pps()+5.;
+> > double timeout =3D md.time_spec.get_real_secs();
+> > uhd::async_metadata_t md_status;
+> >
+> > while (not stop_signal_called) {
+> >       tx_stream->send(&buff.front(), num_tx_samps, md);
+> >       if (tx_stream->recv_async_msg(md_status, timeout)) {
+> >               if (md_status.event_code !=3D
+> > uhd::async_metadata_t::event_code_t::EVENT_CODE_BURST_ACK) {
+> >                       std::cerr << "Error: " << md_status.event_code
+> > << std::endl;
+> >                       exit(EXIT_FAILURE);
+> >               }
+> >       } else {
+> >               std::cerr << "timeout before sent" << std::endl;
+> >               exit(EXIT_FAILURE);
+> >       }
+> >
+> >       timeout =3D 0.1;
+> >       md.time_spec +=3D period;
+> > }
+> > }
+> >
+> >
+> >
+> > Best Regards,
+> > C=C3=A9dric
+> >
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000002fe652058dfb0421
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">The RFNoC Replay block would be a good starting point, =
+if you want to do this all in the FPGA. <br></div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 18, 2019 at 2=
+:04 PM Marcus M=C3=BCller via USRP-users &lt;<a href=3D"mailto:usrp-users@l=
+ists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex">At the very benign 20 MS/s, I&#39=
+;d really say your first option is the way<br>
+to go. The rest probably won&#39;t work very well du to turn on/off<br>
+behaviour requiring you to zero pad a bit to flush your TX data chains.<br>
+<br>
+You can of course also write an RFNoC block to store and generate data<br>
+in-FPGA, but really: at 20MS/s just continously stream. Even a bog-<br>
+normal Gigabit Ethernet card has plenty enough bandwidth to do that. I<br>
+doubt sending a sequence from RAM will occupy much CPU on your host PC.<br>
+<br>
+Best regards,<br>
+Marcus<br>
+<br>
+On Thu, 2019-07-18 at 22:58 +0200, C=C3=A9dric Hannotier via USRP-users<br>
+wrote:<br>
+&gt; Dear all,<br>
+&gt; <br>
+&gt; I would like to periodically send a frame with an USRP X310 (frame <br=
+>
+&gt; length: 320 samples, rate: 20 MS/s, period: 1-500 ms). However, I <br>
+&gt; struggle to find the best way to implement it. What I have tried so<br=
+>
+&gt; far:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A01. Append zeros to the frame to reach the expected period.=
+<br>
+&gt; However, <br>
+&gt; this consumes too much bandwidth due to the zeros.<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A02. Use tx_streamer-&gt;send() with a tx_metadata_t.time_sp=
+ec and <br>
+&gt; tx_streamer-&gt;recv_async_msg(). Using that, only the frame is sent, =
+<br>
+&gt; saving most of the bandwidth. However, with small periods, it tends<br=
+>
+&gt; to <br>
+&gt; print some &#39;L&#39;.<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A03. Buffer a batch of send request on the USRP, then wait a=
+<br>
+&gt; specific <br>
+&gt; time (using eg. recv_async_msg() until the returned metadata<br>
+&gt; contains <br>
+&gt; the penultimate time_spec (I expect that the time_spec returned is<br>
+&gt; the <br>
+&gt; one specified in the send metadata)) and redo. The issue is that I<br>
+&gt; was <br>
+&gt; not able to find the buffer size (is it related to the <br>
+&gt; tx_streamer-&gt;get_max_num_samps()?). I would like to fill the buffer=
+ <br>
+&gt; without overflow.<br>
+&gt; <br>
+&gt; I was hoping that I could save the frame in an USRP&#39;s memory, and<=
+br>
+&gt; then <br>
+&gt; ask it to periodically send the frame with a specific period. Is it <b=
+r>
+&gt; possible?<br>
+&gt; <br>
+&gt; Here is an example of (2):<br>
+&gt; <br>
+&gt; template &lt;typename samp_type&gt;<br>
+&gt; void send_from_file(const uhd::usrp::multi_usrp::sptr &amp;usrp,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 uhd::tx_streamer::sptr tx_stream, const<br>
+&gt; std::string&amp; <br>
+&gt; file,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 const double period)<br>
+&gt; {<br>
+&gt; size_t data_size =3D get_file_size&lt;samp_type&gt;(file);<br>
+&gt; std::ifstream infile(file, std::ifstream::binary);<br>
+&gt; std::vector&lt;samp_type&gt; buff(data_size);<br>
+&gt; infile.read(reinterpret_cast&lt;char*&gt;(buff.data()), <br>
+&gt; (std::streamsize)(buff.size()*sizeof(samp_type)));<br>
+&gt; infile.close();<br>
+&gt; size_t num_tx_samps =3D buff.size();<br>
+&gt; std::cout &lt;&lt; file &lt;&lt; &quot; &quot; &lt;&lt; buff[0] &lt;&l=
+t; &quot; &quot; &lt;&lt; num_tx_samps &lt;&lt;<br>
+&gt; std::endl;<br>
+&gt; <br>
+&gt; uhd::tx_metadata_t md;<br>
+&gt; md.start_of_burst =3D true;<br>
+&gt; md.end_of_burst=C2=A0 =C2=A0=3D true;<br>
+&gt; md.has_time_spec=C2=A0 =3D true;<br>
+&gt; md.time_spec=C2=A0 =C2=A0 =3D usrp-&gt;get_time_last_pps()+5.;<br>
+&gt; double timeout =3D md.time_spec.get_real_secs();<br>
+&gt; uhd::async_metadata_t md_status;<br>
+&gt; <br>
+&gt; while (not stop_signal_called) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0tx_stream-&gt;send(&amp;buff.front(), num_tx=
+_samps, md);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (tx_stream-&gt;recv_async_msg(md_status, =
+timeout)) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (md_status.ev=
+ent_code !=3D <br>
+&gt; uhd::async_metadata_t::event_code_t::EVENT_CODE_BURST_ACK) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; md_status.even=
+t_code<br>
+&gt; &lt;&lt; std::endl;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0exit(EXIT_FAILURE);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0std::cerr &lt;&l=
+t; &quot;timeout before sent&quot; &lt;&lt; std::endl;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0exit(EXIT_FAILUR=
+E);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0timeout =3D 0.1;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0md.time_spec +=3D period;<br>
+&gt; }<br>
+&gt; }<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; Best Regards,<br>
+&gt; C=C3=A9dric<br>
+&gt; <br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000002fe652058dfb0421--
+
+
+--===============3408840186087607528==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3408840186087607528==--
+
