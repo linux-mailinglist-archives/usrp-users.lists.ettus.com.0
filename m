@@ -2,16 +2,16 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C1D86D27F
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 19:04:35 +0200 (CEST)
-Received: from [::1] (port=51034 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA1B46D27E
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 19:04:30 +0200 (CEST)
+Received: from [::1] (port=49572 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ho9pY-0006Mz-Jg; Thu, 18 Jul 2019 13:04:32 -0400
-Received: from starfish.geekisp.com ([216.168.135.166]:16741)
+	id 1ho9pV-00065c-1f; Thu, 18 Jul 2019 13:04:29 -0400
+Received: from starfish.geekisp.com ([216.168.135.166]:2309)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <philip@opensdr.com>) id 1ho9pS-0005rQ-PD
- for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 13:04:26 -0400
+ (Exim 4.92) (envelope-from <philip@opensdr.com>) id 1ho9pQ-0005rR-Ow
+ for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 13:04:24 -0400
 Received: (qmail 18056 invoked by uid 1003); 18 Jul 2019 17:03:44 -0000
 Received: from unknown (HELO ?100.146.144.209?)
  (philip@opensdr.com@172.56.6.175)
@@ -42,7 +42,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Philip Balister <philip@opensdr.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2028023322071561399=="
+Content-Type: multipart/mixed; boundary="===============5328517694206321260=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -56,7 +56,7 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2028023322071561399==
+--===============5328517694206321260==
 Content-Type: multipart/alternative; boundary="----TEN5XHZEWKCI18W2I35AK99XNNIAEE"
 Content-Transfer-Encoding: 7bit
 
@@ -191,7 +191,7 @@ m/mailman/listinfo/usrp-users_lists=2Eettus=2Ecom</a><br>
 ------TEN5XHZEWKCI18W2I35AK99XNNIAEE--
 
 
---===============2028023322071561399==
+--===============5328517694206321260==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -202,5 +202,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2028023322071561399==--
+--===============5328517694206321260==--
 
