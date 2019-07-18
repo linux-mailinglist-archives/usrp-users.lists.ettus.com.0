@@ -2,52 +2,69 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FB3C6C83F
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 06:10:04 +0200 (CEST)
-Received: from [::1] (port=54202 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E710D6CBE4
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 11:29:11 +0200 (CEST)
+Received: from [::1] (port=35586 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hnxk2-0005q1-13; Thu, 18 Jul 2019 00:10:02 -0400
-Received: from mail-lj1-f182.google.com ([209.85.208.182]:44896)
+	id 1ho2iq-0000PM-Qp; Thu, 18 Jul 2019 05:29:08 -0400
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:46694)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1hnxjy-0005li-C7
- for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 00:09:58 -0400
-Received: by mail-lj1-f182.google.com with SMTP id k18so25807350ljc.11
- for <usrp-users@lists.ettus.com>; Wed, 17 Jul 2019 21:09:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.92) (envelope-from <cogwsn@gmail.com>) id 1ho2im-0000IH-TQ
+ for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 05:29:05 -0400
+Received: by mail-ot1-f45.google.com with SMTP id z23so28258694ote.13
+ for <usrp-users@lists.ettus.com>; Thu, 18 Jul 2019 02:28:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=dq+kdq+qzc5yuXIvByw72LmD4Y2gpD+QnEGb9rPOa0o=;
- b=PKjVRdY2wQ7uhuoa4uDDi9W0lnn+9vdophsqeaKu8FVk6WDulqP/rvIRBGKo3Eu9+y
- nZYVYoeevHBfZMi68hIpRp3xUEU88UNKR3kMfki+EkuTbd6ajvwL8Cs+vGdDb9ucsEgs
- vWF4imVINHHe914NqtLLjB3GsVcNdWzq/yGWg0pYm2AO3QiACz9LOgi4JvdwUNbCMDYZ
- qB2z3V3ioIaZRB2VN+KQHA5r0GBqAdVEhv+H50oY4D5MLr6joYPzi9iRTzqc8+io0Hpf
- Y44zS3tv+Gzn+oUd/mZ6nHyOZqB9jZ5Ef0fc74UQPerjN5Q5ONgNJdaVM2xWeNyekmTf
- fAxQ==
+ :cc; bh=d7K3CEvJT6i0DD6rrQDKgZ5tB98B0VXnFauJn/ISmyU=;
+ b=KjzMI9svA9BzINZYY6W2j8tahvHlHdor6/tWYG/1IipgSuJrLhLjfBqbY9TkXVv9G6
+ 78ZPdaQk5dc1evq25/R0Q1I63a/lbTrFVeCCd5XmJfwLLgzYZ/V3w5ckGGq0LsTil2SO
+ +wAqdsTUELTYRxeZ4pnVB7NsD7OZdRBu6ivvyu33zGiE6JBPZL6WtegXZEFLnQ7x15lM
+ u9H65kzVvMlQlsChdq9VKcSpdszCGPBiwsfRaqoSU9HmoIky+gZZzj4p3HIFBdXvmHDX
+ LtawmqiQ+zDtL+FT/fdME6avvCMWV4y4iwgDAj8CUVaiCnxB/pEt1s7Ka24pX5+hWiWs
+ 7zkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=dq+kdq+qzc5yuXIvByw72LmD4Y2gpD+QnEGb9rPOa0o=;
- b=DNyL89hHJMHEwiIuNJGKaTlvvSIvgHP226WzExR+pXNkbDibaKZTI8r0eXzuXkEfmD
- VDWCyjvUjbe6Vgdjw+qFUVBGC2XE1qSjA5XODuZNAa4BH6k4JMMTUzxn6hKLx4WBZbhC
- 2XmaieZFIjuIhiDjQ6LYQ0mqabHheZk4SHUxCZHvGEQTfSkUJGv6lvoswhkIG+BkN/u6
- QNe46s21Ol+gV9LjUCZNMCA3tBMAF32y6f+amT4hx4GGk+UOIgDhvssM56jef6F26qdK
- 3RNUsRMzweI2m4SB1yYsoVRpgRByDflEgoK5eltxfwEOphX4EiruQI3mWLwHnWUfAu1w
- MB1Q==
-X-Gm-Message-State: APjAAAVBmCgc/4yBcHJCq9ilIJ/hs3DYaNW5GtjAKOi+gm5T5uSR1dLA
- kX2kQI8e9tUEBlb+OBOOcC4QUBP41A1TOylN6i2o7lUu
-X-Google-Smtp-Source: APXvYqx1dthXjZ/DTX0yxzcxLmntlS7iDdR8JCt46pJAuQt8cxqX1RUOVU25Kk9oC1Lhf6i9Yuk7ts2uK0MskOr4it8=
-X-Received: by 2002:a2e:730d:: with SMTP id o13mr5746974ljc.81.1563422957069; 
- Wed, 17 Jul 2019 21:09:17 -0700 (PDT)
+ bh=d7K3CEvJT6i0DD6rrQDKgZ5tB98B0VXnFauJn/ISmyU=;
+ b=FMrUKn9nX167a+YsKtgmSJd9sK1NtCkKsHdxuW+uDTgv9gQoz+13cocROJvqJqajo6
+ a2lCdx3bdprhQacc08ui9geifg4jtOFoPxP2mP0Y/dl8+GdD6rrxtlaloEwbgq7kOtg8
+ e5UOIISo6Kjncoxx2AaFUd5pfuYM2OCafE2bUR5EkBOJ/PzmAnpsdz48AVO/wAsxSXRY
+ I+TutCACl7Qixaabwt4VKBArhFuvm91KX9AOKwe4aXPQtndBycgkFY6tR2Gr+BIW4Qfv
+ p4c7/zjAfA7+TgLbj9wytmq+XvnDDimocUFJC4DE7y8EUZE8ITldSAaEf2/mFsxLnqti
+ vKRQ==
+X-Gm-Message-State: APjAAAXMm3l54WTt0JwGpoUpZfyRZT7CyX06VtX/loS5VGwUCW+Kl35W
+ 8Np4vvvFVU+3sASLWZn0MopnxFAtcTYvHz1GpCQ=
+X-Google-Smtp-Source: APXvYqzAvwip5yDyNJcvCDKkg0DanfCFVUcBL1kt/j7hvqSa3XY92Pxi4T3BrALc+jlJPoGbtLIP5aMelSeXESP+xrA=
+X-Received: by 2002:a05:6830:158:: with SMTP id
+ j24mr30493620otp.268.1563442104089; 
+ Thu, 18 Jul 2019 02:28:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <44f90a92be1f0497740e277ed07faa1e@imapproxy.vub.ac.be>
-In-Reply-To: <44f90a92be1f0497740e277ed07faa1e@imapproxy.vub.ac.be>
-Date: Thu, 18 Jul 2019 13:08:41 +0900
-Message-ID: <CAL7q81uGE5CpQ96cZBe3qZRAS+x99Tsm=rojyEp7J4p=sbLXbA@mail.gmail.com>
-To: fbarras <Florence.Barras@ulb.ac.be>
-Subject: Re: [USRP-users] custom block and data rate in x310
+References: <CAOExtcQtL_gri3uWw9_NyXPEOwS6Gpc+NqSs07Vwmdc4gbHQTg@mail.gmail.com>
+ <BL0PR12MB2340A337C6CBB311E990C16CAFC90@BL0PR12MB2340.namprd12.prod.outlook.com>
+ <CAOExtcRbYo-15C2eVcmJNz98=0vK5nJEJsdZt6MUd0ViUhcQZQ@mail.gmail.com>
+ <BL0PR12MB2340682EFC45C0AA255B6AA2AFC90@BL0PR12MB2340.namprd12.prod.outlook.com>
+ <CAOExtcSLfxOUFfqoH0EVfJCWxRsrayZV9WnDLSk=Rf-7=pnCYA@mail.gmail.com>
+ <BL0PR12MB234037B01F84C36682568490AFC90@BL0PR12MB2340.namprd12.prod.outlook.com>
+ <CAOExtcTPgp-yE_DBzDY--wZWdTEw_=NtoGQtVdGbYDoiAmxTtg@mail.gmail.com>
+ <CAL263iy2k8oXv_LSU6xm4apAg33-nOMxsTLukt0zadjxTxuZTA@mail.gmail.com>
+ <CAOExtcQGYB8J1w3-65wNGeUDh0baFwsiir95OM8QNLeF99YA=g@mail.gmail.com>
+ <CAL263ix6PEgcE2nyzwnKqSGBTMUvcn5itV0PXNw=erWrO4FYvA@mail.gmail.com>
+ <CAOExtcRqLs6MecJmVt0JtV_uL=iEOWV0hLm-t772PEQfcdqUGw@mail.gmail.com>
+ <CAL263iy1G64N6FaTBJ-Nat--s68dQegbHtrW5bON22LCRf9zgw@mail.gmail.com>
+ <CAOExtcRF130Gs=4kvZp-c2t5enpHBLW5g758PHv2j46JAR46Og@mail.gmail.com>
+ <CAL263iwxwhM8PicewVr=MKCxMSVbcM-961cf-GxVqH16ktcc6w@mail.gmail.com>
+ <CAOExtcQFMQ6S8AVR_8dX9oPmwNS+-sZeTohWG79N_7eJS0PKtQ@mail.gmail.com>
+ <CAL263iwRxNo3WAJN9zysjsMhTvB5EJxwjNDiB8csg-YoJpwDzA@mail.gmail.com>
+ <CAOExtcSGqG5EP_YF6TFWdZb4wwsKbjb7vmuMh=gFABxQE4M40w@mail.gmail.com>
+ <CAL263iwjokuwk28_3q2msT1Eex6J+nHOPwHOObyQu1-RKJnJRw@mail.gmail.com>
+ <CAOExtcRrcovxHMXqVB4Bx0oH534buCpV6xyO_QVJFdsr7tH7uw@mail.gmail.com>
+In-Reply-To: <CAOExtcRrcovxHMXqVB4Bx0oH534buCpV6xyO_QVJFdsr7tH7uw@mail.gmail.com>
+Date: Thu, 18 Jul 2019 11:28:12 +0200
+Message-ID: <CAOExtcTX1O0UT2fB_WN7CnJEK9_HN+7evxBw6nzL4Y7zLurzDw@mail.gmail.com>
+To: Nate Temple <nate.temple@ettus.com>
+Subject: Re: [USRP-users] Sequence Errors N200
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,10 +76,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0316218334139986944=="
+From: Sumit Kumar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sumit Kumar <cogwsn@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2309475470547740961=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,145 +93,1422 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0316218334139986944==
-Content-Type: multipart/alternative; boundary="000000000000fd7a4a058decc50f"
+--===============2309475470547740961==
+Content-Type: multipart/alternative; boundary="0000000000003dbf26058df13bcd"
 
---000000000000fd7a4a058decc50f
+--0000000000003dbf26058df13bcd
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Laptop-1 00:1f.6 Ethernet controller: Intel Corporation Ethernet Connection
+(4) I219-LM (rev 21)
+Laptop-2 00:19.0 Ethernet controller: Intel Corporation 82579LM Gigabit
+Network Connection (Lewisville) (rev 04)
 
-I would suggest reading the RFNoC getting started guide (
-https://kb.ettus.com/Getting_Started_with_RFNoC_Development) and making
-your correlator into a RFNoC block. Then it will be easy to include your
-correlator in a GNU Radio flow graph.
+On both the laptop the problem persists.
 
-1) Where exactly in the code is the ddc chain instantiated *? Should I
-> do it myself ?
+Regards
+Sumit
+
+
+
+On Wed, Jul 17, 2019 at 8:19 PM Sumit Kumar <cogwsn@gmail.com> wrote:
+
+> Hi Nate, I left office, so will be able to tell you tomorrow. It happened
+> in two laptops. One I remember is a brand new Dell latitude 5490. I will
+> let you know the details tomorrow.
+> Regards
+> Sumit
+>
+> On Wed, Jul 17, 2019 at 6:27 PM Nate Temple <nate.temple@ettus.com> wrote=
+:
+>
+>> Hi Sumit,
+>>
+>> What ethernet controller do you have in your laptop?
+>>
+>> lspci | grep Ethernet
+>>
+>> Regards,
+>> Nate Temple
+>>
+>> On Wed, Jul 17, 2019 at 9:16 AM Sumit Kumar <cogwsn@gmail.com> wrote:
+>>
+>>> Hi Nate,
+>>>
+>>> john@john-Precision-M4600:~/pybombs/src/uhd/host/build/examples$ sudo
+>>> ./benchmark_rate --rx_rate 10e6 --tx_rate 10e6 --duration 600
+>>>
+>>> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800;
+>>> UHD_3.15.0.git-1-gf83faf28
+>>> [00:00:00.000024] Creating the usrp device with: ...
+>>> [INFO] [USRP2] Opening a USRP2/N-Series device...
+>>> [INFO] [USRP2] Current recv frame size: 1472 bytes
+>>> [INFO] [USRP2] Current send frame size: 1472 bytes
+>>> Using Device: Single USRP:
+>>>   Device: USRP2 / N-Series Device
+>>>   Mboard 0: N200r4
+>>>   RX Channel: 0
+>>>     RX DSP: 0
+>>>     RX Dboard: A
+>>>     RX Subdev: SBXv3 RX
+>>>   TX Channel: 0
+>>>     TX DSP: 0
+>>>     TX Dboard: A
+>>>     TX Subdev: SBXv3 TX
+>>>
+>>> [00:00:01.788223] Setting device timestamp to 0...
+>>> [00:00:01.788784] Testing receive rate 10.000000 Msps on 1 channels
+>>> [00:00:01.799861] Testing transmit rate 10.000000 Msps on 1 channels
+>>> SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSUSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSS[00:00:01.905237]
+>>> Tx timeouts: 1
+>>> [00:10:01.932746] Benchmark complete.
+>>>
+>>>
+>>> Benchmark rate summary:
+>>>   Num received samples:     6000102237
+>>>   Num dropped samples:      0
+>>>   Num overruns detected:    0
+>>>   Num transmitted samples:  258456
+>>>   Num sequence errors (Tx): 624
+>>>   Num sequence errors (Rx): 0
+>>>   Num underruns detected:   1
+>>>   Num late commands:        0
+>>>   Num timeouts (Tx):        5993
+>>>
+>>> On Wed, Jul 17, 2019 at 5:36 PM Nate Temple <nate.temple@ettus.com>
+>>> wrote:
+>>>
+>>>> Hi Sumit,
+>>>>
+>>>> Actually, I had a typo in the command, that previous benchmark_rate
+>>>> command only tested RX, can you try passing the --tx_rate param and se=
+e if
+>>>> it will produce sequence errors using benchmark_rate
+>>>>
+>>>> ./benchmark_rate --tx_rate 10e6 --duration 600
+>>>>
+>>>> Regards,
+>>>> Nate Temple
+>>>>
+>>>> On Wed, Jul 17, 2019 at 8:27 AM Sumit Kumar <cogwsn@gmail.com> wrote:
+>>>>
+>>>>> Ok I will do this.. but why the transmission with other USRP is
+>>>>> working fine ?
+>>>>>
+>>>>> On Wed, Jul 17, 2019 at 5:22 PM Nate Temple <nate.temple@ettus.com>
+>>>>> wrote:
+>>>>>
+>>>>>> Hi Sumit,
+>>>>>>
+>>>>>> So it looks like you have multiple version of UHD installed:
+>>>>>>
+>>>>>> john@john-Precision-M4600:~/pybombs/src/gnuradio/gr-digital/examples=
+/narrowband$
+>>>>>> sudo ./benchmark_tx.py -f 2.45G -S 10
+>>>>>> linux; GNU C++ version 5.3.1 20151219; Boost_105800;
+>>>>>> UHD_003.009.002-0-unknown
+>>>>>>
+>>>>>>
+>>>>>> john@john-Precision-M4600:~/pybombs/src/uhd/host/build/examples$
+>>>>>> sudo ./benchmark_rate --rx_rate 10e6 --duration 600
+>>>>>> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800;
+>>>>>> UHD_3.15.0.git-1-gf83faf28
+>>>>>>
+>>>>>>
+>>>>>> I would recommend to stick to a single UHD version and use the lates=
+t
+>>>>>> stable tagged released (currently 3.14.1.0) you will need to modify =
+the
+>>>>>> pybombs recipe to use the correct git tag (v3.14.1.0). The 'master' =
+branch
+>>>>>> can be unstable at times.
+>>>>>>
+>>>>>> Also, if you have a FPGA image of say 3.15.x.x flashed on the N210
+>>>>>> and then revert back to using 3.9.2, and UHD does not catch the mism=
+atch,
+>>>>>> it will likely cause flow control errors and unstable performance.
+>>>>>>
+>>>>>> The gr-digital/examples/narrowband/benchmark_tx.py example is also
+>>>>>> buggy, and is being removed from GR 3.8. Using the UHD benchmark_rat=
+e
+>>>>>> utility will test the hardware with a limited scope.
+>>>>>>
+>>>>>> Regards,
+>>>>>> Nate Temple
+>>>>>>
+>>>>>>
+>>>>>> On Wed, Jul 17, 2019 at 8:10 AM Sumit Kumar <cogwsn@gmail.com> wrote=
+:
+>>>>>>
+>>>>>>> Sorry, here it is.
+>>>>>>>
+>>>>>>> Benchmark rate summary:
+>>>>>>>   Num received samples:     5999986436
+>>>>>>>   Num dropped samples:      0
+>>>>>>>   Num overruns detected:    0
+>>>>>>>   Num transmitted samples:  0
+>>>>>>>   Num sequence errors (Tx): 0
+>>>>>>>   Num sequence errors (Rx): 0
+>>>>>>>   Num underruns detected:   0
+>>>>>>>   Num late commands:        0
+>>>>>>>   Num timeouts (Tx):        0
+>>>>>>>   Num timeouts (Rx):        0
+>>>>>>>
+>>>>>>>
+>>>>>>> On Wed, Jul 17, 2019 at 5:08 PM Nate Temple <nate.temple@ettus.com>
+>>>>>>> wrote:
+>>>>>>>
+>>>>>>>> Hi Sumit,
+>>>>>>>>
+>>>>>>>> It will take 10 minutes for that run to complete. Does it produce =
+a
+>>>>>>>> report at the end of the run?
+>>>>>>>>
+>>>>>>>> Regards,
+>>>>>>>> Nate Temple
+>>>>>>>>
+>>>>>>>> On Wed, Jul 17, 2019 at 8:06 AM Sumit Kumar <cogwsn@gmail.com>
+>>>>>>>> wrote:
+>>>>>>>>
+>>>>>>>>> Hi Nate,
+>>>>>>>>> No there are not. At the end of the last line, cursor keeps
+>>>>>>>>> blinking, no sequence errors.
+>>>>>>>>>
+>>>>>>>>> john@john-Precision-M4600:~/pybombs/src/uhd/host/build/examples$
+>>>>>>>>> sudo ./benchmark_rate --rx_rate 10e6 --duration 600
+>>>>>>>>>
+>>>>>>>>> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800;
+>>>>>>>>> UHD_3.15.0.git-1-gf83faf28
+>>>>>>>>> [00:00:00.000024] Creating the usrp device with: ...
+>>>>>>>>> [INFO] [USRP2] Opening a USRP2/N-Series device...
+>>>>>>>>> [INFO] [USRP2] Current recv frame size: 1472 bytes
+>>>>>>>>> [INFO] [USRP2] Current send frame size: 1472 bytes
+>>>>>>>>> Using Device: Single USRP:
+>>>>>>>>>   Device: USRP2 / N-Series Device
+>>>>>>>>>   Mboard 0: N200r4
+>>>>>>>>>   RX Channel: 0
+>>>>>>>>>     RX DSP: 0
+>>>>>>>>>     RX Dboard: A
+>>>>>>>>>     RX Subdev: SBXv3 RX
+>>>>>>>>>   TX Channel: 0
+>>>>>>>>>     TX DSP: 0
+>>>>>>>>>     TX Dboard: A
+>>>>>>>>>     TX Subdev: SBXv3 TX
+>>>>>>>>>
+>>>>>>>>> [00:00:01.796895] Setting device timestamp to 0...
+>>>>>>>>> [00:00:01.797430] Testing receive rate 10.000000 Msps on 1 channe=
+ls
+>>>>>>>>>
+>>>>>>>>> On Wed, Jul 17, 2019 at 4:39 PM Nate Temple <nate.temple@ettus.co=
+m>
+>>>>>>>>> wrote:
+>>>>>>>>>
+>>>>>>>>>> Hi Sumit,
+>>>>>>>>>>
+>>>>>>>>>> If you run benchmark_rate for an extend period of time, do you
+>>>>>>>>>> see any sequence errors?
+>>>>>>>>>>
+>>>>>>>>>> /usr/local/lib/uhd/examples/benchmark_rate --rx_rate 10e6
+>>>>>>>>>> --duration 600
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> Regards,
+>>>>>>>>>> Nate Temple
+>>>>>>>>>>
+>>>>>>>>>> On Wed, Jul 17, 2019 at 7:34 AM Sumit Kumar <cogwsn@gmail.com>
+>>>>>>>>>> wrote:
+>>>>>>>>>>
+>>>>>>>>>>> Hi Nate,
+>>>>>>>>>>> Yes I addressed the first 2 points you mentioned.
+>>>>>>>>>>>
+>>>>>>>>>>> john@john-Precision-M4600:~/pybombs/src/gnuradio/gr-digital/exa=
+mples/narrowband$
+>>>>>>>>>>> sudo ./benchmark_tx.py -f 2.45G -S 10
+>>>>>>>>>>> linux; GNU C++ version 5.3.1 20151219; Boost_105800;
+>>>>>>>>>>> UHD_003.009.002-0-unknown
+>>>>>>>>>>>
+>>>>>>>>>>> Using Volk machine: avx_64_mmx_orc
+>>>>>>>>>>> -- Opening a USRP2/N-Series device...
+>>>>>>>>>>> -- Current recv frame size: 1472 bytes
+>>>>>>>>>>> -- Current send frame size: 1472 bytes
+>>>>>>>>>>>
+>>>>>>>>>>> No gain specified.
+>>>>>>>>>>> Setting gain to 15.750000 (from [0.000000, 31.500000])
+>>>>>>>>>>>
+>>>>>>>>>>> ...............................................................=
+...............................SS.SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS.SSSS..S....=
+..SS.S......SS.....S....S...S.S.......S....S........^C
+>>>>>>>>>>>
+>>>>>>>>>>> I am using ./benchmark_tx.py located
+>>>>>>>>>>> in gnuradio/gr-digital/examples/narrowband
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> On Wed, Jul 17, 2019 at 4:25 PM Nate Temple <
+>>>>>>>>>>> nate.temple@ettus.com> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>> Hi Sumit,
+>>>>>>>>>>>>
+>>>>>>>>>>>> A couple things to address:
+>>>>>>>>>>>>
+>>>>>>>>>>>> 1) Enable Thread priority scheduling on your host
+>>>>>>>>>>>>
+>>>>>>>>>>>> Note it is throwing a warning in the output: "[WARNING] [UHD]
+>>>>>>>>>>>> Unable to set the thread priority. Performance may be negative=
+ly affected."
+>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>> https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Sou=
+rce_Toolchain_(UHD_and_GNU_Radio)_on_Linux#Thread_priority_scheduling
+>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>> 2) Adjust your network buffers
+>>>>>>>>>>>>
+>>>>>>>>>>>> "
+>>>>>>>>>>>> [WARNING] [UDP] The send buffer could not be resized
+>>>>>>>>>>>> sufficiently.
+>>>>>>>>>>>> Target sock buff size: 2500000 bytes.
+>>>>>>>>>>>> Actual sock buff size: 1048576 bytes.
+>>>>>>>>>>>> See the transport application notes on buffer resizing.
+>>>>>>>>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D2500000
+>>>>>>>>>>>> [WARNING] [UDP] The send buffer could not be resized
+>>>>>>>>>>>> sufficiently.
+>>>>>>>>>>>> Target sock buff size: 2500000 bytes.
+>>>>>>>>>>>> Actual sock buff size: 1048576 bytes.
+>>>>>>>>>>>> See the transport application notes on buffer resizing.
+>>>>>>>>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D2500000
+>>>>>>>>>>>> "
+>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>> https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tri=
+cks#N2xx
+>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>> What is the command you're using to transmit(which utility and
+>>>>>>>>>>>> args?)
+>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>> Regards,
+>>>>>>>>>>>> Nate Temple
+>>>>>>>>>>>>
+>>>>>>>>>>>> On Wed, Jul 17, 2019 at 7:06 AM Sumit Kumar via USRP-users <
+>>>>>>>>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>>>>>>>>
+>>>>>>>>>>>>> Following is what I am getting after the command you asked to
+>>>>>>>>>>>>> run. The 192.168.10.5 gives SSSSSSS.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> john@john-Precision-M4600:~/pybombs/src/uhd/host/build/utils$
+>>>>>>>>>>>>> ./usrp_burn_mb_eeprom --read-all --args "addr=3D192.168.10.5"
+>>>>>>>>>>>>> Creating USRP device from address: addr=3D192.168.10.5
+>>>>>>>>>>>>> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
+>>>>>>>>>>>>> Boost_105800; UHD_3.15.0.git-1-gf83faf28
+>>>>>>>>>>>>> [INFO] [USRP2] Opening a USRP2/N-Series device...
+>>>>>>>>>>>>> [INFO] [USRP2] Current recv frame size: 1472 bytes
+>>>>>>>>>>>>> [INFO] [USRP2] Current send frame size: 1472 bytes
+>>>>>>>>>>>>> [WARNING] [UDP] The send buffer could not be resized
+>>>>>>>>>>>>> sufficiently.
+>>>>>>>>>>>>> Target sock buff size: 2500000 bytes.
+>>>>>>>>>>>>> Actual sock buff size: 1048576 bytes.
+>>>>>>>>>>>>> See the transport application notes on buffer resizing.
+>>>>>>>>>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D2500000
+>>>>>>>>>>>>> [WARNING] [UDP] The send buffer could not be resized
+>>>>>>>>>>>>> sufficiently.
+>>>>>>>>>>>>> Target sock buff size: 2500000 bytes.
+>>>>>>>>>>>>> Actual sock buff size: 1048576 bytes.
+>>>>>>>>>>>>> See the transport application notes on buffer resizing.
+>>>>>>>>>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D2500000
+>>>>>>>>>>>>> [WARNING] [UDP] The send buffer could not be resized
+>>>>>>>>>>>>> sufficiently.
+>>>>>>>>>>>>> Target sock buff size: 2500000 bytes.
+>>>>>>>>>>>>> Actual sock buff size: 1048576 bytes.
+>>>>>>>>>>>>> See the transport application notes on buffer resizing.
+>>>>>>>>>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D2500000
+>>>>>>>>>>>>> [WARNING] [UHD] Unable to set the thread priority. Performanc=
+e
+>>>>>>>>>>>>> may be negatively affected.
+>>>>>>>>>>>>> Please see the general application notes in the manual for
+>>>>>>>>>>>>> instructions.
+>>>>>>>>>>>>> EnvironmentError: OSError: error in pthread_setschedparam
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Fetching current settings from EEPROM...
+>>>>>>>>>>>>>     EEPROM ["hardware"] is "2576"
+>>>>>>>>>>>>>     EEPROM ["revision"] is ""
+>>>>>>>>>>>>>     EEPROM ["product"] is ""
+>>>>>>>>>>>>>     EEPROM ["mac-addr"] is "a0:36:fa:26:34:44"
+>>>>>>>>>>>>>     EEPROM ["ip-addr"] is "192.168.10.5"
+>>>>>>>>>>>>>     EEPROM ["subnet"] is "255.255.255.255"
+>>>>>>>>>>>>>     EEPROM ["gateway"] is "255.255.255.255"
+>>>>>>>>>>>>>     EEPROM ["gpsdo"] is "none"
+>>>>>>>>>>>>>     EEPROM ["serial"] is "E4R14V4UN"
+>>>>>>>>>>>>>     EEPROM ["name"] is ""
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Power-cycle the USRP device for the changes to take effect.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Done
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> john@john-Precision-M4600:~/pybombs/src/uhd/host/build/utils$
+>>>>>>>>>>>>> ./usrp_burn_mb_eeprom --read-all --args "addr=3D192.168.10.3"
+>>>>>>>>>>>>> Creating USRP device from address: addr=3D192.168.10.3
+>>>>>>>>>>>>> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
+>>>>>>>>>>>>> Boost_105800; UHD_3.15.0.git-1-gf83faf28
+>>>>>>>>>>>>> [INFO] [USRP2] Opening a USRP2/N-Series device...
+>>>>>>>>>>>>> [INFO] [USRP2] Current recv frame size: 1472 bytes
+>>>>>>>>>>>>> [INFO] [USRP2] Current send frame size: 1472 bytes
+>>>>>>>>>>>>> [WARNING] [UDP] The send buffer could not be resized
+>>>>>>>>>>>>> sufficiently.
+>>>>>>>>>>>>> Target sock buff size: 2500000 bytes.
+>>>>>>>>>>>>> Actual sock buff size: 1048576 bytes.
+>>>>>>>>>>>>> See the transport application notes on buffer resizing.
+>>>>>>>>>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D2500000
+>>>>>>>>>>>>> [WARNING] [UDP] The send buffer could not be resized
+>>>>>>>>>>>>> sufficiently.
+>>>>>>>>>>>>> Target sock buff size: 2500000 bytes.
+>>>>>>>>>>>>> Actual sock buff size: 1048576 bytes.
+>>>>>>>>>>>>> See the transport application notes on buffer resizing.
+>>>>>>>>>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D2500000
+>>>>>>>>>>>>> [WARNING] [UDP] The send buffer could not be resized
+>>>>>>>>>>>>> sufficiently.
+>>>>>>>>>>>>> Target sock buff size: 2500000 bytes.
+>>>>>>>>>>>>> Actual sock buff size: 1048576 bytes.
+>>>>>>>>>>>>> See the transport application notes on buffer resizing.
+>>>>>>>>>>>>> Please run: sudo sysctl -w net.core.wmem_max=3D2500000
+>>>>>>>>>>>>> [WARNING] [UHD] Unable to set the thread priority. Performanc=
+e
+>>>>>>>>>>>>> may be negatively affected.
+>>>>>>>>>>>>> Please see the general application notes in the manual for
+>>>>>>>>>>>>> instructions.
+>>>>>>>>>>>>> EnvironmentError: OSError: error in pthread_setschedparam
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Fetching current settings from EEPROM...
+>>>>>>>>>>>>>     EEPROM ["hardware"] is "2576"
+>>>>>>>>>>>>>     EEPROM ["revision"] is ""
+>>>>>>>>>>>>>     EEPROM ["product"] is ""
+>>>>>>>>>>>>>     EEPROM ["mac-addr"] is "a0:36:fa:26:34:42"
+>>>>>>>>>>>>>     EEPROM ["ip-addr"] is "192.168.10.3"
+>>>>>>>>>>>>>     EEPROM ["subnet"] is "255.255.255.255"
+>>>>>>>>>>>>>     EEPROM ["gateway"] is "255.255.255.255"
+>>>>>>>>>>>>>     EEPROM ["gpsdo"] is "none"
+>>>>>>>>>>>>>     EEPROM ["serial"] is "E4R14V2UN"
+>>>>>>>>>>>>>     EEPROM ["name"] is ""
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Power-cycle the USRP device for the changes to take effect.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Done
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> On Wed, Jul 17, 2019 at 3:19 PM Jason Matusiak <
+>>>>>>>>>>>>> jason@gardettoengineering.com> wrote:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>> You are right, the table of revisions was for the X-series
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> try running the command from your prefix:
+>>>>>>>>>>>>>> src/uhd/host/build/utils/usrp_burn_mb_eeprom --args=3D"type=
+=3Dn200" --read-all
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> don't quote me on the type portion, I don't have a board in
+>>>>>>>>>>>>>> front of me to see if it is n200 or something else.  I //thi=
+nk// that will
+>>>>>>>>>>>>>> report the major and minor revision values (I am grasping at=
+ straws here,
+>>>>>>>>>>>>>> just trying to figure out what the differences might be).
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> You are connecting the ethernet connections to the two
+>>>>>>>>>>>>>> devices through the exact same port on your PC?
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> ------------------------------
+>>>>>>>>>>>>>> *From:* Sumit Kumar <cogwsn@gmail.com>
+>>>>>>>>>>>>>> *Sent:* Wednesday, July 17, 2019 8:24 AM
+>>>>>>>>>>>>>> *To:* Jason Matusiak <jason@gardettoengineering.com>
+>>>>>>>>>>>>>> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com=
+>
+>>>>>>>>>>>>>> *Subject:* Re: [USRP-users] Sequence Errors N200
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> The sticker  for sbx shows F33612 and F33814.
+>>>>>>>>>>>>>> How will this help ?
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> On Wed, Jul 17, 2019 at 1:50 PM Jason Matusiak <
+>>>>>>>>>>>>>> jason@gardettoengineering.com> wrote:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Sumit,
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> OK, the last idea I have:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> There is a sticker on the back of the N-series devices it
+>>>>>>>>>>>>>> *usually* says the version there, but not always.  This has
+>>>>>>>>>>>>>> a little info:
+>>>>>>>>>>>>>> https://kb.ettus.com/About_the_Motherboard_and_Daughtercard_=
+EEPROM_on_USRP_Devices#N200.2F210_EEPROM
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Do they match?
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> ------------------------------
+>>>>>>>>>>>>>> *From:* Sumit Kumar <cogwsn@gmail.com>
+>>>>>>>>>>>>>> *Sent:* Wednesday, July 17, 2019 7:45 AM
+>>>>>>>>>>>>>> *To:* Jason Matusiak <jason@gardettoengineering.com>
+>>>>>>>>>>>>>> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com=
+>
+>>>>>>>>>>>>>> *Subject:* Re: [USRP-users] Sequence Errors N200
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Hi Jason,
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Yes they are consistent, I mean the output of uhd_usrp_probe
+>>>>>>>>>>>>>> for both N200 is exactly the same (except the ip, serial and=
+ mac addr).
+>>>>>>>>>>>>>> I do not know where the problem is! Hardware or software
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Regards
+>>>>>>>>>>>>>> Sumit
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> On Wed, Jul 17, 2019 at 1:19 PM Jason Matusiak <
+>>>>>>>>>>>>>> jason@gardettoengineering.com> wrote:
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> I am not really an N-series guy, so this probably won't be
+>>>>>>>>>>>>>> helpful.  Have you tried doing a uhd_usrp_probe on both devi=
+ces and seen
+>>>>>>>>>>>>>> that the responses are consistent?
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> ------------------------------
+>>>>>>>>>>>>>> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> on
+>>>>>>>>>>>>>> behalf of Sumit Kumar via USRP-users <
+>>>>>>>>>>>>>> usrp-users@lists.ettus.com>
+>>>>>>>>>>>>>> *Sent:* Wednesday, July 17, 2019 7:15 AM
+>>>>>>>>>>>>>> *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com=
+>
+>>>>>>>>>>>>>> *Subject:* [USRP-users] Sequence Errors N200
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Hi,
+>>>>>>>>>>>>>> I am trying transmit using Ettus N200 (call it A) but gettin=
+g
+>>>>>>>>>>>>>> this error message on the console
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSUSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS...................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...............................................
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> I looked for it on google and found these links
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/=
+2014-May/037495.html
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/=
+2012-July/032838.html
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Both the links  suggested problem related to the gigabit
+>>>>>>>>>>>>>> port. Then I connected another USRP N200 (call it B) to the =
+same laptop and
+>>>>>>>>>>>>>> tried transmitting using that as there were no such sequence=
+ error messages.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> This makes me believe there is some problem with the first
+>>>>>>>>>>>>>> USRP, i.e., A.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Further I tried with different versions of UHD 3.11, UHD
+>>>>>>>>>>>>>> 3.15.. but its the same.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Receive is good only transmit is throwing error.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Not only with UHD, even in labview, when I transmit, I see
+>>>>>>>>>>>>>> nothing coming out from the N200 (A).
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> I am using SBXv2 daughter board.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Any clue!
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Regards
+>>>>>>>>>>>>>> --
+>>>>>>>>>>>>>> --
+>>>>>>>>>>>>>> Sumit kumar
+>>>>>>>>>>>>>> Postdoc
+>>>>>>>>>>>>>> SnT, Luxembourg
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> --
+>>>>>>>>>>>>>> --
+>>>>>>>>>>>>>> Sumit kumar
+>>>>>>>>>>>>>> Postdoc
+>>>>>>>>>>>>>> SnT, Luxembourg
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> --
+>>>>>>>>>>>>>> --
+>>>>>>>>>>>>>> Sumit kumar
+>>>>>>>>>>>>>> Postdoc
+>>>>>>>>>>>>>> SnT, Luxembourg
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> --
+>>>>>>>>>>>>> --
+>>>>>>>>>>>>> Sumit kumar
+>>>>>>>>>>>>> Postdoc
+>>>>>>>>>>>>> SnT, Luxembourg
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> _______________________________________________
+>>>>>>>>>>>>> USRP-users mailing list
+>>>>>>>>>>>>> USRP-users@lists.ettus.com
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettu=
+s.com
+>>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> --
+>>>>>>>>>>> --
+>>>>>>>>>>> Sumit kumar
+>>>>>>>>>>> Postdoc
+>>>>>>>>>>> SnT, Luxembourg
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> --
+>>>>>>>>> --
+>>>>>>>>> Sumit kumar
+>>>>>>>>> Postdoc
+>>>>>>>>> SnT, Luxembourg
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>
+>>>>>>> --
+>>>>>>> --
+>>>>>>> Sumit kumar
+>>>>>>> Postdoc
+>>>>>>> SnT, Luxembourg
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>
+>>>>> --
+>>>>> --
+>>>>> Sumit kumar
+>>>>> Postdoc
+>>>>> SnT, Luxembourg
+>>>>>
+>>>>>
+>>>>>
+>>>
+>>> --
+>>> --
+>>> Sumit kumar
+>>> Postdoc
+>>> SnT, Luxembourg
+>>>
+>>>
+>>>
+>
+> --
+> --
+> Sumit kumar
+> Postdoc
+> SnT, Luxembourg
+>
+>
 >
 
-The DDC code is in the RFNoC DDC block, noc_block_ddc.v. The default X310
-image includes two DDCs, so you don't need to instantiate anything.
+--=20
+--=20
+Sumit kumar
+Postdoc
+SnT, Luxembourg
 
-
-> 2) Is it possible to have a decimation rate of 200 or should it be a
-> power of 2 ?
->
-
-You can have a decimation rate of 200. The DDC has a CIC filter along with
-3 half band filters, so the decimation rate is fairly flexible.
-
-
-> 3) How is the decimation rate controlled ? From what I understand it's
-> from the sampling rate parameter in GnuRadio. Am I right ?
-
-
- If using the USRP Source block in GNU Radio, setting the sample rate will
-setup the DDC. If using Device 3 (i.e. a RFNoC flow graph) in GNU radio,
-you will need to set the decimation rate on the RFNoC: DDC block.
-
-Jonathon
-
-On Wed, Jul 17, 2019 at 5:30 PM fbarras via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi all,
->
-> I developed a custom correlation module in Verilog and I would like to
-> insert it in the usrp x310 fpga image. My goal is to send a  signal
-> (with a usrp b205 mini) at a sampling rate of 1M and to receive it with
-> the usrp x310. Inside the fpga, my block will look for a certain
-> sequence inside the received signal.
->
-> My block is working with a 200M clock and can support data rate up to
-> 2M.
->  From what I've read, it seems that the adc of the x310 is working at
-> 200M and that this can't be changed. So my module should be placed after
-> the ddc chain. But this rises a few questions:
->
-> 1) Where exactly in the code is the ddc chain instantiated *? Should I
-> do it myself ?
->
-> 2) Is it possible to have a decimation rate of 200 or should it be a
-> power of 2 ?
->
-> 3) How is the decimation rate controlled ? From what I understand it's
-> from the sampling rate parameter in GnuRadio. Am I right ?
->
-> Thanks !
->
-> * For some reasons, I'm working with uhd  3.10.3
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000fd7a4a058decc50f
+--0000000000003dbf26058df13bcd
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi,<div><br></div><div>I would suggest re=
-ading the RFNoC getting started guide (<a href=3D"https://kb.ettus.com/Gett=
-ing_Started_with_RFNoC_Development">https://kb.ettus.com/Getting_Started_wi=
-th_RFNoC_Development</a>)=C2=A0and making your correlator into a RFNoC bloc=
-k. Then it will be easy to include your correlator in a GNU Radio flow grap=
-h.<br></div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-">1) Where exactly in the code is the ddc chain instantiated *? Should I=C2=
-=A0<br>do it myself ?<br></blockquote><div><br></div><div>The DDC code is i=
-n the RFNoC DDC block, noc_block_ddc.v. The default X310 image includes two=
- DDCs, so you don&#39;t need to instantiate anything.</div><div>=C2=A0</div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex">2) Is it possible to hav=
-e a decimation rate of 200 or should it be a=C2=A0<br>power of 2 ?<br></blo=
-ckquote><div><br></div><div>You can have a decimation rate of 200. The DDC =
-has a CIC filter along with 3 half band filters, so the decimation rate is =
-fairly flexible.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex">3) How is the decimation rate controlled ? From what I unders=
-tand it&#39;s=C2=A0<br>from the sampling rate parameter in GnuRadio. Am I r=
-ight ?</blockquote><div><br></div><div>=C2=A0If using the USRP Source block=
- in GNU Radio, setting the sample rate will setup the DDC. If using Device =
-3 (i.e. a RFNoC flow graph) in GNU radio, you will need to set the decimati=
-on rate on the RFNoC: DDC block.</div><div><br></div><div>Jonathon</div></d=
+<div dir=3D"ltr">Laptop-1 00:1f.6 Ethernet controller: Intel Corporation Et=
+hernet Connection (4) I219-LM (rev 21)<div>Laptop-2 00:19.0 Ethernet contro=
+ller: Intel Corporation 82579LM Gigabit Network Connection (Lewisville) (re=
+v 04)</div><div><br></div><div>On both the laptop the problem persists.=C2=
+=A0</div><div><br></div><div>Regards</div><div>Sumit=C2=A0<br><div class=3D=
+"gmail-yj6qo gmail-ajU" style=3D"outline:none;padding:10px 0px;width:22px;m=
+argin:2px 0px 0px"><br class=3D"gmail-Apple-interchange-newline"></div><div=
+><br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Wed, Jul 17, 2019 at 8:19 PM Sumit Kumar &lt;<a href=3D=
+"mailto:cogwsn@gmail.com" target=3D"_blank">cogwsn@gmail.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
+">Hi=C2=A0Nate, I left office, so will be able to tell you tomorrow. It hap=
+pened in two laptops. One I remember is a brand new Dell latitude 5490. I w=
+ill let you know the details tomorrow.=C2=A0<div>Regards</div><div>Sumit=C2=
+=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Wed, Jul 17, 2019 at 6:27 PM Nate Temple &lt;<a href=3D"mailto:=
+nate.temple@ettus.com" target=3D"_blank">nate.temple@ettus.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
+tr"><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-=
+serif">Hi Sumit,</div><div class=3D"gmail_default" style=3D"font-family:ari=
+al,helvetica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"fo=
+nt-family:arial,helvetica,sans-serif">What ethernet controller do you have =
+in your laptop?</div><div class=3D"gmail_default" style=3D"font-family:aria=
+l,helvetica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"fon=
+t-family:arial,helvetica,sans-serif">lspci | grep Ethernet</div><div class=
+=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><br></d=
+iv><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-s=
+erif">Regards,</div><div class=3D"gmail_default" style=3D"font-family:arial=
+,helvetica,sans-serif">Nate Temple<br></div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 17, 2019 at 9:16 AM=
+ Sumit Kumar &lt;<a href=3D"mailto:cogwsn@gmail.com" target=3D"_blank">cogw=
+sn@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div dir=3D"ltr">Hi=C2=A0Nate,<div><br></div><div>john@john-Pre=
+cision-M4600:~/pybombs/src/uhd/host/build/examples$ sudo ./benchmark_rate -=
+-rx_rate 10e6 --tx_rate 10e6 --duration 600<span class=3D"gmail-m_-27793120=
+69046611987gmail-m_-7088995231373930625gmail-m_1429041156151116054gmail-m_-=
+783974566588487241gmail-im" style=3D"color:rgb(80,0,80)"><br><br>[INFO] [UH=
+D] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.15.0.git-1-gf=
+83faf28<br>[00:00:00.000024] Creating the usrp device with: ...<br>[INFO] [=
+USRP2] Opening a USRP2/N-Series device...<br>[INFO] [USRP2] Current recv fr=
+ame size: 1472 bytes<br>[INFO] [USRP2] Current send frame size: 1472 bytes<=
+br>Using Device: Single USRP:<br>=C2=A0 Device: USRP2 / N-Series Device<br>=
+=C2=A0 Mboard 0: N200r4<br>=C2=A0 RX Channel: 0<br>=C2=A0 =C2=A0 RX DSP: 0<=
+br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: SBXv3 RX<br>=C2=
+=A0 TX Channel: 0<br>=C2=A0 =C2=A0 TX DSP: 0<br>=C2=A0 =C2=A0 TX Dboard: A<=
+br>=C2=A0 =C2=A0 TX Subdev: SBXv3 TX<br><br></span>[00:00:01.788223] Settin=
+g device timestamp to 0...<br>[00:00:01.788784] Testing receive rate 10.000=
+000 Msps on 1 channels<br>[00:00:01.799861] Testing transmit rate 10.000000=
+ Msps on 1 channels<br>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSUSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS[00:00:01.905237] Tx timeou=
+ts: 1<br>[00:10:01.932746] Benchmark complete.<br><br><br>Benchmark rate su=
+mmary:<br>=C2=A0 Num received samples: =C2=A0 =C2=A0 6000102237<span class=
+=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_1429041=
+156151116054gmail-m_-783974566588487241gmail-im" style=3D"color:rgb(80,0,80=
+)"><br>=C2=A0 Num dropped samples: =C2=A0 =C2=A0 =C2=A00<br>=C2=A0 Num over=
+runs detected: =C2=A0 =C2=A00<br></span>=C2=A0 Num transmitted samples: =C2=
+=A0258456<br>=C2=A0 Num sequence errors (Tx): 624<span class=3D"gmail-m_-27=
+79312069046611987gmail-m_-7088995231373930625gmail-m_1429041156151116054gma=
+il-m_-783974566588487241gmail-im" style=3D"color:rgb(80,0,80)"><br>=C2=A0 N=
+um sequence errors (Rx): 0<br></span>=C2=A0 Num underruns detected: =C2=A0 =
+1<br>=C2=A0 Num late commands: =C2=A0 =C2=A0 =C2=A0 =C2=A00<br>=C2=A0 Num t=
+imeouts (Tx): =C2=A0 =C2=A0 =C2=A0 =C2=A05993<br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 17, 2019=
+ at 5:36 PM Nate Temple &lt;<a href=3D"mailto:nate.temple@ettus.com" target=
+=3D"_blank">nate.temple@ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_defau=
+lt" style=3D"font-family:arial,helvetica,sans-serif">Hi Sumit,</div><div cl=
+ass=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><br>=
+</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,san=
+s-serif">Actually, I had a typo in the command, that previous benchmark_rat=
+e command only tested RX, can you try passing the --tx_rate param and see i=
+f it will produce sequence errors using benchmark_rate</div><div class=3D"g=
+mail_default" style=3D"font-family:arial,helvetica,sans-serif"><br></div><d=
+iv class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"=
+>./benchmark_rate --tx_rate 10e6 --duration 600<span class=3D"gmail-m_-2779=
+312069046611987gmail-m_-7088995231373930625gmail-m_1429041156151116054gmail=
+-m_-783974566588487241gmail-m_-8787730956157389152m_-8846324310455197473gma=
+il-im"><span class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930=
+625gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-878773095=
+6157389152m_-8846324310455197473gmail-m_8077291001688814057gmail-im" style=
+=3D"color:rgb(80,0,80)"><br></span></span></div><div class=3D"gmail_default=
+" style=3D"font-family:arial,helvetica,sans-serif"><span class=3D"gmail-m_-=
+2779312069046611987gmail-m_-7088995231373930625gmail-m_1429041156151116054g=
+mail-m_-783974566588487241gmail-m_-8787730956157389152m_-884632431045519747=
+3gmail-im"><span class=3D"gmail-m_-2779312069046611987gmail-m_-708899523137=
+3930625gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87877=
+30956157389152m_-8846324310455197473gmail-m_8077291001688814057gmail-im" st=
+yle=3D"color:rgb(80,0,80)"><br></span></span></div><div class=3D"gmail_defa=
+ult" style=3D"font-family:arial,helvetica,sans-serif"><span class=3D"gmail-=
+m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_14290411561511160=
+54gmail-m_-783974566588487241gmail-m_-8787730956157389152m_-884632431045519=
+7473gmail-im"><span class=3D"gmail-m_-2779312069046611987gmail-m_-708899523=
+1373930625gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87=
+87730956157389152m_-8846324310455197473gmail-m_8077291001688814057gmail-im"=
+ style=3D"color:rgb(80,0,80)">Regards,</span></span></div><div class=3D"gma=
+il_default" style=3D"font-family:arial,helvetica,sans-serif"><span class=3D=
+"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_1429041156=
+151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152m_-88463243=
+10455197473gmail-im"><span class=3D"gmail-m_-2779312069046611987gmail-m_-70=
+88995231373930625gmail-m_1429041156151116054gmail-m_-783974566588487241gmai=
+l-m_-8787730956157389152m_-8846324310455197473gmail-m_8077291001688814057gm=
+ail-im" style=3D"color:rgb(80,0,80)">Nate Temple<br></span></span></div></d=
 iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Wed, Jul 17, 2019 at 5:30 PM fbarras via USRP-users &lt;<a href=3D"mailto:u=
-srp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex">Hi all,<br>
+Wed, Jul 17, 2019 at 8:27 AM Sumit Kumar &lt;<a href=3D"mailto:cogwsn@gmail=
+.com" target=3D"_blank">cogwsn@gmail.com</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Ok I will do this.=
+. but why the transmission with other USRP is working fine ?=C2=A0</div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, J=
+ul 17, 2019 at 5:22 PM Nate Temple &lt;<a href=3D"mailto:nate.temple@ettus.=
+com" target=3D"_blank">nate.temple@ettus.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"=
+gmail_default" style=3D"font-family:arial,helvetica,sans-serif">Hi Sumit,<b=
+r><br>So it looks like you have multiple version of UHD installed:<br><br>j=
+ohn@john-Precision-M4600:~/pybombs/src/gnuradio/gr-digital/examples/narrowb=
+and$ sudo ./benchmark_tx.py -f 2.45G -S 10<br>linux; GNU C++ version 5.3.1 =
+20151219; Boost_105800; UHD_003.009.002-0-unknown<br><br><br>john@john-Prec=
+ision-M4600:~/pybombs/src/uhd/host/build/examples$ sudo ./benchmark_rate --=
+rx_rate 10e6 --duration 600<br>[INFO] [UHD] linux; GNU C++ version 5.4.0 20=
+160609; Boost_105800; UHD_3.15.0.git-1-gf83faf28<br><br><br>I would recomme=
+nd to stick to a single UHD version and use the latest stable tagged releas=
+ed (currently 3.14.1.0) you will need to modify the pybombs recipe to use t=
+he correct git tag (v3.14.1.0). The &#39;master&#39; branch can be unstable=
+ at times.<br><br>Also, if you have a FPGA image of say 3.15.x.x flashed on=
+ the N210 and then revert back to using 3.9.2, and UHD does not catch the m=
+ismatch, it will likely cause flow control errors and unstable performance.=
+<br><br>The gr-digital/examples/narrowband/benchmark_tx.py example is also =
+buggy, and is being removed from GR 3.8. Using the UHD benchmark_rate utili=
+ty will test the hardware with a limited scope.<br><br>Regards,<br>Nate Tem=
+ple<br><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Wed, Jul 17, 2019 at 8:10 AM Sumit Kumar &lt;<a href=3D=
+"mailto:cogwsn@gmail.com" target=3D"_blank">cogwsn@gmail.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
+">Sorry, here it is.<div><br></div><div>Benchmark rate summary:<br>=C2=A0 N=
+um received samples: =C2=A0 =C2=A0 5999986436<br>=C2=A0 Num dropped samples=
+: =C2=A0 =C2=A0 =C2=A00<br>=C2=A0 Num overruns detected: =C2=A0 =C2=A00<br>=
+=C2=A0 Num transmitted samples: =C2=A00<br>=C2=A0 Num sequence errors (Tx):=
+ 0<br>=C2=A0 Num sequence errors (Rx): 0<br>=C2=A0 Num underruns detected: =
+=C2=A0 0<br>=C2=A0 Num late commands: =C2=A0 =C2=A0 =C2=A0 =C2=A00<br>=C2=
+=A0 Num timeouts (Tx): =C2=A0 =C2=A0 =C2=A0 =C2=A00<br>=C2=A0 Num timeouts =
+(Rx): =C2=A0 =C2=A0 =C2=A0 =C2=A00<br></div><div><br></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 17, =
+2019 at 5:08 PM Nate Temple &lt;<a href=3D"mailto:nate.temple@ettus.com" ta=
+rget=3D"_blank">nate.temple@ettus.com</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_d=
+efault" style=3D"font-family:arial,helvetica,sans-serif">Hi Sumit,<br><br>I=
+t will take 10 minutes for that run to complete. Does it produce a report a=
+t the end of the run?<br><br>Regards,<br>Nate Temple<br></div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 1=
+7, 2019 at 8:06 AM Sumit Kumar &lt;<a href=3D"mailto:cogwsn@gmail.com" targ=
+et=3D"_blank">cogwsn@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><div dir=3D"ltr">Hi=C2=A0Nate,<div>No there a=
+re not. At the end of the last line, cursor keeps blinking, no sequence err=
+ors.=C2=A0<br><div><br></div><div>john@john-Precision-M4600:~/pybombs/src/u=
+hd/host/build/examples$ sudo ./benchmark_rate --rx_rate 10e6 --duration 600=
+<span class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmai=
+l-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389=
+152gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_18334163=
+51567459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_8=
+077291001688814057gmail-im" style=3D"color:rgb(80,0,80)"><br><br>[INFO] [UH=
+D] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.15.0.git-1-gf=
+83faf28<br></span>[00:00:00.000024] Creating the usrp device with: ...<span=
+ class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_1=
+429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152gm=
+ail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_1833416351567=
+459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_807729=
+1001688814057gmail-im" style=3D"color:rgb(80,0,80)"><br>[INFO] [USRP2] Open=
+ing a USRP2/N-Series device...<br>[INFO] [USRP2] Current recv frame size: 1=
+472 bytes<br>[INFO] [USRP2] Current send frame size: 1472 bytes<br></span>U=
+sing Device: Single USRP:<br>=C2=A0 Device: USRP2 / N-Series Device<br>=C2=
+=A0 Mboard 0: N200r4<br>=C2=A0 RX Channel: 0<br>=C2=A0 =C2=A0 RX DSP: 0<br>=
+=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: SBXv3 RX<br>=C2=A0 T=
+X Channel: 0<br>=C2=A0 =C2=A0 TX DSP: 0<br>=C2=A0 =C2=A0 TX Dboard: A<br>=
+=C2=A0 =C2=A0 TX Subdev: SBXv3 TX<br><br>[00:00:01.796895] Setting device t=
+imestamp to 0...<br>[00:00:01.797430] Testing receive rate 10.000000 Msps o=
+n 1 channels<br></div></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Wed, Jul 17, 2019 at 4:39 PM Nate Temple &=
+lt;<a href=3D"mailto:nate.temple@ettus.com" target=3D"_blank">nate.temple@e=
+ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:=
+arial,helvetica,sans-serif">Hi Sumit,<br><br>If you run benchmark_rate for =
+an extend period of time, do you see any sequence errors?<br><br>/usr/local=
+/lib/uhd/examples/benchmark_rate --rx_rate 10e6 --duration 600<br><br><br>R=
+egards,<br>Nate Temple</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Wed, Jul 17, 2019 at 7:34 AM Sumit Kumar &=
+lt;<a href=3D"mailto:cogwsn@gmail.com" target=3D"_blank">cogwsn@gmail.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv dir=3D"ltr">Hi=C2=A0Nate,=C2=A0<div>Yes I addressed the first 2 points y=
+ou mentioned.=C2=A0</div><div><br></div><div>john@john-Precision-M4600:~/py=
+bombs/src/gnuradio/gr-digital/examples/narrowband$ sudo ./benchmark_tx.py -=
+f 2.45G -S 10<br>linux; GNU C++ version 5.3.1 20151219; Boost_105800; UHD_0=
+03.009.002-0-unknown<br><br>Using Volk machine: avx_64_mmx_orc<br>-- Openin=
+g a USRP2/N-Series device...<br>-- Current recv frame size: 1472 bytes<br>-=
+- Current send frame size: 1472 bytes<br><br>No gain specified.<br>Setting =
+gain to 15.750000 (from [0.000000, 31.500000])<br>.........................=
+.....................................................................SS.SSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSS.SSSS..S......SS.S......SS.....S....S...S.S......=
+.S....S........^C<br></div><div><br></div><div>I am using ./benchmark_tx.py=
+ located in=C2=A0gnuradio/gr-digital/examples/narrowband</div><div><br></di=
+v><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Wed, Jul 17, 2019 at 4:25 PM Nate Temple &lt;<a href=3D=
+"mailto:nate.temple@ettus.com" target=3D"_blank">nate.temple@ettus.com</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,helveti=
+ca,sans-serif">Hi Sumit,<br><br>A couple things to address:<br><br>1) Enabl=
+e Thread priority scheduling on your host<br><br>Note it is throwing a warn=
+ing in the output: &quot;[WARNING] [UHD] Unable to set the thread priority.=
+ Performance may be negatively affected.&quot;<br><br><a href=3D"https://kb=
+.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_=
+GNU_Radio)_on_Linux#Thread_priority_scheduling" target=3D"_blank">https://k=
+b.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and=
+_GNU_Radio)_on_Linux#Thread_priority_scheduling</a><br><br><br>2) Adjust yo=
+ur network buffers<br><br>&quot;<br>[WARNING] [UDP] The send buffer could n=
+ot be resized sufficiently.<br>Target sock buff size: 2500000 bytes.<br>Act=
+ual sock buff size: 1048576 bytes.<br>See the transport application notes o=
+n buffer resizing.<br>Please run: sudo sysctl -w net.core.wmem_max=3D250000=
+0<br>[WARNING] [UDP] The send buffer could not be resized sufficiently.<br>=
+Target sock buff size: 2500000 bytes.<br>Actual sock buff size: 1048576 byt=
+es.<br>See the transport application notes on buffer resizing.<br>Please ru=
+n: sudo sysctl -w net.core.wmem_max=3D2500000<br>&quot;<br><br><a href=3D"h=
+ttps://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#N2xx" targ=
+et=3D"_blank">https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tr=
+icks#N2xx</a><br><br><br>What is the command you&#39;re using to transmit(w=
+hich utility and args?)<br><br><br>Regards,<br>Nate Temple<br></div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed,=
+ Jul 17, 2019 at 7:06 AM Sumit Kumar via USRP-users &lt;<a href=3D"mailto:u=
+srp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr">Following is what I am getting after the command you asked to =
+run. The 192.168.10.5 gives SSSSSSS.=C2=A0<div><br></div><div>john@john-Pre=
+cision-M4600:~/pybombs/src/uhd/host/build/utils$ ./usrp_burn_mb_eeprom --re=
+ad-all --args &quot;addr=3D192.168.10.5&quot;<br>Creating USRP device from =
+address: addr=3D192.168.10.5<br>[INFO] [UHD] linux; GNU C++ version 5.4.0 2=
+0160609; Boost_105800; UHD_3.15.0.git-1-gf83faf28<br>[INFO] [USRP2] Opening=
+ a USRP2/N-Series device...<br>[INFO] [USRP2] Current recv frame size: 1472=
+ bytes<br>[INFO] [USRP2] Current send frame size: 1472 bytes<br>[WARNING] [=
+UDP] The send buffer could not be resized sufficiently.<br>Target sock buff=
+ size: 2500000 bytes.<br>Actual sock buff size: 1048576 bytes.<br>See the t=
+ransport application notes on buffer resizing.<br>Please run: sudo sysctl -=
+w net.core.wmem_max=3D2500000<br>[WARNING] [UDP] The send buffer could not =
+be resized sufficiently.<br>Target sock buff size: 2500000 bytes.<br>Actual=
+ sock buff size: 1048576 bytes.<br>See the transport application notes on b=
+uffer resizing.<br>Please run: sudo sysctl -w net.core.wmem_max=3D2500000<b=
+r>[WARNING] [UDP] The send buffer could not be resized sufficiently.<br>Tar=
+get sock buff size: 2500000 bytes.<br>Actual sock buff size: 1048576 bytes.=
+<br>See the transport application notes on buffer resizing.<br>Please run: =
+sudo sysctl -w net.core.wmem_max=3D2500000<br>[WARNING] [UHD] Unable to set=
+ the thread priority. Performance may be negatively affected.<br>Please see=
+ the general application notes in the manual for instructions.<br>Environme=
+ntError: OSError: error in pthread_setschedparam<br><br>Fetching current se=
+ttings from EEPROM...<br>=C2=A0 =C2=A0 EEPROM [&quot;hardware&quot;] is &qu=
+ot;2576&quot;<br>=C2=A0 =C2=A0 EEPROM [&quot;revision&quot;] is &quot;&quot=
+;<br>=C2=A0 =C2=A0 EEPROM [&quot;product&quot;] is &quot;&quot;<br>=C2=A0 =
+=C2=A0 EEPROM [&quot;mac-addr&quot;] is &quot;a0:36:fa:26:34:44&quot;<br>=
+=C2=A0 =C2=A0 EEPROM [&quot;ip-addr&quot;] is &quot;192.168.10.5&quot;<br>=
+=C2=A0 =C2=A0 EEPROM [&quot;subnet&quot;] is &quot;255.255.255.255&quot;<br=
+>=C2=A0 =C2=A0 EEPROM [&quot;gateway&quot;] is &quot;255.255.255.255&quot;<=
+br>=C2=A0 =C2=A0 EEPROM [&quot;gpsdo&quot;] is &quot;none&quot;<br>=C2=A0 =
+=C2=A0 EEPROM [&quot;serial&quot;] is &quot;E4R14V4UN&quot;<br>=C2=A0 =C2=
+=A0 EEPROM [&quot;name&quot;] is &quot;&quot;<br><br>Power-cycle the USRP d=
+evice for the changes to take effect.<br><br><div>Done</div><div><br></div>=
+<div><br></div><div>john@john-Precision-M4600:~/pybombs/src/uhd/host/build/=
+utils$ ./usrp_burn_mb_eeprom --read-all --args &quot;addr=3D192.168.10.3&qu=
+ot;<br>Creating USRP device from address: addr=3D192.168.10.3<br>[INFO] [UH=
+D] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.15.0.git-1-gf=
+83faf28<br>[INFO] [USRP2] Opening a USRP2/N-Series device...<br>[INFO] [USR=
+P2] Current recv frame size: 1472 bytes<br>[INFO] [USRP2] Current send fram=
+e size: 1472 bytes<br>[WARNING] [UDP] The send buffer could not be resized =
+sufficiently.<br>Target sock buff size: 2500000 bytes.<br>Actual sock buff =
+size: 1048576 bytes.<br>See the transport application notes on buffer resiz=
+ing.<br>Please run: sudo sysctl -w net.core.wmem_max=3D2500000<br>[WARNING]=
+ [UDP] The send buffer could not be resized sufficiently.<br>Target sock bu=
+ff size: 2500000 bytes.<br>Actual sock buff size: 1048576 bytes.<br>See the=
+ transport application notes on buffer resizing.<br>Please run: sudo sysctl=
+ -w net.core.wmem_max=3D2500000<br>[WARNING] [UDP] The send buffer could no=
+t be resized sufficiently.<br>Target sock buff size: 2500000 bytes.<br>Actu=
+al sock buff size: 1048576 bytes.<br>See the transport application notes on=
+ buffer resizing.<br>Please run: sudo sysctl -w net.core.wmem_max=3D2500000=
+<br>[WARNING] [UHD] Unable to set the thread priority. Performance may be n=
+egatively affected.<br>Please see the general application notes in the manu=
+al for instructions.<br>EnvironmentError: OSError: error in pthread_setsche=
+dparam<br><br>Fetching current settings from EEPROM...<br>=C2=A0 =C2=A0 EEP=
+ROM [&quot;hardware&quot;] is &quot;2576&quot;<br>=C2=A0 =C2=A0 EEPROM [&qu=
+ot;revision&quot;] is &quot;&quot;<br>=C2=A0 =C2=A0 EEPROM [&quot;product&q=
+uot;] is &quot;&quot;<br>=C2=A0 =C2=A0 EEPROM [&quot;mac-addr&quot;] is &qu=
+ot;a0:36:fa:26:34:42&quot;<br>=C2=A0 =C2=A0 EEPROM [&quot;ip-addr&quot;] is=
+ &quot;192.168.10.3&quot;<br>=C2=A0 =C2=A0 EEPROM [&quot;subnet&quot;] is &=
+quot;255.255.255.255&quot;<br>=C2=A0 =C2=A0 EEPROM [&quot;gateway&quot;] is=
+ &quot;255.255.255.255&quot;<br>=C2=A0 =C2=A0 EEPROM [&quot;gpsdo&quot;] is=
+ &quot;none&quot;<br>=C2=A0 =C2=A0 EEPROM [&quot;serial&quot;] is &quot;E4R=
+14V2UN&quot;<br>=C2=A0 =C2=A0 EEPROM [&quot;name&quot;] is &quot;&quot;<br>=
+<br>Power-cycle the USRP device for the changes to take effect.<br><br>Done=
+<div class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail=
+-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87877309561573891=
+52gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635=
+1567459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80=
+77291001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gm=
+ail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693=
+6873702gmail-yj6qo"></div><div class=3D"gmail-m_-2779312069046611987gmail-m=
+_-7088995231373930625gmail-m_1429041156151116054gmail-m_-783974566588487241=
+gmail-m_-8787730956157389152gmail-m_-8846324310455197473gmail-m_-2263946608=
+738406543gmail-m_1833416351567459632gmail-m_8429522937710005813gmail-m_-776=
+3822819519994741gmail-m_8077291001688814057gmail-m_-2723275523225085977gmai=
+l-m_-6449813456354474750gmail-m_-5406334666104058457gmail-m_-86303312254652=
+29725gmail-m_-5090455826936873702gmail-adL"><br></div></div></div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, J=
+ul 17, 2019 at 3:19 PM Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoe=
+ngineering.com" target=3D"_blank">jason@gardettoengineering.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+You are right, the table of revisions was for the X-series</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
-I developed a custom correlation module in Verilog and I would like to <br>
-insert it in the usrp x310 fpga image. My goal is to send a=C2=A0 signal <b=
-r>
-(with a usrp b205 mini) at a sampling rate of 1M and to receive it with <br=
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+try running the command from your prefix: src/uhd/host/build/utils/usrp_bur=
+n_mb_eeprom=C2=A0--args=3D&quot;type=3Dn200&quot; --read-all</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+don&#39;t quote me on the type portion, I don&#39;t have a board in front o=
+f me to see if it is n200 or something else.=C2=A0 I //think// that will re=
+port the major and minor revision values (I am grasping at straws here, jus=
+t trying to figure out what the differences might
+ be).</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+You are connecting the ethernet connections to the two devices through the =
+exact same port on your PC?</div>
+<div id=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_=
+1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152g=
+mail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635156=
+7459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80772=
+91001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail=
+-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693687=
+3702gmail-m_3403553355508831478Signature">
+<div>
+<div id=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_=
+1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152g=
+mail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635156=
+7459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80772=
+91001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail=
+-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693687=
+3702gmail-m_3403553355508831478appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_=
+1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152g=
+mail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635156=
+7459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80772=
+91001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail=
+-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693687=
+3702gmail-m_3403553355508831478divRplyFwdMsg" dir=3D"ltr"><font style=3D"fo=
+nt-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> S=
+umit Kumar &lt;<a href=3D"mailto:cogwsn@gmail.com" target=3D"_blank">cogwsn=
+@gmail.com</a>&gt;<br>
+<b>Sent:</b> Wednesday, July 17, 2019 8:24 AM<br>
+<b>To:</b> Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoengineering.c=
+om" target=3D"_blank">jason@gardettoengineering.com</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Sequence Errors N200</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">The sticker=C2=A0 for sbx shows F33612 and F33814.=C2=A0
+<div>How will this help ?=C2=A0</div>
+<div><br>
+</div>
+</div>
+<br>
+<div class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail=
+-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87877309561573891=
+52gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635=
+1567459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80=
+77291001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gm=
+ail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693=
+6873702gmail-m_3403553355508831478x_gmail_quote">
+<div dir=3D"ltr" class=3D"gmail-m_-2779312069046611987gmail-m_-708899523137=
+3930625gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87877=
+30956157389152gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail=
+-m_1833416351567459632gmail-m_8429522937710005813gmail-m_-77638228195199947=
+41gmail-m_8077291001688814057gmail-m_-2723275523225085977gmail-m_-644981345=
+6354474750gmail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-=
+5090455826936873702gmail-m_3403553355508831478x_gmail_attr">On Wed, Jul 17,=
+ 2019 at 1:50 PM Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoenginee=
+ring.com" target=3D"_blank">jason@gardettoengineering.com</a>&gt; wrote:<br=
 >
-the usrp x310. Inside the fpga, my block will look for a certain <br>
-sequence inside the received signal.<br>
+</div>
+<blockquote class=3D"gmail-m_-2779312069046611987gmail-m_-70889952313739306=
+25gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956=
+157389152gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_18=
+33416351567459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gma=
+il-m_8077291001688814057gmail-m_-2723275523225085977gmail-m_-64498134563544=
+74750gmail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-50904=
+55826936873702gmail-m_3403553355508831478x_gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+Sumit,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
-My block is working with a 200M clock and can support data rate up to <br>
-2M.<br>
-=C2=A0From what I&#39;ve read, it seems that the adc of the x310 is working=
- at <br>
-200M and that this can&#39;t be changed. So my module should be placed afte=
-r <br>
-the ddc chain. But this rises a few questions:<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+OK, the last idea I have:</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
-1) Where exactly in the code is the ddc chain instantiated *? Should I <br>
-do it myself ?<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+There is a sticker on the back of the N-series devices it=C2=A0<em>usually<=
+/em>=C2=A0says the version there, but not always.=C2=A0 This has a little i=
+nfo:=C2=A0<a href=3D"https://kb.ettus.com/About_the_Motherboard_and_Daughte=
+rcard_EEPROM_on_USRP_Devices#N200.2F210_EEPROM" rel=3D"nofollow" style=3D"c=
+olor:rgb(59,115,175)" target=3D"_blank">https://kb.ettus.com/About_the_Moth=
+erboard_and_Daughtercard_EEPROM_on_USRP_Devices#N200.2F210_EEPROM</a><br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
-2) Is it possible to have a decimation rate of 200 or should it be a <br>
-power of 2 ?<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+Do they match?</div>
+<div id=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_=
+1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152g=
+mail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635156=
+7459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80772=
+91001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail=
+-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693687=
+3702gmail-m_3403553355508831478x_gmail-m_6506407344245079092Signature">
+<div>
+<div id=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_=
+1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152g=
+mail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635156=
+7459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80772=
+91001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail=
+-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693687=
+3702gmail-m_3403553355508831478x_gmail-m_6506407344245079092appendonsend"><=
+/div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
-3) How is the decimation rate controlled ? From what I understand it&#39;s =
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_=
+1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152g=
+mail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635156=
+7459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80772=
+91001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail=
+-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693687=
+3702gmail-m_3403553355508831478x_gmail-m_6506407344245079092divRplyFwdMsg" =
+dir=3D"ltr"><font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" col=
+or=3D"#000000"><b>From:</b> Sumit Kumar &lt;<a href=3D"mailto:cogwsn@gmail.=
+com" target=3D"_blank">cogwsn@gmail.com</a>&gt;<br>
+<b>Sent:</b> Wednesday, July 17, 2019 7:45 AM<br>
+<b>To:</b> Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoengineering.c=
+om" target=3D"_blank">jason@gardettoengineering.com</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Sequence Errors N200</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">Hi Jason,
+<div><br>
+<div>Yes they are consistent, I mean the output of uhd_usrp_probe for both =
+N200 is exactly=C2=A0the same (except the ip, serial and mac addr).</div>
+<div>I do not know where the problem is! Hardware or software=C2=A0</div>
+<div><br>
+</div>
+<div>Regards</div>
+<div>Sumit=C2=A0=C2=A0</div>
+</div>
+</div>
 <br>
-from the sampling rate parameter in GnuRadio. Am I right ?<br>
+<div class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail=
+-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87877309561573891=
+52gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635=
+1567459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80=
+77291001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gm=
+ail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693=
+6873702gmail-m_3403553355508831478x_gmail-m_6506407344245079092x_gmail_quot=
+e">
+<div dir=3D"ltr" class=3D"gmail-m_-2779312069046611987gmail-m_-708899523137=
+3930625gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87877=
+30956157389152gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail=
+-m_1833416351567459632gmail-m_8429522937710005813gmail-m_-77638228195199947=
+41gmail-m_8077291001688814057gmail-m_-2723275523225085977gmail-m_-644981345=
+6354474750gmail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-=
+5090455826936873702gmail-m_3403553355508831478x_gmail-m_6506407344245079092=
+x_gmail_attr">On Wed, Jul 17, 2019 at 1:19 PM Jason Matusiak &lt;<a href=3D=
+"mailto:jason@gardettoengineering.com" target=3D"_blank">jason@gardettoengi=
+neering.com</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"gmail-m_-2779312069046611987gmail-m_-70889952313739306=
+25gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956=
+157389152gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_18=
+33416351567459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gma=
+il-m_8077291001688814057gmail-m_-2723275523225085977gmail-m_-64498134563544=
+74750gmail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-50904=
+55826936873702gmail-m_3403553355508831478x_gmail-m_6506407344245079092x_gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex">
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+I am not really an N-series guy, so this probably won&#39;t be helpful.=C2=
+=A0 Have you tried doing a uhd_usrp_probe on both devices and seen that the=
+ responses are consistent?</div>
+<div id=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_=
+1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152g=
+mail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635156=
+7459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80772=
+91001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail=
+-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693687=
+3702gmail-m_3403553355508831478x_gmail-m_6506407344245079092x_gmail-m_90147=
+29813065413461Signature">
+<div>
+<div id=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_=
+1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152g=
+mail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635156=
+7459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80772=
+91001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail=
+-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693687=
+3702gmail-m_3403553355508831478x_gmail-m_6506407344245079092x_gmail-m_90147=
+29813065413461appendonsend">
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
-Thanks !<br>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_=
+1429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152g=
+mail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_183341635156=
+7459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_80772=
+91001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail=
+-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-509045582693687=
+3702gmail-m_3403553355508831478x_gmail-m_6506407344245079092x_gmail-m_90147=
+29813065413461divRplyFwdMsg" dir=3D"ltr">
+<font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00000=
+0"><b>From:</b> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.e=
+ttus.com" target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt; on b=
+ehalf of Sumit Kumar via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.=
+ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Sent:</b> Wednesday, July 17, 2019 7:15 AM<br>
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> [USRP-users] Sequence Errors N200</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">Hi,=C2=A0
+<div>I am trying transmit using Ettus N200 (call it A) but getting this err=
+or message on the console=C2=A0</div>
+<div><br>
+</div>
+<div>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSUSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS=
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS.............................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+...........................................................................=
+.....................................<br>
+</div>
+<div><br>
+</div>
+<div>I looked for it on google and found these links=C2=A0</div>
+<div><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com=
+/2014-May/037495.html" target=3D"_blank">http://lists.ettus.com/pipermail/u=
+srp-users_lists.ettus.com/2014-May/037495.html</a><br>
+</div>
+<div><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com=
+/2012-July/032838.html" target=3D"_blank">http://lists.ettus.com/pipermail/=
+usrp-users_lists.ettus.com/2012-July/032838.html</a><br>
+</div>
+<div><br>
+</div>
+<div>Both the links=C2=A0 suggested problem related to the gigabit port. Th=
+en I connected another USRP N200 (call it B) to the same laptop and tried t=
+ransmitting using that as there were no such sequence error messages.</div>
+<div><br>
+</div>
+<div>This makes me believe there is some problem with the first USRP, i.e.,=
+ A.=C2=A0<br>
+</div>
+<div><br>
+</div>
+<div>Further I tried with different versions of UHD 3.11, UHD 3.15.. but it=
+s the same.=C2=A0</div>
+<div><br>
+</div>
+<div>Receive is good only transmit is throwing error.=C2=A0</div>
+<div><br>
+</div>
+<div>Not only with UHD, even in labview, when I transmit, I see nothing com=
+ing out from the N200 (A).=C2=A0</div>
+<div><br>
+</div>
+<div>I am using SBXv2 daughter board.=C2=A0</div>
+<div><br>
+</div>
+<div>Any clue!</div>
+<div><br>
+</div>
+<div>Regards</div>
+<div>-- <br>
+<div dir=3D"ltr" class=3D"gmail-m_-2779312069046611987gmail-m_-708899523137=
+3930625gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87877=
+30956157389152gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail=
+-m_1833416351567459632gmail-m_8429522937710005813gmail-m_-77638228195199947=
+41gmail-m_8077291001688814057gmail-m_-2723275523225085977gmail-m_-644981345=
+6354474750gmail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-=
+5090455826936873702gmail-m_3403553355508831478x_gmail-m_6506407344245079092=
+x_gmail-m_9014729813065413461x_gmail_signature">
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr"><span style=3D"color:rgb(136,136,136);font-size:12.8px">--=
+=C2=A0</span><br style=3D"color:rgb(136,136,136);font-size:12.8px">
+<div style=3D"color:rgb(136,136,136);font-size:12.8px">Sumit kumar<br>
+Postdoc</div>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px">SnT, Luxembourg</div=
+>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px"><br>
+</div>
 <br>
-* For some reasons, I&#39;m working with uhd=C2=A0 3.10.3<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+<br clear=3D"all">
+<div><br>
+</div>
+-- <br>
+<div dir=3D"ltr" class=3D"gmail-m_-2779312069046611987gmail-m_-708899523137=
+3930625gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87877=
+30956157389152gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail=
+-m_1833416351567459632gmail-m_8429522937710005813gmail-m_-77638228195199947=
+41gmail-m_8077291001688814057gmail-m_-2723275523225085977gmail-m_-644981345=
+6354474750gmail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-=
+5090455826936873702gmail-m_3403553355508831478x_gmail-m_6506407344245079092=
+x_gmail_signature">
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr"><span style=3D"color:rgb(136,136,136);font-size:12.8px">--=
+=C2=A0</span><br style=3D"color:rgb(136,136,136);font-size:12.8px">
+<div style=3D"color:rgb(136,136,136);font-size:12.8px">Sumit kumar<br>
+Postdoc</div>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px">SnT, Luxembourg</div=
+>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px"><br>
+</div>
 <br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+<br clear=3D"all">
+<div><br>
+</div>
+-- <br>
+<div dir=3D"ltr" class=3D"gmail-m_-2779312069046611987gmail-m_-708899523137=
+3930625gmail-m_1429041156151116054gmail-m_-783974566588487241gmail-m_-87877=
+30956157389152gmail-m_-8846324310455197473gmail-m_-2263946608738406543gmail=
+-m_1833416351567459632gmail-m_8429522937710005813gmail-m_-77638228195199947=
+41gmail-m_8077291001688814057gmail-m_-2723275523225085977gmail-m_-644981345=
+6354474750gmail-m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-=
+5090455826936873702gmail-m_3403553355508831478x_gmail_signature">
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr"><span style=3D"color:rgb(136,136,136);font-size:12.8px">--=
+=C2=A0</span><br style=3D"color:rgb(136,136,136);font-size:12.8px">
+<div style=3D"color:rgb(136,136,136);font-size:12.8px">Sumit kumar<br>
+Postdoc</div>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px">SnT, Luxembourg</div=
+>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px"><br>
+</div>
+<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_1=
+429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152gm=
+ail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_1833416351567=
+459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_807729=
+1001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail-=
+m_-5406334666104058457gmail-m_-8630331225465229725gmail-m_-5090455826936873=
+702gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span style=3D"c=
+olor:rgb(136,136,136);font-size:12.8px">--=C2=A0</span><br style=3D"color:r=
+gb(136,136,136);font-size:12.8px"><div style=3D"color:rgb(136,136,136);font=
+-size:12.8px">Sumit kumar<br>Postdoc</div><div style=3D"color:rgb(136,136,1=
+36);font-size:12.8px">SnT, Luxembourg</div><div style=3D"color:rgb(136,136,=
+136);font-size:12.8px"><br></div><br></div></div></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -222,12 +1516,87 @@ lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_1=
+429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152gm=
+ail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_1833416351567=
+459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_807729=
+1001688814057gmail-m_-2723275523225085977gmail-m_-6449813456354474750gmail-=
+m_-5406334666104058457gmail_signature"><div dir=3D"ltr"><div><div dir=3D"lt=
+r"><span style=3D"color:rgb(136,136,136);font-size:12.8px">--=C2=A0</span><=
+br style=3D"color:rgb(136,136,136);font-size:12.8px"><div style=3D"color:rg=
+b(136,136,136);font-size:12.8px">Sumit kumar<br>Postdoc</div><div style=3D"=
+color:rgb(136,136,136);font-size:12.8px">SnT, Luxembourg</div><div style=3D=
+"color:rgb(136,136,136);font-size:12.8px"><br></div><br></div></div></div><=
+/div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_1=
+429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152gm=
+ail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_1833416351567=
+459632gmail-m_8429522937710005813gmail-m_-7763822819519994741gmail-m_807729=
+1001688814057gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span =
+style=3D"color:rgb(136,136,136);font-size:12.8px">--=C2=A0</span><br style=
+=3D"color:rgb(136,136,136);font-size:12.8px"><div style=3D"color:rgb(136,13=
+6,136);font-size:12.8px">Sumit kumar<br>Postdoc</div><div style=3D"color:rg=
+b(136,136,136);font-size:12.8px">SnT, Luxembourg</div><div style=3D"color:r=
+gb(136,136,136);font-size:12.8px"><br></div><br></div></div></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_1=
+429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152gm=
+ail-m_-8846324310455197473gmail-m_-2263946608738406543gmail-m_1833416351567=
+459632gmail-m_8429522937710005813gmail_signature"><div dir=3D"ltr"><div><di=
+v dir=3D"ltr"><span style=3D"color:rgb(136,136,136);font-size:12.8px">--=C2=
+=A0</span><br style=3D"color:rgb(136,136,136);font-size:12.8px"><div style=
+=3D"color:rgb(136,136,136);font-size:12.8px">Sumit kumar<br>Postdoc</div><d=
+iv style=3D"color:rgb(136,136,136);font-size:12.8px">SnT, Luxembourg</div><=
+div style=3D"color:rgb(136,136,136);font-size:12.8px"><br></div><br></div><=
+/div></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_1=
+429041156151116054gmail-m_-783974566588487241gmail-m_-8787730956157389152gm=
+ail-m_-8846324310455197473gmail-m_-2263946608738406543gmail_signature"><div=
+ dir=3D"ltr"><div><div dir=3D"ltr"><span style=3D"color:rgb(136,136,136);fo=
+nt-size:12.8px">--=C2=A0</span><br style=3D"color:rgb(136,136,136);font-siz=
+e:12.8px"><div style=3D"color:rgb(136,136,136);font-size:12.8px">Sumit kuma=
+r<br>Postdoc</div><div style=3D"color:rgb(136,136,136);font-size:12.8px">Sn=
+T, Luxembourg</div><div style=3D"color:rgb(136,136,136);font-size:12.8px"><=
+br></div><br></div></div></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail-m_1=
+429041156151116054gmail-m_-783974566588487241gmail_signature"><div dir=3D"l=
+tr"><div><div dir=3D"ltr"><span style=3D"color:rgb(136,136,136);font-size:1=
+2.8px">--=C2=A0</span><br style=3D"color:rgb(136,136,136);font-size:12.8px"=
+><div style=3D"color:rgb(136,136,136);font-size:12.8px">Sumit kumar<br>Post=
+doc</div><div style=3D"color:rgb(136,136,136);font-size:12.8px">SnT, Luxemb=
+ourg</div><div style=3D"color:rgb(136,136,136);font-size:12.8px"><br></div>=
+<br></div></div></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_-2779312069046611987gmail-m_-7088995231373930625gmail_sig=
+nature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span style=3D"color:rgb(136=
+,136,136);font-size:12.8px">--=C2=A0</span><br style=3D"color:rgb(136,136,1=
+36);font-size:12.8px"><div style=3D"color:rgb(136,136,136);font-size:12.8px=
+">Sumit kumar<br>Postdoc</div><div style=3D"color:rgb(136,136,136);font-siz=
+e:12.8px">SnT, Luxembourg</div><div style=3D"color:rgb(136,136,136);font-si=
+ze:12.8px"><br></div><br></div></div></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_-2779312069046611987gmail_signature"><div dir=3D"ltr"><di=
+v><div dir=3D"ltr"><span style=3D"color:rgb(136,136,136);font-size:12.8px">=
+--=C2=A0</span><br style=3D"color:rgb(136,136,136);font-size:12.8px"><div s=
+tyle=3D"color:rgb(136,136,136);font-size:12.8px">Sumit kumar<br>Postdoc</di=
+v><div style=3D"color:rgb(136,136,136);font-size:12.8px">SnT, Luxembourg</d=
+iv><div style=3D"color:rgb(136,136,136);font-size:12.8px"><br></div><br></d=
+iv></div></div></div>
 
---000000000000fd7a4a058decc50f--
+--0000000000003dbf26058df13bcd--
 
 
---===============0316218334139986944==
+--===============2309475470547740961==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -238,5 +1607,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0316218334139986944==--
+--===============2309475470547740961==--
 
