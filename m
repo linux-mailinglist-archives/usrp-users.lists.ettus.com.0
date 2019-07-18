@@ -2,61 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 385A26D07F
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 16:54:01 +0200 (CEST)
-Received: from [::1] (port=44896 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 523726D0E9
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 17:18:33 +0200 (CEST)
+Received: from [::1] (port=48114 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ho7nB-0001h1-NY; Thu, 18 Jul 2019 10:53:57 -0400
-Received: from mail-qk1-f177.google.com ([209.85.222.177]:36472)
+	id 1ho8Ar-0002iB-JL; Thu, 18 Jul 2019 11:18:25 -0400
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:37751)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1ho7n8-0001bb-CH
- for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 10:53:54 -0400
-Received: by mail-qk1-f177.google.com with SMTP id g18so20671411qkl.3
- for <usrp-users@lists.ettus.com>; Thu, 18 Jul 2019 07:53:34 -0700 (PDT)
+ (Exim 4.92) (envelope-from <sammywelschen@gmail.com>)
+ id 1ho8Ao-0002cR-2n
+ for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 11:18:22 -0400
+Received: by mail-ua1-f46.google.com with SMTP id z13so11295294uaa.4
+ for <usrp-users@lists.ettus.com>; Thu, 18 Jul 2019 08:18:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=KrW8XdegdhTOjJlCKMxX+M9B+7ClRlDhRzfnwnv0MvY=;
- b=B8TvQFYxnDqXzWtVS7CpHyBc85TLs2opRHGxc+3wyDUAUW+udz8MQIAUMzRUXWzjCW
- i/XA1/9yWf12liCqajkNB3OtwxwyWN+AOFCVDE/n6KEm1W5iMS7IvUhZ5yt1hDZBlbvw
- OtRpAJPb/pkQcttBhaO+ceCrYgAoXcrgaOS+yiV6H20jc0/fy2ap6zT0FQTURCq8lhui
- 8+do/5Zuz4fhuInC8Woce8MBDgpscT01K3BipRlbnZ+Y9KoQ/GElxmTBKQ3qYF2sYEtv
- sk+2oSv/aoGKsQvORiYmrikL3Zoi78PvUeUWcN10mlPfTVLeAihzkuQReIk5ril5a6gb
- L/mg==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=h6rlYpYUyFPk1AUmpTiarTfnzcXbEfrae4JpXggXjAM=;
+ b=d/iwVW4Jl53lnDoVG4Q7sMRQNdfm3pHx5n0LGvzxraSORZt1sORTbWtZuHbIs1MbWi
+ nvEoDK9bK1zqFByd6bfCeYMCYNZFj+PvsaXiYi+b4Pd63HB7zauF3oIL25AvbVpsBWf4
+ aD/A8y9n5OdF6B4rGjuGfeBxnDXUjGfYcCiMxW1J4mTGr1LY32+PNWcuCIIMyknzripV
+ bkA2OKNu/c58RkHWUbTy/3iTH9f0vOOGu/udybUMpvHQ0cBGU+ubyvb+1N6MfCRDouvR
+ ANXzLkyoQ4FUBicHr9j6vlVm3xqG6O3yP4gt39mkC3Jrw7gMVJ6wxYyDswKa7qM8tVIQ
+ qNxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=KrW8XdegdhTOjJlCKMxX+M9B+7ClRlDhRzfnwnv0MvY=;
- b=aGRo0PaBMbUnef8R8PCGfR3VOKCt/xIGx4TLHmwk8T5UXlZ9g+h76b7V87FNSVGT6k
- w/vlLUtCbxiTAVoMFvfteaZ/CjY+B+lM0J8R71jCE7aPgjqQ1reb2KhuzP2yZcPwsfk8
- o32bOigVQC2clAIY4tJJsckguy0FSokbrMQbz8ABYrt4yZgoiWgk6nyJAB5S9GKNQXfd
- QqJmcz8itjjp+Q6+eyD488eEkggQhR3SYUZc2TW49F4iFku3P8Jg369k0LGlaTBt/5dT
- ow9RF82YHdLpf8oRimwDJzqswMmiimJMKggLBr3RSgmkZae1zDREmgbxhgvw12SvNleq
- LKjg==
-X-Gm-Message-State: APjAAAUWUkrnGQHnytWhP9dO3n2ukzeDtykTvuc64dOLf8LBGFi/nMgA
- EaRwxidEirrJ6pB6pfuU7t//O5Q3
-X-Google-Smtp-Source: APXvYqxSEI9NmVuxXZcGdjQoYWFMHW1k2yoWdL5HA/YqIGE6eEGaIRZBlFaQtv8QDG3A1QQvuatd2Q==
-X-Received: by 2002:a37:4887:: with SMTP id v129mr30266507qka.17.1563461593739; 
- Thu, 18 Jul 2019 07:53:13 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
- [174.95.14.20])
- by smtp.googlemail.com with ESMTPSA id h1sm13954327qkh.101.2019.07.18.07.53.12
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 18 Jul 2019 07:53:13 -0700 (PDT)
-Message-ID: <5D3087D8.9090100@gmail.com>
-Date: Thu, 18 Jul 2019 10:53:12 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=h6rlYpYUyFPk1AUmpTiarTfnzcXbEfrae4JpXggXjAM=;
+ b=jXD0gcZ/GYB3saaVAQIO91xk11AjHw2SLW424yL5DR/odaaZ/z1amspyloJM7knSAk
+ LHEg1oNP0CeRIYtHqY64/9cpZygnAcgoOnig+ad5sgTCsruI9ZHpR11Tnn6Z9KF1AU9I
+ ouoCjK+1k+4LiMLW83NGSW8pex5zLT4Hvjb/Jzz7MN7CVRNfc6dAt0FrVxZCKV6G16tp
+ uOSSdkZgw1zRFRx7rUzFWn3E9IoMIMhQ59s3PhM/sDmQLbGRPoNc2Xq7dP8Iz/eHpYvM
+ tHMGcv5Q8bLDtcaemcFAHsV8UwiPXvPXOYnzCeCstoTwf8fWV3SL11OfOWl3lJ1JLXq8
+ fl2w==
+X-Gm-Message-State: APjAAAW+RhLX0FxxJzV2FETUwV8BiEG+HAM0Mj5+yeqFfMy4nEopN1ng
+ 4ki3fHGQFnI/GSqR8uV6x9NHSJcauCk6e3k+5WrQ6rov
+X-Google-Smtp-Source: APXvYqzQPfVZWMAGrcyGgP1BbNl4NnV5zridytHzH2Ne7UI2hair6LcYOTWrQerhgAYLkrpAny7lPiICrVTyYq0z1Rc=
+X-Received: by 2002:a9f:248b:: with SMTP id 11mr29615654uar.9.1563463061233;
+ Thu, 18 Jul 2019 08:17:41 -0700 (PDT)
 MIME-Version: 1.0
+Date: Thu, 18 Jul 2019 17:17:30 +0200
+Message-ID: <CAE6G029K0GMuCpkX5zs2g_mhYfbZgGDr7VYsyU92QBhTyAbT8w@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <mailman.471.1563453408.10724.usrp-users_lists.ettus.com@lists.ettus.com>
- <CALSxwQFAPfCF_j9arS2gGPfHydfg5NQ1w-TR5NU25ahUyaW4uw@mail.gmail.com>
-In-Reply-To: <CALSxwQFAPfCF_j9arS2gGPfHydfg5NQ1w-TR5NU25ahUyaW4uw@mail.gmail.com>
-Subject: Re: [USRP-users] harmonic genereted by N200
+Subject: [USRP-users] Phase coherency for low RX frequencies
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Sammy Welschen via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sammy Welschen <sammywelschen@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1911600923973208655=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,29 +71,53 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 07/18/2019 10:22 AM, Simona Sibio via USRP-users wrote:
-> Hi all,
->
-> I am working with N200 and GNU 3.7.
-> On GNU radio, I sent a sine in baseband.
-> When I tried  to measure the signal generated by USRP (the signal 
-> mixed with carrier signal), I saw on the spectrum analyzer and on 
-> oscilloscope that it was generating also other harmonics.
-> Can it generate a signal avoiding other harmonics?
-> Can I correct this problem from software or only with a filter in the 
-> TX chain?
-> Thank you for your time.
-> Best Regards,
->
-> Simona
->
->
-Reduce the magnitude of your baseband signal, and the TX gain.  Does 
-that improve the spurious emissions?
+--===============1911600923973208655==
+Content-Type: multipart/alternative; boundary="0000000000006264e1058df61c07"
+
+--0000000000006264e1058df61c07
+Content-Type: text/plain; charset="UTF-8"
+
+I have to acquire phase coherent data on multiple channels using USRP
+N310/320 devices.
+
+Am I correct in assuming that for frequencies below 450 MHz, there is no
+way to remove random phase differences between channels due to the
+additional frequency shift involved (shown for example in the block
+diagram
+http://www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png)? As I
+understand it, by using the same LO signal for all channels I could remove
+the differences for frequencies above 450 MHz, but this is of no use for
+frequencies below 450 MHz due to this the additional stage.
+
+--0000000000006264e1058df61c07
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I have to acquire phase coherent data on multiple cha=
+nnels using USRP N310/320 devices.</div><div><br></div>Am I correct in assu=
+ming that for frequencies below 450 MHz, there is no way to remove random p=
+hase differences between channels due to the additional frequency shift inv=
+olved (shown for example in the block diagram=C2=A0
+
+<a href=3D"http://www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram=
+.png">http://www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png<=
+/a>)? As I understand it, by using the same LO signal for all channels I co=
+uld remove the differences for frequencies above 450 MHz, but this is of no=
+ use for frequencies below 450 MHz due to this the additional stage.</div>
+
+--0000000000006264e1058df61c07--
 
 
+--===============1911600923973208655==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1911600923973208655==--
+
