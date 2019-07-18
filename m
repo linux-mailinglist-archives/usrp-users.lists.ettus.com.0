@@ -2,59 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1E156D2B3
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 19:25:09 +0200 (CEST)
-Received: from [::1] (port=58218 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2556D33C
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 19:53:13 +0200 (CEST)
+Received: from [::1] (port=36290 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hoA9U-0008Ej-4f; Thu, 18 Jul 2019 13:25:08 -0400
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:40772)
+	id 1hoAad-0001QQ-0q; Thu, 18 Jul 2019 13:53:11 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:41541)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hoA9Q-00087y-4H
- for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 13:25:04 -0400
-Received: by mail-qt1-f173.google.com with SMTP id a15so28015849qtn.7
- for <usrp-users@lists.ettus.com>; Thu, 18 Jul 2019 10:24:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:content-transfer-encoding:mime-version:date:subject:message-id
- :references:to;
- bh=fCri+cURH6mCK40rHjC6vwXzm8mLH3UibV7F22sI/ag=;
- b=aXsF4aBusZWRmIgweQ3CAlsq3K4SyPhw0QMGIEwM/+5byk+7gUehN7uPJzDsBmgNrl
- zyvq2J9iS+IcqzjYIzDFZGbqqV8aMseIMWV+4A1WnIOdRc7Tczi0YtjnSvWWTWh9mA92
- UF73j7NE8UheCgIX226L8aw0lyTJ8OAxp7Msi58KonK1+gUJXmisgWfwAfXiPTzrD7OX
- BU44Vc0rbnascaS6BaJzZlq3o8/WAJ4Zbqti4FhzyHm2Osfk84sv0TsLivC7935fCpHd
- eJRD0wpDORB4qjgB54me1kGQRJHIPbiLu65reRhXV0N6ZYZgENcsysua/KYNhC45/gHP
- vjxw==
+ (Exim 4.92) (envelope-from <serge.malo@skydelsolutions.com>)
+ id 1hoAaY-0001Gq-Qi
+ for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 13:53:06 -0400
+Received: by mail-io1-f53.google.com with SMTP id j5so48655244ioj.8
+ for <usrp-users@lists.ettus.com>; Thu, 18 Jul 2019 10:52:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=skydelsolutions-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to:cc;
+ bh=kRhzN4sdBnFPA75OvRL01Nd+NBqiCInHoOoQa3IHKoE=;
+ b=r2Z/nnSQ59Ojx12T0eAjvyeq9i7fJLPb7ExsGWGp99eV3vTQunAvyU3sgsSORjs30K
+ kc+Hs3ZNKhS2q6xTIi5WBJUUBjm2gajGjDN1a/4XsNz8jrR144btKlMptGBb2OqBCy0l
+ 0uczJD1Hs0/uDnr7iCMMyj5AYhUbyBlKe0vRvwJ8/zQezwUekT70PFtCabhlWjvgP8RI
+ 7WP/XR9kni9Wr8GFHNmt/T6dQxy7h7fueIyhsAc3jZwh0X/Rq6Ny3jpt6xItzpQ/uTFD
+ DEpmeeicAMzrbHJaH5lLKMAgEK2ODpb458bt6PeaCzFozMzQ+JRbu27s9SU99h5ZyFwH
+ 0rQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:content-transfer-encoding:mime-version:date
- :subject:message-id:references:to;
- bh=fCri+cURH6mCK40rHjC6vwXzm8mLH3UibV7F22sI/ag=;
- b=fpbLAldsNCDwAJRBr/he4wwd+Pcg5JljaLSKMM55paJW5pL1q8KHQKf9BxvDbRco7p
- tTC+G1yNLmvtUs6oFh3osD/chkvOd804ZuLjzePnV75nWl7bsWHytuozTFIxs/TIPSYg
- iSFD9H0u0O9QaW3uHw7PMyM1nOJl32xh8YWz7zFRP93Nl9s1AbBhktJU5lPIwq8iceXU
- KsdvVW8RahbjCh0hlMcV/1VxnfjkSNnOfBy9P4afawBFrKiRyBhwqhcypaltvNq9b1gy
- 1hC3MiCnk3ECKfxRnrCM1UvHMT0lyLGqfaLmoL4NRS+gOVSJoKLi0xoGPvqIxeKRrjZO
- wI0w==
-X-Gm-Message-State: APjAAAW94xoOu56ScPWhvrPL5NBg0Pjq1l6ZZogFRVTMNtaUHgJkXy30
- CgTaXswp0Ng6g4FuzMKc2yQXuctN
-X-Google-Smtp-Source: APXvYqw1kRZkkHSi3zS1QEyBVT7st+DDl8V3fOi5poW0Twp8rmXflH31Q7ExXcpBMPOvRKE/1rcqaw==
-X-Received: by 2002:a05:6214:2b0:: with SMTP id
- m16mr33833323qvv.23.1563470663457; 
- Thu, 18 Jul 2019 10:24:23 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
- [174.95.14.20])
- by smtp.gmail.com with ESMTPSA id s8sm11938525qkg.64.2019.07.18.10.24.22
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 18 Jul 2019 10:24:22 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Thu, 18 Jul 2019 13:24:22 -0400
-Message-Id: <D975AAE1-4B39-430E-B0AB-C3A996368FB3@gmail.com>
-References: <CAKJyDkKyb2H0gi_Kcy_5=YE0NTqLguMVfeWnGT6gXiQDe=3ppA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-X-Mailer: iPhone Mail (16F203)
-Subject: [USRP-users] Fwd:  Phase coherency for low RX frequencies
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+ bh=kRhzN4sdBnFPA75OvRL01Nd+NBqiCInHoOoQa3IHKoE=;
+ b=lK50pR41auRvsv6JYVvPGFnRKkp155/KY9IKxwa5kMt7O7zVq8vvSrgW1eU1aMB7V0
+ AGnDHmnbiUc8XjLOvgVHqZUAjzOPpGhn9rClcjw1bKlFmTXSBiX/6IXimjLlXUq6mEWp
+ vK2fBEFG/HSmJapRF6diRxTGnTOTpdF7U2v+B0HDA1MpdOwIXdmtKPUMta28wxClO2KM
+ 7iXcLnD+okHzKoMvtbfRpORqCEoSdDS0rmcIYrLESG5qpaenR+FXIPpUSjZz4844/Gu2
+ 6sK0yTi0vJBOIVZA2lK6+pLNLIRkilCmbtJPxL6GkD5M82pNfm5jOzrYRSW+BeQtKgez
+ NM9A==
+X-Gm-Message-State: APjAAAUe2bUFCrPXiXA0h90EgTF7RZn/m9CX9B8Qyj9WfiGEighRj8ts
+ Tyb46FzayzUznW6R4vpO1/CkmGjPQI7gNeHy77qYFENyK1U=
+X-Google-Smtp-Source: APXvYqyH5N+sJRPclKR/bkVAfPF1e1GeaWEAtBSW+ff90CVpOZwJ4W7cWOc5pDm7/L6Ken/PI0RrdOW1dyEjAJP96Us=
+X-Received: by 2002:a5d:8404:: with SMTP id i4mr40897271ion.146.1563472345462; 
+ Thu, 18 Jul 2019 10:52:25 -0700 (PDT)
+MIME-Version: 1.0
+Date: Thu, 18 Jul 2019 13:52:14 -0400
+Message-ID: <CAOhu+FNA7PhfLoARTej_vwzaomvvv23a4rtegYXn7seu-iQ2uQ@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Unable to Tx on 2 X300s with UHD 3.13.1.0 -
+ benchmark_rate hangs
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -66,9 +57,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5674937502493196694=="
+From: Serge Malo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Serge Malo <serge.malo@skydelsolutions.com>
+Cc: julien.edmond@orolia.com
+Content-Type: multipart/mixed; boundary="===============6438528174432955175=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,152 +74,214 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============6438528174432955175==
+Content-Type: multipart/alternative; boundary="000000000000c48fda058df84583"
 
---===============5674937502493196694==
-Content-Type: multipart/alternative;
-	boundary=Apple-Mail-24D59632-D668-4BB9-B3B2-54A77A0B26DA
-Content-Transfer-Encoding: 7bit
+--000000000000c48fda058df84583
+Content-Type: text/plain; charset="UTF-8"
+
+Hi all,
+
+We are facing a important issue with UHD 3.13.1.0 with the X300:
+We can not Tx on the 4 channels of 2 X300s, even with the benchmark_rate
+example.
+We were able to do this flawlessly with UHD 3.10.3 for a long time.
+
+Here's the command we use:
+./benchmark_rate --args addr0=192.168.40.2,addr1=192.168.50.2 --tx_cpu=sc16
+--tx_rate=25000000 --ref=external --pps=external --tx_channels=0,1,2,3
+
+When using this command, the benchmark_rate hangs forever (See below the
+whole output)
+We have reproduced this error under Ubutun 18.04, with gcc 7.4 and Boost
+1.68 (statically linked).
+We also saw the same problem under Windows 10.
+
+Please, let us if this issue was observed before, and if there is a
+correction available.
+
+Thanks,
+Serge
 
 
---Apple-Mail-24D59632-D668-4BB9-B3B2-54A77A0B26DA
-Content-Type: text/plain;
-	charset=utf-8
+
+benchmark_rate output:
+./benchmark_rate --args addr0=192.168.40.2,addr1=192.168.50.2 --tx_cpu=sc16
+--tx_rate=25000000 --ref=external --pps=external --tx_channels=0,1,2,3
+
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106800;
+UHD_3.13.1.skydel-1-ga4c99ab3
+[00:00:00.000002] Creating the usrp device with:
+addr0=192.168.40.2,addr1=192.168.50.2...
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [1/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D00000000000)
+[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1300 MB/s)
+[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1298 MB/s)
+[INFO] [1/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
+[INFO] [1/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
+[INFO] [1/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+[INFO] [1/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
+[INFO] [1/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
+[INFO] [1/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
+[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D00000000000)
+[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)
+[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1294 MB/s)
+[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
+[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
+[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
+[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
+[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
+Using Device: Multi USRP:
+  Device: X-Series Device
+  Mboard 0: X300
+  Mboard 1: X300
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: UBX RX
+  RX Channel: 1
+    RX DSP: 0
+    RX Dboard: B
+    RX Subdev: UBX RX
+  RX Channel: 2
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: UBX RX
+  RX Channel: 3
+    RX DSP: 0
+    RX Dboard: B
+    RX Subdev: UBX RX
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: UBX TX
+  TX Channel: 1
+    TX DSP: 0
+    TX Dboard: B
+    TX Subdev: UBX TX
+  TX Channel: 2
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: UBX TX
+  TX Channel: 3
+    TX DSP: 0
+    TX Dboard: B
+    TX Subdev: UBX TX
+
+Now confirming lock on clock signals...
+[00:00:05.059918] Setting device timestamp to 0...
+[INFO] [MULTI_USRP]     1) catch time transition at pps edge
+[INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+[00:00:06.714193] Testing transmit rate 25.000000 Msps on 4 channels
+^C
+
+--000000000000c48fda058df84583
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
+=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div style=3D"color:rgb(0,0,0)"><div style=3D"color:rgb(=
+34,34,34);font-family:LucidaGrande;font-size:12.8px">Hi all,</div><div styl=
+e=3D"color:rgb(34,34,34);font-family:LucidaGrande;font-size:12.8px"><br></d=
+iv><div style=3D"color:rgb(34,34,34);font-family:LucidaGrande;font-size:12.=
+8px">We are facing a important issue with UHD 3.13.1.0 with the X300:</div>=
+<div style=3D"color:rgb(34,34,34);font-family:LucidaGrande;font-size:12.8px=
+">We can not Tx on the 4 channels of 2 X300s, even with the benchmark_rate =
+example.</div><div style=3D"color:rgb(34,34,34);font-family:LucidaGrande;fo=
+nt-size:12.8px"><span style=3D"font-size:12.8px">We were able to do this fl=
+awlessly with UHD 3.10.3 for a long time.</span><br></div><div style=3D"col=
+or:rgb(34,34,34);font-family:LucidaGrande;font-size:12.8px"><br></div><div =
+style=3D"color:rgb(34,34,34);font-family:LucidaGrande;font-size:12.8px">Her=
+e&#39;s the command we use:</div><div style=3D"color:rgb(34,34,34);font-fam=
+ily:LucidaGrande;font-size:12.8px">./benchmark_rate --args addr0=3D192.168.=
+40.2,addr1=3D192.168.50.2 --tx_cpu=3Dsc16 --tx_rate=3D25000000 --ref=3Dexte=
+rnal --pps=3Dexternal --tx_channels=3D0,1,2,3</div><div style=3D"color:rgb(=
+34,34,34);font-family:LucidaGrande;font-size:12.8px"><br></div><div style=
+=3D"color:rgb(34,34,34);font-family:LucidaGrande;font-size:12.8px">When usi=
+ng this command, the benchmark_rate hangs forever (See below the whole outp=
+ut)</div><div style=3D"color:rgb(34,34,34);font-family:LucidaGrande;font-si=
+ze:12.8px">We have reproduced this error under Ubutun 18.04, with gcc 7.4 a=
+nd Boost 1.68 (statically linked).</div><div style=3D"color:rgb(34,34,34);f=
+ont-family:LucidaGrande;font-size:12.8px">We also saw the same problem unde=
+r Windows 10.</div><div style=3D"color:rgb(34,34,34);font-family:LucidaGran=
+de;font-size:12.8px"><br></div><div style=3D"color:rgb(34,34,34);font-famil=
+y:LucidaGrande;font-size:12.8px"><span style=3D"font-size:12.8px">Please, l=
+et us if this issue was observed before, and if there is a correction avail=
+able.</span><br></div><div style=3D"color:rgb(34,34,34);font-family:LucidaG=
+rande;font-size:12.8px"><span style=3D"font-size:12.8px"><br></span></div><=
+div style=3D"color:rgb(34,34,34);font-family:LucidaGrande;font-size:12.8px"=
+><span style=3D"font-size:12.8px">Thanks,</span></div><div style=3D"color:r=
+gb(34,34,34);font-family:LucidaGrande;font-size:12.8px"><span style=3D"font=
+-size:12.8px">Serge</span></div><div style=3D"color:rgb(34,34,34);font-fami=
+ly:LucidaGrande;font-size:12.8px"><span style=3D"font-size:12.8px"><br></sp=
+an></div><div style=3D"color:rgb(34,34,34);font-family:LucidaGrande;font-si=
+ze:12.8px"><span style=3D"font-size:12.8px"><br></span></div><div style=3D"=
+color:rgb(34,34,34);font-family:LucidaGrande;font-size:12.8px"><span style=
+=3D"font-size:12.8px"><br></span></div><div style=3D"color:rgb(34,34,34);fo=
+nt-family:LucidaGrande;font-size:12.8px"><span style=3D"font-size:12.8px">b=
+enchmark_rate output:</span></div><div style=3D"color:rgb(34,34,34);font-si=
+ze:12.8px"><font face=3D"courier new, monospace">./benchmark_rate --args ad=
+dr0=3D192.168.40.2,addr1=3D192.168.50.2 --tx_cpu=3Dsc16 --tx_rate=3D2500000=
+0 --ref=3Dexternal --pps=3Dexternal --tx_channels=3D0,1,2,3<br><br>[INFO] [=
+UHD] linux; GNU C++ version 7.4.0; Boost_106800; UHD_3.13.1.skydel-1-ga4c99=
+ab3<br>[00:00:00.000002] Creating the usrp device with: addr0=3D192.168.40.=
+2,addr1=3D192.168.50.2...<br>[INFO] [X300] X300 initialization sequence...<=
+br>[INFO] [X300] Maximum frame size: 8000 bytes.<br>[INFO] [X300] Maximum f=
+rame size: 8000 bytes.<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>[INFO] [=
+X300] Radio 1x clock: 200 MHz<br>[INFO] [1/DmaFIFO_0] Initializing block co=
+ntrol (NOC ID: 0xF1F0D00000000000)<br>[INFO] [1/DmaFIFO_0] BIST passed (Thr=
+oughput: 1300 MB/s)<br>[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmwar=
+e Rev 0.929a<br>[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1298 MB/s)<br=
+>[INFO] [1/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)=
+<br>[INFO] [1/Radio_1] Initializing block control (NOC ID: 0x12AD1000000000=
+01)<br>[INFO] [1/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000=
+000)<br>[INFO] [1/DDC_1] Initializing block control (NOC ID: 0xDDC000000000=
+0000)<br>[INFO] [1/DUC_0] Initializing block control (NOC ID: 0xD0C00000000=
+00000)<br>[INFO] [1/DUC_1] Initializing block control (NOC ID: 0xD0C0000000=
+000000)<br>[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D=
+00000000000)<br>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)<br=
+>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1294 MB/s)<br>[INFO] [0/Radi=
+o_0] Initializing block control (NOC ID: 0x12AD100000000001)<br>[INFO] [0/R=
+adio_1] Initializing block control (NOC ID: 0x12AD100000000001)<br>[INFO] [=
+0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)<br>[INFO] =
+[0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)<br>[INFO]=
+ [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)<br>[INFO=
+] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)<br>Usin=
+g Device: Multi USRP:<br>=C2=A0 Device: X-Series Device<br>=C2=A0 Mboard 0:=
+ X300<br>=C2=A0 Mboard 1: X300<br>=C2=A0 RX Channel: 0<br>=C2=A0 =C2=A0 RX =
+DSP: 0<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: UBX RX<br>=
+=C2=A0 RX Channel: 1<br>=C2=A0 =C2=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX Dboard:=
+ B<br>=C2=A0 =C2=A0 RX Subdev: UBX RX<br>=C2=A0 RX Channel: 2<br>=C2=A0 =C2=
+=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: UBX=
+ RX<br>=C2=A0 RX Channel: 3<br>=C2=A0 =C2=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX =
+Dboard: B<br>=C2=A0 =C2=A0 RX Subdev: UBX RX<br>=C2=A0 TX Channel: 0<br>=C2=
+=A0 =C2=A0 TX DSP: 0<br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =C2=A0 TX Subd=
+ev: UBX TX<br>=C2=A0 TX Channel: 1<br>=C2=A0 =C2=A0 TX DSP: 0<br>=C2=A0 =C2=
+=A0 TX Dboard: B<br>=C2=A0 =C2=A0 TX Subdev: UBX TX<br>=C2=A0 TX Channel: 2=
+<br>=C2=A0 =C2=A0 TX DSP: 0<br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =C2=A0 =
+TX Subdev: UBX TX<br>=C2=A0 TX Channel: 3<br>=C2=A0 =C2=A0 TX DSP: 0<br>=C2=
+=A0 =C2=A0 TX Dboard: B<br>=C2=A0 =C2=A0 TX Subdev: UBX TX<br><br>Now confi=
+rming lock on clock signals...<br>[00:00:05.059918] Setting device timestam=
+p to 0...<br>[INFO] [MULTI_USRP] =C2=A0 =C2=A0 1) catch time transition at =
+pps edge<br>[INFO] [MULTI_USRP] =C2=A0 =C2=A0 2) set times next pps (synchr=
+onously)<br>[00:00:06.714193] Testing transmit rate 25.000000 Msps on 4 cha=
+nnels<br>^C</font><br></div><div style=3D"color:rgb(34,34,34);font-family:L=
+ucidaGrande;font-size:12.8px"><br><br></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div>
+
+--000000000000c48fda058df84583--
 
 
->>=20
->> I have just been corrected by one of my colleagues at Ettus.=20
->>=20
->> While there is an up conversion stage for frequencies below 450Mhz, the L=
-O for that stage is fixed frequency, and derived from the sample clock and c=
-oherent across channels.=20
->>=20
->> So there should be no random phase offset among channels even below 450Mh=
-z when LO sharing.=20
->>=20
->>> This is correct as far as I know. Although I don=E2=80=99t have an N320 i=
-n my lab, it uses an up conversion scheme for lower frequencies. That scheme=
- does not participate in the LO sharing.=20
->>>=20
->>> Sent from my iPhone
->>>=20
->>>=20
->>> On Jul 18, 2019, at 11:17 AM, Sammy Welschen via USRP-users <usrp-users@=
-lists.ettus.com> wrote:
->>>=20
->>> I have to acquire phase coherent data on multiple channels using USRP N3=
-10/320 devices.
->>>=20
->>> =20
->>>=20
->>> Am I correct in assuming that for frequencies below 450 MHz, there is no=
- way to remove random phase differences between channels due to the addition=
-al frequency shift involved (shown for example in the block diagram  http://=
-www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png)? As I underst=
-and it, by using the same LO signal for all channels I could remove the diff=
-erences for frequencies above 450 MHz, but this is of no use for frequencies=
- below 450 MHz due to this the additional stage.
->>>=20
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>=20
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---Apple-Mail-24D59632-D668-4BB9-B3B2-54A77A0B26DA
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto"><br><br><blockquote type=3D"cite"><div dir=3D=
-"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"><br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">I ha=
-ve just been corrected by one of my colleagues at Ettus.&nbsp;<div><br></div=
-><div>While there is an up conversion stage for frequencies below 450Mhz, th=
-e LO for that stage is fixed frequency, and derived from the sample clock an=
-d coherent across channels.&nbsp;</div><div><br></div><div>So there should b=
-e no random phase offset among channels even below 450Mhz when LO sharing.&n=
-bsp;</div><div><br><blockquote type=3D"cite"><div dir=3D"ltr"><div class=3D"=
-gmail-m_8464511976241383310WordSection1"><div><div><div><p class=3D"MsoNorma=
-l" style=3D"margin-bottom:12pt">This is correct as far as I know. Although I=
- don=E2=80=99t have an N320 in my lab, it uses an up conversion scheme for l=
-ower frequencies. That scheme does not participate in the LO sharing.&nbsp;<=
-u></u><u></u></p>
-<div id=3D"gmail-m_8464511976241383310m_-2455621878214780349AppleMailSignatu=
-re">
-<p class=3D"MsoNormal">Sent from my iPhone<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><br>
-On Jul 18, 2019, at 11:17 AM, Sammy Welschen via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.c=
-om</a>&gt; wrote:<u></u><u></u></p>
-</div>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<div>
-<div>
-<div>
-<p class=3D"MsoNormal">I have to acquire phase coherent data on multiple cha=
-nnels using USRP N310/320 devices.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
-</div>
-<p class=3D"MsoNormal">Am I correct in assuming that for frequencies below 4=
-50 MHz, there is no way to remove random phase differences between channels d=
-ue to the additional frequency shift involved (shown for example in the bloc=
-k diagram&nbsp;
-<a href=3D"https://urldefense.com/v3/__http:/www.ettus.com/wp-content/upload=
-s/2019/03/N320BlockDiagram.png__;!fqWJcnlTkjM!9UAjRx1UqNGGgw_MyGxeNp4dcd08af=
-k3IjpbsIlbrDYEk9H2AfliCLM52OcRdC4$" target=3D"_blank">
-http://www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png</a>)? A=
-s I understand it, by using the same LO signal for all channels I could remo=
-ve the differences for frequencies above 450 MHz, but this is of no use for f=
-requencies below 450 MHz due
- to this the additional stage.<u></u><u></u></p>
-</div>
-</div>
-</blockquote>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<div>
-<p class=3D"MsoNormal">_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a><br>
-<a href=3D"https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listinf=
-o/usrp-users_lists.ettus.com__;!fqWJcnlTkjM!9UAjRx1UqNGGgw_MyGxeNp4dcd08afk3=
-IjpbsIlbrDYEk9H2AfliCLM5ZdVPAfg$" target=3D"_blank">http://lists.ettus.com/m=
-ailman/listinfo/usrp-users_lists.ettus.com</a><u></u><u></u></p>
-</div>
-</blockquote>
-</div>
-<p class=3D"MsoNormal">_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a><br>
-<a href=3D"https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listinf=
-o/usrp-users_lists.ettus.com__;!fqWJcnlTkjM!9UAjRx1UqNGGgw_MyGxeNp4dcd08afk3=
-IjpbsIlbrDYEk9H2AfliCLM5ZdVPAfg$" target=3D"_blank">http://lists.ettus.com/m=
-ailman/listinfo/usrp-users_lists.ettus.com</a><u></u><u></u></p>
-</div>
-</div>
-</div>
-
-
-</div></blockquote></div></div></blockquote></div>
-</div></blockquote></body></html>=
-
---Apple-Mail-24D59632-D668-4BB9-B3B2-54A77A0B26DA--
-
-
---===============5674937502493196694==
+--===============6438528174432955175==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -238,5 +292,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5674937502493196694==--
+--===============6438528174432955175==--
 
