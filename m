@@ -2,31 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1B46D27E
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 19:04:30 +0200 (CEST)
-Received: from [::1] (port=49572 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15A7C6D28C
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Jul 2019 19:10:14 +0200 (CEST)
+Received: from [::1] (port=55768 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ho9pV-00065c-1f; Thu, 18 Jul 2019 13:04:29 -0400
-Received: from starfish.geekisp.com ([216.168.135.166]:2309)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <philip@opensdr.com>) id 1ho9pQ-0005rR-Ow
- for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 13:04:24 -0400
-Received: (qmail 18056 invoked by uid 1003); 18 Jul 2019 17:03:44 -0000
-Received: from unknown (HELO ?100.146.144.209?)
- (philip@opensdr.com@172.56.6.175)
- by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 18 Jul 2019 17:03:43 -0000
-Date: Thu, 18 Jul 2019 19:03:39 +0200
-User-Agent: K-9 Mail for Android
-In-Reply-To: <CAL263iz_HaODktCA9=Ham5wXQgB=-MsrxXSgzfdTM1EwqHmDKA@mail.gmail.com>
+	id 1ho9v0-0007V2-Dp; Thu, 18 Jul 2019 13:10:10 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:37913)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1ho9uw-0007Mb-8y
+ for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 13:10:06 -0400
+Received: by mail-ot1-f42.google.com with SMTP id d17so29863749oth.5
+ for <usrp-users@lists.ettus.com>; Thu, 18 Jul 2019 10:09:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=H7ZjgeiZr4hrMhRHVNO2oIvHEYSwitLbfiwY1Bo0C2E=;
+ b=mgOEb5oVjAlsubRpIRfQs90RTWun82yyDQJw4h4dcPkTmPQm3g+BXX96Qi87Gt7p1D
+ 99VSJdn2/G5IW/YIYasAKpONWkIxoWCg9Spahg4yWgrjbC1R27aQWEiPG9l1INwMNVv/
+ UBdZ0ECrzd41dSkra+k+BXTSRaOw91j9jx+pusxnXL3rvzLPKX1fkREMgg5Ey/PXLmM3
+ RBs/QRuDX/sxfYW9jP0KugJSLAK88Q9VnFutNJ9E5tYBo59hB7jpQQIYghMYsFznc9hH
+ PVF84Tc/rT7DUx4C2g9FqK9PZdWY3TLl63YmlohaNhnNCxxYwCS5104m89Zc7TTbzCV+
+ oIBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=H7ZjgeiZr4hrMhRHVNO2oIvHEYSwitLbfiwY1Bo0C2E=;
+ b=irfCcT5r+fzlAQdpsjRMwn/pYAgtTHDqFejVhAiMGNeLFB9pqiSloBZPKFz/ja51L6
+ L+mZ2bEwpihVyc98jTE/3AcYLHNd1t6VOWLgphoM9jrbBd5XbjvoppDD6aSBW+WyUvW0
+ 33xNBLflRvz2dz/Qu/NJMOP6tIP3zszru8GFzdsEk5vBk90Vod3RUfQlNkqJZ6ppu5Cq
+ /XGiZt17FegBOubpMJvP8suo4nUNETLcvj1tqvk69IW+T5fqhHncAQeoyNX2BLL13dJ9
+ AqtzFZ2uIq7wtpnpO8KVR1IERCQ0c0UC6l+ct/dNShKv6iEnZOB6rNLltaOMMM2+sYWz
+ fmbA==
+X-Gm-Message-State: APjAAAWaWT6jBEwDS132lXxg+Quky/I2X6jmv1MIGL4OnpxwfAtQHjui
+ Bt9G2Beubs5PBBi9Z2Uu2ZDpP108/Tkpm8oRtXtjKiBtMFkphA==
+X-Google-Smtp-Source: APXvYqysz5CMDSc8zXCy4zWHcFx8wR5jxSpL7t1koZ/HMrDK/73RtCaWxxvX7bf7Vnf6Clalx74QhCSh4geaCe0KhzI=
+X-Received: by 2002:a05:6830:160c:: with SMTP id
+ g12mr37209972otr.231.1563469765621; 
+ Thu, 18 Jul 2019 10:09:25 -0700 (PDT)
+MIME-Version: 1.0
 References: <3d28bc6e-1f89-f7dd-f507-7c1f65865c16@eit.uni-kl.de>
  <CAL263iz_HaODktCA9=Ham5wXQgB=-MsrxXSgzfdTM1EwqHmDKA@mail.gmail.com>
-MIME-Version: 1.0
-To: Nate Temple <nate.temple@ettus.com>,
- Nate Temple via USRP-users <usrp-users@lists.ettus.com>,
- Andreas Weinand <weinand@eit.uni-kl.de>
-Message-ID: <6EABBFAB-F129-4E17-9C7C-41021CE13E0C@opensdr.com>
+ <6EABBFAB-F129-4E17-9C7C-41021CE13E0C@opensdr.com>
+In-Reply-To: <6EABBFAB-F129-4E17-9C7C-41021CE13E0C@opensdr.com>
+Date: Thu, 18 Jul 2019 10:09:43 -0700
+Message-ID: <CAL263ixON0xWF0U1Oi6FsX+uYnyJLds6rF4L3wCjNO1o7Xp3Ng@mail.gmail.com>
+To: Philip Balister <philip@opensdr.com>
 Subject: Re: [USRP-users] USRP E312 configuration
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -39,10 +62,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@opensdr.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5328517694206321260=="
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
+Cc: Andreas Weinand <weinand@eit.uni-kl.de>,
+ Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3861045557970686468=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -56,122 +80,129 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5328517694206321260==
-Content-Type: multipart/alternative; boundary="----TEN5XHZEWKCI18W2I35AK99XNNIAEE"
-Content-Transfer-Encoding: 7bit
+--===============3861045557970686468==
+Content-Type: multipart/alternative; boundary="000000000000ff4c41058df7ab9c"
 
-------TEN5XHZEWKCI18W2I35AK99XNNIAEE
-Content-Type: text/plain;
- charset=utf-8
+--000000000000ff4c41058df7ab9c
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Philip,
+
+We will be updating the kb.ettus.com application note when it is ready.
+
+Regards,
+Nate Temple
+
+On Thu, Jul 18, 2019 at 10:03 AM Philip Balister <philip@opensdr.com> wrote:
+
+> Why not post the instructions to the list and save people a bunch of time
+> getting to this point?
+>
+> Philip
+>
+>
+> On July 18, 2019 7:00:01 PM GMT+02:00, Nate Temple via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>>
+>> Hi Andreas,
+>>
+>> The errors you see when loading the idle FPGA can be safely ignored and
+>> are fixed in the new MPM based file system.
+>>
+>> We have a pending update for that application note that uses modern UHD
+>> that will be posted soon. I can follow up with you off list with the
+>> instructions for now.
+>>
+>> Regards,
+>> Nate Temple
+>>
+>> On Thu, Jul 18, 2019 at 9:36 AM Andreas Weinand via USRP-users <
+>> usrp-users@lists.ettus.com> wrote:
+>>
+>>> Hello,
+>>>
+>>> has someone already sucessfully made the E312 running using RFNOC
+>>> scripts? like in the example in
+>>>
+>>> https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source
+>>>
+>>>
+>>> Unfortunately, i got the similar errors when following these
+>>> instructions as reported here before (e.g.
+>>>
+>>> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-March/056028.html
+>>> ). I tried a lot of OS, UHD, gnuradio and gr-ettus combinations but all
+>>> ended in some errors like this earlier or later.
+>>>
+>>> I am currently trying with Ubuntu 18.04., if anyone has a working setup,
+>>> please let me know. Other OS are also fine for me.
+>>>
+>>> BR
+>>>
+>>> Andreas
+>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
+>>
+> --
+> Sent from my Android device with K-9 Mail. Please excuse my brevity.
+>
+
+--000000000000ff4c41058df7ab9c
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Why not post the instructions to the list and save people a bunch of time g=
-etting to this point?
-
-Philip
-
-
-On July 18, 2019 7:00:01 PM GMT+02:00, Nate Temple via USRP-users <usrp-us=
-ers@lists=2Eettus=2Ecom> wrote:
->Hi Andreas,
->
->The errors you see when loading the idle FPGA can be safely ignored and
->are
->fixed in the new MPM based file system=2E
->
->We have a pending update for that application note that uses modern UHD
->that will be posted soon=2E I can follow up with you off list with the
->instructions for now=2E
->
->Regards,
->Nate Temple
->
->On Thu, Jul 18, 2019 at 9:36 AM Andreas Weinand via USRP-users <
->usrp-users@lists=2Eettus=2Ecom> wrote:
->
->> Hello,
->>
->> has someone already sucessfully made the E312 running using RFNOC
->> scripts? like in the example in
->>
->>
->https://kb=2Eettus=2Ecom/Software_Development_on_the_E3xx_USRP_-_Building=
-_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source
->>
->>
->> Unfortunately, i got the similar errors when following these
->> instructions as reported here before (e=2Eg=2E
->>
->>
->http://lists=2Eettus=2Ecom/pipermail/usrp-users_lists=2Eettus=2Ecom/2018-=
-March/056028=2Ehtml
->> )=2E I tried a lot of OS, UHD, gnuradio and gr-ettus combinations but
->all
->> ended in some errors like this earlier or later=2E
->>
->> I am currently trying with Ubuntu 18=2E04=2E, if anyone has a working
->setup,
->> please let me know=2E Other OS are also fine for me=2E
->>
->> BR
->>
->> Andreas
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists=2Eettus=2Ecom
->> http://lists=2Eettus=2Ecom/mailman/listinfo/usrp-users_lists=2Eettus=2E=
-com
->>
-
---=20
-Sent from my Android device with K-9 Mail=2E Please excuse my brevity=2E
-------TEN5XHZEWKCI18W2I35AK99XNNIAEE
-Content-Type: text/html;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body>Why not post the instructions to the list and save=
- people a bunch of time getting to this point?<br><br>Philip<br><br><br><di=
-v class=3D"gmail_quote">On July 18, 2019 7:00:01 PM GMT+02:00, Nate Temple =
-via USRP-users &lt;usrp-users@lists=2Eettus=2Ecom&gt; wrote:<blockquote cla=
-ss=3D"gmail_quote" style=3D"margin: 0pt 0pt 0pt 0=2E8ex; border-left: 1px s=
-olid rgb(204, 204, 204); padding-left: 1ex;">
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,h=
-elvetica,sans-serif">Hi Andreas,<br><br>The errors you see when loading the=
- idle FPGA can be safely ignored and are fixed in the new MPM based file sy=
-stem=2E<br><br>We have a pending update for that application note that uses=
- modern UHD that will be posted soon=2E I can follow up with you off list w=
-ith the instructions for now=2E <br><br>Regards,<br>Nate Temple</div></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu=
-, Jul 18, 2019 at 9:36 AM Andreas Weinand via USRP-users &lt;<a href=3D"mai=
-lto:usrp-users@lists=2Eettus=2Ecom">usrp-users@lists=2Eettus=2Ecom</a>&gt; =
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi Philip,<br><br>We will be updating the <a href=3D"ht=
+tp://kb.ettus.com">kb.ettus.com</a> application note when it is ready.<br><=
+br>Regards,<br>Nate Temple</div></div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 18, 2019 at 10:03 AM Philip Bal=
+ister &lt;<a href=3D"mailto:philip@opensdr.com">philip@opensdr.com</a>&gt; =
 wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0=2E8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello,<=
-br>
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Why =
+not post the instructions to the list and save people a bunch of time getti=
+ng to this point?<br><br>Philip<br><br><br><div class=3D"gmail_quote">On Ju=
+ly 18, 2019 7:00:01 PM GMT+02:00, Nate Temple via USRP-users &lt;<a href=3D=
+"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettu=
+s.com</a>&gt; wrote:<blockquote class=3D"gmail_quote" style=3D"margin:0pt 0=
+pt 0pt 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi Andreas,<br><br>The errors you see when loading the =
+idle FPGA can be safely ignored and are fixed in the new MPM based file sys=
+tem.<br><br>We have a pending update for that application note that uses mo=
+dern UHD that will be posted soon. I can follow up with you off list with t=
+he instructions for now. <br><br>Regards,<br>Nate Temple</div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 1=
+8, 2019 at 9:36 AM Andreas Weinand via USRP-users &lt;<a href=3D"mailto:usr=
+p-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello,=
+<br>
 <br>
 has someone already sucessfully made the E312 running using RFNOC <br>
 scripts? like in the example in <br>
-<a href=3D"https://kb=2Eettus=2Ecom/Software_Development_on_the_E3xx_USRP_=
--_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source" rel=3D"noreferrer"=
- target=3D"_blank">https://kb=2Eettus=2Ecom/Software_Development_on_the_E3x=
-x_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a> <br>
+<a href=3D"https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Bui=
+lding_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source" rel=3D"noreferrer" targ=
+et=3D"_blank">https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_=
+Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a> <br>
 <br>
 <br>
 Unfortunately, i got the similar errors when following these <br>
-instructions as reported here before (e=2Eg=2E <br>
-<a href=3D"http://lists=2Eettus=2Ecom/pipermail/usrp-users_lists=2Eettus=
-=2Ecom/2018-March/056028=2Ehtml" rel=3D"noreferrer" target=3D"_blank">http:=
-//lists=2Eettus=2Ecom/pipermail/usrp-users_lists=2Eettus=2Ecom/2018-March/0=
-56028=2Ehtml</a> <br>
-)=2E I tried a lot of OS, UHD, gnuradio and gr-ettus combinations but all =
+instructions as reported here before (e.g. <br>
+<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018=
+-March/056028.html" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus=
+.com/pipermail/usrp-users_lists.ettus.com/2018-March/056028.html</a> <br>
+). I tried a lot of OS, UHD, gnuradio and gr-ettus combinations but all <br=
+>
+ended in some errors like this earlier or later.<br>
 <br>
-ended in some errors like this earlier or later=2E<br>
-<br>
-I am currently trying with Ubuntu 18=2E04=2E, if anyone has a working setu=
-p, <br>
-please let me know=2E Other OS are also fine for me=2E<br>
+I am currently trying with Ubuntu 18.04., if anyone has a working setup, <b=
+r>
+please let me know. Other OS are also fine for me.<br>
 <br>
 BR<br>
 <br>
@@ -180,18 +211,19 @@ Andreas<br>
 <br>
 _______________________________________________<br>
 USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists=2Eettus=2Ecom" target=3D"_blank">USRP-u=
-sers@lists=2Eettus=2Ecom</a><br>
-<a href=3D"http://lists=2Eettus=2Ecom/mailman/listinfo/usrp-users_lists=2E=
-ettus=2Ecom" rel=3D"noreferrer" target=3D"_blank">http://lists=2Eettus=2Eco=
-m/mailman/listinfo/usrp-users_lists=2Eettus=2Ecom</a><br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
-</blockquote></div><br>-- <br>Sent from my Android device with K-9 Mail=2E=
- Please excuse my brevity=2E</body></html>
-------TEN5XHZEWKCI18W2I35AK99XNNIAEE--
+</blockquote></div><br>-- <br>Sent from my Android device with K-9 Mail. Pl=
+ease excuse my brevity.</div></blockquote></div>
+
+--000000000000ff4c41058df7ab9c--
 
 
---===============5328517694206321260==
+--===============3861045557970686468==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -202,5 +234,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5328517694206321260==--
+--===============3861045557970686468==--
 
