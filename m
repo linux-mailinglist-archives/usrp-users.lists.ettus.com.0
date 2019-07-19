@@ -2,65 +2,73 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FDDC6D7C6
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Jul 2019 02:31:04 +0200 (CEST)
-Received: from [::1] (port=57798 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF366E1A2
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Jul 2019 09:21:32 +0200 (CEST)
+Received: from [::1] (port=45654 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hoGna-0007s5-FT; Thu, 18 Jul 2019 20:30:58 -0400
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:46546)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hoGnX-0007TQ-Fg
- for usrp-users@lists.ettus.com; Thu, 18 Jul 2019 20:30:55 -0400
-Received: by mail-qt1-f173.google.com with SMTP id h21so29172345qtn.13
- for <usrp-users@lists.ettus.com>; Thu, 18 Jul 2019 17:30:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=0F0rFfOTvIb5xVANe5UfjGSa31n4gHp6QcvF91E9usM=;
- b=giamLMc6zqMf/B7m/ZkUc1IZfnQq5Ab6pO1F6fMJ3lTQe/g7c5EQTthtBJCmFan5yz
- o887WsF8g3/8Vno6qZ+gY6zEN7qVF2F/8QxIKIvuXZ91aninJRV+Luv8szk7WkkfcqAv
- BYRSsVRc/d9SgiH7jSi346Gr9CPhjt4zKNzGT/l+DOn4v7+TMhu5hMysQ4I9e0F0SDcn
- gsdFiEM90V+OSoiYtBvHvoAaOMlgKI6DiUYL5E1hcuLWY2KYWnTCqQ9qNsN3p92qAWpZ
- PCCxvT9pYTzYJUUDZVV3Lcqx28KGcNiD132gonuTq/P98YkAjE7Ra61bPnACZWk6Hmow
- MVUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=0F0rFfOTvIb5xVANe5UfjGSa31n4gHp6QcvF91E9usM=;
- b=q+IXRpItmhpVW3pMT/F4FspfM1OJDVdCAEm2I90KmsriihBgOE2nyVsN6KtC6CQrBH
- dK1Qza0bK89f2ex/PQvYH1P1bIyNfRMZv+6lj+HDLnYw9sJxunGyteUrZ+Y7WRy9Uoa2
- 1My7fgzLe3eZHcPPGIvhWLGaJWgBWPIj2nI0iz8RauN3r1b+Z8JQQZz0q1QM22GvGVYF
- sXrUPH2AcE4th6fGnVv4thOXbH/11ixbgws/ZvMQ3wtg1z+FEA61dWDAHgLPN5ZXpZsG
- 0oj538nf7lEQQujHAD249xCv/aVqWtasCre7ivYGXroVJRsGjtjwRlorYadc9GOwIWxw
- wL7A==
-X-Gm-Message-State: APjAAAVG+8RFVzr0NqAbKYrm8ZcEA+l8TpBfYQBJ9LWOtFQntzVa4hct
- YU+nKbDBuCAMPGTGBqMhMOIrOOT5
-X-Google-Smtp-Source: APXvYqxcbe5TgXQVA9y8C490A6LsXZV2CebSTbNOmonFG8aqBe1ri8pk6fp+LukM99haCoTfypn5lA==
-X-Received: by 2002:a0c:92ca:: with SMTP id c10mr34537849qvc.108.1563496214806; 
- Thu, 18 Jul 2019 17:30:14 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
- [174.95.14.20])
- by smtp.gmail.com with ESMTPSA id o10sm14946552qti.62.2019.07.18.17.30.14
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 18 Jul 2019 17:30:14 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-X-Mailer: iPhone Mail (16F203)
-In-Reply-To: <CAFB_ak+_x=neOMA--p-=WGzvmOoP5djT=W6hwzw4GGzfTLJ+TQ@mail.gmail.com>
-Date: Thu, 18 Jul 2019 20:30:14 -0400
-Message-Id: <FEB7DEA4-D740-483B-8D59-17AC7E3182D4@gmail.com>
-References: <CAFB_ak+rtm3xVuF9GFkZ09qhUYLP1G1mzhAxDxeV7d-wR1LNmw@mail.gmail.com>
- <CAKJyDkKCRujVNv99RW594t7embavu4J=rAgu=vsOgkSHzg9Gyw@mail.gmail.com>
- <CAKJyDkLmZY-yw7QWMzg8oWRNzU4scuqkJC0Z9ErfxRKjKf+UCw@mail.gmail.com>
- <CAFB_ak+Nm5+VBi8F=UwtgerchzRGrXjTZYgWWA3Z45a+Nj=uPA@mail.gmail.com>
- <CAFB_akKiC_jtf0mMZK7Dk2JaJBi1BPTvfWM=4M=POWOfxmKhdw@mail.gmail.com>
- <CAKJyDk+4kYDLWypDhaPzEGhkjJLKNK0sEscT5dRSXCTYWU7mQA@mail.gmail.com>
- <C9ED4D1D-D79E-4A11-B294-0E606B0B3BD2@gmail.com>
- <CAFB_ak+_x=neOMA--p-=WGzvmOoP5djT=W6hwzw4GGzfTLJ+TQ@mail.gmail.com>
-To: Taylor Eisman <tayloreisman2012@gmail.com>
-Subject: Re: [USRP-users] Fwd: Ettus X300 -- NO TX/RX, RX2 Avaliability
+	id 1hoNCo-0007m7-Jl; Fri, 19 Jul 2019 03:21:26 -0400
+Received: from mail-oln040092255084.outbound.protection.outlook.com
+ ([40.92.255.84]:45968 helo=APC01-HK2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+ (Exim 4.92) (envelope-from <retina999@hotmail.com>)
+ id 1hoNCk-0007av-U2
+ for usrp-users@lists.ettus.com; Fri, 19 Jul 2019 03:21:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SoNYFJVu/4CBaumbRSgnwLDSdPwwMPwHA4TJz4s/nwM=;
+ b=Jw88BUI87XUxX4cXnlmpjmSyUbisNMr31Ejf8bKVUIKOGAaZ7fs0DUKiaptGikBfO40Vqk17SN81WY6q6dwjHnl4umSw0SyPGlDq0nTEwqAj/3/kIfKZW8C7rGi3TpkzjFKWf/9GssuGssyTi9byrnM+SynQrYbB0+ZMSGPfOw7JAOM9tnn/AsUPvCJceYmo7wJsZsKA5Tp6d+LwP/VGCZA3a1UncO/4Meb01m2bPLmmd7E1AP/h5umbk6qYjco+8lRcCNheikZ0O8o+UD0Lgg/aIZFXr7k6AwRvCFh5FVE0IlQbOFebfRzqbmNzlxNFWZ2lx1b1MzJAyd10Ye5oPA==
+Received: from PU1APC01FT036.eop-APC01.prod.protection.outlook.com
+ (10.152.252.60) by PU1APC01HT115.eop-APC01.prod.protection.outlook.com
+ (10.152.253.119) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2052.18; Fri, 19 Jul
+ 2019 07:20:39 +0000
+Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com (10.152.252.58) by
+ PU1APC01FT036.mail.protection.outlook.com (10.152.252.207) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2052.18 via Frontend Transport; Fri, 19 Jul 2019 07:20:39 +0000
+Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com
+ ([fe80::e41a:f703:68f5:d689]) by HK0PR01MB2835.apcprd01.prod.exchangelabs.com
+ ([fe80::e41a:f703:68f5:d689%4]) with mapi id 15.20.2073.015; Fri, 19 Jul 2019
+ 07:20:39 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: N310 "Bad CHDR or packet fragment" Problem
+Thread-Index: AQHVPgJ35RXNhHXYy0iikR7qhP+ixQ==
+Date: Fri, 19 Jul 2019 07:20:39 +0000
+Message-ID: <HK0PR01MB2835921DB0A5915C119C4BE5F3CB0@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: SN6PR1501CA0016.namprd15.prod.outlook.com
+ (2603:10b6:805::29) To HK0PR01MB2835.apcprd01.prod.exchangelabs.com
+ (2603:1096:203:96::18)
+x-incomingtopheadermarker: OriginalChecksum:761B3CD7E9384086376C14648860EADC6A6247701C359EC6F6E9C5E9D6F2FD10;
+ UpperCasedChecksum:E0969AEFCC83F9536E10A4FEB0214F84AEF07F0AB5908B480D25C54A03E6BACA;
+ SizeAsReceived:7269; Count:46
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [7L4Wm9fSoj+TPvVbe28iigJc+IRWb7wa]
+x-microsoft-original-message-id: <21e164e5-c997-dd4f-4699-792678c44eaa@hotmail.com>
+x-ms-publictraffictype: Email
+x-incomingheadercount: 46
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
+ SRVR:PU1APC01HT115; 
+x-ms-traffictypediagnostic: PU1APC01HT115:
+x-microsoft-antispam-message-info: H+HRHR6PTdxCapHnaPsdsWTS2zzt/aJtiu5pxYGfekxXFyYG2DHagyZTIcUWNNfrdIqdJW2zo8jL1T9CfuF+Zsjw3kX2xL/+d2Ou6ooFP6hBCpYyE+6EullfczvNHcv3MRM5b65x7dUZ8G01IJXDBe+wLaxz9Gl/m+4/pFO7fcYRHHk3cDPQFxws+801cpao
+MIME-Version: 1.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c24859d-77c1-4b85-f6bc-08d70c199974
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2019 07:20:39.4563 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT115
+Subject: [USRP-users] N310 "Bad CHDR or packet fragment" Problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -72,10 +80,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============2162798035623802369=="
+From: =?utf-8?b?5rGkIOmjniB2aWEgVVNSUC11c2Vycw==?= <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?B?5rGkIOmjng==?= <retina999@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============3519489060310065250=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,165 +96,152 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
---===============2162798035623802369==
+--===============3519489060310065250==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary=Apple-Mail-DD49E9CE-17AA-4E57-892A-7F66A95D279D
-Content-Transfer-Encoding: 7bit
+	boundary="_000_HK0PR01MB2835921DB0A5915C119C4BE5F3CB0HK0PR01MB2835apcp_"
+
+--_000_HK0PR01MB2835921DB0A5915C119C4BE5F3CB0HK0PR01MB2835apcp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+SGksIGFsbCwNCg0KV2hlbiBiZW5jaG1hcmtpbmcgbXkgTjMxMCwgSSBrZWVwIGdldHRpbmcgc3Vj
+aCBbUlggRkxPVyBDVFJMXSBlcnJvcnMuDQpXaGF0IGNhdXNlcyB0aGlzIGFuZCBob3cgdG8gc29s
+dmUgaXQ/DQoNClRoYW5rcyBpbiBhZHZhbmNlIQ0KDQpGVA0KDQoNCi91c3IvbG9jYWwvbGliL3Vo
+ZC9leGFtcGxlcy9iZW5jaG1hcmtfcmF0ZSAgXA0KPiAgICAtLWFyZ3MgInR5cGU9bjN4eCxtZ210
+X2FkZHI9MTkyLjE2OC4xMC4yLGFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEy
+Mi44OGU2IiBcDQo+ICAgIC0tZHVyYXRpb24gNjAgXA0KPiAgICAtLWNoYW5uZWxzICIwIiBcDQo+
+ICAgIC0tcnhfcmF0ZSAzLjg0ZTYgXA0KPiAgICAtLXJ4X3N1YmRldiAiQTowIiBcDQo+ICAgIC0t
+dHhfcmF0ZSAzLjg0ZTYgXA0KPiAgICAtLXR4X3N1YmRldiAiQTowIg0KDQpbSU5GT10gW1VIRF0g
+bGludXg7IEdOVSBDKysgdmVyc2lvbiA3LjQuMDsgQm9vc3RfMTA2NTAxOyBVSERfMy4xNC4xLkhF
+QUQtMC1nYmZiOWMxYzcNClswMDowMDowMC4wMDAwMTRdIENyZWF0aW5nIHRoZSB1c3JwIGRldmlj
+ZSB3aXRoOiB0eXBlPW4zeHgsbWdtdF9hZGRyPTE5Mi4xNjguMTAuMixhZGRyPTE5Mi4xNjguMTAu
+MixtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNi4uLg0KW0lORk9dIFtNUE1EXSBJbml0aWFsaXpp
+bmcgMSBkZXZpY2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiBtZ210X2FkZHI9MTkyLjE2OC4x
+MC4yLHR5cGU9bjN4eCxwcm9kdWN0PW4zMTAsc2VyaWFsPTMxODJCMDksY2xhaW1lZD1GYWxzZSxh
+ZGRyPTE5Mi4xNjguMTAuMixtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNg0KW0lORk9dIFtNUE0u
+UGVyaXBoTWFuYWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzIGBtYXN0ZXJfY2xv
+Y2tfcmF0ZT0xMjIuODhlNix0aW1lX3NvdXJjZT1pbnRlcm5hbCxjbG9ja19zb3VyY2U9aW50ZXJu
+YWwsbWdtdF9hZGRyPTE5Mi4xNjguMTAuMixwcm9kdWN0PW4zMTAnLg0KW0lORk9dIFswL1JlcGxh
+eV8wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDRFOTFBMDAwMDAwMDAw
+MDQpDQpbSU5GT10gWzAvUmFkaW9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJ
+RDogMHgxMkFEMTAwMDAwMDExMzEyKQ0KW0lORk9dIFswL1JhZGlvXzFdIEluaXRpYWxpemluZyBi
+bG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTJBRDEwMDAwMDAxMTMxMikNCltJTkZPXSBbMC9ERENf
+MF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEREMwMDAwMDAwMDAwMDAw
+KQ0KW0lORk9dIFswL0REQ18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAw
+eEREQzAwMDAwMDAwMDAwMDApDQpbSU5GT10gWzAvRFVDXzBdIEluaXRpYWxpemluZyBibG9jayBj
+b250cm9sIChOT0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAwMikNCltJTkZPXSBbMC9EVUNfMV0gSW5p
+dGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAwMDAwMDAwMDAyKQ0KW0lO
+Rk9dIFswL0ZJRk9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYw
+MDAwMDAwMDAwMDAwKQ0KW0lORk9dIFswL0ZJRk9fMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRy
+b2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQ0KW0lORk9dIFswL0ZJRk9fMl0gSW5pdGlh
+bGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQ0KW0lORk9d
+IFswL0ZJRk9fM10gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAw
+MDAwMDAwMDAwKQ0KVXNpbmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoNCiAgRGV2aWNlOiBOMzAwLVNl
+cmllcyBEZXZpY2UNCiAgTWJvYXJkIDA6IG5pLW4zeHgtMzE4MkIwOQ0KICBSWCBDaGFubmVsOiAw
+DQogICAgUlggRFNQOiAwDQogICAgUlggRGJvYXJkOiBBDQogICAgUlggU3ViZGV2OiBNYWduZXNp
+dW0NCiAgVFggQ2hhbm5lbDogMA0KICAgIFRYIERTUDogMA0KICAgIFRYIERib2FyZDogQQ0KICAg
+IFRYIFN1YmRldjogTWFnbmVzaXVtDQoNClswMDowMDoxNy4zNTMxODRdIFNldHRpbmcgZGV2aWNl
+IHRpbWVzdGFtcCB0byAwLi4uDQpbMDA6MDA6MTcuNDEyMTg3XSBUZXN0aW5nIHJlY2VpdmUgcmF0
+ZSAzLjg0MDAwMCBNc3BzIG9uIDEgY2hhbm5lbHMNClswMDowMDoxNy40MTQxNjRdIFJlY2VpdmVy
+IGVycm9yOiBFUlJPUl9DT0RFX0JBRF9QQUNLRVQNCltbRVJST1JdIFtSWCBGTE9XIENUUkxdIEVy
+cm9yIHVucGFja2luZyBwYWNrZXQ6IFZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFn
+bWVudA0KDQpbRVJST1JdIFtTVFJFQU1FUl0gVGhlIHJlY2VpdmUgcGFja2V0IGhhbmRsZXIgY2F1
+Z2h0IGEgdmFsdWUgZXhjZXB0aW9uLg0KVmFsdWVFcnJvcjogQmFkIENIRFIgb3IgcGFja2V0IGZy
+YWdtZW50DQowMDowMDoxNy40MTQxODBdIFVuZXhwZWN0ZWQgZXJyb3Igb24gcmVjdiwgY29udGlu
+dWluZy4uLg0KWzAwOjAwOjE3LjUxNDI1OF0gUmVjZWl2ZXIgZXJyb3I6IEVSUk9SX0NPREVfVElN
+RU9VVCwgY29udGludWluZy4uLg0KWzAwOjAwOjE3LjUxNDMxMl0gUmVjZWl2ZXIgZXJyb3I6IEVS
+Uk9SX0NPREVfQkFEX1BBQ0tFVA0KWzAwOjAwOjE3LjUxNDMxN10gVW5leHBlY3RlZCBlcnJvciBv
+biByZWN2LCBjb250aW51aW5nLi4uDQpbRVJST1JdIFtSWCBGTE9XIENUUkxdIEVycm9yIHVucGFj
+a2luZyBwYWNrZXQ6IFZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudA0KDQpb
+RVJST1JdIFtTVFJFQU1FUl0gVGhlIHJlY2VpdmUgcGFja2V0IGhhbmRsZXIgY2F1Z2h0IGEgdmFs
+dWUgZXhjZXB0aW9uLg0KVmFsdWVFcnJvcjogQmFkIENIRFIgb3IgcGFja2V0IGZyYWdtZW50DQpb
+MDA6MDA6MTcuNTMyOTkxXSBUZXN0aW5nIHRyYW5zbWl0IHJhdGUgMy44NDAwMDAgTXNwcyBvbiAx
+IGNoYW5uZWxzDQpbMDA6MDA6MTcuNjE0MzI5XSBSZWNlaXZlciBlcnJvcjogRVJST1JfQ09ERV9U
+SU1FT1VULCBjb250aW51aW5nLi4uDQpbMDA6MDA6MTcuNjE0MzcyXSBSZWNlaXZlciBlcnJvcjog
+RVJST1JfQ09ERV9CQURfUEFDS0VUDQpbMDA6MDA6MTcuNjE0Mzc3XSBVbmV4cGVjdGVkIGVycm9y
+IG9uIHJlY3YsIGNvbnRpbnVpbmcuLi4NCg0K
+
+--_000_HK0PR01MB2835921DB0A5915C119C4BE5F3CB0HK0PR01MB2835apcp_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <F0B5DAE465794444A827D4F9D2E05646@apcprd01.prod.exchangelabs.com>
+Content-Transfer-Encoding: base64
+
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHRleHQ9IiMwMDAwMDAi
+IGJnY29sb3I9IiNGRkZGRkYiPg0KPHByZT5IaSwgYWxsLA0KDQpXaGVuIGJlbmNobWFya2luZyBt
+eSBOMzEwLCBJIGtlZXAgZ2V0dGluZyBzdWNoIDxmb250IGNvbG9yPSIjQ0MwMDAwIj5bUlggRkxP
+VyBDVFJMXTwvZm9udD4gZXJyb3JzLiANCldoYXQgY2F1c2VzIHRoaXMgYW5kIGhvdyB0byBzb2x2
+ZSBpdD8NCg0KVGhhbmtzIGluIGFkdmFuY2UhDQoNCkZUDQoNCg0KL3Vzci9sb2NhbC9saWIvdWhk
+L2V4YW1wbGVzL2JlbmNobWFya19yYXRlICBcDQomZ3Q7ICAgIC0tYXJncyAmcXVvdDt0eXBlPW4z
+eHgsbWdtdF9hZGRyPTE5Mi4xNjguMTAuMixhZGRyPTE5Mi4xNjguMTAuMixtYXN0ZXJfY2xvY2tf
+cmF0ZT0xMjIuODhlNiZxdW90OyBcDQomZ3Q7ICAgIC0tZHVyYXRpb24gNjAgXA0KJmd0OyAgICAt
+LWNoYW5uZWxzICZxdW90OzAmcXVvdDsgXA0KJmd0OyAgICAtLXJ4X3JhdGUgMy44NGU2IFwNCiZn
+dDsgICAgLS1yeF9zdWJkZXYgJnF1b3Q7QTowJnF1b3Q7IFwNCiZndDsgICAgLS10eF9yYXRlIDMu
+ODRlNiBcDQomZ3Q7ICAgIC0tdHhfc3ViZGV2ICZxdW90O0E6MCZxdW90Ow0KDQo8Zm9udCBjb2xv
+cj0iIzRFOUEwNiI+W0lORk9dIFtVSERdIDwvZm9udD5saW51eDsgR05VIEMmIzQzOyYjNDM7IHZl
+cnNpb24gNy40LjA7IEJvb3N0XzEwNjUwMTsgVUhEXzMuMTQuMS5IRUFELTAtZ2JmYjljMWM3DQpb
+MDA6MDA6MDAuMDAwMDE0XSBDcmVhdGluZyB0aGUgdXNycCBkZXZpY2Ugd2l0aDogdHlwZT1uM3h4
+LG1nbXRfYWRkcj0xOTIuMTY4LjEwLjIsYWRkcj0xOTIuMTY4LjEwLjIsbWFzdGVyX2Nsb2NrX3Jh
+dGU9MTIyLjg4ZTYuLi4NCjxmb250IGNvbG9yPSIjNEU5QTA2Ij5bSU5GT10gW01QTURdIDwvZm9u
+dD5Jbml0aWFsaXppbmcgMSBkZXZpY2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiBtZ210X2Fk
+ZHI9MTkyLjE2OC4xMC4yLHR5cGU9bjN4eCxwcm9kdWN0PW4zMTAsc2VyaWFsPTMxODJCMDksY2xh
+aW1lZD1GYWxzZSxhZGRyPTE5Mi4xNjguMTAuMixtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNg0K
+PGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbTVBNLlBlcmlwaE1hbmFnZXJdIDwvZm9udD5p
+bml0KCkgY2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MgYG1hc3Rlcl9jbG9ja19yYXRlPTEyMi44OGU2
+LHRpbWVfc291cmNlPWludGVybmFsLGNsb2NrX3NvdXJjZT1pbnRlcm5hbCxtZ210X2FkZHI9MTky
+LjE2OC4xMC4yLHByb2R1Y3Q9bjMxMCcuDQo8Zm9udCBjb2xvcj0iIzRFOUEwNiI+W0lORk9dIFsw
+L1JlcGxheV8wXSA8L2ZvbnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHg0
+RTkxQTAwMDAwMDAwMDA0KQ0KPGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9SYWRpb18w
+XSA8L2ZvbnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAw
+MDExMzEyKQ0KPGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9SYWRpb18xXSA8L2ZvbnQ+
+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDExMzEyKQ0K
+PGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9ERENfMF0gPC9mb250PkluaXRpYWxpemlu
+ZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkNCjxmb250IGNvbG9y
+PSIjNEU5QTA2Ij5bSU5GT10gWzAvRERDXzFdIDwvZm9udD5Jbml0aWFsaXppbmcgYmxvY2sgY29u
+dHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAwMDApDQo8Zm9udCBjb2xvcj0iIzRFOUEwNiI+
+W0lORk9dIFswL0RVQ18wXSA8L2ZvbnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJ
+RDogMHhEMEMwMDAwMDAwMDAwMDAyKQ0KPGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9E
+VUNfMV0gPC9mb250PkluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RDBDMDAw
+MDAwMDAwMDAwMikNCjxmb250IGNvbG9yPSIjNEU5QTA2Ij5bSU5GT10gWzAvRklGT18wXSA8L2Zv
+bnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAw
+KQ0KPGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9GSUZPXzFdIDwvZm9udD5Jbml0aWFs
+aXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApDQo8Zm9udCBj
+b2xvcj0iIzRFOUEwNiI+W0lORk9dIFswL0ZJRk9fMl0gPC9mb250PkluaXRpYWxpemluZyBibG9j
+ayBjb250cm9sIChOT0MgSUQ6IDB4RjFGMDAwMDAwMDAwMDAwMCkNCjxmb250IGNvbG9yPSIjNEU5
+QTA2Ij5bSU5GT10gWzAvRklGT18zXSA8L2ZvbnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wg
+KE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQ0KVXNpbmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoN
+CiAgRGV2aWNlOiBOMzAwLVNlcmllcyBEZXZpY2UNCiAgTWJvYXJkIDA6IG5pLW4zeHgtMzE4MkIw
+OQ0KICBSWCBDaGFubmVsOiAwDQogICAgUlggRFNQOiAwDQogICAgUlggRGJvYXJkOiBBDQogICAg
+UlggU3ViZGV2OiBNYWduZXNpdW0NCiAgVFggQ2hhbm5lbDogMA0KICAgIFRYIERTUDogMA0KICAg
+IFRYIERib2FyZDogQQ0KICAgIFRYIFN1YmRldjogTWFnbmVzaXVtDQoNClswMDowMDoxNy4zNTMx
+ODRdIFNldHRpbmcgZGV2aWNlIHRpbWVzdGFtcCB0byAwLi4uDQpbMDA6MDA6MTcuNDEyMTg3XSBU
+ZXN0aW5nIHJlY2VpdmUgcmF0ZSAzLjg0MDAwMCBNc3BzIG9uIDEgY2hhbm5lbHMNClswMDowMDox
+Ny40MTQxNjRdIFJlY2VpdmVyIGVycm9yOiBFUlJPUl9DT0RFX0JBRF9QQUNLRVQNCls8Zm9udCBj
+b2xvcj0iI0NDMDAwMCI+W0VSUk9SXSBbUlggRkxPVyBDVFJMXSA8L2ZvbnQ+RXJyb3IgdW5wYWNr
+aW5nIHBhY2tldDogVmFsdWVFcnJvcjogQmFkIENIRFIgb3IgcGFja2V0IGZyYWdtZW50DQoNCjxm
+b250IGNvbG9yPSIjQ0MwMDAwIj5bRVJST1JdIFtTVFJFQU1FUl0gPC9mb250PlRoZSByZWNlaXZl
+IHBhY2tldCBoYW5kbGVyIGNhdWdodCBhIHZhbHVlIGV4Y2VwdGlvbi4NClZhbHVlRXJyb3I6IEJh
+ZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudA0KMDA6MDA6MTcuNDE0MTgwXSBVbmV4cGVjdGVkIGVy
+cm9yIG9uIHJlY3YsIGNvbnRpbnVpbmcuLi4NClswMDowMDoxNy41MTQyNThdIFJlY2VpdmVyIGVy
+cm9yOiBFUlJPUl9DT0RFX1RJTUVPVVQsIGNvbnRpbnVpbmcuLi4NClswMDowMDoxNy41MTQzMTJd
+IFJlY2VpdmVyIGVycm9yOiBFUlJPUl9DT0RFX0JBRF9QQUNLRVQNClswMDowMDoxNy41MTQzMTdd
+IFVuZXhwZWN0ZWQgZXJyb3Igb24gcmVjdiwgY29udGludWluZy4uLg0KPGZvbnQgY29sb3I9IiND
+QzAwMDAiPltFUlJPUl0gW1JYIEZMT1cgQ1RSTF0gPC9mb250PkVycm9yIHVucGFja2luZyBwYWNr
+ZXQ6IFZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudA0KDQo8Zm9udCBjb2xv
+cj0iI0NDMDAwMCI+W0VSUk9SXSBbU1RSRUFNRVJdIDwvZm9udD5UaGUgcmVjZWl2ZSBwYWNrZXQg
+aGFuZGxlciBjYXVnaHQgYSB2YWx1ZSBleGNlcHRpb24uDQpWYWx1ZUVycm9yOiBCYWQgQ0hEUiBv
+ciBwYWNrZXQgZnJhZ21lbnQNClswMDowMDoxNy41MzI5OTFdIFRlc3RpbmcgdHJhbnNtaXQgcmF0
+ZSAzLjg0MDAwMCBNc3BzIG9uIDEgY2hhbm5lbHMNClswMDowMDoxNy42MTQzMjldIFJlY2VpdmVy
+IGVycm9yOiBFUlJPUl9DT0RFX1RJTUVPVVQsIGNvbnRpbnVpbmcuLi4NClswMDowMDoxNy42MTQz
+NzJdIFJlY2VpdmVyIGVycm9yOiBFUlJPUl9DT0RFX0JBRF9QQUNLRVQNClswMDowMDoxNy42MTQz
+NzddIFVuZXhwZWN0ZWQgZXJyb3Igb24gcmVjdiwgY29udGludWluZy4uLg0KPC9wcmU+DQo8L2Jv
+ZHk+DQo8L2h0bWw+DQo=
+
+--_000_HK0PR01MB2835921DB0A5915C119C4BE5F3CB0HK0PR01MB2835apcp_--
 
 
---Apple-Mail-DD49E9CE-17AA-4E57-892A-7F66A95D279D
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-It wouldn=E2=80=99t and it doesn=E2=80=99t. Those are just the defaults brou=
-ght up in the source and sink blocks because many of the cards have those fo=
-r standard antenna names.=20
-
-Sent from my iPhone
-
-> On Jul 18, 2019, at 8:17 PM, Taylor Eisman via USRP-users <usrp-users@list=
-s.ettus.com> wrote:
->=20
-> I don=E2=80=99t want to make this about gnuradio, because this isn=E2=80=99=
-t the place. However, why would gnuradio know to link the ab,a,b,ba antennas=
- to tx/rx and rx2?
->=20
->> On Thu, Jul 18, 2019 at 7:14 PM Marcus D Leech <patchvonbraun@gmail.com> w=
-rote:
->> There IS no RX2 or TX/RX antenna names on Basic_rx or Basic_tx boards.=20=
-
->>=20
->> You can see In the probe output what the legit antenna names are for the b=
-oards you have installed.=20
->>=20
->> Sent from my iPhone
->>=20
->>> On Jul 18, 2019, at 6:33 PM, Robin Coxe via USRP-users <usrp-users@lists=
-.ettus.com> wrote:
->>>=20
->>> Sorry, I misunderstood your question-- did you set up the mode in UHD co=
-rrectly?
->>> http://files.ettus.com/manual/page_dboards.html
->>>=20
->>> Also, you might want to double-check the SMA connections just in case.
->>> Not sure if the subdev spec has changed in the last year.  Someone who k=
-nows the UHD codebase better than I do would have to answer that question.
->>>=20
->>>=20
->>>=20
->>>> On Thu, Jul 18, 2019 at 3:26 PM Taylor Eisman via USRP-users <usrp-user=
-s@lists.ettus.com> wrote:
->>>>=20
->>>> Robin,=20
->>>>=20
->>>> We've set it up so that the RX Daughterboard connects to RX2 and the TX=
- Daughterboard connects to TX/RX. Previously, we've been able to use these p=
-orts, but now it no longer identifies that we even have these ports. I don't=
- think the issue is the Daughterboard as this worked less than a year ago.
->>>>=20
->>>> Thanks,
->>>>=20
->>>> Taylor
->>>>=20
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---Apple-Mail-DD49E9CE-17AA-4E57-892A-7F66A95D279D
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">It wouldn=E2=80=99t and it doesn=E2=80=99t.=
- Those are just the defaults brought up in the source and sink blocks becaus=
-e many of the cards have those for standard antenna names.&nbsp;<br><br><div=
- id=3D"AppleMailSignature" dir=3D"ltr">Sent from my iPhone</div><div dir=3D"=
-ltr"><br>On Jul 18, 2019, at 8:17 PM, Taylor Eisman via USRP-users &lt;<a hr=
-ef=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; w=
-rote:<br><br></div><blockquote type=3D"cite"><div dir=3D"ltr"><div><div dir=3D=
-"auto">I don=E2=80=99t want to make this about gnuradio, because this isn=E2=
-=80=99t the place. However, why would gnuradio know to link the ab,a,b,ba an=
-tennas to tx/rx and rx2?</div></div><div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 18, 2019 at 7:14 PM Marcus D L=
-eech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">There=
- IS no RX2 or TX/RX antenna names on Basic_rx or Basic_tx boards.&nbsp;<div>=
-<br></div><div>You can see In the probe output what the legit antenna names a=
-re for the boards you have installed.&nbsp;<br><br><div id=3D"m_551104883806=
-4977734AppleMailSignature" dir=3D"ltr">Sent from my iPhone</div></div></div>=
-<div dir=3D"auto"><div><div dir=3D"ltr"><br>On Jul 18, 2019, at 6:33 PM, Rob=
-in Coxe via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" tar=
-get=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br><br></div><block=
-quote type=3D"cite"><div dir=3D"ltr"><div dir=3D"ltr">Sorry, I misunderstood=
- your question-- did you set up the mode in UHD correctly?<div><a href=3D"ht=
-tp://files.ettus.com/manual/page_dboards.html" target=3D"_blank">http://file=
-s.ettus.com/manual/page_dboards.html</a><br></div><div><br></div><div>Also, y=
-ou might want to double-check the SMA connections just in case.</div><div>No=
-t sure if the subdev spec has changed in the last year.&nbsp; Someone who kn=
-ows the UHD codebase better than I do would have to answer that question.<br=
-></div><div><br></div><div><br></div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 18, 2019 at 3:26 PM Taylor E=
-isman via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" targe=
-t=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><table=
- class=3D"m_5511048838064977734gmail-m_4732337847213854491gmail-cf m_5511048=
-838064977734gmail-m_4732337847213854491gmail-gJ" cellpadding=3D"0"><tbody><t=
-r class=3D"m_5511048838064977734gmail-m_4732337847213854491gmail-acZ"><td cl=
-ass=3D"m_5511048838064977734gmail-m_4732337847213854491gmail-gF m_5511048838=
-064977734gmail-m_4732337847213854491gmail-gK"><table class=3D"m_551104883806=
-4977734gmail-m_4732337847213854491gmail-cf m_5511048838064977734gmail-m_4732=
-337847213854491gmail-ix" cellpadding=3D"0"><tbody><tr><td class=3D"m_5511048=
-838064977734gmail-m_4732337847213854491gmail-c2"><div>Robin, <br></div><div>=
-<br></div><div>We've set it up so that the RX Daughterboard connects to RX2 a=
-nd=20
-the TX Daughterboard connects to TX/RX. Previously, we've been able to=20
-use these ports, but now it no longer identifies that we even have these
- ports. I don't think the issue is the Daughterboard as this worked less
- than a year ago.<br><br></div><div>Thanks,<br><br></div><div>Taylor</div></=
-td></tr></tbody></table></td><td class=3D"m_5511048838064977734gmail-m_47323=
-37847213854491gmail-gH m_5511048838064977734gmail-m_4732337847213854491gmail=
--bAk"><br></td></tr></tbody></table></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</div></blockquote><blockquote type=3D"cite"><div dir=3D"ltr"><span>________=
-_______________________________________</span><br><span>USRP-users mailing l=
-ist</span><br><span><a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"=
-_blank">USRP-users@lists.ettus.com</a></span><br><span><a href=3D"http://lis=
-ts.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"_blank">=
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span=
-><br></div></blockquote></div></div></blockquote></div></div>
-</div></blockquote><blockquote type=3D"cite"><div dir=3D"ltr"><span>________=
-_______________________________________</span><br><span>USRP-users mailing l=
-ist</span><br><span><a href=3D"mailto:USRP-users@lists.ettus.com">USRP-users=
-@lists.ettus.com</a></span><br><span><a href=3D"http://lists.ettus.com/mailm=
-an/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com</a></span><br></div></blockquote></body></htm=
-l>=
-
---Apple-Mail-DD49E9CE-17AA-4E57-892A-7F66A95D279D--
-
-
---===============2162798035623802369==
+--===============3519489060310065250==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -258,5 +252,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2162798035623802369==--
+--===============3519489060310065250==--
 
