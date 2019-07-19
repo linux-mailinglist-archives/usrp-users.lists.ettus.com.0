@@ -2,73 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF366E1A2
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Jul 2019 09:21:32 +0200 (CEST)
-Received: from [::1] (port=45654 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 614B16E35F
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Jul 2019 11:25:49 +0200 (CEST)
+Received: from [::1] (port=35080 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hoNCo-0007m7-Jl; Fri, 19 Jul 2019 03:21:26 -0400
-Received: from mail-oln040092255084.outbound.protection.outlook.com
- ([40.92.255.84]:45968 helo=APC01-HK2-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
- (Exim 4.92) (envelope-from <retina999@hotmail.com>)
- id 1hoNCk-0007av-U2
- for usrp-users@lists.ettus.com; Fri, 19 Jul 2019 03:21:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SoNYFJVu/4CBaumbRSgnwLDSdPwwMPwHA4TJz4s/nwM=;
- b=Jw88BUI87XUxX4cXnlmpjmSyUbisNMr31Ejf8bKVUIKOGAaZ7fs0DUKiaptGikBfO40Vqk17SN81WY6q6dwjHnl4umSw0SyPGlDq0nTEwqAj/3/kIfKZW8C7rGi3TpkzjFKWf/9GssuGssyTi9byrnM+SynQrYbB0+ZMSGPfOw7JAOM9tnn/AsUPvCJceYmo7wJsZsKA5Tp6d+LwP/VGCZA3a1UncO/4Meb01m2bPLmmd7E1AP/h5umbk6qYjco+8lRcCNheikZ0O8o+UD0Lgg/aIZFXr7k6AwRvCFh5FVE0IlQbOFebfRzqbmNzlxNFWZ2lx1b1MzJAyd10Ye5oPA==
-Received: from PU1APC01FT036.eop-APC01.prod.protection.outlook.com
- (10.152.252.60) by PU1APC01HT115.eop-APC01.prod.protection.outlook.com
- (10.152.253.119) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2052.18; Fri, 19 Jul
- 2019 07:20:39 +0000
-Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com (10.152.252.58) by
- PU1APC01FT036.mail.protection.outlook.com (10.152.252.207) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2052.18 via Frontend Transport; Fri, 19 Jul 2019 07:20:39 +0000
-Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com
- ([fe80::e41a:f703:68f5:d689]) by HK0PR01MB2835.apcprd01.prod.exchangelabs.com
- ([fe80::e41a:f703:68f5:d689%4]) with mapi id 15.20.2073.015; Fri, 19 Jul 2019
- 07:20:39 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: N310 "Bad CHDR or packet fragment" Problem
-Thread-Index: AQHVPgJ35RXNhHXYy0iikR7qhP+ixQ==
-Date: Fri, 19 Jul 2019 07:20:39 +0000
-Message-ID: <HK0PR01MB2835921DB0A5915C119C4BE5F3CB0@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: SN6PR1501CA0016.namprd15.prod.outlook.com
- (2603:10b6:805::29) To HK0PR01MB2835.apcprd01.prod.exchangelabs.com
- (2603:1096:203:96::18)
-x-incomingtopheadermarker: OriginalChecksum:761B3CD7E9384086376C14648860EADC6A6247701C359EC6F6E9C5E9D6F2FD10;
- UpperCasedChecksum:E0969AEFCC83F9536E10A4FEB0214F84AEF07F0AB5908B480D25C54A03E6BACA;
- SizeAsReceived:7269; Count:46
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [7L4Wm9fSoj+TPvVbe28iigJc+IRWb7wa]
-x-microsoft-original-message-id: <21e164e5-c997-dd4f-4699-792678c44eaa@hotmail.com>
-x-ms-publictraffictype: Email
-x-incomingheadercount: 46
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
- SRVR:PU1APC01HT115; 
-x-ms-traffictypediagnostic: PU1APC01HT115:
-x-microsoft-antispam-message-info: H+HRHR6PTdxCapHnaPsdsWTS2zzt/aJtiu5pxYGfekxXFyYG2DHagyZTIcUWNNfrdIqdJW2zo8jL1T9CfuF+Zsjw3kX2xL/+d2Ou6ooFP6hBCpYyE+6EullfczvNHcv3MRM5b65x7dUZ8G01IJXDBe+wLaxz9Gl/m+4/pFO7fcYRHHk3cDPQFxws+801cpao
+	id 1hoP97-0004th-8o; Fri, 19 Jul 2019 05:25:45 -0400
+Received: from mail-io1-f52.google.com ([209.85.166.52]:33576)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <sammywelschen@gmail.com>)
+ id 1hoP94-0004p8-8Y
+ for usrp-users@lists.ettus.com; Fri, 19 Jul 2019 05:25:42 -0400
+Received: by mail-io1-f52.google.com with SMTP id z3so57079508iog.0
+ for <usrp-users@lists.ettus.com>; Fri, 19 Jul 2019 02:25:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=euU8DwGVbXRY+6l/vjdime3jh5/pYfS5Pibt+sDHRNU=;
+ b=Bg6l3c8zSl/62EhlQak5Aj6cM7CSY0hA0VP+D9BdwSMcHnFBRkLNrThTQ5zPBVRJSh
+ UrFvgfQ9USml1RIeX5I8Pnu5TtTckc+O8ts+Ywqqz4KLorOqFMJtGfqpfInevOsWkl07
+ wfNLQz1pRRujYvDxiIw8jgp1yO0NDAa3YRxXLWSvDebWPnF7PW5t3B0WB+KOVXItlysc
+ luI20V1+B4bRGged8qK0vRgNzsEkFOTE7B79xa5ImNuI/xr/b9V6oy0g9Y8oPzL6I/M+
+ z3Zre4sZSZXJk6/YC5j+mYPBzMlX8pAYhcO0VZGTbw3T7TE12bfci5x81B0zvJlNkDJ5
+ g3NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=euU8DwGVbXRY+6l/vjdime3jh5/pYfS5Pibt+sDHRNU=;
+ b=VLr1vXMmCG89OBIR6EkrNDBnq5TloUt1LfKC+TxUP1w6Maks+kcJcOi8FFCaXEMtqx
+ CJcBbhi0bk2JPt4fHkh32GnK7k4cSKJdJuU+/A/6NUBxM/NVgwL08B+rSP5yoft4rSuG
+ 16m0lklM6gYrl9baKMspL7J0c6Epz1XQ0XkO1RDDRMVsy9uIQIWc8Q0Z2ez9Y+Wfpn9M
+ mXm9yKL2ZESME0LM4OSiv8ruZHq/abpC8n9ErukOfd5+Zcju9V+/jEDjoqgw9yhhX1GB
+ FqVwqwWPenI0srjLb8w8rBL2Z48yfm38egLPpbbeRZf0UN/ElJ0ebQ7WqLO0X4qlbAk7
+ /h0g==
+X-Gm-Message-State: APjAAAWweaKEY+PhbVvWAza+7XWuuykmhp4qyhEmXuXSOINFwZtNTndv
+ xIj4c6FeNa05Avl4adOiJ3jUxmmEWHg8PWMReTa/izPY
+X-Google-Smtp-Source: APXvYqxnmGbr1+Lts+eSvp8odvwFTlfcXXaC7E0E3h8YY5JulVf94ueEvcddTg6RzZOS94RpvxXgG7tW7+MzoyDfdl0=
+X-Received: by 2002:a02:7a5c:: with SMTP id z28mr54078958jad.40.1563528301126; 
+ Fri, 19 Jul 2019 02:25:01 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c24859d-77c1-4b85-f6bc-08d70c199974
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2019 07:20:39.4563 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT115
-Subject: [USRP-users] N310 "Bad CHDR or packet fragment" Problem
+References: <CAKJyDkKyb2H0gi_Kcy_5=YE0NTqLguMVfeWnGT6gXiQDe=3ppA@mail.gmail.com>
+ <D975AAE1-4B39-430E-B0AB-C3A996368FB3@gmail.com>
+In-Reply-To: <D975AAE1-4B39-430E-B0AB-C3A996368FB3@gmail.com>
+Date: Fri, 19 Jul 2019 11:24:50 +0200
+Message-ID: <CAE6G02-D9-HFhk8ZW-CRhK93UTew8CfKthp9mBuo5x+cLKGzWA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] Fwd: Phase coherency for low RX frequencies
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -80,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?5rGkIOmjniB2aWEgVVNSUC11c2Vycw==?= <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?B?5rGkIOmjng==?= <retina999@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============3519489060310065250=="
+From: Sammy Welschen via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sammy Welschen <sammywelschen@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6398988906401023039=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -96,152 +75,241 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3519489060310065250==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_HK0PR01MB2835921DB0A5915C119C4BE5F3CB0HK0PR01MB2835apcp_"
+--===============6398988906401023039==
+Content-Type: multipart/alternative; boundary="000000000000fc29cc058e054c88"
 
---_000_HK0PR01MB2835921DB0A5915C119C4BE5F3CB0HK0PR01MB2835apcp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000fc29cc058e054c88
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGksIGFsbCwNCg0KV2hlbiBiZW5jaG1hcmtpbmcgbXkgTjMxMCwgSSBrZWVwIGdldHRpbmcgc3Vj
-aCBbUlggRkxPVyBDVFJMXSBlcnJvcnMuDQpXaGF0IGNhdXNlcyB0aGlzIGFuZCBob3cgdG8gc29s
-dmUgaXQ/DQoNClRoYW5rcyBpbiBhZHZhbmNlIQ0KDQpGVA0KDQoNCi91c3IvbG9jYWwvbGliL3Vo
-ZC9leGFtcGxlcy9iZW5jaG1hcmtfcmF0ZSAgXA0KPiAgICAtLWFyZ3MgInR5cGU9bjN4eCxtZ210
-X2FkZHI9MTkyLjE2OC4xMC4yLGFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEy
-Mi44OGU2IiBcDQo+ICAgIC0tZHVyYXRpb24gNjAgXA0KPiAgICAtLWNoYW5uZWxzICIwIiBcDQo+
-ICAgIC0tcnhfcmF0ZSAzLjg0ZTYgXA0KPiAgICAtLXJ4X3N1YmRldiAiQTowIiBcDQo+ICAgIC0t
-dHhfcmF0ZSAzLjg0ZTYgXA0KPiAgICAtLXR4X3N1YmRldiAiQTowIg0KDQpbSU5GT10gW1VIRF0g
-bGludXg7IEdOVSBDKysgdmVyc2lvbiA3LjQuMDsgQm9vc3RfMTA2NTAxOyBVSERfMy4xNC4xLkhF
-QUQtMC1nYmZiOWMxYzcNClswMDowMDowMC4wMDAwMTRdIENyZWF0aW5nIHRoZSB1c3JwIGRldmlj
-ZSB3aXRoOiB0eXBlPW4zeHgsbWdtdF9hZGRyPTE5Mi4xNjguMTAuMixhZGRyPTE5Mi4xNjguMTAu
-MixtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNi4uLg0KW0lORk9dIFtNUE1EXSBJbml0aWFsaXpp
-bmcgMSBkZXZpY2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiBtZ210X2FkZHI9MTkyLjE2OC4x
-MC4yLHR5cGU9bjN4eCxwcm9kdWN0PW4zMTAsc2VyaWFsPTMxODJCMDksY2xhaW1lZD1GYWxzZSxh
-ZGRyPTE5Mi4xNjguMTAuMixtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNg0KW0lORk9dIFtNUE0u
-UGVyaXBoTWFuYWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzIGBtYXN0ZXJfY2xv
-Y2tfcmF0ZT0xMjIuODhlNix0aW1lX3NvdXJjZT1pbnRlcm5hbCxjbG9ja19zb3VyY2U9aW50ZXJu
-YWwsbWdtdF9hZGRyPTE5Mi4xNjguMTAuMixwcm9kdWN0PW4zMTAnLg0KW0lORk9dIFswL1JlcGxh
-eV8wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDRFOTFBMDAwMDAwMDAw
-MDQpDQpbSU5GT10gWzAvUmFkaW9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJ
-RDogMHgxMkFEMTAwMDAwMDExMzEyKQ0KW0lORk9dIFswL1JhZGlvXzFdIEluaXRpYWxpemluZyBi
-bG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTJBRDEwMDAwMDAxMTMxMikNCltJTkZPXSBbMC9ERENf
-MF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEREMwMDAwMDAwMDAwMDAw
-KQ0KW0lORk9dIFswL0REQ18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAw
-eEREQzAwMDAwMDAwMDAwMDApDQpbSU5GT10gWzAvRFVDXzBdIEluaXRpYWxpemluZyBibG9jayBj
-b250cm9sIChOT0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAwMikNCltJTkZPXSBbMC9EVUNfMV0gSW5p
-dGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAwMDAwMDAwMDAyKQ0KW0lO
-Rk9dIFswL0ZJRk9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYw
-MDAwMDAwMDAwMDAwKQ0KW0lORk9dIFswL0ZJRk9fMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRy
-b2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQ0KW0lORk9dIFswL0ZJRk9fMl0gSW5pdGlh
-bGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQ0KW0lORk9d
-IFswL0ZJRk9fM10gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAw
-MDAwMDAwMDAwKQ0KVXNpbmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoNCiAgRGV2aWNlOiBOMzAwLVNl
-cmllcyBEZXZpY2UNCiAgTWJvYXJkIDA6IG5pLW4zeHgtMzE4MkIwOQ0KICBSWCBDaGFubmVsOiAw
-DQogICAgUlggRFNQOiAwDQogICAgUlggRGJvYXJkOiBBDQogICAgUlggU3ViZGV2OiBNYWduZXNp
-dW0NCiAgVFggQ2hhbm5lbDogMA0KICAgIFRYIERTUDogMA0KICAgIFRYIERib2FyZDogQQ0KICAg
-IFRYIFN1YmRldjogTWFnbmVzaXVtDQoNClswMDowMDoxNy4zNTMxODRdIFNldHRpbmcgZGV2aWNl
-IHRpbWVzdGFtcCB0byAwLi4uDQpbMDA6MDA6MTcuNDEyMTg3XSBUZXN0aW5nIHJlY2VpdmUgcmF0
-ZSAzLjg0MDAwMCBNc3BzIG9uIDEgY2hhbm5lbHMNClswMDowMDoxNy40MTQxNjRdIFJlY2VpdmVy
-IGVycm9yOiBFUlJPUl9DT0RFX0JBRF9QQUNLRVQNCltbRVJST1JdIFtSWCBGTE9XIENUUkxdIEVy
-cm9yIHVucGFja2luZyBwYWNrZXQ6IFZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFn
-bWVudA0KDQpbRVJST1JdIFtTVFJFQU1FUl0gVGhlIHJlY2VpdmUgcGFja2V0IGhhbmRsZXIgY2F1
-Z2h0IGEgdmFsdWUgZXhjZXB0aW9uLg0KVmFsdWVFcnJvcjogQmFkIENIRFIgb3IgcGFja2V0IGZy
-YWdtZW50DQowMDowMDoxNy40MTQxODBdIFVuZXhwZWN0ZWQgZXJyb3Igb24gcmVjdiwgY29udGlu
-dWluZy4uLg0KWzAwOjAwOjE3LjUxNDI1OF0gUmVjZWl2ZXIgZXJyb3I6IEVSUk9SX0NPREVfVElN
-RU9VVCwgY29udGludWluZy4uLg0KWzAwOjAwOjE3LjUxNDMxMl0gUmVjZWl2ZXIgZXJyb3I6IEVS
-Uk9SX0NPREVfQkFEX1BBQ0tFVA0KWzAwOjAwOjE3LjUxNDMxN10gVW5leHBlY3RlZCBlcnJvciBv
-biByZWN2LCBjb250aW51aW5nLi4uDQpbRVJST1JdIFtSWCBGTE9XIENUUkxdIEVycm9yIHVucGFj
-a2luZyBwYWNrZXQ6IFZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudA0KDQpb
-RVJST1JdIFtTVFJFQU1FUl0gVGhlIHJlY2VpdmUgcGFja2V0IGhhbmRsZXIgY2F1Z2h0IGEgdmFs
-dWUgZXhjZXB0aW9uLg0KVmFsdWVFcnJvcjogQmFkIENIRFIgb3IgcGFja2V0IGZyYWdtZW50DQpb
-MDA6MDA6MTcuNTMyOTkxXSBUZXN0aW5nIHRyYW5zbWl0IHJhdGUgMy44NDAwMDAgTXNwcyBvbiAx
-IGNoYW5uZWxzDQpbMDA6MDA6MTcuNjE0MzI5XSBSZWNlaXZlciBlcnJvcjogRVJST1JfQ09ERV9U
-SU1FT1VULCBjb250aW51aW5nLi4uDQpbMDA6MDA6MTcuNjE0MzcyXSBSZWNlaXZlciBlcnJvcjog
-RVJST1JfQ09ERV9CQURfUEFDS0VUDQpbMDA6MDA6MTcuNjE0Mzc3XSBVbmV4cGVjdGVkIGVycm9y
-IG9uIHJlY3YsIGNvbnRpbnVpbmcuLi4NCg0K
+Thanks for your reply.
 
---_000_HK0PR01MB2835921DB0A5915C119C4BE5F3CB0HK0PR01MB2835apcp_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <F0B5DAE465794444A827D4F9D2E05646@apcprd01.prod.exchangelabs.com>
-Content-Transfer-Encoding: base64
+I am a bit confused now. Since the LO for this stage is derived from the
+sample clock, wouldn't I be in the same situation as if I only shared 10
+MHz reference and PPS signals?
+Quote from https://files.ettus.com/manual/page_usrp_n3xx.html:
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHRleHQ9IiMwMDAwMDAi
-IGJnY29sb3I9IiNGRkZGRkYiPg0KPHByZT5IaSwgYWxsLA0KDQpXaGVuIGJlbmNobWFya2luZyBt
-eSBOMzEwLCBJIGtlZXAgZ2V0dGluZyBzdWNoIDxmb250IGNvbG9yPSIjQ0MwMDAwIj5bUlggRkxP
-VyBDVFJMXTwvZm9udD4gZXJyb3JzLiANCldoYXQgY2F1c2VzIHRoaXMgYW5kIGhvdyB0byBzb2x2
-ZSBpdD8NCg0KVGhhbmtzIGluIGFkdmFuY2UhDQoNCkZUDQoNCg0KL3Vzci9sb2NhbC9saWIvdWhk
-L2V4YW1wbGVzL2JlbmNobWFya19yYXRlICBcDQomZ3Q7ICAgIC0tYXJncyAmcXVvdDt0eXBlPW4z
-eHgsbWdtdF9hZGRyPTE5Mi4xNjguMTAuMixhZGRyPTE5Mi4xNjguMTAuMixtYXN0ZXJfY2xvY2tf
-cmF0ZT0xMjIuODhlNiZxdW90OyBcDQomZ3Q7ICAgIC0tZHVyYXRpb24gNjAgXA0KJmd0OyAgICAt
-LWNoYW5uZWxzICZxdW90OzAmcXVvdDsgXA0KJmd0OyAgICAtLXJ4X3JhdGUgMy44NGU2IFwNCiZn
-dDsgICAgLS1yeF9zdWJkZXYgJnF1b3Q7QTowJnF1b3Q7IFwNCiZndDsgICAgLS10eF9yYXRlIDMu
-ODRlNiBcDQomZ3Q7ICAgIC0tdHhfc3ViZGV2ICZxdW90O0E6MCZxdW90Ow0KDQo8Zm9udCBjb2xv
-cj0iIzRFOUEwNiI+W0lORk9dIFtVSERdIDwvZm9udD5saW51eDsgR05VIEMmIzQzOyYjNDM7IHZl
-cnNpb24gNy40LjA7IEJvb3N0XzEwNjUwMTsgVUhEXzMuMTQuMS5IRUFELTAtZ2JmYjljMWM3DQpb
-MDA6MDA6MDAuMDAwMDE0XSBDcmVhdGluZyB0aGUgdXNycCBkZXZpY2Ugd2l0aDogdHlwZT1uM3h4
-LG1nbXRfYWRkcj0xOTIuMTY4LjEwLjIsYWRkcj0xOTIuMTY4LjEwLjIsbWFzdGVyX2Nsb2NrX3Jh
-dGU9MTIyLjg4ZTYuLi4NCjxmb250IGNvbG9yPSIjNEU5QTA2Ij5bSU5GT10gW01QTURdIDwvZm9u
-dD5Jbml0aWFsaXppbmcgMSBkZXZpY2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiBtZ210X2Fk
-ZHI9MTkyLjE2OC4xMC4yLHR5cGU9bjN4eCxwcm9kdWN0PW4zMTAsc2VyaWFsPTMxODJCMDksY2xh
-aW1lZD1GYWxzZSxhZGRyPTE5Mi4xNjguMTAuMixtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNg0K
-PGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbTVBNLlBlcmlwaE1hbmFnZXJdIDwvZm9udD5p
-bml0KCkgY2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MgYG1hc3Rlcl9jbG9ja19yYXRlPTEyMi44OGU2
-LHRpbWVfc291cmNlPWludGVybmFsLGNsb2NrX3NvdXJjZT1pbnRlcm5hbCxtZ210X2FkZHI9MTky
-LjE2OC4xMC4yLHByb2R1Y3Q9bjMxMCcuDQo8Zm9udCBjb2xvcj0iIzRFOUEwNiI+W0lORk9dIFsw
-L1JlcGxheV8wXSA8L2ZvbnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHg0
-RTkxQTAwMDAwMDAwMDA0KQ0KPGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9SYWRpb18w
-XSA8L2ZvbnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAw
-MDExMzEyKQ0KPGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9SYWRpb18xXSA8L2ZvbnQ+
-SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDExMzEyKQ0K
-PGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9ERENfMF0gPC9mb250PkluaXRpYWxpemlu
-ZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkNCjxmb250IGNvbG9y
-PSIjNEU5QTA2Ij5bSU5GT10gWzAvRERDXzFdIDwvZm9udD5Jbml0aWFsaXppbmcgYmxvY2sgY29u
-dHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAwMDApDQo8Zm9udCBjb2xvcj0iIzRFOUEwNiI+
-W0lORk9dIFswL0RVQ18wXSA8L2ZvbnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJ
-RDogMHhEMEMwMDAwMDAwMDAwMDAyKQ0KPGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9E
-VUNfMV0gPC9mb250PkluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RDBDMDAw
-MDAwMDAwMDAwMikNCjxmb250IGNvbG9yPSIjNEU5QTA2Ij5bSU5GT10gWzAvRklGT18wXSA8L2Zv
-bnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAw
-KQ0KPGZvbnQgY29sb3I9IiM0RTlBMDYiPltJTkZPXSBbMC9GSUZPXzFdIDwvZm9udD5Jbml0aWFs
-aXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApDQo8Zm9udCBj
-b2xvcj0iIzRFOUEwNiI+W0lORk9dIFswL0ZJRk9fMl0gPC9mb250PkluaXRpYWxpemluZyBibG9j
-ayBjb250cm9sIChOT0MgSUQ6IDB4RjFGMDAwMDAwMDAwMDAwMCkNCjxmb250IGNvbG9yPSIjNEU5
-QTA2Ij5bSU5GT10gWzAvRklGT18zXSA8L2ZvbnQ+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wg
-KE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQ0KVXNpbmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoN
-CiAgRGV2aWNlOiBOMzAwLVNlcmllcyBEZXZpY2UNCiAgTWJvYXJkIDA6IG5pLW4zeHgtMzE4MkIw
-OQ0KICBSWCBDaGFubmVsOiAwDQogICAgUlggRFNQOiAwDQogICAgUlggRGJvYXJkOiBBDQogICAg
-UlggU3ViZGV2OiBNYWduZXNpdW0NCiAgVFggQ2hhbm5lbDogMA0KICAgIFRYIERTUDogMA0KICAg
-IFRYIERib2FyZDogQQ0KICAgIFRYIFN1YmRldjogTWFnbmVzaXVtDQoNClswMDowMDoxNy4zNTMx
-ODRdIFNldHRpbmcgZGV2aWNlIHRpbWVzdGFtcCB0byAwLi4uDQpbMDA6MDA6MTcuNDEyMTg3XSBU
-ZXN0aW5nIHJlY2VpdmUgcmF0ZSAzLjg0MDAwMCBNc3BzIG9uIDEgY2hhbm5lbHMNClswMDowMDox
-Ny40MTQxNjRdIFJlY2VpdmVyIGVycm9yOiBFUlJPUl9DT0RFX0JBRF9QQUNLRVQNCls8Zm9udCBj
-b2xvcj0iI0NDMDAwMCI+W0VSUk9SXSBbUlggRkxPVyBDVFJMXSA8L2ZvbnQ+RXJyb3IgdW5wYWNr
-aW5nIHBhY2tldDogVmFsdWVFcnJvcjogQmFkIENIRFIgb3IgcGFja2V0IGZyYWdtZW50DQoNCjxm
-b250IGNvbG9yPSIjQ0MwMDAwIj5bRVJST1JdIFtTVFJFQU1FUl0gPC9mb250PlRoZSByZWNlaXZl
-IHBhY2tldCBoYW5kbGVyIGNhdWdodCBhIHZhbHVlIGV4Y2VwdGlvbi4NClZhbHVlRXJyb3I6IEJh
-ZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudA0KMDA6MDA6MTcuNDE0MTgwXSBVbmV4cGVjdGVkIGVy
-cm9yIG9uIHJlY3YsIGNvbnRpbnVpbmcuLi4NClswMDowMDoxNy41MTQyNThdIFJlY2VpdmVyIGVy
-cm9yOiBFUlJPUl9DT0RFX1RJTUVPVVQsIGNvbnRpbnVpbmcuLi4NClswMDowMDoxNy41MTQzMTJd
-IFJlY2VpdmVyIGVycm9yOiBFUlJPUl9DT0RFX0JBRF9QQUNLRVQNClswMDowMDoxNy41MTQzMTdd
-IFVuZXhwZWN0ZWQgZXJyb3Igb24gcmVjdiwgY29udGludWluZy4uLg0KPGZvbnQgY29sb3I9IiND
-QzAwMDAiPltFUlJPUl0gW1JYIEZMT1cgQ1RSTF0gPC9mb250PkVycm9yIHVucGFja2luZyBwYWNr
-ZXQ6IFZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudA0KDQo8Zm9udCBjb2xv
-cj0iI0NDMDAwMCI+W0VSUk9SXSBbU1RSRUFNRVJdIDwvZm9udD5UaGUgcmVjZWl2ZSBwYWNrZXQg
-aGFuZGxlciBjYXVnaHQgYSB2YWx1ZSBleGNlcHRpb24uDQpWYWx1ZUVycm9yOiBCYWQgQ0hEUiBv
-ciBwYWNrZXQgZnJhZ21lbnQNClswMDowMDoxNy41MzI5OTFdIFRlc3RpbmcgdHJhbnNtaXQgcmF0
-ZSAzLjg0MDAwMCBNc3BzIG9uIDEgY2hhbm5lbHMNClswMDowMDoxNy42MTQzMjldIFJlY2VpdmVy
-IGVycm9yOiBFUlJPUl9DT0RFX1RJTUVPVVQsIGNvbnRpbnVpbmcuLi4NClswMDowMDoxNy42MTQz
-NzJdIFJlY2VpdmVyIGVycm9yOiBFUlJPUl9DT0RFX0JBRF9QQUNLRVQNClswMDowMDoxNy42MTQz
-NzddIFVuZXhwZWN0ZWQgZXJyb3Igb24gcmVjdiwgY29udGludWluZy4uLg0KPC9wcmU+DQo8L2Jv
-ZHk+DQo8L2h0bWw+DQo=
+----------------------
 
---_000_HK0PR01MB2835921DB0A5915C119C4BE5F3CB0HK0PR01MB2835apcp_--
+Reasons to use an external LO include:
+Improving phase alignment: The N310 itself has no way of aligning phase
+between channels, and phase will be random between runs. By applying an
+external LO, the phase ambiguity is reduced to 180 degrees, produced by a
+by-2 divider in the AD9371 transceiver IC.
+Improving phase noise: The quality of the onboard LO depends on the
+external reference clock, among other things. By providing a custom LO
+signal, it is possible to more accurately tune, assuming the externally
+generated LO signal is coming from a high-quality oscillator.
+----------------------
+
+I would still have a certain fixed phase relation between channels, but
+with more fluctuations and a phase difference that changes on every turn on
+of the devices (i.e. the same situation as when sharing 10 Mhz and PPS
+signals). See for example the plots on pages 24-25 of
+https://forums.ni.com/ni/attachments/ni/grp-1008/110/1/Fundamentals%20of%20=
+Phase-Coherent%20RF%20Measurements.pdf
+for an illustration of what I mean.
+
+Am Do., 18. Juli 2019 um 19:25 Uhr schrieb Marcus D Leech via USRP-users <
+usrp-users@lists.ettus.com>:
+
+>
+>
+>
+> I have just been corrected by one of my colleagues at Ettus.
+>>
+>> While there is an up conversion stage for frequencies below 450Mhz, the
+>> LO for that stage is fixed frequency, and derived from the sample clock =
+and
+>> coherent across channels.
+>>
+>> So there should be no random phase offset among channels even below
+>> 450Mhz when LO sharing.
+>>
+>> This is correct as far as I know. Although I don=E2=80=99t have an N320 =
+in my
+>> lab, it uses an up conversion scheme for lower frequencies. That scheme
+>> does not participate in the LO sharing.
+>>
+>> Sent from my iPhone
+>>
+>>
+>> On Jul 18, 2019, at 11:17 AM, Sammy Welschen via USRP-users <
+>> usrp-users@lists.ettus.com> wrote:
+>>
+>> I have to acquire phase coherent data on multiple channels using USRP
+>> N310/320 devices.
+>>
+>>
+>>
+>> Am I correct in assuming that for frequencies below 450 MHz, there is no
+>> way to remove random phase differences between channels due to the
+>> additional frequency shift involved (shown for example in the block
+>> diagram
+>> http://www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png
+>> <https://urldefense.com/v3/__http:/www.ettus.com/wp-content/uploads/2019=
+/03/N320BlockDiagram.png__;!fqWJcnlTkjM!9UAjRx1UqNGGgw_MyGxeNp4dcd08afk3Ijp=
+bsIlbrDYEk9H2AfliCLM52OcRdC4$>)?
+>> As I understand it, by using the same LO signal for all channels I could
+>> remove the differences for frequencies above 450 MHz, but this is of no =
+use
+>> for frequencies below 450 MHz due to this the additional stage.
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>> <https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listinfo/usrp=
+-users_lists.ettus.com__;!fqWJcnlTkjM!9UAjRx1UqNGGgw_MyGxeNp4dcd08afk3Ijpbs=
+IlbrDYEk9H2AfliCLM5ZdVPAfg$>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>> <https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listinfo/usrp=
+-users_lists.ettus.com__;!fqWJcnlTkjM!9UAjRx1UqNGGgw_MyGxeNp4dcd08afk3Ijpbs=
+IlbrDYEk9H2AfliCLM5ZdVPAfg$>
+>>
+>> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000fc29cc058e054c88
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><font face=3D"arial, sans-serif">Thanks for your reply.=C2=
+=A0</font><div><font face=3D"arial, sans-serif"><br></font></div><div><font=
+ face=3D"arial, sans-serif">I am a bit confused now. Since the LO for this =
+stage is derived from the sample clock, wouldn&#39;t I be in the same situa=
+tion as if I only shared 10 MHz reference and PPS signals?=C2=A0</font></di=
+v><div><font face=3D"arial, sans-serif">Quote from=C2=A0<a href=3D"https://=
+files.ettus.com/manual/page_usrp_n3xx.html" target=3D"_blank">https://files=
+.ettus.com/manual/page_usrp_n3xx.html</a>:</font></div><div><font face=3D"a=
+rial, sans-serif"><br></font></div><div><font face=3D"arial, sans-serif">--=
+--------------------</font></div><div><p style=3D"font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-stretch:normal;font-size:14px;line-h=
+eight:22px;color:rgb(0,0,0)"><font face=3D"arial, sans-serif">Reasons to us=
+e an external LO include:</font></p><font face=3D"arial, sans-serif"><span =
+style=3D"color:rgb(0,0,0);font-size:14px">Improving phase alignment: The N3=
+10 itself has no way of aligning phase between channels, and phase will be =
+random between runs. By applying an external LO, the phase ambiguity is red=
+uced to 180 degrees, produced by a by-2 divider in the AD9371 transceiver I=
+C.</span><br><span style=3D"color:rgb(0,0,0);font-size:14px">Improving phas=
+e noise: The quality of the onboard LO depends on the external reference cl=
+ock, among other things. By providing a custom LO signal, it is possible to=
+ more accurately tune, assuming the externally generated LO signal is comin=
+g from a high-quality oscillator.</span></font></div><div><font face=3D"ari=
+al, sans-serif">----------------------=C2=A0=C2=A0<br></font></div><div><fo=
+nt face=3D"arial, sans-serif"><br></font></div><div><font face=3D"arial, sa=
+ns-serif">I would still have a certain fixed phase relation between channel=
+s, but with more fluctuations and a phase difference that changes on every =
+turn on of the devices (i.e. the same situation as when sharing 10 Mhz and =
+PPS signals). See for example the plots on pages 24-25 of=C2=A0<a href=3D"h=
+ttps://forums.ni.com/ni/attachments/ni/grp-1008/110/1/Fundamentals%20of%20P=
+hase-Coherent%20RF%20Measurements.pdf" target=3D"_blank">https://forums.ni.=
+com/ni/attachments/ni/grp-1008/110/1/Fundamentals%20of%20Phase-Coherent%20R=
+F%20Measurements.pdf</a>=C2=A0 for an illustration of what I mean.</font></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Am=
+ Do., 18. Juli 2019 um 19:25=C2=A0Uhr schrieb Marcus D Leech via USRP-users=
+ &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><div dir=3D"auto"><br><br><blockquote type=3D"cite"><div dir=
+=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"><=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto=
+">I have just been corrected by one of my colleagues at Ettus.=C2=A0<div><b=
+r></div><div>While there is an up conversion stage for frequencies below 45=
+0Mhz, the LO for that stage is fixed frequency, and derived from the sample=
+ clock and coherent across channels.=C2=A0</div><div><br></div><div>So ther=
+e should be no random phase offset among channels even below 450Mhz when LO=
+ sharing.=C2=A0</div><div><br><blockquote type=3D"cite"><div dir=3D"ltr"><d=
+iv class=3D"m_4109572153054765750gmail-m_-766200740446686168gmail-m_8464511=
+976241383310WordSection1"><div><div><div><p class=3D"MsoNormal" style=3D"ma=
+rgin-bottom:12pt">This is correct as far as I know. Although I don=E2=80=99=
+t have an N320 in my lab, it uses an up conversion scheme for lower frequen=
+cies. That scheme does not participate in the LO sharing.=C2=A0<u></u><u></=
+u></p>
+<div id=3D"m_4109572153054765750gmail-m_-766200740446686168gmail-m_84645119=
+76241383310m_-2455621878214780349AppleMailSignature">
+<p class=3D"MsoNormal">Sent from my iPhone<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><br>
+On Jul 18, 2019, at 11:17 AM, Sammy Welschen via USRP-users &lt;<a href=3D"=
+mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus=
+.com</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">I have to acquire phase coherent data on multiple ch=
+annels using USRP N310/320 devices.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<p class=3D"MsoNormal">Am I correct in assuming that for frequencies below =
+450 MHz, there is no way to remove random phase differences between channel=
+s due to the additional frequency shift involved (shown for example in the =
+block diagram=C2=A0
+<a href=3D"https://urldefense.com/v3/__http:/www.ettus.com/wp-content/uploa=
+ds/2019/03/N320BlockDiagram.png__;!fqWJcnlTkjM!9UAjRx1UqNGGgw_MyGxeNp4dcd08=
+afk3IjpbsIlbrDYEk9H2AfliCLM52OcRdC4$" target=3D"_blank">
+http://www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png</a>)? =
+As I understand it, by using the same LO signal for all channels I could re=
+move the differences for frequencies above 450 MHz, but this is of no use f=
+or frequencies below 450 MHz due
+ to this the additional stage.<u></u><u></u></p>
+</div>
+</div>
+</blockquote>
+<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+<div>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listin=
+fo/usrp-users_lists.ettus.com__;!fqWJcnlTkjM!9UAjRx1UqNGGgw_MyGxeNp4dcd08af=
+k3IjpbsIlbrDYEk9H2AfliCLM5ZdVPAfg$" target=3D"_blank">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com</a><u></u><u></u></p>
+</div>
+</blockquote>
+</div>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listin=
+fo/usrp-users_lists.ettus.com__;!fqWJcnlTkjM!9UAjRx1UqNGGgw_MyGxeNp4dcd08af=
+k3IjpbsIlbrDYEk9H2AfliCLM5ZdVPAfg$" target=3D"_blank">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com</a><u></u><u></u></p>
+</div>
+</div>
+</div>
 
 
---===============3519489060310065250==
+</div></blockquote></div></div></blockquote></div>
+</div></blockquote></div>_______________________________________________<br=
+>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--000000000000fc29cc058e054c88--
+
+
+--===============6398988906401023039==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -252,5 +320,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3519489060310065250==--
+--===============6398988906401023039==--
 
