@@ -2,49 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C4A6E4A6
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Jul 2019 13:03:10 +0200 (CEST)
-Received: from [::1] (port=51516 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6B996E79D
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Jul 2019 16:58:41 +0200 (CEST)
+Received: from [::1] (port=59324 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hoQfM-0004sg-J5; Fri, 19 Jul 2019 07:03:08 -0400
-Received: from mail-qt1-f177.google.com ([209.85.160.177]:35847)
+	id 1hoULD-0007Lu-Ga; Fri, 19 Jul 2019 10:58:35 -0400
+Received: from mail-qk1-f180.google.com ([209.85.222.180]:37699)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <saimanoj.katta@cumucore.com>)
- id 1hoQfI-0004lf-II
- for usrp-users@lists.ettus.com; Fri, 19 Jul 2019 07:03:04 -0400
-Received: by mail-qt1-f177.google.com with SMTP id z4so30496191qtc.3
- for <usrp-users@lists.ettus.com>; Fri, 19 Jul 2019 04:02:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumucore-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=ZFWh2PIvxx0ymASv3HRfqYNb5+o5rfkKLqGRjRSU+Fc=;
- b=ItybJ1E3wYTnS7c0MyxQecmwAQMzoHU7S86GID4MFS+22xE5f1ZXnyLyvhWAQqA17R
- zrypjOzfYdO8qA0YjBXvYeNzBqVxhJyDywR4ioUQQeKp2PGLCTPorKde8m9i+hOf0yZQ
- WduwzIRICGYlfrWr6cv2tgV4Z+HgudanozYgDMO32RJLhDVAQZ30C7/lrW8ChEm/fPT6
- /Zh5XEbCp8H7MRV8APgJqchW9X8zpIEaaL0MogGH9h7CdnvAW4mYJe6yEnPZoMJNJ5iw
- 5bp4QDLQC/EK8Dfhshkz+4eJYX84y4KGy0BpyvEqwWdf3x0Xceh9jqYDjHToK8FvaE8a
- Nkzg==
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1hoULA-0007G7-LC
+ for usrp-users@lists.ettus.com; Fri, 19 Jul 2019 10:58:32 -0400
+Received: by mail-qk1-f180.google.com with SMTP id d15so23416583qkl.4
+ for <usrp-users@lists.ettus.com>; Fri, 19 Jul 2019 07:58:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=Uuaa+7IMcwCgXWkblpJyvvrR51rnjWink7KU+cR8IvQ=;
+ b=qCj1eiSzxWTW8gDnj6KCzepqlOtIDy11HrWZoC3RgXntx6+3uTnYXAu9Qou1z6KP13
+ kRBDprZN3WRGOLy131HsRRuVNJKu/GCpbGXXJLhRlr2tbeOodqtqLJ63pEHlAQlf1hlu
+ 0wmGCvZQbUFiGJJ3+1QNo0/aNu4yvI9n2Zojy4B+TEUszPdaqkjhSrP5a3xtnCJVJCjn
+ caoIZ39y0Me7iJCxJt569/unM2tCcX2FtmmAaqYe5WDGJ+iU50HjA+ukGrG0QwlFXTFw
+ hf9RmPKS5jccL5sBYJCvuaMtQX7EozywF+eFsx0YAqzlPV2bZNTA2MTt2Y2d/NEnHaTh
+ wndQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=ZFWh2PIvxx0ymASv3HRfqYNb5+o5rfkKLqGRjRSU+Fc=;
- b=iqLBUKkkOGZKq7hZZ9kP/txOxbuAC1vKqq4GP6t58Q3nLVC1ZW5GrDAgffcY6l8HqJ
- i6vE0wlHkyoN1NQNPDhJHLS2SbhqmXG0b0O+xNWaT1qlU3PUo/SC84XI8vAcwyMicy3V
- VZB43o94DzoG+DX8PMja/c7b6qoSzYXY3D6Ap2ib9kH2DUZ+SEX5SBpfU4cQ3FCyI+WX
- ElqD+Wo1fx7+aUJcjzHxhmFgffHK8yJgYHNvHydKc2CuM6JcqTcn+nBcUiWW1qScCZDo
- jLcSTKb0bhF74DLPYBAiTK8OQQcJxvH4KRJK7FCtm8k7nqs40ZOaf1pHnhNhzKcGrxKc
- qAoQ==
-X-Gm-Message-State: APjAAAUKERfYJhUIEmFiHDa4n6tOCZgqoIyP1fxo26fVSKj7Q08tjSAI
- 6sNFlpJOYHu4Ro8j8stc9DacR7JqjDnESneijqv7l1LW
-X-Google-Smtp-Source: APXvYqx1L9n/XkpgzUYzxZMex0uHa1TxeGF3LbOQ+I8DmVUfwGxgkVX0qBTyN9s00y8MtLRTMm91ORSjRKPp41t28RE=
-X-Received: by 2002:ac8:5315:: with SMTP id t21mr36668363qtn.229.1563534138982; 
- Fri, 19 Jul 2019 04:02:18 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=Uuaa+7IMcwCgXWkblpJyvvrR51rnjWink7KU+cR8IvQ=;
+ b=FLiVOBTAo1Abdi+vPyjk8NZDHjedpJE2HUoY/51bo0NDe5ncfN1tSA4+6OGNY5ivqg
+ 2RpzbcO2Ir7sEBSiknGdG40IuG4T+PUUAXqm1eTBMBixjowmZ/0g57aR2EAyObQ4q7jw
+ qduazwegh2/G0tljVeed7j1sDWyo7ADPwadqn6bLwHuAvO0hOPkQa3HnmJxswJ1IvCuD
+ wAKXNT6aG56G0FsWxRq3XwptFfhAZi9b7JbnAIKvJs0RdFEXnh5jJjHCsq+kMohPH/qD
+ BZ14+ytVDvELZIJtYCDhcQ3efp4Ud+Vi1z7nEvKCTf04ZTjjoctZEWN1Zd7kx1Ibu9qW
+ O0ow==
+X-Gm-Message-State: APjAAAVT9dl3LW4TdMQlIAtIDY5AV8RdRAPIjqYk5DSKad9Xim3KmioI
+ kiR29UtHyd8dQDjNypd+JJUMOcaG
+X-Google-Smtp-Source: APXvYqwzQYckHQXtR1Qy/pC2vi3LLDnCJUE5eDdrEDnl05q+6eRFOFjN9LlzLsP1nsgqOmcytkRTjQ==
+X-Received: by 2002:a37:e40a:: with SMTP id y10mr34812295qkf.134.1563548271829; 
+ Fri, 19 Jul 2019 07:57:51 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
+ [174.95.14.20])
+ by smtp.googlemail.com with ESMTPSA id 6sm15615159qkp.82.2019.07.19.07.57.51
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 19 Jul 2019 07:57:51 -0700 (PDT)
+Message-ID: <5D31DA6E.7000902@gmail.com>
+Date: Fri, 19 Jul 2019 10:57:50 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Fri, 19 Jul 2019 14:02:08 +0300
-Message-ID: <CABO=5RoRfGFhoyRyRKr=RjX0Scv1eB0agVcmQ88j8dxT2hp7sQ@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Detection of USRP X310
+References: <CAKJyDkKyb2H0gi_Kcy_5=YE0NTqLguMVfeWnGT6gXiQDe=3ppA@mail.gmail.com>
+ <D975AAE1-4B39-430E-B0AB-C3A996368FB3@gmail.com>
+ <CAE6G02-D9-HFhk8ZW-CRhK93UTew8CfKthp9mBuo5x+cLKGzWA@mail.gmail.com>
+In-Reply-To: <CAE6G02-D9-HFhk8ZW-CRhK93UTew8CfKthp9mBuo5x+cLKGzWA@mail.gmail.com>
+Subject: Re: [USRP-users] Fwd: Phase coherency for low RX frequencies
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -56,9 +68,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Saimanoj Katta via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Saimanoj Katta <saimanoj.katta@cumucore.com>
-Content-Type: multipart/mixed; boundary="===============1361636586210477471=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4891537760831110816=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,142 +84,377 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1361636586210477471==
-Content-Type: multipart/alternative; boundary="000000000000f2fe65058e06a85f"
+This is a multi-part message in MIME format.
+--===============4891537760831110816==
+Content-Type: multipart/alternative;
+ boundary="------------000104000907010804080607"
 
---000000000000f2fe65058e06a85f
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------000104000907010804080607
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 07/19/2019 05:24 AM, Sammy Welschen via USRP-users wrote:
+> Thanks for your reply.
+>
+> I am a bit confused now. Since the LO for this stage is derived from 
+> the sample clock, wouldn't I be in the same situation as if I only 
+> shared 10 MHz reference and PPS signals?
+> Quote from https://files.ettus.com/manual/page_usrp_n3xx.html:
+My understanding was that we were talking about the N320, and only a 
+single unit?
 
-I was previously working with the USRP X310. I wanted to enable Dual
-Connectivity mode for enabling two ports with 10 Giga bit connectivity. I
-ran the update:  uhd_image_loader --args "type=x300,addr=192.168.50.2,
-fpga=XG". Since this, I have not been able to detect my USRP.
+I need to confirm, but I think the upconverter LO on the N320 is a 
+single (clock-derived) oscillator, shared among the channels in the 
+unit.  In that case, the
+   phase relations will be static across powerups, assuming that you 
+share the other LOs.
 
-*My setup: * Ubuntu is 18.04 and the UHD version is UHD_3.14.1.0-0-gbfb9c1c7
-I have connected to the laptop via thunderbolt port which is equivalent to
-USB-3.0. Firewall is disabled. It is not behind a router/switch. Host
-interface IP address is 192.168.10.3 and subnet is 255.255.255.0
-
-I have tried the following:
-
-1) Ran as root user - uhd_find_devices, uhd_usrp_probe and
-uhd_images_downloader.
-Device is not found in first two options. And, the fpga_default images seem
-to be up to date.
-2) By default, USRPs have addresses from the 192.168.10.XXX range (XXX=2 in
-factory settings). I searched addresses in this range, but still USRP not
-detected. Ping to the address also fails.
-
-Any suggestions would be appreciated to detect the device! Many thanks in
-advance.
-
-Regards,
-Saimanoj
-
---000000000000f2fe65058e06a85f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi, <br></div><div><br></div><div>I was previously wo=
-rking with the USRP X310. I wanted to enable Dual Connectivity mode for ena=
-bling two ports with 10 Giga bit connectivity. I ran the update:=C2=A0 <spa=
-n style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-col=
-or:transparent;font-weight:400;font-style:normal;font-variant:normal;text-d=
-ecoration:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-do=
-cs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">uhd_image_loader --a=
-rgs &quot;type=3Dx300,addr=3D192.168.50.2, fpga=3DXG&quot;.</span><span sty=
-le=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tr=
-ansparent;font-weight:400;font-style:normal;font-variant:normal;text-decora=
-tion:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-docs-in=
-ternal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">  Since this, I have not =
-been able to detect my USRP. <br></span></div><div><span style=3D"font-size=
-:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-=
-weight:400;font-style:normal;font-variant:normal;text-decoration:none;verti=
-cal-align:baseline;white-space:pre-wrap" id=3D"gmail-docs-internal-guid-387=
-92c7d-7fff-6350-996e-1ea2104ef635"><br></span></div><div><span style=3D"fon=
-t-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent=
-;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none=
-;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-docs-internal-gu=
-id-38792c7d-7fff-6350-996e-1ea2104ef635"><b>My setup: </b><span style=3D"fo=
-nt-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparen=
-t;font-weight:400;font-style:normal;font-variant:normal;text-decoration:non=
-e;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-docs-internal-g=
-uid-38792c7d-7fff-6350-996e-1ea2104ef635"> Ubuntu is 18.04 and the UHD vers=
-ion is UHD_3.14.1.0-0-gbfb9c1c7</span></span></div><div><span style=3D"font=
--size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;=
-font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;=
-vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-docs-internal-gui=
-d-38792c7d-7fff-6350-996e-1ea2104ef635"><span style=3D"font-size:11pt;font-=
-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:400;=
-font-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
-aseline;white-space:pre-wrap" id=3D"gmail-docs-internal-guid-38792c7d-7fff-=
-6350-996e-1ea2104ef635">I have connected to the laptop via thunderbolt port=
- which is equivalent to USB-3.0. Firewall is disabled. It is not behind a r=
-outer/switch. Host interface IP address is 192.168.10.3 and subnet is 255.2=
-55.255.0 </span></span></div><div><span style=3D"font-size:11pt;font-family=
-:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:400;font-s=
-tyle:normal;font-variant:normal;text-decoration:none;vertical-align:baselin=
-e;white-space:pre-wrap" id=3D"gmail-docs-internal-guid-38792c7d-7fff-6350-9=
-96e-1ea2104ef635"><br></span></div><div><span style=3D"font-size:11pt;font-=
-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:400;=
-font-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
-aseline;white-space:pre-wrap" id=3D"gmail-docs-internal-guid-38792c7d-7fff-=
-6350-996e-1ea2104ef635">I have tried the following: <br></span></div><div><=
-span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-=
-color:transparent;font-weight:400;font-style:normal;font-variant:normal;tex=
-t-decoration:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail=
--docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635"><br></span></div>=
-<div><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);backg=
-round-color:transparent;font-weight:400;font-style:normal;font-variant:norm=
-al;text-decoration:none;vertical-align:baseline;white-space:pre-wrap" id=3D=
-"gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">1) Ran as r=
-oot user - uhd_find_devices, uhd_usrp_probe and uhd_images_downloader. <br>=
-</span></div><div><span style=3D"font-size:11pt;font-family:Arial;color:rgb=
-(0,0,0);background-color:transparent;font-weight:400;font-style:normal;font=
--variant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
-e-wrap" id=3D"gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635=
-">Device is not found in first two options. And, the fpga_default images se=
-em to be up to date. <br></span></div><div><span style=3D"font-size:11pt;fo=
-nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:4=
-00;font-style:normal;font-variant:normal;text-decoration:none;vertical-alig=
-n:baseline;white-space:pre-wrap" id=3D"gmail-docs-internal-guid-38792c7d-7f=
-ff-6350-996e-1ea2104ef635">2) By default, USRPs have addresses from the <co=
-de>192.168.10.XXX</code> range (<code>XXX=3D2</code> in factory settings). =
-I searched addresses in this range, but still USRP not detected. Ping to th=
-e address also fails. <br></span></div><div><span style=3D"font-size:11pt;f=
-ont-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:=
-400;font-style:normal;font-variant:normal;text-decoration:none;vertical-ali=
-gn:baseline;white-space:pre-wrap" id=3D"gmail-docs-internal-guid-38792c7d-7=
-fff-6350-996e-1ea2104ef635"><br></span></div><div><span style=3D"font-size:=
-11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-w=
-eight:400;font-style:normal;font-variant:normal;text-decoration:none;vertic=
-al-align:baseline;white-space:pre-wrap" id=3D"gmail-docs-internal-guid-3879=
-2c7d-7fff-6350-996e-1ea2104ef635">Any suggestions would be appreciated to d=
-etect the device! Many thanks in advance. <br></span></div><div><span style=
-=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tran=
-sparent;font-weight:400;font-style:normal;font-variant:normal;text-decorati=
-on:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-docs-inte=
-rnal-guid-38792c7d-7fff-6350-996e-1ea2104ef635"><br></span></div><div><span=
- style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-colo=
-r:transparent;font-weight:400;font-style:normal;font-variant:normal;text-de=
-coration:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-doc=
-s-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">Regards, <br></span><=
-/div><div><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);=
-background-color:transparent;font-weight:400;font-style:normal;font-variant=
-:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap" =
-id=3D"gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">Saiman=
-oj<br></span></div><div><span style=3D"font-size:11pt;font-family:Arial;col=
-or:rgb(0,0,0);background-color:transparent;font-weight:400;font-style:norma=
-l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
-ace:pre-wrap" id=3D"gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea210=
-4ef635"><br></span></div></div>
-
---000000000000f2fe65058e06a85f--
+In the case of multiple N320s, I don't yet have an answer, since it 
+depends critically on how that upconverter LO is produced, and how the 
+external-reference
+   PLL works.
 
 
---===============1361636586210477471==
+>
+> ----------------------
+>
+> Reasons to use an external LO include:
+>
+> Improving phase alignment: The N310 itself has no way of aligning 
+> phase between channels, and phase will be random between runs. By 
+> applying an external LO, the phase ambiguity is reduced to 180 
+> degrees, produced by a by-2 divider in the AD9371 transceiver IC.
+> Improving phase noise: The quality of the onboard LO depends on the 
+> external reference clock, among other things. By providing a custom LO 
+> signal, it is possible to more accurately tune, assuming the 
+> externally generated LO signal is coming from a high-quality oscillator.
+> ----------------------
+>
+> I would still have a certain fixed phase relation between channels, 
+> but with more fluctuations and a phase difference that changes on 
+> every turn on of the devices (i.e. the same situation as when sharing 
+> 10 Mhz and PPS signals). See for example the plots on pages 24-25 of 
+> https://forums.ni.com/ni/attachments/ni/grp-1008/110/1/Fundamentals%20of%20Phase-Coherent%20RF%20Measurements.pdf 
+> for an illustration of what I mean.
+>
+> Am Do., 18. Juli 2019 um 19:25 Uhr schrieb Marcus D Leech via 
+> USRP-users <usrp-users@lists.ettus.com 
+> <mailto:usrp-users@lists.ettus.com>>:
+>
+>
+>
+>>
+>>         I have just been corrected by one of my colleagues at Ettus.
+>>
+>>         While there is an up conversion stage for frequencies below
+>>         450Mhz, the LO for that stage is fixed frequency, and derived
+>>         from the sample clock and coherent across channels.
+>>
+>>         So there should be no random phase offset among channels even
+>>         below 450Mhz when LO sharing.
+>>
+>>>         This is correct as far as I know. Although I don’t have an
+>>>         N320 in my lab, it uses an up conversion scheme for lower
+>>>         frequencies. That scheme does not participate in the LO
+>>>         sharing.
+>>>
+>>>         Sent from my iPhone
+>>>
+>>>
+>>>         On Jul 18, 2019, at 11:17 AM, Sammy Welschen via USRP-users
+>>>         <usrp-users@lists.ettus.com
+>>>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>>>
+>>>             I have to acquire phase coherent data on multiple
+>>>             channels using USRP N310/320 devices.
+>>>
+>>>             Am I correct in assuming that for frequencies below 450
+>>>             MHz, there is no way to remove random phase differences
+>>>             between channels due to the additional frequency shift
+>>>             involved (shown for example in the block diagram
+>>>             http://www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png
+>>>             <https://urldefense.com/v3/__http:/www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png__;%21fqWJcnlTkjM%219UAjRx1UqNGGgw_MyGxeNp4dcd08afk3IjpbsIlbrDYEk9H2AfliCLM52OcRdC4$>)?
+>>>             As I understand it, by using the same LO signal for all
+>>>             channels I could remove the differences for frequencies
+>>>             above 450 MHz, but this is of no use for frequencies
+>>>             below 450 MHz due to this the additional stage.
+>>>
+>>>             _______________________________________________
+>>>             USRP-users mailing list
+>>>             USRP-users@lists.ettus.com
+>>>             <mailto:USRP-users@lists.ettus.com>
+>>>             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>             <https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com__;%21fqWJcnlTkjM%219UAjRx1UqNGGgw_MyGxeNp4dcd08afk3IjpbsIlbrDYEk9H2AfliCLM5ZdVPAfg$>
+>>>
+>>>         _______________________________________________
+>>>         USRP-users mailing list
+>>>         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>         <https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com__;%21fqWJcnlTkjM%219UAjRx1UqNGGgw_MyGxeNp4dcd08afk3IjpbsIlbrDYEk9H2AfliCLM5ZdVPAfg$>
+>>>
+>     _______________________________________________
+>     USRP-users mailing list
+>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+--------------000104000907010804080607
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 07/19/2019 05:24 AM, Sammy Welschen
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAE6G02-D9-HFhk8ZW-CRhK93UTew8CfKthp9mBuo5x+cLKGzWA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr"><font face="arial, sans-serif">Thanks for your
+          reply. </font>
+        <div><font face="arial, sans-serif"><br>
+          </font></div>
+        <div><font face="arial, sans-serif">I am a bit confused now.
+            Since the LO for this stage is derived from the sample
+            clock, wouldn't I be in the same situation as if I only
+            shared 10 MHz reference and PPS signals? </font></div>
+        <div><font face="arial, sans-serif">Quote from <a
+              moz-do-not-send="true"
+              href="https://files.ettus.com/manual/page_usrp_n3xx.html"
+              target="_blank">https://files.ettus.com/manual/page_usrp_n3xx.html</a>:</font></div>
+      </div>
+    </blockquote>
+    <font face="arial, sans-serif">My understanding was that we were talking
+      about the N320, and only a single unit?<br>
+      <br>
+      I need to confirm, but I think the upconverter LO on the N320 is a
+      single (clock-derived) oscillator, shared among the channels in
+      the unit.  In that case, the<br>
+        phase relations will be static across powerups, assuming that
+      you share the other LOs.<br>
+      <br>
+      In the case of multiple N320s, I don't yet have an answer, since
+      it depends critically on how that upconverter LO is produced, and
+      how the external-reference<br>
+        PLL works.<br>
+      <br>
+      <br>
+    </font>
+    <blockquote
+cite="mid:CAE6G02-D9-HFhk8ZW-CRhK93UTew8CfKthp9mBuo5x+cLKGzWA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div><font face="arial, sans-serif"><br>
+          </font></div>
+        <div><font face="arial, sans-serif">----------------------</font></div>
+        <div>
+          <p
+style="font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;font-size:14px;line-height:22px;color:rgb(0,0,0)"><font
+              face="arial, sans-serif">Reasons to use an external LO
+              include:</font></p>
+          <font face="arial, sans-serif"><span
+              style="color:rgb(0,0,0);font-size:14px">Improving phase
+              alignment: The N310 itself has no way of aligning phase
+              between channels, and phase will be random between runs.
+              By applying an external LO, the phase ambiguity is reduced
+              to 180 degrees, produced by a by-2 divider in the AD9371
+              transceiver IC.</span><br>
+            <span style="color:rgb(0,0,0);font-size:14px">Improving
+              phase noise: The quality of the onboard LO depends on the
+              external reference clock, among other things. By providing
+              a custom LO signal, it is possible to more accurately
+              tune, assuming the externally generated LO signal is
+              coming from a high-quality oscillator.</span></font></div>
+        <div><font face="arial, sans-serif">----------------------  <br>
+          </font></div>
+        <div><font face="arial, sans-serif"><br>
+          </font></div>
+        <div><font face="arial, sans-serif">I would still have a certain
+            fixed phase relation between channels, but with more
+            fluctuations and a phase difference that changes on every
+            turn on of the devices (i.e. the same situation as when
+            sharing 10 Mhz and PPS signals). See for example the plots
+            on pages 24-25 of <a moz-do-not-send="true"
+href="https://forums.ni.com/ni/attachments/ni/grp-1008/110/1/Fundamentals%20of%20Phase-Coherent%20RF%20Measurements.pdf"
+              target="_blank">https://forums.ni.com/ni/attachments/ni/grp-1008/110/1/Fundamentals%20of%20Phase-Coherent%20RF%20Measurements.pdf</a> 
+            for an illustration of what I mean.</font></div>
+        <br>
+        <div class="gmail_quote">
+          <div dir="ltr" class="gmail_attr">Am Do., 18. Juli 2019 um
+            19:25 Uhr schrieb Marcus D Leech via USRP-users &lt;<a
+              moz-do-not-send="true"
+              href="mailto:usrp-users@lists.ettus.com" target="_blank">usrp-users@lists.ettus.com</a>&gt;:<br>
+          </div>
+          <blockquote class="gmail_quote" style="margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">
+            <div dir="auto"><br>
+              <br>
+              <blockquote type="cite">
+                <div dir="ltr">
+                  <div class="gmail_quote">
+                    <div dir="ltr" class="gmail_attr"><br>
+                    </div>
+                    <blockquote class="gmail_quote" style="margin:0px
+                      0px 0px 0.8ex;border-left:1px solid
+                      rgb(204,204,204);padding-left:1ex">
+                      <div dir="auto">I have just been corrected by one
+                        of my colleagues at Ettus. 
+                        <div><br>
+                        </div>
+                        <div>While there is an up conversion stage for
+                          frequencies below 450Mhz, the LO for that
+                          stage is fixed frequency, and derived from the
+                          sample clock and coherent across channels. </div>
+                        <div><br>
+                        </div>
+                        <div>So there should be no random phase offset
+                          among channels even below 450Mhz when LO
+                          sharing. </div>
+                        <div><br>
+                          <blockquote type="cite">
+                            <div dir="ltr">
+                              <div
+class="m_4109572153054765750gmail-m_-766200740446686168gmail-m_8464511976241383310WordSection1">
+                                <div>
+                                  <div>
+                                    <div>
+                                      <p class="MsoNormal"
+                                        style="margin-bottom:12pt">This
+                                        is correct as far as I know.
+                                        Although I don’t have an N320 in
+                                        my lab, it uses an up conversion
+                                        scheme for lower frequencies.
+                                        That scheme does not participate
+                                        in the LO sharing. </p>
+                                      <div
+id="m_4109572153054765750gmail-m_-766200740446686168gmail-m_8464511976241383310m_-2455621878214780349AppleMailSignature">
+                                        <p class="MsoNormal">Sent from
+                                          my iPhone</p>
+                                      </div>
+                                      <div>
+                                        <p class="MsoNormal"
+                                          style="margin-bottom:12pt"><br>
+                                          On Jul 18, 2019, at 11:17 AM,
+                                          Sammy Welschen via USRP-users
+                                          &lt;<a moz-do-not-send="true"
+href="mailto:usrp-users@lists.ettus.com" target="_blank">usrp-users@lists.ettus.com</a>&gt;
+                                          wrote:</p>
+                                      </div>
+                                      <blockquote
+                                        style="margin-top:5pt;margin-bottom:5pt">
+                                        <div>
+                                          <div>
+                                            <div>
+                                              <p class="MsoNormal">I
+                                                have to acquire phase
+                                                coherent data on
+                                                multiple channels using
+                                                USRP N310/320 devices.</p>
+                                            </div>
+                                            <div>
+                                              <p class="MsoNormal"> </p>
+                                            </div>
+                                            <p class="MsoNormal">Am I
+                                              correct in assuming that
+                                              for frequencies below 450
+                                              MHz, there is no way to
+                                              remove random phase
+                                              differences between
+                                              channels due to the
+                                              additional frequency shift
+                                              involved (shown for
+                                              example in the block
+                                              diagram 
+                                              <a moz-do-not-send="true"
+href="https://urldefense.com/v3/__http:/www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png__;%21fqWJcnlTkjM%219UAjRx1UqNGGgw_MyGxeNp4dcd08afk3IjpbsIlbrDYEk9H2AfliCLM52OcRdC4$"
+                                                target="_blank">
+http://www.ettus.com/wp-content/uploads/2019/03/N320BlockDiagram.png</a>)?
+                                              As I understand it, by
+                                              using the same LO signal
+                                              for all channels I could
+                                              remove the differences for
+                                              frequencies above 450 MHz,
+                                              but this is of no use for
+                                              frequencies below 450 MHz
+                                              due to this the additional
+                                              stage.</p>
+                                          </div>
+                                        </div>
+                                      </blockquote>
+                                      <blockquote
+                                        style="margin-top:5pt;margin-bottom:5pt">
+                                        <div>
+                                          <p class="MsoNormal">_______________________________________________<br>
+                                            USRP-users mailing list<br>
+                                            <a moz-do-not-send="true"
+                                              href="mailto:USRP-users@lists.ettus.com"
+                                              target="_blank">USRP-users@lists.ettus.com</a><br>
+                                            <a moz-do-not-send="true"
+href="https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com__;%21fqWJcnlTkjM%219UAjRx1UqNGGgw_MyGxeNp4dcd08afk3IjpbsIlbrDYEk9H2AfliCLM5ZdVPAfg$"
+                                              target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></p>
+                                        </div>
+                                      </blockquote>
+                                    </div>
+                                    <p class="MsoNormal">_______________________________________________<br>
+                                      USRP-users mailing list<br>
+                                      <a moz-do-not-send="true"
+                                        href="mailto:USRP-users@lists.ettus.com"
+                                        target="_blank">USRP-users@lists.ettus.com</a><br>
+                                      <a moz-do-not-send="true"
+href="https://urldefense.com/v3/__http:/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com__;%21fqWJcnlTkjM%219UAjRx1UqNGGgw_MyGxeNp4dcd08afk3IjpbsIlbrDYEk9H2AfliCLM5ZdVPAfg$"
+                                        target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                </div>
+              </blockquote>
+            </div>
+            _______________________________________________<br>
+            USRP-users mailing list<br>
+            <a moz-do-not-send="true"
+              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
+            <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+          </blockquote>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------000104000907010804080607--
+
+
+--===============4891537760831110816==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -218,5 +465,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1361636586210477471==--
+--===============4891537760831110816==--
 
