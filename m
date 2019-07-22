@@ -2,52 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34A0570C3F
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2019 00:01:15 +0200 (CEST)
-Received: from [::1] (port=43946 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A325770C71
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2019 00:17:13 +0200 (CEST)
+Received: from [::1] (port=58262 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hpgMl-0005uO-7q; Mon, 22 Jul 2019 18:01:07 -0400
-Received: from mail-ed1-f49.google.com ([209.85.208.49]:36511)
+	id 1hpgcH-0000dI-OK; Mon, 22 Jul 2019 18:17:09 -0400
+Received: from mail-pf1-f170.google.com ([209.85.210.170]:39153)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <daniel.jepson@ettus.com>)
- id 1hpgMh-0005nn-5k
- for usrp-users@lists.ettus.com; Mon, 22 Jul 2019 18:01:03 -0400
-Received: by mail-ed1-f49.google.com with SMTP id k21so41987477edq.3
- for <usrp-users@lists.ettus.com>; Mon, 22 Jul 2019 15:00:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=3C0VwIk9LdWdgdeBjOQ8TeCYjfnxy/N+5sP112raKkc=;
- b=RnUbcRah9pzJOhS8SuNS0aTWWb/ciGXzBZG4YMYO9MJ0osZiaBIZUVYRS8xOdh0c0U
- a/Ox1h2YU5qPDg7wIQhJoBLCxPo9zzVDwRpIBvFLrk3Jxg1bo9Mn0K0mUSkrA+UzoUaT
- icmhsgm5PPKuK84bplcWcbwX3LH5Mx4i4dRVQSubc9CSJ87D9yJF0U263uGBXvMoYQwR
- BB6xP8CFa7JlFXAfNw1iNlV+Zj7Z4JelfkR8vf5nRty/XrWHhDmM5er3j8qS8Pb6LYSb
- i3A3HhGd6GzpRkfYpU0LtJOU55i2yvyHAoERLcX6d948xnwXR4npz5+xqlNC9o5mSSLH
- lcDA==
+ (Exim 4.92) (envelope-from <m2wagner@eng.ucsd.edu>)
+ id 1hpgcD-0000Th-K6
+ for usrp-users@lists.ettus.com; Mon, 22 Jul 2019 18:17:05 -0400
+Received: by mail-pf1-f170.google.com with SMTP id f17so14042687pfn.6
+ for <usrp-users@lists.ettus.com>; Mon, 22 Jul 2019 15:16:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=eng.ucsd.edu; s=google;
+ h=message-id:savedfromemail:date:subject:in-reply-to:importance:from
+ :to:cc:mime-version;
+ bh=+JqOwzemLsQTA/jKljMZExdSEz5VX3CuBPh1apWDBo8=;
+ b=AhcVyIPaScWVzNJS37zxHoVehBoAfhqtp1pWepyPf1tcGmuskxvvyT7puYeVcBNUUq
+ TM9NWs20cwOWMR41jJbqhWDNl3pysoQ9aHyXNaQUhUUwcz+oW0ZIiuiDfbI5uyGy7oWR
+ owlqrHNhQo820zYJP+uAVg8IG1zGchzJ7HHgI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=3C0VwIk9LdWdgdeBjOQ8TeCYjfnxy/N+5sP112raKkc=;
- b=kUxw9qKZuiMZ54yU0wju0eC1tIx8f8XNFBtxNP05KDnr8c85oVnoNjtgsHm5w7wsdS
- /PfRqDxIxtrEjo1yHURXS7qpchXa5yVbHKUusPzly0oIsetCYmJlrbLPm+oT5z6+aJp+
- pVMu7q/h0/lkYRcUvxyq79sW/8b6BiZ01GH4kKlvGkTQ4mBX7v/jN/OP8YuzuvB2zfVl
- YR44ebyQZL28Ry8U/r6TIHJJlFA5UbbwzWSIQHEgrr4x89Vla1Mu0S48yw+U6kmXZ+eY
- Mq0m5v0yHuSS7KQwXAd9ISG97Zg7ALPPyhZT+p8BZaBSzk/MWWIAKdcggw+CrkQWUOQv
- gpJw==
-X-Gm-Message-State: APjAAAUMgB8NFc7zQptjk6QBuN2cNIJDgb1z3pCs9G7Nc96F8NTf6UMG
- OYWGbbYirNSrpympaScokIsBUPk+aqauqWmdHGKUg4W1
-X-Google-Smtp-Source: APXvYqzXz8aZoxACYpipSzTvITpzmDUWFnn17vBVnQ1ZjHChC8y9jDo0Yj9d7jvxE5CpNevav5/dwcXpKK1o9Fk1MdI=
-X-Received: by 2002:a50:95ae:: with SMTP id w43mr62356559eda.115.1563832822054; 
- Mon, 22 Jul 2019 15:00:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <CALLKLAOx9WZBfOA7SbmyNO9-hpUySRCoU2cPr5+7-K+XXBx8tw@mail.gmail.com>
-In-Reply-To: <CALLKLAOx9WZBfOA7SbmyNO9-hpUySRCoU2cPr5+7-K+XXBx8tw@mail.gmail.com>
-Date: Mon, 22 Jul 2019 17:00:11 -0500
-Message-ID: <CA+Zwmn6G=g4J+oScOBgErwvcuavuGayc=AixhanKUvFRD=D_9A@mail.gmail.com>
+ h=x-gm-message-state:message-id:savedfromemail:date:subject
+ :in-reply-to:importance:from:to:cc:mime-version;
+ bh=+JqOwzemLsQTA/jKljMZExdSEz5VX3CuBPh1apWDBo8=;
+ b=BcqZXtk1NjNX3PiZI2KgtFMxPf2eQ2QCpEZ6ZBX3bilCx3dqBzsCQCFkjWK5PbrfUc
+ r4WyQhdE8THW4iRR66wyZgsRsjdHnO2E7wdeDGTkyxoJ1kclgeBq4CZDtHjOkSKSj9lJ
+ QESPOHAN93k7pxmQj88iZjcerIywSyxBZ0zJ+ZbbU9wQi1q9uBBo8aVoKenwOkB4HesE
+ /qQOBvpolUt6+dU6cw5ANwnEg9wwBGTCs+1aTMMlji3w3w1PWXndRwATMTVNyokxF46l
+ SeoHZt8nq+6HbMYpddfC7UL34HHEzKVPuyXqxjV7E+R8t5cmQfCNhHtzKqw3F6yxF88S
+ /5Ng==
+X-Gm-Message-State: APjAAAUIkQLYSpZN+nymn9jBM2CDyJf9waKwWW8aZV5AT0iNVlJfauEJ
+ yosxRrieDnqp1jtST1sqVo45+Gg88N4=
+X-Google-Smtp-Source: APXvYqxuArX0LG7eTkeGFW9ZbNpF0a/jJif1ujJ9qyy+juQz7o2vrF894CzgqjeBgsTQQJR9nVIhWg==
+X-Received: by 2002:a65:4304:: with SMTP id j4mr74993761pgq.419.1563833784235; 
+ Mon, 22 Jul 2019 15:16:24 -0700 (PDT)
+Received: from ?IPv6:2600:1012:b112:bc19:bc61:8b75:468a:c2c7?
+ ([2600:1012:b112:bc19:bc61:8b75:468a:c2c7])
+ by smtp.gmail.com with ESMTPSA id o129sm4464322pfg.1.2019.07.22.15.16.21
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 22 Jul 2019 15:16:23 -0700 (PDT)
+Message-ID: <5d3635b7.1c69fb81.b6f0a.98d9@mx.google.com>
+SavedFromEmail: m2wagner@eng.ucsd.edu
+Date: Mon, 22 Jul 2019 15:16:18 -0700
+In-Reply-To: <CA+Zwmn6G=g4J+oScOBgErwvcuavuGayc=AixhanKUvFRD=D_9A@mail.gmail.com>
+Importance: normal
 To: Mark Wagner <m2wagner@eng.ucsd.edu>
-Subject: Re: [USRP-users] Digital TV Clock recovery using N310 and GNUradio
+MIME-Version: 1.0
+Subject: [USRP-users] Fwd: Re: Digital TV Clock recovery using N310 and
+ GNUradio
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,10 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Daniel Jepson via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Daniel Jepson <daniel.jepson@ettus.com>
+From: m2wagner via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: m2wagner <m2wagner@eng.ucsd.edu>
 Cc: Usrp Users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7192960316748297346=="
+Content-Type: multipart/mixed; boundary="===============8374871977739819391=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,112 +80,121 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7192960316748297346==
-Content-Type: multipart/alternative; boundary="000000000000d8d241058e4c33c2"
+--===============8374871977739819391==
+Content-Type: multipart/alternative; boundary="--_com.samsung.android.email_3856388433232790"
 
---000000000000d8d241058e4c33c2
-Content-Type: text/plain; charset="UTF-8"
+----_com.samsung.android.email_3856388433232790
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Hi Mark,
+SGV5IERhbmllbCxSaWdodCBub3cgSSdtIHNldHRpbmcgYW4gZXh0ZXJuYWxseSBnZW5lcmF0ZWQg
+Y2xvY2sgdG8gYSBuZWFyYnkgZnJlcXVlbmN5IGFuZCByZWNvcmRpbmcgdGhlIGRhdGEgdG8gZmls
+ZSBmb3IgbGF0ZXIgcHJvY2Vzc2luZy4gSSdkIGxpa2UgdGhlIExPcyB0byBiZSBkaXNjaXBsaW5l
+ZCB0byB0aGUgcmVjb3ZlcmVkIGNsb2NrIChJIGhhdmUgYSBjbG9jayBzcGxpdHRlciBhbHJlYWR5
+KS4gSSBzdXBwb3NlIEknbSBtb3N0IGN1cmlvdXMgdG8gc2VlIHdoYXQgR05VcmFkaW8gYmxvY2tz
+IHBlb3BsZSBoYXZlIGhhZCBzdWNjZXNzIHdpdGggaW4gc2ltaWxhciBhcHBsaWNhdGlvbnMtTWFy
+a1NlbnQgZnJvbSBteSBWZXJpem9uLCBTYW1zdW5nIEdhbGF4eSBzbWFydHBob25lCi0tLS0tLS0t
+IE9yaWdpbmFsIG1lc3NhZ2UgLS0tLS0tLS1Gcm9tOiBEYW5pZWwgSmVwc29uIDxkYW5pZWwuamVw
+c29uQGV0dHVzLmNvbT4gRGF0ZTogNy8yMi8xOSAgMzowMCBQTSAgKEdNVC0wODowMCkgVG86IE1h
+cmsgV2FnbmVyIDxtMndhZ25lckBlbmcudWNzZC5lZHU+IENjOiBVc3JwIFVzZXJzIDx1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbT4gU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBEaWdpdGFsIFRW
+IENsb2NrIHJlY292ZXJ5IHVzaW5nIE4zMTAgYW5kIEdOVXJhZGlvIEhpIE1hcmssQSBmZXcgcXVl
+c3Rpb25zOiBJcyB5b3VyIGNsb2NrIHJlY292ZXJ5IGFsZ29yaXRobSBydW5uaW5nIGluIHRoZSBG
+UEdBPyBEbyB5b3UgcmVxdWlyZSB0aGUgc2FtcGxlIGNsb2NrL0xPcyB0byBiZSBkaXNjaXBsaW5l
+ZCB0byB0aGlzIHJlY292ZXJlZCBjbG9jaz9XaGlsZSB0aGUgTjMxMCBkb2VzIG5vdCBoYXZlIGEg
+ZGVkaWNhdGVkIGNsb2NrIG91dHB1dCBwb3J0LCBpZiB0aGUgcmVjb3ZlcmVkIGNsb2NrIGlzIGlu
+dGVybmFsIHRvIHRoZSBGUEdBIHlvdSBjYW4gdHJhbnNtaXQgYSBjb3B5IG9mIGl0IG91dCB0aGUg
+ZnJvbnQgcGFuZWwgR1BJTyBwb3J0IGFuZCAod2l0aCBhIGJpdCBvZiBjcmVhdGl2aXR5KSBwb3Nz
+aWJseSBjYWJsZSBpdCBpbnRvIGFub3RoZXIgTjMxMC4gSnVzdCB3YXRjaCB5b3VyIHZvbHRhZ2Ug
+bGV2ZWwgY29tcGF0aWJpbGl0eS4tRGFuaWVsT24gTW9uLCBKdWwgMjIsIDIwMTkgYXQgNDozOCBQ
+TSBNYXJrIFdhZ25lciB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+IHdyb3RlOkhleSBhbGwsSSdkIGxpa2UgdG8gcmVjb3ZlciB0aGUgY2xvY2sgdG9uZSBvZiBhIGRp
+Z2l0YWwgVFYgc2lnbmFsIG9uIG9uZSBVU1JQIE4zMTAgYW5kIHVzZSBpdCBhcyB0aGUgY2xvY2sg
+aW5wdXQgdG8gYW5vdGhlciBOMzEwLiBEb2VzIGFueW9uZSBoYXZlIGV4cGVyaWVuY2UgZG9pbmcg
+c29tZXRoaW5nIGxpa2UgdGhpcz8gSSBjb3VsZCB1c2Ugc29tZSBwb2ludGVycy4tTWFyay0tIE1h
+cmsgV2FnbmVyVW5pdmVyc2l0eSBvZiBDYWxpZm9ybmlhIFNhbiBEaWVnb0VsZWN0cmljYWwgYW5k
+IENvbXB1dGVyIEVuZ2luZWVyaW5nwqAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
+cnNfbGlzdHMuZXR0dXMuY29tCi0tIERhbmllbApKZXBzb24KCkRpZ2l0YWwgSGFyZHdhcmUgRW5n
+aW5lZXIKCk5hdGlvbmFsIEluc3RydW1lbnRzCgrCoAoKTzogKzEuNTEyLjY4My42MTYzCgpkYW5p
+ZWwuamVwc29uQG5pLmNvbQo=
 
-A few questions: Is your clock recovery algorithm running in the FPGA? Do
-you require the sample clock/LOs to be disciplined to this recovered clock?
+----_com.samsung.android.email_3856388433232790
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-While the N310 does not have a dedicated clock output port, if the
-recovered clock is internal to the FPGA you can transmit a copy of it out
-the front panel GPIO port and (with a bit of creativity) possibly cable it
-into another N310. Just watch your voltage level compatibility.
+PGh0bWw+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0
+L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPjwvaGVhZD48Ym9keT48ZGl2Pjxicj48L2Rpdj48ZGl2Pjxi
+cj48L2Rpdj48ZGl2Pjxmb250IGZhY2U9InNhbnMtc2VyaWYiPkhleSBEYW5pZWwsPC9mb250Pjwv
+ZGl2PjxkaXY+PGZvbnQgZmFjZT0ic2Fucy1zZXJpZiI+PGJyPjwvZm9udD48L2Rpdj48ZGl2Pjxm
+b250IGZhY2U9InNhbnMtc2VyaWYiPlJpZ2h0IG5vdyBJJ20gc2V0dGluZyBhbiBleHRlcm5hbGx5
+IGdlbmVyYXRlZCBjbG9jayB0byBhIG5lYXJieSBmcmVxdWVuY3kgYW5kIHJlY29yZGluZyB0aGUg
+ZGF0YSB0byBmaWxlIGZvciBsYXRlciBwcm9jZXNzaW5nLiBJJ2QgbGlrZSB0aGUgTE9zIHRvIGJl
+IGRpc2NpcGxpbmVkIHRvIHRoZSByZWNvdmVyZWQgY2xvY2sgKEkgaGF2ZSBhIGNsb2NrIHNwbGl0
+dGVyIGFscmVhZHkpLiBJIHN1cHBvc2UgSSdtIG1vc3QgY3VyaW91cyB0byBzZWUgd2hhdCBHTlVy
+YWRpbyBibG9ja3MgcGVvcGxlIGhhdmUgaGFkIHN1Y2Nlc3Mgd2l0aCBpbiBzaW1pbGFyIGFwcGxp
+Y2F0aW9uczwvZm9udD48L2Rpdj48ZGl2Pjxmb250IGZhY2U9InNhbnMtc2VyaWYiPjxicj48L2Zv
+bnQ+PC9kaXY+PGRpdj48Zm9udCBmYWNlPSJzYW5zLXNlcmlmIj4tTWFyazwvZm9udD48L2Rpdj48
+ZGl2Pjxicj48L2Rpdj48ZGl2IGlkPSJjb21wb3Nlcl9zaWduYXR1cmUiPjxkaXYgc3R5bGU9ImZv
+bnQtc2l6ZTo4NSU7Y29sb3I6IzU3NTc1NyIgZGlyPSJhdXRvIj5TZW50IGZyb20gbXkgVmVyaXpv
+biwgU2Ftc3VuZyBHYWxheHkgc21hcnRwaG9uZTwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2Pjxk
+aXYgc3R5bGU9ImZvbnQtc2l6ZToxMDAlO2NvbG9yOiMwMDAwMDAiPjwhLS0gb3JpZ2luYWxNZXNz
+YWdlIC0tPjxkaXY+LS0tLS0tLS0gT3JpZ2luYWwgbWVzc2FnZSAtLS0tLS0tLTwvZGl2PjxkaXY+
+RnJvbTogRGFuaWVsIEplcHNvbiAmbHQ7ZGFuaWVsLmplcHNvbkBldHR1cy5jb20mZ3Q7IDwvZGl2
+PjxkaXY+RGF0ZTogNy8yMi8xOSAgMzowMCBQTSAgKEdNVC0wODowMCkgPC9kaXY+PGRpdj5Ubzog
+TWFyayBXYWduZXIgJmx0O20yd2FnbmVyQGVuZy51Y3NkLmVkdSZndDsgPC9kaXY+PGRpdj5DYzog
+VXNycCBVc2VycyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7IDwvZGl2PjxkaXY+
+U3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBEaWdpdGFsIFRWIENsb2NrIHJlY292ZXJ5IHVzaW5n
+IE4zMTAgYW5kIEdOVXJhZGlvIDwvZGl2PjxkaXY+PGJyPjwvZGl2PjwvZGl2PjxkaXYgZGlyPSJs
+dHIiPkhpIE1hcmssPGRpdj48YnI+PC9kaXY+PGRpdj5BIGZldyBxdWVzdGlvbnM6IElzIHlvdXIg
+Y2xvY2sgcmVjb3ZlcnkgYWxnb3JpdGhtIHJ1bm5pbmcgaW4gdGhlIEZQR0E/IERvIHlvdSByZXF1
+aXJlIHRoZSBzYW1wbGUgY2xvY2svTE9zIHRvIGJlIGRpc2NpcGxpbmVkIHRvIHRoaXMgcmVjb3Zl
+cmVkIGNsb2NrPzwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+V2hpbGUgdGhlIE4zMTAgZG9lcyBu
+b3QgaGF2ZSBhIGRlZGljYXRlZCBjbG9jayBvdXRwdXQgcG9ydCwgaWYgdGhlIHJlY292ZXJlZCBj
+bG9jayBpcyBpbnRlcm5hbCB0byB0aGUgRlBHQSB5b3UgY2FuIHRyYW5zbWl0IGEgY29weSBvZiBp
+dCBvdXQgdGhlIGZyb250IHBhbmVsIEdQSU8gcG9ydCBhbmQgKHdpdGggYSBiaXQgb2YgY3JlYXRp
+dml0eSkgcG9zc2libHkgY2FibGUgaXQgaW50byBhbm90aGVyIE4zMTAuIEp1c3Qgd2F0Y2ggeW91
+ciB2b2x0YWdlIGxldmVsIGNvbXBhdGliaWxpdHkuPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj4t
+RGFuaWVsPC9kaXY+PC9kaXY+PGJyPjxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIj48ZGl2IGRpcj0i
+bHRyIiBjbGFzcz0iZ21haWxfYXR0ciI+T24gTW9uLCBKdWwgMjIsIDIwMTkgYXQgNDozOCBQTSBN
+YXJrIFdhZ25lciB2aWEgVVNSUC11c2VycyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7IHdyb3Rl
+Ojxicj48L2Rpdj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46
+MHB4IDBweCAwcHggMC44ZXg7Ym9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7
+cGFkZGluZy1sZWZ0OjFleCI+PGRpdiBkaXI9Imx0ciI+SGV5IGFsbCw8ZGl2Pjxicj48L2Rpdj48
+ZGl2PkknZCBsaWtlIHRvIHJlY292ZXIgdGhlIGNsb2NrIHRvbmUgb2YgYSBkaWdpdGFsIFRWIHNp
+Z25hbCBvbiBvbmUgVVNSUCBOMzEwIGFuZCB1c2UgaXQgYXMgdGhlIGNsb2NrIGlucHV0IHRvIGFu
+b3RoZXIgTjMxMC4gRG9lcyBhbnlvbmUgaGF2ZSBleHBlcmllbmNlIGRvaW5nIHNvbWV0aGluZyBs
+aWtlIHRoaXM/IEkgY291bGQgdXNlIHNvbWUgcG9pbnRlcnMuPC9kaXY+PGRpdj48YnI+PC9kaXY+
+PGRpdj4tTWFyazxiciBjbGVhcj0iYWxsIj48ZGl2Pjxicj48L2Rpdj4tLSA8YnI+PGRpdiBkaXI9
+Imx0ciIgY2xhc3M9ImdtYWlsLW1fLTU0MDM0ODg4Njc5MDI1OTI1NjRnbWFpbF9zaWduYXR1cmUi
+PjxkaXYgZGlyPSJsdHIiPjxkaXY+PGRpdj5NYXJrIFdhZ25lcjxicj48L2Rpdj5Vbml2ZXJzaXR5
+IG9mIENhbGlmb3JuaWEgU2FuIERpZWdvPGJyPjwvZGl2PkVsZWN0cmljYWwgYW5kIENvbXB1dGVy
+IEVuZ2luZWVyaW5nPGJyPiZuYnNwOzxicj48L2Rpdj48L2Rpdj48L2Rpdj48L2Rpdj4KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+ClVTUlAtdXNlcnMg
+bWFpbGluZyBsaXN0PGJyPgo8YSBocmVmPSJtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20iIHRhcmdldD0iX2JsYW5rIj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+Cjxh
+IGhyZWY9Imh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJz
+X2xpc3RzLmV0dHVzLmNvbSIgcmVsPSJub3JlZmVycmVyIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDov
+L2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMu
+Y29tPC9hPjxicj4KPC9ibG9ja3F1b3RlPjwvZGl2PjxiciBjbGVhcj0iYWxsIj48ZGl2Pjxicj48
+L2Rpdj4tLSA8YnI+PGRpdiBkaXI9Imx0ciIgY2xhc3M9ImdtYWlsX3NpZ25hdHVyZSI+PGRpdiBk
+aXI9Imx0ciI+PHA+PGEgbmFtZT0iU2lnbmF0dXJlU2FuaXRpemVyX1NhZmVIdG1sRmlsdGVyX19N
+YWlsQXV0b1NpZyI+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj5EYW5pZWwKSmVwc29uPC9zcGFu
+PjwvYT48L3A+Cgo8cD48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPkRpZ2l0YWwgSGFyZHdhcmUg
+RW5naW5lZXI8L3NwYW4+PC9wPgoKPHA+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj5OYXRpb25h
+bCBJbnN0cnVtZW50czwvc3Bhbj48L3A+Cgo8cD48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPiZu
+YnNwOzwvc3Bhbj48L3A+Cgo8cD48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPk86ICsxLjUxMi42
+ODMuNjE2Mzwvc3Bhbj48L3A+Cgo8cD48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPjxhIGhyZWY9
+Im1haWx0bzpkYW5pZWwuamVwc29uQG5pLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmRhbmllbC5qZXBz
+b25AbmkuY29tPC9hPjwvc3Bhbj48L3A+PC9kaXY+PC9kaXY+CjwvYm9keT48L2h0bWw+
 
--Daniel
-
-On Mon, Jul 22, 2019 at 4:38 PM Mark Wagner via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hey all,
->
-> I'd like to recover the clock tone of a digital TV signal on one USRP N310
-> and use it as the clock input to another N310. Does anyone have experience
-> doing something like this? I could use some pointers.
->
-> -Mark
->
-> --
-> Mark Wagner
-> University of California San Diego
-> Electrical and Computer Engineering
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
-
--- 
-
-Daniel Jepson
-
-Digital Hardware Engineer
-
-National Instruments
-
-
-
-O: +1.512.683.6163
-
-daniel.jepson@ni.com
-
---000000000000d8d241058e4c33c2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Mark,<div><br></div><div>A few questions: Is your clock=
- recovery algorithm running in the FPGA? Do you require the sample clock/LO=
-s to be disciplined to this recovered clock?</div><div><br></div><div>While=
- the N310 does not have a dedicated clock output port, if the recovered clo=
-ck is internal to the FPGA you can transmit a copy of it out the front pane=
-l GPIO port and (with a bit of creativity) possibly cable it into another N=
-310. Just watch your voltage level compatibility.</div><div><br></div><div>=
--Daniel</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Mon, Jul 22, 2019 at 4:38 PM Mark Wagner via USRP-users &lt=
-;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv dir=3D"ltr">Hey all,<div><br></div><div>I&#39;d like to recover the cloc=
-k tone of a digital TV signal on one USRP N310 and use it as the clock inpu=
-t to another N310. Does anyone have experience doing something like this? I=
- could use some pointers.</div><div><br></div><div>-Mark<br clear=3D"all"><=
-div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail-m_-5403488867902592564=
-gmail_signature"><div dir=3D"ltr"><div><div>Mark Wagner<br></div>University=
- of California San Diego<br></div>Electrical and Computer Engineering<br>=
-=C2=A0<br></div></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><p><a name=3D"SignatureSanitize=
-r_SafeHtmlFilter__MailAutoSig"><span style=3D"color:black">Daniel
-Jepson</span></a></p>
-
-<p><span style=3D"color:black">Digital Hardware Engineer</span></p>
-
-<p><span style=3D"color:black">National Instruments</span></p>
-
-<p><span style=3D"color:black">=C2=A0</span></p>
-
-<p><span style=3D"color:black">O: +1.512.683.6163</span></p>
-
-<p><span style=3D"color:black"><a href=3D"mailto:daniel.jepson@ni.com" targ=
-et=3D"_blank">daniel.jepson@ni.com</a></span></p></div></div>
-
---000000000000d8d241058e4c33c2--
+----_com.samsung.android.email_3856388433232790--
 
 
---===============7192960316748297346==
+
+--===============8374871977739819391==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -192,5 +205,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7192960316748297346==--
+--===============8374871977739819391==--
+
 
