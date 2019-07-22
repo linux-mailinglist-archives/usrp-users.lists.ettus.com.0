@@ -2,53 +2,40 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10B5070B28
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Jul 2019 23:20:45 +0200 (CEST)
-Received: from [::1] (port=32790 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE4B70B56
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Jul 2019 23:29:19 +0200 (CEST)
+Received: from [::1] (port=35500 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hpfjd-0002J6-ET; Mon, 22 Jul 2019 17:20:41 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:36832)
+	id 1hpfrx-000397-KA; Mon, 22 Jul 2019 17:29:17 -0400
+Received: from mail-ed1-f53.google.com ([209.85.208.53]:38945)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bpadalino@gmail.com>) id 1hpfjZ-00027H-5M
- for usrp-users@lists.ettus.com; Mon, 22 Jul 2019 17:20:37 -0400
-Received: by mail-oi1-f182.google.com with SMTP id q4so1527076oij.3
- for <usrp-users@lists.ettus.com>; Mon, 22 Jul 2019 14:20:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=SzO/l40P2ZzYnLF1ZhUhZP4A2JqFtrV2XZ52D+wj4+I=;
- b=MFLeOOeAwSKQdGaBi+8SEHRxkXKAYnfmNLWyQYgzIlyNF50EZQDVysLFklHWie6lU6
- q2ts4vv3XHr2zhOfNelCEzCCf4WkFIeUUJNYwSX9652rVGfLcmyEBUHsAstARQd7gE5x
- wWpMK6+zmBF7F1CjeoSJr9BZS0XcIcggIWIcLVezmcMLm4c0TBjjxaKEbjLCQnhYu0wN
- P17EapNe8HgfgthBUucGvACP8pMyZFO0SndYsUEooZ3TnmVh/Rfzc455WBJb77n6Ddmv
- AdNFOoTwF8o9cZ1dIiQbog0fHeCLlGozoKXCUh4rCQ6Ie4gX6rzS2780VuLezdn5yxee
- X7FA==
+ (Exim 4.92) (envelope-from <zzhangcsfsu@gmail.com>)
+ id 1hpfrt-000303-Gr
+ for usrp-users@lists.ettus.com; Mon, 22 Jul 2019 17:29:13 -0400
+Received: by mail-ed1-f53.google.com with SMTP id m10so41879190edv.6
+ for <usrp-users@lists.ettus.com>; Mon, 22 Jul 2019 14:28:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=SzO/l40P2ZzYnLF1ZhUhZP4A2JqFtrV2XZ52D+wj4+I=;
- b=Jk0t0PeHcbE3jQeuX7oozwS1wQp31+J3ZlD6q3/YGClXtkC+SPptNuOVVgLB8AMIGN
- Ho27LSyBnkvgekAjgTKZMBYkjDoEjckb5gRLW1448rNLxPO3OPbqkoYd1oBG2chu/yfd
- 5+qpQ1e1Jqe/Q6lYpS2x4KMpu7WRQQY6BX98EdW9J6gN+sRoUdUwOHY68NnIE+voqS6q
- wvHh9eVR8IjLgMKIZ5GMyaN2Srma8XN6qqf8qWbl3Q3E6iPl0CSpxOcZGRPVy+GnPuni
- 0T+VpbsHh2dmBEn+AeYNClmI/YIvBDlxDTE6URhSzTkDRScDAmzz8A9AcfT/xOAZIOnI
- 4eZw==
-X-Gm-Message-State: APjAAAV1gNWvJF98q9TPN7NxCaT035X8dBgYpHNXjpyxpZtKg5cqO3T7
- fxClfTWJCGt6YdFzaJD8G22qM1jwhQGpMK8aizA=
-X-Google-Smtp-Source: APXvYqyepzRt8nYGyqnDlFQKS27C+OvPQRayrEuiWikVA0JumUCFVgsQhp39vr/Nemmkay7tqpeI09+9KQeRtTDHPfU=
-X-Received: by 2002:aca:df0a:: with SMTP id w10mr36454579oig.1.1563830396316; 
- Mon, 22 Jul 2019 14:19:56 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=+GgGBOyr0jhYth3xffbSFlg6g5+vIjhb3Tc4rd+qsyo=;
+ b=CBbfwMKosBsrwdhkzXKFQa4bW/yhhvsv7+hpZmN9Zh51s24h+YfR9GlNT/CN2C/zwq
+ TQSHeB/Id0J9y21zQmd+1hOVlno8I77ivtSDwrmgYPZP3M0gv4V8D/fI4SnGHOEtteMZ
+ CsKPT/AQN5dbE7rINLmxQSjwMQ/jbmWMjs34lstiMY5oRohFHNOPG0q7+kkCWstkMy24
+ BrNukyZ8yIV5KJgRE6ckLT8IozxehkqwgPxmMStRf0kOc6T2GrstG2w6nL9p51N6oxOC
+ SDIW4yKydEjkl3pzzLumsXjDIEcTzLXXTSBDSqwuWBy9ZMv0WySmFtj5e7hjtzrSV1Zn
+ BzUQ==
+X-Gm-Message-State: APjAAAUs6aY7kSeME19+SiVodaUb2rclCKKY0tUU5R3a5+lrudE9XKXc
+ TitAXeyC2gYjYY47kFIQMh7oykZCe/zwI0bLS0u/r9xP
+X-Google-Smtp-Source: APXvYqxTTIdzZydixx9Er+nVOS49SyEUgeyei/3u3YvEzrDphqkE3yeEEJugkLT7JJgb9RaC4Mrlu7LiEDOKBd3HukA=
+X-Received: by 2002:a17:906:6bd4:: with SMTP id
+ t20mr52549045ejs.294.1563830912258; 
+ Mon, 22 Jul 2019 14:28:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAB__hTRhLMK7Z-YdCqXnjamb0d685pi+mbsWAzhzVG2_jsNw=g@mail.gmail.com>
- <CAEXYVK7UuJzmCWT==QnE0WwkZCx3SFUA0J4HSz4k6bOh2unK3g@mail.gmail.com>
- <CAEXYVK6Lh0f8wRm6XvEtrnAGqKKEf-4iJjt7eEinrgOpNgzSxg@mail.gmail.com>
-In-Reply-To: <CAEXYVK6Lh0f8wRm6XvEtrnAGqKKEf-4iJjt7eEinrgOpNgzSxg@mail.gmail.com>
-Date: Mon, 22 Jul 2019 17:19:44 -0400
-Message-ID: <CAEXYVK7v0kQv5Pb49hrcTnzZzK_6yr00fYmcQF=+-gb1_uO+Lw@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Subject: Re: [USRP-users] RFNoC Testbench for custom block with
- AXI_CONFIG_BUS
+Date: Mon, 22 Jul 2019 17:25:42 -0400
+Message-ID: <CAOtS0CmYe8ZuGWtRhp=uaDcXxVhFEfbN6WY0BpDcgu6HssMxiw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Transmitting data from 2 antennas of B210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -60,10 +47,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8686497229072332384=="
+From: Zhenghao Zhang via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Zhenghao Zhang <zzhang@cs.fsu.edu>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,90 +64,23 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8686497229072332384==
-Content-Type: multipart/alternative; boundary="00000000000042f052058e4ba3de"
+Hi,
 
---00000000000042f052058e4ba3de
-Content-Type: text/plain; charset="UTF-8"
+I have a very simple task: transmitting data with two antennas of
+B210. The data is just numbers in a file and I just need to play the
+file.
 
-On Mon, Jul 22, 2019 at 5:18 PM Brian Padalino <bpadalino@gmail.com> wrote:
+I have been able to transmit data by one antenna with the command
+tx_samples_from_file. I did a lot of searching but I was not able to
+find a similar command to use two antennas.
 
-> On Mon, Jul 22, 2019 at 5:12 PM Brian Padalino <bpadalino@gmail.com>
-> wrote:
->
->> You just need to write_reg() and use an address of SR_AXI_CONFIG for
->> everything other than the last value, and use SR_AXI_CONFIG_TLAST for the
->> last one.
->>
->> That should push the valid high on the config line for each write you do,
->> and then on the last write both valid and tlast will be held.
->>
->
-> Sorry, looking at my testbench I should have been more clear.
->
-> I defined AXI_WRAPPER_BASE to 128.
-> I defined SR_AXI_CONFIG as AXI_WRAPPER_BASE + 1.
-> I defined SR_AXI_CONFIG_TLAST as SR_AXI_CONFIG + 1.
->
-> In axi_wrapper, I instantiate:
->
->   SR_AXI_CONFIG and assign it SR_AXI_CONFIG, and I also put
-> NUM_AXI_CONFIG_BUS to 1.
->
+I am sorry if this question or some variations of it has been answered
+before. Any help is appreciated.
 
-... and I meant SR_AXI_CONFIG_BASE is the parameter to set on axi_wrapper.
-
-I shouldn't be so quick to reply.  Haste makes waste.  Again, apologies for
-not being clear.
-
-Brian
-
->
-
---00000000000042f052058e4ba3de
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Mon, Jul 22, 2019 at 5:18 PM Brian Pad=
-alino &lt;<a href=3D"mailto:bpadalino@gmail.com">bpadalino@gmail.com</a>&gt=
-; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Mon, Jul 22, 2019 =
-at 5:12 PM Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" target=
-=3D"_blank">bpadalino@gmail.com</a>&gt; wrote:<br></div><div class=3D"gmail=
-_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
-You just need to write_reg() and use an address of SR_AXI_CONFIG for everyt=
-hing other than the last value, and use SR_AXI_CONFIG_TLAST for the last on=
-e.<div><br></div><div>That should push the valid high on the config line fo=
-r each write you do, and then on the last write both valid and tlast will b=
-e held.</div></div></blockquote><div><br></div><div>Sorry, looking at my te=
-stbench I should have been more clear.<div><br></div><div>I defined AXI_WRA=
-PPER_BASE to 128.</div><div>I defined SR_AXI_CONFIG as AXI_WRAPPER_BASE=C2=
-=A0+ 1.</div><div>I defined SR_AXI_CONFIG_TLAST as SR_AXI_CONFIG=C2=A0+ 1.<=
-/div><div><br></div><div>In axi_wrapper, I instantiate:</div><div><br></div=
-><div>=C2=A0 SR_AXI_CONFIG and assign it SR_AXI_CONFIG, and I also put NUM_=
-AXI_CONFIG_BUS to 1.</div></div></div></div></blockquote><div><br></div><di=
-v>... and I meant SR_AXI_CONFIG_BASE is the parameter to set on axi_wrapper=
-.</div><div><br></div><div>I shouldn&#39;t be so quick to reply.=C2=A0 Hast=
-e makes waste.=C2=A0 Again, apologies for not being clear.</div><div><br></=
-div><div>Brian</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-</blockquote></div></div>
-
---00000000000042f052058e4ba3de--
-
-
---===============8686497229072332384==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Thanks,
+Zhenghao
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8686497229072332384==--
-
