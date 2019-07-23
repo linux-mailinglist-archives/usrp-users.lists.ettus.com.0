@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49487212B
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2019 22:57:19 +0200 (CEST)
-Received: from [::1] (port=50910 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD18D72130
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2019 23:00:11 +0200 (CEST)
+Received: from [::1] (port=52628 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hq1qX-0005KX-PE; Tue, 23 Jul 2019 16:57:17 -0400
-Received: from mail-lj1-f172.google.com ([209.85.208.172]:43666)
+	id 1hq1tI-0005h4-Q6; Tue, 23 Jul 2019 17:00:08 -0400
+Received: from mail-lf1-f53.google.com ([209.85.167.53]:33105)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1hq1qU-0005Fh-Bb
- for usrp-users@lists.ettus.com; Tue, 23 Jul 2019 16:57:14 -0400
-Received: by mail-lj1-f172.google.com with SMTP id y17so17820971ljk.10
- for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2019 13:56:54 -0700 (PDT)
+ id 1hq1tE-0005ZC-TD
+ for usrp-users@lists.ettus.com; Tue, 23 Jul 2019 17:00:05 -0400
+Received: by mail-lf1-f53.google.com with SMTP id x3so30430910lfc.0
+ for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2019 13:59:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6ys7guQBS9To5VzIeU3E0Z+sw/jcQjM2M7cg3kTMono=;
- b=qy6zS3761DS+C0bd0RSfz3SyAEaRWLPY6sDjY5Z+ctkac2es5nhmmKpyrcIQV2QkNw
- LBsZc6Y8YGg/RCc2w5AiwhyE/w1ZzDZKvEh2+hUJHpV6+dr2jD91svilczts8tMCmIAb
- uc2Hu4+Hm9cNI8GpYzL+5CjsI7qHmhDzvL4+bFKf0uj8301efIVii5PZolDtToK54oBV
- MPbJYmkCQHHQmvzdD8T7rFQrfHzEoXFUeydxvxaA81gyWcmEHy/5XmDtxa9s3agMg+NC
- SSH777GR7zEaIjXYlsSAQw8ryWEbUy7uIlOMEAFFzLnINEF0/WCa8GJUuHOPwzGojGkT
- lGrA==
+ :cc; bh=NevtOWdxRHRFHQiXTOR+rDymKphLtXA8wJyTsbJdggI=;
+ b=izrjVOE/NfRQ/6JYRSxrlJMc4t+MqdRpvqXrPULfCJ8Ozfc52935IXA11iP8amnNrm
+ DgNWim2YohZISZ0oVga7UHQSF1C1y+sAan3WMVOQIjfAVUMMT0Bu7Dkl1O1YZetmD5he
+ ppt/PlFgDw0WIU3cQriHIbxLByE2zKGq73B5K0+vmgLfBXorPjnbsg1givh4BKosu563
+ /S8xwjTJPDT55iiu18pijT557HsW49g/GWgqwqPPAiRC/4roYmU8g6lwNP66ciSEhseE
+ fw3E4JYobY6WwzQI4SL7ykpl7fohDm+k9a13J5tfSNvvFsV5ABGMJhJeEOt0j5la2CvW
+ /aeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=6ys7guQBS9To5VzIeU3E0Z+sw/jcQjM2M7cg3kTMono=;
- b=ggmjuN1M1FbQUwf+wXo0/3nTBH2+e/mJ7GVCU4OM6JGdjIIDdfscMeRK2PaNeOnsKo
- EY1avgdRZ8wCdHb+F0iZS+Pk1QDN5vwUhy+FTGGwzNndwEfj3QuLpm7SfpCn18m232OE
- dQoiFLk3OPfYmz2qS8f1suN1yHKXfpdz9fq/LM2sC0CXTwqzVEe0xS07sKwuZ9jjIfro
- V7F3Sen8R3UZmMajkjszmIG3l1ka3UwHRcYmFJxnMjWmUtPdnSHgCLvje+CrTXXW2iDw
- HuIUNIppNXmmx3nqDI4uwoddBQw2XZx1TB/a2joLxls7bF5wXMPi+SBx/Y4qwaO0WyA1
- ObMQ==
-X-Gm-Message-State: APjAAAXCZ9s+JKntWnTmJKoJiqKrp5/twmRK1P4SPAvn8Hubias8p8Or
- GOWMUltEh15m31BwqgANf5EKvf/NjDimU1wzonPRPRG/
-X-Google-Smtp-Source: APXvYqxaRGGFzIXuMQa9VCa8jKy4N9WmCEYHqAJDmV2+DBh9cBYD+B+1tuvjJpGkW+xW2oLX209Yb0MZRdyw+Bj8JoY=
-X-Received: by 2002:a2e:9116:: with SMTP id m22mr39730233ljg.216.1563915393036; 
- Tue, 23 Jul 2019 13:56:33 -0700 (PDT)
+ bh=NevtOWdxRHRFHQiXTOR+rDymKphLtXA8wJyTsbJdggI=;
+ b=UiugeAEPu8WZFcMu6ALqN/cYnayg9Bl0Fpi9OlpzJailjXJl5MWCq6uqLIesDjsA8p
+ p95leJoC8/WjflD5nMN1KQrtQeuIuKvej8jTG89+EbpQ2KhiYD5YyTEsLRHu1lMKR+wn
+ AsfpvLt9iOGQtS9k9o6FjbuO1Q3fN+XkkHRBr4Z9UmSiiaaCtknKszUI9Dl1q/vcLLXy
+ 29MYiBhfIikfw2ihM5xC49lzCKBNUHmCKNTk37w9CGHGbrpxXDcSGWNY8Ptx3rJ+kokX
+ pHI0xXdam842CANM/QUSpwAlHPmXdZi9CXG8qBtFW7t8T/g5dXk/k4ncUNcUrYkuM3P0
+ Do/w==
+X-Gm-Message-State: APjAAAUIKdzMsNBcKxMAKpHXst8dSwSd9XKGbzX7IrGDebqS0jDCoP4W
+ VEmF54P06Hkxcdp0fMKmyivmNTyETlW5HY5ideNnKr1B4sBayw==
+X-Google-Smtp-Source: APXvYqwZYoMtzm4p6mlQ49XEeStZ3opDlWaxpQtEgEeCCZND91tWzwz0b2H6ONxyrXlBhnC3qWTfZh8NVQxDdKQagjs=
+X-Received: by 2002:ac2:50c4:: with SMTP id h4mr34297772lfm.104.1563915563643; 
+ Tue, 23 Jul 2019 13:59:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <HK0PR01MB2835921DB0A5915C119C4BE5F3CB0@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
-In-Reply-To: <HK0PR01MB2835921DB0A5915C119C4BE5F3CB0@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
-Date: Tue, 23 Jul 2019 15:56:21 -0500
-Message-ID: <CANf970Zt=7PJEOS5a6GsCichToKx=jFOp3o2kGcZQv3zYt8Csg@mail.gmail.com>
-To: =?UTF-8?B?5rGkIOmjng==?= <retina999@hotmail.com>
-Subject: Re: [USRP-users] N310 "Bad CHDR or packet fragment" Problem
+References: <CABO=5RoRfGFhoyRyRKr=RjX0Scv1eB0agVcmQ88j8dxT2hp7sQ@mail.gmail.com>
+In-Reply-To: <CABO=5RoRfGFhoyRyRKr=RjX0Scv1eB0agVcmQ88j8dxT2hp7sQ@mail.gmail.com>
+Date: Tue, 23 Jul 2019 15:59:12 -0500
+Message-ID: <CANf970Y19wuC4PdsV8+tUJE=3c6E-SwmnxqzJ2KRrPLXNLuFtA@mail.gmail.com>
+To: Saimanoj Katta <saimanoj.katta@cumucore.com>
+Subject: Re: [USRP-users] Detection of USRP X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -61,8 +61,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9007539514197209448=="
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0455643347318394479=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,93 +76,59 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9007539514197209448==
-Content-Type: multipart/alternative; boundary="00000000000076060c058e5f6d69"
+--===============0455643347318394479==
+Content-Type: multipart/alternative; boundary="000000000000a143a7058e5f7768"
 
---00000000000076060c058e5f6d69
+--000000000000a143a7058e5f7768
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-If you're connected over a 10GbE link, make sure to set your host's MTU
-appropriately. I set mine to 9000.
+When you plug in either link, do you see the LEDs on the SFP ports
+illuminate? You may have bricked the X310 if these ports are unresponsive.
+
+Here's a *discovery* guide that might be helpful:
+https://kb.ettus.com/Troubleshooting_X300/X310_Device_Discovery_Issues
+
+Here's a *recovery* guide if that fails:
+https://kb.ettus.com/X300/X310_Device_Recovery
+
+Best,
 
 Sam Reiter
 SDR Support Engineer
 Ettus Research
 
 
-On Fri, Jul 19, 2019 at 2:21 AM =E6=B1=A4 =E9=A3=9E via USRP-users <
+On Fri, Jul 19, 2019 at 6:03 AM Saimanoj Katta via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Hi, all,
+> Hi,
 >
-> When benchmarking my N310, I keep getting such [RX FLOW CTRL] errors.
-> What causes this and how to solve it?
+> I was previously working with the USRP X310. I wanted to enable Dual
+> Connectivity mode for enabling two ports with 10 Giga bit connectivity. I
+> ran the update:  uhd_image_loader --args "type=x300,addr=192.168.50.2,
+> fpga=XG". Since this, I have not been able to detect my USRP.
 >
-> Thanks in advance!
+> *My setup: * Ubuntu is 18.04 and the UHD version is
+> UHD_3.14.1.0-0-gbfb9c1c7
+> I have connected to the laptop via thunderbolt port which is equivalent to
+> USB-3.0. Firewall is disabled. It is not behind a router/switch. Host
+> interface IP address is 192.168.10.3 and subnet is 255.255.255.0
 >
-> FT
+> I have tried the following:
 >
+> 1) Ran as root user - uhd_find_devices, uhd_usrp_probe and
+> uhd_images_downloader.
+> Device is not found in first two options. And, the fpga_default images
+> seem to be up to date.
+> 2) By default, USRPs have addresses from the 192.168.10.XXX range (XXX=2
+> in factory settings). I searched addresses in this range, but still USRP
+> not detected. Ping to the address also fails.
 >
-> /usr/local/lib/uhd/examples/benchmark_rate  \
-> >    --args "type=3Dn3xx,mgmt_addr=3D192.168.10.2,addr=3D192.168.10.2,mas=
-ter_clock_rate=3D122.88e6" \
-> >    --duration 60 \
-> >    --channels "0" \
-> >    --rx_rate 3.84e6 \
-> >    --rx_subdev "A:0" \
-> >    --tx_rate 3.84e6 \
-> >    --tx_subdev "A:0"
-> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.14.1.HEAD-=
-0-gbfb9c1c7
-> [00:00:00.000014] Creating the usrp device with: type=3Dn3xx,mgmt_addr=3D=
-192.168.10.2,addr=3D192.168.10.2,master_clock_rate=3D122.88e6...[INFO] [MPM=
-D] Initializing 1 device(s) in parallel with args: mgmt_addr=3D192.168.10.2=
-,type=3Dn3xx,product=3Dn310,serial=3D3182B09,claimed=3DFalse,addr=3D192.168=
-.10.2,master_clock_rate=3D122.88e6[INFO] [MPM.PeriphManager] init() called =
-with device args `master_clock_rate=3D122.88e6,time_source=3Dinternal,clock=
-_source=3Dinternal,mgmt_addr=3D192.168.10.2,product=3Dn310'.[INFO] [0/Repla=
-y_0] Initializing block control (NOC ID: 0x4E91A00000000004)[INFO] [0/Radio=
-_0] Initializing block control (NOC ID: 0x12AD100000011312)[INFO] [0/Radio_=
-1] Initializing block control (NOC ID: 0x12AD100000011312)[INFO] [0/DDC_0] =
-Initializing block control (NOC ID: 0xDDC0000000000000)[INFO] [0/DDC_1] Ini=
-tializing block control (NOC ID: 0xDDC0000000000000)[INFO] [0/DUC_0] Initia=
-lizing block control (NOC ID: 0xD0C0000000000002)[INFO] [0/DUC_1] Initializ=
-ing block control (NOC ID: 0xD0C0000000000002)[INFO] [0/FIFO_0] Initializin=
-g block control (NOC ID: 0xF1F0000000000000)[INFO] [0/FIFO_1] Initializing =
-block control (NOC ID: 0xF1F0000000000000)[INFO] [0/FIFO_2] Initializing bl=
-ock control (NOC ID: 0xF1F0000000000000)[INFO] [0/FIFO_3] Initializing bloc=
-k control (NOC ID: 0xF1F0000000000000)
-> Using Device: Single USRP:
->   Device: N300-Series Device
->   Mboard 0: ni-n3xx-3182B09
->   RX Channel: 0
->     RX DSP: 0
->     RX Dboard: A
->     RX Subdev: Magnesium
->   TX Channel: 0
->     TX DSP: 0
->     TX Dboard: A
->     TX Subdev: Magnesium
+> Any suggestions would be appreciated to detect the device! Many thanks in
+> advance.
 >
-> [00:00:17.353184] Setting device timestamp to 0...
-> [00:00:17.412187] Testing receive rate 3.840000 Msps on 1 channels
-> [00:00:17.414164] Receiver error: ERROR_CODE_BAD_PACKET
-> [[ERROR] [RX FLOW CTRL] Error unpacking packet: ValueError: Bad CHDR or p=
-acket fragment
-> [ERROR] [STREAMER] The receive packet handler caught a value exception.
-> ValueError: Bad CHDR or packet fragment
-> 00:00:17.414180] Unexpected error on recv, continuing...
-> [00:00:17.514258] Receiver error: ERROR_CODE_TIMEOUT, continuing...
-> [00:00:17.514312] Receiver error: ERROR_CODE_BAD_PACKET
-> [00:00:17.514317] Unexpected error on recv, continuing...[ERROR] [RX FLOW=
- CTRL] Error unpacking packet: ValueError: Bad CHDR or packet fragment
-> [ERROR] [STREAMER] The receive packet handler caught a value exception.
-> ValueError: Bad CHDR or packet fragment
-> [00:00:17.532991] Testing transmit rate 3.840000 Msps on 1 channels
-> [00:00:17.614329] Receiver error: ERROR_CODE_TIMEOUT, continuing...
-> [00:00:17.614372] Receiver error: ERROR_CODE_BAD_PACKET
-> [00:00:17.614377] Unexpected error on recv, continuing...
+> Regards,
+> Saimanoj
 >
 > _______________________________________________
 > USRP-users mailing list
@@ -170,117 +136,127 @@ acket fragment
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---00000000000076060c058e5f6d69
+--000000000000a143a7058e5f7768
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">If you&#39;re connected over a 10GbE link, make sure to se=
-t your host&#39;s MTU appropriately. I set mine to 9000.<div><br clear=3D"a=
-ll"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail=
-_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0<div>SDR=
- Support Engineer</div><div>Ettus Research<br></div></div></div></div></div=
-></div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
-s=3D"gmail_attr">On Fri, Jul 19, 2019 at 2:21 AM =E6=B1=A4 =E9=A3=9E via US=
-RP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists=
-.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-
-
-
-<div bgcolor=3D"#FFFFFF">
-<pre>Hi, all,
-
-When benchmarking my N310, I keep getting such <font color=3D"#CC0000">[RX =
-FLOW CTRL]</font> errors.=20
-What causes this and how to solve it?
-
-Thanks in advance!
-
-FT
-
-
-/usr/local/lib/uhd/examples/benchmark_rate  \
-&gt;    --args &quot;type=3Dn3xx,mgmt_addr=3D192.168.10.2,addr=3D192.168.10=
-.2,master_clock_rate=3D122.88e6&quot; \
-&gt;    --duration 60 \
-&gt;    --channels &quot;0&quot; \
-&gt;    --rx_rate 3.84e6 \
-&gt;    --rx_subdev &quot;A:0&quot; \
-&gt;    --tx_rate 3.84e6 \
-&gt;    --tx_subdev &quot;A:0&quot;
-
-<font color=3D"#4E9A06">[INFO] [UHD] </font>linux; GNU C++ version 7.4.0; B=
-oost_106501; UHD_3.14.1.HEAD-0-gbfb9c1c7
-[00:00:00.000014] Creating the usrp device with: type=3Dn3xx,mgmt_addr=3D19=
-2.168.10.2,addr=3D192.168.10.2,master_clock_rate=3D122.88e6...
-<font color=3D"#4E9A06">[INFO] [MPMD] </font>Initializing 1 device(s) in pa=
-rallel with args: mgmt_addr=3D192.168.10.2,type=3Dn3xx,product=3Dn310,seria=
-l=3D3182B09,claimed=3DFalse,addr=3D192.168.10.2,master_clock_rate=3D122.88e=
-6
-<font color=3D"#4E9A06">[INFO] [MPM.PeriphManager] </font>init() called wit=
-h device args `master_clock_rate=3D122.88e6,time_source=3Dinternal,clock_so=
-urce=3Dinternal,mgmt_addr=3D192.168.10.2,product=3Dn310&#39;.
-<font color=3D"#4E9A06">[INFO] [0/Replay_0] </font>Initializing block contr=
-ol (NOC ID: 0x4E91A00000000004)
-<font color=3D"#4E9A06">[INFO] [0/Radio_0] </font>Initializing block contro=
-l (NOC ID: 0x12AD100000011312)
-<font color=3D"#4E9A06">[INFO] [0/Radio_1] </font>Initializing block contro=
-l (NOC ID: 0x12AD100000011312)
-<font color=3D"#4E9A06">[INFO] [0/DDC_0] </font>Initializing block control =
-(NOC ID: 0xDDC0000000000000)
-<font color=3D"#4E9A06">[INFO] [0/DDC_1] </font>Initializing block control =
-(NOC ID: 0xDDC0000000000000)
-<font color=3D"#4E9A06">[INFO] [0/DUC_0] </font>Initializing block control =
-(NOC ID: 0xD0C0000000000002)
-<font color=3D"#4E9A06">[INFO] [0/DUC_1] </font>Initializing block control =
-(NOC ID: 0xD0C0000000000002)
-<font color=3D"#4E9A06">[INFO] [0/FIFO_0] </font>Initializing block control=
- (NOC ID: 0xF1F0000000000000)
-<font color=3D"#4E9A06">[INFO] [0/FIFO_1] </font>Initializing block control=
- (NOC ID: 0xF1F0000000000000)
-<font color=3D"#4E9A06">[INFO] [0/FIFO_2] </font>Initializing block control=
- (NOC ID: 0xF1F0000000000000)
-<font color=3D"#4E9A06">[INFO] [0/FIFO_3] </font>Initializing block control=
- (NOC ID: 0xF1F0000000000000)
-Using Device: Single USRP:
-  Device: N300-Series Device
-  Mboard 0: ni-n3xx-3182B09
-  RX Channel: 0
-    RX DSP: 0
-    RX Dboard: A
-    RX Subdev: Magnesium
-  TX Channel: 0
-    TX DSP: 0
-    TX Dboard: A
-    TX Subdev: Magnesium
-
-[00:00:17.353184] Setting device timestamp to 0...
-[00:00:17.412187] Testing receive rate 3.840000 Msps on 1 channels
-[00:00:17.414164] Receiver error: ERROR_CODE_BAD_PACKET
-[<font color=3D"#CC0000">[ERROR] [RX FLOW CTRL] </font>Error unpacking pack=
-et: ValueError: Bad CHDR or packet fragment
-
-<font color=3D"#CC0000">[ERROR] [STREAMER] </font>The receive packet handle=
-r caught a value exception.
-ValueError: Bad CHDR or packet fragment
-00:00:17.414180] Unexpected error on recv, continuing...
-[00:00:17.514258] Receiver error: ERROR_CODE_TIMEOUT, continuing...
-[00:00:17.514312] Receiver error: ERROR_CODE_BAD_PACKET
-[00:00:17.514317] Unexpected error on recv, continuing...
-<font color=3D"#CC0000">[ERROR] [RX FLOW CTRL] </font>Error unpacking packe=
-t: ValueError: Bad CHDR or packet fragment
-
-<font color=3D"#CC0000">[ERROR] [STREAMER] </font>The receive packet handle=
-r caught a value exception.
-ValueError: Bad CHDR or packet fragment
-[00:00:17.532991] Testing transmit rate 3.840000 Msps on 1 channels
-[00:00:17.614329] Receiver error: ERROR_CODE_TIMEOUT, continuing...
-[00:00:17.614372] Receiver error: ERROR_CODE_BAD_PACKET
-[00:00:17.614377] Unexpected error on recv, continuing...
-</pre>
-</div>
-
+<div dir=3D"ltr">When you plug in either link, do you see the LEDs on the S=
+FP ports illuminate? You may have bricked the X310 if these ports are unres=
+ponsive.=C2=A0<div><br></div><div>Here&#39;s a <b>discovery</b> guide that =
+might be helpful:=C2=A0<a href=3D"https://kb.ettus.com/Troubleshooting_X300=
+/X310_Device_Discovery_Issues">https://kb.ettus.com/Troubleshooting_X300/X3=
+10_Device_Discovery_Issues</a></div><div><br></div><div>Here&#39;s a <b>rec=
+overy</b> guide if that fails:=C2=A0<a href=3D"https://kb.ettus.com/X300/X3=
+10_Device_Recovery">https://kb.ettus.com/X300/X310_Device_Recovery</a></div=
+><div><br></div><div>Best,</div><div><br clear=3D"all"><div><div dir=3D"ltr=
+" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"=
+ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0<div>SDR Support Engineer</div><=
+div>Ettus Research<br></div></div></div></div></div></div><br></div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri,=
+ Jul 19, 2019 at 6:03 AM Saimanoj Katta via USRP-users &lt;<a href=3D"mailt=
+o:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><d=
+iv>Hi, <br></div><div><br></div><div>I was previously working with the USRP=
+ X310. I wanted to enable Dual Connectivity mode for enabling two ports wit=
+h 10 Giga bit connectivity. I ran the update:=C2=A0 <span style=3D"font-siz=
+e:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font=
+-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vert=
+ical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-797655391132927550=
+3gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">uhd_image_l=
+oader --args &quot;type=3Dx300,addr=3D192.168.50.2, fpga=3DXG&quot;.</span>=
+<span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background=
+-color:transparent;font-weight:400;font-style:normal;font-variant:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmai=
+l-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1e=
+a2104ef635">  Since this, I have not been able to detect my USRP. <br></spa=
+n></div><div><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,=
+0);background-color:transparent;font-weight:400;font-style:normal;font-vari=
+ant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wra=
+p" id=3D"gmail-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff=
+-6350-996e-1ea2104ef635"><br></span></div><div><span style=3D"font-size:11p=
+t;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weig=
+ht:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-=
+align:baseline;white-space:pre-wrap" id=3D"gmail-m_-7976553911329275503gmai=
+l-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635"><b>My setup: </b=
+><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgroun=
+d-color:transparent;font-weight:400;font-style:normal;font-variant:normal;t=
+ext-decoration:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gma=
+il-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1=
+ea2104ef635"> Ubuntu is 18.04 and the UHD version is UHD_3.14.1.0-0-gbfb9c1=
+c7</span></span></div><div><span style=3D"font-size:11pt;font-family:Arial;=
+color:rgb(0,0,0);background-color:transparent;font-weight:400;font-style:no=
+rmal;font-variant:normal;text-decoration:none;vertical-align:baseline;white=
+-space:pre-wrap" id=3D"gmail-m_-7976553911329275503gmail-docs-internal-guid=
+-38792c7d-7fff-6350-996e-1ea2104ef635"><span style=3D"font-size:11pt;font-f=
+amily:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:400;f=
+ont-style:normal;font-variant:normal;text-decoration:none;vertical-align:ba=
+seline;white-space:pre-wrap" id=3D"gmail-m_-7976553911329275503gmail-docs-i=
+nternal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">I have connected to the =
+laptop via thunderbolt port which is equivalent to USB-3.0. Firewall is dis=
+abled. It is not behind a router/switch. Host interface IP address is 192.1=
+68.10.3 and subnet is 255.255.255.0 </span></span></div><div><span style=3D=
+"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpa=
+rent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:=
+none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-797655391=
+1329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635"><b=
+r></span></div><div><span style=3D"font-size:11pt;font-family:Arial;color:r=
+gb(0,0,0);background-color:transparent;font-weight:400;font-style:normal;fo=
+nt-variant:normal;text-decoration:none;vertical-align:baseline;white-space:=
+pre-wrap" id=3D"gmail-m_-7976553911329275503gmail-docs-internal-guid-38792c=
+7d-7fff-6350-996e-1ea2104ef635">I have tried the following: <br></span></di=
+v><div><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);bac=
+kground-color:transparent;font-weight:400;font-style:normal;font-variant:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap" id=
+=3D"gmail-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff-6350=
+-996e-1ea2104ef635"><br></span></div><div><span style=3D"font-size:11pt;fon=
+t-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:40=
+0;font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap" id=3D"gmail-m_-7976553911329275503gmail-doc=
+s-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">1) Ran as root user -=
+ uhd_find_devices, uhd_usrp_probe and uhd_images_downloader. <br></span></d=
+iv><div><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-weight:400;font-style:normal;font-variant:n=
+ormal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap" id=
+=3D"gmail-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff-6350=
+-996e-1ea2104ef635">Device is not found in first two options. And, the fpga=
+_default images seem to be up to date. <br></span></div><div><span style=3D=
+"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpa=
+rent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:=
+none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-797655391=
+1329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">2)=
+ By default, USRPs have addresses from the <code>192.168.10.XXX</code> rang=
+e (<code>XXX=3D2</code> in factory settings). I searched addresses in this =
+range, but still USRP not detected. Ping to the address also fails. <br></s=
+pan></div><div><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,=
+0,0);background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap" id=3D"gmail-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7f=
+ff-6350-996e-1ea2104ef635"><br></span></div><div><span style=3D"font-size:1=
+1pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-we=
+ight:400;font-style:normal;font-variant:normal;text-decoration:none;vertica=
+l-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-7976553911329275503gm=
+ail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">Any suggestion=
+s would be appreciated to detect the device! Many thanks in advance. <br></=
+span></div><div><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0=
+,0,0);background-color:transparent;font-weight:400;font-style:normal;font-v=
+ariant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-=
+wrap" id=3D"gmail-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7=
+fff-6350-996e-1ea2104ef635"><br></span></div><div><span style=3D"font-size:=
+11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-w=
+eight:400;font-style:normal;font-variant:normal;text-decoration:none;vertic=
+al-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-7976553911329275503g=
+mail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">Regards, <br>=
+</span></div><div><span style=3D"font-size:11pt;font-family:Arial;color:rgb=
+(0,0,0);background-color:transparent;font-weight:400;font-style:normal;font=
+-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
+e-wrap" id=3D"gmail-m_-7976553911329275503gmail-docs-internal-guid-38792c7d=
+-7fff-6350-996e-1ea2104ef635">Saimanoj<br></span></div><div><span style=3D"=
+font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpar=
+ent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:n=
+one;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-7976553911=
+329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635"><br=
+></span></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -290,10 +266,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---00000000000076060c058e5f6d69--
+--000000000000a143a7058e5f7768--
 
 
---===============9007539514197209448==
+--===============0455643347318394479==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -304,5 +280,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9007539514197209448==--
+--===============0455643347318394479==--
 
