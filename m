@@ -2,90 +2,42 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A5C711F5
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2019 08:36:25 +0200 (CEST)
-Received: from [::1] (port=57004 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E51A71523
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2019 11:27:47 +0200 (CEST)
+Received: from [::1] (port=44460 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hpoPQ-0001I8-0K; Tue, 23 Jul 2019 02:36:24 -0400
-Received: from mail-eopbgr1380095.outbound.protection.outlook.com
- ([40.107.138.95]:18358 helo=IND01-MA1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
- (Exim 4.92) (envelope-from <koyel.das@vehere.com>)
- id 1hpoPL-0001D1-5V
- for usrp-users@lists.ettus.com; Tue, 23 Jul 2019 02:36:19 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JsuORBQRGwJO3ZMpmcFcd61axqOHHeS++ke2f45q5fYTaPG1xC1gWSCu9TeuPValYecS2sBVCnWN1WHk4Cu/gnLE7R9QJ49MGuI7h5H7Mftk5MK3v5cOxjxVL9fEUFCLc3HO5zEfWI8jGv3Lx+IcXIiB/xpg7OUDpFrgSF1fG1B2Wf7hVi3iibZf4Pzxvsf2ZUTChPejSxrLnCnrUukqPmHlrWpkrV/Futu0RYtZuu/5b0ONyPEsSqDDzNnfQxv++XEtr6VjGO/0hVIeSYNN5h4DQMh60YuWtC7g4GH26e5uD4+H7npqX40TR4/DMaLo8emKBCB1GWg3eevaJMe79g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NyJAlVqb+TSwAttMIx/+rM9F02U3AesP/wKFGl95JtU=;
- b=C9ZCBadZitjKrinWJEsIYBooGtYqw15HuC9BiueBcn2UV9G5v0f+jeEP9fmeuIScroMAU+VgTpOU0chXQjBKig6iFKduMjVxzeXW2BfOfeCLZnL9QiBu6N29sovu8HXqkx7QdRGvKQzV+KVIOEinWMK/yTpCDB9bK2jDiH0HNa1CPWpu0WnhClAvXL4jydKJ7uhjR7IeDYDujBu2RU+ZPqhnD2fpJS7yCrumD29BOVQAldWzbjl8QmqKFE9Sizs89vgKICRZKkRsdWDIiBSsjF7xmKCqdQx70qMf4GJs0dlC48qMW/9dcWbE/ACeMK9kK6AjvUyP0kY3rUb99UCa+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=vehere.com;dmarc=pass action=none
- header.from=vehere.com;dkim=pass header.d=vehere.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=vehereinteractive.onmicrosoft.com;
- s=selector2-vehereinteractive-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NyJAlVqb+TSwAttMIx/+rM9F02U3AesP/wKFGl95JtU=;
- b=frEQSmkH8Vod5aKtcYsRREavYZ+EEWMaygpUhBFlBm87+EVfNpIXKzmxYxk3UbuS70LUnCcaEAOixjNA5kaJn8SrU6eUCLU8dfhret5AHjTk7sy+65kkDIxWT5YdgGJ/vJRXGfHKEXQ9kw9eBFONrgBfSUxa/wkvSB2WjRF48QM=
-Received: from PN1PR0101MB1536.INDPRD01.PROD.OUTLOOK.COM (52.134.160.147) by
- PN1SPR00MB05.INDPRD01.PROD.OUTLOOK.COM (52.134.165.151) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2094.16; Tue, 23 Jul 2019 06:35:35 +0000
-Received: from PN1PR0101MB1536.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::6038:8102:d452:87d9]) by PN1PR0101MB1536.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::6038:8102:d452:87d9%12]) with mapi id 15.20.2094.017; Tue, 23 Jul
- 2019 06:35:35 +0000
-To: Robin Coxe <coxe@close-haul.com>, Robin Coxe <coxe@quanttux.com>, Marcus D
- Leech <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] USRP E313
-Thread-Index: AQHVOucxymOz7T55AUuyh9O0QDUUAqbLwY6AgAABbICAAWazw4AAMFGAgApxB+Y=
-Date: Tue, 23 Jul 2019 06:35:34 +0000
-Message-ID: <PN1PR0101MB15368FF54945E5963315E39290C70@PN1PR0101MB1536.INDPRD01.PROD.OUTLOOK.COM>
-References: <MAXPR0101MB153020BA8AEC1D99B16F030790CF0@MAXPR0101MB1530.INDPRD01.PROD.OUTLOOK.COM>
- <1915F48D-FF15-4AD4-A124-A15ABFB9324A@gmail.com>,
- <CAKJyDkLz2Q=J2SL1DSZzCvm2sEKmu_jMbZfTievjOUmD9XCcvA@mail.gmail.com>,
- <MAXPR0101MB153054C9EB83046C3964087290CE0@MAXPR0101MB1530.INDPRD01.PROD.OUTLOOK.COM>,
- <DM5PR10MB1945BE94BA9EDBB6C5229201ABCE0@DM5PR10MB1945.namprd10.prod.outlook.com>
-In-Reply-To: <DM5PR10MB1945BE94BA9EDBB6C5229201ABCE0@DM5PR10MB1945.namprd10.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=koyel.das@vehere.com; 
-x-originating-ip: [14.143.49.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9eecbc19-dd9e-4397-0dd1-08d70f37f7c5
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(7168020)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
- SRVR:PN1SPR00MB05; 
-x-ms-traffictypediagnostic: PN1SPR00MB05:
-x-ms-exchange-purlcount: 7
-x-microsoft-antispam-prvs: <PN1SPR00MB05D184E9334E7C44C9689A90C70@PN1SPR00MB05.INDPRD01.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0107098B6C
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(396003)(376002)(366004)(346002)(39830400003)(136003)(365934003)(189003)(199004)(64756008)(66556008)(66066001)(66446008)(81156014)(81166006)(76116006)(19627405001)(8936002)(66946007)(256004)(25786009)(66574012)(86362001)(4326008)(5024004)(966005)(66476007)(14444005)(508600001)(316002)(5070765005)(99286004)(14454004)(606006)(110136005)(53386004)(486006)(76176011)(26005)(6246003)(733005)(2906002)(7696005)(6436002)(5660300002)(229853002)(476003)(33656002)(102836004)(6506007)(52536014)(53546011)(6606003)(74316002)(55236004)(53936002)(71200400001)(78486014)(71190400001)(8676002)(11346002)(55016002)(54896002)(3846002)(236005)(6306002)(9686003)(7736002)(6116002)(186003)(446003)(68736007)(15398625002);
- DIR:OUT; SFP:1102; SCL:1; SRVR:PN1SPR00MB05;
- H:PN1PR0101MB1536.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: vehere.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: VRnfUhBOpT2k9X0kEOiE5zqgGJw7ahrb7SwtINkOngiVh/bImU8s995bbxy4JWd/x/aUUoMeAWUgLMLSGNqpoPZvhossoz+bXacb8oJl7JlzC3hMUQmWqBksT7+dwdhjxwRVNwTyB2BPx9wKu5+8W6Dq46MEh5iZuGZY5FuiLvToHzEAxlA3U3rn8zJfAq0Y5df5txl5KIKK73FTjNQQmMxbbeJH91iMRKloGI3hJjMF2HcNOmwPyu7TbdVq9TTdk+OF0UannSC0wvY3nAaElBL/g5D1L0NKSUUImurbPNA/vN6wp+AiffL6jsHtLlGK4HFelmHgFX8HHcH3vo/HAi2+mgVUczx/Oh7X1IE5s1QegtD+ORJb6T3yQ6YvYN7z+5dvLn/6bCty8C9xOkZww2tZ/1a02yW1AqmaJSEXs+Y=
+	id 1hpr54-0007j4-BI; Tue, 23 Jul 2019 05:27:34 -0400
+Received: from mx-out.tlen.pl ([193.222.135.158]:43382)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <perper@o2.pl>) id 1hpr50-0007ef-I6
+ for usrp-users@lists.ettus.com; Tue, 23 Jul 2019 05:27:30 -0400
+Received: (wp-smtpd smtp.tlen.pl 6029 invoked from network);
+ 23 Jul 2019 11:26:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=o2.pl; s=1024a;
+ t=1563874008; bh=mmLsd903dlQqXIC9g4wCcqgYKtHIYbTE8PJZ8v2/Pg0=;
+ h=Subject:To:From;
+ b=lWdHmot4fPVbO6NmDTYHFCKm7MN5PUhtd0KAXWP0Wr5oqvN+EPRazdNeTRNbnT/vp
+ XbRn4Pu5jgiXjZkPFC2mNOEaJynmOfuGAXsge6l03dm1+iQrw6rbEu390miHY0xMYK
+ X29caIoPA8x0SUo5HR2plUyZo1dut2QIJUAyG/vQ=
+Received: from unknown (HELO [192.168.90.246]) (perper@o2.pl@[194.29.160.241])
+ (envelope-sender <perper@o2.pl>)
+ by smtp.tlen.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+ for <usrp-users@lists.ettus.com>; 23 Jul 2019 11:26:48 +0200
+To: usrp-users@lists.ettus.com
+References: <CAAMvqVEabgQrw=sp_EmTwfXPG+pVF5yigwioHf8v6pT+jz=rhQ@mail.gmail.com>
+Message-ID: <c110102c-64d6-8fab-2213-2e0f7e8667e1@o2.pl>
+Date: Tue, 23 Jul 2019 11:26:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: vehere.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9eecbc19-dd9e-4397-0dd1-08d70f37f7c5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jul 2019 06:35:34.9689 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: koyel.das@vehere.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN1SPR00MB05
-Subject: Re: [USRP-users] USRP E313
+In-Reply-To: <CAAMvqVEabgQrw=sp_EmTwfXPG+pVF5yigwioHf8v6pT+jz=rhQ@mail.gmail.com>
+Content-Type: multipart/mixed; boundary="------------1EF3737AC55D288FD3A77EC0"
+Content-Language: en-US
+X-WP-MailID: 3f9609920e4dde16aad6a58f81138821
+X-WP-AV: skaner antywirusowy Poczty o2
+X-WP-SPAM: NO 0000002 [oSEC]                               
+Subject: Re: [USRP-users] Unable to detect X310 over pcie
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -97,10 +49,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6874148144474693513=="
+From: Piotr Krysik via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Piotr Krysik <perper@o2.pl>
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -114,771 +64,280 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6874148144474693513==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_PN1PR0101MB15368FF54945E5963315E39290C70PN1PR0101MB1536_"
+This is a multi-part message in MIME format.
+--------------1EF3737AC55D288FD3A77EC0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---_000_PN1PR0101MB15368FF54945E5963315E39290C70PN1PR0101MB1536_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Hi all,
 
-Hi,
+I have the same issue. I've checked everything in different computer
+(disk with particular Ubuntu 16.04 installation, PCIexpress card and
+PCIe cable) and everything worked fine.
 
+What was left was that caused the issue was particular
+motherboard+processor. I don't know if it is just this one but I suppose
+the issue might be common to motherboards that have the same components
+(i.e. PCIe controller or bridge) as this one. I'm attaching the result
+of lspci.
 
-Many thanks Marcus and Robin. I have two more questions. Can E320 transfer =
-data at the rate somewhere near to 1 Gbps to host PC? Also for E313, if pro=
-cessing is done in the embedded processor then does it support processing a=
-t 20 MSps?
+Kailash, can you attach yours (and anyone who's got the same issue)?
+Maybe we'll find a common element.
 
-
-Regards,
-
-Koyel Das
-Senior =96 Product Engineer
-
-Vehere | Proactive Communications Intelligence & Cyber Defence
-M: +919051132173 | T: +91 33 40545454 | F: +91 33 40545455 | W: www.vehere.=
-com<http://www.vehere.com/>
-
-[unnamed]<https://www.linkedin.com/company/vehere-interactive-p-ltd> [unnam=
-ed (1)] <https://twitter.com/VehereIndia>  [unnamed (2)] <https://www.faceb=
-ook.com/VehereIndia/>
-
-Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
-rds in India & Asia since 2012!
-
-The content of this e-mail is confidential and intended solely for the use =
-of the addressee. The text of this email (including any attachments) may co=
-ntain information, which is proprietary and/or confidential or privileged i=
-n nature belonging to Vehere Interactive Pvt Ltd and/or its associates/ gro=
-up companies/ subsidiaries. If you are not the addressee, or the person res=
-ponsible for delivering it to the addressee, any disclosure, copying, distr=
-ibution or any action taken or omitted to be taken in reliance on it is pro=
-hibited and may be unlawful. If you have received this e-mail in error, ple=
-ase notify the sender and remove this communication entirely from your syst=
-em. The recipient acknowledges that no guarantee or any warranty is given a=
-s to completeness and accuracy of the content of the email. The recipient f=
-urther acknowledges that the views contained in the email message are those=
- of the sender and may not necessarily reflect those of Vehere Interactive =
-Pvt Ltd. Before opening and accessing the attachment please check and scan =
-for virus. WARNING: Computer viruses can be transmitted via email. The reci=
-pient should check this email and any attachments for the presence of virus=
-es. The company accepts no liability for any damage caused by any virus tra=
-nsmitted by this email.
-
-________________________________
-From: Robin Coxe <coxe@close-haul.com>
-Sent: Tuesday, July 16, 2019 8:35:27 PM
-To: Koyel Das (Vehere) <koyel.das@vehere.com>; Robin Coxe <coxe@quanttux.co=
-m>; Marcus D Leech <patchvonbraun@gmail.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] USRP E313
-
-No, you will likely only get a few MBPS max. The E310 was not designed to s=
-upport high data rate transfers to a host PC.  Read the datasheets on ettus=
-.com.
-
-If you want the RF front end on an E310 with higher performance streaming c=
-apabilities, look at the E320.  Alternatively, keep using your USRP-RIO.
+Best Regards,
+Piotr Krysik
 
 
-________________________________
-From: Koyel Das (Vehere) <koyel.das@vehere.com>
-Sent: Tuesday, July 16, 2019 5:16 AM
-To: Robin Coxe; Marcus D Leech
-Cc: Ettus Mail List
-Subject: Re: [USRP-users] USRP E313
+W dniu 11.06.2019 o 08:55, kailash kumar via USRP-users pisze:
+> Hi,
+>
+> I am unable to detect X310 over pcie. I have installed uhd(v3.14.0.0)
+> and compiled and installed RIO drivers as well. Below is my configuration:
+>
+> UHD RIO Installer version:
+> niusrprio-installer-18.0.0
+>
+> [pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ sudo
+> niusrprio_pcie start
+> Making sure drivers are up to date...
+> Module nikal is up-to-date
+> Module nibds is up-to-date
+> Module nistreamk is up-to-date
+> Module NiRioSrv is up-to-date
+> Module niusrpriok is up-to-date
+> Loading: NiRioSrv niusrpriok
+> Starting: niusrpriorpc
+>
+> [pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ lsmod |
+> grep -i ni
+> niusrpriok            417792  0
+> NiRioSrv              942080  0
+> nistreamk             131072  2 niusrpriok,NiRioSrv
+> nibds                  57344  2 niusrpriok,NiRioSrv
+> nikal                  98304  4 niusrpriok,NiRioSrv,nistreamk,nibds
+>
+> [pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ uname -r
+> 4.19.48-48.lts2018
+>
+> [pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ ls /dev/ni/
+> 'nistreamk:0\nistreamk\0'
+>
+> [pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$ sudo
+> netstat -anp| grep 5444
+> tcp        0      0 0.0.0.0:5444 <http://0.0.0.0:5444>          
+>  0.0.0.0:*               LISTEN      1845/niusrpriorpc  
+>
+> [pretlist@clr-85a7812169e346e6b143a228fe1b9641 Downloads]$
+> uhd_usrp_probe --args "type=x300,resource=RIO0"
+> [INFO] [UHD] linux; GNU C++ version 9.1.1 20190605
+> gcc-9-branch@271943; Boost_106800; UHD_3.14.0.HEAD-0-g6875d061
+> [ERROR] [UHD] Device discovery error: input stream error
+> Error: LookupError: KeyError: No devices found for ----->
+> Device Address:
+>     type: x300
+>     resource: RIO0
+>
+> [pretlist@clr-85a7812169e346e6b143a228fe1b9641 uhd]$ git status
+> HEAD detached at v3.14.0.0
+>
+> Digging through uhd code
+> lib/usrp/x300/x300_impl.cpp (x300_find_pcie ) ->  
+> lib/usrp/x300/x300_impl.cpp
+> (niusrprio_session::enumerate(rpc_port_name, dev_info_vtr)) ->
+> lib/transport/nirio/niusrprio_session.cpp
+> (nirio_status_chain(temp_rpc_client.niusrprio_enumerate(device_info_vtr),
+> status)) ->  
+> lib/transport/nirio/rpc/usrprio_rpc_client.cpp
+>  (usrprio_rpc_client::niusrprio_enumerate(NIUSRPRIO_ENUMERATE_ARGS))
+>
+> out_args >> status; -> This returns status as -52012
+>
+> Thanks
+> Kailash
+>
+> ____________
 
 
-Hi,
+--------------1EF3737AC55D288FD3A77EC0
+Content-Type: text/plain; charset=UTF-8;
+ name="lspci"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="lspci"
 
+MDA6MDAuMCBIb3N0IGJyaWRnZTogSW50ZWwgQ29ycG9yYXRpb24gOHRoIEdlbiBDb3JlIFBy
+b2Nlc3NvciBIb3N0IEJyaWRnZS9EUkFNIFJlZ2lzdGVycyAocmV2IDA3KQowMDowMS4wIFBD
+SSBicmlkZ2U6IEludGVsIENvcnBvcmF0aW9uIFhlb24gRTMtMTIwMCB2NS9FMy0xNTAwIHY1
+LzZ0aCBHZW4gQ29yZSBQcm9jZXNzb3IgUENJZSBDb250cm9sbGVyICh4MTYpIChyZXYgMDcp
+CjAwOjAyLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlcjogSW50ZWwgQ29ycG9yYXRpb24g
+RGV2aWNlIDNlOTIKMDA6MTIuMCBTaWduYWwgcHJvY2Vzc2luZyBjb250cm9sbGVyOiBJbnRl
+bCBDb3Jwb3JhdGlvbiBDYW5ub24gTGFrZSBQQ0ggVGhlcm1hbCBDb250cm9sbGVyIChyZXYg
+MTApCjAwOjE0LjAgVVNCIGNvbnRyb2xsZXI6IEludGVsIENvcnBvcmF0aW9uIENhbm5vbiBM
+YWtlIFBDSCBVU0IgMy4xIHhIQ0kgSG9zdCBDb250cm9sbGVyIChyZXYgMTApCjAwOjE0LjIg
+UkFNIG1lbW9yeTogSW50ZWwgQ29ycG9yYXRpb24gQ2Fubm9uIExha2UgUENIIFNoYXJlZCBT
+UkFNIChyZXYgMTApCjAwOjE2LjAgQ29tbXVuaWNhdGlvbiBjb250cm9sbGVyOiBJbnRlbCBD
+b3Jwb3JhdGlvbiBDYW5ub24gTGFrZSBQQ0ggSEVDSSBDb250cm9sbGVyIChyZXYgMTApCjAw
+OjE3LjAgU0FUQSBjb250cm9sbGVyOiBJbnRlbCBDb3Jwb3JhdGlvbiBDYW5ub24gTGFrZSBQ
+Q0ggU0FUQSBBSENJIENvbnRyb2xsZXIgKHJldiAxMCkKMDA6MWMuMCBQQ0kgYnJpZGdlOiBJ
+bnRlbCBDb3Jwb3JhdGlvbiBEZXZpY2UgYTMzZCAocmV2IGYwKQowMDoxYy42IFBDSSBicmlk
+Z2U6IEludGVsIENvcnBvcmF0aW9uIERldmljZSBhMzNlIChyZXYgZjApCjAwOjFmLjAgSVNB
+IGJyaWRnZTogSW50ZWwgQ29ycG9yYXRpb24gSDM3MCBDaGlwc2V0IExQQy9lU1BJIENvbnRy
+b2xsZXIgKHJldiAxMCkKMDA6MWYuMyBBdWRpbyBkZXZpY2U6IEludGVsIENvcnBvcmF0aW9u
+IENhbm5vbiBMYWtlIFBDSCBjQVZTIChyZXYgMTApCjAwOjFmLjQgU01CdXM6IEludGVsIENv
+cnBvcmF0aW9uIENhbm5vbiBMYWtlIFBDSCBTTUJ1cyBDb250cm9sbGVyIChyZXYgMTApCjAw
+OjFmLjUgU2VyaWFsIGJ1cyBjb250cm9sbGVyIFswYzgwXTogSW50ZWwgQ29ycG9yYXRpb24g
+Q2Fubm9uIExha2UgUENIIFNQSSBDb250cm9sbGVyIChyZXYgMTApCjAwOjFmLjYgRXRoZXJu
+ZXQgY29udHJvbGxlcjogSW50ZWwgQ29ycG9yYXRpb24gRXRoZXJuZXQgQ29ubmVjdGlvbiAo
+NykgSTIxOS1WIChyZXYgMTApCjAxOjAwLjAgUENJIGJyaWRnZTogUExYIFRlY2hub2xvZ3ks
+IEluYy4gUEVYIDg2MDggOC1sYW5lLCA4LVBvcnQgUENJIEV4cHJlc3MgR2VuIDIgKDUuMCBH
+VC9zKSBTd2l0Y2ggKHJldiBiYSkKMDI6MDEuMCBQQ0kgYnJpZGdlOiBQTFggVGVjaG5vbG9n
+eSwgSW5jLiBQRVggODYwOCA4LWxhbmUsIDgtUG9ydCBQQ0kgRXhwcmVzcyBHZW4gMiAoNS4w
+IEdUL3MpIFN3aXRjaCAocmV2IGJhKQowNDowMC4wIEV0aGVybmV0IGNvbnRyb2xsZXI6IElu
+dGVsIENvcnBvcmF0aW9uIEkyMTEgR2lnYWJpdCBOZXR3b3JrIENvbm5lY3Rpb24gKHJldiAw
+MykKMDU6MDAuMCBOZXR3b3JrIGNvbnRyb2xsZXI6IEludGVsIENvcnBvcmF0aW9uIER1YWwg
+QmFuZCBXaXJlbGVzcy1BQyAzMTY4TkdXIFtTdG9uZSBQZWFrXSAocmV2IDEwKQo=
+--------------1EF3737AC55D288FD3A77EC0
+Content-Type: text/plain; charset=UTF-8;
+ name="lspci_verbose"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="lspci_verbose"
 
-I understand that there is a limitation on the Ethernet that it doesn't sup=
-port more than 1 gig. But is there any limitation from the product side whe=
-n it is in network mode as compared to 2955? Further  There are two TRx and=
- two Rx ports so can TRx be also used as receiver and if yes then can 3 cha=
-nnels(1 TRx and 2 Rx ) be streamed simultaneously as receivers?
-
-
-Regards,
-
-Koyel Das
-Senior =96 Product Engineer
-
-Vehere | Proactive Communications Intelligence & Cyber Defence
-M: +919051132173 | T: +91 33 40545454 | F: +91 33 40545455 | W: www.vehere.=
-com<http://www.vehere.com/>
-
-[unnamed]<https://www.linkedin.com/company/vehere-interactive-p-ltd> [unnam=
-ed (1)] <https://twitter.com/VehereIndia>  [unnamed (2)] <https://www.faceb=
-ook.com/VehereIndia/>
-
-Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
-rds in India & Asia since 2012!
-
-The content of this e-mail is confidential and intended solely for the use =
-of the addressee. The text of this email (including any attachments) may co=
-ntain information, which is proprietary and/or confidential or privileged i=
-n nature belonging to Vehere Interactive Pvt Ltd and/or its associates/ gro=
-up companies/ subsidiaries. If you are not the addressee, or the person res=
-ponsible for delivering it to the addressee, any disclosure, copying, distr=
-ibution or any action taken or omitted to be taken in reliance on it is pro=
-hibited and may be unlawful. If you have received this e-mail in error, ple=
-ase notify the sender and remove this communication entirely from your syst=
-em. The recipient acknowledges that no guarantee or any warranty is given a=
-s to completeness and accuracy of the content of the email. The recipient f=
-urther acknowledges that the views contained in the email message are those=
- of the sender and may not necessarily reflect those of Vehere Interactive =
-Pvt Ltd. Before opening and accessing the attachment please check and scan =
-for virus. WARNING: Computer viruses can be transmitted via email. The reci=
-pient should check this email and any attachments for the presence of virus=
-es. The company accepts no liability for any damage caused by any virus tra=
-nsmitted by this email.
-
-________________________________
-From: Robin Coxe <coxe@quanttux.com>
-Sent: Monday, July 15, 2019 8:18:41 PM
-To: Marcus D Leech
-Cc: Koyel Das (Vehere); Ettus Mail List
-Subject: Re: [USRP-users] USRP E313
-
-The USRP E313 is an E310 in a weatherproof enclosure with PoE capability.  =
- As Marcus points out, the network interface to the PC (over 1gigE RJ-45) h=
-as far less bandwidth than an Ettus-branded USRP X310 or NI USRP 294x or 29=
-5x using a PCIe or 2x10 gigE link to a host PC.
-
-
-
-On Mon, Jul 15, 2019 at 7:44 AM Marcus D Leech via USRP-users <usrp-users@l=
-ists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-Not really possible except for a test mode called network mode that offers =
-very low bandwidth
-
-Sent from my iPhone
-
-On Jul 15, 2019, at 4:27 AM, Koyel Das (Vehere) via USRP-users <usrp-users@=
-lists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-
-
-Hi,
-
-
-The following USRP
-
-
-https://www.ettus.com/all-products/usrp-e313/
-
-[https://www.ettus.com/wp-content/uploads/2019/01/E313_Front-Large_2-1200x6=
-30.jpg]<https://www.ettus.com/all-products/usrp-e313/>
-USRP E313 | Ettus Research, a National Instruments Brand | The leader in So=
-ftware Defined Radio (SDR)<https://www.ettus.com/all-products/usrp-e313/>
-www.ettus.com<http://www.ettus.com>
-The USRP E313 is a rugged and weatherproof SDR designed for outdoor deploym=
-ent. Containing an embedded USRP E310 inside an IP67-rated enclosure, the U=
-SRP E313 provides ingress protection against dust and water with extensive =
-testing to ensure operation under demanding environmental conditions.
-
-has embedded processor I think. So is it possible that we don't use the emb=
-edded processor and use it like USRP 2955 that is capture data using gnurad=
-io API and process it in our computer as we are doing with 2955?
-
-
-
-Regards,
-
-Koyel Das
-Senior =96 Product Engineer
-
-Vehere | Proactive Communications Intelligence & Cyber Defence
-M: +919051132173 | T: +91 33 40545454 | F: +91 33 40545455 | W: www.vehere.=
-com<http://www.vehere.com/>
-
-[unnamed]<https://www.linkedin.com/company/vehere-interactive-p-ltd> [unnam=
-ed (1)] <https://twitter.com/VehereIndia>  [unnamed (2)] <https://www.faceb=
-ook.com/VehereIndia/>
-
-Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
-rds in India & Asia since 2012!
-
-The content of this e-mail is confidential and intended solely for the use =
-of the addressee. The text of this email (including any attachments) may co=
-ntain information, which is proprietary and/or confidential or privileged i=
-n nature belonging to Vehere Interactive Pvt Ltd and/or its associates/ gro=
-up companies/ subsidiaries. If you are not the addressee, or the person res=
-ponsible for delivering it to the addressee, any disclosure, copying, distr=
-ibution or any action taken or omitted to be taken in reliance on it is pro=
-hibited and may be unlawful. If you have received this e-mail in error, ple=
-ase notify the sender and remove this communication entirely from your syst=
-em. The recipient acknowledges that no guarantee or any warranty is given a=
-s to completeness and accuracy of the content of the email. The recipient f=
-urther acknowledges that the views contained in the email message are those=
- of the sender and may not necessarily reflect those of Vehere Interactive =
-Pvt Ltd. Before opening and accessing the attachment please check and scan =
-for virus. WARNING: Computer viruses can be transmitted via email. The reci=
-pient should check this email and any attachments for the presence of virus=
-es. The company accepts no liability for any damage caused by any virus tra=
-nsmitted by this email.
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---_000_PN1PR0101MB15368FF54945E5963315E39290C70PN1PR0101MB1536_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">Hi,</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Many thanks Marcus and Robin. I h=
-ave two more questions.&nbsp;Can&nbsp;E320 transfer data at the rate somewh=
-ere near to 1 Gbps to host PC? Also for E313, if processing is done in the =
-embedded processor then does it support processing
- at&nbsp;20 MSps?</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Regards,</p>
-<div id=3D"Signature">
-<meta content=3D"text/html; charset=3DUTF-8">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, &q=
-uot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &q=
-uot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
-<p style=3D"margin-top:0; margin-bottom:0"></p>
-<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
-Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
-Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px; line-h=
-eight:16px">
-<font face=3D"Tahoma,serif"><font style=3D"font-size:9pt">Koyel Das &nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-Senior =96 Product Engineer</font></font></p>
-<font face=3D"Tahoma,serif" style=3D"font-size:16px"><font style=3D"font-si=
-ze:9pt">Vehere | Proactive Communications Intelligence &amp; Cyber Defence<=
-/font></font><font face=3D"Tahoma,serif" style=3D"font-size:16px"><font sty=
-le=3D"font-size:9pt"><br>
-M: &#43;919051132173&nbsp;|&nbsp;</font></font><font face=3D"Tahoma,serif" =
-style=3D"font-size:16px"><font style=3D"font-size:9pt">T: &#43;91&nbsp;33 4=
-0545454 | F: &#43;91&nbsp;33 40545455 | W:&nbsp;<a href=3D"http://www.veher=
-e.com/" target=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP">www.veh=
-ere.com</a></font></font><font face=3D"Tahoma,serif" style=3D"font-size:16p=
-x"><font style=3D"font-size:9pt"><i><br>
-</i></font></font><br style=3D"font-family:Calibri,Helvetica,sans-serif,Emo=
-jiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEm=
-oji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; fon=
-t-size:16px">
-<font face=3D"Tahoma,serif" style=3D"font-size:16px"><font style=3D"font-si=
-ze:9pt"><i><a href=3D"https://www.linkedin.com/company/vehere-interactive-p=
--ltd" target=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP"><span sty=
-le=3D"color:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,se=
-rif,EmojiFont; text-decoration-line:none"><img border=3D"0" alt=3D"unnamed"=
- style=3D"width: 18pt; height: 18pt; user-select: none;" src=3D"https://mai=
-l.google.com/mail/u/0/?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D=
-15cd46f4a213fe89&amp;attid=3D0.1&amp;disp=3Demb&amp;attbid=3DANGjdJ_cw8QOmJ=
-OuH5dOGgYLOxSybsCNVtf-NS_WwKXHuMOvYfeSER9hREJrjlPeF3OcG8GnDWaciM5m8KcKUu6kc=
-oQwHmymFim1kkqNhKdcHOplQP4e4KtrWgsZRDQ&amp;sz=3Dw48-h48&amp;ats=3D149821924=
-5179&amp;rm=3D15cd46f4a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=
-=3D"color:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,seri=
-f,EmojiFont">&nbsp;</span><a href=3D"https://twitter.com/VehereIndia" targe=
-t=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP"><span style=3D"color=
-:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,EmojiFo=
-nt; text-decoration-line:none"><img border=3D"0" alt=3D"unnamed (1)" style=
-=3D"width: 18pt; height: 18pt; user-select: none;" src=3D"https://mail.goog=
-le.com/mail/u/0/?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D15cd46=
-f4a213fe89&amp;attid=3D0.2&amp;disp=3Demb&amp;attbid=3DANGjdJ9np2yLYTWiL8_6=
-6KixMdVQ5nVZKUBvlRtQ_pTYQysvBjAQVxtHSIbIzZfOj-plEkGO73mWlh0cet3WXZglkDC-aWF=
-dkAnUmOv3L6NAaCgYTaxHO_-lXXFvlK4&amp;sz=3Dw48-h48&amp;ats=3D1498219245179&a=
-mp;rm=3D15cd46f4a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=3D"col=
-or:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,Emoji=
-Font">&nbsp;</span><a href=3D"https://www.facebook.com/VehereIndia/" target=
-=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP"><span style=3D"color:=
-rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,EmojiFon=
-t; text-decoration-line:none"><img border=3D"0" alt=3D"unnamed (2)" style=
-=3D"width: 18pt; height: 18pt; user-select: none;" src=3D"https://mail.goog=
-le.com/mail/u/0/?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D15cd46=
-f4a213fe89&amp;attid=3D0.3&amp;disp=3Demb&amp;attbid=3DANGjdJ9JZdmekO-R6DmU=
-lgNehr-eRw41OXSOu3PfaFGXC98wY0jrXYMynJ1Fl8O89Y6zdclhyH28j5k5hjwSBYH5RwgNDRH=
-Aoz8EfzpBBa4gm0Wk9Ke6qojICfael_k&amp;sz=3Dw48-h48&amp;ats=3D1498219245179&a=
-mp;rm=3D15cd46f4a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=3D"col=
-or:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,Emoji=
-Font">&nbsp;&nbsp;</span><span style=3D"color:rgb(34,34,34); font-family:Ta=
-homa,sans-serif,serif,EmojiFont"><br>
-</span><br>
-Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
-rds in India &amp; Asia since 2012!</i></font></font><font face=3D"Tahoma,s=
-erif" style=3D"font-size:16px"><font style=3D"font-size:9pt"><br>
-<br>
-The content of this e-mail is confidential and intended solely for the use =
-of the addressee. The text of this email (including any attachments) may co=
-ntain information, which is proprietary and/or confidential or privileged i=
-n nature belonging to Vehere Interactive
- Pvt Ltd and/or its associates/ group companies/ subsidiaries. If you are n=
-ot the addressee, or the person responsible for delivering it to the addres=
-see, any disclosure, copying, distribution or any action taken or omitted t=
-o be taken in reliance on it is
- prohibited and may be unlawful. If you have received this e-mail in error,=
- please notify the sender and remove this communication entirely from your =
-system. The recipient acknowledges that no guarantee or any warranty is giv=
-en as to completeness and accuracy
- of the content of the email. The recipient further acknowledges that the v=
-iews contained in the email message are those of the sender and may not nec=
-essarily reflect those of Vehere Interactive Pvt Ltd. Before opening and ac=
-cessing the attachment please check
- and scan for virus. WARNING: Computer viruses can be transmitted via email=
-. The recipient should check this email and any attachments for the presenc=
-e of viruses. The company accepts no liability for any damage caused by any=
- virus transmitted by this email.</font></font><br>
-<p></p>
-</div>
-</div>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Robin Coxe &lt;coxe@c=
-lose-haul.com&gt;<br>
-<b>Sent:</b> Tuesday, July 16, 2019 8:35:27 PM<br>
-<b>To:</b> Koyel Das (Vehere) &lt;koyel.das@vehere.com&gt;; Robin Coxe &lt;=
-coxe@quanttux.com&gt;; Marcus D Leech &lt;patchvonbraun@gmail.com&gt;<br>
-<b>Cc:</b> Ettus Mail List &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] USRP E313</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div>
-<div>
-<div>
-<div style=3D"direction:ltr">No, you will likely only get a few MBPS max. T=
-he E310 was not designed to support high data rate transfers to a host PC. =
-&nbsp;Read the datasheets on ettus.com. &nbsp;</div>
-<div><br>
-</div>
-<div style=3D"direction:ltr">If you want the RF front end on an E310 with h=
-igher performance streaming capabilities, look at the E320. &nbsp;Alternati=
-vely, keep using your USRP-RIO. &nbsp;</div>
-</div>
-<div><br>
-</div>
-<div class=3D"x_ms-outlook-ios-signature"></div>
-</div>
-<div>&nbsp;</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"dir=3D&quot;ltr&quot;"><font face=3D"Cal=
-ibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> K=
-oyel Das (Vehere) &lt;koyel.das@vehere.com&gt;<br>
-<b>Sent:</b> Tuesday, July 16, 2019 5:16 AM<br>
-<b>To:</b> Robin Coxe; Marcus D Leech<br>
-<b>Cc:</b> Ettus Mail List<br>
-<b>Subject:</b> Re: [USRP-users] USRP E313
-<div>&nbsp;</div>
-</font></div>
-<meta content=3D"text/html; charset=3DWindows-1252">
-<style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
-or:#000000; font-family:Calibri,Helvetica,sans-serif">
-<p style=3D"margin-top:0; margin-bottom:0">Hi,</p>
-<p style=3D"margin-top:0; margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0; margin-bottom:0">I understand that there is a lim=
-itation on the Ethernet that it doesn't support more than 1 gig. But is the=
-re any limitation from the product side when it is in network mode as compa=
-red to 2955? Further&nbsp; There are two
- TRx and two Rx ports so can TRx be also used as receiver and if yes then c=
-an 3 channels(<span style=3D"font-family:Calibri,Helvetica,sans-serif,Emoji=
-Font,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoj=
-i,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-=
-size:16px">1
- TRx and 2 Rx )</span>&nbsp;be streamed simultaneously as receivers?</p>
-<p style=3D"margin-top:0; margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0; margin-bottom:0">Regards,</p>
-<div id=3D"x_Signature">
-<meta content=3D"text/html; charset=3DUTF-8">
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
-or:rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;App=
-le Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe =
-UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols">
-<p style=3D"margin-top:0; margin-bottom:0"></p>
-<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
-Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
-Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px; line-h=
-eight:16px">
-<font face=3D"Tahoma,serif"><font style=3D"font-size:9pt">Koyel Das &nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-Senior =96 Product Engineer</font></font></p>
-<font face=3D"Tahoma,serif" style=3D"font-size:16px"><font style=3D"font-si=
-ze:9pt">Vehere | Proactive Communications Intelligence &amp; Cyber Defence<=
-/font></font><font face=3D"Tahoma,serif" style=3D"font-size:16px"><font sty=
-le=3D"font-size:9pt"><br>
-M: &#43;919051132173&nbsp;|&nbsp;</font></font><font face=3D"Tahoma,serif" =
-style=3D"font-size:16px"><font style=3D"font-size:9pt">T: &#43;91&nbsp;33 4=
-0545454 | F: &#43;91&nbsp;33 40545455 | W:&nbsp;<a href=3D"http://www.veher=
-e.com/" target=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP">www.veh=
-ere.com</a></font></font><font face=3D"Tahoma,serif" style=3D"font-size:16p=
-x"><font style=3D"font-size:9pt"><i><br>
-</i></font></font><br style=3D"font-family:Calibri,Helvetica,sans-serif,Emo=
-jiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEm=
-oji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; fon=
-t-size:16px">
-<font face=3D"Tahoma,serif" style=3D"font-size:16px"><font style=3D"font-si=
-ze:9pt"><i><a href=3D"https://www.linkedin.com/company/vehere-interactive-p=
--ltd" target=3D"_blank" rel=3D"noopener noreferrer" id=3D"LPNoLP"><span sty=
-le=3D"color:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,se=
-rif,EmojiFont; text-decoration-line:none"><img border=3D"0" alt=3D"unnamed"=
- style=3D"width:18pt; height:18pt" src=3D"https://mail.google.com/mail/u/0/=
-?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D15cd46f4a213fe89&amp;a=
-ttid=3D0.1&amp;disp=3Demb&amp;attbid=3DANGjdJ_cw8QOmJOuH5dOGgYLOxSybsCNVtf-=
-NS_WwKXHuMOvYfeSER9hREJrjlPeF3OcG8GnDWaciM5m8KcKUu6kcoQwHmymFim1kkqNhKdcHOp=
-lQP4e4KtrWgsZRDQ&amp;sz=3Dw48-h48&amp;ats=3D1498219245179&amp;rm=3D15cd46f4=
-a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=3D"color:rgb(34,34,34)=
-; font-size:9.5pt; font-family:Arial,sans-serif,serif,EmojiFont">&nbsp;</sp=
-an><a href=3D"https://twitter.com/VehereIndia" target=3D"_blank" rel=3D"noo=
-pener noreferrer" id=3D"LPNoLP"><span style=3D"color:rgb(34,34,34); font-si=
-ze:9.5pt; font-family:Arial,sans-serif,serif,EmojiFont; text-decoration-lin=
-e:none"><img border=3D"0" alt=3D"unnamed (1)" style=3D"width:18pt; height:1=
-8pt" src=3D"https://mail.google.com/mail/u/0/?ui=3D2&amp;ik=3Dc1534bb6ee&am=
-p;view=3Dfimg&amp;th=3D15cd46f4a213fe89&amp;attid=3D0.2&amp;disp=3Demb&amp;=
-attbid=3DANGjdJ9np2yLYTWiL8_66KixMdVQ5nVZKUBvlRtQ_pTYQysvBjAQVxtHSIbIzZfOj-=
-plEkGO73mWlh0cet3WXZglkDC-aWFdkAnUmOv3L6NAaCgYTaxHO_-lXXFvlK4&amp;sz=3Dw48-=
-h48&amp;ats=3D1498219245179&amp;rm=3D15cd46f4a213fe89&amp;zw&amp;atsh=3D1">=
-</span></a><span style=3D"color:rgb(34,34,34); font-size:9.5pt; font-family=
-:Arial,sans-serif,serif,EmojiFont">&nbsp;</span><a href=3D"https://www.face=
-book.com/VehereIndia/" target=3D"_blank" rel=3D"noopener noreferrer" id=3D"=
-LPNoLP"><span style=3D"color:rgb(34,34,34); font-size:9.5pt; font-family:Ar=
-ial,sans-serif,serif,EmojiFont; text-decoration-line:none"><img border=3D"0=
-" alt=3D"unnamed (2)" style=3D"width:18pt; height:18pt" src=3D"https://mail=
-.google.com/mail/u/0/?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D1=
-5cd46f4a213fe89&amp;attid=3D0.3&amp;disp=3Demb&amp;attbid=3DANGjdJ9JZdmekO-=
-R6DmUlgNehr-eRw41OXSOu3PfaFGXC98wY0jrXYMynJ1Fl8O89Y6zdclhyH28j5k5hjwSBYH5Rw=
-gNDRHAoz8EfzpBBa4gm0Wk9Ke6qojICfael_k&amp;sz=3Dw48-h48&amp;ats=3D1498219245=
-179&amp;rm=3D15cd46f4a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=
-=3D"color:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,seri=
-f,EmojiFont">&nbsp;&nbsp;</span><span style=3D"color:rgb(34,34,34); font-fa=
-mily:Tahoma,sans-serif,serif,EmojiFont"><br>
-</span><br>
-Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
-rds in India &amp; Asia since 2012!</i></font></font><font face=3D"Tahoma,s=
-erif" style=3D"font-size:16px"><font style=3D"font-size:9pt"><br>
-<br>
-The content of this e-mail is confidential and intended solely for the use =
-of the addressee. The text of this email (including any attachments) may co=
-ntain information, which is proprietary and/or confidential or privileged i=
-n nature belonging to Vehere Interactive
- Pvt Ltd and/or its associates/ group companies/ subsidiaries. If you are n=
-ot the addressee, or the person responsible for delivering it to the addres=
-see, any disclosure, copying, distribution or any action taken or omitted t=
-o be taken in reliance on it is
- prohibited and may be unlawful. If you have received this e-mail in error,=
- please notify the sender and remove this communication entirely from your =
-system. The recipient acknowledges that no guarantee or any warranty is giv=
-en as to completeness and accuracy
- of the content of the email. The recipient further acknowledges that the v=
-iews contained in the email message are those of the sender and may not nec=
-essarily reflect those of Vehere Interactive Pvt Ltd. Before opening and ac=
-cessing the attachment please check
- and scan for virus. WARNING: Computer viruses can be transmitted via email=
-. The recipient should check this email and any attachments for the presenc=
-e of viruses. The company accepts no liability for any damage caused by any=
- virus transmitted by this email.</font></font><br>
-<p></p>
-</div>
-</div>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Robin Coxe &lt;coxe=
-@quanttux.com&gt;<br>
-<b>Sent:</b> Monday, July 15, 2019 8:18:41 PM<br>
-<b>To:</b> Marcus D Leech<br>
-<b>Cc:</b> Koyel Das (Vehere); Ettus Mail List<br>
-<b>Subject:</b> Re: [USRP-users] USRP E313</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">The USRP E313 is an E310 in a weatherproof enclosure with =
-PoE capability.&nbsp; &nbsp;As Marcus points out, the network interface to =
-the PC (over 1gigE RJ-45) has far less bandwidth than an Ettus-branded USRP=
- X310 or NI USRP 294x or 295x using a PCIe or
- 2x10 gigE link to a host PC.
-<div><br>
-</div>
-<div><br>
-</div>
-</div>
-<br>
-<div class=3D"x_x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_x_gmail_attr">On Mon, Jul 15, 2019 at 7:44 AM M=
-arcus D Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.c=
-om">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"x_x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bo=
-rder-left:1px solid rgb(204,204,204); padding-left:1ex">
-<div dir=3D"auto">Not really possible except for a test mode called network=
- mode that offers very low bandwidth<br>
-<br>
-<div id=3D"x_x_gmail-m_-3497708271369395004AppleMailSignature" dir=3D"ltr">=
-Sent from my iPhone</div>
-<div dir=3D"ltr"><br>
-On Jul 15, 2019, at 4:27 AM, Koyel Das (Vehere) via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>&gt; wrote:<br>
-<br>
-</div>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div id=3D"x_x_gmail-m_-3497708271369395004divtagdefaultwrapper" dir=3D"ltr=
-" style=3D"font-size:12pt; color:rgb(0,0,0); font-family:Calibri,Helvetica,=
-sans-serif,EmojiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quo=
-t;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,Emo=
-jiSymbols">
-<p style=3D"margin-top:0px; margin-bottom:0px"></p>
-<p style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont; font-=
-size:16px">
-Hi,</p>
-<p style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont; font-=
-size:16px">
-<br>
-</p>
-<p style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont; font-=
-size:16px">
-The following USRP</p>
-<p style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont; font-=
-size:16px">
-<br>
-</p>
-<p style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont; font-=
-size:16px">
-<a href=3D"https://www.ettus.com/all-products/usrp-e313/" rel=3D"noopener n=
-oreferrer" id=3D"x_x_gmail-m_-3497708271369395004LPlnk349954" target=3D"_bl=
-ank">https://www.ettus.com/all-products/usrp-e313/</a></p>
-<div id=3D"x_x_gmail-m_-3497708271369395004LPBorder_GT_15631740463640.46097=
-31603017766" style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiF=
-ont; font-size:16px; width:885px; margin-bottom:20px; overflow:auto">
-<table cellspacing=3D"0" id=3D"x_x_gmail-m_-3497708271369395004LPContainer_=
-15631740463610.5595525113046114" style=3D"width:796px; margin-top:20px; pad=
-ding-top:20px; padding-bottom:20px; border-top:1px dotted rgb(200,200,200);=
- border-bottom:1px dotted rgb(200,200,200); overflow:auto">
-<tbody>
-<tr valign=3D"top" style=3D"border-spacing:0px">
-<td colspan=3D"1" id=3D"x_x_gmail-m_-3497708271369395004ImageCell_156317404=
-63620.520711699452409" style=3D"width:250px; padding-right:20px">
-<div id=3D"x_x_gmail-m_-3497708271369395004LPImageContainer_15631740463620.=
-7982520787803893" style=3D"display:table; width:250px; height:131px; margin=
-:auto">
-<a href=3D"https://www.ettus.com/all-products/usrp-e313/" rel=3D"noopener n=
-oreferrer" id=3D"x_x_gmail-m_-3497708271369395004LPImageAnchor_156317404636=
-20.5859776582035903" target=3D"_blank" style=3D"text-align:center; display:=
-table-cell"><img id=3D"x_x_gmail-m_-3497708271369395004LPThumbnailImageID_1=
-5631740463620.0445211311981637" style=3D"vertical-align:bottom; display:inl=
-ine-block; width:250px; height:131px; max-width:250px; border-width:0px; ma=
-x-height:250px" src=3D"https://www.ettus.com/wp-content/uploads/2019/01/E31=
-3_Front-Large_2-1200x630.jpg"></a></div>
-</td>
-<td colspan=3D"2" id=3D"x_x_gmail-m_-3497708271369395004TextCell_1563174046=
-3630.9983429177449736" style=3D"vertical-align:top; padding:0px">
-<div id=3D"x_x_gmail-m_-3497708271369395004LPRemovePreviewContainer_1563174=
-0463630.5835837580145755">
-</div>
-<div id=3D"x_x_gmail-m_-3497708271369395004LPTitle_15631740463630.948763322=
-1229601" style=3D"color:rgb(0,120,215); font-size:21px; font-family:wf_sego=
-e-ui_light,&quot;Segoe UI Light&quot;,&quot;Segoe WP Light&quot;,&quot;Sego=
-e UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; li=
-ne-height:21px">
-<a href=3D"https://www.ettus.com/all-products/usrp-e313/" rel=3D"noopener n=
-oreferrer" id=3D"x_x_gmail-m_-3497708271369395004LPUrlAnchor_15631740463630=
-.8538318560805709" target=3D"_blank" style=3D"text-decoration-line:none">US=
-RP E313 | Ettus Research, a National Instruments
- Brand | The leader in Software Defined Radio (SDR)</a></div>
-<div id=3D"x_x_gmail-m_-3497708271369395004LPMetadata_15631740463630.931928=
-0120041624" style=3D"color:rgb(102,102,102); font-size:14px; font-family:wf=
-_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,san=
-s-serif,serif,EmojiFont; margin:10px 0px 16px; line-height:14px">
-<a href=3D"http://www.ettus.com" target=3D"_blank">www.ettus.com</a></div>
-<div id=3D"x_x_gmail-m_-3497708271369395004LPDescription_15631740463630.732=
-3390913605139" style=3D"color:rgb(102,102,102); font-size:14px; font-family=
-:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,=
-sans-serif,serif,EmojiFont; overflow:hidden; max-height:100px; line-height:=
-20px">
-The USRP E313 is a rugged and weatherproof SDR designed for outdoor deploym=
-ent. Containing an embedded USRP E310 inside an IP67-rated enclosure, the U=
-SRP E313 provides ingress protection against dust and water with extensive =
-testing to ensure operation under
- demanding environmental conditions.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<br style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont; font=
--size:16px">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont; fo=
-nt-size:16px">has embedded processor I think. So is it possible that we don=
-'t use the embedded processor and use it like USRP 2955 that is capture dat=
-a using gnuradio&nbsp;API and process it
- in our computer as we are doing with 2955?</span>
-<p style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont; font-=
-size:16px">
-</p>
-<div><span style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFon=
-t; font-size:16px"><br>
-</span></div>
-<br>
-<p></p>
-<p style=3D"margin-top:0px; margin-bottom:0px">Regards,</p>
-<div id=3D"x_x_gmail-m_-3497708271369395004Signature">
-<div id=3D"x_x_gmail-m_-3497708271369395004divtagdefaultwrapper" dir=3D"ltr=
-" style=3D"font-size:12pt; color:rgb(0,0,0); font-family:Calibri,Helvetica,=
-sans-serif,EmojiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quo=
-t;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,Emo=
-jiSymbols">
-<p style=3D"margin-top:0px; margin-bottom:0px"></p>
-<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
-Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
-Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px; line-h=
-eight:16px">
-<font face=3D"Tahoma,serif"><font style=3D"font-size:9pt">Koyel Das &nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-Senior =96 Product Engineer</font></font></p>
-<font face=3D"Tahoma,serif" style=3D"font-size:16px"><font style=3D"font-si=
-ze:9pt">Vehere | Proactive Communications Intelligence &amp; Cyber Defence<=
-/font></font><font face=3D"Tahoma,serif" style=3D"font-size:16px"><font sty=
-le=3D"font-size:9pt"><br>
-M: &#43;919051132173&nbsp;|&nbsp;</font></font><font face=3D"Tahoma,serif" =
-style=3D"font-size:16px"><font style=3D"font-size:9pt">T: &#43;91&nbsp;33 4=
-0545454 | F: &#43;91&nbsp;33 40545455 | W:&nbsp;<a href=3D"http://www.veher=
-e.com/" rel=3D"noopener noreferrer" id=3D"x_x_gmail-m_-3497708271369395004L=
-PNoLP" target=3D"_blank">www.vehere.com</a></font></font><font face=3D"Taho=
-ma,serif" style=3D"font-size:16px"><font style=3D"font-size:9pt"><i><br>
-</i></font></font><br style=3D"font-family:Calibri,Helvetica,sans-serif,Emo=
-jiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEm=
-oji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; fon=
-t-size:16px">
-<font face=3D"Tahoma,serif" style=3D"font-size:16px"><font style=3D"font-si=
-ze:9pt"><i><a href=3D"https://www.linkedin.com/company/vehere-interactive-p=
--ltd" rel=3D"noopener noreferrer" id=3D"x_x_gmail-m_-3497708271369395004LPN=
-oLP" title=3D"https://www.linkedin.com/company/vehere-interactive-p-ltd
-Ctrl&#43;Click or tap to follow the link" target=3D"_blank"><span style=3D"=
-color:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,Em=
-ojiFont; text-decoration-line:none"><img border=3D"0" alt=3D"unnamed" style=
-=3D"width:18pt; height:18pt" src=3D"https://mail.google.com/mail/u/0/?ui=3D=
-2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D15cd46f4a213fe89&amp;attid=
-=3D0.1&amp;disp=3Demb&amp;attbid=3DANGjdJ_cw8QOmJOuH5dOGgYLOxSybsCNVtf-NS_W=
-wKXHuMOvYfeSER9hREJrjlPeF3OcG8GnDWaciM5m8KcKUu6kcoQwHmymFim1kkqNhKdcHOplQP4=
-e4KtrWgsZRDQ&amp;sz=3Dw48-h48&amp;ats=3D1498219245179&amp;rm=3D15cd46f4a213=
-fe89&amp;zw&amp;atsh=3D1"></span></a><span style=3D"color:rgb(34,34,34); fo=
-nt-size:9.5pt; font-family:Arial,sans-serif,serif,EmojiFont">&nbsp;</span><=
-a href=3D"https://twitter.com/VehereIndia" rel=3D"noopener noreferrer" id=
-=3D"x_x_gmail-m_-3497708271369395004LPNoLP" target=3D"_blank"><span style=
-=3D"color:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,seri=
-f,EmojiFont; text-decoration-line:none"><img border=3D"0" alt=3D"unnamed (1=
-)" style=3D"width:18pt; height:18pt" src=3D"https://mail.google.com/mail/u/=
-0/?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D15cd46f4a213fe89&amp=
-;attid=3D0.2&amp;disp=3Demb&amp;attbid=3DANGjdJ9np2yLYTWiL8_66KixMdVQ5nVZKU=
-BvlRtQ_pTYQysvBjAQVxtHSIbIzZfOj-plEkGO73mWlh0cet3WXZglkDC-aWFdkAnUmOv3L6NAa=
-CgYTaxHO_-lXXFvlK4&amp;sz=3Dw48-h48&amp;ats=3D1498219245179&amp;rm=3D15cd46=
-f4a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=3D"color:rgb(34,34,3=
-4); font-size:9.5pt; font-family:Arial,sans-serif,serif,EmojiFont">&nbsp;</=
-span><a href=3D"https://www.facebook.com/VehereIndia/" rel=3D"noopener nore=
-ferrer" id=3D"x_x_gmail-m_-3497708271369395004LPNoLP" target=3D"_blank"><sp=
-an style=3D"color:rgb(34,34,34); font-size:9.5pt; font-family:Arial,sans-se=
-rif,serif,EmojiFont; text-decoration-line:none"><img border=3D"0" alt=3D"un=
-named (2)" style=3D"width:18pt; height:18pt" src=3D"https://mail.google.com=
-/mail/u/0/?ui=3D2&amp;ik=3Dc1534bb6ee&amp;view=3Dfimg&amp;th=3D15cd46f4a213=
-fe89&amp;attid=3D0.3&amp;disp=3Demb&amp;attbid=3DANGjdJ9JZdmekO-R6DmUlgNehr=
--eRw41OXSOu3PfaFGXC98wY0jrXYMynJ1Fl8O89Y6zdclhyH28j5k5hjwSBYH5RwgNDRHAoz8Ef=
-zpBBa4gm0Wk9Ke6qojICfael_k&amp;sz=3Dw48-h48&amp;ats=3D1498219245179&amp;rm=
-=3D15cd46f4a213fe89&amp;zw&amp;atsh=3D1"></span></a><span style=3D"color:rg=
-b(34,34,34); font-size:9.5pt; font-family:Arial,sans-serif,serif,EmojiFont"=
->&nbsp;&nbsp;</span><span style=3D"color:rgb(34,34,34); font-family:Tahoma,=
-sans-serif,serif,EmojiFont"><br>
-</span><br>
-Vehere is the proud recipient of the Fastest Growing Technology Company Awa=
-rds in India &amp; Asia since 2012!</i></font></font><font face=3D"Tahoma,s=
-erif" style=3D"font-size:16px"><font style=3D"font-size:9pt"><br>
-<br>
-The content of this e-mail is confidential and intended solely for the use =
-of the addressee. The text of this email (including any attachments) may co=
-ntain information, which is proprietary and/or confidential or privileged i=
-n nature belonging to Vehere Interactive
- Pvt Ltd and/or its associates/ group companies/ subsidiaries. If you are n=
-ot the addressee, or the person responsible for delivering it to the addres=
-see, any disclosure, copying, distribution or any action taken or omitted t=
-o be taken in reliance on it is
- prohibited and may be unlawful. If you have received this e-mail in error,=
- please notify the sender and remove this communication entirely from your =
-system. The recipient acknowledges that no guarantee or any warranty is giv=
-en as to completeness and accuracy
- of the content of the email. The recipient further acknowledges that the v=
-iews contained in the email message are those of the sender and may not nec=
-essarily reflect those of Vehere Interactive Pvt Ltd. Before opening and ac=
-cessing the attachment please check
- and scan for virus. WARNING: Computer viruses can be transmitted via email=
-. The recipient should check this email and any attachments for the presenc=
-e of viruses. The company accepts no liability for any damage caused by any=
- virus transmitted by this email.</font></font><br>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</blockquote>
-<blockquote type=3D"cite">
-<div dir=3D"ltr"><span>_______________________________________________</spa=
-n><br>
-<span>USRP-users mailing list</span><br>
-<span><a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-=
-users@lists.ettus.com</a></span><br>
-<span><a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.e=
-ttus.com" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-us=
-ers_lists.ettus.com</a></span><br>
-</div>
-</blockquote>
-</div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_PN1PR0101MB15368FF54945E5963315E39290C70PN1PR0101MB1536_--
-
-
---===============6874148144474693513==
+MDA6MDAuMCBIb3N0IGJyaWRnZTogSW50ZWwgQ29ycG9yYXRpb24gOHRoIEdlbiBDb3JlIFBy
+b2Nlc3NvciBIb3N0IEJyaWRnZS9EUkFNIFJlZ2lzdGVycyAocmV2IDA3KQoJRGV2aWNlTmFt
+ZTogT25ib2FyZCAtIE90aGVyCglTdWJzeXN0ZW06IEFTUm9jayBJbmNvcnBvcmF0aW9uIERl
+dmljZSAzZWMyCglGbGFnczogYnVzIG1hc3RlciwgZmFzdCBkZXZzZWwsIGxhdGVuY3kgMAoJ
+Q2FwYWJpbGl0aWVzOiA8YWNjZXNzIGRlbmllZD4KCjAwOjAxLjAgUENJIGJyaWRnZTogSW50
+ZWwgQ29ycG9yYXRpb24gWGVvbiBFMy0xMjAwIHY1L0UzLTE1MDAgdjUvNnRoIEdlbiBDb3Jl
+IFByb2Nlc3NvciBQQ0llIENvbnRyb2xsZXIgKHgxNikgKHJldiAwNykgKHByb2ctaWYgMDAg
+W05vcm1hbCBkZWNvZGVdKQoJRmxhZ3M6IGJ1cyBtYXN0ZXIsIGZhc3QgZGV2c2VsLCBsYXRl
+bmN5IDAsIElSUSAxNgoJQnVzOiBwcmltYXJ5PTAwLCBzZWNvbmRhcnk9MDEsIHN1Ym9yZGlu
+YXRlPTAzLCBzZWMtbGF0ZW5jeT0wCglJL08gYmVoaW5kIGJyaWRnZTogMDAwMDUwMDAtMDAw
+MDVmZmYKCU1lbW9yeSBiZWhpbmQgYnJpZGdlOiBhMTMwMDAwMC1hMTNmZmZmZgoJUHJlZmV0
+Y2hhYmxlIG1lbW9yeSBiZWhpbmQgYnJpZGdlOiAwMDAwMDAwMGExNTAwMDAwLTAwMDAwMDAw
+YTE3ZmZmZmYKCUNhcGFiaWxpdGllczogPGFjY2VzcyBkZW5pZWQ+CglLZXJuZWwgZHJpdmVy
+IGluIHVzZTogcGNpZXBvcnQKCUtlcm5lbCBtb2R1bGVzOiBzaHBjaHAKCjAwOjAyLjAgVkdB
+IGNvbXBhdGlibGUgY29udHJvbGxlcjogSW50ZWwgQ29ycG9yYXRpb24gRGV2aWNlIDNlOTIg
+KHByb2ctaWYgMDAgW1ZHQSBjb250cm9sbGVyXSkKCURldmljZU5hbWU6IE9uYm9hcmQgLSBW
+aWRlbwoJU3Vic3lzdGVtOiBBU1JvY2sgSW5jb3Jwb3JhdGlvbiBEZXZpY2UgM2U5MgoJRmxh
+Z3M6IGJ1cyBtYXN0ZXIsIGZhc3QgZGV2c2VsLCBsYXRlbmN5IDAsIElSUSAxMzQKCU1lbW9y
+eSBhdCBhMDAwMDAwMCAoNjQtYml0LCBub24tcHJlZmV0Y2hhYmxlKSBbc2l6ZT0xNk1dCglN
+ZW1vcnkgYXQgOTAwMDAwMDAgKDY0LWJpdCwgcHJlZmV0Y2hhYmxlKSBbc2l6ZT0yNTZNXQoJ
+SS9PIHBvcnRzIGF0IDQwMDAgW3NpemU9NjRdCglbdmlydHVhbF0gRXhwYW5zaW9uIFJPTSBh
+dCAwMDBjMDAwMCBbZGlzYWJsZWRdIFtzaXplPTEyOEtdCglDYXBhYmlsaXRpZXM6IDxhY2Nl
+c3MgZGVuaWVkPgoJS2VybmVsIGRyaXZlciBpbiB1c2U6IGk5MTUKCUtlcm5lbCBtb2R1bGVz
+OiBpOTE1CgowMDoxMi4wIFNpZ25hbCBwcm9jZXNzaW5nIGNvbnRyb2xsZXI6IEludGVsIENv
+cnBvcmF0aW9uIENhbm5vbiBMYWtlIFBDSCBUaGVybWFsIENvbnRyb2xsZXIgKHJldiAxMCkK
+CURldmljZU5hbWU6IE9uYm9hcmQgLSBPdGhlcgoJU3Vic3lzdGVtOiBBU1JvY2sgSW5jb3Jw
+b3JhdGlvbiBEZXZpY2UgYTM3OQoJRmxhZ3M6IGJ1cyBtYXN0ZXIsIGZhc3QgZGV2c2VsLCBs
+YXRlbmN5IDAsIElSUSAxNgoJTWVtb3J5IGF0IGExNDNkMDAwICg2NC1iaXQsIG5vbi1wcmVm
+ZXRjaGFibGUpIFtzaXplPTRLXQoJQ2FwYWJpbGl0aWVzOiA8YWNjZXNzIGRlbmllZD4KCUtl
+cm5lbCBkcml2ZXIgaW4gdXNlOiBpbnRlbF9wY2hfdGhlcm1hbAoJS2VybmVsIG1vZHVsZXM6
+IGludGVsX3BjaF90aGVybWFsCgowMDoxNC4wIFVTQiBjb250cm9sbGVyOiBJbnRlbCBDb3Jw
+b3JhdGlvbiBDYW5ub24gTGFrZSBQQ0ggVVNCIDMuMSB4SENJIEhvc3QgQ29udHJvbGxlciAo
+cmV2IDEwKSAocHJvZy1pZiAzMCBbWEhDSV0pCglEZXZpY2VOYW1lOiBPbmJvYXJkIC0gT3Ro
+ZXIKCVN1YnN5c3RlbTogQVNSb2NrIEluY29ycG9yYXRpb24gRGV2aWNlIGEzNmQKCUZsYWdz
+OiBidXMgbWFzdGVyLCBtZWRpdW0gZGV2c2VsLCBsYXRlbmN5IDAsIElSUSAxMjYKCU1lbW9y
+eSBhdCBhMTQyMDAwMCAoNjQtYml0LCBub24tcHJlZmV0Y2hhYmxlKSBbc2l6ZT02NEtdCglD
+YXBhYmlsaXRpZXM6IDxhY2Nlc3MgZGVuaWVkPgoJS2VybmVsIGRyaXZlciBpbiB1c2U6IHho
+Y2lfaGNkCgowMDoxNC4yIFJBTSBtZW1vcnk6IEludGVsIENvcnBvcmF0aW9uIENhbm5vbiBM
+YWtlIFBDSCBTaGFyZWQgU1JBTSAocmV2IDEwKQoJRGV2aWNlTmFtZTogT25ib2FyZCAtIE90
+aGVyCglTdWJzeXN0ZW06IEFTUm9jayBJbmNvcnBvcmF0aW9uIERldmljZSBhMzZmCglGbGFn
+czogYnVzIG1hc3RlciwgZmFzdCBkZXZzZWwsIGxhdGVuY3kgMAoJTWVtb3J5IGF0IGExNDM2
+MDAwICg2NC1iaXQsIG5vbi1wcmVmZXRjaGFibGUpIFtzaXplPThLXQoJTWVtb3J5IGF0IGEx
+NDNjMDAwICg2NC1iaXQsIG5vbi1wcmVmZXRjaGFibGUpIFtzaXplPTRLXQoJQ2FwYWJpbGl0
+aWVzOiA8YWNjZXNzIGRlbmllZD4KCjAwOjE2LjAgQ29tbXVuaWNhdGlvbiBjb250cm9sbGVy
+OiBJbnRlbCBDb3Jwb3JhdGlvbiBDYW5ub24gTGFrZSBQQ0ggSEVDSSBDb250cm9sbGVyIChy
+ZXYgMTApCglEZXZpY2VOYW1lOiBPbmJvYXJkIC0gT3RoZXIKCVN1YnN5c3RlbTogQVNSb2Nr
+IEluY29ycG9yYXRpb24gRGV2aWNlIGEzNjAKCUZsYWdzOiBidXMgbWFzdGVyLCBmYXN0IGRl
+dnNlbCwgbGF0ZW5jeSAwLCBJUlEgMTM1CglNZW1vcnkgYXQgYTE0M2IwMDAgKDY0LWJpdCwg
+bm9uLXByZWZldGNoYWJsZSkgW3NpemU9NEtdCglDYXBhYmlsaXRpZXM6IDxhY2Nlc3MgZGVu
+aWVkPgoJS2VybmVsIGRyaXZlciBpbiB1c2U6IG1laV9tZQoJS2VybmVsIG1vZHVsZXM6IG1l
+aV9tZQoKMDA6MTcuMCBTQVRBIGNvbnRyb2xsZXI6IEludGVsIENvcnBvcmF0aW9uIENhbm5v
+biBMYWtlIFBDSCBTQVRBIEFIQ0kgQ29udHJvbGxlciAocmV2IDEwKSAocHJvZy1pZiAwMSBb
+QUhDSSAxLjBdKQoJRGV2aWNlTmFtZTogT25ib2FyZCAtIFNBVEEKCVN1YnN5c3RlbTogQVNS
+b2NrIEluY29ycG9yYXRpb24gRGV2aWNlIGEzNTIKCUZsYWdzOiBidXMgbWFzdGVyLCA2Nk1I
+eiwgbWVkaXVtIGRldnNlbCwgbGF0ZW5jeSAwLCBJUlEgMTI3CglNZW1vcnkgYXQgYTE0MzQw
+MDAgKDMyLWJpdCwgbm9uLXByZWZldGNoYWJsZSkgW3NpemU9OEtdCglNZW1vcnkgYXQgYTE0
+M2EwMDAgKDMyLWJpdCwgbm9uLXByZWZldGNoYWJsZSkgW3NpemU9MjU2XQoJSS9PIHBvcnRz
+IGF0IDQwOTAgW3NpemU9OF0KCUkvTyBwb3J0cyBhdCA0MDgwIFtzaXplPTRdCglJL08gcG9y
+dHMgYXQgNDA2MCBbc2l6ZT0zMl0KCU1lbW9yeSBhdCBhMTQzOTAwMCAoMzItYml0LCBub24t
+cHJlZmV0Y2hhYmxlKSBbc2l6ZT0yS10KCUNhcGFiaWxpdGllczogPGFjY2VzcyBkZW5pZWQ+
+CglLZXJuZWwgZHJpdmVyIGluIHVzZTogYWhjaQoJS2VybmVsIG1vZHVsZXM6IGFoY2kKCjAw
+OjFjLjAgUENJIGJyaWRnZTogSW50ZWwgQ29ycG9yYXRpb24gRGV2aWNlIGEzM2QgKHJldiBm
+MCkgKHByb2ctaWYgMDAgW05vcm1hbCBkZWNvZGVdKQoJRmxhZ3M6IGJ1cyBtYXN0ZXIsIGZh
+c3QgZGV2c2VsLCBsYXRlbmN5IDAsIElSUSAxMjIKCUJ1czogcHJpbWFyeT0wMCwgc2Vjb25k
+YXJ5PTA0LCBzdWJvcmRpbmF0ZT0wNCwgc2VjLWxhdGVuY3k9MAoJSS9PIGJlaGluZCBicmlk
+Z2U6IDAwMDAzMDAwLTAwMDAzZmZmCglNZW1vcnkgYmVoaW5kIGJyaWRnZTogYTEyMDAwMDAt
+YTEyZmZmZmYKCUNhcGFiaWxpdGllczogPGFjY2VzcyBkZW5pZWQ+CglLZXJuZWwgZHJpdmVy
+IGluIHVzZTogcGNpZXBvcnQKCUtlcm5lbCBtb2R1bGVzOiBzaHBjaHAKCjAwOjFjLjYgUENJ
+IGJyaWRnZTogSW50ZWwgQ29ycG9yYXRpb24gRGV2aWNlIGEzM2UgKHJldiBmMCkgKHByb2ct
+aWYgMDAgW05vcm1hbCBkZWNvZGVdKQoJRmxhZ3M6IGJ1cyBtYXN0ZXIsIGZhc3QgZGV2c2Vs
+LCBsYXRlbmN5IDAsIElSUSAxMjMKCUJ1czogcHJpbWFyeT0wMCwgc2Vjb25kYXJ5PTA1LCBz
+dWJvcmRpbmF0ZT0wNSwgc2VjLWxhdGVuY3k9MAoJTWVtb3J5IGJlaGluZCBicmlkZ2U6IGEx
+MTAwMDAwLWExMWZmZmZmCglDYXBhYmlsaXRpZXM6IDxhY2Nlc3MgZGVuaWVkPgoJS2VybmVs
+IGRyaXZlciBpbiB1c2U6IHBjaWVwb3J0CglLZXJuZWwgbW9kdWxlczogc2hwY2hwCgowMDox
+Zi4wIElTQSBicmlkZ2U6IEludGVsIENvcnBvcmF0aW9uIEgzNzAgQ2hpcHNldCBMUEMvZVNQ
+SSBDb250cm9sbGVyIChyZXYgMTApCglEZXZpY2VOYW1lOiBPbmJvYXJkIC0gT3RoZXIKCVN1
+YnN5c3RlbTogQVNSb2NrIEluY29ycG9yYXRpb24gRGV2aWNlIGEzMDQKCUZsYWdzOiBidXMg
+bWFzdGVyLCBtZWRpdW0gZGV2c2VsLCBsYXRlbmN5IDAKCjAwOjFmLjMgQXVkaW8gZGV2aWNl
+OiBJbnRlbCBDb3Jwb3JhdGlvbiBDYW5ub24gTGFrZSBQQ0ggY0FWUyAocmV2IDEwKQoJRGV2
+aWNlTmFtZTogT25ib2FyZCAtIFNvdW5kCglTdWJzeXN0ZW06IEFTUm9jayBJbmNvcnBvcmF0
+aW9uIERldmljZSA1ODkyCglGbGFnczogYnVzIG1hc3RlciwgZmFzdCBkZXZzZWwsIGxhdGVu
+Y3kgMzIsIElSUSAxMzcKCU1lbW9yeSBhdCBhMTQzMDAwMCAoNjQtYml0LCBub24tcHJlZmV0
+Y2hhYmxlKSBbc2l6ZT0xNktdCglNZW1vcnkgYXQgYTEwMDAwMDAgKDY0LWJpdCwgbm9uLXBy
+ZWZldGNoYWJsZSkgW3NpemU9MU1dCglDYXBhYmlsaXRpZXM6IDxhY2Nlc3MgZGVuaWVkPgoJ
+S2VybmVsIGRyaXZlciBpbiB1c2U6IHNuZF9oZGFfaW50ZWwKCUtlcm5lbCBtb2R1bGVzOiBz
+bmRfaGRhX2ludGVsCgowMDoxZi40IFNNQnVzOiBJbnRlbCBDb3Jwb3JhdGlvbiBDYW5ub24g
+TGFrZSBQQ0ggU01CdXMgQ29udHJvbGxlciAocmV2IDEwKQoJRGV2aWNlTmFtZTogT25ib2Fy
+ZCAtIE90aGVyCglTdWJzeXN0ZW06IEFTUm9jayBJbmNvcnBvcmF0aW9uIERldmljZSBhMzIz
+CglGbGFnczogbWVkaXVtIGRldnNlbCwgSVJRIDExCglNZW1vcnkgYXQgYTE0MzgwMDAgKDY0
+LWJpdCwgbm9uLXByZWZldGNoYWJsZSkgW3NpemU9MjU2XQoJSS9PIHBvcnRzIGF0IGVmYTAg
+W3NpemU9MzJdCglLZXJuZWwgbW9kdWxlczogaTJjX2k4MDEKCjAwOjFmLjUgU2VyaWFsIGJ1
+cyBjb250cm9sbGVyIFswYzgwXTogSW50ZWwgQ29ycG9yYXRpb24gQ2Fubm9uIExha2UgUENI
+IFNQSSBDb250cm9sbGVyIChyZXYgMTApCglEZXZpY2VOYW1lOiBPbmJvYXJkIC0gT3RoZXIK
+CVN1YnN5c3RlbTogQVNSb2NrIEluY29ycG9yYXRpb24gRGV2aWNlIGEzMjQKCUZsYWdzOiBm
+YXN0IGRldnNlbAoJTWVtb3J5IGF0IGZlMDEwMDAwICgzMi1iaXQsIG5vbi1wcmVmZXRjaGFi
+bGUpIFtzaXplPTRLXQoKMDA6MWYuNiBFdGhlcm5ldCBjb250cm9sbGVyOiBJbnRlbCBDb3Jw
+b3JhdGlvbiBFdGhlcm5ldCBDb25uZWN0aW9uICg3KSBJMjE5LVYgKHJldiAxMCkKCURldmlj
+ZU5hbWU6IE9uYm9hcmQgLSBFdGhlcm5ldAoJU3Vic3lzdGVtOiBBU1JvY2sgSW5jb3Jwb3Jh
+dGlvbiBEZXZpY2UgMTViYwoJRmxhZ3M6IGJ1cyBtYXN0ZXIsIGZhc3QgZGV2c2VsLCBsYXRl
+bmN5IDAsIElSUSAxMjgKCU1lbW9yeSBhdCBhMTQwMDAwMCAoMzItYml0LCBub24tcHJlZmV0
+Y2hhYmxlKSBbc2l6ZT0xMjhLXQoJQ2FwYWJpbGl0aWVzOiA8YWNjZXNzIGRlbmllZD4KCUtl
+cm5lbCBkcml2ZXIgaW4gdXNlOiBlMTAwMGUKCUtlcm5lbCBtb2R1bGVzOiBlMTAwMGUKCjAx
+OjAwLjAgUENJIGJyaWRnZTogUExYIFRlY2hub2xvZ3ksIEluYy4gUEVYIDg2MDggOC1sYW5l
+LCA4LVBvcnQgUENJIEV4cHJlc3MgR2VuIDIgKDUuMCBHVC9zKSBTd2l0Y2ggKHJldiBiYSkg
+KHByb2ctaWYgMDAgW05vcm1hbCBkZWNvZGVdKQoJRmxhZ3M6IGJ1cyBtYXN0ZXIsIGZhc3Qg
+ZGV2c2VsLCBsYXRlbmN5IDAsIElSUSAxMjQKCU1lbW9yeSBhdCBhMTMwMDAwMCAoMzItYml0
+LCBub24tcHJlZmV0Y2hhYmxlKSBbc2l6ZT0xMjhLXQoJQnVzOiBwcmltYXJ5PTAxLCBzZWNv
+bmRhcnk9MDIsIHN1Ym9yZGluYXRlPTAzLCBzZWMtbGF0ZW5jeT0wCglJL08gYmVoaW5kIGJy
+aWRnZTogMDAwMDUwMDAtMDAwMDVmZmYKCVByZWZldGNoYWJsZSBtZW1vcnkgYmVoaW5kIGJy
+aWRnZTogMDAwMDAwMDBhMTUwMDAwMC0wMDAwMDAwMGExN2ZmZmZmCglDYXBhYmlsaXRpZXM6
+IDxhY2Nlc3MgZGVuaWVkPgoJS2VybmVsIGRyaXZlciBpbiB1c2U6IHBjaWVwb3J0CglLZXJu
+ZWwgbW9kdWxlczogc2hwY2hwCgowMjowMS4wIFBDSSBicmlkZ2U6IFBMWCBUZWNobm9sb2d5
+LCBJbmMuIFBFWCA4NjA4IDgtbGFuZSwgOC1Qb3J0IFBDSSBFeHByZXNzIEdlbiAyICg1LjAg
+R1QvcykgU3dpdGNoIChyZXYgYmEpIChwcm9nLWlmIDAwIFtOb3JtYWwgZGVjb2RlXSkKCUZs
+YWdzOiBidXMgbWFzdGVyLCBmYXN0IGRldnNlbCwgbGF0ZW5jeSAwLCBJUlEgMTI1CglCdXM6
+IHByaW1hcnk9MDIsIHNlY29uZGFyeT0wMywgc3Vib3JkaW5hdGU9MDMsIHNlYy1sYXRlbmN5
+PTAKCUkvTyBiZWhpbmQgYnJpZGdlOiAwMDAwNTAwMC0wMDAwNWZmZgoJUHJlZmV0Y2hhYmxl
+IG1lbW9yeSBiZWhpbmQgYnJpZGdlOiAwMDAwMDAwMGExNTAwMDAwLTAwMDAwMDAwYTE2ZmZm
+ZmYKCUNhcGFiaWxpdGllczogPGFjY2VzcyBkZW5pZWQ+CglLZXJuZWwgZHJpdmVyIGluIHVz
+ZTogcGNpZXBvcnQKCUtlcm5lbCBtb2R1bGVzOiBzaHBjaHAKCjA0OjAwLjAgRXRoZXJuZXQg
+Y29udHJvbGxlcjogSW50ZWwgQ29ycG9yYXRpb24gSTIxMSBHaWdhYml0IE5ldHdvcmsgQ29u
+bmVjdGlvbiAocmV2IDAzKQoJU3Vic3lzdGVtOiBBU1JvY2sgSW5jb3Jwb3JhdGlvbiBJMjEx
+IEdpZ2FiaXQgTmV0d29yayBDb25uZWN0aW9uCglGbGFnczogYnVzIG1hc3RlciwgZmFzdCBk
+ZXZzZWwsIGxhdGVuY3kgMCwgSVJRIDE3CglNZW1vcnkgYXQgYTEyMDAwMDAgKDMyLWJpdCwg
+bm9uLXByZWZldGNoYWJsZSkgW3NpemU9MTI4S10KCUkvTyBwb3J0cyBhdCAzMDAwIFtzaXpl
+PTMyXQoJTWVtb3J5IGF0IGExMjIwMDAwICgzMi1iaXQsIG5vbi1wcmVmZXRjaGFibGUpIFtz
+aXplPTE2S10KCUNhcGFiaWxpdGllczogPGFjY2VzcyBkZW5pZWQ+CglLZXJuZWwgZHJpdmVy
+IGluIHVzZTogaWdiCglLZXJuZWwgbW9kdWxlczogaWdiCgowNTowMC4wIE5ldHdvcmsgY29u
+dHJvbGxlcjogSW50ZWwgQ29ycG9yYXRpb24gRHVhbCBCYW5kIFdpcmVsZXNzLUFDIDMxNjhO
+R1cgW1N0b25lIFBlYWtdIChyZXYgMTApCglTdWJzeXN0ZW06IEludGVsIENvcnBvcmF0aW9u
+IERldmljZSAyMTEwCglGbGFnczogYnVzIG1hc3RlciwgZmFzdCBkZXZzZWwsIGxhdGVuY3kg
+MCwgSVJRIDEzNgoJTWVtb3J5IGF0IGExMTAwMDAwICg2NC1iaXQsIG5vbi1wcmVmZXRjaGFi
+bGUpIFtzaXplPThLXQoJQ2FwYWJpbGl0aWVzOiA8YWNjZXNzIGRlbmllZD4KCUtlcm5lbCBk
+cml2ZXIgaW4gdXNlOiBpd2x3aWZpCglLZXJuZWwgbW9kdWxlczogaXdsd2lmaQoK
+--------------1EF3737AC55D288FD3A77EC0
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -889,5 +348,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6874148144474693513==--
+--------------1EF3737AC55D288FD3A77EC0--
 
