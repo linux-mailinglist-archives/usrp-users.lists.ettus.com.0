@@ -2,56 +2,46 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70BE72011
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2019 21:23:18 +0200 (CEST)
-Received: from [::1] (port=57928 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD547203D
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jul 2019 21:53:22 +0200 (CEST)
+Received: from [::1] (port=38416 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hq0NV-0006hc-0o; Tue, 23 Jul 2019 15:23:13 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:43179)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
- id 1hq0NR-0006af-9J
- for usrp-users@lists.ettus.com; Tue, 23 Jul 2019 15:23:09 -0400
-Received: by mail-ot1-f51.google.com with SMTP id j11so20985302otp.10
- for <usrp-users@lists.ettus.com>; Tue, 23 Jul 2019 12:22:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BNhl/W4XGDb0AyN6rTgd9Q8WYxumyoq946xzayJjaIY=;
- b=Y4cHYYCN1PDfLWgjw3Zw72thpkV8k9EOGlGKFvBSPwAnJmotND3ffBFllokOloTX2Z
- FNoTpI6k4IJcXGhgxLZJnh7D1sZYyqCBdJNgpzsxy0dNqMd6EfDoFDhfxRtMTQwCTWC6
- dUSex4W6mdhl9zfuNhJXIDb/ZUYbzLK9nD90bW+tFdnO+ECXTHkdK/PzmvKJVrv23x72
- fLd1GbDIm+LRQodqMhJvgsLHXZ9p8burr/oiC+CfvLO4ip7ahCn4yR8hf7xw4ikVCpJL
- kqGfERqk3ZhULmUyJl7ZUDpk6HEVIAiLGAGAKDdqhI0RrWVMNnoebsaqulSVilA9lRwt
- 52xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=BNhl/W4XGDb0AyN6rTgd9Q8WYxumyoq946xzayJjaIY=;
- b=okRY0skpNdXV1P/TAO5wdButXUyZe5RdQ635Bv1ObhSv9VUjOcPFYJX0aFUSDgoFgd
- G+2xlF1trvYi0FcG5qIsQWIqDZ9WZY7JH9JlOn2fpN+FBcDuu1FiN4aZtlCCwj4vvzT4
- 9NCdoiti2wkfbdagjnxRC20TbRrLHPKQo+FTJPJRclIoBaHp8RGHS41D1x1wj/0lFp/W
- CAoYllhRqhuuAqjXhl8UacpmtY2inQHiXsSQMBIDfIuZlvZQmJSxS2S5z+l2/bstO8q5
- ecQ/3JSMl6+oHaxY+SgjELiNjRHgqqahMtJR+yJe/J+1s+1DDEzYAAW/EBSC4hfSUHkF
- YmKA==
-X-Gm-Message-State: APjAAAUDdiXBzDbHCSNRhwZ9IFz1zEyNRQ9yRbMijvYurt5gq7BZkyJM
- ZtHz/EvRymE9i0FiRPBRkVDrx/YlgT8ILoJaqNMA6muoSPaccA==
-X-Google-Smtp-Source: APXvYqzsKPrFktXKfoU6nTjN+nFIAOkIXJYSxr0sKup9ZyTLD1Yq0/fi4ku3g+wW6cjttAqaK2jsKB8WbPpapZ1MU6w=
-X-Received: by 2002:a9d:7a4e:: with SMTP id z14mr30593251otm.258.1563909748383; 
- Tue, 23 Jul 2019 12:22:28 -0700 (PDT)
+	id 1hq0qe-0000uO-N3; Tue, 23 Jul 2019 15:53:20 -0400
+Received: from resqmta-po-06v.sys.comcast.net ([96.114.154.165]:58496)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <w6rz@comcast.net>) id 1hq0qb-0000gS-Hb
+ for usrp-users@lists.ettus.com; Tue, 23 Jul 2019 15:53:17 -0400
+Received: from resomta-po-04v.sys.comcast.net ([96.114.154.228])
+ by resqmta-po-06v.sys.comcast.net with ESMTP
+ id pyj0hXIRSMC2xq0pwhaRE7; Tue, 23 Jul 2019 19:52:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+ s=20190202a; t=1563911556;
+ bh=ZAxFw6jd8E0UDsPC/NBkJG9HE7V9exEf2fVNHStg3zo=;
+ h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
+ Content-Type;
+ b=JSaT/IeGNjefqG2yBZqUoEivorTXnunZBMH9LaR50Gbhy0zFC5bCBUhCW2okNOVQ3
+ VMYJ8uZUvENyh7cOQC8ljHPfHaBU8Y9G1ocDxSxgKoG0Ik6v0yN5rYZtIvqjW1mTdb
+ C7PjEW71iI7hCtdi1UvtakJc2A+NOXYHVUV2yWxH8np4aLWd2XrJfL9K2GOjDlSshs
+ 3GFaceg3ftqV/zJYzXSrFLjBJu3EfPn1fSLYy+N4xMHKouXIPbXNHlnIg0fOhYHTjK
+ CnV7bgxbDDcoUVUKwQe4x20xSfLNng7ZzeLq/YcqRbky7P8ogr/MjF50rq6OJtEyML
+ VPgQIMuulczSw==
+Received: from [IPv6:2601:647:4200:ea30:4820:c32d:de90:96e9]
+ ([IPv6:2601:647:4200:ea30:4820:c32d:de90:96e9])
+ by resomta-po-04v.sys.comcast.net with ESMTPSA
+ id q0pvhjVQ4bBOKq0pwhh2Na; Tue, 23 Jul 2019 19:52:36 +0000
+X-Xfinity-VMeta: sc=0;st=legit
+To: usrp-users@lists.ettus.com
+References: <CAOtS0CmYe8ZuGWtRhp=uaDcXxVhFEfbN6WY0BpDcgu6HssMxiw@mail.gmail.com>
+ <e7f629f0-4bad-4b19-86f2-62bd70dd0f55@www.fastmail.com>
+Message-ID: <7d82d446-9457-ca81-bbd1-ead301889834@comcast.net>
+Date: Tue, 23 Jul 2019 12:52:35 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <BL0PR12MB2340A36ACFF70A71CE10D1D9AFC80@BL0PR12MB2340.namprd12.prod.outlook.com>
- <CAL263izNAB-Zjz2cDHX1EH1qBNS33ZBXGVaMc_vM21eRXn3sYw@mail.gmail.com>
- <DM5PR12MB2342C970260E73902571E6B4AFC70@DM5PR12MB2342.namprd12.prod.outlook.com>
- <CAL263ixzRvFaBYVvxq4xr1NhcL4PGoMEKoxVR0oAEoH4U7GzJg@mail.gmail.com>
- <DM5PR12MB2342BBE23714358C4C5DEE15AFC70@DM5PR12MB2342.namprd12.prod.outlook.com>
-In-Reply-To: <DM5PR12MB2342BBE23714358C4C5DEE15AFC70@DM5PR12MB2342.namprd12.prod.outlook.com>
-Date: Tue, 23 Jul 2019 12:25:06 -0700
-Message-ID: <CAL263ixeKQoEKVYc895Tw-HQ57uC79azL-xntv+0nSWC_60Wqg@mail.gmail.com>
-To: Jason Matusiak <jason@gardettoengineering.com>
-Subject: Re: [USRP-users] E320 unable to lock to external reference
+In-Reply-To: <e7f629f0-4bad-4b19-86f2-62bd70dd0f55@www.fastmail.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] Transmitting data from 2 antennas of B210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,10 +53,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nate Temple <nate.temple@ettus.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1011668621260291175=="
+From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ron Economos <w6rz@comcast.net>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,819 +70,45 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1011668621260291175==
-Content-Type: multipart/alternative; boundary="00000000000003a1ce058e5e1dfd"
+In GNU Radio, there is a dual channel B210 example flow graph in the DTV 
+component. The file is:
 
---00000000000003a1ce058e5e1dfd
-Content-Type: text/plain; charset="UTF-8"
+<install_dir>/share/gnuradio/examples/dtv/vv018-miso.grc
 
-Hi Jason,
+The download location of the test input file can be found in the README.
 
-I'm fairly confident that this is just a software issue.
+<install_dir>/share/gnuradio/examples/dtv/README.dvbt2
 
-Regards,
-Nate Temple
+It sends an Alamouti coded MISO (Multiple Input Single Output) signal.
 
-On Tue, Jul 23, 2019 at 11:06 AM Jason Matusiak <
-jason@gardettoengineering.com> wrote:
+Ron
 
-> Thank you Nate.  Good to hear that it wasn't a screw up on our part.  Do
-> you have a gut as to whether or not it is a hardware or software issue?
+On 7/23/19 11:59, Michael Dickens via USRP-users wrote:
+> Hi Zhenghao - To the best of my knowledge and memory, all of the examples provided by UHD and GR are just single-channel. My guess is you'll need to create your own custom flowgraph to handle 2 output channels from a single input file. That said, if what you hope to do is the equivalent of "tx_samples_from_file" but just pushing the same file to 2 outputs (or even pushing 2 data streams from the same file, one each to each B210 Tx antenna), that shouldn't be difficult to create: copy the file "https://github.com/EttusResearch/uhd/blob/master/host/examples/tx_samples_from_file.cpp" and use it as a starting point; edit it to do what you want! Good luck! - MLD
 >
->
-> ------------------------------
-> *From:* Nate Temple <nate.temple@ettus.com>
-> *Sent:* Tuesday, July 23, 2019 2:01 PM
-> *To:* Jason Matusiak <jason@gardettoengineering.com>
-> *Cc:* Ettus Mail List <usrp-users@lists.ettus.com>
-> *Subject:* Re: [USRP-users] E320 unable to lock to external reference
->
-> Hi Jason,
->
-> I've been able to recreate this and have filed an issue on our internal
-> bug tracker and escalated as a high priority issue. I'm not able to provide
-> any ETA on when we will have a fix for it, but hope it will be soon.
->
-> I will follow up as soon as I have more information.
->
-> Regards,
-> Nate Temple
->
-> On Tue, Jul 23, 2019 at 10:12 AM Jason Matusiak <
-> jason@gardettoengineering.com> wrote:
->
-> Do you need anything from my side of things?
->
-> ------------------------------
-> *From:* Nate Temple <nate.temple@ettus.com>
-> *Sent:* Thursday, July 18, 2019 3:49 PM
-> *To:* Jason Matusiak <jason@gardettoengineering.com>
-> *Cc:* Ettus Mail List <usrp-users@lists.ettus.com>
-> *Subject:* Re: [USRP-users] E320 unable to lock to external reference
->
-> Hi Jason,
->
-> This might be a bug with the E320. I will need to try to recreate this
-> issue. I'll follow up as soon as I have more info.
->
-> Regards,
-> Nate Temple
->
-> On Thu, Jul 18, 2019 at 12:32 PM Jason Matusiak via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> OK, we've been fighting this for a while and we think we narrowed it down
-> to being a problem with the E320 (NOTE: we are running the E320 in network
-> mode, not embedded)
->
-> Some background:
-> 1) external reference input is from an octo clock (so it the 1pps input)
-> on many different ports
->         a) also tried to use a  Symmetricom box for external reference and
-> had the same problems
->
-> 3) the same code we are testing with works when using an x310 instead of
-> an e320, with inputs from the same octoclock
->
-> 4) the code basically does this:
->         a) sets the reference source to external
->         b) checks to see if the reference is locked (and it keeps doing
-> this until we get a "locked" response, using the uhd commands to do this)
->
-> 5) for the e320, the locked status never returns (when running the x310
-> with this code, it sometimes responds with unlocked, but after a few checks
-> it comes back ok)
->
-> 6) I tried some of the Ettus (UHD) test code
->         a) running the "sync_to_gps" program did work - the reference was
-> able to lock to the internal (gps) reference
->         b) "test_clock_synch"  returns similiar errors to what we get with
-> our program (see below):
-> Checking USRP devices for lock.
->  * 318B08B: false
-> WARNING: One or more devices not locked.
-> Querying Clock for time and setting USRP times...
-> [WARNING] [MPM.PeriphManager] Reference Clock reporting unlocked.
-> MB_CLOCK_CTRL reg: 0x00000002
-> Running 10 comparisons at random intervals.
-> Comparison #1
->  * Clock time: 1563463644
->  * 318B08B time: 1563463644
-> Comparison #2
->  * Clock time: 1563463652
->  * 318B08B time: 1563463652
-> Comparison #3
->  * Clock time: 1563463657
->  * 318B08B time: 1563463657
-> Comparison #4
->  * Clock time: 1563463664
->  * 318B08B time: 1563463664
-> Comparison #5
->  * Clock time: 1563463666
->  * 318B08B time: 1563463666
-> Comparison #6
->  * Clock time: 1563463671
->  * 318B08B time: 1563463671
-> Comparison #7
->  * Clock time: 1563463676
->  * 318B08B time: 1563463676
-> Comparison #8
->  * Clock time: 1563463686
->  * 318B08B time: 1563463686
-> Comparison #9
->  * Clock time: 1563463689
->  * 318B08B time: 1563463689
-> Comparison #10
->  * Clock time: 1563463691
->  * 318B08B time: 1563463691
->
-> Number of matches: 10/10
->
->
-> 7) we ran the same tests at a sister site that has four E320s, and they
-> all exhibited the same issues
->
-> 8)Finally, a uhd_usrp_probe command returns this:
->
-> [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-36);
-> Boost_105300; UHD_3.14.1.0-9-g2aa5289d
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=192.168.10.3,type=e3xx,product=e320,serial=318B08B,claimed=False,addr=192.168.10.3
-> [WARNING] [MPM.PeriphManager] Reference Clock reporting unlocked.
-> MB_CLOCK_CTRL reg: 0x00000002
-> ... many of these warnings repeating ...
-> [WARNING] [MPM.PeriphManager] Reference Clock reporting unlocked.
-> MB_CLOCK_CTRL reg: 0x00000002
-> [WARNING] [MPM.RPCServer] A timeout event occured!
-> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
-> 0xF1F0D00000000000)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1324 MB/s)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1322 MB/s)
-> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000003320)
-> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `product=e320,mgmt_addr=192.168.10.3'.
-> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
-> [INFO] [0/Radio_0] Performing CODEC loopback test...
-> [INFO] [0/Radio_0] CODEC loopback test passed
-> [INFO] [0/Radio_0] Performing CODEC loopback test...
-> [INFO] [0/Radio_0] CODEC loopback test passed
->   _____________________________________________________
->  /
-> |       Device: E300-Series Device
-> |     _____________________________________________________
-> |    /
-> |   |       Mboard: ni-e320-318B08B
-> |   |   eeprom_version: 2
-> |   |   mpm_version: 3.14.0.0-g6875d061
-> |   |   pid: 58144
-> |   |   product: e320
-> |   |   rev: 2
-> |   |   rpc_connection: remote
-> |   |   serial: 318B08B
-> |   |   type: e3xx
-> |   |   MPM Version: 1.2
-> |   |   FPGA Version: 3.1
-> |   |   FPGA git hash: e39334f.clean
-> |   |   RFNoC capable: Yes
-> |   |
-> |   |   Time sources:  internal, external, gpsdo
-> |   |   Clock sources: external, internal, gpsdo
-> |   |   Sensors: gps_sky, gps_locked, temp_rf_channelA, temp_rf_channelB,
-> temp_internal, fan, temp_main_power, ref_locked, gps_gpgga, temp_fpga,
-> gps_tpv, gps_time
-> |   |     _____________________________________________________
-> |   |    /
-> |   |   |       RX Dboard: A
-> |   |   |     _____________________________________________________
-> |   |   |    /
-> |   |   |   |       RX Frontend: 0
-> |   |   |   |   Name: Neon
-> |   |   |   |   Antennas: RX2, TX/RX
-> |   |   |   |   Sensors: lo_locked, ad9361_temperature, rssi, lo_lock
-> |   |   |   |   Freq range: 70.000 to 6000.000 MHz
-> |   |   |   |   Gain range PGA: 0.0 to 76.0 step 1.0 dB
-> |   |   |   |   Bandwidth range: 20000000.0 to 40000000.0 step 0.0 Hz
-> |   |   |   |   Connection Type: IQ
-> |   |   |   |   Uses LO offset: No
-> |   |   |     _____________________________________________________
-> |   |   |    /
-> |   |   |   |       RX Frontend: 1
-> |   |   |   |   Name: Neon
-> |   |   |   |   Antennas: RX2, TX/RX
-> |   |   |   |   Sensors: lo_locked, ad9361_temperature, rssi, lo_lock
-> |   |   |   |   Freq range: 70.000 to 6000.000 MHz
-> |   |   |   |   Gain range PGA: 0.0 to 76.0 step 1.0 dB
-> |   |   |   |   Bandwidth range: 20000000.0 to 40000000.0 step 0.0 Hz
-> |   |   |   |   Connection Type: IQ
-> |   |   |   |   Uses LO offset: No
-> |   |   |     _____________________________________________________
-> |   |   |    /
-> |   |   |   |       RX Codec: A
-> |   |   |   |   Name: AD9361 Dual ADC
-> |   |   |   |   Gain Elements: None
-> |   |     _____________________________________________________
-> |   |    /
-> |   |   |       TX Dboard: A
-> |   |   |     _____________________________________________________
-> |   |   |    /
-> |   |   |   |       TX Frontend: 0
-> |   |   |   |   Name: Neon
-> |   |   |   |   Antennas: TX/RX
-> |   |   |   |   Sensors: lo_locked, ad9361_temperature
-> |   |   |   |   Freq range: 47.000 to 6000.000 MHz
-> |   |   |   |   Gain range PGA: 0.0 to 89.8 step 0.2 dB
-> |   |   |   |   Bandwidth range: 20000000.0 to 40000000.0 step 0.0 Hz
-> |   |   |   |   Connection Type: IQ
-> |   |   |   |   Uses LO offset: No
-> |   |   |     _____________________________________________________
-> |   |   |    /
-> |   |   |   |       TX Frontend: 1
-> |   |   |   |   Name: Neon
-> |   |   |   |   Antennas: TX/RX
-> |   |   |   |   Sensors: lo_locked, ad9361_temperature
-> |   |   |   |   Freq range: 47.000 to 6000.000 MHz
-> |   |   |   |   Gain range PGA: 0.0 to 89.8 step 0.2 dB
-> |   |   |   |   Bandwidth range: 20000000.0 to 40000000.0 step 0.0 Hz
-> |   |   |   |   Connection Type: IQ
-> |   |   |   |   Uses LO offset: No
-> |   |   |     _____________________________________________________
-> |   |   |    /
-> |   |   |   |       TX Codec: A
-> |   |   |   |   Name: AD9361 Dual DAC
-> |   |   |   |   Gain Elements: None
-> |   |     _____________________________________________________
-> |   |    /
-> |   |   |       RFNoC blocks on this device:
-> |   |   |
-> |   |   |   * DmaFIFO_0
-> |   |   |   * Radio_0
-> |   |   |   * DDC_0
-> |   |   |   * DUC_0
->
->
-> We've spent about 2 weeks on this and tried every combo of things we could
-> think of and everything works on our other Ettus devices, but the E320 just
-> doesn't seem to play nice at all.  Are there any thoughts on what the issue
-> is (my gut is saying a configuration in UHD).
+> On Mon, Jul 22, 2019, at 5:29 PM, Zhenghao Zhang via USRP-users wrote:
+>> Hi,
+>>
+>> I have a very simple task: transmitting data with two antennas of
+>> B210. The data is just numbers in a file and I just need to play the
+>> file.
+>>
+>> I have been able to transmit data by one antenna with the command
+>> tx_samples_from_file. I did a lot of searching but I was not able to
+>> find a similar command to use two antennas.
+>>
+>> I am sorry if this question or some variations of it has been answered
+>> before. Any help is appreciated.
+>>
+>> Thanks,
+>> Zhenghao
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
->
-
---00000000000003a1ce058e5e1dfd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hi Jason,<br><br>I&#39;m fairly confident that this is =
-just a software issue. <br><br>Regards,<br>Nate Temple </div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 23=
-, 2019 at 11:06 AM Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoengin=
-eering.com">jason@gardettoengineering.com</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Thank you Nate.=C2=A0 Good to hear that it wasn&#39;t a screw up on our par=
-t.=C2=A0 Do you have a gut as to whether or not it is a hardware or softwar=
-e issue?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div id=3D"gmail-m_2403598799263526951Signature">
-<div>
-<div id=3D"gmail-m_2403598799263526951appendonsend"></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"gmail-m_2403598799263526951divRplyFwdMsg" dir=3D"ltr"><font styl=
-e=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From=
-:</b> Nate Temple &lt;<a href=3D"mailto:nate.temple@ettus.com" target=3D"_b=
-lank">nate.temple@ettus.com</a>&gt;<br>
-<b>Sent:</b> Tuesday, July 23, 2019 2:01 PM<br>
-<b>To:</b> Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoengineering.c=
-om" target=3D"_blank">jason@gardettoengineering.com</a>&gt;<br>
-<b>Cc:</b> Ettus Mail List &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
-" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] E320 unable to lock to external reference<=
-/font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div class=3D"gmail-m_2403598799263526951x_gmail_default" style=3D"font-fam=
-ily:arial,helvetica,sans-serif">Hi Jason,<br>
-<br>
-I&#39;ve been able to recreate this and have filed an issue on our internal=
- bug tracker and escalated as a high priority issue. I&#39;m not able to pr=
-ovide any ETA on when we will have a fix for it, but hope it will be soon.<=
-br>
-<br>
-I will follow up as soon as I have more information.<br>
-<br>
-Regards,<br>
-Nate Temple</div>
-</div>
-<br>
-<div class=3D"gmail-m_2403598799263526951x_gmail_quote">
-<div dir=3D"ltr" class=3D"gmail-m_2403598799263526951x_gmail_attr">On Tue, =
-Jul 23, 2019 at 10:12 AM Jason Matusiak &lt;<a href=3D"mailto:jason@gardett=
-oengineering.com" target=3D"_blank">jason@gardettoengineering.com</a>&gt; w=
-rote:<br>
-</div>
-<blockquote class=3D"gmail-m_2403598799263526951x_gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Do you need anything from my side of things?</div>
-<div id=3D"gmail-m_2403598799263526951x_gmail-m_-7976855708153759004Signatu=
-re">
-<div>
-<div id=3D"gmail-m_2403598799263526951x_gmail-m_-7976855708153759004appendo=
-nsend"></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"gmail-m_2403598799263526951x_gmail-m_-7976855708153759004divRply=
-FwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=3D"Calibri, sans-se=
-rif" color=3D"#000000"><b>From:</b> Nate Temple &lt;<a href=3D"mailto:nate.=
-temple@ettus.com" target=3D"_blank">nate.temple@ettus.com</a>&gt;<br>
-<b>Sent:</b> Thursday, July 18, 2019 3:49 PM<br>
-<b>To:</b> Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoengineering.c=
-om" target=3D"_blank">jason@gardettoengineering.com</a>&gt;<br>
-<b>Cc:</b> Ettus Mail List &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
-" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] E320 unable to lock to external reference<=
-/font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div class=3D"gmail-m_2403598799263526951x_gmail-m_-7976855708153759004x_gm=
-ail_default" style=3D"font-family:arial,helvetica,sans-serif">
-Hi Jason,<br>
-<br>
-This might be a bug with the E320. I will need to try to recreate this issu=
-e. I&#39;ll follow up as soon as I have more info.<br>
-<br>
-Regards,<br>
-Nate Temple</div>
-</div>
-<br>
-<div class=3D"gmail-m_2403598799263526951x_gmail-m_-7976855708153759004x_gm=
-ail_quote">
-<div dir=3D"ltr" class=3D"gmail-m_2403598799263526951x_gmail-m_-79768557081=
-53759004x_gmail_attr">On Thu, Jul 18, 2019 at 12:32 PM Jason Matusiak via U=
-SRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blan=
-k">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"gmail-m_2403598799263526951x_gmail-m_-7976855708153759=
-004x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-OK, we&#39;ve been fighting this for a while and we think we narrowed it do=
-wn to being a problem with the E320 (NOTE: we are running the E320 in netwo=
-rk mode, not embedded)</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Some background:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span>1) external reference input is from an octo clock (so it the 1pps inp=
-ut) on many different ports</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-se=
-rif;font-size:12pt">=C2=A0 =C2=A0 =C2=A0 =C2=A0 a) also tried to use a=C2=
-=A0 Symmetricom box for external reference and had the same problems</span>=
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<div><br>
-</div>
-<div>3) the same code we are testing with works when using an x310 instead =
-of an e320, with inputs from the same octoclock</div>
-<div><br>
-</div>
-<div>4) the code basically does this:</div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 a) sets the reference source to external</=
-div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 b) checks to see if the reference is locke=
-d (and it keeps doing this until we get a &quot;locked&quot; response, usin=
-g the uhd commands to do this)</div>
-<div><br>
-</div>
-<div>5) for the e320, the locked status never returns (when running the x31=
-0 with this code, it sometimes responds with unlocked, but after a few chec=
-ks it comes back ok)</div>
-<div><br>
-</div>
-<div>6) I tried some of the Ettus (UHD) test code</div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 a) running the &quot;sync_to_gps&quot; pro=
-gram did work - the reference was able to lock to the internal (gps) refere=
-nce</div>
-<span>=C2=A0 =C2=A0 =C2=A0 =C2=A0 b) &quot;test_clock_synch&quot; =C2=A0ret=
-urns similiar errors to what we get with our program (see below):</span><br=
->
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span><span style=3D"font-family:Calibri,Helvetica,sans-serif;background-co=
-lor:rgb(255,255,255);display:inline">Checking USRP devices for lock.</span>=
-<br style=3D"font-family:Calibri,Helvetica,sans-serif;background-color:rgb(=
-255,255,255)">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif;background-color:rg=
-b(255,255,255);display:inline">=C2=A0* 318B08B: false</span><br style=3D"fo=
-nt-family:Calibri,Helvetica,sans-serif;background-color:rgb(255,255,255)">
-<span style=3D"font-family:Calibri,Helvetica,sans-serif;background-color:rg=
-b(255,255,255);display:inline">WARNING: One or more devices not locked.</sp=
-an><br style=3D"font-family:Calibri,Helvetica,sans-serif;background-color:r=
-gb(255,255,255)">
-<div style=3D"margin:0px;font-family:Calibri,Helvetica,sans-serif;backgroun=
-d-color:rgb(255,255,255)">
-Querying Clock for time and setting USRP times...<br>
-[WARNING] [MPM.PeriphManager] Reference Clock reporting unlocked. MB_CLOCK_=
-CTRL reg: 0x00000002<br>
-Running 10 comparisons at random intervals.<br>
-Comparison #1<br>
-=C2=A0* Clock time: 1563463644<br>
-=C2=A0* 318B08B time: 1563463644<br>
-Comparison #2<br>
-=C2=A0* Clock time: 1563463652<br>
-=C2=A0* 318B08B time: 1563463652<br>
-Comparison #3<br>
-=C2=A0* Clock time: 1563463657<br>
-=C2=A0* 318B08B time: 1563463657<br>
-Comparison #4<br>
-=C2=A0* Clock time: 1563463664<br>
-=C2=A0* 318B08B time: 1563463664<br>
-Comparison #5<br>
-=C2=A0* Clock time: 1563463666<br>
-=C2=A0* 318B08B time: 1563463666<br>
-Comparison #6<br>
-=C2=A0* Clock time: 1563463671<br>
-=C2=A0* 318B08B time: 1563463671<br>
-Comparison #7<br>
-=C2=A0* Clock time: 1563463676<br>
-=C2=A0* 318B08B time: 1563463676<br>
-Comparison #8<br>
-=C2=A0* Clock time: 1563463686<br>
-=C2=A0* 318B08B time: 1563463686<br>
-Comparison #9<br>
-=C2=A0* Clock time: 1563463689<br>
-=C2=A0* 318B08B time: 1563463689<br>
-Comparison #10<br>
-=C2=A0* Clock time: 1563463691<br>
-=C2=A0* 318B08B time: 1563463691<br>
-<br>
-Number of matches: 10/10</div>
-<br>
-</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span><br>
-</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span>7) we ran the same tests at a sister site that has four E320s, and th=
-ey all exhibited the same issues</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span><br>
-</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-8)Finally, a uhd_usrp_probe command returns this:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span><br>
-</span>
-<div>[INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-36);=
- Boost_105300; UHD_3.14.1.0-9-g2aa5289d<br>
-</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D192.168.10.3,type=3De3xx,product=3De320,serial=3D318B08B,claimed=3DFals=
-e,addr=3D192.168.10.3<br>
-</div>
-<div>[WARNING] [MPM.PeriphManager] Reference Clock reporting unlocked. MB_C=
-LOCK_CTRL reg: 0x00000002<br>
-</div>
-<div>... many of these warnings repeating ...<br>
-</div>
-<div>[WARNING] [MPM.PeriphManager] Reference Clock reporting unlocked. MB_C=
-LOCK_CTRL reg: 0x00000002<br>
-</div>
-<div>[WARNING] [MPM.RPCServer] A timeout event occured!<br>
-</div>
-<div>[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D000000=
-00000)<br>
-</div>
-<div>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1324 MB/s)<br>
-</div>
-<div>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1322 MB/s)<br>
-</div>
-<div>[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000003=
-320)<br>
-</div>
-<div>[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC000000000000=
-0)<br>
-</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `product=3De=
-320,mgmt_addr=3D192.168.10.3&#39;.<br>
-</div>
-<div>[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C000000000000=
-2)<br>
-</div>
-<div>[INFO] [0/Radio_0] Performing CODEC loopback test... <br>
-</div>
-<div>[INFO] [0/Radio_0] CODEC loopback test passed<br>
-</div>
-<div>[INFO] [0/Radio_0] Performing CODEC loopback test... <br>
-</div>
-<div>[INFO] [0/Radio_0] CODEC loopback test passed<br>
-</div>
-<div>=C2=A0 _____________________________________________________<br>
-</div>
-<div>=C2=A0/<br>
-</div>
-<div>| =C2=A0 =C2=A0 =C2=A0 Device: E300-Series Device<br>
-</div>
-<div>| =C2=A0 =C2=A0 _____________________________________________________<=
-br>
-</div>
-<div>| =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Mboard: ni-e320-318B08B<br>
-</div>
-<div>| =C2=A0 | =C2=A0 eeprom_version: 2<br>
-</div>
-<div>| =C2=A0 | =C2=A0 mpm_version: 3.14.0.0-g6875d061<br>
-</div>
-<div>| =C2=A0 | =C2=A0 pid: 58144<br>
-</div>
-<div>| =C2=A0 | =C2=A0 product: e320<br>
-</div>
-<div>| =C2=A0 | =C2=A0 rev: 2<br>
-</div>
-<div>| =C2=A0 | =C2=A0 rpc_connection: remote<br>
-</div>
-<div>| =C2=A0 | =C2=A0 serial: 318B08B<br>
-</div>
-<div>| =C2=A0 | =C2=A0 type: e3xx<br>
-</div>
-<div>| =C2=A0 | =C2=A0 MPM Version: 1.2<br>
-</div>
-<div>| =C2=A0 | =C2=A0 FPGA Version: 3.1<br>
-</div>
-<div>| =C2=A0 | =C2=A0 FPGA git hash: e39334f.clean<br>
-</div>
-<div>| =C2=A0 | =C2=A0 RFNoC capable: Yes<br>
-</div>
-<div>| =C2=A0 | =C2=A0 <br>
-</div>
-<div>| =C2=A0 | =C2=A0 Time sources: =C2=A0internal, external, gpsdo<br>
-</div>
-<div>| =C2=A0 | =C2=A0 Clock sources: external, internal, gpsdo<br>
-</div>
-<div>| =C2=A0 | =C2=A0 Sensors: gps_sky, gps_locked, temp_rf_channelA, temp=
-_rf_channelB, temp_internal, fan, temp_main_power, ref_locked, gps_gpgga, t=
-emp_fpga, gps_tpv, gps_time<br>
-</div>
-<div>| =C2=A0 | =C2=A0 =C2=A0 _____________________________________________=
-________<br>
-</div>
-<div>| =C2=A0 | =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Dboard: A<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ____________________________________=
-_________________<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Frontend: 0<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: Neon<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: RX2, TX/RX<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, ad9361_tempera=
-ture, rssi, lo_lock<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 70.000 to 6000.000 MHz=
-<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 76.0 step 1=
-.0 dB<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 400=
-00000.0 step 0.0 Hz<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ____________________________________=
-_________________<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Frontend: 1<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: Neon<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: RX2, TX/RX<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, ad9361_tempera=
-ture, rssi, lo_lock<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 70.000 to 6000.000 MHz=
-<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 76.0 step 1=
-.0 dB<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 400=
-00000.0 step 0.0 Hz<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ____________________________________=
-_________________<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Codec: A<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: AD9361 Dual ADC<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain Elements: None<br>
-</div>
-<div>| =C2=A0 | =C2=A0 =C2=A0 _____________________________________________=
-________<br>
-</div>
-<div>| =C2=A0 | =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Dboard: A<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ____________________________________=
-_________________<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 0<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: Neon<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, ad9361_tempera=
-ture<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 47.000 to 6000.000 MHz=
-<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 89.8 step 0=
-.2 dB<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 400=
-00000.0 step 0.0 Hz<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ____________________________________=
-_________________<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 1<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: Neon<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, ad9361_tempera=
-ture<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 47.000 to 6000.000 MHz=
-<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 89.8 step 0=
-.2 dB<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 400=
-00000.0 step 0.0 Hz<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ____________________________________=
-_________________<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Codec: A<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: AD9361 Dual DAC<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain Elements: None<br>
-</div>
-<div>| =C2=A0 | =C2=A0 =C2=A0 _____________________________________________=
-________<br>
-</div>
-<div>| =C2=A0 | =C2=A0 =C2=A0/<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RFNoC blocks on this device:<=
-br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 <br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 * DmaFIFO_0<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 * Radio_0<br>
-</div>
-<div>| =C2=A0 | =C2=A0 | =C2=A0 * DDC_0<br>
-</div>
-<span>| =C2=A0 | =C2=A0 | =C2=A0 * DUC_0</span><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span><br>
-</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span><br>
-</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span>We&#39;ve spent about 2 weeks on this and tried every combo of things=
- we could think of and everything works on our other Ettus devices, but the=
- E320 just doesn&#39;t seem to play nice at all.=C2=A0 Are there any though=
-ts on what the issue is (my gut is saying a configuration
- in UHD).</span></div>
-</div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</blockquote></div>
-
---00000000000003a1ce058e5e1dfd--
-
-
---===============1011668621260291175==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1011668621260291175==--
-
