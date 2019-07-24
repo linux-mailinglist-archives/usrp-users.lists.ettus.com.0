@@ -2,50 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3855731CE
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Jul 2019 16:37:48 +0200 (CEST)
-Received: from [::1] (port=58690 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA1D73230
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Jul 2019 16:52:36 +0200 (CEST)
+Received: from [::1] (port=33816 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hqIOm-0006DM-Et; Wed, 24 Jul 2019 10:37:44 -0400
-Received: from mail-lf1-f53.google.com ([209.85.167.53]:36932)
+	id 1hqId8-0007CV-PM; Wed, 24 Jul 2019 10:52:34 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:41281)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1hqIOi-00066k-P0
- for usrp-users@lists.ettus.com; Wed, 24 Jul 2019 10:37:40 -0400
-Received: by mail-lf1-f53.google.com with SMTP id c9so32085384lfh.4
- for <usrp-users@lists.ettus.com>; Wed, 24 Jul 2019 07:37:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.92) (envelope-from <bpadalino@gmail.com>) id 1hqId5-00074O-7y
+ for usrp-users@lists.ettus.com; Wed, 24 Jul 2019 10:52:31 -0400
+Received: by mail-ot1-f46.google.com with SMTP id o101so48113387ota.8
+ for <usrp-users@lists.ettus.com>; Wed, 24 Jul 2019 07:52:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4D8yjg49QtFskeBezT+e1fBorNvIcJJplkrAO5gbMM0=;
- b=hi2ks+bgfZSeU6tPH4NQuIcG02mtmECmXXyvenQF8xd2e+1EcRWMXeWjHBDPG6+6hA
- wFGgI5ymaYFQ28qC+AOpyMyZNnEKAPkcZW0b2nc0210sksn5NICCilVA4p4ZBxs9ovNR
- dAnkL4qxuS0vRq9dPA5VrnZK4KNkpRMR2q1yhav3KYSI7MquNWKnPDErG6xsHCX7RKy6
- 6PEw7lDXu1av4vHlUk58uxiNxN32kAlstJw3tIiQWUjaxmsSHTJL1HUWY65IbRMR3W1o
- hZemEOrI42nkbcpWgcizDQoVe9XMXZPZw4IfrPLa7yJyoatd1bvzEAFrn793d+vVH1Qu
- 95Sw==
+ :cc; bh=wO/tNaLLDXmOqYf47it2YZUxCl/p0kilQ4sOnxrOgjE=;
+ b=VKZU0IMhXiBWJrpW/coGJ0q0H3jQC+M1HyBfDDb4vCXTDMNlIawEGxtNplGuV7hXnH
+ PkGy6zZdUcK4GOJdlMKn9lG33UUOPPeGGLan0HI3uTOT9nIpMlmzOmD1Sf87dbYwHmVi
+ FTA1uBjN43L3e791ykff3yY+P98jDp21N9Fp8eqHsqaulgcepdUbhA6+CuNrwjEwksah
+ ci58pYp2Ha9G0KaSIqyOh4iJwUHXFlYo3SEsKCcjOYyFO93nsjVPTWfkPm/OBbvrUaG0
+ 4+M2brRNzdNWAySwdTgiXAHBav2PceO0BNCyTiAo6B2vYoWPY4VSYBMFn2YiL175FK53
+ H8UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=4D8yjg49QtFskeBezT+e1fBorNvIcJJplkrAO5gbMM0=;
- b=sF4kIT3aUfwLXsUXr3lS2WHCCVi4yHX9/onrGkO6AFfC3qBo3mQQe2NXQLjPzwv24W
- 6g1rUm1cp8qG7QE3GxLFviHnrrIqkD7arVOegEWSE/928Csz8HZ2gj9bMUwzTkDyPEO2
- GdHO6NEbNkfHQVp2pqoEuMzMfpSL1HTi7DFUMQkJWHic904gzohT+mq++Y5TMO+4c9KL
- esBUehMyW+vxKDDlPmOgAs/R+pIS6DsNDMrf3P8T13bc2hnz+4B+WDy0KIwnsKdXZI1o
- Tqs6EEg9eZTcbk6+VI/cvaXyjG08IHN0ACbbHOnGrMhgv10yJ19foJSTEO4odXhyBsZy
- Ei5A==
-X-Gm-Message-State: APjAAAWz9YyIHUJ4U0cUoi0yXq6mlinB3NUdcuw9jD/hElz5PRolGi6i
- PDb+z5Lh3cXtSNVmBBGqYAHcw0SgC6Rj02XDe16NT48T
-X-Google-Smtp-Source: APXvYqwSv2tVaDd9Z10/rqa25sgVNw0iQ7SJx1NMfMqOovWfZm4xdNYaf9+xnaJAU25w0xQEfiWizaepoaRso5K/6MY=
-X-Received: by 2002:ac2:514f:: with SMTP id q15mr39243371lfd.145.1563979019204; 
- Wed, 24 Jul 2019 07:36:59 -0700 (PDT)
+ bh=wO/tNaLLDXmOqYf47it2YZUxCl/p0kilQ4sOnxrOgjE=;
+ b=cOsmwqIM1zdVdTfBmqLjdfThEJ6l9wJdfNEc9SLbPD6iyQH9jorF8VGYrioWXct6uG
+ uFItQI14DSyyGz9REvaqhqzuIVdYs+wL5yc/yzwaUKdQQaxSiXGxU2hVq6ZasXdTKzLI
+ 3kZJxETUP7jR45ADpOE1eZ7psg8tGzhtBT4nNLz8D2U75OgdGR0GzaHAN4xP/n9RTcJI
+ u9HLgppqUYL3SVBzqOlaCQUulDK2R0wg7sOXGHZyPM0cmT7+ftj0yUVXFEIi73QoKey5
+ NtuGZGazMnp8gpIAVR4BPI2Ef6U8SDGAgA+cMAufR8i6zs5usz0P3+pv9sJ+vqFw3qkH
+ Mk8A==
+X-Gm-Message-State: APjAAAVJGfnrG0GUN/RmKOjOR0mfs0CZlIA5rjQAWwM7llJak6J25a+M
+ Hnhpr/m0C3BGVe1J3FbS+l0izgNFOoHqq0BCAy4=
+X-Google-Smtp-Source: APXvYqycxLmnGy5s9VpEgHbzjvW237z7SDMde58IJf1gVhjPQTE2JIws6YAoCiPQbOkFB9QtjVBeD0/oguW+RwiwBPc=
+X-Received: by 2002:a9d:729a:: with SMTP id t26mr59677208otj.13.1563979910376; 
+ Wed, 24 Jul 2019 07:51:50 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAKaLowRdx_s9nF2bg+s4=iTmfREBvKfwUV0pD3mqF-Y219r0=w@mail.gmail.com>
 In-Reply-To: <CAKaLowRdx_s9nF2bg+s4=iTmfREBvKfwUV0pD3mqF-Y219r0=w@mail.gmail.com>
-Date: Wed, 24 Jul 2019 09:36:48 -0500
-Message-ID: <CANf970YS1JOdDFNkHc-W_n-NMXvZxebQ_BPLaB5dkdZCBJZ-GQ@mail.gmail.com>
+Date: Wed, 24 Jul 2019 10:51:39 -0400
+Message-ID: <CAEXYVK6WSc77QJACE+kxjAFVzwk3oPd5fCWcWZ1aJTcMZ5VWbA@mail.gmail.com>
 To: Rodolphe Bertolini <bertolini.rodolphe@gmail.com>
 Subject: Re: [USRP-users] UHD not showing USB version through which my X310
  is connected
@@ -60,10 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3540671915792505631=="
+From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Brian Padalino <bpadalino@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0463816218017236515=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,27 +75,13 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3540671915792505631==
-Content-Type: multipart/alternative; boundary="000000000000e04bfe058e6e3dd5"
+--===============0463816218017236515==
+Content-Type: multipart/alternative; boundary="000000000000fe7285058e6e7237"
 
---000000000000e04bfe058e6e3dd5
+--000000000000fe7285058e6e7237
 Content-Type: text/plain; charset="UTF-8"
 
-Rodolphe,
-
-The X310 can operate over three protocols: 1Gb Ethernet, 10Gb Ethernet, or
-PCIe. The only way I could see USB coming into play would be with something
-like a USB to RJ45 adapter to connect to your host. In this case, the X310
-and UHD would not be aware of the fact that USB is in use -- they would
-both just see an ethernet port. How are you using USB in connecting to your
-X310?
-
-Sam Reiter
-SDR Support Engineer
-Ettus Research
-
-
-On Wed, Jul 24, 2019 at 7:11 AM Rodolphe Bertolini via USRP-users <
+On Wed, Jul 24, 2019 at 8:11 AM Rodolphe Bertolini via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
 > I apologize if this is a duplicated email.
@@ -135,40 +119,28 @@ usrp-users@lists.ettus.com> wrote:
 >
 > Any thought?
 >
-> Thank you very much.
-> Best regards,
-> Rodolphe Bertolini
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
 
---000000000000e04bfe058e6e3dd5
+The X310 has a USB JTAG connection but that isn't really handled through
+UHD.
+
+What are you hoping to do over USB with UHD on an X310?
+
+Brian
+
+--000000000000fe7285058e6e7237
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Rodolphe,<div><br></div><div>The X310 can operate over thr=
-ee protocols: 1Gb Ethernet, 10Gb Ethernet, or PCIe. The only way I could se=
-e USB coming into play would be with something like a USB to RJ45 adapter t=
-o connect to your host. In this case, the X310 and UHD would not be aware o=
-f the fact that USB is in use -- they would both just see an ethernet port.=
- How are you using USB in connecting to your X310?=C2=A0</div><div><br clea=
-r=3D"all"><div><div dir=3D"ltr" class=3D"m_-1550884566252910743gmail_signat=
-ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"l=
-tr">Sam Reiter=C2=A0<div>SDR Support Engineer</div><div>Ettus Research<br><=
-/div></div></div></div></div></div><br></div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 24, 2019 at 7:11 A=
-M Rodolphe Bertolini via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.=
-ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
-v dir=3D"ltr">I apologize if this is a duplicated email.</div><div dir=3D"l=
-tr"><br></div><div dir=3D"ltr">Hello community,<div><br></div><div>uhd_usrp=
-_probe (and all the others commands) doesn&#39;t log the USB version to whi=
-ch the USRP is operating.</div><div><br></div><div>Instead it gives me the =
-following:</div><div><pre style=3D"white-space:pre-wrap">$ uhd_usrp_probe=
-=20
+<div dir=3D"ltr"><div dir=3D"ltr">On Wed, Jul 24, 2019 at 8:11 AM Rodolphe =
+Bertolini via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
+usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quot=
+e"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div =
+dir=3D"ltr">I apologize if this is a duplicated email.</div><div dir=3D"ltr=
+"><br></div><div dir=3D"ltr">Hello community,<div><br></div><div>uhd_usrp_p=
+robe (and all the others commands) doesn&#39;t log the USB version to which=
+ the USRP is operating.</div><div><br></div><div>Instead it gives me the fo=
+llowing:</div><div><pre style=3D"white-space:pre-wrap">$ uhd_usrp_probe=20
 [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.14.=
 1.0-release
 [INFO] [X300] X300 initialization sequence...
@@ -192,22 +164,15 @@ following:</div><div><pre style=3D"white-space:pre-wrap">$ uhd_usrp_probe=
 |   |       Mboard: X310
 |   |   revision: 11
 |   |   revision_compat: 7
-[...]</pre></div><div>Any thought?</div><div><br></div><div>Thank you very =
-much.</div><div>Best regards,</div><div>Rodolphe Bertolini</div></div></div=
->
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+[...]</pre></div><div>Any thought?</div></div></div></blockquote><div><br><=
+/div><div>The X310 has a USB JTAG connection but that isn&#39;t really hand=
+led through UHD.</div><div><br></div><div>What are you hoping to do over US=
+B with UHD on an X310?</div><div><br></div><div>Brian</div></div></div>
 
---000000000000e04bfe058e6e3dd5--
+--000000000000fe7285058e6e7237--
 
 
---===============3540671915792505631==
+--===============0463816218017236515==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -218,5 +183,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3540671915792505631==--
+--===============0463816218017236515==--
 
