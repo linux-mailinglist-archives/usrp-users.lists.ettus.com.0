@@ -2,50 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFCC174031
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Jul 2019 22:39:20 +0200 (CEST)
-Received: from [::1] (port=50694 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 371B57422A
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Jul 2019 01:35:16 +0200 (CEST)
+Received: from [::1] (port=45708 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hqO2f-0004pD-Gf; Wed, 24 Jul 2019 16:39:17 -0400
-Received: from sonic301-32.consmr.mail.ne1.yahoo.com ([66.163.184.201]:39645)
+	id 1hqQmw-0005ir-7r; Wed, 24 Jul 2019 19:35:14 -0400
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:35081)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <royceconnerley@yahoo.com>)
- id 1hqO1p-0004dt-4U
- for usrp-users@lists.ettus.com; Wed, 24 Jul 2019 16:38:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1564000664; bh=Mc5pezajFkBGcKfyoo3fIj/cyndnN8Wf5qNcz6Q/nHI=;
- h=From:Subject:Date:To:From:Subject;
- b=bSAfxEQTScJQFUu8FYlFh49q4xFcJE1Z0dI9rFHi5Nd617ZPN/8YWhoSbgSwK/1zXdDeVV7oMB4jv4xMkeMb1XtZ8rn/yGD+AXw6r09YescaV035O6peXqnZxLadDVcQcsr4EHfc6M/3ccuUR06oUbCiT0twYG4BMmg6cRKdnirnWKEqV/c8B9OUP3ZDvWdhyu3WlNDUx2XbYjaoWtPLtrCEvGr72cyY7H25UVgSKFUljTkzCwvBYFHfyZ/Nxm0e/U6VoTCJIUc+gTBmiy6b07oIQgJ4EGcqIcCxHoN5o0DKI7tcGymBoNzMbe15ErVJAWXZ/ICosZ6rz8XAVjjnXw==
-X-YMail-OSG: XyviZ8cVM1lab4tzo1lPvSk_NiWAUIEWqJcNztLFXEnN8XAcFpnq6ty3rmWKnEz
- SiG63hxWqVge4eYqGP5yqcR6Y0jOgitJYqFtmCgjqdtoJFM3ByjrxD8.LP1Csze6G_TjdLlT4nw1
- Tei62SRVL9rvucoXqccoJ8iR_Twq3LEfeKaL5EgVVTjylNMGVdVmZHpvYWFbQn2WrUgi4W3bmyPY
- Ov4kIn0EYwAQ3JXitWBUJ9LVLikk82B14eBSU9YxguMM01qs6MX6xYuoRsQS71_X5IUM8cPSc_KF
- iRhFOcwBaf1EdhQyUD68kgh5o2wbPSQrovDlcJAJMK0WP0EnLw3PpRql0ODAZZWobTE8R6bcbjnp
- 8_Q1nIhgcHTtIB8A60CvNypa6TFZAfFiXVQ_YNYirS9TNekSAmaqqvUoaHW5_M6fAizcwCjXKbqU
- RjpFErXfKU6ihW1_1rRjeBFPzSGM8qsm.6EKULDaX2BmcRrFL4A0UbWJxrYw_wZJ6c60IxLv4Xc9
- 4VJqbtpJxWlBic0_zwYg7YrTagIaU3DEbUHKDB4xSxPP9Rq4_JpQKMLEVEu1rDnVzuVayzIyiMP8
- ylDMpSe4gcqc7y8oePpfX767xhum_jGSrLrFrXbqASYpu3t.jXxWQ5U4LIWGajvhnyANipXTZuon
- W.y_y7ZbksXByCHdiKepb9f1dBxGFAMbZSD7JGj0a7hDX1fHsJhNcnKJdBmd9B964W1mkSoChUhf
- mQY5M0S.IX1SN6a7Rg03FIVshVEuNPAnquXn_PUR5W67sbTRAlF34RHaIq9IPmnedyIZ2qYDlVt7
- uXKWKYcPNvP74dArRW6HV2TDJCnAANeb7ggQxM4ADHADMofEy0D5mwNl6Se8pm6cdpm0dln5ywf2
- qxo4CnzZxovYJSDnAFwIl4UG6.yzeY9TkRDKkGleq836RWVZfc0pBjAsJss8ILJfUS6QguaPfhSi
- WoAEuY8mvyGb9vNJTHSvWpZFxJ7HEpjUsaB3EpUAIJZmqASaJIyoJElT8nYkUW_fUgpa6.AxjC_i
- _hyvLqdX4izxi69Qq2zs3NnUg4FD0ZpLqrhvnA31MHjyHZXKz81Ik7vf20VL1GNZ44g9PkBVXAmo
- 6A8is9N8aMevJLfW1tBAey.sYLYHnHhdotoq7cTAMLxIqAMG4.G5dneunzr3FDzeFWPfBiwo94gZ
- s.8_.2L_VQEWppu6cbzeoUL7OETLZ
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic301.consmr.mail.ne1.yahoo.com with HTTP; Wed, 24 Jul 2019 20:37:44 +0000
-Received: by smtp415.mail.ne1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
- ID 71cc2c5715ac4e902d46fec785d9a448; 
- Wed, 24 Jul 2019 20:37:43 +0000 (UTC)
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
-Message-Id: <97D6F3B6-019A-41A3-A8D6-06D32C15B528@yahoo.com>
-Date: Wed, 24 Jul 2019 15:37:40 -0500
-To: usrp-users@lists.ettus.com
-X-Mailer: Apple Mail (2.3445.104.11)
-X-Mailman-Approved-At: Wed, 24 Jul 2019 16:39:13 -0400
-Subject: [USRP-users] RFNoC Polyphase Channelizer updates
+ (Exim 4.92) (envelope-from <ejkreinar@gmail.com>) id 1hqQms-0005UO-Pa
+ for usrp-users@lists.ettus.com; Wed, 24 Jul 2019 19:35:10 -0400
+Received: by mail-ua1-f42.google.com with SMTP id j21so19147078uap.2
+ for <usrp-users@lists.ettus.com>; Wed, 24 Jul 2019 16:34:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=kPFOPnAjWXdDxSY25sMqrUzXb3KaVJJTJRMEXAZPUOQ=;
+ b=r0J1SA1WqrY3aKH5BbMUnxAWuVo2ZIaTDFbGmA+qvhHt3B+0S8WqlA/n4BT1kXA8hD
+ ryNYE4oPKbcnGk03usJUuFVwlQq7Jbi12e9ke+BHfPlku6Y9gNx7DHq1snGfnpHuJXAj
+ DHKOSsMLdB+CijVPVtLmAFPzt7llkAGcRTxgY5tH+rInF1DkHn/9P8GwFdZZyVHj347a
+ BsD0VWkfoL3CEDG4uF4EhPcBTl/kqc5QqjKhVj4ehzHhYVe8qRRdIu75WPzBvZRI5Ks1
+ e1UD/q5OPosQAaRCXs/06T9LVDo95z4ylKbDp7E7UF5B9Ag/1zQnhetRvngpbciedIUE
+ dVZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=kPFOPnAjWXdDxSY25sMqrUzXb3KaVJJTJRMEXAZPUOQ=;
+ b=NWjQk6oVwlYM2AFOmbXz88Eps9AwytlbFAvVsv3qUzZfMX2ELnRnjjO+LPH45UzwNE
+ Qs5SO06viCrnZFvm1obVvklEwICA4J31/lHQ/3yD8GZzdzPU3O9kxz+P8B1ly/6Thbfq
+ X06iLVE1PhAuDlvcFeXLOjHxbOa9EiFpB0s+TVlDmm/dHd7nIPRIoFZccw+B2EuDVFop
+ Ni2Vt4IV7S5n1sDbzCwpP4wNWI22PZn9bFSWFzmmlQHAwOC+3rrzebzUThLF0p3ZAaT7
+ rU6KpIqUvCQdjQHZC0vvkSd5u5Rjw6pmqyJWszilHvwrZ3bArzIHxlWYw+3Qn1I6/d8z
+ azOA==
+X-Gm-Message-State: APjAAAWwz2ZCDIik1m1noiMJGQ3vFCTQvpD3l5Dt1Mhy3rYBkthkt/s/
+ Y43sUP1QWshRbWqHmIVU69I8byLwVUraf5S2tqA=
+X-Google-Smtp-Source: APXvYqzUxE9oNKcm9iOMRtT0uypbIAJ+74SxEfExmOk9vunirIEHtrHIAaf07RfidXN27zv3j2WrwWsjJQejvwL1KgY=
+X-Received: by 2002:ab0:b99:: with SMTP id c25mr54567967uak.53.1564011270042; 
+ Wed, 24 Jul 2019 16:34:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <97D6F3B6-019A-41A3-A8D6-06D32C15B528@yahoo.com>
+In-Reply-To: <97D6F3B6-019A-41A3-A8D6-06D32C15B528@yahoo.com>
+Date: Wed, 24 Jul 2019 19:34:18 -0400
+Message-ID: <CADRnH20Zn3eje8HuKxLV3nJhvKBmPpDkNiGcjX2ojVN80VPdiw@mail.gmail.com>
+To: Royce Connerley <royceconnerley@yahoo.com>
+Subject: Re: [USRP-users] RFNoC Polyphase Channelizer updates
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -57,10 +57,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Royce Connerley via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Royce Connerley <royceconnerley@yahoo.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: EJ Kreinar <ejkreinar@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0104849178335262809=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,10 +74,94 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-At the 2018 GRCon, EJ Kreinar spoke about improvements to the RFNoC polyphase channelizer.  Has there been any activity on this?
+--===============0104849178335262809==
+Content-Type: multipart/alternative; boundary="0000000000002cf968058e75c0f0"
 
-Royce Connerley
+--0000000000002cf968058e75c0f0
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Royce,
+
+Phil and I have been working on the channelizer in the theseus-cores repo
+here: gitlab.com/theseus-cores/theseus-cores
+
+The master branch has a (potentially) working channelizer, at least
+according to my recent tests on the x310, as long as the network interface
+supports the desired output rate.
+
+There's also an fpga solution for channel downselection in a branch that
+Phil put together. The ball is in my court to turn the crank and merge to
+master with supporting software, but I haven't gotten much of a chance
+recently.
+
+If you're interested in testing we could definitely use some more people to
+give it a shot :D Let me know if you need a sample bitstream or if you can
+build one yourself.
+
+EJ
+
+On Wed, Jul 24, 2019, 4:39 PM Royce Connerley via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> At the 2018 GRCon, EJ Kreinar spoke about improvements to the RFNoC
+> polyphase channelizer.  Has there been any activity on this?
+>
+> Royce Connerley
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000002cf968058e75c0f0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Royce,<div dir=3D"auto"><br></div><div dir=3D"auto">Ph=
+il and I have been working on the channelizer in the theseus-cores repo her=
+e: <a href=3D"http://gitlab.com/theseus-cores/theseus-cores">gitlab.com/the=
+seus-cores/theseus-cores</a></div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">The master branch has a (potentially) working channelizer, at least ac=
+cording to my recent tests on the x310, as long as the network interface su=
+pports the desired output rate.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">There&#39;s also an fpga solution for channel downselection in a =
+branch that Phil put together. The ball is in my court to turn the crank an=
+d merge to master with supporting software, but I haven&#39;t gotten much o=
+f a chance recently.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">If you&#39;re interested in testing we could definitely use some more pe=
+ople to give it a shot :D Let me know if you need a sample bitstream or if =
+you can build one yourself.</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">EJ</div><div dir=3D"auto"></div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 24, 2019, 4:39 PM Royce Con=
+nerley via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usr=
+p-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex">At the 2018 GRCon, EJ Kreinar spoke about improvements to the RFNoC pol=
+yphase channelizer.=C2=A0 Has there been any activity on this?<br>
+<br>
+Royce Connerley<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
+ferrer">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000002cf968058e75c0f0--
+
+
+--===============0104849178335262809==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0104849178335262809==--
+
