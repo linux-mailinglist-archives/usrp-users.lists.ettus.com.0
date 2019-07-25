@@ -2,50 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 371B57422A
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Jul 2019 01:35:16 +0200 (CEST)
-Received: from [::1] (port=45708 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDDFE74E22
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Jul 2019 14:29:02 +0200 (CEST)
+Received: from [::1] (port=56644 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hqQmw-0005ir-7r; Wed, 24 Jul 2019 19:35:14 -0400
-Received: from mail-ua1-f42.google.com ([209.85.222.42]:35081)
+	id 1hqcrk-00015o-A7; Thu, 25 Jul 2019 08:29:00 -0400
+Received: from mail-ua1-f50.google.com ([209.85.222.50]:34619)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ejkreinar@gmail.com>) id 1hqQms-0005UO-Pa
- for usrp-users@lists.ettus.com; Wed, 24 Jul 2019 19:35:10 -0400
-Received: by mail-ua1-f42.google.com with SMTP id j21so19147078uap.2
- for <usrp-users@lists.ettus.com>; Wed, 24 Jul 2019 16:34:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=kPFOPnAjWXdDxSY25sMqrUzXb3KaVJJTJRMEXAZPUOQ=;
- b=r0J1SA1WqrY3aKH5BbMUnxAWuVo2ZIaTDFbGmA+qvhHt3B+0S8WqlA/n4BT1kXA8hD
- ryNYE4oPKbcnGk03usJUuFVwlQq7Jbi12e9ke+BHfPlku6Y9gNx7DHq1snGfnpHuJXAj
- DHKOSsMLdB+CijVPVtLmAFPzt7llkAGcRTxgY5tH+rInF1DkHn/9P8GwFdZZyVHj347a
- BsD0VWkfoL3CEDG4uF4EhPcBTl/kqc5QqjKhVj4ehzHhYVe8qRRdIu75WPzBvZRI5Ks1
- e1UD/q5OPosQAaRCXs/06T9LVDo95z4ylKbDp7E7UF5B9Ag/1zQnhetRvngpbciedIUE
- dVZg==
+ (Exim 4.92) (envelope-from <smullin2@nd.edu>) id 1hqcrh-0000vR-7j
+ for usrp-users@lists.ettus.com; Thu, 25 Jul 2019 08:28:57 -0400
+Received: by mail-ua1-f50.google.com with SMTP id c4so19764800uad.1
+ for <usrp-users@lists.ettus.com>; Thu, 25 Jul 2019 05:28:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=rZPx4PC1MXsHe/G0cOxLLUwkS953tvYxB8bV5spQTrc=;
+ b=NuQsOybqqnU8ruLnb0zw8UU4YXqIXmsWLlSCE08apz8nJTAfMLW1QQxQS0+Mg99rG3
+ vnlkDxcuWD2c1GMy1NGRvA7WAHxOo/qV9I72SyEcWXjdrBdx+BOl2sSmT1msg1BYpg1C
+ mZUG+qKSZU7rjvHOdcFwvQy+fEqQxMpgU1zVUi1jJnjfhh6YT7v9zhFeO6OLagShEyJP
+ mNr6SYIqxuAbN7JAz0rvhn3H6WLLhUuxwYoXksMRFsZwwGeUMkdC9Z8Lj+jYGooJDmPL
+ 8s7ARDIpo7hW/6pN9yL7FRkLdNdqWr174jQ5kSBN/lue6JERGQ8RL8qegYxYDvEtcYZB
+ ay0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=kPFOPnAjWXdDxSY25sMqrUzXb3KaVJJTJRMEXAZPUOQ=;
- b=NWjQk6oVwlYM2AFOmbXz88Eps9AwytlbFAvVsv3qUzZfMX2ELnRnjjO+LPH45UzwNE
- Qs5SO06viCrnZFvm1obVvklEwICA4J31/lHQ/3yD8GZzdzPU3O9kxz+P8B1ly/6Thbfq
- X06iLVE1PhAuDlvcFeXLOjHxbOa9EiFpB0s+TVlDmm/dHd7nIPRIoFZccw+B2EuDVFop
- Ni2Vt4IV7S5n1sDbzCwpP4wNWI22PZn9bFSWFzmmlQHAwOC+3rrzebzUThLF0p3ZAaT7
- rU6KpIqUvCQdjQHZC0vvkSd5u5Rjw6pmqyJWszilHvwrZ3bArzIHxlWYw+3Qn1I6/d8z
- azOA==
-X-Gm-Message-State: APjAAAWwz2ZCDIik1m1noiMJGQ3vFCTQvpD3l5Dt1Mhy3rYBkthkt/s/
- Y43sUP1QWshRbWqHmIVU69I8byLwVUraf5S2tqA=
-X-Google-Smtp-Source: APXvYqzUxE9oNKcm9iOMRtT0uypbIAJ+74SxEfExmOk9vunirIEHtrHIAaf07RfidXN27zv3j2WrwWsjJQejvwL1KgY=
-X-Received: by 2002:ab0:b99:: with SMTP id c25mr54567967uak.53.1564011270042; 
- Wed, 24 Jul 2019 16:34:30 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=rZPx4PC1MXsHe/G0cOxLLUwkS953tvYxB8bV5spQTrc=;
+ b=EuZZ9/rGTLiF7EX0SYThhPnUZ7FyCkK25xy0GaS+4GYgS1fgUmb8G6Qjl3HYypimrQ
+ kHv7kSPP3HHwzhtIkOoTPbpXwWpKa+NVWXj2GUcffdPNpaltYCdfEvyInrWWK7XBHYlQ
+ WO06b1iIfa8erhqCeXF1QDXGhmyFriiJnIsFV2cgJe00VUvm4w9S+byGpnMYtYBWdXms
+ ZpxpmphWDqiEBrHP3NYPJgtF+JY6FVcHw/9kMwp/NthXzkxy71MZRFxrMcJU6GhrV9Mh
+ o4+j3e9yC1PiKvxTEza7Unp3YIu3hU69pTnk0B+1WY4LxzTzNmyqWFgJALxyf7tYvFgF
+ B9ZA==
+X-Gm-Message-State: APjAAAUZoD8+/f7bz1W1T9VWZbr9cnXgV3haFHq475A2wDzd+W54ruxD
+ lIICThjxvB3HDIyi0jujLbOGYy7P+gcN9VKKsgUR7JXheb0=
+X-Google-Smtp-Source: APXvYqxe7hUnmDsq5p/oWDG/kylGDLx990QK8t46B9xfqZBiS3LcIrzqlW5niLDEoGGFA0yuFSBv+OZelpWVY11AYIg=
+X-Received: by 2002:ab0:e19:: with SMTP id g25mr4687383uak.71.1564057696144;
+ Thu, 25 Jul 2019 05:28:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <97D6F3B6-019A-41A3-A8D6-06D32C15B528@yahoo.com>
-In-Reply-To: <97D6F3B6-019A-41A3-A8D6-06D32C15B528@yahoo.com>
-Date: Wed, 24 Jul 2019 19:34:18 -0400
-Message-ID: <CADRnH20Zn3eje8HuKxLV3nJhvKBmPpDkNiGcjX2ojVN80VPdiw@mail.gmail.com>
-To: Royce Connerley <royceconnerley@yahoo.com>
-Subject: Re: [USRP-users] RFNoC Polyphase Channelizer updates
+Date: Thu, 25 Jul 2019 08:28:05 -0400
+Message-ID: <CALVKaGftm5nAJM_c4_0mPHhiuq_9GUH6u_DbgGK79uWjj1GXMA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] noc_block_threshold.v ram issue
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -57,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: EJ Kreinar <ejkreinar@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0104849178335262809=="
+From: Scott Mullin via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Scott Mullin <smullin2@nd.edu>
+Content-Type: multipart/mixed; boundary="===============1008854937205590905=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,85 +70,92 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0104849178335262809==
-Content-Type: multipart/alternative; boundary="0000000000002cf968058e75c0f0"
+--===============1008854937205590905==
+Content-Type: multipart/alternative; boundary="0000000000006341d6058e808fb7"
 
---0000000000002cf968058e75c0f0
+--0000000000006341d6058e808fb7
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Royce,
+Hello All,
 
-Phil and I have been working on the channelizer in the theseus-cores repo
-here: gitlab.com/theseus-cores/theseus-cores
+I am trying to use the threshold block on two streams of rf data by using a
+common tkeep signal to the two axi_async_stream modules. I used the
+noc_block_threshold.v code and added a generate statement to create two
+axi_wrappers and two axi_async_stream modules. Plus added some simple code
+to trigger the tkeep signal when either rf stream breaks the threshold.
+However when I try to build the image I get a block ram error (shown
+below).  I assume it has something to do with the fifo in the
+axi_async_stream module, but I am not sure?
 
-The master branch has a (potentially) working channelizer, at least
-according to my recent tests on the x310, as long as the network interface
-supports the desired output rate.
+I am building this for an X310.
 
-There's also an fpga solution for channel downselection in a branch that
-Phil put together. The ball is in my court to turn the crank and merge to
-master with supporting software, but I haven't gotten much of a chance
-recently.
+Any help would be appreciated.
 
-If you're interested in testing we could definitely use some more people to
-give it a shot :D Let me know if you need a sample bitstream or if you can
-build one yourself.
+Thank you
+Scott.
 
-EJ
+[00:05:12] Current task: Synthesis +++ Current Phase: RTL Component
+Statistics
+[00:05:12] Current task: Synthesis +++ Current Phase: RTL Hierarchical
+Component Statistics
+[00:05:13] Current task: Synthesis +++ Current Phase: Part Resource Summary
+ERROR: [Synth 8-5834] Design needs 17067 RAMB18 which is more than device
+capacity of 1590
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+[00:06:46] Current task: Synthesis +++ Current Phase: Cross Boundary and
+Area Optimization
+[00:06:47] Current task: Synthesis +++ Current Phase: Finished
+[00:06:47] Process terminated. Status: Failure
 
-On Wed, Jul 24, 2019, 4:39 PM Royce Connerley via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+========================================================
+Warnings:           814
+Critical Warnings:  31
+Errors:             2
 
-> At the 2018 GRCon, EJ Kreinar spoke about improvements to the RFNoC
-> polyphase channelizer.  Has there been any activity on this?
->
-> Royce Connerley
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+Makefile.x300.inc:106: recipe for target 'bin' failed
+make[1]: *** [bin] Error 1
+make[1]: Leaving directory
+'/home/irisheyes5/rfnoc_2/src/uhd-fpga/usrp3/top/x300'
+Makefile:112: recipe for target 'X310_RFNOC_HG' failed
+make: *** [X310_RFNOC_HG] Error 2
 
---0000000000002cf968058e75c0f0
+--0000000000006341d6058e808fb7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hi Royce,<div dir=3D"auto"><br></div><div dir=3D"auto">Ph=
-il and I have been working on the channelizer in the theseus-cores repo her=
-e: <a href=3D"http://gitlab.com/theseus-cores/theseus-cores">gitlab.com/the=
-seus-cores/theseus-cores</a></div><div dir=3D"auto"><br></div><div dir=3D"a=
-uto">The master branch has a (potentially) working channelizer, at least ac=
-cording to my recent tests on the x310, as long as the network interface su=
-pports the desired output rate.</div><div dir=3D"auto"><br></div><div dir=
-=3D"auto">There&#39;s also an fpga solution for channel downselection in a =
-branch that Phil put together. The ball is in my court to turn the crank an=
-d merge to master with supporting software, but I haven&#39;t gotten much o=
-f a chance recently.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"aut=
-o">If you&#39;re interested in testing we could definitely use some more pe=
-ople to give it a shot :D Let me know if you need a sample bitstream or if =
-you can build one yourself.</div><div dir=3D"auto"><br></div><div dir=3D"au=
-to">EJ</div><div dir=3D"auto"></div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 24, 2019, 4:39 PM Royce Con=
-nerley via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usr=
-p-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
-ex">At the 2018 GRCon, EJ Kreinar spoke about improvements to the RFNoC pol=
-yphase channelizer.=C2=A0 Has there been any activity on this?<br>
-<br>
-Royce Connerley<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+<div dir=3D"ltr"><div>Hello All,</div><div><br></div><div>I am trying to us=
+e the threshold block on two streams of rf data by using a common tkeep sig=
+nal to the two axi_async_stream modules. I used the noc_block_threshold.v c=
+ode and added a generate statement to create two axi_wrappers and two axi_a=
+sync_stream modules. Plus added some simple code to trigger the tkeep signa=
+l when either rf stream breaks the threshold.=C2=A0 However when I try to b=
+uild the image I get a block ram error (shown below).=C2=A0 I assume it has=
+ something to do with the fifo in the axi_async_stream module, but I am not=
+ sure?<br></div><div><br></div><div>I am building this for an X310.=C2=A0 <=
+br></div><div><br></div><div>Any help would be appreciated.=C2=A0 <br></div=
+><div><br></div><div>Thank you</div><div>Scott.<br></div><div><br></div><di=
+v>[00:05:12] Current task: Synthesis +++ Current Phase: RTL Component Stati=
+stics<br>[00:05:12] Current task: Synthesis +++ Current Phase: RTL Hierarch=
+ical Component Statistics<br>[00:05:13] Current task: Synthesis +++ Current=
+ Phase: Part Resource Summary<br>ERROR: [Synth 8-5834] Design needs 17067 R=
+AMB18 which is more than device capacity of 1590<br>ERROR: [Common 17-69] C=
+ommand failed: Vivado Synthesis failed<br>[00:06:46] Current task: Synthesi=
+s +++ Current Phase: Cross Boundary and Area Optimization<br>[00:06:47] Cur=
+rent task: Synthesis +++ Current Phase: Finished<br>[00:06:47] Process term=
+inated. Status: Failure<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>Warnings: =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 814<br>Critical Warnings: =C2=A031<br>Errors: =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2<br><br>Makefile.x300.inc:106: reci=
+pe for target &#39;bin&#39; failed<br>make[1]: *** [bin] Error 1<br>make[1]=
+: Leaving directory &#39;/home/irisheyes5/rfnoc_2/src/uhd-fpga/usrp3/top/x3=
+00&#39;<br>Makefile:112: recipe for target &#39;X310_RFNOC_HG&#39; failed<b=
+r>make: *** [X310_RFNOC_HG] Error 2<br></div><div><br></div></div>
 
---0000000000002cf968058e75c0f0--
+--0000000000006341d6058e808fb7--
 
 
---===============0104849178335262809==
+--===============1008854937205590905==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -163,5 +166,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0104849178335262809==--
+--===============1008854937205590905==--
 
