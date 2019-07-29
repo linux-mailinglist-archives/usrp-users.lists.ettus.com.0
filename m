@@ -2,54 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5340878BBF
-	for <lists+usrp-users@lfdr.de>; Mon, 29 Jul 2019 14:27:03 +0200 (CEST)
-Received: from [::1] (port=45234 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C01DA78EA2
+	for <lists+usrp-users@lfdr.de>; Mon, 29 Jul 2019 17:03:48 +0200 (CEST)
+Received: from [::1] (port=53528 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hs4k1-0003Oz-73; Mon, 29 Jul 2019 08:27:01 -0400
-Received: from mail-ed1-f49.google.com ([209.85.208.49]:36838)
+	id 1hs7Bh-0001Z8-6F; Mon, 29 Jul 2019 11:03:45 -0400
+Received: from mail-lj1-f170.google.com ([209.85.208.170]:44750)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bertolini.rodolphe@gmail.com>)
- id 1hs4jx-0003Km-En
- for usrp-users@lists.ettus.com; Mon, 29 Jul 2019 08:26:57 -0400
-Received: by mail-ed1-f49.google.com with SMTP id k21so59163381edq.3
- for <usrp-users@lists.ettus.com>; Mon, 29 Jul 2019 05:26:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.92) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1hs7Bd-0001UF-DY
+ for usrp-users@lists.ettus.com; Mon, 29 Jul 2019 11:03:41 -0400
+Received: by mail-lj1-f170.google.com with SMTP id k18so58885900ljc.11
+ for <usrp-users@lists.ettus.com>; Mon, 29 Jul 2019 08:03:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+XyS0MuqWqPwQ5/kDoSld6/Mjja14POqZH+hAHKHAF0=;
- b=SRcCodrS5eESd5/0czwckN6V87T0jM1e4jzgvaUQdzjoJOBt1pmq/1kSHiglTzSRnl
- 5N2fdiOK0HXa390CFeOX+djnZUeY4r1PjKWsHzXc+2ooTnD3i0xq/I3o9YVCSMAvlFTl
- AepdB+7xdGwAGac62ZaC6CqPG6OhzOKau2WdNeVWvY756oH0AZ9QPH8aW5TM3bovV94i
- nDUxhnMuVCHmDIgDkY3WYolM9KpTrLMPghIahzZxkhS1ce+M2JouhRf0A39kDtAb2DeA
- EFfnpJ2YyDcCA5CFZmesLgNSbagzVasXKeB24nJSxAE18iZfTY9ibvVZlHm/0AUFgsre
- IfEw==
+ :cc; bh=XFhezFvJm09Fb/YEE7yvSOSU6ZkeJjx2fQ+QQ9wB+/4=;
+ b=FPeU4hY6BkCW8YQDmKlMrB+12keiNnwh6Ne2cqnmI4T2DotW7uqTK9HjBPVwSj+jyo
+ EDivDMpYgKQ7vdyYz5MNxlf/5Sy3Ek6JYFrT/jWzGnVStgo69glg7cXZqM5FPsi2gq+5
+ y0Q9y7loTQjyAwf7wUsYBRtWn8yBNQkDzB5I7QNhh4VfZyQuppVDnvCSUwo9fwCdXcAh
+ NM3hTyZ9QmnwDTD15eWtXPwENazlBbTWWmU1Cb/s2AbSXJ0L2f5ZSgdFfdGnj5S/oJJs
+ 936L2BB5MpgaUbqA4o84rhVQeI+yOA2io1o7PKSz8wV+BjbSkW2o6YBTUkf+C5TkPV8z
+ YCBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=+XyS0MuqWqPwQ5/kDoSld6/Mjja14POqZH+hAHKHAF0=;
- b=qJgcEKBW4OtGX5ZXsfZzY8CRWjrIH+mD8mJFxn3XnubecuKr6Dp3VLA/2b9D0x2Mf/
- 9LBFPKfMLjVAalcjbN8bpc1qd03ExSkI4iU4+mrARQjx3oeMeUslUldMS/QaFbfAMQLd
- qPJjk8qQtgAwzkjY/wdMHKS1Stf2kMAI7UC5KHtL/yQwh3cMrX4nGHAIRb3B4CDwT6GJ
- 5vOtXqbJdHiohv3Kg6hNdHCEZPya8HQVS+7QDumns/x1siiz1TNuv3G+rVJs+sSv3ZGo
- sAVNcVVijMJndHkiGVkvMbChRFG5+gnyFrZ8LSzQxXz5IWwMgCvDXK3gJZSXGd2nqJr9
- 9Ulg==
-X-Gm-Message-State: APjAAAU2OGGCjbGfA3d1TWoMTDwHpft3YPqDx7eobAyuu44s+tzjxNYB
- Q/OM9tcnjSK7DfOqbeiDau0AjcIJ3qsUyu2WX+UeYQ==
-X-Google-Smtp-Source: APXvYqyCWhEFr6VcgTsiPoIDx1Cf1Da8EwfsvlJkdds6r1Ru08mp5NaAceSgXp7DmTaRk8OMIQ2sFGbdQyhaBrionOk=
-X-Received: by 2002:a17:906:4e8f:: with SMTP id
- v15mr82995951eju.47.1564403176386; 
- Mon, 29 Jul 2019 05:26:16 -0700 (PDT)
+ bh=XFhezFvJm09Fb/YEE7yvSOSU6ZkeJjx2fQ+QQ9wB+/4=;
+ b=Ag6dy0KrURI004jUeW0rEoFKuMZBsNeH285uR/kp2IL4GfScrn1Y3IpBf3YTOJMx2+
+ ZzlU5OapjilEEXeuzRd0oGZ/eU9AFYz7nbUZH34L11+D6DmhZ8XENDwjlfLoiCvbEtwM
+ R11svJJhlyalHmzp7yhNkV7tV/g5EL7ATv9fbon6BAc4PLoyFukECZX6Delm5Warr4KA
+ sg1VfdZpHRlK8esUgiGvPQROy2rc9fECvGUwV8OuBejkU5PEny9t1KsneUSKB6ruiv15
+ PHLCTpgEsV3FC9Uc57M4coBn6vGLwF//6B1UDwSiAJFos4brUrTtLQIpaHAaMAd+zv5L
+ Z0Ew==
+X-Gm-Message-State: APjAAAUKNb9zuwgqwieSthqGzzR5PUuoz7sfwgnsP7GNNy8/1PUl9z9J
+ ss6bK2mvz7dBs3qkt6FELCs1VFNBTxbJgU5G0KnYLkQA
+X-Google-Smtp-Source: APXvYqwbC4Qa4FmrCs6AuYbjpmFm9gVJE6y19GXfeG1LJbZoIf8IBfwyrhnuH+Yu/xZJdRGyEG+4+5yyd/XRbZo8h+o=
+X-Received: by 2002:a2e:7d0c:: with SMTP id y12mr8483082ljc.36.1564412580200; 
+ Mon, 29 Jul 2019 08:03:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAKaLowRdx_s9nF2bg+s4=iTmfREBvKfwUV0pD3mqF-Y219r0=w@mail.gmail.com>
- <CAEXYVK6WSc77QJACE+kxjAFVzwk3oPd5fCWcWZ1aJTcMZ5VWbA@mail.gmail.com>
-In-Reply-To: <CAEXYVK6WSc77QJACE+kxjAFVzwk3oPd5fCWcWZ1aJTcMZ5VWbA@mail.gmail.com>
-Date: Mon, 29 Jul 2019 14:26:05 +0200
-Message-ID: <CAKaLowRDOFGUQnYsRbnunSFdnEk8XwZASZ_XPaCw+x0XuK41qQ@mail.gmail.com>
-To: Brian Padalino <bpadalino@gmail.com>
-Subject: Re: [USRP-users] UHD not showing USB version through which my X310
- is connected
+References: <CALVKaGftm5nAJM_c4_0mPHhiuq_9GUH6u_DbgGK79uWjj1GXMA@mail.gmail.com>
+ <CAL7q81vF0XRSAkOjms_zxB7ZDT7r=xhwzB3NoQe-Una40fOfsg@mail.gmail.com>
+In-Reply-To: <CAL7q81vF0XRSAkOjms_zxB7ZDT7r=xhwzB3NoQe-Una40fOfsg@mail.gmail.com>
+Date: Tue, 30 Jul 2019 00:02:24 +0900
+Message-ID: <CAL7q81tSj3JxHT_P5WdGsAASEMEoK+HXRkhaY-W2hvpAvobkNA@mail.gmail.com>
+To: Scott Mullin <smullin2@nd.edu>
+Subject: Re: [USRP-users] noc_block_threshold.v ram issue
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -61,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rodolphe Bertolini via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rodolphe Bertolini <bertolini.rodolphe@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0833505559156021781=="
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0819596218066092287=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,145 +77,141 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0833505559156021781==
-Content-Type: multipart/alternative; boundary="0000000000009d34a7058ed0ff32"
+--===============0819596218066092287==
+Content-Type: multipart/alternative; boundary="0000000000002011d1058ed3304f"
 
---0000000000009d34a7058ed0ff32
+--0000000000002011d1058ed3304f
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Brian, Sam,
+Scott and I determined off list that the STR_SINK_FIFOSIZE parameter on
+noc_shell was misconfigured.
 
-Thank you for your replies.
-Indeed I am using  a USB =E2=87=94 RJ45 dongle. Its "USB 3.0" LED blinks bu=
-t I
-wasn't sure if I could trust this information or not. If X310 doesn't know
-what is over the RJ45 connection (which totally makes sense once I think
-about it ...), then I have no other choice than trusting it.
+On Thu, Jul 25, 2019 at 9:32 PM Jonathon Pendlum <jonathon.pendlum@ettus.com>
+wrote:
 
-As for why am I doing this : my workstation has only one network card, its
-RJ45 port is already used and I cannot get rid of this connection. I am
-working on OpenAirInterface that interacts with USRP through UHD.
-
-Regards,
-Rodolphe Bertolini
-
-Le mer. 24 juil. 2019 =C3=A0 16:51, Brian Padalino <bpadalino@gmail.com> a
-=C3=A9crit :
-
-> On Wed, Jul 24, 2019 at 8:11 AM Rodolphe Bertolini via USRP-users <
+> Hey Scott,
+>
+> Have you tried building an image with an unmodified noc_block_threshold.v?
+> Do you get the same BRAM usage?
+>
+> Jonathon
+>
+> On Thu, Jul 25, 2019 at 9:28 PM Scott Mullin via USRP-users <
 > usrp-users@lists.ettus.com> wrote:
 >
->> I apologize if this is a duplicated email.
+>> Hello All,
 >>
->> Hello community,
+>> I am trying to use the threshold block on two streams of rf data by using
+>> a common tkeep signal to the two axi_async_stream modules. I used the
+>> noc_block_threshold.v code and added a generate statement to create two
+>> axi_wrappers and two axi_async_stream modules. Plus added some simple code
+>> to trigger the tkeep signal when either rf stream breaks the threshold.
+>> However when I try to build the image I get a block ram error (shown
+>> below).  I assume it has something to do with the fifo in the
+>> axi_async_stream module, but I am not sure?
 >>
->> uhd_usrp_probe (and all the others commands) doesn't log the USB version
->> to which the USRP is operating.
+>> I am building this for an X310.
 >>
->> Instead it gives me the following:
+>> Any help would be appreciated.
 >>
->> $ uhd_usrp_probe
->> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.=
-14.1.0-release
->> [INFO] [X300] X300 initialization sequence...
->> [INFO] [X300] Maximum frame size: 1472 bytes.
->> [INFO] [X300] Radio 1x clock: 200 MHz
->> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D00000000=
-000)
->> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1306 MB/s)
->> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1306 MB/s)
->> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD10000000000=
-1)
->> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD10000000000=
-1)
->> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
->> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
->> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
->> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
->>   _____________________________________________________
->>  /
->> |       Device: X-Series Device
->> |     _____________________________________________________
->> |    /
->> |   |       Mboard: X310
->> |   |   revision: 11
->> |   |   revision_compat: 7
->> [...]
+>> Thank you
+>> Scott.
 >>
->> Any thought?
+>> [00:05:12] Current task: Synthesis +++ Current Phase: RTL Component
+>> Statistics
+>> [00:05:12] Current task: Synthesis +++ Current Phase: RTL Hierarchical
+>> Component Statistics
+>> [00:05:13] Current task: Synthesis +++ Current Phase: Part Resource
+>> Summary
+>> ERROR: [Synth 8-5834] Design needs 17067 RAMB18 which is more than device
+>> capacity of 1590
+>> ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+>> [00:06:46] Current task: Synthesis +++ Current Phase: Cross Boundary and
+>> Area Optimization
+>> [00:06:47] Current task: Synthesis +++ Current Phase: Finished
+>> [00:06:47] Process terminated. Status: Failure
 >>
->
-> The X310 has a USB JTAG connection but that isn't really handled through
-> UHD.
->
-> What are you hoping to do over USB with UHD on an X310?
->
-> Brian
+>> ========================================================
+>> Warnings:           814
+>> Critical Warnings:  31
+>> Errors:             2
+>>
+>> Makefile.x300.inc:106: recipe for target 'bin' failed
+>> make[1]: *** [bin] Error 1
+>> make[1]: Leaving directory
+>> '/home/irisheyes5/rfnoc_2/src/uhd-fpga/usrp3/top/x300'
+>> Makefile:112: recipe for target 'X310_RFNOC_HG' failed
+>> make: *** [X310_RFNOC_HG] Error 2
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 
---0000000000009d34a7058ed0ff32
+--0000000000002011d1058ed3304f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Brian, Sam,<div><br></div><div>Thank you for your replies.=
-</div><div>Indeed I am using=C2=A0 a USB =E2=87=94 RJ45 dongle. Its &quot;U=
-SB 3.0&quot; LED blinks but I wasn&#39;t sure if I could trust this informa=
-tion or not. If X310 doesn&#39;t know what is over the RJ45 connection (whi=
-ch totally makes sense once I think about it ...), then I have no other cho=
-ice than trusting it.</div><div><br></div><div>As for why am I doing this :=
- my workstation has only one network card, its RJ45 port is already used an=
-d I cannot get rid of this connection. I am working on OpenAirInterface tha=
-t interacts with USRP through UHD.</div><div><br></div><div>Regards,</div><=
-div>Rodolphe Bertolini</div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">Le=C2=A0mer. 24 juil. 2019 =C3=A0=C2=A016:51,=
- Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com">bpadalino@gmail.=
-com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Wed, Jul 24, 2019 at 8=
-:11 AM Rodolphe Bertolini via USRP-users &lt;<a href=3D"mailto:usrp-users@l=
-ists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:=
-<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">I apologize if this is a dupl=
-icated email.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Hello commun=
-ity,<div><br></div><div>uhd_usrp_probe (and all the others commands) doesn&=
-#39;t log the USB version to which the USRP is operating.</div><div><br></d=
-iv><div>Instead it gives me the following:</div><div><pre style=3D"white-sp=
-ace:pre-wrap">$ uhd_usrp_probe=20
-[INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.14.=
-1.0-release
-[INFO] [X300] X300 initialization sequence...
-[INFO] [X300] Maximum frame size: 1472 bytes.
-[INFO] [X300] Radio 1x clock: 200 MHz
-[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D00000000000=
-)
-[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1306 MB/s)
-[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1306 MB/s)
-[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
-[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
-[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
-[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
-[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
-  _____________________________________________________
- /
-|       Device: X-Series Device
-|     _____________________________________________________
-|    /
-|   |       Mboard: X310
-|   |   revision: 11
-|   |   revision_compat: 7
-[...]</pre></div><div>Any thought?</div></div></div></blockquote><div><br><=
-/div><div>The X310 has a USB JTAG connection but that isn&#39;t really hand=
-led through UHD.</div><div><br></div><div>What are you hoping to do over US=
-B with UHD on an X310?</div><div><br></div><div>Brian</div></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr">Scott and I determined off list that the =
+STR_SINK_FIFOSIZE parameter on noc_shell was misconfigured.</div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 25, =
+2019 at 9:32 PM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ett=
+us.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hey Sc=
+ott,<div><br></div><div>Have you tried building an image with an unmodified=
+ noc_block_threshold.v? Do you get the same BRAM usage?</div><div><br></div=
+><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Thu, Jul 25, 2019 at 9:28 PM Scott Mullin via USRP-u=
+sers &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">us=
+rp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello All,</div><div><br></di=
+v><div>I am trying to use the threshold block on two streams of rf data by =
+using a common tkeep signal to the two axi_async_stream modules. I used the=
+ noc_block_threshold.v code and added a generate statement to create two ax=
+i_wrappers and two axi_async_stream modules. Plus added some simple code to=
+ trigger the tkeep signal when either rf stream breaks the threshold.=C2=A0=
+ However when I try to build the image I get a block ram error (shown below=
+).=C2=A0 I assume it has something to do with the fifo in the axi_async_str=
+eam module, but I am not sure?<br></div><div><br></div><div>I am building t=
+his for an X310.=C2=A0 <br></div><div><br></div><div>Any help would be appr=
+eciated.=C2=A0 <br></div><div><br></div><div>Thank you</div><div>Scott.<br>=
+</div><div><br></div><div>[00:05:12] Current task: Synthesis +++ Current Ph=
+ase: RTL Component Statistics<br>[00:05:12] Current task: Synthesis +++ Cur=
+rent Phase: RTL Hierarchical Component Statistics<br>[00:05:13] Current tas=
+k: Synthesis +++ Current Phase: Part Resource Summary<br>ERROR: [Synth 8-58=
+34] Design needs 17067 RAMB18 which is more than device capacity of 1590<br=
+>ERROR: [Common 17-69] Command failed: Vivado Synthesis failed<br>[00:06:46=
+] Current task: Synthesis +++ Current Phase: Cross Boundary and Area Optimi=
+zation<br>[00:06:47] Current task: Synthesis +++ Current Phase: Finished<br=
+>[00:06:47] Process terminated. Status: Failure<br><br>=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+<br>Warnings: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 814<br>Critical Warnings: =
+=C2=A031<br>Errors: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2<br><br>Make=
+file.x300.inc:106: recipe for target &#39;bin&#39; failed<br>make[1]: *** [=
+bin] Error 1<br>make[1]: Leaving directory &#39;/home/irisheyes5/rfnoc_2/sr=
+c/uhd-fpga/usrp3/top/x300&#39;<br>Makefile:112: recipe for target &#39;X310=
+_RFNOC_HG&#39; failed<br>make: *** [X310_RFNOC_HG] Error 2<br></div><div><b=
+r></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
+</div>
 
---0000000000009d34a7058ed0ff32--
+--0000000000002011d1058ed3304f--
 
 
---===============0833505559156021781==
+--===============0819596218066092287==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -227,5 +222,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0833505559156021781==--
+--===============0819596218066092287==--
 
