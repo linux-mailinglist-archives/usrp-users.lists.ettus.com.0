@@ -2,53 +2,101 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08BA79C54
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Jul 2019 00:16:43 +0200 (CEST)
-Received: from [::1] (port=46100 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DBAD79D95
+	for <lists+usrp-users@lfdr.de>; Tue, 30 Jul 2019 02:49:38 +0200 (CEST)
+Received: from [::1] (port=41724 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hsDwe-0001TQ-GH; Mon, 29 Jul 2019 18:16:40 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:44307)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bill1310272059@gmail.com>)
- id 1hsDwb-0001J7-3C
- for usrp-users@lists.ettus.com; Mon, 29 Jul 2019 18:16:37 -0400
-Received: by mail-io1-f54.google.com with SMTP id s7so123445959iob.11
- for <usrp-users@lists.ettus.com>; Mon, 29 Jul 2019 15:16:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=3wFIIG98iKayJUgoD3mrXfXm+V8yZL3jSOlzDN1movs=;
- b=uJv7dMzjHQ7N7fYzLaUoVeyQmtFECgCVR9m5usxYuoLb7JYHxJy054d8YqAWQPRXOp
- 5PWRSN2ouVvRzbyZ0XDbgvL2NL4XiK/HpW6Jz4IEJwhPA19MOvGyBph4AY062p3DA5LW
- Pyun4DN+PheoQX3AEde7SMMMmJ/W02N12zoD0HlFqt89yLk9YIbeQrrxMXjOrEm7TBe9
- /7MdJNsNHADad7VoHiZy8+hWIDeS/r6kBmP7m4TaiIXuD8d59pQ6CnszPweNedp4zsoU
- UppIWy7jxNdDjrA1i3u+DyuRPqL5w9CbNHRH74aXx+If346aQCUIRtGbzH6hOiU1pq4R
- VDNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=3wFIIG98iKayJUgoD3mrXfXm+V8yZL3jSOlzDN1movs=;
- b=KJcwO00L9nxGyyMSrFDGndrYDeePlJRcSJ9Yn0x1V03v5wr8dbUYfHkl4O22xRZUUT
- AGnjTSAsJOPO/WZ4ynqTtekZmPkXkdy1a5jdSvFAj7Lkim+Ij2SISNk/KwTU2i02uVQZ
- CgGy1LqlVdrb7RYwIVwjoJbSOfRKgcIOQtpBdQh+ZLCfkkPzp9mmOY3yCJUi9RyqWqid
- QZMlADZQxl5p7g1NH1EkS5JCifBe3SpVWEu9oIvc+6uHOocgZW1zc8sk1NvtCcElCIrZ
- 4RU6Wqsm43+XzPoz+d15fa0mxkdvOaRJLw2iwMKz3aH1m76uLLJKFy9pvuFswdcBXhoB
- WM9Q==
-X-Gm-Message-State: APjAAAXMzzVyuRvBlr7VwjhnsjDZT679ZCl4+ju0yJ+G9JCzPm9KUp7U
- zuZ1UmpT2flZ91gwbYXSnn+IcSRWqAjXJN+NZ/o=
-X-Google-Smtp-Source: APXvYqzWJJiCya3qNnBJbhicqNJbsiomgMsnVGUOwpxgbjz/OYdx4F+aTcUKNHlxGiQu0H3DuR+24FceAVrgtD0SSIA=
-X-Received: by 2002:a5e:8f42:: with SMTP id x2mr17179477iop.35.1564438556241; 
- Mon, 29 Jul 2019 15:15:56 -0700 (PDT)
+	id 1hsGKe-0001aw-Ic; Mon, 29 Jul 2019 20:49:36 -0400
+Received: from mail-oln040092254087.outbound.protection.outlook.com
+ ([40.92.254.87]:64832 helo=APC01-PU1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+ (Exim 4.92) (envelope-from <retina999@hotmail.com>)
+ id 1hsGKa-0001SO-96
+ for usrp-users@lists.ettus.com; Mon, 29 Jul 2019 20:49:32 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B1j1lfB9uvX4Pi4euqPNIbb9j9PfXjLzqTE8lOIImyT1ibfa0ztFr8sE4cTiGqrYjEquVMlP9tKjMy2ecIPCvEkEOzn8bO1TRWUJfbjXDNmz/f8gmahskN+1AlsFzMh4rmozU9LBKQGr2Lf3pftbzkOMc81yG0PL1hayLha41zttZNHzhwfebYFfcdKIhFCeYAEo231RfQn9WFV3wcVOmDFtB59yP/RE3n4ckFjReqstZ16rwA9PaHKEPbBoTcCTr3gxcr8K1wyHtDE89gC31PBouua5Vn0qruaKLPsrro5b9S2Q7hI4wWp7neDv1MiJ7HM1X2SgITibr7dd8KmAIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gao6cNFaDy9VucNrgWNJGdNgeuTz+szWlvgZ/AwJFlw=;
+ b=SWzna9jqG858jhEBiPxkR/OiIpwKEC14Gt7hSa2VhCFb+0p64+dU0h6pEBNCR2kr5efBLSyiT9K7f/qYL8pJHVbNJeLGqhNCljxH0bsREx+NYJsb0NZtMkaHMYwnq6x76BQFe7aIYWkN27J1smLYXhmCugYo/Y5c5NnuJo5L6aGSmTXkyZw1joZbssDnp4MLIeH0Qp6Q0eK+v1ASPVNgqbM+KQA4TJ2FAdWDS6RDOCYbzb4NqjbZLFzWeE3j2PbTY1Zm2/rYgExJv3vsdJp7wr0l99mGactPePT5UbwyAbPo8EsqaTjPsoyYHyvOL3LuyhJGCsUmrjpXWlj+kSxAfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com
+ 1;spf=none;dmarc=none;dkim=none;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gao6cNFaDy9VucNrgWNJGdNgeuTz+szWlvgZ/AwJFlw=;
+ b=onuSAHLnuIx833UzKGNpDx6MEuT14yhsGXjpfRTbENTQeYXRTzoHVvYzPC7OYLtRFWoAsaCPxYfBtSPwjNVaCeoQvdv70W9VrJLjB24VWjTjOQPG26GWge8H4Ozm4lBP1t8fStOUX619N4O7pqzFNRjNHhre0OghpZ0jGcJF8hlOgv+t8wq30oJko4I+NZl1UwM+ByHekNw/4fHJCAXQ4C/tJOnGh3IqtNfUloJ70GqhBzWhPUzvtS0c57GJGk7EgVhwszlsQ8EFzZHTCltrAXrWiicsKExAWG58L66YduAWVti0PhBN9so/u68qIdy3i26s8zLvccZPQ/EYK4ZzcA==
+Received: from PU1APC01FT064.eop-APC01.prod.protection.outlook.com
+ (10.152.252.59) by PU1APC01HT226.eop-APC01.prod.protection.outlook.com
+ (10.152.252.164) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2115.10; Tue, 30 Jul
+ 2019 00:48:48 +0000
+Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com (10.152.252.56) by
+ PU1APC01FT064.mail.protection.outlook.com (10.152.253.70) with
+ Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2115.10 via Frontend Transport; Tue, 30 Jul 2019 00:48:48 +0000
+Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com
+ ([fe80::e41a:f703:68f5:d689]) by HK0PR01MB2835.apcprd01.prod.exchangelabs.com
+ ([fe80::e41a:f703:68f5:d689%4]) with mapi id 15.20.2115.005; Tue, 30 Jul 2019
+ 00:48:47 +0000
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Thread-Topic: =?utf-8?B?562U5aSNOiDnrZTlpI06IFtVU1JQLXVzZXJzXSDnrZTlpI06IE4zMTAgIkJh?=
+ =?utf-8?Q?d_CHDR_or_packet_fragment"_Problem?=
+Thread-Index: AQHVQyMblaTiwqzOek6B+++NQTabj6bbwhAAgAAUSACAADiygIABFrkAgACLawCAASQ7AIAAUq8ugAADnoCAAy8XAA==
+Date: Tue, 30 Jul 2019 00:48:47 +0000
+Message-ID: <HK0PR01MB2835B708C9240442B8368BC5F3DC0@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
+References: <HK0PR01MB2835921DB0A5915C119C4BE5F3CB0@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
+ <HK0PR01MB28356667C6C50BC7C37C7153F3C70@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
+ <06CA772E-8BE6-4BFF-880B-30B7F97492B9@gmail.com>
+ <HK0PR01MB28358F40DF973B33B3EC4A1FF3C60@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
+ <B93D0C94-7692-4C77-994D-27ADFD22DBB5@gmail.com>
+ <CANf970bQb8vKkrJr8Kruc6YNf_y9VAfUZ6AUwjacZ0z6okH-3w@mail.gmail.com>
+ <5D3A0B4E.6030907@gmail.com>
+ <CANf970ZTcEFYX1Y5BaDZ8-mwy_rpWe7C_SZ68ja+Gjz6-ihrPg@mail.gmail.com>
+ <HK0PR01MB2835D5C46B11D91D91B0F229F3C00@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
+ <CANf970ZY3ExaXG5Zdyp6ZtWx7MAEz+aF5OZWfO0Df6=1=Hu3Hg@mail.gmail.com>
+ <HK0PR01MB2835C2119CD9404D6F795A51F3C30@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
+ <0B791A6B-9D5F-456A-8A91-4266C68DD382@gmail.com>
+ <HK0PR01MB283554F9A218C1B013C40C47F3C30@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
+ <5D3CE82D.9070307@gmail.com>
+In-Reply-To: <5D3CE82D.9070307@gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: HK0PR03CA0041.apcprd03.prod.outlook.com
+ (2603:1096:203:2f::29) To HK0PR01MB2835.apcprd01.prod.exchangelabs.com
+ (2603:1096:203:96::18)
+x-incomingtopheadermarker: OriginalChecksum:09CDD01780748E5D467846305CF844050C4A6E42914B40A2733035BD663DA688;
+ UpperCasedChecksum:6EF590A3D8A021F1F0A64267646C2B47C4A57A9D880BE638478C0AECC566D488;
+ SizeAsReceived:8594; Count:49
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [jfMTQgr5swmNN+SG8Rlf+vlzdGN8eigS]
+x-microsoft-original-message-id: <e5c58aa3-79e1-b88c-e67b-edbd9717798f@hotmail.com>
+x-ms-publictraffictype: Email
+x-incomingheadercount: 49
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
+ SRVR:PU1APC01HT226; 
+x-ms-traffictypediagnostic: PU1APC01HT226:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-message-info: TdW4Q58oyPiWxiAjZDnA+nlc0Aph6C5HvYYUZSKXHgEFlTksn0ogRELCqhR4SeIjC02BVGVmSUZH7PlXhfSg/AyeMH7+G87kz23td1VE+4pa2QDzx5Hg7Xp3JNwi6L1hS8EO+i3zQtoCONOuoERR9dyRSvCQSbBEPgZJG33pR1HR09cMhAcHubrdIbAQoGd1
 MIME-Version: 1.0
-References: <CACBa4aPHyB0Mu6aYc7o7eKNfKusJRL4heBWqF7xPkOB6tjFpmg@mail.gmail.com>
- <4367367d801ddc6792b7c0cc90a89db0ccc6987e.camel@ettus.com>
-In-Reply-To: <4367367d801ddc6792b7c0cc90a89db0ccc6987e.camel@ettus.com>
-Date: Mon, 29 Jul 2019 18:15:45 -0400
-Message-ID: <CACBa4aMEdOnR-+MypCudt-O6M6HYGaFj18dxeYzuD-H_gbaqpQ@mail.gmail.com>
-To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-Content-Type: multipart/mixed; boundary="0000000000006b4ec8058ed93c6a"
-Subject: Re: [USRP-users] Help with GPS signal acquisition using USRP N210
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1e297e4-fc5a-4bd7-0bd2-08d71487adc1
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2019 00:48:47.7917 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT226
+Subject: Re: [USRP-users] 
+ =?utf-8?b?562U5aSNOiDnrZTlpI06ICDnrZTlpI06IE4zMTAg?=
+ =?utf-8?q?=22Bad_CHDR_or_packet_fragment=22_Problem?=
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -60,9 +108,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Xu, Zhao via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Xu, Zhao" <ZhaoXu9807@gmail.com>
-Cc: usrp-users@lists.ettus.com
+From: =?utf-8?b?5rGkIOmjniB2aWEgVVNSUC11c2Vycw==?= <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?B?5rGkIOmjng==?= <retina999@hotmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7458742852222757118=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,992 +125,842 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---0000000000006b4ec8058ed93c6a
-Content-Type: multipart/alternative; boundary="0000000000006b4ec5058ed93c68"
+--===============7458742852222757118==
+Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_004_HK0PR01MB2835B708C9240442B8368BC5F3DC0HK0PR01MB2835apcp_";
+	type="multipart/alternative"
 
---0000000000006b4ec5058ed93c68
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_004_HK0PR01MB2835B708C9240442B8368BC5F3DC0HK0PR01MB2835apcp_
+Content-Type: multipart/alternative;
+	boundary="_000_HK0PR01MB2835B708C9240442B8368BC5F3DC0HK0PR01MB2835apcp_"
 
-Dear Marcus,
-
-Thank you very much for your reply!
-
-*I agree with you but my situation is a little different because my
-receiver (USRP N210) can't receive any data (even noise) and can't save
-file when I press q command. To be specific, every log of my experiment
-ends with warnings that it failed to save data. *
-
-Here is a 2-minute log for your reference:
-
->
-> Log file created at: 2019/07/27 19:26:15
-> Running on machine: yilin-Precision-3530
-> Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
-> I0727 19:26:15.615741 17918 gnss_block_factory.cc:195] Getting
-> SignalSource with implementation UHD_Signal_Source
-> I0727 19:26:16.950304 17918 uhd_signal_source.cc:164] Sampling Rate for
-> the USRP device: 4000000.000000 [sps]...
-> I0727 19:26:16.950991 17918 uhd_signal_source.cc:174] Actual USRP center
-> freq. set to: 1575420000.010133 [Hz]...
-> I0727 19:26:16.951119 17918 uhd_signal_source.cc:178] PLL Frequency tune
-> error 0.010133 [Hz]...
-> I0727 19:26:16.951756 17918 uhd_signal_source.cc:183] Actual daughterboar=
-d
-> gain set to: 15.000000 dB...
-> I0727 19:26:16.952322 17918 gnss_block_factory.cc:241] Getting
-> SignalConditioner with DataTypeAdapter implementation: Pass_Through,
-> InputFilter implementation: Fir_Filter, and Resampler implementation:
-> Pass_Through
-> I0727 19:26:16.953771 17918 gnss_block_factory.cc:271] Getting Observable=
-s
-> with implementation Hybrid_Observables
-> I0727 19:26:16.954036 17918 gnss_block_factory.cc:299] Getting PVT with
-> implementation RTKLIB_PVT
-> I0727 19:26:16.958174 17918 gnss_block_factory.cc:951] Getting 8 GPS L1
-> C/A channels
-> I0727 19:26:16.958238 17918 gnss_block_factory.cc:323] Instantiating
-> Channel 0 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition,
-> Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder
-> implementation: GPS_L1_CA_Telemetry_Decoder
-> I0727 19:26:16.970176 17918 dll_pll_veml_tracking.cc:1526] Tracking
-> Channel set to 0
-> I0727 19:26:16.974195 17918 gnss_block_factory.cc:323] Instantiating
-> Channel 1 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition,
-> Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder
-> implementation: GPS_L1_CA_Telemetry_Decoder
-> I0727 19:26:16.995465 17918 dll_pll_veml_tracking.cc:1526] Tracking
-> Channel set to 1
-> I0727 19:26:16.998857 17918 gnss_block_factory.cc:323] Instantiating
-> Channel 2 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition,
-> Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder
-> implementation: GPS_L1_CA_Telemetry_Decoder
-> I0727 19:26:17.007000 17918 dll_pll_veml_tracking.cc:1526] Tracking
-> Channel set to 2
-> I0727 19:26:17.009788 17918 gnss_block_factory.cc:323] Instantiating
-> Channel 3 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition,
-> Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder
-> implementation: GPS_L1_CA_Telemetry_Decoder
-> I0727 19:26:17.014974 17918 dll_pll_veml_tracking.cc:1526] Tracking
-> Channel set to 3
-> I0727 19:26:17.016788 17918 gnss_block_factory.cc:323] Instantiating
-> Channel 4 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition,
-> Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder
-> implementation: GPS_L1_CA_Telemetry_Decoder
-> I0727 19:26:17.020576 17918 dll_pll_veml_tracking.cc:1526] Tracking
-> Channel set to 4
-> I0727 19:26:17.022069 17918 gnss_block_factory.cc:323] Instantiating
-> Channel 5 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition,
-> Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder
-> implementation: GPS_L1_CA_Telemetry_Decoder
-> I0727 19:26:17.025209 17918 dll_pll_veml_tracking.cc:1526] Tracking
-> Channel set to 5
-> I0727 19:26:17.026458 17918 gnss_block_factory.cc:323] Instantiating
-> Channel 6 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition,
-> Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder
-> implementation: GPS_L1_CA_Telemetry_Decoder
-> I0727 19:26:17.029266 17918 dll_pll_veml_tracking.cc:1526] Tracking
-> Channel set to 6
-> I0727 19:26:17.030339 17918 gnss_block_factory.cc:323] Instantiating
-> Channel 7 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition,
-> Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder
-> implementation: GPS_L1_CA_Telemetry_Decoder
-> I0727 19:26:17.032866 17918 dll_pll_veml_tracking.cc:1526] Tracking
-> Channel set to 7
-> I0727 19:26:17.033880 17918 gnss_block_factory.cc:981] Getting 0 GPS L2C
-> (M) channels
-> I0727 19:26:17.033887 17918 gnss_block_factory.cc:1010] Getting 0 GPS L5
-> channels
-> I0727 19:26:17.033890 17918 gnss_block_factory.cc:1039] Getting 0 GALILEO
-> E1 B (I/NAV OS) channels
-> I0727 19:26:17.033893 17918 gnss_block_factory.cc:1068] Getting 0 GALILEO
-> E5a I (F/NAV OS) channels
-> I0727 19:26:17.033896 17918 gnss_block_factory.cc:1097] Getting 0 GLONASS
-> L1 C/A channels
-> I0727 19:26:17.033913 17918 gnss_block_factory.cc:1127] Getting 0 GLONASS
-> L2 C/A channels
-> I0727 19:26:17.033916 17918 gnss_block_factory.cc:1157] Getting 0 BEIDOU
-> B1I channels
-> I0727 19:26:17.033919 17918 gnss_block_factory.cc:1187] Getting 0 BEIDOU
-> B3I channels
-> I0727 19:26:17.034056 17918 gnss_flowgraph.cc:131] Connecting flowgraph
-> I0727 19:26:17.034147 17918 gnss_flowgraph.cc:264] connecting sig_source_
-> 0 stream 0 to conditioner 0
-> I0727 19:26:17.035058 17918 gnss_flowgraph.cc:723] Channel 0 assigned to
-> GPS PRN 01 (Block IIF) Signal 1C
-> I0727 19:26:17.035065 17918 gnss_flowgraph.cc:727] Channel 0 connected to
-> observables and ready for acquisition
-> I0727 19:26:17.035068 17918 gnss_flowgraph.cc:723] Channel 1 assigned to
-> GPS PRN 02 (Block IIR) Signal 1C
-> I0727 19:26:17.035073 17918 gnss_flowgraph.cc:731] Channel 1 connected to
-> observables in standby mode
-> I0727 19:26:17.035073 17918 gnss_flowgraph.cc:723] Channel 2 assigned to
-> GPS PRN 03 (Block IIF) Signal 1C
-> I0727 19:26:17.035077 17918 gnss_flowgraph.cc:731] Channel 2 connected to
-> observables in standby mode
-> I0727 19:26:17.035079 17918 gnss_flowgraph.cc:723] Channel 3 assigned to
-> GPS PRN 04 (Block Unknown) Signal 1C
-> I0727 19:26:17.035084 17918 gnss_flowgraph.cc:731] Channel 3 connected to
-> observables in standby mode
-> I0727 19:26:17.035085 17918 gnss_flowgraph.cc:723] Channel 4 assigned to
-> GPS PRN 05 (Block IIR-M) Signal 1C
-> I0727 19:26:17.035089 17918 gnss_flowgraph.cc:731] Channel 4 connected to
-> observables in standby mode
-> I0727 19:26:17.035090 17918 gnss_flowgraph.cc:723] Channel 5 assigned to
-> GPS PRN 06 (Block IIF) Signal 1C
-> I0727 19:26:17.035094 17918 gnss_flowgraph.cc:731] Channel 5 connected to
-> observables in standby mode
-> I0727 19:26:17.035095 17918 gnss_flowgraph.cc:723] Channel 6 assigned to
-> GPS PRN 07 (Block IIR-M) Signal 1C
-> I0727 19:26:17.035099 17918 gnss_flowgraph.cc:731] Channel 6 connected to
-> observables in standby mode
-> I0727 19:26:17.035101 17918 gnss_flowgraph.cc:723] Channel 7 assigned to
-> GPS PRN 08 (Block IIF) Signal 1C
-> I0727 19:26:17.035104 17918 gnss_flowgraph.cc:731] Channel 7 connected to
-> observables in standby mode
-> I0727 19:26:17.035106 17918 gnss_flowgraph.cc:736] Flowgraph connected
-> I0727 19:26:17.035109 17918 control_thread.cc:307] Flowgraph connected
-> I0727 19:26:17.038399 17918 control_thread.cc:318] Flowgraph started
-> *I0727 19:28:19.432575 17918 control_thread.cc:855] Received action STOP*
-> I0727 19:28:19.433041 17918 gnss_flowgraph.cc:743] Disconnecting flowgrap=
-h
-> I0727 19:28:19.433264 17918 gnss_flowgraph.cc:1039] Flowgraph disconnecte=
-d
-> I0727 19:28:19.933521 17918 control_thread.cc:370] Flowgraph stopped
-> I0727 19:28:21.284571 17918 file_configuration.cc:60] Destructor called
-> I0727 19:28:21.284590 17918 rtklib_pvt_gs.cc:482] Failed to save GPS L2CM
-> or L5 Ephemeris, map is empty
-> I0727 19:28:21.284592 17918 rtklib_pvt_gs.cc:508] Failed to save GPS L1 C=
-A
-> Ephemeris, map is empty
-> I0727 19:28:21.284595 17918 rtklib_pvt_gs.cc:538] Failed to save Galileo
-> E1 Ephemeris, map is empty
-> I0727 19:28:21.284596 17918 rtklib_pvt_gs.cc:568] Failed to save GLONASS
-> GNAV Ephemeris, map is empty
-> I0727 19:28:21.284597 17918 rtklib_pvt_gs.cc:598] Failed to save GPS UTC
-> model parameters, not valid data
-> I0727 19:28:21.284600 17918 rtklib_pvt_gs.cc:628] Failed to save Galileo
-> UTC model parameters, not valid data
-> I0727 19:28:21.284601 17918 rtklib_pvt_gs.cc:658] Failed to save GPS
-> ionospheric model parameters, not valid data
-> I0727 19:28:21.284602 17918 rtklib_pvt_gs.cc:688] Failed to save GPS CNAV
-> ionospheric model parameters, not valid data
-> I0727 19:28:21.284605 17918 rtklib_pvt_gs.cc:718] Failed to save Galileo
-> ionospheric model parameters, not valid data
-> I0727 19:28:21.284605 17918 rtklib_pvt_gs.cc:748] Failed to save GPS
-> almanac, map is empty
-> I0727 19:28:21.284607 17918 rtklib_pvt_gs.cc:778] Failed to save Galileo
-> almanac, not valid data
-> I0727 19:28:21.284610 17918 rtklib_pvt_gs.cc:808] Failed to save GPS CNAV
-> UTC model parameters, not valid data
-> I0727 19:28:21.284610 17918 rtklib_pvt_gs.cc:838] Failed to save GLONASS
-> GNAV ephemeris, map is empty
-> I0727 19:28:21.284612 17918 rtklib_pvt_gs.cc:868] Failed to save GLONASS
-> GNAV ephemeris, not valid data
-> I0727 19:28:21.284613 17918 rtklib_pvt_gs.cc:898] Failed to save BeiDou
-> DNAV Ephemeris, map is empty
-> I0727 19:28:21.284615 17918 rtklib_pvt_gs.cc:928] Failed to save BeiDou
-> DNAV ionospheric model parameters, not valid data
-> I0727 19:28:21.284617 17918 rtklib_pvt_gs.cc:958] Failed to save BeiDou
-> DNAV almanac, map is empty
-> I0727 19:28:21.284618 17918 rtklib_pvt_gs.cc:988] Failed to save BeiDou
-> DNAV UTC model parameters, not valid data
-
-
-*I looked up the source code of gnss-sdr from GitHub and I found the codes
-that output these warnings from line 412. I also tried to press CTRL+C to
-interrupt the program and to see the intermediate files. But none of them
-has valid data.*
-
-*intermediate files list (also attached for your reference):*
-> pvt.data_190727_144704.gpx
-> pvt.data_190727_144704.geojson
-> pvt.data_190727_144704.kml
-> GSDR208o47.19B   0kB
-> GSDR208o47.19P   0kB
-
-GSDR208o47.19O   0kB
-> GSDR208o47.19N   0kB
-> GSDR208o47.19G   0kB
-> GSDR208o47.19F    0kB
-> GSDR208o47.19L    0kB
-
-
-Sincerely,
-Zhao Xu
-
-Marcus M=C3=BCller <marcus.mueller@ettus.com> =E4=BA=8E2019=E5=B9=B47=E6=9C=
-=8829=E6=97=A5=E5=91=A8=E4=B8=80 =E4=B8=8B=E5=8D=885:50=E5=86=99=E9=81=93=
-=EF=BC=9A
-
-> Dear Zhao,
->
-> even with an active antenna, GPS signal power is usually below noise
-> floor. You can't "see" GPS without processing ain.
->
-> so, none of this is surprising.
->
-> Best regards,
-> Marcus
->
-> On Mon, 2019-07-29 at 14:40 -0400, Xu, Zhao via USRP-users wrote:
-> > Hello,
-> >
-> > I have been struggling with trying to acquire GPS with an N210 for
-> > some time. I take the liberty of asking you for help that I can't
-> > find out the error. Here is my setup:
-> >
-> > > Active GPS antenna (Voltage: 3-5V, current: 7-10mA, LNA Gain: 28dB,
-> > > Connector: SMA)
-> > > T bias with 3.3 V DC power
-> > > USRP N210 + daughter board CBX
-> >
-> >
-> > While experimenting, I found the logs are the same no matter the
-> > power of antenna is on or off. So it seems that the antenna doesn't
-> > work well or my configuration file is wrong. But How can I confirm
-> > the antenna's working status as it has no indicator light?
-> >
-> > Here is my configuration file (It is from this website:
-> > https://gnss-sdr.org/conf/#setting-up-the-software-receiver). One
-> > thing to note is that I changed two
-> > parameters: Acquisition_1C.threshold and SignalSource.gain. The
-> > default value of the threshold is 0.01 which causes frequent loss of
-> > lock and when I set it to 0.05 the receiver can't maintain lock of
-> > satellite as the log shown below:
-> >
-> > Acquisition_1C.threshold =3D 0.01 (Usually I run at least 2 minutes and
-> > here I just show 10-second log as the following logs are the same.)
-> > > Sampling Rate for the USRP device: 4000000.000000 [sps]...
-> > > UHD RF CHANNEL #0 SETTINGS
-> > > Actual USRP center freq.: 1575420000.010133 [Hz]...
-> > > PLL Frequency tune error 0.010133 [Hz]...
-> > > Actual daughterboard gain set to: 38.000000 dB...
-> > > Setting RF bandpass filter bandwidth to: 2000000.000000 [Hz]...
-> > > Check for front-end LO: locked ... is Locked
-> > > Starting a TCP/IP server of RTCM messages on port 2101
-> > > The TCP/IP server of RTCM messages is up and running. Accepting
-> > > connections ...
-> > > [WARNING] [CORES] The requested decimation is odd; the user should
-> > > expect CIC rolloff.
-> > > Select an even decimation to ensure that a halfband filter is
-> > > enabled.
-> > > decimation =3D dsp_rate/samp_rate -> 25 =3D (100.000000 MHz)/(4.00000=
-0
-> > > MHz)
-> > >
-> > > Current receiver time: 1 s
-> > > Tracking of GPS L1 C/A signal started on channel 5 for satellite
-> > > GPS PRN 06 (Block IIF)
-> > > Tracking of GPS L1 C/A signal started on channel 2 for satellite
-> > > GPS PRN 10 (Block IIF)
-> > > Loss of lock in channel 5!
-> > > Tracking of GPS L1 C/A signal started on channel 4 for satellite
-> > > GPS PRN 32 (Block IIF)
-> > > Tracking of GPS L1 C/A signal started on channel 1 for satellite
-> > > GPS PRN 18 (Block IIR)
-> > > Tracking of GPS L1 C/A signal started on channel 7 for satellite
-> > > GPS PRN 02 (Block IIR)
-> > > Tracking of GPS L1 C/A signal started on channel 5 for satellite
-> > > GPS PRN 22 (Block IIR)
-> > > Tracking of GPS L1 C/A signal started on channel 6 for satellite
-> > > GPS PRN 15 (Block IIR-M)
-> > > Tracking of GPS L1 C/A signal started on channel 3 for satellite
-> > > GPS PRN 29 (Block IIR-M)
-> > > Tracking of GPS L1 C/A signal started on channel 0 for satellite
-> > > GPS PRN 26 (Block IIF)
-> > > Current receiver time: 2 s
-> > > Current receiver time: 3 s
-> > > Current receiver time: 4 s
-> > > Current receiver time: 5 s
-> > > Current receiver time: 6 s
-> > > Loss of lock in channel 1!
-> > > Loss of lock in channel 7!
-> > > Tracking of GPS L1 C/A signal started on channel 1 for satellite
-> > > GPS PRN 11 (Block IIR)
-> > > Tracking of GPS L1 C/A signal started on channel 7 for satellite
-> > > GPS PRN 14 (Block IIR)
-> > > Loss of lock in channel 3!
-> > > Tracking of GPS L1 C/A signal started on channel 3 for satellite
-> > > GPS PRN 23 (Block IIR)
-> > > Current receiver time: 7 s
-> > > Current receiver time: 8 s
-> > > Current receiver time: 9 s
-> > > Current receiver time: 10 s
-> >
-> >
-> > Acquisition_1C.threshold =3D 0.05
-> >
-> > > Initializing GNSS-SDR v0.0.10.git-next-08c57e2c7 ... Please wait.
-> > > Logging will be written at ./log
-> > > [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
-> > > UHD_3.15.0.git-100-gf6f2e961
-> > > [INFO] [USRP2] Opening a USRP2/N-Series device...
-> > > [INFO] [USRP2] Current recv frame size: 1472 bytes
-> > > [INFO] [USRP2] Current send frame size: 1472 bytes
-> > > [WARNING] [CORES] Sampling Rate for the USRP device: 4000000.000000
-> > > [sps]...
-> > > The requested decimation is odd; the user should expect CIC
-> > > rolloff.
-> > > Select an even decimation to ensure that a halfband filter is
-> > > enabled.
-> > > decimation =3D dsp_rate/samp_rate -> 25 =3D (100.000000 MHz)/(4.00000=
-0
-> > > MHz)
-> > > UHD RF CHANNEL #0 SETTINGS
-> > > Actual USRP center freq.: 1575420000.010133 [Hz]...
-> > > PLL Frequency tune error 0.010133 [Hz]...
-> > > Actual daughterboard gain set to: 38.000000 dB...
-> > > Setting RF bandpass filter bandwidth to: 2000000.000000 [Hz]...
-> > > Check for front-end LO: locked ... is Locked
-> > > Starting a TCP/IP server of RTCM messages on port 2101
-> > > The TCP/IP server of RTCM messages is up and running. Accepting
-> > > connections ...
-> > > [WARNING] [CORES] The requested decimation is odd; the user should
-> > > expect CIC rolloff.
-> > > Select an even decimation to ensure that a halfband filter is
-> > > enabled.
-> > > decimation =3D dsp_rate/samp_rate -> 25 =3D (100.000000 MHz)/(4.00000=
-0
-> > > MHz)
-> > > Current receiver time: 1 s
-> > > Current receiver time: 2 s
-> > > Current receiver time: 3 s
-> > > Current receiver time: 4 s
-> > > Current receiver time: 5 s
-> > > Current receiver time: 6 s
-> > > Current receiver time: 7 s
-> > > Current receiver time: 8 s
-> > > Current receiver time: 9 s
-> > > Current receiver time: 10 s
-> >
-> > My Configuration File:
-> > > [GNSS-SDR]
-> > > ;######### GLOBAL OPTIONS ##################
-> > > GNSS-SDR.internal_fs_sps=3D4000000
-> > > ;######### SIGNAL_SOURCE CONFIG ############
-> > > SignalSource.implementation=3DUHD_Signal_Source
-> > > SignalSource.device_address=3D192.168.10.4
-> > > SignalSource.item_type=3Dcshort
-> > > SignalSource.sampling_frequency=3D4000000
-> > > SignalSource.freq=3D1575420000
-> > > SignalSource.gain=3D15
-> > > SignalSource.subdevice=3DA:0  ; <- Can be A:0 or B:0
-> > > SignalSource.samples=3D0
-> > > ;######### SIGNAL_CONDITIONER CONFIG ############
-> > > SignalConditioner.implementation=3DSignal_Conditioner
-> > > ;######### DATA_TYPE_ADAPTER CONFIG ############
-> > > DataTypeAdapter.implementation=3DPass_Through
-> > > DataTypeAdapter.item_type=3Dcshort
-> > > ;######### INPUT_FILTER CONFIG ############
-> > > InputFilter.implementation=3DFir_Filter
-> > > InputFilter.input_item_type=3Dcshort
-> > > InputFilter.output_item_type=3Dgr_complex
-> > > InputFilter.taps_item_type=3Dfloat
-> > > InputFilter.number_of_taps=3D11
-> > > InputFilter.number_of_bands=3D2
-> > > InputFilter.band1_begin=3D0.0
-> > > InputFilter.band1_end=3D0.48
-> > > InputFilter.band2_begin=3D0.52
-> > > InputFilter.band2_end=3D1.0
-> > > InputFilter.ampl1_begin=3D1.0
-> > > InputFilter.ampl1_end=3D1.0
-> > > InputFilter.ampl2_begin=3D0.0
-> > > InputFilter.ampl2_end=3D0.0
-> > > InputFilter.band1_error=3D1.0
-> > > InputFilter.band2_error=3D1.0
-> > > InputFilter.filter_type=3Dbandpass
-> > > InputFilter.grid_density=3D16
-> > > InputFilter.sampling_frequency=3D4000000
-> > > InputFilter.IF=3D0
-> > > ;######### RESAMPLER CONFIG ############
-> > > Resampler.implementation=3DPass_Through
-> > > ;######### CHANNELS GLOBAL CONFIG ############
-> > > Channels_1C.count=3D8
-> > > Channels.in_acquisition=3D1
-> > > Channel.signal=3D1C
-> > > ;######### ACQUISITION GLOBAL CONFIG ############
-> > > Acquisition_1C.implementation=3DGPS_L1_CA_PCPS_Acquisition
-> > > Acquisition_1C.threshold=3D0.05
-> > > Acquisition_1C.doppler_max=3D8000
-> > > Acquisition_1C.doppler_step=3D500
-> > > ;######### TRACKING GLOBAL CONFIG ############
-> > > Tracking_1C.implementation=3DGPS_L1_CA_DLL_PLL_Tracking
-> > > Tracking_1C.pll_bw_hz=3D30.0
-> > > Tracking_1C.dll_bw_hz=3D4.0
-> > > Tracking_1C.early_late_space_chips=3D0.5
-> > > ;######### TELEMETRY DECODER GPS CONFIG ############
-> > > TelemetryDecoder_1C.implementation=3DGPS_L1_CA_Telemetry_Decoder
-> > > ;######### OBSERVABLES CONFIG ############
-> > > Observables.implementation=3DHybrid_Observables
-> > > ;######### PVT CONFIG ############
-> > > PVT.implementation=3DRTKLIB_PVT
-> > > PVT.positioning_mode=3DSingle
-> > > PVT.output_rate_ms=3D10
-> > > PVT.display_rate_ms=3D500
-> > > PVT.iono_model=3DBroadcast
-> > > PVT.trop_model=3DSaastamoinen
-> > > PVT.flag_rtcm_server=3Dtrue
-> > > PVT.flag_rtcm_tty_port=3Dfalse
-> > > PVT.rtcm_dump_devname=3D/dev/pts/1
-> > > PVT.rtcm_tcp_port=3D2101
-> > > PVT.rtcm_MT1019_rate_ms=3D5000
-> > > PVT.rtcm_MT1077_rate_ms=3D1000
-> > > PVT.rinex_version=3D2
-> >
-> > I also referenced this solution (
-> >
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-October/=
-058147.html
-> > ) and changed the gain as 15, but this made no sense.
-> >
-> > Sincerely,
-> > Zhao Xu
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
-
---0000000000006b4ec5058ed93c68
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Dear Marcus,<div><br></div><div>Thank you=
- very much for your reply!</div><div><br></div><div><b>I agree with you but=
- my situation is a little different because my receiver (USRP N210) can&#39=
-;t receive any data (even noise) and can&#39;t save file when I press q com=
-mand. To be specific, every log of my experiment ends with warnings that it=
- failed to save data.=C2=A0</b></div><div><br></div><div>Here is a 2-minute=
- log for your=C2=A0reference:</div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><br>Log file created at: 2019/07/27 19:26:15<br>Running on machi=
-ne: yilin-Precision-3530<br>Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu thr=
-eadid file:line] msg<br>I0727 19:26:15.615741 17918 gnss_block_factory.cc:1=
-95] Getting SignalSource with implementation UHD_Signal_Source<br>I0727 19:=
-26:16.950304 17918 uhd_signal_source.cc:164] Sampling Rate for the USRP dev=
-ice: 4000000.000000 [sps]...<br>I0727 19:26:16.950991 17918 uhd_signal_sour=
-ce.cc:174] Actual USRP center freq. set to: 1575420000.010133 [Hz]...<br>I0=
-727 19:26:16.951119 17918 uhd_signal_source.cc:178] PLL Frequency tune erro=
-r 0.010133 [Hz]...<br>I0727 19:26:16.951756 17918 uhd_signal_source.cc:183]=
- Actual daughterboard gain set to: 15.000000 dB...<br>I0727 19:26:16.952322=
- 17918 gnss_block_factory.cc:241] Getting SignalConditioner with DataTypeAd=
-apter implementation: Pass_Through, InputFilter implementation: Fir_Filter,=
- and Resampler implementation: Pass_Through<br>I0727 19:26:16.953771 17918 =
-gnss_block_factory.cc:271] Getting Observables with implementation Hybrid_O=
-bservables<br>I0727 19:26:16.954036 17918 gnss_block_factory.cc:299] Gettin=
-g PVT with implementation RTKLIB_PVT<br>I0727 19:26:16.958174 17918 gnss_bl=
-ock_factory.cc:951] Getting 8 GPS L1 C/A channels<br>I0727 19:26:16.958238 =
-17918 gnss_block_factory.cc:323] Instantiating Channel 0 with Acquisition I=
-mplementation: GPS_L1_CA_PCPS_Acquisition, Tracking Implementation: GPS_L1_=
-CA_DLL_PLL_Tracking, Telemetry Decoder implementation: GPS_L1_CA_Telemetry_=
-Decoder<br>I0727 19:26:16.970176 17918 dll_pll_veml_tracking.cc:1526] Track=
-ing Channel set to 0<br>I0727 19:26:16.974195 17918 gnss_block_factory.cc:3=
-23] Instantiating Channel 1 with Acquisition Implementation: GPS_L1_CA_PCPS=
-_Acquisition, Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetr=
-y Decoder implementation: GPS_L1_CA_Telemetry_Decoder<br>I0727 19:26:16.995=
-465 17918 dll_pll_veml_tracking.cc:1526] Tracking Channel set to 1<br>I0727=
- 19:26:16.998857 17918 gnss_block_factory.cc:323] Instantiating Channel 2 w=
-ith Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition, Tracking Implem=
-entation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder implementation: GPS=
-_L1_CA_Telemetry_Decoder<br>I0727 19:26:17.007000 17918 dll_pll_veml_tracki=
-ng.cc:1526] Tracking Channel set to 2<br>I0727 19:26:17.009788 17918 gnss_b=
-lock_factory.cc:323] Instantiating Channel 3 with Acquisition Implementatio=
-n: GPS_L1_CA_PCPS_Acquisition, Tracking Implementation: GPS_L1_CA_DLL_PLL_T=
-racking, Telemetry Decoder implementation: GPS_L1_CA_Telemetry_Decoder<br>I=
-0727 19:26:17.014974 17918 dll_pll_veml_tracking.cc:1526] Tracking Channel =
-set to 3<br>I0727 19:26:17.016788 17918 gnss_block_factory.cc:323] Instanti=
-ating Channel 4 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition=
-, Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder im=
-plementation: GPS_L1_CA_Telemetry_Decoder<br>I0727 19:26:17.020576 17918 dl=
-l_pll_veml_tracking.cc:1526] Tracking Channel set to 4<br>I0727 19:26:17.02=
-2069 17918 gnss_block_factory.cc:323] Instantiating Channel 5 with Acquisit=
-ion Implementation: GPS_L1_CA_PCPS_Acquisition, Tracking Implementation: GP=
-S_L1_CA_DLL_PLL_Tracking, Telemetry Decoder implementation: GPS_L1_CA_Telem=
-etry_Decoder<br>I0727 19:26:17.025209 17918 dll_pll_veml_tracking.cc:1526] =
-Tracking Channel set to 5<br>I0727 19:26:17.026458 17918 gnss_block_factory=
-.cc:323] Instantiating Channel 6 with Acquisition Implementation: GPS_L1_CA=
-_PCPS_Acquisition, Tracking Implementation: GPS_L1_CA_DLL_PLL_Tracking, Tel=
-emetry Decoder implementation: GPS_L1_CA_Telemetry_Decoder<br>I0727 19:26:1=
-7.029266 17918 dll_pll_veml_tracking.cc:1526] Tracking Channel set to 6<br>=
-I0727 19:26:17.030339 17918 gnss_block_factory.cc:323] Instantiating Channe=
-l 7 with Acquisition Implementation: GPS_L1_CA_PCPS_Acquisition, Tracking I=
-mplementation: GPS_L1_CA_DLL_PLL_Tracking, Telemetry Decoder implementation=
-: GPS_L1_CA_Telemetry_Decoder<br>I0727 19:26:17.032866 17918 dll_pll_veml_t=
-racking.cc:1526] Tracking Channel set to 7<br>I0727 19:26:17.033880 17918 g=
-nss_block_factory.cc:981] Getting 0 GPS L2C (M) channels<br>I0727 19:26:17.=
-033887 17918 gnss_block_factory.cc:1010] Getting 0 GPS L5 channels<br>I0727=
- 19:26:17.033890 17918 gnss_block_factory.cc:1039] Getting 0 GALILEO E1 B (=
-I/NAV OS) channels<br>I0727 19:26:17.033893 17918 gnss_block_factory.cc:106=
-8] Getting 0 GALILEO E5a I (F/NAV OS) channels<br>I0727 19:26:17.033896 179=
-18 gnss_block_factory.cc:1097] Getting 0 GLONASS L1 C/A channels<br>I0727 1=
-9:26:17.033913 17918 gnss_block_factory.cc:1127] Getting 0 GLONASS L2 C/A c=
-hannels<br>I0727 19:26:17.033916 17918 gnss_block_factory.cc:1157] Getting =
-0 BEIDOU B1I channels<br>I0727 19:26:17.033919 17918 gnss_block_factory.cc:=
-1187] Getting 0 BEIDOU B3I channels<br>I0727 19:26:17.034056 17918 gnss_flo=
-wgraph.cc:131] Connecting flowgraph<br>I0727 19:26:17.034147 17918 gnss_flo=
-wgraph.cc:264] connecting sig_source_ 0 stream 0 to conditioner 0<br>I0727 =
-19:26:17.035058 17918 gnss_flowgraph.cc:723] Channel 0 assigned to GPS PRN =
-01 (Block IIF) Signal 1C<br>I0727 19:26:17.035065 17918 gnss_flowgraph.cc:7=
-27] Channel 0 connected to observables and ready for acquisition<br>I0727 1=
-9:26:17.035068 17918 gnss_flowgraph.cc:723] Channel 1 assigned to GPS PRN 0=
-2 (Block IIR) Signal 1C<br>I0727 19:26:17.035073 17918 gnss_flowgraph.cc:73=
-1] Channel 1 connected to observables in standby mode<br>I0727 19:26:17.035=
-073 17918 gnss_flowgraph.cc:723] Channel 2 assigned to GPS PRN 03 (Block II=
-F) Signal 1C<br>I0727 19:26:17.035077 17918 gnss_flowgraph.cc:731] Channel =
-2 connected to observables in standby mode<br>I0727 19:26:17.035079 17918 g=
-nss_flowgraph.cc:723] Channel 3 assigned to GPS PRN 04 (Block Unknown) Sign=
-al 1C<br>I0727 19:26:17.035084 17918 gnss_flowgraph.cc:731] Channel 3 conne=
-cted to observables in standby mode<br>I0727 19:26:17.035085 17918 gnss_flo=
-wgraph.cc:723] Channel 4 assigned to GPS PRN 05 (Block IIR-M) Signal 1C<br>=
-I0727 19:26:17.035089 17918 gnss_flowgraph.cc:731] Channel 4 connected to o=
-bservables in standby mode<br>I0727 19:26:17.035090 17918 gnss_flowgraph.cc=
-:723] Channel 5 assigned to GPS PRN 06 (Block IIF) Signal 1C<br>I0727 19:26=
-:17.035094 17918 gnss_flowgraph.cc:731] Channel 5 connected to observables =
-in standby mode<br>I0727 19:26:17.035095 17918 gnss_flowgraph.cc:723] Chann=
-el 6 assigned to GPS PRN 07 (Block IIR-M) Signal 1C<br>I0727 19:26:17.03509=
-9 17918 gnss_flowgraph.cc:731] Channel 6 connected to observables in standb=
-y mode<br>I0727 19:26:17.035101 17918 gnss_flowgraph.cc:723] Channel 7 assi=
-gned to GPS PRN 08 (Block IIF) Signal 1C<br>I0727 19:26:17.035104 17918 gns=
-s_flowgraph.cc:731] Channel 7 connected to observables in standby mode<br>I=
-0727 19:26:17.035106 17918 gnss_flowgraph.cc:736] Flowgraph connected<br>I0=
-727 19:26:17.035109 17918 control_thread.cc:307] Flowgraph connected<br>I07=
-27 19:26:17.038399 17918 control_thread.cc:318] Flowgraph started<br><b>I07=
-27 19:28:19.432575 17918 control_thread.cc:855] Received action STOP</b><br=
->I0727 19:28:19.433041 17918 gnss_flowgraph.cc:743] Disconnecting flowgraph=
-<br>I0727 19:28:19.433264 17918 gnss_flowgraph.cc:1039] Flowgraph disconnec=
-ted<br>I0727 19:28:19.933521 17918 control_thread.cc:370] Flowgraph stopped=
-<br>I0727 19:28:21.284571 17918 file_configuration.cc:60] Destructor called=
-<br>I0727 19:28:21.284590 17918 rtklib_pvt_gs.cc:482] Failed to save GPS L2=
-CM or L5 Ephemeris, map is empty<br>I0727 19:28:21.284592 17918 rtklib_pvt_=
-gs.cc:508] Failed to save GPS L1 CA Ephemeris, map is empty<br>I0727 19:28:=
-21.284595 17918 rtklib_pvt_gs.cc:538] Failed to save Galileo E1 Ephemeris, =
-map is empty<br>I0727 19:28:21.284596 17918 rtklib_pvt_gs.cc:568] Failed to=
- save GLONASS GNAV Ephemeris, map is empty<br>I0727 19:28:21.284597 17918 r=
-tklib_pvt_gs.cc:598] Failed to save GPS UTC model parameters, not valid dat=
-a<br>I0727 19:28:21.284600 17918 rtklib_pvt_gs.cc:628] Failed to save Galil=
-eo UTC model parameters, not valid data<br>I0727 19:28:21.284601 17918 rtkl=
-ib_pvt_gs.cc:658] Failed to save GPS ionospheric model parameters, not vali=
-d data<br>I0727 19:28:21.284602 17918 rtklib_pvt_gs.cc:688] Failed to save =
-GPS CNAV ionospheric model parameters, not valid data<br>I0727 19:28:21.284=
-605 17918 rtklib_pvt_gs.cc:718] Failed to save Galileo ionospheric model pa=
-rameters, not valid data<br>I0727 19:28:21.284605 17918 rtklib_pvt_gs.cc:74=
-8] Failed to save GPS almanac, map is empty<br>I0727 19:28:21.284607 17918 =
-rtklib_pvt_gs.cc:778] Failed to save Galileo almanac, not valid data<br>I07=
-27 19:28:21.284610 17918 rtklib_pvt_gs.cc:808] Failed to save GPS CNAV UTC =
-model parameters, not valid data<br>I0727 19:28:21.284610 17918 rtklib_pvt_=
-gs.cc:838] Failed to save GLONASS GNAV ephemeris, map is empty<br>I0727 19:=
-28:21.284612 17918 rtklib_pvt_gs.cc:868] Failed to save GLONASS GNAV epheme=
-ris, not valid data<br>I0727 19:28:21.284613 17918 rtklib_pvt_gs.cc:898] Fa=
-iled to save BeiDou DNAV Ephemeris, map is empty<br>I0727 19:28:21.284615 1=
-7918 rtklib_pvt_gs.cc:928] Failed to save BeiDou DNAV ionospheric model par=
-ameters, not valid data<br>I0727 19:28:21.284617 17918 rtklib_pvt_gs.cc:958=
-] Failed to save BeiDou DNAV almanac, map is empty<br>I0727 19:28:21.284618=
- 17918 rtklib_pvt_gs.cc:988] Failed to save BeiDou DNAV UTC model parameter=
-s, not valid data</blockquote><div><b><br></b></div><div><b>I looked up the=
- source code of gnss-sdr from GitHub and I found the codes that output thes=
-e warnings from line 412. I also tried to press CTRL+C to interrupt the pro=
-gram and to see the intermediate files. But none of them has valid data.</b=
-></div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><b>=
-intermediate files list (also attached for your reference):</b><br>pvt.data=
-_190727_144704.gpx<br>pvt.data_190727_144704.geojson=C2=A0<br>pvt.data_1907=
-27_144704.kml<br>GSDR208o47.19B=C2=A0 =C2=A00kB<br>GSDR208o47.19P=C2=A0 =C2=
-=A00kB=C2=A0</blockquote><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-GSDR208o47.19O=C2=A0 =C2=A00kB=C2=A0=C2=A0<br>GSDR208o47.19N=C2=A0 =C2=A00k=
-B=C2=A0=C2=A0<br>GSDR208o47.19G=C2=A0 =C2=A00kB=C2=A0=C2=A0<br>GSDR208o47.1=
-9F=C2=A0 =C2=A0 0kB=C2=A0=C2=A0<br>GSDR208o47.19L=C2=A0 =C2=A0 0kB</blockqu=
-ote><div>=C2=A0<br></div><div>Sincerely,</div><div>Zhao Xu</div></div><br><=
-div class=3D"gmail_quote"><div class=3D"gmail_attr" dir=3D"ltr">Marcus M=C3=
-=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com">marcus.mueller@ettu=
-s.com</a>&gt; =E4=BA=8E2019=E5=B9=B47=E6=9C=8829=E6=97=A5=E5=91=A8=E4=B8=80=
- =E4=B8=8B=E5=8D=885:50=E5=86=99=E9=81=93=EF=BC=9A<br></div><blockquote sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex" class=3D"gmail_quote">Dear Zhao,<br>
-<br>
-even with an active antenna, GPS signal power is usually below noise<br>
-floor. You can&#39;t &quot;see&quot; GPS without processing ain.<br>
-<br>
-so, none of this is surprising.<br>
-<br>
-Best regards,<br>
-Marcus<br>
-<br>
-On Mon, 2019-07-29 at 14:40 -0400, Xu, Zhao via USRP-users wrote:<br>
-&gt; Hello,<br>
-&gt; <br>
-&gt; I have been struggling with trying to acquire GPS with an N210 for<br>
-&gt; some time. I take the liberty of asking you for help that I can&#39;t<=
-br>
-&gt; find out the error. Here is my setup:<br>
-&gt; <br>
-&gt; &gt; Active GPS antenna (Voltage: 3-5V, current: 7-10mA, LNA Gain: 28d=
-B,<br>
-&gt; &gt; Connector: SMA) <br>
-&gt; &gt; T bias with 3.3 V DC power <br>
-&gt; &gt; USRP N210 + daughter board CBX<br>
-&gt; <br>
-&gt;=C2=A0 <br>
-&gt; While experimenting, I found the logs are the same no matter the<br>
-&gt; power of antenna is on or off. So it seems that the antenna doesn&#39;=
-t<br>
-&gt; work well or my configuration file is wrong. But How can I confirm<br>
-&gt; the antenna&#39;s working status as it has no indicator light? <br>
-&gt; <br>
-&gt; Here is my configuration file (It is from this website: <br>
-&gt; <a target=3D"_blank" rel=3D"noreferrer" href=3D"https://gnss-sdr.org/c=
-onf/#setting-up-the-software-receiver">https://gnss-sdr.org/conf/#setting-u=
-p-the-software-receiver</a>). One<br>
-&gt; thing to note is that I changed two<br>
-&gt; parameters: Acquisition_1C.threshold and SignalSource.gain. The<br>
-&gt; default value of the threshold is 0.01 which causes frequent loss of<b=
-r>
-&gt; lock and when I set it to 0.05 the receiver can&#39;t maintain lock of=
-<br>
-&gt; satellite as the log shown below:<br>
-&gt; <br>
-&gt; Acquisition_1C.threshold =3D 0.01 (Usually I run at least 2 minutes an=
-d<br>
-&gt; here I just show 10-second log as the following logs are the same.)<br=
->
-&gt; &gt; Sampling Rate for the USRP device: 4000000.000000 [sps]...<br>
-&gt; &gt; UHD RF CHANNEL #0 SETTINGS<br>
-&gt; &gt; Actual USRP center freq.: 1575420000.010133 [Hz]...<br>
-&gt; &gt; PLL Frequency tune error 0.010133 [Hz]...<br>
-&gt; &gt; Actual daughterboard gain set to: 38.000000 dB...<br>
-&gt; &gt; Setting RF bandpass filter bandwidth to: 2000000.000000 [Hz]...<b=
-r>
-&gt; &gt; Check for front-end LO: locked ... is Locked<br>
-&gt; &gt; Starting a TCP/IP server of RTCM messages on port 2101<br>
-&gt; &gt; The TCP/IP server of RTCM messages is up and running. Accepting<b=
-r>
-&gt; &gt; connections ...<br>
-&gt; &gt; [WARNING] [CORES] The requested decimation is odd; the user shoul=
-d<br>
-&gt; &gt; expect CIC rolloff.<br>
-&gt; &gt; Select an even decimation to ensure that a halfband filter is<br>
-&gt; &gt; enabled.<br>
-&gt; &gt; decimation =3D dsp_rate/samp_rate -&gt; 25 =3D (100.000000 MHz)/(=
-4.000000<br>
-&gt; &gt; MHz)<br>
-&gt; &gt; <br>
-&gt; &gt; Current receiver time: 1 s<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 5 for satellite<=
-br>
-&gt; &gt; GPS PRN 06 (Block IIF)<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 2 for satellite<=
-br>
-&gt; &gt; GPS PRN 10 (Block IIF)<br>
-&gt; &gt; Loss of lock in channel 5!<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 4 for satellite<=
-br>
-&gt; &gt; GPS PRN 32 (Block IIF)<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 1 for satellite<=
-br>
-&gt; &gt; GPS PRN 18 (Block IIR)<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 7 for satellite<=
-br>
-&gt; &gt; GPS PRN 02 (Block IIR)<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 5 for satellite<=
-br>
-&gt; &gt; GPS PRN 22 (Block IIR)<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 6 for satellite<=
-br>
-&gt; &gt; GPS PRN 15 (Block IIR-M)<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 3 for satellite<=
-br>
-&gt; &gt; GPS PRN 29 (Block IIR-M)<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 0 for satellite<=
-br>
-&gt; &gt; GPS PRN 26 (Block IIF)<br>
-&gt; &gt; Current receiver time: 2 s<br>
-&gt; &gt; Current receiver time: 3 s<br>
-&gt; &gt; Current receiver time: 4 s<br>
-&gt; &gt; Current receiver time: 5 s<br>
-&gt; &gt; Current receiver time: 6 s<br>
-&gt; &gt; Loss of lock in channel 1!<br>
-&gt; &gt; Loss of lock in channel 7!<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 1 for satellite<=
-br>
-&gt; &gt; GPS PRN 11 (Block IIR)<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 7 for satellite<=
-br>
-&gt; &gt; GPS PRN 14 (Block IIR)<br>
-&gt; &gt; Loss of lock in channel 3!<br>
-&gt; &gt; Tracking of GPS L1 C/A signal started on channel 3 for satellite<=
-br>
-&gt; &gt; GPS PRN 23 (Block IIR)<br>
-&gt; &gt; Current receiver time: 7 s<br>
-&gt; &gt; Current receiver time: 8 s<br>
-&gt; &gt; Current receiver time: 9 s<br>
-&gt; &gt; Current receiver time: 10 s<br>
-&gt; <br>
-&gt;=C2=A0 <br>
-&gt; Acquisition_1C.threshold =3D 0.05<br>
-&gt; <br>
-&gt; &gt; Initializing GNSS-SDR v0.0.10.git-next-08c57e2c7 ... Please wait.=
-<br>
-&gt; &gt; Logging will be written at ./log<br>
-&gt; &gt; [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;<br>
-&gt; &gt; UHD_3.15.0.git-100-gf6f2e961<br>
-&gt; &gt; [INFO] [USRP2] Opening a USRP2/N-Series device...<br>
-&gt; &gt; [INFO] [USRP2] Current recv frame size: 1472 bytes<br>
-&gt; &gt; [INFO] [USRP2] Current send frame size: 1472 bytes<br>
-&gt; &gt; [WARNING] [CORES] Sampling Rate for the USRP device: 4000000.0000=
-00<br>
-&gt; &gt; [sps]...<br>
-&gt; &gt; The requested decimation is odd; the user should expect CIC<br>
-&gt; &gt; rolloff.<br>
-&gt; &gt; Select an even decimation to ensure that a halfband filter is<br>
-&gt; &gt; enabled.<br>
-&gt; &gt; decimation =3D dsp_rate/samp_rate -&gt; 25 =3D (100.000000 MHz)/(=
-4.000000<br>
-&gt; &gt; MHz)<br>
-&gt; &gt; UHD RF CHANNEL #0 SETTINGS<br>
-&gt; &gt; Actual USRP center freq.: 1575420000.010133 [Hz]...<br>
-&gt; &gt; PLL Frequency tune error 0.010133 [Hz]...<br>
-&gt; &gt; Actual daughterboard gain set to: 38.000000 dB...<br>
-&gt; &gt; Setting RF bandpass filter bandwidth to: 2000000.000000 [Hz]...<b=
-r>
-&gt; &gt; Check for front-end LO: locked ... is Locked<br>
-&gt; &gt; Starting a TCP/IP server of RTCM messages on port 2101<br>
-&gt; &gt; The TCP/IP server of RTCM messages is up and running. Accepting<b=
-r>
-&gt; &gt; connections ...<br>
-&gt; &gt; [WARNING] [CORES] The requested decimation is odd; the user shoul=
-d<br>
-&gt; &gt; expect CIC rolloff.<br>
-&gt; &gt; Select an even decimation to ensure that a halfband filter is<br>
-&gt; &gt; enabled.<br>
-&gt; &gt; decimation =3D dsp_rate/samp_rate -&gt; 25 =3D (100.000000 MHz)/(=
-4.000000<br>
-&gt; &gt; MHz)<br>
-&gt; &gt; Current receiver time: 1 s<br>
-&gt; &gt; Current receiver time: 2 s<br>
-&gt; &gt; Current receiver time: 3 s<br>
-&gt; &gt; Current receiver time: 4 s<br>
-&gt; &gt; Current receiver time: 5 s<br>
-&gt; &gt; Current receiver time: 6 s<br>
-&gt; &gt; Current receiver time: 7 s<br>
-&gt; &gt; Current receiver time: 8 s<br>
-&gt; &gt; Current receiver time: 9 s<br>
-&gt; &gt; Current receiver time: 10 s<br>
-&gt; <br>
-&gt; My Configuration File:<br>
-&gt; &gt; [GNSS-SDR]<br>
-&gt; &gt; ;######### GLOBAL OPTIONS ##################<br>
-&gt; &gt; GNSS-SDR.internal_fs_sps=3D4000000<br>
-&gt; &gt; ;######### SIGNAL_SOURCE CONFIG ############<br>
-&gt; &gt; SignalSource.implementation=3DUHD_Signal_Source<br>
-&gt; &gt; SignalSource.device_address=3D192.168.10.4<br>
-&gt; &gt; SignalSource.item_type=3Dcshort<br>
-&gt; &gt; SignalSource.sampling_frequency=3D4000000<br>
-&gt; &gt; SignalSource.freq=3D1575420000<br>
-&gt; &gt; SignalSource.gain=3D15<br>
-&gt; &gt; SignalSource.subdevice=3DA:0=C2=A0 ; &lt;- Can be A:0 or B:0<br>
-&gt; &gt; SignalSource.samples=3D0<br>
-&gt; &gt; ;######### SIGNAL_CONDITIONER CONFIG ############<br>
-&gt; &gt; SignalConditioner.implementation=3DSignal_Conditioner<br>
-&gt; &gt; ;######### DATA_TYPE_ADAPTER CONFIG ############<br>
-&gt; &gt; DataTypeAdapter.implementation=3DPass_Through<br>
-&gt; &gt; DataTypeAdapter.item_type=3Dcshort<br>
-&gt; &gt; ;######### INPUT_FILTER CONFIG ############<br>
-&gt; &gt; InputFilter.implementation=3DFir_Filter<br>
-&gt; &gt; InputFilter.input_item_type=3Dcshort<br>
-&gt; &gt; InputFilter.output_item_type=3Dgr_complex<br>
-&gt; &gt; InputFilter.taps_item_type=3Dfloat<br>
-&gt; &gt; InputFilter.number_of_taps=3D11<br>
-&gt; &gt; InputFilter.number_of_bands=3D2<br>
-&gt; &gt; InputFilter.band1_begin=3D0.0<br>
-&gt; &gt; InputFilter.band1_end=3D0.48<br>
-&gt; &gt; InputFilter.band2_begin=3D0.52<br>
-&gt; &gt; InputFilter.band2_end=3D1.0<br>
-&gt; &gt; InputFilter.ampl1_begin=3D1.0<br>
-&gt; &gt; InputFilter.ampl1_end=3D1.0<br>
-&gt; &gt; InputFilter.ampl2_begin=3D0.0<br>
-&gt; &gt; InputFilter.ampl2_end=3D0.0<br>
-&gt; &gt; InputFilter.band1_error=3D1.0<br>
-&gt; &gt; InputFilter.band2_error=3D1.0<br>
-&gt; &gt; InputFilter.filter_type=3Dbandpass<br>
-&gt; &gt; InputFilter.grid_density=3D16<br>
-&gt; &gt; InputFilter.sampling_frequency=3D4000000<br>
-&gt; &gt; InputFilter.IF=3D0<br>
-&gt; &gt; ;######### RESAMPLER CONFIG ############<br>
-&gt; &gt; Resampler.implementation=3DPass_Through<br>
-&gt; &gt; ;######### CHANNELS GLOBAL CONFIG ############<br>
-&gt; &gt; Channels_1C.count=3D8<br>
-&gt; &gt; Channels.in_acquisition=3D1<br>
-&gt; &gt; Channel.signal=3D1C<br>
-&gt; &gt; ;######### ACQUISITION GLOBAL CONFIG ############<br>
-&gt; &gt; Acquisition_1C.implementation=3DGPS_L1_CA_PCPS_Acquisition<br>
-&gt; &gt; Acquisition_1C.threshold=3D0.05<br>
-&gt; &gt; Acquisition_1C.doppler_max=3D8000<br>
-&gt; &gt; Acquisition_1C.doppler_step=3D500<br>
-&gt; &gt; ;######### TRACKING GLOBAL CONFIG ############<br>
-&gt; &gt; Tracking_1C.implementation=3DGPS_L1_CA_DLL_PLL_Tracking<br>
-&gt; &gt; Tracking_1C.pll_bw_hz=3D30.0<br>
-&gt; &gt; Tracking_1C.dll_bw_hz=3D4.0<br>
-&gt; &gt; Tracking_1C.early_late_space_chips=3D0.5<br>
-&gt; &gt; ;######### TELEMETRY DECODER GPS CONFIG ############<br>
-&gt; &gt; TelemetryDecoder_1C.implementation=3DGPS_L1_CA_Telemetry_Decoder<=
-br>
-&gt; &gt; ;######### OBSERVABLES CONFIG ############<br>
-&gt; &gt; Observables.implementation=3DHybrid_Observables<br>
-&gt; &gt; ;######### PVT CONFIG ############<br>
-&gt; &gt; PVT.implementation=3DRTKLIB_PVT<br>
-&gt; &gt; PVT.positioning_mode=3DSingle<br>
-&gt; &gt; PVT.output_rate_ms=3D10<br>
-&gt; &gt; PVT.display_rate_ms=3D500<br>
-&gt; &gt; PVT.iono_model=3DBroadcast<br>
-&gt; &gt; PVT.trop_model=3DSaastamoinen<br>
-&gt; &gt; PVT.flag_rtcm_server=3Dtrue<br>
-&gt; &gt; PVT.flag_rtcm_tty_port=3Dfalse<br>
-&gt; &gt; PVT.rtcm_dump_devname=3D/dev/pts/1<br>
-&gt; &gt; PVT.rtcm_tcp_port=3D2101<br>
-&gt; &gt; PVT.rtcm_MT1019_rate_ms=3D5000<br>
-&gt; &gt; PVT.rtcm_MT1077_rate_ms=3D1000<br>
-&gt; &gt; PVT.rinex_version=3D2<br>
-&gt;=C2=A0 <br>
-&gt; I also referenced this solution (<br>
-&gt; <a target=3D"_blank" rel=3D"noreferrer" href=3D"http://lists.ettus.com=
-/pipermail/usrp-users_lists.ettus.com/2018-October/058147.html">http://list=
-s.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-October/058147.html</=
-a><br>
-&gt; ) and changed the gain as 15, but this made no sense.<br>
-&gt; <br>
-&gt; Sincerely,<br>
-&gt; Zhao Xu<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a target=3D"_blank" rel=3D"noreferrer" href=3D"http://lists.ettus.com=
-/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-</blockquote></div></div>
-
---0000000000006b4ec5058ed93c68--
---0000000000006b4ec8058ed93c6a
-Content-Type: application/octet-stream; name="gpstest.conf"
-Content-Disposition: attachment; filename="gpstest.conf"
+--_000_HK0PR01MB2835B708C9240442B8368BC5F3DC0HK0PR01MB2835apcp_
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-ID: <f_jyoy7xxy0>
-X-Attachment-Id: f_jyoy7xxy0
 
-W0dOU1MtU0RSXQoKOyMjIyMjIyMjIyBHTE9CQUwgT1BUSU9OUyAjIyMjIyMjIyMjIyMjIyMjIyMK
-R05TUy1TRFIuaW50ZXJuYWxfZnNfc3BzPTQwMDAwMDAKCjsjIyMjIyMjIyMgU0lHTkFMX1NPVVJD
-RSBDT05GSUcgIyMjIyMjIyMjIyMjClNpZ25hbFNvdXJjZS5pbXBsZW1lbnRhdGlvbj1VSERfU2ln
-bmFsX1NvdXJjZQpTaWduYWxTb3VyY2UuZGV2aWNlX2FkZHJlc3M9MTkyLjE2OC4xMC40ClNpZ25h
-bFNvdXJjZS5pdGVtX3R5cGU9Y3Nob3J0ClNpZ25hbFNvdXJjZS5zYW1wbGluZ19mcmVxdWVuY3k9
-NDAwMDAwMApTaWduYWxTb3VyY2UuZnJlcT0xNTc1NDIwMDAwClNpZ25hbFNvdXJjZS5nYWluPTQw
-ClNpZ25hbFNvdXJjZS5zdWJkZXZpY2U9QTowICA7IDwtIENhbiBiZSBBOjAgb3IgQjowClNpZ25h
-bFNvdXJjZS5zYW1wbGVzPTAKCjsjIyMjIyMjIyMgU0lHTkFMX0NPTkRJVElPTkVSIENPTkZJRyAj
-IyMjIyMjIyMjIyMKU2lnbmFsQ29uZGl0aW9uZXIuaW1wbGVtZW50YXRpb249U2lnbmFsX0NvbmRp
-dGlvbmVyCgo7IyMjIyMjIyMjIERBVEFfVFlQRV9BREFQVEVSIENPTkZJRyAjIyMjIyMjIyMjIyMK
-RGF0YVR5cGVBZGFwdGVyLmltcGxlbWVudGF0aW9uPVBhc3NfVGhyb3VnaApEYXRhVHlwZUFkYXB0
-ZXIuaXRlbV90eXBlPWNzaG9ydAoKOyMjIyMjIyMjIyBJTlBVVF9GSUxURVIgQ09ORklHICMjIyMj
-IyMjIyMjIwpJbnB1dEZpbHRlci5pbXBsZW1lbnRhdGlvbj1GaXJfRmlsdGVyCklucHV0RmlsdGVy
-LmlucHV0X2l0ZW1fdHlwZT1jc2hvcnQKSW5wdXRGaWx0ZXIub3V0cHV0X2l0ZW1fdHlwZT1ncl9j
-b21wbGV4CklucHV0RmlsdGVyLnRhcHNfaXRlbV90eXBlPWZsb2F0CklucHV0RmlsdGVyLm51bWJl
-cl9vZl90YXBzPTExCklucHV0RmlsdGVyLm51bWJlcl9vZl9iYW5kcz0yCgpJbnB1dEZpbHRlci5i
-YW5kMV9iZWdpbj0wLjAKSW5wdXRGaWx0ZXIuYmFuZDFfZW5kPTAuNDgKSW5wdXRGaWx0ZXIuYmFu
-ZDJfYmVnaW49MC41MgpJbnB1dEZpbHRlci5iYW5kMl9lbmQ9MS4wCgpJbnB1dEZpbHRlci5hbXBs
-MV9iZWdpbj0xLjAKSW5wdXRGaWx0ZXIuYW1wbDFfZW5kPTEuMApJbnB1dEZpbHRlci5hbXBsMl9i
-ZWdpbj0wLjAKSW5wdXRGaWx0ZXIuYW1wbDJfZW5kPTAuMAoKSW5wdXRGaWx0ZXIuYmFuZDFfZXJy
-b3I9MS4wCklucHV0RmlsdGVyLmJhbmQyX2Vycm9yPTEuMAoKSW5wdXRGaWx0ZXIuZmlsdGVyX3R5
-cGU9YmFuZHBhc3MKSW5wdXRGaWx0ZXIuZ3JpZF9kZW5zaXR5PTE2CklucHV0RmlsdGVyLnNhbXBs
-aW5nX2ZyZXF1ZW5jeT00MDAwMDAwCklucHV0RmlsdGVyLklGPTAKCjsjIyMjIyMjIyMgUkVTQU1Q
-TEVSIENPTkZJRyAjIyMjIyMjIyMjIyMKUmVzYW1wbGVyLmltcGxlbWVudGF0aW9uPVBhc3NfVGhy
-b3VnaAoKOyMjIyMjIyMjIyBDSEFOTkVMUyBHTE9CQUwgQ09ORklHICMjIyMjIyMjIyMjIwpDaGFu
-bmVsc18xQy5jb3VudD04CkNoYW5uZWxzLmluX2FjcXVpc2l0aW9uPTEKQ2hhbm5lbC5zaWduYWw9
-MUMKCjsjIyMjIyMjIyMgQUNRVUlTSVRJT04gR0xPQkFMIENPTkZJRyAjIyMjIyMjIyMjIyMKQWNx
-dWlzaXRpb25fMUMuaW1wbGVtZW50YXRpb249R1BTX0wxX0NBX1BDUFNfQWNxdWlzaXRpb24KQWNx
-dWlzaXRpb25fMUMudGhyZXNob2xkPTAuMDEKQWNxdWlzaXRpb25fMUMuZG9wcGxlcl9tYXg9ODAw
-MApBY3F1aXNpdGlvbl8xQy5kb3BwbGVyX3N0ZXA9NTAwCgo7IyMjIyMjIyMjIFRSQUNLSU5HIEdM
-T0JBTCBDT05GSUcgIyMjIyMjIyMjIyMjClRyYWNraW5nXzFDLmltcGxlbWVudGF0aW9uPUdQU19M
-MV9DQV9ETExfUExMX1RyYWNraW5nClRyYWNraW5nXzFDLnBsbF9id19oej0zMC4wClRyYWNraW5n
-XzFDLmRsbF9id19oej00LjAKVHJhY2tpbmdfMUMuZWFybHlfbGF0ZV9zcGFjZV9jaGlwcz0wLjUK
-CjsjIyMjIyMjIyMgVEVMRU1FVFJZIERFQ09ERVIgR1BTIENPTkZJRyAjIyMjIyMjIyMjIyMKVGVs
-ZW1ldHJ5RGVjb2Rlcl8xQy5pbXBsZW1lbnRhdGlvbj1HUFNfTDFfQ0FfVGVsZW1ldHJ5X0RlY29k
-ZXIKCjsjIyMjIyMjIyMgT0JTRVJWQUJMRVMgQ09ORklHICMjIyMjIyMjIyMjIwpPYnNlcnZhYmxl
-cy5pbXBsZW1lbnRhdGlvbj1IeWJyaWRfT2JzZXJ2YWJsZXMKCjsjIyMjIyMjIyMgUFZUIENPTkZJ
-RyAjIyMjIyMjIyMjIyMKUFZULmltcGxlbWVudGF0aW9uPVJUS0xJQl9QVlQKUFZULnBvc2l0aW9u
-aW5nX21vZGU9U2luZ2xlClBWVC5vdXRwdXRfcmF0ZV9tcz0xMApQVlQuZGlzcGxheV9yYXRlX21z
-PTUwMApQVlQuaW9ub19tb2RlbD1Ccm9hZGNhc3QKUFZULnRyb3BfbW9kZWw9U2Fhc3RhbW9pbmVu
-ClBWVC5mbGFnX3J0Y21fc2VydmVyPXRydWUKUFZULmZsYWdfcnRjbV90dHlfcG9ydD1mYWxzZQpQ
-VlQucnRjbV9kdW1wX2Rldm5hbWU9L2Rldi9wdHMvMQpQVlQucnRjbV90Y3BfcG9ydD0yMTAxClBW
-VC5ydGNtX01UMTAxOV9yYXRlX21zPTUwMDAKUFZULnJ0Y21fTVQxMDc3X3JhdGVfbXM9MTAwMApQ
-VlQucmluZXhfdmVyc2lvbj0yCgo=
---0000000000006b4ec8058ed93c6a
-Content-Type: application/octet-stream; name="pvt.dat_190727_144704.gpx"
-Content-Disposition: attachment; filename="pvt.dat_190727_144704.gpx"
+VGhhbmsgeW91IHZlcnkgbXVjaCEgIEl0IGRpZCB3b3JrLg0KDQpPbiAyMDE5LzcvMjgg5LiK5Y2I
+ODoxMSwgTWFyY3VzIEQuIExlZWNoIHdyb3RlOg0KT24gMDcvMjcvMjAxOSAwODowMiBQTSwg5rGk
+IOmjniB3cm90ZToNCkFjdHVhbGx5IEkgaGF2ZSB0cmllZCAxNTAwLCBzYW1lIGVycm9ycy4gSXMg
+dGhlcmUgYSB3YXkgdG8gdXNlIFB5Qk9NQlMgdG8gY3JlYXRlIHRoZSBSRk5PQyBlbnZpcm9ubWVu
+dCB3aXRoIGEgc3BlY2lmaWVkIFVIRCB2ZXJzaW9uKDMuMTQuMC4wKSBpbnN0ZWFkIG9mIHRoZSBk
+ZWZhdWx0IGxhdGVzdCB2ZXJzaW9uICgzLjE1KT8NCg0KSSdtIG5vdCBtdWNoIG9mIGEgUHlCb21i
+cyB1c2VyIG15c2VsZiwgYnV0IHNvbWV0aGluZyBsaWtlDQoNCg0KcHlib21icyBjb25maWcgLS1w
+YWNrYWdlIHVoZCBnaXRyZXYgdjMuMTQuMC4wDQoNCg0KDQpCZWZvcmUgcHJvY2VlZGluZyB3aXRo
+IHRoZSByZXN0IG9mIHlvdXIgUHlCb21icyBmbG93Lg0KDQoNCuWPkeS7tuS6ujogTWFyY3VzIEQg
+TGVlY2g8bWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0K5Y+R6YCB5pe26Ze0OiAyMDE5
+5bm0N+aciDI45pelIDM6MDINCuaUtuS7tuS6ujog5rGkIOmjnjxtYWlsdG86cmV0aW5hOTk5QGhv
+dG1haWwuY29tPg0K5oqE6YCBOiBTYW0gUmVpdGVyPG1haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNv
+bT47IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbT4NCuS4u+mimDogUmU6IOetlOWkjTogW1VTUlAtdXNlcnNdIOetlOWkjTogTjMxMCAi
+QmFkIENIRFIgb3IgcGFja2V0IGZyYWdtZW50IiBQcm9ibGVtDQoNClRyeSBhZGp1c3RpbmcgdGhl
+IE1UVSBhcyB3ZWxsIHRvIDE1MDAuDQoNClNlbnQgZnJvbSBteSBpUGhvbmUNCg0KT24gSnVsIDI2
+LCAyMDE5LCBhdCA5OjM2IFBNLCDmsaQg6aOeIDxyZXRpbmE5OTlAaG90bWFpbC5jb208bWFpbHRv
+OnJldGluYTk5OUBob3RtYWlsLmNvbT4+IHdyb3RlOg0KDQpGWUkNCg0KDQoNCmlmY29uZmlnDQoN
+CmVucDJzMDogZmxhZ3M9NDE2MzxVUCxCUk9BRENBU1QsUlVOTklORyxNVUxUSUNBU1Q+ICBtdHUg
+ODAwMA0KDQogICAgICAgIGluZXQgMTkyLjE2OC4xMC4xICBuZXRtYXNrIDI1NS4yNTUuMjU1LjAg
+IGJyb2FkY2FzdCAxOTIuMTY4LjEwLjI1NQ0KDQogICAgICAgIGluZXQ2IGZlODA6Ojk2YzY6OTFm
+ZjpmZWJkOmU4YmIgIHByZWZpeGxlbiA2NCAgc2NvcGVpZCAweDIwPGxpbms+DQoNCiAgICAgICAg
+ZXRoZXIgOTQ6YzY6OTE6YmQ6ZTg6YmIgIHR4cXVldWVsZW4gMTAwMCAgKEV0aGVybmV0KQ0KDQog
+ICAgICAgIFJYIHBhY2tldHMgMzM1MiAgYnl0ZXMgMjI3NDY1MCAoMi4yIE1CKQ0KDQogICAgICAg
+IFJYIGVycm9ycyAwICBkcm9wcGVkIDAgIG92ZXJydW5zIDAgIGZyYW1lIDANCg0KICAgICAgICBU
+WCBwYWNrZXRzIDI5MjYgIGJ5dGVzIDI0NjUyNyAoMjQ2LjUgS0IpDQoNCiAgICAgICAgVFggZXJy
+b3JzIDAgIGRyb3BwZWQgMCBvdmVycnVucyAwICBjYXJyaWVyIDAgIGNvbGxpc2lvbnMgMA0KDQoN
+Cg0KbG86IGZsYWdzPTczPFVQLExPT1BCQUNLLFJVTk5JTkc+ICBtdHUgNjU1MzYNCg0KICAgICAg
+ICBpbmV0IDEyNy4wLjAuMSAgbmV0bWFzayAyNTUuMC4wLjANCg0KICAgICAgICBpbmV0NiA6OjEg
+IHByZWZpeGxlbiAxMjggIHNjb3BlaWQgMHgxMDxob3N0Pg0KDQogICAgICAgIGxvb3AgIHR4cXVl
+dWVsZW4gMTAwMCAgKExvY2FsIExvb3BiYWNrKQ0KDQogICAgICAgIFJYIHBhY2tldHMgMzY5ICBi
+eXRlcyAyOTQ4OSAoMjkuNCBLQikNCg0KICAgICAgICBSWCBlcnJvcnMgMCAgZHJvcHBlZCAwICBv
+dmVycnVucyAwICBmcmFtZSAwDQoNCiAgICAgICAgVFggcGFja2V0cyAzNjkgIGJ5dGVzIDI5NDg5
+ICgyOS40IEtCKQ0KDQogICAgICAgIFRYIGVycm9ycyAwICBkcm9wcGVkIDAgb3ZlcnJ1bnMgMCAg
+Y2FycmllciAwICBjb2xsaXNpb25zIDANCg0KDQoNCndseDNjNDZkOGQ3Yzg2YzogZmxhZ3M9NDE2
+MzxVUCxCUk9BRENBU1QsUlVOTklORyxNVUxUSUNBU1Q+ICBtdHUgMTUwMA0KDQogICAgICAgIGlu
+ZXQgMTkyLjE2OC4wLjIwOCAgbmV0bWFzayAyNTUuMjU1LjI1NC4wICBicm9hZGNhc3QgMTkyLjE2
+OC4xLjI1NQ0KDQogICAgICAgIGluZXQ2IGZlODA6OmI4YjM6YmRhNjpkZDJhOjIwNmYgIHByZWZp
+eGxlbiA2NCAgc2NvcGVpZCAweDIwPGxpbms+DQoNCiAgICAgICAgZXRoZXIgM2M6NDY6ZDg6ZDc6
+Yzg6NmMgIHR4cXVldWVsZW4gMTAwMCAgKEV0aGVybmV0KQ0KDQogICAgICAgIFJYIHBhY2tldHMg
+MTA0MyAgYnl0ZXMgODIyMTMyICg4MjIuMSBLQikNCg0KICAgICAgICBSWCBlcnJvcnMgMCAgZHJv
+cHBlZCAwICBvdmVycnVucyAwICBmcmFtZSAwDQoNCiAgICAgICAgVFggcGFja2V0cyA4NzMgIGJ5
+dGVzIDExOTkyNSAoMTE5LjkgS0IpDQoNCiAgICAgICAgVFggZXJyb3JzIDAgIGRyb3BwZWQgMCBv
+dmVycnVucyAwICBjYXJyaWVyIDAgIGNvbGxpc2lvbnMgMA0KT24gMjAxOS83LzI3IOS4iiDljYgx
+OjE3LCBTYW0gUmVpdGVyIHdyb3RlOg0KQ2FuIHlvdSBwb3N0IHRoZSBvdXRwdXQgb2YgaWZjb25m
+aWcgb24geW91ciBzeXN0ZW0/DQoNClNhbSBSZWl0ZXINClNEUiBTdXBwb3J0IEVuZ2luZWVyDQpF
+dHR1cyBSZXNlYXJjaA0KDQoNCk9uIFRodSwgSnVsIDI1LCAyMDE5IGF0IDc6NDAgUE0g5rGkIOmj
+niA8cmV0aW5hOTk5QGhvdG1haWwuY29tPG1haWx0bzpyZXRpbmE5OTlAaG90bWFpbC5jb20+PiB3
+cm90ZToNCg0KVGhhbmtzIQ0KDQpJIGFtIGxlYXJuaW5nIHRvIHVzZSBSRk5PQyB0byBpbnRlZ3Jh
+dGUgYSBiYXNlYmFuZC4gU28gSSB1c2VkIFB5Qk9NQlMgdG8gY3JlYXRlIHRoZSBlbnZpcm9ubWVu
+dC4gIFRoZSBhdXRvbWF0aWNhbGx5IGluc3RhbGxlZCBVSEQgdmVyc2lvbiBpcyBhcyBmb2xsb3dz
+DQoNCnVoZF9maW5kX2RldmljZXMNCltJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9u
+IDcuNC4wOyBCb29zdF8xMDY1MDE7IFVIRF8zLjE1LjAuZ2l0LTE5LWc3ZTFiNTY3ZA0KLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCi0tIFVIRCBEZXZp
+Y2UgMA0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0N
+CkRldmljZSBBZGRyZXNzOg0KICAgIHNlcmlhbDogMzE4MkIwOQ0KICAgIGFkZHI6IDE5Mi4xNjgu
+MTAuMg0KICAgIGNsYWltZWQ6IEZhbHNlDQogICAgbWdtdF9hZGRyOiAxOTIuMTY4LjEuMTUxDQog
+ICAgbWdtdF9hZGRyOiAxOTIuMTY4LjEwLjINCiAgICBwcm9kdWN0OiBuMzEwDQogICAgdHlwZTog
+bjN4eA0KDQpCdXQgaG93IHRvIGFkZCAgdG8gdGhlIGRldmljZSBhcmd1bWVudHM/ICBJIHRyaWVk
+IGxpa2UgdGhpcyBidXQgbm90IHdvcmtpbmcNCg0KL3Vzci9sb2NhbC9saWIvdWhkL2V4YW1wbGVz
+L3J4X2FzY2lpX2FydF9kZnQgLS1hcmdzICJtYXN0ZXJfY2xvY2tfcmF0ZT0xMjVlNixtZ210X2Fk
+ZHI9MTkyLjE2OC4xLjE1MSxyZWN2X2ZyYW1lX3NpemU9MTQ3NixhZGRyPTE5Mi4xNjguMTAuMiIg
+LS1mcmVxIDk4LjVlNiAtLXJhdGUgMi41ZTYgLS1nYWluIDUwIC0tcmVmLWx2bD0iLTUwIiAtLWR5
+bi1ybmcgOTAgLS1hbnQgIlJYMiIgLS1zdWJkZXYgIkE6MCINCg0KDQpPbiAyMDE5LzcvMjYg5LiK
+5Y2INToxNywgU2FtIFJlaXRlciB3cm90ZToNCkZvdW5kIHRoZSBvZmZlbmRpbmcgY29tbWl0IGFu
+ZCByZXBvcnRlZCB0aGUgaXNzdWUuIEl0IGFsc28gbG9va3MgbGlrZSBhZGRpbmcgcmVjdl9mcmFt
+ZV9zaXplPTE0NzYgZXhwbGljaXRseSB0byB0aGUgZGV2aWNlIGFyZ3VtZW50cyBjbGVhcmVkIHRo
+aW5ncyB1cCBvbiBteSBOMzEwIHJ1bm5pbmcgMy4xNC4xLjAuIExldCBtZSBrbm93IGlmIHRoaXMg
+ZG9lcyAvIGRvZXNuJ3Qgd29yayBmb3IgYW55b25lLg0KDQpTYW0gUmVpdGVyDQpTRFIgU3VwcG9y
+dCBFbmdpbmVlcg0KRXR0dXMgUmVzZWFyY2gNCg0KDQpPbiBUaHUsIEp1bCAyNSwgMjAxOSBhdCAz
+OjA0IFBNIE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb208bWFpbHRvOnBh
+dGNodm9uYnJhdW5AZ21haWwuY29tPj4gd3JvdGU6DQpPbiAwNy8yNS8yMDE5IDAzOjU2IFBNLCBT
+YW0gUmVpdGVyIHdyb3RlOg0KRm9sbG93IHVwIG9uIHRoaXMgdGhyZWFkLiBJIHJhbiBteSBOMzEw
+IHdpdGggYSAxR2JFIGxpbmsgYW5kIHdhcyBhYmxlIHRvIHJlcHJvZHVjZSB0aGUgIkJhZCBDSERS
+IG9yIHBhY2tldCBmcmFnbWVudCBpc3N1ZSIuIEl0IHNlZW1zIHNwZWNpZmljIHRvIE4zeHggUlgg
+b3ZlciBhIDFHYkUgbGluayBvbiAzLjE0LjEuMC4gSSBkaWRuJ3Qgc3BlbmQgYSB0b24gb2YgdGlt
+ZSB0cnlpbmcgdG8gZmluZCBhIHdvcmthcm91bmQgb24gMy4xNC4xLjAsIGJ1dCByb2xsaW5nIGJh
+Y2sgdG8gMy4xNC4wLjAgY2xlYXJlZCB0aGUgaXNzdWUgZm9yIG1lLg0KDQpJJ2xsIHNwZW5kIHNv
+bWUgdGltZSBmaW5kaW5nIHRoZSBvZmZlbmRpbmcgY29tbWl0IGFuZCBzZWUgd2hhdCBJIGNhbid0
+IGRvIHRvIGdldCBhIGZpeCAvIHdvcmthcm91bmQgZmlndXJlZCBvdXQgZm9yIDMuMTQuMS4wLg0K
+DQpTYW0gUmVpdGVyDQpTRFIgU3VwcG9ydCBFbmdpbmVlcg0KRXR0dXMgUmVzZWFyY2gNCg0KVGhh
+bmtzLCBTYW0uICBXaGVuIEkgZ28gaW50byB0aGUgbGFiIGxhdGVyLCBJIGNhbiBwcm9iYWJseSBj
+b25maXJtIHRoaXMgYXMgd2VsbCwgSSBoYXZlbid0IHNlZW4gaXQgYmVmb3JlLCBidXQgSSB0aGlu
+ayBJJ20gcnVuaW5nIDMuMTQuMC4wDQoNCg0KDQpPbiBUdWUsIEp1bCAyMywgMjAxOSBhdCAxMDox
+MyBQTSBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb208bWFpbHRvOnBhdGNo
+dm9uYnJhdW5AZ21haWwuY29tPj4gd3JvdGU6DQpOb3JtYWxseSBJbnRlbCBjb250cm9sbGVycyBo
+YXZlIGJldHRlciBwZXJmb3JtYW5jZSBidXQgZXZlbiBhIFJlYWxUZWsgY2hpcCBzaG91bGQgaGF2
+ZSBubyBwcm9ibGVtIGF0IHRob3NlIGRhdGEgcmF0ZXMuDQoNCg0KU2VudCBmcm9tIG15IGlQaG9u
+ZQ0KDQpPbiBKdWwgMjMsIDIwMTksIGF0IDEwOjAxIFBNLCDmsaQg6aOeIDxyZXRpbmE5OTlAaG90
+bWFpbC5jb208bWFpbHRvOnJldGluYTk5OUBob3RtYWlsLmNvbT4+IHdyb3RlOg0KQWN0dWFsbHkg
+bXkgcGPigJlzIEV0aGVybmV0IGNhcmQgY2hpcCBpcyBmcm9tIFJlYWx0ZWsuDQpJ4oCZdmUgdHJp
+ZWQgYWxsIHBvc3NpYmxlIE1UVSBzaXplcyBvZiBhdXRvLCAxMDAwLCAxNTAwLCAyMDAwLCBhbmQg
+dXAgdG8gOTAwMC4gQWx3YXlzIHRoZSBzYW1lIGVycm9ycy4NCklzIGl0IHRoZSBpbmhlcmVudCBw
+cm9ibGVtIHdpdGggdGhlIFJlYWx0ZWsgY2hpcD8NCklmIHRoYXQsIGlzIHRoZXJlIGFueSB3b3Jr
+YXJvdW5kPyBlZy4gQ2hhbmdpbmcgdGhlIGRlZmF1bHQgTGludXggZHJpdmVyLA0Kb3IgdGhlIGxh
+c3Qgc29sdXRpb24sIGllLiBJIGhhdmUgdG8gdHJ5IGluc3RhbGwgYSBQQ0lFIG5ldHdvcmsgY2Fy
+ZC4gV2hpY2ggYnJhbmQgZXRoZXJuZXQgY2FyZCBpcyBjb21wYXRpYmxlLCBvbmUgZnJvbSBJbnRl
+bD8NCg0KDQrlj5Hku7bkuro6IE1hcmN1cyBEIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNv
+bTxtYWlsdG86cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+Pg0K5Y+RIOmAgeaXtumXtDogV2VkbmVz
+ZGF5LCBKdWx5IDI0LCAyMDE5IDc6MzQ6MTMgQU0NCuaUtiDku7bkuro6IOaxpCDpo54gPHJldGlu
+YTk5OUBob3RtYWlsLmNvbTxtYWlsdG86cmV0aW5hOTk5QGhvdG1haWwuY29tPj4NCuaKhOmAgTog
+U2FtIFJlaXRlciA8c2FtLnJlaXRlckBldHR1cy5jb208bWFpbHRvOnNhbS5yZWl0ZXJAZXR0dXMu
+Y29tPj47IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbT4gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbT4+DQrkuLsg6aKYOiBSZTogW1VTUlAtdXNlcnNdIOetlOWkjTogTjMx
+MCAiQmFkIENIRFIgb3IgcGFja2V0IGZyYWdtZW50IiBQcm9ibGVtDQoNClNvbWUgRXRoZXJuZXQg
+MWcgY29udHJvbGxlcnMgd29u4oCZdCBhY3R1YWxseSBkbyBNVFVzIGdyZWF0ZXIgdGhhbiAxNTAw
+IGRlc3BpdGUgZXRobm9sb2d5IHRlbGxpbmcgdGhlbSB0by4gU29tZSBSZWFsdGVrIGZvciBleGFt
+cGxlLg0KDQpJZiBpdOKAmXMganVzdCAxRyB0cnkgZGVmYXVsdCBNVFUgb2YgMTUwMCBhbmQgd29y
+ayB5b3VyIHdheSB1cCB0byBzZWUgd2hlcmUgaXQgZmFpbHMuDQpTZW50IGZyb20gbXkgaVBob25l
+DQoNCk9uIEp1bCAyMywgMjAxOSwgYXQgNzoxNSBQTSwg5rGkIOmjniB2aWEgVVNSUC11c2VycyA8
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tPj4gd3JvdGU6DQpJdOKAmXMgYSAgMWcgU0ZQMCBsaW5rLiBJIHNldCBNVFUgIHRvIDgwMDAg
+YWNjb3JkaW5nIHRvIHRoZSBBcHBsaWNhdGlvbiBOb3RlLg0KDQoNCuWPkeS7tuS6ujogU2FtIFJl
+aXRlciA8c2FtLnJlaXRlckBldHR1cy5jb208bWFpbHRvOnNhbS5yZWl0ZXJAZXR0dXMuY29tPj4N
+CuWPkemAgeaXtumXtDogV2VkbmVzZGF5LCBKdWx5IDI0LCAyMDE5IDQ6NTY6MjEgQU0NCuaUtuS7
+tuS6ujog5rGkIOmjniA8cmV0aW5hOTk5QGhvdG1haWwuY29tPG1haWx0bzpyZXRpbmE5OTlAaG90
+bWFpbC5jb20+Pg0K5oqE6YCBOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWls
+dG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pg0K5Li76aKYOiBSZTogW1VTUlAtdXNlcnNd
+IE4zMTAgIkJhZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudCIgUHJvYmxlbQ0KDQpJZiB5b3UncmUg
+Y29ubmVjdGVkIG92ZXIgYSAxMEdiRSBsaW5rLCBtYWtlIHN1cmUgdG8gc2V0IHlvdXIgaG9zdCdz
+IE1UVSBhcHByb3ByaWF0ZWx5LiBJIHNldCBtaW5lIHRvIDkwMDAuDQoNClNhbSBSZWl0ZXINClNE
+UiBTdXBwb3J0IEVuZ2luZWVyDQpFdHR1cyBSZXNlYXJjaA0KDQoNCk9uIEZyaSwgSnVsIDE5LCAy
+MDE5IGF0IDI6MjEgQU0g5rGkIOmjniB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3JvdGU6DQoNCkhp
+LCBhbGwsDQoNCg0KDQpXaGVuIGJlbmNobWFya2luZyBteSBOMzEwLCBJIGtlZXAgZ2V0dGluZyBz
+dWNoIFtSWCBGTE9XIENUUkxdIGVycm9ycy4NCg0KV2hhdCBjYXVzZXMgdGhpcyBhbmQgaG93IHRv
+IHNvbHZlIGl0Pw0KDQoNCg0KVGhhbmtzIGluIGFkdmFuY2UhDQoNCg0KDQpGVA0KDQoNCg0KDQoN
+Ci91c3IvbG9jYWwvbGliL3VoZC9leGFtcGxlcy9iZW5jaG1hcmtfcmF0ZSAgXA0KDQo+ICAgIC0t
+YXJncyAidHlwZT1uM3h4LG1nbXRfYWRkcj0xOTIuMTY4LjEwLjIsYWRkcj0xOTIuMTY4LjEwLjIs
+bWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYiIFwNCg0KPiAgICAtLWR1cmF0aW9uIDYwIFwNCg0K
+PiAgICAtLWNoYW5uZWxzICIwIiBcDQoNCj4gICAgLS1yeF9yYXRlIDMuODRlNiBcDQoNCj4gICAg
+LS1yeF9zdWJkZXYgIkE6MCIgXA0KDQo+ICAgIC0tdHhfcmF0ZSAzLjg0ZTYgXA0KDQo+ICAgIC0t
+dHhfc3ViZGV2ICJBOjAiDQoNCg0KDQpbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lv
+biA3LjQuMDsgQm9vc3RfMTA2NTAxOyBVSERfMy4xNC4xLkhFQUQtMC1nYmZiOWMxYzcNCg0KWzAw
+OjAwOjAwLjAwMDAxNF0gQ3JlYXRpbmcgdGhlIHVzcnAgZGV2aWNlIHdpdGg6IHR5cGU9bjN4eCxt
+Z210X2FkZHI9MTkyLjE2OC4xMC4yLGFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRl
+PTEyMi44OGU2Li4uDQoNCltJTkZPXSBbTVBNRF0gSW5pdGlhbGl6aW5nIDEgZGV2aWNlKHMpIGlu
+IHBhcmFsbGVsIHdpdGggYXJnczogbWdtdF9hZGRyPTE5Mi4xNjguMTAuMix0eXBlPW4zeHgscHJv
+ZHVjdD1uMzEwLHNlcmlhbD0zMTgyQjA5LGNsYWltZWQ9RmFsc2UsYWRkcj0xOTIuMTY4LjEwLjIs
+bWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYNCg0KW0lORk9dIFtNUE0uUGVyaXBoTWFuYWdlcl0g
+aW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzIGBtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhl
+Nix0aW1lX3NvdXJjZT1pbnRlcm5hbCxjbG9ja19zb3VyY2U9aW50ZXJuYWwsbWdtdF9hZGRyPTE5
+Mi4xNjguMTAuMixwcm9kdWN0PW4zMTAnLg0KDQpbSU5GT10gWzAvUmVwbGF5XzBdIEluaXRpYWxp
+emluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4NEU5MUEwMDAwMDAwMDAwNCkNCg0KW0lORk9d
+IFswL1JhZGlvXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTJBRDEw
+MDAwMDAxMTMxMikNCg0KW0lORk9dIFswL1JhZGlvXzFdIEluaXRpYWxpemluZyBibG9jayBjb250
+cm9sIChOT0MgSUQ6IDB4MTJBRDEwMDAwMDAxMTMxMikNCg0KW0lORk9dIFswL0REQ18wXSBJbml0
+aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAwMDApDQoNCltJ
+TkZPXSBbMC9ERENfMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEREMw
+MDAwMDAwMDAwMDAwKQ0KDQpbSU5GT10gWzAvRFVDXzBdIEluaXRpYWxpemluZyBibG9jayBjb250
+cm9sIChOT0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAwMikNCg0KW0lORk9dIFswL0RVQ18xXSBJbml0
+aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDIpDQoNCltJ
+TkZPXSBbMC9GSUZPXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RjFG
+MDAwMDAwMDAwMDAwMCkNCg0KW0lORk9dIFswL0ZJRk9fMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNv
+bnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQ0KDQpbSU5GT10gWzAvRklGT18yXSBJ
+bml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApDQoN
+CltJTkZPXSBbMC9GSUZPXzNdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4
+RjFGMDAwMDAwMDAwMDAwMCkNCg0KVXNpbmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoNCg0KICBEZXZp
+Y2U6IE4zMDAtU2VyaWVzIERldmljZQ0KDQogIE1ib2FyZCAwOiBuaS1uM3h4LTMxODJCMDkNCg0K
+ICBSWCBDaGFubmVsOiAwDQoNCiAgICBSWCBEU1A6IDANCg0KICAgIFJYIERib2FyZDogQQ0KDQog
+ICAgUlggU3ViZGV2OiBNYWduZXNpdW0NCg0KICBUWCBDaGFubmVsOiAwDQoNCiAgICBUWCBEU1A6
+IDANCg0KICAgIFRYIERib2FyZDogQQ0KDQogICAgVFggU3ViZGV2OiBNYWduZXNpdW0NCg0KDQoN
+ClswMDowMDoxNy4zNTMxODRdIFNldHRpbmcgZGV2aWNlIHRpbWVzdGFtcCB0byAwLi4uDQoNClsw
+MDowMDoxNy40MTIxODddIFRlc3RpbmcgcmVjZWl2ZSByYXRlIDMuODQwMDAwIE1zcHMgb24gMSBj
+aGFubmVscw0KDQpbMDA6MDA6MTcuNDE0MTY0XSBSZWNlaXZlciBlcnJvcjogRVJST1JfQ09ERV9C
+QURfUEFDS0VUDQoNCltbRVJST1JdIFtSWCBGTE9XIENUUkxdIEVycm9yIHVucGFja2luZyBwYWNr
+ZXQ6IFZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudA0KDQoNCg0KW0VSUk9S
+XSBbU1RSRUFNRVJdIFRoZSByZWNlaXZlIHBhY2tldCBoYW5kbGVyIGNhdWdodCBhIHZhbHVlIGV4
+Y2VwdGlvbi4NCg0KVmFsdWVFcnJvcjogQmFkIENIRFIgb3IgcGFja2V0IGZyYWdtZW50DQoNCjAw
+OjAwOjE3LjQxNDE4MF0gVW5leHBlY3RlZCBlcnJvciBvbiByZWN2LCBjb250aW51aW5nLi4uDQoN
+ClswMDowMDoxNy41MTQyNThdIFJlY2VpdmVyIGVycm9yOiBFUlJPUl9DT0RFX1RJTUVPVVQsIGNv
+bnRpbnVpbmcuLi4NCg0KWzAwOjAwOjE3LjUxNDMxMl0gUmVjZWl2ZXIgZXJyb3I6IEVSUk9SX0NP
+REVfQkFEX1BBQ0tFVA0KDQpbMDA6MDA6MTcuNTE0MzE3XSBVbmV4cGVjdGVkIGVycm9yIG9uIHJl
+Y3YsIGNvbnRpbnVpbmcuLi4NCg0KW0VSUk9SXSBbUlggRkxPVyBDVFJMXSBFcnJvciB1bnBhY2tp
+bmcgcGFja2V0OiBWYWx1ZUVycm9yOiBCYWQgQ0hEUiBvciBwYWNrZXQgZnJhZ21lbnQNCg0KDQoN
+CltFUlJPUl0gW1NUUkVBTUVSXSBUaGUgcmVjZWl2ZSBwYWNrZXQgaGFuZGxlciBjYXVnaHQgYSB2
+YWx1ZSBleGNlcHRpb24uDQoNClZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFnbWVu
+dA0KDQpbMDA6MDA6MTcuNTMyOTkxXSBUZXN0aW5nIHRyYW5zbWl0IHJhdGUgMy44NDAwMDAgTXNw
+cyBvbiAxIGNoYW5uZWxzDQoNClswMDowMDoxNy42MTQzMjldIFJlY2VpdmVyIGVycm9yOiBFUlJP
+Ul9DT0RFX1RJTUVPVVQsIGNvbnRpbnVpbmcuLi4NCg0KWzAwOjAwOjE3LjYxNDM3Ml0gUmVjZWl2
+ZXIgZXJyb3I6IEVSUk9SX0NPREVfQkFEX1BBQ0tFVA0KDQpbMDA6MDA6MTcuNjE0Mzc3XSBVbmV4
+cGVjdGVkIGVycm9yIG9uIHJlY3YsIGNvbnRpbnVpbmcuLi4NCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KVVNS
+UC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Pg0KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+PG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCmh0dHA6Ly9saXN0cy5ldHR1cy5j
+b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0KDQoNCg0K
+
+--_000_HK0PR01MB2835B708C9240442B8368BC5F3DC0HK0PR01MB2835apcp_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <553EEF862FD26F48ADBAAD14D6B0F1F0@apcprd01.prod.exchangelabs.com>
 Content-Transfer-Encoding: base64
-Content-ID: <f_jyoy7xyi2>
-X-Attachment-Id: f_jyoy7xyi2
 
-PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGdweCB2ZXJzaW9uPSIxLjEi
-IGNyZWF0b3I9IkdOU1MtU0RSIgogIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL3d3dy50b3Bv
-Z3JhZml4LmNvbS9HUFgvMS8xIGh0dHA6Ly93d3cudG9wb2dyYWZpeC5jb20vR1BYLzEvMS9ncHgu
-eHNkIGh0dHA6Ly93d3cuZ2FybWluLmNvbS94bWxzY2hlbWFzL0dweEV4dGVuc2lvbnMvdjMgaHR0
-cDovL3d3dy5nYXJtaW4uY29tL3htbHNjaGVtYXMvR3B4RXh0ZW5zaW9uc3YzLnhzZCBodHRwOi8v
-d3d3Lmdhcm1pbi5jb20veG1sc2NoZW1hcy9UcmFja1BvaW50RXh0ZW5zaW9uL3YyIGh0dHA6Ly93
-d3cuZ2FybWluLmNvbS94bWxzY2hlbWFzL1RyYWNrUG9pbnRFeHRlbnNpb252Mi54c2QiCiAgeG1s
-bnM9Imh0dHA6Ly93d3cudG9wb2dyYWZpeC5jb20vR1BYLzEvMSIKICB4bWxuczpncHh4PSJodHRw
-Oi8vd3d3Lmdhcm1pbi5jb20veG1sc2NoZW1hcy9HcHhFeHRlbnNpb25zL3YzIgogIHhtbG5zOmdw
-eHRweD0iaHR0cDovL3d3dy5nYXJtaW4uY29tL3htbHNjaGVtYXMvVHJhY2tQb2ludEV4dGVuc2lv
-bi92MiIKICB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3Rh
-bmNlIj4KICA8dHJrPgogICAgPG5hbWU+UG9zaXRpb24gZml4ZXMgY29tcHV0ZWQgYnkgR05TUy1T
-RFIgdjAuMC4xMC5naXQtbmV4dC0wOGM1N2UyYzc8L25hbWU+CiAgICA8ZGVzYz5HTlNTLVNEUiBw
-b3NpdGlvbiBsb2cgZ2VuZXJhdGVkIGF0IDIwMTktSnVsLTI3IDE0OjQ3OjA0IChsb2NhbCB0aW1l
-KTwvZGVzYz4KICAgIDx0cmtzZWc+Cg==
---0000000000006b4ec8058ed93c6a
-Content-Type: application/octet-stream; name="pvt.dat_190727_144704.geojson"
-Content-Disposition: attachment; filename="pvt.dat_190727_144704.geojson"
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHRleHQ9IiMwMDAwMDAi
+IGJnY29sb3I9IiNGRkZGRkYiPg0KPHA+VGhhbmsgeW91IHZlcnkgbXVjaCEmbmJzcDsgSXQgZGlk
+IHdvcmsuIDxicj4NCjwvcD4NCjxkaXYgY2xhc3M9Im1vei1jaXRlLXByZWZpeCI+T24gMjAxOS83
+LzI4IOS4iuWNiDg6MTEsIE1hcmN1cyBELiBMZWVjaCB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9j
+a3F1b3RlIHR5cGU9ImNpdGUiIGNpdGU9Im1pZDo1RDNDRTgyRC45MDcwMzA3QGdtYWlsLmNvbSI+
+DQo8ZGl2IGNsYXNzPSJtb3otY2l0ZS1wcmVmaXgiPk9uIDA3LzI3LzIwMTkgMDg6MDIgUE0sIOax
+pCDpo54gd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBjaXRlPSJtaWQ6SEswUFIwMU1C
+MjgzNTU0RjlBMjE4QzFCMDEzQzQwQzQ3RjNDMzBASEswUFIwMU1CMjgzNS5hcGNwcmQwMS5wcm9k
+LmV4Y2hhbmdlbGFicy5jb20iIHR5cGU9ImNpdGUiPg0KPG1ldGEgbmFtZT0iR2VuZXJhdG9yIiBj
+b250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQNCiAgICAgICAgICBtZWRpdW0pIj4N
+CjwhLS1baWYgIW1zb10+PHN0eWxlPnZcOioge2JlaGF2aW9yOnVybCgjZGVmYXVsdCNWTUwpO30N
+Cm9cOioge2JlaGF2aW9yOnVybCgjZGVmYXVsdCNWTUwpO30NCndcOioge2JlaGF2aW9yOnVybCgj
+ZGVmYXVsdCNWTUwpO30NCi5zaGFwZSB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0KPC9z
+dHlsZT48IVtlbmRpZl0tLT48c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZv
+bnQtZmFjZQ0KCXtmb250LWZhbWlseTpTaW1TdW47DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAx
+IDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9z
+ZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpEZW5n
+WGlhbjsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCkBmb250LWZhY2UNCgl7Zm9u
+dC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9u
+dC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkRlbmdYaWFuOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEg
+MSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpTaW1TdW47DQoJcGFub3NlLTE6MiAx
+IDYgMCAzIDEgMSAxIDEgMTt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0
+b206LjAwMDFwdDsNCgl0ZXh0LWFsaWduOmp1c3RpZnk7DQoJdGV4dC1qdXN0aWZ5OmludGVyLWlk
+ZW9ncmFwaDsNCglmb250LXNpemU6MTAuNXB0Ow0KCWZvbnQtZmFtaWx5OkRlbmdYaWFuO30NCmE6
+bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9y
+OmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNv
+SHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRG
+NzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwcmUNCgl7bXNvLXN0eWxlLXByaW9y
+aXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFw5ODg0XDhCQkVcNjgzQ1w1RjBGIFw1QjU3
+XDdCMjYiOw0KCW1hcmdpbjowY207DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6
+ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6U2ltU3VuO30NCnNwYW4uSFRNTA0KCXttc28tc3R5bGUt
+bmFtZToiSFRNTCBcOTg4NFw4QkJFXDY4M0NcNUYwRiBcNUI1N1w3QjI2IjsNCgltc28tc3R5bGUt
+cHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgXDk4ODRcOEJCRVw2ODNDXDVGMEYi
+Ow0KCWZvbnQtZmFtaWx5OlNpbVN1bjt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlw
+ZTpleHBvcnQtb25seTt9DQovKiBQYWdlIERlZmluaXRpb25zICovDQpAcGFnZSBXb3JkU2VjdGlv
+bjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA5MC4wcHQgNzIuMHB0
+IDkwLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
+c3R5bGU+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiPkFjdHVhbGx5IEkgaGF2ZSB0cmllZCAxNTAwLCBzYW1lIGVycm9y
+cy4gSXMgdGhlcmUgYSB3YXkgdG8gdXNlIFB5Qk9NQlMgdG8gY3JlYXRlIHRoZSBSRk5PQyBlbnZp
+cm9ubWVudCB3aXRoIGEgc3BlY2lmaWVkIFVIRCB2ZXJzaW9uKDMuMTQuMC4wKSBpbnN0ZWFkIG9m
+IHRoZSBkZWZhdWx0IGxhdGVzdCB2ZXJzaW9uICgzLjE1KT88L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+L2Jsb2NrcXVvdGU+DQo8YnI+DQpJJ20gbm90IG11Y2ggb2YgYSBQeUJvbWJzIHVzZXIgbXlzZWxm
+LCBidXQgc29tZXRoaW5nIGxpa2U8YnI+DQo8YnI+DQo8cHJlPjxjb2RlPnB5Ym9tYnMgY29uZmln
+IC0tcGFja2FnZSB1aGQgZ2l0cmV2IHYzLjE0LjAuMA0KDQo8L2NvZGU+PC9wcmU+DQpCZWZvcmUg
+cHJvY2VlZGluZyB3aXRoIHRoZSByZXN0IG9mIHlvdXIgUHlCb21icyBmbG93Ljxicj4NCjxicj4N
+CjxibG9ja3F1b3RlIGNpdGU9Im1pZDpISzBQUjAxTUIyODM1NTRGOUEyMThDMUIwMTNDNDBDNDdG
+M0MzMEBISzBQUjAxTUIyODM1LmFwY3ByZDAxLnByb2QuZXhjaGFuZ2VsYWJzLmNvbSIgdHlwZT0i
+Y2l0ZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEy
+LjBwdDtmb250LWZhbWlseTpTaW1TdW4iIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJtc28tZWxlbWVudDpwYXJhLWJvcmRlci1kaXY7Ym9yZGVy
+Om5vbmU7Ym9yZGVyLXRvcDpzb2xpZA0KICAgICAgICAgICAgI0UxRTFFMSAxLjBwdDtwYWRkaW5n
+OjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJib3JkZXI6
+bm9uZTtwYWRkaW5nOjBjbSI+PGI+5Y+R5Lu25Lq6PHNwYW4gbGFuZz0iRU4tVVMiPjogPC9zcGFu
+Pg0KPC9iPjxzcGFuIGxhbmc9IkVOLVVTIj48YSBtb3otZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9
+Im1haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSI+TWFyY3VzIEQgTGVlY2g8L2E+PGJyPg0K
+PC9zcGFuPjxiPuWPkemAgeaXtumXtDxzcGFuIGxhbmc9IkVOLVVTIj46IDwvc3Bhbj48L2I+PHNw
+YW4gbGFuZz0iRU4tVVMiPjIwMTk8L3NwYW4+5bm0PHNwYW4gbGFuZz0iRU4tVVMiPjc8L3NwYW4+
+5pyIPHNwYW4gbGFuZz0iRU4tVVMiPjI4PC9zcGFuPuaXpTxzcGFuIGxhbmc9IkVOLVVTIj4gMzow
+Mjxicj4NCjwvc3Bhbj48Yj7mlLbku7bkuro8c3BhbiBsYW5nPSJFTi1VUyI+OiA8L3NwYW4+PC9i
+PjxzcGFuIGxhbmc9IkVOLVVTIj48YSBtb3otZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9Im1haWx0
+bzpyZXRpbmE5OTlAaG90bWFpbC5jb20iPjxzcGFuIGxhbmc9IkVOLVVTIj48c3BhbiBsYW5nPSJF
+Ti1VUyI+5rGkPC9zcGFuPjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PHNwYW4gbGFuZz0iRU4t
+VVMiPg0KPC9zcGFuPjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PHNwYW4gbGFuZz0iRU4tVVMi
+Pumjnjwvc3Bhbj48L3NwYW4+PC9hPjxicj4NCjwvc3Bhbj48Yj7mioTpgIE8c3BhbiBsYW5nPSJF
+Ti1VUyI+OiA8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj48YSBtb3otZG8tbm90LXNlbmQ9
+InRydWUiIGhyZWY9Im1haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbSI+U2FtIFJlaXRlcjwvYT47
+DQo8YSBtb3otZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPC9zcGFuPjxi
+PuS4u+mimDxzcGFuIGxhbmc9IkVOLVVTIj46IDwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMi
+PlJlOiA8L3NwYW4+562U5aSNPHNwYW4gbGFuZz0iRU4tVVMiPjogW1VTUlAtdXNlcnNdDQo8L3Nw
+YW4+562U5aSNPHNwYW4gbGFuZz0iRU4tVVMiPjogTjMxMCAmcXVvdDtCYWQgQ0hEUiBvciBwYWNr
+ZXQgZnJhZ21lbnQmcXVvdDsgUHJvYmxlbTwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OlNpbVN1
+biIgbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiIGFsaWduPSJsZWZ0Ij48c3BhbiBsYW5n
+PSJFTi1VUyI+VHJ5IGFkanVzdGluZyB0aGUgTVRVIGFzIHdlbGwgdG8gMTUwMC4NCjwvc3Bhbj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdCIgbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRv
+bToxMi4wcHQiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
+DQo8ZGl2IGlkPSJBcHBsZU1haWxTaWduYXR1cmUiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gbGFuZz0iRU4tVVMiPlNlbnQgZnJvbSBteSBpUGhvbmU8L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48
+c3BhbiBsYW5nPSJFTi1VUyI+PGJyPg0KT24gSnVsIDI2LCAyMDE5LCBhdCA5OjM2IFBNLCA8L3Nw
+YW4+5rGkIOmjnjxzcGFuIGxhbmc9IkVOLVVTIj4gJmx0OzxhIG1vei1kby1ub3Qtc2VuZD0idHJ1
+ZSIgaHJlZj0ibWFpbHRvOnJldGluYTk5OUBob3RtYWlsLmNvbSI+cmV0aW5hOTk5QGhvdG1haWwu
+Y29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8YmxvY2tx
+dW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxkaXY+
+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj5GWUk8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxh
+bmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFu
+Zz0iRU4tVVMiPmlmY29uZmlnPC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBsYW5nPSJFTi1VUyI+
+ZW5wMnMwOiBmbGFncz00MTYzJmx0O1VQLEJST0FEQ0FTVCxSVU5OSU5HLE1VTFRJQ0FTVCZndDsm
+bmJzcDsgbXR1IDgwMDA8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgaW5ldCAxOTIuMTY4LjEwLjEm
+bmJzcDsgbmV0bWFzayAyNTUuMjU1LjI1NS4wJm5ic3A7IGJyb2FkY2FzdCAxOTIuMTY4LjEwLjI1
+NTwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbmV0NiBmZTgwOjo5NmM2OjkxZmY6ZmViZDplOGJi
+Jm5ic3A7IHByZWZpeGxlbiA2NCZuYnNwOyBzY29wZWlkIDB4MjAmbHQ7bGluayZndDs8L3NwYW4+
+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsgZXRoZXIgOTQ6YzY6OTE6YmQ6ZTg6YmImbmJzcDsgdHhxdWV1ZWxl
+biAxMDAwJm5ic3A7IChFdGhlcm5ldCk8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVO
+LVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7UlggcGFja2V0
+cyAzMzUyJm5ic3A7IGJ5dGVzIDIyNzQ2NTAgKDIuMiBNQik8L3NwYW4+PC9wcmU+DQo8cHJlPjxz
+cGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsgUlggZXJyb3JzIDAmbmJzcDsgZHJvcHBlZCAwJm5ic3A7IG92ZXJydW5zIDAmbmJzcDsgZnJh
+bWUgMDwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBUWCBwYWNrZXRzIDI5MjYmbmJzcDsgYnl0ZXMg
+MjQ2NTI3ICgyNDYuNSBLQik8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4m
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgVFggZXJyb3JzIDAmbmJz
+cDsgZHJvcHBlZCAwIG92ZXJydW5zIDAmbmJzcDsgY2FycmllciAwJm5ic3A7IGNvbGxpc2lvbnMg
+MDwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBsYW5nPSJFTi1VUyI+bG86IGZsYWdzPTczJmx0O1VQ
+LExPT1BCQUNLLFJVTk5JTkcmZ3Q7Jm5ic3A7IG10dSA2NTUzNjwvc3Bhbj48L3ByZT4NCjxwcmU+
+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyBpbmV0IDEyNy4wLjAuMSZuYnNwOyBuZXRtYXNrIDI1NS4wLjAuMDwvc3Bhbj48L3ByZT4N
+CjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyBpbmV0NiA6OjEmbmJzcDsgcHJlZml4bGVuIDEyOCZuYnNwOyBzY29wZWlkIDB4
+MTAmbHQ7aG9zdCZndDs8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgbG9vcCZuYnNwOyB0eHF1ZXVl
+bGVuIDEwMDAmbmJzcDsgKExvY2FsIExvb3BiYWNrKTwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4g
+bGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBS
+WCBwYWNrZXRzIDM2OSZuYnNwOyBieXRlcyAyOTQ4OSAoMjkuNCBLQik8L3NwYW4+PC9wcmU+DQo8
+cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsgUlggZXJyb3JzIDAmbmJzcDsgZHJvcHBlZCAwJm5ic3A7IG92ZXJydW5zIDAmbmJz
+cDsgZnJhbWUgMDwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBUWCBwYWNrZXRzIDM2OSZuYnNwOyBi
+eXRlcyAyOTQ4OSAoMjkuNCBLQik8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVT
+Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgVFggZXJyb3JzIDAm
+bmJzcDsgZHJvcHBlZCAwIG92ZXJydW5zIDAmbmJzcDsgY2FycmllciAwJm5ic3A7IGNvbGxpc2lv
+bnMgMDwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBsYW5nPSJFTi1VUyI+d2x4M2M0NmQ4ZDdjODZj
+OiBmbGFncz00MTYzJmx0O1VQLEJST0FEQ0FTVCxSVU5OSU5HLE1VTFRJQ0FTVCZndDsmbmJzcDsg
+bXR1IDE1MDA8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgaW5ldCAxOTIuMTY4LjAuMjA4Jm5ic3A7
+IG5ldG1hc2sgMjU1LjI1NS4yNTQuMCZuYnNwOyBicm9hZGNhc3QgMTkyLjE2OC4xLjI1NTwvc3Bh
+bj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyBpbmV0NiBmZTgwOjpiOGIzOmJkYTY6ZGQyYToyMDZmJm5ic3A7
+IHByZWZpeGxlbiA2NCZuYnNwOyBzY29wZWlkIDB4MjAmbHQ7bGluayZndDs8L3NwYW4+PC9wcmU+
+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsgZXRoZXIgM2M6NDY6ZDg6ZDc6Yzg6NmMmbmJzcDsgdHhxdWV1ZWxlbiAxMDAw
+Jm5ic3A7IChFdGhlcm5ldCk8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4m
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgUlggcGFja2V0cyAxMDQz
+Jm5ic3A7IGJ5dGVzIDgyMjEzMiAoODIyLjEgS0IpPC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBs
+YW5nPSJFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFJY
+IGVycm9ycyAwJm5ic3A7IGRyb3BwZWQgMCZuYnNwOyBvdmVycnVucyAwJm5ic3A7IGZyYW1lIDA8
+L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgVFggcGFja2V0cyA4NzMmbmJzcDsgYnl0ZXMgMTE5OTI1
+ICgxMTkuOSBLQik8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgVFggZXJyb3JzIDAmbmJzcDsgZHJv
+cHBlZCAwIG92ZXJydW5zIDAmbmJzcDsgY2FycmllciAwJm5ic3A7IGNvbGxpc2lvbnMgMDwvc3Bh
+bj48L3ByZT4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+
+T24gMjAxOS83LzI3IDwvc3Bhbj7kuIog5Y2IPHNwYW4gbGFuZz0iRU4tVVMiPjE6MTcsIFNhbSBS
+ZWl0ZXIgd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBz
+dHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxkaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkNhbiB5b3UgcG9zdCB0
+aGUgb3V0cHV0IG9mIDxiPmlmY29uZmlnPC9iPiBvbiB5b3VyIHN5c3RlbT88L3NwYW4+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0K
+PGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiPlNhbSBSZWl0ZXImbmJzcDsgPC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+U0RSIFN1cHBvcnQgRW5naW5lZXI8L3NwYW4+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkV0
+dHVzIFJlc2VhcmNoPC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
+CjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPk9u
+IFRodSwgSnVsIDI1LCAyMDE5IGF0IDc6NDAgUE0gPC9zcGFuPuaxpCDpo54NCjxzcGFuIGxhbmc9
+IkVOLVVTIj4mbHQ7PGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVmPSJtYWlsdG86cmV0aW5h
+OTk5QGhvdG1haWwuY29tIj5yZXRpbmE5OTlAaG90bWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8L3Nw
+YW4+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxl
+ZnQ6c29saWQNCiAgICAgICAgICAgICAgICAgICAgICAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGNt
+IDBjbSAwY20NCiAgICAgICAgICAgICAgICAgICAgICA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDtt
+YXJnaW4tcmlnaHQ6MGNtIj4NCjxkaXY+DQo8cD48c3BhbiBsYW5nPSJFTi1VUyI+VGhhbmtzITwv
+c3Bhbj48L3A+DQo8cD48c3BhbiBsYW5nPSJFTi1VUyI+SSBhbSBsZWFybmluZyB0byB1c2UgUkZO
+T0MgdG8gaW50ZWdyYXRlIGEgYmFzZWJhbmQuIFNvIEkgdXNlZCBQeUJPTUJTIHRvIGNyZWF0ZSB0
+aGUgZW52aXJvbm1lbnQuJm5ic3A7IFRoZSBhdXRvbWF0aWNhbGx5IGluc3RhbGxlZCBVSEQgdmVy
+c2lvbiBpcyBhcyBmb2xsb3dzPC9zcGFuPjwvcD4NCjxwPjxzcGFuIGxhbmc9IkVOLVVTIj51aGRf
+ZmluZF9kZXZpY2VzPGJyPg0KW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQyYjNDM7JiM0MzsgdmVy
+c2lvbiA3LjQuMDsgQm9vc3RfMTA2NTAxOyBVSERfMy4xNS4wLmdpdC0xOS1nN2UxYjU2N2Q8YnI+
+DQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTxicj4N
+Ci0tIFVIRCBEZXZpY2UgMDxicj4NCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tPGJyPg0KRGV2aWNlIEFkZHJlc3M6PGJyPg0KJm5ic3A7Jm5ic3A7Jm5i
+c3A7IHNlcmlhbDogMzE4MkIwOTxicj4NCiZuYnNwOyZuYnNwOyZuYnNwOyBhZGRyOiAxOTIuMTY4
+LjEwLjI8YnI+DQombmJzcDsmbmJzcDsmbmJzcDsgY2xhaW1lZDogRmFsc2U8YnI+DQombmJzcDsm
+bmJzcDsmbmJzcDsgbWdtdF9hZGRyOiAxOTIuMTY4LjEuMTUxPGJyPg0KJm5ic3A7Jm5ic3A7Jm5i
+c3A7IG1nbXRfYWRkcjogMTkyLjE2OC4xMC4yPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7IHByb2R1
+Y3Q6IG4zMTA8YnI+DQombmJzcDsmbmJzcDsmbmJzcDsgdHlwZTogbjN4eDwvc3Bhbj48L3A+DQo8
+cD48c3BhbiBsYW5nPSJFTi1VUyI+QnV0IGhvdyB0byBhZGQmbmJzcDsgdG8gdGhlIGRldmljZSBh
+cmd1bWVudHM/Jm5ic3A7IEkgdHJpZWQgbGlrZSB0aGlzIGJ1dCBub3Qgd29ya2luZzwvc3Bhbj48
+L3A+DQo8cCBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjxzcGFuIGxhbmc9IkVOLVVTIj4v
+dXNyL2xvY2FsL2xpYi91aGQvZXhhbXBsZXMvcnhfYXNjaWlfYXJ0X2RmdCAtLWFyZ3MgJnF1b3Q7
+bWFzdGVyX2Nsb2NrX3JhdGU9MTI1ZTYsbWdtdF9hZGRyPTE5Mi4xNjguMS4xNTE8c3BhbiBzdHls
+ZT0iY29sb3I6cmVkIj4scmVjdl9mcmFtZV9zaXplPTE0NzYsPC9zcGFuPmFkZHI9MTkyLjE2OC4x
+MC4yJnF1b3Q7IC0tZnJlcSA5OC41ZTYgLS1yYXRlIDIuNWU2IC0tZ2Fpbg0KIDUwIC0tcmVmLWx2
+bD0mcXVvdDstNTAmcXVvdDsgLS1keW4tcm5nIDkwIC0tYW50ICZxdW90O1JYMiZxdW90OyAtLXN1
+YmRldiAmcXVvdDtBOjAmcXVvdDs8L3NwYW4+PC9wPg0KPHA+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBsYW5nPSJFTi1VUyI+T24gMjAxOS83LzI2IDwvc3Bhbj7kuIrljYg8c3BhbiBsYW5nPSJF
+Ti1VUyI+NToxNywgU2FtIFJlaXRlciB3cm90ZTo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4w
+cHQiPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
+UyI+Rm91bmQgdGhlIG9mZmVuZGluZyBjb21taXQgYW5kIHJlcG9ydGVkIHRoZSBpc3N1ZS4gSXQg
+YWxzbyBsb29rcyBsaWtlIGFkZGluZw0KPGI+cmVjdl9mcmFtZV9zaXplPTE0NzY8L2I+IGV4cGxp
+Y2l0bHkgdG8gdGhlIGRldmljZSBhcmd1bWVudHMgY2xlYXJlZCB0aGluZ3MgdXAgb24gbXkgTjMx
+MCBydW5uaW5nIDMuMTQuMS4wLiBMZXQgbWUga25vdyBpZiB0aGlzIGRvZXMgLyBkb2Vzbid0IHdv
+cmsgZm9yIGFueW9uZS48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlNhbSBSZWl0ZXImbmJzcDsgPC9zcGFuPjwv
+cD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+U0RSIFN1
+cHBvcnQgRW5naW5lZXI8L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkV0dHVzIFJlc2VhcmNoPC9zcGFuPjwvcD4NCjwvZGl2
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPk9uIFRodSwgSnVsIDI1LCAyMDE5IGF0IDM6MDQgUE0g
+TWFyY3VzIEQuIExlZWNoICZsdDs8YSBtb3otZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9Im1haWx0
+bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnBhdGNodm9uYnJhdW5A
+Z21haWwuY29tPC9hPiZndDsgd3JvdGU6PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUg
+c3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkDQogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGNtIDBjbSAwY20NCiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDow
+Y20iPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
+UyI+T24gMDcvMjUvMjAxOSAwMzo1NiBQTSwgU2FtIFJlaXRlciB3cm90ZTo8bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21h
+cmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBsYW5nPSJFTi1VUyI+Rm9sbG93IHVwIG9uIHRoaXMgdGhyZWFkLiBJIHJhbiBteSBOMzEw
+IHdpdGggYSAxR2JFIGxpbmsgYW5kIHdhcyBhYmxlIHRvIHJlcHJvZHVjZSB0aGUgJnF1b3Q7QmFk
+IENIRFIgb3IgcGFja2V0IGZyYWdtZW50IGlzc3VlJnF1b3Q7LiBJdCBzZWVtcyBzcGVjaWZpYyB0
+byBOM3h4IFJYIG92ZXIgYSAxR2JFIGxpbmsgb24gMy4xNC4xLjAuIEkgZGlkbid0IHNwZW5kIGEg
+dG9uIG9mIHRpbWUgdHJ5aW5nDQogdG8gZmluZCBhIHdvcmthcm91bmQgb24gMy4xNC4xLjAsIGJ1
+dCByb2xsaW5nIGJhY2sgdG8gMy4xNC4wLjAgY2xlYXJlZCB0aGUgaXNzdWUgZm9yIG1lLg0KPC9z
+cGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
+IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+SSdsbCBzcGVuZCBzb21lIHRpbWUg
+ZmluZGluZyB0aGUgb2ZmZW5kaW5nIGNvbW1pdCBhbmQgc2VlIHdoYXQgSSBjYW4ndCBkbyB0byBn
+ZXQgYSBmaXggLyB3b3JrYXJvdW5kIGZpZ3VyZWQgb3V0IGZvciAzLjE0LjEuMC48L3NwYW4+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2
+Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
+RU4tVVMiPlNhbSBSZWl0ZXImbmJzcDsgPC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+U0RSIFN1cHBvcnQgRW5naW5lZXI8L3NwYW4+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+PkV0dHVzIFJlc2VhcmNoPC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9ibG9ja3F1
+b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlRoYW5rcywgU2Ft
+LiZuYnNwOyBXaGVuIEkgZ28gaW50byB0aGUgbGFiIGxhdGVyLCBJIGNhbiBwcm9iYWJseSBjb25m
+aXJtIHRoaXMgYXMgd2VsbCwgSSBoYXZlbid0IHNlZW4gaXQgYmVmb3JlLCBidXQgSSB0aGluayBJ
+J20gcnVuaW5nIDMuMTQuMC4wPGJyPg0KPGJyPg0KPGJyPg0KPGJyPg0KPC9zcGFuPjwvcD4NCjxi
+bG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0K
+PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+T24g
+VHVlLCBKdWwgMjMsIDIwMTkgYXQgMTA6MTMgUE0gTWFyY3VzIEQgTGVlY2ggJmx0OzxhIG1vei1k
+by1ub3Qtc2VuZD0idHJ1ZSIgaHJlZj0ibWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tIiB0
+YXJnZXQ9Il9ibGFuayI+cGF0Y2h2b25icmF1bkBnbWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8L3Nw
+YW4+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxl
+ZnQ6c29saWQNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI0NDQ0NDQyAx
+LjBwdDtwYWRkaW5nOjBjbSAwY20gMGNtDQo2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4t
+cmlnaHQ6MGNtIj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
+UyI+Tm9ybWFsbHkgSW50ZWwgY29udHJvbGxlcnMgaGF2ZSBiZXR0ZXIgcGVyZm9ybWFuY2UgYnV0
+IGV2ZW4gYSBSZWFsVGVrIGNoaXAgc2hvdWxkIGhhdmUgbm8gcHJvYmxlbSBhdCB0aG9zZSBkYXRh
+IHJhdGVzLiZuYnNwOw0KPC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48
+c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBpZD0i
+Z21haWwtbV80OTYwMDAzMzQwMzc5MTkxMjc4Z21haWwtbV80NTgzNjI5MDA0MzI2NzE5NDE5Z21h
+aWwtbV8tMTc4MjcwNTg4MjI4NTI3ODI3NkFwcGxlTWFpbFNpZ25hdHVyZSI+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+U2VudCBmcm9tIG15IGlQaG9uZTwvc3Bhbj48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJv
+dHRvbToxMi4wcHQiPjxzcGFuIGxhbmc9IkVOLVVTIj48YnI+DQpPbiBKdWwgMjMsIDIwMTksIGF0
+IDEwOjAxIFBNLCA8L3NwYW4+5rGkIOmjniA8c3BhbiBsYW5nPSJFTi1VUyI+Jmx0OzxhIG1vei1k
+by1ub3Qtc2VuZD0idHJ1ZSIgaHJlZj0ibWFpbHRvOnJldGluYTk5OUBob3RtYWlsLmNvbSIgdGFy
+Z2V0PSJfYmxhbmsiPnJldGluYTk5OUBob3RtYWlsLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4w
+cHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
+YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiPkFjdHVhbGx5IG15IHBj4oCZcyBFdGhlcm5ldCBjYXJk
+IGNoaXAgaXMgZnJvbSBSZWFsdGVrLg0KPC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+IHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
+byI+PHNwYW4gbGFuZz0iRU4tVVMiPknigJl2ZSB0cmllZCBhbGwgcG9zc2libGUgTVRVIHNpemVz
+IG9mIGF1dG8sIDEwMDAsIDE1MDAsIDIwMDAsIGFuZCB1cCB0byA5MDAwLiBBbHdheXMgdGhlIHNh
+bWUgZXJyb3JzLg0KPC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFu
+Zz0iRU4tVVMiPklzIGl0IHRoZSBpbmhlcmVudCBwcm9ibGVtIHdpdGggdGhlIFJlYWx0ZWsgY2hp
+cD8NCjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVT
+Ij5JZiB0aGF0LCBpcyB0aGVyZSBhbnkgd29ya2Fyb3VuZD8gZWcuIENoYW5naW5nIHRoZSBkZWZh
+dWx0IExpbnV4IGRyaXZlciwNCjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
+ZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxz
+cGFuIGxhbmc9IkVOLVVTIj5vciB0aGUgbGFzdCBzb2x1dGlvbiwgaWUuIEkgaGF2ZSB0byB0cnkg
+aW5zdGFsbCBhIFBDSUUgbmV0d29yayBjYXJkLiBXaGljaCBicmFuZCBldGhlcm5ldCBjYXJkIGlz
+IGNvbXBhdGlibGUsIG9uZSBmcm9tIEludGVsPzwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PGltZyBzdHlsZT0id2lkdGg6LjAw
+NTlpbjtoZWlnaHQ6LjAxNzhpbiIgaWQ9Ikhvcml6b250YWxfeDAwMjBfTGluZV94MDAyMF8xIiBz
+cmM9ImNpZDpwYXJ0MTAuQ0Y2NTBCNkEuM0YxRjVBMTZAaG90bWFpbC5jb20iIGNsYXNzPSIiIHdp
+ZHRoPSIxIiBoZWlnaHQ9IjIiIGJvcmRlcj0iMCI+PC9zcGFuPjwvcD4NCjxkaXYgaWQ9ImdtYWls
+LW1fNDk2MDAwMzM0MDM3OTE5MTI3OGdtYWlsLW1fNDU4MzYyOTAwNDMyNjcxOTQxOWdtYWlsLW1f
+LTE3ODI3MDU4ODIyODUyNzgyNzZkaXZScGx5RndkTXNnIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2NvbG9yOmJsYWNrIj7lj5Hku7bkuro8
+L3NwYW4+PC9iPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayIgbGFuZz0iRU4tVVMiPjo8
+L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayIgbGFuZz0iRU4tVVMiPg0KIE1h
+cmN1cyBEIExlZWNoICZsdDs8YSBtb3otZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9Im1haWx0bzpw
+YXRjaHZvbmJyYXVuQGdtYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnBhdGNodm9uYnJhdW5AZ21h
+aWwuY29tPC9hPiZndDs8YnI+DQo8L3NwYW4+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Y29sb3I6YmxhY2siPuWPkSDpgIHml7bpl7Q8L3NwYW4+PC9iPjxiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
+Zjtjb2xvcjpibGFjayIgbGFuZz0iRU4tVVMiPjo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtj
+b2xvcjpibGFjayIgbGFuZz0iRU4tVVMiPg0KIFdlZG5lc2RheSwgSnVseSAyNCwgMjAxOSA3OjM0
+OjEzIEFNPGJyPg0KPC9zcGFuPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2NvbG9y
+OmJsYWNrIj7mlLYg5Lu25Lq6PC9zcGFuPjwvYj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6Ymxh
+Y2siIGxhbmc9IkVOLVVTIj46PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2si
+IGxhbmc9IkVOLVVTIj4NCjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtjb2xv
+cjpibGFjayI+5rGkPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+DQo8L3NwYW4+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Y29sb3I6YmxhY2siPumjnjwvc3Bhbj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPg0KPHNwYW4gbGFuZz0iRU4tVVMiPiZsdDs8YSBtb3ot
+ZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9Im1haWx0bzpyZXRpbmE5OTlAaG90bWFpbC5jb20iIHRh
+cmdldD0iX2JsYW5rIj5yZXRpbmE5OTlAaG90bWFpbC5jb208L2E+Jmd0Ozxicj4NCjwvc3Bhbj48
+L3NwYW4+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Y29sb3I6YmxhY2siPuaKhOmA
+gTwvc3Bhbj48L2I+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIiBsYW5nPSJFTi1VUyI+
+Ojwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIiBsYW5nPSJFTi1VUyI+DQog
+U2FtIFJlaXRlciAmbHQ7PGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVmPSJtYWlsdG86c2Ft
+LnJlaXRlckBldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj5zYW0ucmVpdGVyQGV0dHVzLmNvbTwv
+YT4mZ3Q7Ow0KPGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVmPSJtYWlsdG86dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPC9hPiAmbHQ7PGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVmPSJtYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbTwvYT4mZ3Q7PGJyPg0KPC9zcGFuPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2NvbG9yOmJsYWNrIj7kuLsg6aKYPC9zcGFuPjwvYj48Yj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6YmxhY2siIGxhbmc9IkVOLVVTIj46PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
+b3I6YmxhY2siIGxhbmc9IkVOLVVTIj4NCiBSZTogW1VTUlAtdXNlcnNdIDwvc3Bhbj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtjb2xvcjpibGFjayI+562U5aSNPC9zcGFuPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
+cy1zZXJpZjtjb2xvcjpibGFjayIgbGFuZz0iRU4tVVMiPjogTjMxMCAmcXVvdDtCYWQgQ0hEUiBv
+ciBwYWNrZXQgZnJhZ21lbnQmcXVvdDsgUHJvYmxlbTwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+
+DQo8L3NwYW4+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
+LVVTIj4mbmJzcDs8L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+U29tZSBFdGhlcm5ldCAxZyBjb250cm9sbGVy
+cyB3b27igJl0IGFjdHVhbGx5IGRvIE1UVXMgZ3JlYXRlciB0aGFuIDE1MDAgZGVzcGl0ZSBldGhu
+b2xvZ3kgdGVsbGluZyB0aGVtIHRvLiBTb21lIFJlYWx0ZWsgZm9yIGV4YW1wbGUuJm5ic3A7DQo8
+L3NwYW4+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjxzcGFuIGxhbmc9IkVOLVVT
+Ij5JZiBpdOKAmXMganVzdCAxRyB0cnkgZGVmYXVsdCBNVFUgb2YgMTUwMCBhbmQgd29yayB5b3Vy
+IHdheSB1cCB0byBzZWUgd2hlcmUgaXQgZmFpbHMuJm5ic3A7PC9zcGFuPjwvcD4NCjxkaXYgaWQ9
+ImdtYWlsLW1fNDk2MDAwMzM0MDM3OTE5MTI3OGdtYWlsLW1fNDU4MzYyOTAwNDMyNjcxOTQxOWdt
+YWlsLW1fLTE3ODI3MDU4ODIyODUyNzgyNzZBcHBsZU1haWxTaWduYXR1cmUiPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlNlbnQgZnJvbSBteSBpUGhvbmU8L3NwYW4+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1i
+b3R0b206MTIuMHB0Ij48c3BhbiBsYW5nPSJFTi1VUyI+PGJyPg0KT24gSnVsIDIzLCAyMDE5LCBh
+dCA3OjE1IFBNLCA8L3NwYW4+5rGkIOmjnjxzcGFuIGxhbmc9IkVOLVVTIj4gdmlhIFVTUlAtdXNl
+cnMgJmx0OzxhIG1vei1kby1ub3Qtc2VuZD0idHJ1ZSIgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxibG9ja3F1
+b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
+dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj5JdOKAmXMg
+YSZuYnNwOyAxZyBTRlAwIGxpbmsuIEkgc2V0IE1UVSZuYnNwOyB0byA4MDAwIGFjY29yZGluZyB0
+byB0aGUgQXBwbGljYXRpb24gTm90ZS4NCjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PGltZyBzdHlsZT0id2lkdGg6LjAwNTlp
+bjtoZWlnaHQ6LjAxNzhpbiIgaWQ9Ikhvcml6b250YWxfeDAwMjBfTGluZV94MDAyMF8yIiBzcmM9
+ImNpZDpwYXJ0MTAuQ0Y2NTBCNkEuM0YxRjVBMTZAaG90bWFpbC5jb20iIGNsYXNzPSIiIHdpZHRo
+PSIxIiBoZWlnaHQ9IjIiIGJvcmRlcj0iMCI+PC9zcGFuPjwvcD4NCjxkaXYgaWQ9ImdtYWlsLW1f
+NDk2MDAwMzM0MDM3OTE5MTI3OGdtYWlsLW1fNDU4MzYyOTAwNDMyNjcxOTQxOWdtYWlsLW1fLTE3
+ODI3MDU4ODIyODUyNzgyNzZkaXZScGx5RndkTXNnIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2NvbG9yOmJsYWNrIj7lj5E8L3NwYW4+PC9i
+PjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+PC9zcGFuPjwvYj48Yj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtjb2xvcjpibGFjayI+5Lu25Lq6PC9zcGFuPjwvYj48Yj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siIGxhbmc9IkVOLVVTIj46PC9zcGFuPjwvYj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6YmxhY2siIGxhbmc9IkVOLVVTIj4NCiBTYW0gUmVpdGVyICZsdDs8YSBt
+b3otZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9Im1haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbSIg
+dGFyZ2V0PSJfYmxhbmsiPnNhbS5yZWl0ZXJAZXR0dXMuY29tPC9hPiZndDs8YnI+DQo8L3NwYW4+
+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Y29sb3I6YmxhY2siPuWPkemAgeaXtumX
+tDwvc3Bhbj48L2I+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIiBsYW5nPSJFTi1VUyI+
+Ojwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIiBsYW5nPSJFTi1VUyI+DQog
+V2VkbmVzZGF5LCBKdWx5IDI0LCAyMDE5IDQ6NTY6MjEgQU08YnI+DQo8L3NwYW4+PGI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Y29sb3I6YmxhY2siPuaUtuS7tuS6ujwvc3Bhbj48L2I+
+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIiBsYW5nPSJFTi1VUyI+Ojwvc3Bhbj48L2I+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIiBsYW5nPSJFTi1VUyI+DQo8L3NwYW4+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Y29sb3I6YmxhY2siPuaxpDwvc3Bhbj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
+c2VyaWY7Y29sb3I6YmxhY2siPg0KPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2NvbG9yOmJsYWNrIj7po548L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj4NCjxz
+cGFuIGxhbmc9IkVOLVVTIj4mbHQ7PGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVmPSJtYWls
+dG86cmV0aW5hOTk5QGhvdG1haWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+cmV0aW5hOTk5QGhvdG1h
+aWwuY29tPC9hPiZndDs8YnI+DQo8L3NwYW4+PC9zcGFuPjxiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2NvbG9yOmJsYWNrIj7mioTpgIE8L3NwYW4+PC9iPjxiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
+Zjtjb2xvcjpibGFjayIgbGFuZz0iRU4tVVMiPjo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtj
+b2xvcjpibGFjayIgbGFuZz0iRU4tVVMiPg0KPGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVm
+PSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiAmbHQ7PGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVl
+IiBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5r
+Ij51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7PGJyPg0KPC9zcGFuPjxiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2NvbG9yOmJsYWNrIj7kuLvpopg8L3NwYW4+PC9iPjxi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayIgbGFuZz0iRU4tVVMiPjo8L3NwYW4+PC9iPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayIgbGFuZz0iRU4tVVMiPg0KIFJlOiBbVVNSUC11c2Vy
+c10gTjMxMCAmcXVvdDtCYWQgQ0hEUiBvciBwYWNrZXQgZnJhZ21lbnQmcXVvdDsgUHJvYmxlbTwv
+c3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+DQo8L3NwYW4+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiPklmIHlvdSdyZSBjb25uZWN0ZWQgb3ZlciBhIDEwR2JFIGxpbmssIG1ha2Ugc3VyZSB0byBz
+ZXQgeW91ciBob3N0J3MgTVRVIGFwcHJvcHJpYXRlbHkuIEkgc2V0IG1pbmUgdG8gOTAwMC4NCjwv
+c3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+PjxiciBjbGVhcj0iYWxsIj4NCjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5TYW0gUmVp
+dGVyJm5ic3A7IDwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiPlNEUiBTdXBwb3J0IEVuZ2luZWVyPC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5FdHR1cyBSZXNlYXJj
+aDwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5PbiBGcmksIEp1bCAx
+OSwgMjAxOSBhdCAyOjIxIEFNIDwvc3Bhbj7msaQg6aOePHNwYW4gbGFuZz0iRU4tVVMiPiB2aWEg
+VVNSUC11c2VycyAmbHQ7PGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVmPSJtYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3Rl
+IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZA0KICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICNDQ0NDQ0MNCiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxLjBwdDtw
+YWRkaW5nOjBjbQ0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIDBjbSAwY20NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmln
+aHQ6MGNtIj4NCjxkaXY+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj5IaSwgYWxsLDwvc3Bhbj48
+L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
+cHJlPg0KPHByZT48c3BhbiBsYW5nPSJFTi1VUyI+V2hlbiBiZW5jaG1hcmtpbmcgbXkgTjMxMCwg
+SSBrZWVwIGdldHRpbmcgc3VjaCA8c3BhbiBzdHlsZT0iY29sb3I6I0NDMDAwMCI+W1JYIEZMT1cg
+Q1RSTF08L3NwYW4+IGVycm9ycy4gPC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBsYW5nPSJFTi1V
+UyI+V2hhdCBjYXVzZXMgdGhpcyBhbmQgaG93IHRvIHNvbHZlIGl0Pzwvc3Bhbj48L3ByZT4NCjxw
+cmU+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcHJlPg0KPHBy
+ZT48c3BhbiBsYW5nPSJFTi1VUyI+VGhhbmtzIGluIGFkdmFuY2UhPC9zcGFuPjwvcHJlPg0KPHBy
+ZT48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wcmU+DQo8cHJl
+PjxzcGFuIGxhbmc9IkVOLVVTIj5GVDwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4t
+VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBsYW5nPSJFTi1V
+UyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVT
+Ij4vdXNyL2xvY2FsL2xpYi91aGQvZXhhbXBsZXMvYmVuY2htYXJrX3JhdGUmbmJzcDsgXDwvc3Bh
+bj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZndDsmbmJzcDsmbmJzcDsmbmJzcDsg
+LS1hcmdzICZxdW90O3R5cGU9bjN4eCxtZ210X2FkZHI9MTkyLjE2OC4xMC4yLGFkZHI9MTkyLjE2
+OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyMi44OGU2JnF1b3Q7IFw8L3NwYW4+PC9wcmU+DQo8
+cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj4mZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7IC0tZHVyYXRpb24g
+NjAgXDwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZndDsmbmJzcDsmbmJz
+cDsmbmJzcDsgLS1jaGFubmVscyAmcXVvdDswJnF1b3Q7IFw8L3NwYW4+PC9wcmU+DQo8cHJlPjxz
+cGFuIGxhbmc9IkVOLVVTIj4mZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7IC0tcnhfcmF0ZSAzLjg0ZTYg
+XDwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZndDsmbmJzcDsmbmJzcDsm
+bmJzcDsgLS1yeF9zdWJkZXYgJnF1b3Q7QTowJnF1b3Q7IFw8L3NwYW4+PC9wcmU+DQo8cHJlPjxz
+cGFuIGxhbmc9IkVOLVVTIj4mZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7IC0tdHhfcmF0ZSAzLjg0ZTYg
+XDwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZndDsmbmJzcDsmbmJzcDsm
+bmJzcDsgLS10eF9zdWJkZXYgJnF1b3Q7QTowJnF1b3Q7PC9zcGFuPjwvcHJlPg0KPHByZT48c3Bh
+biBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFu
+IHN0eWxlPSJjb2xvcjojNEU5QTA2IiBsYW5nPSJFTi1VUyI+W0lORk9dIFtVSERdIDwvc3Bhbj48
+c3BhbiBsYW5nPSJFTi1VUyI+bGludXg7IEdOVSBDJiM0MzsmIzQzOyB2ZXJzaW9uIDcuNC4wOyBC
+b29zdF8xMDY1MDE7IFVIRF8zLjE0LjEuSEVBRC0wLWdiZmI5YzFjNzwvc3Bhbj48L3ByZT4NCjxw
+cmU+PHNwYW4gbGFuZz0iRU4tVVMiPlswMDowMDowMC4wMDAwMTRdIENyZWF0aW5nIHRoZSB1c3Jw
+IGRldmljZSB3aXRoOiB0eXBlPW4zeHgsbWdtdF9hZGRyPTE5Mi4xNjguMTAuMixhZGRyPTE5Mi4x
+NjguMTAuMixtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNi4uLjwvc3Bhbj48L3ByZT4NCjxwcmU+
+PHNwYW4gc3R5bGU9ImNvbG9yOiM0RTlBMDYiIGxhbmc9IkVOLVVTIj5bSU5GT10gW01QTURdIDwv
+c3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+SW5pdGlhbGl6aW5nIDEgZGV2aWNlKHMpIGluIHBhcmFs
+bGVsIHdpdGggYXJnczogbWdtdF9hZGRyPTE5Mi4xNjguMTAuMix0eXBlPW4zeHgscHJvZHVjdD1u
+MzEwLHNlcmlhbD0zMTgyQjA5LGNsYWltZWQ9RmFsc2UsYWRkcj0xOTIuMTY4LjEwLjIsbWFzdGVy
+X2Nsb2NrX3JhdGU9MTIyLjg4ZTY8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIHN0eWxlPSJjb2xv
+cjojNEU5QTA2IiBsYW5nPSJFTi1VUyI+W0lORk9dIFtNUE0uUGVyaXBoTWFuYWdlcl0gPC9zcGFu
+PjxzcGFuIGxhbmc9IkVOLVVTIj5pbml0KCkgY2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MgYG1hc3Rl
+cl9jbG9ja19yYXRlPTEyMi44OGU2LHRpbWVfc291cmNlPWludGVybmFsLGNsb2NrX3NvdXJjZT1p
+bnRlcm5hbCxtZ210X2FkZHI9MTkyLjE2OC4xMC4yLHByb2R1Y3Q9bjMxMCcuPC9zcGFuPjwvcHJl
+Pg0KPHByZT48c3BhbiBzdHlsZT0iY29sb3I6IzRFOUEwNiIgbGFuZz0iRU4tVVMiPltJTkZPXSBb
+MC9SZXBsYXlfMF0gPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj5Jbml0aWFsaXppbmcgYmxvY2sg
+Y29udHJvbCAoTk9DIElEOiAweDRFOTFBMDAwMDAwMDAwMDQpPC9zcGFuPjwvcHJlPg0KPHByZT48
+c3BhbiBzdHlsZT0iY29sb3I6IzRFOUEwNiIgbGFuZz0iRU4tVVMiPltJTkZPXSBbMC9SYWRpb18w
+XSA8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPkluaXRpYWxpemluZyBibG9jayBjb250cm9sIChO
+T0MgSUQ6IDB4MTJBRDEwMDAwMDAxMTMxMik8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIHN0eWxl
+PSJjb2xvcjojNEU5QTA2IiBsYW5nPSJFTi1VUyI+W0lORk9dIFswL1JhZGlvXzFdIDwvc3Bhbj48
+c3BhbiBsYW5nPSJFTi1VUyI+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgx
+MkFEMTAwMDAwMDExMzEyKTwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gc3R5bGU9ImNvbG9yOiM0
+RTlBMDYiIGxhbmc9IkVOLVVTIj5bSU5GT10gWzAvRERDXzBdIDwvc3Bhbj48c3BhbiBsYW5nPSJF
+Ti1VUyI+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEREMwMDAwMDAwMDAw
+MDAwKTwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gc3R5bGU9ImNvbG9yOiM0RTlBMDYiIGxhbmc9
+IkVOLVVTIj5bSU5GT10gWzAvRERDXzFdIDwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+SW5pdGlh
+bGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEREMwMDAwMDAwMDAwMDAwKTwvc3Bhbj48
+L3ByZT4NCjxwcmU+PHNwYW4gc3R5bGU9ImNvbG9yOiM0RTlBMDYiIGxhbmc9IkVOLVVTIj5bSU5G
+T10gWzAvRFVDXzBdIDwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+SW5pdGlhbGl6aW5nIGJsb2Nr
+IGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAwMDAwMDAwMDAyKTwvc3Bhbj48L3ByZT4NCjxwcmU+
+PHNwYW4gc3R5bGU9ImNvbG9yOiM0RTlBMDYiIGxhbmc9IkVOLVVTIj5bSU5GT10gWzAvRFVDXzFd
+IDwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5P
+QyBJRDogMHhEMEMwMDAwMDAwMDAwMDAyKTwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gc3R5bGU9
+ImNvbG9yOiM0RTlBMDYiIGxhbmc9IkVOLVVTIj5bSU5GT10gWzAvRklGT18wXSA8L3NwYW4+PHNw
+YW4gbGFuZz0iRU4tVVMiPkluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RjFG
+MDAwMDAwMDAwMDAwMCk8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIHN0eWxlPSJjb2xvcjojNEU5
+QTA2IiBsYW5nPSJFTi1VUyI+W0lORk9dIFswL0ZJRk9fMV0gPC9zcGFuPjxzcGFuIGxhbmc9IkVO
+LVVTIj5Jbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAw
+MDApPC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBzdHlsZT0iY29sb3I6IzRFOUEwNiIgbGFuZz0i
+RU4tVVMiPltJTkZPXSBbMC9GSUZPXzJdIDwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+SW5pdGlh
+bGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKTwvc3Bhbj48
+L3ByZT4NCjxwcmU+PHNwYW4gc3R5bGU9ImNvbG9yOiM0RTlBMDYiIGxhbmc9IkVOLVVTIj5bSU5G
+T10gWzAvRklGT18zXSA8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPkluaXRpYWxpemluZyBibG9j
+ayBjb250cm9sIChOT0MgSUQ6IDB4RjFGMDAwMDAwMDAwMDAwMCk8L3NwYW4+PC9wcmU+DQo8cHJl
+PjxzcGFuIGxhbmc9IkVOLVVTIj5Vc2luZyBEZXZpY2U6IFNpbmdsZSBVU1JQOjwvc3Bhbj48L3By
+ZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyBEZXZpY2U6IE4zMDAtU2VyaWVzIERl
+dmljZTwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyBNYm9hcmQg
+MDogbmktbjN4eC0zMTgyQjA5PC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBsYW5nPSJFTi1VUyI+
+Jm5ic3A7IFJYIENoYW5uZWw6IDA8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVT
+Ij4mbmJzcDsmbmJzcDsmbmJzcDsgUlggRFNQOiAwPC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBs
+YW5nPSJFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IFJYIERib2FyZDogQTwvc3Bhbj48L3ByZT4N
+CjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyBSWCBTdWJkZXY6IE1h
+Z25lc2l1bTwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyBUWCBD
+aGFubmVsOiAwPC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7Jm5i
+c3A7Jm5ic3A7IFRYIERTUDogMDwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMi
+PiZuYnNwOyZuYnNwOyZuYnNwOyBUWCBEYm9hcmQ6IEE8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFu
+IGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsgVFggU3ViZGV2OiBNYWduZXNpdW08L3Nw
+YW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPlswMDowMDoxNy4zNTMxODRdIFNldHRp
+bmcgZGV2aWNlIHRpbWVzdGFtcCB0byAwLi4uPC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBsYW5n
+PSJFTi1VUyI+WzAwOjAwOjE3LjQxMjE4N10gVGVzdGluZyByZWNlaXZlIHJhdGUgMy44NDAwMDAg
+TXNwcyBvbiAxIGNoYW5uZWxzPC9zcGFuPjwvcHJlPg0KPHByZT48c3BhbiBsYW5nPSJFTi1VUyI+
+WzAwOjAwOjE3LjQxNDE2NF0gUmVjZWl2ZXIgZXJyb3I6IEVSUk9SX0NPREVfQkFEX1BBQ0tFVDwv
+c3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPls8c3BhbiBzdHlsZT0iY29sb3I6
+I0NDMDAwMCI+W0VSUk9SXSBbUlggRkxPVyBDVFJMXSA8L3NwYW4+RXJyb3IgdW5wYWNraW5nIHBh
+Y2tldDogVmFsdWVFcnJvcjogQmFkIENIRFIgb3IgcGFja2V0IGZyYWdtZW50PC9zcGFuPjwvcHJl
+Pg0KPHByZT48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wcmU+
+DQo8cHJlPjxzcGFuIHN0eWxlPSJjb2xvcjojQ0MwMDAwIiBsYW5nPSJFTi1VUyI+W0VSUk9SXSBb
+U1RSRUFNRVJdIDwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+VGhlIHJlY2VpdmUgcGFja2V0IGhh
+bmRsZXIgY2F1Z2h0IGEgdmFsdWUgZXhjZXB0aW9uLjwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4g
+bGFuZz0iRU4tVVMiPlZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudDwvc3Bh
+bj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPjAwOjAwOjE3LjQxNDE4MF0gVW5leHBl
+Y3RlZCBlcnJvciBvbiByZWN2LCBjb250aW51aW5nLi4uPC9zcGFuPjwvcHJlPg0KPHByZT48c3Bh
+biBsYW5nPSJFTi1VUyI+WzAwOjAwOjE3LjUxNDI1OF0gUmVjZWl2ZXIgZXJyb3I6IEVSUk9SX0NP
+REVfVElNRU9VVCwgY29udGludWluZy4uLjwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0i
+RU4tVVMiPlswMDowMDoxNy41MTQzMTJdIFJlY2VpdmVyIGVycm9yOiBFUlJPUl9DT0RFX0JBRF9Q
+QUNLRVQ8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj5bMDA6MDA6MTcuNTE0
+MzE3XSBVbmV4cGVjdGVkIGVycm9yIG9uIHJlY3YsIGNvbnRpbnVpbmcuLi48L3NwYW4+PC9wcmU+
+DQo8cHJlPjxzcGFuIHN0eWxlPSJjb2xvcjojQ0MwMDAwIiBsYW5nPSJFTi1VUyI+W0VSUk9SXSBb
+UlggRkxPVyBDVFJMXSA8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPkVycm9yIHVucGFja2luZyBw
+YWNrZXQ6IFZhbHVlRXJyb3I6IEJhZCBDSERSIG9yIHBhY2tldCBmcmFnbWVudDwvc3Bhbj48L3By
+ZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcHJl
+Pg0KPHByZT48c3BhbiBzdHlsZT0iY29sb3I6I0NDMDAwMCIgbGFuZz0iRU4tVVMiPltFUlJPUl0g
+W1NUUkVBTUVSXSA8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPlRoZSByZWNlaXZlIHBhY2tldCBo
+YW5kbGVyIGNhdWdodCBhIHZhbHVlIGV4Y2VwdGlvbi48L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFu
+IGxhbmc9IkVOLVVTIj5WYWx1ZUVycm9yOiBCYWQgQ0hEUiBvciBwYWNrZXQgZnJhZ21lbnQ8L3Nw
+YW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj5bMDA6MDA6MTcuNTMyOTkxXSBUZXN0
+aW5nIHRyYW5zbWl0IHJhdGUgMy44NDAwMDAgTXNwcyBvbiAxIGNoYW5uZWxzPC9zcGFuPjwvcHJl
+Pg0KPHByZT48c3BhbiBsYW5nPSJFTi1VUyI+WzAwOjAwOjE3LjYxNDMyOV0gUmVjZWl2ZXIgZXJy
+b3I6IEVSUk9SX0NPREVfVElNRU9VVCwgY29udGludWluZy4uLjwvc3Bhbj48L3ByZT4NCjxwcmU+
+PHNwYW4gbGFuZz0iRU4tVVMiPlswMDowMDoxNy42MTQzNzJdIFJlY2VpdmVyIGVycm9yOiBFUlJP
+Ul9DT0RFX0JBRF9QQUNLRVQ8L3NwYW4+PC9wcmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj5b
+MDA6MDA6MTcuNjE0Mzc3XSBVbmV4cGVjdGVkIGVycm9yIG9uIHJlY3YsIGNvbnRpbnVpbmcuLi48
+L3NwYW4+PC9wcmU+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
+LVVTIj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4N
+ClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0PGJyPg0KPGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBo
+cmVmPSJtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj5V
+U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8YSBtb3otZG8tbm90LXNlbmQ9InRy
+dWUiIGhyZWY9Imh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
+ZXJzX2xpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmh0dHA6Ly9saXN0cy5ldHR1cy5j
+b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
+L2Jsb2NrcXVvdGU+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4t
+Ym90dG9tOjUuMHB0Ij4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
+Ti1VUyI+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+
+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdDxicj4NCjxhIG1vei1kby1ub3Qtc2VuZD0idHJ1ZSIg
+aHJlZj0ibWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPGEgbW96LWRvLW5vdC1zZW5kPSJ0
+cnVlIiBocmVmPSJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
+c2Vyc19saXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj5odHRwOi8vbGlzdHMuZXR0dXMu
+Y29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb208L2E+PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9i
+bG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ibG9j
+a3F1b3RlPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwv
+ZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvYmxv
+Y2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4t
+dG9wLWFsdDowY207bWFyZ2luLXJpZ2h0OjEwOC4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdDttYXJn
+aW4tbGVmdDoxMTcuNnB0Ij4NCjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEy
+LjBwdDtmb250LWZhbWlseTpTaW1TdW4iIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxicj4NCjwvYmxvY2txdW90ZT4NCjwv
+Ym9keT4NCjwvaHRtbD4NCg==
+
+--_000_HK0PR01MB2835B708C9240442B8368BC5F3DC0HK0PR01MB2835apcp_--
+
+--_004_HK0PR01MB2835B708C9240442B8368BC5F3DC0HK0PR01MB2835apcp_
+Content-Type: image/png; name="oddkebdbfjoplldh.png"
+Content-Description: oddkebdbfjoplldh.png
+Content-Disposition: inline; filename="oddkebdbfjoplldh.png"; size=124;
+	creation-date="Tue, 30 Jul 2019 00:48:47 GMT";
+	modification-date="Tue, 30 Jul 2019 00:48:47 GMT"
+Content-ID: <part10.CF650B6A.3F1F5A16@hotmail.com>
 Content-Transfer-Encoding: base64
-Content-ID: <f_jyoy7xyd1>
-X-Attachment-Id: f_jyoy7xyd1
 
-ewogICJ0eXBlIjogICJGZWF0dXJlIiwKICAicHJvcGVydGllcyI6IHsKICAgICAgICJuYW1lIjog
-IkxvY2F0aW9ucyBnZW5lcmF0ZWQgYnkgR05TUy1TRFIiIAogICB9LAogICJnZW9tZXRyeSI6IHsK
-ICAgICAgInR5cGUiOiAiTXVsdGlQb2ludCIsCiAgICAgICJjb29yZGluYXRlcyI6IFsK
---0000000000006b4ec8058ed93c6a
-Content-Type: application/octet-stream; name="pvt.dat_190727_144704.kml"
-Content-Disposition: attachment; filename="pvt.dat_190727_144704.kml"
-Content-Transfer-Encoding: base64
-Content-ID: <f_jyoy7xyn3>
-X-Attachment-Id: f_jyoy7xyn3
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAADCAYAAABS3WWCAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAARSURBVBhXY9h/9vZ/GHH7PwBLUQozodQElgAA
+AABJRU5ErkJggg==
 
-PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGttbCB4bWxucz0iaHR0cDov
-L3d3dy5vcGVuZ2lzLm5ldC9rbWwvMi4yIiB4bWxuczpneD0iaHR0cDovL3d3dy5nb29nbGUuY29t
-L2ttbC9leHQvMi4yIj4KICA8RG9jdW1lbnQ+CiAgICA8bmFtZT5HTlNTIFRyYWNrPC9uYW1lPgog
-ICAgPGRlc2NyaXB0aW9uPjwhW0NEQVRBWwogICAgICA8dGFibGU+CiAgICAgICAgPHRyPjx0ZD5H
-TlNTLVNEUiBSZWNlaXZlciBwb3NpdGlvbiBsb2cgZmlsZSBjcmVhdGVkIGF0IDIwMTktSnVsLTI3
-IDE0OjQ3OjA0PC90ZD48L3RyPgogICAgICAgIDx0cj48dGQ+aHR0cHM6Ly9nbnNzLXNkci5vcmcv
-PC90ZD48L3RyPgogICAgICA8L3RhYmxlPgogICAgXV0+PC9kZXNjcmlwdGlvbj4KICAgIDwhLS0g
-Tm9ybWFsIHRyYWNrIHN0eWxlIC0tPgogICAgPFN0eWxlIGlkPSJ0cmFja19uIj4KICAgICAgPElj
-b25TdHlsZT4KICAgICAgICA8Y29sb3I+ZmYwMGZmZmY8L2NvbG9yPgogICAgICAgIDxzY2FsZT4w
-LjM8L3NjYWxlPgogICAgICAgIDxJY29uPgogICAgICAgICAgPGhyZWY+aHR0cDovL21hcHMuZ29v
-Z2xlLmNvbS9tYXBmaWxlcy9rbWwvc2hhcGVzL3NoYWRlZF9kb3QucG5nPC9ocmVmPgogICAgICAg
-IDwvSWNvbj4KICAgICAgPC9JY29uU3R5bGU+CiAgICAgIDxMYWJlbFN0eWxlPgogICAgICAgIDxz
-Y2FsZT4wPC9zY2FsZT4KICAgICAgPC9MYWJlbFN0eWxlPgogICAgPC9TdHlsZT4KICAgIDwhLS0g
-SGlnaGxpZ2h0ZWQgdHJhY2sgc3R5bGUgLS0+CiAgICA8U3R5bGUgaWQ9InRyYWNrX2giPgogICAg
-ICA8SWNvblN0eWxlPgogICAgICAgIDxjb2xvcj5mZjAwZmZmZjwvY29sb3I+CiAgICAgICAgPHNj
-YWxlPjE8L3NjYWxlPgogICAgICAgIDxJY29uPgogICAgICAgICAgPGhyZWY+aHR0cDovL21hcHMu
-Z29vZ2xlLmNvbS9tYXBmaWxlcy9rbWwvc2hhcGVzL3NoYWRlZF9kb3QucG5nPC9ocmVmPgogICAg
-ICAgIDwvSWNvbj4KICAgICAgPC9JY29uU3R5bGU+CiAgICA8L1N0eWxlPgogICAgPFN0eWxlTWFw
-IGlkPSJ0cmFjayI+CiAgICAgIDxQYWlyPgogICAgICAgIDxrZXk+bm9ybWFsPC9rZXk+CiAgICAg
-ICAgPHN0eWxlVXJsPiN0cmFja19uPC9zdHlsZVVybD4KICAgICAgPC9QYWlyPgogICAgICA8UGFp
-cj4KICAgICAgICA8a2V5PmhpZ2hsaWdodDwva2V5PgogICAgICAgIDxzdHlsZVVybD4jdHJhY2tf
-aDwvc3R5bGVVcmw+CiAgICAgIDwvUGFpcj4KICAgIDwvU3R5bGVNYXA+CiAgICA8U3R5bGUgaWQ9
-InllbGxvd0xpbmVHcmVlblBvbHkiPgogICAgICA8TGluZVN0eWxlPgogICAgICAgIDxjb2xvcj43
-ZjAwZmZmZjwvY29sb3I+CiAgICAgICAgPHdpZHRoPjE8L3dpZHRoPgogICAgICA8L0xpbmVTdHls
-ZT4KICAgICAgPFBvbHlTdHlsZT4KICAgICAgICA8Y29sb3I+N2YwMGZmMDA8L2NvbG9yPgogICAg
-ICA8L1BvbHlTdHlsZT4KICAgIDwvU3R5bGU+CiAgICA8Rm9sZGVyPgogICAgICA8bmFtZT5Qb2lu
-dHM8L25hbWU+Cg==
---0000000000006b4ec8058ed93c6a
+--_004_HK0PR01MB2835B708C9240442B8368BC5F3DC0HK0PR01MB2835apcp_--
+
+
+--===============7458742852222757118==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1072,5 +971,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---0000000000006b4ec8058ed93c6a--
+--===============7458742852222757118==--
 
