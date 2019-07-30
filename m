@@ -2,38 +2,82 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D50997B01A
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Jul 2019 19:32:55 +0200 (CEST)
-Received: from [::1] (port=40498 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F00EF7B63F
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Jul 2019 01:30:02 +0200 (CEST)
+Received: from [::1] (port=60336 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hsVza-0007rx-5L; Tue, 30 Jul 2019 13:32:54 -0400
-Received: from 93-63-88-25.ip27.fastwebnet.it ([93.63.88.25]:64112
- helo=exchange.iptronix.local)
+	id 1hsbZ9-00057u-Ur; Tue, 30 Jul 2019 19:29:59 -0400
+Received: from mail-oln040092254073.outbound.protection.outlook.com
+ ([40.92.254.73]:36821 helo=APC01-PU1-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
- (Exim 4.92) (envelope-from <dario@iptronix.com>) id 1hsVzW-0007gJ-0u
- for usrp-users@lists.ettus.com; Tue, 30 Jul 2019 13:32:50 -0400
-Received: from exchange.iptronix.local (192.168.1.30) by
- exchange.iptronix.local (192.168.1.30) with Microsoft SMTP Server (TLS) id
- 15.0.1347.2; Tue, 30 Jul 2019 19:31:50 +0200
-Received: from exchange.iptronix.local ([::1]) by exchange.iptronix.local
- ([::1]) with mapi id 15.00.1347.000; Tue, 30 Jul 2019 19:31:50 +0200
+ (Exim 4.92) (envelope-from <retina999@hotmail.com>)
+ id 1hsbZ5-00050E-Ei
+ for usrp-users@lists.ettus.com; Tue, 30 Jul 2019 19:29:55 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iXTn2RK+erJdKjDKiUKmayOnkeEiEpAnb2Yv1Rt1tQGAzLojZhJBflLy6LXOOa1B6sq3O5NXWsRrzbYl7Nqz9PYB2nm6ULE9MsBtkT34gfSZTjviB9SrCmg7YzyMVBBJ3gfqQjkgv1EIKOkeUCVtVDp6SgMT1pcqYoUZM20cWkPkI7kqSfTj+3wPzfyllU7NxZS2V/rN9lV/mJQ1v2nbQ/G6UC4MeTDUSWnWKaXt632xaX9QhvAifWKHA6XOVBieHXF8AJB6zX1hx9MfbXYdI7WLS7Q3py0XIe/3WDfkCxvtfsEzuk/L/tysEBOsns77XMN/0SlLSPjhXRhd1W43bA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uQVa8RprN1z2WzSLIw2Zpw4kHup4Ls8+RaNWHYgkVCE=;
+ b=XWex6Fu88Wgx35Y3ves91VKuTKe6uYP6OLOvRpuFe+PFkTzdYxP4Ko7V+fIc3I7XEvrOKfnelVt+a2dWNfOYDMDD7HUW7Rdb+EcFt+UKY/8oa8jrTBsSjMsars0aiNj2sN6NZdtPDz8nHNT7v3AXHOazo2sroodxqrFgoi93K9Md41JVgKyu/rmHy3SAxjQ4LVIAiLwdVZqUQuQf5vYu2t7RQza/K0OvZ05RQUI0Tnn4aeAJHqdmhwcaajmW+zVjjCd2TD+hHqZKIMgFGv3ocLj8XT0HItJLHQ8uKn83+a1YV+/SRd+dq+Dcn4Rc2MZWP2/oUyjN8Z+klIo9BZ8JNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com
+ 1;spf=none;dmarc=none;dkim=none;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uQVa8RprN1z2WzSLIw2Zpw4kHup4Ls8+RaNWHYgkVCE=;
+ b=h88LvYWzIly2hscSrr8Q0CGeAARY+kPUFh3s6IWVpFuJZ2L8X5OmVhwmH5osoYvIqmGTK65kHJzPx/AANP1n2lxaFu6ngpYoRdfbI9CWrF8Chjd+1OSTOkBSwOpVWD69bHmJJ0eND/EMcKS04yVSxomyW0SjuSYfUTgJ4jTtTFGJNOUxL1YL0ZqhMbw5D1dFRRfHCq+UkHxMkCO50uE3v7rW9uFBVN0mNTFxRcApMSzaTf9HsF4+btVjXZSmH5Tv8OIj0hWNQmnO4BmZ1z+WW+Cp0oBaT40NZOpDWldiDvYEBdrjK89/r5UFPCoXN3nnulIWdIAIZRBkXdRzUSQ0Pw==
+Received: from HK2APC01FT041.eop-APC01.prod.protection.outlook.com
+ (10.152.248.51) by HK2APC01HT085.eop-APC01.prod.protection.outlook.com
+ (10.152.248.230) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2115.10; Tue, 30 Jul
+ 2019 23:29:12 +0000
+Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com (10.152.248.60) by
+ HK2APC01FT041.mail.protection.outlook.com (10.152.249.47) with
+ Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2115.10 via Frontend Transport; Tue, 30 Jul 2019 23:29:12 +0000
+Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com
+ ([fe80::e41a:f703:68f5:d689]) by HK0PR01MB2835.apcprd01.prod.exchangelabs.com
+ ([fe80::e41a:f703:68f5:d689%4]) with mapi id 15.20.2115.005; Tue, 30 Jul 2019
+ 23:29:12 +0000
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: memory leak with basic block
-Thread-Index: AQHVRsg1AbZmZaH/lUe+lQ2X1DmM9qbjannNgAAAlrA=
-Date: Tue, 30 Jul 2019 17:31:50 +0000
-Message-ID: <15fd27e0cfe84dbcb9a3655d28a4bfb8@exchange.iptronix.local>
-References: <1564485856531.62123@iptronix.com>
- <1564507637546.78309@iptronix.com>
-In-Reply-To: <1564507637546.78309@iptronix.com>
-Accept-Language: en-US
+Thread-Topic: N310 RFNOC tutorial block "gain" not found in synthesis
+Thread-Index: AQHVRy6Ypp9z/GCdcU2sWfopXWwGCQ==
+Date: Tue, 30 Jul 2019 23:29:12 +0000
+Message-ID: <HK0PR01MB2835299393DCA6F18EB1B726F3DC0@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [192.168.1.40]
+x-clientproxiedby: SN4PR0401CA0039.namprd04.prod.outlook.com
+ (2603:10b6:803:2a::25) To HK0PR01MB2835.apcprd01.prod.exchangelabs.com
+ (2603:1096:203:96::18)
+x-incomingtopheadermarker: OriginalChecksum:7B26D6D4C5F200CC11037AA66E12D9A06A4D2C2EDF01BDBA87D21E54590AC5DB;
+ UpperCasedChecksum:D62F553F430F880E5DA0215DDFA618FEB2AD6BA90C928FF861F5EA46EB7D30CE;
+ SizeAsReceived:7355; Count:46
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [r3ymENJX2X0xTjhpixQ0YUHQ/BMHu1uO]
+x-microsoft-original-message-id: <56a2de07-033b-a3f3-3bec-944e3ce7e496@hotmail.com>
+x-ms-publictraffictype: Email
+x-incomingheadercount: 46
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
+ SRVR:HK2APC01HT085; 
+x-ms-traffictypediagnostic: HK2APC01HT085:
+x-microsoft-antispam-message-info: ovzQpm4TCz4894nj5vllkNQtOz2/M7RzKvY2g2y0JKW9RIMXk7VUdBwT0aRMTLEOQ8+2JVUyJdgE9kRP8Cqb0r9SBFyk466bEbu8agCFczHCAl7U9Wja6dN8pTrasbSZHanbdPQAVr4KF9R1Od2D86PPhhp0QqlAMJzZ/1eJj6qMvFvUcrLInFWjWe3ln3aO
 MIME-Version: 1.0
-Subject: [USRP-users] FW: memory leak with basic block
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5efc02e7-b697-40a2-696f-08d71545ba37
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2019 23:29:12.2251 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2APC01HT085
+Subject: [USRP-users] N310 RFNOC tutorial block "gain" not found in synthesis
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -45,9 +89,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Dario Pennisi via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Dario Pennisi <dario@iptronix.com>
-Content-Type: multipart/mixed; boundary="===============3487293382875583876=="
+From: =?utf-8?b?5rGkIOmjniB2aWEgVVNSUC11c2Vycw==?= <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?B?5rGkIOmjng==?= <retina999@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============0913763271928677332=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -61,199 +105,164 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3487293382875583876==
+--===============0913763271928677332==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_15fd27e0cfe84dbcb9a3655d28a4bfb8exchangeiptronixlocal_"
+	boundary="_000_HK0PR01MB2835299393DCA6F18EB1B726F3DC0HK0PR01MB2835apcp_"
 
---_000_15fd27e0cfe84dbcb9a3655d28a4bfb8exchangeiptronixlocal_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_HK0PR01MB2835299393DCA6F18EB1B726F3DC0HK0PR01MB2835apcp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
+SGkgYWxsLA0KDQpJIGFtIHN0dWR5aW5nIHRoZSBhcHBsaWNhdGlvbiBub3RlICJHZXR0aW5nIFN0
+YXJ0ZWQgd2l0aCBSRk5vQyBEZXZlbG9wbWVudCIuDQpJIHdhcyBhYmxlIHRvIGNvbXBsZXRlIHRo
+ZSBzaW11bGF0aW9uIG9mIGN1c3RvbSBub2NfYmxvY2tfZ2FpbiwgYnV0IGZhaWxlZCBpbiB0aGUg
+ZmluYWwgc3RhZ2Ugb2YgdGhlIHN5bnRoZXNpcy4NClRoZSBjdXN0b20gYmxvY2sgImdhaW4iIGNh
+bm5vdCBiZSBmb3VuZC4NCkkgdXNlIHRoZSBmb2xsb3dpbmcgY29tbWFuZCwgICIuL3VoZF9pbWFn
+ZV9idWlsZGVyLnB5IGdhaW4gZGRjIGZmdCAtSSB+L3Jmbm9jL3NyYy9yZm5vYy1tZXNoLyAtZCBu
+MzEwIC10IE4zMTBfUkZOT0NfSEcgLW0gNiAtLWZpbGwtd2l0aC1maWZvcyAtYyIuDQpJIGRpZCBz
+cGVjaWZ5IHRoZSBPT1QgZGlyZWN0b3J5IGR1cmluZyBpbWFnZSBidWlsZGluZy4gSSBhbSBjZXJ0
+YWluIEkgaGF2ZSBtYWRlIGFsbCBzZXR0aW5ncyBjb3JyZWN0Lg0KU28gZmFyIEkgaGF2ZSBubyBj
+bHVlIHdoYXQgY2F1c2VzIHRoaXMuIEhvdyB0byBzb2x2ZSB0aGlzIHByb2JsZW0/DQoNCg0KUFMs
+IEkgdXNlIHVoZCAzLjE0LjAuMCwgYW5kIHBvc3Qgb2YgaW1hZ2luZyBidWlkaW5nLA0KDQoqKioq
+KiogVml2YWRvIHYyMDE4LjNfQVI3MTg5OCAoNjQtYml0KQ0KICAqKioqIFNXIEJ1aWxkIDI0MDU5
+OTEgb24gVGh1IERlYyAgNiAyMzozNjo0MSBNU1QgMjAxOA0KICAqKioqIElQIEJ1aWxkIDI0MDQ0
+MDQgb24gRnJpIERlYyAgNyAwMTo0Mzo1NiBNU1QgMjAxOA0KICAgICoqIENvcHlyaWdodCAxOTg2
+LTIwMTggWGlsaW54LCBJbmMuIEFsbCBSaWdodHMgUmVzZXJ2ZWQuDQoNCnNvdXJjZSBydW5faXBw
+YWNrLnRjbCAtbm90cmFjZQ0KSU5GTzogW0lQX0Zsb3cgMTktMjM0XSBSZWZyZXNoaW5nIElQIHJl
+cG9zaXRvcmllcw0KSU5GTzogW0lQX0Zsb3cgMTktMTcwNF0gTm8gdXNlciBJUCByZXBvc2l0b3Jp
+ZXMgc3BlY2lmaWVkDQpJTkZPOiBbSVBfRmxvdyAxOS0yMzEzXSBMb2FkZWQgVml2YWRvIElQIHJl
+cG9zaXRvcnkgJy9vcHQvWGlsaW54L1ZpdmFkby8yMDE4LjMvZGF0YS9pcCcuDQpJTkZPOiBbQ29t
+bW9uIDE3LTIwNl0gRXhpdGluZyBWaXZhZG8gYXQgVHVlIEp1bCAzMCAyMDo0MToxMyAyMDE5Li4u
+DQpJTkZPOiBbSExTIDIwMC0xMTJdIFRvdGFsIGVsYXBzZWQgdGltZTogMTcuMzggc2Vjb25kczsg
+cGVhayBhbGxvY2F0ZWQgbWVtb3J5OiA2Ni45MzQgTUIuDQpJTkZPOiBbQ29tbW9uIDE3LTIwNl0g
+RXhpdGluZyB2aXZhZG9faGxzIGF0IFR1ZSBKdWwgMzAgMjA6NDE6MTMgMjAxOS4uLg0KQlVJTERF
+UjogUmVsZWFzaW5nIElQIGxvY2F0aW9uOiAvaG9tZS93dHQvcmZub2Mvc3JjL3VoZC1mcGdhL3Vz
+cnAzL3RvcC9uM3h4L2J1aWxkLWlwL3hjN3oxMDBmZmc5MDAtMi9hZGRzdWJfaGxzDQpVc2luZyBw
+YXJzZXIgY29uZmlndXJhdGlvbiBmcm9tOiAvaG9tZS93dHQvcmZub2Mvc3JjL3VoZC1mcGdhL3Vz
+cnAzL3RvcC9uM3h4L2Rldl9jb25maWcuanNvbg0KWzAwOjAwOjAwXSBFeGVjdXRpbmcgY29tbWFu
+ZDogdml2YWRvIC1tb2RlIGJhdGNoIC1zb3VyY2UgL2hvbWUvd3R0L3Jmbm9jL3NyYy91aGQtZnBn
+YS91c3JwMy90b3AvbjN4eC9idWlsZF9uM3h4LnRjbCAtbG9nIGJ1aWxkLmxvZyAtam91cm5hbCBu
+M3h4LmpvdQ0KQ1JJVElDQUwgV0FSTklORzogW2ZpbGVtZ210IDIwLTE0NDBdIEZpbGUgJy9ob21l
+L3d0dC9yZm5vYy9zcmMvdWhkLWZwZ2EvdXNycDMvdG9wL24zeHgvYnVpbGQtaXAveGM3ejEwMGZm
+ZzkwMC0yL2RkcjNfMzJiaXQvZGRyM18zMmJpdC91c2VyX2Rlc2lnbi9ydGwvY2xvY2tpbmcvbWln
+XzdzZXJpZXNfdjRfMl90ZW1wbW9uLnYnIGFscmVhZHkgZXhpc3RzIGluIHRoZSBwcm9qZWN0IGFz
+IGEgcGFydCBvZiBzdWItZGVzaWduIGZpbGUgJy9ob21lL3d0dC9yZm5vYy9zcmMvdWhkLWZwZ2Ev
+dXNycDMvdG9wL24zeHgvYnVpbGQtaXAveGM3ejEwMGZmZzkwMC0yL2RkcjNfMzJiaXQvZGRyM18z
+MmJpdC54Y2knLiBFeHBsaWNpdGx5IGFkZGluZyB0aGUgZmlsZSBvdXRzaWRlIHRoZSBzY29wZSBv
+ZiB0aGUgc3ViLWRlc2lnbiBjYW4gbGVhZCB0byB1bmludGVuZGVkIGJlaGF2aW9ycyBhbmQgaXMg
+bm90IHJlY29tbWVuZGVkLg0KWzAwOjAwOjE0XSBDdXJyZW50IHRhc2s6IEluaXRpYWxpemF0aW9u
+ICsrKyBDdXJyZW50IFBoYXNlOiBTdGFydGluZw0KWzAwOjAwOjE0XSBDdXJyZW50IHRhc2s6IElu
+aXRpYWxpemF0aW9uICsrKyBDdXJyZW50IFBoYXNlOiBGaW5pc2hlZA0KWzAwOjAwOjE0XSBFeGVj
+dXRpbmcgVGNsOiBzeW50aF9kZXNpZ24gLXRvcCBuM3h4IC1wYXJ0IHhjN3oxMDBmZmc5MDAtMiAt
+dmVyaWxvZ19kZWZpbmUgU0ZQMF8xR0JFPTEgLXZlcmlsb2dfZGVmaW5lIFNGUDFfMTBHQkU9MSAt
+dmVyaWxvZ19kZWZpbmUgVVNFX1JFUExBWT0xIC12ZXJpbG9nX2RlZmluZSBCVUlMRF8xRz0xIC12
+ZXJpbG9nX2RlZmluZSBCVUlMRF8xMEc9MSAtdmVyaWxvZ19kZWZpbmUgUkZOT0M9MSAtdmVyaWxv
+Z19kZWZpbmUgTjMxMD0xIC12ZXJpbG9nX2RlZmluZSBHSVRfSEFTSD0zMidoZmI2MTVhNWENClsw
+MDowMDoxNF0gU3RhcnRpbmcgU3ludGhlc2lzIENvbW1hbmQNCkVSUk9SOiBbU3ludGggOC00Mzld
+IG1vZHVsZSAnbm9jX2Jsb2NrX2dhaW4nIG5vdCBmb3VuZCBbL2hvbWUvd3R0L3Jmbm9jL3NyYy91
+aGQtZnBnYS91c3JwMy90b3AvbjN4eC9yZm5vY19jZV9hdXRvX2luc3RfbjMxMC52OjIyXQ0KRVJS
+T1I6IFtTeW50aCA4LTYxNTZdIGZhaWxlZCBzeW50aGVzaXppbmcgbW9kdWxlICduM3h4X2NvcmUn
+IFsvaG9tZS93dHQvcmZub2Mvc3JjL3VoZC1mcGdhL3VzcnAzL3RvcC9uM3h4L24zeHhfY29yZS52
+OjE3XQ0KRVJST1I6IFtTeW50aCA4LTYxNTZdIGZhaWxlZCBzeW50aGVzaXppbmcgbW9kdWxlICdu
+M3h4JyBbL2hvbWUvd3R0L3Jmbm9jL3NyYy91aGQtZnBnYS91c3JwMy90b3AvbjN4eC9kYm9hcmRz
+L21nL24zeHgudjoxM10NCkVSUk9SOiBbQ29tbW9uIDE3LTY5XSBDb21tYW5kIGZhaWxlZDogU3lu
+dGhlc2lzIGZhaWxlZCAtIHBsZWFzZSBzZWUgdGhlIGNvbnNvbGUgb3IgcnVuIGxvZyBmaWxlIGZv
+ciBkZXRhaWxzDQpbMDA6MDM6NDhdIEN1cnJlbnQgdGFzazogU3ludGhlc2lzICsrKyBDdXJyZW50
+IFBoYXNlOiBTdGFydGluZw0KWzAwOjAzOjQ5XSBDdXJyZW50IHRhc2s6IFN5bnRoZXNpcyArKysg
+Q3VycmVudCBQaGFzZTogRmluaXNoZWQNClswMDowMzo0OV0gUHJvY2VzcyB0ZXJtaW5hdGVkLiBT
+dGF0dXM6IEZhaWx1cmUNCg0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT0NCldhcm5pbmdzOiAgICAgICAgICAgNDA3DQpDcml0aWNhbCBXYXJu
+aW5nczogIDENCkVycm9yczogICAgICAgICAgICAgNA0KDQpNYWtlZmlsZS5uM3h4LmluYzoxNDk6
+IHJlY2lwZSBmb3IgdGFyZ2V0ICdiaW4nIGZhaWxlZA0KbWFrZVsxXTogKioqIFtiaW5dIEVycm9y
+IDENCm1ha2VbMV06IExlYXZpbmcgZGlyZWN0b3J5ICcvaG9tZS93dHQvcmZub2Mvc3JjL3VoZC1m
+cGdhL3VzcnAzL3RvcC9uM3h4Jw0KTWFrZWZpbGU6MTMzOiByZWNpcGUgZm9yIHRhcmdldCAnTjMx
+MF9SRk5PQ19IRycgZmFpbGVkDQptYWtlOiAqKiogW04zMTBfUkZOT0NfSEddIEVycm9yIDINCg0K
 
-we are designing a block that receives multiple streams of bursts of data a=
-nd produces in return other bursts of data. there is no correlation on the =
-amount of data at the input and at the output and it's not possible to tell=
- in advance how much data it will be arriving. Initially we were thinking t=
-his was a gnuradio issue but tested the block with gnuradio blocks only and=
- it works whereas when this is connected to a rfnoc block it produces memor=
-y leaks.
+--_000_HK0PR01MB2835299393DCA6F18EB1B726F3DC0HK0PR01MB2835apcp_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <8A18B8CF7091CD4E8A5E11C377182917@apcprd01.prod.exchangelabs.com>
+Content-Transfer-Encoding: base64
 
-the input stream is tagged with rx_eob as it consists in variable length pa=
-ckets each of which is tag terminated
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHRleHQ9IiMwMDAwMDAi
+IGJnY29sb3I9IiNGRkZGRkYiPg0KPHByZT5IaSBhbGwsDQoNCkkgYW0gc3R1ZHlpbmcgdGhlIGFw
+cGxpY2F0aW9uIG5vdGUgJnF1b3Q7R2V0dGluZyBTdGFydGVkIHdpdGggUkZOb0MgRGV2ZWxvcG1l
+bnQmcXVvdDsuDQpJIHdhcyBhYmxlIHRvIGNvbXBsZXRlIHRoZSBzaW11bGF0aW9uIG9mIGN1c3Rv
+bSBub2NfYmxvY2tfZ2FpbiwgYnV0IGZhaWxlZCBpbiB0aGUgZmluYWwgc3RhZ2Ugb2YgdGhlIHN5
+bnRoZXNpcy4NClRoZSBjdXN0b20gYmxvY2sgJnF1b3Q7Z2FpbiZxdW90OyBjYW5ub3QgYmUgZm91
+bmQuIA0KSSB1c2UgdGhlIGZvbGxvd2luZyBjb21tYW5kLCAgJnF1b3Q7Li91aGRfaW1hZ2VfYnVp
+bGRlci5weSBnYWluIGRkYyBmZnQgLUkgfi9yZm5vYy9zcmMvcmZub2MtbWVzaC8gLWQgbjMxMCAt
+dCBOMzEwX1JGTk9DX0hHIC1tIDYgLS1maWxsLXdpdGgtZmlmb3MgLWMmcXVvdDsuDQpJIGRpZCBz
+cGVjaWZ5IHRoZSBPT1QgZGlyZWN0b3J5IGR1cmluZyBpbWFnZSBidWlsZGluZy4gSSBhbSBjZXJ0
+YWluIEkgaGF2ZSBtYWRlIGFsbCBzZXR0aW5ncyBjb3JyZWN0LiANClNvIGZhciBJIGhhdmUgbm8g
+Y2x1ZSB3aGF0IGNhdXNlcyB0aGlzLiBIb3cgdG8gc29sdmUgdGhpcyBwcm9ibGVtPw0KDQoNClBT
+LCBJIHVzZSB1aGQgMy4xNC4wLjAsIGFuZCBwb3N0IG9mIGltYWdpbmcgYnVpZGluZywNCg0KKioq
+KioqIFZpdmFkbyB2MjAxOC4zX0FSNzE4OTggKDY0LWJpdCkNCiAgKioqKiBTVyBCdWlsZCAyNDA1
+OTkxIG9uIFRodSBEZWMgIDYgMjM6MzY6NDEgTVNUIDIwMTgNCiAgKioqKiBJUCBCdWlsZCAyNDA0
+NDA0IG9uIEZyaSBEZWMgIDcgMDE6NDM6NTYgTVNUIDIwMTgNCiAgICAqKiBDb3B5cmlnaHQgMTk4
+Ni0yMDE4IFhpbGlueCwgSW5jLiBBbGwgUmlnaHRzIFJlc2VydmVkLg0KDQpzb3VyY2UgcnVuX2lw
+cGFjay50Y2wgLW5vdHJhY2UNCklORk86IFtJUF9GbG93IDE5LTIzNF0gUmVmcmVzaGluZyBJUCBy
+ZXBvc2l0b3JpZXMNCklORk86IFtJUF9GbG93IDE5LTE3MDRdIE5vIHVzZXIgSVAgcmVwb3NpdG9y
+aWVzIHNwZWNpZmllZA0KSU5GTzogW0lQX0Zsb3cgMTktMjMxM10gTG9hZGVkIFZpdmFkbyBJUCBy
+ZXBvc2l0b3J5ICcvb3B0L1hpbGlueC9WaXZhZG8vMjAxOC4zL2RhdGEvaXAnLg0KSU5GTzogW0Nv
+bW1vbiAxNy0yMDZdIEV4aXRpbmcgVml2YWRvIGF0IFR1ZSBKdWwgMzAgMjA6NDE6MTMgMjAxOS4u
+Lg0KSU5GTzogW0hMUyAyMDAtMTEyXSBUb3RhbCBlbGFwc2VkIHRpbWU6IDE3LjM4IHNlY29uZHM7
+IHBlYWsgYWxsb2NhdGVkIG1lbW9yeTogNjYuOTM0IE1CLg0KSU5GTzogW0NvbW1vbiAxNy0yMDZd
+IEV4aXRpbmcgdml2YWRvX2hscyBhdCBUdWUgSnVsIDMwIDIwOjQxOjEzIDIwMTkuLi4NCkJVSUxE
+RVI6IFJlbGVhc2luZyBJUCBsb2NhdGlvbjogL2hvbWUvd3R0L3Jmbm9jL3NyYy91aGQtZnBnYS91
+c3JwMy90b3AvbjN4eC9idWlsZC1pcC94Yzd6MTAwZmZnOTAwLTIvYWRkc3ViX2hscw0KVXNpbmcg
+cGFyc2VyIGNvbmZpZ3VyYXRpb24gZnJvbTogL2hvbWUvd3R0L3Jmbm9jL3NyYy91aGQtZnBnYS91
+c3JwMy90b3AvbjN4eC9kZXZfY29uZmlnLmpzb24NCjxmb250IGNvbG9yPSIjNzI5RkNGIj48Yj5b
+MDA6MDA6MDBdIEV4ZWN1dGluZyBjb21tYW5kOiB2aXZhZG8gLW1vZGUgYmF0Y2ggLXNvdXJjZSAv
+aG9tZS93dHQvcmZub2Mvc3JjL3VoZC1mcGdhL3VzcnAzL3RvcC9uM3h4L2J1aWxkX24zeHgudGNs
+IC1sb2cgYnVpbGQubG9nIC1qb3VybmFsIG4zeHguam91PC9iPjwvZm9udD4NCjxmb250IGNvbG9y
+PSIjQzRBMDAwIj5DUklUSUNBTCBXQVJOSU5HOiBbZmlsZW1nbXQgMjAtMTQ0MF0gRmlsZSAnL2hv
+bWUvd3R0L3Jmbm9jL3NyYy91aGQtZnBnYS91c3JwMy90b3AvbjN4eC9idWlsZC1pcC94Yzd6MTAw
+ZmZnOTAwLTIvZGRyM18zMmJpdC9kZHIzXzMyYml0L3VzZXJfZGVzaWduL3J0bC9jbG9ja2luZy9t
+aWdfN3Nlcmllc192NF8yX3RlbXBtb24udicgYWxyZWFkeSBleGlzdHMgaW4gdGhlIHByb2plY3Qg
+YXMgYSBwYXJ0IG9mIHN1Yi1kZXNpZ24gZmlsZSAnL2hvbWUvd3R0L3Jmbm9jL3NyYy91aGQtZnBn
+YS91c3JwMy90b3AvbjN4eC9idWlsZC1pcC94Yzd6MTAwZmZnOTAwLTIvZGRyM18zMmJpdC9kZHIz
+XzMyYml0LnhjaScuIEV4cGxpY2l0bHkgYWRkaW5nIHRoZSBmaWxlIG91dHNpZGUgdGhlIHNjb3Bl
+IG9mIHRoZSBzdWItZGVzaWduIGNhbiBsZWFkIHRvIHVuaW50ZW5kZWQgYmVoYXZpb3JzIGFuZCBp
+cyBub3QgcmVjb21tZW5kZWQuPC9mb250Pg0KWzAwOjAwOjE0XSBDdXJyZW50IHRhc2s6IEluaXRp
+YWxpemF0aW9uICYjNDM7JiM0MzsmIzQzOyBDdXJyZW50IFBoYXNlOiBTdGFydGluZw0KWzAwOjAw
+OjE0XSBDdXJyZW50IHRhc2s6IEluaXRpYWxpemF0aW9uICYjNDM7JiM0MzsmIzQzOyBDdXJyZW50
+IFBoYXNlOiBGaW5pc2hlZA0KPGZvbnQgY29sb3I9IiM3MjlGQ0YiPjxiPlswMDowMDoxNF0gRXhl
+Y3V0aW5nIFRjbDogc3ludGhfZGVzaWduIC10b3AgbjN4eCAtcGFydCB4Yzd6MTAwZmZnOTAwLTIg
+LXZlcmlsb2dfZGVmaW5lIFNGUDBfMUdCRT0xIC12ZXJpbG9nX2RlZmluZSBTRlAxXzEwR0JFPTEg
+LXZlcmlsb2dfZGVmaW5lIFVTRV9SRVBMQVk9MSAtdmVyaWxvZ19kZWZpbmUgQlVJTERfMUc9MSAt
+dmVyaWxvZ19kZWZpbmUgQlVJTERfMTBHPTEgLXZlcmlsb2dfZGVmaW5lIFJGTk9DPTEgLXZlcmls
+b2dfZGVmaW5lIE4zMTA9MSAtdmVyaWxvZ19kZWZpbmUgR0lUX0hBU0g9MzInaGZiNjE1YTVhPC9i
+PjwvZm9udD4NCjxmb250IGNvbG9yPSIjNEU5QTA2Ij5bMDA6MDA6MTRdIFN0YXJ0aW5nIFN5bnRo
+ZXNpcyBDb21tYW5kPC9mb250Pg0KPGZvbnQgY29sb3I9IiNFRjI5MjkiPjxiPkVSUk9SOiBbU3lu
+dGggOC00MzldIG1vZHVsZSAnbm9jX2Jsb2NrX2dhaW4nIG5vdCBmb3VuZCBbL2hvbWUvd3R0L3Jm
+bm9jL3NyYy91aGQtZnBnYS91c3JwMy90b3AvbjN4eC9yZm5vY19jZV9hdXRvX2luc3RfbjMxMC52
+OjIyXTwvYj48L2ZvbnQ+DQo8Zm9udCBjb2xvcj0iI0VGMjkyOSI+PGI+RVJST1I6IFtTeW50aCA4
+LTYxNTZdIGZhaWxlZCBzeW50aGVzaXppbmcgbW9kdWxlICduM3h4X2NvcmUnIFsvaG9tZS93dHQv
+cmZub2Mvc3JjL3VoZC1mcGdhL3VzcnAzL3RvcC9uM3h4L24zeHhfY29yZS52OjE3XTwvYj48L2Zv
+bnQ+DQo8Zm9udCBjb2xvcj0iI0VGMjkyOSI+PGI+RVJST1I6IFtTeW50aCA4LTYxNTZdIGZhaWxl
+ZCBzeW50aGVzaXppbmcgbW9kdWxlICduM3h4JyBbL2hvbWUvd3R0L3Jmbm9jL3NyYy91aGQtZnBn
+YS91c3JwMy90b3AvbjN4eC9kYm9hcmRzL21nL24zeHgudjoxM108L2I+PC9mb250Pg0KPGZvbnQg
+Y29sb3I9IiNFRjI5MjkiPjxiPkVSUk9SOiBbQ29tbW9uIDE3LTY5XSBDb21tYW5kIGZhaWxlZDog
+U3ludGhlc2lzIGZhaWxlZCAtIHBsZWFzZSBzZWUgdGhlIGNvbnNvbGUgb3IgcnVuIGxvZyBmaWxl
+IGZvciBkZXRhaWxzPC9iPjwvZm9udD4NClswMDowMzo0OF0gQ3VycmVudCB0YXNrOiBTeW50aGVz
+aXMgJiM0MzsmIzQzOyYjNDM7IEN1cnJlbnQgUGhhc2U6IFN0YXJ0aW5nDQpbMDA6MDM6NDldIEN1
+cnJlbnQgdGFzazogU3ludGhlc2lzICYjNDM7JiM0MzsmIzQzOyBDdXJyZW50IFBoYXNlOiBGaW5p
+c2hlZA0KPGZvbnQgY29sb3I9IiNFRjI5MjkiPjxiPlswMDowMzo0OV0gUHJvY2VzcyB0ZXJtaW5h
+dGVkLiBTdGF0dXM6IEZhaWx1cmU8L2I+PC9mb250Pg0KDQo9PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KV2FybmluZ3M6ICAgICAgICAgICA0
+MDcNCkNyaXRpY2FsIFdhcm5pbmdzOiAgMQ0KRXJyb3JzOiAgICAgICAgICAgICA0DQoNCk1ha2Vm
+aWxlLm4zeHguaW5jOjE0OTogcmVjaXBlIGZvciB0YXJnZXQgJ2JpbicgZmFpbGVkDQptYWtlWzFd
+OiAqKiogW2Jpbl0gRXJyb3IgMQ0KbWFrZVsxXTogTGVhdmluZyBkaXJlY3RvcnkgJy9ob21lL3d0
+dC9yZm5vYy9zcmMvdWhkLWZwZ2EvdXNycDMvdG9wL24zeHgnDQpNYWtlZmlsZToxMzM6IHJlY2lw
+ZSBmb3IgdGFyZ2V0ICdOMzEwX1JGTk9DX0hHJyBmYWlsZWQNCm1ha2U6ICoqKiBbTjMxMF9SRk5P
+Q19IR10gRXJyb3IgMg0KPC9wcmU+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-
-
-we are seeing a number of odd behaviours:
-
-1) sometimes the general_work will receive, at the end of the buffer, an in=
-complete packet. the issue with this is that the packet that has been broke=
-n in two pieces ends up having a rx_eob tag at the interruption point, thus=
- splitting it effectively in two packets
-
-2) if we don't consume all the input data immediately in a call to general_=
-work we correctly see data we left being resent with next buffer however we=
- see a memory leak
-
-3) if we consume ninput_items passed to general_work for each stream we see=
- memory leak. odd enough memory leak does not show up if we consume noutput=
-_items which may be bigger than ninput_items
-
-4) if we produce less than noutput_items by calling the produce function an=
-d returning WORK_CALLED_PRODUCE we see a memory leak
-
-
-
-we are currently using Release 3.7.13.3 (git hash 3fef6dc5d9174c172f75d97b0=
-e332171b5a53f18).
-
-
-
-Basically it looks like whenever we tell the streamer we used less data it =
-provided at input or filled in less data it expects at output there will be=
- a memory leak.
-
-
-
-any help on this would be greatly appreciated...
-
-thanks,
-
-Dario Pennisi
-
---_000_15fd27e0cfe84dbcb9a3655d28a4bfb8exchangeiptronixlocal_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle21
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body bgcolor=3D"white" lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-Hi,<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-we are designing a block that receives multiple streams of bursts of data a=
-nd produces in return other bursts of data. there is no correlation on the =
-amount of data at the input and at the
- output and it's not possible to tell in advance how much data it will be a=
-rriving. Initially we were thinking this was a gnuradio issue but tested th=
-e block with gnuradio blocks only and it works whereas when this is connect=
-ed to a rfnoc block it produces
- memory leaks.<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-the input stream is tagged with rx_eob as it consists in variable length pa=
-ckets each of which is tag terminated<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-<o:p>&nbsp;</o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-we are seeing a number of odd behaviours:<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-1) sometimes the general_work will receive, at the end of the buffer, an in=
-complete packet. the issue with this is that the packet that has been broke=
-n in two pieces ends up having a rx_eob
- tag at the interruption point, thus splitting it effectively in two packet=
-s<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-2) if we don't consume all the input data immediately in a call to general_=
-work we correctly see data we left being resent with next buffer however we=
- see a memory leak<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-3) if we consume ninput_items passed to general_work for each stream we see=
- memory leak. odd enough memory leak does not show up if we consume noutput=
-_items which may be bigger than ninput_items<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-4) if we produce less than noutput_items by calling the produce function an=
-d returning WORK_CALLED_PRODUCE we see a memory leak<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-<o:p>&nbsp;</o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-we are currently using Release 3.7.13.3 (git hash 3fef6dc5d9174c172f75d97b0=
-e332171b5a53f18).<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-<o:p>&nbsp;</o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-Basically it looks like whenever we tell the streamer we used less data it =
-provided at input or filled in less data it expects at output there will be=
- a memory leak.<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-<o:p>&nbsp;</o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-any help on this would be greatly appreciated...
-<o:p></o:p></span></p>
-<p style=3D"background:white"><span style=3D"font-size:12.0pt;color:black">=
-thanks,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"IT"><o:p>&nbsp;</o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"IT" style=3D"color:#1F497D;mso-fareast=
--language:EN-GB">Dario Pennisi</span><span lang=3D"IT" style=3D"color:#1F49=
-7D;mso-fareast-language:IT"><o:p></o:p></span></p>
-</div>
-</div>
-</body>
-</html>
-
---_000_15fd27e0cfe84dbcb9a3655d28a4bfb8exchangeiptronixlocal_--
+--_000_HK0PR01MB2835299393DCA6F18EB1B726F3DC0HK0PR01MB2835apcp_--
 
 
---===============3487293382875583876==
+--===============0913763271928677332==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -264,5 +273,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3487293382875583876==--
+--===============0913763271928677332==--
 
