@@ -2,48 +2,40 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5777C3C3
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Jul 2019 15:39:43 +0200 (CEST)
-Received: from [::1] (port=39860 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2C747C4BD
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Jul 2019 16:21:30 +0200 (CEST)
+Received: from [::1] (port=59708 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hsopP-00082q-P5; Wed, 31 Jul 2019 09:39:39 -0400
-Received: from mail-pf1-f179.google.com ([209.85.210.179]:34889)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <mitch.grabner@gmail.com>)
- id 1hsopL-0007wz-Vf
- for usrp-users@lists.ettus.com; Wed, 31 Jul 2019 09:39:36 -0400
-Received: by mail-pf1-f179.google.com with SMTP id u14so31915555pfn.2
- for <usrp-users@lists.ettus.com>; Wed, 31 Jul 2019 06:39:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=9r2MbWmH0e48sQYOukEw2u+9Vtx24srrzGl4dD7adyM=;
- b=q2RAA8FfEmEfM9ehyJeMjAeiW7AlPPFIgAjPPXBuphAs2e6HeKNjEcATzVANWYhcW4
- Rh5KX63DMAgqCZWX75b2BhkAOOnLgFYxRzJNo1OUaLj7GpDJ7EHmpAos7vTYi4mZbZw9
- xJPxKFHPXRw6w7u9L8HHo6QC9RvuJm1xRneza1iEQSvZRpBoycnUFy7N4LUWnoo/TjEz
- wu9VpAAgXd/lzjXvgapR4TTKAVcYs27IoWYpVX7igXjbrco8MZWq30rIDAzEFw6kcI4R
- zTCtfEuZG+Mwpkb0Fu6p1mPJ2TaX0jnMpoqQjl0vUxZrIdAgQWy3cbXQRDWzoD/VD17F
- SSfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=9r2MbWmH0e48sQYOukEw2u+9Vtx24srrzGl4dD7adyM=;
- b=CaR/rXA08IQHsK7sBiKVNX5qRLcqHjfKW23BpSaeeaVBfV/jUQ6x8vKcf1OSf1CDVq
- alENIVNWcL6chR9fgU3ijttvDsYKaCpxP0bSmDUkeePPo77v2xJhWK/Xgrv+loVS+xgy
- LVG2sgYJDTw/EcMihHPNwDIPELcazl2lp1iAcX+w4s1oVxjALoI50ULM1gKRW+8xPYBz
- hIAqzPLc4vng4jBQI4AiW7a8AbHvIQcnQutOdznagl77eH1+opJHtrprhUkftWv0Bi9k
- f4lEQoKtz8a17FOcPL/SiSW3iqLCaJy8eFmAOOgInw+0MKP4YnMUx9kmWZhA88kq+8aa
- qksQ==
-X-Gm-Message-State: APjAAAU5s11fwwhZTNATBt9ufIwaxbDCpJd0qFtpbPJrO3U7boz3wz63
- 5SQxrB1WCB3r31e6Z2X3SzB8bRqcnN/vhQgoUiurPT2/RtE=
-X-Google-Smtp-Source: APXvYqxxX6Rhe0VnJiN+mJsnRGqQdjhGdwho7qJO/g5BE+JdhxG9hjyhNxGnwdYd77nQDP9qjOnPq8PUMyJBELUYIhY=
-X-Received: by 2002:a65:4505:: with SMTP id n5mr16583516pgq.301.1564580334683; 
- Wed, 31 Jul 2019 06:38:54 -0700 (PDT)
+	id 1hspTr-0000fH-AS; Wed, 31 Jul 2019 10:21:27 -0400
+Received: from llmx2.ll.mit.edu ([129.55.12.48]:57542)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92)
+ (envelope-from <prvs=311550b9ff=kirsten.leong@ll.mit.edu>)
+ id 1hspTn-0000YP-4t
+ for usrp-users@lists.ettus.com; Wed, 31 Jul 2019 10:21:23 -0400
+Received: from LLE2K16-MBX03.mitll.ad.local (LLE2K16-MBX03.mitll.ad.local) by
+ llmx2.ll.mit.edu (unknown) with ESMTPS id x6VEKfLK008140 for
+ <usrp-users@lists.ettus.com>; Wed, 31 Jul 2019 10:20:41 -0400
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Connecting X310 to VM Problems
+Thread-Index: AQHVR6sgzq3BJXIehEyqLZfteszCfQ==
+Date: Wed, 31 Jul 2019 14:20:39 +0000
+Message-ID: <59D30F9F-0B3C-4897-B219-CB286A811371@contoso.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.1.85]
 MIME-Version: 1.0
-Date: Wed, 31 Jul 2019 09:38:43 -0400
-Message-ID: <CAGXuw=gpxavTSx2MES=wip=nSo7Ge0OuE+8MT0mgp+omPCoe=A@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Phase coherent UBX160s on multiple X310s
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+ definitions=2019-07-31_06:, , signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=792
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1906280000 definitions=main-1907310145
+Subject: [USRP-users] Connecting X310 to VM Problems
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -55,9 +47,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mitch Grabner via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mitch Grabner <mitch.grabner@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4952693417460469164=="
+From: "Leong,
+ Kirsten - 0551 - MITLL via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>
+Content-Type: multipart/mixed; boundary="===============7791298481109750317=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,91 +64,74 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4952693417460469164==
-Content-Type: multipart/alternative; boundary="000000000000124a4d058efa3fca"
+--===============7791298481109750317==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_59D30F9F0B3C4897B219CB286A811371contosocom_"
 
---000000000000124a4d058efa3fca
-Content-Type: text/plain; charset="UTF-8"
+--_000_59D30F9F0B3C4897B219CB286A811371contosocom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hello,
+SGksDQoNCknigJltIHRyeWluZyB0byBjb25uZWN0IGFuIFgzMTAgdG8gYSBMaW51eCBWTSB0aHJv
+dWdoIFZNV2FyZSBGdXNpb24uIEkgY3VycmVudGx5IGhhdmUgdGhlIFVTUlAgY29ubmVjdGVkIHRv
+IGEgTWFjIFBybyB2aWEgVVNCIDMuMC9HaWdhYml0IEV0aGVybmV0LiBJIGFkZGVkIHRoZSBVU0Ig
+ZGV2aWNlIHRvIHRoZSBWTSBhbmQgcnVubmluZyBpZmNvbmZpZyAtYSwgdGhlIFZNLCB3aGljaCBo
+YXMgYSBzdGF0aWMgaXAgc2V0IHRvIDE5Mi4xNjguMTAuMSwgY2FuIHNlZSB0aGUgZXRoZXJuZXQg
+Y29ubmVjdGlvbiB0aG91Z2ggbm8gSVAgaXMgYXNzaWduZWQuIEkgY2Fu4oCZdCBwaW5nIDE5Mi4x
+NjguMTAuMiB0aHJvdWdoIHRoZSBWTS4gSeKAmW0gbm90IHN1cmUgd2hhdCBzdGVwcyBJIGFtIG1p
+c3NpbmcgaW4gdGhpcyBzZXR1cC4NCg0KVGhhbmtzLA0KS2lyc3Rlbg0K
 
-I'm trying to achieve a constant phase offset with multiple X310s each
-using a UBX160 daughter card. My procedure is as follows:
-1) All X310s have a 10MHz reference and PPS fed via an octoclock
-2) each device FPGA time is aligned on the PPS edge
-3) each device sets their LO to the same frequency at the same time using
-timed FPGA commands
-4) each device transmits an orthogonal PN sequence using timed transmit and
-the phase of each is measured on a x310 which is also initialized using the
-previous procedure
+--_000_59D30F9F0B3C4897B219CB286A811371contosocom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <758CA2ADD8E036488A28B4827EF6C8C9@ll.mit.edu>
+Content-Transfer-Encoding: base64
 
-The behavior I have seen is that the phase difference between radios is
-constant only when using a low center frequency (tested on 40 MHz fc, 1 MHz
-Fs). At 2.4 GHz and 920 Mhz the phase drifts between runs. Does anyone have
-any insight into why this would be the case?
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
+YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1i
+b3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+IixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9
+DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9y
+aXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpz
+cGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1z
+b0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6
+IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
+MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rp
+b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBs
+YW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0i
+V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0Ij5IaSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
+PknigJltIHRyeWluZyB0byBjb25uZWN0IGFuIFgzMTAgdG8gYSBMaW51eCBWTSB0aHJvdWdoIFZN
+V2FyZSBGdXNpb24uIEkgY3VycmVudGx5IGhhdmUgdGhlIFVTUlAgY29ubmVjdGVkIHRvIGEgTWFj
+IFBybyB2aWEgVVNCIDMuMC9HaWdhYml0IEV0aGVybmV0LiBJIGFkZGVkIHRoZSBVU0IgZGV2aWNl
+IHRvIHRoZSBWTSBhbmQgcnVubmluZyBpZmNvbmZpZyAtYSwgdGhlDQogVk0sIHdoaWNoIGhhcyBh
+IHN0YXRpYyBpcCBzZXQgdG8gMTkyLjE2OC4xMC4xLCBjYW4gc2VlIHRoZSBldGhlcm5ldCBjb25u
+ZWN0aW9uIHRob3VnaCBubyBJUCBpcyBhc3NpZ25lZC4gSSBjYW7igJl0IHBpbmcgMTkyLjE2OC4x
+MC4yIHRocm91Z2ggdGhlIFZNLiBJ4oCZbSBub3Qgc3VyZSB3aGF0IHN0ZXBzIEkgYW0gbWlzc2lu
+ZyBpbiB0aGlzIHNldHVwLg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0Ij5UaGFua3MsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPktpcnN0ZW4gPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-Things I have tried:
-- Integer-n and fractional-n tuning
-- manual and automatic tuning policies
-
-The UHD version is source built 3.13.0
-<https://github.com/EttusResearch/uhd/commit/f114cfa0ddf70228d10462758c2b8e878c993f5d>
-from git and I have rebuilt the FPGA image with these commits added:
-https://github.com/EttusResearch/fpga/commit/205747dee8e73ec15f521e9363337c8c03582d91
-https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e69b1c6798771e6d
-I'm also going to try using the most up-to-date 3.14.1.0 release.
-
-Thanks,
--- 
-
-*Mitchell J Grabner, PhD*
-*Member, IEEE Communications Society*
-
-*IEEE-HKN Lambda Zeta Chapter*
-*------------------------------------------------*
-My Linkedin <http://www.linkedin.com/pub/mitch-grabner/43/23b/bb5>
-
---000000000000124a4d058efa3fca
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;m trying to ach=
-ieve a constant phase offset with multiple X310s each using a UBX160 daught=
-er card. My procedure is as follows:</div><div>1) All X310s have a 10MHz re=
-ference and PPS fed via an octoclock</div><div>2) each device FPGA time is =
-aligned on the PPS edge</div><div>3) each device sets their LO to the same =
-frequency at the same time using timed FPGA commands</div><div>4) each devi=
-ce transmits an orthogonal PN sequence using timed transmit and the phase o=
-f each is measured on a x310 which is also initialized using the previous p=
-rocedure</div><div><br></div><div>The behavior I have seen is that the phas=
-e difference between radios is constant only when using a low center freque=
-ncy (tested on 40 MHz fc, 1 MHz Fs). At 2.4 GHz and 920 Mhz the phase drift=
-s between runs. Does anyone have any insight into why this would be the cas=
-e?</div><div><br></div><div>Things I have tried:</div><div>- Integer-n and =
-fractional-n tuning</div><div>- manual and automatic tuning policies</div><=
-div><br></div><div>The UHD version is source built 3.13.0<code></code><a hr=
-ef=3D"https://github.com/EttusResearch/uhd/commit/f114cfa0ddf70228d10462758=
-c2b8e878c993f5d" class=3D"gmail-muted-link"><code></code></a> from git and =
-I have rebuilt the FPGA image with these commits added:</div><div><a href=
-=3D"https://github.com/EttusResearch/fpga/commit/205747dee8e73ec15f521e9363=
-337c8c03582d91">https://github.com/EttusResearch/fpga/commit/205747dee8e73e=
-c15f521e9363337c8c03582d91</a></div><div><a href=3D"https://github.com/Ettu=
-sResearch/fpga/commit/0b2364653405612a6d5dfaa0e69b1c6798771e6d">https://git=
-hub.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e69b1c6798771e6d<=
-/a></div><div>I&#39;m also going to try using the most up-to-date 3.14.1.0 =
-release.</div><div><br></div><div>Thanks,<br></div><div>-- <br><div dir=3D"=
-ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=
-=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">=
-<b>Mitchell J Grabner, PhD<br></b><div><div><i>Member, IEEE Communications =
-Society</i></div><div><i>IEEE-HKN Lambda Zeta Chapter<br></i></div><div><i>=
-------------------------------------------------</i></div><a href=3D"http:/=
-/www.linkedin.com/pub/mitch-grabner/43/23b/bb5" target=3D"_blank">My Linked=
-in</a></div></div></div></div></div></div></div></div></div></div></div>
-
---000000000000124a4d058efa3fca--
+--_000_59D30F9F0B3C4897B219CB286A811371contosocom_--
 
 
---===============4952693417460469164==
+--===============7791298481109750317==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -166,5 +142,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4952693417460469164==--
+--===============7791298481109750317==--
 
