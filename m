@@ -2,44 +2,66 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35FD67CB82
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Jul 2019 20:09:04 +0200 (CEST)
-Received: from [::1] (port=45346 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B717CCA2
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Jul 2019 21:17:43 +0200 (CEST)
+Received: from [::1] (port=55526 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hst25-0000PT-Vs; Wed, 31 Jul 2019 14:09:01 -0400
-Received: from llmx2.ll.mit.edu ([129.55.12.48]:56898)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92)
- (envelope-from <prvs=311550b9ff=kirsten.leong@ll.mit.edu>)
- id 1hst21-0000KA-AR
- for usrp-users@lists.ettus.com; Wed, 31 Jul 2019 14:08:57 -0400
-Received: from LLE2K16-MBX03.mitll.ad.local (LLE2K16-MBX03.mitll.ad.local) by
- llmx2.ll.mit.edu (unknown) with ESMTPS id x6VI8Ggn018229;
- Wed, 31 Jul 2019 14:08:16 -0400
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
- <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Connecting X310 to VM Problems
-Thread-Index: AQHVR6sgzq3BJXIehEyqLZfteszCfablJJUA///h7AA=
-Date: Wed, 31 Jul 2019 18:08:13 +0000
-Message-ID: <E7CA8CF1-0378-4A46-8916-DA721379B145@ll.mit.edu>
-References: <59D30F9F-0B3C-4897-B219-CB286A811371@contoso.com>
- <5D41BA0A.90308@gmail.com>
-In-Reply-To: <5D41BA0A.90308@gmail.com>
+	id 1hsu6X-0005q5-Ax; Wed, 31 Jul 2019 15:17:41 -0400
+Received: from mail-cy1usg02on0139.outbound.protection.office365.us
+ ([23.103.209.139]:4516 helo=USG02-CY1-obe.outbound.protection.office365.us)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+ (Exim 4.92) (envelope-from <Billy.Heckman@amplus-corp.com>)
+ id 1hsu6S-0005dt-Mv
+ for usrp-users@lists.ettus.com; Wed, 31 Jul 2019 15:17:36 -0400
+Received: from CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM (52.145.1.9) by
+ CY1P110MB0040.NAMP110.PROD.OUTLOOK.COM (23.103.17.215) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2115.15; Wed, 31 Jul 2019 19:16:09 +0000
+Received: from CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::6466:f747:a621:6530]) by CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::6466:f747:a621:6530%8]) with mapi id 15.20.2115.005; Wed, 31 Jul 2019
+ 19:16:08 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Integrating a custom RFNoC block in UHD, without GnuRadio
+Thread-Index: AQHVR9GkwpcuNtETJ0WAIWIm+4otCQ==
+Date: Wed, 31 Jul 2019 19:16:08 +0000
+Message-ID: <CY1P110MB039252F06BC235B2F3EC5E9BBBDF0@CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.1.84]
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Billy.Heckman@amplus-corp.com; 
+x-originating-ip: [174.79.189.7]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 157ea4c4-08f6-47f7-e368-08d715eb8b09
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
+ SRVR:CY1P110MB0040; 
+x-ms-traffictypediagnostic: CY1P110MB0040:
+x-microsoft-antispam-prvs: <CY1P110MB00408B27083302B81FD471E9BBDF0@CY1P110MB0040.NAMP110.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 011579F31F
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(346002)(366004)(199004)(189003)(7736002)(7696005)(52536014)(66066001)(476003)(6916009)(71190400001)(3846002)(6116002)(66476007)(66556008)(64756008)(25786009)(74316002)(33656002)(2351001)(256004)(71200400001)(6606003)(508600001)(99286004)(66946007)(66446008)(8676002)(81156014)(8936002)(5660300002)(81166006)(186003)(86362001)(486006)(68736007)(102836004)(26005)(9686003)(14444005)(55016002)(53936002)(54896002)(14454004)(6506007)(76116006)(19627405001)(5640700003)(6436002)(2501003)(2906002);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:CY1P110MB0040;
+ H:CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:3; MX:3; 
+received-spf: None (protection.outlook.com: amplus-corp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
- definitions=2019-07-31_09:, , signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1906280000 definitions=main-1907310183
-Subject: Re: [USRP-users] Connecting X310 to VM Problems
+X-OriginatorOrg: amplus-corp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 157ea4c4-08f6-47f7-e368-08d715eb8b09
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 19:16:08.7961 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 65d59888-a76c-450c-be7b-3992fa2ff2af
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Billy.Heckman@amplus-corp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1P110MB0040
+Subject: [USRP-users] Integrating a custom RFNoC block in UHD,
+ without GnuRadio
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -51,10 +73,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Leong,
- Kirsten - 0551 - MITLL via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>
-Content-Type: multipart/mixed; boundary="===============0671570287533260570=="
+From: Billy Heckman via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Billy Heckman <Billy.Heckman@amplus-corp.com>
+Content-Type: multipart/mixed; boundary="===============6225881299174605562=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -68,119 +89,103 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0671570287533260570==
+--===============6225881299174605562==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_E7CA8CF103784A468916DA721379B145llmitedu_"
+	boundary="_000_CY1P110MB039252F06BC235B2F3EC5E9BBBDF0CY1P110MB0392NAMP_"
 
---_000_E7CA8CF103784A468916DA721379B145llmitedu_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_CY1P110MB039252F06BC235B2F3EC5E9BBBDF0CY1P110MB0392NAMP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-SSB3YXMgYWJsZSB0byBzb2x2ZSBteSBpc3N1ZS4gVGhlIHBhcnRpY3VsYXIgVVNCIHBvcnQgb24g
-bXkgTWFjIEkgaGFkIGNvbm5lY3RlZCB0byB0aGUgVVNSUCB3b3VsZG7igJl0IGVzdGFibGlzaCBh
-IGNvbm5lY3Rpb24gc28gSSBqdXN0IGNoYW5nZWQgaXQgdG8gYW5vdGhlci4NCg0KRnJvbTogVVNS
-UC11c2VycyA8dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbT4gb24gYmVoYWxmIG9m
-ICJNYXJjdXMgRC4gTGVlY2ggdmlhIFVTUlAtdXNlcnMiIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbT4NClJlcGx5LVRvOiAiTWFyY3VzIEQuIExlZWNoIiA8cGF0Y2h2b25icmF1bkBnbWFpbC5j
-b20+DQpEYXRlOiBXZWRuZXNkYXksIEp1bHkgMzEsIDIwMTkgYXQgMTE6NTcgQU0NClRvOiAidXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1
-YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gQ29ubmVjdGluZyBYMzEwIHRvIFZNIFByb2JsZW1zDQoN
-Ck9uIDA3LzMxLzIwMTkgMTA6MjAgQU0sIExlb25nLCBLaXJzdGVuIC0gMDU1MSAtIE1JVExMIHZp
-YSBVU1JQLXVzZXJzIHdyb3RlOg0KSGksDQoNCknigJltIHRyeWluZyB0byBjb25uZWN0IGFuIFgz
-MTAgdG8gYSBMaW51eCBWTSB0aHJvdWdoIFZNV2FyZSBGdXNpb24uIEkgY3VycmVudGx5IGhhdmUg
-dGhlIFVTUlAgY29ubmVjdGVkIHRvIGEgTWFjIFBybyB2aWEgVVNCIDMuMC9HaWdhYml0IEV0aGVy
-bmV0LiBJIGFkZGVkIHRoZSBVU0IgZGV2aWNlIHRvIHRoZSBWTSBhbmQgcnVubmluZyBpZmNvbmZp
-ZyAtYSwgdGhlIFZNLCB3aGljaCBoYXMgYSBzdGF0aWMgaXAgc2V0IHRvIDE5Mi4xNjguMTAuMSwg
-Y2FuIHNlZSB0aGUgZXRoZXJuZXQgY29ubmVjdGlvbiB0aG91Z2ggbm8gSVAgaXMgYXNzaWduZWQu
-IEkgY2Fu4oCZdCBwaW5nIDE5Mi4xNjguMTAuMiB0aHJvdWdoIHRoZSBWTS4gSeKAmW0gbm90IHN1
-cmUgd2hhdCBzdGVwcyBJIGFtIG1pc3NpbmcgaW4gdGhpcyBzZXR1cC4NCg0KVGhhbmtzLA0KS2ly
-c3Rlbg0KDQpGaXJzdCBzdGVwIHdvdWxkIGJlIHRvIHZlcmlmeSBjb25uZWN0aXZpdHkgaW4gdGhl
-IG5vbi1WTSBjYXNlLS1kbyB5b3UgaGF2ZSB0aGF0Pw0KDQoNCg0KDQo=
-
---_000_E7CA8CF103784A468916DA721379B145llmitedu_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <B7EAE3995B7A4A48B52C59DC6E47E0BD@ll.mit.edu>
-Content-Transfer-Encoding: base64
-
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
-YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1i
-b3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-IixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9
-DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9y
-aXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpw
-Lm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1u
-YW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6
-MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglm
-b250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNw
-YW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5
-OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5FbWFpbFN0
-eWxlMTkNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNh
-bGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0K
-CXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdl
-IFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4g
-MS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQot
-LT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZs
-aW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+SSB3YXMgYWJsZSB0byBzb2x2
-ZSBteSBpc3N1ZS4gVGhlIHBhcnRpY3VsYXIgVVNCIHBvcnQgb24gbXkgTWFjIEkgaGFkIGNvbm5l
-Y3RlZCB0byB0aGUgVVNSUCB3b3VsZG7igJl0IGVzdGFibGlzaCBhIGNvbm5lY3Rpb24gc28gSSBq
-dXN0IGNoYW5nZWQgaXQgdG8gYW5vdGhlci4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNv
-bGlkICNCNUM0REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPkZyb206IDwvc3Bhbj48L2I+
-PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj5VU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzLWJvdW5j
-ZXNAbGlzdHMuZXR0dXMuY29tJmd0OyBvbiBiZWhhbGYgb2YgJnF1b3Q7TWFyY3VzIEQuIExlZWNo
-IHZpYSBVU1JQLXVzZXJzJnF1b3Q7ICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8
-YnI+DQo8Yj5SZXBseS1UbzogPC9iPiZxdW90O01hcmN1cyBELiBMZWVjaCZxdW90OyAmbHQ7cGF0
-Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+RGF0ZTogPC9iPldlZG5lc2RheSwgSnVs
-eSAzMSwgMjAxOSBhdCAxMTo1NyBBTTxicj4NCjxiPlRvOiA8L2I+JnF1b3Q7dXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20mcXVvdDsgJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxi
-cj4NCjxiPlN1YmplY3Q6IDwvYj5SZTogW1VTUlAtdXNlcnNdIENvbm5lY3RpbmcgWDMxMCB0byBW
-TSBQcm9ibGVtczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwv
-bzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAw
-Ny8zMS8yMDE5IDEwOjIwIEFNLCBMZW9uZywgS2lyc3RlbiAtIDA1NTEgLSBNSVRMTCB2aWEgVVNS
-UC11c2VycyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9
-Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+SGksPC9zcGFuPjxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
-PiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5J4oCZbSB0cnlpbmcgdG8gY29ubmVjdCBhbiBYMzEw
-IHRvIGEgTGludXggVk0gdGhyb3VnaCBWTVdhcmUgRnVzaW9uLiBJIGN1cnJlbnRseSBoYXZlIHRo
-ZSBVU1JQIGNvbm5lY3RlZCB0byBhIE1hYyBQcm8gdmlhIFVTQiAzLjAvR2lnYWJpdCBFdGhlcm5l
-dC4gSSBhZGRlZCB0aGUgVVNCIGRldmljZSB0byB0aGUgVk0gYW5kIHJ1bm5pbmcgaWZjb25maWcg
-LWEsIHRoZQ0KIFZNLCB3aGljaCBoYXMgYSBzdGF0aWMgaXAgc2V0IHRvIDE5Mi4xNjguMTAuMSwg
-Y2FuIHNlZSB0aGUgZXRoZXJuZXQgY29ubmVjdGlvbiB0aG91Z2ggbm8gSVAgaXMgYXNzaWduZWQu
-IEkgY2Fu4oCZdCBwaW5nIDE5Mi4xNjguMTAuMiB0aHJvdWdoIHRoZSBWTS4gSeKAmW0gbm90IHN1
-cmUgd2hhdCBzdGVwcyBJIGFtIG1pc3NpbmcgaW4gdGhpcyBzZXR1cC4NCjwvc3Bhbj48bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0Ij4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+VGhhbmtzLDwvc3Bhbj48bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5L
-aXJzdGVuIDwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
-PSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvYmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5GaXJzdCBzdGVwIHdvdWxkIGJl
-IHRvIHZlcmlmeSBjb25uZWN0aXZpdHkgaW4gdGhlIG5vbi1WTSBjYXNlLS1kbyB5b3UgaGF2ZSB0
-aGF0Pzxicj4NCjxicj4NCjxicj4NCjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
-
---_000_E7CA8CF103784A468916DA721379B145llmitedu_--
+I made a custom RFNoC block, following the process in the "Getting Started =
+with RFNoC Development" guide and built an E320 image with the using UHD v3=
+.14.0.0 . After flashing the new image on the device, my first host recogni=
+zed the custom block on "uhd_usrp_probe" and operated without any issues in=
+ a separate UHD project. My second host has the same version of UHD on it, =
+but does not have GnuRadio or gr-ettus. I would like to integrate the custo=
+m block on a second host without using steps requiring GnuRadio.
 
 
---===============0671570287533260570==
+Following UHD Integration section of the guide, I copied over the Block Dec=
+laration .xml file to the new host, under "/uhd/rfnoc/blocks/". The host ap=
+pears to recognize the custom block, but fails block enumeration with the f=
+ollowing error:
+
+
+[ERROR] [MPMD] Failure during block enumeration: LookupError: Path not foun=
+d in tree: /mboards/0/xbar/[custom_name]/args/0/[custom_arg]/type
+
+Running "uhd_usrp_probe --tree | grep [custom_name]" on my first host with =
+the same .xml file returns the full device tree of the custom block with al=
+l expected values. The same device with the same image is used between both=
+ hosts in this scenario. Am I missing any steps in this integration process=
+?
+
+
+Thanks,
+
+Billy
+
+--_000_CY1P110MB039252F06BC235B2F3EC5E9BBBDF0CY1P110MB0392NAMP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
+r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, &q=
+uot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &q=
+uot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<p style=3D"margin-top:0; margin-bottom:0">I made a custom RFNoC block, fol=
+lowing the process in the &quot;Getting Started with RFNoC Development&quot=
+; guide and built an E320 image with the&nbsp;using UHD v3.14.0.0&nbsp;. Af=
+ter flashing the new image on the device, my first host
+ recognized the custom block on &quot;uhd_usrp_probe&quot; and operated wit=
+hout any issues in a separate UHD project. My second host has the same vers=
+ion of UHD on it, but does not have GnuRadio or gr-ettus.&nbsp;<span style=
+=3D"font-size: 12pt;">I would like to integrate the
+ custom block on a second host&nbsp;without using steps requiring GnuRadio.=
+</span></p>
+<p style=3D"margin-top:0; margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0; margin-bottom:0">Following UHD Integration sectio=
+n of&nbsp;the guide, I copied over the Block Declaration .xml file to the n=
+ew host, under &quot;/uhd/rfnoc/blocks/&quot;. The host appears to recogniz=
+e the custom block, but fails block enumeration with
+ the following error:</p>
+<p style=3D"margin-top:0; margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0; margin-bottom:0"></p>
+<div>[ERROR] [MPMD] Failure during block enumeration: LookupError: Path not=
+ found in tree: /mboards/0/xbar/[custom_name]/args/0/[custom_arg]/type</div=
+>
+<div><br>
+</div>
+Running &quot;uhd_usrp_probe --tree | grep [custom_name]&quot; on my first =
+host with the same .xml file returns the full device tree of the custom blo=
+ck with all expected values. The same device with the same image is used be=
+tween both hosts in this scenario. Am I missing
+ any steps in this integration process?
+<p></p>
+<p style=3D"margin-top:0; margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0; margin-bottom:0">Thanks,&nbsp;</p>
+<p style=3D"margin-top:0; margin-bottom:0">Billy</p>
+</div>
+</body>
+</html>
+
+--_000_CY1P110MB039252F06BC235B2F3EC5E9BBBDF0CY1P110MB0392NAMP_--
+
+
+--===============6225881299174605562==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -191,5 +196,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0671570287533260570==--
+--===============6225881299174605562==--
 
