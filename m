@@ -2,59 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 359047C7AA
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Jul 2019 17:54:30 +0200 (CEST)
-Received: from [::1] (port=52202 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C81FA7C7B2
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Jul 2019 17:56:43 +0200 (CEST)
+Received: from [::1] (port=54764 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hsqvr-0001MA-9p; Wed, 31 Jul 2019 11:54:27 -0400
-Received: from mail-qk1-f180.google.com ([209.85.222.180]:33759)
+	id 1hsqxz-00020M-Fy; Wed, 31 Jul 2019 11:56:39 -0400
+Received: from mail-qt1-f182.google.com ([209.85.160.182]:42296)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hsqvo-0001HV-4J
- for usrp-users@lists.ettus.com; Wed, 31 Jul 2019 11:54:24 -0400
-Received: by mail-qk1-f180.google.com with SMTP id r6so49634483qkc.0
- for <usrp-users@lists.ettus.com>; Wed, 31 Jul 2019 08:54:03 -0700 (PDT)
+ id 1hsqxv-0001uS-Sq
+ for usrp-users@lists.ettus.com; Wed, 31 Jul 2019 11:56:35 -0400
+Received: by mail-qt1-f182.google.com with SMTP id h18so67095661qtm.9
+ for <usrp-users@lists.ettus.com>; Wed, 31 Jul 2019 08:56:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=m/qr/S/dLNn5SejVpbXBAzT6Al44ncEr60COdZEo5ZI=;
- b=o29fl8hrxp3jmdB+t8AVHLjbhudBDmZ04HI/9ZzGjzeSqerSZ3Cnxrt+vCUKcvI/yG
- M2zhuyvi0mxswDbRirzemiL1006/ULpacKI9MJl5iaM6KPt2nlKFIw+NYBjQQW2Bht+9
- 2Tlk896zq4EpX0TohPlC7pbXYBl4r2al7L4AWgRTEDk0iKWeyt3y3C0yoig1fBnu53ij
- WtbMrDuJUhPHvJTJSqq7facC76jddD5E3LkOAgIIzoJOAevNh9IbgcZzVsRzwG6sVdUW
- lXWCe/l3aM/dEfqkZ0otL4MlNteQWA5hxguisVv/Tqf/eN6Nabfoge4xnNJUPe3szqe1
- IA2g==
+ :in-reply-to; bh=I2h9ZSTljqHpC0/+XTL+W7r05Dcap9iHPvtU2F2bFFE=;
+ b=Pf5aNZ8t7T9yjgqonqIg/rj4nNmNb/IF5sJpSzeX5dzgYiMxCV2qC5snu9tnRT3WY2
+ Y7dsx1K76V6SeBIuE8kz2GrAlW3UMO92v5UmXLR8rBM9J9iOnN12OLqgMVRD7n0IdwNn
+ hm8apatLR/k7IbSyHnltRmzl+RZfgiwbzD0ErP0qiUHKyBZAg43aLG1W/WVIge1/VKRS
+ c+z/RckNBH5kVkHiAqcqFBhSDSoKgtoNmaBqJHf/YOHoxZtffEj0RKeOCrIReOVrAYj6
+ Q5QJrKu0iahLVSx0jYe8mj/hFCHNmBBXJPke3PNTJPN8iR0x1UFS7kr/wna5nmoJB3Wp
+ A3Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=m/qr/S/dLNn5SejVpbXBAzT6Al44ncEr60COdZEo5ZI=;
- b=CZ6XNUHAMAgsv+jpxY1bAFBfa5aixXGv3fH7nJNZVyeMNFf78FnNwCpDtai5TmDnhV
- rD1Q0EFRjUq91nQ2tuK/v4B0TG2Sf8WSg3nzCJ7W83DieufqvCN4leAhnjUxzYcR8XDy
- Xu8yIUG5mLxq0eCbln5WRs9AiOz7crMBrBaRLTUTQxlABscUZT34TgxCD4gd0QszoH4k
- 3RaBlZ6l9TB2LuS0T3Z0FFNIP3uGm6p485e7gt/Gl2loLlSoPjEA79aFodljuLHXsEUt
- qXuNy1eHFA6H4U0Fmm67ABvFNqz2jU/6NEF6fOfzxqSqMEzpD81kwAG61AE0idNPhmAQ
- QqoQ==
-X-Gm-Message-State: APjAAAWfJaUTeykr4uNCHN/ApaRNjk6dOjzhWj0LvNfetRo7FkDX9+z+
- qbyGf92A1ic0O9Csm9btjXXCzoJ4WNk=
-X-Google-Smtp-Source: APXvYqwapiiWp1sZa/RqeXrwyDlYFzBsTt6QPOWaHtncBDPYjUsTWEL7ktb4Yaegj3VcPydJHm6T1Q==
-X-Received: by 2002:a37:7cf:: with SMTP id 198mr82537973qkh.450.1564588423415; 
- Wed, 31 Jul 2019 08:53:43 -0700 (PDT)
+ bh=I2h9ZSTljqHpC0/+XTL+W7r05Dcap9iHPvtU2F2bFFE=;
+ b=tJqaEKBjnfQZWQe3ojeE5EdtXY6aZBuwNLTkWJBPh0JNj7bDBr/CyGvvJjdXOrs2sT
+ OTX4Q8Hb7u1htJorjFKDazqOIpiSQB45iANx9M995LTFFyhLQ5gJkUynl46stDNpkbGR
+ YU1qILnYn7RkzWJxLpeMZ8S1xg9XFjvQz59RsvRu0wfbjpI5KWdEQ4suChxQYi7aiPFC
+ DZ9+yTAhi4xwrU7xWc7C1J7Wlx8K8uU7HNFq8X/V3u7mBCXQCshUWrCObMk/9digW7nH
+ nnq9qH+23o1y/NeL/kqdZtSqTlIo/JzE+c7jMGxtqMUbSRP7fABVsy+8rMZfAy8fJ8Fk
+ 2zVw==
+X-Gm-Message-State: APjAAAUoJCAJqZFvmS6/6Balt9hMJaVnuW/BVUGs4Wzgmeeu7BfVh5Jh
+ FwRSXNUTbXcznJSJW2bWa+HaPXa742g=
+X-Google-Smtp-Source: APXvYqwxgt4BLZpgI54oqcndlT6DOgNaZWsYXAuydMCg9X9srMRya4gpIP6vWjvH8dR7yiRVgvwGNg==
+X-Received: by 2002:ac8:2b10:: with SMTP id 16mr84440140qtu.351.1564588555350; 
+ Wed, 31 Jul 2019 08:55:55 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
- [174.95.14.20]) by smtp.googlemail.com with ESMTPSA id
- x205sm31631806qka.56.2019.07.31.08.53.42
+ [174.95.14.20])
+ by smtp.googlemail.com with ESMTPSA id p3sm45452620qta.12.2019.07.31.08.55.54
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 31 Jul 2019 08:53:42 -0700 (PDT)
-Message-ID: <5D41B986.9030904@gmail.com>
-Date: Wed, 31 Jul 2019 11:53:42 -0400
+ Wed, 31 Jul 2019 08:55:54 -0700 (PDT)
+Message-ID: <5D41BA0A.90308@gmail.com>
+Date: Wed, 31 Jul 2019 11:55:54 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
 To: usrp-users@lists.ettus.com
-References: <CAGXuw=gpxavTSx2MES=wip=nSo7Ge0OuE+8MT0mgp+omPCoe=A@mail.gmail.com>
-In-Reply-To: <CAGXuw=gpxavTSx2MES=wip=nSo7Ge0OuE+8MT0mgp+omPCoe=A@mail.gmail.com>
-Subject: Re: [USRP-users] Phase coherent UBX160s on multiple X310s
+References: <59D30F9F-0B3C-4897-B219-CB286A811371@contoso.com>
+In-Reply-To: <59D30F9F-0B3C-4897-B219-CB286A811371@contoso.com>
+Subject: Re: [USRP-users] Connecting X310 to VM Problems
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,7 +68,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1493223497076577818=="
+Content-Type: multipart/mixed; boundary="===============0917675943167135715=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,62 +83,40 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============1493223497076577818==
+--===============0917675943167135715==
 Content-Type: multipart/alternative;
- boundary="------------080308000703080606070102"
+ boundary="------------040208040103040809010904"
 
 This is a multi-part message in MIME format.
---------------080308000703080606070102
+--------------040208040103040809010904
 Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/31/2019 09:38 AM, Mitch Grabner via USRP-users wrote:
-> Hello,
+On 07/31/2019 10:20 AM, Leong, Kirsten - 0551 - MITLL via USRP-users wrote:
 >
-> I'm trying to achieve a constant phase offset with multiple X310s each 
-> using a UBX160 daughter card. My procedure is as follows:
-> 1) All X310s have a 10MHz reference and PPS fed via an octoclock
-> 2) each device FPGA time is aligned on the PPS edge
-> 3) each device sets their LO to the same frequency at the same time 
-> using timed FPGA commands
-> 4) each device transmits an orthogonal PN sequence using timed 
-> transmit and the phase of each is measured on a x310 which is also 
-> initialized using the previous procedure
+> Hi,
 >
-> The behavior I have seen is that the phase difference between radios 
-> is constant only when using a low center frequency (tested on 40 MHz 
-> fc, 1 MHz Fs). At 2.4 GHz and 920 Mhz the phase drifts between runs. 
-> Does anyone have any insight into why this would be the case?
->
-> Things I have tried:
-> - Integer-n and fractional-n tuning
-> - manual and automatic tuning policies
->
-> The UHD version is source built 3.13.0|||| 
-> <https://github.com/EttusResearch/uhd/commit/f114cfa0ddf70228d10462758c2b8e878c993f5d> 
-> from git and I have rebuilt the FPGA image with these commits added:
-> https://github.com/EttusResearch/fpga/commit/205747dee8e73ec15f521e9363337c8c03582d91
-> https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e69b1c6798771e6d
-> I'm also going to try using the most up-to-date 3.14.1.0 release.
+> I’m trying to connect an X310 to a Linux VM through VMWare Fusion. I 
+> currently have the USRP connected to a Mac Pro via USB 3.0/Gigabit 
+> Ethernet. I added the USB device to the VM and running ifconfig -a, 
+> the VM, which has a static ip set to 192.168.10.1, can see the 
+> ethernet connection though no IP is assigned. I can’t ping 
+> 192.168.10.2 through the VM. I’m not sure what steps I am missing in 
+> this setup.
 >
 > Thanks,
 >
-Let us know whether the 3.14.1.0 release helps.
-
-I'm a bit surprised by the problem showing up on the *higher* bands, 
-because below 500MHz, there are TWO layers of synthesizers and mixers
-   involved--you'd expect phase-coherence problems to be more likely in 
-that case.
-
-The LOs have phase-reset features, which I'm fairly-sure are actually 
-implemented.
-
-What is the magnitude of the phase offset in the high-band case?
+> Kirsten
+>
+>
+>
+First step would be to verify connectivity in the non-VM case--do you 
+have that?
 
 
 
 
---------------080308000703080606070102
+--------------040208040103040809010904
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
@@ -148,81 +126,82 @@ Content-Transfer-Encoding: 8bit
       http-equiv="Content-Type">
   </head>
   <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/31/2019 09:38 AM, Mitch Grabner
-      via USRP-users wrote:<br>
+    <div class="moz-cite-prefix">On 07/31/2019 10:20 AM, Leong, Kirsten
+      - 0551 - MITLL via USRP-users wrote:<br>
     </div>
     <blockquote
-cite="mid:CAGXuw=gpxavTSx2MES=wip=nSo7Ge0OuE+8MT0mgp+omPCoe=A@mail.gmail.com"
+      cite="mid:59D30F9F-0B3C-4897-B219-CB286A811371@contoso.com"
       type="cite">
-      <div dir="ltr">
-        <div>Hello,</div>
-        <div><br>
-        </div>
-        <div>I'm trying to achieve a constant phase offset with multiple
-          X310s each using a UBX160 daughter card. My procedure is as
-          follows:</div>
-        <div>1) All X310s have a 10MHz reference and PPS fed via an
-          octoclock</div>
-        <div>2) each device FPGA time is aligned on the PPS edge</div>
-        <div>3) each device sets their LO to the same frequency at the
-          same time using timed FPGA commands</div>
-        <div>4) each device transmits an orthogonal PN sequence using
-          timed transmit and the phase of each is measured on a x310
-          which is also initialized using the previous procedure</div>
-        <div><br>
-        </div>
-        <div>The behavior I have seen is that the phase difference
-          between radios is constant only when using a low center
-          frequency (tested on 40 MHz fc, 1 MHz Fs). At 2.4 GHz and 920
-          Mhz the phase drifts between runs. Does anyone have any
-          insight into why this would be the case?</div>
-        <div><br>
-        </div>
-        <div>Things I have tried:</div>
-        <div>- Integer-n and fractional-n tuning</div>
-        <div>- manual and automatic tuning policies</div>
-        <div><br>
-        </div>
-        <div>The UHD version is source built 3.13.0<code></code><a
-            moz-do-not-send="true"
-href="https://github.com/EttusResearch/uhd/commit/f114cfa0ddf70228d10462758c2b8e878c993f5d"
-            class="gmail-muted-link"><code></code></a> from git and I
-          have rebuilt the FPGA image with these commits added:</div>
-        <div><a moz-do-not-send="true"
-href="https://github.com/EttusResearch/fpga/commit/205747dee8e73ec15f521e9363337c8c03582d91">https://github.com/EttusResearch/fpga/commit/205747dee8e73ec15f521e9363337c8c03582d91</a></div>
-        <div><a moz-do-not-send="true"
-href="https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e69b1c6798771e6d">https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e69b1c6798771e6d</a></div>
-        <div>I'm also going to try using the most up-to-date 3.14.1.0
-          release.</div>
-        <div><br>
-        </div>
-        <div>Thanks,<br>
-        </div>
-        <br>
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+      <div class="WordSection1">
+        <p class="MsoNormal"><span style="font-size:11.0pt">Hi,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt">I’m trying
+            to connect an X310 to a Linux VM through VMWare Fusion. I
+            currently have the USRP connected to a Mac Pro via USB
+            3.0/Gigabit Ethernet. I added the USB device to the VM and
+            running ifconfig -a, the VM, which has a static ip set to
+            192.168.10.1, can see the ethernet connection though no IP
+            is assigned. I can’t ping 192.168.10.2 through the VM. I’m
+            not sure what steps I am missing in this setup.
+            <o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt">Thanks,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt">Kirsten <o:p></o:p></span></p>
       </div>
+      <br>
+      <br>
     </blockquote>
-    Let us know whether the 3.14.1.0 release helps.<br>
-    <br>
-    I'm a bit surprised by the problem showing up on the *higher* bands,
-    because below 500MHz, there are TWO layers of synthesizers and
-    mixers<br>
-      involved--you'd expect phase-coherence problems to be more likely
-    in that case.<br>
-    <br>
-    The LOs have phase-reset features, which I'm fairly-sure are
-    actually implemented.<br>
-    <br>
-    What is the magnitude of the phase offset in the high-band case?<br>
+    First step would be to verify connectivity in the non-VM case--do
+    you have that?<br>
     <br>
     <br>
     <br>
   </body>
 </html>
 
---------------080308000703080606070102--
+--------------040208040103040809010904--
 
 
---===============1493223497076577818==
+--===============0917675943167135715==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -233,5 +212,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1493223497076577818==--
+--===============0917675943167135715==--
 
