@@ -2,66 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B717CCA2
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Jul 2019 21:17:43 +0200 (CEST)
-Received: from [::1] (port=55526 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39C887D95E
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Aug 2019 12:29:21 +0200 (CEST)
+Received: from [::1] (port=41946 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hsu6X-0005q5-Ax; Wed, 31 Jul 2019 15:17:41 -0400
-Received: from mail-cy1usg02on0139.outbound.protection.office365.us
- ([23.103.209.139]:4516 helo=USG02-CY1-obe.outbound.protection.office365.us)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
- (Exim 4.92) (envelope-from <Billy.Heckman@amplus-corp.com>)
- id 1hsu6S-0005dt-Mv
- for usrp-users@lists.ettus.com; Wed, 31 Jul 2019 15:17:36 -0400
-Received: from CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM (52.145.1.9) by
- CY1P110MB0040.NAMP110.PROD.OUTLOOK.COM (23.103.17.215) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.15; Wed, 31 Jul 2019 19:16:09 +0000
-Received: from CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM
- ([fe80::6466:f747:a621:6530]) by CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM
- ([fe80::6466:f747:a621:6530%8]) with mapi id 15.20.2115.005; Wed, 31 Jul 2019
- 19:16:08 +0000
+	id 1ht8Kk-0003yK-6j; Thu, 01 Aug 2019 06:29:18 -0400
+Received: from mx1.itsystems.it ([62.94.30.103]:47172)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <p.palana@itsystems.it>)
+ id 1ht8Ke-0003sO-85
+ for usrp-users@lists.ettus.com; Thu, 01 Aug 2019 06:29:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=itsystems.it; s=x; h=Content-Type:MIME-Version:Date:Message-ID:Subject:From
+ :To:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=7b9tzyj1T9I04d8x7Nw9rczQ4uwFLwazu+h4gXfTfX8=; b=HKcLrrlPbZIrqylFGzdi/JVvLe
+ jKZ3tEiByoLVKQRBZArtvIULIvKCwJicE4SNZ+u4pASsgbNijcNzLt2PM1CeDSwbWgMuOe0S3kK7N
+ vkH/49SU0z4Or9ZwULVnjKRMbdspScdFq8bwrcbIZ7zbmuYFaux8nr+IszobPGxjMBnY=;
+Received: from [10.10.0.138]
+ by mx1.itsystems.it with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ (Exim 4.90_1) (envelope-from <p.palana@itsystems.it>)
+ id 1ht8JG-0000wr-UP
+ for usrp-users@lists.ettus.com; Thu, 01 Aug 2019 10:27:48 +0000
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Integrating a custom RFNoC block in UHD, without GnuRadio
-Thread-Index: AQHVR9GkwpcuNtETJ0WAIWIm+4otCQ==
-Date: Wed, 31 Jul 2019 19:16:08 +0000
-Message-ID: <CY1P110MB039252F06BC235B2F3EC5E9BBBDF0@CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Billy.Heckman@amplus-corp.com; 
-x-originating-ip: [174.79.189.7]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 157ea4c4-08f6-47f7-e368-08d715eb8b09
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
- SRVR:CY1P110MB0040; 
-x-ms-traffictypediagnostic: CY1P110MB0040:
-x-microsoft-antispam-prvs: <CY1P110MB00408B27083302B81FD471E9BBDF0@CY1P110MB0040.NAMP110.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 011579F31F
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(346002)(366004)(199004)(189003)(7736002)(7696005)(52536014)(66066001)(476003)(6916009)(71190400001)(3846002)(6116002)(66476007)(66556008)(64756008)(25786009)(74316002)(33656002)(2351001)(256004)(71200400001)(6606003)(508600001)(99286004)(66946007)(66446008)(8676002)(81156014)(8936002)(5660300002)(81166006)(186003)(86362001)(486006)(68736007)(102836004)(26005)(9686003)(14444005)(55016002)(53936002)(54896002)(14454004)(6506007)(76116006)(19627405001)(5640700003)(6436002)(2501003)(2906002);
- DIR:OUT; SFP:1102; SCL:1; SRVR:CY1P110MB0040;
- H:CY1P110MB0392.NAMP110.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:3; MX:3; 
-received-spf: None (protection.outlook.com: amplus-corp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
+Openpgp: preference=signencrypt
+Message-ID: <4b8b3148-ef5f-6296-dab6-4651e65723ca@itsystems.it>
+Date: Thu, 1 Aug 2019 12:28:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: amplus-corp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 157ea4c4-08f6-47f7-e368-08d715eb8b09
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 19:16:08.7961 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 65d59888-a76c-450c-be7b-3992fa2ff2af
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Billy.Heckman@amplus-corp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1P110MB0040
-Subject: [USRP-users] Integrating a custom RFNoC block in UHD,
- without GnuRadio
+Content-Language: en-US
+X-Spam-Score: -1.0 (-)
+X-Spam-Report: Spam detection software, running on the system "v-mx.virt.itsystems.it",
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ 
+ Content preview:  Good morning to all the mailing list users. It is about a
+   couple of months that I'm fighting with my N310 for different reasons. Now
+    I want to report a couple  of strange behaviors I'm observing with this
+   device. Of course their can be my faults... I hope some one in the community
+    can make light. 
+ 
+ Content analysis details:   (-1.0 points, 5.0 required)
+ 
+  pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -1.0 ALL_TRUSTED            Passed through trusted hosts only via SMTP
+ -0.0 BAYES_20               BODY: Bayes spam probability is 5 to 20%
+                             [score: 0.0968]
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+Subject: [USRP-users] N310 Streaming 4 channels using both SFP issue
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -73,9 +68,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Billy Heckman via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Billy Heckman <Billy.Heckman@amplus-corp.com>
-Content-Type: multipart/mixed; boundary="===============6225881299174605562=="
+From: Paolo Palana via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Paolo Palana <p.palana@itsystems.it>
+Content-Type: multipart/mixed; boundary="===============3013847485108379366=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,103 +84,292 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6225881299174605562==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============3013847485108379366==
 Content-Type: multipart/alternative;
-	boundary="_000_CY1P110MB039252F06BC235B2F3EC5E9BBBDF0CY1P110MB0392NAMP_"
+ boundary="------------0F22478E659CA10AA8FD75B2"
+Content-Language: en-US
 
---_000_CY1P110MB039252F06BC235B2F3EC5E9BBBDF0CY1P110MB0392NAMP_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------0F22478E659CA10AA8FD75B2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-I made a custom RFNoC block, following the process in the "Getting Started =
-with RFNoC Development" guide and built an E320 image with the using UHD v3=
-.14.0.0 . After flashing the new image on the device, my first host recogni=
-zed the custom block on "uhd_usrp_probe" and operated without any issues in=
- a separate UHD project. My second host has the same version of UHD on it, =
-but does not have GnuRadio or gr-ettus. I would like to integrate the custo=
-m block on a second host without using steps requiring GnuRadio.
+Good morning to all the mailing list users.
+
+It is about a couple of months that I'm fighting with my N310 for
+different reasons.
+
+Now I want to report a couple  of strange behaviors I'm observing with
+this device. Of course their can be my faults... I hope some one in the
+community can make light.
+
+I try be as clear as possible.
+
+My goal: Streaming the 4 RX channels over the two SFP+. Let me say I
+want A:0 and A:1 on sfp0, while B:0 and B:1 on sfp1.
+
+Premise: * I'm using 10G link with fibers. I'm sure the network adapter
+and fibers work well because they are the same I used with my X310 (and
+it works).
+
+               * I'm using N310 in legacy compat mode
+
+               * The software I use is the same I used for my X310 and
+it works (at least with X310 of course!)
+
+               * MTU is to 9000 on both the host and N310
+
+               * I'm using UHD 3.14.0
+
+Strange behavior 1: when I start my acquisition program I can see (using
+tcpdump on the host side) small packets (16 or 24 bytes in size, I think
+they are some kind of commands) flowing through, let just say sfp0
+iface. If I reboot the N310 and the I start again my program I can see
+the same kind of packets flowing through sfp1 (but not through sfp0). If
+I reboot the N310 again may be these packets start flowing through sfp0
+or sfp1.... it depends!!!! Is that the normal behavior of N310?
 
 
-Following UHD Integration section of the guide, I copied over the Block Dec=
-laration .xml file to the new host, under "/uhd/rfnoc/blocks/". The host ap=
-pears to recognize the custom block, but fails block enumeration with the f=
-ollowing error:
+Strange behavior 2: in order to start streaming the 4 channels I use
+this code:
 
 
-[ERROR] [MPMD] Failure during block enumeration: LookupError: Path not foun=
-d in tree: /mboards/0/xbar/[custom_name]/args/0/[custom_arg]/type
+   time_spec_t start_sampling = mUsrp->get_time_now() + 1.0;
+   
+    uhd::stream_args_t str_args("sc16", "sc16");
+    str_args.channels.push_back(mChannels[0]);
+    str_args.channels.push_back(mChannels[2]);
+    mStreamArgs.push_back(str_args);
+    uhd::stream_cmd_t
+tmp_strcmd(uhd::stream_cmd_t::STREAM_MODE_START_CONTINUOUS);
+    tmp_strcmd.num_samps = 0;
+    // Timed
+     tmp_strcmd.stream_now = false;
+     tmp_strcmd.time_spec = start_sampling;
+    uhd::rx_streamer::sptr tmp_rx_stream = mUsrp->get_rx_stream(str_args);
+    tmp_rx_stream->issue_stream_cmd(tmp_strcmd);
+    mStreamCmds.push_back(tmp_strcmd);
+    mRxStreams.push_back(tmp_rx_stream);
+ 
+    uhd::stream_args_t str_args2("sc16", "sc16");
+    str_args2.channels.push_back(mChannels[1]);
+    str_args2.channels.push_back(mChannels[3]);
+   
 
-Running "uhd_usrp_probe --tree | grep [custom_name]" on my first host with =
-the same .xml file returns the full device tree of the custom block with al=
-l expected values. The same device with the same image is used between both=
- hosts in this scenario. Am I missing any steps in this integration process=
-?
+    mStreamArgs.push_back(str_args2);
+    uhd::stream_cmd_t
+tmp_strcmd2(uhd::stream_cmd_t::STREAM_MODE_START_CONTINUOUS);
+    tmp_strcmd2.num_samps = 0;
+    // Timed
+     tmp_strcmd2.stream_now = false;
+     tmp_strcmd2.time_spec = start_sampling;
+    uhd::rx_streamer::sptr tmp_rx_stream2 = mUsrp->get_rx_stream(str_args2);
+    tmp_rx_stream2->issue_stream_cmd(tmp_strcmd2);
+    mStreamCmds.push_back(tmp_strcmd2);
+    mRxStreams.push_back(tmp_rx_stream2);
 
 
-Thanks,
+It works perfectly with my X310, but with the N310 it starts the
+streaming of only a couple of channels (A:0 and A:1 to be precise) and
+on sfp0 or sfp1... it depends!!
 
-Billy
+Of course I miss something (or at least I hope so!). I checked and
+double checked examples coming from libuhd repository but there is
+nothing specific about the N310.
 
---_000_CY1P110MB039252F06BC235B2F3EC5E9BBBDF0CY1P110MB0392NAMP_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Any help is appreciated. Thank you in advance.
+
+Of course if more details are necessary, please let me know.
+
+Have a good day
+
+Paolo
+
+
+
+
+
+
+
+--------------0F22478E659CA10AA8FD75B2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, &q=
-uot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &q=
-uot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
-<p style=3D"margin-top:0; margin-bottom:0">I made a custom RFNoC block, fol=
-lowing the process in the &quot;Getting Started with RFNoC Development&quot=
-; guide and built an E320 image with the&nbsp;using UHD v3.14.0.0&nbsp;. Af=
-ter flashing the new image on the device, my first host
- recognized the custom block on &quot;uhd_usrp_probe&quot; and operated wit=
-hout any issues in a separate UHD project. My second host has the same vers=
-ion of UHD on it, but does not have GnuRadio or gr-ettus.&nbsp;<span style=
-=3D"font-size: 12pt;">I would like to integrate the
- custom block on a second host&nbsp;without using steps requiring GnuRadio.=
-</span></p>
-<p style=3D"margin-top:0; margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0; margin-bottom:0">Following UHD Integration sectio=
-n of&nbsp;the guide, I copied over the Block Declaration .xml file to the n=
-ew host, under &quot;/uhd/rfnoc/blocks/&quot;. The host appears to recogniz=
-e the custom block, but fails block enumeration with
- the following error:</p>
-<p style=3D"margin-top:0; margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0; margin-bottom:0"></p>
-<div>[ERROR] [MPMD] Failure during block enumeration: LookupError: Path not=
- found in tree: /mboards/0/xbar/[custom_name]/args/0/[custom_arg]/type</div=
->
-<div><br>
-</div>
-Running &quot;uhd_usrp_probe --tree | grep [custom_name]&quot; on my first =
-host with the same .xml file returns the full device tree of the custom blo=
-ck with all expected values. The same device with the same image is used be=
-tween both hosts in this scenario. Am I missing
- any steps in this integration process?
-<p></p>
-<p style=3D"margin-top:0; margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0; margin-bottom:0">Thanks,&nbsp;</p>
-<p style=3D"margin-top:0; margin-bottom:0">Billy</p>
-</div>
-</body>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Good morning to all the mailing list users.</p>
+    <p>It is about a couple of months that I'm <span
+        class="tlid-translation translation" lang="en"><span title=""
+          class="">fighting with my N310 for different reasons.</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class="">Now I want to report a couple  of strange </span></span><span
+        class="tlid-translation translation" lang="en"><span title=""
+          class="">behaviors I'm observing with this device. Of course
+          their can be my faults... I hope some one in the community can
+          make light.</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class="">I try be as clear as possible.<br>
+        </span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class="">My goal: Streaming the 4 RX channels over
+          the two SFP+. Let me say I want A:0 and A:1 on sfp0, while B</span></span><span
+        class="tlid-translation translation" lang="en"><span title=""
+          class=""><span class="tlid-translation translation" lang="en"><span
+              title="" class="">:0 and B:1 on sfp1.</span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class="">Premise: * I'm using 10G link with fibers.
+          I'm sure the network adapter and fibers work well because they
+          are the same I used with my X310 (and it works).</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class="">               * I'm using N310 in legacy
+          compat mode</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class="">               * The software I use is the
+          same I used for my X310 and it works (at least with X310 of
+          course!)</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class="">               * MTU is to 9000 on both the
+          host and N310</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class="">               * I'm using UHD 3.14.0<br>
+        </span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class="">Strange </span></span><span
+        class="tlid-translation translation" lang="en"><span title=""
+          class=""><span class="tlid-translation translation" lang="en"><span
+              title="" class="">behavior 1: when I start my </span></span></span></span><span
+        class="tlid-translation translation" lang="en"><span title=""
+          class=""><span class="tlid-translation translation" lang="en"><span
+              title="" class=""><span class="tlid-translation
+                translation" lang="en"><span title="" class="">acquisition</span></span>
+              program I can see (using tcpdump on the host side) small
+              packets (16 or 24 bytes in size, I think they are some
+              kind of commands) flowing through, let just say sfp0
+              iface. If I reboot the N310 and the I start again my
+              program I can see the same kind of packets flowing through
+              sfp1 (but not through sfp0). If I reboot the N310 again
+              may be these packets start flowing through sfp0 or
+              sfp1.... it depends!!!! Is that the normal behavior of
+              N310?<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class="">Strange behavior 2: in
+              order to start streaming the 4 channels I use this code:</span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class="">   <font size="-1">
+                time_spec_t start_sampling = mUsrp-&gt;get_time_now() +
+                1.0;<br>
+                    <br>
+                    uhd::stream_args_t str_args("sc16", "sc16");<br>
+                    str_args.channels.push_back(mChannels[0]);<br>
+                    str_args.channels.push_back(mChannels[2]);<br>
+                    mStreamArgs.push_back(str_args);<br>
+                    uhd::stream_cmd_t
+                tmp_strcmd(uhd::stream_cmd_t::STREAM_MODE_START_CONTINUOUS);<br>
+                    tmp_strcmd.num_samps = 0;<br>
+                    // Timed<br>
+                     tmp_strcmd.stream_now = false;<br>
+                     tmp_strcmd.time_spec = start_sampling;<br>
+                    uhd::rx_streamer::sptr tmp_rx_stream =
+                mUsrp-&gt;get_rx_stream(str_args);<br>
+                    tmp_rx_stream-&gt;issue_stream_cmd(tmp_strcmd);<br>
+                    mStreamCmds.push_back(tmp_strcmd);<br>
+                    mRxStreams.push_back(tmp_rx_stream);<br>
+                 <br>
+                    uhd::stream_args_t str_args2("sc16", "sc16");<br>
+                    str_args2.channels.push_back(mChannels[1]);<br>
+                    str_args2.channels.push_back(mChannels[3]);<br>
+                    <br>
+                <br>
+                    mStreamArgs.push_back(str_args2);<br>
+                    uhd::stream_cmd_t
+                tmp_strcmd2(uhd::stream_cmd_t::STREAM_MODE_START_CONTINUOUS);<br>
+                    tmp_strcmd2.num_samps = 0;<br>
+                    // Timed<br>
+                     tmp_strcmd2.stream_now = false;<br>
+                     tmp_strcmd2.time_spec = start_sampling;<br>
+                    uhd::rx_streamer::sptr tmp_rx_stream2 =
+                mUsrp-&gt;get_rx_stream(str_args2);<br>
+                    tmp_rx_stream2-&gt;issue_stream_cmd(tmp_strcmd2);<br>
+                    mStreamCmds.push_back(tmp_strcmd2);<br>
+                    mRxStreams.push_back(tmp_rx_stream2);</font></span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class=""><font size="-1"><br>
+              </font></span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class="">It works perfectly with my
+              X310, but with the N310 it starts the streaming of only a
+              couple of channels (A:0 and A:1 to be precise) and on sfp0
+              or sfp1... it depends!!<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class="">Of course I miss something
+              (or at least I hope so!). I checked and double checked
+              examples coming from libuhd repository but there is
+              nothing specific about the N310.<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class="">Any help is appreciated.
+              Thank you in advance.</span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class="">Of course if more details
+              are necessary, please let me know.<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class="">Have a good day</span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class="">Paolo<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><span class="tlid-translation translation"
+            lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span
+          title="" class=""><br>
+        </span></span></p>
+    <p><br>
+      <span class="tlid-translation translation" lang="en"><span
+          title="" class=""></span></span><span class="tlid-translation
+        translation" lang="en"><span title="" class=""><span
+            class="tlid-translation translation" lang="en"><span
+              title="" class=""></span></span></span></span></p>
+  </body>
 </html>
 
---_000_CY1P110MB039252F06BC235B2F3EC5E9BBBDF0CY1P110MB0392NAMP_--
+--------------0F22478E659CA10AA8FD75B2--
 
 
---===============6225881299174605562==
+--===============3013847485108379366==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -196,5 +380,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6225881299174605562==--
+--===============3013847485108379366==--
 
