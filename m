@@ -2,40 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140977DD1F
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Aug 2019 16:00:31 +0200 (CEST)
-Received: from [::1] (port=47422 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 884067DE85
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Aug 2019 17:13:00 +0200 (CEST)
+Received: from [::1] (port=37722 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1htBd6-0003eU-Nh; Thu, 01 Aug 2019 10:00:28 -0400
-Received: from mxout1.aau.at ([143.205.176.170]:49982)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <davide.righini@aau.at>)
- id 1htBd1-0003XX-TW
- for usrp-users@lists.ettus.com; Thu, 01 Aug 2019 10:00:24 -0400
-Received: from exmbx1.ad.aau.at (exmbx1.ad.aau.at [143.205.64.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxout1.aau.at (AAU_APP_Mailserver) with ESMTPS id 45zsNt1bd9zhh
- for <usrp-users@lists.ettus.com>; Thu,  1 Aug 2019 15:59:42 +0200 (CEST)
-Received: from ex16-03.ad.aau.at (143.205.65.151) by exmbx1.ad.aau.at
- (143.205.64.225) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 1 Aug
- 2019 15:59:41 +0200
-Received: from eslaprighini (143.205.176.8) by ex16-03.ad.aau.at
- (143.205.65.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5; Thu, 1 Aug 2019
- 15:59:41 +0200
-To: <usrp-users@lists.ettus.com>
-Date: Thu, 1 Aug 2019 15:59:36 +0200
-Message-ID: <011f01d54871$5dd45b00$197d1100$@aau.at>
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdVIa55THz14saqwQIC00NmwMjqYHQ==
-Content-Language: de-at
-MIME-Version: 1.0
-X-Originating-IP: [143.205.176.8]
-X-ClientProxiedBy: EXCAS2.ad.aau.at (143.205.64.230) To ex16-03.ad.aau.at
- (143.205.65.151)
-Subject: [USRP-users] USRP B210 GPS
+	id 1htClG-000857-LE; Thu, 01 Aug 2019 11:12:58 -0400
+Received: from mail-qt1-f169.google.com ([209.85.160.169]:45837)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1htClD-0007q9-L6
+ for usrp-users@lists.ettus.com; Thu, 01 Aug 2019 11:12:55 -0400
+Received: by mail-qt1-f169.google.com with SMTP id x22so65641030qtp.12
+ for <usrp-users@lists.ettus.com>; Thu, 01 Aug 2019 08:12:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=2Njlx8GrLCthd7YmziwmEsWNUcJCnwmWRd5iOfWn8qI=;
+ b=U7oA7d55v2CybruyykOqfe8UG8QiYajTzfbo2GfpN+VnCxhIkMBGPJvACL3yA+r0YZ
+ 47lt6X9l6tko2tk7+2LPMRpaUw1cLPzdTh5E5AXeyjexw7qzuSiVdIIvGtGeSAi4y5HV
+ pBLF/qqtFLE6ba28WlwZo+wwtWYvKJSbz6asrACEcdCmMjFjwbA/GMtuqdyZnFFFul+Q
+ TZymVs9ENJZXW/zWgpRNAMaxQYQb6QDYyKg8Q+PFT7EfpFvxfWZeG7bAEyBHyVhGP+ON
+ 4nSfCnG62ZjsbX9gaqp6rsOWn2J4YM+gC2K/1q2tCaXwkjnTkM9rBtLtiHI67A8Tlh89
+ 8D1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=2Njlx8GrLCthd7YmziwmEsWNUcJCnwmWRd5iOfWn8qI=;
+ b=Y5uNUxydsdrpQbfpRtVoUXdhRlW4lhm5WajkuU2+MElsYGozrSNfbtkppmMfbGc2MZ
+ jobaosEnaNoEImsSZ2vepIdxOIMH4w+6vbOihPqfwAIkONGp4USkKpSUH529gb7YBi82
+ XJdztQSXUgFhbOk+Y2mPPw6eJuc7IyeySH+riV9aOxSI2Y1kIjEcVU+9PJgG6kcade4B
+ eLND+JxHjYYe0S0SSWSBlLbVeOxflFhErvrI28rG8pImWvK+0aTrohe6bIOhmJrA21Fi
+ TVewt97MhOQpPsVtMyZ0vcFak3Gu+Ad4OMT3//7+DW7J27IHVG+g71nAehsa/jgNgfb5
+ KIRQ==
+X-Gm-Message-State: APjAAAUDmI7qY2A5gq+rkR8CaEVHpLTzGT/X6I+mGyUwsIAXC2w/ysAQ
+ vyQM5WH6iQ7hCsnBCZkSUs6lkL+x
+X-Google-Smtp-Source: APXvYqwMQAb1ryAdO9Xsl+qlptraz7qeRg99AF7pV96ox0vSTC3vZnntxevJXMguw2PNWw+72XKGxw==
+X-Received: by 2002:a05:6214:130d:: with SMTP id
+ a13mr76239557qvv.113.1564672334841; 
+ Thu, 01 Aug 2019 08:12:14 -0700 (PDT)
+Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
+ [174.95.14.20])
+ by smtp.gmail.com with ESMTPSA id f26sm39518337qtf.44.2019.08.01.08.12.14
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 01 Aug 2019 08:12:14 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+X-Mailer: iPhone Mail (16F203)
+In-Reply-To: <4b8b3148-ef5f-6296-dab6-4651e65723ca@itsystems.it>
+Date: Thu, 1 Aug 2019 11:12:13 -0400
+Message-Id: <ACD6110B-2AE9-45F0-B103-3A31A076C7C9@gmail.com>
+References: <4b8b3148-ef5f-6296-dab6-4651e65723ca@itsystems.it>
+To: Paolo Palana <p.palana@itsystems.it>
+Subject: Re: [USRP-users] N310 Streaming 4 channels using both SFP issue
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -47,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Davide Righini via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Davide Righini <davide.righini@aau.at>
-Content-Type: multipart/mixed; boundary="===============8212423189851201067=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: usrp-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============0778790127811090138=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -63,305 +83,263 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8212423189851201067==
-Content-Language: de-at
-Content-Type: multipart/signed; micalg=SHA1;
-	boundary="----=_NextPart_000_0117_01D54882.1E22C080";
-	protocol="application/x-pkcs7-signature"
 
-------=_NextPart_000_0117_01D54882.1E22C080
+--===============0778790127811090138==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_0118_01D54882.1E22C080"
-
-
-------=_NextPart_001_0118_01D54882.1E22C080
-Content-Type: text/plain;
-	charset="us-ascii"
+	boundary=Apple-Mail-3E1D1695-E908-42D0-B52E-514127D0BF10
 Content-Transfer-Encoding: 7bit
 
-Dear all,
 
-I'm trying to generate synchronized pulses with specific timing, based on
-the GPS synchronization.
-
-The idea is to send these pulses at approximately the "same time" from
-multiple USRPs.
-
- 
-
-I have two B210 with an internal GPS module. 
-
-I use this environment: GNU C++ version 5.4.0 20160609; Boost_105800;
-UHD_3.11.0.HEAD-0-ga1b5c4ae
-
-The usrp are connected to a laptop with Linux virtual machine.
-
-With this configuration I can run my code and the uhd examples without any
-problem.
-
- 
-
-Since I need a to generate a pulse at a specific time (for example a pulse
-every second), I use the following code:
-
- 
-
-                // wait for GPS look procedure and synchronization of USRP
-time to GPS time (as uhd example: sync_to_gps.cpp )
-
-uhd::time_spec_t time_last_pps = tx_usrp->get_time_now(mboard); 
-
--->         while (!( (time_last_pps.get_tick_count(10000) < 3))) {
-
-time_last_pps = tx_usrp->get_time_now(mboard);
-
-}
-
-// send pulse
-
- 
-
-When the usrp is running the while cycle the CPU of the connected laptop is
-heavily charged and on the USB port a lot of data is flowing.
-
-I supposed that the function get_time_now() does not need to communicate
-with the laptop. 
-
-Someone can explain why I get this flow of data between laptop and USRP
-during this 'while' cycle?
-
- 
-
-Do you have suggestions to improve the pulse generation algorithm?
-
- 
-
- 
-
-Best regards,
-
-Davide
-
- 
-
-
-------=_NextPart_001_0118_01D54882.1E22C080
-Content-Type: text/html;
-	charset="us-ascii"
+--Apple-Mail-3E1D1695-E908-42D0-B52E-514127D0BF10
+Content-Type: text/plain;
+	charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DDE-AT =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-US>Dear all,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>I&#8217;m trying to generate =
-synchronized pulses with specific timing, based on the GPS =
-synchronization.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>The idea is to send these pulses at approximately the =
-&#8220;same time&#8221; from multiple USRPs.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>I have two B210 with an internal =
-GPS module. <o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I use this environment: GNU C++ version 5.4.0 20160609; =
-Boost_105800; UHD_3.11.0.HEAD-0-ga1b5c4ae<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>The usrp are connected to a laptop =
-with Linux virtual machine.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>With this configuration I can run =
-my code and the uhd examples without any =
-problem.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Since I need a to generate a pulse at a specific time (for =
-example a pulse every second), I use the following =
-code:<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>// wait for GPS look procedure and =
-synchronization of USRP time to GPS time (as uhd example: =
-sync_to_gps.cpp )<o:p></o:p></i></span></p><p class=3DMsoNormal =
-style=3D'margin-left:35.4pt'><i><span lang=3DEN-US>uhd::time_spec_t =
-time_last_pps =3D tx_usrp-&gt;get_time_now(mboard); =
-<o:p></o:p></span></i></p><p class=3DMsoNormal><i><span lang=3DEN-US =
-style=3D'font-family:Wingdings'>&agrave;</span></i><i><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (!( =
-(time_last_pps.get_tick_count(10000) &lt; 3))) =
-{<o:p></o:p></span></i></p><p class=3DMsoNormal =
-style=3D'margin-left:35.4pt;text-indent:35.4pt'><i><span =
-lang=3DEN-US>time_last_pps =3D =
-tx_usrp-&gt;get_time_now(mboard);<o:p></o:p></span></i></p><p =
-class=3DMsoNormal style=3D'margin-left:35.4pt'><i><span =
-lang=3DEN-US>}<o:p></o:p></span></i></p><p class=3DMsoNormal =
-style=3D'margin-left:35.4pt'><i><span lang=3DEN-US>// send =
-pulse<o:p></o:p></span></i></p><p class=3DMsoNormal><i><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></i></p><p class=3DMsoNormal><span =
-lang=3DEN-US>When the usrp is running the while cycle the CPU of the =
-connected laptop is heavily charged and on the USB port a lot of data is =
-flowing.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I =
-supposed that the function get_time_now() does not need to communicate =
-with the laptop. <o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Someone can explain why I get this flow of data between =
-laptop and USRP during this &#8216;while&#8217; =
-cycle?<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Do you have suggestions to improve the pulse generation =
-algorithm?<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Best regards,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Davide<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
-------=_NextPart_001_0118_01D54882.1E22C080--
 
-------=_NextPart_000_0117_01D54882.1E22C080
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIO9TCCA7cw
-ggKfoAMCAQICEAzn4OUX2Eb+j+Vg/BvwMDkwDQYJKoZIhvcNAQEFBQAwZTELMAkGA1UEBhMCVVMx
-FTATBgNVBAoTDERpZ2lDZXJ0IEluYzEZMBcGA1UECxMQd3d3LmRpZ2ljZXJ0LmNvbTEkMCIGA1UE
-AxMbRGlnaUNlcnQgQXNzdXJlZCBJRCBSb290IENBMB4XDTA2MTExMDAwMDAwMFoXDTMxMTExMDAw
-MDAwMFowZTELMAkGA1UEBhMCVVMxFTATBgNVBAoTDERpZ2lDZXJ0IEluYzEZMBcGA1UECxMQd3d3
-LmRpZ2ljZXJ0LmNvbTEkMCIGA1UEAxMbRGlnaUNlcnQgQXNzdXJlZCBJRCBSb290IENBMIIBIjAN
-BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArQ4VzuRDgFyxh/O3YPlxEqWu3CaUiKr0zvUgOShY
-YAz4gNqpFZUyYTy1sSiEiorcnwoMgxd6j5Csiud5U1wxhCr2D5gyNnbM3t08qKLvavsh8lJh358g
-1x/isdn+GGTSEltf+VgYNbxHzaE2+Wt/1LA4PsEbw4wz2dgvGP4oD7Ong9bDbkTAYTWWFv5ZnIt2
-bdfxoksNK/8LctqeYNCOkDXGeFWHIKHP5W0KyEl8MZgzbCLph9AyWqK6E4IR7TkXnZk6cqHm+qTZ
-1Rcxda6FfSKuPwFGhvYoecix2uRXF8R+HA6wtJKmVrO9spftqqfwt8WoP5UW0P+hlusIXxh3TwID
-AQABo2MwYTAOBgNVHQ8BAf8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUReuir/SS
-y4IxLVGLp6chnfNtyA8wHwYDVR0jBBgwFoAUReuir/SSy4IxLVGLp6chnfNtyA8wDQYJKoZIhvcN
-AQEFBQADggEBAKIOvN/i7fDjcnN6ZJS/93Jm2DLkQnVirofr8tXZ3lazn8zOFCi5DZdgXBJMWOTT
-PYNJRViXNWkaqEfqVsZ5qxLYZ4GE338JPJTmuCYsIL09syiJ91//IuKXhB/pZe+H4N/BZ0mzXeuy
-CSrrJu14vn0/K/O3JjVtX4kBtklbnwEFm6s9JcHMtn/C8W+GxvpkaOuBLZTrQrf6jB7dYvG+UGe3
-bL3z8R9rDDYHFn83fKlbbXrxEkZgg9cnBL5Lzpe+w2cqaBHfgOcMM2a/Ew0UbvN/H2MQHvqNGyVt
-bI+lt2EBsdKjJqEQcZ2t4sP5w5lRtysHCM4u5lCyp/oKRS+i8PIwggUAMIID6KADAgECAhADS+4X
-H7fhBjcv1HJCQL0qMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdp
-Q2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAiBgNVBAMTG0RpZ2lDZXJ0IEFz
-c3VyZWQgSUQgUm9vdCBDQTAeFw0xNDExMTgxMjAwMDBaFw0yNDExMTgxMjAwMDBaMGkxCzAJBgNV
-BAYTAk5MMRYwFAYDVQQIEw1Ob29yZC1Ib2xsYW5kMRIwEAYDVQQHEwlBbXN0ZXJkYW0xDzANBgNV
-BAoTBlRFUkVOQTEdMBsGA1UEAxMUVEVSRU5BIFBlcnNvbmFsIENBIDMwggEiMA0GCSqGSIb3DQEB
-AQUAA4IBDwAwggEKAoIBAQDGpbsfVYL0pTRyFHJlm1/V6qBo2JuCiU9TYpx7jM4O2tQyDq8bjMum
-69vg6wM0lMGHflMgqB75GxeKfQFmEldoXi2cLishqFUvU2cJeM3SaRsLk2BsuCgTzh9NsYgmrUX6
-0KHOq7eYKVZxbPFWJF2nMOBuMXNu2qBXTGSLeLXHnNvG3r7TLzGg1oA5teAxQE6Eo8ySSeIXbP7w
-ZB76urwlh51PIbrJZjkDjdQVELh7OlTP1WO6T/Hf6BsEfeFcpoa1e+MW/lw0VetTPPHQ15HYKYP2
-WYohHxzDiC+QUwE7UZVBlp9cXIpwHuDzSibc5RG3z0n/j2SQCx0Dk5FMAUErAgMBAAGjggGmMIIB
-ojASBgNVHRMBAf8ECDAGAQH/AgEAMA4GA1UdDwEB/wQEAwIBhjB5BggrBgEFBQcBAQRtMGswJAYI
-KwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBDBggrBgEFBQcwAoY3aHR0cDovL2Nh
-Y2VydHMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0QXNzdXJlZElEUm9vdENBLmNydDCBgQYDVR0fBHow
-eDA6oDigNoY0aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0QXNzdXJlZElEUm9vdENB
-LmNybDA6oDigNoY0aHR0cDovL2NybDQuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0QXNzdXJlZElEUm9v
-dENBLmNybDA9BgNVHSAENjA0MDIGBFUdIAAwKjAoBggrBgEFBQcCARYcaHR0cHM6Ly93d3cuZGln
-aWNlcnQuY29tL0NQUzAdBgNVHQ4EFgQU8CHpSXdzn4WuGDvoUnAUBu1C7sowHwYDVR0jBBgwFoAU
-Reuir/SSy4IxLVGLp6chnfNtyA8wDQYJKoZIhvcNAQELBQADggEBADrCGyv+Y967YbS5R6j8fAWx
-JiAiUZvIPfn1xVgesF6jspwCQY8xGn/MG04d+Jh97I8I/Xfx29JEEFq2rQmw4PxiO9RiDZ7xoDxN
-d4rrRDR7jrtOKQP8J+o+ah0vSOP62hnD/zPS7NRMtIyVS2G277KAL5fIR62ngr984fmJghDv0bsj
-GAmeu3EP0xhUsDJT61IoAGoKBnxBPAeg3WXsdSm4Gn7btyvakeyFtYebr2KmOBSa28PRqGSDur56
-aZhJoM2eMzc6prmvGwwtAzRsc5t2OsKRuHWV6O3anP2K27jGZR2bi1VX1NQUvIbpVNTuwjm+XcZt
-sa/AAJF9KGkEseAwggYyMIIFGqADAgECAhAFfBtt5tv9qkoxTc6miyl7MA0GCSqGSIb3DQEBCwUA
-MGkxCzAJBgNVBAYTAk5MMRYwFAYDVQQIEw1Ob29yZC1Ib2xsYW5kMRIwEAYDVQQHEwlBbXN0ZXJk
-YW0xDzANBgNVBAoTBlRFUkVOQTEdMBsGA1UEAxMUVEVSRU5BIFBlcnNvbmFsIENBIDMwHhcNMTgw
-OTI4MDAwMDAwWhcNMjEwOTI4MTIwMDAwWjBpMQswCQYDVQQGEwJBVDETMBEGA1UEBxMKS2xhZ2Vu
-ZnVydDEsMCoGA1UEChMjQWxwZW4tQWRyaWEgVW5pdmVyc2l0YWV0IEtsYWdlbmZ1cnQxFzAVBgNV
-BAMTDkRhdmlkZSBSaWdoaW5pMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAkqufOEYl
-OGPcnOHhWBwEPLIXd84wQgJX+srUlIRWhmc1sMNEaofeOD/EPD2Rytioeg39zrg5dxlt/lg6wH67
-Q8WiePgYj3HbxuUfk3RvfTgineXxtUMLrCtWQJXRKF2bUgVWqPN8SQNaGOB3anB24Rgx4fy2n0zt
-FCQRHRrfHzIVREAAyfjslOjCs7tSyK+yTJ2klstwIxqshkGofMV45XNMU6MqEClbM28bD4+iOezx
-b5JtciqepGiO9z7G890lxNzgkTIqpNFkcZ5N2QcGrImcyeqUosngyPxI+/GS8YShGA9AXweoRiu5
-0QUqJNtAM/ubxje+fArzIkMSyFMcmiJUJN71JtcyCQJHwfvYHtat8HuoKdFRWzq0LmOYVU8ILweB
-LCDzged9N0dgWxIYH49bs2iVjbQv6X/9TFf99x8lLnSQt2C82tEdbQR2yTTS5MfSoKyh83ZahbHg
-vfCGQ5h0xKDzndfSyCOd0Qdaz4d++PpYOetK0i4SNXyqkMtnGj/QHIcKrVIBlix93kFpGNs6DAaP
-NifxjVcE15kvupV2YgtHhvSJ9i5LAqHMoZXFu/8iuAbZnLa9nK0ITMWeWHo7L2uCFo9hBPxt7gDj
-NwLrZU05yNrM3bZ3rwu+jIn4jThrQ9TkwDc4ARE/AGwqLb3NSL1Lb2M9zU9wczgE8JcCAwEAAaOC
-AdQwggHQMB8GA1UdIwQYMBaAFPAh6Ul3c5+Frhg76FJwFAbtQu7KMB0GA1UdDgQWBBSJ35+Q4nfs
-ltt0Q3iWeNTpgGiamzAMBgNVHRMBAf8EAjAAMCAGA1UdEQQZMBeBFWRhdmlkZS5yaWdoaW5pQGFh
-dS5hdDAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMEMGA1Ud
-IAQ8MDowOAYKYIZIAYb9bAQBAjAqMCgGCCsGAQUFBwIBFhxodHRwczovL3d3dy5kaWdpY2VydC5j
-b20vQ1BTMHUGA1UdHwRuMGwwNKAyoDCGLmh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9URVJFTkFQ
-ZXJzb25hbENBMy5jcmwwNKAyoDCGLmh0dHA6Ly9jcmw0LmRpZ2ljZXJ0LmNvbS9URVJFTkFQZXJz
-b25hbENBMy5jcmwwcwYIKwYBBQUHAQEEZzBlMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdp
-Y2VydC5jb20wPQYIKwYBBQUHMAKGMWh0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9URVJFTkFQ
-ZXJzb25hbENBMy5jcnQwDQYJKoZIhvcNAQELBQADggEBAHUcTGN7Tp+pDyUwd6dqAhmXk0cL8w19
-KE9C6cR7IY/VyQC3QH/ZR5x/15H4aC8Je1QVzRiZEPnwkTx3tAm4t9s5/9qdVhCWXbmRm5Wx7YIn
-BresKLkrLtW04iD7YfP284klcHUHT+p9AAb3yHA48otYemxMIYchuwQfcVadF2ktVaO2/e/q9Fom
-NB+jwWxsHKbJCcGRnAcZYo+rWO0KhyOhRIjTPtPc8z6f6xEq3FVZOah4BL7qumCGD6fnNSk5UQvr
-FChqB/ynUts/zMdaYhyjxdvrplPln1Fho8nJpNx7NGvuiE0Puq7zAHxohv/4xyEvJ6J6+zaeDeDd
-WPjmpZQxggS7MIIEtwIBATB9MGkxCzAJBgNVBAYTAk5MMRYwFAYDVQQIEw1Ob29yZC1Ib2xsYW5k
-MRIwEAYDVQQHEwlBbXN0ZXJkYW0xDzANBgNVBAoTBlRFUkVOQTEdMBsGA1UEAxMUVEVSRU5BIFBl
-cnNvbmFsIENBIDMCEAV8G23m2/2qSjFNzqaLKXswCQYFKw4DAhoFAKCCAhMwGAYJKoZIhvcNAQkD
-MQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTkwODAxMTM1OTM2WjAjBgkqhkiG9w0BCQQx
-FgQUXSy2OHHXHeKBgeaG2VN8xd+bh70wgYwGCSsGAQQBgjcQBDF/MH0waTELMAkGA1UEBhMCTkwx
-FjAUBgNVBAgTDU5vb3JkLUhvbGxhbmQxEjAQBgNVBAcTCUFtc3RlcmRhbTEPMA0GA1UEChMGVEVS
-RU5BMR0wGwYDVQQDExRURVJFTkEgUGVyc29uYWwgQ0EgMwIQBXwbbebb/apKMU3OpospezCBjgYL
-KoZIhvcNAQkQAgsxf6B9MGkxCzAJBgNVBAYTAk5MMRYwFAYDVQQIEw1Ob29yZC1Ib2xsYW5kMRIw
-EAYDVQQHEwlBbXN0ZXJkYW0xDzANBgNVBAoTBlRFUkVOQTEdMBsGA1UEAxMUVEVSRU5BIFBlcnNv
-bmFsIENBIDMCEAV8G23m2/2qSjFNzqaLKXswgZMGCSqGSIb3DQEJDzGBhTCBgjALBglghkgBZQME
-ASowCwYJYIZIAWUDBAEWMAoGCCqGSIb3DQMHMAsGCWCGSAFlAwQBAjAOBggqhkiG9w0DAgICAIAw
-DQYIKoZIhvcNAwICAUAwBwYFKw4DAhowCwYJYIZIAWUDBAIDMAsGCWCGSAFlAwQCAjALBglghkgB
-ZQMEAgEwDQYJKoZIhvcNAQEBBQAEggIAZAx2g8uSGTUmU3K8yVz0w1BeLyrQ2JPl+1RwLNb+20+h
-NmArpLRYxiH6vSn8AWTCtLsLzrq25gUEtfOMJxmuS2Oiiqhvw8kqj5EVBXZcvCLD1fuzHKNkopoM
-vsbHuAJKOMuB39RWNtsHFtHFS1y4KfD9A9zOgPMyQg2GdL/L20hJlaTtv/JoNzcP9u0NujfnZW1y
-xBPKZjaIsaQaX3MhZM/38KerSk9WBjv1Gm9tC7jbg3+fMvo+T2dQiGYJX2Tgp1U6vPSTnxB+SU7b
-bJM3vXExKaYIPbk29zRQo/1C2pathifdWh3DBHu62h5xQTgklHstQ9uHKhGcbKgoBUWfEMyPH+wg
-MIEBV8KAgnGZfgqTf1nChc/Sb6HdchdY837P1EtlUFGKGMW6fEtbAUBmrAWBZynWDh5BfsbddNdC
-ZJ0b9OePf8JRWaf1h57TTKMWhxDQj5i71WCNMqwQFjtp5aNXWFfCJtKyXaCw/8ioRnJg95HRNlMQ
-HvO4mzvFoGnqgDx4pT06tPtGmD86XHr6P5X0fp1LyRAUhTLTljF+xJOI4qL+FOoccvHuqwt84Iyr
-G4/NPixxvZW8w6q/cf0nSlonFQfWFl2mG/+CIn3kH9gV11yBvrzUqIZD2Qa6YjqY3VHPUPUgh4a6
-DYvUVxzf9etSkTqWmqHH/a9QD2rHG7wAAAAAAAA=
-
-------=_NextPart_000_0117_01D54882.1E22C080--
+Could you share the device arguments you used?
 
 
---===============8212423189851201067==
+Sent from my iPhone
+
+> On Aug 1, 2019, at 6:28 AM, Paolo Palana via USRP-users <usrp-users@lists.=
+ettus.com> wrote:
+>=20
+> Good morning to all the mailing list users.
+>=20
+> It is about a couple of months that I'm fighting with my N310 for differen=
+t reasons.
+>=20
+> Now I want to report a couple  of strange behaviors I'm observing with thi=
+s device. Of course their can be my faults... I hope some one in the communi=
+ty can make light.
+>=20
+> I try be as clear as possible.
+>=20
+> My goal: Streaming the 4 RX channels over the two SFP+. Let me say I want A=
+:0 and A:1 on sfp0, while B:0 and B:1 on sfp1.
+>=20
+> Premise: * I'm using 10G link with fibers. I'm sure the network adapter an=
+d fibers work well because they are the same I used with my X310 (and it wor=
+ks).
+>=20
+>                * I'm using N310 in legacy compat mode
+>=20
+>                * The software I use is the same I used for my X310 and it w=
+orks (at least with X310 of course!)
+>=20
+>                * MTU is to 9000 on both the host and N310
+>=20
+>                * I'm using UHD 3.14.0
+>=20
+> Strange behavior 1: when I start my acquisition program I can see (using t=
+cpdump on the host side) small packets (16 or 24 bytes in size, I think they=
+ are some kind of commands) flowing through, let just say sfp0 iface. If I r=
+eboot the N310 and the I start again my program I can see the same kind of p=
+ackets flowing through sfp1 (but not through sfp0). If I reboot the N310 aga=
+in may be these packets start flowing through sfp0 or sfp1.... it depends!!!=
+! Is that the normal behavior of N310?
+>=20
+>=20
+>=20
+> Strange behavior 2: in order to start streaming the 4 channels I use this c=
+ode:
+>=20
+>=20
+>=20
+>     time_spec_t start_sampling =3D mUsrp->get_time_now() + 1.0;
+>    =20
+>     uhd::stream_args_t str_args("sc16", "sc16");
+>     str_args.channels.push_back(mChannels[0]);
+>     str_args.channels.push_back(mChannels[2]);
+>     mStreamArgs.push_back(str_args);
+>     uhd::stream_cmd_t tmp_strcmd(uhd::stream_cmd_t::STREAM_MODE_START_CONT=
+INUOUS);
+>     tmp_strcmd.num_samps =3D 0;
+>     // Timed
+>      tmp_strcmd.stream_now =3D false;
+>      tmp_strcmd.time_spec =3D start_sampling;
+>     uhd::rx_streamer::sptr tmp_rx_stream =3D mUsrp->get_rx_stream(str_args=
+);
+>     tmp_rx_stream->issue_stream_cmd(tmp_strcmd);
+>     mStreamCmds.push_back(tmp_strcmd);
+>     mRxStreams.push_back(tmp_rx_stream);
+> =20
+>     uhd::stream_args_t str_args2("sc16", "sc16");
+>     str_args2.channels.push_back(mChannels[1]);
+>     str_args2.channels.push_back(mChannels[3]);
+>    =20
+>=20
+>     mStreamArgs.push_back(str_args2);
+>     uhd::stream_cmd_t tmp_strcmd2(uhd::stream_cmd_t::STREAM_MODE_START_CON=
+TINUOUS);
+>     tmp_strcmd2.num_samps =3D 0;
+>     // Timed
+>      tmp_strcmd2.stream_now =3D false;
+>      tmp_strcmd2.time_spec =3D start_sampling;
+>     uhd::rx_streamer::sptr tmp_rx_stream2 =3D mUsrp->get_rx_stream(str_arg=
+s2);
+>     tmp_rx_stream2->issue_stream_cmd(tmp_strcmd2);
+>     mStreamCmds.push_back(tmp_strcmd2);
+>     mRxStreams.push_back(tmp_rx_stream2);
+>=20
+>=20
+>=20
+> It works perfectly with my X310, but with the N310 it starts the streaming=
+ of only a couple of channels (A:0 and A:1 to be precise) and on sfp0 or sfp=
+1... it depends!!
+>=20
+> Of course I miss something (or at least I hope so!). I checked and double c=
+hecked examples coming from libuhd repository but there is nothing specific a=
+bout the N310.
+>=20
+> Any help is appreciated. Thank you in advance.
+>=20
+> Of course if more details are necessary, please let me know.
+>=20
+> Have a good day
+>=20
+> Paolo
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--Apple-Mail-3E1D1695-E908-42D0-B52E-514127D0BF10
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><br>Could you share the device arguments you used?<div><br></div><div><br><div id="AppleMailSignature" dir="ltr">Sent from my iPhone</div><div dir="ltr"><br>On Aug 1, 2019, at 6:28 AM, Paolo Palana via USRP-users &lt;<a href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br><br></div><blockquote type="cite"><div dir="ltr">
+  
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  
+  
+    <p>Good morning to all the mailing list users.</p>
+    <p>It is about a couple of months that I'm <span class="tlid-translation translation" lang="en"><span title="" class="">fighting with my N310 for different reasons.</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class="">Now I want to report a couple&nbsp; of strange </span></span><span class="tlid-translation translation" lang="en"><span title="" class="">behaviors I'm observing with this device. Of course
+          their can be my faults... I hope some one in the community can
+          make light.</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class="">I try be as clear as possible.<br>
+        </span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class="">My goal: Streaming the 4 RX channels over
+          the two SFP+. Let me say I want A:0 and A:1 on sfp0, while B</span></span><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">:0 and B:1 on sfp1.</span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class="">Premise: * I'm using 10G link with fibers.
+          I'm sure the network adapter and fibers work well because they
+          are the same I used with my X310 (and it works).</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class="">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; * I'm using N310 in legacy
+          compat mode</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class="">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * The software I use is the
+          same I used for my X310 and it works (at least with X310 of
+          course!)</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class="">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * MTU is to 9000 on both the
+          host and N310</span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class="">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; * I'm using UHD 3.14.0<br>
+        </span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class="">Strange </span></span><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">behavior 1: when I start my </span></span></span></span><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation
+                translation" lang="en"><span title="" class="">acquisition</span></span>
+              program I can see (using tcpdump on the host side) small
+              packets (16 or 24 bytes in size, I think they are some
+              kind of commands) flowing through, let just say sfp0
+              iface. If I reboot the N310 and the I start again my
+              program I can see the same kind of packets flowing through
+              sfp1 (but not through sfp0). If I reboot the N310 again
+              may be these packets start flowing through sfp0 or
+              sfp1.... it depends!!!! Is that the normal behavior of
+              N310?<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">Strange behavior 2: in
+              order to start streaming the 4 channels I use this code:</span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">&nbsp;&nbsp;&nbsp;<font size="-1">
+                time_spec_t start_sampling = mUsrp-&gt;get_time_now() +
+                1.0;<br>
+                &nbsp;&nbsp;&nbsp; <br>
+                &nbsp;&nbsp;&nbsp; uhd::stream_args_t str_args("sc16", "sc16");<br>
+                &nbsp;&nbsp;&nbsp; str_args.channels.push_back(mChannels[0]);<br>
+                &nbsp;&nbsp;&nbsp; str_args.channels.push_back(mChannels[2]);<br>
+                &nbsp;&nbsp;&nbsp; mStreamArgs.push_back(str_args);<br>
+                &nbsp;&nbsp;&nbsp; uhd::stream_cmd_t
+                tmp_strcmd(uhd::stream_cmd_t::STREAM_MODE_START_CONTINUOUS);<br>
+                &nbsp;&nbsp;&nbsp; tmp_strcmd.num_samps = 0;<br>
+                &nbsp;&nbsp;&nbsp; // Timed<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; tmp_strcmd.stream_now = false;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; tmp_strcmd.time_spec = start_sampling;<br>
+                &nbsp;&nbsp;&nbsp; uhd::rx_streamer::sptr tmp_rx_stream =
+                mUsrp-&gt;get_rx_stream(str_args);<br>
+                &nbsp;&nbsp;&nbsp; tmp_rx_stream-&gt;issue_stream_cmd(tmp_strcmd);<br>
+                &nbsp;&nbsp;&nbsp; mStreamCmds.push_back(tmp_strcmd);<br>
+                &nbsp;&nbsp;&nbsp; mRxStreams.push_back(tmp_rx_stream);<br>
+                &nbsp;<br>
+                &nbsp;&nbsp;&nbsp; uhd::stream_args_t str_args2("sc16", "sc16");<br>
+                &nbsp;&nbsp;&nbsp; str_args2.channels.push_back(mChannels[1]);<br>
+                &nbsp;&nbsp;&nbsp; str_args2.channels.push_back(mChannels[3]);<br>
+                &nbsp;&nbsp;&nbsp; <br>
+                <br>
+                &nbsp;&nbsp;&nbsp; mStreamArgs.push_back(str_args2);<br>
+                &nbsp;&nbsp;&nbsp; uhd::stream_cmd_t
+                tmp_strcmd2(uhd::stream_cmd_t::STREAM_MODE_START_CONTINUOUS);<br>
+                &nbsp;&nbsp;&nbsp; tmp_strcmd2.num_samps = 0;<br>
+                &nbsp;&nbsp;&nbsp; // Timed<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; tmp_strcmd2.stream_now = false;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; tmp_strcmd2.time_spec = start_sampling;<br>
+                &nbsp;&nbsp;&nbsp; uhd::rx_streamer::sptr tmp_rx_stream2 =
+                mUsrp-&gt;get_rx_stream(str_args2);<br>
+                &nbsp;&nbsp;&nbsp; tmp_rx_stream2-&gt;issue_stream_cmd(tmp_strcmd2);<br>
+                &nbsp;&nbsp;&nbsp; mStreamCmds.push_back(tmp_strcmd2);<br>
+                &nbsp;&nbsp;&nbsp; mRxStreams.push_back(tmp_rx_stream2);</font></span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class=""><font size="-1"><br>
+              </font></span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">It works perfectly with my
+              X310, but with the N310 it starts the streaming of only a
+              couple of channels (A:0 and A:1 to be precise) and on sfp0
+              or sfp1... it depends!!<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">Of course I miss something
+              (or at least I hope so!). I checked and double checked
+              examples coming from libuhd repository but there is
+              nothing specific about the N310.<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">Any help is appreciated.
+              Thank you in advance.</span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">Of course if more details
+              are necessary, please let me know.<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">Have a good day</span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class="">Paolo<br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class=""><br>
+            </span></span></span></span></p>
+    <p><span class="tlid-translation translation" lang="en"><span title="" class=""><br>
+        </span></span></p>
+    <p><br>
+      <span class="tlid-translation translation" lang="en"><span title="" class=""></span></span><span class="tlid-translation
+        translation" lang="en"><span title="" class=""><span class="tlid-translation translation" lang="en"><span title="" class=""></span></span></span></span></p>
+  
+
+</div></blockquote><blockquote type="cite"><div dir="ltr"><span>_______________________________________________</span><br><span>USRP-users mailing list</span><br><span><a href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a></span><br><span><a href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span><br></div></blockquote></div></body></html>
+--Apple-Mail-3E1D1695-E908-42D0-B52E-514127D0BF10--
+
+
+--===============0778790127811090138==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -372,5 +350,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8212423189851201067==--
+--===============0778790127811090138==--
 
