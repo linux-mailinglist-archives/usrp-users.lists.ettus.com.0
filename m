@@ -2,61 +2,40 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9DC07F71E
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Aug 2019 14:43:28 +0200 (CEST)
-Received: from [::1] (port=52738 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F6687FB8D
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Aug 2019 15:51:16 +0200 (CEST)
+Received: from [::1] (port=53374 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1htWu6-0006Sk-Rr; Fri, 02 Aug 2019 08:43:26 -0400
-Received: from sanddollar.geekisp.com ([216.168.135.167]:27941)
+	id 1htXxh-0008Q7-Ro; Fri, 02 Aug 2019 09:51:13 -0400
+Received: from llmx3.ll.mit.edu ([129.55.12.49]:52800)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <philip@balister.org>) id 1htWu1-0006NQ-5u
- for usrp-users@lists.ettus.com; Fri, 02 Aug 2019 08:43:21 -0400
-Received: (qmail 20272 invoked by uid 1003); 2 Aug 2019 12:42:44 -0000
-Received: from unknown (HELO ?192.168.11.100?)
- (philip@opensdr.com@73.152.143.112)
- by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 2 Aug 2019 12:42:44 -0000
-To: Nate Temple <nate.temple@ettus.com>, =?UTF-8?B?56aP5bO25bm56ZuE?=
- <mikio@dolphinsystem.jp>
-References: <CABfZwcdKyO0+zUTd5oVcwrr=mAhScEroL_mwGDoEJ52+i+sAjg@mail.gmail.com>
- <CAL263iw7Rwb4n-FJvnqOqtgev8AAx9uNvutVbNf2Q__cL1C6Hg@mail.gmail.com>
- <CABfZwcdc9PR_dNbAaTbXaE7LxC6wE6+3mRuagXfkuyASHm0TrQ@mail.gmail.com>
- <CAL263iy15x0bAE6CK_LQbnvbLk86=o5k_sk7CJzG_K_bXF+TDA@mail.gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
- xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
- HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
- rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
- 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
- fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
- AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
- CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
- nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
- 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
- YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
- 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
- yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
- gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
- GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
- uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
- LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
- gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
- WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
- 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
- ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
- icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
- ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
- 6eUfr0u7CwnEyqiQ
-Message-ID: <507c68a0-af4c-180a-5385-4fbdf204671d@balister.org>
-Date: Fri, 2 Aug 2019 08:42:37 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.5.2
+ (Exim 4.92)
+ (envelope-from <prvs=311797ba2c=kirsten.leong@ll.mit.edu>)
+ id 1htXxd-0008Ir-Ol
+ for usrp-users@lists.ettus.com; Fri, 02 Aug 2019 09:51:09 -0400
+Received: from LLE2K16-MBX03.mitll.ad.local (LLE2K16-MBX03.mitll.ad.local) by
+ llmx3.ll.mit.edu (unknown) with ESMTPS id x72DoTN5024776 for
+ <usrp-users@lists.ettus.com>; Fri, 2 Aug 2019 09:50:29 -0400
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Error 'Timeout on Chan 0'
+Thread-Index: AQHVSTk+DumZtfyjQEeLOgqLax5LnQ==
+Date: Fri, 2 Aug 2019 13:50:27 +0000
+Message-ID: <0DDB54B1-7013-468B-B0FB-CB0262804513@contoso.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.1.85]
 MIME-Version: 1.0
-In-Reply-To: <CAL263iy15x0bAE6CK_LQbnvbLk86=o5k_sk7CJzG_K_bXF+TDA@mail.gmail.com>
-Content-Language: en-MW
-Subject: Re: [USRP-users] cmake error : Cross-Compiling GNU Radio on Ubuntu
- 16.04
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+ definitions=2019-08-02_06:, , signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=928
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1906280000 definitions=main-1908020142
+Subject: [USRP-users] Error 'Timeout on Chan 0'
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,11 +47,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@balister.org>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: "Leong,
+ Kirsten - 0551 - MITLL via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>
+Content-Type: multipart/mixed; boundary="===============6581433727028320758=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,33 +64,85 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMDgvMDEvMjAxOSAxMDo1OCBQTSwgTmF0ZSBUZW1wbGUgdmlhIFVTUlAtdXNlcnMgd3JvdGU6
-Cj4gSGksCj4gCj4gSSBob3BlIHRvIGhhdmUgdGhlIEUzMTAgdmVyc2lvbiBwb3N0ZWQgdG9tb3Jy
-b3cuIERvbid0IGhhdmUgYSBmaXJtIHRpbWVsaW5lCj4gZm9yIHRoZSBFMzIwL04zeHggdmVyc2lv
-biB5ZXQuCj4gCj4gVGhlIHByb2Nlc3MgaXMgbW9zdGx5IHRoZSBzYW1lLCBleGNlcHQgeW91IHNo
-b3VsZCBub3QgdXNlIHJmbm9jLWRldmVsLCBidXQKPiBpbnN0ZWFkIHVzZSBhIG1vZGVybiBVSEQg
-dmVyc2lvbiBzdWNoIGFzIHYzLjE0LjEuMCwgYW5kIHRoZW4gZHVyaW5nIHRoZQo+IGNtYWtlIGNv
-bmZpZ3VyYXRpb24gc3RlcCwgcGFzcyB0aGUgYXJnIC1ERU5BQkxFX1JGTk9DPU9OLgo+IAo+IFlv
-dSBjYW4gZmV0Y2ggdGhlIEUzMjAgU0RLIHVzaW5nIHVoZF9pbWFnZXNfZG93bmxvYWRlciB3aXRo
-IHRoZSBjb21tYW5kCj4gKHdpdGggVUhEIDMuMTQuMS4wIG9uIHlvdXIgaG9zdCk6Cj4gCj4gdWhk
-X2ltYWdlc19kb3dubG9hZGVyIC10IHNkayAtdCBlMzIwCgpXaGF0IGlmIEkgaGF2ZW4ndCBpbnN0
-YWxsZWQgdWhkIG9uIHRoZSBtYWNoaW5lIEkgcGxhbiB0byBkZXZlbG9wbWVudAp3b3JrIG9uPwoK
-UGhpbGlwCgo+IAo+IEkgd291bGQgcmVjb21tZW5kIHRvIHVzZSBtYWludC0zLjcgZm9yIHRoZSBH
-UiB2ZXJzaW9uIHdpdGggdGhlIEUzMjAuCj4gCj4gCj4gUmVnYXJkcywKPiBOYXRlIFRlbXBsZQo+
-IAo+IE9uIFRodSwgQXVnIDEsIDIwMTkgYXQgNzo1MyBQTSDnpo/ls7blubnpm4QgPG1pa2lvQGRv
-bHBoaW5zeXN0ZW0uanA+IHdyb3RlOgo+IAo+PiBIaSBOYXRlCj4+IFRoYW5rIHlvdSBmb3IgYWx3
-YXlzIHlvdXIgc3VwcG9ydCBhbmQgcXVpY2sgcmVwbHkuCj4+Cj4+PiBBcmUgeW91IHVzaW5nIHRo
-ZSBFMzIwIFNESz8KPj4gTm8sIEkgdXNlIHRoZSAqRTMxMCBTREsqLgo+PiBiYWNhdXNlIEkgYW0g
-dHJhaW5pbmcgdG8gZ2V0IHVzZWQgdG8gYnVpbGQgdGhlIFVIRCBhbmQgR1IgZm9yIGNyb3NzCj4+
-IGNvbXBpbGluZyBlbnZpcm9ubWVudC4KPj4gbmV4dCBzdGVwLCBJIHdpbGwgdXNlIHRoZSAqRTMy
-MCBTREsqLgo+Pgo+Pj4gQWxzbyB0aGF0IGFwcCBub3RlIGlzIG91dGRhdGVkLCBhbmQgSSB3aWxs
-IGJlIHBvc3RlZCBhbiB1cGRhdGVkIHZlcnNpb24KPj4gc29vbi4gQW5vdGhlciBhcHAgbm90ZSB0
-aGF0IGNvdmVycyB0aGUgRTMyMC9OM3h4IHdpbGwgZm9sbG93Lgo+Pgo+PiBPaCEhIQo+PiBJIGhh
-dmUgbm8gd29yZHMgdG8gdGhhbmsgeW91Lgo+PiBXaGVuIGRvIHlvdSB0aGluayB0aGF0IHdpbGwg
-YmU/Cj4+Cj4+IFRoYW5rcy4KPj4KPiAKPiAKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
-dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0
-aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============6581433727028320758==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_0DDB54B17013468BB0FBCB0262804513contosocom_"
+
+--_000_0DDB54B17013468BB0FBCB0262804513contosocom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+SGVsbG8sDQoNCkkgYW0gdXNpbmcgYSBVU1JQIFgzMTAgYW5kIGFtIHVzaW5nIGdudXJhZGlvIGNv
+bXBhbmlvbiB0byB0ZXN0IGEgY3VzdG9tIGJsb2NrLiBUaGUgY3VycmVudCBkaWFncmFtIGZsb3dz
+IGFzIGZvbGxvd3M6IEZpbGUgU291cmNlLT5SRk5vQyBGSUZPLT5jdXN0b20gYmxvY2stPmNvbXBs
+ZXggdG8gaW1hZ2UtPmZyZXF1ZW5jeSBzaW5rLiBIb3dldmVyLCB3aGVuIEkgdHJ5IHRvIGV4ZWN1
+dGUsIEkgZ2V0IHRoZSBlcnJvciDigJh0aW1lb3V0IG9uIGNoYW4gMOKAmS4gTXkgdGVzdGJlbmNo
+IHBhc3NlcyBhbGwgNSBjYXNlczsgSSBjYW4gcmVhZCBzaWduYWxzIG9uIHRoZSBpbnB1dHMgYW5k
+IG91dHB1dHMgb2YgdGhlIG5vYyBibG9jayBhbmQgdGhlIGZsb3cgZ3JhcGggd29ya3Mgb25jZSBJ
+IHJlbW92ZSBteSBjdXN0b20gYmxvY2suIFdoZXJlIGVsc2Ugc2hvdWxkIEkgYmUgbG9va2luZz8N
+Cg0KVGhhbmtzLA0KS2lyc3Rlbg0K
+
+--_000_0DDB54B17013468BB0FBCB0262804513contosocom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <C2B7CCA0AD8B404F8F5392DCA53664C7@ll.mit.edu>
+Content-Transfer-Encoding: base64
+
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
+YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1i
+b3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+IixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9
+DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9y
+aXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpz
+cGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1z
+b0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6
+IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
+MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rp
+b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBs
+YW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0i
+V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0Ij5IZWxsbyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQiPkkgYW0gdXNpbmcgYSBVU1JQIFgzMTAgYW5kIGFtIHVzaW5nIGdudXJhZGlvIGNvbXBhbmlv
+biB0byB0ZXN0IGEgY3VzdG9tIGJsb2NrLiBUaGUgY3VycmVudCBkaWFncmFtIGZsb3dzIGFzIGZv
+bGxvd3M6IEZpbGUgU291cmNlLSZndDtSRk5vQyBGSUZPLSZndDtjdXN0b20gYmxvY2stJmd0O2Nv
+bXBsZXggdG8gaW1hZ2UtJmd0O2ZyZXF1ZW5jeSBzaW5rLiBIb3dldmVyLCB3aGVuIEkNCiB0cnkg
+dG8gZXhlY3V0ZSwgSSBnZXQgdGhlIGVycm9yIOKAmHRpbWVvdXQgb24gY2hhbiAw4oCZLiBNeSB0
+ZXN0YmVuY2ggcGFzc2VzIGFsbCA1IGNhc2VzOyBJIGNhbiByZWFkIHNpZ25hbHMgb24gdGhlIGlu
+cHV0cyBhbmQgb3V0cHV0cyBvZiB0aGUgbm9jIGJsb2NrIGFuZCB0aGUgZmxvdyBncmFwaCB3b3Jr
+cyBvbmNlIEkgcmVtb3ZlIG15IGN1c3RvbSBibG9jay4gV2hlcmUgZWxzZSBzaG91bGQgSSBiZSBs
+b29raW5nPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+VGhhbmtz
+LDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0Ij5LaXJzdGVuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+
+--_000_0DDB54B17013468BB0FBCB0262804513contosocom_--
+
+
+--===============6581433727028320758==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============6581433727028320758==--
+
