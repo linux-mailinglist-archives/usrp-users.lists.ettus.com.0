@@ -2,40 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F6687FB8D
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Aug 2019 15:51:16 +0200 (CEST)
-Received: from [::1] (port=53374 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E8A57FBDA
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Aug 2019 16:14:14 +0200 (CEST)
+Received: from [::1] (port=59648 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1htXxh-0008Q7-Ro; Fri, 02 Aug 2019 09:51:13 -0400
-Received: from llmx3.ll.mit.edu ([129.55.12.49]:52800)
+	id 1htYJv-0001qT-SH; Fri, 02 Aug 2019 10:14:11 -0400
+Received: from mail-out-3.itc.rwth-aachen.de ([134.130.5.48]:15164)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92)
- (envelope-from <prvs=311797ba2c=kirsten.leong@ll.mit.edu>)
- id 1htXxd-0008Ir-Ol
- for usrp-users@lists.ettus.com; Fri, 02 Aug 2019 09:51:09 -0400
-Received: from LLE2K16-MBX03.mitll.ad.local (LLE2K16-MBX03.mitll.ad.local) by
- llmx3.ll.mit.edu (unknown) with ESMTPS id x72DoTN5024776 for
- <usrp-users@lists.ettus.com>; Fri, 2 Aug 2019 09:50:29 -0400
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Error 'Timeout on Chan 0'
-Thread-Index: AQHVSTk+DumZtfyjQEeLOgqLax5LnQ==
-Date: Fri, 2 Aug 2019 13:50:27 +0000
-Message-ID: <0DDB54B1-7013-468B-B0FB-CB0262804513@contoso.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.1.85]
+ (Exim 4.92) (envelope-from <lku@inets.rwth-aachen.de>)
+ id 1htYJr-0001lZ-Ow
+ for usrp-users@lists.ettus.com; Fri, 02 Aug 2019 10:14:07 -0400
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BBZwDDQ0Rd//3egoZmHgEGBwaBZwKBF?=
+ =?us-ascii?q?BsCZW0DTzIqhB6PP4FiLYljjyOBegkBAQEBAQEBAQEIGAEKCQECAQGEPwKCXyM?=
+ =?us-ascii?q?6BA0BAwEBBQEBAQEGbYUeDIVLAQEBAwEBIQRHGwsYKgICJwEvEwYCAQGDHgGBd?=
+ =?us-ascii?q?hQPrWJ/Mx+FKYMsgUiBMgMBhHCGcReBQD+BESeCaz6CYQEEgiuCPoJYBIw3nmU?=
+ =?us-ascii?q?JgTljhXxgiDWFBgYbgi9tiiMFJ4o7lRuQP4FqChQ+gRozGggcFDuCBGgJhiqKV?=
+ =?us-ascii?q?T0zAQGBBAEBjVIBAQ?=
+X-IPAS-Result: =?us-ascii?q?A2BBZwDDQ0Rd//3egoZmHgEGBwaBZwKBFBsCZW0DTzIqhB6?=
+ =?us-ascii?q?PP4FiLYljjyOBegkBAQEBAQEBAQEIGAEKCQECAQGEPwKCXyM6BA0BAwEBBQEBA?=
+ =?us-ascii?q?QEGbYUeDIVLAQEBAwEBIQRHGwsYKgICJwEvEwYCAQGDHgGBdhQPrWJ/Mx+FKYM?=
+ =?us-ascii?q?sgUiBMgMBhHCGcReBQD+BESeCaz6CYQEEgiuCPoJYBIw3nmUJgTljhXxgiDWFB?=
+ =?us-ascii?q?gYbgi9tiiMFJ4o7lRuQP4FqChQ+gRozGggcFDuCBGgJhiqKVT0zAQGBBAEBjVI?=
+ =?us-ascii?q?BAQ?=
+Received: from gollum.mobnets.rwth-aachen.de ([134.130.222.253])
+ by mail-in-3.itc.rwth-aachen.de with ESMTP; 02 Aug 2019 16:13:26 +0200
+Received: from [192.168.1.47] (pc11.test.inets.rwth-aachen.de [134.130.223.11])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by gollum.mobnets.rwth-aachen.de (Postfix) with ESMTPSA id EC6B7180180
+ for <usrp-users@lists.ettus.com>; Fri,  2 Aug 2019 16:13:25 +0200 (CEST)
+To: usrp-users@lists.ettus.com
+References: <0DDB54B1-7013-468B-B0FB-CB0262804513@contoso.com>
+Message-ID: <c82d5049-525c-f985-fabc-7b29b2687225@inets.rwth-aachen.de>
+Date: Fri, 2 Aug 2019 16:13:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
- definitions=2019-08-02_06:, , signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=928
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1906280000 definitions=main-1908020142
-Subject: [USRP-users] Error 'Timeout on Chan 0'
+In-Reply-To: <0DDB54B1-7013-468B-B0FB-CB0262804513@contoso.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] Error 'Timeout on Chan 0'
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -47,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Leong,
- Kirsten - 0551 - MITLL via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>
-Content-Type: multipart/mixed; boundary="===============6581433727028320758=="
+From: Lars Kuger via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lars Kuger <lku@inets.rwth-aachen.de>
+Content-Type: multipart/mixed; boundary="===============0474028836477882760=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -64,76 +70,149 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6581433727028320758==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============0474028836477882760==
 Content-Type: multipart/alternative;
-	boundary="_000_0DDB54B17013468BB0FBCB0262804513contosocom_"
+ boundary="------------EA11457990E1A3D4985AC463"
+Content-Language: en-US
 
---_000_0DDB54B17013468BB0FBCB0262804513contosocom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------EA11457990E1A3D4985AC463
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-SGVsbG8sDQoNCkkgYW0gdXNpbmcgYSBVU1JQIFgzMTAgYW5kIGFtIHVzaW5nIGdudXJhZGlvIGNv
-bXBhbmlvbiB0byB0ZXN0IGEgY3VzdG9tIGJsb2NrLiBUaGUgY3VycmVudCBkaWFncmFtIGZsb3dz
-IGFzIGZvbGxvd3M6IEZpbGUgU291cmNlLT5SRk5vQyBGSUZPLT5jdXN0b20gYmxvY2stPmNvbXBs
-ZXggdG8gaW1hZ2UtPmZyZXF1ZW5jeSBzaW5rLiBIb3dldmVyLCB3aGVuIEkgdHJ5IHRvIGV4ZWN1
-dGUsIEkgZ2V0IHRoZSBlcnJvciDigJh0aW1lb3V0IG9uIGNoYW4gMOKAmS4gTXkgdGVzdGJlbmNo
-IHBhc3NlcyBhbGwgNSBjYXNlczsgSSBjYW4gcmVhZCBzaWduYWxzIG9uIHRoZSBpbnB1dHMgYW5k
-IG91dHB1dHMgb2YgdGhlIG5vYyBibG9jayBhbmQgdGhlIGZsb3cgZ3JhcGggd29ya3Mgb25jZSBJ
-IHJlbW92ZSBteSBjdXN0b20gYmxvY2suIFdoZXJlIGVsc2Ugc2hvdWxkIEkgYmUgbG9va2luZz8N
-Cg0KVGhhbmtzLA0KS2lyc3Rlbg0K
+Hello Kirsten,
 
---_000_0DDB54B17013468BB0FBCB0262804513contosocom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <C2B7CCA0AD8B404F8F5392DCA53664C7@ll.mit.edu>
-Content-Transfer-Encoding: base64
+I remember getting the same error message while developing a custom 
+RFNoC block. I found the problem to be caused by the corresponding xml 
+file which is located in the grc folder. I am not sure what part of the 
+file exactly caused the error message (maybe the ordering of the 
+parameters or tags within the parameters) but I eventually solved it by 
+replacing the file with the xml file from a working block and modifying 
+that one.
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
-YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1i
-b3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-IixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9
-DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9y
-aXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpz
-cGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZv
-bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1z
-b0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6
-IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
-MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rp
-b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBs
-YW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0i
-V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0Ij5IZWxsbyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQiPkkgYW0gdXNpbmcgYSBVU1JQIFgzMTAgYW5kIGFtIHVzaW5nIGdudXJhZGlvIGNvbXBhbmlv
-biB0byB0ZXN0IGEgY3VzdG9tIGJsb2NrLiBUaGUgY3VycmVudCBkaWFncmFtIGZsb3dzIGFzIGZv
-bGxvd3M6IEZpbGUgU291cmNlLSZndDtSRk5vQyBGSUZPLSZndDtjdXN0b20gYmxvY2stJmd0O2Nv
-bXBsZXggdG8gaW1hZ2UtJmd0O2ZyZXF1ZW5jeSBzaW5rLiBIb3dldmVyLCB3aGVuIEkNCiB0cnkg
-dG8gZXhlY3V0ZSwgSSBnZXQgdGhlIGVycm9yIOKAmHRpbWVvdXQgb24gY2hhbiAw4oCZLiBNeSB0
-ZXN0YmVuY2ggcGFzc2VzIGFsbCA1IGNhc2VzOyBJIGNhbiByZWFkIHNpZ25hbHMgb24gdGhlIGlu
-cHV0cyBhbmQgb3V0cHV0cyBvZiB0aGUgbm9jIGJsb2NrIGFuZCB0aGUgZmxvdyBncmFwaCB3b3Jr
-cyBvbmNlIEkgcmVtb3ZlIG15IGN1c3RvbSBibG9jay4gV2hlcmUgZWxzZSBzaG91bGQgSSBiZSBs
-b29raW5nPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+VGhhbmtz
-LDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0Ij5LaXJzdGVuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
-DQo8L2JvZHk+DQo8L2h0bWw+DQo=
-
---_000_0DDB54B17013468BB0FBCB0262804513contosocom_--
+Best regards,
+Lars
 
 
---===============6581433727028320758==
+On 02.08.19 15:50, Leong, Kirsten - 0551 - MITLL via USRP-users wrote:
+>
+> Hello,
+>
+> I am using a USRP X310 and am using gnuradio companion to test a 
+> custom block. The current diagram flows as follows: File Source->RFNoC 
+> FIFO->custom block->complex to image->frequency sink. However, when I 
+> try to execute, I get the error ‘timeout on chan 0’. My testbench 
+> passes all 5 cases; I can read signals on the inputs and outputs of 
+> the noc block and the flow graph works once I remove my custom block. 
+> Where else should I be looking?
+>
+> Thanks,
+>
+> Kirsten
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--------------EA11457990E1A3D4985AC463
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hello Kirsten,</p>
+    <p>I remember getting the same error message while developing a
+      custom RFNoC block. I found the problem to be caused by the
+      corresponding xml file which is located in the grc folder. I am
+      not sure what part of the file exactly caused the error message
+      (maybe the ordering of the parameters or tags within the
+      parameters) but I eventually solved it by replacing the file with
+      the xml file from a working block and modifying that one.<br>
+    </p>
+    <p>Best regards,<br>
+      Lars</p>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 02.08.19 15:50, Leong, Kirsten -
+      0551 - MITLL via USRP-users wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:0DDB54B1-7013-468B-B0FB-CB0262804513@contoso.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+      <div class="WordSection1">
+        <p class="MsoNormal"><span style="font-size:11.0pt">Hello,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt">I am using a
+            USRP X310 and am using gnuradio companion to test a custom
+            block. The current diagram flows as follows: File
+            Source-&gt;RFNoC FIFO-&gt;custom block-&gt;complex to
+            image-&gt;frequency sink. However, when I try to execute, I
+            get the error ‘timeout on chan 0’. My testbench passes all 5
+            cases; I can read signals on the inputs and outputs of the
+            noc block and the flow graph works once I remove my custom
+            block. Where else should I be looking?<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt">Thanks,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt">Kirsten<o:p></o:p></span></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------EA11457990E1A3D4985AC463--
+
+
+--===============0474028836477882760==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,5 +223,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6581433727028320758==--
+--===============0474028836477882760==--
 
