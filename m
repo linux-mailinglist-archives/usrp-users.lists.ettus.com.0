@@ -2,101 +2,45 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B467FDCE
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Aug 2019 17:51:18 +0200 (CEST)
-Received: from [::1] (port=44320 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CCAD7FE8B
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Aug 2019 18:24:04 +0200 (CEST)
+Received: from [::1] (port=33200 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1htZps-0008HK-83; Fri, 02 Aug 2019 11:51:16 -0400
-Received: from otransport-4.outbound.emailsrv.net ([54.84.14.167]:39580)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
- id 1htZpo-00087y-3O
- for usrp-users@lists.ettus.com; Fri, 02 Aug 2019 11:51:12 -0400
-Received: from ogate-2.outbound.emailservice.io (ip-10-4-2-5.ec2.internal
- [10.4.2.5])
- by otransport-4.outbound.emailsrv.net (Postfix) with ESMTPS id BCB33616CE;
- Fri,  2 Aug 2019 15:50:31 +0000 (UTC)
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-bn3nam01lp2059.outbound.protection.outlook.com [104.47.33.59])
- by ogate-2.outbound.emailservice.io (Postfix) with ESMTPS id 62B80613C3;
- Fri,  2 Aug 2019 15:50:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QQcQWrcVy5Ir425CbkLDITBQQhmW8Y2s0J5cLYj+gTOnE7ti42RkzWGdTmkWH4HaBMJ0FhBfbpe6XIPa0F6y4MlVwudy0UhWyufmh4RBa7LRrNpd42Upq3BVNz2ptZi6oV631oX/dxtzP5goAtY8uVa9F+erjrMXmOO8lTaHvpfjJO3KQasNwXW3blW4xo8+cZHbtvbv/TQ//5b7U7qX1XKrPFbsv6cjFyOTBl2m5cxZtm03Fd90qjkIVSkb1CjYwxr16Q71QwxCcx74HV5qLHLjhF26c/G8cmPujM/XkBNa/RMEbiW5q6hzxT/RXErgJLFSLPKe7LPtCasKH32r/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U8h43KI2mCCwM58No1z7/um10CBRWBu8S/sNQ9NjwEA=;
- b=aKiLvfzwl/5pOzelBi4xDGPDFUnU+9GPj1jZPL4b4zC9Ceey+uVZshqLvLpwPHQ39jYEx/DY6BheYoCh8K1B0WlWe1JZW/kIYlDpPro5SZJtOPsGIfLb8UnkTiwlqkeZtvmW7m2iTJs86j1gKDdgMvKnYbry+th7a6Re93dHw7JVHJmtD5D8WvtacSLaN4Q5mkBYAmVZlPfl8q1OPky7o0hvfCKE6vf9HwWYD4S04lGwS79H7N1rnVBbinm0Y/PKphS3DqfAWBhpS2qQxFmjeGEkKRz3WPqsay2WSKcVe3JhkrACZfkIPwtK3qL4VvdIw93IJAdAZ2/1LP1x2ylNtw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=gardettoengineering.com;dmarc=pass action=none
- header.from=gardettoengineering.com;dkim=pass
- header.d=gardettoengineering.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector1-gardettoengineering-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U8h43KI2mCCwM58No1z7/um10CBRWBu8S/sNQ9NjwEA=;
- b=NJa3OjGIOqKHZEC2tkdqkY15ePI3aKoy52GBkV2CCECiZcZeWkSmcUVKnayR6b/eBgZUb1NTueaP9LrDUl8QpUvVgpIrgNIswVyoxZRXjmKL2SLsu6zto7i+QME81eG6tDkvW3diaLu2dMoXVklnF9Y6JVkJ15zj2tJs40HBZpA=
-Received: from DM5PR12MB2342.namprd12.prod.outlook.com (52.132.140.165) by
- DM5PR12MB1305.namprd12.prod.outlook.com (10.168.237.148) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.15; Fri, 2 Aug 2019 15:50:30 +0000
-Received: from DM5PR12MB2342.namprd12.prod.outlook.com
- ([fe80::79ad:d314:ef63:1e52]) by DM5PR12MB2342.namprd12.prod.outlook.com
- ([fe80::79ad:d314:ef63:1e52%5]) with mapi id 15.20.2136.010; Fri, 2 Aug 2019
- 15:50:29 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, Lars Kuger
- <lku@inets.rwth-aachen.de>
+	id 1htaLZ-00086U-M2; Fri, 02 Aug 2019 12:24:01 -0400
+Received: from llmx2.ll.mit.edu ([129.55.12.48]:58840)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92)
+ (envelope-from <prvs=311797ba2c=kirsten.leong@ll.mit.edu>)
+ id 1htaLV-0007zS-UV
+ for usrp-users@lists.ettus.com; Fri, 02 Aug 2019 12:23:57 -0400
+Received: from LLE2K16-MBX02.mitll.ad.local (LLE2K16-MBX02.mitll.ad.local) by
+ llmx2.ll.mit.edu (unknown) with ESMTPS id x72GNBnW020655;
+ Fri, 2 Aug 2019 12:23:12 -0400
+To: Lars Kuger <lku@inets.rwth-aachen.de>, "usrp-users@lists.ettus.com"
+ <usrp-users@lists.ettus.com>
 Thread-Topic: [USRP-users] Error 'Timeout on Chan 0'
-Thread-Index: AQHVSTk+DumZtfyjQEeLOgqLax5Lnabn5nOAgAAaN2w=
-Date: Fri, 2 Aug 2019 15:50:29 +0000
-Message-ID: <DM5PR12MB2342B15BEF975C16D69A14D2AFD90@DM5PR12MB2342.namprd12.prod.outlook.com>
-References: <0DDB54B1-7013-468B-B0FB-CB0262804513@contoso.com>,
+Thread-Index: AQHVSTk+DumZtfyjQEeLOgqLax5LnaboKYGA///hNwA=
+Date: Fri, 2 Aug 2019 16:23:09 +0000
+Message-ID: <255EAC65-3DFA-4CBC-AADD-3CD78FAEB801@ll.mit.edu>
+References: <0DDB54B1-7013-468B-B0FB-CB0262804513@contoso.com>
  <c82d5049-525c-f985-fabc-7b29b2687225@inets.rwth-aachen.de>
 In-Reply-To: <c82d5049-525c-f985-fabc-7b29b2687225@inets.rwth-aachen.de>
 Accept-Language: en-US
 Content-Language: en-US
-X-MS-Has-Attach: 
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-originating-ip: [65.127.220.137]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 36117ac9-ccf5-489e-f835-08d71761252e
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
- SRVR:DM5PR12MB1305; 
-x-ms-traffictypediagnostic: DM5PR12MB1305:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <DM5PR12MB1305F1F7961B9AAF5DE89394AFD90@DM5PR12MB1305.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 011787B9DD
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(39830400003)(136003)(346002)(366004)(396003)(376002)(189003)(199004)(76176011)(2906002)(102836004)(3846002)(508600001)(7696005)(53546011)(66446008)(66556008)(64756008)(7736002)(966005)(446003)(86362001)(66066001)(6506007)(54896002)(71190400001)(68736007)(6306002)(53936002)(486006)(66946007)(476003)(105004)(52536014)(11346002)(236005)(71200400001)(76116006)(55016002)(66476007)(8936002)(25786009)(606006)(2501003)(6246003)(5660300002)(74316002)(256004)(9686003)(81166006)(186003)(229853002)(6116002)(26005)(316002)(8676002)(6436002)(110136005)(99286004)(19627405001)(81156014)(33656002)(14454004);
- DIR:OUT; SFP:1102; SCL:1; SRVR:DM5PR12MB1305;
- H:DM5PR12MB2342.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: sIRyHOgrkL+kdfNm6TuLhOmzxwFJA/RgZCAc825Es1JD86PjuDQ8fU5UHuFqqO2pbn3Oth8Osu1Hsqe6RB25TzalPnAjmAoajSF9pu62nMh19Z4FNVF3EMyVxdRx+iarHtGqiGr/XkfRg6x3eikNGf1RTod6rhi1pHPUaFpJQuSoIryOk1NLQaM/9iz0zQGOw4oSvP1K/4iuNipIMA1dRLXd3CsF2oTRSw3ljhjCZeGWy5PdLdvXDoqyr4Hqc8kgWuwkVMxBFrLt63coxaOcXsDKHSoR4okbFfhW+L4qDBjD0KvIQFpbSNBhQbr5wzjUul8INZjRrwAd6aHxMRBN1GMt8bK4GqrAJy9RW+hQlIpkn+B/Oi33EkiEZyMZsruCWGsPxDCSIixEFfJIfUQ24MfXjZZI0lzz0M9UHmQKIJg=
+x-originating-ip: [172.25.1.90]
+Content-Type: multipart/mixed;
+ boundary="_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_"
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36117ac9-ccf5-489e-f835-08d71761252e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2019 15:50:29.8206 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jason@gardettoengineering.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1305
-X-Mailprotector-Decision: deliver
-X-Mailprotector-Connection: TLSv1.2|mail-bn3nam01lp2059.outbound.protection.outlook.com|104.47.33.59|NAM01-BN3-obe.outbound.protection.outlook.com|0.0|0.0|0|||0|0|0|0
-X-Mailprotector-Results: clean
-X-Mailprotector-Score: 0
-X-Mailprotector-IP-Analysis: 0, 104.47.33.59, Ugly c=0 p=0 Source New
-X-Mailprotector-Scan-Diagnostics: 0-0-0-17453-c
-X-Mailprotector-ID: 2d600d8d-e2ed-45c5-9e75-6552f3c36c7c
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+ definitions=2019-08-02_07:, , signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1906280000 definitions=main-1908020167
 Subject: Re: [USRP-users] Error 'Timeout on Chan 0'
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -109,9 +53,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
-Content-Type: multipart/mixed; boundary="===============2731054459132521120=="
+From: "Leong,
+ Kirsten - 0551 - MITLL via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -125,186 +69,213 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2731054459132521120==
-Content-Language: en-US
+--_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
 Content-Type: multipart/alternative;
-	boundary="_000_DM5PR12MB2342B15BEF975C16D69A14D2AFD90DM5PR12MB2342namp_"
+	boundary="_000_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_"
 
---_000_DM5PR12MB2342B15BEF975C16D69A14D2AFD90DM5PR12MB2342namp_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+--_000_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Also, there is a timeout clock running somewhere (can't recall off the top =
-of my head) that will throw that message when it gets tripped.  That is fin=
-e though if you are INTENDING to do something that might cause there to be =
-a gap in samples and trigger a timeout.  I had an RFNoC block that was taki=
-ng chunks of data and throwing away samples until a condition was met.  Tha=
-t message was printed because it didn't see samples moving though the strea=
-m, but that was by design.  I am almost positive that when having this disc=
-ussion on the mailing-list in the past, someone pointed out where they comm=
-ented out the line in UHD since they were doing something similar and didn'=
-t want to see it.
+SSB0cmllZCByZWZvcm1hdHRpbmcgdGhlIHhtbCBmaWxlIGJhc2VkIG9mZiB0aGUgdWhkX3Jmbm9j
+X2FkZGVyLnhtbCBmaWxlOyBob3dldmVyLCBJIHN0aWxsIGdldCB0aGUgc2FtZSBlcnJvci4gSeKA
+mW0gbm90IHRyeWluZyB0byB0aHJvdyBhbnkgcGFja2V0cyBhd2F5IHNvIEkgY2Fubm90IGlnbm9y
+ZSB0aGUgZXJyb3IuIE15IGJsb2NrIGlzIGV4cGVjdGluZyB0byB0YWtlIGluIGEgY29tcGxleCAz
+MmJpdCBmbG9hdHMgYW5kIG91dHB1dCBhIDMyIGJpdCBmbG9hdC4NCg0KRnJvbTogVVNSUC11c2Vy
+cyA8dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbT4gb24gYmVoYWxmIG9mIExhcnMg
+S3VnZXIgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KUmVwbHkt
+VG86IExhcnMgS3VnZXIgPGxrdUBpbmV0cy5yd3RoLWFhY2hlbi5kZT4NCkRhdGU6IEZyaWRheSwg
+QXVndXN0IDIsIDIwMTkgYXQgMTA6MTQgQU0NClRvOiAidXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vy
+c10gRXJyb3IgJ1RpbWVvdXQgb24gQ2hhbiAwJw0KDQoNCkhlbGxvIEtpcnN0ZW4sDQoNCkkgcmVt
+ZW1iZXIgZ2V0dGluZyB0aGUgc2FtZSBlcnJvciBtZXNzYWdlIHdoaWxlIGRldmVsb3BpbmcgYSBj
+dXN0b20gUkZOb0MgYmxvY2suIEkgZm91bmQgdGhlIHByb2JsZW0gdG8gYmUgY2F1c2VkIGJ5IHRo
+ZSBjb3JyZXNwb25kaW5nIHhtbCBmaWxlIHdoaWNoIGlzIGxvY2F0ZWQgaW4gdGhlIGdyYyBmb2xk
+ZXIuIEkgYW0gbm90IHN1cmUgd2hhdCBwYXJ0IG9mIHRoZSBmaWxlIGV4YWN0bHkgY2F1c2VkIHRo
+ZSBlcnJvciBtZXNzYWdlIChtYXliZSB0aGUgb3JkZXJpbmcgb2YgdGhlIHBhcmFtZXRlcnMgb3Ig
+dGFncyB3aXRoaW4gdGhlIHBhcmFtZXRlcnMpIGJ1dCBJIGV2ZW50dWFsbHkgc29sdmVkIGl0IGJ5
+IHJlcGxhY2luZyB0aGUgZmlsZSB3aXRoIHRoZSB4bWwgZmlsZSBmcm9tIGEgd29ya2luZyBibG9j
+ayBhbmQgbW9kaWZ5aW5nIHRoYXQgb25lLg0KDQpCZXN0IHJlZ2FyZHMsDQpMYXJzDQoNCg0KT24g
+MDIuMDguMTkgMTU6NTAsIExlb25nLCBLaXJzdGVuIC0gMDU1MSAtIE1JVExMIHZpYSBVU1JQLXVz
+ZXJzIHdyb3RlOg0KSGVsbG8sDQoNCkkgYW0gdXNpbmcgYSBVU1JQIFgzMTAgYW5kIGFtIHVzaW5n
+IGdudXJhZGlvIGNvbXBhbmlvbiB0byB0ZXN0IGEgY3VzdG9tIGJsb2NrLiBUaGUgY3VycmVudCBk
+aWFncmFtIGZsb3dzIGFzIGZvbGxvd3M6IEZpbGUgU291cmNlLT5SRk5vQyBGSUZPLT5jdXN0b20g
+YmxvY2stPmNvbXBsZXggdG8gaW1hZ2UtPmZyZXF1ZW5jeSBzaW5rLiBIb3dldmVyLCB3aGVuIEkg
+dHJ5IHRvIGV4ZWN1dGUsIEkgZ2V0IHRoZSBlcnJvciDigJh0aW1lb3V0IG9uIGNoYW4gMOKAmS4g
+TXkgdGVzdGJlbmNoIHBhc3NlcyBhbGwgNSBjYXNlczsgSSBjYW4gcmVhZCBzaWduYWxzIG9uIHRo
+ZSBpbnB1dHMgYW5kIG91dHB1dHMgb2YgdGhlIG5vYyBibG9jayBhbmQgdGhlIGZsb3cgZ3JhcGgg
+d29ya3Mgb25jZSBJIHJlbW92ZSBteSBjdXN0b20gYmxvY2suIFdoZXJlIGVsc2Ugc2hvdWxkIEkg
+YmUgbG9va2luZz8NCg0KVGhhbmtzLA0KS2lyc3Rlbg0KDQoNCg0KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QN
+Cg0KVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPg0KDQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
+c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
 
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Lars Kug=
-er via USRP-users <usrp-users@lists.ettus.com>
-Sent: Friday, August 2, 2019 10:13 AM
-To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Error 'Timeout on Chan 0'
+--_000_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <6E3AEDF4916C3944AEAC1B4E409C78FD@ll.mit.edu>
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFz
+Ow0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
+ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
+aW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1m
+YW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0K
+CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRp
+b246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXtt
+c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246
+dW5kZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxp
+bms6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRv
+bTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3
+Ijt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1z
+dHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4t
+cmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBp
+bjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
+O30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5I
+VE1MUHJlZm9ybWF0dGVkQ2hhcg0KCXttc28tc3R5bGUtbmFtZToiSFRNTCBQcmVmb3JtYXR0ZWQg
+Q2hhciI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFBy
+ZWZvcm1hdHRlZCI7DQoJZm9udC1mYW1pbHk6Q29uc29sYXM7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjIN
+Cgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmki
+LHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRT
+ZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4g
+MS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0
+eWxlPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIj
+OTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+SSB0cmllZCByZWZvcm1hdHRpbmcgdGhl
+IHhtbCBmaWxlIGJhc2VkIG9mZiB0aGUgdWhkX3Jmbm9jX2FkZGVyLnhtbCBmaWxlOyBob3dldmVy
+LCBJIHN0aWxsIGdldCB0aGUgc2FtZSBlcnJvci4gSeKAmW0gbm90IHRyeWluZyB0byB0aHJvdyBh
+bnkgcGFja2V0cyBhd2F5IHNvIEkgY2Fubm90IGlnbm9yZSB0aGUgZXJyb3IuIE15IGJsb2NrIGlz
+IGV4cGVjdGluZyB0bw0KIHRha2UgaW4gYSBjb21wbGV4IDMyYml0IGZsb2F0cyBhbmQgb3V0cHV0
+IGEgMzIgYml0IGZsb2F0LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYg
+MS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+Yj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPkZyb206IDwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9
+ImNvbG9yOmJsYWNrIj5VU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzLWJvdW5jZXNAbGlzdHMuZXR0
+dXMuY29tJmd0OyBvbiBiZWhhbGYgb2YgTGFycyBLdWdlciB2aWEgVVNSUC11c2VycyAmbHQ7dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+UmVwbHktVG86IDwvYj5MYXJzIEt1
+Z2VyICZsdDtsa3VAaW5ldHMucnd0aC1hYWNoZW4uZGUmZ3Q7PGJyPg0KPGI+RGF0ZTogPC9iPkZy
+aWRheSwgQXVndXN0IDIsIDIwMTkgYXQgMTA6MTQgQU08YnI+DQo8Yj5UbzogPC9iPiZxdW90O3Vz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJnF1b3Q7ICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OiA8L2I+UmU6IFtVU1JQLXVzZXJzXSBFcnJvciAnVGlt
+ZW91dCBvbiBDaGFuIDAnPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPHA+SGVsbG8gS2lyc3Rlbiw8bzpwPjwvbzpw
+PjwvcD4NCjxwPkkgcmVtZW1iZXIgZ2V0dGluZyB0aGUgc2FtZSBlcnJvciBtZXNzYWdlIHdoaWxl
+IGRldmVsb3BpbmcgYSBjdXN0b20gUkZOb0MgYmxvY2suIEkgZm91bmQgdGhlIHByb2JsZW0gdG8g
+YmUgY2F1c2VkIGJ5IHRoZSBjb3JyZXNwb25kaW5nIHhtbCBmaWxlIHdoaWNoIGlzIGxvY2F0ZWQg
+aW4gdGhlIGdyYyBmb2xkZXIuIEkgYW0gbm90IHN1cmUgd2hhdCBwYXJ0IG9mIHRoZSBmaWxlIGV4
+YWN0bHkgY2F1c2VkIHRoZSBlcnJvciBtZXNzYWdlIChtYXliZQ0KIHRoZSBvcmRlcmluZyBvZiB0
+aGUgcGFyYW1ldGVycyBvciB0YWdzIHdpdGhpbiB0aGUgcGFyYW1ldGVycykgYnV0IEkgZXZlbnR1
+YWxseSBzb2x2ZWQgaXQgYnkgcmVwbGFjaW5nIHRoZSBmaWxlIHdpdGggdGhlIHhtbCBmaWxlIGZy
+b20gYSB3b3JraW5nIGJsb2NrIGFuZCBtb2RpZnlpbmcgdGhhdCBvbmUuPG86cD48L286cD48L3A+
+DQo8cD5CZXN0IHJlZ2FyZHMsPGJyPg0KTGFyczxvOnA+PC9vOnA+PC9wPg0KPHA+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMDIuMDguMTkgMTU6
+NTAsIExlb25nLCBLaXJzdGVuIC0gMDU1MSAtIE1JVExMIHZpYSBVU1JQLXVzZXJzIHdyb3RlOjxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBw
+dDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0Ij5IZWxsbyw8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Jm5ic3A7PC9zcGFu
+PjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQiPkkgYW0gdXNpbmcgYSBVU1JQIFgzMTAgYW5kIGFtIHVzaW5nIGdudXJhZGlv
+IGNvbXBhbmlvbiB0byB0ZXN0IGEgY3VzdG9tIGJsb2NrLiBUaGUgY3VycmVudCBkaWFncmFtIGZs
+b3dzIGFzIGZvbGxvd3M6IEZpbGUgU291cmNlLSZndDtSRk5vQyBGSUZPLSZndDtjdXN0b20gYmxv
+Y2stJmd0O2NvbXBsZXggdG8gaW1hZ2UtJmd0O2ZyZXF1ZW5jeSBzaW5rLiBIb3dldmVyLCB3aGVu
+IEkNCiB0cnkgdG8gZXhlY3V0ZSwgSSBnZXQgdGhlIGVycm9yIOKAmHRpbWVvdXQgb24gY2hhbiAw
+4oCZLiBNeSB0ZXN0YmVuY2ggcGFzc2VzIGFsbCA1IGNhc2VzOyBJIGNhbiByZWFkIHNpZ25hbHMg
+b24gdGhlIGlucHV0cyBhbmQgb3V0cHV0cyBvZiB0aGUgbm9jIGJsb2NrIGFuZCB0aGUgZmxvdyBn
+cmFwaCB3b3JrcyBvbmNlIEkgcmVtb3ZlIG15IGN1c3RvbSBibG9jay4gV2hlcmUgZWxzZSBzaG91
+bGQgSSBiZSBsb29raW5nPzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij4mbmJzcDs8L3NwYW4+PG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dCI+VGhhbmtzLDwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5LaXJzdGVuPC9zcGFuPjxvOnA+PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxi
+cj4NCjxicj4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwcmU+X19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX188bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5VU1JQ
+LXVzZXJzIG1haWxpbmcgbGlzdDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxhIGhyZWY9Im1haWx0
+bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
+L2E+PG86cD48L286cD48L3ByZT4NCjxwcmU+PGEgaHJlZj0iaHR0cDovL2xpc3RzLmV0dHVzLmNv
+bS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tIj5odHRwOi8vbGlz
+dHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb208
+L2E+PG86cD48L286cD48L3ByZT4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
+dG1sPg0K
 
-Hello Kirsten,
+--_000_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_--
 
-I remember getting the same error message while developing a custom RFNoC b=
-lock. I found the problem to be caused by the corresponding xml file which =
-is located in the grc folder. I am not sure what part of the file exactly c=
-aused the error message (maybe the ordering of the parameters or tags withi=
-n the parameters) but I eventually solved it by replacing the file with the=
- xml file from a working block and modifying that one.
+--_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
+Content-Type: application/xml; name="fmdemod_fmdemod.xml"
+Content-Description: fmdemod_fmdemod.xml
+Content-Disposition: attachment; filename="fmdemod_fmdemod.xml"; size=2893;
+	creation-date="Fri, 02 Aug 2019 16:23:09 GMT";
+	modification-date="Fri, 02 Aug 2019 16:23:09 GMT"
+Content-ID: <9F1D61400F8EEA428A3060E8252360B3@ll.mit.edu>
+Content-Transfer-Encoding: base64
 
-Best regards,
-Lars
+PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxibG9jaz4KICA8bmFtZT5SRk5vQzogZm1kZW1vZDwvbmFt
+ZT4KICA8a2V5PmZtZGVtb2RfZm1kZW1vZDwva2V5PgogIDxjYXRlZ29yeT5mbWRlbW9kPC9jYXRl
+Z29yeT4KICA8aW1wb3J0PmltcG9ydCBldHR1czwvaW1wb3J0PgogIDxtYWtlPmV0dHVzLnJmbm9j
+X2dlbmVyaWMoCiAgICAgICAgICBzZWxmLmRldmljZTMsCiAgICAgICAgICB1aGQuc3RyZWFtX2Fy
+Z3MoICMgVFggU3RyZWFtIEFyZ3MKICAgICAgICAgICAgICAgIGNwdV9mb3JtYXQ9IiR0eXBlIiwK
+ICAgICAgICAgICAgICAgIG90d19mb3JtYXQ9InNjMTYiLAogICAgICAgICAgICAgICAgYXJncz0i
+Z3Jfdmxlbj17MH0sezF9Ii5mb3JtYXQoJHtncnZsZW59LCAiIiBpZiAkZ3J2bGVuID09IDEgZWxz
+ZSAic3BwPXswfSIuZm9ybWF0KCRncnZsZW4pKSwKICAgICAgICAgICksCiAgICAgICAgICB1aGQu
+c3RyZWFtX2FyZ3MoICMgUlggU3RyZWFtIEFyZ3MKICAgICAgICAgICAgICAgIGNwdV9mb3JtYXQ9
+IiR0eXBlIiwKICAgICAgICAgICAgICAgIG90d19mb3JtYXQ9InNjMTYiLAogICAgICAgICAgICAg
+ICAgYXJncz0iZ3Jfdmxlbj17MH0sezF9Ii5mb3JtYXQoJHtncnZsZW59LCAiIiBpZiAkZ3J2bGVu
+ID09IDEgZWxzZSAic3BwPXswfSIuZm9ybWF0KCRncnZsZW4pKSwKICAgICAgICAgICksCiAgICAg
+ICAgICAiZm1kZW1vZCIsICRibG9ja19pbmRleCwkZGV2aWNlX2luZGV4CiAgICAgICAgICAKICAp
+PC9tYWtlPgogIDwhLS0gTWFrZSBvbmUgJ3BhcmFtJyBub2RlIGZvciBldmVyeSBQYXJhbWV0ZXIg
+eW91IHdhbnQgc2V0dGFibGUgZnJvbSB0aGUgR1VJLgogICAgICAgU3ViLW5vZGVzOgogICAgICAg
+KiBuYW1lCiAgICAgICAqIGtleSAobWFrZXMgdGhlIHZhbHVlIGFjY2Vzc2libGUgYXMgJGtleW5h
+bWUsIGUuZy4gaW4gdGhlIG1ha2Ugbm9kZSkKICAgICAgICogdHlwZSAtLT4KCiAgPHBhcmFtPgog
+ICAgPG5hbWU+SG9zdCBEYXRhIFR5cGU8L25hbWU+CiAgICA8a2V5PnR5cGU8L2tleT4KICAgIDx0
+eXBlPmVudW08L3R5cGU+CiAgICA8b3B0aW9uPgogICAgICA8bmFtZT5Db21wbGV4IGZsb2F0MzI8
+L25hbWU+CiAgICAgIDxrZXk+ZmMzMjwva2V5PgogICAgICA8b3B0PnR5cGU6Y29tcGxleDwvb3B0
+PgogICAgPC9vcHRpb24+CiAgICA8b3B0aW9uPgogICAgICA8bmFtZT5Db21wbGV4IGludDE2PC9u
+YW1lPgogICAgICA8a2V5PnNjMTY8L2tleT4KICAgICAgPG9wdD50eXBlOnNjMTY8L29wdD4KICAg
+IDwvb3B0aW9uPgogICAgPG9wdGlvbj4KICAgICAgPG5hbWU+Qnl0ZTwvbmFtZT4KICAgICAgPGtl
+eT51ODwva2V5PgogICAgICA8b3B0PnR5cGU6Ynl0ZTwvb3B0PgogICAgPC9vcHRpb24+CiAgICA8
+b3B0aW9uPgogICAgICA8bmFtZT5WSVRBIHdvcmQzMjwvbmFtZT4KICAgICAgPGtleT5pdGVtMzI8
+L2tleT4KICAgICAgPG9wdD50eXBlOnMzMjwvb3B0PgogICAgPC9vcHRpb24+CiAgPC9wYXJhbT4K
+ICA8IS0tUkZOb0MgYmFzaWMgYmxvY2sgY29uZmlndXJhdGlvbiAtLT4KICA8cGFyYW0+CiAgICA8
+bmFtZT5EZXZpY2UgU2VsZWN0PC9uYW1lPgogICAgPGtleT5kZXZpY2VfaW5kZXg8L2tleT4KICAg
+IDx2YWx1ZT4tMTwvdmFsdWU+CiAgICA8dHlwZT5pbnQ8L3R5cGU+CiAgICA8aGlkZT4jaWYgaW50
+KCRkZXZpY2VfaW5kZXgoKSkgJmx0OyAwIHRoZW4gJ3BhcnQnIGVsc2UgJ25vbmUnIzwvaGlkZT4K
+ICAgIDx0YWI+UkZOb0MgQ29uZmlnPC90YWI+CiAgPC9wYXJhbT4KCiAgPHBhcmFtPgogICAgPG5h
+bWU+Zm1kZW1vZCBTZWxlY3Q8L25hbWU+CiAgICA8a2V5PmJsb2NrX2luZGV4PC9rZXk+CiAgICA8
+dmFsdWU+LTE8L3ZhbHVlPgogICAgPHR5cGU+aW50PC90eXBlPgogICAgPGhpZGU+I2lmIGludCgk
+YmxvY2tfaW5kZXgoKSkgJmx0OyAwIHRoZW4gJ3BhcnQnIGVsc2UgJ25vbmUnIzwvaGlkZT4KICAg
+IDx0YWI+UkZOb0MgQ29uZmlnPC90YWI+CiAgPC9wYXJhbT4KCiAgPHBhcmFtPgogICAgPG5hbWU+
+RlBHQSBNb2R1bGUgTmFtZTwvbmFtZT4KICAgIDxrZXk+ZnBnYV9tb2R1bGVfbmFtZTwva2V5Pgog
+ICAgPHZhbHVlPm5vY19ibG9ja19mbWRlbW9kPC92YWx1ZT4KICAgIDx0eXBlPnN0cmluZzwvdHlw
+ZT4KICAgIDxoaWRlPmFsbDwvaGlkZT4KICAgIDx0YWI+UkZOb0MgQ29uZmlnPC90YWI+CiAgPC9w
+YXJhbT4KCiAgPHBhcmFtPgogICAgPG5hbWU+Rm9yY2UgVmVjdG9yIExlbmd0aDwvbmFtZT4KICAg
+IDxrZXk+Z3J2bGVuPC9rZXk+CiAgICA8dmFsdWU+MTwvdmFsdWU+CiAgICA8dHlwZT5pbnQ8L3R5
+cGU+CiAgPC9wYXJhbT4KCgogIDwhLS0gTWFrZSBvbmUgJ3NpbmsnIG5vZGUgcGVyIGlucHV0LiBT
+dWItbm9kZXM6CiAgICAgICAqIG5hbWUgKGFuIGlkZW50aWZpZXIgZm9yIHRoZSBHVUkpCiAgICAg
+ICAqIHR5cGUKICAgICAgICogdmxlbgogICAgICAgKiBvcHRpb25hbCAoc2V0IHRvIDEgZm9yIG9w
+dGlvbmFsIGlucHV0cykgLS0+CiAgPHNpbms+CiAgICA8bmFtZT5pbjwvbmFtZT4KICAgIDx0eXBl
+PmNvbXBsZXg8L3R5cGU+CiAgICA8dmxlbj4kZ3J2bGVuPC92bGVuPgogICAgPGRvbWFpbj5yZm5v
+YzwvZG9tYWluPgogIDwvc2luaz4KCiAgPCEtLSBNYWtlIG9uZSAnc291cmNlJyBub2RlIHBlciBv
+dXRwdXQuIFN1Yi1ub2RlczoKICAgICAgICogbmFtZSAoYW4gaWRlbnRpZmllciBmb3IgdGhlIEdV
+SSkKICAgICAgICogdHlwZQogICAgICAgKiB2bGVuCiAgICAgICAqIG9wdGlvbmFsIChzZXQgdG8g
+MSBmb3Igb3B0aW9uYWwgaW5wdXRzKSAtLT4KICA8c291cmNlPgogICAgPG5hbWU+b3V0PC9uYW1l
+PgogICAgPHR5cGU+Y29tcGxleDwvdHlwZT4KICAgIDx2bGVuPiRncnZsZW48L3ZsZW4+CiAgICA8
+ZG9tYWluPnJmbm9jPC9kb21haW4+CiAgPC9zb3VyY2U+CjwvYmxvY2s+Cg==
 
-
-On 02.08.19 15:50, Leong, Kirsten - 0551 - MITLL via USRP-users wrote:
-
-Hello,
-
-
-
-I am using a USRP X310 and am using gnuradio companion to test a custom blo=
-ck. The current diagram flows as follows: File Source->RFNoC FIFO->custom b=
-lock->complex to image->frequency sink. However, when I try to execute, I g=
-et the error =91timeout on chan 0=92. My testbench passes all 5 cases; I ca=
-n read signals on the inputs and outputs of the noc block and the flow grap=
-h works once I remove my custom block. Where else should I be looking?
-
-
-
-Thanks,
-
-Kirsten
-
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-
---_000_DM5PR12MB2342B15BEF975C16D69A14D2AFD90DM5PR12MB2342namp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Also, there is a timeout clock running somewhere (can't recall off the top =
-of my head) that will throw that message when it gets tripped.&nbsp; That i=
-s fine though if you are INTENDING to do something that might cause there t=
-o be a gap in samples and trigger a timeout.&nbsp;
- I had an RFNoC block that was taking chunks of data and throwing away samp=
-les until a condition was met.&nbsp; That message was printed because it di=
-dn't see samples moving though the stream, but that was by design.&nbsp; I =
-am almost positive that when having this discussion
- on the mailing-list in the past, someone pointed out where they commented =
-out the line in UHD since they were doing something similar and didn't want=
- to see it.</div>
-<div id=3D"Signature">
-<div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> USRP-users &lt;usrp-u=
-sers-bounces@lists.ettus.com&gt; on behalf of Lars Kuger via USRP-users &lt=
-;usrp-users@lists.ettus.com&gt;<br>
-<b>Sent:</b> Friday, August 2, 2019 10:13 AM<br>
-<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> Re: [USRP-users] Error 'Timeout on Chan 0'</font>
-<div>&nbsp;</div>
-</div>
-<div style=3D"background-color:#FFFFFF">
-<p>Hello Kirsten,</p>
-<p>I remember getting the same error message while developing a custom RFNo=
-C block. I found the problem to be caused by the corresponding xml file whi=
-ch is located in the grc folder. I am not sure what part of the file exactl=
-y caused the error message (maybe
- the ordering of the parameters or tags within the parameters) but I eventu=
-ally solved it by replacing the file with the xml file from a working block=
- and modifying that one.<br>
-</p>
-<p>Best regards,<br>
-Lars</p>
-<p><br>
-</p>
-<div class=3D"x_moz-cite-prefix">On 02.08.19 15:50, Leong, Kirsten - 0551 -=
- MITLL via USRP-users wrote:<br>
-</div>
-<blockquote type=3D"cite">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered=0A=
-        medium)">
-<div class=3D"x_WordSection1">
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:11.0pt">Hello,</span></p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:11.0pt">&nbsp;</span></p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:11.0pt">I am using a USRP X310 and am using gnurad=
-io companion to test a custom block. The current diagram flows as follows: =
-File Source-&gt;RFNoC FIFO-&gt;custom block-&gt;complex to image-&gt;freque=
-ncy sink. However, when I try to execute, I get
- the error =91timeout on chan 0=92. My testbench passes all 5 cases; I can =
-read signals on the inputs and outputs of the noc block and the flow graph =
-works once I remove my custom block. Where else should I be looking?</span>=
-</p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:11.0pt">&nbsp;</span></p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:11.0pt">Thanks,</span></p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:11.0pt">Kirsten</span></p>
-</div>
-<br>
-<fieldset class=3D"x_mimeAttachmentHeader"></fieldset>
-<pre class=3D"x_moz-quote-pre">____________________________________________=
-___=0A=
-USRP-users mailing list=0A=
-<a class=3D"x_moz-txt-link-abbreviated" href=3D"mailto:USRP-users@lists.ett=
-us.com">USRP-users@lists.ettus.com</a>=0A=
-<a class=3D"x_moz-txt-link-freetext" href=3D"http://lists.ettus.com/mailman=
-/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listin=
-fo/usrp-users_lists.ettus.com</a>=0A=
-</pre>
-</blockquote>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_DM5PR12MB2342B15BEF975C16D69A14D2AFD90DM5PR12MB2342namp_--
-
-
---===============2731054459132521120==
+--_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -315,5 +286,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2731054459132521120==--
+--_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_--
 
