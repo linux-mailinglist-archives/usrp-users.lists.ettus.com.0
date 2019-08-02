@@ -2,77 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C89D7E3BB
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Aug 2019 22:05:02 +0200 (CEST)
-Received: from [::1] (port=58940 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C2527E9FB
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Aug 2019 04:26:51 +0200 (CEST)
+Received: from [::1] (port=52544 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1htHJs-000844-BL; Thu, 01 Aug 2019 16:05:00 -0400
-Received: from mail-oln040092253075.outbound.protection.outlook.com
- ([40.92.253.75]:32416 helo=APC01-SG2-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
- (Exim 4.92) (envelope-from <snehasish.cse@live.com>)
- id 1htHJo-0007yp-Gt
- for usrp-users@lists.ettus.com; Thu, 01 Aug 2019 16:04:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WiNHgLr5SJjRA4yuJ1vLq2bb1P9hQW54Zzx0YRkNwLbtplL2JSFGpnLKICfXT4s0irW3BEhrE5LstbcbfCZ1DA6XX3tugT3VeEDF47KEsTTZdFNOpc+SDjp4b7lG6+xgRJfPBpKv/3RU3Qr2bCqz7cKpZj1lPdCX/Vk4m1NQmYPLWzOq8WbLrW+WGfiS/qD+iMCyaEFhdU2m6zHeDOPB0lmiwhjml8spWg1/AtUkTlfdtKKL/Dqzk3UI5PxBURCEI3+r/dqMs1yg68urmgGKRUwoRos9xfgbMFp7R6WaVDD+KL84v6vWdEtnYU0W/CTn0U1aCPgpjzZg5SEKMnsKfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PgozqflmROKk41KBRugGHCdyWaKSEKk84XvOu3zkR6A=;
- b=jcuWLvYTUyCQ6zu1WK4NPqNI/XnU7o6tE6CEWLcxC0f1hU78YihHjeIrcn1Vuv4LMBY+uWOG7/kIfvPVDCevwmO5PN1+SHmjaqIImFxiOhyif2jAJIMi87F+fba4UBrEAxyBb5Tk2jJJiI9sxOcDwEf9eq2l/ZtS7qTKCLNAuoDDLC3l5gdQL+Car+OpbEmZwW4yU5vJo3lYwAxzNSK0Pwq3DY5QCBs6uonHEBolX5kJc38nu5Q8axwPXTzQrAMDAN7GYH7LVmFW9o26RwOBSJd9tovtp5S2AQosNSVZg7Run72na5aiDThAk2X8neo+nxqxWzc3QKNVSGPnl01Ihg==
-ARC-Authentication-Results: i=1; mx.microsoft.com
- 1;spf=none;dmarc=none;dkim=none;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PgozqflmROKk41KBRugGHCdyWaKSEKk84XvOu3zkR6A=;
- b=hH11oiljeaM4OZmTqaN4rzE7Jz9NLh0HT4bREybXojmquiBsMAkWKcRz/7DoxoWkxRK9U6U25EJGRkq5/osNtclzWaX8X52JvMGXtmR9p6u8OQH2Gk07Vdt5FAuSQNODp+Uq1jbSbhTXyiHlUvWvFJsDgmXAptUqToh3zrkLmlliooIQ9qVKBPBESDrVLWqHfe8WpWtCWZWMH9FAY12WcdAdi6UxK98yliNI9hqnZT+1ESNzA+MLCeziqGLTJMvVR8D7QZy3yvp/gd5s1oiyiBMPtXh+OO1mseGsz4Xp+cRt4uPM8gaorkq6aU3CZwSKiVLSkqHPEPbuZ6vanjIS6w==
-Received: from PU1APC01FT004.eop-APC01.prod.protection.outlook.com
- (10.152.252.59) by PU1APC01HT218.eop-APC01.prod.protection.outlook.com
- (10.152.252.182) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2136.14; Thu, 1 Aug
- 2019 20:04:13 +0000
-Received: from MAXPR0101MB1612.INDPRD01.PROD.OUTLOOK.COM (10.152.252.56) by
- PU1APC01FT004.mail.protection.outlook.com (10.152.252.98) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.14 via Frontend Transport; Thu, 1 Aug 2019 20:04:12 +0000
-Received: from MAXPR0101MB1612.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::dc85:9bf2:7b76:65ed]) by MAXPR0101MB1612.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::dc85:9bf2:7b76:65ed%7]) with mapi id 15.20.2136.010; Thu, 1 Aug 2019
- 20:04:12 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Status of Rfnoc pfb channelizer
-Thread-Index: AQHVSKRJtIT/V8dSI0iTATrqJhjl1Q==
-Date: Thu, 1 Aug 2019 20:04:12 +0000
-Message-ID: <MAXPR0101MB16126AE6CB9EF13BE51CC15288DE0@MAXPR0101MB1612.INDPRD01.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:48F43B61F010E6B3C841C22A0D2E6C7131747185D07E2212AFF382859C468893;
- UpperCasedChecksum:1341E116A9FD896BB628D14B4118B0D24385D9038905171BC63A694A6708273C;
- SizeAsReceived:6597; Count:41
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [prNLhvMxUuUajhqBRbs8XpzRy9yAcRakyGI4a4DsPP4=]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 41
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
- SRVR:PU1APC01HT218; 
-x-ms-traffictypediagnostic: PU1APC01HT218:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-message-info: o6kH6riXSVxeUrQgN9UkgD4+fdHQ30YAZ+z5RwFhV9D6h7fTiCH7YqUDN72xuY1z3IJHRUSocLVwWj4pUx0ayhzRgb/ksulsTMd/A3cwpjgC8/hteBt7wZneaopqu0jyTYk4fq8OiYiPcv0zsE3PckJwwnbV2hiywSS2J12Sj+p7x6b5CHBV+QlGsiBbgQUA
+	id 1htNHM-0003g4-N9; Thu, 01 Aug 2019 22:26:48 -0400
+Received: from mail-oi1-f197.google.com ([209.85.167.197]:35755)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <mikio@dolphinsystem.jp>)
+ id 1htNHJ-0003Ws-KL
+ for usrp-users@lists.ettus.com; Thu, 01 Aug 2019 22:26:45 -0400
+Received: by mail-oi1-f197.google.com with SMTP id i132so28764608oif.2
+ for <usrp-users@lists.ettus.com>; Thu, 01 Aug 2019 19:26:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dolphinsystem-jp.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=GecZ1aV+GqyhbJZnBYjIiB9O+Ql8lC1NNt1GhB726I8=;
+ b=LcvSoBrYNUjayhTnPUz/ZzvVTWVVpOealBSbxJd/+qhKcqllZi+CyVkXFSwTh2Wy6Z
+ piWJakXxIw5iCfCTuCo4K8csAVw8kIo5UgIJA+jKhjupRyVKB7zoqZm8GNeL7vPz/t4y
+ pu5B50c4ZheO3AL4Pyy55foiQwm2Kq6SjTXh3fENlZxz+OsE0Cp3mnjE0I89ifehvNlv
+ Q+39Za+QMn3FdQD2KUFqwkE/VtKHrKOoUDb2LooY80sQbFzWWn7mxEmYXIPW60Wsqszu
+ PngPD7xvWXlQ3U6bEqqTo/FkHGXVXBFQ1N77ZrxQCzWCD6HLfQbGdPRKS2H47qARl4cm
+ uUMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=GecZ1aV+GqyhbJZnBYjIiB9O+Ql8lC1NNt1GhB726I8=;
+ b=gLGGSQ36RXMIPH/gWIeOtl0e5eVseVG3Q7CpaCGfheLVvafQiyfEL6PegSSDi4AatT
+ 0vBDmVBU4aQqVu548OCQYVEZ6JnjQ561Ue7SwH8r276rdgmoQS2kTsqnjXjo/W2ZY4TU
+ sItOgRL02OqEJLioz1t3nB5+VuWCZ+eE3sg85HIH7sx35iKksngZHYRTGiBAHwtusKV+
+ wPAidicrJi5uKT/4lXm9LiFwc7A6qWxMSOgTZf4xruqb53VUAAGkL2o1N91IQUqM+eF7
+ MzaGVtjWsSbe/xqlCRBtVhui39C36uDU0MMLUR92y3clSLBNmS6ShTQ9lxaqxdDL7qRC
+ tTWw==
+X-Gm-Message-State: APjAAAVN1a8ufIcZeTc5pWO1zr73fKtbe42ICHHjSmWR0Y6OPdgUfaaI
+ t4esg3eM0qXI6wkLYX4Ojt7Ozah8RRvajmqFGqJ6EcqRdAw=
+X-Google-Smtp-Source: APXvYqwv3ZN6DtttFSGODJLOpNMDmZ+DklwaOk0fSMtDrG9qIU2BDLt0pdRKwclkwqgAKV0+/y54/BqvPIKuz0bJnj0=
+X-Received: by 2002:aca:ec82:: with SMTP id k124mr1167338oih.73.1564712764469; 
+ Thu, 01 Aug 2019 19:26:04 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: live.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71afbd03-1d97-47b9-f61d-08d716bb6c5a
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Aug 2019 20:04:12.4992 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT218
-Subject: [USRP-users] Status of Rfnoc pfb channelizer
+Date: Fri, 2 Aug 2019 11:25:29 +0900
+Message-ID: <CABfZwcdKyO0+zUTd5oVcwrr=mAhScEroL_mwGDoEJ52+i+sAjg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] cmake error : Cross-Compiling GNU Radio on Ubuntu 16.04
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -84,9 +56,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Snehasish Kar <snehasish.cse@live.com>
-Content-Type: multipart/mixed; boundary="===============4648582487870529510=="
+From: =?utf-8?b?56aP5bO25bm56ZuEIHZpYSBVU1JQLXVzZXJz?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?56aP5bO25bm56ZuE?= <mikio@dolphinsystem.jp>
+Content-Type: multipart/mixed; boundary="===============4737647605527044905=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -100,42 +73,83 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4648582487870529510==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MAXPR0101MB16126AE6CB9EF13BE51CC15288DE0MAXPR0101MB1612_"
+--===============4737647605527044905==
+Content-Type: multipart/alternative; boundary="00000000000080ae17058f191454"
 
---_000_MAXPR0101MB16126AE6CB9EF13BE51CC15288DE0MAXPR0101MB1612_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000080ae17058f191454
+Content-Type: text/plain; charset="UTF-8"
 
-SGVsbG8gRXZlcnlvbmUNCg0KSGFzIGFueW9uZSB0cmllZCB0aGUgcmZub2MgYmFzZWQgcGZiIGNo
-YW5uZWxpemVyIGluIHRoZSBldHR1cyBnaXRodWIgcmVwb3NpdG9yeShodHRwczovL2dpdGh1Yi5j
-b20vRXR0dXNSZXNlYXJjaC9yZm5vYy1wZmItY2hhbm5lbGl6ZXIpLiBJcyBpdCBzdGFibGUgYW5k
-IGNhbiBiZSBkaXJlY3RseSBiZSB1c2VkIG9yIHNvbWUgbW9kaWZpY2F0aW9ucyBhcmUgcmVxdWly
-ZWQuDQoNClJlZ2FyZHMNClNuZWhhc2lzaA0KDQpTZW50IGZyb20gbXkgaVBhZA0K
+Hi everyone.
+I try to compile the UHD and GNU Radio for my E320 on Ubuntu 16.04, I am
+referencing this application note.
 
---_000_MAXPR0101MB16126AE6CB9EF13BE51CC15288DE0MAXPR0101MB1612_
-Content-Type: text/html; charset="utf-8"
-Content-ID:  <F3DF4058BAFB6E44AB0220826CC913B2@sct-15-20-2032-17-msonline-outlook-a8adc.templateTenant>
-Content-Transfer-Encoding: base64
+https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGRpcj0iYXV0byI+DQpI
-ZWxsbyBFdmVyeW9uZSZuYnNwOw0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+SGFzIGFueW9uZSB0
-cmllZCB0aGUgcmZub2MgYmFzZWQgcGZiIGNoYW5uZWxpemVyIGluIHRoZSBldHR1cyBnaXRodWIg
-cmVwb3NpdG9yeSg8YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC9yZm5v
-Yy1wZmItY2hhbm5lbGl6ZXIiPmh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3Jmbm9j
-LXBmYi1jaGFubmVsaXplcjwvYT4pLiBJcyBpdCBzdGFibGUgYW5kIGNhbiBiZSBkaXJlY3RseSBi
-ZSB1c2VkIG9yIHNvbWUNCiBtb2RpZmljYXRpb25zIGFyZSByZXF1aXJlZC48L2Rpdj4NCjxkaXY+
-PGJyPg0KPC9kaXY+DQo8ZGl2PlJlZ2FyZHM8L2Rpdj4NCjxkaXY+U25laGFzaXNoJm5ic3A7PC9k
-aXY+DQo8ZGl2Pjxicj4NCjxkaXYgaWQ9IkFwcGxlTWFpbFNpZ25hdHVyZSIgZGlyPSJsdHIiPlNl
-bnQgZnJvbSBteSBpUGFkPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+but I got error message from cmake as follows.
+Do you know this solution?
 
---_000_MAXPR0101MB16126AE6CB9EF13BE51CC15288DE0MAXPR0101MB1612_--
+**Cross-Compiling GNU Radio**
+$ cd ~/e300/src
+$ git clone -b v3.7.10.2 --recursive
+https://github.com/gnuradio/gnuradio.git
+$ cd gnuradio/
+$ mkdir build
+$ cd build
+$ cmake -Wno-dev
+-DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchains/oe-sdk_cross.cmake
+-DENABLE_GR_WXGUI=OFF -DENABLE_GR_VOCODER=OFF -DENABLE_GR_DTV=OFF
+-DENABLE_GR_ATSC=OFF -DENABLE_DOXYGEN=OFF -DCMAKE_INSTALL_PREFIX=/usr ../
+
+CMake Error at cmake/Toolchains/oe-sdk_cross.cmake:4 (string):
+  string sub-command REGEX, mode MATCH needs at least 5 arguments total to
+  command.
+Call Stack (most recent call first):
+  build/CMakeFiles/3.5.1/CMakeSystem.cmake:6 (include)
+  CMakeLists.txt:31 (project)
+
+**snip**
+
+ CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+ CMakeLists.txt:31 (project)
 
 
---===============4648582487870529510==
+-- Configuring incomplete, errors occurred!
+See also "/home/dolphin/e300/src/gnuradio/build/CMakeFiles/CMakeOutput.log".
+See also "/home/dolphin/e300/src/gnuradio/build/CMakeFiles/CMakeError.log".
+
+--00000000000080ae17058f191454
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi everyone.<br>I try to compile the UHD and GNU Radio for=
+ my E320 on Ubuntu 16.04, I am referencing this application note. <br><br><=
+a href=3D"https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Buil=
+ding_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source">https://kb.ettus.com/Sof=
+tware_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-et=
+tus_from_Source</a><br><br>but I got error message from cmake as follows.<b=
+r>Do you know this solution?<br><br>**Cross-Compiling GNU Radio**<br>$ cd ~=
+/e300/src<br>$ git clone -b v3.7.10.2 --recursive <a href=3D"https://github=
+.com/gnuradio/gnuradio.git">https://github.com/gnuradio/gnuradio.git</a> <b=
+r>$ cd gnuradio/<br>$ mkdir build<br>$ cd build<br>$ cmake -Wno-dev -DCMAKE=
+_TOOLCHAIN_FILE=3D../cmake/Toolchains/oe-sdk_cross.cmake -DENABLE_GR_WXGUI=
+=3DOFF -DENABLE_GR_VOCODER=3DOFF -DENABLE_GR_DTV=3DOFF -DENABLE_GR_ATSC=3DO=
+FF -DENABLE_DOXYGEN=3DOFF -DCMAKE_INSTALL_PREFIX=3D/usr ../<div><br>CMake E=
+rror at cmake/Toolchains/oe-sdk_cross.cmake:4 (string):<br>=C2=A0 string su=
+b-command REGEX, mode MATCH needs at least 5 arguments total to<br>=C2=A0 c=
+ommand.<br>Call Stack (most recent call first):<br>=C2=A0 build/CMakeFiles/=
+3.5.1/CMakeSystem.cmake:6 (include)<br>=C2=A0 CMakeLists.txt:31 (project)<b=
+r><br>**snip**<br><br>		 =C2=A0CMake will not be able to correctly generate=
+ this project.<br>		Call Stack (most recent call first):<br>		 =C2=A0CMakeL=
+ists.txt:31 (project)<br>		<br>		<br>		-- Configuring incomplete, errors oc=
+curred!<br>		See also &quot;/home/dolphin/e300/src/gnuradio/build/CMakeFile=
+s/CMakeOutput.log&quot;.<br>		See also &quot;/home/dolphin/e300/src/gnuradi=
+o/build/CMakeFiles/CMakeError.log&quot;.<br><br><br></div></div>
+
+--00000000000080ae17058f191454--
+
+
+--===============4737647605527044905==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -146,5 +160,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4648582487870529510==--
+--===============4737647605527044905==--
 
