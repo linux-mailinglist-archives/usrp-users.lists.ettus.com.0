@@ -2,45 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CCAD7FE8B
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Aug 2019 18:24:04 +0200 (CEST)
-Received: from [::1] (port=33200 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23ED77FFD6
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Aug 2019 19:45:30 +0200 (CEST)
+Received: from [::1] (port=54014 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1htaLZ-00086U-M2; Fri, 02 Aug 2019 12:24:01 -0400
-Received: from llmx2.ll.mit.edu ([129.55.12.48]:58840)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92)
- (envelope-from <prvs=311797ba2c=kirsten.leong@ll.mit.edu>)
- id 1htaLV-0007zS-UV
- for usrp-users@lists.ettus.com; Fri, 02 Aug 2019 12:23:57 -0400
-Received: from LLE2K16-MBX02.mitll.ad.local (LLE2K16-MBX02.mitll.ad.local) by
- llmx2.ll.mit.edu (unknown) with ESMTPS id x72GNBnW020655;
- Fri, 2 Aug 2019 12:23:12 -0400
-To: Lars Kuger <lku@inets.rwth-aachen.de>, "usrp-users@lists.ettus.com"
- <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Error 'Timeout on Chan 0'
-Thread-Index: AQHVSTk+DumZtfyjQEeLOgqLax5LnaboKYGA///hNwA=
-Date: Fri, 2 Aug 2019 16:23:09 +0000
-Message-ID: <255EAC65-3DFA-4CBC-AADD-3CD78FAEB801@ll.mit.edu>
+	id 1htbcO-0007xV-9g; Fri, 02 Aug 2019 13:45:28 -0400
+Received: from mail-lf1-f53.google.com ([209.85.167.53]:43262)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1htbcL-0007kU-8X
+ for usrp-users@lists.ettus.com; Fri, 02 Aug 2019 13:45:25 -0400
+Received: by mail-lf1-f53.google.com with SMTP id c19so53500510lfm.10
+ for <usrp-users@lists.ettus.com>; Fri, 02 Aug 2019 10:45:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=oEG7TrA1ApwEPu2vgAfMzjUjyKFUuBLLRoLrHRNgYOo=;
+ b=OVAAKCeUxbDcnh7UE9khr+iU1xET5dUq8ZNhZgZq6VTl1BX6d9WcvnUL0IJ+GXzDMz
+ 6OJdpf+wmDj3low9meEg/VLKkPaL2f5hzJCTriFAHgcPqKCX6tzLE2qi74wH57bi2kZQ
+ InXqICo6SPmNzW9fX/8O2Jm+wzx6OPQwzRIh6zeK8ZSmYVqap0StC7FYKQWge8q8t5mG
+ FexjriWYqhfZB3zq6cOlWW94URpBPkbW2wL2rYr1ewuwk3SgJwpa4jdyJqm1ZKP04zJW
+ 1iErv3SBfX2FgXgUl7TOwwR9uU7AtnMKi4fzvRIJkBRkzHI3xmy0qJLUJtnInvM5AzIm
+ uE5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=oEG7TrA1ApwEPu2vgAfMzjUjyKFUuBLLRoLrHRNgYOo=;
+ b=ApYfMqoIHI4ogMmNh8GSaU5tQZ5ZOOJxwRUCWWduAAOQN/zbwqWBaJguaU+5eTh0Ow
+ 2GytQ2qrpVct2soLEzuwR/RwRyebOE8GlDrHagYv/ySQ9vMRuj7RNpySXkPPEJL310oV
+ N0HgubJshQGBxbuCPng+mZ5J0VtDVp58frCwZ+zPFG11nHyJQbnfAi8CHWS/pIaxeVIW
+ glazC8dqR0f7TAuqM6FsM9HG5c/AoejBco78Wl73Oel0zPUKrwQAxlq2ifWDCYMeTYWX
+ ZeI6V86l39akfEEZxRFRljz2G+e+BsL425nU+bZZfTfJosGRz/LYuYTEB2C7FXy6Ymbd
+ o1jg==
+X-Gm-Message-State: APjAAAULC2W7zDuh+LLqsu+sIqrjYFL/+ZrgUoO3OWrdudEqAyTbmx5c
+ 7GdKNQzv2T8mllU4Fhbtxvzt2tN1Az2m5K2/qjD+wblk
+X-Google-Smtp-Source: APXvYqyH80sgBK9WQa+vLz2LS///hgHUp4OOdVffxNGp/bHNYw0RBPy39ObJm8iHYcqUJ3LW6iDECeSwrO9GoIl1+1c=
+X-Received: by 2002:ac2:5bc7:: with SMTP id u7mr30468691lfn.167.1564767883866; 
+ Fri, 02 Aug 2019 10:44:43 -0700 (PDT)
+MIME-Version: 1.0
 References: <0DDB54B1-7013-468B-B0FB-CB0262804513@contoso.com>
  <c82d5049-525c-f985-fabc-7b29b2687225@inets.rwth-aachen.de>
-In-Reply-To: <c82d5049-525c-f985-fabc-7b29b2687225@inets.rwth-aachen.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.1.90]
-Content-Type: multipart/mixed;
- boundary="_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_"
-MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
- definitions=2019-08-02_07:, , signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1906280000 definitions=main-1908020167
+ <255EAC65-3DFA-4CBC-AADD-3CD78FAEB801@ll.mit.edu>
+In-Reply-To: <255EAC65-3DFA-4CBC-AADD-3CD78FAEB801@ll.mit.edu>
+Date: Sat, 3 Aug 2019 02:44:08 +0900
+Message-ID: <CAL7q81tXWQ3nPPqQYeFTLx5dg9_6UgHXgW3k7P8AqH07FVwL+A@mail.gmail.com>
+To: "Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>
 Subject: Re: [USRP-users] Error 'Timeout on Chan 0'
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -53,9 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Leong,
- Kirsten - 0551 - MITLL via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============1879132974690028830=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -69,213 +78,206 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
-Content-Type: multipart/alternative;
-	boundary="_000_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_"
+--===============1879132974690028830==
+Content-Type: multipart/alternative; boundary="000000000000dfccfc058f25e99c"
 
---_000_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000dfccfc058f25e99c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SSB0cmllZCByZWZvcm1hdHRpbmcgdGhlIHhtbCBmaWxlIGJhc2VkIG9mZiB0aGUgdWhkX3Jmbm9j
-X2FkZGVyLnhtbCBmaWxlOyBob3dldmVyLCBJIHN0aWxsIGdldCB0aGUgc2FtZSBlcnJvci4gSeKA
-mW0gbm90IHRyeWluZyB0byB0aHJvdyBhbnkgcGFja2V0cyBhd2F5IHNvIEkgY2Fubm90IGlnbm9y
-ZSB0aGUgZXJyb3IuIE15IGJsb2NrIGlzIGV4cGVjdGluZyB0byB0YWtlIGluIGEgY29tcGxleCAz
-MmJpdCBmbG9hdHMgYW5kIG91dHB1dCBhIDMyIGJpdCBmbG9hdC4NCg0KRnJvbTogVVNSUC11c2Vy
-cyA8dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbT4gb24gYmVoYWxmIG9mIExhcnMg
-S3VnZXIgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KUmVwbHkt
-VG86IExhcnMgS3VnZXIgPGxrdUBpbmV0cy5yd3RoLWFhY2hlbi5kZT4NCkRhdGU6IEZyaWRheSwg
-QXVndXN0IDIsIDIwMTkgYXQgMTA6MTQgQU0NClRvOiAidXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vy
-c10gRXJyb3IgJ1RpbWVvdXQgb24gQ2hhbiAwJw0KDQoNCkhlbGxvIEtpcnN0ZW4sDQoNCkkgcmVt
-ZW1iZXIgZ2V0dGluZyB0aGUgc2FtZSBlcnJvciBtZXNzYWdlIHdoaWxlIGRldmVsb3BpbmcgYSBj
-dXN0b20gUkZOb0MgYmxvY2suIEkgZm91bmQgdGhlIHByb2JsZW0gdG8gYmUgY2F1c2VkIGJ5IHRo
-ZSBjb3JyZXNwb25kaW5nIHhtbCBmaWxlIHdoaWNoIGlzIGxvY2F0ZWQgaW4gdGhlIGdyYyBmb2xk
-ZXIuIEkgYW0gbm90IHN1cmUgd2hhdCBwYXJ0IG9mIHRoZSBmaWxlIGV4YWN0bHkgY2F1c2VkIHRo
-ZSBlcnJvciBtZXNzYWdlIChtYXliZSB0aGUgb3JkZXJpbmcgb2YgdGhlIHBhcmFtZXRlcnMgb3Ig
-dGFncyB3aXRoaW4gdGhlIHBhcmFtZXRlcnMpIGJ1dCBJIGV2ZW50dWFsbHkgc29sdmVkIGl0IGJ5
-IHJlcGxhY2luZyB0aGUgZmlsZSB3aXRoIHRoZSB4bWwgZmlsZSBmcm9tIGEgd29ya2luZyBibG9j
-ayBhbmQgbW9kaWZ5aW5nIHRoYXQgb25lLg0KDQpCZXN0IHJlZ2FyZHMsDQpMYXJzDQoNCg0KT24g
-MDIuMDguMTkgMTU6NTAsIExlb25nLCBLaXJzdGVuIC0gMDU1MSAtIE1JVExMIHZpYSBVU1JQLXVz
-ZXJzIHdyb3RlOg0KSGVsbG8sDQoNCkkgYW0gdXNpbmcgYSBVU1JQIFgzMTAgYW5kIGFtIHVzaW5n
-IGdudXJhZGlvIGNvbXBhbmlvbiB0byB0ZXN0IGEgY3VzdG9tIGJsb2NrLiBUaGUgY3VycmVudCBk
-aWFncmFtIGZsb3dzIGFzIGZvbGxvd3M6IEZpbGUgU291cmNlLT5SRk5vQyBGSUZPLT5jdXN0b20g
-YmxvY2stPmNvbXBsZXggdG8gaW1hZ2UtPmZyZXF1ZW5jeSBzaW5rLiBIb3dldmVyLCB3aGVuIEkg
-dHJ5IHRvIGV4ZWN1dGUsIEkgZ2V0IHRoZSBlcnJvciDigJh0aW1lb3V0IG9uIGNoYW4gMOKAmS4g
-TXkgdGVzdGJlbmNoIHBhc3NlcyBhbGwgNSBjYXNlczsgSSBjYW4gcmVhZCBzaWduYWxzIG9uIHRo
-ZSBpbnB1dHMgYW5kIG91dHB1dHMgb2YgdGhlIG5vYyBibG9jayBhbmQgdGhlIGZsb3cgZ3JhcGgg
-d29ya3Mgb25jZSBJIHJlbW92ZSBteSBjdXN0b20gYmxvY2suIFdoZXJlIGVsc2Ugc2hvdWxkIEkg
-YmUgbG9va2luZz8NCg0KVGhhbmtzLA0KS2lyc3Rlbg0KDQoNCg0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QN
-Cg0KVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPg0KDQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
-c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
+Hi Kirsten,
 
---_000_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <6E3AEDF4916C3944AEAC1B4E409C78FD@ll.mit.edu>
-Content-Transfer-Encoding: base64
+Have you used chipscope on your block and checked that it is sending out
+samples? If not, I would suggest at minimum looking at the status of the
+m_data and s_data AXI stream buses on AXI wrapper. Here is a guide on how
+to setup chipscope: https://kb.ettus.com/Debugging_FPGA_images
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFz
-Ow0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
-ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
-aW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1m
-YW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0K
-CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRp
-b246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXtt
-c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246
-dW5kZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxp
-bms6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRv
-bTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3
-Ijt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1z
-dHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4t
-cmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBp
-bjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
-O30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5I
-VE1MUHJlZm9ybWF0dGVkQ2hhcg0KCXttc28tc3R5bGUtbmFtZToiSFRNTCBQcmVmb3JtYXR0ZWQg
-Q2hhciI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFBy
-ZWZvcm1hdHRlZCI7DQoJZm9udC1mYW1pbHk6Q29uc29sYXM7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjIN
-Cgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmki
-LHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
-c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRT
-ZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4g
-MS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0
-eWxlPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIj
-OTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+SSB0cmllZCByZWZvcm1hdHRpbmcgdGhl
-IHhtbCBmaWxlIGJhc2VkIG9mZiB0aGUgdWhkX3Jmbm9jX2FkZGVyLnhtbCBmaWxlOyBob3dldmVy
-LCBJIHN0aWxsIGdldCB0aGUgc2FtZSBlcnJvci4gSeKAmW0gbm90IHRyeWluZyB0byB0aHJvdyBh
-bnkgcGFja2V0cyBhd2F5IHNvIEkgY2Fubm90IGlnbm9yZSB0aGUgZXJyb3IuIE15IGJsb2NrIGlz
-IGV4cGVjdGluZyB0bw0KIHRha2UgaW4gYSBjb21wbGV4IDMyYml0IGZsb2F0cyBhbmQgb3V0cHV0
-IGEgMzIgYml0IGZsb2F0LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYg
-MS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-Yj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPkZyb206IDwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9
-ImNvbG9yOmJsYWNrIj5VU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzLWJvdW5jZXNAbGlzdHMuZXR0
-dXMuY29tJmd0OyBvbiBiZWhhbGYgb2YgTGFycyBLdWdlciB2aWEgVVNSUC11c2VycyAmbHQ7dXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+UmVwbHktVG86IDwvYj5MYXJzIEt1
-Z2VyICZsdDtsa3VAaW5ldHMucnd0aC1hYWNoZW4uZGUmZ3Q7PGJyPg0KPGI+RGF0ZTogPC9iPkZy
-aWRheSwgQXVndXN0IDIsIDIwMTkgYXQgMTA6MTQgQU08YnI+DQo8Yj5UbzogPC9iPiZxdW90O3Vz
-cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJnF1b3Q7ICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OiA8L2I+UmU6IFtVU1JQLXVzZXJzXSBFcnJvciAnVGlt
-ZW91dCBvbiBDaGFuIDAnPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPHA+SGVsbG8gS2lyc3Rlbiw8bzpwPjwvbzpw
-PjwvcD4NCjxwPkkgcmVtZW1iZXIgZ2V0dGluZyB0aGUgc2FtZSBlcnJvciBtZXNzYWdlIHdoaWxl
-IGRldmVsb3BpbmcgYSBjdXN0b20gUkZOb0MgYmxvY2suIEkgZm91bmQgdGhlIHByb2JsZW0gdG8g
-YmUgY2F1c2VkIGJ5IHRoZSBjb3JyZXNwb25kaW5nIHhtbCBmaWxlIHdoaWNoIGlzIGxvY2F0ZWQg
-aW4gdGhlIGdyYyBmb2xkZXIuIEkgYW0gbm90IHN1cmUgd2hhdCBwYXJ0IG9mIHRoZSBmaWxlIGV4
-YWN0bHkgY2F1c2VkIHRoZSBlcnJvciBtZXNzYWdlIChtYXliZQ0KIHRoZSBvcmRlcmluZyBvZiB0
-aGUgcGFyYW1ldGVycyBvciB0YWdzIHdpdGhpbiB0aGUgcGFyYW1ldGVycykgYnV0IEkgZXZlbnR1
-YWxseSBzb2x2ZWQgaXQgYnkgcmVwbGFjaW5nIHRoZSBmaWxlIHdpdGggdGhlIHhtbCBmaWxlIGZy
-b20gYSB3b3JraW5nIGJsb2NrIGFuZCBtb2RpZnlpbmcgdGhhdCBvbmUuPG86cD48L286cD48L3A+
-DQo8cD5CZXN0IHJlZ2FyZHMsPGJyPg0KTGFyczxvOnA+PC9vOnA+PC9wPg0KPHA+PG86cD4mbmJz
-cDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMDIuMDguMTkgMTU6
-NTAsIExlb25nLCBLaXJzdGVuIC0gMDU1MSAtIE1JVExMIHZpYSBVU1JQLXVzZXJzIHdyb3RlOjxv
-OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBw
-dDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0Ij5IZWxsbyw8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Jm5ic3A7PC9zcGFu
-PjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQiPkkgYW0gdXNpbmcgYSBVU1JQIFgzMTAgYW5kIGFtIHVzaW5nIGdudXJhZGlv
-IGNvbXBhbmlvbiB0byB0ZXN0IGEgY3VzdG9tIGJsb2NrLiBUaGUgY3VycmVudCBkaWFncmFtIGZs
-b3dzIGFzIGZvbGxvd3M6IEZpbGUgU291cmNlLSZndDtSRk5vQyBGSUZPLSZndDtjdXN0b20gYmxv
-Y2stJmd0O2NvbXBsZXggdG8gaW1hZ2UtJmd0O2ZyZXF1ZW5jeSBzaW5rLiBIb3dldmVyLCB3aGVu
-IEkNCiB0cnkgdG8gZXhlY3V0ZSwgSSBnZXQgdGhlIGVycm9yIOKAmHRpbWVvdXQgb24gY2hhbiAw
-4oCZLiBNeSB0ZXN0YmVuY2ggcGFzc2VzIGFsbCA1IGNhc2VzOyBJIGNhbiByZWFkIHNpZ25hbHMg
-b24gdGhlIGlucHV0cyBhbmQgb3V0cHV0cyBvZiB0aGUgbm9jIGJsb2NrIGFuZCB0aGUgZmxvdyBn
-cmFwaCB3b3JrcyBvbmNlIEkgcmVtb3ZlIG15IGN1c3RvbSBibG9jay4gV2hlcmUgZWxzZSBzaG91
-bGQgSSBiZSBsb29raW5nPzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij4mbmJzcDs8L3NwYW4+PG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dCI+VGhhbmtzLDwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5LaXJzdGVuPC9zcGFuPjxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxi
-cj4NCjxicj4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwcmU+X19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX188bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5VU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxhIGhyZWY9Im1haWx0
-bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
-L2E+PG86cD48L286cD48L3ByZT4NCjxwcmU+PGEgaHJlZj0iaHR0cDovL2xpc3RzLmV0dHVzLmNv
-bS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tIj5odHRwOi8vbGlz
-dHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb208
-L2E+PG86cD48L286cD48L3ByZT4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
-dG1sPg0K
+Jonathon
 
---_000_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_--
+On Sat, Aug 3, 2019 at 1:24 AM Leong, Kirsten - 0551 - MITLL via USRP-users
+<usrp-users@lists.ettus.com> wrote:
 
---_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
-Content-Type: application/xml; name="fmdemod_fmdemod.xml"
-Content-Description: fmdemod_fmdemod.xml
-Content-Disposition: attachment; filename="fmdemod_fmdemod.xml"; size=2893;
-	creation-date="Fri, 02 Aug 2019 16:23:09 GMT";
-	modification-date="Fri, 02 Aug 2019 16:23:09 GMT"
-Content-ID: <9F1D61400F8EEA428A3060E8252360B3@ll.mit.edu>
-Content-Transfer-Encoding: base64
+> I tried reformatting the xml file based off the uhd_rfnoc_adder.xml file;
+> however, I still get the same error. I=E2=80=99m not trying to throw any =
+packets
+> away so I cannot ignore the error. My block is expecting to take in a
+> complex 32bit floats and output a 32 bit float.
+>
+>
+>
+> *From: *USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Lars
+> Kuger via USRP-users <usrp-users@lists.ettus.com>
+> *Reply-To: *Lars Kuger <lku@inets.rwth-aachen.de>
+> *Date: *Friday, August 2, 2019 at 10:14 AM
+> *To: *"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+> *Subject: *Re: [USRP-users] Error 'Timeout on Chan 0'
+>
+>
+>
+> Hello Kirsten,
+>
+> I remember getting the same error message while developing a custom RFNoC
+> block. I found the problem to be caused by the corresponding xml file whi=
+ch
+> is located in the grc folder. I am not sure what part of the file exactly
+> caused the error message (maybe the ordering of the parameters or tags
+> within the parameters) but I eventually solved it by replacing the file
+> with the xml file from a working block and modifying that one.
+>
+> Best regards,
+> Lars
+>
+>
+>
+> On 02.08.19 15:50, Leong, Kirsten - 0551 - MITLL via USRP-users wrote:
+>
+> Hello,
+>
+>
+>
+> I am using a USRP X310 and am using gnuradio companion to test a custom
+> block. The current diagram flows as follows: File Source->RFNoC
+> FIFO->custom block->complex to image->frequency sink. However, when I try
+> to execute, I get the error =E2=80=98timeout on chan 0=E2=80=99. My testb=
+ench passes all 5
+> cases; I can read signals on the inputs and outputs of the noc block and
+> the flow graph works once I remove my custom block. Where else should I b=
+e
+> looking?
+>
+>
+>
+> Thanks,
+>
+> Kirsten
+>
+>
+>
+> _______________________________________________
+>
+> USRP-users mailing list
+>
+> USRP-users@lists.ettus.com
+>
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxibG9jaz4KICA8bmFtZT5SRk5vQzogZm1kZW1vZDwvbmFt
-ZT4KICA8a2V5PmZtZGVtb2RfZm1kZW1vZDwva2V5PgogIDxjYXRlZ29yeT5mbWRlbW9kPC9jYXRl
-Z29yeT4KICA8aW1wb3J0PmltcG9ydCBldHR1czwvaW1wb3J0PgogIDxtYWtlPmV0dHVzLnJmbm9j
-X2dlbmVyaWMoCiAgICAgICAgICBzZWxmLmRldmljZTMsCiAgICAgICAgICB1aGQuc3RyZWFtX2Fy
-Z3MoICMgVFggU3RyZWFtIEFyZ3MKICAgICAgICAgICAgICAgIGNwdV9mb3JtYXQ9IiR0eXBlIiwK
-ICAgICAgICAgICAgICAgIG90d19mb3JtYXQ9InNjMTYiLAogICAgICAgICAgICAgICAgYXJncz0i
-Z3Jfdmxlbj17MH0sezF9Ii5mb3JtYXQoJHtncnZsZW59LCAiIiBpZiAkZ3J2bGVuID09IDEgZWxz
-ZSAic3BwPXswfSIuZm9ybWF0KCRncnZsZW4pKSwKICAgICAgICAgICksCiAgICAgICAgICB1aGQu
-c3RyZWFtX2FyZ3MoICMgUlggU3RyZWFtIEFyZ3MKICAgICAgICAgICAgICAgIGNwdV9mb3JtYXQ9
-IiR0eXBlIiwKICAgICAgICAgICAgICAgIG90d19mb3JtYXQ9InNjMTYiLAogICAgICAgICAgICAg
-ICAgYXJncz0iZ3Jfdmxlbj17MH0sezF9Ii5mb3JtYXQoJHtncnZsZW59LCAiIiBpZiAkZ3J2bGVu
-ID09IDEgZWxzZSAic3BwPXswfSIuZm9ybWF0KCRncnZsZW4pKSwKICAgICAgICAgICksCiAgICAg
-ICAgICAiZm1kZW1vZCIsICRibG9ja19pbmRleCwkZGV2aWNlX2luZGV4CiAgICAgICAgICAKICAp
-PC9tYWtlPgogIDwhLS0gTWFrZSBvbmUgJ3BhcmFtJyBub2RlIGZvciBldmVyeSBQYXJhbWV0ZXIg
-eW91IHdhbnQgc2V0dGFibGUgZnJvbSB0aGUgR1VJLgogICAgICAgU3ViLW5vZGVzOgogICAgICAg
-KiBuYW1lCiAgICAgICAqIGtleSAobWFrZXMgdGhlIHZhbHVlIGFjY2Vzc2libGUgYXMgJGtleW5h
-bWUsIGUuZy4gaW4gdGhlIG1ha2Ugbm9kZSkKICAgICAgICogdHlwZSAtLT4KCiAgPHBhcmFtPgog
-ICAgPG5hbWU+SG9zdCBEYXRhIFR5cGU8L25hbWU+CiAgICA8a2V5PnR5cGU8L2tleT4KICAgIDx0
-eXBlPmVudW08L3R5cGU+CiAgICA8b3B0aW9uPgogICAgICA8bmFtZT5Db21wbGV4IGZsb2F0MzI8
-L25hbWU+CiAgICAgIDxrZXk+ZmMzMjwva2V5PgogICAgICA8b3B0PnR5cGU6Y29tcGxleDwvb3B0
-PgogICAgPC9vcHRpb24+CiAgICA8b3B0aW9uPgogICAgICA8bmFtZT5Db21wbGV4IGludDE2PC9u
-YW1lPgogICAgICA8a2V5PnNjMTY8L2tleT4KICAgICAgPG9wdD50eXBlOnNjMTY8L29wdD4KICAg
-IDwvb3B0aW9uPgogICAgPG9wdGlvbj4KICAgICAgPG5hbWU+Qnl0ZTwvbmFtZT4KICAgICAgPGtl
-eT51ODwva2V5PgogICAgICA8b3B0PnR5cGU6Ynl0ZTwvb3B0PgogICAgPC9vcHRpb24+CiAgICA8
-b3B0aW9uPgogICAgICA8bmFtZT5WSVRBIHdvcmQzMjwvbmFtZT4KICAgICAgPGtleT5pdGVtMzI8
-L2tleT4KICAgICAgPG9wdD50eXBlOnMzMjwvb3B0PgogICAgPC9vcHRpb24+CiAgPC9wYXJhbT4K
-ICA8IS0tUkZOb0MgYmFzaWMgYmxvY2sgY29uZmlndXJhdGlvbiAtLT4KICA8cGFyYW0+CiAgICA8
-bmFtZT5EZXZpY2UgU2VsZWN0PC9uYW1lPgogICAgPGtleT5kZXZpY2VfaW5kZXg8L2tleT4KICAg
-IDx2YWx1ZT4tMTwvdmFsdWU+CiAgICA8dHlwZT5pbnQ8L3R5cGU+CiAgICA8aGlkZT4jaWYgaW50
-KCRkZXZpY2VfaW5kZXgoKSkgJmx0OyAwIHRoZW4gJ3BhcnQnIGVsc2UgJ25vbmUnIzwvaGlkZT4K
-ICAgIDx0YWI+UkZOb0MgQ29uZmlnPC90YWI+CiAgPC9wYXJhbT4KCiAgPHBhcmFtPgogICAgPG5h
-bWU+Zm1kZW1vZCBTZWxlY3Q8L25hbWU+CiAgICA8a2V5PmJsb2NrX2luZGV4PC9rZXk+CiAgICA8
-dmFsdWU+LTE8L3ZhbHVlPgogICAgPHR5cGU+aW50PC90eXBlPgogICAgPGhpZGU+I2lmIGludCgk
-YmxvY2tfaW5kZXgoKSkgJmx0OyAwIHRoZW4gJ3BhcnQnIGVsc2UgJ25vbmUnIzwvaGlkZT4KICAg
-IDx0YWI+UkZOb0MgQ29uZmlnPC90YWI+CiAgPC9wYXJhbT4KCiAgPHBhcmFtPgogICAgPG5hbWU+
-RlBHQSBNb2R1bGUgTmFtZTwvbmFtZT4KICAgIDxrZXk+ZnBnYV9tb2R1bGVfbmFtZTwva2V5Pgog
-ICAgPHZhbHVlPm5vY19ibG9ja19mbWRlbW9kPC92YWx1ZT4KICAgIDx0eXBlPnN0cmluZzwvdHlw
-ZT4KICAgIDxoaWRlPmFsbDwvaGlkZT4KICAgIDx0YWI+UkZOb0MgQ29uZmlnPC90YWI+CiAgPC9w
-YXJhbT4KCiAgPHBhcmFtPgogICAgPG5hbWU+Rm9yY2UgVmVjdG9yIExlbmd0aDwvbmFtZT4KICAg
-IDxrZXk+Z3J2bGVuPC9rZXk+CiAgICA8dmFsdWU+MTwvdmFsdWU+CiAgICA8dHlwZT5pbnQ8L3R5
-cGU+CiAgPC9wYXJhbT4KCgogIDwhLS0gTWFrZSBvbmUgJ3NpbmsnIG5vZGUgcGVyIGlucHV0LiBT
-dWItbm9kZXM6CiAgICAgICAqIG5hbWUgKGFuIGlkZW50aWZpZXIgZm9yIHRoZSBHVUkpCiAgICAg
-ICAqIHR5cGUKICAgICAgICogdmxlbgogICAgICAgKiBvcHRpb25hbCAoc2V0IHRvIDEgZm9yIG9w
-dGlvbmFsIGlucHV0cykgLS0+CiAgPHNpbms+CiAgICA8bmFtZT5pbjwvbmFtZT4KICAgIDx0eXBl
-PmNvbXBsZXg8L3R5cGU+CiAgICA8dmxlbj4kZ3J2bGVuPC92bGVuPgogICAgPGRvbWFpbj5yZm5v
-YzwvZG9tYWluPgogIDwvc2luaz4KCiAgPCEtLSBNYWtlIG9uZSAnc291cmNlJyBub2RlIHBlciBv
-dXRwdXQuIFN1Yi1ub2RlczoKICAgICAgICogbmFtZSAoYW4gaWRlbnRpZmllciBmb3IgdGhlIEdV
-SSkKICAgICAgICogdHlwZQogICAgICAgKiB2bGVuCiAgICAgICAqIG9wdGlvbmFsIChzZXQgdG8g
-MSBmb3Igb3B0aW9uYWwgaW5wdXRzKSAtLT4KICA8c291cmNlPgogICAgPG5hbWU+b3V0PC9uYW1l
-PgogICAgPHR5cGU+Y29tcGxleDwvdHlwZT4KICAgIDx2bGVuPiRncnZsZW48L3ZsZW4+CiAgICA8
-ZG9tYWluPnJmbm9jPC9kb21haW4+CiAgPC9zb3VyY2U+CjwvYmxvY2s+Cg==
+--000000000000dfccfc058f25e99c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_
+<div dir=3D"ltr">Hi Kirsten,<div><br></div><div>Have you used chipscope on =
+your block and checked that it is sending out samples? If not, I would sugg=
+est at minimum looking at the status of the m_data and s_data AXI stream bu=
+ses on AXI wrapper. Here is a guide on how to setup chipscope:=C2=A0<a href=
+=3D"https://kb.ettus.com/Debugging_FPGA_images">https://kb.ettus.com/Debugg=
+ing_FPGA_images</a></div><div><br></div><div>Jonathon</div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Aug 3, 2=
+019 at 1:24 AM Leong, Kirsten - 0551 - MITLL via USRP-users &lt;<a href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_7078713150829722262WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">I tried reformatting =
+the xml file based off the uhd_rfnoc_adder.xml file; however, I still get t=
+he same error. I=E2=80=99m not trying to throw any packets away so I cannot=
+ ignore the error. My block is expecting to
+ take in a complex 32bit floats and output a 32 bit float.<u></u><u></u></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(181,196,223);padding:3pt 0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"color:black">From: </span></b><spa=
+n style=3D"color:black">USRP-users &lt;<a href=3D"mailto:usrp-users-bounces=
+@lists.ettus.com" target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&=
+gt; on behalf of Lars Kuger via USRP-users &lt;<a href=3D"mailto:usrp-users=
+@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Reply-To: </b>Lars Kuger &lt;<a href=3D"mailto:lku@inets.rwth-aachen.de"=
+ target=3D"_blank">lku@inets.rwth-aachen.de</a>&gt;<br>
+<b>Date: </b>Friday, August 2, 2019 at 10:14 AM<br>
+<b>To: </b>&quot;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_b=
+lank">usrp-users@lists.ettus.com</a>&quot; &lt;<a href=3D"mailto:usrp-users=
+@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject: </b>Re: [USRP-users] Error &#39;Timeout on Chan 0&#39;<u></u><u=
+></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+</div>
+<p>Hello Kirsten,<u></u><u></u></p>
+<p>I remember getting the same error message while developing a custom RFNo=
+C block. I found the problem to be caused by the corresponding xml file whi=
+ch is located in the grc folder. I am not sure what part of the file exactl=
+y caused the error message (maybe
+ the ordering of the parameters or tags within the parameters) but I eventu=
+ally solved it by replacing the file with the xml file from a working block=
+ and modifying that one.<u></u><u></u></p>
+<p>Best regards,<br>
+Lars<u></u><u></u></p>
+<p><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">On 02.08.19 15:50, Leong, Kirsten - 0551 - MITLL via=
+ USRP-users wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Hello,</span><u></u><=
+u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0</span><u></u><=
+u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">I am using a USRP X31=
+0 and am using gnuradio companion to test a custom block. The current diagr=
+am flows as follows: File Source-&gt;RFNoC FIFO-&gt;custom block-&gt;comple=
+x to image-&gt;frequency sink. However, when I
+ try to execute, I get the error =E2=80=98timeout on chan 0=E2=80=99. My te=
+stbench passes all 5 cases; I can read signals on the inputs and outputs of=
+ the noc block and the flow graph works once I remove my custom block. Wher=
+e else should I be looking?</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0</span><u></u><=
+u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thanks,</span><u></u>=
+<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Kirsten</span><u></u>=
+<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><br>
+<br>
+<u></u><u></u></span></p>
+<pre>_______________________________________________<u></u><u></u></pre>
+<pre>USRP-users mailing list<u></u><u></u></pre>
+<pre><a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><u></u><u></u></pre>
+<pre><a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-use=
+rs_lists.ettus.com</a><u></u><u></u></pre>
+</blockquote>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000dfccfc058f25e99c--
+
+
+--===============1879132974690028830==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -286,5 +288,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_004_255EAC653DFA4CBCAADD3CD78FAEB801llmitedu_--
+--===============1879132974690028830==--
 
