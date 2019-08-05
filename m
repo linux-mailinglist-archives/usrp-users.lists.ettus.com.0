@@ -2,44 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429B481DDE
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Aug 2019 15:49:46 +0200 (CEST)
-Received: from [::1] (port=43698 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31442820AF
+	for <lists+usrp-users@lfdr.de>; Mon,  5 Aug 2019 17:48:17 +0200 (CEST)
+Received: from [::1] (port=42980 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hudMp-0004vI-Vv; Mon, 05 Aug 2019 09:49:39 -0400
-Received: from llmx2.ll.mit.edu ([129.55.12.48]:59218)
+	id 1hufDW-0006VP-Mp; Mon, 05 Aug 2019 11:48:10 -0400
+Received: from mail-out-1.itc.rwth-aachen.de ([134.130.5.46]:27487)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92)
- (envelope-from <prvs=312024d872=kirsten.leong@ll.mit.edu>)
- id 1hudMl-0004pq-E5
- for usrp-users@lists.ettus.com; Mon, 05 Aug 2019 09:49:35 -0400
-Received: from LLE2K16-MBX03.mitll.ad.local (LLE2K16-MBX03.mitll.ad.local) by
- llmx2.ll.mit.edu (unknown) with ESMTPS id x75DmmiY027913;
- Mon, 5 Aug 2019 09:48:48 -0400
-To: Lars Kuger <lku@inets.rwth-aachen.de>, "usrp-users@lists.ettus.com"
- <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Error 'Timeout on Chan 0'
-Thread-Index: AQHVSTk+DumZtfyjQEeLOgqLax5LnaboKYGA///hNwCABIvpAA==
-Date: Mon, 5 Aug 2019 13:48:47 +0000
-Message-ID: <C5ABC132-D9B2-4032-9C99-1FC373C139CF@ll.mit.edu>
+ (Exim 4.92) (envelope-from <lku@inets.rwth-aachen.de>)
+ id 1hufDP-000661-DQ
+ for usrp-users@lists.ettus.com; Mon, 05 Aug 2019 11:48:03 -0400
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DhDwA9T0hd//3egoZmDg4BAQEEAQEHB?=
+ =?us-ascii?q?AEBgWeBFlMvbVIyKoQej0OBYi2JZZEdCQEBAQEBAQEBAQgYAQoJAQIBAYQ/AoJ?=
+ =?us-ascii?q?vIzgTAQMBAQUBAQEBBm2FHgyFSgEBAQEDAQEhBEUCCBECCxEDAQIBJwMCAhsMA?=
+ =?us-ascii?q?R4JCAYBDAYCAQGDHgGBdhQPrAN/Mx+FKoMugUgFgS+EcoZxF4FAP4ERJ4JrPoJ?=
+ =?us-ascii?q?hAQSBfhaCVYJYBIw4nmgJgTlkhXxgiDaFBgYbgi9tiiUFJ4o8jUeHWJBAgT0qI?=
+ =?us-ascii?q?T6BGjMaCBwUO4IEaAmGKoYzg2U9PTMBAYEEAQGNNAEB?=
+X-IPAS-Result: =?us-ascii?q?A2DhDwA9T0hd//3egoZmDg4BAQEEAQEHBAEBgWeBFlMvbVI?=
+ =?us-ascii?q?yKoQej0OBYi2JZZEdCQEBAQEBAQEBAQgYAQoJAQIBAYQ/AoJvIzgTAQMBAQUBA?=
+ =?us-ascii?q?QEBBm2FHgyFSgEBAQEDAQEhBEUCCBECCxEDAQIBJwMCAhsMAR4JCAYBDAYCAQG?=
+ =?us-ascii?q?DHgGBdhQPrAN/Mx+FKoMugUgFgS+EcoZxF4FAP4ERJ4JrPoJhAQSBfhaCVYJYB?=
+ =?us-ascii?q?Iw4nmgJgTlkhXxgiDaFBgYbgi9tiiUFJ4o8jUeHWJBAgT0qIT6BGjMaCBwUO4I?=
+ =?us-ascii?q?EaAmGKoYzg2U9PTMBAYEEAQGNNAEB?=
+X-IronPort-AV: E=Sophos;i="5.64,350,1559512800"; d="scan'208,217";a="86477935"
+Received: from gollum.mobnets.rwth-aachen.de ([134.130.222.253])
+ by mail-in-1.itc.rwth-aachen.de with ESMTP; 05 Aug 2019 17:47:01 +0200
+Received: from [134.61.159.108] (159-108.eduroam.rwth-aachen.de
+ [134.61.159.108])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by gollum.mobnets.rwth-aachen.de (Postfix) with ESMTPSA id 2CD72180160;
+ Mon,  5 Aug 2019 17:47:01 +0200 (CEST)
+To: "Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 References: <0DDB54B1-7013-468B-B0FB-CB0262804513@contoso.com>
  <c82d5049-525c-f985-fabc-7b29b2687225@inets.rwth-aachen.de>
  <255EAC65-3DFA-4CBC-AADD-3CD78FAEB801@ll.mit.edu>
-In-Reply-To: <255EAC65-3DFA-4CBC-AADD-3CD78FAEB801@ll.mit.edu>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.1.90]
+ <C5ABC132-D9B2-4032-9C99-1FC373C139CF@ll.mit.edu>
+Message-ID: <45ec654f-635e-f1df-836f-2a46b45f97a7@inets.rwth-aachen.de>
+Date: Mon, 5 Aug 2019 17:47:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
- definitions=2019-08-05_07:, , signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1906280000 definitions=main-1908050152
+In-Reply-To: <C5ABC132-D9B2-4032-9C99-1FC373C139CF@ll.mit.edu>
+Content-Language: en-US
 Subject: Re: [USRP-users] Error 'Timeout on Chan 0'
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -52,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Leong,
- Kirsten - 0551 - MITLL via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>
-Content-Type: multipart/mixed; boundary="===============1408554645585781138=="
+From: Lars Kuger via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lars Kuger <lku@inets.rwth-aachen.de>
+Content-Type: multipart/mixed; boundary="===============3599502753417292282=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -69,190 +76,321 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1408554645585781138==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============3599502753417292282==
 Content-Type: multipart/alternative;
-	boundary="_000_C5ABC132D9B240329C991FC373C139CFllmitedu_"
+ boundary="------------6DD3677AE999E4158A9D3F76"
+Content-Language: en-US
 
---_000_C5ABC132D9B240329C991FC373C139CFllmitedu_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------6DD3677AE999E4158A9D3F76
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Q291bGQgdGhpcyBiZSBiZWNhdXNlIEkgZ2V0IHRoZSB3YXJuaW5nIOKAmGNhbuKAmXQgZmluZCBh
-IGJsb2NrIGNvbnRyb2xsZXIgZm9yIGtleSBmbWRlbW9kLCB1c2luZyBkZWZhdWx0IGJsb2NrIGNv
-bnRyb2xsZXIh4oCZIG9yIGlzIHRoaXMgYSBzZXBhcmF0ZSBwcm9ibGVtPw0KDQpUaGFua3MsDQpL
-aXJzdGVuDQoNCkZyb206IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1
-cy5jb20+IG9uIGJlaGFsZiBvZiAiTGVvbmcsIEtpcnN0ZW4gLSAwNTUxIC0gTUlUTEwgdmlhIFVT
-UlAtdXNlcnMiIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClJlcGx5LVRvOiAiTGVvbmcs
-IEtpcnN0ZW4gLSAwNTUxIC0gTUlUTEwiIDxLaXJzdGVuLkxlb25nQGxsLm1pdC5lZHU+DQpEYXRl
-OiBGcmlkYXksIEF1Z3VzdCAyLCAyMDE5IGF0IDEyOjI1IFBNDQpUbzogTGFycyBLdWdlciA8bGt1
-QGluZXRzLnJ3dGgtYWFjaGVuLmRlPiwgInVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiA8dXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIEVycm9y
-ICdUaW1lb3V0IG9uIENoYW4gMCcNCg0KSSB0cmllZCByZWZvcm1hdHRpbmcgdGhlIHhtbCBmaWxl
-IGJhc2VkIG9mZiB0aGUgdWhkX3Jmbm9jX2FkZGVyLnhtbCBmaWxlOyBob3dldmVyLCBJIHN0aWxs
-IGdldCB0aGUgc2FtZSBlcnJvci4gSeKAmW0gbm90IHRyeWluZyB0byB0aHJvdyBhbnkgcGFja2V0
-cyBhd2F5IHNvIEkgY2Fubm90IGlnbm9yZSB0aGUgZXJyb3IuIE15IGJsb2NrIGlzIGV4cGVjdGlu
-ZyB0byB0YWtlIGluIGEgY29tcGxleCAzMmJpdCBmbG9hdHMgYW5kIG91dHB1dCBhIDMyIGJpdCBm
-bG9hdC4NCg0KRnJvbTogVVNSUC11c2VycyA8dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVz
-LmNvbT4gb24gYmVoYWxmIG9mIExhcnMgS3VnZXIgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tPg0KUmVwbHktVG86IExhcnMgS3VnZXIgPGxrdUBpbmV0cy5yd3RoLWFh
-Y2hlbi5kZT4NCkRhdGU6IEZyaWRheSwgQXVndXN0IDIsIDIwMTkgYXQgMTA6MTQgQU0NClRvOiAi
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4N
-ClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gRXJyb3IgJ1RpbWVvdXQgb24gQ2hhbiAwJw0KDQoN
-CkhlbGxvIEtpcnN0ZW4sDQoNCkkgcmVtZW1iZXIgZ2V0dGluZyB0aGUgc2FtZSBlcnJvciBtZXNz
-YWdlIHdoaWxlIGRldmVsb3BpbmcgYSBjdXN0b20gUkZOb0MgYmxvY2suIEkgZm91bmQgdGhlIHBy
-b2JsZW0gdG8gYmUgY2F1c2VkIGJ5IHRoZSBjb3JyZXNwb25kaW5nIHhtbCBmaWxlIHdoaWNoIGlz
-IGxvY2F0ZWQgaW4gdGhlIGdyYyBmb2xkZXIuIEkgYW0gbm90IHN1cmUgd2hhdCBwYXJ0IG9mIHRo
-ZSBmaWxlIGV4YWN0bHkgY2F1c2VkIHRoZSBlcnJvciBtZXNzYWdlIChtYXliZSB0aGUgb3JkZXJp
-bmcgb2YgdGhlIHBhcmFtZXRlcnMgb3IgdGFncyB3aXRoaW4gdGhlIHBhcmFtZXRlcnMpIGJ1dCBJ
-IGV2ZW50dWFsbHkgc29sdmVkIGl0IGJ5IHJlcGxhY2luZyB0aGUgZmlsZSB3aXRoIHRoZSB4bWwg
-ZmlsZSBmcm9tIGEgd29ya2luZyBibG9jayBhbmQgbW9kaWZ5aW5nIHRoYXQgb25lLg0KDQpCZXN0
-IHJlZ2FyZHMsDQpMYXJzDQoNCg0KT24gMDIuMDguMTkgMTU6NTAsIExlb25nLCBLaXJzdGVuIC0g
-MDU1MSAtIE1JVExMIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KSGVsbG8sDQoNCkkgYW0gdXNpbmcg
-YSBVU1JQIFgzMTAgYW5kIGFtIHVzaW5nIGdudXJhZGlvIGNvbXBhbmlvbiB0byB0ZXN0IGEgY3Vz
-dG9tIGJsb2NrLiBUaGUgY3VycmVudCBkaWFncmFtIGZsb3dzIGFzIGZvbGxvd3M6IEZpbGUgU291
-cmNlLT5SRk5vQyBGSUZPLT5jdXN0b20gYmxvY2stPmNvbXBsZXggdG8gaW1hZ2UtPmZyZXF1ZW5j
-eSBzaW5rLiBIb3dldmVyLCB3aGVuIEkgdHJ5IHRvIGV4ZWN1dGUsIEkgZ2V0IHRoZSBlcnJvciDi
-gJh0aW1lb3V0IG9uIGNoYW4gMOKAmS4gTXkgdGVzdGJlbmNoIHBhc3NlcyBhbGwgNSBjYXNlczsg
-SSBjYW4gcmVhZCBzaWduYWxzIG9uIHRoZSBpbnB1dHMgYW5kIG91dHB1dHMgb2YgdGhlIG5vYyBi
-bG9jayBhbmQgdGhlIGZsb3cgZ3JhcGggd29ya3Mgb25jZSBJIHJlbW92ZSBteSBjdXN0b20gYmxv
-Y2suIFdoZXJlIGVsc2Ugc2hvdWxkIEkgYmUgbG9va2luZz8NCg0KVGhhbmtzLA0KS2lyc3Rlbg0K
-DQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
-DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KDQpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxt
-YWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQoNCmh0dHA6Ly9saXN0cy5ldHR1cy5j
-b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
+Hi Kirsten,
 
---_000_C5ABC132D9B240329C991FC373C139CFllmitedu_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <AF7B93F942D76348A00EE745BAF253D4@ll.mit.edu>
-Content-Transfer-Encoding: base64
+Using the default block controller should work, so I would expect that 
+you can ignore that warning message.
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFz
-Ow0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
-ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
-aW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1m
-YW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0K
-CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRp
-b246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXtt
-c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246
-dW5kZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxp
-bms6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRv
-bTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3
-Ijt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1z
-dHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4t
-cmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBp
-bjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
-O30NCnNwYW4uSFRNTFByZWZvcm1hdHRlZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJl
-Zm9ybWF0dGVkIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGlu
-azoiSFRNTCBQcmVmb3JtYXR0ZWQiOw0KCWZvbnQtZmFtaWx5OkNvbnNvbGFzO30NCnNwYW4uRW1h
-aWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxp
-YnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjEN
-Cgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMt
-c2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFuLkVtYWlsU3R5bGUyMw0KCXttc28tc3R5
-bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
-ZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBl
-OmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJ
-e3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpk
-aXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+DQo8L2hl
-YWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0K
-PGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0Ij5Db3VsZCB0aGlzIGJlIGJlY2F1c2UgSSBnZXQgdGhlIHdh
-cm5pbmcg4oCYY2Fu4oCZdCBmaW5kIGEgYmxvY2sgY29udHJvbGxlciBmb3Iga2V5IGZtZGVtb2Qs
-IHVzaW5nIGRlZmF1bHQgYmxvY2sgY29udHJvbGxlciHigJkgb3IgaXMgdGhpcyBhIHNlcGFyYXRl
-IHByb2JsZW0/PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5UaGFu
-a3MsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQiPktpcnN0ZW48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJz
-cDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpz
-b2xpZCAjQjVDNERGIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj5Gcm9tOiA8L3NwYW4+PC9i
-PjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+VVNSUC11c2VycyAmbHQ7dXNycC11c2Vycy1ib3Vu
-Y2VzQGxpc3RzLmV0dHVzLmNvbSZndDsgb24gYmVoYWxmIG9mICZxdW90O0xlb25nLCBLaXJzdGVu
-IC0gMDU1MSAtIE1JVExMIHZpYSBVU1JQLXVzZXJzJnF1b3Q7ICZsdDt1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5SZXBseS1UbzogPC9iPiZxdW90O0xlb25nLCBLaXJzdGVu
-IC0gMDU1MSAtIE1JVExMJnF1b3Q7ICZsdDtLaXJzdGVuLkxlb25nQGxsLm1pdC5lZHUmZ3Q7PGJy
-Pg0KPGI+RGF0ZTogPC9iPkZyaWRheSwgQXVndXN0IDIsIDIwMTkgYXQgMTI6MjUgUE08YnI+DQo8
-Yj5UbzogPC9iPkxhcnMgS3VnZXIgJmx0O2xrdUBpbmV0cy5yd3RoLWFhY2hlbi5kZSZndDssICZx
-dW90O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJnF1b3Q7ICZsdDt1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OiA8L2I+UmU6IFtVU1JQLXVzZXJzXSBFcnJv
-ciAnVGltZW91dCBvbiBDaGFuIDAnPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPkkgdHJpZWQgcmVmb3JtYXR0aW5nIHRoZSB4
-bWwgZmlsZSBiYXNlZCBvZmYgdGhlIHVoZF9yZm5vY19hZGRlci54bWwgZmlsZTsgaG93ZXZlciwg
-SSBzdGlsbCBnZXQgdGhlIHNhbWUgZXJyb3IuIEnigJltIG5vdCB0cnlpbmcgdG8gdGhyb3cgYW55
-IHBhY2tldHMgYXdheSBzbyBJIGNhbm5vdCBpZ25vcmUgdGhlIGVycm9yLiBNeSBibG9jayBpcyBl
-eHBlY3RpbmcgdG8NCiB0YWtlIGluIGEgY29tcGxleCAzMmJpdCBmbG9hdHMgYW5kIG91dHB1dCBh
-IDMyIGJpdCBmbG9hdC48L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+
-PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEu
-MHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+
-PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj5Gcm9tOiA8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJj
-b2xvcjpibGFjayI+VVNSUC11c2VycyAmbHQ7dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVz
-LmNvbSZndDsgb24gYmVoYWxmIG9mIExhcnMgS3VnZXIgdmlhIFVTUlAtdXNlcnMgJmx0O3VzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlJlcGx5LVRvOiA8L2I+TGFycyBLdWdl
-ciAmbHQ7bGt1QGluZXRzLnJ3dGgtYWFjaGVuLmRlJmd0Ozxicj4NCjxiPkRhdGU6IDwvYj5Gcmlk
-YXksIEF1Z3VzdCAyLCAyMDE5IGF0IDEwOjE0IEFNPGJyPg0KPGI+VG86IDwvYj4mcXVvdDt1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZxdW90OyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20mZ3Q7PGJyPg0KPGI+U3ViamVjdDogPC9iPlJlOiBbVVNSUC11c2Vyc10gRXJyb3IgJ1RpbWVv
-dXQgb24gQ2hhbiAwJzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij4mbmJzcDs8L3Nw
-YW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwPkhlbGxvIEtpcnN0ZW4sPG86cD48L286cD48
-L3A+DQo8cD5JIHJlbWVtYmVyIGdldHRpbmcgdGhlIHNhbWUgZXJyb3IgbWVzc2FnZSB3aGlsZSBk
-ZXZlbG9waW5nIGEgY3VzdG9tIFJGTm9DIGJsb2NrLiBJIGZvdW5kIHRoZSBwcm9ibGVtIHRvIGJl
-IGNhdXNlZCBieSB0aGUgY29ycmVzcG9uZGluZyB4bWwgZmlsZSB3aGljaCBpcyBsb2NhdGVkIGlu
-IHRoZSBncmMgZm9sZGVyLiBJIGFtIG5vdCBzdXJlIHdoYXQgcGFydCBvZiB0aGUgZmlsZSBleGFj
-dGx5IGNhdXNlZCB0aGUgZXJyb3IgbWVzc2FnZSAobWF5YmUNCiB0aGUgb3JkZXJpbmcgb2YgdGhl
-IHBhcmFtZXRlcnMgb3IgdGFncyB3aXRoaW4gdGhlIHBhcmFtZXRlcnMpIGJ1dCBJIGV2ZW50dWFs
-bHkgc29sdmVkIGl0IGJ5IHJlcGxhY2luZyB0aGUgZmlsZSB3aXRoIHRoZSB4bWwgZmlsZSBmcm9t
-IGEgd29ya2luZyBibG9jayBhbmQgbW9kaWZ5aW5nIHRoYXQgb25lLjxvOnA+PC9vOnA+PC9wPg0K
-PHA+QmVzdCByZWdhcmRzLDxicj4NCkxhcnM8bzpwPjwvbzpwPjwvcD4NCjxwPiZuYnNwOzxvOnA+
-PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDAyLjA4LjE5IDE1OjUw
-LCBMZW9uZywgS2lyc3RlbiAtIDA1NTEgLSBNSVRMTCB2aWEgVVNSUC11c2VycyB3cm90ZTo8bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7
-bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdCI+SGVsbG8sPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPiZuYnNwOzwvc3Bhbj48
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0Ij5JIGFtIHVzaW5nIGEgVVNSUCBYMzEwIGFuZCBhbSB1c2luZyBnbnVyYWRpbyBj
-b21wYW5pb24gdG8gdGVzdCBhIGN1c3RvbSBibG9jay4gVGhlIGN1cnJlbnQgZGlhZ3JhbSBmbG93
-cyBhcyBmb2xsb3dzOiBGaWxlIFNvdXJjZS0mZ3Q7UkZOb0MgRklGTy0mZ3Q7Y3VzdG9tIGJsb2Nr
-LSZndDtjb21wbGV4IHRvIGltYWdlLSZndDtmcmVxdWVuY3kgc2luay4gSG93ZXZlciwgd2hlbiBJ
-DQogdHJ5IHRvIGV4ZWN1dGUsIEkgZ2V0IHRoZSBlcnJvciDigJh0aW1lb3V0IG9uIGNoYW4gMOKA
-mS4gTXkgdGVzdGJlbmNoIHBhc3NlcyBhbGwgNSBjYXNlczsgSSBjYW4gcmVhZCBzaWduYWxzIG9u
-IHRoZSBpbnB1dHMgYW5kIG91dHB1dHMgb2YgdGhlIG5vYyBibG9jayBhbmQgdGhlIGZsb3cgZ3Jh
-cGggd29ya3Mgb25jZSBJIHJlbW92ZSBteSBjdXN0b20gYmxvY2suIFdoZXJlIGVsc2Ugc2hvdWxk
-IEkgYmUgbG9va2luZz88L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
-PlRoYW5rcyw8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+S2lyc3Rlbjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48YnI+
-DQo8YnI+DQo8YnI+DQo8L3NwYW4+PG86cD48L286cD48L3A+DQo8cHJlPl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPG86cD48L286cD48L3ByZT4NCjxwcmU+
-VVNSUC11c2VycyBtYWlsaW5nIGxpc3Q8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48YSBocmVmPSJt
-YWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxhIGhyZWY9Imh0dHA6Ly9saXN0cy5ldHR1
-cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbSI+aHR0cDov
-L2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMu
-Y29tPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvYm9keT4N
-CjwvaHRtbD4NCg==
+In addition to Jonathon's suggestion of using chipscope on your block 
+you could try to narrow down whether the error is caused in your verilog 
+module or in some other file. For instance, what happens if you comment 
+out your code and copy and paste some working verilog code into your 
+module, e.g. from the RFNoC tutorial gain block (or just have a simple 
+loopback)? If the error disappears I would conclude that the error 
+should be somewhere in the fmdemod verilog code.
 
---_000_C5ABC132D9B240329C991FC373C139CFllmitedu_--
+Best regards,
+Lars
 
 
---===============1408554645585781138==
+On 05.08.19 15:48, Leong, Kirsten - 0551 - MITLL wrote:
+>
+> Could this be because I get the warning ‘can’t find a block controller 
+> for key fmdemod, using default block controller!’ or is this a 
+> separate problem?
+>
+> Thanks,
+>
+> Kirsten
+>
+> *From: *USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of 
+> "Leong, Kirsten - 0551 - MITLL via USRP-users" 
+> <usrp-users@lists.ettus.com>
+> *Reply-To: *"Leong, Kirsten - 0551 - MITLL" <Kirsten.Leong@ll.mit.edu>
+> *Date: *Friday, August 2, 2019 at 12:25 PM
+> *To: *Lars Kuger <lku@inets.rwth-aachen.de>, 
+> "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+> *Subject: *Re: [USRP-users] Error 'Timeout on Chan 0'
+>
+> I tried reformatting the xml file based off the uhd_rfnoc_adder.xml 
+> file; however, I still get the same error. I’m not trying to throw any 
+> packets away so I cannot ignore the error. My block is expecting to 
+> take in a complex 32bit floats and output a 32 bit float.
+>
+> *From: *USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of 
+> Lars Kuger via USRP-users <usrp-users@lists.ettus.com>
+> *Reply-To: *Lars Kuger <lku@inets.rwth-aachen.de>
+> *Date: *Friday, August 2, 2019 at 10:14 AM
+> *To: *"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+> *Subject: *Re: [USRP-users] Error 'Timeout on Chan 0'
+>
+> Hello Kirsten,
+>
+> I remember getting the same error message while developing a custom 
+> RFNoC block. I found the problem to be caused by the corresponding xml 
+> file which is located in the grc folder. I am not sure what part of 
+> the file exactly caused the error message (maybe the ordering of the 
+> parameters or tags within the parameters) but I eventually solved it 
+> by replacing the file with the xml file from a working block and 
+> modifying that one.
+>
+> Best regards,
+> Lars
+>
+> On 02.08.19 15:50, Leong, Kirsten - 0551 - MITLL via USRP-users wrote:
+>
+>     Hello,
+>
+>     I am using a USRP X310 and am using gnuradio companion to test a
+>     custom block. The current diagram flows as follows: File
+>     Source->RFNoC FIFO->custom block->complex to image->frequency
+>     sink. However, when I try to execute, I get the error ‘timeout on
+>     chan 0’. My testbench passes all 5 cases; I can read signals on
+>     the inputs and outputs of the noc block and the flow graph works
+>     once I remove my custom block. Where else should I be looking?
+>
+>     Thanks,
+>
+>     Kirsten
+>
+>
+>
+>
+>     _______________________________________________
+>
+>     USRP-users mailing list
+>
+>     USRP-users@lists.ettus.com  <mailto:USRP-users@lists.ettus.com>
+>
+>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+-- 
+Lars Kuger, M.Sc.
+Institute for Networked Systems (iNETS)
+RWTH Aachen University
+Kackertstrasse 9, 52072 Aachen, Germany
+Phone: +49 241 80 20915
+
+
+--------------6DD3677AE999E4158A9D3F76
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hi Kirsten,<br>
+    </p>
+    <p>Using the default block controller should work, so I would expect
+      that you can ignore that warning message.</p>
+    <p>In addition to Jonathon's suggestion of using chipscope on your
+      block you could try to narrow down whether the error is caused in
+      your verilog module or in some other file. For instance, what
+      happens if you comment out your code and copy and paste some
+      working verilog code into your module, e.g. from the RFNoC
+      tutorial gain block (or just have a simple loopback)? If the error
+      disappears I would conclude that the error should be somewhere in
+      the fmdemod verilog code.</p>
+    <p>Best regards,<br>
+      Lars<br>
+    </p>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 05.08.19 15:48, Leong, Kirsten -
+      0551 - MITLL wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:C5ABC132-D9B2-4032-9C99-1FC373C139CF@ll.mit.edu">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle23
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+      <div class="WordSection1">
+        <p class="MsoNormal"><span style="font-size:11.0pt">Could this
+            be because I get the warning ‘can’t find a block controller
+            for key fmdemod, using default block controller!’ or is this
+            a separate problem?<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt">Thanks,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt">Kirsten<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt"><o:p> </o:p></span></p>
+        <div style="border:none;border-top:solid #B5C4DF
+          1.0pt;padding:3.0pt 0in 0in 0in">
+          <p class="MsoNormal"><b><span style="color:black">From: </span></b><span
+              style="color:black">USRP-users
+              <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users-bounces@lists.ettus.com">&lt;usrp-users-bounces@lists.ettus.com&gt;</a> on behalf of
+              "Leong, Kirsten - 0551 - MITLL via USRP-users"
+              <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
+              <b>Reply-To: </b>"Leong, Kirsten - 0551 - MITLL"
+              <a class="moz-txt-link-rfc2396E" href="mailto:Kirsten.Leong@ll.mit.edu">&lt;Kirsten.Leong@ll.mit.edu&gt;</a><br>
+              <b>Date: </b>Friday, August 2, 2019 at 12:25 PM<br>
+              <b>To: </b>Lars Kuger <a class="moz-txt-link-rfc2396E" href="mailto:lku@inets.rwth-aachen.de">&lt;lku@inets.rwth-aachen.de&gt;</a>,
+              <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">"usrp-users@lists.ettus.com"</a>
+              <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
+              <b>Subject: </b>Re: [USRP-users] Error 'Timeout on Chan
+              0'<o:p></o:p></span></p>
+        </div>
+        <div>
+          <p class="MsoNormal"><span style="font-size:11.0pt"><o:p> </o:p></span></p>
+        </div>
+        <p class="MsoNormal"><span style="font-size:11.0pt">I tried
+            reformatting the xml file based off the uhd_rfnoc_adder.xml
+            file; however, I still get the same error. I’m not trying to
+            throw any packets away so I cannot ignore the error. My
+            block is expecting to take in a complex 32bit floats and
+            output a 32 bit float.</span><o:p></o:p></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt"> </span><o:p></o:p></p>
+        <div style="border:none;border-top:solid #B5C4DF
+          1.0pt;padding:3.0pt 0in 0in 0in">
+          <p class="MsoNormal"><b><span style="color:black">From: </span></b><span
+              style="color:black">USRP-users
+              <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users-bounces@lists.ettus.com">&lt;usrp-users-bounces@lists.ettus.com&gt;</a> on behalf of
+              Lars Kuger via USRP-users
+              <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
+              <b>Reply-To: </b>Lars Kuger
+              <a class="moz-txt-link-rfc2396E" href="mailto:lku@inets.rwth-aachen.de">&lt;lku@inets.rwth-aachen.de&gt;</a><br>
+              <b>Date: </b>Friday, August 2, 2019 at 10:14 AM<br>
+              <b>To: </b><a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">"usrp-users@lists.ettus.com"</a>
+              <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
+              <b>Subject: </b>Re: [USRP-users] Error 'Timeout on Chan
+              0'</span><o:p></o:p></p>
+        </div>
+        <div>
+          <p class="MsoNormal"><span style="font-size:11.0pt"> </span><o:p></o:p></p>
+        </div>
+        <p>Hello Kirsten,<o:p></o:p></p>
+        <p>I remember getting the same error message while developing a
+          custom RFNoC block. I found the problem to be caused by the
+          corresponding xml file which is located in the grc folder. I
+          am not sure what part of the file exactly caused the error
+          message (maybe the ordering of the parameters or tags within
+          the parameters) but I eventually solved it by replacing the
+          file with the xml file from a working block and modifying that
+          one.<o:p></o:p></p>
+        <p>Best regards,<br>
+          Lars<o:p></o:p></p>
+        <p> <o:p></o:p></p>
+        <div>
+          <p class="MsoNormal">On 02.08.19 15:50, Leong, Kirsten - 0551
+            - MITLL via USRP-users wrote:<o:p></o:p></p>
+        </div>
+        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+          <p class="MsoNormal"><span style="font-size:11.0pt">Hello,</span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"> </span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt">I am using
+              a USRP X310 and am using gnuradio companion to test a
+              custom block. The current diagram flows as follows: File
+              Source-&gt;RFNoC FIFO-&gt;custom block-&gt;complex to
+              image-&gt;frequency sink. However, when I try to execute,
+              I get the error ‘timeout on chan 0’. My testbench passes
+              all 5 cases; I can read signals on the inputs and outputs
+              of the noc block and the flow graph works once I remove my
+              custom block. Where else should I be looking?</span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"> </span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt">Thanks,</span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt">Kirsten</span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"><br>
+              <br>
+              <br>
+            </span><o:p></o:p></p>
+          <pre>_______________________________________________<o:p></o:p></pre>
+          <pre>USRP-users mailing list<o:p></o:p></pre>
+          <pre><a href="mailto:USRP-users@lists.ettus.com" moz-do-not-send="true">USRP-users@lists.ettus.com</a><o:p></o:p></pre>
+          <pre><a href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><o:p></o:p></pre>
+        </blockquote>
+      </div>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+Lars Kuger, M.Sc.
+Institute for Networked Systems (iNETS)
+RWTH Aachen University
+Kackertstrasse 9, 52072 Aachen, Germany
+Phone: +49 241 80 20915</pre>
+  </body>
+</html>
+
+--------------6DD3677AE999E4158A9D3F76--
+
+
+--===============3599502753417292282==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -263,5 +401,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1408554645585781138==--
+--===============3599502753417292282==--
 
