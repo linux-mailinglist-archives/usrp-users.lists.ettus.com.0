@@ -2,42 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF6C82D99
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Aug 2019 10:18:41 +0200 (CEST)
-Received: from [::1] (port=45630 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8504F82E87
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Aug 2019 11:17:40 +0200 (CEST)
+Received: from [::1] (port=51492 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1huug2-0000Or-DO; Tue, 06 Aug 2019 04:18:38 -0400
-Received: from mx1.hrz.uni-dortmund.de ([129.217.128.51]:32983
- helo=unimail.uni-dortmund.de)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <felix.greiwe@tu-dortmund.de>)
- id 1huufy-0000Id-42
- for usrp-users@lists.ettus.com; Tue, 06 Aug 2019 04:18:34 -0400
-Received: from webmail.tu-dortmund.de (webmail.tu-dortmund.de [129.217.131.82])
- (authenticated bits=0)
- by unimail.uni-dortmund.de (8.16.0.41/8.16.0.41) with ESMTPSA id
- x768Hqpb015193
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <usrp-users@lists.ettus.com>; Tue, 6 Aug 2019 10:17:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tu-dortmund.de;
- s=unimail; t=1565079472;
- bh=rdTx7xwT4eo9B+mIjNFSsJTSRAfAvUDE6MYhHG8fwpA=;
- h=Date:Subject:From:To:Reply-To;
- b=Zub+zrbTZbWrT/MJrIOQAkhc5j3lgFYyr6N0+MZQTQ/xA15t9Js3dr6AgVi9qjG49
- eHuyKhgt3nrU0hOXcTZ43W9Cl9/VhTCMgfTw7AksQKd/9At6S4/VtMEpVMF56hk9HV
- TpxRo00YLDtLayYO1rk1s55CqpnpjaVl02UpL4B4=
-Received: from 129.217.182.66 (SquirrelMail authenticated user smfegrei)
- by webmail.tu-dortmund.de with HTTP; Tue, 6 Aug 2019 10:17:51 +0200
-Message-ID: <b5ec3d13a71a04254eee5d1387f84a1b.squirrel@webmail.tu-dortmund.de>
-Date: Tue, 6 Aug 2019 10:17:51 +0200
-To: usrp-users@lists.ettus.com
-User-Agent: SquirrelMail/1.4.23 [SVN]
+	id 1huvb8-0002Vr-Ln; Tue, 06 Aug 2019 05:17:38 -0400
+Received: from mail-ot1-f72.google.com ([209.85.210.72]:42333)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <mikio@dolphinsystem.jp>)
+ id 1huvb5-0002R2-3X
+ for usrp-users@lists.ettus.com; Tue, 06 Aug 2019 05:17:35 -0400
+Received: by mail-ot1-f72.google.com with SMTP id x18so48665740otp.9
+ for <usrp-users@lists.ettus.com>; Tue, 06 Aug 2019 02:17:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dolphinsystem-jp.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=VRdSIq9PdiwVbKsmcWV9dlWi9E9u2Q9XQn5SP0+SUXo=;
+ b=uBX3oub7ijHAFJF9b9nuWHMGdDHwgw4+EZKxRUjKAL/mqP9Lal2eCTz5cSX4htHbQn
+ ZAFZi8NbElp5aaINXkN2YckAbU9uwgA+MiHLcXJ6WzQuNsW9E1ufrFO5VZ67U8nZVrce
+ 0udkHIBiKG+wpaGyhhwxldBfHTbzqKHY7lhecbLtJg1dFvgTpQNruSRI5mpLLFPm2g28
+ Yq2KGfxQ/+Nf9NUhP1PySm3Cp+6bkEBZQ5wGR5QLXU2q0l5UzjcDq6Nl38kkHE8Um+Ml
+ SB0GC4IhuIfQEueAiMQm/5xUbBfI9JWZU0xN8WJUfDHI5WDVUkPTH+zbeFDOmAvtfNkt
+ tjEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=VRdSIq9PdiwVbKsmcWV9dlWi9E9u2Q9XQn5SP0+SUXo=;
+ b=tFLV4xh7Bew9Fd7p7i5OgMk6wubsYMhgict+USOLO9Uz8upILdyyH2KSLMR/jEPyHq
+ unnvUm8/nKwBl5lqI9iFHy6+PHTmbZybkztUySr8ZnNe5WaqnbKKlVljdcsbaQNEjLe0
+ /wb2sNi3S561pneQz8cG8C+kpUiYV9oXhBMKgswburzBxsjhStY+bAbMZYHWNVQeYIz1
+ WsEBaI0Ut8lAjHI3PRmj59OZVVNZXt6ioS2/BHqtLJG+EOf6j84qiKC5rvzD7OwsLgMi
+ igME5r6ADRek5xCaWU2Hta7mevOPYJ6xaQeN5Pe+5Og3tmclt6Ho5Q/zUtT1Z38Z4VHK
+ jjNg==
+X-Gm-Message-State: APjAAAXNTXLBfz5VHArjaLGfxj/xHP7LNSTnKY2r1xlwr7/JKiZHKNfs
+ 3DFuQFKV5AoseD3Vlk+BvV7AwVTJKlMqoCGX4jsyFg==
+X-Google-Smtp-Source: APXvYqxRDeEu6QXoRPWKAzGHUtzEitt/neOQ1s1chhoShrDP3sQaD9uPjMxUdXxw3PwJBZeDCHF25wJTIi9Bg2vP4lI=
+X-Received: by 2002:a9d:73cb:: with SMTP id m11mr2030564otk.276.1565083014097; 
+ Tue, 06 Aug 2019 02:16:54 -0700 (PDT)
 MIME-Version: 1.0
-X-Priority: 3 (Normal)
-Importance: Normal
-Subject: [USRP-users] RFNoC Issue with 32 Bit Axi Stream | Error in Concat
- to 64 Bit | VHDL
+References: <CABfZwcdKyO0+zUTd5oVcwrr=mAhScEroL_mwGDoEJ52+i+sAjg@mail.gmail.com>
+ <CAL263iw7Rwb4n-FJvnqOqtgev8AAx9uNvutVbNf2Q__cL1C6Hg@mail.gmail.com>
+ <CABfZwcdc9PR_dNbAaTbXaE7LxC6wE6+3mRuagXfkuyASHm0TrQ@mail.gmail.com>
+ <CAL263iy15x0bAE6CK_LQbnvbLk86=o5k_sk7CJzG_K_bXF+TDA@mail.gmail.com>
+ <CABfZwcf-YpuUKedeJQRt5yx6xhVbf6NNgC4cjcUOq=yUM6karA@mail.gmail.com>
+In-Reply-To: <CABfZwcf-YpuUKedeJQRt5yx6xhVbf6NNgC4cjcUOq=yUM6karA@mail.gmail.com>
+Date: Tue, 6 Aug 2019 18:16:19 +0900
+Message-ID: <CABfZwcfaknfASjCSUnd91bts+jAEjiZAiwxe8e7RrLVNR4U4vw@mail.gmail.com>
+To: Nate Temple <nate.temple@ettus.com>
+Subject: Re: [USRP-users] cmake error : Cross-Compiling GNU Radio on Ubuntu
+ 16.04
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -49,10 +64,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Felix Greiwe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: felix.greiwe@tu-dortmund.de
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: =?utf-8?b?56aP5bO25bm56ZuEIHZpYSBVU1JQLXVzZXJz?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?56aP5bO25bm56ZuE?= <mikio@dolphinsystem.jp>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3383211694146746490=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -66,45 +82,38 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hello together,
+--===============3383211694146746490==
+Content-Type: multipart/alternative; boundary="000000000000199d88058f6f49eb"
 
-recently i started RFNoC development using an USRP x310. After finishing
-the RFNoC getting started Guide i created an OOT Module including VHDL.
-First i simply forwarded the Input Data to the output which worked just
-fine. After that i wanted to add a constant, for example 5_dec., to my
-signal (32 Bit) and receive the sum as an output in the testbench. Here
-the problems started:
-Instead of receiving 5,6,7,8,9 for input of 0,1,2,3,4; i got
+--000000000000199d88058f6f49eb
+Content-Type: text/plain; charset="UTF-8"
 
-5+2^32+2^34
-6+2^32+2^34
-7+2^32+2^34 etc.
+Hi,
+I built the UHD and GRC with no error for a E310 as follow the updated
+procedure.
+Next I will try to build for E320 and Custom FPGA design.
+Thank you.
 
-I figured out, that i got the right results in 32 Bit, but that somewhere
-in the axi_wrapper and/or the noc_shell my results gets concatted to 64
-Bit, always using the first result (here the number 5) as the 32 msb's and
-the actual sum results as the lsb's thus changing my signal.
+Regards,
 
-Wondering, i tested some more stuff like just setting the lowest bit of 32
-Bit input Data Vector to one etc. and get the same problems of wrong
-vector connections.
+--000000000000199d88058f6f49eb
+Content-Type: text/html; charset="UTF-8"
 
-Only when i changed the width parameter of the axi_wrapper to 64 Bit (and
-also sending 64 Bit Data) i got the expected results.
+<div dir="ltr"><div>Hi, <br>I built the UHD and GRC with no error for a E310 as follow the updated procedure.<br>Next I will try to build for E320 and Custom FPGA design.</div><div>Thank you.<br><br></div><div>Regards,</div><div><br></div></div>
 
-Now my question: Is this a bug or am i maybe using the axi_wrapper wrong?
-I could not find an error comparing my code to the one of the
-tutorial_gain block.
-
-Any help to understand this is appreciated.
-
-Sincerly
-
-Felix
+--000000000000199d88058f6f49eb--
 
 
+--===============3383211694146746490==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3383211694146746490==--
+
