@@ -2,36 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 829D9832FA
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Aug 2019 15:41:43 +0200 (CEST)
-Received: from [::1] (port=45774 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F2983578
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Aug 2019 17:39:50 +0200 (CEST)
+Received: from [::1] (port=48758 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1huzie-0003cN-Tz; Tue, 06 Aug 2019 09:41:40 -0400
-Received: from mail.chora.dk ([87.48.158.238]:33160)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <tf@chora.dk>) id 1huzib-0003X5-7z
- for usrp-users@lists.ettus.com; Tue, 06 Aug 2019 09:41:37 -0400
-Received: from localhost (localhost [127.0.0.1])
- by mail.chora.dk (Postfix) with ESMTP id 049F438C3E1
- for <usrp-users@lists.ettus.com>; Tue,  6 Aug 2019 15:40:21 +0200 (CEST)
-Received: from mail.chora.dk ([127.0.0.1])
- by localhost (hardy.chora [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id eKYYSt18vMIn for <usrp-users@lists.ettus.com>;
- Tue,  6 Aug 2019 15:40:20 +0200 (CEST)
-Received: from tfabric (unknown [192.168.100.172])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: tf)
- by mail.chora.dk (Postfix) with ESMTPSA id E157438341E
- for <usrp-users@lists.ettus.com>; Tue,  6 Aug 2019 15:40:20 +0200 (CEST)
-To: <usrp-users@lists.ettus.com>
-Date: Tue, 6 Aug 2019 15:40:53 +0200
-Message-ID: <05fb01d54c5c$91486280$b3d92780$@chora.dk>
-MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdVMXISrlRRgqLbLRQakx5ZheFWjBQ==
-Content-Language: en-dk
-Subject: [USRP-users] b210 USB detect problem
+	id 1hv1Yy-0008RF-7O; Tue, 06 Aug 2019 11:39:48 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:44152)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
+ id 1hv1Yv-0008Lu-3L
+ for usrp-users@lists.ettus.com; Tue, 06 Aug 2019 11:39:45 -0400
+Received: by mail-wr1-f67.google.com with SMTP id p17so88353587wrf.11
+ for <usrp-users@lists.ettus.com>; Tue, 06 Aug 2019 08:39:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:organization
+ :mime-version:content-transfer-encoding;
+ bh=Lsn+NAIeC/+zRhpa/k/9G0g5TdElixnUALJTBO39m/c=;
+ b=e+u+7CEpTFGY66tdSphrJq6llbh9nDfs76+Camn6F8NNR1BGL1roSqtkOVbXIdJHSN
+ eQAHZwRt9EZP+jloMIQMWDeiwieYX6xR6TUFjWHRRgf4AuTTuwj+XDz/s482PSfsXvYl
+ 8AvFPq/UIhADqHNS7EA4oCOU3PFMv/612o9winPI6hD+r+M59jNPXXTrPavuv3wSyKMk
+ g+YTrFqXjLjPY8AVwyJSM6DDC4sCBs+nuVkWROUu+WUmyWBZpjNkXfnm5RoCaaNJmxac
+ sO8FHUOT8bWxr/nEzblRQGyvQ+pd9Gx63CYnZLy0eZPW/25fOAhs6Z+/yn8NWj+5bQpd
+ R/Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:organization:mime-version:content-transfer-encoding;
+ bh=Lsn+NAIeC/+zRhpa/k/9G0g5TdElixnUALJTBO39m/c=;
+ b=sdKKDX7OuBA4qhNJb6Tk54zUEIt3mSkHBSr832o+WDJVq8ebTLInc9qwpQ4xFnfuMj
+ fTeUdywce7Dhx2u9pR5AlKZfNFaELRLeJB96Tv2tzzzitmsmOMImOKvt6ARDcKsQQWjV
+ A9gcBcGzHoXk9xYHxOkBkg2bFt0xkve/Rk7JtjUMcbWnpXWZqOYKq1iQBaYpUhDRBGGL
+ MBobANRffsZY4D75fhmmt2yYs0D5/0SOBiOfmfvFIyST6YA5YUveEZVK69w23klynD3i
+ 4+gq5kQzWfazO4c46/J14F6YaMDbsTZCXVCGihEM/YTrp5hgCeyrrnoMOLBbczoJWcBz
+ BpaA==
+X-Gm-Message-State: APjAAAXBBraww/bscaIGp4CXo2vCtsyCttTxoyUqRrWGsoC1v0RemUG4
+ +SYHcsLUzXMA+5xT1WGc2I9jfGbomb7oRA==
+X-Google-Smtp-Source: APXvYqwrjNz+siM0ZGe5zOMkbfVTHY/KT1Qusa0yLfr+fYHiVi0TRuTcmG8HxSNVkZIH3vs0ABNiKQ==
+X-Received: by 2002:adf:ed8a:: with SMTP id c10mr5640254wro.33.1565105943931; 
+ Tue, 06 Aug 2019 08:39:03 -0700 (PDT)
+Received: from racer.hostalia.de ([2a00:1398:9:fb03:ff83:1873:1461:432e])
+ by smtp.gmail.com with ESMTPSA id e19sm122105259wra.71.2019.08.06.08.39.02
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 06 Aug 2019 08:39:03 -0700 (PDT)
+Message-ID: <604706a97ae63398191fff3a3a48d26ffe935a4e.camel@ettus.com>
+To: Thomas Fabricius <tf@chora.dk>, usrp-users@lists.ettus.com
+Date: Tue, 06 Aug 2019 17:39:02 +0200
+In-Reply-To: <05fb01d54c5c$91486280$b3d92780$@chora.dk>
+References: <05fb01d54c5c$91486280$b3d92780$@chora.dk>
+Organization: Ettus Research
+X-Mailer: Evolution 3.28.5 (3.28.5-3.fc28) 
+Mime-Version: 1.0
+Subject: Re: [USRP-users] b210 USB detect problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -43,9 +66,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Thomas Fabricius via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Thomas Fabricius <tf@chora.dk>
-Content-Type: multipart/mixed; boundary="===============8281228534362861855=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -59,456 +84,115 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multipart message in MIME format.
-
---===============8281228534362861855==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_05FC_01D54C6D.54D43FC0"
-Content-Language: en-dk
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_05FC_01D54C6D.54D43FC0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-we have a number b210s that has USB detect problems. We have equipment =
-where the power can suddenly disappear, and then the system does not =
-come up right and there is (yet) no programmatic way to resolve the =
-problem, so we have to get in physical contact with the system.
-
-Any one who knows of a workaround (pls. read below before =
-answering)=E2=80=A6
-
-=20
-
-*PC cannot detect B210 USB device on cold boot (after for instance a =
-power break)
-
-*The B210 USB device is simply not recognized by the PC.
-
-*The B210 has an attached GPSDO and external power attached.
-
-*This happens on multiple systems and cannot be attributed to a single =
-PC type nor B210 device.
-
-=20
-
-Steps to reproduce:
-
-1. Remove all power from PC and B210.
-
-2. Insert USB into PC.
-
-3. Apply power to the devices.
-
-4. Start the PC.
-
-5. The PC is after boot into linux to see the B210 board.
-
-6. Errors are displayed in the dmesg kernel log:
-
-=20
-
-[   23.884317] usb 1-4: new high-speed USB device number 3 using =
-xhci_hcd [   29.024313] usb 1-4: device descriptor read/64, error -110 [ =
-  44.640330] usb 1-4: device descriptor read/64, error -110 [   =
-44.748356] usb usb1-port4: attempt power cycle [   45.400311] usb 1-4: =
-new high-speed USB device number 4 using xhci_hcd [   56.240225] usb =
-1-4: device not accepting address 4, error -62 [   56.368230] usb 1-4: =
-new high-speed USB device number 5 using xhci_hcd [   66.992306] usb =
-1-4: device not accepting address 5, error -62 [   66.992363] usb =
-usb1-port4: unable to enumerate USB device
-
-=20
-
-The "device descriptor read/64, error -110" means that USB power drain =
-was exceeded by the USB device.
-
-=20
-
-7. Our application prints:
-
-=20
-
-Error: LookupError: KeyError: No devices found for -----> Device =
-Address:
-
-    num_recv_frames: 512
-
-=20
-
-8. The device is totally absent, so its not possible to for instance =
-run:  $UHD_INSTALL_PREFIX/utils/b2xx_fx3_utils --reset-device
-
-=20
-
-Workarounds that works:
-
-* Physically unplug the USB device and insert it again in the same USB =
-port. (sometimes it though seems like this does not work either, and one =
-need to switch to a new USB port on another USB HUB on the PC)
-
-=20
-
-* Physically press the reset switch (S700) on the B210.
-
-=20
-
-* Remove external power supply from B210 before cold boot.
-
-=20
-
-Workarounds that haven't worked:
-
-* Rebooting the PC, by software and/or by physically switching it off =
-and then on (power cable off and on).
-
-=20
-
-* Try to programmatically remove power from USB device:
-
-=20
-
-    lsusb
-
-    echo suspend > sudo tee /sys/bus/usb/devices/usb1/power/level
-
-    echo suspend > sudo tee /sys/bus/usb/devices/usb2/power/level
-
-    lsusb
-
-    echo on > sudo tee /sys/bus/usb/devices/usb1/power/level
-
-    echo on > sudo tee /sys/bus/usb/devices/usb2/power/level
-
-    lsusb
-
-=20
-
-* Try to remove the highspeed USB driver:
-
-=20
-
-    lsusb
-
-    echo "0000:00:14.0" | sudo tee /sys/bus/pci/drivers/xhci_hcd/unbind
-
-    lsusb
-
-    dmesg
-
-    echo "0000:00:14.0" | sudo tee /sys/bus/pci/drivers/xhci_hcd/bind
-
-    lsusb
-
-=20
-
-* Remove and re-enumerate the USB controller PCI device:
-
-=20
-
-    lsusb
-
-    lspci
-
-    echo 1 | sudo tee /sys/devices/pci0000\:00/0000\:00\:14.0/remove
-
-    lsusb
-
-    lspci
-
-    echo 1 | sudo tee /sys/bus/pci/rescan
-
-    lsusb
-
-    lspci
-
-=20
-
-Workarounds that haven't been tried:
-
-* Use an USB3 hub that is externally powered.
-
-* Install a larger capacitor in parallel with C716/S700 on the B210 =
-board to delay USB startup by the device. Somebody recall installing a =
-100uF capacitor. But this doesn=E2=80=99t seem like a root cause fix.
-
-* Circumvent power switching components (solder a short over Q600) such =
-that external power is always used and not disconnected before any USB =
-communication. Any side effects ?
-
-=20
-
-Root cause:
-
-We believe the root cause is the switching between USB and external =
-power, in the LTC4412 U609 circuit. If external power is removed before =
-cold boot, the device comes up correctly while external B210 power is =
-not attached.
-
-Also worth noting, is that this may only happen when a GPSDO is =
-attached. We haven't tried removing the GPSDO, since it is rather =
-fragile.
-
-Another =E2=80=9Cmalicious=E2=80=9D behavior is when external power is =
-on and USB is attached then Q600 will go on if it is not already on. =
-When USB is removed Q600 will stay on, ie. the circuitry will not come =
-back to the state it had when everything was powered on from scratch.
-
-=20
-
-=20
-
-
-------=_NextPart_000_05FC_01D54C6D.54D43FC0
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3Den-DK =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-US>Hi,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>we have a number b210s that has USB =
-detect problems. We have equipment where the power can suddenly =
-disappear, and then the system does not come up right and there is (yet) =
-no programmatic way to resolve the problem, so we have to get in =
-physical contact with the system.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Any one who knows of a workaround =
-(pls. read below before answering)=E2=80=A6<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>*PC cannot detect B210 USB =
-device on cold boot (after for instance a power =
-break)<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>*The B210 USB device is simply not recognized by the =
-PC.<o:p></o:p></span></p><p class=3DMsoPlainText><span lang=3DEN-US>*The =
-B210 has an attached GPSDO and external power =
-attached.<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>*This happens on multiple systems and cannot be attributed =
-to a single PC type nor B210 device.<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>Steps to =
-reproduce:<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>1. Remove all power from PC and =
-B210.<o:p></o:p></span></p><p class=3DMsoPlainText><span lang=3DEN-US>2. =
-Insert USB into PC.<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>3. Apply power to the devices.<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>4. Start the =
-PC.<o:p></o:p></span></p><p class=3DMsoPlainText><span lang=3DEN-US>5. =
-The PC is after boot into linux to see the B210 =
-board.<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>6. Errors are displayed in the dmesg kernel =
-log:<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp;&nbsp; 23.884317] usb 1-4: new high-speed USB device =
-number 3 using xhci_hcd [&nbsp;&nbsp; 29.024313] usb 1-4: device =
-descriptor read/64, error -110 [&nbsp;&nbsp; 44.640330] usb 1-4: device =
-descriptor read/64, error -110 [&nbsp;&nbsp; 44.748356] usb usb1-port4: =
-attempt power cycle [&nbsp;&nbsp; 45.400311] usb 1-4: new high-speed USB =
-device number 4 using xhci_hcd [&nbsp;&nbsp; 56.240225] usb 1-4: device =
-not accepting address 4, error -62 [&nbsp;&nbsp; 56.368230] usb 1-4: new =
-high-speed USB device number 5 using xhci_hcd [&nbsp;&nbsp; 66.992306] =
-usb 1-4: device not accepting address 5, error -62 [&nbsp;&nbsp; =
-66.992363] usb usb1-port4: unable to enumerate USB =
-device<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>The &quot;device descriptor read/64, error -110&quot; means =
-that USB power drain was exceeded by the USB =
-device.<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>7. Our application prints:<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>Error: LookupError: KeyError: No =
-devices found for -----&gt; Device Address:<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; =
-num_recv_frames: 512<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>8. The device is totally absent, so its not possible to for =
-instance run:</span><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black;ba=
-ckground:white'> =C2=A0$UHD_INSTALL_PREFIX/utils/b2xx_fx3_utils =
---reset-device<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>Workarounds that works:<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>* Physically unplug the USB =
-device and insert it again in the same USB port. (sometimes it though =
-seems like this does not work either, and one need to switch to a new =
-USB port on another USB HUB on the PC)<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>* Physically press the reset =
-switch (S700) on the B210.<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>* Remove external power supply =
-from B210 before cold boot.<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>Workarounds that haven't =
-worked:<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>* Rebooting the PC, by software and/or by physically =
-switching it off and then on (power cable off and =
-on).<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>* Try to programmatically remove power from USB =
-device:<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp; lsusb<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; echo suspend =
-&gt; sudo tee =
-/sys/bus/usb/devices/usb1/power/level<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; echo suspend =
-&gt; sudo tee =
-/sys/bus/usb/devices/usb2/power/level<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; =
-lsusb<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp; echo on &gt; sudo tee =
-/sys/bus/usb/devices/usb1/power/level<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; echo on &gt; =
-sudo tee /sys/bus/usb/devices/usb2/power/level<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; =
-lsusb<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>* Try to remove the highspeed USB =
-driver:<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp; lsusb<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; echo =
-&quot;0000:00:14.0&quot; | sudo tee =
-/sys/bus/pci/drivers/xhci_hcd/unbind<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; =
-lsusb<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp; dmesg<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; echo =
-&quot;0000:00:14.0&quot; | sudo tee =
-/sys/bus/pci/drivers/xhci_hcd/bind<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; =
-lsusb<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>* Remove and re-enumerate the USB controller PCI =
-device:<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp; lsusb<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; =
-lspci<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp; echo 1 | sudo tee =
-/sys/devices/pci0000\:00/0000\:00\:14.0/remove<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; =
-lsusb<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp; lspci<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; echo 1 | sudo =
-tee /sys/bus/pci/rescan<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; =
-lsusb<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>&nbsp;&nbsp;&nbsp; lspci<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>Workarounds that haven't been =
-tried:<o:p></o:p></span></p><p class=3DMsoPlainText><span lang=3DEN-US>* =
-Use an USB3 hub that is externally powered.<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>* Install a larger capacitor in =
-parallel with C716/S700 on the B210 board to delay USB startup by the =
-device. Somebody recall installing a 100uF capacitor. But this =
-doesn=E2=80=99t seem like a root cause fix.<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>* Circumvent power switching =
-components (solder a short over Q600) such that external power is always =
-used and not disconnected before any USB communication. Any side effects =
-?<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>Root cause:<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>We believe the root cause is the =
-switching between USB and external power, in the LTC4412 U609 circuit. =
-If external power is removed before cold boot, the device comes up =
-correctly while external B210 power is not =
-attached.<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>Also worth noting, is that this may only happen when a =
-GPSDO is attached. We haven't tried removing the GPSDO, since it is =
-rather fragile.<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>Another =E2=80=9Cmalicious=E2=80=9D behavior is when =
-external power is on and USB is attached then Q600 will go on if it is =
-not already on. When USB is removed Q600 will stay on, ie. the circuitry =
-will not come back to the state it had when everything was powered on =
-from scratch.<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
-------=_NextPart_000_05FC_01D54C6D.54D43FC0--
-
-
-
---===============8281228534362861855==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8281228534362861855==--
-
-
+SGkgVGhvbWFzLAoKbGV0IG1lIHF1aWNrbHkgYWRkcmVzcyBhIGZldyBvZiB0aGVzZSBpc3N1ZXMK
+T24gVHVlLCAyMDE5LTA4LTA2IGF0IDE1OjQwICswMjAwLCBUaG9tYXMgRmFicmljaXVzIHZpYSBV
+U1JQLXVzZXJzCndyb3RlOgo+IEhpLAo+IHdlIGhhdmUgYSBudW1iZXIgYjIxMHMgdGhhdCBoYXMg
+VVNCIGRldGVjdCBwcm9ibGVtcy4gV2UgaGF2ZQo+IGVxdWlwbWVudCB3aGVyZSB0aGUgcG93ZXIg
+Y2FuIHN1ZGRlbmx5IGRpc2FwcGVhciwgYW5kIHRoZW4gdGhlIHN5c3RlbQo+IGRvZXMgbm90IGNv
+bWUgdXAgcmlnaHQgYW5kIHRoZXJlIGlzICh5ZXQpIG5vIHByb2dyYW1tYXRpYyB3YXkgdG8KPiBy
+ZXNvbHZlIHRoZSBwcm9ibGVtLCBzbyB3ZSBoYXZlIHRvIGdldCBpbiBwaHlzaWNhbCBjb250YWN0
+IHdpdGggdGhlCj4gc3lzdGVtLgo+IEFueSBvbmUgd2hvIGtub3dzIG9mIGEgd29ya2Fyb3VuZCAo
+cGxzLiByZWFkIGJlbG93IGJlZm9yZSBhbnN3ZXJpbmcp4oCmCj4gIAo+ICpQQyBjYW5ub3QgZGV0
+ZWN0IEIyMTAgVVNCIGRldmljZSBvbiBjb2xkIGJvb3QgKGFmdGVyIGZvciBpbnN0YW5jZSBhCj4g
+cG93ZXIgYnJlYWspCgpJJ3ZlIHNlZW4gdGhhdCBiZWZvcmUgb24geDg2IGluZHVzdHJpYWwgUENz
+LiBJIHRoaW5rIGl0IG1pZ2h0IGJlIGEKY29tYmluYXRpb24gb2Ygb3ZlcnRhc2tlZCBvbi1ib2Fy
+ZCBVU0Igdm9sdGFnZSBzdXBwbGllcyBhbmQgVVNCIGhvc3QKY29udHJvbGxlciBmaXJtd2FyZS4K
+Cj4gKlRoZSBCMjEwIFVTQiBkZXZpY2UgaXMgc2ltcGx5IG5vdCByZWNvZ25pemVkIGJ5IHRoZSBQ
+Qy4KClRoYXQgbWVhbnMgaXQncyBub3QgaW4gYGxzdXNiYD8KCj4gKlRoZSBCMjEwIGhhcyBhbiBh
+dHRhY2hlZCBHUFNETyBhbmQgZXh0ZXJuYWwgcG93ZXIgYXR0YWNoZWQuCj4gCgpUaGF0IGF0IGxl
+YXN0IHJ1bGVzIG91dCBwb3dlciBzdXBwbHkgcHJvYmxlbXMuCgo+ICpUaGlzIGhhcHBlbnMgb24g
+bXVsdGlwbGUgc3lzdGVtcyBhbmQgY2Fubm90IGJlIGF0dHJpYnV0ZWQgdG8gYQo+IHNpbmdsZSBQ
+QyB0eXBlIG5vciBCMjEwIGRldmljZS4KCk9rLCBnb29kIHRvIGtub3chCgo+ICAKPiBTdGVwcyB0
+byByZXByb2R1Y2U6Cj4gMS4gUmVtb3ZlIGFsbCBwb3dlciBmcm9tIFBDIGFuZCBCMjEwLgo+IDIu
+IEluc2VydCBVU0IgaW50byBQQy4KPiAzLiBBcHBseSBwb3dlciB0byB0aGUgZGV2aWNlcy4KPiA0
+LiBTdGFydCB0aGUgUEMuCj4gNS4gVGhlIFBDIGlzIGFmdGVyIGJvb3QgaW50byBsaW51eCB0byBz
+ZWUgdGhlIEIyMTAgYm9hcmQuCj4gNi4gRXJyb3JzIGFyZSBkaXNwbGF5ZWQgaW4gdGhlIGRtZXNn
+IGtlcm5lbCBsb2c6Cj4gIAoKPiBbICAgMjMuODg0MzE3XSB1c2IgMS00OiBuZXcgaGlnaC1zcGVl
+ZCBVU0IgZGV2aWNlIG51bWJlciAzIHVzaW5nCj4geGhjaV9oY2QgWyAgIDI5LjAyNDMxM10gdXNi
+IDEtNDogZGV2aWNlIGRlc2NyaXB0b3IgcmVhZC82NCwgZXJyb3IKPiAtMTEwIFsgICA0NC42NDAz
+MzBdIHVzYiAxLTQ6IGRldmljZSBkZXNjcmlwdG9yIHJlYWQvNjQsIGVycm9yIC0xMTAKPiBbICAg
+NDQuNzQ4MzU2XSB1c2IgdXNiMS1wb3J0NDogYXR0ZW1wdCBwb3dlciBjeWNsZSBbICAgNDUuNDAw
+MzExXSB1c2IKPiAxLTQ6IG5ldyBoaWdoLXNwZWVkIFVTQiBkZXZpY2UgbnVtYmVyIDQgdXNpbmcg
+eGhjaV9oY2QgWyAgIDU2LjI0MDIyNV0KPiB1c2IgMS00OiBkZXZpY2Ugbm90IGFjY2VwdGluZyBh
+ZGRyZXNzIDQsIGVycm9yIC02MiBbICAgNTYuMzY4MjMwXSB1c2IKPiAxLTQ6IG5ldyBoaWdoLXNw
+ZWVkIFVTQiBkZXZpY2UgbnVtYmVyIDUgdXNpbmcgeGhjaV9oY2QgWyAgIDY2Ljk5MjMwNl0KPiB1
+c2IgMS00OiBkZXZpY2Ugbm90IGFjY2VwdGluZyBhZGRyZXNzIDUsIGVycm9yIC02MiBbICAgNjYu
+OTkyMzYzXSB1c2IKPiB1c2IxLXBvcnQ0OiB1bmFibGUgdG8gZW51bWVyYXRlIFVTQiBkZXZpY2UK
+PiAgCj4gVGhlICJkZXZpY2UgZGVzY3JpcHRvciByZWFkLzY0LCBlcnJvciAtMTEwIiBtZWFucyB0
+aGF0IFVTQiBwb3dlcgo+IGRyYWluIHdhcyBleGNlZWRlZCBieSB0aGUgVVNCIGRldmljZS4KCk9L
+LCBpcyB0aGUgZXh0ZXJuYWwgcG93ZXIgc3VwcGx5IHlvdSB1c2UgdGhlIHN0b2NrIGV0dHVzIG9u
+ZSwgb3IgYXJlCnlvdSB1c2luZyBzb21ldGhpbmcgZGlmZmVyZW50PwoKPiAgCj4gNy4gT3VyIGFw
+cGxpY2F0aW9uIHByaW50czoKPiAgCj4gRXJyb3I6IExvb2t1cEVycm9yOiBLZXlFcnJvcjogTm8g
+ZGV2aWNlcyBmb3VuZCBmb3IgLS0tLS0+IERldmljZQo+IEFkZHJlc3M6Cj4gICAgIG51bV9yZWN2
+X2ZyYW1lczogNTEyCj4gIAo+IDguIFRoZSBkZXZpY2UgaXMgdG90YWxseSBhYnNlbnQsIHNvIGl0
+cyBub3QgcG9zc2libGUgdG8gZm9yIGluc3RhbmNlCj4gcnVuOiAgJFVIRF9JTlNUQUxMX1BSRUZJ
+WC91dGlscy9iMnh4X2Z4M191dGlscyAtLXJlc2V0LWRldmljZQo+ICAKPiBXb3JrYXJvdW5kcyB0
+aGF0IHdvcmtzOgo+ICogUGh5c2ljYWxseSB1bnBsdWcgdGhlIFVTQiBkZXZpY2UgYW5kIGluc2Vy
+dCBpdCBhZ2FpbiBpbiB0aGUgc2FtZQo+IFVTQiBwb3J0LiAoc29tZXRpbWVzIGl0IHRob3VnaCBz
+ZWVtcyBsaWtlIHRoaXMgZG9lcyBub3Qgd29yayBlaXRoZXIsCj4gYW5kIG9uZSBuZWVkIHRvIHN3
+aXRjaCB0byBhIG5ldyBVU0IgcG9ydCBvbiBhbm90aGVyIFVTQiBIVUIgb24gdGhlCj4gUEMpCgpU
+aGVyZSdzIGEgaGlnaCBwcm9iYWJpbGl0eSB0aGF0IG1lYW5zIHRoYXQgc29tZSBwb2x5ZnVzZSBo
+YXMgYmVlbgp0cmlnZ2VyZWQsIGluIG15IGV4cGVyaWVuY2UuIEkndmUgc2VlbiB0aGF0IGluIHN5
+c3RlbXMgd2hlcmUgdGhlcmUgd2FzCm5vIHNoYXJlZCBncm91bmQgYmV0d2VlbiBVU1JQIHN1cHBs
+eSBhbmQgUEMsIGFuZCB0aGUgcG93ZXJpbmcgb2YgZWl0aGVyCmRldmljZSBjYXVzZWQgYSBzaWdu
+aWZpY2FudCBpbnJ1c2ggY3VycmVudCAoSSBndWVzcywgY291bGRuJ3QgbWVhc3VyZQpiYWNrIHRo
+ZW4pLgoKPiAgCj4gKiBQaHlzaWNhbGx5IHByZXNzIHRoZSByZXNldCBzd2l0Y2ggKFM3MDApIG9u
+IHRoZSBCMjEwLgoKVGhhdCdzIGludGVyZXN0aW5nOyBzNzAwIHJlYWxseSBmdWxseSByZXNldHMg
+dGhlIFVTQiBjb250cm9sbGVyLCBidXQgSQpkb24ndCB0aGluayB0aGUgZnVsbCBib2FyZCAod291
+bGQgaGF2ZSB0byBjaGVjaykuCgo+ICAKPiAqIFJlbW92ZSBleHRlcm5hbCBwb3dlciBzdXBwbHkg
+ZnJvbSBCMjEwIGJlZm9yZSBjb2xkIGJvb3QuCgo8LS0gdGhhdCdzIHRoZSB3b3JrYXJvdW5kIEkn
+ZCBnbyBmb3IsIHNlZSBiZWxvdy4KCj4gIAo+IFdvcmthcm91bmRzIHRoYXQgaGF2ZW4ndCB3b3Jr
+ZWQ6Cj4gKiBSZWJvb3RpbmcgdGhlIFBDLCBieSBzb2Z0d2FyZSBhbmQvb3IgYnkgcGh5c2ljYWxs
+eSBzd2l0Y2hpbmcgaXQgb2ZmCj4gYW5kIHRoZW4gb24gKHBvd2VyIGNhYmxlIG9mZiBhbmQgb24p
+Lgo+ICAKPiAqIFRyeSB0byBwcm9ncmFtbWF0aWNhbGx5IHJlbW92ZSBwb3dlciBmcm9tIFVTQiBk
+ZXZpY2U6Cj4gIAo+ICAgICBsc3VzYgo+ICAgICBlY2hvIHN1c3BlbmQgPiBzdWRvIHRlZSAvc3lz
+L2J1cy91c2IvZGV2aWNlcy91c2IxL3Bvd2VyL2xldmVsCj4gICAgIGVjaG8gc3VzcGVuZCA+IHN1
+ZG8gdGVlIC9zeXMvYnVzL3VzYi9kZXZpY2VzL3VzYjIvcG93ZXIvbGV2ZWwKPiAgICAgbHN1c2IK
+PiAgICAgZWNobyBvbiA+IHN1ZG8gdGVlIC9zeXMvYnVzL3VzYi9kZXZpY2VzL3VzYjEvcG93ZXIv
+bGV2ZWwKPiAgICAgZWNobyBvbiA+IHN1ZG8gdGVlIC9zeXMvYnVzL3VzYi9kZXZpY2VzL3VzYjIv
+cG93ZXIvbGV2ZWwKPiAgICAgbHN1c2IKPiAgCj4gKiBUcnkgdG8gcmVtb3ZlIHRoZSBoaWdoc3Bl
+ZWQgVVNCIGRyaXZlcjoKPiAgCj4gICAgIGxzdXNiCj4gICAgIGVjaG8gIjAwMDA6MDA6MTQuMCIg
+fCBzdWRvIHRlZQo+IC9zeXMvYnVzL3BjaS9kcml2ZXJzL3hoY2lfaGNkL3VuYmluZAo+ICAgICBs
+c3VzYgo+ICAgICBkbWVzZwo+ICAgICBlY2hvICIwMDAwOjAwOjE0LjAiIHwgc3VkbyB0ZWUgL3N5
+cy9idXMvcGNpL2RyaXZlcnMveGhjaV9oY2QvYmluZAo+ICAgICBsc3VzYgo+ICAKPiAqIFJlbW92
+ZSBhbmQgcmUtZW51bWVyYXRlIHRoZSBVU0IgY29udHJvbGxlciBQQ0kgZGV2aWNlOgo+ICAKPiAg
+ICAgbHN1c2IKPiAgICAgbHNwY2kKPiAgICAgZWNobyAxIHwgc3VkbyB0ZWUgL3N5cy9kZXZpY2Vz
+L3BjaTAwMDBcOjAwLzAwMDBcOjAwXDoxNC4wL3JlbW92ZQo+ICAgICBsc3VzYgo+ICAgICBsc3Bj
+aQo+ICAgICBlY2hvIDEgfCBzdWRvIHRlZSAvc3lzL2J1cy9wY2kvcmVzY2FuCj4gICAgIGxzdXNi
+Cj4gICAgIGxzcGNpCj4gIApTYWQuCgo+IFdvcmthcm91bmRzIHRoYXQgaGF2ZW4ndCBiZWVuIHRy
+aWVkOgo+ICogVXNlIGFuIFVTQjMgaHViIHRoYXQgaXMgZXh0ZXJuYWxseSBwb3dlcmVkLgo+ICog
+SW5zdGFsbCBhIGxhcmdlciBjYXBhY2l0b3IgaW4gcGFyYWxsZWwgd2l0aCBDNzE2L1M3MDAgb24g
+dGhlIEIyMTAKPiBib2FyZCB0byBkZWxheSBVU0Igc3RhcnR1cCBieSB0aGUgZGV2aWNlLiBTb21l
+Ym9keSByZWNhbGwgaW5zdGFsbGluZwo+IGEgMTAwdUYgY2FwYWNpdG9yLiBCdXQgdGhpcyBkb2Vz
+buKAmXQgc2VlbSBsaWtlIGEgcm9vdCBjYXVzZSBmaXguCgpJZiBpdHMgcmVhbGx5IGFib3V0IGN1
+cnJlbnQgZHJhd3MsIGJlc3QgZ3Vlc3MgaXMgdGhhdCB0aGlzIHdvdWxkCmFjdHVhbGx5IG1ha2Ug
+aXQgd29yc2UuCgo+ICogQ2lyY3VtdmVudCBwb3dlciBzd2l0Y2hpbmcgY29tcG9uZW50cyAoc29s
+ZGVyIGEgc2hvcnQgb3ZlciBRNjAwKQo+IHN1Y2ggdGhhdCBleHRlcm5hbCBwb3dlciBpcyBhbHdh
+eXMgdXNlZCBhbmQgbm90IGRpc2Nvbm5lY3RlZCBiZWZvcmUKPiBhbnkgVVNCIGNvbW11bmljYXRp
+b24uIEFueSBzaWRlIGVmZmVjdHMgPwoKVm9pZGluZyBhIHdhcnJhbnR5LgoKV2hhdCB5b3UgY291
+bGQgdHJ5OiBJZiB5b3UgaGF2ZSBhIHNwYXJlIFVTQiBjYWJsZSwgZ2VudGx5IGNpcmN1bXNpemUK
+dGhlIHBsYXN0aWMgbWFudGxpbmcgaW4gdHdvIHBsYWNlcyBhIGNvdXBsZSBjbSBhcGFydCwgc2xp
+Y2Ugb3BlbiB0aGUKbWFudGxpbmcsIGZpbmQgdGhlIHJlZCBjYWJsZSBpbnNpZGUgYW5kIGN1dCBp
+dC4KClRoYXQgd291bGQgcmVtb3ZlIHRoZSA1ViBwb3dlcmluZyBmcm9tIHRoZSBob3N0LiAKSGF2
+ZW4ndCBjaGVja2VkIHdoZXRoZXIgdGhhdCB3b3JrcyB3aXRoIHRoZSBjdXJyZW50IGZpcm13YXJl
+LCB0aG91Z2ggOigKCj4gIAo+IFJvb3QgY2F1c2U6Cj4gV2UgYmVsaWV2ZSB0aGUgcm9vdCBjYXVz
+ZSBpcyB0aGUgc3dpdGNoaW5nIGJldHdlZW4gVVNCIGFuZCBleHRlcm5hbAo+IHBvd2VyLCBpbiB0
+aGUgTFRDNDQxMiBVNjA5IGNpcmN1aXQuIElmIGV4dGVybmFsIHBvd2VyIGlzIHJlbW92ZWQKPiBi
+ZWZvcmUgY29sZCBib290LCB0aGUgZGV2aWNlIGNvbWVzIHVwIGNvcnJlY3RseSB3aGlsZSBleHRl
+cm5hbCBCMjEwCj4gcG93ZXIgaXMgbm90IGF0dGFjaGVkLgo+IEFsc28gd29ydGggbm90aW5nLCBp
+cyB0aGF0IHRoaXMgbWF5IG9ubHkgaGFwcGVuIHdoZW4gYSBHUFNETyBpcwo+IGF0dGFjaGVkLiBX
+ZSBoYXZlbid0IHRyaWVkIHJlbW92aW5nIHRoZSBHUFNETywgc2luY2UgaXQgaXMgcmF0aGVyCj4g
+ZnJhZ2lsZS4KPiBBbm90aGVyIOKAnG1hbGljaW91c+KAnSBiZWhhdmlvciBpcyB3aGVuIGV4dGVy
+bmFsIHBvd2VyIGlzIG9uIGFuZCBVU0IgaXMKPiBhdHRhY2hlZCB0aGVuIFE2MDAgd2lsbCBnbyBv
+biBpZiBpdCBpcyBub3QgYWxyZWFkeSBvbi4gV2hlbiBVU0IgaXMKPiByZW1vdmVkIFE2MDAgd2ls
+bCBzdGF5IG9uLCBpZS4gdGhlIGNpcmN1aXRyeSB3aWxsIG5vdCBjb21lIGJhY2sgdG8KPiB0aGUg
+c3RhdGUgaXQgaGFkIHdoZW4gZXZlcnl0aGluZyB3YXMgcG93ZXJlZCBvbiBmcm9tIHNjcmF0Y2gu
+Cj4gIAoKSG0sIHllYWgsIHRoZSBMRUQgYmVoYXZpb3VyIG9mIFE2MDAgd2FzIGVycmF0aWMgZm9y
+IG11bHRpcGxlIGN1c3RvbWVycwp3aG8gaGFkIG5vIG90aGVyIHByb2JsZW1zLgoKWW91IGRvbid0
+IGhhcHBlbiB0byBoYXZlIGFuIG9zY2lsbG9zY29wZSB0aGF0IHlvdSBjb3VsZCBhdHRhY2ggdG8g
+YQpjb3VwbGUgb2YgcG93ZXIgdGVzdCBwb2ludHMgb24gdGhlIEIyMDAsIHRyaWdnZXIgb24gZWRn
+ZSwgYW5kIHNlZQp3aGV0aGVyIHRoaXMgc3VzcGljaW9uIG9mIHlvdXJzIHdvcmtzIG91dCB0byBi
+ZSByaWdodD8gCgpCZXN0IHJlZ2FyZHMsCk1hcmN1cwoKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5m
+by91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
