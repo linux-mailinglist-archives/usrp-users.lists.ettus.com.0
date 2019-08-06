@@ -2,47 +2,40 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A0483812
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Aug 2019 19:40:25 +0200 (CEST)
-Received: from [::1] (port=52316 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A22483990
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Aug 2019 21:24:43 +0200 (CEST)
+Received: from [::1] (port=44944 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hv3Rf-0004mC-GE; Tue, 06 Aug 2019 13:40:23 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:46676)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1hv3Rb-0004fm-LC
- for usrp-users@lists.ettus.com; Tue, 06 Aug 2019 13:40:19 -0400
-Received: by mail-oi1-f176.google.com with SMTP id 65so67783820oid.13
- for <usrp-users@lists.ettus.com>; Tue, 06 Aug 2019 10:39:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=wORJywJoUcvZ+Q7cOVUNbjwvbfL4nY/hxNFCcXKV7UU=;
- b=OivSZpoi01D8eIhvzwx7ZjHQ9h8LNbd7stV/V+QRlm0GwUnw8vU4DEMKOhnV1LfXfH
- 6w4l6mON08b0H2K48lNn1iklbNJ4v/ORUNRFD7PdUVcb6bfUYlOD1B17+edjLJ0CwA/8
- gtk+gGgxNuZ/l/iZTCyq2UbAMnPnmNhatPP68m/u3GPtQjqeloPwPUtDpB4a9t/T1UiH
- MXDUUWVyuBDGfsfxJZCDs3k9wMkrLrWIaF8RSy3TKp7jY0HIxfWbmtx5PZ6+wSkinC4A
- oEm2wbjnoFZKXJyiJU0t+tgfhpoauvGesc4ME7FMW5g6tgG/mg3lxsMz0NTwondMPVXk
- Yn1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=wORJywJoUcvZ+Q7cOVUNbjwvbfL4nY/hxNFCcXKV7UU=;
- b=skECKMm3sgua8iH3fbqcAHg0erSEuWSZ+03QxvJET7v2RDLHj9yOHBS27xxQA5JRGZ
- wLQFVC8NYi1CwowAlqI5txpzTk/8VPA6PZ7cvG+pedt18CAhoJ9QZy8Ds5HO4LAQMG5z
- +EP6tV78RMxYgL2PW4DHtDOVQWZN4jmmXXE1EvFAZGFtt4J2EQJlRdvrKbQ0YdbWEg0m
- R4gEtpr/+5ASgNCWRBCb+ESKYfqqzvc2Mz34Az6Ia6FYUI+fdieBjNZEfXBHtUQncz6P
- VxH+fe5nQimjwAmE/jL1IxV7rgtGj2HpaOEZLCmYxn77zY3dBRjXSHcROXmDiE0fVVSz
- HVpg==
-X-Gm-Message-State: APjAAAVBCcWjh0nM+rWuDWAzMBkvSyodCVHXq9IADcPzCT3bPK5nagwt
- soGZ+AtoYRUDFNZmxV6nGdPmhKwe4ZSa/+5kPWPDJs5RZ20=
-X-Google-Smtp-Source: APXvYqyng//FIW+SH4+/Ssx1X3DYRaQXOovKm18OVcr/mpjdZGi9LSpmAO65UH8PrgVGcbs1qiLkfUTPfPd7iN+uE54=
-X-Received: by 2002:aca:d552:: with SMTP id m79mr2427622oig.3.1565113178565;
- Tue, 06 Aug 2019 10:39:38 -0700 (PDT)
+	id 1hv54a-0002sU-Jk; Tue, 06 Aug 2019 15:24:40 -0400
+Received: from mail.chora.dk ([87.48.158.238]:33834)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <tf@chora.dk>) id 1hv54X-0002mT-2D
+ for usrp-users@lists.ettus.com; Tue, 06 Aug 2019 15:24:37 -0400
+Received: from localhost (localhost [127.0.0.1])
+ by mail.chora.dk (Postfix) with ESMTP id B35F638B9CF
+ for <usrp-users@lists.ettus.com>; Tue,  6 Aug 2019 21:23:20 +0200 (CEST)
+Received: from mail.chora.dk ([127.0.0.1])
+ by localhost (hardy.chora [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id lShOYB6KlH2X for <usrp-users@lists.ettus.com>;
+ Tue,  6 Aug 2019 21:23:20 +0200 (CEST)
+Received: from tfabric (87-57-134-145-dynamic.dk.customer.tdc.net
+ [87.57.134.145])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: tf)
+ by mail.chora.dk (Postfix) with ESMTPSA id 96F08380DD2
+ for <usrp-users@lists.ettus.com>; Tue,  6 Aug 2019 21:23:20 +0200 (CEST)
+To: <usrp-users@lists.ettus.com>
+References: <05fb01d54c5c$91486280$b3d92780$@chora.dk>
+ <604706a97ae63398191fff3a3a48d26ffe935a4e.camel@ettus.com>
+In-Reply-To: <604706a97ae63398191fff3a3a48d26ffe935a4e.camel@ettus.com>
+Date: Tue, 6 Aug 2019 21:23:52 +0200
+Message-ID: <062501d54c8c$7b9459f0$72bd0dd0$@chora.dk>
 MIME-Version: 1.0
-Date: Tue, 6 Aug 2019 13:39:28 -0400
-Message-ID: <CAB__hTTXuD3w81XuPr42ym+2VcS+gTM_o-W4YwPebmcCtgjRwQ@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Missing block controller warning in RFNoC
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIrnsePVEwrsFehfCBKmd3t9KpUbQEtNQ7dpjho2FA=
+Content-Language: en-dk
+Subject: Re: [USRP-users] b210 USB detect problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -54,9 +47,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============6054119608931911898=="
+From: Thomas Fabricius via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Thomas Fabricius <tf@chora.dk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,54 +64,137 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6054119608931911898==
-Content-Type: multipart/alternative; boundary="0000000000000aeee0058f764faf"
-
---0000000000000aeee0058f764faf
-Content-Type: text/plain; charset="UTF-8"
-
-In another post, someone was mentioning the warning that is displayed if
-there is no block controller for a given rfnoc block.  I would like to
-suggest that Ettus consider a different solution than providing this
-warning.  Perhaps if the user could identify a block controller in the XML
-file (which would default to the block in question, but could be changed to
-any valid block controller), then the user could specifically choose the
-default controller for blocks that only need noc script (and thus no need
-for a warning if it is explicitly chosen). It would also allow the user to
-write a block controller that is common to several similar blocks, without
-mandating that the blocks have the same name.
-
-Rob
-
---0000000000000aeee0058f764faf
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">In another post, someone was mentioning the warning that i=
-s displayed if there is no block controller for a given rfnoc block.=C2=A0 =
-I would like to suggest that Ettus consider a different solution than provi=
-ding this warning.=C2=A0 Perhaps if the user could identify a block control=
-ler in the XML file (which would default to the block in question, but coul=
-d be changed to any valid block controller), then the user could specifical=
-ly choose the default controller for blocks that only need noc script (and =
-thus no need for a warning if it is explicitly chosen). It would also allow=
- the user to write a block controller that is common to several similar blo=
-cks, without mandating that the blocks have the same name.<br><div><br></di=
-v><div>Rob</div></div>
-
---0000000000000aeee0058f764faf--
-
-
---===============6054119608931911898==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6054119608931911898==--
-
+SGkgTWFyY3VzCgpObyBkZXRlY3QgPSBub3QgaW4gbHN1c2IhCgpUaGUgc3VzcGlzaW9uIGlzICht
+b3JlIG9yIGxlc3MpIGNvbmZpcm1lZDoKRXhwZXJpbWVudCAxOgotU3RhcnRpbmcgZnJvbSB0b3Rh
+bCBwb3dlciBvZmYgYW5kIG5vIFVTQiBjYWJsZTogTGVkIG9mZiAKLVR1cm4gb24gUEM6IExlZCBv
+ZmYKLVBsdWcgaW4gVVNCIGNhYmxlOiBMZWQgb3JhbmdlIHRvIGluZGljYXRlIFVTQiBwb3dlciAK
+LURldmljZSBpcyBpbiBsc3VzYiBsaXN0IChpZS4gZXZlcnl0aGluZyBpcyBnb29kIGp1c3QgZnJv
+bSBVU0IgcG93ZXIhKQotUGx1ZyBpbiBleHRlcm5hbCBwb3dlcjogTGVkIGNoYW5nZSB0byBibHVl
+IGluZGljYXRpbmcgZXh0ZXJuYWwgcG93ZXIKLVVucGx1ZyBVU0IgY2FibGU6IExlZCBzdGF5cyBi
+bHVlCgpFeHBlcmltZW50IDI6Ci1TdGFydGluZyBmcm9tIHRvdGFsIHBvd2VyIG9mZiBhbmQgbm8g
+VVNCIGNhYmxlOiBMZWQgb2ZmCi1UdXJuIG9uIFBDOiBMZWQgb2ZmCi1QbHVnIGluIGV4dGVybmFs
+IHBvd2VyOiBMZWQgb2ZmCi1QbHVnIGluIFVTQiBjYWJsZTogTGVkIGJsdWUKLURldmljZSBpcyBp
+biBsc3VzYiBsaXN0Ci1VbnBsdWcgVVNCIGNhYmxlOiBMZWQgc3RheXMgYmx1ZQoKRXhwZXJpbWVu
+dCAzOgotU3RhcnRpbmcgZnJvbSB0b3RhbCBwb3dlciBvZmYgYW5kIG5vIFVTQiBjYWJsZTogTGVk
+IG9mZgotVHVybiBvbiBQQzogTGVkIG9mZgotUGx1ZyBpbiBleHRlcm5hbCBwb3dlcjogTGVkIG9m
+ZgotUGx1ZyBpbiBVU0IgY2FibGUgd2l0aG91dCBwb3dlciBjb3JkIChjdXQgYXMgc3VnZ2VzdGVk
+KTogTGVkIG9mZiAKLVVucGx1ZyBVU0IgY2FibGU6IExlZCBvZmYKCklucnVzaCBjYW4gbm90IGJl
+IHRoZSBwcm9ibGVtLCBjYXVzZSBldmVyeXRoaW5nIGlzIGZpbmUganVzdCBjb21pbmcgdXAgd2l0
+aCBVU0IgcG93ZXIgb25seSwgaXQgdGhvdWdoIGNvdWxkIGJlIHRoZSBzd2l0Y2gtb3ZlciB0byBl
+eHRlcm5hbCBwb3dlciA/IT8hPwoKL3Rob21hcwoKCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
+CkZyb206IE1hcmN1cyBNw7xsbGVyIDxtYXJjdXMubXVlbGxlckBldHR1cy5jb20+IApTZW50OiBU
+dWVzZGF5LCA2IEF1Z3VzdCAyMDE5IDE3LjM5ClRvOiBUaG9tYXMgRmFicmljaXVzIDx0ZkBjaG9y
+YS5kaz47IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vy
+c10gYjIxMCBVU0IgZGV0ZWN0IHByb2JsZW0KCkhpIFRob21hcywKCmxldCBtZSBxdWlja2x5IGFk
+ZHJlc3MgYSBmZXcgb2YgdGhlc2UgaXNzdWVzIE9uIFR1ZSwgMjAxOS0wOC0wNiBhdCAxNTo0MCAr
+MDIwMCwgVGhvbWFzIEZhYnJpY2l1cyB2aWEgVVNSUC11c2Vycwp3cm90ZToKPiBIaSwKPiB3ZSBo
+YXZlIGEgbnVtYmVyIGIyMTBzIHRoYXQgaGFzIFVTQiBkZXRlY3QgcHJvYmxlbXMuIFdlIGhhdmUg
+ZXF1aXBtZW50IAo+IHdoZXJlIHRoZSBwb3dlciBjYW4gc3VkZGVubHkgZGlzYXBwZWFyLCBhbmQg
+dGhlbiB0aGUgc3lzdGVtIGRvZXMgbm90IAo+IGNvbWUgdXAgcmlnaHQgYW5kIHRoZXJlIGlzICh5
+ZXQpIG5vIHByb2dyYW1tYXRpYyB3YXkgdG8gcmVzb2x2ZSB0aGUgCj4gcHJvYmxlbSwgc28gd2Ug
+aGF2ZSB0byBnZXQgaW4gcGh5c2ljYWwgY29udGFjdCB3aXRoIHRoZSBzeXN0ZW0uCj4gQW55IG9u
+ZSB3aG8ga25vd3Mgb2YgYSB3b3JrYXJvdW5kIChwbHMuIHJlYWQgYmVsb3cgYmVmb3JlIGFuc3dl
+cmluZynigKYKPiAgCj4gKlBDIGNhbm5vdCBkZXRlY3QgQjIxMCBVU0IgZGV2aWNlIG9uIGNvbGQg
+Ym9vdCAoYWZ0ZXIgZm9yIGluc3RhbmNlIGEgCj4gcG93ZXIgYnJlYWspCgpJJ3ZlIHNlZW4gdGhh
+dCBiZWZvcmUgb24geDg2IGluZHVzdHJpYWwgUENzLiBJIHRoaW5rIGl0IG1pZ2h0IGJlIGEgY29t
+YmluYXRpb24gb2Ygb3ZlcnRhc2tlZCBvbi1ib2FyZCBVU0Igdm9sdGFnZSBzdXBwbGllcyBhbmQg
+VVNCIGhvc3QgY29udHJvbGxlciBmaXJtd2FyZS4KCj4gKlRoZSBCMjEwIFVTQiBkZXZpY2UgaXMg
+c2ltcGx5IG5vdCByZWNvZ25pemVkIGJ5IHRoZSBQQy4KClRoYXQgbWVhbnMgaXQncyBub3QgaW4g
+YGxzdXNiYD8KCj4gKlRoZSBCMjEwIGhhcyBhbiBhdHRhY2hlZCBHUFNETyBhbmQgZXh0ZXJuYWwg
+cG93ZXIgYXR0YWNoZWQuCj4gCgpUaGF0IGF0IGxlYXN0IHJ1bGVzIG91dCBwb3dlciBzdXBwbHkg
+cHJvYmxlbXMuCgo+ICpUaGlzIGhhcHBlbnMgb24gbXVsdGlwbGUgc3lzdGVtcyBhbmQgY2Fubm90
+IGJlIGF0dHJpYnV0ZWQgdG8gYSBzaW5nbGUgCj4gUEMgdHlwZSBub3IgQjIxMCBkZXZpY2UuCgpP
+aywgZ29vZCB0byBrbm93IQoKPiAgCj4gU3RlcHMgdG8gcmVwcm9kdWNlOgo+IDEuIFJlbW92ZSBh
+bGwgcG93ZXIgZnJvbSBQQyBhbmQgQjIxMC4KPiAyLiBJbnNlcnQgVVNCIGludG8gUEMuCj4gMy4g
+QXBwbHkgcG93ZXIgdG8gdGhlIGRldmljZXMuCj4gNC4gU3RhcnQgdGhlIFBDLgo+IDUuIFRoZSBQ
+QyBpcyBhZnRlciBib290IGludG8gbGludXggdG8gc2VlIHRoZSBCMjEwIGJvYXJkLgo+IDYuIEVy
+cm9ycyBhcmUgZGlzcGxheWVkIGluIHRoZSBkbWVzZyBrZXJuZWwgbG9nOgo+ICAKCj4gWyAgIDIz
+Ljg4NDMxN10gdXNiIDEtNDogbmV3IGhpZ2gtc3BlZWQgVVNCIGRldmljZSBudW1iZXIgMyB1c2lu
+Zwo+IHhoY2lfaGNkIFsgICAyOS4wMjQzMTNdIHVzYiAxLTQ6IGRldmljZSBkZXNjcmlwdG9yIHJl
+YWQvNjQsIGVycm9yCj4gLTExMCBbICAgNDQuNjQwMzMwXSB1c2IgMS00OiBkZXZpY2UgZGVzY3Jp
+cHRvciByZWFkLzY0LCBlcnJvciAtMTEwCj4gWyAgIDQ0Ljc0ODM1Nl0gdXNiIHVzYjEtcG9ydDQ6
+IGF0dGVtcHQgcG93ZXIgY3ljbGUgWyAgIDQ1LjQwMDMxMV0gdXNiCj4gMS00OiBuZXcgaGlnaC1z
+cGVlZCBVU0IgZGV2aWNlIG51bWJlciA0IHVzaW5nIHhoY2lfaGNkIFsgICA1Ni4yNDAyMjVdCj4g
+dXNiIDEtNDogZGV2aWNlIG5vdCBhY2NlcHRpbmcgYWRkcmVzcyA0LCBlcnJvciAtNjIgWyAgIDU2
+LjM2ODIzMF0gdXNiCj4gMS00OiBuZXcgaGlnaC1zcGVlZCBVU0IgZGV2aWNlIG51bWJlciA1IHVz
+aW5nIHhoY2lfaGNkIFsgICA2Ni45OTIzMDZdCj4gdXNiIDEtNDogZGV2aWNlIG5vdCBhY2NlcHRp
+bmcgYWRkcmVzcyA1LCBlcnJvciAtNjIgWyAgIDY2Ljk5MjM2M10gdXNiCj4gdXNiMS1wb3J0NDog
+dW5hYmxlIHRvIGVudW1lcmF0ZSBVU0IgZGV2aWNlCj4gIAo+IFRoZSAiZGV2aWNlIGRlc2NyaXB0
+b3IgcmVhZC82NCwgZXJyb3IgLTExMCIgbWVhbnMgdGhhdCBVU0IgcG93ZXIgZHJhaW4gCj4gd2Fz
+IGV4Y2VlZGVkIGJ5IHRoZSBVU0IgZGV2aWNlLgoKT0ssIGlzIHRoZSBleHRlcm5hbCBwb3dlciBz
+dXBwbHkgeW91IHVzZSB0aGUgc3RvY2sgZXR0dXMgb25lLCBvciBhcmUgeW91IHVzaW5nIHNvbWV0
+aGluZyBkaWZmZXJlbnQ/Cgo+ICAKPiA3LiBPdXIgYXBwbGljYXRpb24gcHJpbnRzOgo+ICAKPiBF
+cnJvcjogTG9va3VwRXJyb3I6IEtleUVycm9yOiBObyBkZXZpY2VzIGZvdW5kIGZvciAtLS0tLT4g
+RGV2aWNlCj4gQWRkcmVzczoKPiAgICAgbnVtX3JlY3ZfZnJhbWVzOiA1MTIKPiAgCj4gOC4gVGhl
+IGRldmljZSBpcyB0b3RhbGx5IGFic2VudCwgc28gaXRzIG5vdCBwb3NzaWJsZSB0byBmb3IgaW5z
+dGFuY2UKPiBydW46ICAkVUhEX0lOU1RBTExfUFJFRklYL3V0aWxzL2IyeHhfZngzX3V0aWxzIC0t
+cmVzZXQtZGV2aWNlCj4gIAo+IFdvcmthcm91bmRzIHRoYXQgd29ya3M6Cj4gKiBQaHlzaWNhbGx5
+IHVucGx1ZyB0aGUgVVNCIGRldmljZSBhbmQgaW5zZXJ0IGl0IGFnYWluIGluIHRoZSBzYW1lIFVT
+QiAKPiBwb3J0LiAoc29tZXRpbWVzIGl0IHRob3VnaCBzZWVtcyBsaWtlIHRoaXMgZG9lcyBub3Qg
+d29yayBlaXRoZXIsIGFuZCAKPiBvbmUgbmVlZCB0byBzd2l0Y2ggdG8gYSBuZXcgVVNCIHBvcnQg
+b24gYW5vdGhlciBVU0IgSFVCIG9uIHRoZQo+IFBDKQoKVGhlcmUncyBhIGhpZ2ggcHJvYmFiaWxp
+dHkgdGhhdCBtZWFucyB0aGF0IHNvbWUgcG9seWZ1c2UgaGFzIGJlZW4gdHJpZ2dlcmVkLCBpbiBt
+eSBleHBlcmllbmNlLiBJJ3ZlIHNlZW4gdGhhdCBpbiBzeXN0ZW1zIHdoZXJlIHRoZXJlIHdhcyBu
+byBzaGFyZWQgZ3JvdW5kIGJldHdlZW4gVVNSUCBzdXBwbHkgYW5kIFBDLCBhbmQgdGhlIHBvd2Vy
+aW5nIG9mIGVpdGhlciBkZXZpY2UgY2F1c2VkIGEgc2lnbmlmaWNhbnQgaW5ydXNoIGN1cnJlbnQg
+KEkgZ3Vlc3MsIGNvdWxkbid0IG1lYXN1cmUgYmFjayB0aGVuKS4KCj4gIAo+ICogUGh5c2ljYWxs
+eSBwcmVzcyB0aGUgcmVzZXQgc3dpdGNoIChTNzAwKSBvbiB0aGUgQjIxMC4KClRoYXQncyBpbnRl
+cmVzdGluZzsgczcwMCByZWFsbHkgZnVsbHkgcmVzZXRzIHRoZSBVU0IgY29udHJvbGxlciwgYnV0
+IEkgZG9uJ3QgdGhpbmsgdGhlIGZ1bGwgYm9hcmQgKHdvdWxkIGhhdmUgdG8gY2hlY2spLgoKPiAg
+Cj4gKiBSZW1vdmUgZXh0ZXJuYWwgcG93ZXIgc3VwcGx5IGZyb20gQjIxMCBiZWZvcmUgY29sZCBi
+b290LgoKPC0tIHRoYXQncyB0aGUgd29ya2Fyb3VuZCBJJ2QgZ28gZm9yLCBzZWUgYmVsb3cuCgo+
+ICAKPiBXb3JrYXJvdW5kcyB0aGF0IGhhdmVuJ3Qgd29ya2VkOgo+ICogUmVib290aW5nIHRoZSBQ
+QywgYnkgc29mdHdhcmUgYW5kL29yIGJ5IHBoeXNpY2FsbHkgc3dpdGNoaW5nIGl0IG9mZiAKPiBh
+bmQgdGhlbiBvbiAocG93ZXIgY2FibGUgb2ZmIGFuZCBvbikuCj4gIAo+ICogVHJ5IHRvIHByb2dy
+YW1tYXRpY2FsbHkgcmVtb3ZlIHBvd2VyIGZyb20gVVNCIGRldmljZToKPiAgCj4gICAgIGxzdXNi
+Cj4gICAgIGVjaG8gc3VzcGVuZCA+IHN1ZG8gdGVlIC9zeXMvYnVzL3VzYi9kZXZpY2VzL3VzYjEv
+cG93ZXIvbGV2ZWwKPiAgICAgZWNobyBzdXNwZW5kID4gc3VkbyB0ZWUgL3N5cy9idXMvdXNiL2Rl
+dmljZXMvdXNiMi9wb3dlci9sZXZlbAo+ICAgICBsc3VzYgo+ICAgICBlY2hvIG9uID4gc3VkbyB0
+ZWUgL3N5cy9idXMvdXNiL2RldmljZXMvdXNiMS9wb3dlci9sZXZlbAo+ICAgICBlY2hvIG9uID4g
+c3VkbyB0ZWUgL3N5cy9idXMvdXNiL2RldmljZXMvdXNiMi9wb3dlci9sZXZlbAo+ICAgICBsc3Vz
+Ygo+ICAKPiAqIFRyeSB0byByZW1vdmUgdGhlIGhpZ2hzcGVlZCBVU0IgZHJpdmVyOgo+ICAKPiAg
+ICAgbHN1c2IKPiAgICAgZWNobyAiMDAwMDowMDoxNC4wIiB8IHN1ZG8gdGVlCj4gL3N5cy9idXMv
+cGNpL2RyaXZlcnMveGhjaV9oY2QvdW5iaW5kCj4gICAgIGxzdXNiCj4gICAgIGRtZXNnCj4gICAg
+IGVjaG8gIjAwMDA6MDA6MTQuMCIgfCBzdWRvIHRlZSAvc3lzL2J1cy9wY2kvZHJpdmVycy94aGNp
+X2hjZC9iaW5kCj4gICAgIGxzdXNiCj4gIAo+ICogUmVtb3ZlIGFuZCByZS1lbnVtZXJhdGUgdGhl
+IFVTQiBjb250cm9sbGVyIFBDSSBkZXZpY2U6Cj4gIAo+ICAgICBsc3VzYgo+ICAgICBsc3BjaQo+
+ICAgICBlY2hvIDEgfCBzdWRvIHRlZSAvc3lzL2RldmljZXMvcGNpMDAwMFw6MDAvMDAwMFw6MDBc
+OjE0LjAvcmVtb3ZlCj4gICAgIGxzdXNiCj4gICAgIGxzcGNpCj4gICAgIGVjaG8gMSB8IHN1ZG8g
+dGVlIC9zeXMvYnVzL3BjaS9yZXNjYW4KPiAgICAgbHN1c2IKPiAgICAgbHNwY2kKPiAgClNhZC4K
+Cj4gV29ya2Fyb3VuZHMgdGhhdCBoYXZlbid0IGJlZW4gdHJpZWQ6Cj4gKiBVc2UgYW4gVVNCMyBo
+dWIgdGhhdCBpcyBleHRlcm5hbGx5IHBvd2VyZWQuCj4gKiBJbnN0YWxsIGEgbGFyZ2VyIGNhcGFj
+aXRvciBpbiBwYXJhbGxlbCB3aXRoIEM3MTYvUzcwMCBvbiB0aGUgQjIxMCAKPiBib2FyZCB0byBk
+ZWxheSBVU0Igc3RhcnR1cCBieSB0aGUgZGV2aWNlLiBTb21lYm9keSByZWNhbGwgaW5zdGFsbGlu
+ZyBhIAo+IDEwMHVGIGNhcGFjaXRvci4gQnV0IHRoaXMgZG9lc27igJl0IHNlZW0gbGlrZSBhIHJv
+b3QgY2F1c2UgZml4LgoKSWYgaXRzIHJlYWxseSBhYm91dCBjdXJyZW50IGRyYXdzLCBiZXN0IGd1
+ZXNzIGlzIHRoYXQgdGhpcyB3b3VsZCBhY3R1YWxseSBtYWtlIGl0IHdvcnNlLgoKPiAqIENpcmN1
+bXZlbnQgcG93ZXIgc3dpdGNoaW5nIGNvbXBvbmVudHMgKHNvbGRlciBhIHNob3J0IG92ZXIgUTYw
+MCkgCj4gc3VjaCB0aGF0IGV4dGVybmFsIHBvd2VyIGlzIGFsd2F5cyB1c2VkIGFuZCBub3QgZGlz
+Y29ubmVjdGVkIGJlZm9yZSAKPiBhbnkgVVNCIGNvbW11bmljYXRpb24uIEFueSBzaWRlIGVmZmVj
+dHMgPwoKVm9pZGluZyBhIHdhcnJhbnR5LgoKV2hhdCB5b3UgY291bGQgdHJ5OiBJZiB5b3UgaGF2
+ZSBhIHNwYXJlIFVTQiBjYWJsZSwgZ2VudGx5IGNpcmN1bXNpemUgdGhlIHBsYXN0aWMgbWFudGxp
+bmcgaW4gdHdvIHBsYWNlcyBhIGNvdXBsZSBjbSBhcGFydCwgc2xpY2Ugb3BlbiB0aGUgbWFudGxp
+bmcsIGZpbmQgdGhlIHJlZCBjYWJsZSBpbnNpZGUgYW5kIGN1dCBpdC4KClRoYXQgd291bGQgcmVt
+b3ZlIHRoZSA1ViBwb3dlcmluZyBmcm9tIHRoZSBob3N0LiAKSGF2ZW4ndCBjaGVja2VkIHdoZXRo
+ZXIgdGhhdCB3b3JrcyB3aXRoIHRoZSBjdXJyZW50IGZpcm13YXJlLCB0aG91Z2ggOigKCj4gIAo+
+IFJvb3QgY2F1c2U6Cj4gV2UgYmVsaWV2ZSB0aGUgcm9vdCBjYXVzZSBpcyB0aGUgc3dpdGNoaW5n
+IGJldHdlZW4gVVNCIGFuZCBleHRlcm5hbCAKPiBwb3dlciwgaW4gdGhlIExUQzQ0MTIgVTYwOSBj
+aXJjdWl0LiBJZiBleHRlcm5hbCBwb3dlciBpcyByZW1vdmVkIAo+IGJlZm9yZSBjb2xkIGJvb3Qs
+IHRoZSBkZXZpY2UgY29tZXMgdXAgY29ycmVjdGx5IHdoaWxlIGV4dGVybmFsIEIyMTAgCj4gcG93
+ZXIgaXMgbm90IGF0dGFjaGVkLgo+IEFsc28gd29ydGggbm90aW5nLCBpcyB0aGF0IHRoaXMgbWF5
+IG9ubHkgaGFwcGVuIHdoZW4gYSBHUFNETyBpcyAKPiBhdHRhY2hlZC4gV2UgaGF2ZW4ndCB0cmll
+ZCByZW1vdmluZyB0aGUgR1BTRE8sIHNpbmNlIGl0IGlzIHJhdGhlciAKPiBmcmFnaWxlLgo+IEFu
+b3RoZXIg4oCcbWFsaWNpb3Vz4oCdIGJlaGF2aW9yIGlzIHdoZW4gZXh0ZXJuYWwgcG93ZXIgaXMg
+b24gYW5kIFVTQiBpcyAKPiBhdHRhY2hlZCB0aGVuIFE2MDAgd2lsbCBnbyBvbiBpZiBpdCBpcyBu
+b3QgYWxyZWFkeSBvbi4gV2hlbiBVU0IgaXMgCj4gcmVtb3ZlZCBRNjAwIHdpbGwgc3RheSBvbiwg
+aWUuIHRoZSBjaXJjdWl0cnkgd2lsbCBub3QgY29tZSBiYWNrIHRvIHRoZSAKPiBzdGF0ZSBpdCBo
+YWQgd2hlbiBldmVyeXRoaW5nIHdhcyBwb3dlcmVkIG9uIGZyb20gc2NyYXRjaC4KPiAgCgpIbSwg
+eWVhaCwgdGhlIExFRCBiZWhhdmlvdXIgb2YgUTYwMCB3YXMgZXJyYXRpYyBmb3IgbXVsdGlwbGUg
+Y3VzdG9tZXJzIHdobyBoYWQgbm8gb3RoZXIgcHJvYmxlbXMuCgpZb3UgZG9uJ3QgaGFwcGVuIHRv
+IGhhdmUgYW4gb3NjaWxsb3Njb3BlIHRoYXQgeW91IGNvdWxkIGF0dGFjaCB0byBhIGNvdXBsZSBv
+ZiBwb3dlciB0ZXN0IHBvaW50cyBvbiB0aGUgQjIwMCwgdHJpZ2dlciBvbiBlZGdlLCBhbmQgc2Vl
+IHdoZXRoZXIgdGhpcyBzdXNwaWNpb24gb2YgeW91cnMgd29ya3Mgb3V0IHRvIGJlIHJpZ2h0PyAK
+CkJlc3QgcmVnYXJkcywKTWFyY3VzCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
+ZXJzX2xpc3RzLmV0dHVzLmNvbQo=
