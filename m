@@ -2,40 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E998839A0
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Aug 2019 21:26:23 +0200 (CEST)
-Received: from [::1] (port=46650 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAD8D83D6D
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Aug 2019 00:41:33 +0200 (CEST)
+Received: from [::1] (port=41384 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hv56C-0003EU-V8; Tue, 06 Aug 2019 15:26:20 -0400
-Received: from mail.chora.dk ([87.48.158.238]:33846)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <tf@chora.dk>) id 1hv569-00037p-NS
- for usrp-users@lists.ettus.com; Tue, 06 Aug 2019 15:26:17 -0400
-Received: from localhost (localhost [127.0.0.1])
- by mail.chora.dk (Postfix) with ESMTP id 911AE38B9CF
- for <usrp-users@lists.ettus.com>; Tue,  6 Aug 2019 21:25:01 +0200 (CEST)
-Received: from mail.chora.dk ([127.0.0.1])
- by localhost (hardy.chora [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id C0cRkg4VxzMO for <usrp-users@lists.ettus.com>;
- Tue,  6 Aug 2019 21:25:01 +0200 (CEST)
-Received: from tfabric (87-57-134-145-dynamic.dk.customer.tdc.net
- [87.57.134.145])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: tf)
- by mail.chora.dk (Postfix) with ESMTPSA id 758EC383A40
- for <usrp-users@lists.ettus.com>; Tue,  6 Aug 2019 21:25:01 +0200 (CEST)
-To: <usrp-users@lists.ettus.com>
-References: <05fb01d54c5c$91486280$b3d92780$@chora.dk>
- <604706a97ae63398191fff3a3a48d26ffe935a4e.camel@ettus.com>
-In-Reply-To: <604706a97ae63398191fff3a3a48d26ffe935a4e.camel@ettus.com>
-Date: Tue, 6 Aug 2019 21:25:33 +0200
-Message-ID: <062701d54c8c$b7b236a0$2716a3e0$@chora.dk>
+	id 1hv895-0004uo-Qb; Tue, 06 Aug 2019 18:41:31 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:33131)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <edwin.barbosa@usantotomas.edu.co>)
+ id 1hv892-0004pQ-Jh
+ for usrp-users@lists.ettus.com; Tue, 06 Aug 2019 18:41:28 -0400
+Received: by mail-oi1-f180.google.com with SMTP id u15so69086887oiv.0
+ for <usrp-users@lists.ettus.com>; Tue, 06 Aug 2019 15:41:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=usantotomas.edu.co; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=uCd1Hxrx8UQkCD+hydqz5FbglOfsz+Fb9uHyjMSEb+Y=;
+ b=GyPFjm5nONHY4kJmUlpn1Ij9JmrlnQEElLd9H/HcxRWyoXauwZ7kl0/bREdCfl4lnt
+ OMxE0Tk+ggMPc0Ecw20BcNLswLOQ/qSGfUS4C0D9oCorUdn3avTuRXXas8GOBC0ARuGd
+ S2yyzsumuWVjbjqULnh3ymG2Ej7mZ/mndsGezOr9ur33FvqcrMZAac/U++1x1kR4nlDt
+ ufAZFhADP+VS6AeUxgZsLhww9CDt1bRiyC0ncQa2i2mvd8yv1UNvbauYHbcsHgFESkuG
+ WNEjx6Wo934o7P5fQ1ZrsIFuKxoniUGgqb0zYMf0Chvc0tMk34CNAlZdERpqMYJzsEV2
+ VLuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=uCd1Hxrx8UQkCD+hydqz5FbglOfsz+Fb9uHyjMSEb+Y=;
+ b=IwJ787h9SKpJ7VmNapu2xu9wTCeXddLWInfBiLg7H+MzS69jpLiGjorzhGifwNv9pb
+ scNNA+M8SipitWMSJfd7ob4VF3BXZn8H6uHbrwxnRsNBc9N2IOdYF1HlT6QUdzCYiTf/
+ lrSbAi4wLIdjcD+6Yu9yMclc8bD2VKdDNt3kMurImLMof2kJjIvIwb0Vmfv9fjqHC636
+ +gW/wYX2Q4ITD+NlOmT7kbGrGWnzFgIHLsAAI6ur2qt4sN13zOsH6ssxdsXG9W7V4S82
+ 5bx8F0wxPdAw6Pp0nw/o0KA86eRo3nEZ2xVtyuH4w2mg8K6RtzRfOslwWGwvQFOoUH/Z
+ xOlQ==
+X-Gm-Message-State: APjAAAVEgS6KrchGZbYSqEcLBjcuFWB3+s/VXkSgJkDBtQzqx3oaZl9Z
+ bNtnLcbvKn0+dfCeuTqq5E+yWe+SqePOZNQ6BzBgDX1V
+X-Google-Smtp-Source: APXvYqzizMSrmeyZqhHm0Dzw0Jg0NcmoOYOGrdJ1Df8p9bx8EMVFp085/xbYss8wEZgmgxjYvNPJw5FU/lVgIGS8MLo=
+X-Received: by 2002:a05:6638:52:: with SMTP id
+ a18mr6831614jap.75.1565131247200; 
+ Tue, 06 Aug 2019 15:40:47 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIrnsePVEwrsFehfCBKmd3t9KpUbQEtNQ7dpjhx2KA=
-Content-Language: en-dk
-Subject: Re: [USRP-users] b210 USB detect problem
+References: <CAC5Qad6y-8YJ68q70rFZaH7Og-BvCs3yVJNTs6AFg093q84++A@mail.gmail.com>
+In-Reply-To: <CAC5Qad6y-8YJ68q70rFZaH7Og-BvCs3yVJNTs6AFg093q84++A@mail.gmail.com>
+Date: Tue, 6 Aug 2019 17:40:36 -0500
+Message-ID: <CAC5Qad5jUm=+GvOS1_CjTYH3Arr=19vFYKcYX924sdo9WeYfPg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Fwd: Configurating X300 "uhd_find_devices" No uhd
+ devices found
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -47,10 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Thomas Fabricius via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Thomas Fabricius <tf@chora.dk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Edwin Mauricio Barbosa Salinas via USRP-users
+ <usrp-users@lists.ettus.com>
+Reply-To: Edwin Mauricio Barbosa Salinas <edwin.barbosa@usantotomas.edu.co>
+Content-Type: multipart/mixed; boundary="===============7793307457679547919=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -64,121 +78,145 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T2ggZm9yZ290IHRvIHRlbGwsIHdlIGRvIHVzZSB0aGUgRXR0dXMgc3VwcGxpZWQgZXh0ZXJuYWwg
-cG93ZXIgc3VwcGx5IQovdGhvbWFzCgoKCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tCkZyb206
-IE1hcmN1cyBNw7xsbGVyIDxtYXJjdXMubXVlbGxlckBldHR1cy5jb20+IApTZW50OiBUdWVzZGF5
-LCA2IEF1Z3VzdCAyMDE5IDE3LjM5ClRvOiBUaG9tYXMgRmFicmljaXVzIDx0ZkBjaG9yYS5kaz47
-IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gYjIx
-MCBVU0IgZGV0ZWN0IHByb2JsZW0KCkhpIFRob21hcywKCmxldCBtZSBxdWlja2x5IGFkZHJlc3Mg
-YSBmZXcgb2YgdGhlc2UgaXNzdWVzIE9uIFR1ZSwgMjAxOS0wOC0wNiBhdCAxNTo0MCArMDIwMCwg
-VGhvbWFzIEZhYnJpY2l1cyB2aWEgVVNSUC11c2Vycwp3cm90ZToKPiBIaSwKPiB3ZSBoYXZlIGEg
-bnVtYmVyIGIyMTBzIHRoYXQgaGFzIFVTQiBkZXRlY3QgcHJvYmxlbXMuIFdlIGhhdmUgZXF1aXBt
-ZW50IAo+IHdoZXJlIHRoZSBwb3dlciBjYW4gc3VkZGVubHkgZGlzYXBwZWFyLCBhbmQgdGhlbiB0
-aGUgc3lzdGVtIGRvZXMgbm90IAo+IGNvbWUgdXAgcmlnaHQgYW5kIHRoZXJlIGlzICh5ZXQpIG5v
-IHByb2dyYW1tYXRpYyB3YXkgdG8gcmVzb2x2ZSB0aGUgCj4gcHJvYmxlbSwgc28gd2UgaGF2ZSB0
-byBnZXQgaW4gcGh5c2ljYWwgY29udGFjdCB3aXRoIHRoZSBzeXN0ZW0uCj4gQW55IG9uZSB3aG8g
-a25vd3Mgb2YgYSB3b3JrYXJvdW5kIChwbHMuIHJlYWQgYmVsb3cgYmVmb3JlIGFuc3dlcmluZyni
-gKYKPiAgCj4gKlBDIGNhbm5vdCBkZXRlY3QgQjIxMCBVU0IgZGV2aWNlIG9uIGNvbGQgYm9vdCAo
-YWZ0ZXIgZm9yIGluc3RhbmNlIGEgCj4gcG93ZXIgYnJlYWspCgpJJ3ZlIHNlZW4gdGhhdCBiZWZv
-cmUgb24geDg2IGluZHVzdHJpYWwgUENzLiBJIHRoaW5rIGl0IG1pZ2h0IGJlIGEgY29tYmluYXRp
-b24gb2Ygb3ZlcnRhc2tlZCBvbi1ib2FyZCBVU0Igdm9sdGFnZSBzdXBwbGllcyBhbmQgVVNCIGhv
-c3QgY29udHJvbGxlciBmaXJtd2FyZS4KCj4gKlRoZSBCMjEwIFVTQiBkZXZpY2UgaXMgc2ltcGx5
-IG5vdCByZWNvZ25pemVkIGJ5IHRoZSBQQy4KClRoYXQgbWVhbnMgaXQncyBub3QgaW4gYGxzdXNi
-YD8KCj4gKlRoZSBCMjEwIGhhcyBhbiBhdHRhY2hlZCBHUFNETyBhbmQgZXh0ZXJuYWwgcG93ZXIg
-YXR0YWNoZWQuCj4gCgpUaGF0IGF0IGxlYXN0IHJ1bGVzIG91dCBwb3dlciBzdXBwbHkgcHJvYmxl
-bXMuCgo+ICpUaGlzIGhhcHBlbnMgb24gbXVsdGlwbGUgc3lzdGVtcyBhbmQgY2Fubm90IGJlIGF0
-dHJpYnV0ZWQgdG8gYSBzaW5nbGUgCj4gUEMgdHlwZSBub3IgQjIxMCBkZXZpY2UuCgpPaywgZ29v
-ZCB0byBrbm93IQoKPiAgCj4gU3RlcHMgdG8gcmVwcm9kdWNlOgo+IDEuIFJlbW92ZSBhbGwgcG93
-ZXIgZnJvbSBQQyBhbmQgQjIxMC4KPiAyLiBJbnNlcnQgVVNCIGludG8gUEMuCj4gMy4gQXBwbHkg
-cG93ZXIgdG8gdGhlIGRldmljZXMuCj4gNC4gU3RhcnQgdGhlIFBDLgo+IDUuIFRoZSBQQyBpcyBh
-ZnRlciBib290IGludG8gbGludXggdG8gc2VlIHRoZSBCMjEwIGJvYXJkLgo+IDYuIEVycm9ycyBh
-cmUgZGlzcGxheWVkIGluIHRoZSBkbWVzZyBrZXJuZWwgbG9nOgo+ICAKCj4gWyAgIDIzLjg4NDMx
-N10gdXNiIDEtNDogbmV3IGhpZ2gtc3BlZWQgVVNCIGRldmljZSBudW1iZXIgMyB1c2luZwo+IHho
-Y2lfaGNkIFsgICAyOS4wMjQzMTNdIHVzYiAxLTQ6IGRldmljZSBkZXNjcmlwdG9yIHJlYWQvNjQs
-IGVycm9yCj4gLTExMCBbICAgNDQuNjQwMzMwXSB1c2IgMS00OiBkZXZpY2UgZGVzY3JpcHRvciBy
-ZWFkLzY0LCBlcnJvciAtMTEwCj4gWyAgIDQ0Ljc0ODM1Nl0gdXNiIHVzYjEtcG9ydDQ6IGF0dGVt
-cHQgcG93ZXIgY3ljbGUgWyAgIDQ1LjQwMDMxMV0gdXNiCj4gMS00OiBuZXcgaGlnaC1zcGVlZCBV
-U0IgZGV2aWNlIG51bWJlciA0IHVzaW5nIHhoY2lfaGNkIFsgICA1Ni4yNDAyMjVdCj4gdXNiIDEt
-NDogZGV2aWNlIG5vdCBhY2NlcHRpbmcgYWRkcmVzcyA0LCBlcnJvciAtNjIgWyAgIDU2LjM2ODIz
-MF0gdXNiCj4gMS00OiBuZXcgaGlnaC1zcGVlZCBVU0IgZGV2aWNlIG51bWJlciA1IHVzaW5nIHho
-Y2lfaGNkIFsgICA2Ni45OTIzMDZdCj4gdXNiIDEtNDogZGV2aWNlIG5vdCBhY2NlcHRpbmcgYWRk
-cmVzcyA1LCBlcnJvciAtNjIgWyAgIDY2Ljk5MjM2M10gdXNiCj4gdXNiMS1wb3J0NDogdW5hYmxl
-IHRvIGVudW1lcmF0ZSBVU0IgZGV2aWNlCj4gIAo+IFRoZSAiZGV2aWNlIGRlc2NyaXB0b3IgcmVh
-ZC82NCwgZXJyb3IgLTExMCIgbWVhbnMgdGhhdCBVU0IgcG93ZXIgZHJhaW4gCj4gd2FzIGV4Y2Vl
-ZGVkIGJ5IHRoZSBVU0IgZGV2aWNlLgoKT0ssIGlzIHRoZSBleHRlcm5hbCBwb3dlciBzdXBwbHkg
-eW91IHVzZSB0aGUgc3RvY2sgZXR0dXMgb25lLCBvciBhcmUgeW91IHVzaW5nIHNvbWV0aGluZyBk
-aWZmZXJlbnQ/Cgo+ICAKPiA3LiBPdXIgYXBwbGljYXRpb24gcHJpbnRzOgo+ICAKPiBFcnJvcjog
-TG9va3VwRXJyb3I6IEtleUVycm9yOiBObyBkZXZpY2VzIGZvdW5kIGZvciAtLS0tLT4gRGV2aWNl
-Cj4gQWRkcmVzczoKPiAgICAgbnVtX3JlY3ZfZnJhbWVzOiA1MTIKPiAgCj4gOC4gVGhlIGRldmlj
-ZSBpcyB0b3RhbGx5IGFic2VudCwgc28gaXRzIG5vdCBwb3NzaWJsZSB0byBmb3IgaW5zdGFuY2UK
-PiBydW46ICAkVUhEX0lOU1RBTExfUFJFRklYL3V0aWxzL2IyeHhfZngzX3V0aWxzIC0tcmVzZXQt
-ZGV2aWNlCj4gIAo+IFdvcmthcm91bmRzIHRoYXQgd29ya3M6Cj4gKiBQaHlzaWNhbGx5IHVucGx1
-ZyB0aGUgVVNCIGRldmljZSBhbmQgaW5zZXJ0IGl0IGFnYWluIGluIHRoZSBzYW1lIFVTQiAKPiBw
-b3J0LiAoc29tZXRpbWVzIGl0IHRob3VnaCBzZWVtcyBsaWtlIHRoaXMgZG9lcyBub3Qgd29yayBl
-aXRoZXIsIGFuZCAKPiBvbmUgbmVlZCB0byBzd2l0Y2ggdG8gYSBuZXcgVVNCIHBvcnQgb24gYW5v
-dGhlciBVU0IgSFVCIG9uIHRoZQo+IFBDKQoKVGhlcmUncyBhIGhpZ2ggcHJvYmFiaWxpdHkgdGhh
-dCBtZWFucyB0aGF0IHNvbWUgcG9seWZ1c2UgaGFzIGJlZW4gdHJpZ2dlcmVkLCBpbiBteSBleHBl
-cmllbmNlLiBJJ3ZlIHNlZW4gdGhhdCBpbiBzeXN0ZW1zIHdoZXJlIHRoZXJlIHdhcyBubyBzaGFy
-ZWQgZ3JvdW5kIGJldHdlZW4gVVNSUCBzdXBwbHkgYW5kIFBDLCBhbmQgdGhlIHBvd2VyaW5nIG9m
-IGVpdGhlciBkZXZpY2UgY2F1c2VkIGEgc2lnbmlmaWNhbnQgaW5ydXNoIGN1cnJlbnQgKEkgZ3Vl
-c3MsIGNvdWxkbid0IG1lYXN1cmUgYmFjayB0aGVuKS4KCj4gIAo+ICogUGh5c2ljYWxseSBwcmVz
-cyB0aGUgcmVzZXQgc3dpdGNoIChTNzAwKSBvbiB0aGUgQjIxMC4KClRoYXQncyBpbnRlcmVzdGlu
-ZzsgczcwMCByZWFsbHkgZnVsbHkgcmVzZXRzIHRoZSBVU0IgY29udHJvbGxlciwgYnV0IEkgZG9u
-J3QgdGhpbmsgdGhlIGZ1bGwgYm9hcmQgKHdvdWxkIGhhdmUgdG8gY2hlY2spLgoKPiAgCj4gKiBS
-ZW1vdmUgZXh0ZXJuYWwgcG93ZXIgc3VwcGx5IGZyb20gQjIxMCBiZWZvcmUgY29sZCBib290LgoK
-PC0tIHRoYXQncyB0aGUgd29ya2Fyb3VuZCBJJ2QgZ28gZm9yLCBzZWUgYmVsb3cuCgo+ICAKPiBX
-b3JrYXJvdW5kcyB0aGF0IGhhdmVuJ3Qgd29ya2VkOgo+ICogUmVib290aW5nIHRoZSBQQywgYnkg
-c29mdHdhcmUgYW5kL29yIGJ5IHBoeXNpY2FsbHkgc3dpdGNoaW5nIGl0IG9mZiAKPiBhbmQgdGhl
-biBvbiAocG93ZXIgY2FibGUgb2ZmIGFuZCBvbikuCj4gIAo+ICogVHJ5IHRvIHByb2dyYW1tYXRp
-Y2FsbHkgcmVtb3ZlIHBvd2VyIGZyb20gVVNCIGRldmljZToKPiAgCj4gICAgIGxzdXNiCj4gICAg
-IGVjaG8gc3VzcGVuZCA+IHN1ZG8gdGVlIC9zeXMvYnVzL3VzYi9kZXZpY2VzL3VzYjEvcG93ZXIv
-bGV2ZWwKPiAgICAgZWNobyBzdXNwZW5kID4gc3VkbyB0ZWUgL3N5cy9idXMvdXNiL2RldmljZXMv
-dXNiMi9wb3dlci9sZXZlbAo+ICAgICBsc3VzYgo+ICAgICBlY2hvIG9uID4gc3VkbyB0ZWUgL3N5
-cy9idXMvdXNiL2RldmljZXMvdXNiMS9wb3dlci9sZXZlbAo+ICAgICBlY2hvIG9uID4gc3VkbyB0
-ZWUgL3N5cy9idXMvdXNiL2RldmljZXMvdXNiMi9wb3dlci9sZXZlbAo+ICAgICBsc3VzYgo+ICAK
-PiAqIFRyeSB0byByZW1vdmUgdGhlIGhpZ2hzcGVlZCBVU0IgZHJpdmVyOgo+ICAKPiAgICAgbHN1
-c2IKPiAgICAgZWNobyAiMDAwMDowMDoxNC4wIiB8IHN1ZG8gdGVlCj4gL3N5cy9idXMvcGNpL2Ry
-aXZlcnMveGhjaV9oY2QvdW5iaW5kCj4gICAgIGxzdXNiCj4gICAgIGRtZXNnCj4gICAgIGVjaG8g
-IjAwMDA6MDA6MTQuMCIgfCBzdWRvIHRlZSAvc3lzL2J1cy9wY2kvZHJpdmVycy94aGNpX2hjZC9i
-aW5kCj4gICAgIGxzdXNiCj4gIAo+ICogUmVtb3ZlIGFuZCByZS1lbnVtZXJhdGUgdGhlIFVTQiBj
-b250cm9sbGVyIFBDSSBkZXZpY2U6Cj4gIAo+ICAgICBsc3VzYgo+ICAgICBsc3BjaQo+ICAgICBl
-Y2hvIDEgfCBzdWRvIHRlZSAvc3lzL2RldmljZXMvcGNpMDAwMFw6MDAvMDAwMFw6MDBcOjE0LjAv
-cmVtb3ZlCj4gICAgIGxzdXNiCj4gICAgIGxzcGNpCj4gICAgIGVjaG8gMSB8IHN1ZG8gdGVlIC9z
-eXMvYnVzL3BjaS9yZXNjYW4KPiAgICAgbHN1c2IKPiAgICAgbHNwY2kKPiAgClNhZC4KCj4gV29y
-a2Fyb3VuZHMgdGhhdCBoYXZlbid0IGJlZW4gdHJpZWQ6Cj4gKiBVc2UgYW4gVVNCMyBodWIgdGhh
-dCBpcyBleHRlcm5hbGx5IHBvd2VyZWQuCj4gKiBJbnN0YWxsIGEgbGFyZ2VyIGNhcGFjaXRvciBp
-biBwYXJhbGxlbCB3aXRoIEM3MTYvUzcwMCBvbiB0aGUgQjIxMCAKPiBib2FyZCB0byBkZWxheSBV
-U0Igc3RhcnR1cCBieSB0aGUgZGV2aWNlLiBTb21lYm9keSByZWNhbGwgaW5zdGFsbGluZyBhIAo+
-IDEwMHVGIGNhcGFjaXRvci4gQnV0IHRoaXMgZG9lc27igJl0IHNlZW0gbGlrZSBhIHJvb3QgY2F1
-c2UgZml4LgoKSWYgaXRzIHJlYWxseSBhYm91dCBjdXJyZW50IGRyYXdzLCBiZXN0IGd1ZXNzIGlz
-IHRoYXQgdGhpcyB3b3VsZCBhY3R1YWxseSBtYWtlIGl0IHdvcnNlLgoKPiAqIENpcmN1bXZlbnQg
-cG93ZXIgc3dpdGNoaW5nIGNvbXBvbmVudHMgKHNvbGRlciBhIHNob3J0IG92ZXIgUTYwMCkgCj4g
-c3VjaCB0aGF0IGV4dGVybmFsIHBvd2VyIGlzIGFsd2F5cyB1c2VkIGFuZCBub3QgZGlzY29ubmVj
-dGVkIGJlZm9yZSAKPiBhbnkgVVNCIGNvbW11bmljYXRpb24uIEFueSBzaWRlIGVmZmVjdHMgPwoK
-Vm9pZGluZyBhIHdhcnJhbnR5LgoKV2hhdCB5b3UgY291bGQgdHJ5OiBJZiB5b3UgaGF2ZSBhIHNw
-YXJlIFVTQiBjYWJsZSwgZ2VudGx5IGNpcmN1bXNpemUgdGhlIHBsYXN0aWMgbWFudGxpbmcgaW4g
-dHdvIHBsYWNlcyBhIGNvdXBsZSBjbSBhcGFydCwgc2xpY2Ugb3BlbiB0aGUgbWFudGxpbmcsIGZp
-bmQgdGhlIHJlZCBjYWJsZSBpbnNpZGUgYW5kIGN1dCBpdC4KClRoYXQgd291bGQgcmVtb3ZlIHRo
-ZSA1ViBwb3dlcmluZyBmcm9tIHRoZSBob3N0LiAKSGF2ZW4ndCBjaGVja2VkIHdoZXRoZXIgdGhh
-dCB3b3JrcyB3aXRoIHRoZSBjdXJyZW50IGZpcm13YXJlLCB0aG91Z2ggOigKCj4gIAo+IFJvb3Qg
-Y2F1c2U6Cj4gV2UgYmVsaWV2ZSB0aGUgcm9vdCBjYXVzZSBpcyB0aGUgc3dpdGNoaW5nIGJldHdl
-ZW4gVVNCIGFuZCBleHRlcm5hbCAKPiBwb3dlciwgaW4gdGhlIExUQzQ0MTIgVTYwOSBjaXJjdWl0
-LiBJZiBleHRlcm5hbCBwb3dlciBpcyByZW1vdmVkIAo+IGJlZm9yZSBjb2xkIGJvb3QsIHRoZSBk
-ZXZpY2UgY29tZXMgdXAgY29ycmVjdGx5IHdoaWxlIGV4dGVybmFsIEIyMTAgCj4gcG93ZXIgaXMg
-bm90IGF0dGFjaGVkLgo+IEFsc28gd29ydGggbm90aW5nLCBpcyB0aGF0IHRoaXMgbWF5IG9ubHkg
-aGFwcGVuIHdoZW4gYSBHUFNETyBpcyAKPiBhdHRhY2hlZC4gV2UgaGF2ZW4ndCB0cmllZCByZW1v
-dmluZyB0aGUgR1BTRE8sIHNpbmNlIGl0IGlzIHJhdGhlciAKPiBmcmFnaWxlLgo+IEFub3RoZXIg
-4oCcbWFsaWNpb3Vz4oCdIGJlaGF2aW9yIGlzIHdoZW4gZXh0ZXJuYWwgcG93ZXIgaXMgb24gYW5k
-IFVTQiBpcyAKPiBhdHRhY2hlZCB0aGVuIFE2MDAgd2lsbCBnbyBvbiBpZiBpdCBpcyBub3QgYWxy
-ZWFkeSBvbi4gV2hlbiBVU0IgaXMgCj4gcmVtb3ZlZCBRNjAwIHdpbGwgc3RheSBvbiwgaWUuIHRo
-ZSBjaXJjdWl0cnkgd2lsbCBub3QgY29tZSBiYWNrIHRvIHRoZSAKPiBzdGF0ZSBpdCBoYWQgd2hl
-biBldmVyeXRoaW5nIHdhcyBwb3dlcmVkIG9uIGZyb20gc2NyYXRjaC4KPiAgCgpIbSwgeWVhaCwg
-dGhlIExFRCBiZWhhdmlvdXIgb2YgUTYwMCB3YXMgZXJyYXRpYyBmb3IgbXVsdGlwbGUgY3VzdG9t
-ZXJzIHdobyBoYWQgbm8gb3RoZXIgcHJvYmxlbXMuCgpZb3UgZG9uJ3QgaGFwcGVuIHRvIGhhdmUg
-YW4gb3NjaWxsb3Njb3BlIHRoYXQgeW91IGNvdWxkIGF0dGFjaCB0byBhIGNvdXBsZSBvZiBwb3dl
-ciB0ZXN0IHBvaW50cyBvbiB0aGUgQjIwMCwgdHJpZ2dlciBvbiBlZGdlLCBhbmQgc2VlIHdoZXRo
-ZXIgdGhpcyBzdXNwaWNpb24gb2YgeW91cnMgd29ya3Mgb3V0IHRvIGJlIHJpZ2h0PyAKCkJlc3Qg
-cmVnYXJkcywKTWFyY3VzCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
-c3RzLmV0dHVzLmNvbQo=
+--===============7793307457679547919==
+Content-Type: multipart/alternative; boundary="000000000000044b62058f7a8425"
+
+--000000000000044b62058f7a8425
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ---------
+De: Edwin Mauricio Barbosa Salinas <edwin.barbosa@usantotomas.edu.co>
+Date: mar., 6 ago. 2019 a las 17:37
+Subject: Configurating X300 "uhd_find_devices" No uhd devices found
+To: <discuss-gnuradio@gnu.org>
+
+
+regards,
+I am currently working with a USRP X300, following its UHD and GNURADIO
+installation guides, I am making the configurations from Ubuntu 14.04 with
+a VM VirtualBox virtual machine, when I execute the command
+"uhd_find_devices" it throws me a message saying "No UHD find devices" but
+when I execute the command "uhd_find_devices --args =3D" addr =3D 192.168.1=
+0.2
+"" it executes it successfully, I want to know how to do so that when
+executing the command "uhd_find_devices" it is executed successfully.
+
+
+root@edwin-VirtualBox:/home/edwin# uhd_find_devices
+linux; GNU C++ version 4.8.4; Boost_105400; UHD_003.009.005-0-g32951af2
+
+No UHD Devices Found
+
+root@edwin-VirtualBox:/home/edwin# uhd_find_devices
+--args=3D"addr=3D192.168.10.2"
+linux; GNU C++ version 4.8.4; Boost_105400; UHD_003.009.005-0-g32951af2
+
+--------------------------------------------------
+-- UHD Device 0
+--------------------------------------------------
+Device Address:
+    type: x300
+    addr: 192.168.10.2
+    fpga: HGS
+    name:
+    serial: 3124ED5
+    product: X300
+
+
+--=20
+*Edwin Mauricio Barbosa salinas*
+*Cod. 2172800*
+*INGENIER=C3=8DA DE TELECOMUNICACIONES*
+
+
+--=20
+*Edwin Mauricio Barbosa salinas*
+*Cod. 2172800*
+*INGENIER=C3=8DA DE TELECOMUNICACIONES*
+
+--000000000000044b62058f7a8425
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">---------- Forwarded message ---------<br>De: <b class=3D"g=
+mail_sendername" dir=3D"auto">Edwin Mauricio Barbosa Salinas</b> <span dir=
+=3D"auto">&lt;<a href=3D"mailto:edwin.barbosa@usantotomas.edu.co">edwin.bar=
+bosa@usantotomas.edu.co</a>&gt;</span><br>Date: mar., 6 ago. 2019 a las 17:=
+37<br>Subject: Configurating X300 &quot;uhd_find_devices&quot; No uhd devic=
+es found<br>To:  &lt;<a href=3D"mailto:discuss-gnuradio@gnu.org">discuss-gn=
+uradio@gnu.org</a>&gt;<br></div><br><br><div dir=3D"ltr"><span class=3D"m_1=
+713948548094287309gmail-m_-4217130011147887590gmail-tlid-translation m_1713=
+948548094287309gmail-m_-4217130011147887590gmail-translation" lang=3D"en"><=
+span title=3D"">regards,</span><br></span><div><span class=3D"m_17139485480=
+94287309gmail-m_-4217130011147887590gmail-tlid-translation m_17139485480942=
+87309gmail-m_-4217130011147887590gmail-translation" lang=3D"en"><span title=
+=3D"" class=3D"m_1713948548094287309gmail-m_-4217130011147887590gmail-">I
+ am currently working with a USRP X300, following its UHD and GNURADIO=20
+installation guides, I am making the configurations from Ubuntu 14.04=20
+with a VM VirtualBox virtual machine, when I execute the command=20
+&quot;uhd_find_devices&quot; it throws me a message saying &quot;No UHD fin=
+d devices&quot;</span> <span title=3D"" class=3D"m_1713948548094287309gmail=
+-m_-4217130011147887590gmail-">but
+ when I execute the command &quot;uhd_find_devices --args =3D&quot; addr =
+=3D=20
+192.168.10.2 &quot;&quot; it executes it successfully, I want to know how t=
+o do so
+ that when executing the command &quot;uhd_find_devices&quot; it is execute=
+d=20
+successfully.</span></span></div><div><span class=3D"m_1713948548094287309g=
+mail-m_-4217130011147887590gmail-tlid-translation m_1713948548094287309gmai=
+l-m_-4217130011147887590gmail-translation" lang=3D"en"><span title=3D"" cla=
+ss=3D"m_1713948548094287309gmail-m_-4217130011147887590gmail-"><br></span><=
+/span></div><div><span class=3D"m_1713948548094287309gmail-m_-4217130011147=
+887590gmail-tlid-translation m_1713948548094287309gmail-m_-4217130011147887=
+590gmail-translation" lang=3D"en"><span title=3D"" class=3D"m_1713948548094=
+287309gmail-m_-4217130011147887590gmail-"><br></span></span></div><div><spa=
+n class=3D"m_1713948548094287309gmail-m_-4217130011147887590gmail-tlid-tran=
+slation m_1713948548094287309gmail-m_-4217130011147887590gmail-translation"=
+ lang=3D"en"><span title=3D"" class=3D"m_1713948548094287309gmail-m_-421713=
+0011147887590gmail-">root@edwin-VirtualBox:/home/edwin# uhd_find_devices <b=
+r>linux; GNU C++ version 4.8.4; Boost_105400; UHD_003.009.005-0-g32951af2<b=
+r><br>No UHD Devices Found</span></span></div><div><span class=3D"m_1713948=
+548094287309gmail-m_-4217130011147887590gmail-tlid-translation m_1713948548=
+094287309gmail-m_-4217130011147887590gmail-translation" lang=3D"en"><span t=
+itle=3D"" class=3D"m_1713948548094287309gmail-m_-4217130011147887590gmail-"=
+><br></span></span></div><div><span class=3D"m_1713948548094287309gmail-m_-=
+4217130011147887590gmail-tlid-translation m_1713948548094287309gmail-m_-421=
+7130011147887590gmail-translation" lang=3D"en"><span title=3D"" class=3D"m_=
+1713948548094287309gmail-m_-4217130011147887590gmail-">root@edwin-VirtualBo=
+x:/home/edwin# uhd_find_devices --args=3D&quot;addr=3D192.168.10.2&quot;<br=
+>linux; GNU C++ version 4.8.4; Boost_105400; UHD_003.009.005-0-g32951af2<br=
+><br>--------------------------------------------------<br>-- UHD Device 0<=
+br>--------------------------------------------------<br>Device Address:<br=
+>=C2=A0 =C2=A0 type: x300<br>=C2=A0 =C2=A0 addr: 192.168.10.2<br>=C2=A0 =C2=
+=A0 fpga: HGS<br>=C2=A0 =C2=A0 name: <br>=C2=A0 =C2=A0 serial: 3124ED5<br>=
+=C2=A0 =C2=A0 product: X300</span></span></div><br clear=3D"all"><br>-- <br=
+><div dir=3D"ltr" class=3D"m_1713948548094287309gmail_signature" data-smart=
+mail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><b><i>Edwin=
+ Mauricio Barbosa salinas</i></b><div><b><i>Cod. 2172800</i></b></div><div>=
+<b style=3D"font-size:12.8px">INGENIER=C3=8DA=C2=A0DE TELECOMUNICACIONES</b=
+></div></div></div></div></div></div>
+</div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"gmail_signatur=
+e" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr=
+"><b><i>Edwin Mauricio Barbosa salinas</i></b><div><b><i>Cod. 2172800</i></=
+b></div><div><b style=3D"font-size:12.8px">INGENIER=C3=8DA=C2=A0DE TELECOMU=
+NICACIONES</b></div></div></div></div></div></div>
+
+--000000000000044b62058f7a8425--
+
+
+--===============7793307457679547919==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7793307457679547919==--
+
