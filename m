@@ -2,61 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 000BF83E32
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Aug 2019 02:17:46 +0200 (CEST)
-Received: from [::1] (port=57932 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D3B2846E9
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Aug 2019 10:12:23 +0200 (CEST)
+Received: from [::1] (port=58250 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hv9eB-0001YN-Cd; Tue, 06 Aug 2019 20:17:43 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:42612)
+	id 1hvH3Q-0008Ap-Fc; Wed, 07 Aug 2019 04:12:16 -0400
+Received: from mail-wm1-f44.google.com ([209.85.128.44]:39899)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
- id 1hv9e7-0001Tc-Oq
- for usrp-users@lists.ettus.com; Tue, 06 Aug 2019 20:17:39 -0400
-Received: by mail-wr1-f68.google.com with SMTP id x1so39654087wrr.9
- for <usrp-users@lists.ettus.com>; Tue, 06 Aug 2019 17:17:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:date:in-reply-to:references:user-agent
- :mime-version:content-transfer-encoding;
- bh=3DmZuIvSXoKOjvfHCNRyQtwnABjcvb0se6pGnlEWeEI=;
- b=n66shn2FQ8NyQKI0tO8Yo3qQP0cVXkJSWzge+JCAh47Q9dLKUcv2vNtSNX7T78jwLy
- Oxu6w7XQPsVYwIavvbPkEPpTFDJFcrTXGkn2Dggfqr8zTSWLBvcmKvvFne4XQxGr3Cu0
- UuRUq2ibXaYGCo5HoO3VUqz9PWO9fCwIXAc7WpRIrI0zT4di6bD1smz+xMlb2e8Cc3Yp
- 4Nlkwend626s5gJ8RgZlKI6GNaw3UH/o4i/dm0ZTkCCRwtWdwpbTs3CiqePhg2iRgyHV
- IKluwboAXfHuvpo7XH+j6b3dHRzGy7576jFnRiHHjJExPbY9LQFhPGG/bZ2SRTvuMY4h
- 8GDw==
+ (Exim 4.92) (envelope-from <h.talaiee@gmail.com>) id 1hvH3L-00084Q-Ui
+ for usrp-users@lists.ettus.com; Wed, 07 Aug 2019 04:12:12 -0400
+Received: by mail-wm1-f44.google.com with SMTP id u25so68666190wmc.4
+ for <usrp-users@lists.ettus.com>; Wed, 07 Aug 2019 01:11:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=LcPNC2oPJ9NBdz9/AClMNg7Ng3CiOLb3OYpbFXmMRFU=;
+ b=bIVuUcypz8Q42V1rJeQFWN4oB12EsfEX6GciyciflpysMPRAsu2xX7bVJ8bKGMRXyE
+ jqPUOs5DGa8SDfm5ynl8mXc1jDXpF8nZTfYL9XHA50XO0SlvySaYjga7Ig9mZqpSgh9y
+ CY+JeUlZ/U6tTfSDC42/m+M+fSwGTjhKB4ktb0DAF429fDiHCjqfzp2btX+Syef+Pn7O
+ zVRsCrNgTi4VVkgN/Dc9/hpJ0Gpm2qHtssD4fUMUZXeRpRvGKFammKGeIf//Imhg/2Fd
+ 9Y3jKEZzq0MCymyoQKSwrzdEcBygbrB5kETN0VjQWV2i4UcLFK3NcY0jGVivbQhKgcPf
+ RS8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=3DmZuIvSXoKOjvfHCNRyQtwnABjcvb0se6pGnlEWeEI=;
- b=SZEdsT70STEeZCjQKrAFe7ZLgfB4aWVYlP76/Rt0goJjpUbYhlFRBU6fp+jn956/tB
- hVAvfmvOHu8jH4DaxRlqwT3VeFiKR/GGUV9HKrIiaYPtyOBwTLGG658WtmNPivzxsWaq
- 4ORIDDemA40pPNthwhyH3LfCCH0SZHSVm/4Fc5FG3CsyFWFx3UUamgsvF7FHEtUNJ7Lb
- qz64v4gX23YdEacGv6VfYlMyS6PlGlRSKAmZn1rhstrM89Ol8Uv4CVdOcPVyS/c6fwvE
- j3kq0wXw1zb7iP3AoBlA9VP8fbeNlSYheh2oIDQoCLYvYRXZM2VAAXSoyyP0i/E45p9f
- jpFw==
-X-Gm-Message-State: APjAAAVfk7LU3PoFGfBQB+ycjipk29MG2S+ei+0uECCkiCcFwGHFqCRu
- HvuM6Dwpk5GsWxHfxPdvTOSOo8asKimkgg==
-X-Google-Smtp-Source: APXvYqy7VhtGaZ6VeC8puFmvjdKEFttRUDnfLuNZF/zqjI70nR0HmcYVZCiv4nrEyrAWCFLdTAVVXg==
-X-Received: by 2002:a5d:56c7:: with SMTP id m7mr6870865wrw.64.1565137018649;
- Tue, 06 Aug 2019 17:16:58 -0700 (PDT)
-Received: from workhorse.lan
- (HSI-KBW-46-223-151-10.hsi.kabel-badenwuerttemberg.de. [46.223.151.10])
- by smtp.googlemail.com with ESMTPSA id 4sm206401077wro.78.2019.08.06.17.16.57
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 06 Aug 2019 17:16:57 -0700 (PDT)
-Message-ID: <ddaa274dd6236ee85418de3d73e774336c3002db.camel@ettus.com>
-To: Thomas Fabricius <tf@chora.dk>, usrp-users@lists.ettus.com
-Date: Wed, 07 Aug 2019 02:16:57 +0200
-In-Reply-To: <062501d54c8c$7b9459f0$72bd0dd0$@chora.dk>
-References: <05fb01d54c5c$91486280$b3d92780$@chora.dk>
- <604706a97ae63398191fff3a3a48d26ffe935a4e.camel@ettus.com>
- <062501d54c8c$7b9459f0$72bd0dd0$@chora.dk>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=LcPNC2oPJ9NBdz9/AClMNg7Ng3CiOLb3OYpbFXmMRFU=;
+ b=G9zbmwBfGWZUHZypWXEgX0lTcpx51n1pSgGo/Ok45HXx12gL3kL9dAiGMw3D8L/Toc
+ L6QEmq38NSG+6uiKcmvdLIJdTxrSasn9gwQO11LLZy+PF3NLHYlA64PCzlwJKD2xrcn9
+ rp5W461k4AbgwvNQQ3t8gDL1qpdH4t59AHfqEwXh5yCzouboO3ayWflxfrYVaP2Zz9Z4
+ xfwvJ7uCpIn1T6sQakJCCxGfKrXvkILkXhdAj8mFzeYPjgBBOa/T9QnFXnOXR4ZaA0zz
+ P6onWEsU3icJXJ7VtsUZq5cE0qb1awgKeltk4Tm/5VCWBB3WTKtha2ETNLVEKIzM7+fE
+ /5wg==
+X-Gm-Message-State: APjAAAV9de9sIw+KL9E5PNwHpnUlsSr2dz88rls9ETDKAxzqX+I1pLWq
+ 6EjfwNazOR0f1EEIXn013Pm8NYlV7i4si/NA7GY=
+X-Google-Smtp-Source: APXvYqxZ+H023YckfU/mY51RYk1S5pMTHlhanw3eT3684jI0vdB0qAB1e4KoF/HMhJd4AveMvo7siiIlpz9FPs/ymU8=
+X-Received: by 2002:a05:600c:21d3:: with SMTP id
+ x19mr2854972wmj.45.1565165489853; 
+ Wed, 07 Aug 2019 01:11:29 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [USRP-users] b210 USB detect problem
+References: <CAAiBEBTT25JUU6Uybf6WLYakOLYGbKz4T_NUG5wTm_ydKpox-A@mail.gmail.com>
+ <7c1e67d831b187fd3fb311b982cbbf91de26e6aa.camel@ettus.com>
+In-Reply-To: <7c1e67d831b187fd3fb311b982cbbf91de26e6aa.camel@ettus.com>
+Date: Wed, 7 Aug 2019 12:41:18 +0430
+Message-ID: <CAAiBEBTGYFibhjqMf0VS0LnYBz1YSDi9i__PdnyX3LVSiH80zw@mail.gmail.com>
+To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+Subject: Re: [USRP-users] USRP B2xx Tx Peak power mode
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,11 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: hossein talaiee via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: hossein talaiee <h.talaiee@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2804039978602448928=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,157 +76,133 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgVGhvbWFzLApUaGUgc3dpdGNoaW5nICoqc2hvdWxkKiogYmUgcmVhbGx5IHNtb290aCEgQWxz
-bywgaXQgc2hvdWxkbid0IGNvbmZ1c2UKZWl0aGVyIFVTQiBlbmQgdG8gc3RvcCB3b3JraW5nLgpC
-dXQgc2luY2Ugd2UncmUgcmVhbGx5IGRlYnVnZ2luZyB0aGlzIGJ5IG5vdywgdGhpcyB3b3VsZCBi
-ZSByZWFzb25hYmxlCnRvIGNoZWNrLCB5ZXMuIERvIHlvdSBoYXBwZW4gdG8gaGF2ZSBhbiBvc2Np
-bGxvc2NvcGU/CgpCeSB0aGUgd2F5LCBkb2VzIHRoZSBkZXZpY2Ugd29yayB3aXRoIHRoZSBWY2Mt
-Y3V0IFVTQiBjYWJsZSBhbmQKZXh0ZXJuYWwgcG93ZXI/IEkndmUgaG9uZXN0bHkgbmV2ZXIgdHJp
-ZWQuCgpCZXN0IHJlZ2FyZHMsCk1hcmN1cwoKT24gVHVlLCAyMDE5LTA4LTA2IGF0IDIxOjIzICsw
-MjAwLCBUaG9tYXMgRmFicmljaXVzIHZpYSBVU1JQLXVzZXJzCndyb3RlOgo+IEhpIE1hcmN1cwo+
-IAo+IE5vIGRldGVjdCA9IG5vdCBpbiBsc3VzYiEKPiAKPiBUaGUgc3VzcGlzaW9uIGlzIChtb3Jl
-IG9yIGxlc3MpIGNvbmZpcm1lZDoKPiBFeHBlcmltZW50IDE6Cj4gLVN0YXJ0aW5nIGZyb20gdG90
-YWwgcG93ZXIgb2ZmIGFuZCBubyBVU0IgY2FibGU6IExlZCBvZmYgCj4gLVR1cm4gb24gUEM6IExl
-ZCBvZmYKPiAtUGx1ZyBpbiBVU0IgY2FibGU6IExlZCBvcmFuZ2UgdG8gaW5kaWNhdGUgVVNCIHBv
-d2VyIAo+IC1EZXZpY2UgaXMgaW4gbHN1c2IgbGlzdCAoaWUuIGV2ZXJ5dGhpbmcgaXMgZ29vZCBq
-dXN0IGZyb20gVVNCCj4gcG93ZXIhKQo+IC1QbHVnIGluIGV4dGVybmFsIHBvd2VyOiBMZWQgY2hh
-bmdlIHRvIGJsdWUgaW5kaWNhdGluZyBleHRlcm5hbCBwb3dlcgo+IC1VbnBsdWcgVVNCIGNhYmxl
-OiBMZWQgc3RheXMgYmx1ZQo+IAo+IEV4cGVyaW1lbnQgMjoKPiAtU3RhcnRpbmcgZnJvbSB0b3Rh
-bCBwb3dlciBvZmYgYW5kIG5vIFVTQiBjYWJsZTogTGVkIG9mZgo+IC1UdXJuIG9uIFBDOiBMZWQg
-b2ZmCj4gLVBsdWcgaW4gZXh0ZXJuYWwgcG93ZXI6IExlZCBvZmYKPiAtUGx1ZyBpbiBVU0IgY2Fi
-bGU6IExlZCBibHVlCj4gLURldmljZSBpcyBpbiBsc3VzYiBsaXN0Cj4gLVVucGx1ZyBVU0IgY2Fi
-bGU6IExlZCBzdGF5cyBibHVlCj4gCj4gRXhwZXJpbWVudCAzOgo+IC1TdGFydGluZyBmcm9tIHRv
-dGFsIHBvd2VyIG9mZiBhbmQgbm8gVVNCIGNhYmxlOiBMZWQgb2ZmCj4gLVR1cm4gb24gUEM6IExl
-ZCBvZmYKPiAtUGx1ZyBpbiBleHRlcm5hbCBwb3dlcjogTGVkIG9mZgo+IC1QbHVnIGluIFVTQiBj
-YWJsZSB3aXRob3V0IHBvd2VyIGNvcmQgKGN1dCBhcyBzdWdnZXN0ZWQpOiBMZWQgb2ZmIAo+IC1V
-bnBsdWcgVVNCIGNhYmxlOiBMZWQgb2ZmCj4gCj4gSW5ydXNoIGNhbiBub3QgYmUgdGhlIHByb2Js
-ZW0sIGNhdXNlIGV2ZXJ5dGhpbmcgaXMgZmluZSBqdXN0IGNvbWluZwo+IHVwIHdpdGggVVNCIHBv
-d2VyIG9ubHksIGl0IHRob3VnaCBjb3VsZCBiZSB0aGUgc3dpdGNoLW92ZXIgdG8KPiBleHRlcm5h
-bCBwb3dlciA/IT8hPwo+IAo+IC90aG9tYXMKPiAKPiAKPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
-LS0tLQo+IEZyb206IE1hcmN1cyBNw7xsbGVyIDxtYXJjdXMubXVlbGxlckBldHR1cy5jb20+IAo+
-IFNlbnQ6IFR1ZXNkYXksIDYgQXVndXN0IDIwMTkgMTcuMzkKPiBUbzogVGhvbWFzIEZhYnJpY2l1
-cyA8dGZAY2hvcmEuZGs+OyB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+IFN1YmplY3Q6IFJl
-OiBbVVNSUC11c2Vyc10gYjIxMCBVU0IgZGV0ZWN0IHByb2JsZW0KPiAKPiBIaSBUaG9tYXMsCj4g
-Cj4gbGV0IG1lIHF1aWNrbHkgYWRkcmVzcyBhIGZldyBvZiB0aGVzZSBpc3N1ZXMgT24gVHVlLCAy
-MDE5LTA4LTA2IGF0Cj4gMTU6NDAgKzAyMDAsIFRob21hcyBGYWJyaWNpdXMgdmlhIFVTUlAtdXNl
-cnMKPiB3cm90ZToKPiA+IEhpLAo+ID4gd2UgaGF2ZSBhIG51bWJlciBiMjEwcyB0aGF0IGhhcyBV
-U0IgZGV0ZWN0IHByb2JsZW1zLiBXZSBoYXZlCj4gPiBlcXVpcG1lbnQgCj4gPiB3aGVyZSB0aGUg
-cG93ZXIgY2FuIHN1ZGRlbmx5IGRpc2FwcGVhciwgYW5kIHRoZW4gdGhlIHN5c3RlbSBkb2VzCj4g
-PiBub3QgCj4gPiBjb21lIHVwIHJpZ2h0IGFuZCB0aGVyZSBpcyAoeWV0KSBubyBwcm9ncmFtbWF0
-aWMgd2F5IHRvIHJlc29sdmUKPiA+IHRoZSAKPiA+IHByb2JsZW0sIHNvIHdlIGhhdmUgdG8gZ2V0
-IGluIHBoeXNpY2FsIGNvbnRhY3Qgd2l0aCB0aGUgc3lzdGVtLgo+ID4gQW55IG9uZSB3aG8ga25v
-d3Mgb2YgYSB3b3JrYXJvdW5kIChwbHMuIHJlYWQgYmVsb3cgYmVmb3JlCj4gPiBhbnN3ZXJpbmcp
-4oCmCj4gPiAgCj4gPiAqUEMgY2Fubm90IGRldGVjdCBCMjEwIFVTQiBkZXZpY2Ugb24gY29sZCBi
-b290IChhZnRlciBmb3IgaW5zdGFuY2UKPiA+IGEgCj4gPiBwb3dlciBicmVhaykKPiAKPiBJJ3Zl
-IHNlZW4gdGhhdCBiZWZvcmUgb24geDg2IGluZHVzdHJpYWwgUENzLiBJIHRoaW5rIGl0IG1pZ2h0
-IGJlIGEKPiBjb21iaW5hdGlvbiBvZiBvdmVydGFza2VkIG9uLWJvYXJkIFVTQiB2b2x0YWdlIHN1
-cHBsaWVzIGFuZCBVU0IgaG9zdAo+IGNvbnRyb2xsZXIgZmlybXdhcmUuCj4gCj4gPiAqVGhlIEIy
-MTAgVVNCIGRldmljZSBpcyBzaW1wbHkgbm90IHJlY29nbml6ZWQgYnkgdGhlIFBDLgo+IAo+IFRo
-YXQgbWVhbnMgaXQncyBub3QgaW4gYGxzdXNiYD8KPiAKPiA+ICpUaGUgQjIxMCBoYXMgYW4gYXR0
-YWNoZWQgR1BTRE8gYW5kIGV4dGVybmFsIHBvd2VyIGF0dGFjaGVkLgo+ID4gCj4gCj4gVGhhdCBh
-dCBsZWFzdCBydWxlcyBvdXQgcG93ZXIgc3VwcGx5IHByb2JsZW1zLgo+IAo+ID4gKlRoaXMgaGFw
-cGVucyBvbiBtdWx0aXBsZSBzeXN0ZW1zIGFuZCBjYW5ub3QgYmUgYXR0cmlidXRlZCB0byBhCj4g
-PiBzaW5nbGUgCj4gPiBQQyB0eXBlIG5vciBCMjEwIGRldmljZS4KPiAKPiBPaywgZ29vZCB0byBr
-bm93IQo+IAo+ID4gIAo+ID4gU3RlcHMgdG8gcmVwcm9kdWNlOgo+ID4gMS4gUmVtb3ZlIGFsbCBw
-b3dlciBmcm9tIFBDIGFuZCBCMjEwLgo+ID4gMi4gSW5zZXJ0IFVTQiBpbnRvIFBDLgo+ID4gMy4g
-QXBwbHkgcG93ZXIgdG8gdGhlIGRldmljZXMuCj4gPiA0LiBTdGFydCB0aGUgUEMuCj4gPiA1LiBU
-aGUgUEMgaXMgYWZ0ZXIgYm9vdCBpbnRvIGxpbnV4IHRvIHNlZSB0aGUgQjIxMCBib2FyZC4KPiA+
-IDYuIEVycm9ycyBhcmUgZGlzcGxheWVkIGluIHRoZSBkbWVzZyBrZXJuZWwgbG9nOgo+ID4gIAo+
-ID4gWyAgIDIzLjg4NDMxN10gdXNiIDEtNDogbmV3IGhpZ2gtc3BlZWQgVVNCIGRldmljZSBudW1i
-ZXIgMyB1c2luZwo+ID4geGhjaV9oY2QgWyAgIDI5LjAyNDMxM10gdXNiIDEtNDogZGV2aWNlIGRl
-c2NyaXB0b3IgcmVhZC82NCwgZXJyb3IKPiA+IC0xMTAgWyAgIDQ0LjY0MDMzMF0gdXNiIDEtNDog
-ZGV2aWNlIGRlc2NyaXB0b3IgcmVhZC82NCwgZXJyb3IgLTExMAo+ID4gWyAgIDQ0Ljc0ODM1Nl0g
-dXNiIHVzYjEtcG9ydDQ6IGF0dGVtcHQgcG93ZXIgY3ljbGUgWyAgIDQ1LjQwMDMxMV0KPiA+IHVz
-Ygo+ID4gMS00OiBuZXcgaGlnaC1zcGVlZCBVU0IgZGV2aWNlIG51bWJlciA0IHVzaW5nIHhoY2lf
-aGNkCj4gPiBbICAgNTYuMjQwMjI1XQo+ID4gdXNiIDEtNDogZGV2aWNlIG5vdCBhY2NlcHRpbmcg
-YWRkcmVzcyA0LCBlcnJvciAtNjIgWyAgIDU2LjM2ODIzMF0KPiA+IHVzYgo+ID4gMS00OiBuZXcg
-aGlnaC1zcGVlZCBVU0IgZGV2aWNlIG51bWJlciA1IHVzaW5nIHhoY2lfaGNkCj4gPiBbICAgNjYu
-OTkyMzA2XQo+ID4gdXNiIDEtNDogZGV2aWNlIG5vdCBhY2NlcHRpbmcgYWRkcmVzcyA1LCBlcnJv
-ciAtNjIgWyAgIDY2Ljk5MjM2M10KPiA+IHVzYgo+ID4gdXNiMS1wb3J0NDogdW5hYmxlIHRvIGVu
-dW1lcmF0ZSBVU0IgZGV2aWNlCj4gPiAgCj4gPiBUaGUgImRldmljZSBkZXNjcmlwdG9yIHJlYWQv
-NjQsIGVycm9yIC0xMTAiIG1lYW5zIHRoYXQgVVNCIHBvd2VyCj4gPiBkcmFpbiAKPiA+IHdhcyBl
-eGNlZWRlZCBieSB0aGUgVVNCIGRldmljZS4KPiAKPiBPSywgaXMgdGhlIGV4dGVybmFsIHBvd2Vy
-IHN1cHBseSB5b3UgdXNlIHRoZSBzdG9jayBldHR1cyBvbmUsIG9yIGFyZQo+IHlvdSB1c2luZyBz
-b21ldGhpbmcgZGlmZmVyZW50Pwo+IAo+ID4gIAo+ID4gNy4gT3VyIGFwcGxpY2F0aW9uIHByaW50
-czoKPiA+ICAKPiA+IEVycm9yOiBMb29rdXBFcnJvcjogS2V5RXJyb3I6IE5vIGRldmljZXMgZm91
-bmQgZm9yIC0tLS0tPiBEZXZpY2UKPiA+IEFkZHJlc3M6Cj4gPiAgICAgbnVtX3JlY3ZfZnJhbWVz
-OiA1MTIKPiA+ICAKPiA+IDguIFRoZSBkZXZpY2UgaXMgdG90YWxseSBhYnNlbnQsIHNvIGl0cyBu
-b3QgcG9zc2libGUgdG8gZm9yCj4gPiBpbnN0YW5jZQo+ID4gcnVuOiAgJFVIRF9JTlNUQUxMX1BS
-RUZJWC91dGlscy9iMnh4X2Z4M191dGlscyAtLXJlc2V0LWRldmljZQo+ID4gIAo+ID4gV29ya2Fy
-b3VuZHMgdGhhdCB3b3JrczoKPiA+ICogUGh5c2ljYWxseSB1bnBsdWcgdGhlIFVTQiBkZXZpY2Ug
-YW5kIGluc2VydCBpdCBhZ2FpbiBpbiB0aGUgc2FtZQo+ID4gVVNCIAo+ID4gcG9ydC4gKHNvbWV0
-aW1lcyBpdCB0aG91Z2ggc2VlbXMgbGlrZSB0aGlzIGRvZXMgbm90IHdvcmsgZWl0aGVyLAo+ID4g
-YW5kIAo+ID4gb25lIG5lZWQgdG8gc3dpdGNoIHRvIGEgbmV3IFVTQiBwb3J0IG9uIGFub3RoZXIg
-VVNCIEhVQiBvbiB0aGUKPiA+IFBDKQo+IAo+IFRoZXJlJ3MgYSBoaWdoIHByb2JhYmlsaXR5IHRo
-YXQgbWVhbnMgdGhhdCBzb21lIHBvbHlmdXNlIGhhcyBiZWVuCj4gdHJpZ2dlcmVkLCBpbiBteSBl
-eHBlcmllbmNlLiBJJ3ZlIHNlZW4gdGhhdCBpbiBzeXN0ZW1zIHdoZXJlIHRoZXJlCj4gd2FzIG5v
-IHNoYXJlZCBncm91bmQgYmV0d2VlbiBVU1JQIHN1cHBseSBhbmQgUEMsIGFuZCB0aGUgcG93ZXJp
-bmcgb2YKPiBlaXRoZXIgZGV2aWNlIGNhdXNlZCBhIHNpZ25pZmljYW50IGlucnVzaCBjdXJyZW50
-IChJIGd1ZXNzLCBjb3VsZG4ndAo+IG1lYXN1cmUgYmFjayB0aGVuKS4KPiAKPiA+ICAKPiA+ICog
-UGh5c2ljYWxseSBwcmVzcyB0aGUgcmVzZXQgc3dpdGNoIChTNzAwKSBvbiB0aGUgQjIxMC4KPiAK
-PiBUaGF0J3MgaW50ZXJlc3Rpbmc7IHM3MDAgcmVhbGx5IGZ1bGx5IHJlc2V0cyB0aGUgVVNCIGNv
-bnRyb2xsZXIsIGJ1dAo+IEkgZG9uJ3QgdGhpbmsgdGhlIGZ1bGwgYm9hcmQgKHdvdWxkIGhhdmUg
-dG8gY2hlY2spLgo+IAo+ID4gIAo+ID4gKiBSZW1vdmUgZXh0ZXJuYWwgcG93ZXIgc3VwcGx5IGZy
-b20gQjIxMCBiZWZvcmUgY29sZCBib290Lgo+IAo+IDwtLSB0aGF0J3MgdGhlIHdvcmthcm91bmQg
-SSdkIGdvIGZvciwgc2VlIGJlbG93Lgo+IAo+ID4gIAo+ID4gV29ya2Fyb3VuZHMgdGhhdCBoYXZl
-bid0IHdvcmtlZDoKPiA+ICogUmVib290aW5nIHRoZSBQQywgYnkgc29mdHdhcmUgYW5kL29yIGJ5
-IHBoeXNpY2FsbHkgc3dpdGNoaW5nIGl0Cj4gPiBvZmYgCj4gPiBhbmQgdGhlbiBvbiAocG93ZXIg
-Y2FibGUgb2ZmIGFuZCBvbikuCj4gPiAgCj4gPiAqIFRyeSB0byBwcm9ncmFtbWF0aWNhbGx5IHJl
-bW92ZSBwb3dlciBmcm9tIFVTQiBkZXZpY2U6Cj4gPiAgCj4gPiAgICAgbHN1c2IKPiA+ICAgICBl
-Y2hvIHN1c3BlbmQgPiBzdWRvIHRlZSAvc3lzL2J1cy91c2IvZGV2aWNlcy91c2IxL3Bvd2VyL2xl
-dmVsCj4gPiAgICAgZWNobyBzdXNwZW5kID4gc3VkbyB0ZWUgL3N5cy9idXMvdXNiL2RldmljZXMv
-dXNiMi9wb3dlci9sZXZlbAo+ID4gICAgIGxzdXNiCj4gPiAgICAgZWNobyBvbiA+IHN1ZG8gdGVl
-IC9zeXMvYnVzL3VzYi9kZXZpY2VzL3VzYjEvcG93ZXIvbGV2ZWwKPiA+ICAgICBlY2hvIG9uID4g
-c3VkbyB0ZWUgL3N5cy9idXMvdXNiL2RldmljZXMvdXNiMi9wb3dlci9sZXZlbAo+ID4gICAgIGxz
-dXNiCj4gPiAgCj4gPiAqIFRyeSB0byByZW1vdmUgdGhlIGhpZ2hzcGVlZCBVU0IgZHJpdmVyOgo+
-ID4gIAo+ID4gICAgIGxzdXNiCj4gPiAgICAgZWNobyAiMDAwMDowMDoxNC4wIiB8IHN1ZG8gdGVl
-Cj4gPiAvc3lzL2J1cy9wY2kvZHJpdmVycy94aGNpX2hjZC91bmJpbmQKPiA+ICAgICBsc3VzYgo+
-ID4gICAgIGRtZXNnCj4gPiAgICAgZWNobyAiMDAwMDowMDoxNC4wIiB8IHN1ZG8gdGVlCj4gPiAv
-c3lzL2J1cy9wY2kvZHJpdmVycy94aGNpX2hjZC9iaW5kCj4gPiAgICAgbHN1c2IKPiA+ICAKPiA+
-ICogUmVtb3ZlIGFuZCByZS1lbnVtZXJhdGUgdGhlIFVTQiBjb250cm9sbGVyIFBDSSBkZXZpY2U6
-Cj4gPiAgCj4gPiAgICAgbHN1c2IKPiA+ICAgICBsc3BjaQo+ID4gICAgIGVjaG8gMSB8IHN1ZG8g
-dGVlCj4gPiAvc3lzL2RldmljZXMvcGNpMDAwMFw6MDAvMDAwMFw6MDBcOjE0LjAvcmVtb3ZlCj4g
-PiAgICAgbHN1c2IKPiA+ICAgICBsc3BjaQo+ID4gICAgIGVjaG8gMSB8IHN1ZG8gdGVlIC9zeXMv
-YnVzL3BjaS9yZXNjYW4KPiA+ICAgICBsc3VzYgo+ID4gICAgIGxzcGNpCj4gPiAgCj4gU2FkLgo+
-IAo+ID4gV29ya2Fyb3VuZHMgdGhhdCBoYXZlbid0IGJlZW4gdHJpZWQ6Cj4gPiAqIFVzZSBhbiBV
-U0IzIGh1YiB0aGF0IGlzIGV4dGVybmFsbHkgcG93ZXJlZC4KPiA+ICogSW5zdGFsbCBhIGxhcmdl
-ciBjYXBhY2l0b3IgaW4gcGFyYWxsZWwgd2l0aCBDNzE2L1M3MDAgb24gdGhlCj4gPiBCMjEwIAo+
-ID4gYm9hcmQgdG8gZGVsYXkgVVNCIHN0YXJ0dXAgYnkgdGhlIGRldmljZS4gU29tZWJvZHkgcmVj
-YWxsCj4gPiBpbnN0YWxsaW5nIGEgCj4gPiAxMDB1RiBjYXBhY2l0b3IuIEJ1dCB0aGlzIGRvZXNu
-4oCZdCBzZWVtIGxpa2UgYSByb290IGNhdXNlIGZpeC4KPiAKPiBJZiBpdHMgcmVhbGx5IGFib3V0
-IGN1cnJlbnQgZHJhd3MsIGJlc3QgZ3Vlc3MgaXMgdGhhdCB0aGlzIHdvdWxkCj4gYWN0dWFsbHkg
-bWFrZSBpdCB3b3JzZS4KPiAKPiA+ICogQ2lyY3VtdmVudCBwb3dlciBzd2l0Y2hpbmcgY29tcG9u
-ZW50cyAoc29sZGVyIGEgc2hvcnQgb3ZlciBRNjAwKSAKPiA+IHN1Y2ggdGhhdCBleHRlcm5hbCBw
-b3dlciBpcyBhbHdheXMgdXNlZCBhbmQgbm90IGRpc2Nvbm5lY3RlZAo+ID4gYmVmb3JlIAo+ID4g
-YW55IFVTQiBjb21tdW5pY2F0aW9uLiBBbnkgc2lkZSBlZmZlY3RzID8KPiAKPiBWb2lkaW5nIGEg
-d2FycmFudHkuCj4gCj4gV2hhdCB5b3UgY291bGQgdHJ5OiBJZiB5b3UgaGF2ZSBhIHNwYXJlIFVT
-QiBjYWJsZSwgZ2VudGx5IGNpcmN1bXNpemUKPiB0aGUgcGxhc3RpYyBtYW50bGluZyBpbiB0d28g
-cGxhY2VzIGEgY291cGxlIGNtIGFwYXJ0LCBzbGljZSBvcGVuIHRoZQo+IG1hbnRsaW5nLCBmaW5k
-IHRoZSByZWQgY2FibGUgaW5zaWRlIGFuZCBjdXQgaXQuCj4gCj4gVGhhdCB3b3VsZCByZW1vdmUg
-dGhlIDVWIHBvd2VyaW5nIGZyb20gdGhlIGhvc3QuIAo+IEhhdmVuJ3QgY2hlY2tlZCB3aGV0aGVy
-IHRoYXQgd29ya3Mgd2l0aCB0aGUgY3VycmVudCBmaXJtd2FyZSwgdGhvdWdoCj4gOigKPiAKPiA+
-ICAKPiA+IFJvb3QgY2F1c2U6Cj4gPiBXZSBiZWxpZXZlIHRoZSByb290IGNhdXNlIGlzIHRoZSBz
-d2l0Y2hpbmcgYmV0d2VlbiBVU0IgYW5kCj4gPiBleHRlcm5hbCAKPiA+IHBvd2VyLCBpbiB0aGUg
-TFRDNDQxMiBVNjA5IGNpcmN1aXQuIElmIGV4dGVybmFsIHBvd2VyIGlzIHJlbW92ZWQgCj4gPiBi
-ZWZvcmUgY29sZCBib290LCB0aGUgZGV2aWNlIGNvbWVzIHVwIGNvcnJlY3RseSB3aGlsZSBleHRl
-cm5hbAo+ID4gQjIxMCAKPiA+IHBvd2VyIGlzIG5vdCBhdHRhY2hlZC4KPiA+IEFsc28gd29ydGgg
-bm90aW5nLCBpcyB0aGF0IHRoaXMgbWF5IG9ubHkgaGFwcGVuIHdoZW4gYSBHUFNETyBpcyAKPiA+
-IGF0dGFjaGVkLiBXZSBoYXZlbid0IHRyaWVkIHJlbW92aW5nIHRoZSBHUFNETywgc2luY2UgaXQg
-aXMgcmF0aGVyIAo+ID4gZnJhZ2lsZS4KPiA+IEFub3RoZXIg4oCcbWFsaWNpb3Vz4oCdIGJlaGF2
-aW9yIGlzIHdoZW4gZXh0ZXJuYWwgcG93ZXIgaXMgb24gYW5kIFVTQgo+ID4gaXMgCj4gPiBhdHRh
-Y2hlZCB0aGVuIFE2MDAgd2lsbCBnbyBvbiBpZiBpdCBpcyBub3QgYWxyZWFkeSBvbi4gV2hlbiBV
-U0IgaXMgCj4gPiByZW1vdmVkIFE2MDAgd2lsbCBzdGF5IG9uLCBpZS4gdGhlIGNpcmN1aXRyeSB3
-aWxsIG5vdCBjb21lIGJhY2sgdG8KPiA+IHRoZSAKPiA+IHN0YXRlIGl0IGhhZCB3aGVuIGV2ZXJ5
-dGhpbmcgd2FzIHBvd2VyZWQgb24gZnJvbSBzY3JhdGNoLgo+ID4gIAo+IAo+IEhtLCB5ZWFoLCB0
-aGUgTEVEIGJlaGF2aW91ciBvZiBRNjAwIHdhcyBlcnJhdGljIGZvciBtdWx0aXBsZQo+IGN1c3Rv
-bWVycyB3aG8gaGFkIG5vIG90aGVyIHByb2JsZW1zLgo+IAo+IFlvdSBkb24ndCBoYXBwZW4gdG8g
-aGF2ZSBhbiBvc2NpbGxvc2NvcGUgdGhhdCB5b3UgY291bGQgYXR0YWNoIHRvIGEKPiBjb3VwbGUg
-b2YgcG93ZXIgdGVzdCBwb2ludHMgb24gdGhlIEIyMDAsIHRyaWdnZXIgb24gZWRnZSwgYW5kIHNl
-ZQo+IHdoZXRoZXIgdGhpcyBzdXNwaWNpb24gb2YgeW91cnMgd29ya3Mgb3V0IHRvIGJlIHJpZ2h0
-PyAKPiAKPiBCZXN0IHJlZ2FyZHMsCj4gTWFyY3VzCj4gCj4gCj4gCj4gX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlz
-dAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
-YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxp
-c3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
-bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============2804039978602448928==
+Content-Type: multipart/alternative; boundary="00000000000009a117058f827d9f"
+
+--00000000000009a117058f827d9f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Marcus,
+
+I use the same signal for NI-5672 and signal changes as expected, I change
+A from  2000 to 8 and it must drop 46 dB but does not!
+
+On Tue, Aug 6, 2019 at 4:09 AM Marcus M=C3=BCller <marcus.mueller@ettus.com=
+>
+wrote:
+
+> Dear Hossein,
+>
+> the B200 does NOT have a TX power control that would compensate that.
+>
+> Are you perhaps either not changing A very much, or are you perhaps
+> clipping? Driving your B200's TX amplifier into saturation would of
+> course mean that you'd not see much of signal power reduction when
+> reducing signal amplitude, until you cross the threshold where things
+> become linear again.
+>
+> Best regards,
+> Marcus
+>
+> On Mon, 2019-08-05 at 17:00 +0430, hossein talaiee via USRP-users
+> wrote:
+> > Hi
+> >
+> > I want to manually control output power of my USRP with signal level
+> > not usrp gain,for example I want to generate a sinusoidal signal with
+> > equation:
+> >
+> >    s(t) =3D A * sin(w*t);
+> >
+> > and want to change A to control tx power, but when I change it,
+> > somehow USRP compensate my change and tries to hold tx power! like it
+> > is trying to hold average power.
+> >
+> > Using NI-5672 signal generator, I am able to control power with
+> > setting the power mode to "Peak Power mode" instead of "Average Power
+> > mode". I think USRP has something like this to control power. How can
+> > I disable it?
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+
+--00000000000009a117058f827d9f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif">Dear Marcus,</div><div class=3D"gmail_default" style=3D"font-fam=
+ily:tahoma,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font=
+-family:tahoma,sans-serif">I use the same signal for NI-5672 and signal cha=
+nges as expected, I change A from=C2=A0 2000 to 8 and it must drop 46 dB bu=
+t does not!<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Tue, Aug 6, 2019 at 4:09 AM Marcus M=C3=BCller &lt;=
+<a href=3D"mailto:marcus.mueller@ettus.com">marcus.mueller@ettus.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Dear Ho=
+ssein,<br>
+<br>
+the B200 does NOT have a TX power control that would compensate that.<br>
+<br>
+Are you perhaps either not changing A very much, or are you perhaps<br>
+clipping? Driving your B200&#39;s TX amplifier into saturation would of<br>
+course mean that you&#39;d not see much of signal power reduction when<br>
+reducing signal amplitude, until you cross the threshold where things<br>
+become linear again.<br>
+<br>
+Best regards,<br>
+Marcus<br>
+<br>
+On Mon, 2019-08-05 at 17:00 +0430, hossein talaiee via USRP-users<br>
+wrote:<br>
+&gt; Hi<br>
+&gt; <br>
+&gt; I want to manually control output power of my USRP with signal level<b=
+r>
+&gt; not usrp gain,for example I want to generate a sinusoidal signal with<=
+br>
+&gt; equation:<br>
+&gt;=C2=A0 <br>
+&gt;=C2=A0 =C2=A0 s(t) =3D A * sin(w*t);<br>
+&gt; <br>
+&gt; and want to change A to control tx power, but when I change it,<br>
+&gt; somehow USRP compensate my change and tries to hold tx power! like it<=
+br>
+&gt; is trying to hold average power.<br>
+&gt; <br>
+&gt; Using NI-5672 signal generator, I am able to control power with<br>
+&gt; setting the power mode to &quot;Peak Power mode&quot; instead of &quot=
+;Average Power<br>
+&gt; mode&quot;. I think USRP has something like this to control power. How=
+ can<br>
+&gt; I disable it?<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+<br>
+</blockquote></div>
+
+--00000000000009a117058f827d9f--
+
+
+--===============2804039978602448928==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2804039978602448928==--
+
