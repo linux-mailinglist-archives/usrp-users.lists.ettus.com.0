@@ -2,78 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25B93874C1
-	for <lists+usrp-users@lfdr.de>; Fri,  9 Aug 2019 11:03:18 +0200 (CEST)
-Received: from [::1] (port=58666 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 690E587B88
+	for <lists+usrp-users@lfdr.de>; Fri,  9 Aug 2019 15:41:34 +0200 (CEST)
+Received: from [::1] (port=33568 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hw0nr-0000di-SO; Fri, 09 Aug 2019 05:03:15 -0400
-Received: from mail-oln040092254054.outbound.protection.outlook.com
- ([40.92.254.54]:18258 helo=APC01-PU1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <retina999@hotmail.com>)
- id 1hw0nn-0000Z7-Nj
- for usrp-users@lists.ettus.com; Fri, 09 Aug 2019 05:03:11 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FRplg/+7bRLc14AI3lm1U0apfvmOEtLsFRO2M2kUvqOCUV/5wN30mmHjJsHF07aQSMlAPxVNlRC5DEqHTPlkpB0BsbQuBFrHheR63v4oHpPutgq7/NR1VLH4pAacOkrHHUODJQ/V5pOO8CZRgWufJsmuSrcKGwTUrrTp60KVV36Svth9k8uHz7dkgKlWXPW5JK/X8HLDBmG8wgACksDo7nhUm6jB5zkCUQqs5MKE0Q95kDidIsMwk3tsgVwE7hRHbMIFbmZ91IHKUuFPmUbFTN29gotBBLDhZr7M1/+0BUYwLR8BK6XDfqoI25xwX01DdkoIz6BwCM+HgMja8bVJag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MmCU88k5+3ToXZhkV69EzGBiZqS9rhXi7C35/CsfRHw=;
- b=cu3r3KqmId6V2TnsRFGybW/UUCyl4WcvU/H074e7OY30vUz99UFdjyCM++Cf/cOV3JemAA6kDh6/6Q0rbWA4+fF3N2l87GfLuOrRRH4905swhYEmilVbCKhuHPYqfLMfkchUTyRKpZssbAjR1GpJJLEpm0F3JkQ3IyIIljxlZy2MOO8KD149ey4Z/8vJoFoAV0YHc4QJY5FOhSk0RXYXQW3+RAfGVbViSQnXxgtTSa2DMzRBjWQdlVPxhpr/UdMzCZ5MUKKqPZBQnLqEyh624fISS2hqEyxYqoz9QbJbxI5S/iuQdFyDmgXJ6/zAgT4MUHa9ItBihG+z1nQCG5dH6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MmCU88k5+3ToXZhkV69EzGBiZqS9rhXi7C35/CsfRHw=;
- b=rxUDis0OSqzAtamLziGrngvmdQ4dliQMWaQJNjLNjFpmJmzioZM+rWA770AgasrZkDMX2RUZCMF+Ut4UPgV7zZmVldGIHMFCbREwq2s2+SneZZJrDmYEbyYDWkRTt0u3f5xRGhT9I7KYUjA5LJVlfDpRNI4dWk9mddr+pzBrM+n1E9+dWVOjG8B5OciktkKK8yV8ZvNkw8aZIF0QAb4V4ZR6St2GVJ4b+YAdPpHfb7Dcb82FyL0XGO4eTeE2n8Nu4fcXwkpdM9HFk7uJ3+jYSo5WEcs55+gpqZzs4llrI77kpjaUxr5IsAT/OpiySMDana3eV759TbTj6qFcL6YpBQ==
-Received: from PU1APC01FT062.eop-APC01.prod.protection.outlook.com
- (10.152.252.59) by PU1APC01HT248.eop-APC01.prod.protection.outlook.com
- (10.152.253.209) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2157.15; Fri, 9 Aug
- 2019 09:02:28 +0000
-Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com (10.152.252.60) by
- PU1APC01FT062.mail.protection.outlook.com (10.152.253.51) with
- Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.15 via Frontend Transport; Fri, 9 Aug 2019 09:02:28 +0000
-Received: from HK0PR01MB2835.apcprd01.prod.exchangelabs.com
- ([fe80::e41a:f703:68f5:d689]) by HK0PR01MB2835.apcprd01.prod.exchangelabs.com
- ([fe80::e41a:f703:68f5:d689%4]) with mapi id 15.20.2157.015; Fri, 9 Aug 2019
- 09:02:28 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Source Codes and SDK for N310 (Embedded Mode) 
-Thread-Index: AQHVTo156Or21lZVsEaUNhFZUPkAyg==
-Date: Fri, 9 Aug 2019 09:02:28 +0000
-Message-ID: <HK0PR01MB2835F3D915230B4615A7F936F3D60@HK0PR01MB2835.apcprd01.prod.exchangelabs.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:06167CBBB1176CAFFEAFF6635CAA32B750D9570B9F2CABC1B881880312B0C264;
- UpperCasedChecksum:A4B11120119BD38BF5C02D7EE54FD8D98582BF788F9446634DD5FF051C900883;
- SizeAsReceived:6578; Count:40
-x-tmn: [gTWC/61SPherzaITGUx7cZybtqNRw57k]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 40
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031322404)(2017031323274)(2017031324274)(1601125500)(1603101475)(1701031045);
- SRVR:PU1APC01HT248; 
-x-ms-traffictypediagnostic: PU1APC01HT248:
-x-microsoft-antispam-message-info: EHGujBQP99GgjLx5np6w9IKld6CbPrOhxKUGHo59EFXGGFPOPjrGQP78vJdDiL2jk2sYFHJmNAio5mkfYEKi7fOQ9pf/yjvBeDjE6TPibcxi27/rOe3xLz96LgsacqQ51AhLWHNYfqvU1wvGpY5fKpq8D+bZvC28cDUuoKmznB89phmJXfrd15745HmB0hdj
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: a16b9307-ba92-4544-f987-08d71ca84e0c
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2019 09:02:28.5321 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT248
-Subject: [USRP-users] Source Codes and SDK for N310 (Embedded Mode)
+	id 1hw59A-00035F-6h; Fri, 09 Aug 2019 09:41:32 -0400
+Received: from sonic314-14.consmr.mail.bf2.yahoo.com ([74.6.132.124]:45219)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <royceconnerley@yahoo.com>)
+ id 1hvnZq-0000se-PR
+ for usrp-users@lists.ettus.com; Thu, 08 Aug 2019 14:55:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1565290514; bh=+xsWOobgt81nFNeoPQz8E3flm6xG951ps0nMwS6ioQY=;
+ h=From:Subject:Date:In-Reply-To:Cc:To:References:From:Subject;
+ b=iGtKudLInZ49/x5GSGuwcTkC5h/hnVrJa0Xq6SvieMjeZY5O6bl2++khy3OAjn/3AlbU+5GPS4RlFktQiPKf3o4k78yVtnLicuXMSVDxa23QlMM1AqFaaN0v/zKieCysqgJrcAiHz+AS+32fIzfAJDOCwTEQVLAb828yzncliN68cK4HyXuAOB5FDiD11fLdjFK66ynyZvYuM5CH1NuHnLN8KBbiiiIK8M2M9HWbKvjCE9hsh38JWokqtwZjNRwTNSJnq1nIfwEhE7+VdxOo94SQghE0PYmRzqNaAZQBcRDYk4r0C+A4uXCzU/eEsNJh56siyMftn/pkDZIbU/Nbsw==
+X-YMail-OSG: BBqF8ngVM1kvq2z.wFlyQs_gafPTbcZdlbKZdrPAsdM9RUl8GJADeqi9aSIlUUm
+ FJN5ML6GlV_Qa_f_eZZTCaipQ0IYAQp7S2q.ZB9OSIW_lddXgOIBYxL6aLp1jUb59KEoM71QmOx9
+ ZUDnwynj59eI0dFAl3eoO.SgolbHtrbPlMB.Y0eBq3CyaebtvpkD5ke9WLG.Yo04XZKbuXY2V8.s
+ l8BKqlFGHROtv47aNQ5nzCixQ48NnUtmp0n.8LRfF1UeAECZ44Z4VkvLi8Hn0Y7bfCqX2gUkqTCB
+ jgvCLqjZecBGYDMKDJSbUwnVzu_6_5JnqenFDgrkXtgDe_1K7jL5JHr7kWrVxd1hiAnVaEuG5XjQ
+ tg3aywUpaFXfdhbGxP7XptNX_c_XlmjMNULdosUBoTmTL45kfz51IitVmqBJU3hKardvA1pFmfco
+ u5oEFQeppJJGpuV8OhlgCIogTzjWmQ6Vudc5DoxVBurvEU3gMLZ.iyqufDx325NB.MFCFGACJyyr
+ qtaj4WwJjgKU8GJ5C0xP88Zq8mN9yZYoJVVLxCjR6g4Ts2Oekhuj5ccuT3VlTslFIg3uyluCq958
+ g7KaRQuQ.Qk9tQsBmqwZpGHEXIpRYg8w6MnGmduONU4EsQmYxAavnXU8epIkO3GRpzmUsr.GC9wG
+ S5xzKrcbl7_zF2exBXhJIhsk_CDtx6ugK7vMvT8jNbynUycZ28Ha90ogRq.yrBmA4E_8rJKaf49Z
+ GJsNG8p56cWDvryy8whuRnMDyXFUSEr24oLoo33oo7fEHWkdqgzb5SfNM7LL.824Ib8mXWItIrdS
+ 438xY.V3qhT6baGhvOcfap8AH1KczwNDpaTBLXM6z02d2D.JKBWgsFxMyAEpnRJdk0pXqGoJlXpx
+ lKltdR_42q_UVzyyuK4UGKFARfB3xmJACr060x21UJPzyyDYsr5wFho5KFndCDS_iUeS3Khkz8zs
+ _3oA2A_pgt8BqZzquXGLcpwqH1vzeOKNIVy0_AwSAkxSIIY4_MZkLDiQO3pAp.XHWFwhei9pRPDZ
+ 8rt338_ztXoLONl_6hyboBgQpwS4RiBOxBMP9zOxf.hf7sUUpIKCAwjG7ZEehHC.ZsnYj2mRbCWG
+ nwh59vQD4BMzXlMNsMiqnBHi5uzeEr_Uod_mJPyG5k86k9Nir8WKLT8QdB6nYbtzpi1MdA9Tiukl
+ pfRdEq.W86jmCknow4mvncMkE3FR4AFbl1V1MLH4vgrOxII5xyIIlXlv6H3QxReQ_uplg7WIHDsD
+ ISMalAQWm0W2mkFQBz1Zf3aj9DQSUhdfRKKjAO1gc60ZUCA--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic314.consmr.mail.bf2.yahoo.com with HTTP; Thu, 8 Aug 2019 18:55:14 +0000
+Received: by smtp410.mail.bf1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
+ ID 1bfe8767012734266cb77f86e7c08c37; 
+ Thu, 08 Aug 2019 18:55:09 +0000 (UTC)
+Message-Id: <C6A30D56-27FE-4F13-9778-777B1FF64F5D@yahoo.com>
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
+Date: Thu, 8 Aug 2019 13:55:07 -0500
+In-Reply-To: <CA+JMMq_61dwhz=1nQOYEEaiZ05rKR6TeDxb7a0iWjNX13QGPfg@mail.gmail.com>
+To: Nick Foster <bistromath@gmail.com>
+References: <97D6F3B6-019A-41A3-A8D6-06D32C15B528@yahoo.com>
+ <CADRnH20Zn3eje8HuKxLV3nJhvKBmPpDkNiGcjX2ojVN80VPdiw@mail.gmail.com>
+ <7C7EB5C4-8843-4D92-9E3A-65126048DA13@yahoo.com>
+ <CADRnH22cZXxKQ6OhavSOdN+bob520J4rzHSOMooosdQcaeiSsA@mail.gmail.com>
+ <4FF2A237-C699-4270-B467-A926FF39F208@yahoo.com>
+ <CA+JMMq-x7xhKnsYMuG7WwFR7uGui_Fe8HYscO_RyZLkuD97ecw@mail.gmail.com>
+ <CA+JMMq_61dwhz=1nQOYEEaiZ05rKR6TeDxb7a0iWjNX13QGPfg@mail.gmail.com>
+X-Mailer: Apple Mail (2.3445.104.11)
+X-Mailman-Approved-At: Fri, 09 Aug 2019 09:41:29 -0400
+Subject: Re: [USRP-users] RFNoC Polyphase Channelizer updates
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -85,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: retina999--- via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: "retina999@hotmail.com" <retina999@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============3077640006661947942=="
+From: Royce Connerley via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Royce Connerley <royceconnerley@yahoo.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8824875163857218085=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -101,113 +83,340 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3077640006661947942==
-Content-Language: zh-CN
+
+--===============8824875163857218085==
 Content-Type: multipart/alternative;
-	boundary="_000_HK0PR01MB2835F3D915230B4615A7F936F3D60HK0PR01MB2835apcp_"
+	boundary="Apple-Mail=_E6E69E99-C3A9-4D9C-88C6-859D02DFDE13"
 
---_000_HK0PR01MB2835F3D915230B4615A7F936F3D60HK0PR01MB2835apcp_
-Content-Type: text/plain; charset="Windows-1252"
+
+--Apple-Mail=_E6E69E99-C3A9-4D9C-88C6-859D02DFDE13
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-Hi,
+Nick:
 
-We are currently using N310 to design a prototype MIMO OFDM communications =
-system. We plan to implemented the baseband in a custom RFNOC block. For th=
-e MAC and network layers=92 functionalities, we hope to implement them on t=
-he ARM within Zynq FPGA. So ARM should communicate with the custom RFNOC bl=
-ock and config the RF chips. The baseband will get samples from the RF radi=
-o and send TX samples to it. N310 should operate in the embedded mode like =
-an e-series usrp equipment. (N310 supports both host and embedded modes).
+That was my first approach, but I can=E2=80=99t even fit two DDCs in the =
+E310 FPGA.
 
-But we could not find enough info on N310=92s embedded mode operations.
-1)  Where can we get the SDK for N310 similar to that for E310?
-2)  If we want to develop the AXI and SPI drivers for the ARM, where can we=
- get source codes of the Linux running on ARM (uboot, kernel, petalinux bsp=
- packages, etc. )
+Royce
 
-Many thanks in advance!
+> On Aug 8, 2019, at 1:36 PM, Nick Foster <bistromath@gmail.com> wrote:
+>=20
+> Nevermind, I just saw you're doing it in an E310. Reading is =
+fundamental.
+>=20
+> You might consider splitting the problem into a pair of DDCs instead.
+>=20
+> Nick
+>=20
+> On Thu, Aug 8, 2019 at 11:35 AM Nick Foster <bistromath@gmail.com =
+<mailto:bistromath@gmail.com>> wrote:
+> Royce,
+>=20
+> Is there a reason you absolutely need it to be done in RFNoC? This is =
+only 5MHz of bandwidth, and any commodity PC should be able to handle =
+channelizing it in software.
+>=20
+> Nick
+>=20
+> On Thu, Aug 8, 2019 at 11:19 AM Royce Connerley via USRP-users =
+<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+> EJ:
+>=20
+> I=E2=80=99m currently wanting to receive a total of four channels that =
+are 12.5 kHz wide.  The channels are not equally spaced.
+>=20
+> F2 =3D F1 + 1 MHz
+> F3 =3D F1 + 3.99375 MHz
+> F4 =3D F3 + 1 MHz
+>=20
+> For this type of system, I typically have a number of channel pairs =
+(repeater output and input separated by 1 MHz) that I need to monitor.
+>=20
+> Royce
+>=20
+>> On Aug 8, 2019, at 8:51 AM, EJ Kreinar <ejkreinar@gmail.com =
+<mailto:ejkreinar@gmail.com>> wrote:
+>>=20
+>> Hi Royce,
+>>=20
+>> Can you walk me through your use case real quick?
+>>=20
+>> - How many channels?
+>> - How wide is each channel?
+>> - Are the channels equally spaced?
+>>=20
+>> The polyphase channelizer in theseus-cores currently has a static =
+number of "max channels" that get instantiated.... which is not =
+insignificant. We've discussed exposing a build-time parameter that =
+could scale down the max number of channels to save some resources, but =
+1) that hasn't been implemented yet and 2) I'm not totally confident it =
+would fit in the e310 anyway.=20
+>>=20
+>> But lets think through your scenario and we can discuss where we'd =
+need the channelizer to go for it to work... for example, you probably =
+also need the FPGA-based channel downselection in the channelizer -- the =
+E310 wont be able to return all channels in real time! Or, we could =
+consider other approaches -- the DDC channelizer in theseus-cores might =
+be workable if you have just small number of channels and you need =
+arbitrary spacing/channel widths.
+>>=20
+>> EJ
+>>=20
+>> On Thu, Aug 8, 2019, 8:52 AM Royce Connerley =
+<royceconnerley@yahoo.com <mailto:royceconnerley@yahoo.com>> wrote:
+>> EJ:
+>>=20
+>> I want to pick a few narrowband channels scattered over about 5 MHz.  =
+I would like to be able to use your channelizer in an E310.  Do you =
+think it could fit in the E310=E2=80=99s FPGA?  When I run =
+uhd_image_builder with just the channelizer and a FIFO, I=E2=80=99m =
+seeing the following errors:
+>>=20
+>> ERROR: [Place 30-640] Place Check : This design requires more =
+RAMB36/FIFO cells than are available in the target device. This design =
+requires 324 of such cell types but only 140 compatible sites are =
+available in the target device. Please analyze your synthesis results =
+and constraints to ensure the design is mapped to Xilinx primitives as =
+expected. If so, please consider targeting a larger device.
+>> ERROR: [Place 30-640] Place Check : This design requires more RAMB18 =
+and RAMB36/FIFO cells than are available in the target device. This =
+design requires 703 of such cell types but only 280 compatible sites are =
+available in the target device. Please analyze your synthesis results =
+and constraints to ensure the design is mapped to Xilinx primitives as =
+expected. If so, please consider targeting a larger device.
+>> ERROR: [Place 30-640] Place Check : This design requires more =
+RAMB36E1 cells than are available in the target device. This design =
+requires 324 of such cell types but only 140 compatible sites are =
+available in the target device. Please analyze your synthesis results =
+and constraints to ensure the design is mapped to Xilinx primitives as =
+expected. If so, please consider targeting a larger device.
+>>=20
+>> Royce Connerley
+>>=20
+>>> On Jul 24, 2019, at 6:34 PM, EJ Kreinar <ejkreinar@gmail.com =
+<mailto:ejkreinar@gmail.com>> wrote:
+>>>=20
+>>> Hi Royce,
+>>>=20
+>>> Phil and I have been working on the channelizer in the theseus-cores =
+repo here: gitlab.com/theseus-cores/theseus-cores =
+<http://gitlab.com/theseus-cores/theseus-cores>
+>>>=20
+>>> The master branch has a (potentially) working channelizer, at least =
+according to my recent tests on the x310, as long as the network =
+interface supports the desired output rate.
+>>>=20
+>>> There's also an fpga solution for channel downselection in a branch =
+that Phil put together. The ball is in my court to turn the crank and =
+merge to master with supporting software, but I haven't gotten much of a =
+chance recently.=20
+>>>=20
+>>> If you're interested in testing we could definitely use some more =
+people to give it a shot :D Let me know if you need a sample bitstream =
+or if you can build one yourself.
+>>>=20
+>>> EJ
+>>>=20
+>>> On Wed, Jul 24, 2019, 4:39 PM Royce Connerley via USRP-users =
+<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+>>> At the 2018 GRCon, EJ Kreinar spoke about improvements to the RFNoC =
+polyphase channelizer.  Has there been any activity on this?
+>>>=20
+>>> Royce Connerley
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
+<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
+>>=20
+>=20
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
+<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
 
---_000_HK0PR01MB2835F3D915230B4615A7F936F3D60HK0PR01MB2835apcp_
-Content-Type: text/html; charset="Windows-1252"
+
+--Apple-Mail=_E6E69E99-C3A9-4D9C-88C6-859D02DFDE13
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
-hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
-fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	font-size:10.5pt;
-	font-family:DengXian;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style>
-</head>
-<body lang=3D"ZH-CN">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:14.0pt">Hi,<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:14.0pt"><o:p=
->&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:14.0pt">We a=
-re currently using N310 to design a prototype MIMO OFDM communications syst=
-em. We plan to implemented the baseband in a custom RFNOC block. For the MA=
-C and network layers=92 functionalities,
- we hope to implement them on the ARM within Zynq FPGA. So ARM should commu=
-nicate with the custom RFNOC block and config the RF chips. The baseband wi=
-ll get samples from the RF radio and send TX samples to it. N310 should ope=
-rate in the embedded mode like an
- e-series usrp equipment. (N310 supports both host and embedded modes). <o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:14.0pt"><o:p=
->&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:14.0pt">But =
-we could not find enough info on N310=92s embedded mode operations.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:14.0pt">1)&n=
-bsp; Where can we get the SDK for N310 similar to that for E310?<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:14.0pt">2)&n=
-bsp; If we want to develop the AXI and SPI drivers for the ARM, where can w=
-e get source codes of the Linux running on ARM (uboot, kernel, petalinux bs=
-p packages, etc. )<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:14.0pt"><o:p=
->&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:14.0pt">Many=
- thanks in advance</span><span lang=3D"EN-US">!</span></p>
-</div>
-</body>
-</html>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" =
+class=3D"">Nick:<div class=3D""><br class=3D""></div><div class=3D"">That =
+was my first approach, but I can=E2=80=99t even fit two DDCs in the E310 =
+FPGA.</div><div class=3D""><br class=3D""></div><div class=3D"">Royce<br =
+class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Aug 8, 2019, at 1:36 PM, Nick Foster &lt;<a =
+href=3D"mailto:bistromath@gmail.com" =
+class=3D"">bistromath@gmail.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
+class=3D""><div class=3D"">Nevermind, I just saw you're doing it in an =
+E310. Reading is fundamental.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">You might consider splitting the =
+problem into a pair of DDCs instead.<br class=3D""></div><div =
+class=3D""><br class=3D""></div><div class=3D"">Nick<br =
+class=3D""></div></div><br class=3D""><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 8, 2019 at 11:35 AM Nick =
+Foster &lt;<a href=3D"mailto:bistromath@gmail.com" =
+class=3D"">bistromath@gmail.com</a>&gt; wrote:<br =
+class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr" class=3D""><div =
+class=3D"">Royce,</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Is there a reason you absolutely need it to be done in RFNoC? =
+This is only 5MHz of bandwidth, and any commodity PC should be able to =
+handle channelizing it in software.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Nick<br class=3D""></div></div><br =
+class=3D""><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Thu, Aug 8, 2019 at 11:19 AM Royce Connerley via =
+USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
+target=3D"_blank" class=3D"">usrp-users@lists.ettus.com</a>&gt; =
+wrote:<br class=3D""></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div class=3D"">EJ:<div class=3D""><br =
+class=3D""></div><div class=3D"">I=E2=80=99m currently wanting to =
+receive a total of four channels that are 12.5 kHz wide.&nbsp; The =
+channels are not equally spaced.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">F2 =3D F1 + 1 MHz</div><div class=3D"">F3=
+ =3D F1 + 3.99375 MHz</div><div class=3D"">F4 =3D F3 + 1 MHz</div><div =
+class=3D""><br class=3D""></div><div class=3D"">For this type of system, =
+I typically have a number of channel pairs (repeater output and input =
+separated by 1 MHz) that I need to monitor.<br class=3D""><div =
+class=3D""><br class=3D""></div><div class=3D"">Royce</div><div =
+class=3D""><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Aug 8, 2019, at 8:51 AM, EJ Kreinar &lt;<a =
+href=3D"mailto:ejkreinar@gmail.com" target=3D"_blank" =
+class=3D"">ejkreinar@gmail.com</a>&gt; wrote:</div><br =
+class=3D"gmail-m_-7263944204764884790gmail-m_-7668041020443800314Apple-int=
+erchange-newline"><div class=3D""><div dir=3D"ltr" class=3D""><div =
+dir=3D"auto" class=3D"">Hi Royce,<div dir=3D"auto" class=3D""><br =
+class=3D""></div><div dir=3D"auto" class=3D"">Can you walk me through =
+your use case real quick?</div><div dir=3D"auto" class=3D""><br =
+class=3D""></div><div dir=3D"auto" class=3D"">- How many =
+channels?</div><div dir=3D"auto" class=3D"">- How wide is each =
+channel?</div><div dir=3D"auto" class=3D"">- Are the channels equally =
+spaced?</div><div dir=3D"auto" class=3D""><br class=3D""></div><div =
+dir=3D"auto" class=3D"">The polyphase channelizer in theseus-cores =
+currently has a static number of "max channels" that get =
+instantiated.... which is not insignificant. We've discussed exposing a =
+build-time parameter that could scale down the max number of channels to =
+save some resources, but 1) that hasn't been implemented yet and 2) I'm =
+not totally confident it would fit in the e310 anyway.&nbsp;</div><div =
+dir=3D"auto" class=3D""><br class=3D""></div><div class=3D"">But lets =
+think through your scenario and we can discuss where we'd need the =
+channelizer to go for it to work... for example, you probably also need =
+the FPGA-based channel downselection in the channelizer -- the E310 wont =
+be able to return all channels in real time! Or, we could consider other =
+approaches -- the DDC channelizer in theseus-cores might be workable if =
+you have just small number of channels and you need arbitrary =
+spacing/channel widths.</div><div class=3D""><br class=3D""></div><div =
+class=3D"">EJ</div></div></div><br class=3D""><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug =
+8, 2019, 8:52 AM Royce Connerley &lt;<a =
+href=3D"mailto:royceconnerley@yahoo.com" target=3D"_blank" =
+class=3D"">royceconnerley@yahoo.com</a>&gt; wrote:<br =
+class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div class=3D"">EJ:<div class=3D""><br =
+class=3D""></div><div class=3D"">I want to pick a few narrowband =
+channels scattered over about 5 MHz.&nbsp; I would like to be able to =
+use your channelizer in an E310.&nbsp; Do you think it could fit in the =
+E310=E2=80=99s FPGA?&nbsp; When I run uhd_image_builder with just the =
+channelizer and a FIFO, I=E2=80=99m seeing the following =
+errors:</div><div class=3D""><br class=3D""></div><div class=3D""><div =
+class=3D"">ERROR: [Place 30-640] Place Check : This design requires more =
+RAMB36/FIFO cells than are available in the target device. This design =
+requires 324 of such cell types but only 140 compatible sites are =
+available in the target device. Please analyze your synthesis results =
+and constraints to ensure the design is mapped to Xilinx primitives as =
+expected. If so, please consider targeting a larger device.</div><div =
+class=3D"">ERROR: [Place 30-640] Place Check : This design requires more =
+RAMB18 and RAMB36/FIFO cells than are available in the target device. =
+This design requires 703 of such cell types but only 280 compatible =
+sites are available in the target device. Please analyze your synthesis =
+results and constraints to ensure the design is mapped to Xilinx =
+primitives as expected. If so, please consider targeting a larger =
+device.</div><div class=3D"">ERROR: [Place 30-640] Place Check : This =
+design requires more RAMB36E1 cells than are available in the target =
+device. This design requires 324 of such cell types but only 140 =
+compatible sites are available in the target device. Please analyze your =
+synthesis results and constraints to ensure the design is mapped to =
+Xilinx primitives as expected. If so, please consider targeting a larger =
+device.</div></div><div class=3D""><br class=3D""></div><div =
+class=3D"">Royce Connerley</div><div class=3D""><br class=3D""><blockquote=
+ type=3D"cite" class=3D""><div class=3D"">On Jul 24, 2019, at 6:34 PM, =
+EJ Kreinar &lt;<a href=3D"mailto:ejkreinar@gmail.com" rel=3D"noreferrer" =
+target=3D"_blank" class=3D"">ejkreinar@gmail.com</a>&gt; wrote:</div><br =
+class=3D"gmail-m_-7263944204764884790gmail-m_-7668041020443800314gmail-m_-=
+7955918035240629135m_-4832231494987881177Apple-interchange-newline"><div =
+class=3D""><div dir=3D"auto" class=3D"">Hi Royce,<div dir=3D"auto" =
+class=3D""><br class=3D""></div><div dir=3D"auto" class=3D"">Phil and I =
+have been working on the channelizer in the theseus-cores repo here: <a =
+href=3D"http://gitlab.com/theseus-cores/theseus-cores" rel=3D"noreferrer" =
+target=3D"_blank" =
+class=3D"">gitlab.com/theseus-cores/theseus-cores</a></div><div =
+dir=3D"auto" class=3D""><br class=3D""></div><div dir=3D"auto" =
+class=3D"">The master branch has a (potentially) working channelizer, at =
+least according to my recent tests on the x310, as long as the network =
+interface supports the desired output rate.</div><div dir=3D"auto" =
+class=3D""><br class=3D""></div><div dir=3D"auto" class=3D"">There's =
+also an fpga solution for channel downselection in a branch that Phil =
+put together. The ball is in my court to turn the crank and merge to =
+master with supporting software, but I haven't gotten much of a chance =
+recently.&nbsp;</div><div dir=3D"auto" class=3D""><br =
+class=3D""></div><div dir=3D"auto" class=3D"">If you're interested in =
+testing we could definitely use some more people to give it a shot :D =
+Let me know if you need a sample bitstream or if you can build one =
+yourself.</div><div dir=3D"auto" class=3D""><br class=3D""></div><div =
+dir=3D"auto" class=3D"">EJ</div><div dir=3D"auto" =
+class=3D""></div></div><br class=3D""><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 24, 2019, 4:39 PM Royce =
+Connerley via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"=
+ rel=3D"noreferrer" target=3D"_blank" =
+class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:<br =
+class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">At the 2018 GRCon, EJ Kreinar spoke =
+about improvements to the RFNoC polyphase channelizer.&nbsp; Has there =
+been any activity on this?<br class=3D"">
+<br class=3D"">
+Royce Connerley<br class=3D"">
+_______________________________________________<br class=3D"">
+USRP-users mailing list<br class=3D"">
+<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer =
+noreferrer" target=3D"_blank" class=3D"">USRP-users@lists.ettus.com</a><br=
+ class=3D"">
+<a =
+href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
+" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank" =
+class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
+com</a><br class=3D"">
+</blockquote></div>
+</div></blockquote></div><br class=3D""></div></blockquote></div>
+</div></blockquote></div><br =
+class=3D""></div></div>_______________________________________________<br =
+class=3D"">
+USRP-users mailing list<br class=3D"">
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" =
+class=3D"">USRP-users@lists.ettus.com</a><br class=3D"">
+<a =
+href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
+" rel=3D"noreferrer" target=3D"_blank" =
+class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
+com</a><br class=3D"">
+</blockquote></div>
+</blockquote></div>
+</div></blockquote></div><br class=3D""></div></body></html>=
 
---_000_HK0PR01MB2835F3D915230B4615A7F936F3D60HK0PR01MB2835apcp_--
+--Apple-Mail=_E6E69E99-C3A9-4D9C-88C6-859D02DFDE13--
 
 
---===============3077640006661947942==
+--===============8824875163857218085==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -218,5 +427,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3077640006661947942==--
+--===============8824875163857218085==--
 
