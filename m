@@ -2,59 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CE4486A92
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Aug 2019 21:29:22 +0200 (CEST)
-Received: from [::1] (port=51560 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5862386AC9
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Aug 2019 21:51:13 +0200 (CEST)
+Received: from [::1] (port=55126 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hvo6C-0002RF-Nu; Thu, 08 Aug 2019 15:29:20 -0400
-Received: from mail-qt1-f179.google.com ([209.85.160.179]:41318)
+	id 1hvoRL-0003bi-2A; Thu, 08 Aug 2019 15:51:11 -0400
+Received: from mail-qt1-f171.google.com ([209.85.160.171]:46963)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hvo68-0002Kx-M5
- for usrp-users@lists.ettus.com; Thu, 08 Aug 2019 15:29:16 -0400
-Received: by mail-qt1-f179.google.com with SMTP id d17so14467342qtj.8
- for <usrp-users@lists.ettus.com>; Thu, 08 Aug 2019 12:28:56 -0700 (PDT)
+ id 1hvoRG-0003VD-W2
+ for usrp-users@lists.ettus.com; Thu, 08 Aug 2019 15:51:07 -0400
+Received: by mail-qt1-f171.google.com with SMTP id h21so93431953qtn.13
+ for <usrp-users@lists.ettus.com>; Thu, 08 Aug 2019 12:50:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=4w2GEXhIkcFOPmVNB3jgawwdrSyo2KQBiL9/Z2CRVBA=;
- b=eSpmO8F5EVwV38boaCARIbX45n9wBQguWF+UZXO1+Bk3l+FxmUdTu3h1v23mJ8ITpU
- SMOT6JGnMzWHsrq/gpTKVrIgy8twvFRf7cyeIOj+x4nmRrt/rQ3/xSggRDKWU8zSEzgU
- rs58ZYslecjQxvJ/wSzywqo+/wjlpz4c4I5iZjFH1NlS/DdV1D4NPzHcgDlxjPuIU+O/
- tWN2r9a517vFdP4NsfkxfzwxSCDOHSFgB7sUncKf0G+Wp2kN7kshxNDQRftZHzmYngyF
- kQQoruP9PzgCYebWioS2x4yGKPnp9hUVdAHBb6rN2Cty/SnNW/I71KK7TGDn8n4EwFbM
- c9Tw==
+ :in-reply-to; bh=aYEcLOeNTL8dVx8ZWdx5aHeUutUjuNyG8gD8hZ8mFK8=;
+ b=LQy13+dl1b5gtE5l3tpHmMl+09NyUvu6TI8+tnF8NuRl7GyuDv42OhF0JnVDIEBZNC
+ d4fy2gHpUt1ajYNRalaJwQzyyZub6YcuPGN3T8wcAJwgVpIwXkYm21F5qD6KfpRDlsFC
+ p/yO+F97SA5c/yRZ1ZVelCtQS5HQ7DS5W4X7NRpEI3pq+2DkyGTxvnjfM6G00gfwE35b
+ u+DuHRP7hdp9671/eAc/1jam4XhXJMCgirjws79n4C5DyUiksumXOd862QIbhE3m+/8j
+ Z5r/1lqIC5NZZId8WqeLLqbucp5fn4iDqUUbCYRMSMYznDu+TsfUh0BOmxPI7fksaZvk
+ KgZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=4w2GEXhIkcFOPmVNB3jgawwdrSyo2KQBiL9/Z2CRVBA=;
- b=sCEakBSHxz5x871pL6UTXOCVmxz0z5r8FGq0MTwxyFyihgBlXqT2CFngy3AoWHnW6p
- pmQ6FNaxoqioqT6C70zm6dXpAsOEfs9tvOa33c6KcdrAwmYZySTk9cyA304HP56aAVbN
- x+qk0OApTNDIx8scUnq4tbQh6c5ZA6Y2nwJoEL1XWK2GYLc94GLjsTapwL+d+CNn38at
- mhYl9SS/2tYrOC/Zr6JPbkilql49w82cndbrXdzZXlDPiMWUwC75HXBxuMWgF8qKZ4BN
- /B5glBPWa/oiDVXt/HkwKblfI+EE1RUhkSVTuEypLm+nwusLE/708+/wg9nGY4SAy36+
- 5Y8g==
-X-Gm-Message-State: APjAAAUNbOSFRW04vyXVNxo43EsdlayQ5hzdMUn0R9w9lt0qHJOLLXYw
- AVKW1nuxAk4c8X2TshQ0taaiZu/e
-X-Google-Smtp-Source: APXvYqyU3iCHFfBK3MGshy2I7PYBWjdjVMII36ZXYv/alZNddplQcrPevsnlfG+96W127BIAoB1wSg==
-X-Received: by 2002:aed:3b94:: with SMTP id r20mr14487903qte.207.1565292515272; 
- Thu, 08 Aug 2019 12:28:35 -0700 (PDT)
+ bh=aYEcLOeNTL8dVx8ZWdx5aHeUutUjuNyG8gD8hZ8mFK8=;
+ b=hEtX0he70nOiLt6IYdRu16zdra652Lb34wfRlLeDlaXcMxxk83ctSOsq/cdBpFl8hG
+ 6wb7DFDWlSF+ERX6X4ObbF288YAykUhN9DcfV1hVWKO2uSNlAj8IJJvQ5uLp1drG+q0V
+ 6IeCxRlpKVvCmmqs8Mm4X0v8g4Dyz8Jo6jBVcd4UOxlgLOmhExL2oqO/R98p+iqhOloX
+ CzzVjw0W0v4fA8W6QDgM7pmK0gU5JALRw1Ys3qh0wTtxQjIeHhL12904fZFuHikgNrAn
+ OuPSGM1t1jQPJezC0Yp6A0hsypi7EEgHjC83csCXcroHpiVacu8Jy1yshAnljL56JgB2
+ VRrQ==
+X-Gm-Message-State: APjAAAUUyrIxdZbnoASCuHWmPVNha7ou5tJ9nMuY5M1yRgIbh2VGmahL
+ yWo9TOeD8qlWw6TpxIm03fTmepIi
+X-Google-Smtp-Source: APXvYqzmFuL+yrhKYyaP8aSZHthXUl62EEJBj5ggd1w8MKTQLC9IcePF32yBKn1YPhz0V7Xg5obrYg==
+X-Received: by 2002:a0c:f788:: with SMTP id s8mr14141612qvn.35.1565293826254; 
+ Thu, 08 Aug 2019 12:50:26 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
  [174.95.14.20])
- by smtp.googlemail.com with ESMTPSA id 2sm49872622qtz.73.2019.08.08.12.28.34
+ by smtp.googlemail.com with ESMTPSA id q56sm48485403qtq.64.2019.08.08.12.50.25
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 08 Aug 2019 12:28:34 -0700 (PDT)
-Message-ID: <5D4C77E2.9080709@gmail.com>
-Date: Thu, 08 Aug 2019 15:28:34 -0400
+ Thu, 08 Aug 2019 12:50:25 -0700 (PDT)
+Message-ID: <5D4C7D01.8060709@gmail.com>
+Date: Thu, 08 Aug 2019 15:50:25 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
 To: usrp-users@lists.ettus.com
-References: <CAC8T01neWOsGOZ4ezt5wf4owgc9ftjcZ-O2EAHgtzAA7wGOKoA@mail.gmail.com>
-In-Reply-To: <CAC8T01neWOsGOZ4ezt5wf4owgc9ftjcZ-O2EAHgtzAA7wGOKoA@mail.gmail.com>
-Subject: Re: [USRP-users] x310 cannot receive data
+References: <CAPLnO-LHCspbvfZjQd4Nmcq4GzxKEEOPBmXeEESSf7vboTy==Q@mail.gmail.com>
+ <CAPLnO-JWykiKQRB1a1NOoMMXEyTbgXMiFUGk3K70f28LSfK+SQ@mail.gmail.com>
+ <162bd826-1815-4880-8ef0-7428078c51a0@www.fastmail.com>
+ <CAPLnO-Kagbfu8yn41ZV0j4P6nAwOFCOnFWPD-uN=5Sfj5u58ag@mail.gmail.com>
+ <3d43bfce-93e4-4556-9478-ba30913b8c3f@www.fastmail.com>
+In-Reply-To: <3d43bfce-93e4-4556-9478-ba30913b8c3f@www.fastmail.com>
+Subject: Re: [USRP-users] Fwd: Varying delay in signal reception
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,7 +72,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3848950205648828974=="
+Content-Type: multipart/mixed; boundary="===============8355552444870947874=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,129 +87,157 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============3848950205648828974==
+--===============8355552444870947874==
 Content-Type: multipart/alternative;
- boundary="------------040501070604030701030901"
+ boundary="------------010801000906020203050208"
 
 This is a multi-part message in MIME format.
---------------040501070604030701030901
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--------------010801000906020203050208
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 08/08/2019 12:16 PM, ishai alouche via USRP-users wrote:
-> Hi,
+On 08/08/2019 01:32 PM, Michael Dickens via USRP-users wrote:
+> Hi Sneha - Please "reply all" to keep the discussion on the USRP users 
+> email list. More eyes reading these means a greater chance that folks 
+> will jump in to help!
 >
-> I am using X310 and i try to create very simple setup.
+> The startup time for UHD / USRP / GR will be very similar between 
+> different runs of the exact same flowgraph, but not exactly the same. 
+> If you were to somehow measure these and plot them, I'd bet you'd get 
+> a curve that looks Gaussian except with limits (a "truncated normal 
+> distribution"). The exact same file being Tx'd over and again will 
+> have a slightly different delay on Tx each time.
 >
-> The gnu-radio include the following blocks:
-> *RFNoC:* Radio --> *RFNoC: *DDC --> Copy --> Sink.
+> Not sure this is what you're experiencing. If you don't think it is, 
+> then please provide more information; what we have right now is pretty 
+> thin.
 >
-> The input signal came from synthesizer.
+> Hope this is useful! - MLD
+I was going to make the same general comment--we don't have enough 
+information about exactly *what* you mean by "delay", and exactly
+   how you're measuring it.
+
+It's nearly impossible to get predictable-and-repeatable fine-scale 
+latency on a software-based system running on a general-purpose
+   operating-system like Linux or Windows.  If your system-design 
+requires this to be so, then you have a problem with your system design.
 >
-> I run the gnu-radio and the sink window open but I don't receive any 
-> data. When I start the running the X310 turn-on to red the led called 
-> link (near to the GPS led).
+> On Thu, Aug 8, 2019, at 11:38 AM, Sneha vasan wrote:
+>> Hi Michael,
+>>
+>> I sent a email before I confirmed the subscription for the usrp 
+>> users. So I was wondering if I could receive the email back if 
+>> replied in usrp lists. So just forwarded once again just to be sure. 
+>> Probably I would have put a note there.
+>>
+>> I am generating the signal using Matlab and store it in a file and 
+>> then send it to the USRP using gnu-radio. So now when I make multiple 
+>> recordings of the signal at different time , I am receiving the 
+>> signal at varying intial delay . I except the delay to be constant as 
+>> I am send same signal and with same parameters.
+>>
+>> Regards,
+>> Sneha
 >
-> can someone please explain me what is the meaning of the red led? This 
-> is the problem?
->
-> Another little issue, the X310 can work without gnu-radio at all? i.e. 
-> work only with gnu-radio blocks and without any RFNoC blocks?
->
-> Thank in advance
-> Ishai
->
-> -- 
-> ישי אלוש
-> 054-5823400
 >
 >
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-You'd be best to include your complete flow-graph, and a better 
-explanation of what you mean by "cannot receive data".
-
-Also, there's no requirement to use RFNOC with X310 if your performance 
-requirements don't require it.  You can use a more
-   "conventional" UHD source/sink blocks approach without ever using RFNOC.
 
 
-
---------------040501070604030701030901
-Content-Type: text/html; charset=UTF-8
+--------------010801000906020203050208
+Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
   </head>
   <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/08/2019 12:16 PM, ishai alouche
+    <div class="moz-cite-prefix">On 08/08/2019 01:32 PM, Michael Dickens
       via USRP-users wrote:<br>
     </div>
     <blockquote
-cite="mid:CAC8T01neWOsGOZ4ezt5wf4owgc9ftjcZ-O2EAHgtzAA7wGOKoA@mail.gmail.com"
+      cite="mid:3d43bfce-93e4-4556-9478-ba30913b8c3f@www.fastmail.com"
       type="cite">
-      <div dir="ltr">
+      <title></title>
+      <style type="text/css">p.MsoNormal,p.MsoNoSpacing{margin:0}</style>
+      <div style="font-family:Arial;">Hi�Sneha - Please "reply all" to
+        keep the discussion on the USRP users email list. More eyes
+        reading these means a greater chance that folks will jump in to
+        help!<br>
+      </div>
+      <div style="font-family:Arial;"><br>
+      </div>
+      <div style="font-family:Arial;">The startup time for UHD / USRP /
+        GR will be very similar between different runs of the exact same
+        flowgraph, but not exactly the same. If you were to somehow
+        measure these and plot them, I'd bet you'd get a curve that
+        looks Gaussian except with limits (a "truncated normal
+        distribution"). The exact same file being Tx'd over and again
+        will have a slightly different delay on Tx each time.</div>
+      <div style="font-family:Arial;"><br>
+      </div>
+      <div style="font-family:Arial;">Not sure this is what you're
+        experiencing. If you don't think it is, then please provide more
+        information; what we have right now is pretty thin.<br>
+      </div>
+      <div style="font-family:Arial;"><br>
+      </div>
+      <div style="font-family:Arial;">Hope this is useful! - MLD<br>
+      </div>
+    </blockquote>
+    I was going to make the same general comment--we don't have enough
+    information about exactly *what* you mean by "delay", and exactly<br>
+    � how you're measuring it.<br>
+    <br>
+    It's nearly impossible to get predictable-and-repeatable fine-scale
+    latency on a software-based system running on a general-purpose<br>
+    � operating-system like Linux or Windows.� If your system-design
+    requires this to be so, then you have a problem with your system
+    design.<br>
+    <blockquote
+      cite="mid:3d43bfce-93e4-4556-9478-ba30913b8c3f@www.fastmail.com"
+      type="cite">
+      <div style="font-family:Arial;"><br>
+      </div>
+      <div style="font-family:Arial;"><span style="font-size: 0.875rem;
+          font-family: &quot;Source Sans Pro&quot;, sans-serif;">On Thu,
+          Aug 8, 2019, at 11:38 AM, Sneha vasan wrote:</span><br>
+      </div>
+      <blockquote type="cite" id="qt">
         <div dir="ltr">
-          <div dir="ltr">
-            <div dir="ltr">
-              <div>
-                <div>
-                  <div>Hi,<br>
-                    <br>
-                  </div>
-                  I am using X310 and i try to create very simple setup.<br>
-                  <br>
-                </div>
-                The gnu-radio include the following blocks:<br>
-              </div>
-              <b>RFNoC:</b> Radio --&gt; <b>RFNoC: </b>DDC --&gt; Copy
-              --&gt; Sink.<br>
-              <br>
-            </div>
-            <div>The input signal came from synthesizer.<br>
-              <br>
-            </div>
-            <div>I run the gnu-radio and the sink window open but I
-              don't receive any data. When I start the running the X310
-              turn-on to red the led called link (near to the GPS led).<br>
-              <br>
-            </div>
-            <div>can someone please explain me what is the meaning of
-              the red led? This is the problem?<br>
-              <br>
-            </div>
-            <div>Another little issue, the X310 can work without
-              gnu-radio at all? i.e. work only with gnu-radio blocks and
-              without any RFNoC blocks?<br>
-              <br>
-            </div>
-            <div>Thank in advance<br>
-            </div>
-            <div>Ishai <br clear="all">
-            </div>
-            <div dir="ltr">
-              <div>
-                <div>
-                  <div>
-                    <div><br>
-                      -- <br>
-                      <div dir="ltr" class="gmail_signature">
-                        <div dir="ltr">
-                          <div>ישי אלוש</div>
-                          <div>054-5823400</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div>Hi Michael,<br>
+          </div>
+          <div><br>
+          </div>
+          <div>I sent a email before I confirmed the subscription for
+            the usrp users. So I was wondering if I could receive the
+            email back if replied in usrp lists. So just forwarded once
+            again just to be sure. Probably I would have put a note
+            there.<br>
+          </div>
+          <div><br>
+          </div>
+          <div>I am generating the signal using Matlab and store it in a
+            file and then send it to the USRP using gnu-radio. So now
+            when I make multiple recordings of the signal at different
+            time , I am receiving the signal at varying intial delay . I
+            except the delay to be constant as I am send same signal and
+            with same parameters.<br>
+          </div>
+          <div><br>
+          </div>
+          <div>Regards,<br>
+          </div>
+          <div>Sneha<br>
           </div>
         </div>
+      </blockquote>
+      <div style="font-family:Arial;"><br>
       </div>
       <br>
       <fieldset class="mimeAttachmentHeader"></fieldset>
@@ -216,22 +248,14 @@ USRP-users mailing list
 <a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
 </pre>
     </blockquote>
-    You'd be best to include your complete flow-graph, and a better
-    explanation of what you mean by "cannot receive data".<br>
-    <br>
-    Also, there's no requirement to use RFNOC with X310 if your
-    performance requirements don't require it.  You can use a more<br>
-      "conventional" UHD source/sink blocks approach without ever using
-    RFNOC.<br>
-    <br>
     <br>
   </body>
 </html>
 
---------------040501070604030701030901--
+--------------010801000906020203050208--
 
 
---===============3848950205648828974==
+--===============8355552444870947874==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -242,5 +266,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3848950205648828974==--
+--===============8355552444870947874==--
 
