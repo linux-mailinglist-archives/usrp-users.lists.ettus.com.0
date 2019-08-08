@@ -2,59 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F0586824
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Aug 2019 19:33:40 +0200 (CEST)
-Received: from [::1] (port=44604 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A482868A1
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Aug 2019 20:19:47 +0200 (CEST)
+Received: from [::1] (port=55350 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hvmIC-0001R5-U6; Thu, 08 Aug 2019 13:33:36 -0400
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:37093)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
- id 1hvmIA-0001Lr-1U
- for usrp-users@lists.ettus.com; Thu, 08 Aug 2019 13:33:34 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailout.west.internal (Postfix) with ESMTP id C0A0E3C1;
- Thu,  8 Aug 2019 13:32:52 -0400 (EDT)
-Received: from imap8 ([10.202.2.58])
- by compute3.internal (MEProxy); Thu, 08 Aug 2019 13:32:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=IEJGf1
- tPR8BhlV94Z+Mrn4ffXidXs41iz0cJzcoma/c=; b=JCRjn7OfliS+K0T+aN0YuC
- NlI3Wv0pePMU6H30d4/oh+T7UhlSarI6Oktl468+u7Dgys4+DIDrjiMyacZdTwbL
- ZHND0jNN8qI8OEmeTRHULuDGGDfGqK1YBgMb26KYIsE0EQA9Og1lChP2tLa+A4y+
- 4+ksheIHGW4RW/VSkw7k3pr0kil8JSnuu3fdFab10v3I+fDvTz8FivbyLK69286t
- CD62UZXlxemR/7laCubzz0LES2VM6ocUghJQadp4I2cpRuf5+JUqB0BCIH5bPVoI
- XNEBYPQIkRZYvN/08OZksY1naQNwmgolpNBBz1xzEelarXofAWhaCoD6fXMgJPdA
- ==
-X-ME-Sender: <xms:xFxMXbLVWI4YxRSBeOfwTW-K1xiOzgYzEzJMiJGze5SxBrDljAbnpg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudduhedgudduhecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpefofgggkfgjfhffhffvufgtsegrtderreerredtnecuhfhrohhmpedfofhi
- tghhrggvlhcuffhitghkvghnshdfuceomhhitghhrggvlhdrughitghkvghnshesvghtth
- hushdrtghomheqnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmihgthhgrvghlrdguihgt
- khgvnhhssegvthhtuhhsrdgtohhmnecuvehluhhsthgvrhfuihiivgeptd
-X-ME-Proxy: <xmx:xFxMXa027FyZge_FPN4wjVtUXcDq1de0DK3am4Vg_TSDdbzY5u99QQ>
- <xmx:xFxMXXVTavHOqfYGc77XPIadR5ozaV_366C6HQimXnxmNF_8BF_B8g>
- <xmx:xFxMXUp1HqTwYS-GxP_B4gKelQfQAZPpqa5GxZLLkIZpr6OM93onAw>
- <xmx:xFxMXQdbe31b75BjfxltO0X5AvI1l9OUS-d-xIb72Rh1J3MWfh--eQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id 1BF43520093; Thu,  8 Aug 2019 13:32:52 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-808-g930a1a1-fmstable-20190805v2
-Mime-Version: 1.0
-Message-Id: <3d43bfce-93e4-4556-9478-ba30913b8c3f@www.fastmail.com>
-In-Reply-To: <CAPLnO-Kagbfu8yn41ZV0j4P6nAwOFCOnFWPD-uN=5Sfj5u58ag@mail.gmail.com>
-References: <CAPLnO-LHCspbvfZjQd4Nmcq4GzxKEEOPBmXeEESSf7vboTy==Q@mail.gmail.com>
- <CAPLnO-JWykiKQRB1a1NOoMMXEyTbgXMiFUGk3K70f28LSfK+SQ@mail.gmail.com>
- <162bd826-1815-4880-8ef0-7428078c51a0@www.fastmail.com>
- <CAPLnO-Kagbfu8yn41ZV0j4P6nAwOFCOnFWPD-uN=5Sfj5u58ag@mail.gmail.com>
-Date: Thu, 08 Aug 2019 13:32:51 -0400
-To: "Sneha vasan" <snehabvasan@gmail.com>
-Subject: Re: [USRP-users] Fwd: Varying delay in signal reception
+	id 1hvn0r-0004ge-LB; Thu, 08 Aug 2019 14:19:45 -0400
+Received: from sonic316-20.consmr.mail.ne1.yahoo.com ([66.163.187.146]:46842)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <royceconnerley@yahoo.com>)
+ id 1hvjg1-0000TY-Bd
+ for usrp-users@lists.ettus.com; Thu, 08 Aug 2019 10:46:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1565275520; bh=oD0IapImIPdv5ii5TVAFAkkh/kSSarEqte1igrk/NR8=;
+ h=From:Subject:Date:In-Reply-To:Cc:To:References:From:Subject;
+ b=oqPehlZJeHGadpxn2jxxemvfro8alkCjIgdmhSOkDe9L8L8vak6h/ZjKEVzct6lUBUga3Eq8WbfqRKLouKEyffayf7xb7rSIvW8NPbtul5UXxabOUsEJ0+/FrBNoKqnk3ad+q+YTLR/P9O1pS4v14JdEDtfU6Z/dTigfwgPasv2KJbA7xCJzn6Mg699DWYTWoMTPbwFPppl2Q6x/ACl2lpBn6kMm8/3T8Q5w4gjNpTjihv1v2UxxrCw4q9FBGNDD0VWUwLDbYaWH5tzP/g1RBQbSG9f2w9CnIxAGz+MdZv3egJp8neJfaUWuODegYOEJbxGJeJFu2Cio5Y2vNJmYzw==
+X-YMail-OSG: b7407coVM1n8Ym_U3IZIUFl9Si6kVOMuHeR9vna882NSorZrHE7KoUkvIfR._pf
+ h_jLoD7FPxDCcTzuD.m0yt_jaKuR4tXs05LHUizYzFn8mYPOCCDds3YfaAZ_TDybatwQY5IOrtdF
+ JFTMxmuyV4FAJG7GUG3407pI0XsHNgorpIXSgUfxYTpwJc.2Qari4DthB08vb5XnnZj0IQ8nRSn3
+ UnvDaNUJqkE5JY__.Fh4aHsOeTUNwVmFbaWwqtAZGaAxqu8exBurkiDH_JJGTg26mx9PNzf_FSjs
+ KbVRSi0daVmFzYBAITNo1lttkYef.CZhMpuM22EsglmA1t9Jb.pwLxmPxOUY2M7w8sVWXggMfnOJ
+ PP2G_N7uO__SMTxDvzWnaDB6NVJFgZ3Vs65tp.Flx68GSQ3QVC0LK5WTjB0KImzOCmclpK54qQxa
+ Edg1qR8DxOyC0K4uZW9bqo2EAbkVVq8trkVW35L1E0K7qXthMOAvpT2Nh06GejS6cx6yifFnmL2L
+ .T_T45exs53oT9c6HXQP46fY.cCaeVsW6Kpv0bTudE._L4S2saWN27jzZfb0YX3X9vw8SJ3UZwGG
+ _b8k32cPi90nYNnn2etzJ5Zcr4ZCapOhjwfgzWjKkbNsqDhgDbDKsgy0pIjHiMgoh9Oti2IRJxyt
+ w23Mxl2pmf6t1LmbNMBE6YwCzxNXu9pePeyqJkDbmIkaeFKexpSyw5UbwViF8ZCCIVoCPzcgeEiW
+ mf2jLOoY8REu1lx.E_EJ4VPE8NGQDUnHN97QKAb_h7ytMhc4l7q5OsIsHmj3pPoDC6FPZlfOF3eD
+ SGdBbFRllzHi8wNpOb6zhkrBusFml17W.33Hp6jdR8af8kFOFaIMbm3m53d0IZtRe6.WxXxnL_fQ
+ Yrlh.sONRREqP3REAoGwU5v8EIlsR8sikfQiBNIKCo_Qa4p5xBEd.Zq7b.ZXnjTcxe3AMBXNC8rE
+ ACH9LQMt_ROl7rYUcldoqJ0jvB2k41wLVCzS7OsAPtcTL9I4aYyI5Pb8HSsltAEzebne9UQjeK.7
+ dKqm8Zw53Mz_3o1g81LVA0nItWRKoT1RuIGrt9i_OnaernXNUpMFU03q1gBIhPl5ptRZ3WSPx3NE
+ vQnyLIpeYT0W_Tk50eLPR3TZjMnG0k0wZU7cYE7eWxpxY0batyvXF6Xk4FZfrn5CyJPyvet1TFxd
+ SZgBGMioBMqlsma5DMcPNvlPs0vYBvsNHf.4UI0kXQoZPLGLbpgl7rdj9g0N3g_2dkLHosq1lEnK
+ 03HZy7eux5hzbDdCr7SLZRw--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic316.consmr.mail.ne1.yahoo.com with HTTP; Thu, 8 Aug 2019 14:45:20 +0000
+Received: by smtp426.mail.ne1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
+ ID bf383e77c0a56dd62ce02dd1294662bd; 
+ Thu, 08 Aug 2019 14:45:18 +0000 (UTC)
+Message-Id: <4FF2A237-C699-4270-B467-A926FF39F208@yahoo.com>
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
+Date: Thu, 8 Aug 2019 09:45:16 -0500
+In-Reply-To: <CADRnH22cZXxKQ6OhavSOdN+bob520J4rzHSOMooosdQcaeiSsA@mail.gmail.com>
+To: EJ Kreinar <ejkreinar@gmail.com>
+References: <97D6F3B6-019A-41A3-A8D6-06D32C15B528@yahoo.com>
+ <CADRnH20Zn3eje8HuKxLV3nJhvKBmPpDkNiGcjX2ojVN80VPdiw@mail.gmail.com>
+ <7C7EB5C4-8843-4D92-9E3A-65126048DA13@yahoo.com>
+ <CADRnH22cZXxKQ6OhavSOdN+bob520J4rzHSOMooosdQcaeiSsA@mail.gmail.com>
+X-Mailer: Apple Mail (2.3445.104.11)
+X-Mailman-Approved-At: Thu, 08 Aug 2019 14:19:42 -0400
+Subject: Re: [USRP-users] RFNoC Polyphase Channelizer updates
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -66,10 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: USRP Users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3958741195575580229=="
+From: Royce Connerley via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Royce Connerley <royceconnerley@yahoo.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6097516424813127267=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,70 +80,259 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3958741195575580229==
+
+--===============6097516424813127267==
 Content-Type: multipart/alternative;
- boundary=c032c968bee94965a23c7c77324c2b84
+	boundary="Apple-Mail=_066118CE-096C-4443-B45F-DC75A36107F1"
 
---c032c968bee94965a23c7c77324c2b84
-Content-Type: text/plain
 
-Hi Sneha - Please "reply all" to keep the discussion on the USRP users email list. More eyes reading these means a greater chance that folks will jump in to help!
-
-The startup time for UHD / USRP / GR will be very similar between different runs of the exact same flowgraph, but not exactly the same. If you were to somehow measure these and plot them, I'd bet you'd get a curve that looks Gaussian except with limits (a "truncated normal distribution"). The exact same file being Tx'd over and again will have a slightly different delay on Tx each time.
-
-Not sure this is what you're experiencing. If you don't think it is, then please provide more information; what we have right now is pretty thin.
-
-Hope this is useful! - MLD
-
-On Thu, Aug 8, 2019, at 11:38 AM, Sneha vasan wrote:
-> Hi Michael,
-> 
-> I sent a email before I confirmed the subscription for the usrp users. So I was wondering if I could receive the email back if replied in usrp lists. So just forwarded once again just to be sure. Probably I would have put a note there.
-> 
-> I am generating the signal using Matlab and store it in a file and then send it to the USRP using gnu-radio. So now when I make multiple recordings of the signal at different time , I am receiving the signal at varying intial delay . I except the delay to be constant as I am send same signal and with same parameters.
-> 
-> Regards,
-> Sneha
-
---c032c968bee94965a23c7c77324c2b84
-Content-Type: text/html
+--Apple-Mail=_066118CE-096C-4443-B45F-DC75A36107F1
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.Mso=
-Normal,p.MsoNoSpacing{margin:0}</style></head><body><div style=3D"font-f=
-amily:Arial;">Hi&nbsp;Sneha - Please "reply all" to keep the discussion =
-on the USRP users email list. More eyes reading these means a greater ch=
-ance that folks will jump in to help!<br></div><div style=3D"font-family=
-:Arial;"><br></div><div style=3D"font-family:Arial;">The startup time fo=
-r UHD / USRP / GR will be very similar between different runs of the exa=
-ct same flowgraph, but not exactly the same. If you were to somehow meas=
-ure these and plot them, I'd bet you'd get a curve that looks Gaussian e=
-xcept with limits (a "truncated normal distribution"). The exact same fi=
-le being Tx'd over and again will have a slightly different delay on Tx =
-each time.</div><div style=3D"font-family:Arial;"><br></div><div style=3D=
-"font-family:Arial;">Not sure this is what you're experiencing. If you d=
-on't think it is, then please provide more information; what we have rig=
-ht now is pretty thin.<br></div><div style=3D"font-family:Arial;"><br></=
-div><div style=3D"font-family:Arial;">Hope this is useful! - MLD<br></di=
-v><div style=3D"font-family:Arial;"><br></div><div style=3D"font-family:=
-Arial;"><span style=3D"font-size: 0.875rem; font-family: &quot;Source Sa=
-ns Pro&quot;, sans-serif;">On Thu, Aug 8, 2019, at 11:38 AM, Sneha vasan=
- wrote:</span><br></div><blockquote type=3D"cite" id=3D"qt"><div dir=3D"=
-ltr"><div>Hi Michael,<br></div><div><br></div><div>I sent a email before=
- I confirmed the subscription for the usrp users. So I was wondering if =
-I could receive the email back if replied in usrp lists. So just forward=
-ed once again just to be sure. Probably I would have put a note there.<b=
-r></div><div><br></div><div>I am generating the signal using Matlab and =
-store it in a file and then send it to the USRP using gnu-radio. So now =
-when I make multiple recordings of the signal at different time , I am r=
-eceiving the signal at varying intial delay . I except the delay to be c=
-onstant as I am send same signal and with same parameters.<br></div><div=
-><br></div><div>Regards,<br></div><div>Sneha<br></div></div></blockquote=
-><div style=3D"font-family:Arial;"><br></div></body></html>
---c032c968bee94965a23c7c77324c2b84--
+EJ:
+
+I=E2=80=99m currently wanting to receive a total of four channels that =
+are 12.5 kHz wide.  The channels are not equally spaced.
+
+F2 =3D F1 + 1 MHz
+F3 =3D F1 + 3.99375 MHz
+F4 =3D F3 + 1 MHz
+
+For this type of system, I typically have a number of channel pairs =
+(repeater output and input separated by 1 MHz) that I need to monitor.
+
+Royce
+
+> On Aug 8, 2019, at 8:51 AM, EJ Kreinar <ejkreinar@gmail.com> wrote:
+>=20
+> Hi Royce,
+>=20
+> Can you walk me through your use case real quick?
+>=20
+> - How many channels?
+> - How wide is each channel?
+> - Are the channels equally spaced?
+>=20
+> The polyphase channelizer in theseus-cores currently has a static =
+number of "max channels" that get instantiated.... which is not =
+insignificant. We've discussed exposing a build-time parameter that =
+could scale down the max number of channels to save some resources, but =
+1) that hasn't been implemented yet and 2) I'm not totally confident it =
+would fit in the e310 anyway.=20
+>=20
+> But lets think through your scenario and we can discuss where we'd =
+need the channelizer to go for it to work... for example, you probably =
+also need the FPGA-based channel downselection in the channelizer -- the =
+E310 wont be able to return all channels in real time! Or, we could =
+consider other approaches -- the DDC channelizer in theseus-cores might =
+be workable if you have just small number of channels and you need =
+arbitrary spacing/channel widths.
+>=20
+> EJ
+>=20
+> On Thu, Aug 8, 2019, 8:52 AM Royce Connerley <royceconnerley@yahoo.com =
+<mailto:royceconnerley@yahoo.com>> wrote:
+> EJ:
+>=20
+> I want to pick a few narrowband channels scattered over about 5 MHz.  =
+I would like to be able to use your channelizer in an E310.  Do you =
+think it could fit in the E310=E2=80=99s FPGA?  When I run =
+uhd_image_builder with just the channelizer and a FIFO, I=E2=80=99m =
+seeing the following errors:
+>=20
+> ERROR: [Place 30-640] Place Check : This design requires more =
+RAMB36/FIFO cells than are available in the target device. This design =
+requires 324 of such cell types but only 140 compatible sites are =
+available in the target device. Please analyze your synthesis results =
+and constraints to ensure the design is mapped to Xilinx primitives as =
+expected. If so, please consider targeting a larger device.
+> ERROR: [Place 30-640] Place Check : This design requires more RAMB18 =
+and RAMB36/FIFO cells than are available in the target device. This =
+design requires 703 of such cell types but only 280 compatible sites are =
+available in the target device. Please analyze your synthesis results =
+and constraints to ensure the design is mapped to Xilinx primitives as =
+expected. If so, please consider targeting a larger device.
+> ERROR: [Place 30-640] Place Check : This design requires more RAMB36E1 =
+cells than are available in the target device. This design requires 324 =
+of such cell types but only 140 compatible sites are available in the =
+target device. Please analyze your synthesis results and constraints to =
+ensure the design is mapped to Xilinx primitives as expected. If so, =
+please consider targeting a larger device.
+>=20
+> Royce Connerley
+>=20
+>> On Jul 24, 2019, at 6:34 PM, EJ Kreinar <ejkreinar@gmail.com =
+<mailto:ejkreinar@gmail.com>> wrote:
+>>=20
+>> Hi Royce,
+>>=20
+>> Phil and I have been working on the channelizer in the theseus-cores =
+repo here: gitlab.com/theseus-cores/theseus-cores =
+<http://gitlab.com/theseus-cores/theseus-cores>
+>>=20
+>> The master branch has a (potentially) working channelizer, at least =
+according to my recent tests on the x310, as long as the network =
+interface supports the desired output rate.
+>>=20
+>> There's also an fpga solution for channel downselection in a branch =
+that Phil put together. The ball is in my court to turn the crank and =
+merge to master with supporting software, but I haven't gotten much of a =
+chance recently.=20
+>>=20
+>> If you're interested in testing we could definitely use some more =
+people to give it a shot :D Let me know if you need a sample bitstream =
+or if you can build one yourself.
+>>=20
+>> EJ
+>>=20
+>> On Wed, Jul 24, 2019, 4:39 PM Royce Connerley via USRP-users =
+<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+>> At the 2018 GRCon, EJ Kreinar spoke about improvements to the RFNoC =
+polyphase channelizer.  Has there been any activity on this?
+>>=20
+>> Royce Connerley
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
+<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
+>=20
 
 
---===============3958741195575580229==
+--Apple-Mail=_066118CE-096C-4443-B45F-DC75A36107F1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" =
+class=3D"">EJ:<div class=3D""><br class=3D""></div><div class=3D"">I=E2=80=
+=99m currently wanting to receive a total of four channels that are 12.5 =
+kHz wide. &nbsp;The channels are not equally spaced.</div><div =
+class=3D""><br class=3D""></div><div class=3D"">F2 =3D F1 + 1 =
+MHz</div><div class=3D"">F3 =3D F1 + 3.99375 MHz</div><div class=3D"">F4 =
+=3D F3 + 1 MHz</div><div class=3D""><br class=3D""></div><div =
+class=3D"">For this type of system, I typically have a number of channel =
+pairs (repeater output and input separated by 1 MHz) that I need to =
+monitor.<br class=3D""><div><br class=3D""></div><div>Royce</div><div><br =
+class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On Aug =
+8, 2019, at 8:51 AM, EJ Kreinar &lt;<a href=3D"mailto:ejkreinar@gmail.com"=
+ class=3D"">ejkreinar@gmail.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
+class=3D""><div dir=3D"auto" class=3D"">Hi Royce,<div dir=3D"auto" =
+class=3D""><br class=3D""></div><div dir=3D"auto" class=3D"">Can you =
+walk me through your use case real quick?</div><div dir=3D"auto" =
+class=3D""><br class=3D""></div><div dir=3D"auto" class=3D"">- How many =
+channels?</div><div dir=3D"auto" class=3D"">- How wide is each =
+channel?</div><div dir=3D"auto" class=3D"">- Are the channels equally =
+spaced?</div><div dir=3D"auto" class=3D""><br class=3D""></div><div =
+dir=3D"auto" class=3D"">The polyphase channelizer in theseus-cores =
+currently has a static number of "max channels" that get =
+instantiated.... which is not insignificant. We've discussed exposing a =
+build-time parameter that could scale down the max number of channels to =
+save some resources, but 1) that hasn't been implemented yet and 2) I'm =
+not totally confident it would fit in the e310 anyway.&nbsp;</div><div =
+dir=3D"auto" class=3D""><br class=3D""></div><div class=3D"">But lets =
+think through your scenario and we can discuss where we'd need the =
+channelizer to go for it to work... for example, you probably also need =
+the FPGA-based channel downselection in the channelizer -- the E310 wont =
+be able to return all channels in real time! Or, we could consider other =
+approaches -- the DDC channelizer in theseus-cores might be workable if =
+you have just small number of channels and you need arbitrary =
+spacing/channel widths.</div><div class=3D""><br class=3D""></div><div =
+class=3D"">EJ</div></div></div><br class=3D""><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug =
+8, 2019, 8:52 AM Royce Connerley &lt;<a =
+href=3D"mailto:royceconnerley@yahoo.com" target=3D"_blank" =
+class=3D"">royceconnerley@yahoo.com</a>&gt; wrote:<br =
+class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div style=3D"overflow-wrap: =
+break-word;" class=3D"">EJ:<div class=3D""><br class=3D""></div><div =
+class=3D"">I want to pick a few narrowband channels scattered over about =
+5 MHz.&nbsp; I would like to be able to use your channelizer in an =
+E310.&nbsp; Do you think it could fit in the E310=E2=80=99s FPGA?&nbsp; =
+When I run uhd_image_builder with just the channelizer and a FIFO, I=E2=80=
+=99m seeing the following errors:</div><div class=3D""><br =
+class=3D""></div><div class=3D""><div class=3D"">ERROR: [Place 30-640] =
+Place Check : This design requires more RAMB36/FIFO cells than are =
+available in the target device. This design requires 324 of such cell =
+types but only 140 compatible sites are available in the target device. =
+Please analyze your synthesis results and constraints to ensure the =
+design is mapped to Xilinx primitives as expected. If so, please =
+consider targeting a larger device.</div><div class=3D"">ERROR: [Place =
+30-640] Place Check : This design requires more RAMB18 and RAMB36/FIFO =
+cells than are available in the target device. This design requires 703 =
+of such cell types but only 280 compatible sites are available in the =
+target device. Please analyze your synthesis results and constraints to =
+ensure the design is mapped to Xilinx primitives as expected. If so, =
+please consider targeting a larger device.</div><div class=3D"">ERROR: =
+[Place 30-640] Place Check : This design requires more RAMB36E1 cells =
+than are available in the target device. This design requires 324 of =
+such cell types but only 140 compatible sites are available in the =
+target device. Please analyze your synthesis results and constraints to =
+ensure the design is mapped to Xilinx primitives as expected. If so, =
+please consider targeting a larger device.</div></div><div class=3D""><br =
+class=3D""></div><div class=3D"">Royce Connerley</div><div class=3D""><br =
+class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On Jul =
+24, 2019, at 6:34 PM, EJ Kreinar &lt;<a =
+href=3D"mailto:ejkreinar@gmail.com" rel=3D"noreferrer" target=3D"_blank" =
+class=3D"">ejkreinar@gmail.com</a>&gt; wrote:</div><br =
+class=3D"gmail-m_-7955918035240629135m_-4832231494987881177Apple-interchan=
+ge-newline"><div class=3D""><div dir=3D"auto" class=3D"">Hi Royce,<div =
+dir=3D"auto" class=3D""><br class=3D""></div><div dir=3D"auto" =
+class=3D"">Phil and I have been working on the channelizer in the =
+theseus-cores repo here: <a =
+href=3D"http://gitlab.com/theseus-cores/theseus-cores" rel=3D"noreferrer" =
+target=3D"_blank" =
+class=3D"">gitlab.com/theseus-cores/theseus-cores</a></div><div =
+dir=3D"auto" class=3D""><br class=3D""></div><div dir=3D"auto" =
+class=3D"">The master branch has a (potentially) working channelizer, at =
+least according to my recent tests on the x310, as long as the network =
+interface supports the desired output rate.</div><div dir=3D"auto" =
+class=3D""><br class=3D""></div><div dir=3D"auto" class=3D"">There's =
+also an fpga solution for channel downselection in a branch that Phil =
+put together. The ball is in my court to turn the crank and merge to =
+master with supporting software, but I haven't gotten much of a chance =
+recently.&nbsp;</div><div dir=3D"auto" class=3D""><br =
+class=3D""></div><div dir=3D"auto" class=3D"">If you're interested in =
+testing we could definitely use some more people to give it a shot :D =
+Let me know if you need a sample bitstream or if you can build one =
+yourself.</div><div dir=3D"auto" class=3D""><br class=3D""></div><div =
+dir=3D"auto" class=3D"">EJ</div><div dir=3D"auto" =
+class=3D""></div></div><br class=3D""><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 24, 2019, 4:39 PM Royce =
+Connerley via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"=
+ rel=3D"noreferrer" target=3D"_blank" =
+class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:<br =
+class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">At the 2018 GRCon, EJ Kreinar spoke =
+about improvements to the RFNoC polyphase channelizer.&nbsp; Has there =
+been any activity on this?<br class=3D"">
+<br class=3D"">
+Royce Connerley<br class=3D"">
+_______________________________________________<br class=3D"">
+USRP-users mailing list<br class=3D"">
+<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer =
+noreferrer" target=3D"_blank" class=3D"">USRP-users@lists.ettus.com</a><br=
+ class=3D"">
+<a =
+href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
+" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank" =
+class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
+com</a><br class=3D"">
+</blockquote></div>
+</div></blockquote></div><br class=3D""></div></blockquote></div>
+</div></blockquote></div><br class=3D""></div></body></html>=
+
+--Apple-Mail=_066118CE-096C-4443-B45F-DC75A36107F1--
+
+
+--===============6097516424813127267==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -157,5 +343,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3958741195575580229==--
+--===============6097516424813127267==--
 
