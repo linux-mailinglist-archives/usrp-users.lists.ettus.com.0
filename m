@@ -2,48 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7394B866CA
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Aug 2019 18:17:28 +0200 (CEST)
-Received: from [::1] (port=55212 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F0586824
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Aug 2019 19:33:40 +0200 (CEST)
+Received: from [::1] (port=44604 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hvl6T-0004UC-Qg; Thu, 08 Aug 2019 12:17:25 -0400
-Received: from mail-lj1-f182.google.com ([209.85.208.182]:34801)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ishai.alouche@gmail.com>)
- id 1hvl6Q-0004O2-GU
- for usrp-users@lists.ettus.com; Thu, 08 Aug 2019 12:17:22 -0400
-Received: by mail-lj1-f182.google.com with SMTP id p17so89464119ljg.1
- for <usrp-users@lists.ettus.com>; Thu, 08 Aug 2019 09:17:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=Ko6GsmTUjUN4/+WaadlpeohRs4SUpph1R4ZPcAS1wCY=;
- b=qEsAXXe//P56Bi/+M1Q7g9ZP/f+kyJrSNq9i8OeVxZ8tn+wFjTKSK2n/DRhsrjj6Pc
- WWsYvOuw6k6cYfL87DCzInH1NUu/z/EUyxC2kMxLYTCmh8s6GkqHnZBSG97v0DWSWdfS
- 8IM87XkvYRhzRDHzF7l4xSxIT7E7KpLeIoqr+fNVikY4izGg0Eo+YdJ9ajyK+tsBiWYB
- O3tOxkHqO+qrukdsAUtY8eBmTXWL7jbOj5rXxIRwjbrl2uZUIpIbs4xWleUlT90Y6pZI
- dkPPrGD1J0imNo9L0nO1NMhqEVUcmmZOjWKAO65ISV/bvO1XGX5AbNJpF/iYgDmWW+aL
- 243w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=Ko6GsmTUjUN4/+WaadlpeohRs4SUpph1R4ZPcAS1wCY=;
- b=Us9NES/nkM5fEd1jU1QMBxcOaS947Kvw6QnlpiKvx62NaFYF2fN9cCGcCjek5yx0DX
- akjsPJ4j5d+lzzV7UbaZLWUirwisMG7k7mPN2CuB/ASN1zRNVYSpi3eQ1vx7ax6a7P+W
- 3OPBUZDVzes3487DIAMU/CtyMyOilnRSypesO22TP6M3y0xySmsn7oKos4J1QboOgHAC
- LZJKXeLGPPN7kiUCpVCT4m6TT71x3gBKnLXC5MEbZS/q8SUkCkPr/m/7YZiK1cp7CNpN
- gCSNVV6uDKi4MTkgVa3/Jve/r3OeTW1tQ+2WKtLV352QAWJuccp0GKom2OD1jywfboP3
- Nqkw==
-X-Gm-Message-State: APjAAAVMPn+7l3N7cu30/jX9kuo+O+tYW5JWqoWf3L4Og55EVLiL+mww
- vYNtwRde3j9psbPdCMXkdhZUjBCCsWo+NH8r4Zbi1YyN
-X-Google-Smtp-Source: APXvYqz6QJsR8b6CSLpLIChZhSXAcl6AU9cswiHB3ehbut9bs9D1aGvDZxsRFS1R0WzBSm9GAgozaU+LMFqzGxonUAo=
-X-Received: by 2002:a2e:894a:: with SMTP id b10mr7536510ljk.99.1565281000965; 
- Thu, 08 Aug 2019 09:16:40 -0700 (PDT)
-MIME-Version: 1.0
-Date: Thu, 8 Aug 2019 19:16:29 +0300
-Message-ID: <CAC8T01neWOsGOZ4ezt5wf4owgc9ftjcZ-O2EAHgtzAA7wGOKoA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] x310 cannot receive data
+	id 1hvmIC-0001R5-U6; Thu, 08 Aug 2019 13:33:36 -0400
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:37093)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1hvmIA-0001Lr-1U
+ for usrp-users@lists.ettus.com; Thu, 08 Aug 2019 13:33:34 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailout.west.internal (Postfix) with ESMTP id C0A0E3C1;
+ Thu,  8 Aug 2019 13:32:52 -0400 (EDT)
+Received: from imap8 ([10.202.2.58])
+ by compute3.internal (MEProxy); Thu, 08 Aug 2019 13:32:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=IEJGf1
+ tPR8BhlV94Z+Mrn4ffXidXs41iz0cJzcoma/c=; b=JCRjn7OfliS+K0T+aN0YuC
+ NlI3Wv0pePMU6H30d4/oh+T7UhlSarI6Oktl468+u7Dgys4+DIDrjiMyacZdTwbL
+ ZHND0jNN8qI8OEmeTRHULuDGGDfGqK1YBgMb26KYIsE0EQA9Og1lChP2tLa+A4y+
+ 4+ksheIHGW4RW/VSkw7k3pr0kil8JSnuu3fdFab10v3I+fDvTz8FivbyLK69286t
+ CD62UZXlxemR/7laCubzz0LES2VM6ocUghJQadp4I2cpRuf5+JUqB0BCIH5bPVoI
+ XNEBYPQIkRZYvN/08OZksY1naQNwmgolpNBBz1xzEelarXofAWhaCoD6fXMgJPdA
+ ==
+X-ME-Sender: <xms:xFxMXbLVWI4YxRSBeOfwTW-K1xiOzgYzEzJMiJGze5SxBrDljAbnpg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudduhedgudduhecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpefofgggkfgjfhffhffvufgtsegrtderreerredtnecuhfhrohhmpedfofhi
+ tghhrggvlhcuffhitghkvghnshdfuceomhhitghhrggvlhdrughitghkvghnshesvghtth
+ hushdrtghomheqnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmihgthhgrvghlrdguihgt
+ khgvnhhssegvthhtuhhsrdgtohhmnecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:xFxMXa027FyZge_FPN4wjVtUXcDq1de0DK3am4Vg_TSDdbzY5u99QQ>
+ <xmx:xFxMXXVTavHOqfYGc77XPIadR5ozaV_366C6HQimXnxmNF_8BF_B8g>
+ <xmx:xFxMXUp1HqTwYS-GxP_B4gKelQfQAZPpqa5GxZLLkIZpr6OM93onAw>
+ <xmx:xFxMXQdbe31b75BjfxltO0X5AvI1l9OUS-d-xIb72Rh1J3MWfh--eQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 1BF43520093; Thu,  8 Aug 2019 13:32:52 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-808-g930a1a1-fmstable-20190805v2
+Mime-Version: 1.0
+Message-Id: <3d43bfce-93e4-4556-9478-ba30913b8c3f@www.fastmail.com>
+In-Reply-To: <CAPLnO-Kagbfu8yn41ZV0j4P6nAwOFCOnFWPD-uN=5Sfj5u58ag@mail.gmail.com>
+References: <CAPLnO-LHCspbvfZjQd4Nmcq4GzxKEEOPBmXeEESSf7vboTy==Q@mail.gmail.com>
+ <CAPLnO-JWykiKQRB1a1NOoMMXEyTbgXMiFUGk3K70f28LSfK+SQ@mail.gmail.com>
+ <162bd826-1815-4880-8ef0-7428078c51a0@www.fastmail.com>
+ <CAPLnO-Kagbfu8yn41ZV0j4P6nAwOFCOnFWPD-uN=5Sfj5u58ag@mail.gmail.com>
+Date: Thu, 08 Aug 2019 13:32:51 -0400
+To: "Sneha vasan" <snehabvasan@gmail.com>
+Subject: Re: [USRP-users] Fwd: Varying delay in signal reception
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -55,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: ishai alouche via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: ishai alouche <ishai.alouche@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4474199568518562392=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: USRP Users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3958741195575580229=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,64 +83,70 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4474199568518562392==
-Content-Type: multipart/alternative; boundary="0000000000000949ed058f9d6232"
+--===============3958741195575580229==
+Content-Type: multipart/alternative;
+ boundary=c032c968bee94965a23c7c77324c2b84
 
---0000000000000949ed058f9d6232
-Content-Type: text/plain; charset="UTF-8"
+--c032c968bee94965a23c7c77324c2b84
+Content-Type: text/plain
+
+Hi Sneha - Please "reply all" to keep the discussion on the USRP users email list. More eyes reading these means a greater chance that folks will jump in to help!
+
+The startup time for UHD / USRP / GR will be very similar between different runs of the exact same flowgraph, but not exactly the same. If you were to somehow measure these and plot them, I'd bet you'd get a curve that looks Gaussian except with limits (a "truncated normal distribution"). The exact same file being Tx'd over and again will have a slightly different delay on Tx each time.
+
+Not sure this is what you're experiencing. If you don't think it is, then please provide more information; what we have right now is pretty thin.
+
+Hope this is useful! - MLD
+
+On Thu, Aug 8, 2019, at 11:38 AM, Sneha vasan wrote:
+> Hi Michael,
+> 
+> I sent a email before I confirmed the subscription for the usrp users. So I was wondering if I could receive the email back if replied in usrp lists. So just forwarded once again just to be sure. Probably I would have put a note there.
+> 
+> I am generating the signal using Matlab and store it in a file and then send it to the USRP using gnu-radio. So now when I make multiple recordings of the signal at different time , I am receiving the signal at varying intial delay . I except the delay to be constant as I am send same signal and with same parameters.
+> 
+> Regards,
+> Sneha
+
+--c032c968bee94965a23c7c77324c2b84
+Content-Type: text/html
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-I am using X310 and i try to create very simple setup.
-
-The gnu-radio include the following blocks:
-*RFNoC:* Radio --> *RFNoC: *DDC --> Copy --> Sink.
-
-The input signal came from synthesizer.
-
-I run the gnu-radio and the sink window open but I don't receive any data.
-When I start the running the X310 turn-on to red the led called link (near
-to the GPS led).
-
-can someone please explain me what is the meaning of the red led? This is
-the problem?
-
-Another little issue, the X310 can work without gnu-radio at all? i.e. work
-only with gnu-radio blocks and without any RFNoC blocks?
-
-Thank in advance
-Ishai
-
---=20
-=D7=99=D7=A9=D7=99 =D7=90=D7=9C=D7=95=D7=A9
-054-5823400
-
---0000000000000949ed058f9d6232
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><d=
-iv><div>Hi,<br><br></div>I am using X310 and i try to create very simple se=
-tup.<br><br></div>The gnu-radio include the following blocks:<br></div><b>R=
-FNoC:</b> Radio --&gt; <b>RFNoC: </b>DDC --&gt; Copy --&gt; Sink.<br><br></=
-div><div>The input signal came from synthesizer.<br><br></div><div>I run th=
-e gnu-radio and the sink window open but I don&#39;t receive any data. When=
- I start the running the X310 turn-on to red the led called link (near to t=
-he GPS led).<br><br></div><div>can someone please explain me what is the me=
-aning of the red led? This is the problem?<br><br></div><div>Another little=
- issue, the X310 can work without gnu-radio at all? i.e. work only with gnu=
--radio blocks and without any RFNoC blocks?<br><br></div><div>Thank in adva=
-nce<br></div><div>Ishai <br clear=3D"all"></div><div dir=3D"ltr"><div><div>=
-<div><div><br>-- <br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D=
-"ltr"><div>=D7=99=D7=A9=D7=99 =D7=90=D7=9C=D7=95=D7=A9</div>
-<div>054-5823400</div></div></div></div></div></div></div></div></div></div=
-></div>
-
---0000000000000949ed058f9d6232--
+<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.Mso=
+Normal,p.MsoNoSpacing{margin:0}</style></head><body><div style=3D"font-f=
+amily:Arial;">Hi&nbsp;Sneha - Please "reply all" to keep the discussion =
+on the USRP users email list. More eyes reading these means a greater ch=
+ance that folks will jump in to help!<br></div><div style=3D"font-family=
+:Arial;"><br></div><div style=3D"font-family:Arial;">The startup time fo=
+r UHD / USRP / GR will be very similar between different runs of the exa=
+ct same flowgraph, but not exactly the same. If you were to somehow meas=
+ure these and plot them, I'd bet you'd get a curve that looks Gaussian e=
+xcept with limits (a "truncated normal distribution"). The exact same fi=
+le being Tx'd over and again will have a slightly different delay on Tx =
+each time.</div><div style=3D"font-family:Arial;"><br></div><div style=3D=
+"font-family:Arial;">Not sure this is what you're experiencing. If you d=
+on't think it is, then please provide more information; what we have rig=
+ht now is pretty thin.<br></div><div style=3D"font-family:Arial;"><br></=
+div><div style=3D"font-family:Arial;">Hope this is useful! - MLD<br></di=
+v><div style=3D"font-family:Arial;"><br></div><div style=3D"font-family:=
+Arial;"><span style=3D"font-size: 0.875rem; font-family: &quot;Source Sa=
+ns Pro&quot;, sans-serif;">On Thu, Aug 8, 2019, at 11:38 AM, Sneha vasan=
+ wrote:</span><br></div><blockquote type=3D"cite" id=3D"qt"><div dir=3D"=
+ltr"><div>Hi Michael,<br></div><div><br></div><div>I sent a email before=
+ I confirmed the subscription for the usrp users. So I was wondering if =
+I could receive the email back if replied in usrp lists. So just forward=
+ed once again just to be sure. Probably I would have put a note there.<b=
+r></div><div><br></div><div>I am generating the signal using Matlab and =
+store it in a file and then send it to the USRP using gnu-radio. So now =
+when I make multiple recordings of the signal at different time , I am r=
+eceiving the signal at varying intial delay . I except the delay to be c=
+onstant as I am send same signal and with same parameters.<br></div><div=
+><br></div><div>Regards,<br></div><div>Sneha<br></div></div></blockquote=
+><div style=3D"font-family:Arial;"><br></div></body></html>
+--c032c968bee94965a23c7c77324c2b84--
 
 
---===============4474199568518562392==
+--===============3958741195575580229==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -139,5 +157,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4474199568518562392==--
+--===============3958741195575580229==--
 
