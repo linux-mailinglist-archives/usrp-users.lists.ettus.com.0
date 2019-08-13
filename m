@@ -2,52 +2,44 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4561C8AABD
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2019 00:53:33 +0200 (CEST)
-Received: from [::1] (port=55606 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD568B151
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2019 09:41:15 +0200 (CEST)
+Received: from [::1] (port=41510 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hxJBy-0006Sf-WC; Mon, 12 Aug 2019 18:53:31 -0400
-Received: from mail-ed1-f50.google.com ([209.85.208.50]:38434)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <flarroca@gmail.com>) id 1hxJBu-0006Ms-Qu
- for usrp-users@lists.ettus.com; Mon, 12 Aug 2019 18:53:26 -0400
-Received: by mail-ed1-f50.google.com with SMTP id r12so2429661edo.5
- for <usrp-users@lists.ettus.com>; Mon, 12 Aug 2019 15:53:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
- bh=t2evv6/g4nh21uSmBweo3ZJKoGFmuHQjDSz9/vYc3EU=;
- b=AYe7WdRNpV3+OqkD24lK7cQEalx9M+eVAQPLSyRguptNiW8rUJKIkuteyjJ0o9JTXP
- K71g8SWZ4ImaCOiS0bzgxX4rcnsAsEipghw2Br40Evj81xL0szENFI7+NHA/cMW1wCje
- aBTbxQfkiB5ylUiYAGBkmg8+8gGBiQgBTFuczZxylsr/fqSlA20kKT9uJ91/ttv25eXZ
- RRTY+sZGSo9cGqacZj6GdzlYR6G9jjz/wBb9udej3hXIARCC4SC/2eC1JGPPof6tl46+
- nBzp56m7SRGcVCSjAYALZPk2mTXhgUzhrP6CKfsWyRFs5iEzN3U8q4jkwMUsY6RNcSLt
- K/2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:cc;
- bh=t2evv6/g4nh21uSmBweo3ZJKoGFmuHQjDSz9/vYc3EU=;
- b=hGq9joI96CVJRndeifq5jpwJsAt4lsdUvfe7AH49X3JOKnbFeQ34O6qS0icnROPGIG
- YgMewGPElCRmF/8OvcuVhvunZWtYYMvHU8K3reoAkdWTRuwI2Nde738fsHFv/q13i7Eg
- bxve/C/z5IcZeatz540inCr6XRW1kqr0rs76UsqXGwtiDs5Uc5u2MRQia/OjIQ058tsG
- wp9Jc6Ed3ux1ifRntfIj7B1c//zOcwTRLTieGqQTJ+JjXTRSVyOGFsWz1A78pZYLVgiC
- 2KC+8Vx3K+FDUyZEktzk9SUF74BBw2uFoOqvFlxAMRCt6XSjb3FdccCdE0xf6MCaTW6o
- nzaA==
-X-Gm-Message-State: APjAAAUYm3RMgzsS84kIx+VBsyfm3ZejA5g/zq63a8Q4aWeHPk6HDo81
- Q1Tbf0QOM7d65S9H1G5gvn0KSJbj1pAPpaPpecoVLw==
-X-Google-Smtp-Source: APXvYqzLfI2/r9+7tz8G164CwAXPrTU7olwwux/VWNmUvu0k3SEgb1Un5BDUTuqEDmDRfp/Nq9b8QobFdTSLPCt3ysA=
-X-Received: by 2002:a17:906:d14c:: with SMTP id
- br12mr15591764ejb.244.1565650365514; 
- Mon, 12 Aug 2019 15:52:45 -0700 (PDT)
+	id 1hxRQd-0007lX-Vv; Tue, 13 Aug 2019 03:41:12 -0400
+Received: from mx1.hrz.uni-dortmund.de ([129.217.128.51]:52161
+ helo=unimail.uni-dortmund.de)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <felix.greiwe@tu-dortmund.de>)
+ id 1hxRQa-0007hu-IN
+ for usrp-users@lists.ettus.com; Tue, 13 Aug 2019 03:41:08 -0400
+Received: from webmail.tu-dortmund.de (webmail.tu-dortmund.de [129.217.131.82])
+ (authenticated bits=0)
+ by unimail.uni-dortmund.de (8.16.0.41/8.16.0.41) with ESMTPSA id
+ x7D7eQ4w006421
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2019 09:40:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tu-dortmund.de;
+ s=unimail; t=1565682026;
+ bh=h0s3nm5Zf9nbtMdyqCsT92W5MrLD7z0hsC7/2xfVGU0=;
+ h=In-Reply-To:References:Date:Subject:From:To:Reply-To;
+ b=IGVUzM7B8LpQe5wAH8kMCqsCAysi9rvtz3nIgQqoQdzszMjBoHYfn9R/qjst8LHCl
+ Q7FAQdWZw3DwrIIpxCTsi4VlBjgvtMk9n+KN+g7busB7v0KnsWhwmR8OQYkF9x3bSz
+ UR4oWuFwT1OcuaOMq/00HOCgDRcmc/rwL+IYtSbc=
+Received: from 129.217.182.66 (SquirrelMail authenticated user smfegrei)
+ by webmail.tu-dortmund.de with HTTP; Tue, 13 Aug 2019 09:40:27 +0200
+Message-ID: <bb4832ac9b4a12168238d1aab5735ae5.squirrel@webmail.tu-dortmund.de>
+In-Reply-To: <b5ec3d13a71a04254eee5d1387f84a1b.squirrel@webmail.tu-dortmund.de>
+References: <b5ec3d13a71a04254eee5d1387f84a1b.squirrel@webmail.tu-dortmund.de>
+Date: Tue, 13 Aug 2019 09:40:27 +0200
+To: usrp-users@lists.ettus.com
+User-Agent: SquirrelMail/1.4.23 [SVN]
 MIME-Version: 1.0
-References: <CAHe2E1LmevSXC6_CNOn14cpMYRwDMXj7WSv5U=nrEQcesobZfw@mail.gmail.com>
- <5D51D464.6020201@gmail.com>
-In-Reply-To: <5D51D464.6020201@gmail.com>
-Date: Mon, 12 Aug 2019 19:34:38 -0300
-Message-ID: <CAHe2E1JyRinONdSVWBKBYiUN3mAbNnQw2BvrP1YaCK5D0ESGMQ@mail.gmail.com>
-Cc: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] Differences between b200 and b100
+X-Priority: 3 (Normal)
+Importance: Normal
+Subject: Re: [USRP-users] RFNoC Issue with 32 Bit Axi Stream | Error in
+ Concat to 64 Bit | VHDL
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,9 +51,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Federico 'Larroca' La Rocca via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Federico 'Larroca' La Rocca <flarroca@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0509685439084550067=="
+From: Felix Greiwe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: felix.greiwe@tu-dortmund.de
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,61 +68,60 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0509685439084550067==
-Content-Type: multipart/alternative; boundary="000000000000e1098f058ff36163"
-
---000000000000e1098f058ff36163
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
 Hi,
-Thanks for the quick reply. I forgot to mention that the B100 has a WBX
-daughterboard. I know it's old, but for receiving it has worked perfectly
-so far and was surprised to see this performance when transmitting.
-The sampling rate is fixed at 8 MSps.
-best
-Federico
 
-El lun., 12 ago. 2019 a las 18:05, Marcus D. Leech via USRP-users (<
-usrp-users@lists.ettus.com>) escribi=C3=B3:
+i found myself not to be familiar with the Core Concept of interpreting
+Data in FPGA's as IQ-Data. After i partitioned my 32 Bit Input Data in 16
+Bit I and 16 Bit Q Data, and additionally edited my testbench similar to
+the addsub testbench of one of the pre-installed rfnoc-blocks, my
+testbench passed.
 
-> On 08/12/2019 04:38 PM, Federico 'Larroca' La Rocca via USRP-users wrote:
-> > Hello everyone,
-> >
-> > We are testing our ISDB-T transmitter (see
-> > https://github.com/git-artes/gr-isdbt) and we came into a very
-> > important difference between the B100 and B200 when used as
-> > transmitters. See the attached screenshots, but using the same exact
-> > setup except for the transmitters (i.e. same antennas, same sampling
-> > rate, same receivers, same software, although we have tested several
-> > gains on the USRP just to be sure), while the b200 receives the whole
-> > signal flawlessly, the b100 tends to distort the edges of the
-> > transmitted signal's spectrum. In both cases the signal is received
-> > with another b100.
-> >
-> > To be a little more explicit, the ISDB-T signal is OFDM modulated with
-> > 6MHz of bandwidth (we are both receiving and transmitting at 8MSps),
-> > and the figures include (starting from below) the received
-> > constellation, the received spectrum and the received symbols per
-> > sub-carrier. It's precisely in this last graph that the problem is clea=
-r.
-> >
-> > The question is then: what's happening here?
-> >
-> > best
-> > Federico
-> >
-> What daughtercard do you have in the B100?  What sample rates are you
-> using?   The B100 and B200 are *VERY* different hardware internally,
->    and the RF pathways are not that similar, and the internal DSP logic
-> is fairly different also.
+In the following link I stumbled upon some help regarding the testbenches
+and other useful information which helped me a lot.
+
+http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-March/056076.html
+
+Best regards,
+
+Felix Greiwe
+
+
+
+> Hello together,
 >
-> With the B100, the sample rates have to be an integer fraction of
-> 64MHz.  I'll also comment that the B100 is obsolete, and has been for man=
-y
->    years, so if there is an internal problem in the DSP design, for
-> example, it's not likely to get much maintenance work from Ettus R&D.
+> recently i started RFNoC development using an USRP x310. After finishing
+> the RFNoC getting started Guide i created an OOT Module including VHDL.
+> First i simply forwarded the Input Data to the output which worked just
+> fine. After that i wanted to add a constant, for example 5_dec., to my
+> signal (32 Bit) and receive the sum as an output in the testbench. Here
+> the problems started:
+> Instead of receiving 5,6,7,8,9 for input of 0,1,2,3,4; i got
 >
+> 5+2^32+2^34
+> 6+2^32+2^34
+> 7+2^32+2^34 etc.
+>
+> I figured out, that i got the right results in 32 Bit, but that somewhere
+> in the axi_wrapper and/or the noc_shell my results gets concatted to 64
+> Bit, always using the first result (here the number 5) as the 32 msb's and
+> the actual sum results as the lsb's thus changing my signal.
+>
+> Wondering, i tested some more stuff like just setting the lowest bit of 32
+> Bit input Data Vector to one etc. and get the same problems of wrong
+> vector connections.
+>
+> Only when i changed the width parameter of the axi_wrapper to 64 Bit (and
+> also sending 64 Bit Data) i got the expected results.
+>
+> Now my question: Is this a bug or am i maybe using the axi_wrapper wrong?
+> I could not find an error comparing my code to the one of the
+> tutorial_gain block.
+>
+> Any help to understand this is appreciated.
+>
+> Sincerly
+>
+> Felix
 >
 >
 >
@@ -139,96 +131,9 @@ y
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000e1098f058ff36163
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi, <br></div><div>Thanks for the quick reply. I forg=
-ot to mention that the B100 has a WBX daughterboard. I know it&#39;s old, b=
-ut for receiving it has worked perfectly so far and was surprised to see th=
-is performance when transmitting.=C2=A0 <br></div><div>The sampling rate is=
- fixed at 8 MSps.</div><div>best</div><div>Federico<br></div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El lun., 12 ag=
-o. 2019 a las 18:05, Marcus D. Leech via USRP-users (&lt;<a href=3D"mailto:=
-usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;) escribi=C3=
-=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 08/12/20=
-19 04:38 PM, Federico &#39;Larroca&#39; La Rocca via USRP-users wrote:<br>
-&gt; Hello everyone,<br>
-&gt;<br>
-&gt; We are testing our ISDB-T transmitter (see <br>
-&gt; <a href=3D"https://github.com/git-artes/gr-isdbt" rel=3D"noreferrer" t=
-arget=3D"_blank">https://github.com/git-artes/gr-isdbt</a>) and we came int=
-o a very <br>
-&gt; important difference between the B100 and B200 when used as <br>
-&gt; transmitters. See the attached screenshots, but using the same exact <=
-br>
-&gt; setup except for the transmitters (i.e. same antennas, same sampling <=
-br>
-&gt; rate, same receivers, same software, although we have tested several <=
-br>
-&gt; gains on the USRP just to be sure), while the b200 receives the whole =
-<br>
-&gt; signal flawlessly, the b100 tends to distort the edges of the <br>
-&gt; transmitted signal&#39;s spectrum. In both cases the signal is receive=
-d <br>
-&gt; with another b100.<br>
-&gt;<br>
-&gt; To be a little more explicit, the ISDB-T signal is OFDM modulated with=
- <br>
-&gt; 6MHz of bandwidth (we are both receiving and transmitting at 8MSps), <=
-br>
-&gt; and the figures include (starting from below) the received <br>
-&gt; constellation, the received spectrum and the received symbols per <br>
-&gt; sub-carrier. It&#39;s precisely in this last graph that the problem is=
- clear.<br>
-&gt;<br>
-&gt; The question is then: what&#39;s happening here?<br>
-&gt;<br>
-&gt; best<br>
-&gt; Federico<br>
-&gt;<br>
-What daughtercard do you have in the B100?=C2=A0 What sample rates are you =
-<br>
-using?=C2=A0 =C2=A0The B100 and B200 are *VERY* different hardware internal=
-ly,<br>
-=C2=A0 =C2=A0and the RF pathways are not that similar, and the internal DSP=
- logic <br>
-is fairly different also.<br>
-<br>
-With the B100, the sample rates have to be an integer fraction of <br>
-64MHz.=C2=A0 I&#39;ll also comment that the B100 is obsolete, and has been =
-for many<br>
-=C2=A0 =C2=A0years, so if there is an internal problem in the DSP design, f=
-or <br>
-example, it&#39;s not likely to get much maintenance work from Ettus R&amp;=
-D.<br>
-<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000e1098f058ff36163--
-
-
---===============0509685439084550067==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============0509685439084550067==--
-
