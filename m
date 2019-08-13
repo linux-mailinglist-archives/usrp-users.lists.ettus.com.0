@@ -2,48 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930FB8BBE8
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2019 16:47:07 +0200 (CEST)
-Received: from [::1] (port=58882 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D898BCBB
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Aug 2019 17:12:56 +0200 (CEST)
+Received: from [::1] (port=34036 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hxY4n-0004L3-Ey; Tue, 13 Aug 2019 10:47:05 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:42348)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <emil.bjelski@gmail.com>)
- id 1hxY4k-0004Fx-Bf
- for usrp-users@lists.ettus.com; Tue, 13 Aug 2019 10:47:02 -0400
-Received: by mail-ot1-f48.google.com with SMTP id j7so28647545ota.9
- for <usrp-users@lists.ettus.com>; Tue, 13 Aug 2019 07:46:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=bmfnl8SRwmbyVP+Uwq+M3OJHZNAanu7xgVB+K5KBdZ4=;
- b=htVhQY91q+p3fg/Y5pxLPbL2FBgtoN17qpS9yuBOyLxFUhZJxgiTozOlxLeQNPLdrH
- M2CojbvawAXh0R2m1zp40p1qpdJXW2Y1P8yweGVWxZ3Ik1FDePg6LDlznwQkmxMmsjoY
- fzy9N9u1DSmg8ZxRBAMeecJ1R5XQ2hqMBOolqebdd3F5+mDj3XCCetH60p/oankikDX9
- ppk6vWvAX1zk6eMCtcNbSX1DwZuwx7OvVX/E8GUHfRdqGtd1u+KOYrVCqZEzU6w2nAiX
- RxstlsG1+QJ9+yh/R77dXic7fgHphVJ9TbHezDSvc8pcKFcg1vygjW6m0DJcb9CGizyq
- iWNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=bmfnl8SRwmbyVP+Uwq+M3OJHZNAanu7xgVB+K5KBdZ4=;
- b=N36WucHfqKOPqGGOd6tEP50f8VLsScTzBy13/dGMSbBFY/lnMLVrHCnjI56Ngzu76b
- 2LWtMOzFazknyCRW8fk8z27dvI5OnSm9uM2nZgG2tC7gM/gVYLjK3tYvSLVtRbRbOlMa
- aGoa1NeaTiM0tdwtJ3zsZ2pqt27JBR3z92lSKpN4oafCCRYuwg2hibPLA1VT1BwoUv//
- RONQb+qQoxr54KQz2bYQt0ZFvirbIB97QHgb4bUjTyLdijpa50yI84DAPE4vV2mXT/a5
- TDgjc6cppd2L3I/QJBmxImO+7QblEGnzFZoWj36yX083P5DOXsVfTgArllyxTloMtiVC
- gZHA==
-X-Gm-Message-State: APjAAAXEuDRpN9x/sbuIVF8wB+6DngI/FKR3MnuDQapFCCAUrZ1i5M+c
- /i4+M/ipdtv0UXBN9WqWxk8Mjl+hbCshVcnkIafoNBYI2Cc=
-X-Google-Smtp-Source: APXvYqyH3U8np/fgVDFBIOJwYSKJYuJyvoEcwJ0PI2mn8z+tpSWH+IAKZiFUsup1ASrBc1obdJ2z09WOe4amOyc40M4=
-X-Received: by 2002:aca:4d85:: with SMTP id a127mr1672138oib.3.1565707581258; 
- Tue, 13 Aug 2019 07:46:21 -0700 (PDT)
-MIME-Version: 1.0
-Date: Tue, 13 Aug 2019 16:46:09 +0200
-Message-ID: <CADrptxUKJk6Em7Mk8R-tD_N9taR=ZyVAXbutKcNGNBsnjDi9NQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Compiling UHD examples errors
+	id 1hxYTm-0005Vp-Py; Tue, 13 Aug 2019 11:12:54 -0400
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:41297)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1hxYTj-0005Od-5K
+ for usrp-users@lists.ettus.com; Tue, 13 Aug 2019 11:12:51 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailout.west.internal (Postfix) with ESMTP id E59DE327;
+ Tue, 13 Aug 2019 11:12:09 -0400 (EDT)
+Received: from imap8 ([10.202.2.58])
+ by compute3.internal (MEProxy); Tue, 13 Aug 2019 11:12:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=tV9sN7
+ 4y0pFmPZHfLPW7zfOOmp9AHog33+YDewK3Qwg=; b=TM3Nge1tfdDs6m8AiwEt/1
+ xSXzHwqgscpqTWgrnZbR6bmbQzzNmjEOGvzsjOlqXVDrrC28/7DTLZyzuRfqXsQc
+ vy6R9WFYASvTqEBoi3at0i+8WpuRB3CIn8uZkS0sTssB6VgPQkrl6LOzkESUzuO1
+ gSKYy9j0bfRJanLW0cLqPXZt0nwR2A/qM/xzaNvhpPjY4Nv64464VEr70uBjShRt
+ QYq2dmfQsSj8KTKRRaBew/qgaZQ1bmYjol+UjgqwXKHOEjM/0h5Q0x6BQiERnsj5
+ owuRPZazGXDoFGiqmb+Xkw95G6WBJ/QjvV2iT8bPRm0nhwQE6yESC1QbtOsr4mrA
+ ==
+X-ME-Sender: <xms:SdNSXes-dKPqN2GhGLqAWrFXH6i108r1RnHpDJXd676mtXAuJ93IDA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddruddviedgkeduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepofgfggfkjghffffhvffutgesrgdtreerreertdenucfhrhhomhepfdfoihgt
+ hhgrvghlucffihgtkhgvnhhsfdcuoehmihgthhgrvghlrdguihgtkhgvnhhssegvthhtuh
+ hsrdgtohhmqeenucffohhmrghinhepvghtthhushdrtghomhenucfrrghrrghmpehmrghi
+ lhhfrhhomhepmhhitghhrggvlhdrughitghkvghnshesvghtthhushdrtghomhenucevlh
+ hushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:SdNSXeWg5IW2e4mRKkqZAxQ-kgrNjBYwdnPND9kkWKavzjzeauc7Ow>
+ <xmx:SdNSXcpb5nXmaydlrVpai4uYxpDvwKgYfU1a_7dsZYo0Uq3OFWwKBA>
+ <xmx:SdNSXS5GZr5maAVgo_LnOBK9Do_xStS6D2ozYLLZ8dDAjXnPscs9gA>
+ <xmx:SdNSXZpTA4QhOfKUW1yG7kc7r-WJhgkrB3C6rW2v6zIqEBEdmnjn2Q>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 22931520093; Tue, 13 Aug 2019 11:12:09 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-868-g07f9431-fmstable-20190813v2
+Mime-Version: 1.0
+Message-Id: <fcf49dc3-c5b0-4020-b38a-eb47b87ec8c7@www.fastmail.com>
+In-Reply-To: <CADrptxUKJk6Em7Mk8R-tD_N9taR=ZyVAXbutKcNGNBsnjDi9NQ@mail.gmail.com>
+References: <CADrptxUKJk6Em7Mk8R-tD_N9taR=ZyVAXbutKcNGNBsnjDi9NQ@mail.gmail.com>
+Date: Tue, 13 Aug 2019 11:12:08 -0400
+To: "Emil Bjelski" <emil.bjelski@gmail.com>,
+ "USRP Users" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Compiling UHD examples errors
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -55,9 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Emil Bjelski via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Emil Bjelski <emil.bjelski@gmail.com>
-Content-Type: multipart/mixed; boundary="===============9155420965652765051=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Content-Type: multipart/mixed; boundary="===============1337285407774298450=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,57 +81,81 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9155420965652765051==
-Content-Type: multipart/alternative; boundary="00000000000033fe7c059000b4d2"
+--===============1337285407774298450==
+Content-Type: multipart/alternative;
+ boundary=41bec003f6354aabb5355addbf08cb8e
 
---00000000000033fe7c059000b4d2
-Content-Type: text/plain; charset="UTF-8"
+--41bec003f6354aabb5355addbf08cb8e
+Content-Type: text/plain
 
-Hello everyone,
+Hi Emil - Can you tell us what OS you're using for the UHD host computer? If you're trying to compile UHD from source, which version of UHD (release / GIT / version). Those are useful starting points. Cheers! - MLD
 
-I trying to compile UHD examples following tutorial provided here:
-https://kb.ettus.com/Getting_Started_with_UHD_and_C%2B%2B
+On Tue, Aug 13, 2019, at 10:47 AM, Emil Bjelski via USRP-users wrote:
+> Hello everyone, 
+> 
+> I trying to compile UHD examples following tutorial provided here:
+> https://kb.ettus.com/Getting_Started_with_UHD_and_C%2B%2B
+> 
+> However, I am facing issue when runining:
+> cmake ../
+> 
+> I get this error:
+> CMake Error at CMakeLists.txt:52 (UHD_INSTALL):
+>  Unknown CMake command "UHD_INSTALL".
+> 
+> -- Configuring incomplete, errors occurred!
+> 
+> 
+> I am sure that uhd is installed as I am able to execute command
+> uhd_find devices.
+> 
+> What could be the issue?
+> 
+> Thanks,
+> 
+> Emil
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> 
 
-However, I am facing issue when runining:
-cmake ../
-
-I get this error:
-CMake Error at CMakeLists.txt:52 (UHD_INSTALL):
-  Unknown CMake command "UHD_INSTALL".
-
--- Configuring incomplete, errors occurred!
-
-
-I am sure that uhd is installed as I am able to execute command
-uhd_find devices.
-
-What could be the issue?
-
-Thanks,
-
-Emil
-
---00000000000033fe7c059000b4d2
-Content-Type: text/html; charset="UTF-8"
+--41bec003f6354aabb5355addbf08cb8e
+Content-Type: text/html
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello everyone, <br></div><div><br></div><div>I tryin=
-g to compile UHD examples following tutorial provided here:</div><div><a hr=
-ef=3D"https://kb.ettus.com/Getting_Started_with_UHD_and_C%2B%2B">https://kb=
-.ettus.com/Getting_Started_with_UHD_and_C%2B%2B</a></div><div><br></div><di=
-v>However, I am facing issue when runining:</div><div>cmake ../</div><div><=
-br></div><div>I get this error:</div><div>CMake Error at CMakeLists.txt:52 =
-(UHD_INSTALL):<br>=C2=A0 Unknown CMake command &quot;UHD_INSTALL&quot;.<br>=
-<br>-- Configuring incomplete, errors occurred!</div><div><br></div><div><b=
-r></div><div>I am sure that uhd is installed as I am able to execute comman=
-d<br></div><div>uhd_find devices.</div><div><br></div><div>What could be th=
-e issue?</div><div><br></div><div>Thanks,</div><div><br></div><div>Emil<br>=
-</div></div>
+<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.Mso=
+Normal,p.MsoNoSpacing{margin:0}</style></head><body><div style=3D"font-f=
+amily:Arial;">Hi Emil - Can you tell us what OS you're using for the UHD=
+ host computer? If you're trying to compile UHD from source, which versi=
+on of UHD (release / GIT / version). Those are useful starting points. C=
+heers! - MLD<br></div><div style=3D"font-family:Arial;"><br></div><div s=
+tyle=3D"font-family:Arial;"><span style=3D"font-size: 0.875rem; font-fam=
+ily: &quot;Source Sans Pro&quot;, sans-serif;">On Tue, Aug 13, 2019, at =
+10:47 AM, Emil Bjelski via USRP-users wrote:</span><br></div><blockquote=
+ type=3D"cite" id=3D"qt"><div dir=3D"ltr"><div>Hello everyone, <br></div=
+><div><br></div><div>I trying to compile UHD examples following tutorial=
+ provided here:<br></div><div><a href=3D"https://kb.ettus.com/Getting_St=
+arted_with_UHD_and_C%2B%2B">https://kb.ettus.com/Getting_Started_with_UH=
+D_and_C%2B%2B</a><br></div><div><br></div><div>However, I am facing issu=
+e when runining:<br></div><div>cmake ../<br></div><div><br></div><div>I =
+get this error:<br></div><div><div style=3D"font-family:Arial;">CMake Er=
+ror at CMakeLists.txt:52 (UHD_INSTALL):<br></div><div style=3D"font-fami=
+ly:Arial;">&nbsp; Unknown CMake command "UHD_INSTALL".<br></div><div sty=
+le=3D"font-family:Arial;"><br></div><div style=3D"font-family:Arial;">--=
+ Configuring incomplete, errors occurred!<br></div></div><div><br></div>=
+<div><br></div><div>I am sure that uhd is installed as I am able to exec=
+ute command<br></div><div>uhd_find devices.<br></div><div><br></div><div=
+>What could be the issue?<br></div><div><br></div><div>Thanks,<br></div>=
+<div><br></div><div>Emil<br></div></div><div>___________________________=
+____________________<br></div><div>USRP-users mailing list<br></div><div=
+>USRP-users@lists.ettus.com<br></div><div>http://lists.ettus.com/mailman=
+/listinfo/usrp-users_lists.ettus.com<br></div><div><br></div></blockquot=
+e><div style=3D"font-family:Arial;"><br></div></body></html>
+--41bec003f6354aabb5355addbf08cb8e--
 
---00000000000033fe7c059000b4d2--
 
-
---===============9155420965652765051==
+--===============1337285407774298450==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,5 +166,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9155420965652765051==--
+--===============1337285407774298450==--
 
