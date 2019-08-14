@@ -2,58 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C738D803
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2019 18:23:50 +0200 (CEST)
-Received: from [::1] (port=51020 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAED58DC44
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2019 19:50:30 +0200 (CEST)
+Received: from [::1] (port=46938 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hxw3w-0003cE-E3; Wed, 14 Aug 2019 12:23:48 -0400
-Received: from mail-qk1-f177.google.com ([209.85.222.177]:43345)
+	id 1hxxPo-0002SL-GK; Wed, 14 Aug 2019 13:50:28 -0400
+Received: from sonic305-2.consmr.mail.bf2.yahoo.com ([74.6.133.41]:36501)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1hxw3s-0003WG-TI
- for usrp-users@lists.ettus.com; Wed, 14 Aug 2019 12:23:44 -0400
-Received: by mail-qk1-f177.google.com with SMTP id m2so18721582qkd.10
- for <usrp-users@lists.ettus.com>; Wed, 14 Aug 2019 09:23:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=lCzcULWA9w+pCP8VjGfZaynBZzOzeT8LfX4uEcn56rE=;
- b=Pywn98DqzdRHygXOAjIalMW4eZUerBaO6Lefz/QF0+VKU6XI3DyJaJG2i6uUCGD8Nq
- 4MNp2THz6jsKluQ7JT9oC8ljfuNOx4udlauW9L0MEZv3guk/JSL4Ojm+4tmewULjLLPX
- mwE2wUfJ7vJYmlOUqbfDrhz2duu1lunL/MfhE9rzVs/E2OXEJSl6ikp63Cr/FBh7wj9X
- YZEHQOkn9n0FeLM+Fcwnx+p5cE6k2QTDeoHFbXib0EKNvGeVhXYzanggIxOKJ9oRS6yH
- DgGi5zPyKDx2kcIwmFV3WZei2zVmGMVdLQXvHwzZRH9X6v+sKOfRXBpT+HoiMYBVayCC
- gyOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=lCzcULWA9w+pCP8VjGfZaynBZzOzeT8LfX4uEcn56rE=;
- b=iHC0t6vRRU4af6LCegjpXoUy9SrVE/qe4hoZgRjvXO4JWY7UHtZ+tHltKCn6RURVJ9
- +wy0MKGQxXRmNSpW8eM0khUpk4QgseL89CNqbsbSVITSvzLSWZChfZGqm1yr9OW758vW
- uweTlrbn4A33ShtFX811UB0A+vtGSOuG5O2HTz//C/i7RMBPCsTZnzbwlIBebSQkj35C
- VcwXSWhTV0Rdwqrzqd0SIrgruq+f40+ZNVzdjDQWu3f1RSm65Zf2FIQZ3sDPSboQGouM
- WUkv0EObYSjJ+bhiC9tij09xJuqokFNtjBPPoQ/BRG09s9Ev/FxVeRROs7OnUYJFUu9c
- Qd+g==
-X-Gm-Message-State: APjAAAUSECrAr60Lnc9EXfs3Z0Pru+QWsq6vz8g4n2c4nXrY43w23ksx
- xE6YngulKCZcVrCLZbBBZAUEIV0X
-X-Google-Smtp-Source: APXvYqwY7cUC1L8kBv9H6PwvWwoRJQR5S2xuFQS8p44GgtSGMkDL7Y4FsBAYWCFsMu3JvP3l2yH6tQ==
-X-Received: by 2002:a37:c20a:: with SMTP id i10mr270698qkm.76.1565799784245;
- Wed, 14 Aug 2019 09:23:04 -0700 (PDT)
-Received: from ?IPv6:2605:b100:511:2839:1073:ccd:795a:2d6c?
- ([2605:b100:511:2839:1073:ccd:795a:2d6c])
- by smtp.gmail.com with ESMTPSA id a67sm118524qkb.15.2019.08.14.09.23.03
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 14 Aug 2019 09:23:03 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-X-Mailer: iPhone Mail (16F203)
-In-Reply-To: <CAGBdiiZjdEKO85ruYi=nh5Du0+b7JQCYqPWgVRPKzTm72r5FAg@mail.gmail.com>
-Date: Wed, 14 Aug 2019 12:23:02 -0400
-Message-Id: <23C91668-58BF-41B8-92BD-732A0C4F1798@gmail.com>
-References: <CAGBdiiZjdEKO85ruYi=nh5Du0+b7JQCYqPWgVRPKzTm72r5FAg@mail.gmail.com>
-To: Erivelton Castro <erivelton.thalesgroup@gmail.com>
-Subject: Re: [USRP-users] Setting Attenuation Value N310
+ (Exim 4.92) (envelope-from <t_whit_87@yahoo.com>) id 1hxxPk-0002KZ-PE
+ for usrp-users@lists.ettus.com; Wed, 14 Aug 2019 13:50:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1565804984; bh=pAh9ONo5oFIBw3Po1rcT/2e7GDYb9GRtKMdDep85HJ4=;
+ h=Date:From:To:In-Reply-To:References:Subject:From:Subject;
+ b=XkCV5XGCMgIkNp5y5kG6tp5693oKnZJ0WNqtF5zSsThM+vSQzsPeSOXaB4RzdNyK7gTJY3q/unbJFQUB2h9NZg8nuAk4vu4txjJYjk5W72rCAw8WjSsao3n9EWA9Llk7kuBW+qkqIrNbNTKsCy6KbVfRIvKq0fPLSy9QGvCCSarF5W5hYg7dtloiw8UE/wl0mjYiFa6WipKNCxvow9BqAU3g7VBXlaY4tLkMQ7/MnSF2q7Tw19ikpQ/ll7GsGopzZuSNHQJSKlRoElOJ/UHlGJ2lUpON8KcluM0zzLPCfQo3ZUYb/WcAFpbvV8NQtTGZ61d4zjRCYhRCRLUWpEid6w==
+X-YMail-OSG: g40tpPYVM1l7XsOqabQgzcGzq1lSrLQrV.jUhba_6hUZ4T.0HIdAuPjptCqAtA7
+ Ab_FNFSoE3nRcEMKjwUjbzzB0ixB9jTlds_dMMNNNHfDvHb_hQeqxznafj_FZd1Srl_dy1o5kA3r
+ aKqNFgmZYGToc1J8BGjbX5qf3MewS9QEA9P5Ig9fvLWPOLGe2PqHUMy6kGns7oJaEvEB4sFfww.l
+ eocvbAFBLAC9C8.AxFzeVdApMNdkx1Y2Xdrbs92zSw4XlXS18V0CGQ24jJ865gxYuIjFOaWyGXNd
+ bFiuh001R4GiJrwQWBjIFKwpMUZ97bqDpKSlIoBRrcxkuK8JTWuztu71Cz.5z96ThPz2BK6RLRWc
+ OiJYYgz0RNF24ADWD7UHZ5pC2WYe_7NyWO46E__L1.o1b8MecgXgX6yz8.Hr9MFQ95FOrAwNmSfU
+ shZ.D3xOq_mZl9BiXm5CJz4WEjX7C0DTwYObnqmkyVMdtoSw5eIfijzFDgr38D6GAmFH6_NelqvI
+ tyGeraTNAMCgF6Gynf5rWOZU_1OFnIK0SC8daekh7YAl0VE8QcrP.EAmuJxbcFpS4CaYBuu4OWwd
+ Zgs8d7WfKy.UtVH59XyTLjnIGjRQ4WPXGQbbwt.BSrWe3FwPyMxithUC6YpYBHpDr1nLGFTbpBOi
+ VTmugrZK3ZqOEU8fDFMjRWVdyNnvDyNRWGg8xPUen9Z2d4DItI_kw3eY_dk6feOOZnCvEnxeYCQr
+ ZJ6Cf0gxTbnZKYE4OSY9hLDCF6gMduCzArGiv7E1eFqiiEg6scVbzbooLsWad14E7MemZYpYLZ29
+ CP7e5ezXJYmr6J6WIT4TnaoQbwuM8gsXxUf2nHr4slLOcB.mQbJMFdTNihMtjz7o.niE1_nJuGu3
+ GQtpGfkp_jNhjzcYiZHtQJndE4NiDpVPLCurZvZ647PrTR.XeD2tADEmZdM8YqHtjX3OsqNso4g_
+ 2j3I02yjH6JWdc5istER.gx6IUrqPvIzmVSpuhr1KD2hOpr1R5p9WRuMshdZP4zL.qbeANR1Tafr
+ rf6VD.JKSnVFfXZzPJGqc6v8Z7Mnp1D6PC.wuEn5i194CFzpQVnUc.GZG_cpt3U7f5Kr_wJOAcIz
+ fcigaiy5s4C.aScGnUg3QkLqMqjvDoLYxE8zD_GFJ9PdoqFTyuxR21vIhJAZ151iaHUeRc.AV3Vj
+ VYFFh1DLHdmcJf0fNMsuXaJCGRrkB8Q7.uIVS1rObHP7IVgUdq9HxIQNjTtyd9FGkTqLMrS2r9E3
+ dvA.hAZrD
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic305.consmr.mail.bf2.yahoo.com with HTTP; Wed, 14 Aug 2019 17:49:44 +0000
+Date: Wed, 14 Aug 2019 17:49:39 +0000 (UTC)
+To: usrp-users@lists.ettus.com, "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID: <979073040.3843554.1565804979556@mail.yahoo.com>
+In-Reply-To: <5D5414F4.6070501@gmail.com>
+References: <1754624003.3660157.1565753634913.ref@mail.yahoo.com>
+ <1754624003.3660157.1565753634913@mail.yahoo.com> <5D5382D4.60007@gmail.com>
+ <451633320.3650050.1565757496009@mail.yahoo.com> <5D5414F4.6070501@gmail.com>
+MIME-Version: 1.0
+X-Mailer: WebService/1.1.14097 YMailNorrin Mozilla/5.0 (Windows NT 10.0; Win64;
+ x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140
+ Safari/537.36 Edge/18.17763
+Subject: Re: [USRP-users] UHD Error with X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,11 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Tellrell White via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Tellrell White <t_whit_87@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============6399052192282756360=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,18 +75,114 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SeKAmW0gbm90IHRoYXQgZmFtaWxpYXIgd2l0aCB0aGUgTjMxMCBoYXJkd2FyZSBkZXNpZ24uIAoK
-QnV0IHRoaXMgaXMgbm9ybWFsbHkgaGFuZGxlZCBieSB0aGUgc2V0X3J4X2dhaW4gb3Igc2V0X3R4
-X2dhaW4gZnVuY3Rpb24gaW4gVUhELiAKClNlbnQgZnJvbSBteSBpUGhvbmUKCj4gT24gQXVnIDE0
-LCAyMDE5LCBhdCA5OjE5IEFNLCBFcml2ZWx0b24gQ2FzdHJvIHZpYSBVU1JQLXVzZXJzIDx1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4gCj4gSGVsbG8sCj4gCj4gVGhlIGRhdWdo
-dGVyIGJvYXJkIGhhcyBhdHRlbnVhdGlvbiB2YXJpYWJsZSAoUEU0MzcwNCkgb24gTjMxMCB3aXRo
-IDMxLjc1ZEIgUmFuZ2UgYW5kIDAuMjVkQiBSZXNvbHV0aW9uLiBJIHdvdWxkIGxpa2UgdG8gY2hh
-bmdlIHRoaXMgdmFsdWUgdG8gaW5jcmVhc2UgaW5wdXQgc2lnbmFsIG9uIEFEOTM3MS4KPiAKPiBD
-b3VsZCBoZWxwIG1lIGFueWJvZHk/Cj4gCj4gQmVzdCByZWdhcmRzCj4gCj4gRXJpdmVsdG9uCj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVz
-ZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xp
-c3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29t
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVz
-ZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMu
-ZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============6399052192282756360==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3843553_1935431117.1565804979555"
+Content-Length: 6636
+
+------=_Part_3843553_1935431117.1565804979555
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ MarcusI am running this in a Linux based VM running Ubuntu 16.04 LTS. The =
+laptop I'm using is a Dell Precision 7730 with a Intel Xeon processor w/ cp=
+u @ 2.90 GHz. It also has 64 GB or RAM. I'm using the 1 GbE on Ethernet por=
+t 0 on the X310. I'm using a sample rate of 1 MHz and center freq of 2.45 G=
+hz. Also, i'm using an older version of GNU Radio: 3.7.7
+    On Wednesday, August 14, 2019, 10:04:39 AM EDT, Marcus D. Leech <patchv=
+onbraun@gmail.com> wrote: =20
+=20
+  On 08/14/2019 12:38 AM, Tellrell White wrote:
+ =20
+   Marcus=C2=A0=20
+=20
+ =20
+   However, I re-flashed the device with "=C2=A0uhd_image_loader --args typ=
+e=3Dx300" , power cycled and after running uhd_usrp_probe=C2=A0   get what'=
+s shown below. This doesn't seem to be the new image. It's showing RFNoC bl=
+ocks from a previous image that was installed prior to my use and when I tr=
+y to run a flowgraph I'm getting the same error as mentioned in my previous=
+ message. Ideas??=20
+ These just look like the standard RFNOC blocks for X310.=C2=A0=C2=A0 Keep =
+in mind that internally, for several releases, UHD uses RFNOC, even if your
+ =C2=A0 code doesn't.
+=20
+ What type of hardware is this running on?=C2=A0 What kind of ethernet inte=
+rface is connected to the X310?
+=20
+ What sample rate are you using?
+=20
+ What OS version?=C2=A0 Within a VM, or on raw hardware?
+=20
+=20
+  =20
+------=_Part_3843553_1935431117.1565804979555
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html><head></head><body><div class="ydp77728d86yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"></div><div class="ydp77728d86yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;">
+        </div><div class="ydp77728d86yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;" dir="ltr" data-setdir="false">Marcus</div><div class="ydp77728d86yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;" dir="ltr" data-setdir="false">I am running this in a Linux based VM running Ubuntu 16.04 LTS. The laptop I'm using is a Dell Precision 7730 with a Intel Xeon processor w/ cpu @ 2.90 GHz. It also has 64 GB or RAM. I'm using the 1 GbE on Ethernet port 0 on the X310. I'm using a sample rate of 1 MHz and center freq of 2.45 Ghz. Also, i'm using an older version of GNU Radio: 3.7.7</div><div class="ydp77728d86yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><br></div><div class="ydp77728d86yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;">
+        
+        </div><div class="yahoo_quoted" id="yahoo_quoted_6414121447">
+            <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:13px;color:#26282a;">
+                
+                <div>
+                    On Wednesday, August 14, 2019, 10:04:39 AM EDT, Marcus D. Leech &lt;patchvonbraun@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id="yiv5869272306"><div>
+    <div class="yiv5869272306yqt7379963785" id="yiv5869272306yqtfd40325"><div class="yiv5869272306moz-cite-prefix">On 08/14/2019 12:38 AM, Tellrell White
+      wrote:<br clear="none">
+    </div>
+    </div><blockquote type="cite"><div class="yiv5869272306yqt7379963785" id="yiv5869272306yqtfd68699">
+      <div class="yiv5869272306ydpfeed99a8yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"> </div>
+      <div class="yiv5869272306ydpfeed99a8yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;" dir="ltr">Marcus&nbsp;</div>
+      <br clear="none">
+      <div class="yiv5869272306ydpfeed99a8yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><br clear="none">
+      </div>
+      <div class="yiv5869272306ydpfeed99a8yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><br clear="none">
+      </div>
+      <div class="yiv5869272306ydpfeed99a8yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;" dir="ltr">
+        <div class="yiv5869272306ydpfeed99a8yahoo-style-wrap" style="text-align:left;color:rgb(0, 0, 0);text-transform:none;text-indent:0px;letter-spacing:normal;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;font-style:normal;font-variant:normal;font-weight:400;text-decoration:none;word-spacing:0px;white-space:normal;orphans:2;" dir="ltr">However, I
+          re-flashed the device with "&nbsp;<span><span style="background-color:rgb(255, 255, 255);color:rgb(29, 34, 40);display:inline;float:none;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;font-style:normal;font-variant:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-decoration:none;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;">uhd_image_loader --args type=x300</span></span>" ,
+          power cycled and after running uhd_usrp_probe&nbsp;</div>
+      </div>
+      <div class="yiv5869272306ydpfeed99a8yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;" dir="ltr"> get
+        what's shown below. This doesn't seem to be the new image. It's
+        showing RFNoC blocks from a previous image that was installed
+        prior to my use and when I try to run a flowgraph I'm getting
+        the same error as mentioned in my previous message. Ideas??</div></div>
+    </blockquote>
+    These just look like the standard RFNOC blocks for X310.&nbsp;&nbsp; Keep in
+    mind that internally, for several releases, UHD uses RFNOC, even if
+    your<br clear="none">
+    &nbsp; code doesn't.<br clear="none">
+    <br clear="none">
+    What type of hardware is this running on?&nbsp; What kind of ethernet
+    interface is connected to the X310?<br clear="none">
+    <br clear="none">
+    What sample rate are you using?<br clear="none">
+    <br clear="none">
+    What OS version?&nbsp; Within a VM, or on raw hardware?<div class="yiv5869272306yqt7379963785" id="yiv5869272306yqtfd27642"><br clear="none">
+    <br clear="none">
+    <br clear="none">
+  </div></div></div></div>
+            </div>
+        </div></body></html>
+------=_Part_3843553_1935431117.1565804979555--
+
+
+--===============6399052192282756360==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============6399052192282756360==--
+
