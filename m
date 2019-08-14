@@ -2,48 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CB588D488
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2019 15:22:50 +0200 (CEST)
-Received: from [::1] (port=33594 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B2C8D4BD
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Aug 2019 15:31:56 +0200 (CEST)
+Received: from [::1] (port=37960 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hxtEl-0001KL-Ml; Wed, 14 Aug 2019 09:22:47 -0400
-Received: from mail-lf1-f42.google.com ([209.85.167.42]:33965)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <erivelton.thalesgroup@gmail.com>)
- id 1hxtEi-0001BR-4H
- for usrp-users@lists.ettus.com; Wed, 14 Aug 2019 09:22:44 -0400
-Received: by mail-lf1-f42.google.com with SMTP id b29so72069488lfq.1
- for <usrp-users@lists.ettus.com>; Wed, 14 Aug 2019 06:22:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=E4NjC6vznqPxvmMiy0UjQ/gt8wGE1/XaPj/CeKAod8c=;
- b=dAuE4NbvCfuSaT7WtxDM9AE9DQr5JldC2x1fxf++ZrUerXZWf9BvNRXjhB7yQ6sq/y
- aNGi4r3HmWc2QoDyD0hd3pvub31VlaOkNprx5g6DD8DMYtKZsm73guTiDWPqI0R5rBJr
- 5oiMibvur1gt4jp45kYOYlWhUIWqy+5OJp1O7IZTWleCBWBk9XW99cPHVKoH/VVMX4Oe
- +32/elFnqYeU63c4tWfJeWTazjqoKJNqIP8qCbbnU+/fY04W3TijmQeKqp+25hV4i8OJ
- eyRBN1ne69W9iQTJ668858GwsiqDIHSd5PMjAcSukCslPngnui3XmRz+3MLwseWc8HAw
- SVvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=E4NjC6vznqPxvmMiy0UjQ/gt8wGE1/XaPj/CeKAod8c=;
- b=N4AVt6ozwWNzjYHNJ4x7VzdlTAa1XYaq4umuOUJeBOcXjB9t3cRhctu1Grb2cs6xS9
- Y3w1JP37JmKtCfXOeDWR+NwKw2Pa+XNO0/LqEhs/ypLKWf90ZEikP/E1scPwgJSyMN4N
- mjal3f8hmb6nYvvAfWQjeQARSOhz4Nq9+aRpdvFekIx4pIYJMwUeu9/cA9LbUDyLN5Hm
- XZevor5GcBsnZl54bjbBeHSzxJopT4Uc8ExYL2rH3TFhppknVyUEdCnEaPzUVAVEixJb
- OhYe4mEVO12FqjEzsxEV+HwwrRHqJLG817sqUkxWKBq9EoZ9DkGkNBG9G23KIADqK0Mc
- iE3A==
-X-Gm-Message-State: APjAAAUPnxOs07t42ZeuA0+Yr7w5lyAXJOApBtvOJZYqMSeTbNXiEGck
- mHXCTILudxqT1JptXgENW/6ZjYy78zUBIm0tj1URAt7S
-X-Google-Smtp-Source: APXvYqwVD0hk3KAgcuYXrpZdc1Az6p11Yz6cHIQsdzKBs1cYWc2ddLUtJpx9tIq5H+zq/psR36YXEVoJS7JBOakeigU=
-X-Received: by 2002:ac2:5506:: with SMTP id j6mr26533873lfk.144.1565788922428; 
- Wed, 14 Aug 2019 06:22:02 -0700 (PDT)
-MIME-Version: 1.0
-Date: Wed, 14 Aug 2019 10:19:53 -0300
-Message-ID: <CAGBdiiZjdEKO85ruYi=nh5Du0+b7JQCYqPWgVRPKzTm72r5FAg@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Setting Attenuation Value N310
+	id 1hxtNa-0002P5-1k; Wed, 14 Aug 2019 09:31:54 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:36185)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1hxtNW-0002J0-Lq
+ for usrp-users@lists.ettus.com; Wed, 14 Aug 2019 09:31:50 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailout.nyi.internal (Postfix) with ESMTP id 4FCCC2202C;
+ Wed, 14 Aug 2019 09:31:10 -0400 (EDT)
+Received: from imap8 ([10.202.2.58])
+ by compute3.internal (MEProxy); Wed, 14 Aug 2019 09:31:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=JQqQvi
+ CV3xprscP6hds+Sbg72ym2ha0v6m3Gxk3LMpg=; b=qIpnTAJgzlg7+vOz5XsW9Y
+ PCMbk1W4KAhJ4NVFvMJcZRDTvrXCfyQB8yGOJDnDGsb+Dd83dNJV9qbECZt5nnn6
+ PDiK9L0yKtMeN/KZJyThlCoXa5AOSOQfV469b53KecfubapC7atvPr3q/3kcmw2V
+ W3fPofluXuLHeXYgteBvUlFBuVgBkbMPpbvsIWKUauV0AMpiypPYwixmHgpN07hF
+ AX1cphKWcPUeeoK7VA7F92h5HjtwwM6faJr2obT48qj1KxRaRHFiD+IJbzqFd1wj
+ 4Sh1AFpLMzD1cihF1L2Tx8lFjt8NtjwAViRpdwjpcLRvE6udtjGO2nrlay7k9fWA
+ ==
+X-ME-Sender: <xms:HQ1UXWJu9KLDWOq5AQulfvfTL8RsiUAFBwsEeIkTqL7ejhkoTQiXqw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddruddvledgtdefucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepofgfggfkjghffffhvffutgesrgdtreerreertdenucfhrhhomhepfdfoihgt
+ hhgrvghlucffihgtkhgvnhhsfdcuoehmihgthhgrvghlrdguihgtkhgvnhhssegvthhtuh
+ hsrdgtohhmqeenucfrrghrrghmpehmrghilhhfrhhomhepmhhitghhrggvlhdrughitghk
+ vghnshesvghtthhushdrtghomhenucevlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:HQ1UXRGUf9cUaEbwAYDYkM7l2sq4cXOh0vc0fCZFeKyS65KYP_FBmw>
+ <xmx:HQ1UXdeCJBEGMvlb3d4s_WkGqi8n1Uu3vzQjIhebBDcfwv_y0jSFxQ>
+ <xmx:HQ1UXVhcJxr0zOR3FjZWEZCAQhN9CTRGfv61i6zbe6liWop4zfM7oA>
+ <xmx:Hg1UXZic5eSqzlF2H77zq8txMzrn2FhHNwhP0Lgqzpn-LVW_3O5T5w>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id C2A28520093; Wed, 14 Aug 2019 09:31:09 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-868-g07f9431-fmstable-20190813v2
+Mime-Version: 1.0
+Message-Id: <4c8328c7-f585-44bf-bff1-2d14bfbd16e6@www.fastmail.com>
+In-Reply-To: <CADrptxW3Hu2HFMkwf0qGo67Q2WP-FzM5ZSarY2D2pJifAP-rdA@mail.gmail.com>
+References: <CADrptxUKJk6Em7Mk8R-tD_N9taR=ZyVAXbutKcNGNBsnjDi9NQ@mail.gmail.com>
+ <fcf49dc3-c5b0-4020-b38a-eb47b87ec8c7@www.fastmail.com>
+ <CADrptxURrkg82rUbQwHHWiV3jFn2-mGSEPO9tyqZ+DvxSEKJBg@mail.gmail.com>
+ <c0a28d10-1f50-46e4-9131-6df3c2dbee0a@www.fastmail.com>
+ <CADrptxW3Hu2HFMkwf0qGo67Q2WP-FzM5ZSarY2D2pJifAP-rdA@mail.gmail.com>
+Date: Wed, 14 Aug 2019 09:31:09 -0400
+To: "Emil Bjelski" <emil.bjelski@gmail.com>
+Subject: Re: [USRP-users] Compiling UHD examples errors
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -55,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Erivelton Castro via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Erivelton Castro <erivelton.thalesgroup@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5620714096423129864=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: USRP Users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4964891984278610996=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,38 +84,63 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5620714096423129864==
-Content-Type: multipart/alternative; boundary="00000000000083c098059013a48b"
+--===============4964891984278610996==
+Content-Type: multipart/alternative;
+ boundary=6b86b2466a9f4dad9bb63f3746d4023c
 
---00000000000083c098059013a48b
-Content-Type: text/plain; charset="UTF-8"
+--6b86b2466a9f4dad9bb63f3746d4023c
+Content-Type: text/plain
 
-Hello,
+HI Emil - Thanks for that info. I'll work with you off-list & we can report back on-list if appropriate. - MLD
 
-The daughter board has attenuation variable (PE43704) on N310 with 31.75dB
-Range and 0.25dB Resolution. I would like to change this value to increase
-input signal on AD9371.
+On Wed, Aug 14, 2019, at 5:08 AM, Emil Bjelski wrote:
+> Hi,
+> I want to compile and install one of the existing example scripts that are located in */rfnoc/src/uhd/host/examples/*.
+> As a first step, I decided to use existing CMakeLists.txt for init_usrp.
+> 
+> However, after calling in */rfnoc/src/uhd/host/examples/init_usrp*
+> 
+> *cmake ../*
+> 
+> I get error:
+> 
+> *CMake Error at CMakeLists.txt:52 (UHD_INSTALL):
+>  Unknown CMake command "UHD_INSTALL".
+> 
+> 
+> CMake Warning (dev) in CMakeLists.txt:
+>  No cmake_minimum_required command is present. A line of code such as
+> 
+>  cmake_minimum_required(VERSION 3.3)
+*...
 
-Could help me anybody?
-
-Best regards
-
-Erivelton
-
---00000000000083c098059013a48b
-Content-Type: text/html; charset="UTF-8"
+--6b86b2466a9f4dad9bb63f3746d4023c
+Content-Type: text/html
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>The daughter board ha=
-s attenuation variable (PE43704) on N310 with 31.75dB Range and 0.25dB Reso=
-lution. I would like to change this value to increase input signal on AD937=
-1.</div><div><br></div><div>Could help me anybody?</div><div><br></div><div=
->Best regards</div><div><br></div><div>Erivelton<br></div></div>
+<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.Mso=
+Normal,p.MsoNoSpacing{margin:0}</style></head><body><div style=3D"font-f=
+amily:Arial;">HI Emil - Thanks for that info. I'll work with you off-lis=
+t &amp; we can report back on-list if appropriate. - MLD<br></div><div s=
+tyle=3D"font-family:Arial;"><br></div><div>On Wed, Aug 14, 2019, at 5:08=
+ AM, Emil Bjelski wrote:<br></div><blockquote type=3D"cite" id=3D"qt"><d=
+iv dir=3D"ltr"><div style=3D"font-family:Arial;">Hi,<br></div><div>I wan=
+t to compile and install one of the existing example scripts that are lo=
+cated in <b>/rfnoc/src/uhd/host/examples/</b>.<br></div><div>As a first =
+step, I decided to use existing CMakeLists.txt for init_usrp.<br></div><=
+div><br></div><div>However, after calling in <b>/rfnoc/src/uhd/host/exam=
+ples/init_usrp</b><br></div><div><br></div><div><b>cmake ../</b><br></di=
+v><div><br></div><div>I get error:<br></div><div><br></div><div><i>CMake=
+ Error at CMakeLists.txt:52 (UHD_INSTALL):<br>&nbsp; Unknown CMake comma=
+nd "UHD_INSTALL".<br><br><br>CMake Warning (dev) in CMakeLists.txt:<br>&=
+nbsp; No cmake_minimum_required command is present.&nbsp; A line of code=
+ such as<br><br>&nbsp; &nbsp; cmake_minimum_required(VERSION 3.3)<br></i=
+>...<br></div></div></blockquote><div style=3D"font-family:Arial;"><br><=
+/div></body></html>
+--6b86b2466a9f4dad9bb63f3746d4023c--
 
---00000000000083c098059013a48b--
 
-
---===============5620714096423129864==
+--===============4964891984278610996==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,5 +151,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5620714096423129864==--
+--===============4964891984278610996==--
 
