@@ -2,33 +2,33 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A3C909C5
-	for <lists+usrp-users@lfdr.de>; Fri, 16 Aug 2019 22:55:37 +0200 (CEST)
-Received: from [::1] (port=47410 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3ED90A57
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Aug 2019 23:36:29 +0200 (CEST)
+Received: from [::1] (port=50718 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hyjG3-0001G2-Eh; Fri, 16 Aug 2019 16:55:35 -0400
-Received: from smtp85.ord1d.emailsrvr.com ([184.106.54.85]:36252)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jasonr@3db-labs.com>) id 1hyjG0-0001Ba-00
- for usrp-users@lists.ettus.com; Fri, 16 Aug 2019 16:55:32 -0400
-X-Auth-ID: jasonr@3db-labs.com
-Received: by smtp11.relay.ord1d.emailsrvr.com (Authenticated sender:
- jasonr-AT-3db-labs.com) with ESMTPSA id 63ABA6024D
- for <usrp-users@lists.ettus.com>; Fri, 16 Aug 2019 16:54:51 -0400 (EDT)
-X-Sender-Id: jasonr@3db-labs.com
-Received: from [192.168.101.19] (rrcs-74-142-203-226.central.biz.rr.com
- [74.142.203.226]) (using TLSv1.2 with cipher AES128-SHA)
- by 0.0.0.0:25 (trex/5.7.12); Fri, 16 Aug 2019 16:54:51 -0400
-To: usrp-users@lists.ettus.com
-Message-ID: <9d637be0-b80a-33cb-492d-0197e3ba6f5a@3db-labs.com>
-Date: Fri, 16 Aug 2019 16:54:50 -0400
+	id 1hyjtb-00044t-BZ; Fri, 16 Aug 2019 17:36:27 -0400
+Received: from sanddollar.geekisp.com ([216.168.135.167]:29106)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <philip@balister.org>) id 1hyjtW-0003wU-QM
+ for usrp-users@lists.ettus.com; Fri, 16 Aug 2019 17:36:22 -0400
+Received: (qmail 19281 invoked by uid 1003); 16 Aug 2019 21:35:43 -0000
+Received: from unknown (HELO localhost.localdomain)
+ (philip@opensdr.com@73.152.143.112)
+ by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+ 16 Aug 2019 21:35:43 -0000
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
+References: <CAGBdiiZ1Kb_Ht5ZEe4qiF3Yk_=Sj7X9AgHu+9NUNVztNwczytA@mail.gmail.com>
+ <5D5413B1.3050602@gmail.com>
+Openpgp: preference=signencrypt
+Message-ID: <8f8e8834-6256-57ab-c3d2-a27b1e9b1ed6@balister.org>
+Date: Fri, 16 Aug 2019 17:35:37 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Language: en-US
-Subject: [USRP-users] Incorrect RX time_spec values with X300, TwinRX,
- and v3.14.1.0
+In-Reply-To: <5D5413B1.3050602@gmail.com>
+Content-Language: en-MW
+Subject: Re: [USRP-users] Interrupt Request on N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -40,10 +40,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Roehm via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Roehm <jasonr@3db-labs.com>
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -57,54 +57,38 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-I have a software application that interfaces to an X300 with a TwinRX 
-daughterboard installed. We recently upgraded our UHD version to 
-v3.14.1.0 in our application. Since then, we've observed that the 
-time_spec values on consecutive blocks of data received from the unit 
-(i.e. from two sequential calls to rx_streamer::recv()) are not 
-consistent with one another. The timecodes reported by the unit seem to 
-be moving forward at twice real time.
+On 8/14/19 9:59 AM, Marcus D. Leech via USRP-users wrote:
+> On 08/14/2019 09:43 AM, Erivelton Castro via USRP-users wrote:
+>> Hello,
+>>
+>> I need to implement interrupt request on linux, using the N310
+>> hardware. There are some example on UHD? I need to read the I/Q Data
+>> when to occur hardware even. I must to use interrupt request. The UHD
+>> has support for it? Or I need to implement IRQ on linux embedded?
+>>
+>> Best Regards
+>>
+>> Erivelton.
+>>
+> If you need to directly respond to interrupts on Linux, you'll likely
+> need to write a kernel-level device driver.
 
-As an example, assume that I have the X300 configured for a sample rate 
-of 100 MSPS, and that I'm getting 1000 samples per call to recv() (these 
-are just round numbers to simplify the discussion). I'm seeing metadata 
-from consecutive recv() calls that look like this:
 
-Block 1:
-- time_spec.get_whole_secs(): 0
-- time_spec.get_frac_secs(): 0
-- 1000 samples @ 100 MHz = 10 usec of data
+I did a really quick google for some things I recalled that are
+deprecated now. Then came across this, if you aren't high performance,
+this might help.
 
-Block 2:
-- time_spec.get_whole_secs(): 0
-- time_spec.get_frac_secs(): 0.000020 (where I would have expected 
-0.000010 instead)
-- 1000 samples @ 100 MHz = 10 usec of data
+https://www.kernel.org/doc/html/v4.17/driver-api/gpio/consumer.html
 
-... and so on.
+Philip
 
-If you watch the stream of timestamps received from the device, it looks 
-like time is passing at twice the appropriate rate. I noticed this 
-recent commit that seemed could be related:
-
-https://github.com/EttusResearch/uhd/commit/5f75f73f25016958ab32710bb0cbd5ce4481041b
-
-If I revert that commit, then the timekeeping on the TwinRX channel 
-works properly again. However, that isn't a fix that I can work with; I 
-also use this hardware in a configuration where the X300 has a TwinRX 
-and LFRX daughterboard installed simultaneously. Without the above 
-commit, then I am unable to stream data from the LFRX; the rx_streamer 
-never returns any data for that channel. I previously reported that 
-problem 
-(http://ettus.80997.x6.nabble.com/USRP-users-X300-with-TwinRX-and-LFRX-under-UHD-v3-14-td12749.html) 
-and never got an answer, but the above commit silently fixed it in 
-v3.14.1.0.
-
-How can I get correct timekeeping with the X300/TwinRX, while 
-maintaining my ability to stream from a TwinRX and LFRX simultaneously?
-
-Jason
-
+> 
+> 
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> 
 
 _______________________________________________
 USRP-users mailing list
