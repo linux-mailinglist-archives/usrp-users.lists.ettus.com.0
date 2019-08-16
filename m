@@ -2,49 +2,33 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D0C590986
-	for <lists+usrp-users@lfdr.de>; Fri, 16 Aug 2019 22:39:34 +0200 (CEST)
-Received: from [::1] (port=42270 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88A3C909C5
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Aug 2019 22:55:37 +0200 (CEST)
+Received: from [::1] (port=47410 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hyj0T-0008QY-Kz; Fri, 16 Aug 2019 16:39:29 -0400
-Received: from mail-pl1-f175.google.com ([209.85.214.175]:33964)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <hernandezkevinbhs@gmail.com>)
- id 1hyj0Q-0008LZ-08
- for usrp-users@lists.ettus.com; Fri, 16 Aug 2019 16:39:26 -0400
-Received: by mail-pl1-f175.google.com with SMTP id d3so1039903plr.1
- for <usrp-users@lists.ettus.com>; Fri, 16 Aug 2019 13:39:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=jN8AehMMpIDebQhHzWol926hd1N1Eld6Cs/PhbO0u6c=;
- b=KV5PLZEMyw0enIpATyZsrHmYbSggRm09E0uxoCrhGlmqTa3H2d6YfXPZn3WR3/fxk2
- XE4LSMX1lM5+V/68S9MwUERC+DE2qZVtBj0gHnHbLoqe2kEWp+Uf5KsKXzc4NePKSEp4
- sMTOT3Bfe3LG1Aa0ME4OayLnfq2KI/ul8rc/ghk7/mDe2urSRmUUX0XEsCgtbCYqyBSw
- Bo00BcmPbK3ZeJCGBlg8mo/FB/9i5bQIL+hwvPbQ5EfFnTnA/dbdLmjeV6Mln5TVBoYI
- z/1fSxDBBKRqKyoIsgm5emuIKwX2iCDSUD+G04WcIZVsUAhiC/ngJai2FlRYNVs7VzN5
- GoYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=jN8AehMMpIDebQhHzWol926hd1N1Eld6Cs/PhbO0u6c=;
- b=LJ4cIhtfacuQDFoO99tVnUI/X57rtKkVbWHGtYrdgvNhgxDsUAHLyxBLHpcmwadqfd
- t6NtKPtF+XlZ5zWkopBl1CNr6ytXUwPBgVv4jXb3DIC8ykfHSPb5kCkamxeMAMwiVCXV
- nxXAm4rvOlOc96S4XoDdZpr/BCZ+cjlB/zIOshUHyhkuqSTuzUxzteGTUqE5Joc6F44y
- i/j1s22RecTY6ddWCaGkUt94nL0oc4hdRPDMrOqlUAaZrGXfKRFYxpyrdkXfc1BBj/oI
- Jg045t0jKNFQZi/srhwRKDgvF4B4nZRdYqZIuN8lPS0Fx/zun6KtFtLl0xFBc5Jn8RM2
- xlDw==
-X-Gm-Message-State: APjAAAWlHhyvOJF7FqzGzXUgF3NL/RywyJFlqf+4Lgj24dUyI8V5EGxT
- elLkVSy4aTdD+Pw7RSp+9jLVpgZWKaj2Z5lpL3SwpdJK
-X-Google-Smtp-Source: APXvYqwT2mtPButI7w23FvacNPAL2Iz1NjPEbXuJk2keUnbKjw5NuQGjZRqg7x8VtMb4SIXuYeUiuS3i1h0bBSEg1b4=
-X-Received: by 2002:a17:902:be03:: with SMTP id
- r3mr11265993pls.156.1565987924736; 
- Fri, 16 Aug 2019 13:38:44 -0700 (PDT)
-MIME-Version: 1.0
-Date: Fri, 16 Aug 2019 13:38:30 -0700
-Message-ID: <CAC=seqwUvqr_psTTg0NyDK0oF7UrLAhBMkSX4ToExAOP4hdawg@mail.gmail.com>
+	id 1hyjG3-0001G2-Eh; Fri, 16 Aug 2019 16:55:35 -0400
+Received: from smtp85.ord1d.emailsrvr.com ([184.106.54.85]:36252)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <jasonr@3db-labs.com>) id 1hyjG0-0001Ba-00
+ for usrp-users@lists.ettus.com; Fri, 16 Aug 2019 16:55:32 -0400
+X-Auth-ID: jasonr@3db-labs.com
+Received: by smtp11.relay.ord1d.emailsrvr.com (Authenticated sender:
+ jasonr-AT-3db-labs.com) with ESMTPSA id 63ABA6024D
+ for <usrp-users@lists.ettus.com>; Fri, 16 Aug 2019 16:54:51 -0400 (EDT)
+X-Sender-Id: jasonr@3db-labs.com
+Received: from [192.168.101.19] (rrcs-74-142-203-226.central.biz.rr.com
+ [74.142.203.226]) (using TLSv1.2 with cipher AES128-SHA)
+ by 0.0.0.0:25 (trex/5.7.12); Fri, 16 Aug 2019 16:54:51 -0400
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] UHD Python API on windows
+Message-ID: <9d637be0-b80a-33cb-492d-0197e3ba6f5a@3db-labs.com>
+Date: Fri, 16 Aug 2019 16:54:50 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+Content-Language: en-US
+Subject: [USRP-users] Incorrect RX time_spec values with X300, TwinRX,
+ and v3.14.1.0
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -56,9 +40,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Kevin Hernandez via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Kevin Hernandez <hernandezkevinbhs@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5643666199664473243=="
+From: Jason Roehm via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jason Roehm <jasonr@3db-labs.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,44 +57,56 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5643666199664473243==
-Content-Type: multipart/alternative; boundary="000000000000fa01ca059041f98f"
+I have a software application that interfaces to an X300 with a TwinRX 
+daughterboard installed. We recently upgraded our UHD version to 
+v3.14.1.0 in our application. Since then, we've observed that the 
+time_spec values on consecutive blocks of data received from the unit 
+(i.e. from two sequential calls to rx_streamer::recv()) are not 
+consistent with one another. The timecodes reported by the unit seem to 
+be moving forward at twice real time.
 
---000000000000fa01ca059041f98f
-Content-Type: text/plain; charset="UTF-8"
+As an example, assume that I have the X300 configured for a sample rate 
+of 100 MSPS, and that I'm getting 1000 samples per call to recv() (these 
+are just round numbers to simplify the discussion). I'm seeing metadata 
+from consecutive recv() calls that look like this:
 
-Hello,
+Block 1:
+- time_spec.get_whole_secs(): 0
+- time_spec.get_frac_secs(): 0
+- 1000 samples @ 100 MHz = 10 usec of data
 
-Looking at the manual, I have downloaded the windows binary install
-packages for the UHD. From here I am not too sure what to do. I tried using
-CMake GUI but I get an error that the files do not contain CMake lists.
-From here I am not too sure what I am doing wrong.
+Block 2:
+- time_spec.get_whole_secs(): 0
+- time_spec.get_frac_secs(): 0.000020 (where I would have expected 
+0.000010 instead)
+- 1000 samples @ 100 MHz = 10 usec of data
 
-Thank you
+... and so on.
 
---000000000000fa01ca059041f98f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+If you watch the stream of timestamps received from the device, it looks 
+like time is passing at twice the appropriate rate. I noticed this 
+recent commit that seemed could be related:
 
-<div dir=3D"ltr">Hello,<div><br></div><div>Looking at the manual, I have do=
-wnloaded the windows binary install packages for the UHD. From here I am no=
-t too sure what to do. I tried using CMake GUI but I get an error that the =
-files do not contain CMake lists. From here I am not too sure what I am doi=
-ng wrong.=C2=A0</div><div><br></div><div>Thank you</div></div>
+https://github.com/EttusResearch/uhd/commit/5f75f73f25016958ab32710bb0cbd5ce4481041b
 
---000000000000fa01ca059041f98f--
+If I revert that commit, then the timekeeping on the TwinRX channel 
+works properly again. However, that isn't a fix that I can work with; I 
+also use this hardware in a configuration where the X300 has a TwinRX 
+and LFRX daughterboard installed simultaneously. Without the above 
+commit, then I am unable to stream data from the LFRX; the rx_streamer 
+never returns any data for that channel. I previously reported that 
+problem 
+(http://ettus.80997.x6.nabble.com/USRP-users-X300-with-TwinRX-and-LFRX-under-UHD-v3-14-td12749.html) 
+and never got an answer, but the above commit silently fixed it in 
+v3.14.1.0.
 
+How can I get correct timekeeping with the X300/TwinRX, while 
+maintaining my ability to stream from a TwinRX and LFRX simultaneously?
 
---===============5643666199664473243==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Jason
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5643666199664473243==--
-
