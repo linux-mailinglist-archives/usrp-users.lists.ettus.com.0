@@ -2,36 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8795A94D0A
-	for <lists+usrp-users@lfdr.de>; Mon, 19 Aug 2019 20:34:09 +0200 (CEST)
-Received: from [::1] (port=35322 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 992769512D
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Aug 2019 00:53:40 +0200 (CEST)
+Received: from [::1] (port=40088 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1hzmTn-00044y-AT; Mon, 19 Aug 2019 14:34:07 -0400
-Received: from smtp125.iad3b.emailsrvr.com ([146.20.161.125]:49840)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jasonr@3db-labs.com>) id 1hzmTj-0003zF-L4
- for usrp-users@lists.ettus.com; Mon, 19 Aug 2019 14:34:03 -0400
-X-Auth-ID: jasonr@3db-labs.com
-Received: by smtp16.relay.iad3b.emailsrvr.com (Authenticated sender:
- jasonr-AT-3db-labs.com) with ESMTPSA id 2562FC0294
- for <usrp-users@lists.ettus.com>; Mon, 19 Aug 2019 14:33:23 -0400 (EDT)
-X-Sender-Id: jasonr@3db-labs.com
-Received: from [192.168.101.19] (rrcs-74-142-203-226.central.biz.rr.com
- [74.142.203.226]) (using TLSv1.2 with cipher AES128-SHA)
- by 0.0.0.0:25 (trex/5.7.12); Mon, 19 Aug 2019 14:33:23 -0400
-To: usrp-users <usrp-users@lists.ettus.com>
+	id 1hzqWv-0005UJ-Bm; Mon, 19 Aug 2019 18:53:37 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:38382)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <neel.pandeya@ettus.com>)
+ id 1hzqWq-0005OI-QK
+ for usrp-users@lists.ettus.com; Mon, 19 Aug 2019 18:53:32 -0400
+Received: by mail-oi1-f171.google.com with SMTP id p124so2626654oig.5
+ for <usrp-users@lists.ettus.com>; Mon, 19 Aug 2019 15:53:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4eoTYNbM+Cyd+QygQ048iJvytTlYMmc0hD7gWaK1pDg=;
+ b=HdapU7Q0xn+awR3HypjraQnpx+pN57EByF6CjPg/WuwsDys4NVIFJsuSNLLXEWZPjD
+ BimpzL4CeLluX4WmY5TGR6woxSmNOCsH3trKjYAJViXDNwVdMTmmPk1ftGSOalvCns3K
+ RExT/q18rVWzi5/G4QgbA6Z14XWQU9jjmvXZIlO+Ft3NRa+NLXj3kjeCK/yVIHiftfIb
+ JXYp/cDcQc/kQyHLZU+6DTRONP466u6cHvANOcaiLq/TJ3Pc9cHANrVRM4rBNzUrpA+I
+ UNSHA2g+GLzkWzm8v6C1o+cBh240vG1mV9Nim4ESYA4MLtKfQMg1V7m5TfHfT8x1PZqF
+ yn1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4eoTYNbM+Cyd+QygQ048iJvytTlYMmc0hD7gWaK1pDg=;
+ b=DYzSj9ag5P9jVVD2zjcH1pFVIpPJ+1Q6qD8ZchXXTcJ6WNOsC1jmqYb780NCg+mlU1
+ WW5YzAIgg54m9809TBhuKs7k/uhAUHD6azh0W2psgfPc3/d1D/nLLS3RrTbLPiz+RNBQ
+ ItnrmEn85FBxtp0azu7BemnDv2Fc+pcBlcTF0tGvB9LbquL+u9Sw9nccBgdl/pNnUrNS
+ lu971soGtQZVQp2VS4Smd3c85SOcRFMlTKncoIHnH1n2hwoGScZgedtPd6gYyfXa2W5U
+ EyKKNMuMB7OzAVXzoEkwzAwL0ztwh9oa64qeX7i2Bzpoi9fNkcFNmibriMiG4lP5d17e
+ 5itQ==
+X-Gm-Message-State: APjAAAWM1Ee/fQ3wMvCH3JIFlEYAfdcNIhsx0/6RzcqF3nPm+Ck5upxp
+ ET0TBFloQ5+IVpBMywH3NBsoCeZJfZtfS/bqIk+u5kxw
+X-Google-Smtp-Source: APXvYqyB5XfNrFodCrtKlTP9jW6MF3vW2FLzZUsHxh0/5s3xt7BJAf+P/keNjAu2cmNnONWZ9beUJmxBh64YFRh134w=
+X-Received: by 2002:aca:4797:: with SMTP id u145mr10263097oia.19.1566255171775; 
+ Mon, 19 Aug 2019 15:52:51 -0700 (PDT)
+MIME-Version: 1.0
 References: <9d637be0-b80a-33cb-492d-0197e3ba6f5a@3db-labs.com>
  <5D576746.1010008@gmail.com>
  <e74ba0af-5c65-9b46-d3d7-360ab9d9dda5@3db-labs.com>
  <CACaXmv-XwDKP8ok_325K_hahwWUAuesQJddD8-CkoNrJY7GqfQ@mail.gmail.com>
-Message-ID: <8a61a15c-6018-c30b-2cd3-15220e2ea1e6@3db-labs.com>
-Date: Mon, 19 Aug 2019 14:33:22 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <CACaXmv-XwDKP8ok_325K_hahwWUAuesQJddD8-CkoNrJY7GqfQ@mail.gmail.com>
-Content-Language: en-US
+ <8a61a15c-6018-c30b-2cd3-15220e2ea1e6@3db-labs.com>
+In-Reply-To: <8a61a15c-6018-c30b-2cd3-15220e2ea1e6@3db-labs.com>
+Date: Mon, 19 Aug 2019 17:52:35 -0500
+Message-ID: <CACaXmv87s56ttKCk4io8Z5nJq3DjyhzL6Qv1PgTMUvahmSad7A@mail.gmail.com>
+To: Jason Roehm <jasonr@3db-labs.com>
 Subject: Re: [USRP-users] Incorrect RX time_spec values with X300, TwinRX,
  and v3.14.1.0
 X-BeenThere: usrp-users@lists.ettus.com
@@ -45,9 +64,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Roehm via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Roehm <jasonr@3db-labs.com>
-Content-Type: multipart/mixed; boundary="===============5109042439238550414=="
+From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2959430355853421548=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -61,97 +81,129 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============5109042439238550414==
-Content-Type: multipart/alternative;
- boundary="------------ABFF23F7311D7A06A55F65AE"
-Content-Language: en-US
+--===============2959430355853421548==
+Content-Type: multipart/alternative; boundary="0000000000002444840590803351"
 
-This is a multi-part message in MIME format.
---------------ABFF23F7311D7A06A55F65AE
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000002444840590803351
+Content-Type: text/plain; charset="UTF-8"
+
+Hello Jason:
+
+Thanks for all the detailed feedback!  No worries about not having a
+stand-alone reproducing program at the moment.  Could you please try using
+the head of the "UHD-3.14" branch?  We just tagged v3.14.1.1-rc1 with some
+bug fixes, which we think should address the issue.  Please let me know
+your results running with that, and we'll go from there.
+
+--Neel Pandeya
 
 
-On 8/19/19 12:34 PM, Neel Pandeya wrote:
+
+On Mon, 19 Aug 2019 at 13:34, Jason Roehm via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+>
+> On 8/19/19 12:34 PM, Neel Pandeya wrote:
+>
 > Hello Jason:
 >
 > I also would have expected UHD 3.14.1.0 to have resolved this issue.
 >
-> Would you be able to send me a stand-alone program that I can use to 
+> Would you be able to send me a stand-alone program that I can use to
 > reproduce this problem?
 >
 > Also, I'm curious, do you have a GPSDO installed in your X300?
 >
 > --Neel Pandeya
 >
-Neel,
+> Neel,
+>
+> Also, if it helps, I had traced the problem down a bit further when I was
+> originally debugging it last week. I found that the code in
+> super_recv_packet_handler.hpp, which translates the packets from the device
+> into samples and metadata that are passed to the UHD client, thought that
+> the tick rate was 100 MHz (recv_packet_handler::_tick_rate was equal to
+> 100e6). However, the X300 with a TwinRX installed must always use a master
+> clock rate of 200 MHz per the documentation. So the effect was that the
+> timestamps received in the packets from the X300 were ticking up at a rate
+> of 200 MHz, but the code in recv_packet_handler believed that the tick rate
+> was 100 MHz instead; hence the 2x real-time rate. I was not able to find
+> out how that tick rate was actually getting to the recv_packet_handler,
+> however.
+>
+> Jason
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-Also, if it helps, I had traced the problem down a bit further when I 
-was originally debugging it last week. I found that the code in 
-super_recv_packet_handler.hpp, which translates the packets from the 
-device into samples and metadata that are passed to the UHD client, 
-thought that the tick rate was 100 MHz (recv_packet_handler::_tick_rate 
-was equal to 100e6). However, the X300 with a TwinRX installed must 
-always use a master clock rate of 200 MHz per the documentation. So the 
-effect was that the timestamps received in the packets from the X300 
-were ticking up at a rate of 200 MHz, but the code in 
-recv_packet_handler believed that the tick rate was 100 MHz instead; 
-hence the 2x real-time rate. I was not able to find out how that tick 
-rate was actually getting to the recv_packet_handler, however.
+--0000000000002444840590803351
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Jason
-
-
---------------ABFF23F7311D7A06A55F65AE
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
+sans-serif">Hello Jason:</div><div class=3D"gmail_default" style=3D"font-fa=
+mily:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"fo=
+nt-family:verdana,sans-serif">Thanks for all the detailed feedback!=C2=A0 N=
+o worries about not having a stand-alone reproducing program at the moment.=
+=C2=A0 Could you please try using the head of the &quot;UHD-3.14&quot; bran=
+ch?=C2=A0 We just tagged v3.14.1.1-rc1 with some bug fixes, which we think =
+should address the issue.=C2=A0 Please let me know your results running wit=
+h that, and we&#39;ll go from there.</div><div class=3D"gmail_default" styl=
+e=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_default"=
+ style=3D"font-family:verdana,sans-serif">--Neel Pandeya</div><div class=3D=
+"gmail_default" style=3D"font-family:verdana,sans-serif"><br></div><div cla=
+ss=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br></div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Mon, 19 Aug 2019 at 13:34, Jason Roehm via USRP-users &lt;<a href=3D"mailto=
+:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
     <p><br>
     </p>
-    <div class="moz-cite-prefix">On 8/19/19 12:34 PM, Neel Pandeya
+    <div class=3D"gmail-m_-7750672368616954686moz-cite-prefix">On 8/19/19 1=
+2:34 PM, Neel Pandeya
       wrote:<br>
     </div>
-    <blockquote type="cite"
-cite="mid:CACaXmv-XwDKP8ok_325K_hahwWUAuesQJddD8-CkoNrJY7GqfQ@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div dir="ltr">
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif">Hello Jason:</div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif"><br>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div dir=3D"ltr">
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif">Hello Jason:</div>
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif"><br>
           </div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif">I also would have
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif">I also would have
             expected UHD 3.14.1.0 to have resolved this issue.</div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif"><br>
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif"><br>
           </div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif">Would you be able to
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif">Would you be able to
             send me a stand-alone program that I can use to reproduce
             this problem?<br>
           </div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif"><br>
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif"><br>
           </div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif">Also, I'm curious, do
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif">Also, I&#39;m curious, do
             you have a GPSDO installed in your X300?<br>
           </div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif"><br>
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif"><br>
           </div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif">--Neel Pandeya</div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif"><br>
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif">--Neel Pandeya</div>
+          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
+rif"><br>
           </div>
         </div>
       </div>
@@ -172,13 +224,21 @@ cite="mid:CACaXmv-XwDKP8ok_325K_hahwWUAuesQJddD8-CkoNrJY7GqfQ@mail.gmail.com">
       getting to the recv_packet_handler, however.</p>
     <p>Jason<br>
     </p>
-  </body>
-</html>
+  </div>
 
---------------ABFF23F7311D7A06A55F65AE--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000002444840590803351--
 
 
---===============5109042439238550414==
+--===============2959430355853421548==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -189,5 +249,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5109042439238550414==--
+--===============2959430355853421548==--
 
