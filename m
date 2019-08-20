@@ -2,24 +2,24 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61AA696BD2
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Aug 2019 23:55:54 +0200 (CEST)
-Received: from [::1] (port=37300 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A697A96BD5
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Aug 2019 23:57:19 +0200 (CEST)
+Received: from [::1] (port=38988 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i0C6a-0000Qt-1o; Tue, 20 Aug 2019 17:55:52 -0400
-Received: from mail-eopbgr730111.outbound.protection.outlook.com
- ([40.107.73.111]:6739 helo=NAM05-DM3-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <fzj28@psu.edu>) id 1i0C6W-0000LK-A2
- for usrp-users@lists.ettus.com; Tue, 20 Aug 2019 17:55:48 -0400
+	id 1i0C7x-0000mV-Uu; Tue, 20 Aug 2019 17:57:17 -0400
+Received: from mail-eopbgr740098.outbound.protection.outlook.com
+ ([40.107.74.98]:12946 helo=NAM01-BN3-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+ (Exim 4.92) (envelope-from <fzj28@psu.edu>) id 1i0C7t-0000eu-LO
+ for usrp-users@lists.ettus.com; Tue, 20 Aug 2019 17:57:13 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XYbQwmD5Q2nbR80fjw80AbYHCE6dDDFfI38VXMdPyc4PSLWWxUl6stYk9gCx8wXQex+UEu0cP7PDXVhLMG9mJaataSjDhhK+rj0Mp4dty8DA4s0Vo0ZaYS+UQR0Wxgs8fvk2ogLESoviXxOP5ELlcSS3yrnhPUHaTTmac2dL8+kb9fa0T/RWIBA4LA2zkpG8D5cOttRi3VTjrtWDhP2N7PcoLTWl3HsGKgTzo9h/5R8vkjxg4zqlrNZ1/5ZG83aTdq3RSRPiTcm7lXnbpKFRGbfme7NcR82GmMUE7MzDuRnuypKZgVY8Av9c3VnmgF1tocobNHsAWYmpDSYmdQPc0Q==
+ b=HLOmd/8xq6Yd84FLUvKpgrKvHzP1P3bdrZy4CmoFy0Lsv0ldaQgixXhUdQOKvZV9sRuhnXLnj1XtWsRfm0VzGw1gkLerWth6vS+DaVH0t41ejdHVI0GgGQ5fbyc0oXbVsaN3SUxo4DkbfWue+gggTrllqp6KZnnVEgBHqpzaNxVWSwINbuCHlNVTlsvUw6u3/P1Iv2wQ6036yqHzfDD0Wrq/DMhvvhQmsbCATEv35h9LnhWG31DuY9TZi7K36RZlJbaq5QTvDJICYYFssIsVcK5K4oVq2F010x6kiZNbGGADJ0QPajQnTrFPBs8rgcy5Qu6ufC5wEjC+tniMA+70yg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qELCMPDzsMq5OMMpN+/lEoaaYe7NX+lHFS4C7HiVTsc=;
- b=GGxOSJjeeAaGPwCW7pEb/2/OIQGVTl/LFqswMjHp0BecX97RAygvEEz6+7/QQ0lnVtLHaliHKE3YCHZDvGOGoSpVqK+M7XpYrFJcfWTgTZJNa9ZljYU7DtbaOWE9x/Sam+PiB3YutEEeGjvH1loo1ikR5aOBiy5LSnqoef928h39QkNpQ2UW+Np9yqIGuk5tgXafME/1GZFw0RKCtKlPB8kHAkt/3dcGih0YDqER1VC7yHtGNyCBsB1NHx/vHADM6zIGSUoIkx87TzwyGXWYy3Y2WVkGUEl4YvrJ6CXN9bI9LBcFNcdH+DDrBQJWvIzMFl32wsLtjYV4V9KZRVxOTw==
+ bh=3vzOiF2Tc75gN76XpyM+klMGT79+V0sm2c5V0fwgL+4=;
+ b=C+vCz2Gp0H+Mpw+AbM3aBTktLYZnCI2ebdr6i2toXUgKsVCwKOpYR+vO7QWpa03NdFifGMSu0m8YhGCDNGroPcJ85QCFVTrIO49RpX5+MfC5lg3o5CeZII6sj7D/kMkdPZB4KiFbNZEvUbv9dEqcbIpmzf8t8FhSu8btB+6NWt4HT2k1MLOH7eT/za6frGrZM6dqa7X0tHH6ISpIvWiyRGB7GBYCRnvF6vFj+Gn7W4QJ/zf9svAjU61YonHd1r8Kx/AAL5FuZyxgk4i63oo+ORLgcqa+9KTyDjLyMKHpT5L0gCRO/qcfqaJRQqFpXJ+PW2u61+e+SUwcw59wcC6xUw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=psu.edu; dmarc=pass action=none header.from=psu.edu; dkim=pass
  header.d=psu.edu; arc=none
@@ -27,27 +27,25 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=PennStateOffice365.onmicrosoft.com;
  s=selector2-PennStateOffice365-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qELCMPDzsMq5OMMpN+/lEoaaYe7NX+lHFS4C7HiVTsc=;
- b=fGgNQEylUGGFB73LnJvJ00ombmAoXmnRTVvXPg5CnQIXtACVZCS+/0A25udF52lvqWd4H2bvQR2+6y979FlsFJPxizOVZfFeikmZe3MN/uWP5Qd8sg708Ii7kpICwBeKwbbrUNcbMfC/lGZF3hOGzwgFZfokoiZadbRv+Qc0iag=
+ bh=3vzOiF2Tc75gN76XpyM+klMGT79+V0sm2c5V0fwgL+4=;
+ b=ZSLvgpkxgyABqU+c6tFrF74NnGxEzky/iY8ltYBudmhjesyAwV6cwTO84xn7SVdzB2P284mGwiKVzImyhp+aKgshH6buUV7gvr9LZWpUindTAYkhip2VJqtcM6bL90O8caHt7qAA4uLrLEhTl/U+8J2zgOEWfNbS7Ty1fgLSvk8=
 Received: from BL0PR02MB3716.namprd02.prod.outlook.com (52.132.28.144) by
  BL0PR02MB6515.namprd02.prod.outlook.com (10.255.69.82) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2178.16; Tue, 20 Aug 2019 21:55:06 +0000
+ 15.20.2178.16; Tue, 20 Aug 2019 21:56:32 +0000
 Received: from BL0PR02MB3716.namprd02.prod.outlook.com
  ([fe80::554d:6bd6:af97:38c9]) by BL0PR02MB3716.namprd02.prod.outlook.com
  ([fe80::554d:6bd6:af97:38c9%5]) with mapi id 15.20.2178.018; Tue, 20 Aug 2019
- 21:55:06 +0000
-To: Sam Reiter <sam.reiter@ettus.com>, usrp-users <usrp-users@lists.ettus.com>
+ 21:56:32 +0000
+To: Nate Temple <nate.temple@ettus.com>
 Thread-Topic: =?gb2312?B?u9i4tDogW1VTUlAtdXNlcnNdIEEgUXVlc3Rpb24gYWJvdXQgU3luY2hyb25p?=
  =?gb2312?Q?zation?=
-Thread-Index: AQHVV44LCwgGm8pm8kSBfS7PPTudmacEUDZA
-Date: Tue, 20 Aug 2019 21:55:06 +0000
-Message-ID: <BL0PR02MB37162390799684C80029546FAAAB0@BL0PR02MB3716.namprd02.prod.outlook.com>
-References: <BL0PR02MB3716F0B244D891333FE1A648AAAB0@BL0PR02MB3716.namprd02.prod.outlook.com>
- <CANf970Y4BUfLQLoXTN7qXEjoCuT4=07D1Vad7_dbYkbHj_hQvw@mail.gmail.com>
- <BL0PR02MB371652F9FB5636C7B758C7C4AAAB0@BL0PR02MB3716.namprd02.prod.outlook.com>,
- <CANf970Z3YTuvgmmPk92rezcaUK+05zZs_D-4N=BJ6q87waTnzw@mail.gmail.com>
-In-Reply-To: <CANf970Z3YTuvgmmPk92rezcaUK+05zZs_D-4N=BJ6q87waTnzw@mail.gmail.com>
+Thread-Index: AQHVV4FrMDBV58qmyEGjW5o5SIwvAqcEbbcA///kHA0=
+Date: Tue, 20 Aug 2019 21:56:32 +0000
+Message-ID: <BL0PR02MB3716AFC51BBD11F5BA590BC3AAAB0@BL0PR02MB3716.namprd02.prod.outlook.com>
+References: <BL0PR02MB3716F0B244D891333FE1A648AAAB0@BL0PR02MB3716.namprd02.prod.outlook.com>,
+ <CAL263izhscyCerGAWEK9Rrx=YXByb2-ZZDQT-WLmBJR3EQAkaQ@mail.gmail.com>
+In-Reply-To: <CAL263izhscyCerGAWEK9Rrx=YXByb2-ZZDQT-WLmBJR3EQAkaQ@mail.gmail.com>
 Accept-Language: zh-CN, en-US
 Content-Language: zh-CN
 X-MS-Has-Attach: 
@@ -55,33 +53,33 @@ X-MS-TNEF-Correlator:
 authentication-results: spf=none (sender IP is ) smtp.mailfrom=fzj28@psu.edu; 
 x-originating-ip: [130.203.38.20]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 54884b9a-f9ce-48d4-9173-08d725b91048
+x-ms-office365-filtering-correlation-id: a4239028-ff1c-49ce-f1f2-08d725b94361
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
  SRVR:BL0PR02MB6515; 
 x-ms-traffictypediagnostic: BL0PR02MB6515:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BL0PR02MB6515424D7864271E81B6C46EAAAB0@BL0PR02MB6515.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-purlcount: 6
+x-microsoft-antispam-prvs: <BL0PR02MB6515537D0F2F57C3844A647AAAAB0@BL0PR02MB6515.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-forefront-prvs: 013568035E
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(4636009)(136003)(366004)(39860400002)(376002)(396003)(346002)(53754006)(40764003)(199004)(189003)(6436002)(75432002)(606006)(102836004)(19627405001)(8936002)(966005)(53546011)(2906002)(55016002)(6506007)(6116002)(3846002)(54896002)(6306002)(9686003)(786003)(5660300002)(236005)(476003)(81156014)(81166006)(486006)(52536014)(53936002)(88552002)(316002)(33656002)(5070765005)(110136005)(478600001)(99286004)(186003)(25786009)(76116006)(7736002)(66066001)(105004)(66946007)(224303003)(74316002)(66476007)(66556008)(64756008)(66446008)(7696005)(76176011)(26005)(11346002)(86362001)(14454004)(256004)(14444005)(446003)(71190400001)(71200400001);
+ SFS:(10019020)(4636009)(136003)(366004)(39860400002)(376002)(396003)(346002)(53754006)(199004)(189003)(6436002)(75432002)(606006)(102836004)(19627405001)(6916009)(8936002)(966005)(53546011)(2906002)(55016002)(6506007)(6116002)(3846002)(54896002)(6306002)(9686003)(786003)(5660300002)(236005)(476003)(81156014)(81166006)(486006)(52536014)(53936002)(88552002)(316002)(33656002)(478600001)(4326008)(99286004)(186003)(25786009)(76116006)(7736002)(66066001)(105004)(66946007)(224303003)(74316002)(66476007)(66556008)(64756008)(66446008)(7696005)(76176011)(26005)(11346002)(86362001)(14454004)(5024004)(256004)(14444005)(446003)(71190400001)(71200400001);
  DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR02MB6515;
  H:BL0PR02MB3716.namprd02.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: psu.edu does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: WXTH+m1kiSgGQnwXGk468KXFq7ObHaARLPYG/XUBLYfkVkMRwEib0AKiuOpfmI1EZDbBhyb7QH0Rb+/B/IUhzBh3g49G1+hLULwpP5OWLrZRLxv7q6plqZ8x6ZP2L6TtBdMRjOkG3Kgc12tnLWL3Ai6QKaXQMQMD7gkrmL68fb1PuLq3J0LhbneiPSh4WTH9cfXg6ykCTu5VhjcCvTXpw/lUBgtuhZOECaVLJtow7INe6skjZOsFjWHVS/v5/ATWWGu9j0iCmUQf17SkndqHyIxqzcJtxLjKUJNKU9i6OFbCTVhIwvRt+FFc5ee7X9LVj0l4jG7jTC3Ajy08gKXSjQjT0SYK3j8yl2xufCpQCmVlCQWkhZXwGM8/wEH28NRmej407TafMAfH2ItLpwzfkcCBNSlvKDQkIIBjXPBux5w=
+x-microsoft-antispam-message-info: lznHwd2tx4/JVkBGKeuzJEl5R9niXIAsgKFWur2/dGDtb7ys13Xa+zr0it9AzpPWb6cF/wk1H37S1U/aFLQOSdmlyjemllCHHEUOZvIqhin0zyOtOABeNwGZdTTTY1bNm9WiaXsor6BqDwreyrOnH/gmrscH794t/utn6N1UCpmGvf9gGYjFt4t7IOKeC7LWNZv2w4hT3eUoS/ryhdX2+1T56l/1+lare9q9c+uWV1jXv0960fwx5BM7wmkeItaqCdm+Thau6TkC/8l+DgN/oKMOUfm9O8keZlZm8qccLVnCzuVkhYYKIQBERP06stYv7v+5FqJ04r76LBnV3wylDpefcU00Vs63zevGkx1J+hgkZ3MmCyXyB8IN4oS23AJr7IqYEUt2VxuyD1vDKdrw7xgGMSCjJhe0Pg6YOPOagjQ=
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: psu.edu
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54884b9a-f9ce-48d4-9173-08d725b91048
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Aug 2019 21:55:06.6194 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4239028-ff1c-49ce-f1f2-08d725b94361
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Aug 2019 21:56:32.3755 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 7cf48d45-3ddb-4389-a9c1-c115526eb52e
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HZKgukoqo8Z2nqopfxHMwgq7m4dc3cK40jbUjExGEAiJXxLtLVS26op9qwShl0wQ
+X-MS-Exchange-CrossTenant-userprincipalname: CXDxJLPrNVwxsQN2/JxN7DiAT+SjhJmFK6JbGjX+xa0iNFwIjYEkwejpnyq58iLw
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB6515
 Subject: [USRP-users] =?gb2312?b?u9i4tDogIEEgUXVlc3Rpb24gYWJvdXQgU3luY2hy?=
  =?gb2312?b?b25pemF0aW9u?=
@@ -98,7 +96,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Jiang, Fengyang via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Jiang, Fengyang" <fzj28@psu.edu>
-Content-Type: multipart/mixed; boundary="===============9147980846323182059=="
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0722098768334527404=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -112,81 +111,92 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9147980846323182059==
+--===============0722098768334527404==
 Content-Language: zh-CN
 Content-Type: multipart/alternative;
-	boundary="_000_BL0PR02MB37162390799684C80029546FAAAB0BL0PR02MB3716namp_"
+	boundary="_000_BL0PR02MB3716AFC51BBD11F5BA590BC3AAAB0BL0PR02MB3716namp_"
 
---_000_BL0PR02MB37162390799684C80029546FAAAB0BL0PR02MB3716namp_
+--_000_BL0PR02MB3716AFC51BBD11F5BA590BC3AAAB0BL0PR02MB3716namp_
 Content-Type: text/plain; charset="gb2312"
 Content-Transfer-Encoding: base64
 
-SGkgU2FtLA0KDQpNeSBnb2FsIGlzIHRvIGVsaW1pbmF0ZSB0aGUgZnJlcXVlbmN5IG9mZnNldCBh
-bmQgc2FtcGxpbmcgb2Zmc2V0LCBhbmQgdG8gaGF2ZSBhIGNvbnNpc3RlbnQgc3RhcnQgdGltZS4g
-SXMgdGhlcmUgYW55dGhpbmcgZWxzZSB0aGF0IEkgc2hvdWxkIGRvIHRvIGFjaGlldmUgdGhlc2U/
-IFRoYW5rcyEhDQoNCkJlc3QgcmVnYXJkcywNCkZlbmd5YW5nDQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXw0Kt6K8/sjLOiBTYW0gUmVpdGVyIDxzYW0ucmVpdGVyQGV0dHVzLmNvbT4N
-Creiy83KsbzkOiAyMDE5xOo41MIyMMjVIDE1OjMyDQrK1bz+yMs6IEppYW5nLCBGZW5neWFuZyA8
-ZnpqMjhAcHN1LmVkdT47IHVzcnAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0K
-1vfM4jogUmU6IFtVU1JQLXVzZXJzXSBBIFF1ZXN0aW9uIGFib3V0IFN5bmNocm9uaXphdGlvbg0K
-DQpMZXQncyBrZWVwIHRoZSB1c3JwLXVzZXJzIGxpc3QgaW5jbHVkZWQgb24gdGhlc2UgY29tbXVu
-aWNhdGlvbnMgLS0gdGhlcmUgYXJlIHBsZW50eSBvZiBmb2xrcyBmYXIgbW9yZSBleHBlcmllbmNl
-ZCB0aGFuIG15c2VsZiB3aG8gbWF5IGhhdmUgdmFsdWFibGUgaW5wdXQuDQoNCldoeSBkb24ndCB3
-ZSBsb29rIGF0IHRoaXMgZnJvbSB0aGUgc3RhbmRwb2ludCBvZiB5b3VyIHJlcXVpcmVtZW50cy4g
-V2hhdCBpcyB5b3VyIGVuZCBnb2FsIHdpdGggc3luY2hyb25pemluZyB5b3VyIHR3byBkZXZpY2Vz
-PyBEbyB5b3UgbmVlZCB0aW1lIGFsaWdubWVudCBvZiBzYW1wbGVzLCBwaGFzZSBjb2hlcmVuY2Ug
-YmV0d2VlbiBjaGFubmVscywgYSBjb25zaXN0ZW50IHN0YXJ0IHRpbWUgYmV0d2VlbiB5b3VyIHR3
-byBiZW5jaG1hcmtpbmcgcHJvZ3JhbXMsIG9yIHNvbWV0aGluZyBlbHNlPw0KDQpEaXNjdXNzaW5n
-IHlvdXIgYXBwbGljYXRpb24gYW5kIGVuZCBnb2FsIHdvdWxkIGJlIGhlbHBmdWwgaGVyZSBhcyB3
-ZWxsLg0KDQotU2FtDQoNCk9uIFR1ZSwgQXVnIDIwLCAyMDE5IGF0IDI6MTggUE0gSmlhbmcsIEZl
-bmd5YW5nIDxmemoyOEBwc3UuZWR1PG1haWx0bzpmemoyOEBwc3UuZWR1Pj4gd3JvdGU6DQpIaSBT
-YW0sDQoNClRoYW5rIHlvdSBmb3IgeW91ciBoZWxwISBJbmRlZWQgSSdtIHVzaW5nIGJlbmNobWFy
-ayBzY3JpcHRzIGFuZCBJIHRoaW5rIGFkZGluZyBhcmd1bWVudHMgd2lsbCBoZWxwLiBJJ20gdXNp
-bmcgdHdvIHNlcGVyYXRlZCBjb21tYW5kcyBmb3IgdHJhbnNtaXR0aW5nIGFuZCByZWNlaXZpbmcs
-IHNvIGlmIEkgdXNlOg0KDQpweXRob24zIGJlbmNobWFya190eF9jb3BpZWRfZnJvbV9pbnMucHkg
-LWYgMi40NUcgLS1hcmdzPSJhZGRyPTE5Mi4xNjguMTAuMywgY2xvY2tfc291cmNlPWV4dGVybmFs
-LCB0aW1lX3NvdXJjZT1leHRlcm5hbCIgLS10eC1nYWluPTQwIC0tYmFuZHdpZHRoPTFNDQpweXRo
-b24zIGJlbmNobWFya19yeF9jb3BpZWRfZnJvbV9pbnMucHkgLWYgMi40NUcgLS1hcmdzPSJhZGRy
-PTE5Mi4xNjguMTAuMiwgY2xvY2tfc291cmNlPWV4dGVybmFsLCB0aW1lX3NvdXJjZT1leHRlcm5h
-bCIgLS1yeC1nYWluPTQwIC0tYmFuZHdpZHRoPTFNDQoNCndpbGwgdGhhdCBzYXRpc2Z5IG15IHJl
-cXVpcmVtZW50cz8gVGhhbmsgeW91IHNvIG11Y2ghDQoNCkJlc3QgcmVnYXJkcywNCkZlbmd5YW5n
-DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0Kt6K8/sjLOiBTYW0gUmVpdGVyIDxz
-YW0ucmVpdGVyQGV0dHVzLmNvbTxtYWlsdG86c2FtLnJlaXRlckBldHR1cy5jb20+Pg0Kt6LLzcqx
-vOQ6IDIwMTnE6jjUwjIwyNUgMTQ6NDMNCsrVvP7IyzogSmlhbmcsIEZlbmd5YW5nIDxmemoyOEBw
-c3UuZWR1PG1haWx0bzpmemoyOEBwc3UuZWR1Pj4NCtb3zOI6IFJlOiBbVVNSUC11c2Vyc10gQSBR
-dWVzdGlvbiBhYm91dCBTeW5jaHJvbml6YXRpb24NCg0KSG93IHlvdSBpbXBsZW1lbnQgdGhpcyB3
-aWxsIGRlcGVuZCBvbiB3aGF0IG1ha2VzIHRoZSBtb3N0IHNlbnNlIGZvciB5b3VyIGFwcGxpY2F0
-aW9uLiBJZiB5b3UncmUganVzdCBnZXR0aW5nIHN0YXJ0ZWQgcnVubmluZyBzaGlwcGluZyBleGFt
-cGxlcywgeW91IGNhbiBhZGQgZGV2aWNlIGFyZ3VtZW50cyBmb3IgY2xvY2tfc291cmNlIGFuZCB0
-aW1lX3NvdXJjZSB0byBzcGVjaWZ5IGV4dGVybmFsIHRpbWUgc291cmNlcy4gRm9yIGV4YW1wbGU6
-DQoNCi4vYmVuY2htYXJrX3JhdGUgLS1yeF9yYXRlPTFlNiAtLXR4X3JhdGU9MWU2IC0tYXJncyBh
-ZGRyMD0xOTIuMTY4LjEwLjIsYWRkcjE9MTkyLjE2OC4xMC4zLGNsb2NrX3NvdXJjZTA9ZXh0ZXJu
-YWwsdGltZV9zb3VyY2UwPWV4dGVybmFsLGNsb2NrX3NvdXJjZTE9ZXh0ZXJuYWwsdGltZV9zb3Vy
-Y2UxPWV4dGVybmFsDQoNCkFzIHlvdSBtb3ZlIG9uIGZyb20gc2hpcHBpbmcgZXhhbXBsZXMsIHlv
-dSB3b3VsZCB3YW50IHRvIGluY2x1ZGUNCg0KdXNycC0+c2V0X2Nsb2NrX3NvdXJjZSgiZXh0ZXJu
-YWwiKTsNCnVzcnAtPnNldF90aW1lX3NvdXJjZSgiZXh0ZXJuYWwiKTsNCg0KYXQgdGhlIGFwcHJv
-cHJpYXRlIHBsYWNlIGluIHlvdXIgY29kZSB0byBjb25maWd1cmUgdGltaW5nLg0KDQotU2FtDQoN
-Ck9uIFR1ZSwgQXVnIDIwLCAyMDE5IGF0IDE6MDkgUE0gSmlhbmcsIEZlbmd5YW5nIHZpYSBVU1JQ
-LXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20+PiB3cm90ZToNCkhpIGFsbCwNCg0KSSdtIHRyeWluZyB0byBzeW5jaHJvbml6
-ZSAyIFVTUlAgTjIxMCBkZXZpY2VzIHVzaW5nIHRoZSBPY3RvQ2xvY2stRyBDREEtMjk5MCBhcyBl
-eHRlcm5hbCAxME1IeiByZWZlcmVuY2UgYW5kIFBQUyBzb3VyY2VzLiBJdCBpcyBzYWlkIHRoYXQg
-SSBuZWVkIHRvIHNldCB1cCB0d28gY29uZmlndXJhdGlvbnM6DQoNCnVzcnAtPnNldF9jbG9ja19z
-b3VyY2UoImV4dGVybmFsIik7DQp1c3JwLT5zZXRfdGltZV9zb3VyY2UoImV4dGVybmFsIik7DQoN
-CldoaWNoIGZpbGUgaW4gd2hpY2ggcGF0aCBzaG91bGQgSSBtb2RpZnkgaW4gb3JkZXIgdG8gYXBw
-bHkgdGhlc2UgY29uZmlndXJhdGlvbnM/IFRoYW5rcyBhIGxvdCENCg0KQmVzdCByZWdhcmRzLA0K
-RmVuZ3lhbmcgSmlhbmcNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b208bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KaHR0cDovL2xpc3RzLmV0dHVz
-LmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPGh0dHBzOi8v
-bmFtMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwJTNBJTJGJTJG
-bGlzdHMuZXR0dXMuY29tJTJGbWFpbG1hbiUyRmxpc3RpbmZvJTJGdXNycC11c2Vyc19saXN0cy5l
-dHR1cy5jb20mZGF0YT0wMiU3QzAxJTdDZnpqMjglNDBwc3UuZWR1JTdDMzhkOThkMzgyZDdjNDE5
-MWNjZDYwOGQ3MjVhNTJkMTQlN0M3Y2Y0OGQ0NTNkZGI0Mzg5YTljMWMxMTU1MjZlYjUyZSU3QzAl
-N0MxJTdDNjM3MDE5MjYzNjYyNTMxNDQwJnNkYXRhPW1IWk1hWkhJZ0tCYVlPZ2dIeiUyQlp3dEpZ
-UmFaTHBLbmxtRDAlMkJIaENqVCUyRlElM0QmcmVzZXJ2ZWQ9MD4NCg==
+SGkgTmF0ZSwNCg0KVGhhbmtzIGEgbG90IGZvciB5b3VyIGhlbHAhIEknbGwgbG9vayBhdCB0aGVz
+ZSBhbmQgc2VlIHdoYXQgSSBjYW4gZG8uDQoNCkJlc3QgcmVnYXJkcywNCkZlbmd5YW5nIEppYW5n
+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0Kt6K8/sjLOiBOYXRlIFRlbXBsZSA8
+bmF0ZS50ZW1wbGVAZXR0dXMuY29tPg0Kt6LLzcqxvOQ6IDIwMTnE6jjUwjIwyNUgMTU6MzUNCsrV
+vP7IyzogSmlhbmcsIEZlbmd5YW5nIDxmemoyOEBwc3UuZWR1Pg0Ks63LzTogdXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0K1vfM4jogUmU6IFtV
+U1JQLXVzZXJzXSBBIFF1ZXN0aW9uIGFib3V0IFN5bmNocm9uaXphdGlvbg0KDQpIaSBGZW5neWFu
+ZywNCg0KVGhlc2UgYXJlIGNhbGxzIHRvIHRoZSBVSEQgQVBJIHdpdGhpbiB5b3VyIGFwcGxpY2F0
+aW9uLg0KDQpUaGVyZSBhcmUgc2V2ZXJhbCBleGFtcGxlcyBoZXJlIFswXSBvZiB1c2luZyB0aGUg
+VUhEIEFQSS4gSSB3b3VsZCBlbmNvdXJhZ2UgeW91IHRvIGNoZWNrb3V0IHNwZWNpZmljYWxseSB0
+aGVzZSBleGFtcGxlcyBbMV0sWzJdIGFzIGEgc3RhcnRpbmcgcG9pbnQuIEFkZGl0aW9uYWxseSB0
+aGVyZSBpcyB0aGlzIGFwcCBub3RlIFszXSB3aGljaCBzaG93cyBob3cgdG8gZ2V0IHN0YXJ0ZWQg
+d2l0aCB0aGUgaW5pdF91c3JwIGV4YW1wbGUgdG8gc2V0dXAgYSBjbWFrZSBmaWxlLiBUaGlzIHNl
+Y3Rpb24gWzRdIG9mIHRoZSBVSEQgbWFudWFsIGlzIGFsc28gdXNlZnVsIGZvciB0aGUgQVBJIHJl
+ZmVyZW5jZS4NCg0KQWRkaXRpb25hbGx5IHlvdSdsbCBuZWVkIHRvIG1ha2Ugc3VyZSB0aGUganVt
+cGVyIGF0IEo1MTAgaXMgc2V0IHRvIHRoZSBjb3JyZWN0IHBvc2l0aW9uIGZvciBhbiBleHRlcm5h
+bCByZWZlcmVuY2UuIEkndmUgYXR0YWNoZWQgYSBkaWFncmFtIGZvciBzZXR0aW5nIHVwIGEgR1BT
+RE8gb24gTjIxMCAob25seSBleGFtcGxlIEkgaGF2ZSBhdCB0aGUgbW9tZW50KS4gSW5zdGVhZCBv
+ZiBzZXR0aW5nIHRoZSBqdW1wZXIgdG8gMi8zIGZvciBHUFNETywgeW91IHNob3VsZCBtYWtlIHN1
+cmUgaXQgaXMgb24gcGlucyAxLzIgZm9yIHRoZSBleHRlcm5hbCByZWYgaW4uDQoNClswXSAtIGh0
+dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC90cmVlL21hc3Rlci9ob3N0L2V4YW1w
+bGVzPGh0dHBzOi8vbmFtMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1o
+dHRwcyUzQSUyRiUyRmdpdGh1Yi5jb20lMkZFdHR1c1Jlc2VhcmNoJTJGdWhkJTJGdHJlZSUyRm1h
+c3RlciUyRmhvc3QlMkZleGFtcGxlcyZkYXRhPTAyJTdDMDElN0NmemoyOCU0MHBzdS5lZHUlN0Nj
+NGFkMmQ1YTk4YTA0ZGFlM2QwZTA4ZDcyNWE1NjQ3ZiU3QzdjZjQ4ZDQ1M2RkYjQzODlhOWMxYzEx
+NTUyNmViNTJlJTdDMCU3QzAlN0M2MzcwMTkyNjQ1OTYyNTQ4Mzgmc2RhdGE9S0hmdFBlcHhzR2RP
+VFZlNGMzN09HS3lVT1lYRTBMUnVkJTJCd3VuWUs4RGhNJTNEJnJlc2VydmVkPTA+DQpbMV0gLSBo
+dHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvaG9zdC9leGFt
+cGxlcy9yeF9zYW1wbGVzX3RvX2ZpbGUuY3BwPGh0dHBzOi8vbmFtMDEuc2FmZWxpbmtzLnByb3Rl
+Y3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmdpdGh1Yi5jb20lMkZFdHR1c1Jl
+c2VhcmNoJTJGdWhkJTJGYmxvYiUyRm1hc3RlciUyRmhvc3QlMkZleGFtcGxlcyUyRnJ4X3NhbXBs
+ZXNfdG9fZmlsZS5jcHAmZGF0YT0wMiU3QzAxJTdDZnpqMjglNDBwc3UuZWR1JTdDYzRhZDJkNWE5
+OGEwNGRhZTNkMGUwOGQ3MjVhNTY0N2YlN0M3Y2Y0OGQ0NTNkZGI0Mzg5YTljMWMxMTU1MjZlYjUy
+ZSU3QzAlN0MwJTdDNjM3MDE5MjY0NTk2MjY0ODMyJnNkYXRhPVlveDVucm9NSERBQVFVREoyeTl3
+R0xZJTJCQUx4Y3ZpUlIxRDBMN0I2N0F2cyUzRCZyZXNlcnZlZD0wPg0KWzJdIC0gaHR0cHM6Ly9n
+aXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2IvbWFzdGVyL2hvc3QvZXhhbXBsZXMvcnhf
+bXVsdGlfc2FtcGxlcy5jcHA8aHR0cHM6Ly9uYW0wMS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRs
+b29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGZ2l0aHViLmNvbSUyRkV0dHVzUmVzZWFyY2glMkZ1
+aGQlMkZibG9iJTJGbWFzdGVyJTJGaG9zdCUyRmV4YW1wbGVzJTJGcnhfbXVsdGlfc2FtcGxlcy5j
+cHAmZGF0YT0wMiU3QzAxJTdDZnpqMjglNDBwc3UuZWR1JTdDYzRhZDJkNWE5OGEwNGRhZTNkMGUw
+OGQ3MjVhNTY0N2YlN0M3Y2Y0OGQ0NTNkZGI0Mzg5YTljMWMxMTU1MjZlYjUyZSU3QzAlN0MwJTdD
+NjM3MDE5MjY0NTk2MjY0ODMyJnNkYXRhPURMJTJGSHI3ZmxYZHk4U25RJTJGNmxqUFNSeEducUNF
+S2QwdzhtUkklMkJ6WThWZTQlM0QmcmVzZXJ2ZWQ9MD4NClszXSAtIGh0dHBzOi8va2IuZXR0dXMu
+Y29tL0dldHRpbmdfU3RhcnRlZF93aXRoX1VIRF9hbmRfQyUyQiUyQjxodHRwczovL25hbTAxLnNh
+ZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZrYi5ldHR1
+cy5jb20lMkZHZXR0aW5nX1N0YXJ0ZWRfd2l0aF9VSERfYW5kX0MlMjUyQiUyNTJCJmRhdGE9MDIl
+N0MwMSU3Q2Z6ajI4JTQwcHN1LmVkdSU3Q2M0YWQyZDVhOThhMDRkYWUzZDBlMDhkNzI1YTU2NDdm
+JTdDN2NmNDhkNDUzZGRiNDM4OWE5YzFjMTE1NTI2ZWI1MmUlN0MwJTdDMCU3QzYzNzAxOTI2NDU5
+NjI3NDgzMCZzZGF0YT00NGhHTE92WlFNbmxyZ1ElMkIxYkhGcmtFWmtUTG1OckFtME52UGkyNDZ0
+NkUlM0QmcmVzZXJ2ZWQ9MD4NCls0XSAtIGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9w
+YWdlX3VoZC5odG1sPGh0dHBzOi8vbmFtMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5j
+b20vP3VybD1odHRwcyUzQSUyRiUyRmZpbGVzLmV0dHVzLmNvbSUyRm1hbnVhbCUyRnBhZ2VfdWhk
+Lmh0bWwmZGF0YT0wMiU3QzAxJTdDZnpqMjglNDBwc3UuZWR1JTdDYzRhZDJkNWE5OGEwNGRhZTNk
+MGUwOGQ3MjVhNTY0N2YlN0M3Y2Y0OGQ0NTNkZGI0Mzg5YTljMWMxMTU1MjZlYjUyZSU3QzAlN0Mw
+JTdDNjM3MDE5MjY0NTk2Mjc0ODMwJnNkYXRhPXdXOHFqb2hUeDY3RmJqUGliMkJIc0pTUHRLWTRW
+VDJYdk84VmJxeXdWOVklM0QmcmVzZXJ2ZWQ9MD4NCg0KUmVnYXJkcywNCk5hdGUgVGVtcGxlDQoN
+Ck9uIFR1ZSwgQXVnIDIwLCAyMDE5IGF0IDExOjA5IEFNIEppYW5nLCBGZW5neWFuZyB2aWEgVVNS
+UC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tPj4gd3JvdGU6DQpIaSBhbGwsDQoNCkknbSB0cnlpbmcgdG8gc3luY2hyb25p
+emUgMiBVU1JQIE4yMTAgZGV2aWNlcyB1c2luZyB0aGUgT2N0b0Nsb2NrLUcgQ0RBLTI5OTAgYXMg
+ZXh0ZXJuYWwgMTBNSHogcmVmZXJlbmNlIGFuZCBQUFMgc291cmNlcy4gSXQgaXMgc2FpZCB0aGF0
+IEkgbmVlZCB0byBzZXQgdXAgdHdvIGNvbmZpZ3VyYXRpb25zOg0KDQp1c3JwLT5zZXRfY2xvY2tf
+c291cmNlKCJleHRlcm5hbCIpOw0KdXNycC0+c2V0X3RpbWVfc291cmNlKCJleHRlcm5hbCIpOw0K
+DQpXaGljaCBmaWxlIGluIHdoaWNoIHBhdGggc2hvdWxkIEkgbW9kaWZ5IGluIG9yZGVyIHRvIGFw
+cGx5IHRoZXNlIGNvbmZpZ3VyYXRpb25zPyBUaGFua3MgYSBsb3QhDQoNCkJlc3QgcmVnYXJkcywN
+CkZlbmd5YW5nIEppYW5nDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCmh0dHA6Ly9saXN0cy5ldHR1
+cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbTxodHRwczov
+L25hbTAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9aHR0cCUzQSUyRiUy
+Rmxpc3RzLmV0dHVzLmNvbSUyRm1haWxtYW4lMkZsaXN0aW5mbyUyRnVzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29tJmRhdGE9MDIlN0MwMSU3Q2Z6ajI4JTQwcHN1LmVkdSU3Q2M0YWQyZDVhOThhMDRk
+YWUzZDBlMDhkNzI1YTU2NDdmJTdDN2NmNDhkNDUzZGRiNDM4OWE5YzFjMTE1NTI2ZWI1MmUlN0Mw
+JTdDMCU3QzYzNzAxOTI2NDU5NjI4NDgyOCZzZGF0YT1WJTJCcDBRbW91VVJzSVA2RUhXYWdxcVh6
+ZjhNUmolMkJBeTglMkJ6Sm5DZEF3Tm5NJTNEJnJlc2VydmVkPTA+DQo=
 
---_000_BL0PR02MB37162390799684C80029546FAAAB0BL0PR02MB3716namp_
+--_000_BL0PR02MB3716AFC51BBD11F5BA590BC3AAAB0BL0PR02MB3716namp_
 Content-Type: text/html; charset="gb2312"
 Content-Transfer-Encoding: quoted-printable
 
@@ -199,16 +209,14 @@ ttom:0;} </style>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Hi Sam,</div>
+Hi Nate,</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
 <br>
 </div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-My goal is to eliminate the frequency offset and sampling offset, and to ha=
-ve a consistent start time. Is there anything else that I should do to achi=
-eve these? Thanks!!</div>
+Thanks a lot for your help! I'll look at these and see what I can do.</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
 <br>
@@ -218,167 +226,105 @@ eve these? Thanks!!</div>
 Best regards,</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Fengyang</div>
+Fengyang Jiang</div>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>=B7=A2=BC=FE=C8=CB:</b> Sam Rei=
-ter &lt;sam.reiter@ettus.com&gt;<br>
-<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> 2019=C4=EA8=D4=C220=C8=D5 15:32<br>
-<b>=CA=D5=BC=FE=C8=CB:</b> Jiang, Fengyang &lt;fzj28@psu.edu&gt;; usrp-user=
-s &lt;usrp-users@lists.ettus.com&gt;<br>
+yle=3D"font-size:11pt" color=3D"#000000"><b>=B7=A2=BC=FE=C8=CB:</b> Nate Te=
+mple &lt;nate.temple@ettus.com&gt;<br>
+<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> 2019=C4=EA8=D4=C220=C8=D5 15:35<br>
+<b>=CA=D5=BC=FE=C8=CB:</b> Jiang, Fengyang &lt;fzj28@psu.edu&gt;<br>
+<b>=B3=AD=CB=CD:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.=
+com&gt;<br>
 <b>=D6=F7=CC=E2:</b> Re: [USRP-users] A Question about Synchronization</fon=
 t>
 <div>&nbsp;</div>
 </div>
 <div>
 <div dir=3D"ltr">
-<div dir=3D"ltr">
-<div>Let's keep the usrp-users list included on these communications -- the=
-re are plenty of folks far more experienced than myself who may have valuab=
-le input.
+<div class=3D"x_gmail_default" style=3D"font-family:arial,helvetica,sans-se=
+rif">Hi Fengyang,<br>
 <br>
+These are calls to the UHD API within your application.<br>
+<br>
+There are several examples here [0] of using the UHD API. I would encourage=
+ you to checkout specifically these examples [1],[2] as a starting point. A=
+dditionally there is this app note [3] which shows how to get started with =
+the init_usrp example to setup a
+ cmake file. This section [4] of the UHD manual is also useful for the API =
+reference.<br>
+<br>
+Additionally you'll need to make sure the jumper at J510 is set to the corr=
+ect position for an external reference. I've attached a diagram for setting=
+ up a GPSDO on N210 (only example I have at the moment). Instead of setting=
+ the jumper to 2/3 for GPSDO, you
+ should make sure it is on pins 1/2 for the external ref in.<br>
+<br>
+[0] - <a href=3D"https://nam01.safelinks.protection.outlook.com/?url=3Dhttp=
+s%3A%2F%2Fgithub.com%2FEttusResearch%2Fuhd%2Ftree%2Fmaster%2Fhost%2Fexample=
+s&amp;data=3D02%7C01%7Cfzj28%40psu.edu%7Cc4ad2d5a98a04dae3d0e08d725a5647f%7=
+C7cf48d453ddb4389a9c1c115526eb52e%7C0%7C0%7C637019264596254838&amp;sdata=3D=
+KHftPepxsGdOTVe4c37OGKyUOYXE0LRud%2BwunYK8DhM%3D&amp;reserved=3D0" original=
+src=3D"https://github.com/EttusResearch/uhd/tree/master/host/examples" shas=
+h=3D"ownilc4OOkebgEM/gJ8p4dbXp89OYLcazJv2ai8Oet5ch0avax/t5sjujlHoLvGqoUeEuD=
+sVqJFjpUU/T1b7Ghc3pufgfzJRwQr8qXuv5aqUGWyPXV8IuUEhW0jAIVkuE&#43;jofzw/KHeTS=
+b5wR0iodPqsjxdq65W3zyhhKlwFmmE=3D">
+https://github.com/EttusResearch/uhd/tree/master/host/examples</a><br>
+[1] - <a href=3D"https://nam01.safelinks.protection.outlook.com/?url=3Dhttp=
+s%3A%2F%2Fgithub.com%2FEttusResearch%2Fuhd%2Fblob%2Fmaster%2Fhost%2Fexample=
+s%2Frx_samples_to_file.cpp&amp;data=3D02%7C01%7Cfzj28%40psu.edu%7Cc4ad2d5a9=
+8a04dae3d0e08d725a5647f%7C7cf48d453ddb4389a9c1c115526eb52e%7C0%7C0%7C637019=
+264596264832&amp;sdata=3DYox5nroMHDAAQUDJ2y9wGLY%2BALxcviRR1D0L7B67Avs%3D&a=
+mp;reserved=3D0" originalsrc=3D"https://github.com/EttusResearch/uhd/blob/m=
+aster/host/examples/rx_samples_to_file.cpp" shash=3D"HCUWIm2p3/nMC9&#43;b7K=
+V9RSOyE2YT5xYUblsJbnDb0kDkLH&#43;45X03FFyDnPJLP8QspiYAZbvVZlPHmvUMeg2MLa6lk=
+z&#43;B1cC44KTiU3ungzry7h1F5zB75Yq5iikTG/5HcFVQt0Sr&#43;EexakSaY1g1MXQFUFTG=
+8DD7h1ZHH&#43;2tFL4=3D">
+https://github.com/EttusResearch/uhd/blob/master/host/examples/rx_samples_t=
+o_file.cpp</a><br>
+[2] - <a href=3D"https://nam01.safelinks.protection.outlook.com/?url=3Dhttp=
+s%3A%2F%2Fgithub.com%2FEttusResearch%2Fuhd%2Fblob%2Fmaster%2Fhost%2Fexample=
+s%2Frx_multi_samples.cpp&amp;data=3D02%7C01%7Cfzj28%40psu.edu%7Cc4ad2d5a98a=
+04dae3d0e08d725a5647f%7C7cf48d453ddb4389a9c1c115526eb52e%7C0%7C0%7C63701926=
+4596264832&amp;sdata=3DDL%2FHr7flXdy8SnQ%2F6ljPSRxGnqCEKd0w8mRI%2BzY8Ve4%3D=
+&amp;reserved=3D0" originalsrc=3D"https://github.com/EttusResearch/uhd/blob=
+/master/host/examples/rx_multi_samples.cpp" shash=3D"zOepM0k3KMovoZ5W30WMLx=
+HgYRWknGqvEsm2ijMdTRXUPCRROE7b&#43;s6slBMdM/EWA4SVNFkmcgf3Cvwbipw9cErny2trp=
+Ac/rQYvS7ogl88yDGPaGvr5wOfdFcCO5Xy&#43;WdJ1xZlZOFQAkdU/TjXe97vBSDG06tNIEabH=
+VYBkGCc=3D">
+https://github.com/EttusResearch/uhd/blob/master/host/examples/rx_multi_sam=
+ples.cpp</a><br>
+[3] - <a href=3D"https://nam01.safelinks.protection.outlook.com/?url=3Dhttp=
+s%3A%2F%2Fkb.ettus.com%2FGetting_Started_with_UHD_and_C%252B%252B&amp;data=
+=3D02%7C01%7Cfzj28%40psu.edu%7Cc4ad2d5a98a04dae3d0e08d725a5647f%7C7cf48d453=
+ddb4389a9c1c115526eb52e%7C0%7C0%7C637019264596274830&amp;sdata=3D44hGLOvZQM=
+nlrgQ%2B1bHFrkEZkTLmNrAm0NvPi246t6E%3D&amp;reserved=3D0" originalsrc=3D"htt=
+ps://kb.ettus.com/Getting_Started_with_UHD_and_C%2B%2B" shash=3D"MhsehkgbGQ=
+Pite9smYHwznbzRRsPw0nJ40bRoYQLENQSOI9fFqsbq8&#43;p&#43;RS95nOUJ67IZxZbPQ6sQ=
+ovajtgpXf5YHm3CRDHaS6D6oTTVGmC68s7Omd85h1qWEH0wBAI4VMsW82L1V1n/kNUZAhp2/xyf=
+b/S03HkIVCwuMasqfaM=3D">
+https://kb.ettus.com/Getting_Started_with_UHD_and_C%2B%2B</a><br>
+[4] - <a href=3D"https://nam01.safelinks.protection.outlook.com/?url=3Dhttp=
+s%3A%2F%2Ffiles.ettus.com%2Fmanual%2Fpage_uhd.html&amp;data=3D02%7C01%7Cfzj=
+28%40psu.edu%7Cc4ad2d5a98a04dae3d0e08d725a5647f%7C7cf48d453ddb4389a9c1c1155=
+26eb52e%7C0%7C0%7C637019264596274830&amp;sdata=3DwW8qjohTx67FbjPib2BHsJSPtK=
+Y4VT2XvO8VbqywV9Y%3D&amp;reserved=3D0" originalsrc=3D"https://files.ettus.c=
+om/manual/page_uhd.html" shash=3D"tOtNtYwse9t0FUxN6Zku2C/flNUofYrYQ47pcXKep=
+Rkv0nU29X6XCqs5bkDIowOwdQTYmefbo444mTG6RAd0jvi/6jlZwhmhZuP85ICoxyX6lzqvyHyl=
+yyYyUObdrZ8opFgVEtfRK/qnsi/XIOUL6iOJJFHJBDyw5scHoy1&#43;nmg=3D">
+https://files.ettus.com/manual/page_uhd.html</a><br>
+<br>
+Regards,<br>
+Nate Temple</div>
 </div>
-<div><br>
-</div>
-<div>Why don't we look at this from the standpoint of your requirements. Wh=
-at is your end goal with synchronizing your two devices? Do you need time a=
-lignment of samples, phase coherence between channels, a consistent start t=
-ime between your two benchmarking
- programs, or something else?</div>
-<div><br>
-</div>
-<div>Discussing your application and end goal would be helpful here as well=
-. <br>
-</div>
-<div><br>
-</div>
-<div>
-<div dir=3D"ltr" class=3D"x_gmail_signature">
-<div dir=3D"ltr">
-<div>
-<div dir=3D"ltr">-Sam</div>
-<div dir=3D"ltr"><br>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<br>
 <div class=3D"x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail_attr">On Tue, Aug 20, 2019 at 2:18 PM Jia=
-ng, Fengyang &lt;<a href=3D"mailto:fzj28@psu.edu">fzj28@psu.edu</a>&gt; wro=
-te:<br>
+<div dir=3D"ltr" class=3D"x_gmail_attr">On Tue, Aug 20, 2019 at 11:09 AM Ji=
+ang, Fengyang via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.c=
+om">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
 </div>
 <blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
 er-left:1px solid rgb(204,204,204); padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Hi Sam,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Thank you for your help! Indeed I'm using benchmark scripts and I think add=
-ing arguments will help. I'm using two seperated commands for transmitting =
-and receiving, so if I use:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-python3 benchmark_tx_copied_from_ins.py -f 2.45G --args=3D&quot;addr=3D192.=
-168.10.3, clock_source=3Dexternal, time_source=3Dexternal&quot; --tx-gain=
-=3D40 --bandwidth=3D1M</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; background-c=
-olor:rgb(255,255,255); display:inline">python3 benchmark_rx_copied_from_ins=
-.py -f 2.45G --args=3D&quot;addr=3D192.168.10.2, clock_source=3Dexternal, t=
-ime_source=3Dexternal&quot; --rx-gain=3D40 --bandwidth=3D1M</span><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; background-c=
-olor:rgb(255,255,255); display:inline"><br>
-</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-will that satisfy my requirements? Thank you so much!</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Best regards,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Fengyang</div>
-<div id=3D"x_gmail-m_-3474368557349792279appendonsend"></div>
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"x_gmail-m_-3474368557349792279divRplyFwdMsg" dir=3D"ltr"><font f=
-ace=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>=
-=B7=A2=BC=FE=C8=CB:</b> Sam Reiter &lt;<a href=3D"mailto:sam.reiter@ettus.c=
-om" target=3D"_blank">sam.reiter@ettus.com</a>&gt;<br>
-<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> 2019=C4=EA8=D4=C220=C8=D5 14:43<br>
-<b>=CA=D5=BC=FE=C8=CB:</b> Jiang, Fengyang &lt;<a href=3D"mailto:fzj28@psu.=
-edu" target=3D"_blank">fzj28@psu.edu</a>&gt;<br>
-<b>=D6=F7=CC=E2:</b> Re: [USRP-users] A Question about Synchronization</fon=
-t>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">How you implement this will depend on what makes the most =
-sense for your application. If you're just getting started running shipping=
- examples, you can add device arguments for clock_source and time_source to=
- specify external time sources. For
- example:
-<div><br>
-</div>
-<div><span style=3D"font-family:monospace">./benchmark_rate --rx_rate=3D1e6=
- --tx_rate=3D1e6 --args addr0=3D192.168.10.2,addr1=3D192.168.10.3,clock_sou=
-rce0=3Dexternal,time_source0=3Dexternal,clock_source1=3Dexternal,time_sourc=
-e1=3Dexternal</span></div>
-<div><br>
-</div>
-<div>As you move on from shipping examples, you would want to include</div>
-<div><br>
-</div>
-<div>
-<div style=3D"font-size:13px; line-height:1; font-family:monospace,fixed; m=
-in-height:13px; padding-left:53px; margin:0px">
-usrp-&gt;set_clock_source(<span style=3D"color:rgb(0,32,128)">&quot;externa=
-l&quot;</span>);</div>
-<div style=3D"font-size:13px; line-height:1; font-family:monospace,fixed; m=
-in-height:13px; padding-left:53px; margin:0px">
-usrp-&gt;set_time_source(<span style=3D"color:rgb(0,32,128)">&quot;external=
-&quot;</span>);</div>
-</div>
-<div><br>
-</div>
-<div dir=3D"ltr">at the appropriate place in your code to configure timing.=
- <br>
-</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">-Sam <br>
-</div>
-</div>
-<br>
-<div class=3D"x_gmail-m_-3474368557349792279x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail-m_-3474368557349792279x_gmail_attr">On Tu=
-e, Aug 20, 2019 at 1:09 PM Jiang, Fengyang via USRP-users &lt;<a href=3D"ma=
-ilto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.c=
-om</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"x_gmail-m_-3474368557349792279x_gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(204,204,204); padding-l=
-eft:1ex">
 <div dir=3D"ltr">
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
 t; color:rgb(0,0,0)">
@@ -429,30 +375,25 @@ USRP-users mailing list<br>
 lists.ettus.com</a><br>
 <a href=3D"https://nam01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F=
 %2Flists.ettus.com%2Fmailman%2Flistinfo%2Fusrp-users_lists.ettus.com&amp;da=
-ta=3D02%7C01%7Cfzj28%40psu.edu%7C38d98d382d7c4191ccd608d725a52d14%7C7cf48d4=
-53ddb4389a9c1c115526eb52e%7C0%7C1%7C637019263662531440&amp;sdata=3DmHZMaZHI=
-gKBaYOggHz%2BZwtJYRaZLpKnlmD0%2BHhCjT%2FQ%3D&amp;reserved=3D0" originalsrc=
+ta=3D02%7C01%7Cfzj28%40psu.edu%7Cc4ad2d5a98a04dae3d0e08d725a5647f%7C7cf48d4=
+53ddb4389a9c1c115526eb52e%7C0%7C0%7C637019264596284828&amp;sdata=3DV%2Bp0Qm=
+ouURsIP6EHWagqqXzf8MRj%2BAy8%2BzJnCdAwNnM%3D&amp;reserved=3D0" originalsrc=
 =3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" sha=
-sh=3D"PycL0zqxRMeSZhYtdalBmAdlyCGPSsCc73vCLmLKvmCySlNf9PDvzw040MMHqvd3fW2uC=
-utJY1iN3Sr&#43;us4sYfsdYCAPOIC5HnnnmFfbB9yVJSx6jSD7YRfiXWM2erxJKoDJIalCQFPy=
-XGBDn&#43;kZ3K3rniB&#43;Dy&#43;3jHoW8&#43;fV8zM=3D" rel=3D"noreferrer" targ=
-et=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettu=
-s.com</a><br>
+sh=3D"jedbWD4ewplPE5cZm6R50tTOFmZKiT1O/Bo4g&#43;lY/udQREgPFZtSaYoZnCLEmYtti=
+yY21K2xR6lyRpBUbspNlR2Ce9QpTwz2ap&#43;wo/hf6qUJ31hH0c6tSPxmClXe6XRqE2hW8twS=
+uJbHc7YOhx3/yeISbo62ZcM1888TFLnMlWM=3D" rel=3D"noreferrer" target=3D"_blank=
+">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br=
+>
 </blockquote>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
 </div>
 </div>
 </body>
 </html>
 
---_000_BL0PR02MB37162390799684C80029546FAAAB0BL0PR02MB3716namp_--
+--_000_BL0PR02MB3716AFC51BBD11F5BA590BC3AAAB0BL0PR02MB3716namp_--
 
 
---===============9147980846323182059==
+--===============0722098768334527404==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -463,5 +404,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9147980846323182059==--
+--===============0722098768334527404==--
 
