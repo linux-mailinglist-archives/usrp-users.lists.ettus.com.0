@@ -2,62 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E1D99B317
-	for <lists+usrp-users@lfdr.de>; Fri, 23 Aug 2019 17:13:23 +0200 (CEST)
-Received: from [::1] (port=60720 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F559B579
+	for <lists+usrp-users@lfdr.de>; Fri, 23 Aug 2019 19:29:04 +0200 (CEST)
+Received: from [::1] (port=34876 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i1BFc-0006cF-UH; Fri, 23 Aug 2019 11:13:16 -0400
-Received: from mail-qt1-f177.google.com ([209.85.160.177]:36430)
+	id 1i1DMz-000302-Ok; Fri, 23 Aug 2019 13:29:01 -0400
+Received: from mail-io1-f49.google.com ([209.85.166.49]:39757)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1i1BFY-0006Wn-VA
- for usrp-users@lists.ettus.com; Fri, 23 Aug 2019 11:13:13 -0400
-Received: by mail-qt1-f177.google.com with SMTP id z4so11538748qtc.3
- for <usrp-users@lists.ettus.com>; Fri, 23 Aug 2019 08:12:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=13qKes80OT3O8a9mklw9hRUd/lzvxg4locIAK8U9Ys4=;
- b=AKkXn8sCh5rT33mvu2FHD7rkK36RD50VqgYMkgaI86Scpzfxybmh3H6PJGcZHqkBhG
- M2gw+7ktClrAoWeF61j1D/jsyhxrRb59uExWbnFAx94CskA8zg9IZ7mK2WMmfOY6cZew
- ADYK6AGhUX1zoJFS4j5YBx400N+3+d6Z/MY9aJyrJLRqZ2LudbfhcPhZScP82vLGo6c1
- M7wRIVkFsyItd1SgVP8jfLGgunAS9zA8+t3sjyY0AJvSAc4cbibBQyea63iULMBYKlXs
- iamAn6A2PJh6XCx/EP4UoojFLxWVSiCOkF0ImWVg6sppYwtqPGkWsvA3mgla8Zzzt0vF
- mpKA==
+ (Exim 4.92) (envelope-from <michael.west@ettus.com>)
+ id 1i1DMw-0002uq-9F
+ for usrp-users@lists.ettus.com; Fri, 23 Aug 2019 13:28:58 -0400
+Received: by mail-io1-f49.google.com with SMTP id l7so21865636ioj.6
+ for <usrp-users@lists.ettus.com>; Fri, 23 Aug 2019 10:28:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=15bhQShotOOJOGj3BMtdc3iXqZWh2ciyTaOAMpC2axE=;
+ b=kBeblt3cn1aQ0l9tV8BQZFQfFXZVf/NAqNJQPe1KFhPu28mYeF7hBJuVscRo7I0Xf1
+ +QOmgouUL9D5DmgK5EMVmRuBwGDCTXlpaq8NXDJDWOVt1Ju4wbkwf99hW4CDPTF0+uYE
+ YhTStJ3yFMhIrA4DYbR5MQZ5aDJTcwBscGFh8tgyGAjK1vdI1si0j5/rJr8zG2+RWozQ
+ hOT5Jps2iYXakKoD/puN30FQ29sfNJPDQct+iQqxJOKhwel4jQP+kQaFJYf9mGnqMmue
+ aqObnzqPAtDfrx253CSAp3Yl3Ux+hWNYtsfbDCUZ8AwYqwezcDg2Wm6dmQ3h7XAJsB2s
+ K4LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=13qKes80OT3O8a9mklw9hRUd/lzvxg4locIAK8U9Ys4=;
- b=pKUVR6hM3lbL6hFGD013ScFRMAWmvWjBUxgMM9yYU5mNCs76ak01jOBV7wQvo7E6Df
- g2gQ1K43DIQ3Ik54iuyQ3SaNJGbYi1d2MqMpiRUhy76segItvAE4ncflVuEz70flB9rD
- hwk670gm6lqoQqravrSAg/vf3YB6dY0Vxifg34GxEHm43iIQUUrr4J4DzltTviZJY1go
- CgR6hrz+oHC+00XBWBVOhABrEYoWBp4finlTlLisUjX9imPwl6tw4j7i6JRI72jjq45U
- Lj7IZskkjuJRMuzx9FGSQ/Wq9VVNjyBW0sUvPV/HVMnmeKyJ37kBITN1yRv6wSjuP1K1
- QDPg==
-X-Gm-Message-State: APjAAAVQ/LQQhblmW4coanZCU96H4C/qrnguCEyGiuZuIcW2+5fe0SN7
- 6shLEWb10P/Ieqzi+ZE23QjOHMtn
-X-Google-Smtp-Source: APXvYqxZLbtOC7/utm2YPrKMx850RPMdITVj3a8B81meOt6M7vpEFRbOIDANNLVxfBfZ2IDMa4q82g==
-X-Received: by 2002:ac8:444b:: with SMTP id m11mr5016155qtn.257.1566573152134; 
- Fri, 23 Aug 2019 08:12:32 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
- [174.95.14.20])
- by smtp.googlemail.com with ESMTPSA id y5sm1597605qkj.64.2019.08.23.08.12.31
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 23 Aug 2019 08:12:31 -0700 (PDT)
-Message-ID: <5D60025E.7090101@gmail.com>
-Date: Fri, 23 Aug 2019 11:12:30 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=15bhQShotOOJOGj3BMtdc3iXqZWh2ciyTaOAMpC2axE=;
+ b=AgiWJSE9zWt47nKzbdWkR3Cv8yiKy4N38rBU21C0VIDf1wgc1c+xT63JgzA+Cm4ocA
+ XejFXcTWNmUcvv1hvvsz+DT/63TFjhbyFzIoCCS3Z1jT9tWH/jkUzc1Tl0jy7Omfvnbx
+ b9M588zaeHB9EZWJbt79lR4rwHB7rExQ9vMSEcb3I3TXoqDNlv/SO0CSU91+5EOq8T52
+ Jvvjk0WYdoq53JYtG/cb+oUUqu7Schy0YU03JEiDXoc50noY9D0mnG2HnCeP6QGAffC0
+ hIPdyzC1DWJir4FzUFw84pQRhT8TjIOwlopDaiijh//99jHxXlwthWyAnnyo19zVLkP3
+ LylQ==
+X-Gm-Message-State: APjAAAW06vj69voNiWNlggiklTovpLxF8gW7nbkadPIpX9yVRNqfhh1l
+ cC3T0zMtQi2E8W7P1tuJIPARdBW4pDp3vjUx6CRMMg8m
+X-Google-Smtp-Source: APXvYqwDtWALjXfW/vIdQzewh/WsdiU9utTYxU6fyTzpOWEoVSA7z4RBNy5NWXlQK7mvR1S6Vv9e0T42X6NjyUQY6eQ=
+X-Received: by 2002:a6b:720e:: with SMTP id n14mr2461633ioc.139.1566581297547; 
+ Fri, 23 Aug 2019 10:28:17 -0700 (PDT)
 MIME-Version: 1.0
-To: kailash kumar <kailash.kain@gmail.com>
-References: <CAAMvqVG6ai0anEO5s0WU9RXoC4KOY40XS8jB=phpEjohBXa=Pg@mail.gmail.com>
- <5D5F5EE3.3080301@gmail.com>
- <CAAMvqVH9xur8w8PriotbzGNZ7_+yFsXYCjRh-VOJXMbZv4+qjA@mail.gmail.com>
-In-Reply-To: <CAAMvqVH9xur8w8PriotbzGNZ7_+yFsXYCjRh-VOJXMbZv4+qjA@mail.gmail.com>
-Subject: Re: [USRP-users] Packet drop during frequency hopping observed with
- B210
+References: <CAM4xKrrb4MNYu8PZmt29f8R5FbSpiik7Q95XPqVMtBqQO7ZtPQ@mail.gmail.com>
+ <e50bf1f7-0bb6-84a2-edfa-0188a229fc63@mpb.li>
+In-Reply-To: <e50bf1f7-0bb6-84a2-edfa-0188a229fc63@mpb.li>
+Date: Fri, 23 Aug 2019 10:28:06 -0700
+Message-ID: <CAM4xKrp8ng4b6gYvU1T7a-8VOj=fXY8Ji-BowcFeQkYiEerWGQ@mail.gmail.com>
+To: =?UTF-8?Q?Matthias_Br=C3=A4ndli?= <matthias@mpb.li>
+Subject: Re: [USRP-users] [UHD] 3.14.1.0 Release Announcement
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -69,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============0604683039519502549=="
+From: Michael West via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael West <michael.west@ettus.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4742484779055867107=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,354 +77,100 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0604683039519502549==
-Content-Type: multipart/alternative;
- boundary="------------000809040606030600000001"
+--===============4742484779055867107==
+Content-Type: multipart/alternative; boundary="000000000000c0a1300590cc218e"
 
-This is a multi-part message in MIME format.
---------------000809040606030600000001
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000c0a1300590cc218e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 08/23/2019 12:39 AM, kailash kumar wrote:
-> Hi Marcus,
->
-> Please find below code for reference. I have removed few sync primates 
-> for readability.
->
-> // Receive callback for loopback mode
-> void receive_cb(unsigned char *_payload, unsigned int len) {
->   recvBytes += len;
-> }
->
-> // Periodic Timer - 1 sec
-> static void pSigHandler(int signo) {
->   drv->SetTxFrequency(582.0e6);
->   drv->SetRxFrequency(582.0e6);
->
->   fprintf(stderr, "sentBytes %d recvBytes %d\n", sentBytes, recvBytes);
->   bcontinue = true;
->   startTime = drv->GetTxTime();
-> }
->
-> int main(int argc,char **argv) {
->   // RFDriver abstracts uhd::usrp::multi_usrp::sptr, 
-> uhd::tx_streamer::sptr & uhd::rx_streamer::sptr
->   drv = new RFDriver();
->   drv->SetTxFrequency(562.0e6);
->   drv->SetRxFrequency(562.0e6);
->
->   // B210
-> drv->SetDevString(std::string("serial=312908B"));
->   drv->SetTxGain(40.0); // uhd::tx_streamer::sptr->set_tx_freq(_tx_freq);
->   drv->SetRxGain(20.0); // uhd::rx_streamer::sptr->set_rx_freq(_rx_freq);
->   drv->SetTxSoftGain(-12.0); // powf(10.0f, _tx_gain_soft/20.0f); -> 
-> Software Gain multiplier
->
->   // Init OFDM : bandwidth = 1000e3f, number of subcarriers = 64, 
-> cyclic prefix length = 8, taper length = 2
->   // Start Rx -> 
-> usrp_rx->issue_stream_cmd(uhd::stream_cmd_t::STREAM_MODE_START_CONTINUOUS);
->   drv->InitTxRX();
->
->   // 1 sec timer to flip frequency
->   signal(SIGALRM, pSigHandler);
->   struct itimerval tv;
->   tv.it_value.tv_sec = 1;
->   tv.it_value.tv_usec = 0;
->   tv.it_interval.tv_sec = 1;
->   tv.it_interval.tv_usec = 0;
->   setitimer(ITIMER_REAL, &tv, NULL);
->
->   startTime = uhd::tx_streamer::sptr->get_time_now().get_real_secs();
->
->   for (int i = 0; i < 5000; ++i) {
->     double diff = 
-> uhd::tx_streamer::sptr->get_time_now().get_real_secs() - startTime;
->     // If deadline check is disabled, then we are transmitting for 
-> entire duration
->     bool deadline = std::isgreaterequal(diff, 0.95F); // check if we 
-> have 50 ms left
->     if (deadline) {
->       while(!bcontinue) { // This is set on 1 sec timer expiration
->         sched_yield();
->       }
->       bcontinue = false;
->     }
->     drv->SendPayload((unsigned char *)data, n);
->   }
-> }
->
-> Thanks
-> Kailash
->
-> On Fri, Aug 23, 2019 at 9:05 AM Marcus D. Leech via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     On 08/22/2019 11:09 PM, kailash kumar via USRP-users wrote:
->     > Hi,
->     >
->     > I am testing frequency hopping in a loopback mode on B210 using
->     > external RF loopback cable.
->     > For First slot Tx/Rx is done at freq 562 Mhz. Subsequent slot is at
->     > 582 Mhz.
->     > I have observed Rx packet loss when Tx is done for entire slot
->     duration.
->     >
->     > Please let me know if this is expected or if some configuration
->     > is required for this.
->     >
->     > [INFO] [UHD] linux; GNU C++ version 9.1.1 20190716
->     > gcc-9-branch@273504; Boost_106800; UHD_3.13.1.HEAD-0-gbbce3e45
->     > [INFO] [B200] Detected Device: B210
->     >
->     > Slot duration - 1 second
->     > Rx gain : 20.000000
->     > Tx soft gain : -12.000000
->     > Tx gain : 40.000000
->     >
->     > Testing results:
->     > sentBytes 7225 recvBytes 7225 -> After sparing 50ms in 1st Tx
->     slot at
->     > freq 562 MHz.
->     > sentBytes 7390 recvBytes 7390 -> Rest bytes in next Tx slot at freq
->     > 582 Mhz.
->     > sentBytes 7390 recvBytes 7390 -> No more Tx
->     > sentBytes 7390 recvBytes 7390
->     > sentBytes 7390 recvBytes 7390
->     >
->     > sentBytes 7390 recvBytes 7375 -> Utilize fully 1st Tx slot at
->     freq 562
->     > MHz. Rx drop observed.
->     > sentBytes 7390 recvBytes 7375 -> No more Tx/Rx at 582 Mhz.
->     > sentBytes 7390 recvBytes 7375
->     >
->     > Thanks & Regards
->     > Kailash
->     >
->     Your description of the problem assumes the reader knows
->     intimately the
->     details of exactly what you're doing.  We don't.
->
->     We need to see code snippets that demonstrate your problem, or a
->     much-more detailed description.
->
->
-This doesn't help all that much.
+Hi Matthias,
 
-When you say "drops packets" are you referring to application-layer data 
-packets, or dropped samples?
+The new B200 bootloader helps with failures to enumerate the device when it
+is plugged in before the host is booted.  This only happens with some USB
+controllers.  Loading the bootloader can be done by running:
 
-One can expect some issues during frequency transition because there 
-will always always be transients of some sort in the sample
-   stream, because, well, that's just how analog hardware behaves when 
-you're changing frequencies.
+b2xx_fx3_utils --load-bootloader <file>
+
+The bootloader file has been added to the b2xx images file and can be
+retrieved by running:
+
+[sudo] uhd_images_downloader -t b2xx
+
+Regards,
+Michael
+
+On Tue, Jul 9, 2019 at 12:10 AM Matthias Br=C3=A4ndli via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Dear Michael,
+>
+> First of all, thanks for the new UHD release to all people involved!
+>
+> On 08/07/2019 20:35, Michael West wrote:
+> > This release includes [...] a new bootloader for B200
+>
+> Is there more information about this change? Does this solve a specific
+> issue? I had a look at the relevant commits, but I am trying to
+> understand why it was implemented and if there's any impact for our
+> application.
+>
+> Best regards
+> mpb
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000c0a1300590cc218e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Matthias,</div><div><br></div><div>The new B200 bo=
+otloader helps with failures to enumerate the device when it is plugged in =
+before the host is booted.=C2=A0 This only happens with some USB controller=
+s.=C2=A0 Loading the bootloader can be done by running:</div><div><br></div=
+><div>b2xx_fx3_utils --load-bootloader &lt;file&gt;</div><div><br></div><di=
+v>The bootloader file has been added to the b2xx images file and can be ret=
+rieved by running:</div><div><br></div><div>[sudo] uhd_images_downloader -t=
+ b2xx<br></div><div><br></div><div>Regards,</div><div>Michael<br></div></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
+ue, Jul 9, 2019 at 12:10 AM Matthias Br=C3=A4ndli via USRP-users &lt;<a hre=
+f=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Dear Mich=
+ael,<br>
+<br>
+First of all, thanks for the new UHD release to all people involved!<br>
+<br>
+On 08/07/2019 20:35, Michael West wrote:<br>
+&gt; This release includes [...] a new bootloader for B200<br>
+<br>
+Is there more information about this change? Does this solve a specific<br>
+issue? I had a look at the relevant commits, but I am trying to<br>
+understand why it was implemented and if there&#39;s any impact for our<br>
+application.<br>
+<br>
+Best regards<br>
+mpb<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000c0a1300590cc218e--
 
 
-
-
---------------000809040606030600000001
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/23/2019 12:39 AM, kailash kumar
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAAMvqVH9xur8w8PriotbzGNZ7_+yFsXYCjRh-VOJXMbZv4+qjA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div dir="ltr">
-          <div dir="ltr">Hi Marcus,
-            <div><br>
-            </div>
-            <div>Please find below code for reference. I have removed
-              few sync primates for readability.</div>
-            <div><br>
-            </div>
-            <div>
-              <div>// Receive callback for loopback mode</div>
-              <div>void receive_cb(unsigned char *_payload, unsigned int
-                len) {</div>
-              <div>  recvBytes += len;</div>
-              <div>}</div>
-              <div><br>
-              </div>
-              <div>// Periodic Timer - 1 sec</div>
-              <div>static void pSigHandler(int signo) {</div>
-              <div>  drv-&gt;SetTxFrequency(582.0e6);</div>
-              <div>  drv-&gt;SetRxFrequency(582.0e6);</div>
-              <div><br>
-              </div>
-              <div>  fprintf(stderr, "sentBytes %d recvBytes %d\n",
-                sentBytes, recvBytes);<br>
-              </div>
-              <div>  bcontinue = true;</div>
-              <div>  startTime = drv-&gt;GetTxTime();</div>
-              <div>}</div>
-              <div><br>
-              </div>
-              <div>int main(int argc,char **argv) {</div>
-              <div>  // RFDriver abstracts uhd::usrp::multi_usrp::sptr,
-                uhd::tx_streamer::sptr &amp; uhd::rx_streamer::sptr</div>
-              <div>  drv = new RFDriver();</div>
-              <div>  drv-&gt;SetTxFrequency(562.0e6);</div>
-              <div>  drv-&gt;SetRxFrequency(562.0e6);</div>
-              <div><br>
-              </div>
-              <div>  // B210</div>
-              <div> 
-                drv-&gt;SetDevString(std::string("serial=312908B"));</div>
-              <div>  drv-&gt;SetTxGain(40.0); //
-                uhd::tx_streamer::sptr-&gt;set_tx_freq(_tx_freq);</div>
-              <div>  drv-&gt;SetRxGain(20.0); //
-                uhd::rx_streamer::sptr-&gt;set_rx_freq(_rx_freq);</div>
-              <div>  drv-&gt;SetTxSoftGain(-12.0); // powf(10.0f,
-                _tx_gain_soft/20.0f); -&gt; Software Gain multiplier</div>
-              <div><br>
-              </div>
-              <div>  // Init OFDM : bandwidth = 1000e3f, number of
-                subcarriers = 64, cyclic prefix length = 8, taper length
-                = 2</div>
-              <div>  // Start Rx -&gt;
-usrp_rx-&gt;issue_stream_cmd(uhd::stream_cmd_t::STREAM_MODE_START_CONTINUOUS);</div>
-              <div>  drv-&gt;InitTxRX(); </div>
-              <div><br>
-              </div>
-              <div>  // 1 sec timer to flip frequency</div>
-              <div>  signal(SIGALRM, pSigHandler);</div>
-              <div>  struct itimerval tv;</div>
-              <div>  tv.it_value.tv_sec = 1;</div>
-              <div>  tv.it_value.tv_usec = 0;</div>
-              <div>  tv.it_interval.tv_sec = 1;</div>
-              <div>  tv.it_interval.tv_usec = 0;</div>
-              <div>  setitimer(ITIMER_REAL, &amp;tv, NULL);</div>
-              <div><br>
-              </div>
-              <div>  startTime =
-                uhd::tx_streamer::sptr-&gt;get_time_now().get_real_secs();</div>
-              <div><br>
-              </div>
-              <div>  for (int i = 0; i &lt; 5000; ++i) {</div>
-              <div>    double diff =
-                uhd::tx_streamer::sptr-&gt;get_time_now().get_real_secs()
-                - startTime;</div>
-              <div>    // If deadline check is disabled, then we are
-                transmitting for entire duration</div>
-              <div>    bool deadline = std::isgreaterequal(diff, 0.95F);
-                // check if we have 50 ms left</div>
-              <div>    if (deadline) {</div>
-              <div>      while(!bcontinue) { // This is set on 1 sec
-                timer expiration</div>
-              <div>        sched_yield();</div>
-              <div>      }</div>
-              <div>      bcontinue = false;</div>
-              <div>    }</div>
-              <div>    drv-&gt;SendPayload((unsigned char *)data, n);</div>
-              <div>  }</div>
-              <div>}</div>
-            </div>
-            <div><br>
-            </div>
-            <div>Thanks</div>
-            <div>Kailash</div>
-          </div>
-        </div>
-        <br>
-        <div class="gmail_quote">
-          <div dir="ltr" class="gmail_attr">On Fri, Aug 23, 2019 at 9:05
-            AM Marcus D. Leech via USRP-users &lt;<a
-              moz-do-not-send="true"
-              href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex">On
-            08/22/2019 11:09 PM, kailash kumar via USRP-users wrote:<br>
-            &gt; Hi,<br>
-            &gt;<br>
-            &gt; I am testing frequency hopping in a loopback mode on
-            B210 using <br>
-            &gt; external RF loopback cable.<br>
-            &gt; For First slot Tx/Rx is done at freq 562 Mhz.
-            Subsequent slot is at <br>
-            &gt; 582 Mhz.<br>
-            &gt; I have observed Rx packet loss when Tx is done for
-            entire slot duration.<br>
-            &gt;<br>
-            &gt; Please let me know if this is expected or if some
-            configuration <br>
-            &gt; is required for this.<br>
-            &gt;<br>
-            &gt; [INFO] [UHD] linux; GNU C++ version 9.1.1 20190716 <br>
-            &gt; gcc-9-branch@273504; Boost_106800;
-            UHD_3.13.1.HEAD-0-gbbce3e45<br>
-            &gt; [INFO] [B200] Detected Device: B210<br>
-            &gt;<br>
-            &gt; Slot duration - 1 second<br>
-            &gt; Rx gain : 20.000000<br>
-            &gt; Tx soft gain : -12.000000<br>
-            &gt; Tx gain : 40.000000<br>
-            &gt;<br>
-            &gt; Testing results:<br>
-            &gt; sentBytes 7225 recvBytes 7225 -&gt; After sparing 50ms
-            in 1st Tx slot at <br>
-            &gt; freq 562 MHz.<br>
-            &gt; sentBytes 7390 recvBytes 7390 -&gt; Rest bytes in next
-            Tx slot at freq <br>
-            &gt; 582 Mhz.<br>
-            &gt; sentBytes 7390 recvBytes 7390 -&gt; No more Tx<br>
-            &gt; sentBytes 7390 recvBytes 7390<br>
-            &gt; sentBytes 7390 recvBytes 7390<br>
-            &gt;<br>
-            &gt; sentBytes 7390 recvBytes 7375 -&gt; Utilize fully 1st
-            Tx slot at freq 562 <br>
-            &gt; MHz. Rx drop observed.<br>
-            &gt; sentBytes 7390 recvBytes 7375 -&gt; No more Tx/Rx at
-            582 Mhz.<br>
-            &gt; sentBytes 7390 recvBytes 7375<br>
-            &gt;<br>
-            &gt; Thanks &amp; Regards<br>
-            &gt; Kailash<br>
-            &gt;<br>
-            Your description of the problem assumes the reader knows
-            intimately the <br>
-            details of exactly what you're doing.  We don't.<br>
-            <br>
-            We need to see code snippets that demonstrate your problem,
-            or a <br>
-            much-more detailed description.<br>
-            <br>
-            <br>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-    This doesn't help all that much.<br>
-    <br>
-    When you say "drops packets" are you referring to application-layer
-    data packets, or dropped samples?<br>
-    <br>
-    One can expect some issues during frequency transition because there
-    will always always be transients of some sort in the sample<br>
-      stream, because, well, that's just how analog hardware behaves
-    when you're changing frequencies.<br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------000809040606030600000001--
-
-
---===============0604683039519502549==
+--===============4742484779055867107==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -444,5 +181,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0604683039519502549==--
+--===============4742484779055867107==--
 
