@@ -2,54 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CCFA9DC51
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2019 06:10:29 +0200 (CEST)
-Received: from [::1] (port=42424 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8969D9DC5A
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Aug 2019 06:16:14 +0200 (CEST)
+Received: from [::1] (port=44352 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i2SoN-0000ro-RF; Tue, 27 Aug 2019 00:10:27 -0400
-Received: from mail-lf1-f49.google.com ([209.85.167.49]:36002)
+	id 1i2Stw-0001Ou-J9; Tue, 27 Aug 2019 00:16:12 -0400
+Received: from mail-lj1-f173.google.com ([209.85.208.173]:37763)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1i2SoJ-0000kW-Tb
- for usrp-users@lists.ettus.com; Tue, 27 Aug 2019 00:10:24 -0400
-Received: by mail-lf1-f49.google.com with SMTP id r5so8494652lfc.3
- for <usrp-users@lists.ettus.com>; Mon, 26 Aug 2019 21:10:03 -0700 (PDT)
+ id 1i2Sts-0001ID-Du
+ for usrp-users@lists.ettus.com; Tue, 27 Aug 2019 00:16:08 -0400
+Received: by mail-lj1-f173.google.com with SMTP id t14so17125829lji.4
+ for <usrp-users@lists.ettus.com>; Mon, 26 Aug 2019 21:15:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=SVIuH96iOXVhTQmuaR6G9tQs5vpJvYELRNwvkIY7Dw8=;
- b=fcoWCZ8YUTo5gwscmz7wEJMmuIyfID121tCI9OjQ/QN+S0ZvZ2zQ8s4BSC179oYN7r
- pFFm15oR/bffTL1YMuAMgbTibNXqeuMpsnDZWQJNOHpj0UtY5Wt5PPrjDseg0bEDKMRn
- 3CZtOAHK0LLBdUrQFsoASD6LwTOJ+6TrN+1o2HO3gOZSnfHXUC/Xowq7xxiJyuV1CX1U
- dJMzs2WwKHaNwlYp0ZQW8rSCV95F5FRQDof9hEFFele4DXBuYXntAMCYX2p1/Ab7vGF7
- gy+WIvQe4vgkp6tCptu5n1m0fI/I0PE0IgHuAe2XcSO+D3Zh5v0VRhXxkdTev4XyiXap
- suhw==
+ :cc; bh=U46yz7AJddj9zKLK2Us758odiqwwAo+UsjbEJWpVHTs=;
+ b=PvIkvRRldWPF0GMPQJyz8R4rGGXC6fxr3IybKJyG6ZanZk1nCUqzfc8IrA721PxyIQ
+ NLxEVL5H5LiHTGmsMhkFQGzccOOXIjMoqCdE222y46h6WcmhMsRfSWQpdHnmegXeTYW7
+ MB2I6WQFnZvwBnwZPrJKMogtXnEChUIM4vu3QFKJD8lp2TprWwD8DHLGK8HyjLorlmky
+ fyVT2ky0buzaYa2rjZrDjhUpRABcAUYFX7nHnDxayAy1cNkk6BLmlwkI2T+1cGzr87vb
+ oJAEOT6TijHoQkB9Yvf1GyQxwOJICRr/Ma6H0JS6lEFWJg3XiFkmBi5vzWfASGMQwDQa
+ VVZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=SVIuH96iOXVhTQmuaR6G9tQs5vpJvYELRNwvkIY7Dw8=;
- b=TwW431ityZ+oKIVwds4S9ndALEuK83NhZAQeNBBcoGcUgZW1DABRCmOuamhUehQsPG
- COJGs7mXqQqj5VBQuVK0RSrKkyvYESk31a46JCxdb/XocWs6uq6ruOHkWMdSv3cBVVN/
- 9RNqIMOr50UxTJGlWuejKApoals3HnOd/0NrOAQKY6jfJezSTuUqsQs0B1mio71uHe/e
- SfZRm4ognk780bxvGsgT4mCF2zZPuoOuKRDawHuDP3iI+eoMtv4CbT0wKtlmu3A9NtGQ
- Ri23Zyz+vC7f5mgHd/OS6L9RB/eq2kUnAgnW2zMyWiTWJx3EKvJltgFKm/6uGcVdMtlc
- DkYQ==
-X-Gm-Message-State: APjAAAWMUN7B9ew3dn8z7tb7qlOOY4SPF+FO4yjFTwLSRO4C+U2hyiY5
- SyJ5qBsNt6+Xj6pfhvDiavhUA/QiIanNHgIcn0fwxDXV
-X-Google-Smtp-Source: APXvYqzawPYZ0rpy5xPFGuPzDewk2v1O0e8+CMkXw3dgb42Ksq5gpkglVnr+vLZHdp453x8s/dE4kNm4pU7jyThR92M=
-X-Received: by 2002:ac2:5206:: with SMTP id a6mr11974727lfl.96.1566878982518; 
- Mon, 26 Aug 2019 21:09:42 -0700 (PDT)
+ bh=U46yz7AJddj9zKLK2Us758odiqwwAo+UsjbEJWpVHTs=;
+ b=qPmEajj/KfxT+CWJ0es/t+r8CTeB3jD9ZhjHi7dINch7FBuEwLeGc8RAPYaKLPfnLL
+ ohbi9ZeW91kWyTv6iKiGP5q/4j75mMv/7yZzCfxsYbn4NgjcCE4QjqyrgDM2X+OkuRZ5
+ x5YfascNqxAi5eU7L6fMFg1Tp8iKHGTtfl3Bh07p6FvgG8YmqAtxcYJpkN6RF1TZ1bEN
+ 5Ct9Um8pcsBT4eJ96oT9XM8DWuezY3lwSvAoyPTEg+CNQDx1hKsr36phyWjck6DRDw+I
+ Z6Kr9CyLe0bZsxM75D4TR1Qep3Lx3oxfrMLSVjt9W2yY3x5a8yQQiMsVmUoDPWtdry3U
+ 7yfQ==
+X-Gm-Message-State: APjAAAV/ILMnjYJDrGE8CAjxeqduEFaDhwIjWk+I58lKnOg/bjgoz7W+
+ FktAqBw5n/XUGTxKIGckNTCFduWiJqXfOMJNjUJOrquT
+X-Google-Smtp-Source: APXvYqwDppSTOV0gJtdt9TvMMPD93l8qCEy+A5V1DZMbRjM8CW9Ez/IGKYPfynI3LprOzNhMa08U1DO62d0mae07e4Q=
+X-Received: by 2002:a2e:5dc6:: with SMTP id v67mr12467025lje.240.1566879327062; 
+ Mon, 26 Aug 2019 21:15:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAB__hTT6CNq6nFT6heN6uT_rA3qz5FgRK+M4ZGLAiZANRB2bQg@mail.gmail.com>
- <CAL7q81uBKaR+SkoBZrRx2tS+FLCoJHRso-iOP40191XcAT9z8g@mail.gmail.com>
- <CAB__hTRKmYwp3wG07VsSCWEDxUNtr_6fCtqJwboPzGFRVYibXw@mail.gmail.com>
-In-Reply-To: <CAB__hTRKmYwp3wG07VsSCWEDxUNtr_6fCtqJwboPzGFRVYibXw@mail.gmail.com>
-Date: Tue, 27 Aug 2019 13:09:06 +0900
-Message-ID: <CAL7q81tgzbW07t7XL5HTgkTquAVuOGb80ANgGVfZfrcfNq7L5A@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Subject: Re: [USRP-users] RFNoC ce_rst and clear_tx_seqnum
+References: <CABsifTm54UOtwEfSp8nEzTTw2518qHqSBj7fbZsB-fvvbNxGkA@mail.gmail.com>
+In-Reply-To: <CABsifTm54UOtwEfSp8nEzTTw2518qHqSBj7fbZsB-fvvbNxGkA@mail.gmail.com>
+Date: Tue, 27 Aug 2019 13:14:51 +0900
+Message-ID: <CAL7q81vDWQziDHbg8FoyE0frY63HnRV=04qUejq3-uS6RUTieA@mail.gmail.com>
+To: Timothy Kurp <timothy.kurp@gmail.com>
+Subject: Re: [USRP-users] RFNoc Testbench / EOB
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -64,7 +62,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4813536023707115015=="
+Content-Type: multipart/mixed; boundary="===============3534323953161182605=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,87 +76,78 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4813536023707115015==
-Content-Type: multipart/alternative; boundary="00000000000028cee1059111714b"
+--===============3534323953161182605==
+Content-Type: multipart/alternative; boundary="000000000000b221740591118595"
 
---00000000000028cee1059111714b
+--000000000000b221740591118595
 Content-Type: text/plain; charset="UTF-8"
 
-Calling device3->clear() will strobe clear_tx_seqnum, but it is not a
-direct mapping. It also resets the upstream and downstream node
-connections, If you need trigger the reset at specific times, it would
-probably be easier to add your own reset settings register.
+Hi Tim,
 
-On Tue, Aug 27, 2019 at 10:55 AM Rob Kossler <rkossler@nd.edu> wrote:
+Look at noc_block_fft_tb.v for an example on how to operate on a 32-bit
+sample by sample basis. Unfortunately, if you want to do sizes smaller than
+32-bit, you'll need to write your own version of send()/recv() or
+push_word()/pull_word() from sim_rfnoc_lib.svh.
 
-> Thanks Jonathon.  How about if I re-wire an rfnoc graph?  Does that assert
-> clear_tx_seqnum?  Does the UHD device3->clear() function map directly or
-> indirectly to this signal?
-> Rob
+Jonathon
+
+On Tue, Aug 27, 2019 at 1:05 PM Timothy Kurp via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hey Users!
 >
-> On Mon, Aug 26, 2019 at 9:49 PM Jonathon Pendlum <
-> jonathon.pendlum@ettus.com> wrote:
+> I think this may be a possible deficiency in the test bench architecture,
+> or perhaps I just don't know how to instrument it properly. I have a custom
+> block that performs a 2:1 rate change roughly, performing compression of
+> the 16 bit I/Q from the radio down to a 16 bit word that is compressed, I
+> won't describe how. There is a corner case if EOB occurs when there is an
+> odd number of samples received from the radio. I have handled this by using
+> simple mode = 0, manipulating cvita header manually and throwing tlast to
+> make packets, with success. The noc block works, but I am struggling with
+> how to exercise the corner case in the testbench.
 >
->> Hi Rob,
->>
->> Originally clear_tx_seqnum was only for resetting AXI Wrapper, but it
->> evolved into a user reset as well since it is asserted every time your UHD
->> app starts. ce_rst is only asserted at power up.
->>
->> Jonathon
->>
->> On Tue, Aug 27, 2019 at 2:29 AM Rob Kossler via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->>> Can anyone explain the meaning of the signals ce_rst and
->>> clear_tx_seqnum?  It is not clear to me what would cause either of them to
->>> go High.  Should I expect ce_rst to be strobed each time I launch my C++
->>> app that calls UHD?  I had previously thought so, but now I have reason to
->>> doubt.
->>>
->>> Thanks.
->>> Rob
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
+> From what I have seen, the testbench only allows for EOB to be manipulated
+> on sample counts that are a multiple of 2 (send() operates on 64 bits, or 2
+> samples of 16 bit I/Q). We have looked at the source and there doesn't seem
+> to be an easy way to throw EOB/TLAST on odd samples.We also think it is not
+> guaranteed that this will never happen from the radio. Thoughts?
+>
+> Tim
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---00000000000028cee1059111714b
+--000000000000b221740591118595
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Calling device3-&gt;clear() will strobe clear_tx_seqnum, b=
-ut it is not a direct mapping. It also resets the upstream and downstream n=
-ode connections, If you need trigger the reset at specific times, it would =
-probably be easier to add your own reset settings register.</div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 27, =
-2019 at 10:55 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossle=
-r@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr">Thanks Jonathon.=C2=A0 How about if I re-wire an r=
-fnoc graph?=C2=A0 Does that assert clear_tx_seqnum?=C2=A0 Does the UHD devi=
-ce3-&gt;clear() function map directly or indirectly to this signal?<div>Rob=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Mon, Aug 26, 2019 at 9:49 PM Jonathon Pendlum &lt;<a href=3D"mailt=
-o:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.pendlum@ettus.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr">Hi Rob,<div><br></div><div>Originally clear_tx_seqnum was o=
-nly for resetting AXI Wrapper, but it evolved into a user reset as well sin=
-ce it is asserted every time your UHD app starts. ce_rst is only asserted a=
-t power up.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"=
-gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 27, 2019 at =
-2:29 AM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.e=
-ttus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Can =
-anyone explain the meaning of the signals ce_rst and clear_tx_seqnum?=C2=A0=
- It is not clear to me what would cause either of them to go High.=C2=A0 Sh=
-ould I expect ce_rst to be strobed each time I launch my C++ app that calls=
- UHD?=C2=A0 I had previously thought so, but now I have reason to doubt.=C2=
-=A0<br><div><br></div><div>Thanks.</div><div>Rob</div></div>
+<div dir=3D"ltr">Hi Tim,<div><br></div><div>Look at noc_block_fft_tb.v for =
+an example on how to operate on a 32-bit sample by sample basis. Unfortunat=
+ely, if you want to do sizes smaller than 32-bit, you&#39;ll need to write =
+your own version of send()/recv() or push_word()/pull_word() from sim_rfnoc=
+_lib.svh.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 27, 2019 at 1:=
+05 PM Timothy Kurp via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.et=
+tus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hey U=
+sers!<div><br></div><div>I think this may be a possible deficiency in the t=
+est bench architecture, or perhaps I just don&#39;t know how to instrument =
+it properly. I have a custom block that performs a 2:1 rate change roughly,=
+ performing compression of the 16 bit I/Q from the radio down to a 16 bit w=
+ord that is compressed, I won&#39;t describe how. There is a corner case if=
+ EOB occurs when there is an odd number of samples received from the radio.=
+ I have handled this by using simple mode =3D 0, manipulating cvita header =
+manually and throwing tlast to make packets, with success. The noc block wo=
+rks, but I am struggling with how to exercise the corner case in the testbe=
+nch.</div><div><br></div><div>From what I have seen, the testbench only all=
+ows for EOB to be manipulated on sample counts that are a multiple of 2 (se=
+nd() operates on 64 bits, or 2 samples of 16 bit I/Q). We have looked at th=
+e source and there doesn&#39;t seem to be an easy way to throw EOB/TLAST on=
+ odd samples.We also think it is not guaranteed that this will never happen=
+ from the radio. Thoughts?</div><div><br></div><div>Tim</div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -167,13 +156,11 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
-</blockquote></div>
-</blockquote></div>
 
---00000000000028cee1059111714b--
+--000000000000b221740591118595--
 
 
---===============4813536023707115015==
+--===============3534323953161182605==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -184,5 +171,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4813536023707115015==--
+--===============3534323953161182605==--
 
