@@ -2,48 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370C2A0AF0
-	for <lists+usrp-users@lfdr.de>; Wed, 28 Aug 2019 21:57:57 +0200 (CEST)
-Received: from [::1] (port=53648 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DED25A0B2B
+	for <lists+usrp-users@lfdr.de>; Wed, 28 Aug 2019 22:17:31 +0200 (CEST)
+Received: from [::1] (port=35350 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i344o-000126-Jw; Wed, 28 Aug 2019 15:57:54 -0400
-Received: from mail-qk1-f174.google.com ([209.85.222.174]:37311)
+	id 1i34Nl-0003X0-0K; Wed, 28 Aug 2019 16:17:29 -0400
+Received: from mail-wm1-f43.google.com ([209.85.128.43]:40275)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <zenghuacheng@gmail.com>)
- id 1i344l-0000we-0s
- for usrp-users@lists.ettus.com; Wed, 28 Aug 2019 15:57:51 -0400
-Received: by mail-qk1-f174.google.com with SMTP id s14so897263qkm.4
- for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2019 12:57:30 -0700 (PDT)
+ (Exim 4.92) (envelope-from <martin.klingensmith@gmail.com>)
+ id 1i34Nh-0003RF-1B
+ for usrp-users@lists.ettus.com; Wed, 28 Aug 2019 16:17:25 -0400
+Received: by mail-wm1-f43.google.com with SMTP id t9so1385366wmi.5
+ for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2019 13:17:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to;
- bh=EYfmNqD76VcazRj7dqNL7l/PTTfeKLhkSeZ0QPJ4a9o=;
- b=AAj6gjedyz31DEvJqvNsb34ycfHkMUToVmLzNi6lb4t8O1DRZsco9dUFHl3RYAXDui
- 2KYrRmLiUjQ20N8Um8AjZ7FaYvJIwqenDewhj1EaMGAOqaPBLrGdyo6qJeJPP6FpNpk1
- XKcXP6PReA9/A1H27HVvMqMSzac7GDUB2tKWJTBGSooNxP97U1Sy/KzQBc+q+XrWIeEd
- 4U6R0S0xlV6JH5UWwURO5tjolqJKfcoP5NUQLRTn73ee3oE5u5q7fpfnnRJNHeyS+Hfh
- l9iEKbGXk+nFkneVkGxF0s0DHwqztzoaRY4d9NWd49z/HSpXsoki7x16MIumiBSl7uoD
- Y2nA==
+ bh=vC/ZkoK0paFRuYISQTxv4EDGNo4waa02m3C3/mZDY3Y=;
+ b=tVhxWE1j48fPoGBBFeYrNNQG5osZaWovhIhZ01SPgeRPi0zE4GJvdjmrdinq8FTj88
+ nY2BNTlk7MJ3WAjgaMQs0vBYAHzCvrdb+jTTyBvurVyErShcA7qEqYQLb9eMVxK20vf+
+ r5fPQ7umTwgjozQVpTb4bBObIP1WpSntrIMNAvZyn7/XEa020BDBhiyRJNm7Usr3JAZ9
+ CBpjR1NLJxbrxKuxp2XnDjCCnXMHSZq2GhdRqpAsKWvak5sNcFEtfRP4mmBQ/S9NZI8N
+ ADRRDnhWWQpGtLfK9hR0mb42tfbQvTKLtcH9yjBr4Pucf7elpO81/+7tiBglAGiIri7/
+ nT0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=EYfmNqD76VcazRj7dqNL7l/PTTfeKLhkSeZ0QPJ4a9o=;
- b=rvBayblq3QMDJ5EUCsU6T8Uid7N6N5nwb3AmQaLiVafDUsqTM4o5WJNv744SWoYlXS
- M3jXXaXF6FQmOXAZkTZXjHS3EXtuiV7WMIQIwUzSOMz6DR2KqsOpSBNFiSBmlrIGazp6
- LqMB4xfGFByMW8jkYzxikDPhnKSSEWQCOQjVKwC/ZqqBQFCPOPL/2MKhDKmu6dFK1EDm
- PybWh82LWcundKD6Wr5dPXt951gECs5q1KWPzzKlutIpJk7VIcmCHQAeHMrJf3f1jNgt
- 1DmMXRm75xZpy7odgYSjBplo2/916N8evxxwcN7EvkFORBZlfSHoMnW2CwDNNM76LjSH
- oX1A==
-X-Gm-Message-State: APjAAAXAR/GgwL0NsMUCLR2IKngfwICMVtnS7uPmQM6qfguKiSYahEuT
- OQbUGKxE6HkLrxSrQxV1lQBFWhEKAW7JHu3tW3+1Q6cM
-X-Google-Smtp-Source: APXvYqwyJxOECSZ2zul4SAPY+2TVVofIKL0ICZADbQd70dt11uzB5TP92reGy92NWknx/3HOmgrTU3Uvs2zGNPo1IAE=
-X-Received: by 2002:a37:aa04:: with SMTP id t4mr5895590qke.359.1567022230181; 
- Wed, 28 Aug 2019 12:57:10 -0700 (PDT)
+ bh=vC/ZkoK0paFRuYISQTxv4EDGNo4waa02m3C3/mZDY3Y=;
+ b=KA24bTF++avLFlVbbhyvhp0+QReioS676YNJA1zRobOcQgZjSg8LmEK1RuGDN3++t5
+ +haWNjc/XuDoGbSvPsaJqg/UDohpWbK52OQZ5P/kILeDtZe5cEx6l8blsj/LPN9WGv6H
+ YXxebIu3FPEs8oPCbp4b9kQWG6/J8XNRZI+NevX5oWmjt8HYxe3HW1DhE4U0M4xAk6qe
+ /4yToKyUDhbSpkUKI9Va8zpAG46E7SlBoqDj6cBNfqTNRJtGuFcami4M5Df+pkDJBpr1
+ 5D05L1QVcU93S07VecnxCeWrqey4THvgaIXfg+d0h4BQc/QtGZasjekIRnrYszAoAz73
+ Clag==
+X-Gm-Message-State: APjAAAUVUsbhiJBuJlXVWlDzhbMrzfAyjHsh9NsWylGj4YyQx8WQ04qs
+ 9+kPfDbjQt+hpfywpV0eXfDZDKx8Yb6LNaZI9EL7Cw9n
+X-Google-Smtp-Source: APXvYqweDSwD7s8Sg2UKRgsEnmYPGN6PWzsGg/5AgTC3Wik4eE3tIHTbpkRFQiEh54QkxNFoo9UY/qfdkViqrh6citY=
+X-Received: by 2002:a1c:f106:: with SMTP id p6mr6485465wmh.148.1567023403458; 
+ Wed, 28 Aug 2019 13:16:43 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 28 Aug 2019 15:56:59 -0400
-Message-ID: <CAOR0_ui_9E3Mub_j4grbCAs+7bX-iD+gvbXtgOhyT3Pc8nz4uw@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] RFNoC OFDM FPGA Build error on X310
+Date: Wed, 28 Aug 2019 16:16:31 -0400
+Message-ID: <CA+QOOBtfJo_5K_oZUfF5Kcjps_wbSRRjN0-UifROY6Dx8RdS_Q@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Building UHD installer
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -55,9 +55,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Huacheng Zeng via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Huacheng Zeng <zenghuacheng@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4525358972800888806=="
+From: Martin K via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Martin K <martin.klingensmith@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,64 +72,33 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4525358972800888806==
-Content-Type: multipart/alternative; boundary="000000000000629bd7059132cb0d"
+In Windows I am attempting to create an installer for a custom built UHD.
+UHD works as it should, however the PACKAGE target does not finish. I
+get the following error. This seems to be a common error when
+specifying an absolute path rather than a relative path. Is there a
+way around this?
 
---000000000000629bd7059132cb0d
-Content-Type: text/plain; charset="UTF-8"
+85>------ Build started: Project: PACKAGE, Configuration: Release x64 ------
+85>CPack: Create package using NSIS
+85>CPack: Install projects
+85>CPack: - Install project: UHD
+85>CPack: -   Install component: libraries
+85>CPack: -   Install component: pythonapi
+85>CMake Error at
+C:/martin/uhd_stack_build/uhd_build/python/cmake_install.cmake:42
+(message):
+85>  ABSOLUTE path INSTALL DESTINATION forbidden (by caller): C:/Program
+85>  Files/UHD/Lib/site-packages/uhd
+85>Call Stack (most recent call first):
+85>  C:/martin/uhd_stack_build/uhd_build/cmake_install.cmake:73 (include)
+85>
+85>
+85>EXEC : CPack error : Error when generating package: UHD
 
-Hello,
-
-I have been trying to build FPGA image for the RFNoC OFDM blocks -
-schmidl_cox, eq and ofdm_constellation demapper.
-
-I have tried different combination of build with just schimdl_cox or eq or
-ofdm_constellation_demapper:
-
-1) For eq build, I always got the following error:
-ERROR: [Opt 31-2] SRLC32E
-x300_core/inst_eq/inst_axi_wrapper/header_fifo/fifo_short/gen_srlc32e[64].srlc32e
-is missing a connection on D pin.
-
-2) For schmidl_cox or ofdm_constellation_demapper, I got the following
-problem:
-ERROR: [Builder 0-0] The design did not satisfy timing constraints.
-(Implementation outputs were still generated)
-
-Can anyone help with these issues?
-
-Thanks,
-Huacheng
-
---000000000000629bd7059132cb0d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello,<br><br>I have been trying to build FPGA image for t=
-he RFNoC OFDM blocks - schmidl_cox, eq and ofdm_constellation demapper.<br>=
-<br>I have tried different combination of build with just schimdl_cox or eq=
- or ofdm_constellation_demapper:<br><br>1) For eq build, I always got the f=
-ollowing error: <br>ERROR: [Opt 31-2] SRLC32E x300_core/inst_eq/inst_axi_wr=
-apper/header_fifo/fifo_short/gen_srlc32e[64].srlc32e is missing a connectio=
-n on D pin.<br><br>2) For schmidl_cox or ofdm_constellation_demapper, I got=
- the following problem:<br>ERROR: [Builder 0-0] The design did not satisfy =
-timing constraints. (Implementation outputs were still generated)<br><br>Ca=
-n anyone help with these issues?<br><br>Thanks,<br>Huacheng=C2=A0<br><div><=
-br></div></div>
-
---000000000000629bd7059132cb0d--
-
-
---===============4525358972800888806==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Martin K.
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4525358972800888806==--
-
