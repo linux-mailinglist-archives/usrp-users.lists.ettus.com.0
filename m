@@ -2,52 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FD67A0F96
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Aug 2019 04:31:28 +0200 (CEST)
-Received: from [::1] (port=34584 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B34A1345
+	for <lists+usrp-users@lfdr.de>; Thu, 29 Aug 2019 10:11:24 +0200 (CEST)
+Received: from [::1] (port=53402 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i3ADe-0008U5-4m; Wed, 28 Aug 2019 22:31:26 -0400
-Received: from mail-lj1-f172.google.com ([209.85.208.172]:43421)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1i3ADb-0008PE-8z
- for usrp-users@lists.ettus.com; Wed, 28 Aug 2019 22:31:23 -0400
-Received: by mail-lj1-f172.google.com with SMTP id h15so1442667ljg.10
- for <usrp-users@lists.ettus.com>; Wed, 28 Aug 2019 19:31:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BW4Tg1GdVkPDnl01l5uraVbRAZPs2X7ls9oxz74V//U=;
- b=oj4F0FO2Sxi9NHCryYeon/0XSahcjIVhCB8Ez14u6mHVwvqo0T7UPumYrUayHdpqBM
- aU17dPfLOniGpjRux4i1wa9gD0Cggdj+2S958KUCFCxBOq0leYrVAlAB67fOlZas8bme
- wjaWv/1NtYGA+cAMGNlijpHdUcLdDf6LcHurZGWE74Xi2PAvBY5T4bzFGQKgfRGnVb7P
- B7BXD5kkeVIKh1x9jvWp0PzN4UKjafRw2k/pu5cc3GnBqay6sfsA6t0uNijN7y8BVSDM
- v7HIJta/QFwWtn88KptKeBBEOQ1jQ7ZcS1ZT9pPCHtjOvcfIHAIZM5JeVruCiaFTgQwp
- IQyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=BW4Tg1GdVkPDnl01l5uraVbRAZPs2X7ls9oxz74V//U=;
- b=NqvyO0z6EqJhR/xS9GY7j+ljOsKGVnmzOczaLCLQcmaO9AFOYW4GOfgUPy5sgyFX7g
- tK22mfDJ1MUAyxZgV0FqSNtdy06dIfDMbcewR2zYvsI6YYA/6P+PyW27w+lOYS7IUsDc
- +AIfdDnkcd186hL9/+1Z4a7Ft5A6PlMpo4r/wNRltJEYaxq61okm3ftormSUGvWBEoYs
- U7KvZIOccnCW8x+UlM4vMPeNjFUxUN70JBoLddQqSC5D7S0K9OL2SgiqJ0m6cpzBs+8x
- IyaX0y1TB0zlubkNIgVcdXYnzBWG7Hd8Z9zQtDTp12pvBi9GPKj6yJO2zVKZFXFVq51R
- T4XQ==
-X-Gm-Message-State: APjAAAVTb+sOp/pwJpcNbNOMbx5Xy2rNrVsv9/h/Q7iqk4n1OaQCnDBb
- hFSDlC8oPlhHck6al40aMvyPQDRrocBkq5mtozn7kxoj
-X-Google-Smtp-Source: APXvYqyGjg4YYq1yHQtC+EqX3ABjnLdzqjf2b6tJkgi1YwqURdaOKsVxeNUczUO65RQfRvtFycndrD9ZD66AxqP4n+0=
-X-Received: by 2002:a2e:b0c6:: with SMTP id g6mr3900828ljl.60.1567045841880;
- Wed, 28 Aug 2019 19:30:41 -0700 (PDT)
+	id 1i3FWc-0003A4-Ch; Thu, 29 Aug 2019 04:11:22 -0400
+Received: from mail.mtit.org ([95.143.128.160]:43504)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <rybka@mtit.org>) id 1i3FWX-000317-VS
+ for usrp-users@lists.ettus.com; Thu, 29 Aug 2019 04:11:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mtit.org;
+ s=feb16; h=Message-ID:Subject:To:From:Date:Content-Transfer-Encoding:
+ Content-Type:MIME-Version:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=diMGEuFBcBreu50+042ITxiuDt6q+AVsQhG0oMm49og=; b=B2OMlxhDL3DOunqWq67hdV0/e+
+ ZfQR2cTRjtxkBGiROvKGT84g0uedo8hgqZf9QqbzLz0k/2uRlgg9nVW4ZdnbyKcpAPDtEVGQq11ku
+ +UZls8jl2f6f+J71ynmsopQ5EeCqimFDvrGVp3q28WcpXIif1FrYcYXOhYL/x4+EMgzw=;
+Received: from localhost ([127.0.0.1] helo=10.237.4.122)
+ by mail.mtit.org with esmtp (Exim 4.92)
+ (envelope-from <rybka@mtit.org>) id 1i3FVn-0007fm-Te
+ for usrp-users@lists.ettus.com; Thu, 29 Aug 2019 10:10:36 +0200
 MIME-Version: 1.0
-References: <CAOR0_ui_9E3Mub_j4grbCAs+7bX-iD+gvbXtgOhyT3Pc8nz4uw@mail.gmail.com>
-In-Reply-To: <CAOR0_ui_9E3Mub_j4grbCAs+7bX-iD+gvbXtgOhyT3Pc8nz4uw@mail.gmail.com>
-Date: Thu, 29 Aug 2019 11:30:05 +0900
-Message-ID: <CAL7q81vFQA_dVnwYLcBEOW1+PsPduvnL1isCt8sCUw0TThuuaA@mail.gmail.com>
-To: Huacheng Zeng <zenghuacheng@gmail.com>
-Subject: Re: [USRP-users] RFNoC OFDM FPGA Build error on X310
+Date: Thu, 29 Aug 2019 10:10:31 +0200
+To: usrp-users@lists.ettus.com
+Message-ID: <7c488dd82b360fb737d6f203b7b844df@mtit.org>
+X-Sender: rybka@mtit.org
+User-Agent: Roundcube Webmail/1.1.12
+X-Spam-Score: -1.0 (-)
+X-Spam-Report: Spam detection software, running on the system "mail.mtit.org", 
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ Content preview:  Hello, I have encountered a strange problem using UHD 3.13
+ and 3.14 releases under Windows. I am using X310 USRPs for some time now,
+ and didn't have any problem with them. My development environment is Windows
+ 10, VS2017, boost 1.67 and UHD versions 3.13 and 3.14. When I tried to use
+ my software with B200mini USRP device, UHD completely crashed. I did some
+ investigation, and found out,
+ that even original Ettus Research binary distribution
+ crashes on USB devices. [...] 
+ Content analysis details:   (-1.0 points, 5.0 required)
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -1.0 ALL_TRUSTED            Passed through trusted hosts only via SMTP
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: ettus.com]
+Subject: [USRP-users] USB devices not working with recent UHD drivers on
+ Windows systems
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,10 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7526215830821801247=="
+From: Jakub Rybka via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jakub Rybka <rybka@mtit.org>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,97 +83,70 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7526215830821801247==
-Content-Type: multipart/alternative; boundary="000000000000c09d420591384afc"
+   Hello,
 
---000000000000c09d420591384afc
-Content-Type: text/plain; charset="UTF-8"
+I have encountered a strange problem using UHD 3.13 and 3.14 releases 
+under Windows. I am using X310 USRPs for some time now, and didn't have 
+any problem with them. My development environment is Windows 10, VS2017, 
+boost 1.67 and UHD versions 3.13 and 3.14. When I tried to use my 
+software with B200mini USRP device, UHD completely crashed. I did some 
+investigation, and found out, that even original Ettus Research binary 
+distribution crashes on USB devices.
 
-Hi Huacheng,
+Even this tiny bit of code crashes when compiled and run under Windows:
 
-Unfortunately, the Schmidl Cox and Equalizer block's code has gotten out of
-date. I would suggest looking at the blocks as a good starting point for
-making your own version.
+int UHD_SAFE_MAIN(int argc, char *argv[])
+{
+   std::string hint = "";
+   uhd::device_addrs_t addrs;
 
-Jonathon
+   addrs = uhd::device::find(hint, uhd::device::ANY);
+}
 
-On Thu, Aug 29, 2019 at 4:57 AM Huacheng Zeng via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+If you want to verify this does not work with USB devices at all, just 
+run uhd_find_devices from UHD 3.14.1.0 binary release on bus series 
+USRPs. I did use 
+http://files.ettus.com/binaries/uhd/uhd_003.014.001.000-release/Windows-10-x64/uhd_3.14.1.0-release_Winx64_VS2017.exe
 
-> Hello,
->
-> I have been trying to build FPGA image for the RFNoC OFDM blocks -
-> schmidl_cox, eq and ofdm_constellation demapper.
->
-> I have tried different combination of build with just schimdl_cox or eq or
-> ofdm_constellation_demapper:
->
-> 1) For eq build, I always got the following error:
-> ERROR: [Opt 31-2] SRLC32E
-> x300_core/inst_eq/inst_axi_wrapper/header_fifo/fifo_short/gen_srlc32e[64].srlc32e
-> is missing a connection on D pin.
->
-> 2) For schmidl_cox or ofdm_constellation_demapper, I got the following
-> problem:
-> ERROR: [Builder 0-0] The design did not satisfy timing constraints.
-> (Implementation outputs were still generated)
->
-> Can anyone help with these issues?
->
-> Thanks,
-> Huacheng
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+I did trace the problem with uhd::device::find to destructor 
+~libusb_device_impl(void), which calls libusb_unref_device. This should 
+be called after libusb_free_device_list in libusb_device_list_impl, but 
+when tracing the code, strange jumps occurs, and I suspect devices are 
+unreferenced in destructor before they can be freed (but not 
+unreferenced) in libusb_free_device_list. This works perfectly under 
+linux, but not in Windows. It can be some compiler optimization problem.
 
---000000000000c09d420591384afc
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is not the only problem in UHD, just *any* attempts to use USB 
+devices fails. uhd::usrp::multi_usrp::make for example runs, but throws 
+some 4 exceptions.
 
-<div dir=3D"ltr">Hi Huacheng,<div><br></div><div>Unfortunately, the Schmidl=
- Cox and Equalizer block&#39;s code has gotten out of date. I would suggest=
- looking at the blocks as a good starting point for making your own version=
-.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quot=
-e"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 29, 2019 at 4:57 AM Hu=
-acheng Zeng via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
-">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex"><div dir=3D"ltr">Hello,<br><br>I have been tryi=
-ng to build FPGA image for the RFNoC OFDM blocks - schmidl_cox, eq and ofdm=
-_constellation demapper.<br><br>I have tried different combination of build=
- with just schimdl_cox or eq or ofdm_constellation_demapper:<br><br>1) For =
-eq build, I always got the following error: <br>ERROR: [Opt 31-2] SRLC32E x=
-300_core/inst_eq/inst_axi_wrapper/header_fifo/fifo_short/gen_srlc32e[64].sr=
-lc32e is missing a connection on D pin.<br><br>2) For schmidl_cox or ofdm_c=
-onstellation_demapper, I got the following problem:<br>ERROR: [Builder 0-0]=
- The design did not satisfy timing constraints. (Implementation outputs wer=
-e still generated)<br><br>Can anyone help with these issues?<br><br>Thanks,=
-<br>Huacheng=C2=A0<br><div><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+More strangely, I suspect there is more to Windows UHD trouble. If I do 
+this: uhd::device_addr_t addr; code fails with exception, with no USRP 
+devices connected. It is very similar to 
+http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-July/057279.html 
+.
 
---000000000000c09d420591384afc--
+Does anyone have any clue how to resolve this issue ? I am using linux 
+as primary development OS with UHD, and I am not as fluent with MSVC 
+compilers. I am using Windows just to compile Windows version of my USRP 
+software.
 
+Variants tested:
 
---===============7526215830821801247==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Visual Studio 2015 and Visual Studio 2017, in their latest patch 
+versions.
+Boost 1.67, 1.68, 1.69 and 1.70
+libusb 1.0.22 and 1.0.23rc3
+debug and release, static and dynamic, and static and dynamic runtime 
+versions of all three libraries.
+
+None does work.
+
+Best regards,
+
+Jakub Rybka
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7526215830821801247==--
-
