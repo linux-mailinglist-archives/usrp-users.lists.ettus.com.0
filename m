@@ -2,56 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88DD7A3A78
-	for <lists+usrp-users@lfdr.de>; Fri, 30 Aug 2019 17:36:57 +0200 (CEST)
-Received: from [::1] (port=59038 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3061EA3B80
+	for <lists+usrp-users@lfdr.de>; Fri, 30 Aug 2019 18:07:28 +0200 (CEST)
+Received: from [::1] (port=36166 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i3ixK-0002Ek-SK; Fri, 30 Aug 2019 11:36:54 -0400
-Received: from mail-qk1-f180.google.com ([209.85.222.180]:46597)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <support@ettus.com>) id 1i3ixG-00028u-Ot
- for usrp-users@lists.ettus.com; Fri, 30 Aug 2019 11:36:50 -0400
-Received: by mail-qk1-f180.google.com with SMTP id p13so6441770qkg.13
- for <usrp-users@lists.ettus.com>; Fri, 30 Aug 2019 08:36:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:sender:from:date:message-id
- :subject:to:cc;
- bh=A/2vQsvyduDN95we8prcOy5r/w5ZXRoeeH78aP+ydqQ=;
- b=MR79/FmTU/0OsvN+DmpXGJBAoAiRdlkZgVT+8EmUomI5ovqn9kPti0XMhfUhvHddQk
- G2Osk3J1g3XBsoUBaFeIkcZ+pYCKipDMj1BnVu6yiv/nvUWKrS+wKzrbG40euetSEOd8
- MUEV6vb0CTfPRpklaqdDXt4Eq3LTZYELjzVQIgJ5BsoBCOSW6zVIuArU3XeQ3oYY1Irx
- t/7EcBG/3WdVxLT54FpYtug8L38LMwHH0lzC5z8IJBu1kOG2e3xCEEZlXhRMAK/H7sqr
- zj7j+9kWahN/7HL6qUoKk7zCraZymLqNpRAN18CD5ydWL6hL8sTCTW3me879BfIzS+jj
- 4cGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:sender:from
- :date:message-id:subject:to:cc;
- bh=A/2vQsvyduDN95we8prcOy5r/w5ZXRoeeH78aP+ydqQ=;
- b=filqlg1g+U5Vkd2IGLXeM69T2G1ByWCXOSAQVyqPhO37Dq5+4QgV8CJ7hAJXNFkNTZ
- 7SgcntMFQ5+LwZZsv4/Yp6ysMBqj+7ovuJQvsKH/0MNYavgUAdJyNNzyHBPj1p4i6Cp/
- jQq6EN5JQbuH53iDYoKfDTmzcFZ5waXo8RBwy+PeAY+TATNT9izxgcr4mkrzdrhe73zF
- yombwCZXra7OlYybVVmbNRv1maYjQFltUhUa1PFDypZWPh4wBT1dgvbqIv38mWE/j7J3
- tWgb48YDD48vGjC0o4oqk1mJGjREK7vVrZE1lPQTSr1HVw4/Ji2Wiv/RzUsZS7XY7AF+
- Vvdw==
-X-Gm-Message-State: APjAAAXGPGh4O7fwGL3L/PLrurVxeqmA+yQQCFZRVEGiEQ/Be4+aiKnz
- 5zJIFlrW1DFHwSdrGnvnUnUxEQx1cC57OGQHs4LumzSc
-X-Google-Smtp-Source: APXvYqyW47QGl4uxz2l/vYx22OG/2iKag7E3OaWBJ+242/48jLD3PNWgwsp6+CI4X5dg6zoizAc5EQOO2dYKXwBzIZY=
-X-Received: by 2002:a05:620a:786:: with SMTP id
- 6mr6766003qka.307.1567179369936; 
- Fri, 30 Aug 2019 08:36:09 -0700 (PDT)
+	id 1i3jQr-0007yc-Ga; Fri, 30 Aug 2019 12:07:25 -0400
+Received: from mail.mtit.org ([95.143.128.160]:37140)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <rybka@mtit.org>) id 1i3jQm-0007tQ-TT
+ for usrp-users@lists.ettus.com; Fri, 30 Aug 2019 12:07:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mtit.org;
+ s=feb16; h=Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
+ Content-Transfer-Encoding:Content-Type:MIME-Version:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=5dyinYUvRSE57FZb5Bm+Jc5uKR7zt/70cePc7EdsEDU=; b=ATWe2v2jJ8NmRWsBOa5yZG2YL2
+ asp3sKaDBCfFJkTJaQFb3tK0ihs1m0V84jM1msG8VLL3zyIDUy20ICACWK+LPsVJ958MzbRjFQPuE
+ Qh/017ihlpZC5ojIDjje+yXguS6NhdGY2eQzI9OykT6KJ7G5L7V3hi+2iHCOWlT67SAI=;
+Received: from localhost ([127.0.0.1] helo=10.237.4.122)
+ by mail.mtit.org with esmtp (Exim 4.92)
+ (envelope-from <rybka@mtit.org>)
+ id 1i3jPw-0003Sr-QZ; Fri, 30 Aug 2019 18:06:33 +0200
 MIME-Version: 1.0
-References: <022046f63a5723c6851aee45d88103b2.squirrel@webmail.tu-dortmund.de>
-In-Reply-To: <022046f63a5723c6851aee45d88103b2.squirrel@webmail.tu-dortmund.de>
-X-Google-Sender-Delegation: sam.reiter@ettus.com
-Date: Fri, 30 Aug 2019 10:35:33 -0500
-X-Google-Sender-Auth: JXnEBfkEcGjQTLr9939it8h96MI
-Message-ID: <CACSOXP13AaQBSCckyLV7tDn6w6DcCOfKaLLHoO570qBqhyzdsQ@mail.gmail.com>
-To: felix.greiwe@tu-dortmund.de
-Subject: Re: [USRP-users] Phase Sync between to UBX-160 Daugtherboards using
- RFNoC Radio
+Date: Fri, 30 Aug 2019 18:06:28 +0200
+To: Sam Reiter <sam.reiter@ettus.com>
+In-Reply-To: <CANf970Zf3zjb1GNko89Vie3EJPdyR7HmQdaGWqoBJ1VUMHA3fw@mail.gmail.com>
+References: <7c488dd82b360fb737d6f203b7b844df@mtit.org>
+ <CANf970YL45SR71Q8UgcNjymzTNGXYqLvRu=fqUBGHJaSmDCOEQ@mail.gmail.com>
+ <e541a57f3cc909795dc4d2b1e717af43@mtit.org>
+ <CANf970Zf3zjb1GNko89Vie3EJPdyR7HmQdaGWqoBJ1VUMHA3fw@mail.gmail.com>
+Message-ID: <6d7ee1b40bea1a5a88db23f5a88c4101@mtit.org>
+X-Sender: rybka@mtit.org
+User-Agent: Roundcube Webmail/1.1.12
+X-Spam-Score: -1.0 (-)
+X-Spam-Report: Spam detection software, running on the system "mail.mtit.org", 
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ Content preview:  Hello Sam, rolling back to libusb 1.0.21 does indeed make
+ things work better,
+ but I must say far from perfect. D:\Libs\bin>uhd_find_devices.exe
+ [INFO] [UHD] Win32; Microsoft Visual C++ version 14.1; Boost_106900;
+ UHD_3.14.1.0-release No UHD Devices Found [...] 
+ Content analysis details:   (-1.0 points, 5.0 required)
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -1.0 ALL_TRUSTED            Passed through trusted hosts only via SMTP
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: ettus.com]
+Subject: Re: [USRP-users] USB devices not working with recent UHD drivers on
+ Windows systems
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,10 +68,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ettus Research Support via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ettus Research Support <support@ettus.com>
-Cc: Usrp Liste <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2008452988335043651=="
+From: Jakub Rybka via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jakub Rybka <rybka@mtit.org>
+Cc: usrp-users@lists.ettus.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,213 +86,259 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2008452988335043651==
-Content-Type: multipart/alternative; boundary="000000000000a5109105915761e6"
+Hello Sam,
 
---000000000000a5109105915761e6
-Content-Type: text/plain; charset="UTF-8"
+   rolling back to libusb 1.0.21 does indeed make things work better, but 
+I must say far from perfect.
 
-Hey Felix,
+D:\Libs\bin>uhd_find_devices.exe
+[INFO] [UHD] Win32; Microsoft Visual C++ version 14.1; Boost_106900; 
+UHD_3.14.1.0-release
+No UHD Devices Found
 
-Your hunch is correct -- you'll need to use timed commands to issue your
-tune requests and to initiate streaming. This will involve editing the
-python script generated by GRC. Here's a relevant GRC manual section [1],
-and an example snippet of tuning with timed commands in the UHD Manual [2].
-Doing this correctly should ensure that you are able to keep a consistent
-phase offset between your TX channels at a given frequency.
+Without any device connected, I finally have "No UHD Devices Found" and 
+successful return code 0. But with USB USRP device connected, it just 
+hangs, doesn't matter if it have firmware loaded or not.
 
-I'm not sure if it'd actually be an issue, but one thing from your
-flowgraph struck me. You might want to fork the output of your cosine block
-so that both TX streams are being fed data from a single source. I don't
-think this will solve your problem, but if the blocks are doing the same
-thing, may help take a variable out of the equation.
+D:\Libs\bin>uhd_find_devices.exe
+[INFO] [UHD] Win32; Microsoft Visual C++ version 14.1; Boost_106900; 
+UHD_3.14.1.0-release
+*HANGS*
 
-Sam
+But I can at least get output from uhd_usrp_probe:
 
-[1] https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__block.html
-[2] https://files.ettus.com/manual/page_sync.html#sync_phase_lo
+D:\Libs\bin>uhd_usrp_probe.exe
+[INFO] [UHD] Win32; Microsoft Visual C++ version 14.1; Boost_106900; 
+UHD_3.14.1.0-release
+[INFO] [B200] Loading firmware image: C:\UHD\usrp_b200_fw.hex...
+[INFO] [B200] Detected Device: B200mini
+[INFO] [B200] Loading FPGA image: C:\UHD\usrp_b200mini_fpga.bin...
+[INFO] [B200] Operating over USB 3.
+[INFO] [B200] Initialize CODEC control...
+[INFO] [B200] Initialize Radio control...
+[INFO] [B200] Performing register loopback test...
+[INFO] [B200] Register loopback test passed
+[INFO] [B200] Setting master clock rate selection to 'automatic'.
+[INFO] [B200] Asking for clock rate 16.000000 MHz...
+[INFO] [B200] Actually got clock rate 16.000000 MHz.
+*SHORTENED*
 
+As you can see, radio is working properly, and can get all properties 
+and device tree. If I try my test program, which calls only 
+uhd::device::find(hint, uhd::device::ANY);, i still do get exceptions 
+even without any USB device, but at least it terminates with return code 
+0.
 
-On Thu, Aug 29, 2019 at 8:49 AM Felix Greiwe via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Exception thrown at 0x00007FFC1C4A9129 in UHDTest.exe: Microsoft C++ 
+exception: 
+boost::exception_detail::clone_impl<boost::exception_detail::error_info_injector<boost::system::system_error> 
+ > at memory location 0x00000048601FB530.
+Exception thrown at 0x00007FFC1C4A9129 in UHDTest.exe: Microsoft C++ 
+exception: uhd::os_error at memory location 0x000000485F7DEB30.
+The thread 0xfc has exited with code 0 (0x0).
+The thread 0x820 has exited with code 0 (0x0).
+The thread 0x138c has exited with code 0 (0x0).
+The thread 0xe9c has exited with code 0 (0x0).
+The thread 0x217c has exited with code 0 (0x0).
+The thread 0x430 has exited with code 0 (0x0).
+The thread 0x438 has exited with code 0 (0x0).
+The thread 0x16dc has exited with code 0 (0x0).
+The thread 0x1638 has exited with code 0 (0x0).
+The thread 0x1c94 has exited with code 0 (0x0).
+The thread 0x1dac has exited with code 0 (0x0).
+The thread 0x22b8 has exited with code 0 (0x0).
+The thread 0x1830 has exited with code 0 (0x0).
+The thread 0x1330 has exited with code 0 (0x0).
+The thread 0x3f0 has exited with code 0 (0x0).
+The thread 0xdcc has exited with code 0 (0x0).
+The program '[4644] UHDTest.exe' has exited with code 0 (0x0).
 
-> Hello together,
->
-> I am trying to transmit one complex cosine from both TX - Antenna of my
-> USRP-x310 with two UBX-160 Daugtherboards. I am transmitting a cosine with
-> the frequency of 100 kHz and the center frequency of my RFNoC Radio Blocks
-> is 2.45 GHz. So basically I see a peak at 2.45 Ghz + 100 kHz at my
-> spectrum analyzer (plus the lo leakage at 2.45 GHz). Additionally I
-> receive the spectrum on another x310.
->
-> In the following link you can see my flowgraph in GRC:
-> https://ibb.co/7W6mTKf
->
-> As you can see i have two multiply blocks to change the phase of the
-> complex cosines, the value of the multiply blocks are
->
-> > pow(math.e, 1j*phi*(math.pi/180)) and
-> > pow(math.e, 1j*psi*(math.pi/180)).
->
-> I can change phi and psi with a qt gui range slider. Default value ist
-> multiplication by 1.
->
-> My goal with this setup was to check the MIMO capabilities of the USRP
-> x310.
-> I calculated the Phase offset both transmitted waves should have at the
-> antenna of my spectrum analyzer. With my multiplication blocks I created
-> different phase offsets, thus causing destructive interference at the
-> receiving end (peak at analyzer is the smallest at this phase).
->
-> However most of the time when I start different runs of my flowgraph (or
-> when I power cycle the device) I always have to set a different phase
-> offset to see the destructive interference. To me it seems pretty random
-> which phase offset both transmitting path get even though i don't
-> understand why.
->
-> In another thread I read that maybe timed tuning will work for me but I
-> did not quite understand what that improves in particular nor who I use it
-> in my  GRC generated python file. (Using the RFnoC Radio Blocks does not
-> make it easier by the way.) This is the link:
->
->
-> http://ettus.80997.x6.nabble.com/USRP-users-use-a-usrp-x310-as-MIMO-transmitter-daughterboard-synchronization-tt11642.html
->
-> Any ideas, suggestions and explanations on how to phase align the transmit
-> path of my (single) USRP x310 would be greatly appreciated!
->
-> Best regards
->
-> Felix
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+But I think it is safe to say, that libusb 1.0.22 and newer is causing 
+*some* problems.
 
---000000000000a5109105915761e6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Best regards,
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">Hey Felix,</div><div class=3D"gmail_default" style=3D"font-fami=
-ly:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font=
--family:verdana,sans-serif">Your hunch is correct -- you&#39;ll need to use=
- timed commands to issue your tune requests and to initiate streaming. This=
- will involve editing the python script generated by GRC. Here&#39;s a rele=
-vant GRC manual section [1], and an example snippet of tuning with timed co=
-mmands in the UHD Manual [2]. Doing this correctly should ensure that you a=
-re able to keep a consistent phase offset between your TX channels at a giv=
-en frequency. <br></div><div class=3D"gmail_default" style=3D"font-family:v=
-erdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fam=
-ily:verdana,sans-serif">I&#39;m not sure if it&#39;d actually be an issue, =
-but one thing from your flowgraph struck me. You might want to fork the out=
-put of your cosine block so that both TX streams are being fed data from a =
-single source. I don&#39;t think this will solve your problem, but if the b=
-locks are doing the same thing, may help take a variable out of the equatio=
-n.<br></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-=
-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">Sam</div><div class=3D"gmail_default" style=3D"font-family:verd=
-ana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family=
-:verdana,sans-serif">[1] <a href=3D"https://www.gnuradio.org/doc/doxygen/cl=
-assgr_1_1uhd_1_1usrp__block.html">https://www.gnuradio.org/doc/doxygen/clas=
-sgr_1_1uhd_1_1usrp__block.html</a></div><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif">[2] <a href=3D"https://files.ettus.com/=
-manual/page_sync.html#sync_phase_lo">https://files.ettus.com/manual/page_sy=
-nc.html#sync_phase_lo</a><br></div><div class=3D"gmail_default" style=3D"fo=
-nt-family:verdana,sans-serif"><br></div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 29, 2019 at 8:49 AM Fel=
-ix Greiwe via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
-usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex">Hello together,<br>
-<br>
-I am trying to transmit one complex cosine from both TX - Antenna of my<br>
-USRP-x310 with two UBX-160 Daugtherboards. I am transmitting a cosine with<=
-br>
-the frequency of 100 kHz and the center frequency of my RFNoC Radio Blocks<=
-br>
-is 2.45 GHz. So basically I see a peak at 2.45 Ghz + 100 kHz at my<br>
-spectrum analyzer (plus the lo leakage at 2.45 GHz). Additionally I<br>
-receive the spectrum on another x310.<br>
-<br>
-In the following link you can see my flowgraph in GRC:<br>
-<a href=3D"https://ibb.co/7W6mTKf" rel=3D"noreferrer" target=3D"_blank">htt=
-ps://ibb.co/7W6mTKf</a><br>
-<br>
-As you can see i have two multiply blocks to change the phase of the<br>
-complex cosines, the value of the multiply blocks are<br>
-<br>
-&gt; pow(math.e, 1j*phi*(math.pi/180)) and<br>
-&gt; pow(math.e, 1j*psi*(math.pi/180)).<br>
-<br>
-I can change phi and psi with a qt gui range slider. Default value ist<br>
-multiplication by 1.<br>
-<br>
-My goal with this setup was to check the MIMO capabilities of the USRP x310=
-.<br>
-I calculated the Phase offset both transmitted waves should have at the<br>
-antenna of my spectrum analyzer. With my multiplication blocks I created<br=
->
-different phase offsets, thus causing destructive interference at the<br>
-receiving end (peak at analyzer is the smallest at this phase).<br>
-<br>
-However most of the time when I start different runs of my flowgraph (or<br=
->
-when I power cycle the device) I always have to set a different phase<br>
-offset to see the destructive interference. To me it seems pretty random<br=
->
-which phase offset both transmitting path get even though i don&#39;t<br>
-understand why.<br>
-<br>
-In another thread I read that maybe timed tuning will work for me but I<br>
-did not quite understand what that improves in particular nor who I use it<=
-br>
-in my=C2=A0 GRC generated python file. (Using the RFnoC Radio Blocks does n=
-ot<br>
-make it easier by the way.) This is the link:<br>
-<br>
-<a href=3D"http://ettus.80997.x6.nabble.com/USRP-users-use-a-usrp-x310-as-M=
-IMO-transmitter-daughterboard-synchronization-tt11642.html" rel=3D"noreferr=
-er" target=3D"_blank">http://ettus.80997.x6.nabble.com/USRP-users-use-a-usr=
-p-x310-as-MIMO-transmitter-daughterboard-synchronization-tt11642.html</a><b=
-r>
-<br>
-Any ideas, suggestions and explanations on how to phase align the transmit<=
-br>
-path of my (single) USRP x310 would be greatly appreciated!<br>
-<br>
-Best regards<br>
-<br>
-Felix<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000a5109105915761e6--
+Jakub
 
 
---===============2008452988335043651==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Dne 2019-08-30 16:36, Sam Reiter napsal:
+> Hey Jakub,
+> 
+> Thanks for the additional details. I can confirm that I've seen some
+> suspicious behavior from with UHD 3.14.1.0 binary on my machine since
+> you sent this in. It seems like libusb 1.0.22 causes crashing behavior
+> with uhd_find_devices. I rolled this back to libusb 1.0.21 and things
+> seem to have improved, but I need to do some more testing. I'd like to
+> know if you have similar results.
+> 
+> I'm going to get a fresh Windows image up and running today and see if
+> I can't characterize this any better on my end. I may reach back out
+> to you offline if there are any setup details we need to work through.
+> Otherwise, I'll try to post an update / resolution here once I have
+> it.
+> 
+> Sam
+> 
+> On Fri, Aug 30, 2019 at 6:13 AM Jakub Rybka <rybka@mtit.org> wrote:
+> 
+>> Sam,
+>> 
+>> I do have drivers installed on Windows 10 machine. I can manage the
+>> code
+>> to run by modifying UHD driver (commenting out libusb_unref_device),
+>> and
+>> my radio is then properly found. What is bugging me, that even
+>> original
+>> Ettus compiled UHD installer from files.ettus.com [1] fails. If
+>> there are no
+>> UHD devices connected, uhd_find_devices.exe just shows "No UHD
+>> Devices
+>> Found". Under Windows, there is no such message. The program just
+>> fails,
+>> and does NOT write this message. I tested it on multiple computers
+>> running Windows 10 LTSC and Windows 10 Professional 1903.
+>> 
+>> Best regards,
+>> Jakub
+>> 
+>> Dne 2019-08-29 16:54, Sam Reiter napsal:
+>>> Jakub,
+>>> 
+>>> I'll look into this. The issues you're reporting with the binary
+>> are
+>>> probably what I'll want to try to reproduce first. Can you be more
+>>> specific as to the behavior of your system during the crash you're
+>>> reporting? Screenshots would be useful if there are dialogs
+>> present
+>>> during / after the crash.
+>>> 
+>>> Beyond that, it sounds like you've had this system up and running
+>> with
+>>> a B series in the past, right? This would imply that you've
+>> installed
+>>> the Windows USB driver successfully:
+>>> 
+>> 
+> http://files.ettus.com/manual/page_transport.html#transport_usb_installwin
+>>> and that you can see the B series device in the Windows Device
+>> manager
+>>> when connected.
+>>> 
+>>> Sam
+>>> 
+>>> On Thu, Aug 29, 2019 at 3:11 AM Jakub Rybka via USRP-users
+>>> <usrp-users@lists.ettus.com> wrote:
+>>> 
+>>>> Hello,
+>>>> 
+>>>> I have encountered a strange problem using UHD 3.13 and 3.14
+>>>> releases
+>>>> under Windows. I am using X310 USRPs for some time now, and
+>> didn't
+>>>> have
+>>>> any problem with them. My development environment is Windows 10,
+>>>> VS2017,
+>>>> boost 1.67 and UHD versions 3.13 and 3.14. When I tried to use my
+>>>> software with B200mini USRP device, UHD completely crashed. I did
+>>>> some
+>>>> investigation, and found out, that even original Ettus Research
+>>>> binary
+>>>> distribution crashes on USB devices.
+>>>> 
+>>>> Even this tiny bit of code crashes when compiled and run under
+>>>> Windows:
+>>>> 
+>>>> int UHD_SAFE_MAIN(int argc, char *argv[])
+>>>> {
+>>>> std::string hint = "";
+>>>> uhd::device_addrs_t addrs;
+>>>> 
+>>>> addrs = uhd::device::find(hint, uhd::device::ANY);
+>>>> }
+>>>> 
+>>>> If you want to verify this does not work with USB devices at all,
+>>>> just
+>>>> run uhd_find_devices from UHD 3.14.1.0 binary release on bus
+>> series
+>>>> USRPs. I did use
+>>>> 
+>>> 
+>> 
+> http://files.ettus.com/binaries/uhd/uhd_003.014.001.000-release/Windows-10-x64/uhd_3.14.1.0-release_Winx64_VS2017.exe
+>>>> 
+>>>> I did trace the problem with uhd::device::find to destructor
+>>>> ~libusb_device_impl(void), which calls libusb_unref_device. This
+>>>> should
+>>>> be called after libusb_free_device_list in
+>> libusb_device_list_impl,
+>>>> but
+>>>> when tracing the code, strange jumps occurs, and I suspect
+>> devices
+>>>> are
+>>>> unreferenced in destructor before they can be freed (but not
+>>>> unreferenced) in libusb_free_device_list. This works perfectly
+>> under
+>>>> 
+>>>> linux, but not in Windows. It can be some compiler optimization
+>>>> problem.
+>>>> 
+>>>> This is not the only problem in UHD, just *any* attempts to use
+>> USB
+>>>> devices fails. uhd::usrp::multi_usrp::make for example runs, but
+>>>> throws
+>>>> some 4 exceptions.
+>>>> 
+>>>> More strangely, I suspect there is more to Windows UHD trouble.
+>> If I
+>>>> do
+>>>> this: uhd::device_addr_t addr; code fails with exception, with no
+>>>> USRP
+>>>> devices connected. It is very similar to
+>>>> 
+>>> 
+>> 
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-July/057279.html
+>>>> 
+>>>> .
+>>>> 
+>>>> Does anyone have any clue how to resolve this issue ? I am using
+>>>> linux
+>>>> as primary development OS with UHD, and I am not as fluent with
+>> MSVC
+>>>> 
+>>>> compilers. I am using Windows just to compile Windows version of
+>> my
+>>>> USRP
+>>>> software.
+>>>> 
+>>>> Variants tested:
+>>>> 
+>>>> Visual Studio 2015 and Visual Studio 2017, in their latest patch
+>>>> versions.
+>>>> Boost 1.67, 1.68, 1.69 and 1.70
+>>>> libusb 1.0.22 and 1.0.23rc3
+>>>> debug and release, static and dynamic, and static and dynamic
+>>>> runtime
+>>>> versions of all three libraries.
+>>>> 
+>>>> None does work.
+>>>> 
+>>>> Best regards,
+>>>> 
+>>>> Jakub Rybka
+>>>> 
+>>>> _______________________________________________
+>>>> USRP-users mailing list
+>>>> USRP-users@lists.ettus.com
+>>>> 
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> 
+> 
+> Links:
+> ------
+> [1] http://files.ettus.com
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2008452988335043651==--
-
