@@ -2,77 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F52A49C9
-	for <lists+usrp-users@lfdr.de>; Sun,  1 Sep 2019 16:22:55 +0200 (CEST)
-Received: from [::1] (port=36408 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DCCA4CF9
+	for <lists+usrp-users@lfdr.de>; Mon,  2 Sep 2019 03:00:27 +0200 (CEST)
+Received: from [::1] (port=47912 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i4Qkn-0003qd-I7; Sun, 01 Sep 2019 10:22:53 -0400
-Received: from mail-oln040092010051.outbound.protection.outlook.com
- ([40.92.10.51]:6181 helo=NAM04-CO1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <e070832@hotmail.com>) id 1i4Qkj-0003ZC-Pk
- for usrp-users@lists.ettus.com; Sun, 01 Sep 2019 10:22:49 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OSvn8bJvBn8ueUfLk7eXqimwT25r67wvgEWxXCLfZfWcrfvg0mY/7cWPVZAB+RVlDVTG6Suh4zBZjchyLBeNIH1d0JEiUz/GtaOiZBv0Gu0Ho6QtiYLOvIxTClvPmL8M2ef/AblqjGHPw883XhuuLU8SFvbBbxeOrNYcUHvI4+cDU7Xvwl+pLFezgHy6VxjoXSm9GnA0Pvi3OXLjgGDEcZkI1RmiWR4R9lLpwqFl4kjgTEmsmPDfKex8Ob1xcYNMQvcGBz3dC5nhC7a7nCLvZX+ZRZtcovco0qm9UTSwRxDQ9NJ5io9zIwHg24Cfoak7tyTrrVQ3fIohmi97nHee8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VaUGLjobPTyZFY4VHTwWNVxrvbyhrQIrC/Vy1DdBqe8=;
- b=fKffz2RXiuL+mD0BBGM7huUAM6aTtr5Z526WfeMJ72r8l0R55YjRHeCMD8hcsMzecMw2F4F3DkzSxi4Jhwh1BuhL69DiVV4O72s1uxqWZkmV5bTmahAhW9skvj1o6tB3erZXLi2dAxdb61/mDFW++cOJ82e+XWnzyB7SEKx6m13RDp5067y5/jRJ9YSTeDbNQ8PhnYrtyg80CzRGejdfHzy1wx6avUZFe4j/sRudjaDTb64DcF54wVP2a+sj8DdgKo0jD7CfVyXrWIGjIy8s6tefEurakckpIEIejqP7hL4kmHnXPI4MffxMjok37XRw59vR7xdMthA4aBupdGPdEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VaUGLjobPTyZFY4VHTwWNVxrvbyhrQIrC/Vy1DdBqe8=;
- b=vF/D6cCe8+3GkvYu1qzEZUcO3e91Fic/OcNQWfqPWRamuQxjhjy+EskPAn0B0ZPqyPx9rxhZLFMGDtPhbK+g4iyR75aZtu9fhMctnfssd+CbpUqk5KOsMk4UZovSR528fb2yi1x+EKIsMI0KTWNciueH5zbl7qVZUrLDLjqiOKFRR7/eqtAOiamKkH6iKxA4nfblqxvqzgGToui4UBvpWkjUec74sbvc48V0BObqzrpM1+uWf68XCIk88sxJ1eixaxelBRdaE6HN5EERIyiG4S1MDsDKujMKYb9hcmmFYmyr3RgLWd2Og/37X5zowA9E5IIDLJxjVpG173uxM6PG6w==
-Received: from CO1NAM04FT022.eop-NAM04.prod.protection.outlook.com
- (10.152.90.57) by CO1NAM04HT146.eop-NAM04.prod.protection.outlook.com
- (10.152.91.206) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2220.16; Sun, 1 Sep
- 2019 14:22:08 +0000
-Received: from CY4PR19MB0984.namprd19.prod.outlook.com (10.152.90.51) by
- CO1NAM04FT022.mail.protection.outlook.com (10.152.90.167) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2220.16 via Frontend Transport; Sun, 1 Sep 2019 14:22:08 +0000
-Received: from CY4PR19MB0984.namprd19.prod.outlook.com
- ([fe80::9d70:67e8:a886:46a1]) by CY4PR19MB0984.namprd19.prod.outlook.com
- ([fe80::9d70:67e8:a886:46a1%8]) with mapi id 15.20.2199.021; Sun, 1 Sep 2019
- 14:22:07 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Starting from Scratch with a E310
-Thread-Index: AQHVYM5UlqYiVHrV506Ksu/yOSgRFQ==
-Date: Sun, 1 Sep 2019 14:22:07 +0000
-Message-ID: <CY4PR19MB0984A7F994845D4D0CE3B042A4BF0@CY4PR19MB0984.namprd19.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:C346FB233BDB98DC2E7E8A40CEF93B1645BAF977DC6A961946EA6542EA676A67;
- UpperCasedChecksum:E2CD7DC41D1BED1A02FC3A54879155C55385B615C5402618A19B29CC61D1F608;
- SizeAsReceived:6637; Count:40
-x-tmn: [9eyT4nefu9pMtS0Wb00fXyoLs66ime1knCEj4jfvgq9xTjddLIMVUKuwGyeOUspE]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 40
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
- SRVR:CO1NAM04HT146; 
-x-ms-traffictypediagnostic: CO1NAM04HT146:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-message-info: KTzyaUsFGJh47ZI+z7IfSONxdd6Pru2L7CCEgxZn4bvaELbwPTDJoFacNJSvBv76ScAwVpSL42nCSEK5afYbNPFcWUFBgKLrKuvST6jWOdScix4PBPTkqe+OB+q7L9GygYo3hra4ViHfemBR1uj7a+Ecl4dFVlq78YsHSUrSSVyPb34t+9iegDJrr8ZeJclB
-x-ms-exchange-transport-forked: True
+	id 1i4ahk-0002gW-SS; Sun, 01 Sep 2019 21:00:24 -0400
+Received: from mail-ot1-f70.google.com ([209.85.210.70]:37275)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <mikio@dolphinsystem.jp>)
+ id 1i4ahg-0002ad-RI
+ for usrp-users@lists.ettus.com; Sun, 01 Sep 2019 21:00:20 -0400
+Received: by mail-ot1-f70.google.com with SMTP id x31so8009692ota.4
+ for <usrp-users@lists.ettus.com>; Sun, 01 Sep 2019 18:00:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dolphinsystem-jp.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QzUKsb+swEuq6un+hJ5FXg9NvPYoAwP8r3rqw/S1RvA=;
+ b=Ydd2sV0O6OST9o3WpacWMlv3VayQAnHEldtfUQNxchF2jJ6zOD9/ibUF0do4dg4xXz
+ Mvz44kpZo3Ph6qAYerBMcW6baup7QUlqVRmIzKehObdUz7OOyl97pJj2mhaBvZoon6hu
+ GniFZ6AmUUnTGJg4PkZIgyjfFVm/IM0NAKZnuV8t1g+p/BOugsmPVd/mMozkTVIVws1J
+ +HwGLWF7xkuzsFOKT4xpWUqNBliXqTVXPcN7BQ5kbsr7Q8JZhiQobrU5Z1oXrUvbCOo7
+ rXuhyqDURR4tkGCm01p7Jq141q0hGPK42bdkWDzzDtXCKavj/OQsU1xehGudKc7lGHOG
+ hI1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QzUKsb+swEuq6un+hJ5FXg9NvPYoAwP8r3rqw/S1RvA=;
+ b=pP1xrG8E8TtOeayyTGNycJNury3KIjgxFZGjWMlJ6jFArEP4Mp7i3sHfVBO6/wi6tN
+ mVFKF1kKMiKYipq0EX/B9Q6xwwj6vLNVHO/T/8Rao+v8ue/onCBy5tbhZ7AMuaz1ozCL
+ cvuXm+BpIuSj++XcfrtPvp/J4u8aACSr9zeiAFnFwr/+c2xiBOYQiEsgLTRW5eyEOBiy
+ klWtaQbHzdgI/3uQv4V8Dp6tYxl3qyAf2mG9oT3vTOMqHY0CEidVWuGORgnwarXNAo+b
+ ChhVkZd4ZNZt7tRbUBEUIU8ZVecdlxjS8lbmGpcvrzA+QmDesvPhYuQsNqFv1bIOQw0Y
+ FyqA==
+X-Gm-Message-State: APjAAAVd+Ah7jW6i+LMk1fRmd1szSfQNs65F4BEH7JoAgL+iHbJnV07g
+ Hcvz14Mvek81tuUH5b9WMsYryDHSY8sPLoeH8mKaUg==
+X-Google-Smtp-Source: APXvYqzm7sziqdOBdaFuuewz8NEvsr865/4JnEnQhZj/bOF9MbhIciovVvXP+duszj+/i7C7FaUABuQ11aU2prbNstw=
+X-Received: by 2002:a9d:4d14:: with SMTP id n20mr4267097otf.48.1567385979854; 
+ Sun, 01 Sep 2019 17:59:39 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 046045c7-d7f4-45a1-0ce0-08d72ee7c560
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2019 14:22:07.9084 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1NAM04HT146
-Subject: [USRP-users] Starting from Scratch with a E310
+References: <CY4PR19MB0984A7F994845D4D0CE3B042A4BF0@CY4PR19MB0984.namprd19.prod.outlook.com>
+In-Reply-To: <CY4PR19MB0984A7F994845D4D0CE3B042A4BF0@CY4PR19MB0984.namprd19.prod.outlook.com>
+Date: Mon, 2 Sep 2019 09:59:06 +0900
+Message-ID: <CABfZwccOcTJSnwDMygsyaz49F5d6wiJae33qXrGaAd750L=rBA@mail.gmail.com>
+To: Jeff S <e070832@hotmail.com>
+Subject: Re: [USRP-users] Starting from Scratch with a E310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -84,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jeff S <e070832@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============7843598029629764314=="
+From: Mikio Fukushima via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mikio Fukushima <mikio@dolphinsystem.jp>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5378255282965025435=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -100,135 +76,221 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7843598029629764314==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY4PR19MB0984A7F994845D4D0CE3B042A4BF0CY4PR19MB0984namp_"
+--===============5378255282965025435==
+Content-Type: multipart/alternative; boundary="0000000000008e35dc0591877cdf"
 
---_000_CY4PR19MB0984A7F994845D4D0CE3B042A4BF0CY4PR19MB0984namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--0000000000008e35dc0591877cdf
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Has anyone recently started from scratch trying to install the E310 SDK on =
-a new install of Ubuntu 16.04 LTS and 18.04 LTS?  I started with 18.04 and =
-had some issues so I made a clean install of 16.04 and then followed the di=
-rections based on Application Number AN-311, located at:
+Hi Jeff
+AN-311 is now expired.
 
-
-https://kb.ettus.com/Software_Development_on_the_E310_and_E312#Compiling_an=
-d_installing_UHD
-
-I had to add an install of python-pip and git-core before going through the=
- pybombs commands, but when I get to the cmake command, I get the following=
-:
-cmake -DCMAKE_TOOLCHAIN_FILE=3D../host/cmake/Toolchains/oe-sdk_cross.cmake =
--DCMAKE_INSTALL_PREFIX=3D/usr -DENABLE_E300=3DON ..
-CMake Error at CMakeLists.txt:13 (cmake_minimum_required):
-CMake 3.5.1 or higher is required.  You are running version 2.8.12.2
-That was the same error when I started with Ubuntu 18.04, so it seems like =
-it has something to do when it installs cmake as part of the E310 SDK and s=
-ets a path to use the cmake installed with that.  Unfortunately, the CMakeL=
-ists.txt file seem to want a newer version.  The person who originally did =
-some of the development for the E310 is no longer available, and I'd like t=
-o document a repeatable process for getting our development back up and run=
-ning so we can use the E310s we have.  Any suggestions for a novice, or is =
-there other information I can provide to make it more clear of what I'm doi=
-ng?  The only thing I changed going through AN-311 was to have "prefix" nam=
-ed "e310" (maybe that's the problem?), although I called it "prefix" when u=
-sing 18.04.
-
-The E310 seems to work as I can use the serial port and ssh to it and run a=
- sample program.  I'm really just trying to get a development environment w=
-orking with it.
+New documentation is this.
+https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC=
+_UHD_/_GNU_Radio_/_gr-ettus_from_Source
 
 Regards,
-Jeff
+Mikio
 
---_000_CY4PR19MB0984A7F994845D4D0CE3B042A4BF0CY4PR19MB0984namp_
-Content-Type: text/html; charset="iso-8859-1"
+
+2019=E5=B9=B49=E6=9C=881=E6=97=A5(=E6=97=A5) 23:22 Jeff S via USRP-users <u=
+srp-users@lists.ettus.com>:
+
+> Has anyone recently started from scratch trying to install the E310 SDK o=
+n
+> a new install of Ubuntu 16.04 LTS and 18.04 LTS?  I started with 18.04 an=
+d
+> had some issues so I made a clean install of 16.04 and then followed the
+> directions based on Application Number *AN-311*, located at:
+>
+>
+>
+> https://kb.ettus.com/Software_Development_on_the_E310_and_E312#Compiling_=
+and_installing_UHD
+>
+> I had to add an install of python-pip and git-core before going through
+> the pybombs commands, but when I get to the cmake command, I get the
+> following:
+>
+> cmake -DCMAKE_TOOLCHAIN_FILE=3D../host/cmake/Toolchains/oe-sdk_cross.cmak=
+e
+> -DCMAKE_INSTALL_PREFIX=3D/usr -DENABLE_E300=3DON ..
+>
+> CMake Error at CMakeLists.txt:13 (cmake_minimum_required):
+>
+> CMake 3.5.1 or higher is required.  You are running version 2.8.12.2
+>
+> That was the same error when I started with Ubuntu 18.04, so it seems lik=
+e
+> it has something to do when it installs cmake as part of the E310 SDK and
+> sets a path to use the cmake installed with that.  Unfortunately, the
+> CMakeLists.txt file seem to want a newer version.  The person who
+> originally did some of the development for the E310 is no longer availabl=
+e,
+> and I'd like to document a repeatable process for getting our development
+> back up and running so we can use the E310s we have.  Any suggestions for=
+ a
+> novice, or is there other information I can provide to make it more clear
+> of what I'm doing?  The only thing I changed going through AN-311 was to
+> have "prefix" named "e310" (maybe that's the problem?), although I called
+> it "prefix" when using 18.04.
+>
+> The E310 seems to work as I can use the serial port and ssh to it and run
+> a sample program.  I'm really just trying to get a development environmen=
+t
+> working with it.
+>
+> Regards,
+> Jeff
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ =E7=A6=8F=E5=B3=B6 =E5=B9=B9=E9=9B=84 (Mikio Fukushima)
+ =E6=A0=AA=E5=BC=8F=E4=BC=9A=E7=A4=BE=E3=83=89=E3=83=AB=E3=83=95=E3=82=A3=
+=E3=83=B3=E3=82=B7=E3=82=B9=E3=83=86=E3=83=A0 (Dolphin System Co.,Ltd)
+
+=E3=80=92171-0014 =E6=9D=B1=E4=BA=AC=E9=83=BD=E8=B1=8A=E5=B3=B6=E5=8C=BA=E6=
+=B1=A0=E8=A2=8B=EF=BC=92=EF=BC=8D=EF=BC=94=EF=BC=95=EF=BC=8D=EF=BC=91
+=E3=82=A2=E3=83=BC=E3=82=AF=E3=82=B7=E3=83=86=E3=82=A3=E6=B1=A0=E8=A2=8B =
+=EF=BC=96=EF=BC=90=EF=BC=91
+
+Mail: mikio@dolphinsystem.jp
+URL : http://www.dolphinsystem.jp/
+TEL/FAX : 03-6658-4949
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+--0000000000008e35dc0591877cdf
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
+<div dir=3D"ltr">Hi Jeff<div>AN-311 is now expired.</div><div><br></div><di=
+v>New documentation is this.</div><div><a href=3D"https://kb.ettus.com/Soft=
+ware_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ett=
+us_from_Source">https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_=
+-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a><br></div><div><=
+br></div><div>Regards,</div><div>Mikio</div><div><br></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">2019=E5=B9=B49=
+=E6=9C=881=E6=97=A5(=E6=97=A5) 23:22 Jeff S via USRP-users &lt;<a href=3D"m=
+ailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
 Has anyone recently started from scratch trying to install the E310 SDK on =
-a new install of Ubuntu 16.04 LTS and 18.04 LTS?&nbsp; I started with 18.04=
+a new install of Ubuntu 16.04 LTS and 18.04 LTS?=C2=A0 I started with 18.04=
  and had some issues so I made a clean install of 16.04 and then followed t=
 he directions based on Application Number
 <b>AN-311</b>, located at:
-<p style=3D"margin-top:0; margin-bottom:0"><br>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
 </p>
-<div style=3D"margin-top:0; margin-bottom:0"><a href=3D"https://kb.ettus.co=
-m/Software_Development_on_the_E310_and_E312#Compiling_and_installing_UHD" i=
-d=3D"LPlnk156374">https://kb.ettus.com/Software_Development_on_the_E310_and=
-_E312#Compiling_and_installing_UHD</a><br>
+<div style=3D"margin-top:0px;margin-bottom:0px"><a href=3D"https://kb.ettus=
+.com/Software_Development_on_the_E310_and_E312#Compiling_and_installing_UHD=
+" id=3D"gmail-m_-806703171907369402LPlnk156374" target=3D"_blank">https://k=
+b.ettus.com/Software_Development_on_the_E310_and_E312#Compiling_and_install=
+ing_UHD</a><br>
 </div>
 <br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
 I had to add an install of python-pip and git-core before going through the=
  pybombs commands, but when I get to the cmake command, I get the following=
 :</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
 <div>
 <blockquote>cmake -DCMAKE_TOOLCHAIN_FILE=3D../host/cmake/Toolchains/oe-sdk_=
 cross.cmake -DCMAKE_INSTALL_PREFIX=3D/usr -DENABLE_E300=3DON ..<br>
 </blockquote>
 <blockquote>CMake Error at CMakeLists.txt:13 (cmake_minimum_required):<br>
 </blockquote>
-<blockquote>CMake 3.5.1 or higher is required.&nbsp; You are running versio=
+<blockquote>CMake 3.5.1 or higher is required.=C2=A0 You are running versio=
 n 2.8.12.2</blockquote>
 </div>
 That was the same error when I started with Ubuntu 18.04, so it seems like =
 it has something to do when it installs cmake as part of the E310 SDK and s=
-ets a path to use the cmake installed with that.&nbsp; Unfortunately, the C=
+ets a path to use the cmake installed with that.=C2=A0 Unfortunately, the C=
 MakeLists.txt file seem to want a newer
- version.&nbsp; The person who originally did some of the development for t=
-he E310 is no longer available, and I'd like to document a repeatable proce=
-ss for getting our development back up and running so we can use the E310s =
-we have.&nbsp; Any suggestions for a novice,
+ version.=C2=A0 The person who originally did some of the development for t=
+he E310 is no longer available, and I&#39;d like to document a repeatable p=
+rocess for getting our development back up and running so we can use the E3=
+10s we have.=C2=A0 Any suggestions for a novice,
  or is there other information I can provide to make it more clear of what =
-I'm doing?&nbsp; The only thing I changed going through AN-311 was to have =
-&quot;prefix&quot; named &quot;e310&quot; (maybe that's the problem?), alth=
-ough I called it &quot;prefix&quot; when using 18.04.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
+I&#39;m doing?=C2=A0 The only thing I changed going through AN-311 was to h=
+ave &quot;prefix&quot; named &quot;e310&quot; (maybe that&#39;s the problem=
+?), although I called it &quot;prefix&quot; when using 18.04.</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
 The E310 seems to work as I can use the serial port and ssh to it and run a=
- sample program.&nbsp; I'm really just trying to get a development environm=
-ent working with it.<br>
+ sample program.=C2=A0 I&#39;m really just trying to get a development envi=
+ronment working with it.<br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
 Regards,<br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
 Jeff<br>
 </div>
-</body>
-</html>
+</div>
 
---_000_CY4PR19MB0984A7F994845D4D0CE3B042A4BF0CY4PR19MB0984namp_--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=
+=3D"ltr"><div>=C2=A0<br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>=
+=C2=A0=E7=A6=8F=E5=B3=B6 =E5=B9=B9=E9=9B=84 (Mikio Fukushima)</div><div>=C2=
+=A0=E6=A0=AA=E5=BC=8F=E4=BC=9A=E7=A4=BE=E3=83=89=E3=83=AB=E3=83=95=E3=82=A3=
+=E3=83=B3=E3=82=B7=E3=82=B9=E3=83=86=E3=83=A0 (Dolphin System Co.,Ltd)</div=
+><div><br></div><div>=E3=80=92171-0014 =E6=9D=B1=E4=BA=AC=E9=83=BD=E8=B1=8A=
+=E5=B3=B6=E5=8C=BA=E6=B1=A0=E8=A2=8B=EF=BC=92=EF=BC=8D=EF=BC=94=EF=BC=95=EF=
+=BC=8D=EF=BC=91</div><div>=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=
+=80=80=E3=82=A2=E3=83=BC=E3=82=AF=E3=82=B7=E3=83=86=E3=82=A3=E6=B1=A0=E8=A2=
+=8B =EF=BC=96=EF=BC=90=EF=BC=91</div><div><br></div><div>Mail: <a href=3D"m=
+ailto:mikio@dolphinsystem.jp" target=3D"_blank">mikio@dolphinsystem.jp</a><=
+/div><div>URL : <a href=3D"http://www.dolphinsystem.jp/" target=3D"_blank">=
+http://www.dolphinsystem.jp/</a></div><div>TEL/FAX : 03-6658-4949</div><div=
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div></div></div></div></div></div>
+
+--0000000000008e35dc0591877cdf--
 
 
---===============7843598029629764314==
+--===============5378255282965025435==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -239,5 +301,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7843598029629764314==--
+--===============5378255282965025435==--
 
