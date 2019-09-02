@@ -2,52 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0DCCA4CF9
-	for <lists+usrp-users@lfdr.de>; Mon,  2 Sep 2019 03:00:27 +0200 (CEST)
-Received: from [::1] (port=47912 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AE65A508F
+	for <lists+usrp-users@lfdr.de>; Mon,  2 Sep 2019 10:00:46 +0200 (CEST)
+Received: from [::1] (port=37546 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i4ahk-0002gW-SS; Sun, 01 Sep 2019 21:00:24 -0400
-Received: from mail-ot1-f70.google.com ([209.85.210.70]:37275)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <mikio@dolphinsystem.jp>)
- id 1i4ahg-0002ad-RI
- for usrp-users@lists.ettus.com; Sun, 01 Sep 2019 21:00:20 -0400
-Received: by mail-ot1-f70.google.com with SMTP id x31so8009692ota.4
- for <usrp-users@lists.ettus.com>; Sun, 01 Sep 2019 18:00:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dolphinsystem-jp.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QzUKsb+swEuq6un+hJ5FXg9NvPYoAwP8r3rqw/S1RvA=;
- b=Ydd2sV0O6OST9o3WpacWMlv3VayQAnHEldtfUQNxchF2jJ6zOD9/ibUF0do4dg4xXz
- Mvz44kpZo3Ph6qAYerBMcW6baup7QUlqVRmIzKehObdUz7OOyl97pJj2mhaBvZoon6hu
- GniFZ6AmUUnTGJg4PkZIgyjfFVm/IM0NAKZnuV8t1g+p/BOugsmPVd/mMozkTVIVws1J
- +HwGLWF7xkuzsFOKT4xpWUqNBliXqTVXPcN7BQ5kbsr7Q8JZhiQobrU5Z1oXrUvbCOo7
- rXuhyqDURR4tkGCm01p7Jq141q0hGPK42bdkWDzzDtXCKavj/OQsU1xehGudKc7lGHOG
- hI1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=QzUKsb+swEuq6un+hJ5FXg9NvPYoAwP8r3rqw/S1RvA=;
- b=pP1xrG8E8TtOeayyTGNycJNury3KIjgxFZGjWMlJ6jFArEP4Mp7i3sHfVBO6/wi6tN
- mVFKF1kKMiKYipq0EX/B9Q6xwwj6vLNVHO/T/8Rao+v8ue/onCBy5tbhZ7AMuaz1ozCL
- cvuXm+BpIuSj++XcfrtPvp/J4u8aACSr9zeiAFnFwr/+c2xiBOYQiEsgLTRW5eyEOBiy
- klWtaQbHzdgI/3uQv4V8Dp6tYxl3qyAf2mG9oT3vTOMqHY0CEidVWuGORgnwarXNAo+b
- ChhVkZd4ZNZt7tRbUBEUIU8ZVecdlxjS8lbmGpcvrzA+QmDesvPhYuQsNqFv1bIOQw0Y
- FyqA==
-X-Gm-Message-State: APjAAAVd+Ah7jW6i+LMk1fRmd1szSfQNs65F4BEH7JoAgL+iHbJnV07g
- Hcvz14Mvek81tuUH5b9WMsYryDHSY8sPLoeH8mKaUg==
-X-Google-Smtp-Source: APXvYqzm7sziqdOBdaFuuewz8NEvsr865/4JnEnQhZj/bOF9MbhIciovVvXP+duszj+/i7C7FaUABuQ11aU2prbNstw=
-X-Received: by 2002:a9d:4d14:: with SMTP id n20mr4267097otf.48.1567385979854; 
- Sun, 01 Sep 2019 17:59:39 -0700 (PDT)
+	id 1i4hGW-0003Qj-Ed; Mon, 02 Sep 2019 04:00:44 -0400
+Received: from dnsmx.mpb.li ([185.16.174.81]:40816)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <matthias@mpb.li>) id 1i4hGS-0003Lk-Gc
+ for usrp-users@lists.ettus.com; Mon, 02 Sep 2019 04:00:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mpb.li;
+ s=20161108; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version
+ :Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=DRXUitu2RntPBIIwn2sTKz/CEF/q6sPZW58kJeuyFYY=; b=bvHgi4GYXjnDYM0tO6LtSjWsU0
+ AfiRVJ7DzRo7xerIxIJ7S7mtEP9VKdW7yc2ow4Z6egCggZcES0Cb8f8thDllNjLyRKgu8WibC5+Yp
+ tpHHIG6euPQJpiYmn0zCIzWRV7VMNASGqaGS5l0dFqXM2vJivZ/X+5q+44loAHMVcRgE=;
+Received: from adslgva0461.worldcom.ch ([83.172.200.7] helo=[172.30.201.38])
+ by dnsmx.mpb.li with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ (Exim 4.92) (envelope-from <matthias@mpb.li>)
+ id 1i4hFm-0006KG-EZ; Mon, 02 Sep 2019 09:59:58 +0200
+To: Michael West <michael.west@ettus.com>
+References: <CAM4xKrrb4MNYu8PZmt29f8R5FbSpiik7Q95XPqVMtBqQO7ZtPQ@mail.gmail.com>
+ <e50bf1f7-0bb6-84a2-edfa-0188a229fc63@mpb.li>
+ <CAM4xKrp8ng4b6gYvU1T7a-8VOj=fXY8Ji-BowcFeQkYiEerWGQ@mail.gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=matthias@mpb.li; prefer-encrypt=mutual; keydata=
+ mQGiBEYMuHcRBACA+gOZ2kLr+D9EbTZaM+8FKSrB+W92gi82LlSnWIx5vQ2bs4u+3ZMGT4WB
+ +euKj49/bQ99CoEDB94dGWDrVol3Qxx39UIhL8VSJpHMKQZaa7fHJgOeZLCyjM+qTm/yWcIC
+ ND2n8CgJc6oRqmD8l/nRQqHTceSaYPJSIc82QC05zwCgsL7inGV7Xhb8kSJt4B1vOLUG1XMD
+ /2swxqZ3QkER90QFGwThUhsPbscl7jVBUWalqHb8n7aM+CrxMuevS/dpOVRA1nEGGgWzEtfs
+ UGEKMR7feOf9dnajULnUogLUboIlUrlL+JAwR0uGvI+wynOHMJEcWYhIZG43BQPLJrMitHyE
+ HnTjCvZSEsnrDE31GBSCyIyLCkwtA/97MwVUBw0LxsLWK9fnNhuymjWWA07b2keNVUmETVPj
+ KeyicE7d8xZUeyrm5JnBj61wm7PeeZBf+pq2mEDqdputuNNPuh8o7rYxua1Vc3HKbz068gN+
+ YmA3yVLAEs1aJ5s+5KyP/aGVygSi5td0mNnqzlCfFntIPj3v1LS21pI+SrQjTWF0dGhpYXMg
+ QnLDpG5kbGkgPG1hdHRoaWFzQG1wYi5saT6IggQTEQIAQgIbIwYLCQgHAwIGFQgCCQoLBBYC
+ AwECHgECF4ACGQEWIQRQgfjVU8jOSc2gZI3uThRyhIPRdAUCXGq2XwUJGiBk6AAKCRDuThRy
+ hIPRdA4gAJ90A0IL44gVL09jh3zq8hiT0rQ0XgCgnCYTCybgTT3KDcVV8gUPb8yMXB65AQ0E
+ Rgy4eRAEAM99KgY6ujv19er4CU9lTx1Cuc6B9jHqlDutB921+1BKeCJcniz1d0z94+ZfTbJd
+ UI/1TnXDPOPjJ3tJB4Nca/p2vwoOruW62yw9rCGV8qgFKSWEg+MqGs7Ks9Zk+xNHqL7Pg8Nr
+ 1rxkjTFNiDJABAHNuhg+U/2krnSP0ws25m+XAAQLA/9ibdsVCgSqCFkgnFTLnydQOSr4f6aT
+ PeH1cZB6vgIZemt4mtnVrCKIYNSyUEwN05mlNR2hcXfaRyFRw2hhAVmqO5bYkLtrvXn2BLs9
+ 6lgyF/12tF7x7LydFPcdTPiu4MsP+rzOYlHUk5onqippMMfY6hv6exTB2dWSaeLgPqPclYhm
+ BBgRAgAmAhsMFiEEUIH41VPIzknNoGSN7k4UcoSD0XQFAlxqtnMFCRogZPoACgkQ7k4UcoSD
+ 0XR1jgCdFz+aNIwDAbw75m0bivIINrQWIOcAn3s0DBAg48EhAFrPUuloCtLKbKm4
+Message-ID: <d21698c4-afb0-bd38-cf0a-c6a038f76a96@mpb.li>
+Date: Mon, 2 Sep 2019 09:59:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <CY4PR19MB0984A7F994845D4D0CE3B042A4BF0@CY4PR19MB0984.namprd19.prod.outlook.com>
-In-Reply-To: <CY4PR19MB0984A7F994845D4D0CE3B042A4BF0@CY4PR19MB0984.namprd19.prod.outlook.com>
-Date: Mon, 2 Sep 2019 09:59:06 +0900
-Message-ID: <CABfZwccOcTJSnwDMygsyaz49F5d6wiJae33qXrGaAd750L=rBA@mail.gmail.com>
-To: Jeff S <e070832@hotmail.com>
-Subject: Re: [USRP-users] Starting from Scratch with a E310
+In-Reply-To: <CAM4xKrp8ng4b6gYvU1T7a-8VOj=fXY8Ji-BowcFeQkYiEerWGQ@mail.gmail.com>
+Content-Language: en-US-large
+Subject: Re: [USRP-users] [UHD] 3.14.1.0 Release Announcement
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,10 +68,12 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mikio Fukushima via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mikio Fukushima <mikio@dolphinsystem.jp>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5378255282965025435=="
+From: =?utf-8?q?Matthias_Br=C3=A4ndli_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Matthias_Br=c3=a4ndli?= <matthias@mpb.li>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,230 +87,33 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5378255282965025435==
-Content-Type: multipart/alternative; boundary="0000000000008e35dc0591877cdf"
-
---0000000000008e35dc0591877cdf
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Jeff
-AN-311 is now expired.
-
-New documentation is this.
-https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC=
-_UHD_/_GNU_Radio_/_gr-ettus_from_Source
-
-Regards,
-Mikio
-
-
-2019=E5=B9=B49=E6=9C=881=E6=97=A5(=E6=97=A5) 23:22 Jeff S via USRP-users <u=
-srp-users@lists.ettus.com>:
-
-> Has anyone recently started from scratch trying to install the E310 SDK o=
-n
-> a new install of Ubuntu 16.04 LTS and 18.04 LTS?  I started with 18.04 an=
-d
-> had some issues so I made a clean install of 16.04 and then followed the
-> directions based on Application Number *AN-311*, located at:
->
->
->
-> https://kb.ettus.com/Software_Development_on_the_E310_and_E312#Compiling_=
-and_installing_UHD
->
-> I had to add an install of python-pip and git-core before going through
-> the pybombs commands, but when I get to the cmake command, I get the
-> following:
->
-> cmake -DCMAKE_TOOLCHAIN_FILE=3D../host/cmake/Toolchains/oe-sdk_cross.cmak=
-e
-> -DCMAKE_INSTALL_PREFIX=3D/usr -DENABLE_E300=3DON ..
->
-> CMake Error at CMakeLists.txt:13 (cmake_minimum_required):
->
-> CMake 3.5.1 or higher is required.  You are running version 2.8.12.2
->
-> That was the same error when I started with Ubuntu 18.04, so it seems lik=
-e
-> it has something to do when it installs cmake as part of the E310 SDK and
-> sets a path to use the cmake installed with that.  Unfortunately, the
-> CMakeLists.txt file seem to want a newer version.  The person who
-> originally did some of the development for the E310 is no longer availabl=
-e,
-> and I'd like to document a repeatable process for getting our development
-> back up and running so we can use the E310s we have.  Any suggestions for=
- a
-> novice, or is there other information I can provide to make it more clear
-> of what I'm doing?  The only thing I changed going through AN-311 was to
-> have "prefix" named "e310" (maybe that's the problem?), although I called
-> it "prefix" when using 18.04.
->
-> The E310 seems to work as I can use the serial port and ssh to it and run
-> a sample program.  I'm really just trying to get a development environmen=
-t
-> working with it.
->
-> Regards,
-> Jeff
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
-
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
- =E7=A6=8F=E5=B3=B6 =E5=B9=B9=E9=9B=84 (Mikio Fukushima)
- =E6=A0=AA=E5=BC=8F=E4=BC=9A=E7=A4=BE=E3=83=89=E3=83=AB=E3=83=95=E3=82=A3=
-=E3=83=B3=E3=82=B7=E3=82=B9=E3=83=86=E3=83=A0 (Dolphin System Co.,Ltd)
-
-=E3=80=92171-0014 =E6=9D=B1=E4=BA=AC=E9=83=BD=E8=B1=8A=E5=B3=B6=E5=8C=BA=E6=
-=B1=A0=E8=A2=8B=EF=BC=92=EF=BC=8D=EF=BC=94=EF=BC=95=EF=BC=8D=EF=BC=91
-=E3=82=A2=E3=83=BC=E3=82=AF=E3=82=B7=E3=83=86=E3=82=A3=E6=B1=A0=E8=A2=8B =
-=EF=BC=96=EF=BC=90=EF=BC=91
-
-Mail: mikio@dolphinsystem.jp
-URL : http://www.dolphinsystem.jp/
-TEL/FAX : 03-6658-4949
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
---0000000000008e35dc0591877cdf
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Jeff<div>AN-311 is now expired.</div><div><br></div><di=
-v>New documentation is this.</div><div><a href=3D"https://kb.ettus.com/Soft=
-ware_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ett=
-us_from_Source">https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_=
--_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a><br></div><div><=
-br></div><div>Regards,</div><div>Mikio</div><div><br></div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">2019=E5=B9=B49=
-=E6=9C=881=E6=97=A5(=E6=97=A5) 23:22 Jeff S via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Has anyone recently started from scratch trying to install the E310 SDK on =
-a new install of Ubuntu 16.04 LTS and 18.04 LTS?=C2=A0 I started with 18.04=
- and had some issues so I made a clean install of 16.04 and then followed t=
-he directions based on Application Number
-<b>AN-311</b>, located at:
-<p style=3D"margin-top:0px;margin-bottom:0px"><br>
-</p>
-<div style=3D"margin-top:0px;margin-bottom:0px"><a href=3D"https://kb.ettus=
-.com/Software_Development_on_the_E310_and_E312#Compiling_and_installing_UHD=
-" id=3D"gmail-m_-806703171907369402LPlnk156374" target=3D"_blank">https://k=
-b.ettus.com/Software_Development_on_the_E310_and_E312#Compiling_and_install=
-ing_UHD</a><br>
-</div>
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-I had to add an install of python-pip and git-core before going through the=
- pybombs commands, but when I get to the cmake command, I get the following=
-:</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<div>
-<blockquote>cmake -DCMAKE_TOOLCHAIN_FILE=3D../host/cmake/Toolchains/oe-sdk_=
-cross.cmake -DCMAKE_INSTALL_PREFIX=3D/usr -DENABLE_E300=3DON ..<br>
-</blockquote>
-<blockquote>CMake Error at CMakeLists.txt:13 (cmake_minimum_required):<br>
-</blockquote>
-<blockquote>CMake 3.5.1 or higher is required.=C2=A0 You are running versio=
-n 2.8.12.2</blockquote>
-</div>
-That was the same error when I started with Ubuntu 18.04, so it seems like =
-it has something to do when it installs cmake as part of the E310 SDK and s=
-ets a path to use the cmake installed with that.=C2=A0 Unfortunately, the C=
-MakeLists.txt file seem to want a newer
- version.=C2=A0 The person who originally did some of the development for t=
-he E310 is no longer available, and I&#39;d like to document a repeatable p=
-rocess for getting our development back up and running so we can use the E3=
-10s we have.=C2=A0 Any suggestions for a novice,
- or is there other information I can provide to make it more clear of what =
-I&#39;m doing?=C2=A0 The only thing I changed going through AN-311 was to h=
-ave &quot;prefix&quot; named &quot;e310&quot; (maybe that&#39;s the problem=
-?), although I called it &quot;prefix&quot; when using 18.04.</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-The E310 seems to work as I can use the serial port and ssh to it and run a=
- sample program.=C2=A0 I&#39;m really just trying to get a development envi=
-ronment working with it.<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Regards,<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Jeff<br>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=
-=3D"ltr"><div>=C2=A0<br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>=
-=C2=A0=E7=A6=8F=E5=B3=B6 =E5=B9=B9=E9=9B=84 (Mikio Fukushima)</div><div>=C2=
-=A0=E6=A0=AA=E5=BC=8F=E4=BC=9A=E7=A4=BE=E3=83=89=E3=83=AB=E3=83=95=E3=82=A3=
-=E3=83=B3=E3=82=B7=E3=82=B9=E3=83=86=E3=83=A0 (Dolphin System Co.,Ltd)</div=
-><div><br></div><div>=E3=80=92171-0014 =E6=9D=B1=E4=BA=AC=E9=83=BD=E8=B1=8A=
-=E5=B3=B6=E5=8C=BA=E6=B1=A0=E8=A2=8B=EF=BC=92=EF=BC=8D=EF=BC=94=EF=BC=95=EF=
-=BC=8D=EF=BC=91</div><div>=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=
-=80=80=E3=82=A2=E3=83=BC=E3=82=AF=E3=82=B7=E3=83=86=E3=82=A3=E6=B1=A0=E8=A2=
-=8B =EF=BC=96=EF=BC=90=EF=BC=91</div><div><br></div><div>Mail: <a href=3D"m=
-ailto:mikio@dolphinsystem.jp" target=3D"_blank">mikio@dolphinsystem.jp</a><=
-/div><div>URL : <a href=3D"http://www.dolphinsystem.jp/" target=3D"_blank">=
-http://www.dolphinsystem.jp/</a></div><div>TEL/FAX : 03-6658-4949</div><div=
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div></div></div></div></div></div>
-
---0000000000008e35dc0591877cdf--
-
-
---===============5378255282965025435==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5378255282965025435==--
-
+RGVhciBNaWNoYWVsLAoKVGhhbmtzIGEgbG90IGZvciB0aGUgY2xhcmlmaWNhdGlvbnMsIGl0J3Mg
+aW5kZWVkIGFuIGlzc3VlIHdlIHJhbiBpbnRvLgoKSSdtIGdvaW5nIHRvIHRyeSB0aGlzIG91dCBu
+b3cuCgpDaGVlcnMKbXBiCgpPbiAyMy8wOC8yMDE5IDE5OjI4LCBNaWNoYWVsIFdlc3Qgd3JvdGU6
+Cj4gSGkgTWF0dGhpYXMsCj4gCj4gVGhlIG5ldyBCMjAwIGJvb3Rsb2FkZXIgaGVscHMgd2l0aCBm
+YWlsdXJlcyB0byBlbnVtZXJhdGUgdGhlIGRldmljZSB3aGVuCj4gaXQgaXMgcGx1Z2dlZCBpbiBi
+ZWZvcmUgdGhlIGhvc3QgaXMgYm9vdGVkLsKgIFRoaXMgb25seSBoYXBwZW5zIHdpdGggc29tZQo+
+IFVTQiBjb250cm9sbGVycy7CoCBMb2FkaW5nIHRoZSBib290bG9hZGVyIGNhbiBiZSBkb25lIGJ5
+IHJ1bm5pbmc6Cj4gCj4gYjJ4eF9meDNfdXRpbHMgLS1sb2FkLWJvb3Rsb2FkZXIgPGZpbGU+Cj4g
+Cj4gVGhlIGJvb3Rsb2FkZXIgZmlsZSBoYXMgYmVlbiBhZGRlZCB0byB0aGUgYjJ4eCBpbWFnZXMg
+ZmlsZSBhbmQgY2FuIGJlCj4gcmV0cmlldmVkIGJ5IHJ1bm5pbmc6Cj4gCj4gW3N1ZG9dIHVoZF9p
+bWFnZXNfZG93bmxvYWRlciAtdCBiMnh4Cj4gCj4gUmVnYXJkcywKPiBNaWNoYWVsCj4gCj4gT24g
+VHVlLCBKdWwgOSwgMjAxOSBhdCAxMjoxMCBBTSBNYXR0aGlhcyBCcsOkbmRsaSB2aWEgVVNSUC11
+c2Vycwo+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOnVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tPj4gd3JvdGU6Cj4gCj4gICAgIERlYXIgTWljaGFlbCwKPiAKPiAgICAgRmly
+c3Qgb2YgYWxsLCB0aGFua3MgZm9yIHRoZSBuZXcgVUhEIHJlbGVhc2UgdG8gYWxsIHBlb3BsZSBp
+bnZvbHZlZCEKPiAKPiAgICAgT24gMDgvMDcvMjAxOSAyMDozNSwgTWljaGFlbCBXZXN0IHdyb3Rl
+Ogo+ICAgICA+IFRoaXMgcmVsZWFzZSBpbmNsdWRlcyBbLi4uXSBhIG5ldyBib290bG9hZGVyIGZv
+ciBCMjAwCj4gCj4gICAgIElzIHRoZXJlIG1vcmUgaW5mb3JtYXRpb24gYWJvdXQgdGhpcyBjaGFu
+Z2U/IERvZXMgdGhpcyBzb2x2ZSBhIHNwZWNpZmljCj4gICAgIGlzc3VlPyBJIGhhZCBhIGxvb2sg
+YXQgdGhlIHJlbGV2YW50IGNvbW1pdHMsIGJ1dCBJIGFtIHRyeWluZyB0bwo+ICAgICB1bmRlcnN0
+YW5kIHdoeSBpdCB3YXMgaW1wbGVtZW50ZWQgYW5kIGlmIHRoZXJlJ3MgYW55IGltcGFjdCBmb3Ig
+b3VyCj4gICAgIGFwcGxpY2F0aW9uLgo+IAo+ICAgICBCZXN0IHJlZ2FyZHMKPiAgICAgbXBiCj4g
+Cj4gCj4gICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Cj4gICAgIFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gICAgIFVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4gICAgIGh0dHA6Ly9s
+aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
+bQo+IAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVT
+UlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9s
+aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
+bQo=
