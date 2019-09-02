@@ -2,52 +2,78 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A58FCA5BB1
-	for <lists+usrp-users@lfdr.de>; Mon,  2 Sep 2019 19:08:03 +0200 (CEST)
-Received: from [::1] (port=56278 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DEC9A5BFD
+	for <lists+usrp-users@lfdr.de>; Mon,  2 Sep 2019 19:59:09 +0200 (CEST)
+Received: from [::1] (port=33706 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i4po9-0002IA-Oz; Mon, 02 Sep 2019 13:08:01 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:35760)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <coxe@close-haul.com>) id 1i4po5-0002Dg-Kv
- for usrp-users@lists.ettus.com; Mon, 02 Sep 2019 13:07:57 -0400
-Received: by mail-io1-f50.google.com with SMTP id b10so30379934ioj.2
- for <usrp-users@lists.ettus.com>; Mon, 02 Sep 2019 10:07:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quanttux-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=RCmVMywz1rB5I5BPeq/pWgKadrgBXvfbZM5xGXX+S+I=;
- b=fh1m4iLWQXCumKB50uK+6bS0AnO0+XeWY268lfIlP2bTeYAnlUPH9dQH6yVeYpxfW2
- k5H5Q8Y1CQ10DEHY4GjTWmfzr1/m1AHDh36GXTGAOYYjHmHM4FJv3gr+/2qTb6tqjITr
- SRSjlbNcTR2BU1lBG/SVcHNMAd6VPsN0J6q669wWakfknbCigpGYbpSDMp/ZTAez7SAc
- 1UXV5sJEJaHVHJ+t4couKw24YthRiz6jaOKWJjyFqmDaeCuhSjUSNocUT2+FGTfper+0
- 5c8B03WYfMibhvYH2QAKYd7NIFibbSXJSEPAhMyOQQnKoSXAbI0SC/GNgg5HdpPTecf5
- 3VnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RCmVMywz1rB5I5BPeq/pWgKadrgBXvfbZM5xGXX+S+I=;
- b=eS0SVE3nW7LjlOpORAaJozkqZut6+xEkrRu3CsdCW09X4O2C58tkdXeOdFFWIRfZdA
- 2HGHC/ln8We3oj9Aa9lqKoDEiFIBR1+jQw/IXBIwPZlcPbBAkgfV2nb6DCkzcrtUt5BL
- KSUv8kJja388kjrJwThxShAAIdSycDzJbWYD3BwhXm9d7/Xw05JvtZp4UgFDE6QhFLPj
- dFnRHu1RfT2Dz2tFuwuvhd38SvFxJ2/EqdR0GeP+G0Y96AGMxibr2lM0HZjwxs1KG0Qy
- KkiL437nmy5JRgDa9PPxA1p+Tj+nRiujmEBZQChFl8uazMkr8z19PaxS9esFUQYoD3p+
- yJpQ==
-X-Gm-Message-State: APjAAAWceAieUbA2SWgJ9zXJOeDAVdz6whav22hMRuP9aIgPb1weXB31
- t710zTo8P602J4xA49DyXu0XJAohuMLdlr82ryPzMQ==
-X-Google-Smtp-Source: APXvYqwTzVTDaLiOs3bIhj12ctLvc59mLAtPvK8/2N6oa+uFr9OBaiQ3oM9yHcOj5ERFMA+PChlDXkMv83zoGnNJZdg=
-X-Received: by 2002:a5d:844f:: with SMTP id w15mr20048903ior.102.1567444036843; 
- Mon, 02 Sep 2019 10:07:16 -0700 (PDT)
+	id 1i4qba-0004Ll-6V; Mon, 02 Sep 2019 13:59:06 -0400
+Received: from mail-oln040092003029.outbound.protection.outlook.com
+ ([40.92.3.29]:50305 helo=NAM02-BL2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <e070832@hotmail.com>) id 1i4qbW-0004Ff-76
+ for usrp-users@lists.ettus.com; Mon, 02 Sep 2019 13:59:02 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FPlQDZh+6lCla8dEF+q4U1FyIZ1SgQnOItVIfEhBxHTwMjq3KAEIw4AGQQ+jXKBGQtDDiX7HP0mOjohzjEwmh/G6dnD5O15yKp4hZFwt5LpGKtkC8ZCjf1hmXa4s8xvdRuCpCtClrVapgMlmmpJ7pWPjnX6eTS/MoxH2TujwHa0eme0dKW9CdvfnDiUH/kI34yioa5N+6HV71qJJCvBmi+VYbfTSI9FOo1GKCNVOpm00B/pLEWoGbkO6COorNxRIc+oa+8tTrC9XqM1Kmki1MC0qQUd0dMqZCOVtfoZv/eoRn985DQHM627IyZGVEkgLGgOf4offTeacPtKFBA4HuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eMQMJl1j2OlcpShY6kBFY0lzJog5j1zkqwMfHCGND4o=;
+ b=QXPlE6vJurydp32/uDVnLP+FRWi8IbeK0za2enkmaiWWVj7dwsjH06yPdlFs994BETFfH6tY7CNc4dDNNEw11MS3Fypmw6v9JjuxOYcTeaNid+P3XqZVetVkK0+qCkU1XAhJV6qKH7qv7Ck/qHz+2EplgSy3hIbrwRXCO6ZzKdVDlRL2hYQjHChz5om2jzfyldQ+ZGOx39ZTy/xUtDTwQ6w6Zv5bt2zaX/WhtCFLcdy8fqc1QsHHNPD0hY/T7tSlGSr5kITlTDSr7AaX0NIiohcdAsKtVxk55hnpQM/TtD67YtLSQPUlEq/VFDEd1N7J6WHwOsP1UD5EZMRPST3nig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eMQMJl1j2OlcpShY6kBFY0lzJog5j1zkqwMfHCGND4o=;
+ b=uASIQxQJ9uLBNBdNp3BAmmO1guDIoGziMYm8O4thhJeLvMc916tocqPX6N/XiyRgD1rqgkzEGYc8eUk/R9h9N0iyVuNPCDLOd6GVB/dBFAXEv0wF3pi5/G+HWPiJ6fbNkfDVUBZ/MYN0ej3ycAjit68TMHhPVmjw4sD+YpnJWq4Uu+mey4ag6gHclH2tfmvYB/3OVgivZ9leAhrddOuUp4Id+KGnXaZUD9oXT2XflX9NfgwKM8pAFGYn0bkeC0v9SsYyoQnN3I8Cc4uu3QS8MMgi7U6NDHhDQqJaTvyuLbK1O9U6r5gqSfQLJ7QGIUqoybWiOXL2s5pBLSrjw3/w/w==
+Received: from CY1NAM02FT052.eop-nam02.prod.protection.outlook.com
+ (10.152.74.54) by CY1NAM02HT041.eop-nam02.prod.protection.outlook.com
+ (10.152.75.64) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2220.16; Mon, 2 Sep
+ 2019 17:58:19 +0000
+Received: from BN6PR19MB0980.namprd19.prod.outlook.com (10.152.74.57) by
+ CY1NAM02FT052.mail.protection.outlook.com (10.152.74.123) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2220.16 via Frontend Transport; Mon, 2 Sep 2019 17:58:19 +0000
+Received: from BN6PR19MB0980.namprd19.prod.outlook.com
+ ([fe80::daf:9a33:1bb:d99b]) by BN6PR19MB0980.namprd19.prod.outlook.com
+ ([fe80::daf:9a33:1bb:d99b%11]) with mapi id 15.20.2220.021; Mon, 2 Sep 2019
+ 17:58:18 +0000
+To: Mikio Fukushima <mikio@dolphinsystem.jp>
+Thread-Topic: [USRP-users] Starting from Scratch with a E310
+Thread-Index: AQHVYbgAaaAPoVMvZUiPqiyz2UtpWQ==
+Date: Mon, 2 Sep 2019 17:58:18 +0000
+Message-ID: <BN6PR19MB0980418F54D3080768D0DF67A4BE0@BN6PR19MB0980.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:69D77901BEFE354B663B98EF7B2C6513533750DD61F6154344988F11926A992C;
+ UpperCasedChecksum:4B92C4798475BEEAB64899CA4EBA444276FDDBC1D4D049EF00FC999A2B3AD083;
+ SizeAsReceived:6752; Count:42
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [zYv7Fw+JWduURu2yI0rxX8XFwIu/lXpZecLd7gvV90L6GZqq8E1RBFoB5vlqKJw7]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031322404)(2017031323274)(2017031324274)(1601125500)(1603101475)(1701031045);
+ SRVR:CY1NAM02HT041; 
+x-ms-traffictypediagnostic: CY1NAM02HT041:
+x-ms-exchange-purlcount: 4
+x-microsoft-antispam-message-info: vaBIjQ1Er3Dbys1hIQTYLXkg0FNY6lcqDmRA8haeW0swJ7jwRznhYkucBM4buw0EuVkHrF12WIqRqNV6Jfe56bQZjt+TAwWrj4Y9uSB0+gohgknvrOQFjjD1kHVdVw7lQlSVVELBgfI8+niVF+qMqrivCe083mDNYxPj33U0EtXM81NWBBf9lYXUxdcFd6wi
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAMHwfuiwk2DfqSEt1SJkxhriZraRML9XWYFYDzZHxEOW3MJpVA@mail.gmail.com>
- <CACaXmv9avqAniNLvxOs7ybiR7g5+kpdd6ZntXcFvgTU3PgUHMg@mail.gmail.com>
-In-Reply-To: <CACaXmv9avqAniNLvxOs7ybiR7g5+kpdd6ZntXcFvgTU3PgUHMg@mail.gmail.com>
-Date: Mon, 2 Sep 2019 10:07:06 -0700
-Message-ID: <CAKJyDkL0VZfguLeN+wws7VFNu6K-a9ETz2XRA=V4844NYX5vzQ@mail.gmail.com>
-To: Neel Pandeya <neel.pandeya@ettus.com>
-Subject: Re: [USRP-users] Vivado Version Compatiability, X310
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd90f79e-2065-45c2-e5e3-08d72fcf2309
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2019 17:58:18.5702 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1NAM02HT041
+Subject: Re: [USRP-users] Starting from Scratch with a E310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,10 +85,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robin Coxe <coxe@quanttux.com>
-Cc: "shachar J. brown via USRP-users" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3534691330556804368=="
+From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jeff S <e070832@hotmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2785826667346312640=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,159 +102,185 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3534691330556804368==
-Content-Type: multipart/alternative; boundary="00000000000005977205919501e4"
+--===============2785826667346312640==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR19MB0980418F54D3080768D0DF67A4BE0BN6PR19MB0980namp_"
 
---00000000000005977205919501e4
-Content-Type: text/plain; charset="UTF-8"
+--_000_BN6PR19MB0980418F54D3080768D0DF67A4BE0BN6PR19MB0980namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-What Neel says in the previous is correct, but it doesn't answer your
-question.  This error is telling you that the script is having issues with
-the Vivado licenses on your PC.  One of the first things that the
-*uhd_image_builder.py
-*script does is execute *setupenv.sh *in *fpga/usrp3/top/x300*.  To attempt
-to debug, navigate to that directory, and execute the setup script manually
-from the command line *(source ./setupenv.sh* on Linux) and then try to
-launch Vivado from the command line.  If Vivado launches successfully, go
-the Help-->License Manager and make sure there aren't any expired licenses
-and that Vivado is properly recognizing your 2018.3 license.   If Vivado
-doesn't launch, make sure that the setup script is pointing to the location
-where you installed Vivado.
+TWlraW8sDQoNClRoYW5rcyBtdWNoIGZvciBwb2ludGluZyBtZSB0byB0aGUgY29ycmVjdCBkb2N1
+bWVudGF0aW9uLiBUaGF0IHNlZW1zIHRvIGJlIGRvaW5nIHRoZSB0cmljay4NCg0KUmVnYXJkcywN
+CkplZmYNCg0KDQotLS0tLS0tLSBPcmlnaW5hbCBtZXNzYWdlIC0tLS0tLS0tDQpGcm9tOiBNaWtp
+byBGdWt1c2hpbWEgPG1pa2lvQGRvbHBoaW5zeXN0ZW0uanA+DQpEYXRlOiA5LzEvMTkgNzo1OSBQ
+TSAoR01ULTA2OjAwKQ0KVG86IEplZmYgUyA8ZTA3MDgzMkBob3RtYWlsLmNvbT4NCkNjOiB1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBTdGFydGlu
+ZyBmcm9tIFNjcmF0Y2ggd2l0aCBhIEUzMTANCg0KSGkgSmVmZg0KQU4tMzExIGlzIG5vdyBleHBp
+cmVkLg0KDQpOZXcgZG9jdW1lbnRhdGlvbiBpcyB0aGlzLg0KaHR0cHM6Ly9rYi5ldHR1cy5jb20v
+U29mdHdhcmVfRGV2ZWxvcG1lbnRfb25fdGhlX0UzeHhfVVNSUF8tX0J1aWxkaW5nX1JGTm9DX1VI
+RF8vX0dOVV9SYWRpb18vX2dyLWV0dHVzX2Zyb21fU291cmNlDQoNClJlZ2FyZHMsDQpNaWtpbw0K
+DQoNCjIwMTnlubQ55pyIMeaXpSjml6UpIDIzOjIyIEplZmYgUyB2aWEgVVNSUC11c2VycyA8dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Pj46DQpIYXMgYW55b25lIHJlY2VudGx5IHN0YXJ0ZWQgZnJvbSBzY3JhdGNoIHRyeWluZyB0byBp
+bnN0YWxsIHRoZSBFMzEwIFNESyBvbiBhIG5ldyBpbnN0YWxsIG9mIFVidW50dSAxNi4wNCBMVFMg
+YW5kIDE4LjA0IExUUz8gIEkgc3RhcnRlZCB3aXRoIDE4LjA0IGFuZCBoYWQgc29tZSBpc3N1ZXMg
+c28gSSBtYWRlIGEgY2xlYW4gaW5zdGFsbCBvZiAxNi4wNCBhbmQgdGhlbiBmb2xsb3dlZCB0aGUg
+ZGlyZWN0aW9ucyBiYXNlZCBvbiBBcHBsaWNhdGlvbiBOdW1iZXIgQU4tMzExLCBsb2NhdGVkIGF0
+Og0KDQoNCmh0dHBzOi8va2IuZXR0dXMuY29tL1NvZnR3YXJlX0RldmVsb3BtZW50X29uX3RoZV9F
+MzEwX2FuZF9FMzEyI0NvbXBpbGluZ19hbmRfaW5zdGFsbGluZ19VSEQNCg0KSSBoYWQgdG8gYWRk
+IGFuIGluc3RhbGwgb2YgcHl0aG9uLXBpcCBhbmQgZ2l0LWNvcmUgYmVmb3JlIGdvaW5nIHRocm91
+Z2ggdGhlIHB5Ym9tYnMgY29tbWFuZHMsIGJ1dCB3aGVuIEkgZ2V0IHRvIHRoZSBjbWFrZSBjb21t
+YW5kLCBJIGdldCB0aGUgZm9sbG93aW5nOg0KY21ha2UgLURDTUFLRV9UT09MQ0hBSU5fRklMRT0u
+Li9ob3N0L2NtYWtlL1Rvb2xjaGFpbnMvb2Utc2RrX2Nyb3NzLmNtYWtlIC1EQ01BS0VfSU5TVEFM
+TF9QUkVGSVg9L3VzciAtREVOQUJMRV9FMzAwPU9OIC4uDQpDTWFrZSBFcnJvciBhdCBDTWFrZUxp
+c3RzLnR4dDoxMyAoY21ha2VfbWluaW11bV9yZXF1aXJlZCk6DQpDTWFrZSAzLjUuMSBvciBoaWdo
+ZXIgaXMgcmVxdWlyZWQuICBZb3UgYXJlIHJ1bm5pbmcgdmVyc2lvbiAyLjguMTIuMg0KVGhhdCB3
+YXMgdGhlIHNhbWUgZXJyb3Igd2hlbiBJIHN0YXJ0ZWQgd2l0aCBVYnVudHUgMTguMDQsIHNvIGl0
+IHNlZW1zIGxpa2UgaXQgaGFzIHNvbWV0aGluZyB0byBkbyB3aGVuIGl0IGluc3RhbGxzIGNtYWtl
+IGFzIHBhcnQgb2YgdGhlIEUzMTAgU0RLIGFuZCBzZXRzIGEgcGF0aCB0byB1c2UgdGhlIGNtYWtl
+IGluc3RhbGxlZCB3aXRoIHRoYXQuICBVbmZvcnR1bmF0ZWx5LCB0aGUgQ01ha2VMaXN0cy50eHQg
+ZmlsZSBzZWVtIHRvIHdhbnQgYSBuZXdlciB2ZXJzaW9uLiAgVGhlIHBlcnNvbiB3aG8gb3JpZ2lu
+YWxseSBkaWQgc29tZSBvZiB0aGUgZGV2ZWxvcG1lbnQgZm9yIHRoZSBFMzEwIGlzIG5vIGxvbmdl
+ciBhdmFpbGFibGUsIGFuZCBJJ2QgbGlrZSB0byBkb2N1bWVudCBhIHJlcGVhdGFibGUgcHJvY2Vz
+cyBmb3IgZ2V0dGluZyBvdXIgZGV2ZWxvcG1lbnQgYmFjayB1cCBhbmQgcnVubmluZyBzbyB3ZSBj
+YW4gdXNlIHRoZSBFMzEwcyB3ZSBoYXZlLiAgQW55IHN1Z2dlc3Rpb25zIGZvciBhIG5vdmljZSwg
+b3IgaXMgdGhlcmUgb3RoZXIgaW5mb3JtYXRpb24gSSBjYW4gcHJvdmlkZSB0byBtYWtlIGl0IG1v
+cmUgY2xlYXIgb2Ygd2hhdCBJJ20gZG9pbmc/ICBUaGUgb25seSB0aGluZyBJIGNoYW5nZWQgZ29p
+bmcgdGhyb3VnaCBBTi0zMTEgd2FzIHRvIGhhdmUgInByZWZpeCIgbmFtZWQgImUzMTAiIChtYXli
+ZSB0aGF0J3MgdGhlIHByb2JsZW0/KSwgYWx0aG91Z2ggSSBjYWxsZWQgaXQgInByZWZpeCIgd2hl
+biB1c2luZyAxOC4wNC4NCg0KVGhlIEUzMTAgc2VlbXMgdG8gd29yayBhcyBJIGNhbiB1c2UgdGhl
+IHNlcmlhbCBwb3J0IGFuZCBzc2ggdG8gaXQgYW5kIHJ1biBhIHNhbXBsZSBwcm9ncmFtLiAgSSdt
+IHJlYWxseSBqdXN0IHRyeWluZyB0byBnZXQgYSBkZXZlbG9wbWVudCBlbnZpcm9ubWVudCB3b3Jr
+aW5nIHdpdGggaXQuDQoNClJlZ2FyZHMsDQpKZWZmDQpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCmh0
+dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0
+dHVzLmNvbQ0KDQoNCi0tDQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09DQog56aP5bO2IOW5uembhCAoTWlraW8gRnVrdXNoaW1hKQ0K
+IOagquW8j+S8muekvuODieODq+ODleOCo+ODs+OCt+OCueODhuODoCAoRG9scGhpbiBTeXN0ZW0g
+Q28uLEx0ZCkNCg0K44CSMTcxLTAwMTQg5p2x5Lqs6YO96LGK5bO25Yy65rGg6KKL77yS77yN77yU
+77yV77yN77yRDQrjgIDjgIDjgIDjgIDjgIDjgIDjgqLjg7zjgq/jgrfjg4bjgqPmsaDooosg77yW
+77yQ77yRDQoNCk1haWw6IG1pa2lvQGRvbHBoaW5zeXN0ZW0uanA8bWFpbHRvOm1pa2lvQGRvbHBo
+aW5zeXN0ZW0uanA+DQpVUkwgOiBodHRwOi8vd3d3LmRvbHBoaW5zeXN0ZW0uanAvDQpURUwvRkFY
+IDogMDMtNjY1OC00OTQ5DQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PQ0K
 
-You might also try running *uhd_image_builder.py -c*, which will clean up
-any old IP cores and regenerate them.
+--_000_BN6PR19MB0980418F54D3080768D0DF67A4BE0BN6PR19MB0980namp_
+Content-Type: text/html; charset="utf-8"
+Content-ID:  <7B221A401A19A141BFCBC05188211D19@sct-15-20-2032-17-msonline-outlook-0d214.templateTenant>
+Content-Transfer-Encoding: base64
 
--Robin
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdj5NaWtpbyw8
+L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlRoYW5rcyBtdWNoIGZvciBwb2ludGluZyBt
+ZSB0byB0aGUgY29ycmVjdCBkb2N1bWVudGF0aW9uLiBUaGF0IHNlZW1zIHRvIGJlIGRvaW5nIHRo
+ZSB0cmljay48L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlJlZ2FyZHMsPC9kaXY+DQo8
+ZGl2PkplZmY8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRp
+diBzdHlsZT0iZm9udC1zaXplOjEwMCU7Y29sb3I6IzAwMDAwMCI+PCEtLSBvcmlnaW5hbE1lc3Nh
+Z2UgLS0+DQo8ZGl2Pi0tLS0tLS0tIE9yaWdpbmFsIG1lc3NhZ2UgLS0tLS0tLS08L2Rpdj4NCjxk
+aXY+RnJvbTogTWlraW8gRnVrdXNoaW1hICZsdDttaWtpb0Bkb2xwaGluc3lzdGVtLmpwJmd0OyA8
+L2Rpdj4NCjxkaXY+RGF0ZTogOS8xLzE5IDc6NTkgUE0gKEdNVC0wNjowMCkgPC9kaXY+DQo8ZGl2
+PlRvOiBKZWZmIFMgJmx0O2UwNzA4MzJAaG90bWFpbC5jb20mZ3Q7IDwvZGl2Pg0KPGRpdj5DYzog
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPC9kaXY+DQo8ZGl2PlN1YmplY3Q6IFJlOiBbVVNS
+UC11c2Vyc10gU3RhcnRpbmcgZnJvbSBTY3JhdGNoIHdpdGggYSBFMzEwIDwvZGl2Pg0KPGRpdj48
+YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciI+SGkgSmVmZg0KPGRpdj5BTi0zMTEg
+aXMgbm93IGV4cGlyZWQuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5OZXcgZG9jdW1l
+bnRhdGlvbiBpcyB0aGlzLjwvZGl2Pg0KPGRpdj48YSBocmVmPSJodHRwczovL2tiLmV0dHVzLmNv
+bS9Tb2Z0d2FyZV9EZXZlbG9wbWVudF9vbl90aGVfRTN4eF9VU1JQXy1fQnVpbGRpbmdfUkZOb0Nf
+VUhEXy9fR05VX1JhZGlvXy9fZ3ItZXR0dXNfZnJvbV9Tb3VyY2UiIHRhcmdldD0iX0JMQU5LIj5o
+dHRwczovL2tiLmV0dHVzLmNvbS9Tb2Z0d2FyZV9EZXZlbG9wbWVudF9vbl90aGVfRTN4eF9VU1JQ
+Xy1fQnVpbGRpbmdfUkZOb0NfVUhEXy9fR05VX1JhZGlvXy9fZ3ItZXR0dXNfZnJvbV9Tb3VyY2U8
+L2E+PGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5SZWdhcmRzLDwvZGl2Pg0K
+PGRpdj5NaWtpbzwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPGJyPg0KPGRpdiBj
+bGFzcz0iZ21haWxfcXVvdGUiPg0KPGRpdiBkaXI9Imx0ciIgY2xhc3M9ImdtYWlsX2F0dHIiPjIw
+MTnlubQ55pyIMeaXpSjml6UpIDIzOjIyIEplZmYgUyB2aWEgVVNSUC11c2VycyAmbHQ7PGEgaHJl
+Zj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbTwvYT4mZ3Q7Ojxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1
+b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDoxcHggc29s
+aWQgcmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2IGRpcj0ibHRyIj4N
+CjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZv
+bnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkhhcyBhbnlvbmUgcmVjZW50bHkgc3Rh
+cnRlZCBmcm9tIHNjcmF0Y2ggdHJ5aW5nIHRvIGluc3RhbGwgdGhlIEUzMTAgU0RLIG9uIGEgbmV3
+IGluc3RhbGwgb2YgVWJ1bnR1IDE2LjA0IExUUyBhbmQgMTguMDQgTFRTPyZuYnNwOyBJIHN0YXJ0
+ZWQgd2l0aCAxOC4wNCBhbmQgaGFkIHNvbWUgaXNzdWVzIHNvIEkgbWFkZSBhIGNsZWFuIGluc3Rh
+bGwgb2YgMTYuMDQgYW5kIHRoZW4gZm9sbG93ZWQgdGhlIGRpcmVjdGlvbnMgYmFzZWQgb24gQXBw
+bGljYXRpb24gTnVtYmVyDQo8Yj5BTi0zMTE8L2I+LCBsb2NhdGVkIGF0Og0KPHAgc3R5bGU9Im1h
+cmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweCI+PGJyPg0KPC9wPg0KPGRpdiBzdHlsZT0i
+bWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4Ij48YSBocmVmPSJodHRwczovL2tiLmV0
+dHVzLmNvbS9Tb2Z0d2FyZV9EZXZlbG9wbWVudF9vbl90aGVfRTMxMF9hbmRfRTMxMiNDb21waWxp
+bmdfYW5kX2luc3RhbGxpbmdfVUhEIiBpZD0iZ21haWwtbV8tODA2NzAzMTcxOTA3MzY5NDAyTFBs
+bmsxNTYzNzQiIHRhcmdldD0iX0JMQU5LIj5odHRwczovL2tiLmV0dHVzLmNvbS9Tb2Z0d2FyZV9E
+ZXZlbG9wbWVudF9vbl90aGVfRTMxMF9hbmRfRTMxMiNDb21waWxpbmdfYW5kX2luc3RhbGxpbmdf
+VUhEPC9hPjxicj4NCjwvZGl2Pg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWls
+eTpDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdi
+KDAsMCwwKSI+DQpJIGhhZCB0byBhZGQgYW4gaW5zdGFsbCBvZiBweXRob24tcGlwIGFuZCBnaXQt
+Y29yZSBiZWZvcmUgZ29pbmcgdGhyb3VnaCB0aGUgcHlib21icyBjb21tYW5kcywgYnV0IHdoZW4g
+SSBnZXQgdG8gdGhlIGNtYWtlIGNvbW1hbmQsIEkgZ2V0IHRoZSBmb2xsb3dpbmc6PC9kaXY+DQo8
+ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250
+LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8ZGl2Pg0KPGJsb2NrcXVvdGU+Y21ha2Ug
+LURDTUFLRV9UT09MQ0hBSU5fRklMRT0uLi9ob3N0L2NtYWtlL1Rvb2xjaGFpbnMvb2Utc2RrX2Ny
+b3NzLmNtYWtlIC1EQ01BS0VfSU5TVEFMTF9QUkVGSVg9L3VzciAtREVOQUJMRV9FMzAwPU9OIC4u
+PGJyPg0KPC9ibG9ja3F1b3RlPg0KPGJsb2NrcXVvdGU+Q01ha2UgRXJyb3IgYXQgQ01ha2VMaXN0
+cy50eHQ6MTMgKGNtYWtlX21pbmltdW1fcmVxdWlyZWQpOjxicj4NCjwvYmxvY2txdW90ZT4NCjxi
+bG9ja3F1b3RlPkNNYWtlIDMuNS4xIG9yIGhpZ2hlciBpcyByZXF1aXJlZC4mbmJzcDsgWW91IGFy
+ZSBydW5uaW5nIHZlcnNpb24gMi44LjEyLjI8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NClRoYXQgd2Fz
+IHRoZSBzYW1lIGVycm9yIHdoZW4gSSBzdGFydGVkIHdpdGggVWJ1bnR1IDE4LjA0LCBzbyBpdCBz
+ZWVtcyBsaWtlIGl0IGhhcyBzb21ldGhpbmcgdG8gZG8gd2hlbiBpdCBpbnN0YWxscyBjbWFrZSBh
+cyBwYXJ0IG9mIHRoZSBFMzEwIFNESyBhbmQgc2V0cyBhIHBhdGggdG8gdXNlIHRoZSBjbWFrZSBp
+bnN0YWxsZWQgd2l0aCB0aGF0LiZuYnNwOyBVbmZvcnR1bmF0ZWx5LCB0aGUgQ01ha2VMaXN0cy50
+eHQgZmlsZSBzZWVtIHRvIHdhbnQgYSBuZXdlcg0KIHZlcnNpb24uJm5ic3A7IFRoZSBwZXJzb24g
+d2hvIG9yaWdpbmFsbHkgZGlkIHNvbWUgb2YgdGhlIGRldmVsb3BtZW50IGZvciB0aGUgRTMxMCBp
+cyBubyBsb25nZXIgYXZhaWxhYmxlLCBhbmQgSSdkIGxpa2UgdG8gZG9jdW1lbnQgYSByZXBlYXRh
+YmxlIHByb2Nlc3MgZm9yIGdldHRpbmcgb3VyIGRldmVsb3BtZW50IGJhY2sgdXAgYW5kIHJ1bm5p
+bmcgc28gd2UgY2FuIHVzZSB0aGUgRTMxMHMgd2UgaGF2ZS4mbmJzcDsgQW55IHN1Z2dlc3Rpb25z
+IGZvciBhIG5vdmljZSwNCiBvciBpcyB0aGVyZSBvdGhlciBpbmZvcm1hdGlvbiBJIGNhbiBwcm92
+aWRlIHRvIG1ha2UgaXQgbW9yZSBjbGVhciBvZiB3aGF0IEknbSBkb2luZz8mbmJzcDsgVGhlIG9u
+bHkgdGhpbmcgSSBjaGFuZ2VkIGdvaW5nIHRocm91Z2ggQU4tMzExIHdhcyB0byBoYXZlICZxdW90
+O3ByZWZpeCZxdW90OyBuYW1lZCAmcXVvdDtlMzEwJnF1b3Q7IChtYXliZSB0aGF0J3MgdGhlIHBy
+b2JsZW0/KSwgYWx0aG91Z2ggSSBjYWxsZWQgaXQgJnF1b3Q7cHJlZml4JnF1b3Q7IHdoZW4gdXNp
+bmcgMTguMDQuPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEhlbHZldGlj
+YSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8
+L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksSGVsdmV0aWNhLHNhbnMtc2Vy
+aWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NClRoZSBFMzEwIHNlZW1zIHRv
+IHdvcmsgYXMgSSBjYW4gdXNlIHRoZSBzZXJpYWwgcG9ydCBhbmQgc3NoIHRvIGl0IGFuZCBydW4g
+YSBzYW1wbGUgcHJvZ3JhbS4mbmJzcDsgSSdtIHJlYWxseSBqdXN0IHRyeWluZyB0byBnZXQgYSBk
+ZXZlbG9wbWVudCBlbnZpcm9ubWVudCB3b3JraW5nIHdpdGggaXQuPGJyPg0KPC9kaXY+DQo8ZGl2
+IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNp
+emU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZv
+bnQtZmFtaWx5OkNhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBj
+b2xvcjpyZ2IoMCwwLDApIj4NClJlZ2FyZHMsPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250
+LWZhbWlseTpDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
+b3I6cmdiKDAsMCwwKSI+DQpKZWZmPGJyPg0KPC9kaXY+DQo8L2Rpdj4NCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3Q8YnI+DQo8YSBocmVmPSJtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPlVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjxhIGhyZWY9Imh0dHA6Ly9saXN0cy5l
+dHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbSIgcmVs
+PSJub3JlZmVycmVyIiB0YXJnZXQ9Il9CTEFOSyI+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
+bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjwvYmxvY2tx
+dW90ZT4NCjwvZGl2Pg0KPGJyIGNsZWFyPSJhbGwiPg0KPGRpdj48YnI+DQo8L2Rpdj4NCi0tIDxi
+cj4NCjxkaXYgZGlyPSJsdHIiIGNsYXNzPSJnbWFpbF9zaWduYXR1cmUiPg0KPGRpdiBkaXI9Imx0
+ciI+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXY+Jm5ic3A7
+PGJyPg0KPC9kaXY+DQo8ZGl2Pj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PC9kaXY+DQo8ZGl2PiZuYnNwO+emj+WztiDlubnpm4QgKE1p
+a2lvIEZ1a3VzaGltYSk8L2Rpdj4NCjxkaXY+Jm5ic3A75qCq5byP5Lya56S+44OJ44Or44OV44Kj
+44Oz44K344K544OG44OgIChEb2xwaGluIFN5c3RlbSBDby4sTHRkKTwvZGl2Pg0KPGRpdj48YnI+
+DQo8L2Rpdj4NCjxkaXY+44CSMTcxLTAwMTQg5p2x5Lqs6YO96LGK5bO25Yy65rGg6KKL77yS77yN
+77yU77yV77yN77yRPC9kaXY+DQo8ZGl2PuOAgOOAgOOAgOOAgOOAgOOAgOOCouODvOOCr+OCt+OD
+huOCo+axoOiiiyDvvJbvvJDvvJE8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pk1haWw6
+IDxhIGhyZWY9Im1haWx0bzptaWtpb0Bkb2xwaGluc3lzdGVtLmpwIj5taWtpb0Bkb2xwaGluc3lz
+dGVtLmpwPC9hPjwvZGl2Pg0KPGRpdj5VUkwgOiA8YSBocmVmPSJodHRwOi8vd3d3LmRvbHBoaW5z
+eXN0ZW0uanAvIiB0YXJnZXQ9Il9CTEFOSyI+aHR0cDovL3d3dy5kb2xwaGluc3lzdGVtLmpwLzwv
+YT48L2Rpdj4NCjxkaXY+VEVML0ZBWCA6IDAzLTY2NTgtNDk0OTwvZGl2Pg0KPGRpdj49PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PTwvZGl2
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
+bD4NCg==
 
-
-
-On Mon, Sep 2, 2019 at 8:08 AM Neel Pandeya via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hello Steve:
->
-> In the UHD 3.14 release series, RFNoC requires the use of Xilinx Vivado
-> version 2017.4.  In the UHD 3.15 release series, RFNoC will require the use
-> of Xilinx Vivado version 2018.3.  Other versions of Vivado have not been
-> tested and are not supported.  Please note that 3.15.0.0 has not been
-> released yet.  I would suggest that you continue using the 3.14 release
-> series until 3.15.0.0 is available, and this will allow you to continue
-> using Vivado 2017.4.  Your Xilinx license should allow you to install and
-> use multiple versions of Vivado.  Please let me know if you have any
-> further questions.
->
-> --Neel Pandeya
->
->
->
-> On Mon, 2 Sep 2019 at 09:05, shachar J. brown via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi all,
->>
->> I have been working for a long while with rfnoc on an X310.
->>
->> I have lately upgraded the rfnoc, and now when I try to run
->> uhd_image_builder.py I receive an error indicating I need Vivado 2018.12,
->> while my licence is for 2018.3. Upgrading the Vivado is currently not
->> available.
->>
->> 1. Is there any workaround for using the updated rfnoc version alongside
->> Vivado 2018.3 or older?
->> 2. If the first suggestion is not an option, is there any way to
->> downgrade the rfnoc to a version that is compatiable with Vivado 2018.3 or
->> older?
->>
->> Thanks in advance!
->> Steve
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---00000000000005977205919501e4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>What Neel says in the previous is correct, but it doe=
-sn&#39;t answer your question.=C2=A0 This error is telling you that the scr=
-ipt is having issues with the Vivado licenses on your PC.=C2=A0 One of the =
-first things that the <i>uhd_image_builder.py </i>script does is execute <i=
->setupenv.sh </i>in <i>fpga/usrp3/top/x300</i>.=C2=A0 To attempt to debug, =
-navigate to that directory, and execute the setup script manually from the =
-command line <i>(source ./setupenv.sh</i> on Linux) and then try to launch =
-Vivado from the command line.=C2=A0 If Vivado launches successfully, go the=
- Help--&gt;License Manager and make sure there aren&#39;t any expired licen=
-ses and that Vivado is properly recognizing your 2018.3 license.=C2=A0 =C2=
-=A0If Vivado doesn&#39;t launch, make sure that the setup script is pointin=
-g to the location where you installed Vivado.</div><div><br></div><div>You =
-might also try running <i>uhd_image_builder.py -c</i>, which will clean up =
-any old IP cores and regenerate them.<br><div><div><div><div><div><br></div=
-><div>-Robin<br><div><div><br>=C2=A0</div></div></div></div></div></div></d=
-iv></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Mon, Sep 2, 2019 at 8:08 AM Neel Pandeya via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
-ir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,sans-s=
-erif">Hello Steve:</div><div class=3D"gmail_default" style=3D"font-family:v=
-erdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fam=
-ily:verdana,sans-serif">In the UHD 3.14 release series, RFNoC requires the =
-use of Xilinx Vivado version 2017.4.=C2=A0 In the UHD 3.15 release series, =
-RFNoC will require the use of Xilinx Vivado version 2018.3.=C2=A0 Other ver=
-sions of Vivado have not been tested and are not supported.=C2=A0 Please no=
-te that 3.15.0.0 has not been released yet.=C2=A0 I would suggest that you =
-continue using the 3.14 release series until 3.15.0.0 is available, and thi=
-s will allow you to continue using Vivado 2017.4.=C2=A0 Your Xilinx license=
- should allow you to install and use multiple versions of Vivado.=C2=A0 Ple=
-ase let me know if you have any further questions.</div><div class=3D"gmail=
-_default" style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"=
-gmail_default" style=3D"font-family:verdana,sans-serif">--Neel Pandeya</div=
-><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br>=
-</div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"=
-><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Mon, 2 Sep 2019 at 09:05, shachar J. brown via USRP-users &lt=
-;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users=
-@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex"><div dir=3D"ltr">Hi all,<div><br></div><div>I have been wor=
-king for a long while with rfnoc on an X310.=C2=A0</div><div><br></div><div=
->I have lately upgraded the rfnoc, and now when I try to run uhd_image_buil=
-der.py I receive an error indicating I need Vivado 2018.12, while my licenc=
-e is for 2018.3. Upgrading the Vivado is currently not available.</div><div=
-><br></div><div>1. Is there any workaround for using the updated rfnoc vers=
-ion alongside Vivado 2018.3 or older?</div><div>2. If the first suggestion =
-is not an option, is there any way to downgrade the rfnoc to a version that=
- is compatiable with Vivado 2018.3 or older?</div><div><br></div><div>Thank=
-s in advance!</div><div>Steve</div><div><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000005977205919501e4--
+--_000_BN6PR19MB0980418F54D3080768D0DF67A4BE0BN6PR19MB0980namp_--
 
 
---===============3534691330556804368==
+--===============2785826667346312640==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -239,5 +291,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3534691330556804368==--
+--===============2785826667346312640==--
 
