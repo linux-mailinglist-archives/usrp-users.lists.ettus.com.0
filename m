@@ -2,57 +2,41 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3BEA6412
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Sep 2019 10:35:22 +0200 (CEST)
-Received: from [::1] (port=46214 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1222CA6CCE
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Sep 2019 17:21:43 +0200 (CEST)
+Received: from [::1] (port=49228 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i54HY-0006rT-OR; Tue, 03 Sep 2019 04:35:20 -0400
-Received: from mailin.dlr.de ([194.94.201.12]:44136)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <Emanuel.Staudinger@dlr.de>)
- id 1i54HU-0006ZD-6U
- for usrp-users@lists.ettus.com; Tue, 03 Sep 2019 04:35:16 -0400
-IronPort-SDR: OfRLdKZn2YWIq3frFGOoNPN97zq+xV7k4IWlKRKfAaYM27EVJeK+AP4+q4JfHK7EIEzVmciWcR
- GhkjcUhhmvqw==
-IronPort-PHdr: =?us-ascii?q?9a23=3Axa2buxefnsVVdc7Q5Z61sw2+lGMj4u6mDksu8p?=
- =?us-ascii?q?Mizoh2WeGdxcuzYh7h7PlgxGXEQZ/co6odzbaP6ea5BjZLuc3JmUtBWaQEbw?=
- =?us-ascii?q?UCh8QSkl5oK+++Imq/EsTXaTcnFt9JTl5v8iLzG0FUHMHjew+a+SXqvnYdFR?=
- =?us-ascii?q?rlKAV6OPn+FJLMgMSrzeCy/IDYbxlViDanbr5+MQu6oR/MusQUn4duJbo9xx?=
- =?us-ascii?q?XUqXZUZupawn9lK0iOlBjm/Mew+5Bj8yVUu/0/8sNLTLv3caclQ7FGFToqK2?=
- =?us-ascii?q?866tHluhnFVguP+2ATUn4KnRpSAgjK9w/1U5HsuSbnrOV92S2aPcrrTbAoXD?=
- =?us-ascii?q?mp8qlmRAP0hCoBKjU09nzchM5tg6JBuB+vpwJxzZPIYI+bN/R+f7/SctwBSG?=
- =?us-ascii?q?VbQspcUzZMDp+gY4cSCecKIOZWr5P6p1sLtRazAgaiBOb1xT9Om3/5w6k63/?=
- =?us-ascii?q?48HwHaxgMgAs8BsHXSrNX6KqgSS/u4w7TMzTXZdf9ZxCny5ZHOfxs8ov+MRa?=
- =?us-ascii?q?p9fdfNxUU1Cg/IjVqdpZb4Mz6b1ekBqXWX4/R4We6yl2IrsRx9rzugy8s2l4?=
- =?us-ascii?q?XEiIEYxkra+Sh22Io5ONy1RUphbdK6EJZduDuWOolsTs4sRWxjpTw0xaccuZ?=
- =?us-ascii?q?GheSgH0JEnxxnCZPOZa4WI+RfjVPqJITd/mXJlZKqzhxas/kikze3xTse63l?=
- =?us-ascii?q?BEoCRKktfCtncD2R/U5MadVvdx4Eiv1jeR2gzJ6+FEJ1w0lbDBJJI737Ewko?=
- =?us-ascii?q?ATvV7eESDogEn2jamWeVs4+uWw9ujrfq/qqoKfOoJ7kA3yL6ojl8+lDeglLA?=
- =?us-ascii?q?QCR22b9v691L3n8035WrJKjvgun6fWtZDVP8IbprOnDA9RyIot9gq/AC270N?=
- =?us-ascii?q?sFnHkHKl1Fdwydj4XyJl7OJOr4Ae2ijFuyiDtr3ezJPqX9ApXRKXjOiKrhfa?=
- =?us-ascii?q?1n605E0QYz0Mtf6IxOCrEaO//zXk7xtMfEDh8iKQC73frnCMlg1oMFQ26AHq?=
- =?us-ascii?q?iZMKaB+WOPs7YyOPOUIZIOtSzmA/wk/OL1y3IlhUIGO6Ku2M1ERmq/G6EyDk?=
- =?us-ascii?q?CQZ2fhhpE6DW4Xsgs4Q+HwoFGGS3hfaiDhDOoH+jgnBdf+Xs/4TYe3jenZ0Q?=
- =?us-ascii?q?=3D=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2F2EAAFJW5d/wyKuAplHgEGBwaBZwK?=
- =?us-ascii?q?BFIFbgU2XMJkWCQEBAQEBAQEBATcBAYQ/AoMUOBMCAwgBAQUBAQEBAQYEAQE?=
- =?us-ascii?q?ChiNCARABgWYihAEBKlYmAQQbhDisQYpFgTQBjg6BEUaCHmyEJAEBIIM7giY?=
- =?us-ascii?q?EjHSIU4gOjkQHgTuVXY1aiwyoToF6cYM8gkoDF44ihh+Hd4EigSMBAQ?=
-X-IronPort-AV: E=Sophos;i="5.64,462,1559512800"; d="scan'208,217";a="21522930"
-To: <usrp-users@lists.ettus.com>
-Thread-Topic: N200: Sequence error at low sampling rate
-Thread-Index: AdViMadolrykrHJHSQyxrLgPkYKdyg==
-Date: Tue, 3 Sep 2019 08:34:33 +0000
-Message-ID: <38E0BEB98EBB5941BDC0A8EA39458CB4A88E0D34@DLDEFFMIMP04EXC.intra.dlr.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-tm-snts-smtp: 86E74C082F1DDFF5247C9E105127FF0C4E7988B73B82D6AC3847E04BE6A482FC2000:8
+	id 1i5Acm-0001Hy-WF; Tue, 03 Sep 2019 11:21:41 -0400
+Received: from smtp70.ord1d.emailsrvr.com ([184.106.54.70]:50868)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <jasonr@3db-labs.com>) id 1i5Acj-0001Av-I0
+ for usrp-users@lists.ettus.com; Tue, 03 Sep 2019 11:21:37 -0400
+X-Auth-ID: jasonr@3db-labs.com
+Received: by smtp1.relay.ord1d.emailsrvr.com (Authenticated sender:
+ jasonr-AT-3db-labs.com) with ESMTPSA id D4EC440306; 
+ Tue,  3 Sep 2019 11:20:56 -0400 (EDT)
+X-Sender-Id: jasonr@3db-labs.com
+Received: from [192.168.101.19] (rrcs-74-142-203-226.central.biz.rr.com
+ [74.142.203.226]) (using TLSv1.2 with cipher AES128-SHA)
+ by 0.0.0.0:25 (trex/5.7.12); Tue, 03 Sep 2019 11:20:57 -0400
+To: Neel Pandeya <neel.pandeya@ettus.com>
+References: <9d637be0-b80a-33cb-492d-0197e3ba6f5a@3db-labs.com>
+ <5D576746.1010008@gmail.com>
+ <e74ba0af-5c65-9b46-d3d7-360ab9d9dda5@3db-labs.com>
+ <CACaXmv-XwDKP8ok_325K_hahwWUAuesQJddD8-CkoNrJY7GqfQ@mail.gmail.com>
+ <8a61a15c-6018-c30b-2cd3-15220e2ea1e6@3db-labs.com>
+ <CACaXmv87s56ttKCk4io8Z5nJq3DjyhzL6Qv1PgTMUvahmSad7A@mail.gmail.com>
+ <d551a3fe-5f6a-147a-6bf3-0be3aaa86bcd@3db-labs.com>
+Message-ID: <39850419-2871-9e95-c355-677aa4543b60@3db-labs.com>
+Date: Tue, 3 Sep 2019 11:20:56 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Subject: [USRP-users] N200: Sequence error at low sampling rate
+In-Reply-To: <d551a3fe-5f6a-147a-6bf3-0be3aaa86bcd@3db-labs.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] Incorrect RX time_spec values with X300, TwinRX,
+ and v3.14.1.0
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -64,9 +48,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Emanuel via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Emanuel.Staudinger@dlr.de
-Content-Type: multipart/mixed; boundary="===============7420733281697865564=="
+From: Jason Roehm via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jason Roehm <jasonr@3db-labs.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4130609249954140482=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,220 +65,271 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7420733281697865564==
-Content-Language: de-DE
+This is a multi-part message in MIME format.
+--===============4130609249954140482==
 Content-Type: multipart/alternative;
-	boundary="_000_38E0BEB98EBB5941BDC0A8EA39458CB4A88E0D34DLDEFFMIMP04EXC_"
+ boundary="------------78B93E430300EC76EFE913E0"
+Content-Language: en-US
 
---_000_38E0BEB98EBB5941BDC0A8EA39458CB4A88E0D34DLDEFFMIMP04EXC_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hi everybody,
-
-I experience a weird behavior while streaming from my N200 at low sampling =
-rates.
-The setup is as follows: USRP N200 with latest FPGA image, UHD Version 3.14=
-.1.0, Host computer is a Intel NUC Hades Canyon with Ubuntu 18.04 LTS and C=
-PU governor set to performance. The USRP is directly connected to the NUC (=
-no switch in between)
-
-If I use the benchmark program at 1 MHz sampling rate, I get multiple seque=
-nce errors, see one example log at the end of this Mail. It does not seem t=
-o correlate with the MTU size: I tried smaller ones and in same cases a sma=
-ller MTU size (about 1000) seems to decrease the number of sequence errors =
-a bit. The overall CPU load is pretty small. I also experience the same tro=
-ubles if I simply stream into a null-sink or any other block in Gnuradio.
-
-If I use a sampling rate of 20MHz or 25MHz I do not get any sequence errors=
-. And that's what puzzles me: Does anyone have an idea why it works worse a=
-t low sampling rates?
-
-In the manual I found the entry about the ups_per_fifo and ups_per_sec for =
-the N200 series. However, I did not find more information on that: Would ch=
-anging those settings help, and if so, in which direction should I change t=
-hose parameters?
-
-Best regards,
-Emanuel
-
-xx@xx:/usr/local/lib/uhd/examples$ ./benchmark_rate --duration 600 --rx_sub=
-dev A:A --rx_rate 1e6 --args "addr=3D192.168.21.2"
-
-[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106501; UHD_3.14.1.HEAD-0-=
-gbfb9c1c7
-[00:00:00.000001] Creating the usrp device with: addr=3D192.168.21.2...
-[INFO] [USRP2] Opening a USRP2/N-Series device...
-[INFO] [USRP2] Current recv frame size: 1472 bytes
-[INFO] [USRP2] Current send frame size: 1472 bytes
-[INFO] [USRP2] Detecting internal GPSDO....
-[INFO] [GPS] Found an internal GPSDO: Jackson-Labs, FireFly , Firmware Rev =
-0.929
-[INFO] [USRP2] Setting references to the internal GPSDO
-Using Device: Single USRP:
-  Device: USRP2 / N-Series Device
-  Mboard 0: N200r4
-  RX Channel: 0
-    RX DSP: 0
-    RX Dboard: A
-    RX Subdev: BasicRX (A)
-  TX Channel: 0
-    TX DSP: 0
-    TX Dboard: A
-    TX Subdev: Unknown (0xffff) - 0
-
-[00:00:02.491478] Setting device timestamp to 0...
-[00:00:02.491698] Testing receive rate 1.000000 Msps on 1 channels
-[D00:01:03.889970] Detected Rx sequence error.
-[D00:01:28.796795] Detected Rx sequence error.
-[D00:01:32.880153] Detected Rx sequence error.
-[D00:02:34.087632] Detected Rx sequence error.
-[D00:05:13.241379] Detected Rx sequence error.
-[D00:06:13.370751] Detected Rx sequence error.
-[D00:07:05.771504] Detected Rx sequence error.
-[D00:07:12.235087] Detected Rx sequence error.
-[D00:08:25.865832] Detected Rx sequence error.
-[D00:09:18.883324] Detected Rx sequence error.
-[00:10:02.491954] Benchmark complete.
+This is a multi-part message in MIME format.
+--------------78B93E430300EC76EFE913E0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-Benchmark rate summary:
-  Num received samples:     599997347
-  Num dropped samples:      3630
-  Num overruns detected:    0
-  Num transmitted samples:  0
-  Num sequence errors (Tx): 0
-  Num sequence errors (Rx): 10
-  Num underruns detected:   0
-  Num late commands:        0
-  Num timeouts (Tx):        0
-  Num timeouts (Rx):        0
+On 8/20/19 7:40 AM, Jason Roehm via USRP-users wrote:
+>
+>
+> On 8/19/19 6:52 PM, Neel Pandeya wrote:
+>> Hello Jason:
+>>
+>> Thanks for all the detailed feedback!  No worries about not having a 
+>> stand-alone reproducing program at the moment.  Could you please try 
+>> using the head of the "UHD-3.14" branch?  We just tagged 
+>> v3.14.1.1-rc1 with some bug fixes, which we think should address the 
+>> issue.  Please let me know your results running with that, and we'll 
+>> go from there.
+>>
+>> --Neel Pandeya
+>>
+> Neel,
+>
+> I saw the same behavior with the UHD-3.14 branch. I was able to take 
+> the time to put together a self-contained reproducer; see the attached 
+> source file. It's just a simple C++ program that initializes the USRP, 
+> streams a few blocks of data in, and checks the timestamps of 
+> consecutive blocks for continuity. When I run it, I see the following 
+> output:
+>
+> [jasonr@host:~/test_uhd]$ LD_LIBRARY_PATH=~/git/sceptre/deps/lib 
+> ./test_uhd
+> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106900; 
+> UHD_3.14.1.HEAD-0-g98c7c986
+> [INFO] [X300] X300 initialization sequence...
+> [INFO] [X300] Maximum frame size: 8000 bytes.
+> [INFO] [X300] Radio 1x clock: 200 MHz
+> [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 
+> 0xF1F0D00000000000)
+> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1303 MB/s)
+> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312 MB/s)
+> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
+> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
+> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
+> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
+> [WARNING] [X300] Cannot update master clock rate! X300 Series does not 
+> allow changing the clock rate during runtime.
+> Block 1: 16384 samples @ 100 MSPS
+>     Timestamp:           1.96557
+> Block 2: 16384 samples @ 100 MSPS
+>     Timestamp:           1.9659
+>     Last timestamp:      1.96557
+>     Difference:          0.00032352
+>     Expected difference: 0.00016384
+> Block 3: 16384 samples @ 100 MSPS
+>     Timestamp:           1.96622
+>     Last timestamp:      1.9659
+>     Difference:          0.00032352
+>     Expected difference: 0.00016384
+> Block 4: 16384 samples @ 100 MSPS
+>     Timestamp:           1.96654
+>     Last timestamp:      1.96622
+>     Difference:          0.00032352
+>     Expected difference: 0.00016384
+> Block 5: 16384 samples @ 100 MSPS
+>     Timestamp:           1.96687
+>     Last timestamp:      1.96654
+>     Difference:          0.00032352
+>     Expected difference: 0.00016384
+> Block 6: 16384 samples @ 100 MSPS
+>     Timestamp:           1.96721
+>     Last timestamp:      1.96687
+>     Difference:          0.00034348
+>     Expected difference: 0.00016384
+> Block 7: 16384 samples @ 100 MSPS
+>     Timestamp:           1.96753
+>     Last timestamp:      1.96721
+>     Difference:          0.00032352
+>     Expected difference: 0.00016384
+> Block 8: 16384 samples @ 100 MSPS
+>     Timestamp:           1.96786
+>     Last timestamp:      1.96753
+>     Difference:          0.00032352
+>     Expected difference: 0.00016384
+> Block 9: 16384 samples @ 100 MSPS
+>     Timestamp:           1.96818
+>     Last timestamp:      1.96786
+>     Difference:          0.00032352
+>     Expected difference: 0.00016384
+> Block 10: 16384 samples @ 100 MSPS
+>     Timestamp:           1.96851
+>     Last timestamp:      1.96818
+>     Difference:          0.00032352
+>     Expected difference: 0.00016384
+> [jasonr@gauss:~/git/sceptre/test/test_uhd]$
+>
+> Thanks for your help.
+>
+> Jason
+>
+Neel,
+
+Have you been able to take a look at this further?
+
+Jason
 
 
-Done!
+--------------78B93E430300EC76EFE913E0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-
-
-
---_000_38E0BEB98EBB5941BDC0A8EA39458CB4A88E0D34DLDEFFMIMP04EXC_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
-</head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<div>Hi everybody,</div>
-<div><br>
-</div>
-<div>I experience a weird behavior while streaming from my N200 at low samp=
-ling rates.</div>
-<div>The setup is as follows: USRP N200 with latest FPGA image, UHD Version=
- 3.14.1.0, Host computer is a Intel NUC Hades Canyon with Ubuntu 18.04 LTS =
-and CPU governor set to performance. The USRP is directly connected to the =
-NUC (no switch in between)<br>
-</div>
-<div><br>
-</div>
-<div>If I use the benchmark program at 1 MHz sampling rate, I get multiple =
-sequence errors, see one example log at the end of this Mail. It does not s=
-eem to correlate with the MTU size: I tried smaller ones and in same cases =
-a smaller MTU size (about 1000)
- seems to decrease the number of sequence errors a bit. The overall CPU loa=
-d is pretty small. I also experience the same troubles if I simply stream i=
-nto a null-sink or any other block in Gnuradio.<br>
-</div>
-<div><br>
-</div>
-<div>If I use a sampling rate of 20MHz or 25MHz I do not get any sequence e=
-rrors. And that's what puzzles me: Does anyone have an idea why it works wo=
-rse at low sampling rates?</div>
-<div><br>
-</div>
-<div>In the manual I found the entry about the ups_per_fifo and ups_per_sec=
- for the N200 series. However, I did not find more information on that: Wou=
-ld changing those settings help, and if so, in which direction should I cha=
-nge those parameters?<br>
-</div>
-<div><br>
-</div>
-<div>Best regards,</div>
-<div>Emanuel</div>
-<div><br>
-</div>
-<div>xx@xx:/usr/local/lib/uhd/examples$ ./benchmark_rate --duration 600 --r=
-x_subdev A:A --rx_rate 1e6 --args &quot;addr=3D192.168.21.2&quot;<br>
-<br>
-[INFO] [UHD] linux; GNU C&#43;&#43; version 8.3.0; Boost_106501; UHD_3.14.1=
-.HEAD-0-gbfb9c1c7<br>
-[00:00:00.000001] Creating the usrp device with: addr=3D192.168.21.2...<br>
-[INFO] [USRP2] Opening a USRP2/N-Series device...<br>
-[INFO] [USRP2] Current recv frame size: 1472 bytes<br>
-[INFO] [USRP2] Current send frame size: 1472 bytes<br>
-[INFO] [USRP2] Detecting internal GPSDO.... <br>
-[INFO] [GPS] Found an internal GPSDO: Jackson-Labs, FireFly , Firmware Rev =
-0.929<br>
-[INFO] [USRP2] Setting references to the internal GPSDO<br>
-Using Device: Single USRP:<br>
-&nbsp; Device: USRP2 / N-Series Device<br>
-&nbsp; Mboard 0: N200r4<br>
-&nbsp; RX Channel: 0<br>
-&nbsp;&nbsp;&nbsp; RX DSP: 0<br>
-&nbsp;&nbsp;&nbsp; RX Dboard: A<br>
-&nbsp;&nbsp;&nbsp; RX Subdev: BasicRX (A)<br>
-&nbsp; TX Channel: 0<br>
-&nbsp;&nbsp;&nbsp; TX DSP: 0<br>
-&nbsp;&nbsp;&nbsp; TX Dboard: A<br>
-&nbsp;&nbsp;&nbsp; TX Subdev: Unknown (0xffff) - 0<br>
-<br>
-[00:00:02.491478] Setting device timestamp to 0...<br>
-[00:00:02.491698] Testing receive rate 1.000000 Msps on 1 channels<br>
-[D00:01:03.889970] Detected Rx sequence error.<br>
-[D00:01:28.796795] Detected Rx sequence error.<br>
-[D00:01:32.880153] Detected Rx sequence error.<br>
-[D00:02:34.087632] Detected Rx sequence error.<br>
-[D00:05:13.241379] Detected Rx sequence error.<br>
-[D00:06:13.370751] Detected Rx sequence error.<br>
-[D00:07:05.771504] Detected Rx sequence error.<br>
-[D00:07:12.235087] Detected Rx sequence error.<br>
-[D00:08:25.865832] Detected Rx sequence error.<br>
-[D00:09:18.883324] Detected Rx sequence error.<br>
-[00:10:02.491954] Benchmark complete.<br>
-<br>
-<br>
-Benchmark rate summary:<br>
-&nbsp; Num received samples:&nbsp;&nbsp;&nbsp;&nbsp; 599997347<br>
-&nbsp; Num dropped samples:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3630<br>
-&nbsp; Num overruns detected:&nbsp;&nbsp;&nbsp; 0<br>
-&nbsp; Num transmitted samples:&nbsp; 0<br>
-&nbsp; Num sequence errors (Tx): 0<br>
-&nbsp; Num sequence errors (Rx): 10<br>
-&nbsp; Num underruns detected:&nbsp;&nbsp; 0<br>
-&nbsp; Num late commands:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
-&nbsp; Num timeouts (Tx):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
-&nbsp; Num timeouts (Rx):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
-<br>
-<br>
-Done!<br>
-<br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-</div>
-</body>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 8/20/19 7:40 AM, Jason Roehm via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:d551a3fe-5f6a-147a-6bf3-0be3aaa86bcd@3db-labs.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <p><br>
+      </p>
+      <div class="moz-cite-prefix">On 8/19/19 6:52 PM, Neel Pandeya
+        wrote:<br>
+      </div>
+      <blockquote type="cite"
+cite="mid:CACaXmv87s56ttKCk4io8Z5nJq3DjyhzL6Qv1PgTMUvahmSad7A@mail.gmail.com">
+        <meta http-equiv="content-type" content="text/html;
+          charset=UTF-8">
+        <div dir="ltr">
+          <div class="gmail_default"
+            style="font-family:verdana,sans-serif">Hello Jason:</div>
+          <div class="gmail_default"
+            style="font-family:verdana,sans-serif"><br>
+          </div>
+          <div class="gmail_default"
+            style="font-family:verdana,sans-serif">Thanks for all the
+            detailed feedback!  No worries about not having a
+            stand-alone reproducing program at the moment.  Could you
+            please try using the head of the "UHD-3.14" branch?  We just
+            tagged v3.14.1.1-rc1 with some bug fixes, which we think
+            should address the issue.  Please let me know your results
+            running with that, and we'll go from there.</div>
+          <div class="gmail_default"
+            style="font-family:verdana,sans-serif"><br>
+          </div>
+          <div class="gmail_default"
+            style="font-family:verdana,sans-serif">--Neel Pandeya</div>
+          <div class="gmail_default"
+            style="font-family:verdana,sans-serif"><br>
+          </div>
+        </div>
+      </blockquote>
+      <p>Neel,</p>
+      <p>I saw the same behavior with the UHD-3.14 branch. I was able to
+        take the time to put together a self-contained reproducer; see
+        the attached source file. It's just a simple C++ program that
+        initializes the USRP, streams a few blocks of data in, and
+        checks the timestamps of consecutive blocks for continuity. When
+        I run it, I see the following output:</p>
+      <p><tt>[jasonr@host:~/test_uhd]$
+          LD_LIBRARY_PATH=~/git/sceptre/deps/lib ./test_uhd </tt><tt><br>
+        </tt><tt>[INFO] [UHD] linux; GNU C++ version 7.4.0;
+          Boost_106900; UHD_3.14.1.HEAD-0-g98c7c986</tt><tt><br>
+        </tt><tt>[INFO] [X300] X300 initialization sequence...</tt><tt><br>
+        </tt><tt>[INFO] [X300] Maximum frame size: 8000 bytes.</tt><tt><br>
+        </tt><tt>[INFO] [X300] Radio 1x clock: 200 MHz</tt><tt><br>
+        </tt><tt>[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware
+          Rev 0.929a</tt><tt><br>
+        </tt><tt>[INFO] [0/DmaFIFO_0] Initializing block control (NOC
+          ID: 0xF1F0D00000000000)</tt><tt><br>
+        </tt><tt>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1303
+          MB/s)</tt><tt><br>
+        </tt><tt>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312
+          MB/s)</tt><tt><br>
+        </tt><tt>[INFO] [0/Radio_0] Initializing block control (NOC ID:
+          0x12AD100000000001)</tt><tt><br>
+        </tt><tt>[INFO] [0/Radio_1] Initializing block control (NOC ID:
+          0x12AD100000000001)</tt><tt><br>
+        </tt><tt>[INFO] [0/DDC_0] Initializing block control (NOC ID:
+          0xDDC0000000000000)</tt><tt><br>
+        </tt><tt>[INFO] [0/DDC_1] Initializing block control (NOC ID:
+          0xDDC0000000000000)</tt><tt><br>
+        </tt><tt>[INFO] [0/DUC_0] Initializing block control (NOC ID:
+          0xD0C0000000000000)</tt><tt><br>
+        </tt><tt>[INFO] [0/DUC_1] Initializing block control (NOC ID:
+          0xD0C0000000000000)</tt><tt><br>
+        </tt><tt>[WARNING] [X300] Cannot update master clock rate! X300
+          Series does not allow changing the clock rate during runtime.</tt><tt><br>
+        </tt><tt>Block 1: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.96557</tt><tt><br>
+        </tt><tt>Block 2: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.9659</tt><tt><br>
+        </tt><tt>    Last timestamp:      1.96557</tt><tt><br>
+        </tt><tt>    Difference:          0.00032352</tt><tt><br>
+        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
+        </tt><tt>Block 3: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.96622</tt><tt><br>
+        </tt><tt>    Last timestamp:      1.9659</tt><tt><br>
+        </tt><tt>    Difference:          0.00032352</tt><tt><br>
+        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
+        </tt><tt>Block 4: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.96654</tt><tt><br>
+        </tt><tt>    Last timestamp:      1.96622</tt><tt><br>
+        </tt><tt>    Difference:          0.00032352</tt><tt><br>
+        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
+        </tt><tt>Block 5: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.96687</tt><tt><br>
+        </tt><tt>    Last timestamp:      1.96654</tt><tt><br>
+        </tt><tt>    Difference:          0.00032352</tt><tt><br>
+        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
+        </tt><tt>Block 6: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.96721</tt><tt><br>
+        </tt><tt>    Last timestamp:      1.96687</tt><tt><br>
+        </tt><tt>    Difference:          0.00034348</tt><tt><br>
+        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
+        </tt><tt>Block 7: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.96753</tt><tt><br>
+        </tt><tt>    Last timestamp:      1.96721</tt><tt><br>
+        </tt><tt>    Difference:          0.00032352</tt><tt><br>
+        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
+        </tt><tt>Block 8: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.96786</tt><tt><br>
+        </tt><tt>    Last timestamp:      1.96753</tt><tt><br>
+        </tt><tt>    Difference:          0.00032352</tt><tt><br>
+        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
+        </tt><tt>Block 9: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.96818</tt><tt><br>
+        </tt><tt>    Last timestamp:      1.96786</tt><tt><br>
+        </tt><tt>    Difference:          0.00032352</tt><tt><br>
+        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
+        </tt><tt>Block 10: 16384 samples @ 100 MSPS</tt><tt><br>
+        </tt><tt>    Timestamp:           1.96851</tt><tt><br>
+        </tt><tt>    Last timestamp:      1.96818</tt><tt><br>
+        </tt><tt>    Difference:          0.00032352</tt><tt><br>
+        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
+        </tt><tt>[jasonr@gauss:~/git/sceptre/test/test_uhd]$</tt><tt><br>
+        </tt></p>
+      <p>Thanks for your help.</p>
+      <p>Jason<br>
+      </p>
+    </blockquote>
+    <p>Neel,</p>
+    <p>Have you been able to take a look at this further?</p>
+    <p>Jason</p>
+  </body>
 </html>
 
---_000_38E0BEB98EBB5941BDC0A8EA39458CB4A88E0D34DLDEFFMIMP04EXC_--
+--------------78B93E430300EC76EFE913E0--
 
 
---===============7420733281697865564==
+--===============4130609249954140482==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -304,5 +340,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7420733281697865564==--
+--===============4130609249954140482==--
 
