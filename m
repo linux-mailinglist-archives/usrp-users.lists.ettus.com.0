@@ -2,41 +2,91 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1222CA6CCE
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Sep 2019 17:21:43 +0200 (CEST)
-Received: from [::1] (port=49228 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F83BA7540
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Sep 2019 22:48:07 +0200 (CEST)
+Received: from [::1] (port=37054 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i5Acm-0001Hy-WF; Tue, 03 Sep 2019 11:21:41 -0400
-Received: from smtp70.ord1d.emailsrvr.com ([184.106.54.70]:50868)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <jasonr@3db-labs.com>) id 1i5Acj-0001Av-I0
- for usrp-users@lists.ettus.com; Tue, 03 Sep 2019 11:21:37 -0400
-X-Auth-ID: jasonr@3db-labs.com
-Received: by smtp1.relay.ord1d.emailsrvr.com (Authenticated sender:
- jasonr-AT-3db-labs.com) with ESMTPSA id D4EC440306; 
- Tue,  3 Sep 2019 11:20:56 -0400 (EDT)
-X-Sender-Id: jasonr@3db-labs.com
-Received: from [192.168.101.19] (rrcs-74-142-203-226.central.biz.rr.com
- [74.142.203.226]) (using TLSv1.2 with cipher AES128-SHA)
- by 0.0.0.0:25 (trex/5.7.12); Tue, 03 Sep 2019 11:20:57 -0400
-To: Neel Pandeya <neel.pandeya@ettus.com>
-References: <9d637be0-b80a-33cb-492d-0197e3ba6f5a@3db-labs.com>
- <5D576746.1010008@gmail.com>
- <e74ba0af-5c65-9b46-d3d7-360ab9d9dda5@3db-labs.com>
- <CACaXmv-XwDKP8ok_325K_hahwWUAuesQJddD8-CkoNrJY7GqfQ@mail.gmail.com>
- <8a61a15c-6018-c30b-2cd3-15220e2ea1e6@3db-labs.com>
- <CACaXmv87s56ttKCk4io8Z5nJq3DjyhzL6Qv1PgTMUvahmSad7A@mail.gmail.com>
- <d551a3fe-5f6a-147a-6bf3-0be3aaa86bcd@3db-labs.com>
-Message-ID: <39850419-2871-9e95-c355-677aa4543b60@3db-labs.com>
-Date: Tue, 3 Sep 2019 11:20:56 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <d551a3fe-5f6a-147a-6bf3-0be3aaa86bcd@3db-labs.com>
+	id 1i5Fif-0002HH-8A; Tue, 03 Sep 2019 16:48:05 -0400
+Received: from mx0a-00199b02.pphosted.com ([148.163.149.0]:45270)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <adnan.quadri@louisville.edu>)
+ id 1i5Fia-0001y1-A9
+ for usrp-users@lists.ettus.com; Tue, 03 Sep 2019 16:48:00 -0400
+Received: from pps.filterd (m0114299.ppops.net [127.0.0.1])
+ by mx0a-00199b02.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ x83KihO7000364
+ for <usrp-users@lists.ettus.com>; Tue, 3 Sep 2019 20:47:17 GMT
+Received: from nam04-bn3-obe.outbound.protection.outlook.com
+ (mail-bn3nam04lp2057.outbound.protection.outlook.com [104.47.46.57])
+ by mx0a-00199b02.pphosted.com with ESMTP id 2uqe0b1y9x-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Tue, 03 Sep 2019 20:47:17 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eVf/8NGlxcid/FmIXHw3h2M2nN1BC+RNC0qgvw+d7T77Kfob/XjBBlQna9eHIhWOCELyG8ZN91xuHnvLzPRpcqa5G8ezRf1OxwwYEmKaj7tOOeYbNuOlQ4ivKEIUBM2GZ1iCOE8Ni5U+q3fjC80If5tPX8Ss9o2BL8hl4T0dVPca2XNFyUONAInL0VXjxBJ8o96UNyu5dtfU1sl17dsX+Sezo++qnYQGxgJPXEPLSa1MgiZYfzdfODFCtTNGH/Byoq08TQKt0Ihkx5Tot0CfOvAQYScxEVbRti6YvzEI7DJerYLNNdTCPhNWwMt23AR949xiHCOLCHr+Rv2MFZal/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Detrwb4vw1VwfTEHnfeLR7EoOZBkeP28TEmAs9Dnb44=;
+ b=BJiZYlnrRp2+7cBgUhA37Q72rsjDuKdhMtNnMP3wqmMoPd4ZNg6TN3jWmsIbk2TS7a/zDCE2EEht4Co7g97KxTg8mhLqANgVVNohcAtOeb0TD2v0Th+SK9lfwDeIQQMUmyqgxXK+3qbzw6UzVG2LhgT/+GJ3bck0ayswJhYgoyYqFt6DatepNT5WM9l4pm51YXJef13pFJ9kD1ux9YeLuAyHIh0IBKxdQYLO2tvrDeqR7fTwPGNbG3QaYanAZ0yHYk/G2qb0EWqzSuYKLkFc/pNeTouuBuTXocbpYHFg0w0llNTCVngFDqW3WcXaSnhz8S1eDghvC4UpCtu38K0cgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=louisville.edu; dmarc=pass action=none
+ header.from=louisville.edu; dkim=pass header.d=louisville.edu; arc=none
+Received: from DM6PR03MB3788.namprd03.prod.outlook.com (20.176.114.155) by
+ DM6PR03MB4506.namprd03.prod.outlook.com (20.178.26.95) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.20; Tue, 3 Sep 2019 20:47:15 +0000
+Received: from DM6PR03MB3788.namprd03.prod.outlook.com
+ ([fe80::4063:2d9:9f51:f2d8]) by DM6PR03MB3788.namprd03.prod.outlook.com
+ ([fe80::4063:2d9:9f51:f2d8%6]) with mapi id 15.20.2220.020; Tue, 3 Sep 2019
+ 20:47:15 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Addsub HLS Block Error 
+Thread-Index: AQHVYpieP/fOZgDUjECq35w86GFd8w==
+Date: Tue, 3 Sep 2019 20:47:15 +0000
+Message-ID: <DM6PR03MB3788A9542C8AEE2E59A04D4DE6B90@DM6PR03MB3788.namprd03.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [USRP-users] Incorrect RX time_spec values with X300, TwinRX,
- and v3.14.1.0
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [216.249.140.121]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 08b282fd-95b5-4f4a-a174-08d730afe794
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);
+ SRVR:DM6PR03MB4506; 
+x-ms-traffictypediagnostic: DM6PR03MB4506:
+x-microsoft-antispam-prvs: <DM6PR03MB45068DD0382F7244CBA752BDE6B90@DM6PR03MB4506.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 01494FA7F7
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(346002)(376002)(136003)(39860400002)(396003)(366004)(189003)(199004)(2906002)(66446008)(25786009)(74316002)(64756008)(86362001)(478600001)(66476007)(66556008)(66946007)(88552002)(55016002)(6436002)(33656002)(5640700003)(3846002)(6116002)(7696005)(6506007)(4743002)(71200400001)(71190400001)(91956017)(76116006)(8936002)(99286004)(105004)(26005)(19627405001)(256004)(486006)(102836004)(3480700005)(2501003)(7736002)(52536014)(4744005)(81156014)(81166006)(66066001)(14454004)(476003)(8676002)(9686003)(53936002)(54896002)(6916009)(316002)(786003)(75432002)(2351001)(5660300002)(186003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR03MB4506;
+ H:DM6PR03MB3788.namprd03.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: louisville.edu does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: j7CBspMhnbBImKB6HB7nVWHuhFouySYRkopxRa34t5oQngor2jUk3rwwt6DW1aWfcaYJiIcIDFVnmMbOBo92/aFx4jh12edn4rIdAf1beahb782kLb1WqGj/753ZuZ+vee4zViPq3h6Vp0Y91Sf1XRDcIvAURFAfxca+uBYk1Wnyys6Dyug+tTh13UMKj8AVmAJM+4VYN2PItNYHRDaxqU8xn6nuhGoxnJ1/4wHGzuyZ/mK+bqMgrR3qLkYxcz17PbOWHRRA4VAt2Evx1ssthDC7UhdMyB3IuLP60AXHFKXTiBrFNOML5pFXwe7W2PZDHqhUFVqN/acxivXeJ89rjeLjP3YjYvtl2l2gSUhKShpiu3ihV94KC78Y3klXbCOmkd63/FBqegTfkgdjLYxeKd/pbkEVDAJxI7he0fHMs0E=
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: louisville.edu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08b282fd-95b5-4f4a-a174-08d730afe794
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 20:47:15.6613 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: dd246e4a-5434-4e15-8ae3-91ad9797b209
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: K9tYXOmS9xHnQEw9e8OetqTrV6uJ+fSbGXg24KBvpA7GwLBWE5/uhd0vpBUyFmNoHsszhFYxc205b1FFYyE5dA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB4506
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.70,1.0.8
+ definitions=2019-09-03_04:2019-09-03,2019-09-03 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0
+ lowpriorityscore=0 spamscore=0 phishscore=0 mlxscore=0 malwarescore=0
+ adultscore=0 priorityscore=1501 impostorscore=0 mlxlogscore=796
+ clxscore=1015 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-1906280000 definitions=main-1909030208
+Subject: [USRP-users] Addsub HLS Block Error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -48,10 +98,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Roehm via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Roehm <jasonr@3db-labs.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4130609249954140482=="
+From: "Quadri,Adnan via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Quadri,Adnan" <adnan.quadri@louisville.edu>
+Content-Type: multipart/mixed; boundary="===============7702585584794165458=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -65,271 +114,115 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4130609249954140482==
-Content-Type: multipart/alternative;
- boundary="------------78B93E430300EC76EFE913E0"
+--===============7702585584794165458==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM6PR03MB3788A9542C8AEE2E59A04D4DE6B90DM6PR03MB3788namp_"
 
-This is a multi-part message in MIME format.
---------------78B93E430300EC76EFE913E0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_DM6PR03MB3788A9542C8AEE2E59A04D4DE6B90DM6PR03MB3788namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+Hello,
 
-On 8/20/19 7:40 AM, Jason Roehm via USRP-users wrote:
->
->
-> On 8/19/19 6:52 PM, Neel Pandeya wrote:
->> Hello Jason:
->>
->> Thanks for all the detailed feedback!  No worries about not having a 
->> stand-alone reproducing program at the moment.  Could you please try 
->> using the head of the "UHD-3.14" branch?  We just tagged 
->> v3.14.1.1-rc1 with some bug fixes, which we think should address the 
->> issue.  Please let me know your results running with that, and we'll 
->> go from there.
->>
->> --Neel Pandeya
->>
-> Neel,
->
-> I saw the same behavior with the UHD-3.14 branch. I was able to take 
-> the time to put together a self-contained reproducer; see the attached 
-> source file. It's just a simple C++ program that initializes the USRP, 
-> streams a few blocks of data in, and checks the timestamps of 
-> consecutive blocks for continuity. When I run it, I see the following 
-> output:
->
-> [jasonr@host:~/test_uhd]$ LD_LIBRARY_PATH=~/git/sceptre/deps/lib 
-> ./test_uhd
-> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106900; 
-> UHD_3.14.1.HEAD-0-g98c7c986
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Maximum frame size: 8000 bytes.
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
-> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 
-> 0xF1F0D00000000000)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1303 MB/s)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312 MB/s)
-> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
-> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
-> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
-> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
-> [WARNING] [X300] Cannot update master clock rate! X300 Series does not 
-> allow changing the clock rate during runtime.
-> Block 1: 16384 samples @ 100 MSPS
->     Timestamp:           1.96557
-> Block 2: 16384 samples @ 100 MSPS
->     Timestamp:           1.9659
->     Last timestamp:      1.96557
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 3: 16384 samples @ 100 MSPS
->     Timestamp:           1.96622
->     Last timestamp:      1.9659
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 4: 16384 samples @ 100 MSPS
->     Timestamp:           1.96654
->     Last timestamp:      1.96622
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 5: 16384 samples @ 100 MSPS
->     Timestamp:           1.96687
->     Last timestamp:      1.96654
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 6: 16384 samples @ 100 MSPS
->     Timestamp:           1.96721
->     Last timestamp:      1.96687
->     Difference:          0.00034348
->     Expected difference: 0.00016384
-> Block 7: 16384 samples @ 100 MSPS
->     Timestamp:           1.96753
->     Last timestamp:      1.96721
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 8: 16384 samples @ 100 MSPS
->     Timestamp:           1.96786
->     Last timestamp:      1.96753
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 9: 16384 samples @ 100 MSPS
->     Timestamp:           1.96818
->     Last timestamp:      1.96786
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 10: 16384 samples @ 100 MSPS
->     Timestamp:           1.96851
->     Last timestamp:      1.96818
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> [jasonr@gauss:~/git/sceptre/test/test_uhd]$
->
-> Thanks for your help.
->
-> Jason
->
-Neel,
+We are trying to run the RFNoC addsub HLS block.
 
-Have you been able to take a look at this further?
+I was able to build the FPGA Image and made sure in the noc_block verilog c=
+ode to point to the HLS implementation for addsub block on RFNoC as opposed=
+ to the verilog/VHDL implementation.
 
-Jason
+But when we run the example Flowgraph with two signal source as input to th=
+e two inputs for addsub block on GRC, we get the following error -
 
+ERROR:
+thread[thread-per-block[4]: <block uhd_rfnoc_AddSub (1)>]: RuntimeError: In=
+valid recv stream command - stream now on multiple channels in a single str=
+eamer will fail to time align.
 
---------------78B93E430300EC76EFE913E0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Does this have anything to do with the C++ code for HLS implementation or i=
+s it a problem at UHD level?
+
+Thanks,
+Adnan
+
+--_000_DM6PR03MB3788A9542C8AEE2E59A04D4DE6B90DM6PR03MB3788namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 8/20/19 7:40 AM, Jason Roehm via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:d551a3fe-5f6a-147a-6bf3-0be3aaa86bcd@3db-labs.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <p><br>
-      </p>
-      <div class="moz-cite-prefix">On 8/19/19 6:52 PM, Neel Pandeya
-        wrote:<br>
-      </div>
-      <blockquote type="cite"
-cite="mid:CACaXmv87s56ttKCk4io8Z5nJq3DjyhzL6Qv1PgTMUvahmSad7A@mail.gmail.com">
-        <meta http-equiv="content-type" content="text/html;
-          charset=UTF-8">
-        <div dir="ltr">
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif">Hello Jason:</div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif"><br>
-          </div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif">Thanks for all the
-            detailed feedback!  No worries about not having a
-            stand-alone reproducing program at the moment.  Could you
-            please try using the head of the "UHD-3.14" branch?  We just
-            tagged v3.14.1.1-rc1 with some bug fixes, which we think
-            should address the issue.  Please let me know your results
-            running with that, and we'll go from there.</div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif"><br>
-          </div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif">--Neel Pandeya</div>
-          <div class="gmail_default"
-            style="font-family:verdana,sans-serif"><br>
-          </div>
-        </div>
-      </blockquote>
-      <p>Neel,</p>
-      <p>I saw the same behavior with the UHD-3.14 branch. I was able to
-        take the time to put together a self-contained reproducer; see
-        the attached source file. It's just a simple C++ program that
-        initializes the USRP, streams a few blocks of data in, and
-        checks the timestamps of consecutive blocks for continuity. When
-        I run it, I see the following output:</p>
-      <p><tt>[jasonr@host:~/test_uhd]$
-          LD_LIBRARY_PATH=~/git/sceptre/deps/lib ./test_uhd </tt><tt><br>
-        </tt><tt>[INFO] [UHD] linux; GNU C++ version 7.4.0;
-          Boost_106900; UHD_3.14.1.HEAD-0-g98c7c986</tt><tt><br>
-        </tt><tt>[INFO] [X300] X300 initialization sequence...</tt><tt><br>
-        </tt><tt>[INFO] [X300] Maximum frame size: 8000 bytes.</tt><tt><br>
-        </tt><tt>[INFO] [X300] Radio 1x clock: 200 MHz</tt><tt><br>
-        </tt><tt>[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware
-          Rev 0.929a</tt><tt><br>
-        </tt><tt>[INFO] [0/DmaFIFO_0] Initializing block control (NOC
-          ID: 0xF1F0D00000000000)</tt><tt><br>
-        </tt><tt>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1303
-          MB/s)</tt><tt><br>
-        </tt><tt>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312
-          MB/s)</tt><tt><br>
-        </tt><tt>[INFO] [0/Radio_0] Initializing block control (NOC ID:
-          0x12AD100000000001)</tt><tt><br>
-        </tt><tt>[INFO] [0/Radio_1] Initializing block control (NOC ID:
-          0x12AD100000000001)</tt><tt><br>
-        </tt><tt>[INFO] [0/DDC_0] Initializing block control (NOC ID:
-          0xDDC0000000000000)</tt><tt><br>
-        </tt><tt>[INFO] [0/DDC_1] Initializing block control (NOC ID:
-          0xDDC0000000000000)</tt><tt><br>
-        </tt><tt>[INFO] [0/DUC_0] Initializing block control (NOC ID:
-          0xD0C0000000000000)</tt><tt><br>
-        </tt><tt>[INFO] [0/DUC_1] Initializing block control (NOC ID:
-          0xD0C0000000000000)</tt><tt><br>
-        </tt><tt>[WARNING] [X300] Cannot update master clock rate! X300
-          Series does not allow changing the clock rate during runtime.</tt><tt><br>
-        </tt><tt>Block 1: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.96557</tt><tt><br>
-        </tt><tt>Block 2: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.9659</tt><tt><br>
-        </tt><tt>    Last timestamp:      1.96557</tt><tt><br>
-        </tt><tt>    Difference:          0.00032352</tt><tt><br>
-        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
-        </tt><tt>Block 3: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.96622</tt><tt><br>
-        </tt><tt>    Last timestamp:      1.9659</tt><tt><br>
-        </tt><tt>    Difference:          0.00032352</tt><tt><br>
-        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
-        </tt><tt>Block 4: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.96654</tt><tt><br>
-        </tt><tt>    Last timestamp:      1.96622</tt><tt><br>
-        </tt><tt>    Difference:          0.00032352</tt><tt><br>
-        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
-        </tt><tt>Block 5: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.96687</tt><tt><br>
-        </tt><tt>    Last timestamp:      1.96654</tt><tt><br>
-        </tt><tt>    Difference:          0.00032352</tt><tt><br>
-        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
-        </tt><tt>Block 6: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.96721</tt><tt><br>
-        </tt><tt>    Last timestamp:      1.96687</tt><tt><br>
-        </tt><tt>    Difference:          0.00034348</tt><tt><br>
-        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
-        </tt><tt>Block 7: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.96753</tt><tt><br>
-        </tt><tt>    Last timestamp:      1.96721</tt><tt><br>
-        </tt><tt>    Difference:          0.00032352</tt><tt><br>
-        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
-        </tt><tt>Block 8: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.96786</tt><tt><br>
-        </tt><tt>    Last timestamp:      1.96753</tt><tt><br>
-        </tt><tt>    Difference:          0.00032352</tt><tt><br>
-        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
-        </tt><tt>Block 9: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.96818</tt><tt><br>
-        </tt><tt>    Last timestamp:      1.96786</tt><tt><br>
-        </tt><tt>    Difference:          0.00032352</tt><tt><br>
-        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
-        </tt><tt>Block 10: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>    Timestamp:           1.96851</tt><tt><br>
-        </tt><tt>    Last timestamp:      1.96818</tt><tt><br>
-        </tt><tt>    Difference:          0.00032352</tt><tt><br>
-        </tt><tt>    Expected difference: 0.00016384</tt><tt><br>
-        </tt><tt>[jasonr@gauss:~/git/sceptre/test/test_uhd]$</tt><tt><br>
-        </tt></p>
-      <p>Thanks for your help.</p>
-      <p>Jason<br>
-      </p>
-    </blockquote>
-    <p>Neel,</p>
-    <p>Have you been able to take a look at this further?</p>
-    <p>Jason</p>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hello,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+We are trying to run the RFNoC addsub HLS block.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I was able to build the FPGA Image and made sure in the noc_block verilog c=
+ode to point to the HLS implementation for addsub block on RFNoC as opposed=
+ to the verilog/VHDL implementation.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+But when we run the example Flowgraph with two signal source as input to th=
+e two inputs for addsub block on GRC, we get the following error -</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+ERROR:<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+thread[thread-per-block[4]: &lt;block uhd_rfnoc_AddSub (1)&gt;]: RuntimeErr=
+or: Invalid recv stream command - stream now on multiple channels in a sing=
+le streamer will fail to time align.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Does this have anything to do with the C&#43;&#43; code for HLS implementat=
+ion or is it a problem at UHD level?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thanks,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Adnan<br>
+</div>
+</body>
 </html>
 
---------------78B93E430300EC76EFE913E0--
+--_000_DM6PR03MB3788A9542C8AEE2E59A04D4DE6B90DM6PR03MB3788namp_--
 
 
---===============4130609249954140482==
+--===============7702585584794165458==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -340,5 +233,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4130609249954140482==--
+--===============7702585584794165458==--
 
