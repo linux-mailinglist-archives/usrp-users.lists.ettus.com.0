@@ -2,95 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B83BEA84B8
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Sep 2019 15:52:11 +0200 (CEST)
-Received: from [::1] (port=56062 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C122A85BD
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Sep 2019 16:42:34 +0200 (CEST)
+Received: from [::1] (port=40592 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i5Vhh-0001gX-M9; Wed, 04 Sep 2019 09:52:09 -0400
-Received: from dispatch1-us1.ppe-hosted.com ([67.231.154.164]:44054)
+	id 1i5WUR-0001Nq-VQ; Wed, 04 Sep 2019 10:42:31 -0400
+Received: from mail-pf1-f169.google.com ([209.85.210.169]:35295)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
- id 1i5Vhd-0001Zh-3Y
- for usrp-users@lists.ettus.com; Wed, 04 Sep 2019 09:52:05 -0400
-Received: from dispatch1-us1.ppe-hosted.com (localhost.localdomain [127.0.0.1])
- by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
- B4037A1C25
- for <usrp-users@lists.ettus.com>; Wed,  4 Sep 2019 13:51:23 +0000 (UTC)
-X-Virus-Scanned: Proofpoint Essentials engine
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com
- (mail-by2nam03lp2050.outbound.protection.outlook.com [104.47.42.50])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
- (No client certificate requested)
- by mx1-us5.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id A55424C0062
- for <usrp-users@lists.ettus.com>; Wed,  4 Sep 2019 13:51:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l42NXvtMx4fZjVk9HCdl96s+haSAnSc59IdWkGFiAn1S/dj1+Ydb4ofLbslYmXNTgb/4bjsaHqGYQE+pmXqnbWewp4IHPHlKzqdCEk/amvR2VmPVwoz+NSdfUN6WlEeVZMxQ5XLPSG4o978ywPd4bfFLWMxaBLJF11t/HLF91ETK6dF0B5/jluBQ7Au6pFsL3H0xpmTd+44I3+pqTCTcYUHz7WJ1z7FoSyw2ddloSKXz0439vOwgZCVHC2VCVohG5aiMXphzPuUqxmH+4EKCCPIApcKg2LyBOF1wI3L5Yr+M/ztVoQrgBFlQPYn3QBqoRrW1mdWxAtn9YtabNT9uKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aec+NapDDRykuKYQu8ks40zjFkinvLmfHUfwsr6FIig=;
- b=MfQg2tc0E/OsibgkVf3cytl6tdaArmJsE+o9ATeDxknaG3uSi92DSEmCKSUy7FipHZmZpowcftQNyW5iSxCx07R/9Bu4GYEc6VZ7pxh/wm1i4swaeuDMnGdOYHD3Qg95Wnhx/VjGroDLTsgAyII0xnV7eAAIltTJi5WU8HJQTNQtHd3kp58s/CUNnfxelu4g+Vbanx17HO9pkT643CoDPWOlb8NMFHkWV/PRE/+8iuBlhZzEcubRA+DbwyTn0HCieKMOfJiwH15JQl/OMmXf+5mvZXroo7ZR+p/LOYBA82k02mL74GkJXr9WR3SM3V0U//KekMA7CGVxeYV3PIXCmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
- header.from=gardettoengineering.com; dkim=pass
- header.d=gardettoengineering.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector2-gardettoengineering-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aec+NapDDRykuKYQu8ks40zjFkinvLmfHUfwsr6FIig=;
- b=BjfofleT4WLO9olfqwoIgcrld7qNCa0IsupRTGqt+K5xSUh7NyK+fasVazeTc2+LpnoQkP6fnrsYh7xKknHzbecoQur8AjKU96sktzRX3Q2GzTdPvHdjZwJ8y9EhR5Kru2YaVeODTqDgUJCrGyV8EhqiycsDPxrv94c2eMpOX5c=
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.11.30) by
- BL0PR12MB2819.namprd12.prod.outlook.com (20.177.242.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2241.14; Wed, 4 Sep 2019 13:51:09 +0000
-Received: from BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::10b:c950:7de9:d8d8]) by BL0PR12MB2340.namprd12.prod.outlook.com
- ([fe80::10b:c950:7de9:d8d8%6]) with mapi id 15.20.2220.022; Wed, 4 Sep 2019
- 13:51:09 +0000
-To: Ettus Mail List <usrp-users@lists.ettus.com>
-Thread-Topic: flowgraphs not stopping
-Thread-Index: AQHVYyV07u5VtC60mEKpeDPkx3OLTQ==
-Date: Wed, 4 Sep 2019 13:51:09 +0000
-Message-ID: <BL0PR12MB2340FFE697102E2EB5276D30AFB80@BL0PR12MB2340.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jason@gardettoengineering.com; 
-x-originating-ip: [65.127.220.137]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c845c65c-790a-425c-f266-08d7313ef126
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);
- SRVR:BL0PR12MB2819; 
-x-ms-traffictypediagnostic: BL0PR12MB2819:
-x-microsoft-antispam-prvs: <BL0PR12MB2819AEB61BF9AE8A7DE24275AFB80@BL0PR12MB2819.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0150F3F97D
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(136003)(39830400003)(346002)(366004)(376002)(396003)(199004)(189003)(2906002)(74316002)(3846002)(8936002)(86362001)(102836004)(6116002)(316002)(6506007)(7696005)(81166006)(81156014)(7736002)(53936002)(7116003)(8676002)(6916009)(19627405001)(25786009)(99286004)(26005)(76116006)(66946007)(66446008)(64756008)(66556008)(66476007)(486006)(5660300002)(105004)(9686003)(54896002)(71200400001)(71190400001)(33656002)(3480700005)(66066001)(52536014)(6436002)(55016002)(4744005)(476003)(186003)(14454004)(256004)(508600001);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2819;
- H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: gardettoengineering.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Du8qnTDlZdx83We09MhtmqCoFL6ifSbfY6OxgidH+p4Oep5Fris102Q6LKahbvjz2DFUS0Haff55bnAbCAaU1wLZPOo9ZvBiSokZIaUScbkFeV80DPgKf0abKazFhR0NaI50yAs2LhzZlEerr94ivGo8/nJG8eanyEaOE+8b9R7F6fiPTrXZ64ByuQWfmFCQstWzNOCf7DpSfwcnPsfYmdhFkurqElr8EY/c/lRQDMtxQYGljXyyE/zLtKpStDN0Oh+xmRR96Dm1GS8s4xDBNI90grp2pLiZAfOCKCF+IXvgS3v78MPZRBZTbF4RlD4lyvg91Qs4B8ws7wkp0GrrcycZ/OYP8uJKPCHsvrcAjVqjmps6kQ8dB1KWzroMeiUK2wgrmLXzQCqzay+tZSaCm+erHztc5LkrZ2mtr+wNjTE=
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c845c65c-790a-425c-f266-08d7313ef126
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Sep 2019 13:51:09.8510 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oOgAwidSxdREjtW0CAdBMhP1O3K3UTR/dzFBaLb9xo4toEGWPYRULt9vm9NLHs+PcJEkYHlT70q1tihxzgY93T9sY5wlMoGppqOXKPNxoz0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2819
-X-MDID: 1567605073-unSBq1WI0bDu
-Subject: [USRP-users] flowgraphs not stopping
+ (Exim 4.92) (envelope-from <qiu.guowang007@gmail.com>)
+ id 1i5WUO-0001IF-Gh
+ for usrp-users@lists.ettus.com; Wed, 04 Sep 2019 10:42:28 -0400
+Received: by mail-pf1-f169.google.com with SMTP id 205so10928435pfw.2
+ for <usrp-users@lists.ettus.com>; Wed, 04 Sep 2019 07:42:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:mime-version:subject:date:from:to:cc;
+ bh=Uw1Au8YDU/OQBifgL4LcZbsCDT2SFsZzMn9iAmZs9aY=;
+ b=fcre7PJQ+yC6bFqRe3Jvel9dTaWCSPB+XV7H0Fb2lZUdgeHjno9xPk1ZMca2Acplx0
+ 3naIDFZTUL/br40M4y6oGMQ+4afAf0eUpOc2MQlY8Wvd3S+9vo+MBBWDR2/NGUfhSlIO
+ uXuP/nZBKENp55QhpwHd74eb7pTemOiztKdn5XFqpPOvykyVXFNraMzA2MP2a3a+yf4W
+ jJu+6haq5H6PP/I4k+YaUoFd9sHoEwCpXpAmUx1/sFS/2TaAFBXuNHS95ki88LkOvRBL
+ LvhTNP+SrfbCMM823nKjsmcbqr5gGmRqd7cKwvOjnvqHYCGOnwCtWwuzZ7f79zm5RKAM
+ 9BFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:mime-version:subject:date:from:to:cc;
+ bh=Uw1Au8YDU/OQBifgL4LcZbsCDT2SFsZzMn9iAmZs9aY=;
+ b=qeny66cBRkP0upuDr8s/dl3TGiNmj/sakxhlBT5DCvdlo3XVMXW1g1CDJtqR2yeXdl
+ JxQKRXO/e6KsagYlGMci03t3Rizfo0lomNiR3Bi84Y1rxtTJ0z/Qj8XYbQZCowks6aFF
+ F5Y0H/gI6ndUdu5VGFYEzgBO7aHgDmu760th0B0ZO3WRQxqu2wbO8pBsjjIBI1YttKuX
+ c0x5LR8rDdjm6mpLBLWVtlxhROJGXPv9ZeEiCaI9TScovHlb2XoBBrZ02fULa136tc5Z
+ QCRFxeW9506qgRlHv61Qf5CmvpAG97jleiB4ri4+wE0dD4jfP+OSTfwyutM0hkioIuGv
+ tKbA==
+X-Gm-Message-State: APjAAAXs1sIAZgPmP3/SJkmlnf7xw/drjF9WIb8Zf6v/N3lYwcJ0Vk3Z
+ txWLhUWWQIVPljUrRFrcgE08K8Wu
+X-Google-Smtp-Source: APXvYqxvzYGQ95mj+3xLv07l0SWM3BTOEUJ5GFjKxWhNKM8puV581h4O/HZMtKPqPdI6Wlb8s3GPPQ==
+X-Received: by 2002:a17:90a:b305:: with SMTP id d5mr5476523pjr.5.1567608107237; 
+ Wed, 04 Sep 2019 07:41:47 -0700 (PDT)
+Received: from localhost (smtpbg516.qq.com. [203.205.250.54])
+ by smtp.gmail.com with ESMTPSA id i9sm18436117pgg.38.2019.09.04.07.41.45
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 04 Sep 2019 07:41:46 -0700 (PDT)
+Message-ID: <5d6fcd2a.1c69fb81.1333f.fb49@mx.google.com>
+X-Google-Original-Message-ID: tencent_3B83373DA8C38FC006A0AE79@qq.com
+Mime-Version: 1.0
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+Date: Wed, 4 Sep 2019 22:41:46 +0800 (GMT+08:00)
+To: =?UTF-8?B?dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20=?=<usrp-users@lists.ettus.com>
+Subject: [USRP-users] How to upgrade the version of MPM of N300
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -102,9 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jason Matusiak <jason@gardettoengineering.com>
-Content-Type: multipart/mixed; boundary="===============0659063012936904550=="
+From: Damon Qiu via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?RGFtb24gUWl1?= <qiu.guowang007@gmail.com>
+Cc: =?UTF-8?B?RGFtb24gUWl1?= <qiu.guowang007@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2926391693537523007=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -118,92 +80,48 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0659063012936904550==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB2340FFE697102E2EB5276D30AFB80BL0PR12MB2340namp_"
+--===============2926391693537523007==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_0_146760827.1567608106970"
 
---_000_BL0PR12MB2340FFE697102E2EB5276D30AFB80BL0PR12MB2340namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-I have a weird problem that I've seen for a while and I've just ignored unt=
-il now.  I've seen this with numerous pieces of hardware, but I am currentl=
-y using an E320 in network mode.  This seems to only happen when I am using=
- RFNoC, so I assumed it was me, but today I was testing with only stock blo=
-cks and have the same issue.
-
-The problem is that when I run a GR flowgraph without a GUI in "prompt for =
-exit" mode, it doesn't always seem to exit.  I'll hit enter like I am suppo=
-sed to, but it just hangs until I press ctrl-c.  Currently I have an RFNoC:=
-Radio -> DmaFIFO -> GR blocks.  I have tested this with different combos of=
- blocks and they all seem to have the same issue.  I originally thought it =
-was me or the split stream block, but they are both out of the equation now=
-.  Has anyone else seen this issue before?
-
-I am running:
-[INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-36); Boos=
-t_105300; UHD_3.14.1.HEAD-0-g5491b80e
-
-and GR: v3.7.13.4
-
---_000_BL0PR12MB2340FFE697102E2EB5276D30AFB80BL0PR12MB2340namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-I have a weird problem that I've seen for a while and I've just ignored unt=
-il now.&nbsp; I've seen this with numerous pieces of hardware, but I am cur=
-rently using an E320 in network mode.&nbsp; This seems to only happen when =
-I am using RFNoC, so I assumed it was me,
- but today I was testing with only stock blocks and have the same issue.</d=
-iv>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-The problem is that when I run a GR flowgraph without a GUI in &quot;prompt=
- for exit&quot; mode, it doesn't always seem to exit.&nbsp; I'll hit enter =
-like I am supposed to, but it just hangs until I press ctrl-c.&nbsp; Curren=
-tly I have an RFNoC:Radio -&gt; DmaFIFO -&gt; GR blocks.&nbsp;
- I have tested this with different combos of blocks and they all seem to ha=
-ve the same issue.&nbsp; I originally thought it was me or the split stream=
- block, but they are both out of the equation now.&nbsp; Has anyone else se=
-en this issue before?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-I am running:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span>[INFO] [UHD] linux; GNU C&#43;&#43; version 4.8.5 20150623 (Red Hat 4=
-.8.5-36); Boost_105300; UHD_3.14.1.HEAD-0-g5491b80e<br>
-</span><span></span><br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-and GR: v3.7.13.4</div>
-</body>
-</html>
-
---_000_BL0PR12MB2340FFE697102E2EB5276D30AFB80BL0PR12MB2340namp_--
+------=_Part_0_146760827.1567608106970
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: base64
 
 
---===============0659063012936904550==
+------=_Part_0_146760827.1567608106970
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: base64
+
+PGRpdj5IaSBhbGwsPC9kaXY+PGRpdj5BZnRlciB3ZSB1cGRhdGVkIHRoZSBzZCBpbWFnZSBvZiBO
+MzAwIGZyb20gdjMuMTMgdG8gdjMuMTQuMS4wLCBpdCBmYWlsZWQgdG8gaW5pdGlhbGl6ZSBkZXZp
+Y2UuPC9kaXY+PGRpdj5ydW5uaW5nIHVoZF91c3JwX3Byb2JlLCB3ZSBnZXQgdGhlIGZvbGxvd2lu
+ZyBlcnJvciBpbmZvcm1hdGlvbjo8L2Rpdj48ZGl2PltJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMr
+KyB2ZXJzaW9uIDcuMy4wOyBCb29zdF8xMDY2MDA7PC9kaXY+PGRpdj5VSERfMy4xNC4xLjAtMC1n
+YmZiOWMxYzc8L2Rpdj48ZGl2PltJTkZPXSBbTVBNRF0gSW5pdGlhbGl6aW5nIDEgZGV2aWNlKHMp
+IGluIHBhcmFsbGVsIHdpdGggYXJnczo8L2Rpdj48ZGl2Pm1nbXRfYWRkcj0xMjcuMC4wLjEsdHlw
+ZT1uL2EscHJvZHVjdD1uL2Esc2VyaWFsPW4vYSxjbGFpbWVkPUZhbHNlPC9kaXY+PGRpdj5bSU5G
+T10gW01QTS5tYWluXSBMYXVuY2hpbmcgVVNSUC9NUE0sIHZlcnNpb246IDMuMTQuMS4wLWdiZmI5
+YzFjNzwvZGl2PjxkaXY+W0lORk9dIFtNUE0ubWFpbl0gU3Bhd25pbmcgUlBDIHByb2Nlc3MuLi48
+L2Rpdj48ZGl2PltFUlJPUl0gW01QTS5QZXJpcGhNYW5hZ2VyXSBGYWlsZWQgdG8gaW5pdGlhbGl6
+ZSBkZXZpY2U6IFNvZnR3YXJlIGlzIG1heGltYWxseTwvZGl2PjxkaXY+Y29tcGF0aWJsZSB3aXRo
+IHJldmlzaW9uIGA1JywgYnV0IHRoZSBoYXJkd2FyZSBoYXMgcmV2aXNpb24gYDcnIGFuZCBpczwv
+ZGl2PjxkaXY+bWluaW1hbGx5IGNvbXBhdGlibGUgd2l0aCBoYXJkd2FyZSByZXZpc2lvbiBgNicu
+IFBsZWFzZSB1cGdyYWRlIHlvdXIgdmVyc2lvbjwvZGl2PjxkaXY+b2ZNUE0gaW4gb3JkZXIgdG8g
+dXNlIHRoaXMgZGV2aWNlLjwvZGl2PjxkaXY+W0VSUk9SXSBbTVBNLlBlcmlwaE1hbmFnZXJdIEZh
+aWxlZCB0byBpbml0aWFsaXplIG1vdGhlcmJvYXJkOiAncHJvZHVjdCc8L2Rpdj48ZGl2PltFUlJP
+Ul0gW01QTS5QZXJpcGhNYW5hZ2VyXSBDYW5ub3QgcnVuIGluaXQoKSwgZGV2aWNlIHdhcyBuZXZl
+ciBmdWxseTwvZGl2PjxkaXY+aW5pdGlhbGl6ZWQhPC9kaXY+PGRpdj5bSU5GT10gW01QTS5SUENT
+ZXJ2ZXJdIFJQQyBzZXJ2ZXIgcmVhZHkhPC9kaXY+PGRpdj5bSU5GT10gW01QTS5SUENTZXJ2ZXJd
+IFNwYXduaW5nIHdhdGNoZG9nIHRhc2suLi48L2Rpdj48ZGl2PjxkaXY+RXJyb3I6IFJ1bnRpbWVF
+cnJvcjogRGV2aWNlIGlzIGluIGJhZCBzdGF0ZTogJ3Byb2R1Y3QnPC9kaXY+PGRpdj5JcyB0aGVy
+ZSBhbnlvbmUmbmJzcDsga25vdyBob3cgdG8gdXBncmFkZSB0aGUgdmVyc2lvbiBvZiBNUE0gb2Yg
+TjMwMD88L2Rpdj48ZGl2PkJlc3QgcmVnYXJkcyw8L2Rpdj48ZGl2PkRhbW9uPC9kaXY+PC9kaXY+
+PGRpdj48IS0tZW1wdHlzaWduLS0+PC9kaXY+
+------=_Part_0_146760827.1567608106970--
+
+
+--===============2926391693537523007==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -214,5 +132,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0659063012936904550==--
+--===============2926391693537523007==--
 
