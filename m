@@ -2,52 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7FD3AAB1C
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Sep 2019 20:34:43 +0200 (CEST)
-Received: from [::1] (port=37070 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7826DAACA5
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Sep 2019 22:00:06 +0200 (CEST)
+Received: from [::1] (port=53482 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i5wag-00064X-5t; Thu, 05 Sep 2019 14:34:42 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:36022)
+	id 1i5xvH-0002dt-Pl; Thu, 05 Sep 2019 16:00:03 -0400
+Received: from mail-qt1-f170.google.com ([209.85.160.170]:42979)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
- id 1i5wac-0005yZ-Lf
- for usrp-users@lists.ettus.com; Thu, 05 Sep 2019 14:34:38 -0400
-Received: by mail-ot1-f42.google.com with SMTP id 67so3217392oto.3
- for <usrp-users@lists.ettus.com>; Thu, 05 Sep 2019 11:34:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=KkMHiumvm2pmJdBorAtEL2ucL1NvzV05CF0kP9x6OiE=;
- b=h5PXPhenq9grVSNiC2cHuaoPCdxJNp2VxYxMyJ89EQEAktGJRNM4iLeNUzP0DxkQt+
- cGjRmzqDnea4xVMTmHlrvoabjpCNdkJNsvfQJKuwjc49Db0dVCl1TJHMmAVBHOGnQNJK
- ZoGBiVKe132v5KrD+1QMTCIgv4aQvZbfboz8LmuEO3H4uoomT5OHHnrw+hHTx4QCQzdU
- WwtOZknqjPDuyk0RP4nuPMZYOC5vg3ft2+5kCkp7aKlsE34iebMWP5GXavoj4UsF5eta
- 2wuAYPpKAzTQ7xBy6Fdng/pJcwBxaOeOKleblxc2awI5f1DtYALKzpXQM4Tk4FXECz7t
- IjYg==
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1i5xvE-0002XR-A5
+ for usrp-users@lists.ettus.com; Thu, 05 Sep 2019 16:00:00 -0400
+Received: by mail-qt1-f170.google.com with SMTP id c9so4309273qth.9
+ for <usrp-users@lists.ettus.com>; Thu, 05 Sep 2019 12:59:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=JK1+MfGoYBpTXGmA2PiPaWwjRpH2jCF0c/md+D6jJIY=;
+ b=tfL3y91h5c67fl9309r+WGGKC03XrgU+NneK+wYY7+Vt2xaSoAzO3fs7+N1U45edRh
+ NLMUAUIfagNd+O2M1oNHOC2k5VnoNOnfnfcuEDHfBmXXqS3ArHr9RH5OVX1PAPNCCCiS
+ J1ZciO44bw1KklEKkcFdcjXJTVMjVD4Q32nP9ZGnXRmdgO8FTbuVaqMeaQC8t+lMm/a6
+ eATYXhVKkvswRMmgx9VjUHfsjMnckg5vJTUukrbXku9njbzQyuwrNjxZu1AEdeNGOGKP
+ qqXQ/tNyzSCz1ye55NFuSmN5q+nTL5MWTK/f9gBo/35aPVzLYRy7mkvElvzkes0xOjdB
+ rbEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=KkMHiumvm2pmJdBorAtEL2ucL1NvzV05CF0kP9x6OiE=;
- b=GG6IgEx4fmu/jGF/WlNbJTnV40TZr/TeM7JP0tyFOsupHtpEWzlrEsPA3Ouxp3IGD4
- fV/OeYULoPprkz8v3ZDDnQGtO9nAZX6ijzpy8/pxgvZh/BZjXCrv0FmTcWVtD1n6S00Z
- ZheERBRCcF/XrFch3yjF6eiElURvECNgBHZO1FnQ2AXcHMF/RdzPddi4byb5CIge4H4W
- K8Tm68hglG2WVLo7cSlNqnZ0oY0aVA3+fOY7uwXfYUmmMiRz39MVaVQbkvUxxKOo92xv
- 5oN0YyOLDy6wnuIscHMWv/0xrrA/3fg+ipFwRVmlZo84lBPE9U4x5axoiVbmDqgNFpC6
- 5Zwg==
-X-Gm-Message-State: APjAAAW6MHCp3Kdxb9ngeoLsASQ9eThD9mvCEzuepC5FNybgIhxnMgS6
- AlmFcMXvlip02KT2WS4ThosXx6s/FndAbdEqGwR1j9LK
-X-Google-Smtp-Source: APXvYqy0+8s7wyJLNoS3ZDBj7eDDvWEJSI9yBIbmEH1nn5Pb3IqFFoleh6kMyusuOuWp6FfUjmPqhXHJHzN1OVGXpC4=
-X-Received: by 2002:a9d:3f4b:: with SMTP id m69mr3856255otc.301.1567708437926; 
- Thu, 05 Sep 2019 11:33:57 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=JK1+MfGoYBpTXGmA2PiPaWwjRpH2jCF0c/md+D6jJIY=;
+ b=PmBnp2AKhxelltEaIHf+Vn9sAjgyeGQYCPNGoIkEtnrijD0vCV7JrbjnKp5W5G6Yn8
+ fA+5A2UxR6yBUcLA6Z1ggHqRgUxHModivau5OyVyHPDCv8JSQE1vUOrtZrz8CYx82pC3
+ vfxK8jUDfyLkq4P028i931k9LG9l/Gx8V5vJkXj+QeoH4PiUoU9ByKhlw7VBbJ6bb0ww
+ yzsU9uEf7on+A0UJmlz4OPg1LmUbm3aQHttnL3bi7xWc3E9jOxKcIJXkzKNegqiX6SBa
+ jwtZnckK9oG2oN8trs9lID2IvUXLheGDKkh/fL2F5XKBDvXMTWmEy0RlAR6lkUGZEnK0
+ AFrg==
+X-Gm-Message-State: APjAAAV81w6PsTO/WgiasKMvZ2wU3lwVTLpVRXWIju9A5228KVAfjTe0
+ SnM+ecoM4rhEmyrzbs6LpuwuuOPM
+X-Google-Smtp-Source: APXvYqys+tHsTsUNBjYxDERcdwqYhk0H+8CDufpNYoKh2XvSmMn8gSofEZFgZyVkvOaFM/plDTyAGw==
+X-Received: by 2002:a05:6214:11ab:: with SMTP id
+ u11mr3148845qvv.11.1567713559482; 
+ Thu, 05 Sep 2019 12:59:19 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
+ [174.95.14.20])
+ by smtp.googlemail.com with ESMTPSA id s23sm1746108qte.72.2019.09.05.12.59.18
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 05 Sep 2019 12:59:18 -0700 (PDT)
+Message-ID: <5D716915.7020401@gmail.com>
+Date: Thu, 05 Sep 2019 15:59:17 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <5b42d964-619f-3034-5b9a-44f464afe630@bham.ac.uk>
-In-Reply-To: <5b42d964-619f-3034-5b9a-44f464afe630@bham.ac.uk>
-Date: Thu, 5 Sep 2019 14:33:46 -0400
-Message-ID: <CAGNhwTOr8=U6fwpw9psPH0DeBaDevjXCnBedCBfgnbxE_M4XAw@mail.gmail.com>
-To: J Subash <j.subash@bham.ac.uk>
-Subject: Re: [USRP-users] sc16 - complex<int16_t> to numpy float
+To: usrp-users@lists.ettus.com
+References: <4f5d8fc2bf9ab0410a972bbbacd07b3a@imapproxy.vub.ac.be>
+ <5D6FEF3A.4000706@gmail.com>
+ <23692c4607f91d8f0e0f5933bf539182@imapproxy.vub.ac.be>
+ <5D703EFB.5000302@gmail.com>
+ <53057fc9e67907c28f7c647db4c8b194@imapproxy.vub.ac.be>
+In-Reply-To: <53057fc9e67907c28f7c647db4c8b194@imapproxy.vub.ac.be>
+Subject: Re: [USRP-users] time_now and daughterboard synchronization
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,10 +72,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: USRP list <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7892995234229398320=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,128 +89,32 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7892995234229398320==
-Content-Type: multipart/alternative; boundary="0000000000008dea200591d29034"
-
---0000000000008dea200591d29034
-Content-Type: text/plain; charset="UTF-8"
-
-Hi JS - Maybe check out this Python example from UHD <
-https://github.com/EttusResearch/uhd/blob/master/host/examples/python/rx_to_file.py
+On 09/05/2019 03:57 AM, C=E9dric Hannotier via USRP-users wrote:
+> On 2019-09-05 00:47, Marcus D. Leech via USRP-users wrote:
+>> That's because, for weird internal reasons, there are actually TWO
+>> time-of-day clocks on X310 and B210--one per "side".  I don't remember
+>>   whether there  are two commands sent from the host side, or a single
+>> command, that is acted-upon serially within the FPGA.  With a
+>>   1PPS synchronization, the 1PPS causes a parallel load of the desired
+>> time value into the time-of-day clocks on the motherboard.
+> Thanks for the explanation.
 >
-... it does Rx to file, and can save as NumPy format ... which could then
-presumably be easily read back into NumPy. - MLD
+> Is it specified somewhere in the documentation? Because it is clearly =
 
-On Thu, Sep 5, 2019 at 11:08 AM J Subash via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+> stated in "set_time_now()" doc. that: "If only one MIMO master is =
 
-> Hi,
->
-> I am using a B200 to save samples on the host as 'short' (as described in
-> the uhd <https://github.com/EttusResearch/uhd>/host
-> <https://github.com/EttusResearch/uhd/tree/master/host>/examples
-> <https://github.com/EttusResearch/uhd/tree/master/host/examples>/
-> rx_samples_to_file.cpp), which I believe is complex<int16_t>.
->
-> I'd like to import this data into numpy and then convert it into floating
-> point values. Is sc16 a fixed point representation, if yes what is the
-> scaling factor. If no, how do I convert it into a numpy float in Python.
-> Any help would be much appreciated. Thanks.
->
-> BW
->
-> JS
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+> present in your configuration, set_time_now is safe to use because the =
+
+> slave's time automatically follows the master's time". I think these =
+
+> exceptions should be written somewhere in the doc. if that is not =
+
+> already the case.
+That's only really applicable for N210, which has a special "MIMO cable".
 
 
--- 
-Michael Dickens, Mac OS X Programmer
-
-Ettus Research Technical Support
-
-Email: support@ettus.com
-
-Web: http://www.ettus.com
-
---0000000000008dea200591d29034
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi JS - Maybe check out this Python example from UHD &lt;=
-=C2=A0<a href=3D"https://github.com/EttusResearch/uhd/blob/master/host/exam=
-ples/python/rx_to_file.py">https://github.com/EttusResearch/uhd/blob/master=
-/host/examples/python/rx_to_file.py</a>=C2=A0&gt; ... it does Rx to file, a=
-nd can save as NumPy format ... which could then presumably=C2=A0be easily =
-read back into NumPy. - MLD</div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Thu, Sep 5, 2019 at 11:08 AM J Subash via USR=
-P-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.=
-ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
- =20
-
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <p>Hi,</p>
-    <p>I am using a B200 to save samples on the host as &#39;short&#39; (as
-      described in the <tt><span class=3D"gmail-m_-7136052441403100718js-re=
-po-root gmail-m_-7136052441403100718text-bold"><span class=3D"gmail-m_-7136=
-052441403100718js-path-segment"><a href=3D"https://github.com/EttusResearch=
-/uhd" target=3D"_blank"><span>uhd</span></a></span></span></tt><tt><span cl=
-ass=3D"gmail-m_-7136052441403100718separator">/</span></tt><tt><span class=
-=3D"gmail-m_-7136052441403100718js-path-segment"><a href=3D"https://github.=
-com/EttusResearch/uhd/tree/master/host" target=3D"_blank"><span>host</span>=
-</a></span></tt><tt><span class=3D"gmail-m_-7136052441403100718separator">/=
-</span></tt><tt><span class=3D"gmail-m_-7136052441403100718js-path-segment"=
-><a href=3D"https://github.com/EttusResearch/uhd/tree/master/host/examples"=
- target=3D"_blank"><span>examples</span></a></span></tt><tt><span class=3D"=
-gmail-m_-7136052441403100718separator">/</span></tt><tt><span class=3D"gmai=
-l-m_-7136052441403100718final-path">rx_samples_to_file.cpp),</span></tt>
-      which I believe is complex&lt;int16_t&gt;.=C2=A0 <br>
-    </p>
-    <p>I&#39;d like to import this data into numpy and then convert it into
-      floating point values. Is sc16 a fixed point representation, if
-      yes what is the scaling factor. If no, how do I convert it into a
-      numpy float in Python. Any help would be much appreciated. Thanks.<br=
->
-    </p>
-    <p>BW</p>
-    <p>JS<br>
-    </p>
-  </div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr">Michael Dickens, Mac OS X Progr=
-ammer<br><br>Ettus Research Technical Support<br><br>Email: <a href=3D"mail=
-to:support@ettus.com" target=3D"_blank">support@ettus.com</a><br><br>Web: <=
-a href=3D"http://www.ettus.com" target=3D"_blank">http://www.ettus.com</a><=
-/div></div>
-
---0000000000008dea200591d29034--
-
-
---===============7892995234229398320==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7892995234229398320==--
-
