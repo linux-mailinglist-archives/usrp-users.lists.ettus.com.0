@@ -2,53 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B75AC268
-	for <lists+usrp-users@lfdr.de>; Sat,  7 Sep 2019 00:18:45 +0200 (CEST)
-Received: from [::1] (port=52874 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41953AC27C
+	for <lists+usrp-users@lfdr.de>; Sat,  7 Sep 2019 00:24:35 +0200 (CEST)
+Received: from [::1] (port=55392 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i6MYz-0001yY-IN; Fri, 06 Sep 2019 18:18:41 -0400
-Received: from sonic306-6.consmr.mail.bf2.yahoo.com ([74.6.132.45]:36299)
+	id 1i6Mee-0002d5-B2; Fri, 06 Sep 2019 18:24:32 -0400
+Received: from mail-pl1-f177.google.com ([209.85.214.177]:35257)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1i6MYw-0001pw-6h
- for usrp-users@lists.ettus.com; Fri, 06 Sep 2019 18:18:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
- t=1567808277; bh=CcgcjUf2qjEu8JG5nX5iRIySQumyxygnErvRp1VLrkE=;
- h=Subject:From:To:Date:References:From:Subject;
- b=tBGcXRjjVHHxsgsx/XoW2rEv0jjT6550BsGjP3axHV7EvMZW7Svyfy1T8kYr5b23fZUSm4JSErb+RcK72zgRm8E93x7EN7H2+fFtN/7WcUzwitQDYLS5WFhuLkbJjDsbTV5Br/ol7Vht6tTlhEgfPBIihAuHrfcvBHgBGpEOrqKQsFC9EAgWOhaJEJhknLPBaYKQIcMbYgOWe7XG3DLv1FY4bbWRVKy9aCB2KNDKovF3XChsqdubGNGgQ3XyZPgeT6kFJGqCbea6+RHcFa0CELpiVWa0s6hn4+PCuWYXLfd0Z+Il8Q3SOYmh+8RtEKJ00k19Amw0SlGdyZzgYX9ifQ==
-X-YMail-OSG: xqijIXMVM1nfvilvpu8n2GNqX5hq8FdpR7vY7xZcoo2LcKaTZwZ2NZ4Eb_ZgpYj
- Ggowv_Nmtz.ELDkwUxD4FEslzkR6GwE3eTRgrYY7HWSG6znpW97CGWP5H6YqyIFbH_fVFUyFPCxW
- WuhWCoRFMUVxXz_yQM0Nhqir9MQwGr_NwOkgmR3jgQ5IKAxPlxh82xVjGF2w2FIfmfFS6eelV3TU
- 07.p2I_OD6BWPXJIGyGNWKqjL3bjZ9c8hpG31qBUSZnVlTGp3Yv_cmgDaHNSpMhMfpiPlfTLAgrB
- 4NqzA1.2t_8Ese4MOP3MiBiscdsQ6whkAs2qJhGAmwipxzxa66.M5p.gNNiSJeRsrVNSNLjWiVlI
- ZMaEgfz9re2UGdH6kkqWK6Pif9P_1o6i0u20D7a_S0pKN1IOgffYHGVZ34GKxjaaDgWU.2EH98nt
- lOU2p5IG_4DSe_9SZBJslAJTc0sz6Ch2HhV_m.l1hLdmc4RqgAAXnGv2mTKFw2dHyOVCpDvVRY6D
- UMmA1If5q.FHiODDYQwViAM.NoKbcofDohYhHGKCLCfUuQoV_hdvMbmqMclEDzr5NZsIE8o5L99T
- HrV.jO3V5rJImD0bjJI5sr6w_qohInCpHvJMkRiDvD6meCPYpcyBTN60p5PI2oY.WcBC2XH50OIw
- oo.qkeUIBb7BFbqtsY6qEqpTaoAWMh9UNH03O0CWl8vae7MKvm9fpXjFyZE_spI4FPFEoh4TOu.i
- bCq.VEesF8ovTLHcpKRwwag.nhRVjI682kgzOlZDI47jk4_WFy8darKstz17O2Sjajgrm892JhlT
- y1G86G1PtXIXS1t6DtknhclkrptIBOzd0dT0FARJOg7icxt0N0_m5M_ZOEutkYYipAiLliHRzlHI
- T8LZkbfLWSBFw3hwF1gfLjTitPB3S0Y0jE9CTAEbsSe2XriOQQfCfinO1MKFHf1T86Evpa2DagO3
- U.sRDhdqwPKiVwlwojw9r41c3EMhxJzlwLDclRTWfFeV5YoPpBINhY7i_y_Gi9jYmQKrkP7e2r0n
- ryBuC9jev_hZR6tS5QWBFPXmZ4M5H3xYN6Il8HnHojDINAoR8lg5tm84mffA1baj9VoAUWP8SAx_
- DbFyj6swoALbw11NgiJwZqorbBbgpkKRmPQvif028nf2_5VEjmNsLYDqnSk1w0zN.xV7WqcWBoWn
- cvbRwThoKVlf5guoAdLKxihfNEf8STRpix6Zphzf.Zh99ryje.3GSY3gnod8A_x0VYjTrjbwYVfj
- _2nPbAFZnVimWAfY6pI9CABIlF7ebFXDH8VwpFnUk3k.KaxBj2L5SABSD1WLqto1XEu_73.vR8Bc
- CgdygcyuuPFZfUnQc9.55UjLNEvBiuLVnf3CIRThi6YioDPhchUWd2IAuVaa2gjs-
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic306.consmr.mail.bf2.yahoo.com with HTTP; Fri, 6 Sep 2019 22:17:57 +0000
-Received: by smtp401.mail.bf1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
- ID 59dbae0d41b1fb0016525c6f7e613387; 
- Fri, 06 Sep 2019 22:17:55 +0000 (UTC)
-Message-ID: <a39ce184e0fd70ed16f5fce920af81f514a4392d.camel@sbcglobal.net>
-To: etus list <usrp-users@lists.ettus.com>
-Date: Fri, 06 Sep 2019 17:17:53 -0500
+ (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
+ id 1i6Mea-0002YZ-Hy
+ for usrp-users@lists.ettus.com; Fri, 06 Sep 2019 18:24:28 -0400
+Received: by mail-pl1-f177.google.com with SMTP id gn20so3831781plb.2
+ for <usrp-users@lists.ettus.com>; Fri, 06 Sep 2019 15:24:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:organization
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=VqEzbEOHw0PHNtzffXkpb6d+jceec1Nw65Cumrb8mGQ=;
+ b=pdbtCPgEEqm4nNKaCG47wBRoBlIUGCRNpfC+O6a6/Wa/ItA3ZNXkZIhTNymWsFbv0x
+ rmp2/VYQwjdMOKLT4cysz4rpU5Rud1U8KcuJ0BoGqD5ZyXDXvO0otSLBKIZf3KyzCZAm
+ ilday7gNbGMF4HLjocomLrPVDo1/ph10jf35sRzAqfuyqQgM8n57lXzdo+GKYTb2Ou2M
+ TL4H7WHCI5WDPQK/Sk4izaUhxauRjFXvoe/Yca3v/hMD34tCGEdZcW17ni0u48D6FubW
+ anwXPqA9qJIaLXrbSv7oXBMMV+0dA7cfHXP6afWcgdlavFC36hZnPMKdtUhh13Pu4wr1
+ QknQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=VqEzbEOHw0PHNtzffXkpb6d+jceec1Nw65Cumrb8mGQ=;
+ b=WY/h7q/B0/MLSYjgA4pym2f4jD6ZvnFKNQaCZQrn4w/G2aXeI8Y6nR8FYudF5vUIoW
+ 4tRN8sc5Bml5Vre8yILlRS0hODDGmTluHvvugFIMOqxwA0LR+YxeX7C0UhJrcOiZWZ4k
+ HGMrMusV9eS/O5Fb2AmN1LaQgW2zuGHfVKKSBjDzgVRwCu1sRslY+bVQCBJWZoX1mYgC
+ slgSwg7XjOa1RNRGH4JLxh4PHkdHf1o4KvPF7rp3RN4FBQUNT3YUeGK2XGy7wrCmn9P6
+ mbqbfLamukcY/pYGJF5kc2KJMRbMgJQRwbrhIdwZmzhfB+hhcHyynlNuzQ+QJVt+48xt
+ JRqw==
+X-Gm-Message-State: APjAAAV6BV+rvd91gN9WZggAbbKJ0wSsMa62obAaPhS2Z7phFDrvJ6Pq
+ rCD4Jf8kV8+4ccvwOvABmfA0kPhN
+X-Google-Smtp-Source: APXvYqyThlSFGdq3R389E85lpI8CQYcU3Z3WcXA3QLYMmNzaoFg2QQWCt6mWGvgybMSjLTF02w5kQg==
+X-Received: by 2002:a17:902:202:: with SMTP id 2mr11224757plc.96.1567808627393; 
+ Fri, 06 Sep 2019 15:23:47 -0700 (PDT)
+Received: from racer.hostalia.de ([207.114.172.158])
+ by smtp.gmail.com with ESMTPSA id j18sm8028085pfh.70.2019.09.06.15.23.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 06 Sep 2019 15:23:46 -0700 (PDT)
+Message-ID: <46108c0b98749cd2de8a820ca88777003dcf33b6.camel@ettus.com>
+To: "Lundberg, Daniel" <daniel.lundberg@gtri.gatech.edu>, 
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Fri, 06 Sep 2019 15:23:45 -0700
+In-Reply-To: <7a40a32856c14d31807bfea8150bc996@gtri.gatech.edu>
+References: <7a40a32856c14d31807bfea8150bc996@gtri.gatech.edu>
+Organization: Ettus Research
 User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
 MIME-Version: 1.0
-References: <a39ce184e0fd70ed16f5fce920af81f514a4392d.camel.ref@sbcglobal.net>
-X-Mailer: WebService/1.1.14303 hermes Apache-HttpAsyncClient/4.1.4
- (Java/1.8.0_181)
-Subject: Re: [USRP-users] Addsub HLS Block Error
+Subject: Re: [USRP-users] Processor requirements for full-rate streaming on
+ N320
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -60,10 +69,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "d.des via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "d.des" <d.des@sbcglobal.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,119 +87,25 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Nick-
-Could you share the tricks to remove one of the output ports? I don't
-I'm having similar issues with my modified addsub block and don't have
-enough room on the e310 fpga for extra fifos. It's not obvious from the
-noc_block_addsub code, the use of splitstream and dummy variables is
-very confusing.
-
-Tnx,
-Dave (and I'm sure many others, based on threads I've seen in searches)
-
-________________________________
-From: Nick Foster <bistromath at gmail.com>
-Sent: Tuesday, September 3, 2019 11:45:46 PM
-To: Quadri,Adnan <adnan.quadri at louisville.edu>
-Cc: usrp-users at lists.ettus.com <usrp-users at lists.ettus.com>
-Subject: Re: [USRP-users] Addsub HLS Block Error
-
-That shouldn't be. Even if you connect both outputs to the host?
-
-I admit I got fed up with it in my own application (don't want both
-streams going into the host) and just modified the addsub block to be
-an add-only block.
-
-On Tue, Sep 3, 2019 at 8:43 PM Quadri,Adnan <adnan.quadri at
-louisville.edu<mailto:adnan.quadri at louisville.edu>> wrote:
-I tried connecting one Signal Source block to both the inputs of addsub
-block. It still throws the same error.
-
-Adnan
-________________________________
-From: Nick Foster <bistromath at gmail.com<mailto:bistromath at
-gmail.com>>
-Sent: Tuesday, September 3, 2019 11:40:05 PM
-To: Quadri,Adnan <adnan.quadri at louisville.edu<mailto:adnan.quadri at
-louisville.edu>>
-Cc: usrp-users at lists.ettus.com<mailto:usrp-users at lists.ettus.com>
-<usrp-users at lists.ettus.com<mailto:usrp-users at lists.ettus.com>>
-Subject: Re: [USRP-users] Addsub HLS Block Error
-
-Oh, I see. You have separate sources connected to the same addsub
-block. It's telling you that you need to use timed stream commands to
-start the stream, or else you will see undefined behavior. Personally I
-think that error should be demoted to a warning -- anyone from Ettus
-want to chime in?
-
-On Tue, Sep 3, 2019 at 3:53 PM Quadri,Adnan <adnan.quadri at
-louisville.edu<mailto:adnan.quadri at louisville.edu>> wrote:
-Hello,
-
-Thank you for your prompt response. I have connected both the addsub
-output to two QT Gui Sink but I still get the same error. I have the
-Copy block in the middle as well.
-
-I am attaching a screenshot of my flowgraph. I tried with different
-USRP sources/Signal Sources as well. But it is the same error.
-
-Thanks,
-Adnan
-
-________________________________
-From: Nick Foster <bistromath at gmail.com<mailto:bistromath at
-gmail.com>>
-Sent: Tuesday, September 3, 2019 3:57 PM
-To: Quadri,Adnan <adnan.quadri at louisville.edu<mailto:adnan.quadri at
-louisville.edu>>
-Cc: usrp-users at lists.ettus.com<mailto:usrp-users at lists.ettus.com>
-<usrp-users at lists.ettus.com<mailto:usrp-users at lists.ettus.com>>
-Subject: Re: [USRP-users] Addsub HLS Block Error
-
-I ran into this the other day and it's independent of the HLS component
-of the addsub block (since the interface is identical). You need to
-connect both outputs of the addsub block to something, even a null
-sink. I'm pretty sure this wasn't the intended behavior and also pretty
-sure that it wasn't like this last time I checked (which was more than
-a year ago), so maybe it should be filed as a bug.
-
-Nick
-
-On Tue, Sep 3, 2019 at 1:48 PM Quadri,Adnan via USRP-users <usrp-users
-at lists.ettus.com<mailto:usrp-users at lists.ettus.com>> wrote:
-Hello,
-
-We are trying to run the RFNoC addsub HLS block.
-
-I was able to build the FPGA Image and made sure in the noc_block
-verilog code to point to the HLS implementation for addsub block on
-RFNoC as opposed to the verilog/VHDL implementation.
-
-But when we run the example Flowgraph with two signal source as input
-to the two inputs for addsub block on GRC, we get the following error -
-
-ERROR:
-thread[thread-per-block[4]: <block uhd_rfnoc_AddSub (1)>]:
-RuntimeError: Invalid recv stream command - stream now on multiple
-channels in a single streamer will fail to time align.
-
-Does this have anything to do with the C++ code for HLS implementation
-or is it a problem at UHD level?
-
-Thanks,
-Adnan
-_______________________________________________
-USRP-users mailing list
-USRP-users at lists.ettus.com<mailto:USRP-users at lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com<https://urldefense.proofpoint.com/v2/url?u=http-3A__lists.ettus.com_mailman_listinfo_usrp-2Dusers-5Flists.ettus.com&d=DwMFaQ&c=OAG1LQNACBDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY&r=JoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02U&m=XH0fqWeFmcl-P0_Y01iOhbHXEKDsJDUBaImT_nfh0t4&s=_hsJH03rqnDSUZXWGyx31-8I7HJLsU5_S5hs-j5_WRw&e=>
--------------- next part --------------
-An HTML attachment was scrubbed...
-URL: <
-http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/attachments/20190904/3138375d/attachment.html
->
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+SGkgRGFuaWVsLAoKaTMgZG9lc24ndCBzb3VuZCBsaWtlIHRoZSBwcm9jZXNzb3IgZmFtaWx5IG9m
+IGNob2ljZSBoZXJlOyBhIGZldyBtb3JlCmNvcmVzIGNhbid0IGh1cnQuIEJhc2ljYWxseSwgYXNz
+dW1lIG9uZSBDUFUgY29yZSBwZXIgc3RyZWFtIGZvciB0aGUKd2lyZS0gdG8gQ1BVLWZvcm1hdCBj
+b252ZXJzaW9uLCBwbHVzIGEgYml0IG9mIGRlbWFuZCBmb3Igc29tZW9uZQpoYW5kbGluZyBPUy9u
+ZXR3b3JrIGNhcmQgaW50ZXJydXB0cy4KV2hhdCdyZSB5b3UgZG9pbmcgd2l0aCB0aGUgc2FtcGxl
+cyBhZnRlcndhcmRzPwoKQmVzdCByZWdhcmRzLApNYXJjdXMKCk9uIEZyaSwgMjAxOS0wOS0wNiBh
+dCAyMTo1MyArMDAwMCwgTHVuZGJlcmcsIERhbmllbCB2aWEgVVNSUC11c2Vycwp3cm90ZToKPiBE
+b2VzIGFueW9uZSBoYXZlIGEga25vd24gZ29vZCBoYXJkd2FyZSBjb25maWd1cmF0aW9uIHRvIHN1
+cHBvcnQgZnVsbAo+IChvciBhdCBsZWFzdCBjbG9zZSB0byBmdWxsKSAyMDAgTVMvcyBzdHJlYW1p
+bmcgZnJvbSB0aGUgTjMyMD8gCj4gUHJlZmVyYWJseSB3aXRoIDEgVHggYW5kIDIgUnggY2hhbm5l
+bHMuCj4gQXMgYSBkYXRhIHBvaW50LCBhIHJlY2VudCBpMyAoNCBjb3Jlcykgc2VlbXMgdG8gYmUg
+Y2hva2luZyBhYm92ZSA2Mi41Cj4gTVMvcy4gIFRoaXMgaXMgb3ZlciBkdWFsIFNGUCsgcG9ydHMu
+ICBBdCBoaWdoZXIgc2FtcGxpbmcgcmF0ZXMsIGl0IGlzCj4gcHJvZHVjaW5nIFXigJlzLCB3aGlj
+aCBJIGludGVycHJldCB0byBtZWFuIHRoYXQgdGhlIGNwdSBjYW7igJl0IHNob3ZlbAo+IHNhbXBs
+ZXMgaW50byB0aGUgcmFkaW8gZmFzdCBlbm91Z2gsIG5vdCB0aGF0IHRoZXJlIGlzIGEgbmV0d29y
+ayBqYW0uCj4gIAo+IFRoYW5rIHlvdSwKPiBETAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0
+aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5m
+by91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
