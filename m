@@ -2,50 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 146B6AC109
-	for <lists+usrp-users@lfdr.de>; Fri,  6 Sep 2019 21:55:39 +0200 (CEST)
-Received: from [::1] (port=44628 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C85BAC1C3
+	for <lists+usrp-users@lfdr.de>; Fri,  6 Sep 2019 23:00:58 +0200 (CEST)
+Received: from [::1] (port=60710 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i6KKW-0007iX-CL; Fri, 06 Sep 2019 15:55:36 -0400
-Received: from sonic306-5.consmr.mail.bf2.yahoo.com ([74.6.132.44]:42430)
+	id 1i6LLf-0004Kw-FN; Fri, 06 Sep 2019 17:00:51 -0400
+Received: from mail-pl1-f177.google.com ([209.85.214.177]:40883)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1i6KKS-0007aq-Vi
- for usrp-users@lists.ettus.com; Fri, 06 Sep 2019 15:55:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
- t=1567799692; bh=SRG//LGZZUM7eL13j4Bk8oK0SChjFwH6hq3VGntySBM=;
- h=Subject:From:To:Date:From:Subject;
- b=Yx4mZ2GbFEZtXG82bx8dBQ+B8eZ8+7vFyIPM1Vh30x4QlmMEvS9k7JOmX0Z/+jtFU3p0G+upOhrCYn+u10FItPa8yPQTnqlK6wVPqkw5XvONekOjuxpBSPhlGIXP1IET4r0ahFN5LxVwrbAzsQeKP9DzuSdm96+d+Yv+zMysFi7t9u1pLI9MzWVzMmDMqzOi3wZ0G7DOhHqv8fKDDpqvGCMF3ywCZII4PBzQ90Clc4aOGAu+m3HfHIXSfsovb+4lcW9kAeONS3dRni2WwLnT8kBpuf5ddOTu8t2sYTYQjwTuH5x7S/z7otRPewdoMXNQ+3z8PjF+qXMBCXah5wvb1Q==
-X-YMail-OSG: C8IZm4oVM1mrHJ6LH9_xX7hs8pV6nAiZnVq6MDkWBqUTpOill2J_8bbm2HJovTx
- dwouTI95f2CzPLEVzsV9xwPKdt7wMyDIiCELnv5uwcw2l98QDjDvpo0rxIlb9oLdeik7XQyM6mby
- P7txMSqBzyD5KyovqHOg7ifzQOBrAaX3GZMBTflnF3jKlBArXWkEnR1jXvpBIzPA2jyj3kM6fS1A
- iANc7ihCR96v0w9xdtxY1eLEukFSePo_fG6iu87Rn5kxuyAsW4w_Q3hGk2ZqQn38B7GmcgvzogTP
- wr8GNZdLEsT5UoWNvRT_X3rYU_v4VGxYCwRtXqZgUT729Gk1SQ_YUS3CZRytfnMfacTfJNVDbJcc
- ZIzDhqFQbkCfwOK9tMzb9OkP2Q3v9HzXj_OJ0sblcm8fNjezG2CfPSCfcF3ao9C2.6gAHn4Mf43w
- Ya5W8WveXEz8fEydNH2OfjXsk97G2IdewcI4O5_.MIryGmss5dIPxACoNVGNgBZaDPDk8AEZSwvF
- TU0rYHKNryrUNaL4YvJ7g5DCsOg9FMoNlk_wGJTRUoAdFzodfP_BfcPZ09rCzZWl08mWuWfd34mw
- KRNMgioiv0XLvaekD32wOhDQI36W9NKqKZ.4Vdu01zAHQB_6yoev3a77XmDG71Ds_fk5DQdO2lbu
- EQzUQCuS6ulBwhHDh3_KI6hLNwApM.4hMTuCh9vtuZ3vrSYkz_ze6MVJ8dD_YXyukY_YwnSTOrCa
- wjyoNBSXYo8mrj0sU9It2NUHHTv.xcBo1pysINSIx8xtxfd3AiX9xjRVV2U2vw3OFJxLLrC4RZMG
- roPY26iCufpTfWH1nXMreghOMlF86M1KjtZNqdUupW7HvoQq3SYefPwgKcXsVLJeAKfAp4xsK28_
- 0oMRivjCnzf2VprFA4MdShCsNfrlf6uOa8A5Kemeff4fMS6HKJWAe3ojCLr3ubLxbiJVcfPrQpqP
- ITGz7G9PtfllaKe7QRiD_Twi8ce78rJVyIbAu5lDMvyEdHU7zdOPucVOphEAaP23Rpk1vmmikbVq
- 5UEH7Q3GLpg16BU0GOzE4iHJlRtZn_C4G8aRyVXTuPDQHS.qTxPHjcv8mn1rmxKJGEpECpeSCZcn
- Fhkk8u10IZqFWbNieXNGYRSBXMhem38SwfCpFuVK2cJp7stEQbSfQEN6c6ONsDrgYmmf8q.1gSPh
- 22WiwXQBbPsADxsFUYAaz0hf8r8A512Wu8EIhvTZ3pRkvVD6Usqc5S4A9p3duyuujGubNRJzy457
- PXJjXNohps35hRlEn1KJJKCnIjaQfTysgl0rWi3QP_HmV3HA-
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic306.consmr.mail.bf2.yahoo.com with HTTP; Fri, 6 Sep 2019 19:54:52 +0000
-Received: by smtp415.mail.bf1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
- ID 3e8c3cf4f7886db2ec02dde06c483430; 
- Fri, 06 Sep 2019 19:54:51 +0000 (UTC)
-Message-ID: <6e40011e4fe6798f7d641567de5f2ddd4ed6ffe6.camel@sbcglobal.net>
-To: usrp-users@lists.ettus.com
-Date: Fri, 06 Sep 2019 14:54:41 -0500
+ (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
+ id 1i6LLc-0004Eo-C4
+ for usrp-users@lists.ettus.com; Fri, 06 Sep 2019 17:00:48 -0400
+Received: by mail-pl1-f177.google.com with SMTP id y10so3744979pll.7
+ for <usrp-users@lists.ettus.com>; Fri, 06 Sep 2019 14:00:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:organization
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=mb4FKbvhQv8ZzRToaFnQu+DMkWFClI3QpQF8ub6zKQg=;
+ b=PSwggsLliVPqR9H+6EJmamtvIkb5tx35N0JDi6F9Jr7pJQ9Z+Xv0qfea3uLMq9bR1G
+ MIGvTedcXyafnZWqJk1rjQYfZGwEmjKE4JJD9A+B7axUthZG1kjS2DIkZphgZtilfY1q
+ 8aQCyv2rzyN84iJzyaLPZjbfEXGd3nYJYrpGEJKAlCklO6tT41KNMPpmhCEC08HQM83o
+ sJs6xo0xKvxp2EGk4B5TXviprfIeyV6Dzh8SpKZwM0MR/XCCGXfQnkVi0iC1WR2hkcIl
+ 1xVrNdy7M9sZ1DFdFcMTasMXsB0vd2qavC9vpZbjXsD8G53StxvmbSJ08apZOllVLa5V
+ +qgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=mb4FKbvhQv8ZzRToaFnQu+DMkWFClI3QpQF8ub6zKQg=;
+ b=Gfl83PJB48idO+RjuVl+xbgylAuDL4Xb/MR4LcdffcER5yUGuVI+ZqD0jRZygAnEA/
+ 4IRkS74nIixPOAboDHYW8sboytkOL6G8mS0QgyoaS2UlsMGrIuhyuLKrtwdzS+nbJ6Pm
+ 8Cn+UYTG/rbem2hiaOG0eMMppahmjQ7VKeM+FGkluK9OVGj/S1S+DJeAs4e1Has5/I13
+ F0sUN1IJGjMn57VMgIjSgi+H+xN6UD4DvJtn7zmogjhOIPl909YSJ3Q9R0COorl5RU5C
+ FbqcrmmCTiL+h6VDOGOMRRE8ujHgq7mOeTl2OEK12w/q7UPjbhdlfWYI+47Yr0pqmcn6
+ zlvA==
+X-Gm-Message-State: APjAAAWok7ruT+7Fpbt0L1ABy3lTptLKgDeUX/jL2r58IUvtiE1JlAFV
+ XT3whCzE0Zz6b7V2Ky4asAGB6e6X
+X-Google-Smtp-Source: APXvYqwR2g4oBOfqSUdTAOyTvMDWW/YznNvI8tBjXFgO9CWrrJdeoyHg0T2BKXNg06KlZ570GNYKLw==
+X-Received: by 2002:a17:902:a58c:: with SMTP id
+ az12mr11645295plb.129.1567803607303; 
+ Fri, 06 Sep 2019 14:00:07 -0700 (PDT)
+Received: from racer.hostalia.de ([207.114.172.158])
+ by smtp.gmail.com with ESMTPSA id z23sm5822038pgi.78.2019.09.06.14.00.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 06 Sep 2019 14:00:06 -0700 (PDT)
+Message-ID: <84a673b3ca7caa1721171d4b5494c2eee03b448e.camel@ettus.com>
+To: "Quadri,Adnan" <adnan.quadri@louisville.edu>, "usrp-users@lists.ettus.com"
+ <usrp-users@lists.ettus.com>
+Date: Fri, 06 Sep 2019 23:00:05 +0200
+In-Reply-To: <DM6PR03MB3788A6E68F615BF33C687A8FE6BA0@DM6PR03MB3788.namprd03.prod.outlook.com>
+References: <DM6PR03MB3788A6E68F615BF33C687A8FE6BA0@DM6PR03MB3788.namprd03.prod.outlook.com>
+Organization: Ettus Research
 User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
 MIME-Version: 1.0
-Subject: [USRP-users] E310 RFNoC frequency change breaks channel time
- alignment
+Subject: Re: [USRP-users] RFNoC SVD Block
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -57,10 +69,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "d.des via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "d.des" <d.des@sbcglobal.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,25 +87,52 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-I have a two-channel signal conditioning block based on
-noc_block_addsub between the radio and a DDC. The entire flowgraph is
-radio(2 channels out)->addsub(2 channels in and out)-> two separate ZMQ
-Push Sinks. I'm using the DDC as an integrator/decimator because a pair
-of FIRs or moving average blocks followed by a pair of keep-one-in-n
-blocks won't fit on the FPGA image. Those streams are intercepted on
-the host side and displayed. The system works as intended until I try
-to change the frequency with the XMLRPC client, or if I even include
-the provision for changing the frequency in the block on the host side.
-Most of the time (but not always) the two channels go out of sync by at
-least one sample until I reset the program on the E310 side. I don't
-think that the radio itself is capable of sending the two channels out
-of sync so the issue must be somewhere in the addsub block. Peeking at
-the debug file suggests that the system is trying to change the channel
-frequencies independently. I wonder if that's the issue, and something
-like a timed command would help. Any ideas?
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+SGVsbG8gQWRuYW4sCgpJJ20gY3VycmVudGx5IG5vdCBhd2FyZSBvZiBhbnlvbmUgZG9pbmcgdGhh
+dC4KCkhvd2V2ZXIsIHNpbmNlIG9uZSBvZiB0aGUgdHlwaWNhbCBhcHBsaWNhdGlvbnMgb2YgYmVl
+ZmllciBGUEdBcyBpcyBtYXRoCmFjY2VsZXJhdG9ycyBmb3IgbGluZWFyIGFsZ2VicmEgcHJvYmxl
+bXMsIGl0J3MgbW9yZSB0aGFuIGxpa2VseSBzb21lb25lCmRpZCBpbiBmYWN0IGltcGxlbWVudCBh
+biBTVkQgYmVmb3JlLCBhbmQgeW91IG1pZ2h0IGp1c3QgbmVlZCB0byBjb25uZWN0Cml0IHRvIGEg
+bm9jc2hlbGwgdG8gbWFrZSBpdCB3b3JrIGluIFJGTm9DLiBUaGVyZSdzIGEgbG90IG9mIGludGVy
+ZXN0aW5nCnBhcGVycyBvdXQgdGhlcmUgb24gU1ZEIGltcGxlbWVudGF0aW9ucyBmb3IgZml4ZWQg
+cG9pbnQgbWF0aCBvbiBGUEdBcywKSSB0aGluayBEcmV4ZWwgdW5pIGhhZCBzb21lIGludGVyZXN0
+aW5nIHN0dWZmIGZvciBTVkQtYmFzZWQgY2hhbm5lbAplc3RpbWF0aW9uIGZvciBPRkRNLiBJJ3Zl
+IG5vdCBzZWVuIGFueSBjb2RlIG9mIHRoZW0sIHRob3VnaC4uLgoKU28sIGZyb20gYW4gYWxnb3Jp
+dGhtaWMgcG9pbnQgb2YgdmlldywgYW4gU1ZEIGlzbid0IHRvbyBoYXJkLiBJSVJDLApzZXF1ZW50
+aWFsIGFsZ29yaXRobXMgY2FuIHdvcmsgaW4tcGxhY2UsIGFuZCB0aHVzIChmb3IgYSBtw5duIG1h
+dHJpeCwKbj5tKSBkb24ndCBuZWVkIG1vcmUgdGhhbiBuwrIgc3BhY2UgZm9yIGludGVybWVkaWF0
+ZSBhbmQgZmluYWwgcmVzdWx0CigrMm0gZm9yIGluZGV4IGFuZCBzY2FsZSBzdG9yYWdlIGlmIHlv
+dSB3YW50IHRvIHBpdm90IGVsZWdhbnRseSkuCgpOb3csIEkndmUgbm90IGV2ZXIgaW1wbGVtZW50
+ZWQgbW9yZSB0aGFuIGEgQysrIFFSIGRlY29tcG9zaXRpb24gKHdoaWNoCmlzIHRoZSBjb3JlIGFs
+Z29yaXRobSBmb3IgbW9zdCBFVkQgcHJvYmxlbXMsIHdoaWNoIHlvdSB0eXBpY2FsbHkKaG91c2Vo
+b2xkZXItdHJhbnNmb3JtIGFuIFNWRCBwcm9ibGVtIHRvKSwgc28gSSdtIHJlYWxseSBub3QgY29t
+cGV0ZW50CnRvIGNvbW1lbnQgb24gaGFyZHdhcmUgaW1wbGVtZW50YXRpb25zLCBidXQgY2hhbmNl
+cyBhcmUgeW91IHdhbnQgdG8KY29tcHV0ZSBhIGxvdCBvZiByZXN1bHQgdmFsdWVzIGluIHBhcmFs
+bGVsIGlmIHlvdSdyZSBkb2luZyBpdCBpbiB0aGUKRlBHQSDigJMgYmVjYXVzZSBvdGhlcndpc2Us
+IHlvdSdkIGFiaG9yIGRvaW5nIG11Y2ggd29yayBpbiBoYXJkd2FyZSAodGhhdApiZWluZyBfaGFy
+ZF8pIGluIGZhdm9yIG9mIGRvaW5nIGl0IGVhc2llci10by1kZWJ1ZyBhbmQgYWxzbyBmcmVlLXRv
+LQpoYXZlIGluIHRoZSBzaGFwZSBvZiBMQVBBQ0sgc29mdHdhcmUuIChTdWJ0ZXh0IG1lc3NhZ2Us
+IG1vcmUgZm9yIGZ1dHVyZQpyZWFkZXJzIHRoYW4gZm9yIHlvdTogRXZhbHVhdGUgd2hldGhlciBz
+b21ldGhpbmcgcmVhbGx5IHNob3VsZCBiZSBkb25lCmluIGhhcmR3YXJlOyBpdCdzIG5vdCBpbmhl
+cmVudGx5IGJldHRlciB0byBkbyB0aGluZ3MgaW4gaGFyZHdhcmUuKQpCdXQgdGhhdCBwYXJhbGxl
+bGlzbSBtaWdodCBpbXBseSB0aGF0IGluLXBsYWNlIGlzIG5vdCBhIGZlYXNpYmxlIHdheSBvZgpj
+b21wdXRpbmcgdGhpbmdzLCBhbmQgeW91ciBtZW1vcnkgcmVxdWlyZW1lbnRzIG1pZ2h0IGJlIG11
+Y2ggbGFyZ2VyLgpEZXBlbmRpbmcgb24gdGhlIHNpemUgb2YgU1ZEIHlvdSdyZSBwbGFubmluZyB0
+byBkbywgdGhhdCBtaWdodCBvciBtaWdodApub3QgYmUgYW4gaXNzdWUuCgpCZXN0IHJlZ2FyZHMs
+Ck1hcmN1cwoKT24gRnJpLCAyMDE5LTA5LTA2IGF0IDE5OjA1ICswMDAwLCBRdWFkcmksQWRuYW4g
+dmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gSGVsbG8sCj4gCj4gV2UgYXJlIHRyeWluZyB0byBwZXJm
+b3JtIHNpbmd1bGFyIHZlY3RvciBkZWNvbXBvc2l0aW9uLiBUaGUgaWRlYSBpcwo+IHRvIHdvcmsg
+b24gYW4gUkZOb0MgYmxvY2sgdGhhdCB0YWtlcyBpbiBzdW1tYXRpb24gb2Ygc2FtcGxlcyBmcm9t
+IHRoZQo+IFJhZGlvIHNvdXJjZSBhbmQgd2lsbCBwZXJmb3JtIFNWRC4KPiAKPiBJcyBhbnlib2R5
+IHdvcmtpbmcgb24gc29tZXRoaW5nIHNpbWlsYXI/IAo+IEN1cnJlbnRseSwgdGhlIFJGTm9DIE9G
+RE0gc3luY2hyb25pemVyIGJsb2NrIGhhcyB0aW1pbmcgY29uc3RyYWludAo+IGlzc3VlcyBhbmQg
+Y2FuJ3QgYmUgdXNlZCB0byBidWlsZCBGUEdBIGltYWdlLgo+IAo+IEp1c3QgYXNraW5nIGFyb3Vu
+ZCB0byBnZXQgc29tZSBzdWdnZXN0aW9ucy9hZHZpY2UgYW5kIGlkZWEgaWYgd29ya2luZwo+IG9u
+IHRoYXQgVmVyaWxvZyBpbXBsZW1lbnRhdGlvbiBvZiBTVkQgaXMgc29tZXRoaW5nIGRvYWJsZSBh
+bmQgaWYKPiBhbnlib2R5IHRyaWVkIGFueXRoaW5nIHNpbWlsYXIuCj4gCj4gVGhhbmsgeW91LAo+
+IEFkbmFuCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
+bGlzdHMuZXR0dXMuY29tCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tCg==
