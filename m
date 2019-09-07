@@ -2,54 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF325AC36A
-	for <lists+usrp-users@lfdr.de>; Sat,  7 Sep 2019 01:51:49 +0200 (CEST)
-Received: from [::1] (port=46734 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A91BDAC400
+	for <lists+usrp-users@lfdr.de>; Sat,  7 Sep 2019 03:54:12 +0200 (CEST)
+Received: from [::1] (port=40962 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i6O12-00005k-Ak; Fri, 06 Sep 2019 19:51:44 -0400
-Received: from sonic309-19.consmr.mail.bf2.yahoo.com ([74.6.129.193]:39155)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1i6O0y-0008Rj-U5
- for usrp-users@lists.ettus.com; Fri, 06 Sep 2019 19:51:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
- t=1567813860; bh=cbHvTbZySm+jLr20AWqVLmutYwpo5+7i5kGpxRBjmgc=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From:Subject;
- b=LWuitsB8KQcplHqbtQOyuxRwoCZk2jLAlFYE6FHEE6azA7wOqeOzsiyoOJhNnCa83FVw2x7MEVx5JIobc49GRPlJSxZX2re4NmSulqDvm/YZmwzCC0/QPuBuVWmyFdAuV0OvrtIOLpHA7Rke2Z4+/WXOaV48s6tFPVk2t94PSwc7clGcGMEXhjCo8+YWFhuDPp/rtSCSQAn7g1Z26MRXu6AYe3VvKICokvY2pL/xoVsFU4gGBA6HhSme5/cJT/bRHnU3bdO+i/ulsatLG9g/Y0n6yBYh7aUn5v9z8bJ3r1MqmwicNwo52+yhpXUjN2i38vnJz3Qye9+5OgCpMXL1Fg==
-X-YMail-OSG: nBm5.jgVM1kqWl4EQ.slF6i8PekA6NvKAk85oGJVeztuqltxLhEkdGOB5OOyq8D
- mQBDdgcsqdHFTN23eaRRDzlKo1UKxPRln9IaPCKn4db42iqVcICpOH4f._niY9TWnI5paq4obY2M
- gm2QBlJmpoljTUFlAzBUqpV6.ZEJQDdbBnz8OtQ1_tavvB4YwqSc1uj3qYKNnAgzOZpKOVd9U_2C
- 20JDtPo3JztI7TZiPSIPDgHN4bNqxQf3hVlhLyYg_ESDCLy7hB5DlHNnSiGf9t0VPW_4mhD6JhLI
- rCJVNrJabGtn3SHMEWuWycVM4VcQ5tWpeQn7X9aI5X8LShiFInsXkX5RJ2FBdEKM0prZx29yK2Pv
- B4mYnyAqB5uhe6aX.zRyw1JeqrYK7aOWbEEPjtLamK0qNr6Y0MrUWcZh1KWWHexMjTsp.lntC9mq
- itGWy8LJ3EoHWtF0xoVuXivvX6II85SefVjiIgifIiIKixj4Mucgii35ohup4ztlKaPf0VQK977l
- Vf_19x6vp4XGM9Qril3cCTrUnjyBO6Wnc0.w8Aroh72aKwSjYF6tFZmzqjEGnbUm44Ecyoctx4H0
- bcYOuc.w1RQTtFdnMzfEmcHXjNyDX7TkJBgNSe0_TosAm56Ar8Hkej8slPSNs5dPzLoCbgMxforK
- lV5ZlPqTK109KP1az4dZaSMyq_6n3ohtKJSpHtadmgwrS7dkuuN5M0DgLI1akPZCekEKdn1g4JJY
- alXjACrBZlVA0S6qyKbZSRMnxCBsEM01xrF.RN0GssWe8mpreQkGM1LQQ.SjBRPNQvpZ6CQsLZG.
- 1sUcF3yOyDVskcoNlV2B4qUuqpYvT9WhlGTRCmehU7cKemBxrKjnootRd82BK4rZXyELoVf7qSoE
- jnChX_LZ2Ow55h6dTcWhWuBx9P8JeCfBZjiOJ.FzpAMG1IiJ93rlFb5yKZYsJIL82vfQKqE1YvGE
- dWNo3AZc5YboDRXBgVnDB99_sWMzI4hgliQKQO0BWiwZKmeyLqUyfINcTFSWOjkIlCuEXnClkRB3
- dQrdc4urThy3I2fNs7HbTjeedsXomXsqIOWHld7_9NdAvbTGWUWQg6DqsXWhe2q5YcuUaypl1s9C
- UW3jDMaAwogRCaSVfvCgUzuEUyVWIiJA7zi_zoKmUKUJHAHoIlwhXWo.H8XKBcwC.asQiokVjkqM
- KEpHEzbB0YqBZE616nMEDWaMN0yoaJWNCWYGiTAQEvQW7iWySbHnx3_q6cqpJMNJwUEPmFxCFoyn
- kFPO1XgyN5Lteko3UtA_expHuEQ5zlGEyApHpe49M.Pm7fMJMs6zLorUSRGq6Sp1VhF1tzKoGsuu
- ksQqtvA--
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic309.consmr.mail.bf2.yahoo.com with HTTP; Fri, 6 Sep 2019 23:51:00 +0000
-Received: by smtp416.mail.bf1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
- ID f10b019f763a8bd3a506eff5a7757202; 
- Fri, 06 Sep 2019 23:50:57 +0000 (UTC)
-Message-ID: <ce552071284e5d859cf2bdf2fa5b83224920cc12.camel@sbcglobal.net>
-To: Nick Foster <bistromath@gmail.com>
-Date: Fri, 06 Sep 2019 18:50:56 -0500
-In-Reply-To: <CA+JMMq_PWfCwHKYbuVNUBSkLStLJsHr2TuV7aEEatFO1Mp3mPQ@mail.gmail.com>
-References: <a39ce184e0fd70ed16f5fce920af81f514a4392d.camel.ref@sbcglobal.net>
- <a39ce184e0fd70ed16f5fce920af81f514a4392d.camel@sbcglobal.net>
- <CA+JMMq_PWfCwHKYbuVNUBSkLStLJsHr2TuV7aEEatFO1Mp3mPQ@mail.gmail.com>
-User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
+	id 1i6PvW-0007NH-Bh; Fri, 06 Sep 2019 21:54:10 -0400
+Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:16431)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <daniel.lundberg@gtri.gatech.edu>)
+ id 1i6PvS-0007JM-Nb
+ for usrp-users@lists.ettus.com; Fri, 06 Sep 2019 21:54:06 -0400
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
+ c=simple/simple; t=1567821206; h=from:subject:to:date:message-id;
+ bh=TMhhZlRzKcEGtZzfhuxrhcq6I3P2gb4lzwLtrWpsxhQ=;
+ b=Un5+L1O3PP28LZ+YHTiKfB2qJ57UuUkom0ZCY6553tXWo20+eK5YotzoGgWeM+xtLbnUmfa37cn
+ 9OSV6+H+FVeImW11bMlBdu5H/LZTNHt4iVIhL9AKX4s2SVb+p1bRggS4I/MLAFBOK+UJ6JIg7sra2
+ j+bTjSDg+Uc32wq8pRg=
+Received: from jekyll.core.gtri.org (10.41.1.48) by exedge04.gtri.org
+ (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5; Fri, 6 Sep 2019
+ 21:53:26 -0400
+Received: from kiawah.core.gtri.org (10.41.31.71) by jekyll.core.gtri.org
+ (10.41.1.48) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 6 Sep
+ 2019 21:53:25 -0400
+Received: from kiawah.core.gtri.org ([fe80::c531:9662:df24:eb8f]) by
+ kiawah.core.gtri.org ([fe80::c531:9662:df24:eb8f%15]) with mapi id
+ 15.01.1713.004; Fri, 6 Sep 2019 21:53:25 -0400
+To: Nate Temple <nate.temple@ettus.com>, =?Windows-1252?Q?Marcus_M=FCller?=
+ <marcus.mueller@ettus.com>
+Thread-Topic: [USRP-users] Processor requirements for full-rate streaming on
+ N320
+Thread-Index: AdVk/SYtIwM80FUeRxaUhhDsHwEDLwAJh/SAAACMOQD///E+qA==
+Date: Sat, 7 Sep 2019 01:53:25 +0000
+Message-ID: <a9572c0b26d34c1eaa187f532ef2866f@gtri.gatech.edu>
+References: <7a40a32856c14d31807bfea8150bc996@gtri.gatech.edu>
+ <46108c0b98749cd2de8a820ca88777003dcf33b6.camel@ettus.com>,
+ <CAL263izYt6-x2cCbP90M+NrRPatP2tah5A6gJp_9mVZecAjATA@mail.gmail.com>
+In-Reply-To: <CAL263izYt6-x2cCbP90M+NrRPatP2tah5A6gJp_9mVZecAjATA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.41.0.30]
 MIME-Version: 1.0
-Subject: Re: [USRP-users] Addsub HLS Block Error
+Subject: Re: [USRP-users] Processor requirements for full-rate streaming on
+ N320
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -61,11 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "d.des via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "d.des" <d.des@sbcglobal.net>
-Cc: etus list <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: "Lundberg, Daniel via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Lundberg, Daniel" <daniel.lundberg@gtri.gatech.edu>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4134853111869201185=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,169 +77,228 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Thanks!
+--===============4134853111869201185==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_a9572c0b26d34c1eaa187f532ef2866fgtrigatechedu_"
 
-I saw a noc_block_rfnoc_adder.xml in gr_ettus which looks as though
-it's all set to control such a selectable add-or-subtract block, but I
-never found the block.
+--_000_a9572c0b26d34c1eaa187f532ef2866fgtrigatechedu_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2019-09-06 at 15:26 -0700, Nick Foster wrote:
-> Here's a modified add-only block. You'll have to make a matching .xml
-> descriptor and GRC block (if you're using gr-ettus).
-> 
-> Probably it would be a super useful thing to have an add/sub block,
-> instead of an addsub block. A register-controlled mux to select which
-> operation you want. I'll think about adding that to the Theseus Cores
-> project.
-> 
-> Nick
-> 
-> On Fri, Sep 6, 2019 at 3:18 PM d.des via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
-> > Nick-
-> > Could you share the tricks to remove one of the output ports? I
-> > don't
-> > I'm having similar issues with my modified addsub block and don't
-> > have
-> > enough room on the e310 fpga for extra fifos. It's not obvious from
-> > the
-> > noc_block_addsub code, the use of splitstream and dummy variables
-> > is
-> > very confusing.
-> > 
-> > Tnx,
-> > Dave (and I'm sure many others, based on threads I've seen in
-> > searches)
-> > 
-> > ________________________________
-> > From: Nick Foster <bistromath at gmail.com>
-> > Sent: Tuesday, September 3, 2019 11:45:46 PM
-> > To: Quadri,Adnan <adnan.quadri at louisville.edu>
-> > Cc: usrp-users at lists.ettus.com <usrp-users at lists.ettus.com>
-> > Subject: Re: [USRP-users] Addsub HLS Block Error
-> > 
-> > That shouldn't be. Even if you connect both outputs to the host?
-> > 
-> > I admit I got fed up with it in my own application (don't want both
-> > streams going into the host) and just modified the addsub block to
-> > be
-> > an add-only block.
-> > 
-> > On Tue, Sep 3, 2019 at 8:43 PM Quadri,Adnan <adnan.quadri at
-> > louisville.edu<mailto:adnan.quadri at louisville.edu>> wrote:
-> > I tried connecting one Signal Source block to both the inputs of
-> > addsub
-> > block. It still throws the same error.
-> > 
-> > Adnan
-> > ________________________________
-> > From: Nick Foster <bistromath at gmail.com<mailto:bistromath at
-> > gmail.com>>
-> > Sent: Tuesday, September 3, 2019 11:40:05 PM
-> > To: Quadri,Adnan <adnan.quadri at
-> > louisville.edu<mailto:adnan.quadri at
-> > louisville.edu>>
-> > Cc: usrp-users at lists.ettus.com<mailto:usrp-users at
-> > lists.ettus.com>
-> > <usrp-users at lists.ettus.com<mailto:usrp-users at
-> > lists.ettus.com>>
-> > Subject: Re: [USRP-users] Addsub HLS Block Error
-> > 
-> > Oh, I see. You have separate sources connected to the same addsub
-> > block. It's telling you that you need to use timed stream commands
-> > to
-> > start the stream, or else you will see undefined behavior.
-> > Personally I
-> > think that error should be demoted to a warning -- anyone from
-> > Ettus
-> > want to chime in?
-> > 
-> > On Tue, Sep 3, 2019 at 3:53 PM Quadri,Adnan <adnan.quadri at
-> > louisville.edu<mailto:adnan.quadri at louisville.edu>> wrote:
-> > Hello,
-> > 
-> > Thank you for your prompt response. I have connected both the
-> > addsub
-> > output to two QT Gui Sink but I still get the same error. I have
-> > the
-> > Copy block in the middle as well.
-> > 
-> > I am attaching a screenshot of my flowgraph. I tried with different
-> > USRP sources/Signal Sources as well. But it is the same error.
-> > 
-> > Thanks,
-> > Adnan
-> > 
-> > ________________________________
-> > From: Nick Foster <bistromath at gmail.com<mailto:bistromath at
-> > gmail.com>>
-> > Sent: Tuesday, September 3, 2019 3:57 PM
-> > To: Quadri,Adnan <adnan.quadri at
-> > louisville.edu<mailto:adnan.quadri at
-> > louisville.edu>>
-> > Cc: usrp-users at lists.ettus.com<mailto:usrp-users at
-> > lists.ettus.com>
-> > <usrp-users at lists.ettus.com<mailto:usrp-users at
-> > lists.ettus.com>>
-> > Subject: Re: [USRP-users] Addsub HLS Block Error
-> > 
-> > I ran into this the other day and it's independent of the HLS
-> > component
-> > of the addsub block (since the interface is identical). You need to
-> > connect both outputs of the addsub block to something, even a null
-> > sink. I'm pretty sure this wasn't the intended behavior and also
-> > pretty
-> > sure that it wasn't like this last time I checked (which was more
-> > than
-> > a year ago), so maybe it should be filed as a bug.
-> > 
-> > Nick
-> > 
-> > On Tue, Sep 3, 2019 at 1:48 PM Quadri,Adnan via USRP-users <usrp-
-> > users
-> > at lists.ettus.com<mailto:usrp-users at lists.ettus.com>> wrote:
-> > Hello,
-> > 
-> > We are trying to run the RFNoC addsub HLS block.
-> > 
-> > I was able to build the FPGA Image and made sure in the noc_block
-> > verilog code to point to the HLS implementation for addsub block on
-> > RFNoC as opposed to the verilog/VHDL implementation.
-> > 
-> > But when we run the example Flowgraph with two signal source as
-> > input
-> > to the two inputs for addsub block on GRC, we get the following
-> > error -
-> > 
-> > ERROR:
-> > thread[thread-per-block[4]: <block uhd_rfnoc_AddSub (1)>]:
-> > RuntimeError: Invalid recv stream command - stream now on multiple
-> > channels in a single streamer will fail to time align.
-> > 
-> > Does this have anything to do with the C++ code for HLS
-> > implementation
-> > or is it a problem at UHD level?
-> > 
-> > Thanks,
-> > Adnan
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users at lists.ettus.com<mailto:USRP-users at lists.ettus.com>
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com<https://urldefense.proofpoint.com/v2/url?u=http-3A__lists.ettus.com_mailman_listinfo_usrp-2Dusers-5Flists.ettus.com&d=DwMFaQ&c=OAG1LQNACBDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY&r=JoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02U&m=XH0fqWeFmcl-P0_Y01iOhbHXEKDsJDUBaImT_nfh0t4&s=_hsJH03rqnDSUZXWGyx31-8I7HJLsU5_S5hs-j5_WRw&e=>
-> > -------------- next part --------------
-> > An HTML attachment was scrubbed...
-> > URL: <
-> > http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/attachments/20190904/3138375d/attachment.html
-> > >
-> > 
-> > 
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+Thank you all, I will look into DPDK (didn't know about it until now!) and =
+investigate what is available with those processors.
 
+Marcus, all we need to do is generate samples from a set of pre-canned file=
+s, record a loopback to file, and also Tx to another system, which sends sa=
+mples back that we also record to file.  Time sync between the two Rx chann=
+els is important.  We don't do any additional signal processing in this app=
+lication, so we really just need hardware to support file I/O and streaming=
+, but these systems tend to stick around and get used for other things, so =
+I will likely try to include some headroom in the processor.
+
+Thank you again,
+DL
+________________________________
+From: Nate Temple <nate.temple@ettus.com>
+Sent: Friday, September 6, 2019 6:39:26 PM
+To: Marcus M=FCller
+Cc: Lundberg, Daniel; usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] Processor requirements for full-rate streaming on=
+ N320
+
+Hi  Daniel,
+
+As Marcus mentioned, an i3 is not ideal for streaming at such high rates.
+
+For 200 MS/s of usable bandwidth, you'll need to stream at 250 MS/s per cha=
+nnel.
+
+A colleague has ran 2x2 @ 250 MS/s using an Intel Xeon E5-1620 v3 @ 3.50GHz=
+, and I've ran at those rates with an i9-9900x @ 4.4 GHz.
+
+Generally speaking, you'll want to have a CPU with a clock freq of 3.5 GHz =
+or higher with as many cores as possible, ideally 4.0+ GHz.
+
+To stream at 250 MS/s you'll need to use DPDK. The Mellanox MCX4121A-ACAT N=
+IC is a good option as you do not need to use the vfio-pci driver with it f=
+or DPDK.
+
+
+Regards,
+Nate Temple
+
+On Fri, Sep 6, 2019 at 3:24 PM Marcus M=FCller via USRP-users <usrp-users@l=
+ists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
+Hi Daniel,
+
+i3 doesn't sound like the processor family of choice here; a few more
+cores can't hurt. Basically, assume one CPU core per stream for the
+wire- to CPU-format conversion, plus a bit of demand for someone
+handling OS/network card interrupts.
+What're you doing with the samples afterwards?
+
+Best regards,
+Marcus
+
+On Fri, 2019-09-06 at 21:53 +0000, Lundberg, Daniel via USRP-users
+wrote:
+> Does anyone have a known good hardware configuration to support full
+> (or at least close to full) 200 MS/s streaming from the N320?
+> Preferably with 1 Tx and 2 Rx channels.
+> As a data point, a recent i3 (4 cores) seems to be choking above 62.5
+> MS/s.  This is over dual SFP+ ports.  At higher sampling rates, it is
+> producing U=92s, which I interpret to mean that the cpu can=92t shovel
+> samples into the radio fast enough, not that there is a network jam.
+>
+> Thank you,
+> DL
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--_000_a9572c0b26d34c1eaa187f532ef2866fgtrigatechedu_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body>
+Thank you all, I will look into DPDK (didn't know about it until now!) and =
+investigate what is available with those processors.&nbsp;
+<br>
+<br>
+Marcus, all we need to do is generate samples from a set of pre-canned file=
+s, record a loopback to file, and also Tx to another system, which sends sa=
+mples back that we also record to file.&nbsp; Time sync between the two Rx =
+channels is important.&nbsp; We don't do any
+ additional signal processing in this application, so we really just need h=
+ardware to support file I/O and streaming, but these systems tend to stick =
+around and get used for other things, so I will likely try to include some =
+headroom in the processor.<br>
+<br>
+Thank you again,<br>
+DL
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Nate Temple &lt;nate.=
+temple@ettus.com&gt;<br>
+<b>Sent:</b> Friday, September 6, 2019 6:39:26 PM<br>
+<b>To:</b> Marcus M=FCller<br>
+<b>Cc:</b> Lundberg, Daniel; usrp-users@lists.ettus.com<br>
+<b>Subject:</b> Re: [USRP-users] Processor requirements for full-rate strea=
+ming on N320</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-seri=
+f">Hi &nbsp;Daniel,<br>
+<br>
+As Marcus mentioned, an i3 is not ideal for streaming at such high rates.<b=
+r>
+<br>
+For 200 MS/s of usable bandwidth, you'll need to stream at 250 MS/s per cha=
+nnel.<br>
+<br>
+A colleague has ran 2x2 @ 250 MS/s using an Intel Xeon E5-1620 v3 @ 3.50GHz=
+, and I've ran at those rates with an i9-9900x @ 4.4 GHz.
+<br>
+<br>
+Generally speaking, you'll want to have a CPU with a clock freq of 3.5 GHz =
+or higher with as many cores as possible, ideally 4.0&#43; GHz.<br>
+</div>
+<div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-seri=
+f"><br>
+To stream at 250 MS/s you'll need to use DPDK. The Mellanox MCX4121A-ACAT N=
+IC is a good option as you do not need to use the vfio-pci driver with it f=
+or DPDK.<br>
+<br>
+<br>
+Regards,<br>
+Nate Temple</div>
+</div>
+<br>
+<div class=3D"gmail_quote">
+<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 6, 2019 at 3:24 PM Marcus=
+ M=FCller via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
+usrp-users@lists.ettus.com</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
+Hi Daniel,<br>
+<br>
+i3 doesn't sound like the processor family of choice here; a few more<br>
+cores can't hurt. Basically, assume one CPU core per stream for the<br>
+wire- to CPU-format conversion, plus a bit of demand for someone<br>
+handling OS/network card interrupts.<br>
+What're you doing with the samples afterwards?<br>
+<br>
+Best regards,<br>
+Marcus<br>
+<br>
+On Fri, 2019-09-06 at 21:53 &#43;0000, Lundberg, Daniel via USRP-users<br>
+wrote:<br>
+&gt; Does anyone have a known good hardware configuration to support full<b=
+r>
+&gt; (or at least close to full) 200 MS/s streaming from the N320? <br>
+&gt; Preferably with 1 Tx and 2 Rx channels.<br>
+&gt; As a data point, a recent i3 (4 cores) seems to be choking above 62.5<=
+br>
+&gt; MS/s.&nbsp; This is over dual SFP&#43; ports.&nbsp; At higher sampling=
+ rates, it is<br>
+&gt; producing U=92s, which I interpret to mean that the cpu can=92t shovel=
+<br>
+&gt; samples into the radio fast enough, not that there is a network jam.<b=
+r>
+&gt;&nbsp; <br>
+&gt; Thank you,<br>
+&gt; DL<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote>
+</div>
+</div>
+</body>
+</html>
+
+--_000_a9572c0b26d34c1eaa187f532ef2866fgtrigatechedu_--
+
+
+--===============4134853111869201185==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============4134853111869201185==--
+
