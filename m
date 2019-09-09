@@ -2,54 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D636AE165
-	for <lists+usrp-users@lfdr.de>; Tue, 10 Sep 2019 01:14:26 +0200 (CEST)
-Received: from [::1] (port=59372 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D34AE18A
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Sep 2019 01:42:38 +0200 (CEST)
+Received: from [::1] (port=36902 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i7SrW-0004oh-7g; Mon, 09 Sep 2019 19:14:22 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:34635)
+	id 1i7TIq-00070B-UJ; Mon, 09 Sep 2019 19:42:36 -0400
+Received: from mail-io1-f43.google.com ([209.85.166.43]:42598)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1i7SrR-0004j3-TY
- for usrp-users@lists.ettus.com; Mon, 09 Sep 2019 19:14:17 -0400
-Received: by mail-ot1-f47.google.com with SMTP id z26so5933871oto.1
- for <usrp-users@lists.ettus.com>; Mon, 09 Sep 2019 16:13:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ (Exim 4.92) (envelope-from <bistromath@gmail.com>)
+ id 1i7TIn-0006tt-LO
+ for usrp-users@lists.ettus.com; Mon, 09 Sep 2019 19:42:33 -0400
+Received: by mail-io1-f43.google.com with SMTP id n197so33189812iod.9
+ for <usrp-users@lists.ettus.com>; Mon, 09 Sep 2019 16:42:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8C38ihMsB7t8pBtrPSgpriF8K0uloNk+/AvLMvwLxbs=;
- b=gs5CKex12q28cbcmzze8gfKu64NP60X7/qVYv0TTmFTyM9tdrhGWDt4c5rbVYkaHbq
- bgOh3tsBQFdwbVZWxYneaVLMdirO15IMuNbcQfp511CGj207qqNP6Up4d+JXgxIWAWJN
- iPn5MG9MzkTRIZWuJdIKlNDsLEx/1PlF27V1wtZc5FI+YIjngC9vYHTD08mrAkLA1jgX
- J/iMNMiQ3XnSpCuYzef+NFGgVKEx3N35fQDNi6pW8D7/aXkSA7wLVb+anny5UcjriiHz
- eI3scqQUGvUw8ndHEDHc+Kc2Y6b+6RHEnTiBmTJWJ+Foac8Dc+JqjKBC/wccG4J5Aut3
- Ulsw==
+ :cc; bh=hU9sCrQwD+9AF7DioJNhW1+97sDuoqGpIwpQBus97wo=;
+ b=PnutMtI1c1wPDGrjaCMujz4pP5PBAqawRTp/3MNGEDpCNWHdcMfnt+UDENqqi72q5R
+ nkqXuYg5fZb1ZpglxXua4UplXyUk0T+uIKWS6wRp3+1i90yokUPyq/pJOnJnZkVeLyi5
+ hEmKN91tlmxG6qCqq7qQnOd+3m4YTHFAynvAa/gKXTYr11J9J8nxCcyFiOiMKjq+ioWe
+ V5bsTaycBjKQF3bFUD4HLpIPa7cVuf5JxV5JIOQ3vm3QFMBOgfGoWH5M0WgfYFha+H+/
+ XazsElERCDwcDcMlxFNpDODmK8tQcQryXcty2+HRPOcgwkQYFOHDJtGHRroBbajuMEvq
+ 382Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=8C38ihMsB7t8pBtrPSgpriF8K0uloNk+/AvLMvwLxbs=;
- b=k5tzt65Hrt0zroPoteQt5nQmEDw3ia0czyT/bh9ywzZWvjX7R1M3tloCOqdDnlPtzi
- LVT0RpZdJpPs28/m92krVPHjYrEnMcFR40Cd9f59gb+k2skHai16/WqPF//BzjBAt4hX
- 56/Z0lvf3/jHMc6O+HUZVzNC+x2dllcgbq8Cpx+KpWI8eUmkyGdooQdw8VHAwJLw+0Sl
- vbsEYQMdEmjghu22bUgoa/JmloGbYaLFY0oZazBzlI/vZEhysM0ffVU/YeMWSvdOlLhn
- iQyKAR5juh3MlCTXDwpf+dP+5LL9I23iWOCnInolBHeHiw3ZAWXgzO5ixTP0QZjBy2Mp
- OezA==
-X-Gm-Message-State: APjAAAXgqo3Gau14y/nBOfFyPrx7FduRII6puIuyOJWCrU/anAL9axLo
- QiNVlPn1lh/F/59R0b3PeQPzPNokyOgzmj0L1gSm7A==
-X-Google-Smtp-Source: APXvYqy+ASvXxl8YRRJ57y8QRFyIKNXyufTdJ8oNZCe5DLYXMcI3940TpccuZR8Tkf0FlXhiFmBT7cYFkGKiolxKuc0=
-X-Received: by 2002:a9d:d27:: with SMTP id 36mr22756189oti.327.1568070816985; 
- Mon, 09 Sep 2019 16:13:36 -0700 (PDT)
+ bh=hU9sCrQwD+9AF7DioJNhW1+97sDuoqGpIwpQBus97wo=;
+ b=PGrkoCEL8Tog2W9LhQBNIl0sacrxdyQRyBv76NIP5U1hiDwlZx3jVUcmAE1EmZCN7i
+ rJIJsCOmnugJygVt8LrmwxRZiFjZfqszzyCuMyak+lv/zbnIL0dY/ig5rs3Xyc+qGTtl
+ s2VnIRKHWkMLdHOFeAAQc29b0fAoFHDDqk7jRvooSq0LEiaKPzJqaHwJ88YPCHmSQBGw
+ L20qFVJFPpV6bCBrwO+q3Kba2DXjLh+2ESx6mVP2tb/+WtusJ3pSDCCWti1c/drPPrC/
+ 4Ry/JdF9HSEVnxW2rGaGKUqv2ge+AlOU+Ki4dh89OJAAIgNwr9Q6vKqmvTtkeXDN3DdY
+ VLfg==
+X-Gm-Message-State: APjAAAUeZOEjrY9iOfhI+F8+wBZ99JvZ4zmrpM6mjoxGkpD3nHJ1YdwN
+ YNVAxh1wbwTZ8D3RHvkH/oXeeHI77BxINlWXtM0=
+X-Google-Smtp-Source: APXvYqwyrHccqZuV0VYqxB6ZY+Y2RUrBL5Nu9Plt8axZ5vHcRlbAtfX5/GCcTZwkJf2iT7vL7fq73Rbl+uNcL/e++uQ=
+X-Received: by 2002:a02:7702:: with SMTP id g2mr8250145jac.92.1568072512516;
+ Mon, 09 Sep 2019 16:41:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAB__hTTexps+cnkJ4STrAtJpJgM9OfVo84CLDp+si=np8ni-xg@mail.gmail.com>
- <CACSOXP31eCM+Dw=+pEJ4epAGB7QaUmRftXb9A=v=ymq5CVTTuQ@mail.gmail.com>
- <CAB__hTTQSHxhUqmYfNzdFdam-owkt0Av46Y+ZOgBF+XSyghGjw@mail.gmail.com>
- <CAB__hTSOKND9tyWBbk6H5B1NWT4-zUsHePjAZmUsj0iFg4-M_Q@mail.gmail.com>
- <CAM4xKroOnfW5Pwn2ZWTdzHBbC7v0VO1D25uJ5WYgXwfZnN6BaA@mail.gmail.com>
-In-Reply-To: <CAM4xKroOnfW5Pwn2ZWTdzHBbC7v0VO1D25uJ5WYgXwfZnN6BaA@mail.gmail.com>
-Date: Mon, 9 Sep 2019 19:13:25 -0400
-Message-ID: <CAB__hTREnFjyZaUv93v_aBCRYbrL4ym71w2ikx_9Mb8dyZWCPg@mail.gmail.com>
-To: Michael West <michael.west@ettus.com>
-Subject: Re: [USRP-users] Using DmaFIFO for receive on X310
+References: <a39ce184e0fd70ed16f5fce920af81f514a4392d.camel.ref@sbcglobal.net>
+ <a39ce184e0fd70ed16f5fce920af81f514a4392d.camel@sbcglobal.net>
+ <CA+JMMq_PWfCwHKYbuVNUBSkLStLJsHr2TuV7aEEatFO1Mp3mPQ@mail.gmail.com>
+ <347790affd1a2263fd09fe55a2205714c1457481.camel@sbcglobal.net>
+In-Reply-To: <347790affd1a2263fd09fe55a2205714c1457481.camel@sbcglobal.net>
+Date: Mon, 9 Sep 2019 16:41:44 -0700
+Message-ID: <CA+JMMq-o+uZzt3qgCPm+e2vjy6tZPADU_GHV0sPkRWsA7hKggQ@mail.gmail.com>
+To: "d.des" <d.des@sbcglobal.net>
+Content-Type: multipart/mixed; boundary="0000000000001775050592275596"
+Subject: Re: [USRP-users] Addsub HLS Block Error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -61,10 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4582179365159487435=="
+From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nick Foster <bistromath@gmail.com>
+Cc: etus list <usrp-users@lists.ettus.com>
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,672 +78,925 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4582179365159487435==
-Content-Type: multipart/alternative; boundary="00000000000007c56b059226f05b"
+--0000000000001775050592275596
+Content-Type: multipart/alternative; boundary="0000000000001775010592275594"
 
---00000000000007c56b059226f05b
+--0000000000001775010592275594
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks Michael,
-This info was very helpful.
+Yes, I've used it, no custom block controller required. Attached are XML
+and GRC descriptors.
 
-Regarding "recv_buff_size", I tried setting to 100M and received a warning
-that it could not do so because rmem_max was only 33M.  Given that my
-rmem_max was set all along to 33M, would the recv_buff_size default to 33M
-or does it default to something lower such that I still need to set this
-device arg?
+On Sat, Sep 7, 2019 at 11:22 AM d.des <d.des@sbcglobal.net> wrote:
 
-Regarding cpufrequtils, I have done everything I can find to get the CPUs
-to stay at 3.5GHz.  On Ubuntu 14.04, this worked well.  And, I have tried
-to disable the intel_pstate driver with the appropriate grub setting, but I
-have not been successful in Ubuntu 18.04 at keeping the CPU freqs max-ed.
-
-Finally, regarding DPDK, this seems like the way to go, but with the
-limited amount of info available, it is difficult to get this properly
-configured.
-
-Rob
-
-
-On Mon, Sep 9, 2019 at 5:43 PM Michael West <michael.west@ettus.com> wrote:
-
-> Hi Rob,
+> I wonder if you have successfully used this block with grc or if you
+> were just using it with uhd. When I try to use the 2-input, 1-output
+> block in grc I get: "RuntimeError: Invalid stream args." this looks
+> like same issue as
 >
-> I would recommend not using the DMA FIFO block.  Although the DMA FIFO
-> block should work, setting a larger socket buffer on the host or using DPDK
-> are much better options.  To use a larger socket buffer, just use the
-> device argument "recv_buff_size=<size>" and set the <size> to something
-> reasonably large.
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-August/0=
+57702.html
+> and the solution at that time seemed to be to keep the second port so
+> as not to confuse the streamer.
 >
-> As far as the Ds, there is flow control between the device and host, but
-> drops are still possible between the NIC and system memory if the host is
-> not releasing descriptors to the NIC fast enough.  For some network cards,
-> this can be seen by looking at "rx_missed_errors" value in the output of
-> 'ethtool -S <interface>'.  Increasing the number of RX descriptors helps,
-> but is limited.  Use 'sudo ethtool -G <interface> rx 4096' to set the
-> descriptors to the maximum value.
+> In case I'm doing something dumb in the xml, here are the files I
+> created for uhd and grc:
 >
-> For the cpufreq utils, you may have to set the governor on each core (i.e.
-> cpufreq-set -g performance -c <core>).  Also, if you have the intel_pstate
-> driver, it still may vary the CPU frequency with the performance governor.
+> <?xml version=3D"1.0"?>
+> <!--Default XML file-->
+> <nocblock>
+>   <name>addonly</name>
+>   <blockname>addonly</blockname>
+>   <ids>
+>     <id revision=3D"0">0000000041253002</id>
+>   </ids>
+>   <ports>
+>     <sink>
+>       <name>in0</name>
+>     </sink>
+>     <sink>
+>       <name>in1</name>
+>     </sink>
+>     <source>
+>       <name>out</name>
+>     </source>
+>   </ports>
+> </nocblock>
 >
-> Regards,
-> Michael
 >
-> On Mon, Sep 9, 2019 at 1:41 PM Rob Kossler via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
 >
->> Hi Nate,
->> I looked at the link you sent (performance tuning tips) and your email.
->> Here are a few comments / questions:
->>
->>    - Regarding my initial question, what could be the cause of WORSE
->>    performance when I inserted the DmaFIFO in the receive chain of my RFNoC
->>    graph? Recall the "Radio->DDC->host" produces no errors, but
->>    "Radio->DDC->DmaFIFO->host" produces errors (timeouts)
->>    - Regarding "cpufrequtils" (from the performance tuning tips), I have
->>    run the suggestions on my 18.04 Ubuntu system (Xeon E5-1620v4 3.5GHz,
->>    4-core/8-thread), but when I run cpufreq-info, there is often 1 or more
->>    CPUs that show up at 1.6 GHz or so (while the majority report ~3.6 GHz).
->>    It is not clear to me whether this utility is doing its job or not.
->>    - Regarding DPDK, I have tried to install it, but have had no
->>    success.  The instructions say that after updating grub with "iommu=pt
->>    intel_iommu=on hugepages=2048", then "After you reboot, you should see
->>    /sys/kernel/iommu_groups populated".  I do have such a folder, but it is
->>    empty so I'm not sure if this step was successful or not.  Furthermore, I
->>    am unable to run the dpdk-devbind python script to bind the vfio-pci driver
->>    to my Intel X520-DA2 NIC (see error message below)
->>    - Regarding XFS vs EXT4, this is something I haven't tried yet, but
->>    plan to.  I am completely unfamiliar with XFS.  My SSD is actually 4
->>    Samsung EVO 850 SATA SSDs in a software RAID-0 (using mdadm).  If I copy a
->>    huge file from my RAM disk to the SSD, I am able to verify transfer rates
->>    greater than 1GB/s (I believe closer to 1.5GB/s).
->>    - Finally, regarding "D" (sequence errors), what is the possible
->>    cause?  These are the most frustrating errors because their cause is a
->>    mystery to me.  I fully expect that when my host PC is too slow to keep up
->>    with the torrent of data coming from the USRP that it should eventually
->>    backpressure all the way to the Radio which will then generate Overflows
->>    because it has no place to send the A/D data.  So, if I was only seeing
->>    "O", it would make sense to me.  But, the "D" makes no sense to me in my
->>    point-to-point direct connection between host and USRP.  Do you know of any
->>    root cause for "D"?
->>
->> Thanks.
->> Rob
->>
->> *DPDK error messages during dpdk-devbind.py*
->> irisheyes0@irisheyes0-HP-Z440-Workstation:~$
->> /usr/share/dpdk/usertools/dpdk-devbind.py --status
->>
->> Network devices using DPDK-compatible driver
->> ============================================
->> <none>
->>
->> Network devices using kernel driver
->> ===================================
->> 0000:00:19.0 'Ethernet Connection (2) I218-LM 15a0' if=eno1 drv=e1000e
->> unused= *Active*
->> 0000:01:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens4f0 drv=ixgbe unused=
->> 0000:01:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens4f1 drv=ixgbe unused=
->> 0000:04:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens2f0 drv=ixgbe unused=
->> 0000:04:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens2f1 drv=ixgbe unused=
->>
->> Other Network devices
->> =====================
->> <none>
->>
->> Crypto devices using DPDK-compatible driver
->> ===========================================
->> <none>
->>
->> Crypto devices using kernel driver
->> ==================================
->> <none>
->>
->> Other Crypto devices
->> ====================
->> <none>
->>
->> Eventdev devices using DPDK-compatible driver
->> =============================================
->> <none>
->>
->> Eventdev devices using kernel driver
->> ====================================
->> <none>
->>
->> Other Eventdev devices
->> ======================
->> <none>
->>
->> Mempool devices using DPDK-compatible driver
->> ============================================
->> <none>
->>
->> Mempool devices using kernel driver
->> ===================================
->> <none>
->>
->> Other Mempool devices
->> =====================
->> <none>
->> irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo
->> /usr/share/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci 01:00.0
->> [sudo] password for irisheyes0:
->> Error - no supported modules(DPDK driver) are loaded
->> irisheyes0@irisheyes0-HP-Z440-Workstation:~$
->> /usr/share/dpdk/usertools/dpdk-devbind.py --status
->>
->> Network devices using DPDK-compatible driver
->> ============================================
->> <none>
->>
->> Network devices using kernel driver
->> ===================================
->> 0000:00:19.0 'Ethernet Connection (2) I218-LM 15a0' if=eno1 drv=e1000e
->> unused= *Active*
->> 0000:01:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens4f0 drv=ixgbe unused=
->> 0000:01:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens4f1 drv=ixgbe unused=
->> 0000:04:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens2f0 drv=ixgbe unused=
->> 0000:04:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens2f1 drv=ixgbe unused=
->>
->> Other Network devices
->> =====================
->> <none>
->>
->> Crypto devices using DPDK-compatible driver
->> ===========================================
->> <none>
->>
->> Crypto devices using kernel driver
->> ==================================
->> <none>
->>
->> Other Crypto devices
->> ====================
->> <none>
->>
->> Eventdev devices using DPDK-compatible driver
->> =============================================
->> <none>
->>
->> Eventdev devices using kernel driver
->> ====================================
->> <none>
->>
->> Other Eventdev devices
->> ======================
->> <none>
->>
->> Mempool devices using DPDK-compatible driver
->> ============================================
->> <none>
->>
->> Mempool devices using kernel driver
->> ===================================
->> <none>
->>
->> Other Mempool devices
->> =====================
->> <none>
->> irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo modprobe vfio-pci
->> irisheyes0@irisheyes0-HP-Z440-Workstation:~$
->> /usr/share/dpdk/usertools/dpdk-devbind.py --status
->>
->> Network devices using DPDK-compatible driver
->> ============================================
->> <none>
->>
->> Network devices using kernel driver
->> ===================================
->> 0000:00:19.0 'Ethernet Connection (2) I218-LM 15a0' if=eno1 drv=e1000e
->> unused=vfio-pci *Active*
->> 0000:01:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens4f0 drv=ixgbe unused=vfio-pci
->> 0000:01:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens4f1 drv=ixgbe unused=vfio-pci
->> 0000:04:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens2f0 drv=ixgbe unused=vfio-pci
->> 0000:04:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->> if=ens2f1 drv=ixgbe unused=vfio-pci
->>
->> Other Network devices
->> =====================
->> <none>
->>
->> Crypto devices using DPDK-compatible driver
->> ===========================================
->> <none>
->>
->> Crypto devices using kernel driver
->> ==================================
->> <none>
->>
->> Other Crypto devices
->> ====================
->> <none>
->>
->> Eventdev devices using DPDK-compatible driver
->> =============================================
->> <none>
->>
->> Eventdev devices using kernel driver
->> ====================================
->> <none>
->>
->> Other Eventdev devices
->> ======================
->> <none>
->>
->> Mempool devices using DPDK-compatible driver
->> ============================================
->> <none>
->>
->> Mempool devices using kernel driver
->> ===================================
->> <none>
->>
->> Other Mempool devices
->> =====================
->> <none>
->> irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo
->> /usr/share/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci 01:00.0
->> Error: bind failed for 0000:01:00.0 - Cannot bind to driver vfio-pci
->> Error: unbind failed for 0000:01:00.0 - Cannot open /sys/bus/pci/drivers
->> //unbind
->> irisheyes0@irisheyes0-HP-Z440-Workstation:~$
->>
->>
->>
->> On Fri, Sep 6, 2019 at 6:02 PM Rob Kossler <rkossler@nd.edu> wrote:
->>
->>> Hi Nate,
->>> I'm using UHD 3.14.0.1.  I am not using DPDK.
->>>
->>> Regarding the tuning, I think I was not clear in my email.  I have no
->>> trouble streaming to RAM disk using the standard Radio->DDC->host graph.  I
->>> mentioned that I was running 2x50MS/s, but I can go up to 2x200MS/s with
->>> success.  My issue is that after adding the DmaFIFO to the Rx chain, I got
->>> timeouts (i.e., I suppose that the flow stopped for some reason) when
->>> running the graph Radio->DDC->DmaFIFO->host.  Even at 2x50MS/s.
->>>
->>> So, my question is: why is this happening?  What is wrong with my plan
->>> to insert the DmaFIFO in the Rx chain?  What would possibly cause the
->>> streaming to terminate such that my recv() loop times out (even with a 5s
->>> timeout)?
->>>
->>> Rob
->>>
->>>
->>>
->>> On Fri, Sep 6, 2019 at 12:56 PM Ettus Research Support <
->>> support@ettus.com> wrote:
->>>
->>>> Hi Rob,
->>>>
->>>> What version of UHD are you using?
->>>>
->>>> 2x RX 50 MS/s streams should work without much issue with a fast enough
->>>> host, especially to a ram disk.
->>>>
->>>> Are you using DPDK? DPDK support for X3xx was recently added to UHD and
->>>> will reduce the overhead on the host side, which can help quite a bit. Some
->>>> anecdotal testing I've done with a N310, with the native UHD driver, to
->>>> stream 2 channels full duplex, the minimum cpu freq I was able to run
->>>> without any flow control errors was 3.8 GHz. Using DPDK, I was able to run
->>>> 2x2 @ 125 MS/s with my CPU cores locked at 1.5 GHz with no flow control
->>>> errors. Using DPDK, it's possible to stream 2x2 @ 200e6 on the X3xx with a
->>>> SRAM FPGA image (it's not possible to TX at full rate using the native
->>>> driver and DRAM based FPGA).
->>>>
->>>> You could try the few things listed here
->>>> https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks
->>>>
->>>> One other bit to add, I've been able to stream 1 RX channel @ 200 MS/s
->>>> straight to disk using a Intel 750 Series PCIe SSD until it was full (circa
->>>> UHD 3.10.x). To do that, I had to use a sc16 host side data format and also
->>>> use a XFS file system instead of EXT4. The host was a i7-4790k @ 4.4 GHz. I
->>>> would recommend NVMe SSD drives now as they support faster rates than that
->>>> PCIe SSD.
->>>>
->>>>
->>>> Regards,
->>>> Nate Temple
->>>>
->>>> On Fri, Sep 6, 2019 at 8:37 AM Rob Kossler via USRP-users <
->>>> usrp-users@lists.ettus.com> wrote:
->>>>
->>>>> Hi,
->>>>> As part of an effort to improve capability to store incoming receive
->>>>> chain samples to files on my SSD without errors ('O' or 'D'), I decided to
->>>>> wire an X310 noc graph to include the DmaFIFO. My thought was that the
->>>>> DmaFIFO could better tolerate varying rates of sample consumption at the
->>>>> OS.
->>>>>
->>>>> Before trying this by streaming to a file on my SSD, I first ran a
->>>>> test which streamed to a RAM-based file (60 GB ram filesystem).  I used an
->>>>> X310/UBX160 with the default FPGA XG image and initiated a 2-channel
->>>>> receive at 50MS/s (using my C++ app & UHD).  To my surprise, I am getting
->>>>> frequent "timeouts" on receive, but not always at the same time.  In one
->>>>> case, the receive worked successfully for 28 secs (2 ch, 50 MS/s).  In
->>>>> other cases, it timed out immediately or after several seconds.  Note that
->>>>> I can reliably run this same test without error if I remove the DmaFIFO.
->>>>>
->>>>> The following works fine:
->>>>>   RxRadio -> DDC -> host file (in RAM file system)
->>>>>
->>>>> The following times-out at random times:
->>>>>   RxRadio -> DDC -> DmaFIFO -> host file (in RAM file system)
->>>>>
->>>>> What could be the cause?  Is there any reason the DmaFIFO shouldn't
->>>>> work in the receive chain?
->>>>>
->>>>> Rob
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>
->>>> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
+> <?xml version=3D"1.0"?>
+> <block>
+>   <name>RFNoC: addonly</name>
+>   <key>dave_addonly</key>
+>   <import>import ettus</import>
+>   <make>ettus.rfnoc_generic(
+>     self.device3,
+>     uhd.stream_args( \# TX Stream Args
+>         cpu_format=3D"$type", \# TODO: This must be made an option
+>         otw_format=3D"sc16",
+>         channels=3D(0,1),
+>         args=3D"align=3D1",
+>     ),
+>     uhd.stream_args( \# RX Stream Args
+>         cpu_format=3D"$type",
+>         otw_format=3D"sc16",
+>         channels=3D(0,1),
+>         args=3D"align=3D1",
+>     ),
+>     "addonly", $block_index, $device_index,
+> )</make>
+>
+>   <param>
+>     <name>Host Data Type</name>
+>     <key>type</key>
+>     <type>enum</type>
+>     <option>
+>       <name>Complex float32</name>
+>       <key>fc32</key>
+>       <opt>type:fc32</opt>
+>     </option>
+>     <option>
+>       <name>Complex int16</name>
+>       <key>sc16</key>
+>       <opt>type:sc16</opt>
+>     </option>
+>   </param>
+>
+>   <param>
+>     <name>dcovariance Select</name>
+>     <key>block_index</key>
+>     <value>-1</value>
+>     <type>int</type>
+>     <hide>#if int($block_index()) &lt; 0 then 'part' else
+> 'none'#</hide>
+>     <tab>RFNoC Config</tab>
+>   </param>
+>   <param>
+>     <name>Device Select</name>
+>     <key>device_index</key>
+>     <value>-1</value>
+>     <type>int</type>
+>     <hide>#if int($device_index()) &lt; 0 then 'part' else
+> 'none'#</hide>
+>     <tab>RFNoC Config</tab>
+>   </param>
+>
+>   <param>
+>     <name>FPGA Module Name</name>
+>     <key>fpga_module_name</key>
+>     <value>noc_block_dcovariance</value>
+>     <type>string</type>
+>     <hide>all</hide>
+>     <tab>RFNoC Config</tab>
+>   </param>
+>
+>   <sink>
+>     <name>in</name>
+>     <type>$type.type</type>
+>     <domain>rfnoc</domain>
+>     <nports>2</nports>
+>   </sink>
+>
+>   <source>
+>     <name>out</name>
+>     <type>$type.type</type>
+>     <domain>rfnoc</domain>
+>   </source>
+> </block>
+>
+>
+> The messages just before the error are:
+> [DEBUG] [DEVICE3] Port 0x20: Found NoC-Block with ID 0000000041253002.
+> [DEBUG] [RFNOC] Reading XML file
+> /home/root/localinstall/usr/share/uhd/rfnoc/blocks/addonly.xml for NOC
+> ID 0x41253002
+> [DEBUG] [E300] [E300] Setting up dest map for host ep 35 to be stream 3
+>
+> [TRACE] [RFNOC] [RFNoC Factory] block_ctrl_base::make()
+> [DEBUG] [RFNOC] Reading XML file
+> /home/root/localinstall/usr/share/uhd/rfnoc/blocks/addonly.xml for NOC
+> ID 0x41253002
+> [WARNING] [RFNOC] Can't find a block controller for key addonly, using
+> default block controller!
+> [TRACE] [RFNOC] [RFNoC Factory] Using controller key 'Block' and block
+> name 'addonly'
+> [DEBUG] [RFNOC] Reading XML file
+> /home/root/localinstall/usr/share/uhd/rfnoc/blocks/addonly.xml for NOC
+> ID 0x41253002
+> [INFO] [0/dcorrelate_0] Initializing block control (NOC ID:
+> 0x0000000041253002)
+> [DEBUG] [0/dcorrelate_0] Checking compat number for FPGA component
+> `noc_shell': Expecting 5.1, actual: 5.1.
+> [TRACE] [0/addonly_0] Adding port definition at
+> xbar/dcorrelate_0/ports/in/0: type =3D '' pkt_size =3D '0' vlen =3D '0'
+> [TRACE] [0/addonly_0] Adding port definition at
+> xbar/dcorrelate_0/ports/in/1: type =3D '' pkt_size =3D '0' vlen =3D '0'
+> [TRACE] [0/addonly_0] Adding port definition at
+> xbar/addonly_0/ports/out/0: type =3D '' pkt_size =3D '0' vlen =3D '0'
+> [DEBUG] [E300] [E300] Setting up dest map for host ep 36 to be stream 4
+>
+> :
+> <other blocks and rate setting...>
+> :
+> [DEBUG] [E300] Actually got clock rate 10 MHz
+>
+> [DEBUG] [CORES] Performing timer loopback test...
+> [DEBUG] [CORES] Timer loopback test passed.
+> [TRACE] [RFNOC] e3xx_radio_ctrl_impl::_update_enables()
+>
+> [TRACE] [RFNOC] e3xx_radio_ctrl_impl::_update_gpio_state()
+>
+> Traceback (most recent call last):
+>   File "./dave_addonly_usrp.py", line 169, in <module>
+>     main()
+>   File "./dave_addonly_usrp.py", line 158, in main
+>     tb =3D top_block_cls()
+>   File "./dave_addonly_usrp.py", line 94, in __init__
+>     "addonly", -1, -1,
+>   File "/home/root/localinstall/usr/lib/python2.7/site-
+> packages/ettus/ettus_swig.py", line 3270, in make
+>     return _ettus_swig.rfnoc_generic_make(*args, **kwargs)
+> RuntimeError: Invalid stream args.
+>
+> It never gets to the part where it attempts to connect ports together.
+>
+>
+> The line in the Python launcher that generates the error is:
+>
+>         self.dave_addonly_0 =3D ettus.rfnoc_generic(
+>             self.device3,
+>             uhd.stream_args( # TX Stream Args
+>                 cpu_format=3D"fc32", # TODO: This must be made an option
+>                 otw_format=3D"sc16",
+>                 channels=3D(0,1),
+>                 args=3D"align=3D1",
+>             ),
+>             uhd.stream_args( # RX Stream Args
+>                 cpu_format=3D"fc32",
+>                 otw_format=3D"sc16",
+>                 channels=3D(0,1),
+>                 args=3D"align=3D1",
+>             ),
+>             "addonly", -1, -1,
+>         )
+>
+>
+> Maybe a custom block controller would help? Or maybe if it works in UHD
+> but not Gnuradio I could push the same data over TCP and still use the
+> nice Gnuradio plotting on the host side?
+>
+>
+> On Fri, 2019-09-06 at 15:26 -0700, Nick Foster wrote:
+> > Here's a modified add-only block. You'll have to make a matching .xml
+> > descriptor and GRC block (if you're using gr-ettus).
+> >
+> > Probably it would be a super useful thing to have an add/sub block,
+> > instead of an addsub block. A register-controlled mux to select which
+> > operation you want. I'll think about adding that to the Theseus Cores
+> > project.
+> >
+> > Nick
+> >
+> > On Fri, Sep 6, 2019 at 3:18 PM d.des via USRP-users <
+> > usrp-users@lists.ettus.com> wrote:
+> > > Nick-
+> > > Could you share the tricks to remove one of the output ports? I
+> > > don't
+> > > I'm having similar issues with my modified addsub block and don't
+> > > have
+> > > enough room on the e310 fpga for extra fifos. It's not obvious from
+> > > the
+> > > noc_block_addsub code, the use of splitstream and dummy variables
+> > > is
+> > > very confusing.
+> > >
+> > > Tnx,
+> > > Dave (and I'm sure many others, based on threads I've seen in
+> > > searches)
+> > >
+> > > ________________________________
+> > > From: Nick Foster <bistromath at gmail.com>
+> > > Sent: Tuesday, September 3, 2019 11:45:46 PM
+> > > To: Quadri,Adnan <adnan.quadri at louisville.edu>
+> > > Cc: usrp-users at lists.ettus.com <usrp-users at lists.ettus.com>
+> > > Subject: Re: [USRP-users] Addsub HLS Block Error
+> > >
+> > > That shouldn't be. Even if you connect both outputs to the host?
+> > >
+> > > I admit I got fed up with it in my own application (don't want both
+> > > streams going into the host) and just modified the addsub block to
+> > > be
+> > > an add-only block.
+> > >
+> > > On Tue, Sep 3, 2019 at 8:43 PM Quadri,Adnan <adnan.quadri at
+> > > louisville.edu<mailto:adnan.quadri at louisville.edu>> wrote:
+> > > I tried connecting one Signal Source block to both the inputs of
+> > > addsub
+> > > block. It still throws the same error.
+> > >
+> > > Adnan
+> > > ________________________________
+> > > From: Nick Foster <bistromath at gmail.com<mailto:bistromath at
+> > > gmail.com>>
+> > > Sent: Tuesday, September 3, 2019 11:40:05 PM
+> > > To: Quadri,Adnan <adnan.quadri at
+> > > louisville.edu<mailto:adnan.quadri at
+> > > louisville.edu>>
+> > > Cc: usrp-users at lists.ettus.com<mailto:usrp-users at
+> > > lists.ettus.com>
+> > > <usrp-users at lists.ettus.com<mailto:usrp-users at
+> > > lists.ettus.com>>
+> > > Subject: Re: [USRP-users] Addsub HLS Block Error
+> > >
+> > > Oh, I see. You have separate sources connected to the same addsub
+> > > block. It's telling you that you need to use timed stream commands
+> > > to
+> > > start the stream, or else you will see undefined behavior.
+> > > Personally I
+> > > think that error should be demoted to a warning -- anyone from
+> > > Ettus
+> > > want to chime in?
+> > >
+> > > On Tue, Sep 3, 2019 at 3:53 PM Quadri,Adnan <adnan.quadri at
+> > > louisville.edu<mailto:adnan.quadri at louisville.edu>> wrote:
+> > > Hello,
+> > >
+> > > Thank you for your prompt response. I have connected both the
+> > > addsub
+> > > output to two QT Gui Sink but I still get the same error. I have
+> > > the
+> > > Copy block in the middle as well.
+> > >
+> > > I am attaching a screenshot of my flowgraph. I tried with different
+> > > USRP sources/Signal Sources as well. But it is the same error.
+> > >
+> > > Thanks,
+> > > Adnan
+> > >
+> > > ________________________________
+> > > From: Nick Foster <bistromath at gmail.com<mailto:bistromath at
+> > > gmail.com>>
+> > > Sent: Tuesday, September 3, 2019 3:57 PM
+> > > To: Quadri,Adnan <adnan.quadri at
+> > > louisville.edu<mailto:adnan.quadri at
+> > > louisville.edu>>
+> > > Cc: usrp-users at lists.ettus.com<mailto:usrp-users at
+> > > lists.ettus.com>
+> > > <usrp-users at lists.ettus.com<mailto:usrp-users at
+> > > lists.ettus.com>>
+> > > Subject: Re: [USRP-users] Addsub HLS Block Error
+> > >
+> > > I ran into this the other day and it's independent of the HLS
+> > > component
+> > > of the addsub block (since the interface is identical). You need to
+> > > connect both outputs of the addsub block to something, even a null
+> > > sink. I'm pretty sure this wasn't the intended behavior and also
+> > > pretty
+> > > sure that it wasn't like this last time I checked (which was more
+> > > than
+> > > a year ago), so maybe it should be filed as a bug.
+> > >
+> > > Nick
+> > >
+> > > On Tue, Sep 3, 2019 at 1:48 PM Quadri,Adnan via USRP-users <usrp-
+> > > users
+> > > at lists.ettus.com<mailto:usrp-users at lists.ettus.com>> wrote:
+> > > Hello,
+> > >
+> > > We are trying to run the RFNoC addsub HLS block.
+> > >
+> > > I was able to build the FPGA Image and made sure in the noc_block
+> > > verilog code to point to the HLS implementation for addsub block on
+> > > RFNoC as opposed to the verilog/VHDL implementation.
+> > >
+> > > But when we run the example Flowgraph with two signal source as
+> > > input
+> > > to the two inputs for addsub block on GRC, we get the following
+> > > error -
+> > >
+> > > ERROR:
+> > > thread[thread-per-block[4]: <block uhd_rfnoc_AddSub (1)>]:
+> > > RuntimeError: Invalid recv stream command - stream now on multiple
+> > > channels in a single streamer will fail to time align.
+> > >
+> > > Does this have anything to do with the C++ code for HLS
+> > > implementation
+> > > or is it a problem at UHD level?
+> > >
+> > > Thanks,
+> > > Adnan
+> > > _______________________________________________
+> > > USRP-users mailing list
+> > > USRP-users at lists.ettus.com<mailto:USRP-users at lists.ettus.com>
+> > > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com<
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mai=
+lman_listinfo_usrp-2Dusers-5Flists.ettus.com&d=3DDwMFaQ&c=3DOAG1LQNACBDguGv=
+BeNj18Swhr9TMTjS-x4O_KuapPgY&r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02=
+U&m=3DXH0fqWeFmcl-P0_Y01iOhbHXEKDsJDUBaImT_nfh0t4&s=3D_hsJH03rqnDSUZXWGyx31=
+-8I7HJLsU5_S5hs-j5_WRw&e=3D
+> >
+> > > -------------- next part --------------
+> > > An HTML attachment was scrubbed...
+> > > URL: <
+> > >
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/attachments/2=
+0190904/3138375d/attachment.html
+> > > >
+> > >
+> > >
+> > > _______________________________________________
+> > > USRP-users mailing list
+> > > USRP-users@lists.ettus.com
+> > > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 >
 
---00000000000007c56b059226f05b
+--0000000000001775010592275594
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks Michael,<div>This info was very helpful.</div><div>=
-<br></div><div><div>Regarding &quot;recv_buff_size&quot;, I tried setting t=
-o 100M and received a warning that it could not do so because rmem_max was =
-only 33M.=C2=A0 Given that my rmem_max was set all along to 33M, would the =
-recv_buff_size default to 33M or does it default to something lower such th=
-at I still need to set this device arg?</div><div><br></div><div>Regarding =
-cpufrequtils, I have done everything I can find to get the CPUs to stay at =
-3.5GHz.=C2=A0 On Ubuntu 14.04, this worked well.=C2=A0 And, I have tried to=
- disable the intel_pstate driver with the appropriate grub setting, but I h=
-ave not been successful in Ubuntu 18.04 at keeping the CPU freqs max-ed.</d=
-iv><div><br></div><div>Finally, regarding DPDK, this seems like the way to =
-go, but with the limited amount of info available, it is difficult to get t=
-his properly configured.</div><div><br></div><div>Rob</div><div><br></div><=
-/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
-ttr">On Mon, Sep 9, 2019 at 5:43 PM Michael West &lt;<a href=3D"mailto:mich=
-ael.west@ettus.com">michael.west@ettus.com</a>&gt; wrote:<br></div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Rob,</di=
-v><div><br></div><div>I would recommend not using the DMA FIFO block.=C2=A0=
- Although the DMA FIFO block should work, setting a larger socket buffer on=
- the host or using DPDK are much better options.=C2=A0 To use a larger sock=
-et buffer, just use the device argument &quot;recv_buff_size=3D&lt;size&gt;=
-&quot; and set the &lt;size&gt; to something reasonably large.<div><br></di=
-v><div>As far as the Ds, there is flow=20
-control between the device and host, but drops are still possible=20
-between the NIC and system memory if the host is not releasing=20
-descriptors to the NIC fast enough.=C2=A0 For some network cards, this can =
-be seen by=20
-looking at=20
-&quot;rx_missed_errors&quot; value in the output of &#39;ethtool -S=20
-&lt;interface&gt;&#39;.=C2=A0 Increasing the number of RX descriptors helps=
-, but=20
-is limited.=C2=A0 Use &#39;sudo ethtool -G &lt;interface&gt; rx 4096&#39; t=
-o set the=20
-descriptors to the maximum value.</div></div><div><br></div><div>For the cp=
-ufreq utils, you may have to set the governor on each core (i.e. cpufreq-se=
-t -g performance -c &lt;core&gt;).=C2=A0 Also, if you have the intel_pstate=
- driver, it still may vary the CPU frequency with the performance governor.=
-</div><div><br></div><div>Regards,</div><div>Michael<br></div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 9=
-, 2019 at 1:41 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-use=
-rs@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"ltr">Hi Nate,<div>I looked at the link you sent (performance tuning tips) =
-and your email.=C2=A0 Here are a few comments / questions:</div><div><ul><l=
-i>Regarding my initial question, what could be the cause of WORSE performan=
-ce when I inserted the DmaFIFO in the receive chain of my RFNoC graph? Reca=
-ll the &quot;Radio-&gt;DDC-&gt;host&quot; produces no errors, but &quot;Rad=
-io-&gt;DDC-&gt;DmaFIFO-&gt;host&quot; produces errors (timeouts)</li><li>Re=
-garding &quot;cpufrequtils&quot; (from the performance tuning tips), I have=
- run the suggestions on my 18.04 Ubuntu system (Xeon E5-1620v4 3.5GHz, 4-co=
-re/8-thread), but when I run cpufreq-info, there is often 1 or more CPUs th=
-at show up at 1.6 GHz or so (while the majority report ~3.6 GHz).=C2=A0 It =
-is not clear to me whether this utility is doing its job or not.</li><li>Re=
-garding DPDK, I have tried to install it, but have had no success.=C2=A0 Th=
-e instructions say that after updating grub with &quot;iommu=3Dpt intel_iom=
-mu=3Don hugepages=3D2048&quot;, then &quot;After you reboot, you should see=
- /sys/kernel/iommu_groups populated&quot;.=C2=A0 I do have such a folder, b=
-ut it is empty so I&#39;m not sure if this step was successful or not.=C2=
-=A0 Furthermore, I am unable to run the dpdk-devbind python script to bind =
-the vfio-pci driver to my Intel X520-DA2 NIC (see error message below)</li>=
-<li>Regarding XFS vs EXT4, this is something I haven&#39;t tried yet, but p=
-lan to.=C2=A0 I am completely unfamiliar with XFS.=C2=A0 My SSD is actually=
- 4 Samsung EVO 850 SATA SSDs in a software RAID-0 (using mdadm).=C2=A0 If I=
- copy a huge file from my RAM disk to the SSD, I am able to verify transfer=
- rates greater than 1GB/s (I believe closer to 1.5GB/s).</li><li>Finally, r=
-egarding &quot;D&quot; (sequence errors), what is the possible cause?=C2=A0=
- These are the most frustrating errors because their cause is a mystery to =
-me.=C2=A0 I fully expect that when my host PC is too slow to keep up with t=
-he torrent of data coming from the USRP that it should eventually backpress=
-ure all the way to the Radio which will then generate Overflows because it =
-has no place to send the A/D data.=C2=A0 So, if I was only seeing &quot;O&q=
-uot;, it would make sense to me.=C2=A0 But, the &quot;D&quot; makes no sens=
-e to me in my point-to-point direct connection between host and USRP.=C2=A0=
- Do you know of any root cause for &quot;D&quot;?</li></ul><div>Thanks.</di=
-v><div>Rob</div><div><br></div><div><b>DPDK error messages during dpdk-devb=
-ind.py</b></div><div>irisheyes0@irisheyes0-HP-Z440-Workstation:~$ /usr/shar=
-e/dpdk/usertools/dpdk-devbind.py --status<br><br>Network devices using DPDK=
--compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>&lt;none&gt;<br><br>Network devices using kernel driver<br>=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:00:19.0 &#39;Ethernet Connection (2) I218-=
-LM 15a0&#39; if=3Deno1 drv=3De1000e unused=3D *Active*<br>0000:01:00.0 &#39=
-;82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens4f0 drv=
-=3Dixgbe unused=3D <br>0000:01:00.1 &#39;82599ES 10-Gigabit SFI/SFP+ Networ=
-k Connection 10fb&#39; if=3Dens4f1 drv=3Dixgbe unused=3D <br>0000:04:00.0 &=
-#39;82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens2f0 dr=
-v=3Dixgbe unused=3D <br>0000:04:00.1 &#39;82599ES 10-Gigabit SFI/SFP+ Netwo=
-rk Connection 10fb&#39; if=3Dens2f1 drv=3Dixgbe unused=3D <br><br>Other Net=
-work devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using DPDK-compatible driver<b=
-r>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<b=
-r><br>Crypto devices using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br=
->&lt;none&gt;<br><br>Other Crypto devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eventdev devices usin=
-g DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eventdev devices using kernel driver=
-<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Eventd=
-ev devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using DPDK-compatible driver<=
-br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt=
-;<br><br>Mempool devices using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D<br>&lt;none&gt;<br><br>Other Mempool devices<br>=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br>irisheyes0@ir=
-isheyes0-HP-Z440-Workstation:~$ sudo /usr/share/dpdk/usertools/dpdk-devbind=
-.py --bind=3Dvfio-pci 01:00.0<br>[sudo] password for irisheyes0: <br>Error =
-- no supported modules(DPDK driver) are loaded<br>irisheyes0@irisheyes0-HP-=
-Z440-Workstation:~$ /usr/share/dpdk/usertools/dpdk-devbind.py --status<br><=
-br>Network devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Network devices us=
-ing kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:00:19.0 &#39;Et=
-hernet Connection (2) I218-LM 15a0&#39; if=3Deno1 drv=3De1000e unused=3D *A=
-ctive*<br>0000:01:00.0 &#39;82599ES 10-Gigabit SFI/SFP+ Network Connection =
-10fb&#39; if=3Dens4f0 drv=3Dixgbe unused=3D <br>0000:01:00.1 &#39;82599ES 1=
-0-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens4f1 drv=3Dixgbe unu=
-sed=3D <br>0000:04:00.0 &#39;82599ES 10-Gigabit SFI/SFP+ Network Connection=
- 10fb&#39; if=3Dens2f0 drv=3Dixgbe unused=3D <br>0000:04:00.1 &#39;82599ES =
-10-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens2f1 drv=3Dixgbe un=
-used=3D <br><br>Other Network devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using =
-DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using kernel driver<br>=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Crypto devices<br>=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><=
-br>Eventdev devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eventdev dev=
-ices using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none=
-&gt;<br><br>Other Eventdev devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using=
- DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using kernel driver<br>=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Mempool devices<br=
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;non=
-e&gt;<br>irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo modprobe vfio-pc=
-i<br>irisheyes0@irisheyes0-HP-Z440-Workstation:~$ /usr/share/dpdk/usertools=
-/dpdk-devbind.py --status<br><br>Network devices using DPDK-compatible driv=
-er<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none=
-&gt;<br><br>Network devices using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>0000:00:19.0 &#39;Ethernet Connection (2) I218-LM 15a0&#39; if=3D=
-eno1 drv=3De1000e unused=3Dvfio-pci *Active*<br>0000:01:00.0 &#39;82599ES 1=
-0-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens4f0 drv=3Dixgbe unu=
-sed=3Dvfio-pci <br>0000:01:00.1 &#39;82599ES 10-Gigabit SFI/SFP+ Network Co=
-nnection 10fb&#39; if=3Dens4f1 drv=3Dixgbe unused=3Dvfio-pci <br>0000:04:00=
-.0 &#39;82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens2f=
-0 drv=3Dixgbe unused=3Dvfio-pci <br>0000:04:00.1 &#39;82599ES 10-Gigabit SF=
-I/SFP+ Network Connection 10fb&#39; if=3Dens2f1 drv=3Dixgbe unused=3Dvfio-p=
-ci <br><br>Other Network devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using DPDK-c=
-ompatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-<br>&lt;none&gt;<br><br>Crypto devices using kernel driver<br>=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Crypto devices<br>=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eve=
-ntdev devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eventdev devices u=
-sing kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<b=
-r><br>Other Eventdev devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using DPDK-=
-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D<br>&lt;none&gt;<br><br>Mempool devices using kernel driver<br>=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Mempool devices<br>=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt=
-;<br>irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo /usr/share/dpdk/user=
-tools/dpdk-devbind.py --bind=3Dvfio-pci 01:00.0<br><span style=3D"backgroun=
-d-color:rgb(255,255,0)">Error: bind failed for 0000:01:00.0 - Cannot bind t=
-o driver vfio-pci<br>Error: unbind failed for 0000:01:00.0 - Cannot open /s=
-ys/bus/pci/drivers</span>//unbind<br>irisheyes0@irisheyes0-HP-Z440-Workstat=
-ion:~$=C2=A0<br><div></div></div><div><br></div><div><br></div></div></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri=
-, Sep 6, 2019 at 6:02 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu"=
- target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Nate,</div><div>=
-I&#39;m using UHD 3.14.0.1.=C2=A0 I am not using DPDK.</div><div><br></div>=
-<div>Regarding the tuning, I think I was not clear in my email.=C2=A0 I hav=
-e no trouble streaming to RAM disk using the standard Radio-&gt;DDC-&gt;hos=
-t graph.=C2=A0 I mentioned that I was running 2x50MS/s, but I can go up to =
-2x200MS/s with success.=C2=A0 My issue is that after adding the DmaFIFO to =
-the Rx chain, I got timeouts (i.e., I suppose that the flow stopped for som=
-e reason) when running the graph Radio-&gt;DDC-&gt;DmaFIFO-&gt;host.=C2=A0 =
-Even at 2x50MS/s.=C2=A0=C2=A0</div><div><br></div><div>So, my question is: =
-why is this happening?=C2=A0 What is wrong with my plan to insert the DmaFI=
-FO in the Rx chain?=C2=A0 What would possibly cause the streaming to termin=
-ate such that my recv() loop times out (even with a 5s timeout)?</div><div>=
-<br></div><div>Rob</div><div><br></div><div><br></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 6, 2019 at 12:5=
-6 PM Ettus Research Support &lt;<a href=3D"mailto:support@ettus.com" target=
-=3D"_blank">support@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr"><div style=3D"font-family:ver=
-dana,sans-serif">Hi Rob,<br><br>What version of UHD are you using?<br><br>2=
-x RX 50 MS/s streams should work without much issue with a fast enough host=
-, especially to a ram disk. <br><br>Are you using DPDK? DPDK support for X3=
-xx was recently added to UHD and will reduce the overhead on the host side,=
- which can help quite a bit. Some anecdotal testing I&#39;ve done with a N3=
-10, with the native UHD driver, to stream 2 channels full duplex, the minim=
-um cpu freq I was able to run without any flow control errors was 3.8 GHz. =
-Using DPDK, I was able to run 2x2 @ 125 MS/s with my CPU cores locked at 1.=
-5 GHz with no flow control errors. Using DPDK, it&#39;s possible to stream =
-2x2 @ 200e6 on the X3xx with a SRAM FPGA image (it&#39;s not possible to TX=
- at full rate using the native driver and DRAM based FPGA).<br><br>You coul=
-d try the few things listed here <a href=3D"https://kb.ettus.com/USRP_Host_=
-Performance_Tuning_Tips_and_Tricks" target=3D"_blank">https://kb.ettus.com/=
-USRP_Host_Performance_Tuning_Tips_and_Tricks</a><br><br>One other bit to ad=
-d, I&#39;ve been able to stream 1 RX channel @ 200 MS/s straight to disk us=
-ing a Intel 750 Series PCIe SSD until it was full (circa UHD 3.10.x). To do=
- that, I had to use a sc16 host side data format and also use a XFS file sy=
-stem instead of EXT4. The host was a i7-4790k @ 4.4 GHz. I would recommend =
-NVMe SSD drives now as they support faster rates than that PCIe SSD. <br><b=
-r><br>Regards,<br>Nate Temple</div></div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 6, 2019 at 8:37 AM Rob Kossl=
-er via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<div>As part of a=
-n effort to improve capability to store incoming receive chain samples to f=
-iles on my SSD without errors (&#39;O&#39; or &#39;D&#39;), I decided to wi=
-re an X310 noc graph to include the DmaFIFO. My thought was that the DmaFIF=
-O could better tolerate varying rates of sample consumption at the OS.=C2=
-=A0</div><div><br></div><div><div>Before trying this by streaming to a file=
- on my SSD, I first ran a test which streamed to a RAM-based file (60 GB ra=
-m filesystem).=C2=A0 I used an X310/UBX160 with the default FPGA XG image a=
-nd initiated a 2-channel receive at 50MS/s (using my C++ app &amp; UHD).=C2=
-=A0 To my surprise, I am getting frequent &quot;timeouts&quot; on receive, =
-but not always at the same time.=C2=A0 In one case, the receive worked succ=
-essfully for 28 secs (2 ch, 50 MS/s).=C2=A0 In other cases, it timed out im=
-mediately or after several seconds.=C2=A0 Note that I can reliably run this=
- same test without error if I remove the DmaFIFO.</div><div><br></div><div>=
-The following works fine:</div><div>=C2=A0 RxRadio -&gt; DDC -&gt; host fil=
-e (in RAM file system)</div><div><br></div><div>The following times-out at =
-random times:</div><div></div></div><div>=C2=A0 RxRadio -&gt; DDC -&gt; Dma=
-FIFO -&gt; host file (in RAM file system)</div><div><br></div><div>What cou=
-ld be the cause?=C2=A0 Is there any reason the DmaFIFO shouldn&#39;t work i=
-n the receive chain?</div><div><br></div><div>Rob</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+<div dir=3D"ltr">Yes, I&#39;ve used it, no custom block controller required=
+. Attached are XML and GRC descriptors.<br></div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Sep 7, 2019 at 11:22 AM =
+d.des &lt;<a href=3D"mailto:d.des@sbcglobal.net">d.des@sbcglobal.net</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">I wonde=
+r if you have successfully used this block with grc or if you<br>
+were just using it with uhd. When I try to use the 2-input, 1-output<br>
+block in grc I get: &quot;RuntimeError: Invalid stream args.&quot; this loo=
+ks<br>
+like same issue as <br>
+<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018=
+-August/057702.html" rel=3D"noreferrer" target=3D"_blank">http://lists.ettu=
+s.com/pipermail/usrp-users_lists.ettus.com/2018-August/057702.html</a><br>
+and the solution at that time seemed to be to keep the second port so<br>
+as not to confuse the streamer.<br>
+<br>
+In case I&#39;m doing something dumb in the xml, here are the files I<br>
+created for uhd and grc:<br>
+<br>
+&lt;?xml version=3D&quot;1.0&quot;?&gt;<br>
+&lt;!--Default XML file--&gt;<br>
+&lt;nocblock&gt;<br>
+=C2=A0 &lt;name&gt;addonly&lt;/name&gt;<br>
+=C2=A0 &lt;blockname&gt;addonly&lt;/blockname&gt;<br>
+=C2=A0 &lt;ids&gt;<br>
+=C2=A0 =C2=A0 &lt;id revision=3D&quot;0&quot;&gt;0000000041253002&lt;/id&gt=
+;<br>
+=C2=A0 &lt;/ids&gt;<br>
+=C2=A0 &lt;ports&gt;<br>
+=C2=A0 =C2=A0 &lt;sink&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 &lt;name&gt;in0&lt;/name&gt;<br>
+=C2=A0 =C2=A0 &lt;/sink&gt;<br>
+=C2=A0 =C2=A0 &lt;sink&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 &lt;name&gt;in1&lt;/name&gt;<br>
+=C2=A0 =C2=A0 &lt;/sink&gt;<br>
+=C2=A0 =C2=A0 &lt;source&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 &lt;name&gt;out&lt;/name&gt;<br>
+=C2=A0 =C2=A0 &lt;/source&gt;<br>
+=C2=A0 &lt;/ports&gt;<br>
+&lt;/nocblock&gt;<br>
+<br>
+<br>
+<br>
+&lt;?xml version=3D&quot;1.0&quot;?&gt;<br>
+&lt;block&gt;<br>
+=C2=A0 &lt;name&gt;RFNoC: addonly&lt;/name&gt;<br>
+=C2=A0 &lt;key&gt;dave_addonly&lt;/key&gt;<br>
+=C2=A0 &lt;import&gt;import ettus&lt;/import&gt;<br>
+=C2=A0 &lt;make&gt;ettus.rfnoc_generic(<br>
+=C2=A0 =C2=A0 self.device3,<br>
+=C2=A0 =C2=A0 uhd.stream_args( \# TX Stream Args<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 cpu_format=3D&quot;$type&quot;, \# TODO: This m=
+ust be made an option<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 otw_format=3D&quot;sc16&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 channels=3D(0,1),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 args=3D&quot;align=3D1&quot;,<br>
+=C2=A0 =C2=A0 ),<br>
+=C2=A0 =C2=A0 uhd.stream_args( \# RX Stream Args<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 cpu_format=3D&quot;$type&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 otw_format=3D&quot;sc16&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 channels=3D(0,1),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 args=3D&quot;align=3D1&quot;,<br>
+=C2=A0 =C2=A0 ),<br>
+=C2=A0 =C2=A0 &quot;addonly&quot;, $block_index, $device_index,<br>
+)&lt;/make&gt;<br>
+<br>
+=C2=A0 &lt;param&gt;<br>
+=C2=A0 =C2=A0 &lt;name&gt;Host Data Type&lt;/name&gt;<br>
+=C2=A0 =C2=A0 &lt;key&gt;type&lt;/key&gt;<br>
+=C2=A0 =C2=A0 &lt;type&gt;enum&lt;/type&gt;<br>
+=C2=A0 =C2=A0 &lt;option&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 &lt;name&gt;Complex float32&lt;/name&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 &lt;key&gt;fc32&lt;/key&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 &lt;opt&gt;type:fc32&lt;/opt&gt;<br>
+=C2=A0 =C2=A0 &lt;/option&gt;<br>
+=C2=A0 =C2=A0 &lt;option&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 &lt;name&gt;Complex int16&lt;/name&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 &lt;key&gt;sc16&lt;/key&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 &lt;opt&gt;type:sc16&lt;/opt&gt;<br>
+=C2=A0 =C2=A0 &lt;/option&gt;<br>
+=C2=A0 &lt;/param&gt;<br>
+<br>
+=C2=A0 &lt;param&gt;<br>
+=C2=A0 =C2=A0 &lt;name&gt;dcovariance Select&lt;/name&gt;<br>
+=C2=A0 =C2=A0 &lt;key&gt;block_index&lt;/key&gt;<br>
+=C2=A0 =C2=A0 &lt;value&gt;-1&lt;/value&gt;<br>
+=C2=A0 =C2=A0 &lt;type&gt;int&lt;/type&gt;<br>
+=C2=A0 =C2=A0 &lt;hide&gt;#if int($block_index()) &amp;lt; 0 then &#39;part=
+&#39; else<br>
+&#39;none&#39;#&lt;/hide&gt;<br>
+=C2=A0 =C2=A0 &lt;tab&gt;RFNoC Config&lt;/tab&gt;<br>
+=C2=A0 &lt;/param&gt;<br>
+=C2=A0 &lt;param&gt;<br>
+=C2=A0 =C2=A0 &lt;name&gt;Device Select&lt;/name&gt;<br>
+=C2=A0 =C2=A0 &lt;key&gt;device_index&lt;/key&gt;<br>
+=C2=A0 =C2=A0 &lt;value&gt;-1&lt;/value&gt;<br>
+=C2=A0 =C2=A0 &lt;type&gt;int&lt;/type&gt;<br>
+=C2=A0 =C2=A0 &lt;hide&gt;#if int($device_index()) &amp;lt; 0 then &#39;par=
+t&#39; else<br>
+&#39;none&#39;#&lt;/hide&gt;<br>
+=C2=A0 =C2=A0 &lt;tab&gt;RFNoC Config&lt;/tab&gt;<br>
+=C2=A0 &lt;/param&gt;<br>
+<br>
+=C2=A0 &lt;param&gt;<br>
+=C2=A0 =C2=A0 &lt;name&gt;FPGA Module Name&lt;/name&gt;<br>
+=C2=A0 =C2=A0 &lt;key&gt;fpga_module_name&lt;/key&gt;<br>
+=C2=A0 =C2=A0 &lt;value&gt;noc_block_dcovariance&lt;/value&gt;<br>
+=C2=A0 =C2=A0 &lt;type&gt;string&lt;/type&gt;<br>
+=C2=A0 =C2=A0 &lt;hide&gt;all&lt;/hide&gt;<br>
+=C2=A0 =C2=A0 &lt;tab&gt;RFNoC Config&lt;/tab&gt;<br>
+=C2=A0 &lt;/param&gt;<br>
+<br>
+=C2=A0 &lt;sink&gt;<br>
+=C2=A0 =C2=A0 &lt;name&gt;in&lt;/name&gt;<br>
+=C2=A0 =C2=A0 &lt;type&gt;$type.type&lt;/type&gt;<br>
+=C2=A0 =C2=A0 &lt;domain&gt;rfnoc&lt;/domain&gt;<br>
+=C2=A0 =C2=A0 &lt;nports&gt;2&lt;/nports&gt;<br>
+=C2=A0 &lt;/sink&gt;<br>
+<br>
+=C2=A0 &lt;source&gt;<br>
+=C2=A0 =C2=A0 &lt;name&gt;out&lt;/name&gt;<br>
+=C2=A0 =C2=A0 &lt;type&gt;$type.type&lt;/type&gt;<br>
+=C2=A0 =C2=A0 &lt;domain&gt;rfnoc&lt;/domain&gt;<br>
+=C2=A0 &lt;/source&gt;<br>
+&lt;/block&gt;<br>
+<br>
+<br>
+The messages just before the error are:<br>
+[DEBUG] [DEVICE3] Port 0x20: Found NoC-Block with ID 0000000041253002.<br>
+[DEBUG] [RFNOC] Reading XML file<br>
+/home/root/localinstall/usr/share/uhd/rfnoc/blocks/addonly.xml for NOC<br>
+ID 0x41253002<br>
+[DEBUG] [E300] [E300] Setting up dest map for host ep 35 to be stream 3<br>
+<br>
+[TRACE] [RFNOC] [RFNoC Factory] block_ctrl_base::make()<br>
+[DEBUG] [RFNOC] Reading XML file<br>
+/home/root/localinstall/usr/share/uhd/rfnoc/blocks/addonly.xml for NOC<br>
+ID 0x41253002<br>
+[WARNING] [RFNOC] Can&#39;t find a block controller for key addonly, using<=
+br>
+default block controller!<br>
+[TRACE] [RFNOC] [RFNoC Factory] Using controller key &#39;Block&#39; and bl=
+ock<br>
+name &#39;addonly&#39;<br>
+[DEBUG] [RFNOC] Reading XML file<br>
+/home/root/localinstall/usr/share/uhd/rfnoc/blocks/addonly.xml for NOC<br>
+ID 0x41253002<br>
+[INFO] [0/dcorrelate_0] Initializing block control (NOC ID:<br>
+0x0000000041253002)<br>
+[DEBUG] [0/dcorrelate_0] Checking compat number for FPGA component<br>
+`noc_shell&#39;: Expecting 5.1, actual: 5.1.<br>
+[TRACE] [0/addonly_0] Adding port definition at<br>
+xbar/dcorrelate_0/ports/in/0: type =3D &#39;&#39; pkt_size =3D &#39;0&#39; =
+vlen =3D &#39;0&#39;<br>
+[TRACE] [0/addonly_0] Adding port definition at<br>
+xbar/dcorrelate_0/ports/in/1: type =3D &#39;&#39; pkt_size =3D &#39;0&#39; =
+vlen =3D &#39;0&#39;<br>
+[TRACE] [0/addonly_0] Adding port definition at<br>
+xbar/addonly_0/ports/out/0: type =3D &#39;&#39; pkt_size =3D &#39;0&#39; vl=
+en =3D &#39;0&#39;<br>
+[DEBUG] [E300] [E300] Setting up dest map for host ep 36 to be stream 4<br>
+<br>
+:<br>
+&lt;other blocks and rate setting...&gt;<br>
+:<br>
+[DEBUG] [E300] Actually got clock rate 10 MHz<br>
+<br>
+[DEBUG] [CORES] Performing timer loopback test... <br>
+[DEBUG] [CORES] Timer loopback test passed.<br>
+[TRACE] [RFNOC] e3xx_radio_ctrl_impl::_update_enables() <br>
+<br>
+[TRACE] [RFNOC] e3xx_radio_ctrl_impl::_update_gpio_state() <br>
+<br>
+Traceback (most recent call last):<br>
+=C2=A0 File &quot;./dave_addonly_usrp.py&quot;, line 169, in &lt;module&gt;=
+<br>
+=C2=A0 =C2=A0 main()<br>
+=C2=A0 File &quot;./dave_addonly_usrp.py&quot;, line 158, in main<br>
+=C2=A0 =C2=A0 tb =3D top_block_cls()<br>
+=C2=A0 File &quot;./dave_addonly_usrp.py&quot;, line 94, in __init__<br>
+=C2=A0 =C2=A0 &quot;addonly&quot;, -1, -1,<br>
+=C2=A0 File &quot;/home/root/localinstall/usr/lib/python2.7/site-<br>
+packages/ettus/ettus_swig.py&quot;, line 3270, in make<br>
+=C2=A0 =C2=A0 return _ettus_swig.rfnoc_generic_make(*args, **kwargs)<br>
+RuntimeError: Invalid stream args.<br>
+<br>
+It never gets to the part where it attempts to connect ports together. <br>
+<br>
+<br>
+The line in the Python launcher that generates the error is:<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.dave_addonly_0 =3D ettus.rfnoc_generic(<br=
+>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.device3,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.stream_args( # TX Stream Args=
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cpu_format=3D&quot;=
+fc32&quot;, # TODO: This must be made an option<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 otw_format=3D&quot;=
+sc16&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 channels=3D(0,1),<b=
+r>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 args=3D&quot;align=
+=3D1&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.stream_args( # RX Stream Args=
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cpu_format=3D&quot;=
+fc32&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 otw_format=3D&quot;=
+sc16&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 channels=3D(0,1),<b=
+r>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 args=3D&quot;align=
+=3D1&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;addonly&quot;, -1, -1,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 )<br>
+<br>
+<br>
+Maybe a custom block controller would help? Or maybe if it works in UHD<br>
+but not Gnuradio I could push the same data over TCP and still use the<br>
+nice Gnuradio plotting on the host side? <br>
+<br>
+<br>
+On Fri, 2019-09-06 at 15:26 -0700, Nick Foster wrote:<br>
+&gt; Here&#39;s a modified add-only block. You&#39;ll have to make a matchi=
+ng .xml<br>
+&gt; descriptor and GRC block (if you&#39;re using gr-ettus).<br>
+&gt; <br>
+&gt; Probably it would be a super useful thing to have an add/sub block,<br=
+>
+&gt; instead of an addsub block. A register-controlled mux to select which<=
+br>
+&gt; operation you want. I&#39;ll think about adding that to the Theseus Co=
+res<br>
+&gt; project.<br>
+&gt; <br>
+&gt; Nick<br>
+&gt; <br>
+&gt; On Fri, Sep 6, 2019 at 3:18 PM d.des via USRP-users &lt;<br>
+&gt; <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br>
+&gt; &gt; Nick-<br>
+&gt; &gt; Could you share the tricks to remove one of the output ports? I<b=
+r>
+&gt; &gt; don&#39;t<br>
+&gt; &gt; I&#39;m having similar issues with my modified addsub block and d=
+on&#39;t<br>
+&gt; &gt; have<br>
+&gt; &gt; enough room on the e310 fpga for extra fifos. It&#39;s not obviou=
+s from<br>
+&gt; &gt; the<br>
+&gt; &gt; noc_block_addsub code, the use of splitstream and dummy variables=
+<br>
+&gt; &gt; is<br>
+&gt; &gt; very confusing.<br>
+&gt; &gt; <br>
+&gt; &gt; Tnx,<br>
+&gt; &gt; Dave (and I&#39;m sure many others, based on threads I&#39;ve see=
+n in<br>
+&gt; &gt; searches)<br>
+&gt; &gt; <br>
+&gt; &gt; ________________________________<br>
+&gt; &gt; From: Nick Foster &lt;bistromath at <a href=3D"http://gmail.com" =
+rel=3D"noreferrer" target=3D"_blank">gmail.com</a>&gt;<br>
+&gt; &gt; Sent: Tuesday, September 3, 2019 11:45:46 PM<br>
+&gt; &gt; To: Quadri,Adnan &lt;adnan.quadri at <a href=3D"http://louisville=
+.edu" rel=3D"noreferrer" target=3D"_blank">louisville.edu</a>&gt;<br>
+&gt; &gt; Cc: usrp-users at <a href=3D"http://lists.ettus.com" rel=3D"noref=
+errer" target=3D"_blank">lists.ettus.com</a> &lt;usrp-users at <a href=3D"h=
+ttp://lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">lists.ettus.com=
+</a>&gt;<br>
+&gt; &gt; Subject: Re: [USRP-users] Addsub HLS Block Error<br>
+&gt; &gt; <br>
+&gt; &gt; That shouldn&#39;t be. Even if you connect both outputs to the ho=
+st?<br>
+&gt; &gt; <br>
+&gt; &gt; I admit I got fed up with it in my own application (don&#39;t wan=
+t both<br>
+&gt; &gt; streams going into the host) and just modified the addsub block t=
+o<br>
+&gt; &gt; be<br>
+&gt; &gt; an add-only block.<br>
+&gt; &gt; <br>
+&gt; &gt; On Tue, Sep 3, 2019 at 8:43 PM Quadri,Adnan &lt;adnan.quadri at<b=
+r>
+&gt; &gt; <a href=3D"http://louisville.edu" rel=3D"noreferrer" target=3D"_b=
+lank">louisville.edu</a>&lt;mailto:<a href=3D"mailto:adnan.quadri" target=
+=3D"_blank">adnan.quadri</a> at <a href=3D"http://louisville.edu" rel=3D"no=
+referrer" target=3D"_blank">louisville.edu</a>&gt;&gt; wrote:<br>
+&gt; &gt; I tried connecting one Signal Source block to both the inputs of<=
+br>
+&gt; &gt; addsub<br>
+&gt; &gt; block. It still throws the same error.<br>
+&gt; &gt; <br>
+&gt; &gt; Adnan<br>
+&gt; &gt; ________________________________<br>
+&gt; &gt; From: Nick Foster &lt;bistromath at <a href=3D"http://gmail.com" =
+rel=3D"noreferrer" target=3D"_blank">gmail.com</a>&lt;mailto:<a href=3D"mai=
+lto:bistromath" target=3D"_blank">bistromath</a> at<br>
+&gt; &gt; <a href=3D"http://gmail.com" rel=3D"noreferrer" target=3D"_blank"=
+>gmail.com</a>&gt;&gt;<br>
+&gt; &gt; Sent: Tuesday, September 3, 2019 11:40:05 PM<br>
+&gt; &gt; To: Quadri,Adnan &lt;adnan.quadri at<br>
+&gt; &gt; <a href=3D"http://louisville.edu" rel=3D"noreferrer" target=3D"_b=
+lank">louisville.edu</a>&lt;mailto:<a href=3D"mailto:adnan.quadri" target=
+=3D"_blank">adnan.quadri</a> at<br>
+&gt; &gt; <a href=3D"http://louisville.edu" rel=3D"noreferrer" target=3D"_b=
+lank">louisville.edu</a>&gt;&gt;<br>
+&gt; &gt; Cc: usrp-users at <a href=3D"http://lists.ettus.com" rel=3D"noref=
+errer" target=3D"_blank">lists.ettus.com</a>&lt;mailto:<a href=3D"mailto:us=
+rp-users" target=3D"_blank">usrp-users</a> at<br>
+&gt; &gt; <a href=3D"http://lists.ettus.com" rel=3D"noreferrer" target=3D"_=
+blank">lists.ettus.com</a>&gt;<br>
+&gt; &gt; &lt;usrp-users at <a href=3D"http://lists.ettus.com" rel=3D"noref=
+errer" target=3D"_blank">lists.ettus.com</a>&lt;mailto:<a href=3D"mailto:us=
+rp-users" target=3D"_blank">usrp-users</a> at<br>
+&gt; &gt; <a href=3D"http://lists.ettus.com" rel=3D"noreferrer" target=3D"_=
+blank">lists.ettus.com</a>&gt;&gt;<br>
+&gt; &gt; Subject: Re: [USRP-users] Addsub HLS Block Error<br>
+&gt; &gt; <br>
+&gt; &gt; Oh, I see. You have separate sources connected to the same addsub=
+<br>
+&gt; &gt; block. It&#39;s telling you that you need to use timed stream com=
+mands<br>
+&gt; &gt; to<br>
+&gt; &gt; start the stream, or else you will see undefined behavior.<br>
+&gt; &gt; Personally I<br>
+&gt; &gt; think that error should be demoted to a warning -- anyone from<br=
+>
+&gt; &gt; Ettus<br>
+&gt; &gt; want to chime in?<br>
+&gt; &gt; <br>
+&gt; &gt; On Tue, Sep 3, 2019 at 3:53 PM Quadri,Adnan &lt;adnan.quadri at<b=
+r>
+&gt; &gt; <a href=3D"http://louisville.edu" rel=3D"noreferrer" target=3D"_b=
+lank">louisville.edu</a>&lt;mailto:<a href=3D"mailto:adnan.quadri" target=
+=3D"_blank">adnan.quadri</a> at <a href=3D"http://louisville.edu" rel=3D"no=
+referrer" target=3D"_blank">louisville.edu</a>&gt;&gt; wrote:<br>
+&gt; &gt; Hello,<br>
+&gt; &gt; <br>
+&gt; &gt; Thank you for your prompt response. I have connected both the<br>
+&gt; &gt; addsub<br>
+&gt; &gt; output to two QT Gui Sink but I still get the same error. I have<=
+br>
+&gt; &gt; the<br>
+&gt; &gt; Copy block in the middle as well.<br>
+&gt; &gt; <br>
+&gt; &gt; I am attaching a screenshot of my flowgraph. I tried with differe=
+nt<br>
+&gt; &gt; USRP sources/Signal Sources as well. But it is the same error.<br=
+>
+&gt; &gt; <br>
+&gt; &gt; Thanks,<br>
+&gt; &gt; Adnan<br>
+&gt; &gt; <br>
+&gt; &gt; ________________________________<br>
+&gt; &gt; From: Nick Foster &lt;bistromath at <a href=3D"http://gmail.com" =
+rel=3D"noreferrer" target=3D"_blank">gmail.com</a>&lt;mailto:<a href=3D"mai=
+lto:bistromath" target=3D"_blank">bistromath</a> at<br>
+&gt; &gt; <a href=3D"http://gmail.com" rel=3D"noreferrer" target=3D"_blank"=
+>gmail.com</a>&gt;&gt;<br>
+&gt; &gt; Sent: Tuesday, September 3, 2019 3:57 PM<br>
+&gt; &gt; To: Quadri,Adnan &lt;adnan.quadri at<br>
+&gt; &gt; <a href=3D"http://louisville.edu" rel=3D"noreferrer" target=3D"_b=
+lank">louisville.edu</a>&lt;mailto:<a href=3D"mailto:adnan.quadri" target=
+=3D"_blank">adnan.quadri</a> at<br>
+&gt; &gt; <a href=3D"http://louisville.edu" rel=3D"noreferrer" target=3D"_b=
+lank">louisville.edu</a>&gt;&gt;<br>
+&gt; &gt; Cc: usrp-users at <a href=3D"http://lists.ettus.com" rel=3D"noref=
+errer" target=3D"_blank">lists.ettus.com</a>&lt;mailto:<a href=3D"mailto:us=
+rp-users" target=3D"_blank">usrp-users</a> at<br>
+&gt; &gt; <a href=3D"http://lists.ettus.com" rel=3D"noreferrer" target=3D"_=
+blank">lists.ettus.com</a>&gt;<br>
+&gt; &gt; &lt;usrp-users at <a href=3D"http://lists.ettus.com" rel=3D"noref=
+errer" target=3D"_blank">lists.ettus.com</a>&lt;mailto:<a href=3D"mailto:us=
+rp-users" target=3D"_blank">usrp-users</a> at<br>
+&gt; &gt; <a href=3D"http://lists.ettus.com" rel=3D"noreferrer" target=3D"_=
+blank">lists.ettus.com</a>&gt;&gt;<br>
+&gt; &gt; Subject: Re: [USRP-users] Addsub HLS Block Error<br>
+&gt; &gt; <br>
+&gt; &gt; I ran into this the other day and it&#39;s independent of the HLS=
+<br>
+&gt; &gt; component<br>
+&gt; &gt; of the addsub block (since the interface is identical). You need =
+to<br>
+&gt; &gt; connect both outputs of the addsub block to something, even a nul=
+l<br>
+&gt; &gt; sink. I&#39;m pretty sure this wasn&#39;t the intended behavior a=
+nd also<br>
+&gt; &gt; pretty<br>
+&gt; &gt; sure that it wasn&#39;t like this last time I checked (which was =
+more<br>
+&gt; &gt; than<br>
+&gt; &gt; a year ago), so maybe it should be filed as a bug.<br>
+&gt; &gt; <br>
+&gt; &gt; Nick<br>
+&gt; &gt; <br>
+&gt; &gt; On Tue, Sep 3, 2019 at 1:48 PM Quadri,Adnan via USRP-users &lt;us=
+rp-<br>
+&gt; &gt; users<br>
+&gt; &gt; at <a href=3D"http://lists.ettus.com" rel=3D"noreferrer" target=
+=3D"_blank">lists.ettus.com</a>&lt;mailto:<a href=3D"mailto:usrp-users" tar=
+get=3D"_blank">usrp-users</a> at <a href=3D"http://lists.ettus.com" rel=3D"=
+noreferrer" target=3D"_blank">lists.ettus.com</a>&gt;&gt; wrote:<br>
+&gt; &gt; Hello,<br>
+&gt; &gt; <br>
+&gt; &gt; We are trying to run the RFNoC addsub HLS block.<br>
+&gt; &gt; <br>
+&gt; &gt; I was able to build the FPGA Image and made sure in the noc_block=
+<br>
+&gt; &gt; verilog code to point to the HLS implementation for addsub block =
+on<br>
+&gt; &gt; RFNoC as opposed to the verilog/VHDL implementation.<br>
+&gt; &gt; <br>
+&gt; &gt; But when we run the example Flowgraph with two signal source as<b=
+r>
+&gt; &gt; input<br>
+&gt; &gt; to the two inputs for addsub block on GRC, we get the following<b=
+r>
+&gt; &gt; error -<br>
+&gt; &gt; <br>
+&gt; &gt; ERROR:<br>
+&gt; &gt; thread[thread-per-block[4]: &lt;block uhd_rfnoc_AddSub (1)&gt;]:<=
+br>
+&gt; &gt; RuntimeError: Invalid recv stream command - stream now on multipl=
+e<br>
+&gt; &gt; channels in a single streamer will fail to time align.<br>
+&gt; &gt; <br>
+&gt; &gt; Does this have anything to do with the C++ code for HLS<br>
+&gt; &gt; implementation<br>
+&gt; &gt; or is it a problem at UHD level?<br>
+&gt; &gt; <br>
+&gt; &gt; Thanks,<br>
+&gt; &gt; Adnan<br>
+&gt; &gt; _______________________________________________<br>
+&gt; &gt; USRP-users mailing list<br>
+&gt; &gt; USRP-users at <a href=3D"http://lists.ettus.com" rel=3D"noreferre=
+r" target=3D"_blank">lists.ettus.com</a>&lt;mailto:<a href=3D"mailto:USRP-u=
+sers" target=3D"_blank">USRP-users</a> at <a href=3D"http://lists.ettus.com=
+" rel=3D"noreferrer" target=3D"_blank">lists.ettus.com</a>&gt;<br>
+&gt; &gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
+ts.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/m=
+ailman/listinfo/usrp-users_lists.ettus.com</a>&lt;<a href=3D"https://urldef=
+ense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mailman_listinfo_us=
+rp-2Dusers-5Flists.ettus.com&amp;d=3DDwMFaQ&amp;c=3DOAG1LQNACBDguGvBeNj18Sw=
+hr9TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02U&am=
+p;m=3DXH0fqWeFmcl-P0_Y01iOhbHXEKDsJDUBaImT_nfh0t4&amp;s=3D_hsJH03rqnDSUZXWG=
+yx31-8I7HJLsU5_S5hs-j5_WRw&amp;e=3D" rel=3D"noreferrer" target=3D"_blank">h=
+ttps://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mailma=
+n_listinfo_usrp-2Dusers-5Flists.ettus.com&amp;d=3DDwMFaQ&amp;c=3DOAG1LQNACB=
+DguGvBeNj18Swhr9TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJ=
+LBypH6x02U&amp;m=3DXH0fqWeFmcl-P0_Y01iOhbHXEKDsJDUBaImT_nfh0t4&amp;s=3D_hsJ=
+H03rqnDSUZXWGyx31-8I7HJLsU5_S5hs-j5_WRw&amp;e=3D</a>&gt;<br>
+&gt; &gt; -------------- next part --------------<br>
+&gt; &gt; An HTML attachment was scrubbed...<br>
+&gt; &gt; URL: &lt;<br>
+&gt; &gt; <a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettu=
+s.com/attachments/20190904/3138375d/attachment.html" rel=3D"noreferrer" tar=
+get=3D"_blank">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/=
+attachments/20190904/3138375d/attachment.html</a><br>
+&gt; &gt; &gt;<br>
+&gt; &gt; <br>
+&gt; &gt; <br>
+&gt; &gt; _______________________________________________<br>
+&gt; &gt; USRP-users mailing list<br>
+&gt; &gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">U=
+SRP-users@lists.ettus.com</a><br>
+&gt; &gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
+ts.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/m=
+ailman/listinfo/usrp-users_lists.ettus.com</a><br>
+<br>
 </blockquote></div>
 
---00000000000007c56b059226f05b--
+--0000000000001775010592275594--
+--0000000000001775050592275596
+Content-Type: text/xml; charset="US-ASCII"; name="adder.xml"
+Content-Disposition: attachment; filename="adder.xml"
+Content-Transfer-Encoding: base64
+Content-ID: <f_k0d1vkdb0>
+X-Attachment-Id: f_k0d1vkdb0
 
+PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxibG9jaz4KICA8bmFtZT5SRk5vQzogQWRkZXI8L25hbWU+
+CiAgPGtleT5za2lwcHlfc3RyZWFtZXJfYWRkZXI8L2tleT4KICA8aW1wb3J0PmltcG9ydCBldHR1
+czwvaW1wb3J0PgogIDxtYWtlPmV0dHVzLnJmbm9jX2dlbmVyaWMoCiAgICBzZWxmLmRldmljZTMs
+CiAgICB1aGQuc3RyZWFtX2FyZ3MoIFwjIFRYIFN0cmVhbSBBcmdzCiAgICAgICAgY3B1X2Zvcm1h
+dD0iZmMzMiIsCiAgICAgICAgb3R3X2Zvcm1hdD0ic2MxNiIsCiAgICAgICAgYXJncz0iIiwKICAg
+ICksCiAgICB1aGQuc3RyZWFtX2FyZ3MoIFwjIFJYIFN0cmVhbSBBcmdzCiAgICAgICAgY3B1X2Zv
+cm1hdD0iZmMzMiIsCiAgICAgICAgb3R3X2Zvcm1hdD0ic2MxNiIsCiAgICAgICAgYXJncz0iYWxp
+Z249MSIsCiAgICApLAogICAgIkFkZCIsICRibG9ja19pbmRleCwgJGRldmljZV9pbmRleCwKKTwv
+bWFrZT4KCiAgPHBhcmFtPgogICAgPG5hbWU+QWRkIFNlbGVjdDwvbmFtZT4KICAgIDxrZXk+Ymxv
+Y2tfaW5kZXg8L2tleT4KICAgIDx2YWx1ZT4tMTwvdmFsdWU+CiAgICA8dHlwZT5pbnQ8L3R5cGU+
+CiAgICA8aGlkZT4jaWYgaW50KCRibG9ja19pbmRleCgpKSAmbHQ7IDAgdGhlbiAncGFydCcgZWxz
+ZSAnbm9uZScjPC9oaWRlPgogICAgPHRhYj5SRk5vQyBDb25maWc8L3RhYj4KICA8L3BhcmFtPgog
+IDxwYXJhbT4KICAgIDxuYW1lPkRldmljZSBTZWxlY3Q8L25hbWU+CiAgICA8a2V5PmRldmljZV9p
+bmRleDwva2V5PgogICAgPHZhbHVlPi0xPC92YWx1ZT4KICAgIDx0eXBlPmludDwvdHlwZT4KICAg
+IDxoaWRlPiNpZiBpbnQoJGRldmljZV9pbmRleCgpKSAmbHQ7IDAgdGhlbiAncGFydCcgZWxzZSAn
+bm9uZScjPC9oaWRlPgogICAgPHRhYj5SRk5vQyBDb25maWc8L3RhYj4KICA8L3BhcmFtPgoKICA8
+cGFyYW0+CiAgICA8bmFtZT5GUEdBIE1vZHVsZSBOYW1lPC9uYW1lPgogICAgPGtleT5mcGdhX21v
+ZHVsZV9uYW1lPC9rZXk+CiAgICA8dmFsdWU+bm9jX2Jsb2NrX2FkZDwvdmFsdWU+CiAgICA8dHlw
+ZT5zdHJpbmc8L3R5cGU+CiAgICA8aGlkZT5hbGw8L2hpZGU+CiAgICA8dGFiPlJGTm9DIENvbmZp
+ZzwvdGFiPgogIDwvcGFyYW0+CgogIDxzaW5rPgogICAgPG5hbWU+aW48L25hbWU+CiAgICA8dHlw
+ZT5jb21wbGV4PC90eXBlPgogICAgPGRvbWFpbj5yZm5vYzwvZG9tYWluPgogICAgPG5wb3J0cz4y
+PC9ucG9ydHM+CiAgPC9zaW5rPgoKICA8c291cmNlPgogICAgPG5hbWU+c3VtPC9uYW1lPgogICAg
+PHR5cGU+Y29tcGxleDwvdHlwZT4KICAgIDxkb21haW4+cmZub2M8L2RvbWFpbj4KICA8L3NvdXJj
+ZT4KPC9ibG9jaz4K
+--0000000000001775050592275596
+Content-Type: text/xml; charset="US-ASCII"; name="add.xml"
+Content-Disposition: attachment; filename="add.xml"
+Content-Transfer-Encoding: base64
+Content-ID: <f_k0d1vqf11>
+X-Attachment-Id: f_k0d1vqf11
 
---===============4582179365159487435==
+PCEtLVRoaXMgZGVmaW5lcyBvbmUgTm9DLUJsb2NrLi0tPgo8bm9jYmxvY2s+CiAgPCEtLVRoZSBB
+ZGRlciAmIFN1YnRyYWN0b3IgdGFrZXMgaW5wdXRzIGZyb20gQmxvY2sgUG9ydHMgMCAmIDEgYW5k
+LS0+CiAgPCEtLW91dHB1dHMgdGhlIGFkZGl0aW9uIC8gc3VidHJhY3Rpb24gb2YgdGhlIHZhbHVl
+cyBvbiBCbG9jayBQb3J0cyAwICYgMS4tLT4KICA8IS0tLSBCbG9jayBQb3J0IDAgKyBCbG9jayBQ
+b3J0IDEgPT4gQmxvY2sgUG9ydCAwLS0+CiAgPCEtLS0gQmxvY2sgUG9ydCAwIC0gQmxvY2sgUG9y
+dCAxID0+IEJsb2NrIFBvcnQgMS0tPgogIDxuYW1lPkFkZGVyPC9uYW1lPgogIDxibG9ja25hbWU+
+QWRkPC9ibG9ja25hbWU+CiAgPGlkcz4KICAgIDxpZCByZXZpc2lvbj0iMCI+QUREMTwvaWQ+CiAg
+PC9pZHM+CiAgPCEtLU9yZGVyIG1hdHRlcnMuIFRoZSBmaXJzdCBsaXN0ZWQgcG9ydCBpcyBwb3J0
+IDAsIGV0Yy4tLT4KICA8cG9ydHM+CiAgICA8c2luaz4KICAgICAgPG5hbWU+aW4wPC9uYW1lPgog
+ICAgICA8dHlwZT5zYzE2PC90eXBlPgogICAgICA8cG9ydD4wPC9wb3J0PgogICAgPC9zaW5rPgog
+ICAgPHNpbms+CiAgICAgIDxuYW1lPmluMTwvbmFtZT4KICAgICAgPHR5cGU+c2MxNjwvdHlwZT4K
+ICAgICAgPHBvcnQ+MTwvcG9ydD4KICAgIDwvc2luaz4KICAgIDxzb3VyY2U+CiAgICAgIDxuYW1l
+PnN1bTwvbmFtZT4KICAgICAgPHR5cGU+c2MxNjwvdHlwZT4KICAgIDwvc291cmNlPgogIDwvcG9y
+dHM+CiAgPCEtLTxjb21wb25lbnRzPi0tPgogICAgPCEtLTxjb21wb25lbnQ+LS0+CiAgICAgIDwh
+LS08a2V5IHJldmlzaW9uPSIxIj5ub2NzaGVsbDwva2V5Pi0tPgogICAgPCEtLTwvY29tcG9uZW50
+Pi0tPgogICAgPCEtLTxjb21wb25lbnQgc3JiYXNlPSIwIj4tLT4KICAgICAgPCEtLVs+V2lsbCBs
+b29rIGZvciBhIGNvbXBvbmVudCB3aXRoIHRoaXMga2V5OjxdLS0+CiAgICAgIDwhLS08a2V5IHJl
+dmlzaW9uPSIxIj5jb21wb25lbnRuYW1lPC9rZXk+LS0+CiAgICA8IS0tPC9jb21wb25lbnQ+LS0+
+CiAgPCEtLTwvY29tcG9uZW50cz4tLT4KICA8IS0tPGNvbm5lY3Rpb24+LS0+CiAgICA8IS0tPHNv
+dXJjZSBwb3J0PSIwIj5ub2NzaGVsbDwvc291cmNlPi0tPgogICAgPCEtLTxzaW5rIHBvcnQ9IjAi
+PmNvbXBvbmVudG5hbWU8L3Npbms+LS0+CiAgPCEtLTwvY29ubmVjdGlvbj4tLT4KICA8IS0tPGNv
+bm5lY3Rpb24+LS0+CiAgICA8IS0tPHNvdXJjZSBwb3J0PSIwIj5jb21wb25lbnRuYW1lPC9zb3Vy
+Y2U+LS0+CiAgICA8IS0tPHNpbmsgcG9ydD0iMCI+bm9jc2hlbGw8L3Npbms+LS0+CiAgPCEtLTwv
+Y29ubmVjdGlvbj4tLT4KPC9ub2NibG9jaz4K
+--0000000000001775050592275596
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -754,5 +1007,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4582179365159487435==--
+--0000000000001775050592275596--
 
