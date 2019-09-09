@@ -2,56 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E5ECAD9F9
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Sep 2019 15:28:07 +0200 (CEST)
-Received: from [::1] (port=42942 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FCF8ADD05
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Sep 2019 18:24:38 +0200 (CEST)
+Received: from [::1] (port=57486 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i7Ji8-0006QZ-BZ; Mon, 09 Sep 2019 09:28:04 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:35721)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <saimanoj.katta@cumucore.com>)
- id 1i7Ji3-0006L7-MA
- for usrp-users@lists.ettus.com; Mon, 09 Sep 2019 09:27:59 -0400
-Received: by mail-qk1-f173.google.com with SMTP id d26so13070513qkk.2
- for <usrp-users@lists.ettus.com>; Mon, 09 Sep 2019 06:27:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumucore-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=j210nmLhi2EH+DzKGw7gZt2is2Mim1m/RbXGp6tmP5U=;
- b=estkYLp2LeFqrDCcC7U2TPkrV+Crc4Ell5plvXtYzBCOXl8aprutVs2LNI0yXSODaK
- g+0yn++e+cMwLjl3oifgzNcx48wIoj3/of2U0CQezzHDTVEnZ+ZLnQfb+F6X9MqZlmCX
- WO72V+L8ges6FPgCLTAGkTYNG8eUndvbW8NuNnnEgjoI+Y0ambapDMDMPecixYuu6SH9
- abbb8KJYPNnfG6oLEX1upTLoOwZROBUPCvuQrvLuEJ4a9eJahi5ZNxqhTzDKeeiOVTUo
- ZQ2m5l25f7NpZrLtnmwUonQSXiSA1TlgGBXSZlWkiOy/wyN4d1R4AjMwuZoFxgji90dg
- sKPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=j210nmLhi2EH+DzKGw7gZt2is2Mim1m/RbXGp6tmP5U=;
- b=Eky5bbdIy9zV3kd6635/rVw34ijbYbx2gyAwkSKYnyWutf9lj4abJ8zmAyv1FaQg5K
- 5cFfQEKPugGje0HDptwXGNwt3N/kUokjD6eWkjRNFbxcrsLAvMqPNdYSXDd+N32PDByH
- C5WELZn2JkG/sH73WKCuOMxPXlEj2H51i3pGKiGBMTDRPaKYkiez5s5Y69/FIjCKBvJN
- m4svKlev4L8RhK37W+/X8D1szHMDnIRCOeLjeD8WiMRwmdUoYQUqmVEWffyuIzRgW7PS
- KhERsmmTm8RY/ZkEUEBzDQJjus+3PuyzPM46R9FB91WDuvgmS/sJur7OfRced81AUNoc
- pPnA==
-X-Gm-Message-State: APjAAAUbVJEMcS2AOKPYIGs9+spJnixzi8KHMhLE/sHP0LLjkM9S+ySa
- naz4ZgPMIOzSnFTugTyX8p9AD1W8FjbhD5HRHC5PmA==
-X-Google-Smtp-Source: APXvYqyJ/NV9JAxbVRomr4CZ0g13RwdbIFf5V33LHNvZtP4xac/Q/6igBhFiCQCW7J8FW8tuovDKRbbbUAOgZ8gmMAc=
-X-Received: by 2002:a37:4986:: with SMTP id
- w128mr22227981qka.417.1568035638909; 
- Mon, 09 Sep 2019 06:27:18 -0700 (PDT)
+	id 1i7MSv-0005kO-NJ; Mon, 09 Sep 2019 12:24:33 -0400
+Received: from mx1.hrz.uni-dortmund.de ([129.217.128.51]:34900
+ helo=unimail.uni-dortmund.de)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <felix.greiwe@tu-dortmund.de>)
+ id 1i7MSs-0005V0-2s
+ for usrp-users@lists.ettus.com; Mon, 09 Sep 2019 12:24:30 -0400
+Received: from webmail.tu-dortmund.de (webmail.tu-dortmund.de [129.217.131.82])
+ (authenticated bits=0)
+ by unimail.uni-dortmund.de (8.16.0.41/8.16.0.41) with ESMTPSA id
+ x89GNlo5000315
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+ Mon, 9 Sep 2019 18:23:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tu-dortmund.de;
+ s=unimail; t=1568046228;
+ bh=Ir6Mz6PyVUBIyqM7UzBY8fGl25e3e4SdxyQViLNH48A=;
+ h=In-Reply-To:References:Date:Subject:From:To:Reply-To;
+ b=fQDbKqPycZ5eM1W3pXdTyxcvYJliaigmvSxfOFDnZ6HNKZCuVSEETmM0HL/3gnjLI
+ v8eK7mNmqz1yjLYzLIZeB7L/7Smk6bMlPIJwWvpIyyre781SbnlEyh1k/y7/iWmV3W
+ 4nOl2UMF0FBb85YsuovSWVAEAPA4joNaUOfHa6Hw=
+Received: from 129.217.182.66 (SquirrelMail authenticated user smfegrei)
+ by webmail.tu-dortmund.de with HTTP; Mon, 9 Sep 2019 18:23:46 +0200
+Message-ID: <d19d2dd26609aee35e7818b004d0955b.squirrel@webmail.tu-dortmund.de>
+In-Reply-To: <6434ffb8dd87ff40017f8fec9624ed84.squirrel@webmail.tu-dortmund.de>
+References: <022046f63a5723c6851aee45d88103b2.squirrel@webmail.tu-dortmund.de>
+ <CACSOXP13AaQBSCckyLV7tDn6w6DcCOfKaLLHoO570qBqhyzdsQ@mail.gmail.com>
+ <81931980771deb10401c18f559b8e445.squirrel@webmail.tu-dortmund.de>
+ <6434ffb8dd87ff40017f8fec9624ed84.squirrel@webmail.tu-dortmund.de>
+Date: Mon, 9 Sep 2019 18:23:46 +0200
+To: "Ettus Research Support" <support@ettus.com>,
+ "Usrp Liste" <usrp-users@lists.ettus.com>
+User-Agent: SquirrelMail/1.4.23 [SVN]
 MIME-Version: 1.0
-References: <CABO=5RoRfGFhoyRyRKr=RjX0Scv1eB0agVcmQ88j8dxT2hp7sQ@mail.gmail.com>
- <CANf970Y19wuC4PdsV8+tUJE=3c6E-SwmnxqzJ2KRrPLXNLuFtA@mail.gmail.com>
- <CABO=5RqM9LMP8Mo8WGQU0ApJTiDkAyyNzF8CuwjXoRFpFJ6P4w@mail.gmail.com>
- <CANf970b9wTdfsEMfvcuLHiCGKnM_ony0joPTo87WchfnGTYHTA@mail.gmail.com>
-In-Reply-To: <CANf970b9wTdfsEMfvcuLHiCGKnM_ony0joPTo87WchfnGTYHTA@mail.gmail.com>
-Date: Mon, 9 Sep 2019 16:27:07 +0300
-Message-ID: <CABO=5RqiNqtYSRHw4qYwFvQT71CyQmvMX+GgNGC4owZ=zan6wA@mail.gmail.com>
-To: Sam Reiter <sam.reiter@ettus.com>
-Subject: Re: [USRP-users] Detection of USRP X310
+X-Priority: 3 (Normal)
+Importance: Normal
+Subject: Re: [USRP-users] Phase Sync between to UBX-160 Daugtherboards using
+ RFNoC Radio
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,10 +55,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Saimanoj Katta via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Saimanoj Katta <saimanoj.katta@cumucore.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2313242460485989626=="
+From: Felix Greiwe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: felix.greiwe@tu-dortmund.de
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,125 +72,384 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2313242460485989626==
-Content-Type: multipart/alternative; boundary="00000000000040ae5f05921ebfae"
+Hey,
 
---00000000000040ae5f05921ebfae
-Content-Type: text/plain; charset="UTF-8"
+sorry to post again, but I think this time I have a solution.
+In my grc-generated python file I added the lines:
 
-Hi Sam,
+cmd_time_1 = self.sender_A.get_time_now() + uhd.time_spec_t(5.0)
+self.uhd_rfnoc_streamer_fifo_0_0.set_start_time(cmd_time_1)
+self.uhd_rfnoc_streamer_fifo_0.set_start_time(cmd_time_1)
 
-Thanks for your kind words.
+Unfortunately this command did not do anything so i had to modify
+rfnoc_block_impl.cc in the gr-ettus folder. I added:
 
-Firstly, it had detection problems. Even, after writing FPGA image nothing
-happened. There were no indications, that it failed. I assumed it is dead,
-since after successful image writing, nothing happened. I waited for
-sometime, maybe after I wrote email, I tried one more time. It successfully
-loaded the image and usrp was back to life.
+#define BETTER
+#ifdef BETTER
+  if (_start_time_set) {
+    _tx.metadata.has_time_spec = true;
+    _tx.metadata.time_spec = _start_time;
+    std::cout << "Patch: Start Time Stream inserted"<< std::endl;
+  }
+  else {
+    _tx.metadata.has_time_spec = false;
+  }
+#endif
 
-But, I am still wondering, if this has impacted USRP(Which is presumably
-problematic). I am trying to emulate it via Open source LTE software and I
-see from logs, that the software sends signal to the radio via physical
-layer. But, there is no wireless network created. Multiple COTS devices
-didn't detect it, in spite of all the correct configurations (After the
-first failure, I am not able to get the network somehow).
+around line 300 after the commands
 
-Summarizing, does device recovery affect the working of device? If multiple
-times, it's recovered, what impact or implications, it might have? This is
-a good starting point to analyze, in my opinion.
+  _tx.metadata.start_of_burst = false;
+  _tx.metadata.end_of_burst = false;
+  _tx.metadata.has_time_spec = false;
 
-Regards,
-Saimanoj
+so that now the _start_time_set variable actually is used.
 
-On Thu, Sep 5, 2019 at 11:03 PM Sam Reiter <sam.reiter@ettus.com> wrote:
+(I then of course used make and make install in the gr-ettus/build)
 
-> Saimanoj,
+Now I get the desired behauviour and in addition can set a start time for
+both my streams.
+
+Kudos to this guy
+https://discuss-gnuradio.gnu.narkive.com/joj8MDyW/gnu-radio-3-7-12-rfnoc-set-start-time
+who used this, to correct the set_start_time command and I hoped that this
+would also fix my random phase offset problem, which was the case.
+
+
+Best Regards
+
+Felix
+
+
+> Hello together,
 >
-> Depending on which red lights you're talking about, that's not necessarily
-> indicative of an issue.
+> I wanted to give you a short update about phase-synchronizing my
+> USRPx310's ubx160 daugtherboards and clarify the problem I am facing for
+> better understandig.
 >
-> Can you tell me a bit more about what was going on when you had the issue?
-> Were you trying to write an FPGA image to the device, or did it just die
-> out of nowhere?
+> I am using both TX-Ports of my USRP to transmit the same complex cosine
+> generated with GNU-Radio. My image is a custom RFNoC image and contains
+> 2xDDC, 2xDUC, 2xRadio,1xDMA-FIFO,1xAddsub and 2xFIFO. My center frequency
+> is 2.45 GHz and the frequency of the cosine is 100 KHz.
 >
-> Additionally, I'd like to know if you experience any issues during the
-> jtag process. Screenshots are always helpful.
+> My flowgraph looks like this,
 >
-> Sam Reiter
-> SDR Support Engineer
-> Ettus Research
+> SigSource--->RFNoC_FIFO_0--->DMA_FIFO--->RFNoC-DUC_0-->RFNoC_Radio_A
+>          |                |          |
+>          -->RFNoC_FIFO_1---          --->RFNoC_DUC_1-->RFNoC_Radio_B
+>
+> and both antenna outputs are connected to an Agilent infiniium
+> oscilloscope.
+> Thus I can measure the phase offset between both of my output ports, by
+> measuring the phase offset of both displayed cosines. My goal is to
+> receive the same/almost the same relative phase offset with each new
+> restart of the flowgraph. Sadly, using the RFNoC blocks, I get a different
+> phase offset every time.
+>
+> When I use UHD-USRP Sink instead, (with the same Image and without RFNoC
+> blocks) I do get a consistent phase offset between both ports with every
+> restart of the flowgraph or even power cycles. This is the behaviour I
+> want for my RFNoC Flowgraph as well; and because it is the same image, I
+> am pretty sure there just must be a way to clone this behaviour to the
+> RFNoC realm as well.
+>
+> My approach up till now was, to use timed commands in my GRC-generated
+> python code for both RFnoC-Radio Blocks A and B, which each represent one
+> daugtherboard, I think. I then put the .set_tx_freq commands in the code
+> betweeen set_command time and clear_command time:
+>
+>   #A.get_time_now equals B.get_time_now
+>   cmd_time = self.sender_A.get_time_now() + uhd.time_spec_t(0.1)
+>   self.sender_A.set_command_time(cmd_time)
+>   self.sender_B.set_command_time(cmd_time)
+>   ----
+>   Tuning Commands
+>   self.sender_A.set_tx_freq(c_freq, i)
+>   self.sender_B.set_tx_freq(c_freq, i)
+>   ---
+>
+>   self.sender_A.clear_command_time(0)
+>   self.sender_B.clear_command_time(0)
+>   # End Timed Commands
+>
+> This approach however did not work for me.
+>
+> After my attempt with the timed commands failed, I tried to change all
+> paramters. When I set the frequency of my cosine to zero I actually got a
+> consistent phase offset. My conclusion is, that the mixers lock with a
+> consistent relative phase offset every time, because DC Signals do not
+> have relative phases. Because of that I think that maybe really both
+> Radio-Blocks start streaming with a random time offset or something
+> similar.
+>
+> Now to my questions
+>
+> 1) Is using the timed commands really the way to go? Remember I do NOT
+> want to synchronize multiple USRP-Devices but only that both
+> D-Boards/Radio-Blocks of one device, lock with the same relative phase.
+>
+> 2) Do I have to start the streaming manually somehow, with a timestamp or
+> something similar? And when the answer is yes, how do I do it in python
+> without the multi_usrp_api?
+>
+> 3) How can I control the start of streaming in my python code so that both
+> RFNoC Radios start at the same time?
+>
+> 4) How does the UHD_USRP_Sink Block work? I mean is there a verilog code
+> for it too and does it call the rfnoc_radio and rfnoc_duc modules etc.?
+> What are the parameters for the UHD_USRP_Sink Blocks DMA_FIFO and DUC?
+> I am asking this because I would like to clone that blocks behaviour
+>
+> 5) Any other question that I am not smart enough to ask but that deserves
+> an answer either way :D
+>
+> Again, any help is greatly appreciated because the synchronisation of both
+> TX-paths with RFnoC is crucial for my project and I can not work around
+> this issue.
+>
+> Best regard and thank you for reading
+>
+> Felix
 >
 >
-> On Tue, Sep 3, 2019 at 2:52 AM Saimanoj Katta <saimanoj.katta@cumucore.com>
-> wrote:
->
->> Hi Sam,
+>> Hey Sam,
 >>
->> Thank you for the information. Yes, you were right. I didn't see the LEDs
->> on the SFP port illuminating. I followed your instructions and the USRP
->> worked like a charm for all these days.
+>> thank you for your answer. Is your suggested [1] really useful for the
+>> RFNoC Radio Blocks I am using? I think I only can use the commands from
+>> path/include/ettus/rfnoc_radio.h, because the RFNoC_Radio Blocks are not
+>> derived from usrp_block. (As far as I know)
 >>
->> However, I didn't have any issues until yesterday. Yesterday, it suddenly
->> stopped working. I could see the Red LED lights from the side and from my
->> earlier observation(as LEDs were not illuminating in SFP port), I concluded
->> it to be in the earlier state. I tried reprogramming the same way and it
->> doesn't work now. Any further points on how to bring back the device to the
->> normal state?  I am still hopeful of it getting fixed.
+>> I then tried the timed commands and modified them a little because I
+>> have
+>> to use two rfnoc_radio_blocks, one for each dboard which I sadly can not
+>> tune together. My thoughtprocess is, to tune the daugtherbaords in the
+>> initiantion process, before they lock in the wrong phase. Here is the
+>> code
+>> I modified (With sender_A and sender_B beeing my two RFNoC Radio Blocks
+>> which each represent one daugtherboard from the same USRP):
 >>
->> Looking forward to your reply. Thank you for your time and consideration.
+>>         # Radio B
+>>         self.sender_B = ettus.rfnoc_radio(
+>>             self.device3,
+>>             uhd.stream_args( # Tx Stream Args
+>>                 cpu_format="fc32",
+>>                 otw_format="sc16",
+>>         	args='(cpu="fc32", otw="sc16")',
+>>             ),
+>>             uhd.stream_args( # Rx Stream Args
+>>                 cpu_format="fc32",
+>>                 otw_format="sc16",
+>>                 args="", # empty
+>>             ),
+>>             1, -1
+>>         )
+>>         #Ende Radio B
+>>         # Radio A
+>>         self.sender_A = ettus.rfnoc_radio(
+>>             self.device3,
+>>             uhd.stream_args( # Tx Stream Args
+>>                 cpu_format="fc32",
+>>                 otw_format="sc16",
+>>         	args='(cpu="fc32", otw="sc16")',
+>>             ),
+>>             uhd.stream_args( # Rx Stream Args
+>>                 cpu_format="fc32",
+>>                 otw_format="sc16",
+>>                 args="", # empty
+>>             ),
+>>             0, -1
+>>         )
+>>         # Ende Radio A
 >>
->> Regards,
->> Saimanoj
+>>         # Timed Stuff
+>>         #------------------------------------------------------------------
+>>         last_pps_time = self.sender_A.get_time_last_pps()
+>>         while last_pps_time == self.sender_A.get_time_last_pps():
+>>             print("waiting...")
+>>         self.sender_A.set_time_next_pps(uhd.time_spec_t(0.0))
+>>         self.sender_B.set_time_next_pps(uhd.time_spec_t(0.0))
+>>         #time.sleep(1)
 >>
->> On Tue, Jul 23, 2019 at 11:59 PM Sam Reiter <sam.reiter@ettus.com> wrote:
+>>         self.cmd_time = self.sender_A.get_time_now() +
+>> uhd.time_spec_t(0.1)
+>>         self.sender_A.set_command_time(self.cmd_time,0)
+>>         self.sender_B.set_command_time(self.cmd_time,0)
+>>         #------------------------------------------------------------------
 >>
->>> When you plug in either link, do you see the LEDs on the SFP ports
->>> illuminate? You may have bricked the X310 if these ports are unresponsive.
+>>         self.sender_A.set_rate(usrp_rate)
+>>         for i in xrange(1):
+>>             self.sender_A.set_tx_freq(c_freq, i)
+>>             self.sender_B.set_tx_freq(c_freq, i)
+>>             self.sender_A.set_tx_gain(0, i)
+>>             self.sender_A.set_tx_dc_offset(True, i)
+>>
+>>         self.sender_A.set_tx_antenna("TX/RX", 0)
+>>
+>>         self.sender_A.set_clock_source("internal")
+>>
+>>
+>>         self.sender_B.set_rate(usrp_rate)
+>>         for i in xrange(1):
+>>             #self.sender_B.set_tx_freq(c_freq, i)
+>>             self.sender_B.set_tx_gain(0, i)
+>>             self.sender_B.set_tx_dc_offset(True, i)
+>>
+>>         self.sender_B.set_tx_antenna("TX/RX", 0)
+>>
+>>         self.sender_B.set_clock_source("internal")
+>>         #----------------------------------
+>>         self.sender_A.clear_command_time(0)
+>>         self.sender_B.clear_command_time(0)
+>>         #----------------------------------
+>>         # Ende Timed Stuff
+>>
+>> The edited Code does not throw errors but doesn't solve my problem
+>> either
+>> because with each new start of the flowgraph, there is still a different
+>> phase offset. Do I maybe missed instructions in the Initiation process,
+>> that have to be timed also to achieve phase sync? Or maybe its something
+>> about the DUC Blocks?
+>>
+>> I think the code is not all wrong, because when I use it in my
+>> set_c_freq
+>> method below for my qtrange_slider the phase seems to be constant with
+>> each retune. Just still not with each restart of the flowgraph sadly.
+>>
+>> def set_c_freq(self, c_freq):
+>>         last_pps_time = self.sender_A.get_time_last_pps()
+>>         while last_pps_time == self.sender_A.get_time_last_pps():
+>>             print("waiting...")
+>>         self.sender_A.set_time_next_pps(uhd.time_spec_t(0.0))
+>>         self.sender_B.set_time_next_pps(uhd.time_spec_t(0.0))
+>>         self.cmd_time = self.sender_A.get_time_now() +
+>> uhd.time_spec_t(0.1)
+>>         self.sender_A.set_command_time(self.cmd_time,0)
+>>         self.sender_B.set_command_time(self.cmd_time,0)
+>>         #tc start
+>>         self.c_freq = c_freq
+>>         for i in xrange(1):
+>>             self.sender_B.set_tx_freq(self.c_freq, i)
+>>         for i in xrange(1):
+>>             self.sender_A.set_tx_freq(self.c_freq, i)
+>>         #tc ende
+>>         self.sender_A.clear_command_time(0)
+>>         self.sender_B.clear_command_time(0)
+>>
+>>
+>> I also read your suggested reading [2] and am not sure if I have to
+>> follow
+>> the commands under Synchronizing Channel Phase. Reason for this, is
+>> because the rfnoc_radio.h controller does not support the
+>> issue_stream_command method (it is not listed in controller class
+>> rfnoc_radio.h). Changing to one single cosine did not solve my problem
+>> btw.
+>>
+>> Another thing that bothers me is, that the article talks about
+>> synchronising multiple device whereas in my case I only want to sync my
+>> two daugtherboards of the x310. Is it still the same process? (When I
+>> use
+>> the UHD_USRP_SINK Block with two inputs, the phase seems to be constant
+>> with each restart even without tuning them with timed commands. This
+>> behauviour is the goal; only that I want to use RFnoC instead)
+>>
+>> Thank you for your help and best regards,
+>>
+>> Felix
+>>
+>>
+>>> Hey Felix,
 >>>
->>> Here's a *discovery* guide that might be helpful:
->>> https://kb.ettus.com/Troubleshooting_X300/X310_Device_Discovery_Issues
+>>> Your hunch is correct -- you'll need to use timed commands to issue
+>>> your
+>>> tune requests and to initiate streaming. This will involve editing the
+>>> python script generated by GRC. Here's a relevant GRC manual section
+>>> [1],
+>>> and an example snippet of tuning with timed commands in the UHD Manual
+>>> [2].
+>>> Doing this correctly should ensure that you are able to keep a
+>>> consistent
+>>> phase offset between your TX channels at a given frequency.
 >>>
->>> Here's a *recovery* guide if that fails:
->>> https://kb.ettus.com/X300/X310_Device_Recovery
+>>> I'm not sure if it'd actually be an issue, but one thing from your
+>>> flowgraph struck me. You might want to fork the output of your cosine
+>>> block
+>>> so that both TX streams are being fed data from a single source. I
+>>> don't
+>>> think this will solve your problem, but if the blocks are doing the
+>>> same
+>>> thing, may help take a variable out of the equation.
 >>>
->>> Best,
+>>> Sam
 >>>
->>> Sam Reiter
->>> SDR Support Engineer
->>> Ettus Research
+>>> [1]
+>>> https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__block.html
+>>> [2] https://files.ettus.com/manual/page_sync.html#sync_phase_lo
 >>>
 >>>
->>> On Fri, Jul 19, 2019 at 6:03 AM Saimanoj Katta via USRP-users <
+>>> On Thu, Aug 29, 2019 at 8:49 AM Felix Greiwe via USRP-users <
 >>> usrp-users@lists.ettus.com> wrote:
 >>>
->>>> Hi,
+>>>> Hello together,
 >>>>
->>>> I was previously working with the USRP X310. I wanted to enable Dual
->>>> Connectivity mode for enabling two ports with 10 Giga bit connectivity. I
->>>> ran the update:  uhd_image_loader --args "type=x300,addr=192.168.50.2,
->>>> fpga=XG". Since this, I have not been able to detect my USRP.
+>>>> I am trying to transmit one complex cosine from both TX - Antenna of
+>>>> my
+>>>> USRP-x310 with two UBX-160 Daugtherboards. I am transmitting a cosine
+>>>> with
+>>>> the frequency of 100 kHz and the center frequency of my RFNoC Radio
+>>>> Blocks
+>>>> is 2.45 GHz. So basically I see a peak at 2.45 Ghz + 100 kHz at my
+>>>> spectrum analyzer (plus the lo leakage at 2.45 GHz). Additionally I
+>>>> receive the spectrum on another x310.
 >>>>
->>>> *My setup: * Ubuntu is 18.04 and the UHD version is
->>>> UHD_3.14.1.0-0-gbfb9c1c7
->>>> I have connected to the laptop via thunderbolt port which is equivalent
->>>> to USB-3.0. Firewall is disabled. It is not behind a router/switch. Host
->>>> interface IP address is 192.168.10.3 and subnet is 255.255.255.0
+>>>> In the following link you can see my flowgraph in GRC:
+>>>> https://ibb.co/7W6mTKf
 >>>>
->>>> I have tried the following:
+>>>> As you can see i have two multiply blocks to change the phase of the
+>>>> complex cosines, the value of the multiply blocks are
 >>>>
->>>> 1) Ran as root user - uhd_find_devices, uhd_usrp_probe and
->>>> uhd_images_downloader.
->>>> Device is not found in first two options. And, the fpga_default images
->>>> seem to be up to date.
->>>> 2) By default, USRPs have addresses from the 192.168.10.XXX range (
->>>> XXX=2 in factory settings). I searched addresses in this range, but
->>>> still USRP not detected. Ping to the address also fails.
+>>>> > pow(math.e, 1j*phi*(math.pi/180)) and
+>>>> > pow(math.e, 1j*psi*(math.pi/180)).
 >>>>
->>>> Any suggestions would be appreciated to detect the device! Many thanks
->>>> in advance.
+>>>> I can change phi and psi with a qt gui range slider. Default value ist
+>>>> multiplication by 1.
 >>>>
->>>> Regards,
->>>> Saimanoj
+>>>> My goal with this setup was to check the MIMO capabilities of the USRP
+>>>> x310.
+>>>> I calculated the Phase offset both transmitted waves should have at
+>>>> the
+>>>> antenna of my spectrum analyzer. With my multiplication blocks I
+>>>> created
+>>>> different phase offsets, thus causing destructive interference at the
+>>>> receiving end (peak at analyzer is the smallest at this phase).
+>>>>
+>>>> However most of the time when I start different runs of my flowgraph
+>>>> (or
+>>>> when I power cycle the device) I always have to set a different phase
+>>>> offset to see the destructive interference. To me it seems pretty
+>>>> random
+>>>> which phase offset both transmitting path get even though I don't
+>>>> understand why.
+>>>>
+>>>> In another thread I read that maybe timed tuning will work for me but
+>>>> I
+>>>> did not quite understand what that improves in particular nor who I
+>>>> use
+>>>> it
+>>>> in my  GRC generated python file. (Using the RFnoC Radio Blocks does
+>>>> not
+>>>> make it easier by the way.) This is the link:
+>>>>
+>>>>
+>>>> http://ettus.80997.x6.nabble.com/USRP-users-use-a-usrp-x310-as-MIMO-transmitter-daughterboard-synchronization-tt11642.html
+>>>>
+>>>> Any ideas, suggestions and explanations on how to phase align the
+>>>> transmit
+>>>> path of my (single) USRP x310 would be greatly appreciated!
+>>>>
+>>>> Best regards
+>>>>
+>>>> Felix
+>>>>
+>>>>
 >>>>
 >>>> _______________________________________________
 >>>> USRP-users mailing list
@@ -206,227 +457,26 @@ On Thu, Sep 5, 2019 at 11:03 PM Sam Reiter <sam.reiter@ettus.com> wrote:
 >>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >>>>
 >>>
-
---00000000000040ae5f05921ebfae
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Sam, <br></div><div><br></div><div>Thanks for your=
- kind words. <br></div><div><br></div><div>Firstly, it had detection proble=
-ms. Even, after writing FPGA image nothing happened. There were no indicati=
-ons, that it failed. I assumed it is dead, since after successful image wri=
-ting, nothing happened. I waited for sometime, maybe after I wrote email, I=
- tried one more time. It successfully loaded the image and usrp was back to=
- life. <br></div><div><br></div><div>But, I am still wondering, if this has=
- impacted USRP(Which is presumably problematic). I am trying to emulate it =
-via Open source LTE software and I see from logs, that the software sends s=
-ignal to the radio via physical layer. But, there is no wireless network cr=
-eated. Multiple COTS devices didn&#39;t detect it, in spite of all the corr=
-ect configurations (After the first failure, I am not able to get the netwo=
-rk somehow).=C2=A0 <br></div><div><br></div><div>Summarizing, does device r=
-ecovery affect the working of device? If multiple times, it&#39;s recovered=
-, what impact or implications, it might have? This is a good starting point=
- to analyze, in my opinion. <br></div><div><br></div><div>Regards, <br></di=
-v><div>Saimanoj<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">On Thu, Sep 5, 2019 at 11:03 PM Sam Reiter &lt;<a =
-href=3D"mailto:sam.reiter@ettus.com">sam.reiter@ettus.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><=
-div>Saimanoj,</div><div><br></div><div>Depending on which red lights you&#3=
-9;re talking about, that&#39;s not necessarily indicative of an issue. <br>=
-</div><div><br></div><div>Can you tell me a bit more about what was going o=
-n when you had the issue? Were you trying to write an FPGA image to the dev=
-ice, or did it just die out of nowhere?</div><div><br></div><div>Additional=
-ly, I&#39;d like to know if you experience any issues during the jtag proce=
-ss. Screenshots are always helpful. <br></div><div><br></div><div><div dir=
-=3D"ltr" class=3D"gmail-m_-6229599093897679012gmail_signature"><div dir=3D"=
-ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0<div>SDR Support Engineer</div><=
-div>Ettus Research<br></div></div></div></div></div></div><br></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 3=
-, 2019 at 2:52 AM Saimanoj Katta &lt;<a href=3D"mailto:saimanoj.katta@cumuc=
-ore.com" target=3D"_blank">saimanoj.katta@cumucore.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
->Hi Sam, <br></div><div><br></div><div>Thank you for the information. Yes, =
-you were right. I didn&#39;t see the LEDs on the SFP port illuminating. I f=
-ollowed your instructions and the USRP worked like a charm for all these da=
-ys.</div><div><br></div><div>However, I didn&#39;t have any issues until ye=
-sterday. Yesterday, it suddenly stopped working. I could see the Red LED li=
-ghts from the side and from my earlier observation(as LEDs were not illumin=
-ating in SFP port), I concluded it to be in the earlier state. I tried repr=
-ogramming the same way and it doesn&#39;t work now. Any further points on h=
-ow to bring back the device to the normal state?=C2=A0 I am still hopeful o=
-f it getting fixed. <br></div><div><br></div><div>Looking forward to your r=
-eply. Thank you for your time and consideration. <br></div><div><br></div><=
-div>Regards,</div><div>Saimanoj<br></div></div><br><div class=3D"gmail_quot=
-e"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 23, 2019 at 11:59 PM S=
-am Reiter &lt;<a href=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam=
-.reiter@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><div dir=3D"ltr">When you plug in either link, do you see =
-the LEDs on the SFP ports illuminate? You may have bricked the X310 if thes=
-e ports are unresponsive.=C2=A0<div><br></div><div>Here&#39;s a <b>discover=
-y</b> guide that might be helpful:=C2=A0<a href=3D"https://kb.ettus.com/Tro=
-ubleshooting_X300/X310_Device_Discovery_Issues" target=3D"_blank">https://k=
-b.ettus.com/Troubleshooting_X300/X310_Device_Discovery_Issues</a></div><div=
-><br></div><div>Here&#39;s a <b>recovery</b> guide if that fails:=C2=A0<a h=
-ref=3D"https://kb.ettus.com/X300/X310_Device_Recovery" target=3D"_blank">ht=
-tps://kb.ettus.com/X300/X310_Device_Recovery</a></div><div><br></div><div>B=
-est,</div><div><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail-m_-62=
-29599093897679012gmail-m_748991759639638984gmail-m_3596933906674759119gmail=
-_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0<div>SDR=
- Support Engineer</div><div>Ettus Research<br></div></div></div></div></div=
-></div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
-s=3D"gmail_attr">On Fri, Jul 19, 2019 at 6:03 AM Saimanoj Katta via USRP-us=
-ers &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usr=
-p-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex"><div dir=3D"ltr"><div>Hi, <br></div><div><br></div><=
-div>I was previously working with the USRP X310. I wanted to enable Dual Co=
-nnectivity mode for enabling two ports with 10 Giga bit connectivity. I ran=
- the update:=C2=A0 <span style=3D"font-size:11pt;font-family:Arial;color:rg=
-b(0,0,0);background-color:transparent;font-weight:400;font-style:normal;fon=
-t-variant:normal;text-decoration:none;vertical-align:baseline;white-space:p=
-re-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_748991759639638984gmail-=
-m_3596933906674759119gmail-m_-7976553911329275503gmail-docs-internal-guid-3=
-8792c7d-7fff-6350-996e-1ea2104ef635">uhd_image_loader --args &quot;type=3Dx=
-300,addr=3D192.168.50.2, fpga=3DXG&quot;.</span><span style=3D"font-size:11=
-pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-wei=
-ght:400;font-style:normal;font-variant:normal;text-decoration:none;vertical=
--align:baseline;white-space:pre-wrap" id=3D"gmail-m_-6229599093897679012gma=
-il-m_748991759639638984gmail-m_3596933906674759119gmail-m_-7976553911329275=
-503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">  Since t=
-his, I have not been able to detect my USRP. <br></span></div><div><span st=
-yle=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:t=
-ransparent;font-weight:400;font-style:normal;font-variant:normal;text-decor=
-ation:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-622=
-9599093897679012gmail-m_748991759639638984gmail-m_3596933906674759119gmail-=
-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2=
-104ef635"><br></span></div><div><span style=3D"font-size:11pt;font-family:A=
-rial;color:rgb(0,0,0);background-color:transparent;font-weight:400;font-sty=
-le:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;=
-white-space:pre-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_74899175963=
-9638984gmail-m_3596933906674759119gmail-m_-7976553911329275503gmail-docs-in=
-ternal-guid-38792c7d-7fff-6350-996e-1ea2104ef635"><b>My setup: </b><span st=
-yle=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:t=
-ransparent;font-weight:400;font-style:normal;font-variant:normal;text-decor=
-ation:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-622=
-9599093897679012gmail-m_748991759639638984gmail-m_3596933906674759119gmail-=
-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2=
-104ef635"> Ubuntu is 18.04 and the UHD version is UHD_3.14.1.0-0-gbfb9c1c7<=
-/span></span></div><div><span style=3D"font-size:11pt;font-family:Arial;col=
-or:rgb(0,0,0);background-color:transparent;font-weight:400;font-style:norma=
-l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
-ace:pre-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_748991759639638984g=
-mail-m_3596933906674759119gmail-m_-7976553911329275503gmail-docs-internal-g=
-uid-38792c7d-7fff-6350-996e-1ea2104ef635"><span style=3D"font-size:11pt;fon=
-t-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:40=
-0;font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
-:baseline;white-space:pre-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_7=
-48991759639638984gmail-m_3596933906674759119gmail-m_-7976553911329275503gma=
-il-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">I have connecte=
-d to the laptop via thunderbolt port which is equivalent to USB-3.0. Firewa=
-ll is disabled. It is not behind a router/switch. Host interface IP address=
- is 192.168.10.3 and subnet is 255.255.255.0 </span></span></div><div><span=
- style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-colo=
-r:transparent;font-weight:400;font-style:normal;font-variant:normal;text-de=
-coration:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-=
-6229599093897679012gmail-m_748991759639638984gmail-m_3596933906674759119gma=
-il-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1=
-ea2104ef635"><br></span></div><div><span style=3D"font-size:11pt;font-famil=
-y:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:400;font-=
-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseli=
-ne;white-space:pre-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_74899175=
-9639638984gmail-m_3596933906674759119gmail-m_-7976553911329275503gmail-docs=
--internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">I have tried the follo=
-wing: <br></span></div><div><span style=3D"font-size:11pt;font-family:Arial=
-;color:rgb(0,0,0);background-color:transparent;font-weight:400;font-style:n=
-ormal;font-variant:normal;text-decoration:none;vertical-align:baseline;whit=
-e-space:pre-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_748991759639638=
-984gmail-m_3596933906674759119gmail-m_-7976553911329275503gmail-docs-intern=
-al-guid-38792c7d-7fff-6350-996e-1ea2104ef635"><br></span></div><div><span s=
-tyle=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:=
-transparent;font-weight:400;font-style:normal;font-variant:normal;text-deco=
-ration:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-62=
-29599093897679012gmail-m_748991759639638984gmail-m_3596933906674759119gmail=
--m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea=
-2104ef635">1) Ran as root user - uhd_find_devices, uhd_usrp_probe and uhd_i=
-mages_downloader. <br></span></div><div><span style=3D"font-size:11pt;font-=
-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:400;=
-font-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
-aseline;white-space:pre-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_748=
-991759639638984gmail-m_3596933906674759119gmail-m_-7976553911329275503gmail=
--docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">Device is not fou=
-nd in first two options. And, the fpga_default images seem to be up to date=
-. <br></span></div><div><span style=3D"font-size:11pt;font-family:Arial;col=
-or:rgb(0,0,0);background-color:transparent;font-weight:400;font-style:norma=
-l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
-ace:pre-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_748991759639638984g=
-mail-m_3596933906674759119gmail-m_-7976553911329275503gmail-docs-internal-g=
-uid-38792c7d-7fff-6350-996e-1ea2104ef635">2) By default, USRPs have address=
-es from the <code>192.168.10.XXX</code> range (<code>XXX=3D2</code> in fact=
-ory settings). I searched addresses in this range, but still USRP not detec=
-ted. Ping to the address also fails. <br></span></div><div><span style=3D"f=
-ont-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpare=
-nt;font-weight:400;font-style:normal;font-variant:normal;text-decoration:no=
-ne;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-62295990938=
-97679012gmail-m_748991759639638984gmail-m_3596933906674759119gmail-m_-79765=
-53911329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635=
-"><br></span></div><div><span style=3D"font-size:11pt;font-family:Arial;col=
-or:rgb(0,0,0);background-color:transparent;font-weight:400;font-style:norma=
-l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
-ace:pre-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_748991759639638984g=
-mail-m_3596933906674759119gmail-m_-7976553911329275503gmail-docs-internal-g=
-uid-38792c7d-7fff-6350-996e-1ea2104ef635">Any suggestions would be apprecia=
-ted to detect the device! Many thanks in advance. <br></span></div><div><sp=
-an style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-co=
-lor:transparent;font-weight:400;font-style:normal;font-variant:normal;text-=
-decoration:none;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m=
-_-6229599093897679012gmail-m_748991759639638984gmail-m_3596933906674759119g=
-mail-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e=
--1ea2104ef635"><br></span></div><div><span style=3D"font-size:11pt;font-fam=
-ily:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:400;fon=
-t-style:normal;font-variant:normal;text-decoration:none;vertical-align:base=
-line;white-space:pre-wrap" id=3D"gmail-m_-6229599093897679012gmail-m_748991=
-759639638984gmail-m_3596933906674759119gmail-m_-7976553911329275503gmail-do=
-cs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635">Regards, <br></span>=
-</div><div><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0)=
-;background-color:transparent;font-weight:400;font-style:normal;font-varian=
-t:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap"=
- id=3D"gmail-m_-6229599093897679012gmail-m_748991759639638984gmail-m_359693=
-3906674759119gmail-m_-7976553911329275503gmail-docs-internal-guid-38792c7d-=
-7fff-6350-996e-1ea2104ef635">Saimanoj<br></span></div><div><span style=3D"f=
-ont-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpare=
-nt;font-weight:400;font-style:normal;font-variant:normal;text-decoration:no=
-ne;vertical-align:baseline;white-space:pre-wrap" id=3D"gmail-m_-62295990938=
-97679012gmail-m_748991759639638984gmail-m_3596933906674759119gmail-m_-79765=
-53911329275503gmail-docs-internal-guid-38792c7d-7fff-6350-996e-1ea2104ef635=
-"><br></span></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-
---00000000000040ae5f05921ebfae--
+>>
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
 
---===============2313242460485989626==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2313242460485989626==--
-
