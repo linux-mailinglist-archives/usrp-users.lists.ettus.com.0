@@ -2,51 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9CAEB0332
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2019 19:58:28 +0200 (CEST)
-Received: from [::1] (port=51452 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B488CB035D
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2019 20:06:35 +0200 (CEST)
+Received: from [::1] (port=55842 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i86sr-0002Zg-Ts; Wed, 11 Sep 2019 13:58:25 -0400
-Received: from mail-vs1-f44.google.com ([209.85.217.44]:39263)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jbmsdr@gmail.com>) id 1i86sn-0002Oh-Me
- for usrp-users@lists.ettus.com; Wed, 11 Sep 2019 13:58:21 -0400
-Received: by mail-vs1-f44.google.com with SMTP id y62so14333099vsb.6
- for <usrp-users@lists.ettus.com>; Wed, 11 Sep 2019 10:58:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=n8mr/Ibo15Dlp2Lncm8ZU80L+pcQ7qDNwUWskJN/j6c=;
- b=eDC3uc/+WsCGtS7e+ogobnd8moJOkQTNvN1KFI3PxUw9eZDt7eYpiNz0YrCFXzfl4u
- LPm1pnouI1DIUiwb0ObxVh/kaok++RP+6DkIrgsm6EDV8tExq7XYhFLfyfL6DzYFRVsE
- dMHb5HcZLhW5hxjRDFQt5HxqiOlMjePYCdz69nQUdGOqPVXMmLM/K4oDOjHBHN/aHxCn
- gHRellpKovRhKls4ybzvml4lvF4SyYATOCkjiNttuOYcAsBvndSuh+bGbQGA+8wV9/v6
- Z7s3HJN2hQjymK7hA5pU+PAmGy5wJdY15scpV1azTCuMvEAAqZ2xJ9GJTGRQxO2fYtQ7
- ci6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=n8mr/Ibo15Dlp2Lncm8ZU80L+pcQ7qDNwUWskJN/j6c=;
- b=lOQN2KfE60BWug5HRY/xtbZ3gy0zUaUHImChPHQwNUuxHFBGEzIAecpNAEONDA/HLz
- zf3OMGkMAbwfUNzhmBYmPr7SgwntUeOx1cIdCD/VNaRViPZlboJDoWL9r1BXanqHLn3g
- 1/zpVDUBLCzxoj+kTPVuY9d5EemvNfqGqIFY8rvZKf6X2t7d+1LCNyDKIYnq9Ez4qdWG
- ewi6BsIQ35ACC5wisq4NhQ6PfJMKhCbHOblCYk2XpVty13mGY9bbGAnU6Y8LxQYBsG/d
- g6hV71ebjZY9hpdrS07fKUj70CjtERxoA/06gys2y+l7x4ZIoYeQYojsIcABPdNb4/vD
- 7ynA==
-X-Gm-Message-State: APjAAAXW7N4Fryv1vAwVg9jwTo2M1uk7eT+Xt3ZFL9PU+5JyGrYCpyNs
- GCd1/LwrAKPoayhFBlGtyBBg8uKCiFNKgFHMfos=
-X-Google-Smtp-Source: APXvYqzdObH9SlP62tDbJQqisXddd5diI8GO9PZpew95CGorMcWRMdXbFNBEd5JHU0Pr9sXiTDTCxzKQh0DTpTIxZHo=
-X-Received: by 2002:a67:2d13:: with SMTP id t19mr17558071vst.99.1568224661027; 
- Wed, 11 Sep 2019 10:57:41 -0700 (PDT)
+	id 1i870k-0003ok-C5; Wed, 11 Sep 2019 14:06:34 -0400
+Received: from sanddollar.geekisp.com ([216.168.135.167]:27655)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <philip@balister.org>) id 1i870e-0003iW-L4
+ for usrp-users@lists.ettus.com; Wed, 11 Sep 2019 14:06:28 -0400
+Received: (qmail 2428 invoked by uid 1003); 11 Sep 2019 18:05:53 -0000
+Received: from unknown (HELO ?192.168.11.139?)
+ (philip@opensdr.com@73.152.143.112)
+ by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+ 11 Sep 2019 18:05:53 -0000
+To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>,
+ David Scott <david.scott@nsl.eu.com>, usrp-users@lists.ettus.com
+References: <9bbb6b44-3e5f-2074-e8f3-b40fbde2b668@nsl.eu.com>
+ <2f2fa99b6dceede2430c928b0ae13114877854de.camel@ettus.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+ mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+ HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+ rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+ 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+ fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+ AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
+ CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+ nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+ 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+ YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+ 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+ yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
+ gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+ GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+ uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+ LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+ gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
+ WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+ 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+ ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+ icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+ ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+ 6eUfr0u7CwnEyqiQ
+Message-ID: <86f3861a-2129-1a2d-3b71-6a38ef948ad8@balister.org>
+Date: Wed, 11 Sep 2019 14:05:45 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <CA+1FM8rABFGmjTHf-GrW9w1agB_vMybCLRr_WjDaMjXsbtbg5Q@mail.gmail.com>
- <0047c71d410263624fdb2e46e3e0f1e6d17fc4af.camel@ettus.com>
-In-Reply-To: <0047c71d410263624fdb2e46e3e0f1e6d17fc4af.camel@ettus.com>
-Date: Wed, 11 Sep 2019 13:57:29 -0400
-Message-ID: <CA+1FM8oC==73LdnJ91tpZqmOh1JR-wQZBSVHRC9ftJSi5mBORw@mail.gmail.com>
-To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-Subject: Re: [USRP-users] UHD sink transmit at 100 MSPS
+In-Reply-To: <2f2fa99b6dceede2430c928b0ae13114877854de.camel@ettus.com>
+Content-Language: en-MW
+Subject: Re: [USRP-users] Pybombs UHD install for development machine CMake
+ version failure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -58,10 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Josh via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Josh <jbmsdr@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3487301366334331467=="
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,150 +83,87 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3487301366334331467==
-Content-Type: multipart/alternative; boundary="000000000000d9443605924ac122"
-
---000000000000d9443605924ac122
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks Marcus!
-I've previously done most everything on there except for the DPDK.  I'll
-give that a shot and see if it makes a difference.
-
-The strange thing though is that I only get the UUUUU's when first starting
-the flowgraph.  In the steady state, the flowgraph only consumes 85% of a
-core for the UHD block and no underruns.
-
-Josh
-
-On Wed, Sep 11, 2019 at 12:36 PM Marcus M=C3=BCller <marcus.mueller@ettus.c=
-om>
-wrote:
-
-> Hi Josh,
->
-> maybe https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks
->  is of relevance to you?
->
-> Best regards,
-> Marcus
->
-> On Wed, 2019-09-11 at 10:50 -0400, Josh via USRP-users wrote:
-> > Hello,
-> >
-> > I'm looking to transmit a wideband signal from an X310 at 100 MSPS,
-> > so I'll start by posing the very general question of what tips and
-> > optimizations do I need to make to be able to do this reliably.
-> >
-> > Here is what I already have set up (this is using a powerful server -
-> > 60 cores at 3.4GHz)
-> > GNU Radio 3.7, Ubuntu 16
-> > UHD 3.14.1.1
-> >   - have also downgraded to UHD 3.9 and get generally higher
-> > throughput, less buffer underruns
-> > MTU/frame size set to 8000
-> >
-> > But no matter what I try - continuous stream, or TSB bursts, there is
-> > a string of U's when I first start transmitting.  With TSBs, there is
-> > also a string of Us on every burst I send to the UHD sink (with the
-> > newer UHD).  I've monkeyed around with parts of gr-uhd and uhd - but
-> > nothing of consequence.
-> >
-> > So any tips to get up to 100MSPS transmit would be greatly
-> > appreciated
-> >
-> > Thanks,
-> > Josh
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
-
---000000000000d9443605924ac122
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Thanks Marcus!=C2=A0 <br></div><div>I&#39;ve previous=
-ly done most everything on there except for the DPDK.=C2=A0 I&#39;ll give t=
-hat a shot and see if it makes a difference.=C2=A0 <br></div><div><br></div=
-><div>The strange thing though is that I only get the UUUUU&#39;s when firs=
-t starting the flowgraph.=C2=A0 In the steady state, the flowgraph only con=
-sumes 85% of a core for the UHD block and no underruns.<br></div><div><br><=
-/div><div>Josh<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Wed, Sep 11, 2019 at 12:36 PM Marcus M=C3=BCller=
- &lt;<a href=3D"mailto:marcus.mueller@ettus.com">marcus.mueller@ettus.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi=
- Josh,<br>
-<br>
-maybe <a href=3D"https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and=
-_Tricks" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus.com/USRP_Hos=
-t_Performance_Tuning_Tips_and_Tricks</a><br>
-=C2=A0is of relevance to you?<br>
-<br>
-Best regards,<br>
-Marcus<br>
-<br>
-On Wed, 2019-09-11 at 10:50 -0400, Josh via USRP-users wrote:<br>
-&gt; Hello,<br>
-&gt; <br>
-&gt; I&#39;m looking to transmit a wideband signal from an X310 at 100 MSPS=
-,<br>
-&gt; so I&#39;ll start by posing the very general question of what tips and=
-<br>
-&gt; optimizations do I need to make to be able to do this reliably.<br>
-&gt; <br>
-&gt; Here is what I already have set up (this is using a powerful server -<=
-br>
-&gt; 60 cores at 3.4GHz)<br>
-&gt; GNU Radio 3.7, Ubuntu 16<br>
-&gt; UHD 3.14.1.1<br>
-&gt;=C2=A0 =C2=A0- have also downgraded to UHD 3.9 and get generally higher=
-<br>
-&gt; throughput, less buffer underruns<br>
-&gt; MTU/frame size set to 8000<br>
-&gt; <br>
-&gt; But no matter what I try - continuous stream, or TSB bursts, there is<=
-br>
-&gt; a string of U&#39;s when I first start transmitting.=C2=A0 With TSBs, =
-there is<br>
-&gt; also a string of Us on every burst I send to the UHD sink (with the<br=
->
-&gt; newer UHD).=C2=A0 I&#39;ve monkeyed around with parts of gr-uhd and uh=
-d - but<br>
-&gt; nothing of consequence.=C2=A0 <br>
-&gt; <br>
-&gt; So any tips to get up to 100MSPS transmit would be greatly<br>
-&gt; appreciated<br>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; Josh<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-</blockquote></div>
-
---000000000000d9443605924ac122--
-
-
---===============3487301366334331467==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3487301366334331467==--
-
+T24gOS8xMS8xOSAxMjozOCBQTSwgTWFyY3VzIE3DvGxsZXIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6
+Cj4gRGVhciBEYXZpZCwKPiAKPiBJJ3ZlIHNlZW4gdGhhdCBoYXBwZW4gb24gc3BlY2lmaWMgVWJ1
+bnR1IHZlcnNpb25zLCB3aGVyZSB0aGV5IHNvbWVob3cKPiBtaXNzZWQgdG8gY2xlYW4gdXAgLyBt
+YXJrIGNvbmZsaWN0IGJldHdlZW4gQ01ha2UgMi54IHBhY2thZ2VzIGFuZCBuZXdlcgo+IENNYWtl
+IChJJ20gcGVycGV0dWFsbHkgZGlzYXBwb2ludGVkIGJ5IENhbm9uaWNhbCkuIE1ha2UgdHdpY2Ug
+YXMgc3VyZQo+IHRoYXQgeW91IG9ubHkgZ290IG9uZSBDTWFrZSBpbnN0YWxsZWQgLSBpZiB0aGlz
+IGlzIGFjdHVhbGx5IFVidW50dSwKPiAiYXB0IHNlYXJjaCBjbWFrZSIgbWlnaHQgYmUgdGhlIHdh
+eSB0byBzdGFydC4KCkZvciB0aGUgRS1zZXJpZXMgSSB3b3VsZCBleHBlY3QgY21ha2UgdG8gYmUg
+dGhlIG9uZSBpbiB0aGUgc2RrLCB1bmxlc3MKc29tZXRoaW5nIGlzIHNjcmV3ZWQgdXAuCgpQaGls
+aXAKCj4gCj4gQmVzdCByZWdhcmRzLAo+IE1hcmN1cwo+IAo+IE9uIFdlZCwgMjAxOS0wOS0xMSBh
+dCAxNjo0MiArMDEwMCwgRGF2aWQgU2NvdHQgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+IEhpIGFs
+bCwKPj4KPj4gSSBoYXZlIHJlY2VudGx5IGFjcXVpcmVkIGEgVVNSUCBFMzEyIGFuZCBoYXZlIGJl
+ZW4gZm9sbG93aW5nIHRoZSAKPj4gcXVpY2tzdGFydCBndWlkZSBhdDogLQo+Pgo+PiBodHRwczov
+L2tiLmV0dHVzLmNvbS9Tb2Z0d2FyZV9EZXZlbG9wbWVudF9vbl90aGVfRTMxMF9hbmRfRTMxMgo+
+Pgo+PiBUaGUgcmVsZXZhbnQgY29tbWFuZHMgYmVpbmc6IC0KPj4KPj4gICAgJCBzdWRvIHBpcCBp
+bnN0YWxsIGdpdCtodHRwczovL2dpdGh1Yi5jb20vZ251cmFkaW8vcHlib21icy5naXQKPj4gICAg
+JCBweWJvbWJzIHJlY2lwZXMgYWRkIGdyLXJlY2lwZXMgCj4+IGdpdCtodHRwczovL2dpdGh1Yi5j
+b20vZ251cmFkaW8vZ3ItcmVjaXBlcy5naXQKPj4gICAgJCBweWJvbWJzIHJlY2lwZXMgYWRkIGV0
+dHVzIAo+PiBodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC9ldHR1cy1weWJvbWJzLmdp
+dAo+PiAgICAkIHN1ZG8gZHBrZy1yZWNvbmZpZ3VyZSBkYXNoICMgc2VsZWN0IE5PCj4+ICAgICQg
+cHlib21icyBwcmVmaXggaW5pdCB+L3ByZWZpeCAtUiBlM3h4LXJmbm9jIC1hIGUzMDAKPj4KPj4g
+RXZlcnl0aGluZyBwcm9jZWVkcyB3ZWxsIHVwIHVudGlsIHRoZSBDTWFrZSBpcyBjYXJyaWVkIG91
+dCBhdCB3aGljaAo+PiBpdCAKPj4gY29tcGxhaW5zIHRoYXQgdGhlIGluc3RhbGxlZCB2ZXJzaW9u
+IG9mIENNYWtlIGlzIGJlbG93IHRoZSBtaW5pbXVtLgo+PiBUaGUgCj4+IG91dHB1dCBsb2cgaXMg
+OiAtCj4+Cj4+Cj4+IDE1MTE3NTAga0IgLyAxNTExNzUwIGtCIAo+PiAoMTAwJSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkKPj4g
+KSkpKSkpKSkpKSkpCj4+Cj4+IFtJTkZPXSBJbnN0YWxsaW5nIFNESyAKPj4gYGUzeHgtcmVsZWFz
+ZTQtCj4+IHNkaycpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpCj4+Cj4+IFRoZSBkaXJlY3RvcnkgIi9ob21lL2RhdmlkL3ByZWZp
+eCIgYWxyZWFkeSBjb250YWlucyBhIFNESyBmb3IgdGhpcyAKPj4gYXJjaGl0ZWN0dXJlLikpKSkp
+KSkpKSkpKSkpKSkpKSkKPj4KPj4gSWYgeW91IGNvbnRpbnVlLCBleGlzdGluZyBmaWxlcyB3aWxs
+IGJlIG92ZXJ3cml0dGVuISAKPj4gUHJvY2VlZFt5L05dP1kpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKUV4dHJhY3RpbmcgCj4+IFNESy4uLmRvbmUpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+PiApKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpCj4+Cj4+IFNldHRpbmcgaXQgCj4+IHVwLi4uZG9uZSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+PiApKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpCj4+Cj4+IFNESyBoYXMgYmVlbiBzdWNjZXNzZnVsbHkgc2V0
+IHVwIGFuZCBpcyByZWFkeSB0byBiZSAKPj4gdXNlZC4pKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkKPj4KPj4gW0lORk9dIENsZWFuaW5nIHVwIAo+PiBmaWxl
+cy4uLikpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkKPj4gKSkpKSkpKSkpKSkpKSkpKSkKPj4KPj4gW0lORk9dIFByZWZpeCBQeXRob24g
+dmVyc2lvbiBpczogCj4+IDIuNy4xNSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+PiApKSkKPj4KPj4gW0lORk9dIEluc3RhbGxp
+bmcgZGVmYXVsdCBwYWNrYWdlcyBmb3IgCj4+IHByZWZpeC4uLikpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+Pgo+PiBbSU5GT10gCj4+ICkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKQo+PiApKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSAKPj4gLSB1aGQpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkKPj4gICAgLSBnbnVyYWRpbwo+PiAgICAtIGdyLWV0dHVzCj4+IFtJ
+TkZPXSBJbnN0YWxsIHB5dGhvbi1hcHQgdG8gc3BlZWQgdXAgYXB0IHByb2Nlc3NpbmcuCj4+IFtJ
+TkZPXSBQaGFzZSAxOiBDcmVhdGluZyBpbnN0YWxsIHRyZWUgYW5kIGluc3RhbGxpbmcgYmluYXJ5
+IHBhY2thZ2VzOgo+PiBJbnN0YWxsIHRyZWU6Cj4+IFwtIGdyLWV0dHVzCj4+ICAgICB8Cj4+ICAg
+ICArLSB1aGQKPj4gICAgIHwKPj4gICAgIFwtIGdudXJhZGlvCj4+ICAgICAgICB8Cj4+ICAgICAg
+ICBcLSB1aGQKPj4gW0lORk9dIFBoYXNlIDEgY29tcGxldGU6IEFsbCBiaW5hcnkgZGVwZW5kZW5j
+aWVzIGluc3RhbGxlZC4KPj4gW0lORk9dIFBoYXNlIDI6IFJlY3Vyc2l2ZWx5IGluc3RhbGxpbmcg
+c291cmNlIHBhY2thZ2VzIHRvIHByZWZpeDoKPj4gW0lORk9dIEluc3RhbGxpbmcgcGFja2FnZTog
+dWhkCj4+IFtXQVJOSU5HXSBBIHNvdXJjZSBidWlsZCBmb3IgcGFja2FnZSB1aGQgd2FzIHJlcXVl
+c3RlZCwgYnV0IGJpbmFyeSAKPj4gaW5zdGFsbCB3YXMgZm91bmQhCj4+IEluc3RhbGwgdWhkIGZy
+b20gc291cmNlIGRlc3BpdGUgYmluYXJ5IGluc3RhbGwgYXZhaWxhYmxlIFkvW05dPwo+PiBbSU5G
+T10gSW5zdGFsbCBweXRob24tYXB0IHRvIHNwZWVkIHVwIGFwdCBwcm9jZXNzaW5nLgo+PiBbV0FS
+TklOR10gQnVpbGQgZGlyIGFscmVhZHkgZXhpc3RzOgo+PiAvaG9tZS9kYXZpZC9wcmVmaXgvc3Jj
+L3VoZC9ob3N0L2J1aWxkCj4+IENvbmZpZ3VyaW5nOiAoMTAwJSkgCj4+IFs9PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo+
+PiA9PT09PT09PT09PT09PV0KPj4gW1dBUk5JTkddIENvbmZpZ3VyYXRpb24gZmFpbGVkLiBSZS10
+cnlpbmcgd2l0aCBoaWdoZXIgdmVyYm9zaXR5Lgo+PiBDTWFrZSBFcnJvciBhdCBDTWFrZUxpc3Rz
+LnR4dDoxMyAoY21ha2VfbWluaW11bV9yZXF1aXJlZCk6Cj4+ICAgIENNYWtlIDMuNS4xIG9yIGhp
+Z2hlciBpcyByZXF1aXJlZC4gIFlvdSBhcmUgcnVubmluZyB2ZXJzaW9uCj4+IDIuOC4xMi4yCj4+
+Cj4+IC0tIENvbmZpZ3VyaW5nIGluY29tcGxldGUsIGVycm9ycyBvY2N1cnJlZCEKPj4KPj4gUnVu
+bmluZyBjbWFrZSAtLXZlcnNpb24gb24gbXkgc3lzdGVtIHNob3dzOiAtCj4+Cj4+ICAgIGNtYWtl
+IHZlcnNpb24gMy4xMC4yCj4+Cj4+ICAgIENNYWtlIHN1aXRlIG1haW50YWluZWQgYW5kIHN1cHBv
+cnRlZCBieSBLaXR3YXJlCj4+IChraXR3YXJlLmNvbS9jbWFrZSkuCj4+Cj4+IEkgaGF2ZSBubyBp
+ZGVhIHdoeSBweWJvbWJzIHRoaW5rcyBJIGFtIHJ1bm5pbmcgY21ha2UgMi44LiBJIGhhdmUgCj4+
+IHNlYXJjaGVkIG9ubGluZSBhbmQgY2FuIGZpbmQgbm8gcmVmZXJlbmNlIHRvIHRoZSBpc3N1ZS4g
+SGFzIGFueW9uZQo+PiBlbHNlIAo+PiBlbmNvdW50ZXJlZCB0aGlzIGlzc3VlIG9yIGRvZXMgYW55
+b25lIGtub3cgb2YgYSBzb2x1dGlvbj8KPj4KPj4gVGhhbmtzLAo+Pgo+PiBEYXZpZAo+Pgo+Pgo+
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBVU1JQ
+LXVzZXJzIG1haWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiBodHRw
+Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
+cy5jb20KPiAKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
+aXN0cy5ldHR1cy5jb20KPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
+c3RzLmV0dHVzLmNvbQo=
