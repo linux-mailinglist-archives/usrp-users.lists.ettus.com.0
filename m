@@ -2,59 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B488CB035D
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2019 20:06:35 +0200 (CEST)
-Received: from [::1] (port=55842 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F17B04BB
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2019 22:08:11 +0200 (CEST)
+Received: from [::1] (port=55278 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i870k-0003ok-C5; Wed, 11 Sep 2019 14:06:34 -0400
-Received: from sanddollar.geekisp.com ([216.168.135.167]:27655)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <philip@balister.org>) id 1i870e-0003iW-L4
- for usrp-users@lists.ettus.com; Wed, 11 Sep 2019 14:06:28 -0400
-Received: (qmail 2428 invoked by uid 1003); 11 Sep 2019 18:05:53 -0000
-Received: from unknown (HELO ?192.168.11.139?)
- (philip@opensdr.com@73.152.143.112)
- by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 11 Sep 2019 18:05:53 -0000
-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>,
- David Scott <david.scott@nsl.eu.com>, usrp-users@lists.ettus.com
-References: <9bbb6b44-3e5f-2074-e8f3-b40fbde2b668@nsl.eu.com>
- <2f2fa99b6dceede2430c928b0ae13114877854de.camel@ettus.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
- mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
- HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
- rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
- 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
- fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
- AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
- CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
- nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
- 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
- YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
- 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
- yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
- gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
- GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
- uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
- LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
- gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
- WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
- 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
- ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
- icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
- ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
- 6eUfr0u7CwnEyqiQ
-Message-ID: <86f3861a-2129-1a2d-3b71-6a38ef948ad8@balister.org>
-Date: Wed, 11 Sep 2019 14:05:45 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+	id 1i88uN-0005hy-Q8; Wed, 11 Sep 2019 16:08:07 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:43795)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <javiercba@gmail.com>) id 1i88uJ-0005Te-VQ
+ for usrp-users@lists.ettus.com; Wed, 11 Sep 2019 16:08:04 -0400
+Received: by mail-io1-f48.google.com with SMTP id r8so23906700iol.10
+ for <usrp-users@lists.ettus.com>; Wed, 11 Sep 2019 13:07:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=UQl6TRaLtn3y+1YCoAIF/0LsvrhWa0OdUptKmCr4b3g=;
+ b=m1L2JjlCf6L0ixjEerCLyal9Gl99VmMTdOnb7BUabGooXrfaV5oF8hpFasfXcaB6RO
+ Gt4xCDngjkyB8jBZEG9RNRm+oVYOxYKrmQwhU0aV7BH5brh4XeTSs9DLlYxmnfqlPtpg
+ ExRo5GfEGqEPOOMgcEMR7U6SjfEtAOszJReEa4ouInonLTgOEZa7e1+vOrg9USU//XF+
+ pTvqeD6jllUmm9RRYwjELGXl7q86TXQs0jtkGISu6qlGGyYmaCKpZL3lZFvCEQ913h5k
+ UPQ3FwjSAyZl7KJFk+N0ReqEUHKhTQ14A1cTmMPmdDdTbKDGTr14pM3vrXZy4wb8YZqy
+ j4DQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=UQl6TRaLtn3y+1YCoAIF/0LsvrhWa0OdUptKmCr4b3g=;
+ b=dMGz3aE58wjiNGljatLgStLN5QPLJAEGYpAMqm5L02EdBa96jomRGgzRgDmdhG6rfH
+ VCBFiFeuXfbKHamJzsimOVxNLjANeDjaMAYhMogs7h6HdKUXAeWTIWtT9BL9c7haReS2
+ Bzj68GZ9cmoMa7TQAihVHMQZZcAlQa3/JNB/bHnDHfJalGBPNJiKzfCyO78FH4psmCgK
+ WI7ukd9AXnEVjlR9xev6rv0QPkUllwp3fA9cIqnTtcszRnroI4/gcylzNAZ8JkZ84lXT
+ CTs87JXb/MkgmoDLYPQG2Nkpezfv/7su8djdMBoqZwGMG+AkSipRtrNSRhAMKmB8RFlO
+ TN3Q==
+X-Gm-Message-State: APjAAAUFDv4S9Lki/9LJkLtCfOc+JtzvLLMaWNUuAgrtoxT8kBt4P0rM
+ OIh9qGK1LgkUncBoTj0S4Om2lPRXdKGENx5512rriVClyjw=
+X-Google-Smtp-Source: APXvYqwyfNr73J2EKbA8PoSceRCzdarWARAPZdukj+G+4OG83HDVTTSBv7bRVmgV94EQX5MYyhZXDqzTCWRzSG//AQw=
+X-Received: by 2002:a6b:3906:: with SMTP id g6mr18492201ioa.48.1568232442897; 
+ Wed, 11 Sep 2019 13:07:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2f2fa99b6dceede2430c928b0ae13114877854de.camel@ettus.com>
-Content-Language: en-MW
-Subject: Re: [USRP-users] Pybombs UHD install for development machine CMake
- version failure
+Date: Wed, 11 Sep 2019 17:09:51 -0300
+Message-ID: <CAMGw0PawXrX2hyLvDSPVqxhpccCh+L6HP64OmbOTqA21C6i6gA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] USRP B100 Help
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -66,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@balister.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Javier Uranga via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Javier Uranga <javiercba@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4551589593209922236=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,87 +70,113 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gOS8xMS8xOSAxMjozOCBQTSwgTWFyY3VzIE3DvGxsZXIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6
-Cj4gRGVhciBEYXZpZCwKPiAKPiBJJ3ZlIHNlZW4gdGhhdCBoYXBwZW4gb24gc3BlY2lmaWMgVWJ1
-bnR1IHZlcnNpb25zLCB3aGVyZSB0aGV5IHNvbWVob3cKPiBtaXNzZWQgdG8gY2xlYW4gdXAgLyBt
-YXJrIGNvbmZsaWN0IGJldHdlZW4gQ01ha2UgMi54IHBhY2thZ2VzIGFuZCBuZXdlcgo+IENNYWtl
-IChJJ20gcGVycGV0dWFsbHkgZGlzYXBwb2ludGVkIGJ5IENhbm9uaWNhbCkuIE1ha2UgdHdpY2Ug
-YXMgc3VyZQo+IHRoYXQgeW91IG9ubHkgZ290IG9uZSBDTWFrZSBpbnN0YWxsZWQgLSBpZiB0aGlz
-IGlzIGFjdHVhbGx5IFVidW50dSwKPiAiYXB0IHNlYXJjaCBjbWFrZSIgbWlnaHQgYmUgdGhlIHdh
-eSB0byBzdGFydC4KCkZvciB0aGUgRS1zZXJpZXMgSSB3b3VsZCBleHBlY3QgY21ha2UgdG8gYmUg
-dGhlIG9uZSBpbiB0aGUgc2RrLCB1bmxlc3MKc29tZXRoaW5nIGlzIHNjcmV3ZWQgdXAuCgpQaGls
-aXAKCj4gCj4gQmVzdCByZWdhcmRzLAo+IE1hcmN1cwo+IAo+IE9uIFdlZCwgMjAxOS0wOS0xMSBh
-dCAxNjo0MiArMDEwMCwgRGF2aWQgU2NvdHQgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+IEhpIGFs
-bCwKPj4KPj4gSSBoYXZlIHJlY2VudGx5IGFjcXVpcmVkIGEgVVNSUCBFMzEyIGFuZCBoYXZlIGJl
-ZW4gZm9sbG93aW5nIHRoZSAKPj4gcXVpY2tzdGFydCBndWlkZSBhdDogLQo+Pgo+PiBodHRwczov
-L2tiLmV0dHVzLmNvbS9Tb2Z0d2FyZV9EZXZlbG9wbWVudF9vbl90aGVfRTMxMF9hbmRfRTMxMgo+
-Pgo+PiBUaGUgcmVsZXZhbnQgY29tbWFuZHMgYmVpbmc6IC0KPj4KPj4gICAgJCBzdWRvIHBpcCBp
-bnN0YWxsIGdpdCtodHRwczovL2dpdGh1Yi5jb20vZ251cmFkaW8vcHlib21icy5naXQKPj4gICAg
-JCBweWJvbWJzIHJlY2lwZXMgYWRkIGdyLXJlY2lwZXMgCj4+IGdpdCtodHRwczovL2dpdGh1Yi5j
-b20vZ251cmFkaW8vZ3ItcmVjaXBlcy5naXQKPj4gICAgJCBweWJvbWJzIHJlY2lwZXMgYWRkIGV0
-dHVzIAo+PiBodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC9ldHR1cy1weWJvbWJzLmdp
-dAo+PiAgICAkIHN1ZG8gZHBrZy1yZWNvbmZpZ3VyZSBkYXNoICMgc2VsZWN0IE5PCj4+ICAgICQg
-cHlib21icyBwcmVmaXggaW5pdCB+L3ByZWZpeCAtUiBlM3h4LXJmbm9jIC1hIGUzMDAKPj4KPj4g
-RXZlcnl0aGluZyBwcm9jZWVkcyB3ZWxsIHVwIHVudGlsIHRoZSBDTWFrZSBpcyBjYXJyaWVkIG91
-dCBhdCB3aGljaAo+PiBpdCAKPj4gY29tcGxhaW5zIHRoYXQgdGhlIGluc3RhbGxlZCB2ZXJzaW9u
-IG9mIENNYWtlIGlzIGJlbG93IHRoZSBtaW5pbXVtLgo+PiBUaGUgCj4+IG91dHB1dCBsb2cgaXMg
-OiAtCj4+Cj4+Cj4+IDE1MTE3NTAga0IgLyAxNTExNzUwIGtCIAo+PiAoMTAwJSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkKPj4g
-KSkpKSkpKSkpKSkpCj4+Cj4+IFtJTkZPXSBJbnN0YWxsaW5nIFNESyAKPj4gYGUzeHgtcmVsZWFz
-ZTQtCj4+IHNkaycpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpCj4+Cj4+IFRoZSBkaXJlY3RvcnkgIi9ob21lL2RhdmlkL3ByZWZp
-eCIgYWxyZWFkeSBjb250YWlucyBhIFNESyBmb3IgdGhpcyAKPj4gYXJjaGl0ZWN0dXJlLikpKSkp
-KSkpKSkpKSkpKSkpKSkKPj4KPj4gSWYgeW91IGNvbnRpbnVlLCBleGlzdGluZyBmaWxlcyB3aWxs
-IGJlIG92ZXJ3cml0dGVuISAKPj4gUHJvY2VlZFt5L05dP1kpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKUV4dHJhY3RpbmcgCj4+IFNESy4uLmRvbmUpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+PiApKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpCj4+Cj4+IFNldHRpbmcgaXQgCj4+IHVwLi4uZG9uZSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+PiApKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpCj4+Cj4+IFNESyBoYXMgYmVlbiBzdWNjZXNzZnVsbHkgc2V0
-IHVwIGFuZCBpcyByZWFkeSB0byBiZSAKPj4gdXNlZC4pKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkKPj4KPj4gW0lORk9dIENsZWFuaW5nIHVwIAo+PiBmaWxl
-cy4uLikpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkKPj4gKSkpKSkpKSkpKSkpKSkpKSkKPj4KPj4gW0lORk9dIFByZWZpeCBQeXRob24g
-dmVyc2lvbiBpczogCj4+IDIuNy4xNSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+PiApKSkKPj4KPj4gW0lORk9dIEluc3RhbGxp
-bmcgZGVmYXVsdCBwYWNrYWdlcyBmb3IgCj4+IHByZWZpeC4uLikpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+Pgo+PiBbSU5GT10gCj4+ICkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKQo+PiApKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSAKPj4gLSB1aGQpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkKPj4gICAgLSBnbnVyYWRpbwo+PiAgICAtIGdyLWV0dHVzCj4+IFtJ
-TkZPXSBJbnN0YWxsIHB5dGhvbi1hcHQgdG8gc3BlZWQgdXAgYXB0IHByb2Nlc3NpbmcuCj4+IFtJ
-TkZPXSBQaGFzZSAxOiBDcmVhdGluZyBpbnN0YWxsIHRyZWUgYW5kIGluc3RhbGxpbmcgYmluYXJ5
-IHBhY2thZ2VzOgo+PiBJbnN0YWxsIHRyZWU6Cj4+IFwtIGdyLWV0dHVzCj4+ICAgICB8Cj4+ICAg
-ICArLSB1aGQKPj4gICAgIHwKPj4gICAgIFwtIGdudXJhZGlvCj4+ICAgICAgICB8Cj4+ICAgICAg
-ICBcLSB1aGQKPj4gW0lORk9dIFBoYXNlIDEgY29tcGxldGU6IEFsbCBiaW5hcnkgZGVwZW5kZW5j
-aWVzIGluc3RhbGxlZC4KPj4gW0lORk9dIFBoYXNlIDI6IFJlY3Vyc2l2ZWx5IGluc3RhbGxpbmcg
-c291cmNlIHBhY2thZ2VzIHRvIHByZWZpeDoKPj4gW0lORk9dIEluc3RhbGxpbmcgcGFja2FnZTog
-dWhkCj4+IFtXQVJOSU5HXSBBIHNvdXJjZSBidWlsZCBmb3IgcGFja2FnZSB1aGQgd2FzIHJlcXVl
-c3RlZCwgYnV0IGJpbmFyeSAKPj4gaW5zdGFsbCB3YXMgZm91bmQhCj4+IEluc3RhbGwgdWhkIGZy
-b20gc291cmNlIGRlc3BpdGUgYmluYXJ5IGluc3RhbGwgYXZhaWxhYmxlIFkvW05dPwo+PiBbSU5G
-T10gSW5zdGFsbCBweXRob24tYXB0IHRvIHNwZWVkIHVwIGFwdCBwcm9jZXNzaW5nLgo+PiBbV0FS
-TklOR10gQnVpbGQgZGlyIGFscmVhZHkgZXhpc3RzOgo+PiAvaG9tZS9kYXZpZC9wcmVmaXgvc3Jj
-L3VoZC9ob3N0L2J1aWxkCj4+IENvbmZpZ3VyaW5nOiAoMTAwJSkgCj4+IFs9PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo+
-PiA9PT09PT09PT09PT09PV0KPj4gW1dBUk5JTkddIENvbmZpZ3VyYXRpb24gZmFpbGVkLiBSZS10
-cnlpbmcgd2l0aCBoaWdoZXIgdmVyYm9zaXR5Lgo+PiBDTWFrZSBFcnJvciBhdCBDTWFrZUxpc3Rz
-LnR4dDoxMyAoY21ha2VfbWluaW11bV9yZXF1aXJlZCk6Cj4+ICAgIENNYWtlIDMuNS4xIG9yIGhp
-Z2hlciBpcyByZXF1aXJlZC4gIFlvdSBhcmUgcnVubmluZyB2ZXJzaW9uCj4+IDIuOC4xMi4yCj4+
-Cj4+IC0tIENvbmZpZ3VyaW5nIGluY29tcGxldGUsIGVycm9ycyBvY2N1cnJlZCEKPj4KPj4gUnVu
-bmluZyBjbWFrZSAtLXZlcnNpb24gb24gbXkgc3lzdGVtIHNob3dzOiAtCj4+Cj4+ICAgIGNtYWtl
-IHZlcnNpb24gMy4xMC4yCj4+Cj4+ICAgIENNYWtlIHN1aXRlIG1haW50YWluZWQgYW5kIHN1cHBv
-cnRlZCBieSBLaXR3YXJlCj4+IChraXR3YXJlLmNvbS9jbWFrZSkuCj4+Cj4+IEkgaGF2ZSBubyBp
-ZGVhIHdoeSBweWJvbWJzIHRoaW5rcyBJIGFtIHJ1bm5pbmcgY21ha2UgMi44LiBJIGhhdmUgCj4+
-IHNlYXJjaGVkIG9ubGluZSBhbmQgY2FuIGZpbmQgbm8gcmVmZXJlbmNlIHRvIHRoZSBpc3N1ZS4g
-SGFzIGFueW9uZQo+PiBlbHNlIAo+PiBlbmNvdW50ZXJlZCB0aGlzIGlzc3VlIG9yIGRvZXMgYW55
-b25lIGtub3cgb2YgYSBzb2x1dGlvbj8KPj4KPj4gVGhhbmtzLAo+Pgo+PiBEYXZpZAo+Pgo+Pgo+
-PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiBodHRw
-Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
-cy5jb20KPiAKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
-aXN0cy5ldHR1cy5jb20KPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
-c3RzLmV0dHVzLmNvbQo=
+--===============4551589593209922236==
+Content-Type: multipart/alternative; boundary="000000000000af2b6105924c91f4"
+
+--000000000000af2b6105924c91f4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Members in the List,
+
+I'm working with an old USRP B100 that came with a cubesat development  kit=
+,
+
+Now suddenly stop working, no longer respond to:
+
+uhd_find_devices
+linux; GNU C++ version 5.3.1 20151219; Boost_105800;
+UHD_003.009.002-=E2=81=A00-=E2=81=A0unknown
+No UHD Devices Found
+
+uhd_usrp_probe
+linux; GNU C++ version 5.3.1 20151219; Boost_105800;
+UHD_003.009.002-=E2=81=A00-=E2=81=A0unknown
+Error: LookupError: KeyError: No devices found for -=E2=81=A0-=E2=81=A0-=E2=
+=81=A0-=E2=81=A0-=E2=81=A0>
+Empty Device Address
+
+I must to say that, until few minutes before, the device showed no
+problems, but after a switch OFF/ON the device, problems came up
+
+And when I ask:
+
+$lsusb
+the device found is:
+Bus 003 Device 003: ID 04b4:8613 Cypress Semiconductor Corp. CY7C68013
+EZ-=E2=81=A0USB FX2 USB 2.0 Development Kit
+
+As you can see, the detected device is not longer Ettus USRP as use to be.
+More over, in the front panel, new led is on, there is a new led in ON
+status, the LED B: FPGA loaded
+(in addition to:
+LED A: transmitting,    ON
+LED C: receiving,          ON
+LED D: FPGA loaded,   OFF
+LED E: reference lock, ON
+LED F: board power,     ON )
+
+I already re installed the GNU RADIO 3.7.9 drivers for Ubuntu 16.04 and GNU
+RADIO 3.7.11 for Ubuntu 18.04, all systems where it use to work, But the
+USRP is no longer detected.
+
+drivers in Ubuntu 16.04:
+/usr/share/uhd/images$ ls
+usrp_b100_fw.ihx
+usrp_b100_fpga.bin
+
+What can be wrong ?, it's Firmware problem ?
+How can I solve it?
+
+I'll be very grateful with any comments or suggestions
+
+Best Regards,
+Javier Nicolas
+
+--000000000000af2b6105924c91f4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif;font-size:small">Dear Members in the List,<br><br>I&#39;=
+m working with an old USRP B100 that came with a cubesat development =C2=A0=
+kit,<br><br>Now suddenly stop working, no longer respond to:<br><br>uhd_fin=
+d_devices<br>linux; GNU C++ version 5.3.1 20151219; Boost_105800;<br>UHD_00=
+3.009.002-=E2=81=A00-=E2=81=A0unknown<br>No UHD Devices Found<br><br>uhd_us=
+rp_probe<br>linux; GNU C++ version 5.3.1 20151219; Boost_105800;<br>UHD_003=
+.009.002-=E2=81=A00-=E2=81=A0unknown<br>Error: LookupError: KeyError: No de=
+vices found for -=E2=81=A0-=E2=81=A0-=E2=81=A0-=E2=81=A0-=E2=81=A0&gt;<br>E=
+mpty Device Address<br><br>I must to say that, until few minutes before, th=
+e device showed no<br>problems, but after a switch OFF/ON the device, probl=
+ems came up<br><br>And when I ask:<br><br>$lsusb<br>the device found is:<br=
+>Bus 003 Device 003: ID 04b4:8613 Cypress Semiconductor Corp. CY7C68013<br>=
+EZ-=E2=81=A0USB FX2 USB 2.0 Development Kit<br><br>As you can see, the dete=
+cted device is not longer Ettus USRP as use to be. More over, in the front =
+panel, new led is on, there is a new led in ON status, the LED B: FPGA load=
+ed<br>(in addition to:<br>LED A: transmitting, =C2=A0 =C2=A0ON<br>LED C: re=
+ceiving, =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ON<br>LED D: FPGA loaded, =C2=A0=
+ OFF<br>LED E: reference lock, ON<br>LED F: board power, =C2=A0 =C2=A0 ON )=
+<br><br>I already re installed the GNU RADIO 3.7.9 drivers for Ubuntu 16.04=
+ and GNU RADIO 3.7.11 for Ubuntu 18.04, all systems where it use to work, B=
+ut the USRP is no longer detected.<br><br>drivers in Ubuntu 16.04:<br>/usr/=
+share/uhd/images$ ls<br>usrp_b100_fw.ihx<br>usrp_b100_fpga.bin =C2=A0 <br><=
+br>What can be wrong ?, it&#39;s Firmware problem ?<br>How can I solve it?<=
+br><br>I&#39;ll be very grateful with any comments or suggestions<br><br>Be=
+st Regards,<br>Javier Nicolas<br></div></div>
+
+--000000000000af2b6105924c91f4--
+
+
+--===============4551589593209922236==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============4551589593209922236==--
+
