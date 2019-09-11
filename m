@@ -2,31 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D238B0068
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2019 17:43:06 +0200 (CEST)
-Received: from [::1] (port=57346 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D881B00A4
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2019 17:55:47 +0200 (CEST)
+Received: from [::1] (port=60898 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i84ls-0000uH-Df; Wed, 11 Sep 2019 11:43:04 -0400
-Received: from mailgate.nsl.eu.com ([77.111.227.135]:52714)
+	id 1i84y9-00029d-SG; Wed, 11 Sep 2019 11:55:45 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:44945)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <david.scott@nsl.eu.com>)
- id 1i84lo-0000hU-6c
- for usrp-users@lists.ettus.com; Wed, 11 Sep 2019 11:43:00 -0400
-Received: from mailgate.nsl.eu.com ([77.111.227.135] helo=[192.168.16.148])
- by mailgate.nsl.eu.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.86_2) (envelope-from <david.scott@nsl.eu.com>)
- id 1i84l8-0007FY-Ja
- for usrp-users@lists.ettus.com; Wed, 11 Sep 2019 16:42:18 +0100
-To: usrp-users@lists.ettus.com
-Message-ID: <9bbb6b44-3e5f-2074-e8f3-b40fbde2b668@nsl.eu.com>
-Date: Wed, 11 Sep 2019 16:42:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1i84y6-00022U-9Q
+ for usrp-users@lists.ettus.com; Wed, 11 Sep 2019 11:55:42 -0400
+Received: by mail-oi1-f178.google.com with SMTP id w6so14511676oie.11
+ for <usrp-users@lists.ettus.com>; Wed, 11 Sep 2019 08:55:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BSDqUYT34VkHHQO4xOa35LcKWhoJ+Zb7eJ58lRRBpSY=;
+ b=fe6ALIfeJB5NSVG1WjEkT6nga437PrlsAzAtYGy/tTzCIBnmxf/WAG6flsGsAE0YOs
+ OL+b6LiiJd7FzCKNpVQY6Cm3XdEi9MVKvPm5L36eqX/cCvN0Szy/VHMeOnMAk0gg5h9o
+ EjsZPRsqS5GXmxfF/wMWDTpYiVO9yfA2TPSqIoy7ym+e7w0GUER4vlQfhr2ojnqno+5j
+ pRanDj9FLqZ5ik8+e1/h+5UWc4v5+ocT4WacLUvNOPJD+8ZBuP9HpwKb8FljMHnslDny
+ zg48AGBeWFNnVlP3Ps9xyy0gUUL2Oo3VqAeXnmCSbkhU14gy8BPzvVoSLffrCmDDo64z
+ QbQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BSDqUYT34VkHHQO4xOa35LcKWhoJ+Zb7eJ58lRRBpSY=;
+ b=UdqAR8EmP5k3CS/DCTgJ6q1pMQJW2Ph3IPOcL0pCN9AXDQw/lxj9Ed1kfSL7I5oWsD
+ kfGMmWpx2JWolP3gQ4f78FxgUGy8uzN9vkOkAU+jGtBFFUsq2nXR5Ij6cAOy9aayL2PX
+ oiNGMTuwGG/PKB+FnMYsYM+uKj98aOuv7To+6e38LJZ/QehtdyGh1nP6beaeF/1zSu3e
+ yKrG+VgglkABMNKG8rQbKA8CgbgcelPn44FP3cFqj9Wahdmh7vbUoX0uPFqoIVSC6jzC
+ lJaP2I0ttC3/FGuGHnFqNfBVTGOm2H2VtnL+K4Qlrbhj1OvpcFWrLQI3ijmNqEvYdxAz
+ pdaA==
+X-Gm-Message-State: APjAAAXW+zhV9wRB/rzq0KNsJNQlrW8B5663vc3o0Xsrh7WIWN2OImAk
+ BLYaEAdoBRXC5FFR28GLqcTBZwMWM0miCokeNO/Capnl
+X-Google-Smtp-Source: APXvYqzKNqYIDUNzTp9j8A/t0v4JngStIrslW02hgwH/+QnFla1Mn6WRErbqKb2u62Or7WUHGS+pHfRQ8RbEuiiD3RU=
+X-Received: by 2002:a05:6808:8e3:: with SMTP id
+ d3mr4529673oic.153.1568217301335; 
+ Wed, 11 Sep 2019 08:55:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: en-GB
-Subject: [USRP-users] Pybombs UHD install for development machine CMake
- version failure
+References: <CAB__hTSxpErvsfskWaZMGuSkXCmXOP+nH7KVARXNXzgcZcz_Yg@mail.gmail.com>
+ <CAL263iwUChY77FaRFsTg2VSZM2dGxZ7eOHphc-VVfJJyPqrn+g@mail.gmail.com>
+In-Reply-To: <CAL263iwUChY77FaRFsTg2VSZM2dGxZ7eOHphc-VVfJJyPqrn+g@mail.gmail.com>
+Date: Wed, 11 Sep 2019 11:54:50 -0400
+Message-ID: <CAB__hTQf1553NT1G63rfCZzwv4ErAa+6AOqY5Eira83qB_RkFQ@mail.gmail.com>
+To: Nate Temple <nate.temple@ettus.com>
+Subject: Re: [USRP-users] Error running 1024 pt FFT block on N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -38,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: David Scott via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: David Scott <david.scott@nsl.eu.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4430385222950032957=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -55,65 +76,162 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgYWxsLAoKSSBoYXZlIHJlY2VudGx5IGFjcXVpcmVkIGEgVVNSUCBFMzEyIGFuZCBoYXZlIGJl
-ZW4gZm9sbG93aW5nIHRoZSAKcXVpY2tzdGFydCBndWlkZSBhdDogLQoKaHR0cHM6Ly9rYi5ldHR1
-cy5jb20vU29mdHdhcmVfRGV2ZWxvcG1lbnRfb25fdGhlX0UzMTBfYW5kX0UzMTIKClRoZSByZWxl
-dmFudCBjb21tYW5kcyBiZWluZzogLQoKIMKgICQgc3VkbyBwaXAgaW5zdGFsbCBnaXQraHR0cHM6
-Ly9naXRodWIuY29tL2dudXJhZGlvL3B5Ym9tYnMuZ2l0CiDCoCAkIHB5Ym9tYnMgcmVjaXBlcyBh
-ZGQgZ3ItcmVjaXBlcyAKZ2l0K2h0dHBzOi8vZ2l0aHViLmNvbS9nbnVyYWRpby9nci1yZWNpcGVz
-LmdpdAogwqAgJCBweWJvbWJzIHJlY2lwZXMgYWRkIGV0dHVzIApodHRwczovL2dpdGh1Yi5jb20v
-RXR0dXNSZXNlYXJjaC9ldHR1cy1weWJvbWJzLmdpdAogwqAgJCBzdWRvIGRwa2ctcmVjb25maWd1
-cmUgZGFzaCAjIHNlbGVjdCBOTwogwqAgJCBweWJvbWJzIHByZWZpeCBpbml0IH4vcHJlZml4IC1S
-IGUzeHgtcmZub2MgLWEgZTMwMAoKRXZlcnl0aGluZyBwcm9jZWVkcyB3ZWxsIHVwIHVudGlsIHRo
-ZSBDTWFrZSBpcyBjYXJyaWVkIG91dCBhdCB3aGljaCBpdCAKY29tcGxhaW5zIHRoYXQgdGhlIGlu
-c3RhbGxlZCB2ZXJzaW9uIG9mIENNYWtlIGlzIGJlbG93IHRoZSBtaW5pbXVtLiBUaGUgCm91dHB1
-dCBsb2cgaXMgOiAtCgoKMTUxMTc1MCBrQiAvIDE1MTE3NTAga0IgCigxMDAlKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKQoKW0lORk9dIEluc3RhbGxpbmcgU0RLIApgZTN4eC1yZWxlYXNlNC1zZGsnKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KQoKVGhlIGRpcmVjdG9yeSAiL2hvbWUvZGF2aWQvcHJlZml4IiBhbHJlYWR5IGNvbnRhaW5zIGEg
-U0RLIGZvciB0aGlzIAphcmNoaXRlY3R1cmUuKSkpKSkpKSkpKSkpKSkpKSkpKQoKSWYgeW91IGNv
-bnRpbnVlLCBleGlzdGluZyBmaWxlcyB3aWxsIGJlIG92ZXJ3cml0dGVuISAKUHJvY2VlZFt5L05d
-P1kpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKUV4dHJhY3RpbmcgClNESy4u
-LmRvbmUpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkKClNldHRpbmcgaXQgCnVwLi4uZG9uZSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkKClNESyBoYXMgYmVlbiBzdWNjZXNzZnVsbHkgc2V0
-IHVwIGFuZCBpcyByZWFkeSB0byBiZSAKdXNlZC4pKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkKCltJTkZPXSBDbGVhbmluZyB1cCAKZmlsZXMuLi4pKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkKCltJTkZPXSBQcmVmaXggUHl0aG9uIHZlcnNpb24gaXM6IAoyLjcuMTUp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkKCltJTkZPXSBJbnN0YWxsaW5nIGRlZmF1bHQgcGFja2FnZXMgZm9yIApwcmVmaXgu
-Li4pKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkKCltJTkZPXSAKKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
-KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkgCi0g
-dWhkKSkpKSkpKSkpKSkpKSkpKSkpKSkpCiDCoCAtIGdudXJhZGlvCiDCoCAtIGdyLWV0dHVzCltJ
-TkZPXSBJbnN0YWxsIHB5dGhvbi1hcHQgdG8gc3BlZWQgdXAgYXB0IHByb2Nlc3NpbmcuCltJTkZP
-XSBQaGFzZSAxOiBDcmVhdGluZyBpbnN0YWxsIHRyZWUgYW5kIGluc3RhbGxpbmcgYmluYXJ5IHBh
-Y2thZ2VzOgpJbnN0YWxsIHRyZWU6CnwKXC0gZ3ItZXR0dXMKIMKgwqAgfAogwqDCoCArLSB1aGQK
-IMKgwqAgfAogwqDCoCBcLSBnbnVyYWRpbwogwqDCoMKgwqDCoCB8CiDCoMKgwqDCoMKgIFwtIHVo
-ZApbSU5GT10gUGhhc2UgMSBjb21wbGV0ZTogQWxsIGJpbmFyeSBkZXBlbmRlbmNpZXMgaW5zdGFs
-bGVkLgpbSU5GT10gUGhhc2UgMjogUmVjdXJzaXZlbHkgaW5zdGFsbGluZyBzb3VyY2UgcGFja2Fn
-ZXMgdG8gcHJlZml4OgpbSU5GT10gSW5zdGFsbGluZyBwYWNrYWdlOiB1aGQKW1dBUk5JTkddIEEg
-c291cmNlIGJ1aWxkIGZvciBwYWNrYWdlIHVoZCB3YXMgcmVxdWVzdGVkLCBidXQgYmluYXJ5IApp
-bnN0YWxsIHdhcyBmb3VuZCEKSW5zdGFsbCB1aGQgZnJvbSBzb3VyY2UgZGVzcGl0ZSBiaW5hcnkg
-aW5zdGFsbCBhdmFpbGFibGUgWS9bTl0/CltJTkZPXSBJbnN0YWxsIHB5dGhvbi1hcHQgdG8gc3Bl
-ZWQgdXAgYXB0IHByb2Nlc3NpbmcuCltXQVJOSU5HXSBCdWlsZCBkaXIgYWxyZWFkeSBleGlzdHM6
-IC9ob21lL2RhdmlkL3ByZWZpeC9zcmMvdWhkL2hvc3QvYnVpbGQKQ29uZmlndXJpbmc6ICgxMDAl
-KSAKWz09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1dCltXQVJOSU5HXSBDb25maWd1cmF0aW9uIGZh
-aWxlZC4gUmUtdHJ5aW5nIHdpdGggaGlnaGVyIHZlcmJvc2l0eS4KQ01ha2UgRXJyb3IgYXQgQ01h
-a2VMaXN0cy50eHQ6MTMgKGNtYWtlX21pbmltdW1fcmVxdWlyZWQpOgogwqAgQ01ha2UgMy41LjEg
-b3IgaGlnaGVyIGlzIHJlcXVpcmVkLsKgIFlvdSBhcmUgcnVubmluZyB2ZXJzaW9uIDIuOC4xMi4y
-CgotLSBDb25maWd1cmluZyBpbmNvbXBsZXRlLCBlcnJvcnMgb2NjdXJyZWQhCgpSdW5uaW5nIGNt
-YWtlIC0tdmVyc2lvbiBvbiBteSBzeXN0ZW0gc2hvd3M6IC0KCiDCoCBjbWFrZSB2ZXJzaW9uIDMu
-MTAuMgoKIMKgIENNYWtlIHN1aXRlIG1haW50YWluZWQgYW5kIHN1cHBvcnRlZCBieSBLaXR3YXJl
-IChraXR3YXJlLmNvbS9jbWFrZSkuCgpJIGhhdmUgbm8gaWRlYSB3aHkgcHlib21icyB0aGlua3Mg
-SSBhbSBydW5uaW5nIGNtYWtlIDIuOC4gSSBoYXZlIApzZWFyY2hlZCBvbmxpbmUgYW5kIGNhbiBm
-aW5kIG5vIHJlZmVyZW5jZSB0byB0aGUgaXNzdWUuIEhhcyBhbnlvbmUgZWxzZSAKZW5jb3VudGVy
-ZWQgdGhpcyBpc3N1ZSBvciBkb2VzIGFueW9uZSBrbm93IG9mIGEgc29sdXRpb24/CgpUaGFua3Ms
-CgpEYXZpZAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-ClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6
-Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVz
-LmNvbQo=
+--===============4430385222950032957==
+Content-Type: multipart/alternative; boundary="0000000000002d762c0592490b0e"
+
+--0000000000002d762c0592490b0e
+Content-Type: text/plain; charset="UTF-8"
+
+Thanks Nate,
+But I want to clarify a bit.  For the N3xx and X310 (I don't know about the
+E3xx), the problem is not the FFT size, but simply the packet size on the
+xbar is limited to a certain size and given that the FFT noc block
+presently ties the packet size to the output FFT size, this effectively
+limits the FFT size.  Is this correct?
+
+If so, then I will mention that it is an easy change in the FFT noc block
+to set RESIZE_OUTPUT_PACKET=1 in the axi_wrapper in order to decouple the
+output packet size from the FFT size and instead couple it to the input
+packet size.
+
+Rob
+
+On Wed, Sep 11, 2019 at 11:49 AM Nate Temple <nate.temple@ettus.com> wrote:
+
+> Hi Rob,
+>
+> The N3xx (and E3xx) only support having an FFT size up to 512 due to the
+> page size. It'd be possible to modify the blocks to break up the FFT over
+> several packets but it is not currently implemented. The X310 as is
+> supports up to a 1024 point FFT.
+>
+> Regards,
+> Nate Temple
+>
+> On Mon, Sep 9, 2019 at 12:35 PM Rob Kossler via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hi,
+>> I am having trouble running the FFT block of size 1024 on an N310.  I am
+>> using the "rfnoc_rx_to_file" example program (UHD v3.14.1.0) to run it.  It
+>> works with size 256 or 512.  Additionally, I am able to run with 1024 if I
+>> switch to an X310 (same PC). Please let me know if you have any ideas...
+>> Rob
+>>
+>> *Here is the command that fails:*
+>>
+>> rfnoc_rx_to_file --args="type=n3xx" --nsamps=65536 --block-id=FFT_0
+>> --block-args="spp=1024" --rate=125e6 --freq=2400e6 --radio-args="spp=1024"
+>>
+>> *The following is the output with error message:*
+>>
+>> Using radio 0, channel 0
+>> Setting RX Rate: 125.000000 Msps...
+>> Actual RX Rate: 125.000000 Msps...
+>>
+>> Setting RX Freq: 2400.000000 MHz...
+>> Actual RX Freq: 2400.000000 MHz...
+>>
+>> Connecting 0/Radio_0 ==> 0/FFT_0
+>> [WARNING] [RFNOC] Assuming max packet size for 0/Radio_0
+>> Samples per packet: 1024
+>> Using streamer args: block_id=0/FFT_0,spp=1024
+>> Issuing stream cmd
+>> [ERROR] [RX FLOW CTRL] Error unpacking packet: ValueError: Bad CHDR or
+>> packet fragment
+>>
+>> [ERROR] [STREAMER] The receive packet handler caught a value exception.
+>> ValueError: Bad CHDR or packet fragment
+>> Error: Receiver error: ERROR_CODE_BAD_PACKET
+>>
+>> *Note that the following works fine with an X310*
+>>
+>> rfnoc_rx_to_file --args="type=x300" --nsamps=65536 --block-id=FFT_0
+>> --block-args="spp=1024" --rate=100e6 --freq=2400e6
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
+
+--0000000000002d762c0592490b0e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks Nate,<div>But I want to clarify a bit.=C2=A0 For th=
+e N3xx and X310 (I don&#39;t know about the E3xx), the problem is not the F=
+FT size, but simply the packet size on the xbar is limited to a certain siz=
+e and given that the FFT noc block presently ties the packet size to the ou=
+tput FFT size, this effectively limits the FFT size.=C2=A0 Is this correct?=
+</div><div><br></div><div>If so, then I will mention that it is an easy cha=
+nge in the FFT noc block to set RESIZE_OUTPUT_PACKET=3D1 in the axi_wrapper=
+ in order to decouple the output packet size from the FFT size and instead =
+couple it to the input packet size.</div><div><br></div><div>Rob</div></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On We=
+d, Sep 11, 2019 at 11:49 AM Nate Temple &lt;<a href=3D"mailto:nate.temple@e=
+ttus.com">nate.temple@ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_defau=
+lt" style=3D"font-family:arial,helvetica,sans-serif">Hi Rob,<br><br>The N3x=
+x (and E3xx) only support having an FFT size up to 512 due to the page size=
+. It&#39;d be possible to modify the blocks to break up the FFT over severa=
+l packets but it is not currently implemented. The X310 as is supports up t=
+o a 1024 point FFT.<br><br>Regards,<br>Nate Temple</div></div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 9, 2019=
+ at 12:35 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-users@li=
+sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
+>Hi,<br><div>I am having trouble running the FFT block of size 1024 on an N=
+310.=C2=A0 I am using the &quot;rfnoc_rx_to_file&quot; example program (UHD=
+ v3.14.1.0) to run it.=C2=A0 It works with size 256 or 512.=C2=A0 Additiona=
+lly, I am able to run with 1024 if I switch to an X310 (same PC). Please le=
+t me know if you have any ideas...</div><div>Rob</div><div><br></div><div><=
+b>Here is the command that fails:</b></div><div><br></div><div><font face=
+=3D"monospace">rfnoc_rx_to_file --args=3D&quot;type=3Dn3xx&quot; --nsamps=
+=3D65536 --block-id=3DFFT_0 --block-args=3D&quot;spp=3D1024&quot; --rate=3D=
+125e6 --freq=3D2400e6 --radio-args=3D&quot;spp=3D1024&quot;</font><br></div=
+><div><br></div><div><b>The following is the output with error message:</b>=
+</div><div><br></div><div><font face=3D"monospace">Using radio 0, channel 0=
+<br>Setting RX Rate: 125.000000 Msps...<br>Actual RX Rate: 125.000000 Msps.=
+..<br><br>Setting RX Freq: 2400.000000 MHz...<br>Actual RX Freq: 2400.00000=
+0 MHz...<br><br>Connecting 0/Radio_0 =3D=3D&gt; 0/FFT_0<br>[WARNING] [RFNOC=
+] Assuming max packet size for 0/Radio_0<br>Samples per packet: 1024<br>Usi=
+ng streamer args: block_id=3D0/FFT_0,spp=3D1024<br>Issuing stream cmd<br>[E=
+RROR] [RX FLOW CTRL] Error unpacking packet: ValueError: Bad CHDR or packet=
+ fragment<br><br>[ERROR] [STREAMER] The receive packet handler caught a val=
+ue exception.<br>ValueError: Bad CHDR or packet fragment<br>Error: Receiver=
+ error: ERROR_CODE_BAD_PACKET</font><br></div><div><br></div><div><b>Note t=
+hat the following works fine with an X310</b></div><div><br></div><div><fon=
+t face=3D"monospace">rfnoc_rx_to_file --args=3D&quot;type=3Dx300&quot; --ns=
+amps=3D65536 --block-id=3DFFT_0 --block-args=3D&quot;spp=3D1024&quot; --rat=
+e=3D100e6 --freq=3D2400e6</font><br></div><div><font face=3D"monospace"><br=
+></font></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+
+--0000000000002d762c0592490b0e--
+
+
+--===============4430385222950032957==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============4430385222950032957==--
+
