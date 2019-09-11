@@ -2,52 +2,38 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F52AF4B4
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2019 05:36:23 +0200 (CEST)
-Received: from [::1] (port=37036 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2592AFAE6
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Sep 2019 12:56:15 +0200 (CEST)
+Received: from [::1] (port=57770 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i7tQb-0003lm-Lv; Tue, 10 Sep 2019 23:36:21 -0400
-Received: from mail-lf1-f45.google.com ([209.85.167.45]:35836)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1i7tQX-0003iD-SA
- for usrp-users@lists.ettus.com; Tue, 10 Sep 2019 23:36:18 -0400
-Received: by mail-lf1-f45.google.com with SMTP id w6so15251927lfl.2
- for <usrp-users@lists.ettus.com>; Tue, 10 Sep 2019 20:35:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=2sJVeh1mjLk7rISZ6Z2GTm/sqg5EaZA2ok1i1LRwdwI=;
- b=pw2PiOOy9zAE92M55lLfwgglZeigdUNXNbjnoFlbfIJfbPey6BjVR+5VKHYE88PX20
- 9vN2tdGyewmkTvf/RKLWaZmEOZWGjcTn5Ok8l35H6+pn4yDGD2YywTQ7PCK9Q1Jj8byW
- GeGfV4PQd+PtvnSgtO/81IYAHcm9gjlnY2Eht7WrFwsXvOLwAGAOvKJeBJFlVrlsFUvT
- +UdKhmeB4ZgShooxUED0iw2tYIP5XVOVv2HLKKdEzYpEaC7/dP0F2fFmxT367j3yb+CF
- M2UOwB934OU0HusisTFRHhw64y+V0GC17nh8FLeCzBJoCoSjI8JsZEu8nNIeJMoFFfN9
- STmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=2sJVeh1mjLk7rISZ6Z2GTm/sqg5EaZA2ok1i1LRwdwI=;
- b=laIprt84fMxSlh6Al/D6tAMS727yuCw2g1nFSG8TUdD8uSfqxEY6SBe/mzSYwLRmBX
- qH8SdWC4Fsiojeb5V55v+zw+zopfkzpchq03nYw7wzvB9wFu5hyqw+KnyOu1xRZOgsg2
- p9hmipSmP3eBuOEJBV2E23/uEeyXRY/1BAD0KMOCgVBJGjJ7GrqYB/qZdyh5U5ZgBTnt
- o9Crf1KzWVpapfKdOfJgInlaz+Vv5AlK+6SkRg4jblnH9mwEogW6uOrtrJd3mGec6qBb
- sYDihrjliaEQ9xTGy+LctHY9nRD5bOddTmTiHk9nKPs6ee6JE47Y+NUG/ymS7ntvO9MK
- hRiA==
-X-Gm-Message-State: APjAAAXFxz3eFWdy04dnOXuEcNe+pvRh/VEvx+4Q8n+RjNO/dh7kmLFn
- ikSt/ehmwzxPfyUKiOcBWa0Je6CCqNvFU4XwdiESMgUh
-X-Google-Smtp-Source: APXvYqwc+O281eyIp+V16lEe8RzFXM9UE9/nv7zfMZRra/jrUiDBTReiEJQENoyKS+3DQV6MOWp00vgE4/0pUOveC9I=
-X-Received: by 2002:a19:4a10:: with SMTP id x16mr24218881lfa.126.1568172936405; 
- Tue, 10 Sep 2019 20:35:36 -0700 (PDT)
+	id 1i80ID-0006mC-Ja; Wed, 11 Sep 2019 06:56:09 -0400
+Received: from sidious.ihf.ing.tu-bs.de ([134.169.78.12]:35556)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <fabian.schwartau@ihf.tu-bs.de>)
+ id 1i80I9-0006gh-A5
+ for usrp-users@lists.ettus.com; Wed, 11 Sep 2019 06:56:05 -0400
+Received: from localhost (localhost [127.0.0.1])
+ by sidious.ihf.ing.tu-bs.de (Postfix) with ESMTP id 1089D83D2A65
+ for <usrp-users@lists.ettus.com>; Wed, 11 Sep 2019 12:55:24 +0200 (CEST)
+X-Virus-Scanned: by amavisd-new-2.10.1 (20141025) (Debian) at ihf.ing.tu-bs.de
+Received: from sidious.ihf.ing.tu-bs.de ([127.0.0.1])
+ by localhost (sidious.ihf.ing.tu-bs.de [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id hneTGuqHf4-9; Wed, 11 Sep 2019 12:55:23 +0200 (CEST)
+Received: from [134.169.78.184] (unknown [134.169.78.184])
+ by sidious.ihf.ing.tu-bs.de (Postfix) with ESMTPSA id 49B6B83D2A61
+ for <usrp-users@lists.ettus.com>; Wed, 11 Sep 2019 12:55:23 +0200 (CEST)
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <83e999e6-8940-ed5a-2b41-342f54564286@ihf.tu-bs.de>
+Date: Wed, 11 Sep 2019 12:55:21 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <BL0PR12MB2340FC4C7B3CCD31AF67D8AFAFB60@BL0PR12MB2340.namprd12.prod.outlook.com>
-In-Reply-To: <BL0PR12MB2340FC4C7B3CCD31AF67D8AFAFB60@BL0PR12MB2340.namprd12.prod.outlook.com>
-Date: Tue, 10 Sep 2019 20:35:00 -0700
-Message-ID: <CAL7q81u_K6Rmh60FVts8nqtYZemb-OYWBmDhuC8ccsum9rmGCw@mail.gmail.com>
-To: Jason Matusiak <jason@gardettoengineering.com>
-Subject: Re: [USRP-users] No block_id specified for channel 0
+Content-Type: multipart/mixed; boundary="------------AB96C071C5D3DB97EB956983"
+X-Antivirus: AVG (VPS 190910-2, 10.09.2019), Outbound message
+X-Antivirus-Status: Clean
+Subject: [USRP-users] No respone packet error caused by timed frequency
+ switching
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,10 +45,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4540990001561292349=="
+From: Fabian Schwartau via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Fabian Schwartau <fabian.schwartau@ihf.tu-bs.de>
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,337 +60,85 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4540990001561292349==
-Content-Type: multipart/alternative; boundary="000000000000d2350405923eb628"
+This is a multi-part message in MIME format.
+--------------AB96C071C5D3DB97EB956983
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---000000000000d2350405923eb628
-Content-Type: text/plain; charset="UTF-8"
+Hi everyone,
 
-Hi Jason,
-
-Could you try reverting gr-ettus back one commit to 4980cbef and let me
-know if that works?
-
-Jonathon
-
-On Tue, Sep 10, 2019 at 5:23 AM Jason Matusiak via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> I have an RFNoC  flowgraph and bitfile combo that used to work but is
-> erroring out now. I've been using the code successfully on the E320 and
-> E310 and decided to re-build for the X310 (and XG flowgraph).  When I run
-> my flowgraph, I am see a lot of addition debug that I am not used to seeing
-> (which is fine) and then my block in particular seems to cause problems and
-> I get the error in the subject.  I am guessing that since I just rebuilt
-> everything, some change needs to be made in my impl for my block due to
-> some UHD update, but I can't quite figure out anywhere where something
-> changes.  The beginning of the output when I run my flowgraph is:
->
-> [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-36);
-> Boost_105300; UHD_3.14.1.1-0-g98c7c986
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Maximum frame size: 8000 bytes.
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
-> 0xF1F0D00000000000)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1317 MB/s)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1323 MB/s)
-> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
-> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
-> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000001)
-> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000001)
-> [INFO] [0/DDC_2] Initializing block control (NOC ID: 0xDDC0000000000001)
-> [INFO] [0/DDC_3] Initializing block control (NOC ID: 0xDDC0000000000001)
-> [INFO] [0/keepMinN_0] Initializing block control (NOC ID:
-> 0x229C30C919275220)
-> [INFO] [0/keepMinN_1] Initializing block control (NOC ID:
-> 0x229C30C919275220)
-> [WARNING] [RFNOC] Can't find a block controller for key SplitStream, using
-> default block controller!
-> [INFO] [0/SplitStream_0] Initializing block control (NOC ID:
-> 0x5757000000000000)
-> [WARNING] [RFNOC] Can't find a block controller for key SplitStream, using
-> default block controller!
-> [INFO] [0/SplitStream_1] Initializing block control (NOC ID:
-> 0x5757000000000000)
-> Finding block for: Radio_1
-> Mapped external port 0 to 0
-> Mapped port 0 to 0/Radio_1
-> Mapped external port 1 to 1
-> Mapped port 1 to 0/Radio_1
-> TX args:
-> RX args:
-> 0/Radio_1 has 1 input ports
-> 0/Radio_1 has 2 output ports
-> getting block control for port 0
-> Finding block for: DDC_0
-> Mapped external port 0 to 0
-> Mapped port 0 to 0/DDC_0
-> TX args:
-> getting block control for port 0
-> getting block control for port 0
->
->
-> And the ehnd of that blob shows:
->
-> getting block control for port 0
-> getting block control for port 0
-> thread[thread-per-block[2]: <block keepMinN (10)>]: RuntimeError: Cannot
-> create streamers: No block_id specified for channel 0.
->
->
-> And finally, if I let it sit there, the X310 must get into a wonky state
-> because I start to get:
->
-> [ERROR] [X300] 192.168.80.2: x300 fw communication failure #1
-> EnvironmentError: IOError: x300 fw poke32 - reply timed out
-> [ERROR] [X300] 192.168.80.2: x300 fw communication failure #2
-> EnvironmentError: IOError: x300 fw poke32 - reply timed out
-> [ERROR] [X300] 192.168.80.2: x300 fw communication failure #1
-> EnvironmentError: IOError: x300 fw poke32 - reply timed out
-> [ERROR] [X300] 192.168.80.2: x300 fw communication failure #1
-> EnvironmentError: IOError: x300 fw poke32 - reply timed out
-> [ERROR] [X300] 192.168.80.2: x300 fw communication failure #2
-> EnvironmentError: IOError: x300 fw poke32 - reply timed out
-> [ERROR] [X300] 192.168.80.2: x300 fw communication failure #3
-> EnvironmentError: IOError: x300 fw poke32 - reply timed out
-> [ERROR] [UHD] An unexpected exception was caught in a task loop.The task
-> loop will now exit, things may not work.EnvironmentError: IOError:
-> 192.168.80.2: x300 fw communication failure #3
-> EnvironmentError: IOError: x300 fw poke32 - reply timed out
->
->
->
-> What am I missing here?
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000d2350405923eb628
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Jason,<div><br></div><div>Could you try reverting gr-et=
-tus back one commit to 4980cbef and let me know if that works?</div><div><b=
-r></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Tue, Sep 10, 2019 at 5:23 AM Jason Matusiak v=
-ia USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@=
-lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex">
+I already asked this the ettus support, but they did not got back to me 
+yet, maybe someone here can help me.
+I am working on X310 with TwinRX boards. I use a lot of timed commands 
+and since upgrading the firmware from 003.010.002.000 to 003.014.001.001 
+I get this error message after a few minutes/seconds, depending on what 
+I am doing:
+terminate called after throwing an instance of 'uhd::io_error'
+   what():  EnvironmentError: IOError: Block ctrl (CE_01_Port_40) no 
+response packet - AssertionError: bool(buff)
+   in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) 
+[with uhd::endianness_t _endianness = (uhd::endianness_t)0u; uint64_t = 
+long unsigned int]
+   at 
+/home/fschwa/src/uhd_20191010_3.14.1.1-RC1/host/lib/rfnoc/ctrl_iface.cpp:142 
 
 
+I know there is a very similar (same?) problem when requesting rx_stream 
+in a loop, but I am not doing that. In my actual program I have only on 
+rx_stream. I was able to boil that problem down to a few lines of code, 
+which set the rx frequency in a loop (what I am doing in my actual 
+program). When doing this with timed commands, the error occures after a 
+few dozens of iterations. Leaving out the timed command, everything 
+works fine. Find the small program attached.
+After I ran into the problem the USRP is completely unresponsive. I have 
+to power cycle it, to get it working again.
+Does anyone know a solution/workaround or has seen that before?
 
+Best regards,
+Fabian
+-- 
+--------------------------------------------------
+M.-Sc. Fabian Schwartau
+Technische Universität Braunschweig
+Institut für Hochfrequenztechnik
+Schleinitzstr. 22
+38106 Braunschweig
+Germany
 
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I have an RFNoC=C2=A0 flowgraph and bitfile combo that used to work but is =
-erroring out now. I&#39;ve been using the code successfully on the E320 and=
- E310 and decided to re-build for the X310 (and XG flowgraph).=C2=A0 When I=
- run my flowgraph, I am see a lot of addition
- debug that I am not used to seeing (which is fine) and then my block in pa=
-rticular seems to cause problems and I get the error in the subject.=C2=A0 =
-I am guessing that since I just rebuilt everything, some change needs to be=
- made in my impl for my block due to
- some UHD update, but I can&#39;t quite figure out anywhere where something=
- changes.=C2=A0 The beginning of the output when I run my flowgraph is:</di=
-v>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span>[INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-36)=
-; Boost_105300; UHD_3.14.1.1-0-g98c7c986<br>
-</span>
-<div>[INFO] [X300] X300 initialization sequence...<br>
-</div>
-<div>[INFO] [X300] Maximum frame size: 8000 bytes.<br>
-</div>
-<div>[INFO] [X300] Radio 1x clock: 200 MHz<br>
-</div>
-<div>[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D000000=
-00000)<br>
-</div>
-<div>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1317 MB/s)<br>
-</div>
-<div>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1323 MB/s)<br>
-</div>
-<div>[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000=
-001)<br>
-</div>
-<div>[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000=
-001)<br>
-</div>
-<div>[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC000000000000=
-1)<br>
-</div>
-<div>[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC000000000000=
-1)<br>
-</div>
-<div>[INFO] [0/DDC_2] Initializing block control (NOC ID: 0xDDC000000000000=
-1)<br>
-</div>
-<div>[INFO] [0/DDC_3] Initializing block control (NOC ID: 0xDDC000000000000=
-1)<br>
-</div>
-<div>[INFO] [0/keepMinN_0] Initializing block control (NOC ID: 0x229C30C919=
-275220)<br>
-</div>
-<div>[INFO] [0/keepMinN_1] Initializing block control (NOC ID: 0x229C30C919=
-275220)<br>
-</div>
-<div>[WARNING] [RFNOC] Can&#39;t find a block controller for key SplitStrea=
-m, using default block controller!<br>
-</div>
-<div>[INFO] [0/SplitStream_0] Initializing block control (NOC ID: 0x5757000=
-000000000)<br>
-</div>
-<div>[WARNING] [RFNOC] Can&#39;t find a block controller for key SplitStrea=
-m, using default block controller!<br>
-</div>
-<div>[INFO] [0/SplitStream_1] Initializing block control (NOC ID: 0x5757000=
-000000000)<br>
-</div>
-<div>Finding block for: Radio_1<br>
-</div>
-<div>Mapped external port 0 to 0<br>
-</div>
-<div>Mapped port 0 to 0/Radio_1<br>
-</div>
-<div>Mapped external port 1 to 1<br>
-</div>
-<div>Mapped port 1 to 0/Radio_1<br>
-</div>
-<div>TX args:<br>
-</div>
-<div>RX args:<br>
-</div>
-<div>0/Radio_1 has 1 input ports<br>
-</div>
-<div>0/Radio_1 has 2 output ports<br>
-</div>
-<div>getting block control for port 0<br>
-</div>
-<div>Finding block for: DDC_0<br>
-</div>
-<div>Mapped external port 0 to 0<br>
-</div>
-<div>Mapped port 0 to 0/DDC_0<br>
-</div>
-<div>TX args:<br>
-</div>
-<div>getting block control for port 0<br>
-</div>
-<div>getting block control for port 0<br>
-</div>
-<span></span><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-And the ehnd of that blob shows:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span>getting block control for port 0<br>
-</span>
-<div>getting block control for port 0<br>
-</div>
-<div>thread[thread-per-block[2]: &lt;block keepMinN (10)&gt;]: RuntimeError=
-: Cannot create streamers: No block_id specified for channel 0.<br>
-</div>
-<span></span><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-And finally, if I let it sit there, the X310 must get into a wonky state be=
-cause I start to get:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<span>[ERROR] [X300] <a href=3D"http://192.168.80.2" target=3D"_blank">192.=
-168.80.2</a>: x300 fw communication failure #1<br>
-</span>
-<div>EnvironmentError: IOError: x300 fw poke32 - reply timed out<br>
-</div>
-<div>[ERROR] [X300] <a href=3D"http://192.168.80.2" target=3D"_blank">192.1=
-68.80.2</a>: x300 fw communication failure #2<br>
-</div>
-<div>EnvironmentError: IOError: x300 fw poke32 - reply timed out<br>
-</div>
-<div>[ERROR] [X300] <a href=3D"http://192.168.80.2" target=3D"_blank">192.1=
-68.80.2</a>: x300 fw communication failure #1<br>
-</div>
-<div>EnvironmentError: IOError: x300 fw poke32 - reply timed out<br>
-</div>
-<div>[ERROR] [X300] <a href=3D"http://192.168.80.2" target=3D"_blank">192.1=
-68.80.2</a>: x300 fw communication failure #1<br>
-</div>
-<div>EnvironmentError: IOError: x300 fw poke32 - reply timed out<br>
-</div>
-<div>[ERROR] [X300] <a href=3D"http://192.168.80.2" target=3D"_blank">192.1=
-68.80.2</a>: x300 fw communication failure #2<br>
-</div>
-<div>EnvironmentError: IOError: x300 fw poke32 - reply timed out<br>
-</div>
-<div>[ERROR] [X300] <a href=3D"http://192.168.80.2" target=3D"_blank">192.1=
-68.80.2</a>: x300 fw communication failure #3<br>
-</div>
-<div>EnvironmentError: IOError: x300 fw poke32 - reply timed out<br>
-</div>
-<div>[ERROR] [UHD] An unexpected exception was caught in a task loop.The ta=
-sk loop will now exit, things may not work.EnvironmentError: IOError: <a hr=
-ef=3D"http://192.168.80.2" target=3D"_blank">192.168.80.2</a>: x300 fw comm=
-unication failure #3<br>
-</div>
-<div>EnvironmentError: IOError: x300 fw poke32 - reply timed out<br>
-</div>
-<span></span><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-What am I missing here?</div>
-</div>
+Tel.:   +49-(0)531-391-2017
+Fax:    +49-(0)531-391-2045
+Email:  fabian.schwartau@ihf.tu-bs.de
+WWW:    http://www.tu-braunschweig.de/ihf
+--------------------------------------------------
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+--------------AB96C071C5D3DB97EB956983
+Content-Type: text/plain; charset=UTF-8;
+ name="UHDIOError2.cpp"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="UHDIOError2.cpp"
 
---000000000000d2350405923eb628--
-
-
---===============4540990001561292349==
+Ly8gQ29tcGlsZSB3aXRoOgovLyBnKysgLXN0ZD1jKysxNCAtTzIgVUhESU9FcnJvcjIuY3Bw
+IC1sdWhkIC1sYm9vc3Rfc3lzdGVtIC1vIFVIRElPRXJyb3IyCgojaW5jbHVkZSA8dWhkL3Vz
+cnAvbXVsdGlfdXNycC5ocHA+CiNpbmNsdWRlIDx1aGQvdXRpbHMvc2FmZV9tYWluLmhwcD4K
+I2luY2x1ZGUgPHVoZC91dGlscy90aHJlYWQuaHBwPgojaW5jbHVkZSA8aW9zdHJlYW0+Cgp1
+c2luZyBuYW1lc3BhY2Ugc3RkOwoKaW50IFVIRF9TQUZFX01BSU4oaW50IGFyZ2MsIGNoYXIq
+KiBhcmd2KQp7CiAgICB1aGQ6OnNldF90aHJlYWRfcHJpb3JpdHlfc2FmZSgpOwogICAgCiAg
+ICBzdGQ6OnN0cmluZyBhcmdzPSJhZGRyPTE5Mi4xNjguNDIuMiI7CiAgICB1aGQ6OnVzcnA6
+Om11bHRpX3VzcnA6OnNwdHIgdXNycCA9IHVoZDo6dXNycDo6bXVsdGlfdXNycDo6bWFrZShh
+cmdzKTsKICAgIHN0ZDo6c3RyaW5nIHN1YmRldl9zcGVjPSJBOjAiOwogICAgdXNycC0+c2V0
+X3J4X3N1YmRldl9zcGVjKHN1YmRldl9zcGVjKTsKICAgIHVzcnAtPnNldF9yeF9yYXRlKDI1
+ZTYsIDApOwogICAgdXNycC0+c2V0X3J4X2ZyZXEoMTI0MGU2LCAwKTsKICAgIHVzcnAtPnNl
+dF9yeF9nYWluKDUwLjAsIDApOwogICAgdXNycC0+c2V0X3J4X2FudGVubmEoIlJYMSIsIDAp
+OwoKICAgIHVoZDo6dGltZV9zcGVjX3QgbmV4dENvbW1hbmRUaW1lID0gdXNycC0+Z2V0X3Rp
+bWVfbm93KCk7CiAgICBuZXh0Q29tbWFuZFRpbWUgKz0gdWhkOjp0aW1lX3NwZWNfdCgwLjUp
+OwoKICAgIGZvciAoaW50IGl0ZXJhdGlvbj0wOyBpdGVyYXRpb248MTAwMDsgaXRlcmF0aW9u
+KyspIHsKICAgICAgICB1c3JwLT5zZXRfY29tbWFuZF90aW1lKG5leHRDb21tYW5kVGltZSk7
+CiAgICAgICAgdXNycC0+c2V0X3J4X2ZyZXEoMTAwMGU2LCAwKTsKICAgICAgICBuZXh0Q29t
+bWFuZFRpbWUgKz0gdWhkOjp0aW1lX3NwZWNfdCgwLjAyKTsKICAgICAgICBjb3V0IDw8ICJp
+dGVyYXRpb246ICI8PCBpdGVyYXRpb24gPDwgZW5kbDsKICAgIH0KICAgIHJldHVybiAwOwp9
+Cgo=
+--------------AB96C071C5D3DB97EB956983
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -417,5 +149,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4540990001561292349==--
+--------------AB96C071C5D3DB97EB956983--
 
