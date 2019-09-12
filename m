@@ -2,59 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7543DB061F
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Sep 2019 01:56:33 +0200 (CEST)
-Received: from [::1] (port=41822 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E10B0A7A
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Sep 2019 10:38:36 +0200 (CEST)
+Received: from [::1] (port=54546 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i8CTN-0005xz-9r; Wed, 11 Sep 2019 19:56:29 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:45828)
+	id 1i8KcX-0006VL-Om; Thu, 12 Sep 2019 04:38:29 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:44734)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1i8CTJ-0005X3-Cx
- for usrp-users@lists.ettus.com; Wed, 11 Sep 2019 19:56:25 -0400
-Received: by mail-io1-f45.google.com with SMTP id f12so50107616iog.12
- for <usrp-users@lists.ettus.com>; Wed, 11 Sep 2019 16:56:05 -0700 (PDT)
+ (Exim 4.92) (envelope-from <emil.bjelski@gmail.com>)
+ id 1i8KcT-0006Rl-Ij
+ for usrp-users@lists.ettus.com; Thu, 12 Sep 2019 04:38:25 -0400
+Received: by mail-oi1-f172.google.com with SMTP id w6so16433483oie.11
+ for <usrp-users@lists.ettus.com>; Thu, 12 Sep 2019 01:38:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=3Z0r7ecR1C8DuKdI6zZfLuVFER4G488lmgxiLfq9S4c=;
- b=EGx1bhbo0LoA8XGDEGj9wHCuTWZPQGfzwTyGnF7wvWZdm/yF73qVewT1cHeolcYUGy
- y60WosyzcXwqmN3ECsoyt8r1AeZ+dEe7GZxbXX1DxkYUCAfylP31OK+Za4ZgSb9huCto
- GUPeLnoezptD/9qn5xJlZy+rPGoOvV1a3YVtr40CdemW76HYUR2RXrSarfikvC68lDLR
- OuFeiW3+cEC/fxMqYoeh8WUACB6kuwy1LfdfwMC5+ongqUDqn+lCSSyAkKE+7YMaTGwk
- Id93LGMVDdAWCjzO3VBysTozZAx9cSb3pHwD1Rd4HrjTHGkH8GqeXG5h1Yrc4yp0WjO7
- W6Fw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=xog8V+5Cc76w+1fSNteSAyRKBwZPQPR6L9Pl4XZdiqk=;
+ b=jjCuFXojlJfZqimmi2kaITxGZmkw8CBXhsfXnT1EXIEh5Pm4Z1coEhXYSC3kpbHLKT
+ fYOgJRya6eF+BWRnQ1CelYZASwHBAjraft+CM8QMnFl+8wqlpai53XgFuEFXGm8i9eV9
+ mhl6L8gQfa7au70UI6sY1fblUpL0gYkoZG1nGvl61XArIjafxKGwx9SNta2yArjcxLyH
+ fs41DLGQ83bvZlxEDMAlTFfHqKONrFFOIiwC4KZz7zdCKZlYCUYzQ3NTegFr3mYiLRt4
+ GHJH0m1rPFTulas5whNNlTaSLyZc+b6/894q/YuwC+fz070V5HHIwSMcwzXR5oOUbHVG
+ D7kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=3Z0r7ecR1C8DuKdI6zZfLuVFER4G488lmgxiLfq9S4c=;
- b=mT9hEdTYIYPlr0pOTAoK237qjCH6EQbPlEgCOKrOmnBScFT1fa4rwkZmhMxbuhLG1T
- rsQxe6NkfhgLhKfLyezCLlMyatRTHplmoZ7czYMuLOHq3/mFXMimNpsdYI0m8Mzc+JS5
- vHbercD8IYH/N8YVGfg+Hnee+tIqmqPwngiL9qrYE9JwD42IXw717TvIheL27iSuzc9d
- xtQIQmiAmu9m4WFJkiDOmQaFVshKmyxBG5JAJbIb5qzLYOx42LpUPtWIyhrmFmfElrTX
- TLCZkjGG4uA6EoteJBnJk+SCCDcBFYNOxY2BrJv3FmE/oc1OcXMACp8P4SS7BzgSttCd
- ZKZA==
-X-Gm-Message-State: APjAAAWPkVNVN4HwIYUrFYOp0MZKeVgEvVvO/nCao7zA/9MTMWAh3d3Z
- 1+ZrFg1YGGmww8xrCzRBbnT//fDL
-X-Google-Smtp-Source: APXvYqxfxJ9AJeWvq4QuJJqQnQRqDidwtD6CPi0w71bTiaYCNlEq9/RKKs/Tk2SECZsu7t84wFsfWA==
-X-Received: by 2002:a5e:9e09:: with SMTP id i9mr795219ioq.24.1568246144713;
- Wed, 11 Sep 2019 16:55:44 -0700 (PDT)
-Received: from [172.20.0.57] (cmr-208-97-88-52.cr.net.cable.rogers.com.
- [208.97.88.52])
- by smtp.gmail.com with ESMTPSA id z8sm18813107ioh.62.2019.09.11.16.55.43
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 11 Sep 2019 16:55:43 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-X-Mailer: iPhone Mail (16G102)
-In-Reply-To: <CAKJyDk+38rceb_8WrDNiy1-VJ4QgSxhNQf7hFFn-aF-LfHfoOQ@mail.gmail.com>
-Date: Wed, 11 Sep 2019 19:55:43 -0400
-Message-Id: <5E86E19F-EFD1-4C1A-9886-3375F03B1E93@gmail.com>
-References: <CAMGw0PawXrX2hyLvDSPVqxhpccCh+L6HP64OmbOTqA21C6i6gA@mail.gmail.com>
- <CAKJyDk+38rceb_8WrDNiy1-VJ4QgSxhNQf7hFFn-aF-LfHfoOQ@mail.gmail.com>
-To: Robin Coxe <coxe@quanttux.com>
-Subject: Re: [USRP-users] USRP B100 Help
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=xog8V+5Cc76w+1fSNteSAyRKBwZPQPR6L9Pl4XZdiqk=;
+ b=DerpQcxYTYv4eU0PY2DJyrU6zrGPQ7/tts4p63nVT9UuJzt28xmwrWZbj74Oy8xEgx
+ +iwUmpmQ3cXeqAVv7WsD2MPGyAgmZDIjHvJAdb7Y4rFR5UqdHCHOBw4dVQmLtgVNhmNw
+ Tjktr1Iz935Njq0GOxtnaJj0tWVhEeF5EtL3uWqe4fzdUiCBM5Ad6Ktxcxz7QaQmQ7N8
+ 3GPiHX5HA4N+nEW1q2fNF7pGQDheSJw7DGd+ULMfboGyJxJWQiTRrikQRihWVdzcmCYl
+ Enejj87Lbu3xqQpEY1h5Mc/SmlHfhp0EhDBDRctsKzzNDiLfffzWe0jyqZPyWkFIk5aj
+ BZVg==
+X-Gm-Message-State: APjAAAV4xelKEYDvNrPRLuLPKvgsNsEJvq+qrbPrb5JbFvPSaw+IaPlM
+ b70OxaDw24BTW5q0AcXVOJ5sqn1WI9pGvIWsY2ysjO8z
+X-Google-Smtp-Source: APXvYqwI8rO2PHYZH9Oj1XhbeiAK+odusMd2biFI/h/79U69eSR5tgxjv505FYmppyoAeOcag+zivBiyDGdTtBvQSDg=
+X-Received: by 2002:a05:6808:85:: with SMTP id
+ s5mr7612600oic.158.1568277464706; 
+ Thu, 12 Sep 2019 01:37:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <DM6PR03MB3788A6E68F615BF33C687A8FE6BA0@DM6PR03MB3788.namprd03.prod.outlook.com>
+ <84a673b3ca7caa1721171d4b5494c2eee03b448e.camel@ettus.com>
+ <DM6PR03MB37883E0264A559380EB5A1BFE6B10@DM6PR03MB3788.namprd03.prod.outlook.com>
+ <a6d01ddb6d45fb692f7fcfc5a5cdf744a7ab17c1.camel@ettus.com>
+ <DM6PR03MB3788C5B1BF520A7AC022AABFE6B10@DM6PR03MB3788.namprd03.prod.outlook.com>
+In-Reply-To: <DM6PR03MB3788C5B1BF520A7AC022AABFE6B10@DM6PR03MB3788.namprd03.prod.outlook.com>
+Date: Thu, 12 Sep 2019 10:37:33 +0200
+Message-ID: <CADrptxUgvjEjeRZG6W1H6UQHH103Z81LqiQ-8XGogi3FB4TSRg@mail.gmail.com>
+To: "Quadri,Adnan" <adnan.quadri@louisville.edu>
+Subject: Re: [USRP-users] RFNoC SVD Block
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -66,10 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0618493411565877426=="
+From: Emil Bjelski via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Emil Bjelski <emil.bjelski@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6312374364243100502=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,178 +80,416 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============6312374364243100502==
+Content-Type: multipart/alternative; boundary="0000000000003174b10592570d50"
 
---===============0618493411565877426==
-Content-Type: multipart/alternative;
-	boundary=Apple-Mail-46C024B1-B33B-4906-A9DD-3C3467FF5AF1
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-46C024B1-B33B-4906-A9DD-3C3467FF5AF1
-Content-Type: text/plain;
-	charset=utf-8
+--0000000000003174b10592570d50
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I recall this used to happen to some B100s.=20
+Hi Adnan,
 
-There=E2=80=99s an EEPROM writer command, I think, that can restore the corr=
-ect identity.=20
+Take a look to this document
+https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug902-=
+vivado-high-level-synthesis.pdf
+.
+I feel that HLS is the way to go.
+However, if I remember correctly the maximum size of the matrix that is
+supported by HLS linpack implementation of the SVD is *8x8.*
 
-These devices are quite obsolete now, so don=E2=80=99t get your hopes up too=
- much.=20
+Just due to my curiosity. Why do not you buffer samples and perform SVD in
+the software? (I feel that that will be much easier).
 
-I=E2=80=99m in the road at the moment and won=E2=80=99t be back until Friday=
-. I should be able to dig up the magic incantations after then. Unless some o=
-ther Ettus old-timer remembers the correct spell.=20
+Cheers,
 
+Emil
 
-Sent from my iPhone
+On Wed, Sep 11, 2019 at 6:45 PM Quadri,Adnan via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-> On Sep 11, 2019, at 6:27 PM, Robin Coxe via USRP-users <usrp-users@lists.e=
-ttus.com> wrote:
->=20
-> Does this help?
-> https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchai=
-n_(UHD_and_GNU_Radio)_on_Linux#Configuring_USB
->=20
->> On Wed, Sep 11, 2019 at 1:08 PM Javier Uranga via USRP-users <usrp-users@=
-lists.ettus.com> wrote:
->> Dear Members in the List,
->>=20
->> I'm working with an old USRP B100 that came with a cubesat development  k=
-it,
->>=20
->> Now suddenly stop working, no longer respond to:
->>=20
->> uhd_find_devices
->> linux; GNU C++ version 5.3.1 20151219; Boost_105800;
->> UHD_003.009.002-=E2=81=A00-=E2=81=A0unknown
->> No UHD Devices Found
->>=20
->> uhd_usrp_probe
->> linux; GNU C++ version 5.3.1 20151219; Boost_105800;
->> UHD_003.009.002-=E2=81=A00-=E2=81=A0unknown
->> Error: LookupError: KeyError: No devices found for -=E2=81=A0-=E2=81=A0-=E2=
-=81=A0-=E2=81=A0-=E2=81=A0>
->> Empty Device Address
->>=20
->> I must to say that, until few minutes before, the device showed no
->> problems, but after a switch OFF/ON the device, problems came up
->>=20
->> And when I ask:
->>=20
->> $lsusb
->> the device found is:
->> Bus 003 Device 003: ID 04b4:8613 Cypress Semiconductor Corp. CY7C68013
->> EZ-=E2=81=A0USB FX2 USB 2.0 Development Kit
->>=20
->> As you can see, the detected device is not longer Ettus USRP as use to be=
-. More over, in the front panel, new led is on, there is a new led in ON sta=
-tus, the LED B: FPGA loaded
->> (in addition to:
->> LED A: transmitting,    ON
->> LED C: receiving,          ON
->> LED D: FPGA loaded,   OFF
->> LED E: reference lock, ON
->> LED F: board power,     ON )
->>=20
->> I already re installed the GNU RADIO 3.7.9 drivers for Ubuntu 16.04 and G=
-NU RADIO 3.7.11 for Ubuntu 18.04, all systems where it use to work, But the U=
-SRP is no longer detected.
->>=20
->> drivers in Ubuntu 16.04:
->> /usr/share/uhd/images$ ls
->> usrp_b100_fw.ihx
->> usrp_b100_fpga.bin  =20
->>=20
->> What can be wrong ?, it's Firmware problem ?
->> How can I solve it?
->>=20
->> I'll be very grateful with any comments or suggestions
->>=20
->> Best Regards,
->> Javier Nicolas
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> This Verilog AXI is so amazing. I just went through the project link
+> quickly.
+>
+> We can test our verilog implementation on GRC! This will be so helpful.
+> Thank you so much for sharing the information.
+>
+> Adnan
+> ------------------------------
+> *From:* Marcus M=C3=BCller <marcus.mueller@ettus.com>
+> *Sent:* Wednesday, September 11, 2019 11:34 AM
+> *To:* Quadri,Adnan <adnan.quadri@louisville.edu>;
+> usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* Re: [USRP-users] RFNoC SVD Block
+>
+> Thanks! I'm always curious about how our hard- and software
+> infrastructure is being used!
+>
+> By the way, in case you want to test a verilog SVD implementation
+> within a signal processing framework: Bowen Hu did a very interesting
+> Google Summer of Code project this year, in which he made it possible
+> to just drop in a Verilog Module in a GNU Radio block and use that to
+> do signal processing in a pure host computer simulation. He'll be at
+> GRCon this year!
+>
+>
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_B0WEN-2=
+DHU_gr-2Dverilog&d=3DDwIDaQ&c=3DOAG1LQNACBDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY=
+&r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02U&m=3DOAza1LeUx_20PABZFpa8SF=
+pGhqGusnLgCJPv8Qn9IY4&s=3DRVT10qjiHFS4-MdCMHF5eFq0-VWOEryN7swfWuOKkZI&e=3D
+> </shameless_plug>
+>
+> Best regards,
+> Marcus
+> On Wed, 2019-09-11 at 15:13 +0000, Quadri,Adnan wrote:
+> > Hello,
+> >
+> > Thanks for your prompt response and sorry for my delayed one.
+> >
+> > I have thought about the first option you have discussed, which is to
+> > use already implemented SVD but modify it to fit with the nocshell.
+> >
+> > As we go down that way, I will update this thread with questions or
+> > any significant findings.
+> >
+> > Thank you,
+> > Adnan
+> > From: Marcus M=C3=BCller <marcus.mueller@ettus.com>
+> > Sent: Friday, September 6, 2019 4:00 PM
+> > To: Quadri,Adnan <adnan.quadri@louisville.edu>;
+> > usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> > Subject: Re: [USRP-users] RFNoC SVD Block
+> >
+> > Hello Adnan,
+> >
+> > I'm currently not aware of anyone doing that.
+> >
+> > However, since one of the typical applications of beefier FPGAs is
+> > math
+> > accelerators for linear algebra problems, it's more than likely
+> > someone
+> > did in fact implement an SVD before, and you might just need to
+> > connect
+> > it to a nocshell to make it work in RFNoC. There's a lot of
+> > interesting
+> > papers out there on SVD implementations for fixed point math on
+> > FPGAs,
+> > I think Drexel uni had some interesting stuff for SVD-based channel
+> > estimation for OFDM. I've not seen any code of them, though...
+> >
+> > So, from an algorithmic point of view, an SVD isn't too hard. IIRC,
+> > sequential algorithms can work in-place, and thus (for a m=C3=97n matri=
+x,
+> > n>m) don't need more than n=C2=B2 space for intermediate and final resu=
+lt
+> > (+2m for index and scale storage if you want to pivot elegantly).
+> >
+> > Now, I've not ever implemented more than a C++ QR decomposition
+> > (which
+> > is the core algorithm for most EVD problems, which you typically
+> > householder-transform an SVD problem to), so I'm really not competent
+> > to comment on hardware implementations, but chances are you want to
+> > compute a lot of result values in parallel if you're doing it in the
+> > FPGA =E2=80=93 because otherwise, you'd abhor doing much work in hardwa=
+re
+> > (that
+> > being _hard_) in favor of doing it easier-to-debug and also free-to-
+> > have in the shape of LAPACK software. (Subtext message, more for
+> > future
+> > readers than for you: Evaluate whether something really should be
+> > done
+> > in hardware; it's not inherently better to do things in hardware.)
+> > But that parallelism might imply that in-place is not a feasible way
+> > of
+> > computing things, and your memory requirements might be much larger.
+> > Depending on the size of SVD you're planning to do, that might or
+> > might
+> > not be an issue.
+> >
+> > Best regards,
+> > Marcus
+> >
+> > On Fri, 2019-09-06 at 19:05 +0000, Quadri,Adnan via USRP-users wrote:
+> > > Hello,
+> > >
+> > > We are trying to perform singular vector decomposition. The idea is
+> > > to work on an RFNoC block that takes in summation of samples from
+> > the
+> > > Radio source and will perform SVD.
+> > >
+> > > Is anybody working on something similar?
+> > > Currently, the RFNoC OFDM synchronizer block has timing constraint
+> > > issues and can't be used to build FPGA image.
+> > >
+> > > Just asking around to get some suggestions/advice and idea if
+> > working
+> > > on that Verilog implementation of SVD is something doable and if
+> > > anybody tried anything similar.
+> > >
+> > > Thank you,
+> > > Adnan
+> > >
+> > >
+> > > _______________________________________________
+> > > USRP-users mailing list
+> > > USRP-users@lists.ettus.com
+> > >
+> >
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mai=
+lman_listinfo_usrp-2Dusers-5Flists.ettus.com&d=3DDwIDaQ&c=3DOAG1LQNACBDguGv=
+BeNj18Swhr9TMTjS-x4O_KuapPgY&r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02=
+U&m=3Dk37R0Rl_g81NH-S6ItDZuzmUBw5LoTVhKicoMs7QquI&s=3DwNh-TuGTVEYzPNN0GRzBj=
+YiBuFKVQfG5vjCSdYCEnPY&e=3D
+> >
+> >
+>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---Apple-Mail-46C024B1-B33B-4906-A9DD-3C3467FF5AF1
-Content-Type: text/html;
-	charset=utf-8
+--0000000000003174b10592570d50
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">I recall this used to happen to some B100s.=
-&nbsp;<div><br></div><div>There=E2=80=99s an EEPROM writer command, I think,=
- that can restore the correct identity.&nbsp;</div><div><br></div><div>These=
- devices are quite obsolete now, so don=E2=80=99t get your hopes up too much=
-.&nbsp;</div><div><br></div><div>I=E2=80=99m in the road at the moment and w=
-on=E2=80=99t be back until Friday. I should be able to dig up the magic inca=
-ntations after then. Unless some other Ettus old-timer remembers the correct=
- spell.&nbsp;</div><div><br></div><div><br><div id=3D"AppleMailSignature" di=
-r=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br>On Sep 11, 2019, at 6=
-:27 PM, Robin Coxe via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ett=
-us.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br><br></div><blockquote t=
-ype=3D"cite"><div dir=3D"ltr"><div dir=3D"ltr">Does this help?<div><a href=3D=
-"https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain=
-_(UHD_and_GNU_Radio)_on_Linux#Configuring_USB">https://kb.ettus.com/Building=
-_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux#=
-Configuring_USB</a><br></div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Wed, Sep 11, 2019 at 1:08 PM Javier Uranga via=
- USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lis=
-ts.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-=
-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family=
-:arial,helvetica,sans-serif;font-size:small">Dear Members in the List,<br><b=
-r>I'm working with an old USRP B100 that came with a cubesat development &nb=
-sp;kit,<br><br>Now suddenly stop working, no longer respond to:<br><br>uhd_f=
-ind_devices<br>linux; GNU C++ version 5.3.1 20151219; Boost_105800;<br>UHD_0=
-03.009.002-=E2=81=A00-=E2=81=A0unknown<br>No UHD Devices Found<br><br>uhd_us=
-rp_probe<br>linux; GNU C++ version 5.3.1 20151219; Boost_105800;<br>UHD_003.=
-009.002-=E2=81=A00-=E2=81=A0unknown<br>Error: LookupError: KeyError: No devi=
-ces found for -=E2=81=A0-=E2=81=A0-=E2=81=A0-=E2=81=A0-=E2=81=A0&gt;<br>Empt=
-y Device Address<br><br>I must to say that, until few minutes before, the de=
-vice showed no<br>problems, but after a switch OFF/ON the device, problems c=
-ame up<br><br>And when I ask:<br><br>$lsusb<br>the device found is:<br>Bus 0=
-03 Device 003: ID 04b4:8613 Cypress Semiconductor Corp. CY7C68013<br>EZ-=E2=81=
-=A0USB FX2 USB 2.0 Development Kit<br><br>As you can see, the detected devic=
-e is not longer Ettus USRP as use to be. More over, in the front panel, new l=
-ed is on, there is a new led in ON status, the LED B: FPGA loaded<br>(in add=
-ition to:<br>LED A: transmitting, &nbsp; &nbsp;ON<br>LED C: receiving, &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp;ON<br>LED D: FPGA loaded, &nbsp; OFF<br>LED E: r=
-eference lock, ON<br>LED F: board power, &nbsp; &nbsp; ON )<br><br>I already=
- re installed the GNU RADIO 3.7.9 drivers for Ubuntu 16.04 and GNU RADIO 3.7=
-.11 for Ubuntu 18.04, all systems where it use to work, But the USRP is no l=
-onger detected.<br><br>drivers in Ubuntu 16.04:<br>/usr/share/uhd/images$ ls=
-<br>usrp_b100_fw.ihx<br>usrp_b100_fpga.bin &nbsp; <br><br>What can be wrong ?=
-, it's Firmware problem ?<br>How can I solve it?<br><br>I'll be very gratefu=
-l with any comments or suggestions<br><br>Best Regards,<br>Javier Nicolas<br=
-></div></div>
+<div dir=3D"ltr">Hi Adnan,<div><br></div><div>Take a look to this document=
+=C2=A0<a href=3D"https://www.xilinx.com/support/documentation/sw_manuals/xi=
+linx2018_3/ug902-vivado-high-level-synthesis.pdf">https://www.xilinx.com/su=
+pport/documentation/sw_manuals/xilinx2018_3/ug902-vivado-high-level-synthes=
+is.pdf</a>.</div><div>I feel that HLS is the way to go.</div><div>However, =
+if I remember correctly the maximum size of the matrix that is supported by=
+ HLS linpack implementation of the SVD is <b>8x8.</b></div><div><br></div><=
+div>Just due to my curiosity. Why do not you buffer samples and perform SVD=
+ in the software? (I feel that that will be much easier).</div><div><br></d=
+iv><div>Cheers,</div><div><br></div><div>Emil</div></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep 11, 2019 at =
+6:45 PM Quadri,Adnan via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.=
+ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+This Verilog AXI is so amazing. I just went through the project link quickl=
+y. <br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+We can test our verilog implementation on GRC! This will be so helpful.</di=
+v>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+Thank you so much for sharing the information. <br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+Adnan<br>
+</div>
+<div id=3D"gmail-m_-984662996941114646appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-984662996941114646divRplyFwdMsg" dir=3D"ltr"><font face=
+=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From=
+:</b> Marcus M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com" ta=
+rget=3D"_blank">marcus.mueller@ettus.com</a>&gt;<br>
+<b>Sent:</b> Wednesday, September 11, 2019 11:34 AM<br>
+<b>To:</b> Quadri,Adnan &lt;<a href=3D"mailto:adnan.quadri@louisville.edu" =
+target=3D"_blank">adnan.quadri@louisville.edu</a>&gt;; <a href=3D"mailto:us=
+rp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a> =
+&lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
+ers@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] RFNoC SVD Block</font>
+<div>=C2=A0</div>
+</div>
+<div class=3D"gmail-m_-984662996941114646BodyFragment"><font size=3D"2"><sp=
+an style=3D"font-size:11pt">
+<div class=3D"gmail-m_-984662996941114646PlainText">Thanks! I&#39;m always =
+curious about how our hard- and software<br>
+infrastructure is being used!<br>
+<br>
+By the way, in case you want to test a verilog SVD implementation<br>
+within a signal processing framework: Bowen Hu did a very interesting<br>
+Google Summer of Code project this year, in which he made it possible<br>
+to just drop in a Verilog Module in a GNU Radio block and use that to<br>
+do signal processing in a pure host computer simulation. He&#39;ll be at<br=
+>
+GRCon this year!<br>
+<br>
+<a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.co=
+m_B0WEN-2DHU_gr-2Dverilog&amp;d=3DDwIDaQ&amp;c=3DOAG1LQNACBDguGvBeNj18Swhr9=
+TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02U&amp;m=
+=3DOAza1LeUx_20PABZFpa8SFpGhqGusnLgCJPv8Qn9IY4&amp;s=3DRVT10qjiHFS4-MdCMHF5=
+eFq0-VWOEryN7swfWuOKkZI&amp;e=3D" target=3D"_blank">https://urldefense.proo=
+fpoint.com/v2/url?u=3Dhttps-3A__github.com_B0WEN-2DHU_gr-2Dverilog&amp;d=3D=
+DwIDaQ&amp;c=3DOAG1LQNACBDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2P=
+n0MHhs668QvjpcSGl6s3MEmtJLBypH6x02U&amp;m=3DOAza1LeUx_20PABZFpa8SFpGhqGusnL=
+gCJPv8Qn9IY4&amp;s=3DRVT10qjiHFS4-MdCMHF5eFq0-VWOEryN7swfWuOKkZI&amp;e=3D</=
+a>
+<br>
+&lt;/shameless_plug&gt;<br>
+<br>
+Best regards,<br>
+Marcus<br>
+On Wed, 2019-09-11 at 15:13 +0000, Quadri,Adnan wrote:<br>
+&gt; Hello,<br>
+&gt; <br>
+&gt; Thanks for your prompt response and sorry for my delayed one.<br>
+&gt; <br>
+&gt; I have thought about the first option you have discussed, which is to<=
+br>
+&gt; use already implemented SVD but modify it to fit with the nocshell.<br=
+>
+&gt; <br>
+&gt; As we go down that way, I will update this thread with questions or<br=
+>
+&gt; any significant findings.<br>
+&gt; <br>
+&gt; Thank you,<br>
+&gt; Adnan<br>
+&gt; From: Marcus M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.co=
+m" target=3D"_blank">marcus.mueller@ettus.com</a>&gt;<br>
+&gt; Sent: Friday, September 6, 2019 4:00 PM<br>
+&gt; To: Quadri,Adnan &lt;<a href=3D"mailto:adnan.quadri@louisville.edu" ta=
+rget=3D"_blank">adnan.quadri@louisville.edu</a>&gt;; <br>
+&gt; <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
+target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+&gt; Subject: Re: [USRP-users] RFNoC SVD Block<br>
+&gt;=C2=A0 <br>
+&gt; Hello Adnan,<br>
+&gt; <br>
+&gt; I&#39;m currently not aware of anyone doing that.<br>
+&gt; <br>
+&gt; However, since one of the typical applications of beefier FPGAs is<br>
+&gt; math<br>
+&gt; accelerators for linear algebra problems, it&#39;s more than likely<br=
+>
+&gt; someone<br>
+&gt; did in fact implement an SVD before, and you might just need to<br>
+&gt; connect<br>
+&gt; it to a nocshell to make it work in RFNoC. There&#39;s a lot of<br>
+&gt; interesting<br>
+&gt; papers out there on SVD implementations for fixed point math on<br>
+&gt; FPGAs,<br>
+&gt; I think Drexel uni had some interesting stuff for SVD-based channel<br=
+>
+&gt; estimation for OFDM. I&#39;ve not seen any code of them, though...<br>
+&gt; <br>
+&gt; So, from an algorithmic point of view, an SVD isn&#39;t too hard. IIRC=
+,<br>
+&gt; sequential algorithms can work in-place, and thus (for a m=C3=97n matr=
+ix,<br>
+&gt; n&gt;m) don&#39;t need more than n=C2=B2 space for intermediate and fi=
+nal result<br>
+&gt; (+2m for index and scale storage if you want to pivot elegantly).<br>
+&gt; <br>
+&gt; Now, I&#39;ve not ever implemented more than a C++ QR decomposition<br=
+>
+&gt; (which<br>
+&gt; is the core algorithm for most EVD problems, which you typically<br>
+&gt; householder-transform an SVD problem to), so I&#39;m really not compet=
+ent<br>
+&gt; to comment on hardware implementations, but chances are you want to<br=
+>
+&gt; compute a lot of result values in parallel if you&#39;re doing it in t=
+he<br>
+&gt; FPGA =E2=80=93 because otherwise, you&#39;d abhor doing much work in h=
+ardware<br>
+&gt; (that<br>
+&gt; being _hard_) in favor of doing it easier-to-debug and also free-to-<b=
+r>
+&gt; have in the shape of LAPACK software. (Subtext message, more for<br>
+&gt; future<br>
+&gt; readers than for you: Evaluate whether something really should be<br>
+&gt; done<br>
+&gt; in hardware; it&#39;s not inherently better to do things in hardware.)=
+<br>
+&gt; But that parallelism might imply that in-place is not a feasible way<b=
+r>
+&gt; of<br>
+&gt; computing things, and your memory requirements might be much larger.<b=
+r>
+&gt; Depending on the size of SVD you&#39;re planning to do, that might or<=
+br>
+&gt; might<br>
+&gt; not be an issue.<br>
+&gt; <br>
+&gt; Best regards,<br>
+&gt; Marcus<br>
+&gt; <br>
+&gt; On Fri, 2019-09-06 at 19:05 +0000, Quadri,Adnan via USRP-users wrote:<=
+br>
+&gt; &gt; Hello,<br>
+&gt; &gt; <br>
+&gt; &gt; We are trying to perform singular vector decomposition. The idea =
+is<br>
+&gt; &gt; to work on an RFNoC block that takes in summation of samples from=
+<br>
+&gt; the<br>
+&gt; &gt; Radio source and will perform SVD.<br>
+&gt; &gt; <br>
+&gt; &gt; Is anybody working on something similar? <br>
+&gt; &gt; Currently, the RFNoC OFDM synchronizer block has timing constrain=
+t<br>
+&gt; &gt; issues and can&#39;t be used to build FPGA image.<br>
+&gt; &gt; <br>
+&gt; &gt; Just asking around to get some suggestions/advice and idea if<br>
+&gt; working<br>
+&gt; &gt; on that Verilog implementation of SVD is something doable and if<=
+br>
+&gt; &gt; anybody tried anything similar.<br>
+&gt; &gt; <br>
+&gt; &gt; Thank you,<br>
+&gt; &gt; Adnan<br>
+&gt; &gt; <br>
+&gt; &gt; <br>
+&gt; &gt; _______________________________________________<br>
+&gt; &gt; USRP-users mailing list<br>
+&gt; &gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">U=
+SRP-users@lists.ettus.com</a><br>
+&gt; &gt; <br>
+&gt; <a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists=
+.ettus.com_mailman_listinfo_usrp-2Dusers-5Flists.ettus.com&amp;d=3DDwIDaQ&a=
+mp;c=3DOAG1LQNACBDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2Pn0MHhs66=
+8QvjpcSGl6s3MEmtJLBypH6x02U&amp;m=3Dk37R0Rl_g81NH-S6ItDZuzmUBw5LoTVhKicoMs7=
+QquI&amp;s=3DwNh-TuGTVEYzPNN0GRzBjYiBuFKVQfG5vjCSdYCEnPY&amp;e=3D" target=
+=3D"_blank">
+https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mailm=
+an_listinfo_usrp-2Dusers-5Flists.ettus.com&amp;d=3DDwIDaQ&amp;c=3DOAG1LQNAC=
+BDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmt=
+JLBypH6x02U&amp;m=3Dk37R0Rl_g81NH-S6ItDZuzmUBw5LoTVhKicoMs7QquI&amp;s=3DwNh=
+-TuGTVEYzPNN0GRzBjYiBuFKVQfG5vjCSdYCEnPY&amp;e=3D</a><br>
+&gt;=C2=A0 <br>
+&gt; <br>
+<br>
+</div>
+</span></font></div>
+</div>
+
 _______________________________________________<br>
 USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com</a><br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
-</div></blockquote><blockquote type=3D"cite"><div dir=3D"ltr"><span>________=
-_______________________________________</span><br><span>USRP-users mailing l=
-ist</span><br><span><a href=3D"mailto:USRP-users@lists.ettus.com">USRP-users=
-@lists.ettus.com</a></span><br><span><a href=3D"http://lists.ettus.com/mailm=
-an/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com</a></span><br></div></blockquote></div></body=
-></html>=
 
---Apple-Mail-46C024B1-B33B-4906-A9DD-3C3467FF5AF1--
+--0000000000003174b10592570d50--
 
 
---===============0618493411565877426==
+--===============6312374364243100502==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -265,5 +500,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0618493411565877426==--
+--===============6312374364243100502==--
 
