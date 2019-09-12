@@ -2,56 +2,36 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05E10B0A7A
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Sep 2019 10:38:36 +0200 (CEST)
-Received: from [::1] (port=54546 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C97ADB11F8
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Sep 2019 17:19:00 +0200 (CEST)
+Received: from [::1] (port=53962 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i8KcX-0006VL-Om; Thu, 12 Sep 2019 04:38:29 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:44734)
+	id 1i8Qs6-0005dO-6H; Thu, 12 Sep 2019 11:18:58 -0400
+Received: from mailgate.nsl.eu.com ([77.111.227.135]:58060)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <emil.bjelski@gmail.com>)
- id 1i8KcT-0006Rl-Ij
- for usrp-users@lists.ettus.com; Thu, 12 Sep 2019 04:38:25 -0400
-Received: by mail-oi1-f172.google.com with SMTP id w6so16433483oie.11
- for <usrp-users@lists.ettus.com>; Thu, 12 Sep 2019 01:38:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=xog8V+5Cc76w+1fSNteSAyRKBwZPQPR6L9Pl4XZdiqk=;
- b=jjCuFXojlJfZqimmi2kaITxGZmkw8CBXhsfXnT1EXIEh5Pm4Z1coEhXYSC3kpbHLKT
- fYOgJRya6eF+BWRnQ1CelYZASwHBAjraft+CM8QMnFl+8wqlpai53XgFuEFXGm8i9eV9
- mhl6L8gQfa7au70UI6sY1fblUpL0gYkoZG1nGvl61XArIjafxKGwx9SNta2yArjcxLyH
- fs41DLGQ83bvZlxEDMAlTFfHqKONrFFOIiwC4KZz7zdCKZlYCUYzQ3NTegFr3mYiLRt4
- GHJH0m1rPFTulas5whNNlTaSLyZc+b6/894q/YuwC+fz070V5HHIwSMcwzXR5oOUbHVG
- D7kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=xog8V+5Cc76w+1fSNteSAyRKBwZPQPR6L9Pl4XZdiqk=;
- b=DerpQcxYTYv4eU0PY2DJyrU6zrGPQ7/tts4p63nVT9UuJzt28xmwrWZbj74Oy8xEgx
- +iwUmpmQ3cXeqAVv7WsD2MPGyAgmZDIjHvJAdb7Y4rFR5UqdHCHOBw4dVQmLtgVNhmNw
- Tjktr1Iz935Njq0GOxtnaJj0tWVhEeF5EtL3uWqe4fzdUiCBM5Ad6Ktxcxz7QaQmQ7N8
- 3GPiHX5HA4N+nEW1q2fNF7pGQDheSJw7DGd+ULMfboGyJxJWQiTRrikQRihWVdzcmCYl
- Enejj87Lbu3xqQpEY1h5Mc/SmlHfhp0EhDBDRctsKzzNDiLfffzWe0jyqZPyWkFIk5aj
- BZVg==
-X-Gm-Message-State: APjAAAV4xelKEYDvNrPRLuLPKvgsNsEJvq+qrbPrb5JbFvPSaw+IaPlM
- b70OxaDw24BTW5q0AcXVOJ5sqn1WI9pGvIWsY2ysjO8z
-X-Google-Smtp-Source: APXvYqwI8rO2PHYZH9Oj1XhbeiAK+odusMd2biFI/h/79U69eSR5tgxjv505FYmppyoAeOcag+zivBiyDGdTtBvQSDg=
-X-Received: by 2002:a05:6808:85:: with SMTP id
- s5mr7612600oic.158.1568277464706; 
- Thu, 12 Sep 2019 01:37:44 -0700 (PDT)
+ (Exim 4.92) (envelope-from <david.scott@nsl.eu.com>)
+ id 1i8Qs2-0005ZP-LU
+ for usrp-users@lists.ettus.com; Thu, 12 Sep 2019 11:18:54 -0400
+Received: from mailgate.nsl.eu.com ([77.111.227.135] helo=[192.168.16.148])
+ by mailgate.nsl.eu.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ (Exim 4.86_2) (envelope-from <david.scott@nsl.eu.com>)
+ id 1i8QrK-0006qb-S2; Thu, 12 Sep 2019 16:18:10 +0100
+To: Philip Balister <philip@balister.org>,
+ =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>,
+ usrp-users@lists.ettus.com
+References: <9bbb6b44-3e5f-2074-e8f3-b40fbde2b668@nsl.eu.com>
+ <2f2fa99b6dceede2430c928b0ae13114877854de.camel@ettus.com>
+ <86f3861a-2129-1a2d-3b71-6a38ef948ad8@balister.org>
+Message-ID: <a112ce3d-34e3-b6c5-144d-dc1740b3e6a5@nsl.eu.com>
+Date: Thu, 12 Sep 2019 16:18:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <DM6PR03MB3788A6E68F615BF33C687A8FE6BA0@DM6PR03MB3788.namprd03.prod.outlook.com>
- <84a673b3ca7caa1721171d4b5494c2eee03b448e.camel@ettus.com>
- <DM6PR03MB37883E0264A559380EB5A1BFE6B10@DM6PR03MB3788.namprd03.prod.outlook.com>
- <a6d01ddb6d45fb692f7fcfc5a5cdf744a7ab17c1.camel@ettus.com>
- <DM6PR03MB3788C5B1BF520A7AC022AABFE6B10@DM6PR03MB3788.namprd03.prod.outlook.com>
-In-Reply-To: <DM6PR03MB3788C5B1BF520A7AC022AABFE6B10@DM6PR03MB3788.namprd03.prod.outlook.com>
-Date: Thu, 12 Sep 2019 10:37:33 +0200
-Message-ID: <CADrptxUgvjEjeRZG6W1H6UQHH103Z81LqiQ-8XGogi3FB4TSRg@mail.gmail.com>
-To: "Quadri,Adnan" <adnan.quadri@louisville.edu>
-Subject: Re: [USRP-users] RFNoC SVD Block
+In-Reply-To: <86f3861a-2129-1a2d-3b71-6a38ef948ad8@balister.org>
+Content-Language: en-GB
+Subject: Re: [USRP-users] Pybombs UHD install for development machine CMake
+ version failure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,10 +43,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Emil Bjelski via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Emil Bjelski <emil.bjelski@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6312374364243100502=="
+From: David Scott via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Scott <david.scott@nsl.eu.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,425 +60,193 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6312374364243100502==
-Content-Type: multipart/alternative; boundary="0000000000003174b10592570d50"
-
---0000000000003174b10592570d50
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Adnan,
-
-Take a look to this document
-https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug902-=
-vivado-high-level-synthesis.pdf
-.
-I feel that HLS is the way to go.
-However, if I remember correctly the maximum size of the matrix that is
-supported by HLS linpack implementation of the SVD is *8x8.*
-
-Just due to my curiosity. Why do not you buffer samples and perform SVD in
-the software? (I feel that that will be much easier).
-
-Cheers,
-
-Emil
-
-On Wed, Sep 11, 2019 at 6:45 PM Quadri,Adnan via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> This Verilog AXI is so amazing. I just went through the project link
-> quickly.
->
-> We can test our verilog implementation on GRC! This will be so helpful.
-> Thank you so much for sharing the information.
->
-> Adnan
-> ------------------------------
-> *From:* Marcus M=C3=BCller <marcus.mueller@ettus.com>
-> *Sent:* Wednesday, September 11, 2019 11:34 AM
-> *To:* Quadri,Adnan <adnan.quadri@louisville.edu>;
-> usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* Re: [USRP-users] RFNoC SVD Block
->
-> Thanks! I'm always curious about how our hard- and software
-> infrastructure is being used!
->
-> By the way, in case you want to test a verilog SVD implementation
-> within a signal processing framework: Bowen Hu did a very interesting
-> Google Summer of Code project this year, in which he made it possible
-> to just drop in a Verilog Module in a GNU Radio block and use that to
-> do signal processing in a pure host computer simulation. He'll be at
-> GRCon this year!
->
->
-> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_B0WEN-2=
-DHU_gr-2Dverilog&d=3DDwIDaQ&c=3DOAG1LQNACBDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY=
-&r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02U&m=3DOAza1LeUx_20PABZFpa8SF=
-pGhqGusnLgCJPv8Qn9IY4&s=3DRVT10qjiHFS4-MdCMHF5eFq0-VWOEryN7swfWuOKkZI&e=3D
-> </shameless_plug>
->
-> Best regards,
-> Marcus
-> On Wed, 2019-09-11 at 15:13 +0000, Quadri,Adnan wrote:
-> > Hello,
-> >
-> > Thanks for your prompt response and sorry for my delayed one.
-> >
-> > I have thought about the first option you have discussed, which is to
-> > use already implemented SVD but modify it to fit with the nocshell.
-> >
-> > As we go down that way, I will update this thread with questions or
-> > any significant findings.
-> >
-> > Thank you,
-> > Adnan
-> > From: Marcus M=C3=BCller <marcus.mueller@ettus.com>
-> > Sent: Friday, September 6, 2019 4:00 PM
-> > To: Quadri,Adnan <adnan.quadri@louisville.edu>;
-> > usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> > Subject: Re: [USRP-users] RFNoC SVD Block
-> >
-> > Hello Adnan,
-> >
-> > I'm currently not aware of anyone doing that.
-> >
-> > However, since one of the typical applications of beefier FPGAs is
-> > math
-> > accelerators for linear algebra problems, it's more than likely
-> > someone
-> > did in fact implement an SVD before, and you might just need to
-> > connect
-> > it to a nocshell to make it work in RFNoC. There's a lot of
-> > interesting
-> > papers out there on SVD implementations for fixed point math on
-> > FPGAs,
-> > I think Drexel uni had some interesting stuff for SVD-based channel
-> > estimation for OFDM. I've not seen any code of them, though...
-> >
-> > So, from an algorithmic point of view, an SVD isn't too hard. IIRC,
-> > sequential algorithms can work in-place, and thus (for a m=C3=97n matri=
-x,
-> > n>m) don't need more than n=C2=B2 space for intermediate and final resu=
-lt
-> > (+2m for index and scale storage if you want to pivot elegantly).
-> >
-> > Now, I've not ever implemented more than a C++ QR decomposition
-> > (which
-> > is the core algorithm for most EVD problems, which you typically
-> > householder-transform an SVD problem to), so I'm really not competent
-> > to comment on hardware implementations, but chances are you want to
-> > compute a lot of result values in parallel if you're doing it in the
-> > FPGA =E2=80=93 because otherwise, you'd abhor doing much work in hardwa=
-re
-> > (that
-> > being _hard_) in favor of doing it easier-to-debug and also free-to-
-> > have in the shape of LAPACK software. (Subtext message, more for
-> > future
-> > readers than for you: Evaluate whether something really should be
-> > done
-> > in hardware; it's not inherently better to do things in hardware.)
-> > But that parallelism might imply that in-place is not a feasible way
-> > of
-> > computing things, and your memory requirements might be much larger.
-> > Depending on the size of SVD you're planning to do, that might or
-> > might
-> > not be an issue.
-> >
-> > Best regards,
-> > Marcus
-> >
-> > On Fri, 2019-09-06 at 19:05 +0000, Quadri,Adnan via USRP-users wrote:
-> > > Hello,
-> > >
-> > > We are trying to perform singular vector decomposition. The idea is
-> > > to work on an RFNoC block that takes in summation of samples from
-> > the
-> > > Radio source and will perform SVD.
-> > >
-> > > Is anybody working on something similar?
-> > > Currently, the RFNoC OFDM synchronizer block has timing constraint
-> > > issues and can't be used to build FPGA image.
-> > >
-> > > Just asking around to get some suggestions/advice and idea if
-> > working
-> > > on that Verilog implementation of SVD is something doable and if
-> > > anybody tried anything similar.
-> > >
-> > > Thank you,
-> > > Adnan
-> > >
-> > >
-> > > _______________________________________________
-> > > USRP-users mailing list
-> > > USRP-users@lists.ettus.com
-> > >
-> >
-> https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mai=
-lman_listinfo_usrp-2Dusers-5Flists.ettus.com&d=3DDwIDaQ&c=3DOAG1LQNACBDguGv=
-BeNj18Swhr9TMTjS-x4O_KuapPgY&r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02=
-U&m=3Dk37R0Rl_g81NH-S6ItDZuzmUBw5LoTVhKicoMs7QquI&s=3DwNh-TuGTVEYzPNN0GRzBj=
-YiBuFKVQfG5vjCSdYCEnPY&e=3D
-> >
-> >
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000003174b10592570d50
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Adnan,<div><br></div><div>Take a look to this document=
-=C2=A0<a href=3D"https://www.xilinx.com/support/documentation/sw_manuals/xi=
-linx2018_3/ug902-vivado-high-level-synthesis.pdf">https://www.xilinx.com/su=
-pport/documentation/sw_manuals/xilinx2018_3/ug902-vivado-high-level-synthes=
-is.pdf</a>.</div><div>I feel that HLS is the way to go.</div><div>However, =
-if I remember correctly the maximum size of the matrix that is supported by=
- HLS linpack implementation of the SVD is <b>8x8.</b></div><div><br></div><=
-div>Just due to my curiosity. Why do not you buffer samples and perform SVD=
- in the software? (I feel that that will be much easier).</div><div><br></d=
-iv><div>Cheers,</div><div><br></div><div>Emil</div></div><br><div class=3D"=
-gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep 11, 2019 at =
-6:45 PM Quadri,Adnan via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.=
-ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-This Verilog AXI is so amazing. I just went through the project link quickl=
-y. <br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-We can test our verilog implementation on GRC! This will be so helpful.</di=
-v>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Thank you so much for sharing the information. <br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Adnan<br>
-</div>
-<div id=3D"gmail-m_-984662996941114646appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"gmail-m_-984662996941114646divRplyFwdMsg" dir=3D"ltr"><font face=
-=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From=
-:</b> Marcus M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com" ta=
-rget=3D"_blank">marcus.mueller@ettus.com</a>&gt;<br>
-<b>Sent:</b> Wednesday, September 11, 2019 11:34 AM<br>
-<b>To:</b> Quadri,Adnan &lt;<a href=3D"mailto:adnan.quadri@louisville.edu" =
-target=3D"_blank">adnan.quadri@louisville.edu</a>&gt;; <a href=3D"mailto:us=
-rp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a> =
-&lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] RFNoC SVD Block</font>
-<div>=C2=A0</div>
-</div>
-<div class=3D"gmail-m_-984662996941114646BodyFragment"><font size=3D"2"><sp=
-an style=3D"font-size:11pt">
-<div class=3D"gmail-m_-984662996941114646PlainText">Thanks! I&#39;m always =
-curious about how our hard- and software<br>
-infrastructure is being used!<br>
-<br>
-By the way, in case you want to test a verilog SVD implementation<br>
-within a signal processing framework: Bowen Hu did a very interesting<br>
-Google Summer of Code project this year, in which he made it possible<br>
-to just drop in a Verilog Module in a GNU Radio block and use that to<br>
-do signal processing in a pure host computer simulation. He&#39;ll be at<br=
->
-GRCon this year!<br>
-<br>
-<a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.co=
-m_B0WEN-2DHU_gr-2Dverilog&amp;d=3DDwIDaQ&amp;c=3DOAG1LQNACBDguGvBeNj18Swhr9=
-TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmtJLBypH6x02U&amp;m=
-=3DOAza1LeUx_20PABZFpa8SFpGhqGusnLgCJPv8Qn9IY4&amp;s=3DRVT10qjiHFS4-MdCMHF5=
-eFq0-VWOEryN7swfWuOKkZI&amp;e=3D" target=3D"_blank">https://urldefense.proo=
-fpoint.com/v2/url?u=3Dhttps-3A__github.com_B0WEN-2DHU_gr-2Dverilog&amp;d=3D=
-DwIDaQ&amp;c=3DOAG1LQNACBDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2P=
-n0MHhs668QvjpcSGl6s3MEmtJLBypH6x02U&amp;m=3DOAza1LeUx_20PABZFpa8SFpGhqGusnL=
-gCJPv8Qn9IY4&amp;s=3DRVT10qjiHFS4-MdCMHF5eFq0-VWOEryN7swfWuOKkZI&amp;e=3D</=
-a>
-<br>
-&lt;/shameless_plug&gt;<br>
-<br>
-Best regards,<br>
-Marcus<br>
-On Wed, 2019-09-11 at 15:13 +0000, Quadri,Adnan wrote:<br>
-&gt; Hello,<br>
-&gt; <br>
-&gt; Thanks for your prompt response and sorry for my delayed one.<br>
-&gt; <br>
-&gt; I have thought about the first option you have discussed, which is to<=
-br>
-&gt; use already implemented SVD but modify it to fit with the nocshell.<br=
->
-&gt; <br>
-&gt; As we go down that way, I will update this thread with questions or<br=
->
-&gt; any significant findings.<br>
-&gt; <br>
-&gt; Thank you,<br>
-&gt; Adnan<br>
-&gt; From: Marcus M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.co=
-m" target=3D"_blank">marcus.mueller@ettus.com</a>&gt;<br>
-&gt; Sent: Friday, September 6, 2019 4:00 PM<br>
-&gt; To: Quadri,Adnan &lt;<a href=3D"mailto:adnan.quadri@louisville.edu" ta=
-rget=3D"_blank">adnan.quadri@louisville.edu</a>&gt;; <br>
-&gt; <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
-sers@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-&gt; Subject: Re: [USRP-users] RFNoC SVD Block<br>
-&gt;=C2=A0 <br>
-&gt; Hello Adnan,<br>
-&gt; <br>
-&gt; I&#39;m currently not aware of anyone doing that.<br>
-&gt; <br>
-&gt; However, since one of the typical applications of beefier FPGAs is<br>
-&gt; math<br>
-&gt; accelerators for linear algebra problems, it&#39;s more than likely<br=
->
-&gt; someone<br>
-&gt; did in fact implement an SVD before, and you might just need to<br>
-&gt; connect<br>
-&gt; it to a nocshell to make it work in RFNoC. There&#39;s a lot of<br>
-&gt; interesting<br>
-&gt; papers out there on SVD implementations for fixed point math on<br>
-&gt; FPGAs,<br>
-&gt; I think Drexel uni had some interesting stuff for SVD-based channel<br=
->
-&gt; estimation for OFDM. I&#39;ve not seen any code of them, though...<br>
-&gt; <br>
-&gt; So, from an algorithmic point of view, an SVD isn&#39;t too hard. IIRC=
-,<br>
-&gt; sequential algorithms can work in-place, and thus (for a m=C3=97n matr=
-ix,<br>
-&gt; n&gt;m) don&#39;t need more than n=C2=B2 space for intermediate and fi=
-nal result<br>
-&gt; (+2m for index and scale storage if you want to pivot elegantly).<br>
-&gt; <br>
-&gt; Now, I&#39;ve not ever implemented more than a C++ QR decomposition<br=
->
-&gt; (which<br>
-&gt; is the core algorithm for most EVD problems, which you typically<br>
-&gt; householder-transform an SVD problem to), so I&#39;m really not compet=
-ent<br>
-&gt; to comment on hardware implementations, but chances are you want to<br=
->
-&gt; compute a lot of result values in parallel if you&#39;re doing it in t=
-he<br>
-&gt; FPGA =E2=80=93 because otherwise, you&#39;d abhor doing much work in h=
-ardware<br>
-&gt; (that<br>
-&gt; being _hard_) in favor of doing it easier-to-debug and also free-to-<b=
-r>
-&gt; have in the shape of LAPACK software. (Subtext message, more for<br>
-&gt; future<br>
-&gt; readers than for you: Evaluate whether something really should be<br>
-&gt; done<br>
-&gt; in hardware; it&#39;s not inherently better to do things in hardware.)=
-<br>
-&gt; But that parallelism might imply that in-place is not a feasible way<b=
-r>
-&gt; of<br>
-&gt; computing things, and your memory requirements might be much larger.<b=
-r>
-&gt; Depending on the size of SVD you&#39;re planning to do, that might or<=
-br>
-&gt; might<br>
-&gt; not be an issue.<br>
-&gt; <br>
-&gt; Best regards,<br>
-&gt; Marcus<br>
-&gt; <br>
-&gt; On Fri, 2019-09-06 at 19:05 +0000, Quadri,Adnan via USRP-users wrote:<=
-br>
-&gt; &gt; Hello,<br>
-&gt; &gt; <br>
-&gt; &gt; We are trying to perform singular vector decomposition. The idea =
-is<br>
-&gt; &gt; to work on an RFNoC block that takes in summation of samples from=
-<br>
-&gt; the<br>
-&gt; &gt; Radio source and will perform SVD.<br>
-&gt; &gt; <br>
-&gt; &gt; Is anybody working on something similar? <br>
-&gt; &gt; Currently, the RFNoC OFDM synchronizer block has timing constrain=
-t<br>
-&gt; &gt; issues and can&#39;t be used to build FPGA image.<br>
-&gt; &gt; <br>
-&gt; &gt; Just asking around to get some suggestions/advice and idea if<br>
-&gt; working<br>
-&gt; &gt; on that Verilog implementation of SVD is something doable and if<=
-br>
-&gt; &gt; anybody tried anything similar.<br>
-&gt; &gt; <br>
-&gt; &gt; Thank you,<br>
-&gt; &gt; Adnan<br>
-&gt; &gt; <br>
-&gt; &gt; <br>
-&gt; &gt; _______________________________________________<br>
-&gt; &gt; USRP-users mailing list<br>
-&gt; &gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">U=
-SRP-users@lists.ettus.com</a><br>
-&gt; &gt; <br>
-&gt; <a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists=
-.ettus.com_mailman_listinfo_usrp-2Dusers-5Flists.ettus.com&amp;d=3DDwIDaQ&a=
-mp;c=3DOAG1LQNACBDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2Pn0MHhs66=
-8QvjpcSGl6s3MEmtJLBypH6x02U&amp;m=3Dk37R0Rl_g81NH-S6ItDZuzmUBw5LoTVhKicoMs7=
-QquI&amp;s=3DwNh-TuGTVEYzPNN0GRzBjYiBuFKVQfG5vjCSdYCEnPY&amp;e=3D" target=
-=3D"_blank">
-https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mailm=
-an_listinfo_usrp-2Dusers-5Flists.ettus.com&amp;d=3DDwIDaQ&amp;c=3DOAG1LQNAC=
-BDguGvBeNj18Swhr9TMTjS-x4O_KuapPgY&amp;r=3DJoNl3b2Pn0MHhs668QvjpcSGl6s3MEmt=
-JLBypH6x02U&amp;m=3Dk37R0Rl_g81NH-S6ItDZuzmUBw5LoTVhKicoMs7QquI&amp;s=3DwNh=
--TuGTVEYzPNN0GRzBjYiBuFKVQfG5vjCSdYCEnPY&amp;e=3D</a><br>
-&gt;=C2=A0 <br>
-&gt; <br>
-<br>
-</div>
-</span></font></div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000003174b10592570d50--
-
-
---===============6312374364243100502==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6312374364243100502==--
-
+SGkgTWFyY2h1cyBhbmQgUGhpbGxpcCwKClRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHRoZSByZXBs
+aWVzLiBJIGJlbGlldmUgaXQgaXMgdGhlIENNYWtlIHZlcnNpb24gCmluIHRoZSBTREsuIEkgaGF2
+ZSBtYW5hZ2VkIHRvIHdvcmsgYXJvdW5kIHRoYXQgaXNzdWUgYnkgbW9kaWZ5aW5nIHRoZSAKQ01h
+a2VMaXN0cy50eHQgc28gdGhlIG1pbmltdW0gcmVxdWlyZWQgdmVyc2lvbiBpcyAyLjgsIEkgaGF2
+ZSByZXNvcnRlZCAKdG8gbWFudWFsbHkgaW5zdGFsbGluZyB0aGUgU0RLLiBIb3dldmVyIEkgbm93
+IGhhdmUgYW5vdGhlciBwcm9ibGVtLiBXaGVuIApJIHJ1bgoKIMKgICQgY21ha2UgLURDTUFLRV9U
+T09MQ0hBSU5fRklMRT0uLi9jbWFrZS9Ub29sY2hhaW5zL29lLXNka19jcm9zcy5jbWFrZSAKLURD
+TUFLRV9JTlNUQUxMX1BSRUZJWD0vdXNyIC1ERU5BQkxFX0UzMDA9T04gLi4KCkxpYlVIRCBkZXBl
+bmRlbmNpZXMgYXJlbid0IG1ldCwgaXQgZG9lc24ndCBmaW5kIGJvb3N0LiBsb29raW5nIGluIAov
+aG9tZS9kYXZpZC9wcmVmaXgvc3lzcm9vdHMvYXJtdjdhaGYtdmZwLW5lb24tb2UtbGludXgtZ251
+ZWFiaS91c3IvaW5jbHVkZSAKaXQgZG9lc24ndCBhcHBlYXIgdGhhdCB0aGUgYm9vc3QgbGlicmFy
+eSBoZWFkZXJzIGFyZSBwcmVzZW50LiBBbHNvIHRoZSAKQ01ha2VMaXN0cy50eHQgbG9va3MgZm9y
+IHB5dGhvbjMgYnV0IHB5dGhvbjMgaXMgbm90IHByZXNlbnQgaW4gdGhlIHNkayAKZmlsZXM6IC0K
+CiDCoCAkIHdoaWNoIHB5dGhvbgoKIMKgwqDCoCAvaG9tZS9kYXZpZC9wcmVmaXgvc3lzcm9vdHMv
+eDg2XzY0LW9lc2RrLWxpbnV4L3Vzci9iaW4vcHl0aG9uCgogwqAgJCB3aGljaCBweXRob24zCgog
+wqDCoMKgIC91c3IvYmluL3B5dGhvbjMKClRoZSBzZGsgd2FzIGluc3RhbGxlZCB1c2luZyB0aGUg
+Zm9sbG93aW5nIGNvbW1hbmRzOiAtCgogwqAgJCBzaCBvZWNvcmUteDg2XzY0LWFybXY3YWhmLXZm
+cC1uZW9uLXRvb2xjaGFpbi1ub2Rpc3Ryby4wLnNoIAooaW5zdGFsbGVkIHRvIH4vcHJlZml4KQoK
+IMKgICQgY2Qgfi9wcmVmaXgKCiDCoCAkIHNvdXJjZSAuL2Vudmlyb25tZW50LXNldHVwLWFybXY3
+YWhmLXZmcC1uZW9uLW9lLWxpbnV4LWdudWVhYmkgCih0ZXN0ZWQgYnkgcnVubmluZyBlY2hvICRD
+QyB3aGljaCBzaG93cyBleHBlY3RlZCBjcm9zcyBjb21waWxlcikKCiDCoCAkIG1rZGlyIHNyYy8K
+CiDCoCAkIGNkIHNyYy8KCiDCoCAkIGdpdCBjbG9uZSBodHRwczovL2dpdGh1Yi5jb20vRXR0dXNS
+ZXNlYXJjaC91aGQuZ2l0CgogwqAgJCBjZCB1aGQvaG9zdAoKIMKgICQgbWtkaXIgYnVpbGQKCiDC
+oCAkIGNkIGJ1aWxkCgogwqAgJCBjbWFrZSAtRENNQUtFX1RPT0xDSEFJTl9GSUxFPS4uL2NtYWtl
+L1Rvb2xjaGFpbnMvb2Utc2RrX2Nyb3NzLmNtYWtlIAotRENNQUtFX0lOU1RBTExfUFJFRklYPS91
+c3IgLURFTkFCTEVfRTMwMD1PTiAuLgoKClRoZSBmdWxsIG91dHB1dCBpcyBsaXN0ZWQgYmVsb3c6
+IC0KCi0tIFRoZSBDWFggY29tcGlsZXIgaWRlbnRpZmljYXRpb24gaXMgR05VIDQuOS4yCi0tIFRo
+ZSBDIGNvbXBpbGVyIGlkZW50aWZpY2F0aW9uIGlzIEdOVSA0LjkuMgotLSBDaGVjayBmb3Igd29y
+a2luZyBDWFggY29tcGlsZXI6IAovaG9tZS9kYXZpZC9wcmVmaXgvc3lzcm9vdHMveDg2XzY0LW9l
+c2RrLWxpbnV4L3Vzci9iaW4vYXJtLW9lLWxpbnV4LWdudWVhYmkvYXJtLW9lLWxpbnV4LWdudWVh
+YmktZysrCi0tIENoZWNrIGZvciB3b3JraW5nIENYWCBjb21waWxlcjogCi9ob21lL2RhdmlkL3By
+ZWZpeC9zeXNyb290cy94ODZfNjQtb2VzZGstbGludXgvdXNyL2Jpbi9hcm0tb2UtbGludXgtZ251
+ZWFiaS9hcm0tb2UtbGludXgtZ251ZWFiaS1nKysgCi0tIHdvcmtzCi0tIERldGVjdGluZyBDWFgg
+Y29tcGlsZXIgQUJJIGluZm8KLS0gRGV0ZWN0aW5nIENYWCBjb21waWxlciBBQkkgaW5mbyAtIGRv
+bmUKLS0gQ2hlY2sgZm9yIHdvcmtpbmcgQyBjb21waWxlcjogCi9ob21lL2RhdmlkL3ByZWZpeC9z
+eXNyb290cy94ODZfNjQtb2VzZGstbGludXgvdXNyL2Jpbi9hcm0tb2UtbGludXgtZ251ZWFiaS9h
+cm0tb2UtbGludXgtZ251ZWFiaS1nY2MKLS0gQ2hlY2sgZm9yIHdvcmtpbmcgQyBjb21waWxlcjog
+Ci9ob21lL2RhdmlkL3ByZWZpeC9zeXNyb290cy94ODZfNjQtb2VzZGstbGludXgvdXNyL2Jpbi9h
+cm0tb2UtbGludXgtZ251ZWFiaS9hcm0tb2UtbGludXgtZ251ZWFiaS1nY2MgCi0tIHdvcmtzCi0t
+IERldGVjdGluZyBDIGNvbXBpbGVyIEFCSSBpbmZvCi0tIERldGVjdGluZyBDIGNvbXBpbGVyIEFC
+SSBpbmZvIC0gZG9uZQotLSAKLS0gQ29uZmlndXJpbmcgdGhlIFB5dGhvbiBpbnRlcnByZXRlci4u
+LgotLSBBdHRlbXB0aW5nIHRvIGZpbmQgUHl0aG9uIHdpdGhvdXQgQ01ha2UuLi4KLS0gUHl0aG9u
+IGludGVycHJldGVyOiAvdXNyL2Jpbi9weXRob24zIFZlcnNpb246IDEuNAotLSBPdmVycmlkZSB3
+aXRoOiAtRFBZVEhPTl9FWEVDVVRBQkxFPTxwYXRoLXRvLXB5dGhvbj4KLS0gUHl0aG9uIHJ1bnRp
+bWUgaW50ZXJwcmV0ZXI6IC91c3IvYmluL3B5dGhvbjMgVmVyc2lvbjogMS40Ci0tIE92ZXJyaWRl
+IHdpdGg6IC1EUlVOVElNRV9QWVRIT05fRVhFQ1VUQUJMRT08cGF0aC10by1weXRob24+Ci0tIEZp
+bmRpbmcgUHl0aG9uIExpYnJhcmllcy4uLgotLSBDb3VsZCBub3QgZmluZCBQeXRob24gTGlicmFy
+aWVzLgotLSBPcGVyYXRpbmcgb24gbWFzdGVyIGJyYW5jaC4KRmF0YWwgUHl0aG9uIGVycm9yOiBQ
+eV9Jbml0aWFsaXplOiBVbmFibGUgdG8gZ2V0IHRoZSBsb2NhbGUgZW5jb2RpbmcKTW9kdWxlTm90
+Rm91bmRFcnJvcjogTm8gbW9kdWxlIG5hbWVkICdlbmNvZGluZ3MnCgpDdXJyZW50IHRocmVhZCAw
+eDAwMDA3ZmVkOTBiYTg3NDAgKG1vc3QgcmVjZW50IGNhbGwgZmlyc3QpOgpGYXRhbCBQeXRob24g
+ZXJyb3I6IFB5X0luaXRpYWxpemU6IFVuYWJsZSB0byBnZXQgdGhlIGxvY2FsZSBlbmNvZGluZwpN
+b2R1bGVOb3RGb3VuZEVycm9yOiBObyBtb2R1bGUgbmFtZWQgJ2VuY29kaW5ncycKCkN1cnJlbnQg
+dGhyZWFkIDB4MDAwMDdmM2VjN2U1YTc0MCAobW9zdCByZWNlbnQgY2FsbCBmaXJzdCk6Ci0tIFVz
+aW5nIFVIRCBJbWFnZXMgRGlyZWN0b3J5OiAvdXNyL3NoYXJlL3VoZC9pbWFnZXMKLS0gQnVpbGQg
+dHlwZSBub3Qgc3BlY2lmaWVkOiBkZWZhdWx0aW5nIHRvIHJlbGVhc2UuCi0tIFBlcmZvcm1pbmcg
+VGVzdCBIQVZFX1ZJU0lCSUxJVFlfSElEREVOCi0tIFBlcmZvcm1pbmcgVGVzdCBIQVZFX1ZJU0lC
+SUxJVFlfSElEREVOIC0gU3VjY2VzcwotLSBQZXJmb3JtaW5nIFRlc3QgSEFWRV9WSVNJQklMSVRZ
+X0lOTElORVNfSElEREVOCi0tIFBlcmZvcm1pbmcgVGVzdCBIQVZFX1ZJU0lCSUxJVFlfSU5MSU5F
+U19ISURERU4gLSBTdWNjZXNzCi0tIAotLSBDb25maWd1cmluZyBCb29zdCBDKysgTGlicmFyaWVz
+Li4uCi0tIExvb2tpbmcgZm9yIG9wdGlvbmFsIEJvb3N0IGNvbXBvbmVudHMuLi4KLS0gQ291bGQg
+Tk9UIGZpbmQgQm9vc3QKLS0gTG9va2luZyBmb3IgcmVxdWlyZWQgQm9vc3QgY29tcG9uZW50cy4u
+LgotLSBDb3VsZCBOT1QgZmluZCBCb29zdAotLSBCb29zdCBpbmNsdWRlIGRpcmVjdG9yaWVzOiAK
+L2hvbWUvZGF2aWQvcHJlZml4L3N5c3Jvb3RzL2FybXY3YWhmLXZmcC1uZW9uLW9lLWxpbnV4LWdu
+dWVhYmkvdXNyL2luY2x1ZGUKLS0gQm9vc3QgbGlicmFyeSBkaXJlY3RvcmllczogCi9ob21lL2Rh
+dmlkL3ByZWZpeC9zeXNyb290cy9hcm12N2FoZi12ZnAtbmVvbi1vZS1saW51eC1nbnVlYWJpL3Vz
+ci9saWIKLS0gQm9vc3QgbGlicmFyaWVzOgotLSAKLS0gUHl0aG9uIGNoZWNraW5nIGZvciBQeXRo
+b24gdmVyc2lvbiAzLjUgb3IgZ3JlYXRlcgpGYXRhbCBQeXRob24gZXJyb3I6IFB5X0luaXRpYWxp
+emU6IFVuYWJsZSB0byBnZXQgdGhlIGxvY2FsZSBlbmNvZGluZwpNb2R1bGVOb3RGb3VuZEVycm9y
+OiBObyBtb2R1bGUgbmFtZWQgJ2VuY29kaW5ncycKCkN1cnJlbnQgdGhyZWFkIDB4MDAwMDdmMjVm
+MTg2Yjc0MCAobW9zdCByZWNlbnQgY2FsbCBmaXJzdCk6Ci0tIFB5dGhvbiBjaGVja2luZyBmb3Ig
+UHl0aG9uIHZlcnNpb24gMy41IG9yIGdyZWF0ZXIgLSB1bmtub3duIGVycm9yCi0tIAotLSBQeXRo
+b24gY2hlY2tpbmcgZm9yIE1ha28gdGVtcGxhdGVzIDAuNC4yIG9yIGdyZWF0ZXIKRmF0YWwgUHl0
+aG9uIGVycm9yOiBQeV9Jbml0aWFsaXplOiBVbmFibGUgdG8gZ2V0IHRoZSBsb2NhbGUgZW5jb2Rp
+bmcKTW9kdWxlTm90Rm91bmRFcnJvcjogTm8gbW9kdWxlIG5hbWVkICdlbmNvZGluZ3MnCgpDdXJy
+ZW50IHRocmVhZCAweDAwMDA3ZmM5ODBlZDM3NDAgKG1vc3QgcmVjZW50IGNhbGwgZmlyc3QpOgot
+LSBQeXRob24gY2hlY2tpbmcgZm9yIE1ha28gdGVtcGxhdGVzIDAuNC4yIG9yIGdyZWF0ZXIgLSB1
+bmtub3duIGVycm9yCi0tIAotLSBQeXRob24gY2hlY2tpbmcgZm9yIHJlcXVlc3RzIDIuMCBvciBn
+cmVhdGVyCkZhdGFsIFB5dGhvbiBlcnJvcjogUHlfSW5pdGlhbGl6ZTogVW5hYmxlIHRvIGdldCB0
+aGUgbG9jYWxlIGVuY29kaW5nCk1vZHVsZU5vdEZvdW5kRXJyb3I6IE5vIG1vZHVsZSBuYW1lZCAn
+ZW5jb2RpbmdzJwoKQ3VycmVudCB0aHJlYWQgMHgwMDAwN2ZiYTk2NmI5NzQwIChtb3N0IHJlY2Vu
+dCBjYWxsIGZpcnN0KToKLS0gUHl0aG9uIGNoZWNraW5nIGZvciByZXF1ZXN0cyAyLjAgb3IgZ3Jl
+YXRlciAtIHVua25vd24gZXJyb3IKLS0gCi0tIFB5dGhvbiBjaGVja2luZyBmb3IgbnVtcHkgMS43
+IG9yIGdyZWF0ZXIKRmF0YWwgUHl0aG9uIGVycm9yOiBQeV9Jbml0aWFsaXplOiBVbmFibGUgdG8g
+Z2V0IHRoZSBsb2NhbGUgZW5jb2RpbmcKTW9kdWxlTm90Rm91bmRFcnJvcjogTm8gbW9kdWxlIG5h
+bWVkICdlbmNvZGluZ3MnCgpDdXJyZW50IHRocmVhZCAweDAwMDA3ZjQzOGFjMTg3NDAgKG1vc3Qg
+cmVjZW50IGNhbGwgZmlyc3QpOgotLSBQeXRob24gY2hlY2tpbmcgZm9yIG51bXB5IDEuNyBvciBn
+cmVhdGVyIC0gdW5rbm93biBlcnJvcgotLSAKLS0gQ29uZmlndXJpbmcgTGliVUhEIHN1cHBvcnQu
+Li4KLS3CoMKgIERlcGVuZGVuY3kgQm9vc3RfRk9VTkQgPSAwCi0twqDCoCBEZXBlbmRlbmN5IEhB
+VkVfUFlUSE9OX1BMQVRfTUlOX1ZFUlNJT04gPSBGQUxTRQotLcKgwqAgRGVwZW5kZW5jeSBIQVZF
+X1BZVEhPTl9NT0RVTEVfTUFLTyA9IEZBTFNFCkNNYWtlIEVycm9yIGF0IGNtYWtlL01vZHVsZXMv
+VUhEQ29tcG9uZW50LmNtYWtlOjU5IChtZXNzYWdlKToKIMKgIERlcGVuZGVuY2llcyBmb3IgcmVx
+dWlyZWQgY29tcG9uZW50IExpYlVIRCBub3QgbWV0LgpDYWxsIFN0YWNrIChtb3N0IHJlY2VudCBj
+YWxsIGZpcnN0KToKIMKgIENNYWtlTGlzdHMudHh0OjM5MiAoTElCVUhEX1JFR0lTVEVSX0NPTVBP
+TkVOVCkKCgotLSBDb25maWd1cmluZyBpbmNvbXBsZXRlLCBlcnJvcnMgb2NjdXJyZWQhCgoKSSBo
+YXZlIG1hbmFnZWQgYWxzbyB0byBnZXQgYXJvdW5kIHNvbWUgb2YgdGhlIHB5dGhvbiBlcnJvcnMg
+Ynkgc2V0dGluZ8KgIAotRFBZVEhPTl9FWEVDVVRBQkxFIGFuZCAtRFJVTlRJTUVfUFlUSE9OX0VY
+RUNVVEFCTEUgaG93ZXZlciBCb29zdCBpcyAKanVzdCBub3QgcHJlc2VudC4KCkl0IGxvb2tzIGxp
+a2UgcXVpdGUgYSBsb3Qgb2YgZXhwZWN0ZWQgZmlsZXMgYXJlIG1pc3NpbmcgaW4gdGhlIFNESy4g
+SGF2ZSAKSSBwZXJoYXBzIGRvd25sb2FkZWQgdGhlIGluY29ycmVjdCBzZGsgZmlsZT8gSSBhbSB1
+c2luZyB0aGUgb25lIGZvdW5kIApoZXJlIDogLQoKaHR0cDovL2ZpbGVzLmV0dHVzLmNvbS9lM3h4
+X2ltYWdlcy9lM3h4LXJlbGVhc2UtNC9vZWNvcmUteDg2XzY0LWFybXY3YWhmLXZmcC1uZW9uLXRv
+b2xjaGFpbi1ub2Rpc3Ryby4wLnNoCgoKTWFueSB0aGFua3MsCgpEYXZpZAoKCk9uIDExLzA5LzIw
+MTkgMTk6MDUsIFBoaWxpcCBCYWxpc3RlciB3cm90ZToKPiBPbiA5LzExLzE5IDEyOjM4IFBNLCBN
+YXJjdXMgTcO8bGxlciB2aWEgVVNSUC11c2VycyB3cm90ZToKPj4gRGVhciBEYXZpZCwKPj4KPj4g
+SSd2ZSBzZWVuIHRoYXQgaGFwcGVuIG9uIHNwZWNpZmljIFVidW50dSB2ZXJzaW9ucywgd2hlcmUg
+dGhleSBzb21laG93Cj4+IG1pc3NlZCB0byBjbGVhbiB1cCAvIG1hcmsgY29uZmxpY3QgYmV0d2Vl
+biBDTWFrZSAyLnggcGFja2FnZXMgYW5kIG5ld2VyCj4+IENNYWtlIChJJ20gcGVycGV0dWFsbHkg
+ZGlzYXBwb2ludGVkIGJ5IENhbm9uaWNhbCkuIE1ha2UgdHdpY2UgYXMgc3VyZQo+PiB0aGF0IHlv
+dSBvbmx5IGdvdCBvbmUgQ01ha2UgaW5zdGFsbGVkIC0gaWYgdGhpcyBpcyBhY3R1YWxseSBVYnVu
+dHUsCj4+ICJhcHQgc2VhcmNoIGNtYWtlIiBtaWdodCBiZSB0aGUgd2F5IHRvIHN0YXJ0Lgo+IEZv
+ciB0aGUgRS1zZXJpZXMgSSB3b3VsZCBleHBlY3QgY21ha2UgdG8gYmUgdGhlIG9uZSBpbiB0aGUg
+c2RrLCB1bmxlc3MKPiBzb21ldGhpbmcgaXMgc2NyZXdlZCB1cC4KPgo+IFBoaWxpcAo+Cj4+IEJl
+c3QgcmVnYXJkcywKPj4gTWFyY3VzCj4+Cj4+IE9uIFdlZCwgMjAxOS0wOS0xMSBhdCAxNjo0MiAr
+MDEwMCwgRGF2aWQgU2NvdHQgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+PiBIaSBhbGwsCj4+Pgo+
+Pj4gSSBoYXZlIHJlY2VudGx5IGFjcXVpcmVkIGEgVVNSUCBFMzEyIGFuZCBoYXZlIGJlZW4gZm9s
+bG93aW5nIHRoZQo+Pj4gcXVpY2tzdGFydCBndWlkZSBhdDogLQo+Pj4KPj4+IGh0dHBzOi8va2Iu
+ZXR0dXMuY29tL1NvZnR3YXJlX0RldmVsb3BtZW50X29uX3RoZV9FMzEwX2FuZF9FMzEyCj4+Pgo+
+Pj4gVGhlIHJlbGV2YW50IGNvbW1hbmRzIGJlaW5nOiAtCj4+Pgo+Pj4gICAgICQgc3VkbyBwaXAg
+aW5zdGFsbCBnaXQraHR0cHM6Ly9naXRodWIuY29tL2dudXJhZGlvL3B5Ym9tYnMuZ2l0Cj4+PiAg
+ICAgJCBweWJvbWJzIHJlY2lwZXMgYWRkIGdyLXJlY2lwZXMKPj4+IGdpdCtodHRwczovL2dpdGh1
+Yi5jb20vZ251cmFkaW8vZ3ItcmVjaXBlcy5naXQKPj4+ICAgICAkIHB5Ym9tYnMgcmVjaXBlcyBh
+ZGQgZXR0dXMKPj4+IGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL2V0dHVzLXB5Ym9t
+YnMuZ2l0Cj4+PiAgICAgJCBzdWRvIGRwa2ctcmVjb25maWd1cmUgZGFzaCAjIHNlbGVjdCBOTwo+
+Pj4gICAgICQgcHlib21icyBwcmVmaXggaW5pdCB+L3ByZWZpeCAtUiBlM3h4LXJmbm9jIC1hIGUz
+MDAKPj4+Cj4+PiBFdmVyeXRoaW5nIHByb2NlZWRzIHdlbGwgdXAgdW50aWwgdGhlIENNYWtlIGlz
+IGNhcnJpZWQgb3V0IGF0IHdoaWNoCj4+PiBpdAo+Pj4gY29tcGxhaW5zIHRoYXQgdGhlIGluc3Rh
+bGxlZCB2ZXJzaW9uIG9mIENNYWtlIGlzIGJlbG93IHRoZSBtaW5pbXVtLgo+Pj4gVGhlCj4+PiBv
+dXRwdXQgbG9nIGlzIDogLQo+Pj4KPj4+Cj4+PiAxNTExNzUwIGtCIC8gMTUxMTc1MCBrQgo+Pj4g
+KDEwMCUpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpCj4+PiApKSkpKSkpKSkpKSkKPj4+Cj4+PiBbSU5GT10gSW5zdGFsbGluZyBT
+REsKPj4+IGBlM3h4LXJlbGVhc2U0LQo+Pj4gc2RrJykpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkKPj4+Cj4+PiBUaGUgZGlyZWN0
+b3J5ICIvaG9tZS9kYXZpZC9wcmVmaXgiIGFscmVhZHkgY29udGFpbnMgYSBTREsgZm9yIHRoaXMK
+Pj4+IGFyY2hpdGVjdHVyZS4pKSkpKSkpKSkpKSkpKSkpKSkpCj4+Pgo+Pj4gSWYgeW91IGNvbnRp
+bnVlLCBleGlzdGluZyBmaWxlcyB3aWxsIGJlIG92ZXJ3cml0dGVuIQo+Pj4gUHJvY2VlZFt5L05d
+P1kpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKUV4dHJhY3RpbmcKPj4+IFNE
+Sy4uLmRvbmUpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKQo+Pj4gKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+Pj4KPj4+IFNldHRpbmcg
+aXQKPj4+IHVwLi4uZG9uZSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKQo+Pj4gKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+Pj4KPj4+
+IFNESyBoYXMgYmVlbiBzdWNjZXNzZnVsbHkgc2V0IHVwIGFuZCBpcyByZWFkeSB0byBiZQo+Pj4g
+dXNlZC4pKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkKPj4+
+Cj4+PiBbSU5GT10gQ2xlYW5pbmcgdXAKPj4+IGZpbGVzLi4uKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKQo+Pj4gKSkpKSkpKSkpKSkp
+KSkpKSkKPj4+Cj4+PiBbSU5GT10gUHJlZml4IFB5dGhvbiB2ZXJzaW9uIGlzOgo+Pj4gMi43LjE1
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpCj4+PiApKSkKPj4+Cj4+PiBbSU5GT10gSW5zdGFsbGluZyBkZWZhdWx0IHBhY2thZ2Vz
+IGZvcgo+Pj4gcHJlZml4Li4uKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpCj4+Pgo+Pj4gW0lORk9dCj4+PiApKSkpKSkpKSkpKSkpKSkpKSkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkKPj4+ICkp
+KSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpCj4+PiAtIHVoZCkpKSkpKSkpKSkpKSkpKSkpKSkp
+KQo+Pj4gICAgIC0gZ251cmFkaW8KPj4+ICAgICAtIGdyLWV0dHVzCj4+PiBbSU5GT10gSW5zdGFs
+bCBweXRob24tYXB0IHRvIHNwZWVkIHVwIGFwdCBwcm9jZXNzaW5nLgo+Pj4gW0lORk9dIFBoYXNl
+IDE6IENyZWF0aW5nIGluc3RhbGwgdHJlZSBhbmQgaW5zdGFsbGluZyBiaW5hcnkgcGFja2FnZXM6
+Cj4+PiBJbnN0YWxsIHRyZWU6Cj4+PiBcLSBnci1ldHR1cwo+Pj4gICAgICB8Cj4+PiAgICAgICst
+IHVoZAo+Pj4gICAgICB8Cj4+PiAgICAgIFwtIGdudXJhZGlvCj4+PiAgICAgICAgIHwKPj4+ICAg
+ICAgICAgXC0gdWhkCj4+PiBbSU5GT10gUGhhc2UgMSBjb21wbGV0ZTogQWxsIGJpbmFyeSBkZXBl
+bmRlbmNpZXMgaW5zdGFsbGVkLgo+Pj4gW0lORk9dIFBoYXNlIDI6IFJlY3Vyc2l2ZWx5IGluc3Rh
+bGxpbmcgc291cmNlIHBhY2thZ2VzIHRvIHByZWZpeDoKPj4+IFtJTkZPXSBJbnN0YWxsaW5nIHBh
+Y2thZ2U6IHVoZAo+Pj4gW1dBUk5JTkddIEEgc291cmNlIGJ1aWxkIGZvciBwYWNrYWdlIHVoZCB3
+YXMgcmVxdWVzdGVkLCBidXQgYmluYXJ5Cj4+PiBpbnN0YWxsIHdhcyBmb3VuZCEKPj4+IEluc3Rh
+bGwgdWhkIGZyb20gc291cmNlIGRlc3BpdGUgYmluYXJ5IGluc3RhbGwgYXZhaWxhYmxlIFkvW05d
+Pwo+Pj4gW0lORk9dIEluc3RhbGwgcHl0aG9uLWFwdCB0byBzcGVlZCB1cCBhcHQgcHJvY2Vzc2lu
+Zy4KPj4+IFtXQVJOSU5HXSBCdWlsZCBkaXIgYWxyZWFkeSBleGlzdHM6Cj4+PiAvaG9tZS9kYXZp
+ZC9wcmVmaXgvc3JjL3VoZC9ob3N0L2J1aWxkCj4+PiBDb25maWd1cmluZzogKDEwMCUpCj4+PiBb
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT0KPj4+ID09PT09PT09PT09PT09XQo+Pj4gW1dBUk5JTkddIENvbmZpZ3VyYXRp
+b24gZmFpbGVkLiBSZS10cnlpbmcgd2l0aCBoaWdoZXIgdmVyYm9zaXR5Lgo+Pj4gQ01ha2UgRXJy
+b3IgYXQgQ01ha2VMaXN0cy50eHQ6MTMgKGNtYWtlX21pbmltdW1fcmVxdWlyZWQpOgo+Pj4gICAg
+IENNYWtlIDMuNS4xIG9yIGhpZ2hlciBpcyByZXF1aXJlZC4gIFlvdSBhcmUgcnVubmluZyB2ZXJz
+aW9uCj4+PiAyLjguMTIuMgo+Pj4KPj4+IC0tIENvbmZpZ3VyaW5nIGluY29tcGxldGUsIGVycm9y
+cyBvY2N1cnJlZCEKPj4+Cj4+PiBSdW5uaW5nIGNtYWtlIC0tdmVyc2lvbiBvbiBteSBzeXN0ZW0g
+c2hvd3M6IC0KPj4+Cj4+PiAgICAgY21ha2UgdmVyc2lvbiAzLjEwLjIKPj4+Cj4+PiAgICAgQ01h
+a2Ugc3VpdGUgbWFpbnRhaW5lZCBhbmQgc3VwcG9ydGVkIGJ5IEtpdHdhcmUKPj4+IChraXR3YXJl
+LmNvbS9jbWFrZSkuCj4+Pgo+Pj4gSSBoYXZlIG5vIGlkZWEgd2h5IHB5Ym9tYnMgdGhpbmtzIEkg
+YW0gcnVubmluZyBjbWFrZSAyLjguIEkgaGF2ZQo+Pj4gc2VhcmNoZWQgb25saW5lIGFuZCBjYW4g
+ZmluZCBubyByZWZlcmVuY2UgdG8gdGhlIGlzc3VlLiBIYXMgYW55b25lCj4+PiBlbHNlCj4+PiBl
+bmNvdW50ZXJlZCB0aGlzIGlzc3VlIG9yIGRvZXMgYW55b25lIGtub3cgb2YgYSBzb2x1dGlvbj8K
+Pj4+Cj4+PiBUaGFua3MsCj4+Pgo+Pj4gRGF2aWQKPj4+Cj4+Pgo+Pj4gX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IFVTUlAtdXNlcnMgbWFpbGluZyBs
+aXN0Cj4+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4gaHR0cDovL2xpc3RzLmV0dHVz
+LmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4+Cj4+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IFVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0Cj4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+IGh0dHA6Ly9s
+aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
+bQo+PgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xp
+c3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29t
+Cg==
