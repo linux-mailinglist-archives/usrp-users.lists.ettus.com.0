@@ -2,61 +2,42 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 907E5B1734
-	for <lists+usrp-users@lfdr.de>; Fri, 13 Sep 2019 04:39:23 +0200 (CEST)
-Received: from [::1] (port=42338 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B757B2474
+	for <lists+usrp-users@lfdr.de>; Fri, 13 Sep 2019 19:01:56 +0200 (CEST)
+Received: from [::1] (port=49608 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i8bUU-0005LD-Ug; Thu, 12 Sep 2019 22:39:18 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:43731)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1i8bUR-0005DO-Ix
- for usrp-users@lists.ettus.com; Thu, 12 Sep 2019 22:39:15 -0400
-Received: by mail-io1-f47.google.com with SMTP id r8so34776600iol.10
- for <usrp-users@lists.ettus.com>; Thu, 12 Sep 2019 19:38:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=RDJNmsYs/JaOEiln575v3LFHptwEep9qFzNkeYdkMp8=;
- b=LG/OOcINq6Cat1Kc7PajmS29g1xYyh+yks8VR8hAxV7dcUNZ9cp0e4EiWf1SRC7FQm
- P7yi+Yq5yGZ9kWFBuWtoW3eOIbY/x0CPWIdEJh79+ATGDxMajRP8swRWwVcl1Edv5sBd
- Jsp7uQixV8vSQu/5Y4bhEPKU/Qi1iN+TttAsUBx6zoSbn7r28OvQaocZNVvu+r2uCNd8
- 2Y5hpx+6UxkG5gKXyY9P4uRzu9T41U3aC/mgCjf7RraST+uDuTpV5miv1qJpfoeasm75
- 8FbHR6aL17U1L8vG6N3gPdavrpEsKDMyd3l1QrHnjrAjP+5BR6fAJwHDTq2oAPi2Ptwo
- yDLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=RDJNmsYs/JaOEiln575v3LFHptwEep9qFzNkeYdkMp8=;
- b=F9oBmbbHYIyODUQ5OOjSP/AajyrpH2u6iJuV3dOYYu//mrSSyDsJNH5An9j6iuXcOv
- 3t/w4cCt8WU8hVI7UvkM2laoztD9zcUYDcF2aCZBfJfFs3JtssrDYSulUUzxIE0JjvAy
- S8k/N4m27q7L/NvaVRr+mVnrs0l4fT1CubLqHLlFBFMA07WLbnr+fHT1ALc3fdQWkkYG
- J9VrrSqEt0wiqT5I3/pYoHydB/MQIc1bMe6OlYrJbBPTUrGSEfbidWU1XuRApU0TSnaL
- 3p1pPWeg1rvOMs5+LRZ3jHxi5EPupFnfImJG/OKvSA3z7YEFec221YsN3bT+IibMHxIV
- 9GmQ==
-X-Gm-Message-State: APjAAAVZPCpcYjY9FsDbr85PtmXPWNmKJnURfHecfn/tN6F40Ir9hE2e
- gQBOt0Wyzg/DudNnzDE8kQSxu+m4
-X-Google-Smtp-Source: APXvYqzjRpav9mQ15gIgRkZh+rBmxdoSzOB7VQHA9OmlUGgNoD+EBBI8ovgwMyFeX2YcgQWYGxzMfg==
-X-Received: by 2002:a5d:9499:: with SMTP id v25mr9204826ioj.138.1568342314771; 
- Thu, 12 Sep 2019 19:38:34 -0700 (PDT)
-Received: from [172.20.0.57] (cmr-208-97-88-52.cr.net.cable.rogers.com.
- [208.97.88.52])
- by smtp.gmail.com with ESMTPSA id q8sm18300698ion.82.2019.09.12.19.38.33
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 12 Sep 2019 19:38:33 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-X-Mailer: iPhone Mail (16G102)
-In-Reply-To: <CAMGw0PZ63vUUe-PEpJ1us2mxQwn85V7eHkP9HA6Lv1F=m5vhOw@mail.gmail.com>
-Date: Thu, 12 Sep 2019 22:38:32 -0400
-Message-Id: <DAA31D94-DFC9-459E-8201-2AA7921FFFFC@gmail.com>
-References: <CAMGw0PawXrX2hyLvDSPVqxhpccCh+L6HP64OmbOTqA21C6i6gA@mail.gmail.com>
- <CAKJyDk+38rceb_8WrDNiy1-VJ4QgSxhNQf7hFFn-aF-LfHfoOQ@mail.gmail.com>
- <5E86E19F-EFD1-4C1A-9886-3375F03B1E93@gmail.com>
- <CAMGw0PZ63vUUe-PEpJ1us2mxQwn85V7eHkP9HA6Lv1F=m5vhOw@mail.gmail.com>
-To: Javier Uranga <javiercba@gmail.com>
-Subject: Re: [USRP-users] USRP B100 Help
+	id 1i8oxE-0005xc-U8; Fri, 13 Sep 2019 13:01:52 -0400
+Received: from llmx3.ll.mit.edu ([129.55.12.49]:36740)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <prvs=4159559c1a=blapointe@ll.mit.edu>)
+ id 1i8oxA-0005nm-R4
+ for usrp-users@lists.ettus.com; Fri, 13 Sep 2019 13:01:48 -0400
+Received: from LLE2K16-MBX02.mitll.ad.local (LLE2K16-MBX02.mitll.ad.local) by
+ llmx3.ll.mit.edu (unknown) with ESMTPS id x8DH18qv033083 for
+ <usrp-users@lists.ettus.com>; Fri, 13 Sep 2019 13:01:08 -0400
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: random phase offset when trying to synchronize two USRP N210s
+Thread-Index: AdVpp+Bg3Ogn1G/VT/Wf8rdtwzmgOwAqKNng
+Date: Fri, 13 Sep 2019 17:01:06 +0000
+Message-ID: <bbba74629a334e848a7efead3ab607a5@ll.mit.edu>
+References: <f92fd3dd86ba40709538d0c0ab69d60f@ll.mit.edu>
+In-Reply-To: <f92fd3dd86ba40709538d0c0ab69d60f@ll.mit.edu>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.1.85]
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+ definitions=2019-09-13_07:, , signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1908290000 definitions=main-1909130171
+Subject: Re: [USRP-users] random phase offset when trying to synchronize two
+ USRP N210s
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,10 +49,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4960343615862626614=="
+From: "Lapointe,
+ Benjamin - 0333 - MITLL via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Lapointe, Benjamin - 0333 - MITLL" <blapointe@ll.mit.edu>
+Content-Type: multipart/mixed; boundary="===============7157234788098398077=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,232 +66,547 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============7157234788098398077==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=SHA1; boundary="----=_NextPart_000_011D_01D56A33.4D884430"
 
---===============4960343615862626614==
+------=_NextPart_000_011D_01D56A33.4D884430
 Content-Type: multipart/alternative;
-	boundary=Apple-Mail-B234CF51-D59E-4F24-AB4B-CBC5C06FF5F3
+	boundary="----=_NextPart_001_011E_01D56A33.4D884430"
+
+
+------=_NextPart_001_011E_01D56A33.4D884430
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
+To provide more details:
 
---Apple-Mail-B234CF51-D59E-4F24-AB4B-CBC5C06FF5F3
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+-          The two USRP devices each have their own GPSDOs.
 
-Quite likely means that your EEPROM is damaged in some way.=20
+-          I have separate TX and RX programs.  Each one synchronizes to
+their GPSDO and then synchronizes phase by creating streamers with a
+time_spec with a specified gps_second in the future, following the
+instructions in the manual.
+
+ 
+
+The issue is: I am seeing a random phase offset in the received data each
+time I run my programs.  I don't see a phase offset if I specify a zero Hz
+center frequency, so there might be a clue there.   For my application I
+need to specify a non-zero center frequency.
+
+ 
+
+I'm just trying to find out whether this result is expected with the HW
+and/or SW setup that I have, or whether it is a bug in my current version of
+UHD, or I am doing something wrong?  Has anyone ever tried to synchronize
+two USRPs each with their own GPSDO using non-zero center frequencies?
+
+ 
+
+Someone mentioned off-list that there was a bug in earlier versions of UHD
+that caused the CORDIC not to get reset but that has been fixed in newer
+versions.  I'm running UHD 3.15.0.  
+
+Someone else asked off-list whether I am using the same or separate GPSDOs.
+The answer was separate GPSDOs, but does that make a difference?
+
+ 
+
+Thanks,
+
+-ben   
+
+ 
+
+From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of Lapointe,
+Benjamin - 0333 - MITLL via USRP-users
+Sent: Thursday, September 12, 2019 4:25 PM
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] random phase offset when trying to synchronize two
+USRP N210s
+
+ 
+
+Hi,
+
+I am trying to synchronize two USRP N210 devices, one for TX and one for RX.
+I've followed all of the instructions in the "Synchronizing the Device Time"
+and "Align CORDICs in the DSP" seconds of the manual
+(https://files.ettus.com/manual/page_sync.html); however, I'm still not
+getting complete success.  
+
+ 
+
+I can synchronize the two devices only if I use a center frequency of 0 Hz,
+as shown in the attached cf_0e6.jpg.  If I use a center frequency of 10e6 Hz
+for both TX and RX then there is a phase change between program runs, as
+shown in the attached cf_10e6.jpg.  Each screenshot shows five recordings
+spaced 20 seconds apart for two runs of the program.    
+
+ 
+
+Should these results be expected?  
+
+-          If so, can someone explain why there is a random phase offset
+when using a non-zero center frequency. 
+
+-          If not, what am I doing wrong?  I can share my code if that
+helps. 
+
+ 
+
+I also tried following the instructions in the "Align Los in the front-end
+(SBX, UBX)", but that didn't help.  I didn't think it would help since I'm
+using LFTX and LFRX boards.  
+
+ 
+
+My hardware setup:
+
+Transmitter: N210 with a LFTX and GPSDO
+
+Receiver: N210 with a LFRX and GPSDO
+
+ 
+
+Any help/feedback would be greatly appreciated,
+
+Thanks!
+
+-Ben
 
 
-
-Sent from my iPhone
-
-> On Sep 12, 2019, at 10:04 PM, Javier Uranga <javiercba@gmail.com> wrote:
->=20
-> Thank you  Guys,
->=20
-> I received a Magic word
->=20
-> sudo /=E2=81=A0path/=E2=81=A0to/=E2=81=A0fx2_init_eeprom -=E2=81=A0-=E2=81=
-=A0type b100 -=E2=81=A0-=E2=81=A0vid 04b4 -=E2=81=A0-=E2=81=A0pid 8613
->=20
-> And it's worked perfect
->=20
-> Now my old USRP B100 is alive again!
->=20
-> But when I power off/on the device I must to repeat the process, because t=
-he eeprom do not remain loaded
->=20
-> just in case, do you have any other magic word ? to make the changes perma=
-nently
->=20
-> Best Regards
-> Javier
->=20
->> El mi=C3=A9., 11 sept. 2019 a las 20:55, Marcus D Leech (<patchvonbraun@g=
-mail.com>) escribi=C3=B3:
->> I recall this used to happen to some B100s.=20
->>=20
->> There=E2=80=99s an EEPROM writer command, I think, that can restore the c=
-orrect identity.=20
->>=20
->> These devices are quite obsolete now, so don=E2=80=99t get your hopes up t=
-oo much.=20
->>=20
->> I=E2=80=99m in the road at the moment and won=E2=80=99t be back until Fri=
-day. I should be able to dig up the magic incantations after then. Unless so=
-me other Ettus old-timer remembers the correct spell.=20
->>=20
->>=20
->> Sent from my iPhone
->>=20
->>> On Sep 11, 2019, at 6:27 PM, Robin Coxe via USRP-users <usrp-users@lists=
-.ettus.com> wrote:
->>>=20
->>> Does this help?
->>> https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolch=
-ain_(UHD_and_GNU_Radio)_on_Linux#Configuring_USB
->>>=20
->>>> On Wed, Sep 11, 2019 at 1:08 PM Javier Uranga via USRP-users <usrp-user=
-s@lists.ettus.com> wrote:
->>>> Dear Members in the List,
->>>>=20
->>>> I'm working with an old USRP B100 that came with a cubesat development =
- kit,
->>>>=20
->>>> Now suddenly stop working, no longer respond to:
->>>>=20
->>>> uhd_find_devices
->>>> linux; GNU C++ version 5.3.1 20151219; Boost_105800;
->>>> UHD_003.009.002-=E2=81=A00-=E2=81=A0unknown
->>>> No UHD Devices Found
->>>>=20
->>>> uhd_usrp_probe
->>>> linux; GNU C++ version 5.3.1 20151219; Boost_105800;
->>>> UHD_003.009.002-=E2=81=A00-=E2=81=A0unknown
->>>> Error: LookupError: KeyError: No devices found for -=E2=81=A0-=E2=81=A0=
--=E2=81=A0-=E2=81=A0-=E2=81=A0>
->>>> Empty Device Address
->>>>=20
->>>> I must to say that, until few minutes before, the device showed no
->>>> problems, but after a switch OFF/ON the device, problems came up
->>>>=20
->>>> And when I ask:
->>>>=20
->>>> $lsusb
->>>> the device found is:
->>>> Bus 003 Device 003: ID 04b4:8613 Cypress Semiconductor Corp. CY7C68013
->>>> EZ-=E2=81=A0USB FX2 USB 2.0 Development Kit
->>>>=20
->>>> As you can see, the detected device is not longer Ettus USRP as use to b=
-e. More over, in the front panel, new led is on, there is a new led in ON st=
-atus, the LED B: FPGA loaded
->>>> (in addition to:
->>>> LED A: transmitting,    ON
->>>> LED C: receiving,          ON
->>>> LED D: FPGA loaded,   OFF
->>>> LED E: reference lock, ON
->>>> LED F: board power,     ON )
->>>>=20
->>>> I already re installed the GNU RADIO 3.7.9 drivers for Ubuntu 16.04 and=
- GNU RADIO 3.7.11 for Ubuntu 18.04, all systems where it use to work, But th=
-e USRP is no longer detected.
->>>>=20
->>>> drivers in Ubuntu 16.04:
->>>> /usr/share/uhd/images$ ls
->>>> usrp_b100_fw.ihx
->>>> usrp_b100_fpga.bin  =20
->>>>=20
->>>> What can be wrong ?, it's Firmware problem ?
->>>> How can I solve it?
->>>>=20
->>>> I'll be very grateful with any comments or suggestions
->>>>=20
->>>> Best Regards,
->>>> Javier Nicolas
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---Apple-Mail-B234CF51-D59E-4F24-AB4B-CBC5C06FF5F3
+------=_NextPart_001_011E_01D56A33.4D884430
 Content-Type: text/html;
-	charset=utf-8
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Quite likely means that your EEPROM is dama=
-ged in some way.&nbsp;<div><br></div><div><br><br><div id=3D"AppleMailSignat=
-ure" dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br>On Sep 12, 20=
-19, at 10:04 PM, Javier Uranga &lt;<a href=3D"mailto:javiercba@gmail.com">ja=
-viercba@gmail.com</a>&gt; wrote:<br><br></div><blockquote type=3D"cite"><div=
- dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-fam=
-ily:arial,helvetica,sans-serif;font-size:small">Thank you&nbsp; Guys,</div><=
-div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif;=
-font-size:small"><br>I received a Magic word</div><div class=3D"gmail_defaul=
-t" style=3D"font-family:arial,helvetica,sans-serif;font-size:small"><br>sudo=
- /=E2=81=A0path/=E2=81=A0to/=E2=81=A0fx2_init_eeprom -=E2=81=A0-=E2=81=A0typ=
-e b100 -=E2=81=A0-=E2=81=A0vid 04b4 -=E2=81=A0-=E2=81=A0pid 8613</div><div c=
-lass=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif;font-=
-size:small"><br>And it's worked perfect<br><br>Now my old USRP B100 is alive=
- again!<br><br>But when I power off/on the device I must to repeat the proce=
-ss, because the eeprom do not remain loaded<br><br>just in case, do you have=
- any other magic word ? to make the changes permanently<br><br>Best Regards<=
-br>Javier<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">El mi=C3=A9., 11 sept. 2019 a las 20:55, Marcus D Leech (&=
-lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt=
-;) escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<div dir=3D"auto">I recall this used to happen to some B100s.&nbsp;<div><br>=
-</div><div>There=E2=80=99s an EEPROM writer command, I think, that can resto=
-re the correct identity.&nbsp;</div><div><br></div><div>These devices are qu=
-ite obsolete now, so don=E2=80=99t get your hopes up too much.&nbsp;</div><d=
-iv><br></div><div>I=E2=80=99m in the road at the moment and won=E2=80=99t be=
- back until Friday. I should be able to dig up the magic incantations after t=
-hen. Unless some other Ettus old-timer remembers the correct spell.&nbsp;</d=
-iv><div><br></div><div><br><div id=3D"gmail-m_67761875502938736AppleMailSign=
-ature" dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br>On Sep 11, 2=
-019, at 6:27 PM, Robin Coxe via USRP-users &lt;<a href=3D"mailto:usrp-users@=
-lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:=
-<br><br></div><blockquote type=3D"cite"><div dir=3D"ltr"><div dir=3D"ltr">Do=
-es this help?<div><a href=3D"https://kb.ettus.com/Building_and_Installing_th=
-e_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux#Configuring_USB" t=
-arget=3D"_blank">https://kb.ettus.com/Building_and_Installing_the_USRP_Open-=
-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux#Configuring_USB</a><br></div><=
-/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Wed, Sep 11, 2019 at 1:08 PM Javier Uranga via USRP-users &lt;<a href=3D"ma=
-ilto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.co=
-m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,helv=
-etica,sans-serif;font-size:small">Dear Members in the List,<br><br>I'm worki=
-ng with an old USRP B100 that came with a cubesat development &nbsp;kit,<br>=
-<br>Now suddenly stop working, no longer respond to:<br><br>uhd_find_devices=
-<br>linux; GNU C++ version 5.3.1 20151219; Boost_105800;<br>UHD_003.009.002-=
-=E2=81=A00-=E2=81=A0unknown<br>No UHD Devices Found<br><br>uhd_usrp_probe<br=
->linux; GNU C++ version 5.3.1 20151219; Boost_105800;<br>UHD_003.009.002-=E2=
-=81=A00-=E2=81=A0unknown<br>Error: LookupError: KeyError: No devices found f=
-or -=E2=81=A0-=E2=81=A0-=E2=81=A0-=E2=81=A0-=E2=81=A0&gt;<br>Empty Device Ad=
-dress<br><br>I must to say that, until few minutes before, the device showed=
- no<br>problems, but after a switch OFF/ON the device, problems came up<br><=
-br>And when I ask:<br><br>$lsusb<br>the device found is:<br>Bus 003 Device 0=
-03: ID 04b4:8613 Cypress Semiconductor Corp. CY7C68013<br>EZ-=E2=81=A0USB FX=
-2 USB 2.0 Development Kit<br><br>As you can see, the detected device is not l=
-onger Ettus USRP as use to be. More over, in the front panel, new led is on,=
- there is a new led in ON status, the LED B: FPGA loaded<br>(in addition to:=
-<br>LED A: transmitting, &nbsp; &nbsp;ON<br>LED C: receiving, &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp;ON<br>LED D: FPGA loaded, &nbsp; OFF<br>LED E: reference l=
-ock, ON<br>LED F: board power, &nbsp; &nbsp; ON )<br><br>I already re instal=
-led the GNU RADIO 3.7.9 drivers for Ubuntu 16.04 and GNU RADIO 3.7.11 for Ub=
-untu 18.04, all systems where it use to work, But the USRP is no longer dete=
-cted.<br><br>drivers in Ubuntu 16.04:<br>/usr/share/uhd/images$ ls<br>usrp_b=
-100_fw.ihx<br>usrp_b100_fpga.bin &nbsp; <br><br>What can be wrong ?, it's Fi=
-rmware problem ?<br>How can I solve it?<br><br>I'll be very grateful with an=
-y comments or suggestions<br><br>Best Regards,<br>Javier Nicolas<br></div></=
-div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</div></blockquote><blockquote type=3D"cite"><div dir=3D"ltr"><span>________=
-_______________________________________</span><br><span>USRP-users mailing l=
-ist</span><br><span><a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"=
-_blank">USRP-users@lists.ettus.com</a></span><br><span><a href=3D"http://lis=
-ts.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"_blank">=
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span=
-><br></div></blockquote></div></div></blockquote></div>
-</div></blockquote></div></body></html>=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:139229793;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1398328574 93079530 67698691 67698693 67698689 =
+67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:Calibri;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:2002537208;
+	mso-list-type:hybrid;
+	mso-list-template-ids:161523100 -1091287438 67698691 67698693 67698689 =
+67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:Calibri;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>To provide more =
+details:<o:p></o:p></span></p><p class=3DMsoListParagraph =
+style=3D'text-indent:-.25in;mso-list:l0 level1 lfo2'><![if =
+!supportLists]><span style=3D'color:#1F497D'><span =
+style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span></span><![endif]><span style=3D'color:#1F497D'>The two =
+USRP devices each have their own GPSDOs.<o:p></o:p></span></p><p =
+class=3DMsoListParagraph style=3D'text-indent:-.25in;mso-list:l0 level1 =
+lfo2'><![if !supportLists]><span style=3D'color:#1F497D'><span =
+style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span></span><![endif]><span style=3D'color:#1F497D'>I have =
+separate TX and RX programs.&nbsp; Each one synchronizes to their GPSDO =
+and then synchronizes phase by creating streamers with a time_spec with =
+a specified gps_second in the future, following the instructions in the =
+manual.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>The issue is: I am =
+seeing a random phase offset in the received data each time I run my =
+programs.&nbsp; I don&#8217;t see a phase offset if I specify a zero Hz =
+center frequency, so there might be a clue there.&nbsp;&nbsp; For my =
+application I need to specify a non-zero center =
+frequency.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>I&#8217;m just trying to =
+find out whether this result is expected with the HW and/or SW setup =
+that I have, or whether it is a bug in my current version of UHD, or I =
+am doing something wrong?&nbsp; Has anyone ever tried to synchronize two =
+USRPs each with their own GPSDO using non-zero center =
+frequencies?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Someone mentioned =
+off-list that there was a bug in earlier versions of UHD that caused the =
+CORDIC not to get reset but that has been fixed in newer versions.&nbsp; =
+I&#8217;m running UHD 3.15.0.&nbsp; <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Someone else asked =
+off-list whether I am using the same or separate GPSDOs.&nbsp; The =
+answer was separate GPSDOs, but does that make a =
+difference?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Thanks,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>-ben&nbsp;&nbsp; =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal><b>From:</b> USRP-users =
+&lt;usrp-users-bounces@lists.ettus.com&gt; <b>On Behalf Of </b>Lapointe, =
+Benjamin - 0333 - MITLL via USRP-users<br><b>Sent:</b> Thursday, =
+September 12, 2019 4:25 PM<br><b>To:</b> =
+usrp-users@lists.ettus.com<br><b>Subject:</b> [USRP-users] random phase =
+offset when trying to synchronize two USRP =
+N210s<o:p></o:p></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Hi,<o:p></o:p></p><p class=3DMsoNormal>I am trying to =
+synchronize two USRP N210 devices, one for TX and one for RX.&nbsp; =
+I&#8217;ve followed all of the instructions in the &#8220;Synchronizing =
+the Device Time&#8221; and &#8220;Align CORDICs in the DSP&#8221; =
+seconds of the manual (<a =
+href=3D"https://files.ettus.com/manual/page_sync.html">https://files.ettu=
+s.com/manual/page_sync.html</a>); however, I&#8217;m still not getting =
+complete success.&nbsp; <o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I can =
+synchronize the two devices only if I use a center frequency of 0 Hz, as =
+shown in the attached cf_0e6.jpg.&nbsp; If I use a center frequency of =
+10e6 Hz for both TX and RX then there is a phase change between program =
+runs, as shown in the attached cf_10e6.jpg.&nbsp; Each screenshot shows =
+five recordings spaced 20 seconds apart for two runs of the =
+program.&nbsp; &nbsp;&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Should these =
+results be expected?&nbsp; <o:p></o:p></p><p class=3DMsoListParagraph =
+style=3D'text-indent:-.25in;mso-list:l1 level1 lfo4'><![if =
+!supportLists]><span style=3D'mso-list:Ignore'>-<span =
+style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span><![endif]>If so, can someone explain why there is a random =
+phase offset when using a non-zero center frequency. <o:p></o:p></p><p =
+class=3DMsoListParagraph style=3D'text-indent:-.25in;mso-list:l1 level1 =
+lfo4'><![if !supportLists]><span style=3D'mso-list:Ignore'>-<span =
+style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span><![endif]>If not, what am I doing wrong?&nbsp; I can share =
+my code if that helps. <o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I also tried =
+following the instructions in the &#8220;Align Los in the front-end =
+(SBX, UBX)&#8221;, but that didn&#8217;t help.&nbsp; I didn&#8217;t =
+think it would help since I&#8217;m using LFTX and LFRX boards.&nbsp; =
+<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>My hardware setup:<o:p></o:p></p><p =
+class=3DMsoNormal>Transmitter: N210 with a LFTX and =
+GPSDO<o:p></o:p></p><p class=3DMsoNormal>Receiver: N210 with a LFRX and =
+GPSDO<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Any help/feedback would be greatly =
+appreciated,<o:p></o:p></p><p class=3DMsoNormal>Thanks!<o:p></o:p></p><p =
+class=3DMsoNormal>-Ben<o:p></o:p></p></div></body></html>
+------=_NextPart_001_011E_01D56A33.4D884430--
 
---Apple-Mail-B234CF51-D59E-4F24-AB4B-CBC5C06FF5F3--
+------=_NextPart_000_011D_01D56A33.4D884430
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIISWTCCA4ow
+ggJyoAMCAQICAQEwDQYJKoZIhvcNAQELBQAwVjELMAkGA1UEBhMCVVMxHzAdBgNVBAoTFk1JVCBM
+aW5jb2xuIExhYm9yYXRvcnkxDDAKBgNVBAsTA1BLSTEYMBYGA1UEAxMPTUlUTEwgUm9vdCBDQS0y
+MB4XDTE2MDQyMDEyMDAwMFoXDTM1MDQxOTIzNTk1OVowVjELMAkGA1UEBhMCVVMxHzAdBgNVBAoT
+Fk1JVCBMaW5jb2xuIExhYm9yYXRvcnkxDDAKBgNVBAsTA1BLSTEYMBYGA1UEAxMPTUlUTEwgUm9v
+dCBDQS0yMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv3WoBEGOOJtm4ucvaf6vKIFP
+s8watCd6Smwq/XeRNo7P3jPIxNPwF398RGDUmPJIXA7idzD6j0opFIW+kLqYye9e788PV0dqaJlX
+8818fNDbSE+8B6hieqKTR7VfOI74UVQEUKVRFuRFw6uVYuvgew2Tj/C2dEee37eruQl5nHkbV2Os
+WnZ7O+yt+etd6HRcaXLlP9q8WKgA3B7vkOVIMCKoAuaWj+BFq7K+WNkiyi/KdOH9JmOpbyRK4jcA
+7xbLnF8JFUSNg5c4Y1BJrFaZtkCeG6Nm9p524GllkRFzPgpj8VicV+AK+9rY07dTx02kYotTnKuy
+0YxBAwsUXxAQEwIDAQABo2MwYTAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBT/ycllTFOA8akM
+PCGugirH7vgy+zAfBgNVHSMEGDAWgBT/ycllTFOA8akMPCGugirH7vgy+zAOBgNVHQ8BAf8EBAMC
+AYYwDQYJKoZIhvcNAQELBQADggEBAHqYfEf/3J5aMKhlYQ0PnUAbMB8jZSr9/HvjfOF00crFUCfS
+rqG8JQwo+S/iq66gcp62FEgJ0fQkDgVg6m+C2ETo1LoWiSxhYCfcSIQECljlXwR8wFSayF822S69
+IqvHhdq4d58jU6gYi6ssjU4vwsvsVLRJKk/m/Cg/w8gW6YHM5ahBD6/5Ccel2fI7oSmskO991+ot
+rC11YfDwCFvz7Am0r+K9iVhSWta4hmIuV0YBia07eZKSO02LPgQ8YOz3ku0Yt+mh8VWRKux2CcYj
+Mpk+WDV0BMp75tqb6pqBFkcKvEBXqxg+8+G/umjii4H0c5kvJhaQyykbmOKmxO9IcJIwggTAMIID
+qKADAgECAgEGMA0GCSqGSIb3DQEBCwUAMFYxCzAJBgNVBAYTAlVTMR8wHQYDVQQKExZNSVQgTGlu
+Y29sbiBMYWJvcmF0b3J5MQwwCgYDVQQLEwNQS0kxGDAWBgNVBAMTD01JVExMIFJvb3QgQ0EtMjAe
+Fw0xNzAzMDIxMjAwMDBaFw0yNjAzMDIyMzU5NTlaMFExCzAJBgNVBAYTAlVTMR8wHQYDVQQKDBZN
+SVQgTGluY29sbiBMYWJvcmF0b3J5MQwwCgYDVQQLDANQS0kxEzARBgNVBAMMCk1JVExMIENBLTUw
+ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCnmoMOvTkfw7nq19mrWazGaa+Q83Uv0+AT
+XT3q6kr+WExIMIZ87C74WCcRXpvO7uvx7HvMsYWAFHW93wQwhjytxHIOZgKNJ4VnGVDUl+KI7g0n
+9+Zjt3hB3HhHbcvbe9+Y4jz+XzCiLl2OaYvICKbxvbBSCLtPEeZQ6x6Tb6EK0ym0gvYeHO3kuuY+
+SJHJMltbrLnIVLxjZrNVS77zXKvu6Q3hSdkRIB7kJgEXfL+p/z/2p94bEEZ2TnQz0TkOjG+Jq7Ul
+XlFRtvsYcDPEQD3UNkZsWcXgC1hXG8TGknUcAhlGxVhlKlFLmNd7342seGy2s9YxNDnSE+eXTtb0
+I5LLAgMBAAGjggGcMIIBmDASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBQv77vGDR276Wr+
+rGfzBzsIdvZLWTAfBgNVHSMEGDAWgBT/ycllTFOA8akMPCGugirH7vgy+zAOBgNVHQ8BAf8EBAMC
+AYYwZwYIKwYBBQUHAQEEWzBZMC4GCCsGAQUFBzAChiJodHRwOi8vY3JsLmxsLm1pdC5lZHUvZ2V0
+dG8vTExSQ0EyMCcGCCsGAQUFBzABhhtodHRwOi8vb2NzcC5sbC5taXQuZWR1L29jc3AwNAYDVR0f
+BC0wKzApoCegJYYjaHR0cDovL2NybC5sbC5taXQuZWR1L2dldGNybC9MTFJDQTIwgZIGA1UdIASB
+ijCBhzANBgsqhkiG9xICAQMBBjANBgsqhkiG9xICAQMBCDANBgsqhkiG9xICAQMBBzANBgsqhkiG
+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
+A1UEChMWTUlUIExpbmNvbG4gTGFib3JhdG9yeTEPMA0GA1UECxMGUGVvcGxlMSUwIwYDVQQDExxM
+YXBvaW50ZS5CZW5qYW1pbi5ELjUwMDA5OTgwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+AQEAz/uhz+o/J7XURLGVYW4mqu3JflOBaUYA2MFkPwb3iHyUguPmdaQnt9lLz1BTr6FEhSVuxL31
+7OId5Afmm67aMBuYw0Vb0+sLIV91Z3njAG3U3IgwKieHWh71xQt58QwpV99yS6RjJveiOE0CC+Ba
+ue/IPcwPq9EKTK+6wa3h9um+5YsekXtdQKoSR8Gxb25tS6hlP2LigY8eYCiGf6lv4Z7Vyg0TADvX
+wISZRfttosTbXzZHdRIR1S7ifRALZFugqYGoy9ND8UCUG61nijXZP2m8NprrHY3KFXIAJcV0vCA3
+iiHcglpyjzImndcAqxxfaQGsiJs5UGT4ADiZWIXYQwIDAQABo4IBuzCCAbcwHQYDVR0OBBYEFMlJ
+ooZTRBpytEPySWVj1W6cMC/NMA4GA1UdDwEB/wQEAwIFIDAfBgNVHSMEGDAWgBQv77vGDR276Wr+
+rGfzBzsIdvZLWTAzBgNVHR8ELDAqMCigJqAkhiJodHRwOi8vY3JsLmxsLm1pdC5lZHUvZ2V0Y3Js
+L2xsY2E1MGYGCCsGAQUFBwEBBFowWDAtBggrBgEFBQcwAoYhaHR0cDovL2NybC5sbC5taXQuZWR1
+L2dldHRvL2xsY2E1MCcGCCsGAQUFBzABhhtodHRwOi8vb2NzcC5sbC5taXQuZWR1L29jc3AwPQYJ
+KwYBBAGCNxUHBDAwLgYmKwYBBAGCNxUIg4PlHYfsp2aGrYcVg+rwRYW2oR8dhevQcIPr7SACAWQC
+AQkwJQYDVR0lBB4wHAYEVR0lAAYIKwYBBQUHAwQGCisGAQQBgjcKAwQwHwYDVR0RBBgwFoEUYmxh
+cG9pbnRlQGxsLm1pdC5lZHUwGAYDVR0gBBEwDzANBgsqhkiG9xICAQMBCDAnBgkrBgEEAYI3FAIE
+Gh4YAEwATABVAHMAZQByAEUAbgBjAC0AUwBXMA0GCSqGSIb3DQEBCwUAA4IBAQBU5KsQq9wjVaMB
+EU33bS+uQP6QMHb+a/dlYfzePLSQhazYzLUwqU6VdCTiheOYxT/PIxY1WBAmvfQ7Zvp4Pm5S9Pr+
+sCm2Q3f2yKzgbwuRkAkCYFfgeMv0PLBUt1ijUuP+jiXfRA77VnTWNkvKMPowXHX2HXksRnoFjR8N
+5hTmeedm/H1X/kCeJm7OWrMnPTr5ViHgNn/xJlAfaryMIpFy24/cJtOMbjGvHmOmYPEWCQndaGDR
+54blqgIB3cxrSZMp0zOktETkD3xo2SJjMARf0+8a903aicJQtM3DChNQ3Jytzwi19ER7UszHBOO5
+JPpxoWUpN7EUN+3zMXUlxcy8MYIDCjCCAwYCAQEwaDBRMQswCQYDVQQGEwJVUzEfMB0GA1UECgwW
+TUlUIExpbmNvbG4gTGFib3JhdG9yeTEMMAoGA1UECwwDUEtJMRMwEQYDVQQDDApNSVRMTCBDQS01
+AhNZAAAjrVe54aNw5rXJAAAAACOtMAkGBSsOAwIaBQCgggF3MBgGCSqGSIb3DQEJAzELBgkqhkiG
+9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE5MDkxMzE3MDEwNVowIwYJKoZIhvcNAQkEMRYEFGbxP77i
+BCHtk5GdMlhGAcdEyv0dMCQGCSqGSIb3DQEJDzEXMBUwCgYIKoZIhvcNAwcwBwYFKw4DAhowdwYJ
+KwYBBAGCNxAEMWowaDBRMQswCQYDVQQGEwJVUzEfMB0GA1UECgwWTUlUIExpbmNvbG4gTGFib3Jh
+dG9yeTEMMAoGA1UECwwDUEtJMRMwEQYDVQQDDApNSVRMTCBDQS01AhNZAAAxwm8GLh1D/7I4AAAA
+ADHCMHkGCyqGSIb3DQEJEAILMWqgaDBRMQswCQYDVQQGEwJVUzEfMB0GA1UECgwWTUlUIExpbmNv
+bG4gTGFib3JhdG9yeTEMMAoGA1UECwwDUEtJMRMwEQYDVQQDDApNSVRMTCBDQS01AhNZAAAxwm8G
+Lh1D/7I4AAAAADHCMA0GCSqGSIb3DQEBAQUABIIBAGdgymaI2AArxy7YhYCZBp29I7KzDWDDwq9W
+CJsnu/tXl0raPB8AT67po5kZPGD7byxsGUunVX0FF23+HtGtc+/903qWuKe5LmSMbY6YF1yUVV/+
+WJGkppieEH6T55nIe04uTlIRELnXKkKQs19mZXGvrl+WtroZsQeYx3/z1wu5GEIbW8ITkD785Fgy
+B/mU8GcShuy0kug7jbjLreUeaWJ+EE7yw02AllvOfhIwm5uu8XNmCozMs7S2ylsu+UvLMpu3vRrn
+NTMq8ZRjgDEvyFzHWens1oYZUff9PWj8s0HcnKHjjXcVhc4XPAXveFqLbkokD1VjC8C1dLrSWZ7I
+/zQAAAAAAAA=
+
+------=_NextPart_000_011D_01D56A33.4D884430--
 
 
---===============4960343615862626614==
+--===============7157234788098398077==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -321,5 +617,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4960343615862626614==--
+--===============7157234788098398077==--
 
