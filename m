@@ -2,58 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F10F1B2902
-	for <lists+usrp-users@lfdr.de>; Sat, 14 Sep 2019 01:59:56 +0200 (CEST)
-Received: from [::1] (port=49676 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC8B6B296D
+	for <lists+usrp-users@lfdr.de>; Sat, 14 Sep 2019 04:58:54 +0200 (CEST)
+Received: from [::1] (port=42962 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i8vTk-0005Mt-5t; Fri, 13 Sep 2019 19:59:52 -0400
-Received: from mail-io1-f41.google.com ([209.85.166.41]:45107)
+	id 1i8yGw-0006WT-3x; Fri, 13 Sep 2019 22:58:50 -0400
+Received: from mail-qt1-f177.google.com ([209.85.160.177]:36516)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <michael.west@ettus.com>)
- id 1i8vTg-0005IQ-MO
- for usrp-users@lists.ettus.com; Fri, 13 Sep 2019 19:59:48 -0400
-Received: by mail-io1-f41.google.com with SMTP id f12so66315991iog.12
- for <usrp-users@lists.ettus.com>; Fri, 13 Sep 2019 16:59:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=wju8Z4woKzI9uvxshkH08Q92kBVRNc2Hcq+6yEggKjQ=;
- b=YaO07JCKAXqc/Ws6XU6wMWR7iHA3OjlFDB5wyUrpnmBee2JZvcScy1GeUtf9QnVjyD
- FDhP9rWFXZLG0JOXUmufCkFx34XVcakzWEaCVk5c3dD534oVbJlrx2LGrGtQzleOKMFB
- sc5z53RHLYPZbdeYsrPyNWGL6/jBWnXUqZdJhNEHUuiVahJg8xH/ehRz+rjHPUVF37Y8
- n0NDaq/Rs6TXFLSkM7hXcN0D77jR2wcUOpZT6Pv0PC4dhjiX+yiQgNbTXCAq9ky75ZoN
- k/KJmiFtYydRSo6LNaFJayZ8xzZLzVBCQ4bxRq/8A9gaN/V1oCi+icUmEkPZRvNGGw2b
- GKPQ==
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1i8yGs-0006PR-LQ
+ for usrp-users@lists.ettus.com; Fri, 13 Sep 2019 22:58:46 -0400
+Received: by mail-qt1-f177.google.com with SMTP id o12so36397357qtf.3
+ for <usrp-users@lists.ettus.com>; Fri, 13 Sep 2019 19:58:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=yMpPp1mBEHDmAPRYWzqtSnSjJhUbhtk3L2Zj6U0dDvw=;
+ b=Je/pR2M5mC6JTEG737hJdrznel6U9RAwqJCdAPysj+QQoG6mYn4JfwW82BNWBYeEq7
+ Mxk5Quz9tyitJKh2nCCWSnjByg/JNJ3gAL3DFFz43EyBUnyLlBwYOthv6eszKGo+cfjv
+ jf6RFWFM8ExwPld+HjQcquXrbna/lsoEFIvbjN28FfrX3TZ5zjVGOp/ll97fKS2fEIt+
+ MQv6ILV4iUvx5DJsE/rmEDLen4k5KD4IsZj5+J9GCjy3m8tKCtWbKkSmQFIqX9+/WJVn
+ 1ZrKLvyEt7j1rwjhYewTJAi+pmiqWUiWBF15t2rx2z8KpDwRbGjXSKIhpLN/xZhelkDP
+ Vj4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=wju8Z4woKzI9uvxshkH08Q92kBVRNc2Hcq+6yEggKjQ=;
- b=pQOr5V/KLDHUZxVz9rUjYZ0iirOHjSnX10138kUY7QDjacd2eZ4/HRHTCWRRyus6qf
- lRfX/TuPpfSHZ97lI8HVZJLHN2pwYM6ntHT89T/m7YzkBq1Xmvmr9sn5Xvf/0VCejtf2
- H6rGFT9sipaGv3hDGwdoxlCgVe0P35GLc3kAPYp6kb7jJOJynKKA2J7tActXt5iIy8Qj
- HPRaTVEUG2i6xEDLxngCpUjR2KUGoy4QpGvEOw52GM6DMDz6c7Iug16c3R6vvwOTq6zC
- qvCF2FDSrVrNDkw2Mrvoq8gozelp5sJu2mLkH1G+O9YsvCy+VFoEPOBCbYpjXuHn/Ao1
- U7NQ==
-X-Gm-Message-State: APjAAAUEbJZUvskBN1MNl1iEmD695/YHdni8+sfiCwAkWEM7m203JjEm
- AWI4dmWXWIuNJCETw1rPP36QuAsn+0tzEYUaQqq31aCP
-X-Google-Smtp-Source: APXvYqziiE1xoWRUB2m0HQFQG7genDc2qgxNpWbj0hk33kmHJByfAOBXW2dNAPX1EQVbr7P7KnrLpmJeUaeMa6QeTME=
-X-Received: by 2002:a5d:8f02:: with SMTP id f2mr3031557iof.272.1568419147762; 
- Fri, 13 Sep 2019 16:59:07 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=yMpPp1mBEHDmAPRYWzqtSnSjJhUbhtk3L2Zj6U0dDvw=;
+ b=dXkS3AN5p24B1GbDXc7i9vTr9YYHd99ZU8+hhFptRKOiRsvItx0BrtfXkqLjiqIr65
+ sCQpJdd1rgwtmpkGumxiMRr/lggk4Ph2Fh+BJfewVIwwX5J6RmQVRFbm+iLKO1Rf+Ch9
+ p+L8aMOHPcidUXw16FWY7a1CMUk29t4iNXmyRypqx0kzmOyetY9Gf4EFmSaPX08N7gQT
+ osi8GEafoUc8mELAz4CRE6BwU4yNUx6HP/XwGzSSo30OVqVprmjtREeEZwgCwdck+2el
+ hdY1TYgcTWzjFAqQsErsOgN7BijxRsBAtq8RQkgTf3M3bqpzy3S2EylLPO32vpOY8efR
+ Q9sA==
+X-Gm-Message-State: APjAAAXCHeSHnbIgRr4BnoPWNt7ppKpRVdWZdoyz4sq8o94Z2eaa2wrA
+ yVEZ6xofXmegUv6TEx6PxCaYUGul
+X-Google-Smtp-Source: APXvYqy6hyn9bI+po2qETOlIOLBLQTLTU6dwSxhuGFwaK9Dbu87rFopTks7Ih9zbEUWwKCQdSGAp/Q==
+X-Received: by 2002:ac8:728c:: with SMTP id v12mr6703609qto.120.1568429886074; 
+ Fri, 13 Sep 2019 19:58:06 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
+ [174.95.14.20])
+ by smtp.googlemail.com with ESMTPSA id v14sm11730382qkj.23.2019.09.13.19.58.05
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 13 Sep 2019 19:58:05 -0700 (PDT)
+Message-ID: <5D7C573C.2090201@gmail.com>
+Date: Fri, 13 Sep 2019 22:58:04 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CAB__hTTexps+cnkJ4STrAtJpJgM9OfVo84CLDp+si=np8ni-xg@mail.gmail.com>
- <CACSOXP31eCM+Dw=+pEJ4epAGB7QaUmRftXb9A=v=ymq5CVTTuQ@mail.gmail.com>
- <CAB__hTTQSHxhUqmYfNzdFdam-owkt0Av46Y+ZOgBF+XSyghGjw@mail.gmail.com>
- <CAB__hTSOKND9tyWBbk6H5B1NWT4-zUsHePjAZmUsj0iFg4-M_Q@mail.gmail.com>
- <CAM4xKroOnfW5Pwn2ZWTdzHBbC7v0VO1D25uJ5WYgXwfZnN6BaA@mail.gmail.com>
- <CAB__hTREnFjyZaUv93v_aBCRYbrL4ym71w2ikx_9Mb8dyZWCPg@mail.gmail.com>
- <CACSOXP0YwdBviNJ9urj4R3tUZEjvsNCxn7vYOn_sPCDo6nKW+Q@mail.gmail.com>
-In-Reply-To: <CACSOXP0YwdBviNJ9urj4R3tUZEjvsNCxn7vYOn_sPCDo6nKW+Q@mail.gmail.com>
-Date: Fri, 13 Sep 2019 16:58:56 -0700
-Message-ID: <CAM4xKrqxBxm0KyjRBHKjKdo=tsuR6V1ydEsDkL_HRk-0dPM06A@mail.gmail.com>
-To: Ettus Research Support <support@ettus.com>
-Subject: Re: [USRP-users] Using DmaFIFO for receive on X310
+To: usrp-users@lists.ettus.com
+References: <f92fd3dd86ba40709538d0c0ab69d60f@ll.mit.edu>
+ <bbba74629a334e848a7efead3ab607a5@ll.mit.edu>
+In-Reply-To: <bbba74629a334e848a7efead3ab607a5@ll.mit.edu>
+Subject: Re: [USRP-users] random phase offset when trying to synchronize two
+ USRP N210s
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,10 +68,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael West via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael West <michael.west@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>, Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============1632596413734700790=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8068104984556873866=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,739 +84,356 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1632596413734700790==
-Content-Type: multipart/alternative; boundary="000000000000296aaa0592780a2f"
+This is a multi-part message in MIME format.
+--===============8068104984556873866==
+Content-Type: multipart/alternative;
+ boundary="------------000504020504070201030602"
 
---000000000000296aaa0592780a2f
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------000504020504070201030602
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
-
-You can increase the maximum socket buffer sizes by following the
-instructions here:
-http://files.ettus.com/manual/page_transport.html#transport_udp_linux
-
-I recommend setting the default and max values as follows:
-
-sudo sysctl -w net.core.rmem_default=2000000
-sudo sysctl -w net.core.rmem_max=1000000000
-sudo sysctl -w net.core.wmem_max=1000000000
-
-That will allow you to go up to 1 GB on the socket buffers.
-
-It is a pain to get the CPUs to stay at max frequency, but as long as you
-are using the performance governor you should be OK (even with the
-intel_pstate driver).  One other thing you can try is to elevate the
-priority of the thread(s) doing the recv() calls.
-
-Regards,
-Michael
-
-
-On Tue, Sep 10, 2019 at 7:17 AM Ettus Research Support <support@ettus.com>
+On 09/13/2019 01:01 PM, Lapointe, Benjamin - 0333 - MITLL via USRP-users 
 wrote:
-
-> Hi Rob,
 >
-> I will follow up with you off list with some notes I have for setting up
-> DPDK. We will be publishing an app note on it soon.
+> To provide more details:
 >
-> Regards,
-> Nate Temple
+> -The two USRP devices each have their own GPSDOs.
 >
-> On Mon, Sep 9, 2019 at 4:13 PM Rob Kossler <rkossler@nd.edu> wrote:
+> -I have separate TX and RX programs. Each one synchronizes to their 
+> GPSDO and then synchronizes phase by creating streamers with a 
+> time_spec with a specified gps_second in the future, following the 
+> instructions in the manual.
 >
->> Thanks Michael,
->> This info was very helpful.
->>
->> Regarding "recv_buff_size", I tried setting to 100M and received a
->> warning that it could not do so because rmem_max was only 33M.  Given that
->> my rmem_max was set all along to 33M, would the recv_buff_size default to
->> 33M or does it default to something lower such that I still need to set
->> this device arg?
->>
->> Regarding cpufrequtils, I have done everything I can find to get the CPUs
->> to stay at 3.5GHz.  On Ubuntu 14.04, this worked well.  And, I have tried
->> to disable the intel_pstate driver with the appropriate grub setting, but I
->> have not been successful in Ubuntu 18.04 at keeping the CPU freqs max-ed.
->>
->> Finally, regarding DPDK, this seems like the way to go, but with the
->> limited amount of info available, it is difficult to get this properly
->> configured.
->>
->> Rob
->>
->>
->> On Mon, Sep 9, 2019 at 5:43 PM Michael West <michael.west@ettus.com>
->> wrote:
->>
->>> Hi Rob,
->>>
->>> I would recommend not using the DMA FIFO block.  Although the DMA FIFO
->>> block should work, setting a larger socket buffer on the host or using DPDK
->>> are much better options.  To use a larger socket buffer, just use the
->>> device argument "recv_buff_size=<size>" and set the <size> to something
->>> reasonably large.
->>>
->>> As far as the Ds, there is flow control between the device and host, but
->>> drops are still possible between the NIC and system memory if the host is
->>> not releasing descriptors to the NIC fast enough.  For some network cards,
->>> this can be seen by looking at "rx_missed_errors" value in the output of
->>> 'ethtool -S <interface>'.  Increasing the number of RX descriptors helps,
->>> but is limited.  Use 'sudo ethtool -G <interface> rx 4096' to set the
->>> descriptors to the maximum value.
->>>
->>> For the cpufreq utils, you may have to set the governor on each core
->>> (i.e. cpufreq-set -g performance -c <core>).  Also, if you have the
->>> intel_pstate driver, it still may vary the CPU frequency with the
->>> performance governor.
->>>
->>> Regards,
->>> Michael
->>>
->>> On Mon, Sep 9, 2019 at 1:41 PM Rob Kossler via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> Hi Nate,
->>>> I looked at the link you sent (performance tuning tips) and your
->>>> email.  Here are a few comments / questions:
->>>>
->>>>    - Regarding my initial question, what could be the cause of WORSE
->>>>    performance when I inserted the DmaFIFO in the receive chain of my RFNoC
->>>>    graph? Recall the "Radio->DDC->host" produces no errors, but
->>>>    "Radio->DDC->DmaFIFO->host" produces errors (timeouts)
->>>>    - Regarding "cpufrequtils" (from the performance tuning tips), I
->>>>    have run the suggestions on my 18.04 Ubuntu system (Xeon E5-1620v4 3.5GHz,
->>>>    4-core/8-thread), but when I run cpufreq-info, there is often 1 or more
->>>>    CPUs that show up at 1.6 GHz or so (while the majority report ~3.6 GHz).
->>>>    It is not clear to me whether this utility is doing its job or not.
->>>>    - Regarding DPDK, I have tried to install it, but have had no
->>>>    success.  The instructions say that after updating grub with "iommu=pt
->>>>    intel_iommu=on hugepages=2048", then "After you reboot, you should see
->>>>    /sys/kernel/iommu_groups populated".  I do have such a folder, but it is
->>>>    empty so I'm not sure if this step was successful or not.  Furthermore, I
->>>>    am unable to run the dpdk-devbind python script to bind the vfio-pci driver
->>>>    to my Intel X520-DA2 NIC (see error message below)
->>>>    - Regarding XFS vs EXT4, this is something I haven't tried yet, but
->>>>    plan to.  I am completely unfamiliar with XFS.  My SSD is actually 4
->>>>    Samsung EVO 850 SATA SSDs in a software RAID-0 (using mdadm).  If I copy a
->>>>    huge file from my RAM disk to the SSD, I am able to verify transfer rates
->>>>    greater than 1GB/s (I believe closer to 1.5GB/s).
->>>>    - Finally, regarding "D" (sequence errors), what is the possible
->>>>    cause?  These are the most frustrating errors because their cause is a
->>>>    mystery to me.  I fully expect that when my host PC is too slow to keep up
->>>>    with the torrent of data coming from the USRP that it should eventually
->>>>    backpressure all the way to the Radio which will then generate Overflows
->>>>    because it has no place to send the A/D data.  So, if I was only seeing
->>>>    "O", it would make sense to me.  But, the "D" makes no sense to me in my
->>>>    point-to-point direct connection between host and USRP.  Do you know of any
->>>>    root cause for "D"?
->>>>
->>>> Thanks.
->>>> Rob
->>>>
->>>> *DPDK error messages during dpdk-devbind.py*
->>>> irisheyes0@irisheyes0-HP-Z440-Workstation:~$
->>>> /usr/share/dpdk/usertools/dpdk-devbind.py --status
->>>>
->>>> Network devices using DPDK-compatible driver
->>>> ============================================
->>>> <none>
->>>>
->>>> Network devices using kernel driver
->>>> ===================================
->>>> 0000:00:19.0 'Ethernet Connection (2) I218-LM 15a0' if=eno1 drv=e1000e
->>>> unused= *Active*
->>>> 0000:01:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens4f0 drv=ixgbe unused=
->>>> 0000:01:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens4f1 drv=ixgbe unused=
->>>> 0000:04:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens2f0 drv=ixgbe unused=
->>>> 0000:04:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens2f1 drv=ixgbe unused=
->>>>
->>>> Other Network devices
->>>> =====================
->>>> <none>
->>>>
->>>> Crypto devices using DPDK-compatible driver
->>>> ===========================================
->>>> <none>
->>>>
->>>> Crypto devices using kernel driver
->>>> ==================================
->>>> <none>
->>>>
->>>> Other Crypto devices
->>>> ====================
->>>> <none>
->>>>
->>>> Eventdev devices using DPDK-compatible driver
->>>> =============================================
->>>> <none>
->>>>
->>>> Eventdev devices using kernel driver
->>>> ====================================
->>>> <none>
->>>>
->>>> Other Eventdev devices
->>>> ======================
->>>> <none>
->>>>
->>>> Mempool devices using DPDK-compatible driver
->>>> ============================================
->>>> <none>
->>>>
->>>> Mempool devices using kernel driver
->>>> ===================================
->>>> <none>
->>>>
->>>> Other Mempool devices
->>>> =====================
->>>> <none>
->>>> irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo
->>>> /usr/share/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci 01:00.0
->>>> [sudo] password for irisheyes0:
->>>> Error - no supported modules(DPDK driver) are loaded
->>>> irisheyes0@irisheyes0-HP-Z440-Workstation:~$
->>>> /usr/share/dpdk/usertools/dpdk-devbind.py --status
->>>>
->>>> Network devices using DPDK-compatible driver
->>>> ============================================
->>>> <none>
->>>>
->>>> Network devices using kernel driver
->>>> ===================================
->>>> 0000:00:19.0 'Ethernet Connection (2) I218-LM 15a0' if=eno1 drv=e1000e
->>>> unused= *Active*
->>>> 0000:01:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens4f0 drv=ixgbe unused=
->>>> 0000:01:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens4f1 drv=ixgbe unused=
->>>> 0000:04:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens2f0 drv=ixgbe unused=
->>>> 0000:04:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens2f1 drv=ixgbe unused=
->>>>
->>>> Other Network devices
->>>> =====================
->>>> <none>
->>>>
->>>> Crypto devices using DPDK-compatible driver
->>>> ===========================================
->>>> <none>
->>>>
->>>> Crypto devices using kernel driver
->>>> ==================================
->>>> <none>
->>>>
->>>> Other Crypto devices
->>>> ====================
->>>> <none>
->>>>
->>>> Eventdev devices using DPDK-compatible driver
->>>> =============================================
->>>> <none>
->>>>
->>>> Eventdev devices using kernel driver
->>>> ====================================
->>>> <none>
->>>>
->>>> Other Eventdev devices
->>>> ======================
->>>> <none>
->>>>
->>>> Mempool devices using DPDK-compatible driver
->>>> ============================================
->>>> <none>
->>>>
->>>> Mempool devices using kernel driver
->>>> ===================================
->>>> <none>
->>>>
->>>> Other Mempool devices
->>>> =====================
->>>> <none>
->>>> irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo modprobe vfio-pci
->>>> irisheyes0@irisheyes0-HP-Z440-Workstation:~$
->>>> /usr/share/dpdk/usertools/dpdk-devbind.py --status
->>>>
->>>> Network devices using DPDK-compatible driver
->>>> ============================================
->>>> <none>
->>>>
->>>> Network devices using kernel driver
->>>> ===================================
->>>> 0000:00:19.0 'Ethernet Connection (2) I218-LM 15a0' if=eno1 drv=e1000e
->>>> unused=vfio-pci *Active*
->>>> 0000:01:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens4f0 drv=ixgbe unused=vfio-pci
->>>> 0000:01:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens4f1 drv=ixgbe unused=vfio-pci
->>>> 0000:04:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens2f0 drv=ixgbe unused=vfio-pci
->>>> 0000:04:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb'
->>>> if=ens2f1 drv=ixgbe unused=vfio-pci
->>>>
->>>> Other Network devices
->>>> =====================
->>>> <none>
->>>>
->>>> Crypto devices using DPDK-compatible driver
->>>> ===========================================
->>>> <none>
->>>>
->>>> Crypto devices using kernel driver
->>>> ==================================
->>>> <none>
->>>>
->>>> Other Crypto devices
->>>> ====================
->>>> <none>
->>>>
->>>> Eventdev devices using DPDK-compatible driver
->>>> =============================================
->>>> <none>
->>>>
->>>> Eventdev devices using kernel driver
->>>> ====================================
->>>> <none>
->>>>
->>>> Other Eventdev devices
->>>> ======================
->>>> <none>
->>>>
->>>> Mempool devices using DPDK-compatible driver
->>>> ============================================
->>>> <none>
->>>>
->>>> Mempool devices using kernel driver
->>>> ===================================
->>>> <none>
->>>>
->>>> Other Mempool devices
->>>> =====================
->>>> <none>
->>>> irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo
->>>> /usr/share/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci 01:00.0
->>>> Error: bind failed for 0000:01:00.0 - Cannot bind to driver vfio-pci
->>>> Error: unbind failed for 0000:01:00.0 - Cannot open /sys/bus/pci/drivers
->>>> //unbind
->>>> irisheyes0@irisheyes0-HP-Z440-Workstation:~$
->>>>
->>>>
->>>>
->>>> On Fri, Sep 6, 2019 at 6:02 PM Rob Kossler <rkossler@nd.edu> wrote:
->>>>
->>>>> Hi Nate,
->>>>> I'm using UHD 3.14.0.1.  I am not using DPDK.
->>>>>
->>>>> Regarding the tuning, I think I was not clear in my email.  I have no
->>>>> trouble streaming to RAM disk using the standard Radio->DDC->host graph.  I
->>>>> mentioned that I was running 2x50MS/s, but I can go up to 2x200MS/s with
->>>>> success.  My issue is that after adding the DmaFIFO to the Rx chain, I got
->>>>> timeouts (i.e., I suppose that the flow stopped for some reason) when
->>>>> running the graph Radio->DDC->DmaFIFO->host.  Even at 2x50MS/s.
->>>>>
->>>>> So, my question is: why is this happening?  What is wrong with my plan
->>>>> to insert the DmaFIFO in the Rx chain?  What would possibly cause the
->>>>> streaming to terminate such that my recv() loop times out (even with a 5s
->>>>> timeout)?
->>>>>
->>>>> Rob
->>>>>
->>>>>
->>>>>
->>>>> On Fri, Sep 6, 2019 at 12:56 PM Ettus Research Support <
->>>>> support@ettus.com> wrote:
->>>>>
->>>>>> Hi Rob,
->>>>>>
->>>>>> What version of UHD are you using?
->>>>>>
->>>>>> 2x RX 50 MS/s streams should work without much issue with a fast
->>>>>> enough host, especially to a ram disk.
->>>>>>
->>>>>> Are you using DPDK? DPDK support for X3xx was recently added to UHD
->>>>>> and will reduce the overhead on the host side, which can help quite a bit.
->>>>>> Some anecdotal testing I've done with a N310, with the native UHD driver,
->>>>>> to stream 2 channels full duplex, the minimum cpu freq I was able to run
->>>>>> without any flow control errors was 3.8 GHz. Using DPDK, I was able to run
->>>>>> 2x2 @ 125 MS/s with my CPU cores locked at 1.5 GHz with no flow control
->>>>>> errors. Using DPDK, it's possible to stream 2x2 @ 200e6 on the X3xx with a
->>>>>> SRAM FPGA image (it's not possible to TX at full rate using the native
->>>>>> driver and DRAM based FPGA).
->>>>>>
->>>>>> You could try the few things listed here
->>>>>> https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks
->>>>>>
->>>>>> One other bit to add, I've been able to stream 1 RX channel @ 200
->>>>>> MS/s straight to disk using a Intel 750 Series PCIe SSD until it was full
->>>>>> (circa UHD 3.10.x). To do that, I had to use a sc16 host side data format
->>>>>> and also use a XFS file system instead of EXT4. The host was a i7-4790k @
->>>>>> 4.4 GHz. I would recommend NVMe SSD drives now as they support faster rates
->>>>>> than that PCIe SSD.
->>>>>>
->>>>>>
->>>>>> Regards,
->>>>>> Nate Temple
->>>>>>
->>>>>> On Fri, Sep 6, 2019 at 8:37 AM Rob Kossler via USRP-users <
->>>>>> usrp-users@lists.ettus.com> wrote:
->>>>>>
->>>>>>> Hi,
->>>>>>> As part of an effort to improve capability to store incoming receive
->>>>>>> chain samples to files on my SSD without errors ('O' or 'D'), I decided to
->>>>>>> wire an X310 noc graph to include the DmaFIFO. My thought was that the
->>>>>>> DmaFIFO could better tolerate varying rates of sample consumption at the
->>>>>>> OS.
->>>>>>>
->>>>>>> Before trying this by streaming to a file on my SSD, I first ran a
->>>>>>> test which streamed to a RAM-based file (60 GB ram filesystem).  I used an
->>>>>>> X310/UBX160 with the default FPGA XG image and initiated a 2-channel
->>>>>>> receive at 50MS/s (using my C++ app & UHD).  To my surprise, I am getting
->>>>>>> frequent "timeouts" on receive, but not always at the same time.  In one
->>>>>>> case, the receive worked successfully for 28 secs (2 ch, 50 MS/s).  In
->>>>>>> other cases, it timed out immediately or after several seconds.  Note that
->>>>>>> I can reliably run this same test without error if I remove the DmaFIFO.
->>>>>>>
->>>>>>> The following works fine:
->>>>>>>   RxRadio -> DDC -> host file (in RAM file system)
->>>>>>>
->>>>>>> The following times-out at random times:
->>>>>>>   RxRadio -> DDC -> DmaFIFO -> host file (in RAM file system)
->>>>>>>
->>>>>>> What could be the cause?  Is there any reason the DmaFIFO shouldn't
->>>>>>> work in the receive chain?
->>>>>>>
->>>>>>> Rob
->>>>>>> _______________________________________________
->>>>>>> USRP-users mailing list
->>>>>>> USRP-users@lists.ettus.com
->>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>>>
->>>>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
+> The issue is: I am seeing a random phase offset in the received data 
+> each time I run my programs.  I don’t see a phase offset if I specify 
+> a zero Hz center frequency, so there might be a clue there.   For my 
+> application I need to specify a non-zero center frequency.
+>
+> I’m just trying to find out whether this result is expected with the 
+> HW and/or SW setup that I have, or whether it is a bug in my current 
+> version of UHD, or I am doing something wrong?  Has anyone ever tried 
+> to synchronize two USRPs each with their own GPSDO using non-zero 
+> center frequencies?
+>
+> Someone mentioned off-list that there was a bug in earlier versions of 
+> UHD that caused the CORDIC not to get reset but that has been fixed in 
+> newer versions.  I’m running UHD 3.15.0.
+>
+> Someone else asked off-list whether I am using the same or separate 
+> GPSDOs.  The answer was separate GPSDOs, but does that make a difference?
+>
+> Thanks,
+>
+> -ben
+>
+>
+Fine-scale phase-noise will absolutely be different between two GPSDOs, 
+even on the same antenna.  They'll also sometimes experience phase-slips
+   with respect to each other.  I've seen this in the lab many times.
 
---000000000000296aaa0592780a2f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>You can increase the=
- maximum socket buffer sizes by following the instructions here:=C2=A0 <a h=
-ref=3D"http://files.ettus.com/manual/page_transport.html#transport_udp_linu=
-x">http://files.ettus.com/manual/page_transport.html#transport_udp_linux</a=
-></div><div><br></div><div>I recommend setting the default and max values a=
-s follows:</div><div><br></div><div>sudo sysctl -w net.core.rmem_default=3D=
-2000000<div>sudo sysctl -w net.core.rmem_max=3D1000000000<div>sudo sysctl -=
-w net.core.wmem_max=3D1000000000</div><div><br></div><div>That will allow y=
-ou to go up to 1 GB on the socket buffers.<br></div><div><br></div><div>It =
-is a pain to get the CPUs to stay at max frequency, but as long as you are =
-using the performance governor you should be OK (even with the intel_pstate=
- driver).=C2=A0 One other thing you can try is to elevate the priority of t=
-he thread(s) doing the recv() calls.<br></div><div><br></div><div>Regards,<=
-/div><div>Michael<br></div></div></div><div><br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 10, 2019=
- at 7:17 AM Ettus Research Support &lt;<a href=3D"mailto:support@ettus.com"=
->support@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fo=
-nt-family:verdana,sans-serif">Hi Rob,<br><br>I will follow up with you off =
-list with some notes I have for setting up DPDK. We will be publishing an a=
-pp note on it soon.<br><br>Regards,<br>Nate Temple</div></div><br><div clas=
-s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 9, 2019=
- at 4:13 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_b=
-lank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><div dir=3D"ltr">Thanks Michael,<div>This info was ver=
-y helpful.</div><div><br></div><div><div>Regarding &quot;recv_buff_size&quo=
-t;, I tried setting to 100M and received a warning that it could not do so =
-because rmem_max was only 33M.=C2=A0 Given that my rmem_max was set all alo=
-ng to 33M, would the recv_buff_size default to 33M or does it default to so=
-mething lower such that I still need to set this device arg?</div><div><br>=
-</div><div>Regarding cpufrequtils, I have done everything I can find to get=
- the CPUs to stay at 3.5GHz.=C2=A0 On Ubuntu 14.04, this worked well.=C2=A0=
- And, I have tried to disable the intel_pstate driver with the appropriate =
-grub setting, but I have not been successful in Ubuntu 18.04 at keeping the=
- CPU freqs max-ed.</div><div><br></div><div>Finally, regarding DPDK, this s=
-eems like the way to go, but with the limited amount of info available, it =
-is difficult to get this properly configured.</div><div><br></div><div>Rob<=
-/div><div><br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Mon, Sep 9, 2019 at 5:43 PM Michael West &lt;<=
-a href=3D"mailto:michael.west@ettus.com" target=3D"_blank">michael.west@ett=
-us.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex"><div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>I would recomm=
-end not using the DMA FIFO block.=C2=A0 Although the DMA FIFO block should =
-work, setting a larger socket buffer on the host or using DPDK are much bet=
-ter options.=C2=A0 To use a larger socket buffer, just use the device argum=
-ent &quot;recv_buff_size=3D&lt;size&gt;&quot; and set the &lt;size&gt; to s=
-omething reasonably large.<div><br></div><div>As far as the Ds, there is fl=
-ow=20
-control between the device and host, but drops are still possible=20
-between the NIC and system memory if the host is not releasing=20
-descriptors to the NIC fast enough.=C2=A0 For some network cards, this can =
-be seen by=20
-looking at=20
-&quot;rx_missed_errors&quot; value in the output of &#39;ethtool -S=20
-&lt;interface&gt;&#39;.=C2=A0 Increasing the number of RX descriptors helps=
-, but=20
-is limited.=C2=A0 Use &#39;sudo ethtool -G &lt;interface&gt; rx 4096&#39; t=
-o set the=20
-descriptors to the maximum value.</div></div><div><br></div><div>For the cp=
-ufreq utils, you may have to set the governor on each core (i.e. cpufreq-se=
-t -g performance -c &lt;core&gt;).=C2=A0 Also, if you have the intel_pstate=
- driver, it still may vary the CPU frequency with the performance governor.=
-</div><div><br></div><div>Regards,</div><div>Michael<br></div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 9=
-, 2019 at 1:41 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-use=
-rs@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"ltr">Hi Nate,<div>I looked at the link you sent (performance tuning tips) =
-and your email.=C2=A0 Here are a few comments / questions:</div><div><ul><l=
-i>Regarding my initial question, what could be the cause of WORSE performan=
-ce when I inserted the DmaFIFO in the receive chain of my RFNoC graph? Reca=
-ll the &quot;Radio-&gt;DDC-&gt;host&quot; produces no errors, but &quot;Rad=
-io-&gt;DDC-&gt;DmaFIFO-&gt;host&quot; produces errors (timeouts)</li><li>Re=
-garding &quot;cpufrequtils&quot; (from the performance tuning tips), I have=
- run the suggestions on my 18.04 Ubuntu system (Xeon E5-1620v4 3.5GHz, 4-co=
-re/8-thread), but when I run cpufreq-info, there is often 1 or more CPUs th=
-at show up at 1.6 GHz or so (while the majority report ~3.6 GHz).=C2=A0 It =
-is not clear to me whether this utility is doing its job or not.</li><li>Re=
-garding DPDK, I have tried to install it, but have had no success.=C2=A0 Th=
-e instructions say that after updating grub with &quot;iommu=3Dpt intel_iom=
-mu=3Don hugepages=3D2048&quot;, then &quot;After you reboot, you should see=
- /sys/kernel/iommu_groups populated&quot;.=C2=A0 I do have such a folder, b=
-ut it is empty so I&#39;m not sure if this step was successful or not.=C2=
-=A0 Furthermore, I am unable to run the dpdk-devbind python script to bind =
-the vfio-pci driver to my Intel X520-DA2 NIC (see error message below)</li>=
-<li>Regarding XFS vs EXT4, this is something I haven&#39;t tried yet, but p=
-lan to.=C2=A0 I am completely unfamiliar with XFS.=C2=A0 My SSD is actually=
- 4 Samsung EVO 850 SATA SSDs in a software RAID-0 (using mdadm).=C2=A0 If I=
- copy a huge file from my RAM disk to the SSD, I am able to verify transfer=
- rates greater than 1GB/s (I believe closer to 1.5GB/s).</li><li>Finally, r=
-egarding &quot;D&quot; (sequence errors), what is the possible cause?=C2=A0=
- These are the most frustrating errors because their cause is a mystery to =
-me.=C2=A0 I fully expect that when my host PC is too slow to keep up with t=
-he torrent of data coming from the USRP that it should eventually backpress=
-ure all the way to the Radio which will then generate Overflows because it =
-has no place to send the A/D data.=C2=A0 So, if I was only seeing &quot;O&q=
-uot;, it would make sense to me.=C2=A0 But, the &quot;D&quot; makes no sens=
-e to me in my point-to-point direct connection between host and USRP.=C2=A0=
- Do you know of any root cause for &quot;D&quot;?</li></ul><div>Thanks.</di=
-v><div>Rob</div><div><br></div><div><b>DPDK error messages during dpdk-devb=
-ind.py</b></div><div>irisheyes0@irisheyes0-HP-Z440-Workstation:~$ /usr/shar=
-e/dpdk/usertools/dpdk-devbind.py --status<br><br>Network devices using DPDK=
--compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>&lt;none&gt;<br><br>Network devices using kernel driver<br>=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:00:19.0 &#39;Ethernet Connection (2) I218-=
-LM 15a0&#39; if=3Deno1 drv=3De1000e unused=3D *Active*<br>0000:01:00.0 &#39=
-;82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens4f0 drv=
-=3Dixgbe unused=3D <br>0000:01:00.1 &#39;82599ES 10-Gigabit SFI/SFP+ Networ=
-k Connection 10fb&#39; if=3Dens4f1 drv=3Dixgbe unused=3D <br>0000:04:00.0 &=
-#39;82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens2f0 dr=
-v=3Dixgbe unused=3D <br>0000:04:00.1 &#39;82599ES 10-Gigabit SFI/SFP+ Netwo=
-rk Connection 10fb&#39; if=3Dens2f1 drv=3Dixgbe unused=3D <br><br>Other Net=
-work devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using DPDK-compatible driver<b=
-r>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<b=
-r><br>Crypto devices using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br=
->&lt;none&gt;<br><br>Other Crypto devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eventdev devices usin=
-g DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eventdev devices using kernel driver=
-<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Eventd=
-ev devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using DPDK-compatible driver<=
-br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt=
-;<br><br>Mempool devices using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D<br>&lt;none&gt;<br><br>Other Mempool devices<br>=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br>irisheyes0@ir=
-isheyes0-HP-Z440-Workstation:~$ sudo /usr/share/dpdk/usertools/dpdk-devbind=
-.py --bind=3Dvfio-pci 01:00.0<br>[sudo] password for irisheyes0: <br>Error =
-- no supported modules(DPDK driver) are loaded<br>irisheyes0@irisheyes0-HP-=
-Z440-Workstation:~$ /usr/share/dpdk/usertools/dpdk-devbind.py --status<br><=
-br>Network devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Network devices us=
-ing kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:00:19.0 &#39;Et=
-hernet Connection (2) I218-LM 15a0&#39; if=3Deno1 drv=3De1000e unused=3D *A=
-ctive*<br>0000:01:00.0 &#39;82599ES 10-Gigabit SFI/SFP+ Network Connection =
-10fb&#39; if=3Dens4f0 drv=3Dixgbe unused=3D <br>0000:01:00.1 &#39;82599ES 1=
-0-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens4f1 drv=3Dixgbe unu=
-sed=3D <br>0000:04:00.0 &#39;82599ES 10-Gigabit SFI/SFP+ Network Connection=
- 10fb&#39; if=3Dens2f0 drv=3Dixgbe unused=3D <br>0000:04:00.1 &#39;82599ES =
-10-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens2f1 drv=3Dixgbe un=
-used=3D <br><br>Other Network devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using =
-DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using kernel driver<br>=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Crypto devices<br>=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><=
-br>Eventdev devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eventdev dev=
-ices using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none=
-&gt;<br><br>Other Eventdev devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using=
- DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using kernel driver<br>=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Mempool devices<br=
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;non=
-e&gt;<br>irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo modprobe vfio-pc=
-i<br>irisheyes0@irisheyes0-HP-Z440-Workstation:~$ /usr/share/dpdk/usertools=
-/dpdk-devbind.py --status<br><br>Network devices using DPDK-compatible driv=
-er<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none=
-&gt;<br><br>Network devices using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br>0000:00:19.0 &#39;Ethernet Connection (2) I218-LM 15a0&#39; if=3D=
-eno1 drv=3De1000e unused=3Dvfio-pci *Active*<br>0000:01:00.0 &#39;82599ES 1=
-0-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens4f0 drv=3Dixgbe unu=
-sed=3Dvfio-pci <br>0000:01:00.1 &#39;82599ES 10-Gigabit SFI/SFP+ Network Co=
-nnection 10fb&#39; if=3Dens4f1 drv=3Dixgbe unused=3Dvfio-pci <br>0000:04:00=
-.0 &#39;82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb&#39; if=3Dens2f=
-0 drv=3Dixgbe unused=3Dvfio-pci <br>0000:04:00.1 &#39;82599ES 10-Gigabit SF=
-I/SFP+ Network Connection 10fb&#39; if=3Dens2f1 drv=3Dixgbe unused=3Dvfio-p=
-ci <br><br>Other Network devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using DPDK-c=
-ompatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-<br>&lt;none&gt;<br><br>Crypto devices using kernel driver<br>=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Crypto devices<br>=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eve=
-ntdev devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eventdev devices u=
-sing kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<b=
-r><br>Other Eventdev devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using DPDK-=
-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D<br>&lt;none&gt;<br><br>Mempool devices using kernel driver<br>=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Mempool devices<br>=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt=
-;<br>irisheyes0@irisheyes0-HP-Z440-Workstation:~$ sudo /usr/share/dpdk/user=
-tools/dpdk-devbind.py --bind=3Dvfio-pci 01:00.0<br><span style=3D"backgroun=
-d-color:rgb(255,255,0)">Error: bind failed for 0000:01:00.0 - Cannot bind t=
-o driver vfio-pci<br>Error: unbind failed for 0000:01:00.0 - Cannot open /s=
-ys/bus/pci/drivers</span>//unbind<br>irisheyes0@irisheyes0-HP-Z440-Workstat=
-ion:~$=C2=A0<br><div></div></div><div><br></div><div><br></div></div></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri=
-, Sep 6, 2019 at 6:02 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu"=
- target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Nate,</div><div>=
-I&#39;m using UHD 3.14.0.1.=C2=A0 I am not using DPDK.</div><div><br></div>=
-<div>Regarding the tuning, I think I was not clear in my email.=C2=A0 I hav=
-e no trouble streaming to RAM disk using the standard Radio-&gt;DDC-&gt;hos=
-t graph.=C2=A0 I mentioned that I was running 2x50MS/s, but I can go up to =
-2x200MS/s with success.=C2=A0 My issue is that after adding the DmaFIFO to =
-the Rx chain, I got timeouts (i.e., I suppose that the flow stopped for som=
-e reason) when running the graph Radio-&gt;DDC-&gt;DmaFIFO-&gt;host.=C2=A0 =
-Even at 2x50MS/s.=C2=A0=C2=A0</div><div><br></div><div>So, my question is: =
-why is this happening?=C2=A0 What is wrong with my plan to insert the DmaFI=
-FO in the Rx chain?=C2=A0 What would possibly cause the streaming to termin=
-ate such that my recv() loop times out (even with a 5s timeout)?</div><div>=
-<br></div><div>Rob</div><div><br></div><div><br></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 6, 2019 at 12:5=
-6 PM Ettus Research Support &lt;<a href=3D"mailto:support@ettus.com" target=
-=3D"_blank">support@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr"><div style=3D"font-family:ver=
-dana,sans-serif">Hi Rob,<br><br>What version of UHD are you using?<br><br>2=
-x RX 50 MS/s streams should work without much issue with a fast enough host=
-, especially to a ram disk. <br><br>Are you using DPDK? DPDK support for X3=
-xx was recently added to UHD and will reduce the overhead on the host side,=
- which can help quite a bit. Some anecdotal testing I&#39;ve done with a N3=
-10, with the native UHD driver, to stream 2 channels full duplex, the minim=
-um cpu freq I was able to run without any flow control errors was 3.8 GHz. =
-Using DPDK, I was able to run 2x2 @ 125 MS/s with my CPU cores locked at 1.=
-5 GHz with no flow control errors. Using DPDK, it&#39;s possible to stream =
-2x2 @ 200e6 on the X3xx with a SRAM FPGA image (it&#39;s not possible to TX=
- at full rate using the native driver and DRAM based FPGA).<br><br>You coul=
-d try the few things listed here <a href=3D"https://kb.ettus.com/USRP_Host_=
-Performance_Tuning_Tips_and_Tricks" target=3D"_blank">https://kb.ettus.com/=
-USRP_Host_Performance_Tuning_Tips_and_Tricks</a><br><br>One other bit to ad=
-d, I&#39;ve been able to stream 1 RX channel @ 200 MS/s straight to disk us=
-ing a Intel 750 Series PCIe SSD until it was full (circa UHD 3.10.x). To do=
- that, I had to use a sc16 host side data format and also use a XFS file sy=
-stem instead of EXT4. The host was a i7-4790k @ 4.4 GHz. I would recommend =
-NVMe SSD drives now as they support faster rates than that PCIe SSD. <br><b=
-r><br>Regards,<br>Nate Temple</div></div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 6, 2019 at 8:37 AM Rob Kossl=
-er via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<div>As part of a=
-n effort to improve capability to store incoming receive chain samples to f=
-iles on my SSD without errors (&#39;O&#39; or &#39;D&#39;), I decided to wi=
-re an X310 noc graph to include the DmaFIFO. My thought was that the DmaFIF=
-O could better tolerate varying rates of sample consumption at the OS.=C2=
-=A0</div><div><br></div><div><div>Before trying this by streaming to a file=
- on my SSD, I first ran a test which streamed to a RAM-based file (60 GB ra=
-m filesystem).=C2=A0 I used an X310/UBX160 with the default FPGA XG image a=
-nd initiated a 2-channel receive at 50MS/s (using my C++ app &amp; UHD).=C2=
-=A0 To my surprise, I am getting frequent &quot;timeouts&quot; on receive, =
-but not always at the same time.=C2=A0 In one case, the receive worked succ=
-essfully for 28 secs (2 ch, 50 MS/s).=C2=A0 In other cases, it timed out im=
-mediately or after several seconds.=C2=A0 Note that I can reliably run this=
- same test without error if I remove the DmaFIFO.</div><div><br></div><div>=
-The following works fine:</div><div>=C2=A0 RxRadio -&gt; DDC -&gt; host fil=
-e (in RAM file system)</div><div><br></div><div>The following times-out at =
-random times:</div><div></div></div><div>=C2=A0 RxRadio -&gt; DDC -&gt; Dma=
-FIFO -&gt; host file (in RAM file system)</div><div><br></div><div>What cou=
-ld be the cause?=C2=A0 Is there any reason the DmaFIFO shouldn&#39;t work i=
-n the receive chain?</div><div><br></div><div>Rob</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-
---000000000000296aaa0592780a2f--
+The difference here is that at zero frequency, the CORDIC doesn't spin.  
+So this likely has to do with the initial state of the CORDIC.  I'm not sure
+   that the CORDIC fixes have been back-ported to N210--not a lot of 
+"new" work on the N210 device in the last couple of years.
 
 
---===============1632596413734700790==
+
+--------------000504020504070201030602
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 09/13/2019 01:01 PM, Lapointe,
+      Benjamin - 0333 - MITLL via USRP-users wrote:<br>
+    </div>
+    <blockquote cite="mid:bbba74629a334e848a7efead3ab607a5@ll.mit.edu"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:139229793;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1398328574 93079530 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:Calibri;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:2002537208;
+	mso-list-type:hybrid;
+	mso-list-template-ids:161523100 -1091287438 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:Calibri;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span style="color:#1F497D">To provide more
+            details:<o:p></o:p></span></p>
+        <p class="MsoListParagraph"
+          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span
+            style="color:#1F497D"><span style="mso-list:Ignore">-<span
+                style="font:7.0pt &quot;Times New Roman&quot;">         
+              </span></span></span><!--[endif]--><span
+            style="color:#1F497D">The two USRP devices each have their
+            own GPSDOs.<o:p></o:p></span></p>
+        <p class="MsoListParagraph"
+          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span
+            style="color:#1F497D"><span style="mso-list:Ignore">-<span
+                style="font:7.0pt &quot;Times New Roman&quot;">         
+              </span></span></span><!--[endif]--><span
+            style="color:#1F497D">I have separate TX and RX programs. 
+            Each one synchronizes to their GPSDO and then synchronizes
+            phase by creating streamers with a time_spec with a
+            specified gps_second in the future, following the
+            instructions in the manual.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D">The issue is: I
+            am seeing a random phase offset in the received data each
+            time I run my programs.  I don’t see a phase offset if I
+            specify a zero Hz center frequency, so there might be a clue
+            there.   For my application I need to specify a non-zero
+            center frequency.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D">I’m just trying
+            to find out whether this result is expected with the HW
+            and/or SW setup that I have, or whether it is a bug in my
+            current version of UHD, or I am doing something wrong?  Has
+            anyone ever tried to synchronize two USRPs each with their
+            own GPSDO using non-zero center frequencies?<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D">Someone
+            mentioned off-list that there was a bug in earlier versions
+            of UHD that caused the CORDIC not to get reset but that has
+            been fixed in newer versions.  I’m running UHD 3.15.0.  <o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D">Someone else
+            asked off-list whether I am using the same or separate
+            GPSDOs.  The answer was separate GPSDOs, but does that make
+            a difference?<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D">Thanks,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D">-ben   <o:p></o:p></span></p>
+        <br>
+      </div>
+    </blockquote>
+    Fine-scale phase-noise will absolutely be different between two
+    GPSDOs, even on the same antenna.  They'll also sometimes experience
+    phase-slips<br>
+      with respect to each other.  I've seen this in the lab many times.<br>
+    <br>
+    The difference here is that at zero frequency, the CORDIC doesn't
+    spin.  So this likely has to do with the initial state of the
+    CORDIC.  I'm not sure<br>
+      that the CORDIC fixes have been back-ported to N210--not a lot of
+    "new" work on the N210 device in the last couple of years.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------000504020504070201030602--
+
+
+--===============8068104984556873866==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -825,5 +444,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1632596413734700790==--
+--===============8068104984556873866==--
 
