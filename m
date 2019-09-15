@@ -2,61 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8B6B296D
-	for <lists+usrp-users@lfdr.de>; Sat, 14 Sep 2019 04:58:54 +0200 (CEST)
-Received: from [::1] (port=42962 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A37EB2D74
+	for <lists+usrp-users@lfdr.de>; Sun, 15 Sep 2019 02:34:49 +0200 (CEST)
+Received: from [::1] (port=44338 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1i8yGw-0006WT-3x; Fri, 13 Sep 2019 22:58:50 -0400
-Received: from mail-qt1-f177.google.com ([209.85.160.177]:36516)
+	id 1i9IV5-0007mx-1D; Sat, 14 Sep 2019 20:34:47 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:38894)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1i8yGs-0006PR-LQ
- for usrp-users@lists.ettus.com; Fri, 13 Sep 2019 22:58:46 -0400
-Received: by mail-qt1-f177.google.com with SMTP id o12so36397357qtf.3
- for <usrp-users@lists.ettus.com>; Fri, 13 Sep 2019 19:58:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=yMpPp1mBEHDmAPRYWzqtSnSjJhUbhtk3L2Zj6U0dDvw=;
- b=Je/pR2M5mC6JTEG737hJdrznel6U9RAwqJCdAPysj+QQoG6mYn4JfwW82BNWBYeEq7
- Mxk5Quz9tyitJKh2nCCWSnjByg/JNJ3gAL3DFFz43EyBUnyLlBwYOthv6eszKGo+cfjv
- jf6RFWFM8ExwPld+HjQcquXrbna/lsoEFIvbjN28FfrX3TZ5zjVGOp/ll97fKS2fEIt+
- MQv6ILV4iUvx5DJsE/rmEDLen4k5KD4IsZj5+J9GCjy3m8tKCtWbKkSmQFIqX9+/WJVn
- 1ZrKLvyEt7j1rwjhYewTJAi+pmiqWUiWBF15t2rx2z8KpDwRbGjXSKIhpLN/xZhelkDP
- Vj4g==
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1i9IV1-0007id-HU
+ for usrp-users@lists.ettus.com; Sat, 14 Sep 2019 20:34:43 -0400
+Received: by mail-ot1-f52.google.com with SMTP id h17so28844715otn.5
+ for <usrp-users@lists.ettus.com>; Sat, 14 Sep 2019 17:34:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4Mknebt+oO+P4UGfyTC7EepdxBZq00RSVPzgaFHftzk=;
+ b=fzTq9KZ+5LtSmAjL3MUVeA5bFuPLByNFctegD2TXN+uZl9gMgwHyFNKIu/xCRzKjNf
+ gCjiOHAMC7iE49dzEPp96gwGlZ93g7z7DOc1+DMstBICjw1A7mX2xAOvY67dvYlS8Gkv
+ pXPHUCQF6rRJAnJrK1JG6sFzjdoeq0oIBib7rR/C9Qao5ffj3BiyQArzmCbgVUSdcFP8
+ NyPZFU1TKyucxq9frDBm1nsXSP+XBEIwIU48J+ByWzxrZw16PpbTjSc85Pgz+5IXFss3
+ VA+jY1+dYrxYpNjUOIStie1WxkzKc4rrjx29R19PLZSHxqoxRjIx3PYPrCj7300PmnYA
+ mj0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=yMpPp1mBEHDmAPRYWzqtSnSjJhUbhtk3L2Zj6U0dDvw=;
- b=dXkS3AN5p24B1GbDXc7i9vTr9YYHd99ZU8+hhFptRKOiRsvItx0BrtfXkqLjiqIr65
- sCQpJdd1rgwtmpkGumxiMRr/lggk4Ph2Fh+BJfewVIwwX5J6RmQVRFbm+iLKO1Rf+Ch9
- p+L8aMOHPcidUXw16FWY7a1CMUk29t4iNXmyRypqx0kzmOyetY9Gf4EFmSaPX08N7gQT
- osi8GEafoUc8mELAz4CRE6BwU4yNUx6HP/XwGzSSo30OVqVprmjtREeEZwgCwdck+2el
- hdY1TYgcTWzjFAqQsErsOgN7BijxRsBAtq8RQkgTf3M3bqpzy3S2EylLPO32vpOY8efR
- Q9sA==
-X-Gm-Message-State: APjAAAXCHeSHnbIgRr4BnoPWNt7ppKpRVdWZdoyz4sq8o94Z2eaa2wrA
- yVEZ6xofXmegUv6TEx6PxCaYUGul
-X-Google-Smtp-Source: APXvYqy6hyn9bI+po2qETOlIOLBLQTLTU6dwSxhuGFwaK9Dbu87rFopTks7Ih9zbEUWwKCQdSGAp/Q==
-X-Received: by 2002:ac8:728c:: with SMTP id v12mr6703609qto.120.1568429886074; 
- Fri, 13 Sep 2019 19:58:06 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
- [174.95.14.20])
- by smtp.googlemail.com with ESMTPSA id v14sm11730382qkj.23.2019.09.13.19.58.05
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 13 Sep 2019 19:58:05 -0700 (PDT)
-Message-ID: <5D7C573C.2090201@gmail.com>
-Date: Fri, 13 Sep 2019 22:58:04 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4Mknebt+oO+P4UGfyTC7EepdxBZq00RSVPzgaFHftzk=;
+ b=NxNWgsQg3xCJe9I8IsXIS/jV/V+mDhI7ZlFj4C5oUfHYa4+UMRVrUv4aTaWSDmk1dH
+ CJt36aXW6ODXQeZXlt+sEjkUtmNesNEPJntAYvPGjBydKCkvO5UNJ0MEAFCcSfvbbHjU
+ 9G6vmlo5qONr37flGvaLmvN5+K/be34Z+wVoxVUeDTqCZIpOxn1KGcLVpeWb8GIpWP94
+ YbzgS+8SCeWErEILjN+MphMNuOP2C6MRyxdwJ8RTjgR6fuM0TytZ6jwltDy661qmfkq3
+ 2S14gVx7+NbWxmxyUAlv2Lpa5bHn0JZuNWgx3Xzic89twuP/tHAsdnbdBIJJC4CCO+E1
+ ljtQ==
+X-Gm-Message-State: APjAAAVfa3ffsBd2Xei8cTsqEjXR/L93HrDv2tb+1M0AFyovYCanDnWc
+ AfMyWf+49eSy2ZhN60IUw/BTh7VtJgpdcSj/zEV/buE/
+X-Google-Smtp-Source: APXvYqw7qmbhRwLDdTsXtekvsSomawvVcPnA8uKUKTdJ5tbwKyVBflXTS0WFSOSX1ktAcRnmqJBHX3EVGHJI7il56A8=
+X-Received: by 2002:a9d:5784:: with SMTP id q4mr7107169oth.107.1568507642699; 
+ Sat, 14 Sep 2019 17:34:02 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <f92fd3dd86ba40709538d0c0ab69d60f@ll.mit.edu>
- <bbba74629a334e848a7efead3ab607a5@ll.mit.edu>
-In-Reply-To: <bbba74629a334e848a7efead3ab607a5@ll.mit.edu>
-Subject: Re: [USRP-users] random phase offset when trying to synchronize two
- USRP N210s
+References: <CADk-HHD5kXWYz6fHhkxSM3Qu4ZbsTUPJ7pmVzud_wX2A7G=ffQ@mail.gmail.com>
+ <CAGNhwTOx998ykxC8r6xT4w+c2wTXwf2Fsyt6mf+dXKGDf89BVQ@mail.gmail.com>
+ <CADk-HHAmxv0hYPFA99PAALNW1WGz-MBWXYeEJo3fEB5_W5Oe9Q@mail.gmail.com>
+ <62ebd388-90b1-e46d-57e8-38d48fcab44d@comcast.net>
+ <cd4d078a-43f5-8a82-3456-5fc4c86f030f@comcast.net>
+ <CADk-HHCJbxV3Px=eu5tZrEC3zVh81QXys46NegQ3V809D+2O3Q@mail.gmail.com>
+ <202c637b-1565-5a21-9f76-91a648e211c6@comcast.net>
+ <CADk-HHBWC_tzgWBphGjhzmEekSQbo+=WDY+HJ5HumoQHEaQ+Tw@mail.gmail.com>
+ <CAGNhwTP4UsJWSOBH3TpRRZpx9pgpLgZ_WCq+4uTsG5QxFm9wHQ@mail.gmail.com>
+ <CADk-HHAHE1QBC80GLFwzJja8mPe4o0Xz3mUE4Lrav3qFtjDdNw@mail.gmail.com>
+ <3bc93d9e-b80b-5968-b3f3-79bab2602d80@comcast.net>
+ <CADk-HHDZ_FfsVfPBBWTm3HkNwS8jX4BfXS=JEm9Pb4AAWDUpeg@mail.gmail.com>
+ <CAGNhwTP+K3N0u4g-VYTWN44AATO8qspX5tTTQmy75EFbGNhZfw@mail.gmail.com>
+ <CADk-HHBEqexqb4HA_p9fL-=EyvqBRyNKf4EuTBie4y1nSiwafA@mail.gmail.com>
+In-Reply-To: <CADk-HHBEqexqb4HA_p9fL-=EyvqBRyNKf4EuTBie4y1nSiwafA@mail.gmail.com>
+Date: Sat, 14 Sep 2019 20:33:52 -0400
+Message-ID: <CAGNhwTNDN4mNn_VBAtZFtHFFOoo1inGzKWk6EDkOC9KrxF7sQg@mail.gmail.com>
+To: "Dr. Rajesh Tiwari" <rajeshgps@gmail.com>
+Subject: Re: [USRP-users] (no subject)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,9 +72,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8068104984556873866=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: USRP list <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4850274543330584261=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,356 +89,70 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============8068104984556873866==
-Content-Type: multipart/alternative;
- boundary="------------000504020504070201030602"
+--===============4850274543330584261==
+Content-Type: multipart/alternative; boundary="000000000000defda905928ca421"
 
-This is a multi-part message in MIME format.
---------------000504020504070201030602
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000defda905928ca421
+Content-Type: text/plain; charset="UTF-8"
 
-On 09/13/2019 01:01 PM, Lapointe, Benjamin - 0333 - MITLL via USRP-users 
+Hi Rajesh - Sorry for the delay. Which branch / commit of gr-ieee802-11 are
+you using? The version of GR is pretty old (3.7.6), and there's a
+reasonable chance it's not compatible with the version of gr-ieee802-11 ...
+but it could be something else too. Otherwise, yes, the settings you list
+look fine. - MLD
+
+On Tue, Sep 10, 2019 at 12:04 AM Dr. Rajesh Tiwari <rajeshgps@gmail.com>
 wrote:
->
-> To provide more details:
->
-> -The two USRP devices each have their own GPSDOs.
->
-> -I have separate TX and RX programs. Each one synchronizes to their 
-> GPSDO and then synchronizes phase by creating streamers with a 
-> time_spec with a specified gps_second in the future, following the 
-> instructions in the manual.
->
-> The issue is: I am seeing a random phase offset in the received data 
-> each time I run my programs.  I don’t see a phase offset if I specify 
-> a zero Hz center frequency, so there might be a clue there.   For my 
-> application I need to specify a non-zero center frequency.
->
-> I’m just trying to find out whether this result is expected with the 
-> HW and/or SW setup that I have, or whether it is a bug in my current 
-> version of UHD, or I am doing something wrong?  Has anyone ever tried 
-> to synchronize two USRPs each with their own GPSDO using non-zero 
-> center frequencies?
->
-> Someone mentioned off-list that there was a bug in earlier versions of 
-> UHD that caused the CORDIC not to get reset but that has been fixed in 
-> newer versions.  I’m running UHD 3.15.0.
->
-> Someone else asked off-list whether I am using the same or separate 
-> GPSDOs.  The answer was separate GPSDOs, but does that make a difference?
->
-> Thanks,
->
-> -ben
->
->
-Fine-scale phase-noise will absolutely be different between two GPSDOs, 
-even on the same antenna.  They'll also sometimes experience phase-slips
-   with respect to each other.  I've seen this in the lab many times.
 
-The difference here is that at zero frequency, the CORDIC doesn't spin.  
-So this likely has to do with the initial state of the CORDIC.  I'm not sure
-   that the CORDIC fixes have been back-ported to N210--not a lot of 
-"new" work on the N210 device in the last couple of years.
+> Hi Michael,
+>
+> Many thanks for all your answers, it really help as always. If I have
+> understood correctly, here is the summary:
+>
+>    - GRC is in default, i.e. /usr/local
+>    - PYTHONPATH /home/configure/usr/lib/python2.7/site-packages (this
+>    also means that Python is 27)
+>    - Using Python command, import ieee802_11
+>    - screenshot attached shows some import error in symbol
+>
+> I tried using export command and sudo ldconfig but nothing works, any
+> advise please.
+> Regards
+> Rajesh
+>
+
+--000000000000defda905928ca421
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi=C2=A0Rajesh - Sorry for the delay. Whi=
+ch branch / commit of gr-ieee802-11 are you using? The version of GR is pre=
+tty old (3.7.6), and there&#39;s a reasonable=C2=A0chance it&#39;s not comp=
+atible with the version of=C2=A0gr-ieee802-11 ... but it could be something=
+ else too. Otherwise, yes, the settings you list look fine. - MLD</div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Se=
+p 10, 2019 at 12:04 AM Dr. Rajesh Tiwari &lt;<a href=3D"mailto:rajeshgps@gm=
+ail.com">rajeshgps@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Michael,</div><div><br=
+></div><div>Many thanks for all your answers, it really help as always. If =
+I have understood correctly, here is the summary:</div><div><ul><li>GRC is =
+in default, i.e. /usr/local</li><li>PYTHONPATH /home/configure/usr/lib/pyth=
+on2.7/site-packages (this also means that Python is 27)<br></li><li><span><=
+/span>Using Python command, import ieee802_11
+=09
+=09
 
 
+</li><li>screenshot attached shows some import error in symbol</li></ul><di=
+v>I tried using export command and sudo ldconfig but nothing works, any adv=
+ise please. <br></div><div>Regards</div><div>Rajesh</div></div></div></bloc=
+kquote></div><div dir=3D"ltr" class=3D"gmail_signature"></div></div>
 
---------------000504020504070201030602
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 09/13/2019 01:01 PM, Lapointe,
-      Benjamin - 0333 - MITLL via USRP-users wrote:<br>
-    </div>
-    <blockquote cite="mid:bbba74629a334e848a7efead3ab607a5@ll.mit.edu"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:139229793;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1398328574 93079530 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:2002537208;
-	mso-list-type:hybrid;
-	mso-list-template-ids:161523100 -1091287438 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l1:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal"><span style="color:#1F497D">To provide more
-            details:<o:p></o:p></span></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span
-            style="color:#1F497D"><span style="mso-list:Ignore">-<span
-                style="font:7.0pt &quot;Times New Roman&quot;">         
-              </span></span></span><!--[endif]--><span
-            style="color:#1F497D">The two USRP devices each have their
-            own GPSDOs.<o:p></o:p></span></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span
-            style="color:#1F497D"><span style="mso-list:Ignore">-<span
-                style="font:7.0pt &quot;Times New Roman&quot;">         
-              </span></span></span><!--[endif]--><span
-            style="color:#1F497D">I have separate TX and RX programs. 
-            Each one synchronizes to their GPSDO and then synchronizes
-            phase by creating streamers with a time_spec with a
-            specified gps_second in the future, following the
-            instructions in the manual.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D">The issue is: I
-            am seeing a random phase offset in the received data each
-            time I run my programs.  I don’t see a phase offset if I
-            specify a zero Hz center frequency, so there might be a clue
-            there.   For my application I need to specify a non-zero
-            center frequency.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D">I’m just trying
-            to find out whether this result is expected with the HW
-            and/or SW setup that I have, or whether it is a bug in my
-            current version of UHD, or I am doing something wrong?  Has
-            anyone ever tried to synchronize two USRPs each with their
-            own GPSDO using non-zero center frequencies?<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D">Someone
-            mentioned off-list that there was a bug in earlier versions
-            of UHD that caused the CORDIC not to get reset but that has
-            been fixed in newer versions.  I’m running UHD 3.15.0.  <o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D">Someone else
-            asked off-list whether I am using the same or separate
-            GPSDOs.  The answer was separate GPSDOs, but does that make
-            a difference?<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D">Thanks,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D">-ben   <o:p></o:p></span></p>
-        <br>
-      </div>
-    </blockquote>
-    Fine-scale phase-noise will absolutely be different between two
-    GPSDOs, even on the same antenna.  They'll also sometimes experience
-    phase-slips<br>
-      with respect to each other.  I've seen this in the lab many times.<br>
-    <br>
-    The difference here is that at zero frequency, the CORDIC doesn't
-    spin.  So this likely has to do with the initial state of the
-    CORDIC.  I'm not sure<br>
-      that the CORDIC fixes have been back-ported to N210--not a lot of
-    "new" work on the N210 device in the last couple of years.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------000504020504070201030602--
+--000000000000defda905928ca421--
 
 
---===============8068104984556873866==
+--===============4850274543330584261==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -444,5 +163,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8068104984556873866==--
+--===============4850274543330584261==--
 
