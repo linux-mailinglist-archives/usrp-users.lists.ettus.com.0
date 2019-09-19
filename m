@@ -2,59 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29BCEB81BD
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Sep 2019 21:50:22 +0200 (CEST)
-Received: from [::1] (port=44782 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8807EB82FC
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Sep 2019 22:56:02 +0200 (CEST)
+Received: from [::1] (port=33388 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iB2RY-0002fR-6X; Thu, 19 Sep 2019 15:50:20 -0400
-Received: from mail-qt1-f181.google.com ([209.85.160.181]:46327)
+	id 1iB3T5-0000L2-8S; Thu, 19 Sep 2019 16:55:59 -0400
+Received: from mail-yb1-f171.google.com ([209.85.219.171]:43199)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iB2RU-0002ai-TW
- for usrp-users@lists.ettus.com; Thu, 19 Sep 2019 15:50:16 -0400
-Received: by mail-qt1-f181.google.com with SMTP id u22so5746481qtq.13
- for <usrp-users@lists.ettus.com>; Thu, 19 Sep 2019 12:49:56 -0700 (PDT)
+ (Exim 4.92) (envelope-from <dsmay.public@gmail.com>)
+ id 1iB3T1-0000G4-BN
+ for usrp-users@lists.ettus.com; Thu, 19 Sep 2019 16:55:55 -0400
+Received: by mail-yb1-f171.google.com with SMTP id m143so1851043ybf.10
+ for <usrp-users@lists.ettus.com>; Thu, 19 Sep 2019 13:55:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=gb3fvm28vqujATPdYV7Ef9bL+r6JZHgRo+vyIJZcgFg=;
- b=UIVBNuJj4oRn0k3LJOWKBIhnUIuyuW6h9hbpTzhSzmVD3t0vEjvBGNA8wbUSeButhx
- HHx/9WkdZ19SmdPGuqRK3NwtN9TXnKhBleWUduxV2wfUWaXEAHpxCqgmxUOZ2oAOnrM7
- yWrxyi6QhtVtavtCNJ8VAhQH0H1mOcYN2tkpC84jejfc1sK2AqdNe2G9EFh2PagkqLXZ
- k9Ea/l72zaUkns2PaeXShDlWxraKaEl/9DhEmpL2JVn+46yDta8VvJXl8QMxXgB9MoiR
- jKdqbvyW0R+YsUbyis1DumJxS1sJ9BbEpxRgksxg912O2y0OhR5QjZadl4G7OoA3mfYz
- ONUg==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=Q3VVFRhFInVnJXuUQGX2SHkaqY+W6+pV6Fr+rtc9ckA=;
+ b=ZXT7VzVyosRQgdZZ3762nX0iBAZsm406v34Xn3H/sMjqm0p82N9Ty/PIneefIKD08I
+ DLN6qIW7od8kVHuf9mROVk+rlrLqWRSakvHEbNYnNAE0wQ7+sCDBTPpIXmZnOlD4ur2/
+ vqaW3/LtSJ8TSAXJkSi1+gwlqQw1Kc4mRuDzwOAjSvj781E3NCuUeD1zdLQzzXz0xEmO
+ OeU0cHndYx+lmcVTWLyepOXFK9AEulKHfgISVl/xAJceXAm6OMFgH9R/qUUTVLKU8gBD
+ fyKmVvzm+iJO6816GfWKQs+IFl8kxn5q+junG+fz3dEeCYXnEUaEwiEemn64FO4CFMhs
+ uYMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=gb3fvm28vqujATPdYV7Ef9bL+r6JZHgRo+vyIJZcgFg=;
- b=I2IGKxxBXNlwXBKBA6RSqSrgi45ZBXbM85/gaYUCzK4P0muX6Esri9UoKdRoJYukr0
- NOKiaDL0A9pQ/5gaIIIDwMM4/YJ+os6zuXCgs/YS2vN8PA2euzqXbrU5VatRw40Pbbwt
- l/oEo/PPgg1FW+XIZODfqDZcu1TOjCAiHGm3JbUS9mMvpKteAzviogvQ9G1hY/5kxK/a
- dcjQPYlokjvBsy/K7bafBoeFQtdEPSBVNEFyLANL5RpdLZlqZPnAUw8UGL3lZXCcu6e8
- 3EV/pdHwsgQJxqfUTW0vI9TEsj2s6/sRGF5hIGxGclqDsZyXdjBcf/W6nflIkpzcvjE8
- AmZA==
-X-Gm-Message-State: APjAAAV+Zhwi8Hb92nsEoUfbeTq85bsX6lqVYqCl0+/xVzNh3RSXUZY+
- dgcbE1A052l5x1Lr2plWHwQe4T1E
-X-Google-Smtp-Source: APXvYqzGTH2ygj6PTO+zHzfwAHN5PiXw9WI+31PSjJ4A2rgL46C1j1J0QtyaiZnXfm6feDT3MqAA7Q==
-X-Received: by 2002:ac8:4641:: with SMTP id f1mr5187689qto.367.1568922576169; 
- Thu, 19 Sep 2019 12:49:36 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
- [174.95.14.20])
- by smtp.googlemail.com with ESMTPSA id q5sm6614141qte.38.2019.09.19.12.49.35
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 19 Sep 2019 12:49:35 -0700 (PDT)
-Message-ID: <5D83DBCE.8080704@gmail.com>
-Date: Thu, 19 Sep 2019 15:49:34 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=Q3VVFRhFInVnJXuUQGX2SHkaqY+W6+pV6Fr+rtc9ckA=;
+ b=ORja6V+B//eMaRHWkhv990j0IhQ5ckInFi37nEfmJeIAeqkhkr+M4NAbiEQDmPa6vU
+ 2Otz7DEwjLNsmHuOR2padZJvcs5h5EKAyBQR6EBZW3fh/kc5FGL2JTzHh5uKtUwUkm3a
+ oM6G4UzKUxEtVsOY2U26j+Rtws0fofrepwqWENLNgMM7u7oIbI0/zb00Q4spS97zmhaR
+ t+Olgul8Zww7dJzPT4fzzsMvFcMKqD+keIuDrtBM5lS+4vb1DnbRvkdToHyyx6l4Y86l
+ f3bQ3nbt3MfUTirIurd91vMGgQ4sRrFfzp+EZxvKZVF7Qsdxx7vvoop4bhoqeWyRZM1A
+ gwSQ==
+X-Gm-Message-State: APjAAAXIQr2ZkmPruZn/URuvdjOwbXAFVcGUDIpWPRpKZaJ1ebayz6M8
+ YBwUTkfSALjkT/ikzKmCD2W1GZPbhtiC8TZ/8ZWaKCWq
+X-Google-Smtp-Source: APXvYqzVQWDdPa3Xdnsvi38UQsEqHEhSl9QhTFANyx4CBwtsic1UTSnwCQieIYXgCkG7x4j6ne9hQTyQOH+Ks9LPdo8=
+X-Received: by 2002:a25:ba4f:: with SMTP id z15mr7834073ybj.495.1568926514554; 
+ Thu, 19 Sep 2019 13:55:14 -0700 (PDT)
 MIME-Version: 1.0
+Date: Thu, 19 Sep 2019 16:55:03 -0400
+Message-ID: <CAL8PJZ8B_CSoEPxKJJ8Rv7RLxXFgehfhtWCFN8ELJAV+RJQNMA@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <4dbdb91273d84bdd861b8f560c6f8d9e@ll.mit.edu>
-In-Reply-To: <4dbdb91273d84bdd861b8f560c6f8d9e@ll.mit.edu>
-Subject: Re: [USRP-users] X310 Daughterboard vs Front Panel GPIO
+Subject: [USRP-users] uhd example programs - weird environment variable
+ issue?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -66,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0057477748765299477=="
+From: David Smay via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Smay <dsmay.public@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2886950509975541024=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,207 +72,118 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0057477748765299477==
-Content-Type: multipart/alternative;
- boundary="------------080908060608010102050906"
+--===============2886950509975541024==
+Content-Type: multipart/alternative; boundary="000000000000942b6a0592ee2bd0"
 
-This is a multi-part message in MIME format.
---------------080908060608010102050906
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000942b6a0592ee2bd0
+Content-Type: text/plain; charset="UTF-8"
 
-On 09/19/2019 03:21 PM, Muri, Richard - 1002 - MITLL via USRP-users wrote:
->
-> Hello,
->
-> I am a new USRP user with a question about how the GPIO functions. Are 
-> the front panel and daughterboard GPIO separate entities?
->
-> For instance, if I set the transmit to be always enabled on the 
-> daughterboard ATR registers
->
->     uint32_t old_atr_idle_val = 
-> tx_db_iface->get_atr_reg(uhd::usrp::dboard_iface::UNIT_TX, 
-> uhd::usrp::gpio_atr::ATR_REG_IDLE);
->
->     uint32_t old_atr_rxo_val = 
-> tx_db_iface->get_atr_reg(uhd::usrp::dboard_iface::UNIT_TX, 
-> uhd::usrp::gpio_atr::ATR_REG_RX_ONLY);
->
->     uint32_t new_atr_val = 0;
->
->     uint32_t mask = 0x20; //bit 5 = tx not enabled (ie 0 -> always 
-> enable Tx)
->
-> tx_db_iface->set_atr_reg(uhd::usrp::dboard_iface::UNIT_TX, 
-> uhd::usrp::gpio_atr::ATR_REG_IDLE, new_atr_val, mask);
->
-> tx_db_iface->set_atr_reg(uhd::usrp::dboard_iface::UNIT_TX, 
-> uhd::usrp::gpio_atr::ATR_REG_RX_ONLY, new_atr_val, mask);
->
-> Will setting the front panel ATR to change a GPIO when I start 
-> streaming function as normal, or will the pin always stay high?
->
-> //GPIO[2] = ATR output 1 during TX
->
->     ctrl |= GPIO_BIT(2);
->
->     ddr |= GPIO_BIT(2);
->
->     atr_tx |= GPIO_BIT(2);
->
-> //set data direction register (DDR)
->
->     mpUsrp->set_gpio_attr(gpio, "DDR", ddr, mask);
->
->     //set control register
->
->     mpUsrp->set_gpio_attr(gpio, "CTRL", ctrl, mask);
->
->     //set output values (OUT)
->
->     mpUsrp->set_gpio_attr(gpio, "OUT", out, mask);
->
-> mpUsrp->set_gpio_attr(gpio, "ATR_TX", atr_tx, mask);
->
-> Thank you!
->
-> Richard
->
->
-I've never played with the GPIO stuff myself, but my recollection is 
-that the front-panel GPIO and daughterboard GPIO are completely separate
-   entities.
+Hello,
+
+I recently did a clean installation of UHD 3.14.1 and gnuradio 3.7.13.5 on
+Ubuntu 18.04 LTS, following the steps outlined in the Ettus knowledge base
+for installation from source.
+
+The installation worked great, and I started experimenting with the example
+programs installed with UHD (located in /usr/lib/uhd/examples/).  At first
+they ran correctly and I was able to run the gpio and benchmark_rate
+programs without issue, getting the normal expected output for my
+b205mini-i.
+
+Without making any changes to the system, and in the same shell session,
+all of a sudden the example programs all started consistently generating
+errors when I tried to run them:
+
+dsmay4@UbuntuPrecision7530:/usr/lib/uhd/examples$ ./benchmark_rate
+--rx_rate 10e6
+linux; GNU C++ version 7.3.0; Boost_106501; UHD_003.010.003.000-0-unknown
 
 
 
---------------080908060608010102050906
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+UHD Warning:
+    EnvironmentError: IOError: Could not find path for image:
+usrp_b200_fw.hex
+    Using images directory: <no images directory located>
+    Set the environment variable 'UHD_IMAGES_DIR' appropriately or follow
+the below instructions to download the images package.
+    Please run:
+     "/usr/lib/x86_64-linux-gnu/uhd/utils/uhd_images_downloader.py"
+Creating the usrp device with: ...
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 09/19/2019 03:21 PM, Muri, Richard -
-      1002 - MITLL via USRP-users wrote:<br>
-    </div>
-    <blockquote cite="mid:4dbdb91273d84bdd861b8f560c6f8d9e@ll.mit.edu"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Hello,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">I am a new USRP user with a question about
-          how the GPIO functions. Are the front panel and daughterboard
-          GPIO separate entities?<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">For instance, if I set the transmit to be
-          always enabled on the daughterboard ATR registers<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">    uint32_t old_atr_idle_val =
-          tx_db_iface-&gt;get_atr_reg(uhd::usrp::dboard_iface::UNIT_TX,
-          uhd::usrp::gpio_atr::ATR_REG_IDLE);<o:p></o:p></p>
-        <p class="MsoNormal">    uint32_t old_atr_rxo_val =
-          tx_db_iface-&gt;get_atr_reg(uhd::usrp::dboard_iface::UNIT_TX,
-          uhd::usrp::gpio_atr::ATR_REG_RX_ONLY);<o:p></o:p></p>
-        <p class="MsoNormal">    uint32_t new_atr_val = 0;<o:p></o:p></p>
-        <p class="MsoNormal">    uint32_t mask = 0x20; //bit 5 = tx not
-          enabled (ie 0 -&gt; always enable Tx)<o:p></o:p></p>
-        <p class="MsoNormal">   
-          tx_db_iface-&gt;set_atr_reg(uhd::usrp::dboard_iface::UNIT_TX,
-          uhd::usrp::gpio_atr::ATR_REG_IDLE, new_atr_val, mask);<o:p></o:p></p>
-        <p class="MsoNormal">   
-          tx_db_iface-&gt;set_atr_reg(uhd::usrp::dboard_iface::UNIT_TX,
-          uhd::usrp::gpio_atr::ATR_REG_RX_ONLY, new_atr_val, mask);<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Will setting the front panel ATR to change
-          a GPIO when I start streaming function as normal, or will the
-          pin always stay high?<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">//GPIO[2] = ATR output 1 during TX<o:p></o:p></p>
-        <p class="MsoNormal">    ctrl |= GPIO_BIT(2);<o:p></o:p></p>
-        <p class="MsoNormal">    ddr |= GPIO_BIT(2);<o:p></o:p></p>
-        <p class="MsoNormal">    atr_tx |= GPIO_BIT(2);<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">//set data direction register (DDR)<o:p></o:p></p>
-        <p class="MsoNormal">    mpUsrp-&gt;set_gpio_attr(gpio, "DDR",
-          ddr, mask);<o:p></o:p></p>
-        <p class="MsoNormal">    //set control register<o:p></o:p></p>
-        <p class="MsoNormal">    mpUsrp-&gt;set_gpio_attr(gpio, "CTRL",
-          ctrl, mask);<o:p></o:p></p>
-        <p class="MsoNormal">    //set output values (OUT)<o:p></o:p></p>
-        <p class="MsoNormal">    mpUsrp-&gt;set_gpio_attr(gpio, "OUT",
-          out, mask);<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">mpUsrp-&gt;set_gpio_attr(gpio, "ATR_TX",
-          atr_tx, mask);<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Thank you!<o:p></o:p></p>
-        <p class="MsoNormal">Richard<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-      </div>
-      <br>
-    </blockquote>
-    I've never played with the GPIO stuff myself, but my recollection is
-    that the front-panel GPIO and daughterboard GPIO are completely
-    separate<br>
-      entities.<br>
-    <br>
-    <br>
-  </body>
-</html>
+UHD Warning:
+    EnvironmentError: IOError: Could not find path for image:
+usrp_b200_fw.hex
+    Using images directory: <no images directory located>
+    Set the environment variable 'UHD_IMAGES_DIR' appropriately or follow
+the below instructions to download the images package.
+    Please run:
+     "/usr/lib/x86_64-linux-gnu/uhd/utils/uhd_images_downloader.py"
+Error: LookupError: KeyError: No devices found for ----->
+Empty Device Address
 
---------------080908060608010102050906--
+This is quite strange as my uhd_images_downloader isn't installed to that
+directory, but it does run just fine.  uhd_find_devices and uhd_usrp_probe
+run fine and indicate no problems with the radio itself.  Other sdr apps
+using the b205 work just fine - the problem seems to only impact these
+example programs.
+
+I tried rebooting, as well as uninstalling and reinstalling UHD (which
+reinstalled the example programs) but the problem persists.  I'm mostly
+interested in figuring out what caused the spontaneous change in system
+behavior.  I can't for the life of me figure out why just these apps can't
+find the fpga images but everything else works just fine...
+
+TIA,
+
+Dave
+
+--000000000000942b6a0592ee2bd0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I recently did a clea=
+n installation of UHD 3.14.1 and gnuradio 3.7.13.5 on Ubuntu 18.04 LTS, fol=
+lowing the steps outlined in the Ettus knowledge base for installation from=
+ source.</div><div><br></div><div>The installation worked great, and I star=
+ted experimenting with the example programs installed with UHD (located in =
+/usr/lib/uhd/examples/).=C2=A0 At first they ran correctly and I was able t=
+o run the gpio and benchmark_rate programs without issue, getting the norma=
+l expected output for my b205mini-i.</div><div><br></div><div>Without makin=
+g any changes to the system, and in the same shell session, all of a sudden=
+ the example programs all started consistently generating errors when I tri=
+ed to run them:</div><div><br></div><div>dsmay4@UbuntuPrecision7530:/usr/li=
+b/uhd/examples$ ./benchmark_rate --rx_rate 10e6<br>linux; GNU C++ version 7=
+.3.0; Boost_106501; UHD_003.010.003.000-0-unknown<br><br><br><br>UHD Warnin=
+g:<br>=C2=A0 =C2=A0 EnvironmentError: IOError: Could not find path for imag=
+e: usrp_b200_fw.hex<br>=C2=A0 =C2=A0 Using images directory: &lt;no images =
+directory located&gt;<br>=C2=A0 =C2=A0 Set the environment variable &#39;UH=
+D_IMAGES_DIR&#39; appropriately or follow the below instructions to downloa=
+d the images package.<br>=C2=A0 =C2=A0 Please run:<br>=C2=A0 =C2=A0 =C2=A0&=
+quot;/usr/lib/x86_64-linux-gnu/uhd/utils/uhd_images_downloader.py&quot;<br>=
+Creating the usrp device with: ...<br><br>UHD Warning:<br>=C2=A0 =C2=A0 Env=
+ironmentError: IOError: Could not find path for image: usrp_b200_fw.hex<br>=
+=C2=A0 =C2=A0 Using images directory: &lt;no images directory located&gt;<b=
+r>=C2=A0 =C2=A0 Set the environment variable &#39;UHD_IMAGES_DIR&#39; appro=
+priately or follow the below instructions to download the images package.<b=
+r>=C2=A0 =C2=A0 Please run:<br>=C2=A0 =C2=A0 =C2=A0&quot;/usr/lib/x86_64-li=
+nux-gnu/uhd/utils/uhd_images_downloader.py&quot;<br>Error: LookupError: Key=
+Error: No devices found for -----&gt;<br>Empty Device Address<br></div><div=
+><br></div><div>This is quite strange as my uhd_images_downloader isn&#39;t=
+ installed to that directory, but it does run just fine.=C2=A0 uhd_find_dev=
+ices and uhd_usrp_probe run fine and indicate no problems with the radio it=
+self.=C2=A0 Other sdr apps using the b205 work just fine - the problem seem=
+s to only impact these example programs.</div><div><br></div><div>I tried r=
+ebooting, as well as uninstalling and reinstalling UHD (which reinstalled t=
+he example programs) but the problem persists.=C2=A0 I&#39;m mostly interes=
+ted in figuring out what caused the spontaneous change in system behavior.=
+=C2=A0 I can&#39;t for the life of me figure out why just these apps can&#3=
+9;t find the fpga images but everything else works just fine...</div><div><=
+br></div><div>TIA,</div><div><br></div><div>Dave<br></div></div>
+
+--000000000000942b6a0592ee2bd0--
 
 
---===============0057477748765299477==
+--===============2886950509975541024==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -293,5 +194,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0057477748765299477==--
+--===============2886950509975541024==--
 
