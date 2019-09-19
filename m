@@ -2,41 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D8C8B7AA8
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Sep 2019 15:39:52 +0200 (CEST)
-Received: from [::1] (port=33258 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B362B7B49
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Sep 2019 15:56:56 +0200 (CEST)
+Received: from [::1] (port=36370 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iAwex-0004zh-2l; Thu, 19 Sep 2019 09:39:47 -0400
-Received: from mx1.hrz.uni-dortmund.de ([129.217.128.51]:52705
- helo=unimail.uni-dortmund.de)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <felix.greiwe@tu-dortmund.de>)
- id 1iAwet-0004tU-6w
- for usrp-users@lists.ettus.com; Thu, 19 Sep 2019 09:39:43 -0400
-Received: from webmail.tu-dortmund.de (webmail.tu-dortmund.de [129.217.131.82])
- (authenticated bits=0)
- by unimail.uni-dortmund.de (8.16.0.41/8.16.0.41) with ESMTPSA id
- x8JDd1nJ029242
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <usrp-users@lists.ettus.com>; Thu, 19 Sep 2019 15:39:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tu-dortmund.de;
- s=unimail; t=1568900341;
- bh=Sop5GqxTG5V0nfe8pfPNYnom3nhIc8EJVsTMmVeJnk0=;
- h=Date:Subject:From:To:Reply-To;
- b=FLcbMTzOxFW1LrPUAUnR8j8Q+03SomqIsvt7sB3/C59GxzVSCQH0kUZUi6/4qEf4S
- BJSPGr6jyL6lzPG7OwTeRgTlGsLcjFU6OiKDU/KtOwaswsVdvwkWkL7TvPMCZy1xAb
- 1h9w9L3J+Pboh3vmFEMJaNRq8+Ao/Z4fgy5TYiuk=
-Received: from 185.249.168.30 (SquirrelMail authenticated user smfegrei)
- by webmail.tu-dortmund.de with HTTP; Thu, 19 Sep 2019 15:39:02 +0200
-Message-ID: <20abea6ebc2be30dac4b14046002f932.squirrel@webmail.tu-dortmund.de>
-Date: Thu, 19 Sep 2019 15:39:02 +0200
-To: "Usrp Liste" <usrp-users@lists.ettus.com>
-User-Agent: SquirrelMail/1.4.23 [SVN]
+	id 1iAwvW-0006WP-9F; Thu, 19 Sep 2019 09:56:54 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:45358)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1iAwvS-0006PV-W3
+ for usrp-users@lists.ettus.com; Thu, 19 Sep 2019 09:56:51 -0400
+Received: by mail-ot1-f44.google.com with SMTP id 41so3099950oti.12
+ for <usrp-users@lists.ettus.com>; Thu, 19 Sep 2019 06:56:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=JpOw/2ow6SAfwsVXu1x01tvRkKpuRz0dItxJUwSvi98=;
+ b=pxins41WYR+CGexcFfbTbYSfdlvBIbUvsZ53phKk3e6LGCSVw8CitQ+wptB+opyWLa
+ 6rTssLqtklJy71Anhx3BASjpwQN7ETAqOI/HrjZQBR2V+70PLd+gCZD/VoCwNQeD8zxZ
+ MbvwOFKelJpc3PRsPjZHpL8avTH6Kan9+gpncCjXARODSZz7Aoegnu+Ej3tvY9WQLt1p
+ U4lGVM1Cnluz7+xj63Rj9Cv6ROETuYwv5Dd4zsk+MQMdxh6PpCxYqx8Jwt1evLVyslh0
+ MddlJNftAcZBW/sVwbgG3vXImxPBO8Z3puhAboSnkHZjsTxjiqMTooegA7iOD+3/wh0Q
+ IzIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=JpOw/2ow6SAfwsVXu1x01tvRkKpuRz0dItxJUwSvi98=;
+ b=UFCClMRsUmJODskHIo2xAaKTKN07lPNWXvHRFR0LtZ58dS+jJOCcDKR3EVqrzQv2K6
+ viiwraCuaRQoVM4DHf1rIBJwKbiGfndvOTcCt0cJqXusa5kJc9PZCRKfVhjWKXdAmRnl
+ Gm/uaBxt+A7cp0YacH+NqW5tAxC4OyF/vhp14Ti7kCMsbqt3NdM+vIHpwc6/8VKICESm
+ QVVy4yX5M47C9invOmzyGJO1XR/yrdtS7c6kp/3NiuLWzy/QSd61krnLwzxVlsw+b9CW
+ hpEYVgZKffHooqFQ0psMzgEkHfhYkxJNrSfTpRQGd2OIjo8e8RBVojteu2Aa81Pnt7NR
+ zklg==
+X-Gm-Message-State: APjAAAU3WPZEErOaQCGSt9lyehT8RclOVsrk/Oa7Pcs9tFROUz8tQTxt
+ hI0+EqVmrv6KH9CkCaGOEUE6g0Ycs1ma9oZ7W636ArlC
+X-Google-Smtp-Source: APXvYqzEld1RTmfmMl9OBpIGkKDLL5m8ikNuO4z/2fCGu5beJGYblBEoT3Xq80yl1dNHxhfcTEK2g/UEmhpVqayY+GY=
+X-Received: by 2002:a05:6830:17c9:: with SMTP id
+ p9mr7248897ota.0.1568901370178; 
+ Thu, 19 Sep 2019 06:56:10 -0700 (PDT)
 MIME-Version: 1.0
-X-Priority: 3 (Normal)
-Importance: Normal
-Subject: [USRP-users] RFNoC Crossbar and Block data rates
+References: <CALHv-k--jOYk6t40MwJ2aTsup2unhqVg3r84TFj8zPn9_yy58Q@mail.gmail.com>
+In-Reply-To: <CALHv-k--jOYk6t40MwJ2aTsup2unhqVg3r84TFj8zPn9_yy58Q@mail.gmail.com>
+Date: Thu, 19 Sep 2019 08:56:00 -0500
+Message-ID: <CAGNhwTOPDs2sks8ET4ZsJbgonFC4L-Ggeu3XU=HqQEY3v=Pnpg@mail.gmail.com>
+To: Khizar Abbas <engr.khizarabbas14@gmail.com>
+Subject: Re: [USRP-users] USRP B210 Error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -48,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Felix Greiwe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: felix.greiwe@tu-dortmund.de
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: USRP list <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7250889898709727708=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -65,40 +77,115 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hello together,
+--===============7250889898709727708==
+Content-Type: multipart/alternative; boundary="000000000000db7bbb0592e8506e"
 
-I have some questions concerning clock speeds and the corresponding data
-rates on a USRP x310 (FPGA). As far as I know, there are two different
-clock speeds on the FPGA, the ce_clk=200MHz, and the bus_clk - I did not
-find clock speed for this one.
+--000000000000db7bbb0592e8506e
+Content-Type: text/plain; charset="UTF-8"
 
-Is it true, that the ce_clk drives my rfnoc blocks and thus my in- and
-outgoing data rate of each single block (using sc16 samples) is 200MHz*32
-Bit/10^9 = 6,4 GBit/s?
+Hi Khizar - Have you tried doing what the error recommends ... executing
+"/usr/local/lib/uhd/utils/uhd_images_downloader.py"? It could be that you
+just need to download the images for your specific UHD install. Hope this
+helps! - MLD
 
-I read, that all the RFNoC Blocks are connected to the crossbar which is
-driven by the bus_clk. First of all: Is this the case?
-If so, how is the crossbar able to handle the in and output data of each
-RFNoC Block at once? How many Bytes can it process with each clock?
+On Thu, Sep 19, 2019 at 4:03 AM Khizar Abbas via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-Take for example the flowgraph
+> Dear all,
+> i am using two USRP b210 device for my project. My goal is to deploy LTE
+> connection . but one of my device is working properly and other one is
+> showing error no device found.
+> when i used the sudo uhd_usrp_probecommand. its shows error
+> UHD Warning:
+>     EnvironmentError: IOError: Could not find path for image:
+> usrp_b200_fw.hex
+>     Using images directory: <no images directory located>
+>     Set the environment variable 'UHD_IMAGES_DIR' appropriately or follow
+> the below instructions to download the images package.
+>     Please run:
+>      "/usr/local/lib/uhd/utils/uhd_images_downloader.py"
+> Error: LookupError: KeyError: No devices found for ----->
+> Empty Device Address
+>
+> I have already tried many solution from internet but dont get
+> success.Please suggest me any proper solution for this error.
+>
+> Thanks
+> Khizar abbas
+> Jeju national University SOuth Korea
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-SignalGenerator ->RFNoC-Gain -> RFNoC-DMAFIFO-> RFNoC-DUC-> RFNoC-Radio
 
-which has already four RFNoC Blocks connected to the crossbar, which in my
-head are 25,6 GBit/s data on the crossbar at once which seems way to much
-to handle.
+-- 
+Michael Dickens, Mac OS X Programmer
 
-I think I really miss a point here and would  be grateful for some
-explanation.
+Ettus Research Technical Support
 
-Thanks,
+Email: support@ettus.com
 
-Felix
+Web: http://www.ettus.com
+
+--000000000000db7bbb0592e8506e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi=C2=A0Khizar - Have you tried doing what the error recom=
+mends ... executing &quot;/usr/local/lib/uhd/utils/uhd_images_downloader.py=
+&quot;? It could be that you just need to download the images for your spec=
+ific UHD install. Hope this helps! - MLD</div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Sep 19, 2019 at 4:03 AM Khi=
+zar Abbas via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
+usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div dir=3D"ltr"><div>Dear all,</div><div>i am us=
+ing two USRP b210 device for my project.
+ My goal is to deploy LTE connection . but one of my device is working=20
+properly and other one is showing error no device found.</div><div>when i u=
+sed the sudo uhd_usrp_probecommand. its shows error <br></div><div>UHD Warn=
+ing:<br>=C2=A0 =C2=A0 EnvironmentError: IOError: Could not find path for im=
+age: usrp_b200_fw.hex<br>=C2=A0 =C2=A0 Using images directory: &lt;no image=
+s directory located&gt;<br>=C2=A0 =C2=A0 Set the environment variable &#39;=
+UHD_IMAGES_DIR&#39; appropriately or follow the below instructions to downl=
+oad the images package.<br>=C2=A0 =C2=A0 Please run:<br>=C2=A0 =C2=A0 =C2=
+=A0&quot;/usr/local/lib/uhd/utils/uhd_images_downloader.py&quot;<br>Error: =
+LookupError: KeyError: No devices found for -----&gt;<br>Empty Device Addre=
+ss</div><div><br></div><div>I have already tried many solution from interne=
+t but dont get success.Please suggest me any proper solution for this error=
+.</div><div><br></div><div>Thanks <br></div><div><span class=3D"gmail-m_-34=
+54165688577358496gmail-HOEnZb gmail-m_-3454165688577358496gmail-adL"><font =
+color=3D"#888888"><div>Khizar abbas</div><div>Jeju national University SOut=
+h Korea</div></font></span></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr">Michael Dickens, Mac OS X Progr=
+ammer<br><br>Ettus Research Technical Support<br><br>Email: <a href=3D"mail=
+to:support@ettus.com" target=3D"_blank">support@ettus.com</a><br><br>Web: <=
+a href=3D"http://www.ettus.com" target=3D"_blank">http://www.ettus.com</a><=
+/div></div>
+
+--000000000000db7bbb0592e8506e--
 
 
+--===============7250889898709727708==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7250889898709727708==--
+
