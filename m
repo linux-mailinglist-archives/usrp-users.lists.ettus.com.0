@@ -2,53 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B362B7B49
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Sep 2019 15:56:56 +0200 (CEST)
-Received: from [::1] (port=36370 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D488B7D45
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Sep 2019 16:55:25 +0200 (CEST)
+Received: from [::1] (port=55736 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iAwvW-0006WP-9F; Thu, 19 Sep 2019 09:56:54 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:45358)
+	id 1iAxq7-0008Cz-9w; Thu, 19 Sep 2019 10:55:23 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:38837)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
- id 1iAwvS-0006PV-W3
- for usrp-users@lists.ettus.com; Thu, 19 Sep 2019 09:56:51 -0400
-Received: by mail-ot1-f44.google.com with SMTP id 41so3099950oti.12
- for <usrp-users@lists.ettus.com>; Thu, 19 Sep 2019 06:56:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.92) (envelope-from <bpadalino@gmail.com>) id 1iAxq3-0007wW-4F
+ for usrp-users@lists.ettus.com; Thu, 19 Sep 2019 10:55:19 -0400
+Received: by mail-oi1-f175.google.com with SMTP id m16so1475159oic.5
+ for <usrp-users@lists.ettus.com>; Thu, 19 Sep 2019 07:54:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=JpOw/2ow6SAfwsVXu1x01tvRkKpuRz0dItxJUwSvi98=;
- b=pxins41WYR+CGexcFfbTbYSfdlvBIbUvsZ53phKk3e6LGCSVw8CitQ+wptB+opyWLa
- 6rTssLqtklJy71Anhx3BASjpwQN7ETAqOI/HrjZQBR2V+70PLd+gCZD/VoCwNQeD8zxZ
- MbvwOFKelJpc3PRsPjZHpL8avTH6Kan9+gpncCjXARODSZz7Aoegnu+Ej3tvY9WQLt1p
- U4lGVM1Cnluz7+xj63Rj9Cv6ROETuYwv5Dd4zsk+MQMdxh6PpCxYqx8Jwt1evLVyslh0
- MddlJNftAcZBW/sVwbgG3vXImxPBO8Z3puhAboSnkHZjsTxjiqMTooegA7iOD+3/wh0Q
- IzIg==
+ :cc; bh=smXYOeBTTSBNzFT9SV2CDf/3mSoGGbDW6xt73lTJzLE=;
+ b=Y6eUQh9PB5YyS/MvZezXYFqzV0/DIn3uCvv/9Yv+a7HdAdVUrJYFHuKCTQqPlKBtnT
+ k8MZgSEwWh3yModJs82o5VmYYVtuYVpP/y8ZYUrZSSyZ9mEQoV3EJeUxYx3r3wdFnYsV
+ sxX8O5CUV3FvV1OdyciwOKFVGBmQ40RrC7rgObIa5hvI33vJykL4oB/DEqhcjv1oUlVD
+ uXGwCu0yBY5TArpyUrGQ1rb/UIi9aBB8JcAWejkFGXJvY5Xn7/Z2MAzXu3o9bJVM/sPV
+ cLxkCKZX9pYlvB5wuDPYsz9P28P+58h91F7nGp5JaXxwwPWEkg6CLjc9vI69P90hcWUB
+ rVgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=JpOw/2ow6SAfwsVXu1x01tvRkKpuRz0dItxJUwSvi98=;
- b=UFCClMRsUmJODskHIo2xAaKTKN07lPNWXvHRFR0LtZ58dS+jJOCcDKR3EVqrzQv2K6
- viiwraCuaRQoVM4DHf1rIBJwKbiGfndvOTcCt0cJqXusa5kJc9PZCRKfVhjWKXdAmRnl
- Gm/uaBxt+A7cp0YacH+NqW5tAxC4OyF/vhp14Ti7kCMsbqt3NdM+vIHpwc6/8VKICESm
- QVVy4yX5M47C9invOmzyGJO1XR/yrdtS7c6kp/3NiuLWzy/QSd61krnLwzxVlsw+b9CW
- hpEYVgZKffHooqFQ0psMzgEkHfhYkxJNrSfTpRQGd2OIjo8e8RBVojteu2Aa81Pnt7NR
- zklg==
-X-Gm-Message-State: APjAAAU3WPZEErOaQCGSt9lyehT8RclOVsrk/Oa7Pcs9tFROUz8tQTxt
- hI0+EqVmrv6KH9CkCaGOEUE6g0Ycs1ma9oZ7W636ArlC
-X-Google-Smtp-Source: APXvYqzEld1RTmfmMl9OBpIGkKDLL5m8ikNuO4z/2fCGu5beJGYblBEoT3Xq80yl1dNHxhfcTEK2g/UEmhpVqayY+GY=
-X-Received: by 2002:a05:6830:17c9:: with SMTP id
- p9mr7248897ota.0.1568901370178; 
- Thu, 19 Sep 2019 06:56:10 -0700 (PDT)
+ bh=smXYOeBTTSBNzFT9SV2CDf/3mSoGGbDW6xt73lTJzLE=;
+ b=r3uKPE5o8eEM0gdsW8yO11U063nR9szyGOQPu7TG4NlTzq623sQ3/ke6GDdCaa826P
+ QBbYr0AsG+8+I7Ugl0kBLO7suLivgBUvPh3pNru5bSeeCdBv0oX8HgtS6PpYLZwYGrba
+ UivONAEWLehe7HjZ0Lphmf8SthOR5YU5ForSKjD9UIFDX6oxnFBWI8X1nr6ljTOL3Rxm
+ 4R18uArIW1gDfKDdNkoZr2mnb13cV1UCZnqqSTFScJUH7MlLb82OmQ4y+UbXojiWLfvy
+ qEpAY6KqBdrFJiUAGIsnR4uz3WGdjP7cKb+tN3+lCiL6f4Si3Us39aHQrygO/c944qrh
+ bmNg==
+X-Gm-Message-State: APjAAAUizQOJDHPkKeu/2dU4m0FcWX0KbAMWcvUOS34dDbntqbgJhNlk
+ f2sgBU94Pv0/BSaGUwKix5NeKZoL9SY1KVSV1OE=
+X-Google-Smtp-Source: APXvYqzaCj93rVh++Aj2zwcA5bRrBGX8nFJRK9K+3w1umaBKiZHg61/onRRXQZK8vWZXVvpmE7Q9/0K92m92ECR+xX4=
+X-Received: by 2002:aca:4705:: with SMTP id u5mr2370092oia.161.1568904878182; 
+ Thu, 19 Sep 2019 07:54:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <CALHv-k--jOYk6t40MwJ2aTsup2unhqVg3r84TFj8zPn9_yy58Q@mail.gmail.com>
-In-Reply-To: <CALHv-k--jOYk6t40MwJ2aTsup2unhqVg3r84TFj8zPn9_yy58Q@mail.gmail.com>
-Date: Thu, 19 Sep 2019 08:56:00 -0500
-Message-ID: <CAGNhwTOPDs2sks8ET4ZsJbgonFC4L-Ggeu3XU=HqQEY3v=Pnpg@mail.gmail.com>
-To: Khizar Abbas <engr.khizarabbas14@gmail.com>
-Subject: Re: [USRP-users] USRP B210 Error
+References: <20abea6ebc2be30dac4b14046002f932.squirrel@webmail.tu-dortmund.de>
+In-Reply-To: <20abea6ebc2be30dac4b14046002f932.squirrel@webmail.tu-dortmund.de>
+Date: Thu, 19 Sep 2019 10:54:26 -0400
+Message-ID: <CAEXYVK4zeLHQ7MppY-Fg7bF4EsZxpeR6sY4h5YWQyuYid=4Fxg@mail.gmail.com>
+To: felix.greiwe@tu-dortmund.de
+Subject: Re: [USRP-users] RFNoC Crossbar and Block data rates
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -60,10 +57,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: USRP list <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7250889898709727708=="
+From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Brian Padalino <bpadalino@gmail.com>
+Cc: Usrp Liste <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5702603075224812903=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,106 +74,131 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7250889898709727708==
-Content-Type: multipart/alternative; boundary="000000000000db7bbb0592e8506e"
+--===============5702603075224812903==
+Content-Type: multipart/alternative; boundary="000000000000f354a40592e92184"
 
---000000000000db7bbb0592e8506e
+--000000000000f354a40592e92184
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Khizar - Have you tried doing what the error recommends ... executing
-"/usr/local/lib/uhd/utils/uhd_images_downloader.py"? It could be that you
-just need to download the images for your specific UHD install. Hope this
-helps! - MLD
-
-On Thu, Sep 19, 2019 at 4:03 AM Khizar Abbas via USRP-users <
+On Thu, Sep 19, 2019 at 9:39 AM Felix Greiwe via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Dear all,
-> i am using two USRP b210 device for my project. My goal is to deploy LTE
-> connection . but one of my device is working properly and other one is
-> showing error no device found.
-> when i used the sudo uhd_usrp_probecommand. its shows error
-> UHD Warning:
->     EnvironmentError: IOError: Could not find path for image:
-> usrp_b200_fw.hex
->     Using images directory: <no images directory located>
->     Set the environment variable 'UHD_IMAGES_DIR' appropriately or follow
-> the below instructions to download the images package.
->     Please run:
->      "/usr/local/lib/uhd/utils/uhd_images_downloader.py"
-> Error: LookupError: KeyError: No devices found for ----->
-> Empty Device Address
+> Hello together,
 >
-> I have already tried many solution from internet but dont get
-> success.Please suggest me any proper solution for this error.
->
-> Thanks
-> Khizar abbas
-> Jeju national University SOuth Korea
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> I have some questions concerning clock speeds and the corresponding data
+> rates on a USRP x310 (FPGA). As far as I know, there are two different
+> clock speeds on the FPGA, the ce_clk=200MHz, and the bus_clk - I did not
+> find clock speed for this one.
 >
 
+The ce_clk is 214.286 MHz and is usually associated with a 32-bit AXI
+interface.
 
--- 
-Michael Dickens, Mac OS X Programmer
+The bus_clk is 187.5MHz and is usually associated with a 64-bit AXI
+interface.
 
-Ettus Research Technical Support
+If you build an FPGA image, you can find these values in
+post_route_timing_summary.rpt that Vivado spits out in your build directory.
 
-Email: support@ettus.com
 
-Web: http://www.ettus.com
+>
+> Is it true, that the ce_clk drives my rfnoc blocks and thus my in- and
+> outgoing data rate of each single block (using sc16 samples) is 200MHz*32
+> Bit/10^9 = 6,4 GBit/s?
+>
 
---000000000000db7bbb0592e8506e
+It can, and usually does - but just slightly higher as noted above.
+
+
+>
+> I read, that all the RFNoC Blocks are connected to the crossbar which is
+> driven by the bus_clk. First of all: Is this the case?
+> If so, how is the crossbar able to handle the in and output data of each
+> RFNoC Block at once? How many Bytes can it process with each clock?
+>
+> Take for example the flowgraph
+>
+> SignalGenerator ->RFNoC-Gain -> RFNoC-DMAFIFO-> RFNoC-DUC-> RFNoC-Radio
+>
+> which has already four RFNoC Blocks connected to the crossbar, which in my
+> head are 25,6 GBit/s data on the crossbar at once which seems way to much
+> to handle.
+>
+> I think I really miss a point here and would  be grateful for some
+> explanation.
+>
+
+The crossbar doesn't block other ports and is more like a packet switch.
+Since it's a linear flow, the crossbar doesn't have any issue handling each
+individual path bandwidth.  Only when 2 packets have to go to the same
+crossbar egress do things become more complicated.
+
+I hope this makes sense.
+
+Brian
+
+--000000000000f354a40592e92184
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi=C2=A0Khizar - Have you tried doing what the error recom=
-mends ... executing &quot;/usr/local/lib/uhd/utils/uhd_images_downloader.py=
-&quot;? It could be that you just need to download the images for your spec=
-ific UHD install. Hope this helps! - MLD</div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Sep 19, 2019 at 4:03 AM Khi=
-zar Abbas via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
-usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div dir=3D"ltr"><div>Dear all,</div><div>i am us=
-ing two USRP b210 device for my project.
- My goal is to deploy LTE connection . but one of my device is working=20
-properly and other one is showing error no device found.</div><div>when i u=
-sed the sudo uhd_usrp_probecommand. its shows error <br></div><div>UHD Warn=
-ing:<br>=C2=A0 =C2=A0 EnvironmentError: IOError: Could not find path for im=
-age: usrp_b200_fw.hex<br>=C2=A0 =C2=A0 Using images directory: &lt;no image=
-s directory located&gt;<br>=C2=A0 =C2=A0 Set the environment variable &#39;=
-UHD_IMAGES_DIR&#39; appropriately or follow the below instructions to downl=
-oad the images package.<br>=C2=A0 =C2=A0 Please run:<br>=C2=A0 =C2=A0 =C2=
-=A0&quot;/usr/local/lib/uhd/utils/uhd_images_downloader.py&quot;<br>Error: =
-LookupError: KeyError: No devices found for -----&gt;<br>Empty Device Addre=
-ss</div><div><br></div><div>I have already tried many solution from interne=
-t but dont get success.Please suggest me any proper solution for this error=
-.</div><div><br></div><div>Thanks <br></div><div><span class=3D"gmail-m_-34=
-54165688577358496gmail-HOEnZb gmail-m_-3454165688577358496gmail-adL"><font =
-color=3D"#888888"><div>Khizar abbas</div><div>Jeju national University SOut=
-h Korea</div></font></span></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr">Michael Dickens, Mac OS X Progr=
-ammer<br><br>Ettus Research Technical Support<br><br>Email: <a href=3D"mail=
-to:support@ettus.com" target=3D"_blank">support@ettus.com</a><br><br>Web: <=
-a href=3D"http://www.ettus.com" target=3D"_blank">http://www.ettus.com</a><=
-/div></div>
+<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Sep 19, 2019 at 9:39 AM Felix Gre=
+iwe via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex">Hello together,<br>
+<br>
+I have some questions concerning clock speeds and the corresponding data<br=
+>
+rates on a USRP x310 (FPGA). As far as I know, there are two different<br>
+clock speeds on the FPGA, the ce_clk=3D200MHz, and the bus_clk - I did not<=
+br>
+find clock speed for this one.<br></blockquote><div><br></div><div>The ce_c=
+lk is 214.286 MHz and is usually associated with a 32-bit AXI interface.</d=
+iv><div><br></div><div>The bus_clk is 187.5MHz and is usually associated wi=
+th a 64-bit AXI interface.</div><div><br></div><div>If you build an FPGA im=
+age, you can find these values in post_route_timing_summary.rpt that Vivado=
+ spits out in your build directory.</div><div>=C2=A0</div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
+<br>
+Is it true, that the ce_clk drives my rfnoc blocks and thus my in- and<br>
+outgoing data rate of each single block (using sc16 samples) is 200MHz*32<b=
+r>
+Bit/10^9 =3D 6,4 GBit/s?<br></blockquote><div><br></div><div>It can, and us=
+ually does - but just slightly higher as noted above.</div><div>=C2=A0</div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+I read, that all the RFNoC Blocks are connected to the crossbar which is<br=
+>
+driven by the bus_clk. First of all: Is this the case?<br>
+If so, how is the crossbar able to handle the in and output data of each<br=
+>
+RFNoC Block at once? How many Bytes can it process with each clock?<br>
+<br>
+Take for example the flowgraph<br>
+<br>
+SignalGenerator -&gt;RFNoC-Gain -&gt; RFNoC-DMAFIFO-&gt; RFNoC-DUC-&gt; RFN=
+oC-Radio<br>
+<br>
+which has already four RFNoC Blocks connected to the crossbar, which in my<=
+br>
+head are 25,6 GBit/s data on the crossbar at once which seems way to much<b=
+r>
+to handle.<br>
+<br>
+I think I really miss a point here and would=C2=A0 be grateful for some<br>
+explanation.<br></blockquote><div><br></div><div>The crossbar doesn&#39;t b=
+lock other ports and is more like a packet switch.=C2=A0 Since it&#39;s a l=
+inear flow, the crossbar doesn&#39;t have any issue handling each individua=
+l path bandwidth.=C2=A0 Only when 2 packets have to go to the same crossbar=
+ egress do things become more complicated.</div><div><br></div><div>I hope =
+this makes sense.</div><div><br></div><div>Brian</div></div></div>
 
---000000000000db7bbb0592e8506e--
+--000000000000f354a40592e92184--
 
 
---===============7250889898709727708==
+--===============5702603075224812903==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -187,5 +209,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7250889898709727708==--
+--===============5702603075224812903==--
 
