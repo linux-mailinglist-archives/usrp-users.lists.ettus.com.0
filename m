@@ -2,50 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CBF8B8D1C
-	for <lists+usrp-users@lfdr.de>; Fri, 20 Sep 2019 10:45:36 +0200 (CEST)
-Received: from [::1] (port=42074 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 238D3B8E9E
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Sep 2019 12:48:13 +0200 (CEST)
+Received: from [::1] (port=47984 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iBEXl-0002JU-VQ; Fri, 20 Sep 2019 04:45:34 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:40352)
+	id 1iBGSO-0006nE-Jf; Fri, 20 Sep 2019 06:48:08 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:36442)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <cogwsn@gmail.com>) id 1iBEXc-0002BU-WF
- for usrp-users@lists.ettus.com; Fri, 20 Sep 2019 04:45:25 -0400
-Received: by mail-oi1-f180.google.com with SMTP id k9so1100254oib.7
- for <usrp-users@lists.ettus.com>; Fri, 20 Sep 2019 01:45:04 -0700 (PDT)
+ (Exim 4.92) (envelope-from <cogwsn@gmail.com>) id 1iBGSF-0006fG-Jk
+ for usrp-users@lists.ettus.com; Fri, 20 Sep 2019 06:47:59 -0400
+Received: by mail-ot1-f48.google.com with SMTP id 67so5828467oto.3
+ for <usrp-users@lists.ettus.com>; Fri, 20 Sep 2019 03:47:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=hE+Y+XgpWsjXotCz2q8+Vs03eia44tGhwC/jTKLMZxA=;
- b=drBd38u+8YhZ3/rrpSxlJulhoG/xGvrTa4ZAHDvJyUHV5CQzmYW5LjRJsvZ+0wemoc
- m4Z+AY8G8+9GrnpGgpLa7V6+Xk4J3VnIihVDxBDfsNewUC05retKrYzHg3zhP3K0JrdY
- gnvLik3iegJdp+JfmGtBhDkY193lSKpNOw7tFRdH0frGT1GA2vKkddOR0WEcst3PhL9C
- 0D/WCQVfX0/I/2HJ25wWXpfYgd4xdKHoL4WWb6WTf18gmwBywVuq0B48Htjk0nRN1yXG
- ouUUPpmq+g3WQhp/lw+ljVcYBQz2JzwZ+QSQwnt6RJFbOiWoxSuiZUFA5Za8i3yU5Brn
- oqqQ==
+ bh=XVCWO5G6Zz3Dh7fOyDkVkDzFAEfySCzBXLvPBzc3qNk=;
+ b=VlzLb2/RHSAQxwtP5fYt0JoN8T/dI6/bQxsRjBBAUrIRJeLus2P1Do5FSKBeYG2cTG
+ hpU9GpsQlQ9CCg0EfQk+drDEpQUMxUkFGS+NBwKWKhtHMS1KdokoTY42YHlR8teV9vB3
+ h26pYXs8IxDKatOCsZTieydkvR0n3JKNQ3YmJjxK82RcsX4A1hHaMGDqj+uUtOrzz8H5
+ 6qukllFa5uMZtVHh+aj8wZuS2NHlEwGsBEoAVVgqMFbDYUZp+qazMAgKniqzITDb5etj
+ f7IFsuFzC2fzDge5AtY3kj1Iy63LZ4m6HPZsOvrt0FqD2kImOmjVOOLkf/NJZEV8WVGt
+ fIsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to;
- bh=hE+Y+XgpWsjXotCz2q8+Vs03eia44tGhwC/jTKLMZxA=;
- b=ELXDuouW6n1Ogi3mrmkomX8k+0W3q/pzlqRcznh9ZFOLGtKdEyZw6Vn5jRVm2cJecH
- 0UKOHG8lyAZr6ZbDUBLcQfsx96QO4TECPny+tH4ohl6RotzlBHqdBEvUqFcxw0WTuTEB
- 2dayfaxg0D44V5378jH8RbeQzsBjC4Mg051SRzbV0054dj9o2fkwMvNu2C+SMt/W6R9l
- bLj/4uRrkc098Rb7nuCNsILCC9yuJ0cW48/lJsnCbB5tiRQHTF3I6jwTWduW74Tsnh3h
- Lk44obfWICCFg5M2NeVt2Zlb17nYcbZaUvQr1cvs/RV+y5KNGQZdXcvKnv9bhYiEozKw
- psKQ==
-X-Gm-Message-State: APjAAAXJvq3pnuX69nUDkETpD949lZDcxikGnEukgUuivhUzYJz1ZrXy
- dLr69H5BIeSKw4gbp1F7bUoxccprljaLsIq5bU4E2VIC
-X-Google-Smtp-Source: APXvYqxABc7c3b5a7mwVZR0yShfPIB/MDO05nmjb+fn5ebPAGMX6EQ8R/PtdG31Ompg4UdnpYUtp8uHpxthDaotH9n4=
-X-Received: by 2002:a05:6808:b07:: with SMTP id
- s7mr1886122oij.134.1568969083044; 
- Fri, 20 Sep 2019 01:44:43 -0700 (PDT)
+ bh=XVCWO5G6Zz3Dh7fOyDkVkDzFAEfySCzBXLvPBzc3qNk=;
+ b=ai7p03MlVsLxlxLUysQtNCiz9QzITjnpdTp/a75OeAQYp3R62ulqjAU9drbGhQWTFT
+ hqpo4WkchjMaBIqDW0FgZ1eeztTCinN9/rQd8bxg7OcQEEUc6NNYAm3IDOh+mvObhssl
+ NYUxnAI6KBRNgXx4G3XshGkTg4AnRmmHIl5NCMPY/AFPuu5zqF0Uci8tS8eJJkis6uhA
+ jCNn64vwAWBkl15p+II5A3Ph/u0BbK9tDmAmuOWc6SKwWWbHB6qmKpLWOeO87HYRgpqp
+ cDoWHXtL5uPjHSf5arzGadU9+8P7IVuiN0NdjGm8m+HYMoUZ7ONPT+X+B/VQ1LjkPIqF
+ LArA==
+X-Gm-Message-State: APjAAAWtY3uzK7mcJs4sGsdVmnwgHIxvgCPI6zZvry6WtZKk1qlbbn/L
+ 3l5+wZk6KJJnVY9XZ5WSAJwwEAt8z727ocK7O2Oj0A==
+X-Google-Smtp-Source: APXvYqywaMKlqfsow/sfyRkahdaoHEAOqoNpJgawswMHoMBtuW+qjhgCzykyCpRNoSkZu5XkdiNAspa3QN8EoulsEKc=
+X-Received: by 2002:a9d:200c:: with SMTP id n12mr11316758ota.334.1568976438429; 
+ Fri, 20 Sep 2019 03:47:18 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAAh3A_yz7UvX65AigiHm8bTQRix_4=dnC-b8Z4882ZdCiMyH5Q@mail.gmail.com>
  <CAOExtcT9j-Do1a_5NsRhd44k3kP8o1eWw7n=io=-jh-pORBXTw@mail.gmail.com>
-In-Reply-To: <CAOExtcT9j-Do1a_5NsRhd44k3kP8o1eWw7n=io=-jh-pORBXTw@mail.gmail.com>
-Date: Fri, 20 Sep 2019 10:44:31 +0200
-Message-ID: <CAOExtcTZBx0-z1XceMtMYdF0S0YeCA-bhzcVkqy4VEO8eP=Zfw@mail.gmail.com>
+ <CAOExtcTZBx0-z1XceMtMYdF0S0YeCA-bhzcVkqy4VEO8eP=Zfw@mail.gmail.com>
+In-Reply-To: <CAOExtcTZBx0-z1XceMtMYdF0S0YeCA-bhzcVkqy4VEO8eP=Zfw@mail.gmail.com>
+Date: Fri, 20 Sep 2019 12:47:07 +0200
+Message-ID: <CAOExtcTeiz6hdH5yZdwww5Y_s9wECRMHbzfLm5FM8Sn-Xh+pjQ@mail.gmail.com>
 To: usrp-users@lists.ettus.com
 Subject: Re: [USRP-users] Problem with simultaneous dual channel Tx/Rx in
  X310
@@ -62,7 +62,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Sumit Kumar via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Sumit Kumar <cogwsn@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5798158571881817774=="
+Content-Type: multipart/mixed; boundary="===============0059301764099819255=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,73 +76,90 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5798158571881817774==
-Content-Type: multipart/related; boundary="000000000000dcf1260592f81443"
+--===============0059301764099819255==
+Content-Type: multipart/related; boundary="00000000000046c6290592f9cba4"
 
---000000000000dcf1260592f81443
-Content-Type: multipart/alternative; boundary="000000000000dcf1250592f81442"
+--00000000000046c6290592f9cba4
+Content-Type: multipart/alternative; boundary="00000000000046c6270592f9cba3"
 
---000000000000dcf1250592f81442
+--00000000000046c6270592f9cba3
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
-Some more information.
+Ok I solved it. Do not know why but first 20000 samples collected are
+always corrupt. So I started reading samples afterwards and I can detect
+the packets.
+Regards
+Sumit
 
-
-
-
-
-
-On Thu, Sep 19, 2019 at 7:04 PM Sumit Kumar <cogwsn@gmail.com> wrote:
+On Fri, Sep 20, 2019 at 10:44 AM Sumit Kumar <cogwsn@gmail.com> wrote:
 
 > Hi,
+> Some more information.
 >
-> I am using X310, UHD_3.15.0.git-58-gea06c70f, GNU Radio Companion 3.7.13.5
 >
-> In the attached diagram, when I transmit wifi signal (via sma cable)
-> 1. From RF0 (TX1 RX1) to RF0 RX2
-> 2. From RF0 (TX1 RX1) to RF1 RX2
-> 3. From RF1 (TX1 RX1) to RF1 RX2
-> 4. From RF1 (TX1 RX1) to RF0 RX2
 >
-The FFT of the received data in above four cases look like
-[image: correct_c1.png]
-[image: correct_c2.png]
-
-
-
-
 >
-> In all the above 4 cases, I can see nice constellation and decode them.
 >
-> But when I do the following configurations, which is simultaneous
-> transmission from two channels and reception on two channels:
 >
-> 1. RF0 (TX1 RX1) to RF0 RX2 AND RF1 (TX1 RX1) to RF1 RX2
-> 2. RF0 (TX1 RX1) to RF1 RX2 AND RF1 (TX1 RX1) to RF0 RX2
+> On Thu, Sep 19, 2019 at 7:04 PM Sumit Kumar <cogwsn@gmail.com> wrote:
 >
-
-The FFT of the received data in the above 2 cases look like
-
-[image: faulty_c1.png]
-[image: faulty_c2.png]
-
-
-> In both the cases above, the detector simply fail to detect any signal at
-> all.
+>> Hi,
+>>
+>> I am using X310, UHD_3.15.0.git-58-gea06c70f, GNU Radio Companion 3.7.13.5
+>>
+>> In the attached diagram, when I transmit wifi signal (via sma cable)
+>> 1. From RF0 (TX1 RX1) to RF0 RX2
+>> 2. From RF0 (TX1 RX1) to RF1 RX2
+>> 3. From RF1 (TX1 RX1) to RF1 RX2
+>> 4. From RF1 (TX1 RX1) to RF0 RX2
+>>
+> The FFT of the received data in above four cases look like
+> [image: correct_c1.png]
+> [image: correct_c2.png]
 >
-> I am not using antenna, so the interference is not a problem. I am
-> clueless about the issue.
 >
-> On an other note, when I transmit from one channel, split it into two and
-> feed them to two rx channels, it works.
 >
-> I have attached the grc file also for reference.
-> Regards
-> Sumit
 >
-> [image: Screenshot from 2019-09-19 18-56-52.png]
+>>
+>> In all the above 4 cases, I can see nice constellation and decode them.
+>>
+>> But when I do the following configurations, which is simultaneous
+>> transmission from two channels and reception on two channels:
+>>
+>> 1. RF0 (TX1 RX1) to RF0 RX2 AND RF1 (TX1 RX1) to RF1 RX2
+>> 2. RF0 (TX1 RX1) to RF1 RX2 AND RF1 (TX1 RX1) to RF0 RX2
+>>
 >
+> The FFT of the received data in the above 2 cases look like
+>
+> [image: faulty_c1.png]
+> [image: faulty_c2.png]
+>
+>
+>> In both the cases above, the detector simply fail to detect any signal at
+>> all.
+>>
+>> I am not using antenna, so the interference is not a problem. I am
+>> clueless about the issue.
+>>
+>> On an other note, when I transmit from one channel, split it into two and
+>> feed them to two rx channels, it works.
+>>
+>> I have attached the grc file also for reference.
+>> Regards
+>> Sumit
+>>
+>> [image: Screenshot from 2019-09-19 18-56-52.png]
+>>
+>>
+>> --
+>> --
+>> Sumit kumar
+>> Postdoc
+>> SnT, Luxembourg
+>>
+>>
+>>
 >
 > --
 > --
@@ -159,55 +176,63 @@ Sumit kumar
 Postdoc
 SnT, Luxembourg
 
---000000000000dcf1250592f81442
+--00000000000046c6270592f9cba3
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,=C2=A0<br></div><div>Some more in=
-formation.</div><div><br></div><div><br></div><div><br></div><div><br></div=
-><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, Sep 19, 2019 at 7:04 PM Sumit Kumar &lt;<a href=3D"=
-mailto:cogwsn@gmail.com">cogwsn@gmail.com</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gma=
-il_quote"><div class=3D"gmail_attr">Hi,=C2=A0</div><div class=3D"gmail_attr=
-"><br></div><div dir=3D"ltr" class=3D"gmail_attr">I am using X310, UHD_3.15=
-.0.git-58-gea06c70f, GNU Radio Companion 3.7.13.5</div><div dir=3D"ltr"><di=
-v dir=3D"ltr"><div dir=3D"ltr"><div><br></div><div>In the attached diagram,=
- when I transmit wifi signal (via sma cable)=C2=A0</div><div>1. From RF0 (T=
-X1 RX1) to RF0 RX2=C2=A0</div><div>2. From RF0 (TX1 RX1) to RF1 RX2=C2=A0</=
-div><div>3. From  RF1 (TX1 RX1) to RF1 RX2</div><div>4. From RF1 (TX1 RX1) =
-to RF0 RX2=C2=A0</div></div></div></div></div></div></blockquote><div>The F=
-FT of the received data in above four cases look like=C2=A0</div><div><div>=
-<img src=3D"cid:ii_k0rvmwjf1" alt=3D"correct_c1.png" width=3D"560" height=
-=3D"420"><br></div><div><img src=3D"cid:ii_k0rvmwk92" alt=3D"correct_c2.png=
-" width=3D"560" height=3D"420"><br></div></div><div><br></div><div><br></di=
-v><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
-ir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div dir=3D"ltr"><di=
-v dir=3D"ltr"><div><br></div><div>In all the above 4 cases, I can see nice =
-constellation and decode them.=C2=A0</div><div><br></div><div>But when I do=
- the following configurations, which is simultaneous transmission from two =
-channels and reception on two channels:=C2=A0<br></div><div><br></div><div>=
-1. RF0 (TX1 RX1) to RF0 RX2 AND=C2=A0RF1 (TX1 RX1) to RF1 RX2=C2=A0</div><d=
-iv>2.=C2=A0RF0 (TX1 RX1) to RF1 RX2 AND=C2=A0RF1 (TX1 RX1) to RF0 RX2=C2=A0=
-</div></div></div></div></div></div></blockquote><div><br></div><div>The FF=
-T of the received data in the above 2 cases look like=C2=A0=C2=A0</div><div=
-><br></div><div><div><img src=3D"cid:ii_k0rvnd2p3" alt=3D"faulty_c1.png" wi=
-dth=3D"562" height=3D"414"><br></div><div><img src=3D"cid:ii_k0rvnd3c4" alt=
-=3D"faulty_c2.png" width=3D"560" height=3D"420"><br></div></div><div><br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
- class=3D"gmail_quote"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
-div><br></div><div>In both the cases above, the detector simply fail to det=
-ect any signal at all.=C2=A0=C2=A0</div><div><br></div><div>I am not using =
-antenna, so the interference is not a problem. I am clueless about the issu=
-e.=C2=A0</div><div><br></div><div>On an other note, when I transmit from on=
-e channel, split it into two and feed them to two rx channels, it works.=C2=
-=A0</div><div><br></div><div>I have attached the grc file also for referenc=
-e.</div><div>Regards</div><div>Sumit=C2=A0</div><div>=C2=A0<br></div><div><=
-img src=3D"cid:ii_k0qxu5s60" alt=3D"Screenshot from 2019-09-19 18-56-52.png=
-" width=3D"542" height=3D"242"><br></div></div></div></div>
+<div dir=3D"ltr">Ok I solved it. Do not know why but first 20000 samples co=
+llected are always corrupt. So I started reading samples afterwards and I c=
+an detect the packets.<div>Regards</div><div>Sumit=C2=A0</div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 2=
+0, 2019 at 10:44 AM Sumit Kumar &lt;<a href=3D"mailto:cogwsn@gmail.com">cog=
+wsn@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,=C2=A0<br></div><div=
+>Some more information.</div><div><br></div><div><br></div><div><br></div><=
+div><br></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Thu, Sep 19, 2019 at 7:04 PM Sumit Kumar &=
+lt;<a href=3D"mailto:cogwsn@gmail.com" target=3D"_blank">cogwsn@gmail.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv dir=3D"ltr"><div class=3D"gmail_quote"><div class=3D"gmail_attr">Hi,=C2=
+=A0</div><div class=3D"gmail_attr"><br></div><div dir=3D"ltr" class=3D"gmai=
+l_attr">I am using X310, UHD_3.15.0.git-58-gea06c70f, GNU Radio Companion 3=
+.7.13.5</div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><br></=
+div><div>In the attached diagram, when I transmit wifi signal (via sma cabl=
+e)=C2=A0</div><div>1. From RF0 (TX1 RX1) to RF0 RX2=C2=A0</div><div>2. From=
+ RF0 (TX1 RX1) to RF1 RX2=C2=A0</div><div>3. From  RF1 (TX1 RX1) to RF1 RX2=
+</div><div>4. From RF1 (TX1 RX1) to RF0 RX2=C2=A0</div></div></div></div></=
+div></div></blockquote><div>The FFT of the received data in above four case=
+s look like=C2=A0</div><div><div><img src=3D"cid:ii_k0rvmwjf1" alt=3D"corre=
+ct_c1.png" width=3D"560" height=3D"420"><br></div><div><img src=3D"cid:ii_k=
+0rvmwk92" alt=3D"correct_c2.png" width=3D"560" height=3D"420"><br></div></d=
+iv><div><br></div><div><br></div><div>=C2=A0</div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_quote"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><br></div><div>In all the=
+ above 4 cases, I can see nice constellation and decode them.=C2=A0</div><d=
+iv><br></div><div>But when I do the following configurations, which is simu=
+ltaneous transmission from two channels and reception on two channels:=C2=
+=A0<br></div><div><br></div><div>1. RF0 (TX1 RX1) to RF0 RX2 AND=C2=A0RF1 (=
+TX1 RX1) to RF1 RX2=C2=A0</div><div>2.=C2=A0RF0 (TX1 RX1) to RF1 RX2 AND=C2=
+=A0RF1 (TX1 RX1) to RF0 RX2=C2=A0</div></div></div></div></div></div></bloc=
+kquote><div><br></div><div>The FFT of the received data in the above 2 case=
+s look like=C2=A0=C2=A0</div><div><br></div><div><div><img src=3D"cid:ii_k0=
+rvnd2p3" alt=3D"faulty_c1.png" width=3D"562" height=3D"414"><br></div><div>=
+<img src=3D"cid:ii_k0rvnd3c4" alt=3D"faulty_c2.png" width=3D"560" height=3D=
+"420"><br></div></div><div><br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div><br></div><div>In both the cases above=
+, the detector simply fail to detect any signal at all.=C2=A0=C2=A0</div><d=
+iv><br></div><div>I am not using antenna, so the interference is not a prob=
+lem. I am clueless about the issue.=C2=A0</div><div><br></div><div>On an ot=
+her note, when I transmit from one channel, split it into two and feed them=
+ to two rx channels, it works.=C2=A0</div><div><br></div><div>I have attach=
+ed the grc file also for reference.</div><div>Regards</div><div>Sumit=C2=A0=
+</div><div>=C2=A0<br></div><div><img src=3D"cid:ii_k0qxu5s60" alt=3D"Screen=
+shot from 2019-09-19 18-56-52.png" width=3D"542" height=3D"242"><br></div><=
+/div></div></div>
 </div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"><div dir=3D"=
 ltr"><div><div dir=3D"ltr"><span style=3D"color:rgb(136,136,136);font-size:=
 12.8px">--=C2=A0</span><br style=3D"color:rgb(136,136,136);font-size:12.8px=
@@ -216,15 +241,22 @@ tdoc</div><div style=3D"color:rgb(136,136,136);font-size:12.8px">SnT, Luxem=
 bourg</div><div style=3D"color:rgb(136,136,136);font-size:12.8px"><br></div=
 ><br></div></div></div></div></div>
 </blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+><div dir=3D"ltr"><div><div dir=3D"ltr"><span style=3D"color:rgb(136,136,13=
+6);font-size:12.8px">--=C2=A0</span><br style=3D"color:rgb(136,136,136);fon=
+t-size:12.8px"><div style=3D"color:rgb(136,136,136);font-size:12.8px">Sumit=
+ kumar<br>Postdoc</div><div style=3D"color:rgb(136,136,136);font-size:12.8p=
+x">SnT, Luxembourg</div><div style=3D"color:rgb(136,136,136);font-size:12.8=
+px"><br></div><br></div></div></div></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
  class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span sty=
 le=3D"color:rgb(136,136,136);font-size:12.8px">--=C2=A0</span><br style=3D"=
 color:rgb(136,136,136);font-size:12.8px"><div style=3D"color:rgb(136,136,13=
 6);font-size:12.8px">Sumit kumar<br>Postdoc</div><div style=3D"color:rgb(13=
 6,136,136);font-size:12.8px">SnT, Luxembourg</div><div style=3D"color:rgb(1=
-36,136,136);font-size:12.8px"><br></div><br></div></div></div></div></div>
+36,136,136);font-size:12.8px"><br></div><br></div></div></div></div>
 
---000000000000dcf1250592f81442--
---000000000000dcf1260592f81443
+--00000000000046c6270592f9cba3--
+--00000000000046c6290592f9cba4
 Content-Type: image/png; name="Screenshot from 2019-09-19 18-56-52.png"
 Content-Disposition: inline; 
 	filename="Screenshot from 2019-09-19 18-56-52.png"
@@ -12490,7 +12522,7 @@ FJ3BSPLG6oPtfKJPiFk7Ztkc7RCNf0VsslnPtwzVLVXaZ5CMXBPEXJr45ZcfAve3L5DZ82aAJn2f
 3B+CN2ax+BnZS8PmmCH50N3w+TMDfK8lBlZ9jBgaWBKSsPuUqvf56btYzVxwqh4Q6+a6vsXguOV5
 wvPy01txPJ1Dskl26xgzDDR3D+jeWqDzX91tPJfMDPOf8TNNseeS7mqv55T0tjOZZxkZS7UNwem1
 awBL1YZsGBY+ngHifde2gfD/B8jjj0K0PJJXAAAAAElFTkSuQmCC
---000000000000dcf1260592f81443
+--00000000000046c6290592f9cba4
 Content-Type: image/png; name="correct_c1.png"
 Content-Disposition: inline; filename="correct_c1.png"
 Content-Transfer-Encoding: base64
@@ -12706,7 +12738,7 @@ T0+n02mjOS6dThuD6IQQbW1tx44dm5iYEEL09PQ0NzebXUqew7BvAJBvenr64MGDL774ovnI4cOH
 /+Vf/mXBggXG3XfeeWf37t2Zf/LRRx8FAoF0Or179+7z58/Pnz9/4cKFPT09S5cudbXo9iGQAMDz
 bt68+fnnn3s3igwEEgBACfQhAQCUQCABAJRAIAEAlEAgAQCU8P8BuEZsjS2j0ykAAAAASUVORK5C
 YII=
---000000000000dcf1260592f81443
+--00000000000046c6290592f9cba4
 Content-Type: image/png; name="correct_c2.png"
 Content-Disposition: inline; filename="correct_c2.png"
 Content-Transfer-Encoding: base64
@@ -12917,7 +12949,7 @@ JjNPRLkLgQQAUlBV9eTJkwcOHPj1r389ODg4L5NmZ2fT6bTWHZdOp7VBdIqiNDc3v/rqq1NTU4qi
 HD9+vL6+Xj+l5DoM+wYA8WZnZ48cObJv3z79nq6url/+8pdLly7V/nz33Xc7Ojoyn3Lx4kWfz5dO
 pzs6Os6dO7dkyZJly5YdP378wQcfdLTo1iGQAMD1bty48eWXX7o3ijQEEgBACpxDAgBIgUACAEiB
 QAIASIFAAgBI4f8DPYQZmxOyNMQAAAAASUVORK5CYII=
---000000000000dcf1260592f81443
+--00000000000046c6290592f9cba4
 Content-Type: image/png; name="faulty_c1.png"
 Content-Disposition: inline; filename="faulty_c1.png"
 Content-Transfer-Encoding: base64
@@ -13097,7 +13129,7 @@ Xr36L3/5SzzzWyyWlStXer1eefPevXuaphlPgCmHuAKAZOd2u0+dOnXgwIFXX321paUlLLFGRkZC
 oZDs6AuFQnLgnxCipKTkgw8+GBwcFEIcP348Pz9fP5WlIgayA0BSGxkZef/99/ft26ffc/To0V/8
 4heZmZny5rlz56qqqowPuXbtmsViCYVCVVVVly5dWrp06bJly44fP75q1aqElj6riCsASGV9fX3f
 ffed0kElEVcAAAVw7goAoADiCgCgAOIKAKAA4goAoID/D02hUnuo2EOuAAAAAElFTkSuQmCC
---000000000000dcf1260592f81443
+--00000000000046c6290592f9cba4
 Content-Type: image/png; name="faulty_c2.png"
 Content-Disposition: inline; filename="faulty_c2.png"
 Content-Transfer-Encoding: base64
@@ -13358,10 +13390,10 @@ dna2PiU5OVn+BnwiooUEAKqora396KOPTp06FU0aibl+vN7eXn2Kz+dLTU2NV/nijEACAFW43e7p
 9LTf75fdcX6/3+/3y+lVVVVnz56VA+oaGxuLiooS6ErYAAz7BgDzTU9P19fXv/766/qUU6dO/d3f
 /d1jjz0mn3700Ud1dXXGl9y8edNisfj9/rq6uuvXr69duzY9Pb2xsXHDhg0rWvTYIZAAIOHdv3//
 u+++S9wokggkAIASOIcEAFACgQQAUAKBBABQAoEEAFDC/w/iJi1roz5vxwAAAABJRU5ErkJggg==
---000000000000dcf1260592f81443--
+--00000000000046c6290592f9cba4--
 
 
---===============5798158571881817774==
+--===============0059301764099819255==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -13372,5 +13404,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5798158571881817774==--
+--===============0059301764099819255==--
 
