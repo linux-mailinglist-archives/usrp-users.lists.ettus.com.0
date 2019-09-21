@@ -2,15 +2,15 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F191DB9F80
+	by mail.lfdr.de (Postfix) with ESMTPS id F3389B9F81
 	for <lists+usrp-users@lfdr.de>; Sat, 21 Sep 2019 21:06:11 +0200 (CEST)
-Received: from [::1] (port=43084 helo=mm2.emwd.com)
+Received: from [::1] (port=44568 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iBkhp-0003ol-Bi; Sat, 21 Sep 2019 15:06:05 -0400
-Received: from sonic314-19.consmr.mail.bf2.yahoo.com ([74.6.132.193]:37424)
+	id 1iBkht-00044X-Dz; Sat, 21 Sep 2019 15:06:09 -0400
+Received: from sonic314-19.consmr.mail.bf2.yahoo.com ([74.6.132.193]:35846)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1iBkhl-0003ih-8a
+ (Exim 4.92) (envelope-from <d.des@sbcglobal.net>) id 1iBkhl-0003ig-Aa
  for usrp-users@lists.ettus.com; Sat, 21 Sep 2019 15:06:01 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
  t=1569092720; bh=oUrexbVvkmmehKnkUByI1gCl7B4Y9ZsA9Id49RnZr3M=;
