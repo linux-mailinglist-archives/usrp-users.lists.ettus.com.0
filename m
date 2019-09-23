@@ -2,47 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B36BB904
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Sep 2019 18:05:37 +0200 (CEST)
-Received: from [::1] (port=57722 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB44CBB9AF
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Sep 2019 18:36:33 +0200 (CEST)
+Received: from [::1] (port=36516 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iCQqD-0005Is-9i; Mon, 23 Sep 2019 12:05:33 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:41500)
+	id 1iCRKC-0007Jq-19; Mon, 23 Sep 2019 12:36:32 -0400
+Received: from mail-ua1-f47.google.com ([209.85.222.47]:44366)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <marsisslc@gmail.com>) id 1iCQq9-000580-8b
- for usrp-users@lists.ettus.com; Mon, 23 Sep 2019 12:05:29 -0400
-Received: by mail-wr1-f68.google.com with SMTP id h7so14600205wrw.8
- for <usrp-users@lists.ettus.com>; Mon, 23 Sep 2019 09:05:09 -0700 (PDT)
+ (Exim 4.92) (envelope-from <jbmsdr@gmail.com>) id 1iCRK9-0007Cm-2C
+ for usrp-users@lists.ettus.com; Mon, 23 Sep 2019 12:36:29 -0400
+Received: by mail-ua1-f47.google.com with SMTP id n2so4525710ual.11
+ for <usrp-users@lists.ettus.com>; Mon, 23 Sep 2019 09:36:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to;
- bh=LhKRrLdvRKIni6bjEINkUKUHK8FBqScVt4VX/3FckVM=;
- b=LqfmAUqUP3/vyv9UgVnGZ65QTx4XPlKHarrqDppbG2708FDEu/vBURPZh6bM498DWS
- Fyc1FTWH1fwinMTuAznmXjl1Lb7Rf8ZcVjhwrsfgk/DZ52XLYRe4Z66Dv9ODeV0JcKai
- 23/cbqfS/F5t7JZPRsuPfgGDPxSuFgDwR5K65eCdMgTbZv+dGrG+b/x8CzW5kpidZdLG
- WbKool/h1Ff5k/jHH5weVxfAY2+IAgzfsaNHPlhs/ukPUC1SPsOQw3SD7MR8HRQqnQqz
- lyPV4KtWH7tcG+iymqlsGcKaPdeU1B+HuhnKqIbC33J/t1gJXMSAjTCoP8k8MDxYPf0C
- 0twA==
+ bh=ER9DbV4fqGx/4C5f/B7NrJxlnSMPPByYKawwQLdI9mE=;
+ b=sI7AjbNOMlwm5hSFdXqm+WQgyO8fMn2Gbp/SZ1c5iJRMQhKRGsqyUkPyX3XT33vdt6
+ 4LIImZqrrEjhbV0rwkq7/ijrUuyqbsEXJHoa5by/uslEAUd0ZXgsvbh2k2010zVr6JQA
+ 1YFxi4IXXbLBZiZp+B4YmtnFjANkJp+rRvesg+exosguQHhb7/1uSMyc6ympE8Te4tKC
+ R65qeMY0LxO7YiPS/zBFfJj+aFAfCXBG8HKww6FPn32MmSd8/TP3LDZJ0cw5kCKReqD9
+ Keied1XYugDO+p4FQvYxWUG4f4zBTNkKiuja/SuHjJ/qhqKHJC5VgR/CB3rXaLEpwJv8
+ 3tog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=LhKRrLdvRKIni6bjEINkUKUHK8FBqScVt4VX/3FckVM=;
- b=NNXJ5oZR5x111siKz3PqRN9uM13nOCfNHQXEQs9G3mdpTtmlGExrSklCDp6FW/xlPO
- mKQ7dZyoobiZz091PjljlQsyv3koMrQQO3sariGrb3U34yWEgAaydf8mZBA4i0RxPxq4
- FXQhrMG6bSS+NIoYrmouWqDsdc+nk/JTNMjgruyesbAdtrobARBP/ZOhPiL/TIVneG9h
- WTxFUQWKMu0EaxLk/41C+KYouD1NDGUcbESU1hn4T8+acYTCaBvSCMQ4CPzanJ/OfZfr
- WDtaMBsIhDgb+ajp5t3YBMhlwRcuA3you7kf8fGuUMUFLs7BhiPXQwXmta1e0rnJNZ+e
- IErw==
-X-Gm-Message-State: APjAAAWdIARMCu0qJAPAPCBhrdbgW6VW5NrGPZBTUmIQUo+1nWXeJKuq
- kp5ij5f4SbGpOLpOfLEhArgCcRZ3INlqTjyMaaMoiaZG8cbUFA==
-X-Google-Smtp-Source: APXvYqxzZKupwRc13t2O6dqxumnstqirGEzYRtlNTdvSigv909UyftewyhLGEwv8FMAlNV8JeE6ZESLhYDpxKUuhiOs=
-X-Received: by 2002:adf:f404:: with SMTP id g4mr102529wro.353.1569254688076;
- Mon, 23 Sep 2019 09:04:48 -0700 (PDT)
+ bh=ER9DbV4fqGx/4C5f/B7NrJxlnSMPPByYKawwQLdI9mE=;
+ b=b+LrAAmsIVooSS6jHSMj5oXnkkyrxJeTTLrYUpYWrWb/bkvHwbhxx9ywmGLk+Z1l4u
+ F2mqBn5X3i21h6MqqY4ti1f/Snhcie3mxTi47cNCP+XMFpi9p/1MzCH5L8pzeu/eN67Y
+ zgt7jTGWtnFNjJsBc2WN5Q+NuAm8Q7zdUnqaOZ/pc/diuo4z/nStLmfG8Fal98e6TSfI
+ 2zQBKpm/Hj0THA2/QpcK/+oa8zx+nbyJowrP4Gbtv6gqCVc47vt70A+ibnwOpKgQK7mB
+ kebZtfINlvgQsFWgUSYep1Rm+nBxJ2zeE2hmvJgM21eksWK1TheTe9f6HynuyKhq4zBV
+ q+Fg==
+X-Gm-Message-State: APjAAAWkiP4dVjXBOV4ZvapzM3Fzil+JeyvRw89Uwzc1GnbVd6ta+A/+
+ OM319hp1VKOLAgdq7ve6XPXsT7aJhWj7HhnCYhlcj+IC
+X-Google-Smtp-Source: APXvYqwIxr68JowX7e1CkjaDJg5d1EZUOt+GFqXj768JKURP2Zuz3SgXGI05JIHOSFZGcpLGEr28KwJEg7APE/hcO2g=
+X-Received: by 2002:ab0:2455:: with SMTP id g21mr149330uan.6.1569256548141;
+ Mon, 23 Sep 2019 09:35:48 -0700 (PDT)
 MIME-Version: 1.0
-Date: Mon, 23 Sep 2019 12:04:38 -0400
-Message-ID: <CALzE40LKN-2egAu5+TGKV_4k5qpB=B_VO+gZaOfR9_s3N4PQvQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Different phase offsets in RX and TX
+Date: Mon, 23 Sep 2019 12:35:37 -0400
+Message-ID: <CA+1FM8oh1UuYRK17G11j0sfX1Utt-APuZvysaPEiMRS5z2vqwg@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Building UHD with DPDK support
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -54,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Markus Roman via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Markus Roman <marsisslc@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0717695415573558134=="
+From: Josh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Josh <jbmsdr@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0006136223900754959=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,89 +70,58 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0717695415573558134==
-Content-Type: multipart/alternative; boundary="0000000000003eb81005933a94e3"
+--===============0006136223900754959==
+Content-Type: multipart/alternative; boundary="0000000000001d0e7205933b03ae"
 
---0000000000003eb81005933a94e3
+--0000000000001d0e7205933b03ae
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Hello,
 
-Let's consider two simple test configurations using both channels of a USRP
-X310 SDR*,* and developed in GNU Radio:
+I'm in the process of building UHD with DPDK support, and run into the
+following build error:
 
-1.       SDRs in TX mode: generate a cosine signal, transmit with SDRs and
-visualize their phase offset on an O-scope and
+../lib/libuhd.so.3.15.0: undefined reference to `numa_available'
+../lib/libuhd.so.3.15.0: undefined reference to `get_mempolicy'
+../lib/libuhd.so.3.15.0: undefined reference to `numa_set_localalloc'
+../lib/libuhd.so.3.15.0: undefined reference to `numa_bitmask_free'
+../lib/libuhd.so.3.15.0: undefined reference to `set_mempolicy'
+../lib/libuhd.so.3.15.0: undefined reference to `numa_allocate_nodemask'
+../lib/libuhd.so.3.15.0: undefined reference to `numa_set_preferred'
 
-2.       SDRs in RX mode: SDRs receive a signal from a signal generator and
-display their phase offset on a computer.
+DPDK 17.11 is installed on my system from source, and CMake finds it, but
+once I kick off the UHD build (either 3.14 or master) I get the errors
+shown above when it is linking libraries to libuhd.
 
-In the 1st configuration the phase offsets between channels are consistent
-even if we power off the SDR. However, in the 2nd configuration, each time
-when the GNU Radio script is restarted, the phase difference is changing. I
-wonder what could cause the issue, specifically what determines re-tuning
-in the GNU Radio script. Can this issue be corrected?
+Any help would be appreciated.
 
-Thank you.
+Thanks,
+Josh
 
-Regards
-
-Markus
-
---0000000000003eb81005933a94e3
+--0000000000001d0e7205933b03ae
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"margin:0in 0in 8pt;line-he=
-ight:107%;font-size:11pt;font-family:Calibri,sans-serif">Hi,</p>
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;m in the proces=
+s of building UHD with DPDK support, and run into the following build error=
+:</div><div><br></div><div>../lib/libuhd.so.3.15.0: undefined reference to =
+`numa_available&#39;<br>../lib/libuhd.so.3.15.0: undefined reference to `ge=
+t_mempolicy&#39;<br>../lib/libuhd.so.3.15.0: undefined reference to `numa_s=
+et_localalloc&#39;<br>../lib/libuhd.so.3.15.0: undefined reference to `numa=
+_bitmask_free&#39;<br>../lib/libuhd.so.3.15.0: undefined reference to `set_=
+mempolicy&#39;<br>../lib/libuhd.so.3.15.0: undefined reference to `numa_all=
+ocate_nodemask&#39;<br>../lib/libuhd.so.3.15.0: undefined reference to `num=
+a_set_preferred&#39;</div><div><br></div><div>DPDK 17.11 is installed on my=
+ system from source, and CMake finds it, but once I kick off the UHD build =
+(either 3.14 or master) I get the errors shown above when it is linking lib=
+raries to libuhd.</div><div><br></div><div>Any help would be appreciated.<b=
+r></div><div><br></div><div>Thanks,</div><div>Josh<br></div><div><br></div>=
+<div><br></div></div>
 
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 8pt;line-height:107%;font-si=
-ze:11pt;font-family:Calibri,sans-serif">Let&#39;s consider two simple test =
-configurations using both channels
-of a <span lang=3D"EN" style=3D"">USRP</span><span lang=3D"EN" style=3D""> =
-X310
-SDR<strong style=3D"font-weight:bold">,</strong></span><span lang=3D"EN">=
-=C2=A0and=C2=A0</span>developed
-in GNU Radio:</p>
-
-<p class=3D"gmail-MsoListParagraphCxSpFirst" style=3D"margin:0in 0in 0.0001=
-pt 0.25in;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif">1=
-.<span style=3D"font-variant-numeric:normal;font-variant-east-asian:normal;=
-font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Time=
-s New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span>SDRs in TX mode: generate a cosine signal,
-transmit with SDRs and visualize their phase offset on an O-scope and</p>
-
-<p class=3D"gmail-MsoListParagraphCxSpLast" style=3D"margin:0in 0in 8pt 0.2=
-5in;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif">2.<span=
- style=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-s=
-tretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New =
-Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span>SDRs in RX mode: SDRs receive a signal from a signal generator and d=
-isplay their phase offset on a computer. </p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 8pt;line-height:107%;font-si=
-ze:11pt;font-family:Calibri,sans-serif">In the 1<sup>st</sup> configuration=
- the phase offsets between
-channels are consistent even if we power off the SDR. However, in the 2<sup=
->nd</sup>
-configuration, each time when the GNU Radio script is restarted, the phase =
-difference
-is changing. I wonder what could cause the issue, specifically what determi=
-nes re-tuning in the GNU Radio script. Can this issue be corrected? </p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 8pt;line-height:107%;font-si=
-ze:11pt;font-family:Calibri,sans-serif">Thank you.=C2=A0</p><p class=3D"Mso=
-Normal" style=3D"margin:0in 0in 8pt;line-height:107%;font-size:11pt;font-fa=
-mily:Calibri,sans-serif"><span style=3D"font-size:11pt">Regards</span><br><=
-/p><p class=3D"MsoNormal" style=3D"margin:0in 0in 8pt;line-height:107%;font=
--size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:11pt">M=
-arkus</span></p></div>
-
---0000000000003eb81005933a94e3--
+--0000000000001d0e7205933b03ae--
 
 
---===============0717695415573558134==
+--===============0006136223900754959==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -163,5 +132,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0717695415573558134==--
+--===============0006136223900754959==--
 
