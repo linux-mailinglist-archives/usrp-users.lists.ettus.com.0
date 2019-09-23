@@ -2,59 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D73F2BBA7D
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Sep 2019 19:28:14 +0200 (CEST)
-Received: from [::1] (port=54500 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34DEFBBA8B
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Sep 2019 19:30:03 +0200 (CEST)
+Received: from [::1] (port=56092 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iCS8C-0003V1-MX; Mon, 23 Sep 2019 13:28:12 -0400
-Received: from mail-qk1-f180.google.com ([209.85.222.180]:39895)
+	id 1iCS9s-0003oq-Oq; Mon, 23 Sep 2019 13:29:56 -0400
+Received: from mail-qk1-f176.google.com ([209.85.222.176]:43996)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iCS88-0003Oj-Pl
- for usrp-users@lists.ettus.com; Mon, 23 Sep 2019 13:28:08 -0400
-Received: by mail-qk1-f180.google.com with SMTP id 4so16252318qki.6
- for <usrp-users@lists.ettus.com>; Mon, 23 Sep 2019 10:27:48 -0700 (PDT)
+ id 1iCS9o-0003h1-HT
+ for usrp-users@lists.ettus.com; Mon, 23 Sep 2019 13:29:52 -0400
+Received: by mail-qk1-f176.google.com with SMTP id h126so16247908qke.10
+ for <usrp-users@lists.ettus.com>; Mon, 23 Sep 2019 10:29:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=ron96X4HUWma5bMaRIuR2KMmKVlOtpUU9RFgPcQFSqY=;
- b=GrTq/op45AcWlQ8AUk8Ou9vCagCEm2VCjNyeDgA0FWb/uKBFukA+3+myh0C4WUymN3
- WFttKnBTjDvO+GZ6SjiHkiL6iDxONDskP+R+jdOubETkR12r9AqxVWpSglcvwkhNrT0+
- P8A6fK6G4aGlt3/905E2IEoy3zwVBzxXEk2xSWFL8YaxFU8xjLdt++QRxOEtlXfd7t3A
- LwXR5/CfdkdbwXINlHzGy442Q1h1qFsYJpRk/V5yvL+Jb3O7tZLdWDJFb5b61wZnHj8/
- LdsqycZWeXLRdxdB1O7ZVWRkJJVBcQkYgNvOUR9vGmWJr6MLbUin3uwJcEs5zb4bFXHF
- uWpA==
+ :in-reply-to; bh=WZK2oD6h5KLMbeWy0Tgn5Hbimlvko4tn9hdWJ74RG9I=;
+ b=M8Zo231bXurQssKoO7nk1hbJ0w6eoivMoC+H17TyJ8BfNiK1cpJw0wZEazp+0YB3zp
+ prn7WPxPCQ1ULrlUD0ExGR1semJIo5SJRUhn3wcGB22G3qBZZhg6Khax+qYKXbgBcdYh
+ 2irAJ7cEP8I8xpmJlQkpCTy2fKIalCfvohswRhbyU5VaUj2TCPX5NRbdDzgzA7xkvoeG
+ 7uqNYiw0Ib6utP8P3l50N74AC3u8FcnLklhI77O5dOt1sdiGzQAbdP8mhQkGpazSKm2p
+ Yx4V7WPFCzwr4+p4EvbiPEucNIDy/ZfqJJeSg2sJAn3qvDISDdZBiBBumFmTFWa7MwdQ
+ lt0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=ron96X4HUWma5bMaRIuR2KMmKVlOtpUU9RFgPcQFSqY=;
- b=H9DVdC6wSWrFmukTFrF7sVPEjKWk8oeVaQIucd/M8zxxdFTSsZ3ADKEu5xnC6Kclok
- SFwrq+ISHzseIku3qRxoyU5f9XXxpQpAdG9NaGluGqhnBAzj+KfIzZBPHMrMWrMBxGZC
- HXXvObkzi9qRPzT6tuaWm3mdbyz2ULnGkE8l7EQQObvgC8VmSno6YQCb6IUJ2NKwXqJm
- JrY0spqJlATT37L0JU8whEsysd7hQDxnSUchrJE8h5fKVaTmJT7cqE8CW3zbtykzlpI1
- YHM1vTybpGngquOcgH0abvO/Nd4SzO/JkWBGayU8PcUi9/fK+FaDrJILV0BAALeCHtGE
- HDiQ==
-X-Gm-Message-State: APjAAAUiNuJWeoKLYFQ5/HAlp/vP24vNrEgBySzIsfqYeUyTciGBg/Pn
- r3Irma9NmIJDzOEG2gpsD3grMrpo
-X-Google-Smtp-Source: APXvYqwGBJmQA73trYVe4yklzXZ2nl+0nJcJ9yS9O8ScCReUYJL2vIwBw0UsYLXsGp6rwqI8QYa0Qg==
-X-Received: by 2002:a37:5203:: with SMTP id g3mr979260qkb.53.1569259648208;
- Mon, 23 Sep 2019 10:27:28 -0700 (PDT)
+ bh=WZK2oD6h5KLMbeWy0Tgn5Hbimlvko4tn9hdWJ74RG9I=;
+ b=t+friKtWer77QzI5KWsAm88hMOzUJLfGmfDSahqUXbNJYGo/+Jdq8JpvDpLFWsPjxP
+ BpyEwy+CX0BOQ9v/eHXnPoGONaS9RMKCP1i1qUySiMyOCsW42NbJFczncQjyJjVI7Qqf
+ UyBcTFXAEfCTMIBfaRKwnCJWKNFiuUNupMnZ/XMsvF/Dfl8lK72X5IUy7RxwBJfNZ9O1
+ n8JDLsa/7+WYG91MnISsMX1S26/ffv/y2zf/NW59HTTNo98c8rvkwIxJZ83XPL9ZXaOq
+ sMDFDRNJBghcTzN52VDkR0UnBIabgpbIWtW6WK/hbAuA3JSAtZT5raPmRaYisWpZL7RG
+ 1Jyw==
+X-Gm-Message-State: APjAAAUg5mf3pdos0nVeDiTKWlgLfAS2oxOuzk9k57BCXo432S1RXNHp
+ 3uOILnKJgLtnlHyUc0Lczt6KtxNB
+X-Google-Smtp-Source: APXvYqw5njxWnMF8iXJaOkbq3CaF4w10pbZa4Af2WgfpWiNGnKtzsxzHKuEIbjfA319lOJYhlXfUCg==
+X-Received: by 2002:a05:620a:12b5:: with SMTP id
+ x21mr986904qki.462.1569259751922; 
+ Mon, 23 Sep 2019 10:29:11 -0700 (PDT)
 Received: from lab.localdomain ([24.146.32.18])
- by smtp.googlemail.com with ESMTPSA id
- f144sm5305931qke.132.2019.09.23.10.27.27
+ by smtp.googlemail.com with ESMTPSA id u27sm7370130qta.90.2019.09.23.10.29.11
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 23 Sep 2019 10:27:27 -0700 (PDT)
-Message-ID: <5D89007E.30806@gmail.com>
-Date: Mon, 23 Sep 2019 13:27:26 -0400
+ Mon, 23 Sep 2019 10:29:11 -0700 (PDT)
+Message-ID: <5D8900E6.20707@gmail.com>
+Date: Mon, 23 Sep 2019 13:29:10 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
 To: usrp-users@lists.ettus.com
-References: <CALzE40LKN-2egAu5+TGKV_4k5qpB=B_VO+gZaOfR9_s3N4PQvQ@mail.gmail.com>
-In-Reply-To: <CALzE40LKN-2egAu5+TGKV_4k5qpB=B_VO+gZaOfR9_s3N4PQvQ@mail.gmail.com>
-Subject: Re: [USRP-users] Different phase offsets in RX and TX
+References: <1569256729341.35718@av.it.pt>
+In-Reply-To: <1569256729341.35718@av.it.pt>
+Subject: Re: [USRP-users] rx_to_file
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,7 +68,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1547394736052845702=="
+Content-Type: multipart/mixed; boundary="===============0776377359246575285=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,54 +83,67 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============1547394736052845702==
+--===============0776377359246575285==
 Content-Type: multipart/alternative;
- boundary="------------040402030104050200040300"
+ boundary="------------020908000208050802000908"
 
 This is a multi-part message in MIME format.
---------------040402030104050200040300
+--------------020908000208050802000908
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 09/23/2019 12:04 PM, Markus Roman via USRP-users wrote:
+On 09/23/2019 12:38 PM, Diogo Botelho Ribeiro Marinho via USRP-users wrote:
 >
-> Hi,
->
-> Let's consider two simple test configurations using both channels of a 
-> USRPX310 SDR*,* and developed in GNU Radio:
->
-> 1.SDRs in TX mode: generate a cosine signal, transmit with SDRs and 
-> visualize their phase offset on an O-scope and
->
-> 2.SDRs in RX mode: SDRs receive a signal from a signal generator and 
-> display their phase offset on a computer.
->
-> In the 1^st configuration the phase offsets between channels are 
-> consistent even if we power off the SDR. However, in the 2^nd 
-> configuration, each time when the GNU Radio script is restarted, the 
-> phase difference is changing. I wonder what could cause the issue, 
-> specifically what determines re-tuning in the GNU Radio script. Can 
-> this issue be corrected?
->
-> Thank you.
->
-> Regards
->
-> Markus
+> Hello,
 >
 >
+> I used the "rx_to_file " executable file test to receive samples from 
+> USR N310 and the file with rx camples as the following format:
+>
+>
+>
+> 0000 0000 0000 0000 8600 c038 5900 00b8
+> 8600 c038 5900 00b8 5900 8038 8600 c0b8
+> 5900 8038 0000 0000 5900 8038 0000 0000
+> 5900 8038 5900 0038 5900 8038 5900 0038
+> 5900 0038 0000 0000 5900 0038 5900 00b8
+> 5900 00b8 0000 0000 0000 0000 5900 00b8
+> 5900 8038 5900 00b8 5900 0038 5900 00b8
+> 5900 0038 5900 00b8 0000 0000 5900 00b8
+> 5900 0038 5900 80b8 0000 0000 5900 00b8
+> 5900 0038 0000 0000 5900 8038 5900 80b8
+> 5900 0038 0000 0000 5900 0038 5900 00b8
+>
+> .....
+>
+> ...
+>
+>
+>
+>
+> Can you tell me how this I/Q samples are organized? by channel ?
+>
+> How can i represent this?
+>
+>
+> Thanks in advanced
+>
+> Diogo Marinho
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+You'll need to tell us what parameters you passed to the application.
 
-You haven't stated which daughter-cards you're using.
-
-In order to have zero phase-offset, you need to use timed commands, 
-typically, and Gnu Radio/GRC has no direct provision for
-   that so you have to edit the code.
 
 
-
---------------040402030104050200040300
+--------------020908000208050802000908
 Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 <html>
   <head>
@@ -138,76 +151,73 @@ Content-Transfer-Encoding: 8bit
       http-equiv="Content-Type">
   </head>
   <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 09/23/2019 12:04 PM, Markus Roman
-      via USRP-users wrote:<br>
+    <div class="moz-cite-prefix">On 09/23/2019 12:38 PM, Diogo Botelho
+      Ribeiro Marinho via USRP-users wrote:<br>
     </div>
-    <blockquote
-cite="mid:CALzE40LKN-2egAu5+TGKV_4k5qpB=B_VO+gZaOfR9_s3N4PQvQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif">Hi,</p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif">Let's
-          consider two simple test configurations using both channels
-          of a <span style="" lang="EN">USRP</span><span style=""
-            lang="EN"> X310
-            SDR<strong style="font-weight:bold">,</strong></span><span
-            lang="EN"> and </span>developed
-          in GNU Radio:</p>
-        <p class="gmail-MsoListParagraphCxSpFirst" style="margin:0in 0in
-          0.0001pt
-          0.25in;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif">1.<span
-            style="font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times
-            New Roman&quot;">      
-          </span>SDRs in TX mode: generate a cosine signal,
-          transmit with SDRs and visualize their phase offset on an
-          O-scope and</p>
-        <p class="gmail-MsoListParagraphCxSpLast" style="margin:0in 0in
-          8pt
-          0.25in;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif">2.<span
-            style="font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times
-            New Roman&quot;">      
-          </span>SDRs in RX mode: SDRs receive a signal from a signal
-          generator and display their phase offset on a computer. </p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif">In
-          the 1<sup>st</sup> configuration the phase offsets between
-          channels are consistent even if we power off the SDR. However,
-          in the 2<sup>nd</sup>
-          configuration, each time when the GNU Radio script is
-          restarted, the phase difference
-          is changing. I wonder what could cause the issue, specifically
-          what determines re-tuning in the GNU Radio script. Can this
-          issue be corrected? </p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif">Thank
-          you. </p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif"><span
-            style="font-size:11pt">Regards</span><br>
-        </p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif"><span
-            style="font-size:11pt">Markus</span></p>
-      </div>
+    <blockquote cite="mid:1569256729341.35718@av.it.pt" type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none"><!--P{margin-top:0;margin-bottom:0;} --></style>
+      <p>Hello,</p>
+      <p><br>
+      </p>
+      <p>I used the "rx_to_file " executable file test to receive
+        samples from USR N310 and the file with rx camples as the
+        following format:</p>
+      <p><br>
+      </p>
+      <p><br>
+      </p>
+      <p>0000 0000 0000 0000 8600 c038 5900 00b8<br>
+        8600 c038 5900 00b8 5900 8038 8600 c0b8<br>
+        5900 8038 0000 0000 5900 8038 0000 0000<br>
+        5900 8038 5900 0038 5900 8038 5900 0038<br>
+        5900 0038 0000 0000 5900 0038 5900 00b8<br>
+        5900 00b8 0000 0000 0000 0000 5900 00b8<br>
+        5900 8038 5900 00b8 5900 0038 5900 00b8<br>
+        5900 0038 5900 00b8 0000 0000 5900 00b8<br>
+        5900 0038 5900 80b8 0000 0000 5900 00b8<br>
+        5900 0038 0000 0000 5900 8038 5900 80b8<br>
+        5900 0038 0000 0000 5900 0038 5900 00b8<br>
+      </p>
+      <p>.....</p>
+      <p>...</p>
+      <p><br>
+      </p>
+      <p><br>
+      </p>
+      <p><br>
+      </p>
+      <p>Can you tell me how this I/Q samples are organized? by channel
+        ? </p>
+      <p>How can i represent this?</p>
+      <p><br>
+      </p>
+      <p>Thanks in advanced</p>
+      <p>Diogo Marinho <br>
+      </p>
+      <p><br>
+      </p>
       <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
     </blockquote>
-    <br>
-    You haven't stated which daughter-cards you're using.<br>
-    <br>
-    In order to have zero phase-offset, you need to use timed commands,
-    typically, and Gnu Radio/GRC has no direct provision for<br>
-      that so you have to edit the code.<br>
+    You'll need to tell us what parameters you passed to the
+    application.<br>
     <br>
     <br>
   </body>
 </html>
 
---------------040402030104050200040300--
+--------------020908000208050802000908--
 
 
---===============1547394736052845702==
+--===============0776377359246575285==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -218,5 +228,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1547394736052845702==--
+--===============0776377359246575285==--
 
