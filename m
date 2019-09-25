@@ -2,55 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EFBFBDAC8
-	for <lists+usrp-users@lfdr.de>; Wed, 25 Sep 2019 11:17:04 +0200 (CEST)
-Received: from [::1] (port=48358 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B53F7BE0EF
+	for <lists+usrp-users@lfdr.de>; Wed, 25 Sep 2019 17:12:12 +0200 (CEST)
+Received: from [::1] (port=38192 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iD3Py-0005uj-2W; Wed, 25 Sep 2019 05:17:02 -0400
-Received: from mailservice.tudelft.nl ([130.161.131.5]:45161)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <C.E.V.Diouf@tudelft.nl>)
- id 1iD3Pu-0005qW-8D
- for usrp-users@lists.ettus.com; Wed, 25 Sep 2019 05:16:58 -0400
-Received: from localhost (localhost [127.0.0.1])
- by amavis (Postfix) with ESMTP id 56D4D6400F6
- for <usrp-users@lists.ettus.com>; Wed, 25 Sep 2019 11:16:17 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at tudelft.nl
-X-Spam-Flag: NO
-X-Spam-Score: -0.195
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.195 tagged_above=-99 required=5
- tests=[ALL_TRUSTED=-1, BASW_FROM=0.01, HTML_MESSAGE=0.001,
- RDNS_NONE=0.793, SPF_HELO_NONE=0.001] autolearn=no autolearn_force=no
-Received: from mailservice.tudelft.nl ([130.161.131.73])
- by localhost (tudelft.nl [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id Cfv8fAb3CnqC for <usrp-users@lists.ettus.com>;
- Wed, 25 Sep 2019 11:16:16 +0200 (CEST)
-Received: from SRV216.tudelft.net (srv216.tudelft.net [131.180.6.16])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
- (No client certificate requested)
- by mx2.tudelft.nl (Postfix) with ESMTPS id 95E0C6400CB
- for <usrp-users@lists.ettus.com>; Wed, 25 Sep 2019 11:16:16 +0200 (CEST)
-Received: from SRV220.tudelft.net (131.180.6.20) by SRV216.tudelft.net
- (131.180.6.16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P521) id 15.1.1713.5; Wed, 25
- Sep 2019 11:16:10 +0200
-Received: from SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210]) by
- SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210%13]) with mapi id
- 15.01.1713.009; Wed, 25 Sep 2019 11:16:10 +0200
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: One sample - 5 ns delay between the two RF  signals/ X310
-Thread-Index: AQHVc4B0BE33/cfd8kOr2qQq6etTOg==
-Date: Wed, 25 Sep 2019 09:16:10 +0000
-Message-ID: <4f9463d7bc9747498b2f2bda40f7b2ec@tudelft.nl>
-Accept-Language: en-US, nl-NL
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	id 1iD8xY-00052j-Sz; Wed, 25 Sep 2019 11:12:04 -0400
+Received: from mail-qk1-f174.google.com ([209.85.222.174]:45674)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1iD8xU-0004vn-8N
+ for usrp-users@lists.ettus.com; Wed, 25 Sep 2019 11:12:00 -0400
+Received: by mail-qk1-f174.google.com with SMTP id z67so5530471qkb.12
+ for <usrp-users@lists.ettus.com>; Wed, 25 Sep 2019 08:11:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=HDrxnuY2My6p8g0huTF4hZYka6KctDrYkyBHX4FvJhY=;
+ b=G1mvviklIuqYA/MfGtdQQybeObWt2czpMFFoJimfc3BlJezCbyMhZqmhgLCUn0a/oW
+ hmzI06n9PIkGlt20wbs3aDBcpzSxPQH5EBapEWpRKwRQ1PoSKMWzJlcgYfHFskAyLyjn
+ u4Qnb5/ySdgip+2PjDvT33ZMgK/ejdaskv8JHeUoLPkPh5zbNNreH+PpJulqIkUI8bEF
+ lKcUAK12a4cSvyYqRPoPFCbgmbB20I+xFzRPqVtDids2wXBXoN05q26hjNZQ/KBKy0Ok
+ JphYOLRRoMO8spn8u5laadQgH9+Mv7QuaPSNrPHhcXt3kxmZ9ad19dVUO1pqP5Xrj8wh
+ PGwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=HDrxnuY2My6p8g0huTF4hZYka6KctDrYkyBHX4FvJhY=;
+ b=CiXXOzWX2XYZYRYeP5rd/xx+jUwx314HzqZKCVUuHpEVECuwbDnkBEAeGaXhIQ/L3U
+ t9sdCNUuuJ9o7kpIEbneCxdRBs6ld2c8I33m6cNQ3mySAWRbi4c2PUkK7mmPElnjex9R
+ zEcbJxoqdO+XGVr9yXLIyVn2V+Qo2s/alPSrE95rTVeBwPA7wjYNjYffyY28oN9E036V
+ DurO0T2Xs28zR9fyxrsRV0PoWI7xb7Fm67Gra5a60VmkyasnRSeZ8/hx9Pv94ErvL+2r
+ GrZJplA6Y0pZUl43snq7WhdOnD4HQQ2Z+LGLaLBEdTi9dlXTdMDfqXzWDa7sA8Mxf6y2
+ ebBg==
+X-Gm-Message-State: APjAAAWLlzDEgr0+D12BvPs6akXE5QFcN9gNPEhdDgAMoaSenfi6ThSQ
+ 7ZTrYw4Fv7ftX0RtAVs4sBcy1PLO
+X-Google-Smtp-Source: APXvYqwxIa5+78k62QQaWNEVYuh2zqb49hieVoAJ00UPDPRPW3KFD5HawVIhlpc/1+adA39Cw0wgGw==
+X-Received: by 2002:a37:8547:: with SMTP id h68mr3981702qkd.219.1569424279383; 
+ Wed, 25 Sep 2019 08:11:19 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-20.dsl.bell.ca.
+ [174.95.14.20])
+ by smtp.googlemail.com with ESMTPSA id u39sm3299448qtj.34.2019.09.25.08.11.18
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 25 Sep 2019 08:11:18 -0700 (PDT)
+Message-ID: <5D8B8396.9080206@gmail.com>
+Date: Wed, 25 Sep 2019 11:11:18 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Subject: [USRP-users] One sample - 5 ns delay between the two RF signals/
- X310
+To: usrp-users@lists.ettus.com
+References: <4f9463d7bc9747498b2f2bda40f7b2ec@tudelft.nl>
+In-Reply-To: <4f9463d7bc9747498b2f2bda40f7b2ec@tudelft.nl>
+Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
+ signals/ X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -62,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Cherif Diouf via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Cherif Diouf <C.E.V.Diouf@tudelft.nl>
-Content-Type: multipart/mixed; boundary="===============4550979249991097688=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3769808914115033023=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,179 +83,234 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4550979249991097688==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============3769808914115033023==
 Content-Type: multipart/alternative;
-	boundary="_000_4f9463d7bc9747498b2f2bda40f7b2ectudelftnl_"
+ boundary="------------040008030909010508020003"
 
---_000_4f9463d7bc9747498b2f2bda40f7b2ectudelftnl_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------040008030909010508020003
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On 09/25/2019 05:16 AM, Cherif Diouf via USRP-users wrote:
+> Hello,
+> I am working with the X310 USRP. I have two identical custom blocks 
+> feeding the RF frontends.
+>
+> flowchart
+> -----------------
+> HW Block1 -> RF0-TX1 |---<
+> HW Block2 -> RF1-TX1 |---<
+>
+> The system is synchronized to an external PPS reference. The sampling 
+> rate is 200 MSps and the signal bandwidth is 160 MHz for both channels.
+> The two HW blocks start transmitting at the exactly same time. Time 
+> resolution is 5ns.
+> In most cases the two outgoing RF signals present a 1ns time offset. 
+> Which can be understood as a phase offset.
+>
+> But From time to time there is a 6ns delay between the channels. I 
+> assume this 6ns comprises the 1ns delay due to phase offset + 5 ns 
+> delay due to misalignment of outgoing samples.
+>
+> What could be the origin of this one sample misalignement? Is it a way 
+> to fix it? Or working close to the limits of the device should such 
+> behavior be expected?
+>
+> Thanks in advance
+>
+> Best Regards
+> Cherif
+>
+>
+You're going to have to share more about your configuration, including:
 
-I am working with the X310 USRP. I have two identical custom blocks feeding=
- the RF frontends.
-
-flowchart
------------------
-HW Block1 -> RF0-TX1 |---<
-HW Block2 -> RF1-TX1 |---<
-
-The system is synchronized to an external PPS reference. The sampling rate =
-is 200 MSps and the signal bandwidth is 160 MHz for both channels.
-The two HW blocks start  transmitting at the exactly same time. Time resolu=
-tion is 5ns.
-
-In most cases the two outgoing RF signals present a 1ns time offset. Which =
-can be understood as a phase offset.
-
-But From time to time there is a 6ns delay between the channels. I assume t=
-his 6ns comprises the 1ns delay due to phase offset + 5 ns delay due to mis=
-alignment of outgoing samples.
-
-What could be the origin of this one sample misalignement? Is it a way to f=
-ix it? Or working close to the limits of the device should such behavior be=
- expected?
-
-Thanks in advance
+     - what daughtercards are you using in your X310?
+     - what do you mean by "hardware block" -- RFNoC?   Is this a custom 
+block?
+     - Are you doing this with Gnu Radio or just UHD?
+     - What version of UHD are you running?
 
 
-Best Regards
-Cherif
 
 
---_000_4f9463d7bc9747498b2f2bda40f7b2ectudelftnl_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--------------040008030909010508020003
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFo=
-nt&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCo=
-lorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymb=
-ols;">
-<p></p>
-<div class=3D"x_WordSection1" style=3D"font-family: Helvetica, serif, &quot=
-;EmojiFont&quot;; font-size: 12px; font-style: normal; font-weight: normal;=
- letter-spacing: normal; text-align: start; text-indent: 0px; text-transfor=
-m: none; white-space: normal; word-spacing: 0px;">
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-Hello,</div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-&nbsp;</div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">I am working with the X310 USRP. I have two=
- identical custom blocks feeding the RF frontends.
-<br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB"><br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">flowchart</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">-----------------<br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">HW Block1 -&gt; RF0-TX1 |---&lt;</span></di=
-v>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB"><span class=3D"" lang=3D"EN-GB"><span class=
-=3D"" lang=3D"EN-GB">HW</span> Block2 -&gt; RF1-TX1</span> |---&lt;<br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB"><br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">The system is synchronized to an external P=
-PS reference.
-<span class=3D"" lang=3D"EN-GB">The sampling rate is 200 MSps and the signa=
-l bandwidth is 160 MHz for both channels.</span><br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">The two HW blocks start&nbsp; transmitting =
-at the <span class=3D"" lang=3D"EN-GB">
-<span class=3D"" lang=3D"EN-GB">exactly</span></span> same time. Time resol=
-ution is 5ns.</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">&nbsp;</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">In most cases the two outgoing RF signals p=
-resent a 1ns time offset. Which can be understood as a phase offset.<br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB"><br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">But From time to time there is a 6ns delay =
-between the channels. I assume this 6ns comprises the 1ns delay due to phas=
-e offset &#43; 5 ns delay due to misalignment of outgoing samples.</span></=
-div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB"><br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">What could be the origin of this one sample=
- misalignement? Is it a way to fix it? Or working close to the limits of th=
-e device should such behavior be expected?</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB"><br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">Thanks in advance<span class=3D"" lang=3D"E=
-N-GB"></span><br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB"><br>
-</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">&nbsp;</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">Best Regards</span></div>
-<div class=3D"" style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fa=
-mily: Calibri, sans-serif, serif, &quot;EmojiFont&quot;;">
-<span class=3D"" lang=3D"EN-GB">Cherif</span></div>
-</div>
-<br>
-<p></p>
-</div>
-</body>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 09/25/2019 05:16 AM, Cherif Diouf
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote cite="mid:4f9463d7bc9747498b2f2bda40f7b2ec@tudelft.nl"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"><!-- P {margin-top:0;margin-bottom:0;} --></style>
+      <div id="divtagdefaultwrapper" dir="ltr" style="font-size: 12pt;
+        color: rgb(0, 0, 0); font-family: Calibri, Helvetica,
+        sans-serif, &quot;EmojiFont&quot;, &quot;Apple Color
+        Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji,
+        &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;,
+        EmojiSymbols;">
+        <div class="x_WordSection1" style="font-family: Helvetica,
+          serif, &quot;EmojiFont&quot;; font-size: 12px; font-style:
+          normal; font-weight: normal; letter-spacing: normal;
+          text-align: start; text-indent: 0px; text-transform: none;
+          white-space: normal; word-spacing: 0px;">
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            Hello,</div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+             </div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">I am working with the X310 USRP.
+              I have two identical custom blocks feeding the RF
+              frontends.
+              <br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB"><br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">flowchart</span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">-----------------<br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">HW Block1 -&gt; RF0-TX1 |---&lt;</span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB"><span class="" lang="EN-GB"><span
+                  class="" lang="EN-GB">HW</span> Block2 -&gt; RF1-TX1</span>
+              |---&lt;<br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB"><br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">The system is synchronized to an
+              external PPS reference.
+              <span class="" lang="EN-GB">The sampling rate is 200 MSps
+                and the signal bandwidth is 160 MHz for both channels.</span><br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">The two HW blocks start 
+              transmitting at the <span class="" lang="EN-GB">
+                <span class="" lang="EN-GB">exactly</span></span> same
+              time. Time resolution is 5ns.</span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB"> </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">In most cases the two outgoing
+              RF signals present a 1ns time offset. Which can be
+              understood as a phase offset.<br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB"><br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">But From time to time there is a
+              6ns delay between the channels. I assume this 6ns
+              comprises the 1ns delay due to phase offset + 5 ns delay
+              due to misalignment of outgoing samples.</span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB"><br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">What could be the origin of this
+              one sample misalignement? Is it a way to fix it? Or
+              working close to the limits of the device should such
+              behavior be expected?</span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB"><br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">Thanks in advance<span class=""
+                lang="EN-GB"></span><br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB"><br>
+            </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB"> </span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">Best Regards</span></div>
+          <div class="" style="margin: 0cm 0cm 0.0001pt; font-size:
+            11pt; font-family: Calibri, sans-serif, serif,
+            &quot;EmojiFont&quot;;">
+            <span class="" lang="EN-GB">Cherif</span></div>
+        </div>
+        <br>
+      </div>
+      <br>
+    </blockquote>
+    You're going to have to share more about your configuration,
+    including:<br>
+    <br>
+        - what daughtercards are you using in your X310?<br>
+        - what do you mean by "hardware block" -- RFNoC?   Is this a
+    custom block?<br>
+        - Are you doing this with Gnu Radio or just UHD?<br>
+        - What version of UHD are you running?<br>
+    <br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_4f9463d7bc9747498b2f2bda40f7b2ectudelftnl_--
+--------------040008030909010508020003--
 
 
---===============4550979249991097688==
+--===============3769808914115033023==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -261,5 +321,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4550979249991097688==--
+--===============3769808914115033023==--
 
