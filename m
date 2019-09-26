@@ -2,60 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35665BF40A
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Sep 2019 15:27:14 +0200 (CEST)
-Received: from [::1] (port=40884 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2126BF9F4
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Sep 2019 21:19:32 +0200 (CEST)
+Received: from [::1] (port=53288 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iDTnc-00024H-Ra; Thu, 26 Sep 2019 09:27:12 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:38861)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <neel.pandeya@ettus.com>)
- id 1iDTnZ-0001xO-FC
- for usrp-users@lists.ettus.com; Thu, 26 Sep 2019 09:27:09 -0400
-Received: by mail-oi1-f170.google.com with SMTP id m16so2066316oic.5
- for <usrp-users@lists.ettus.com>; Thu, 26 Sep 2019 06:26:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ec6OPFCxnMfNl2GsUqK06vFUmg4vf6OPGMYe14x/ark=;
- b=Hn0AJYWu/jHhJUbEurl9UPmOZvHJL+Zb9Ol8XX8QLEdHZHEfTFUxJLUrEv7rAztxWw
- FQFtAZq5yKS1WEdfXY8F2eJTz0BXPl1gosI2UQ6UWfl4dnaMuE2UkFtxm7NVrW9mAF27
- nhCHkWusV+4DkXG3rkMCmvRkslJuY5f5bXyjdKfSwY+IOf47Z8F4mtocFjkv1WSrPYjc
- 4tSFjlOUWuj4sSh+DuOwNZWDy8wnknOykv81EwKIbVtqkjxKks6UsGvLNT/QHRJ1/DH2
- 3OHI26+na1KJB6SFruGhvVbRczpKshb60xamFqdCucVtDe+J4F6ryLaml0b3mV/ahWhO
- iPyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ec6OPFCxnMfNl2GsUqK06vFUmg4vf6OPGMYe14x/ark=;
- b=Z7kURD3jAxA92O9kkdEqt/oq+VuRioWJMBXgUHnnO+TyDePa5DE4Lj0mdVbIexMT5q
- 4LYL7u9oNlpMVoIesJZ68cX6uAvfog1pJtm/xa6XcFASYQ7+GjuAXz2nVAXIG3W2OYGg
- /YDVsNwBxEShwTIkFImZzSP3C8PIUo2XY5hphzkOa428vtu8Nzckr3xYWKVO5edgKpjG
- xy/PKkphtxnued9lKj/u/rTqLedX/wJKOGjQp/UQsYD8+FEOMk7fgZ3anYmyBtC+s3+g
- rMpjK5NXyT7Hu4leDOCAufKvBlQa32wJybAEuMZDcHW3j5XMNRzazzydQrI0NE15G6k6
- Sofg==
-X-Gm-Message-State: APjAAAUSWHGHHO0m2UMYMbPPMNpn+kghIAr/V8Z8z+P6rGL+9XEnAhVV
- r4fdkbxGw3e9wHoq+Y5YcjY45/yBFnGYDUmDtSlco+H0
-X-Google-Smtp-Source: APXvYqzPoAhCx/reI8RV/cyBqjODYmLpnLIfcJgpEsPpCl8Jik1TLib50i+wxujryDY2XDTnC+Z7rccdrDUweNU9KPc=
-X-Received: by 2002:aca:cc07:: with SMTP id c7mr2773378oig.19.1569504388538;
- Thu, 26 Sep 2019 06:26:28 -0700 (PDT)
+	id 1iDZIW-0000ZQ-Td; Thu, 26 Sep 2019 15:19:28 -0400
+Received: from mailservice.tudelft.nl ([130.161.131.5]:40677)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <C.E.V.Diouf@tudelft.nl>)
+ id 1iDZIT-0000Tu-9F
+ for usrp-users@lists.ettus.com; Thu, 26 Sep 2019 15:19:25 -0400
+Received: from localhost (localhost [127.0.0.1])
+ by amavis (Postfix) with ESMTP id 589C4CC00D4
+ for <usrp-users@lists.ettus.com>; Thu, 26 Sep 2019 21:18:44 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at tudelft.nl
+X-Spam-Flag: NO
+X-Spam-Score: -0.195
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.195 tagged_above=-99 required=5
+ tests=[ALL_TRUSTED=-1, BASW_FROM=0.01, HTML_MESSAGE=0.001,
+ RDNS_NONE=0.793, SPF_HELO_NONE=0.001] autolearn=no autolearn_force=no
+Received: from mailservice.tudelft.nl ([130.161.131.74])
+ by localhost (tudelft.nl [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id iW0JnpFvOgIM for <usrp-users@lists.ettus.com>;
+ Thu, 26 Sep 2019 21:18:43 +0200 (CEST)
+Received: from SRV217.tudelft.net (srv217.tudelft.net [131.180.6.17])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mx3.tudelft.nl (Postfix) with ESMTPS id BDD68CC00C9
+ for <usrp-users@lists.ettus.com>; Thu, 26 Sep 2019 21:18:43 +0200 (CEST)
+Received: from SRV220.tudelft.net (131.180.6.20) by SRV217.tudelft.net
+ (131.180.6.17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P521) id 15.1.1713.5; Thu, 26
+ Sep 2019 21:18:36 +0200
+Received: from SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210]) by
+ SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210%13]) with mapi id
+ 15.01.1713.009; Thu, 26 Sep 2019 21:18:36 +0200
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: One sample - 5 ns delay between the two RF signals/ X310
+Thread-Index: AQHVdJ3O+aDrcDyjbEK3uBO/v/73aQ==
+Date: Thu, 26 Sep 2019 19:18:36 +0000
+Message-ID: <f8f84407bde942e199e079c598b33d34@tudelft.nl>
+Accept-Language: en-US, nl-NL
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-References: <9d637be0-b80a-33cb-492d-0197e3ba6f5a@3db-labs.com>
- <5D576746.1010008@gmail.com>
- <e74ba0af-5c65-9b46-d3d7-360ab9d9dda5@3db-labs.com>
- <CACaXmv-XwDKP8ok_325K_hahwWUAuesQJddD8-CkoNrJY7GqfQ@mail.gmail.com>
- <8a61a15c-6018-c30b-2cd3-15220e2ea1e6@3db-labs.com>
- <CACaXmv87s56ttKCk4io8Z5nJq3DjyhzL6Qv1PgTMUvahmSad7A@mail.gmail.com>
- <d551a3fe-5f6a-147a-6bf3-0be3aaa86bcd@3db-labs.com>
- <39850419-2871-9e95-c355-677aa4543b60@3db-labs.com>
-In-Reply-To: <39850419-2871-9e95-c355-677aa4543b60@3db-labs.com>
-Date: Thu, 26 Sep 2019 08:26:12 -0500
-Message-ID: <CACaXmv_Ar3Lq02UvuMhTv1Pi8Fv2TGkX5n642YxTW5E6W5NNVQ@mail.gmail.com>
-To: Jason Roehm <jasonr@3db-labs.com>
-Subject: Re: [USRP-users] Incorrect RX time_spec values with X300, TwinRX,
- and v3.14.1.0
+Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
+ signals/ X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -67,10 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4867463749452969841=="
+From: Cherif Diouf via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Cherif Diouf <C.E.V.Diouf@tudelft.nl>
+Content-Type: multipart/mixed; boundary="===============0472520904077837995=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,324 +78,142 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4867463749452969841==
-Content-Type: multipart/alternative; boundary="0000000000008d7d1c059374b761"
+--===============0472520904077837995==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_f8f84407bde942e199e079c598b33d34tudelftnl_"
 
---0000000000008d7d1c059374b761
-Content-Type: text/plain; charset="UTF-8"
-
-Hello Jason:
-
-My apologies for the delay. We were super busy with GNU Radio Conference.
-Thanks for providing a stand-alone test program. I'll try to reproduce this
-issue later today or tomorrow, and I'll get back to you with an update.
-
---Neel Pandeya
-
-
-
-On Tue, 3 Sep 2019 at 10:20, Jason Roehm <jasonr@3db-labs.com> wrote:
-
->
-> On 8/20/19 7:40 AM, Jason Roehm via USRP-users wrote:
->
->
-> On 8/19/19 6:52 PM, Neel Pandeya wrote:
->
-> Hello Jason:
->
-> Thanks for all the detailed feedback!  No worries about not having a
-> stand-alone reproducing program at the moment.  Could you please try using
-> the head of the "UHD-3.14" branch?  We just tagged v3.14.1.1-rc1 with some
-> bug fixes, which we think should address the issue.  Please let me know
-> your results running with that, and we'll go from there.
->
-> --Neel Pandeya
->
-> Neel,
->
-> I saw the same behavior with the UHD-3.14 branch. I was able to take the
-> time to put together a self-contained reproducer; see the attached source
-> file. It's just a simple C++ program that initializes the USRP, streams a
-> few blocks of data in, and checks the timestamps of consecutive blocks for
-> continuity. When I run it, I see the following output:
->
-> [jasonr@host:~/test_uhd]$ LD_LIBRARY_PATH=~/git/sceptre/deps/lib
-> ./test_uhd
-> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106900;
-> UHD_3.14.1.HEAD-0-g98c7c986
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Maximum frame size: 8000 bytes.
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
-> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
-> 0xF1F0D00000000000)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1303 MB/s)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312 MB/s)
-> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
-> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
-> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
-> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
-> [WARNING] [X300] Cannot update master clock rate! X300 Series does not
-> allow changing the clock rate during runtime.
-> Block 1: 16384 samples @ 100 MSPS
->     Timestamp:           1.96557
-> Block 2: 16384 samples @ 100 MSPS
->     Timestamp:           1.9659
->     Last timestamp:      1.96557
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 3: 16384 samples @ 100 MSPS
->     Timestamp:           1.96622
->     Last timestamp:      1.9659
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 4: 16384 samples @ 100 MSPS
->     Timestamp:           1.96654
->     Last timestamp:      1.96622
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 5: 16384 samples @ 100 MSPS
->     Timestamp:           1.96687
->     Last timestamp:      1.96654
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 6: 16384 samples @ 100 MSPS
->     Timestamp:           1.96721
->     Last timestamp:      1.96687
->     Difference:          0.00034348
->     Expected difference: 0.00016384
-> Block 7: 16384 samples @ 100 MSPS
->     Timestamp:           1.96753
->     Last timestamp:      1.96721
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 8: 16384 samples @ 100 MSPS
->     Timestamp:           1.96786
->     Last timestamp:      1.96753
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 9: 16384 samples @ 100 MSPS
->     Timestamp:           1.96818
->     Last timestamp:      1.96786
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> Block 10: 16384 samples @ 100 MSPS
->     Timestamp:           1.96851
->     Last timestamp:      1.96818
->     Difference:          0.00032352
->     Expected difference: 0.00016384
-> [jasonr@gauss:~/git/sceptre/test/test_uhd]$
->
-> Thanks for your help.
->
-> Jason
->
-> Neel,
->
-> Have you been able to take a look at this further?
->
-> Jason
->
-
---0000000000008d7d1c059374b761
-Content-Type: text/html; charset="UTF-8"
+--_000_f8f84407bde942e199e079c598b33d34tudelftnl_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-family:verdana,sans-serif">Hello Jason:</div><div class=3D"gmail_default"=
- style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_def=
-ault" style=3D"font-family:verdana,sans-serif">My apologies for the delay. =
-We were super busy with GNU Radio Conference. Thanks for providing a stand-=
-alone test program. I&#39;ll try to reproduce this issue later today or tom=
-orrow, and I&#39;ll get back to you with an update.<br></div><div class=3D"=
-gmail_default" style=3D"font-family:verdana,sans-serif"><br></div><div clas=
-s=3D"gmail_default" style=3D"font-family:verdana,sans-serif">--Neel Pandeya=
-</div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"=
-><br></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-s=
-erif"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Tue, 3 Sep 2019 at 10:20, Jason Roehm &lt;<a href=3D"mai=
-lto:jasonr@3db-labs.com">jasonr@3db-labs.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <p><br>
-    </p>
-    <div>On 8/20/19 7:40 AM, Jason Roehm via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <p><br>
-      </p>
-      <div>On 8/19/19 6:52 PM, Neel Pandeya
-        wrote:<br>
-      </div>
-      <blockquote type=3D"cite">
-       =20
-        <div dir=3D"ltr">
-          <div style=3D"font-family:verdana,sans-serif">Hello Jason:</div>
-          <div style=3D"font-family:verdana,sans-serif"><br>
-          </div>
-          <div style=3D"font-family:verdana,sans-serif">Thanks for all the
-            detailed feedback!=C2=A0 No worries about not having a
-            stand-alone reproducing program at the moment.=C2=A0 Could you
-            please try using the head of the &quot;UHD-3.14&quot; branch?=
-=C2=A0 We just
-            tagged v3.14.1.1-rc1 with some bug fixes, which we think
-            should address the issue.=C2=A0 Please let me know your results
-            running with that, and we&#39;ll go from there.</div>
-          <div style=3D"font-family:verdana,sans-serif"><br>
-          </div>
-          <div style=3D"font-family:verdana,sans-serif">--Neel Pandeya</div=
->
-          <div style=3D"font-family:verdana,sans-serif"><br>
-          </div>
-        </div>
-      </blockquote>
-      <p>Neel,</p>
-      <p>I saw the same behavior with the UHD-3.14 branch. I was able to
-        take the time to put together a self-contained reproducer; see
-        the attached source file. It&#39;s just a simple C++ program that
-        initializes the USRP, streams a few blocks of data in, and
-        checks the timestamps of consecutive blocks for continuity. When
-        I run it, I see the following output:</p>
-      <p><tt>[jasonr@host:~/test_uhd]$
-          LD_LIBRARY_PATH=3D~/git/sceptre/deps/lib ./test_uhd </tt><tt><br>
-        </tt><tt>[INFO] [UHD] linux; GNU C++ version 7.4.0;
-          Boost_106900; UHD_3.14.1.HEAD-0-g98c7c986</tt><tt><br>
-        </tt><tt>[INFO] [X300] X300 initialization sequence...</tt><tt><br>
-        </tt><tt>[INFO] [X300] Maximum frame size: 8000 bytes.</tt><tt><br>
-        </tt><tt>[INFO] [X300] Radio 1x clock: 200 MHz</tt><tt><br>
-        </tt><tt>[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware
-          Rev 0.929a</tt><tt><br>
-        </tt><tt>[INFO] [0/DmaFIFO_0] Initializing block control (NOC
-          ID: 0xF1F0D00000000000)</tt><tt><br>
-        </tt><tt>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1303
-          MB/s)</tt><tt><br>
-        </tt><tt>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312
-          MB/s)</tt><tt><br>
-        </tt><tt>[INFO] [0/Radio_0] Initializing block control (NOC ID:
-          0x12AD100000000001)</tt><tt><br>
-        </tt><tt>[INFO] [0/Radio_1] Initializing block control (NOC ID:
-          0x12AD100000000001)</tt><tt><br>
-        </tt><tt>[INFO] [0/DDC_0] Initializing block control (NOC ID:
-          0xDDC0000000000000)</tt><tt><br>
-        </tt><tt>[INFO] [0/DDC_1] Initializing block control (NOC ID:
-          0xDDC0000000000000)</tt><tt><br>
-        </tt><tt>[INFO] [0/DUC_0] Initializing block control (NOC ID:
-          0xD0C0000000000000)</tt><tt><br>
-        </tt><tt>[INFO] [0/DUC_1] Initializing block control (NOC ID:
-          0xD0C0000000000000)</tt><tt><br>
-        </tt><tt>[WARNING] [X300] Cannot update master clock rate! X300
-          Series does not allow changing the clock rate during runtime.</tt=
-><tt><br>
-        </tt><tt>Block 1: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.96557</tt><tt><br>
-        </tt><tt>Block 2: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.9659</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Last timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 1.96557</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Difference:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.00032352</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Expected difference: 0.00016384</tt><tt=
-><br>
-        </tt><tt>Block 3: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.96622</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Last timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 1.9659</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Difference:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.00032352</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Expected difference: 0.00016384</tt><tt=
-><br>
-        </tt><tt>Block 4: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.96654</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Last timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 1.96622</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Difference:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.00032352</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Expected difference: 0.00016384</tt><tt=
-><br>
-        </tt><tt>Block 5: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.96687</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Last timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 1.96654</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Difference:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.00032352</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Expected difference: 0.00016384</tt><tt=
-><br>
-        </tt><tt>Block 6: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.96721</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Last timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 1.96687</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Difference:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.00034348</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Expected difference: 0.00016384</tt><tt=
-><br>
-        </tt><tt>Block 7: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.96753</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Last timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 1.96721</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Difference:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.00032352</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Expected difference: 0.00016384</tt><tt=
-><br>
-        </tt><tt>Block 8: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.96786</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Last timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 1.96753</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Difference:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.00032352</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Expected difference: 0.00016384</tt><tt=
-><br>
-        </tt><tt>Block 9: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.96818</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Last timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 1.96786</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Difference:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.00032352</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Expected difference: 0.00016384</tt><tt=
-><br>
-        </tt><tt>Block 10: 16384 samples @ 100 MSPS</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.96851</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Last timestamp:=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 1.96818</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Difference:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.00032352</tt><tt><br>
-        </tt><tt>=C2=A0=C2=A0=C2=A0 Expected difference: 0.00016384</tt><tt=
-><br>
-        </tt><tt>[jasonr@gauss:~/git/sceptre/test/test_uhd]$</tt><tt><br>
-        </tt></p>
-      <p>Thanks for your help.</p>
-      <p>Jason<br>
-      </p>
-    </blockquote>
-    <p>Neel,</p>
-    <p>Have you been able to take a look at this further?</p>
-    <p>Jason</p>
-  </div>
+Fabian,
+thanks for the suggestion I will try the solution
 
-</blockquote></div></div>
-
---0000000000008d7d1c059374b761--
+Daniel, I am using the CDA-2990 device from national instruments
 
 
---===============4867463749452969841==
+Marcus, Some feedbacks,
+
+     - what daughtercards are you using in your X310?
+
++=3D=3D> the UBX 10-6000 MHz Rx/Tx (160 MHz)
+
+     - what do you mean by "hardware block" -- RFNoC?   Is this a custom
+block?
+
++ =3D=3D> Yes custom CE
+     - Are you doing this with Gnu Radio or just UHD?
+
++=3D=3D> I am using both  (Python)
+
+     - What version of UHD are you running?
+
++=3D=3D> UHD 3.15.0.git-84-g164d76
+
+
+Best Regards
+
+Cherif
+
+
+
+
+
+--_000_f8f84407bde942e199e079c598b33d34tudelftnl_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
+r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFo=
+nt&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCo=
+lorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymb=
+ols;">
+<font size=3D"2">Fabian,</font></div>
+<div dir=3D"ltr" style=3D"font-size: 12pt; color: rgb(0, 0, 0); font-family=
+: Calibri, Helvetica, sans-serif, &quot;EmojiFont&quot;, &quot;Apple Color =
+Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Sym=
+bol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<font size=3D"2">thanks for the suggestion I will try the solution</font></=
+div>
+<div dir=3D"ltr" style=3D"font-size: 12pt; color: rgb(0, 0, 0); font-family=
+: Calibri, Helvetica, sans-serif, &quot;EmojiFont&quot;, &quot;Apple Color =
+Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Sym=
+bol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<font size=3D"2"><br>
+</font></div>
+<div dir=3D"ltr" style=3D"font-size: 12pt; color: rgb(0, 0, 0); font-family=
+: Calibri, Helvetica, sans-serif, &quot;EmojiFont&quot;, &quot;Apple Color =
+Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Sym=
+bol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<font size=3D"2">Daniel, I am using the CDA-2990 device from national instr=
+uments</font><br>
+<p><font size=3D"2"><span style=3D"font-size:10pt;"><br>
+</span></font></p>
+<p><font size=3D"2"><font size=3D"2"><span style=3D"font-size:10pt;">Marcus=
+</span></font>, Some feedbacks<span style=3D"font-size:10pt;">,
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; - what daughtercards are you using in your X310?</=
+span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;">&#43;=3D=3D&gt; the UBX=
+ 10-6000 MHz Rx/Tx (160 MHz)<br>
+</span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;">&nbsp;&nbsp;&nbsp;&nbsp=
+; - what do you mean by &quot;hardware block&quot; -- RFNoC?&nbsp;&nbsp; Is=
+ this a custom
+<br>
+block? <br>
+</span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;">&#43; =3D=3D&gt; Yes cu=
+stom CE<br>
+&nbsp;&nbsp;&nbsp;&nbsp; - Are you doing this with Gnu Radio or just UHD?</=
+span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;">&#43;=3D=3D&gt; I am us=
+ing both&nbsp; (Python)<br>
+</span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;">&nbsp;&nbsp;&nbsp;&nbsp=
+; - What version of UHD are you running?</span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;">&#43;<font size=3D"2"><=
+span style=3D"font-size:10pt;"><font size=3D"2">=3D=3D&gt; UHD 3.15.0.git-8=
+4-g164d76</font></span></font></span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2"><span =
+style=3D"font-size:10pt;"><font size=3D"2"><br>
+</font></span></font></span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2"><span =
+style=3D"font-size:10pt;"><font size=3D"2">Best Regards</font></span></font=
+></span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2"><span =
+style=3D"font-size:10pt;"><font size=3D"2">Cherif<br>
+</font></span></font></span></font></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;"></span></font></p>
+<div><font size=3D"2"><u></u><br>
+<br>
+</font></div>
+<font size=3D"2"><br>
+</font>
+<p></p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;"></span></font><br>
+</p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_f8f84407bde942e199e079c598b33d34tudelftnl_--
+
+
+--===============0472520904077837995==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -412,5 +224,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4867463749452969841==--
+--===============0472520904077837995==--
 
