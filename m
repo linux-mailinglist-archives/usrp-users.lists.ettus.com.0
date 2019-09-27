@@ -2,44 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12B8DC02D9
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Sep 2019 12:04:58 +0200 (CEST)
-Received: from [::1] (port=46578 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9911C0714
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Sep 2019 16:13:10 +0200 (CEST)
+Received: from [::1] (port=47168 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iDn7N-0006AG-9Y; Fri, 27 Sep 2019 06:04:53 -0400
-Received: from sidious.ihf.ing.tu-bs.de ([134.169.78.12]:41294)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <fabian.schwartau@ihf.tu-bs.de>)
- id 1iDn7J-00064F-6d
- for usrp-users@lists.ettus.com; Fri, 27 Sep 2019 06:04:49 -0400
-Received: from localhost (localhost [127.0.0.1])
- by sidious.ihf.ing.tu-bs.de (Postfix) with ESMTP id 467C283D2BB5
- for <usrp-users@lists.ettus.com>; Fri, 27 Sep 2019 12:04:07 +0200 (CEST)
-X-Virus-Scanned: by amavisd-new-2.10.1 (20141025) (Debian) at ihf.ing.tu-bs.de
-Received: from sidious.ihf.ing.tu-bs.de ([127.0.0.1])
- by localhost (sidious.ihf.ing.tu-bs.de [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id uJs1uhgjGiVj; Fri, 27 Sep 2019 12:04:06 +0200 (CEST)
-Received: from [134.169.78.184] (unknown [134.169.78.184])
- by sidious.ihf.ing.tu-bs.de (Postfix) with ESMTPSA id 85B2D83D2BB2
- for <usrp-users@lists.ettus.com>; Fri, 27 Sep 2019 12:04:06 +0200 (CEST)
-To: usrp-users@lists.ettus.com
-References: <4f9463d7bc9747498b2f2bda40f7b2ec@tudelft.nl>
- <512807eb-9b64-0580-3425-b6016754157a@ihf.tu-bs.de>
- <CA+Zwmn5tGM_i2Y-PtFAKiGtXY+9pMUMZ5LWV82bA8KnvpmHTTg@mail.gmail.com>
- <077ec45a-e337-8116-c1b3-e98c25432a24@ihf.tu-bs.de>
- <CA+Zwmn4GOcDzH62YDE69Q=DsMJQfUc504wThMXqz4kobKbR0pw@mail.gmail.com>
- <CA+Zwmn4WMG0ZRHYTZHjWbi0CTP_Omr7q12bxr6Lfm+-vYV7HRg@mail.gmail.com>
-Message-ID: <9415ae8e-4e2b-f44d-d722-3913d3788820@ihf.tu-bs.de>
-Date: Fri, 27 Sep 2019 12:04:04 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+	id 1iDqzW-00080N-HD; Fri, 27 Sep 2019 10:13:02 -0400
+Received: from mail-qt1-f177.google.com ([209.85.160.177]:37649)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <aaronmontilla86@gmail.com>)
+ id 1iDqzS-0007vX-Ir
+ for usrp-users@lists.ettus.com; Fri, 27 Sep 2019 10:12:58 -0400
+Received: by mail-qt1-f177.google.com with SMTP id l3so7456180qtr.4
+ for <usrp-users@lists.ettus.com>; Fri, 27 Sep 2019 07:12:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=Mb5ITVLiYuPI0FX7p2FiDc3zspl491K1gsNZtM2R7KY=;
+ b=BN9mBcKZjpmNBcv5JO4eNC+v9WeFryjapXVi6F0ngf7RSv0IVKam6HxHf50+/uAtxT
+ jsy7GsHnB4jL0CHPlPZD6emOWHbzeZs7GRE1/x1hQHt92dALD3HtxPH2hg6TDRYJtbdC
+ b58kCSlzTTHS4TU2vqKSW2GyJwtjFHJfwuGar1RaHGbZYxWE6JJMnrD04eqtSznP5F+z
+ ELyArQM8eup2ND36lEaIa3bB/4e52R2LEd5Vwc59bsJSQxprieMPhCVseHGLI7AhjbNo
+ g4xcPK8oygEO1zGr7m6WPZlY7uGKTeqKyWmnVD7pdeh3GFGdAlRoUfj+MwojVo62UHt3
+ /QJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=Mb5ITVLiYuPI0FX7p2FiDc3zspl491K1gsNZtM2R7KY=;
+ b=qZvcEciTS+/e9cbSsxyEfC8Qoc9Dkxx+6dVRD4iit4djy3yrKtq+0qMHejUgjX63jD
+ AOf2IGvnzwb5rgEMnVLjJ8MiPytVEgYfNYggHoDoissfDIxD+fntHsTILJB5vM05gf84
+ AbLqnmh/uwb7htNVYhQbpOjgWgsBU2JspOxmyepkCFmbOS2geRUpcBIAnAobxIRwhDpW
+ 9lYKAyurvEnWL7lcd9jeU7DE+vP0CdzZAc1GgffouGF0bzISANj1rMFrd1FyYJOHXmMS
+ lm2ii57WP+7tD/rcMi4bdjHRTOiELyhKdMkfCImKYpY5jvScYQD7zmNMGq8ITP7Jhqbb
+ RO0Q==
+X-Gm-Message-State: APjAAAWg435jsYUuGBifOi8d1ovc7IkSSci4G6UgIkqgU8nt4rSucHEs
+ FxW8fmReYs3alAhqBx8o89Zriy32W/O2/zf9PW9Wq8vozOgs3w==
+X-Google-Smtp-Source: APXvYqycYlVGzHV+qmhceJw5FLSJvxXtoQARpMJlkHZumOqwCjeLk6n09RMhXWoJEKtSLTRZ2Qn30Aipj/EowJMkmck=
+X-Received: by 2002:ac8:110d:: with SMTP id c13mr9907341qtj.209.1569593537760; 
+ Fri, 27 Sep 2019 07:12:17 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CA+Zwmn4WMG0ZRHYTZHjWbi0CTP_Omr7q12bxr6Lfm+-vYV7HRg@mail.gmail.com>
-X-Antivirus: AVG (VPS 190926-8, 26.09.2019), Outbound message
-X-Antivirus-Status: Clean
-Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
- signals/ X310
+Date: Fri, 27 Sep 2019 17:12:06 +0300
+Message-ID: <CAN8DKtL-c1cp--r=5uTc1em5=ZdA5fiM9Koz0fjCEZy5QUqFdg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] USRP X310 problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -51,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Fabian Schwartau via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Fabian Schwartau <fabian.schwartau@ihf.tu-bs.de>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Aaron Montilla via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Aaron Montilla <aaronmontilla86@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0969536229925508947=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -68,159 +71,76 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Tm8sIGl0IHdhcyBhIDMuM1YgQ01PUyB2YXJpYW50IG9mIHRoYXQgSUMuIEkgY2Fubm90IGZpZ3Vy
-ZSBpdCBvdXQgYXMgSSAKd291bGQgaGF2ZSB0byB0YWtlIHRoZSBoYXJkd2FyZSBhcGFydC4KCkFt
-IDI3LjA5LjIwMTkgdW0gMDk6MzAgc2NocmllYiBEYW5pZWwgSmVwc29uIHZpYSBVU1JQLXVzZXJz
-Ogo+IEZhYmlhbiwKPiAKPiBJIG5vdGljZWQgb24gdGhlwqBTTjc0TFMxMjVBIGRhdGFzaGVldCB0
-aGUgbWluaW11bSBpbnB1dCB2b2x0YWdlIGlzIAo+IDQuNzVWLiBJcyB0aGlzIHRoZSBjb3JyZWN0
-IHBhcnQgdGhhdCB5b3UncmUgdXNpbmc/Cj4gCj4gLURhbmllbAo+IAo+IE9uIEZyaSwgU2VwIDI3
-LCAyMDE5IGF0IDk6MjcgQU0gRGFuaWVsIEplcHNvbiA8ZGFuaWVsLmplcHNvbkBldHR1cy5jb20g
-Cj4gPG1haWx0bzpkYW5pZWwuamVwc29uQGV0dHVzLmNvbT4+IHdyb3RlOgo+IAo+ICAgICBUaGFu
-a3MgRmFiaWFuLiBBcyBsb25nIGFzIHRoZSBpbnB1dCBQUFMgaXMgZHJpdmVuIGJ5IHRoZSBzYW1l
-IFJlZkNsawo+ICAgICB0aGF0IGlzIHByb3ZpZGVkIHRvIHRoZSBYMzEwLCB0aGlzIHN5c3RlbSBz
-aG91bGQgYmUgb2suIFlvdSBtaWdodAo+ICAgICBhbHNvIGNvbnNpZGVyIGRyaXZpbmcgdGhlIFBQ
-UyBvbiB0aGUgZmFsbGluZyBlZGdlIG9mIHRoZSBSZWZDbGsgdG8KPiAgICAgZW5zdXJlIHRpbWlu
-ZyBpcyBtZXQgYXQgdGhlIFgzMTAuIFRoZXJlIGFyZSBzb21lIHRpbWluZyBjb25zdHJhaW50cwo+
-ICAgICBoZXJlIHRoYXQgbWlnaHQgYWZmZWN0IHBlcmZvcm1hbmNlLCBidXQgSSB3b3VsZG4ndCBl
-eHBlY3QgdG8gc2VlIGEKPiAgICAgMTAgbnMgc2hpZnQuCj4gCj4gICAgIC1EYW5pZWwKPiAKPiAg
-ICAgT24gVGh1LCBTZXAgMjYsIDIwMTkgYXQgMzoxOCBQTSBGYWJpYW4gU2Nod2FydGF1IHZpYSBV
-U1JQLXVzZXJzCj4gICAgIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOnVzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3JvdGU6Cj4gCj4gICAgICAgICBJdCBpcyBhIHNlbGYg
-YnVpbGQgZGV2aWNlIHVzaW5nIGEgNzRMUzEyNUQgYXMgYnVmZmVyLiBUaGUgbGV2ZWwKPiAgICAg
-ICAgIGlzIDMuM1YKPiAgICAgICAgIGRpZ2l0YWwuCj4gICAgICAgICBBcyB0aGVyZSB3ZXJlIG5v
-IHNwZWNpZmljYXRpb25zIGFyb3VuZCBmb3IgdGhlIHJlcXVpcmVkIGlucHV0Cj4gICAgICAgICBs
-ZXZlbHMgYXQKPiAgICAgICAgIHRoZSB0aW1lIHdlIG5lZWRlZCB0aGUgZGV2aWNlLCB3ZSBqdXN0
-IG1lYXN1cmVkIHRoZSBsZXZlbHMKPiAgICAgICAgIGNvbWluZyBmcm9tCj4gICAgICAgICB0aGUg
-MVBQUyBvdXRwdXQgYW5kIHJlcGxpY2F0ZWQgdGhlbS4KPiAKPiAgICAgICAgIEFtIDI2LjA5LjIw
-MTkgdW0gMTM6NTEgc2NocmllYiBEYW5pZWwgSmVwc29uIHZpYSBVU1JQLXVzZXJzOgo+ICAgICAg
-ICAgID4gSGkgRmFiaWFuLCBDaGVyaWYsCj4gICAgICAgICAgPgo+ICAgICAgICAgID4gV2hhdCBp
-cyB0aGUgZXh0ZXJuYWwgUFBTIGRldmljZSB5b3UgYXJlIHVzaW5nPwo+ICAgICAgICAgID4KPiAg
-ICAgICAgICA+IC1EYW5pZWwKPiAgICAgICAgICA+Cj4gICAgICAgICAgPiBPbiBUaHUsIFNlcCAy
-NiwgMjAxOSBhdCA5OjE4IEFNIEZhYmlhbiBTY2h3YXJ0YXUgdmlhIFVTUlAtdXNlcnMKPiAgICAg
-ICAgICA+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+ICAgICAgICAgPG1haWx0bzp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPiAgICAgICAgIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20KPiAgICAgICAgIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
-Pj4gd3JvdGU6Cj4gICAgICAgICAgPgo+ICAgICAgICAgID7CoCDCoCDCoEhpLAo+ICAgICAgICAg
-ID7CoCDCoCDCoEkgaGF2ZSB2ZXJ5IHNpbWlsYXIgcHJvYmxlbSB3aXRoIFgzMTAuIEkgYW0gcnVu
-bmluZyBhIEMrKwo+ICAgICAgICAgYXBwbGljYXRpb24sCj4gICAgICAgICAgPsKgIMKgIMKgc28g
-SSBoYXZlIGEgYml0IG1vcmUgZmxleGliaWxpdHkgSSBndWVzcy4gQWZ0ZXIgSSBkbyB0aGUKPiAg
-ICAgICAgICA+wqAgwqAgwqBzZXRfdGltZV91bmtub3duX3BwcyB0byBzeW5jIHRvIHRoZSAxUFBT
-IHNpZ25hbCwgSSBydW4KPiAgICAgICAgIHRoZSBmdW5jdGlvbgo+ICAgICAgICAgID7CoCDCoCDC
-oGdldF90aW1lX2xhc3RfcHBzIGFuZCBpdCBzb21ldGltZXMgaGFzIGFuIG9mZnNldCBvZiAxMG5z
-Cj4gICAgICAgICAoaXQgd2FzIDVucwo+ICAgICAgICAgID7CoCDCoCDCoGZvcgo+ICAgICAgICAg
-ID7CoCDCoCDCoGFuIG9sZCBmaXJtd2FyZSBkdWUgdG8gYSBidWcsIHdoaWNoIHdhcyBmaXhlZCBh
-IGZldyB3ZWVrcwo+ICAgICAgICAgYWdvKS4gSWYgdGhhdAo+ICAgICAgICAgID7CoCDCoCDCoGlz
-IHRoZSBjYXNlIEkganVzdCBkbyB0aGUgc3luYyBhZ2FpbiB1bnRpbCB0aGUgb2Zmc2V0IGlzCj4g
-ICAgICAgICB6ZXJvLgo+ICAgICAgICAgID7CoCDCoCDCoEkgZG9uJ3Qga25vdyBpZiBpdCBpcyBh
-biBmaXJtYXdyZSBwcm9ibGVtIG9yIGlmIGl0IGlzCj4gICAgICAgICBiZWNhdXNlIHRoZQo+ICAg
-ICAgICAgID7CoCDCoCDCoHNpZ25hbAo+ICAgICAgICAgID7CoCDCoCDCoGludGVncmV0eSBvZiB0
-aGUgMVBQUyBzaWduYWwgaXMgbm90IGdvb2QgZW5vdWdoLgo+ICAgICAgICAgID7CoCDCoCDCoE1h
-eWJlIHRoYXQgaXMgYWxzbyBhIHNvbHV0aW9uIGZvciB5b3UuCj4gICAgICAgICAgPsKgIMKgIMKg
-QmVzdCByZWdhcmRzLAo+ICAgICAgICAgID7CoCDCoCDCoEZhYmlhbgo+ICAgICAgICAgID4KPiAg
-ICAgICAgICA+wqAgwqAgwqBBbSAyNS4wOS4yMDE5IHVtIDExOjE2IHNjaHJpZWIgQ2hlcmlmIERp
-b3VmIHZpYSBVU1JQLXVzZXJzOgo+ICAgICAgICAgID7CoCDCoCDCoCA+IEhlbGxvLAo+ICAgICAg
-ICAgID7CoCDCoCDCoCA+IEkgYW0gd29ya2luZyB3aXRoIHRoZSBYMzEwIFVTUlAuIEkgaGF2ZSB0
-d28gaWRlbnRpY2FsCj4gICAgICAgICBjdXN0b20gYmxvY2tzCj4gICAgICAgICAgPsKgIMKgIMKg
-ID4gZmVlZGluZyB0aGUgUkYgZnJvbnRlbmRzLgo+ICAgICAgICAgID7CoCDCoCDCoCA+Cj4gICAg
-ICAgICAgPsKgIMKgIMKgID4gZmxvd2NoYXJ0Cj4gICAgICAgICAgPsKgIMKgIMKgID4gLS0tLS0t
-LS0tLS0tLS0tLS0KPiAgICAgICAgICA+wqAgwqAgwqAgPiBIVyBCbG9jazEgLT4gUkYwLVRYMSB8
-LS0tPAo+ICAgICAgICAgID7CoCDCoCDCoCA+IEhXIEJsb2NrMiAtPiBSRjEtVFgxIHwtLS08Cj4g
-ICAgICAgICAgPsKgIMKgIMKgID4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBUaGUgc3lzdGVtIGlz
-IHN5bmNocm9uaXplZCB0byBhbiBleHRlcm5hbCBQUFMKPiAgICAgICAgIHJlZmVyZW5jZS4gVGhl
-Cj4gICAgICAgICAgPsKgIMKgIMKgc2FtcGxpbmcKPiAgICAgICAgICA+wqAgwqAgwqAgPiByYXRl
-IGlzIDIwMCBNU3BzIGFuZCB0aGUgc2lnbmFsIGJhbmR3aWR0aCBpcyAxNjAgTUh6Cj4gICAgICAg
-ICBmb3IgYm90aAo+ICAgICAgICAgID7CoCDCoCDCoGNoYW5uZWxzLgo+ICAgICAgICAgID7CoCDC
-oCDCoCA+IFRoZSB0d28gSFcgYmxvY2tzIHN0YXJ0wqAgdHJhbnNtaXR0aW5nIGF0IHRoZSBleGFj
-dGx5Cj4gICAgICAgICBzYW1lIHRpbWUuIFRpbWUKPiAgICAgICAgICA+wqAgwqAgwqAgPiByZXNv
-bHV0aW9uIGlzIDVucy4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBJbiBtb3N0IGNhc2VzIHRoZSB0
-d28gb3V0Z29pbmcgUkYgc2lnbmFscyBwcmVzZW50IGEKPiAgICAgICAgIDFucyB0aW1lIG9mZnNl
-dC4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBXaGljaCBjYW4gYmUgdW5kZXJzdG9vZCBhcyBhIHBo
-YXNlIG9mZnNldC4KPiAgICAgICAgICA+wqAgwqAgwqAgPgo+ICAgICAgICAgID7CoCDCoCDCoCA+
-IEJ1dCBGcm9tIHRpbWUgdG8gdGltZSB0aGVyZSBpcyBhIDZucyBkZWxheSBiZXR3ZWVuIHRoZQo+
-ICAgICAgICAgY2hhbm5lbHMuIEkKPiAgICAgICAgICA+wqAgwqAgwqAgPiBhc3N1bWUgdGhpcyA2
-bnMgY29tcHJpc2VzIHRoZSAxbnMgZGVsYXkgZHVlIHRvIHBoYXNlCj4gICAgICAgICBvZmZzZXQg
-KyA1Cj4gICAgICAgICAgPsKgIMKgIMKgbnMgZGVsYXkKPiAgICAgICAgICA+wqAgwqAgwqAgPiBk
-dWUgdG8gbWlzYWxpZ25tZW50IG9mIG91dGdvaW5nIHNhbXBsZXMuCj4gICAgICAgICAgPsKgIMKg
-IMKgID4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBXaGF0IGNvdWxkIGJlIHRoZSBvcmlnaW4gb2Yg
-dGhpcyBvbmUgc2FtcGxlCj4gICAgICAgICBtaXNhbGlnbmVtZW50PyBJcyBpdAo+ICAgICAgICAg
-ID7CoCDCoCDCoGEgd2F5Cj4gICAgICAgICAgPsKgIMKgIMKgID4gdG8gZml4IGl0PyBPciB3b3Jr
-aW5nIGNsb3NlIHRvIHRoZSBsaW1pdHMgb2YgdGhlCj4gICAgICAgICBkZXZpY2Ugc2hvdWxkIHN1
-Y2gKPiAgICAgICAgICA+wqAgwqAgwqAgPiBiZWhhdmlvciBiZSBleHBlY3RlZD8KPiAgICAgICAg
-ICA+wqAgwqAgwqAgPgo+ICAgICAgICAgID7CoCDCoCDCoCA+IFRoYW5rcyBpbiBhZHZhbmNlCj4g
-ICAgICAgICAgPsKgIMKgIMKgID4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBCZXN0IFJlZ2FyZHMK
-PiAgICAgICAgICA+wqAgwqAgwqAgPiBDaGVyaWYKPiAgICAgICAgICA+wqAgwqAgwqAgPgo+ICAg
-ICAgICAgID7CoCDCoCDCoCA+Cj4gICAgICAgICAgPsKgIMKgIMKgID4gX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiAgICAgICAgICA+wqAgwqAgwqAgPiBV
-U1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+ICAgICAgICAgID7CoCDCoCDCoCA+IFVTUlAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tCj4gICAgICAgICA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tPgo+ICAgICAgICAgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+ICAgICAg
-ICAgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+Cj4gICAgICAgICAgPsKgIMKg
-IMKgID4KPiAgICAgICAgIGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
-c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+ICAgICAgICAgID7CoCDCoCDCoCA+Cj4gICAgICAg
-ICAgPgo+ICAgICAgICAgID7CoCDCoCDCoC0tCj4gICAgICAgICAgPsKgIMKgIMKgLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KPiAgICAgICAgICA+wqAg
-wqAgwqBNLi1TYy4gRmFiaWFuIFNjaHdhcnRhdQo+ICAgICAgICAgID7CoCDCoCDCoFRlY2huaXNj
-aGUgVW5pdmVyc2l0w6R0IEJyYXVuc2Nod2VpZwo+ICAgICAgICAgID7CoCDCoCDCoEluc3RpdHV0
-IGbDvHIgSG9jaGZyZXF1ZW56dGVjaG5pawo+ICAgICAgICAgID7CoCDCoCDCoFNjaGxlaW5pdHpz
-dHIuIDIyCj4gICAgICAgICAgPsKgIMKgIMKgMzgxMDYgQnJhdW5zY2h3ZWlnCj4gICAgICAgICAg
-PsKgIMKgIMKgR2VybWFueQo+ICAgICAgICAgID4KPiAgICAgICAgICA+wqAgwqAgwqBUZWwuOsKg
-IMKgKzQ5LSgwKTUzMS0zOTEtMjAxNwo+ICAgICAgICAgID7CoCDCoCDCoEZheDrCoCDCoCArNDkt
-KDApNTMxLTM5MS0yMDQ1Cj4gICAgICAgICAgPsKgIMKgIMKgRW1haWw6IGZhYmlhbi5zY2h3YXJ0
-YXVAaWhmLnR1LWJzLmRlCj4gICAgICAgICA8bWFpbHRvOmZhYmlhbi5zY2h3YXJ0YXVAaWhmLnR1
-LWJzLmRlPgo+ICAgICAgICAgID7CoCDCoCDCoDxtYWlsdG86ZmFiaWFuLnNjaHdhcnRhdUBpaGYu
-dHUtYnMuZGUKPiAgICAgICAgIDxtYWlsdG86ZmFiaWFuLnNjaHdhcnRhdUBpaGYudHUtYnMuZGU+
-Pgo+ICAgICAgICAgID7CoCDCoCDCoFdXVzogaHR0cDovL3d3dy50dS1icmF1bnNjaHdlaWcuZGUv
-aWhmCj4gICAgICAgICAgPsKgIMKgIMKgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0KPiAgICAgICAgICA+Cj4gICAgICAgICAgPsKgIMKgIMKgX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiAgICAgICAgICA+wqAg
-wqAgwqBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+ICAgICAgICAgID4gVVNSUC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20KPiAgICAgICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
-Cj4gICAgICAgICA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gICAgICAgICA8
-bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4KPiAgICAgICAgICA+Cj4gICAgICAg
-ICBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0
-cy5ldHR1cy5jb20KPiAgICAgICAgICA+Cj4gICAgICAgICAgPgo+ICAgICAgICAgID4KPiAgICAg
-ICAgICA+IC0tCj4gICAgICAgICAgPgo+ICAgICAgICAgID4gRGFuaWVsIEplcHNvbgo+ICAgICAg
-ICAgID4KPiAgICAgICAgICA+IERpZ2l0YWwgSGFyZHdhcmUgRW5naW5lZXIKPiAgICAgICAgICA+
-Cj4gICAgICAgICAgPiBOYXRpb25hbCBJbnN0cnVtZW50cwo+ICAgICAgICAgID4KPiAgICAgICAg
-ICA+IE86ICsxLjUxMi42ODMuNjE2Mwo+ICAgICAgICAgID4KPiAgICAgICAgICA+IGRhbmllbC5q
-ZXBzb25AbmkuY29tIDxtYWlsdG86ZGFuaWVsLmplcHNvbkBuaS5jb20+Cj4gICAgICAgICA8bWFp
-bHRvOmRhbmllbC5qZXBzb25AbmkuY29tIDxtYWlsdG86ZGFuaWVsLmplcHNvbkBuaS5jb20+Pgo+
-ICAgICAgICAgID4KPiAgICAgICAgICA+Cj4gICAgICAgICAgPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ICAgICAgICAgID4gVVNSUC11c2VycyBtYWls
-aW5nIGxpc3QKPiAgICAgICAgICA+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxtYWlsdG86
-VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4gICAgICAgICAgPgo+ICAgICAgICAgaHR0cDov
-L2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMu
-Y29tCj4gICAgICAgICAgPgo+IAo+ICAgICAgICAgLS0gCj4gICAgICAgICAtLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ICAgICAgICAgTS4tU2MuIEZh
-YmlhbiBTY2h3YXJ0YXUKPiAgICAgICAgIFRlY2huaXNjaGUgVW5pdmVyc2l0w6R0IEJyYXVuc2No
-d2VpZwo+ICAgICAgICAgSW5zdGl0dXQgZsO8ciBIb2NoZnJlcXVlbnp0ZWNobmlrCj4gICAgICAg
-ICBTY2hsZWluaXR6c3RyLiAyMgo+ICAgICAgICAgMzgxMDYgQnJhdW5zY2h3ZWlnCj4gICAgICAg
-ICBHZXJtYW55Cj4gCj4gICAgICAgICBUZWwuOsKgIMKgKzQ5LSgwKTUzMS0zOTEtMjAxNwo+ICAg
-ICAgICAgRmF4OsKgIMKgICs0OS0oMCk1MzEtMzkxLTIwNDUKPiAgICAgICAgIEVtYWlsOiBmYWJp
-YW4uc2Nod2FydGF1QGloZi50dS1icy5kZQo+ICAgICAgICAgPG1haWx0bzpmYWJpYW4uc2Nod2Fy
-dGF1QGloZi50dS1icy5kZT4KPiAgICAgICAgIFdXVzogaHR0cDovL3d3dy50dS1icmF1bnNjaHdl
-aWcuZGUvaWhmCj4gICAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQo+IAo+ICAgICAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KPiAgICAgICAgIFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gICAg
-ICAgICBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPgo+ICAgICAgICAgaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
-bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCj4gCj4gCj4gICAgIC0tIAo+IAo+ICAg
-ICBEYW5pZWwgSmVwc29uCj4gCj4gICAgIERpZ2l0YWwgSGFyZHdhcmUgRW5naW5lZXIKPiAKPiAg
-ICAgTmF0aW9uYWwgSW5zdHJ1bWVudHMKPiAKPiAgICAgTzogKzEuNTEyLjY4My42MTYzCj4gCj4g
-ICAgIGRhbmllbC5qZXBzb25AbmkuY29tIDxtYWlsdG86ZGFuaWVsLmplcHNvbkBuaS5jb20+Cj4g
-Cj4gCj4gCj4gLS0gCj4gCj4gRGFuaWVsIEplcHNvbgo+IAo+IERpZ2l0YWwgSGFyZHdhcmUgRW5n
-aW5lZXIKPiAKPiBOYXRpb25hbCBJbnN0cnVtZW50cwo+IAo+IE86ICsxLjUxMi42ODMuNjE2Mwo+
-IAo+IGRhbmllbC5qZXBzb25AbmkuY29tIDxtYWlsdG86ZGFuaWVsLmplcHNvbkBuaS5jb20+Cj4g
-Cj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBV
-U1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0
-cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0
-dXMuY29tCj4gCgotLSAKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0KTS4tU2MuIEZhYmlhbiBTY2h3YXJ0YXUKVGVjaG5pc2NoZSBVbml2ZXJzaXTDpHQg
-QnJhdW5zY2h3ZWlnCkluc3RpdHV0IGbDvHIgSG9jaGZyZXF1ZW56dGVjaG5pawpTY2hsZWluaXR6
-c3RyLiAyMgozODEwNiBCcmF1bnNjaHdlaWcKR2VybWFueQoKVGVsLjogICArNDktKDApNTMxLTM5
-MS0yMDE3CkZheDogICAgKzQ5LSgwKTUzMS0zOTEtMjA0NQpFbWFpbDogIGZhYmlhbi5zY2h3YXJ0
-YXVAaWhmLnR1LWJzLmRlCldXVzogICAgaHR0cDovL3d3dy50dS1icmF1bnNjaHdlaWcuZGUvaWhm
-Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1h
-aWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMu
-Y29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============0969536229925508947==
+Content-Type: multipart/alternative; boundary="00000000000042925a05938979ef"
+
+--00000000000042925a05938979ef
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+I am trying to set the connection between my PC and my USRP X310.
+I ran the command uhd_find_devices, and successfully it found the USRP.
+Then I use the uhd_usrp_probe command and I had the next error:
+aaron@leonard:~$ uhd_usrp_probe
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+UHD_3.15.0.git-71-g18bc320d
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 1472 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D00000000000)
+[ERROR] [0/DmaFIFO_0] Major compat number mismatch for noc_shell: Expecting
+6, got 5.
+Error: RuntimeError: FPGA component `noc_shell' is revision 5 and UHD
+supports revision 6. Please either upgrade the FPGA image (recommended) or
+downgrade UHD.
+
+I thought that upgrade the USRP was the best option, but when I try, I have
+another error saying that the size of the image is too large ( only for 1
+byte). I also read that I had to use the .bin file but I didn't have any.
+So, could you please tell me what I could do?
+
+Thank you very much in advance.
+Kind regards,
+Aaron
+
+--00000000000042925a05938979ef
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div>I am trying to set the connection betwe=
+en my PC and my USRP X310. <br></div><div>I ran the command uhd_find_device=
+s, and successfully it found the USRP. Then I use the uhd_usrp_probe comman=
+d and I had the next error:</div><div>aaron@leonard:~$ uhd_usrp_probe<br>[I=
+NFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.15.0.git-71-g1=
+8bc320d<br>[INFO] [X300] X300 initialization sequence...<br>[INFO] [X300] M=
+aximum frame size: 1472 bytes.<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>=
+[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a<br>[INFO] =
+[0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D00000000000)<br>[E=
+RROR] [0/DmaFIFO_0] Major compat number mismatch for noc_shell: Expecting 6=
+, got 5.<br>Error: RuntimeError: FPGA component `noc_shell&#39; is revision=
+ 5 and UHD supports revision 6. Please either upgrade the FPGA image (recom=
+mended) or downgrade UHD.</div><div><br></div><div>I thought that upgrade t=
+he USRP was the best option, but when I try, I have another error saying th=
+at the size of the image is too large ( only for 1 byte). I also read that =
+I had to use the .bin file but I didn&#39;t have any. <br></div><div>So, co=
+uld you please tell me what I could do?</div><div><br></div><div>Thank you =
+very much in advance.</div><div>Kind regards,</div><div>Aaron<br></div></di=
+v>
+
+--00000000000042925a05938979ef--
+
+
+--===============0969536229925508947==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0969536229925508947==--
+
