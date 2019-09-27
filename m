@@ -2,56 +2,42 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B77C0011
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Sep 2019 09:31:52 +0200 (CEST)
-Received: from [::1] (port=38896 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B8DC02D9
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Sep 2019 12:04:58 +0200 (CEST)
+Received: from [::1] (port=46578 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iDkjH-0003Y1-Os; Fri, 27 Sep 2019 03:31:51 -0400
-Received: from mail-ed1-f50.google.com ([209.85.208.50]:46216)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <daniel.jepson@ettus.com>)
- id 1iDkjD-0003Py-He
- for usrp-users@lists.ettus.com; Fri, 27 Sep 2019 03:31:47 -0400
-Received: by mail-ed1-f50.google.com with SMTP id t3so1415380edw.13
- for <usrp-users@lists.ettus.com>; Fri, 27 Sep 2019 00:31:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=SGMedYpPskltnWAveRxjVB0mR2BRtqdHQsUmGzfQX1w=;
- b=xZQ9PK4ySb7Lat6xGYqxI52u65ZfAvnIKdh7nHY7tFyfDR8zCyxSG6CmvoMxyLN1eC
- 46RGXtFlKeRvJsSp2vQQDMzFStZy4QtDnsjvStB3zybtN2S+NqPMu5aZD+cBtNSoi9zN
- TK5Gxxo8sfblK3LmUjw+lxbcd7EK8qPknVdMdEqd3hnsosqe3UTj/Nlk17Q2SbqEhZLa
- AbaKs1YVb9HvU2YbOszu20IPnRxfcdFqoH/pEnIe8v1upb/cyOx/Fo6+IKSwFq6Nr5DP
- Rk2TPpMiYOkkFj+wvggJ6U8bdvocXKTFi/S+d4o/2LIXZ5LTme1bO+WiIxolEO0awF6s
- 0iIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=SGMedYpPskltnWAveRxjVB0mR2BRtqdHQsUmGzfQX1w=;
- b=kRO2xePprETyHbcyZw4cVR+SQU9GA/gj6IwpvCODhP5BhXTjXOEzNO+UsGZ/Rq8lgA
- eJ7rVcwkensqH33kl30Lae+c8n/B/vCqwKdLCMiM3VLpo9j5tcqqbiP8Ai5iVLS/W2Fr
- LKN8HmJSW+cnFvwRBeWajWQsfxNBZfRlPjP6KbuemWliEfYpRPrcMOUesNjfttAX7gFZ
- zdfGtVS+0IL5u9b4Zrqy1WOCQ1KQRsoplHdbF+IwIAvDrBelO2FHgGB9CKthiRnPHk4v
- zI8PaBtFpBrdUfw+2ZIwRUwrOltk9C0vQso/Arvg9Vnmdlbc187DkqUqyEP7AR6+wrss
- JsUQ==
-X-Gm-Message-State: APjAAAUpN94QK5w4xiUah7knMK2diy1YtKkh/M8xVPFFml8QZyOACUgs
- yZgcQ1UMuhLWjGUKCAHMBL9JAwlJxkI38+t7lvhh713ohASOHnMF
-X-Google-Smtp-Source: APXvYqzjRO3JUIbqeZnAt7IVdbakIDNj8TaBAmD6iN20gKT31a5acF0HS73Vk0Q+NqQEnWsaMGzPHDgFVemvR9Ivk2M=
-X-Received: by 2002:a17:906:fc2:: with SMTP id
- c2mr6497880ejk.261.1569569465853; 
- Fri, 27 Sep 2019 00:31:05 -0700 (PDT)
-MIME-Version: 1.0
+	id 1iDn7N-0006AG-9Y; Fri, 27 Sep 2019 06:04:53 -0400
+Received: from sidious.ihf.ing.tu-bs.de ([134.169.78.12]:41294)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <fabian.schwartau@ihf.tu-bs.de>)
+ id 1iDn7J-00064F-6d
+ for usrp-users@lists.ettus.com; Fri, 27 Sep 2019 06:04:49 -0400
+Received: from localhost (localhost [127.0.0.1])
+ by sidious.ihf.ing.tu-bs.de (Postfix) with ESMTP id 467C283D2BB5
+ for <usrp-users@lists.ettus.com>; Fri, 27 Sep 2019 12:04:07 +0200 (CEST)
+X-Virus-Scanned: by amavisd-new-2.10.1 (20141025) (Debian) at ihf.ing.tu-bs.de
+Received: from sidious.ihf.ing.tu-bs.de ([127.0.0.1])
+ by localhost (sidious.ihf.ing.tu-bs.de [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id uJs1uhgjGiVj; Fri, 27 Sep 2019 12:04:06 +0200 (CEST)
+Received: from [134.169.78.184] (unknown [134.169.78.184])
+ by sidious.ihf.ing.tu-bs.de (Postfix) with ESMTPSA id 85B2D83D2BB2
+ for <usrp-users@lists.ettus.com>; Fri, 27 Sep 2019 12:04:06 +0200 (CEST)
+To: usrp-users@lists.ettus.com
 References: <4f9463d7bc9747498b2f2bda40f7b2ec@tudelft.nl>
  <512807eb-9b64-0580-3425-b6016754157a@ihf.tu-bs.de>
  <CA+Zwmn5tGM_i2Y-PtFAKiGtXY+9pMUMZ5LWV82bA8KnvpmHTTg@mail.gmail.com>
  <077ec45a-e337-8116-c1b3-e98c25432a24@ihf.tu-bs.de>
  <CA+Zwmn4GOcDzH62YDE69Q=DsMJQfUc504wThMXqz4kobKbR0pw@mail.gmail.com>
-In-Reply-To: <CA+Zwmn4GOcDzH62YDE69Q=DsMJQfUc504wThMXqz4kobKbR0pw@mail.gmail.com>
-Date: Fri, 27 Sep 2019 09:30:54 +0200
-Message-ID: <CA+Zwmn4WMG0ZRHYTZHjWbi0CTP_Omr7q12bxr6Lfm+-vYV7HRg@mail.gmail.com>
-To: Usrp Users <usrp-users@lists.ettus.com>
+ <CA+Zwmn4WMG0ZRHYTZHjWbi0CTP_Omr7q12bxr6Lfm+-vYV7HRg@mail.gmail.com>
+Message-ID: <9415ae8e-4e2b-f44d-d722-3913d3788820@ihf.tu-bs.de>
+Date: Fri, 27 Sep 2019 12:04:04 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <CA+Zwmn4WMG0ZRHYTZHjWbi0CTP_Omr7q12bxr6Lfm+-vYV7HRg@mail.gmail.com>
+X-Antivirus: AVG (VPS 190926-8, 26.09.2019), Outbound message
+X-Antivirus-Status: Clean
 Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
  signals/ X310
 X-BeenThere: usrp-users@lists.ettus.com
@@ -65,9 +51,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Daniel Jepson via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Daniel Jepson <daniel.jepson@ettus.com>
-Content-Type: multipart/mixed; boundary="===============2955554098762003416=="
+From: Fabian Schwartau via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Fabian Schwartau <fabian.schwartau@ihf.tu-bs.de>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -81,463 +68,159 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2955554098762003416==
-Content-Type: multipart/alternative; boundary="00000000000076859b059383de5e"
-
---00000000000076859b059383de5e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Fabian,
-
-I noticed on the SN74LS125A datasheet the minimum input voltage is 4.75V.
-Is this the correct part that you're using?
-
--Daniel
-
-On Fri, Sep 27, 2019 at 9:27 AM Daniel Jepson <daniel.jepson@ettus.com>
-wrote:
-
-> Thanks Fabian. As long as the input PPS is driven by the same RefClk that
-> is provided to the X310, this system should be ok. You might also conside=
-r
-> driving the PPS on the falling edge of the RefClk to ensure timing is met
-> at the X310. There are some timing constraints here that might affect
-> performance, but I wouldn't expect to see a 10 ns shift.
->
-> -Daniel
->
-> On Thu, Sep 26, 2019 at 3:18 PM Fabian Schwartau via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> It is a self build device using a 74LS125D as buffer. The level is 3.3V
->> digital.
->> As there were no specifications around for the required input levels at
->> the time we needed the device, we just measured the levels coming from
->> the 1PPS output and replicated them.
->>
->> Am 26.09.2019 um 13:51 schrieb Daniel Jepson via USRP-users:
->> > Hi Fabian, Cherif,
->> >
->> > What is the external PPS device you are using?
->> >
->> > -Daniel
->> >
->> > On Thu, Sep 26, 2019 at 9:18 AM Fabian Schwartau via USRP-users
->> > <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote=
-:
->> >
->> >     Hi,
->> >     I have very similar problem with X310. I am running a C++
->> application,
->> >     so I have a bit more flexibility I guess. After I do the
->> >     set_time_unknown_pps to sync to the 1PPS signal, I run the functio=
-n
->> >     get_time_last_pps and it sometimes has an offset of 10ns (it was 5=
-ns
->> >     for
->> >     an old firmware due to a bug, which was fixed a few weeks ago). If
->> that
->> >     is the case I just do the sync again until the offset is zero.
->> >     I don't know if it is an firmawre problem or if it is because the
->> >     signal
->> >     integrety of the 1PPS signal is not good enough.
->> >     Maybe that is also a solution for you.
->> >     Best regards,
->> >     Fabian
->> >
->> >     Am 25.09.2019 um 11:16 schrieb Cherif Diouf via USRP-users:
->> >      > Hello,
->> >      > I am working with the X310 USRP. I have two identical custom
->> blocks
->> >      > feeding the RF frontends.
->> >      >
->> >      > flowchart
->> >      > -----------------
->> >      > HW Block1 -> RF0-TX1 |---<
->> >      > HW Block2 -> RF1-TX1 |---<
->> >      >
->> >      > The system is synchronized to an external PPS reference. The
->> >     sampling
->> >      > rate is 200 MSps and the signal bandwidth is 160 MHz for both
->> >     channels.
->> >      > The two HW blocks start  transmitting at the exactly same time.
->> Time
->> >      > resolution is 5ns.
->> >      > In most cases the two outgoing RF signals present a 1ns time
->> offset.
->> >      > Which can be understood as a phase offset.
->> >      >
->> >      > But From time to time there is a 6ns delay between the channels=
-.
->> I
->> >      > assume this 6ns comprises the 1ns delay due to phase offset + 5
->> >     ns delay
->> >      > due to misalignment of outgoing samples.
->> >      >
->> >      > What could be the origin of this one sample misalignement? Is i=
-t
->> >     a way
->> >      > to fix it? Or working close to the limits of the device should
->> such
->> >      > behavior be expected?
->> >      >
->> >      > Thanks in advance
->> >      >
->> >      > Best Regards
->> >      > Cherif
->> >      >
->> >      >
->> >      > _______________________________________________
->> >      > USRP-users mailing list
->> >      > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->> >      >
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> >      >
->> >
->> >     --
->> >     --------------------------------------------------
->> >     M.-Sc. Fabian Schwartau
->> >     Technische Universit=C3=A4t Braunschweig
->> >     Institut f=C3=BCr Hochfrequenztechnik
->> >     Schleinitzstr. 22
->> >     38106 Braunschweig
->> >     Germany
->> >
->> >     Tel.:   +49-(0)531-391-2017
->> >     Fax:    +49-(0)531-391-2045
->> >     Email: fabian.schwartau@ihf.tu-bs.de
->> >     <mailto:fabian.schwartau@ihf.tu-bs.de>
->> >     WWW: http://www.tu-braunschweig.de/ihf
->> >     --------------------------------------------------
->> >
->> >     _______________________________________________
->> >     USRP-users mailing list
->> >     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->> >     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> >
->> >
->> >
->> > --
->> >
->> > Daniel Jepson
->> >
->> > Digital Hardware Engineer
->> >
->> > National Instruments
->> >
->> > O: +1.512.683.6163
->> >
->> > daniel.jepson@ni.com <mailto:daniel.jepson@ni.com>
->> >
->> >
->> > _______________________________________________
->> > USRP-users mailing list
->> > USRP-users@lists.ettus.com
->> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> >
->>
->> --
->> --------------------------------------------------
->> M.-Sc. Fabian Schwartau
->> Technische Universit=C3=A4t Braunschweig
->> Institut f=C3=BCr Hochfrequenztechnik
->> Schleinitzstr. 22
->> 38106 Braunschweig
->> Germany
->>
->> Tel.:   +49-(0)531-391-2017
->> Fax:    +49-(0)531-391-2045
->> Email:  fabian.schwartau@ihf.tu-bs.de
->> WWW:    http://www.tu-braunschweig.de/ihf
->> --------------------------------------------------
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
->
-> --
->
-> Daniel Jepson
->
-> Digital Hardware Engineer
->
-> National Instruments
->
->
->
-> O: +1.512.683.6163
->
-> daniel.jepson@ni.com
->
-
-
---=20
-
-Daniel Jepson
-
-Digital Hardware Engineer
-
-National Instruments
-
-
-
-O: +1.512.683.6163
-
-daniel.jepson@ni.com
-
---00000000000076859b059383de5e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Fabian,<div><br></div><div>I noticed on the=C2=A0SN74LS125=
-A datasheet the minimum input voltage is 4.75V. Is this the correct part th=
-at you&#39;re using?</div><div><br></div><div>-Daniel</div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 27, =
-2019 at 9:27 AM Daniel Jepson &lt;<a href=3D"mailto:daniel.jepson@ettus.com=
-">daniel.jepson@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex"><div dir=3D"ltr">Thanks Fabian. As long as the inp=
-ut PPS is driven by the same RefClk that is provided to the X310, this syst=
-em should be ok. You might also consider driving the PPS on the falling edg=
-e of the RefClk to ensure timing is met at the X310. There are some timing =
-constraints here that might affect performance, but I wouldn&#39;t expect t=
-o see a 10 ns shift.<div><br></div><div>-Daniel</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Sep 26, 2019=
- at 3:18 PM Fabian Schwartau via USRP-users &lt;<a href=3D"mailto:usrp-user=
-s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">It is a self=
- build device using a 74LS125D as buffer. The level is 3.3V <br>
-digital.<br>
-As there were no specifications around for the required input levels at <br=
->
-the time we needed the device, we just measured the levels coming from <br>
-the 1PPS output and replicated them.<br>
-<br>
-Am 26.09.2019 um 13:51 schrieb Daniel Jepson via USRP-users:<br>
-&gt; Hi Fabian, Cherif,<br>
-&gt; <br>
-&gt; What is the external PPS device you are using?<br>
-&gt; <br>
-&gt; -Daniel<br>
-&gt; <br>
-&gt; On Thu, Sep 26, 2019 at 9:18 AM Fabian Schwartau via USRP-users <br>
-&gt; &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">us=
-rp-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mailto:usrp-users@lists.=
-ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;&gt; wrote:<=
-br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Hi,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0I have very similar problem with X310. I am running=
- a C++ application,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0so I have a bit more flexibility I guess. After I d=
-o the<br>
-&gt;=C2=A0 =C2=A0 =C2=A0set_time_unknown_pps to sync to the 1PPS signal, I =
-run the function<br>
-&gt;=C2=A0 =C2=A0 =C2=A0get_time_last_pps and it sometimes has an offset of=
- 10ns (it was 5ns<br>
-&gt;=C2=A0 =C2=A0 =C2=A0for<br>
-&gt;=C2=A0 =C2=A0 =C2=A0an old firmware due to a bug, which was fixed a few=
- weeks ago). If that<br>
-&gt;=C2=A0 =C2=A0 =C2=A0is the case I just do the sync again until the offs=
-et is zero.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0I don&#39;t know if it is an firmawre problem or if=
- it is because the<br>
-&gt;=C2=A0 =C2=A0 =C2=A0signal<br>
-&gt;=C2=A0 =C2=A0 =C2=A0integrety of the 1PPS signal is not good enough.<br=
->
-&gt;=C2=A0 =C2=A0 =C2=A0Maybe that is also a solution for you.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Best regards,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Fabian<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Am 25.09.2019 um 11:16 schrieb Cherif Diouf via USR=
-P-users:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Hello,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; I am working with the X310 USRP. I have two i=
-dentical custom blocks<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; feeding the RF frontends.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; flowchart<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; -----------------<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; HW Block1 -&gt; RF0-TX1 |---&lt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; HW Block2 -&gt; RF1-TX1 |---&lt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; The system is synchronized to an external PPS=
- reference. The<br>
-&gt;=C2=A0 =C2=A0 =C2=A0sampling<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; rate is 200 MSps and the signal bandwidth is =
-160 MHz for both<br>
-&gt;=C2=A0 =C2=A0 =C2=A0channels.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; The two HW blocks start=C2=A0 transmitting at=
- the exactly same time. Time<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; resolution is 5ns.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; In most cases the two outgoing RF signals pre=
-sent a 1ns time offset.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Which can be understood as a phase offset.<br=
->
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; But From time to time there is a 6ns delay be=
-tween the channels. I<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; assume this 6ns comprises the 1ns delay due t=
-o phase offset + 5<br>
-&gt;=C2=A0 =C2=A0 =C2=A0ns delay<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; due to misalignment of outgoing samples.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; What could be the origin of this one sample m=
-isalignement? Is it<br>
-&gt;=C2=A0 =C2=A0 =C2=A0a way<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; to fix it? Or working close to the limits of =
-the device should such<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; behavior be expected?<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Thanks in advance<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Best Regards<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Cherif<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; _____________________________________________=
-__<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; USRP-users mailing list<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; <a href=3D"mailto:USRP-users@lists.ettus.com"=
- target=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mai=
-lto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.co=
-m</a>&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; <a href=3D"http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http=
-://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0-- <br>
-&gt;=C2=A0 =C2=A0 =C2=A0--------------------------------------------------<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0M.-Sc. Fabian Schwartau<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Technische Universit=C3=A4t Braunschweig<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Institut f=C3=BCr Hochfrequenztechnik<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Schleinitzstr. 22<br>
-&gt;=C2=A0 =C2=A0 =C2=A038106 Braunschweig<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Germany<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Tel.:=C2=A0 =C2=A0+49-(0)531-391-2017<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Fax:=C2=A0 =C2=A0 +49-(0)531-391-2045<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Email: <a href=3D"mailto:fabian.schwartau@ihf.tu-bs=
-.de" target=3D"_blank">fabian.schwartau@ihf.tu-bs.de</a><br>
-&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:fabian.schwartau@ihf.t=
-u-bs.de" target=3D"_blank">fabian.schwartau@ihf.tu-bs.de</a>&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0WWW: <a href=3D"http://www.tu-braunschweig.de/ihf" =
-rel=3D"noreferrer" target=3D"_blank">http://www.tu-braunschweig.de/ihf</a><=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0--------------------------------------------------<=
-br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0_______________________________________________<br>
-&gt;=C2=A0 =C2=A0 =C2=A0USRP-users mailing list<br>
-&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:USRP-users@lists.ettus.com" targe=
-t=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mailto:US=
-RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&=
-gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"http://lists.ettus.com/mailman/listinfo/=
-usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lis=
-ts.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; -- <br>
-&gt; <br>
-&gt; Daniel Jepson<br>
-&gt; <br>
-&gt; Digital Hardware Engineer<br>
-&gt; <br>
-&gt; National Instruments<br>
-&gt; <br>
-&gt; O: +1.512.683.6163<br>
-&gt; <br>
-&gt; <a href=3D"mailto:daniel.jepson@ni.com" target=3D"_blank">daniel.jepso=
-n@ni.com</a> &lt;mailto:<a href=3D"mailto:daniel.jepson@ni.com" target=3D"_=
-blank">daniel.jepson@ni.com</a>&gt;<br>
-&gt; <br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt; <br>
-<br>
--- <br>
---------------------------------------------------<br>
-M.-Sc. Fabian Schwartau<br>
-Technische Universit=C3=A4t Braunschweig<br>
-Institut f=C3=BCr Hochfrequenztechnik<br>
-Schleinitzstr. 22<br>
-38106 Braunschweig<br>
-Germany<br>
-<br>
-Tel.:=C2=A0 =C2=A0+49-(0)531-391-2017<br>
-Fax:=C2=A0 =C2=A0 +49-(0)531-391-2045<br>
-Email:=C2=A0 <a href=3D"mailto:fabian.schwartau@ihf.tu-bs.de" target=3D"_bl=
-ank">fabian.schwartau@ihf.tu-bs.de</a><br>
-WWW:=C2=A0 =C2=A0 <a href=3D"http://www.tu-braunschweig.de/ihf" rel=3D"nore=
-ferrer" target=3D"_blank">http://www.tu-braunschweig.de/ihf</a><br>
---------------------------------------------------<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><p><a name=3D"m_532894536337765435_SignatureSanitizer_Saf=
-eHtmlFilter__MailAutoSig"><span style=3D"color:black">Daniel
-Jepson</span></a></p>
-
-<p><span style=3D"color:black">Digital Hardware Engineer</span></p>
-
-<p><span style=3D"color:black">National Instruments</span></p>
-
-<p><span style=3D"color:black">=C2=A0</span></p>
-
-<p><span style=3D"color:black">O: +1.512.683.6163</span></p>
-
-<p><span style=3D"color:black"><a href=3D"mailto:daniel.jepson@ni.com" targ=
-et=3D"_blank">daniel.jepson@ni.com</a></span></p></div></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><p><a name=3D"SignatureSanitize=
-r_SafeHtmlFilter__MailAutoSig"><span style=3D"color:black">Daniel
-Jepson</span></a></p>
-
-<p><span style=3D"color:black">Digital Hardware Engineer</span></p>
-
-<p><span style=3D"color:black">National Instruments</span></p>
-
-<p><span style=3D"color:black">=C2=A0</span></p>
-
-<p><span style=3D"color:black">O: +1.512.683.6163</span></p>
-
-<p><span style=3D"color:black"><a href=3D"mailto:daniel.jepson@ni.com" targ=
-et=3D"_blank">daniel.jepson@ni.com</a></span></p></div></div>
-
---00000000000076859b059383de5e--
-
-
---===============2955554098762003416==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2955554098762003416==--
-
+Tm8sIGl0IHdhcyBhIDMuM1YgQ01PUyB2YXJpYW50IG9mIHRoYXQgSUMuIEkgY2Fubm90IGZpZ3Vy
+ZSBpdCBvdXQgYXMgSSAKd291bGQgaGF2ZSB0byB0YWtlIHRoZSBoYXJkd2FyZSBhcGFydC4KCkFt
+IDI3LjA5LjIwMTkgdW0gMDk6MzAgc2NocmllYiBEYW5pZWwgSmVwc29uIHZpYSBVU1JQLXVzZXJz
+Ogo+IEZhYmlhbiwKPiAKPiBJIG5vdGljZWQgb24gdGhlwqBTTjc0TFMxMjVBIGRhdGFzaGVldCB0
+aGUgbWluaW11bSBpbnB1dCB2b2x0YWdlIGlzIAo+IDQuNzVWLiBJcyB0aGlzIHRoZSBjb3JyZWN0
+IHBhcnQgdGhhdCB5b3UncmUgdXNpbmc/Cj4gCj4gLURhbmllbAo+IAo+IE9uIEZyaSwgU2VwIDI3
+LCAyMDE5IGF0IDk6MjcgQU0gRGFuaWVsIEplcHNvbiA8ZGFuaWVsLmplcHNvbkBldHR1cy5jb20g
+Cj4gPG1haWx0bzpkYW5pZWwuamVwc29uQGV0dHVzLmNvbT4+IHdyb3RlOgo+IAo+ICAgICBUaGFu
+a3MgRmFiaWFuLiBBcyBsb25nIGFzIHRoZSBpbnB1dCBQUFMgaXMgZHJpdmVuIGJ5IHRoZSBzYW1l
+IFJlZkNsawo+ICAgICB0aGF0IGlzIHByb3ZpZGVkIHRvIHRoZSBYMzEwLCB0aGlzIHN5c3RlbSBz
+aG91bGQgYmUgb2suIFlvdSBtaWdodAo+ICAgICBhbHNvIGNvbnNpZGVyIGRyaXZpbmcgdGhlIFBQ
+UyBvbiB0aGUgZmFsbGluZyBlZGdlIG9mIHRoZSBSZWZDbGsgdG8KPiAgICAgZW5zdXJlIHRpbWlu
+ZyBpcyBtZXQgYXQgdGhlIFgzMTAuIFRoZXJlIGFyZSBzb21lIHRpbWluZyBjb25zdHJhaW50cwo+
+ICAgICBoZXJlIHRoYXQgbWlnaHQgYWZmZWN0IHBlcmZvcm1hbmNlLCBidXQgSSB3b3VsZG4ndCBl
+eHBlY3QgdG8gc2VlIGEKPiAgICAgMTAgbnMgc2hpZnQuCj4gCj4gICAgIC1EYW5pZWwKPiAKPiAg
+ICAgT24gVGh1LCBTZXAgMjYsIDIwMTkgYXQgMzoxOCBQTSBGYWJpYW4gU2Nod2FydGF1IHZpYSBV
+U1JQLXVzZXJzCj4gICAgIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOnVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3JvdGU6Cj4gCj4gICAgICAgICBJdCBpcyBhIHNlbGYg
+YnVpbGQgZGV2aWNlIHVzaW5nIGEgNzRMUzEyNUQgYXMgYnVmZmVyLiBUaGUgbGV2ZWwKPiAgICAg
+ICAgIGlzIDMuM1YKPiAgICAgICAgIGRpZ2l0YWwuCj4gICAgICAgICBBcyB0aGVyZSB3ZXJlIG5v
+IHNwZWNpZmljYXRpb25zIGFyb3VuZCBmb3IgdGhlIHJlcXVpcmVkIGlucHV0Cj4gICAgICAgICBs
+ZXZlbHMgYXQKPiAgICAgICAgIHRoZSB0aW1lIHdlIG5lZWRlZCB0aGUgZGV2aWNlLCB3ZSBqdXN0
+IG1lYXN1cmVkIHRoZSBsZXZlbHMKPiAgICAgICAgIGNvbWluZyBmcm9tCj4gICAgICAgICB0aGUg
+MVBQUyBvdXRwdXQgYW5kIHJlcGxpY2F0ZWQgdGhlbS4KPiAKPiAgICAgICAgIEFtIDI2LjA5LjIw
+MTkgdW0gMTM6NTEgc2NocmllYiBEYW5pZWwgSmVwc29uIHZpYSBVU1JQLXVzZXJzOgo+ICAgICAg
+ICAgID4gSGkgRmFiaWFuLCBDaGVyaWYsCj4gICAgICAgICAgPgo+ICAgICAgICAgID4gV2hhdCBp
+cyB0aGUgZXh0ZXJuYWwgUFBTIGRldmljZSB5b3UgYXJlIHVzaW5nPwo+ICAgICAgICAgID4KPiAg
+ICAgICAgICA+IC1EYW5pZWwKPiAgICAgICAgICA+Cj4gICAgICAgICAgPiBPbiBUaHUsIFNlcCAy
+NiwgMjAxOSBhdCA5OjE4IEFNIEZhYmlhbiBTY2h3YXJ0YXUgdmlhIFVTUlAtdXNlcnMKPiAgICAg
+ICAgICA+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+ICAgICAgICAgPG1haWx0bzp1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPiAgICAgICAgIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb20KPiAgICAgICAgIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+Pj4gd3JvdGU6Cj4gICAgICAgICAgPgo+ICAgICAgICAgID7CoCDCoCDCoEhpLAo+ICAgICAgICAg
+ID7CoCDCoCDCoEkgaGF2ZSB2ZXJ5IHNpbWlsYXIgcHJvYmxlbSB3aXRoIFgzMTAuIEkgYW0gcnVu
+bmluZyBhIEMrKwo+ICAgICAgICAgYXBwbGljYXRpb24sCj4gICAgICAgICAgPsKgIMKgIMKgc28g
+SSBoYXZlIGEgYml0IG1vcmUgZmxleGliaWxpdHkgSSBndWVzcy4gQWZ0ZXIgSSBkbyB0aGUKPiAg
+ICAgICAgICA+wqAgwqAgwqBzZXRfdGltZV91bmtub3duX3BwcyB0byBzeW5jIHRvIHRoZSAxUFBT
+IHNpZ25hbCwgSSBydW4KPiAgICAgICAgIHRoZSBmdW5jdGlvbgo+ICAgICAgICAgID7CoCDCoCDC
+oGdldF90aW1lX2xhc3RfcHBzIGFuZCBpdCBzb21ldGltZXMgaGFzIGFuIG9mZnNldCBvZiAxMG5z
+Cj4gICAgICAgICAoaXQgd2FzIDVucwo+ICAgICAgICAgID7CoCDCoCDCoGZvcgo+ICAgICAgICAg
+ID7CoCDCoCDCoGFuIG9sZCBmaXJtd2FyZSBkdWUgdG8gYSBidWcsIHdoaWNoIHdhcyBmaXhlZCBh
+IGZldyB3ZWVrcwo+ICAgICAgICAgYWdvKS4gSWYgdGhhdAo+ICAgICAgICAgID7CoCDCoCDCoGlz
+IHRoZSBjYXNlIEkganVzdCBkbyB0aGUgc3luYyBhZ2FpbiB1bnRpbCB0aGUgb2Zmc2V0IGlzCj4g
+ICAgICAgICB6ZXJvLgo+ICAgICAgICAgID7CoCDCoCDCoEkgZG9uJ3Qga25vdyBpZiBpdCBpcyBh
+biBmaXJtYXdyZSBwcm9ibGVtIG9yIGlmIGl0IGlzCj4gICAgICAgICBiZWNhdXNlIHRoZQo+ICAg
+ICAgICAgID7CoCDCoCDCoHNpZ25hbAo+ICAgICAgICAgID7CoCDCoCDCoGludGVncmV0eSBvZiB0
+aGUgMVBQUyBzaWduYWwgaXMgbm90IGdvb2QgZW5vdWdoLgo+ICAgICAgICAgID7CoCDCoCDCoE1h
+eWJlIHRoYXQgaXMgYWxzbyBhIHNvbHV0aW9uIGZvciB5b3UuCj4gICAgICAgICAgPsKgIMKgIMKg
+QmVzdCByZWdhcmRzLAo+ICAgICAgICAgID7CoCDCoCDCoEZhYmlhbgo+ICAgICAgICAgID4KPiAg
+ICAgICAgICA+wqAgwqAgwqBBbSAyNS4wOS4yMDE5IHVtIDExOjE2IHNjaHJpZWIgQ2hlcmlmIERp
+b3VmIHZpYSBVU1JQLXVzZXJzOgo+ICAgICAgICAgID7CoCDCoCDCoCA+IEhlbGxvLAo+ICAgICAg
+ICAgID7CoCDCoCDCoCA+IEkgYW0gd29ya2luZyB3aXRoIHRoZSBYMzEwIFVTUlAuIEkgaGF2ZSB0
+d28gaWRlbnRpY2FsCj4gICAgICAgICBjdXN0b20gYmxvY2tzCj4gICAgICAgICAgPsKgIMKgIMKg
+ID4gZmVlZGluZyB0aGUgUkYgZnJvbnRlbmRzLgo+ICAgICAgICAgID7CoCDCoCDCoCA+Cj4gICAg
+ICAgICAgPsKgIMKgIMKgID4gZmxvd2NoYXJ0Cj4gICAgICAgICAgPsKgIMKgIMKgID4gLS0tLS0t
+LS0tLS0tLS0tLS0KPiAgICAgICAgICA+wqAgwqAgwqAgPiBIVyBCbG9jazEgLT4gUkYwLVRYMSB8
+LS0tPAo+ICAgICAgICAgID7CoCDCoCDCoCA+IEhXIEJsb2NrMiAtPiBSRjEtVFgxIHwtLS08Cj4g
+ICAgICAgICAgPsKgIMKgIMKgID4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBUaGUgc3lzdGVtIGlz
+IHN5bmNocm9uaXplZCB0byBhbiBleHRlcm5hbCBQUFMKPiAgICAgICAgIHJlZmVyZW5jZS4gVGhl
+Cj4gICAgICAgICAgPsKgIMKgIMKgc2FtcGxpbmcKPiAgICAgICAgICA+wqAgwqAgwqAgPiByYXRl
+IGlzIDIwMCBNU3BzIGFuZCB0aGUgc2lnbmFsIGJhbmR3aWR0aCBpcyAxNjAgTUh6Cj4gICAgICAg
+ICBmb3IgYm90aAo+ICAgICAgICAgID7CoCDCoCDCoGNoYW5uZWxzLgo+ICAgICAgICAgID7CoCDC
+oCDCoCA+IFRoZSB0d28gSFcgYmxvY2tzIHN0YXJ0wqAgdHJhbnNtaXR0aW5nIGF0IHRoZSBleGFj
+dGx5Cj4gICAgICAgICBzYW1lIHRpbWUuIFRpbWUKPiAgICAgICAgICA+wqAgwqAgwqAgPiByZXNv
+bHV0aW9uIGlzIDVucy4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBJbiBtb3N0IGNhc2VzIHRoZSB0
+d28gb3V0Z29pbmcgUkYgc2lnbmFscyBwcmVzZW50IGEKPiAgICAgICAgIDFucyB0aW1lIG9mZnNl
+dC4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBXaGljaCBjYW4gYmUgdW5kZXJzdG9vZCBhcyBhIHBo
+YXNlIG9mZnNldC4KPiAgICAgICAgICA+wqAgwqAgwqAgPgo+ICAgICAgICAgID7CoCDCoCDCoCA+
+IEJ1dCBGcm9tIHRpbWUgdG8gdGltZSB0aGVyZSBpcyBhIDZucyBkZWxheSBiZXR3ZWVuIHRoZQo+
+ICAgICAgICAgY2hhbm5lbHMuIEkKPiAgICAgICAgICA+wqAgwqAgwqAgPiBhc3N1bWUgdGhpcyA2
+bnMgY29tcHJpc2VzIHRoZSAxbnMgZGVsYXkgZHVlIHRvIHBoYXNlCj4gICAgICAgICBvZmZzZXQg
+KyA1Cj4gICAgICAgICAgPsKgIMKgIMKgbnMgZGVsYXkKPiAgICAgICAgICA+wqAgwqAgwqAgPiBk
+dWUgdG8gbWlzYWxpZ25tZW50IG9mIG91dGdvaW5nIHNhbXBsZXMuCj4gICAgICAgICAgPsKgIMKg
+IMKgID4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBXaGF0IGNvdWxkIGJlIHRoZSBvcmlnaW4gb2Yg
+dGhpcyBvbmUgc2FtcGxlCj4gICAgICAgICBtaXNhbGlnbmVtZW50PyBJcyBpdAo+ICAgICAgICAg
+ID7CoCDCoCDCoGEgd2F5Cj4gICAgICAgICAgPsKgIMKgIMKgID4gdG8gZml4IGl0PyBPciB3b3Jr
+aW5nIGNsb3NlIHRvIHRoZSBsaW1pdHMgb2YgdGhlCj4gICAgICAgICBkZXZpY2Ugc2hvdWxkIHN1
+Y2gKPiAgICAgICAgICA+wqAgwqAgwqAgPiBiZWhhdmlvciBiZSBleHBlY3RlZD8KPiAgICAgICAg
+ICA+wqAgwqAgwqAgPgo+ICAgICAgICAgID7CoCDCoCDCoCA+IFRoYW5rcyBpbiBhZHZhbmNlCj4g
+ICAgICAgICAgPsKgIMKgIMKgID4KPiAgICAgICAgICA+wqAgwqAgwqAgPiBCZXN0IFJlZ2FyZHMK
+PiAgICAgICAgICA+wqAgwqAgwqAgPiBDaGVyaWYKPiAgICAgICAgICA+wqAgwqAgwqAgPgo+ICAg
+ICAgICAgID7CoCDCoCDCoCA+Cj4gICAgICAgICAgPsKgIMKgIMKgID4gX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiAgICAgICAgICA+wqAgwqAgwqAgPiBV
+U1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+ICAgICAgICAgID7CoCDCoCDCoCA+IFVTUlAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tCj4gICAgICAgICA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tPgo+ICAgICAgICAgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+ICAgICAg
+ICAgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+Cj4gICAgICAgICAgPsKgIMKg
+IMKgID4KPiAgICAgICAgIGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
+c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+ICAgICAgICAgID7CoCDCoCDCoCA+Cj4gICAgICAg
+ICAgPgo+ICAgICAgICAgID7CoCDCoCDCoC0tCj4gICAgICAgICAgPsKgIMKgIMKgLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KPiAgICAgICAgICA+wqAg
+wqAgwqBNLi1TYy4gRmFiaWFuIFNjaHdhcnRhdQo+ICAgICAgICAgID7CoCDCoCDCoFRlY2huaXNj
+aGUgVW5pdmVyc2l0w6R0IEJyYXVuc2Nod2VpZwo+ICAgICAgICAgID7CoCDCoCDCoEluc3RpdHV0
+IGbDvHIgSG9jaGZyZXF1ZW56dGVjaG5pawo+ICAgICAgICAgID7CoCDCoCDCoFNjaGxlaW5pdHpz
+dHIuIDIyCj4gICAgICAgICAgPsKgIMKgIMKgMzgxMDYgQnJhdW5zY2h3ZWlnCj4gICAgICAgICAg
+PsKgIMKgIMKgR2VybWFueQo+ICAgICAgICAgID4KPiAgICAgICAgICA+wqAgwqAgwqBUZWwuOsKg
+IMKgKzQ5LSgwKTUzMS0zOTEtMjAxNwo+ICAgICAgICAgID7CoCDCoCDCoEZheDrCoCDCoCArNDkt
+KDApNTMxLTM5MS0yMDQ1Cj4gICAgICAgICAgPsKgIMKgIMKgRW1haWw6IGZhYmlhbi5zY2h3YXJ0
+YXVAaWhmLnR1LWJzLmRlCj4gICAgICAgICA8bWFpbHRvOmZhYmlhbi5zY2h3YXJ0YXVAaWhmLnR1
+LWJzLmRlPgo+ICAgICAgICAgID7CoCDCoCDCoDxtYWlsdG86ZmFiaWFuLnNjaHdhcnRhdUBpaGYu
+dHUtYnMuZGUKPiAgICAgICAgIDxtYWlsdG86ZmFiaWFuLnNjaHdhcnRhdUBpaGYudHUtYnMuZGU+
+Pgo+ICAgICAgICAgID7CoCDCoCDCoFdXVzogaHR0cDovL3d3dy50dS1icmF1bnNjaHdlaWcuZGUv
+aWhmCj4gICAgICAgICAgPsKgIMKgIMKgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0KPiAgICAgICAgICA+Cj4gICAgICAgICAgPsKgIMKgIMKgX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiAgICAgICAgICA+wqAg
+wqAgwqBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+ICAgICAgICAgID4gVVNSUC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb20KPiAgICAgICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+Cj4gICAgICAgICA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gICAgICAgICA8
+bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4KPiAgICAgICAgICA+Cj4gICAgICAg
+ICBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0
+cy5ldHR1cy5jb20KPiAgICAgICAgICA+Cj4gICAgICAgICAgPgo+ICAgICAgICAgID4KPiAgICAg
+ICAgICA+IC0tCj4gICAgICAgICAgPgo+ICAgICAgICAgID4gRGFuaWVsIEplcHNvbgo+ICAgICAg
+ICAgID4KPiAgICAgICAgICA+IERpZ2l0YWwgSGFyZHdhcmUgRW5naW5lZXIKPiAgICAgICAgICA+
+Cj4gICAgICAgICAgPiBOYXRpb25hbCBJbnN0cnVtZW50cwo+ICAgICAgICAgID4KPiAgICAgICAg
+ICA+IE86ICsxLjUxMi42ODMuNjE2Mwo+ICAgICAgICAgID4KPiAgICAgICAgICA+IGRhbmllbC5q
+ZXBzb25AbmkuY29tIDxtYWlsdG86ZGFuaWVsLmplcHNvbkBuaS5jb20+Cj4gICAgICAgICA8bWFp
+bHRvOmRhbmllbC5qZXBzb25AbmkuY29tIDxtYWlsdG86ZGFuaWVsLmplcHNvbkBuaS5jb20+Pgo+
+ICAgICAgICAgID4KPiAgICAgICAgICA+Cj4gICAgICAgICAgPiBfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ICAgICAgICAgID4gVVNSUC11c2VycyBtYWls
+aW5nIGxpc3QKPiAgICAgICAgICA+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxtYWlsdG86
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4gICAgICAgICAgPgo+ICAgICAgICAgaHR0cDov
+L2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMu
+Y29tCj4gICAgICAgICAgPgo+IAo+ICAgICAgICAgLS0gCj4gICAgICAgICAtLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ICAgICAgICAgTS4tU2MuIEZh
+YmlhbiBTY2h3YXJ0YXUKPiAgICAgICAgIFRlY2huaXNjaGUgVW5pdmVyc2l0w6R0IEJyYXVuc2No
+d2VpZwo+ICAgICAgICAgSW5zdGl0dXQgZsO8ciBIb2NoZnJlcXVlbnp0ZWNobmlrCj4gICAgICAg
+ICBTY2hsZWluaXR6c3RyLiAyMgo+ICAgICAgICAgMzgxMDYgQnJhdW5zY2h3ZWlnCj4gICAgICAg
+ICBHZXJtYW55Cj4gCj4gICAgICAgICBUZWwuOsKgIMKgKzQ5LSgwKTUzMS0zOTEtMjAxNwo+ICAg
+ICAgICAgRmF4OsKgIMKgICs0OS0oMCk1MzEtMzkxLTIwNDUKPiAgICAgICAgIEVtYWlsOiBmYWJp
+YW4uc2Nod2FydGF1QGloZi50dS1icy5kZQo+ICAgICAgICAgPG1haWx0bzpmYWJpYW4uc2Nod2Fy
+dGF1QGloZi50dS1icy5kZT4KPiAgICAgICAgIFdXVzogaHR0cDovL3d3dy50dS1icmF1bnNjaHdl
+aWcuZGUvaWhmCj4gICAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLQo+IAo+ICAgICAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KPiAgICAgICAgIFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gICAg
+ICAgICBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tPgo+ICAgICAgICAgaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
+bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCj4gCj4gCj4gICAgIC0tIAo+IAo+ICAg
+ICBEYW5pZWwgSmVwc29uCj4gCj4gICAgIERpZ2l0YWwgSGFyZHdhcmUgRW5naW5lZXIKPiAKPiAg
+ICAgTmF0aW9uYWwgSW5zdHJ1bWVudHMKPiAKPiAgICAgTzogKzEuNTEyLjY4My42MTYzCj4gCj4g
+ICAgIGRhbmllbC5qZXBzb25AbmkuY29tIDxtYWlsdG86ZGFuaWVsLmplcHNvbkBuaS5jb20+Cj4g
+Cj4gCj4gCj4gLS0gCj4gCj4gRGFuaWVsIEplcHNvbgo+IAo+IERpZ2l0YWwgSGFyZHdhcmUgRW5n
+aW5lZXIKPiAKPiBOYXRpb25hbCBJbnN0cnVtZW50cwo+IAo+IE86ICsxLjUxMi42ODMuNjE2Mwo+
+IAo+IGRhbmllbC5qZXBzb25AbmkuY29tIDxtYWlsdG86ZGFuaWVsLmplcHNvbkBuaS5jb20+Cj4g
+Cj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBV
+U1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0
+cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0
+dXMuY29tCj4gCgotLSAKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0KTS4tU2MuIEZhYmlhbiBTY2h3YXJ0YXUKVGVjaG5pc2NoZSBVbml2ZXJzaXTDpHQg
+QnJhdW5zY2h3ZWlnCkluc3RpdHV0IGbDvHIgSG9jaGZyZXF1ZW56dGVjaG5pawpTY2hsZWluaXR6
+c3RyLiAyMgozODEwNiBCcmF1bnNjaHdlaWcKR2VybWFueQoKVGVsLjogICArNDktKDApNTMxLTM5
+MS0yMDE3CkZheDogICAgKzQ5LSgwKTUzMS0zOTEtMjA0NQpFbWFpbDogIGZhYmlhbi5zY2h3YXJ0
+YXVAaWhmLnR1LWJzLmRlCldXVzogICAgaHR0cDovL3d3dy50dS1icmF1bnNjaHdlaWcuZGUvaWhm
+Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMu
+Y29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
