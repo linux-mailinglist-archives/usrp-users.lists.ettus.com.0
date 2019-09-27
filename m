@@ -2,77 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E3D5BFC7D
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Sep 2019 02:49:28 +0200 (CEST)
-Received: from [::1] (port=56940 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02A6BC0006
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Sep 2019 09:28:33 +0200 (CEST)
+Received: from [::1] (port=37108 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iDeRn-0003CC-Jm; Thu, 26 Sep 2019 20:49:23 -0400
-Received: from mail-oln040092005041.outbound.protection.outlook.com
- ([40.92.5.41]:41148 helo=NAM02-SN1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <e070832@hotmail.com>) id 1iDeRj-000368-S5
- for usrp-users@lists.ettus.com; Thu, 26 Sep 2019 20:49:19 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Nu6SJZGBke82U72maW/8ZgsuivbCRsE+FtYSqJIGI5E2hD19VfXLJxIFU4j7Z9aZ00qcGu4F7BlpaTRD5r8SBy1rAHdOdh4nPWJ28SLW/q8iy1M+B97rUMpE0jbn0YcFIRjDxL6FbMBLLipk9eyQYBZzZTQdYGq7YOJpX9wCuCN2Hfv8IOw83D299ZAXnNmWWPqvEnvD1jv0bkY6sRUBL+6ArjjBsA1bPYkSMikVbekAAo42ZKF8QF8fIInCAJIdrpqdL8xf2uJlo9XjoGL0oiqhlV1HnwYiQmdyMIGV+yLvHln+syzWLQr1XwYcReSOn99ohQssK5FqLOMe7bK2OA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r/ph+UMwHRVaMSyoH35bB11EDtW8+SKpOu2Pmw1t2/w=;
- b=cGPxcXYFczNl2KJIfd4iXfzBZlnsiuFpTk/a5HuOUxV2+VgTd51b0FYvvK9hfycoNZhjUNHuWGshxtAGtsj6KEJE8brfNyo/8pRwRlEYLBnl4s0pdVinAcYwmpwbAdRyzgH7vkmzfQ3Y8Z8wThcT+1pPlEGRLiUIuh0TGMN0NYcZUbVOvIF/RYQkOF74TDI6SBxdNDoRYePuW0CcHMdZL3tlNNUX855B02KuhBz7hh7QbvNIAWD/9mwcBbANfr7ztpAEPtn7d+tYckc3938z0NMoiPtqbNZZdrRmgtFxAjaI1eXI0mAAdI752sa+AXOZqSTuWsMEFWmy+3LYJSDoYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r/ph+UMwHRVaMSyoH35bB11EDtW8+SKpOu2Pmw1t2/w=;
- b=imO1EhUh8jAkhPMe90cSbXXwTomlc6uYuUc09BdMrmcrrmKa+gcEq8PZ3x8bEiLpddPYrAK4WdwgoZIWcPrnAGy3AuQ9KNAcXWTNRctvvIeF54H30hWLDmCvLqrYScbCVb8pvZvvHvtfASfFhuzStQ/cY3dm1Iow0Ak/iNcdWiW5tl4DKPWrg+R0qO2u4GkHKK61HG4kqeeqYxUkY7g9n92E3em3yyP2mdbj+JfHHbEDKy+Q0rEr+VWE9/5ssjaeQ6ExwJLt9vkBFMb/L3NwJ2uv5SDv6q/geXJ1xk7S6MSq6hbdfi0l3jqmNSgeFN/ro1z0DPhCpmsyMMQ7aumj/A==
-Received: from BL2NAM02FT026.eop-nam02.prod.protection.outlook.com
- (10.152.76.52) by BL2NAM02HT201.eop-nam02.prod.protection.outlook.com
- (10.152.76.251) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2284.20; Fri, 27 Sep
- 2019 00:48:38 +0000
-Received: from BN6PR19MB0980.namprd19.prod.outlook.com (10.152.76.53) by
- BL2NAM02FT026.mail.protection.outlook.com (10.152.77.156) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.25 via Frontend Transport; Fri, 27 Sep 2019 00:48:38 +0000
-Received: from BN6PR19MB0980.namprd19.prod.outlook.com
- ([fe80::f134:70b1:d8f6:4c08]) by BN6PR19MB0980.namprd19.prod.outlook.com
- ([fe80::f134:70b1:d8f6:4c08%11]) with mapi id 15.20.2305.017; Fri, 27 Sep
- 2019 00:48:38 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: RFNoC / Vivado Build Failure
-Thread-Index: AQHVdM1MO/rdslJFKUqkdDiBZJjtqg==
-Date: Fri, 27 Sep 2019 00:48:38 +0000
-Message-ID: <BN6PR19MB09807166E8446A4DAF62E122A4810@BN6PR19MB0980.namprd19.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:23CBBF04124159534DD9828B958DA95C1B3415DBF59DE9952E1A17D3F660FB5B;
- UpperCasedChecksum:E6002C7956FDF93E125D7F846A98FE6C3E048B062732BF6F550F0D2965414BAB;
- SizeAsReceived:6771; Count:42
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [XQNSmz0LhIyFoVpLYq9kCevgHDC+ciD6NRaMdYYOvlghr5P5bIwDpjW3Y/Q7oPAY]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 42
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(5050001)(7020095)(20181119205)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031322404)(2017031323274)(2017031324274)(2017031321001)(1601125500)(1603101475)(1701031045);
- SRVR:BL2NAM02HT201; 
-x-ms-traffictypediagnostic: BL2NAM02HT201:
-x-microsoft-antispam-message-info: aSYb3H70n+8O8IA9rPI5BqXzv+C3LIEzupwMYLIGjFrba0pxb0ZpUqunzEZhYghcoJK6Bbsr/HliLVN213DMSWhG+k6Y+d8tPnfS3MytJpghHEdQDYHN3u68VqsgkPUbs56C473L/h8G/d/W02QtvroehFbaUF8goV0KKQql5JHMsmSfAyCe0KXlH9ZCRZjJ
-x-ms-exchange-transport-forked: True
+	id 1iDkfy-0003CI-Go; Fri, 27 Sep 2019 03:28:26 -0400
+Received: from mail-ed1-f47.google.com ([209.85.208.47]:44955)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <daniel.jepson@ettus.com>)
+ id 1iDkfu-00036M-Ut
+ for usrp-users@lists.ettus.com; Fri, 27 Sep 2019 03:28:23 -0400
+Received: by mail-ed1-f47.google.com with SMTP id r16so1413396edq.11
+ for <usrp-users@lists.ettus.com>; Fri, 27 Sep 2019 00:28:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=kbezyNuNyBSgVgljV9SokANaAlWSUoxDvrj+kZ8qzDA=;
+ b=Hvr1H+YT2xFau21R5mMkni/QDOyJ8ud6cdZpdIKhCFPMCAwQZYwwOfHyjI+qJAOJ/y
+ /iYA26CB+tWNVKOflTQzsLrmccuGwOuV5xweGbJFRQ0jDqc9et2MpnVjCokC1jr3t9YP
+ vFDApzyGGvQ2OwYK+VwV0Hpx4L7jLtHOXvmprgAbAkkGnnD8Vn8hWUBShceNnwBIurmm
+ AHihdYSkCD5iINQ7pzZQNXDIqvQwqFhNBZd/EYO70pTzu0QZalMHW5jNArpLolCk8Na/
+ sU09xJD56WdbISpk3F3olqAOFvyYmjQgLFbjwKiZEG+1D3lc5DfXkyJ3eT+yCi74pluy
+ KNbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=kbezyNuNyBSgVgljV9SokANaAlWSUoxDvrj+kZ8qzDA=;
+ b=SoN3jiW8gNfk8i1jPSc+3N1LISYgELvcc7TX91cNj89w6l5Mo0g7L9FqcRowszDYIB
+ ++HXQUrMVq1RY2y0R+hRP8JkjCt9fECCHnPlw0VlagvFpyKM30smxIHoQ/1CoTmpt94D
+ jLmSt7KWenWlcbJmNGQImNQAob1/f3B2MoQPGbMDiroupUNFGVGVipS7P7hsOOwnIc4R
+ ez/2dXChSBKvQvC3+bow/iZEZ1IeXh4ayyCiNWvOyEAA8lzNpTdLSD0y4JI5Yh3dL/VY
+ LFIuqiqeDaPqMbb2iD4Dq6cCoabFy91I+4DMNbga+tNhIlBzBXQlmU+32SOGBs/yCQ57
+ FksQ==
+X-Gm-Message-State: APjAAAUPK73LEh61pVS181LOJNcS2/w/ngX9raFiLBmULLYrzBlCWDhM
+ TAfYdEBkhMvcc+e2FzdKKenPI+Va1J6roY9Li8KWaFoqE7YNAg==
+X-Google-Smtp-Source: APXvYqycXwn2/oEpVW3RFIGwr1bbygvloZilJYwhuL/5zAjRMR7wlZXOS3xQaEcPcC1aGUzxttxQCTzepJZRU8GaSxY=
+X-Received: by 2002:a50:f616:: with SMTP id c22mr2842659edn.235.1569569261314; 
+ Fri, 27 Sep 2019 00:27:41 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 005dcbf7-4344-4651-42cb-08d742e46f66
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2019 00:48:38.2665 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2NAM02HT201
-Subject: [USRP-users] RFNoC / Vivado Build Failure
+References: <4f9463d7bc9747498b2f2bda40f7b2ec@tudelft.nl>
+ <512807eb-9b64-0580-3425-b6016754157a@ihf.tu-bs.de>
+ <CA+Zwmn5tGM_i2Y-PtFAKiGtXY+9pMUMZ5LWV82bA8KnvpmHTTg@mail.gmail.com>
+ <077ec45a-e337-8116-c1b3-e98c25432a24@ihf.tu-bs.de>
+In-Reply-To: <077ec45a-e337-8116-c1b3-e98c25432a24@ihf.tu-bs.de>
+Date: Fri, 27 Sep 2019 09:27:30 +0200
+Message-ID: <CA+Zwmn4GOcDzH62YDE69Q=DsMJQfUc504wThMXqz4kobKbR0pw@mail.gmail.com>
+To: Usrp Users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
+ signals/ X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -84,9 +63,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jeff S <e070832@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============2701977052478027167=="
+From: Daniel Jepson via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Daniel Jepson <daniel.jepson@ettus.com>
+Content-Type: multipart/mixed; boundary="===============7899996709218438342=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -100,79 +79,401 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2701977052478027167==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR19MB09807166E8446A4DAF62E122A4810BN6PR19MB0980namp_"
+--===============7899996709218438342==
+Content-Type: multipart/alternative; boundary="0000000000004578f1059383d272"
 
---_000_BN6PR19MB09807166E8446A4DAF62E122A4810BN6PR19MB0980namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000004578f1059383d272
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SSdtIHRyeWluZyB0byB0YWtlIHdoYXQgSSBsZWFybmVkIGZyb20gR1JDb24yMDE5IGZyb20gTmVl
-bCBhbmQgY29tcGFueSdzIHdvcmtzaG9wLCBhbmQgSSdtIHRyeWluZyB0byBwZXJmb3JtIHRoZSB1
-aGRfaW1hZ2VfYnVpbGRlcl9ndWkucHkgc2NyaXB0LiBJdCBmYWlscyB3aXRoIGEgbWVzc2FnZSBz
-aW1pbGFyIHRvOg0KDQoNClswMDoxMjoyMl0gU3RhcnRpbmcgRFJDIFRhc2sNCkVSUk9SOiBbRFJD
-IE1EUlYtMV0gTXVsdGlwbGUgRHJpdmVyIE5ldHM6IE5ldCBidXNfY2xrX2dlbi9pbnN0L0NMS19P
-VVQ0IGhhcyBtdWx0aXBsZSBkcml2ZXJzOiByYWRpb19jbGtfZ2VuL2luc3QvY2xrb3V0MV9idWYv
-TywgYW5kIGJ1c19jbGtfZ2VuLyAgICAgICAgICAgICAgICAgICAgICAgICBpbnN0L2Nsa291dDRf
-YnVmL08uDQpFUlJPUjogW0RSQyBNRFJWLTFdIE11bHRpcGxlIERyaXZlciBOZXRzOiBOZXQgcmFk
-aW9fcmVzZXRfc3luYy9yZXNldF9kb3VibGVfc3luYy9zeW5jaHJvbml6ZXJfZmFsc2VfcGF0aC92
-YWx1ZVs5XV85IGhhcyBtdWx0aXBsZSBkcml2ZXJzOiBjZV9yZXMgICAgICAgICAgICAgICAgICAg
-ICAgICAgZXRfc3luYy9yZXNldF9kb3VibGVfc3luYy9zeW5jaHJvbml6ZXJfZmFsc2VfcGF0aC9z
-dGFnZXNbOV0udmFsdWVfcmVnWzldWzBdL1EsIGFuZCByYWRpb19yZXNldF9zeW5jL3Jlc2V0X2Rv
-dWJsZV9zeW5jL3N5bmNocm9uaXplcl9mYWxzZV9wYXRoL3N0ICAgICAgICAgICAgICAgICAgICAg
-ICAgIGFnZXNbOV0udmFsdWVfcmVnWzldWzBdL1EuDQpFUlJPUjogW1ZpdmFkb19UY2wgNC03OF0g
-RXJyb3IocykgZm91bmQgZHVyaW5nIERSQy4gT3B0X2Rlc2lnbiBub3QgcnVuLg0KDQpJIGhhdmUg
-dG8gZmluaXNoIHRoZSBwYXBlcndvcmsgdG8gZ2V0IHRoZSByZWFsIGxvZyBvdXQgb2YgbXkgbGFi
-IHNvIEkgY2FuIHBvc3QgaXQsIGJ1dCBpdCBsb29rZWQgcHJldHR5IG11Y2ggdGhlIHNhbWUgYXMg
-dGhlIGxvZyBpbiB0aGUgdW5hbnN3ZXJlZCBhcmNoaXZlZCBtZXNzYWdlIGF0Og0KDQpodHRwOi8v
-bGlzdHMuZXR0dXMuY29tL3BpcGVybWFpbC91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbS8yMDE5
-LUF1Z3VzdC8wNjA0NDMuaHRtbA0KDQphbmQgSSB3YW50ZWQgdG8gdHJ5IGFuZCBnZXQgYSBqdW1w
-c3RhcnQgb24gdGhlIGlzc3VlLg0KDQpJIGhhdmUgYW4gWDMxMA0KVml2YWRvIDIwMTguMw0KDQpK
-ZWZmDQoNCg==
+Thanks Fabian. As long as the input PPS is driven by the same RefClk that
+is provided to the X310, this system should be ok. You might also consider
+driving the PPS on the falling edge of the RefClk to ensure timing is met
+at the X310. There are some timing constraints here that might affect
+performance, but I wouldn't expect to see a 10 ns shift.
 
---_000_BN6PR19MB09807166E8446A4DAF62E122A4810BN6PR19MB0980namp_
-Content-Type: text/html; charset="utf-8"
-Content-ID:  <9F06F92C583A624AB3D615DEF87C1986@sct-15-20-2032-17-msonline-outlook-0d214.templateTenant>
-Content-Transfer-Encoding: base64
+-Daniel
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdj5JJ20gdHJ5
-aW5nIHRvIHRha2Ugd2hhdCBJIGxlYXJuZWQgZnJvbSBHUkNvbjIwMTkgZnJvbSBOZWVsIGFuZCBj
-b21wYW55J3Mgd29ya3Nob3AsIGFuZCBJJ20gdHJ5aW5nIHRvIHBlcmZvcm0gdGhlIHVoZF9pbWFn
-ZV9idWlsZGVyX2d1aS5weSBzY3JpcHQuIEl0IGZhaWxzIHdpdGggYSBtZXNzYWdlIHNpbWlsYXIg
-dG86PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4NCjxwcmUgc3R5bGU9IndoaXRlLXNw
-YWNlOiBwcmUtd3JhcDsiPlswMDoxMjoyMl0gU3RhcnRpbmcgRFJDIFRhc2sKRVJST1I6IFtEUkMg
-TURSVi0xXSBNdWx0aXBsZSBEcml2ZXIgTmV0czogTmV0IGJ1c19jbGtfZ2VuL2luc3QvQ0xLX09V
-VDQgaGFzIG11bHRpcGxlIGRyaXZlcnM6IHJhZGlvX2Nsa19nZW4vaW5zdC9jbGtvdXQxX2J1Zi9P
-LCBhbmQgYnVzX2Nsa19nZW4vICAgICAgICAgICAgICAgICAgICAgICAgIGluc3QvY2xrb3V0NF9i
-dWYvTy4KRVJST1I6IFtEUkMgTURSVi0xXSBNdWx0aXBsZSBEcml2ZXIgTmV0czogTmV0IHJhZGlv
-X3Jlc2V0X3N5bmMvcmVzZXRfZG91YmxlX3N5bmMvc3luY2hyb25pemVyX2ZhbHNlX3BhdGgvdmFs
-dWVbOV1fOSBoYXMgbXVsdGlwbGUgZHJpdmVyczogY2VfcmVzICAgICAgICAgICAgICAgICAgICAg
-ICAgIGV0X3N5bmMvcmVzZXRfZG91YmxlX3N5bmMvc3luY2hyb25pemVyX2ZhbHNlX3BhdGgvc3Rh
-Z2VzWzldLnZhbHVlX3JlZ1s5XVswXS9RLCBhbmQgcmFkaW9fcmVzZXRfc3luYy9yZXNldF9kb3Vi
-bGVfc3luYy9zeW5jaHJvbml6ZXJfZmFsc2VfcGF0aC9zdCAgICAgICAgICAgICAgICAgICAgICAg
-ICBhZ2VzWzldLnZhbHVlX3JlZ1s5XVswXS9RLgpFUlJPUjogW1ZpdmFkb19UY2wgNC03OF0gRXJy
-b3IocykgZm91bmQgZHVyaW5nIERSQy4gT3B0X2Rlc2lnbiBub3QgcnVuLjwvcHJlPg0KPC9kaXY+
-DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5JIGhhdmUgdG8gZmluaXNoIHRoZSBwYXBlcndvcmsg
-dG8gZ2V0IHRoZSByZWFsIGxvZyBvdXQgb2YgbXkgbGFiIHNvIEkgY2FuIHBvc3QgaXQsIGJ1dCBp
-dCBsb29rZWQgcHJldHR5IG11Y2ggdGhlIHNhbWUgYXMgdGhlIGxvZyBpbiB0aGUgdW5hbnN3ZXJl
-ZCBhcmNoaXZlZCBtZXNzYWdlIGF0OjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxibG9ja3F1
-b3RlIHN0eWxlPSJtYXJnaW46IDAgMCAwIDQwcHg7IGJvcmRlcjogbm9uZTsgcGFkZGluZzogMHB4
-OyI+DQo8ZGl2IGRpcj0iYXV0byI+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9waXBlcm1haWwvdXNy
-cC11c2Vyc19saXN0cy5ldHR1cy5jb20vMjAxOS1BdWd1c3QvMDYwNDQzLmh0bWw8L2Rpdj4NCjwv
-YmxvY2txdW90ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PmFuZCBJIHdhbnRlZCB0byB0cnkg
-YW5kIGdldCBhIGp1bXBzdGFydCBvbiB0aGUgaXNzdWUuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2
-Pg0KPGRpdj5JIGhhdmUgYW4gWDMxMDwvZGl2Pg0KPGRpdj5WaXZhZG8gMjAxOC4zPC9kaXY+DQo8
-ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5KZWZmPC9kaXY+DQo8ZGl2IGlkPSJjb21wb3Nlcl9zaWdu
-YXR1cmUiPg0KPGRpdiBzdHlsZT0iZm9udC1zaXplOjg1JTtjb2xvcjojNTc1NzU3IiBkaXI9ImF1
-dG8iPjxicj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+On Thu, Sep 26, 2019 at 3:18 PM Fabian Schwartau via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
---_000_BN6PR19MB09807166E8446A4DAF62E122A4810BN6PR19MB0980namp_--
+> It is a self build device using a 74LS125D as buffer. The level is 3.3V
+> digital.
+> As there were no specifications around for the required input levels at
+> the time we needed the device, we just measured the levels coming from
+> the 1PPS output and replicated them.
+>
+> Am 26.09.2019 um 13:51 schrieb Daniel Jepson via USRP-users:
+> > Hi Fabian, Cherif,
+> >
+> > What is the external PPS device you are using?
+> >
+> > -Daniel
+> >
+> > On Thu, Sep 26, 2019 at 9:18 AM Fabian Schwartau via USRP-users
+> > <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+> >
+> >     Hi,
+> >     I have very similar problem with X310. I am running a C++
+> application,
+> >     so I have a bit more flexibility I guess. After I do the
+> >     set_time_unknown_pps to sync to the 1PPS signal, I run the function
+> >     get_time_last_pps and it sometimes has an offset of 10ns (it was 5n=
+s
+> >     for
+> >     an old firmware due to a bug, which was fixed a few weeks ago). If
+> that
+> >     is the case I just do the sync again until the offset is zero.
+> >     I don't know if it is an firmawre problem or if it is because the
+> >     signal
+> >     integrety of the 1PPS signal is not good enough.
+> >     Maybe that is also a solution for you.
+> >     Best regards,
+> >     Fabian
+> >
+> >     Am 25.09.2019 um 11:16 schrieb Cherif Diouf via USRP-users:
+> >      > Hello,
+> >      > I am working with the X310 USRP. I have two identical custom
+> blocks
+> >      > feeding the RF frontends.
+> >      >
+> >      > flowchart
+> >      > -----------------
+> >      > HW Block1 -> RF0-TX1 |---<
+> >      > HW Block2 -> RF1-TX1 |---<
+> >      >
+> >      > The system is synchronized to an external PPS reference. The
+> >     sampling
+> >      > rate is 200 MSps and the signal bandwidth is 160 MHz for both
+> >     channels.
+> >      > The two HW blocks start  transmitting at the exactly same time.
+> Time
+> >      > resolution is 5ns.
+> >      > In most cases the two outgoing RF signals present a 1ns time
+> offset.
+> >      > Which can be understood as a phase offset.
+> >      >
+> >      > But From time to time there is a 6ns delay between the channels.=
+ I
+> >      > assume this 6ns comprises the 1ns delay due to phase offset + 5
+> >     ns delay
+> >      > due to misalignment of outgoing samples.
+> >      >
+> >      > What could be the origin of this one sample misalignement? Is it
+> >     a way
+> >      > to fix it? Or working close to the limits of the device should
+> such
+> >      > behavior be expected?
+> >      >
+> >      > Thanks in advance
+> >      >
+> >      > Best Regards
+> >      > Cherif
+> >      >
+> >      >
+> >      > _______________________________________________
+> >      > USRP-users mailing list
+> >      > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+> >      >
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >      >
+> >
+> >     --
+> >     --------------------------------------------------
+> >     M.-Sc. Fabian Schwartau
+> >     Technische Universit=C3=A4t Braunschweig
+> >     Institut f=C3=BCr Hochfrequenztechnik
+> >     Schleinitzstr. 22
+> >     38106 Braunschweig
+> >     Germany
+> >
+> >     Tel.:   +49-(0)531-391-2017
+> >     Fax:    +49-(0)531-391-2045
+> >     Email: fabian.schwartau@ihf.tu-bs.de
+> >     <mailto:fabian.schwartau@ihf.tu-bs.de>
+> >     WWW: http://www.tu-braunschweig.de/ihf
+> >     --------------------------------------------------
+> >
+> >     _______________________________________________
+> >     USRP-users mailing list
+> >     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+> >     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >
+> >
+> >
+> > --
+> >
+> > Daniel Jepson
+> >
+> > Digital Hardware Engineer
+> >
+> > National Instruments
+> >
+> > O: +1.512.683.6163
+> >
+> > daniel.jepson@ni.com <mailto:daniel.jepson@ni.com>
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >
+>
+> --
+> --------------------------------------------------
+> M.-Sc. Fabian Schwartau
+> Technische Universit=C3=A4t Braunschweig
+> Institut f=C3=BCr Hochfrequenztechnik
+> Schleinitzstr. 22
+> 38106 Braunschweig
+> Germany
+>
+> Tel.:   +49-(0)531-391-2017
+> Fax:    +49-(0)531-391-2045
+> Email:  fabian.schwartau@ihf.tu-bs.de
+> WWW:    http://www.tu-braunschweig.de/ihf
+> --------------------------------------------------
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
 
---===============2701977052478027167==
+--=20
+
+Daniel Jepson
+
+Digital Hardware Engineer
+
+National Instruments
+
+
+
+O: +1.512.683.6163
+
+daniel.jepson@ni.com
+
+--0000000000004578f1059383d272
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks Fabian. As long as the input PPS is driven by the s=
+ame RefClk that is provided to the X310, this system should be ok. You migh=
+t also consider driving the PPS on the falling edge of the RefClk to ensure=
+ timing is met at the X310. There are some timing constraints here that mig=
+ht affect performance, but I wouldn&#39;t expect to see a 10 ns shift.<div>=
+<br></div><div>-Daniel</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Thu, Sep 26, 2019 at 3:18 PM Fabian Schwar=
+tau via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">It is a self build device using a 74LS125D as buffer. T=
+he level is 3.3V <br>
+digital.<br>
+As there were no specifications around for the required input levels at <br=
+>
+the time we needed the device, we just measured the levels coming from <br>
+the 1PPS output and replicated them.<br>
+<br>
+Am 26.09.2019 um 13:51 schrieb Daniel Jepson via USRP-users:<br>
+&gt; Hi Fabian, Cherif,<br>
+&gt; <br>
+&gt; What is the external PPS device you are using?<br>
+&gt; <br>
+&gt; -Daniel<br>
+&gt; <br>
+&gt; On Thu, Sep 26, 2019 at 9:18 AM Fabian Schwartau via USRP-users <br>
+&gt; &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">us=
+rp-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mailto:usrp-users@lists.=
+ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;&gt; wrote:<=
+br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Hi,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0I have very similar problem with X310. I am running=
+ a C++ application,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0so I have a bit more flexibility I guess. After I d=
+o the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0set_time_unknown_pps to sync to the 1PPS signal, I =
+run the function<br>
+&gt;=C2=A0 =C2=A0 =C2=A0get_time_last_pps and it sometimes has an offset of=
+ 10ns (it was 5ns<br>
+&gt;=C2=A0 =C2=A0 =C2=A0for<br>
+&gt;=C2=A0 =C2=A0 =C2=A0an old firmware due to a bug, which was fixed a few=
+ weeks ago). If that<br>
+&gt;=C2=A0 =C2=A0 =C2=A0is the case I just do the sync again until the offs=
+et is zero.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0I don&#39;t know if it is an firmawre problem or if=
+ it is because the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0signal<br>
+&gt;=C2=A0 =C2=A0 =C2=A0integrety of the 1PPS signal is not good enough.<br=
+>
+&gt;=C2=A0 =C2=A0 =C2=A0Maybe that is also a solution for you.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Best regards,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Fabian<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Am 25.09.2019 um 11:16 schrieb Cherif Diouf via USR=
+P-users:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Hello,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; I am working with the X310 USRP. I have two i=
+dentical custom blocks<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; feeding the RF frontends.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; flowchart<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; -----------------<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; HW Block1 -&gt; RF0-TX1 |---&lt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; HW Block2 -&gt; RF1-TX1 |---&lt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; The system is synchronized to an external PPS=
+ reference. The<br>
+&gt;=C2=A0 =C2=A0 =C2=A0sampling<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; rate is 200 MSps and the signal bandwidth is =
+160 MHz for both<br>
+&gt;=C2=A0 =C2=A0 =C2=A0channels.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; The two HW blocks start=C2=A0 transmitting at=
+ the exactly same time. Time<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; resolution is 5ns.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; In most cases the two outgoing RF signals pre=
+sent a 1ns time offset.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Which can be understood as a phase offset.<br=
+>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; But From time to time there is a 6ns delay be=
+tween the channels. I<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; assume this 6ns comprises the 1ns delay due t=
+o phase offset + 5<br>
+&gt;=C2=A0 =C2=A0 =C2=A0ns delay<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; due to misalignment of outgoing samples.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; What could be the origin of this one sample m=
+isalignement? Is it<br>
+&gt;=C2=A0 =C2=A0 =C2=A0a way<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; to fix it? Or working close to the limits of =
+the device should such<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; behavior be expected?<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Thanks in advance<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Best Regards<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Cherif<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; _____________________________________________=
+__<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; USRP-users mailing list<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; <a href=3D"mailto:USRP-users@lists.ettus.com"=
+ target=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mai=
+lto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.co=
+m</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; <a href=3D"http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http=
+://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0-- <br>
+&gt;=C2=A0 =C2=A0 =C2=A0--------------------------------------------------<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0M.-Sc. Fabian Schwartau<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Technische Universit=C3=A4t Braunschweig<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Institut f=C3=BCr Hochfrequenztechnik<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Schleinitzstr. 22<br>
+&gt;=C2=A0 =C2=A0 =C2=A038106 Braunschweig<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Germany<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Tel.:=C2=A0 =C2=A0+49-(0)531-391-2017<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Fax:=C2=A0 =C2=A0 +49-(0)531-391-2045<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Email: <a href=3D"mailto:fabian.schwartau@ihf.tu-bs=
+.de" target=3D"_blank">fabian.schwartau@ihf.tu-bs.de</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:fabian.schwartau@ihf.t=
+u-bs.de" target=3D"_blank">fabian.schwartau@ihf.tu-bs.de</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0WWW: <a href=3D"http://www.tu-braunschweig.de/ihf" =
+rel=3D"noreferrer" target=3D"_blank">http://www.tu-braunschweig.de/ihf</a><=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0--------------------------------------------------<=
+br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0_______________________________________________<br>
+&gt;=C2=A0 =C2=A0 =C2=A0USRP-users mailing list<br>
+&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:USRP-users@lists.ettus.com" targe=
+t=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mailto:US=
+RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&=
+gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"http://lists.ettus.com/mailman/listinfo/=
+usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lis=
+ts.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; -- <br>
+&gt; <br>
+&gt; Daniel Jepson<br>
+&gt; <br>
+&gt; Digital Hardware Engineer<br>
+&gt; <br>
+&gt; National Instruments<br>
+&gt; <br>
+&gt; O: +1.512.683.6163<br>
+&gt; <br>
+&gt; <a href=3D"mailto:daniel.jepson@ni.com" target=3D"_blank">daniel.jepso=
+n@ni.com</a> &lt;mailto:<a href=3D"mailto:daniel.jepson@ni.com" target=3D"_=
+blank">daniel.jepson@ni.com</a>&gt;<br>
+&gt; <br>
+&gt; <br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt; <br>
+<br>
+-- <br>
+--------------------------------------------------<br>
+M.-Sc. Fabian Schwartau<br>
+Technische Universit=C3=A4t Braunschweig<br>
+Institut f=C3=BCr Hochfrequenztechnik<br>
+Schleinitzstr. 22<br>
+38106 Braunschweig<br>
+Germany<br>
+<br>
+Tel.:=C2=A0 =C2=A0+49-(0)531-391-2017<br>
+Fax:=C2=A0 =C2=A0 +49-(0)531-391-2045<br>
+Email:=C2=A0 <a href=3D"mailto:fabian.schwartau@ihf.tu-bs.de" target=3D"_bl=
+ank">fabian.schwartau@ihf.tu-bs.de</a><br>
+WWW:=C2=A0 =C2=A0 <a href=3D"http://www.tu-braunschweig.de/ihf" rel=3D"nore=
+ferrer" target=3D"_blank">http://www.tu-braunschweig.de/ihf</a><br>
+--------------------------------------------------<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><p><a name=3D"SignatureSanitize=
+r_SafeHtmlFilter__MailAutoSig"><span style=3D"color:black">Daniel
+Jepson</span></a></p>
+
+<p><span style=3D"color:black">Digital Hardware Engineer</span></p>
+
+<p><span style=3D"color:black">National Instruments</span></p>
+
+<p><span style=3D"color:black">=C2=A0</span></p>
+
+<p><span style=3D"color:black">O: +1.512.683.6163</span></p>
+
+<p><span style=3D"color:black"><a href=3D"mailto:daniel.jepson@ni.com" targ=
+et=3D"_blank">daniel.jepson@ni.com</a></span></p></div></div>
+
+--0000000000004578f1059383d272--
+
+
+--===============7899996709218438342==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -183,5 +484,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2701977052478027167==--
+--===============7899996709218438342==--
 
