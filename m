@@ -2,57 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5489C0A5E
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Sep 2019 19:33:16 +0200 (CEST)
-Received: from [::1] (port=54252 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9BC6C1252
+	for <lists+usrp-users@lfdr.de>; Sun, 29 Sep 2019 00:18:16 +0200 (CEST)
+Received: from [::1] (port=34582 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iDu7E-0008HP-RW; Fri, 27 Sep 2019 13:33:12 -0400
-Received: from mailservice.tudelft.nl ([130.161.131.5]:48136)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <C.E.V.Diouf@tudelft.nl>)
- id 1iDu7A-0008Bx-Uf
- for usrp-users@lists.ettus.com; Fri, 27 Sep 2019 13:33:09 -0400
-Received: from localhost (localhost [127.0.0.1])
- by amavis (Postfix) with ESMTP id 19CA2400CA
- for <usrp-users@lists.ettus.com>; Fri, 27 Sep 2019 19:32:22 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at tudelft.nl
-X-Spam-Flag: NO
-X-Spam-Score: -0.195
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.195 tagged_above=-99 required=5
- tests=[ALL_TRUSTED=-1, BASW_FROM=0.01, HTML_MESSAGE=0.001,
- RDNS_NONE=0.793, SPF_HELO_NONE=0.001] autolearn=no autolearn_force=no
-Received: from mailservice.tudelft.nl ([130.161.131.69])
- by localhost (tudelft.nl [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id imMG2y6bsvu2 for <usrp-users@lists.ettus.com>;
- Fri, 27 Sep 2019 19:32:21 +0200 (CEST)
-Received: from SRV219.tudelft.net (srv219.tudelft.net [131.180.6.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
- (No client certificate requested)
- by mx1.tudelft.nl (Postfix) with ESMTPS id 5F7DD400C5
- for <usrp-users@lists.ettus.com>; Fri, 27 Sep 2019 19:32:21 +0200 (CEST)
-Received: from SRV220.tudelft.net (131.180.6.20) by SRV219.tudelft.net
- (131.180.6.19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P521) id 15.1.1713.5; Fri, 27
- Sep 2019 19:32:15 +0200
-Received: from SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210]) by
- SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210%13]) with mapi id
- 15.01.1713.009; Fri, 27 Sep 2019 19:32:15 +0200
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: One sample - 5 ns delay between the two RF signals/ X310
-Thread-Index: AQHVdJ3O+aDrcDyjbEK3uBO/v/73aac/x0yI
-Date: Fri, 27 Sep 2019 17:32:15 +0000
-Message-ID: <8e4c35c4670641f1aa546146cda04961@tudelft.nl>
-References: <f8f84407bde942e199e079c598b33d34@tudelft.nl>
-In-Reply-To: <f8f84407bde942e199e079c598b33d34@tudelft.nl>
-Accept-Language: en-US, nl-NL
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	id 1iEL2c-0000Kr-5J; Sat, 28 Sep 2019 18:18:14 -0400
+Received: from mail-lf1-f42.google.com ([209.85.167.42]:34205)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <wandrewp@gmail.com>) id 1iEL2Y-0000FQ-Pk
+ for usrp-users@lists.ettus.com; Sat, 28 Sep 2019 18:18:10 -0400
+Received: by mail-lf1-f42.google.com with SMTP id r22so4391126lfm.1
+ for <usrp-users@lists.ettus.com>; Sat, 28 Sep 2019 15:17:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=rT6xWM5p122+Nay1dzWi46durcboa8zYoK459YGYhjU=;
+ b=bh8JrkguuCMZfZFUgUZcJ7qFrSPbbfx155aB27Mz0+Ax6eo4EyEhp8OLTFpdrfXa7U
+ FN2rTt9M/LPBYbDqn75mFifvwgamocl5BveZDL9tsxRjyK+w797WPvC3nHJVjDyBp78A
+ Ia7KxFoIZmvhLQ6YQsHvNWXNBBaNv9IC+p3COJ1AcVtWsttzpvhGJYdYErOq0zapEGWK
+ KYWC6+RlXmZQ8lWJNh3Y7iOXq9sS9GFSfJVgB5zT24zcBvvpSlP06yvoicsFFSyNXeT4
+ NyuFGFWYanTWcXdnpXEPi/a5SdEV5KHsVGxMQtIHOmXXi5qgaD/6Yor3ycu+69u8zRbu
+ J+wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=rT6xWM5p122+Nay1dzWi46durcboa8zYoK459YGYhjU=;
+ b=RV8CqP/C+ejo12mpr93UWBqRO/rBAnXJwDhOMiKQ/nJbJsxrRq8c3IV/wxpdlzzirk
+ Mt4bfEyiH84m8WFifhLgOFaqx89vbjaJZSYzab3gNVtJdHV1NYyD2EtC7juLL+E94zW4
+ KPNWySECoc0O4boUmL42mATZmhY1IeIS9+zP8ST1JuO3v+X/eKQG5jPyiQt1O3UA7A+B
+ K/fvXeC+PTCs20BfolqToY2ai7O3pzfLl7Q4wZq9s4aKafb1MNMJDTIMWWJMxtJQqmGy
+ JT2pYrGSWUeVbPZ+U7CP/oztvyJOizpBKTmsm/4GeRX2e42Zrh6Hp8VUKJn5da9Ck249
+ Agjg==
+X-Gm-Message-State: APjAAAUPj/OvgOohkGbK7+gp5BURAEkT5Q9cwq10uZly57WA6GzwXTgX
+ r22kGG8Te4RULfzaeWVvBLySQnw0+eazdPMtEu2lHf+P
+X-Google-Smtp-Source: APXvYqwEIOSHOBOeQJeHZldpmrfD1QL0nNhF7cDLnwFLqEBjRJfeMHUkRmUC4K2uCy48OUsIKt+kSUbjv2kUSBkMpRM=
+X-Received: by 2002:ac2:5586:: with SMTP id v6mr6855624lfg.180.1569709049222; 
+ Sat, 28 Sep 2019 15:17:29 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
- signals/ X310
+Date: Sat, 28 Sep 2019 18:17:15 -0400
+Message-ID: <CAB50+dR1Lvz5rC8Mj5SeuSCUeaBRnAnOUebvRhjtcsBk-Q7fKA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Gnuradio USRP Sink -
+ Finished/noutput_items/complete/anything
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -64,9 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Cherif Diouf via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Cherif Diouf <C.E.V.Diouf@tudelft.nl>
-Content-Type: multipart/mixed; boundary="===============0353412985927319629=="
+From: Andrew Payne via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Andrew Payne <wandrewp@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7921447908726278438=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,191 +71,74 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0353412985927319629==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_8e4c35c4670641f1aa546146cda04961tudelftnl_"
+--===============7921447908726278438==
+Content-Type: multipart/alternative; boundary="000000000000479c820593a45e36"
 
---_000_8e4c35c4670641f1aa546146cda04961tudelftnl_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000479c820593a45e36
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+I am writing a program in Python to interface with a simple file source to
+USRP sink flowgraph.
+
+I have a short IQ file that I simply want to play once without repeating,
+and I want the calling Python code to "know" when it's completed after
+commanding the GR class instance to start via a call to tb.start(), if tb
+is the class instance variable.  I came across the C++ GR API here:
+https://www.gnuradio.org/doc/doxygen/classgr_1_1block.html#a89242cb1ac9d2bf5e75f923745baa576
+
+^ That shows there's a gr.finished() boolean return that tells you when the
+flowgraph is done, but evidently .finished is not an attribute of tb.  The
+only methods that worked for me are tb.start/tb.run, tb.wait, tb.stop.
+
+I'd also be happy with polling the GR class instance for the noutput_items
+from the work function of the USRP_sink block. I know the file size so I
+can have a while loop with the noutput_items value as a condition, but how
+do I do that in Python?  I think I am getting close with these 2 results
+from Google but still not getting it:
+1)
+https://stackoverflow.com/questions/50938245/gnuradio-number-of-output-items/50943105
+2)
+https://stackoverflow.com/questions/32305813/gnuradio-how-to-change-the-noutput-items-dynamically-when-writing-oot-block
+
+Thanks,
+Andrew
+
+--000000000000479c820593a45e36
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-fabian,
+<div dir=3D"ltr">Hello,<div><br></div><div>I am writing a program in Python=
+ to interface with a simple file source to USRP sink flowgraph.</div><div><=
+br></div><div>I have a short IQ file that I simply want to play once withou=
+t repeating, and I want the calling Python code to &quot;know&quot; when it=
+&#39;s completed after commanding the GR class instance to start via a call=
+ to tb.start(), if tb is the class instance variable.=C2=A0 I came across t=
+he C++ GR API here:=C2=A0<a href=3D"https://www.gnuradio.org/doc/doxygen/cl=
+assgr_1_1block.html#a89242cb1ac9d2bf5e75f923745baa576">https://www.gnuradio=
+.org/doc/doxygen/classgr_1_1block.html#a89242cb1ac9d2bf5e75f923745baa576</a=
+></div><div><br></div><div>^ That shows there&#39;s a gr.finished() boolean=
+ return that tells you when the flowgraph is done, but evidently .finished =
+is not an attribute of tb.=C2=A0 The only methods that worked for me are tb=
+.start/tb.run, tb.wait, tb.stop.</div><div><br>I&#39;d also be happy with p=
+olling the GR class instance for the noutput_items from the work function o=
+f the USRP_sink block. I know the file size so I can have a while loop with=
+ the noutput_items value as a condition, but how do I do that in Python?=C2=
+=A0 I think I am getting close with these 2 results from Google but still n=
+ot getting it:</div><div>1)=C2=A0<a href=3D"https://stackoverflow.com/quest=
+ions/50938245/gnuradio-number-of-output-items/50943105">https://stackoverfl=
+ow.com/questions/50938245/gnuradio-number-of-output-items/50943105</a></div=
+><div>2)=C2=A0<a href=3D"https://stackoverflow.com/questions/32305813/gnura=
+dio-how-to-change-the-noutput-items-dynamically-when-writing-oot-block">htt=
+ps://stackoverflow.com/questions/32305813/gnuradio-how-to-change-the-noutpu=
+t-items-dynamically-when-writing-oot-block</a></div><div><br></div><div>Tha=
+nks,</div><div>Andrew</div></div>
+
+--000000000000479c820593a45e36--
 
 
-I have tested your solution, but the get_time_last_pps always gives me the =
-expect value.
-
-
-
-Daniel, On a different point, the issue might be related to timing, here ar=
-e some examples of  timing related to the DACs. The compilation is successf=
-ul but the margin is very low, in the 10 ps order.
-
-
-
-
-Startpoint                     Endpoint                       Slack(ns)
----------------------------------------------------------------------------=
--
-gen_db1/gen_pins[2].oddr/C     DB1_DAC_D2_N                   0.016
-gen_db1/gen_pins[2].oddr/C     DB1_DAC_D2_P                   0.016
-gen_db1/gen_pins[7].oddr/C     DB1_DAC_D7_N                   0.021
-gen_db1/gen_pins[7].oddr/C     DB1_DAC_D7_P                   0.021
-gen_db1/gen_pins[3].oddr/C     DB1_DAC_D3_N                   0.024
-gen_db1/gen_pins[3].oddr/C     DB1_DAC_D3_P                   0.024
-
-
-
-gen_db0/gen_pins[2].oddr/C     DB0_DAC_D2_N                   0.066
-gen_db0/gen_pins[2].oddr/C     DB0_DAC_D2_P                   0.066
-gen_db0/gen_pins[0].oddr/C     DB0_DAC_D0_N                   0.071
-gen_db0/gen_pins[0].oddr/C     DB0_DAC_D0_P                   0.071
-gen_db0/oddr_frame/C           DB0_DAC_FRAME_N                0.075
-gen_db0/oddr_frame/C           DB0_DAC_FRAME_P                0.075
-gen_db0/gen_pins[3].oddr/C     DB0_DAC_D3_N                   0.080
-gen_db0/gen_pins[3].oddr/C     DB0_DAC_D3_P                   0.080
-gen_db0/gen_pins[1].oddr/C     DB0_DAC_D1_N                   0.085
-gen_db0/gen_pins[1].oddr/C     DB0_DAC_D1_P                   0.085
-
-
-
-Best Regards
-
-Cherif
-
---_000_8e4c35c4670641f1aa546146cda04961tudelftnl_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p>fabian,</p>
-<p><br>
-</p>
-<p>I have tested your solution, but the <font size=3D"2"><span style=3D"fon=
-t-size:10pt;">get_time_last_pps</span></font> always gives me the expect va=
-lue.</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p><font size=3D"2">Daniel</font>, On a different point, the issue might be=
- related to timing, here are some examples of&nbsp; timing related to the D=
-ACs. The compilation is successful but the margin is very low, in the 10 ps=
- order.
-<br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p></p>
-<div>Startpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Endpoint&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Slack(ns)&nbsp;&nbsp;&n=
-bsp; &nbsp;<br>
----------------------------------------------------------------------------=
--<br>
-gen_db1/gen_pins[2].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB1_DAC_D2_N&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db1/gen_pins[2].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB1_DAC_D2_P&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db1/gen_pins[7].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB1_DAC_D7_N&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db1/gen_pins[7].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB1_DAC_D7_P&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db1/gen_pins[3].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB1_DAC_D3_N&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db1/gen_pins[3].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB1_DAC_D3_P&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.024&nbsp;&nbsp;&nbsp;&nbsp; <br>
-</div>
-<p></p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p></p>
-<div>gen_db0/gen_pins[2].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB0_DAC_D2_N&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; 0.066&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-&nbsp;<br>
-gen_db0/gen_pins[2].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB0_DAC_D2_P&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.066&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db0/gen_pins[0].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB0_DAC_D0_N&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.071&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db0/gen_pins[0].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB0_DAC_D0_P&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.071&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db0/oddr_frame/C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; DB0_DAC_FRAME_N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.075&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; &nbsp;<br>
-gen_db0/oddr_frame/C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; DB0_DAC_FRAME_P&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.075&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; &nbsp;<br>
-gen_db0/gen_pins[3].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB0_DAC_D3_N&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.080&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db0/gen_pins[3].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB0_DAC_D3_P&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.080&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db0/gen_pins[1].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB0_DAC_D1_N&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.085&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;<br>
-gen_db0/gen_pins[1].oddr/C&nbsp;&nbsp;&nbsp;&nbsp; DB0_DAC_D1_P&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0.085&nbsp; <br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-Best Regards
-<p></p>
-<p>Cherif<br>
-</p>
-</div>
-</body>
-</html>
-
---_000_8e4c35c4670641f1aa546146cda04961tudelftnl_--
-
-
---===============0353412985927319629==
+--===============7921447908726278438==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -275,5 +149,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0353412985927319629==--
+--===============7921447908726278438==--
 
