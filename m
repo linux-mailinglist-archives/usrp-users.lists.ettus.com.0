@@ -2,33 +2,33 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40DB2C2FB4
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2019 11:11:31 +0200 (CEST)
-Received: from [::1] (port=49492 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBD78C2FC3
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2019 11:13:45 +0200 (CEST)
+Received: from [::1] (port=51502 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iFEBo-0001eL-9m; Tue, 01 Oct 2019 05:11:24 -0400
-Received: from www.itsystems.it ([62.94.30.103]:36684 helo=mx1.itsystems.it)
+	id 1iFEE4-00024m-Pi; Tue, 01 Oct 2019 05:13:44 -0400
+Received: from www.itsystems.it ([62.94.30.103]:36694 helo=mx1.itsystems.it)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
  (Exim 4.92) (envelope-from <p.palana@itsystems.it>)
- id 1iFEBk-0001Yq-HR
- for usrp-users@lists.ettus.com; Tue, 01 Oct 2019 05:11:20 -0400
+ id 1iFEE0-0001uX-Tc
+ for usrp-users@lists.ettus.com; Tue, 01 Oct 2019 05:13:41 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=itsystems.it; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
+ d=itsystems.it; s=x; h=Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:
+ From:References:To:Subject:Sender:Reply-To:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=04dSGtJan8kW7frTP3sCGsCTfdhH860RrHCT9PfeaoI=; b=OL0ko//ekN7X81KNsDaHdFJCeG
- VKz58bkhT567a/WyV3HFfl3116DRhIl2N3lvDp75Lpqx2nGt70wuvJg7QYK99mE8/8zpBodaTMD/S
- EOGi77vV00arthCNFSG3wTpKKxNpD+fVSpPZg96yPWmqjiRjSMb2ASdydnQPxy2tgrbU=;
+ bh=h8kVyI5NzqTOd5m1V53GTv9C2QXsMpx5SPSl1fbhUC0=; b=yP9Jgyihis5Zi1HqqkT5WHBtSJ
+ 1u3IkDgMOxzU/LFKQ4gVk3MV8jcRerTKAony+G4v1X/K3ZkwI2rEKvD8ZYZP3l/LFPvQqQ+a9uA7d
+ 5zN4WVl7NKm1poT3boEJMXDebvnRHUKrEx6xkLgLxH793XPU4Ueg/90FMmfX+Q5/kNIc=;
 Received: from [10.10.0.138]
  by mx1.itsystems.it with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
  (Exim 4.90_1) (envelope-from <p.palana@itsystems.it>)
- id 1iFE97-0005k6-NF
- for usrp-users@lists.ettus.com; Tue, 01 Oct 2019 09:08:41 +0000
+ id 1iFEBS-0005kT-KF
+ for usrp-users@lists.ettus.com; Tue, 01 Oct 2019 09:11:02 +0000
 To: usrp-users@lists.ettus.com
-References: <b9a5e62a-1eed-95cd-9061-8ab7828ead6f@gmail.com>
+References: <CAN8DKtL-c1cp--r=5uTc1em5=ZdA5fiM9Koz0fjCEZy5QUqFdg@mail.gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=p.palana@itsystems.it; prefer-encrypt=mutual; keydata=
  xsFNBF2EewoBEADG65ZCMaUiHpPyTWOCyRKxapEbA2afV5uADacEmguCSaocBDj/teLdPZHi
@@ -73,12 +73,12 @@ Autocrypt: addr=p.palana@itsystems.it; prefer-encrypt=mutual; keydata=
  fTrws+bmHKV5Bo1EJ80WaCOCIFj2dYVmrgH8B3Cu/wtcYOA5Zgr1wuH8qRApEK65VbkycEH4
  tIkyB3/rIur3LPAKlPsDIFBTPbfoPNcmppeAzDX2VwtLwbdRJEW72Cm+sjYYpt70mjCH9er/
  Hv257PEMJkU=
-Message-ID: <6d39763f-ea6e-9dcf-a38e-d0afeafe9c56@itsystems.it>
-Date: Tue, 1 Oct 2019 11:10:34 +0200
+Message-ID: <6b3db94d-518c-4604-6d13-52baca3a8bd1@itsystems.it>
+Date: Tue, 1 Oct 2019 11:12:59 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <b9a5e62a-1eed-95cd-9061-8ab7828ead6f@gmail.com>
+In-Reply-To: <CAN8DKtL-c1cp--r=5uTc1em5=ZdA5fiM9Koz0fjCEZy5QUqFdg@mail.gmail.com>
 Content-Language: en-US
 X-Spam-Score: -2.9 (--)
 X-Spam-Report: Spam detection software,
@@ -87,16 +87,17 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  I had the same problem indeed, I think this is because vivado
- 2017.4 output image size is a bit different from the output imase size of
- vivado 2015.4. I say so because the error did not appear with uh [...] 
+ Content preview: Try the command. dd if=<original_file>.bit of=<new_file>.bit
+ count=<the_rigth_size> count=1 and then try to configure the fpga
+ <new_file>.bit
  Content analysis details:   (-2.9 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -1.0 ALL_TRUSTED            Passed through trusted hosts only via SMTP
  -1.9 BAYES_00               BODY: Bayes spam probability is 0 to 1%
  [score: 0.0000]
-Subject: Re: [USRP-users] X310 image 8 bytes too large with default image
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
+Subject: Re: [USRP-users] USRP X310 problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -110,8 +111,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Paolo Palana via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Paolo Palana <p.palana@itsystems.it>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2663270783219058574=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -125,55 +125,53 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-I had the same problem indeed,
-I think this is because vivado 2017.4 output image size is a bit
-different from the output imase size of vivado 2015.4.
-I say so because the error did not appear with uhd-3.10.3. I think the
-problem is that no one updated the tools provided with libuhd
-used to configure the fpga in order to handle the new output file dimension.
+This is a multi-part message in MIME format.
+--===============2663270783219058574==
+Content-Type: multipart/alternative;
+ boundary="------------ECB484CEAFCCC27BDDC801BD"
+Content-Language: en-US
 
-My solution is very simple, if you are under Linux just use dd and copy
-the original file with a command like this:
+This is a multi-part message in MIME format.
+--------------ECB484CEAFCCC27BDDC801BD
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-dd if=<orig_file>.bit of=<new_file>.bit bs=<the_rigth_dimension> count=1
+Try the command.
 
-And it works, at least for me. In fact if you open the bit file with a
-hexeditor you can see how the last bites looks like a padding.
+dd if=<original_file>.bit of=<new_file>.bit count=<the_rigth_size> count=1
 
-Best,
-Paolo
+and then try to configure the fpga <new_file>.bit
 
 
-On 30/09/19 23:06, Francesco Restuccia via USRP-users wrote:
-> Hi guys,
->
-> I am responding to the following thread:
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-August/057669.html
->
-> I am having the same problem while running the uhd_image_builder.py
-> with the default images for X310.
->
-> See below:
->
-> frank@frank-iMac:/opt/uhd/host/build/examples$
-> "/opt/uhd_gnuradio_installs/bin/uhd_image_loader"
-> --args="type=x300,addr=192.168.10.15"
-> [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
+On 27/09/19 16:12, Aaron Montilla via USRP-users wrote:
+> Hi,
+> I am trying to set the connection between my PC and my USRP X310.
+> I ran the command uhd_find_devices, and successfully it found the
+> USRP. Then I use the uhd_usrp_probe command and I had the next error:
+> aaron@leonard:~$ uhd_usrp_probe
+> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
 > UHD_3.15.0.git-71-g18bc320d
-> Error: RuntimeError: The specified FPGA image is too large: 15878040
-> vs. 15878032
+> [INFO] [X300] X300 initialization sequence...
+> [INFO] [X300] Maximum frame size: 1472 bytes.
+> [INFO] [X300] Radio 1x clock: 200 MHz
+> [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
+> 0xF1F0D00000000000)
+> [ERROR] [0/DmaFIFO_0] Major compat number mismatch for noc_shell:
+> Expecting 6, got 5.
+> Error: RuntimeError: FPGA component `noc_shell' is revision 5 and UHD
+> supports revision 6. Please either upgrade the FPGA image
+> (recommended) or downgrade UHD.
 >
-> Any idea? I guess that this should NOT happen with default images
-> downloaded through uhd_images_downloader.
+> I thought that upgrade the USRP was the best option, but when I try, I
+> have another error saying that the size of the image is too large (
+> only for 1 byte). I also read that I had to use the .bin file but I
+> didn't have any.
+> So, could you please tell me what I could do?
 >
-> Note that the USRP works by burning the default bitfile (HG version)
-> directly via Vivado and JTAG.
->
-> Best,
->
-> Francesco
->
->
+> Thank you very much in advance.
+> Kind regards,
+> Aaron
 >
 > _______________________________________________
 > USRP-users mailing list
@@ -182,8 +180,99 @@ On 30/09/19 23:06, Francesco Restuccia via USRP-users wrote:
 
 
 
+--------------ECB484CEAFCCC27BDDC801BD
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Try the command.</div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">dd if=&lt;original_file&gt;.bit
+      of=&lt;new_file&gt;.bit count=&lt;the_rigth_size&gt; count=1</div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">and then try to configure the fpga
+      &lt;new_file&gt;.bit<br>
+    </div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">On 27/09/19 16:12, Aaron Montilla via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAN8DKtL-c1cp--r=5uTc1em5=ZdA5fiM9Koz0fjCEZy5QUqFdg@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div>Hi,</div>
+        <div>I am trying to set the connection between my PC and my USRP
+          X310. <br>
+        </div>
+        <div>I ran the command uhd_find_devices, and successfully it
+          found the USRP. Then I use the uhd_usrp_probe command and I
+          had the next error:</div>
+        <div>aaron@leonard:~$ uhd_usrp_probe<br>
+          [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+          UHD_3.15.0.git-71-g18bc320d<br>
+          [INFO] [X300] X300 initialization sequence...<br>
+          [INFO] [X300] Maximum frame size: 1472 bytes.<br>
+          [INFO] [X300] Radio 1x clock: 200 MHz<br>
+          [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev
+          0.929a<br>
+          [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
+          0xF1F0D00000000000)<br>
+          [ERROR] [0/DmaFIFO_0] Major compat number mismatch for
+          noc_shell: Expecting 6, got 5.<br>
+          Error: RuntimeError: FPGA component `noc_shell' is revision 5
+          and UHD supports revision 6. Please either upgrade the FPGA
+          image (recommended) or downgrade UHD.</div>
+        <div><br>
+        </div>
+        <div>I thought that upgrade the USRP was the best option, but
+          when I try, I have another error saying that the size of the
+          image is too large ( only for 1 byte). I also read that I had
+          to use the .bin file but I didn't have any. <br>
+        </div>
+        <div>So, could you please tell me what I could do?</div>
+        <div><br>
+        </div>
+        <div>Thank you very much in advance.</div>
+        <div>Kind regards,</div>
+        <div>Aaron<br>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------ECB484CEAFCCC27BDDC801BD--
+
+
+--===============2663270783219058574==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2663270783219058574==--
+
