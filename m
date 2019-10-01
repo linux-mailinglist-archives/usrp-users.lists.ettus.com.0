@@ -2,35 +2,35 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57925C3F1D
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2019 19:57:31 +0200 (CEST)
-Received: from [::1] (port=46038 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC22CC4055
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Oct 2019 20:47:24 +0200 (CEST)
+Received: from [::1] (port=33922 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iFMOw-0001U6-A4; Tue, 01 Oct 2019 13:57:30 -0400
-Received: from dispatch1-us1.ppe-hosted.com ([67.231.154.164]:53186)
+	id 1iFNBC-0006fe-HI; Tue, 01 Oct 2019 14:47:22 -0400
+Received: from dispatch1-us1.ppe-hosted.com ([148.163.129.52]:51606)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
- id 1iFMOs-0001Jm-A3
- for usrp-users@lists.ettus.com; Tue, 01 Oct 2019 13:57:26 -0400
+ id 1iFNB8-0006Sn-6y
+ for usrp-users@lists.ettus.com; Tue, 01 Oct 2019 14:47:18 -0400
 Received: from dispatch1-us1.ppe-hosted.com (localhost.localdomain [127.0.0.1])
  by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
- D6A04A62AF
- for <usrp-users@lists.ettus.com>; Tue,  1 Oct 2019 17:56:45 +0000 (UTC)
+ A3AB4C79B0
+ for <usrp-users@lists.ettus.com>; Tue,  1 Oct 2019 18:46:37 +0000 (UTC)
 X-Virus-Scanned: Proofpoint Essentials engine
-Received: from NAM05-BY2-obe.outbound.protection.outlook.com
- (mail-by2nam05lp2052.outbound.protection.outlook.com [104.47.50.52])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam04lp2050.outbound.protection.outlook.com [104.47.44.50])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
  (No client certificate requested)
- by mx1-us2.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id D97CC28007E;
- Tue,  1 Oct 2019 17:56:34 +0000 (UTC)
+ by mx1-us4.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 7EE74BC005E;
+ Tue,  1 Oct 2019 18:46:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n28Bt8y6R17aJiPRLBL8ieCblNuHQ+jwalS1Yf0VhzGSwR6GFl3a+wsJIgUkrXNb8iA+wi48fqxaXDqh1hNSFBhN7YINFDiHw7V0xzwFmAfVKrld35PakjmXXehoSySBhufs1d0u+x1BHTYjWbvbf+294Hxo/XovqyRCDw208eoBfgx1/iXkmlnUQwnQFLMj/gMtDI+oPogggp2domWZI8QVJ5Djp6GzHWNblovxXBpMd1MOPtiScLQG+clvy6HEOpdG+1nmd5FQYyTIR3DGUAgXE9ExgAVK9wkhQc+YqR1osQk9pvR86xZXYkmd2fRj1pxgTDFEQQqwI4UT+9sMQg==
+ b=K3iB0PHOCmJe7+TGZhZ1Y5yo2bBT8EzPKbBs/LHSjg+qWzARKnegv/nzv/ZFDUbJQQUfcw8UKMYoV99OxVNSIwOMrOMsSiz6UQUGtAu9e/rvtpN8VrJR132l7g0Sh4x1Fr+CL0WO/cLOGdRzdSe4C8zc2lR2AInxA1jSyliYP1LPzIJpVBFwUBxHxaxQ87aJGragaD7YPuXCHPxOu23pbD47uU2jh0Z2GiwQoZ+8NnnQN2invqlN927VXmV/x+3NhbddCR7Eg7mHoziFS75oUNzquUu95RRahJL0raqtdLidY1hVifV8ILSKbnu+7OTO2wtO8fW8SVYmnA84HfK8Qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N9Ywh5g98dlDGA76hlTXQFTM77Km9h0ksiBX233cO2o=;
- b=Td4UkmArUFinTw6lBtCNNmi0vZqqRwRGvnqL1zMZSiiHjGA8XtoVWczSkimBhaXyLcGDRDw8ORH6pno/u5r0Cqa1mvOFC3gsFFG7YAkSs3aEGtp/3fMH61s9m9JAcwE6sHdUjFLlT9UWbWPpjdS0g9NwUNXqKZGE/DAX7GHLHxA0YA3r8JEJI55gmprvaZPVZJGVJWt/cWtoDayGSaXpfy6YLsw3bUkL6y8MeK/AHNj3sym+/4gz8sncslucusuRU9yl8UoyL0b8QsklpOajd7RCkp3ntEtxb/66VJeSpblWkrrGE2ryR57dmXdGQyrQX4BgQrYuekVpVPC+iA6MoQ==
+ bh=Hp9SgMEC1ycoCllZJccUn2vu2fPiIQqvHZ9eQrjfsi0=;
+ b=WzDfMtaDRr6swRoD4LeqSWKsHtzttE3upy3qJHg9Mjy+Y1R2J1YdObdYPCa8mZ77CWuwl7v0R84zFFa/h5eIJe5Wbg2ypL3VyiaBH91nLB5n6LtEOGTYN+xnBoF7UqwK72dd1jAst9O7SQZmw9hNbLjs6kT67fI0CxC+9U6a5+CgfIpnFgDYA8H4iy4BfcBed7yKucOnDXPuGe/EjmW21e3iZRwEqUh3I2nsqxoEyJyzXV510+aYjlLe4jJNU2QLCgdiQEFPbKgeIGbhKpq61SoJyKLBRVXQEPLSBEblKVwC6q93FCa7eO7uw+s6Ilefjl6R2eIHYiroIhG0MsyCgg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
  header.from=gardettoengineering.com; dkim=pass
@@ -39,21 +39,21 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gardettoengineering.onmicrosoft.com;
  s=selector2-gardettoengineering-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N9Ywh5g98dlDGA76hlTXQFTM77Km9h0ksiBX233cO2o=;
- b=pjngSHMT2qtwJSUigWFFeiUWTUo5rkazsWJj1edd9En6VjHYTK1/Lpct8DInOtrosIJzpddIPA1u81UqDzdiE/3nglAWO1IGowxBZgiNVUJFxiA+KyKGLqaAvqMv9iTp4/0NWmEgo72/58rWiFUkj1/LnfVLNVHtuCeY1PrtOms=
+ bh=Hp9SgMEC1ycoCllZJccUn2vu2fPiIQqvHZ9eQrjfsi0=;
+ b=KrDyfwrVX6uIfEKEtCj5gF92si8TLQf986JfEv0gCUUsF5iOs6L9CpIxns9r2q8qayt5XZjDeVaSVxSyjXm1skv/JtIrydSUVEEp/0PlQzEc+0fbB+OKXv3DpCN5iBjubDym15xSXcx+v0LZqHp1AzLjl0oBPy/pTs9G93Yfom8=
 Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.11.30) by
- BL0PR12MB2449.namprd12.prod.outlook.com (52.132.28.138) with Microsoft SMTP
+ BL0PR12MB2532.namprd12.prod.outlook.com (52.132.9.148) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.17; Tue, 1 Oct 2019 17:56:19 +0000
+ 15.20.2305.20; Tue, 1 Oct 2019 18:46:14 +0000
 Received: from BL0PR12MB2340.namprd12.prod.outlook.com
  ([fe80::d017:bb2f:c281:2400]) by BL0PR12MB2340.namprd12.prod.outlook.com
  ([fe80::d017:bb2f:c281:2400%5]) with mapi id 15.20.2305.017; Tue, 1 Oct 2019
- 17:56:19 +0000
+ 18:46:14 +0000
 To: Marcus D Leech <patchvonbraun@gmail.com>
 Thread-Topic: [USRP-users] RFNoC not re-tuning consistently
-Thread-Index: AQHVeHbv0cvGx2/8hUGLN6pZi897u6dGEQaAgAAAcKQ=
-Date: Tue, 1 Oct 2019 17:56:19 +0000
-Message-ID: <BL0PR12MB2340C8A015070746F02D6B82AF9D0@BL0PR12MB2340.namprd12.prod.outlook.com>
+Thread-Index: AQHVeHbv0cvGx2/8hUGLN6pZi897u6dGEQaAgAAK1qE=
+Date: Tue, 1 Oct 2019 18:46:14 +0000
+Message-ID: <BL0PR12MB234059374EDB6CEF5FE8E167AF9D0@BL0PR12MB2340.namprd12.prod.outlook.com>
 References: <BL0PR12MB23404CB926FD14B0E4FB6B23AF9D0@BL0PR12MB2340.namprd12.prod.outlook.com>,
  <97A84D63-7989-4368-85C3-0894E35B88AC@gmail.com>
 In-Reply-To: <97A84D63-7989-4368-85C3-0894E35B88AC@gmail.com>
@@ -65,33 +65,33 @@ authentication-results: spf=none (sender IP is )
  smtp.mailfrom=jason@gardettoengineering.com; 
 x-originating-ip: [65.127.220.137]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1637ddd8-06e3-4ce1-7898-08d74698aa00
-x-ms-traffictypediagnostic: BL0PR12MB2449:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: <BL0PR12MB2449476E4047B817DD346D9AAF9D0@BL0PR12MB2449.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4941;
+x-ms-office365-filtering-correlation-id: f2ed14d3-be9a-425c-32cb-08d7469fa2fa
+x-ms-traffictypediagnostic: BL0PR12MB2532:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BL0PR12MB2532B666DB3B837EAE400D4FAF9D0@BL0PR12MB2532.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-forefront-prvs: 0177904E6B
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(136003)(376002)(346002)(396003)(366004)(39830400003)(199004)(189003)(54094003)(14444005)(52536014)(6436002)(33656002)(26005)(25786009)(5024004)(229853002)(105004)(6306002)(6246003)(236005)(9686003)(54896002)(186003)(55016002)(256004)(316002)(8936002)(6916009)(19627405001)(7696005)(99286004)(1411001)(81156014)(102836004)(81166006)(606006)(2906002)(74316002)(8676002)(71190400001)(66066001)(508600001)(5660300002)(14454004)(76176011)(53546011)(86362001)(66574012)(6506007)(966005)(486006)(4326008)(71200400001)(7736002)(446003)(11346002)(476003)(66446008)(6116002)(64756008)(66556008)(66476007)(3846002)(76116006)(66946007);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2449;
+ SFS:(10019020)(366004)(136003)(396003)(376002)(346002)(39830400003)(199004)(189003)(54094003)(19627405001)(66556008)(256004)(76176011)(66476007)(7696005)(8936002)(14454004)(508600001)(966005)(71190400001)(71200400001)(5660300002)(6916009)(7736002)(74316002)(14444005)(5024004)(33656002)(316002)(99286004)(1411001)(66066001)(25786009)(2906002)(64756008)(66446008)(6306002)(476003)(6246003)(66946007)(52536014)(486006)(9686003)(11346002)(105004)(186003)(6436002)(55016002)(54896002)(446003)(236005)(76116006)(86362001)(606006)(66574012)(26005)(229853002)(53546011)(6506007)(102836004)(3846002)(6116002)(8676002)(4326008)(81156014)(81166006);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2532;
  H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: gardettoengineering.com does not
  designate permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: W3sPJJLVBiCWZm0S7P0xu6s4Q/EdLbRkJK6DCEFZAb/GDwqPd5MtmvoJDFYoA9ZzkCDsoNSSvoFrfHpU2CTB74L/L5kbLpJWbevMVQdF5+190kpSlGIDsbNFOTb6QnONPRrR6AFAVI6BXFEILaYjPyAQVFZkCPenVv4O0bbTYXzhpc5MUQ0/AUIk9pP1x/u/gJkZ/bcApjqiU6pYJZgLYnrTuIogJ3jHTnYCGypRnAZuoRuvYhf7lF5efo6dqv+qhaiiEOmPajkutlqVbUvY8TEF11k4j5GduMgCUGo09qbJmio02rpGb063RHEvDMbAk5SQNRVw0YvAcyh8e2EiHnC5gDzpJ+kIcPk//ycJf6zfT2c4KJQS7FvVk9fqQw1wYzr5fm1nCESaQ65Da4vEbTQwFoCPUmQTUAXSzbtNtyXjupVuogHgVtI5hH+Da2jTIGYYDDutmjJqctmE+EOW+w==
+x-microsoft-antispam-message-info: /CqKvRA38eHAskgYazRcZeI4eD7pqGlAMAKPT9hzi3pXEN+WDwjam5lTYHCpiVgXljBC+TDyz2MUGuUPPxBmybW+tGwMy+1OgxoNgXgLLx8jc1GErIKOCsCoSCLNNwC0ikA4tvGTZEx+fGd23fL01qfjR60iEST+ZbIcTAhQ2Ti+BrEKqjQPqcgEOXHpJB5quZrrApLSHt4+fYATf3+l5L4pIzmF6JvUP0jg/rPZ83yUMsleyQjPufwTkhZg3XAwXD/Vp+x/tb59Ae6KrLfPUx7fhec4jzOusRHjb3cRtS33s7VEJLTsNEtYi6oyfR5DNWBID6B0rVRzfJ/hH2rs9dzr5Fd0jdlZydK5CGEyGEclXJe9rN8oTW323yhI673KNug3CErGMGK4G8se766ZXi9cJgnvnk210ui5rjywHvtWXylzDpieYwlkEjRzGt3Fn55xw2DwmsjNEcePVKj4ZQ==
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1637ddd8-06e3-4ce1-7898-08d74698aa00
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2019 17:56:19.6216 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2ed14d3-be9a-425c-32cb-08d7469fa2fa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2019 18:46:14.3865 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4/COk8BRq+22fe1fTf+hqlm1VO5WLDR9XVcN8gA3XhKLQozBSmFUGzh19vTncB1NYqiGv8OFj0wEUFqC6+u/F8uYs4OvZUbWVpdO0zILn20=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2449
-X-MDID: 1569952595-1Gh9Q6D5HqHk
+X-MS-Exchange-CrossTenant-userprincipalname: FBsyDFxXm5Cb7WCHnfcbLgTnwE0eToV5Db49Bqwkf459DGANkmfhHcR4IcG87egqfno/jZvB2rmICiDfkzSPsbiDDWqZB8rQxbM6OQrUK4c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2532
+X-MDID: 1569955587-y4VW9zFykhYR
 Subject: Re: [USRP-users] RFNoC not re-tuning consistently
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -107,7 +107,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Jason Matusiak <jason@gardettoengineering.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6951729595910673490=="
+Content-Type: multipart/mixed; boundary="===============5225589967580702464=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -121,27 +121,42 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6951729595910673490==
+--===============5225589967580702464==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB2340C8A015070746F02D6B82AF9D0BL0PR12MB2340namp_"
+	boundary="_000_BL0PR12MB234059374EDB6CEF5FE8E167AF9D0BL0PR12MB2340namp_"
 
---_000_BL0PR12MB2340C8A015070746F02D6B82AF9D0BL0PR12MB2340namp_
+--_000_BL0PR12MB234059374EDB6CEF5FE8E167AF9D0BL0PR12MB2340namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Marcus,
+OK, I think I found the issue.  I am not sure what was causing things to so=
+metimes work vs other times, but it seems to be the difference.  I pulled u=
+p an example RFNoC flowgraph and it didn't have any issues.  So then I star=
+ted stripping things out and trying to compare things.  The only real diffe=
+rence that was a problem was two lines:
 
-I am not 100% sure I understand what you mean, but I am not sure why anythi=
-ng would need to be done differently (and in the past I feel like I had no =
-issues).  They certainly don't talk about anything needed to be modified he=
-re:
-https://kb.ettus.com/RFNoC#What_is_the_difference_between_USRP_Sink.2FSourc=
-e_blocks_and_the_RFNoC:Radio_block.3F
+good:
+                args=3D"input_rate=3D{},output_rate=3D{},fullscale=3D{},fre=
+q=3D{},gr_vlen=3D{},{}".format(master_clock_rate, samp_rate, 1.0, 0.0, 256,=
+ "" if 256 =3D=3D 1 else "spp=3D{}".format(256)),
+bad:
+                args=3D"input_rate=3D{},output_rate=3D{},fullscale=3D{},fre=
+q=3D{},gr_vlen=3D{},{}".format(master_clock_rate, samp_rate, 1.0, 0, 256, "=
+" if 256 =3D=3D 1 else "spp=3D{}".format(256)),
 
-And back to the modifications of the step size, would that still be a poten=
-tial avenue to investigate knowing that sometimes things work and other tim=
-es it doesn't?
+and
+good:
+            self.uhd_rfnoc_streamer_ddc_0.set_arg("freq", 0.0, chan)
+bad:
+            self.uhd_rfnoc_streamer_ddc_0_0_0.set_arg("freq", 0, chan)
+
+The difference between those lines is that the bad lines have the value "0"=
+ and the good has "0.0".  If I manually make the change the flowgraph seems=
+ to work fine.  I can't for the life of me figure out why one flowgraph is =
+doing it as an int and the other as a float (they are both opened in the sa=
+me GRC window), but everything is happy if I just do a save-as on the worki=
+ng one and start from there.....
 
 ________________________________
 From: Marcus D Leech <patchvonbraun@gmail.com>
@@ -192,7 +207,7 @@ Of-v5A_CdpgnVfiiMM&r=3DW_MQLyUWPXWHfsF4mr51mTMqpeO4RbBBLexficV9DG8&m=3DFE-X=
 gMWjRnCsg9jWESEUgaV-ylQVbjIHIaQFFbsXSE0&s=3DHD_9V5Du1Mwt_qI6Cq-fhvMlJTJm3rw=
 Dd0bY0TDiZ4Q&e=3D>
 
---_000_BL0PR12MB2340C8A015070746F02D6B82AF9D0BL0PR12MB2340namp_
+--_000_BL0PR12MB234059374EDB6CEF5FE8E167AF9D0BL0PR12MB2340namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -206,33 +221,75 @@ ttom:0;} </style>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Marcus,</div>
+OK, I think I found the issue.&nbsp; I am not sure what was causing things =
+to sometimes work vs other times, but it seems to be the difference.&nbsp; =
+I pulled up an example RFNoC flowgraph and it didn't have any issues.&nbsp;=
+ So then I started stripping things out and trying
+ to compare things.&nbsp; The only real difference that was a problem was t=
+wo lines:</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
 <br>
 </div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-I am not 100% sure I understand what you mean, but I am not sure why anythi=
-ng would need to be done differently (and in the past I feel like I had no =
-issues).&nbsp; They certainly don't talk about anything needed to be modifi=
-ed here:</div>
+good:</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-<a href=3D"https://kb.ettus.com/RFNoC#What_is_the_difference_between_USRP_S=
-ink.2FSource_blocks_and_the_RFNoC:Radio_block.3F" id=3D"LPNoLP241613">https=
-://kb.ettus.com/RFNoC#What_is_the_difference_between_USRP_Sink.2FSource_blo=
-cks_and_the_RFNoC:Radio_block.3F</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; args=3D&quot;input_=
+rate=3D{},output_rate=3D{},fullscale=3D{},freq=3D{},gr_vlen=3D{},{}&quot;.f=
+ormat(master_clock_rate, samp_rate, 1.0, 0.0, 256, &quot;&quot; if 256 =3D=
+=3D 1 else &quot;spp=3D{}&quot;.format(256)),<br>
 </div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+bad:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; args=3D&quot;input_=
+rate=3D{},output_rate=3D{},fullscale=3D{},freq=3D{},gr_vlen=3D{},{}&quot;.f=
+ormat(master_clock_rate, samp_rate, 1.0, 0, 256, &quot;&quot; if 256 =3D=3D=
+ 1 else &quot;spp=3D{}&quot;.format(256)),<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
 <br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+and</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+good:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.uhd_rfnoc_streamer_ddc_0.set=
+_arg(&quot;freq&quot;, 0.0, chan)<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+bad:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.uhd_rfnoc_streamer_ddc_0_0_0=
+.set_arg(&quot;freq&quot;, 0, chan)<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+The difference between those lines is that the bad lines have the value &qu=
+ot;0&quot; and the good has &quot;0.0&quot;.&nbsp; If I manually make the c=
+hange the flowgraph seems to work fine.&nbsp; I can't for the life of me fi=
+gure out why one flowgraph is doing it as an int and the other
+ as a float (they are both opened in the same GRC window), but everything i=
+s happy if I just do a save-as on the working one and start from there.....=
+</div>
 <div id=3D"Signature">
 <div>
 <div id=3D"appendonsend"></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-And back to the modifications of the step size, would that still be a poten=
-tial avenue to investigate knowing that sometimes things work and other tim=
-es it doesn't?</div>
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
 t; color:rgb(0,0,0)">
 <br>
@@ -335,10 +392,10 @@ lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span><br>
 </body>
 </html>
 
---_000_BL0PR12MB2340C8A015070746F02D6B82AF9D0BL0PR12MB2340namp_--
+--_000_BL0PR12MB234059374EDB6CEF5FE8E167AF9D0BL0PR12MB2340namp_--
 
 
---===============6951729595910673490==
+--===============5225589967580702464==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -349,5 +406,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6951729595910673490==--
+--===============5225589967580702464==--
 
