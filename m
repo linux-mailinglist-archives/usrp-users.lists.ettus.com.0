@@ -2,62 +2,81 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E90C9F78
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Oct 2019 15:32:51 +0200 (CEST)
-Received: from [::1] (port=39060 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 753FACC179
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Oct 2019 19:18:15 +0200 (CEST)
+Received: from [::1] (port=54514 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iG1Ds-0003hv-HH; Thu, 03 Oct 2019 09:32:48 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:33189)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
- id 1iG1Do-0003Kf-US
- for usrp-users@lists.ettus.com; Thu, 03 Oct 2019 09:32:44 -0400
-Received: by mail-oi1-f180.google.com with SMTP id e18so2620997oii.0
- for <usrp-users@lists.ettus.com>; Thu, 03 Oct 2019 06:32:24 -0700 (PDT)
+	id 1iGRDT-0003o1-Ss; Fri, 04 Oct 2019 13:18:07 -0400
+Received: from mail-eopbgr730068.outbound.protection.outlook.com
+ ([40.107.73.68]:20412 helo=NAM05-DM3-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+ (Exim 4.92) (envelope-from <mark.koenig@iubelttechnologies.com>)
+ id 1iGRDP-0003e1-SB
+ for usrp-users@lists.ettus.com; Fri, 04 Oct 2019 13:18:03 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aVQYGnHVO4HKzbUQwbtT3XVFMxwJH4quTT+uRJs17efdOsPzWSIVBNOUr4daBsYm8URYW9+UKu23LBqS4txe5yEs5M9EDuwgUtyIMqqf/6Z3hv6SOAEKuvZLPB1WrPiJIQq3GWCBaMFl5KpqUFgq6hNKxRVg/hP25ha0sGqJ4DiF8IEkcnWQu6RspnJcFsiUsey0ZHuQR/hD08Y8GN+Mo3crvbMyPA4DqGEMbG5VKY6Y/gYGMeoQg/TxcFDTuFhFjvD/28JER2vRDlG1nHesEjMUFHI5iBSaQjuj4q82ATzRwbqJAFgBnyhdlzGTXEzw+meZ4ryTIrgkASTaO4Lzvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XwSxv0WwjaomdKkxP4XtImG0TjH4oBLu/PtaTucMt98=;
+ b=aIkeJmuJ4xFNpDI9xysKtGxxlRibNQupDC5E+9q8xtEXlRJmPLPbVyEc2KKa6GPtVn1rwFq7g1lR9U3WlkMK79vxqQrMfaD4zd2skPTRsId4wLoWa+8d5bhhTAcHQOIAR4nJpnHDQF0EtKYzRiNXz+wUBv+wbQBcnR+Cx7Ol59V82uOVyLmd347/JT8d53zPv66jiRfRIYjaabOhxbRep5+kEy1eta3Ik0FAFdEOIxG1UecsA6zaLXmX/HBrmAVE8CpYevEOnN40BYK8bjOC1BLHcn/ru1uNoUvGY/2Aa5GL3ESNr4TUEBYm2BKTuVvKMVGgk/cTvJT8No6P60JPNA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=iubelttechnologies.com; dmarc=pass action=none
+ header.from=iubelttechnologies.com; dkim=pass
+ header.d=iubelttechnologies.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=i6VVD6YYlaVXdCP0t26IJb40QSyXbrdAox3qAo03xpk=;
- b=y8F9WzBQJS5o4kmbzHZGGuHdt4nS9HwPxu23O1zdBCHMvKVZcQQcxjZdNYOfjWjzuU
- yRTnn9xNEcbwTWKAqJA564N8jvR0EaIyRyGvvSJnTWyz8k5vjCAlvCsbxCI2GPhWQ99N
- BYCPJPWKA7oYQPELjfEQnfQR+0qN7ftunkMP71n1NZ1E9ZJQmUgwWEE/IMaTCezTIfp3
- FRQqzKfx4HHt725R2wOndnM8kXr6PrgJD+IeLAxqJ739GhWNpeZQzVl+r+1N5+hxE3Xz
- whxtYdyM2xVHrr+o9M6vSiTIa25efsXT27l1QYJ5O7JteEwLNrnrXkG9LCsifej324H7
- cAig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=i6VVD6YYlaVXdCP0t26IJb40QSyXbrdAox3qAo03xpk=;
- b=B1/yBkGDmFSp4fn1jKkmXVmTQfqVHiOxiw4aBI92+92kh3k4dSwB46O/ZCmvhlg5eu
- RGGaMNXLVNACA0B1aTxIK7XH9SrL45Jy8vF5NUbimFTlmEjToDjsna2L+9Ra6DZFogv3
- qWigYnZSHfVC+LMCoKvO2vUjfFzzFYRXmdKzz36guxT+Os6N0sm1Eb+0TkU2ZHT2cl4o
- 2yYeBMJpvaTrtJ44lKXTCrRlQSLtfSP6o/p+HXm1jG9QCJXN5DWsD+OhrpSor+QWm2rG
- 81id2fFd4bJjM9qUgRIEks7PsCeQsW/1OZS80uuYU7d0JfhGXA59W0bWzc4TL6fsZ/Hl
- 0Ggg==
-X-Gm-Message-State: APjAAAUTgtYGSlXZS+B20buexll/e8SdcY4T8vSym9/ZXsnfHZWwfEkl
- fJdDe5cGTJZp3JEqjcdJz4lZ+M+DYbFJdJdcNOqXAsdJjBt3/Q==
-X-Google-Smtp-Source: APXvYqzrYQP0/ZRzKXxbGxj7icxk1LQwAKoiGoCJTXfyToyeh/FnEWxbh2Kt86h4xb5x7UO9rBM3ZW71yAC2A0tOtik=
-X-Received: by 2002:aca:7250:: with SMTP id p77mr2870137oic.157.1570109524070; 
- Thu, 03 Oct 2019 06:32:04 -0700 (PDT)
+ d=NETORG330411.onmicrosoft.com; s=selector2-NETORG330411-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XwSxv0WwjaomdKkxP4XtImG0TjH4oBLu/PtaTucMt98=;
+ b=OTQxLMKfNvq44jiov8jkOs8fDK2eJ190uoNBSq50DPqh64nQaPsWRZScj8r/z1qfF2CUvd54oUhvXzQqwQWI/Ie2WpjQfgJ36W/hVe/rc38XoF6b3JD6UarY2CU2g/fVOZgTWuhLBfgkeQHPPIjpFSLghYrdmCvKdu17NTLVOwc=
+Received: from BL0PR12MB2417.namprd12.prod.outlook.com (52.132.31.21) by
+ BL0PR12MB2482.namprd12.prod.outlook.com (52.132.9.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2305.20; Fri, 4 Oct 2019 17:17:21 +0000
+Received: from BL0PR12MB2417.namprd12.prod.outlook.com
+ ([fe80::f97a:5a45:f4df:5211]) by BL0PR12MB2417.namprd12.prod.outlook.com
+ ([fe80::f97a:5a45:f4df:5211%7]) with mapi id 15.20.2305.023; Fri, 4 Oct 2019
+ 17:17:21 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: usrp probe and find commands
+Thread-Index: AQHVeteU0A98AhWslUKY/Ax1lUtsfw==
+Date: Fri, 4 Oct 2019 17:17:20 +0000
+Message-ID: <A97E90B7-48D8-425C-A071-25D24FEF2DB1@contoso.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=mark.koenig@iubelttechnologies.com; 
+x-originating-ip: [50.233.168.36]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 66b920be-2275-4080-a625-08d748eeb749
+x-ms-traffictypediagnostic: BL0PR12MB2482:
+x-microsoft-antispam-prvs: <BL0PR12MB2482CAB4AE20B0E7A73F5D708C9E0@BL0PR12MB2482.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 018093A9B5
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(366004)(376002)(396003)(346002)(39830400003)(136003)(51914003)(199004)(189003)(44832011)(33656002)(6916009)(9686003)(6486002)(476003)(486006)(6436002)(6116002)(5640700003)(2501003)(256004)(3846002)(66066001)(6506007)(81156014)(71200400001)(71190400001)(8676002)(5660300002)(508600001)(99286004)(64756008)(8936002)(36756003)(25786009)(6306002)(66476007)(316002)(558084003)(7736002)(66946007)(66446008)(102836004)(66556008)(186003)(81166006)(6512007)(14454004)(76116006)(54896002)(26005)(86362001)(2351001)(2906002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BL0PR12MB2482;
+ H:BL0PR12MB2417.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: iubelttechnologies.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: xi0iJI4sjsEw5mb0BeGVfWWhUj3LtBAtrw2RWwegHgsq3qn4WNVrffn/4W/MJ2cWH6EQsQvxscq2d+5YTjc3pPtWP6xYt01QS+tMUM8ZET1kRDAVuhIOuvLkiQ+obiHFIbbJptCsAodNxNLfPwEBPfSqUEibdsfYVoLwbthqGuPiSC2WqsOv3QuwZrKizJYaIHPk0cEEwSKtAWnFdgljFlmgClny+Qtb+9bbIsqbGR6mA14BQt5XBz/+ZHEKWRKn5/zo1Iu+QrJ0/TMz4AKQoLfQ+Tylx0323HQN+rbBdKEloF7ObS73GG6O0uEAoENAsmlGt9R9jnxfiAKTi7kT57jVqF7ybrjBogMoucWum2Ej2HECtWCqkZL3aBvXLWp0+UC3dvikCCrfiogNAVxNT4zlKD9JHo/3BrUuRd63EPc=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <9d637be0-b80a-33cb-492d-0197e3ba6f5a@3db-labs.com>
- <5D576746.1010008@gmail.com>
- <e74ba0af-5c65-9b46-d3d7-360ab9d9dda5@3db-labs.com>
- <CACaXmv-XwDKP8ok_325K_hahwWUAuesQJddD8-CkoNrJY7GqfQ@mail.gmail.com>
- <8a61a15c-6018-c30b-2cd3-15220e2ea1e6@3db-labs.com>
- <CACaXmv87s56ttKCk4io8Z5nJq3DjyhzL6Qv1PgTMUvahmSad7A@mail.gmail.com>
- <d551a3fe-5f6a-147a-6bf3-0be3aaa86bcd@3db-labs.com>
- <39850419-2871-9e95-c355-677aa4543b60@3db-labs.com>
- <CACaXmv_Ar3Lq02UvuMhTv1Pi8Fv2TGkX5n642YxTW5E6W5NNVQ@mail.gmail.com>
- <2e44da01-b922-5020-d4cc-4984fd55e1f0@3db-labs.com>
-In-Reply-To: <2e44da01-b922-5020-d4cc-4984fd55e1f0@3db-labs.com>
-Date: Thu, 3 Oct 2019 09:31:53 -0400
-Message-ID: <CAGNhwTN4sxy1h78OXx=v=mzU5vwHN2bpQ-SNQrnrZYZjFwsWuw@mail.gmail.com>
-To: Jason Roehm <jasonr@3db-labs.com>
-Subject: Re: [USRP-users] Incorrect RX time_spec values with X300, TwinRX,
- and v3.14.1.0
+X-OriginatorOrg: iubelttechnologies.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66b920be-2275-4080-a625-08d748eeb749
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Oct 2019 17:17:20.9078 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1a86298a-7d59-4320-a7f5-798264e69360
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VFowYe9GvFuGPzurqpZJSqbEqBoB9/UxkKMRN8QdhIPiiM9p5srySbNwBlvI4shx6KojIbyWOLOycS6Agkj+Va0YHtudsanWajWoJQXNU5/AlFvBW9GBHxwvjSMD5zze
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2482
+Subject: [USRP-users] usrp probe and find commands
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -69,11 +88,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>,
- Neel Pandeya <neel.pandeya@ettus.com>
-Content-Type: multipart/mixed; boundary="===============1174897923678520702=="
+From: Mark Koenig via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mark Koenig <mark.koenig@iubelttechnologies.com>
+Content-Type: multipart/mixed; boundary="===============5367037395194766167=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,122 +104,86 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1174897923678520702==
-Content-Type: multipart/alternative; boundary="00000000000070eb190594019cc4"
+--===============5367037395194766167==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A97E90B748D8425CA07125D24FEF2DB1contosocom_"
 
---00000000000070eb190594019cc4
-Content-Type: text/plain; charset="UTF-8"
+--_000_A97E90B748D8425CA07125D24FEF2DB1contosocom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Jason - I've been working with Neel on this topic. I'll email you
-off-list to discuss more. If we come up with anything useful we can always
-reply to the overall list. - MLD
+RG9lcyBhbnlvbmUgaGF2ZSBhbnkgaWRlYSB3aHkgSSBjYW4gb25seSBwcm9iZSBteSByYWRpbyBp
+ZiBJIGluY2x1ZGUgdGhlIGFkZHJlc3Mgc3RyaW5nPw0KDQpVaGRfdXNycF9wcm9iZSAtLT4geWll
+bGRzIG5vIHJlc3VsdHMNCg0KVWhkX3VzcnBfcHJvYmUg4oCTYXJncyDigJxhZGRyPTE5Mi4xNjgu
+MTAuMuKAnSAtLT4gZmluZCB0aGUgcmFkaW8gYW5kIHlpZWxkcyByZXN1bHRzDQoNCg0KQWxzbywg
+dGhlIHVoZF9maW5kX2RldmljZXMgY29tbWFuZCBkb2VzIG5vdCByZXR1cm4gYW55dGhpbmcuDQoN
+ClRoYW5rcyBmb3IgdGhlIHF1aWNrIGZlZWRiYWNrLg0KDQpNYXJrDQo=
 
-On Thu, Oct 3, 2019 at 8:48 AM Jason Roehm via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+--_000_A97E90B748D8425CA07125D24FEF2DB1contosocom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <10305784EDF84A47BD0C11A7F285AD1C@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
->
-> On 9/26/19 9:26 AM, Neel Pandeya wrote:
->
-> Hello Jason:
->
-> My apologies for the delay. We were super busy with GNU Radio Conference.
-> Thanks for providing a stand-alone test program. I'll try to reproduce this
-> issue later today or tomorrow, and I'll get back to you with an update.
->
-> --Neel Pandeya
->
-> Neel,
->
-> Have you had any luck?
->
-> Thanks.
->
-> Jason
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
+dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
+KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
+CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAg
+MCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsN
+CglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1p
+bHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBE
+ZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0K
+CXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0
+Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29I
+eXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4
+dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9s
+bG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1k
+ZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlw
+ZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0K
+CWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5tc29JbnMNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0
+LW9ubHk7DQoJbXNvLXN0eWxlLW5hbWU6IiI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTsN
+Cgljb2xvcjp0ZWFsO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1v
+bmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0
+aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4w
+aW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxl
+Pg0KPC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxhbmc9IkVOLVVTIiBsaW5rPSIjMDU2
+M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPkRvZXMgYW55b25l
+IGhhdmUgYW55IGlkZWEgd2h5IEkgY2FuIG9ubHkgcHJvYmUgbXkgcmFkaW8gaWYgSSBpbmNsdWRl
+IHRoZSBhZGRyZXNzIHN0cmluZz8NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdCI+VWhkX3VzcnBfcHJvYmUgPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OldpbmdkaW5ncyI+w6A8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQiPiB5aWVsZHMgbm8gcmVzdWx0czxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNw
+OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdCI+VWhkX3VzcnBfcHJvYmUg4oCTYXJncyDigJxhZGRyPTE5Mi4xNjguMTAu
+MuKAnQ0KPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5Oldp
+bmdkaW5ncyI+w6A8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPiBmaW5kIHRo
+ZSByYWRpbyBhbmQgeWllbGRzIHJlc3VsdHM8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5BbHNvLCB0aGUgdWhkX2ZpbmRf
+ZGV2aWNlcyBjb21tYW5kIGRvZXMgbm90IHJldHVybiBhbnl0aGluZy48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPlRoYW5rcyBmb3IgdGhlIHF1aWNrIGZlZWRiYWNr
+LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+TWFyazxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-
--- 
-Michael Dickens
-Ettus Research Technical Support
-Email: support@ettus.com
-Web: https://ettus.com/
-
---00000000000070eb190594019cc4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Jason - I&#39;ve been working with Neel on this topic. =
-I&#39;ll email you off-list to discuss more. If we come up with anything us=
-eful we can always reply to the overall list. - MLD</div><br><div class=3D"=
-gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 3, 2019 at 8=
-:48 AM Jason Roehm via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.et=
-tus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <p><br>
-    </p>
-    <div>On 9/26/19 9:26 AM, Neel Pandeya wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">
-          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif">Hello Jason:</div>
-          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif"><br>
-          </div>
-          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif">My apologies for the
-            delay. We were super busy with GNU Radio Conference. Thanks
-            for providing a stand-alone test program. I&#39;ll try to
-            reproduce this issue later today or tomorrow, and I&#39;ll get
-            back to you with an update.<br>
-          </div>
-          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif"><br>
-          </div>
-          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif">--Neel Pandeya</div>
-          <div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif"><br>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <p>Neel,</p>
-    <p>Have you had any luck?</p>
-    <p>Thanks.</p>
-    <p>Jason<br>
-    </p>
-  </div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael D=
-ickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto:supp=
-ort@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"h=
-ttps://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div></di=
-v></div>
-
---00000000000070eb190594019cc4--
+--_000_A97E90B748D8425CA07125D24FEF2DB1contosocom_--
 
 
---===============1174897923678520702==
+--===============5367037395194766167==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -213,5 +194,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1174897923678520702==--
+--===============5367037395194766167==--
 
