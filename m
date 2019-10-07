@@ -2,55 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1AEECE5A1
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2019 16:48:32 +0200 (CEST)
-Received: from [::1] (port=37164 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD11CE745
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2019 17:20:41 +0200 (CEST)
+Received: from [::1] (port=40098 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iHUJH-0000Xi-Eu; Mon, 07 Oct 2019 10:48:27 -0400
-Received: from mailservice.tudelft.nl ([130.161.131.5]:37538)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <C.E.V.Diouf@tudelft.nl>)
- id 1iHUJD-0000S2-HA
- for usrp-users@lists.ettus.com; Mon, 07 Oct 2019 10:48:23 -0400
-Received: from localhost (localhost [127.0.0.1])
- by amavis (Postfix) with ESMTP id 22000CC012B
- for <usrp-users@lists.ettus.com>; Mon,  7 Oct 2019 16:47:39 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at tudelft.nl
-X-Spam-Flag: NO
-X-Spam-Score: -0.195
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.195 tagged_above=-99 required=5
- tests=[ALL_TRUSTED=-1, BASW_FROM=0.01, HTML_MESSAGE=0.001,
- RDNS_NONE=0.793, SPF_HELO_NONE=0.001] autolearn=no autolearn_force=no
-Received: from mailservice.tudelft.nl ([130.161.131.74])
- by localhost (tudelft.nl [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id LIZdkB3mIZtn for <usrp-users@lists.ettus.com>;
- Mon,  7 Oct 2019 16:47:38 +0200 (CEST)
-Received: from SRV223.tudelft.net (srv223.tudelft.net [131.180.6.23])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
- (No client certificate requested)
- by mx3.tudelft.nl (Postfix) with ESMTPS id 683EACC012A
- for <usrp-users@lists.ettus.com>; Mon,  7 Oct 2019 16:47:38 +0200 (CEST)
-Received: from SRV220.tudelft.net (131.180.6.20) by SRV223.tudelft.net
- (131.180.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P521) id 15.1.1713.5; Mon, 7 Oct
- 2019 16:47:35 +0200
-Received: from SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210]) by
- SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210%13]) with mapi id
- 15.01.1713.009; Mon, 7 Oct 2019 16:47:35 +0200
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: One sample - 5 ns delay between the two RF signals/ X310
-Thread-Index: AQHVfRxPXO3m+ZUVpUS457+IkJr/Ig==
-Date: Mon, 7 Oct 2019 14:47:35 +0000
-Message-ID: <73ac263040924ec2b4166725b481be2d@tudelft.nl>
-Accept-Language: en-US, nl-NL
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	id 1iHUoQ-0001fK-RY; Mon, 07 Oct 2019 11:20:38 -0400
+Received: from mail-qk1-f178.google.com ([209.85.222.178]:38337)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <frestuc@gmail.com>) id 1iHUoL-0001Wu-W5
+ for usrp-users@lists.ettus.com; Mon, 07 Oct 2019 11:20:34 -0400
+Received: by mail-qk1-f178.google.com with SMTP id u186so12943849qkc.5
+ for <usrp-users@lists.ettus.com>; Mon, 07 Oct 2019 08:20:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=to:from:subject:message-id:date:user-agent:mime-version
+ :content-transfer-encoding:content-language;
+ bh=NTnEAT89E7SFRA+EM2GieQf+AO3Mbtijnfwae7AnAI4=;
+ b=DJKiTyB5Iu405rxGqUmL6zdUdWEaMASALDtvYRl008vtcabMg2nSjQtH0o+LTp5G2O
+ lbvpWVGBucZitIozlqY9N7J940XNPncUaESt/wF4EHoz+rmIKAA9Hj6yOB3GiyRe35v5
+ jjz1bowMGNoiJfXc71R07kB2QRX3io+5psr9ZNDcPEThrni38y2NBuhyzf5lFDxTWcZY
+ Ygq1wdcB7cGs29opnyutS5Hf8eVLdf/S5gTJbO/ibdOuNzwmuLqr0tVXLmCkameVIorf
+ gk3i8UB50YanOAttXVlrwgyiL1bl0GK9Niu+8StUUlqC/t8Qrt3BkEmy8mRdZAg6Zh4g
+ yfow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+ :mime-version:content-transfer-encoding:content-language;
+ bh=NTnEAT89E7SFRA+EM2GieQf+AO3Mbtijnfwae7AnAI4=;
+ b=rXF/PE5mhTBZKyGDS5br6UcwA8+/+e/2bHeC7M11J+G4ZCjxaeiCOyFEg4Ip6jrSoG
+ lm7B5NwONnXuhYLyFYBLVFErWZIpI3TbQJYXVa9bOmrLFAyf4xDgh4G+IW+ljVFy7NIq
+ h1A101J/JCJi9RLBsJyru4/QxvZ11LpsKje7riwdZwzV0MLvt1MnPgdxx/6ehrGlY8A1
+ iNsVEmVxc3Li2QDmzHqoH557g186R9eHmbjEiBi36GZNLCWSq7J8q1qp72iwcs4uZlHM
+ xnv9N69arIKS1v/iIZWOw0OmZpE/1EbTxSoFCe4kC0It9VmOv4YpY3n2Al37W2T1gkc+
+ 2qrA==
+X-Gm-Message-State: APjAAAX+RYMvE39bLdQo6kppUpijcdB6C2v+Eyt+NDI/W8kuZ40DCRrf
+ 5LI599wMm/EyRr0tn/uSNSeCjzQjFRU=
+X-Google-Smtp-Source: APXvYqzHoNGvFbN1A1OSabW/s25Xrcg3+6GKqXYMaSdkhQqqXLpKzPo2h+lOtPeIipmuBFzG0qGBtg==
+X-Received: by 2002:a37:4d83:: with SMTP id
+ a125mr23464930qkb.111.1570461592751; 
+ Mon, 07 Oct 2019 08:19:52 -0700 (PDT)
+Received: from [10.75.8.38] ([129.10.163.26])
+ by smtp.gmail.com with ESMTPSA id m186sm8826505qkb.88.2019.10.07.08.19.51
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 07 Oct 2019 08:19:51 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+Message-ID: <dee4f507-7c7c-024c-a57b-a1417d02f98b@gmail.com>
+Date: Mon, 7 Oct 2019 11:19:51 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
- signals/ X310
+Content-Language: en-US
+Subject: [USRP-users] Problems with N210 FPGA bitfile -- image not valid?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -62,9 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Cherif Diouf via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Cherif Diouf <C.E.V.Diouf@tudelft.nl>
-Content-Type: multipart/mixed; boundary="===============6206190901471274735=="
+From: Francesco Restuccia via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Francesco Restuccia <frestuc@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,155 +82,21 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6206190901471274735==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_73ac263040924ec2b4166725b481be2dtudelftnl_"
-
---_000_73ac263040924ec2b4166725b481be2dtudelftnl_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Daniel,
-
-
-The problem was finally solved. It was from both my software and my hardwar=
-e development.
-
--> in fact in the software I used the set_time_next_pps() call from the dev=
-ice3 object to synchronize the vitatime counter with the PPS signal, but la=
-ter on I would also create a rfnoc_streamer object to be able to use the rf=
- frontend. This would somewhat modify the vitatime value and desynchronize =
-my local counter with the  vitatime counter causing random offset between t=
-he two counters.
-
--> The second problem was linked to the cvita_hdr_encoder  which was not pr=
-operly set, Leading the frontend to transmit asap, I guess.
-
-
-So from both these issues I could be from time to time off by one sample/5 =
-ns at the transmitter.
-
-Now that's old story !
-
-
-Many thanks
-
-
-Cherif
-
-
-
-
-__________________
-
-Fabian, I had a hunch it was just the 3.3V part--thanks for clarifying!
-
-Cherif, the DAC interface timing (and for that matter, the ADC timing)
-should be fairly tight. What you're seeing is expected and matches the
-numbers we designed it to. The FPGA constraints are intentionally tight to
-provide some extra margin at the DAC. Since this is all in the same X310,
-you could start by isolating the various components of the design using the
-front-panel GPIO connector. Run a trigger from each of your custom blocks
-to the GPIO and see if they line up on a scope. If they don't, then you
-might have a baseband timing issue (with how timed commands are interacting
-with your blocks). If they line up, then it points to a timing failure in
-the DAC.
-
--Daniel
-
---_000_73ac263040924ec2b4166725b481be2dtudelftnl_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Daniel, <br>
-</p>
-<p><br>
-</p>
-<p>The problem was finally solved. It was from both my software and my hard=
-ware development.</p>
-<p>-&gt; in fact in the software I used the set_time_next_pps() call from t=
-he device3 object to synchronize the vitatime counter with the PPS signal, =
-but later on I would also create a
-<span>rfnoc_streamer</span> object to be able to use the rf frontend. This =
-would somewhat modify the vitatime value and desynchronize my local counter=
- with the&nbsp; vitatime counter causing random offset between the two coun=
-ters.</p>
-<p>-&gt; The second problem was linked to the <span>cvita_hdr_encoder</span=
->&nbsp; which was not properly set, Leading the frontend to transmit asap, =
-I guess.</p>
-<p><br>
-</p>
-<p>So from both these issues I could be from time to time off by one sample=
-/5 ns at the transmitter.
-<br>
-</p>
-<p>Now that's old story !</p>
-<p><br>
-</p>
-<p>Many thanks<br>
-</p>
-<p><br>
-</p>
-<p>Cherif<br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p>__________________<br>
-</p>
-<p><font size=3D"2"><span style=3D"font-size:10pt;">Fabian, I had a hunch i=
-t was just the 3.3V part--thanks for clarifying!<br>
-<br>
-Cherif, the DAC interface timing (and for that matter, the ADC timing)<br>
-should be fairly tight. What you're seeing is expected and matches the<br>
-numbers we designed it to. The FPGA constraints are intentionally tight to<=
-br>
-provide some extra margin at the DAC. Since this is all in the same X310,<b=
-r>
-you could start by isolating the various components of the design using the=
-<br>
-front-panel GPIO connector. Run a trigger from each of your custom blocks<b=
-r>
-to the GPIO and see if they line up on a scope. If they don't, then you<br>
-might have a baseband timing issue (with how timed commands are interacting=
-<br>
-with your blocks). If they line up, then it points to a timing failure in<b=
-r>
-the DAC.<br>
-<br>
--Daniel</span></font><br>
-</p>
-</div>
-</body>
-</html>
-
---_000_73ac263040924ec2b4166725b481be2dtudelftnl_--
-
-
---===============6206190901471274735==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6206190901471274735==--
-
+SGkgYWxsLAoKSSd2ZSBidWlsdCBhbiBOMjEwIGltYWdlIHVzaW5nIHRoZSBzb3VyY2UgY29kZSBw
+cm92aWRlZCBieSBFdHR1cy0tCgpXaGVuIEkgdHJ5IHRvIGJ1cm4gdGhlIEZQR0EgaW1hZ2Ugb250
+byB0aGUgTjIxMCwgdGhvdWdoLCBJIHJlY2VpdmUgdGhlIApmb2xsb3dpbmcgZXJyb3I6CgpmcmFu
+a0BmcmFuay1pTWFjOn4kIHVoZF9pbWFnZV9sb2FkZXIgCi0tYXJncz0idHlwZT11c3JwMixhZGRy
+PTE5Mi4xNjguMTAuMiIgLS1uby1mdyAKLS1mcGdhLXBhdGg9L2hvbWUvZnJhbmsvdTJwbHVzLmJp
+dApbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA4LjMuMDsgQm9vc3RfMTA2NzAw
+OyAKVUhEXzMuMTUuMC5naXQtNzQtZzllYTcxMGIxClVuaXQ6IFVTUlAgTjIxMCByNCAoRjJFMjhG
+LCAxOTIuMTY4LjEwLjIpCkVycm9yOiBSdW50aW1lRXJyb3I6IFRoZSBmaWxlIGF0IHBhdGggIi9o
+b21lL2ZyYW5rL3UycGx1cy5iaXQiIGlzIG5vdCBhIAp2YWxpZCBGUEdBIGltYWdlLgpmcmFua0Bm
+cmFuay1pTWFjOn4kCgpUaGlzIGlzIHRoZSBzaXplIG9mIHRoZSBpbWFnZToKCmZyYW5rQGZyYW5r
+LWlNYWM6fiQgbHMgLWxhIC9ob21lL2ZyYW5rL3UycGx1cy5iaXQKLXJ3LXItLXItLSAxIGZyYW5r
+IGZyYW5rIDEzMDMzMTggT2N0wqAgNyAxMTowNyAvaG9tZS9mcmFuay91MnBsdXMuYml0CmZyYW5r
+QGZyYW5rLWlNYWM6fiQKCkFnYWluLCBubyBtb2RpZmljYXRpb25zIHRvIHRoZSBWZXJpbG9nIGRl
+c2lnbnMgLS0gZXZlcnl0aGluZywgaW5jbHVkaW5nIAptYWtlZmlsZSwgaXMgb3V0IG9mIHRoZSBi
+b3guCgpBbnkgc3VnZ2VzdGlvbj8KClRoYW5rcywKCkZyYW5jZXNjbwoKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
+ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1h
+bi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
