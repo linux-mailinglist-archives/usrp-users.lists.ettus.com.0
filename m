@@ -2,59 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1909ECEC66
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2019 21:02:28 +0200 (CEST)
-Received: from [::1] (port=44406 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA209CEC6C
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2019 21:06:56 +0200 (CEST)
+Received: from [::1] (port=46456 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iHYH0-00027N-VV; Mon, 07 Oct 2019 15:02:22 -0400
-Received: from mail-qt1-f182.google.com ([209.85.160.182]:40412)
+	id 1iHYLP-0002au-MP; Mon, 07 Oct 2019 15:06:55 -0400
+Received: from mail-io1-f43.google.com ([209.85.166.43]:41285)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iHYGx-000230-Cf
- for usrp-users@lists.ettus.com; Mon, 07 Oct 2019 15:02:19 -0400
-Received: by mail-qt1-f182.google.com with SMTP id m61so9700981qte.7
- for <usrp-users@lists.ettus.com>; Mon, 07 Oct 2019 12:01:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=Pq7I7JqwN+BU19ASqaBbW7rzCYuvUSRiJPoOV1HiXGw=;
- b=kbxedSZ9PJ8iv1chPYPkljZ9KoGKmEuhxLVrPOVW8CAok6PoK1yH898yJD+r1J4wMJ
- VfYSlqWlkIhtqkur64OSIbG6Nzf7JFzTgxcyphaNZYeZuhugcsAsBq1t/aDKpqztj58f
- JasEruhb21qvDXVW7ZkmPXncLwGnDkdlQwFSUh485lT34eUmLHEYgFesGdmFxp2F6KKX
- KzolwLB5n1LkVJ8A7zX+guPEhbegduIjgS/00ZVtFp9XYPjnlHWUqWMD/tb1KFD4Wykn
- hcQizqQrDhH8cX94z2BagLlyf4BBw3iN7B+i4GOmFkh9Y4d8mBXQpcqvro1GddQccm8T
- ljlw==
+ (Exim 4.92) (envelope-from <coxe@close-haul.com>) id 1iHYLL-0002QT-Dz
+ for usrp-users@lists.ettus.com; Mon, 07 Oct 2019 15:06:51 -0400
+Received: by mail-io1-f43.google.com with SMTP id n26so31009446ioj.8
+ for <usrp-users@lists.ettus.com>; Mon, 07 Oct 2019 12:06:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quanttux-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=K+vMrrVovAg545T8hw36GOsUzpN/LzpQuHNg5RslV44=;
+ b=G5CfCKpS1vANCONpVUOU53f1tZArWLx/39EV/H9zvYWaRVWxALMX6yF3CYnOnngFVN
+ GM3QQ8eGnLIRHa+OZq8UUAT9HmRRgPzM6iS1hYyCTlUEwpn49s5O9NUBXPtnO1ZGh3+K
+ vfRiT1sxXf/6kN8PB5Lit00clSiy3dFGPCfTVTWv1EPxlt+5ffxYZZFmLSUOtJ/YxrcR
+ hB2PMtm9ILEs/BkOTTuZW8gt9mNBdH3T8e00YMvivIhMX1R/srSNIUwcZjxBu9X90V3l
+ yTQdNfMQfEOoIr8+4EuvnMNEuAyDp29Hl2T5a0+aXJhOkLp/wejaypF/7co1X66YSzYN
+ 6g+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=Pq7I7JqwN+BU19ASqaBbW7rzCYuvUSRiJPoOV1HiXGw=;
- b=mK9KJX9dcGNB3Ygr3Oi8xhSecCkVWdEIz/Br6qsSKSEdbkA0u/kje2booAIRpoHPFi
- YkF+69WbL8RMv7cIWl2ytmDcTHdTJ4gQQl9f2Zf1oR/0xzL7ebZn4TpYVvlyvTXxv5e/
- mp2mBaK8PKTllTmrbkaOC3OMZSfqwp1s9gdkVjVZ0iG1ooRVqFJa3DcK6fJ6kWyD3VUh
- yPAa9pU/ckyvekm6UIpM5jR1I7eIwH/LBUXIfX1ty0SET55nPRvs1uRlOE2Pror/AIF7
- dFci3XJEOUiT26D9o1Gm/SwRMqPHOauTrG05WbgtS3FhweZIgKwy9vIkeBlCVG3iBoFl
- Pltw==
-X-Gm-Message-State: APjAAAU/f/gV1lrRZEevLiMdoW4ucsFMqZvuLShA5672Tf4H3aZwK7hl
- F5w1wFLAfSruI3oNUCizHDpss+glV8Y=
-X-Google-Smtp-Source: APXvYqxAk/3bZyaPyE0zuFl8LeS10ZFYoM070DGC5QUDmrfguYoq9MVlqH371zVU4l+E3roP/5VZag==
-X-Received: by 2002:a0c:ae9a:: with SMTP id j26mr7251559qvd.163.1570474898546; 
- Mon, 07 Oct 2019 12:01:38 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-15-137.dsl.bell.ca.
- [174.95.15.137])
- by smtp.googlemail.com with ESMTPSA id g31sm9753559qte.78.2019.10.07.12.01.37
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 07 Oct 2019 12:01:38 -0700 (PDT)
-Message-ID: <5D9B8B8F.4060602@gmail.com>
-Date: Mon, 07 Oct 2019 15:01:35 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=K+vMrrVovAg545T8hw36GOsUzpN/LzpQuHNg5RslV44=;
+ b=JxjP1eOM4OLuXW743bvUIIOCaNgl7JiEAPUQfT8XDRTyCESXXNcADrkMuZ5KOeCwKX
+ Ct4M/nnO1JH4peMCgaHkOhByZltvr6CSeDLslNd5XYS1LxwaNOsxYdeHSPUiYr9ji29Q
+ 8/RpJSchpAumDByvItXUZf49eJScW6SNEYmF1lnkY/4zIc4Tf3QKYGxY/IqvrL1KnPHg
+ LtOmOIwuj3HLLKQxcwIMEF37y23bAEsGZhHLZTehj1+C+6LlilyunV/537aK0fq45YH3
+ tbn+GiAWJLsiHhhCu7XsQVZvo9M2uM047NrVuhLjJ9Gyl3R/saFTQ45M28Mly4YiYmvU
+ Sb+w==
+X-Gm-Message-State: APjAAAWrHwtkVEXI3eSqsxx/Glewu727ulGZmglbupgQNg23X3okRHr+
+ go2u8l+ijB7F62KxsmbPbXpc3GxsmkITwNHkVbHJpQ==
+X-Google-Smtp-Source: APXvYqytsUXZbgiYtIHLbtV3g42qM3MCcHM+F8bGO95ATJQwq2h63UIRCttu2xgxwb2Da1uyrn+LONMW9BIQ/OA6o2g=
+X-Received: by 2002:a02:ab85:: with SMTP id t5mr28584638jan.23.1570475170506; 
+ Mon, 07 Oct 2019 12:06:10 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
 References: <dee4f507-7c7c-024c-a57b-a1417d02f98b@gmail.com>
-In-Reply-To: <dee4f507-7c7c-024c-a57b-a1417d02f98b@gmail.com>
+ <5D9B8B8F.4060602@gmail.com>
+In-Reply-To: <5D9B8B8F.4060602@gmail.com>
+Date: Mon, 7 Oct 2019 12:05:59 -0700
+Message-ID: <CAKJyDkLLkVB=0adY0+1637TFrVPr0-9jc8KkKpeWXHEKf5phJw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Subject: Re: [USRP-users] Problems with N210 FPGA bitfile -- image not valid?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -67,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robin Coxe <coxe@quanttux.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4316923833208420282=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,45 +76,145 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 10/07/2019 11:19 AM, Francesco Restuccia via USRP-users wrote:
-> Hi all,
->
-> I've built an N210 image using the source code provided by Ettus--
->
-> When I try to burn the FPGA image onto the N210, though, I receive the 
-> following error:
->
-> frank@frank-iMac:~$ uhd_image_loader 
-> --args="type=usrp2,addr=192.168.10.2" --no-fw 
-> --fpga-path=/home/frank/u2plus.bit
-> [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; 
-> UHD_3.15.0.git-74-g9ea710b1
-> Unit: USRP N210 r4 (F2E28F, 192.168.10.2)
-> Error: RuntimeError: The file at path "/home/frank/u2plus.bit" is not 
-> a valid FPGA image.
-> frank@frank-iMac:~$
->
-> This is the size of the image:
->
-> frank@frank-iMac:~$ ls -la /home/frank/u2plus.bit
-> -rw-r--r-- 1 frank frank 1303318 Oct  7 11:07 /home/frank/u2plus.bit
-> frank@frank-iMac:~$
->
-> Again, no modifications to the Verilog designs -- everything, 
-> including makefile, is out of the box.
->
-> Any suggestion?
->
-> Thanks,
->
-> Francesco
->
-You must use the .bin file uhd_image_loader
+--===============4316923833208420282==
+Content-Type: multipart/alternative; boundary="000000000000aad8b8059456bedb"
+
+--000000000000aad8b8059456bedb
+Content-Type: text/plain; charset="UTF-8"
+
+You can convert your .bit file to a .bin file with this utility:
+https://github.com/EttusResearch/uhd/blob/UHD-3.14/mpm/python/usrp_mpm/fpga_bit_to_bin.py
 
 
+On Mon, Oct 7, 2019 at 12:02 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
+> On 10/07/2019 11:19 AM, Francesco Restuccia via USRP-users wrote:
+> > Hi all,
+> >
+> > I've built an N210 image using the source code provided by Ettus--
+> >
+> > When I try to burn the FPGA image onto the N210, though, I receive the
+> > following error:
+> >
+> > frank@frank-iMac:~$ uhd_image_loader
+> > --args="type=usrp2,addr=192.168.10.2" --no-fw
+> > --fpga-path=/home/frank/u2plus.bit
+> > [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
+> > UHD_3.15.0.git-74-g9ea710b1
+> > Unit: USRP N210 r4 (F2E28F, 192.168.10.2)
+> > Error: RuntimeError: The file at path "/home/frank/u2plus.bit" is not
+> > a valid FPGA image.
+> > frank@frank-iMac:~$
+> >
+> > This is the size of the image:
+> >
+> > frank@frank-iMac:~$ ls -la /home/frank/u2plus.bit
+> > -rw-r--r-- 1 frank frank 1303318 Oct  7 11:07 /home/frank/u2plus.bit
+> > frank@frank-iMac:~$
+> >
+> > Again, no modifications to the Verilog designs -- everything,
+> > including makefile, is out of the box.
+> >
+> > Any suggestion?
+> >
+> > Thanks,
+> >
+> > Francesco
+> >
+> You must use the .bin file uhd_image_loader
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000aad8b8059456bedb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">You can convert your .bit file to a .bin file with this ut=
+ility:<div><span id=3D"gmail-docs-internal-guid-7432ece8-7fff-c2ac-7697-6ef=
+b67d0b890"><a href=3D"https://github.com/EttusResearch/uhd/blob/UHD-3.14/mp=
+m/python/usrp_mpm/fpga_bit_to_bin.py" style=3D"text-decoration-line:none"><=
+span style=3D"font-size:11pt;font-family:Arial;background-color:transparent=
+;font-variant-numeric:normal;font-variant-east-asian:normal;text-decoration=
+-line:underline;vertical-align:baseline;white-space:pre-wrap">https://githu=
+b.com/EttusResearch/uhd/blob/UHD-3.14/mpm/python/usrp_mpm/fpga_bit_to_bin.p=
+y</span></a></span>=C2=A0=C2=A0<br></div></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Oct 7, 2019 at 12:02 PM Ma=
+rcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.c=
+om">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex">On 10/07/2019 11:19 AM, Francesco Restuccia v=
+ia USRP-users wrote:<br>
+&gt; Hi all,<br>
+&gt;<br>
+&gt; I&#39;ve built an N210 image using the source code provided by Ettus--=
+<br>
+&gt;<br>
+&gt; When I try to burn the FPGA image onto the N210, though, I receive the=
+ <br>
+&gt; following error:<br>
+&gt;<br>
+&gt; frank@frank-iMac:~$ uhd_image_loader <br>
+&gt; --args=3D&quot;type=3Dusrp2,addr=3D192.168.10.2&quot; --no-fw <br>
+&gt; --fpga-path=3D/home/frank/u2plus.bit<br>
+&gt; [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; <br>
+&gt; UHD_3.15.0.git-74-g9ea710b1<br>
+&gt; Unit: USRP N210 r4 (F2E28F, 192.168.10.2)<br>
+&gt; Error: RuntimeError: The file at path &quot;/home/frank/u2plus.bit&quo=
+t; is not <br>
+&gt; a valid FPGA image.<br>
+&gt; frank@frank-iMac:~$<br>
+&gt;<br>
+&gt; This is the size of the image:<br>
+&gt;<br>
+&gt; frank@frank-iMac:~$ ls -la /home/frank/u2plus.bit<br>
+&gt; -rw-r--r-- 1 frank frank 1303318 Oct=C2=A0 7 11:07 /home/frank/u2plus.=
+bit<br>
+&gt; frank@frank-iMac:~$<br>
+&gt;<br>
+&gt; Again, no modifications to the Verilog designs -- everything, <br>
+&gt; including makefile, is out of the box.<br>
+&gt;<br>
+&gt; Any suggestion?<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt;<br>
+&gt; Francesco<br>
+&gt;<br>
+You must use the .bin file uhd_image_loader<br>
+<br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000aad8b8059456bedb--
+
+
+--===============4316923833208420282==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============4316923833208420282==--
+
