@@ -2,58 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFD11CE745
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2019 17:20:41 +0200 (CEST)
-Received: from [::1] (port=40098 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF26ACEB51
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2019 19:59:16 +0200 (CEST)
+Received: from [::1] (port=33566 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iHUoQ-0001fK-RY; Mon, 07 Oct 2019 11:20:38 -0400
-Received: from mail-qk1-f178.google.com ([209.85.222.178]:38337)
+	id 1iHXHq-0006kG-O8; Mon, 07 Oct 2019 13:59:10 -0400
+Received: from mail-ed1-f41.google.com ([209.85.208.41]:39363)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <frestuc@gmail.com>) id 1iHUoL-0001Wu-W5
- for usrp-users@lists.ettus.com; Mon, 07 Oct 2019 11:20:34 -0400
-Received: by mail-qk1-f178.google.com with SMTP id u186so12943849qkc.5
- for <usrp-users@lists.ettus.com>; Mon, 07 Oct 2019 08:20:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=to:from:subject:message-id:date:user-agent:mime-version
- :content-transfer-encoding:content-language;
- bh=NTnEAT89E7SFRA+EM2GieQf+AO3Mbtijnfwae7AnAI4=;
- b=DJKiTyB5Iu405rxGqUmL6zdUdWEaMASALDtvYRl008vtcabMg2nSjQtH0o+LTp5G2O
- lbvpWVGBucZitIozlqY9N7J940XNPncUaESt/wF4EHoz+rmIKAA9Hj6yOB3GiyRe35v5
- jjz1bowMGNoiJfXc71R07kB2QRX3io+5psr9ZNDcPEThrni38y2NBuhyzf5lFDxTWcZY
- Ygq1wdcB7cGs29opnyutS5Hf8eVLdf/S5gTJbO/ibdOuNzwmuLqr0tVXLmCkameVIorf
- gk3i8UB50YanOAttXVlrwgyiL1bl0GK9Niu+8StUUlqC/t8Qrt3BkEmy8mRdZAg6Zh4g
- yfow==
+ (Exim 4.92) (envelope-from <daniel.jepson@ettus.com>)
+ id 1iHXHm-0006ar-Jq
+ for usrp-users@lists.ettus.com; Mon, 07 Oct 2019 13:59:06 -0400
+Received: by mail-ed1-f41.google.com with SMTP id a15so13291459edt.6
+ for <usrp-users@lists.ettus.com>; Mon, 07 Oct 2019 10:58:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=elytqTalrYeNfV3G1eBGbosV77Cb7E2xAQP8fpYQobM=;
+ b=LGNCyMiRETdtm9RUyue6FjaIuL4VsUGWFr67e5LAjqQVELAmas/kY/clbDATa6nTzb
+ dD6+ZWdl4fHu/uy4EW7YGELTHvDDVYUwHKIldgCkZnPyd4f42jRj0jRy2JuE9DVO9zGk
+ TYTOwaFCTqq4HsRmKmWLbPyxzOfADET6pJIqTkocRmaYLZzvBHICr0ka6ZfJZPnvewhN
+ B+7fEOTc9CHJjdKPzQW1sS51VkFApNpJUrFnXqbpqBPNwzbXq/CzM5thj7TtbdAcqRka
+ EgJ2rXyXVrtH8hOPeTi3PNsy/KyR/hBYUIrpONeFS7lSL0Zx4W8m7uPfsearNnC4nTfl
+ rXOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:to:from:subject:message-id:date:user-agent
- :mime-version:content-transfer-encoding:content-language;
- bh=NTnEAT89E7SFRA+EM2GieQf+AO3Mbtijnfwae7AnAI4=;
- b=rXF/PE5mhTBZKyGDS5br6UcwA8+/+e/2bHeC7M11J+G4ZCjxaeiCOyFEg4Ip6jrSoG
- lm7B5NwONnXuhYLyFYBLVFErWZIpI3TbQJYXVa9bOmrLFAyf4xDgh4G+IW+ljVFy7NIq
- h1A101J/JCJi9RLBsJyru4/QxvZ11LpsKje7riwdZwzV0MLvt1MnPgdxx/6ehrGlY8A1
- iNsVEmVxc3Li2QDmzHqoH557g186R9eHmbjEiBi36GZNLCWSq7J8q1qp72iwcs4uZlHM
- xnv9N69arIKS1v/iIZWOw0OmZpE/1EbTxSoFCe4kC0It9VmOv4YpY3n2Al37W2T1gkc+
- 2qrA==
-X-Gm-Message-State: APjAAAX+RYMvE39bLdQo6kppUpijcdB6C2v+Eyt+NDI/W8kuZ40DCRrf
- 5LI599wMm/EyRr0tn/uSNSeCjzQjFRU=
-X-Google-Smtp-Source: APXvYqzHoNGvFbN1A1OSabW/s25Xrcg3+6GKqXYMaSdkhQqqXLpKzPo2h+lOtPeIipmuBFzG0qGBtg==
-X-Received: by 2002:a37:4d83:: with SMTP id
- a125mr23464930qkb.111.1570461592751; 
- Mon, 07 Oct 2019 08:19:52 -0700 (PDT)
-Received: from [10.75.8.38] ([129.10.163.26])
- by smtp.gmail.com with ESMTPSA id m186sm8826505qkb.88.2019.10.07.08.19.51
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 07 Oct 2019 08:19:51 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-Message-ID: <dee4f507-7c7c-024c-a57b-a1417d02f98b@gmail.com>
-Date: Mon, 7 Oct 2019 11:19:51 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=elytqTalrYeNfV3G1eBGbosV77Cb7E2xAQP8fpYQobM=;
+ b=mF4ov0QkqFj04344+GO2Mh80roC1C5FxVWqmAZ9BZkE2Jqt3/UQDf9YqSmT5FuOd/B
+ hi9X69+zGYU7vpF06lcb+rpxjITSrqu8otnHjpYaEWkU/KN9XqzfJEjar3pTRfPNJhFD
+ RCTEqHLaxhlMbBoXMB07jTEE6Bq994TeQwYKu9eZS/W33UTe1seEAnwZbNseupQiqTJ9
+ 5vqUSuNtLuE66fXEr8pPiSn7zHw3IiWzFQEsXoRT/xqS8fVw0LeMpLzxKpJvrqV7M9lW
+ 3y+MHrE24fXGEOno+kpKwI1OW/FQhm3s4fqlX+50Y75GlsX7aOXFjFjSr5SfEN0YrpyP
+ Ulvg==
+X-Gm-Message-State: APjAAAXMuyloHtcgRVNYcJIOEgtYWafTu2xD8uNW+8+P12VUuyDQAzE+
+ t/Ji0W98ZYVz2xr8kpfqtjtBpn5l4YQlB2wlerxvYABpQVY=
+X-Google-Smtp-Source: APXvYqzNGp8wJfC4ZGwRTfhFanGoYblykLoTKtPXXiIQAqcJms86Y0uk+vDlYhgpXXBp5w5XQVNgx7xR+ZkuOHgCNGc=
+X-Received: by 2002:a17:906:8043:: with SMTP id
+ x3mr24863058ejw.221.1570471105205; 
+ Mon, 07 Oct 2019 10:58:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: en-US
-Subject: [USRP-users] Problems with N210 FPGA bitfile -- image not valid?
+References: <73ac263040924ec2b4166725b481be2d@tudelft.nl>
+In-Reply-To: <73ac263040924ec2b4166725b481be2d@tudelft.nl>
+Date: Mon, 7 Oct 2019 12:58:14 -0500
+Message-ID: <CA+Zwmn7Fs6WdcUJPWjepOtvmuy1Dz+iEZReWxV5oAs52STUatA@mail.gmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
+ signals/ X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,10 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Francesco Restuccia via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Francesco Restuccia <frestuc@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Daniel Jepson via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Daniel Jepson <daniel.jepson@ettus.com>
+Content-Type: multipart/mixed; boundary="===============5354675681754309293=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,21 +77,211 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgYWxsLAoKSSd2ZSBidWlsdCBhbiBOMjEwIGltYWdlIHVzaW5nIHRoZSBzb3VyY2UgY29kZSBw
-cm92aWRlZCBieSBFdHR1cy0tCgpXaGVuIEkgdHJ5IHRvIGJ1cm4gdGhlIEZQR0EgaW1hZ2Ugb250
-byB0aGUgTjIxMCwgdGhvdWdoLCBJIHJlY2VpdmUgdGhlIApmb2xsb3dpbmcgZXJyb3I6CgpmcmFu
-a0BmcmFuay1pTWFjOn4kIHVoZF9pbWFnZV9sb2FkZXIgCi0tYXJncz0idHlwZT11c3JwMixhZGRy
-PTE5Mi4xNjguMTAuMiIgLS1uby1mdyAKLS1mcGdhLXBhdGg9L2hvbWUvZnJhbmsvdTJwbHVzLmJp
-dApbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA4LjMuMDsgQm9vc3RfMTA2NzAw
-OyAKVUhEXzMuMTUuMC5naXQtNzQtZzllYTcxMGIxClVuaXQ6IFVTUlAgTjIxMCByNCAoRjJFMjhG
-LCAxOTIuMTY4LjEwLjIpCkVycm9yOiBSdW50aW1lRXJyb3I6IFRoZSBmaWxlIGF0IHBhdGggIi9o
-b21lL2ZyYW5rL3UycGx1cy5iaXQiIGlzIG5vdCBhIAp2YWxpZCBGUEdBIGltYWdlLgpmcmFua0Bm
-cmFuay1pTWFjOn4kCgpUaGlzIGlzIHRoZSBzaXplIG9mIHRoZSBpbWFnZToKCmZyYW5rQGZyYW5r
-LWlNYWM6fiQgbHMgLWxhIC9ob21lL2ZyYW5rL3UycGx1cy5iaXQKLXJ3LXItLXItLSAxIGZyYW5r
-IGZyYW5rIDEzMDMzMTggT2N0wqAgNyAxMTowNyAvaG9tZS9mcmFuay91MnBsdXMuYml0CmZyYW5r
-QGZyYW5rLWlNYWM6fiQKCkFnYWluLCBubyBtb2RpZmljYXRpb25zIHRvIHRoZSBWZXJpbG9nIGRl
-c2lnbnMgLS0gZXZlcnl0aGluZywgaW5jbHVkaW5nIAptYWtlZmlsZSwgaXMgb3V0IG9mIHRoZSBi
-b3guCgpBbnkgc3VnZ2VzdGlvbj8KClRoYW5rcywKCkZyYW5jZXNjbwoKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
-ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1h
-bi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============5354675681754309293==
+Content-Type: multipart/alternative; boundary="0000000000005b2df5059455cc4a"
+
+--0000000000005b2df5059455cc4a
+Content-Type: text/plain; charset="UTF-8"
+
+Cherif,
+
+Great news! Congrats on the fix!
+
+Cheers,
+Daniel
+
+On Mon, Oct 7, 2019 at 9:48 AM Cherif Diouf via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Daniel,
+>
+>
+> The problem was finally solved. It was from both my software and my
+> hardware development.
+>
+> -> in fact in the software I used the set_time_next_pps() call from the
+> device3 object to synchronize the vitatime counter with the PPS signal, but
+> later on I would also create a rfnoc_streamer object to be able to use
+> the rf frontend. This would somewhat modify the vitatime value and
+> desynchronize my local counter with the  vitatime counter causing random
+> offset between the two counters.
+>
+> -> The second problem was linked to the cvita_hdr_encoder  which was not
+> properly set, Leading the frontend to transmit asap, I guess.
+>
+>
+> So from both these issues I could be from time to time off by one sample/5
+> ns at the transmitter.
+>
+> Now that's old story !
+>
+>
+> Many thanks
+>
+>
+> Cherif
+>
+>
+>
+>
+> __________________
+>
+> Fabian, I had a hunch it was just the 3.3V part--thanks for clarifying!
+>
+> Cherif, the DAC interface timing (and for that matter, the ADC timing)
+> should be fairly tight. What you're seeing is expected and matches the
+> numbers we designed it to. The FPGA constraints are intentionally tight to
+> provide some extra margin at the DAC. Since this is all in the same X310,
+> you could start by isolating the various components of the design using the
+> front-panel GPIO connector. Run a trigger from each of your custom blocks
+> to the GPIO and see if they line up on a scope. If they don't, then you
+> might have a baseband timing issue (with how timed commands are interacting
+> with your blocks). If they line up, then it points to a timing failure in
+> the DAC.
+>
+> -Daniel
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+
+-- 
+
+Daniel Jepson
+
+Digital Hardware Engineer
+
+National Instruments
+
+
+
+O: +1.512.683.6163
+
+daniel.jepson@ni.com
+
+--0000000000005b2df5059455cc4a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Cherif,=C2=A0<div><br></div><div>Great news! Congrats on t=
+he fix!</div><div><br></div><div>Cheers,</div><div>Daniel</div></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Oct =
+7, 2019 at 9:48 AM Cherif Diouf via USRP-users &lt;<a href=3D"mailto:usrp-u=
+sers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div id=3D"gmail-m_5888668865705840304divtagdefaultwrapper" style=3D"font-s=
+ize:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D"=
+ltr">
+<p>Daniel, <br>
+</p>
+<p><br>
+</p>
+<p>The problem was finally solved. It was from both my software and my hard=
+ware development.</p>
+<p>-&gt; in fact in the software I used the set_time_next_pps() call from t=
+he device3 object to synchronize the vitatime counter with the PPS signal, =
+but later on I would also create a
+<span>rfnoc_streamer</span> object to be able to use the rf frontend. This =
+would somewhat modify the vitatime value and desynchronize my local counter=
+ with the=C2=A0 vitatime counter causing random offset between the two coun=
+ters.</p>
+<p>-&gt; The second problem was linked to the <span>cvita_hdr_encoder</span=
+>=C2=A0 which was not properly set, Leading the frontend to transmit asap, =
+I guess.</p>
+<p><br>
+</p>
+<p>So from both these issues I could be from time to time off by one sample=
+/5 ns at the transmitter.
+<br>
+</p>
+<p>Now that&#39;s old story !</p>
+<p><br>
+</p>
+<p>Many thanks<br>
+</p>
+<p><br>
+</p>
+<p>Cherif<br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p>__________________<br>
+</p>
+<p><font size=3D"2"><span style=3D"font-size:10pt">Fabian, I had a hunch it=
+ was just the 3.3V part--thanks for clarifying!<br>
+<br>
+Cherif, the DAC interface timing (and for that matter, the ADC timing)<br>
+should be fairly tight. What you&#39;re seeing is expected and matches the<=
+br>
+numbers we designed it to. The FPGA constraints are intentionally tight to<=
+br>
+provide some extra margin at the DAC. Since this is all in the same X310,<b=
+r>
+you could start by isolating the various components of the design using the=
+<br>
+front-panel GPIO connector. Run a trigger from each of your custom blocks<b=
+r>
+to the GPIO and see if they line up on a scope. If they don&#39;t, then you=
+<br>
+might have a baseband timing issue (with how timed commands are interacting=
+<br>
+with your blocks). If they line up, then it points to a timing failure in<b=
+r>
+the DAC.<br>
+<br>
+-Daniel</span></font><br>
+</p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><p><a name=3D"SignatureSanitize=
+r_SafeHtmlFilter__MailAutoSig"><span style=3D"color:black">Daniel
+Jepson</span></a></p>
+
+<p><span style=3D"color:black">Digital Hardware Engineer</span></p>
+
+<p><span style=3D"color:black">National Instruments</span></p>
+
+<p><span style=3D"color:black">=C2=A0</span></p>
+
+<p><span style=3D"color:black">O: +1.512.683.6163</span></p>
+
+<p><span style=3D"color:black"><a href=3D"mailto:daniel.jepson@ni.com" targ=
+et=3D"_blank">daniel.jepson@ni.com</a></span></p></div></div>
+
+--0000000000005b2df5059455cc4a--
+
+
+--===============5354675681754309293==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5354675681754309293==--
+
