@@ -2,51 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C478CDBE8
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2019 08:46:09 +0200 (CEST)
-Received: from [::1] (port=44970 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1AEECE5A1
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2019 16:48:32 +0200 (CEST)
+Received: from [::1] (port=37164 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iHMmT-0006oS-Am; Mon, 07 Oct 2019 02:46:05 -0400
-Received: from mail-lj1-f177.google.com ([209.85.208.177]:36235)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ishai.alouche@gmail.com>)
- id 1iHMmP-0006jo-Bq; Mon, 07 Oct 2019 02:46:01 -0400
-Received: by mail-lj1-f177.google.com with SMTP id v24so12350539ljj.3;
- Sun, 06 Oct 2019 23:45:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qj9VYfpqpG4/FvjPfljhGd8b7ZVpjPKaJG+2lrcME2o=;
- b=o2iAShDVheOf+sKBE5AvGjNfzhif8qYAAllzK/uWsm6S3D2sMVfmxfvWfL1U4QSKD5
- ElAP/E7D+ZC8P65AaStkLQXBi/QkFl7mEnQnHoKhrlZQ8c3FR46Ot6050DwaPuqG6wt2
- KFbJog78jM8ZdTjHX4HJpR6wQ3dVktA1Vzv5ydK/nKF0zDPlshQlxMhDVt93T66aS8F7
- G4WqyjhEygMWvPp49pbga3Vo5nhcthYeJ9fmPghpLIU3uPskEBkMdqH1kVa6EioDVE1r
- if2K6P4nZPpj97YgCDwSgeDdDphtmG8vsyc+0v2Mnb0xdj1+n0mEyKfvDn1rWC20N0aX
- PvrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=qj9VYfpqpG4/FvjPfljhGd8b7ZVpjPKaJG+2lrcME2o=;
- b=hLDBBUiZGBcArA3yY/0/8UeNQnYD/2sTFa7HJg3PG1lJKhWG+ZfIo5MWlVZeuTURfb
- zMgaegE+Xs6sWqfWViQwCyMNj0eBpqYx2C06n0i/IYm3w7k5HpIfEnmzDlFGiWXSRz0g
- PjEeG/Uj6CjidTVWBnCCxANaI+knjSqRich4+davVig+qBzF/jnu5TBXBaBH90CXEv3+
- x4Hn6v5ugD3jSBF3xK+zQ1gmdZhkSe25dASNc9dSj+0NGrGAFwaJhrijQt/q7LTMn3za
- 0vDwBH/9U2UZsjBtmKCxWFtVXVNxsHS1RhAUT4RMD8DYt5m8Y8+XjKM67K4F8yXQwBAh
- IlWg==
-X-Gm-Message-State: APjAAAVcW003xd0xsTFFhUD4T7pC2U9f0xojrmdoSePpxYdJXKUroFeo
- mLI/WzgoQlwvYEpzbnlbt/h2qLywkPb9QnZ5853EbA==
-X-Google-Smtp-Source: APXvYqwk9srGrcCpY+QilfyM3neBNfG9TYo8BJ2t6S++ptzwNcp/ouQmZpMkxhPu1mfakHDedQyVb37vt7yjPlPpiRc=
-X-Received: by 2002:a2e:9898:: with SMTP id b24mr17476073ljj.157.1570430699778; 
- Sun, 06 Oct 2019 23:44:59 -0700 (PDT)
+	id 1iHUJH-0000Xi-Eu; Mon, 07 Oct 2019 10:48:27 -0400
+Received: from mailservice.tudelft.nl ([130.161.131.5]:37538)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <C.E.V.Diouf@tudelft.nl>)
+ id 1iHUJD-0000S2-HA
+ for usrp-users@lists.ettus.com; Mon, 07 Oct 2019 10:48:23 -0400
+Received: from localhost (localhost [127.0.0.1])
+ by amavis (Postfix) with ESMTP id 22000CC012B
+ for <usrp-users@lists.ettus.com>; Mon,  7 Oct 2019 16:47:39 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at tudelft.nl
+X-Spam-Flag: NO
+X-Spam-Score: -0.195
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.195 tagged_above=-99 required=5
+ tests=[ALL_TRUSTED=-1, BASW_FROM=0.01, HTML_MESSAGE=0.001,
+ RDNS_NONE=0.793, SPF_HELO_NONE=0.001] autolearn=no autolearn_force=no
+Received: from mailservice.tudelft.nl ([130.161.131.74])
+ by localhost (tudelft.nl [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id LIZdkB3mIZtn for <usrp-users@lists.ettus.com>;
+ Mon,  7 Oct 2019 16:47:38 +0200 (CEST)
+Received: from SRV223.tudelft.net (srv223.tudelft.net [131.180.6.23])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mx3.tudelft.nl (Postfix) with ESMTPS id 683EACC012A
+ for <usrp-users@lists.ettus.com>; Mon,  7 Oct 2019 16:47:38 +0200 (CEST)
+Received: from SRV220.tudelft.net (131.180.6.20) by SRV223.tudelft.net
+ (131.180.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P521) id 15.1.1713.5; Mon, 7 Oct
+ 2019 16:47:35 +0200
+Received: from SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210]) by
+ SRV220.tudelft.net ([fe80::dc7a:a6b8:8bb9:2210%13]) with mapi id
+ 15.01.1713.009; Mon, 7 Oct 2019 16:47:35 +0200
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: One sample - 5 ns delay between the two RF signals/ X310
+Thread-Index: AQHVfRxPXO3m+ZUVpUS457+IkJr/Ig==
+Date: Mon, 7 Oct 2019 14:47:35 +0000
+Message-ID: <73ac263040924ec2b4166725b481be2d@tudelft.nl>
+Accept-Language: en-US, nl-NL
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-References: <CAMHwfuhyeNxaMvFh0zQ=PrCTb7RVOhyKVhE5KQ8evkERikKYtQ@mail.gmail.com>
-In-Reply-To: <CAMHwfuhyeNxaMvFh0zQ=PrCTb7RVOhyKVhE5KQ8evkERikKYtQ@mail.gmail.com>
-Date: Mon, 7 Oct 2019 09:44:48 +0300
-Message-ID: <CAC8T01kvgOVCmAXf3iAka8YNhKCFMf9G3-nc0sHSKwTtyD74Dw@mail.gmail.com>
-To: usrp-users@lists.ettus.com, usrp-users-request@lists.ettus.com
-Subject: [USRP-users] Fwd: Failing to Instantiate Blocks ("No Binding
- Entity")
+Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
+ signals/ X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -58,10 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: ishai alouche via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: ishai alouche <ishai.alouche@gmail.com>
-Cc: "shachar J. brown" <shachar.brown@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3025527597774396048=="
+From: Cherif Diouf via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Cherif Diouf <C.E.V.Diouf@tudelft.nl>
+Content-Type: multipart/mixed; boundary="===============6206190901471274735=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,114 +78,146 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3025527597774396048==
-Content-Type: multipart/alternative; boundary="00000000000001374505944c6453"
+--===============6206190901471274735==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_73ac263040924ec2b4166725b481be2dtudelftnl_"
 
---00000000000001374505944c6453
-Content-Type: text/plain; charset="UTF-8"
-
-Hi everyone,
-
-In my architecture I instantiated an FM_block.vhd, and in the FM_block I
-instantiated a generic_counter.vhd block.
-
-The problem:
-
-when I run the simulation I see that the FM_block is fine, but the
-generic_counter is unreferenced, and i get the following warning:
-
-
-
-*Starting static elaborationWARNING: [VRFC 10-122] generic_counter remains
-a black-box since it has no binding entity
-[/home/user/rfnoc_01/rfnoc-modules/rfnoc/fpga-src/FM_block.vhd:38]WARNING:
-[VRFC 10-122] generic_counter remains a black-box since it has no binding
-entity [/home/user/rfnoc_01/rfnoc-modules/rfnoc/fpga-src/FM_block.vhd:50]*
-
-I have also opened the project in Vivado and noticed the same thing: The
-file is unreferenced.
-
-Furthermore, I add the path of the two files (FM_block and generic_counter)
-to all of the Make files I could find, but to no avail.
-
-Please help!
-
-Thank in advance,
-Ish
-
-P.S. Further information:
-
-The syntax used to instantiate the FM_block is as follows (verilog):
-
-
-
-*  FM_block #(.COUNTER_WIDTH(22))  FM_block_i (.clk(ce_clk),
- .rst(ce_rst), .en (s_axis_data_tready), .min_BW(min_BW),
-      .max_BW(max_BW), .BW_change_rate(BW_change_rate), .FM_out(data_out));*
-
-And the syntax used to instantiate the generic_counter is as follows (vhdl):
-
-
-
-
-
-
-
-
-
-
-
-*counter_change_rate : generic_counter  generic map(COUNTER_WIDTH =>
-COUNTER_WIDTH)  port map( clk        => clk,          rst          => rst,
-        en          => en,          min_val      => (others => '0'),
-  max_val      => BW_change_rate,          new_output    =>
-change_freq_en,          count_out  => open        );*
-
---00000000000001374505944c6453
-Content-Type: text/html; charset="UTF-8"
+--_000_73ac263040924ec2b4166725b481be2dtudelftnl_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">Hi everyone,<d=
-iv><br></div><div>In my architecture I instantiated an FM_block.vhd, and in=
- the FM_block I instantiated a generic_counter.vhd block.</div><div><br></d=
-iv><div><div><div>The problem:</div><div><br></div><div>when I run the simu=
-lation I see that the FM_block is fine, but the generic_counter is unrefere=
-nced, and i get the following warning:</div><b><div><b><br></b></div>Starti=
-ng static elaboration<br>WARNING: [VRFC 10-122] generic_counter remains a b=
-lack-box since it has no binding entity [/home/user/rfnoc_01/rfnoc-modules/=
-rfnoc/fpga-src/FM_block.vhd:38]<br>WARNING: [VRFC 10-122] generic_counter r=
-emains a black-box since it has no binding entity [/home/user/rfnoc_01/rfno=
-c-modules/rfnoc/fpga-src/FM_block.vhd:50]</b></div><div><b><br></b></div><d=
-iv>I have also opened the project in Vivado and noticed the same thing: The=
- file is unreferenced.</div><div><br></div><div>Furthermore, I add the path=
- of the two files (FM_block and generic_counter) to all of the Make files I=
- could find, but to no avail.</div><div><br></div><div>Please help!<div><br=
-></div><div>Thank in advance,</div><div>Ish</div></div></div><div><br></div=
-><div>P.S. Further information:</div><div><br></div><div><div>The syntax us=
-ed to instantiate the FM_block is as follows (verilog):</div><b><div><b><br=
-></b></div>=C2=A0 FM_block #(.COUNTER_WIDTH(22))<br>=C2=A0 FM_block_i (.clk=
-(ce_clk), =C2=A0 =C2=A0.rst(ce_rst), .en (s_axis_data_tready), .min_BW(min_=
-BW), =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 .max_BW(max_BW), .BW_change_rate(BW_change_rate), .FM_out=
-(data_out));</b><div>=C2=A0<div><div>And the syntax used to instantiate the=
- generic_counter is as follows (vhdl):</div><div><b><br></b></div><div><b>c=
-ounter_change_rate : generic_counter<br>=C2=A0 generic map(COUNTER_WIDTH =
-=3D&gt; COUNTER_WIDTH)<br>=C2=A0 port map( clk =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-=3D&gt; clk,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rst =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0=3D&gt; rst,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 en =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D&gt; en,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 min_val =C2=A0 =C2=A0 =C2=A0=3D&gt; (others =3D&gt; &#39;0&#39;),<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 max_val =C2=A0 =C2=A0 =C2=A0=3D&gt; BW_c=
-hange_rate,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 new_output =C2=A0 =C2=A0=
-=3D&gt; change_freq_en,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 count_out =C2=
-=A0=3D&gt; open<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 );<br></b></div><b></b></div=
-><div><div></div></div></div></div></div>
-</div><br clear=3D"all"><div><br></div><br></div>
-
---00000000000001374505944c6453--
+Daniel,
 
 
---===============3025527597774396048==
+The problem was finally solved. It was from both my software and my hardwar=
+e development.
+
+-> in fact in the software I used the set_time_next_pps() call from the dev=
+ice3 object to synchronize the vitatime counter with the PPS signal, but la=
+ter on I would also create a rfnoc_streamer object to be able to use the rf=
+ frontend. This would somewhat modify the vitatime value and desynchronize =
+my local counter with the  vitatime counter causing random offset between t=
+he two counters.
+
+-> The second problem was linked to the cvita_hdr_encoder  which was not pr=
+operly set, Leading the frontend to transmit asap, I guess.
+
+
+So from both these issues I could be from time to time off by one sample/5 =
+ns at the transmitter.
+
+Now that's old story !
+
+
+Many thanks
+
+
+Cherif
+
+
+
+
+__________________
+
+Fabian, I had a hunch it was just the 3.3V part--thanks for clarifying!
+
+Cherif, the DAC interface timing (and for that matter, the ADC timing)
+should be fairly tight. What you're seeing is expected and matches the
+numbers we designed it to. The FPGA constraints are intentionally tight to
+provide some extra margin at the DAC. Since this is all in the same X310,
+you could start by isolating the various components of the design using the
+front-panel GPIO connector. Run a trigger from each of your custom blocks
+to the GPIO and see if they line up on a scope. If they don't, then you
+might have a baseband timing issue (with how timed commands are interacting
+with your blocks). If they line up, then it points to a timing failure in
+the DAC.
+
+-Daniel
+
+--_000_73ac263040924ec2b4166725b481be2dtudelftnl_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Daniel, <br>
+</p>
+<p><br>
+</p>
+<p>The problem was finally solved. It was from both my software and my hard=
+ware development.</p>
+<p>-&gt; in fact in the software I used the set_time_next_pps() call from t=
+he device3 object to synchronize the vitatime counter with the PPS signal, =
+but later on I would also create a
+<span>rfnoc_streamer</span> object to be able to use the rf frontend. This =
+would somewhat modify the vitatime value and desynchronize my local counter=
+ with the&nbsp; vitatime counter causing random offset between the two coun=
+ters.</p>
+<p>-&gt; The second problem was linked to the <span>cvita_hdr_encoder</span=
+>&nbsp; which was not properly set, Leading the frontend to transmit asap, =
+I guess.</p>
+<p><br>
+</p>
+<p>So from both these issues I could be from time to time off by one sample=
+/5 ns at the transmitter.
+<br>
+</p>
+<p>Now that's old story !</p>
+<p><br>
+</p>
+<p>Many thanks<br>
+</p>
+<p><br>
+</p>
+<p>Cherif<br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p>__________________<br>
+</p>
+<p><font size=3D"2"><span style=3D"font-size:10pt;">Fabian, I had a hunch i=
+t was just the 3.3V part--thanks for clarifying!<br>
+<br>
+Cherif, the DAC interface timing (and for that matter, the ADC timing)<br>
+should be fairly tight. What you're seeing is expected and matches the<br>
+numbers we designed it to. The FPGA constraints are intentionally tight to<=
+br>
+provide some extra margin at the DAC. Since this is all in the same X310,<b=
+r>
+you could start by isolating the various components of the design using the=
+<br>
+front-panel GPIO connector. Run a trigger from each of your custom blocks<b=
+r>
+to the GPIO and see if they line up on a scope. If they don't, then you<br>
+might have a baseband timing issue (with how timed commands are interacting=
+<br>
+with your blocks). If they line up, then it points to a timing failure in<b=
+r>
+the DAC.<br>
+<br>
+-Daniel</span></font><br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_73ac263040924ec2b4166725b481be2dtudelftnl_--
+
+
+--===============6206190901471274735==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -193,5 +228,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3025527597774396048==--
+--===============6206190901471274735==--
 
