@@ -2,62 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA3ECCD75
-	for <lists+usrp-users@lfdr.de>; Sun,  6 Oct 2019 02:22:55 +0200 (CEST)
-Received: from [::1] (port=58316 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C478CDBE8
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Oct 2019 08:46:09 +0200 (CEST)
+Received: from [::1] (port=44970 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iGuK1-00052S-KK; Sat, 05 Oct 2019 20:22:49 -0400
-Received: from mailhub3.oit.umass.edu ([128.119.9.231]:59946)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <xingjian@umass.edu>) id 1iGuJx-0004xk-Gp
- for USRP-users@lists.ettus.com; Sat, 05 Oct 2019 20:22:45 -0400
-Received: from mailhub3.oit.umass.edu (localhost [127.0.0.1])
- by localhost (Postfix) with SMTP id 2EA00C021D68
- for <USRP-users@lists.ettus.com>; Sat,  5 Oct 2019 20:22:05 -0400 (EDT)
-Received: from exchange.umass.edu (it-ex2016-srv3.campus.ads.umass.edu
- [128.119.228.44])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (Client CN "exchange.umass.edu", Issuer "InCommon RSA Server CA" (verified OK))
- by mailhub3.oit.umass.edu (Postfix) with ESMTPS id 0F8FFC01FF02
- for <USRP-users@lists.ettus.com>; Sat,  5 Oct 2019 20:22:05 -0400 (EDT)
-Received: from it-ex2016-srv2.campus.ads.umass.edu (128.119.228.43) by
- it-ex2016-srv3.campus.ads.umass.edu (128.119.228.44) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.1779.2; Sat, 5 Oct 2019 20:22:04 -0400
-Received: from it-ex2016-srv2.campus.ads.umass.edu ([128.119.228.43]) by
- it-ex2016-srv2.campus.ads.umass.edu ([128.119.228.43]) with mapi id
- 15.01.1779.004; Sat, 5 Oct 2019 20:22:04 -0400
-To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Thread-Topic: How to add gcc compile argument in Makefile for UHD CPP for E312?
-Thread-Index: AQHVbO7hz8jmKlFf40aDxfB9hJs51adM3Oxl
-Date: Sun, 6 Oct 2019 00:22:04 +0000
-Message-ID: <11df2df0e4a940b08bf5f3e0f83712b8@umass.edu>
-References: <24461_1568680669_5D802ADD_24461_6085_1_5e7d1cd915ac4adcad6d521f2372f749@umass.edu>
-In-Reply-To: <24461_1568680669_5D802ADD_24461_6085_1_5e7d1cd915ac4adcad6d521f2372f749@umass.edu>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.119.8.133]
+	id 1iHMmT-0006oS-Am; Mon, 07 Oct 2019 02:46:05 -0400
+Received: from mail-lj1-f177.google.com ([209.85.208.177]:36235)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <ishai.alouche@gmail.com>)
+ id 1iHMmP-0006jo-Bq; Mon, 07 Oct 2019 02:46:01 -0400
+Received: by mail-lj1-f177.google.com with SMTP id v24so12350539ljj.3;
+ Sun, 06 Oct 2019 23:45:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=qj9VYfpqpG4/FvjPfljhGd8b7ZVpjPKaJG+2lrcME2o=;
+ b=o2iAShDVheOf+sKBE5AvGjNfzhif8qYAAllzK/uWsm6S3D2sMVfmxfvWfL1U4QSKD5
+ ElAP/E7D+ZC8P65AaStkLQXBi/QkFl7mEnQnHoKhrlZQ8c3FR46Ot6050DwaPuqG6wt2
+ KFbJog78jM8ZdTjHX4HJpR6wQ3dVktA1Vzv5ydK/nKF0zDPlshQlxMhDVt93T66aS8F7
+ G4WqyjhEygMWvPp49pbga3Vo5nhcthYeJ9fmPghpLIU3uPskEBkMdqH1kVa6EioDVE1r
+ if2K6P4nZPpj97YgCDwSgeDdDphtmG8vsyc+0v2Mnb0xdj1+n0mEyKfvDn1rWC20N0aX
+ PvrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=qj9VYfpqpG4/FvjPfljhGd8b7ZVpjPKaJG+2lrcME2o=;
+ b=hLDBBUiZGBcArA3yY/0/8UeNQnYD/2sTFa7HJg3PG1lJKhWG+ZfIo5MWlVZeuTURfb
+ zMgaegE+Xs6sWqfWViQwCyMNj0eBpqYx2C06n0i/IYm3w7k5HpIfEnmzDlFGiWXSRz0g
+ PjEeG/Uj6CjidTVWBnCCxANaI+knjSqRich4+davVig+qBzF/jnu5TBXBaBH90CXEv3+
+ x4Hn6v5ugD3jSBF3xK+zQ1gmdZhkSe25dASNc9dSj+0NGrGAFwaJhrijQt/q7LTMn3za
+ 0vDwBH/9U2UZsjBtmKCxWFtVXVNxsHS1RhAUT4RMD8DYt5m8Y8+XjKM67K4F8yXQwBAh
+ IlWg==
+X-Gm-Message-State: APjAAAVcW003xd0xsTFFhUD4T7pC2U9f0xojrmdoSePpxYdJXKUroFeo
+ mLI/WzgoQlwvYEpzbnlbt/h2qLywkPb9QnZ5853EbA==
+X-Google-Smtp-Source: APXvYqwk9srGrcCpY+QilfyM3neBNfG9TYo8BJ2t6S++ptzwNcp/ouQmZpMkxhPu1mfakHDedQyVb37vt7yjPlPpiRc=
+X-Received: by 2002:a2e:9898:: with SMTP id b24mr17476073ljj.157.1570430699778; 
+ Sun, 06 Oct 2019 23:44:59 -0700 (PDT)
 MIME-Version: 1.0
-X-PMX-Spam: Gauge=IIIIIIII, Probability=8%, Report='
- HTML_50_70 0.1, HTML_NO_HTTP 0.1, BODYTEXTH_SIZE_10000_LESS 0,
- BODYTEXTH_SIZE_3000_MORE 0, BODYTEXTP_SIZE_3000_LESS 0, BODY_SIZE_6000_6999 0,
- BODY_SIZE_7000_LESS 0, FROM_EDU_TLD 0, IN_REP_TO 0, MSG_THREAD 0,
- NO_URI_HTTPS 0, REFERENCES 0, WEBMAIL_SOURCE 0, WEBMAIL_XOIP 0,
- WEBMAIL_X_IP_HDR 0, __ANY_URI 0, __BODY_TEXT_X4 0, __BOUNCE_CHALLENGE_SUBJ 0,
- __BOUNCE_NDR_SUBJ_EXEMPT 0, __CT 0, __CTYPE_HAS_BOUNDARY 0,
- __CTYPE_MULTIPART 0, __CTYPE_MULTIPART_ALT 0, __FRAUD_MONEY_CURRENCY 0,
- __FRAUD_MONEY_CURRENCY_DOLLAR 0, __HAS_FROM 0, __HAS_HTML 0, __HAS_MSGID 0,
- __HAS_REFERENCES 0, __HAS_XOIP 0, __IN_REP_TO 0, __MAIL_CHAIN 0, __MIME_HTML 0,
- __MIME_TEXT_H 0, __MIME_TEXT_H1 0, __MIME_TEXT_H2 0, __MIME_TEXT_P 0,
- __MIME_TEXT_P1 0, __MIME_TEXT_P2 0, __MIME_VERSION 0, __MSGID_32HEX 0,
- __REFERENCES 0, __SANE_MSGID 0, __STYLE_RATWARE_NEG 0, __SUBJ_ALPHA_NEGATE 0,
- __TAG_EXISTS_HTML 0, __TO_MALFORMED_2 0, 
- __TO_NO_NAME 0, __URI_NO_WWW 0'
-Subject: Re: [USRP-users] How to add gcc compile argument in Makefile for
- UHD CPP for E312?
+References: <CAMHwfuhyeNxaMvFh0zQ=PrCTb7RVOhyKVhE5KQ8evkERikKYtQ@mail.gmail.com>
+In-Reply-To: <CAMHwfuhyeNxaMvFh0zQ=PrCTb7RVOhyKVhE5KQ8evkERikKYtQ@mail.gmail.com>
+Date: Mon, 7 Oct 2019 09:44:48 +0300
+Message-ID: <CAC8T01kvgOVCmAXf3iAka8YNhKCFMf9G3-nc0sHSKwTtyD74Dw@mail.gmail.com>
+To: usrp-users@lists.ettus.com, usrp-users-request@lists.ettus.com
+Subject: [USRP-users] Fwd: Failing to Instantiate Blocks ("No Binding
+ Entity")
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -69,9 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Xingjian Chen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Xingjian Chen <xingjian@umass.edu>
-Content-Type: multipart/mixed; boundary="===============4331269585269851508=="
+From: ishai alouche via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: ishai alouche <ishai.alouche@gmail.com>
+Cc: "shachar J. brown" <shachar.brown@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3025527597774396048=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,167 +75,114 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4331269585269851508==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_11df2df0e4a940b08bf5f3e0f83712b8umassedu_"
+--===============3025527597774396048==
+Content-Type: multipart/alternative; boundary="00000000000001374505944c6453"
 
---_000_11df2df0e4a940b08bf5f3e0f83712b8umassedu_
-Content-Type: text/plain; charset="iso-8859-1"
+--00000000000001374505944c6453
+Content-Type: text/plain; charset="UTF-8"
+
+Hi everyone,
+
+In my architecture I instantiated an FM_block.vhd, and in the FM_block I
+instantiated a generic_counter.vhd block.
+
+The problem:
+
+when I run the simulation I see that the FM_block is fine, but the
+generic_counter is unreferenced, and i get the following warning:
+
+
+
+*Starting static elaborationWARNING: [VRFC 10-122] generic_counter remains
+a black-box since it has no binding entity
+[/home/user/rfnoc_01/rfnoc-modules/rfnoc/fpga-src/FM_block.vhd:38]WARNING:
+[VRFC 10-122] generic_counter remains a black-box since it has no binding
+entity [/home/user/rfnoc_01/rfnoc-modules/rfnoc/fpga-src/FM_block.vhd:50]*
+
+I have also opened the project in Vivado and noticed the same thing: The
+file is unreferenced.
+
+Furthermore, I add the path of the two files (FM_block and generic_counter)
+to all of the Make files I could find, but to no avail.
+
+Please help!
+
+Thank in advance,
+Ish
+
+P.S. Further information:
+
+The syntax used to instantiate the FM_block is as follows (verilog):
+
+
+
+*  FM_block #(.COUNTER_WIDTH(22))  FM_block_i (.clk(ce_clk),
+ .rst(ce_rst), .en (s_axis_data_tready), .min_BW(min_BW),
+      .max_BW(max_BW), .BW_change_rate(BW_change_rate), .FM_out(data_out));*
+
+And the syntax used to instantiate the generic_counter is as follows (vhdl):
+
+
+
+
+
+
+
+
+
+
+
+*counter_change_rate : generic_counter  generic map(COUNTER_WIDTH =>
+COUNTER_WIDTH)  port map( clk        => clk,          rst          => rst,
+        en          => en,          min_val      => (others => '0'),
+  max_val      => BW_change_rate,          new_output    =>
+change_freq_en,          count_out  => open        );*
+
+--00000000000001374505944c6453
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Boost.python and python.h can be added in cmake file.
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">Hi everyone,<d=
+iv><br></div><div>In my architecture I instantiated an FM_block.vhd, and in=
+ the FM_block I instantiated a generic_counter.vhd block.</div><div><br></d=
+iv><div><div><div>The problem:</div><div><br></div><div>when I run the simu=
+lation I see that the FM_block is fine, but the generic_counter is unrefere=
+nced, and i get the following warning:</div><b><div><b><br></b></div>Starti=
+ng static elaboration<br>WARNING: [VRFC 10-122] generic_counter remains a b=
+lack-box since it has no binding entity [/home/user/rfnoc_01/rfnoc-modules/=
+rfnoc/fpga-src/FM_block.vhd:38]<br>WARNING: [VRFC 10-122] generic_counter r=
+emains a black-box since it has no binding entity [/home/user/rfnoc_01/rfno=
+c-modules/rfnoc/fpga-src/FM_block.vhd:50]</b></div><div><b><br></b></div><d=
+iv>I have also opened the project in Vivado and noticed the same thing: The=
+ file is unreferenced.</div><div><br></div><div>Furthermore, I add the path=
+ of the two files (FM_block and generic_counter) to all of the Make files I=
+ could find, but to no avail.</div><div><br></div><div>Please help!<div><br=
+></div><div>Thank in advance,</div><div>Ish</div></div></div><div><br></div=
+><div>P.S. Further information:</div><div><br></div><div><div>The syntax us=
+ed to instantiate the FM_block is as follows (verilog):</div><b><div><b><br=
+></b></div>=C2=A0 FM_block #(.COUNTER_WIDTH(22))<br>=C2=A0 FM_block_i (.clk=
+(ce_clk), =C2=A0 =C2=A0.rst(ce_rst), .en (s_axis_data_tready), .min_BW(min_=
+BW), =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 .max_BW(max_BW), .BW_change_rate(BW_change_rate), .FM_out=
+(data_out));</b><div>=C2=A0<div><div>And the syntax used to instantiate the=
+ generic_counter is as follows (vhdl):</div><div><b><br></b></div><div><b>c=
+ounter_change_rate : generic_counter<br>=C2=A0 generic map(COUNTER_WIDTH =
+=3D&gt; COUNTER_WIDTH)<br>=C2=A0 port map( clk =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+=3D&gt; clk,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rst =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0=3D&gt; rst,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 en =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D&gt; en,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 min_val =C2=A0 =C2=A0 =C2=A0=3D&gt; (others =3D&gt; &#39;0&#39;),<br>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 max_val =C2=A0 =C2=A0 =C2=A0=3D&gt; BW_c=
+hange_rate,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 new_output =C2=A0 =C2=A0=
+=3D&gt; change_freq_en,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 count_out =C2=
+=A0=3D&gt; open<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 );<br></b></div><b></b></div=
+><div><div></div></div></div></div></div>
+</div><br clear=3D"all"><div><br></div><br></div>
 
-In uhd/host/example/CMakeLists.txt, add and python library as below solved =
-the question.
-#for each source: build an executable and install
-FOREACH(example_source ${example_sources})
-    find_package(PythonLibs REQUIRED) # Added
-    include_directories(${PYTHON_INCLUDE_DIRS}) # Added
-    GET_FILENAME_COMPONENT(example_name ${example_source} NAME_WE)
-    ADD_EXECUTABLE(${example_name} ${example_source})
-    TARGET_LINK_LIBRARIES(${example_name} uhd ${Boost_LIBRARIES})
-    target_link_libraries(${example_name} ${PYTHON_LIBRARIES} ) # Added
-    UHD_INSTALL(TARGETS ${example_name} RUNTIME DESTINATION ${PKG_LIB_DIR}/=
-examples COMPONENT examples)
-ENDFOREACH(example_source)
-
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Xingjian=
- Chen via USRP-users <usrp-users@lists.ettus.com>
-Sent: Monday, September 16, 2019 8:36:45 PM
-To: USRP-users@lists.ettus.com; usrp-users-bounces@lists.ettus.com
-Subject: [USRP-users] How to add gcc compile argument in Makefile for UHD C=
-PP for E312?
-
-
-Hi there,
-
-Good evening. I have a special need to embed python code in CPP for my E312=
- because I want to do some data processing and generate a waveform. In orde=
-r to do so, <Python.h> must be included as header, however it requires chan=
-ging the gcc compiler argument. Could someone point me in which file I can =
-add the gcc arguments? The argument needed to be added should be something =
-like below. Thank you in advance.
-
-gcc mycode.cpp -o mycode -lpython2.7 -lm -L/usr/lib/python2.7/config/ -I/us=
-r/include/python2.7/
-
-
-Best
-
-James
-
---_000_11df2df0e4a940b08bf5f3e0f83712b8umassedu_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<div><span style=3D"font-size: 12pt;">Boost.python and python.h can be adde=
-d in cmake file.&nbsp;</span></div>
-<div><span style=3D"font-size: 12pt;"><br>
-</span></div>
-<div><span style=3D"font-size: 12pt;">In uhd/host/example/CMakeLists.txt, a=
-dd and&nbsp;python library as below solved the question.</span><br>
-</div>
-<div>
-<div>#for each source: build an executable and install</div>
-<div>FOREACH(example_source ${example_sources})</div>
-<div><b>&nbsp; &nbsp; find_package(PythonLibs REQUIRED) # Added&nbsp;</b></=
-div>
-<div><b>&nbsp; &nbsp; include_directories(${PYTHON_INCLUDE_DIRS}) # Added&n=
-bsp;</b></div>
-<div>&nbsp; &nbsp; GET_FILENAME_COMPONENT(example_name ${example_source} NA=
-ME_WE)</div>
-<div>&nbsp; &nbsp; ADD_EXECUTABLE(${example_name} ${example_source})</div>
-<div>&nbsp; &nbsp; TARGET_LINK_LIBRARIES(${example_name} uhd ${Boost_LIBRAR=
-IES})</div>
-<div>&nbsp; &nbsp; <b>target_link_libraries(${example_name} ${PYTHON_LIBRAR=
-IES} ) # Added&nbsp;</b></div>
-<div>&nbsp; &nbsp; UHD_INSTALL(TARGETS ${example_name} RUNTIME DESTINATION =
-${PKG_LIB_DIR}/examples COMPONENT examples)</div>
-<div>ENDFOREACH(example_source)</div>
-<br>
-</div>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
-sers-bounces@lists.ettus.com&gt; on behalf of Xingjian Chen via USRP-users =
-&lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Sent:</b> Monday, September 16, 2019 8:36:45 PM<br>
-<b>To:</b> USRP-users@lists.ettus.com; usrp-users-bounces@lists.ettus.com<b=
-r>
-<b>Subject:</b> [USRP-users] How to add gcc compile argument in Makefile fo=
-r UHD CPP for E312?</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size: 12pt; color: rgb(0, 0,=
- 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, &quot;Apple Co=
-lor Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI=
- Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;" dir=3D"ltr">
-<p>Hi there,</p>
-<p>Good evening.&nbsp;I have a special need to embed python code in CPP for=
-&nbsp;my E312 because I want to do some data processing and generate a wave=
-form. In order to do so,&nbsp;&lt;Python.h&gt; must be included as header, =
-however it&nbsp;requires changing the gcc&nbsp;compiler argument.
- Could someone point me in which file I can add the gcc arguments? The argu=
-ment needed to be added should be something like below. Thank you in advanc=
-e.&nbsp;</p>
-<p><span>gcc mycode.cpp -o <span style=3D"font-family: Calibri, Helvetica, =
-sans-serif, EmojiFont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&=
-quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quo=
-t;, EmojiSymbols; font-size: 16px;">
-mycode</span> <b style=3D"">-lpython2.7 -lm -L/usr/lib/python2.7/config/ -I=
-/usr/include/python2.7/</b></span><br>
-</p>
-<p><span><b style=3D""><br>
-</b></span></p>
-<p><span>Best</span></p>
-<p><span>James</span></p>
-<div id=3D"Signature">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Arial, Helvetica, sans-serif, EmojiF=
-ont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEm=
-oji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;"=
->
-<div style=3D"font-size:12pt; color:#000000; background-color:#FFFFFF; font=
--family:Calibri,Arial,Helvetica,sans-serif">
-<div class=3D"BodyFragment"><font size=3D"2" style=3D"font-size:10pt">
-<div class=3D"PlainText"><span style=3D"font-size:9pt; color:rgb(0,0,0)">
-<p style=3D""><span style=3D"font-size:9pt; color:rgb(0,0,0)"><span style=
-=3D"font-family:Calibri,Arial,Helvetica,sans-serif; color:rgb(0,0,0)"><span=
- style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; color:rgb(0,0,0)"=
-><span style=3D"color:rgb(0,0,0)"></span></span></span></span></p>
-<p style=3D""><span style=3D"font-size:9pt; color:rgb(0,0,0)"><span style=
-=3D"color:rgb(0,0,0)"><span style=3D"color:rgb(0,0,0)"></span></span></span=
-></p>
-</span></div>
-</font></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_11df2df0e4a940b08bf5f3e0f83712b8umassedu_--
+--00000000000001374505944c6453--
 
 
---===============4331269585269851508==
+--===============3025527597774396048==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -256,5 +193,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4331269585269851508==--
+--===============3025527597774396048==--
 
