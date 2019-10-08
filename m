@@ -2,50 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4516DCFAD8
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Oct 2019 15:02:55 +0200 (CEST)
-Received: from [::1] (port=42726 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B23F3CFBC2
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Oct 2019 16:00:08 +0200 (CEST)
+Received: from [::1] (port=51862 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iHp8g-000884-BC; Tue, 08 Oct 2019 09:02:54 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:41523)
+	id 1iHq20-0002do-Iv; Tue, 08 Oct 2019 10:00:04 -0400
+Received: from mail-lj1-f182.google.com ([209.85.208.182]:43606)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ssibio2@gmail.com>) id 1iHp8c-0007l9-2R
- for usrp-users@lists.ettus.com; Tue, 08 Oct 2019 09:02:50 -0400
-Received: by mail-io1-f47.google.com with SMTP id n26so36150383ioj.8
- for <usrp-users@lists.ettus.com>; Tue, 08 Oct 2019 06:02:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=K5n5Q2wmApGFUmT0wmB8HzEaTs/ANa4n1R0EVDy1tBA=;
- b=THagN+5p1CIq0PzdjJzTm7y/JeBPj3UPWmm/2mdaz45+kEfDeVFeHZrkzBfefgUnGH
- kuQv8L92mT2+9UIIAz6eu3QjJj/+NGBG7EUdSo+giuiPZEciFWl9Ho7SCV3JScuyOKkZ
- ERcglQqY8hItfyhjJVeL6VNQYhhER8uPd7vSXCZBxjv1x3ezaUoWqwfEqd5aVROp2v7Z
- ytltAixBQhqMQaSux6mwcu2H614urHB3BzWTfhVhpfipJlOxsOyAhVn0NStTXjzp46xv
- sIoE2wl6bzW1x+Krg0tk9qQazJ26pOwl8vo9n0qzLrUPI/Y2DMqCs6MYe+VucEcg/52c
- gK2Q==
+ (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
+ id 1iHq1u-0002VD-Ix
+ for usrp-users@lists.ettus.com; Tue, 08 Oct 2019 09:59:58 -0400
+Received: by mail-lj1-f182.google.com with SMTP id n14so17615521ljj.10
+ for <usrp-users@lists.ettus.com>; Tue, 08 Oct 2019 06:59:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ueJT6zByuFDYZUtuiZdMoMacVIXoF7rrBZwKzx/Pqr4=;
+ b=mhlH2uM5H+WiIUXa0no8uvc80IiBtzUauKPx9BQ30cxUnhLtqu9OLYJist6dilw+lg
+ VpqeMgzVApFFPTUhS2EVuiNa7AqSQNZELDRogB/8O+B6oh6HY8D2+sfySzaDv350DbV1
+ MajvG7aGUpTc1NgcmmQvtTnr1VBhUeWCABMqTOJNy1jRBzfhR26sUKoY0dxsXE7LV5Qy
+ EtlFvXqm8N0BMwFDG5EaXCioBq7FpwkfUWsg9WQ7rrs2ybfoMRf7XYdGQhfdE2NNRTKI
+ 7ggGw6fDULsDJUm9ttblNqbETF2GTPSNaKK99vqZbHDZ6d+QoK0a9RwLsDcr1HFQfTgb
+ ahzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=K5n5Q2wmApGFUmT0wmB8HzEaTs/ANa4n1R0EVDy1tBA=;
- b=TCuDb+4yUcRPe5TYrtILqXbubGwzE/X0XBp2ujmABd69J9LvwWRJHuj6Y1BWJ4jqBN
- 6Fkw34D++Noq3W7MYaahwda8O28zrE+jqu4HSNiuLUA8hkpO04ClOlkAp7AfxYSZIYU6
- bJBRIkaNTWOvZk5P71xyN1g/WaNyxtYk7HXmv7YFJAUkj8wTG5O9+sEPBU0S4BQLYbrp
- ORr9M4BOfCbpCyRo9CJlpNiuR7uM2e5oxiGnKwCgA35qoFY+zoSf5tAE4BAdSXqxTliA
- G8qzWj/FbO/OmyFxyXlrp/rQi0e8mC84l3bJ9tOSmKJpY2YvGKOL8E+coPBiImR6aHEu
- OuGA==
-X-Gm-Message-State: APjAAAUpHEihsnkE7uraxYPYVtfF2wbepSXDhxU94SuN7u/iwLNflitl
- NFIHcS0kvYMZQPW2e2jvvJ/F3CEzMzVPYW35yL//ouPM7js=
-X-Google-Smtp-Source: APXvYqwu7RPHPjyvmYPzPqX+2CxhBFWvE2OXxVK+IERvKk6+hZmSneyVxzPurFUG3bBZGoogS6wlfiINRjQaecrnIfg=
-X-Received: by 2002:a92:9f0d:: with SMTP id u13mr34192087ili.280.1570539728966; 
- Tue, 08 Oct 2019 06:02:08 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=ueJT6zByuFDYZUtuiZdMoMacVIXoF7rrBZwKzx/Pqr4=;
+ b=EHn7dAuP3ihBe80SsJDY45QHX5Njlhd7NuyItP6N3r9G9t7WplILE5OZxm5jgXLhh/
+ aote0180gahsntYdeSrIEJ8dI7KbDw/vSYC09zx69A8oPoDAe5Iyf2cfC5dTUBf4ljD8
+ 98ydzdtCBhhoK2cINPIk/AU/IONWEkHQuI/hWSgJ2C6EIdBj8YjQnvsp6oVAr1VYB2Fs
+ 6hXRkByXBXZ47vfXDFAW03ZYK65qWiLJquVJidMPHoXpeQiuR27Y6CgWa1/dydqTMYV+
+ COT6MuR7aRTSaAdc4RwJagFtURQv/yy5dI8qBRbNeZRPFRlHGjxoR2rBmQB4WHt1RLaj
+ bQkQ==
+X-Gm-Message-State: APjAAAV0Hs3rMQCzrhpNrGwO5boHaJHrMrdTO1St3rQ7WuA7yRDPMq0j
+ wJLY8GS9c0C+Rpaf+dFhCMzqZn/sqfarF+lFOPO5j6Oz
+X-Google-Smtp-Source: APXvYqwpOOPnbjuAdAqyUBYNrVgoiTQ2sieAA4BKuTjrphH5oJCMzaJsZKqoWlxuk9znR0/Riwaoqc5mOA2PpstRubM=
+X-Received: by 2002:a2e:87c8:: with SMTP id v8mr22927758ljj.24.1570543157278; 
+ Tue, 08 Oct 2019 06:59:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <mailman.49.1569945602.10837.usrp-users_lists.ettus.com@lists.ettus.com>
-In-Reply-To: <mailman.49.1569945602.10837.usrp-users_lists.ettus.com@lists.ettus.com>
-Date: Tue, 8 Oct 2019 14:01:51 +0100
-Message-ID: <CALSxwQFykWcec6GXO7h5m_TEo3D2gxYPAQaHDq_ULjqGxiMOGQ@mail.gmail.com>
-To: USRP Users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] USRP-users Digest, Vol 110, Issue 1
+References: <CAPRRyxvV56pg34Bc_bo=yfcPO_7PbntX_+4naPRjTjCa+TJn0g@mail.gmail.com>
+In-Reply-To: <CAPRRyxvV56pg34Bc_bo=yfcPO_7PbntX_+4naPRjTjCa+TJn0g@mail.gmail.com>
+Date: Tue, 8 Oct 2019 08:59:06 -0500
+Message-ID: <CANf970b6=BcG3Tq1wgFju2cBb24Lr6G7O4UDQnahK9OQ5eMHkA@mail.gmail.com>
+To: Ivan Zahartchuk <adray0001@gmail.com>
+Subject: Re: [USRP-users] Error handling D when reading data USRP N 210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -57,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Simona Sibio via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Simona Sibio <ssibio2@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6716047263118858722=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7962560152290320458=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,1476 +76,60 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6716047263118858722==
-Content-Type: multipart/alternative; boundary="000000000000a6a12a059465c61d"
+--===============7962560152290320458==
+Content-Type: multipart/related; boundary="000000000000fea82e059466925e"
 
---000000000000a6a12a059465c61d
+--000000000000fea82e059466925e
+Content-Type: multipart/alternative; boundary="000000000000fea82d059466925d"
+
+--000000000000fea82d059466925d
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi everyone,
+What hardware are you using on the host side? Specifically, I'm interested
+in CPU, RAM, and NIC.
 
-I am writing to you regarding Synchronization and MIMO capabilities with
-USRP Devices.
-I am using two N200s with UBX-40.
-I would like to implement the same example in GNU radio that there is in
-the following link:
-https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices
+Sam Reiter
 
-I would like to calibrate the phase using the phase shift module.
-But, I did not find this module in GNU radio WX widgets.
-Could you help me?
-Thank you for your time.
-Sorry for the previous email, but I had not added every mail address.
-Best Regards,
+On Tue, Oct 8, 2019 at 6:22 AM Ivan Zahartchuk via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-Simona
-
-Il giorno mar 1 ott 2019 alle ore 17:00 <usrp-users-request@lists.ettus.com=
->
-ha scritto:
-
-> Send USRP-users mailing list submissions to
->         usrp-users@lists.ettus.com
->
-> To subscribe or unsubscribe via the World Wide Web, visit
->         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m
-> or, via email, send a message with subject or body 'help' to
->         usrp-users-request@lists.ettus.com
->
-> You can reach the person managing the list at
->         usrp-users-owner@lists.ettus.com
->
-> When replying, please edit your Subject line so it is more specific
-> than "Re: Contents of USRP-users digest..."
->
->
-> Today's Topics:
->
->    1. Re: next pps issues with TwinRX (Jason Matusiak)
->    2. X310 image 8 bytes too large with default image
->       (Francesco Restuccia)
->    3. uhd_usrp_loader script defaults firmware to pre-built bin
->       file (Francesco Restuccia)
->    4. Re: uhd_usrp_loader script defaults firmware to pre-built bin
->       file (Marcus D. Leech)
->    5. Re: X310 image 8 bytes too large with default image (Paolo Palana)
->    6. Re: USRP X310 problem (Paolo Palana)
->    7. uhd_usrp_loader script defaults firmware to pre-built bin
->       file (Francesco Restuccia)
->    8. [UHD] 3.14.1.1 Release Announcement (Michael West)
->    9. Re: One sample - 5 ns delay between the two RF signals/ X310
->       (Daniel Jepson)
->
->
-> ----------------------------------------------------------------------
->
-> Message: 1
-> Date: Mon, 30 Sep 2019 17:23:43 +0000
-> From: Jason Matusiak <jason@gardettoengineering.com>
-> To: Neel Pandeya <neel.pandeya@ettus.com>
-> Cc: usrp-users <usrp-users@lists.ettus.com>
-> Subject: Re: [USRP-users] next pps issues with TwinRX
-> Message-ID:
->         <
-> BL0PR12MB234012376A189C9C2EA5EFDCAF820@BL0PR12MB2340.namprd12.prod.outloo=
-k.com
-> >
->
-> Content-Type: text/plain; charset=3D"iso-8859-1"
->
-> Neel,
->
-> I updated to: UHD_3.14.1.1-0-g0347a6d8  as well as v3.7.13.5 for GR, stil=
-l
-> the same issues.
->
-> It almost feels like some sort of double/float mismatch somewhere since
-> the alignment is so close to being right.
->
-> ________________________________
-> From: Neel Pandeya <neel.pandeya@ettus.com>
-> Sent: Monday, September 30, 2019 11:19 AM
-> To: Jason Matusiak <jason@gardettoengineering.com>
-> Cc: usrp-users <usrp-users@lists.ettus.com>
-> Subject: Re: [USRP-users] next pps issues with TwinRX
->
-> Hello Jason:
->
-> We'll look into this and get back to you shortly.
->
-> If you get a chance, could you please try it with the tagged UHD 3.14.1.1=
- ?
->
-> Which version of GNU Radio are you using?
->
-> --Neel Pandeya
->
->
->
-> On Mon, 30 Sep 2019 at 10:10, Jason Matusiak via USRP-users <
-> usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-> We are having another issues with our TwinRXs.  A co-worker has been
-> trying to get this to work for a while, but has had no luck with the PPS
-> timing.  Here is the notes:
->
-> We are running UHD_3.14.1.HEAD-12-g5f75f73f.
->
-> The setup is a single X310 (revision: 11,  revision_compat: 7) with two
-> TwinRX boards. The device gets Ref/PPS from an Octoclock.
->
-> The attached script has a hard-coded IP address and clock rate. It works
-> for other X310s with UBX/SBX daughter boards as well as the E320.
->
-> Good results are (note line 5 below):
->
-> Synchronizing Radios to Reference Signals
-> Checking PPS synchronization
-> next_pps from 1569851984.633563 is 1569851985.000000
-> Setting time for radio `gr uhd usrp source`: 2019-09-30 09:59:45
-> PPS alignment PASSED!: [1569851986.0, 1569851986]
-> All radios are Synchronized
->
-> Bad results are:
-> Synchronizing Radios to Reference Signals
-> Checking PPS synchronization
-> next_pps from 1569851508.136703 is 1569851509.000000
-> Setting time for radio `gr uhd usrp source`: 2019-09-30 09:51:49
-> PPS alignment mismatch: [1569851509.9999995, 1569851509]
->
-> Any thoughts of why this might be happening?
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com<
-> https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mai=
-lman_listinfo_usrp-2Dusers-5Flists.ettus.com&d=3DDwMFaQ&c=3DeuGZstcaTDllvim=
-EN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=3DW_MQLyUWPXWHfsF4mr51mTMqpeO4RbBBLexficV9DG=
-8&m=3DVzsjpGSylp7F9peAKPOcnLbFzmAh8CNVnwzwket3hCo&s=3D_gOstnMMEDkfFbD1tcNsL=
-qzHaSnMGcIjP7W9NVzbH6M&e=3D
-> >
-> -------------- next part --------------
-> An HTML attachment was scrubbed...
-> URL: <
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/attachments/2=
-0190930/428148f5/attachment-0001.html
-> >
->
-> ------------------------------
->
-> Message: 2
-> Date: Mon, 30 Sep 2019 17:06:50 -0400
-> From: Francesco Restuccia <frestuc@gmail.com>
-> To: usrp-users@lists.ettus.com
-> Subject: [USRP-users] X310 image 8 bytes too large with default image
-> Message-ID: <b9a5e62a-1eed-95cd-9061-8ab7828ead6f@gmail.com>
-> Content-Type: text/plain; charset=3Dutf-8; format=3Dflowed
->
-> Hi guys,
->
-> I am responding to the following thread:
->
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-August/0=
-57669.html
->
-> I am having the same problem while running the uhd_image_builder.py with
-> the default images for X310.
->
-> See below:
->
-> frank@frank-iMac:/opt/uhd/host/build/examples$
-> "/opt/uhd_gnuradio_installs/bin/uhd_image_loader"
-> --args=3D"type=3Dx300,addr=3D192.168.10.15"
-> [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
-> UHD_3.15.0.git-71-g18bc320d
-> Error: RuntimeError: The specified FPGA image is too large: 15878040 vs.
-> 15878032
->
-> Any idea? I guess that this should NOT happen with default images
-> downloaded through uhd_images_downloader.
->
-> Note that the USRP works by burning the default bitfile (HG version)
-> directly via Vivado and JTAG.
->
-> Best,
->
-> Francesco
->
->
->
->
->
-> ------------------------------
->
-> Message: 3
-> Date: Mon, 30 Sep 2019 17:58:35 -0400
-> From: Francesco Restuccia <frestuc@gmail.com>
-> To: usrp-users@lists.ettus.com
-> Subject: [USRP-users] uhd_usrp_loader script defaults firmware to
->         pre-built bin file
-> Message-ID: <4e2861db-3333-ffee-e0c0-cf8f525dcecb@gmail.com>
-> Content-Type: text/plain; charset=3Dutf-8; format=3Dflowed
->
-> Dear all,
->
-> I am trying to load my customized firmware into an USRP N210. I have
-> tried the following but it defaults to the default image, regardless of
-> the input:
->
-> frank@frank-iMac:~$ uhd_image_loader
-> --args=3D"type=3Dusrp2,addr=3D192.168.10.2"
-> --fw-path=3D"/opt/uhd/firmware/usrp2/build/usrp2p/usrp2p_txrx_uhd.bin"
-> --no-fpga
-> [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
-> UHD_3.15.0.git-71-g18bc320d
-> Unit: USRP N210 r4 (F2E28F, 192.168.10.2)
-> Firmware image:
-> /opt/uhd_gnuradio_installs/share/uhd/images/usrp_n210_fw.bin
-> -- Erasing firmware image...successful.
-> -- Writing firmware image...successful.
-> -- Verifying firmware image...successful.
->
-> Any suggestion?
->
-> Thanks,
->
-> Francesco
->
->
->
->
-> ------------------------------
->
-> Message: 4
-> Date: Mon, 30 Sep 2019 22:09:35 -0400
-> From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-> To: usrp-users@lists.ettus.com
-> Subject: Re: [USRP-users] uhd_usrp_loader script defaults firmware to
->         pre-built bin file
-> Message-ID: <5D92B55F.4040501@gmail.com>
-> Content-Type: text/plain; charset=3Dwindows-1252; format=3Dflowed
->
-> On 09/30/2019 05:58 PM, Francesco Restuccia via USRP-users wrote:
-> > Dear all,
-> >
-> > I am trying to load my customized firmware into an USRP N210. I have
-> > tried the following but it defaults to the default image, regardless
-> > of the input:
-> >
-> > frank@frank-iMac:~$ uhd_image_loader
-> > --args=3D"type=3Dusrp2,addr=3D192.168.10.2"
-> > --fw-path=3D"/opt/uhd/firmware/usrp2/build/usrp2p/usrp2p_txrx_uhd.bin"
-> > --no-fpga
-> > [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
-> > UHD_3.15.0.git-71-g18bc320d
-> > Unit: USRP N210 r4 (F2E28F, 192.168.10.2)
-> > Firmware image:
-> > /opt/uhd_gnuradio_installs/share/uhd/images/usrp_n210_fw.bin
-> > -- Erasing firmware image...successful.
-> > -- Writing firmware image...successful.
-> > -- Verifying firmware image...successful.
-> >
-> > Any suggestion?
-> >
-> > Thanks,
-> >
-> > Francesco
-> >
-> Could you check to make sure the file is actually there and readable to
-> you?
->
-> What does "which uhd_image_loader" return?
->
->
->
->
->
-> ------------------------------
->
-> Message: 5
-> Date: Tue, 1 Oct 2019 11:10:34 +0200
-> From: Paolo Palana <p.palana@itsystems.it>
-> To: usrp-users@lists.ettus.com
-> Subject: Re: [USRP-users] X310 image 8 bytes too large with default
->         image
-> Message-ID: <6d39763f-ea6e-9dcf-a38e-d0afeafe9c56@itsystems.it>
-> Content-Type: text/plain; charset=3Dutf-8
->
-> I had the same problem indeed,
-> I think this is because vivado 2017.4 output image size is a bit
-> different from the output imase size of vivado 2015.4.
-> I say so because the error did not appear with uhd-3.10.3. I think the
-> problem is that no one updated the tools provided with libuhd
-> used to configure the fpga in order to handle the new output file
-> dimension.
->
-> My solution is very simple, if you are under Linux just use dd and copy
-> the original file with a command like this:
->
-> dd if=3D<orig_file>.bit of=3D<new_file>.bit bs=3D<the_rigth_dimension> co=
-unt=3D1
->
-> And it works, at least for me. In fact if you open the bit file with a
-> hexeditor you can see how the last bites looks like a padding.
->
-> Best,
-> Paolo
->
->
-> On 30/09/19 23:06, Francesco Restuccia via USRP-users wrote:
-> > Hi guys,
-> >
-> > I am responding to the following thread:
-> >
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-August/0=
-57669.html
-> >
-> > I am having the same problem while running the uhd_image_builder.py
-> > with the default images for X310.
-> >
-> > See below:
-> >
-> > frank@frank-iMac:/opt/uhd/host/build/examples$
-> > "/opt/uhd_gnuradio_installs/bin/uhd_image_loader"
-> > --args=3D"type=3Dx300,addr=3D192.168.10.15"
-> > [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
-> > UHD_3.15.0.git-71-g18bc320d
-> > Error: RuntimeError: The specified FPGA image is too large: 15878040
-> > vs. 15878032
-> >
-> > Any idea? I guess that this should NOT happen with default images
-> > downloaded through uhd_images_downloader.
-> >
-> > Note that the USRP works by burning the default bitfile (HG version)
-> > directly via Vivado and JTAG.
-> >
-> > Best,
-> >
-> > Francesco
-> >
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
->
->
->
->
-> ------------------------------
->
-> Message: 6
-> Date: Tue, 1 Oct 2019 11:12:59 +0200
-> From: Paolo Palana <p.palana@itsystems.it>
-> To: usrp-users@lists.ettus.com
-> Subject: Re: [USRP-users] USRP X310 problem
-> Message-ID: <6b3db94d-518c-4604-6d13-52baca3a8bd1@itsystems.it>
-> Content-Type: text/plain; charset=3D"utf-8"
->
-> Try the command.
->
-> dd if=3D<original_file>.bit of=3D<new_file>.bit count=3D<the_rigth_size> =
-count=3D1
->
-> and then try to configure the fpga <new_file>.bit
->
->
-> On 27/09/19 16:12, Aaron Montilla via USRP-users wrote:
-> > Hi,
-> > I am trying to set the connection between my PC and my USRP X310.
-> > I ran the command uhd_find_devices, and successfully it found the
-> > USRP. Then I use the uhd_usrp_probe command and I had the next error:
-> > aaron@leonard:~$ uhd_usrp_probe
-> > [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
-> > UHD_3.15.0.git-71-g18bc320d
-> > [INFO] [X300] X300 initialization sequence...
-> > [INFO] [X300] Maximum frame size: 1472 bytes.
-> > [INFO] [X300] Radio 1x clock: 200 MHz
-> > [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
-> > [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
-> > 0xF1F0D00000000000)
-> > [ERROR] [0/DmaFIFO_0] Major compat number mismatch for noc_shell:
-> > Expecting 6, got 5.
-> > Error: RuntimeError: FPGA component `noc_shell' is revision 5 and UHD
-> > supports revision 6. Please either upgrade the FPGA image
-> > (recommended) or downgrade UHD.
-> >
-> > I thought that upgrade the USRP was the best option, but when I try, I
-> > have another error saying that the size of the image is too large (
-> > only for 1 byte). I also read that I had to use the .bin file but I
-> > didn't have any.
-> > So, could you please tell me what I could do?
-> >
-> > Thank you very much in advance.
-> > Kind regards,
-> > Aaron
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
-> -------------- next part --------------
-> An HTML attachment was scrubbed...
-> URL: <
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/attachments/2=
-0191001/ce515be1/attachment-0001.html
-> >
->
-> ------------------------------
->
-> Message: 7
-> Date: Tue, 1 Oct 2019 08:25:34 -0400
-> From: Francesco Restuccia <frestuc@gmail.com>
-> To: usrp-users@lists.ettus.com
-> Subject: [USRP-users] uhd_usrp_loader script defaults firmware to
->         pre-built bin file
-> Message-ID: <b358a6cc-0275-3f56-1533-178c9b837c0c@gmail.com>
-> Content-Type: text/plain; charset=3Dutf-8; format=3Dflowed
->
-> Hi Marcus,
->
-> This is the output of the command:
->
-> frank@frank-iMac:~$ which uhd_image_loader
-> /opt/uhd_gnuradio_installs/bin/uhd_image_loader
->
-> And yes, the file should be ok:
->
-> frank@frank-iMac:/opt/uhd$ ls -la
-> /opt/uhd/firmware/usrp2/build/usrp2p/usrp2p_txrx_uhd.bin
-> -rwxr-xr-x 1 frank frank 16383 Sep 30 17:26
-> /opt/uhd/firmware/usrp2/build/usrp2p/usrp2p_txrx_uhd.bin
->
-> Francesco
->
->
->
->
->
-> ------------------------------
->
-> Message: 8
-> Date: Tue, 1 Oct 2019 08:01:31 -0500
-> From: Michael West <michael.west@ettus.com>
-> To: discuss-gnuradio@gnu.org,  "USRP-users@lists.ettus.com"
->         <usrp-users@lists.ettus.com>
-> Subject: [USRP-users] [UHD] 3.14.1.1 Release Announcement
-> Message-ID:
->         <
-> CAM4xKrrrT81QwyUdoZNLDZEfDAwtxWsrP7rbpxhOZ-yJsunv6A@mail.gmail.com>
-> Content-Type: text/plain; charset=3D"utf-8"
->
-> UHD 3.14.1.1 is now available!  This is a patch release.  It is API
-> compatible with 3.14.0.0 and ABI compatible with 3.14.1.0.  This release
-> includes several bug fixes.
->
-> Installers for Windows and Fedora are available here:
-> http://files.ettus.com/binaries/uhd/uhd_003.014.001.001-release/
->
-> The PPA for Ubuntu can be found here:
-> https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd
->
-> The tag for this release is located here:
-> https://github.com/EttusResearch/uhd/releases/tag/v3.14.1.1
->
-> There have been 67 commits since the last API release which can be viewed
-> here:
-> https://github.com/EttusResearch/uhd/compare/v3.14.0.0...v3.14.1.1
->
-> Please report any bugs found on the UHD issue tracker:
-> http://github.com/EttusResearch/uhd/issues
-> * Please do not use the issue tracker for help or support.
->
-> Pull requests for direct code changes can be submitted to the UHD or FPGA
-> repositories:
-> http://github.com/EttusResearch/uhd/pulls
-> http://github.com/EttusResearch/fpga/pulls
->
-> As always, we at Ettus Research would like to thank all of the UHD users =
-in
-> the open source SDR community.  This release contains commits from users =
-in
-> the community that submitted pull requests against the UHD
-> <https://github.com/EttusResearch/uhd> and FPGA
-> <https://github.com/EttusResearch/fpga> repositories as well as many
-> commits that are a direct result of issues reported back to us by users
-> like you through the UHD <https://github.com/EttusResearch/uhd/issues> an=
-d
-> FPGA <https://github.com/EttusResearch/fpga/issues> issue trackers,
-> the USRP-users
-> mailing list
-> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, and
-> Ettus
-> support <support@ettus.com>.  You have all helped contribute to the
-> continued improvement of UHD.  Thank you!
->
-> CHANGELOG:
-> ## 003.014.001.001
-> Device3: latch n on m in axi_rate_change in DUC/DDC
-> Device3: UART: fix TX <-> RX, FIFO size as parameter
-> Device3: Restore default buffer sizes for MPMD UDP
-> RFNoC: Fix off by one error in window.v
-> E320: fix time source clobbering ref source
-> B200: Add command to query bootloader status
-> RFNoC: fix multidevice graph connections
-> MPMD: Fix corner case in MPM device discovery
-> MPM: fixed mboard_max_revision value (MPM compat check failures)
-> MPM: Fix version string for logger
-> Docs: x300: update docs for multiple timed commands
-> Docs: Fix Doxygen warnings due to spurious backslashes
-> Docs: RFNoC: Fix Doxygen warning due to undoc'd parameter
-> Docs: Adjust FPGA functional verification tests
-> Docs: Fix MPM cmake command for E320
-> RFNoC: Re-enable flow ctrl for blocks on same xbar
-> Tools: Fix build issues with kitchen_sink
-> cmake: Add UHD_COMPONENT variable
->
-> Best regards,
-> Michael
-> -------------- next part --------------
-> An HTML attachment was scrubbed...
-> URL: <
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/attachments/2=
-0191001/e6cc6c67/attachment-0001.html
-> >
->
-> ------------------------------
->
-> Message: 9
-> Date: Tue, 1 Oct 2019 08:21:22 -0500
-> From: Daniel Jepson <daniel.jepson@ettus.com>
-> To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-> Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF
->         signals/ X310
-> Message-ID:
->         <CA+Zwmn6N5Fcb3NvcLO7met=3D
-> EeyWEOjB-hEFZqqhcaugoZF1wUg@mail.gmail.com>
-> Content-Type: text/plain; charset=3D"utf-8"
->
-> Fabian, I had a hunch it was just the 3.3V part--thanks for clarifying!
->
-> Cherif, the DAC interface timing (and for that matter, the ADC timing)
-> should be fairly tight. What you're seeing is expected and matches the
-> numbers we designed it to. The FPGA constraints are intentionally tight t=
-o
-> provide some extra margin at the DAC. Since this is all in the same X310,
-> you could start by isolating the various components of the design using t=
-he
-> front-panel GPIO connector. Run a trigger from each of your custom blocks
-> to the GPIO and see if they line up on a scope. If they don't, then you
-> might have a baseband timing issue (with how timed commands are interacti=
-ng
-> with your blocks). If they line up, then it points to a timing failure in
-> the DAC.
->
-> -Daniel
->
->
->
-> On Fri, Sep 27, 2019 at 12:33 PM Cherif Diouf via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> > fabian,
-> >
-> >
-> > I have tested your solution, but the get_time_last_pps always gives me
-> > the expect value.
-> >
-> >
-> >
-> > Daniel, On a different point, the issue might be related to timing, her=
-e
-> > are some examples of  timing related to the DACs. The compilation is
-> > successful but the margin is very low, in the 10 ps order.
-> >
-> >
-> >
-> >
-> > Startpoint                     Endpoint                       Slack(ns)
-> >
-> >
-> >
-> -------------------------------------------------------------------------=
----
-> > gen_db1/gen_pins[2].oddr/C     DB1_DAC_D2_N                   0.016
-> >
-> > gen_db1/gen_pins[2].oddr/C     DB1_DAC_D2_P                   0.016
-> >
-> > gen_db1/gen_pins[7].oddr/C     DB1_DAC_D7_N                   0.021
-> >
-> > gen_db1/gen_pins[7].oddr/C     DB1_DAC_D7_P                   0.021
-> >
-> > gen_db1/gen_pins[3].oddr/C     DB1_DAC_D3_N                   0.024
-> >
-> > gen_db1/gen_pins[3].oddr/C     DB1_DAC_D3_P                   0.024
-> >
-> >
-> >
-> > gen_db0/gen_pins[2].oddr/C     DB0_DAC_D2_N                   0.066
-> >
-> > gen_db0/gen_pins[2].oddr/C     DB0_DAC_D2_P                   0.066
-> >
-> > gen_db0/gen_pins[0].oddr/C     DB0_DAC_D0_N                   0.071
-> >
-> > gen_db0/gen_pins[0].oddr/C     DB0_DAC_D0_P                   0.071
-> >
-> > gen_db0/oddr_frame/C           DB0_DAC_FRAME_N                0.075
-> >
-> > gen_db0/oddr_frame/C           DB0_DAC_FRAME_P                0.075
-> >
-> > gen_db0/gen_pins[3].oddr/C     DB0_DAC_D3_N                   0.080
-> >
-> > gen_db0/gen_pins[3].oddr/C     DB0_DAC_D3_P                   0.080
-> >
-> > gen_db0/gen_pins[1].oddr/C     DB0_DAC_D1_N                   0.085
-> >
-> > gen_db0/gen_pins[1].oddr/C     DB0_DAC_D1_P                   0.085
-> >
-> >
-> >
-> > Best Regards
-> >
-> > Cherif
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >
->
->
-> --
->
-> Daniel Jepson
->
-> Digital Hardware Engineer
->
-> National Instruments
->
->
->
-> O: +1.512.683.6163
->
-> daniel.jepson@ni.com
-> -------------- next part --------------
-> An HTML attachment was scrubbed...
-> URL: <
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/attachments/2=
-0191001/8ddd238e/attachment-0001.html
-> >
->
-> ------------------------------
->
-> Subject: Digest Footer
->
+> Hello. When I read data from the board, error D periodically passes. It
+> leads to bursts in the spectrum that fits in the figure. Please tell me
+> how you can remove this error or how it can be handled? I also attach the
+> code file.
+> [image: errorD.png]
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
->
-> ------------------------------
->
-> End of USRP-users Digest, Vol 110, Issue 1
-> ******************************************
->
 
---000000000000a6a12a059465c61d
+--000000000000fea82d059466925d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi everyone,<div><br></div><div>I am writing to you regard=
-ing Synchronization and MIMO capabilities with USRP Devices.</div><div>I am=
- using two N200s with UBX-40.</div><div>I would like to implement the same =
-example in GNU radio that there is in the following link:</div><div><a href=
-=3D"https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devi=
-ces" target=3D"_blank">https://kb.ettus.com/Synchronization_and_MIMO_Capabi=
-lity_with_USRP_Devices</a>=C2=A0</div><div><br></div><div>I would like to c=
-alibrate the phase using the phase shift module.</div><div>But, I did not f=
-ind this module in GNU radio WX widgets.<br></div><div>Could you help me?</=
-div><div>Thank you for=C2=A0your time.</div><div>Sorry for the previous ema=
-il, but I had not added every mail address.</div><div>Best Regards,</div><d=
-iv><br></div><div>Simona</div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">Il giorno mar 1 ott 2019 alle ore 17:00 &lt;<=
-a href=3D"mailto:usrp-users-request@lists.ettus.com">usrp-users-request@lis=
-ts.ettus.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex">Send USRP-users mailing list submissions to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users@lists.ettus.com" t=
-arget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-<br>
-To subscribe or unsubscribe via the World Wide Web, visit<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http:/=
-/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-or, via email, send a message with subject or body &#39;help&#39; to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-request@lists.ettu=
-s.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a><br>
-<br>
-You can reach the person managing the list at<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-owner@lists.ettus.=
-com" target=3D"_blank">usrp-users-owner@lists.ettus.com</a><br>
-<br>
-When replying, please edit your Subject line so it is more specific<br>
-than &quot;Re: Contents of USRP-users digest...&quot;<br>
-<br>
-<br>
-Today&#39;s Topics:<br>
-<br>
-=C2=A0 =C2=A01. Re: next pps issues with TwinRX (Jason Matusiak)<br>
-=C2=A0 =C2=A02. X310 image 8 bytes too large with default image<br>
-=C2=A0 =C2=A0 =C2=A0 (Francesco Restuccia)<br>
-=C2=A0 =C2=A03. uhd_usrp_loader script defaults firmware to pre-built bin<b=
-r>
-=C2=A0 =C2=A0 =C2=A0 file (Francesco Restuccia)<br>
-=C2=A0 =C2=A04. Re: uhd_usrp_loader script defaults firmware to pre-built b=
-in<br>
-=C2=A0 =C2=A0 =C2=A0 file (Marcus D. Leech)<br>
-=C2=A0 =C2=A05. Re: X310 image 8 bytes too large with default image (Paolo =
-Palana)<br>
-=C2=A0 =C2=A06. Re: USRP X310 problem (Paolo Palana)<br>
-=C2=A0 =C2=A07. uhd_usrp_loader script defaults firmware to pre-built bin<b=
-r>
-=C2=A0 =C2=A0 =C2=A0 file (Francesco Restuccia)<br>
-=C2=A0 =C2=A08. [UHD] 3.14.1.1 Release Announcement (Michael West)<br>
-=C2=A0 =C2=A09. Re: One sample - 5 ns delay between the two RF signals/ X31=
-0<br>
-=C2=A0 =C2=A0 =C2=A0 (Daniel Jepson)<br>
-<br>
-<br>
-----------------------------------------------------------------------<br>
-<br>
-Message: 1<br>
-Date: Mon, 30 Sep 2019 17:23:43 +0000<br>
-From: Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoengineering.com" t=
-arget=3D"_blank">jason@gardettoengineering.com</a>&gt;<br>
-To: Neel Pandeya &lt;<a href=3D"mailto:neel.pandeya@ettus.com" target=3D"_b=
-lank">neel.pandeya@ettus.com</a>&gt;<br>
-Cc: usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"=
-_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-Subject: Re: [USRP-users] next pps issues with TwinRX<br>
-Message-ID:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;<a href=3D"mailto:BL0PR12MB234012376A189C9C=
-2EA5EFDCAF820@BL0PR12MB2340.namprd12.prod.outlook.com" target=3D"_blank">BL=
-0PR12MB234012376A189C9C2EA5EFDCAF820@BL0PR12MB2340.namprd12.prod.outlook.co=
-m</a>&gt;<br>
-<br>
-Content-Type: text/plain; charset=3D&quot;iso-8859-1&quot;<br>
-<br>
-Neel,<br>
-<br>
-I updated to: UHD_3.14.1.1-0-g0347a6d8=C2=A0 as well as v3.7.13.5 for GR, s=
-till the same issues.<br>
-<br>
-It almost feels like some sort of double/float mismatch somewhere since the=
- alignment is so close to being right.<br>
-<br>
-________________________________<br>
-From: Neel Pandeya &lt;<a href=3D"mailto:neel.pandeya@ettus.com" target=3D"=
-_blank">neel.pandeya@ettus.com</a>&gt;<br>
-Sent: Monday, September 30, 2019 11:19 AM<br>
-To: Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoengineering.com" tar=
-get=3D"_blank">jason@gardettoengineering.com</a>&gt;<br>
-Cc: usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"=
-_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-Subject: Re: [USRP-users] next pps issues with TwinRX<br>
-<br>
-Hello Jason:<br>
-<br>
-We&#39;ll look into this and get back to you shortly.<br>
-<br>
-If you get a chance, could you please try it with the tagged UHD 3.14.1.1 ?=
-<br>
-<br>
-Which version of GNU Radio are you using?<br>
-<br>
---Neel Pandeya<br>
-<br>
-<br>
-<br>
-On Mon, 30 Sep 2019 at 10:10, Jason Matusiak via USRP-users &lt;<a href=3D"=
-mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus=
-.com</a>&lt;mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"=
-_blank">usrp-users@lists.ettus.com</a>&gt;&gt; wrote:<br>
-We are having another issues with our TwinRXs.=C2=A0 A co-worker has been t=
-rying to get this to work for a while, but has had no luck with the PPS tim=
-ing.=C2=A0 Here is the notes:<br>
-<br>
-We are running UHD_3.14.1.HEAD-12-g5f75f73f.<br>
-<br>
-The setup is a single X310 (revision: 11,=C2=A0 revision_compat: 7) with tw=
-o TwinRX boards. The device gets Ref/PPS from an Octoclock.<br>
-<br>
-The attached script has a hard-coded IP address and clock rate. It works fo=
-r other X310s with UBX/SBX daughter boards as well as the E320.<br>
-<br>
-Good results are (note line 5 below):<br>
-<br>
-Synchronizing Radios to Reference Signals<br>
-Checking PPS synchronization<br>
-next_pps from 1569851984.633563 is 1569851985.000000<br>
-Setting time for radio `gr uhd usrp source`: 2019-09-30 09:59:45<br>
-PPS alignment PASSED!: [1569851986.0, 1569851986]<br>
-All radios are Synchronized<br>
-<br>
-Bad results are:<br>
-Synchronizing Radios to Reference Signals<br>
-Checking PPS synchronization<br>
-next_pps from 1569851508.136703 is 1569851509.000000<br>
-Setting time for radio `gr uhd usrp source`: 2019-09-30 09:51:49<br>
-PPS alignment mismatch: [1569851509.9999995, 1569851509]<br>
-<br>
-Any thoughts of why this might be happening?<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>&lt;mailto:<a href=3D"mailto:USRP-users@lists.ettus.com"=
- target=3D"_blank">USRP-users@lists.ettus.com</a>&gt;<br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a>&lt;<a href=3D"https://urldefense.proof=
-point.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mailman_listinfo_usrp-2Dusers=
--5Flists.ettus.com&amp;d=3DDwMFaQ&amp;c=3DeuGZstcaTDllvimEN8b7jXrwqOf-v5A_C=
-dpgnVfiiMM&amp;r=3DW_MQLyUWPXWHfsF4mr51mTMqpeO4RbBBLexficV9DG8&amp;m=3DVzsj=
-pGSylp7F9peAKPOcnLbFzmAh8CNVnwzwket3hCo&amp;s=3D_gOstnMMEDkfFbD1tcNsLqzHaSn=
-MGcIjP7W9NVzbH6M&amp;e=3D" rel=3D"noreferrer" target=3D"_blank">https://url=
-defense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mailman_listinfo=
-_usrp-2Dusers-5Flists.ettus.com&amp;d=3DDwMFaQ&amp;c=3DeuGZstcaTDllvimEN8b7=
-jXrwqOf-v5A_CdpgnVfiiMM&amp;r=3DW_MQLyUWPXWHfsF4mr51mTMqpeO4RbBBLexficV9DG8=
-&amp;m=3DVzsjpGSylp7F9peAKPOcnLbFzmAh8CNVnwzwket3hCo&amp;s=3D_gOstnMMEDkfFb=
-D1tcNsLqzHaSnMGcIjP7W9NVzbH6M&amp;e=3D</a>&gt;<br>
--------------- next part --------------<br>
-An HTML attachment was scrubbed...<br>
-URL: &lt;<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus=
-.com/attachments/20190930/428148f5/attachment-0001.html" rel=3D"noreferrer"=
- target=3D"_blank">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.=
-com/attachments/20190930/428148f5/attachment-0001.html</a>&gt;<br>
-<br>
-------------------------------<br>
-<br>
-Message: 2<br>
-Date: Mon, 30 Sep 2019 17:06:50 -0400<br>
-From: Francesco Restuccia &lt;<a href=3D"mailto:frestuc@gmail.com" target=
-=3D"_blank">frestuc@gmail.com</a>&gt;<br>
-To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a><br>
-Subject: [USRP-users] X310 image 8 bytes too large with default image<br>
-Message-ID: &lt;<a href=3D"mailto:b9a5e62a-1eed-95cd-9061-8ab7828ead6f@gmai=
-l.com" target=3D"_blank">b9a5e62a-1eed-95cd-9061-8ab7828ead6f@gmail.com</a>=
-&gt;<br>
-Content-Type: text/plain; charset=3Dutf-8; format=3Dflowed<br>
-<br>
-Hi guys,<br>
-<br>
-I am responding to the following thread: <br>
-<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018=
--August/057669.html" rel=3D"noreferrer" target=3D"_blank">http://lists.ettu=
-s.com/pipermail/usrp-users_lists.ettus.com/2018-August/057669.html</a><br>
-<br>
-I am having the same problem while running the uhd_image_builder.py with <b=
-r>
-the default images for X310.<br>
-<br>
-See below:<br>
-<br>
-frank@frank-iMac:/opt/uhd/host/build/examples$ <br>
-&quot;/opt/uhd_gnuradio_installs/bin/uhd_image_loader&quot; <br>
---args=3D&quot;type=3Dx300,addr=3D192.168.10.15&quot;<br>
-[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; <br>
-UHD_3.15.0.git-71-g18bc320d<br>
-Error: RuntimeError: The specified FPGA image is too large: 15878040 vs. <b=
-r>
-15878032<br>
-<br>
-Any idea? I guess that this should NOT happen with default images <br>
-downloaded through uhd_images_downloader.<br>
-<br>
-Note that the USRP works by burning the default bitfile (HG version) <br>
-directly via Vivado and JTAG.<br>
-<br>
-Best,<br>
-<br>
-Francesco<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-------------------------------<br>
-<br>
-Message: 3<br>
-Date: Mon, 30 Sep 2019 17:58:35 -0400<br>
-From: Francesco Restuccia &lt;<a href=3D"mailto:frestuc@gmail.com" target=
-=3D"_blank">frestuc@gmail.com</a>&gt;<br>
-To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a><br>
-Subject: [USRP-users] uhd_usrp_loader script defaults firmware to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 pre-built bin file<br>
-Message-ID: &lt;<a href=3D"mailto:4e2861db-3333-ffee-e0c0-cf8f525dcecb@gmai=
-l.com" target=3D"_blank">4e2861db-3333-ffee-e0c0-cf8f525dcecb@gmail.com</a>=
-&gt;<br>
-Content-Type: text/plain; charset=3Dutf-8; format=3Dflowed<br>
-<br>
-Dear all,<br>
-<br>
-I am trying to load my customized firmware into an USRP N210. I have <br>
-tried the following but it defaults to the default image, regardless of <br=
->
-the input:<br>
-<br>
-frank@frank-iMac:~$ uhd_image_loader <br>
---args=3D&quot;type=3Dusrp2,addr=3D192.168.10.2&quot; <br>
---fw-path=3D&quot;/opt/uhd/firmware/usrp2/build/usrp2p/usrp2p_txrx_uhd.bin&=
-quot; <br>
---no-fpga<br>
-[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; <br>
-UHD_3.15.0.git-71-g18bc320d<br>
-Unit: USRP N210 r4 (F2E28F, 192.168.10.2)<br>
-Firmware image: /opt/uhd_gnuradio_installs/share/uhd/images/usrp_n210_fw.bi=
-n<br>
--- Erasing firmware image...successful.<br>
--- Writing firmware image...successful.<br>
--- Verifying firmware image...successful.<br>
-<br>
-Any suggestion?<br>
-<br>
-Thanks,<br>
-<br>
-Francesco<br>
-<br>
-<br>
-<br>
-<br>
-------------------------------<br>
-<br>
-Message: 4<br>
-Date: Mon, 30 Sep 2019 22:09:35 -0400<br>
-From: &quot;Marcus D. Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@gmail=
-.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;<br>
-To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a><br>
-Subject: Re: [USRP-users] uhd_usrp_loader script defaults firmware to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 pre-built bin file<br>
-Message-ID: &lt;<a href=3D"mailto:5D92B55F.4040501@gmail.com" target=3D"_bl=
-ank">5D92B55F.4040501@gmail.com</a>&gt;<br>
-Content-Type: text/plain; charset=3Dwindows-1252; format=3Dflowed<br>
-<br>
-On 09/30/2019 05:58 PM, Francesco Restuccia via USRP-users wrote:<br>
-&gt; Dear all,<br>
-&gt;<br>
-&gt; I am trying to load my customized firmware into an USRP N210. I have <=
-br>
-&gt; tried the following but it defaults to the default image, regardless <=
-br>
-&gt; of the input:<br>
-&gt;<br>
-&gt; frank@frank-iMac:~$ uhd_image_loader <br>
-&gt; --args=3D&quot;type=3Dusrp2,addr=3D192.168.10.2&quot; <br>
-&gt; --fw-path=3D&quot;/opt/uhd/firmware/usrp2/build/usrp2p/usrp2p_txrx_uhd=
-.bin&quot; <br>
-&gt; --no-fpga<br>
-&gt; [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; <br>
-&gt; UHD_3.15.0.git-71-g18bc320d<br>
-&gt; Unit: USRP N210 r4 (F2E28F, 192.168.10.2)<br>
-&gt; Firmware image: <br>
-&gt; /opt/uhd_gnuradio_installs/share/uhd/images/usrp_n210_fw.bin<br>
-&gt; -- Erasing firmware image...successful.<br>
-&gt; -- Writing firmware image...successful.<br>
-&gt; -- Verifying firmware image...successful.<br>
-&gt;<br>
-&gt; Any suggestion?<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt;<br>
-&gt; Francesco<br>
-&gt;<br>
-Could you check to make sure the file is actually there and readable to <br=
->
-you?<br>
-<br>
-What does &quot;which uhd_image_loader&quot; return?<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-------------------------------<br>
-<br>
-Message: 5<br>
-Date: Tue, 1 Oct 2019 11:10:34 +0200<br>
-From: Paolo Palana &lt;<a href=3D"mailto:p.palana@itsystems.it" target=3D"_=
-blank">p.palana@itsystems.it</a>&gt;<br>
-To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a><br>
-Subject: Re: [USRP-users] X310 image 8 bytes too large with default<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 image<br>
-Message-ID: &lt;<a href=3D"mailto:6d39763f-ea6e-9dcf-a38e-d0afeafe9c56@itsy=
-stems.it" target=3D"_blank">6d39763f-ea6e-9dcf-a38e-d0afeafe9c56@itsystems.=
-it</a>&gt;<br>
-Content-Type: text/plain; charset=3Dutf-8<br>
-<br>
-I had the same problem indeed,<br>
-I think this is because vivado 2017.4 output image size is a bit<br>
-different from the output imase size of vivado 2015.4.<br>
-I say so because the error did not appear with uhd-3.10.3. I think the<br>
-problem is that no one updated the tools provided with libuhd<br>
-used to configure the fpga in order to handle the new output file dimension=
-.<br>
-<br>
-My solution is very simple, if you are under Linux just use dd and copy<br>
-the original file with a command like this:<br>
-<br>
-dd if=3D&lt;orig_file&gt;.bit of=3D&lt;new_file&gt;.bit bs=3D&lt;the_rigth_=
-dimension&gt; count=3D1<br>
-<br>
-And it works, at least for me. In fact if you open the bit file with a<br>
-hexeditor you can see how the last bites looks like a padding.<br>
-<br>
-Best,<br>
-Paolo<br>
-<br>
-<br>
-On 30/09/19 23:06, Francesco Restuccia via USRP-users wrote:<br>
-&gt; Hi guys,<br>
-&gt;<br>
-&gt; I am responding to the following thread:<br>
-&gt; <a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com=
-/2018-August/057669.html" rel=3D"noreferrer" target=3D"_blank">http://lists=
-.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-August/057669.html</a>=
-<br>
-&gt;<br>
-&gt; I am having the same problem while running the uhd_image_builder.py<br=
->
-&gt; with the default images for X310.<br>
-&gt;<br>
-&gt; See below:<br>
-&gt;<br>
-&gt; frank@frank-iMac:/opt/uhd/host/build/examples$<br>
-&gt; &quot;/opt/uhd_gnuradio_installs/bin/uhd_image_loader&quot;<br>
-&gt; --args=3D&quot;type=3Dx300,addr=3D192.168.10.15&quot;<br>
-&gt; [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;<br>
-&gt; UHD_3.15.0.git-71-g18bc320d<br>
-&gt; Error: RuntimeError: The specified FPGA image is too large: 15878040<b=
-r>
-&gt; vs. 15878032<br>
-&gt;<br>
-&gt; Any idea? I guess that this should NOT happen with default images<br>
-&gt; downloaded through uhd_images_downloader.<br>
-&gt;<br>
-&gt; Note that the USRP works by burning the default bitfile (HG version)<b=
-r>
-&gt; directly via Vivado and JTAG.<br>
-&gt;<br>
-&gt; Best,<br>
-&gt;<br>
-&gt; Francesco<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-------------------------------<br>
-<br>
-Message: 6<br>
-Date: Tue, 1 Oct 2019 11:12:59 +0200<br>
-From: Paolo Palana &lt;<a href=3D"mailto:p.palana@itsystems.it" target=3D"_=
-blank">p.palana@itsystems.it</a>&gt;<br>
-To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a><br>
-Subject: Re: [USRP-users] USRP X310 problem<br>
-Message-ID: &lt;<a href=3D"mailto:6b3db94d-518c-4604-6d13-52baca3a8bd1@itsy=
-stems.it" target=3D"_blank">6b3db94d-518c-4604-6d13-52baca3a8bd1@itsystems.=
-it</a>&gt;<br>
-Content-Type: text/plain; charset=3D&quot;utf-8&quot;<br>
-<br>
-Try the command.<br>
-<br>
-dd if=3D&lt;original_file&gt;.bit of=3D&lt;new_file&gt;.bit count=3D&lt;the=
-_rigth_size&gt; count=3D1<br>
-<br>
-and then try to configure the fpga &lt;new_file&gt;.bit<br>
-<br>
-<br>
-On 27/09/19 16:12, Aaron Montilla via USRP-users wrote:<br>
-&gt; Hi,<br>
-&gt; I am trying to set the connection between my PC and my USRP X310.<br>
-&gt; I ran the command uhd_find_devices, and successfully it found the<br>
-&gt; USRP. Then I use the uhd_usrp_probe command and I had the next error:<=
-br>
-&gt; aaron@leonard:~$ uhd_usrp_probe<br>
-&gt; [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;<br>
-&gt; UHD_3.15.0.git-71-g18bc320d<br>
-&gt; [INFO] [X300] X300 initialization sequence...<br>
-&gt; [INFO] [X300] Maximum frame size: 1472 bytes.<br>
-&gt; [INFO] [X300] Radio 1x clock: 200 MHz<br>
-&gt; [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a<br>
-&gt; [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:<br>
-&gt; 0xF1F0D00000000000)<br>
-&gt; [ERROR] [0/DmaFIFO_0] Major compat number mismatch for noc_shell:<br>
-&gt; Expecting 6, got 5.<br>
-&gt; Error: RuntimeError: FPGA component `noc_shell&#39; is revision 5 and =
-UHD<br>
-&gt; supports revision 6. Please either upgrade the FPGA image<br>
-&gt; (recommended) or downgrade UHD.<br>
-&gt;<br>
-&gt; I thought that upgrade the USRP was the best option, but when I try, I=
-<br>
-&gt; have another error saying that the size of the image is too large (<br=
->
-&gt; only for 1 byte). I also read that I had to use the .bin file but I<br=
->
-&gt; didn&#39;t have any.<br>
-&gt; So, could you please tell me what I could do?<br>
-&gt;<br>
-&gt; Thank you very much in advance.<br>
-&gt; Kind regards,<br>
-&gt; Aaron<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-<br>
--------------- next part --------------<br>
-An HTML attachment was scrubbed...<br>
-URL: &lt;<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus=
-.com/attachments/20191001/ce515be1/attachment-0001.html" rel=3D"noreferrer"=
- target=3D"_blank">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.=
-com/attachments/20191001/ce515be1/attachment-0001.html</a>&gt;<br>
-<br>
-------------------------------<br>
-<br>
-Message: 7<br>
-Date: Tue, 1 Oct 2019 08:25:34 -0400<br>
-From: Francesco Restuccia &lt;<a href=3D"mailto:frestuc@gmail.com" target=
-=3D"_blank">frestuc@gmail.com</a>&gt;<br>
-To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a><br>
-Subject: [USRP-users] uhd_usrp_loader script defaults firmware to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 pre-built bin file<br>
-Message-ID: &lt;<a href=3D"mailto:b358a6cc-0275-3f56-1533-178c9b837c0c@gmai=
-l.com" target=3D"_blank">b358a6cc-0275-3f56-1533-178c9b837c0c@gmail.com</a>=
-&gt;<br>
-Content-Type: text/plain; charset=3Dutf-8; format=3Dflowed<br>
-<br>
-Hi Marcus,<br>
-<br>
-This is the output of the command:<br>
-<br>
-frank@frank-iMac:~$ which uhd_image_loader<br>
-/opt/uhd_gnuradio_installs/bin/uhd_image_loader<br>
-<br>
-And yes, the file should be ok:<br>
-<br>
-frank@frank-iMac:/opt/uhd$ ls -la <br>
-/opt/uhd/firmware/usrp2/build/usrp2p/usrp2p_txrx_uhd.bin<br>
--rwxr-xr-x 1 frank frank 16383 Sep 30 17:26 <br>
-/opt/uhd/firmware/usrp2/build/usrp2p/usrp2p_txrx_uhd.bin<br>
-<br>
-Francesco<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-------------------------------<br>
-<br>
-Message: 8<br>
-Date: Tue, 1 Oct 2019 08:01:31 -0500<br>
-From: Michael West &lt;<a href=3D"mailto:michael.west@ettus.com" target=3D"=
-_blank">michael.west@ettus.com</a>&gt;<br>
-To: <a href=3D"mailto:discuss-gnuradio@gnu.org" target=3D"_blank">discuss-g=
-nuradio@gnu.org</a>,=C2=A0 &quot;<a href=3D"mailto:USRP-users@lists.ettus.c=
-om" target=3D"_blank">USRP-users@lists.ettus.com</a>&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-Subject: [USRP-users] [UHD] 3.14.1.1 Release Announcement<br>
-Message-ID:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;<a href=3D"mailto:CAM4xKrrrT81QwyUdoZNLDZEf=
-DAwtxWsrP7rbpxhOZ-yJsunv6A@mail.gmail.com" target=3D"_blank">CAM4xKrrrT81Qw=
-yUdoZNLDZEfDAwtxWsrP7rbpxhOZ-yJsunv6A@mail.gmail.com</a>&gt;<br>
-Content-Type: text/plain; charset=3D&quot;utf-8&quot;<br>
-<br>
-UHD 3.14.1.1 is now available!=C2=A0 This is a patch release.=C2=A0 It is A=
-PI<br>
-compatible with 3.14.0.0 and ABI compatible with 3.14.1.0.=C2=A0 This relea=
-se<br>
-includes several bug fixes.<br>
-<br>
-Installers for Windows and Fedora are available here:<br>
-<a href=3D"http://files.ettus.com/binaries/uhd/uhd_003.014.001.001-release/=
-" rel=3D"noreferrer" target=3D"_blank">http://files.ettus.com/binaries/uhd/=
-uhd_003.014.001.001-release/</a><br>
-<br>
-The PPA for Ubuntu can be found here:<br>
-<a href=3D"https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd" rel=3D=
-"noreferrer" target=3D"_blank">https://launchpad.net/~ettusresearch/+archiv=
-e/ubuntu/uhd</a><br>
-<br>
-The tag for this release is located here:<br>
-<a href=3D"https://github.com/EttusResearch/uhd/releases/tag/v3.14.1.1" rel=
-=3D"noreferrer" target=3D"_blank">https://github.com/EttusResearch/uhd/rele=
-ases/tag/v3.14.1.1</a><br>
-<br>
-There have been 67 commits since the last API release which can be viewed<b=
-r>
-here:<br>
-<a href=3D"https://github.com/EttusResearch/uhd/compare/v3.14.0.0...v3.14.1=
-.1" rel=3D"noreferrer" target=3D"_blank">https://github.com/EttusResearch/u=
-hd/compare/v3.14.0.0...v3.14.1.1</a><br>
-<br>
-Please report any bugs found on the UHD issue tracker:<br>
-<a href=3D"http://github.com/EttusResearch/uhd/issues" rel=3D"noreferrer" t=
-arget=3D"_blank">http://github.com/EttusResearch/uhd/issues</a><br>
-* Please do not use the issue tracker for help or support.<br>
-<br>
-Pull requests for direct code changes can be submitted to the UHD or FPGA<b=
-r>
-repositories:<br>
-<a href=3D"http://github.com/EttusResearch/uhd/pulls" rel=3D"noreferrer" ta=
-rget=3D"_blank">http://github.com/EttusResearch/uhd/pulls</a><br>
-<a href=3D"http://github.com/EttusResearch/fpga/pulls" rel=3D"noreferrer" t=
-arget=3D"_blank">http://github.com/EttusResearch/fpga/pulls</a><br>
-<br>
-As always, we at Ettus Research would like to thank all of the UHD users in=
-<br>
-the open source SDR community.=C2=A0 This release contains commits from use=
-rs in<br>
-the community that submitted pull requests against the UHD<br>
-&lt;<a href=3D"https://github.com/EttusResearch/uhd" rel=3D"noreferrer" tar=
-get=3D"_blank">https://github.com/EttusResearch/uhd</a>&gt; and FPGA<br>
-&lt;<a href=3D"https://github.com/EttusResearch/fpga" rel=3D"noreferrer" ta=
-rget=3D"_blank">https://github.com/EttusResearch/fpga</a>&gt; repositories =
-as well as many<br>
-commits that are a direct result of issues reported back to us by users<br>
-like you through the UHD &lt;<a href=3D"https://github.com/EttusResearch/uh=
-d/issues" rel=3D"noreferrer" target=3D"_blank">https://github.com/EttusRese=
-arch/uhd/issues</a>&gt; and<br>
-FPGA &lt;<a href=3D"https://github.com/EttusResearch/fpga/issues" rel=3D"no=
-referrer" target=3D"_blank">https://github.com/EttusResearch/fpga/issues</a=
->&gt; issue trackers,<br>
-the USRP-users<br>
-mailing list<br>
-&lt;<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ett=
-us.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman=
-/listinfo/usrp-users_lists.ettus.com</a>&gt;, and Ettus<br>
-support &lt;<a href=3D"mailto:support@ettus.com" target=3D"_blank">support@=
-ettus.com</a>&gt;.=C2=A0 You have all helped contribute to the<br>
-continued improvement of UHD.=C2=A0 Thank you!<br>
-<br>
-CHANGELOG:<br>
-## 003.014.001.001<br>
-Device3: latch n on m in axi_rate_change in DUC/DDC<br>
-Device3: UART: fix TX &lt;-&gt; RX, FIFO size as parameter<br>
-Device3: Restore default buffer sizes for MPMD UDP<br>
-RFNoC: Fix off by one error in window.v<br>
-E320: fix time source clobbering ref source<br>
-B200: Add command to query bootloader status<br>
-RFNoC: fix multidevice graph connections<br>
-MPMD: Fix corner case in MPM device discovery<br>
-MPM: fixed mboard_max_revision value (MPM compat check failures)<br>
-MPM: Fix version string for logger<br>
-Docs: x300: update docs for multiple timed commands<br>
-Docs: Fix Doxygen warnings due to spurious backslashes<br>
-Docs: RFNoC: Fix Doxygen warning due to undoc&#39;d parameter<br>
-Docs: Adjust FPGA functional verification tests<br>
-Docs: Fix MPM cmake command for E320<br>
-RFNoC: Re-enable flow ctrl for blocks on same xbar<br>
-Tools: Fix build issues with kitchen_sink<br>
-cmake: Add UHD_COMPONENT variable<br>
-<br>
-Best regards,<br>
-Michael<br>
--------------- next part --------------<br>
-An HTML attachment was scrubbed...<br>
-URL: &lt;<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus=
-.com/attachments/20191001/e6cc6c67/attachment-0001.html" rel=3D"noreferrer"=
- target=3D"_blank">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.=
-com/attachments/20191001/e6cc6c67/attachment-0001.html</a>&gt;<br>
-<br>
-------------------------------<br>
-<br>
-Message: 9<br>
-Date: Tue, 1 Oct 2019 08:21:22 -0500<br>
-From: Daniel Jepson &lt;<a href=3D"mailto:daniel.jepson@ettus.com" target=
-=3D"_blank">daniel.jepson@ettus.com</a>&gt;<br>
-To: &quot;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">u=
-srp-users@lists.ettus.com</a>&quot; &lt;<a href=3D"mailto:usrp-users@lists.=
-ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-Subject: Re: [USRP-users] One sample - 5 ns delay between the two RF<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 signals/ X310<br>
-Message-ID:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;CA+Zwmn6N5Fcb3NvcLO7met=3D<a href=3D"mailto=
-:EeyWEOjB-hEFZqqhcaugoZF1wUg@mail.gmail.com" target=3D"_blank">EeyWEOjB-hEF=
-ZqqhcaugoZF1wUg@mail.gmail.com</a>&gt;<br>
-Content-Type: text/plain; charset=3D&quot;utf-8&quot;<br>
-<br>
-Fabian, I had a hunch it was just the 3.3V part--thanks for clarifying!<br>
-<br>
-Cherif, the DAC interface timing (and for that matter, the ADC timing)<br>
-should be fairly tight. What you&#39;re seeing is expected and matches the<=
-br>
-numbers we designed it to. The FPGA constraints are intentionally tight to<=
-br>
-provide some extra margin at the DAC. Since this is all in the same X310,<b=
-r>
-you could start by isolating the various components of the design using the=
-<br>
-front-panel GPIO connector. Run a trigger from each of your custom blocks<b=
-r>
-to the GPIO and see if they line up on a scope. If they don&#39;t, then you=
-<br>
-might have a baseband timing issue (with how timed commands are interacting=
-<br>
-with your blocks). If they line up, then it points to a timing failure in<b=
-r>
-the DAC.<br>
-<br>
--Daniel<br>
-<br>
-<br>
-<br>
-On Fri, Sep 27, 2019 at 12:33 PM Cherif Diouf via USRP-users &lt;<br>
-<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@=
-lists.ettus.com</a>&gt; wrote:<br>
-<br>
-&gt; fabian,<br>
-&gt;<br>
-&gt;<br>
-&gt; I have tested your solution, but the get_time_last_pps always gives me=
-<br>
-&gt; the expect value.<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Daniel, On a different point, the issue might be related to timing, he=
-re<br>
-&gt; are some examples of=C2=A0 timing related to the DACs. The compilation=
- is<br>
-&gt; successful but the margin is very low, in the 10 ps order.<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Startpoint=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0Endpoint=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Slack(ns)<br>
-&gt;<br>
-&gt;<br>
-&gt; ----------------------------------------------------------------------=
-------<br>
-&gt; gen_db1/gen_pins[2].oddr/C=C2=A0 =C2=A0 =C2=A0DB1_DAC_D2_N=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.016<br>
-&gt;<br>
-&gt; gen_db1/gen_pins[2].oddr/C=C2=A0 =C2=A0 =C2=A0DB1_DAC_D2_P=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.016<br>
-&gt;<br>
-&gt; gen_db1/gen_pins[7].oddr/C=C2=A0 =C2=A0 =C2=A0DB1_DAC_D7_N=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.021<br>
-&gt;<br>
-&gt; gen_db1/gen_pins[7].oddr/C=C2=A0 =C2=A0 =C2=A0DB1_DAC_D7_P=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.021<br>
-&gt;<br>
-&gt; gen_db1/gen_pins[3].oddr/C=C2=A0 =C2=A0 =C2=A0DB1_DAC_D3_N=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.024<br>
-&gt;<br>
-&gt; gen_db1/gen_pins[3].oddr/C=C2=A0 =C2=A0 =C2=A0DB1_DAC_D3_P=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.024<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; gen_db0/gen_pins[2].oddr/C=C2=A0 =C2=A0 =C2=A0DB0_DAC_D2_N=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.066<br>
-&gt;<br>
-&gt; gen_db0/gen_pins[2].oddr/C=C2=A0 =C2=A0 =C2=A0DB0_DAC_D2_P=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.066<br>
-&gt;<br>
-&gt; gen_db0/gen_pins[0].oddr/C=C2=A0 =C2=A0 =C2=A0DB0_DAC_D0_N=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.071<br>
-&gt;<br>
-&gt; gen_db0/gen_pins[0].oddr/C=C2=A0 =C2=A0 =C2=A0DB0_DAC_D0_P=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.071<br>
-&gt;<br>
-&gt; gen_db0/oddr_frame/C=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DB0_DAC_F=
-RAME_N=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0.075<br>
-&gt;<br>
-&gt; gen_db0/oddr_frame/C=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DB0_DAC_F=
-RAME_P=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0.075<br>
-&gt;<br>
-&gt; gen_db0/gen_pins[3].oddr/C=C2=A0 =C2=A0 =C2=A0DB0_DAC_D3_N=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.080<br>
-&gt;<br>
-&gt; gen_db0/gen_pins[3].oddr/C=C2=A0 =C2=A0 =C2=A0DB0_DAC_D3_P=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.080<br>
-&gt;<br>
-&gt; gen_db0/gen_pins[1].oddr/C=C2=A0 =C2=A0 =C2=A0DB0_DAC_D1_N=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.085<br>
-&gt;<br>
-&gt; gen_db0/gen_pins[1].oddr/C=C2=A0 =C2=A0 =C2=A0DB0_DAC_D1_P=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.085<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Best Regards<br>
-&gt;<br>
-&gt; Cherif<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;<br>
-<br>
-<br>
--- <br>
-<br>
-Daniel Jepson<br>
-<br>
-Digital Hardware Engineer<br>
-<br>
-National Instruments<br>
-<br>
-<br>
-<br>
-O: +1.512.683.6163<br>
-<br>
-<a href=3D"mailto:daniel.jepson@ni.com" target=3D"_blank">daniel.jepson@ni.=
-com</a><br>
--------------- next part --------------<br>
-An HTML attachment was scrubbed...<br>
-URL: &lt;<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus=
-.com/attachments/20191001/8ddd238e/attachment-0001.html" rel=3D"noreferrer"=
- target=3D"_blank">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.=
-com/attachments/20191001/8ddd238e/attachment-0001.html</a>&gt;<br>
-<br>
-------------------------------<br>
-<br>
-Subject: Digest Footer<br>
-<br>
+<div dir=3D"ltr">What hardware are you using on the host side? Specifically=
+, I&#39;m interested in CPU, RAM, and NIC.<div><br clear=3D"all"><div><div =
+dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><d=
+iv dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0</div></div></div></di=
+v></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Tue, Oct 8, 2019 at 6:22 AM Ivan Zahartchuk via USRP-use=
+rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex"><div dir=3D"ltr">
+<span lang=3D"en"><span title=3D"">
+<span lang=3D"en"><span title=3D"">Hello.</span> <span title=3D"">When I re=
+ad data from the board, error D periodically passes. It leads to bursts in =
+the spectrum that fits in the figure.</span> <span title=3D"">Please tell m=
+e how you can remove this error or how it can be handled?</span> <span titl=
+e=3D"">I also attach the code file.</span></span>
+
+</span></span><div><img src=3D"cid:ii_k1hkrlef0" alt=3D"errorD.png" width=
+=3D"541" height=3D"239"><br></div><span lang=3D"en"><span title=3D""></span=
+></span>
+
+</div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -1550,18 +137,539 @@ lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-<br>
-------------------------------<br>
-<br>
-End of USRP-users Digest, Vol 110, Issue 1<br>
-******************************************<br>
 </blockquote></div>
 
---000000000000a6a12a059465c61d--
+--000000000000fea82d059466925d--
+--000000000000fea82e059466925e
+Content-Type: image/png; name="errorD.png"
+Content-Disposition: inline; filename="errorD.png"
+Content-Transfer-Encoding: base64
+Content-ID: <ii_k1hkrlef0>
+X-Attachment-Id: ii_k1hkrlef0
+
+iVBORw0KGgoAAAANSUhEUgAAAswAAAE8CAYAAADUq+eeAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAHMESURBVHhe7d0HeBRFHwbwNwVIgBB6Cb0IhCIC
+AiJNioAd/ERUFMFesPcuig0bKAh2qoKgqIig2AVFEATpSCf00BJCgLRv5m4WNpvZy93l7nLl/T3P
+5Gb2dvd29za7/92bnYkCkCeSEoMave/Hfa1WYNSb32NXbl1c9vRDaLxwOF6bvx95JVrjxtdvQvmv
+nsYbPx5QE5ZA65vewA3lZ+HZ13/CAdPcpMVLbkH7dktVyX2Ll7QV072nSkREREREgZF5MkflnKLV
+q0NU+fbod34Z/DHzZ+zKVgMtZIRtDrHd0blLl3yJiIiIiChUmALmKJRt0Q7NylZDzwdG4e0xY/H2
+Ww+jd7VY1O/3LF4d0gqxuek4kg4kJCY4A2cpKgGJidHITUtDhk0gveD33/MlIiIiIqJQYQqY85Cx
+dDJGDB+OF0Y870wvfIg/UrOR8uNYvDZrHXJyd2Lz1ixUatwYldWUUWUbI7kWsGPTVpxwDiIiIiIi
+Chv5qmTkZh7C3j17sMdIew/gaA6Qlb4fe4+cQF5eJlb+vACptfpicP9zkNykDfoM7o/mJ5fhx8VG
+nWYiIiIiovCRL2B2x8mNX2LchEXIanUlbr/renQpswbTx07F8nSGy0REREQUfiytZPgeW8kgIiIi
+olDispUMIiIiIiLKjwEzEREREZELDJiJiIiIiFxgwExERERE5AIDZiIiIiIiFxgwExERERG5wICZ
+iIiIiMgFBsxERERERC4wYCYiIiIicoEBMxERERGRCwyYiYiIiIhcYMBMREREROQCA2YiIiIiIhcY
+MBMRERERucCAmYiIiIjIBQbMREREREQuMGAmIiIiInKBATMRERERkQsMmImIiIiIXGDATERERETk
+AgNmIiIiIiIXGDATEREREbnAgJmIiIiIyAUGzERERERELjBgJiIiIiJyISABc9OmyacSEREREVEo
+CUjAvG7d2lOJiIiIiCiUsEoGEREREZELDJiJiIiIiFxgwExERERE5AIDZiIiIiIiFxgwExERERG5
+wICZiIiIiMgFBsxERERERC4wYCYiIiIicoEBMxERERGRCwyYiYiIiIhcYMBMREREROQCA2YiIiIi
+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
+RLaA/wPU8mWeFd3UXAAAAABJRU5ErkJggg==
+--000000000000fea82e059466925e--
 
 
---===============6716047263118858722==
+--===============7962560152290320458==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1572,5 +680,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6716047263118858722==--
+--===============7962560152290320458==--
 
