@@ -2,48 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36889CFACC
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Oct 2019 15:00:14 +0200 (CEST)
-Received: from [::1] (port=38320 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4516DCFAD8
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Oct 2019 15:02:55 +0200 (CEST)
+Received: from [::1] (port=42726 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iHp62-0007DY-3Q; Tue, 08 Oct 2019 09:00:10 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:43505)
+	id 1iHp8g-000884-BC; Tue, 08 Oct 2019 09:02:54 -0400
+Received: from mail-io1-f47.google.com ([209.85.166.47]:41523)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ssibio2@gmail.com>) id 1iHp5w-00071S-Sq
- for usrp-users@lists.ettus.com; Tue, 08 Oct 2019 09:00:04 -0400
-Received: by mail-io1-f50.google.com with SMTP id v2so36151190iob.10
- for <usrp-users@lists.ettus.com>; Tue, 08 Oct 2019 05:59:44 -0700 (PDT)
+ (Exim 4.92) (envelope-from <ssibio2@gmail.com>) id 1iHp8c-0007l9-2R
+ for usrp-users@lists.ettus.com; Tue, 08 Oct 2019 09:02:50 -0400
+Received: by mail-io1-f47.google.com with SMTP id n26so36150383ioj.8
+ for <usrp-users@lists.ettus.com>; Tue, 08 Oct 2019 06:02:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=mRNpoWN5fOPKmxht+pWADCz1VUSAycprl8g/7Yu6pHA=;
- b=LRqrDXSN4KQbdYyNmjDnG61LJSpb80o1WVLgnShMmmllXY3wKbcdFw6KGJui6QWFJI
- arev1JTQPYESf1gqmj8qF4v9vbzvpV3zjEayYiFL9XtxmE4Ak6R0A8VLsc/ia10bltv+
- 1gM9zZ6kHmmMK4muIC+XjgQzYSXOrTdQnNEkI8mf1F8IWjw6VIzBOjHXxB47t64HElWV
- TVh79Ov6Cz3BfUd6YVkE33JUyGNN/Ux/vEl0w5JkBEwW8yufNeck8zD+hLZ0T/kPgQcL
- vBJGqFfqOUu5NsM5dZbtDEnLv/JVFbhWZ4nAwiLHI5SUA4dCncE4A5+kfy98IPEWdcv/
- zwHg==
+ bh=K5n5Q2wmApGFUmT0wmB8HzEaTs/ANa4n1R0EVDy1tBA=;
+ b=THagN+5p1CIq0PzdjJzTm7y/JeBPj3UPWmm/2mdaz45+kEfDeVFeHZrkzBfefgUnGH
+ kuQv8L92mT2+9UIIAz6eu3QjJj/+NGBG7EUdSo+giuiPZEciFWl9Ho7SCV3JScuyOKkZ
+ ERcglQqY8hItfyhjJVeL6VNQYhhER8uPd7vSXCZBxjv1x3ezaUoWqwfEqd5aVROp2v7Z
+ ytltAixBQhqMQaSux6mwcu2H614urHB3BzWTfhVhpfipJlOxsOyAhVn0NStTXjzp46xv
+ sIoE2wl6bzW1x+Krg0tk9qQazJ26pOwl8vo9n0qzLrUPI/Y2DMqCs6MYe+VucEcg/52c
+ gK2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to;
- bh=mRNpoWN5fOPKmxht+pWADCz1VUSAycprl8g/7Yu6pHA=;
- b=TvdkcwX1It36fOa5H0iHhf4RvG0Vqpg/wkeTSRwC/z387EWI4M3n/CibKl8ZeVfkA6
- YVoWeufrjMnPfNgsPbOAd+3mx5cpxulbTU7iqizYCIfnxu1oZlIPhzKn07LTAFBu1cpu
- F+O38QT65Thc5NXTI6sjOXNC7Wmqlk+s27tREhDSpPEd0HiWiVzbPaxQKFpypRlRHSGz
- c4znu+L/NkS17UzSQnVPyhHRMSwz9hC99GBSmh/tgX7TD7NLxuXfA6e85ALmbe4xGKh7
- X0sn2JnX8gVe8JjYHHqG1Q4FuPlPlOxPiXCpjlpcncbQN3SIWjw4hJrIfIu7QvIXYF9w
- 1RVw==
-X-Gm-Message-State: APjAAAXLvPTsCWjK+KGnhuh01LgydkVcjAf3PeG6v41ehiIlC/+iNiuv
- 0cPhP3Dla4qdj8Q0JnJHAvEqHtTBN0vNu+7O3Xj0v35Oofg=
-X-Google-Smtp-Source: APXvYqxFrIr3Iqbx8w/AVeEZN/WknUdcXUb1b57KNntXgzcu50u4IKv857x56nr90RtYcOVL+PlkpGeVXLgVcwD93+U=
-X-Received: by 2002:a92:16da:: with SMTP id 87mr34645919ilw.211.1570539563735; 
- Tue, 08 Oct 2019 05:59:23 -0700 (PDT)
+ bh=K5n5Q2wmApGFUmT0wmB8HzEaTs/ANa4n1R0EVDy1tBA=;
+ b=TCuDb+4yUcRPe5TYrtILqXbubGwzE/X0XBp2ujmABd69J9LvwWRJHuj6Y1BWJ4jqBN
+ 6Fkw34D++Noq3W7MYaahwda8O28zrE+jqu4HSNiuLUA8hkpO04ClOlkAp7AfxYSZIYU6
+ bJBRIkaNTWOvZk5P71xyN1g/WaNyxtYk7HXmv7YFJAUkj8wTG5O9+sEPBU0S4BQLYbrp
+ ORr9M4BOfCbpCyRo9CJlpNiuR7uM2e5oxiGnKwCgA35qoFY+zoSf5tAE4BAdSXqxTliA
+ G8qzWj/FbO/OmyFxyXlrp/rQi0e8mC84l3bJ9tOSmKJpY2YvGKOL8E+coPBiImR6aHEu
+ OuGA==
+X-Gm-Message-State: APjAAAUpHEihsnkE7uraxYPYVtfF2wbepSXDhxU94SuN7u/iwLNflitl
+ NFIHcS0kvYMZQPW2e2jvvJ/F3CEzMzVPYW35yL//ouPM7js=
+X-Google-Smtp-Source: APXvYqwu7RPHPjyvmYPzPqX+2CxhBFWvE2OXxVK+IERvKk6+hZmSneyVxzPurFUG3bBZGoogS6wlfiINRjQaecrnIfg=
+X-Received: by 2002:a92:9f0d:: with SMTP id u13mr34192087ili.280.1570539728966; 
+ Tue, 08 Oct 2019 06:02:08 -0700 (PDT)
 MIME-Version: 1.0
 References: <mailman.49.1569945602.10837.usrp-users_lists.ettus.com@lists.ettus.com>
 In-Reply-To: <mailman.49.1569945602.10837.usrp-users_lists.ettus.com@lists.ettus.com>
-Date: Tue, 8 Oct 2019 13:59:05 +0100
-Message-ID: <CALSxwQF3i5ERg0vVy3CNihgJ0jj8o6zZtFcbrc4Ni0SD_XzNqg@mail.gmail.com>
+Date: Tue, 8 Oct 2019 14:01:51 +0100
+Message-ID: <CALSxwQFykWcec6GXO7h5m_TEo3D2gxYPAQaHDq_ULjqGxiMOGQ@mail.gmail.com>
 To: USRP Users <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] USRP-users Digest, Vol 110, Issue 1
 X-BeenThere: usrp-users@lists.ettus.com
@@ -59,7 +59,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Simona Sibio via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Simona Sibio <ssibio2@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6802819679583647130=="
+Content-Type: multipart/mixed; boundary="===============6716047263118858722=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,10 +73,10 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6802819679583647130==
-Content-Type: multipart/alternative; boundary="000000000000cd5dbf059465bcd6"
+--===============6716047263118858722==
+Content-Type: multipart/alternative; boundary="000000000000a6a12a059465c61d"
 
---000000000000cd5dbf059465bcd6
+--000000000000a6a12a059465c61d
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -93,10 +93,10 @@ I would like to calibrate the phase using the phase shift module.
 But, I did not find this module in GNU radio WX widgets.
 Could you help me?
 Thank you for your time.
+Sorry for the previous email, but I had not added every mail address.
 Best Regards,
 
 Simona
-
 
 Il giorno mar 1 ott 2019 alle ore 17:00 <usrp-users-request@lists.ettus.com=
 >
@@ -753,7 +753,7 @@ e
 > ******************************************
 >
 
---000000000000cd5dbf059465bcd6
+--000000000000a6a12a059465c61d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -762,17 +762,18 @@ ing Synchronization and MIMO capabilities with USRP Devices.</div><div>I am=
  using two N200s with UBX-40.</div><div>I would like to implement the same =
 example in GNU radio that there is in the following link:</div><div><a href=
 =3D"https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devi=
-ces">https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Dev=
-ices</a>=C2=A0</div><div><br></div><div>I would like to calibrate the phase=
- using the phase shift module.</div><div>But, I did not find this module in=
- GNU radio WX widgets.<br></div><div>Could you help me?</div><div>Thank you=
- for=C2=A0your time.</div><div>Best Regards,</div><div><br></div><div>Simon=
-a</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
- class=3D"gmail_attr">Il giorno mar 1 ott 2019 alle ore 17:00 &lt;<a href=
-=3D"mailto:usrp-users-request@lists.ettus.com">usrp-users-request@lists.ett=
-us.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">Send USRP-users mailing list submissions to<br>
+ces" target=3D"_blank">https://kb.ettus.com/Synchronization_and_MIMO_Capabi=
+lity_with_USRP_Devices</a>=C2=A0</div><div><br></div><div>I would like to c=
+alibrate the phase using the phase shift module.</div><div>But, I did not f=
+ind this module in GNU radio WX widgets.<br></div><div>Could you help me?</=
+div><div>Thank you for=C2=A0your time.</div><div>Sorry for the previous ema=
+il, but I had not added every mail address.</div><div>Best Regards,</div><d=
+iv><br></div><div>Simona</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">Il giorno mar 1 ott 2019 alle ore 17:00 &lt;<=
+a href=3D"mailto:usrp-users-request@lists.ettus.com">usrp-users-request@lis=
+ts.ettus.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">Send USRP-users mailing list submissions to<br>
 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users@lists.ettus.com" t=
 arget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 <br>
@@ -1557,10 +1558,10 @@ End of USRP-users Digest, Vol 110, Issue 1<br>
 ******************************************<br>
 </blockquote></div>
 
---000000000000cd5dbf059465bcd6--
+--000000000000a6a12a059465c61d--
 
 
---===============6802819679583647130==
+--===============6716047263118858722==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1571,5 +1572,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6802819679583647130==--
+--===============6716047263118858722==--
 
