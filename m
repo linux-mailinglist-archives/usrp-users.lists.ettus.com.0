@@ -2,64 +2,74 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12AFDD00F4
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Oct 2019 21:08:44 +0200 (CEST)
-Received: from [::1] (port=40982 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1259D052C
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Oct 2019 03:23:45 +0200 (CEST)
+Received: from [::1] (port=49722 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iHuqe-0006pZ-UW; Tue, 08 Oct 2019 15:08:40 -0400
-Received: from mail-qt1-f172.google.com ([209.85.160.172]:41058)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iHuqb-0006jp-52
- for usrp-users@lists.ettus.com; Tue, 08 Oct 2019 15:08:37 -0400
-Received: by mail-qt1-f172.google.com with SMTP id v52so4174914qtb.8
- for <usrp-users@lists.ettus.com>; Tue, 08 Oct 2019 12:08:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=9SLFAtT8iikYmf5eJrJ+f/YOBuewOimJyNCzWtCw3qU=;
- b=ccXbx5VXN12kjkqoRp55DOx3TjGTGEawblPhApP7hir/4SuxK8XVsjtbBzsb6lBoYE
- EI39fF/fMolPtKIjzH39l18TFFD493DjW/EvDu15E2CSnvEdItY3txP3xWeguDpcX4pH
- 8ljoRh+hUR5qE7Fb8g1u52JNoVb4a2EzI26sKrMiH6Z8ldgSpD/vaxcVP+WBqtFr6k0/
- 4d9pgYbGmtFuitwsyFCqo2R0x3Bm84sY9rlwGrzJFR7PTdOm+q0GAgiaG9x1QR2Jqveq
- 5UoNuY+WXFvdE7lzTPNNvF7jU+gMn+iPG+tx38gkODGv1VfjpbjiIV1Bll9dGnRZFe8I
- Lskw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=9SLFAtT8iikYmf5eJrJ+f/YOBuewOimJyNCzWtCw3qU=;
- b=sNXN02IoeL/zcEVAoyk5CJWCN8B7g+8ckmJabN9+kTXkIPtBVZgAfwjOVMlwmF8cxp
- 2oSOAvDAZxhuBEBVaoem52RcSj+A4kdk5371ZcYCZFgAX/EtGrWTLMGAM4H2BT0i5FKJ
- 6Xxcwa71XXfe4ik/F+Ht+dVKMV/rV9C6XV99zdLBq0FD6WZP8ehRq/tvkni63Oo436O8
- JWerDCcBJAakwESDZ8p5zO2gg86ZAaDj1gnPzGex5Fmm6eoa+RNrkXTWKdkNA0aghoDM
- G9bo+D2nkWKMkozam9m/dWm64N2B8DU1gZeuDJ1KEpjnB2DG2Mj0CYoUX0F4x4wxtRxm
- cuhA==
-X-Gm-Message-State: APjAAAUeulb3Wv4tCQe3ambyTfVj8uAt4xIqDYD7jufA7khlSw+4JwrP
- eQyVXy8eqz8Z9HcVv7HEuF2Md/aMvss=
-X-Google-Smtp-Source: APXvYqxn3ME5a88fIK7jEMG4bPSWL9VpL5KBvlwrbCm5CfdWgcYgxLTR9mYJ+cii8hgSjva7qUD3Cg==
-X-Received: by 2002:ac8:b41:: with SMTP id m1mr37350739qti.382.1570561676296; 
- Tue, 08 Oct 2019 12:07:56 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-15-137.dsl.bell.ca.
- [174.95.15.137])
- by smtp.googlemail.com with ESMTPSA id m14sm8796553qki.27.2019.10.08.12.07.55
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 08 Oct 2019 12:07:55 -0700 (PDT)
-Message-ID: <5D9CDE8A.8040106@gmail.com>
-Date: Tue, 08 Oct 2019 15:07:54 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1iI0hW-0002oC-7n; Tue, 08 Oct 2019 21:23:38 -0400
+Received: from mail-oln040092004103.outbound.protection.outlook.com
+ ([40.92.4.103]:60541 helo=NAM02-CY1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <e070832@hotmail.com>) id 1iI0hS-0002im-5d
+ for usrp-users@lists.ettus.com; Tue, 08 Oct 2019 21:23:34 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jqu3cXAtvTAc7w1uwvNqBVJ2w3KZDIovkxd6gSMTWiv1zed4+vEr2E52ZzFHduWsWtIDcRNWOcwlt6I2SC3W0endMLDmFrXuWDdXB0qJmBnaEvnxd4a6J0XmNcRMLwD1SBwlTpidb060Tom0EqR3uJq9nUmLOKtuop7BaVGIU4zSaKH7nujCFU3jOjHtVwPL/AteqMTdHqpECbin2FCteefkNKH4vwxlAPWBA/Fr/jQHL17I8jUrHQPrAJKQY8+qGxT7ZRJ4C+xCVt8heFzOd9i81wnC/Z493hDN5WzijCqeQjxsaUqHcup7JmwrrxZzkRK8EAN6vyi/9HBo3Y+g4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=89AgXzOEqcwntoadqAkVgMXFOrUbkY/n+2JFpTG6NY4=;
+ b=aj9HDvqZ0MNk1vteMfvyhHXNxcabZrpW9cpBAyOzK2XSL+IMztrSrcnNx9HhJX2s42+hrDEmGU+brIQQRkONaFqbhDx+i8QeFWvTaTW/I3KvN5SYlQUa81zITXIfcQL981N31oIv9IxG7fg0Qc/6f8fowTqZRn+mgXFnqjFS9wTxI/2tkS6sag4W7S+3rYAlg0f+E7+AXLp1FugLjXNyIUj5OvtGCbixBEXf9en5l22m5VhO5KQNjEKql8GPtHA1mSn5Zn4wNC1L+wtdAsK/bI7/Ja/ub/emzfR39KJnAFcngehncghk8+luS6DFvbGHQeIgNC1ZGTEgBiI2rNkMRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=89AgXzOEqcwntoadqAkVgMXFOrUbkY/n+2JFpTG6NY4=;
+ b=A0rZPMQHcO8mRjZnQvozLScbe8h7Uc69gHq63nZluKczAK8kzWr8dURAFlkU+N7A5qtIGxfpRrgC3LAUX2MkZ1SzMPm5dNAPyYyHLJR31mUn6CQ2a6eC/vHJXet7odKBBlpvkFBXJ+WthO0A2Pkaay8wwg5JfYzMmt1CoWGB07rnr6yNaPCa/W4W08KDT8H4/XZyZ0chZl8rrrOPJ2arRYz3QkyNPpODFwHMHCAOKfGjK0cpoff79MDWim3JIBHb2OoxQtchBhYiHZq5URY86RPgi9fzRBNGHcE1yYzqrU92G7FiwQU+9qZr3nRin+u3oQ2VDihkis5RRBx2xTn4sA==
+Received: from BL2NAM02FT062.eop-nam02.prod.protection.outlook.com
+ (10.152.76.54) by BL2NAM02HT249.eop-nam02.prod.protection.outlook.com
+ (10.152.77.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2327.21; Wed, 9 Oct
+ 2019 01:22:52 +0000
+Received: from CY4PR19MB0984.namprd19.prod.outlook.com (10.152.76.57) by
+ BL2NAM02FT062.mail.protection.outlook.com (10.152.77.57) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2327.21 via Frontend Transport; Wed, 9 Oct 2019 01:22:52 +0000
+Received: from CY4PR19MB0984.namprd19.prod.outlook.com
+ ([fe80::99aa:bb07:1c06:655d]) by CY4PR19MB0984.namprd19.prod.outlook.com
+ ([fe80::99aa:bb07:1c06:655d%4]) with mapi id 15.20.2327.026; Wed, 9 Oct 2019
+ 01:22:52 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: UHD / RFNoC Versions and Flowgraph Error with X310
+Thread-Index: AQHVfj+Gp3/edMP8FkCHoQeZ6iJQYg==
+Date: Wed, 9 Oct 2019 01:22:52 +0000
+Message-ID: <CY4PR19MB098458DC00A7673A6D584A11A4950@CY4PR19MB0984.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:CC8ED98A51FAF3F746988031BCA87F39AEB692B65914CC59A751045C1E61BF91;
+ UpperCasedChecksum:722FC3F2B5A30CC536D8B11A66A5520B9F5BA72293634E5254EAE16C55D177C9;
+ SizeAsReceived:6655; Count:41
+x-tmn: [gcDDP8cVdk1m4aSZgMEM9wIQismaJRzf]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 41
+x-eopattributedmessage: 0
+x-ms-traffictypediagnostic: BL2NAM02HT249:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2Agd5HYKAtUmKtCnbs0N7AsxzLbyidWn/tTHCryVNg660AiwmKxTAAtym8iNTM2fZfe2SGOY2SM440nAZhJHYFWZLqRoJ1tU+zHL2N795gLTOys+gx0JxQTdjXF3vJBxtErrL6smwntoOJzA5bHctNj+/zFtxzNxCNf6dZp3auyiO7SkHLwhzycWGkudXRf7
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-To: Mark Wagner <m2wagner@eng.ucsd.edu>
-References: <CALLKLAMX__ix00nQ9YsNjfwsCZF0u=DbasH8vzPkARmFHjGVCA@mail.gmail.com>
- <8B8EED8A-96F8-48C8-9103-F28BA1CE6025@gmail.com>
- <CALLKLAMApMRKpoHF=Qpq7yajGRiCaW1eJngjAdYLReOMnFyfkw@mail.gmail.com>
- <5D9BEB01.9030409@gmail.com>
- <CALLKLAPYd95f47Z97gjNTtKhr245pb4y0O-oHp-4XQFV58ZJEA@mail.gmail.com>
-In-Reply-To: <CALLKLAPYd95f47Z97gjNTtKhr245pb4y0O-oHp-4XQFV58ZJEA@mail.gmail.com>
-Subject: Re: [USRP-users] [Discuss-gnuradio] Tx and Rx on USRP
- simultaneously, device already claimed
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 614dd164-a8c9-4a9f-9688-08d74c5734ae
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2019 01:22:52.3258 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2NAM02HT249
+Subject: [USRP-users] UHD / RFNoC Versions and Flowgraph Error with X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -71,10 +81,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7793319849130574122=="
+From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jeff S <e070832@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============7011015185920771953=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,271 +97,323 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============7793319849130574122==
+--===============7011015185920771953==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="------------090004050005040501040502"
+	boundary="_000_CY4PR19MB098458DC00A7673A6D584A11A4950CY4PR19MB0984namp_"
 
-This is a multi-part message in MIME format.
---------------090004050005040501040502
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--_000_CY4PR19MB098458DC00A7673A6D584A11A4950CY4PR19MB0984namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/08/2019 01:22 PM, Mark Wagner wrote:
-> These are N310s. I'm using 122.7kSps as the sample rate in the setup 
-> I'm using. I didn't send the full .grc file because there's 24 
-> embedded python blocks that act as a correlate and shift with the tx 
-> sequence. When I was giving a separate USRP source to each N310 I 
-> could use both Tx/Rx channel and the Rx2 channel of my first N310 at 
-> the same time, but when I use only one USRP source I can't seem to get 
-> the Tx channel to work.
->
-> -Mark
-Could you share the complete message log, including errors.  This will, 
-among other things, show us which version of UHD you're running.
+I have been trying to set up an environment for using RFNoC on an X310.  It=
+ was running well before I tried to update the to using RFNoC according the=
+ the application note.  I'm wondering if I have an error relating to a vers=
+ion of UHD correlating to the other parts (gr-ettus, gnuradio, fpga).  I fe=
+el like I cannot trust documentation I see (like the X310 product descripti=
+on calling out Vivado 2015, but a recent email calling out 2017, and an ear=
+lier question that caused an application note to be deprecated).
 
+I have two laptops which show the uhd (git branch) at version rfnoc-devel, =
+and gr-ettus at master.  One will run a flowgraph with RFNoC blocks, and th=
+e other will get the error below with the same flowgraph (error on last lin=
+e).  I'm just trying to figure out what direction to go before I delete eve=
+rything and start over.  Similar questions about similar errors seemed to r=
+elated to UHD versions, which I why I'm starting there.
 
->
-> On Mon, Oct 7, 2019 at 6:48 PM Marcus D. Leech 
-> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->
->     On 10/07/2019 05:25 PM, Mark Wagner wrote:
->>     Yeah, here's a basic example of the flowgraph
->>
->>     On Mon, Oct 7, 2019 at 11:17 AM Marcus D Leech
->>     <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->>
->>          Could you share a minimal flow graph that displays the issue?
->>
->>         Sent from my iPhone
->>
->>         > On Oct 7, 2019, at 2:08 PM, Mark Wagner
->>         <m2wagner@eng.ucsd.edu <mailto:m2wagner@eng.ucsd.edu>> wrote:
->>         >
->>         > Hey everyone,
->>         >
->>         > I'm trying to transmit from the TX/RX port of a USRP while
->>         receiving from RX2 but I'm getting a 'device already claimed'
->>         error message. Here are some details:
->>         >
->>         > My USRP sink block uses multiple USRP addresses, i.e.
->>         >
->>         > "addr0=192.168.1.2,addr1=192.168.2.2,addr3=192.168.3.2,..."
->>         >
->>         > and each address goes to a different USRP in an array. I
->>         want to transmit a calibration tone across the array from the
->>         TX channel of the first USRP (addr0), but when I add a USRP
->>         source block it gives a 'device already claimed' message.
->>         This doesn't happen when I make individual USRP sink blocks
->>         for each USRP in the array.
->>         >
->>         > Unfortunately if I separate my devices into several USRP
->>         sink blocks I can't guarantee the devices will be synched to
->>         the PPS. Is there a workaround for this?
->>         >
->>         > -Mark
->>         >
->>         > --
->>         > Mark Wagner
->>         > University of California San Diego
->>         > Electrical and Computer Engineering
->>         >
->>         > _______________________________________________
->>         > Discuss-gnuradio mailing list
->>         > Discuss-gnuradio@gnu.org <mailto:Discuss-gnuradio@gnu.org>
->>         > https://lists.gnu.org/mailman/listinfo/discuss-gnuradio
->>
->>
->>
->>     -- 
->>     Mark Wagner
->>     University of California San Diego
->>     Electrical and Computer Engineering
->>
->     Could you give more details of your hardware configuration. Are
->     these N210s?  X310s?
->
->
->     Also, I'll note that 32K as a sample rate is well below what is
->     normally supported--do the start-up messages complain about that?
->
->
->
->
-> -- 
-> Mark Wagner
-> University of California San Diego
-> Electrical and Computer Engineering
->
+Thanks,
+Jeff
 
+[32;1m[INFO] [UHD] =1B[39;0mlinux; GNU C++ version 7.4.0; Boost_106501; UHD=
+_4.0.0.rfnoc-devel-702-geec24d7b
+=1B[32;1m[INFO] [X300] =1B[39;0mX300 initialization sequence...
+=1B[32;1m[INFO] [X300] =1B[39;0mMaximum frame size: 1472 bytes.
+=1B[32;1m[INFO] [X300] =1B[39;0mRadio 1x clock: 200 MHz
+=1B[32;1m[INFO] [GPS] =1B[39;0mFound an internal GPSDO: LC_XO, Firmware Rev=
+ 0.929a
+=1B[32;1m[INFO] [0/DmaFIFO_0] =1B[39;0mInitializing block control (NOC ID: =
+0xF1F0D00000000000)
+=1B[32;1m[INFO] [0/DmaFIFO_0] =1B[39;0mBIST passed (Throughput: 1305 MB/s)
+=1B[32;1m[INFO] [0/DmaFIFO_0] =1B[39;0mBIST passed (Throughput: 1307 MB/s)
+=1B[32;1m[INFO] [0/Radio_0] =1B[39;0mInitializing block control (NOC ID: 0x=
+12AD100000000001)
+=1B[32;1m[INFO] [0/Radio_1] =1B[39;0mInitializing block control (NOC ID: 0x=
+12AD100000000001)
+=1B[32;1m[INFO] [0/DDC_0] =1B[39;0mInitializing block control (NOC ID: 0xDD=
+C0000000000000)
+=1B[32;1m[INFO] [0/DDC_1] =1B[39;0mInitializing block control (NOC ID: 0xDD=
+C0000000000000)
+=1B[32;1m[INFO] [0/DUC_0] =1B[39;0mInitializing block control (NOC ID: 0xD0=
+C0000000000000)
+=1B[32;1m[INFO] [0/DUC_1] =1B[39;0mInitializing block control (NOC ID: 0xD0=
+C0000000000000)
+Finding block for: Radio_0
+Mapped external port 0 to 0
+Mapped port 0 to 0/Radio_0
+Mapped external port 1 to 1
+Mapped port 1 to 0/Radio_0
+TX args:
+RX args:
+0/Radio_0 has 1 input ports
+0/Radio_0 has 2 output ports
+getting block control for port 0
+Finding block for: Radio_0
+Mapped external port 0 to 0
+Mapped port 0 to 0/Radio_0
+Mapped external port 1 to 1
+Mapped port 1 to 0/Radio_0
+TX args:
+RX args:
+0/Radio_0 has 1 input ports
+0/Radio_0 has 2 output ports
+getting block control for port 0
+Finding block for: DUC
+Mapped external port 0 to 0
+Mapped port 0 to 0/DUC_0
+TX args:
+RX args:
+0/DUC_0 has 1 input ports
+0/DUC_0 has 1 output ports
+Finding block for: DmaFIFO
+Mapped external port 0 to 0
+Mapped port 0 to 0/DmaFIFO_0
+Mapped external port 1 to 1
+Mapped port 1 to 0/DmaFIFO_0
+TX args:
+RX args:
+0/DmaFIFO_0 has 2 input ports
+0/DmaFIFO_0 has 2 output ports
+getting block control for port 0
+External mapped to port 0
+getting block control for port 0
+External mapped to port 0
+getting block control for port 1
+External mapped to port 1
+getting block control for port 1
+External mapped to port 1
+Finding block for: DDC
+Mapped external port 0 to 0
+Mapped port 0 to 0/DDC_0
+Mapped external port 1 to 1
+Mapped port 1 to 0/DDC_0
+TX args:
+getting block control for port 0
+getting block control for port 0
+block_port0 =3D 0
+block_id0 =3D 0/DDC_0
+RX args:
+External mapped to port 0
+getting block control for port 0
+getting block control for port 0
+block_port0 =3D 0
+block_id0 =3D 0/DDC_0
+0/DDC_0 has 2 input ports
+0/DDC_0 has 2 output ports
+getting block control for port 0
+External mapped to port 0
+getting block control for port 0
+External mapped to port 0
+getting block control for port 0
+External mapped to port 0
+getting block control for port 0
+External mapped to port 0
+gr::fft: can't import wisdom from /home/torchuser/.gr_fftw_wisdom
+getting block control for port 0
+getting block control for port 0
+Connecting 0/DmaFIFO_0 port 0 to 0/DUC_0 port 0
+=1B[33;1m[WARNING] [RFNOC] =1B[39;0mAssuming max packet size for 0/DmaFIFO_=
+0
+getting block control for port 0
+getting block control for port 0
+Connecting 0/DUC_0 port 0 to 0/Radio_0 port 0
+=1B[33;1m[WARNING] [RFNOC] =1B[39;0mAssuming max packet size for 0/DUC_0
+getting block control for port 0
+getting block control for port 0
+Connecting 0/Radio_0 port 0 to 0/DDC_0 port 0
+=1B[33;1m[WARNING] [RFNOC] =1B[39;0mAssuming max packet size for 0/Radio_0
+getting block control for port 0
+getting block control for port 0
+getting block control for port 0
+thread[thread-per-block[3]: <block uhd_rfnoc_DmaFIFO (4)>]: RuntimeError: C=
+annot create streamers: No block_id specified for channel 0.
 
---------------090004050005040501040502
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--_000_CY4PR19MB098458DC00A7673A6D584A11A4950CY4PR19MB0984namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 10/08/2019 01:22 PM, Mark Wagner
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CALLKLAPYd95f47Z97gjNTtKhr245pb4y0O-oHp-4XQFV58ZJEA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">These are N310s. I'm using 122.7kSps as the sample
-        rate in the setup I'm using. I didn't send the full .grc file
-        because there's 24 embedded python blocks that act as a
-        correlate and shift with the tx sequence. When I was giving a
-        separate USRP source to each N310 I could use both Tx/Rx channel
-        and the Rx2 channel of my first N310 at the same time, but when
-        I use only one USRP source I can't seem to get the Tx channel to
-        work.
-        <div><br>
-        </div>
-        <div>-Mark</div>
-      </div>
-    </blockquote>
-    Could you share the complete message log, including errors.  This
-    will, among other things, show us which version of UHD you're
-    running.<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CALLKLAPYd95f47Z97gjNTtKhr245pb4y0O-oHp-4XQFV58ZJEA@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Mon, Oct 7, 2019 at 6:48 PM
-          Marcus D. Leech &lt;<a moz-do-not-send="true"
-            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex">
-          <div bgcolor="#FFFFFF">
-            <div>On 10/07/2019 05:25 PM, Mark Wagner wrote:<br>
-            </div>
-            <blockquote type="cite">
-              <div dir="ltr">Yeah, here's a basic example of the
-                flowgraph </div>
-              <br>
-              <div class="gmail_quote">
-                <div dir="ltr" class="gmail_attr">On Mon, Oct 7, 2019 at
-                  11:17 AM Marcus D Leech &lt;<a moz-do-not-send="true"
-                    href="mailto:patchvonbraun@gmail.com"
-                    target="_blank">patchvonbraun@gmail.com</a>&gt;
-                  wrote:<br>
-                </div>
-                <blockquote class="gmail_quote" style="margin:0px 0px
-                  0px
-0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex"> Could
-
-                  you share a minimal flow graph that displays the
-                  issue?<br>
-                  <br>
-                  Sent from my iPhone<br>
-                  <br>
-                  &gt; On Oct 7, 2019, at 2:08 PM, Mark Wagner &lt;<a
-                    moz-do-not-send="true"
-                    href="mailto:m2wagner@eng.ucsd.edu" target="_blank">m2wagner@eng.ucsd.edu</a>&gt;
-                  wrote:<br>
-                  &gt; <br>
-                  &gt; Hey everyone,<br>
-                  &gt; <br>
-                  &gt; I'm trying to transmit from the TX/RX port of a
-                  USRP while receiving from RX2 but I'm getting a
-                  'device already claimed' error message. Here are some
-                  details:<br>
-                  &gt; <br>
-                  &gt; My USRP sink block uses multiple USRP addresses,
-                  i.e. <br>
-                  &gt; <br>
-                  &gt;
-                  "addr0=192.168.1.2,addr1=192.168.2.2,addr3=192.168.3.2,..."<br>
-                  &gt; <br>
-                  &gt; and each address goes to a different USRP in an
-                  array. I want to transmit a calibration tone across
-                  the array from the TX channel of the first USRP
-                  (addr0), but when I add a USRP source block it gives a
-                  'device already claimed' message. This doesn't happen
-                  when I make individual USRP sink blocks for each USRP
-                  in the array. <br>
-                  &gt; <br>
-                  &gt; Unfortunately if I separate my devices into
-                  several USRP sink blocks I can't guarantee the devices
-                  will be synched to the PPS. Is there a workaround for
-                  this?<br>
-                  &gt; <br>
-                  &gt; -Mark<br>
-                  &gt; <br>
-                  &gt; -- <br>
-                  &gt; Mark Wagner<br>
-                  &gt; University of California San Diego<br>
-                  &gt; Electrical and Computer Engineering<br>
-                  &gt;  <br>
-                  &gt; _______________________________________________<br>
-                  &gt; Discuss-gnuradio mailing list<br>
-                  &gt; <a moz-do-not-send="true"
-                    href="mailto:Discuss-gnuradio@gnu.org"
-                    target="_blank">Discuss-gnuradio@gnu.org</a><br>
-                  &gt; <a moz-do-not-send="true"
-                    href="https://lists.gnu.org/mailman/listinfo/discuss-gnuradio"
-                    rel="noreferrer" target="_blank">https://lists.gnu.org/mailman/listinfo/discuss-gnuradio</a><br>
-                </blockquote>
-              </div>
-              <br clear="all">
-              <div><br>
-              </div>
-              -- <br>
-              <div dir="ltr">
-                <div dir="ltr">
-                  <div>
-                    <div>Mark Wagner<br>
-                    </div>
-                    University of California San Diego<br>
-                  </div>
-                  Electrical and Computer Engineering<br>
-                   <br>
-                </div>
-              </div>
-            </blockquote>
-            Could you give more details of your hardware configuration. 
-            Are these N210s?  X310s?<br>
-            <br>
-            <br>
-            Also, I'll note that 32K as a sample rate is well below what
-            is normally supported--do the start-up messages complain
-            about that?<br>
-            <br>
-            <br>
-          </div>
-        </blockquote>
-      </div>
-      <br clear="all">
-      <div><br>
-      </div>
-      -- <br>
-      <div dir="ltr" class="gmail_signature">
-        <div dir="ltr">
-          <div>
-            <div>Mark Wagner<br>
-            </div>
-            University of California San Diego<br>
-          </div>
-          Electrical and Computer Engineering<br>
-           <br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I have been trying to set up an environment for using RFNoC on an X310.&nbs=
+p; It was running well before I tried to update the to using RFNoC accordin=
+g the the application note.&nbsp; I'm wondering if I have an error relating=
+ to a version of UHD correlating to the other
+ parts (gr-ettus, gnuradio, fpga).&nbsp; I feel like I cannot trust documen=
+tation I see (like the X310 product description calling out Vivado 2015, bu=
+t a recent email calling out 2017, and an earlier question that caused an a=
+pplication note to be deprecated).</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I have two laptops which show the uhd (git branch) at version rfnoc-devel, =
+and gr-ettus at master.&nbsp; One will run a flowgraph with RFNoC blocks, a=
+nd the other will get the error below with the same flowgraph (error on las=
+t line).&nbsp; I'm just trying to figure out
+ what direction to go before I delete everything and start over.&nbsp; Simi=
+lar questions about similar errors seemed to related to UHD versions, which=
+ I why I'm starting there.<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Thanks,</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Jeff<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+[32;1m[INFO] [UHD] &#27;[39;0mlinux; GNU C&#43;&#43; version 7.4.0; Boost_1=
+06501; UHD_4.0.0.rfnoc-devel-702-geec24d7b<br>
+&#27;[32;1m[INFO] [X300] &#27;[39;0mX300 initialization sequence...<br>
+&#27;[32;1m[INFO] [X300] &#27;[39;0mMaximum frame size: 1472 bytes.<br>
+&#27;[32;1m[INFO] [X300] &#27;[39;0mRadio 1x clock: 200 MHz<br>
+&#27;[32;1m[INFO] [GPS] &#27;[39;0mFound an internal GPSDO: LC_XO, Firmware=
+ Rev 0.929a<br>
+&#27;[32;1m[INFO] [0/DmaFIFO_0] &#27;[39;0mInitializing block control (NOC =
+ID: 0xF1F0D00000000000)<br>
+&#27;[32;1m[INFO] [0/DmaFIFO_0] &#27;[39;0mBIST passed (Throughput: 1305 MB=
+/s)<br>
+&#27;[32;1m[INFO] [0/DmaFIFO_0] &#27;[39;0mBIST passed (Throughput: 1307 MB=
+/s)<br>
+&#27;[32;1m[INFO] [0/Radio_0] &#27;[39;0mInitializing block control (NOC ID=
+: 0x12AD100000000001)<br>
+&#27;[32;1m[INFO] [0/Radio_1] &#27;[39;0mInitializing block control (NOC ID=
+: 0x12AD100000000001)<br>
+&#27;[32;1m[INFO] [0/DDC_0] &#27;[39;0mInitializing block control (NOC ID: =
+0xDDC0000000000000)<br>
+&#27;[32;1m[INFO] [0/DDC_1] &#27;[39;0mInitializing block control (NOC ID: =
+0xDDC0000000000000)<br>
+&#27;[32;1m[INFO] [0/DUC_0] &#27;[39;0mInitializing block control (NOC ID: =
+0xD0C0000000000000)<br>
+&#27;[32;1m[INFO] [0/DUC_1] &#27;[39;0mInitializing block control (NOC ID: =
+0xD0C0000000000000)<br>
+Finding block for: Radio_0<br>
+Mapped external port 0 to 0<br>
+Mapped port 0 to 0/Radio_0<br>
+Mapped external port 1 to 1<br>
+Mapped port 1 to 0/Radio_0<br>
+TX args:<br>
+RX args:<br>
+0/Radio_0 has 1 input ports<br>
+0/Radio_0 has 2 output ports<br>
+getting block control for port 0<br>
+Finding block for: Radio_0<br>
+Mapped external port 0 to 0<br>
+Mapped port 0 to 0/Radio_0<br>
+Mapped external port 1 to 1<br>
+Mapped port 1 to 0/Radio_0<br>
+TX args:<br>
+RX args:<br>
+0/Radio_0 has 1 input ports<br>
+0/Radio_0 has 2 output ports<br>
+getting block control for port 0<br>
+Finding block for: DUC<br>
+Mapped external port 0 to 0<br>
+Mapped port 0 to 0/DUC_0<br>
+TX args:<br>
+RX args:<br>
+0/DUC_0 has 1 input ports<br>
+0/DUC_0 has 1 output ports<br>
+Finding block for: DmaFIFO<br>
+Mapped external port 0 to 0<br>
+Mapped port 0 to 0/DmaFIFO_0<br>
+Mapped external port 1 to 1<br>
+Mapped port 1 to 0/DmaFIFO_0<br>
+TX args:<br>
+RX args:<br>
+0/DmaFIFO_0 has 2 input ports<br>
+0/DmaFIFO_0 has 2 output ports<br>
+getting block control for port 0<br>
+External mapped to port 0<br>
+getting block control for port 0<br>
+External mapped to port 0<br>
+getting block control for port 1<br>
+External mapped to port 1<br>
+getting block control for port 1<br>
+External mapped to port 1<br>
+Finding block for: DDC<br>
+Mapped external port 0 to 0<br>
+Mapped port 0 to 0/DDC_0<br>
+Mapped external port 1 to 1<br>
+Mapped port 1 to 0/DDC_0<br>
+TX args:<br>
+getting block control for port 0<br>
+getting block control for port 0<br>
+block_port0 =3D 0<br>
+block_id0 =3D 0/DDC_0<br>
+RX args:<br>
+External mapped to port 0<br>
+getting block control for port 0<br>
+getting block control for port 0<br>
+block_port0 =3D 0<br>
+block_id0 =3D 0/DDC_0<br>
+0/DDC_0 has 2 input ports<br>
+0/DDC_0 has 2 output ports<br>
+getting block control for port 0<br>
+External mapped to port 0<br>
+getting block control for port 0<br>
+External mapped to port 0<br>
+getting block control for port 0<br>
+External mapped to port 0<br>
+getting block control for port 0<br>
+External mapped to port 0<br>
+gr::fft: can't import wisdom from /home/torchuser/.gr_fftw_wisdom<br>
+getting block control for port 0<br>
+getting block control for port 0<br>
+Connecting 0/DmaFIFO_0 port 0 to 0/DUC_0 port 0<br>
+&#27;[33;1m[WARNING] [RFNOC] &#27;[39;0mAssuming max packet size for 0/DmaF=
+IFO_0<br>
+getting block control for port 0<br>
+getting block control for port 0<br>
+Connecting 0/DUC_0 port 0 to 0/Radio_0 port 0<br>
+&#27;[33;1m[WARNING] [RFNOC] &#27;[39;0mAssuming max packet size for 0/DUC_=
+0<br>
+getting block control for port 0<br>
+getting block control for port 0<br>
+Connecting 0/Radio_0 port 0 to 0/DDC_0 port 0<br>
+&#27;[33;1m[WARNING] [RFNOC] &#27;[39;0mAssuming max packet size for 0/Radi=
+o_0<br>
+getting block control for port 0<br>
+getting block control for port 0<br>
+getting block control for port 0<br>
+thread[thread-per-block[3]: &lt;block uhd_rfnoc_DmaFIFO (4)&gt;]: RuntimeEr=
+ror: Cannot create streamers: No block_id specified for channel 0.<br>
+</div>
+</body>
 </html>
 
---------------090004050005040501040502--
+--_000_CY4PR19MB098458DC00A7673A6D584A11A4950CY4PR19MB0984namp_--
 
 
---===============7793319849130574122==
+--===============7011015185920771953==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -363,5 +424,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7793319849130574122==--
+--===============7011015185920771953==--
 
