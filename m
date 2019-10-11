@@ -2,63 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2E2D397A
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Oct 2019 08:42:02 +0200 (CEST)
-Received: from [::1] (port=33164 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DAFED411F
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Oct 2019 15:28:16 +0200 (CEST)
+Received: from [::1] (port=58898 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iIoch-0008RL-SG; Fri, 11 Oct 2019 02:41:59 -0400
-Received: from mail01.heig-vd.ch ([193.134.218.124]:59706)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92)
- (envelope-from <btv1==1878af9ec0d==david.truan@heig-vd.ch>)
- id 1iIocd-0008MY-VY
- for usrp-users@lists.ettus.com; Fri, 11 Oct 2019 02:41:56 -0400
-X-ASG-Debug-ID: 1570775898-1114bd082235850004-5wTQH4
-Received: from EIMAIL03.einet.ad.eivd.ch ([193.134.222.4]) by
- mail01.heig-vd.ch with ESMTP id f8vj11mjgFEGmZLJ (version=TLSv1.2
- cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
- Fri, 11 Oct 2019 08:40:23 +0200 (CEST)
-X-Barracuda-Envelope-From: david.truan@heig-vd.ch
-X-Barracuda-Effective-Source-IP: UNKNOWN[193.134.222.4]
-X-Barracuda-Apparent-Source-IP: 193.134.222.4
-Received: from EIMAIL02.einet.ad.eivd.ch (10.192.41.72) by
- EIMAIL03.einet.ad.eivd.ch (10.192.41.73) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Fri, 11 Oct 2019 08:40:00 +0200
-Received: from EIMAIL02.einet.ad.eivd.ch ([fe80::74fb:48ab:8786:12dc]) by
- EIMAIL02.einet.ad.eivd.ch ([fe80::74fb:48ab:8786:12dc%9]) with mapi id
- 15.01.1779.005; Fri, 11 Oct 2019 08:40:00 +0200
-To: Nate Temple <nate.temple@ettus.com>
-Thread-Topic: [USRP-users] N320 Dual SFP issue with 40Gbps QSFP+ switch
-X-ASG-Orig-Subj: RE: [USRP-users] N320 Dual SFP issue with 40Gbps QSFP+ switch
-Thread-Index: AQHVfqvdQ1jKycHvykqUnuw8hQU32KdT21OAgAEkOXs=
-Date: Fri, 11 Oct 2019 06:40:00 +0000
-Message-ID: <93492254cdab43b2837a42770e7a84f9@heig-vd.ch>
-References: <133fcc07ca0e4f73bb17dbb6f7e84b0d@heig-vd.ch>,
- <CAL263iwTB-UWfL1drKKUFuyKhmE4S_UAO8SoaLYOdTHP8UAgqg@mail.gmail.com>
-In-Reply-To: <CAL263iwTB-UWfL1drKKUFuyKhmE4S_UAO8SoaLYOdTHP8UAgqg@mail.gmail.com>
-Accept-Language: fr-CH, en-US
-Content-Language: fr-CH
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.192.204.11]
+	id 1iIuxo-0001I6-BN; Fri, 11 Oct 2019 09:28:12 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:37368)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1iIuxk-0001CG-87
+ for usrp-users@lists.ettus.com; Fri, 11 Oct 2019 09:28:08 -0400
+Received: by mail-ot1-f46.google.com with SMTP id k32so7947958otc.4
+ for <usrp-users@lists.ettus.com>; Fri, 11 Oct 2019 06:27:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2ytqfpC0wEg5AGT2i2/WePydHt0vT845ygzRbiksFQo=;
+ b=SsDgTHPyyKM5E44JQcWaPz1XVRneBKLR5AgzU655ZJe9nBNfuOffEMSpUE2xvOe/VH
+ o2JczVyklceGvi+udJtDNN9gzVFteNrLpA1b/giQsehZRfubjo+F8HfFYOpdTyIAD1Es
+ WkKqfPwz2puK+3DW/lit0GZe7ndjW+XlXxWZyX3K9eup8UkNNQWM4OnZ5B24b8wXqwFd
+ cTxyCBP4NqCxs1zFVVnh3UQFZ+KXrWMoiXWSzCT1Y5OXtg6X1trZEeMaHbr+AE4C8lBL
+ DW438G5EmmPS8+HQTqp45BtASy8sdeQK8B5DHbV8R8LTVpu0uXd1IRqljmzvGG1iTROG
+ WUGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2ytqfpC0wEg5AGT2i2/WePydHt0vT845ygzRbiksFQo=;
+ b=ILLoS1A2KkS2IEC0KlQJGQ85b3NpPwM2cg41JWxu/CGa2jOFz8ZAQA0riptUpPHrQW
+ o8HmGZForHOiwGaIufnMrvkQWbqebWnxkKANE1pRLVA71flC1ioAPp5TNn2+e3Rgd5cf
+ mHE2+625K8Nc0eKDNaJx/E3iFRxGIPxITRJf9X5VYz7orS/tR8nF5PwwaIRdmed5vuXD
+ /B8eYjK1FJZ9cflhnxoY76MdghpvrRmtnf8/VTjsitAQJKP4HYuwAuo3UNccXV294PXy
+ J5NHASN3+Pgg/kb1uOqcIIjidjg37j1wbnC/rZzlIElCPW+NR5cVoOzDfZcxdFtAbfnO
+ kbeA==
+X-Gm-Message-State: APjAAAVDBr4Htyu9OKm7LbJKl44ZUqsSIbJR21Dwsdnrkm4T5tuL51Mk
+ Dfo3a2hFtNokWJDv1pBYPxhgM2PT5a/zxAGOfWKd9Fk9
+X-Google-Smtp-Source: APXvYqwyvFhkoSgtPvt4GKavJcERkHBXM5JsrUWaIswfLheP8/dZi+DcQlU7nfdfN2sgU9ocoBw0LQZOZsV1W3wW4Fs=
+X-Received: by 2002:a9d:70d0:: with SMTP id w16mr11762906otj.107.1570800447418; 
+ Fri, 11 Oct 2019 06:27:27 -0700 (PDT)
 MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[193.134.222.4]
-X-Barracuda-Start-Time: 1570776023
-X-Barracuda-Encrypted: ECDHE-RSA-AES128-GCM-SHA256
-X-Barracuda-URL: https://quarantine.heig-vd.ch:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at heig-vd.ch
-X-Barracuda-Scan-Msg-Size: 1736
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
- QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.77269
- Rule breakdown below
- pts rule name              description
- ---- ---------------------- --------------------------------------------------
-Subject: Re: [USRP-users] N320 Dual SFP issue with 40Gbps QSFP+ switch
+References: <CANQ3h3_fwR=baRxHo+Aicms8C3CFnWzR51qSS99xo2u--OY2vg@mail.gmail.com>
+In-Reply-To: <CANQ3h3_fwR=baRxHo+Aicms8C3CFnWzR51qSS99xo2u--OY2vg@mail.gmail.com>
+Date: Fri, 11 Oct 2019 09:27:16 -0400
+Message-ID: <CAGNhwTNRQwC2-gVFQFFyfk0ubGCfoL2a1kShguyMny1Y_9Xw_g@mail.gmail.com>
+To: Saeid Hashemi <saeidh@gmail.com>
+Subject: Re: [USRP-users] uhd_fft failure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -70,11 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Truan David via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Truan David <david.truan@heig-vd.ch>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4393425028131676191=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,64 +76,143 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Nate,
+--===============4393425028131676191==
+Content-Type: multipart/alternative; boundary="000000000000ae85f80594a27ad1"
 
-Sorry it was a mistake from my part, we indeed have the XQ loaded. The QSFP=
-+ port is working, and we can transmit data through it.
+--000000000000ae85f80594a27ad1
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Saeid - The error shows that the version of UHD as installed isn't fully
+compatible with the version of GR. GR 3.7.9.1 is quite old  ... unless you
+need that specific version of GR, I'd recommend uninstalling that GR and
+installing 3.7.14.5 from source. There are install guides around for doing
+this build on Ubuntu of various versions. Hope this is useful! - MLD
+
+On Thu, Oct 10, 2019 at 6:40 PM Saeid Hashemi via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello everyone,
+>
+> I've been having some problems running the uhd_fft function recently. I
+> did a fresh install of Ubuntu 16.04, then installed gnuradio using the
+> package manager. When I run uhd_fft this is what I get. Would anyone have
+> an idea as to where the problem is?
+>
+> Thanks,
+> Saeid
+>
+> nuc03@nuc03:~$ apt-show-versions gnuradio
+> gnuradio:amd64/xenial 3.7.9.1-2ubuntu1 uptodate
+>
+>
+> nuc03@nuc03:~$ uhd_fft
+> Traceback (most recent call last):
+>   File "/usr/bin/uhd_fft", line 48, in <module>
+>     from gnuradio import uhd
+>   File "/usr/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py", line
+> 135, in <module>
+>     _prepare_uhd_swig()
+>   File "/usr/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py", line
+> 38, in _prepare_uhd_swig
+>     import uhd_swig
+>   File "/usr/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py", line
+> 28, in <module>
+>     _uhd_swig = swig_import_helper()
+>   File "/usr/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py", line
+> 24, in swig_import_helper
+>     _mod = imp.load_module('_uhd_swig', fp, pathname, description)
+> ImportError: /usr/lib/python2.7/dist-packages/gnuradio/uhd/_
+> uhd_swig.x86_64-linux-gnu.so: undefined symbol:
+> _ZN3uhd11time_spec_t15get_system_timeEv
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
 
-BR
+-- 
+Michael Dickens
+Ettus Research Technical Support
+Email: support@ettus.com
+Web: https://ettus.com/
+
+--000000000000ae85f80594a27ad1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Saeid - The error shows that the version of UHD as inst=
+alled isn&#39;t fully compatible with the version of GR. GR=C2=A03.7.9.1 is=
+ quite old=C2=A0 ... unless you need that specific version of GR, I&#39;d r=
+ecommend uninstalling that GR and installing 3.7.14.5 from source. There ar=
+e install guides around for doing this build on Ubuntu of various versions.=
+ Hope this is useful! - MLD</div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Thu, Oct 10, 2019 at 6:40 PM Saeid Hashemi vi=
+a USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@l=
+ists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><div dir=3D"ltr">Hello everyone,<div><br></div><div>I&#39;ve =
+been having some problems running the uhd_fft function recently. I did a fr=
+esh install of Ubuntu 16.04, then installed gnuradio using the package mana=
+ger. When I run uhd_fft this is what I get. Would anyone have an idea as to=
+ where the problem=C2=A0is?</div><div><br></div><div>Thanks,</div><div>Saei=
+d</div><div><br></div><blockquote style=3D"margin:0px 0px 0px 40px;border:n=
+one;padding:0px"><div><font face=3D"monospace" size=3D"1">nuc03@nuc03:~$ ap=
+t-show-versions gnuradio</font></div><div><font face=3D"monospace" size=3D"=
+1">gnuradio:amd64/xenial 3.7.9.1-2ubuntu1 uptodate</font></div></blockquote=
+><div><br></div><blockquote style=3D"margin:0px 0px 0px 40px;border:none;pa=
+dding:0px"><div><font face=3D"monospace" size=3D"1">nuc03@nuc03:~$ uhd_fft<=
+/font></div><div><font face=3D"monospace" size=3D"1">Traceback (most recent=
+ call last):</font></div><div><font face=3D"monospace" size=3D"1">=C2=A0 Fi=
+le &quot;/usr/bin/uhd_fft&quot;, line 48, in &lt;module&gt;</font></div><di=
+v><font face=3D"monospace" size=3D"1">=C2=A0 =C2=A0 from gnuradio import uh=
+d</font></div><div><font face=3D"monospace" size=3D"1">=C2=A0 File &quot;/u=
+sr/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py&quot;, line 135, in=
+ &lt;module&gt;</font></div><div><font face=3D"monospace" size=3D"1">=C2=A0=
+ =C2=A0 _prepare_uhd_swig()</font></div><div><font face=3D"monospace" size=
+=3D"1">=C2=A0 File &quot;/usr/lib/python2.7/dist-packages/gnuradio/uhd/__in=
+it__.py&quot;, line 38, in _prepare_uhd_swig</font></div><div><font face=3D=
+"monospace" size=3D"1">=C2=A0 =C2=A0 import uhd_swig</font></div><div><font=
+ face=3D"monospace" size=3D"1">=C2=A0 File &quot;/usr/lib/python2.7/dist-pa=
+ckages/gnuradio/uhd/uhd_swig.py&quot;, line 28, in &lt;module&gt;</font></d=
+iv><div><font face=3D"monospace" size=3D"1">=C2=A0 =C2=A0 _uhd_swig =3D swi=
+g_import_helper()</font></div><div><font face=3D"monospace" size=3D"1">=C2=
+=A0 File &quot;/usr/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py&qu=
+ot;, line 24, in swig_import_helper</font></div><div><font face=3D"monospac=
+e" size=3D"1">=C2=A0 =C2=A0 _mod =3D imp.load_module(&#39;_uhd_swig&#39;, f=
+p, pathname, description)</font></div><div><font face=3D"monospace" size=3D=
+"1">ImportError: /usr/lib/python2.7/dist-packages/gnuradio/uhd/_<a href=3D"=
+http://uhd_swig.x86_64-linux-gnu.so" target=3D"_blank">uhd_swig.x86_64-linu=
+x-gnu.so</a>: undefined symbol: _ZN3uhd11time_spec_t15get_system_timeEv</fo=
+nt></div></blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael D=
+ickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto:supp=
+ort@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"h=
+ttps://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div></di=
+v></div>
+
+--000000000000ae85f80594a27ad1--
 
 
-David Truan
-
-________________________________
-De : Nate Temple <nate.temple@ettus.com>
-Envoy=E9 : jeudi, 10 octobre 2019 17:12:15
-=C0 : Truan David
-Cc : usrp-users@lists.ettus.com
-Objet : Re: [USRP-users] N320 Dual SFP issue with 40Gbps QSFP+ switch
-
-Hi David,
-
-Can you try loading the XQ FPGA image onto the N320? When using the XG imag=
-e, only the onboard SFP 0,1 adapters are used. When using the XQ image, two=
- lanes of the QSFP will be used (0,1). A table showing what protocols / por=
-ts per FPGA image can be found here [0].
-
-[0] - https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_rh_sfp_protoc=
-ols
-
-Regards,
-Nate Temple
-
-On Wed, Oct 9, 2019 at 7:33 AM Truan David via USRP-users <usrp-users@lists=
-.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-Hi everyone,
-
-We are currently trying to connect the N320 (configured with the XG image) =
-to one of our server using the QSFP+ interface through a switch (FS S5900-2=
-4S4T2Q). The server is equipped with 40Gbps QSFP+ interface and the connexi=
-on works when connecting directly by QSFP+ without the switch in between.
-
-However when connecting it to the switch (to a 40Gbps QSFP+ port) it doesn'=
-t even detect the connexion (port led light off on the switch) and we canno=
-t reach the N320 from the server.
-
-Do you have an idea what could cause the issue?
-
-
-Thank you in advance!
-
-
-David Truan
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+--===============4393425028131676191==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============4393425028131676191==--
+
