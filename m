@@ -2,58 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDE03D502F
-	for <lists+usrp-users@lfdr.de>; Sat, 12 Oct 2019 15:54:56 +0200 (CEST)
-Received: from [::1] (port=53532 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 617EBD5092
+	for <lists+usrp-users@lfdr.de>; Sat, 12 Oct 2019 17:03:20 +0200 (CEST)
+Received: from [::1] (port=34240 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iJHr9-0001Tr-Fc; Sat, 12 Oct 2019 09:54:51 -0400
-Received: from mail-qt1-f169.google.com ([209.85.160.169]:39307)
+	id 1iJIvO-0004DD-8X; Sat, 12 Oct 2019 11:03:18 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:41298)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <frestuc@gmail.com>) id 1iJHr5-0001Oi-Hj
- for usrp-users@lists.ettus.com; Sat, 12 Oct 2019 09:54:47 -0400
-Received: by mail-qt1-f169.google.com with SMTP id n7so18189152qtb.6
- for <usrp-users@lists.ettus.com>; Sat, 12 Oct 2019 06:54:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:references:message-id:date:user-agent
- :mime-version:in-reply-to;
- bh=/3y12EfQExLoYQWORyKKOdMqcMdpcXmYqNj+2p7rncU=;
- b=AKJSlKh6ZAVZxguqQlU5pL+H8SUgI0J0tNHxG+Qeu+6Y7vA6OuxE/Q0Q/Gc39NexzS
- MWzr38l95ZQwbSMbhT1odHFve+wgbxvmedE6kZGbtmGZ7Q9XP6KPoqgQEtvEj0mubYtL
- ByjBidGF8joHyKz2EZeg73m8WMg6h1aJpkyzhQoYD+EgJ41btKqWFsjOmoBdB0O6ll8l
- udoMa0D65zxf8aY3Zb1FDhVUToNiBoIq6lPwufCZcLddDzj4Ux0fyJImHpR5D1U6Fy6F
- /u3D6XjOcidCwJw3csA5+/dGC04s+Ft4hffpSnSfJmqpHV0D/FgF17qDsQInu2NYHZTc
- cxqg==
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1iJIvK-00046X-2g
+ for usrp-users@lists.ettus.com; Sat, 12 Oct 2019 11:03:14 -0400
+Received: by mail-ot1-f48.google.com with SMTP id g13so10403662otp.8
+ for <usrp-users@lists.ettus.com>; Sat, 12 Oct 2019 08:02:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=A5JI6B6ZYL08KJAcYxH0iV2o06ru5QmKL1b5sihhAj8=;
+ b=oATypB4A7aHXzesFMcUxlojXKQRv514u9JpY0Uk1NiNyYojoPRhPSU5gg5oWl0FnFR
+ H3wgnngkknSc4oAjnDCMpnirQ95KmjgVdh7yW1mC66FjAuUtbIJbmOlyZ6P3aymNJC/B
+ pLuyuykanl1fBXuET5zRbMT45RQgF1zCSrFL+Fhmaxgq39YzegPtYSSlOm/8EMaV97Zl
+ aLRDljW3ZjgJK5sobowuRmxjUIAD+hu4qZTD8tFJeS+nbpn25Z6n/WvAtd2wR/FxqTRs
+ HjTO53/nRtrcTUsEO36bnrtH/AJvuDEpOuC/qzH2ufvCpWCBN6SnWQTuFcNd4C4rBcRI
+ /Duw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:references:message-id:date
- :user-agent:mime-version:in-reply-to;
- bh=/3y12EfQExLoYQWORyKKOdMqcMdpcXmYqNj+2p7rncU=;
- b=cYD0P4X4NEmjTJdLMwUqimnHmfbUCoN7BiaPDaeoVDpfpP4dSdypzcVxeZg8B3KtnH
- UApAgPQnvuXvXcgrlecqyeFCHVGUVAnoaIZw2PS01ZV0MEp6jET3dSQIGHLBtyOjt7Zl
- +NKHaFORSFyJCjPTGGQw8K6YZ2m7un1qF4ejyQ7hDtvxqLUwVi+X8IIH7B0DZEPbadYa
- xrJMy7NJxykK/JrzAoBKkcJdDONgr/ZZwWamEYHT17y+vJGiowfxzhwc58CIlXqP1w/K
- gTmdihVZ78wv0B/ptRsob6846xV9ek+BYoHJDS/mIKD9KFWrTMNM4v+1DRY1qrODHjdB
- +ndw==
-X-Gm-Message-State: APjAAAX912Z55f+vAIbknxRXOiO7pFtWmpQ3Eh3GuZiCmKCeJSh7XD/G
- bbhPyNl16sR/DZ2ycXA6pc3mQcTnuHVUqA==
-X-Google-Smtp-Source: APXvYqwfcmuCx1xAYsCrHSyRdG62AQdKRRMlnaEibs/TLAe/uHlqSnpVfGhEZgGgrpk20OlYp8qZ8w==
-X-Received: by 2002:a0c:b057:: with SMTP id l23mr21899089qvc.216.1570888446375; 
- Sat, 12 Oct 2019 06:54:06 -0700 (PDT)
-Received: from [10.75.8.38] ([129.10.163.26])
- by smtp.gmail.com with ESMTPSA id i25sm5660879qkk.30.2019.10.12.06.54.05
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 12 Oct 2019 06:54:05 -0700 (PDT)
-To: Martin Braun <martin.braun@ettus.com>
-References: <6EAAB96A-D0DD-4531-B3CB-2E5912511ED2@gmail.com>
- <CAFOi1A6MFu9dEpBG8rT=ZPYK-9SK-nDfW+Fc=JTSkGtAebn-og@mail.gmail.com>
-Message-ID: <d36de887-2904-c036-dacb-5c369709a909@gmail.com>
-Date: Sat, 12 Oct 2019 09:54:04 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=A5JI6B6ZYL08KJAcYxH0iV2o06ru5QmKL1b5sihhAj8=;
+ b=ErNdVl7IeXXV2tOgw0YI2yadf8SMXXtFSKWMqg3akVBH3pDuaahRJtXOaq6VtS7aVR
+ rAWF6q24ho4U6VOLVVLiH9b1/IM6z9sC0Jc/m44vrnXR6BeicjkLNuDQUR11vr4CocjC
+ rI3nqBkT/rNsHc7QYSBdbRZuMQ5mb5XkAQj6R4TxQsqpCwTZdFP/ipWCHQfjt60H3hVZ
+ AebyCYE/osZjUay32kkkPqyEmV9CjMl6iAdFjpX0rRcQyPDJK6EXE40qVkCJuXFENPTA
+ tSvkNOacLac3Rzj2n8qPbzGObNjeOZDKvXut5WaxaZ/ARGZEfpJnME4svWzVnRg2fAgr
+ lWMg==
+X-Gm-Message-State: APjAAAX6loNM9bEVRqdm/99g7Bm4pAlxYUKJlupstn346SbqkEFlevvB
+ 73yp3/Uk6wWQLgAv31yyjB4658wp4PMzKNcsfhfMhRAD
+X-Google-Smtp-Source: APXvYqzMGtMhOFDd2HRzahm9/e8KhLdM0EnVBr5gMGDG5BBN9ke/yuVN82JWLfZGoNEWw6D3EplerQC/OU0iZ7HVbOc=
+X-Received: by 2002:a9d:70d0:: with SMTP id w16mr1329089otj.107.1570892553315; 
+ Sat, 12 Oct 2019 08:02:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFOi1A6MFu9dEpBG8rT=ZPYK-9SK-nDfW+Fc=JTSkGtAebn-og@mail.gmail.com>
-Subject: Re: [USRP-users] Some questions regarding DDC implementation
+References: <CANQ3h3_fwR=baRxHo+Aicms8C3CFnWzR51qSS99xo2u--OY2vg@mail.gmail.com>
+ <CAGNhwTNRQwC2-gVFQFFyfk0ubGCfoL2a1kShguyMny1Y_9Xw_g@mail.gmail.com>
+ <CANQ3h39_-YDpCHEgCcR=r3z=iK7QOmJPFYnY8DATs5++zh+uug@mail.gmail.com>
+ <CAGNhwTPELUny7ZaVY18KzPvmD3enezmhMLvypUxUZ5qD3zw+cg@mail.gmail.com>
+ <CANQ3h39YJO_iNBdg8_Psx8fHoZGo-aJsESJTBRVf0G1-enZAkw@mail.gmail.com>
+In-Reply-To: <CANQ3h39YJO_iNBdg8_Psx8fHoZGo-aJsESJTBRVf0G1-enZAkw@mail.gmail.com>
+Date: Sat, 12 Oct 2019 11:02:22 -0400
+Message-ID: <CAGNhwTP9xwKbDUN49knKmdPzu-yo3rwfzbnvx3YqLuwV3+jyVg@mail.gmail.com>
+To: Saeid Hashemi <saeidh@gmail.com>
+Subject: Re: [USRP-users] uhd_fft failure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,10 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Francesco Restuccia via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Francesco Restuccia <frestuc@gmail.com>
-Cc: ishai alouche via USRP-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2492397272416804688=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5698154279070275341=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,245 +80,102 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============2492397272416804688==
-Content-Type: multipart/alternative;
- boundary="------------EC4A5A71E141D77C64A669AC"
+--===============5698154279070275341==
+Content-Type: multipart/alternative; boundary="0000000000009efb3d0594b7eca6"
 
-This is a multi-part message in MIME format.
---------------EC4A5A71E141D77C64A669AC
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--0000000000009efb3d0594b7eca6
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Martin,
+OK. Thanks for the info Saeid. I'll look into creating a VM using Ubuntu
+16.04.1 to see what happens. - MLD
 
-Thanks for your response --
-Could you further clarify the following pieces of code in 
-rx_dsp_core_200.cpp regarding the scaling factor?
+On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi <saeidh@gmail.com> wrote:
 
-const double rate_pow = std::pow(double(decim & 0xff), 4);
-_scaling_adjustment = std::pow(2, ceil_log2(rate_pow))/(1.65*rate_pow);
-this->update_scalar();
-
-where update_scalar is:
-
-void update_scalar(void){
-         const double factor = 1.0 + 
-std::max(ceil_log2(_scaling_adjustment), 0.0);
-         const double target_scalar = (1 << 
-17)*_scaling_adjustment/_dsp_extra_scaling/factor;
-         const int32_t actual_scalar = boost::math::iround(target_scalar);
-         _fxpt_scalar_correction = target_scalar/actual_scalar*factor; 
-//should be small
-         _iface->poke32(REG_DSP_RX_SCALE_IQ, actual_scalar);
-     }
-
-Would be nice to understand the rationale behind these constants and 
-calculations.
-
-Thanks,
-Francesco
-
-On 10/11/19 7:08 PM, Martin Braun wrote:
-> Half-Bands are very flat in the passband, and somewhat efficient to 
-> implement because every second tap is zero. The CIC on the other hand, 
-> is super efficient, but has a horrible frequency response.
+> It's Ubuntu 16.04.1, but yes, I will follow the source build instructions.
 >
-> So, you want to use the half-bands for decimation whenever possible. 
-> You will have fewer aliases, the spectrum looks nicer, etc.
+> On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens <michael.dickens@ettus.com>
+> wrote:
 >
-> More halfbands is always better. But two halfbands was chosen because 
-> on the N210, it's a good compromise between available resources and 
-> spectral improvements. Also, keep in mind that you can only stack 
-> halfbands as long as your decimation is a multiple of two. If your 
-> decimation is 6 (= 2 * 3), then you can only use one halfband, and set 
-> the CIC to 3. In other words, adding another halfband only enables 
-> rates where the decimation rate is a multiple of 8, and so on.
->
-> Next, why are they different. That was another compromise. More taps 
-> are always better, so why not use the bigger one twice? That's because 
-> when cascading the halfbands, the fidelity of the second filter 
-> reduces the requirement for a super-good first filter. If you draw 
-> this on a piece of paper, it's more obvious, but here's an attempt at 
-> writing it as text: Fewer taps in a halfband mean the transition band 
-> (from passband to stop band) is wider, which makes the flat passband 
-> smaller. However, because the second half-band will further reduce the 
-> total available bandwidth, you don't need a super sharp transition zone.
->
-> Finally, what does the multiplier do. In software, we calculate a 
-> total gain of our DSP chain, based on the CIC settings and some other 
-> numbers we have figured out. For example, the CORDIC has an almost 
-> constant, non-zero gain. and the CIC decimator has a non-constant gain 
-> which is a function of the decimation (all of this because we're doing 
-> fixpoint math). We try and negate this as much as possible by 
-> multiplying the output with a compensation factor.
->
-> -- M
->
-> On Fri, Oct 11, 2019 at 10:57 AM Francesco Restuccia via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     Dear all,
->     I have some questions regarding the DDC implementation
->     (ddc_chain.v, usrp2):
->
->     1) Why do we need two half-band filters (one large and one small)
->     after the CIC? What is their purpose? Can’t we use just one
->     half-band?
->     2) What is the purpose of the scale factor multiplication after
->     hb2? What does it compensate for? How do we decide its value?
->
->     Thanks,
->     Francesco
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>> Hi Saeid - Thanks for the followup. I totally agree that if you just
+>> "sudo apt install gnuradio", compatible versions should be installed. Are
+>> you using Ubuntu 16.04.6 LTS (Xenial Xerus)? If you choose to install from
+>> source, you can follow instructions such as the GR recommended way here <
+>> https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29
+>> >. I have an Ubuntu 18.04 install that went very smoothly using this guide,
+>> but maybe the guide is outdated for older Ubuntu; or, our packages need to
+>> be updated for that OS version ... Cheers! - MLD
+>>
+>> On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi <saeidh@gmail.com> wrote:
+>>
+>>> I will follow your advice, but it's worth mentioning I simply did
+>>> apt-get gnuradio and should therefore have a compatible version of uhd
+>>> installed automatically as a dependency. I did not install uhd separately.
+>>>
+>> --
+>> Michael Dickens
+>> Ettus Research Technical Support
+>> Email: support@ettus.com
+>> Web: https://ettus.com/
+>>
 >
 
---------------EC4A5A71E141D77C64A669AC
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+-- 
+Michael Dickens
+Ettus Research Technical Support
+Email: support@ettus.com
+Web: https://ettus.com/
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div>Hi Martin,</div>
-    <div><br>
-      Thanks for your response -- <br>
-      Could you further clarify the following pieces of code in
-      rx_dsp_core_200.cpp regarding the scaling factor? <br>
-    </div>
-    <div><br>
-    </div>
-    <div>const double rate_pow = std::pow(double(decim &amp; 0xff), 4);<br>
-      _scaling_adjustment = std::pow(2,
-      ceil_log2(rate_pow))/(1.65*rate_pow);<br>
-      this-&gt;update_scalar();<br>
-    </div>
-    <div><br>
-    </div>
-    <div>where update_scalar is:</div>
-    <div><br>
-    </div>
-    <div>void update_scalar(void){<br>
-              const double factor = 1.0 +
-      std::max(ceil_log2(_scaling_adjustment), 0.0);<br>
-              const double target_scalar = (1 &lt;&lt;
-      17)*_scaling_adjustment/_dsp_extra_scaling/factor;<br>
-              const int32_t actual_scalar =
-      boost::math::iround(target_scalar);<br>
-              _fxpt_scalar_correction =
-      target_scalar/actual_scalar*factor; //should be small<br>
-              _iface-&gt;poke32(REG_DSP_RX_SCALE_IQ, actual_scalar);<br>
-          }<br>
-    </div>
-    <div><br>
-      Would be nice to understand the rationale behind these constants
-      and calculations.<br>
-    </div>
-    <div><br>
-      Thanks,<br>
-      Francesco<br>
-    </div>
-    <div><br>
-    </div>
-    <div class="moz-cite-prefix">On 10/11/19 7:08 PM, Martin Braun
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAFOi1A6MFu9dEpBG8rT=ZPYK-9SK-nDfW+Fc=JTSkGtAebn-og@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div>Half-Bands are very flat in the passband, and somewhat
-          efficient to implement because every second tap is zero. The
-          CIC on the other hand, is super efficient, but has a horrible
-          frequency response.</div>
-        <div><br>
-        </div>
-        <div>So, you want to use the half-bands for decimation whenever
-          possible. You will have fewer aliases, the spectrum looks
-          nicer, etc.</div>
-        <div><br>
-        </div>
-        <div>More halfbands is always better. But two halfbands was
-          chosen because on the N210, it's a good compromise between
-          available resources and spectral improvements. Also, keep in
-          mind that you can only stack halfbands as long as your
-          decimation is a multiple of two. If your decimation is 6 (= 2
-          * 3), then you can only use one halfband, and set the CIC to
-          3. In other words, adding another halfband only enables rates
-          where the decimation rate is a multiple of 8, and so on.</div>
-        <div><br>
-        </div>
-        <div>Next, why are they different. That was another compromise.
-          More taps are always better, so why not use the bigger one
-          twice? That's because when cascading the halfbands, the
-          fidelity of the second filter reduces the requirement for a
-          super-good first filter. If you draw this on a piece of paper,
-          it's more obvious, but here's an attempt at writing it as
-          text: Fewer taps in a halfband mean the transition band (from
-          passband to stop band) is wider, which makes the flat passband
-          smaller. However, because the second half-band will further
-          reduce the total available bandwidth, you don't need a super
-          sharp transition zone.</div>
-        <div><br>
-        </div>
-        <div>Finally, what does the multiplier do. In software, we
-          calculate a total gain of our DSP chain, based on the CIC
-          settings and some other numbers we have figured out. For
-          example, the CORDIC has an almost constant, non-zero gain. and
-          the CIC decimator has a non-constant gain which is a function
-          of the decimation (all of this because we're doing fixpoint
-          math). We try and negate this as much as possible by
-          multiplying the output with a compensation factor.</div>
-        <div><br>
-        </div>
-        <div>-- M<br>
-        </div>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Fri, Oct 11, 2019 at 10:57
-          AM Francesco Restuccia via USRP-users &lt;<a
-            href="mailto:usrp-users@lists.ettus.com"
-            moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Dear
-          all,<br>
-          I have some questions regarding the DDC implementation
-          (ddc_chain.v, usrp2):<br>
-          <br>
-          1) Why do we need two half-band filters (one large and one
-          small) after the CIC? What is their purpose? Can’t we use just
-          one half-band? <br>
-          2) What is the purpose of the scale factor multiplication
-          after hb2? What does it compensate for? How do we decide its
-          value?<br>
-          <br>
-          Thanks,<br>
-          Francesco<br>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a href="mailto:USRP-users@lists.ettus.com" target="_blank"
-            moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
-          <a
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer" target="_blank" moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-    </blockquote>
-  </body>
-</html>
+--0000000000009efb3d0594b7eca6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------EC4A5A71E141D77C64A669AC--
+<div dir=3D"ltr">OK. Thanks for the info Saeid. I&#39;ll look into creating=
+ a VM using Ubuntu 16.04.1 to see what happens. - MLD</div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 11, 2019=
+ at 4:47 PM Saeid Hashemi &lt;<a href=3D"mailto:saeidh@gmail.com">saeidh@gm=
+ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><div dir=3D"ltr">It&#39;s Ubuntu 16.04.1, but yes, I will follow the=
+ source build instructions.</div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens =
+&lt;<a href=3D"mailto:michael.dickens@ettus.com" target=3D"_blank">michael.=
+dickens@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi=C2=A0Saeid - Thanks f=
+or the followup. I totally agree that if you just &quot;sudo apt install gn=
+uradio&quot;, compatible versions should be installed. Are you using Ubuntu=
+ 16.04.6 LTS (Xenial Xerus)? If you choose to install from source, you can =
+follow instructions such as the GR recommended way here &lt;=C2=A0<a href=
+=3D"https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04=
+.29" target=3D"_blank">https://wiki.gnuradio.org/index.php/UbuntuInstall#Xe=
+nial_Xerus_.2816.04.29</a> &gt;. I have an Ubuntu=C2=A018.04 install that w=
+ent very=C2=A0smoothly using this guide, but maybe the guide is outdated fo=
+r older Ubuntu; or, our packages need to be updated for that OS version ...=
+ Cheers! - MLD</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi &lt;<a href=
+=3D"mailto:saeidh@gmail.com" target=3D"_blank">saeidh@gmail.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
+ltr">I will follow your advice, but it&#39;s worth mentioning I simply did =
+apt-get gnuradio and should therefore have a compatible version of uhd inst=
+alled automatically as a dependency. I did not install uhd separately.</div=
+></blockquote></div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=
+=3D"ltr">Michael Dickens<br>Ettus Research Technical Support<br>Email: <a h=
+ref=3D"mailto:support@ettus.com" target=3D"_blank">support@ettus.com</a><br=
+>Web: <a href=3D"https://ettus.com/" target=3D"_blank">https://ettus.com/</=
+a></div></div></div></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael D=
+ickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto:supp=
+ort@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"h=
+ttps://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div></di=
+v></div>
+
+--0000000000009efb3d0594b7eca6--
 
 
---===============2492397272416804688==
+--===============5698154279070275341==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -331,5 +186,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2492397272416804688==--
+--===============5698154279070275341==--
 
