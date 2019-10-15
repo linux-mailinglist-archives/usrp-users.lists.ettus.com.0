@@ -2,50 +2,88 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80AFAD7850
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2019 16:23:02 +0200 (CEST)
-Received: from [::1] (port=49870 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83648D7AF4
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Oct 2019 18:14:37 +0200 (CEST)
+Received: from [::1] (port=58780 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iKNj1-0004D2-DT; Tue, 15 Oct 2019 10:22:59 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:41721)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <coxe@close-haul.com>) id 1iKNiw-00040h-PQ
- for usrp-users@lists.ettus.com; Tue, 15 Oct 2019 10:22:54 -0400
-Received: by mail-io1-f54.google.com with SMTP id n26so46194141ioj.8
- for <usrp-users@lists.ettus.com>; Tue, 15 Oct 2019 07:22:34 -0700 (PDT)
+	id 1iKPSx-0004AA-UP; Tue, 15 Oct 2019 12:14:31 -0400
+Received: from mail-eopbgr60094.outbound.protection.outlook.com
+ ([40.107.6.94]:63873 helo=EUR04-DB3-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <demel@ant.uni-bremen.de>)
+ id 1iKPSt-0003x8-V0
+ for usrp-users@lists.ettus.com; Tue, 15 Oct 2019 12:14:28 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Uc+g0dqPBKZvPydSXpGaz7brzpPL03A+1W6WHEQHtIemNbGTgSARpATdK5ZqU0wXnG1XEhB44yUSn1lFOWSDs+hD3vYl+RPBK5QNoPv35tOS9GHqM3CC7MAzL75/Y6vXx/aSLO1Bfjvh/0L6jHNYh+ETD4pgP29F1XwKGR93PrenY2Ezr6KlQxwZBHlkj0HyAA150iig2G6OwxvIPFoOKnm5TLS+k+J4kFRMO9lW5+nvlMoYrA0vIyJkoNwVJ+q6bOebYAYk8rh6w6ahz+/psJg8d7S4+BAzVfAVww2Gh/a9jnQeH3bCn0dFut3gpo3pr/qKdeVynYfEqNnyNW+BTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JTRrFPLG3ZAAqVoLkexWSV2iBit8OzoI3hzVk6jVw5g=;
+ b=mfPtvhYsDjsTmutpv1498Y3dWlPLg5tfxje0dOGCk1DxmOSHYAaoziDvNoF2xS57pXMJy2nxtaNc8OyIkSF8nNAGKOC42PqZ3fHr7ZRU4bpvPE7deQigP/qa9M0mbXQIy2SP0Op5GbNK4IqZ2Yb2SE3CuKD0s9W5UDOSHgd7ttA82uRdv8ZwfxXXdZgvXza0uNZ5HH4ptztuSagxJ3wuwixYFL7j9R60mJekWPxirDGBH0Ucby1xywO1rMPe4Ey4UEnuFJlZcLhCYEFnPnddF2N3iml8cmEJa6b7C2gQPm71fWgj1fwNqu7dAEZOwRsU4meYOl6HfQQmCcYs8H0ZCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
+ header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quanttux-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=yLLrIQ/Ss39gf21Eu4BUV1eTPNj816LD7c71S4rLz48=;
- b=HaLb/SUAD2eeoCq77xcUxdTe9ZCthYjbcBqQq0LD7KwlGyhZy3klo1qmLajtqWQZ3J
- OCW8NbMYPx6VlYfxhYnHAZWfXGAE3wzNV7XUz0wSsoBXWVarwswIEJs5osq05YcX+uJq
- h3pNRcuY+qj6GBLLe6EffH9EojR2OoR0phha3Ci0NTGbSvsWKxoHOIxkAyPneojqf/Ds
- 8i0NZJlnpxAEFLrtevbp7hVE8R1SL1sAYlyuEgzGF2uP1DJE3vqSjC/RDpHhK/XSZKFY
- sGvXMTYz1DoaiY/2RofYZ/rhG4dbI57r2FUv6vB3QPSqTXXOmcGkQA2ldWul0YXg4J9C
- OykQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=yLLrIQ/Ss39gf21Eu4BUV1eTPNj816LD7c71S4rLz48=;
- b=QD+cTA44SL1//nvPkwepCJW8K63YW97Xs6tsUC6R2O8wxizxmCr6kFmCZRbe2URdeg
- PgMeAtCAT8K3FmH5CL2+5Csyl5WMVgwIpfH1EH9Q5XGlwsAp0NLinHtOrdto+eOYVrtX
- OiOaefPTgk8ASgprMTZ39yymZ20t0zMFsmpDr8w4OMNPczH6jdK3DAD6OsNLOo2odGWZ
- D6q2F+0M6g4SRDL5xhQaUvrZemk9xlbUgrQI472aDhMB7u3yIKu0I9+wfppB7JnPSpMm
- R47G3ngvHkj4R3Tv1oYQy/AMPEbet6YOZK3zrvvRZbG164SASX3nJuSvyI3eruu5ak/v
- ADqA==
-X-Gm-Message-State: APjAAAXO3CrT5gjZKXHNG7VGPD5VxQbE6vkQzSAQ4gu+5z1M3xMFhWSl
- Js/F46/8owAzlyZFdz4E4R03bMkb5bqdXfy+lX0I1MonszY=
-X-Google-Smtp-Source: APXvYqwo/jXHOHuwcGhaEqIsae6UlS+wQ4zj/RpmFr+mIeJ1a8ICZCYr5BqaOB0PXMP5zsNsU7JM/jORfn/IJFcHf3Y=
-X-Received: by 2002:a6b:ce03:: with SMTP id p3mr5607897iob.290.1571149333733; 
- Tue, 15 Oct 2019 07:22:13 -0700 (PDT)
-MIME-Version: 1.0
+ d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JTRrFPLG3ZAAqVoLkexWSV2iBit8OzoI3hzVk6jVw5g=;
+ b=uV7gIoRKGHmK+5F+AB2QvsjghVP/kuFCamRMVR2LO3ZJCQ6FTjMiOm6BvUkSR7ldXoo251jTyfR0bqNTAxZz0SeOTmK7+CLONh7gDqQkdbm0RXs0m3dWvPAGYKKWJG7Rvpn/kPkJcTZ8rkg2gAcJhduW39uW7CpO8rorFgnAUQI=
+Received: from AM0PR04MB6787.eurprd04.prod.outlook.com (52.132.215.71) by
+ AM0PR04MB6755.eurprd04.prod.outlook.com (20.179.252.75) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.19; Tue, 15 Oct 2019 16:13:45 +0000
+Received: from AM0PR04MB6787.eurprd04.prod.outlook.com
+ ([fe80::51a2:617d:239b:de85]) by AM0PR04MB6787.eurprd04.prod.outlook.com
+ ([fe80::51a2:617d:239b:de85%4]) with mapi id 15.20.2347.023; Tue, 15 Oct 2019
+ 16:13:45 +0000
+To: Robin Coxe <coxe@quanttux.com>
+Thread-Topic: [USRP-users] Getting started with our new N310s
+Thread-Index: AQHVgz2BnjKqDf2cN06BC9UXj0oDW6dbwVaAgAAfNQA=
+Date: Tue, 15 Oct 2019 16:13:45 +0000
+Message-ID: <aef0f433-9d1e-9082-1cb6-dcc72dca119c@ant.uni-bremen.de>
 References: <97669300-9876-51bd-aa3d-58d230d2d27f@ant.uni-bremen.de>
-In-Reply-To: <97669300-9876-51bd-aa3d-58d230d2d27f@ant.uni-bremen.de>
-Date: Tue, 15 Oct 2019 07:22:01 -0700
-Message-ID: <CAKJyDkL2tjPGB1apeM_afBY1OWwbembGe3v-Zkhs82FSQG=D+Q@mail.gmail.com>
-To: Johannes Demel <demel@ant.uni-bremen.de>
+ <CAKJyDkL2tjPGB1apeM_afBY1OWwbembGe3v-Zkhs82FSQG=D+Q@mail.gmail.com>
+In-Reply-To: <CAKJyDkL2tjPGB1apeM_afBY1OWwbembGe3v-Zkhs82FSQG=D+Q@mail.gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: AM0PR05CA0009.eurprd05.prod.outlook.com
+ (2603:10a6:208:55::22) To AM0PR04MB6787.eurprd04.prod.outlook.com
+ (2603:10a6:208:18a::7)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=demel@ant.uni-bremen.de; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [134.102.176.97]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: eb4aa7fc-d708-4fe1-8bee-08d7518aa778
+x-ms-traffictypediagnostic: AM0PR04MB6755:
+x-ms-exchange-purlcount: 5
+x-microsoft-antispam-prvs: <AM0PR04MB67556E76C96A060627C59F0CA9930@AM0PR04MB6755.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:478;
+x-forefront-prvs: 01917B1794
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(6019001)(366004)(376002)(346002)(136003)(39830400003)(396003)(269900001)(40224003)(199004)(189003)(45914002)(53754006)(6246003)(229853002)(486006)(6306002)(386003)(53546011)(476003)(6512007)(6506007)(25786009)(6436002)(30864003)(6486002)(5660300002)(316002)(508600001)(31696002)(86362001)(966005)(3846002)(11346002)(446003)(2906002)(2616005)(6116002)(786003)(6916009)(14454004)(31686004)(81156014)(66946007)(66476007)(8676002)(64756008)(8936002)(81166006)(14444005)(256004)(66556008)(66446008)(7736002)(305945005)(99286004)(76176011)(102836004)(52116002)(26005)(186003)(4326008)(66066001)(71200400001)(71190400001)(579004)(19623455009)(16193025007);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:AM0PR04MB6755;
+ H:AM0PR04MB6787.eurprd04.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:0; MX:1; 
+received-spf: None (protection.outlook.com: ant.uni-bremen.de does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Wq/+stCOkA/26s5xe6j47Z9NVAef3TkYtOZ6/o9Xcv7tSdHolbzhbpxQ9HAZJJFagbuED77kHfrVpsOES3/VVa/Fg/K2vKPUXpW9IppdXZLAqcgNtrd5WcYYWB43kqFGfD9SUOcMaHSiq91/NfAciQ6gJVVU9kSdDCv9KqVryuMf2jGoub2ZIS0UYFRLimh5tM7egxSeCLTQ5OI4uHks+URe5z+X0iZXulMs02VVQaAVcBbDEI+WlSnTfi0rEaqGRbCPFBtJsPOCEF/qBZC6jOknKkGfzxA5pg7OrAEuMYmkl2gJMcMwHGNf40FFwNPwh6DDlJ7gPahF63xYtli1hZ2oXzR2rr6pR8TpC716D/yCNPEphkFcU4DgRMHUn4U0pWQ4+v6qUUKl9TCErH05HP8o0x/0osd+rcW8/ohCkGUe7megdId/iLv0xnfrDCP1siIzgpdRhlk8agDivPZnGg==
+x-ms-exchange-transport-forked: True
+Content-ID: <5F5A54C4912E524FA3187163E2680587@eurprd04.prod.outlook.com>
+MIME-Version: 1.0
+X-OriginatorOrg: ant.uni-bremen.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb4aa7fc-d708-4fe1-8bee-08d7518aa778
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Oct 2019 16:13:45.5376 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f018440b-2792-4fa0-b2bd-233acaf88ad2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LKUFkzzZX/lXOPvdN3UpKsNiLYd2lyp3+bUprmB5P5wngPXd7aUJvh2z9o5pojBVj9MntlwhsGt+ZPfAxNoTYA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6755
 Subject: Re: [USRP-users] Getting started with our new N310s
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -58,10 +96,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robin Coxe <coxe@quanttux.com>
+From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1834607828921722641=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,711 +114,377 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1834607828921722641==
-Content-Type: multipart/alternative; boundary="000000000000ed41de0594f3b50d"
-
---000000000000ed41de0594f3b50d
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Johannes.  Things tend to go badly when the UHD and FPGA bitstream
-versions on the N310 SD card don't match those on the host for the N3xx.
- Avoid using master with the N310 out of the box because the
-filesystem/FPGA images most likely don't exist.
-
-Burn this SD card image:
-http://files.ettus.com/binaries/cache/n3xx/meta-ettus-v3.14.1.1/n3xx_common_sdimg_default-v3.14.1.1.zip
-(yes, the location is non-obvious) then build UHD v.3.14.1.1 on the host PC.
-
-Starting with UHD v.3.14, the SFP+ ports are mapped to IP addresses
-192.168.10.2 and 192.168.20.2, to be more consistent with the X310.  When
-you issue the uhd_usrp_probe command, try adding the --args
-"addr=192.168.x0.2" command.
-I can't remember for certain if the HG (SFP0 = 1gigE and SFP1=10 gigeE) or
-XG image (both 10gigE) is loaded by default.   I think it's HG.   Set the
-MTU on the host side to 8000 for the 10gigE port.
-
-The N310 Getting Started guide outlines the mender method of updating the
-filesystem, which should also work, but I tend to prefer downloading the SD
-card image and burning it myself.  Good luck.
-
--Robin
-
-
-
-On Tue, Oct 15, 2019 at 2:47 AM Johannes Demel via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi all,
->
-> we just received some new N310s. Yeah!
->
-> They don't work! Noooo.
->
-> Let me explain what I tried so far and what I found out. So far, I work
-> with 2 devices.
->
-> Summary:
-> With factory default image I can find the device but `uhd_usrp_probe`
-> fails.
-> With a newly flashed image on the SD card, The SFP ports don't show up
-> anymore.
->
->
-> How do I recover my device that doesn't show the SFP ports anymore?
->
-> What do I need to do to successfully run `uhd_usrp_probe`? Since this
-> command errors out with the same error as a flowgraph, I assume if I get
-> passed `uhd_usrp_probe` there is a good chance I'll be able to run a
-> flowgraph.
->
-> What is dtc? It errors out during FPGA image updates.
->
-> What is the latest `sdimg` to install? I want to make sure I'm up to
-> date. As soon as I figured out why the devices don't work.
->
-> I append all the information I could find so far for my devices.
->
-> Cheers
-> Johannes
->
->
->
-> On Host:
-> $ uhd_config_info --print-all
-> UHD 3.15.0.git-79-gf353db8f
-> Build date: Tue, 08 Oct 2019 12:08:10
-> C compiler: GNU 7.4.0
-> C++ compiler: GNU 7.4.0
-> C flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1
-> -DUHD_LOG_CONSOLE_LEVEL=2 -DUHD_LOG_FILE_LEVEL=2 -DUHD_LOG_CONSOLE_COLOR
-> C++ flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1
-> -DUHD_LOG_CONSOLE_LEVEL=2 -DUHD_LOG_FILE_LEVEL=2 -DUHD_LOG_CONSOLE_COLOR
-> -fvisibility=hidden -fvisibility-inlines-hidden
-> Enabled components: LibUHD, LibUHD - C API, LibUHD - Python API,
-> Examples, Utils, Tests, USB, B100, B200, USRP1, USRP2, X300, N230, MPMD,
-> N300, N320, E320, E300, OctoClock
-> Install prefix: <install_prefix>/gnuradio38
-> Boost version: 1.65.1
-> Libusb version: 1.0.23
-> Package path: <install_prefix>/gnuradio38
-> Images directory: <install_prefix>/gnuradio38/share/uhd/images
-> ABI version string: 3.15.0
->
->
-> $ uhd_image_loader --args "type=n3xx,addr=X.X.X.212,fpga=HG"
-> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
-> UHD_3.15.0.git-79-gf353db8f
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
->
-> mgmt_addr=X.X.X.128,type=n3xx,product=n310,serial=XXXXXXX,claimed=False,skip_init=1
-> [INFO] [MPMD] Claimed device without full initialization.
-> [INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.
-> [INFO] [MPM.PeriphManager] Updating component `fpga'
-> [INFO] [MPM.PeriphManager] Updating component `dts'
-> [ERROR] [MPM.PeriphManager] Error executing `dtc': Command '['dtc',
-> '--symbols', '-O', 'dtb', '-q', '-o', '/lib/firmware/n310.dtbo',
-> '/lib/firmware/n310.dts']' returned non-zero exit status 1
-> [INFO] [MPM.RPCServer] Resetting peripheral manager.
-> [INFO] [MPM.PeriphManager] Device serial number: XXXXXXX
-> [INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).
-> [WARNING] [MPM.PeriphManager] Actual minor compat ahead of expected
-> compat for component `FPGA'. Expected: 5.2 Actual: 5.3
-> [INFO] [MPM.PeriphManager] init() called with device args `'.
-> [INFO] [MPMD IMAGE LOADER] Update component function succeeded.
->
-> Rebooted devices, then:
->
-> $ uhd_find_devices
-> --------------------------------------------------
-> -- UHD Device 0
-> --------------------------------------------------
-> Device Address:
->      serial: XXXXXX
->      addr: X.X.X.212
->      claimed: False
->      mgmt_addr: X.X.X.128
->      product: n310
->      type: n3xx
->
->
-> --------------------------------------------------
-> -- UHD Device 1
-> --------------------------------------------------
-> Device Address:
->      serial: n/a
->      claimed: False
->      mgmt_addr: X.X.X.123
->      product: n/a
->      reachable: No
->      type: n/a
->
->
-> On Device 0:
->
-> $ uhd_config_info --print-all
-> UHD 3.13.0.2-0-unknown
-> Build date: Fri, 08 Mar 2019 18:43:32
-> C compiler: GNU 7.3.0
-> C++ compiler: GNU 7.3.0
-> C flags: -DUHD_IMAGES_DIR=OFF -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1
-> -DUHD_LOG_CONSOLE_LEVEL=2 -DUHD_LOG_FILE_LEVEL=2 -DUHD_LOG_CONSOLE_COLOR
-> -DHAVE_LIBERIO -march=armv7-a -marm -mfpu=neon -mfloat-abi=hard
-> -mcpu=cortex-a9
-> --sysroot=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot
->
->   -O2 -pipe -g -feliminate-unused-debug-types
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0=/usr/src/debug/uhd/3.13.0.2-r0
->
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot=
->
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot-native=
->
->    -march=armv7-a -marm -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9
->
-> --sysroot=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot
-> C++ flags: -DUHD_IMAGES_DIR=OFF -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1
-> -DUHD_LOG_CONSOLE_LEVEL=2 -DUHD_LOG_FILE_LEVEL=2 -DUHD_LOG_CONSOLE_COLOR
-> -DHAVE_LIBERIO -march=armv7-a -marm -mfpu=neon -mfloat-abi=hard
-> -mcpu=cortex-a9
-> --sysroot=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot
->
->   -O2 -pipe -g -feliminate-unused-debug-types
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0=/usr/src/debug/uhd/3.13.0.2-r0
->
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot=
->
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot-native=
->
->   -fvisibility-inlines-hidden  -march=armv7-a -marm -mfpu=neon
-> -mfloat-abi=hard -mcpu=cortex-a9
-> --sysroot=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot
->
-> -fvisibility=hidden -fvisibility-inlines-hidden
-> Enabled components: LibUHD, LibUHD - C API, Examples, Utils, Tests,
-> LIBERIO, USB, GPSD, MPMD, N300, E320
-> Install prefix: /usr
-> Boost version: 1.66
-> Libusb version: 1.0.23
-> Package path: /usr
-> Images directory: /usr/share/uhd/images
-> ABI version string: 3.13.0
->
-> $ ip a
-> 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
->      link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
->      inet 127.0.0.1/8 scope host lo
->         valid_lft forever preferred_lft forever
-> 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast
-> qlen 1000
->      link/ether 00:80:2f:26:6c:c1 brd ff:ff:ff:ff:ff:ff
->      inet X.X.X.128/24 brd X.X.X.255 scope global dynamic eth0
->         valid_lft 43114sec preferred_lft 43114sec
-> 3: sfp0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast
-> qlen 1000
->      link/ether 00:80:2f:26:6c:c2 brd ff:ff:ff:ff:ff:ff
->      inet X.X.X.212/24 brd X.X.X.255 scope global sfp0
->         valid_lft forever preferred_lft forever
-> 4: sfp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 8000 qdisc pfifo_fast
-> qlen 1000
->      link/ether 00:80:2f:26:6c:c3 brd ff:ff:ff:ff:ff:ff
->
-> On Host for Device 0:
-> $ uhd_usrp_probe --args="addr=X.X.X.212"
-> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
-> UHD_3.15.0.git-79-gf353db8f
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
->
-> mgmt_addr=X.X.X.128,type=n3xx,product=n310,serial=XXXXXXX,claimed=False,addr=X.X.X.212
-> [WARNING] [MPMD] Could not determine link speed; using 1GibE max speed
-> of 1.25e+08
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `product=n310,mgmt_addr=X.X.X.128'.
-> [ERROR] [UHD] Exception caught in safe-call.
->    in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with
-> uhd::endianness_t _endianness = (uhd::endianness_t)0]
->    at /home/ant/gnuradio38/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:52
-> this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl
-> (CE_00_Port_30) no response packet - AssertionError: bool(buff)
->    in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
-> [with uhd::endianness_t _endianness = (uhd::endianness_t)0; uint64_t =
-> long unsigned int]
->    at /home/ant/gnuradio38/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
->
-> [ERROR] [MPMD] Failure during block enumeration: EnvironmentError:
-> IOError: recv error on socket: Connection refused
-> Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
->
-> That's where I hang now.
-> The same error appears in case I try to run a GR flowgraph with that
-> device.
->
-> For Device 1:
-> I followed: https://files.ettus.com/manual/page_usrp_n3xx.html
-> $ uhd_images_downloader -t n3xx_common_sdimg_default
-> $ sudo dd if=<YOUR_IMAGE> of=/dev/<YOUR_SD_CARD> bs=1M
->
-> After quite some time `dd` reported success.
->
-> On Host
-> $ uhd_find_devices
-> --------------------------------------------------
-> -- UHD Device 1
-> --------------------------------------------------
-> Device Address:
->      serial: n/a
->      claimed: False
->      mgmt_addr: X.X.X.123
->      product: n/a
->      reachable: No
->      type: n/a
->
-> On Device 1:
-> $ uhd_config_info --print-all
-> UHD 3.14.0.0-0-g655b9b0f
-> Build date: Tue, 19 Feb 2019 00:05:23
-> C compiler: GNU 7.3.0
-> C++ compiler: GNU 7.3.0
-> C flags: -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1 -DUHD_LOG_CONSOLE_LEVEL=2
-> -DUHD_LOG_FILE_LEVEL=2 -DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO
-> -march=armv7-a -marm -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9
-> --sysroot=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot
->
->   -O2 -pipe -g -feliminate-unused-debug-types
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1=/usr/src/debug/uhd/3.14.0.0-r1
->
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot=
->
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot-native=
->
->    -march=armv7-a -marm -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9
->
-> --sysroot=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot
-> C++ flags: -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=1
-> -DUHD_LOG_CONSOLE_LEVEL=2 -DUHD_LOG_FILE_LEVEL=2 -DUHD_LOG_CONSOLE_COLOR
-> -DHAVE_LIBERIO -march=armv7-a -marm -mfpu=neon -mfloat-abi=hard
-> -mcpu=cortex-a9
-> --sysroot=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot
->
->   -O2 -pipe -g -feliminate-unused-debug-types
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1=/usr/src/debug/uhd/3.14.0.0-r1
->
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot=
->
-> -fdebug-prefix-map=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot-native=
->
->   -fvisibility-inlines-hidden  -march=armv7-a -marm -mfpu=neon
-> -mfloat-abi=hard -mcpu=cortex-a9
-> --sysroot=/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot
->
-> -fvisibility=hidden -fvisibility-inlines-hidden
-> Enabled components: LibUHD, LibUHD - C API, Examples, Utils, Tests,
-> LIBERIO, USB, GPSD, MPMD, N300, N320, E320
-> Install prefix: /usr
-> Boost version: 1.66
-> Libusb version: 1.0.23
-> Package path: /usr
-> Images directory: /usr/share/uhd/images
-> ABI version string: 3.14.0
->
-> $ip a
-> 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
->      link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
->      inet 127.0.0.1/8 scope host lo
->         valid_lft forever preferred_lft forever
-> 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast
-> qlen 1000
->      link/ether 00:80:2f:26:6c:b8 brd ff:ff:ff:ff:ff:ff
->      inet X.X.X.123/24 brd X.X.X.255 scope global dynamic eth0
->         valid_lft 40613sec preferred_lft 40613sec
->
-> The SFP ethernet devices don;t show up.
-> Also, I wasn't able to load a current FPGA image on the device. Since
-> the SFP port does not show up, I tried to use `mgmt_addr=X.X.X.123`.
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000ed41de0594f3b50d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Johannes.=C2=A0 Things=C2=A0tend to go badly=C2=A0=
-when the UHD and FPGA bitstream versions on the N310 SD card don&#39;t matc=
-h those on the host for the N3xx.=C2=A0 =C2=A0 =C2=A0Avoid using master wit=
-h the N310 out of the box because the filesystem/FPGA images most likely do=
-n&#39;t exist.=C2=A0</div><div><br></div><div>Burn this SD card image:=C2=
-=A0<a href=3D"http://files.ettus.com/binaries/cache/n3xx/meta-ettus-v3.14.1=
-.1/n3xx_common_sdimg_default-v3.14.1.1.zip">http://files.ettus.com/binaries=
-/cache/n3xx/meta-ettus-v3.14.1.1/n3xx_common_sdimg_default-v3.14.1.1.zip</a=
-></div><div>(yes, the location is non-obvious) then build UHD v.3.14.1.1 on=
- the host PC.</div><div><div><br></div><div>Starting with UHD v.3.14, the S=
-FP+ ports are mapped to IP addresses 192.168.10.2 and 192.168.20.2, to be m=
-ore consistent with the X310.=C2=A0 When you issue the uhd_usrp_probe comma=
-nd, try adding the --args &quot;addr=3D192.168.x0.2&quot; command.</div></d=
-iv><div>I can&#39;t remember for certain if the HG (SFP0 =3D 1gigE and SFP1=
-=3D10 gigeE) or XG image (both 10gigE) is loaded by default.=C2=A0 =C2=A0I =
-think it&#39;s HG.=C2=A0 =C2=A0Set the MTU on the host side to 8000 for the=
- 10gigE port.</div><div><br></div><div>The N310 Getting Started guide outli=
-nes the mender method of updating=C2=A0the filesystem, which=C2=A0should al=
-so work, but I tend to prefer downloading the SD card image and burning it =
-myself.=C2=A0 Good luck.</div><div><br></div><div>-Robin</div><div><br></di=
-v><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
-s=3D"gmail_attr">On Tue, Oct 15, 2019 at 2:47 AM Johannes Demel via USRP-us=
-ers &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettu=
-s.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">Hi all,<br>
-<br>
-we just received some new N310s. Yeah!<br>
-<br>
-They don&#39;t work! Noooo.<br>
-<br>
-Let me explain what I tried so far and what I found out. So far, I work <br=
->
-with 2 devices.<br>
-<br>
-Summary:<br>
-With factory default image I can find the device but `uhd_usrp_probe` fails=
-.<br>
-With a newly flashed image on the SD card, The SFP ports don&#39;t show up =
-<br>
-anymore.<br>
-<br>
-<br>
-How do I recover my device that doesn&#39;t show the SFP ports anymore?<br>
-<br>
-What do I need to do to successfully run `uhd_usrp_probe`? Since this <br>
-command errors out with the same error as a flowgraph, I assume if I get <b=
-r>
-passed `uhd_usrp_probe` there is a good chance I&#39;ll be able to run a <b=
-r>
-flowgraph.<br>
-<br>
-What is dtc? It errors out during FPGA image updates.<br>
-<br>
-What is the latest `sdimg` to install? I want to make sure I&#39;m up to <b=
-r>
-date. As soon as I figured out why the devices don&#39;t work.<br>
-<br>
-I append all the information I could find so far for my devices.<br>
-<br>
-Cheers<br>
-Johannes<br>
-<br>
-<br>
-<br>
-On Host:<br>
-$ uhd_config_info --print-all<br>
-UHD 3.15.0.git-79-gf353db8f<br>
-Build date: Tue, 08 Oct 2019 12:08:10<br>
-C compiler: GNU 7.4.0<br>
-C++ compiler: GNU 7.4.0<br>
-C flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 <br>
--DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLO=
-R<br>
-C++ flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 <br>
--DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLO=
-R <br>
--fvisibility=3Dhidden -fvisibility-inlines-hidden<br>
-Enabled components: LibUHD, LibUHD - C API, LibUHD - Python API, <br>
-Examples, Utils, Tests, USB, B100, B200, USRP1, USRP2, X300, N230, MPMD, <b=
-r>
-N300, N320, E320, E300, OctoClock<br>
-Install prefix: &lt;install_prefix&gt;/gnuradio38<br>
-Boost version: 1.65.1<br>
-Libusb version: 1.0.23<br>
-Package path: &lt;install_prefix&gt;/gnuradio38<br>
-Images directory: &lt;install_prefix&gt;/gnuradio38/share/uhd/images<br>
-ABI version string: 3.15.0<br>
-<br>
-<br>
-$ uhd_image_loader --args &quot;type=3Dn3xx,addr=3DX.X.X.212,fpga=3DHG&quot=
-;<br>
-[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; <br>
-UHD_3.15.0.git-79-gf353db8f<br>
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: <br>
-mgmt_addr=3DX.X.X.128,type=3Dn3xx,product=3Dn310,serial=3DXXXXXXX,claimed=
-=3DFalse,skip_init=3D1<br>
-[INFO] [MPMD] Claimed device without full initialization.<br>
-[INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.<br>
-[INFO] [MPM.PeriphManager] Updating component `fpga&#39;<br>
-[INFO] [MPM.PeriphManager] Updating component `dts&#39;<br>
-[ERROR] [MPM.PeriphManager] Error executing `dtc&#39;: Command &#39;[&#39;d=
-tc&#39;, <br>
-&#39;--symbols&#39;, &#39;-O&#39;, &#39;dtb&#39;, &#39;-q&#39;, &#39;-o&#39=
-;, &#39;/lib/firmware/n310.dtbo&#39;, <br>
-&#39;/lib/firmware/n310.dts&#39;]&#39; returned non-zero exit status 1<br>
-[INFO] [MPM.RPCServer] Resetting peripheral manager.<br>
-[INFO] [MPM.PeriphManager] Device serial number: XXXXXXX<br>
-[INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).<br>
-[WARNING] [MPM.PeriphManager] Actual minor compat ahead of expected <br>
-compat for component `FPGA&#39;. Expected: 5.2 Actual: 5.3<br>
-[INFO] [MPM.PeriphManager] init() called with device args `&#39;.<br>
-[INFO] [MPMD IMAGE LOADER] Update component function succeeded.<br>
-<br>
-Rebooted devices, then:<br>
-<br>
-$ uhd_find_devices<br>
---------------------------------------------------<br>
--- UHD Device 0<br>
---------------------------------------------------<br>
-Device Address:<br>
-=C2=A0 =C2=A0 =C2=A0serial: XXXXXX<br>
-=C2=A0 =C2=A0 =C2=A0addr: X.X.X.212<br>
-=C2=A0 =C2=A0 =C2=A0claimed: False<br>
-=C2=A0 =C2=A0 =C2=A0mgmt_addr: X.X.X.128<br>
-=C2=A0 =C2=A0 =C2=A0product: n310<br>
-=C2=A0 =C2=A0 =C2=A0type: n3xx<br>
-<br>
-<br>
---------------------------------------------------<br>
--- UHD Device 1<br>
---------------------------------------------------<br>
-Device Address:<br>
-=C2=A0 =C2=A0 =C2=A0serial: n/a<br>
-=C2=A0 =C2=A0 =C2=A0claimed: False<br>
-=C2=A0 =C2=A0 =C2=A0mgmt_addr: X.X.X.123<br>
-=C2=A0 =C2=A0 =C2=A0product: n/a<br>
-=C2=A0 =C2=A0 =C2=A0reachable: No<br>
-=C2=A0 =C2=A0 =C2=A0type: n/a<br>
-<br>
-<br>
-On Device 0:<br>
-<br>
-$ uhd_config_info --print-all<br>
-UHD 3.13.0.2-0-unknown<br>
-Build date: Fri, 08 Mar 2019 18:43:32<br>
-C compiler: GNU 7.3.0<br>
-C++ compiler: GNU 7.3.0<br>
-C flags: -DUHD_IMAGES_DIR=3DOFF -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 <br=
->
--DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLO=
-R <br>
--DHAVE_LIBERIO -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard <br>
--mcpu=3Dcortex-a9 <br>
---sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-=
-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot <br>
-=C2=A0 -O2 -pipe -g -feliminate-unused-debug-types <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.13.0.2-r0=3D/usr/src/debug/uhd/3.13.0.2-r0 <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot=3D <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot-native=3D <br>
-=C2=A0 =C2=A0-march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=
-=3Dcortex-a9 <br>
---sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-=
-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot<br>
-C++ flags: -DUHD_IMAGES_DIR=3DOFF -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 <=
-br>
--DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLO=
-R <br>
--DHAVE_LIBERIO -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard <br>
--mcpu=3Dcortex-a9 <br>
---sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-=
-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot <br>
-=C2=A0 -O2 -pipe -g -feliminate-unused-debug-types <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.13.0.2-r0=3D/usr/src/debug/uhd/3.13.0.2-r0 <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot=3D <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot-native=3D <br>
-=C2=A0 -fvisibility-inlines-hidden=C2=A0 -march=3Darmv7-a -marm -mfpu=3Dneo=
-n <br>
--mfloat-abi=3Dhard -mcpu=3Dcortex-a9 <br>
---sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-=
-gnueabi/uhd/3.13.0.2-r0/recipe-sysroot <br>
--fvisibility=3Dhidden -fvisibility-inlines-hidden<br>
-Enabled components: LibUHD, LibUHD - C API, Examples, Utils, Tests, <br>
-LIBERIO, USB, GPSD, MPMD, N300, E320<br>
-Install prefix: /usr<br>
-Boost version: 1.66<br>
-Libusb version: 1.0.23<br>
-Package path: /usr<br>
-Images directory: /usr/share/uhd/images<br>
-ABI version string: 3.13.0<br>
-<br>
-$ ip a<br>
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000<br>
-=C2=A0 =C2=A0 =C2=A0link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00<b=
-r>
-=C2=A0 =C2=A0 =C2=A0inet <a href=3D"http://127.0.0.1/8" rel=3D"noreferrer" =
-target=3D"_blank">127.0.0.1/8</a> scope host lo<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 valid_lft forever preferred_lft forever<br>
-2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast =
-<br>
-qlen 1000<br>
-=C2=A0 =C2=A0 =C2=A0link/ether 00:80:2f:26:6c:c1 brd ff:ff:ff:ff:ff:ff<br>
-=C2=A0 =C2=A0 =C2=A0inet X.X.X.128/24 brd X.X.X.255 scope global dynamic et=
-h0<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 valid_lft 43114sec preferred_lft 43114sec<br>
-3: sfp0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast =
-<br>
-qlen 1000<br>
-=C2=A0 =C2=A0 =C2=A0link/ether 00:80:2f:26:6c:c2 brd ff:ff:ff:ff:ff:ff<br>
-=C2=A0 =C2=A0 =C2=A0inet X.X.X.212/24 brd X.X.X.255 scope global sfp0<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 valid_lft forever preferred_lft forever<br>
-4: sfp1: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 8000 qdisc pfifo_fas=
-t <br>
-qlen 1000<br>
-=C2=A0 =C2=A0 =C2=A0link/ether 00:80:2f:26:6c:c3 brd ff:ff:ff:ff:ff:ff<br>
-<br>
-On Host for Device 0:<br>
-$ uhd_usrp_probe --args=3D&quot;addr=3DX.X.X.212&quot;<br>
-[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; <br>
-UHD_3.15.0.git-79-gf353db8f<br>
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: <br>
-mgmt_addr=3DX.X.X.128,type=3Dn3xx,product=3Dn310,serial=3DXXXXXXX,claimed=
-=3DFalse,addr=3DX.X.X.212<br>
-[WARNING] [MPMD] Could not determine link speed; using 1GibE max speed <br>
-of 1.25e+08<br>
-[INFO] [MPM.PeriphManager] init() called with device args <br>
-`product=3Dn310,mgmt_addr=3DX.X.X.128&#39;.<br>
-[ERROR] [UHD] Exception caught in safe-call.<br>
-=C2=A0 =C2=A0in ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl() [wit=
-h <br>
-uhd::endianness_t _endianness =3D (uhd::endianness_t)0]<br>
-=C2=A0 =C2=A0at /home/ant/gnuradio38/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:=
-52<br>
-this-&gt;send_cmd_pkt(0, 0, true); -&gt; EnvironmentError: IOError: Block c=
-trl <br>
-(CE_00_Port_30) no response packet - AssertionError: bool(buff)<br>
-=C2=A0 =C2=A0in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(b=
-ool, double) <br>
-[with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D =
-<br>
-long unsigned int]<br>
-=C2=A0 =C2=A0at /home/ant/gnuradio38/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:=
-151<br>
-<br>
-[ERROR] [MPMD] Failure during block enumeration: EnvironmentError: <br>
-IOError: recv error on socket: Connection refused<br>
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()<br>
-<br>
-That&#39;s where I hang now.<br>
-The same error appears in case I try to run a GR flowgraph with that device=
-.<br>
-<br>
-For Device 1:<br>
-I followed: <a href=3D"https://files.ettus.com/manual/page_usrp_n3xx.html" =
-rel=3D"noreferrer" target=3D"_blank">https://files.ettus.com/manual/page_us=
-rp_n3xx.html</a><br>
-$ uhd_images_downloader -t n3xx_common_sdimg_default<br>
-$ sudo dd if=3D&lt;YOUR_IMAGE&gt; of=3D/dev/&lt;YOUR_SD_CARD&gt; bs=3D1M<br=
->
-<br>
-After quite some time `dd` reported success.<br>
-<br>
-On Host<br>
-$ uhd_find_devices<br>
---------------------------------------------------<br>
--- UHD Device 1<br>
---------------------------------------------------<br>
-Device Address:<br>
-=C2=A0 =C2=A0 =C2=A0serial: n/a<br>
-=C2=A0 =C2=A0 =C2=A0claimed: False<br>
-=C2=A0 =C2=A0 =C2=A0mgmt_addr: X.X.X.123<br>
-=C2=A0 =C2=A0 =C2=A0product: n/a<br>
-=C2=A0 =C2=A0 =C2=A0reachable: No<br>
-=C2=A0 =C2=A0 =C2=A0type: n/a<br>
-<br>
-On Device 1:<br>
-$ uhd_config_info --print-all<br>
-UHD 3.14.0.0-0-g655b9b0f<br>
-Build date: Tue, 19 Feb 2019 00:05:23<br>
-C compiler: GNU 7.3.0<br>
-C++ compiler: GNU 7.3.0<br>
-C flags: -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CONSOLE_LEVEL=3D=
-2 <br>
--DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO <br>
--march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a9 <b=
-r>
---sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-=
-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot <br>
-=C2=A0 -O2 -pipe -g -feliminate-unused-debug-types <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.14.0.0-r1=3D/usr/src/debug/uhd/3.14.0.0-r1 <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot=3D <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot-native=3D <br>
-=C2=A0 =C2=A0-march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=
-=3Dcortex-a9 <br>
---sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-=
-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot<br>
-C++ flags: -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 <br>
--DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLO=
-R <br>
--DHAVE_LIBERIO -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard <br>
--mcpu=3Dcortex-a9 <br>
---sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-=
-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot <br>
-=C2=A0 -O2 -pipe -g -feliminate-unused-debug-types <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.14.0.0-r1=3D/usr/src/debug/uhd/3.14.0.0-r1 <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot=3D <br>
--fdebug-prefix-map=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-=
-oe-linux-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot-native=3D <br>
-=C2=A0 -fvisibility-inlines-hidden=C2=A0 -march=3Darmv7-a -marm -mfpu=3Dneo=
-n <br>
--mfloat-abi=3Dhard -mcpu=3Dcortex-a9 <br>
---sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-=
-gnueabi/uhd/3.14.0.0-r1/recipe-sysroot <br>
--fvisibility=3Dhidden -fvisibility-inlines-hidden<br>
-Enabled components: LibUHD, LibUHD - C API, Examples, Utils, Tests, <br>
-LIBERIO, USB, GPSD, MPMD, N300, N320, E320<br>
-Install prefix: /usr<br>
-Boost version: 1.66<br>
-Libusb version: 1.0.23<br>
-Package path: /usr<br>
-Images directory: /usr/share/uhd/images<br>
-ABI version string: 3.14.0<br>
-<br>
-$ip a<br>
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000<br>
-=C2=A0 =C2=A0 =C2=A0link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00<b=
-r>
-=C2=A0 =C2=A0 =C2=A0inet <a href=3D"http://127.0.0.1/8" rel=3D"noreferrer" =
-target=3D"_blank">127.0.0.1/8</a> scope host lo<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 valid_lft forever preferred_lft forever<br>
-2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast =
-<br>
-qlen 1000<br>
-=C2=A0 =C2=A0 =C2=A0link/ether 00:80:2f:26:6c:b8 brd ff:ff:ff:ff:ff:ff<br>
-=C2=A0 =C2=A0 =C2=A0inet X.X.X.123/24 brd X.X.X.255 scope global dynamic et=
-h0<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 valid_lft 40613sec preferred_lft 40613sec<br>
-<br>
-The SFP ethernet devices don;t show up.<br>
-Also, I wasn&#39;t able to load a current FPGA image on the device. Since <=
-br>
-the SFP port does not show up, I tried to use `mgmt_addr=3DX.X.X.123`.<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000ed41de0594f3b50d--
-
-
---===============1834607828921722641==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1834607828921722641==--
-
+SGkgUm9iaW4sDQoNCnRoYW5rcyBmb3IgeW91ciBoaW50LiBUaGUgU0QgY2FyZCBpbWFnZSBoZWxw
+ZWQuIEFuZCBgYm1hcHRvb2xgIHNlZW1zIHRoZSANCmJldHRlciB0b29sIHRvIGZsYXNoIHRoZSBT
+RCBjYXJkLiBOb3csIGBpcCBhYCBzaG93cyB0aGUgc2ZwIHBvcnRzIGFnYWluLiANCkZ1cnRoZXJt
+b3JlLCBgdWhkX2ZpbmRfZGV2aWNlc2Agc2hvd3MgYWxsIHRoZSBpbmZvIEknZCBleHBlY3QuDQpB
+bHNvLCB0aGUgJ2R0YycgZXJyb3IgZHVyaW5nIEZQR0EgaW1hZ2UgdXBkYXRlIHdlbnQgYXdheS4N
+CkFmdGVyIEkgdXBkYXRlZCB0aGUgRlBHQSBpbWFnZSwgSSBkaWQgYSBgcmVib290IG5vd2Agb24g
+dGhlIGRldmljZS4gSSANCmhvcGUgdGhpcyBpcyBlbm91Z2ggdG8gbWFrZSBzdXJlIHRoZSBkZXZp
+Y2UgdXNlcyB0aGUgbmV3IEZQR0EgaW1hZ2U/DQoNCkkgZm9sbG93ZWQgdGhlIGluc3RydWN0aW9u
+czoNCmh0dHBzOi8va2IuZXR0dXMuY29tL1VTUlBfTjMwMC9OMzEwL04zMjAvTjMyMV9HZXR0aW5n
+X1N0YXJ0ZWRfR3VpZGUjVXBkYXRpbmdfdGhlX05ldHdvcmtfQ29uZmlndXJhdGlvbnMNCnRvIHVw
+ZGF0ZSBteSBuZXR3b3JrIGNvbmZpZ3VyYXRpb24uIEFjdHVhbGx5LCBJIGRpZCB0aGF0IGJlZm9y
+ZSBhcyB3ZWxsLg0KDQpVbmZvcnR1bmF0ZWx5LCB0aGUgYHVoZF91c3JwX3Byb2JlYCBlcnJvciBw
+ZXJzaXN0cy4gSG93IGRvIEkgcHJvY2VlZCANCmZyb20gaGVyZT8NCg0KJCB1aGRfdXNycF9wcm9i
+ZSAtLWFyZ3M9ImFkZHI9WC5YLlguMjEzIg0KW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZl
+cnNpb24gNy40LjA7IEJvb3N0XzEwNjUwMTsgDQpVSERfMy4xNC4xLkhFQUQtMC1nMDM0N2E2ZDgN
+CltJTkZPXSBbTVBNRF0gSW5pdGlhbGl6aW5nIDEgZGV2aWNlKHMpIGluIHBhcmFsbGVsIHdpdGgg
+YXJnczogDQptZ210X2FkZHI9WC5YLlguMTI5LHR5cGU9bjN4eCxwcm9kdWN0PW4zMTAsc2VyaWFs
+PVhYWFhYWFgsY2xhaW1lZD1GYWxzZSxhZGRyPVguWC5YLjIxMw0KW0lORk9dIFtNUE0uUGVyaXBo
+TWFuYWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzIA0KYHRpbWVfc291cmNlPWlu
+dGVybmFsLGNsb2NrX3NvdXJjZT1pbnRlcm5hbCxtZ210X2FkZHI9WC5YLlguMTI5LHByb2R1Y3Q9
+bjMxMCcuDQpbRVJST1JdIFtVSERdIEV4Y2VwdGlvbiBjYXVnaHQgaW4gc2FmZS1jYWxsLg0KICAg
+aW4gY3RybF9pZmFjZV9pbXBsPF9lbmRpYW5uZXNzPjo6fmN0cmxfaWZhY2VfaW1wbCgpIFt3aXRo
+IA0KdWhkOjplbmRpYW5uZXNzX3QgX2VuZGlhbm5lc3MgPSAodWhkOjplbmRpYW5uZXNzX3QpMF0N
+CiAgIGF0IDxpbnN0YWxscHJlZml4Pi9zcmMvdWhkL2hvc3QvbGliL3Jmbm9jL2N0cmxfaWZhY2Uu
+Y3BwOjUyDQp0aGlzLT5zZW5kX2NtZF9wa3QoMCwgMCwgdHJ1ZSk7IC0+IEVudmlyb25tZW50RXJy
+b3I6IElPRXJyb3I6IEJsb2NrIGN0cmwgDQooQ0VfMDBfUG9ydF8zMCkgbm8gcmVzcG9uc2UgcGFj
+a2V0IC0gQXNzZXJ0aW9uRXJyb3I6IGJvb2woYnVmZikNCiAgIGluIHVpbnQ2NF90IGN0cmxfaWZh
+Y2VfaW1wbDxfZW5kaWFubmVzcz46OndhaXRfZm9yX2Fjayhib29sLCBkb3VibGUpIA0KW3dpdGgg
+dWhkOjplbmRpYW5uZXNzX3QgX2VuZGlhbm5lc3MgPSAodWhkOjplbmRpYW5uZXNzX3QpMDsgdWlu
+dDY0X3QgPSANCmxvbmcgdW5zaWduZWQgaW50XQ0KICAgYXQgPGluc3RhbGxwcmVmaXg+L3NyYy91
+aGQvaG9zdC9saWIvcmZub2MvY3RybF9pZmFjZS5jcHA6MTQyDQoNCltFUlJPUl0gW01QTURdIEZh
+aWx1cmUgZHVyaW5nIGJsb2NrIGVudW1lcmF0aW9uOiBFbnZpcm9ubWVudEVycm9yOiANCklPRXJy
+b3I6IHJlY3YgZXJyb3Igb24gc29ja2V0OiBDb25uZWN0aW9uIHJlZnVzZWQNCkVycm9yOiBSdW50
+aW1lRXJyb3I6IEZhaWxlZCB0byBydW4gZW51bWVyYXRlX3Jmbm9jX2Jsb2NrcygpDQoNCkNoZWVy
+cw0KSm9oYW5uZXMNCg0KDQoNCkkgaG9wZSB0aGUgZm9sbG93aW5nIG91dHB1dCBoZWxwcyB3aXRo
+IHRoZSBkZWJ1Z2dpbmcgcHJvY2Vzcy4NCg0KJCB1aGRfZmluZF9kZXZpY2VzDQpbSU5GT10gW1VI
+RF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA3LjQuMDsgQm9vc3RfMTA2NTAxOyANClVIRF8zLjE0
+LjEuSEVBRC0wLWcwMzQ3YTZkOA0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0NCi0tIFVIRCBEZXZpY2UgMA0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkRldmljZSBBZGRyZXNzOg0KICAgICBzZXJpYWw6
+IFhYWFhYWFgNCiAgICAgYWRkcjogWC5YLlguMjEzDQogICAgIGNsYWltZWQ6IEZhbHNlDQogICAg
+IG1nbXRfYWRkcjogWC5YLlguMTI5DQogICAgIHByb2R1Y3Q6IG4zMTANCiAgICAgdHlwZTogbjN4
+eA0KDQoNCk9uIG15IEhPU1QgbWFjaGluZToNCg0KJCB1aGRfY29uZmlnX2luZm8gLS1wcmludC1h
+bGwNClVIRCAzLjE0LjEuSEVBRC0wLWcwMzQ3YTZkOA0KQnVpbGQgZGF0ZTogVHVlLCAxNSBPY3Qg
+MjAxOSAxNToxNjoyNw0KQyBjb21waWxlcjogR05VIDcuNC4wDQpDKysgY29tcGlsZXI6IEdOVSA3
+LjQuMA0KQyBmbGFnczogLURVSERfUkZOT0NfRU5BQkxFRCAtREhBVkVfQ09ORklHX0ggLURVSERf
+TE9HX01JTl9MRVZFTD0xIA0KLURVSERfTE9HX0NPTlNPTEVfTEVWRUw9MiAtRFVIRF9MT0dfRklM
+RV9MRVZFTD0yIC1EVUhEX0xPR19DT05TT0xFX0NPTE9SDQpDKysgZmxhZ3M6IC1EVUhEX1JGTk9D
+X0VOQUJMRUQgLURIQVZFX0NPTkZJR19IIC1EVUhEX0xPR19NSU5fTEVWRUw9MSANCi1EVUhEX0xP
+R19DT05TT0xFX0xFVkVMPTIgLURVSERfTE9HX0ZJTEVfTEVWRUw9MiAtRFVIRF9MT0dfQ09OU09M
+RV9DT0xPUiANCi1mdmlzaWJpbGl0eT1oaWRkZW4gLWZ2aXNpYmlsaXR5LWlubGluZXMtaGlkZGVu
+DQpFbmFibGVkIGNvbXBvbmVudHM6IExpYlVIRCwgTGliVUhEIC0gQyBBUEksIExpYlVIRCAtIFB5
+dGhvbiBBUEksIA0KRXhhbXBsZXMsIFV0aWxzLCBUZXN0cywgVVNCLCBCMTAwLCBCMjAwLCBFMzAw
+LCBVU1JQMSwgVVNSUDIsIFgzMDAsIE4yMzAsIA0KTVBNRCwgTjMwMCwgTjMyMCwgRTMyMCwgT2N0
+b0Nsb2NrDQpJbnN0YWxsIHByZWZpeDogPGluc3RhbGxwcmVmaXg+DQpCb29zdCB2ZXJzaW9uOiAx
+LjY1LjENCkxpYnVzYiB2ZXJzaW9uOiAxLjAuMjMNClBhY2thZ2UgcGF0aDogPGluc3RhbGxwcmVm
+aXg+DQpJbWFnZXMgZGlyZWN0b3J5OiA8aW5zdGFsbHByZWZpeD4vc2hhcmUvdWhkL2ltYWdlcw0K
+QUJJIHZlcnNpb24gc3RyaW5nOiAzLjE0LjENCg0KDQpPTiB0aGUgREVWSUNFIGl0c2VsZjoNCkkg
+bm90aWNlZCB0aGF0IGB1aGRfaW1hZ2VzX2Rvd25sb2FkZXInIHdpdGggbXkgcHJldmlvdXMgaW5z
+dGFsbCBnb3QgbWUgDQphbiBpbWFnZSB3aGVyZSBVSEQgcmVwb3J0czogYEJ1aWxkIGRhdGU6IFR1
+ZSwgMTkgRmViIDIwMTkgMDA6MDU6MjNgLiBOb3cgDQp0aGUgYnVpbGQgZGF0ZSBpczogYFRodSwg
+MjYgU2VwIDIwMTkgMDE6MjY6MzInLg0KDQpUaGlzIGlzIHRoZSBvdXRwdXQgb24gdGhlIGRldmlj
+ZToNCiQgdWhkX2NvbmZpZ19pbmZvIC0tcHJpbnQtYWxsDQpVSEQgMy4xNC4xLjEtMC1nMDM0N2E2
+ZDgNCkJ1aWxkIGRhdGU6IFRodSwgMjYgU2VwIDIwMTkgMDE6MjY6MzINCkMgY29tcGlsZXI6IEdO
+VSA3LjMuMA0KQysrIGNvbXBpbGVyOiBHTlUgNy4zLjANCkMgZmxhZ3M6IC1ESEFWRV9DT05GSUdf
+SCAtRFVIRF9MT0dfTUlOX0xFVkVMPTEgLURVSERfTE9HX0NPTlNPTEVfTEVWRUw9MiANCi1EVUhE
+X0xPR19GSUxFX0xFVkVMPTIgLURVSERfTE9HX0NPTlNPTEVfQ09MT1IgLURIQVZFX0xJQkVSSU8g
+DQotbWFyY2g9YXJtdjctYSAtbWFybSAtbWZwdT1uZW9uIC1tZmxvYXQtYWJpPWhhcmQgLW1jcHU9
+Y29ydGV4LWE5IA0KLS1zeXNyb290PS9ob21lL29lLWJ1aWxkZXIvYnVpbGQvdG1wLWdsaWJjL3dv
+cmsvY29ydGV4YTloZi1uZW9uLW9lLWxpbnV4LWdudWVhYmkvdWhkLzMuMTQuMS4xLXIxL3JlY2lw
+ZS1zeXNyb290IA0KICAtTzIgLXBpcGUgLWcgLWZlbGltaW5hdGUtdW51c2VkLWRlYnVnLXR5cGVz
+IA0KLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL29lLWJ1aWxkZXIvYnVpbGQvdG1wLWdsaWJjL3dv
+cmsvY29ydGV4YTloZi1uZW9uLW9lLWxpbnV4LWdudWVhYmkvdWhkLzMuMTQuMS4xLXIxPS91c3Iv
+c3JjL2RlYnVnL3VoZC8zLjE0LjEuMS1yMSANCi1mZGVidWctcHJlZml4LW1hcD0vaG9tZS9vZS1i
+dWlsZGVyL2J1aWxkL3RtcC1nbGliYy93b3JrL2NvcnRleGE5aGYtbmVvbi1vZS1saW51eC1nbnVl
+YWJpL3VoZC8zLjE0LjEuMS1yMS9yZWNpcGUtc3lzcm9vdD0gDQotZmRlYnVnLXByZWZpeC1tYXA9
+L2hvbWUvb2UtYnVpbGRlci9idWlsZC90bXAtZ2xpYmMvd29yay9jb3J0ZXhhOWhmLW5lb24tb2Ut
+bGludXgtZ251ZWFiaS91aGQvMy4xNC4xLjEtcjEvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlPSANCiAg
+IC1tYXJjaD1hcm12Ny1hIC1tYXJtIC1tZnB1PW5lb24gLW1mbG9hdC1hYmk9aGFyZCAtbWNwdT1j
+b3J0ZXgtYTkgDQotLXN5c3Jvb3Q9L2hvbWUvb2UtYnVpbGRlci9idWlsZC90bXAtZ2xpYmMvd29y
+ay9jb3J0ZXhhOWhmLW5lb24tb2UtbGludXgtZ251ZWFiaS91aGQvMy4xNC4xLjEtcjEvcmVjaXBl
+LXN5c3Jvb3QNCkMrKyBmbGFnczogLURIQVZFX0NPTkZJR19IIC1EVUhEX0xPR19NSU5fTEVWRUw9
+MSANCi1EVUhEX0xPR19DT05TT0xFX0xFVkVMPTIgLURVSERfTE9HX0ZJTEVfTEVWRUw9MiAtRFVI
+RF9MT0dfQ09OU09MRV9DT0xPUiANCi1ESEFWRV9MSUJFUklPIC1tYXJjaD1hcm12Ny1hIC1tYXJt
+IC1tZnB1PW5lb24gLW1mbG9hdC1hYmk9aGFyZCANCi1tY3B1PWNvcnRleC1hOSANCi0tc3lzcm9v
+dD0vaG9tZS9vZS1idWlsZGVyL2J1aWxkL3RtcC1nbGliYy93b3JrL2NvcnRleGE5aGYtbmVvbi1v
+ZS1saW51eC1nbnVlYWJpL3VoZC8zLjE0LjEuMS1yMS9yZWNpcGUtc3lzcm9vdCANCiAgLU8yIC1w
+aXBlIC1nIC1mZWxpbWluYXRlLXVudXNlZC1kZWJ1Zy10eXBlcyANCi1mZGVidWctcHJlZml4LW1h
+cD0vaG9tZS9vZS1idWlsZGVyL2J1aWxkL3RtcC1nbGliYy93b3JrL2NvcnRleGE5aGYtbmVvbi1v
+ZS1saW51eC1nbnVlYWJpL3VoZC8zLjE0LjEuMS1yMT0vdXNyL3NyYy9kZWJ1Zy91aGQvMy4xNC4x
+LjEtcjEgDQotZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUvb2UtYnVpbGRlci9idWlsZC90bXAtZ2xp
+YmMvd29yay9jb3J0ZXhhOWhmLW5lb24tb2UtbGludXgtZ251ZWFiaS91aGQvMy4xNC4xLjEtcjEv
+cmVjaXBlLXN5c3Jvb3Q9IA0KLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL29lLWJ1aWxkZXIvYnVp
+bGQvdG1wLWdsaWJjL3dvcmsvY29ydGV4YTloZi1uZW9uLW9lLWxpbnV4LWdudWVhYmkvdWhkLzMu
+MTQuMS4xLXIxL3JlY2lwZS1zeXNyb290LW5hdGl2ZT0gDQogIC1mdmlzaWJpbGl0eS1pbmxpbmVz
+LWhpZGRlbiAgLW1hcmNoPWFybXY3LWEgLW1hcm0gLW1mcHU9bmVvbiANCi1tZmxvYXQtYWJpPWhh
+cmQgLW1jcHU9Y29ydGV4LWE5IA0KLS1zeXNyb290PS9ob21lL29lLWJ1aWxkZXIvYnVpbGQvdG1w
+LWdsaWJjL3dvcmsvY29ydGV4YTloZi1uZW9uLW9lLWxpbnV4LWdudWVhYmkvdWhkLzMuMTQuMS4x
+LXIxL3JlY2lwZS1zeXNyb290IA0KLWZ2aXNpYmlsaXR5PWhpZGRlbiAtZnZpc2liaWxpdHktaW5s
+aW5lcy1oaWRkZW4NCkVuYWJsZWQgY29tcG9uZW50czogTGliVUhELCBMaWJVSEQgLSBDIEFQSSwg
+RXhhbXBsZXMsIFV0aWxzLCBUZXN0cywgDQpMSUJFUklPLCBVU0IsIEdQU0QsIE1QTUQsIE4zMDAs
+IE4zMjAsIEUzMjANCkluc3RhbGwgcHJlZml4OiAvdXNyDQpCb29zdCB2ZXJzaW9uOiAxLjY2DQpM
+aWJ1c2IgdmVyc2lvbjogMS4wLjIzDQpQYWNrYWdlIHBhdGg6IC91c3INCkltYWdlcyBkaXJlY3Rv
+cnk6IC91c3Ivc2hhcmUvdWhkL2ltYWdlcw0KQUJJIHZlcnNpb24gc3RyaW5nOiAzLjE0LjENCg0K
+DQoNCg0KT24gMTUuMTAuMTkgMTY6MjIsIFJvYmluIENveGUgd3JvdGU6DQo+IEhpIEpvaGFubmVz
+LsKgIFRoaW5nc8KgdGVuZCB0byBnbyBiYWRsecKgd2hlbiB0aGUgVUhEIGFuZCBGUEdBIGJpdHN0
+cmVhbSANCj4gdmVyc2lvbnMgb24gdGhlIE4zMTAgU0QgY2FyZCBkb24ndCBtYXRjaCB0aG9zZSBv
+biB0aGUgaG9zdCBmb3IgdGhlIA0KPiBOM3h4LsKgIMKgIMKgQXZvaWQgdXNpbmcgbWFzdGVyIHdp
+dGggdGhlIE4zMTAgb3V0IG9mIHRoZSBib3ggYmVjYXVzZSB0aGUgDQo+IGZpbGVzeXN0ZW0vRlBH
+QSBpbWFnZXMgbW9zdCBsaWtlbHkgZG9uJ3QgZXhpc3QuDQo+IA0KPiBCdXJuIHRoaXMgU0QgY2Fy
+ZCBpbWFnZTogDQo+IGh0dHA6Ly9maWxlcy5ldHR1cy5jb20vYmluYXJpZXMvY2FjaGUvbjN4eC9t
+ZXRhLWV0dHVzLXYzLjE0LjEuMS9uM3h4X2NvbW1vbl9zZGltZ19kZWZhdWx0LXYzLjE0LjEuMS56
+aXANCj4gKHllcywgdGhlIGxvY2F0aW9uIGlzIG5vbi1vYnZpb3VzKSB0aGVuIGJ1aWxkIFVIRCB2
+LjMuMTQuMS4xIG9uIHRoZSBob3N0IFBDLg0KPiANCj4gU3RhcnRpbmcgd2l0aCBVSEQgdi4zLjE0
+LCB0aGUgU0ZQKyBwb3J0cyBhcmUgbWFwcGVkIHRvIElQIGFkZHJlc3NlcyANCj4gMTkyLjE2OC4x
+MC4yIGFuZCAxOTIuMTY4LjIwLjIsIHRvIGJlIG1vcmUgY29uc2lzdGVudCB3aXRoIHRoZSBYMzEw
+LiAgDQo+IFdoZW4geW91IGlzc3VlIHRoZSB1aGRfdXNycF9wcm9iZSBjb21tYW5kLCB0cnkgYWRk
+aW5nIHRoZSAtLWFyZ3MgDQo+ICJhZGRyPTE5Mi4xNjgueDAuMiIgY29tbWFuZC4NCj4gSSBjYW4n
+dCByZW1lbWJlciBmb3IgY2VydGFpbiBpZiB0aGUgSEcgKFNGUDAgPSAxZ2lnRSBhbmQgU0ZQMT0x
+MCBnaWdlRSkgDQo+IG9yIFhHIGltYWdlIChib3RoIDEwZ2lnRSkgaXMgbG9hZGVkIGJ5IGRlZmF1
+bHQuwqAgwqBJIHRoaW5rIGl0J3MgSEcuwqAgwqBTZXQgDQo+IHRoZSBNVFUgb24gdGhlIGhvc3Qg
+c2lkZSB0byA4MDAwIGZvciB0aGUgMTBnaWdFIHBvcnQuDQo+IA0KPiBUaGUgTjMxMCBHZXR0aW5n
+IFN0YXJ0ZWQgZ3VpZGUgb3V0bGluZXMgdGhlIG1lbmRlciBtZXRob2Qgb2YgDQo+IHVwZGF0aW5n
+wqB0aGUgZmlsZXN5c3RlbSwgd2hpY2jCoHNob3VsZCBhbHNvIHdvcmssIGJ1dCBJIHRlbmQgdG8g
+cHJlZmVyIA0KPiBkb3dubG9hZGluZyB0aGUgU0QgY2FyZCBpbWFnZSBhbmQgYnVybmluZyBpdCBt
+eXNlbGYuwqAgR29vZCBsdWNrLg0KPiANCj4gLVJvYmluDQo+IA0KPiANCj4gDQo+IE9uIFR1ZSwg
+T2N0IDE1LCAyMDE5IGF0IDI6NDcgQU0gSm9oYW5uZXMgRGVtZWwgdmlhIFVTUlAtdXNlcnMgDQo+
+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPj4gd3JvdGU6DQo+IA0KPiAgICAgSGkgYWxsLA0KPiANCj4gICAgIHdlIGp1c3QgcmVj
+ZWl2ZWQgc29tZSBuZXcgTjMxMHMuIFllYWghDQo+IA0KPiAgICAgVGhleSBkb24ndCB3b3JrISBO
+b29vby4NCj4gDQo+ICAgICBMZXQgbWUgZXhwbGFpbiB3aGF0IEkgdHJpZWQgc28gZmFyIGFuZCB3
+aGF0IEkgZm91bmQgb3V0LiBTbyBmYXIsIEkgd29yaw0KPiAgICAgd2l0aCAyIGRldmljZXMuDQo+
+IA0KPiAgICAgU3VtbWFyeToNCj4gICAgIFdpdGggZmFjdG9yeSBkZWZhdWx0IGltYWdlIEkgY2Fu
+IGZpbmQgdGhlIGRldmljZSBidXQNCj4gICAgIGB1aGRfdXNycF9wcm9iZWAgZmFpbHMuDQo+ICAg
+ICBXaXRoIGEgbmV3bHkgZmxhc2hlZCBpbWFnZSBvbiB0aGUgU0QgY2FyZCwgVGhlIFNGUCBwb3J0
+cyBkb24ndCBzaG93IHVwDQo+ICAgICBhbnltb3JlLg0KPiANCj4gDQo+ICAgICBIb3cgZG8gSSBy
+ZWNvdmVyIG15IGRldmljZSB0aGF0IGRvZXNuJ3Qgc2hvdyB0aGUgU0ZQIHBvcnRzIGFueW1vcmU/
+DQo+IA0KPiAgICAgV2hhdCBkbyBJIG5lZWQgdG8gZG8gdG8gc3VjY2Vzc2Z1bGx5IHJ1biBgdWhk
+X3VzcnBfcHJvYmVgPyBTaW5jZSB0aGlzDQo+ICAgICBjb21tYW5kIGVycm9ycyBvdXQgd2l0aCB0
+aGUgc2FtZSBlcnJvciBhcyBhIGZsb3dncmFwaCwgSSBhc3N1bWUgaWYgSQ0KPiAgICAgZ2V0DQo+
+ICAgICBwYXNzZWQgYHVoZF91c3JwX3Byb2JlYCB0aGVyZSBpcyBhIGdvb2QgY2hhbmNlIEknbGwg
+YmUgYWJsZSB0byBydW4gYQ0KPiAgICAgZmxvd2dyYXBoLg0KPiANCj4gICAgIFdoYXQgaXMgZHRj
+PyBJdCBlcnJvcnMgb3V0IGR1cmluZyBGUEdBIGltYWdlIHVwZGF0ZXMuDQo+IA0KPiAgICAgV2hh
+dCBpcyB0aGUgbGF0ZXN0IGBzZGltZ2AgdG8gaW5zdGFsbD8gSSB3YW50IHRvIG1ha2Ugc3VyZSBJ
+J20gdXAgdG8NCj4gICAgIGRhdGUuIEFzIHNvb24gYXMgSSBmaWd1cmVkIG91dCB3aHkgdGhlIGRl
+dmljZXMgZG9uJ3Qgd29yay4NCj4gDQo+ICAgICBJIGFwcGVuZCBhbGwgdGhlIGluZm9ybWF0aW9u
+IEkgY291bGQgZmluZCBzbyBmYXIgZm9yIG15IGRldmljZXMuDQo+IA0KPiAgICAgQ2hlZXJzDQo+
+ICAgICBKb2hhbm5lcw0KPiANCj4gDQo+IA0KPiAgICAgT24gSG9zdDoNCj4gICAgICQgdWhkX2Nv
+bmZpZ19pbmZvIC0tcHJpbnQtYWxsDQo+ICAgICBVSEQgMy4xNS4wLmdpdC03OS1nZjM1M2RiOGYN
+Cj4gICAgIEJ1aWxkIGRhdGU6IFR1ZSwgMDggT2N0IDIwMTkgMTI6MDg6MTANCj4gICAgIEMgY29t
+cGlsZXI6IEdOVSA3LjQuMA0KPiAgICAgQysrIGNvbXBpbGVyOiBHTlUgNy40LjANCj4gICAgIEMg
+ZmxhZ3M6IC1EVUhEX1JGTk9DX0VOQUJMRUQgLURIQVZFX0NPTkZJR19IIC1EVUhEX0xPR19NSU5f
+TEVWRUw9MQ0KPiAgICAgLURVSERfTE9HX0NPTlNPTEVfTEVWRUw9MiAtRFVIRF9MT0dfRklMRV9M
+RVZFTD0yIC1EVUhEX0xPR19DT05TT0xFX0NPTE9SDQo+ICAgICBDKysgZmxhZ3M6IC1EVUhEX1JG
+Tk9DX0VOQUJMRUQgLURIQVZFX0NPTkZJR19IIC1EVUhEX0xPR19NSU5fTEVWRUw9MQ0KPiAgICAg
+LURVSERfTE9HX0NPTlNPTEVfTEVWRUw9MiAtRFVIRF9MT0dfRklMRV9MRVZFTD0yDQo+ICAgICAt
+RFVIRF9MT0dfQ09OU09MRV9DT0xPUg0KPiAgICAgLWZ2aXNpYmlsaXR5PWhpZGRlbiAtZnZpc2li
+aWxpdHktaW5saW5lcy1oaWRkZW4NCj4gICAgIEVuYWJsZWQgY29tcG9uZW50czogTGliVUhELCBM
+aWJVSEQgLSBDIEFQSSwgTGliVUhEIC0gUHl0aG9uIEFQSSwNCj4gICAgIEV4YW1wbGVzLCBVdGls
+cywgVGVzdHMsIFVTQiwgQjEwMCwgQjIwMCwgVVNSUDEsIFVTUlAyLCBYMzAwLCBOMjMwLA0KPiAg
+ICAgTVBNRCwNCj4gICAgIE4zMDAsIE4zMjAsIEUzMjAsIEUzMDAsIE9jdG9DbG9jaw0KPiAgICAg
+SW5zdGFsbCBwcmVmaXg6IDxpbnN0YWxsX3ByZWZpeD4vZ251cmFkaW8zOA0KPiAgICAgQm9vc3Qg
+dmVyc2lvbjogMS42NS4xDQo+ICAgICBMaWJ1c2IgdmVyc2lvbjogMS4wLjIzDQo+ICAgICBQYWNr
+YWdlIHBhdGg6IDxpbnN0YWxsX3ByZWZpeD4vZ251cmFkaW8zOA0KPiAgICAgSW1hZ2VzIGRpcmVj
+dG9yeTogPGluc3RhbGxfcHJlZml4Pi9nbnVyYWRpbzM4L3NoYXJlL3VoZC9pbWFnZXMNCj4gICAg
+IEFCSSB2ZXJzaW9uIHN0cmluZzogMy4xNS4wDQo+IA0KPiANCj4gICAgICQgdWhkX2ltYWdlX2xv
+YWRlciAtLWFyZ3MgInR5cGU9bjN4eCxhZGRyPVguWC5YLjIxMixmcGdhPUhHIg0KPiAgICAgW0lO
+Rk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gNy40LjA7IEJvb3N0XzEwNjUwMTsNCj4g
+ICAgIFVIRF8zLjE1LjAuZ2l0LTc5LWdmMzUzZGI4Zg0KPiAgICAgW0lORk9dIFtNUE1EXSBJbml0
+aWFsaXppbmcgMSBkZXZpY2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOg0KPiAgICAgbWdtdF9h
+ZGRyPVguWC5YLjEyOCx0eXBlPW4zeHgscHJvZHVjdD1uMzEwLHNlcmlhbD1YWFhYWFhYLGNsYWlt
+ZWQ9RmFsc2Usc2tpcF9pbml0PTENCj4gICAgIFtJTkZPXSBbTVBNRF0gQ2xhaW1lZCBkZXZpY2Ug
+d2l0aG91dCBmdWxsIGluaXRpYWxpemF0aW9uLg0KPiAgICAgW0lORk9dIFtNUE1EIElNQUdFIExP
+QURFUl0gU3RhcnRpbmcgdXBkYXRlLiBUaGlzIG1heSB0YWtlIGEgd2hpbGUuDQo+ICAgICBbSU5G
+T10gW01QTS5QZXJpcGhNYW5hZ2VyXSBVcGRhdGluZyBjb21wb25lbnQgYGZwZ2EnDQo+ICAgICBb
+SU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBVcGRhdGluZyBjb21wb25lbnQgYGR0cycNCj4gICAg
+IFtFUlJPUl0gW01QTS5QZXJpcGhNYW5hZ2VyXSBFcnJvciBleGVjdXRpbmcgYGR0Yyc6IENvbW1h
+bmQgJ1snZHRjJywNCj4gICAgICctLXN5bWJvbHMnLCAnLU8nLCAnZHRiJywgJy1xJywgJy1vJywg
+Jy9saWIvZmlybXdhcmUvbjMxMC5kdGJvJywNCj4gICAgICcvbGliL2Zpcm13YXJlL24zMTAuZHRz
+J10nIHJldHVybmVkIG5vbi16ZXJvIGV4aXQgc3RhdHVzIDENCj4gICAgIFtJTkZPXSBbTVBNLlJQ
+Q1NlcnZlcl0gUmVzZXR0aW5nIHBlcmlwaGVyYWwgbWFuYWdlci4NCj4gICAgIFtJTkZPXSBbTVBN
+LlBlcmlwaE1hbmFnZXJdIERldmljZSBzZXJpYWwgbnVtYmVyOiBYWFhYWFhYDQo+ICAgICBbSU5G
+T10gW01QTS5QZXJpcGhNYW5hZ2VyXSBJbml0aWFsaXplZCAyIGRhdWdodGVyYm9hcmQocykuDQo+
+ICAgICBbV0FSTklOR10gW01QTS5QZXJpcGhNYW5hZ2VyXSBBY3R1YWwgbWlub3IgY29tcGF0IGFo
+ZWFkIG9mIGV4cGVjdGVkDQo+ICAgICBjb21wYXQgZm9yIGNvbXBvbmVudCBgRlBHQScuIEV4cGVj
+dGVkOiA1LjIgQWN0dWFsOiA1LjMNCj4gICAgIFtJTkZPXSBbTVBNLlBlcmlwaE1hbmFnZXJdIGlu
+aXQoKSBjYWxsZWQgd2l0aCBkZXZpY2UgYXJncyBgJy4NCj4gICAgIFtJTkZPXSBbTVBNRCBJTUFH
+RSBMT0FERVJdIFVwZGF0ZSBjb21wb25lbnQgZnVuY3Rpb24gc3VjY2VlZGVkLg0KPiANCj4gICAg
+IFJlYm9vdGVkIGRldmljZXMsIHRoZW46DQo+IA0KPiAgICAgJCB1aGRfZmluZF9kZXZpY2VzDQo+
+ICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K
+PiAgICAgLS0gVUhEIERldmljZSAwDQo+ICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiAgICAgRGV2aWNlIEFkZHJlc3M6DQo+ICAgICAgwqAg
+wqAgwqBzZXJpYWw6IFhYWFhYWA0KPiAgICAgIMKgIMKgIMKgYWRkcjogWC5YLlguMjEyDQo+ICAg
+ICAgwqAgwqAgwqBjbGFpbWVkOiBGYWxzZQ0KPiAgICAgIMKgIMKgIMKgbWdtdF9hZGRyOiBYLlgu
+WC4xMjgNCj4gICAgICDCoCDCoCDCoHByb2R1Y3Q6IG4zMTANCj4gICAgICDCoCDCoCDCoHR5cGU6
+IG4zeHgNCj4gDQo+IA0KPiAgICAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0NCj4gICAgIC0tIFVIRCBEZXZpY2UgMQ0KPiAgICAgLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gICAgIERldmljZSBBZGRy
+ZXNzOg0KPiAgICAgIMKgIMKgIMKgc2VyaWFsOiBuL2ENCj4gICAgICDCoCDCoCDCoGNsYWltZWQ6
+IEZhbHNlDQo+ICAgICAgwqAgwqAgwqBtZ210X2FkZHI6IFguWC5YLjEyMw0KPiAgICAgIMKgIMKg
+IMKgcHJvZHVjdDogbi9hDQo+ICAgICAgwqAgwqAgwqByZWFjaGFibGU6IE5vDQo+ICAgICAgwqAg
+wqAgwqB0eXBlOiBuL2ENCj4gDQo+IA0KPiAgICAgT24gRGV2aWNlIDA6DQo+IA0KPiAgICAgJCB1
+aGRfY29uZmlnX2luZm8gLS1wcmludC1hbGwNCj4gICAgIFVIRCAzLjEzLjAuMi0wLXVua25vd24N
+Cj4gICAgIEJ1aWxkIGRhdGU6IEZyaSwgMDggTWFyIDIwMTkgMTg6NDM6MzINCj4gICAgIEMgY29t
+cGlsZXI6IEdOVSA3LjMuMA0KPiAgICAgQysrIGNvbXBpbGVyOiBHTlUgNy4zLjANCj4gICAgIEMg
+ZmxhZ3M6IC1EVUhEX0lNQUdFU19ESVI9T0ZGIC1ESEFWRV9DT05GSUdfSCAtRFVIRF9MT0dfTUlO
+X0xFVkVMPTENCj4gICAgIC1EVUhEX0xPR19DT05TT0xFX0xFVkVMPTIgLURVSERfTE9HX0ZJTEVf
+TEVWRUw9Mg0KPiAgICAgLURVSERfTE9HX0NPTlNPTEVfQ09MT1INCj4gICAgIC1ESEFWRV9MSUJF
+UklPIC1tYXJjaD1hcm12Ny1hIC1tYXJtIC1tZnB1PW5lb24gLW1mbG9hdC1hYmk9aGFyZA0KPiAg
+ICAgLW1jcHU9Y29ydGV4LWE5DQo+ICAgICAtLXN5c3Jvb3Q9L2hvbWUvb2UtYnVpbGRlci9idWls
+ZC90bXAtZ2xpYmMvd29yay9jb3J0ZXhhOWhmLW5lb24tb2UtbGludXgtZ251ZWFiaS91aGQvMy4x
+My4wLjItcjAvcmVjaXBlLXN5c3Jvb3QNCj4gDQo+ICAgICAgwqAgLU8yIC1waXBlIC1nIC1mZWxp
+bWluYXRlLXVudXNlZC1kZWJ1Zy10eXBlcw0KPiAgICAgLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21l
+L29lLWJ1aWxkZXIvYnVpbGQvdG1wLWdsaWJjL3dvcmsvY29ydGV4YTloZi1uZW9uLW9lLWxpbnV4
+LWdudWVhYmkvdWhkLzMuMTMuMC4yLXIwPS91c3Ivc3JjL2RlYnVnL3VoZC8zLjEzLjAuMi1yMA0K
+PiANCj4gICAgIC1mZGVidWctcHJlZml4LW1hcD0vaG9tZS9vZS1idWlsZGVyL2J1aWxkL3RtcC1n
+bGliYy93b3JrL2NvcnRleGE5aGYtbmVvbi1vZS1saW51eC1nbnVlYWJpL3VoZC8zLjEzLjAuMi1y
+MC9yZWNpcGUtc3lzcm9vdD0NCj4gDQo+ICAgICAtZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUvb2Ut
+YnVpbGRlci9idWlsZC90bXAtZ2xpYmMvd29yay9jb3J0ZXhhOWhmLW5lb24tb2UtbGludXgtZ251
+ZWFiaS91aGQvMy4xMy4wLjItcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlPQ0KPiANCj4gICAgICDC
+oCDCoC1tYXJjaD1hcm12Ny1hIC1tYXJtIC1tZnB1PW5lb24gLW1mbG9hdC1hYmk9aGFyZCAtbWNw
+dT1jb3J0ZXgtYTkNCj4gICAgIC0tc3lzcm9vdD0vaG9tZS9vZS1idWlsZGVyL2J1aWxkL3RtcC1n
+bGliYy93b3JrL2NvcnRleGE5aGYtbmVvbi1vZS1saW51eC1nbnVlYWJpL3VoZC8zLjEzLjAuMi1y
+MC9yZWNpcGUtc3lzcm9vdA0KPiAgICAgQysrIGZsYWdzOiAtRFVIRF9JTUFHRVNfRElSPU9GRiAt
+REhBVkVfQ09ORklHX0ggLURVSERfTE9HX01JTl9MRVZFTD0xDQo+ICAgICAtRFVIRF9MT0dfQ09O
+U09MRV9MRVZFTD0yIC1EVUhEX0xPR19GSUxFX0xFVkVMPTINCj4gICAgIC1EVUhEX0xPR19DT05T
+T0xFX0NPTE9SDQo+ICAgICAtREhBVkVfTElCRVJJTyAtbWFyY2g9YXJtdjctYSAtbWFybSAtbWZw
+dT1uZW9uIC1tZmxvYXQtYWJpPWhhcmQNCj4gICAgIC1tY3B1PWNvcnRleC1hOQ0KPiAgICAgLS1z
+eXNyb290PS9ob21lL29lLWJ1aWxkZXIvYnVpbGQvdG1wLWdsaWJjL3dvcmsvY29ydGV4YTloZi1u
+ZW9uLW9lLWxpbnV4LWdudWVhYmkvdWhkLzMuMTMuMC4yLXIwL3JlY2lwZS1zeXNyb290DQo+IA0K
+PiAgICAgIMKgIC1PMiAtcGlwZSAtZyAtZmVsaW1pbmF0ZS11bnVzZWQtZGVidWctdHlwZXMNCj4g
+ICAgIC1mZGVidWctcHJlZml4LW1hcD0vaG9tZS9vZS1idWlsZGVyL2J1aWxkL3RtcC1nbGliYy93
+b3JrL2NvcnRleGE5aGYtbmVvbi1vZS1saW51eC1nbnVlYWJpL3VoZC8zLjEzLjAuMi1yMD0vdXNy
+L3NyYy9kZWJ1Zy91aGQvMy4xMy4wLjItcjANCj4gDQo+ICAgICAtZmRlYnVnLXByZWZpeC1tYXA9
+L2hvbWUvb2UtYnVpbGRlci9idWlsZC90bXAtZ2xpYmMvd29yay9jb3J0ZXhhOWhmLW5lb24tb2Ut
+bGludXgtZ251ZWFiaS91aGQvMy4xMy4wLjItcjAvcmVjaXBlLXN5c3Jvb3Q9DQo+IA0KPiAgICAg
+LWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL29lLWJ1aWxkZXIvYnVpbGQvdG1wLWdsaWJjL3dvcmsv
+Y29ydGV4YTloZi1uZW9uLW9lLWxpbnV4LWdudWVhYmkvdWhkLzMuMTMuMC4yLXIwL3JlY2lwZS1z
+eXNyb290LW5hdGl2ZT0NCj4gDQo+ICAgICAgwqAgLWZ2aXNpYmlsaXR5LWlubGluZXMtaGlkZGVu
+wqAgLW1hcmNoPWFybXY3LWEgLW1hcm0gLW1mcHU9bmVvbg0KPiAgICAgLW1mbG9hdC1hYmk9aGFy
+ZCAtbWNwdT1jb3J0ZXgtYTkNCj4gICAgIC0tc3lzcm9vdD0vaG9tZS9vZS1idWlsZGVyL2J1aWxk
+L3RtcC1nbGliYy93b3JrL2NvcnRleGE5aGYtbmVvbi1vZS1saW51eC1nbnVlYWJpL3VoZC8zLjEz
+LjAuMi1yMC9yZWNpcGUtc3lzcm9vdA0KPiANCj4gICAgIC1mdmlzaWJpbGl0eT1oaWRkZW4gLWZ2
+aXNpYmlsaXR5LWlubGluZXMtaGlkZGVuDQo+ICAgICBFbmFibGVkIGNvbXBvbmVudHM6IExpYlVI
+RCwgTGliVUhEIC0gQyBBUEksIEV4YW1wbGVzLCBVdGlscywgVGVzdHMsDQo+ICAgICBMSUJFUklP
+LCBVU0IsIEdQU0QsIE1QTUQsIE4zMDAsIEUzMjANCj4gICAgIEluc3RhbGwgcHJlZml4OiAvdXNy
+DQo+ICAgICBCb29zdCB2ZXJzaW9uOiAxLjY2DQo+ICAgICBMaWJ1c2IgdmVyc2lvbjogMS4wLjIz
+DQo+ICAgICBQYWNrYWdlIHBhdGg6IC91c3INCj4gICAgIEltYWdlcyBkaXJlY3Rvcnk6IC91c3Iv
+c2hhcmUvdWhkL2ltYWdlcw0KPiAgICAgQUJJIHZlcnNpb24gc3RyaW5nOiAzLjEzLjANCj4gDQo+
+ICAgICAkIGlwIGENCj4gICAgIDE6IGxvOiA8TE9PUEJBQ0ssVVAsTE9XRVJfVVA+IG10dSA2NTUz
+NiBxZGlzYyBub3F1ZXVlIHFsZW4gMTAwMA0KPiAgICAgIMKgIMKgIMKgbGluay9sb29wYmFjayAw
+MDowMDowMDowMDowMDowMCBicmQgMDA6MDA6MDA6MDA6MDA6MDANCj4gICAgICDCoCDCoCDCoGlu
+ZXQgMTI3LjAuMC4xLzggPGh0dHA6Ly8xMjcuMC4wLjEvOD4gc2NvcGUgaG9zdCBsbw0KPiAgICAg
+IMKgIMKgIMKgIMKgIHZhbGlkX2xmdCBmb3JldmVyIHByZWZlcnJlZF9sZnQgZm9yZXZlcg0KPiAg
+ICAgMjogZXRoMDogPEJST0FEQ0FTVCxNVUxUSUNBU1QsVVAsTE9XRVJfVVA+IG10dSAxNTAwIHFk
+aXNjIHBmaWZvX2Zhc3QNCj4gICAgIHFsZW4gMTAwMA0KPiAgICAgIMKgIMKgIMKgbGluay9ldGhl
+ciAwMDo4MDoyZjoyNjo2YzpjMSBicmQgZmY6ZmY6ZmY6ZmY6ZmY6ZmYNCj4gICAgICDCoCDCoCDC
+oGluZXQgWC5YLlguMTI4LzI0IGJyZCBYLlguWC4yNTUgc2NvcGUgZ2xvYmFsIGR5bmFtaWMgZXRo
+MA0KPiAgICAgIMKgIMKgIMKgIMKgIHZhbGlkX2xmdCA0MzExNHNlYyBwcmVmZXJyZWRfbGZ0IDQz
+MTE0c2VjDQo+ICAgICAzOiBzZnAwOiA8QlJPQURDQVNULE1VTFRJQ0FTVCxVUCxMT1dFUl9VUD4g
+bXR1IDE1MDAgcWRpc2MgcGZpZm9fZmFzdA0KPiAgICAgcWxlbiAxMDAwDQo+ICAgICAgwqAgwqAg
+wqBsaW5rL2V0aGVyIDAwOjgwOjJmOjI2OjZjOmMyIGJyZCBmZjpmZjpmZjpmZjpmZjpmZg0KPiAg
+ICAgIMKgIMKgIMKgaW5ldCBYLlguWC4yMTIvMjQgYnJkIFguWC5YLjI1NSBzY29wZSBnbG9iYWwg
+c2ZwMA0KPiAgICAgIMKgIMKgIMKgIMKgIHZhbGlkX2xmdCBmb3JldmVyIHByZWZlcnJlZF9sZnQg
+Zm9yZXZlcg0KPiAgICAgNDogc2ZwMTogPE5PLUNBUlJJRVIsQlJPQURDQVNULE1VTFRJQ0FTVCxV
+UD4gbXR1IDgwMDAgcWRpc2MgcGZpZm9fZmFzdA0KPiAgICAgcWxlbiAxMDAwDQo+ICAgICAgwqAg
+wqAgwqBsaW5rL2V0aGVyIDAwOjgwOjJmOjI2OjZjOmMzIGJyZCBmZjpmZjpmZjpmZjpmZjpmZg0K
+PiANCj4gICAgIE9uIEhvc3QgZm9yIERldmljZSAwOg0KPiAgICAgJCB1aGRfdXNycF9wcm9iZSAt
+LWFyZ3M9ImFkZHI9WC5YLlguMjEyIg0KPiAgICAgW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysr
+IHZlcnNpb24gNy40LjA7IEJvb3N0XzEwNjUwMTsNCj4gICAgIFVIRF8zLjE1LjAuZ2l0LTc5LWdm
+MzUzZGI4Zg0KPiAgICAgW0lORk9dIFtNUE1EXSBJbml0aWFsaXppbmcgMSBkZXZpY2UocykgaW4g
+cGFyYWxsZWwgd2l0aCBhcmdzOg0KPiAgICAgbWdtdF9hZGRyPVguWC5YLjEyOCx0eXBlPW4zeHgs
+cHJvZHVjdD1uMzEwLHNlcmlhbD1YWFhYWFhYLGNsYWltZWQ9RmFsc2UsYWRkcj1YLlguWC4yMTIN
+Cj4gICAgIFtXQVJOSU5HXSBbTVBNRF0gQ291bGQgbm90IGRldGVybWluZSBsaW5rIHNwZWVkOyB1
+c2luZyAxR2liRSBtYXggc3BlZWQNCj4gICAgIG9mIDEuMjVlKzA4DQo+ICAgICBbSU5GT10gW01Q
+TS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkgY2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MNCj4gICAgIGBw
+cm9kdWN0PW4zMTAsbWdtdF9hZGRyPVguWC5YLjEyOCcuDQo+ICAgICBbRVJST1JdIFtVSERdIEV4
+Y2VwdGlvbiBjYXVnaHQgaW4gc2FmZS1jYWxsLg0KPiAgICAgIMKgIMKgaW4gY3RybF9pZmFjZV9p
+bXBsPF9lbmRpYW5uZXNzPjo6fmN0cmxfaWZhY2VfaW1wbCgpIFt3aXRoDQo+ICAgICB1aGQ6OmVu
+ZGlhbm5lc3NfdCBfZW5kaWFubmVzcyA9ICh1aGQ6OmVuZGlhbm5lc3NfdCkwXQ0KPiAgICAgIMKg
+IMKgYXQgL2hvbWUvYW50L2dudXJhZGlvMzgvc3JjL3VoZC9ob3N0L2xpYi9yZm5vYy9jdHJsX2lm
+YWNlLmNwcDo1Mg0KPiAgICAgdGhpcy0+c2VuZF9jbWRfcGt0KDAsIDAsIHRydWUpOyAtPiBFbnZp
+cm9ubWVudEVycm9yOiBJT0Vycm9yOiBCbG9jaw0KPiAgICAgY3RybA0KPiAgICAgKENFXzAwX1Bv
+cnRfMzApIG5vIHJlc3BvbnNlIHBhY2tldCAtIEFzc2VydGlvbkVycm9yOiBib29sKGJ1ZmYpDQo+
+ICAgICAgwqAgwqBpbiB1aW50NjRfdCBjdHJsX2lmYWNlX2ltcGw8X2VuZGlhbm5lc3M+Ojp3YWl0
+X2Zvcl9hY2soYm9vbCwNCj4gICAgIGRvdWJsZSkNCj4gICAgIFt3aXRoIHVoZDo6ZW5kaWFubmVz
+c190IF9lbmRpYW5uZXNzID0gKHVoZDo6ZW5kaWFubmVzc190KTA7IHVpbnQ2NF90ID0NCj4gICAg
+IGxvbmcgdW5zaWduZWQgaW50XQ0KPiAgICAgIMKgIMKgYXQgL2hvbWUvYW50L2dudXJhZGlvMzgv
+c3JjL3VoZC9ob3N0L2xpYi9yZm5vYy9jdHJsX2lmYWNlLmNwcDoxNTENCj4gDQo+ICAgICBbRVJS
+T1JdIFtNUE1EXSBGYWlsdXJlIGR1cmluZyBibG9jayBlbnVtZXJhdGlvbjogRW52aXJvbm1lbnRF
+cnJvcjoNCj4gICAgIElPRXJyb3I6IHJlY3YgZXJyb3Igb24gc29ja2V0OiBDb25uZWN0aW9uIHJl
+ZnVzZWQNCj4gICAgIEVycm9yOiBSdW50aW1lRXJyb3I6IEZhaWxlZCB0byBydW4gZW51bWVyYXRl
+X3Jmbm9jX2Jsb2NrcygpDQo+IA0KPiAgICAgVGhhdCdzIHdoZXJlIEkgaGFuZyBub3cuDQo+ICAg
+ICBUaGUgc2FtZSBlcnJvciBhcHBlYXJzIGluIGNhc2UgSSB0cnkgdG8gcnVuIGEgR1IgZmxvd2dy
+YXBoIHdpdGggdGhhdA0KPiAgICAgZGV2aWNlLg0KPiANCj4gICAgIEZvciBEZXZpY2UgMToNCj4g
+ICAgIEkgZm9sbG93ZWQ6IGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3VzcnBf
+bjN4eC5odG1sDQo+ICAgICAkIHVoZF9pbWFnZXNfZG93bmxvYWRlciAtdCBuM3h4X2NvbW1vbl9z
+ZGltZ19kZWZhdWx0DQo+ICAgICAkIHN1ZG8gZGQgaWY9PFlPVVJfSU1BR0U+IG9mPS9kZXYvPFlP
+VVJfU0RfQ0FSRD4gYnM9MU0NCj4gDQo+ICAgICBBZnRlciBxdWl0ZSBzb21lIHRpbWUgYGRkYCBy
+ZXBvcnRlZCBzdWNjZXNzLg0KPiANCj4gICAgIE9uIEhvc3QNCj4gICAgICQgdWhkX2ZpbmRfZGV2
+aWNlcw0KPiAgICAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0NCj4gICAgIC0tIFVIRCBEZXZpY2UgMQ0KPiAgICAgLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gICAgIERldmljZSBBZGRyZXNzOg0KPiAg
+ICAgIMKgIMKgIMKgc2VyaWFsOiBuL2ENCj4gICAgICDCoCDCoCDCoGNsYWltZWQ6IEZhbHNlDQo+
+ICAgICAgwqAgwqAgwqBtZ210X2FkZHI6IFguWC5YLjEyMw0KPiAgICAgIMKgIMKgIMKgcHJvZHVj
+dDogbi9hDQo+ICAgICAgwqAgwqAgwqByZWFjaGFibGU6IE5vDQo+ICAgICAgwqAgwqAgwqB0eXBl
+OiBuL2ENCj4gDQo+ICAgICBPbiBEZXZpY2UgMToNCj4gICAgICQgdWhkX2NvbmZpZ19pbmZvIC0t
+cHJpbnQtYWxsDQo+ICAgICBVSEQgMy4xNC4wLjAtMC1nNjU1YjliMGYNCj4gICAgIEJ1aWxkIGRh
+dGU6IFR1ZSwgMTkgRmViIDIwMTkgMDA6MDU6MjMNCj4gICAgIEMgY29tcGlsZXI6IEdOVSA3LjMu
+MA0KPiAgICAgQysrIGNvbXBpbGVyOiBHTlUgNy4zLjANCj4gICAgIEMgZmxhZ3M6IC1ESEFWRV9D
+T05GSUdfSCAtRFVIRF9MT0dfTUlOX0xFVkVMPTENCj4gICAgIC1EVUhEX0xPR19DT05TT0xFX0xF
+VkVMPTINCj4gICAgIC1EVUhEX0xPR19GSUxFX0xFVkVMPTIgLURVSERfTE9HX0NPTlNPTEVfQ09M
+T1IgLURIQVZFX0xJQkVSSU8NCj4gICAgIC1tYXJjaD1hcm12Ny1hIC1tYXJtIC1tZnB1PW5lb24g
+LW1mbG9hdC1hYmk9aGFyZCAtbWNwdT1jb3J0ZXgtYTkNCj4gICAgIC0tc3lzcm9vdD0vaG9tZS9v
+ZS1idWlsZGVyL2J1aWxkL3RtcC1nbGliYy93b3JrL2NvcnRleGE5aGYtbmVvbi1vZS1saW51eC1n
+bnVlYWJpL3VoZC8zLjE0LjAuMC1yMS9yZWNpcGUtc3lzcm9vdA0KPiANCj4gICAgICDCoCAtTzIg
+LXBpcGUgLWcgLWZlbGltaW5hdGUtdW51c2VkLWRlYnVnLXR5cGVzDQo+ICAgICAtZmRlYnVnLXBy
+ZWZpeC1tYXA9L2hvbWUvb2UtYnVpbGRlci9idWlsZC90bXAtZ2xpYmMvd29yay9jb3J0ZXhhOWhm
+LW5lb24tb2UtbGludXgtZ251ZWFiaS91aGQvMy4xNC4wLjAtcjE9L3Vzci9zcmMvZGVidWcvdWhk
+LzMuMTQuMC4wLXIxDQo+IA0KPiAgICAgLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL29lLWJ1aWxk
+ZXIvYnVpbGQvdG1wLWdsaWJjL3dvcmsvY29ydGV4YTloZi1uZW9uLW9lLWxpbnV4LWdudWVhYmkv
+dWhkLzMuMTQuMC4wLXIxL3JlY2lwZS1zeXNyb290PQ0KPiANCj4gICAgIC1mZGVidWctcHJlZml4
+LW1hcD0vaG9tZS9vZS1idWlsZGVyL2J1aWxkL3RtcC1nbGliYy93b3JrL2NvcnRleGE5aGYtbmVv
+bi1vZS1saW51eC1nbnVlYWJpL3VoZC8zLjE0LjAuMC1yMS9yZWNpcGUtc3lzcm9vdC1uYXRpdmU9
+DQo+IA0KPiAgICAgIMKgIMKgLW1hcmNoPWFybXY3LWEgLW1hcm0gLW1mcHU9bmVvbiAtbWZsb2F0
+LWFiaT1oYXJkIC1tY3B1PWNvcnRleC1hOQ0KPiAgICAgLS1zeXNyb290PS9ob21lL29lLWJ1aWxk
+ZXIvYnVpbGQvdG1wLWdsaWJjL3dvcmsvY29ydGV4YTloZi1uZW9uLW9lLWxpbnV4LWdudWVhYmkv
+dWhkLzMuMTQuMC4wLXIxL3JlY2lwZS1zeXNyb290DQo+ICAgICBDKysgZmxhZ3M6IC1ESEFWRV9D
+T05GSUdfSCAtRFVIRF9MT0dfTUlOX0xFVkVMPTENCj4gICAgIC1EVUhEX0xPR19DT05TT0xFX0xF
+VkVMPTIgLURVSERfTE9HX0ZJTEVfTEVWRUw9Mg0KPiAgICAgLURVSERfTE9HX0NPTlNPTEVfQ09M
+T1INCj4gICAgIC1ESEFWRV9MSUJFUklPIC1tYXJjaD1hcm12Ny1hIC1tYXJtIC1tZnB1PW5lb24g
+LW1mbG9hdC1hYmk9aGFyZA0KPiAgICAgLW1jcHU9Y29ydGV4LWE5DQo+ICAgICAtLXN5c3Jvb3Q9
+L2hvbWUvb2UtYnVpbGRlci9idWlsZC90bXAtZ2xpYmMvd29yay9jb3J0ZXhhOWhmLW5lb24tb2Ut
+bGludXgtZ251ZWFiaS91aGQvMy4xNC4wLjAtcjEvcmVjaXBlLXN5c3Jvb3QNCj4gDQo+ICAgICAg
+wqAgLU8yIC1waXBlIC1nIC1mZWxpbWluYXRlLXVudXNlZC1kZWJ1Zy10eXBlcw0KPiAgICAgLWZk
+ZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL29lLWJ1aWxkZXIvYnVpbGQvdG1wLWdsaWJjL3dvcmsvY29y
+dGV4YTloZi1uZW9uLW9lLWxpbnV4LWdudWVhYmkvdWhkLzMuMTQuMC4wLXIxPS91c3Ivc3JjL2Rl
+YnVnL3VoZC8zLjE0LjAuMC1yMQ0KPiANCj4gICAgIC1mZGVidWctcHJlZml4LW1hcD0vaG9tZS9v
+ZS1idWlsZGVyL2J1aWxkL3RtcC1nbGliYy93b3JrL2NvcnRleGE5aGYtbmVvbi1vZS1saW51eC1n
+bnVlYWJpL3VoZC8zLjE0LjAuMC1yMS9yZWNpcGUtc3lzcm9vdD0NCj4gDQo+ICAgICAtZmRlYnVn
+LXByZWZpeC1tYXA9L2hvbWUvb2UtYnVpbGRlci9idWlsZC90bXAtZ2xpYmMvd29yay9jb3J0ZXhh
+OWhmLW5lb24tb2UtbGludXgtZ251ZWFiaS91aGQvMy4xNC4wLjAtcjEvcmVjaXBlLXN5c3Jvb3Qt
+bmF0aXZlPQ0KPiANCj4gICAgICDCoCAtZnZpc2liaWxpdHktaW5saW5lcy1oaWRkZW7CoCAtbWFy
+Y2g9YXJtdjctYSAtbWFybSAtbWZwdT1uZW9uDQo+ICAgICAtbWZsb2F0LWFiaT1oYXJkIC1tY3B1
+PWNvcnRleC1hOQ0KPiAgICAgLS1zeXNyb290PS9ob21lL29lLWJ1aWxkZXIvYnVpbGQvdG1wLWds
+aWJjL3dvcmsvY29ydGV4YTloZi1uZW9uLW9lLWxpbnV4LWdudWVhYmkvdWhkLzMuMTQuMC4wLXIx
+L3JlY2lwZS1zeXNyb290DQo+IA0KPiAgICAgLWZ2aXNpYmlsaXR5PWhpZGRlbiAtZnZpc2liaWxp
+dHktaW5saW5lcy1oaWRkZW4NCj4gICAgIEVuYWJsZWQgY29tcG9uZW50czogTGliVUhELCBMaWJV
+SEQgLSBDIEFQSSwgRXhhbXBsZXMsIFV0aWxzLCBUZXN0cywNCj4gICAgIExJQkVSSU8sIFVTQiwg
+R1BTRCwgTVBNRCwgTjMwMCwgTjMyMCwgRTMyMA0KPiAgICAgSW5zdGFsbCBwcmVmaXg6IC91c3IN
+Cj4gICAgIEJvb3N0IHZlcnNpb246IDEuNjYNCj4gICAgIExpYnVzYiB2ZXJzaW9uOiAxLjAuMjMN
+Cj4gICAgIFBhY2thZ2UgcGF0aDogL3Vzcg0KPiAgICAgSW1hZ2VzIGRpcmVjdG9yeTogL3Vzci9z
+aGFyZS91aGQvaW1hZ2VzDQo+ICAgICBBQkkgdmVyc2lvbiBzdHJpbmc6IDMuMTQuMA0KPiANCj4g
+ICAgICRpcCBhDQo+ICAgICAxOiBsbzogPExPT1BCQUNLLFVQLExPV0VSX1VQPiBtdHUgNjU1MzYg
+cWRpc2Mgbm9xdWV1ZSBxbGVuIDEwMDANCj4gICAgICDCoCDCoCDCoGxpbmsvbG9vcGJhY2sgMDA6
+MDA6MDA6MDA6MDA6MDAgYnJkIDAwOjAwOjAwOjAwOjAwOjAwDQo+ICAgICAgwqAgwqAgwqBpbmV0
+IDEyNy4wLjAuMS84IDxodHRwOi8vMTI3LjAuMC4xLzg+IHNjb3BlIGhvc3QgbG8NCj4gICAgICDC
+oCDCoCDCoCDCoCB2YWxpZF9sZnQgZm9yZXZlciBwcmVmZXJyZWRfbGZ0IGZvcmV2ZXINCj4gICAg
+IDI6IGV0aDA6IDxCUk9BRENBU1QsTVVMVElDQVNULFVQLExPV0VSX1VQPiBtdHUgMTUwMCBxZGlz
+YyBwZmlmb19mYXN0DQo+ICAgICBxbGVuIDEwMDANCj4gICAgICDCoCDCoCDCoGxpbmsvZXRoZXIg
+MDA6ODA6MmY6MjY6NmM6YjggYnJkIGZmOmZmOmZmOmZmOmZmOmZmDQo+ICAgICAgwqAgwqAgwqBp
+bmV0IFguWC5YLjEyMy8yNCBicmQgWC5YLlguMjU1IHNjb3BlIGdsb2JhbCBkeW5hbWljIGV0aDAN
+Cj4gICAgICDCoCDCoCDCoCDCoCB2YWxpZF9sZnQgNDA2MTNzZWMgcHJlZmVycmVkX2xmdCA0MDYx
+M3NlYw0KPiANCj4gICAgIFRoZSBTRlAgZXRoZXJuZXQgZGV2aWNlcyBkb247dCBzaG93IHVwLg0K
+PiAgICAgQWxzbywgSSB3YXNuJ3QgYWJsZSB0byBsb2FkIGEgY3VycmVudCBGUEdBIGltYWdlIG9u
+IHRoZSBkZXZpY2UuIFNpbmNlDQo+ICAgICB0aGUgU0ZQIHBvcnQgZG9lcyBub3Qgc2hvdyB1cCwg
+SSB0cmllZCB0byB1c2UgYG1nbXRfYWRkcj1YLlguWC4xMjNgLg0KPiAgICAgX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gICAgIFVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0DQo+ICAgICBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPiAgICAgaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
+bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tDQo+IA0KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxp
+c3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
+bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
