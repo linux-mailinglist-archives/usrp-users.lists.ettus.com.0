@@ -2,56 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87495D9884
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Oct 2019 19:31:24 +0200 (CEST)
-Received: from [::1] (port=56588 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01EE9D9909
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Oct 2019 20:19:59 +0200 (CEST)
+Received: from [::1] (port=40138 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iKn8s-0003wC-Rz; Wed, 16 Oct 2019 13:31:22 -0400
-Received: from sanddollar.geekisp.com ([216.168.135.167]:21196)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <philip@balister.org>) id 1iKn8p-0003mr-4E
- for USRP-users@lists.ettus.com; Wed, 16 Oct 2019 13:31:19 -0400
-Received: (qmail 7479 invoked by uid 1003); 16 Oct 2019 17:30:42 -0000
-Received: from unknown (HELO ?192.168.11.139?)
- (philip@opensdr.com@73.152.143.112)
- by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 16 Oct 2019 17:30:42 -0000
-To: "zcao@c3commsystems.com" <zcao@c3commsystems.com>,
- USRP-users <USRP-users@lists.ettus.com>
-References: <28B45C9C-A4D1-4752-8921-25BFB5E5FF19@c3commsystems.com>
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
- mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
- HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
- rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
- 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
- fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
- AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
- CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
- nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
- 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
- YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
- 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
- yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
- gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
- GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
- uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
- LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
- gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
- WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
- 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
- ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
- icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
- ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
- 6eUfr0u7CwnEyqiQ
-Message-ID: <b6788eea-f03b-3648-91d0-61b8297ecb5a@balister.org>
-Date: Wed, 16 Oct 2019 13:30:35 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+	id 1iKnts-0008DI-Md; Wed, 16 Oct 2019 14:19:56 -0400
+Received: from mail-qk1-f179.google.com ([209.85.222.179]:46053)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <cuervonicolas@gmail.com>)
+ id 1iKnto-00083D-Hr
+ for usrp-users@lists.ettus.com; Wed, 16 Oct 2019 14:19:52 -0400
+Received: by mail-qk1-f179.google.com with SMTP id z67so23640459qkb.12
+ for <usrp-users@lists.ettus.com>; Wed, 16 Oct 2019 11:19:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=CuJWzMGM7iyUMMT9jOJ3l+jXTwWHn8PlhQplOoSzZuk=;
+ b=ZxEUcevIB7Qckwi0Uz9tEKOyYkOUBPkakhJ1cSV3PZ7jnaDHMSb3R9Dlx8LOUsQ1fQ
+ gZL1ecN74LQFAG9lQpUDuCUqqHiY0iOpFxlhMVOkKMSqr9cZLr4Wn8Zd5cbPXLQq8EPM
+ LJTMIHYSSYARZXXXaljarMyZoKNe4R8fNE+Sxl5P+afRN0poOTiJhK9BQTGebrrEawy9
+ 6B741bbd/ua6XyYPsD0pJyph6i7DPhH0oxVMlukBTqR2hFp4ev/2N0l/y/p7k+cDaM9l
+ QdfDuEk7ESxhWDso+uiHWeGVyggB2gHTnQcAL0ai8QUaK5yR5ww+iIvKuckafa2Dxlol
+ EVIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=CuJWzMGM7iyUMMT9jOJ3l+jXTwWHn8PlhQplOoSzZuk=;
+ b=aI9bTicVbDtTwQ50e4IhwUOqyhbEII+IKlEAMDylzMRkB/cp6D6Ipl7fp2g7RMGVkk
+ LL5zC42cTVp4rU8ZU5/1hZCnayQLA82HqaH2y4fbyTSWlh0T2p3NkYBtixN0n9mFN21L
+ ORteZMPTGx32oBYM61kfbPrjfVyAUWyRstvzzCoqKuCbbywKErxDK0s/dtOOKc6RrBSE
+ xoZuzfNQJlmyGlk65K0jmOmxa6nZRXsXqMklnAW59Bo1v07ujsiimu8BSFYK1wp9hAmu
+ P4t7oPhxu4jPn6zoBry/gx1MtS6SIJJdWSy+JIm+A+pcjyBmx28OdMLH50A1YomJiaQC
+ 5nSw==
+X-Gm-Message-State: APjAAAXHieMtiwfwr+2gkqlOstjbW/LEuwf2CvlljMxxEYcBziY2I5Jd
+ /KxY+IWIK66GuiDl1vdN8ETZ//nAVpjlA7U1r7c=
+X-Google-Smtp-Source: APXvYqxQzGPkoo/jo1xFsncAaxgGTHB0Y1YU0ZIhpnpp0QY1uIMcIf8xwPHMa2l2r7OdwiulWn5LlmItCS9e5/aFWcE=
+X-Received: by 2002:ae9:ec11:: with SMTP id h17mr40740986qkg.485.1571249951717; 
+ Wed, 16 Oct 2019 11:19:11 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <28B45C9C-A4D1-4752-8921-25BFB5E5FF19@c3commsystems.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] E310 GPS time source?
+Date: Wed, 16 Oct 2019 20:19:00 +0200
+Message-ID: <CAG-BkhYSJvb4TvVR+nMRzZqW+6pew4ArFHCiCviifVoAQp4LLQ@mail.gmail.com>
+To: discuss-gnuradio <discuss-gnuradio@gnu.org>, 
+ "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] FOSDEM 2020: Free Software Radio Devroom CfP
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,10 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@balister.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Nicolas Cuervo Benavides via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nicolas Cuervo Benavides <cuervonicolas@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4759145027836784550=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,32 +72,186 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMTAvMTYvMTkgMTA6MzMgQU0sIHpjYW8tLS0gdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gSGks
-Cj4gCj4gVUhEIGxpYiBwcm92aWRlcyBhIGZ1bmN0aW9uLCBnZXRfdGltZV9sYXN0X3BwcygpLCB3
-aGljaCBzdXBwb3NlIHRvIHByb3ZpZGVzIHRoZSB0aW1lIHN0YW1wIGZvciB0aGUgbGF0ZXN0IFBQ
-UyByaWdodCBlZGdlLiBJIGFtIHdvbmRlcmluZyB3aGF0IGlzIHRoZSBzb3VyY2Ugb2YgdGhlIHRp
-bWUgaW5mb3JtYXRpb24gdGhlIGFib3ZlIGZ1bmN0aW9uIHVzZXM/IAo+IAo+IFNwZWNpZmljYWxs
-eSwgd2UgYXJlIGFpbWluZyBhdCBzeW5jaHJvbml6ZSBtdWx0aXBsZSBFMzEwIGRldmljZXMgZm9y
-IGEgVERNQSBzeXN0ZW0uIEVhY2ggRTMxMCBpcyBzdGFuZGFsb25lIGFuZCBoYXMgbm8gbmV0d29y
-ayBjb25uZWN0IHRvIGEgY29tbW9uIE5UUCBzZXJ2ZXIuIEZyb20gdGhlIHNjaGVtYXRpY3Mgb2Yg
-RTMxMCwgaXQgc2VlbXMgdG8gbWUgdGhhdCB0aGUgR1BTIHJlY2VpdmVyIGNoaXAgb25seSBwcm92
-aWRlcyB0aGUgUFBTIG91dHB1dCB0byB0aGUgRlBHQS4gSSBkaWRu4oCZdCBmaW5kIGFueSBoYXJk
-d2FyZSBzdXBwb3J0IHRoYXQgYWxsb3dzIEUzMTAgdG8gb2J0YWluIHRoZSB0aW1lIGluZm9ybWF0
-aW9uIGZyb20gR1BTLCBvdGhlciB0aGFuIHRoZSBlZGdlIG9mIGVhY2ggc2Vjb25kLiAKCkkga25v
-dyB0aGUgRTMwMCBjYW4gc3luYyBOVFAgdGltZSB0byBHUFMgdGltZS4gU2VhcmNoaW5nIHRoZSBt
-ZW1vcnkKYmFua3MgbWFrZXMgbWUgdGhpbmsgZ3BzZCBpcyBwcm92aWRpbmcgdGhlIHRpbWUgdG8g
-bnRwZCBhbmQgdGhlIHBwcwpkcml2ZXIgaXMgZG9pbmcgdGhlIHBwcyBpbnRlcmZhY2UgdG8gbnRw
-ZC4KCkkgZG9uJ3Qga25vdyBhYm91dCB0aGUgdWhkIHRpbWUgdGhvdWdoLgoKUGlobGlwCgo+IAo+
-IEFtIEkgcmlnaHQ/IElmIHNvLCB3aGF0IHRpbWUgaW5mb3JtYXRpb24gdGhlIGZ1bmN0aW9uIGdl
-dF90aW1lX2xhc3RfcHBzKCkgYWN0dWFsbHkgcmV0dXJucz8gSXMgdGhlcmUgYSB3YXkgdG8gc3lu
-YyB0aGUgdGltZSBhY3Jvc3MgbXVsdGlwbGUgc3RhbmRhbG9uZSBFMzEwPwo+IAo+IFRoYW5rcywK
-PiBBcm5vbGQgCj4gCj4gQy0zIENvbW0gU3lzdGVtcywgTExDCj4gMzEwMCBDbGFyZW5kb24gQmx2
-ZC4sIFN1aXRlIDIwMAo+IEFybGluZ3RvbiwgVkEgMjIyMDEKPiBQaG9uZTogKDcwMykgODI5LTA1
-ODgKPiBFbWFpbCA6IHpjYW9AYzNjb21tc3lzdGVtcy5jb20gPG1haWx0bzp6Y2FvQGMzY29tbXN5
-c3RlbXMuY29tPgo+IAo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
-ZXJzX2xpc3RzLmV0dHVzLmNvbQo+IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
-cnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============4759145027836784550==
+Content-Type: multipart/alternative; boundary="00000000000039bf1705950b23bf"
+
+--00000000000039bf1705950b23bf
+Content-Type: text/plain; charset="UTF-8"
+
+Dear friends and fans of software-defined radio and free/open-source radio
+topics in general,
+
+FOSDEM 2020 (the free and open-source developer's meeting in Brussels,
+Europe) will, once again, feature a track on Software Defined Radio, and
+any other radio-related topics in the (now known as) *Free Software
+Radio* devroom.
+Therefore, we invite developers and users from the free software radio
+community to join us for this track and present your talks or demos.
+
+
+Software Radio has become an important tool to allow anyone to access the
+EM spectrum. Using free software radio libraries and applications and cheap
+hardware, anyone can now start hacking on wireless communications, remote
+sensing, radar, fun hacks of all sorts, or other applications. At FOSDEM,
+we hope to network all these projects and improve collaboration, bring new
+ideas forward and get more people involved.
+
+
+The track's web site resides at the link below. The final schedule will be
+available through Pentabarf and the official FOSDEM website.
+
+https://fosdem.org/2020/schedule/track/free_software_radio/
+
+
+Additional Information will be also available at:
+https://wiki.gnuradio.org/index.php/FOSDEM_2020
+
+
+** Submit your presentations
+
+To suggest a talk, go to https://penta.fosdem.org/submission/FOSDEM20 and
+follow the instructions (you need an account, but can use your account from
+last year if you have one). You need to create an 'Event'; make sure it's
+in the Free Software Radio track! Lengths aren't fixed, but give a
+realistic estimate and please don't exceed 30 minutes unless you have
+something special planned (in that case, contact one of us). Also, don't
+forget to include time for Q&A.
+We will typically go for 30-minute slots -- shorter talks, unless they're
+really short, usually tend to screw up the schedule too much.
+
+You aren't limited to slide presentations, of course. Be creative. However,
+FOSDEM is an open-source conference, therefore we ask you to stay clear of
+marketing presentations and present something relevant to free/open
+software. We like nitty-gritty technical stuff.
+
+Topics discussed in this devroom include:
+
+* SDR Frameworks + Tools
+* Cellular/telecoms software
+* Free/Open SDR hardware
+* Wireless security
+* Random fun wireless hacks
+* SDR in education
+* Satellite/spacecraft communication
+* Ham radio related topics
+
+
+** Important Dates
+
+FOSDEM is February 1st and 2nd, 2020. The Free Software Radio devroom is
+happening on Sunday, the 2nd of February.
+
+The submission deadline is Friday, December 6th. A complete schedule for
+the presentations in the devroom will be available on the 15th of December.
+
+
+In the last years we were always full to the brim with presentations, so if
+you want to present, please make sure to submit your abstracts soon!
+
+** Steering Committee
+The track committee consists of:
+
+* Phil Balister - "Crofton"
+* Sylvain Munaut -"tnt"
+* Derek Kozel - "dkozel"
+* Nicolas Cuervo - "primercuervo"
+* Martin Braun - "mbr0wn"  (Emeritus)
+
+
+Hope to hear from you soon! And please forward this announcement.
+
+--00000000000039bf1705950b23bf
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Dear friends and fans of software-defined radio and free/o=
+pen-source radio topics in general,<br><div><br></div><div><p style=3D"marg=
+in:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif=
+">FOSDEM 2020 (the free and open-source developer&#39;s meeting in Brussels=
+, Europe) will, once again, feature a track on Software Defined Radio, and =
+any other radio-related topics in the (now known as)=C2=A0<i>Free Software =
+Radio</i>=C2=A0devroom. Therefore, we invite developers and users from the =
+free software radio community to join us for this track and present your ta=
+lks or demos.</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb=
+(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin:0.5em 0px;lin=
+e-height:inherit;color:rgb(37,37,37);font-family:sans-serif">Software Radio=
+ has become an important tool to allow anyone to access the EM spectrum. Us=
+ing free software radio libraries and applications and cheap hardware, anyo=
+ne can now start hacking on wireless communications, remote sensing, radar,=
+ fun hacks of all sorts, or other applications. At FOSDEM, we hope to netwo=
+rk all these projects and improve collaboration, bring new ideas forward an=
+d get more people involved.</p><p style=3D"margin:0.5em 0px;line-height:inh=
+erit;color:rgb(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin=
+:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif">=
+The track&#39;s web site resides at the link below<span style=3D"font-famil=
+y:Arial,Helvetica,sans-serif;color:rgb(34,34,34)">. The final schedule will=
+=C2=A0</span><span style=3D"font-family:Arial,Helvetica,sans-serif;color:rg=
+b(34,34,34)">be available through Pentabarf and the official FOSDEM website=
+.</span></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,3=
+7,37);font-family:sans-serif"><a href=3D"https://fosdem.org/2020/schedule/t=
+rack/free_software_radio/" target=3D"_blank">https://fosdem.org/2020/schedu=
+le/track/free_software_radio/</a><br></p><p style=3D"margin:0.5em 0px;line-=
+height:inherit;color:rgb(37,37,37);font-family:sans-serif"><br></p><p style=
+=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sa=
+ns-serif">Additional Information will be also available at:=C2=A0<a href=3D=
+"https://wiki.gnuradio.org/index.php/FOSDEM_2020" target=3D"_blank" style=
+=3D"font-family:Arial,Helvetica,sans-serif">https://wiki.gnuradio.org/index=
+.php/FOSDEM_2020</a></p><p style=3D"margin:0.5em 0px;line-height:inherit;co=
+lor:rgb(37,37,37);font-family:sans-serif"><br>** Submit your presentations<=
+br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37)=
+;font-family:sans-serif">To suggest a talk, go to=C2=A0<a href=3D"https://p=
+enta.fosdem.org/submission/FOSDEM20" target=3D"_blank">https://penta.fosdem=
+.org/submission/FOSDEM20</a>=C2=A0and follow the instructions (you need an =
+account, but can use your account from last year if you have one). You need=
+ to create an &#39;Event&#39;; make sure it&#39;s in the Free Software Radi=
+o track! Lengths aren&#39;t fixed, but give a realistic estimate and please=
+ don&#39;t exceed 30 minutes unless you have something special planned (in =
+that case, contact one of us). Also, don&#39;t forget to include time for Q=
+&amp;A.<br>We will typically go for 30-minute slots -- shorter talks, unles=
+s they&#39;re really short, usually tend to screw up the schedule too much.=
+<br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37=
+);font-family:sans-serif">You aren&#39;t limited to slide presentations, of=
+ course. Be creative. However, FOSDEM is an open-source conference, therefo=
+re we ask you to stay clear of marketing presentations and present somethin=
+g relevant to free/open software. We like nitty-gritty technical stuff.<br>=
+<br>Topics discussed in this devroom include:<br><br>* SDR Frameworks + Too=
+ls<br>* Cellular/telecoms software<br>* Free/Open SDR hardware<br>* Wireles=
+s security<br>* Random fun wireless hacks<br>* SDR in education<br>* Satell=
+ite/spacecraft communication<br>* Ham radio related topics<br><br><br>** Im=
+portant Dates<br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color=
+:rgb(37,37,37);font-family:sans-serif">FOSDEM is February 1st and 2nd, 2020=
+. The Free Software Radio devroom is happening on Sunday, the 2nd of Februa=
+ry.</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37)=
+;font-family:sans-serif">The submission deadline is Friday, December 6th. A=
+ complete schedule for the presentations in the devroom will be available o=
+n the 15th of December.</p><p style=3D"margin:0.5em 0px;line-height:inherit=
+;color:rgb(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin:0.5=
+em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif">In t=
+he last years we were always full to the brim with presentations, so if you=
+ want to present, please make sure to submit your abstracts soon!<br><br>**=
+ Steering Committee<br>The track committee consists of:<br><br>* Phil Balis=
+ter -=C2=A0&quot;Crofton&quot;<br>* Sylvain Munaut -&quot;tnt&quot;<br>* De=
+rek Kozel - &quot;dkozel&quot;<br>* Nicolas Cuervo - &quot;primercuervo&quo=
+t;<br>* Martin Braun -=C2=A0&quot;mbr0wn&quot;=C2=A0 (Emeritus)<br></p><p s=
+tyle=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-famil=
+y:sans-serif"><br></p><p style=3D"margin:0.5em 0px;line-height:inherit;colo=
+r:rgb(37,37,37);font-family:sans-serif">Hope to hear from you soon! And ple=
+ase forward this announcement.<span class=3D"gmail-HOEnZb"><font color=3D"#=
+888888"><br></font></span></p></div></div>
+
+--00000000000039bf1705950b23bf--
+
+
+--===============4759145027836784550==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============4759145027836784550==--
+
