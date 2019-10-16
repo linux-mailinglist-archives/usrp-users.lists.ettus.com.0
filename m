@@ -2,49 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01EE9D9909
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Oct 2019 20:19:59 +0200 (CEST)
-Received: from [::1] (port=40138 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3056CD99A6
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Oct 2019 21:03:00 +0200 (CEST)
+Received: from [::1] (port=48562 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iKnts-0008DI-Md; Wed, 16 Oct 2019 14:19:56 -0400
-Received: from mail-qk1-f179.google.com ([209.85.222.179]:46053)
+	id 1iKoZU-000335-Kr; Wed, 16 Oct 2019 15:02:56 -0400
+Received: from mail-lf1-f49.google.com ([209.85.167.49]:40307)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <cuervonicolas@gmail.com>)
- id 1iKnto-00083D-Hr
- for usrp-users@lists.ettus.com; Wed, 16 Oct 2019 14:19:52 -0400
-Received: by mail-qk1-f179.google.com with SMTP id z67so23640459qkb.12
- for <usrp-users@lists.ettus.com>; Wed, 16 Oct 2019 11:19:32 -0700 (PDT)
+ (Exim 4.92) (envelope-from <saeidh@gmail.com>) id 1iKoZQ-0002v8-Il
+ for usrp-users@lists.ettus.com; Wed, 16 Oct 2019 15:02:52 -0400
+Received: by mail-lf1-f49.google.com with SMTP id f23so2873816lfk.7
+ for <usrp-users@lists.ettus.com>; Wed, 16 Oct 2019 12:02:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=CuJWzMGM7iyUMMT9jOJ3l+jXTwWHn8PlhQplOoSzZuk=;
- b=ZxEUcevIB7Qckwi0Uz9tEKOyYkOUBPkakhJ1cSV3PZ7jnaDHMSb3R9Dlx8LOUsQ1fQ
- gZL1ecN74LQFAG9lQpUDuCUqqHiY0iOpFxlhMVOkKMSqr9cZLr4Wn8Zd5cbPXLQq8EPM
- LJTMIHYSSYARZXXXaljarMyZoKNe4R8fNE+Sxl5P+afRN0poOTiJhK9BQTGebrrEawy9
- 6B741bbd/ua6XyYPsD0pJyph6i7DPhH0oxVMlukBTqR2hFp4ev/2N0l/y/p7k+cDaM9l
- QdfDuEk7ESxhWDso+uiHWeGVyggB2gHTnQcAL0ai8QUaK5yR5ww+iIvKuckafa2Dxlol
- EVIg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=r3MBQwUi7+uqh1BleCp7KRU4HyqunMikCL3HTvZvG1E=;
+ b=EaMvElBw6Ib+yvs769cgKGf0HVaBucbFPzXfIroNFLFj1gVcyvUkbLu4/en+jciGOG
+ v7zWqhG3NIFyLXyLTcmrq+8XJqljwuMcmf5dwuF2Om74PMo+RnMNjlmHii0yzjPw/oHw
+ Ig8PZrXQJeuN0rAzGYOUAL5Y8TjksDZ2EoRf0PBUzJ8CTKpppZCJqtY6/2UEyz+iJK72
+ bYMRove2v7Hbn5E/4XTieBLjQvGyDf7LdT9C6/JElPyW6k9aD8OZWVKY0EWe570rzLPL
+ g81ng25kwWdzIq3WczjJHdWuiu/V56LdEEPnwcWJP5W5Yo0E7MbJj0lTMsjmr1jOse87
+ SIGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=CuJWzMGM7iyUMMT9jOJ3l+jXTwWHn8PlhQplOoSzZuk=;
- b=aI9bTicVbDtTwQ50e4IhwUOqyhbEII+IKlEAMDylzMRkB/cp6D6Ipl7fp2g7RMGVkk
- LL5zC42cTVp4rU8ZU5/1hZCnayQLA82HqaH2y4fbyTSWlh0T2p3NkYBtixN0n9mFN21L
- ORteZMPTGx32oBYM61kfbPrjfVyAUWyRstvzzCoqKuCbbywKErxDK0s/dtOOKc6RrBSE
- xoZuzfNQJlmyGlk65K0jmOmxa6nZRXsXqMklnAW59Bo1v07ujsiimu8BSFYK1wp9hAmu
- P4t7oPhxu4jPn6zoBry/gx1MtS6SIJJdWSy+JIm+A+pcjyBmx28OdMLH50A1YomJiaQC
- 5nSw==
-X-Gm-Message-State: APjAAAXHieMtiwfwr+2gkqlOstjbW/LEuwf2CvlljMxxEYcBziY2I5Jd
- /KxY+IWIK66GuiDl1vdN8ETZ//nAVpjlA7U1r7c=
-X-Google-Smtp-Source: APXvYqxQzGPkoo/jo1xFsncAaxgGTHB0Y1YU0ZIhpnpp0QY1uIMcIf8xwPHMa2l2r7OdwiulWn5LlmItCS9e5/aFWcE=
-X-Received: by 2002:ae9:ec11:: with SMTP id h17mr40740986qkg.485.1571249951717; 
- Wed, 16 Oct 2019 11:19:11 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=r3MBQwUi7+uqh1BleCp7KRU4HyqunMikCL3HTvZvG1E=;
+ b=C4kfziXQ56XZZqBkYSSi1Xg9Pc8EvqERC/4G8cjVCyZgDLkhBaxJSBS4jg53UBAV/y
+ 4MHNi3kbKSd62c8W0z63xH1rn8kbxpJZpWFizaVBiQruGu7Llurb7bTIVZuIOlJWmUpN
+ PUnnpG5FLLTuVRtJjp/RkZ4XvwAH6Q+O75nYJgogy9NM4JxUFp7SOCluB16/buKhb2ED
+ iA2plrWT8JSelqay4SVVd3ytmTYiVltl3agdV35OuvWRpkWM7EAJwutOSneeOmbdp/Nm
+ 5JNE1AcIEaMKm/P57PXibFXSMOmPHPMDIb2p472h73W2VqQBHNdLUkdtDebOBBUPmN2B
+ ESqA==
+X-Gm-Message-State: APjAAAWBnDtFyBN+tJXDswDmmIrl+1IX/PuujD0PSGjMPfTQoWHEiuUG
+ Svm5jhzNv7HoLID1Z1wvJ7Demait9Yvos+W41Ko=
+X-Google-Smtp-Source: APXvYqz/71SAG0oOPMPBQMOznQmG0S3UaSWBgLxiEqFXtxl+bhV4tWxA5VGsXDvECRB4Iwy8NbdXm91Uk+KKcuCW6SM=
+X-Received: by 2002:a19:4f4c:: with SMTP id a12mr2632035lfk.18.1571252531123; 
+ Wed, 16 Oct 2019 12:02:11 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 16 Oct 2019 20:19:00 +0200
-Message-ID: <CAG-BkhYSJvb4TvVR+nMRzZqW+6pew4ArFHCiCviifVoAQp4LLQ@mail.gmail.com>
-To: discuss-gnuradio <discuss-gnuradio@gnu.org>, 
- "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: [USRP-users] FOSDEM 2020: Free Software Radio Devroom CfP
+References: <CANQ3h3_fwR=baRxHo+Aicms8C3CFnWzR51qSS99xo2u--OY2vg@mail.gmail.com>
+ <CAGNhwTNRQwC2-gVFQFFyfk0ubGCfoL2a1kShguyMny1Y_9Xw_g@mail.gmail.com>
+ <CANQ3h39_-YDpCHEgCcR=r3z=iK7QOmJPFYnY8DATs5++zh+uug@mail.gmail.com>
+ <CAGNhwTPELUny7ZaVY18KzPvmD3enezmhMLvypUxUZ5qD3zw+cg@mail.gmail.com>
+ <CANQ3h39YJO_iNBdg8_Psx8fHoZGo-aJsESJTBRVf0G1-enZAkw@mail.gmail.com>
+ <CAGNhwTP9xwKbDUN49knKmdPzu-yo3rwfzbnvx3YqLuwV3+jyVg@mail.gmail.com>
+In-Reply-To: <CAGNhwTP9xwKbDUN49knKmdPzu-yo3rwfzbnvx3YqLuwV3+jyVg@mail.gmail.com>
+Date: Wed, 16 Oct 2019 15:01:57 -0400
+Message-ID: <CANQ3h3-6yNAt2v35kUR1z9sNhu7_6M1h3ZsANpDMpueksf2b1w@mail.gmail.com>
+To: Michael Dickens <michael.dickens@ettus.com>
+Subject: Re: [USRP-users] uhd_fft failure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -56,9 +62,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nicolas Cuervo Benavides via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nicolas Cuervo Benavides <cuervonicolas@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4759145027836784550=="
+From: Saeid Hashemi via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Saeid Hashemi <saeidh@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============9191942665374866741=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,177 +79,149 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4759145027836784550==
-Content-Type: multipart/alternative; boundary="00000000000039bf1705950b23bf"
+--===============9191942665374866741==
+Content-Type: multipart/alternative; boundary="000000000000f8585f05950bbce1"
 
---00000000000039bf1705950b23bf
+--000000000000f8585f05950bbce1
 Content-Type: text/plain; charset="UTF-8"
 
-Dear friends and fans of software-defined radio and free/open-source radio
-topics in general,
+Hi Michael,
 
-FOSDEM 2020 (the free and open-source developer's meeting in Brussels,
-Europe) will, once again, feature a track on Software Defined Radio, and
-any other radio-related topics in the (now known as) *Free Software
-Radio* devroom.
-Therefore, we invite developers and users from the free software radio
-community to join us for this track and present your talks or demos.
+The gnuradio git repository does not have a tag for v3.17.14.5, and using
+v3.7.13.5 gives me:
 
-
-Software Radio has become an important tool to allow anyone to access the
-EM spectrum. Using free software radio libraries and applications and cheap
-hardware, anyone can now start hacking on wireless communications, remote
-sensing, radar, fun hacks of all sorts, or other applications. At FOSDEM,
-we hope to network all these projects and improve collaboration, bring new
-ideas forward and get more people involved.
+-- Python checking for six - python 2 and 3 compatibility library
+-- Python checking for six - python 2 and 3 compatibility library - not
+found
+CMake Error at volk/CMakeLists.txt:98 (message):
+  six - python 2 and 3 compatibility library required to build VOLK
 
 
-The track's web site resides at the link below. The final schedule will be
-available through Pentabarf and the official FOSDEM website.
-
-https://fosdem.org/2020/schedule/track/free_software_radio/
-
-
-Additional Information will be also available at:
-https://wiki.gnuradio.org/index.php/FOSDEM_2020
+-- Configuring incomplete, errors occurred!
+See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeOutput.log".
+See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeError.log".
 
 
-** Submit your presentations
-
-To suggest a talk, go to https://penta.fosdem.org/submission/FOSDEM20 and
-follow the instructions (you need an account, but can use your account from
-last year if you have one). You need to create an 'Event'; make sure it's
-in the Free Software Radio track! Lengths aren't fixed, but give a
-realistic estimate and please don't exceed 30 minutes unless you have
-something special planned (in that case, contact one of us). Also, don't
-forget to include time for Q&A.
-We will typically go for 30-minute slots -- shorter talks, unless they're
-really short, usually tend to screw up the schedule too much.
-
-You aren't limited to slide presentations, of course. Be creative. However,
-FOSDEM is an open-source conference, therefore we ask you to stay clear of
-marketing presentations and present something relevant to free/open
-software. We like nitty-gritty technical stuff.
-
-Topics discussed in this devroom include:
-
-* SDR Frameworks + Tools
-* Cellular/telecoms software
-* Free/Open SDR hardware
-* Wireless security
-* Random fun wireless hacks
-* SDR in education
-* Satellite/spacecraft communication
-* Ham radio related topics
+Checking out tag v3.8.0.0 results in Cmake dependency of 3.8 and up, so I
+need to install that manually.
 
 
-** Important Dates
+On Sat, Oct 12, 2019 at 11:02 AM Michael Dickens <michael.dickens@ettus.com>
+wrote:
 
-FOSDEM is February 1st and 2nd, 2020. The Free Software Radio devroom is
-happening on Sunday, the 2nd of February.
+> OK. Thanks for the info Saeid. I'll look into creating a VM using Ubuntu
+> 16.04.1 to see what happens. - MLD
+>
+> On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi <saeidh@gmail.com> wrote:
+>
+>> It's Ubuntu 16.04.1, but yes, I will follow the source build instructions.
+>>
+>> On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens <
+>> michael.dickens@ettus.com> wrote:
+>>
+>>> Hi Saeid - Thanks for the followup. I totally agree that if you just
+>>> "sudo apt install gnuradio", compatible versions should be installed. Are
+>>> you using Ubuntu 16.04.6 LTS (Xenial Xerus)? If you choose to install from
+>>> source, you can follow instructions such as the GR recommended way here <
+>>> https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29
+>>> >. I have an Ubuntu 18.04 install that went very smoothly using this guide,
+>>> but maybe the guide is outdated for older Ubuntu; or, our packages need to
+>>> be updated for that OS version ... Cheers! - MLD
+>>>
+>>> On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi <saeidh@gmail.com> wrote:
+>>>
+>>>> I will follow your advice, but it's worth mentioning I simply did
+>>>> apt-get gnuradio and should therefore have a compatible version of uhd
+>>>> installed automatically as a dependency. I did not install uhd separately.
+>>>>
+>>> --
+>>> Michael Dickens
+>>> Ettus Research Technical Support
+>>> Email: support@ettus.com
+>>> Web: https://ettus.com/
+>>>
+>>
+>
+> --
+> Michael Dickens
+> Ettus Research Technical Support
+> Email: support@ettus.com
+> Web: https://ettus.com/
+>
 
-The submission deadline is Friday, December 6th. A complete schedule for
-the presentations in the devroom will be available on the 15th of December.
-
-
-In the last years we were always full to the brim with presentations, so if
-you want to present, please make sure to submit your abstracts soon!
-
-** Steering Committee
-The track committee consists of:
-
-* Phil Balister - "Crofton"
-* Sylvain Munaut -"tnt"
-* Derek Kozel - "dkozel"
-* Nicolas Cuervo - "primercuervo"
-* Martin Braun - "mbr0wn"  (Emeritus)
-
-
-Hope to hear from you soon! And please forward this announcement.
-
---00000000000039bf1705950b23bf
+--000000000000f8585f05950bbce1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Dear friends and fans of software-defined radio and free/o=
-pen-source radio topics in general,<br><div><br></div><div><p style=3D"marg=
-in:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif=
-">FOSDEM 2020 (the free and open-source developer&#39;s meeting in Brussels=
-, Europe) will, once again, feature a track on Software Defined Radio, and =
-any other radio-related topics in the (now known as)=C2=A0<i>Free Software =
-Radio</i>=C2=A0devroom. Therefore, we invite developers and users from the =
-free software radio community to join us for this track and present your ta=
-lks or demos.</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb=
-(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin:0.5em 0px;lin=
-e-height:inherit;color:rgb(37,37,37);font-family:sans-serif">Software Radio=
- has become an important tool to allow anyone to access the EM spectrum. Us=
-ing free software radio libraries and applications and cheap hardware, anyo=
-ne can now start hacking on wireless communications, remote sensing, radar,=
- fun hacks of all sorts, or other applications. At FOSDEM, we hope to netwo=
-rk all these projects and improve collaboration, bring new ideas forward an=
-d get more people involved.</p><p style=3D"margin:0.5em 0px;line-height:inh=
-erit;color:rgb(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin=
-:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif">=
-The track&#39;s web site resides at the link below<span style=3D"font-famil=
-y:Arial,Helvetica,sans-serif;color:rgb(34,34,34)">. The final schedule will=
-=C2=A0</span><span style=3D"font-family:Arial,Helvetica,sans-serif;color:rg=
-b(34,34,34)">be available through Pentabarf and the official FOSDEM website=
-.</span></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,3=
-7,37);font-family:sans-serif"><a href=3D"https://fosdem.org/2020/schedule/t=
-rack/free_software_radio/" target=3D"_blank">https://fosdem.org/2020/schedu=
-le/track/free_software_radio/</a><br></p><p style=3D"margin:0.5em 0px;line-=
-height:inherit;color:rgb(37,37,37);font-family:sans-serif"><br></p><p style=
-=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sa=
-ns-serif">Additional Information will be also available at:=C2=A0<a href=3D=
-"https://wiki.gnuradio.org/index.php/FOSDEM_2020" target=3D"_blank" style=
-=3D"font-family:Arial,Helvetica,sans-serif">https://wiki.gnuradio.org/index=
-.php/FOSDEM_2020</a></p><p style=3D"margin:0.5em 0px;line-height:inherit;co=
-lor:rgb(37,37,37);font-family:sans-serif"><br>** Submit your presentations<=
-br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37)=
-;font-family:sans-serif">To suggest a talk, go to=C2=A0<a href=3D"https://p=
-enta.fosdem.org/submission/FOSDEM20" target=3D"_blank">https://penta.fosdem=
-.org/submission/FOSDEM20</a>=C2=A0and follow the instructions (you need an =
-account, but can use your account from last year if you have one). You need=
- to create an &#39;Event&#39;; make sure it&#39;s in the Free Software Radi=
-o track! Lengths aren&#39;t fixed, but give a realistic estimate and please=
- don&#39;t exceed 30 minutes unless you have something special planned (in =
-that case, contact one of us). Also, don&#39;t forget to include time for Q=
-&amp;A.<br>We will typically go for 30-minute slots -- shorter talks, unles=
-s they&#39;re really short, usually tend to screw up the schedule too much.=
-<br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37=
-);font-family:sans-serif">You aren&#39;t limited to slide presentations, of=
- course. Be creative. However, FOSDEM is an open-source conference, therefo=
-re we ask you to stay clear of marketing presentations and present somethin=
-g relevant to free/open software. We like nitty-gritty technical stuff.<br>=
-<br>Topics discussed in this devroom include:<br><br>* SDR Frameworks + Too=
-ls<br>* Cellular/telecoms software<br>* Free/Open SDR hardware<br>* Wireles=
-s security<br>* Random fun wireless hacks<br>* SDR in education<br>* Satell=
-ite/spacecraft communication<br>* Ham radio related topics<br><br><br>** Im=
-portant Dates<br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color=
-:rgb(37,37,37);font-family:sans-serif">FOSDEM is February 1st and 2nd, 2020=
-. The Free Software Radio devroom is happening on Sunday, the 2nd of Februa=
-ry.</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37)=
-;font-family:sans-serif">The submission deadline is Friday, December 6th. A=
- complete schedule for the presentations in the devroom will be available o=
-n the 15th of December.</p><p style=3D"margin:0.5em 0px;line-height:inherit=
-;color:rgb(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin:0.5=
-em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif">In t=
-he last years we were always full to the brim with presentations, so if you=
- want to present, please make sure to submit your abstracts soon!<br><br>**=
- Steering Committee<br>The track committee consists of:<br><br>* Phil Balis=
-ter -=C2=A0&quot;Crofton&quot;<br>* Sylvain Munaut -&quot;tnt&quot;<br>* De=
-rek Kozel - &quot;dkozel&quot;<br>* Nicolas Cuervo - &quot;primercuervo&quo=
-t;<br>* Martin Braun -=C2=A0&quot;mbr0wn&quot;=C2=A0 (Emeritus)<br></p><p s=
-tyle=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-famil=
-y:sans-serif"><br></p><p style=3D"margin:0.5em 0px;line-height:inherit;colo=
-r:rgb(37,37,37);font-family:sans-serif">Hope to hear from you soon! And ple=
-ase forward this announcement.<span class=3D"gmail-HOEnZb"><font color=3D"#=
-888888"><br></font></span></p></div></div>
+<div dir=3D"ltr">Hi Michael,<div><br></div><div>The gnuradio git repository=
+ does not have a tag for v3.17.14.5, and using v3.7.13.5 gives me:</div><di=
+v><br></div><blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px"=
+><div><font size=3D"1" face=3D"monospace">-- Python checking for six - pyth=
+on 2 and 3 compatibility library</font></div><div><font size=3D"1" face=3D"=
+monospace">-- Python checking for six - python 2 and 3 compatibility librar=
+y - not found</font></div><div><font size=3D"1" face=3D"monospace">CMake Er=
+ror at volk/CMakeLists.txt:98 (message):</font></div><div><font size=3D"1" =
+face=3D"monospace">=C2=A0 six - python 2 and 3 compatibility library requir=
+ed to build VOLK</font></div><div><font size=3D"1" face=3D"monospace"><br><=
+/font></div><div><font size=3D"1" face=3D"monospace"><br></font></div><div>=
+<font size=3D"1" face=3D"monospace">-- Configuring incomplete, errors occur=
+red!</font></div><div><font size=3D"1" face=3D"monospace">See also &quot;/h=
+ome/nuc03/gnuradio/build/CMakeFiles/CMakeOutput.log&quot;.</font></div><div=
+><font size=3D"1" face=3D"monospace">See also &quot;/home/nuc03/gnuradio/bu=
+ild/CMakeFiles/CMakeError.log&quot;.</font></div></blockquote><div><br></di=
+v><div>Checking out tag v3.8.0.0 results in Cmake dependency of 3.8 and up,=
+ so I need to install that manually.</div><div><br></div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Oct 12, 20=
+19 at 11:02 AM Michael Dickens &lt;<a href=3D"mailto:michael.dickens@ettus.=
+com">michael.dickens@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><div dir=3D"ltr">OK. Thanks for the info Saei=
+d. I&#39;ll look into creating a VM using Ubuntu 16.04.1 to see what happen=
+s. - MLD</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi &lt;<a href=3D"mailto=
+:saeidh@gmail.com" target=3D"_blank">saeidh@gmail.com</a>&gt; wrote:<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">It&#3=
+9;s Ubuntu 16.04.1, but yes, I will follow the source build instructions.</=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Fri, Oct 11, 2019 at 3:11 PM Michael Dickens &lt;<a href=3D"mailto:michael=
+.dickens@ettus.com" target=3D"_blank">michael.dickens@ettus.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
+ltr"><div dir=3D"ltr">Hi=C2=A0Saeid - Thanks for the followup. I totally ag=
+ree that if you just &quot;sudo apt install gnuradio&quot;, compatible vers=
+ions should be installed. Are you using Ubuntu 16.04.6 LTS (Xenial Xerus)? =
+If you choose to install from source, you can follow instructions such as t=
+he GR recommended way here &lt;=C2=A0<a href=3D"https://wiki.gnuradio.org/i=
+ndex.php/UbuntuInstall#Xenial_Xerus_.2816.04.29" target=3D"_blank">https://=
+wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29</a> &gt;=
+. I have an Ubuntu=C2=A018.04 install that went very=C2=A0smoothly using th=
+is guide, but maybe the guide is outdated for older Ubuntu; or, our package=
+s need to be updated for that OS version ... Cheers! - MLD</div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 11, 2=
+019 at 2:24 PM Saeid Hashemi &lt;<a href=3D"mailto:saeidh@gmail.com" target=
+=3D"_blank">saeidh@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"ltr">I will follow your advice, but=
+ it&#39;s worth mentioning I simply did apt-get gnuradio and should therefo=
+re have a compatible version of uhd installed automatically as a dependency=
+. I did not install uhd separately.</div></blockquote></div>-- <br><div dir=
+=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Re=
+search Technical Support<br>Email: <a href=3D"mailto:support@ettus.com" tar=
+get=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/"=
+ target=3D"_blank">https://ettus.com/</a></div></div></div></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Research T=
+echnical Support<br>Email: <a href=3D"mailto:support@ettus.com" target=3D"_=
+blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/" target=
+=3D"_blank">https://ettus.com/</a></div></div></div></div>
+</blockquote></div>
 
---00000000000039bf1705950b23bf--
+--000000000000f8585f05950bbce1--
 
 
---===============4759145027836784550==
+--===============9191942665374866741==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -253,5 +232,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4759145027836784550==--
+--===============9191942665374866741==--
 
