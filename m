@@ -2,56 +2,39 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23524D9A2C
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Oct 2019 21:35:57 +0200 (CEST)
-Received: from [::1] (port=58424 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4138EDAB93
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Oct 2019 13:55:44 +0200 (CEST)
+Received: from [::1] (port=56832 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iKp5O-0006M5-Et; Wed, 16 Oct 2019 15:35:54 -0400
-Received: from sonic301-27.consmr.mail.sg3.yahoo.com ([106.10.242.90]:44989)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <arun.verma@eiwave.com>)
- id 1iKp5K-00068E-L9
- for usrp-users@lists.ettus.com; Wed, 16 Oct 2019 15:35:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1571254507; bh=aerW00HhXEDZZ8WYYGaVhF+U/fSR4OArbRpKfkB9LS8=;
- h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
- b=VT+dtENdltyQ5NYQbf4DbWRPxfYCchgpyGScT/i7wZufpDdG6Nwfi7pxl8t/Dr1tjUVoFaKg+ro1nCQNzkPgrfpJg4itOVQBg8BOBzOoXDHfVqucmIp4MeNDaGTRrD/TA+7sXhdLkIH5c7snlY/P33GS2N07ZbHP8jXesnJ5owbsl9cRKZhz4sz+3Yk/OWc4BqTAPsC/npOPdvMSb6wWMc0hjH+dclR+1mN6VPyaEa7G1f7ef5WoGA8WoUrHfVmU+x0YSyNrlLEuEiUpFCoMhnWV0CE1+YPrE3T1b5BEO4uAJhlLjrSb8vSEzfFIYQhFphjb4juTd16ZbsVb+jWPRQ==
-X-YMail-OSG: J8mjYVcVM1kdjlrfk5qjaB1piH37To7jSULCNNqzLLHwnrDf74L9gd5TZpQxvSz
- fsfZFi8Ogwe7WI5DTZNL5LQtpk2FbCbobVp9Ah8NNm5CC9XLIw.heN10oeYbuu2h.UDylqGloHMw
- o2Hrdc5eQs8XydePgTiR7s5YdZsjIgs3Isr09tUyMsGc18175B02mUQVYJbbbAfKcB3YjuPKoxen
- ZQE87iV7i2lxZ3sTm4tCQeddDTtfZ7Lwle_fpA04uO9MW18xhMaQjyxTilkpcf5HK6fPSdXyHPd_
- DH70PdQcQExeuTmfR.t3VKWBh7P4UxUz5K5QA_yJQIYcHuq1l82m3WtcUsGJ.vz4rW.LiSLz2HCH
- Yrv58akdBePceAUah1.KVA5dS8AhK8KgW.lhIN93I5Ewrnc4tpxaTIFf9dHCozc2P7_yZWQE4mu7
- jwLJ0f8OstjTNK_1pgYfsbTFYUh8anBYzOOsW817vlFRaTiHVB.cetKWMcp_QqFr5mCFQM5rk23s
- wFatryHQdyxsSKXHKqQ0dRXCpbU9wNGIuPTLCRWk2_cJCw4D6kSFnbk7qo9NGUQb1OQdsJe9mjFd
- NwY6BwNyAGKLrd6PJx3ZVu8RV.mtFFVsei4U.aAh4v.p0o3mEctXANDjpKkTgoH_D.kMyWkaI1HW
- v30Fb7lzYKXX.NZTGtDrFqHVALI_uUzJ23h83pUJmKYpielh0XMuou.RLq4jhrIqPt1sTJ.OgU2y
- TCq7.BLcY9aB33CYtdQQirXAkCsSPhn0ifPT6FGzqX8iY9UH8wwYO603BYp5g17nttgA2Hak.7Fk
- QLEcix_MAttTVhr.qpgRoaOga6x4BmPJWey4nr7gJjJiGY0vhyQOQU21bsdC8fbcx35_v6TKJQrM
- tu5a03IgWMMWDN2xsXqtzHuIF.smTE_rbN.ISSTLSsZx73klcRFhBZ.1Q8U3Yzd0FMA_0FqJEJp6
- lLaoIjYA080rNphVQWiI9WWS0vQBELSH839.41l3Boq03GOZYdYGjVW.uWofwtEAmFBw9sS1qRKi
- g.MtX8iVz46ItIu9jFijm6nTy643MY74vWoRDn0Z6dYxBrDY9CKDwzbcVC1S9tQU7UMSbSum087l
- yho1rU9ZHrFS6qqCr3KcUBbQLxYom.vrf1WQqpW6DCXHhxbVEryjwQPZLsNlq8uQaegd5MsUYJFx
- C7CL6abndwHaLmdktPskZjEU2KIHsB1HmaL6r22WVIPCKDSy8PCfZn4fINafJ6U4xa7VY0qbkOXL
- nsqQRZk4GJXZ7ShmwIMzeNxidDvoSz5gzDem.Jyt4VNb.70abWggSTIchknBOb20fc.T8tE4PbVv
- ZQxejHxH_AhG9h16xjsTkQIm5UTq3x.U-
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic301.consmr.mail.sg3.yahoo.com with HTTP; Wed, 16 Oct 2019 19:35:07 +0000
-Date: Wed, 16 Oct 2019 19:35:01 +0000 (UTC)
+	id 1iL4NX-0005gL-0E; Thu, 17 Oct 2019 07:55:39 -0400
+Received: from m15-74.126.com ([220.181.15.74]:23558)
+ by mm2.emwd.com with esmtp (Exim 4.92)
+ (envelope-from <ruoyilei@126.com>) id 1iL4NS-0005Rs-4A
+ for usrp-users@lists.ettus.com; Thu, 17 Oct 2019 07:55:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+ s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=6SRss
+ tWw87B1ijaE9oihCqKSuJ4OA66LA840B45EjpA=; b=S77kKbWg6IIh1bDt/MerF
+ YK9cMtc97FaE8nhOmINZK9y4zyjbS2uzfNMCFHEAZm8w+JR0npDb86Ln3LLz+192
+ /s1+yIkIq7M6QxdIqDKp/rf5+u6WeNBQW+20kA4VUHNjY7+DygHkIyPeHOvaTw5e
+ +O0S9NzaY4cLpqG4KQ17mc=
+Received: from ruoyilei$126.com ( [58.213.113.88] ) by ajax-webmail-wmsvr186
+ (Coremail) ; Thu, 17 Oct 2019 19:54:49 +0800 (GMT+08:00)
+X-Originating-IP: [58.213.113.88]
+Date: Thu, 17 Oct 2019 19:54:49 +0800 (GMT+08:00)
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <1919960921.2923231.1571254501791@mail.yahoo.com>
-In-Reply-To: <CANf970bSqxR19HC-33jLx6N5qgYaU7ROqeYzV+7OPviH5qHq=w@mail.gmail.com>
-References: <1956590264.2783788.1569054790193.ref@mail.yahoo.com>
- <1956590264.2783788.1569054790193@mail.yahoo.com>
- <CANf970Zg6W5x2GPb2XdeYDfFy3uGHNV3FWRo_1dnHGcYH3XRVA@mail.gmail.com>
- <1152458035.2395130.1571195474088@mail.yahoo.com>
- <CANf970bSqxR19HC-33jLx6N5qgYaU7ROqeYzV+7OPviH5qHq=w@mail.gmail.com>
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+ 20180820(5a019900) Copyright (c) 2002-2019 www.mailtech.cn 126com
+In-Reply-To: <mailman.49.1571241602.28966.usrp-users_lists.ettus.com@lists.ettus.com>
+References: <mailman.49.1571241602.28966.usrp-users_lists.ettus.com@lists.ettus.com>
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.14498 YMailNorrin Mozilla/5.0 (Windows NT 10.0; Win64;
- x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90
- Safari/537.36
-Subject: [USRP-users] X310 and 8bit complex sampling
+Message-ID: <50ae0c17.d3a7.16dd9920a50.Coremail.ruoyilei@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: VsqowAD3Bh+KVqhdeG2NAA--.34173W
+X-CM-SenderInfo: 5uxr5xxohlqiyswou0bp/1tbiuxRRH1pD+jgnUAABsM
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Subject: [USRP-users] what's wrong with my n310s?help me, please!
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,9 +46,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Arun kumar Verma via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Arun kumar Verma <arun.verma@eiwave.com>
-Content-Type: multipart/mixed; boundary="===============3663936078653545050=="
+From: =?utf-8?b?546L55u8IHZpYSBVU1JQLXVzZXJz?= <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?546L55u8?= <ruoyilei@126.com>
+Content-Type: multipart/mixed; boundary="===============9124178543058972927=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,264 +62,122 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3663936078653545050==
+--===============9124178543058972927==
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_2923230_321640558.1571254501788"
-Content-Length: 14444
+	boundary="----=_Part_161477_927369413.1571313289808"
 
-------=_Part_2923230_321640558.1571254501788
+------=_Part_161477_927369413.1571313289808
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-Hi Users
-I am trying to achieve 50MHz BW (25MHz Each Channel)=C2=A0 with X310 and Tw=
-inRX using 1G Ethernet. I went through some of the forums regrading this an=
-d found that X310 does not support 8-bit IQ samples as mentioned in below l=
-ink.=C2=A0
-http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2016-February/0=
-46123.html
-
-Is still 8-bit IQ samples are not supported in the latest UHD ?
-We are looking for a solution for 50MHz (25MHz Channel each) with laptop pr=
-ocessing (Ubuntu).=C2=A0 While going through some comments from different u=
-sers I found that using=C2=A0T3NL-T3DIY-AKTU ( https://www.akitio.com/expan=
-sion/node-lite)=C2=A0 and=C2=A0=C2=A0Intel X710-DA2 more than 50MHz BW can =
-be achieved. Is there any other solution available for this kind of bandwid=
-th as we are looking for some compact solution.
-
-Regards,Arun Verma
-
-=20
-
-    On Wednesday, 16 October, 2019, 09:23:33 pm IST, Sam Reiter <sam.reiter=
-@ettus.com> wrote: =20
-=20
- Arun,
-Sorry for the confusion. The X310 uses a commercial grade=C2=A0XC7K410T wit=
-h=C2=A0a temperature range of 0-85C.
-Sam
-On Tue, Oct 15, 2019 at 10:11 PM Arun kumar Verma <arun.verma@eiwave.com> w=
-rote:
-
-Hi Sam
-Thanks for the information. My only doubt is about the FPGA.=C2=A0 FPGA is =
-industrial grade or Commercial grade ? other parts I have verified and all =
-the parts are with Temp Range of -40 to +85.=C2=A0
-As in case of B205mini it is clearly mentioned the grade of the FPGA.
-Regards,Arun Verma
-
-=20
-
-    On Wednesday, October 16, 2019, 01:13:56 AM GMT+5:30, Sam Reiter <sam.r=
-eiter@ettus.com> wrote: =20
-=20
- Hey Arun,
-The temperature range for the X310 and the TwinRX is noted as 23 +/- 3 C. T=
-his is meant to convey that the device is intended for indoor lab use and h=
-as not been thoroughly tested in extreme environments like you've mentioned=
-. You're also correct that you'll see device performance change over that t=
-emperature range and I think -20C will be dipping below the rating of some =
-of the components. Some key components can be found here:
-https://kb.ettus.com/X300/X310#Key_Component_Datasheets
-Depending on what you're hoping to do, we see folks develop custom enclosur=
-es for these types of radios with and without thermal regulation. At the en=
-d of the day if you're subjecting this radio to those kinds of extremes, it=
-'s up to you to put it through its paces and make sure it'll meet your need=
-s. I'll also note that we don't formally endorse any X310 enclosures, but o=
-ne of the few IP67 OTS solutions I've found for the X310 is sold by Pixus:=
-=20
-
-http://www.pixustechnologies.com/products/enclosure-system-solutions/specia=
-lty-small-form-factor-rugged-x310-other-2/specialty-small-form-factor-rugge=
-d-x310-other/
-Not sure if this does anything to extend temperature range, but it could be=
- a starting point in developing your own ruggedized solution to deploy. Als=
-o if anyone else has recommendations or experience with X310 enclosure solu=
-tions, I'd be curious to hear what you've made or worked with in the past.
-
-Best,
-Sam
-
-On Sat, Sep 21, 2019 at 3:33 AM Arun kumar Verma via USRP-users <usrp-users=
-@lists.ettus.com> wrote:
-
-Hi Users
-We would like to know whether X310 with TwinRx boards can be used for tempe=
-rature range -20 to +55 degree. Is temperature range is limited by the comp=
-onents used in the boards or the performance is not guaranteed over this ra=
-nge.
-Are the components used are industrial grade or commercial grade?
-
-Regards,Arun Verma
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
- =20
- =20
-------=_Part_2923230_321640558.1571254501788
+SGVsbG/vvJoKICAgICAgICBJIGdvdCB0d28gbjMxMHPjgIJJIHNldCB1cCB0aGVtIGZvbGxvdyB0
+aGUgZ3VpZGUgaW4gaHR0cDovL2tiLmV0dHVzLmNvbeOAgkkgY2FuIHJ1biDigJx1aGRfZmluZF9k
+ZXZpY2Vz4oCdYW5k4oCcdWhkX3VzcnBfcHJvYmXigJ1jb3JyZWN0bHnjgIJUaGVuIEkgd2FudCB0
+byB0ZXN0IHRoZW0gdXNlIHRoZSB1aGQvZXhhbXBsZXPjgIJJIGhhdmUgc2V2ZWFsIHByb2JsZW1z
+LgogICAgICAgICgxKU9uZSBuMzEwIGNhbiBub3QgcnVuICJiZW5jaG1hcmtfcmF0ZSJhbmQicnhf
+c2FtcGxlc190b19maWxlImNvcnJlY3RseS4gSSBoYXZlIHR5aWVkIHNldmVhbCB0aW1lcywgYnV0
+IGdvdCBkaWZmcmVudCBlcnJvcnMsYW5kIEkgZG9udCBrbm93IHdoYXQgaXMgdGhlIHByb2JsZW0u
+VGhlIGZpbGUgImJlbmNobWFya19yYXRlLmxvZyIgaXMgdGhlIGxvZyB3aGVuIGkgcnVuICJiZW5j
+aG1hcmtfcmF0ZSIsInJ4X3NhbXBsZXNfdG9fZmlsZV9maXJzdF90aW1lLmxvZyJpcyB0aGUgbG9n
+IG9mIG15IGZpc3QgdGltZSBydW4gInJ4X3NhbXBsZXNfdG9fZmlsZSIsInJ4X3NhbXBsZXNfdG9f
+ZmlsZV9zZWNvbmRfdGltZS5sb2ciIGlzIHRoZSBzZWNvbmQgdGltZS4KCgpbV0FSTklOR10gW0NP
+UkVTXSBUaW1lciBsb29wYmFjayB0ZXN0IGZhaWxlZCEKW1dBUk5JTkddIFtDT1JFU10gRXhwZWN0
+aW5nIGNsb2NrIHJhdGU6IDEyMi44OCBNSHoKQXBwcm94aW1hdGUgY2xvY2sgcmF0ZTogMCBNSHoK
+IGlzIHRoZSByZWFzb24/ICAgIAogICAgICAoMikgVGhlIG90aGVyIG4zMTAgcnVuICJiZW5jaG1h
+cmtfcmF0ZSJhbmQicnhfc2FtcGxlc190b19maWxlImNvcnJlY3RseSwgYnV0IGNhbiBub3QgcnVu
+ICJ0eHJ4X2xvb3BiYWNrX3RvX2ZpbGUiLGJ1dCBJIGdvdCBlcnJvcjoKUGxlYXNlIHJ1bjogc3Vk
+byBzeXNjdGwgLXcgbmV0LmNvcmUud21lbV9tYXg9NjI1MDAwMApDaGVja2luZyBUWDogYWxsX2xv
+czogdW5sb2NrZWQgLi4uCkVycm9yOiBBc3NlcnRpb25FcnJvcjogbG9fbG9ja2VkLnRvX2Jvb2wo
+KQogIGluIGludCBfbWFpbihpbnQsIGNoYXIqKikKICBhdCAvaG9tZS93b3JrYXJlYS11aGQvdWhk
+L2hvc3QvZXhhbXBsZXMvdHhyeF9sb29wYmFja190b19maWxlLmNwcDo0NzEKCgp0aGUgY21kIGlz
+OgouL3R4cnhfbG9vcGJhY2tfdG9fZmlsZSBcCi0tdHgtYXJncyAidHlwZT1uM3h4LGFkZHI9MTky
+LjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcCi0tcngtYXJncyAidHlwZT1uM3h4
+LGFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcCi0tZmlsZSA3M19u
+MzEwXzFfY29uc3Rfc2hvcnQuZGF0IFwKLS1yeC1yYXRlIDMuODRlNiBcCi0tdHgtcmF0ZSAzLjg0
+ZTYgXAotLXR4LWZyZXEgMjQwMDAwMCBcCi0tcngtZnJlcSAyNDAwMDAwIFwKLS10eC1nYWluIDQw
+IFwKLS1yeC1nYWluIDQwIFwKLS10eC1zdWJkZXYgICJBOjAiICBcCi0tcngtc3ViZGV2ICAiQTow
+IiAgXAotLXR4LWNoYW5uZWxzICIwIiBcCi0tcngtY2hhbm5lbHMgIjAiIAoKCi4vdHhyeF9sb29w
+YmFja190b19maWxlIFwKLS10eC1hcmdzICJ0eXBlPW4zeHgsbWdtdF9hZGRyPTE5Mi4xNjguMTAu
+MixhZGRyPTE5Mi4xNjguMTAuMixtYXN0ZXJfY2xvY2tfcmF0ZT0xMjVlNiIgXAotLXJ4LWFyZ3Mg
+InR5cGU9bjN4eCxtZ210X2FkZHI9MTkyLjE2OC4xMC4yLGFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rl
+cl9jbG9ja19yYXRlPTEyNWU2IiBcCi0tZmlsZSA3M19uMzEwXzRfY29uc3Rfc2hvcnQuZGF0IFwK
+LS1yeC1yYXRlIDEyNTAwMDAgXAotLXR4LXJhdGUgMTI1MDAwMCBcCi0tdHgtZnJlcSAyNDAwMDAw
+IFwKLS1yeC1mcmVxIDI0MDAwMDAgXAotLXR4LWdhaW4gNDAgXAotLXJ4LWdhaW4gNDAgXAotLXR4
+LWJ3IDEwMDAwMDAgXAotLXJ4LWJ3IDEwMDAwMDAgXAotLXR4LXN1YmRldiAgIkE6MCBBOjEgQjow
+IEI6MSIgIFwKLS1yeC1zdWJkZXYgICJBOjAgQToxIEI6MCBCOjEiICBcCi0tdHgtY2hhbm5lbHMg
+IjAsMSwyLDMiIFwKLS1yeC1jaGFubmVscyAiMCwxLDIsMyIgCgo=
+------=_Part_161477_927369413.1571313289808
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-<html><head></head><body><div class=3D"ydp9e654d82yahoo-style-wrap" style=
-=3D""><div style=3D""><div dir=3D"ltr" data-setdir=3D"false" style=3D"font-=
-family: Helvetica Neue, Helvetica, Arial, sans-serif;"><font size=3D"3">Hi =
-Users</font></div><div dir=3D"ltr" data-setdir=3D"false" style=3D"font-fami=
-ly: Helvetica Neue, Helvetica, Arial, sans-serif;"><font size=3D"3"><br></f=
-ont></div><div dir=3D"ltr" data-setdir=3D"false" style=3D"font-family: Helv=
-etica Neue, Helvetica, Arial, sans-serif;"><font size=3D"3">I am trying to =
-achieve 50MHz BW (25MHz Each Channel)&nbsp; with X310 and TwinRX using 1G E=
-thernet. I went through some of the forums regrading this and found that X3=
-10 does not support 8-bit IQ samples as mentioned in below link.&nbsp;</fon=
-t></div><div dir=3D"ltr" data-setdir=3D"false" style=3D"font-family: Helvet=
-ica Neue, Helvetica, Arial, sans-serif;"><font size=3D"3"><br></font></div>=
-<div dir=3D"ltr" data-setdir=3D"false" style=3D"font-family: Helvetica Neue=
-, Helvetica, Arial, sans-serif;"><font size=3D"3"><span><a href=3D"http://l=
-ists.ettus.com/pipermail/usrp-users_lists.ettus.com/2016-February/046123.ht=
-ml" style=3D"color: rgb(51, 143, 233); text-decoration-line: underline; fon=
-t-family: Helvetica Neue, Helvetica, Arial, sans-serif;" rel=3D"nofollow" t=
-arget=3D"_blank">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.co=
-m/2016-February/046123.html</a></span><br></font></div><div dir=3D"ltr" dat=
-a-setdir=3D"false" style=3D"font-family: Helvetica Neue, Helvetica, Arial, =
-sans-serif;"><font size=3D"3"><br></font></div><div dir=3D"ltr" data-setdir=
-=3D"false" style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-ser=
-if;"><font size=3D"3">Is still 8-bit IQ samples are not supported in the la=
-test UHD ?</font></div><div dir=3D"ltr" data-setdir=3D"false" style=3D"font=
--family: Helvetica Neue, Helvetica, Arial, sans-serif;"><font size=3D"3"><b=
-r></font></div><div dir=3D"ltr" data-setdir=3D"false" style=3D""><font size=
-=3D"3" style=3D"">We are looking for a solution for 50MHz (25MHz Channel ea=
-ch) with laptop processing (Ubuntu).&nbsp; While going through some comment=
-s from different users I found that using&nbsp;<span style=3D"font-family: =
-Arial, Helvetica, sans-serif; color: rgb(97, 97, 97);">T3NL-T3DIY-AKTU ( <s=
-pan><a href=3D"https://www.akitio.com/expansion/node-lite" rel=3D"nofollow"=
- target=3D"_blank" class=3D"">https://www.akitio.com/expansion/node-lite</a=
->)&nbsp; and&nbsp;&nbsp;</span></span><font face=3D"Arial, Helvetica, sans-=
-serif"><span style=3D"white-space: pre-wrap;">Intel X710-DA2 more than 50MH=
-z BW can be achieved. Is there any other solution available for this kind o=
-f bandwidth as we are looking for some compact solution.</span></font><span=
- style=3D"font-family: Arial, Helvetica, sans-serif; color: rgb(97, 97, 97)=
-;"><div style=3D""><br></div><div style=3D""><br></div></span></font></div>=
-<div class=3D"ydp9e654d82signature" style=3D"font-family: Helvetica Neue, H=
-elvetica, Arial, sans-serif; font-size: 16px;"><div style=3D"font-family:He=
-lvetica, Arial, sans-serif;font-size:16px;"><div><div>Regards,</div><div>Ar=
-un Verma</div><div><br></div></div><br></div></div></div>
-        <div style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-s=
-erif; font-size: 16px;"><br></div><div style=3D"font-family: Helvetica Neue=
-, Helvetica, Arial, sans-serif; font-size: 16px;"><br></div>
-       =20
-        </div><div id=3D"ydp20839308yahoo_quoted_1483466053" class=3D"ydp20=
-839308yahoo_quoted">
-            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
-ans-serif;font-size:13px;color:#26282a;">
-               =20
-                <div>
-                    On Wednesday, 16 October, 2019, 09:23:33 pm IST, Sam Re=
-iter &lt;sam.reiter@ettus.com&gt; wrote:
-                </div>
-                <div><br></div>
-                <div><br></div>
-                <div><div id=3D"ydp20839308yiv1887972462"><div><div dir=3D"=
-ltr">Arun,<div><br clear=3D"none"></div><div>Sorry for the confusion. The X=
-310 uses a commercial grade&nbsp;XC7K410T with&nbsp;a temperature range of =
-0-85C.</div><div><br clear=3D"all"><div><div dir=3D"ltr"><div dir=3D"ltr"><=
-div><div dir=3D"ltr">Sam</div></div></div></div></div></div></div><br clear=
-=3D"none"><div class=3D"ydp20839308yiv1887972462yqt0756264066" id=3D"ydp208=
-39308yiv1887972462yqt67802"><div class=3D"ydp20839308yiv1887972462gmail_quo=
-te"><div class=3D"ydp20839308yiv1887972462gmail_attr" dir=3D"ltr">On Tue, O=
-ct 15, 2019 at 10:11 PM Arun kumar Verma &lt;<a shape=3D"rect" href=3D"mail=
-to:arun.verma@eiwave.com" rel=3D"nofollow" target=3D"_blank">arun.verma@eiw=
-ave.com</a>&gt; wrote:<br clear=3D"none"></div><blockquote class=3D"ydp2083=
-9308yiv1887972462gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex;"><div><div><div><div dir=3D"l=
-tr">Hi Sam</div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">=
-Thanks for the information. My only doubt is about the FPGA.&nbsp; FPGA is =
-industrial grade or Commercial grade ? other parts I have verified and all =
-the parts are with Temp Range of -40 to +85.&nbsp;</div><div dir=3D"ltr"><b=
-r clear=3D"none"></div><div dir=3D"ltr">As in case of B205mini it is clearl=
-y mentioned the grade of the FPGA.</div><div><br clear=3D"none"></div><div>=
-<div style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;"><di=
-v><div>Regards,</div><div>Arun Verma</div><div><br clear=3D"none"></div></d=
-iv><br clear=3D"none"></div></div></div>
-        <div><br clear=3D"none"></div><div><br clear=3D"none"></div>
-       =20
-        </div><div id=3D"ydp20839308yiv1887972462gmail-m_341760722020869977=
-3ydpe7e9fa00yahoo_quoted_1475565224">
-            <div>
-               =20
-                <div>
-                    On Wednesday, October 16, 2019, 01:13:56 AM GMT+5:30, S=
-am Reiter &lt;<a shape=3D"rect" href=3D"mailto:sam.reiter@ettus.com" rel=3D=
-"nofollow" target=3D"_blank">sam.reiter@ettus.com</a>&gt; wrote:
-                </div>
-                <div><br clear=3D"none"></div>
-                <div><br clear=3D"none"></div>
-                <div><div id=3D"ydp20839308yiv1887972462gmail-m_34176072202=
-08699773ydpe7e9fa00yiv5355110877"><div><div dir=3D"ltr"><div>Hey Arun,</div=
-><div><br clear=3D"none"></div><div>The temperature range for the X310 and =
-the TwinRX is noted as 23 +/- 3 C. This is meant to convey that the device =
-is intended for indoor lab use and has not been thoroughly tested in extrem=
-e environments like you've mentioned. You're also correct that you'll see d=
-evice performance change over that temperature range and I think -20C will =
-be dipping below the rating of some of the components. Some key components =
-can be found here:</div><div><br clear=3D"none"></div><div><a shape=3D"rect=
-" href=3D"https://kb.ettus.com/X300/X310#Key_Component_Datasheets" rel=3D"n=
-ofollow" target=3D"_blank">https://kb.ettus.com/X300/X310#Key_Component_Dat=
-asheets</a></div><div><br clear=3D"none"></div><div>Depending on what you'r=
-e hoping to do, we see folks develop custom enclosures for these types of r=
-adios with and without thermal regulation. At the end of the day if you're =
-subjecting this radio to those kinds of extremes, it's up to you to put it =
-through its paces and make sure it'll meet your needs. I'll also note that =
-we don't formally endorse any X310 enclosures, but one of the few IP67 OTS =
-solutions I've found for the X310 is sold by Pixus: <br clear=3D"none"></di=
-v><div><br clear=3D"none"></div><div><a shape=3D"rect" href=3D"http://www.p=
-ixustechnologies.com/products/enclosure-system-solutions/specialty-small-fo=
-rm-factor-rugged-x310-other-2/specialty-small-form-factor-rugged-x310-other=
-/" rel=3D"nofollow" target=3D"_blank">http://www.pixustechnologies.com/prod=
-ucts/enclosure-system-solutions/specialty-small-form-factor-rugged-x310-oth=
-er-2/specialty-small-form-factor-rugged-x310-other/</a></div><div><br clear=
-=3D"none"></div><div>Not sure if this does anything to extend temperature r=
-ange, but it could be a starting point in developing your own ruggedized so=
-lution to deploy. Also if anyone else has recommendations or experience wit=
-h X310 enclosure solutions, I'd be curious to hear what you've made or work=
-ed with in the past.<br clear=3D"none"></div><div><br clear=3D"none"></div>=
-<div>Best,</div><div><br clear=3D"none"></div><div><div><div dir=3D"ltr"><d=
-iv dir=3D"ltr"><div><div dir=3D"ltr">Sam<br clear=3D"none"></div></div></di=
-v></div></div></div></div><br clear=3D"none"><div><div id=3D"ydp20839308yiv=
-1887972462gmail-m_3417607220208699773ydpe7e9fa00yiv5355110877yqt09404"><div=
- dir=3D"ltr">On Sat, Sep 21, 2019 at 3:33 AM Arun kumar Verma via USRP-user=
-s &lt;<a shape=3D"rect" href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"n=
-ofollow" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br cle=
-ar=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex;"><div><div><div dir=3D"ltr"><=
-div><div dir=3D"ltr">Hi Users<br clear=3D"none"></div><div dir=3D"ltr">We w=
-ould like to know whether X310 with TwinRx boards can be used for temperatu=
-re range -20 to +55 degree. Is temperature range is limited by the componen=
-ts used in the boards or the performance is not guaranteed over this range.=
-<br clear=3D"none"></div><div dir=3D"ltr">Are the components used are indus=
-trial grade or commercial grade?<br clear=3D"none"></div><div dir=3D"ltr"><=
-br clear=3D"none"></div><div dir=3D"ltr">Regards,</div><div dir=3D"ltr">Aru=
-n Verma</div></div><br clear=3D"none"></div><div><br clear=3D"none"></div><=
-div><div style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;"=
-><br clear=3D"none"></div></div></div></div>_______________________________=
-________________<br clear=3D"none">
-USRP-users mailing list<br clear=3D"none">
-<a shape=3D"rect" href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"nofollo=
-w" target=3D"_blank">USRP-users@lists.ettus.com</a><br clear=3D"none">
-<a shape=3D"rect" href=3D"http://lists.ettus.com/mailman/listinfo/usrp-user=
-s_lists.ettus.com" rel=3D"nofollow" target=3D"_blank">http://lists.ettus.co=
-m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
-</blockquote></div></div></div></div></div>
-            </div>
-        </div></div></blockquote></div></div></div></div></div>
-            </div>
-        </div></body></html>
-------=_Part_2923230_321640558.1571254501788--
+PGh0bWw+CjxoZWFkPgogICAgPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50
+PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPgo8L2hlYWQ+Cjxib2R5Pgo8c3R5bGU+CiAgICBm
+b250ewogICAgICAgIGxpbmUtaGVpZ2h0OiAxLjY7CiAgICB9CiAgICB1bCxvbHsKICAgICAgICBw
+YWRkaW5nLWxlZnQ6IDIwcHg7CiAgICAgICAgbGlzdC1zdHlsZS1wb3NpdGlvbjogaW5zaWRlOwog
+ICAgfQo8L3N0eWxlPgo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTrlvq7ova/pm4Xpu5EsVmVyZGFu
+YSwmcXVvdDtNaWNyb3NvZnQgWWFoZWkmcXVvdDssU2ltU3VuLHNhbnMtc2VyaWY7Zm9udC1zaXpl
+OjE0cHg7IGxpbmUtaGVpZ2h0OjEuNjsiPgogICAgPGRpdj48L2Rpdj48ZGl2PgogICAgPGRpdj5I
+ZWxsb++8mjwvZGl2PjwvZGl2PjxkaXY+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IEkgZ290
+IHR3byBuMzEwc+OAgkkgc2V0IHVwIHRoZW0gZm9sbG93IHRoZSBndWlkZSBpbiBodHRwOi8va2Iu
+ZXR0dXMuY29t44CCSSBjYW4gcnVuIOKAnHVoZF9maW5kX2RldmljZXPigJ1hbmTigJx1aGRfdXNy
+cF9wcm9iZeKAnWNvcnJlY3RseeOAglRoZW4gSSB3YW50IHRvIHRlc3QgdGhlbSB1c2UgdGhlIHVo
+ZC9leGFtcGxlc+OAgkkgaGF2ZSBzZXZlYWwgcHJvYmxlbXMuPC9kaXY+PGRpdj4mbmJzcDsgJm5i
+c3A7ICZuYnNwOyAmbmJzcDsgKDEpT25lIG4zMTAgY2FuIG5vdCBydW4gImJlbmNobWFya19yYXRl
+ImFuZDxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS42OyI+InJ4X3NhbXBsZXNfdG9fZmlsZSI8
+L3NwYW4+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAyMi40cHg7Ij5jb3JyZWN0bHkuIEkgaGF2
+ZSB0eWllZCBzZXZlYWwgdGltZXMsIGJ1dCBnb3QgZGlmZnJlbnQgZXJyb3JzLGFuZCBJIGRvbnQg
+a25vdyB3aGF0IGlzIHRoZSBwcm9ibGVtLlRoZSBmaWxlICI8L3NwYW4+YmVuY2htYXJrX3JhdGUu
+bG9nPHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAyMi40cHg7Ij4iIGlzIHRoZSBsb2cgd2hlbiBp
+IHJ1biAiPC9zcGFuPjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMjIuNHB4OyI+YmVuY2htYXJr
+X3JhdGUiLCI8L3NwYW4+cnhfc2FtcGxlc190b19maWxlX2ZpcnN0X3RpbWUubG9nImlzIHRoZSBs
+b2cgb2YgbXkgZmlzdCB0aW1lIHJ1biAiPHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAyMi40cHg7
+Ij5yeF9zYW1wbGVzX3RvX2ZpbGU8L3NwYW4+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjY7
+Ij4iLCI8L3NwYW4+cnhfc2FtcGxlc190b19maWxlX3NlY29uZF90aW1lLmxvZyIgaXMgdGhlIHNl
+Y29uZCB0aW1lLjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGRpdj48Yj5bV0FSTklOR10gW0NP
+UkVTXSBUaW1lciBsb29wYmFjayB0ZXN0IGZhaWxlZCE8L2I+PC9kaXY+PGRpdj48Yj5bV0FSTklO
+R10gW0NPUkVTXSBFeHBlY3RpbmcgY2xvY2sgcmF0ZTogMTIyLjg4IE1IejwvYj48L2Rpdj48ZGl2
+PjxiPkFwcHJveGltYXRlIGNsb2NrIHJhdGU6IDAgTUh6PC9iPjwvZGl2PjwvZGl2PjxkaXY+PGI+
+Jm5ic3A7aXMgdGhlIHJlYXNvbj8gJm5ic3A7ICZuYnNwOzwvYj48L2Rpdj48ZGl2PiZuYnNwOyAm
+bmJzcDsgJm5ic3A7ICgyKSBUaGUgb3RoZXIgbjMxMCBydW4mbmJzcDs8c3BhbiBzdHlsZT0ibGlu
+ZS1oZWlnaHQ6IDIyLjRweDsiPiJiZW5jaG1hcmtfcmF0ZSJhbmQ8L3NwYW4+PHNwYW4gc3R5bGU9
+ImxpbmUtaGVpZ2h0OiAxLjY7Ij4icnhfc2FtcGxlc190b19maWxlIjwvc3Bhbj48c3BhbiBzdHls
+ZT0ibGluZS1oZWlnaHQ6IDIyLjRweDsiPmNvcnJlY3RseSwgYnV0IGNhbiBub3QgcnVuICI8L3Nw
+YW4+dHhyeF9sb29wYmFja190b19maWxlIixidXQgSSBnb3QgZXJyb3I6PC9kaXY+PGRpdj48ZGl2
+PjxiPlBsZWFzZSBydW46IHN1ZG8gc3lzY3RsIC13IG5ldC5jb3JlLndtZW1fbWF4PTYyNTAwMDA8
+L2I+PC9kaXY+PGRpdj48Yj5DaGVja2luZyBUWDogYWxsX2xvczogdW5sb2NrZWQgLi4uPC9iPjwv
+ZGl2PjxkaXY+PGI+RXJyb3I6IEFzc2VydGlvbkVycm9yOiBsb19sb2NrZWQudG9fYm9vbCgpPC9i
+PjwvZGl2PjxkaXY+PGI+Jm5ic3A7IGluIGludCBfbWFpbihpbnQsIGNoYXIqKik8L2I+PC9kaXY+
+PGRpdj48Yj4mbmJzcDsgYXQgL2hvbWUvd29ya2FyZWEtdWhkL3VoZC9ob3N0L2V4YW1wbGVzL3R4
+cnhfbG9vcGJhY2tfdG9fZmlsZS5jcHA6NDcxPC9iPjwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2
+PjxkaXY+dGhlIGNtZCBpczo8L2Rpdj48ZGl2PjxkaXY+Li90eHJ4X2xvb3BiYWNrX3RvX2ZpbGUg
+XDwvZGl2PjxkaXY+LS10eC1hcmdzICJ0eXBlPW4zeHgsYWRkcj0xOTIuMTY4LjEwLjIsbWFzdGVy
+X2Nsb2NrX3JhdGU9MTI1ZTYiIFw8L2Rpdj48ZGl2Pi0tcngtYXJncyAidHlwZT1uM3h4LGFkZHI9
+MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcPC9kaXY+PGRpdj4tLWZpbGUg
+NzNfbjMxMF8xX2NvbnN0X3Nob3J0LmRhdCBcPC9kaXY+PGRpdj4tLXJ4LXJhdGUgMy44NGU2IFw8
+L2Rpdj48ZGl2Pi0tdHgtcmF0ZSAzLjg0ZTYgXDwvZGl2PjxkaXY+LS10eC1mcmVxIDI0MDAwMDAg
+XDwvZGl2PjxkaXY+LS1yeC1mcmVxIDI0MDAwMDAgXDwvZGl2PjxkaXY+LS10eC1nYWluIDQwIFw8
+L2Rpdj48ZGl2Pi0tcngtZ2FpbiA0MCBcPC9kaXY+PGRpdj4tLXR4LXN1YmRldiAmbmJzcDsiQTow
+IiAmbmJzcDtcPC9kaXY+PGRpdj4tLXJ4LXN1YmRldiAmbmJzcDsiQTowIiAmbmJzcDtcPC9kaXY+
+PGRpdj4tLXR4LWNoYW5uZWxzICIwIiBcPC9kaXY+PGRpdj4tLXJ4LWNoYW5uZWxzICIwIiZuYnNw
+OzwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGRpdj4uL3R4cnhfbG9vcGJhY2tfdG9f
+ZmlsZSBcPC9kaXY+PGRpdj4tLXR4LWFyZ3MgInR5cGU9bjN4eCxtZ210X2FkZHI9MTkyLjE2OC4x
+MC4yLGFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcPC9kaXY+PGRp
+dj4tLXJ4LWFyZ3MgInR5cGU9bjN4eCxtZ210X2FkZHI9MTkyLjE2OC4xMC4yLGFkZHI9MTkyLjE2
+OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcPC9kaXY+PGRpdj4tLWZpbGUgNzNfbjMx
+MF80X2NvbnN0X3Nob3J0LmRhdCBcPC9kaXY+PGRpdj4tLXJ4LXJhdGUgMTI1MDAwMCBcPC9kaXY+
+PGRpdj4tLXR4LXJhdGUgMTI1MDAwMCBcPC9kaXY+PGRpdj4tLXR4LWZyZXEgMjQwMDAwMCBcPC9k
+aXY+PGRpdj4tLXJ4LWZyZXEgMjQwMDAwMCBcPC9kaXY+PGRpdj4tLXR4LWdhaW4gNDAgXDwvZGl2
+PjxkaXY+LS1yeC1nYWluIDQwIFw8L2Rpdj48ZGl2Pi0tdHgtYncgMTAwMDAwMCBcPC9kaXY+PGRp
+dj4tLXJ4LWJ3IDEwMDAwMDAgXDwvZGl2PjxkaXY+LS10eC1zdWJkZXYgJm5ic3A7IkE6MCBBOjEg
+QjowIEI6MSIgJm5ic3A7XDwvZGl2PjxkaXY+LS1yeC1zdWJkZXYgJm5ic3A7IkE6MCBBOjEgQjow
+IEI6MSIgJm5ic3A7XDwvZGl2PjxkaXY+LS10eC1jaGFubmVscyAiMCwxLDIsMyIgXDwvZGl2Pjxk
+aXY+LS1yeC1jaGFubmVscyAiMCwxLDIsMyImbmJzcDs8L2Rpdj48L2Rpdj48ZGl2Pjxicj48L2Rp
+dj48IS0t8J+YgC0tPgo8L2Rpdj4KPC9ib2R5Pgo8L2h0bWw+
+------=_Part_161477_927369413.1571313289808--
 
 
---===============3663936078653545050==
+
+--===============9124178543058972927==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -347,5 +188,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3663936078653545050==--
+--===============9124178543058972927==--
+
 
