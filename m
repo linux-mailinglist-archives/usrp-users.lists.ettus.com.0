@@ -2,58 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38A37DB00B
-	for <lists+usrp-users@lfdr.de>; Thu, 17 Oct 2019 16:27:41 +0200 (CEST)
-Received: from [::1] (port=33400 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80B9CDB25C
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Oct 2019 18:30:02 +0200 (CEST)
+Received: from [::1] (port=52482 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iL6kZ-0001Ao-N8; Thu, 17 Oct 2019 10:27:35 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:46769)
+	id 1iL8ex-0006RQ-Ej; Thu, 17 Oct 2019 12:29:55 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:35452)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
- id 1iL6kV-00015J-Tl
- for usrp-users@lists.ettus.com; Thu, 17 Oct 2019 10:27:31 -0400
-Received: by mail-oi1-f182.google.com with SMTP id k25so2273854oiw.13
- for <usrp-users@lists.ettus.com>; Thu, 17 Oct 2019 07:27:11 -0700 (PDT)
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1iL8eu-0006K8-28
+ for usrp-users@lists.ettus.com; Thu, 17 Oct 2019 12:29:52 -0400
+Received: by mail-oi1-f175.google.com with SMTP id x3so2707198oig.2
+ for <usrp-users@lists.ettus.com>; Thu, 17 Oct 2019 09:29:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=CulI0CwfI7St1PuLNOD8TaXbwKkKFOOg67mmLbWdUR0=;
- b=ZHTIS/9JGt+U/21smnwbS2pYzYvONr0cMjFtveBs17vpMm6mCcReQ5wBltthNUr9aj
- 3/YUpxyK4zlNgVGXBGdxwN/pMdrq5gAk+LU3cKYWnIYj6KgsvttW9qUNdlGLmYir7Qx0
- JjbCjCUXn5pYEV5RrVUDSzNRTTaylk0GH3mtQ2Whb2O16Ehb2A9r8FPpsQlQZeEGL9SA
- TiNRmazNrwizgNr+ZcA7febMM9XryAB+WHUlbD8Pi8PUzgN8N/wL6QwDwcqIEdxMW42d
- 8FMQR1Eyo/VH4zxn/vl9XXhxdJg1tgbKHbtirdwAHWhBgfZtCPSj9WTZ2CG4fOTYmlb4
- iORA==
+ :cc; bh=dsKlBwQD7PUmvJRI+NRtJPa3JXG25ox8duUQevGp1gs=;
+ b=ezgK2Ao+RUrih6PwhKswVYVha5xBAWM7asASw09jTwJG2jTbxzBbuT8rDPt2Am/dRN
+ pZbZAtSF45dt9rXmrpopjiFgOTnlYoQAXvNrTj4JNqiPmPji0/w9mt3yUZ8UK7anuOKr
+ 2jPeaQVM9XO1mLSQKwDs12hO4Aduh6i5XpnyZHP/y7VU4Psc+AkdisK615iJ9KiOg7/Q
+ nfKgP2YEpSFDre9nhitcIQUTC4mO66qSfY5nJJPt5mDT4nOhx94Mdg6JYBKQ3tMDVnDu
+ LuxRyl2MxFPsPXJQW+M3PWcLLeQyvqgBCkrC1w1egrH6OUbuc0I+whCYq2ZKP+glk4Ls
+ D8Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=CulI0CwfI7St1PuLNOD8TaXbwKkKFOOg67mmLbWdUR0=;
- b=T4eEDf8uxtX5LPRNR09t+LoT+q3+GH3+uJCuYrjSjQ3vZExEXR/fXp+zBPVJOMmnhF
- Yirzpr9ZwMsx+nOBj0KGE/2t2dg/GUfjgfWygTjVVHhvjdNi4OmfUVBaDExon1rv5iHf
- AAQjZYPjqsiERrVllTY8tAO+ONWA1X1YHjxwNZOMECkSdMGT7sTy/RTFikUwi27Ge5Ee
- 6RbAIfmLG1LoepSCdUE2DOQ1r6ks5MuZASYLTWoPiZvl4f8S/L2lWHjkkSKVKFskaOxi
- CZeg1D7PkAyjvRc1I8/MZh1KuIfBcWzdVo/9/4CIUBNN8gxxnCKfn+VAzWFI5sU1Y0HO
- m9gw==
-X-Gm-Message-State: APjAAAXTZTHIsd4usyJ+Jd/MLUc+8hgJXvoCOm7UPKTreBC7LwbSSstZ
- Hb14kFlTGSCkz+4GQVy/yEhuCmKK+1Nntoq+UjR1o3ud
-X-Google-Smtp-Source: APXvYqxZjNMLFU9LBpjpxPu0AVW+2T+5aEtGzd4DKFMnXCpDLzYOY+TCfR31PlhuLBmjkBTzGIfAnrxk+YoCuLu2i3Q=
-X-Received: by 2002:aca:d44e:: with SMTP id l75mr3515499oig.44.1571322410929; 
- Thu, 17 Oct 2019 07:26:50 -0700 (PDT)
+ bh=dsKlBwQD7PUmvJRI+NRtJPa3JXG25ox8duUQevGp1gs=;
+ b=UXdu8wLiZZsnwMzBxBVlxHyHvbk1oNMm4Ah6bya1nXFNRcyYCuK1FBIazkmv6bb2hp
+ 9VhXzBGlQqmpK5t3WPap+d78iCu3wQqzP1DcyvG9KRXAT1FgcF7hAHvK7SK0ekbNt8Yz
+ 0Ji1qZ+ZglytLm+Fj56SbmseiNfbsyD69qYp/1/zLBYUUbdlaijTzZO51KcuiRUsLDuZ
+ cRbCjpKx2N7IJE1Z+j+13+HwLcNZ4WYrxk2pCU9FJgbODmcYR5YYNik/taVyupjtKldr
+ Zcj0iOItZPgGNM/44myGWB36PVVry4GhOwcWkSEwMN1VeWGQHrZxvjKxYRhO2LC/QpJn
+ TcGw==
+X-Gm-Message-State: APjAAAWmM6mVVa+1F3iuIVsBvejqDlOPPtMozfFEcm3vCXk4i47qLveo
+ bBZErejtQGg0+h4IgkI8upMepAgxRaWCUCJjrOwaDqh6
+X-Google-Smtp-Source: APXvYqxwykqvDomoPQR5BkZPdF/8oX2s7Zr3ASAHSIZJZTXEdC5+ZprPal98FGqY9ePWK5Uy0UVOu+Rzq7fnfI1f9v4=
+X-Received: by 2002:aca:fc42:: with SMTP id a63mr3885847oii.97.1571329751351; 
+ Thu, 17 Oct 2019 09:29:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <CANQ3h3_fwR=baRxHo+Aicms8C3CFnWzR51qSS99xo2u--OY2vg@mail.gmail.com>
- <CAGNhwTNRQwC2-gVFQFFyfk0ubGCfoL2a1kShguyMny1Y_9Xw_g@mail.gmail.com>
- <CANQ3h39_-YDpCHEgCcR=r3z=iK7QOmJPFYnY8DATs5++zh+uug@mail.gmail.com>
- <CAGNhwTPELUny7ZaVY18KzPvmD3enezmhMLvypUxUZ5qD3zw+cg@mail.gmail.com>
- <CANQ3h39YJO_iNBdg8_Psx8fHoZGo-aJsESJTBRVf0G1-enZAkw@mail.gmail.com>
- <CAGNhwTP9xwKbDUN49knKmdPzu-yo3rwfzbnvx3YqLuwV3+jyVg@mail.gmail.com>
- <CANQ3h3-6yNAt2v35kUR1z9sNhu7_6M1h3ZsANpDMpueksf2b1w@mail.gmail.com>
-In-Reply-To: <CANQ3h3-6yNAt2v35kUR1z9sNhu7_6M1h3ZsANpDMpueksf2b1w@mail.gmail.com>
-Date: Thu, 17 Oct 2019 10:26:39 -0400
-Message-ID: <CAGNhwTP7QX-fTNWNwCKsp0t8d072ovECMA9Z3JMEYyhozkinnA@mail.gmail.com>
-To: Saeid Hashemi <saeidh@gmail.com>
-Subject: Re: [USRP-users] uhd_fft failure
+References: <mailman.49.1571241602.28966.usrp-users_lists.ettus.com@lists.ettus.com>
+ <50ae0c17.d3a7.16dd9920a50.Coremail.ruoyilei@126.com>
+In-Reply-To: <50ae0c17.d3a7.16dd9920a50.Coremail.ruoyilei@126.com>
+Date: Thu, 17 Oct 2019 09:29:39 -0700
+Message-ID: <CAL263ixcwiYnr53j2pw-eXAatYuAFAy47SftxfLSeaKkYmNjiA@mail.gmail.com>
+To: =?UTF-8?B?546L55u8?= <ruoyilei@126.com>
+Subject: Re: [USRP-users] what's wrong with my n310s?help me, please!
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7165368726305840454=="
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3017374145161046375=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,182 +77,184 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7165368726305840454==
-Content-Type: multipart/alternative; boundary="00000000000021a26205951c0290"
+--===============3017374145161046375==
+Content-Type: multipart/alternative; boundary="000000000000a798b005951db7a0"
 
---00000000000021a26205951c0290
+--000000000000a798b005951db7a0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Yes sorry about the GR37 release version: 3.7.13.5 is the correct on.
-Installing Py27-six should be pretty straight forward & should allow you to
-proceed with that install. GR38 has it's own set of dependencies, some of
-which overlap with GR37 and some of which don't. You'll want to follow the
-install guide for your OS to get those dependencies. Good luck! - MLD
+Hi Wangpan,
 
-On Wed, Oct 16, 2019 at 3:02 PM Saeid Hashemi <saeidh@gmail.com> wrote:
+You had contacted us directly via support@ettus.com on this same issue,
+let's continue to debug through that channel and when the issue is
+resolved, I can update the mailing list with the result.
 
-> Hi Michael,
+
+Regards,
+Nate Temple
+
+On Thu, Oct 17, 2019 at 4:55 AM =E7=8E=8B=E7=9B=BC via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello=EF=BC=9A
+>         I got two n310s=E3=80=82I set up them follow the guide in
+> http://kb.ettus.com=E3=80=82I can run
+> =E2=80=9Cuhd_find_devices=E2=80=9Dand=E2=80=9Cuhd_usrp_probe=E2=80=9Dcorr=
+ectly=E3=80=82Then I want to test them use
+> the uhd/examples=E3=80=82I have seveal problems.
+>         (1)One n310 can not run "benchmark_rate"and"rx_samples_to_file"co=
+rrectly.
+> I have tyied seveal times, but got diffrent errors,and I dont know what i=
+s
+> the problem.The file "benchmark_rate.log" is the log when i run "
+> benchmark_rate","rx_samples_to_file_first_time.log"is the log of my fist
+> time run "rx_samples_to_file","rx_samples_to_file_second_time.log" is the
+> second time.
 >
-> The gnuradio git repository does not have a tag for v3.17.14.5, and using
-> v3.7.13.5 gives me:
+> *[WARNING] [CORES] Timer loopback test failed!*
+> *[WARNING] [CORES] Expecting clock rate: 122.88 MHz*
+> *Approximate clock rate: 0 MHz*
+> * is the reason?    *
+>       (2) The other n310 run "benchmark_rate"and"rx_samples_to_file"corre=
+ctly,
+> but can not run "txrx_loopback_to_file",but I got error:
+> *Please run: sudo sysctl -w net.core.wmem_max=3D6250000*
+> *Checking TX: all_los: unlocked ...*
+> *Error: AssertionError: lo_locked.to_bool()*
+> *  in int _main(int, char**)*
+> *  at /home/workarea-uhd/uhd/host/examples/txrx_loopback_to_file.cpp:471*
 >
-> -- Python checking for six - python 2 and 3 compatibility library
-> -- Python checking for six - python 2 and 3 compatibility library - not
-> found
-> CMake Error at volk/CMakeLists.txt:98 (message):
->   six - python 2 and 3 compatibility library required to build VOLK
+> the cmd is:
+> ./txrx_loopback_to_file \
+> --tx-args "type=3Dn3xx,addr=3D192.168.10.2,master_clock_rate=3D125e6" \
+> --rx-args "type=3Dn3xx,addr=3D192.168.10.2,master_clock_rate=3D125e6" \
+> --file 73_n310_1_const_short.dat \
+> --rx-rate 3.84e6 \
+> --tx-rate 3.84e6 \
+> --tx-freq 2400000 \
+> --rx-freq 2400000 \
+> --tx-gain 40 \
+> --rx-gain 40 \
+> --tx-subdev  "A:0"  \
+> --rx-subdev  "A:0"  \
+> --tx-channels "0" \
+> --rx-channels "0"
 >
+> ./txrx_loopback_to_file \
+> --tx-args
+> "type=3Dn3xx,mgmt_addr=3D192.168.10.2,addr=3D192.168.10.2,master_clock_ra=
+te=3D125e6"
+> \
+> --rx-args
+> "type=3Dn3xx,mgmt_addr=3D192.168.10.2,addr=3D192.168.10.2,master_clock_ra=
+te=3D125e6"
+> \
+> --file 73_n310_4_const_short.dat \
+> --rx-rate 1250000 \
+> --tx-rate 1250000 \
+> --tx-freq 2400000 \
+> --rx-freq 2400000 \
+> --tx-gain 40 \
+> --rx-gain 40 \
+> --tx-bw 1000000 \
+> --rx-bw 1000000 \
+> --tx-subdev  "A:0 A:1 B:0 B:1"  \
+> --rx-subdev  "A:0 A:1 B:0 B:1"  \
+> --tx-channels "0,1,2,3" \
+> --rx-channels "0,1,2,3"
 >
-> -- Configuring incomplete, errors occurred!
-> See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeOutput.log".
-> See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeError.log".
->
->
-> Checking out tag v3.8.0.0 results in Cmake dependency of 3.8 and up, so I
-> need to install that manually.
->
->
-> On Sat, Oct 12, 2019 at 11:02 AM Michael Dickens <
-> michael.dickens@ettus.com> wrote:
->
->> OK. Thanks for the info Saeid. I'll look into creating a VM using Ubuntu
->> 16.04.1 to see what happens. - MLD
->>
->> On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi <saeidh@gmail.com> wrote:
->>
->>> It's Ubuntu 16.04.1, but yes, I will follow the source build
->>> instructions.
->>>
->>> On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens <
->>> michael.dickens@ettus.com> wrote:
->>>
->>>> Hi Saeid - Thanks for the followup. I totally agree that if you just
->>>> "sudo apt install gnuradio", compatible versions should be installed. Are
->>>> you using Ubuntu 16.04.6 LTS (Xenial Xerus)? If you choose to install from
->>>> source, you can follow instructions such as the GR recommended way here <
->>>> https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29
->>>> >. I have an Ubuntu 18.04 install that went very smoothly using this guide,
->>>> but maybe the guide is outdated for older Ubuntu; or, our packages need to
->>>> be updated for that OS version ... Cheers! - MLD
->>>>
->>>> On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi <saeidh@gmail.com> wrote:
->>>>
->>>>> I will follow your advice, but it's worth mentioning I simply did
->>>>> apt-get gnuradio and should therefore have a compatible version of uhd
->>>>> installed automatically as a dependency. I did not install uhd separately.
->>>>>
->>>> --
->>>> Michael Dickens
->>>> Ettus Research Technical Support
->>>> Email: support@ettus.com
->>>> Web: https://ettus.com/
->>>>
->>>
->>
->> --
->> Michael Dickens
->> Ettus Research Technical Support
->> Email: support@ettus.com
->> Web: https://ettus.com/
->>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
--- 
-Michael Dickens
-Ettus Research Technical Support
-Email: support@ettus.com
-Web: https://ettus.com/
-
---00000000000021a26205951c0290
+--000000000000a798b005951db7a0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Yes sorry about the GR37 release version: 3.7.13.5 is=
- the correct on. Installing Py27-six should be pretty straight forward &amp=
-; should allow you to proceed with that install. GR38 has it&#39;s own set =
-of dependencies, some of which overlap with GR37 and some of which don&#39;=
-t. You&#39;ll want to follow the install guide for your OS to get those dep=
-endencies. Good=C2=A0luck! - MLD</div></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Oct 16, 2019 at 3:02 PM Saeid=
- Hashemi &lt;<a href=3D"mailto:saeidh@gmail.com">saeidh@gmail.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">Hi Michael,<div><br></div><div>The gnuradio git repository does no=
-t have a tag for v3.17.14.5, and using v3.7.13.5 gives me:</div><div><br></=
-div><blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><=
-div><font size=3D"1" face=3D"monospace">-- Python checking for six - python=
- 2 and 3 compatibility library</font></div><div><font size=3D"1" face=3D"mo=
-nospace">-- Python checking for six - python 2 and 3 compatibility library =
-- not found</font></div><div><font size=3D"1" face=3D"monospace">CMake Erro=
-r at volk/CMakeLists.txt:98 (message):</font></div><div><font size=3D"1" fa=
-ce=3D"monospace">=C2=A0 six - python 2 and 3 compatibility library required=
- to build VOLK</font></div><div><font size=3D"1" face=3D"monospace"><br></f=
-ont></div><div><font size=3D"1" face=3D"monospace"><br></font></div><div><f=
-ont size=3D"1" face=3D"monospace">-- Configuring incomplete, errors occurre=
-d!</font></div><div><font size=3D"1" face=3D"monospace">See also &quot;/hom=
-e/nuc03/gnuradio/build/CMakeFiles/CMakeOutput.log&quot;.</font></div><div><=
-font size=3D"1" face=3D"monospace">See also &quot;/home/nuc03/gnuradio/buil=
-d/CMakeFiles/CMakeError.log&quot;.</font></div></blockquote><div><br></div>=
-<div>Checking out tag v3.8.0.0 results in Cmake dependency of 3.8 and up, s=
-o I need to install that manually.</div><div><br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Oct 12, 2019=
- at 11:02 AM Michael Dickens &lt;<a href=3D"mailto:michael.dickens@ettus.co=
-m" target=3D"_blank">michael.dickens@ettus.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">OK. Thanks f=
-or the info Saeid. I&#39;ll look into creating a VM using Ubuntu 16.04.1 to=
- see what happens. - MLD</div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi &lt;<=
-a href=3D"mailto:saeidh@gmail.com" target=3D"_blank">saeidh@gmail.com</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
-ir=3D"ltr">It&#39;s Ubuntu 16.04.1, but yes, I will follow the source build=
- instructions.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens &lt;<a href=
-=3D"mailto:michael.dickens@ettus.com" target=3D"_blank">michael.dickens@ett=
-us.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi=C2=A0Saeid - Thanks for the foll=
-owup. I totally agree that if you just &quot;sudo apt install gnuradio&quot=
-;, compatible versions should be installed. Are you using Ubuntu 16.04.6 LT=
-S (Xenial Xerus)? If you choose to install from source, you can follow inst=
-ructions such as the GR recommended way here &lt;=C2=A0<a href=3D"https://w=
-iki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29" target=
-=3D"_blank">https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_=
-.2816.04.29</a> &gt;. I have an Ubuntu=C2=A018.04 install that went very=C2=
-=A0smoothly using this guide, but maybe the guide is outdated for older Ubu=
-ntu; or, our packages need to be updated for that OS version ... Cheers! - =
-MLD</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi &lt;<a href=3D"mailto:saei=
-dh@gmail.com" target=3D"_blank">saeidh@gmail.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I will fol=
-low your advice, but it&#39;s worth mentioning I simply did apt-get gnuradi=
-o and should therefore have a compatible version of uhd installed automatic=
-ally as a dependency. I did not install uhd separately.</div></blockquote><=
-/div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael=
- Dickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto:su=
-pport@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=3D=
-"https://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div></=
-div></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi Wangpan,<br><br>You had contacted us directly via <a=
+ href=3D"mailto:support@ettus.com">support@ettus.com</a> on this same issue=
+, let&#39;s continue to debug through that channel and when the issue is re=
+solved, I can update the mailing list with the result.<br><br><br>Regards,<=
+br>Nate Temple</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Thu, Oct 17, 2019 at 4:55 AM =E7=8E=8B=E7=9B=BC via =
+USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lis=
+ts.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex">
+
+   =20
+
+<div>
+
+<div style=3D"font-family:=E5=BE=AE=E8=BD=AF=E9=9B=85=E9=BB=91,Verdana,&quo=
+t;Microsoft Yahei&quot;,SimSun,sans-serif;font-size:14px;line-height:1.6">
+    <div></div><div>
+    <div>Hello=EF=BC=9A</div></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 I got t=
+wo n310s=E3=80=82I set up them follow the guide in <a href=3D"http://kb.ett=
+us.com" target=3D"_blank">http://kb.ettus.com</a>=E3=80=82I can run =E2=80=
+=9Cuhd_find_devices=E2=80=9Dand=E2=80=9Cuhd_usrp_probe=E2=80=9Dcorrectly=E3=
+=80=82Then I want to test them use the uhd/examples=E3=80=82I have seveal p=
+roblems.</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 (1)One n310 can not run &quo=
+t;benchmark_rate&quot;and<span style=3D"line-height:1.6">&quot;rx_samples_t=
+o_file&quot;</span><span style=3D"line-height:22.4px">correctly. I have tyi=
+ed seveal times, but got diffrent errors,and I dont know what is the proble=
+m.The file &quot;</span>benchmark_rate.log<span style=3D"line-height:22.4px=
+">&quot; is the log when i run &quot;</span><span style=3D"line-height:22.4=
+px">benchmark_rate&quot;,&quot;</span>rx_samples_to_file_first_time.log&quo=
+t;is the log of my fist time run &quot;<span style=3D"line-height:22.4px">r=
+x_samples_to_file</span><span style=3D"line-height:1.6">&quot;,&quot;</span=
+>rx_samples_to_file_second_time.log&quot; is the second time.</div><div><br=
+></div><div><div><b>[WARNING] [CORES] Timer loopback test failed!</b></div>=
+<div><b>[WARNING] [CORES] Expecting clock rate: 122.88 MHz</b></div><div><b=
+>Approximate clock rate: 0 MHz</b></div></div><div><b>=C2=A0is the reason? =
+=C2=A0 =C2=A0</b></div><div>=C2=A0 =C2=A0 =C2=A0 (2) The other n310 run=C2=
+=A0<span style=3D"line-height:22.4px">&quot;benchmark_rate&quot;and</span><=
+span style=3D"line-height:1.6">&quot;rx_samples_to_file&quot;</span><span s=
+tyle=3D"line-height:22.4px">correctly, but can not run &quot;</span>txrx_lo=
+opback_to_file&quot;,but I got error:</div><div><div><b>Please run: sudo sy=
+sctl -w net.core.wmem_max=3D6250000</b></div><div><b>Checking TX: all_los: =
+unlocked ...</b></div><div><b>Error: AssertionError: lo_locked.to_bool()</b=
+></div><div><b>=C2=A0 in int _main(int, char**)</b></div><div><b>=C2=A0 at =
+/home/workarea-uhd/uhd/host/examples/txrx_loopback_to_file.cpp:471</b></div=
+></div><div><br></div><div>the cmd is:</div><div><div>./txrx_loopback_to_fi=
+le \</div><div>--tx-args &quot;type=3Dn3xx,addr=3D192.168.10.2,master_clock=
+_rate=3D125e6&quot; \</div><div>--rx-args &quot;type=3Dn3xx,addr=3D192.168.=
+10.2,master_clock_rate=3D125e6&quot; \</div><div>--file 73_n310_1_const_sho=
+rt.dat \</div><div>--rx-rate 3.84e6 \</div><div>--tx-rate 3.84e6 \</div><di=
+v>--tx-freq 2400000 \</div><div>--rx-freq 2400000 \</div><div>--tx-gain 40 =
+\</div><div>--rx-gain 40 \</div><div>--tx-subdev =C2=A0&quot;A:0&quot; =C2=
+=A0\</div><div>--rx-subdev =C2=A0&quot;A:0&quot; =C2=A0\</div><div>--tx-cha=
+nnels &quot;0&quot; \</div><div>--rx-channels &quot;0&quot;=C2=A0</div></di=
+v><div><br></div><div><div>./txrx_loopback_to_file \</div><div>--tx-args &q=
+uot;type=3Dn3xx,mgmt_addr=3D192.168.10.2,addr=3D192.168.10.2,master_clock_r=
+ate=3D125e6&quot; \</div><div>--rx-args &quot;type=3Dn3xx,mgmt_addr=3D192.1=
+68.10.2,addr=3D192.168.10.2,master_clock_rate=3D125e6&quot; \</div><div>--f=
+ile 73_n310_4_const_short.dat \</div><div>--rx-rate 1250000 \</div><div>--t=
+x-rate 1250000 \</div><div>--tx-freq 2400000 \</div><div>--rx-freq 2400000 =
+\</div><div>--tx-gain 40 \</div><div>--rx-gain 40 \</div><div>--tx-bw 10000=
+00 \</div><div>--rx-bw 1000000 \</div><div>--tx-subdev =C2=A0&quot;A:0 A:1 =
+B:0 B:1&quot; =C2=A0\</div><div>--rx-subdev =C2=A0&quot;A:0 A:1 B:0 B:1&quo=
+t; =C2=A0\</div><div>--tx-channels &quot;0,1,2,3&quot; \</div><div>--rx-cha=
+nnels &quot;0,1,2,3&quot;=C2=A0</div></div><div><br></div>
+</div>
+</div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Research T=
-echnical Support<br>Email: <a href=3D"mailto:support@ettus.com" target=3D"_=
-blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/" target=
-=3D"_blank">https://ettus.com/</a></div></div></div></div>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael D=
-ickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto:supp=
-ort@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"h=
-ttps://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div></di=
-v></div>
 
---00000000000021a26205951c0290--
+--000000000000a798b005951db7a0--
 
 
---===============7165368726305840454==
+--===============3017374145161046375==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -268,5 +265,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7165368726305840454==--
+--===============3017374145161046375==--
 
