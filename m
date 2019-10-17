@@ -2,39 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4138EDAB93
-	for <lists+usrp-users@lfdr.de>; Thu, 17 Oct 2019 13:55:44 +0200 (CEST)
-Received: from [::1] (port=56832 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38A37DB00B
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Oct 2019 16:27:41 +0200 (CEST)
+Received: from [::1] (port=33400 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iL4NX-0005gL-0E; Thu, 17 Oct 2019 07:55:39 -0400
-Received: from m15-74.126.com ([220.181.15.74]:23558)
- by mm2.emwd.com with esmtp (Exim 4.92)
- (envelope-from <ruoyilei@126.com>) id 1iL4NS-0005Rs-4A
- for usrp-users@lists.ettus.com; Thu, 17 Oct 2019 07:55:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
- s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=6SRss
- tWw87B1ijaE9oihCqKSuJ4OA66LA840B45EjpA=; b=S77kKbWg6IIh1bDt/MerF
- YK9cMtc97FaE8nhOmINZK9y4zyjbS2uzfNMCFHEAZm8w+JR0npDb86Ln3LLz+192
- /s1+yIkIq7M6QxdIqDKp/rf5+u6WeNBQW+20kA4VUHNjY7+DygHkIyPeHOvaTw5e
- +O0S9NzaY4cLpqG4KQ17mc=
-Received: from ruoyilei$126.com ( [58.213.113.88] ) by ajax-webmail-wmsvr186
- (Coremail) ; Thu, 17 Oct 2019 19:54:49 +0800 (GMT+08:00)
-X-Originating-IP: [58.213.113.88]
-Date: Thu, 17 Oct 2019 19:54:49 +0800 (GMT+08:00)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
- 20180820(5a019900) Copyright (c) 2002-2019 www.mailtech.cn 126com
-In-Reply-To: <mailman.49.1571241602.28966.usrp-users_lists.ettus.com@lists.ettus.com>
-References: <mailman.49.1571241602.28966.usrp-users_lists.ettus.com@lists.ettus.com>
+	id 1iL6kZ-0001Ao-N8; Thu, 17 Oct 2019 10:27:35 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:46769)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1iL6kV-00015J-Tl
+ for usrp-users@lists.ettus.com; Thu, 17 Oct 2019 10:27:31 -0400
+Received: by mail-oi1-f182.google.com with SMTP id k25so2273854oiw.13
+ for <usrp-users@lists.ettus.com>; Thu, 17 Oct 2019 07:27:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=CulI0CwfI7St1PuLNOD8TaXbwKkKFOOg67mmLbWdUR0=;
+ b=ZHTIS/9JGt+U/21smnwbS2pYzYvONr0cMjFtveBs17vpMm6mCcReQ5wBltthNUr9aj
+ 3/YUpxyK4zlNgVGXBGdxwN/pMdrq5gAk+LU3cKYWnIYj6KgsvttW9qUNdlGLmYir7Qx0
+ JjbCjCUXn5pYEV5RrVUDSzNRTTaylk0GH3mtQ2Whb2O16Ehb2A9r8FPpsQlQZeEGL9SA
+ TiNRmazNrwizgNr+ZcA7febMM9XryAB+WHUlbD8Pi8PUzgN8N/wL6QwDwcqIEdxMW42d
+ 8FMQR1Eyo/VH4zxn/vl9XXhxdJg1tgbKHbtirdwAHWhBgfZtCPSj9WTZ2CG4fOTYmlb4
+ iORA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=CulI0CwfI7St1PuLNOD8TaXbwKkKFOOg67mmLbWdUR0=;
+ b=T4eEDf8uxtX5LPRNR09t+LoT+q3+GH3+uJCuYrjSjQ3vZExEXR/fXp+zBPVJOMmnhF
+ Yirzpr9ZwMsx+nOBj0KGE/2t2dg/GUfjgfWygTjVVHhvjdNi4OmfUVBaDExon1rv5iHf
+ AAQjZYPjqsiERrVllTY8tAO+ONWA1X1YHjxwNZOMECkSdMGT7sTy/RTFikUwi27Ge5Ee
+ 6RbAIfmLG1LoepSCdUE2DOQ1r6ks5MuZASYLTWoPiZvl4f8S/L2lWHjkkSKVKFskaOxi
+ CZeg1D7PkAyjvRc1I8/MZh1KuIfBcWzdVo/9/4CIUBNN8gxxnCKfn+VAzWFI5sU1Y0HO
+ m9gw==
+X-Gm-Message-State: APjAAAXTZTHIsd4usyJ+Jd/MLUc+8hgJXvoCOm7UPKTreBC7LwbSSstZ
+ Hb14kFlTGSCkz+4GQVy/yEhuCmKK+1Nntoq+UjR1o3ud
+X-Google-Smtp-Source: APXvYqxZjNMLFU9LBpjpxPu0AVW+2T+5aEtGzd4DKFMnXCpDLzYOY+TCfR31PlhuLBmjkBTzGIfAnrxk+YoCuLu2i3Q=
+X-Received: by 2002:aca:d44e:: with SMTP id l75mr3515499oig.44.1571322410929; 
+ Thu, 17 Oct 2019 07:26:50 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <50ae0c17.d3a7.16dd9920a50.Coremail.ruoyilei@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: VsqowAD3Bh+KVqhdeG2NAA--.34173W
-X-CM-SenderInfo: 5uxr5xxohlqiyswou0bp/1tbiuxRRH1pD+jgnUAABsM
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Subject: [USRP-users] what's wrong with my n310s?help me, please!
+References: <CANQ3h3_fwR=baRxHo+Aicms8C3CFnWzR51qSS99xo2u--OY2vg@mail.gmail.com>
+ <CAGNhwTNRQwC2-gVFQFFyfk0ubGCfoL2a1kShguyMny1Y_9Xw_g@mail.gmail.com>
+ <CANQ3h39_-YDpCHEgCcR=r3z=iK7QOmJPFYnY8DATs5++zh+uug@mail.gmail.com>
+ <CAGNhwTPELUny7ZaVY18KzPvmD3enezmhMLvypUxUZ5qD3zw+cg@mail.gmail.com>
+ <CANQ3h39YJO_iNBdg8_Psx8fHoZGo-aJsESJTBRVf0G1-enZAkw@mail.gmail.com>
+ <CAGNhwTP9xwKbDUN49knKmdPzu-yo3rwfzbnvx3YqLuwV3+jyVg@mail.gmail.com>
+ <CANQ3h3-6yNAt2v35kUR1z9sNhu7_6M1h3ZsANpDMpueksf2b1w@mail.gmail.com>
+In-Reply-To: <CANQ3h3-6yNAt2v35kUR1z9sNhu7_6M1h3ZsANpDMpueksf2b1w@mail.gmail.com>
+Date: Thu, 17 Oct 2019 10:26:39 -0400
+Message-ID: <CAGNhwTP7QX-fTNWNwCKsp0t8d072ovECMA9Z3JMEYyhozkinnA@mail.gmail.com>
+To: Saeid Hashemi <saeidh@gmail.com>
+Subject: Re: [USRP-users] uhd_fft failure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -46,9 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?546L55u8IHZpYSBVU1JQLXVzZXJz?= <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?546L55u8?= <ruoyilei@126.com>
-Content-Type: multipart/mixed; boundary="===============9124178543058972927=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7165368726305840454=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -62,122 +82,182 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9124178543058972927==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_161477_927369413.1571313289808"
+--===============7165368726305840454==
+Content-Type: multipart/alternative; boundary="00000000000021a26205951c0290"
 
-------=_Part_161477_927369413.1571313289808
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+--00000000000021a26205951c0290
+Content-Type: text/plain; charset="UTF-8"
 
-SGVsbG/vvJoKICAgICAgICBJIGdvdCB0d28gbjMxMHPjgIJJIHNldCB1cCB0aGVtIGZvbGxvdyB0
-aGUgZ3VpZGUgaW4gaHR0cDovL2tiLmV0dHVzLmNvbeOAgkkgY2FuIHJ1biDigJx1aGRfZmluZF9k
-ZXZpY2Vz4oCdYW5k4oCcdWhkX3VzcnBfcHJvYmXigJ1jb3JyZWN0bHnjgIJUaGVuIEkgd2FudCB0
-byB0ZXN0IHRoZW0gdXNlIHRoZSB1aGQvZXhhbXBsZXPjgIJJIGhhdmUgc2V2ZWFsIHByb2JsZW1z
-LgogICAgICAgICgxKU9uZSBuMzEwIGNhbiBub3QgcnVuICJiZW5jaG1hcmtfcmF0ZSJhbmQicnhf
-c2FtcGxlc190b19maWxlImNvcnJlY3RseS4gSSBoYXZlIHR5aWVkIHNldmVhbCB0aW1lcywgYnV0
-IGdvdCBkaWZmcmVudCBlcnJvcnMsYW5kIEkgZG9udCBrbm93IHdoYXQgaXMgdGhlIHByb2JsZW0u
-VGhlIGZpbGUgImJlbmNobWFya19yYXRlLmxvZyIgaXMgdGhlIGxvZyB3aGVuIGkgcnVuICJiZW5j
-aG1hcmtfcmF0ZSIsInJ4X3NhbXBsZXNfdG9fZmlsZV9maXJzdF90aW1lLmxvZyJpcyB0aGUgbG9n
-IG9mIG15IGZpc3QgdGltZSBydW4gInJ4X3NhbXBsZXNfdG9fZmlsZSIsInJ4X3NhbXBsZXNfdG9f
-ZmlsZV9zZWNvbmRfdGltZS5sb2ciIGlzIHRoZSBzZWNvbmQgdGltZS4KCgpbV0FSTklOR10gW0NP
-UkVTXSBUaW1lciBsb29wYmFjayB0ZXN0IGZhaWxlZCEKW1dBUk5JTkddIFtDT1JFU10gRXhwZWN0
-aW5nIGNsb2NrIHJhdGU6IDEyMi44OCBNSHoKQXBwcm94aW1hdGUgY2xvY2sgcmF0ZTogMCBNSHoK
-IGlzIHRoZSByZWFzb24/ICAgIAogICAgICAoMikgVGhlIG90aGVyIG4zMTAgcnVuICJiZW5jaG1h
-cmtfcmF0ZSJhbmQicnhfc2FtcGxlc190b19maWxlImNvcnJlY3RseSwgYnV0IGNhbiBub3QgcnVu
-ICJ0eHJ4X2xvb3BiYWNrX3RvX2ZpbGUiLGJ1dCBJIGdvdCBlcnJvcjoKUGxlYXNlIHJ1bjogc3Vk
-byBzeXNjdGwgLXcgbmV0LmNvcmUud21lbV9tYXg9NjI1MDAwMApDaGVja2luZyBUWDogYWxsX2xv
-czogdW5sb2NrZWQgLi4uCkVycm9yOiBBc3NlcnRpb25FcnJvcjogbG9fbG9ja2VkLnRvX2Jvb2wo
-KQogIGluIGludCBfbWFpbihpbnQsIGNoYXIqKikKICBhdCAvaG9tZS93b3JrYXJlYS11aGQvdWhk
-L2hvc3QvZXhhbXBsZXMvdHhyeF9sb29wYmFja190b19maWxlLmNwcDo0NzEKCgp0aGUgY21kIGlz
-OgouL3R4cnhfbG9vcGJhY2tfdG9fZmlsZSBcCi0tdHgtYXJncyAidHlwZT1uM3h4LGFkZHI9MTky
-LjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcCi0tcngtYXJncyAidHlwZT1uM3h4
-LGFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcCi0tZmlsZSA3M19u
-MzEwXzFfY29uc3Rfc2hvcnQuZGF0IFwKLS1yeC1yYXRlIDMuODRlNiBcCi0tdHgtcmF0ZSAzLjg0
-ZTYgXAotLXR4LWZyZXEgMjQwMDAwMCBcCi0tcngtZnJlcSAyNDAwMDAwIFwKLS10eC1nYWluIDQw
-IFwKLS1yeC1nYWluIDQwIFwKLS10eC1zdWJkZXYgICJBOjAiICBcCi0tcngtc3ViZGV2ICAiQTow
-IiAgXAotLXR4LWNoYW5uZWxzICIwIiBcCi0tcngtY2hhbm5lbHMgIjAiIAoKCi4vdHhyeF9sb29w
-YmFja190b19maWxlIFwKLS10eC1hcmdzICJ0eXBlPW4zeHgsbWdtdF9hZGRyPTE5Mi4xNjguMTAu
-MixhZGRyPTE5Mi4xNjguMTAuMixtYXN0ZXJfY2xvY2tfcmF0ZT0xMjVlNiIgXAotLXJ4LWFyZ3Mg
-InR5cGU9bjN4eCxtZ210X2FkZHI9MTkyLjE2OC4xMC4yLGFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rl
-cl9jbG9ja19yYXRlPTEyNWU2IiBcCi0tZmlsZSA3M19uMzEwXzRfY29uc3Rfc2hvcnQuZGF0IFwK
-LS1yeC1yYXRlIDEyNTAwMDAgXAotLXR4LXJhdGUgMTI1MDAwMCBcCi0tdHgtZnJlcSAyNDAwMDAw
-IFwKLS1yeC1mcmVxIDI0MDAwMDAgXAotLXR4LWdhaW4gNDAgXAotLXJ4LWdhaW4gNDAgXAotLXR4
-LWJ3IDEwMDAwMDAgXAotLXJ4LWJ3IDEwMDAwMDAgXAotLXR4LXN1YmRldiAgIkE6MCBBOjEgQjow
-IEI6MSIgIFwKLS1yeC1zdWJkZXYgICJBOjAgQToxIEI6MCBCOjEiICBcCi0tdHgtY2hhbm5lbHMg
-IjAsMSwyLDMiIFwKLS1yeC1jaGFubmVscyAiMCwxLDIsMyIgCgo=
-------=_Part_161477_927369413.1571313289808
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+Yes sorry about the GR37 release version: 3.7.13.5 is the correct on.
+Installing Py27-six should be pretty straight forward & should allow you to
+proceed with that install. GR38 has it's own set of dependencies, some of
+which overlap with GR37 and some of which don't. You'll want to follow the
+install guide for your OS to get those dependencies. Good luck! - MLD
 
-PGh0bWw+CjxoZWFkPgogICAgPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50
-PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPgo8L2hlYWQ+Cjxib2R5Pgo8c3R5bGU+CiAgICBm
-b250ewogICAgICAgIGxpbmUtaGVpZ2h0OiAxLjY7CiAgICB9CiAgICB1bCxvbHsKICAgICAgICBw
-YWRkaW5nLWxlZnQ6IDIwcHg7CiAgICAgICAgbGlzdC1zdHlsZS1wb3NpdGlvbjogaW5zaWRlOwog
-ICAgfQo8L3N0eWxlPgo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTrlvq7ova/pm4Xpu5EsVmVyZGFu
-YSwmcXVvdDtNaWNyb3NvZnQgWWFoZWkmcXVvdDssU2ltU3VuLHNhbnMtc2VyaWY7Zm9udC1zaXpl
-OjE0cHg7IGxpbmUtaGVpZ2h0OjEuNjsiPgogICAgPGRpdj48L2Rpdj48ZGl2PgogICAgPGRpdj5I
-ZWxsb++8mjwvZGl2PjwvZGl2PjxkaXY+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IEkgZ290
-IHR3byBuMzEwc+OAgkkgc2V0IHVwIHRoZW0gZm9sbG93IHRoZSBndWlkZSBpbiBodHRwOi8va2Iu
-ZXR0dXMuY29t44CCSSBjYW4gcnVuIOKAnHVoZF9maW5kX2RldmljZXPigJ1hbmTigJx1aGRfdXNy
-cF9wcm9iZeKAnWNvcnJlY3RseeOAglRoZW4gSSB3YW50IHRvIHRlc3QgdGhlbSB1c2UgdGhlIHVo
-ZC9leGFtcGxlc+OAgkkgaGF2ZSBzZXZlYWwgcHJvYmxlbXMuPC9kaXY+PGRpdj4mbmJzcDsgJm5i
-c3A7ICZuYnNwOyAmbmJzcDsgKDEpT25lIG4zMTAgY2FuIG5vdCBydW4gImJlbmNobWFya19yYXRl
-ImFuZDxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS42OyI+InJ4X3NhbXBsZXNfdG9fZmlsZSI8
-L3NwYW4+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAyMi40cHg7Ij5jb3JyZWN0bHkuIEkgaGF2
-ZSB0eWllZCBzZXZlYWwgdGltZXMsIGJ1dCBnb3QgZGlmZnJlbnQgZXJyb3JzLGFuZCBJIGRvbnQg
-a25vdyB3aGF0IGlzIHRoZSBwcm9ibGVtLlRoZSBmaWxlICI8L3NwYW4+YmVuY2htYXJrX3JhdGUu
-bG9nPHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAyMi40cHg7Ij4iIGlzIHRoZSBsb2cgd2hlbiBp
-IHJ1biAiPC9zcGFuPjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMjIuNHB4OyI+YmVuY2htYXJr
-X3JhdGUiLCI8L3NwYW4+cnhfc2FtcGxlc190b19maWxlX2ZpcnN0X3RpbWUubG9nImlzIHRoZSBs
-b2cgb2YgbXkgZmlzdCB0aW1lIHJ1biAiPHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAyMi40cHg7
-Ij5yeF9zYW1wbGVzX3RvX2ZpbGU8L3NwYW4+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjY7
-Ij4iLCI8L3NwYW4+cnhfc2FtcGxlc190b19maWxlX3NlY29uZF90aW1lLmxvZyIgaXMgdGhlIHNl
-Y29uZCB0aW1lLjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGRpdj48Yj5bV0FSTklOR10gW0NP
-UkVTXSBUaW1lciBsb29wYmFjayB0ZXN0IGZhaWxlZCE8L2I+PC9kaXY+PGRpdj48Yj5bV0FSTklO
-R10gW0NPUkVTXSBFeHBlY3RpbmcgY2xvY2sgcmF0ZTogMTIyLjg4IE1IejwvYj48L2Rpdj48ZGl2
-PjxiPkFwcHJveGltYXRlIGNsb2NrIHJhdGU6IDAgTUh6PC9iPjwvZGl2PjwvZGl2PjxkaXY+PGI+
-Jm5ic3A7aXMgdGhlIHJlYXNvbj8gJm5ic3A7ICZuYnNwOzwvYj48L2Rpdj48ZGl2PiZuYnNwOyAm
-bmJzcDsgJm5ic3A7ICgyKSBUaGUgb3RoZXIgbjMxMCBydW4mbmJzcDs8c3BhbiBzdHlsZT0ibGlu
-ZS1oZWlnaHQ6IDIyLjRweDsiPiJiZW5jaG1hcmtfcmF0ZSJhbmQ8L3NwYW4+PHNwYW4gc3R5bGU9
-ImxpbmUtaGVpZ2h0OiAxLjY7Ij4icnhfc2FtcGxlc190b19maWxlIjwvc3Bhbj48c3BhbiBzdHls
-ZT0ibGluZS1oZWlnaHQ6IDIyLjRweDsiPmNvcnJlY3RseSwgYnV0IGNhbiBub3QgcnVuICI8L3Nw
-YW4+dHhyeF9sb29wYmFja190b19maWxlIixidXQgSSBnb3QgZXJyb3I6PC9kaXY+PGRpdj48ZGl2
-PjxiPlBsZWFzZSBydW46IHN1ZG8gc3lzY3RsIC13IG5ldC5jb3JlLndtZW1fbWF4PTYyNTAwMDA8
-L2I+PC9kaXY+PGRpdj48Yj5DaGVja2luZyBUWDogYWxsX2xvczogdW5sb2NrZWQgLi4uPC9iPjwv
-ZGl2PjxkaXY+PGI+RXJyb3I6IEFzc2VydGlvbkVycm9yOiBsb19sb2NrZWQudG9fYm9vbCgpPC9i
-PjwvZGl2PjxkaXY+PGI+Jm5ic3A7IGluIGludCBfbWFpbihpbnQsIGNoYXIqKik8L2I+PC9kaXY+
-PGRpdj48Yj4mbmJzcDsgYXQgL2hvbWUvd29ya2FyZWEtdWhkL3VoZC9ob3N0L2V4YW1wbGVzL3R4
-cnhfbG9vcGJhY2tfdG9fZmlsZS5jcHA6NDcxPC9iPjwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2
-PjxkaXY+dGhlIGNtZCBpczo8L2Rpdj48ZGl2PjxkaXY+Li90eHJ4X2xvb3BiYWNrX3RvX2ZpbGUg
-XDwvZGl2PjxkaXY+LS10eC1hcmdzICJ0eXBlPW4zeHgsYWRkcj0xOTIuMTY4LjEwLjIsbWFzdGVy
-X2Nsb2NrX3JhdGU9MTI1ZTYiIFw8L2Rpdj48ZGl2Pi0tcngtYXJncyAidHlwZT1uM3h4LGFkZHI9
-MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcPC9kaXY+PGRpdj4tLWZpbGUg
-NzNfbjMxMF8xX2NvbnN0X3Nob3J0LmRhdCBcPC9kaXY+PGRpdj4tLXJ4LXJhdGUgMy44NGU2IFw8
-L2Rpdj48ZGl2Pi0tdHgtcmF0ZSAzLjg0ZTYgXDwvZGl2PjxkaXY+LS10eC1mcmVxIDI0MDAwMDAg
-XDwvZGl2PjxkaXY+LS1yeC1mcmVxIDI0MDAwMDAgXDwvZGl2PjxkaXY+LS10eC1nYWluIDQwIFw8
-L2Rpdj48ZGl2Pi0tcngtZ2FpbiA0MCBcPC9kaXY+PGRpdj4tLXR4LXN1YmRldiAmbmJzcDsiQTow
-IiAmbmJzcDtcPC9kaXY+PGRpdj4tLXJ4LXN1YmRldiAmbmJzcDsiQTowIiAmbmJzcDtcPC9kaXY+
-PGRpdj4tLXR4LWNoYW5uZWxzICIwIiBcPC9kaXY+PGRpdj4tLXJ4LWNoYW5uZWxzICIwIiZuYnNw
-OzwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGRpdj4uL3R4cnhfbG9vcGJhY2tfdG9f
-ZmlsZSBcPC9kaXY+PGRpdj4tLXR4LWFyZ3MgInR5cGU9bjN4eCxtZ210X2FkZHI9MTkyLjE2OC4x
-MC4yLGFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcPC9kaXY+PGRp
-dj4tLXJ4LWFyZ3MgInR5cGU9bjN4eCxtZ210X2FkZHI9MTkyLjE2OC4xMC4yLGFkZHI9MTkyLjE2
-OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyNWU2IiBcPC9kaXY+PGRpdj4tLWZpbGUgNzNfbjMx
-MF80X2NvbnN0X3Nob3J0LmRhdCBcPC9kaXY+PGRpdj4tLXJ4LXJhdGUgMTI1MDAwMCBcPC9kaXY+
-PGRpdj4tLXR4LXJhdGUgMTI1MDAwMCBcPC9kaXY+PGRpdj4tLXR4LWZyZXEgMjQwMDAwMCBcPC9k
-aXY+PGRpdj4tLXJ4LWZyZXEgMjQwMDAwMCBcPC9kaXY+PGRpdj4tLXR4LWdhaW4gNDAgXDwvZGl2
-PjxkaXY+LS1yeC1nYWluIDQwIFw8L2Rpdj48ZGl2Pi0tdHgtYncgMTAwMDAwMCBcPC9kaXY+PGRp
-dj4tLXJ4LWJ3IDEwMDAwMDAgXDwvZGl2PjxkaXY+LS10eC1zdWJkZXYgJm5ic3A7IkE6MCBBOjEg
-QjowIEI6MSIgJm5ic3A7XDwvZGl2PjxkaXY+LS1yeC1zdWJkZXYgJm5ic3A7IkE6MCBBOjEgQjow
-IEI6MSIgJm5ic3A7XDwvZGl2PjxkaXY+LS10eC1jaGFubmVscyAiMCwxLDIsMyIgXDwvZGl2Pjxk
-aXY+LS1yeC1jaGFubmVscyAiMCwxLDIsMyImbmJzcDs8L2Rpdj48L2Rpdj48ZGl2Pjxicj48L2Rp
-dj48IS0t8J+YgC0tPgo8L2Rpdj4KPC9ib2R5Pgo8L2h0bWw+
-------=_Part_161477_927369413.1571313289808--
+On Wed, Oct 16, 2019 at 3:02 PM Saeid Hashemi <saeidh@gmail.com> wrote:
+
+> Hi Michael,
+>
+> The gnuradio git repository does not have a tag for v3.17.14.5, and using
+> v3.7.13.5 gives me:
+>
+> -- Python checking for six - python 2 and 3 compatibility library
+> -- Python checking for six - python 2 and 3 compatibility library - not
+> found
+> CMake Error at volk/CMakeLists.txt:98 (message):
+>   six - python 2 and 3 compatibility library required to build VOLK
+>
+>
+> -- Configuring incomplete, errors occurred!
+> See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeOutput.log".
+> See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeError.log".
+>
+>
+> Checking out tag v3.8.0.0 results in Cmake dependency of 3.8 and up, so I
+> need to install that manually.
+>
+>
+> On Sat, Oct 12, 2019 at 11:02 AM Michael Dickens <
+> michael.dickens@ettus.com> wrote:
+>
+>> OK. Thanks for the info Saeid. I'll look into creating a VM using Ubuntu
+>> 16.04.1 to see what happens. - MLD
+>>
+>> On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi <saeidh@gmail.com> wrote:
+>>
+>>> It's Ubuntu 16.04.1, but yes, I will follow the source build
+>>> instructions.
+>>>
+>>> On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens <
+>>> michael.dickens@ettus.com> wrote:
+>>>
+>>>> Hi Saeid - Thanks for the followup. I totally agree that if you just
+>>>> "sudo apt install gnuradio", compatible versions should be installed. Are
+>>>> you using Ubuntu 16.04.6 LTS (Xenial Xerus)? If you choose to install from
+>>>> source, you can follow instructions such as the GR recommended way here <
+>>>> https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29
+>>>> >. I have an Ubuntu 18.04 install that went very smoothly using this guide,
+>>>> but maybe the guide is outdated for older Ubuntu; or, our packages need to
+>>>> be updated for that OS version ... Cheers! - MLD
+>>>>
+>>>> On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi <saeidh@gmail.com> wrote:
+>>>>
+>>>>> I will follow your advice, but it's worth mentioning I simply did
+>>>>> apt-get gnuradio and should therefore have a compatible version of uhd
+>>>>> installed automatically as a dependency. I did not install uhd separately.
+>>>>>
+>>>> --
+>>>> Michael Dickens
+>>>> Ettus Research Technical Support
+>>>> Email: support@ettus.com
+>>>> Web: https://ettus.com/
+>>>>
+>>>
+>>
+>> --
+>> Michael Dickens
+>> Ettus Research Technical Support
+>> Email: support@ettus.com
+>> Web: https://ettus.com/
+>>
+>
+
+-- 
+Michael Dickens
+Ettus Research Technical Support
+Email: support@ettus.com
+Web: https://ettus.com/
+
+--00000000000021a26205951c0290
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Yes sorry about the GR37 release version: 3.7.13.5 is=
+ the correct on. Installing Py27-six should be pretty straight forward &amp=
+; should allow you to proceed with that install. GR38 has it&#39;s own set =
+of dependencies, some of which overlap with GR37 and some of which don&#39;=
+t. You&#39;ll want to follow the install guide for your OS to get those dep=
+endencies. Good=C2=A0luck! - MLD</div></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Oct 16, 2019 at 3:02 PM Saeid=
+ Hashemi &lt;<a href=3D"mailto:saeidh@gmail.com">saeidh@gmail.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr">Hi Michael,<div><br></div><div>The gnuradio git repository does no=
+t have a tag for v3.17.14.5, and using v3.7.13.5 gives me:</div><div><br></=
+div><blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><=
+div><font size=3D"1" face=3D"monospace">-- Python checking for six - python=
+ 2 and 3 compatibility library</font></div><div><font size=3D"1" face=3D"mo=
+nospace">-- Python checking for six - python 2 and 3 compatibility library =
+- not found</font></div><div><font size=3D"1" face=3D"monospace">CMake Erro=
+r at volk/CMakeLists.txt:98 (message):</font></div><div><font size=3D"1" fa=
+ce=3D"monospace">=C2=A0 six - python 2 and 3 compatibility library required=
+ to build VOLK</font></div><div><font size=3D"1" face=3D"monospace"><br></f=
+ont></div><div><font size=3D"1" face=3D"monospace"><br></font></div><div><f=
+ont size=3D"1" face=3D"monospace">-- Configuring incomplete, errors occurre=
+d!</font></div><div><font size=3D"1" face=3D"monospace">See also &quot;/hom=
+e/nuc03/gnuradio/build/CMakeFiles/CMakeOutput.log&quot;.</font></div><div><=
+font size=3D"1" face=3D"monospace">See also &quot;/home/nuc03/gnuradio/buil=
+d/CMakeFiles/CMakeError.log&quot;.</font></div></blockquote><div><br></div>=
+<div>Checking out tag v3.8.0.0 results in Cmake dependency of 3.8 and up, s=
+o I need to install that manually.</div><div><br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Oct 12, 2019=
+ at 11:02 AM Michael Dickens &lt;<a href=3D"mailto:michael.dickens@ettus.co=
+m" target=3D"_blank">michael.dickens@ettus.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">OK. Thanks f=
+or the info Saeid. I&#39;ll look into creating a VM using Ubuntu 16.04.1 to=
+ see what happens. - MLD</div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi &lt;<=
+a href=3D"mailto:saeidh@gmail.com" target=3D"_blank">saeidh@gmail.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
+ir=3D"ltr">It&#39;s Ubuntu 16.04.1, but yes, I will follow the source build=
+ instructions.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens &lt;<a href=
+=3D"mailto:michael.dickens@ettus.com" target=3D"_blank">michael.dickens@ett=
+us.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
+:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi=C2=A0Saeid - Thanks for the foll=
+owup. I totally agree that if you just &quot;sudo apt install gnuradio&quot=
+;, compatible versions should be installed. Are you using Ubuntu 16.04.6 LT=
+S (Xenial Xerus)? If you choose to install from source, you can follow inst=
+ructions such as the GR recommended way here &lt;=C2=A0<a href=3D"https://w=
+iki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29" target=
+=3D"_blank">https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_=
+.2816.04.29</a> &gt;. I have an Ubuntu=C2=A018.04 install that went very=C2=
+=A0smoothly using this guide, but maybe the guide is outdated for older Ubu=
+ntu; or, our packages need to be updated for that OS version ... Cheers! - =
+MLD</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi &lt;<a href=3D"mailto:saei=
+dh@gmail.com" target=3D"_blank">saeidh@gmail.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I will fol=
+low your advice, but it&#39;s worth mentioning I simply did apt-get gnuradi=
+o and should therefore have a compatible version of uhd installed automatic=
+ally as a dependency. I did not install uhd separately.</div></blockquote><=
+/div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael=
+ Dickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto:su=
+pport@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=3D=
+"https://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div></=
+div></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Research T=
+echnical Support<br>Email: <a href=3D"mailto:support@ettus.com" target=3D"_=
+blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/" target=
+=3D"_blank">https://ettus.com/</a></div></div></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael D=
+ickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto:supp=
+ort@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"h=
+ttps://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div></di=
+v></div>
+
+--00000000000021a26205951c0290--
 
 
-
---===============9124178543058972927==
+--===============7165368726305840454==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -188,6 +268,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9124178543058972927==--
-
+--===============7165368726305840454==--
 
