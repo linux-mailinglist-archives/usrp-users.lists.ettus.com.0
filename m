@@ -2,61 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08C14DB6BD
-	for <lists+usrp-users@lfdr.de>; Thu, 17 Oct 2019 21:03:07 +0200 (CEST)
-Received: from [::1] (port=59194 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7214FDB89F
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Oct 2019 22:47:04 +0200 (CEST)
+Received: from [::1] (port=53842 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iLB39-0002o2-VC; Thu, 17 Oct 2019 15:03:03 -0400
-Received: from mail-il1-f177.google.com ([209.85.166.177]:44512)
+	id 1iLCfk-0003F4-2X; Thu, 17 Oct 2019 16:47:00 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:44293)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iLB36-0002hL-6j
- for usrp-users@lists.ettus.com; Thu, 17 Oct 2019 15:03:00 -0400
-Received: by mail-il1-f177.google.com with SMTP id f13so3114199ils.11
- for <usrp-users@lists.ettus.com>; Thu, 17 Oct 2019 12:02:40 -0700 (PDT)
+ (Exim 4.92) (envelope-from <carlos.bocanegra.guerra@gmail.com>)
+ id 1iLCfg-00038V-5N
+ for usrp-users@lists.ettus.com; Thu, 17 Oct 2019 16:46:56 -0400
+Received: by mail-qk1-f196.google.com with SMTP id u22so3185981qkk.11
+ for <usrp-users@lists.ettus.com>; Thu, 17 Oct 2019 13:46:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=m6q0I2F4T4YiMWhH//5150IOQBrDjylDK6H8v2lmsT0=;
- b=u1mNphwuFR95oQYApLzntIyji+Kp1Et/ki5BJ3xyGLXruBQoCvdVdcf3roSWOvErxW
- S3+pl7MdRKqJniMxVLCF5xb+IWPjAgcoU6hW+iNdvTWmRKioIO0csQQo7WYZfOLdddec
- yKiOOmc6MRmh7+9sEPuRrXJDIaIidAJa7yngp5CXjAGl/sQaQPX0N4MVqwwIjSV098TS
- uBvzB4KtFDLb/Cblc1GVTTP6IYPkqG2IH3A5HWYfHxFfTym/7KKWwzn2RxYVMkQvZ4S5
- dU+Kpb/+W10WasRQMZHtx/vFRA8o3hDPlAJNoRrPw90CRXMsmqpLgotdC8kJANo01hhj
- lltw==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=YtYyV1cFL0t814peZ9NjDFMm8sX+XKfTzihr+1UZ7Xw=;
+ b=Pmn7Ca0ScwDSdhgMsqLKoj0MmFpdoHOQrnk8k3udlSlU7Y2sbznl4ffXT32D7AoF/s
+ +yhssUJFi7pxQiZ8742xYkBif2RKpBcg8pMZJaIc/y8jpQOvOWEC02ukvLr8F6Vo7Sw1
+ jqwW0s5bXbSTgAhel6KYd8s8WI8hQ3s2pLgq0GUD2N1KmLyIthqRE9o2kXiRrYZs7Mek
+ k9gdeasDOyQ3Bm19ofbOERlFVj++1lsov17u2Yeg2rQ7pUr6sskMyag8dt8eotUAaEn/
+ s4iH/3HXMJDmqSKrU208TazjOd59ETkBduFuky75tTBFNd+CoW2bklPsFBIgcO6HOR4a
+ +J0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=m6q0I2F4T4YiMWhH//5150IOQBrDjylDK6H8v2lmsT0=;
- b=Yi+rNKp4aaaOLxbw9tQjaLwtZjFV45eiNfR/VQVoO4x5xSrHJh6OPDR0cusZ5oT0Ta
- H2fFrGN3hB2THfGGOvBnaPev7uyJYBG8cEMzVbp5ZTEISCCSt5yO8ugWaJ1ODAUWzK2T
- ndCarWh4EVR+eEeFDFrTydXa24m+jeKeKG0hUEweg0X9uognUGBKUjTKkugoCBgyLQgx
- xPwXS6aa/LDkew98BvdLl3zkUnxNqWAiCrcHVKQTbSLOBnAx8fdhBYVtCPBf3kVgldjU
- gkghmvK0dG/BXTc6JOROoAP9O4HPusEVSwSRSLSAfv9OAnhJ4ksA0CHsW1KHQXAdMZL4
- tK0w==
-X-Gm-Message-State: APjAAAXfWXh2UzS/4CAJ28RqjNMEgOEFGBaxlGAh8xem6pWUg1LRXsVg
- wGITYlwikwoIb3up/1hQA3EN0vH/EsA=
-X-Google-Smtp-Source: APXvYqxrY98IwWSB0BJFPlVvFUk2uRWA8ddA90uzks0n9iw0uaBXNDsvm8hWSfIrm9Aoff28reWFEA==
-X-Received: by 2002:a05:6e02:c0f:: with SMTP id
- d15mr5418691ile.17.1571338939064; 
- Thu, 17 Oct 2019 12:02:19 -0700 (PDT)
-Received: from lab.localdomain ([24.146.32.18])
- by smtp.googlemail.com with ESMTPSA id x12sm1071078ior.9.2019.10.17.12.02.17
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 17 Oct 2019 12:02:18 -0700 (PDT)
-Message-ID: <5DA8BAB8.7030108@gmail.com>
-Date: Thu, 17 Oct 2019 15:02:16 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=YtYyV1cFL0t814peZ9NjDFMm8sX+XKfTzihr+1UZ7Xw=;
+ b=RoOtjzFITShkLYUf2sjsl1i/KJYIO9P7R49TUbZmSHxc3E+2Gmqogh+d3/Ab3C8yaU
+ jYd31I9mPGlOzY8YYf+04OFan5K4hHRMkk3rIi+8VCwH5ZNO3iIk/tCejreblRMHNk7y
+ 0jPEeKfj+CV5eRGG/Ow8FPOqdojQEL8oZAoO6591e9V7TFfXQPOahz4oyv8OfpAKv0R+
+ GDrpb/c4ODemyaaZFbROFUrw+eZX3W+BwWZQUSGmnTKkYo/0UQ2Z45noAmthwp9ASqXz
+ 8mS/ZMHV8Ma/lTj/WqZBIz8W0784StD+1fmmdY5YtQKGqor3n3r+iVX1LwHTSrMXCshg
+ ttPg==
+X-Gm-Message-State: APjAAAVj9rUFZ7R3erDeDmlDsTDKnH6XJMI8N4+LaE8XIZ5JRV5Ty/GU
+ FHSqDrBTke+EEiylUrZAPHK6dNeBERi97QGl0aU3Vjqo
+X-Google-Smtp-Source: APXvYqwy/M+XMLfeM08GbCymYC7PETo7FOFleCK5U1G4OBIxNruojU69cp02JlL5FoaZ+DU5rz+kvjGbRCG0hZI4BMI=
+X-Received: by 2002:a05:620a:16cb:: with SMTP id
+ a11mr5394944qkn.415.1571345175221; 
+ Thu, 17 Oct 2019 13:46:15 -0700 (PDT)
 MIME-Version: 1.0
+Date: Thu, 17 Oct 2019 16:46:04 -0400
+Message-ID: <CAEJWbW3=nf=LvD+mmVC2Vaz_J0wW6jrsxNskvq+B1eYkCh2P+Q@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <mailman.49.1571241602.28966.usrp-users_lists.ettus.com@lists.ettus.com>
- <50ae0c17.d3a7.16dd9920a50.Coremail.ruoyilei@126.com>
- <CAL263ixcwiYnr53j2pw-eXAatYuAFAy47SftxfLSeaKkYmNjiA@mail.gmail.com>
-In-Reply-To: <CAL263ixcwiYnr53j2pw-eXAatYuAFAy47SftxfLSeaKkYmNjiA@mail.gmail.com>
-Subject: Re: [USRP-users] what's wrong with my n310s?help me, please!
+Subject: [USRP-users] RX Misalignment on 6x1 MISO system using X310 and
+ UBX-160
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,9 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2196339944665937926=="
+From: Carlos Bocanegra via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Carlos Bocanegra <carlos.bocanegra.guerra@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1802721839299067535=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,282 +73,187 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============2196339944665937926==
-Content-Type: multipart/alternative;
- boundary="------------010503000800060408020701"
+--===============1802721839299067535==
+Content-Type: multipart/alternative; boundary="000000000000fd19e80595214ebc"
 
-This is a multi-part message in MIME format.
---------------010503000800060408020701
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000fd19e80595214ebc
+Content-Type: text/plain; charset="UTF-8"
 
-On 10/17/2019 12:29 PM, Nate Temple via USRP-users wrote:
-> Hi Wangpan,
->
-> You had contacted us directly via support@ettus.com 
-> <mailto:support@ettus.com> on this same issue, let's continue to debug 
-> through that channel and when the issue is resolved, I can update the 
-> mailing list with the result.
->
->
-> Regards,
-> Nate Temple
-I'll just make a quick comment that in the first instance, the sample 
-rate is not an integer fraction of the clock rate, and in
-   the 2nd instance, the tune frequency is out-of-spec for the N310.
+Hello community,
 
->
-> On Thu, Oct 17, 2019 at 4:55 AM 王盼 via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     Hello：
->             I got two n310s。I set up them follow the guide in
->     http://kb.ettus.com。I can run
->     “uhd_find_devices”and“uhd_usrp_probe”correctly。Then I want to
->     test them use the uhd/examples。I have seveal problems.
->             (1)One n310 can not run
->     "benchmark_rate"and"rx_samples_to_file"correctly. I have tyied
->     seveal times, but got diffrent errors,and I dont know what is the
->     problem.The file "benchmark_rate.log" is the log when i run
->     "benchmark_rate","rx_samples_to_file_first_time.log"is the log of
->     my fist time run
->     "rx_samples_to_file","rx_samples_to_file_second_time.log" is the
->     second time.
->
->     *[WARNING] [CORES] Timer loopback test failed!*
->     *[WARNING] [CORES] Expecting clock rate: 122.88 MHz*
->     *Approximate clock rate: 0 MHz*
->     * is the reason? *
->           (2) The other n310 run
->     "benchmark_rate"and"rx_samples_to_file"correctly, but can not run
->     "txrx_loopback_to_file",but I got error:
->     *Please run: sudo sysctl -w net.core.wmem_max=6250000*
->     *Checking TX: all_los: unlocked ...*
->     *Error: AssertionError: lo_locked.to_bool()*
->     *  in int _main(int, char**)*
->     *  at
->     /home/workarea-uhd/uhd/host/examples/txrx_loopback_to_file.cpp:471*
->
->     the cmd is:
->     ./txrx_loopback_to_file \
->     --tx-args "type=n3xx,addr=192.168.10.2,master_clock_rate=125e6" \
->     --rx-args "type=n3xx,addr=192.168.10.2,master_clock_rate=125e6" \
->     --file 73_n310_1_const_short.dat \
->     --rx-rate 3.84e6 \
->     --tx-rate 3.84e6 \
->     --tx-freq 2400000 \
->     --rx-freq 2400000 \
->     --tx-gain 40 \
->     --rx-gain 40 \
->     --tx-subdev  "A:0"  \
->     --rx-subdev  "A:0"  \
->     --tx-channels "0" \
->     --rx-channels "0"
->
->     ./txrx_loopback_to_file \
->     --tx-args
->     "type=n3xx,mgmt_addr=192.168.10.2,addr=192.168.10.2,master_clock_rate=125e6"
->     \
->     --rx-args
->     "type=n3xx,mgmt_addr=192.168.10.2,addr=192.168.10.2,master_clock_rate=125e6"
->     \
->     --file 73_n310_4_const_short.dat \
->     --rx-rate 1250000 \
->     --tx-rate 1250000 \
->     --tx-freq 2400000 \
->     --rx-freq 2400000 \
->     --tx-gain 40 \
->     --rx-gain 40 \
->     --tx-bw 1000000 \
->     --rx-bw 1000000 \
->     --tx-subdev  "A:0 A:1 B:0 B:1"  \
->     --rx-subdev  "A:0 A:1 B:0 B:1"  \
->     --tx-channels "0,1,2,3" \
->     --rx-channels "0,1,2,3"
->
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+I am working on a gnuradio application that synchronously retrieves data
+from a usrp_source, does some DSP on each of the streams and selects the
+signal to send on a usrp_sink based on some metric computation. The sources
+and sinks represent 3 USRP X310 devices, each with 2 UBX-160
+daughterboards, and are synchronized using an Octoclock-G. Thus, creating a
+6x1 MISO system. The USRP synchronization is done using the Python API, as
+well as the flowgraph. The DSP blocks are coded in C++. The flowgraph would
+be something like:
+
+*self.connect((usrp_source, 0), my_dsp_0, (my_switch, 0))*
+*self.connect((usrp_source, 1), my_dsp_1, (my_switch, 1))*
+*self.connect((usrp_source, 2), my_dsp_2, (my_switch, 2))*
+*self.connect((usrp_source, 3), my_dsp_3, (my_switch, 3))*
+*self.connect(my_switch, another_dsp_0, (usrp_sink, 0))*
+
+The application runs for a while until UHD outputs a message saying that
+the poke32 has timed out on one of the USRP. After that, a misalignment
+error on the receiver streams is shown and the green lights on the USRP go
+off.
+
+We are under the impression that the DSP blocks working independently may
+be requesting samples from the source at different times, causing the
+misalignment. Could this be the case? Is there an issue with my network
+connection?
+
+I have tried to get rid of the misalignment error by increasing the
+threshold in the file
+*{uhd_prefix}/host/lib/transport/super_recv_packet_handler.hpp, *through
+the function *set_alignment_failure_threshold.* That got rid of the
+misalignment error, but the failure coming from the poke function is still
+there.
+
+Interestingly, the exact same behavior arises when I just connect
+file_sinks to the outputs from the usrp_source and a simple analog signal
+to the usrp_sink. Below the flowgraph:
+
+*self.connect((usrp_source, 0), file_sink_0)*
+self.connect((usrp_source, 1), file_sink_1)
+self.connect((usrp_source, 2), file_sink_2)
+self.connect((usrp_source, 3), file_sink_3)
+*self.connect(analog_sig_c, (usrp_sink, 0))*
+
+I'd appreciate any help on this since I'm running out of ideas here.
+Please, find below more details.
+
+*The error:*
+
+* [ERROR] [X300] 192.168.100.2 <http://192.168.100.2>: x300 fw
+communication failure #1EnvironmentError: IOError: x300 fw poke32 - reply
+timed out*
+
+* [ERROR] [X300] 192.168.100.2 <http://192.168.100.2>: x300 fw
+communication failure #1EnvironmentError: IOError: x300 fw poke32 - reply
+timed out*
+
+* [ERROR] [X300] 192.168.100.2 <http://192.168.100.2>: x300 fw
+communication failure #3EnvironmentError: IOError: x300 fw poke32 - reply
+timed out*
+ [ERROR] [UHD] An unexpected exception was caught in a task loop.The task
+loop will now exit, things may not work.EnvironmentError: IOError:
+192.168.100.2: x300 fw communication failure #3
 
 
---------------010503000800060408020701
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 10/17/2019 12:29 PM, Nate Temple via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAL263ixcwiYnr53j2pw-eXAatYuAFAy47SftxfLSeaKkYmNjiA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_default"
-          style="font-family:arial,helvetica,sans-serif">Hi Wangpan,<br>
-          <br>
-          You had contacted us directly via <a moz-do-not-send="true"
-            href="mailto:support@ettus.com">support@ettus.com</a> on
-          this same issue, let's continue to debug through that channel
-          and when the issue is resolved, I can update the mailing list
-          with the result.<br>
-          <br>
-          <br>
-          Regards,<br>
-          Nate Temple</div>
-      </div>
-    </blockquote>
-    I'll just make a quick comment that in the first instance, the
-    sample rate is not an integer fraction of the clock rate, and in<br>
-      the 2nd instance, the tune frequency is out-of-spec for the N310.<br>
-    <br>
-    <blockquote
-cite="mid:CAL263ixcwiYnr53j2pw-eXAatYuAFAy47SftxfLSeaKkYmNjiA@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Thu, Oct 17, 2019 at 4:55
-          AM 王盼 via USRP-users &lt;<a moz-do-not-send="true"
-            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <div style="font-family:微软雅黑,Verdana,&quot;Microsoft
-              Yahei&quot;,SimSun,sans-serif;font-size:14px;line-height:1.6">
-              <div>
-                <div>Hello：</div>
-              </div>
-              <div>        I got two n310s。I set up them follow the
-                guide in <a moz-do-not-send="true"
-                  href="http://kb.ettus.com" target="_blank">http://kb.ettus.com</a>。I
-                can run
-                “uhd_find_devices”and“uhd_usrp_probe”correctly。Then I
-                want to test them use the uhd/examples。I have seveal
-                problems.</div>
-              <div>        (1)One n310 can not run "benchmark_rate"and<span
-                  style="line-height:1.6">"rx_samples_to_file"</span><span
-                  style="line-height:22.4px">correctly. I have tyied
-                  seveal times, but got diffrent errors,and I dont know
-                  what is the problem.The file "</span>benchmark_rate.log<span
-                  style="line-height:22.4px">" is the log when i run "</span><span
-                  style="line-height:22.4px">benchmark_rate","</span>rx_samples_to_file_first_time.log"is
-                the log of my fist time run "<span
-                  style="line-height:22.4px">rx_samples_to_file</span><span
-                  style="line-height:1.6">","</span>rx_samples_to_file_second_time.log"
-                is the second time.</div>
-              <div><br>
-              </div>
-              <div>
-                <div><b>[WARNING] [CORES] Timer loopback test failed!</b></div>
-                <div><b>[WARNING] [CORES] Expecting clock rate: 122.88
-                    MHz</b></div>
-                <div><b>Approximate clock rate: 0 MHz</b></div>
-              </div>
-              <div><b> is the reason?    </b></div>
-              <div>      (2) The other n310 run <span
-                  style="line-height:22.4px">"benchmark_rate"and</span><span
-                  style="line-height:1.6">"rx_samples_to_file"</span><span
-                  style="line-height:22.4px">correctly, but can not run
-                  "</span>txrx_loopback_to_file",but I got error:</div>
-              <div>
-                <div><b>Please run: sudo sysctl -w
-                    net.core.wmem_max=6250000</b></div>
-                <div><b>Checking TX: all_los: unlocked ...</b></div>
-                <div><b>Error: AssertionError: lo_locked.to_bool()</b></div>
-                <div><b>  in int _main(int, char**)</b></div>
-                <div><b>  at
-                    /home/workarea-uhd/uhd/host/examples/txrx_loopback_to_file.cpp:471</b></div>
-              </div>
-              <div><br>
-              </div>
-              <div>the cmd is:</div>
-              <div>
-                <div>./txrx_loopback_to_file \</div>
-                <div>--tx-args
-                  "type=n3xx,addr=192.168.10.2,master_clock_rate=125e6"
-                  \</div>
-                <div>--rx-args
-                  "type=n3xx,addr=192.168.10.2,master_clock_rate=125e6"
-                  \</div>
-                <div>--file 73_n310_1_const_short.dat \</div>
-                <div>--rx-rate 3.84e6 \</div>
-                <div>--tx-rate 3.84e6 \</div>
-                <div>--tx-freq 2400000 \</div>
-                <div>--rx-freq 2400000 \</div>
-                <div>--tx-gain 40 \</div>
-                <div>--rx-gain 40 \</div>
-                <div>--tx-subdev  "A:0"  \</div>
-                <div>--rx-subdev  "A:0"  \</div>
-                <div>--tx-channels "0" \</div>
-                <div>--rx-channels "0" </div>
-              </div>
-              <div><br>
-              </div>
-              <div>
-                <div>./txrx_loopback_to_file \</div>
-                <div>--tx-args
-                  "type=n3xx,mgmt_addr=192.168.10.2,addr=192.168.10.2,master_clock_rate=125e6"
-                  \</div>
-                <div>--rx-args
-                  "type=n3xx,mgmt_addr=192.168.10.2,addr=192.168.10.2,master_clock_rate=125e6"
-                  \</div>
-                <div>--file 73_n310_4_const_short.dat \</div>
-                <div>--rx-rate 1250000 \</div>
-                <div>--tx-rate 1250000 \</div>
-                <div>--tx-freq 2400000 \</div>
-                <div>--rx-freq 2400000 \</div>
-                <div>--tx-gain 40 \</div>
-                <div>--rx-gain 40 \</div>
-                <div>--tx-bw 1000000 \</div>
-                <div>--rx-bw 1000000 \</div>
-                <div>--tx-subdev  "A:0 A:1 B:0 B:1"  \</div>
-                <div>--rx-subdev  "A:0 A:1 B:0 B:1"  \</div>
-                <div>--tx-channels "0,1,2,3" \</div>
-                <div>--rx-channels "0,1,2,3" </div>
-              </div>
-              <div><br>
-              </div>
-            </div>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a moz-do-not-send="true"
-            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
+* [ERROR] [STREAMER] The receive packet handler failed to time-align
+packets.1002 received packets were processed by the handler.However, a
+timestamp match could not be determined.*
 
---------------010503000800060408020701--
+*Here are some details of my network configuration:*
+- UHD built from source, tag v3.14.1.1.
+- Gnuradio built from source, tag 3.7.13.5.
+- X310 USRP, each equipped with two UBX-160 daughterboards.
+- The communication is over Ethernet using the 1Gb port on the X310.
+- Each USRP is connected to a dedicated NIC.
+- The MTU is set to 1500 for the all interfaces.
+- The USRPs are synchronized using an Octoclock-G and the parameters tuned
+in the Python script. The procedure is similar to the one followed in
+benchmark_rate (uhd), for the usrp_source and usrp_sink.
+- The NIC ring buffers are set to the maximum for both TX and RX, to 4096,
+using ethtool.
+- The OS ring buffers are set as suggested bu Ettus, using the following
+commands:
 
 
---===============2196339944665937926==
+
+*>> sudo sysctl -w net.core.rmem_max=33554432   >> sudo sysctl -w
+net.core.wmem_max=33554432   >> sudo sysctl -w
+net.core.rmem_default=33554432   >> sudo sysctl -w
+net.core.wmem_default=33554432*
+
+Best,
+Carlos
+
+--000000000000fd19e80595214ebc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Hello community,</div><div><br></div><div>I am w=
+orking on a=20
+gnuradio application that synchronously retrieves data from a=20
+usrp_source, does some DSP on each of the streams and selects the signal
+ to send on a usrp_sink based on some metric computation. The sources=20
+and sinks represent 3 USRP X310 devices, each with 2 UBX-160=20
+daughterboards, and are synchronized using an Octoclock-G. Thus,=20
+creating a 6x1 MISO system. The USRP synchronization is done using the=20
+Python API, as well as the flowgraph. The DSP blocks are coded in C++.=20
+The flowgraph would be something like:</div><div><div><br></div><div><i>sel=
+f.connect((usrp_source, 0), my_dsp_0, (my_switch, 0))</i></div><div><i>self=
+.connect((usrp_source, 1), my_dsp_1, (my_switch, 1))</i></div><div><i>self.=
+connect((usrp_source, 2), my_dsp_2, (my_switch, 2))</i></div><div><i>self.c=
+onnect((usrp_source, 3), my_dsp_3, (my_switch, 3))</i></div><div><i>self.co=
+nnect(my_switch, another_dsp_0, (usrp_sink, 0))</i></div></div><div><br></d=
+iv><div>
+ The application runs for a while until UHD outputs a message saying=20
+that the poke32 has timed out on one of the USRP. After that, a=20
+misalignment error on the receiver streams is shown and the green lights
+ on the USRP go off.<br></div><div><br></div><div>We are under the=20
+impression that the DSP blocks working independently may be requesting=20
+samples from the source at different times, causing the misalignment.=20
+Could this be the case? Is there an issue with my network connection?<br></=
+div><div><br></div><div>I have tried to get rid of the misalignment error b=
+y increasing the threshold in the file<br></div><div><i>{uhd_prefix}/host/l=
+ib/transport/super_recv_packet_handler.hpp, </i>through the function <i>set=
+_alignment_failure_threshold.</i> That got rid of the misalignment error, b=
+ut the failure coming from the poke function is still there.</div><div><br>=
+</div><div>Interestingly,
+ the exact same behavior arises when I just connect file_sinks to the=20
+outputs from the usrp_source and a simple analog signal to the=20
+usrp_sink. Below the flowgraph:</div><div><br></div><div><div><div><i>self.=
+connect((usrp_source, 0), file_sink_0)</i></div>self.connect((usrp_source, =
+1), file_sink_1)</div><div>self.connect((usrp_source, 2), file_sink_2)</div=
+><div>self.connect((usrp_source, 3), file_sink_3)<div><i>self.connect(analo=
+g_sig_c, (usrp_sink, 0))</i></div></div></div><div><br></div><div>I&#39;d a=
+ppreciate any help on this since I&#39;m running out of ideas here. Please,=
+ find below more details.<br></div><div><br></div><div><b>The error:</b><br=
+></div><div><i>=C2=A0[ERROR] [X300] <a href=3D"http://192.168.100.2" target=
+=3D"_blank">192.168.100.2</a>: x300 fw communication failure #1<br>Environm=
+entError: IOError: x300 fw poke32 - reply timed out</i></div><div><i>=C2=A0=
+[ERROR] [X300] <a href=3D"http://192.168.100.2" target=3D"_blank">192.168.1=
+00.2</a>: x300 fw communication failure #1<br>EnvironmentError: IOError: x3=
+00 fw poke32 - reply timed out</i></div><div><i>=C2=A0[ERROR] [X300] <a hre=
+f=3D"http://192.168.100.2" target=3D"_blank">192.168.100.2</a>: x300 fw com=
+munication failure #3<br>EnvironmentError: IOError: x300 fw poke32 - reply =
+timed out</i></div><div>=C2=A0[ERROR]
+ [UHD] An unexpected exception was caught in a task loop.The task loop=20
+will now exit, things may not work.EnvironmentError: IOError: <a href=3D"ht=
+tp://192.168.100.2" target=3D"_blank">192.168.100.2</a>: x300 fw communicat=
+ion failure #3<br></div><div><i>=C2=A0[ERROR] [STREAMER] The receive packet=
+ handler failed to time-align packets.<br>1002 received packets were proces=
+sed by the handler.<br>However, a timestamp match could not be determined.<=
+br></i></div><div><br></div><div><b>Here are some details of my network con=
+figuration:</b></div><div>- UHD built from source, tag v3.14.1.1.</div><div=
+>- Gnuradio built from source, tag 3.7.13.5.</div><div>- X310 USRP, each eq=
+uipped with two UBX-160 daughterboards.</div><div>- The communication is ov=
+er Ethernet using the 1Gb port on the X310.</div><div>- Each USRP is connec=
+ted to a dedicated NIC.<br></div><div>- The MTU is set to 1500 for the all =
+interfaces.<br></div><div>-
+ The USRPs are synchronized using an Octoclock-G and the parameters=20
+tuned in the Python script. The procedure is similar to the one followed
+ in benchmark_rate (uhd), for the usrp_source and usrp_sink.<br></div><div>=
+- The NIC ring buffers are set to the maximum for both TX and RX, to 4096, =
+using ethtool.</div>- The OS ring buffers are set as suggested bu Ettus, us=
+ing the following commands:<br>=C2=A0=C2=A0 <i>&gt;&gt; sudo sysctl -w net.=
+core.rmem_max=3D33554432<br>=C2=A0=C2=A0 &gt;&gt; sudo sysctl -w net.core.w=
+mem_max=3D33554432<br>=C2=A0=C2=A0 &gt;&gt; sudo sysctl -w net.core.rmem_de=
+fault=3D33554432<br>=C2=A0=C2=A0 &gt;&gt; sudo sysctl -w net.core.wmem_defa=
+ult=3D33554432</i></div><div><br></div><div>Best,</div><div>Carlos</div></d=
+iv>
+
+--000000000000fd19e80595214ebc--
+
+
+--===============1802721839299067535==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -370,5 +264,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2196339944665937926==--
+--===============1802721839299067535==--
 
