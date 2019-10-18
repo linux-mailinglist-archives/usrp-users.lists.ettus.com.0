@@ -2,50 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F57DC87E
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2019 17:33:41 +0200 (CEST)
-Received: from [::1] (port=59198 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37FB3DCA25
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2019 18:01:21 +0200 (CEST)
+Received: from [::1] (port=54052 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iLUG3-0007JN-NO; Fri, 18 Oct 2019 11:33:39 -0400
-Received: from mail-il1-f173.google.com ([209.85.166.173]:46012)
+	id 1iLUgq-0004gH-22; Fri, 18 Oct 2019 12:01:20 -0400
+Received: from mail-io1-f52.google.com ([209.85.166.52]:40862)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <samberhanu@gmail.com>)
- id 1iLUFx-0007AM-54
- for usrp-users@lists.ettus.com; Fri, 18 Oct 2019 11:33:33 -0400
-Received: by mail-il1-f173.google.com with SMTP id u1so5888783ilq.12
- for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2019 08:33:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=+J1NtrVgBtPR3WeqjoIWbhcgi+RuAOJLJ434XV0I7Wg=;
- b=LJ4vQOmMgvPWGyGih0O7BUDNgCPwaQAjwx4HmOh5LL3/opOWMaLqmEDjmlm5E4UsJm
- YPkJsyAL7lB6Kk8WuCEI8pLZH7Ts9JmSSF9UuK1Bt8RKJun2nGqeVhvfr0CGzJ+fd5Mc
- A6isSg0M0pzx/46sW2UGXm0L4IxHq8NpakLmL/jDtoleIIaFSKaqLv6keOgO2pUFMbFX
- +OZGu8HkIjhM0xRZHEvmzOgEME61UjUCLhVJlqU66DmcBKZbwr9jNfVr/+gjm1Ur7vot
- IlHfUS0qVMqVaH/DVrqZcK9KXSbtOo1S+kiSM1hEX16qj+jsMOqGSCWxoQLJNyTEHv2R
- Ut5w==
+ (Exim 4.92) (envelope-from <coxe@close-haul.com>) id 1iLUfd-0000RB-1X
+ for usrp-users@lists.ettus.com; Fri, 18 Oct 2019 12:00:05 -0400
+Received: by mail-io1-f52.google.com with SMTP id h144so8032796iof.7
+ for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2019 08:59:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quanttux-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=10rXqXlmmGHzLwfLU4P1yzhtzonayXMVqR7mPo1tA7M=;
+ b=aQqrdFqfKRJNutpng9jVyiS1389U5Fdk4HXVg5Wullzz98VWWQ1pM14Jbcu0bdSA7e
+ aDWkrYJCMGxSR48GLpmyU/OLyg3R079K5Nm6xJL9H10kipMSM/sIr2Jyq0VEruAzfZkr
+ HWu13vpJCzM+zaz49pK1hJMc7fUzYGS6/3olRv/4ga8/JMCjtDkf3kQ9942F2tcx64tr
+ YRJwLbTDqav8jz8ivy7QCRpY0NRyVc2PHSU4on03QFcC9RHfv2WqNXlDhTNl2xzqq0dr
+ m8Qc7WlvhmKRPIj8hHsDFeYoISXVjWR0jHzENoNfChQhUe4Mw+AkiN1klvybPWW18GlP
+ EQNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=+J1NtrVgBtPR3WeqjoIWbhcgi+RuAOJLJ434XV0I7Wg=;
- b=X4zuKAKfYsL+oYZqI2D+WyqTvMSjt2CejBZbcHEHQ/xMS+KGGIkI5jaOPBVvIUQ0ZC
- ww2GTD5Lv+2pdzypKw2MVDAWgW3/+Jgfdu1sBH/rWmVNqXu6ZkvbXJap9kPuAeCrErd5
- aj2paBrwif9Y2dsYede/fDAmOPzhOFN4O3JVMU4/3RaigWF0crt+SBQKM6NWam1Fftyv
- 351vJ4ukRivE14A185McopmvTzbs/adTYcKpUtbAbPN7zjaiqyDwpWg1gryvp7KtOqKY
- 0Kad0qxa9mAdAadLhsnRziwcQAhZA9YdgcC9Y6qhEzdLzh+ywWNwJfrs+lsZRL4yR+uf
- Hr/Q==
-X-Gm-Message-State: APjAAAVH0HUCwA//DPFN/nz7zWZhAgLIjrF030WtQ/wFwFwGV6y85dhJ
- EQ7ob5YfD0URVoanlkDnOKOMlafi89eDElRKTeDVUwSq
-X-Google-Smtp-Source: APXvYqzejUcc7ln2hQ+QqkMuDxc4F+kRrrYdR8aScnBwaNJycrOPVCQ3oY2aA2V0iq8Q6/NuSSEABV2gWAxfebllu4s=
-X-Received: by 2002:a92:9fcb:: with SMTP id z72mr11096311ilk.85.1571412772164; 
- Fri, 18 Oct 2019 08:32:52 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=10rXqXlmmGHzLwfLU4P1yzhtzonayXMVqR7mPo1tA7M=;
+ b=saHXeAOwmASILUMl9ia237sDUcOh5/UkJb9Jxv2RVbebOLw0oNm+Y/Xt4kFJr3X4QB
+ gigGZuGCRN9uPi3dMBgVGFBzGXaFV1ZjsIx7Nbz5QImvzs90wMLopxSr4E+Upix6oox1
+ hgrleyAr5Q1AlrChSaETnAUBe1szeGTXBo/17p5hZSWb9CLklfHqzN08bce7QJWeOo19
+ 2k5xenglXbi3HGRZgULJm9ocJBPRooJr5ua6g1goHztCIN49MMxrP/MCFyEGUULE02Qe
+ hYiyinMKhqqN85SZ7mt1fKhZOE5d3aUsjx+OGpBc4/qmOFvMEWoG9xAMXF8KDPXERiq/
+ e/YQ==
+X-Gm-Message-State: APjAAAUC1Bht8TQUkGwZCSdnZ/rN95tj3ynRIm1sFdiIfrFc/zVISOG3
+ N7swiQa21mJykJ7P7/mMOkhLPYEnc4CJvMMeKVlfPA==
+X-Google-Smtp-Source: APXvYqwuHSxot9XmRmpIolcq41q6UFcCBwJnHTyk1BrwD/JdZTP327T9x5+YTElHDr/xUJHY79D2mrlPDWLvGm3uc6E=
+X-Received: by 2002:a02:b388:: with SMTP id p8mr4717947jan.128.1571414364033; 
+ Fri, 18 Oct 2019 08:59:24 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAEyq4Nertv7b10pfFwE_NwUcKTeRYp+ueR2LJ-z=nfmgd+hnkw@mail.gmail.com>
-In-Reply-To: <CAEyq4Nertv7b10pfFwE_NwUcKTeRYp+ueR2LJ-z=nfmgd+hnkw@mail.gmail.com>
-Date: Fri, 18 Oct 2019 11:32:18 -0400
-Message-ID: <CAEyq4NektXFGnH2biJt-QqYCVVeNKw4Tv3XH+d3=fy2YJVPCLQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
+ <CAEyq4NektXFGnH2biJt-QqYCVVeNKw4Tv3XH+d3=fy2YJVPCLQ@mail.gmail.com>
+In-Reply-To: <CAEyq4NektXFGnH2biJt-QqYCVVeNKw4Tv3XH+d3=fy2YJVPCLQ@mail.gmail.com>
+Date: Fri, 18 Oct 2019 08:59:10 -0700
+Message-ID: <CAKJyDkLS+-9DzyL04E8m8sqNVaXLK4NhkEE3mgRMwUn3b9FPLA@mail.gmail.com>
+To: Samuel Berhanu <samberhanu@gmail.com>
 Subject: Re: [USRP-users] N310 generation of a project/bit file from Ettus
  design (HG version)
 X-BeenThere: usrp-users@lists.ettus.com
@@ -59,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Samuel Berhanu via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Samuel Berhanu <samberhanu@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6471211272522767504=="
+From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robin Coxe <coxe@quanttux.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5065599128665110449=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,91 +77,134 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6471211272522767504==
-Content-Type: multipart/related; boundary="00000000000014c85d0595310c97"
+--===============5065599128665110449==
+Content-Type: multipart/related; boundary="000000000000f6cd520595316a30"
 
---00000000000014c85d0595310c97
-Content-Type: multipart/alternative; boundary="00000000000014c85c0595310c96"
+--000000000000f6cd520595316a30
+Content-Type: multipart/alternative; boundary="000000000000f6cd500595316a2f"
 
---00000000000014c85c0595310c96
+--000000000000f6cd500595316a2f
 Content-Type: text/plain; charset="UTF-8"
 
-https://www.xilinx.com/support/answers/68238.html. This pretty much is the
-issue.
+What version of Vivado are you using?
+For some reason, the manual on the Ettus website is for UHD version
+3.15.0.0-69-gc350eb5a6, which requires 2018.3 and is not actually an
+official release.
+If memory serves, the actual tagged release (v.3.14.1.1) requires Vivado
+2017.4.
 
+I've definitely created Vivado projects for the N310 with GUI=1...with
+Vivado 2017.4.  Also, I don't think the schematic is actually correct, for
+the record.
 
-On Fri, Oct 18, 2019 at 11:13 AM Samuel Berhanu <samberhanu@gmail.com>
-wrote:
+-Robin
 
-> Having difficulty creating a project to actually test out the N310 HG
-> design. (I am having problems with a no-Os setup that I am trying to
-> execute to find out what exactly the pin assignment should be for the MIOs.
-> On a side note, the issue specifically is wrt I2C0, USB and TPM pin
-> assignments. Schematics vs PS7 design does not seem to match up. Ettus
-> support email from about a month ago stated schematic is right but now I am
-> having second thoughts about it)
+On Fri, Oct 18, 2019 at 8:33 AM Samuel Berhanu via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> https://www.xilinx.com/support/answers/68238.html. This pretty much is
+> the issue.
 >
-> Usually, when working with ettus products, I generate, using ettus' script
-> with GUI=1, a project, which   afterwards I save to make a tcl script for a
-> project to  impl and resynthesize it as my own project.
 >
-> Through this process, (mind you i have not gotten to regenerating a tcl
-> script yet) (and this was a relatively easy fix), the custom packaged ips
-> were not found and I had to insert them from (vivado_ipi) folder.
+> On Fri, Oct 18, 2019 at 11:13 AM Samuel Berhanu <samberhanu@gmail.com>
+> wrote:
 >
-> Design went through synthesis  fine. At implementation, though, I am
-> seeing this error:
-> (sub-design 'n310_ps_bd.bd is not generated for Synthesis target. Please
-> open this sub-design and generate with synth_checkpoint_mode as signular in
-> original project before adding it to current project'
->
-> [image: Selection_062.bmp]
->
-> I have made sure to get the ip report status, all ips are not locked.
->
-> I have tried to search for answers online but nothing seems to pop up.
-> Anyone has encountered this problem?
+>> Having difficulty creating a project to actually test out the N310 HG
+>> design. (I am having problems with a no-Os setup that I am trying to
+>> execute to find out what exactly the pin assignment should be for the MIOs.
+>> On a side note, the issue specifically is wrt I2C0, USB and TPM pin
+>> assignments. Schematics vs PS7 design does not seem to match up. Ettus
+>> support email from about a month ago stated schematic is right but now I am
+>> having second thoughts about it)
+>>
+>> Usually, when working with ettus products, I generate, using ettus'
+>> script with GUI=1, a project, which   afterwards I save to make a tcl
+>> script for a project to  impl and resynthesize it as my own project.
+>>
+>> Through this process, (mind you i have not gotten to regenerating a tcl
+>> script yet) (and this was a relatively easy fix), the custom packaged ips
+>> were not found and I had to insert them from (vivado_ipi) folder.
+>>
+>> Design went through synthesis  fine. At implementation, though, I am
+>> seeing this error:
+>> (sub-design 'n310_ps_bd.bd is not generated for Synthesis target. Please
+>> open this sub-design and generate with synth_checkpoint_mode as signular in
+>> original project before adding it to current project'
+>>
+>> [image: Selection_062.bmp]
+>>
+>> I have made sure to get the ip report status, all ips are not locked.
+>>
+>> I have tried to search for answers online but nothing seems to pop up.
+>> Anyone has encountered this problem?
+>>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---00000000000014c85c0595310c96
+--000000000000f6cd500595316a2f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><a href=3D"https://www.xilinx.com/support/answers/682=
-38.html">https://www.xilinx.com/support/answers/68238.html</a>. This pretty=
- much is the issue. <br></div><div><br></div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 18, 2019 at 11:13 =
-AM Samuel Berhanu &lt;<a href=3D"mailto:samberhanu@gmail.com">samberhanu@gm=
-ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div dir=3D"ltr"><div>Having difficulty creating a project to actual=
-ly test out the N310 HG design. (I am having problems with a no-Os setup th=
-at I am trying to execute to find out what exactly the pin assignment shoul=
-d be for the MIOs. On a side note, the issue specifically is wrt I2C0, USB =
-and TPM pin assignments. Schematics vs PS7 design does not seem to match up=
-. Ettus support email from about a month ago stated schematic is right but =
-now I am having second thoughts about it)</div><div><br></div><div>Usually,=
- when working with ettus products, I generate, using ettus&#39; script with=
- GUI=3D1, a project, which =C2=A0 afterwards I save to make a tcl script fo=
-r a project to=C2=A0 impl and resynthesize it as my own project.=C2=A0 <br>=
-</div><div><br></div><div>Through this process, (mind you i have not gotten=
- to regenerating a tcl script yet) (and this was a relatively easy fix), th=
-e custom packaged ips were not found and I had to insert them from (vivado_=
-ipi) folder.</div><div><br></div><div>Design went through synthesis=C2=A0 f=
-ine. At implementation, though, I am seeing this error:</div><div>(sub-desi=
-gn &#39;<a href=3D"http://n310_ps_bd.bd" target=3D"_blank">n310_ps_bd.bd</a=
-> is not generated for Synthesis target. Please open this sub-design and ge=
-nerate with synth_checkpoint_mode as signular in original project before ad=
-ding it to current project&#39;<br></div><div> <br><div><img src=3D"cid:ii_=
-k1w9iuzo0" alt=3D"Selection_062.bmp" width=3D"546" height=3D"37"><br></div>=
- </div><div><br></div><div>I have made sure to get the ip report status, al=
-l ips are not locked.<br></div><div><br></div><div>I have tried to search f=
-or answers online but nothing seems to pop up. Anyone has encountered this =
-problem? <br></div></div>
+<div dir=3D"ltr">What version of Vivado are you using?<div>For some reason,=
+ the manual on the Ettus website is for UHD version 3.15.0.0-69-gc350eb5a6,=
+ which requires 2018.3 and is not actually an official release.<span style=
+=3D"color:rgb(0,0,0);font-family:Tahoma,Arial,sans-serif;font-size:21px"></=
+span></div><div>If memory serves, the actual tagged release (v.3.14.1.1) re=
+quires Vivado 2017.4.</div><div><br></div><div>I&#39;ve definitely created =
+Vivado projects for the N310 with GUI=3D1...with Vivado 2017.4.=C2=A0 Also,=
+ I don&#39;t think the schematic is actually=C2=A0correct, for the record.<=
+/div><div><br></div><div>-Robin</div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 18, 2019 at 8:33 AM Samuel=
+ Berhanu via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">u=
+srp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"ltr"><div><a href=3D"https://www.xilin=
+x.com/support/answers/68238.html" target=3D"_blank">https://www.xilinx.com/=
+support/answers/68238.html</a>. This pretty much is the issue. <br></div><d=
+iv><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Fri, Oct 18, 2019 at 11:13 AM Samuel Berhanu &lt;<a href=3D=
+"mailto:samberhanu@gmail.com" target=3D"_blank">samberhanu@gmail.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
+r=3D"ltr"><div>Having difficulty creating a project to actually test out th=
+e N310 HG design. (I am having problems with a no-Os setup that I am trying=
+ to execute to find out what exactly the pin assignment should be for the M=
+IOs. On a side note, the issue specifically is wrt I2C0, USB and TPM pin as=
+signments. Schematics vs PS7 design does not seem to match up. Ettus suppor=
+t email from about a month ago stated schematic is right but now I am havin=
+g second thoughts about it)</div><div><br></div><div>Usually, when working =
+with ettus products, I generate, using ettus&#39; script with GUI=3D1, a pr=
+oject, which =C2=A0 afterwards I save to make a tcl script for a project to=
+=C2=A0 impl and resynthesize it as my own project.=C2=A0 <br></div><div><br=
+></div><div>Through this process, (mind you i have not gotten to regenerati=
+ng a tcl script yet) (and this was a relatively easy fix), the custom packa=
+ged ips were not found and I had to insert them from (vivado_ipi) folder.</=
+div><div><br></div><div>Design went through synthesis=C2=A0 fine. At implem=
+entation, though, I am seeing this error:</div><div>(sub-design &#39;<a hre=
+f=3D"http://n310_ps_bd.bd" target=3D"_blank">n310_ps_bd.bd</a> is not gener=
+ated for Synthesis target. Please open this sub-design and generate with sy=
+nth_checkpoint_mode as signular in original project before adding it to cur=
+rent project&#39;<br></div><div> <br><div><img src=3D"cid:ii_k1w9iuzo0" alt=
+=3D"Selection_062.bmp" width=3D"546" height=3D"37"><br></div> </div><div><b=
+r></div><div>I have made sure to get the ip report status, all ips are not =
+locked.<br></div><div><br></div><div>I have tried to search for answers onl=
+ine but nothing seems to pop up. Anyone has encountered this problem? <br><=
+/div></div>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---00000000000014c85c0595310c96--
---00000000000014c85d0595310c97
+--000000000000f6cd500595316a2f--
+--000000000000f6cd520595316a30
 Content-Type: image/bmp; name="Selection_062.bmp"
 Content-Disposition: inline; filename="Selection_062.bmp"
 Content-Transfer-Encoding: base64
@@ -7851,10 +7896,10 @@ AHT//77/////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
---00000000000014c85d0595310c97--
+--000000000000f6cd520595316a30--
 
 
---===============6471211272522767504==
+--===============5065599128665110449==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -7865,5 +7910,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6471211272522767504==--
+--===============5065599128665110449==--
 
