@@ -2,51 +2,98 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37FB3DCA25
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2019 18:01:21 +0200 (CEST)
-Received: from [::1] (port=54052 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88F17DCC28
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2019 19:03:26 +0200 (CEST)
+Received: from [::1] (port=53682 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iLUgq-0004gH-22; Fri, 18 Oct 2019 12:01:20 -0400
-Received: from mail-io1-f52.google.com ([209.85.166.52]:40862)
+	id 1iLVeq-0000vr-3H; Fri, 18 Oct 2019 13:03:20 -0400
+Received: from dispatch1-us1.ppe-hosted.com ([67.231.154.164]:55288)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <coxe@close-haul.com>) id 1iLUfd-0000RB-1X
- for usrp-users@lists.ettus.com; Fri, 18 Oct 2019 12:00:05 -0400
-Received: by mail-io1-f52.google.com with SMTP id h144so8032796iof.7
- for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2019 08:59:44 -0700 (PDT)
+ (Exim 4.92) (envelope-from <jason@gardettoengineering.com>)
+ id 1iLVej-0000mX-9x
+ for usrp-users@lists.ettus.com; Fri, 18 Oct 2019 13:03:13 -0400
+Received: from dispatch1-us1.ppe-hosted.com (localhost.localdomain [127.0.0.1])
+ by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
+ BD27FA98C0
+ for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2019 17:02:32 +0000 (UTC)
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam03lp2053.outbound.protection.outlook.com [104.47.41.53])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mx1-us3.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id A0F62B80063;
+ Fri, 18 Oct 2019 17:02:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JCOpr83FUch8AJ+dTsVHxIDQKn+xMUUuzSCeFUmCtEBW7A0/Z1EcAtvvMoic6iCMBYWU/3VMWk/Si37vihZS30hYQY/1AyWggVeh/TAPeckjpeUMIONa57Up4nnL3r2YXaEVqBAdDygnmd448hIEsJrVYTC3yK7fW1clwJsUye+00mkqNAGtQSeQ92pkpXGketHIcnx1H/CMi+v6M49epngQcMCse06vyv8nUbHbOp/q2P0EYUGgZ/E35w7wG4NLd2qhY3utHm1QYZ1Zr2YvC9QeVrcEs/B8XaGM5IcTA3+YW6DLiB11+6Nf6W1yquieA7BJAsvuFtAhdU+6NBP83Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qaDYr7Vrk0MnBDVRYTtBlkui4VRNm+ecWzCC/sSltVo=;
+ b=ZF9CuS9smApMVbreDE58HD6DyO3TfOB78yn6chR/SNkXsYvNX7w1OmsjtHxB5NmxtKH36ye8oRxvWJY20ljipWT4/ZYI0dDwZzkLEXWwayTiyy5ZX83H0mWIqrnuSlnn7F4Zpp7XLk6kjF9RYdpueiZtxwejw8TaUBdyJSWzhfpC2wSOEzSkl3z5gm0dwaJIlc+MqtVuZgIgCP3LHT8pef6NYhaUlOdu4uro0U840yn+2IdwEY6AKDC7+lzB1Zj/kDiS9Aady/v+QZKoNv8m8yl0ekNl9/TvR2Ge+ErF4UxY3kS91Bs2IW8Jcgwn3RWNuT1GOqw82l3MhErhjljUkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
+ header.from=gardettoengineering.com; dkim=pass
+ header.d=gardettoengineering.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quanttux-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=10rXqXlmmGHzLwfLU4P1yzhtzonayXMVqR7mPo1tA7M=;
- b=aQqrdFqfKRJNutpng9jVyiS1389U5Fdk4HXVg5Wullzz98VWWQ1pM14Jbcu0bdSA7e
- aDWkrYJCMGxSR48GLpmyU/OLyg3R079K5Nm6xJL9H10kipMSM/sIr2Jyq0VEruAzfZkr
- HWu13vpJCzM+zaz49pK1hJMc7fUzYGS6/3olRv/4ga8/JMCjtDkf3kQ9942F2tcx64tr
- YRJwLbTDqav8jz8ivy7QCRpY0NRyVc2PHSU4on03QFcC9RHfv2WqNXlDhTNl2xzqq0dr
- m8Qc7WlvhmKRPIj8hHsDFeYoISXVjWR0jHzENoNfChQhUe4Mw+AkiN1klvybPWW18GlP
- EQNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=10rXqXlmmGHzLwfLU4P1yzhtzonayXMVqR7mPo1tA7M=;
- b=saHXeAOwmASILUMl9ia237sDUcOh5/UkJb9Jxv2RVbebOLw0oNm+Y/Xt4kFJr3X4QB
- gigGZuGCRN9uPi3dMBgVGFBzGXaFV1ZjsIx7Nbz5QImvzs90wMLopxSr4E+Upix6oox1
- hgrleyAr5Q1AlrChSaETnAUBe1szeGTXBo/17p5hZSWb9CLklfHqzN08bce7QJWeOo19
- 2k5xenglXbi3HGRZgULJm9ocJBPRooJr5ua6g1goHztCIN49MMxrP/MCFyEGUULE02Qe
- hYiyinMKhqqN85SZ7mt1fKhZOE5d3aUsjx+OGpBc4/qmOFvMEWoG9xAMXF8KDPXERiq/
- e/YQ==
-X-Gm-Message-State: APjAAAUC1Bht8TQUkGwZCSdnZ/rN95tj3ynRIm1sFdiIfrFc/zVISOG3
- N7swiQa21mJykJ7P7/mMOkhLPYEnc4CJvMMeKVlfPA==
-X-Google-Smtp-Source: APXvYqwuHSxot9XmRmpIolcq41q6UFcCBwJnHTyk1BrwD/JdZTP327T9x5+YTElHDr/xUJHY79D2mrlPDWLvGm3uc6E=
-X-Received: by 2002:a02:b388:: with SMTP id p8mr4717947jan.128.1571414364033; 
- Fri, 18 Oct 2019 08:59:24 -0700 (PDT)
-MIME-Version: 1.0
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector2-gardettoengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qaDYr7Vrk0MnBDVRYTtBlkui4VRNm+ecWzCC/sSltVo=;
+ b=PAQHhESd3ZjMRbPNY9GvT21J/UxnH6/YDKR21W1w7dajz0aKFno/aUBb6IOs/x65ZOmPBwGqfh4/HWJU0LUFerr4JAvs9R1BBcsovmY2+XizJN/Egu1hWnGTamHx3eATuIxh7dAKj0Dis/Q7BUiyL9O8mcJWc6Qwh8ZOnI7jWMc=
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com (52.132.11.30) by
+ BL0PR12MB2482.namprd12.prod.outlook.com (52.132.9.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.18; Fri, 18 Oct 2019 17:02:18 +0000
+Received: from BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::d017:bb2f:c281:2400]) by BL0PR12MB2340.namprd12.prod.outlook.com
+ ([fe80::d017:bb2f:c281:2400%5]) with mapi id 15.20.2347.023; Fri, 18 Oct 2019
+ 17:02:18 +0000
+To: Samuel Berhanu <samberhanu@gmail.com>, Robin Coxe <coxe@quanttux.com>
+Thread-Topic: [USRP-users] N310 generation of a project/bit file from Ettus
+ design (HG version)
+Thread-Index: AQHVhcbEqmnT1qDQyUqbrSVT3hC+SadghuUAgAAHggCAABFVsQ==
+Date: Fri, 18 Oct 2019 17:02:18 +0000
+Message-ID: <BL0PR12MB2340D0029B42A30FFD0BC314AF6C0@BL0PR12MB2340.namprd12.prod.outlook.com>
 References: <CAEyq4Nertv7b10pfFwE_NwUcKTeRYp+ueR2LJ-z=nfmgd+hnkw@mail.gmail.com>
- <CAEyq4NektXFGnH2biJt-QqYCVVeNKw4Tv3XH+d3=fy2YJVPCLQ@mail.gmail.com>
-In-Reply-To: <CAEyq4NektXFGnH2biJt-QqYCVVeNKw4Tv3XH+d3=fy2YJVPCLQ@mail.gmail.com>
-Date: Fri, 18 Oct 2019 08:59:10 -0700
-Message-ID: <CAKJyDkLS+-9DzyL04E8m8sqNVaXLK4NhkEE3mgRMwUn3b9FPLA@mail.gmail.com>
-To: Samuel Berhanu <samberhanu@gmail.com>
+ <CAEyq4NektXFGnH2biJt-QqYCVVeNKw4Tv3XH+d3=fy2YJVPCLQ@mail.gmail.com>,
+ <CAKJyDkLS+-9DzyL04E8m8sqNVaXLK4NhkEE3mgRMwUn3b9FPLA@mail.gmail.com>
+In-Reply-To: <CAKJyDkLS+-9DzyL04E8m8sqNVaXLK4NhkEE3mgRMwUn3b9FPLA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=jason@gardettoengineering.com; 
+x-originating-ip: [65.127.220.137]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bb86657f-0eff-4d2e-bc36-08d753eceeef
+x-ms-traffictypediagnostic: BL0PR12MB2482:
+x-ms-exchange-purlcount: 4
+x-microsoft-antispam-prvs: <BL0PR12MB24827A38FD042A78C2DF0011AF6C0@BL0PR12MB2482.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-forefront-prvs: 01949FE337
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(396003)(376002)(39830400003)(136003)(366004)(346002)(189003)(199004)(6436002)(81156014)(606006)(74316002)(966005)(733005)(14454004)(8676002)(2906002)(8936002)(19627405001)(25786009)(52536014)(7736002)(6246003)(508600001)(5660300002)(99286004)(110136005)(33656002)(229853002)(81166006)(486006)(26005)(256004)(71200400001)(71190400001)(66066001)(4326008)(7696005)(76116006)(236005)(6506007)(105004)(53546011)(11346002)(64756008)(55016002)(9686003)(99936001)(54896002)(6306002)(6116002)(3846002)(476003)(446003)(76176011)(66946007)(66446008)(66476007)(86362001)(102836004)(66616009)(316002)(66556008)(14444005)(186003);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR12MB2482;
+ H:BL0PR12MB2340.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: gardettoengineering.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: sB36ldp7RDzjrkfV62TQ/TLjx6zg39TnDGDl4DsiVCL34aJnNQwvPnUaBCk4jDxaSGU0DdXAP/c2lR36JCjbUN6geHFw86iCUEDqAdpHz7tEWs99qrJkUljKd8/xj0js2lnQAID+4qxtN66hAI2zIjU4Kyrt0c2CWo8y2VYsl0mQWdzGYJDtXo2JAK/tmDVQKTsFmyBEs4XobzbeUV7RpjW+adGFACdz6+UBcOdEX6SeZb+0IxfZSKYj1ZpAN9zRU2M/pjGmoUSYV0lfty2NoKtCfu5UU4nf7G4mubAs17es//PDl5GK7Y/KYyqOzhyvYCzcAsFT7jDdvevvusEAg4WKAD//Iuli4r/vnTw9SvI8p8Fy0+pEvantT+idAHEul+/qi+wE/4AV4XSghoemoncrgBMKjRJ0nNUW/jz7c2PyPzpGwzgpJ4C+mIVkZqgvLBXNjmLe0fJ9+PlZC1uILQ==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb86657f-0eff-4d2e-bc36-08d753eceeef
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2019 17:02:18.1291 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1KJj55sfcthR3lC/J82LKKFv3+6ZMIJ/infU2xeYy2t4aBytvC1ttHN2ARAdfsRAmWTV7KSzqgIY2Fg/Iv0LcZ//G6lFw+sH6ZvuV1npR5E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2482
+X-MDID: 1571418141-paKJ6InvpnvT
 Subject: Re: [USRP-users] N310 generation of a project/bit file from Ettus
  design (HG version)
 X-BeenThere: usrp-users@lists.ettus.com
@@ -60,10 +107,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robin Coxe <coxe@quanttux.com>
+From: Jason Matusiak via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jason Matusiak <jason@gardettoengineering.com>
 Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5065599128665110449=="
+Content-Type: multipart/mixed; boundary="===============7198604186512060155=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,139 +124,275 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5065599128665110449==
-Content-Type: multipart/related; boundary="000000000000f6cd520595316a30"
+--===============7198604186512060155==
+Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_004_BL0PR12MB2340D0029B42A30FFD0BC314AF6C0BL0PR12MB2340namp_";
+	type="multipart/alternative"
 
---000000000000f6cd520595316a30
-Content-Type: multipart/alternative; boundary="000000000000f6cd500595316a2f"
+--_004_BL0PR12MB2340D0029B42A30FFD0BC314AF6C0BL0PR12MB2340namp_
+Content-Type: multipart/alternative;
+	boundary="_000_BL0PR12MB2340D0029B42A30FFD0BC314AF6C0BL0PR12MB2340namp_"
 
---000000000000f6cd500595316a2f
-Content-Type: text/plain; charset="UTF-8"
+--_000_BL0PR12MB2340D0029B42A30FFD0BC314AF6C0BL0PR12MB2340namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+I just checked the repo based on the tag you mentioned and it is indeed 201=
+7.4 (based on its setupenv.sh)
+
+https://github.com/EttusResearch/fpga/blob/bb85bdff45cad4da5008ab0c58749ce3=
+2797cea7/usrp3/top/n3xx/setupenv.sh
+
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Robin Co=
+xe via USRP-users <usrp-users@lists.ettus.com>
+Sent: Friday, October 18, 2019 11:59 AM
+To: Samuel Berhanu <samberhanu@gmail.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] N310 generation of a project/bit file from Ettus =
+design (HG version)
 
 What version of Vivado are you using?
-For some reason, the manual on the Ettus website is for UHD version
-3.15.0.0-69-gc350eb5a6, which requires 2018.3 and is not actually an
-official release.
-If memory serves, the actual tagged release (v.3.14.1.1) requires Vivado
-2017.4.
+For some reason, the manual on the Ettus website is for UHD version 3.15.0.=
+0-69-gc350eb5a6, which requires 2018.3 and is not actually an official rele=
+ase.
+If memory serves, the actual tagged release (v.3.14.1.1) requires Vivado 20=
+17.4.
 
-I've definitely created Vivado projects for the N310 with GUI=1...with
-Vivado 2017.4.  Also, I don't think the schematic is actually correct, for
-the record.
+I've definitely created Vivado projects for the N310 with GUI=3D1...with Vi=
+vado 2017.4.  Also, I don't think the schematic is actually correct, for th=
+e record.
 
 -Robin
 
-On Fri, Oct 18, 2019 at 8:33 AM Samuel Berhanu via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+On Fri, Oct 18, 2019 at 8:33 AM Samuel Berhanu via USRP-users <usrp-users@l=
+ists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
+https://www.xilinx.com/support/answers/68238.html<https://urldefense.proofp=
+oint.com/v2/url?u=3Dhttps-3A__www.xilinx.com_support_answers_68238.html&d=
+=3DDwMFaQ&c=3DeuGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=3DW_MQLyUWPXWHf=
+sF4mr51mTMqpeO4RbBBLexficV9DG8&m=3D3eiW44eEXen8sH4bvJLonsYOrBQlSZTtEN1f0476=
+lHE&s=3D-27ilFCQOwzFKD4xO7v0coUAB_WM_p_lm9RF391SBe4&e=3D>. This pretty much=
+ is the issue.
 
-> https://www.xilinx.com/support/answers/68238.html. This pretty much is
-> the issue.
->
->
-> On Fri, Oct 18, 2019 at 11:13 AM Samuel Berhanu <samberhanu@gmail.com>
-> wrote:
->
->> Having difficulty creating a project to actually test out the N310 HG
->> design. (I am having problems with a no-Os setup that I am trying to
->> execute to find out what exactly the pin assignment should be for the MIOs.
->> On a side note, the issue specifically is wrt I2C0, USB and TPM pin
->> assignments. Schematics vs PS7 design does not seem to match up. Ettus
->> support email from about a month ago stated schematic is right but now I am
->> having second thoughts about it)
->>
->> Usually, when working with ettus products, I generate, using ettus'
->> script with GUI=1, a project, which   afterwards I save to make a tcl
->> script for a project to  impl and resynthesize it as my own project.
->>
->> Through this process, (mind you i have not gotten to regenerating a tcl
->> script yet) (and this was a relatively easy fix), the custom packaged ips
->> were not found and I had to insert them from (vivado_ipi) folder.
->>
->> Design went through synthesis  fine. At implementation, though, I am
->> seeing this error:
->> (sub-design 'n310_ps_bd.bd is not generated for Synthesis target. Please
->> open this sub-design and generate with synth_checkpoint_mode as signular in
->> original project before adding it to current project'
->>
->> [image: Selection_062.bmp]
->>
->> I have made sure to get the ip report status, all ips are not locked.
->>
->> I have tried to search for answers online but nothing seems to pop up.
->> Anyone has encountered this problem?
->>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
 
---000000000000f6cd500595316a2f
-Content-Type: text/html; charset="UTF-8"
+On Fri, Oct 18, 2019 at 11:13 AM Samuel Berhanu <samberhanu@gmail.com<mailt=
+o:samberhanu@gmail.com>> wrote:
+Having difficulty creating a project to actually test out the N310 HG desig=
+n. (I am having problems with a no-Os setup that I am trying to execute to =
+find out what exactly the pin assignment should be for the MIOs. On a side =
+note, the issue specifically is wrt I2C0, USB and TPM pin assignments. Sche=
+matics vs PS7 design does not seem to match up. Ettus support email from ab=
+out a month ago stated schematic is right but now I am having second though=
+ts about it)
+
+Usually, when working with ettus products, I generate, using ettus' script =
+with GUI=3D1, a project, which   afterwards I save to make a tcl script for=
+ a project to  impl and resynthesize it as my own project.
+
+Through this process, (mind you i have not gotten to regenerating a tcl scr=
+ipt yet) (and this was a relatively easy fix), the custom packaged ips were=
+ not found and I had to insert them from (vivado_ipi) folder.
+
+Design went through synthesis  fine. At implementation, though, I am seeing=
+ this error:
+(sub-design 'n310_ps_bd.bd<https://urldefense.proofpoint.com/v2/url?u=3Dhtt=
+p-3A__n310-5Fps-5Fbd.bd&d=3DDwMFaQ&c=3DeuGZstcaTDllvimEN8b7jXrwqOf-v5A_Cdpg=
+nVfiiMM&r=3DW_MQLyUWPXWHfsF4mr51mTMqpeO4RbBBLexficV9DG8&m=3D3eiW44eEXen8sH4=
+bvJLonsYOrBQlSZTtEN1f0476lHE&s=3Dv_uR1v1M6qpcMcrnOG4j6n9EfYEJR0E78MOBZDPHgv=
+M&e=3D> is not generated for Synthesis target. Please open this sub-design =
+and generate with synth_checkpoint_mode as signular in original project bef=
+ore adding it to current project'
+
+[Selection_062.bmp]
+
+I have made sure to get the ip report status, all ips are not locked.
+
+I have tried to search for answers online but nothing seems to pop up. Anyo=
+ne has encountered this problem?
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com<https://=
+urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettus.com_mailman_listi=
+nfo_usrp-2Dusers-5Flists.ettus.com&d=3DDwMFaQ&c=3DeuGZstcaTDllvimEN8b7jXrwq=
+Of-v5A_CdpgnVfiiMM&r=3DW_MQLyUWPXWHfsF4mr51mTMqpeO4RbBBLexficV9DG8&m=3D3eiW=
+44eEXen8sH4bvJLonsYOrBQlSZTtEN1f0476lHE&s=3DOoJK6KBq8fqrN-m5Sj3kVA77pT_-zkw=
+p3z52c-wWf3o&e=3D>
+
+--_000_BL0PR12MB2340D0029B42A30FFD0BC314AF6C0BL0PR12MB2340namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">What version of Vivado are you using?<div>For some reason,=
- the manual on the Ettus website is for UHD version 3.15.0.0-69-gc350eb5a6,=
- which requires 2018.3 and is not actually an official release.<span style=
-=3D"color:rgb(0,0,0);font-family:Tahoma,Arial,sans-serif;font-size:21px"></=
-span></div><div>If memory serves, the actual tagged release (v.3.14.1.1) re=
-quires Vivado 2017.4.</div><div><br></div><div>I&#39;ve definitely created =
-Vivado projects for the N310 with GUI=3D1...with Vivado 2017.4.=C2=A0 Also,=
- I don&#39;t think the schematic is actually=C2=A0correct, for the record.<=
-/div><div><br></div><div>-Robin</div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 18, 2019 at 8:33 AM Samuel=
- Berhanu via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">u=
-srp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex"><div dir=3D"ltr"><div><a href=3D"https://www.xilin=
-x.com/support/answers/68238.html" target=3D"_blank">https://www.xilinx.com/=
-support/answers/68238.html</a>. This pretty much is the issue. <br></div><d=
-iv><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Fri, Oct 18, 2019 at 11:13 AM Samuel Berhanu &lt;<a href=3D=
-"mailto:samberhanu@gmail.com" target=3D"_blank">samberhanu@gmail.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
-r=3D"ltr"><div>Having difficulty creating a project to actually test out th=
-e N310 HG design. (I am having problems with a no-Os setup that I am trying=
- to execute to find out what exactly the pin assignment should be for the M=
-IOs. On a side note, the issue specifically is wrt I2C0, USB and TPM pin as=
-signments. Schematics vs PS7 design does not seem to match up. Ettus suppor=
-t email from about a month ago stated schematic is right but now I am havin=
-g second thoughts about it)</div><div><br></div><div>Usually, when working =
-with ettus products, I generate, using ettus&#39; script with GUI=3D1, a pr=
-oject, which =C2=A0 afterwards I save to make a tcl script for a project to=
-=C2=A0 impl and resynthesize it as my own project.=C2=A0 <br></div><div><br=
-></div><div>Through this process, (mind you i have not gotten to regenerati=
-ng a tcl script yet) (and this was a relatively easy fix), the custom packa=
-ged ips were not found and I had to insert them from (vivado_ipi) folder.</=
-div><div><br></div><div>Design went through synthesis=C2=A0 fine. At implem=
-entation, though, I am seeing this error:</div><div>(sub-design &#39;<a hre=
-f=3D"http://n310_ps_bd.bd" target=3D"_blank">n310_ps_bd.bd</a> is not gener=
-ated for Synthesis target. Please open this sub-design and generate with sy=
-nth_checkpoint_mode as signular in original project before adding it to cur=
-rent project&#39;<br></div><div> <br><div><img src=3D"cid:ii_k1w9iuzo0" alt=
-=3D"Selection_062.bmp" width=3D"546" height=3D"37"><br></div> </div><div><b=
-r></div><div>I have made sure to get the ip report status, all ips are not =
-locked.<br></div><div><br></div><div>I have tried to search for answers onl=
-ine but nothing seems to pop up. Anyone has encountered this problem? <br><=
-/div></div>
-</blockquote></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I just checked the repo based on the tag you mentioned and it is indeed 201=
+7.4 (based on its setupenv.sh)</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<a href=3D"https://github.com/EttusResearch/fpga/blob/bb85bdff45cad4da5008a=
+b0c58749ce32797cea7/usrp3/top/n3xx/setupenv.sh" id=3D"LPlnk528373">https://=
+github.com/EttusResearch/fpga/blob/bb85bdff45cad4da5008ab0c58749ce32797cea7=
+/usrp3/top/n3xx/setupenv.sh</a><br>
+</div>
+<div id=3D"Signature">
+<div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> USRP-users &lt;usrp-u=
+sers-bounces@lists.ettus.com&gt; on behalf of Robin Coxe via USRP-users &lt=
+;usrp-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Friday, October 18, 2019 11:59 AM<br>
+<b>To:</b> Samuel Berhanu &lt;samberhanu@gmail.com&gt;<br>
+<b>Cc:</b> Ettus Mail List &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> Re: [USRP-users] N310 generation of a project/bit file from=
+ Ettus design (HG version)</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">What version of Vivado are you using?
+<div>For some reason, the manual on the Ettus website is for UHD version 3.=
+15.0.0-69-gc350eb5a6, which requires 2018.3 and is not actually an official=
+ release.<span style=3D"color:rgb(0,0,0); font-family:Tahoma,Arial,sans-ser=
+if; font-size:21px"></span></div>
+<div>If memory serves, the actual tagged release (v.3.14.1.1) requires Viva=
+do 2017.4.</div>
+<div><br>
+</div>
+<div>I've definitely created Vivado projects for the N310 with GUI=3D1...wi=
+th Vivado 2017.4.&nbsp; Also, I don't think the schematic is actually&nbsp;=
+correct, for the record.</div>
+<div><br>
+</div>
+<div>-Robin</div>
+</div>
+<br>
+<div class=3D"x_gmail_quote">
+<div dir=3D"ltr" class=3D"x_gmail_attr">On Fri, Oct 18, 2019 at 8:33 AM Sam=
+uel Berhanu via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
+">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
+er-left:1px solid rgb(204,204,204); padding-left:1ex">
+<div dir=3D"ltr">
+<div><a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__www.=
+xilinx.com_support_answers_68238.html&amp;d=3DDwMFaQ&amp;c=3DeuGZstcaTDllvi=
+mEN8b7jXrwqOf-v5A_CdpgnVfiiMM&amp;r=3DW_MQLyUWPXWHfsF4mr51mTMqpeO4RbBBLexfi=
+cV9DG8&amp;m=3D3eiW44eEXen8sH4bvJLonsYOrBQlSZTtEN1f0476lHE&amp;s=3D-27ilFCQ=
+OwzFKD4xO7v0coUAB_WM_p_lm9RF391SBe4&amp;e=3D" target=3D"_blank">https://www=
+.xilinx.com/support/answers/68238.html</a>.
+ This pretty much is the issue. <br>
+</div>
+<div><br>
+</div>
+</div>
+<br>
+<div class=3D"x_gmail_quote">
+<div dir=3D"ltr" class=3D"x_gmail_attr">On Fri, Oct 18, 2019 at 11:13 AM Sa=
+muel Berhanu &lt;<a href=3D"mailto:samberhanu@gmail.com" target=3D"_blank">=
+samberhanu@gmail.com</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
+er-left:1px solid rgb(204,204,204); padding-left:1ex">
+<div dir=3D"ltr">
+<div>Having difficulty creating a project to actually test out the N310 HG =
+design. (I am having problems with a no-Os setup that I am trying to execut=
+e to find out what exactly the pin assignment should be for the MIOs. On a =
+side note, the issue specifically
+ is wrt I2C0, USB and TPM pin assignments. Schematics vs PS7 design does no=
+t seem to match up. Ettus support email from about a month ago stated schem=
+atic is right but now I am having second thoughts about it)</div>
+<div><br>
+</div>
+<div>Usually, when working with ettus products, I generate, using ettus' sc=
+ript with GUI=3D1, a project, which &nbsp; afterwards I save to make a tcl =
+script for a project to&nbsp; impl and resynthesize it as my own project.&n=
+bsp;
+<br>
+</div>
+<div><br>
+</div>
+<div>Through this process, (mind you i have not gotten to regenerating a tc=
+l script yet) (and this was a relatively easy fix), the custom packaged ips=
+ were not found and I had to insert them from (vivado_ipi) folder.</div>
+<div><br>
+</div>
+<div>Design went through synthesis&nbsp; fine. At implementation, though, I=
+ am seeing this error:</div>
+<div>(sub-design '<a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dh=
+ttp-3A__n310-5Fps-5Fbd.bd&amp;d=3DDwMFaQ&amp;c=3DeuGZstcaTDllvimEN8b7jXrwqO=
+f-v5A_CdpgnVfiiMM&amp;r=3DW_MQLyUWPXWHfsF4mr51mTMqpeO4RbBBLexficV9DG8&amp;m=
+=3D3eiW44eEXen8sH4bvJLonsYOrBQlSZTtEN1f0476lHE&amp;s=3Dv_uR1v1M6qpcMcrnOG4j=
+6n9EfYEJR0E78MOBZDPHgvM&amp;e=3D" target=3D"_blank">n310_ps_bd.bd</a>
+ is not generated for Synthesis target. Please open this sub-design and gen=
+erate with synth_checkpoint_mode as signular in original project before add=
+ing it to current project'<br>
+</div>
+<div><br>
+<div><img alt=3D"Selection_062.bmp" width=3D"546" height=3D"37" data-outloo=
+k-trace=3D"F:1|T:1" src=3D"cid:ii_k1w9iuzo0"><br>
+</div>
+</div>
+<div><br>
+</div>
+<div>I have made sure to get the ip report status, all ips are not locked.<=
+br>
+</div>
+<div><br>
+</div>
+<div>I have tried to search for answers online but nothing seems to pop up.=
+ Anyone has encountered this problem?
+<br>
+</div>
+</div>
+</blockquote>
+</div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+<a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__lists.ettu=
+s.com_mailman_listinfo_usrp-2Dusers-5Flists.ettus.com&amp;d=3DDwMFaQ&amp;c=
+=3DeuGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&amp;r=3DW_MQLyUWPXWHfsF4mr51=
+mTMqpeO4RbBBLexficV9DG8&amp;m=3D3eiW44eEXen8sH4bvJLonsYOrBQlSZTtEN1f0476lHE=
+&amp;s=3DOoJK6KBq8fqrN-m5Sj3kVA77pT_-zkwp3z52c-wWf3o&amp;e=3D" rel=3D"noref=
+errer" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users=
+_lists.ettus.com</a><br>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
 
---000000000000f6cd500595316a2f--
---000000000000f6cd520595316a30
+--_000_BL0PR12MB2340D0029B42A30FFD0BC314AF6C0BL0PR12MB2340namp_--
+
+--_004_BL0PR12MB2340D0029B42A30FFD0BC314AF6C0BL0PR12MB2340namp_
 Content-Type: image/bmp; name="Selection_062.bmp"
-Content-Disposition: inline; filename="Selection_062.bmp"
-Content-Transfer-Encoding: base64
+Content-Description: Selection_062.bmp
+Content-Disposition: inline; filename="Selection_062.bmp"; size=438030;
+	creation-date="Fri, 18 Oct 2019 16:01:25 GMT";
+	modification-date="Fri, 18 Oct 2019 17:01:12 GMT"
 Content-ID: <ii_k1w9iuzo0>
-X-Attachment-Id: ii_k1w9iuzo0
+Content-Transfer-Encoding: base64
 
 Qk0OrwYAAAAAADYAAAAoAAAAwgUAAGMAAAABABgAAAAAANiuBgAAAAAAAAAAAAAAAAAAAAAA////
 ////////////////////////////////////////////////////////////////////////////
@@ -7896,10 +8079,11 @@ AHT//77/////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
---000000000000f6cd520595316a30--
+
+--_004_BL0PR12MB2340D0029B42A30FFD0BC314AF6C0BL0PR12MB2340namp_--
 
 
---===============5065599128665110449==
+--===============7198604186512060155==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -7910,5 +8094,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5065599128665110449==--
+--===============7198604186512060155==--
 
