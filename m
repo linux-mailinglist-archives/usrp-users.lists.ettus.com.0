@@ -2,58 +2,78 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED387DCE7F
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2019 20:43:03 +0200 (CEST)
-Received: from [::1] (port=48022 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F12CDCED5
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2019 20:59:17 +0200 (CEST)
+Received: from [::1] (port=52710 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iLXDG-0000TT-5P; Fri, 18 Oct 2019 14:42:58 -0400
-Received: from mail-qt1-f172.google.com ([209.85.160.172]:44157)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iLXDB-0000L5-7t
- for USRP-users@lists.ettus.com; Fri, 18 Oct 2019 14:42:53 -0400
-Received: by mail-qt1-f172.google.com with SMTP id u40so10476788qth.11
- for <USRP-users@lists.ettus.com>; Fri, 18 Oct 2019 11:42:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=8G7lmzNveftbBpYVIfJJIi1s3n2zGlIX6uA2aXPUVnE=;
- b=flAfk6jro4ei+KkXVywNTObckc2MMnG0Z0t1Yx+YSkBn3AdpWwRK2kn+P24rYyuCao
- SF2nCUAlVHQFzMWRqejtJTVfZKXLyTXWFaBUJtKVZBOi9JgL0GfRY0KGi7MPne3pwLSc
- 6RtNpfLlwqrcFtJl/dGwWFB/UtwntpDi7M3e98afA4X3D5dil6vAGOa6su2xDWJXx6gY
- yuo8S2HrA1XikwvlSQ3dDH3BPB6sOzqaa+RyqZuY36b8PxvDrsf5xQeUNAfrpVGtdtr2
- AvvDWkRe3CDqdFIFzmo4+WblIK4ZWyGgJIPesdt2dpcLE21aFWg7YuLh0/FNPnYhUil9
- oB1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=8G7lmzNveftbBpYVIfJJIi1s3n2zGlIX6uA2aXPUVnE=;
- b=lZQcDwlnpCVRcIsFPe1gmF2NpzxyRyVkZgjEr06WTyEsDCUhrQl7XvsZXLE3CTXVLg
- ropHpOJhKnhHc0J8BN24DMeHuj+ttJg3H4SUiuZK5rGITiyaQrvlpZ++RkI0MBhMRdqn
- sc8DKo6osrmVJGT5VcAbsxVwCFUE8ejE/iN7IBmhXOsvH/0rXyAU7Z2jvaG2JDBq0X+g
- 2tQFYG8YlI22e5lcJG8tOOLHNEBIcO+ndrrJzQN9fI8dEiEjOgZSrvxBurecOwJng6Iy
- q+8AwG4hw9UJvjSt9VN60LjvlEyXBBOaVqD8lqkNSx4BDPdtD1xKrmypGQeOlmltHzR1
- vqPA==
-X-Gm-Message-State: APjAAAWnoIMASnJvpHzz8qmDFA8hvo1xXMgdNOGiMHbHlg9aiwrX+Uvj
- Qd0AYTJJflOZSPWT8HsQMtV59kyW
-X-Google-Smtp-Source: APXvYqw582K85yf1u7GaA2V2QGRVs/zjKdxEMIcDzSuI0nH/CZNkcegg6tBOrBcpg4XiPjhlNwNN+A==
-X-Received: by 2002:a0c:e801:: with SMTP id y1mr11047608qvn.76.1571424132506; 
- Fri, 18 Oct 2019 11:42:12 -0700 (PDT)
-Received: from ?IPv6:2605:b100:d04:ff9d:51ea:57a4:286b:8b1?
- ([2605:b100:d04:ff9d:51ea:57a4:286b:8b1])
- by smtp.gmail.com with ESMTPSA id v186sm847618qkb.42.2019.10.18.11.42.11
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Oct 2019 11:42:11 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Fri, 18 Oct 2019 14:42:10 -0400
-Message-Id: <9607AB49-8CF9-4AC9-AE90-33D4E2CA7008@gmail.com>
-References: <0317ead0-5a23-2edc-7b80-3164cfe1dbc7@ant.uni-bremen.de>
-In-Reply-To: <0317ead0-5a23-2edc-7b80-3164cfe1dbc7@ant.uni-bremen.de>
-To: Johannes Demel <demel@ant.uni-bremen.de>
-X-Mailer: iPhone Mail (17A878)
-Subject: Re: [USRP-users] N310 sensitivity
+	id 1iLXT2-00025X-AJ; Fri, 18 Oct 2019 14:59:16 -0400
+Received: from mail1.bemta25.messagelabs.com ([195.245.230.66]:58979)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <Joern.Skorstad@Nkom.no>)
+ id 1iLXSx-0001u1-F9
+ for usrp-users@lists.ettus.com; Fri, 18 Oct 2019 14:59:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=s1;
+ t=1571425110; i=@nkom.no;
+ bh=ebMhUxIHdLt32uV9RrOji2gmzyoWni+sRgreiq/ykbE=;
+ h=From:To:Subject:Date:Message-ID:Content-Type:Content-ID:
+ Content-Transfer-Encoding:MIME-Version;
+ b=dgepblGyV96HeQacxQtgRr42MmAChuUix82wWLvXoG0XqhD/a/DVs7ZJ+Yzwb84L6
+ MlfSdkFxzbw4B4QcDYgB+TQwJW25sD4xRBA7sS0Klh+7IJOFHbcUIUPwEHu7N7Xepo
+ K7XPc1Xd4OAMFD7S22yPGUYTiPNkiiC6s1em5scJ5Pe804XvocKv6osMwhj0zGR5zO
+ CMOPikn48QX7cgAWgynFdP7pL1ou07qAgD1VwhXwGTeOvj9z6P692Wu9d8eqgymUuY
+ gSG/kLBpHBZfsv5v2dvU7VNBUBP+UxcKhW8XD+pI5wvU+LF3tvAOzLJm2Ft3pz8NY5
+ w7SDmriL0z4QA==
+Received: from [46.226.52.196] (using TLSv1.2 with cipher
+ DHE-RSA-AES256-GCM-SHA384 (256 bits))
+ by server-2.bemta.az-b.eu-west-1.aws.symcld.net id 38/A7-06714-55B0AAD5;
+ Fri, 18 Oct 2019 18:58:29 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDKsWRWlGSWpSXmKPExsViF5OXqxvCvSr
+ WYE6DjcWFzjnsDoweE1ceYg5gjGLNzEvKr0hgzfh94CNzwXXminXrJrI0MF5g7mLk4hASaGGU
+ uP5yGVsXIycHm4C9xNGZbSwgtoiArcSfWQuZQWxhAUmJ/aduMEPE5SSOHGlg72LkALL1JNY/S
+ gYJswioSsyb1cQKYvMKuEhs7f0MVsIoICsxt4kXJMwsIC4x4+gdsOkSAgISS/acZ4awRSVePv
+ 7HCmFbSTxa85ARwtaQ2LnjGVSNgsS5rWfYIGx5if0vpzCDjGcW0JRYv0sfYryZxJrvyxkhbEW
+ JKd0P2SGuEZQ4OfMJywRGkVlIrpiF0D0LSfcsJN2zkHQvYGRdxWieVJSZnlGSm5iZo2toYKBr
+ aGika2hpqWtkqpdYpZukl1qqW55aXKJrqJdYXqxXXJmbnJOil5dasokRGEUpBccldzA+n/VG7
+ xCjJAeTkiivBfOqWCG+pPyUyozE4oz4otKc1OJDjDIcHEoSvDVcQDnBotT01Iq0zBxgRMOkJT
+ h4lER4L4OkeYsLEnOLM9MhUqcYjTkmvJy7iJnjyNyli5iFWPLy81KlxHnXsQOVCoCUZpTmwQ2
+ CJZpLjLJSwryMDAwMQjwFqUW5mSWo8q8YxTkYlYR5l4Ms5MnMK4Hb9wroFCagU94rLwc5pSQR
+ ISXVwBRrYRaelaXc9/7319Ka0MsvJwhysK/s0jDR7ku4+qkugiltTZPSYxGOp5+e5aqGF7XOd
+ /VYvoXRUGqjp+vkj70Hr+WyaE/snMc7ed/bq4GfGbq3Tm7ctGpfqOF3tYbCOPeiDxmsi194ze
+ /5/i5yU2ipXJpgUX/y2uO8Aqsr0l4d4In+tL2o2pFv/YzOR3PLt8cte5TI/pKfNXu/QsWMt3d
+ ZrHmb1kzjYGn5rixicFL7yNvZy9fY3HbYFGvPNf0CS4v9/6ptQTZX1modvH41SWLyhSPHM9Mr
+ Z+szqBa4vdOQYX22xSUnYOHqg6+U9TkFP03bba2VLnC/uzu+PvLjpmth9/NWduVdupX/LO55u
+ hJLcUaioRZzUXEiAAVGmsivAwAA
+X-Env-Sender: Joern.Skorstad@Nkom.no
+X-Msg-Ref: server-11.tower-284.messagelabs.com!1571425108!320518!1
+X-Originating-IP: [62.92.110.109]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.43.12; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 12501 invoked from network); 18 Oct 2019 18:58:28 -0000
+Received: from 109.110.92.62.static.cust.telenor.com (HELO smtp.nkom.no)
+ (62.92.110.109)
+ by server-11.tower-284.messagelabs.com with ECDHE-RSA-AES256-SHA encrypted
+ SMTP; 18 Oct 2019 18:58:28 -0000
+Received: from EXMBX01.npta.no ([10.10.2.97]) by EXCAS.npta.no ([::1]) with
+ mapi id 14.03.0468.000; Fri, 18 Oct 2019 20:58:27 +0200
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: E310 packet size
+Thread-Index: AdWF5gXyT9iIP1SBRi+bOlKYGHksGw==
+Date: Fri, 18 Oct 2019 18:58:26 +0000
+Message-ID: <eebdb6dc-867a-46ff-92f9-89a3480d810b@email.android.com>
+Accept-Language: nb-NO, en-US
+Content-Language: nb-NO
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-tm-as-product-ver: SMEX-11.0.0.1251-8.100.1062-24984.003
+x-tm-as-result: No--3.287400-8.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
+Content-ID: <E57C035EC2A9AE4AB909A025DC414AD5@nkom.no>
+MIME-Version: 1.0
+Subject: [USRP-users] E310 packet size
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,11 +85,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: =?utf-8?q?Skorstad=2CJ=C3=B8rn_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?B?U2tvcnN0YWQsSsO4cm4=?= <Joern.Skorstad@Nkom.no>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,37 +103,13 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-V2hhdCBhbnRlbm5hIGFyZSB5b3Ugc3BlY2lmeWluZyBhbmQgd2hpY2ggcG9ydCBhcmUgeW91IHJ1
-cmFsbHkgcGx1Z2dlZCBpbiB0by4gCgpBcmUgeW91IHVzaW5nIG9mZnNldCB0dW5pbmc/ICBUaGF0
-IG1heSBiZSBuZWNlc3NhcnkgZm9yIE5hcnJvdyBzaWduYWxzIG5lYXIgdGhlIHR1bmVkIGZyZXF1
-ZW5jeSwgZHVlIHRvIERDIG9mZnNldCByZW1vdmFsLiAKClNlbnQgZnJvbSBteSBpUGhvbmUKCj4g
-T24gT2N0IDE4LCAyMDE5LCBhdCA3OjA2IEFNLCBKb2hhbm5lcyBEZW1lbCB2aWEgVVNSUC11c2Vy
-cyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+IAo+IO+7v0hpIGFsbCwKPiAK
-PiBJIGZpZ3VyZWQgb3V0IGhvdyB0byB1c2Ugb3VyIG5ldyBOMzEwcy4KPiAKPiBJIHJhbiBpbnRv
-IHRoZSBuZXh0IGlzc3VlLiBMZXQgbWUgZGVzY3JpYmUgdGhpcyBvbmUgYnJpZWZseS4KPiAKPiBX
-aXRoIG91ciBYMzEwcyBJIHNldCBUWGdhaW49MjAgYW5kIFJYX2dhaW49MTAuIEJvdGggZGV2aWNl
-cyBhcmUgMS0ybSAKPiBhcGFydC4gSSBvYnNlcnZlIGEgcmVhbGx5IG5pY2UgUlggY29uc3RlbGxh
-dGlvbiB3aXRoIGdyLWdmZG0gYW5kIAo+IFhGRE1TeW5jIHdpdGggYnVyc3RzIGV2ZXJ5IDFtcyAo
-YnVyc3QgbGVuZ3RoIH41MHVzKS4gV2l0aCBvdXIgTjMxMHMgSSAKPiBzZXQgUlhnYWluPTYwLCBU
-WGdhaW49NzAgYW5kIHN0aWxsLCB0aGUgY29uc3RlbGxhdGlvbiBpcyB2ZXJ5IG5vaXN5Lgo+IE15
-IGFzc3VtcHRpb24gaXMgdGhhdCBzb21lIHBhcnQgb2YgdGhlIFJYIGNoYWluIGlzIG5vdCBjb25m
-aWd1cmVkIAo+IGNvcnJlY3RseS4gQnV0IEkgZG9uJ3Qga25vdyB3aGF0IHRoZSBwcm9ibGVtIGlz
-IGluIHBhcnRpY3VsYXIuCj4gQWxzbywgSSB1c2VkIGFuIFgzMTAgYXMgdHJhbnNtaXR0ZXIgYW5k
-IGFuIE4zMTAgYXMgcmVjZWl2ZXIuIEJ1dCB0aGUgCj4gcmVzdWx0IGlzIHRoZSBzYW1lLCB0aGUg
-UlggY29uc3RlbGxhdGlvbiBpcyByZWFsbHkgbm9pc3kuCj4gCj4gQW5vdGhlciBvYnNlcnZhdGlv
-biBpcywgdGhhdCBteSBSWCBzYW1wbGUgc3RyZWFtIGluIGEgR1IgdGltZSBzaW5rIGRvZXMgCj4g
-c2hvdyBxdWFudGl6YXRpb24gYXJ0aWZhY3RzLiBpLmUuIEkgY2FuIHNlZSBkaXNjcmV0ZSBzdGVw
-cyB3aGljaCBJIAo+IGFzc3VtZSBhcmUgZHVlIHRvIGxvdyBSWCBzZW5zaXRpdml0eS4gVGhlIFJY
-IHZhbHVlIGFtcGxpdHVkZSBpcyBhcm91bmQgCj4gMC4wMDA1IGZvciB0aGUgc2FtcGxlcyB0aGF0
-IEkgZ2V0IG9mIGEgVVNSUCBzb3VyY2UuIEkgYXNzdW1lIHRoaXMgc2hvdWxkIAo+IGJlIGEgaGln
-aGVyIHZhbHVlLiBXaXRoIHRoZSBYMzEwcyBpdCB3YXMgbW9yZSBsaWtlIDAuMS4KPiAKPiBEbyBJ
-IG5lZWQgdG8gdGFrZSBzcGVjaWFsIGNhcmUgd2hlbiBJIG9ubHkgdXNlIDEgYW50ZW5uYSBwb3J0
-Pwo+IElzIHRoZXJlIGFub3RoZXIgQUdDIHNldHRpbmcgdGhhdCBJIG5lZWQgdG8gY29uZmlndXJl
-IGZvciBOMzEwcz8KPiAKPiBKb2hhbm5lcwo+IAo+IFNvZnR3YXJlCj4gVUhEOiAzLjE0LjEuMQo+
-IEdSOiAzLjgKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20K
-PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0
-cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0
-dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0
-dHVzLmNvbQo=
+Hi all,
+
+Still trying to understand some parts of the USRP that probably are quite elementary. When using the function get_max_num_samps it always reports 508. Does this mean that the number of samples returned for any requested sample rate will be decimated down to 508? Any way to change max_num_samps? Not using FPGA (yet).
+
+Cheers,
+Jorn
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
