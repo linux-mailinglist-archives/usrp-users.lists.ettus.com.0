@@ -2,63 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80681DD15E
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Oct 2019 23:47:52 +0200 (CEST)
-Received: from [::1] (port=49272 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34530DDB69
+	for <lists+usrp-users@lfdr.de>; Sun, 20 Oct 2019 01:14:10 +0200 (CEST)
+Received: from [::1] (port=56666 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iLa67-0004cU-Id; Fri, 18 Oct 2019 17:47:47 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:35176)
+	id 1iLxv9-0003yS-Et; Sat, 19 Oct 2019 19:14:03 -0400
+Received: from sonic308-37.consmr.mail.ne1.yahoo.com ([66.163.187.60]:46260)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iLa63-0004VA-UR
- for usrp-users@lists.ettus.com; Fri, 18 Oct 2019 17:47:43 -0400
-Received: by mail-qk1-f195.google.com with SMTP id w2so6738038qkf.2
- for <usrp-users@lists.ettus.com>; Fri, 18 Oct 2019 14:47:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=uF6p94hYYCY9dXd/SSxjfawR1U7HH/17glTFOVc/QPk=;
- b=C55Jgxcx9ND9iRQ2yMnmxhEx1EQYaaV37tTuipWF4YwSuwxFIs9a+QdTUZNtczocbF
- +YrEFXXBLxSfuIHcqvdUOKFuUiVZPLwjW2HbksdUgfgET2lYVTcO9n0u/94Cy/q9avAW
- DRYnSApCP83BtIJVLrJOJ3q9lmHj03mUVoP8v3YKuJHQ+D12lP7V+e/p7UrhXOmA09zC
- UDBamdVl4Qkhsbb6mu7YY+jibydqFhXR4OFrQaHXiNzTU3bnsEMqbZbS0XsWRK/vWYr7
- s7jC9lTx9WBhZg1r7vaRGuDSt+Tp0eUKVMf7kW5jdMvgfHzOq1EAR6uxa5AgFnstm48Z
- vPMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=uF6p94hYYCY9dXd/SSxjfawR1U7HH/17glTFOVc/QPk=;
- b=Xowjua8vO//NbtvdeiQ66U98oQ46rEqS5tu2RLVdD0zQ1saPT47GeBMGGBxvssfP1J
- Sozggtrs+nfXBzLmi0Fcwd+OBaFRnY2Ze3UJEA9bO05juu7Va2rCseuO3ftFTrCCnTW3
- z3/AOs1hColee+WX7elmcGjuNO0y8eVUAVUNIka7oknRf0jSps55rZ5Jb3EeRz07cb6B
- nX/zqAopYG98/myqCVcQaibaKILIV39ffuh7je1al8VJ7GmqKSho5DZieMDeqM9zcb6a
- 66BSGdX3z3PFJfOkPONuVKBJJU2cEong+M7Nb2jBbgVhjgSgBaq4eb+0EuHp8X7v4vmn
- IOUg==
-X-Gm-Message-State: APjAAAXbrz7vK/gbit2JMAFsA6sRj2+rbiQyOEPhdNq1ZJ0hy380x1LR
- nFAVy82kXEcSEUOvpeFpcWFwUHKHQE8=
-X-Google-Smtp-Source: APXvYqzpiMS/eBzzUFyMnuEDMvF9xJ8xDENj0MumfZX2GzExYR1g6ZoXi2IH+eNzoPdVdoTca8Gqcw==
-X-Received: by 2002:ae9:d8c2:: with SMTP id
- u185mr11019262qkf.112.1571435223183; 
- Fri, 18 Oct 2019 14:47:03 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-15-137.dsl.bell.ca.
- [174.95.15.137])
- by smtp.googlemail.com with ESMTPSA id h10sm4240984qtk.18.2019.10.18.14.47.02
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 18 Oct 2019 14:47:02 -0700 (PDT)
-Message-ID: <5DAA32D5.7070400@gmail.com>
-Date: Fri, 18 Oct 2019 17:47:01 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ (Exim 4.92) (envelope-from <jasonmcbride94@yahoo.com>)
+ id 1iLxv6-0003vC-4r
+ for usrp-users@lists.ettus.com; Sat, 19 Oct 2019 19:14:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1571526799; bh=JWQR6WRDfMVOIc1wy4Qmt8uhytCnMuqWaAZBuqssH0Y=;
+ h=Date:From:To:Subject:References:From:Subject;
+ b=GCnKh32eKlFqbsQK/4jKSQfUu+eE6mLdqmXGpjPgXlilRPsdYtsxcavDxAWhLbcz3WXYSBI6+tDOgyOesOsID1QSX6ZDqOsKf1LFyn2h/U4iL3/2C6raSEGVrTkeXDMdi33g1DO3m2TMILtBcW2sNhjbe8iblf2iysD4al6383GRFYwvxXNTgbwindEb7U+KDoYigseMPkMBND8lvxf3KQ4sHRSXd96fEZ4sKNcYfOEROp7ytzp+pvCtWsaIkOVPegMmm3e9PHs/I5rR6iY4uAeoqgZJt7CtUJAWOMsKdj/uJhL9DxwT+VKiANhnBFfWElUnLOcSwJZltuTZ/4jDNQ==
+X-YMail-OSG: 1iE7rbAVM1m2jXBD5WIHhgPxrshwoLmnEAXJFKJaWLfw5VpxC_Fgz.5IR.7cAVq
+ Bt3iHFuGDBtwMRFRf4uZp.knezkzzMvz4SAqd0ogU8Gu2CG_yML8IAkK3.72nAQHg9YLzGXN.M5g
+ xfaQ56S.hsoSjnFoZE48VD49SfHMqx9S3Gcu8tCqAVps3.zYTTZ7bzgn9g32qdOrFE1uo_avjS_e
+ CmdFeIhKfizu5nd1ykL5_flRApBeoSTlXjJl7F5F5_DBUpaTjyZIdgBgoL6zxgUkmyxVZUwlMizL
+ YXmXa785W.YcaC1mgsSkOKmLu_3wVFOgO3TpMqbp4rxdAwvOAfC3C6.Y5SqqUaTRNcgVeA_FYBJG
+ b4FZWPvd5Kc4L2kbDskMCAA0AQe296JIPRtpuGhPzUTe_48whTwiPqHEbzvCe4isqx2cieq1uIEY
+ 2rJS17w8S1MpGOUYCkDjaoKWxf2P6GFzZDHw2WyM4C9AdUohcCoCjWziD.y.yTOiBEHu5w3FhPib
+ 9xInOcm3ZLx3mgpUWMiuZE8tDdRlq.09NnVuCk6mPg6WqSg7U4r4nSCq8kqQgRaITg53xaRgM.PZ
+ FGjL3oatc.1cqlj4iPTInSCjF5vZ1yPqorR4c7GfXiA7URcZ9KCQRUESLIQj5HVty1kr.0OXVL2H
+ BPv3cuwbUj2vPerQ9WctD7baU1qBqohQwEFgLeAtl7n7zZSFnw3JqGeCrRs7mJi_uBPCsXD2DPaw
+ .aDOvggBK9rGHnFyxi7hPWsh51fwoOay4ge8QA3SEOQwJL_SPQw13zaiRZ9B3y8iF80ffYKpkIKy
+ wyrgO.zC1gI9QT_Dnviq5eppA1k.spRQuukAEDOxE1Yc8psT_IvLxqJXBojyWG8ZYzJOr91jbIhB
+ CtwYnbq_FrY9RcPZ5tNT_xf14FZ22.O7uROQhvq1kwpQu3Cp8IsBh8iw6osCh99apLO9tkyro9Rz
+ h96sYiWfVND4V.38.LUQwHn9JC2VmxCuXFYLl8ngxrOX72Gf_N47FaFy13EUIRN8bTSfZpq_cWJw
+ m_qFQm5YDrLkrZcOAvnNhws2hbYva33a24UQk.Xo6oyVn395xzrmIHowxvdbnSElhNwcygCMTao7
+ RrJTs4ypkzGO29jjA9qCqM0XCgcOmwEqXkls2gAjHh_7Ek6T8gIstq2YlBVLzadPvMwVGebtHMxR
+ NnTN71obDdBBBahr2G2mmwBxMQSKxOoIXxW5gwRvhU7tOSLD6fpd_8El_j4Z4QPtwVrkOsqAB9.g
+ DqqLeNz8kUJjswJLnEQWt4PXFyk_thR7RAbqTw8g6Oz3VRS.Q7FzDsg--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic308.consmr.mail.ne1.yahoo.com with HTTP; Sat, 19 Oct 2019 23:13:19 +0000
+Date: Sat, 19 Oct 2019 23:11:17 +0000 (UTC)
+To: usrp-users@lists.ettus.com
+Message-ID: <1147349683.4033270.1571526677680@mail.yahoo.com>
 MIME-Version: 1.0
-To: Carlos Bocanegra <carlos.bocanegra.guerra@gmail.com>, sam.reiter@ettus.com
-References: <CAEJWbW3=nf=LvD+mmVC2Vaz_J0wW6jrsxNskvq+B1eYkCh2P+Q@mail.gmail.com>
- <CANf970YRfCeFXYGaum=Y4xoUjz6MOpB9PemTwPYD2hYEoupFUA@mail.gmail.com>
- <CAEJWbW184PxfCq0BNqLLmRGjJV0N_OyHEpDwe9JT2KkMxAEGaA@mail.gmail.com>
-In-Reply-To: <CAEJWbW184PxfCq0BNqLLmRGjJV0N_OyHEpDwe9JT2KkMxAEGaA@mail.gmail.com>
-Subject: Re: [USRP-users] RX Misalignment on 6x1 MISO system using X310 and
- UBX-160
+References: <1147349683.4033270.1571526677680.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.14498 YMailNorrin Mozilla/5.0 (Macintosh;
+ Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko)
+ Version/13.0.2 Safari/605.1.15
+Subject: [USRP-users] tx_time, L, & USRP
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -70,10 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============0333632142744215072=="
+From: Jason McBride via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jason McBride <jasonmcbride94@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============2162864841441628115=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,224 +73,58 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0333632142744215072==
-Content-Type: multipart/alternative;
- boundary="------------030700030505020005000404"
+--===============2162864841441628115==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_4033269_827596989.1571526677679"
+Content-Length: 2667
 
-This is a multi-part message in MIME format.
---------------030700030505020005000404
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+------=_Part_4033269_827596989.1571526677679
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 10/18/2019 03:35 PM, Carlos Bocanegra wrote:
-> Hi all,
->
-> Thanks a lot Sam and Marcus for replying so quickly.
->
-> Le me first include Marcus answer in this email chain for a cleaner 
-> communication:
-> "/Gnu Radio cannot really misalign samples, unless the DSP logic 
-> arranges for that to happen. If you have a block with a bunch of 
-> streams, that blocks "work" function cannot proceed until there is 
-> equal amounts of data available on all streams. In the absence of the 
-> hardware dropping samples, coherence is maintained in that case. What 
-> you are seeing here seems to be a problem with your network stack  
-> losing things. What type of Ethernet adapters do you have? What sample 
-> rates are you running?/"
->
-> *The requested extra info:*
-> - The sampling rates selected are _1Msps_ for the TX and _2Msps_ for 
-> the RX.
-> - The SFP connector attached to the USRP-X310s: AVAGO, 1.25GBd, 
-> 1000BASE-T, ABCU-5730ARZ.
-> - The NIC: Intel Corporation Gigabit CT Desktop Adapter.
-> - The Ethernet controller: Intel Corporation 82574L Gigabit Network 
-> Connection.
->
-> @Marcus,
-> good thing that the scheduler in each block handles that correctly. 
-> I'll focus on the network setup then.
->
-> @Sam,
-> it seems reasonable to think that the source of error is the poking 
-> timeout, being the misalignment the aftermath.
-> When you say flow controls, do you mean the ones handled by the UHD fw 
-> functions? I see a couple of D's (packet drops) right before the 
-> misalignment error, after the UHD raises the last poking exception. 
-> But maybe this is just the natural behavior- to drop misaligned 
-> packets before either getting an alignment or timing out and rising 
-> the exception.
->
-> "/Drop the sample rate (what is it, by the way?) and see if there's a 
-> threshold where things start working [3]/":
-> Should I drop the samples below 1Msps/2Msps? I think these are pretty 
-> low and having lower sampling rates would rise new problems. I can go 
-> ahead and try it if you still thing this is the issue.
-> "/Keep the original sample rate and try removing a radio or two from 
-> the system. Does this help things?/"/:/
-> - 4RX/1TX with simplistic flowgraph (usrp_source connected to 
-> file_sinks and analog signal connected to usrp_sink): OK.
-> - 6RX/1TX with simplistic flowgraph (usrp_source connected to 
-> file_sinks and analog signal connected to usrp_sink): NOK (error 
-> described previously).
-> - 3RX/1TX with my DSP blocks: OK.
-> - 4RX/1TX with my DSP blocks: NOK (error described previously).
->
-> Regarding an example, I could not find one that sets up a usrp_source 
-> AND a usrp_sink, in the folder {gr_prefix}/gr-uhd/examples/. I created 
-> a simplistic python flowgraph that results in the poking and 
-> misalignment issue, attached in this email. For instance, the 6x1 
-> connections would map to the input argumments --tx_channels 1 
-> --rx_channels 6.
->
-> Thanks a lot for your time and I hope to hear back from you soon.
->
-> Best,
-> Carlos
->
->
-I'll note that some members of the 82574L family of controllers are 
-known to unnecessarily drop packets *particularly at unexpectedly-low flow
-   rates*.
+Hey everybody, I'm trying to put together a simple bursting example. In gnu=
+radio companion I'm generating a PDU, using the framer block, converting to=
+ a tagged stream, and then inserting a tx_time tag in an OOT python block. =
+The tx_time tag is at the beginning of the streamed frame, just prior to th=
+e packet_len tag. I send it to the USRP next.
+The USRP is sync'd to PC time at the beginning of the flowgraph, and I set =
+the tx_time tag for two seconds in the future. The USRP does seem to transm=
+it at that time, but it generates lots of L error symbols, and after the in=
+itial transmission stops transmitting. I can see the stream sent to the USR=
+P via a tag debug block, so I know the stream is received by the USRP signi=
+ficantly prior to transmittal.
+Any thoughts as to what's going on? is there something I need to configure =
+on the USRP?=C2=A0
+Thank you,
+Jason
+------=_Part_4033269_827596989.1571526677679
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-This may or may not be contributing to your problem.
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Hey everybody, I'm trying to put together a =
+simple bursting example. In gnuradio companion I'm generating a PDU, using =
+the framer block, converting to a tagged stream, and then inserting a tx_ti=
+me tag in an OOT python block. The tx_time tag is at the beginning of the s=
+treamed frame, just prior to the packet_len tag. I send it to the USRP next=
+.</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" da=
+ta-setdir=3D"false">The USRP is sync'd to PC time at the beginning of the f=
+lowgraph, and I set the tx_time tag for two seconds in the future. The USRP=
+ does seem to transmit at that time, but it generates lots of L error symbo=
+ls, and after the initial transmission stops transmitting. I can see the st=
+ream sent to the USRP via a tag debug block, so I know the stream is receiv=
+ed by the USRP significantly prior to transmittal.</div><div dir=3D"ltr" da=
+ta-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Any th=
+oughts as to what's going on? is there something I need to configure on the=
+ USRP?&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">Thank you,</div><div dir=3D"ltr" data-setdir=
+=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Jason</div></di=
+v></body></html>
+------=_Part_4033269_827596989.1571526677679--
 
 
-
---------------030700030505020005000404
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 10/18/2019 03:35 PM, Carlos
-      Bocanegra wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAEJWbW184PxfCq0BNqLLmRGjJV0N_OyHEpDwe9JT2KkMxAEGaA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div dir="ltr">
-          <div>Hi all,</div>
-          <div><br>
-          </div>
-          <div>Thanks a lot Sam and Marcus for replying so quickly.</div>
-          <div><br>
-          </div>
-          <div>Le me first include Marcus answer in this email chain for
-            a cleaner communication:<br>
-          </div>
-          <div>"<i>Gnu Radio cannot really misalign samples, unless the
-              DSP logic arranges for that to happen. If you have a block
-              with a bunch of streams, that blocks "work" function
-              cannot proceed until there is equal amounts of data
-              available on all streams. In the absence of the hardware
-              dropping samples, coherence is maintained in that case.
-              What you are seeing here seems to be a problem with your
-              network stack  losing things. What type of Ethernet
-              adapters do you have? What sample rates are you running?</i>"</div>
-          <div><br>
-          </div>
-          <div><b>The requested extra info:</b><br>
-          </div>
-          <div>
-            <div>- The sampling rates selected are <u>1Msps</u> for the
-              TX and <u>2Msps</u> for the RX.</div>
-            <div>- The SFP connector attached to the USRP-X310s: AVAGO,
-              1.25GBd, 1000BASE-T, ABCU-5730ARZ.</div>
-            <div>- The NIC: Intel Corporation Gigabit CT Desktop
-              Adapter.</div>
-            <div>- The Ethernet controller: Intel Corporation 82574L
-              Gigabit Network Connection.</div>
-          </div>
-          <div><br>
-          </div>
-          <div>@Marcus, <br>
-          </div>
-          <div>good thing that the scheduler in each block handles that
-            correctly. I'll focus on the network setup then.</div>
-          <div><br>
-          </div>
-          <div>@Sam, <br>
-          </div>
-          <div>it seems reasonable to think that the source of error is
-            the poking timeout, being the misalignment the aftermath.</div>
-          <div>When you say flow controls, do you mean the ones handled
-            by the UHD fw functions? I see a couple of D's (packet
-            drops) right before the misalignment error, after the UHD
-            raises the last poking exception. But maybe this is just the
-            natural behavior- to drop misaligned packets before either
-            getting an alignment or timing out and rising the exception.</div>
-          <div><br>
-          </div>
-          <div>"<i>Drop the sample rate (what is it, by the way?) and
-              see if there's a threshold where things start working [3]</i>":</div>
-          <div>Should I drop the samples below 1Msps/2Msps? I think
-            these are pretty low and having lower sampling rates would
-            rise new problems. I can go ahead and try it if you still
-            thing this is the issue.<br>
-          </div>
-          <div>"<i>Keep the original sample rate and try removing a
-              radio or two from the system. Does this help things?</i>"<i>:</i></div>
-          <div>- 4RX/1TX with simplistic flowgraph (usrp_source
-            connected to file_sinks and analog signal connected to
-            usrp_sink): OK.</div>
-          <div>- 6RX/1TX with simplistic flowgraph (usrp_source
-            connected to file_sinks and analog signal connected to
-            usrp_sink): NOK (error described previously).</div>
-          <div>- 3RX/1TX with my DSP blocks: OK.</div>
-          <div>- 4RX/1TX with my DSP blocks: NOK (error described
-            previously).</div>
-          <div><br>
-          </div>
-          <div>
-            <div>
-              <div>Regarding an example, I could not find one that sets
-                up a usrp_source AND a usrp_sink, in the folder
-                {gr_prefix}/gr-uhd/examples/. I created a simplistic
-                python flowgraph that results in the poking and
-                misalignment issue, attached in this email. For
-                instance, the 6x1 connections would map to the input
-                argumments --tx_channels 1 --rx_channels 6.<br>
-              </div>
-              <div><br>
-              </div>
-              <div>Thanks a lot for your time and I hope to hear back
-                from you soon.</div>
-              <div><br>
-              </div>
-              <div>Best,<br>
-              </div>
-              <div>Carlos<br>
-              </div>
-            </div>
-          </div>
-          <div><br>
-          </div>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    I'll note that some members of the 82574L family of controllers are
-    known to unnecessarily drop packets *particularly at
-    unexpectedly-low flow<br>
-      rates*.<br>
-    <br>
-    This may or may not be contributing to your problem.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------030700030505020005000404--
-
-
---===============0333632142744215072==
+--===============2162864841441628115==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -315,5 +135,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0333632142744215072==--
+--===============2162864841441628115==--
 
