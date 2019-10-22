@@ -2,48 +2,77 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA04E02CF
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Oct 2019 13:25:41 +0200 (CEST)
-Received: from [::1] (port=50072 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACC36E03C8
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Oct 2019 14:25:00 +0200 (CEST)
+Received: from [::1] (port=56160 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iMsIB-0000Vw-EF; Tue, 22 Oct 2019 07:25:35 -0400
-Received: from mail-lj1-f177.google.com ([209.85.208.177]:33231)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ishai.alouche@gmail.com>)
- id 1iMsI7-0000Ps-Bf; Tue, 22 Oct 2019 07:25:31 -0400
-Received: by mail-lj1-f177.google.com with SMTP id a22so16774055ljd.0;
- Tue, 22 Oct 2019 04:24:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=QqdIpUx2FJFQMhRwxKg1vADIU6XAyRT8iuTO6row1xM=;
- b=cPj+VUh80jmEoKrD4XV0EL02CbVjxhCBDgeHaq+VrBHPLfuwrCITDKPXgxhURS228M
- FJDgNt1HYKp1Hl8j+ZnsG8sO6uhqx+xH1nxWGC9h5LLwPhIvmgR4S87o8QZwE9JnQyCU
- Zlri53E3HWNf9IXA0E8WwMxUgrU2g/ns5OcvvN4uD2Ja4cv8j0K3qm669oFMIVZngpAX
- hgghwkJbwzItHamkOqfLHheieWBL3GflkhCGC0uaA7Kp7ASF5iYrj6sZdQnXZ8JR5lsQ
- sPm/5h45AaGpvjpWF1wHelzx8aMWs3bhb8X6XsbTFx2dqzAm7c7+HYCWmXYgmEdbN0XB
- P5Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=QqdIpUx2FJFQMhRwxKg1vADIU6XAyRT8iuTO6row1xM=;
- b=etCW9ROxX3nnGv0LM7bvwWKy2zncmNhiL3X3ADHKyKCaYgNijYexuYjgiMsGUeNnMR
- Vnh708T55WvUd/7HeDvY8tXF40dtNHoVPI1dgNLggqFSJGQ1J33DGXYpSP2/3LTX1lxa
- hQs6MRiU7VNc0x/aaA/cUu/rjkPECdrXr6RZqwbkJzQeg1CCAD2ryeJi7hDN1LyogdsZ
- qPRYmtZsyg7O84764ghmqn0b4mEwunWVZqfER9gid38TRpR+hytJH+5sLDnHZnUQQeEO
- +VbkCgaSzlXIwQX0cU+ELBTZU8HweiNk3Dk5Xy99k8qux5B0BKId+BbmF383XD8OhKY4
- 0tZA==
-X-Gm-Message-State: APjAAAUSkukNJh2g1HaeJZjMrwpwpuBM1nkDCA8IoFmGdsOrR1fjpUks
- rs7izDMdGXz9KxpQXUrOnYzgaVI4RdD5X5NTChFrA0dn
-X-Google-Smtp-Source: APXvYqzEZFPi9nImJMoTXu7nZjEJv8xJWMoOaPAy7bjthaiO/iEqbFFcnLpByYv3xvQd2jKi7SANScxaRYWJ5TesMu0=
-X-Received: by 2002:a2e:9e0a:: with SMTP id e10mr18820897ljk.35.1571743469618; 
- Tue, 22 Oct 2019 04:24:29 -0700 (PDT)
+	id 1iMtDb-0002pU-7v; Tue, 22 Oct 2019 08:24:55 -0400
+Received: from mail1.bemta26.messagelabs.com ([85.158.142.116]:61340)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <Joern.Skorstad@Nkom.no>)
+ id 1iMtDX-0002kC-HM
+ for USRP-users@lists.ettus.com; Tue, 22 Oct 2019 08:24:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=s1;
+ t=1571747050; i=@nkom.no;
+ bh=m0eUlNY9paDtpexSqbesRuzg5LJfaC/C6m2FpR8ho5s=;
+ h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
+ b=BGH//kgiuzuXRoT/0iSoN7lzF9A9EmOjKgg0lh2qKtLdDfe0yMxF6Lg6IUo2aVXC9
+ KnGft0f9lAoMnyyY271KCh/YVLQqkcFndaTVLxqjPEkhNnIpwqP5YIKzLLkPN+0xxt
+ prjD3nMNcXO6T+9xfod+SFeoHvnl9wlz0UjvlOPU4aHf9RGkzR8P/6WfTNL0isrjaL
+ L80toO/peNko4q099SNdQ7a3YCenAkIEzjm0ibwW+FwR1rwaYRzQAr/m5qo/cf+NS8
+ 7KINk8noBsML0x45ICmuhNCyralGFqLZzDq2Q9YebBHswg5hAgCGEpan8WbQ/Xrk2Z
+ CGAzS7fwG9C5w==
+Received: from [85.158.142.199] (using TLSv1.2 with cipher
+ DHE-RSA-AES256-GCM-SHA384 (256 bits))
+ by server-5.bemta.az-b.eu-central-1.aws.symcld.net id E9/D1-25181-AE4FEAD5;
+ Tue, 22 Oct 2019 12:24:10 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrEKsWRWlGSWpSXmKPExsViF5OXq/vyy7p
+ Yg1/PdSwudM5hd2D0mLjyEHMAYxRrZl5SfkUCa8aOfc9YCrocKm69vcvSwLjOoouRi0NIoIVR
+ onPzLeYuRk4ONgFHidXbP7OA2CICthJT994Asjk4hAWUJe4sEYMIq0h8frqEDcLWk/jz+D1YK
+ 4uAqsT0txPAbF4BO4nOHQ/YQFoZBWQl5jbxgoSZBcQlZhy9AzZdQkBAYsme88wQtqjEy8f/WC
+ FsRYk7B2dA2VYSG459Z4KwNSTanq5ghLAVJM5tPcMGYctL7H85hRlifppE+51TjBAnCEqcnPm
+ EZQKj8Cwkq2chKZuFpAwiridxY+oUNghbW2LZwtfMELauxIx/h1iQxRcwsq9itEwqykzPKMlN
+ zMzRNTQw0DU0NNY10TUytNRLrNJN0kst1U1OzSspSgTK6iWWF+sVV+Ym56To5aWWbGIERllKI
+ cvtHYwHj7zWO8QoycGkJMprkrouVogvKT+lMiOxOCO+qDQntfgQowwHh5IEr8AnoJxgUWp6ak
+ VaZg4w4mHSEhw8SiK85Z+B0rzFBYm5xZnpEKlTjJYcE17OXcTM8XHVEiD5HUQKseTl56VKifN
+ WgzQIgDRklObBjYMlpUuMslLCvIwMDAxCPAWpRbmZJajyrxjFORiVhHlXgUzhycwrgdv6Cugg
+ JqCDVkuuBjmoJBEhJdXA1LSih30Zy5MH2jHcd8o/cHG4qldsPfx03xHVU/FFirLiBtMljq1n3
+ 35MgD3rx98jZikrFvdoFW3WcTxZvnGDYwz/209zV3Wu9FygM3dtp/KPiC71MJdusb06O//on7
+ l6ck9C5f5nV1R/GixIYbDabRj+83Co06KJrttrTt+8M0Whglf1pZQoY3Tgtr9GjOEmDjbhZ1d
+ ESr6ql19y9fod5p6WhjX67w4lxC8/JLSPV3arUHfpif1nrE7PyrJ+Kz37/JmNy1UvvWjjPpW6
+ 1+pf2N/bWVtjN3Bav0wWWJV9TTbDxFH/8O8VISeC2CIeGyZrt31eonNm7u0H6kfWfVc0748+9
+ ipRf8qHlEN7DoZ8bFJiKc5INNRiLipOBADd3IsYxQMAAA==
+X-Env-Sender: Joern.Skorstad@Nkom.no
+X-Msg-Ref: server-4.tower-244.messagelabs.com!1571747049!263858!1
+X-Originating-IP: [62.92.110.109]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.43.12; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 22543 invoked from network); 22 Oct 2019 12:24:09 -0000
+Received: from 109.110.92.62.static.cust.telenor.com (HELO smtp.nkom.no)
+ (62.92.110.109)
+ by server-4.tower-244.messagelabs.com with ECDHE-RSA-AES256-SHA encrypted SMTP;
+ 22 Oct 2019 12:24:09 -0000
+Received: from EXMBX01.npta.no ([10.10.2.97]) by EXCAS.npta.no ([::1]) with
+ mapi id 14.03.0468.000; Tue, 22 Oct 2019 14:24:08 +0200
+To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Thread-Topic: E310 LO offset problem
+Thread-Index: AdWI0poplbDP8ieoQKSWz7RTeylheg==
+Date: Tue, 22 Oct 2019 12:24:08 +0000
+Message-ID: <D71B2B9BB39CE44CACCAB6646DF20CFD48D9E836@exmbx01>
+Accept-Language: nb-NO, en-US
+Content-Language: nb-NO
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.13.23]
+x-tm-as-product-ver: SMEX-11.0.0.1251-8.100.1062-24994.003
+x-tm-as-result: No--7.426000-8.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-Date: Tue, 22 Oct 2019 14:24:18 +0300
-Message-ID: <CAC8T01=CSd0sr-pUGWAnaeaVHKB4AoTRdSK18NovSp=drF3Dxw@mail.gmail.com>
-To: usrp-users-request@lists.ettus.com, 
- "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Unable to Load X310 Registers
+Subject: Re: [USRP-users] E310 LO offset problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -55,9 +84,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: ishai alouche via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: ishai alouche <ishai.alouche@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7486051180294052470=="
+From: =?utf-8?q?Skorstad=2CJ=C3=B8rn_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?iso-8859-1?Q?Skorstad=2CJ=F8rn?= <Joern.Skorstad@Nkom.no>
+Content-Type: multipart/mixed; boundary="===============5551496210294777310=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,198 +101,213 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7486051180294052470==
-Content-Type: multipart/alternative; boundary="0000000000002f4b7105957e0b28"
+--===============5551496210294777310==
+Content-Language: nb-NO
+Content-Type: multipart/alternative;
+	boundary="_000_D71B2B9BB39CE44CACCAB6646DF20CFD48D9E836exmbx01_"
 
---0000000000002f4b7105957e0b28
-Content-Type: text/plain; charset="UTF-8"
+--_000_D71B2B9BB39CE44CACCAB6646DF20CFD48D9E836exmbx01_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+To answer myself; I found the reason shortly after sending the mail. Two da=
+ys of trial and failure :)
 
-I am running a testbench on my architecture, and all default tests pass as
-expected. This includes TEST 4 which tests writing and reading back from
-registers. The problem is - the following tests prove the registers hold
-their initial (default) value and not the value I tried writing to them in
-TEST 4.
+I set the spp value to the same as num bins, in this case 512 (stream_args-=
+>args[=ABspp=BB] =3D 512). When changing this value to 508 the =ABghost sig=
+nal=BB disappeared, also with LO offset. I noticed earlier that the default=
+ max_num_samps() value reported was 508 when stream_arg was not set. So onl=
+y question left is why spp should be 508, not 512?
 
-Did I miss something in the process?
-what possible reasons may cause this problem?
+If changing the bin size to 256, should spp be set to 252?
 
-Scripts of both Testbench code and NoC_block code given below.
+Fra: USRP-users <usrp-users-bounces@lists.ettus.com> P=E5 vegne av Skorstad=
+,J=F8rn via USRP-users
+Sendt: tirsdag 22. oktober 2019 09:15
+Til: USRP-users@lists.ettus.com
+Emne: [USRP-users] E310 LO offset problem
 
-Thanks in advance,
-Ishai
+Hi list,
 
-*Testbench Code:*
+I am writing a C++ software which will scan through a given frequency range=
+ and perform an fft. The software seems to do what it should, however somet=
+hing weird happens when using LO offset tuning. With the following settings=
+ all looks correct:
 
-*    /******************************
+Sample rate 6.4M - master clock 51.2M - 512 byte num_samples/binsize - offs=
+et 0. However I can clearly see the DC peak for every =ABjump=BB in frequen=
+cy.
 
-****************************    ** Test 4 -- Write / readback user
-registers    *******************************
+With the same settings as above and a 3.2M offset there is a =ABghost=BB si=
+gnal 3.2MHz below the real signal, which mirrors the real signal with sligh=
+tly lower amplitude. This happens everywhere in the spectrum where solid si=
+gnals (approx 40-50 dBuV) are present. Using the command tune_request(freq,=
+ offset) and usrp->set_rx_freq(tune_request) to set frequencies. Have also =
+tried with different gain settings from 0-40, no change. Have also tried wi=
+th 10 dB attenuator between antenna and the radio, no change.
 
+The same happens on other sample rates and offsets as well, the ghost signa=
+l is always the same as the offset (+ or -). I am using UHD_3.14.1. Have al=
+so tried changing rx_bandwidth without any change.
 
-***************************/    `TEST_CASE_START("Write user registers");
-  random_word =3D 0;    tb_streamer.write_user_reg(**sid_noc_block_TxChanne=
-lSrc,
-noc_block_TxChannelSrc.SR_MIN_*
+Is it possible to use LO offset and eliminate the =ABghost=BB signals, or i=
+s this some radio/DSP limitation? I have pictures showing the problem clear=
+ly, I can send directly by email if necessary.
 
-*BW, random_word[21:0]);    random_word =3D 5;
-tb_streamer.write_user_reg(**sid_noc_block_TxChannelSrc,
-noc_block_TxChannelSrc.SR_MAX_*
-
-*BW, random_word[21:0]);    random_word =3D 10;
-tb_streamer.write_user_reg(**sid_noc_block_TxChannelSrc,
-noc_block_TxChannelSrc.SR_BW_*
-
-*CHANGE_RATE, random_word[21:0]);    random_word =3D 256;
-tb_streamer.write_user_reg(**sid_noc_block_TxChannelSrc,
-noc_block_TxChannelSrc.SR_PKT_*
-*SIZE, random_word[15:0]);    `TEST_CASE_DONE(1);*
-
-*noc_block verilog code:*
-
-
-
-
-
+Thanks,
+Jorn
 
 
 
-
-
-
-
-
-
-
-*localparam SR_USER_REG_BASE =3D 129;    localparam [7:0] SR_MIN_BW =3D 129=
-;
-//SR_USER_REG_BASE;  localparam [7:0] SR_MAX_BW =3D 130;//TeSR_USER_REG_BAS=
-E
-+ 8'd1;  localparam [7:0] SR_BW_CHANGE_RATE =3D 131;//SR_USER_REG_BASE +
-8'd2;  localparam [7:0] SR_PKT_SIZE       =3D 132; //SR_USER_REG_BASE +
-8'd3;  wire [15:0] payload_length;  wire [21:0] min_BW;  wire [21:0]
-max_BW;  wire [21:0] BW_change_rate;     cvita_hdr_encoder
-cvita_hdr_encoder (    .pkt_type(2'd0), .eob(1'b0), .has_time(1'b0),
-.seqnum(12'd0), .payload_length(payload_*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*length), .dst_sid(next_dst_sid), .src_sid(src_sid),    .vita_time(64'd0),
-  .header(s_axis_data_tuser));      // Set packet size  setting_reg #(
-.my_addr(SR_PKT_SIZE), .awidth(8), .width(16),    .at_reset(4)) // Set a
-safe default packet size in case packet size is never set
-set_payload_length (    .clk(ce_clk), .rst(ce_rst),    .strobe(set_stb),
-.addr(set_addr), .in(set_data),    .out(payload_length), .changed());
-    setting_reg #(    .my_addr(SR_MIN_BW), .awidth(8), .width(22))
-sr_min_bw (    .clk(ce_clk), .rst(ce_rst),    .strobe(set_stb),
-.addr(set_addr), .in(set_data), .out(min_BW), .changed());   setting_reg
-#(    .my_addr(SR_MAX_BW), .awidth(8), .width(22))  sr_max_bw (
-.clk(ce_clk), .rst(ce_rst),    .strobe(set_stb), .addr(set_addr),
-.in(set_data), .out(max_BW), .changed());   setting_reg #(
-.my_addr(SR_BW_CHANGE_RATE), .awidth(8), .width(22))  sr_bw_change_rate (
-  .clk(ce_clk), .rst(ce_rst),    .strobe(set_stb), .addr(set_addr),
-.in(set_data), .out(BW_change_rate), .changed()); *
-
-
---=20
-=D7=99=D7=A9=D7=99 =D7=90=D7=9C=D7=95=D7=A9
-054-5823400
-
---0000000000002f4b7105957e0b28
-Content-Type: text/html; charset="UTF-8"
+--_000_D71B2B9BB39CE44CACCAB6646DF20CFD48D9E836exmbx01_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am running a testbench on my arch=
-itecture, and=20
-all default=C2=A0tests pass as expected. This includes TEST 4 which tests=
-=20
-writing and reading back from registers. The problem is - the following=20
-tests prove the registers hold their initial (default) value and not the
- value I tried writing to them in TEST 4.</div><div><br></div><div>Did I mi=
-ss=C2=A0something in the process?</div><div>what possible reasons may cause=
- this problem?</div><div><br></div><div>Scripts of both Testbench code and =
-NoC_block code given below.=C2=A0</div><div><br></div><div>Thanks in advanc=
-e,</div><div>Ishai</div><div><br></div><div><u>Testbench Code:</u></div><di=
-v><br></div><div><b>=C2=A0 =C2=A0 /*****************************</b><b>****=
-***********************<br>=C2=A0 =C2=A0 ** Test 4 -- Write / readback user=
- registers<br>=C2=A0 =C2=A0 ******************************</b><b>**********=
-****************/<br>=C2=A0 =C2=A0 `TEST_CASE_START(&quot;Write user regist=
-ers&quot;);<br>=C2=A0 =C2=A0 random_word =3D 0;<br>=C2=A0 =C2=A0 tb_streame=
-r.write_user_reg(</b><b>sid_noc_block_TxChannelSrc, noc_block_TxChannelSrc.=
-SR_MIN_</b><b>BW, random_word[21:0]);<br>=C2=A0 =C2=A0 random_word =3D 5;<b=
-r>=C2=A0 =C2=A0 tb_streamer.write_user_reg(</b><b>sid_noc_block_TxChannelSr=
-c, noc_block_TxChannelSrc.SR_MAX_</b><b>BW, random_word[21:0]);<br>=C2=A0 =
-=C2=A0 random_word =3D 10;<br>=C2=A0 =C2=A0 tb_streamer.write_user_reg(</b>=
-<b>sid_noc_block_TxChannelSrc, noc_block_TxChannelSrc.SR_BW_</b><b>CHANGE_R=
-ATE, random_word[21:0]);<br>=C2=A0 =C2=A0 random_word =3D 256;<br>=C2=A0 =
-=C2=A0 tb_streamer.write_user_reg(</b><b>sid_noc_block_TxChannelSrc, noc_bl=
-ock_TxChannelSrc.SR_PKT_</b><b>SIZE, random_word[15:0]);<br>=C2=A0 =C2=A0 `=
-TEST_CASE_DONE(1);</b><br></div><div><br></div><div><u>noc_block verilog co=
-de:</u></div><div><br></div><div><b>localparam SR_USER_REG_BASE =3D 129;<br=
->=C2=A0 <br>=C2=A0 localparam [7:0] SR_MIN_BW =3D 129; //SR_USER_REG_BASE;<=
-br>=C2=A0 localparam [7:0] SR_MAX_BW =3D 130;//TeSR_USER_REG_BASE + 8&#39;d=
-1;<br>=C2=A0 localparam [7:0] SR_BW_CHANGE_RATE =3D 131;//SR_USER_REG_BASE =
-+ 8&#39;d2;<br>=C2=A0 localparam [7:0] SR_PKT_SIZE =C2=A0 =C2=A0 =C2=A0 =3D=
- 132; //SR_USER_REG_BASE + 8&#39;d3;<br><br>=C2=A0 wire [15:0] payload_leng=
-th;<br>=C2=A0 wire [21:0] min_BW;<br>=C2=A0 wire [21:0] max_BW;<br>=C2=A0 w=
-ire [21:0] BW_change_rate;<br>=C2=A0 =C2=A0<br>=C2=A0 cvita_hdr_encoder cvi=
-ta_hdr_encoder (<br>=C2=A0 =C2=A0 .pkt_type(2&#39;d0), .eob(1&#39;b0), .has=
-_time(1&#39;b0),<br>=C2=A0 =C2=A0 .seqnum(12&#39;d0), .payload_length(paylo=
-ad_</b><b>length), .dst_sid(next_dst_sid), .src_sid(src_sid),<br>=C2=A0 =C2=
-=A0 .vita_time(64&#39;d0),<br>=C2=A0 =C2=A0 .header(s_axis_data_tuser));<br=
->=C2=A0 =C2=A0 <br>=C2=A0 // Set packet size<br>=C2=A0 setting_reg #(<br>=
-=C2=A0 =C2=A0 .my_addr(SR_PKT_SIZE), .awidth(8), .width(16),<br>=C2=A0 =C2=
-=A0 .at_reset(4)) // Set a safe default packet size in case packet size is =
-never set<br>=C2=A0 set_payload_length (<br>=C2=A0 =C2=A0 .clk(ce_clk), .rs=
-t(ce_rst),<br>=C2=A0 =C2=A0 .strobe(set_stb), .addr(set_addr), .in(set_data=
-),<br>=C2=A0 =C2=A0 .out(payload_length), .changed()); =C2=A0 =C2=A0 =C2=A0=
- <br>=C2=A0 <br>=C2=A0 setting_reg #(<br>=C2=A0 =C2=A0 .my_addr(SR_MIN_BW),=
- .awidth(8), .width(22))<br>=C2=A0 sr_min_bw (<br>=C2=A0 =C2=A0 .clk(ce_clk=
-), .rst(ce_rst),<br>=C2=A0 =C2=A0 .strobe(set_stb), .addr(set_addr), .in(se=
-t_data), .out(min_BW), .changed()); <br><br>=C2=A0 setting_reg #(<br>=C2=A0=
- =C2=A0 .my_addr(SR_MAX_BW), .awidth(8), .width(22))<br>=C2=A0 sr_max_bw (<=
-br>=C2=A0 =C2=A0 .clk(ce_clk), .rst(ce_rst),<br>=C2=A0 =C2=A0 .strobe(set_s=
-tb), .addr(set_addr), .in(set_data), .out(max_BW), .changed()); <br><br>=C2=
-=A0 setting_reg #(<br>=C2=A0 =C2=A0 .my_addr(SR_BW_CHANGE_RATE), .awidth(8)=
-, .width(22))<br>=C2=A0 sr_bw_change_rate (<br>=C2=A0 =C2=A0 .clk(ce_clk), =
-.rst(ce_rst),<br>=C2=A0 =C2=A0 .strobe(set_stb), .addr(set_addr), .in(set_d=
-ata), .out(BW_change_rate), .changed()); </b></div><br clear=3D"all"><br>--=
- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_sig=
-nature"><div dir=3D"ltr"><div>=D7=99=D7=A9=D7=99 =D7=90=D7=9C=D7=95=D7=A9</=
-div>
-<div>054-5823400</div></div></div></div>
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EpostStil18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EpostStil19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EpostStil20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+</head>
+<body lang=3D"NO-BOK" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">To answer myself; I fo=
+und the reason shortly after sending the mail. Two days of trial and failur=
+e
+</span><span style=3D"font-family:Wingdings;color:#1F497D">J</span><span st=
+yle=3D"color:#1F497D"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I set the spp value to=
+ the same as num bins, in this case 512 (stream_args-&gt;args[=ABspp=BB] =
+=3D 512). When changing this value to 508 the =ABghost signal=BB disappeare=
+d, also with LO offset. I noticed earlier that the
+ default max_num_samps() value reported was 508 when stream_arg was not set=
+. So only question left is why spp should be 508, not 512?
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">If changing the bin si=
+ze to 256, should spp be set to 252?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"mso-fareast-language:NO-BOK">Fra:<=
+/span></b><span style=3D"mso-fareast-language:NO-BOK"> USRP-users &lt;usrp-=
+users-bounces@lists.ettus.com&gt;
+<b>P=E5 vegne av</b> Skorstad,J=F8rn via USRP-users<br>
+<b>Sendt:</b> tirsdag 22. oktober 2019 09:15<br>
+<b>Til:</b> USRP-users@lists.ettus.com<br>
+<b>Emne:</b> [USRP-users] E310 LO offset problem<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi list,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am writing a C&#43;&#43; software which will scan =
+through a given frequency range and perform an fft. The software seems to d=
+o what it should, however something weird happens when using LO offset tuni=
+ng. With the following settings all looks
+ correct:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Sample rate 6.4M &#8211; master clock 51.2M &#8211; =
+512 byte num_samples/binsize &#8211; offset 0. However I can clearly see th=
+e DC peak for every =ABjump=BB in frequency.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">With the same settings as above and a 3.2M offset th=
+ere is a =ABghost=BB signal 3.2MHz below the real signal, which mirrors the=
+ real signal with slightly lower amplitude. This happens everywhere in the =
+spectrum where solid signals (approx 40-50
+ dBuV) are present. Using the command tune_request(freq, offset) and usrp-&=
+gt;set_rx_freq(tune_request) to set frequencies. Have also tried with diffe=
+rent gain settings from 0-40, no change. Have also tried with 10 dB attenua=
+tor between antenna and the radio,
+ no change.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The same happens on other sample rates and offsets a=
+s well, the ghost signal is always the same as the offset (&#43; or -). I a=
+m using UHD_3.14.1. Have also tried changing rx_bandwidth without any chang=
+e.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is it possible to use LO offset and eliminate the =
+=ABghost=BB signals, or is this some radio/DSP limitation? I have pictures =
+showing the problem clearly, I can send directly by email if necessary.<o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Jorn <o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#1F497D;mso-fareast-language:NO-BOK"><o:p>&nbsp;<=
+/o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
---0000000000002f4b7105957e0b28--
+--_000_D71B2B9BB39CE44CACCAB6646DF20CFD48D9E836exmbx01_--
 
 
---===============7486051180294052470==
+--===============5551496210294777310==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -273,5 +318,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7486051180294052470==--
+--===============5551496210294777310==--
 
