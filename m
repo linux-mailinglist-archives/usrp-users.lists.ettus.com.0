@@ -2,90 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F60CE01DE
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Oct 2019 12:17:27 +0200 (CEST)
-Received: from [::1] (port=60434 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6B2E0270
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Oct 2019 13:02:30 +0200 (CEST)
+Received: from [::1] (port=39128 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iMrEE-0003xt-Ag; Tue, 22 Oct 2019 06:17:26 -0400
-Received: from mail-eopbgr60102.outbound.protection.outlook.com
- ([40.107.6.102]:4225 helo=EUR04-DB3-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <demel@ant.uni-bremen.de>)
- id 1iMrEA-0003qS-L5
- for usrp-users@lists.ettus.com; Tue, 22 Oct 2019 06:17:22 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aOJkboDfga9qXOx/yyshCpESHwfsM37m3C0pa+gecq3zeBcy7+sB14o1Vvd6GEbFFfylUglJ4ybWRq2dzCs7C3GRxbfOYRJC/ajsfiDWhTcsCuG8Q+EXzKInY+F2rXNQpcw4PdNZoMyl5Hd7BZ4jBfC1XN6Ok5i9JzvwtcMKMLP3aqlkFwjJLn6S7OXTTHETbUgD26Z/KAYkNZaJxD8UL6P8AQkDy6uwQYGOYAc582cs7kbgclRMAvSgf6R5ZG8j8mNmfC27+4kBkGbT3+/N2RJgXPT3xxHoqOq/45oVttDUmwZB6K9TitduyLQgqz4eBqOI5BfLeVt+UiwbBbUetA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n1sXTVwDs+6osumJEJs7H1wOsua5mistpa1/RuefkWo=;
- b=m7eO/A4ZsvjVBbc4Ss5UWS72xDc5sCrXSNvZqfLCbCB+nzMDr49VwfGgXdemBo5JA6D1hgguxFtWhJYGkmujX5IxKYtxTXf13kohAv3WZMhdAG83vpfdF29tlsOn9kpjFZPMrlEoMGFdvHuIMnX4ktEIFOljGQrzRC9NOjF30mREeQBIalxeNZ9OHXfGj+39WFlpimbeSZufEbsczrXEr9aXXKCtOmDv/LcJHOuAZs/6IYHw5GC5Y397AeOHUwONd8BEZeyCSLVyI0+WUoJoUCZMUGwMrKw9T3A5JeNc74O66qY0/k/HYzYQy2Gn0rQUw+TLQ4ha08SbfyZ6KRDghw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
- header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n1sXTVwDs+6osumJEJs7H1wOsua5mistpa1/RuefkWo=;
- b=OPVPolhpqAzjFXCGDMqA+/jj5TW1Ldr48Z55tEQxqRsu1f8ilulQABSEXQnh1xXk4QeojNp5BVSUgnkSkC4YBjf9YFt16uArY5GuKnct5CqbEMNKWcO/n/pfRd+aXRcMe924QTRqX0Orx9XNd8ZUGpIO8U2QulG8XVOsIh/AtSs=
-Received: from AM0PR04MB6787.eurprd04.prod.outlook.com (52.132.215.71) by
- AM0PR04MB6484.eurprd04.prod.outlook.com (20.179.255.224) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2367.24; Tue, 22 Oct 2019 10:16:41 +0000
-Received: from AM0PR04MB6787.eurprd04.prod.outlook.com
- ([fe80::51a2:617d:239b:de85]) by AM0PR04MB6787.eurprd04.prod.outlook.com
- ([fe80::51a2:617d:239b:de85%4]) with mapi id 15.20.2367.022; Tue, 22 Oct 2019
- 10:16:40 +0000
-To: Robin Coxe <coxe@close-haul.com>, "usrp-users@lists.ettus.com"
- <usrp-users@lists.ettus.com>
-Thread-Topic: N310 sensitivity
-Thread-Index: AQHVhaPtYCVLk6qaKUuKizR2+TmdSqdgdEoAgAYEAYA=
-Date: Tue, 22 Oct 2019 10:16:40 +0000
-Message-ID: <e3e0f65b-9646-0059-8dd1-eef83c412898@ant.uni-bremen.de>
-References: <0317ead0-5a23-2edc-7b80-3164cfe1dbc7@ant.uni-bremen.de>
- <DM5PR10MB194543FDE52C6C64A0985EE2AB6C0@DM5PR10MB1945.namprd10.prod.outlook.com>
-In-Reply-To: <DM5PR10MB194543FDE52C6C64A0985EE2AB6C0@DM5PR10MB1945.namprd10.prod.outlook.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM0PR02CA0076.eurprd02.prod.outlook.com
- (2603:10a6:208:154::17) To AM0PR04MB6787.eurprd04.prod.outlook.com
- (2603:10a6:208:18a::7)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=demel@ant.uni-bremen.de; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [134.102.176.97]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9d6a060f-a7bf-4b42-d079-08d756d8ee2c
-x-ms-traffictypediagnostic: AM0PR04MB6484:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <AM0PR04MB648413CE21F2F31A0BEE01EAA9680@AM0PR04MB6484.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 01986AE76B
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(39830400003)(376002)(136003)(346002)(396003)(366004)(53754006)(189003)(199004)(7736002)(86362001)(31696002)(8676002)(229853002)(81156014)(2501003)(6486002)(305945005)(8936002)(81166006)(64756008)(66556008)(66476007)(66946007)(6436002)(66446008)(6306002)(6512007)(6116002)(6246003)(99286004)(2906002)(3846002)(476003)(486006)(6506007)(11346002)(102836004)(76176011)(53546011)(52116002)(2616005)(66066001)(14444005)(256004)(446003)(26005)(186003)(786003)(508600001)(14454004)(966005)(71200400001)(71190400001)(7116003)(25786009)(31686004)(110136005)(386003)(316002)(5660300002);
- DIR:OUT; SFP:1102; SCL:1; SRVR:AM0PR04MB6484;
- H:AM0PR04MB6787.eurprd04.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:0; 
-received-spf: None (protection.outlook.com: ant.uni-bremen.de does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: cxAw9b10Iw6ppPTtdzap131JIA2clVE6oI/pSYcSZaWUuvdVRWTFO3xgaxV1v0jP592GKyr8ZQ/xU6FaSfAVUMkabot6Emi6Y23yIMkQI8Gn6mvMp38FYOq19iEAAWQjwUBqUhOP5iWn6SnWIIT91t92bQsTUJ4RFLHFemzBA3kDQnYg+7ADivKiSk9CYDbc60azwq4xnwW405WWC3RJRkzs7bQYbL0BslHA3a4Q/2C9I0DCmpp7n1ukZ2ChrzHYqtjwCGtWRLj8BVqbWoL3Nz3zTQIV74oxGrw39JUrXSkJx68PIl62K9HWq2bj8skTT2F9ffCRO99UT3x9RoMhrtCT8f/zug2qSKqEgA9H7MjVF34jwmrM0CQRjECviTaoWfz37u8k2ZHsDisz4dnpnIgJCKVvlR2ydp2untesweB4peM6kiR4YyBG5DPykmUegw1o0qyVxfw3bCKATTuJpk8lPizwmPf1dCd90wvSy/0=
-x-ms-exchange-transport-forked: True
-Content-ID: <72C7787C3577994E815B6BE693943FB5@eurprd04.prod.outlook.com>
+	id 1iMrvo-000675-Ko; Tue, 22 Oct 2019 07:02:28 -0400
+Received: from mail-lj1-f178.google.com ([209.85.208.178]:39033)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <ishai.alouche@gmail.com>)
+ id 1iMrvk-0005vG-IS; Tue, 22 Oct 2019 07:02:24 -0400
+Received: by mail-lj1-f178.google.com with SMTP id y3so16696536ljj.6;
+ Tue, 22 Oct 2019 04:01:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=lptJh45IpsGW+bcJQyGU/FDUhkB6kY3EfZJcVShPupI=;
+ b=h211c0rdzOYGV6AVQlDdr1NEmG5ibGPlKIx31f6Y8g81/839fC6lzL79XWSdBccyfQ
+ uwMPXSv0QnUFsoIVBFqt1hCSKXufPUadOkSNBsRl6IIEKIoz2dcXpsMwbhpRnGFKRUPA
+ xP+Htj3QlWjIAfcQXz9of3aibZxDGiVEflV+vAn6IF9qj94dWlD73RX1ct13fKJKStUE
+ tRq4KlgqanPxTWq03F8Tbv1u2bF667d0dN/vuJCJwxzyzPQwedCPxq9hoTvs//KL82eH
+ +LnvtdyAjweu4IpTmVL5u35aj9UB6KlRqu2UBwOmPPSb0i+oK4MoWrrx4Hgt6sAqwHnN
+ D2fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=lptJh45IpsGW+bcJQyGU/FDUhkB6kY3EfZJcVShPupI=;
+ b=W4v5S0yRXCDGOC8EXXpXWhqy1vnU5PkWWJ0qmhhilTRKU8O1bY06Lv4PedlwM7ab77
+ uC21XGtfSqp/aRpT63+YaO2JoFtklV2YJXGC6tzLkzQtknAAxQSiMMhCoXq4QlF1tdGX
+ Qb6hDSNbtS5+d9x/nmlkw/pVp4wfNjg9gMS7LwEVS/mi7cvp/R7lx82l1G0bAV5Chphi
+ lXYbhH16qdHcWf0gM+Agu0tBf201eG0b6QrWsuV5+AZTiJp2hOnzoKSeFeQOZJVi4eY1
+ /n5euh/LtA/8ztuVOyc/tjamXcnzTK5mLjZf2g1mVuJSQ46yqiWgXXES4CkTkH2AkS0k
+ gmTA==
+X-Gm-Message-State: APjAAAWagkxyLyLaqvpFyEEUmozxOn6ISM4bRSI71k6AaTvAMifZWgNz
+ QQxaR9C8NoCkh/ss2EEJ6HuEU7BA6ZY3hQklY0E=
+X-Google-Smtp-Source: APXvYqwocyhfDfqNLPq1yt0oHBe4PMjiGmnF//MoqQie24vCaS0WeQX/+A7um+ovJSq+vAoCDzHi44YOz/0TQkc5fkY=
+X-Received: by 2002:a2e:9e0a:: with SMTP id e10mr18744930ljk.35.1571742083006; 
+ Tue, 22 Oct 2019 04:01:23 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: ant.uni-bremen.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9d6a060f-a7bf-4b42-d079-08d756d8ee2c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2019 10:16:40.7233 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f018440b-2792-4fa0-b2bd-233acaf88ad2
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: N+2AAZcrvOGdRnabXF272xkfNEI91MFYz23POjvvS7HpZsUuCEtLW04UMpm1K5Ft6c5cKe+onstYZW7anqafoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6484
-Subject: Re: [USRP-users] N310 sensitivity
+References: <CAC8T01nXkLDG1ZAMcevpkHCDUBUVmuVwVRL4e+vZLEB2hzbJcg@mail.gmail.com>
+ <CAFOi1A5x8VOaMf2HVu89dMGj_o3J=FugFUSTeCj91-HAZ4QS1A@mail.gmail.com>
+In-Reply-To: <CAFOi1A5x8VOaMf2HVu89dMGj_o3J=FugFUSTeCj91-HAZ4QS1A@mail.gmail.com>
+Date: Tue, 22 Oct 2019 14:01:11 +0300
+Message-ID: <CAC8T01kwT-7Y68KGxSUEhbxj2uMA47qgMh7korJXW_hxH4v0NQ@mail.gmail.com>
+To: Martin Braun <martin.braun@ettus.com>
+Subject: Re: [USRP-users] error to write and read from user register x310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -97,10 +58,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: quoted-printable
+From: ishai alouche via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: ishai alouche <ishai.alouche@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
+ usrp-users-request@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============9069102358930613193=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -114,159 +76,362 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Robin and Marcus,
+--===============9069102358930613193==
+Content-Type: multipart/alternative; boundary="000000000000897dee05957db8a9"
 
-Thanks for your hints.
+--000000000000897dee05957db8a9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-UHD 3.14.1.1 work perfectly fine with my X310s. Only the N310s seem to =
+Hi Martin,
 
-have problems. I use the default HG FPGA image that ships with 3.14.1.1.
+Thank for your answer.
 
-For the moment, I use `VERT2450` antennas. The ones you can order from =
-
-Ettus. I transmit/receive @2.484GHz. I mounted antennas on all antenna =
-
-ports. So for the N310s that's a total of 8 antennas per device.
-So far I did not specify a `Subdev Spec` in GRC.
-
-I tried a few more options. Also, I unmounted the antennas on the RX2 =
-
-ports on the N310s and made sure the `TX/RX` antenna port is configured.
-
-Here are my observations:
-1. X310 -> X310 everything works fine TXgain=3D20, RXgain=3D10.
-2. N310 -> X310 everything works, though I need to raise TXgain=3D38 a bit.
-3. X310 -> N310 works but it seems like sensitivity is still bad. I need =
-
-to raise TXgain=3D70. RXgain seems to not make a difference at all.
-4. N310 -> N310 bad performance but transmission is possible. Need to =
-
-raise gains to almost maximum for bad performance.
-
-This is the N310 setup code generated by GRC. I tried different `Subdev =
-
-Spec`s for both TX and RX. I obtained the best results with `B:0` for TX =
-
-and RX. Though, `best` is still way worse than X310 performance.
-uhd.usrp_source(
-     ",".join(("addr=3DX.X.X.214", "")),
-     uhd.stream_args(
-         cpu_format=3D"fc32",
-         args=3D'',
-         channels=3D[],
-     ),
-)
-self.uhd_usrp_source_0.set_subdev_spec('B:0', 0)
-self.uhd_usrp_source_0.set_center_freq(tfreq, 0)
-self.uhd_usrp_source_0.set_gain(rgain, 0)
-self.uhd_usrp_source_0.set_antenna('TX/RX', 0)
-self.uhd_usrp_source_0.set_samp_rate(samp_rate)
-
-Since Option 2 N310 -> X310 does yield good results, I assume that the =
-
-N310 RX chain or configuration is the problem. Though, I have no idea =
-
-how to debug that and which knobs to turn.
-I tried to observe the spectrum with an N310 via `uhd_fft` from =
-
-`gr-uhd/examples/grc` and it feels like the N310 just doesn't case about =
-
-RXgain settings.
-
-Johannes
+1. The definition of the parameters are:
 
 
-On 18.10.19 20:42, Marcus D Leech wrote:
-> What antenna are you specifying and which port are you rurally plugged in=
- to.
+
+
+
+
+
+*  initial begin : tb_main    string s;    logic [15:0] real_val;    logic
+[15:0] cplx_val;    logic last;    logic [31:0] random_word;    logic
+[63:0] readback;*
+
+2. The error is in the readback value.
+
+When i check the value of the readback in hex i get that (3359812)10 =3D
+(334444)16 .
+It's look like the value that I read is the last 32 bits of the Noc ID. I
+don 't sure that my assumption is correct.
+
+waiting for your help.
+
+Thank in advance
+Ishai
+
+
+
+On Tue, Oct 15, 2019 at 9:01 PM Martin Braun <martin.braun@ettus.com> wrote=
+:
+
+> Ishai,
 >
-> Are you using offset tuning?  That may be necessary for Narrow signals ne=
-ar the tuned frequency, due to DC offset removal.
+> it's a bit hard to tell from this snippet, since we're missing the
+> definitions of random_word and s. Which one is wrong, is it random_word, =
+or
+> readback?
+>
+> -- M
+>
+> On Thu, Oct 3, 2019 at 12:56 AM ishai alouche via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hi,
+>>
+>> I work with X310 and I try to write to user register and read to verify
+>> that the value was update.
+>>
+>> I change the code like in the instruction at the following  website:
+>> https://kb.ettus.com/Getting_Started_with_RFNoC_Development
+>>
+>> The relevant code from the test-bench is:
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *    /********************************************************    ** Tes=
+t
+>> 4 -- Write / readback user registers
+>> ********************************************************/
+>> `TEST_CASE_START("Write / readback user registers");    random_word =3D =
+5; //
+>> $random();    tb_streamer.write_user_reg(sid_noc_block_TxChannelSrc,
+>> noc_block_TxChannelSrc.SR_MIN_BW, random_word[21:0]);
+>> tb_streamer.read_user_reg(sid_noc_block_TxChannelSrc, 0, readback);
+>> `ASSERT_ERROR(readback[21:0] =3D=3D random_word[21:0], s);*
+>>
+>> The relevant code from the noc block is:
+>>
+>> *  localparam SR_USER_REG_BASE =3D 128;*
+>>
+>> *  localparam [7:0] SR_MIN_BW =3D SR_USER_REG_BASE;*
+>>
+>> *  wire [21:0] min_BW;*
+>>
+>>
+>>
+>>
+>>
+>>
+>> * setting_reg #(    .my_addr(SR_MIN_BW), .awidth(8), .width(22))
+>> sr_min_BW (    .clk(ce_clk), .rst(ce_rst),    .strobe(set_stb),
+>> .addr(set_addr), .in(set_data), .out(min_BW), .changed()); *
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *  always @(posedge ce_clk) begin    case(rb_addr)      8'd0 : rb_data <=
+=3D
+>> {42'd0, min_BW};      8'd1 : rb_data <=3D {42'd0, max_BW};      8'd2 :
+>> rb_data <=3D {42'd0, BW_change_rate};      8'd3 : rb_data <=3D {48'd0,
+>> payload_length};            default : rb_data <=3D 64'h0BADC0DE0BADC0DE;
+>> endcase  end*
+>>
+>> when i run the make command with the noc_block_TxChannelSrc_tb , I get
+>> the following warning:
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *WARNING: [XSIM 43-3431] One or more environment variables have been
+>> detected which affect the operation of the C compiler. These are typical=
+ly
+>> not set in standard installations and are not tested by Xilinx, however
+>> they may be appropriate for your system, so the flow will attempt to
+>> continue.  If errors occur, try running fuse with the "-mt off -v 1"
+>> switches to see more information from the C compiler. The following
+>> environment variables have been detected:    LIBRARY_PATHStarting static
+>> elaborationWARNING: [VRFC 10-278] actual bit length 3 differs from forma=
+l
+>> bit length 4 for port rb_addr
+>> [/home/user/rfnoc_01/rfnoc-modules/rfnoc/testbenches/noc_block_TxChannel=
+Src_tb/noc_block_TxChannelSrc_tb.sv:35]WARNING:
+>> [VRFC 10-278] actual bit length 4 differs from formal bit length 2 for p=
+ort
+>> dest
+>> [/home/user/rfnoc_01/src/uhd-fpga/usrp3/lib/rfnoc/noc_shell.v:230]WARNIN=
+G:
+>> [VRFC 10-278] actual bit length 4 differs from formal bit length 2 for p=
+ort
+>> dest
+>> [/home/user/rfnoc_01/src/uhd-fpga/usrp3/lib/rfnoc/noc_block_export_io.v:=
+183]WARNING:
+>> [VRFC 10-526] concatenation with unsized literal; will interpret as 32 b=
+its
+>> [/home/user/rfnoc_01/rfnoc-modules/rfnoc/testbenches/noc_block_TxChannel=
+Src_tb/noc_block_TxChannelSrc_tb.sv:75]WARNING:
+>> [VRFC 10-526] concatenation with unsized literal; will interpret as 32 b=
+its
+>> [/home/user/rfnoc_01/rfnoc-modules/rfnoc/testbenches/noc_block_TxChannel=
+Src_tb/noc_block_TxChannelSrc_tb.sv:76]WARNING:
+>> [VRFC 10-1783] select index -1 into value is out of bounds
+>> [/home/user/rfnoc_01/src/uhd-fpga/usrp3/lib/control/synchronizer_impl.v:=
+38]*
+>>
+>> The test don't stop to run, and when I get the test results the same
+>> value is always read.
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3DTESTBENCH
+>> STARTED:
+>> noc_block_TxChannelSrc=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D[TEST
+>> CASE   1] (t=3D000000000) BEGIN: Wait for Reset...[TEST CASE   1]
+>> (t=3D000001002) DONE... Passed[TEST CASE   2] (t=3D000001002) BEGIN: Che=
+ck NoC
+>> ID...Read TxChannelSrc NOC ID: 1111222233334444[TEST CASE   2]
+>> (t=3D000001238) DONE... Passed[TEST CASE   3] (t=3D000001238) BEGIN: Con=
+nect
+>> RFNoC blocks...Connecting noc_block_tb (SID: 1:0) to noc_block_TxChannel=
+Src
+>> (SID: 0:0)Connecting noc_block_TxChannelSrc (SID: 0:0) to noc_block_tb
+>> (SID: 1:0)[TEST CASE   3] (t=3D000006075) DONE... Passed[TEST CASE   4]
+>> (t=3D000006075) BEGIN: Write / readback user registers...Error: User reg=
+ister
+>> 0 incorrect readback! Expected: 3359812, Actual 5Time: 6602500 ps
+>>  Iteration: 0  Process: /noc_block_TxChannelSrc_tb/Initial43_1195  File:
+>> /home/user/rfnoc_01/rfnoc-modules/rfnoc/testbenches/noc_block_TxChannelS=
+rc_tb/noc_block_TxChannelSrc_tb.sv*
+>>
+>> please someone can explain me what is wrong here.
+>>
+>> BR
+>> Ishai
+>>
+>> --
+>> =D7=99=D7=A9=D7=99 =D7=90=D7=9C=D7=95=D7=A9
+>> 054-5823400
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
+
+--=20
+=D7=99=D7=A9=D7=99 =D7=90=D7=9C=D7=95=D7=A9
+054-5823400
+
+--000000000000897dee05957db8a9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><font size=3D"4">Hi Martin,</font></div><div><font si=
+ze=3D"4"><br></font></div><div><font size=3D"4">Thank for your answer.</fon=
+t></div><div><font size=3D"4"><br></font></div><div><font size=3D"4">1. The=
+ definition of the parameters are:</font></div><div><font size=3D"4"><b>=C2=
+=A0 initial begin : tb_main<br>=C2=A0 =C2=A0 string s;<br>=C2=A0 =C2=A0 log=
+ic [15:0] real_val;<br>=C2=A0 =C2=A0 logic [15:0] cplx_val;<br>=C2=A0 =C2=
+=A0 logic last;<br><br>=C2=A0 =C2=A0 logic [31:0] random_word;<br>=C2=A0 =
+=C2=A0 logic [63:0] readback;</b></font></div><div><font size=3D"4"><b><br>=
+</b></font></div><div><font size=3D"4">2. The error is in the readback valu=
+e.<b><br></b></font></div><div><font size=3D"4"><b><br></b></font></div><di=
+v><font size=3D"4">When i check the value of the readback in hex i get that=
+ (3359812)<sub>10</sub> =3D (334444)</font><sub><font size=3D"4">16 .</font=
+><br></sub></div><div><font size=3D"4"><sub>It&#39;s look like the value th=
+at I read is the last 32 bits of the Noc ID. I don &#39;t sure that my assu=
+mption is correct.</sub></font></div><div><font size=3D"4"><sub><br></sub><=
+/font></div><div><font size=3D"4"><sub>waiting for your help.</sub></font><=
+/div><div><font size=3D"4"><sub><br></sub></font></div><div><font size=3D"4=
+"><sub>Thank in advance</sub></font></div><div><font size=3D"4"><sub>Ishai<=
+br></sub></font></div><div><sub><br></sub></div><div><sub><br></sub></div><=
+/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Tue, Oct 15, 2019 at 9:01 PM Martin Braun &lt;<a href=3D"mailto:martin.br=
+aun@ettus.com">martin.braun@ettus.com</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Ishai,</div><div=
+><br></div><div>it&#39;s a bit hard to tell from this snippet, since we&#39=
+;re missing the definitions of random_word and s. Which one is wrong, is it=
+ random_word, or readback?</div><div><br></div><div>-- M<br></div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, O=
+ct 3, 2019 at 12:56 AM ishai alouche via USRP-users &lt;<a href=3D"mailto:u=
+srp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr">Hi,<div><br></div><div>I work with X310 and I try to write to =
+user register and read to verify that the value was update.</div><div><br><=
+/div><div>I change the code like in the instruction at the following=C2=A0 =
+website:=C2=A0<a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_De=
+velopment" target=3D"_blank">https://kb.ettus.com/Getting_Started_with_RFNo=
+C_Development</a>=C2=A0</div><div><br></div><div>The relevant code from the=
+ test-bench is:</div><div><b>=C2=A0 =C2=A0 /*******************************=
+*************************<br>=C2=A0 =C2=A0 ** Test 4 -- Write / readback us=
+er registers<br>=C2=A0 =C2=A0 *********************************************=
+***********/<br>=C2=A0 =C2=A0 `TEST_CASE_START(&quot;Write / readback user =
+registers&quot;);<br>=C2=A0 =C2=A0 random_word =3D 5; // $random();<br>=C2=
+=A0 =C2=A0 tb_streamer.write_user_reg(sid_noc_block_TxChannelSrc, noc_block=
+_TxChannelSrc.SR_MIN_BW, random_word[21:0]);<br>=C2=A0 =C2=A0 tb_streamer.r=
+ead_user_reg(sid_noc_block_TxChannelSrc, 0, readback);<br>=C2=A0 =C2=A0 `AS=
+SERT_ERROR(readback[21:0] =3D=3D random_word[21:0], s);<br></b></div><div><=
+b><br></b></div><div><div>The relevant code from the noc block is:</div><di=
+v></div></div><div><b>=C2=A0 localparam SR_USER_REG_BASE =3D 128;<br></b></=
+div><div><b>=C2=A0 localparam [7:0] SR_MIN_BW =3D SR_USER_REG_BASE;<br></b>=
+</div><div><b>=C2=A0 wire [21:0] min_BW;<br></b></div><div><b><br></b></div=
+><div><b>=C2=A0setting_reg #(<br>=C2=A0 =C2=A0 .my_addr(SR_MIN_BW), .awidth=
+(8), .width(22))<br>=C2=A0 sr_min_BW (<br>=C2=A0 =C2=A0 .clk(ce_clk), .rst(=
+ce_rst),<br>=C2=A0 =C2=A0 .strobe(set_stb), .addr(set_addr), .in(set_data),=
+ .out(min_BW), .changed());=C2=A0<br></b></div><div><b><br></b></div><div><=
+b>=C2=A0 always @(posedge ce_clk) begin<br>=C2=A0 =C2=A0 case(rb_addr)<br>=
+=C2=A0 =C2=A0 =C2=A0 8&#39;d0 : rb_data &lt;=3D {42&#39;d0, min_BW};<br>=C2=
+=A0 =C2=A0 =C2=A0 8&#39;d1 : rb_data &lt;=3D {42&#39;d0, max_BW};<br>=C2=A0=
+ =C2=A0 =C2=A0 8&#39;d2 : rb_data &lt;=3D {42&#39;d0, BW_change_rate};<br>=
+=C2=A0 =C2=A0 =C2=A0 8&#39;d3 : rb_data &lt;=3D {48&#39;d0, payload_length}=
+; =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 default : rb_data &lt;=3D 64=
+&#39;h0BADC0DE0BADC0DE;<br>=C2=A0 =C2=A0 endcase<br>=C2=A0 end</b><br></div=
+><div><b><br></b></div><div>when i run the make command with the noc_block_=
+TxChannelSrc_tb , I get the following warning:</div><div><b>WARNING: [XSIM =
+43-3431] One or more environment variables have been detected which affect =
+the operation of the C compiler. These are typically not set in standard in=
+stallations and are not tested by Xilinx, however they may be appropriate f=
+or your system, so the flow will attempt to continue.=C2=A0 If errors occur=
+, try running fuse with the &quot;-mt off -v 1&quot; switches to see more i=
+nformation from the C compiler. The following environment variables have be=
+en detected:<br>=C2=A0 =C2=A0 LIBRARY_PATH<br>Starting static elaboration<b=
+r>WARNING: [VRFC 10-278] actual bit length 3 differs from formal bit length=
+ 4 for port rb_addr [/home/user/rfnoc_01/rfnoc-modules/rfnoc/testbenches/no=
+c_block_TxChannelSrc_tb/noc_block_TxChannelSrc_tb.sv:35]<br>WARNING: [VRFC =
+10-278] actual bit length 4 differs from formal bit length 2 for port dest =
+[/home/user/rfnoc_01/src/uhd-fpga/usrp3/lib/rfnoc/noc_shell.v:230]<br>WARNI=
+NG: [VRFC 10-278] actual bit length 4 differs from formal bit length 2 for =
+port dest [/home/user/rfnoc_01/src/uhd-fpga/usrp3/lib/rfnoc/noc_block_expor=
+t_io.v:183]<br>WARNING: [VRFC 10-526] concatenation with unsized literal; w=
+ill interpret as 32 bits [/home/user/rfnoc_01/rfnoc-modules/rfnoc/testbench=
+es/noc_block_TxChannelSrc_tb/noc_block_TxChannelSrc_tb.sv:75]<br>WARNING: [=
+VRFC 10-526] concatenation with unsized literal; will interpret as 32 bits =
+[/home/user/rfnoc_01/rfnoc-modules/rfnoc/testbenches/noc_block_TxChannelSrc=
+_tb/noc_block_TxChannelSrc_tb.sv:76]<br>WARNING: [VRFC 10-1783] select inde=
+x -1 into value is out of bounds [/home/user/rfnoc_01/src/uhd-fpga/usrp3/li=
+b/control/synchronizer_impl.v:38]</b><br></div><div><br></div><div>The test=
+ don&#39;t stop to run, and when I get the test results the same value is a=
+lways read.</div><div><b>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>TESTBENCH STARTED: noc_blo=
+ck_TxChannelSrc<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>[TEST CASE =C2=A0 1] (t=3D000000=
+000) BEGIN: Wait for Reset...<br>[TEST CASE =C2=A0 1] (t=3D000001002) DONE.=
+.. Passed<br>[TEST CASE =C2=A0 2] (t=3D000001002) BEGIN: Check NoC ID...<br=
+>Read TxChannelSrc NOC ID: 1111222233334444<br>[TEST CASE =C2=A0 2] (t=3D00=
+0001238) DONE... Passed<br>[TEST CASE =C2=A0 3] (t=3D000001238) BEGIN: Conn=
+ect RFNoC blocks...<br>Connecting noc_block_tb (SID: 1:0) to noc_block_TxCh=
+annelSrc (SID: 0:0)<br>Connecting noc_block_TxChannelSrc (SID: 0:0) to noc_=
+block_tb (SID: 1:0)<br>[TEST CASE =C2=A0 3] (t=3D000006075) DONE... Passed<=
+br>[TEST CASE =C2=A0 4] (t=3D000006075) BEGIN: Write / readback user regist=
+ers...<br>Error: User register 0 incorrect readback! Expected: 3359812, Act=
+ual 5<br>Time: 6602500 ps =C2=A0Iteration: 0 =C2=A0Process: /noc_block_TxCh=
+annelSrc_tb/Initial43_1195 =C2=A0File: /home/user/rfnoc_01/rfnoc-modules/rf=
+noc/testbenches/noc_block_TxChannelSrc_tb/noc_block_TxChannelSrc_tb.sv</b><=
+br></div><div><b><br></b></div><div>please someone can explain me what is w=
+rong here.</div><div><br></div><div>BR</div><div>Ishai<br clear=3D"all"><di=
+v><br></div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div>=D7=99=D7=A9=D7=
+=99 =D7=90=D7=9C=D7=95=D7=A9</div>
+<div>054-5823400</div></div></div></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
+mail_signature"><div dir=3D"ltr"><div>=D7=99=D7=A9=D7=99 =D7=90=D7=9C=D7=95=
+=D7=A9</div>
+<div>054-5823400</div></div></div>
+
+--000000000000897dee05957db8a9--
 
 
-
-On 18.10.19 16:24, Robin Coxe wrote:
-> Hi Johannes. =A0That low response from the N310 sounds fishy. =A0Have you =
-
-> tried another channel besides 0 on your N310? =A0It might be that: 1) the =
-
-> TX and RX cables are connected backwards (note that the order on the =
-
-> panel is funky due to layout constraints with the AD9371 RF IC on the =
-
-> daughter cars. 2) signals are actually on the adjacent channel=97 =
-
-> double-check the UHD subdev mappings listed in the Getting Started Guide =
-
-> because if memory serves they changed at some point=97 or 3) or the SMA =
-
-> connector center pin connections might be cracked.
-> =
-
-> Also, I=92m not sure how compatible GR3.8 is with UHD 3.14.1. =A0=A0Someo=
-ne =
-
-> who still works on Ettus products mentioned at GRCon that you have to =
-
-> use master-next branches, but those use the new RFNoC, which is still =
-
-> largely uncharted territory with the N310 as far as I can tell.
-> =
-
-> -Robin
-> =
-
-> =
-
-> ------------------------------------------------------------------------
-> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of =
-
-> Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
-> *Sent:* Friday, October 18, 2019 4:06 AM
-> *To:* usrp-users@lists.ettus.com
-> *Subject:* [USRP-users] N310 sensitivity
-> Hi all,
-> =
-
-> I figured out how to use our new N310s.
-> =
-
-> I ran into the next issue. Let me describe this one briefly.
-> =
-
-> With our X310s I set TXgain=3D20 and RX_gain=3D10. Both devices are 1-2m
-> apart. I observe a really nice RX constellation with gr-gfdm and
-> XFDMSync with bursts every 1ms (burst length ~50us). With our N310s I
-> set RXgain=3D60, TXgain=3D70 and still, the constellation is very noisy.
-> My assumption is that some part of the RX chain is not configured
-> correctly. But I don't know what the problem is in particular.
-> Also, I used an X310 as transmitter and an N310 as receiver. But the
-> result is the same, the RX constellation is really noisy.
-> =
-
-> Another observation is, that my RX sample stream in a GR time sink does
-> show quantization artifacts. i.e. I can see discrete steps which I
-> assume are due to low RX sensitivity. The RX value amplitude is around
-> 0.0005 for the samples that I get of a USRP source. I assume this should
-> be a higher value. With the X310s it was more like 0.1.
-> =
-
-> Do I need to take special care when I only use 1 antenna port?
-> Is there another AGC setting that I need to configure for N310s?
-> =
-
-> Johannes
-> =
-
-> Software
-> UHD: 3.14.1.1
-> GR: 3.8
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+--===============9069102358930613193==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============9069102358930613193==--
+
