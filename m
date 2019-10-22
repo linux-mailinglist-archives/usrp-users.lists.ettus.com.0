@@ -2,48 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A05DE0B3A
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Oct 2019 20:12:53 +0200 (CEST)
-Received: from [::1] (port=35032 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35F62E0B49
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Oct 2019 20:16:56 +0200 (CEST)
+Received: from [::1] (port=36976 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iMyeJ-0002Gs-P0; Tue, 22 Oct 2019 14:12:51 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:36613)
+	id 1iMyiF-0002ir-1e; Tue, 22 Oct 2019 14:16:55 -0400
+Received: from mail-lj1-f179.google.com ([209.85.208.179]:42265)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <wddias@gmail.com>) id 1iMyeF-00028G-Lt
- for usrp-users@lists.ettus.com; Tue, 22 Oct 2019 14:12:47 -0400
-Received: by mail-qk1-f195.google.com with SMTP id y189so17177299qkc.3
- for <usrp-users@lists.ettus.com>; Tue, 22 Oct 2019 11:12:27 -0700 (PDT)
+ (Exim 4.92) (envelope-from <richard.bell4@gmail.com>)
+ id 1iMyiB-0002c3-AH
+ for USRP-users@lists.ettus.com; Tue, 22 Oct 2019 14:16:51 -0400
+Received: by mail-lj1-f179.google.com with SMTP id u4so4080924ljj.9
+ for <USRP-users@lists.ettus.com>; Tue, 22 Oct 2019 11:16:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to;
- bh=yUM+Ixeo3OmmhhPi5AMuI+IEkhOEkINaY9YmjAsvMnM=;
- b=XtaEAzrG4QT8HjQQZBgRkA39TwWDjTpJUOLysv9Ouh9YfixwaCRNppSa98oTs4Xq0e
- 14c6+a18GETtZ7eMjCxhY9sWOl1YCVDYbHaOCDFwuyTWAXMsMKKLwensvAU+wjEyOObo
- abyavftfHfPTt4fuRJPmT+YwsN9LVUAaKEDJPOaruydXy8a49dQiSs91ZWmBBJ4ikBdU
- 8HUFhbicNfHpdEnkoINjaRjlB4V+5h5J4ASr8wsjOZV+tdUPRPBwZroG/d5k9HYAzpR9
- HjPALH+WPBxjISVRXdZxYEyBJZg+hLDJ0KEmhiWivHgwBENSMITHWl5URk1i6aqgrk3F
- KqtQ==
+ bh=owX6cDQYr27RX0Ai9VU8s0hIoSOchIrrptHh+TRmScM=;
+ b=Co4oKtqSBZRVspbkJ8PNldGiB16CqqaQQbkMWeZxCJjcFcfZecYaH8pO0f5RaTB3DF
+ 2woa7gpcS1ylMiQE5q1QFulKjCqfL+KhZZazaCRlqC+6T/iVihN4aCVzu1igcb98A99N
+ nPp+RCRGIv5wLumn467m3WcAC5waCw/HTc6wsr2DYxNdiU+QPU4VeZGVx1/ogDlbMECx
+ WMqPA+GXVreWEuxs7n5ORKx78lw7L+uWJ7K6Axrm38lgsRASq7T6+Nb0dWSdu9xaaSCb
+ ixMoWWhq9iXWf2BGmxjiAHGrXiOrrhVjWWjVpyTNdQcCWl7rINu+dqZPyvbVsLjO/38y
+ u+Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=yUM+Ixeo3OmmhhPi5AMuI+IEkhOEkINaY9YmjAsvMnM=;
- b=H0ZcW61Nz6T3rKqy8mWw8Wde2jnsWLFc0Jt62AWlIQNyoo3RAo52KikmxkLXRI+CEY
- Y93ij4Drzn+kiav/kzq0mhUmRn7SnL7skhM9U+dj4KcV3ifxtx0Byzi0wZ30JELGG2Ic
- axanxmLOnawezIRDhOamqh3o4ILCol4s8qYNApIbkTL1h/eKLSpD8xy/Daw672C5JYbm
- vMp4VdO+HJRtIk3Nf23WJsMdXxZabv1B2P++3K2b9e1MhgGpvXs7j3fYnmNJfjSFVLbK
- n2ptp8agABUz1IPh4Em4PBN3+b/iUcW5lc9lTKS1GY/xWcZrGVf1ween1nmoKRyXqy3l
- V0PA==
-X-Gm-Message-State: APjAAAXMqCI+aHiZrUtrLnYVpirUQ1E843wMUiay/5LJOelX1pvht5jR
- sff6SIbIlB/Sog9fPbUdryd8nyaxkVOV8nkK876IF12T
-X-Google-Smtp-Source: APXvYqx11KeBxCuM8nFPtp88dnU6Uy7mPFX52dboH6eIZgM5nrOcw6dBrzCGOnE3bKyfTcdC6xwhlR6Dzp4HTjKvcgE=
-X-Received: by 2002:a05:620a:13e5:: with SMTP id
- h5mr4190978qkl.467.1571767926592; 
- Tue, 22 Oct 2019 11:12:06 -0700 (PDT)
+ bh=owX6cDQYr27RX0Ai9VU8s0hIoSOchIrrptHh+TRmScM=;
+ b=UlR2QjyruceUudMyqej3wXqV6f2k7U0w+7kJ37TNzyXanomsV8f+tJM1InHaFNW9f5
+ NkiKiGhsuqhYAQbvPYc2432rrP3UURIODn+9ta4CkBIyPTWT1C1qFO/iOPn0xxegcSKn
+ hfFBnoqzHTaGnaNJmMbnWAiTXFHxe+d1iq+2xLN+11p5sz0jpmuHG+lWaYLh8jzXXFiH
+ pEll5knkaP3zlsjdxFeM7tnwpTX6847Jzs4Xffx5G0cb/zpyFKt7btHY4gjMAFRORqzb
+ cYO8NjXd99fDpaSAaA+uYc3eoETLaD36BYWlEktwxTil5pCBKtIMELHEz0ih+ymJ8Jun
+ H3rQ==
+X-Gm-Message-State: APjAAAVvFnjdwO/eDwBnZba9aqB/WZQ2NUOZ+0KbwYLkT/2XdQmsuuk8
+ M9wQo4rUSGlRtkjxf6kunDQs5+f42vcXdJGqUepLZA==
+X-Google-Smtp-Source: APXvYqxFb7es4TuKFsgA/kdiZ4er+Haxd9rCbK4GDlXKVnkuJWchluzY1zY9uxTpNuWsYfsIMBKTNzC4YoRwb7y1xdk=
+X-Received: by 2002:a2e:9707:: with SMTP id r7mr79759lji.219.1571768169832;
+ Tue, 22 Oct 2019 11:16:09 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 22 Oct 2019 15:11:55 -0300
-Message-ID: <CALSKgPy9YoLX2fXWJPiy5kWDxswB_0oQ4VC1chWw6EqCVKJ+Rw@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] X310 over PCIe not found in Ubuntu 18
+Date: Tue, 22 Oct 2019 11:15:58 -0700
+Message-ID: <CAMMoi3tOy8feTRfTKQ-ipAcQpoyAgf4VzCQjq6NcRNzB=-3yag@mail.gmail.com>
+To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Subject: [USRP-users] Multi-USRP with X300's
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -55,9 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Wheberth Damascena Dias via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Wheberth Damascena Dias <wheberth@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8840658686584219685=="
+From: Richard Bell via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Richard Bell <richard.bell4@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5578360791644494664=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,90 +71,54 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8840658686584219685==
-Content-Type: multipart/alternative; boundary="000000000000ef1cc0059583bc6c"
+--===============5578360791644494664==
+Content-Type: multipart/alternative; boundary="0000000000006ea441059583cbb3"
 
---000000000000ef1cc0059583bc6c
+--0000000000006ea441059583cbb3
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all, I have a new i9-9900K Ubuntu 18.04 machine with kernel 4.15.0.
-Despite the NI PCIe driver compiled and loaded with no problems, I can't
-make the X310 (over PCIe) work.
-I have a similar setup with an i7, same kernel version and it works
-perfectly.
-Any insights or suggestions would be appreciated.
+Hello,
 
-The error message is the following:
+I'm a little confused about how I should distinguish between two different
+USRPs X300's and the two different motherboards per USRP X300 in this type
+of setup. I am feeding a 10 MHz ref and PPS ref to both USRPs. What I have
+right now is a gr flowgraph with a single USRP Sink block that I have
+configured with the following device address
 
-$ uhd_find_devices
-linux; GNU C++ version 7.3.0; Boost_106501; UHD_003.010.003.000-0-unknown
-UHD Error:
-    Device discovery error: input stream error
-No UHD Devices Found
+"addr0=192.168.10.2,addr1=192.168.11.2"
 
+and I have selected
 
-The lspci gives me:
-$ sudo lspci -v -k -d 1093:c4c4
-03:00.0 Signal processing controller: National Instruments PXIe/PCIe Device
-Subsystem: National Instruments PXIe/PCIe Device
-Flags: fast devsel, IRQ 255
-Memory at a1100000 (32-bit, non-prefetchable) [disabled] [size=256K]
-Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
-Capabilities: [78] Power Management version 3
-Capabilities: [80] Express Endpoint, MSI 00
-Capabilities: [100] Virtual Channel
-Capabilities: [800] Advanced Error Reporting
+Num Mboards = 2
+Num Channels = 2
 
+But this setup only uses the addr0=192.168.10.2 USRP to receive on both RFA
+and RFB ports. I would like to configure receiving on 192.168.10.2 RFA
+TX/RX and 192.168.11.2 RFA TX/RX.
 
-uhd version:
-uhd-host/bionic,now 3.10.3.0-2 amd64 [installed]
-libuhd003.010.003/bionic,now 3.10.3.0-2 amd64 [installed]
-libuhd-dev/bionic,now 3.10.3.0-2 amd64 [installed]
+How do I configure this properly?
 
-Regards,
--- 
-*Wheberth Damascena Dias*
-_______________ _____ _____ __ ___ __ _ _ _  _
-http://www.linkedin.com/in/wheberth
-e-mail:wheberth@gmail.com
-
---000000000000ef1cc0059583bc6c
+--0000000000006ea441059583cbb3
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi all, I have a new i9-9900K Ubuntu=
- 18.04 machine with kernel 4.15.0. Despite the NI PCIe driver compiled and =
-loaded with no problems, I can&#39;t make the X310 (over PCIe) work.<br></d=
-iv><div>I have a similar setup with an i7, same kernel version and it works=
- perfectly. <br>Any insights or suggestions would be appreciated. <br><br><=
-/div><div></div>The error message is the following:<br><br>$ uhd_find_devic=
-es <br>linux; GNU C++ version 7.3.0; Boost_106501; UHD_003.010.003.000-0-un=
-known<br>UHD Error:<br>=C2=A0 =C2=A0 Device discovery error: input stream e=
-rror<br>No UHD Devices Found<br clear=3D"all"><div><div><div><br><br>The ls=
-pci gives me:<br>$ sudo lspci -v -k -d 1093:c4c4<br>03:00.0 Signal processi=
-ng controller: National Instruments PXIe/PCIe Device<br>	Subsystem: Nationa=
-l Instruments PXIe/PCIe Device<br>	Flags: fast devsel, IRQ 255<br>	Memory a=
-t a1100000 (32-bit, non-prefetchable) [disabled] [size=3D256K]<br>	Capabili=
-ties: [50] MSI: Enable- Count=3D1/1 Maskable- 64bit+<br>	Capabilities: [78]=
- Power Management version 3<br>	Capabilities: [80] Express Endpoint, MSI 00=
-<br>	Capabilities: [100] Virtual Channel<br>	Capabilities: [800] Advanced E=
-rror Reporting<br><br><br></div><div>uhd version:<br>uhd-host/bionic,now 3.=
-10.3.0-2 amd64 [installed]<br>libuhd003.010.003/bionic,now 3.10.3.0-2 amd64=
- [installed]<br>libuhd-dev/bionic,now 3.10.3.0-2 amd64 [installed]</div><di=
-v><br>Regards,<br>-- <br><div dir=3D"ltr" class=3D"gmail_signature"><div di=
-r=3D"ltr"><div><span style=3D"font-size:12.8px"><b>Wheberth Damascena Dias<=
-/b></span><br></div><div><span style=3D"color:rgb(80,0,80);font-size:12.8px=
-">_______________ _____ _____ __ ___ __ _ _ _=C2=A0 _=C2=A0</span><br><div>=
-<a href=3D"http://www.linkedin.com/in/wheberth" target=3D"_blank">http://ww=
-w.linkedin.com/in/wheberth</a></div><div><a href=3D"mailto:e-mail%3Awhebert=
-h@gmail.com" target=3D"_blank">e-mail:wheberth@gmail.com</a></div><div><div=
-><div><br></div></div></div></div></div></div></div></div></div></div></div=
->
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;m a little conf=
+used about how I should distinguish between two different USRPs X300&#39;s =
+and the two different motherboards per USRP X300 in this type of setup. I a=
+m feeding a 10 MHz ref and PPS ref to both USRPs. What I have right now is =
+a gr flowgraph with a single USRP Sink block that I have configured with th=
+e following device address</div><div><br></div><div>&quot;addr0=3D192.168.1=
+0.2,addr1=3D192.168.11.2&quot;</div><div><br></div><div>and I have selected=
+</div><div><br></div><div>Num Mboards =3D 2</div><div>Num Channels =3D 2</d=
+iv><div><br></div><div>But this setup only uses the addr0=3D192.168.10.2 US=
+RP to receive on both RFA and RFB ports. I would like to configure receivin=
+g on 192.168.10.2 RFA TX/RX and 192.168.11.2 RFA TX/RX.</div><div><br></div=
+><div>How do I configure this properly?<br></div></div>
 
---000000000000ef1cc0059583bc6c--
+--0000000000006ea441059583cbb3--
 
 
---===============8840658686584219685==
+--===============5578360791644494664==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -165,5 +129,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8840658686584219685==--
+--===============5578360791644494664==--
 
