@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF0CE2387
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Oct 2019 21:57:54 +0200 (CEST)
-Received: from [::1] (port=47518 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC07FE2483
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Oct 2019 22:22:22 +0200 (CEST)
+Received: from [::1] (port=51266 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iNMlT-00033o-NJ; Wed, 23 Oct 2019 15:57:51 -0400
-Received: from mail-lj1-f174.google.com ([209.85.208.174]:39555)
+	id 1iNN9B-0004II-1F; Wed, 23 Oct 2019 16:22:21 -0400
+Received: from mail-lj1-f181.google.com ([209.85.208.181]:37370)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1iNMlQ-00030Y-01
- for usrp-users@lists.ettus.com; Wed, 23 Oct 2019 15:57:48 -0400
-Received: by mail-lj1-f174.google.com with SMTP id y3so22432972ljj.6
- for <usrp-users@lists.ettus.com>; Wed, 23 Oct 2019 12:57:27 -0700 (PDT)
+ id 1iNN97-0004Ag-Mk
+ for USRP-users@lists.ettus.com; Wed, 23 Oct 2019 16:22:17 -0400
+Received: by mail-lj1-f181.google.com with SMTP id l21so22516262lje.4
+ for <USRP-users@lists.ettus.com>; Wed, 23 Oct 2019 13:21:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=PgwcxJwqo8kTtB+MAaFpGzPz5eynQTutP1xVEG4npJY=;
- b=djQ3Z2gGua3QvrR8w7U0t1ZLTwe6VYQQVupl/iqoCJ8nLy/sd/HWsdwSoeKFiijIpH
- nWdYqICoM4MYkIUVRim+HGA2KRKMATHDBAxHDD5wks7BpDDgHg2bHGQYnxEwWfIRByqw
- rsqNnBNThcnTLbtiXPL2AxbuLxWl23PeXS9686eRqfitkDP1F8FBqPvaC8hjdDlxpDJZ
- 0thNw0f8vN2yziab0nTmrkDGE3ql8N4QxrM2F3MxyqpZFsdCA+esPMnNQkbjlCeYWrDq
- u2+Ck0FeyeWJE6xAp57goAwyWXFQwdsVvvu3zru53j3KWRD1+KwQLy9J+KLspT4vzrTg
- Zi5g==
+ :cc; bh=AE4DRqfY4ttawDNXelJ8/EIldSxuXLCno6RJm27Eymg=;
+ b=lMoBkBR+rhvAhvgsEEvmZ8ru/mNm2BHzxNCTqetpSApK62QY57xIkv3290T7+WO9/x
+ GIDwL/0Cu3z74Eci017OzX7YwotaH9ltRjB04rIT5N4/OvlOJDEW4/SxW8NI1YqNK+k9
+ sbQfJ3nAsnt78ztJfqpmV1lOXpBMF3dfvpPe3QXvblaw3kWr608aJ/SJtJ8ldM+TsXMo
+ fe5axfwIfC3dVIIMyWthmWgNcW+ltlyRjR+35Nggcsc9Nn5j9dulfhcGgQNUli5J7UIB
+ gEPA7CwZtkC9j1dfLBla41ewVpwP8bGby7uk/7meeToFj8cQaz6L6Fi1t5UZQRVe/cPO
+ iSaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=PgwcxJwqo8kTtB+MAaFpGzPz5eynQTutP1xVEG4npJY=;
- b=LjGAC3kQ7KtDnZSWd3614O1RfddIRRvnkW+1vjRSmq+k8v7Z9GxFXV7/91t+bsJG4j
- ZnwB38KzQzt6zk+LIAdZQ75U/BFp2GqgVaPXFwtJ9G7vNBnNlibdIpQTOkSe6NaS0wHT
- si3j3uQyTABnwlhD2bYD+IljkwC8YC7prT9+hRs763IuXR5wizZ4W32RhdUHwb9lVpPN
- 4cs7LWEq6gqcMnxCKhoq8dOJPYHtYjqvECR83zntIOEegk4zVJl/s4Q7X7k1hBL/VEBN
- lCh2FC2Qj6yOv0Kl29NCIx4T6YELkVs7k1G4fkhjgzNluE3zZGOLsIlL9+/v1QRrDVzy
- dG2Q==
-X-Gm-Message-State: APjAAAUJ+Hm28S9PoVlEgKJhG/XKGsHsrcrlDTDJ3q3SIaljO7fvRhef
- WXcxEPSLdGklfA+tj+EpVrdReKoY1PmWs/ER8CVQ1PNQ
-X-Google-Smtp-Source: APXvYqz0evhc87s+c3LNZbrlgBBTUcJ+U4fuPAzKpSGf2v/Ts8mX3CxZQ7FMhVU9Hh1m+y4tN7ZBAF8S1byL2aVdJ08=
-X-Received: by 2002:a2e:808f:: with SMTP id i15mr3216688ljg.24.1571860626423; 
- Wed, 23 Oct 2019 12:57:06 -0700 (PDT)
+ bh=AE4DRqfY4ttawDNXelJ8/EIldSxuXLCno6RJm27Eymg=;
+ b=OMJjAGo1DmJS/Wgb/SPY7Di2Oky3DrzhgPg17s2nlDx2f1mDSRyIu0CPl6f/Q5AubD
+ b2C2jqAQ88Xe7jCNTwA64K+U2sBAu1iKUGnO8xww+JizIWIbbWSZySG8DOIEgiiApyRj
+ cPzpuUvvu4HnEESbHSh9HsyXqNENAZyUSm1m1a0nBtJ8EnEfp7T7XDs4elTu0yRQWbe6
+ moGUGyKUbwWKufjWNcQQOA+vd2aTWI1EzzzFRFpZBjiEX5Tyw9c8y3NOFztVCHQVDMAJ
+ 4hN7BcAwhdCqEyms4F6oGy/EkW8r/JpHV7QM1D2GABBMEwHTSZ+58fJuyHMHjU6iRMmU
+ u2Tg==
+X-Gm-Message-State: APjAAAWrZA7Uc/5DTaceif9wY38UP8VXGpGyx/c3BDjMeEgYswYNoCM3
+ ETkn5aQGAaMzJEmKw59AzQwKO6axVpnVRTrAIiT1G/+O
+X-Google-Smtp-Source: APXvYqyx+Zb/R90wL30Gc6MM7DsXqyj2oW3Pi4FCygacMbYO3O+jh2SSvMypwjE8x+z+U6Ohpu9GCG2LkBxqKMPagU0=
+X-Received: by 2002:a2e:6817:: with SMTP id c23mr4338770lja.91.1571862096498; 
+ Wed, 23 Oct 2019 13:21:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEJWbW022J-UCzT+hs-dTbUGSXTSzQDMkC27tHwsk5rL1BnsUg@mail.gmail.com>
-In-Reply-To: <CAEJWbW022J-UCzT+hs-dTbUGSXTSzQDMkC27tHwsk5rL1BnsUg@mail.gmail.com>
-Date: Wed, 23 Oct 2019 14:56:54 -0500
-Message-ID: <CANf970Z3G9r1Ga9EeXnTM1tGHanOzmPLcnkmY7M=9_WoUrkMbg@mail.gmail.com>
-To: Carlos Bocanegra <carlos.bocanegra.guerra@gmail.com>
-Subject: Re: [USRP-users] TwinRX and UBX under same multiUSRP object on X310s
+References: <D71B2B9BB39CE44CACCAB6646DF20CFD48D9E17E@exmbx01>
+In-Reply-To: <D71B2B9BB39CE44CACCAB6646DF20CFD48D9E17E@exmbx01>
+Date: Wed, 23 Oct 2019 15:21:24 -0500
+Message-ID: <CANf970a5E2H_1=D5D_nE8TWmGv2iDXrGgy+df7AUWw5VuBWyxg@mail.gmail.com>
+To: =?UTF-8?B?U2tvcnN0YWQsSsO4cm4=?= <Joern.Skorstad@nkom.no>
+Subject: Re: [USRP-users] E310 LO offset problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -61,8 +61,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8976962879100414901=="
+Cc: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2708048905987887130=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,55 +76,72 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8976962879100414901==
-Content-Type: multipart/alternative; boundary="000000000000467747059599525d"
+--===============2708048905987887130==
+Content-Type: multipart/alternative; boundary="000000000000e5e131059599a961"
 
---000000000000467747059599525d
+--000000000000e5e131059599a961
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Carlos,
-
-You're correct that currently we can't currently use a TwinRX and a UBX in
-the same chassis without running into sample rate / tick rate conflicts. I
-would guess that this would extend to a chassis with UBX boards and a
-chassis with TwinRX boards if they're encapsulated in the same multi-usrp
-object AND streamer. I haven't tried it myself, but I have a feeling that
-you might be able to run things correctly if you split each X310 out into
-its own streamer (benchmark rate uses a single streamer).
+Does that "ghost" signal change offset as you increase and decrease your
+sample rate?
 
 -Sam
 
-On Tue, Oct 22, 2019 at 9:33 AM Carlos Bocanegra via USRP-users <
+On Tue, Oct 22, 2019 at 2:16 AM Skorstad,J=C3=B8rn via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Hi all,
+> Hi list,
 >
-> Can we have daughterboards TwinRX and UBX working under the same multiUSRP
-> object? For instance, two TwinRX attached to one USRP and two UBX attached
-> to another USRP creating 6 synchronized and phased aligned receiver
-> channels?
 >
-> The discussion below stated that the sampling rate mismatch (100Msps for
-> the TwinRX and 200Msps for the UBX) do not allow for simultaneous operation
-> under the same USRP. But what about different USRPs?
-> https://lists.gnu.org/archive/html/discuss-gnuradio/2017-07/msg00021.html
 >
-> If I try running the benchmark_rate having two TwinRX on the address 70.2
-> and two UBX on the 60.2 like:
-> *>> sudo /usr/local/lib/uhd/examples/benchmark_rate --args
-> "addr0=192.168.70.2,addr1=192.168.60.2" --rx_channels 0,1,2,3 --rx_subdev
-> "A:0 B:0" --rx_rate 1e6 --ref external --pps external*
-> I get the error:
-> *RuntimeError: Conflicting tick rates: One neighbouring block specifies
-> 2e+08 MHz, another 1e+08 MHz.*
+> I am writing a C++ software which will scan through a given frequency
+> range and perform an fft. The software seems to do what it should, howeve=
+r
+> something weird happens when using LO offset tuning. With the following
+> settings all looks correct:
 >
-> I also tried changing the master clock rate to see if we can match them,
-> but then I get that the X310 can't change their master clock rate at
-> runtime, even when I set these parameters as "stream_args" when I create
-> the usrp_source object.
+>
+>
+> Sample rate 6.4M =E2=80=93 master clock 51.2M =E2=80=93 512 byte num_samp=
+les/binsize =E2=80=93
+> offset 0. However I can clearly see the DC peak for every =C2=ABjump=C2=
+=BB in
+> frequency.
+>
+>
+>
+> With the same settings as above and a 3.2M offset there is a =C2=ABghost=
+=C2=BB
+> signal 3.2MHz below the real signal, which mirrors the real signal with
+> slightly lower amplitude. This happens everywhere in the spectrum where
+> solid signals (approx 40-50 dBuV) are present. Using the command
+> tune_request(freq, offset) and usrp->set_rx_freq(tune_request) to set
+> frequencies. Have also tried with different gain settings from 0-40, no
+> change. Have also tried with 10 dB attenuator between antenna and the
+> radio, no change.
+>
+>
+>
+> The same happens on other sample rates and offsets as well, the ghost
+> signal is always the same as the offset (+ or -). I am using UHD_3.14.1.
+> Have also tried changing rx_bandwidth without any change.
+>
+>
+>
+> Is it possible to use LO offset and eliminate the =C2=ABghost=C2=BB signa=
+ls, or is
+> this some radio/DSP limitation? I have pictures showing the problem
+> clearly, I can send directly by email if necessary.
+>
+>
 >
 > Thanks,
-> Carlos
+>
+> Jorn
+>
+>
+>
 >
 > _______________________________________________
 > USRP-users mailing list
@@ -132,45 +149,67 @@ usrp-users@lists.ettus.com> wrote:
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000467747059599525d
+--000000000000e5e131059599a961
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Carlos,</div><div><br></div><div>You&#39;re correct t=
-hat currently we can&#39;t currently use a TwinRX and a UBX in the same cha=
-ssis without running into sample rate / tick rate conflicts. I would guess =
-that this would extend to a chassis with UBX boards and a chassis with Twin=
-RX boards if they&#39;re encapsulated in the same multi-usrp object AND str=
-eamer. I haven&#39;t tried it myself, but I have a feeling that you might b=
-e able to run things correctly if you split each X310 out into its own stre=
-amer (benchmark rate uses a single streamer).</div><div><br></div><div>-Sam=
-<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Tue, Oct 22, 2019 at 9:33 AM Carlos Bocanegra via USRP-users &=
-lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com=
-</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>Can we have daughter=
-boards TwinRX and UBX working under the same multiUSRP object? For instance=
-, two TwinRX attached to one USRP and two UBX attached to another USRP crea=
-ting 6 synchronized and phased aligned receiver channels?<br></div><div><br=
-></div><div>The discussion below stated that the sampling rate mismatch (10=
-0Msps for the TwinRX and 200Msps for the UBX) do not allow for simultaneous=
- operation under the same USRP. But what about different USRPs?<br></div><d=
-iv><a href=3D"https://lists.gnu.org/archive/html/discuss-gnuradio/2017-07/m=
-sg00021.html" target=3D"_blank">https://lists.gnu.org/archive/html/discuss-=
-gnuradio/2017-07/msg00021.html</a></div><div><br></div><div>If I try runnin=
-g the benchmark_rate having two TwinRX on the address 70.2 and two UBX on t=
-he 60.2 like:<br></div><div><i>&gt;&gt; sudo /usr/local/lib/uhd/examples/be=
-nchmark_rate --args &quot;addr0=3D192.168.70.2,addr1=3D192.168.60.2&quot; -=
--rx_channels 0,1,2,3 --rx_subdev &quot;A:0 B:0&quot; --rx_rate 1e6 --ref ex=
-ternal --pps external</i></div><div>I get the error:<i><br></i></div><div><=
-i>RuntimeError: Conflicting tick rates: One neighbouring block specifies 2e=
-+08 MHz, another 1e+08 MHz.</i></div><div><i><br></i></div><div>I also trie=
-d changing the master clock rate to see if we can match them, but then I ge=
-t that the X310 can&#39;t change their master clock rate at runtime, even w=
-hen I set these parameters as &quot;stream_args&quot; when I create the usr=
-p_source object.</div><div><br></div><div>Thanks,</div><div>Carlos<br></div=
-><div><i></i></div><div><br></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
+sans-serif">Does that &quot;ghost&quot; signal change offset as you increas=
+e and decrease your sample rate?</div><div class=3D"gmail_default" style=3D=
+"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" sty=
+le=3D"font-family:verdana,sans-serif">-Sam</div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 22, 2019 at 2:1=
+6 AM Skorstad,J=C3=B8rn via USRP-users &lt;<a href=3D"mailto:usrp-users@lis=
+ts.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"NO-BOK">
+<div class=3D"gmail-m_-1529939928815879325WordSection1">
+<p class=3D"MsoNormal">Hi list,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I am writing a C++ software which will scan through =
+a given frequency range and perform an fft. The software seems to do what i=
+t should, however something weird happens when using LO offset tuning. With=
+ the following settings all looks
+ correct:<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Sample rate 6.4M =E2=80=93 master clock 51.2M =E2=80=
+=93 512 byte num_samples/binsize =E2=80=93 offset 0. However I can clearly =
+see the DC peak for every =C2=ABjump=C2=BB in frequency.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">With the same settings as above and a 3.2M offset th=
+ere is a =C2=ABghost=C2=BB signal 3.2MHz below the real signal, which mirro=
+rs the real signal with slightly lower amplitude. This happens everywhere i=
+n the spectrum where solid signals (approx 40-50
+ dBuV) are present. Using the command tune_request(freq, offset) and usrp-&=
+gt;set_rx_freq(tune_request) to set frequencies. Have also tried with diffe=
+rent gain settings from 0-40, no change. Have also tried with 10 dB attenua=
+tor between antenna and the radio,
+ no change.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">The same happens on other sample rates and offsets a=
+s well, the ghost signal is always the same as the offset (+ or -). I am us=
+ing UHD_3.14.1. Have also tried changing rx_bandwidth without any change.
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Is it possible to use LO offset and eliminate the =
+=C2=ABghost=C2=BB signals, or is this some radio/DSP limitation? I have pic=
+tures showing the problem clearly, I can send directly by email if necessar=
+y.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
+<p class=3D"MsoNormal">Jorn <u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9pt;font-family:&quot;Arial=
+&quot;,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -180,10 +219,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000467747059599525d--
+--000000000000e5e131059599a961--
 
 
---===============8976962879100414901==
+--===============2708048905987887130==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -194,5 +233,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8976962879100414901==--
+--===============2708048905987887130==--
 
