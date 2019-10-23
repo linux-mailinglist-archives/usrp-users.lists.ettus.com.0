@@ -2,64 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BBCE1DA0
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Oct 2019 16:02:42 +0200 (CEST)
-Received: from [::1] (port=46498 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15E52E1DEC
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Oct 2019 16:18:13 +0200 (CEST)
+Received: from [::1] (port=50280 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iNHDl-0007EX-7g; Wed, 23 Oct 2019 10:02:41 -0400
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:43436)
+	id 1iNHSl-0008Ex-FU; Wed, 23 Oct 2019 10:18:11 -0400
+Received: from mail-qt1-f175.google.com ([209.85.160.175]:32797)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iNHDh-00076Q-4P
- for usrp-users@lists.ettus.com; Wed, 23 Oct 2019 10:02:37 -0400
-Received: by mail-qk1-f172.google.com with SMTP id a194so15749325qkg.10
- for <usrp-users@lists.ettus.com>; Wed, 23 Oct 2019 07:02:17 -0700 (PDT)
+ id 1iNHSh-00086v-8o
+ for USRP-users@lists.ettus.com; Wed, 23 Oct 2019 10:18:07 -0400
+Received: by mail-qt1-f175.google.com with SMTP id r5so32559256qtd.0
+ for <USRP-users@lists.ettus.com>; Wed, 23 Oct 2019 07:17:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=513N7VZ7/YQGz4xGH7SsKaR2eGJ40EjhHw564Jv0lKg=;
- b=IdnlkHNkZughfv4AgybW9hm3fDlfmhsDagv3MIFHLoFfhaUY29EsHlRX/yW7LRmebH
- zc3Z1ZByVb4ex/dsbvNo28G62fEvO1EOSBd+872lvtaGFy1TW09UxraMp5zfPJAqURfb
- 7veLFlLTxrkRcJmPZcPqHJ5YjhUCfo68EhOxSKctfwbfub7kGoqIKKQX8bkCoby7omaH
- CpTGJLC68ZkEMwNuwWb87bFUpfi7bBusD1OaJby7AtvhtKKEi8kplwFazJdxU9ZpnL4D
- eq5Ae1vSSu59Xe1h9S1lfO0RQ4Qk6Tru45W/WkWmOSwWnaEnNA0Wnxd27kNpLX7u3Z4s
- 0DmQ==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=5rIL2yNaItatXtkcjp7JXEGqGqwaIN+s/GF6rGExEbI=;
+ b=k5S5kVACksxYJwGjUd07/3wrKonJXk3LHpce1OMvzR4TsZJaFh3sWEk1g/htbTcBe1
+ 5qgPL9byxitteBol0PL1Z+FY4s/rdgVaMMpSDhgXkCiaiYWe3H+Q5gs2HT9YxWtuLfVg
+ vYTeuj4//jLj3N/RE+o8Cwp7SXzgeLK/xmoe8N9hQ3Cu83kyFSILWZH12TNT/3MFye2m
+ AmXH9Y0oofwGFNYIZVzEhndlPWp59xwIi7FStSIVMyzAkkGwX8TdwIaMCBUgDfnQTsZV
+ AniEJzUTNuTOzAFCWdV3t7ce1LK2EM9P2W4VXVsTuqceH+Mib+Rczgj2byV43Tl94sIM
+ v7ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=513N7VZ7/YQGz4xGH7SsKaR2eGJ40EjhHw564Jv0lKg=;
- b=CekMVtdSY6khp6MjbKRBk3bqF02BGhRfYdMnUjdbbUAnG8xRcMW3vrnhRcB9j1dKlu
- XKy/MJQlPms+ea2r2gNXcANuVk/6FQwFTQkijBp0mC/y2Nle3LtE2XwU8WNhyeuZYc3U
- Jx+lqiNCyoTjibX7XBoiEitT+SLS1y3eSfNo2MXY8u88XK3uoFoqoT9PluUEG2I/JQGB
- vV0/1O9QJ4CnscMzDQqrW6MKiBg0G3Ixb6ff5T86CVpJMUK9DRtpNxlrLohlEmH4YoBU
- 3aQSbwhY3hPLc7LJuH7sWvWoaXKJ+yDftD+MfFD0PoAvYkcjHzEaoJZqVLXl6jXJ02KK
- eS6A==
-X-Gm-Message-State: APjAAAVGxYLgGMPw0Lt0q50frwNOknCigKWHNbXZK6gIOCL10X+d+efE
- Kh+AonYPrrzHADuBaQxcdSm7R40wXxI=
-X-Google-Smtp-Source: APXvYqy8OtVNVIv9IKjLLfj2KtIenrBze7V4Mk66hCHhTyO7SVAjlQYvRB453B/qC3zI7D5jCvLdKA==
-X-Received: by 2002:ae9:ef50:: with SMTP id d77mr8640949qkg.430.1571839316307; 
- Wed, 23 Oct 2019 07:01:56 -0700 (PDT)
+ :cc:subject:references:in-reply-to;
+ bh=5rIL2yNaItatXtkcjp7JXEGqGqwaIN+s/GF6rGExEbI=;
+ b=SfC1BtlXbowgQ3YLjrGSZexDzBz3HYEnxjwfRrC1zSsKoHPGmfOloaNvwaeYCl/v28
+ nZkskqRO/2bWiUwSDPbQY5yuQqh36Cprjaz6UVt933zOXH89cxfM+Hd/Nwz1KEseGM4f
+ cvabuWdNRPauq2zo9Ff1zHkXBIIOsP40rlChe2/vJMX1JskazNrNB6fI0YrgSBh2b4Mn
+ EwswG7csKOnM/Thq0s0DWK4sBjUuRB7kswA5lrG0ZYHgGgNyW/1E3dH3tfJhHwvhoHej
+ tNCOgsEeipV2jdfG03Z+4U0cys8qvOe1e4/OWUjxggX9Qs6CXlba79WPuAhk7fm2P1xn
+ yL+Q==
+X-Gm-Message-State: APjAAAXsxex5/t7EpoOQ3S0eqZdWmYyI7botbFi2rABHWGYQS3ItqI1j
+ mQkjXi9qjg/TCM7bjlRSPa7X26z4lf0=
+X-Google-Smtp-Source: APXvYqyuh2xejbuOw1PuBjuRYH1QrQp04fjErVmcDQ7F0yH+1Lhgx/S0gmbTEzwXzED79r2QQDpK0A==
+X-Received: by 2002:ac8:554c:: with SMTP id o12mr9532541qtr.388.1571840246481; 
+ Wed, 23 Oct 2019 07:17:26 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-15-137.dsl.bell.ca.
- [174.95.15.137])
- by smtp.googlemail.com with ESMTPSA id g126sm752919qkb.133.2019.10.23.07.01.55
- for <usrp-users@lists.ettus.com>
+ [174.95.15.137]) by smtp.googlemail.com with ESMTPSA id
+ x125sm14477067qkc.24.2019.10.23.07.17.25
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 23 Oct 2019 07:01:55 -0700 (PDT)
-Message-ID: <5DB05D53.8030007@gmail.com>
-Date: Wed, 23 Oct 2019 10:01:55 -0400
+ Wed, 23 Oct 2019 07:17:25 -0700 (PDT)
+Message-ID: <5DB060F5.6020009@gmail.com>
+Date: Wed, 23 Oct 2019 10:17:25 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <0317ead0-5a23-2edc-7b80-3164cfe1dbc7@ant.uni-bremen.de>
- <DM5PR10MB194543FDE52C6C64A0985EE2AB6C0@DM5PR10MB1945.namprd10.prod.outlook.com>
- <e3e0f65b-9646-0059-8dd1-eef83c412898@ant.uni-bremen.de>
- <CAKJyDkJd_vJgDk2uCdCzeRvAguE9++X+yBjk_F2BU3c8bt=C3g@mail.gmail.com>
- <3578cf18-7f01-4b87-6548-ea36115d4a7f@ant.uni-bremen.de>
-In-Reply-To: <3578cf18-7f01-4b87-6548-ea36115d4a7f@ant.uni-bremen.de>
-Subject: Re: [USRP-users] N310 sensitivity
+To: Richard Bell <richard.bell4@gmail.com>
+References: <CAMMoi3tOy8feTRfTKQ-ipAcQpoyAgf4VzCQjq6NcRNzB=-3yag@mail.gmail.com>
+ <EA7ABB40-42B2-41C4-B0D4-F51ACF3DE936@gmail.com>
+ <CAMMoi3vGDD-A72_zZTCcSU-G-Rt6Ab354RZHSAtDLU0Cv1e76Q@mail.gmail.com>
+In-Reply-To: <CAMMoi3vGDD-A72_zZTCcSU-G-Rt6Ab354RZHSAtDLU0Cv1e76Q@mail.gmail.com>
+Subject: Re: [USRP-users] Multi-USRP with X300's
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -73,8 +70,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0833090333594001114=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,142 +85,267 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMTAvMjMvMjAxOSAwOTo1NiBBTSwgSm9oYW5uZXMgRGVtZWwgdmlhIFVTUlAtdXNlcnMgd3Jv
-dGU6Cj4gSGksCj4KPiBJIHBsYXllZCBhcm91bmQgd2l0aCB0aGUgc3ViZGV2IHNwZWNzLiBUaGV5
-IGFyZSBhbGwgYWxpa2UuIEkgZm91bmQgdGhlCj4gYnVnLiBGb3Igc29tZSByZWFzb24gR1JDIGdl
-bmVyYXRlZCBmbG93Z3JhcGhzIGxhY2sgYSBjYWxsIHRvCj4gYHNlbGYudWhkX3VzcnBfc291cmNl
-XzAuc2V0X2dhaW4oZ2FpbiwgMClgIHdoZW5ldmVyIHRoZSBnYWluIHZhcmlhYmxlIGlzCj4gY2hh
-bmdlZC4gVGhpcyB3YXMgbm90IGEgaHVnZSBwcm9ibGVtIGZvciBYMzEwcyBiZWNhdXNlIHRoZXkg
-cGVyZm9ybQo+IHF1aXRlIG5pY2VseSB3aXRoIFJYZ2Fpbj0xMCBpbiBteSBzZXR1cC4gQnV0IGZv
-ciB0aGUgTjMxMHMsIEkgbmVlZGVkIHRvCj4gc2V0IFJYZ2Fpbj00MCBiZWZvcmUgSSBnZW5lcmF0
-ZSB0aGUgZmxvd2dyYXBoIGJlY2F1c2UgdGhlIGdhaW4gY2FsbGJhY2sKPiBpcyBtaXNzaW5nLgo+
-IEkgd2lsbCB1cGRhdGUgR1IgYW5kIG9wZW4gYSBuZXcgaXNzdWUgaWYgdGhlIGJ1ZyBwZXJzaXN0
-cy4KPgo+IFRoYW5rcyBmb3IgYWxsIHlvdXIgaGVscCEKPgo+IEpvaGFubmVzCldoYXQgdmVyc2lv
-biBvZiBHUiBhcmUgeW91IHVzaW5nPyAgVGhpcyBzZWVtcyB2ZXJ5ICJmaXNoeSIgdG8gbWUuCgoK
-Pgo+Cj4KPiBPbiAyMi4xMC4xOSAxNzozOCwgUm9iaW4gQ294ZSB3cm90ZToKPj4gVGhlIHN1YmRl
-diBzcGVjIG1hcHBpbmdzIGZvciB0aGUgTjMxMCBhcmUgaW4gdGhlIGdldHRpbmcgc3RhcnRlZCBn
-dWlkZQo+PiBvbiB0aGUgRXR0dXMgS0IuCj4+Cj4+Cj4+ICAgICAgICAgICAgVUhEIDMuMTMueC54
-Kwo+Pgo+PiAgICAqIFJGMCA9IEE6MAo+PiAgICAqIFJGMSA9IEE6MQo+PiAgICAqIFJGMiA9IEI6
-MAo+PiAgICAqIFJGMyA9IEI6MQo+Pgo+Pgo+PiBIYXZlIHlvdSB0cmllZCBzaW1wbGUgc2FuaXR5
-IGNoZWNrcyBzdWNoIGFzIGlucHV0dGluZyBhIHNpbmdsZSB0b25lIGludG8KPj4gZWFjaCBOMzEw
-IFJYIGNoYWluIGFuZCBwcm9ncmVzc2l2ZWx5IGluY3JlYXNpbmcgdGhlIGdhaW4gYW5kIHBsb3R0
-aW5nCj4+IHdpdGggYXNjaWkgRkZUPyAgIChXZSBkaWQgdGhpcyBhbmFseXNpcyBleHRlbnNpdmVs
-eSBkdXJpbmcgViZWIHRlc3RpbmcsCj4+IGFzIGluZGljYXRlZCBvbiB0aGUgTjMxMCBkYXRhc2hl
-ZXQsIHNvIHVubGVzcyB5b3VyIHN5c3RlbSBpcyBjb25maWd1cmVkCj4+IGluY29ycmVjdGx5IG9y
-IGhhcyBhIEhXIHByb2JsZW0sIHlvdSBzaG91bGRuJ3Qgc2VlIHdoYXQgeW91J3JlIHNlZWluZy4p
-Cj4+IElmIHlvdSB0aGluayB0aGVyZSdzIGEgSFcgcHJvYmxlbSB3aXRoIHlvdXIgdW5pdCwgSSdk
-IHN1Z2dlc3QgY29udGFjdGluZwo+PiBOSSBmb3IgYW4gUk1BLgo+Pgo+PiAtUm9iaW4KPj4KPj4K
-Pj4gT24gVHVlLCBPY3QgMjIsIDIwMTkgYXQgMzoxNiBBTSBKb2hhbm5lcyBEZW1lbCA8ZGVtZWxA
-YW50LnVuaS1icmVtZW4uZGUKPj4gPG1haWx0bzpkZW1lbEBhbnQudW5pLWJyZW1lbi5kZT4+IHdy
-b3RlOgo+Pgo+PiAgICAgIEhpIFJvYmluIGFuZCBNYXJjdXMsCj4+Cj4+ICAgICAgVGhhbmtzIGZv
-ciB5b3VyIGhpbnRzLgo+Pgo+PiAgICAgIFVIRCAzLjE0LjEuMSB3b3JrIHBlcmZlY3RseSBmaW5l
-IHdpdGggbXkgWDMxMHMuIE9ubHkgdGhlIE4zMTBzIHNlZW0gdG8KPj4gICAgICBoYXZlIHByb2Js
-ZW1zLiBJIHVzZSB0aGUgZGVmYXVsdCBIRyBGUEdBIGltYWdlIHRoYXQgc2hpcHMgd2l0aCAzLjE0
-LjEuMS4KPj4KPj4gICAgICBGb3IgdGhlIG1vbWVudCwgSSB1c2UgYFZFUlQyNDUwYCBhbnRlbm5h
-cy4gVGhlIG9uZXMgeW91IGNhbiBvcmRlciBmcm9tCj4+ICAgICAgRXR0dXMuIEkgdHJhbnNtaXQv
-cmVjZWl2ZSBAMi40ODRHSHouIEkgbW91bnRlZCBhbnRlbm5hcyBvbiBhbGwgYW50ZW5uYQo+PiAg
-ICAgIHBvcnRzLiBTbyBmb3IgdGhlIE4zMTBzIHRoYXQncyBhIHRvdGFsIG9mIDggYW50ZW5uYXMg
-cGVyIGRldmljZS4KPj4gICAgICBTbyBmYXIgSSBkaWQgbm90IHNwZWNpZnkgYSBgU3ViZGV2IFNw
-ZWNgIGluIEdSQy4KPj4KPj4gICAgICBJIHRyaWVkIGEgZmV3IG1vcmUgb3B0aW9ucy4gQWxzbywg
-SSB1bm1vdW50ZWQgdGhlIGFudGVubmFzIG9uIHRoZSBSWDIKPj4gICAgICBwb3J0cyBvbiB0aGUg
-TjMxMHMgYW5kIG1hZGUgc3VyZSB0aGUgYFRYL1JYYCBhbnRlbm5hIHBvcnQgaXMgY29uZmlndXJl
-ZC4KPj4KPj4gICAgICBIZXJlIGFyZSBteSBvYnNlcnZhdGlvbnM6Cj4+ICAgICAgMS4gWDMxMCAt
-PiBYMzEwIGV2ZXJ5dGhpbmcgd29ya3MgZmluZSBUWGdhaW49MjAsIFJYZ2Fpbj0xMC4KPj4gICAg
-ICAyLiBOMzEwIC0+IFgzMTAgZXZlcnl0aGluZyB3b3JrcywgdGhvdWdoIEkgbmVlZCB0byByYWlz
-ZSBUWGdhaW49MzggYQo+PiAgICAgIGJpdC4KPj4gICAgICAzLiBYMzEwIC0+IE4zMTAgd29ya3Mg
-YnV0IGl0IHNlZW1zIGxpa2Ugc2Vuc2l0aXZpdHkgaXMgc3RpbGwgYmFkLiBJCj4+ICAgICAgbmVl
-ZAo+PiAgICAgIHRvIHJhaXNlIFRYZ2Fpbj03MC4gUlhnYWluIHNlZW1zIHRvIG5vdCBtYWtlIGEg
-ZGlmZmVyZW5jZSBhdCBhbGwuCj4+ICAgICAgNC4gTjMxMCAtPiBOMzEwIGJhZCBwZXJmb3JtYW5j
-ZSBidXQgdHJhbnNtaXNzaW9uIGlzIHBvc3NpYmxlLiBOZWVkIHRvCj4+ICAgICAgcmFpc2UgZ2Fp
-bnMgdG8gYWxtb3N0IG1heGltdW0gZm9yIGJhZCBwZXJmb3JtYW5jZS4KPj4KPj4gICAgICBUaGlz
-IGlzIHRoZSBOMzEwIHNldHVwIGNvZGUgZ2VuZXJhdGVkIGJ5IEdSQy4gSSB0cmllZCBkaWZmZXJl
-bnQgYFN1YmRldgo+PiAgICAgIFNwZWNgcyBmb3IgYm90aCBUWCBhbmQgUlguIEkgb2J0YWluZWQg
-dGhlIGJlc3QgcmVzdWx0cyB3aXRoIGBCOjBgCj4+ICAgICAgZm9yIFRYCj4+ICAgICAgYW5kIFJY
-LiBUaG91Z2gsIGBiZXN0YCBpcyBzdGlsbCB3YXkgd29yc2UgdGhhbiBYMzEwIHBlcmZvcm1hbmNl
-Lgo+PiAgICAgIHVoZC51c3JwX3NvdXJjZSgKPj4gICAgICAgICAgICAiLCIuam9pbigoImFkZHI9
-WC5YLlguMjE0IiwgIiIpKSwKPj4gICAgICAgICAgICB1aGQuc3RyZWFtX2FyZ3MoCj4+ICAgICAg
-ICAgICAgICAgIGNwdV9mb3JtYXQ9ImZjMzIiLAo+PiAgICAgICAgICAgICAgICBhcmdzPScnLAo+
-PiAgICAgICAgICAgICAgICBjaGFubmVscz1bXSwKPj4gICAgICAgICAgICApLAo+PiAgICAgICkK
-Pj4gICAgICBzZWxmLnVoZF91c3JwX3NvdXJjZV8wLnNldF9zdWJkZXZfc3BlYygnQjowJywgMCkK
-Pj4gICAgICBzZWxmLnVoZF91c3JwX3NvdXJjZV8wLnNldF9jZW50ZXJfZnJlcSh0ZnJlcSwgMCkK
-Pj4gICAgICBzZWxmLnVoZF91c3JwX3NvdXJjZV8wLnNldF9nYWluKHJnYWluLCAwKQo+PiAgICAg
-IHNlbGYudWhkX3VzcnBfc291cmNlXzAuc2V0X2FudGVubmEoJ1RYL1JYJywgMCkKPj4gICAgICBz
-ZWxmLnVoZF91c3JwX3NvdXJjZV8wLnNldF9zYW1wX3JhdGUoc2FtcF9yYXRlKQo+Pgo+PiAgICAg
-IFNpbmNlIE9wdGlvbiAyIE4zMTAgLT4gWDMxMCBkb2VzIHlpZWxkIGdvb2QgcmVzdWx0cywgSSBh
-c3N1bWUgdGhhdCB0aGUKPj4gICAgICBOMzEwIFJYIGNoYWluIG9yIGNvbmZpZ3VyYXRpb24gaXMg
-dGhlIHByb2JsZW0uIFRob3VnaCwgSSBoYXZlIG5vIGlkZWEKPj4gICAgICBob3cgdG8gZGVidWcg
-dGhhdCBhbmQgd2hpY2gga25vYnMgdG8gdHVybi4KPj4gICAgICBJIHRyaWVkIHRvIG9ic2VydmUg
-dGhlIHNwZWN0cnVtIHdpdGggYW4gTjMxMCB2aWEgYHVoZF9mZnRgIGZyb20KPj4gICAgICBgZ3It
-dWhkL2V4YW1wbGVzL2dyY2AgYW5kIGl0IGZlZWxzIGxpa2UgdGhlIE4zMTAganVzdCBkb2Vzbid0
-IGNhc2UKPj4gICAgICBhYm91dAo+PiAgICAgIFJYZ2FpbiBzZXR0aW5ncy4KPj4KPj4gICAgICBK
-b2hhbm5lcwo+Pgo+Pgo+PiAgICAgIE9uIDE4LjEwLjE5IDIwOjQyLCBNYXJjdXMgRCBMZWVjaCB3
-cm90ZToKPj4gICAgICAgPiBXaGF0IGFudGVubmEgYXJlIHlvdSBzcGVjaWZ5aW5nIGFuZCB3aGlj
-aCBwb3J0IGFyZSB5b3UgcnVyYWxseQo+PiAgICAgIHBsdWdnZWQgaW4gdG8uCj4+ICAgICAgID4K
-Pj4gICAgICAgPiBBcmUgeW91IHVzaW5nIG9mZnNldCB0dW5pbmc/ICBUaGF0IG1heSBiZSBuZWNl
-c3NhcnkgZm9yIE5hcnJvdwo+PiAgICAgIHNpZ25hbHMgbmVhciB0aGUgdHVuZWQgZnJlcXVlbmN5
-LCBkdWUgdG8gREMgb2Zmc2V0IHJlbW92YWwuCj4+Cj4+Cj4+Cj4+ICAgICAgT24gMTguMTAuMTkg
-MTY6MjQsIFJvYmluIENveGUgd3JvdGU6Cj4+ICAgICAgID4gSGkgSm9oYW5uZXMuICBUaGF0IGxv
-dyByZXNwb25zZSBmcm9tIHRoZSBOMzEwIHNvdW5kcyBmaXNoeS4gIEhhdmUKPj4gICAgICB5b3UK
-Pj4gICAgICAgPiB0cmllZCBhbm90aGVyIGNoYW5uZWwgYmVzaWRlcyAwIG9uIHlvdXIgTjMxMD8g
-IEl0IG1pZ2h0IGJlIHRoYXQ6Cj4+ICAgICAgMSkgdGhlCj4+ICAgICAgID4gVFggYW5kIFJYIGNh
-YmxlcyBhcmUgY29ubmVjdGVkIGJhY2t3YXJkcyAobm90ZSB0aGF0IHRoZSBvcmRlciBvbiB0aGUK
-Pj4gICAgICAgPiBwYW5lbCBpcyBmdW5reSBkdWUgdG8gbGF5b3V0IGNvbnN0cmFpbnRzIHdpdGgg
-dGhlIEFEOTM3MSBSRiBJQyBvbgo+PiAgICAgIHRoZQo+PiAgICAgICA+IGRhdWdodGVyIGNhcnMu
-IDIpIHNpZ25hbHMgYXJlIGFjdHVhbGx5IG9uIHRoZSBhZGphY2VudCBjaGFubmVs4oCUCj4+ICAg
-ICAgID4gZG91YmxlLWNoZWNrIHRoZSBVSEQgc3ViZGV2IG1hcHBpbmdzIGxpc3RlZCBpbiB0aGUg
-R2V0dGluZwo+PiAgICAgIFN0YXJ0ZWQgR3VpZGUKPj4gICAgICAgPiBiZWNhdXNlIGlmIG1lbW9y
-eSBzZXJ2ZXMgdGhleSBjaGFuZ2VkIGF0IHNvbWUgcG9pbnTigJQgb3IgMykgb3IgdGhlCj4+ICAg
-ICAgU01BCj4+ICAgICAgID4gY29ubmVjdG9yIGNlbnRlciBwaW4gY29ubmVjdGlvbnMgbWlnaHQg
-YmUgY3JhY2tlZC4KPj4gICAgICAgPgo+PiAgICAgICA+IEFsc28sIEnigJltIG5vdCBzdXJlIGhv
-dyBjb21wYXRpYmxlIEdSMy44IGlzIHdpdGggVUhEIDMuMTQuMS4KPj4gICAgICAgICBTb21lb25l
-Cj4+ICAgICAgID4gd2hvIHN0aWxsIHdvcmtzIG9uIEV0dHVzIHByb2R1Y3RzIG1lbnRpb25lZCBh
-dCBHUkNvbiB0aGF0IHlvdQo+PiAgICAgIGhhdmUgdG8KPj4gICAgICAgPiB1c2UgbWFzdGVyLW5l
-eHQgYnJhbmNoZXMsIGJ1dCB0aG9zZSB1c2UgdGhlIG5ldyBSRk5vQywgd2hpY2ggaXMKPj4gICAg
-ICBzdGlsbAo+PiAgICAgICA+IGxhcmdlbHkgdW5jaGFydGVkIHRlcnJpdG9yeSB3aXRoIHRoZSBO
-MzEwIGFzIGZhciBhcyBJIGNhbiB0ZWxsLgo+PiAgICAgICA+Cj4+ICAgICAgID4gLVJvYmluCj4+
-ICAgICAgID4KPj4gICAgICAgPgo+PiAgICAgICA+Cj4+ICAgICAgLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4+
-ICAgICAgID4gKkZyb206KiBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzLWJvdW5jZXNAbGlzdHMuZXR0
-dXMuY29tCj4+ICAgICAgPG1haWx0bzp1c3JwLXVzZXJzLWJvdW5jZXNAbGlzdHMuZXR0dXMuY29t
-Pj4gb24gYmVoYWxmIG9mCj4+ICAgICAgID4gSm9oYW5uZXMgRGVtZWwgdmlhIFVTUlAtdXNlcnMg
-PHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+ICAgICAgPG1haWx0bzp1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbT4+Cj4+ICAgICAgID4gKlNlbnQ6KiBGcmlkYXksIE9jdG9iZXIgMTgsIDIw
-MTkgNDowNiBBTQo+PiAgICAgICA+ICpUbzoqIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxt
-YWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4+ICAgICAgID4gKlN1YmplY3Q6KiBb
-VVNSUC11c2Vyc10gTjMxMCBzZW5zaXRpdml0eQo+PiAgICAgICA+IEhpIGFsbCwKPj4gICAgICAg
-Pgo+PiAgICAgICA+IEkgZmlndXJlZCBvdXQgaG93IHRvIHVzZSBvdXIgbmV3IE4zMTBzLgo+PiAg
-ICAgICA+Cj4+ICAgICAgID4gSSByYW4gaW50byB0aGUgbmV4dCBpc3N1ZS4gTGV0IG1lIGRlc2Ny
-aWJlIHRoaXMgb25lIGJyaWVmbHkuCj4+ICAgICAgID4KPj4gICAgICAgPiBXaXRoIG91ciBYMzEw
-cyBJIHNldCBUWGdhaW49MjAgYW5kIFJYX2dhaW49MTAuIEJvdGggZGV2aWNlcyBhcmUgMS0ybQo+
-PiAgICAgICA+IGFwYXJ0LiBJIG9ic2VydmUgYSByZWFsbHkgbmljZSBSWCBjb25zdGVsbGF0aW9u
-IHdpdGggZ3ItZ2ZkbSBhbmQKPj4gICAgICAgPiBYRkRNU3luYyB3aXRoIGJ1cnN0cyBldmVyeSAx
-bXMgKGJ1cnN0IGxlbmd0aCB+NTB1cykuIFdpdGggb3VyIE4zMTBzIEkKPj4gICAgICAgPiBzZXQg
-UlhnYWluPTYwLCBUWGdhaW49NzAgYW5kIHN0aWxsLCB0aGUgY29uc3RlbGxhdGlvbiBpcyB2ZXJ5
-IG5vaXN5Lgo+PiAgICAgICA+IE15IGFzc3VtcHRpb24gaXMgdGhhdCBzb21lIHBhcnQgb2YgdGhl
-IFJYIGNoYWluIGlzIG5vdCBjb25maWd1cmVkCj4+ICAgICAgID4gY29ycmVjdGx5LiBCdXQgSSBk
-b24ndCBrbm93IHdoYXQgdGhlIHByb2JsZW0gaXMgaW4gcGFydGljdWxhci4KPj4gICAgICAgPiBB
-bHNvLCBJIHVzZWQgYW4gWDMxMCBhcyB0cmFuc21pdHRlciBhbmQgYW4gTjMxMCBhcyByZWNlaXZl
-ci4gQnV0IHRoZQo+PiAgICAgICA+IHJlc3VsdCBpcyB0aGUgc2FtZSwgdGhlIFJYIGNvbnN0ZWxs
-YXRpb24gaXMgcmVhbGx5IG5vaXN5Lgo+PiAgICAgICA+Cj4+ICAgICAgID4gQW5vdGhlciBvYnNl
-cnZhdGlvbiBpcywgdGhhdCBteSBSWCBzYW1wbGUgc3RyZWFtIGluIGEgR1IgdGltZQo+PiAgICAg
-IHNpbmsgZG9lcwo+PiAgICAgICA+IHNob3cgcXVhbnRpemF0aW9uIGFydGlmYWN0cy4gaS5lLiBJ
-IGNhbiBzZWUgZGlzY3JldGUgc3RlcHMgd2hpY2ggSQo+PiAgICAgICA+IGFzc3VtZSBhcmUgZHVl
-IHRvIGxvdyBSWCBzZW5zaXRpdml0eS4gVGhlIFJYIHZhbHVlIGFtcGxpdHVkZSBpcwo+PiAgICAg
-IGFyb3VuZAo+PiAgICAgICA+IDAuMDAwNSBmb3IgdGhlIHNhbXBsZXMgdGhhdCBJIGdldCBvZiBh
-IFVTUlAgc291cmNlLiBJIGFzc3VtZSB0aGlzCj4+ICAgICAgc2hvdWxkCj4+ICAgICAgID4gYmUg
-YSBoaWdoZXIgdmFsdWUuIFdpdGggdGhlIFgzMTBzIGl0IHdhcyBtb3JlIGxpa2UgMC4xLgo+PiAg
-ICAgICA+Cj4+ICAgICAgID4gRG8gSSBuZWVkIHRvIHRha2Ugc3BlY2lhbCBjYXJlIHdoZW4gSSBv
-bmx5IHVzZSAxIGFudGVubmEgcG9ydD8KPj4gICAgICAgPiBJcyB0aGVyZSBhbm90aGVyIEFHQyBz
-ZXR0aW5nIHRoYXQgSSBuZWVkIHRvIGNvbmZpZ3VyZSBmb3IgTjMxMHM/Cj4+ICAgICAgID4KPj4g
-ICAgICAgPiBKb2hhbm5lcwo+PiAgICAgICA+Cj4+ICAgICAgID4gU29mdHdhcmUKPj4gICAgICAg
-PiBVSEQ6IDMuMTQuMS4xCj4+ICAgICAgID4gR1I6IDMuOAo+PiAgICAgICA+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+ICAgICAgID4gVVNSUC11c2Vy
-cyBtYWlsaW5nIGxpc3QKPj4gICAgICAgPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFp
-bHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+PiAgICAgICA+IGh0dHA6Ly9saXN0cy5l
-dHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+Pgo+
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gVVNSUC11
-c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9s
-aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
-bQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
-dXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0
-cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+This is a multi-part message in MIME format.
+--===============0833090333594001114==
+Content-Type: multipart/alternative;
+ boundary="------------090707000706090701070708"
+
+This is a multi-part message in MIME format.
+--------------090707000706090701070708
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 10/22/2019 02:50 PM, Richard Bell wrote:
+> I think I sort of figured it out, though the motherboard, subdevice 
+> and channel terminology is still confusing.
+>
+> 1) Each USRP X300 has 1 motherboard
+> 2) Each motherboard has two subdevice slots, A and B
+> 3) Each subdevice slot has 1 channel
+>
+> If I want to use both subdevices on USRP1 and only one subdevice on 
+> USRP2 then the following settings would make that work:
+>
+> Device Arguments := "addr0=192.168.10.2,addr1=192.168.11.2"
+> Mb0: Subdev Spec := A:0 B:0
+> MB1: Subdev Spec := A:0
+> Num Channels := 3
+>
+> To use only 1 subdevice on each USRP this would work:
+>
+> Device Arguments := "addr0=192.168.10.2,addr1=192.168.11.2"
+> Mb0: Subdev Spec := A:0
+> MB1: Subdev Spec := A:0
+> Num Channels := 2
+>
+> To use all 4 subdevices at the same time:
+> Device Arguments := "addr0=192.168.10.2,addr1=192.168.11.2"
+> Mb0: Subdev Spec := A:0 B:0
+> MB1: Subdev Spec := A:0 B:0
+> Num Channels := 4
+This (and other pages in the same collection) might help you understand 
+things:
+
+https://files.ettus.com/manual/page_configuration.html
+
+A "channel" is just a sample stream, and the other configuration 
+parameters determine which hardware bits-and-pieces are connected to that
+   channel.  Indeed, 1 motherboard == 1 USRP box.  Some such "boxes" 
+have two "slots" (A and B), and others have only one.  Within those
+   slots, there are 1 or more subdevices, with nomenclature that varies 
+by hardware:
+
+https://files.ettus.com/manual/page_dboards.html
+
+
+>
+> Will there every be a situation where I would do something like A:1 
+> instead of A:0 in the subdevice specs?
+>
+> On Tue, Oct 22, 2019 at 11:25 AM Marcus D Leech 
+> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+>
+>     Could you share your flow graph with us?
+>
+>     What daughtercards do you have installed?
+>
+>     Sent from my iPhone
+>
+>     > On Oct 22, 2019, at 2:16 PM, Richard Bell via USRP-users
+>     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
+>     wrote:
+>     >
+>     > ﻿
+>     > Hello,
+>     >
+>     > I'm a little confused about how I should distinguish between two
+>     different USRPs X300's and the two different motherboards per USRP
+>     X300 in this type of setup. I am feeding a 10 MHz ref and PPS ref
+>     to both USRPs. What I have right now is a gr flowgraph with a
+>     single USRP Sink block that I have configured with the following
+>     device address
+>     >
+>     > "addr0=192.168.10.2,addr1=192.168.11.2"
+>     >
+>     > and I have selected
+>     >
+>     > Num Mboards = 2
+>     > Num Channels = 2
+>     >
+>     > But this setup only uses the addr0=192.168.10.2 USRP to receive
+>     on both RFA and RFB ports. I would like to configure receiving on
+>     192.168.10.2 RFA TX/RX and 192.168.11.2 RFA TX/RX.
+>     >
+>     > How do I configure this properly?
+>     > _______________________________________________
+>     > USRP-users mailing list
+>     > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>     > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+
+--------------090707000706090701070708
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 10/22/2019 02:50 PM, Richard Bell
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAMMoi3vGDD-A72_zZTCcSU-G-Rt6Ab354RZHSAtDLU0Cv1e76Q@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>I think I sort of figured it out, though the motherboard,
+          subdevice and channel terminology is still confusing.<br>
+        </div>
+        <div><br>
+        </div>
+        <div>1) Each USRP X300 has 1 motherboard</div>
+        <div>2) Each motherboard has two subdevice slots, A and B</div>
+        <div>3) Each subdevice slot has 1 channel</div>
+        <div><br>
+        </div>
+        <div>If I want to use both subdevices on USRP1 and only one
+          subdevice on USRP2 then the following settings would make that
+          work:</div>
+        <div><br>
+        </div>
+        <div>Device Arguments := "addr0=192.168.10.2,addr1=192.168.11.2"</div>
+        <div>Mb0: Subdev Spec := A:0 B:0</div>
+        <div>MB1: Subdev Spec := A:0</div>
+        <div>Num Channels := 3</div>
+        <div><br>
+        </div>
+        <div>To use only 1 subdevice on each USRP this would work:<br>
+        </div>
+        <div><br>
+        </div>
+        <div>
+          <div>Device Arguments :=
+            "addr0=192.168.10.2,addr1=192.168.11.2"</div>
+          <div>Mb0: Subdev Spec := A:0</div>
+          <div>MB1: Subdev Spec := A:0</div>
+          <div>Num Channels := 2</div>
+          <div><br>
+          </div>
+          <div>To use all 4 subdevices at the same time:</div>
+          <div>
+            <div>Device Arguments :=
+              "addr0=192.168.10.2,addr1=192.168.11.2"</div>
+            <div>Mb0: Subdev Spec := A:0 B:0<br>
+            </div>
+            <div>MB1: Subdev Spec := A:0 B:0<br>
+            </div>
+            <div>Num Channels := 4</div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    This (and other pages in the same collection) might help you
+    understand things:<br>
+    <br>
+    <a class="moz-txt-link-freetext" href="https://files.ettus.com/manual/page_configuration.html">https://files.ettus.com/manual/page_configuration.html</a><br>
+    <br>
+    A "channel" is just a sample stream, and the other configuration
+    parameters determine which hardware bits-and-pieces are connected to
+    that<br>
+      channel.  Indeed, 1 motherboard == 1 USRP box.  Some such "boxes"
+    have two "slots" (A and B), and others have only one.  Within those<br>
+      slots, there are 1 or more subdevices, with nomenclature that
+    varies by hardware:<br>
+    <br>
+    <a class="moz-txt-link-freetext" href="https://files.ettus.com/manual/page_dboards.html">https://files.ettus.com/manual/page_dboards.html</a><br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CAMMoi3vGDD-A72_zZTCcSU-G-Rt6Ab354RZHSAtDLU0Cv1e76Q@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>
+          <div>
+            <div><br>
+            </div>
+            <div>Will there every be a situation where I would do
+              something like A:1 instead of A:0 in the subdevice specs?<br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Tue, Oct 22, 2019 at 11:25
+          AM Marcus D Leech &lt;<a moz-do-not-send="true"
+            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Could
+          you share your flow graph with us?<br>
+          <br>
+          What daughtercards do you have installed?<br>
+          <br>
+          Sent from my iPhone<br>
+          <br>
+          &gt; On Oct 22, 2019, at 2:16 PM, Richard Bell via USRP-users
+          &lt;<a moz-do-not-send="true"
+            href="mailto:usrp-users@lists.ettus.com" target="_blank">usrp-users@lists.ettus.com</a>&gt;
+          wrote:<br>
+          &gt; <br>
+          &gt; ﻿<br>
+          &gt; Hello,<br>
+          &gt; <br>
+          &gt; I'm a little confused about how I should distinguish
+          between two different USRPs X300's and the two different
+          motherboards per USRP X300 in this type of setup. I am feeding
+          a 10 MHz ref and PPS ref to both USRPs. What I have right now
+          is a gr flowgraph with a single USRP Sink block that I have
+          configured with the following device address<br>
+          &gt; <br>
+          &gt; "addr0=192.168.10.2,addr1=192.168.11.2"<br>
+          &gt; <br>
+          &gt; and I have selected<br>
+          &gt; <br>
+          &gt; Num Mboards = 2<br>
+          &gt; Num Channels = 2<br>
+          &gt; <br>
+          &gt; But this setup only uses the addr0=192.168.10.2 USRP to
+          receive on both RFA and RFB ports. I would like to configure
+          receiving on 192.168.10.2 RFA TX/RX and 192.168.11.2 RFA
+          TX/RX.<br>
+          &gt; <br>
+          &gt; How do I configure this properly?<br>
+          &gt; _______________________________________________<br>
+          &gt; USRP-users mailing list<br>
+          &gt; <a moz-do-not-send="true"
+            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
+          &gt; <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------090707000706090701070708--
+
+
+--===============0833090333594001114==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0833090333594001114==--
+
