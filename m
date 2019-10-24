@@ -2,58 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7411CE2877
-	for <lists+usrp-users@lfdr.de>; Thu, 24 Oct 2019 04:54:42 +0200 (CEST)
-Received: from [::1] (port=34586 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23F77E330C
+	for <lists+usrp-users@lfdr.de>; Thu, 24 Oct 2019 14:52:36 +0200 (CEST)
+Received: from [::1] (port=52614 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iNTGr-00086V-0q; Wed, 23 Oct 2019 22:54:41 -0400
-Received: from mail-qt1-f178.google.com ([209.85.160.178]:45189)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iNTGn-00080V-8e
- for USRP-users@lists.ettus.com; Wed, 23 Oct 2019 22:54:37 -0400
-Received: by mail-qt1-f178.google.com with SMTP id c21so35516647qtj.12
- for <USRP-users@lists.ettus.com>; Wed, 23 Oct 2019 19:54:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=DkcUyCGbRCagtoHCH+gACSx7bbfbXfMXf3kTjpx+Hwo=;
- b=Dmz7jRLy/9hTga9c2KAzHg2Xjq/aL6j14eMMY3AMCnf7xCqm6dLWu6TzmnVpSojyON
- KfkqJafEA7sDUARWwUOGTwY6g0qUTtxEfMxO5G3002rYpXnOhAl1sekeCncwZQMDRiEI
- Byg0FanrkVNEVdd8JaQcZdNxEqncruswSHQO76pclYRBZDZqsf53I2GY6QRAMxQFMtuh
- OsImSJUTTQ/GOD1sRhd/AU10qF0/H+thud1PUFo66LQ1xjSz0HTBDqQis9a4YR/pECPL
- x0kFIICa/NafmhuC7nnooJGyk5rUc/Z3r3hb0gqTkxI7j0wRaUoIrAcovl9DNihz/Mht
- M1cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=DkcUyCGbRCagtoHCH+gACSx7bbfbXfMXf3kTjpx+Hwo=;
- b=lMo+M0WtSHd26xzOqWLe/FmnEPx2d9p6Bm3A1SZCDR1+/tRF9ORrjLEZgddaLXypJB
- d2Z65eZo2vGYdnexK+UxE/jTCWFvxD0WLuQkGAzvOThx0p4u4q0Wu4VN+UwHKBiVHvNT
- pLsnD19LXwfx5D1q2PZDcqU1nWHeEGeQydNZeG9V3mdsRDOWZGs8wItJerz8scdPaYkI
- RWM9pOETtOf4yCn34QUMrBXI8x2QKCaZFN4ZxZu72epsl8aJHnNKW6EuvuAAZXDaMDTq
- aAwnRR4ytST7NNo3N+GJAbYvJt/L9949Gcldkf26PIqNAsGFLg3G6GqZrUc/NoM5bZaN
- ttrw==
-X-Gm-Message-State: APjAAAVs0mF7gu6l+qm52csFPztx3VsUz7LiRjlLX75sQnSMEgrOFCKh
- NdeKHgVJlo1rFaIhnWkT+Vo=
-X-Google-Smtp-Source: APXvYqx6btFhWBzKIUe03ChTiQOIvVjzX+2iK6DzTspf391SWeSIbpmuI8mIkKH+Lek0gqyKZcOInA==
-X-Received: by 2002:a0c:e612:: with SMTP id z18mr12665540qvm.147.1571885636446; 
- Wed, 23 Oct 2019 19:53:56 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-15-137.dsl.bell.ca.
- [174.95.15.137])
- by smtp.gmail.com with ESMTPSA id i185sm12209620qkc.129.2019.10.23.19.53.55
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Oct 2019 19:53:55 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Wed, 23 Oct 2019 22:53:55 -0400
-Message-Id: <FCEC6A68-6E5D-4EA7-BD3A-E314F11F39FE@gmail.com>
-References: <CA+JMMq8N1EzMBbAU_KUMn27G7ya0qOjPfv_F7F5pR-Vopda5nA@mail.gmail.com>
-In-Reply-To: <CA+JMMq8N1EzMBbAU_KUMn27G7ya0qOjPfv_F7F5pR-Vopda5nA@mail.gmail.com>
-To: Nick Foster <bistromath@gmail.com>
-X-Mailer: iPhone Mail (17A878)
-Subject: Re: [USRP-users] Controlling an X310 from embedded devices
+	id 1iNcbK-0006j1-6c; Thu, 24 Oct 2019 08:52:26 -0400
+Received: from oxalide-smtp-out.extra.cea.fr ([132.168.224.13]:47610)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <rodolphe.bertolini@cea.fr>)
+ id 1iNcbG-0006e8-JM
+ for usrp-users@lists.ettus.com; Thu, 24 Oct 2019 08:52:22 -0400
+Received: from pisaure.intra.cea.fr (pisaure.intra.cea.fr [132.166.88.21])
+ by oxalide-sys.extra.cea.fr (8.14.7/8.14.7/CEAnet-Internet-out-4.0) with ESMTP
+ id x9OCpenP024903
+ for <usrp-users@lists.ettus.com>; Thu, 24 Oct 2019 14:51:40 +0200
+Received: from pisaure.intra.cea.fr (localhost [127.0.0.1])
+ by localhost (Postfix) with SMTP id 95F112079B3
+ for <usrp-users@lists.ettus.com>; Thu, 24 Oct 2019 14:51:40 +0200 (CEST)
+Received: from muguet1-smtp-out.intra.cea.fr (muguet1-smtp-out.intra.cea.fr
+ [132.166.192.12])
+ by pisaure.intra.cea.fr (Postfix) with ESMTP id 8B1F02079AE
+ for <usrp-users@lists.ettus.com>; Thu, 24 Oct 2019 14:51:40 +0200 (CEST)
+Received: from EXCAH-B2.intra.cea.fr (excah-b2.intra.cea.fr [132.166.88.87])
+ by muguet1-sys.intra.cea.fr (8.14.7/8.14.7/CEAnet-Internet-out-4.0) with ESMTP
+ id x9OCpeTb024879
+ for <usrp-users@lists.ettus.com>; Thu, 24 Oct 2019 14:51:40 +0200
+Received: from EXDAG0-B2.intra.cea.fr ([fe80::d079:8496:6c6c:9b1f]) by
+ EXCAH-B2.intra.cea.fr ([fe80::6d9a:7f48:7b8f:6abc%11]) with mapi id
+ 14.03.0468.000; Thu, 24 Oct 2019 14:51:40 +0200
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: X310 and N310: using multiple RF
+Thread-Index: AdWKZy+Gw6OIbKKyRAaBOo7dtYCwMQ==
+Date: Thu, 24 Oct 2019 12:51:39 +0000
+Message-ID: <F479266F97CCAE47854721C82406934E1CFD7097@EXDAG0-B2.intra.cea.fr>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [132.166.88.110]
+x-tm-as-product-ver: SMEX-11.0.0.4179-8.100.1062-23234.003
+x-tm-as-result: No--2.837700-0.000000-31
+x-tm-as-user-approved-sender: Yes
+x-tm-as-user-blocked-sender: No
+MIME-Version: 1.0
+Subject: [USRP-users] X310 and N310: using multiple RF
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,11 +58,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: "Muri, Richard - 1002 - MITLL" <Richard.Muri@ll.mit.edu>,
- "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2695961356993219863=="
+From: BERTOLINI Rodolphe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: BERTOLINI Rodolphe <rodolphe.bertolini@cea.fr>
+Content-Type: multipart/mixed; boundary="===============4552848386382298640=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,150 +74,108 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============4552848386382298640==
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_F479266F97CCAE47854721C82406934E1CFD7097EXDAG0B2intrace_"
 
---===============2695961356993219863==
-Content-Type: multipart/alternative; boundary=Apple-Mail-869D6FDD-F8C2-481C-9A23-5C27B6BC1DB0
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-869D6FDD-F8C2-481C-9A23-5C27B6BC1DB0
-Content-Type: text/plain;
-	charset=utf-8
+--_000_F479266F97CCAE47854721C82406934E1CFD7097EXDAG0B2intrace_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-I run B210 from an Odoid XU4 platform and can get up to about 12Msps out of i=
-t, depending on what I=E2=80=99m doing.=20
+Hello USRP-users mailing list,
 
-But no way you=E2=80=99ll do the 10s of Msps that the X3xx series is capable=
- of.=20
+We are using an X310 for OpenAirInterface (OAI). It has one RF card.
+I wonder the following:
 
-Sent from my iPhone
 
-> On Oct 23, 2019, at 8:35 PM, Nick Foster via USRP-users <usrp-users@lists.=
-ettus.com> wrote:
->=20
-> =EF=BB=BF
-> You should have no trouble running UHD on an ARM architecture. The Ettus E=
-300 series radios are ARM devices. UHD does a huge amount of initialization a=
-nd configuration for the X310, and in any case the X310 doesn't use VRT in a=
-ny real capacity. You won't realistically be able to divorce the X310 from U=
-HD.
->=20
-> Your biggest headache on an embedded machine will be keeping up with high d=
-ata rates, and waiting for UHD to compile in the first place. =3D)
->=20
-> Nick
->=20
->> On Wed, Oct 23, 2019 at 4:59 PM Muri, Richard - 1002 - MITLL via USRP-use=
-rs <usrp-users@lists.ettus.com> wrote:
->> Hello,
->>=20
->> =20
->>=20
->> I=E2=80=99m looking into controlling an X310 from an embedded device. I w=
-anted to probe the users list before I bury myself into a rabbit hole.
->>=20
->> =20
->>=20
->> Is it possible to control a USRP directly from an FPGA? I noticed that UH=
-D use VRT as the transport protocol (http://files.ettus.com/manual/page_rtp.=
-html). If I have an FPGA that speaks VRT over Ethernet or Aurora can I contr=
-ol a USRP, and are there examples/documentation of controlling a USRP withou=
-t running an instance of UHD? In my use case I need to send timed transmit c=
-ommands and data packets, and timed receive commands and receive data packet=
-s.
->>=20
->> =20
->>=20
->> In the case that running without UHD is a headache I don=E2=80=99t want t=
-o brave, are there examples of running UHD on ARM cores?
->>=20
->> =20
->>=20
->> Any insight is appreciated.
->>=20
->> =20
->>=20
->> Thanks,
->>=20
->> Richard
->>=20
->> =20
->>=20
->> =20
->>=20
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+  *   With the following configuration:
+     *   USRP X310, HG image, one RF card
+     *   host connected to USRP through 1*10Gbps and 1*1Gbps
+  *   I run OAI on the 10Gbps ethernet interface, and while it is running I=
+ tried to run an other instance via the 1Gbps ethernet interface. I didn't =
+expect it to work, but I didn't expect neither the error message: uhd tells=
+ me that no USRP was found (I made sure it looks-up through the 1Gbps inter=
+face).
+     *   My interpretation is that once that all of the available RF cards =
+have an established link with the host, USRP closes all of the free interfa=
+ces (PCIe, ethernet...)
+     *   Thus, if I put an other RF card, and tell the USRP to use only one=
+ ethernet interface per RF card, then I would be able to run one OAI instan=
+ce through an ethernet interface + an RF card, and an other instance throug=
+h the other ethernet interface + the other RF card. Is it correct?
+     *   Now if we consider the N310, its 4 RF cards and its 2 ethernet int=
+erfaces: (ignoring limitation from OAI bandwidth requirements) is it possib=
+le to run two instances of OAI through a single ethernet interface, so that=
+ I could run four instance through two ethernet interfaces?
+     *   If all of the above is correct, do you have any idea on how to ach=
+ieve this?
 
---Apple-Mail-869D6FDD-F8C2-481C-9A23-5C27B6BC1DB0
-Content-Type: text/html;
-	charset=utf-8
+Thank you
+Regards,
+Rodolphe
+
+--_000_F479266F97CCAE47854721C82406934E1CFD7097EXDAG0B2intrace_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">I run B210 from an Odoid XU4 platform and c=
-an get up to about 12Msps out of it, depending on what I=E2=80=99m doing.&nb=
-sp;<div><br></div><div>But no way you=E2=80=99ll do the 10s of Msps that the=
- X3xx series is capable of.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhon=
-e</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Oct 23, 2019, at 8:=
-35 PM, Nick Foster via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:<=
-br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF=
-<div dir=3D"ltr"><div>You should have no trouble running UHD on an ARM archi=
-tecture. The Ettus E300 series radios are ARM devices. UHD does a huge amoun=
-t of initialization and configuration for the X310, and in any case the X310=
- doesn't use VRT in any real capacity. You won't realistically be able to di=
-vorce the X310 from UHD.<br></div><div><br></div><div>Your biggest headache o=
-n an embedded machine will be keeping up with high data rates, and waiting f=
-or UHD to compile in the first place. =3D)<br></div><div><br></div><div>Nick=
-<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Wed, Oct 23, 2019 at 4:59 PM Muri, Richard - 1002 - MITLL via US=
-RP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.=
-ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_-7992240679112399471WordSec=
-tion1"><p class=3D"MsoNormal">Hello,<u></u><u></u></p><p class=3D"MsoNormal"=
-><u></u>&nbsp;<u></u></p><p class=3D"MsoNormal">I=E2=80=99m looking into con=
-trolling an X310 from an embedded device. I wanted to probe the users list b=
-efore I bury myself into a rabbit hole.<u></u><u></u></p><p class=3D"MsoNorm=
-al"><u></u>&nbsp;<u></u></p><p class=3D"MsoNormal">Is it possible to control=
- a USRP directly from an FPGA? I noticed that UHD use VRT as the transport p=
-rotocol (<a href=3D"http://files.ettus.com/manual/page_rtp.html" target=3D"_=
-blank">http://files.ettus.com/manual/page_rtp.html</a>). If I have an FPGA t=
-hat speaks VRT over Ethernet or Aurora can I control a USRP, and are there e=
-xamples/documentation of controlling a USRP without running an instance of U=
-HD? In my use case I need to send timed transmit commands and data packets, a=
-nd timed receive commands and receive data packets. <u></u><u></u></p><p cla=
-ss=3D"MsoNormal"><u></u>&nbsp;<u></u></p><p class=3D"MsoNormal">In the case t=
-hat running without UHD is a headache I don=E2=80=99t want to brave, are the=
-re examples of running UHD on ARM cores?<u></u><u></u></p><p class=3D"MsoNor=
-mal"><u></u>&nbsp;<u></u></p><p class=3D"MsoNormal">Any insight is appreciat=
-ed.<u></u><u></u></p><p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p><p class=
-=3D"MsoNormal">Thanks,<u></u><u></u></p><p class=3D"MsoNormal">Richard<u></u=
-><u></u></p><p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p><p class=3D"MsoNo=
-rmal"><u></u>&nbsp;<u></u></p></div></div>__________________________________=
-_____________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></div></body></html>=
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" id=3D"owaParaStyle"></style>
+</head>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">
+<div>Hello USRP-users mailing list,</div>
+<div><br>
+</div>
+<div>We are using an X310 for OpenAirInterface (OAI). It has one RF card.</=
+div>
+<div>I wonder the following:</div>
+<div><br>
+<ul style=3D"font-family: Tahoma; font-size: 10pt;">
+<li>With the following configuration:
+<ul>
+<li>USRP X310, HG image, one RF card<br>
+</li><li>host connected to USRP through 1*10Gbps and 1*1Gbps</li></ul>
+</li><li>I run OAI on the 10Gbps ethernet interface, and while it is runnin=
+g I tried to run an other instance via the 1Gbps ethernet interface. I didn=
+'t expect it to work, but I didn't expect neither the error message: uhd te=
+lls me that no USRP was found (I made
+ sure it looks-up through the 1Gbps interface).
+<ul>
+<li>My interpretation is that once that all of the available RF cards have =
+an established link with the host, USRP closes all of the free interfaces (=
+PCIe, ethernet...)</li><li>Thus, if I put an other RF card, and tell the US=
+RP to use only one ethernet interface per RF card, then I would be able to =
+run one OAI instance through an ethernet interface &#43; an RF card, and an=
+ other instance through the other ethernet interface &#43; the
+ other RF card. Is it correct?<br>
+</li><li>Now if we consider the N310, its 4 RF cards and its 2 ethernet int=
+erfaces: (ignoring limitation from OAI bandwidth requirements) is it possib=
+le to run two instances of OAI through a single ethernet interface, so that=
+ I could run four instance through two
+ ethernet interfaces?</li><li>If all of the above is correct, do you have a=
+ny idea on how to achieve this?<br>
+</li></ul>
+</li></ul>
+<div><br>
+</div>
+<div>Thank you</div>
+<div>Regards,</div>
+<div>Rodolphe<br>
+</div>
+</div>
+</div>
+</body>
+</html>
 
---Apple-Mail-869D6FDD-F8C2-481C-9A23-5C27B6BC1DB0--
+--_000_F479266F97CCAE47854721C82406934E1CFD7097EXDAG0B2intrace_--
 
 
---===============2695961356993219863==
+--===============4552848386382298640==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -237,5 +186,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2695961356993219863==--
+--===============4552848386382298640==--
 
