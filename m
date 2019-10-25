@@ -2,55 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48565E559E
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Oct 2019 23:07:11 +0200 (CEST)
-Received: from [::1] (port=43072 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDBA9E55D5
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Oct 2019 23:29:27 +0200 (CEST)
+Received: from [::1] (port=48128 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iO6na-0007Ke-IM; Fri, 25 Oct 2019 17:07:06 -0400
-Received: from sanddollar.geekisp.com ([216.168.135.167]:25769)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <philip@balister.org>) id 1iO6nX-0007Gf-8k
- for usrp-users@lists.ettus.com; Fri, 25 Oct 2019 17:07:03 -0400
-Received: (qmail 8521 invoked by uid 1003); 25 Oct 2019 21:06:25 -0000
-Received: from unknown (HELO ?10.4.109.72?) (philip@opensdr.com@12.31.71.58)
- by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 25 Oct 2019 21:06:25 -0000
-To: Jason Matusiak <jason@gardettoengineering.com>,
- Ettus Mail List <usrp-users@lists.ettus.com>
-References: <BL0PR12MB234040B48E118FC3E23DF5CEAF690@BL0PR12MB2340.namprd12.prod.outlook.com>
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
- mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
- HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
- rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
- 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
- fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
- AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
- CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
- nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
- 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
- YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
- 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
- yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
- gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
- GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
- uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
- LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
- gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
- WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
- 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
- ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
- icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
- ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
- 6eUfr0u7CwnEyqiQ
-Message-ID: <c5336ae4-d15c-9409-d6b5-961e4482d422@balister.org>
-Date: Fri, 25 Oct 2019 17:06:18 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+	id 1iO799-0000P7-6u; Fri, 25 Oct 2019 17:29:23 -0400
+Received: from mail-lf1-f44.google.com ([209.85.167.44]:45331)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
+ id 1iO795-0000DR-KA
+ for usrp-users@lists.ettus.com; Fri, 25 Oct 2019 17:29:19 -0400
+Received: by mail-lf1-f44.google.com with SMTP id v8so2930758lfa.12
+ for <usrp-users@lists.ettus.com>; Fri, 25 Oct 2019 14:28:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MlGqrbzAYNhEJFjJg9Q5aIpu59Hjl1lTDQuQIe1lWPk=;
+ b=PIJcD5JhIYQUOgopMXFfd5N6gsoysIekSUyus8xBv2V9iQaDIEUHZHNB30MyV1vK7b
+ Gor3ijjxmiInVhMnfJ6ygc732LDbz9/uFjMNvkAKvvzL9jEVPzbUMa+Z4itGUl8nkejg
+ dBwyB3iBTYQfQIGUjHLHDRts4ANSGhEMfbNDHX2EIo6FdRFUzenK5a4tKEhvamEL/MCr
+ pDDOUst+nkqQv5C7gCZhqSzfYkJwE+lsBxuu6Z+6Xwk0HnUJc2gf3FGPblJ8uO1VmoBy
+ q9CuV1o52tBoOwYamF7h1v6gWFw+fU9t45uh/RLRDbX4+j6gEqSYuLq/WJ1gsQGPxbSI
+ 58Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MlGqrbzAYNhEJFjJg9Q5aIpu59Hjl1lTDQuQIe1lWPk=;
+ b=D1uf1KNfEOBruHb8qJZKc43u4KFRe/gOopKX/ktnz3sp3ecWB/ZSYwptSxaOHO8DV1
+ JWK8mP7qvg+UqPIgq98/kGujTFsiz5oLgSClPXLdAHNbu/lC0V2XDSBM0tdoGZGcsDN5
+ /RyzC6hCgDjlHQP17b4K8bOH/VfU2r8bgepy7Y4T8M5QbiVtWhLPlhbhPxgpjRTM+aUi
+ t8uwHXq/JdBZ0noCchWRQkBIwdhFwt+6ZxLr5mMHndiTxw5ZWwQFaWpEP145ddQyDl2V
+ FCSmpEqJBQ/y9ObPWzgptXad2k+ZVB+9CVrrczo7uvHIlsdX7/iFfCTxGWEfgb4gMq9F
+ u5rQ==
+X-Gm-Message-State: APjAAAWGYBdyUklpNoBO4KDD3Qm+qpJilQZC0TKbNR05sgz6d3owwPlA
+ BBxs2mPSx2UhReBocAmgvmgReC0IG5nHMOyHRHef+DIM
+X-Google-Smtp-Source: APXvYqwuFut5rMCSM7KL1BR50A0Vv61r9mm1vpy/esQqzVmfd/1Ue7yfCqB87v1Dtc4JVNH/7X5LO9Po9rbioom8zM0=
+X-Received: by 2002:a19:3fcd:: with SMTP id m196mr3989738lfa.118.1572038918330; 
+ Fri, 25 Oct 2019 14:28:38 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <BL0PR12MB234040B48E118FC3E23DF5CEAF690@BL0PR12MB2340.namprd12.prod.outlook.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] python 2.7 on N310
+References: <CALSKgPy9YoLX2fXWJPiy5kWDxswB_0oQ4VC1chWw6EqCVKJ+Rw@mail.gmail.com>
+ <CANf970YQrC0_ZXOYQhyr9SqaqP8gj6rjuiMszESpPv769PnxgA@mail.gmail.com>
+ <CALSKgPxmmkkxu-9nfeCFrK81MD7A4P7p6xqQMbWagK+HwttF5g@mail.gmail.com>
+In-Reply-To: <CALSKgPxmmkkxu-9nfeCFrK81MD7A4P7p6xqQMbWagK+HwttF5g@mail.gmail.com>
+Date: Fri, 25 Oct 2019 16:28:27 -0500
+Message-ID: <CANf970Yg4YF+Hvcdaa9GMdfQ6xwO75ZN15qsUUdoihmCc5Khog@mail.gmail.com>
+To: Wheberth Damascena Dias <wheberth@gmail.com>
+Subject: Re: [USRP-users] X310 over PCIe not found in Ubuntu 18
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -62,10 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@balister.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5218315402068437531=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,27 +78,83 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-With all the annoying issues on this list with Ettus Embedded products,
-I'm curious if there is any interest in a gofundme for an image that
-supports gnuradio and rfnoc without a bunch of screwing around
-rebuilding uhd and manually updating sdks?
+--===============5218315402068437531==
+Content-Type: multipart/alternative; boundary="0000000000004cf0b50595c2d51b"
 
-Philip
+--0000000000004cf0b50595c2d51b
+Content-Type: text/plain; charset="UTF-8"
 
-On 10/21/19 12:36 PM, Jason Matusiak via USRP-users wrote:
-> I am just starting to play with the N310 and I am having issues with some of our flowgraphs that work fine with the X310 and the E320.  The issue seems to be that there seems to be minimal support for python 2.7 for the N310.  Is there a toolchain or anything else I can do to get better support?  Things like threading.py are missing and only in python3.5 for it.
-> 
-> Thanks.
-> ~Jason
-> 
-> 
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> 
+Would you be able to try shifting this card to another PCIe slot in your
+machine?
+
+I'm also interested in knowing what other PCIe devices you have connected
+to the computer. It might be worth making the X310's PCIe link the only
+connection, at least for testing purposes.
+
+Sam
+
+
+On Wed, Oct 23, 2019 at 6:58 PM Wheberth Damascena Dias <wheberth@gmail.com>
+wrote:
+
+> Hi Mr Reiter,
+> Thank you for your answer.
+>
+> Actually yes, the same X310 runs perfectly in another machine. Its a i7
+> 6th gen with ubuntu 18.04 kernel  4.15.0, libuhd and uhd-host on same
+> version.
+>
+> I think this can be some PCIe related setting on the BIOS, since the lspci
+> shows [disabled] next to the base address, but I can't find any option to
+> change it on the BIOS.
+>
+> Best Regards
+>
+>
+>
+>
+>
+
+--0000000000004cf0b50595c2d51b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Would you be able to try shifting this card to another PCI=
+e slot in your machine?<div><br></div><div>I&#39;m also interested in knowi=
+ng what other PCIe devices you have connected to the computer. It might be =
+worth making the X310&#39;s PCIe link the only connection, at least for tes=
+ting purposes.=C2=A0</div><div><br clear=3D"all"><div><div dir=3D"ltr" clas=
+s=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><=
+div><div dir=3D"ltr">Sam=C2=A0</div></div></div></div></div><br></div></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On We=
+d, Oct 23, 2019 at 6:58 PM Wheberth Damascena Dias &lt;<a href=3D"mailto:wh=
+eberth@gmail.com">wheberth@gmail.com</a>&gt; wrote:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><div dir=3D"auto">Hi =
+Mr Reiter,=C2=A0</div><div dir=3D"auto">Thank you for your answer.</div><di=
+v dir=3D"auto"><br></div>Actually yes, the same X310 runs perfectly in anot=
+her machine. Its a i7 6th gen with ubuntu 18.04 kernel=C2=A0 4.15.0, libuhd=
+ and uhd-host on same version.<div dir=3D"auto"><br></div><div dir=3D"auto"=
+>I think this can be some PCIe related setting on the BIOS, since the lspci=
+ shows [disabled] next to the base address, but I can&#39;t find any option=
+ to change it on the BIOS.=C2=A0</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Best Regards</div><div dir=3D"auto"><br></div><div dir=3D"auto"><=
+br></div><div dir=3D"auto"><br><div dir=3D"auto"><br></div></div></div>
+</blockquote></div>
+
+--0000000000004cf0b50595c2d51b--
+
+
+--===============5218315402068437531==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5218315402068437531==--
+
