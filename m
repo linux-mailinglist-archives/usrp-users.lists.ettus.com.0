@@ -2,50 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D000E524F
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Oct 2019 19:30:04 +0200 (CEST)
-Received: from [::1] (port=53906 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48565E559E
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Oct 2019 23:07:11 +0200 (CEST)
+Received: from [::1] (port=43072 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iO3PT-00007y-Ir; Fri, 25 Oct 2019 13:29:59 -0400
-Received: from mail-lj1-f177.google.com ([209.85.208.177]:34081)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <m2wagner@eng.ucsd.edu>)
- id 1iO3PO-0008VD-EW
- for usrp-users@lists.ettus.com; Fri, 25 Oct 2019 13:29:54 -0400
-Received: by mail-lj1-f177.google.com with SMTP id 139so3395690ljf.1
- for <usrp-users@lists.ettus.com>; Fri, 25 Oct 2019 10:29:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=eng.ucsd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=TwU000bRsFE7XaIgQS7h1WdoiYLFRoDxAb+yKqldHzs=;
- b=LwDP4Z5zQ20v4MZnGQSNPB6+w73ohcit5Rl0cxzF0hYTJCx9flac7c8GQB5Eqp94WH
- xfJAMn1WEqLOPbPib1LzuLzFeHG9x19BsbL2uzNMcOdExJ+gpGVjfBgAsN99dpOwzkuv
- TwhCJv6FTVqdoDebCCQ9tYSkXICsi+DBHPilk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=TwU000bRsFE7XaIgQS7h1WdoiYLFRoDxAb+yKqldHzs=;
- b=KT4j6r+w2GnmVvooScSJTq/BX9kPmIPBK1twKbX6Orju81HzE3rjGzFqVctX7htB7B
- yuqea1TLjKcMXtFOT4zKb1103/pu/k8G+tsMUaUD4XnlN5Nc7iEYSLZLD0zhm93GOcZK
- Bnxmsq1SvgswqOiasP+eGDXfwB+jndhcricZHnNl+s9h+MRjxe88j4dGonYRsCwqDlm+
- ETeSEkNsDAdKswR/tzbpxBpUWuoaEGKVlbrXGxo3B5Ck4y4i1W//isoiXuoWmtAz6B/0
- agsNC52fcS/ppeXCQar2kP4XYqPkK76bBE2Jo6c/H+YLO41ewLxtGdyUrduMALUn+l40
- fpXA==
-X-Gm-Message-State: APjAAAXkcRGcOv8565G4KiVuyD8EXi6/PWW5rJ9XiCPGwLWtfA/MKGts
- BtIjx0ZKePjGa/J/tcl1JI2rEZu5MI6cJ3t80Q8fLg==
-X-Google-Smtp-Source: APXvYqwlnntbWKO35OGw7rfvRAL4s6vA+I8caSrNq64zkwv8jX4Rztc6Pu0ksImrxP53yl+jMiVZfDIqpaeh0LhS3xo=
-X-Received: by 2002:a2e:350f:: with SMTP id z15mr3365565ljz.185.1572024552874; 
- Fri, 25 Oct 2019 10:29:12 -0700 (PDT)
+	id 1iO6na-0007Ke-IM; Fri, 25 Oct 2019 17:07:06 -0400
+Received: from sanddollar.geekisp.com ([216.168.135.167]:25769)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <philip@balister.org>) id 1iO6nX-0007Gf-8k
+ for usrp-users@lists.ettus.com; Fri, 25 Oct 2019 17:07:03 -0400
+Received: (qmail 8521 invoked by uid 1003); 25 Oct 2019 21:06:25 -0000
+Received: from unknown (HELO ?10.4.109.72?) (philip@opensdr.com@12.31.71.58)
+ by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+ 25 Oct 2019 21:06:25 -0000
+To: Jason Matusiak <jason@gardettoengineering.com>,
+ Ettus Mail List <usrp-users@lists.ettus.com>
+References: <BL0PR12MB234040B48E118FC3E23DF5CEAF690@BL0PR12MB2340.namprd12.prod.outlook.com>
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+ mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+ HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+ rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+ 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+ fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+ AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
+ CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+ nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+ 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+ YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+ 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+ yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
+ gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+ GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+ uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+ LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+ gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
+ WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+ 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+ ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+ icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+ ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+ 6eUfr0u7CwnEyqiQ
+Message-ID: <c5336ae4-d15c-9409-d6b5-961e4482d422@balister.org>
+Date: Fri, 25 Oct 2019 17:06:18 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
 MIME-Version: 1.0
-References: <CALLKLANcwo6NGC8TcKbWc_Un1qSgRx9qUkTcm1FkxBRc05qEcQ@mail.gmail.com>
- <CAB__hTQx+ZyX3pG5Xbj8YrHoPBcUFu1Wg1ih9xFpbNgyRXDv3A@mail.gmail.com>
-In-Reply-To: <CAB__hTQx+ZyX3pG5Xbj8YrHoPBcUFu1Wg1ih9xFpbNgyRXDv3A@mail.gmail.com>
-Date: Fri, 25 Oct 2019 10:29:05 -0700
-Message-ID: <CALLKLAPtrHU5O5k_bn3GRJyc4wB2oMCTXg=rjgqS8r+XQz_dOg@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Subject: Re: [USRP-users] Error when trying to run USRP N310s using external
- LO
+In-Reply-To: <BL0PR12MB234040B48E118FC3E23DF5CEAF690@BL0PR12MB2340.namprd12.prod.outlook.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] python 2.7 on N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -57,10 +62,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mark Wagner via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mark Wagner <m2wagner@eng.ucsd.edu>
-Cc: Usrp Users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4879433115480452261=="
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,125 +79,27 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4879433115480452261==
-Content-Type: multipart/alternative; boundary="0000000000000d74ee0595bf7da7"
+With all the annoying issues on this list with Ettus Embedded products,
+I'm curious if there is any interest in a gofundme for an image that
+supports gnuradio and rfnoc without a bunch of screwing around
+rebuilding uhd and manually updating sdks?
 
---0000000000000d74ee0595bf7da7
-Content-Type: text/plain; charset="UTF-8"
+Philip
 
-Unfortunately not,
-
-I'm trying to get the N310s to operate at 584.2 MHz, so my LO is going at
-1168.4 MHz (there's a note saying the external LO should supply twice the
-desired center frequency). I would have thought there's no need to specify
-the center frequency when running with the LO switched to external, but
-when I run the setup without specifying the center frequency it doesn't
-seem to work.
-
--Mark
-
-On Fri, Oct 25, 2019 at 6:27 AM Rob Kossler <rkossler@nd.edu> wrote:
-
-> The N310 data sheet (in one of the footnotes) indicates that external LO
-> is limited to the frequency range 300-4000 MHz.  Are you trying to operate
-> below 300MHz?
-> Rob
->
-> On Thu, Oct 24, 2019 at 3:42 PM Mark Wagner via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi all,
->>
->> I'm currently trying to run a set of USRP N310s all using the same
->> external LO, but I seem to be getting this error
->>
->> "[ERROR] [0/Radio_1] RX LO lowband does not support setting source to
->> external"
->>
->> which will repeat for all the radios. I tried looking online for the
->> source of the error but no dice. It seems like the radios are ignoring the
->> LO I'm giving them and using their internal ones instead. Any thoughts?
->>
->> -Mark
->>
->> --
->> Mark Wagner
->> University of California San Diego
->> Electrical and Computer Engineering
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-
--- 
-Mark Wagner
-University of California San Diego
-Electrical and Computer Engineering
-
---0000000000000d74ee0595bf7da7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Unfortunately not,<div><br></div><div>I&#39;m trying to ge=
-t the N310s to operate at 584.2 MHz, so my LO is going at 1168.4 MHz (there=
-&#39;s a note saying the external LO should supply twice the desired center=
- frequency). I would have thought there&#39;s no need to specify the center=
- frequency when running with the LO switched to external, but when I run th=
-e setup without specifying=C2=A0the center frequency it doesn&#39;t seem to=
- work.</div><div><br></div><div>-Mark</div></div><br><div class=3D"gmail_qu=
-ote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 25, 2019 at 6:27 AM =
-Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr">The N310 data sheet (in o=
-ne of the footnotes) indicates that external LO is limited to the frequency=
- range 300-4000 MHz.=C2=A0 Are you trying to operate below 300MHz?<div>Rob<=
-/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
-ttr">On Thu, Oct 24, 2019 at 3:42 PM Mark Wagner via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;bor=
-der-left-color:rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=
-=3D"ltr">Hi all,<div><br></div><div>I&#39;m currently trying to run a set o=
-f USRP N310s all using the same external LO, but I seem to be getting this =
-error=C2=A0</div><div>=C2=A0<br></div><div><div>&quot;[ERROR] [0/Radio_1] R=
-X LO lowband does not support setting source to external&quot;</div><div><b=
-r></div><div>which will repeat for all the radios. I tried looking online f=
-or the source of the error but no dice. It seems like the radios are ignori=
-ng the LO I&#39;m giving them and using their internal ones instead. Any th=
-oughts?</div></div><div><br></div><div>-Mark</div><div><br></div>-- <br><di=
-v dir=3D"ltr"><div dir=3D"ltr"><div><div>Mark Wagner<br></div>University of=
- California San Diego<br></div>Electrical and Computer Engineering<br>=C2=
-=A0<br></div></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><div>Mark Wagner<br></div>=
-University of California San Diego<br></div>Electrical and Computer Enginee=
-ring<br>=C2=A0<br></div></div>
-
---0000000000000d74ee0595bf7da7--
-
-
---===============4879433115480452261==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+On 10/21/19 12:36 PM, Jason Matusiak via USRP-users wrote:
+> I am just starting to play with the N310 and I am having issues with some of our flowgraphs that work fine with the X310 and the E320.  The issue seems to be that there seems to be minimal support for python 2.7 for the N310.  Is there a toolchain or anything else I can do to get better support?  Things like threading.py are missing and only in python3.5 for it.
+> 
+> Thanks.
+> ~Jason
+> 
+> 
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> 
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4879433115480452261==--
-
