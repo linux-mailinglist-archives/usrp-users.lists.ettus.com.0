@@ -2,59 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 989BCE3D6D
-	for <lists+usrp-users@lfdr.de>; Thu, 24 Oct 2019 22:38:46 +0200 (CEST)
-Received: from [::1] (port=32946 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E2DE40D0
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Oct 2019 03:01:52 +0200 (CEST)
+Received: from [::1] (port=50316 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iNjsY-0006Lh-Pe; Thu, 24 Oct 2019 16:38:42 -0400
-Received: from mail-lj1-f173.google.com ([209.85.208.173]:34213)
+	id 1iNnz9-0005ah-0z; Thu, 24 Oct 2019 21:01:47 -0400
+Received: from mail-qk1-f176.google.com ([209.85.222.176]:35498)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <saeidh@gmail.com>) id 1iNjsU-0006Hn-FL
- for usrp-users@lists.ettus.com; Thu, 24 Oct 2019 16:38:38 -0400
-Received: by mail-lj1-f173.google.com with SMTP id j19so157161lja.1
- for <usrp-users@lists.ettus.com>; Thu, 24 Oct 2019 13:38:18 -0700 (PDT)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1iNnz6-0005WE-6e
+ for usrp-users@lists.ettus.com; Thu, 24 Oct 2019 21:01:44 -0400
+Received: by mail-qk1-f176.google.com with SMTP id w2so263952qkf.2
+ for <usrp-users@lists.ettus.com>; Thu, 24 Oct 2019 18:01:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+HnHSNEUTqVOI66dUgWPAis5ZeKG7eAzqryTRRsBt9g=;
- b=HyFW74f9sxeGewEA10DJOC+XliZspnnocS8bolalCrmOLN9GqMMmd3ZVzT6pHuNhms
- YjhPc+Aeytu+zUxhBGBfvg8nU38RkZRh6NCU6o7i4Y5gRD5crfTArHFdCmH5XA/NW96T
- s4wnGY20/CbzyxUtqIZjybkKd/vJdw3/Bn6toBpWO1iln464US9kyWheQKKZ2MUk5LBr
- qR0v62gAh6143OUXqq0s6ezaPSlka+bnY5/5S7is/j61bMSIYQuUFYC4Vt5QNpRUTnMM
- ET0gRo1rkgckbXD4njSCZ6RPQiNVmhDyTu/DOEszuL63o4kp8jnaHtO5r6khbBKPtKAu
- PxjA==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=Mu/Amd+ietaaw2dhS8ByYCzUVxJfduO4W0NOPdgiFo8=;
+ b=Xd9vj7RLe0I2ktqyNxd0qlOQSDeeeJJAXzi5fn3rIjTBSrAEyHq/EDJWPjW3ueQne6
+ z8OaUNX50RCJZfSyamq6wTcdJlv5TCNV9ZiQi2SRKnUg+yUnSR9TyBTkh38KOAYCyILg
+ 9docZv7FPjzekE8eLmv04jjZKo8/0vO1Sz5tB4q6oF5eu6F030w85N9RLI1/cL7TKISu
+ KsYSXX0iQdI9YMzpqvTXFwWf3DGv2iAv+NNE9gbPUAnqJBh1LuhTJ6PmsQMyjrB9XOIl
+ RoX/lA3lcUYR3Cih/R3ncbj4TWMjCZvg0eeIVe7CsW0vjwr1hDgNQhJTptQ9jrXTwrcS
+ rsHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=+HnHSNEUTqVOI66dUgWPAis5ZeKG7eAzqryTRRsBt9g=;
- b=RZeW3W97IzIRSNF2YjMENxYtrFIwjt4O0MaXx6e7gLPRK5Ngkzfs+HP9kWwQ/BgwFF
- 1rJH0MBTQDSkB+imxBeEvIw1DnLd1aTdntEOoQnFpuy+ysnsqr/yDzYC9EZNfgvDviJO
- +zerWXY/Q+HtKuHeyfJ1GApA9xYgSBvmrwR0IdFcWMYdPtqxyQwOrEqntelKBmBLfjVs
- ZK1+TuDjjCAfMy/AkyKhe/lmd2VrnKxFh0ex6UenvW/MgsiE7Jc9x3x+f4UX6QMQbkLb
- VioEcE63Ig91JJyzGuCDr+Y9Ze0anQ8x6iO6jI12EbVlmp1El6jvCey74DIbRPL4vnvD
- SF/w==
-X-Gm-Message-State: APjAAAV+5D6MfQVjPV/iBWhOpzpLnPhcaz6SdPpivQhM+NVXxc0nRxWD
- KaUQB0rYD0bubp1dg+11/XnhbjS83WmSlWs0yME=
-X-Google-Smtp-Source: APXvYqw4pQd+Ui7V281TtAO5kAQkBMYZq+AqjLYF8wwrS16vldw4st6dZ4ucgRtop+8UItrBpUUVRDud2X3w3g7a02I=
-X-Received: by 2002:a2e:3919:: with SMTP id g25mr26867632lja.162.1571949476719; 
- Thu, 24 Oct 2019 13:37:56 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=Mu/Amd+ietaaw2dhS8ByYCzUVxJfduO4W0NOPdgiFo8=;
+ b=SSetQZFQMqaMeijGNyeX+7JXu1/6OHXCFiv7+eiWCFLkPrxBEACZTiFoDtAGe1hBUK
+ SJRsehQvgOLicuTK3lm91ZWXf35jbgRRfM/k1jAmyI7PaBrBxoeBbapXjXJcxwqtkEYr
+ kvFZKDLrulr3j1Aoqyj67I1Y6zvr5xlzEVaeeoXPyqR9YYJdQmfuRV+G7VJl/P008IHT
+ Bt056NJ/Jt6JYo0fKvNh2HdmaI/5Jrzd4WxQEbQTKJqE5ElQIdVrsHatMAk52djBGD5g
+ yFq0c9ZmWasmbThNpaK0jqUqS3lg6GGjmw0n6yppTbImfWZpRXJbX82FrdsLYZaFlGB3
+ Wi1A==
+X-Gm-Message-State: APjAAAWLusLHs+oHIjeA86LKypJdH2P4oDHBPWFqwgE47mn9AZVbcys7
+ 6i4gkHqOYtPvCZbKyDyeyifIpKwmIrU=
+X-Google-Smtp-Source: APXvYqz9WCr7NCgr8CQCEttRRaNLJQJOx+0U1N0oZ5ctMJXHcXDHGTKHm9RGR13ZEl/U5Ag4yPMo5A==
+X-Received: by 2002:ae9:ef50:: with SMTP id d77mr697040qkg.430.1571965263290; 
+ Thu, 24 Oct 2019 18:01:03 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-15-137.dsl.bell.ca.
+ [174.95.15.137])
+ by smtp.googlemail.com with ESMTPSA id m63sm272392qkc.72.2019.10.24.18.01.02
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 24 Oct 2019 18:01:02 -0700 (PDT)
+Message-ID: <5DB2494D.2010700@gmail.com>
+Date: Thu, 24 Oct 2019 21:01:01 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CANQ3h3_fwR=baRxHo+Aicms8C3CFnWzR51qSS99xo2u--OY2vg@mail.gmail.com>
- <CAGNhwTNRQwC2-gVFQFFyfk0ubGCfoL2a1kShguyMny1Y_9Xw_g@mail.gmail.com>
- <CANQ3h39_-YDpCHEgCcR=r3z=iK7QOmJPFYnY8DATs5++zh+uug@mail.gmail.com>
- <CAGNhwTPELUny7ZaVY18KzPvmD3enezmhMLvypUxUZ5qD3zw+cg@mail.gmail.com>
- <CANQ3h39YJO_iNBdg8_Psx8fHoZGo-aJsESJTBRVf0G1-enZAkw@mail.gmail.com>
- <CAGNhwTP9xwKbDUN49knKmdPzu-yo3rwfzbnvx3YqLuwV3+jyVg@mail.gmail.com>
- <CANQ3h3-6yNAt2v35kUR1z9sNhu7_6M1h3ZsANpDMpueksf2b1w@mail.gmail.com>
- <CAGNhwTP7QX-fTNWNwCKsp0t8d072ovECMA9Z3JMEYyhozkinnA@mail.gmail.com>
- <CANQ3h3_guExuKAV6gqNjEuaVLiOMYL_WaqQoPL655HYRs3_0TA@mail.gmail.com>
- <CACSOXP0EnmmQqMA8srL_5+MrA-8pR5pHcrB10cks_ziY9t=L7Q@mail.gmail.com>
-In-Reply-To: <CACSOXP0EnmmQqMA8srL_5+MrA-8pR5pHcrB10cks_ziY9t=L7Q@mail.gmail.com>
-Date: Thu, 24 Oct 2019 16:37:41 -0400
-Message-ID: <CANQ3h38LeBJEBW9W24S=zZ1XqRMvrDfT6fEtGXYcfqnMg6q9Eg@mail.gmail.com>
-To: Ettus Research Support <support@ettus.com>
-Subject: Re: [USRP-users] uhd_fft failure
+To: Karthik Vasudeva <kvasudeva06@gmail.com>
+References: <CACakhLww_rjm-DtH=j8xO10EJktjUh8O6q-WAfkz0PxGvuQyGg@mail.gmail.com>
+ <08867E88-4C8C-412B-BFF5-A6016CC16505@gmail.com>
+ <CACakhLxWVKHxAtjNcfH692++RCp=fL7KewUWXzX-GPm22eOhUA@mail.gmail.com>
+ <5DB23321.60901@gmail.com>
+ <CACakhLz=_eDdXeEOieyHOa1cc+be_YEYUVHncKFnDyENHXQEOQ@mail.gmail.com>
+In-Reply-To: <CACakhLz=_eDdXeEOieyHOa1cc+be_YEYUVHncKFnDyENHXQEOQ@mail.gmail.com>
+Subject: Re: [USRP-users] [Discuss-gnuradio] Not able to find USRP N310 in
+ host mode
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -66,10 +71,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Saeid Hashemi via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Saeid Hashemi <saeidh@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6397702978547327026=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8350660767764175866=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,282 +88,654 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6397702978547327026==
-Content-Type: multipart/alternative; boundary="0000000000002a31ac0595ae0287"
+This is a multi-part message in MIME format.
+--===============8350660767764175866==
+Content-Type: multipart/alternative;
+ boundary="------------000704090307030908090308"
 
---0000000000002a31ac0595ae0287
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------000704090307030908090308
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Yes, I did those steps as well to install gnuradio from source.
-Installed the binary for python-sip, now I'm getting another error:
-
-nuc03@nuc03:~/gnuradio/build$ /home/nuc03/gnuradio/gr-uhd/apps/uhd_fft
-Traceback (most recent call last):
-  File "/home/nuc03/gnuradio/gr-uhd/apps/uhd_fft", line 43, in <module>
-    from PyQt4 import Qt
-ImportError: No module named PyQt4
-
-
-On Mon, Oct 21, 2019 at 12:19 PM Ettus Research Support <support@ettus.com>
-wrote:
-
-> Hi Saeid - Not sure what's going on with your GR install ... did you do
-> "sudo make install" after doing "make"? Did you do "sudo ldconfig" after
-> installing?
+On 10/24/2019 08:38 PM, Karthik Vasudeva wrote:
+> I tried, did not work.
 >
-> It looks like you need to install "python-sip" to get around this latest
-> issue. Same basic method as "python-six", whatever that was that you did
-> successfully. - MLD
+> kvasude2@veneno:~$ uhd_usrp_probe --args 
+> mgmt_addr=192.168.1.103,addr=192.168.10.2,type=n3xx
+> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; 
+> UHD_3.14.1.HEAD-0-g0347a6d8
+> Error: LookupError: KeyError: No devices found for ----->
+> Device Address:
+>     mgmt_addr: 192.168.1.103
+>     addr: 192.168.10.2
+>     type: n3xx
 >
-> On Fri, Oct 18, 2019 at 3:19 PM Saeid Hashemi via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
+> Karthik
+OK, so, can you ping both of these addresses?
+
+Is port UDP port 49152 port open on your host?
+
+
 >
->> Okay, so installing python-six fixed that, and I was able to install
->> 3.7.13.5 from source.
->> The sample apps like uhd_fft are not in the path like they used to be
->> with binary installation. And trying it from the apps folder gives me:
+> On Thu, Oct 24, 2019 at 7:26 PM Marcus D. Leech 
+> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+>
+>     On 10/24/2019 03:44 PM, Karthik Vasudeva wrote:
+>>     I just tried with that address but still the same problem. Please
+>>     find the below error message
 >>
->> nuc03@nuc03:/usr/local/bin$ /home/nuc03/gnuradio/gr-uhd/apps/uhd_fft
->> Traceback (most recent call last):
->>   File "/home/nuc03/gnuradio/gr-uhd/apps/uhd_fft", line 39, in <module>
->>     import sip
->> ImportError: No module named sip
+>>     kvasude2@veneno:~$ uhd_usrp_probe --args
+>>     mgmt_addr=192.168.1.103,addr=192.168.10.2
+>>     [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+>>     UHD_3.14.1.HEAD-0-g0347a6d8
+>>     Error: LookupError: KeyError: No devices found for ----->
+>>     Device Address:
+>>         mgmt_addr: 192.168.1.103
+>>         addr: 192.168.10.2
+>     you'll also need to add:
+>
+>     type=n3xx
+>
+>     to the device args.
+>
+>
+>>
+>>     I am not sure whether my way of configuring the RJ45 port to
+>>     static is correct. Please provide pointers for the static
+>>     configuration of RJ45 port.
+>>
+>>     Karthik
+>>
+>>     On Thu, Oct 24, 2019 at 2:51 PM Marcus D Leech
+>>     <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+>>
+>>         Use the 192.168.1.103 address
+>>
+>>         127.0.0.1 is the address that’s used when running on the
+>>         embedded platform within the N310.
 >>
 >>
->> On Thu, Oct 17, 2019 at 10:26 AM Michael Dickens <
->> michael.dickens@ettus.com> wrote:
 >>
->>> Yes sorry about the GR37 release version: 3.7.13.5 is the correct on.
->>> Installing Py27-six should be pretty straight forward & should allow you to
->>> proceed with that install. GR38 has it's own set of dependencies, some of
->>> which overlap with GR37 and some of which don't. You'll want to follow the
->>> install guide for your OS to get those dependencies. Good luck! - MLD
+>>         Sent from my iPhone
+>>
+>>>         On Oct 24, 2019, at 1:29 AM, Karthik Vasudeva
+>>>         <kvasudeva06@gmail.com <mailto:kvasudeva06@gmail.com>> wrote:
 >>>
->>> On Wed, Oct 16, 2019 at 3:02 PM Saeid Hashemi <saeidh@gmail.com> wrote:
+>>>         ﻿
+>>>         Thank you for the pointer. I tried changing the network
+>>>         configuration of the RJ45 port in the embedded system by
+>>>         updating the eth0.network file as follows
 >>>
->>>> Hi Michael,
+>>>         [Match]
+>>>         Name = eth0
+>>>
+>>>         [Network]
+>>>         Address=192.168.1.103
+>>>
+>>>         [Link]
+>>>         MTUBytes=1500
+>>>
+>>>         But still the uhd_find_devices shows the same mgmt_addr in
+>>>         the embedded system as shown below
+>>>
+>>>         root@ni-n3xx-3198219:~# uhd_find_devices
+>>>         [INFO] [UHD] linux; GNU C++ version 7.3.0; Boost_106600;
+>>>         UHD_3.14.1.1-0-g0347a6d8
+>>>         --------------------------------------------------
+>>>         -- UHD Device 0
+>>>         --------------------------------------------------
+>>>         Device Address:
+>>>             serial: 3198219
+>>>             claimed: False
+>>>             mgmt_addr: 127.0.0.1
+>>>             product: n310
+>>>             type: n3xx
+>>>
+>>>         Karthik
+>>>
+>>>
+>>>
+>>>         On Thu, Oct 24, 2019 at 12:04 AM Marcus D. Leech
+>>>         <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>>
+>>>         wrote:
+>>>
+>>>             On 10/24/2019 12:03 AM, Karthik Vasudeva wrote:
+>>>>             Thank you for the clarification. Actually, I am using
+>>>>             the RJ45 connection through a router and tried probuhd
+>>>>             udp ports opening along with mgmt_addr but still the
+>>>>             same problem. Please find the below error message
 >>>>
->>>> The gnuradio git repository does not have a tag for v3.17.14.5, and
->>>> using v3.7.13.5 gives me:
+>>>>             kvasude2@veneno:~$ uhd_usrp_probe --args
+>>>>             mgmt_addr=127.0.0.1,addr=192.168.10.2
+>>>>             [INFO] [UHD] linux; GNU C++ version 7.4.0;
+>>>>             Boost_106501; UHD_3.14.1.HEAD-0-g0347a6d8
+>>>>             Error: LookupError: KeyError: No devices found for ----->
+>>>>             Device Address:
+>>>>                 mgmt_addr: 127.0.0.1
+>>>>                 addr: 192.168.10.2
 >>>>
->>>> -- Python checking for six - python 2 and 3 compatibility library
->>>> -- Python checking for six - python 2 and 3 compatibility library - not
->>>> found
->>>> CMake Error at volk/CMakeLists.txt:98 (message):
->>>>   six - python 2 and 3 compatibility library required to build VOLK
+>>>>             I used mgmt_addr shown below from the embedded system.
+>>>>             Please correct me if I am wrong.
+>>>             127.0.0.1 is always your local host machine, so not
+>>>             correct in this case.
+>>>
+>>>             If you read through the document I pointed you at,
+>>>             you'll see that by default, that RJ45 connection uses
+>>>             DHCP to get an address.  The document
+>>>               talks about changing that to a static address if you
+>>>             need to.
+>>>
+>>>
+>>>>
+>>>>             root@ni-n3xx-3198219:~# uhd_find_devices
+>>>>             [INFO] [UHD] linux; GNU C++ version 7.3.0;
+>>>>             Boost_106600; UHD_3.14.1.1-0-g0347a6d8
+>>>>             --------------------------------------------------
+>>>>             -- UHD Device 0
+>>>>             --------------------------------------------------
+>>>>             Device Address:
+>>>>                 serial: 3198219
+>>>>                 claimed: False
+>>>>                 mgmt_addr: 127.0.0.1
+>>>>                 product: n310
+>>>>                 type: n3xx
+>>>>
+>>>>             Karthik
 >>>>
 >>>>
->>>> -- Configuring incomplete, errors occurred!
->>>> See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeOutput.log".
->>>> See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeError.log".
 >>>>
+>>>>             On Wed, Oct 23, 2019 at 11:33 PM Marcus D. Leech
+>>>>             <patchvonbraun@gmail.com
+>>>>             <mailto:patchvonbraun@gmail.com>> wrote:
 >>>>
->>>> Checking out tag v3.8.0.0 results in Cmake dependency of 3.8 and up, so
->>>> I need to install that manually.
->>>>
->>>>
->>>> On Sat, Oct 12, 2019 at 11:02 AM Michael Dickens <
->>>> michael.dickens@ettus.com> wrote:
->>>>
->>>>> OK. Thanks for the info Saeid. I'll look into creating a VM using
->>>>> Ubuntu 16.04.1 to see what happens. - MLD
+>>>>                 On 10/23/2019 11:00 PM, Karthik Vasudeva wrote:
+>>>>>                 I tried uhd_usrp_probe again but still the same
+>>>>>                 problem. Please find the below error message
 >>>>>
->>>>> On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi <saeidh@gmail.com>
->>>>> wrote:
+>>>>>                 kvasude2@veneno:~$ uhd_usrp_probe --args
+>>>>>                 addr=192.168.10.2
+>>>>>                 [INFO] [UHD] linux; GNU C++ version 7.4.0;
+>>>>>                 Boost_106501; UHD_3.14.1.HEAD-0-g0347a6d8
+>>>>>                 Error: LookupError: KeyError: No devices found for
+>>>>>                 ----->
+>>>>>                 Device Address:
+>>>>>                     addr: 192.168.10.2
+>>>>>                 https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connecting_the_Device
+>>>>>                 Also, find the below message from the embedded
+>>>>>                 system showing the IP of the SFP0 port for the
+>>>>>                 reference.
 >>>>>
->>>>>> It's Ubuntu 16.04.1, but yes, I will follow the source build
->>>>>> instructions.
->>>>>>
->>>>>> On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens <
->>>>>> michael.dickens@ettus.com> wrote:
->>>>>>
->>>>>>> Hi Saeid - Thanks for the followup. I totally agree that if you just
->>>>>>> "sudo apt install gnuradio", compatible versions should be installed. Are
->>>>>>> you using Ubuntu 16.04.6 LTS (Xenial Xerus)? If you choose to install from
->>>>>>> source, you can follow instructions such as the GR recommended way here <
->>>>>>> https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29
->>>>>>> >. I have an Ubuntu 18.04 install that went very smoothly using this guide,
->>>>>>> but maybe the guide is outdated for older Ubuntu; or, our packages need to
->>>>>>> be updated for that OS version ... Cheers! - MLD
->>>>>>>
->>>>>>> On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi <saeidh@gmail.com>
->>>>>>> wrote:
->>>>>>>
->>>>>>>> I will follow your advice, but it's worth mentioning I simply did
->>>>>>>> apt-get gnuradio and should therefore have a compatible version of uhd
->>>>>>>> installed automatically as a dependency. I did not install uhd separately.
->>>>>>>>
->>>>>>> --
->>>>>>> Michael Dickens
->>>>>>> Ettus Research Technical Support
->>>>>>> Email: support@ettus.com
->>>>>>> Web: https://ettus.com/
->>>>>>>
->>>>>>
+>>>>>                 root@ni-n3xx-3198219:~# ip a
+>>>>>                 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc
+>>>>>                 noqueue qlen 1000
+>>>>>                     link/loopback 00:00:00:00:00:00 brd
+>>>>>                 00:00:00:00:00:00
+>>>>>                     inet 127.0.0.1/8 <http://127.0.0.1/8> scope
+>>>>>                 host lo
+>>>>>                        valid_lft forever preferred_lft forever
+>>>>>                 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu
+>>>>>                 1500 qdisc pfifo_fast qlen 1000
+>>>>>                     link/ether 00:80:2f:26:50:f8 brd ff:ff:ff:ff:ff:ff
+>>>>>                     inet 192.168.1.102/24
+>>>>>                 <http://192.168.1.102/24> brd 192.168.1.255 scope
+>>>>>                 global dynamic eth0
+>>>>>                        valid_lft 86266sec preferred_lft 86266sec
+>>>>>                 3: *sfp0*: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu
+>>>>>                 8000 qdisc pfifo_fast qlen 1000
+>>>>>                     link/ether 00:80:2f:26:50:f9 brd ff:ff:ff:ff:ff:ff
+>>>>>                 *inet 192.168.10.2/24 <http://192.168.10.2/24>*
+>>>>>                 brd 192.168.10.255 scope global sfp0
+>>>>>                        valid_lft forever preferred_lft forever
+>>>>>                 4: sfp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu
+>>>>>                 8000 qdisc pfifo_fast qlen 1000
+>>>>>                     link/ether 00:80:2f:26:50:fa brd ff:ff:ff:ff:ff:ff
 >>>>>
->>>>> --
->>>>> Michael Dickens
->>>>> Ettus Research Technical Support
->>>>> Email: support@ettus.com
->>>>> Web: https://ettus.com/
+>>>>>                 Karthik
 >>>>>
+>>>>                 So, something you need to understand about the N310
+>>>>                 device is that it has an RJ45 port that is used
+>>>>                 both for "management and control"
+>>>>                   traffic from UHD, and is also an SSH destination,
+>>>>                 etc, etc.
+>>>>
+>>>>                 The SFP ports are strictly for streaming, so you
+>>>>                 need to use
+>>>>                 "mgmt_addr=<the-addr-of-that-rj45>,addr=192.168.10.2"
+>>>>                 in the device address,
+>>>>                   and you need a connection for that RJ45 as well. 
+>>>>                 HOWEVER, if you're streaming at lower rates (those
+>>>>                 that can be supported over the
+>>>>                   RJ45), you can simply use that RJ45 connection,
+>>>>                 and ignore the SFP connections.
+>>>>
+>>>>                 More here:
+>>>>
+>>>>                 https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connecting_the_Device
+>>>>
 >>>>
 >>>
->>> --
->>> Michael Dickens
->>> Ettus Research Technical Support
->>> Email: support@ettus.com
->>> Web: https://ettus.com/
->>>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
 >
 
---0000000000002a31ac0595ae0287
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Yes, I did those steps as well to install gnuradio fr=
-om source.</div>Installed the binary for python-sip, now I&#39;m getting an=
-other error:<div><br></div><blockquote style=3D"margin:0 0 0 40px;border:no=
-ne;padding:0px"><div><font face=3D"monospace">nuc03@nuc03:~/gnuradio/build$=
- /home/nuc03/gnuradio/gr-uhd/apps/uhd_fft</font></div><div><font face=3D"mo=
-nospace">Traceback (most recent call last):</font></div><div><font face=3D"=
-monospace">=C2=A0 File &quot;/home/nuc03/gnuradio/gr-uhd/apps/uhd_fft&quot;=
-, line 43, in &lt;module&gt;</font></div><div><font face=3D"monospace">=C2=
-=A0 =C2=A0 from PyQt4 import Qt</font></div><div><font face=3D"monospace">I=
-mportError: No module named PyQt4</font></div></blockquote></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Oct 21, =
-2019 at 12:19 PM Ettus Research Support &lt;<a href=3D"mailto:support@ettus=
-.com">support@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif">Hi Saeid - Not sure what&#39;s going on=
- with your GR install ... did you do &quot;sudo make install&quot; after do=
-ing &quot;make&quot;? Did you do &quot;sudo ldconfig&quot; after installing=
-?</div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif=
-"><br></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-=
-serif">It looks like you need to install &quot;python-sip&quot; to get arou=
-nd this latest issue. Same basic method as &quot;python-six&quot;, whatever=
- that was that you did successfully. - MLD</div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 18, 2019 at 3:1=
-9 PM Saeid Hashemi via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.et=
-tus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Okay,=
- so installing python-six fixed that, and I was able to install 3.7.13.5 fr=
-om source.<div>The sample apps like uhd_fft are not in the path like they u=
-sed to be with binary installation. And trying it from the apps folder give=
-s me:</div><div><br></div><blockquote style=3D"margin:0px 0px 0px 40px;bord=
-er:none;padding:0px"><div><font face=3D"monospace">nuc03@nuc03:/usr/local/b=
-in$ /home/nuc03/gnuradio/gr-uhd/apps/uhd_fft</font></div><div><font face=3D=
-"monospace">Traceback (most recent call last):</font></div><div><font face=
-=3D"monospace">=C2=A0 File &quot;/home/nuc03/gnuradio/gr-uhd/apps/uhd_fft&q=
-uot;, line 39, in &lt;module&gt;</font></div><div><font face=3D"monospace">=
-=C2=A0 =C2=A0 import sip</font></div><div><font face=3D"monospace">ImportEr=
-ror: No module named sip</font></div></blockquote></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 17, 2019 at 1=
-0:26 AM Michael Dickens &lt;<a href=3D"mailto:michael.dickens@ettus.com" ta=
-rget=3D"_blank">michael.dickens@ettus.com</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Yes sorry ab=
-out the GR37 release version: 3.7.13.5 is the correct on. Installing Py27-s=
-ix should be pretty straight forward &amp; should allow you to proceed with=
- that install. GR38 has it&#39;s own set of dependencies, some of which ove=
-rlap with GR37 and some of which don&#39;t. You&#39;ll want to follow the i=
-nstall guide for your OS to get those dependencies. Good=C2=A0luck! - MLD</=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Wed, Oct 16, 2019 at 3:02 PM Saeid Hashemi &lt;<a href=3D"mailto:sae=
-idh@gmail.com" target=3D"_blank">saeidh@gmail.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Michae=
-l,<div><br></div><div>The gnuradio git repository does not have a tag for v=
-3.17.14.5, and using v3.7.13.5 gives me:</div><div><br></div><blockquote st=
-yle=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><div><font size=3D"=
-1" face=3D"monospace">-- Python checking for six - python 2 and 3 compatibi=
-lity library</font></div><div><font size=3D"1" face=3D"monospace">-- Python=
- checking for six - python 2 and 3 compatibility library - not found</font>=
-</div><div><font size=3D"1" face=3D"monospace">CMake Error at volk/CMakeLis=
-ts.txt:98 (message):</font></div><div><font size=3D"1" face=3D"monospace">=
-=C2=A0 six - python 2 and 3 compatibility library required to build VOLK</f=
-ont></div><div><font size=3D"1" face=3D"monospace"><br></font></div><div><f=
-ont size=3D"1" face=3D"monospace"><br></font></div><div><font size=3D"1" fa=
-ce=3D"monospace">-- Configuring incomplete, errors occurred!</font></div><d=
-iv><font size=3D"1" face=3D"monospace">See also &quot;/home/nuc03/gnuradio/=
-build/CMakeFiles/CMakeOutput.log&quot;.</font></div><div><font size=3D"1" f=
-ace=3D"monospace">See also &quot;/home/nuc03/gnuradio/build/CMakeFiles/CMak=
-eError.log&quot;.</font></div></blockquote><div><br></div><div>Checking out=
- tag v3.8.0.0 results in Cmake dependency of 3.8 and up, so I need to insta=
-ll that manually.</div><div><br></div></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Sat, Oct 12, 2019 at 11:02 AM Mich=
-ael Dickens &lt;<a href=3D"mailto:michael.dickens@ettus.com" target=3D"_bla=
-nk">michael.dickens@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr">OK. Thanks for the info Saeid=
-. I&#39;ll look into creating a VM using Ubuntu 16.04.1 to see what happens=
-. - MLD</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi &lt;<a href=3D"mailto:=
-saeidh@gmail.com" target=3D"_blank">saeidh@gmail.com</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">It&#39=
-;s Ubuntu 16.04.1, but yes, I will follow the source build instructions.</d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Fri, Oct 11, 2019 at 3:11 PM Michael Dickens &lt;<a href=3D"mailto:michael.=
-dickens@ettus.com" target=3D"_blank">michael.dickens@ettus.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
-tr"><div dir=3D"ltr">Hi=C2=A0Saeid - Thanks for the followup. I totally agr=
-ee that if you just &quot;sudo apt install gnuradio&quot;, compatible versi=
-ons should be installed. Are you using Ubuntu 16.04.6 LTS (Xenial Xerus)? I=
-f you choose to install from source, you can follow instructions such as th=
-e GR recommended way here &lt;=C2=A0<a href=3D"https://wiki.gnuradio.org/in=
-dex.php/UbuntuInstall#Xenial_Xerus_.2816.04.29" target=3D"_blank">https://w=
-iki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29</a> &gt;.=
- I have an Ubuntu=C2=A018.04 install that went very=C2=A0smoothly using thi=
-s guide, but maybe the guide is outdated for older Ubuntu; or, our packages=
- need to be updated for that OS version ... Cheers! - MLD</div><br><div cla=
-ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 11, 20=
-19 at 2:24 PM Saeid Hashemi &lt;<a href=3D"mailto:saeidh@gmail.com" target=
-=3D"_blank">saeidh@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex"><div dir=3D"ltr">I will follow your advice, but=
- it&#39;s worth mentioning I simply did apt-get gnuradio and should therefo=
-re have a compatible version of uhd installed automatically as a dependency=
-. I did not install uhd separately.</div></blockquote></div>-- <br><div dir=
-=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Re=
-search Technical Support<br>Email: <a href=3D"mailto:support@ettus.com" tar=
-get=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/"=
- target=3D"_blank">https://ettus.com/</a></div></div></div></div></div>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Research T=
-echnical Support<br>Email: <a href=3D"mailto:support@ettus.com" target=3D"_=
-blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/" target=
-=3D"_blank">https://ettus.com/</a></div></div></div></div>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Research T=
-echnical Support<br>Email: <a href=3D"mailto:support@ettus.com" target=3D"_=
-blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/" target=
-=3D"_blank">https://ettus.com/</a></div></div></div></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
+--------------000704090307030908090308
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---0000000000002a31ac0595ae0287--
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 10/24/2019 08:38 PM, Karthik
+      Vasudeva wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CACakhLz=_eDdXeEOieyHOa1cc+be_YEYUVHncKFnDyENHXQEOQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">I tried, did not work.
+        <div><br>
+        </div>
+        <div>kvasude2@veneno:~$ uhd_usrp_probe --args
+          mgmt_addr=192.168.1.103,addr=192.168.10.2,type=n3xx<br>
+          [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+          UHD_3.14.1.HEAD-0-g0347a6d8<br>
+          Error: LookupError: KeyError: No devices found for -----&gt;<br>
+          Device Address:<br>
+              mgmt_addr: 192.168.1.103<br>
+              addr: 192.168.10.2<br>
+              type: n3xx<br>
+        </div>
+        <div><br>
+        </div>
+        <div>Karthik</div>
+      </div>
+    </blockquote>
+    OK, so, can you ping both of these addresses?<br>
+    <br>
+    Is port UDP port 49152 port open on your host?<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CACakhLz=_eDdXeEOieyHOa1cc+be_YEYUVHncKFnDyENHXQEOQ@mail.gmail.com"
+      type="cite"><br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Thu, Oct 24, 2019 at 7:26
+          PM Marcus D. Leech &lt;<a moz-do-not-send="true"
+            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div bgcolor="#FFFFFF">
+            <div>On 10/24/2019 03:44 PM, Karthik Vasudeva wrote:<br>
+            </div>
+            <blockquote type="cite">
+              <div dir="ltr">I just tried with that address but still
+                the same problem. Please find the below error message
+                <div><br>
+                </div>
+                <div>kvasude2@veneno:~$ uhd_usrp_probe --args
+                  mgmt_addr=192.168.1.103,addr=192.168.10.2<br>
+                  [INFO] [UHD] linux; GNU C++ version 7.4.0;
+                  Boost_106501; UHD_3.14.1.HEAD-0-g0347a6d8<br>
+                  Error: LookupError: KeyError: No devices found for
+                  -----&gt;<br>
+                  Device Address:<br>
+                      mgmt_addr: 192.168.1.103<br>
+                      addr: 192.168.10.2<br>
+                </div>
+              </div>
+            </blockquote>
+            you'll also need to add:<br>
+            <br>
+            type=n3xx<br>
+            <br>
+            to the device args.<br>
+            <br>
+            <br>
+            <blockquote type="cite">
+              <div dir="ltr">
+                <div><br>
+                </div>
+                <div>I am not sure whether my way of configuring the
+                  RJ45 port to static is correct. Please provide
+                  pointers for the static configuration of RJ45 port.<br>
+                </div>
+                <div><br>
+                </div>
+                <div>Karthik</div>
+              </div>
+              <br>
+              <div class="gmail_quote">
+                <div dir="ltr" class="gmail_attr">On Thu, Oct 24, 2019
+                  at 2:51 PM Marcus D Leech &lt;<a
+                    moz-do-not-send="true"
+                    href="mailto:patchvonbraun@gmail.com"
+                    target="_blank">patchvonbraun@gmail.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class="gmail_quote" style="margin:0px 0px
+                  0px 0.8ex;border-left:1px solid
+                  rgb(204,204,204);padding-left:1ex">
+                  <div dir="auto">Use the 192.168.1.103 address
+                    <div><br>
+                    </div>
+                    <div>127.0.0.1 is the address that’s used when
+                      running on the embedded platform within the N310. </div>
+                    <div><br>
+                    </div>
+                    <div><br>
+                      <br>
+                      <div dir="ltr">Sent from my iPhone</div>
+                      <div dir="ltr"><br>
+                        <blockquote type="cite">On Oct 24, 2019, at 1:29
+                          AM, Karthik Vasudeva &lt;<a
+                            moz-do-not-send="true"
+                            href="mailto:kvasudeva06@gmail.com"
+                            target="_blank">kvasudeva06@gmail.com</a>&gt;
+
+                          wrote:<br>
+                          <br>
+                        </blockquote>
+                      </div>
+                      <blockquote type="cite">
+                        <div dir="ltr">﻿
+                          <div dir="ltr">Thank you for the pointer. I
+                            tried changing the network configuration of
+                            the RJ45 port in the embedded system by
+                            updating the eth0.network file as follows<br>
+                            <div><br>
+                            </div>
+                            <div>[Match]</div>
+                            <div>Name = eth0</div>
+                            <div><br>
+                            </div>
+                            <div>[Network]</div>
+                            <div>Address=192.168.1.103</div>
+                            <div><br>
+                            </div>
+                            <div>[Link]</div>
+                            <div>MTUBytes=1500</div>
+                            <div><br>
+                            </div>
+                            <div>But still the uhd_find_devices shows
+                              the same mgmt_addr in the embedded system
+                              as shown below</div>
+                            <div><br>
+                            </div>
+                            <div>root@ni-n3xx-3198219:~#
+                              uhd_find_devices <br>
+                              [INFO] [UHD] linux; GNU C++ version 7.3.0;
+                              Boost_106600; UHD_3.14.1.1-0-g0347a6d8<br>
+--------------------------------------------------<br>
+                              -- UHD Device 0<br>
+--------------------------------------------------<br>
+                              Device Address:<br>
+                                  serial: 3198219<br>
+                                  claimed: False<br>
+                                  mgmt_addr: 127.0.0.1<br>
+                                  product: n310<br>
+                                  type: n3xx<br>
+                            </div>
+                            <div><br>
+                            </div>
+                            <div>Karthik<br>
+                            </div>
+                            <div><br>
+                            </div>
+                            <div><br>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="gmail_quote">
+                            <div dir="ltr" class="gmail_attr">On Thu,
+                              Oct 24, 2019 at 12:04 AM Marcus D. Leech
+                              &lt;<a moz-do-not-send="true"
+                                href="mailto:patchvonbraun@gmail.com"
+                                target="_blank">patchvonbraun@gmail.com</a>&gt;
+
+                              wrote:<br>
+                            </div>
+                            <blockquote class="gmail_quote"
+                              style="margin:0px 0px 0px
+                              0.8ex;border-left:1px solid
+                              rgb(204,204,204);padding-left:1ex">
+                              <div bgcolor="#FFFFFF">
+                                <div>On 10/24/2019 12:03 AM, Karthik
+                                  Vasudeva wrote:<br>
+                                </div>
+                                <blockquote type="cite">
+                                  <div dir="ltr">Thank you for the
+                                    clarification. Actually, I am using
+                                    the RJ45 connection through a router
+                                    and tried probuhd udp ports opening
+                                    along with mgmt_addr but still the
+                                    same problem. Please find the below
+                                    error message
+                                    <div><br>
+                                    </div>
+                                    kvasude2@veneno:~$ uhd_usrp_probe
+                                    --args
+                                    mgmt_addr=127.0.0.1,addr=192.168.10.2<br>
+                                    [INFO] [UHD] linux; GNU C++ version
+                                    7.4.0; Boost_106501;
+                                    UHD_3.14.1.HEAD-0-g0347a6d8<br>
+                                    Error: LookupError: KeyError: No
+                                    devices found for -----&gt;<br>
+                                    Device Address:<br>
+                                        mgmt_addr: 127.0.0.1<br>
+                                        addr: 192.168.10.2<br>
+                                    <div><br>
+                                    </div>
+                                    <div>I used mgmt_addr shown below
+                                      from the embedded system. Please
+                                      correct me if I am wrong.</div>
+                                  </div>
+                                </blockquote>
+                                127.0.0.1 is always your local host
+                                machine, so not correct in this case.<br>
+                                <br>
+                                If you read through the document I
+                                pointed you at, you'll see that by
+                                default, that RJ45 connection uses DHCP
+                                to get an address.  The document<br>
+                                  talks about changing that to a static
+                                address if you need to.<br>
+                                <br>
+                                <br>
+                                <blockquote type="cite">
+                                  <div dir="ltr">
+                                    <div><br>
+                                    </div>
+                                    <div>root@ni-n3xx-3198219:~#
+                                      uhd_find_devices <br>
+                                      [INFO] [UHD] linux; GNU C++
+                                      version 7.3.0; Boost_106600;
+                                      UHD_3.14.1.1-0-g0347a6d8<br>
+--------------------------------------------------<br>
+                                      -- UHD Device 0<br>
+--------------------------------------------------<br>
+                                      Device Address:<br>
+                                          serial: 3198219<br>
+                                          claimed: False<br>
+                                          mgmt_addr: 127.0.0.1<br>
+                                          product: n310<br>
+                                          type: n3xx<br>
+                                    </div>
+                                    <div><br>
+                                    </div>
+                                    <div>Karthik</div>
+                                    <div><br>
+                                    </div>
+                                    <div><br>
+                                    </div>
+                                  </div>
+                                  <br>
+                                  <div class="gmail_quote">
+                                    <div dir="ltr" class="gmail_attr">On
+                                      Wed, Oct 23, 2019 at 11:33 PM
+                                      Marcus D. Leech &lt;<a
+                                        moz-do-not-send="true"
+                                        href="mailto:patchvonbraun@gmail.com"
+                                        target="_blank">patchvonbraun@gmail.com</a>&gt;
 
 
---===============6397702978547327026==
+                                      wrote:<br>
+                                    </div>
+                                    <blockquote class="gmail_quote"
+                                      style="margin:0px 0px 0px
+                                      0.8ex;border-left:1px solid
+                                      rgb(204,204,204);padding-left:1ex">
+                                      <div bgcolor="#FFFFFF">
+                                        <div>On 10/23/2019 11:00 PM,
+                                          Karthik Vasudeva wrote:<br>
+                                        </div>
+                                        <blockquote type="cite">
+                                          <div dir="ltr">I tried
+                                            uhd_usrp_probe again but
+                                            still the same problem.
+                                            Please find the below error
+                                            message
+                                            <div><br>
+                                            </div>
+                                            <div>kvasude2@veneno:~$
+                                              uhd_usrp_probe --args
+                                              addr=192.168.10.2<br>
+                                              [INFO] [UHD] linux; GNU
+                                              C++ version 7.4.0;
+                                              Boost_106501;
+                                              UHD_3.14.1.HEAD-0-g0347a6d8<br>
+                                              Error: LookupError:
+                                              KeyError: No devices found
+                                              for -----&gt;<br>
+                                              Device Address:<br>
+                                                  addr: 192.168.10.2<br>
+                                              <div><a
+                                                  moz-do-not-send="true"
+href="https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connecting_the_Device"
+                                                  target="_blank">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connecting_the_Device</a><br>
+                                              </div>
+                                              <div>Also, find the below
+                                                message from the
+                                                embedded system showing
+                                                the IP of the SFP0 port
+                                                for the reference.</div>
+                                              <div><br>
+                                              </div>
+                                              <div>root@ni-n3xx-3198219:~#
+                                                ip a<br>
+                                                1: lo:
+                                                &lt;LOOPBACK,UP,LOWER_UP&gt;
+                                                mtu 65536 qdisc noqueue
+                                                qlen 1000<br>
+                                                    link/loopback
+                                                00:00:00:00:00:00 brd
+                                                00:00:00:00:00:00<br>
+                                                    inet <a
+                                                  moz-do-not-send="true"
+href="http://127.0.0.1/8" target="_blank">127.0.0.1/8</a> scope host lo<br>
+                                                       valid_lft forever
+                                                preferred_lft forever<br>
+                                                2: eth0:
+                                                &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;
+                                                mtu 1500 qdisc
+                                                pfifo_fast qlen 1000<br>
+                                                    link/ether
+                                                00:80:2f:26:50:f8 brd
+                                                ff:ff:ff:ff:ff:ff<br>
+                                                    inet <a
+                                                  moz-do-not-send="true"
+href="http://192.168.1.102/24" target="_blank">192.168.1.102/24</a> brd
+                                                192.168.1.255 scope
+                                                global dynamic eth0<br>
+                                                       valid_lft
+                                                86266sec preferred_lft
+                                                86266sec<br>
+                                                3: <b>sfp0</b>:
+                                                &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;
+                                                mtu 8000 qdisc
+                                                pfifo_fast qlen 1000<br>
+                                                    link/ether
+                                                00:80:2f:26:50:f9 brd
+                                                ff:ff:ff:ff:ff:ff<br>
+                                                    <b>inet <a
+                                                    moz-do-not-send="true"
+href="http://192.168.10.2/24" target="_blank">192.168.10.2/24</a></b>
+                                                brd 192.168.10.255 scope
+                                                global sfp0<br>
+                                                       valid_lft forever
+                                                preferred_lft forever<br>
+                                                4: sfp1:
+                                                &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt;
+                                                mtu 8000 qdisc
+                                                pfifo_fast qlen 1000<br>
+                                                    link/ether
+                                                00:80:2f:26:50:fa brd
+                                                ff:ff:ff:ff:ff:ff</div>
+                                            </div>
+                                            <div><br>
+                                            </div>
+                                            <div>Karthik</div>
+                                          </div>
+                                          <br>
+                                        </blockquote>
+                                        So, something you need to
+                                        understand about the N310 device
+                                        is that it has an RJ45 port that
+                                        is used both for "management and
+                                        control"<br>
+                                          traffic from UHD, and is also
+                                        an SSH destination, etc, etc.<br>
+                                        <br>
+                                        The SFP ports are strictly for
+                                        streaming, so you need to use
+                                        "mgmt_addr=&lt;the-addr-of-that-rj45&gt;,addr=192.168.10.2"
+                                        in the device address,<br>
+                                          and you need a connection for
+                                        that RJ45 as well.  HOWEVER, if
+                                        you're streaming at lower rates
+                                        (those that can be supported
+                                        over the<br>
+                                          RJ45), you can simply use that
+                                        RJ45 connection, and ignore the
+                                        SFP connections.<br>
+                                        <br>
+                                        More here:<br>
+                                        <br>
+                                        <a moz-do-not-send="true"
+href="https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connecting_the_Device"
+                                          target="_blank">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connecting_the_Device</a><br>
+                                        <br>
+                                        <br>
+                                      </div>
+                                    </blockquote>
+                                  </div>
+                                </blockquote>
+                                <br>
+                              </div>
+                            </blockquote>
+                          </div>
+                        </div>
+                      </blockquote>
+                    </div>
+                  </div>
+                </blockquote>
+              </div>
+            </blockquote>
+            <br>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------000704090307030908090308--
+
+
+--===============8350660767764175866==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -369,5 +746,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6397702978547327026==--
+--===============8350660767764175866==--
 
