@@ -2,51 +2,39 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47B14E4C16
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Oct 2019 15:27:50 +0200 (CEST)
-Received: from [::1] (port=35916 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3787DE4F24
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Oct 2019 16:32:24 +0200 (CEST)
+Received: from [::1] (port=54922 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iNzd7-0006ca-17; Fri, 25 Oct 2019 09:27:49 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:38560)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1iNzd3-0006Vk-VO
- for usrp-users@lists.ettus.com; Fri, 25 Oct 2019 09:27:45 -0400
-Received: by mail-qk1-f173.google.com with SMTP id p4so1715945qkf.5
- for <usrp-users@lists.ettus.com>; Fri, 25 Oct 2019 06:27:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=vuz9OSl49W/PwA082JUeSjl1wWi5oY8HHelry/yfZY8=;
- b=P3oVhlX/IzzVFpa3Ld0fxfeAhSi19Dj0oC5i2esWuzDUuQdk2V0M2AZ00WeaOjzHSU
- jZS7TM3mvJk4gJmtkcpg+BlKPiVTNXOEJcPKsDqkGXq++Zt5YEiCgy8EC/sM+Wwx+P/u
- hXhXVMzE9GJpoAf5GYUoTrsv98AJZXK5oMhYm/8dYLtbnoD/rPJ7ZcBQaAizEdlBKMOf
- y1OHxhaOpIXpWRM6DTeu7r8SFyrpOgM/OINeT0MLx6zDDa9cC79FrzXNpR323jiW4inz
- niRNwsGCdFDlndpp1YUefQJatS1GHkDZRW3qAQ6HOur51+v+JmUVQ4XMbV9fgCjtuheq
- 3yvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=vuz9OSl49W/PwA082JUeSjl1wWi5oY8HHelry/yfZY8=;
- b=OOoY9N3Swuavlye3On+JRQZfWZHRmmRaEtJZ4Lhuhq91VfCI6Z0NeJRhGE14E8SoeD
- AiPmMQsB5MyF5Sjrf2ZgnbGEtrmpDad+isXkzsVnM8htuSgIP3gQvLjQior9cpZWz8e5
- k9S1YloVhMxOuMaECtI3LN20qQHZR1xIEh3uvZNrNBDJ1EF0jm4Ab+mA9bY63unEJbXo
- cL2w8NZIFjxZd59PYHxAzkT//99vLWG2vf0uCMW8Y3bDysn2YMDDGF4ydduGd1Qw9I0h
- C/2sf+G7a4LvOQJi3qX+PRa/bZmpbnwGgcNVjEdkiSGApXBNVolHmUhoRN37faVREHMW
- Gq5g==
-X-Gm-Message-State: APjAAAVSl4BNlNgD3mExaenIO0rlwRCJRsnPJvi2ej1BqP0TSCmOL4ZO
- 6fUUrMCd771vhk+hF9+rTJXj/H+yRUjz5gFlBbE2RA==
-X-Google-Smtp-Source: APXvYqxdmWnmhjy1jAaNnMOxcCY6JXmcrq6B2BzpGSX+AcxG4+ArOeAusHeCslZcjP2yNCo2ZQqKS87IFaIaa6dCDfY=
-X-Received: by 2002:a37:6155:: with SMTP id v82mr2681273qkb.319.1572010025229; 
- Fri, 25 Oct 2019 06:27:05 -0700 (PDT)
+	id 1iO0dX-0003Pn-Bm; Fri, 25 Oct 2019 10:32:19 -0400
+Received: from neon-v1.ccupm.upm.es ([138.100.198.71]:34978)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <pablo.mdiaz@alumnos.upm.es>)
+ id 1iO0dT-0003Il-Ap
+ for USRP-users@lists.ettus.com; Fri, 25 Oct 2019 10:32:15 -0400
+Received: from www.upm.es (webmail01.dcupm [10.20.20.20])
+ by neon-v1.ccupm.upm.es (8.14.4/8.14.4/neon-v1-002) with ESMTP id
+ x9PEVRQv020002; Fri, 25 Oct 2019 16:31:27 +0200
 MIME-Version: 1.0
-References: <CALLKLANcwo6NGC8TcKbWc_Un1qSgRx9qUkTcm1FkxBRc05qEcQ@mail.gmail.com>
-In-Reply-To: <CALLKLANcwo6NGC8TcKbWc_Un1qSgRx9qUkTcm1FkxBRc05qEcQ@mail.gmail.com>
-Date: Fri, 25 Oct 2019 09:26:54 -0400
-Message-ID: <CAB__hTQx+ZyX3pG5Xbj8YrHoPBcUFu1Wg1ih9xFpbNgyRXDv3A@mail.gmail.com>
-To: Mark Wagner <m2wagner@eng.ucsd.edu>
-Subject: Re: [USRP-users] Error when trying to run USRP N310s using external
- LO
+Date: Fri, 25 Oct 2019 16:31:27 +0200
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <5DAFA817.2020403@gmail.com>
+References: <d92a0a15-a78c-a63d-8ed1-54f475f1be61@alumnos.upm.es>
+ <75DDE278-D19C-4F01-91B6-84FFF9D97CE9@gmail.com>
+ <e3f65254-948f-054c-5702-c453e4700b4f@alumnos.upm.es>
+ <5DACCFE8.6020102@gmail.com>
+ <4f85e58a-81e2-97a4-e7d5-9f6f2cd826d4@alumnos.upm.es>
+ <5DADF682.7080202@gmail.com>
+ <3d81d230-eeea-9621-046f-b21f4615007a@alumnos.upm.es>
+ <5DAFA817.2020403@gmail.com>
+Message-ID: <940843aff248b2a30f7bca809e8a6177@alumnos.upm.es>
+X-Sender: pablo.mdiaz@alumnos.upm.es
+User-Agent: Webmail UPM Alumnos
+X-Originating-IP: 138.100.9.10
+X-BitDefender-Scanner: Clean,
+ Agent: BitDefender Milter 3.1.6 on neon-v1.ccupm.upm.es, sigver: 7.82693
+Subject: Re: [USRP-users] Setting tune freq error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -58,10 +46,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: Usrp Users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0744274328343309356=="
+From: "pablo.mdiaz via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "pablo.mdiaz" <pablo.mdiaz@alumnos.upm.es>
+Cc: USRP-users@lists.ettus.com
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,90 +64,26 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0744274328343309356==
-Content-Type: multipart/alternative; boundary="0000000000002350550595bc1bbb"
-
---0000000000002350550595bc1bbb
-Content-Type: text/plain; charset="UTF-8"
-
-The N310 data sheet (in one of the footnotes) indicates that external LO is
-limited to the frequency range 300-4000 MHz.  Are you trying to operate
-below 300MHz?
-Rob
-
-On Thu, Oct 24, 2019 at 3:42 PM Mark Wagner via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi all,
->
-> I'm currently trying to run a set of USRP N310s all using the same
-> external LO, but I seem to be getting this error
->
-> "[ERROR] [0/Radio_1] RX LO lowband does not support setting source to
-> external"
->
-> which will repeat for all the radios. I tried looking online for the
-> source of the error but no dice. It seems like the radios are ignoring the
-> LO I'm giving them and using their internal ones instead. Any thoughts?
->
-> -Mark
->
-> --
-> Mark Wagner
-> University of California San Diego
-> Electrical and Computer Engineering
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000002350550595bc1bbb
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">The N310 data sheet (in one of the footnotes) indicates th=
-at external LO is limited to the frequency range 300-4000 MHz.=C2=A0 Are yo=
-u trying to operate below 300MHz?<div>Rob</div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 24, 2019 at 3:42=
- PM Mark Wagner via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus=
-.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi all,<=
-div><br></div><div>I&#39;m currently trying to run a set of USRP N310s all =
-using the same external LO, but I seem to be getting this error=C2=A0</div>=
-<div>=C2=A0<br></div><div><div>&quot;[ERROR] [0/Radio_1] RX LO lowband does=
- not support setting source to external&quot;</div><div><br></div><div>whic=
-h will repeat for all the radios. I tried looking online for the source of =
-the error but no dice. It seems like the radios are ignoring the LO I&#39;m=
- giving them and using their internal ones instead. Any thoughts?</div></di=
-v><div><br></div><div>-Mark</div><div><br></div>-- <br><div dir=3D"ltr"><di=
-v dir=3D"ltr"><div><div>Mark Wagner<br></div>University of California San D=
-iego<br></div>Electrical and Computer Engineering<br>=C2=A0<br></div></div>=
-</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000002350550595bc1bbb--
-
-
---===============0744274328343309356==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============0744274328343309356==--
-
+CkFuc3dlcmluZyB5b3VyIHF1ZXN0aW9uczoKCiAgICBBIC0gT3VyIFgzMTAgaXMgY29ubmVjdGVk
+IHZpYSBQQ0ktRSwgc28gdGhlIG9ubHkgYnVmZmVyIHdlIGhhdmUgaXMgCnRoZSBvbmUgdXNlZCBp
+biByZWN2KCkgZnVuY3Rpb24uCiAgICBCIC0gT3VyIHN5c3RlbSBpcyBub3QgdmlydHVhbGl6ZWQs
+IHRoZSByZWNlaXZlciBjYXJkIGlzIGRpcmVjdGx5IApjb25uZWN0ZWQgdG8gdGhlIFNEUi4KCldl
+IGhhdmUgcHJvYmxlbXMgd2l0aCBnbnUtY29tcGFuaW9uIG9wZW5pbmcgeW91ciAuZ3JjIGZpbGUg
+LCBzbyB3ZSAKY291bGRuJ3QgdGVzdCBpdC4gV2Ugc3VzcGVjdCByZWNvbXBpbGluZyBnbnVyYWRp
+byB3aWxsIGZpeCB0aGlzIGlzc3VlLgoKSSB3b3VsZCBsaWtlIHRvIGFzayB5b3UgYW5vdGhlciBx
+dWVzdGlvbjoKCiAgICAtIFRoZSB2YWx1ZSByZXR1cm5lZCBmcm9tIGdldF9tYXhfbnVtX3NhbXBz
+KCkgaXMgMTAyMCBzYW1wbGVzIHBlciAKcGFja2V0LiBJcyB0aGlzIHZhbHVlIGEgY29uc3RhbnQg
+ZGVwZW5kaW5nIG9uIHRoZSBoYXJkd2FyZT8gSXQgd291bGQgYmUgCmdyZWF0IGZvciB1cyB0byBy
+ZWFjaCAxMDI0IHNhbXBsZXMgcGVyIHBhY2tldC4KClRoYW5rcyBiZWZvcmVoYW5kLgoKCj4+IEVs
+IDIxLzEwLzIwMTkgYSBsYXMgMjA6MTgsIE1hcmN1cyBELiBMZWVjaCBlc2NyaWJpw7M6Cgo+IEkg
+dHJpZWQgdGhlIGF0dGFjaGVkIGZsb3ctZ3JhcGgsIGFnYWluc3QgYW4gWDMxMCwgd2l0aCBVSEQg
+Z2l0IGNvbW1pdDoKPiBjNTJmM2Y0MTgwNjYyMmM5NTU3M2RlMjFiZTA0MmY5NjZmNjc1NTQzCj4g
+Cj4gQW5kIGNvdWxkbid0IGdldCBpdCB0byBmYWlsLgo+IAo+IE1ha2Ugc3VyZSB5b3UgcmVzaXpl
+IHlvdXIgc29ja2V0IGJ1ZmZlcnMgdG8gdGhlIHNpemUgcmVjb21tZW5kZWQgLS0gaWYKPiB0aGV5
+IGFyZW4ndCBiaWcgZW5vdWdoLCBVSEQgd2lsbCBwcm9kdWNlIGEgbWVzc2FnZSBpbmRpY2F0aW5n
+Cj4gICBob3cgdG8gcmVzaXplIHRoZW0gb24geW91ciBzeXN0ZW0uCj4gCj4gU28sIG1vcmUgcXVl
+c3Rpb25zOgo+IAo+ICAgKEEpIFdoYXQgdHlwZSBvZiBldGhlcm5ldCBpbnRlcmZhY2UgZG8geW91
+IGhhdmU/Cj4gICAoQikgSXMgdGhpcyBpbiBhIGhhcmR3YXJlIG9yIHZpcnR1YWwgZW52aXJvbm1l
+bnQ/CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQ
+LXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlz
+dHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
