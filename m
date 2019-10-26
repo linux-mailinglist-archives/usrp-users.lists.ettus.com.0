@@ -2,53 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2798E574E
-	for <lists+usrp-users@lfdr.de>; Sat, 26 Oct 2019 01:56:13 +0200 (CEST)
-Received: from [::1] (port=41170 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF34E5805
+	for <lists+usrp-users@lfdr.de>; Sat, 26 Oct 2019 04:17:43 +0200 (CEST)
+Received: from [::1] (port=35806 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iO9RB-0007vn-GZ; Fri, 25 Oct 2019 19:56:09 -0400
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:38882)
+	id 1iOBe3-0006eE-1f; Fri, 25 Oct 2019 22:17:35 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:45014)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <wddias@gmail.com>) id 1iO9R7-0007rf-Ta
- for usrp-users@lists.ettus.com; Fri, 25 Oct 2019 19:56:05 -0400
-Received: by mail-qt1-f173.google.com with SMTP id o25so5857847qtr.5
- for <usrp-users@lists.ettus.com>; Fri, 25 Oct 2019 16:55:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1iOBdz-0006Z4-IC
+ for usrp-users@lists.ettus.com; Fri, 25 Oct 2019 22:17:31 -0400
+Received: by mail-oi1-f182.google.com with SMTP id s71so2837222oih.11
+ for <usrp-users@lists.ettus.com>; Fri, 25 Oct 2019 19:17:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=O5bItbCb8I1BPtFVNVTSTHKpxgdurcCLXNGLvuqpqt0=;
- b=sqkTuUbPAyFRRXOO1VOfp2pts2qgAY1IEYVtZ7NgGOUMOXdK//twUWYLMLN0xjF3PJ
- fUNnvVA2hjvTTyOyPtpNlB6QL4VFi+6DaPGTJ14C6+bZ+bNbv5KxqcHFdkh58gAMIAw5
- /0ZY9PlGSqpbo4NxgPh/rVDtBtD1jxmo8U4XsSoH7ATskMs7ARU1lf7EITa8wEhjXJEO
- wjmovhIzMCs6W26B3Q/cQpYXzKrP1p9RV097kqZzzJ2eYrxsIwkBwfVkxSAH2E2aBCAJ
- WdM/d0XCZ+UggnY2jo5xThd8duiO2qB6efzRWhU3Y2bKFtAor8mp0mkYbYPXq161u789
- iSpA==
+ :cc; bh=I+xiufXFc4fNyiBU0sQHSg1qnCvP/8/6o9jC/HYNXxA=;
+ b=nXpTp4iVAbpXPJxRxqiIrcYsZix19+GRoFggz5HO1aTsKvWZbgYWaPbbv6Aja7dgv+
+ xyEjTLpHqx0OYrnuKpLnFAwwS0Kvf7AbCttpxu4+j8Xlqyhe256zdnA4VaqiGmE6qVga
+ +5TDwKWPtnN3VzUc2q+x4Qe+D6OaDrAESBBu9twwm91smEp1W+nXuPE6eovWTcylEW7e
+ 6gHahAKOfhSM50NnIrWrAWR/SD0+6VBfY0nQD63hjpxSwcGpZ0/Yl4dcXEY4ODbbLBiZ
+ nqaAUxgAJQd3t1QHLcAJZTMHVNzpKj8mPzzK9f+246RfoT1O3OH89oXeue7L31wK9X7K
+ E53A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=O5bItbCb8I1BPtFVNVTSTHKpxgdurcCLXNGLvuqpqt0=;
- b=AtcNgRM679UFOy2Dng7ZbXexga9k/0mlvnwYif7kokI8swUcGYBMJkrLUQVw7c75h+
- pECvv6b8NC2dAz+U1yLAEntI/XOy6UB13dqg4ofd9MwqKxI7uQoV4VciRCvUNygcoZOj
- q2jR5v4aCwdhROTIVPnuAhXDRtVVHlbU5j892pJtT2YUPq0FMJ3vPdJTYKQbxMLTt9HH
- TglmECyV6BVVIq5aOJo0ETuv7Jb2Ycat+8JMiqJlm+jVbW+WS6cYlRDrgHJwAjwLZR2q
- YKENlPq9k8pHCmQcaIiEvclPdC0eFLE48/g+hM8tBY08J9mTTJ+zUREUOQcCZDedhDge
- NPCw==
-X-Gm-Message-State: APjAAAXDdPS2X+yscNZLudoJLDGavFVGonWwrK2U/g1jhQckFNSWeEvF
- uS4Au5d7TXp/nxhhS2vPpn/wpDTuaCrMO6nw+N8=
-X-Google-Smtp-Source: APXvYqz7B1Ims/m7AGRvB89PA5vGbs3W/Gd0kcGJSzzH2MXAPsbl9YviR1J8i5nMeTbtTicrBcPXHFAK+ptkDw6B7H0=
-X-Received: by 2002:ac8:542:: with SMTP id c2mr6112982qth.338.1572047725245;
- Fri, 25 Oct 2019 16:55:25 -0700 (PDT)
+ bh=I+xiufXFc4fNyiBU0sQHSg1qnCvP/8/6o9jC/HYNXxA=;
+ b=Diy+j1OglvgtwiTmRXAvyRw4pP7JHbNK1mhQbFgUSP5mzqzZL1YYTmHUW+mbNQm6No
+ MjME7rNN3hm5U7Hx+pMo/tokVH3tiLQXrohLHGtwsb64V9g1KqtVe5heCLapDO6kPJG8
+ ywhRMIo2VYXvyyLAed849fxT6R4iqJiD6W590girG2wzHdPYdGNEQSC2aaD/WnS8SnV3
+ WBbhdLAMdpsan2AtBg+hmnhpy0F4y1hnYYZqQ+M1ObnaKnc0i1+waCBvN2p3zZsv9c8v
+ R8ZqEfA1HETZnLraAEF7DuJ+C4u/nV22x/OdcpihR8XuTavBlbqrA5uO6STIA2JD5yk3
+ Hoxw==
+X-Gm-Message-State: APjAAAVF1ad/WCNK02O5Z5RohB0ncIGHiptMoDLMl9azK5taqAPYjEUr
+ n777ekEIUQr2qGBoNpn/+18pl7ziejkYR8qOnHTq8wShPCeEGA==
+X-Google-Smtp-Source: APXvYqxYMoHsbjwJrALZiK+cVqK59F2dp2EaJ0FF1DYN1JqGwyCeE+kAqzC5lfRQbjgTjlAgFfoYVxUX+5CFQBjEjqs=
+X-Received: by 2002:a54:4716:: with SMTP id k22mr5576407oik.158.1572056210639; 
+ Fri, 25 Oct 2019 19:16:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <CALSKgPy9YoLX2fXWJPiy5kWDxswB_0oQ4VC1chWw6EqCVKJ+Rw@mail.gmail.com>
- <CANf970YQrC0_ZXOYQhyr9SqaqP8gj6rjuiMszESpPv769PnxgA@mail.gmail.com>
- <CALSKgPxmmkkxu-9nfeCFrK81MD7A4P7p6xqQMbWagK+HwttF5g@mail.gmail.com>
- <CANf970Yg4YF+Hvcdaa9GMdfQ6xwO75ZN15qsUUdoihmCc5Khog@mail.gmail.com>
-In-Reply-To: <CANf970Yg4YF+Hvcdaa9GMdfQ6xwO75ZN15qsUUdoihmCc5Khog@mail.gmail.com>
-Date: Fri, 25 Oct 2019 20:55:13 -0300
-Message-ID: <CALSKgPwFnAZMzPEiAAarLWXT3tu6n0X4SeaFyVMKtrA5AK1rCQ@mail.gmail.com>
-To: Sam Reiter <sam.reiter@ettus.com>
-Subject: Re: [USRP-users] X310 over PCIe not found in Ubuntu 18
+References: <F479266F97CCAE47854721C82406934E1CFD7097@EXDAG0-B2.intra.cea.fr>
+In-Reply-To: <F479266F97CCAE47854721C82406934E1CFD7097@EXDAG0-B2.intra.cea.fr>
+Date: Fri, 25 Oct 2019 19:17:48 -0700
+Message-ID: <CAL263iyN5i_aL3yzArwMPDwNyHpNvx9vNAnKfc93EY8ASvmfgQ@mail.gmail.com>
+To: BERTOLINI Rodolphe <rodolphe.bertolini@cea.fr>
+Subject: Re: [USRP-users] X310 and N310: using multiple RF
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -60,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Wheberth Damascena Dias via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Wheberth Damascena Dias <wheberth@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2985434493148176289=="
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4226455066933567379=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,104 +76,154 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2985434493148176289==
-Content-Type: multipart/alternative; boundary="0000000000003bb82e0595c4e2c7"
+--===============4226455066933567379==
+Content-Type: multipart/alternative; boundary="00000000000000a2410595c6dc90"
 
---0000000000003bb82e0595c4e2c7
+--00000000000000a2410595c6dc90
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-This computer has a mini-ITX board (ASUS ROG Strix Z390-I ) with just one
-x16 slot.
-However, on monday I can get the full output of the lspci command.
+Hi Rodolphe,
 
-Em sex, 25 de out de 2019 =C3=A0s 18:28, Sam Reiter <sam.reiter@ettus.com>
-escreveu:
+It is only possible to have one application "claim" the USRP at any given
+time. So two instances of OAI can not run on the same device.
 
-> Would you be able to try shifting this card to another PCIe slot in your
-> machine?
->
-> I'm also interested in knowing what other PCIe devices you have connected
-> to the computer. It might be worth making the X310's PCIe link the only
-> connection, at least for testing purposes.
->
-> Sam
->
->
-> On Wed, Oct 23, 2019 at 6:58 PM Wheberth Damascena Dias <
-> wheberth@gmail.com> wrote:
->
->> Hi Mr Reiter,
->> Thank you for your answer.
->>
->> Actually yes, the same X310 runs perfectly in another machine. Its a i7
->> 6th gen with ubuntu 18.04 kernel  4.15.0, libuhd and uhd-host on same
->> version.
->>
->> I think this can be some PCIe related setting on the BIOS, since the
->> lspci shows [disabled] next to the base address, but I can't find any
->> option to change it on the BIOS.
->>
->> Best Regards
->>
->>
->>
->>
->>
+The max sample rate (using sc16) on 1Gb is ~ 25 MS/s. The max sample rate
+(on X310) is 200 MS/s for a 10Gb link. If you have two RF DBs in a single
+X310 and want to run at faster than 100 MS/s per card, you need to use both
+10Gb interfaces to a single host, however, you're still limited to a single
+instance of an application claiming the X310. The N310 has the same in
+behavior, for example, if you want to run 4x channels at 61.44 MS/s, you
+would need to use both SFP ports as 10Gb links with a single application
+claiming it at a time.
 
---=20
-*Wheberth Damascena Dias*
-_______________ _____ _____ __ ___ __ _ _ _  _
-http://www.linkedin.com/in/wheberth
-e-mail:wheberth@gmail.com
+Regards,
+Nate Temple
 
---0000000000003bb82e0595c4e2c7
+On Thu, Oct 24, 2019 at 5:52 AM BERTOLINI Rodolphe via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello USRP-users mailing list,
+>
+> We are using an X310 for OpenAirInterface (OAI). It has one RF card.
+> I wonder the following:
+>
+>
+>    - With the following configuration:
+>       - USRP X310, HG image, one RF card
+>       - host connected to USRP through 1*10Gbps and 1*1Gbps
+>    - I run OAI on the 10Gbps ethernet interface, and while it is running
+>    I tried to run an other instance via the 1Gbps ethernet interface. I didn't
+>    expect it to work, but I didn't expect neither the error message: uhd tells
+>    me that no USRP was found (I made sure it looks-up through the 1Gbps
+>    interface).
+>       - My interpretation is that once that all of the available RF cards
+>       have an established link with the host, USRP closes all of the free
+>       interfaces (PCIe, ethernet...)
+>       - Thus, if I put an other RF card, and tell the USRP to use only
+>       one ethernet interface per RF card, then I would be able to run one OAI
+>       instance through an ethernet interface + an RF card, and an other instance
+>       through the other ethernet interface + the other RF card. Is it correct?
+>       - Now if we consider the N310, its 4 RF cards and its 2 ethernet
+>       interfaces: (ignoring limitation from OAI bandwidth requirements) is it
+>       possible to run two instances of OAI through a single ethernet interface,
+>       so that I could run four instance through two ethernet interfaces?
+>       - If all of the above is correct, do you have any idea on how to
+>       achieve this?
+>
+>
+> Thank you
+> Regards,
+> Rodolphe
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000000a2410595c6dc90
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>This computer has a mini-ITX board (ASUS ROG Strix Z3=
-90-I ) with just one x16 slot.=C2=A0</div><div>However,=C2=A0on monday I ca=
-n get the full output of the lspci command.<br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Em sex, 25 de out de=
- 2019 =C3=A0s 18:28, Sam Reiter &lt;<a href=3D"mailto:sam.reiter@ettus.com"=
->sam.reiter@ettus.com</a>&gt; escreveu:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"ltr">Would you be able to try shifting =
-this card to another PCIe slot in your machine?<div><br></div><div>I&#39;m =
-also interested in knowing what other PCIe devices you have connected to th=
-e computer. It might be worth making the X310&#39;s PCIe link the only conn=
-ection, at least for testing purposes.=C2=A0</div><div><br clear=3D"all"><d=
-iv><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam=C2=A0</div><=
-/div></div></div></div><br></div></div><br><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Wed, Oct 23, 2019 at 6:58 PM Wheberth D=
-amascena Dias &lt;<a href=3D"mailto:wheberth@gmail.com" target=3D"_blank">w=
-heberth@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi Rodolphe,<br><br>It is only possible to have one app=
+lication &quot;claim&quot; the USRP at any given time. So two instances of =
+OAI can not run on the same device. <br><br>The max sample rate (using sc16=
+) on 1Gb is ~ 25 MS/s. The max sample rate (on X310) is 200 MS/s for a 10Gb=
+ link. If you have two RF DBs in a single X310 and want to run at faster th=
+an 100 MS/s per card, you need to use both 10Gb interfaces to a single host=
+, however, you&#39;re still limited to a single instance of an application =
+claiming the X310. The N310 has the same in behavior, for example, if you w=
+ant to run 4x channels at 61.44 MS/s, you would need to use both SFP ports =
+as 10Gb links with a single application claiming it at a time. <br><br>Rega=
+rds,<br>Nate Temple</div></div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr" class=3D"gmail_attr">On Thu, Oct 24, 2019 at 5:52 AM BERTOLINI Rodolphe=
+ via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-user=
+s@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
  style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><div dir=3D"auto"><div dir=3D"auto">Hi Mr Reiter,=C2=A0</d=
-iv><div dir=3D"auto">Thank you for your answer.</div><div dir=3D"auto"><br>=
-</div>Actually yes, the same X310 runs perfectly in another machine. Its a =
-i7 6th gen with ubuntu 18.04 kernel=C2=A0 4.15.0, libuhd and uhd-host on sa=
-me version.<div dir=3D"auto"><br></div><div dir=3D"auto">I think this can b=
-e some PCIe related setting on the BIOS, since the lspci shows [disabled] n=
-ext to the base address, but I can&#39;t find any option to change it on th=
-e BIOS.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Best Regar=
-ds</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D=
-"auto"><br><div dir=3D"auto"><br></div></div></div>
+adding-left:1ex">
+
+
+
+
+<div>
+<div style=3D"direction:ltr;font-family:Tahoma;color:rgb(0,0,0);font-size:1=
+0pt">
+<div>Hello USRP-users mailing list,</div>
+<div><br>
+</div>
+<div>We are using an X310 for OpenAirInterface (OAI). It has one RF card.</=
+div>
+<div>I wonder the following:</div>
+<div><br>
+<ul style=3D"font-family:Tahoma;font-size:10pt">
+<li>With the following configuration:
+<ul>
+<li>USRP X310, HG image, one RF card<br>
+</li><li>host connected to USRP through 1*10Gbps and 1*1Gbps</li></ul>
+</li><li>I run OAI on the 10Gbps ethernet interface, and while it is runnin=
+g I tried to run an other instance via the 1Gbps ethernet interface. I didn=
+&#39;t expect it to work, but I didn&#39;t expect neither the error message=
+: uhd tells me that no USRP was found (I made
+ sure it looks-up through the 1Gbps interface).
+<ul>
+<li>My interpretation is that once that all of the available RF cards have =
+an established link with the host, USRP closes all of the free interfaces (=
+PCIe, ethernet...)</li><li>Thus, if I put an other RF card, and tell the US=
+RP to use only one ethernet interface per RF card, then I would be able to =
+run one OAI instance through an ethernet interface + an RF card, and an oth=
+er instance through the other ethernet interface + the
+ other RF card. Is it correct?<br>
+</li><li>Now if we consider the N310, its 4 RF cards and its 2 ethernet int=
+erfaces: (ignoring limitation from OAI bandwidth requirements) is it possib=
+le to run two instances of OAI through a single ethernet interface, so that=
+ I could run four instance through two
+ ethernet interfaces?</li><li>If all of the above is correct, do you have a=
+ny idea on how to achieve this?<br>
+</li></ul>
+</li></ul>
+<div><br>
+</div>
+<div>Thank you</div>
+<div>Regards,</div>
+<div>Rodolphe<br>
+</div>
+</div>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><span style=3D"font-size:1=
-2.8px"><b>Wheberth Damascena Dias</b></span><br></div><div><span style=3D"c=
-olor:rgb(80,0,80);font-size:12.8px">_______________ _____ _____ __ ___ __ _=
- _ _=C2=A0 _=C2=A0</span><br><div><a href=3D"http://www.linkedin.com/in/whe=
-berth" target=3D"_blank">http://www.linkedin.com/in/wheberth</a></div><div>=
-<a href=3D"mailto:e-mail%3Awheberth@gmail.com" target=3D"_blank">e-mail:whe=
-berth@gmail.com</a></div><div><div><div><br></div></div></div></div></div><=
-/div>
 
---0000000000003bb82e0595c4e2c7--
+--00000000000000a2410595c6dc90--
 
 
---===============2985434493148176289==
+--===============4226455066933567379==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,5 +234,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2985434493148176289==--
+--===============4226455066933567379==--
 
