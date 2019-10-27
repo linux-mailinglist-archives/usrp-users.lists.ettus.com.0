@@ -2,65 +2,34 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5883CE5EAA
-	for <lists+usrp-users@lfdr.de>; Sat, 26 Oct 2019 20:32:18 +0200 (CEST)
-Received: from [::1] (port=46098 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C88DFE603A
+	for <lists+usrp-users@lfdr.de>; Sun, 27 Oct 2019 03:21:42 +0100 (CET)
+Received: from [::1] (port=58598 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iOQrD-0007uW-4g; Sat, 26 Oct 2019 14:32:11 -0400
-Received: from mail-qt1-f182.google.com ([209.85.160.182]:46283)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <support@ettus.com>) id 1iOQr9-0007ov-MJ
- for usrp-users@lists.ettus.com; Sat, 26 Oct 2019 14:32:07 -0400
-Received: by mail-qt1-f182.google.com with SMTP id u22so8352130qtq.13
- for <usrp-users@lists.ettus.com>; Sat, 26 Oct 2019 11:31:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:sender:from:date:message-id
- :subject:to:cc;
- bh=voWqqGSw608YNtEb8C14QaOSzSbkC9SV8ncmLK21FPA=;
- b=Eaqd01In+0j14I749RTI2r+1jlqZV5B0hV+yyJejyizNJPwNcCuJPN8fgx+4NkhgoA
- anodjriTUDz2k8vgPS6hOWglrmLOo27O3m8ThqFuJG/n2z7612z3bDzTDAHc9VfUMXBS
- ndEWGuZ2OrpSqTvVNB5UqJN4XjA7x00021w8OJwtKa5AStg7fOo5DryG9IwpjKY1TImy
- /0nhT2lV/XC2n+daM6bwo9z+6V9OZe1UCaWZaAqETQo1y0lovqYnqYhwRr5sIisKDvte
- 1CCukU9IREiQuoDUcm0qkGBtqDxZ92u0XN2HBU87byJWJ/wI9jSdpwwkMSHh5rHyeHcd
- xkyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:sender:from
- :date:message-id:subject:to:cc;
- bh=voWqqGSw608YNtEb8C14QaOSzSbkC9SV8ncmLK21FPA=;
- b=W7x2M1mIW+aqlLUo3J3WLdG/0WlEQSrebmXrrJ76vr9u+fVW2JavOh43B6u2VQ0C4V
- IjTnvbjBinkAOqWf+E2LKMiNoJ8l4Fimz/EsMibZLth4Zq0l3EexPL+1W2siJCIEV1Su
- vX+vxkzD5P1RJKaVR0hOK5YNUnDv628IRwJPuCy7nxAg9Or9Df8VHXG44CQ1D6fNw9Lr
- /NNqM5NtC48yyHO8zjj317cW6dJn+k0Rd3hTAQXv564GwCNy+OT4WMAKVh/PJ5NOM6+6
- p+lHCOjkzxRAws32DpQwXTQRrbstIcQhz34xFzfaNc6djYSIL0wobyLV4yZDl1zEyaZp
- hMSQ==
-X-Gm-Message-State: APjAAAWWh31z1Q+YLuws5tQKeIgSOx/7WyDhZfWIlIIHWM+ZquQZ3L4m
- fmct65daHc5wMkvYThK1BTaCJA+sAFcQI1m1zMGPnS7f
-X-Google-Smtp-Source: APXvYqxMR+KsNtb89CGohStkxaQ+5fY2MbQ+78FmF0AFudpwQZnFLYsn/uH0IaButvUvqclViJPuRrqAxaSaFKi6lI4=
-X-Received: by 2002:a05:6214:2c:: with SMTP id
- b12mr9637674qvr.10.1572114686686; 
- Sat, 26 Oct 2019 11:31:26 -0700 (PDT)
+	id 1iOYBV-0006el-D2; Sat, 26 Oct 2019 22:21:37 -0400
+Received: from newmail.shu.edu.cn ([202.120.115.100]:33807 helo=shu.edu.cn)
+ by mm2.emwd.com with esmtp (Exim 4.92)
+ (envelope-from <hengzhang@shu.edu.cn>) id 1iOYBP-0006a7-Tt
+ for usrp-users@lists.ettus.com; Sat, 26 Oct 2019 22:21:33 -0400
+Received: by ajax-webmail-mail3 (Coremail) ; Sun, 27 Oct 2019 10:20:41 +0800
+ (GMT+08:00)
+X-Originating-IP: [58.199.163.84]
+Date: Sun, 27 Oct 2019 10:20:41 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+To: usrp-users@lists.ettus.com
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.9a build 20190604(696d1518)
+ Copyright (c) 2002-2019 www.mailtech.cn staff
 MIME-Version: 1.0
-References: <CANQ3h3_fwR=baRxHo+Aicms8C3CFnWzR51qSS99xo2u--OY2vg@mail.gmail.com>
- <CAGNhwTNRQwC2-gVFQFFyfk0ubGCfoL2a1kShguyMny1Y_9Xw_g@mail.gmail.com>
- <CANQ3h39_-YDpCHEgCcR=r3z=iK7QOmJPFYnY8DATs5++zh+uug@mail.gmail.com>
- <CAGNhwTPELUny7ZaVY18KzPvmD3enezmhMLvypUxUZ5qD3zw+cg@mail.gmail.com>
- <CANQ3h39YJO_iNBdg8_Psx8fHoZGo-aJsESJTBRVf0G1-enZAkw@mail.gmail.com>
- <CAGNhwTP9xwKbDUN49knKmdPzu-yo3rwfzbnvx3YqLuwV3+jyVg@mail.gmail.com>
- <CANQ3h3-6yNAt2v35kUR1z9sNhu7_6M1h3ZsANpDMpueksf2b1w@mail.gmail.com>
- <CAGNhwTP7QX-fTNWNwCKsp0t8d072ovECMA9Z3JMEYyhozkinnA@mail.gmail.com>
- <CANQ3h3_guExuKAV6gqNjEuaVLiOMYL_WaqQoPL655HYRs3_0TA@mail.gmail.com>
- <CACSOXP0EnmmQqMA8srL_5+MrA-8pR5pHcrB10cks_ziY9t=L7Q@mail.gmail.com>
- <CANQ3h38LeBJEBW9W24S=zZ1XqRMvrDfT6fEtGXYcfqnMg6q9Eg@mail.gmail.com>
-In-Reply-To: <CANQ3h38LeBJEBW9W24S=zZ1XqRMvrDfT6fEtGXYcfqnMg6q9Eg@mail.gmail.com>
-X-Google-Sender-Delegation: michael.dickens@ettus.com
-Date: Sat, 26 Oct 2019 14:30:50 -0400
-X-Google-Sender-Auth: jJmahCyRL2mKP5PUhQCa0iq35RU
-Message-ID: <CACSOXP3YEDktEqtEwHV_0mSWysci1W_viSpYLLMehETqVeUTiQ@mail.gmail.com>
-To: Saeid Hashemi <saeidh@gmail.com>
-Subject: Re: [USRP-users] uhd_fft failure
+Message-ID: <3dee688a.127f6.16e0b040061.Coremail.hengzhang@shu.edu.cn>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: gQBvCgB32J35_rRdT4YJAg--.24380W
+X-CM-SenderInfo: pkhqw6pkdqwqxvkxhvlgxou0/1tbiAQAPAFhBcQ8-BQACsR
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWUCw
+ CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+ daVFxhVjvjDU=
+Subject: [USRP-users] uhd make failed
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -72,10 +41,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ettus Research Support via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ettus Research Support <support@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3020233316736155599=="
+From: =?utf-8?b?5byg5oGSIHZpYSBVU1JQLXVzZXJz?= <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?5byg5oGS?= <hengzhang@shu.edu.cn>
+Content-Type: multipart/mixed; boundary="===============3930619454789412608=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,299 +57,47 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3020233316736155599==
-Content-Type: multipart/alternative; boundary="000000000000724ec20595d4792f"
+--===============3930619454789412608==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_262598_1030575984.1572142841953"
 
---000000000000724ec20595d4792f
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_262598_1030575984.1572142841953
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-It now looks like you need to install "python-qt4" to get around this
-issue. Same basic method as "python-six", whatever that was that you did
-successfully. - MLD
+RGVhciBhbGwsCgoKCgpXaGVuIEkgZXhlY3V0ZSAnbWFrZScgaW4gJ3VoZC9ob3N0L2J1aWxkJyBm
+b2xkZXIsIEkgbWV0IGVycm9yIAonWzEwMCVdIEJ1aWx0IHRhcmdldCBweXVoZApbMTAwJV0gR2Vu
+ZXJhdGluZyBidWlsZC90aW1lc3RhbXAKcHl0aG9uL0NNYWtlRmlsZXMvcHl1aGRfbGlicmFyeS5k
+aXIvYnVpbGQubWFrZTo2NDogcmVjaXBlIGZvciB0YXJnZXQgJ3B5dGhvbi9idWlsZC90aW1lc3Rh
+bXAnIGZhaWxlZAptYWtlWzJdOiAqKiogW3B5dGhvbi9idWlsZC90aW1lc3RhbXBdIEVycm9yIDEK
+Q01ha2VGaWxlcy9NYWtlZmlsZTI6Mzk5NzogcmVjaXBlIGZvciB0YXJnZXQgJ3B5dGhvbi9DTWFr
+ZUZpbGVzL3B5dWhkX2xpYnJhcnkuZGlyL2FsbCcgZmFpbGVkCm1ha2VbMV06ICoqKiBbcHl0aG9u
+L0NNYWtlRmlsZXMvcHl1aGRfbGlicmFyeS5kaXIvYWxsXSBFcnJvciAyCk1ha2VmaWxlOjE2MDog
+cmVjaXBlIGZvciB0YXJnZXQgJ2FsbCcgZmFpbGVkCm1ha2U6ICoqKiBbYWxsXSBFcnJvciAyJwoK
+CldoYXQncyB0aGUgcHJvYmxlbSBvZiBpdD8KCgoKClJlZ2FyZHMsCkhlbmc=
+------=_Part_262598_1030575984.1572142841953
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-On Thu, Oct 24, 2019 at 4:37 PM Saeid Hashemi <saeidh@gmail.com> wrote:
-
-> Yes, I did those steps as well to install gnuradio from source.
-> Installed the binary for python-sip, now I'm getting another error:
->
-> nuc03@nuc03:~/gnuradio/build$ /home/nuc03/gnuradio/gr-uhd/apps/uhd_fft
-> Traceback (most recent call last):
->   File "/home/nuc03/gnuradio/gr-uhd/apps/uhd_fft", line 43, in <module>
->     from PyQt4 import Qt
-> ImportError: No module named PyQt4
->
->
-> On Mon, Oct 21, 2019 at 12:19 PM Ettus Research Support <support@ettus.com>
-> wrote:
->
->> Hi Saeid - Not sure what's going on with your GR install ... did you do
->> "sudo make install" after doing "make"? Did you do "sudo ldconfig" after
->> installing?
->>
->> It looks like you need to install "python-sip" to get around this latest
->> issue. Same basic method as "python-six", whatever that was that you did
->> successfully. - MLD
->>
->> On Fri, Oct 18, 2019 at 3:19 PM Saeid Hashemi via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->>> Okay, so installing python-six fixed that, and I was able to install
->>> 3.7.13.5 from source.
->>> The sample apps like uhd_fft are not in the path like they used to be
->>> with binary installation. And trying it from the apps folder gives me:
->>>
->>> nuc03@nuc03:/usr/local/bin$ /home/nuc03/gnuradio/gr-uhd/apps/uhd_fft
->>> Traceback (most recent call last):
->>>   File "/home/nuc03/gnuradio/gr-uhd/apps/uhd_fft", line 39, in <module>
->>>     import sip
->>> ImportError: No module named sip
->>>
->>>
->>> On Thu, Oct 17, 2019 at 10:26 AM Michael Dickens <
->>> michael.dickens@ettus.com> wrote:
->>>
->>>> Yes sorry about the GR37 release version: 3.7.13.5 is the correct on.
->>>> Installing Py27-six should be pretty straight forward & should allow you to
->>>> proceed with that install. GR38 has it's own set of dependencies, some of
->>>> which overlap with GR37 and some of which don't. You'll want to follow the
->>>> install guide for your OS to get those dependencies. Good luck! - MLD
->>>>
->>>> On Wed, Oct 16, 2019 at 3:02 PM Saeid Hashemi <saeidh@gmail.com> wrote:
->>>>
->>>>> Hi Michael,
->>>>>
->>>>> The gnuradio git repository does not have a tag for v3.17.14.5, and
->>>>> using v3.7.13.5 gives me:
->>>>>
->>>>> -- Python checking for six - python 2 and 3 compatibility library
->>>>> -- Python checking for six - python 2 and 3 compatibility library -
->>>>> not found
->>>>> CMake Error at volk/CMakeLists.txt:98 (message):
->>>>>   six - python 2 and 3 compatibility library required to build VOLK
->>>>>
->>>>>
->>>>> -- Configuring incomplete, errors occurred!
->>>>> See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeOutput.log".
->>>>> See also "/home/nuc03/gnuradio/build/CMakeFiles/CMakeError.log".
->>>>>
->>>>>
->>>>> Checking out tag v3.8.0.0 results in Cmake dependency of 3.8 and up,
->>>>> so I need to install that manually.
->>>>>
->>>>>
->>>>> On Sat, Oct 12, 2019 at 11:02 AM Michael Dickens <
->>>>> michael.dickens@ettus.com> wrote:
->>>>>
->>>>>> OK. Thanks for the info Saeid. I'll look into creating a VM using
->>>>>> Ubuntu 16.04.1 to see what happens. - MLD
->>>>>>
->>>>>> On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi <saeidh@gmail.com>
->>>>>> wrote:
->>>>>>
->>>>>>> It's Ubuntu 16.04.1, but yes, I will follow the source build
->>>>>>> instructions.
->>>>>>>
->>>>>>> On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens <
->>>>>>> michael.dickens@ettus.com> wrote:
->>>>>>>
->>>>>>>> Hi Saeid - Thanks for the followup. I totally agree that if you
->>>>>>>> just "sudo apt install gnuradio", compatible versions should be installed.
->>>>>>>> Are you using Ubuntu 16.04.6 LTS (Xenial Xerus)? If you choose to install
->>>>>>>> from source, you can follow instructions such as the GR recommended way
->>>>>>>> here <
->>>>>>>> https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29
->>>>>>>> >. I have an Ubuntu 18.04 install that went very smoothly using this guide,
->>>>>>>> but maybe the guide is outdated for older Ubuntu; or, our packages need to
->>>>>>>> be updated for that OS version ... Cheers! - MLD
->>>>>>>>
->>>>>>>> On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi <saeidh@gmail.com>
->>>>>>>> wrote:
->>>>>>>>
->>>>>>>>> I will follow your advice, but it's worth mentioning I simply did
->>>>>>>>> apt-get gnuradio and should therefore have a compatible version of uhd
->>>>>>>>> installed automatically as a dependency. I did not install uhd separately.
->>>>>>>>>
->>>>>>>> --
->>>>>>>> Michael Dickens
->>>>>>>> Ettus Research Technical Support
->>>>>>>> Email: support@ettus.com
->>>>>>>> Web: https://ettus.com/
->>>>>>>>
->>>>>>>
->>>>>>
->>>>>> --
->>>>>> Michael Dickens
->>>>>> Ettus Research Technical Support
->>>>>> Email: support@ettus.com
->>>>>> Web: https://ettus.com/
->>>>>>
->>>>>
->>>>
->>>> --
->>>> Michael Dickens
->>>> Ettus Research Technical Support
->>>> Email: support@ettus.com
->>>> Web: https://ettus.com/
->>>>
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
-
---000000000000724ec20595d4792f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">It now looks like you need to install &quot;python-qt4&quot; to=
- get around this issue. Same basic method as &quot;python-six&quot;, whatev=
-er that was that you did successfully. - MLD</div></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 24, 2019 at 4=
-:37 PM Saeid Hashemi &lt;<a href=3D"mailto:saeidh@gmail.com">saeidh@gmail.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div dir=3D"ltr"><div>Yes, I did those steps as well to install gnuradio =
-from source.</div>Installed the binary for python-sip, now I&#39;m getting =
-another error:<div><br></div><blockquote style=3D"margin:0px 0px 0px 40px;b=
-order:none;padding:0px"><div><font face=3D"monospace">nuc03@nuc03:~/gnuradi=
-o/build$ /home/nuc03/gnuradio/gr-uhd/apps/uhd_fft</font></div><div><font fa=
-ce=3D"monospace">Traceback (most recent call last):</font></div><div><font =
-face=3D"monospace">=C2=A0 File &quot;/home/nuc03/gnuradio/gr-uhd/apps/uhd_f=
-ft&quot;, line 43, in &lt;module&gt;</font></div><div><font face=3D"monospa=
-ce">=C2=A0 =C2=A0 from PyQt4 import Qt</font></div><div><font face=3D"monos=
-pace">ImportError: No module named PyQt4</font></div></blockquote></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, O=
-ct 21, 2019 at 12:19 PM Ettus Research Support &lt;<a href=3D"mailto:suppor=
-t@ettus.com" target=3D"_blank">support@ettus.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=
-=3D"gmail_default" style=3D"font-family:verdana,sans-serif">Hi Saeid - Not =
-sure what&#39;s going on with your GR install ... did you do &quot;sudo mak=
-e install&quot; after doing &quot;make&quot;? Did you do &quot;sudo ldconfi=
-g&quot; after installing?</div><div class=3D"gmail_default" style=3D"font-f=
-amily:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"f=
-ont-family:verdana,sans-serif">It looks like you need to install &quot;pyth=
-on-sip&quot; to get around this latest issue. Same basic method as &quot;py=
-thon-six&quot;, whatever that was that you did successfully. - MLD</div></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Fri, Oct 18, 2019 at 3:19 PM Saeid Hashemi via USRP-users &lt;<a href=3D"ma=
-ilto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div dir=3D"ltr">Okay, so installing python-six fixed that, and I was abl=
-e to install 3.7.13.5 from source.<div>The sample apps like uhd_fft are not=
- in the path like they used to be with binary installation. And trying it f=
-rom the apps folder gives me:</div><div><br></div><blockquote style=3D"marg=
-in:0px 0px 0px 40px;border:none;padding:0px"><div><font face=3D"monospace">=
-nuc03@nuc03:/usr/local/bin$ /home/nuc03/gnuradio/gr-uhd/apps/uhd_fft</font>=
-</div><div><font face=3D"monospace">Traceback (most recent call last):</fon=
-t></div><div><font face=3D"monospace">=C2=A0 File &quot;/home/nuc03/gnuradi=
-o/gr-uhd/apps/uhd_fft&quot;, line 39, in &lt;module&gt;</font></div><div><f=
-ont face=3D"monospace">=C2=A0 =C2=A0 import sip</font></div><div><font face=
-=3D"monospace">ImportError: No module named sip</font></div></blockquote></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Thu, Oct 17, 2019 at 10:26 AM Michael Dickens &lt;<a href=3D"mailto:michae=
-l.dickens@ettus.com" target=3D"_blank">michael.dickens@ettus.com</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"ltr"><div>Yes sorry about the GR37 release version: 3.7.13.5 is the correc=
-t on. Installing Py27-six should be pretty straight forward &amp; should al=
-low you to proceed with that install. GR38 has it&#39;s own set of dependen=
-cies, some of which overlap with GR37 and some of which don&#39;t. You&#39;=
-ll want to follow the install guide for your OS to get those dependencies. =
-Good=C2=A0luck! - MLD</div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Wed, Oct 16, 2019 at 3:02 PM Saeid Hashemi &l=
-t;<a href=3D"mailto:saeidh@gmail.com" target=3D"_blank">saeidh@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
-v dir=3D"ltr">Hi Michael,<div><br></div><div>The gnuradio git repository do=
-es not have a tag for v3.17.14.5, and using v3.7.13.5 gives me:</div><div><=
-br></div><blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0=
-px"><div><font size=3D"1" face=3D"monospace">-- Python checking for six - p=
-ython 2 and 3 compatibility library</font></div><div><font size=3D"1" face=
-=3D"monospace">-- Python checking for six - python 2 and 3 compatibility li=
-brary - not found</font></div><div><font size=3D"1" face=3D"monospace">CMak=
-e Error at volk/CMakeLists.txt:98 (message):</font></div><div><font size=3D=
-"1" face=3D"monospace">=C2=A0 six - python 2 and 3 compatibility library re=
-quired to build VOLK</font></div><div><font size=3D"1" face=3D"monospace"><=
-br></font></div><div><font size=3D"1" face=3D"monospace"><br></font></div><=
-div><font size=3D"1" face=3D"monospace">-- Configuring incomplete, errors o=
-ccurred!</font></div><div><font size=3D"1" face=3D"monospace">See also &quo=
-t;/home/nuc03/gnuradio/build/CMakeFiles/CMakeOutput.log&quot;.</font></div>=
-<div><font size=3D"1" face=3D"monospace">See also &quot;/home/nuc03/gnuradi=
-o/build/CMakeFiles/CMakeError.log&quot;.</font></div></blockquote><div><br>=
-</div><div>Checking out tag v3.8.0.0 results in Cmake dependency of 3.8 and=
- up, so I need to install that manually.</div><div><br></div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Oct 12=
-, 2019 at 11:02 AM Michael Dickens &lt;<a href=3D"mailto:michael.dickens@et=
-tus.com" target=3D"_blank">michael.dickens@ettus.com</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">OK. Th=
-anks for the info Saeid. I&#39;ll look into creating a VM using Ubuntu 16.0=
-4.1 to see what happens. - MLD</div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Oct 11, 2019 at 4:47 PM Saeid Hashemi=
- &lt;<a href=3D"mailto:saeidh@gmail.com" target=3D"_blank">saeidh@gmail.com=
-</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<div dir=3D"ltr">It&#39;s Ubuntu 16.04.1, but yes, I will follow the source=
- build instructions.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
-lass=3D"gmail_attr">On Fri, Oct 11, 2019 at 3:11 PM Michael Dickens &lt;<a =
-href=3D"mailto:michael.dickens@ettus.com" target=3D"_blank">michael.dickens=
-@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi=C2=A0Saeid - Thanks for the=
- followup. I totally agree that if you just &quot;sudo apt install gnuradio=
-&quot;, compatible versions should be installed. Are you using Ubuntu 16.04=
-.6 LTS (Xenial Xerus)? If you choose to install from source, you can follow=
- instructions such as the GR recommended way here &lt;=C2=A0<a href=3D"http=
-s://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xerus_.2816.04.29" tar=
-get=3D"_blank">https://wiki.gnuradio.org/index.php/UbuntuInstall#Xenial_Xer=
-us_.2816.04.29</a> &gt;. I have an Ubuntu=C2=A018.04 install that went very=
-=C2=A0smoothly using this guide, but maybe the guide is outdated for older =
-Ubuntu; or, our packages need to be updated for that OS version ... Cheers!=
- - MLD</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Fri, Oct 11, 2019 at 2:24 PM Saeid Hashemi &lt;<a href=3D"mailto:s=
-aeidh@gmail.com" target=3D"_blank">saeidh@gmail.com</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I will =
-follow your advice, but it&#39;s worth mentioning I simply did apt-get gnur=
-adio and should therefore have a compatible version of uhd installed automa=
-tically as a dependency. I did not install uhd separately.</div></blockquot=
-e></div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">Mich=
-ael Dickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto=
-:support@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=
-=3D"https://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div=
-></div></div></div>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Research T=
-echnical Support<br>Email: <a href=3D"mailto:support@ettus.com" target=3D"_=
-blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/" target=
-=3D"_blank">https://ettus.com/</a></div></div></div></div>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Research T=
-echnical Support<br>Email: <a href=3D"mailto:support@ettus.com" target=3D"_=
-blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/" target=
-=3D"_blank">https://ettus.com/</a></div></div></div></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-
---000000000000724ec20595d4792f--
+RGVhciBhbGwsPGRpdj48YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5XaGVuIEkgZXhlY3V0
+ZSAnbWFrZScgaW4gJ3VoZC9ob3N0L2J1aWxkJyBmb2xkZXIsIEkgbWV0IGVycm9yJm5ic3A7PC9k
+aXY+PGRpdj4nWzEwMCVdIEJ1aWx0IHRhcmdldCBweXVoZDwvZGl2PjxkaXY+WzEwMCVdIEdlbmVy
+YXRpbmcgYnVpbGQvdGltZXN0YW1wPC9kaXY+PGRpdj5weXRob24vQ01ha2VGaWxlcy9weXVoZF9s
+aWJyYXJ5LmRpci9idWlsZC5tYWtlOjY0OiByZWNpcGUgZm9yIHRhcmdldCAncHl0aG9uL2J1aWxk
+L3RpbWVzdGFtcCcgZmFpbGVkPC9kaXY+PGRpdj5tYWtlWzJdOiAqKiogW3B5dGhvbi9idWlsZC90
+aW1lc3RhbXBdIEVycm9yIDE8L2Rpdj48ZGl2PkNNYWtlRmlsZXMvTWFrZWZpbGUyOjM5OTc6IHJl
+Y2lwZSBmb3IgdGFyZ2V0ICdweXRob24vQ01ha2VGaWxlcy9weXVoZF9saWJyYXJ5LmRpci9hbGwn
+IGZhaWxlZDwvZGl2PjxkaXY+bWFrZVsxXTogKioqIFtweXRob24vQ01ha2VGaWxlcy9weXVoZF9s
+aWJyYXJ5LmRpci9hbGxdIEVycm9yIDI8L2Rpdj48ZGl2Pk1ha2VmaWxlOjE2MDogcmVjaXBlIGZv
+ciB0YXJnZXQgJ2FsbCcgZmFpbGVkPC9kaXY+PGRpdj5tYWtlOiAqKiogW2FsbF0gRXJyb3IgMic8
+L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PldoYXQncyB0aGUgcHJvYmxlbSBvZiBpdD88L2Rpdj48
+ZGl2Pjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PlJlZ2FyZHMsPC9kaXY+PGRpdj5IZW5n
+PC9kaXY+
+------=_Part_262598_1030575984.1572142841953--
 
 
---===============3020233316736155599==
+
+--===============3930619454789412608==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -392,5 +108,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3020233316736155599==--
+--===============3930619454789412608==--
+
 
