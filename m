@@ -2,81 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4203BE78A7
-	for <lists+usrp-users@lfdr.de>; Mon, 28 Oct 2019 19:41:25 +0100 (CET)
-Received: from [::1] (port=54880 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A41EEE7D4A
+	for <lists+usrp-users@lfdr.de>; Tue, 29 Oct 2019 00:56:21 +0100 (CET)
+Received: from [::1] (port=59568 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iP9xB-0002Vj-R5; Mon, 28 Oct 2019 14:41:21 -0400
-Received: from mail-eopbgr760073.outbound.protection.outlook.com
- ([40.107.76.73]:35574 helo=NAM02-CY1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
- (Exim 4.92) (envelope-from <aboggio-dandry@albany.edu>)
- id 1iP9x7-0002Ri-Gr
- for usrp-users@lists.ettus.com; Mon, 28 Oct 2019 14:41:17 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Me4qhlzEhtXHiQaDlKkia6x2NVUOsfCRtTcGb6869lytISI3ro/Tt+Nrud7dd9x+ZVaVQLQnCxPq0mnPe3VqQ2NlSW7KqrHkGkKTbq8g21sAieJ35e5bgoF2S9pZwW07b8R+vqgqwpeU31uw0r8J61yOFoYNXVaE+GNfY+w1SrpT0uQPifFww3yappW8k7qSg7/Kf1ANZuLdr/snKUcXDcYPTj0miVOTTQkKKBCiuYPRBjk7ET5g7f78FwcSTB9T8sQtucVdzHxGg+D9OtsGTMNi15x262A6NM6fbEkjrfqJK6QNX//fDHnl8zC2rPHhiPtIIbbInPg+pXfj2dj+NA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p+4Hj906eD6HAdlz+0m0mN7RF5eNbYNbZtTY2pqGqS0=;
- b=n9kg+fI7lZmrMOJ+MiHGC0jFwjOKZmFNetVf4p/AXHBjFhwVcjmryr/gQK7XUG3tfupnfPKNFgIP2a7i0gkSjhCExbpq7XzJORv8JlHC8G6zxPAPyarIMxo7s9GpvFuwxC1eAdHBssyV+Vub8p50MSGXjme2vSFHAEsHcBv5URR1xhILq0WCI0vp1nxJ1KSlm9dpNhE4SQhHohqZpH94LcrJTqgSH/gIs2Idk+7sz8/GNb6iQjq3JXBsJT6xRj+VFg5FZsTwfaH8m3c8pXV9E/ZCrF2+KZuP789FYRSXWkOPcvJ9n1uxTm4F/1P3iR3WCIeZJixQ/lIxVlHC4iXpgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=albany.edu; dmarc=pass action=none header.from=albany.edu;
- dkim=pass header.d=albany.edu; arc=none
+	id 1iPEru-00019M-8j; Mon, 28 Oct 2019 19:56:14 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:33829)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1iPErp-00014J-Pb
+ for usrp-users@lists.ettus.com; Mon, 28 Oct 2019 19:56:09 -0400
+Received: by mail-ot1-f52.google.com with SMTP id m19so8264110otp.1
+ for <usrp-users@lists.ettus.com>; Mon, 28 Oct 2019 16:55:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=livealbany.onmicrosoft.com; s=selector2-livealbany-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p+4Hj906eD6HAdlz+0m0mN7RF5eNbYNbZtTY2pqGqS0=;
- b=KeqHNMGNgA+8kD44lg5FWCdUWYHCDsbfHhjZNfCiCFI4wJNr9UK6ymo7pZjuikhJZDtIiNPhVv1K2VgBXOq9Cq3JTYSySgxOqPm05COd6CU2eQrYiQOmrZNltGuhO30resDsgfSrFhf0pJwGeHyLk2u8U66W9BCCv7ikk/CqaWo=
-Received: from BL0PR04MB4948.namprd04.prod.outlook.com (20.177.145.90) by
- BL0PR04MB4932.namprd04.prod.outlook.com (52.132.15.149) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2387.24; Mon, 28 Oct 2019 18:40:35 +0000
-Received: from BL0PR04MB4948.namprd04.prod.outlook.com
- ([fe80::8069:7465:433f:e41e]) by BL0PR04MB4948.namprd04.prod.outlook.com
- ([fe80::8069:7465:433f:e41e%5]) with mapi id 15.20.2387.019; Mon, 28 Oct 2019
- 18:40:35 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Problems receiving with B210 and X310
-Thread-Index: AdWNvwWgbyn8p9SsS0qwbXaxnt3HUA==
-Date: Mon, 28 Oct 2019 18:40:35 +0000
-Message-ID: <BL0PR04MB4948620FEC86ACBDB7002BD6FA660@BL0PR04MB4948.namprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=aboggio-dandry@albany.edu; 
-x-originating-ip: [169.226.78.108]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 77b30024-62ed-46c4-9cd2-08d75bd6521d
-x-ms-traffictypediagnostic: BL0PR04MB4932:
-x-ms-exchange-purlcount: 6
-x-microsoft-antispam-prvs: <BL0PR04MB4932F54B907412F3AF1A67D9FA660@BL0PR04MB4932.namprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0204F0BDE2
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(39860400002)(366004)(346002)(136003)(396003)(376002)(199004)(189003)(966005)(186003)(2501003)(71200400001)(14444005)(256004)(102836004)(71190400001)(75432002)(99936001)(74316002)(99286004)(66066001)(88552002)(6916009)(2906002)(6506007)(786003)(3846002)(790700001)(6116002)(316002)(478600001)(606006)(486006)(733005)(861006)(25786009)(86362001)(33656002)(66476007)(66556008)(66446008)(64756008)(7696005)(476003)(52536014)(6436002)(7736002)(66946007)(81156014)(14454004)(9326002)(236005)(9686003)(54896002)(6306002)(8936002)(5660300002)(76116006)(66576008)(26005)(55016002)(5640700003)(81166006)(2351001)(8676002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BL0PR04MB4932;
- H:BL0PR04MB4948.namprd04.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: albany.edu does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: G1y1n/YpLkZo3uDrnTYlMUnSjnF4VmOlJ1wgmI/SbM1Fkod0O5URFyGWiaCtqw+jraj3qJjWDOAUvrjfViq5S0N4VzpoZXnMgEpF/B9+kqyKW6+oCzg4Z3NLLHPx7V03WYBILYqKd9zZvDSwa993ik1bCVuNsNc2HXxble2XWthTy1iJlhwcUysSfPLulh8seYEAKFmICuWN+6bPFSrSY1hbE5+BSTmOn9hX+kt4sOqYz2QBb+qYHU3Mp8bYqB/J4Yq4Kv2OiU+IRP4PS4z9Osrtqp5Vk0SMubdsiGfmy4UyWJvozqoGhDGEk2ItFMJhteytM5X57PED2fHXYtiicV4APCBq1oemkMocoW6RoSyx5xSCrqpy/YVBLahMFDDSwHmGjF4on6xrxqwZA82xkJNZtHyn9K3iqLeG84wo5cg1DfmKE1l6pNTWSKGHVQcinP4ZfIuFZ/uhqwej/SiHlnpj6qwUfLD1tsq9JIm5Ewk=
-x-ms-exchange-transport-forked: True
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=mXC16N+jNpuPVGw8F2ep86E9i96mNJo0/mVm+FauG2c=;
+ b=m2GxyWWqiudej+a1xNbhKJE4uNN6Ff9nveXxswXRNL5bHOt8ZoXLsNwHeTskP1YB8P
+ YiBmUYE8pWfjA0JFsRiiKyq4hTRHlPO8r22eSrnufZVn7ZEbzTLeQlsKCX3m/xD/ENYc
+ m9xHKcJq/k25S+EgTSBVU1qHjnmo7BVjVPfuPyowwOIgU7PmbfFa0BcWlWBCW31J96t1
+ V2B/z7cm97JP8+so/m1l5BjYzJmAhWxCO11YLAZo96mHiHEiliUVdJ/Qx0tPfezLJ7vb
+ 9A9ezGtmCiNl4GdgaEkvDwwN6I36KwaJIXT4ME+zrT3a3P7bSitY+cHekO9UiXAI/C5h
+ JwKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=mXC16N+jNpuPVGw8F2ep86E9i96mNJo0/mVm+FauG2c=;
+ b=F7y60WW075a12KjH6u7naYgqlI7GqE8CpKrgU4fp4M2BgzdES94Z/mAFE031/+CU3U
+ aQtu9wnlbohdA8T/95Ca4SpDcUkbqmX2JCa2hw5ORrAe/6sFtP98rHIrjPaO0orTw/l+
+ +d6vtNMPyZxrKwRGKNkHi1fz1ONpysxq/WECfH1Qz/gPaCNIj4HkiHtHOM2GSG8Piepg
+ 2VkA9S+VS+f8x32+P2JNx7IR47LYiXLArA9FLMw7e5ZkYYNjAL+CivC+SlAYQ43vGqLT
+ yI2swTgZ39VLc03PSty3BEsiH/EfERvrGKsrXE0evnF0SZvS7AUPblH4doCGMVRJX21c
+ EW+Q==
+X-Gm-Message-State: APjAAAVQTSEZVoZf70iu18IqQdLbaNOONPxWD3Ygxzrg+z2XP7dpHIx9
+ S8C6Pg29N35BnuD2GQfRAoMhPR7PgbLrqpXAqZgS0ryr
+X-Google-Smtp-Source: APXvYqzAjggl90mi7M7q9DOKrMDM5nDVRhW7MhKqOutZYlvju8CrFzDpT/XVOEdHkh5Z7v7dS07YcaD+M5wlpjFgxxw=
+X-Received: by 2002:a05:6830:1e74:: with SMTP id
+ m20mr6235353otr.333.1572306928350; 
+ Mon, 28 Oct 2019 16:55:28 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: albany.edu
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77b30024-62ed-46c4-9cd2-08d75bd6521d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Oct 2019 18:40:35.3756 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b5d22194-31d5-473f-9e1d-804fdcbd88ac
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SEs9B5VGqlOctMVkjGSYcSLCXW45EubqKGANXvgqakE3BPV0NGoY8nKU0jkOeOqmfZcoPqw+BzFin8FjQLNA8wlyAmTr5Rk0R57JdENdmfw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR04MB4932
-Subject: [USRP-users] Problems receiving with B210 and X310
+References: <BL0PR04MB4948620FEC86ACBDB7002BD6FA660@BL0PR04MB4948.namprd04.prod.outlook.com>
+In-Reply-To: <BL0PR04MB4948620FEC86ACBDB7002BD6FA660@BL0PR04MB4948.namprd04.prod.outlook.com>
+Date: Mon, 28 Oct 2019 19:55:17 -0400
+Message-ID: <CAGNhwTNb3cg-HFUv4YM-2QsZS=gMXkkTBvZbE5-CBMPHVYH=yA@mail.gmail.com>
+To: "Boggio-Dandry, Andrew" <aboggio-dandry@albany.edu>
+Subject: Re: [USRP-users] Problems receiving with B210 and X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -88,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Boggio-Dandry, Andrew via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Boggio-Dandry, Andrew" <aboggio-dandry@albany.edu>
-Content-Type: multipart/mixed; boundary="===============3625938851582700607=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2137086929948661065=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -104,126 +77,118 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3625938851582700607==
-Content-Language: en-US
-Content-Type: multipart/related;
-	boundary="_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_";
-	type="multipart/alternative"
+--===============2137086929948661065==
+Content-Type: multipart/related; boundary="000000000000f1edee0596013bea"
 
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
-Content-Type: multipart/alternative;
-	boundary="_000_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_"
+--000000000000f1edee0596013bea
+Content-Type: multipart/alternative; boundary="000000000000f1edec0596013be9"
 
---_000_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--000000000000f1edec0596013be9
+Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+Hi Andrew - That's certainly interesting! Have you tried a more recent
+version of UHD? 3.14.1.1 is the latest release, and it might contain fixes
+for the issue you're having. Worth a try IMHO. - MLD
 
-We are having trouble with spikes in received signals. This happens with bo=
-th the X310 and B210. We have a stable setup using Ubuntu 17.10 and UHD 3.1=
-0.3.0. There are no receive problems. On Ubuntu 18.04 and/or Ubuntu 16.04, =
-however, no matter the version of UHD these spikes appear. For example, our=
- Ubuntu 17.10 running UHD 3.10.3.0 with a B210 and Ubuntu 18.04 running UHD=
- 3.10.3.0 with a B210 were both set to receive and captured the following a=
-t the same time using rx_samples_to_file --freq 2.484e9 --rate 20e6 --gain =
-20 --args --wirefmt sc16 --file file_13.dat --duration 1. We did not transm=
-it anything, we just wanted to capture the noise.
+On Mon, Oct 28, 2019 at 2:41 PM Boggio-Dandry, Andrew via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-Plotting real part of received noise from Ubuntu 17.10, UHD 3.10.3.0 setup:
-[cid:image001.png@01D58D9D.AB734DA0]
-
-Plotting real part of received noise from Ubuntu 18.04, UHD 3.10.3.0 setup:
-[cid:image002.png@01D58D9D.AB734DA0]
-
-As you can see, the spikes appear on the B210 capture on the machine runnin=
-g Ubuntu 18.04 with UHD 3.10.3.0. When you zoom in very close on the spikes=
-:
-
-[cid:image003.jpg@01D58D9D.AB734DA0]
-
-Any idea why this may be happening? Any suggestions would be appreciated.
-
-
-[Logo]<http://www.albany.edu/>
-Andrew Boggio-Dandry | Ph.D. Student
-Department of Electrical & Computer Engineering,
-University at Albany, State University of New York
-e: aboggio-dandry@albany.edu<mailto:aboggio-dandry@albany.edu>
-w: https://www.andrewboggio.com<https://www.andrewboggio.com/>
-m: 518-687-3102
-[facebook icon]<https://www.facebook.com/andrew.boggiodandry> [twitter icon=
-] <https://twitter.com/AndrewDandry>  [linkedin icon] <https://www.linkedin=
-.com/in/aboggiod/>  [instagram icon] <https://www.instagram.com/andrewboge/=
+> Hello,
+>
+>
+>
+> We are having trouble with spikes in received signals. This happens with
+> both the X310 and B210. We have a stable setup using Ubuntu 17.10 and UHD
+> 3.10.3.0. There are no receive problems. On Ubuntu 18.04 and/or Ubuntu
+> 16.04, however, no matter the version of UHD these spikes appear. For
+> example, our Ubuntu 17.10 running UHD 3.10.3.0 with a B210 and Ubuntu 18.04
+> running UHD 3.10.3.0 with a B210 were both set to receive and captured the
+> following *at the same time* using rx_samples_to_file --freq 2.484e9
+> --rate 20e6 --gain 20 --args --wirefmt sc16 --file file_13.dat --duration 1.
+> We did not transmit anything, we just wanted to capture the noise.
+>
+>
+>
+> *Plotting real part of received noise from Ubuntu 17.10, UHD 3.10.3.0
+> setup:*
+>
+>
+>
+> *Plotting real part of received noise from Ubuntu 18.04, UHD 3.10.3.0
+> setup:*
+>
+>
+>
+> As you can see, the spikes appear on the B210 capture on the machine
+> running Ubuntu 18.04 with UHD 3.10.3.0. When you zoom in very close on the
+> spikes:
+>
+>
+>
+>
+>
+> Any idea why this may be happening? Any suggestions would be appreciated.
+>
+>
+>
+>
+>
+> [image: Logo] <http://www.albany.edu/>
+>
+> *Andrew Boggio-Dandry* *| Ph.D. Student*
+>
+> *Department of Electrical & Computer Engineering,*
+>
+> *University at Albany, State University of New York*
+> *e:* aboggio-dandry@albany.edu
+>
+> *w:* https://www.andrewboggio.com
+> *m:* 518-687-3102
+>
+> [image: facebook icon] <https://www.facebook.com/andrew.boggiodandry> [image:
+> twitter icon] <https://twitter.com/AndrewDandry> [image: linkedin icon]
+> <https://www.linkedin.com/in/aboggiod/> [image: instagram icon]
+> <https://www.instagram.com/andrewboge/>
+>
+>
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
 
+-- 
+Michael Dickens
+Ettus Research Technical Support
+Email: support@ettus.com
+Web: https://ettus.com/
 
-
---_000_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
-Content-Type: text/html; charset="us-ascii"
+--000000000000f1edec0596013be9
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div dir=3D"ltr">Hi Andrew - That&#39;s certainly interesting! Have you tri=
+ed a more recent version of UHD? 3.14.1.1 is the latest release, and it mig=
+ht contain fixes for the issue you&#39;re=C2=A0having. Worth a try IMHO. - =
+MLD</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Mon, Oct 28, 2019 at 2:41 PM Boggio-Dandry, Andrew via USRP-users &lt=
+;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-3805097675243434400WordSection1">
+<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">We are having trouble with spikes in received signal=
 s. This happens with both the X310 and B210. We have a stable setup using U=
 buntu 17.10 and UHD 3.10.3.0. There are no receive problems. On Ubuntu 18.0=
@@ -232,125 +197,129 @@ buntu 17.10 and UHD 3.10.3.0. There are no receive problems. On Ubuntu 18.0=
 10 running UHD 3.10.3.0 with a B210 and Ubuntu 18.04 running UHD 3.10.3.0 w=
 ith a B210 were both set to receive and captured the following
 <u>at the same time</u> using <span style=3D"font-family:Consolas;backgroun=
-d:silver;mso-highlight:silver">
+d:silver">
 rx_samples_to_file --freq 2.484e9 --rate 20e6 --gain 20 --args --wirefmt sc=
 16 --file file_13.dat --duration 1</span>. We did not transmit anything, we=
  just wanted to capture the noise.
-<span style=3D"font-family:Consolas"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<span style=3D"font-family:Consolas"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal"><b><u>Plotting real part of received noise from Ubun=
-tu 17.10, UHD 3.10.3.0 setup:<o:p></o:p></u></b></p>
-<p class=3D"MsoNormal"><img width=3D"491" height=3D"404" style=3D"width:5.1=
-145in;height:4.2083in" id=3D"_x0000_i1025" src=3D"cid:image001.png@01D58D9D=
-.AB734DA0"><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+tu 17.10, UHD 3.10.3.0 setup:<u></u><u></u></u></b></p>
+<p class=3D"MsoNormal"><img width=3D"491" height=3D"404" style=3D"width: 5.=
+1145in; height: 4.2083in;" id=3D"gmail-m_-3805097675243434400_x0000_i1025" =
+src=3D"cid:16e14ca76694cff311"><u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal"><b><u>Plotting real part of received noise from Ubun=
-tu 18.04, UHD 3.10.3.0 setup:<o:p></o:p></u></b></p>
-<p class=3D"MsoNormal"><img width=3D"495" height=3D"402" style=3D"width:5.1=
-562in;height:4.1875in" id=3D"_x0000_i1026" src=3D"cid:image002.png@01D58D9D=
-.AB734DA0"><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+tu 18.04, UHD 3.10.3.0 setup:<u></u><u></u></u></b></p>
+<p class=3D"MsoNormal"><img width=3D"495" height=3D"402" style=3D"width: 5.=
+1562in; height: 4.1875in;" id=3D"gmail-m_-3805097675243434400_x0000_i1026" =
+src=3D"cid:16e14ca76695b16b22"><u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">As you can see, the spikes appear on the B210 captur=
 e on the machine running Ubuntu 18.04 with UHD 3.10.3.0. When you zoom in v=
-ery close on the spikes:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><img width=3D"496" height=3D"318" style=3D"width:5.1=
-666in;height:3.3125in" id=3D"Picture_x0020_7" src=3D"cid:image003.jpg@01D58=
-D9D.AB734DA0"><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+ery close on the spikes:<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><img width=3D"496" height=3D"318" style=3D"width: 5.=
+1666in; height: 3.3125in;" id=3D"gmail-m_-3805097675243434400Picture_x0020_=
+7" src=3D"cid:16e14ca76696917eb3"><u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">Any idea why this may be happening? Any suggestions =
-would be appreciated.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" width=3D"525" style=3D"width:393.75pt;background:white;border-collap=
-se:collapse">
+would be appreciated.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"525" style=
+=3D"width:393.75pt;background:white;border-collapse:collapse">
 <tbody>
 <tr>
 <td width=3D"125" rowspan=3D"2" valign=3D"top" style=3D"width:93.75pt;borde=
-r:none;border-right:solid #46166B 1.0pt;padding:0in 7.5pt 0in 0in">
+r-top:none;border-bottom:none;border-left:none;border-right:1pt solid rgb(7=
+0,22,107);padding:0in 7.5pt 0in 0in">
 <p class=3D"MsoNormal"><a href=3D"http://www.albany.edu/" target=3D"_blank"=
-><span style=3D"font-size:10.0pt;font-family:&quot;Times New Roman&quot;,se=
-rif;color:#337AB7;text-decoration:none"><img border=3D"0" width=3D"162" hei=
-ght=3D"111" style=3D"width:1.6875in;height:1.1562in" id=3D"Picture_x0020_1"=
- src=3D"cid:image004.png@01D58D9D.AB734DA0" alt=3D"Logo"></span></a><span s=
-tyle=3D"font-size:10.0pt;font-family:&quot;Times New Roman&quot;,serif;colo=
-r:#444444"><o:p></o:p></span></p>
+><span style=3D"font-size:10pt;font-family:&quot;Times New Roman&quot;,seri=
+f;color:rgb(51,122,183);text-decoration:none"><img border=3D"0" width=3D"16=
+2" height=3D"111" style=3D"width: 1.6875in; height: 1.1562in;" id=3D"gmail-=
+m_-3805097675243434400Picture_x0020_1" src=3D"cid:16e14ca76697745b44" alt=
+=3D"Logo"></span></a><span style=3D"font-size:10pt;font-family:&quot;Times =
+New Roman&quot;,serif;color:rgb(68,68,68)"><u></u><u></u></span></p>
 </td>
 <td style=3D"padding:0in 0in 0in 7.5pt">
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" style=3D"border-collapse:collapse">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
 <tbody>
 <tr>
-<td width=3D"400" valign=3D"top" style=3D"width:300.0pt;padding:0in 0in 3.7=
-5pt 7.5pt">
+<td width=3D"400" valign=3D"top" style=3D"width:300pt;padding:0in 0in 3.75p=
+t 7.5pt">
 <p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Times New Roman&=
-quot;,serif;color:#46166B">Andrew Boggio-Dandry</span></b><span style=3D"fo=
-nt-size:10.0pt;font-family:&quot;Times New Roman&quot;,serif;color:#0079AC"=
->&nbsp;</span><b><span style=3D"font-family:&quot;Times New Roman&quot;,ser=
-if;color:#EEB211">|&nbsp;Ph.D.
- Student</span></b><span style=3D"font-size:10.0pt;font-family:&quot;Times =
-New Roman&quot;,serif;color:#0079AC"><o:p></o:p></span></p>
+quot;,serif;color:rgb(70,22,107)">Andrew Boggio-Dandry</span></b><span styl=
+e=3D"font-size:10pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb=
+(0,121,172)">=C2=A0</span><b><span style=3D"font-family:&quot;Times New Rom=
+an&quot;,serif;color:rgb(238,178,17)">|=C2=A0Ph.D.
+ Student</span></b><span style=3D"font-size:10pt;font-family:&quot;Times Ne=
+w Roman&quot;,serif;color:rgb(0,121,172)"><u></u><u></u></span></p>
 </td>
 </tr>
 <tr>
 <td valign=3D"top" style=3D"padding:3.75pt 0in 3.75pt 7.5pt">
 <p class=3D"MsoNormal" style=3D"line-height:12.75pt"><b><span style=3D"font=
--size:10.0pt;font-family:&quot;Times New Roman&quot;,serif;color:#EEB211">D=
-epartment of Electrical &amp; Computer Engineering,<o:p></o:p></span></b></=
-p>
+-size:10pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(238,178,=
+17)">Department of Electrical &amp; Computer Engineering,<u></u><u></u></sp=
+an></b></p>
 <p class=3D"MsoNormal" style=3D"line-height:12.75pt"><b><span style=3D"font=
--size:10.0pt;font-family:&quot;Times New Roman&quot;,serif;color:#EEB211">U=
-niversity at Albany, State University of New York</span></b><b><span style=
-=3D"font-size:10.0pt;font-family:&quot;Times New Roman&quot;,serif;color:#4=
-44444"><br>
-</span></b><b><span style=3D"font-size:10.0pt;font-family:&quot;Times New R=
-oman&quot;,serif;color:#46166B">e:</span></b><span style=3D"font-size:10.0p=
-t;font-family:&quot;Times New Roman&quot;,serif;color:#EEB211">&nbsp;<a hre=
-f=3D"mailto:aboggio-dandry@albany.edu">aboggio-dandry@albany.edu</a></span>=
-<span style=3D"font-size:10.0pt;font-family:&quot;Times New Roman&quot;,ser=
-if;color:#444444">&nbsp;<o:p></o:p></span></p>
+-size:10pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(238,178,=
+17)">University at Albany, State University of New York</span></b><b><span =
+style=3D"font-size:10pt;font-family:&quot;Times New Roman&quot;,serif;color=
+:rgb(68,68,68)"><br>
+</span></b><b><span style=3D"font-size:10pt;font-family:&quot;Times New Rom=
+an&quot;,serif;color:rgb(70,22,107)">e:</span></b><span style=3D"font-size:=
+10pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(238,178,17)">=
+=C2=A0<a href=3D"mailto:aboggio-dandry@albany.edu" target=3D"_blank">aboggi=
+o-dandry@albany.edu</a></span><span style=3D"font-size:10pt;font-family:&qu=
+ot;Times New Roman&quot;,serif;color:rgb(68,68,68)">=C2=A0<u></u><u></u></s=
+pan></p>
 <p class=3D"MsoNormal" style=3D"line-height:12.75pt"><b><span style=3D"font=
--size:10.0pt;font-family:&quot;Times New Roman&quot;,serif;color:#46166B">w=
-:</span></b><span style=3D"font-size:10.0pt;font-family:&quot;Times New Rom=
-an&quot;,serif;color:#444444">
-<a href=3D"https://www.andrewboggio.com/">https://www.andrewboggio.com</a><=
-br>
-</span><b><span style=3D"font-size:10.0pt;font-family:&quot;Times New Roman=
-&quot;,serif;color:#46166B">m:</span></b><span style=3D"font-size:10.0pt;fo=
-nt-family:&quot;Times New Roman&quot;,serif;color:#EEB211">&nbsp;</span><sp=
-an style=3D"font-size:10.0pt;font-family:&quot;Times New Roman&quot;,serif;=
-color:black">518-687-3102</span><span style=3D"font-size:10.0pt;font-family=
-:&quot;Times New Roman&quot;,serif;color:#444444"><o:p></o:p></span></p>
+-size:10pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(70,22,10=
+7)">w:</span></b><span style=3D"font-size:10pt;font-family:&quot;Times New =
+Roman&quot;,serif;color:rgb(68,68,68)">
+<a href=3D"https://www.andrewboggio.com/" target=3D"_blank">https://www.and=
+rewboggio.com</a><br>
+</span><b><span style=3D"font-size:10pt;font-family:&quot;Times New Roman&q=
+uot;,serif;color:rgb(70,22,107)">m:</span></b><span style=3D"font-size:10pt=
+;font-family:&quot;Times New Roman&quot;,serif;color:rgb(238,178,17)">=C2=
+=A0</span><span style=3D"font-size:10pt;font-family:&quot;Times New Roman&q=
+uot;,serif;color:black">518-687-3102</span><span style=3D"font-size:10pt;fo=
+nt-family:&quot;Times New Roman&quot;,serif;color:rgb(68,68,68)"><u></u><u>=
+</u></span></p>
 </td>
 </tr>
 <tr>
 <td valign=3D"bottom" style=3D"padding:3.75pt 0in 0in 7.5pt">
 <p class=3D"MsoNormal"><a href=3D"https://www.facebook.com/andrew.boggiodan=
-dry" target=3D"_blank"><span style=3D"font-size:10.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif;color:#337AB7;text-decoration:none"><img border=
-=3D"0" width=3D"23" height=3D"23" style=3D"width:.2395in;height:.2395in" id=
-=3D"Picture_x0020_2" src=3D"cid:image005.png@01D58D9D.AB734DA0" alt=3D"face=
-book icon"></span></a><span style=3D"font-size:10.0pt;font-family:&quot;Tim=
-es New Roman&quot;,serif">&nbsp;</span><a href=3D"https://twitter.com/Andre=
-wDandry" target=3D"_blank"><span style=3D"font-size:10.0pt;font-family:&quo=
-t;Times New Roman&quot;,serif;color:#337AB7;text-decoration:none"><img bord=
-er=3D"0" width=3D"23" height=3D"23" style=3D"width:.2395in;height:.2395in" =
-id=3D"Picture_x0020_3" src=3D"cid:image006.png@01D58D9D.AB734DA0" alt=3D"tw=
-itter icon"></span></a><span style=3D"font-size:10.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif">&nbsp;</span><a href=3D"https://www.linkedin.com=
-/in/aboggiod/" target=3D"_blank"><span style=3D"font-size:10.0pt;font-famil=
-y:&quot;Times New Roman&quot;,serif;color:#337AB7;text-decoration:none"><im=
-g border=3D"0" width=3D"23" height=3D"23" style=3D"width:.2395in;height:.23=
-95in" id=3D"Picture_x0020_4" src=3D"cid:image007.png@01D58D9D.AB734DA0" alt=
-=3D"linkedin icon"></span></a><span style=3D"font-size:10.0pt;font-family:&=
-quot;Times New Roman&quot;,serif">&nbsp;</span><a href=3D"https://www.insta=
-gram.com/andrewboge/" target=3D"_blank"><span style=3D"font-size:10.0pt;fon=
-t-family:&quot;Times New Roman&quot;,serif;color:#337AB7;text-decoration:no=
-ne"><img border=3D"0" width=3D"23" height=3D"23" style=3D"width:.2395in;hei=
-ght:.2395in" id=3D"Picture_x0020_5" src=3D"cid:image008.png@01D58D9D.AB734D=
-A0" alt=3D"instagram icon"></span></a><span style=3D"font-size:10.0pt;font-=
-family:&quot;Times New Roman&quot;,serif">&nbsp;<o:p></o:p></span></p>
+dry" target=3D"_blank"><span style=3D"font-size:10pt;font-family:&quot;Time=
+s New Roman&quot;,serif;color:rgb(51,122,183);text-decoration:none"><img bo=
+rder=3D"0" width=3D"23" height=3D"23" style=3D"width: 0.2395in; height: 0.2=
+395in;" id=3D"gmail-m_-3805097675243434400Picture_x0020_2" src=3D"cid:16e14=
+ca766a855d355" alt=3D"facebook icon"></span></a><span style=3D"font-size:10=
+pt;font-family:&quot;Times New Roman&quot;,serif">=C2=A0</span><a href=3D"h=
+ttps://twitter.com/AndrewDandry" target=3D"_blank"><span style=3D"font-size=
+:10pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(51,122,183);t=
+ext-decoration:none"><img border=3D"0" width=3D"23" height=3D"23" style=3D"=
+width: 0.2395in; height: 0.2395in;" id=3D"gmail-m_-3805097675243434400Pictu=
+re_x0020_3" src=3D"cid:16e14ca766a9374b66" alt=3D"twitter icon"></span></a>=
+<span style=3D"font-size:10pt;font-family:&quot;Times New Roman&quot;,serif=
+">=C2=A0</span><a href=3D"https://www.linkedin.com/in/aboggiod/" target=3D"=
+_blank"><span style=3D"font-size:10pt;font-family:&quot;Times New Roman&quo=
+t;,serif;color:rgb(51,122,183);text-decoration:none"><img border=3D"0" widt=
+h=3D"23" height=3D"23" style=3D"width: 0.2395in; height: 0.2395in;" id=3D"g=
+mail-m_-3805097675243434400Picture_x0020_4" src=3D"cid:16e14ca766aa18c377" =
+alt=3D"linkedin icon"></span></a><span style=3D"font-size:10pt;font-family:=
+&quot;Times New Roman&quot;,serif">=C2=A0</span><a href=3D"https://www.inst=
+agram.com/andrewboge/" target=3D"_blank"><span style=3D"font-size:10pt;font=
+-family:&quot;Times New Roman&quot;,serif;color:rgb(51,122,183);text-decora=
+tion:none"><img border=3D"0" width=3D"23" height=3D"23" style=3D"width: 0.2=
+395in; height: 0.2395in;" id=3D"gmail-m_-3805097675243434400Picture_x0020_5=
+" src=3D"cid:16e14ca766aafa3b88" alt=3D"instagram icon"></span></a><span st=
+yle=3D"font-size:10pt;font-family:&quot;Times New Roman&quot;,serif">=C2=A0=
+<u></u><u></u></span></p>
 </td>
 </tr>
 </tbody>
@@ -358,27 +327,37 @@ family:&quot;Times New Roman&quot;,serif">&nbsp;<o:p></o:p></span></p>
 </td>
 </tr>
 <tr>
-<td style=3D"padding:0in 0in 0in 0in"></td>
+<td style=3D"padding:0in"></td>
 </tr>
 </tbody>
 </table>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 </div>
-</body>
-</html>
+</div>
 
---_000_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael D=
+ickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto:supp=
+ort@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"h=
+ttps://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div></di=
+v></div>
 
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
+--000000000000f1edec0596013be9--
+--000000000000f1edee0596013bea
 Content-Type: image/png; name="image001.png"
-Content-Description: image001.png
-Content-Disposition: inline; filename="image001.png"; size=16520;
-	creation-date="Mon, 28 Oct 2019 18:40:34 GMT";
-	modification-date="Mon, 28 Oct 2019 18:40:34 GMT"
-Content-ID: <image001.png@01D58D9D.AB734DA0>
+Content-Disposition: inline; filename="image001.png"
 Content-Transfer-Encoding: base64
+Content-ID: <16e14ca76694cff311>
+X-Attachment-Id: 16e14ca76694cff311
 
 iVBORw0KGgoAAAANSUhEUgAAAesAAAGUCAYAAAAVhwq1AAAABHNCSVQICAgIfAhkiAAAIABJREFU
 eF7t3Q+MXdV94PETewyMayfFsVFGKK4nRHHTpjYJUyQvqpyRnS7E0CqV6Uarbcw4QhGRvYikIpUt
@@ -670,15 +649,12 @@ GBhQcgvdLKdPn9Yf4RocHAwtplQ6gnUpPjIjgAACCMQsIIFaPhv92c9+Vn3iE5/Qbwizn2Gbtsub
 adOmusbI7fDf/u3fVgsXLkzWyxvRtm7d2tBo+YiWXFlL4JbtL774olqwYIHOKx/PuvbaaxvyVLGC
 YF2FKmUigAACCMxKgTfffFP95Cc/aVuQNogE61k5negUAggggAWsFpgAAAAmSURBVMBsEuCZ9Wwa
 TfqCAAIIIDArBQjWs3JY6RQCCCCAwGwS+P/rcTmbcobj6gAAAABJRU5ErkJgggA=
-
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
+--000000000000f1edee0596013bea
 Content-Type: image/png; name="image002.png"
-Content-Description: image002.png
-Content-Disposition: inline; filename="image002.png"; size=17496;
-	creation-date="Mon, 28 Oct 2019 18:40:34 GMT";
-	modification-date="Mon, 28 Oct 2019 18:40:34 GMT"
-Content-ID: <image002.png@01D58D9D.AB734DA0>
+Content-Disposition: inline; filename="image002.png"
 Content-Transfer-Encoding: base64
+Content-ID: <16e14ca76695b16b22>
+X-Attachment-Id: 16e14ca76695b16b22
 
 iVBORw0KGgoAAAANSUhEUgAAAe8AAAGSCAYAAADKNUnSAAAABHNCSVQICAgIfAhkiAAAIABJREFU
 eF7t3QtsXNWd+PFf/YDYa0PJ2ikWwrWhqoHd2mlxUQ2lrv+kFHDYVVcJRa26xpZSRJUI0UqwNSIJ
@@ -987,15 +963,12 @@ MzNjPjLW3NzstZiM8xG8MyZjAQQQQACBUhDQwK2fzf7BD34gf/u3f2seMHPfA7d91Ifb9Ilz/atJ
 /9eXTfq95cPDw+YhNU1DQ0PS2toacx/cyZynf/ioWJ4gKQYBBBBAIDgCGoj37dsnW7dujWm0Xj6/
 4YYbpLa21pmuD7bdeeedKzqnHwnTM28N5Dr/xRdflJqaGrOsfhzsvPPOW7FMviYQvPMlSTkIIIAA
 AqEW+OMf/yh/+MMfChq0LTDBO9SrGp1HAAEEEAiiwP8HZ7TRJPKR02wAAAAASUVORK5CYIIA
-
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
+--000000000000f1edee0596013bea
 Content-Type: image/jpeg; name="image003.jpg"
-Content-Description: image003.jpg
-Content-Disposition: inline; filename="image003.jpg"; size=23412;
-	creation-date="Mon, 28 Oct 2019 18:40:34 GMT";
-	modification-date="Mon, 28 Oct 2019 18:40:34 GMT"
-Content-ID: <image003.jpg@01D58D9D.AB734DA0>
+Content-Disposition: inline; filename="image003.jpg"
 Content-Transfer-Encoding: base64
+Content-ID: <16e14ca76696917eb3>
+X-Attachment-Id: 16e14ca76696917eb3
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMg
 IyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09
@@ -1408,15 +1381,12 @@ lYfPaahcLdL/AKEPtEflnDtxgEenvUzR6g0sLFbPMecDe3ORj0qCHRp4TGQ8WUmD5wegUrkf7Rzk
 BRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAF
 FFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABUMjS+eqqgMRHzNnkH2qaigD
 n44NTuxFDcCdIZEZJCxXOMvycHrjy8Y962rS3+y2yQ7y+wY3GpqKAP/Z
-
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
+--000000000000f1edee0596013bea
 Content-Type: image/png; name="image004.png"
-Content-Description: image004.png
-Content-Disposition: inline; filename="image004.png"; size=21997;
-	creation-date="Mon, 28 Oct 2019 18:40:34 GMT";
-	modification-date="Mon, 28 Oct 2019 18:40:34 GMT"
-Content-ID: <image004.png@01D58D9D.AB734DA0>
+Content-Disposition: inline; filename="image004.png"
 Content-Transfer-Encoding: base64
+Content-ID: <16e14ca76697745b44>
+X-Attachment-Id: 16e14ca76697745b44
 
 iVBORw0KGgoAAAANSUhEUgAAAKIAAABvCAYAAABvhBtxAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
 xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAFVtSURBVHhe
@@ -1804,15 +1774,12 @@ TM0+dLtPy2P381ixXRoE57Tvd7zz6WcvLsP5qCTJALZ2tiQlTCGBa/xzg7nQo/NXPFb63PnnRh4T
 NvXT0Q/XqDVdinJK3PinzNJOlWNlayakiiDS/n0b5sPtPlbbcXdoBmR8ab/w5Z569uPRE0k0DSvO
 LXOkQSpnX5kyG2fLRIoiAZ4N3I+Esjs7eM7PeO2kL7a8+GLC6YwA9stptLK3yDIxMy5SmhqLmI6w
 Sa8ITIucM/9dbCL+KVxEA/7bZX7+nb3FtrP9f5qB/weaQ2xn6nqwCgAAAABJRU5ErkJggg==
-
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
+--000000000000f1edee0596013bea
 Content-Type: image/png; name="image005.png"
-Content-Description: image005.png
-Content-Disposition: inline; filename="image005.png"; size=842;
-	creation-date="Mon, 28 Oct 2019 18:40:34 GMT";
-	modification-date="Mon, 28 Oct 2019 18:40:34 GMT"
-Content-ID: <image005.png@01D58D9D.AB734DA0>
+Content-Disposition: inline; filename="image005.png"
 Content-Transfer-Encoding: base64
+Content-ID: <16e14ca766a855d355>
+X-Attachment-Id: 16e14ca766a855d355
 
 iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
 xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAALKSURBVEhL
@@ -1829,15 +1796,12 @@ QOuXjMapaLlQAECJYMds4W3Rx7LvWDZUXKGLz/NGTo151hycGjEfVCLWYeZ8FO340RycTkDnUlsN
 J8WmuREPr1CwQy+ht2vIkIeHB6GJxiL1vBbxzSVzs7BVgfPIa9xdm85Fv/Xs5ZkcQvYAqedS/HPc
 rYo6y/Zh6V/ttSJhqJ5DGoZkUb0hXgtYcKxdMCxAk1RxlddpvjGxQ5FUAtmZ7CBu1BpLlWafyH1l
 kE6Ns/tTNTvK/3Z/aYeBXWT3f410ZvwvnGQSG3xsryUAAAAASUVORK5CYII=
-
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
+--000000000000f1edee0596013bea
 Content-Type: image/png; name="image006.png"
-Content-Description: image006.png
-Content-Disposition: inline; filename="image006.png"; size=969;
-	creation-date="Mon, 28 Oct 2019 18:40:35 GMT";
-	modification-date="Mon, 28 Oct 2019 18:40:35 GMT"
-Content-ID: <image006.png@01D58D9D.AB734DA0>
+Content-Disposition: inline; filename="image006.png"
 Content-Transfer-Encoding: base64
+Content-ID: <16e14ca766a9374b66>
+X-Attachment-Id: 16e14ca766a9374b66
 
 iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
 xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAANJSURBVEhL
@@ -1856,15 +1820,12 @@ JXzK4s7VFbKQz6Bcvkjw07Sfx5gmHg0FFUU4wmieC6Zp7iXuJAvM1ukenNq7g/oNU7qrHFnn64RW
 YpfgtadZ7AHK0E/b5aC8lKvPH4AFJrlxKeXTksLqKAEPUioKqgztlnIdUXqMaLwG8Aq4XE1iv9pA
 eV+uNitxjlIpVwxhulRvt0Q3SR9io5N+/s3dRHJ0Gy8MSfKvV5/0+VDacjRj2ILvkvVZjkEy9P+2
 1TV9v9JuK4yZIO6oQbrjNm9/slZ96779peeH0Xc2sTGkM7d/ASpjWFdMijLjAAAAAElFTkSuQmCC
-
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
+--000000000000f1edee0596013bea
 Content-Type: image/png; name="image007.png"
-Content-Description: image007.png
-Content-Disposition: inline; filename="image007.png"; size=991;
-	creation-date="Mon, 28 Oct 2019 18:40:35 GMT";
-	modification-date="Mon, 28 Oct 2019 18:40:35 GMT"
-Content-ID: <image007.png@01D58D9D.AB734DA0>
+Content-Disposition: inline; filename="image007.png"
 Content-Transfer-Encoding: base64
+Content-ID: <16e14ca766aa18c377>
+X-Attachment-Id: 16e14ca766aa18c377
 
 iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
 xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAANfSURBVEhL
@@ -1884,15 +1845,12 @@ RmCeTLoPg1AOUed5sOveQ5WE0CIJSY7Rz018qgnE8ebCMkQKz0SwEEbLYhpxSsSzenszQ97iiURG
 //M2b2EObpMygZTs10qwwR2lmeu5d4IECw+v4HcjLGBg5+kO1pwnqHnWhC7uAxGu59/1SSRxMkQU
 n79H/qNF8jmKGuI4ZYlMWALrq7hHwCZ2qGMtirFSvAHeAPeJpJ7UPE5/sBYD/336e55swugV6knP
 /wGiqluTm75E0QAAAABJRU5ErkJggg==
-
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_
+--000000000000f1edee0596013bea
 Content-Type: image/png; name="image008.png"
-Content-Description: image008.png
-Content-Disposition: inline; filename="image008.png"; size=1060;
-	creation-date="Mon, 28 Oct 2019 18:40:35 GMT";
-	modification-date="Mon, 28 Oct 2019 18:40:35 GMT"
-Content-ID: <image008.png@01D58D9D.AB734DA0>
+Content-Disposition: inline; filename="image008.png"
 Content-Transfer-Encoding: base64
+Content-ID: <16e14ca766aafa3b88>
+X-Attachment-Id: 16e14ca766aafa3b88
 
 iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
 xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAAOkSURBVEhL
@@ -1913,11 +1871,10 @@ cGOr1PKlsCb3D9ChbiLzOYPGK96CyGOBXhOrnZTkSYa8yIumsj64VNY7eghVkOXcoI4QsCZ8g/5F
 EUFy9A9Wnn9lfu6jBXSHu6ClpeLnjRtk2c3ENqVRhaiHUuwJ82uOJYtt9XNZK/tpBeLnE+EmsoZu
 t9QQCSSbWmr4lyjNn63co1RXnk9aOt8oWZ/l7wAjUuFtcv0vzLBIGHsvXX1H3HsWxa7rvP3JWu3Z
 9O0vrpjllKe/j2L5+m/slqaacYPA/QAAAABJRU5ErkJggg==
+--000000000000f1edee0596013bea--
 
---_011_BL0PR04MB4948620FEC86ACBDB7002BD6FA660BL0PR04MB4948namp_--
 
-
---===============3625938851582700607==
+--===============2137086929948661065==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1928,5 +1885,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3625938851582700607==--
+--===============2137086929948661065==--
 
