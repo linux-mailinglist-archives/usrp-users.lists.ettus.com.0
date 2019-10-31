@@ -2,56 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C60C5EB7C6
-	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2019 20:09:16 +0100 (CET)
-Received: from [::1] (port=60850 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD3FEB7FE
+	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2019 20:33:40 +0100 (CET)
+Received: from [::1] (port=37020 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iQFok-0007X7-Fj; Thu, 31 Oct 2019 15:09:10 -0400
-Received: from mail-qt1-f178.google.com ([209.85.160.178]:40729)
+	id 1iQGCO-0000iJ-EO; Thu, 31 Oct 2019 15:33:36 -0400
+Received: from mail-lf1-f53.google.com ([209.85.167.53]:40753)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <zcao@c3commsystems.com>)
- id 1iQFog-0007QU-Mh
- for USRP-users@lists.ettus.com; Thu, 31 Oct 2019 15:09:06 -0400
-Received: by mail-qt1-f178.google.com with SMTP id o49so10006209qta.7
- for <USRP-users@lists.ettus.com>; Thu, 31 Oct 2019 12:08:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=c3commsystems-com.20150623.gappssmtp.com; s=20150623;
- h=from:mime-version:subject:message-id:date:to;
- bh=Eu0bWBrIixUh61sXxKjy1CGfsisikR9FL7v5yXkKqx4=;
- b=kHunvOoWkczqmKKJSAzMYI9OHfPLn4VFoRptPSe/sWwIMChx24Iy9WqKu+uRRk2Jb3
- a0dzEPaV99qefmc7j8j23tOWcvFs6ot9kBHWZHiTx6PLkEq4cQdR6/nJa9E88jKN6aPQ
- OTbbUZEyQasDACZTjPrqCNsxUuSQWR1EPm5bRLEQvZs8HK7noiaOr633t+fsg8TQXXaE
- 9xWKyjjeYhI5Mqz8XSBo1ZtKZ8mGqolnJN0h6vbgeZC0KriqKjn5OBtpg7mP0w94C3Fe
- evsV6zcdhIiJkputnWMe6xVJ53tlWWLtn8N9dK+30TSNutJh8oEbsZtoWU95l/UDx3RY
- xzUw==
+ (Exim 4.92) (envelope-from <jlockhartrt@gmail.com>)
+ id 1iQGCK-0000cp-NQ
+ for usrp-users@lists.ettus.com; Thu, 31 Oct 2019 15:33:32 -0400
+Received: by mail-lf1-f53.google.com with SMTP id f4so5591137lfk.7
+ for <usrp-users@lists.ettus.com>; Thu, 31 Oct 2019 12:33:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=30Au5WMRm6+3pfF90aYeb0zMuKoCCg6sl2dLPw6DfT8=;
+ b=FsiV/xxDHVlcQgVDhbiPWZIcS8BN8sJbyCkHAW4RV47spjRAN9QrrRZ/YndyfwaI60
+ sJPdUXQ/4PZUXFeRi10OTObnYeEkGdZPoAPzYDVDuF/kPeqYOpU6lKZoQD1LHQf2KYMw
+ IQ6Ezl1ko7qHYMxxfv2AIMkWs5Bl4TlBdtsWWvKjOYx3aLTZjL0NJRS8CapeqkyMfGbK
+ x+44UoJvYRghQiBbjbPDmg2fuIcub4nhxUEiGPZLfw3CosfT1o2dx8UzGbSdkLyp52fK
+ 6zIgMAPfoikajzfka0oDAiijulx6unVbf6QGGTuOtl4362lITm0w35YQEi/LSqFKicu1
+ H7BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:mime-version:subject:message-id:date:to;
- bh=Eu0bWBrIixUh61sXxKjy1CGfsisikR9FL7v5yXkKqx4=;
- b=iwOtraqrCV36BXFc1TXM8PrZOcj5ZPyosdz4McV4Jb9hc5e8+PNouxXsvKihty+Pfe
- nYnBcxzlYg2iVne8LhHUnyCt4zJS6hkn26OlSdJKO7C4UQ/JZr2XYH7qNlJpEkuLB1N4
- bsDAilvXMQmvPfvZqOpu6xl8s64GPpr6erCeXvdaycec8iaUXalqt/n2zpuhQbC02POF
- RcHSrNLo7I/R1b5/1u5WnLKuJK/35Cef9A1EuBuUUrA+tqnDd8wZakumwwnTSrlZHif3
- E4CSaxEJrzlA+LMqjZJ0O3iD6rj6PyTmIm2mKIeMyrL1a1ajLJtLDELjMAHoCn227q1U
- ryFg==
-X-Gm-Message-State: APjAAAUwLsWEoPmzNJ2O9AOjQvM08zFGTxidfsFTTGuEPI1VRM152kiC
- 1iork+lnriiehDBvSPcvmhQ81i9Q+Cs=
-X-Google-Smtp-Source: APXvYqzr0Qb/G9SMWQ9Xkzi38tEQoHMrNtYpAVoiyQ6LrjqiD98e4Dv7wZ79NvAFiLV4FyXz3uzLsg==
-X-Received: by 2002:ac8:7258:: with SMTP id l24mr7038580qtp.187.1572548905522; 
- Thu, 31 Oct 2019 12:08:25 -0700 (PDT)
-Received: from [192.170.1.104] (exchange.sharedspectrum.com. [70.163.31.2])
- by smtp.gmail.com with ESMTPSA id n56sm3011006qtb.73.2019.10.31.12.08.24
- for <USRP-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 31 Oct 2019 12:08:25 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Message-Id: <DC60473E-ABB5-49FD-8F69-E3734A4D72DB@c3commsystems.com>
-Date: Thu, 31 Oct 2019 15:08:24 -0400
-To: USRP-users <USRP-users@lists.ettus.com>
-X-Mailer: Apple Mail (2.3445.9.1)
-Subject: [USRP-users] Problems running uhd/examples/tx_samples_from_files on
- E310
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=30Au5WMRm6+3pfF90aYeb0zMuKoCCg6sl2dLPw6DfT8=;
+ b=b6Bznfv0TVcCW2vykwbJ1ocS7OEhHVu8cjZn0N7BPd4LinzodNXWo5D1LUtHSXa4tJ
+ cm6nAalu8tPd0+AR9TAiNvYXmu9ja2CzctwzubVSZXODD/IjjM9umvNXA5GoggWs+p9d
+ ZaBCdb3yFrnFSERDtA6n7RypR08EM9QoUhlFuVrmew1OamS3XcO75SWOdjdVjzu0b9u5
+ 2cAZ5poIEXoMR3VsxTJMhvEG+WY4ShrEpCd+AK3fc6VGZtxNYee4+PgwDDiTgnwzYyC+
+ 1w/1TfL5ufFdlVdG1ueDmq10tz98G+ufCLvNqe9K2Yd9wwsagT/q519P1gYqXTqYOB5W
+ uY2g==
+X-Gm-Message-State: APjAAAWwooePz51ApiAcG7MHwe17984HweHOoDwr1o0DLIVr5OiL7jLi
+ r4n4yQC80lfkWkAbadcJVO+7hujRa7NYjjB4uYki69Ty
+X-Google-Smtp-Source: APXvYqxf2/gCzOrWkhPL8btrYjxkwGIWW/tHn5J4tt0nY/rSzKsJQiBlcXeQI1M5aIzpeOVsAnyfnMBZWEcLDIwxktY=
+X-Received: by 2002:ac2:5deb:: with SMTP id z11mr4930380lfq.35.1572550371175; 
+ Thu, 31 Oct 2019 12:32:51 -0700 (PDT)
+MIME-Version: 1.0
+Date: Thu, 31 Oct 2019 15:30:15 -0400
+Message-ID: <CALY+5sK8VYxWGiOsX7XSw7ScxLkKKhWtNm66U=OdfxEFCyqKYw@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
+ support@ettus.com
+Subject: [USRP-users] RFNoC Radio Issue
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: zcao--- via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: "zcao@c3commsystems.com" <zcao@c3commsystems.com>
-Content-Type: multipart/mixed; boundary="===============4913837320500615190=="
+From: Jonathan Lockhart via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathan Lockhart <jlockhartrt@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2553576297384554361=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,691 +72,154 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============2553576297384554361==
+Content-Type: multipart/alternative; boundary="00000000000043f2e3059639ea5c"
 
---===============4913837320500615190==
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_74C9D22F-D02E-4E2B-822F-492F48DBE3B2"
+--00000000000043f2e3059639ea5c
+Content-Type: text/plain; charset="UTF-8"
 
+Greetings,
 
---Apple-Mail=_74C9D22F-D02E-4E2B-822F-492F48DBE3B2
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+I was wondering if anyone else has had this issue with the RFNoC radio
+block.
 
-Hi,=20
+So I was using the copy block with the rfnoc_fosphor_network_usrp.grc file
+as I wanted to split off the signal before it went off to the RFNoC Window.
+So I put in a copy block (since the RFNoC Split block appears to be broken)
+and passed the data off to a ZMQ Push and back to the window to continue to
+be processed by the FPGA. GNURadio says this is all well and good since all
+vectors are 512 and builds the file. However, when I run the .py file on my
+E312 it throws an error stating that the radio is providing data of size 8
+when the copy block expects to get data of size 512 (the vector size).
 
-We are testing a newly acquired E310 by running UHD example =
-tx_samples_from_files.cpp. The data file we use was used in testing =
-other USRP E310 devices so we know it is correct. For this particular =
-E310, we ran into underrun problem. The screen output looks like the =
-following:
-
-root@ettus-e3xx-sg3:~/localinstall# =
-usr/lib/uhd/examples/tx_samples_from_file --rate 4000000 --freq =
-2512000000 --ant TX/RX --gain 30 --bw 1000000 --file ./pkt_0238_2.dat =
---repeat --spb 5000
-
-Creating the usrp device with: ...
-[INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700; =
+[INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700;
 UHD_3.14.1.HEAD-0-gbfb9c1c7
-[INFO] [E300] Loading FPGA image: =
-/home/root/localinstall/usr/share/uhd/images/usrp_e310_fpga_sg3.bit...
+[INFO] [E300] Loading FPGA image: /home/root/localinstall/e300.bit...
 [INFO] [E300] FPGA image loaded
-[INFO] [E300] Detecting internal GPS=20
+[INFO] [E300] Detecting internal GPS
 .... [INFO] [E300] GPSDO found
 [INFO] [E300] Initializing core control (global registers)...
 
-[INFO] [E300] Performing register loopback test...=20
+[INFO] [E300] Performing register loopback test...
 [INFO] [E300] Register loopback test passed
-[INFO] [0/Radio_0] Initializing block control (NOC ID: =
-0x12AD100000000000)
-[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
-[WARNING] [RFNOC] [legacy_compat] No FIFO detected. Higher transmit =
-rates may encounter errors.
-Using Device: Single USRP:
-  Device: E-Series Device
-  Mboard 0: E3XX SG3
-  RX Channel: 0
-    RX DSP: 0
-    RX Dboard: A
-    RX Subdev: FE-RX2
-  RX Channel: 1
-    RX DSP: 1
-    RX Dboard: A
-    RX Subdev: FE-RX1
-  RX Channel: 2
-    RX DSP: 0
-    RX Dboard: A
-    RX Subdev: FE-RX2
-  RX Channel: 3
-    RX DSP: 1
-    RX Dboard: A
-    RX Subdev: FE-RX1
-  TX Channel: 0
-    TX DSP: 0
-    TX Dboard: A
-    TX Subdev: FE-TX2
-  TX Channel: 1
-    TX DSP: 1
-    TX Dboard: A
-    TX Subdev: FE-TX1
-  TX Channel: 2
-    TX DSP: 0
-    TX Dboard: A
-    TX Subdev: FE-TX2
-  TX Channel: 3
-    TX DSP: 1
-    TX Dboard: A
-    TX Subdev: FE-TX1
+[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000000)
+[WARNING] [RFNOC] Can't find a block controller for key FFT, using default
+block controller!
+[INFO] [0/FFT_0] Initializing block control (NOC ID: 0xFF70000000000000)
+[INFO] [0/Window_0] Initializing block control (NOC ID: 0xD053000000000000)
+[WARNING] [RFNOC] Can't find a block controller for key fosphor, using
+default block controller!
+[INFO] [0/fosphor_0] Initializing block control (NOC ID: 0x666F000000000000)
+[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
+[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
+Traceback (most recent call last):
+  File "rfnoc_fosphor_network_usrp.py", line 282, in <module>
+    main()
+  File "rfnoc_fosphor_network_usrp.py", line 271, in main
+    tb = top_block_cls(fft_size=options.fft_size,
+fpga_path=options.fpga_path, freq=options.freq, gain=options.gain,
+host_ip_addr=options.host_ip_addr, samp_rate=options.samp_rate,
+tdecay=options.tdecay, trise=options.trise)
+  File "rfnoc_fosphor_network_usrp.py", line 166, in __init__
+    self.connect((self.uhd_rfnoc_streamer_radio_0, 0), (self.blocks_copy_0,
+0))
+  File
+"/home/root/localinstall/usr/lib/python2.7/site-packages/gnuradio/gr/hier_block2.py",
+line 47, in wrapped
+    func(self, src, src_port, dst, dst_port)
+  File
+"/home/root/localinstall/usr/lib/python2.7/site-packages/gnuradio/gr/hier_block2.py",
+line 110, in connect
+    self.primitive_connect(*args)
+  File
+"/home/root/localinstall/usr/lib/python2.7/site-packages/gnuradio/gr/runtime_swig.py",
+line 3482, in primitive_connect
+    return _runtime_swig.top_block_sptr_primitive_connect(self, *args)
+ValueError: itemsize mismatch: rfnoc_radio0:0 using 8, copy0:0 using 4096
 
-Setting TX Rate: 4.000000 Msps...
-Actual TX Rate: 4.000000 Msps...
+I have attached my modified examples for anyone who is interested. I have
+tried to modify the python and that just gets me into more trouble.
 
-Setting TX Freq: 2512.000000 MHz...
-Setting TX LO Offset: 0.000000 MHz...
-Actual TX Freq: 2512.000000 MHz...
+Through my tracing of the files it appears that the RFNoC Radio block in
+the .py file never actually uses the vector size, and that the force vector
+length block is an additive to allow compliance when working in GNURadio,
+as it will not generate python with mismatched types and sizes. Trying to
+force the radio to take the 512 as an argument in the python throws a new
+error that the Radio is only allowed to have 5 arguments and I have
+supplied 6, and validated in the Ettus .py file that there is no arg for
+vector size.
 
-Setting TX Gain: 30.000000 dB...
-Actual TX Gain: 30.000000 dB...
+I was wondering if anyone found away around this or got the RFNoC Split
+block working?
 
-Setting TX Bandwidth: 1.000000 MHz...
-Actual TX Bandwidth: 1.000000 MHz...
+Regards,
+Jon Lockhart
 
-Checking TX: LO: locked ...
-Press Ctrl + C to stop streaming...
-=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUU^C
-Done!
-U
-UUUUUUUUUU[INFO] [E300] Loading FPGA image: =
-/home/root/localinstall/usr/share/uhd/images/usrp_e3xx_fpga_idle_sg3.bit..=
-.
-[INFO] [E300] FPGA image loaded
-
-Any suggestions on where we should go from here are appreciated. We have =
-a few questions.
-
-1. Does RFNoC included in the default image in E310 now? If so, UHD =
-3.14.1 branch and all its examples supports RFNoC? Which E310 image =
-doesn=E2=80=99t include RFNoC?
-
-2. On our old E310 platforms acquired 3 years ago, we can run TX rate =
-@40MSPS. However, for this E310, there is a warning sign above says :
-[WARNING] [RFNOC] [legacy_compat] No FIFO detected. Higher transmit =
-rates may encounter errors.
-
-In fact, we tried to set rate high @40MSPS, we got the following =
-messages:
-
-[WARNING] [MULTI_USRP] The hardware does not support the requested TX =
-sample rate:
-Target sample rate: 40.000000 MSps
-Actual sample rate: 16.000000 MSps
-
-
-Are we using the right FPGA images?
-
-
-Thanks,
-Z. Cao
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---Apple-Mail=_74C9D22F-D02E-4E2B-822F-492F48DBE3B2
+--00000000000043f2e3059639ea5c
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D"">Hi,&nbsp;<div class=3D""><br class=3D""></div><div =
-class=3D"">We are testing a newly acquired E310 by running UHD example =
-tx_samples_from_files.cpp. The data file we use was used in testing =
-other USRP E310 devices so we know it is correct. For this particular =
-E310, we ran into underrun problem. The screen output looks like the =
-following:</div><div class=3D""><br class=3D""></div><div class=3D""><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">root@ettus-e3xx-sg3:~/localinstall# =
-usr/lib/uhd/examples/tx_samples_from_file --rate 4000000 --freq =
-2512000000 --ant TX/RX --gain 30 --bw 1000000 --file ./pkt_0238_2.dat =
---repeat --spb 5000</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098); =
-min-height: 16px;" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D""></span><br class=3D""></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">Creating =
-the usrp device with: ...</span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures; color: #34bc26" class=3D"">[INFO] [UHD] =
-</span><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">linux; GNU C++ version 4.9.2; Boost_105700; =
-UHD_3.14.1.HEAD-0-gbfb9c1c7</span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures; color: #34bc26" class=3D"">[INFO] [E300] =
-</span><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Loading FPGA image: =
-/home/root/localinstall/usr/share/uhd/images/usrp_e310_fpga_sg3.bit...</sp=
-an></div><div style=3D"margin: 0px; font-stretch: normal; line-height: =
-normal; font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures; color: #34bc26" =
-class=3D"">[INFO] [E300] </span><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">FPGA image loaded</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures; color: #34bc26" =
-class=3D"">[INFO] [E300] </span><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">Detecting internal =
-GPS&nbsp;</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">.... </span><span style=3D"font-variant-ligatures: =
-no-common-ligatures; color: #34bc26" class=3D"">[INFO] [E300] =
-</span><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">GPSDO found</span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures; color: #34bc26" class=3D"">[INFO] [E300] =
-</span><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Initializing core control (global =
-registers)...</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098); =
-min-height: 16px;" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D""></span><br class=3D""></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures; color: #34bc26" =
-class=3D"">[INFO] [E300] </span><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">Performing register loopback =
-test...&nbsp;</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
-color: #34bc26" class=3D"">[INFO] [E300] </span><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">Register =
-loopback test passed</span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures; color: #34bc26" class=3D"">[INFO] [0/Radio_0] =
-</span><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Initializing block control (NOC ID: =
-0x12AD100000000000)</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
-color: #34bc26" class=3D"">[INFO] [0/DDC_0] </span><span =
-style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Initializing block control (NOC ID: =
-0xDDC0000000000000)</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
-color: #34bc26" class=3D"">[INFO] [0/DUC_0] </span><span =
-style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Initializing block control (NOC ID: =
-0xD0C0000000000002)</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
-color: #afad24" class=3D"">[WARNING] [RFNOC] </span><span =
-style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">[legacy_compat] No FIFO detected. Higher transmit rates may =
-encounter errors.</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Using Device: Single USRP:</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">&nbsp; Device: E-Series =
-Device</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; Mboard 0: E3XX SG3</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">&nbsp; RX Channel: 0</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
-&nbsp; RX DSP: 0</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; RX Dboard: A</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">&nbsp; &nbsp; RX Subdev: =
-FE-RX2</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; RX Channel: 1</span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">&nbsp; &nbsp; RX DSP: 1</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
-&nbsp; RX Dboard: A</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; RX Subdev: FE-RX1</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
-RX Channel: 2</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; RX DSP: 0</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">&nbsp; &nbsp; RX Dboard: =
-A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; RX Subdev: FE-RX2</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
-RX Channel: 3</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; RX DSP: 1</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">&nbsp; &nbsp; RX Dboard: =
-A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; RX Subdev: FE-RX1</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
-TX Channel: 0</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; TX DSP: 0</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">&nbsp; &nbsp; TX Dboard: =
-A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; TX Subdev: FE-TX2</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
-TX Channel: 1</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; TX DSP: 1</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">&nbsp; &nbsp; TX Dboard: =
-A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; TX Subdev: FE-TX1</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
-TX Channel: 2</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; TX DSP: 0</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">&nbsp; &nbsp; TX Dboard: =
-A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; TX Subdev: FE-TX2</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
-TX Channel: 3</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; TX DSP: 1</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">&nbsp; &nbsp; TX Dboard: =
-A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">&nbsp; &nbsp; TX Subdev: FE-TX1</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098); min-height: 16px;" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">Setting TX Rate: 4.000000 =
-Msps...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Actual TX Rate: 4.000000 Msps...</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098); min-height: 16px;" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">Setting TX Freq: 2512.000000 =
-MHz...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Setting TX LO Offset: 0.000000 MHz...</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">Actual =
-TX Freq: 2512.000000 MHz...</span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098); min-height: 16px;" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">Setting TX Gain: 30.000000 =
-dB...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Actual TX Gain: 30.000000 dB...</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098); min-height: 16px;" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">Setting TX Bandwidth: 1.000000 =
-MHz...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Actual TX Bandwidth: 1.000000 MHz...</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098); min-height: 16px;" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">Checking TX: LO: locked =
-...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Press Ctrl + C to stop streaming...</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
-UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU^C</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">Done!</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">U</span></div><div style=3D"margin: =
-0px; font-stretch: normal; line-height: normal; font-family: =
-&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
-rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
- no-common-ligatures" class=3D"">UUUUUUUUUU</span><span =
-style=3D"font-variant-ligatures: no-common-ligatures; color: #34bc26" =
-class=3D"">[INFO] [E300] </span><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">Loading FPGA image: =
-/home/root/localinstall/usr/share/uhd/images/usrp_e3xx_fpga_idle_sg3.bit..=
-.</span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
-color: #34bc26" class=3D"">[INFO] [E300] </span><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">FPGA =
-image loaded</span></div></div><div class=3D""><br class=3D""></div><div =
-class=3D"">Any suggestions on where we should go from here are =
-appreciated. We have a few questions.</div><div class=3D""><br =
-class=3D""></div><div class=3D"">1. Does RFNoC included in the default =
-image in E310 now? If so, UHD 3.14.1 branch and all its examples =
-supports RFNoC? Which E310 image doesn=E2=80=99t include =
-RFNoC?</div><div class=3D""><br class=3D""></div><div class=3D"">2. On =
-our old E310 platforms acquired 3 years ago, we can run TX rate @40MSPS. =
-However, for this E310, there is a warning sign above says :</div><div =
-class=3D""><span style=3D"font-family: &quot;Courier New&quot;; =
-background-color: rgba(0, 0, 0, 0.85098); font-variant-ligatures: =
-no-common-ligatures; color: rgb(175, 173, 36);" class=3D"">[WARNING] =
-[RFNOC]&nbsp;</span><span style=3D"caret-color: rgb(244, 244, 244); =
-color: rgb(244, 244, 244); font-family: &quot;Courier New&quot;; =
-background-color: rgba(0, 0, 0, 0.85098); font-variant-ligatures: =
-no-common-ligatures;" class=3D"">[legacy_compat] No FIFO detected. =
-Higher transmit rates may encounter errors.</span></div><div =
-class=3D""><span style=3D"caret-color: rgb(244, 244, 244); color: =
-rgb(244, 244, 244);" class=3D""><br class=3D""></span></div><div =
-class=3D""><span style=3D"caret-color: rgb(244, 244, 244);" class=3D"">In =
-fact, we tried to set rate high @40MSPS, we got the following =
-messages:</span></div><div class=3D""><span style=3D"caret-color: =
-rgb(244, 244, 244);" class=3D""><br class=3D""></span></div><div =
-class=3D""><div style=3D"margin: 0px; font-stretch: normal; line-height: =
-normal; font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures; color: #afad24" =
-class=3D"">[WARNING] [MULTI_USRP] </span><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">The =
-hardware does not support the requested TX sample rate:</span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">Target =
-sample rate: 40.000000 MSps</span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D"">Actual sample rate: 16.000000 =
-MSps</span></div></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""><br class=3D""></span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D""><br class=3D""></span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">Are we =
-using the right FPGA images?</span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D""><br class=3D""></span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D""><br =
-class=3D""></span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D"">Thanks,</span></div><div style=3D"margin: 0px; font-stretch: =
-normal; line-height: normal; font-family: &quot;Courier New&quot;; =
-color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D"">Z. Cao</div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""><br class=3D""></span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D""><br class=3D""></span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D""><br =
-class=3D""></span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""><br class=3D""></span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D""><br class=3D""></span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D""><br =
-class=3D""></span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""><br class=3D""></span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D""><br class=3D""></span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D""><br =
-class=3D""></span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""><br class=3D""></span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D""><br class=3D""></span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D""><br =
-class=3D""></span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""><br class=3D""></span></div><div style=3D"margin: 0px; =
-font-stretch: normal; line-height: normal; font-family: &quot;Courier =
-New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
-0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
-no-common-ligatures" class=3D""><br class=3D""></span></div><div =
-style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
-font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
-background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
-style=3D"font-variant-ligatures: no-common-ligatures" class=3D""><br =
-class=3D""></span></div><div style=3D"margin: 0px; font-stretch: normal; =
-line-height: normal; font-family: &quot;Courier New&quot;; color: =
-rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
-class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
-class=3D""><br class=3D""></span></div></body></html>=
+<div dir=3D"ltr"><div>Greetings,</div><div><br></div><div>I was wondering i=
+f anyone else has had this issue with the RFNoC radio block.</div><div><br>=
+</div><div>So I was using the copy block with the rfnoc_fosphor_network_usr=
+p.grc file as I wanted to split off the signal before it went off to the RF=
+NoC Window. So I put in a copy block (since the RFNoC Split block appears t=
+o be broken) and passed the data off to a ZMQ Push and back to the window t=
+o continue to be processed by the FPGA. GNURadio says this is all well and =
+good since all vectors are 512 and builds the file. However, when I run the=
+ .py file on my E312 it throws an error stating that the radio is providing=
+ data of size 8 when the copy block expects to get data of size 512 (the ve=
+ctor size).</div><div><br></div><div>[INFO] [UHD] linux; GNU C++ version 4.=
+9.2; Boost_105700; UHD_3.14.1.HEAD-0-gbfb9c1c7<br>[INFO] [E300] Loading FPG=
+A image: /home/root/localinstall/e300.bit...<br>[INFO] [E300] FPGA image lo=
+aded<br>[INFO] [E300] Detecting internal GPS <br>.... [INFO] [E300] GPSDO f=
+ound<br>[INFO] [E300] Initializing core control (global registers)...<br><b=
+r>[INFO] [E300] Performing register loopback test... <br>[INFO] [E300] Regi=
+ster loopback test passed<br>[INFO] [0/Radio_0] Initializing block control =
+(NOC ID: 0x12AD100000000000)<br>[WARNING] [RFNOC] Can&#39;t find a block co=
+ntroller for key FFT, using default block controller!<br>[INFO] [0/FFT_0] I=
+nitializing block control (NOC ID: 0xFF70000000000000)<br>[INFO] [0/Window_=
+0] Initializing block control (NOC ID: 0xD053000000000000)<br>[WARNING] [RF=
+NOC] Can&#39;t find a block controller for key fosphor, using default block=
+ controller!<br>[INFO] [0/fosphor_0] Initializing block control (NOC ID: 0x=
+666F000000000000)<br>[INFO] [0/FIFO_0] Initializing block control (NOC ID: =
+0xF1F0000000000000)<br>[INFO] [0/FIFO_1] Initializing block control (NOC ID=
+: 0xF1F0000000000000)<br>Traceback (most recent call last):<br>=C2=A0 File =
+&quot;rfnoc_fosphor_network_usrp.py&quot;, line 282, in &lt;module&gt;<br>=
+=C2=A0 =C2=A0 main()<br>=C2=A0 File &quot;rfnoc_fosphor_network_usrp.py&quo=
+t;, line 271, in main<br>=C2=A0 =C2=A0 tb =3D top_block_cls(fft_size=3Dopti=
+ons.fft_size, fpga_path=3Doptions.fpga_path, freq=3Doptions.freq, gain=3Dop=
+tions.gain, host_ip_addr=3Doptions.host_ip_addr, samp_rate=3Doptions.samp_r=
+ate, tdecay=3Doptions.tdecay, trise=3Doptions.trise)<br>=C2=A0 File &quot;r=
+fnoc_fosphor_network_usrp.py&quot;, line 166, in __init__<br>=C2=A0 =C2=A0 =
+self.connect((self.uhd_rfnoc_streamer_radio_0, 0), (self.blocks_copy_0, 0))=
+<br>=C2=A0 File &quot;/home/root/localinstall/usr/lib/python2.7/site-packag=
+es/gnuradio/gr/hier_block2.py&quot;, line 47, in wrapped<br>=C2=A0 =C2=A0 f=
+unc(self, src, src_port, dst, dst_port)<br>=C2=A0 File &quot;/home/root/loc=
+alinstall/usr/lib/python2.7/site-packages/gnuradio/gr/hier_block2.py&quot;,=
+ line 110, in connect<br>=C2=A0 =C2=A0 self.primitive_connect(*args)<br>=C2=
+=A0 File &quot;/home/root/localinstall/usr/lib/python2.7/site-packages/gnur=
+adio/gr/runtime_swig.py&quot;, line 3482, in primitive_connect<br>=C2=A0 =
+=C2=A0 return _runtime_swig.top_block_sptr_primitive_connect(self, *args)<b=
+r>ValueError: itemsize mismatch: rfnoc_radio0:0 using 8, copy0:0 using 4096=
+</div><div><br></div><div>I have attached my modified examples for anyone w=
+ho is interested. I have tried to modify the python and that just gets me i=
+nto more trouble. <br></div><div><br></div><div>Through my tracing of the f=
+iles it appears that the RFNoC Radio block in the .py file never actually u=
+ses the vector size, and that the force vector length block is an additive =
+to allow compliance when working in GNURadio, as it will not generate pytho=
+n with mismatched types and sizes. Trying to force the radio to take the 51=
+2 as an argument in the python throws a new error that the Radio is only al=
+lowed to have 5 arguments and I have supplied 6, and validated in the Ettus=
+ .py file that there is no arg for vector size. <br></div><div><br></div><d=
+iv>I was wondering if anyone found away around this or got the RFNoC Split =
+block working?</div><div><br></div><div>Regards,</div><div>Jon Lockhart<br>=
+</div></div>
 
---Apple-Mail=_74C9D22F-D02E-4E2B-822F-492F48DBE3B2--
+--00000000000043f2e3059639ea5c--
 
 
---===============4913837320500615190==
+--===============2553576297384554361==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -774,5 +230,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4913837320500615190==--
+--===============2553576297384554361==--
 
