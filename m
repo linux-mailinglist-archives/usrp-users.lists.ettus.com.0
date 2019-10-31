@@ -2,56 +2,35 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFAC4EA928
-	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2019 03:14:17 +0100 (CET)
-Received: from [::1] (port=38534 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA7FEB31F
+	for <lists+usrp-users@lfdr.de>; Thu, 31 Oct 2019 15:49:36 +0100 (CET)
+Received: from [::1] (port=46978 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iPzyV-0005Pi-0Y; Wed, 30 Oct 2019 22:14:11 -0400
-Received: from mail-qt1-f180.google.com ([209.85.160.180]:38491)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <zcao@c3commsystems.com>)
- id 1iPzyR-0005M2-B6
- for usrp-users@lists.ettus.com; Wed, 30 Oct 2019 22:14:07 -0400
-Received: by mail-qt1-f180.google.com with SMTP id t26so6386383qtr.5
- for <usrp-users@lists.ettus.com>; Wed, 30 Oct 2019 19:13:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=c3commsystems-com.20150623.gappssmtp.com; s=20150623;
- h=from:mime-version:subject:message-id:date:to;
- bh=qzDCetG9g0pJ1L98S+T4RaLIEr32RJz9iRvTGN96AEo=;
- b=gmJNX0Siy0rUo3Drpt4hfE3RUq1d4slQDf6lkiIOshT3cV8Z7B4WXIDEn22+i119P0
- nZFJp7f4Tl0VMNExxJlRw+Vi3SBb9jiQm1sivQcXEqibe4uG6La+QfXXkkkOKyzhlRPQ
- iguCUBz4XqCcx3dFem6Lb6cbIo8xpybCPhgz56PNG3Gwx97UWySIpxo55Uws2MZ2SUZz
- EcIbG8RV8Z3i57Hpd7VyrjBFE6oeFr9XP0JUujWlAEZE2PD2tceuJmhC0niSg6M9D1oN
- qHwdBYZH1bLQfRCm8SYrCazMYL9zeda5h3WmnemHPr76jEVxkszRjawFbLHI2ntBGl3J
- e6cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:mime-version:subject:message-id:date:to;
- bh=qzDCetG9g0pJ1L98S+T4RaLIEr32RJz9iRvTGN96AEo=;
- b=X2TSmtp6FCiEO0W8+qTWqG4l/tpWDx33Qq3c6s4cRCT8cJUdEwTIQpL/HAwQKM9a5z
- OGXnsSJ/ValswzHD0ocY24v5GLjoU92NmIb88DZniKYvDPyt2nmbNC69hnlwRWj4eZlH
- d+vaG1h7BHAKBfPYGmXXQIGEMtkLi6CR0D+zuBYFGaHWhdP5BboGYsgSziaYxuGn2ssi
- EQZWVYMvhAJ9RqL0mLnCRh9Z21iGqwtrrNH3iFarST7YBfd80AAyE0lHF7J31u2ht0xG
- BJIKHSYLki8EwVM5C5v9XGmIqAaGQZxwL8Upg9f5/8voUZnNAlDNmJeLDr14qIjPNw30
- Icxw==
-X-Gm-Message-State: APjAAAUZET2gLmxsk32JJ7T4EKn/h3cL1k2GXIMnWw+cam6fR5dk/ipP
- un2m+a/UdY/CTTqsvlXZplnlNH94wNk=
-X-Google-Smtp-Source: APXvYqwm40Kg40/pLGHnWMfWfvE4fTyElNfcirFdybBI41ngOORX08Ejeg5wzNLdy1ev/MYu/K0hlg==
-X-Received: by 2002:aed:24c1:: with SMTP id u1mr3451944qtc.29.1572488006157;
- Wed, 30 Oct 2019 19:13:26 -0700 (PDT)
-Received: from [192.168.2.138] (pool-173-66-203-125.washdc.fios.verizon.net.
- [173.66.203.125])
- by smtp.gmail.com with ESMTPSA id x133sm961586qka.44.2019.10.30.19.13.25
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 30 Oct 2019 19:13:25 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Message-Id: <85CE420D-AD7B-4844-818B-9A300B01F267@c3commsystems.com>
-Date: Wed, 30 Oct 2019 22:13:25 -0400
-To: USRP-users <usrp-users@lists.ettus.com>
-X-Mailer: Apple Mail (2.3445.9.1)
-Subject: [USRP-users] GNURadio with E310?
+	id 1iQBlT-0005J4-Ht; Thu, 31 Oct 2019 10:49:31 -0400
+Received: from 93-63-88-25.ip27.fastwebnet.it ([93.63.88.25]:63078
+ helo=exchange.iptronix.local)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+ (Exim 4.92) (envelope-from <dario@iptronix.com>) id 1iQBlQ-00058u-H1
+ for usrp-users@lists.ettus.com; Thu, 31 Oct 2019 10:49:28 -0400
+Received: from exchange.iptronix.local (192.168.1.30) by
+ exchange.iptronix.local (192.168.1.30) with Microsoft SMTP Server (TLS) id
+ 15.0.1347.2; Thu, 31 Oct 2019 15:48:35 +0100
+Received: from exchange.iptronix.local ([::1]) by exchange.iptronix.local
+ ([::1]) with mapi id 15.00.1347.000; Thu, 31 Oct 2019 15:48:29 +0100
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: clarifications on x300_core.v
+Thread-Index: AdWP+dVNUA8JFBWqSHuAeYtYckCp4A==
+Date: Thu, 31 Oct 2019 14:48:28 +0000
+Message-ID: <3c66f25c0c07455a937f740ccd8584b7@exchange.iptronix.local>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [192.168.1.40]
+MIME-Version: 1.0
+Subject: [USRP-users] clarifications on x300_core.v
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -63,9 +42,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: zcao--- via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: "zcao@c3commsystems.com" <zcao@c3commsystems.com>
-Content-Type: multipart/mixed; boundary="===============8962044121346681514=="
+From: Dario Pennisi via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Dario Pennisi <dario@iptronix.com>
+Content-Type: multipart/mixed; boundary="===============8137204847402944786=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,92 +58,112 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
---===============8962044121346681514==
+--===============8137204847402944786==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_C285231A-F0CE-46E3-ACBA-134E04AA325C"
+	boundary="_000_3c66f25c0c07455a937f740ccd8584b7exchangeiptronixlocal_"
 
-
---Apple-Mail=_C285231A-F0CE-46E3-ACBA-134E04AA325C
+--_000_3c66f25c0c07455a937f740ccd8584b7exchangeiptronixlocal_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
 Hi,
+looking at the generated code from the uhd_image_builder.py it declares ce_=
+clk and ce_rst and assigns them to radio_clk and radio_rst. Actually this f=
+ile is included within x300_core.v which already has the same signals as in=
+put ports and which are externally connected in x300.v to a different clock=
+ (at 214MHz).
+do I understand correctly that the assignments are ignored and that the sig=
+nals stay at 214MHz rather than the 200 MHz of the radio_clk?
+Is there any reason why the builder script adds those declarations/assignme=
+nts?
+Thanks,
 
-I have a couple high level questions here related with using GNURadio =
-with E310. I would really appreciate it if someone can give us a quick =
-feedback. Thanks.
+Dario Pennisi
 
-1. Can we use E310 just like other non-embedded USRP platforms, with =
-which we run GNURadio models in a host computer and send I/Q samples to =
-E310 via an Ethernet connection?
 
-2. Are there gr-uhd blocks that expose the control of AD9361and DDC/DUC =
-in the FPGA, in which we can configure channel bandwidth, filter =
-settings, register settings, ADC/DAC sampling rate and sampling rate =
-change by DDC/DUC?=20
-
-Regards,
-Arnold
-
-C-3 Comm Systems, LLC
-3100 Clarendon Blvd., Suite 200
-Arlington, VA 22201
-Phone: (703) 829-0588
-Email : zcao@c3commsystems.com <mailto:zcao@c3commsystems.com>
-
---Apple-Mail=_C285231A-F0CE-46E3-ACBA-134E04AA325C
+--_000_3c66f25c0c07455a937f740ccd8584b7exchangeiptronixlocal_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D"">Hi,<div class=3D""><br class=3D""></div><div class=3D"">I =
-have a couple high level questions here related with using GNURadio with =
-E310. I would really appreciate it if someone can give us a quick =
-feedback. Thanks.</div><div class=3D""><br class=3D""></div><div =
-class=3D"">1. Can we use E310 just like other non-embedded USRP =
-platforms, with which we run GNURadio models in a host computer and send =
-I/Q samples to E310 via an Ethernet connection?</div><div class=3D""><br =
-class=3D""></div><div class=3D"">2. Are there gr-uhd blocks that expose =
-the control of AD9361and DDC/DUC in the FPGA, in which we can configure =
-channel bandwidth, filter settings, register settings, ADC/DAC sampling =
-rate and sampling rate change by DDC/DUC?&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Regards,</div><div =
-class=3D"">Arnold</div><div class=3D""><br class=3D""></div><div =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
-break-word; -webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
-break-word; -webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
-break-word; -webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
-break-word; -webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D""><div class=3D""><b class=3D"">C-3 Comm Systems, =
-LLC</b></div><div class=3D"">3100 Clarendon Blvd., Suite 200</div><div =
-class=3D"">Arlington, VA 22201</div><div class=3D"">Phone: (703) =
-829-0588</div><div class=3D"">Email :<span =
-class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"mailto:zcao@c3commsystems.com" =
-class=3D"">zcao@c3commsystems.com</a></div></div></div></div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"IT">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal">looking at the generated code from the uhd_image_bui=
+lder.py it declares ce_clk and ce_rst and assigns them to radio_clk and rad=
+io_rst. Actually this file is included within x300_core.v which already has=
+ the same signals as input ports and
+ which are externally connected in x300.v to a different clock (at 214MHz).=
+ <o:p>
+</o:p></p>
+<p class=3D"MsoNormal">do I understand correctly that the assignments are i=
+gnored and that the signals stay at 214MHz rather than the 200 MHz of the r=
+adio_clk?<o:p></o:p></p>
+<p class=3D"MsoNormal">Is there any reason why the builder script adds thos=
+e declarations/assignments?<o:p></o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D;mso-fareast-language:EN=
+-GB">Dario Pennisi</span><span style=3D"color:#1F497D;mso-fareast-language:=
+IT"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
-<br class=3D""></body></html>=
+</body>
+</html>
 
---Apple-Mail=_C285231A-F0CE-46E3-ACBA-134E04AA325C--
+--_000_3c66f25c0c07455a937f740ccd8584b7exchangeiptronixlocal_--
 
 
---===============8962044121346681514==
+--===============8137204847402944786==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -175,5 +174,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8962044121346681514==--
+--===============8137204847402944786==--
 
