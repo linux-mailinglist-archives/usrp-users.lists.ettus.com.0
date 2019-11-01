@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BD84EC87E
-	for <lists+usrp-users@lfdr.de>; Fri,  1 Nov 2019 19:31:09 +0100 (CET)
-Received: from [::1] (port=34510 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C4F6EC895
+	for <lists+usrp-users@lfdr.de>; Fri,  1 Nov 2019 19:39:11 +0100 (CET)
+Received: from [::1] (port=36464 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iQbhT-0000Tm-Oa; Fri, 01 Nov 2019 14:31:07 -0400
-Received: from mail-lj1-f170.google.com ([209.85.208.170]:46924)
+	id 1iQbpG-00011c-1d; Fri, 01 Nov 2019 14:39:10 -0400
+Received: from mail-lf1-f47.google.com ([209.85.167.47]:38469)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1iQbhP-0000MS-MQ
- for usrp-users@lists.ettus.com; Fri, 01 Nov 2019 14:31:03 -0400
-Received: by mail-lj1-f170.google.com with SMTP id w8so11119166lji.13
- for <usrp-users@lists.ettus.com>; Fri, 01 Nov 2019 11:30:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.92) (envelope-from <jlockhartrt@gmail.com>)
+ id 1iQbpC-0000rp-Jd
+ for usrp-users@lists.ettus.com; Fri, 01 Nov 2019 14:39:06 -0400
+Received: by mail-lf1-f47.google.com with SMTP id q28so7921703lfa.5
+ for <usrp-users@lists.ettus.com>; Fri, 01 Nov 2019 11:38:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=O/E3NoLylbcUicQaWRFuuit1J/J5JifBf5kSr0gCeTQ=;
- b=KrBtNSRXQLqBMkCRo/rw+3oKsRcH1Kbf7kendF1CopcvajgiVgGyB4+p8sloQz+5P+
- +gQ6qhFBZIjaTRIUc2Nf80ctg3iMTASipON1rj9qifdYwbr/zXTnEdEDzfgdIPFyo0Zp
- YcIi4pAqf/vJLOc8szSIquT2zMeLADR8z8SF37SUnxGIKMe1pCgbR+wuyPnzt/4WBg23
- 65RF1GDzrOpN/VT21aUufj4RKvBERMH947errAvTHUCob+7066iq2BV5HWqENEqGjSLn
- zAEyGz0eVgzqPMiMtphyLrH89CZJAR8CmqJftM0jKV/m2swO7nwAVyHZ2Xr2PlTNqYa4
- 8F2Q==
+ :cc; bh=O9tlU74uTdWGmjZxBYA1PtuaRhy/na00/tAwaD70/ZE=;
+ b=AyJMxSkMfDGa9H/yYz7dIoonrRHTtU4Ul+GkMn/oNQGjrUUdE1dmQ3QE4tJmWDR9hU
+ ycx0nRAy3nhcjlhlZfrbBa12xr+y1KXf9AsE+rxkLz7//tUJqCO/sMw1HIZ7eNVfXL1d
+ yFnLI5qtdkyCbrBjX/QEJ/crg/5dZsFs5/YHN8rpGLB19ckFvcjVdOt4lB2Kke3X2ONM
+ YKIMnkyGJ/CV/G9Q2A3Gqe7xALY986JjtyC5trUCUKmDOv2Y19iHl77oH9MqOyxbjEIl
+ GqA5H4vb+3M6xoWfxSKmapbjeS7o4xcdooxXCmNIPVnOPeX+p7ctaZfrbBJ/NPseBeSb
+ rwlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=O/E3NoLylbcUicQaWRFuuit1J/J5JifBf5kSr0gCeTQ=;
- b=Cx/ezAAbBzUHSaR/hQgFZiyqm0ntxGwLfvT8TSnH7RyJ03Z7YwyAZKkVhkAxfHsDfV
- 61k8Opq63IGuTAdoUxsm0Bi1Fq021r8frsqx+MXMN+eAUtuvvH/KVmOsKU33AuDSfCOn
- 4mwoIIdMehPOh5lAni5EdPRkzdY0cQcLjfuHtOr+AmrSA+He+RKlctBAzaJ4bRNT3mFF
- +oOxXnhRIEgqh2NDUnXIShvBJBvUsxdlos9/0HXk0VQlWCIhOQYMQSOcnnlaMPGe5rLY
- X3S8FpFtBkFmVhjisYM8bff960r571HDBoXlMaCvc3LGd6vJKc/Mlhj8xYRYWc2JKkjp
- n1qw==
-X-Gm-Message-State: APjAAAVEKjGdg9ViHRE69dN/nfjCIghg2eGZvqimlhanLhpAp9h+sJO6
- bzz+Ad3qb+uk45MefT3FwxtKcvIUnr2BtggZEymCz/Nu
-X-Google-Smtp-Source: APXvYqypVwBaFySWT1NXa4Cefnii7sSJb3nYPhDSRHDD9Ou7DPc+sYlP32iTTHWg0lJrPVhpgBBjOSN0S7C5NKuT0jg=
-X-Received: by 2002:a2e:91c9:: with SMTP id u9mr9218539ljg.227.1572633022302; 
- Fri, 01 Nov 2019 11:30:22 -0700 (PDT)
+ bh=O9tlU74uTdWGmjZxBYA1PtuaRhy/na00/tAwaD70/ZE=;
+ b=YnCK4EFp68nxVpoZbZfvzNSpoNOKqI5iE8Mxqbn1b2DjthgsIEZbA941ROofn7Q+sC
+ qBtGzg+RI54l6A2VYyLx6kgShWsADy9SLxsEZ5P0fbEd3vWvvhcYa28POBkk8N8HWuAv
+ hQw3FlS5iKWxh8ofDbmFc5GCA9LcSHUJeaaE1sfP8kvQSfGqDiW08CgR/dfvNTPVfIY2
+ Unr2xZfTzd2TuVdXoalPJqRZy8t3/L6PBZcAPOYhaZpSDsLM8UKhq4GlndUFfDOhfgsV
+ /6YUmQH047h/M9O0P0h3SJFW7NyAdWjgPNAe8jD9sKcP5CL/tg77hoabYmxnt1W5rpxw
+ NIIQ==
+X-Gm-Message-State: APjAAAWv8x60bO+LGMeTRUZl4aRQaVUAp4tgLSNDpydki8iJNNLOYfoo
+ DZDqjf5IIZZhRR/JH9R51Wpm9oMUUpIjSOuwh1s=
+X-Google-Smtp-Source: APXvYqywdQLaD/ldc767L3a2sQORfrjWQGXMdTmA3mXR81mq9sGsDZkaj8sXWrlyXTTRHzi4H6GerwDXFtXTp+KF83Y=
+X-Received: by 2002:a19:750:: with SMTP id 77mr8112164lfh.81.1572633505351;
+ Fri, 01 Nov 2019 11:38:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <4641024f.15948.16e1bbf492a.Coremail.ruoyilei@126.com>
-In-Reply-To: <4641024f.15948.16e1bbf492a.Coremail.ruoyilei@126.com>
-Date: Fri, 1 Nov 2019 13:30:10 -0500
-Message-ID: <CANf970aHdsoTV5QAnECkpT3cv-2dGYJzCLr+bAYC8b0=fBAn2g@mail.gmail.com>
-To: =?UTF-8?B?546L55u8?= <ruoyilei@126.com>
-Subject: Re: [USRP-users] questions about uhd-dpdk with n310
+References: <CALY+5sK8VYxWGiOsX7XSw7ScxLkKKhWtNm66U=OdfxEFCyqKYw@mail.gmail.com>
+ <CALY+5sJ+1kZzKHUziCUk=ibby1nzZa_voOhXQFYVe2rbyN4jrg@mail.gmail.com>
+ <BL0PR12MB2340C7DB13B69397120EC83DAF620@BL0PR12MB2340.namprd12.prod.outlook.com>
+In-Reply-To: <BL0PR12MB2340C7DB13B69397120EC83DAF620@BL0PR12MB2340.namprd12.prod.outlook.com>
+Date: Fri, 1 Nov 2019 14:38:13 -0400
+Message-ID: <CALY+5sLkFY+PTY271SDye7=Fyt3Rm_JBRkLO2mWOARG82RnNnQ@mail.gmail.com>
+To: Jason Matusiak <jason@gardettoengineering.com>
+Subject: Re: [USRP-users] RFNoC Radio Issue
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6867424865040347331=="
+From: Jonathan Lockhart via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathan Lockhart <jlockhartrt@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3454600049319511891=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,252 +77,309 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6867424865040347331==
-Content-Type: multipart/alternative; boundary="000000000000a81f8d05964d289b"
+--===============3454600049319511891==
+Content-Type: multipart/alternative; boundary="00000000000072ca7105964d453c"
 
---000000000000a81f8d05964d289b
+--00000000000072ca7105964d453c
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Panny Wang,
+Greetings Jason,
 
-I notice that you're only specifying a single streaming address in your
-call to benchmark rate, implying that you're only leveraging a single 10GbE
-link. You can specify "addr0=3D<xxx.xxx.xxx.xxx>,addr1=3D<xxx.xxx.xxx.xxx>"=
- in
-your device args.
+I will give that a look. Seems like that is a change in the rfnoc block
+verilog and not the Python, so I can handle that if I find it.
 
-Best,
+I am currently in 3.14.1.0 because that is the os version I am running. If
+I try 3.15 it errors out on the E312 bc the SD card image is missing
+necessary installed files. I have yet to venture into docker to try and
+build my own image.
 
-Sam Reiter
-SDR Applications Engineer
-Ettus Research
+Do you know if this is corrected in the 3.14.1.1 release?
 
-On Wed, Oct 30, 2019 at 3:20 AM =E7=8E=8B=E7=9B=BC via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Regards,
+Jon Lockhart
 
-> Hello,
->  Nate.I want to use DPDK in UHD with N310 follow
-> https://files.ettus.com/manual/page_dpdk.html
-> <https://files.ettus.com/manual/page_dpdk.html.>,but the result is not sa=
-tisfactory.I
-> got you have some research about this from the user-list emails(*With an
-> i7-4790k / Intel x520-DA2 and N310, to stream at full duplex, over two
-> channels at 125 MS/s, the lowest I can run my CPU clock freq at without
-> flow control errors is 3.8 GHz using benchmark_rate and the native
-> networking stack. Using DPDK I can run 2x2 @ 125 MS/s with my CPU freq
-> locked at 1.5 GHz with no flow control errors. *).
-> May be you can do me a favor and have some idea about my quesion.
-> (1) I use benchmark_rate to test the streaming performance, I only got
-> 122.88MS/s for 1channel, or 61.44MS/s for 2x2. run with 2x2@122.88MS/s ,
-> a lot of samples dropped.
-> Unfortuately, my destination is 4x4@122.88MS/s. I don't know is it
-> possible for my present host machine, or what configuration of host
-> machine should have?
-> ubuntu server 18.04    uhd:3.14.1.1  dpdk 17.11.6   dual 10GbE links (XG
-> image loaded)
-> host machine: 4 node, 8 cores in each node, tota 32 cores, cpu: Intel(R)
-> Xeon(R) CPU E5-4650 0 @ 2.70GHz
-> more informations about my host machine is in the attchachment.(hypethrea=
-d
-> closed, cpufrequtils GOVERNOR=3D"perfomance")
-> *   --args
-> "type=3Dn3xx,mgmt_addr=3D192.168.1.104,addr=3D192.168.20.2,master_clock_r=
-ate=3D122.88e6,use_dpdk=3D1"
-> \*
-> *   --duration 60 \*
-> *   --channels "0,1" \*
-> *   --rx_rate 122.88e6 \*
-> *   --rx_subdev "A:0 A:1" \*
-> *   --tx_rate 122.88e6 \*
-> *   --tx_subdev "A:0 A:1" *
-> *   Benchmark rate summary:*
-> *     Num received samples:     2744145668*
-> *  Num dropped samples:      6030320380*
-> *  Num overruns detected:    921*
-> *  Num transmitted samples:  14684137560*
-> *  Num sequence errors (Tx): 0*
-> *  Num sequence errors (Rx): 0*
-> *  Num underruns detected:   67231*
-> *  Num late commands:        0*
-> *  Num timeouts (Tx):        0*
-> *  Num timeouts (Rx):        0*
+On Fri, Nov 1, 2019, 2:11 PM Jason Matusiak <jason@gardettoengineering.com>
+wrote:
+
+> Jonathon, If you look at the more recent commits for UHD, they added in a
+> fix to the split_stream error.  Basically you need to change a 1'b1 to a
+> 2'b11 in the noc_shell section (I think that is the section, I can't recall
+> off the top of my head).  Try that and rebuild.
 >
-> (2) In the  txrx_loopback_to_file test ,when I use the default --setting
-> for 4*4channels, there is a error *UUUUError: Receiver error
-> ERROR_CODE_LATE_COMMAND* .
-> I change it to --setting 1 ,it works.
-> I want to know the influence to my streaming or sample datas if 1 increas=
-e
->  --setting?
-> *(--settling arg (=3D0.20000000000000001) settling time (seconds)
-> before receiving)*
+> ------------------------------
+> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of
+> Jonathan Lockhart via USRP-users <usrp-users@lists.ettus.com>
+> *Sent:* Thursday, October 31, 2019 3:30 PM
+> *To:* USRP-users@lists.ettus.com <usrp-users@lists.ettus.com>;
+> support@ettus.com <support@ettus.com>
+> *Subject:* Re: [USRP-users] RFNoC Radio Issue
 >
-> Much appreciated.
+> Apologies, the files are attached.
+>
+> On Thu, Oct 31, 2019 at 3:30 PM Jonathan Lockhart <jlockhartrt@gmail.com>
+> wrote:
+>
+> Greetings,
+>
+> I was wondering if anyone else has had this issue with the RFNoC radio
+> block.
+>
+> So I was using the copy block with the rfnoc_fosphor_network_usrp.grc file
+> as I wanted to split off the signal before it went off to the RFNoC Window.
+> So I put in a copy block (since the RFNoC Split block appears to be broken)
+> and passed the data off to a ZMQ Push and back to the window to continue to
+> be processed by the FPGA. GNURadio says this is all well and good since all
+> vectors are 512 and builds the file. However, when I run the .py file on my
+> E312 it throws an error stating that the radio is providing data of size 8
+> when the copy block expects to get data of size 512 (the vector size).
+>
+> [INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700;
+> UHD_3.14.1.HEAD-0-gbfb9c1c7
+> [INFO] [E300] Loading FPGA image: /home/root/localinstall/e300.bit...
+> [INFO] [E300] FPGA image loaded
+> [INFO] [E300] Detecting internal GPS
+> .... [INFO] [E300] GPSDO found
+> [INFO] [E300] Initializing core control (global registers)...
+>
+> [INFO] [E300] Performing register loopback test...
+> [INFO] [E300] Register loopback test passed
+> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000000)
+> [WARNING] [RFNOC] Can't find a block controller for key FFT, using default
+> block controller!
+> [INFO] [0/FFT_0] Initializing block control (NOC ID: 0xFF70000000000000)
+> [INFO] [0/Window_0] Initializing block control (NOC ID: 0xD053000000000000)
+> [WARNING] [RFNOC] Can't find a block controller for key fosphor, using
+> default block controller!
+> [INFO] [0/fosphor_0] Initializing block control (NOC ID:
+> 0x666F000000000000)
+> [INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
+> Traceback (most recent call last):
+>   File "rfnoc_fosphor_network_usrp.py", line 282, in <module>
+>     main()
+>   File "rfnoc_fosphor_network_usrp.py", line 271, in main
+>     tb = top_block_cls(fft_size=options.fft_size,
+> fpga_path=options.fpga_path, freq=options.freq, gain=options.gain,
+> host_ip_addr=options.host_ip_addr, samp_rate=options.samp_rate,
+> tdecay=options.tdecay, trise=options.trise)
+>   File "rfnoc_fosphor_network_usrp.py", line 166, in __init__
+>     self.connect((self.uhd_rfnoc_streamer_radio_0, 0),
+> (self.blocks_copy_0, 0))
+>   File
+> "/home/root/localinstall/usr/lib/python2.7/site-packages/gnuradio/gr/hier_block2.py",
+> line 47, in wrapped
+>     func(self, src, src_port, dst, dst_port)
+>   File
+> "/home/root/localinstall/usr/lib/python2.7/site-packages/gnuradio/gr/hier_block2.py",
+> line 110, in connect
+>     self.primitive_connect(*args)
+>   File
+> "/home/root/localinstall/usr/lib/python2.7/site-packages/gnuradio/gr/runtime_swig.py",
+> line 3482, in primitive_connect
+>     return _runtime_swig.top_block_sptr_primitive_connect(self, *args)
+> ValueError: itemsize mismatch: rfnoc_radio0:0 using 8, copy0:0 using 4096
+>
+> I have attached my modified examples for anyone who is interested. I have
+> tried to modify the python and that just gets me into more trouble.
+>
+> Through my tracing of the files it appears that the RFNoC Radio block in
+> the .py file never actually uses the vector size, and that the force vector
+> length block is an additive to allow compliance when working in GNURadio,
+> as it will not generate python with mismatched types and sizes. Trying to
+> force the radio to take the 512 as an argument in the python throws a new
+> error that the Radio is only allowed to have 5 arguments and I have
+> supplied 6, and validated in the Ettus .py file that there is no arg for
+> vector size.
+>
+> I was wondering if anyone found away around this or got the RFNoC Split
+> block working?
 >
 > Regards,
-> Panny Wang
+> Jon Lockhart
 >
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000a81f8d05964d289b
+--00000000000072ca7105964d453c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif"><span style=3D"line-height:22.4px">Panny Wang,</span></div><div=
- class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><span sty=
-le=3D"line-height:22.4px"></span></div><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif"><span style=3D"line-height:22.4px"><br>=
-</span></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans=
--serif"><span style=3D"line-height:22.4px">I notice that you&#39;re only sp=
-ecifying a single streaming address in your call=20
-to benchmark rate, implying that you&#39;re only leveraging a single 10GbE=
-=20
-link. You can specify=20
-&quot;addr0=3D&lt;xxx.xxx.xxx.xxx&gt;,addr1=3D&lt;xxx.xxx.xxx.xxx&gt;&quot;=
- in your=20
-device args. <br></span></div><div class=3D"gmail_default" style=3D"font-fa=
-mily:verdana,sans-serif"><span style=3D"line-height:22.4px"><br></span></di=
-v><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><sp=
-an style=3D"line-height:22.4px">Best,<br><br>Sam Reiter<br>SDR Applications=
- Engineer<br>Ettus Research<br></span></div></div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Oct 30, 2019 at 3:20 AM=
- =E7=8E=8B=E7=9B=BC via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.e=
-ttus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex">
+<div dir=3D"auto">Greetings Jason,<div dir=3D"auto"><br></div><div dir=3D"a=
+uto">I will give that a look. Seems like that is a change in the rfnoc bloc=
+k verilog and not the Python, so I can handle that if I find it.=C2=A0</div=
+><div dir=3D"auto"><br></div><div dir=3D"auto">I am currently in 3.14.1.0 b=
+ecause that is the os version I am running. If I try 3.15 it errors out on =
+the E312 bc the SD card image is missing necessary installed files. I have =
+yet to venture into docker to try and build my own image.</div><div dir=3D"=
+auto"><br></div><div dir=3D"auto">Do you know if this is corrected in the 3=
+.14.1.1 release?=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">R=
+egards,</div><div dir=3D"auto">Jon Lockhart=C2=A0</div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 1, 2019,=
+ 2:11 PM Jason Matusiak &lt;<a href=3D"mailto:jason@gardettoengineering.com=
+">jason@gardettoengineering.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex">
 
-   =20
 
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+Jonathon, If you look at the more recent commits for UHD, they added in a f=
+ix to the split_stream error.=C2=A0 Basically you need to change a 1&#39;b1=
+ to a 2&#39;b11 in the noc_shell section (I think that is the section, I ca=
+n&#39;t recall off the top of my head).=C2=A0 Try that
+ and rebuild.</div>
+<div id=3D"m_-6351147177815975557Signature">
 <div>
+<div id=3D"m_-6351147177815975557appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_-6351147177815975557divRplyFwdMsg" dir=3D"ltr"><font face=3D"C=
+alibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>From:</b>=
+ USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus.com" targe=
+t=3D"_blank" rel=3D"noreferrer">usrp-users-bounces@lists.ettus.com</a>&gt; =
+on behalf of Jonathan Lockhart via USRP-users &lt;<a href=3D"mailto:usrp-us=
+ers@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.=
+ettus.com</a>&gt;<br>
+<b>Sent:</b> Thursday, October 31, 2019 3:30 PM<br>
+<b>To:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" =
+rel=3D"noreferrer">USRP-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usr=
+p-users@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@li=
+sts.ettus.com</a>&gt;; <a href=3D"mailto:support@ettus.com" target=3D"_blan=
+k" rel=3D"noreferrer">support@ettus.com</a> &lt;<a href=3D"mailto:support@e=
+ttus.com" target=3D"_blank" rel=3D"noreferrer">support@ettus.com</a>&gt;<br=
+>
+<b>Subject:</b> Re: [USRP-users] RFNoC Radio Issue</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">Apologies, the files are attached. <br>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Thu, Oct 31, 2019 at 3:30 PM Jonathan Lockhart &lt;<a h=
+ref=3D"mailto:jlockhartrt@gmail.com" target=3D"_blank" rel=3D"noreferrer">j=
+lockhartrt@gmail.com</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<div dir=3D"ltr">
+<div>Greetings,</div>
+<div><br>
+</div>
+<div>I was wondering if anyone else has had this issue with the RFNoC radio=
+ block.</div>
+<div><br>
+</div>
+<div>So I was using the copy block with the rfnoc_fosphor_network_usrp.grc =
+file as I wanted to split off the signal before it went off to the RFNoC Wi=
+ndow. So I put in a copy block (since the RFNoC Split block appears to be b=
+roken) and passed the data off to
+ a ZMQ Push and back to the window to continue to be processed by the FPGA.=
+ GNURadio says this is all well and good since all vectors are 512 and buil=
+ds the file. However, when I run the .py file on my E312 it throws an error=
+ stating that the radio is providing
+ data of size 8 when the copy block expects to get data of size 512 (the ve=
+ctor size).</div>
+<div><br>
+</div>
+<div>[INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700; UHD_3.14.1.HE=
+AD-0-gbfb9c1c7<br>
+[INFO] [E300] Loading FPGA image: /home/root/localinstall/e300.bit...<br>
+[INFO] [E300] FPGA image loaded<br>
+[INFO] [E300] Detecting internal GPS <br>
+.... [INFO] [E300] GPSDO found<br>
+[INFO] [E300] Initializing core control (global registers)...<br>
+<br>
+[INFO] [E300] Performing register loopback test... <br>
+[INFO] [E300] Register loopback test passed<br>
+[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000000)<=
+br>
+[WARNING] [RFNOC] Can&#39;t find a block controller for key FFT, using defa=
+ult block controller!<br>
+[INFO] [0/FFT_0] Initializing block control (NOC ID: 0xFF70000000000000)<br=
+>
+[INFO] [0/Window_0] Initializing block control (NOC ID: 0xD053000000000000)=
+<br>
+[WARNING] [RFNOC] Can&#39;t find a block controller for key fosphor, using =
+default block controller!<br>
+[INFO] [0/fosphor_0] Initializing block control (NOC ID: 0x666F000000000000=
+)<br>
+[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)<b=
+r>
+[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)<b=
+r>
+Traceback (most recent call last):<br>
+=C2=A0 File &quot;rfnoc_fosphor_network_usrp.py&quot;, line 282, in &lt;mod=
+ule&gt;<br>
+=C2=A0 =C2=A0 main()<br>
+=C2=A0 File &quot;rfnoc_fosphor_network_usrp.py&quot;, line 271, in main<br=
+>
+=C2=A0 =C2=A0 tb =3D top_block_cls(fft_size=3Doptions.fft_size, fpga_path=
+=3Doptions.fpga_path, freq=3Doptions.freq, gain=3Doptions.gain, host_ip_add=
+r=3Doptions.host_ip_addr, samp_rate=3Doptions.samp_rate, tdecay=3Doptions.t=
+decay, trise=3Doptions.trise)<br>
+=C2=A0 File &quot;rfnoc_fosphor_network_usrp.py&quot;, line 166, in __init_=
+_<br>
+=C2=A0 =C2=A0 self.connect((self.uhd_rfnoc_streamer_radio_0, 0), (self.bloc=
+ks_copy_0, 0))<br>
+=C2=A0 File &quot;/home/root/localinstall/usr/lib/python2.7/site-packages/g=
+nuradio/gr/hier_block2.py&quot;, line 47, in wrapped<br>
+=C2=A0 =C2=A0 func(self, src, src_port, dst, dst_port)<br>
+=C2=A0 File &quot;/home/root/localinstall/usr/lib/python2.7/site-packages/g=
+nuradio/gr/hier_block2.py&quot;, line 110, in connect<br>
+=C2=A0 =C2=A0 self.primitive_connect(*args)<br>
+=C2=A0 File &quot;/home/root/localinstall/usr/lib/python2.7/site-packages/g=
+nuradio/gr/runtime_swig.py&quot;, line 3482, in primitive_connect<br>
+=C2=A0 =C2=A0 return _runtime_swig.top_block_sptr_primitive_connect(self, *=
+args)<br>
+ValueError: itemsize mismatch: rfnoc_radio0:0 using 8, copy0:0 using 4096</=
+div>
+<div><br>
+</div>
+<div>I have attached my modified examples for anyone who is interested. I h=
+ave tried to modify the python and that just gets me into more trouble.
+<br>
+</div>
+<div><br>
+</div>
+<div>Through my tracing of the files it appears that the RFNoC Radio block =
+in the .py file never actually uses the vector size, and that the force vec=
+tor length block is an additive to allow compliance when working in GNURadi=
+o, as it will not generate python
+ with mismatched types and sizes. Trying to force the radio to take the 512=
+ as an argument in the python throws a new error that the Radio is only all=
+owed to have 5 arguments and I have supplied 6, and validated in the Ettus =
+.py file that there is no arg for
+ vector size. <br>
+</div>
+<div><br>
+</div>
+<div>I was wondering if anyone found away around this or got the RFNoC Spli=
+t block working?</div>
+<div><br>
+</div>
+<div>Regards,</div>
+<div>Jon Lockhart<br>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-<div style=3D"font-family:=E5=BE=AE=E8=BD=AF=E9=9B=85=E9=BB=91,Verdana,&quo=
-t;Microsoft Yahei&quot;,SimSun,sans-serif;font-size:14px;line-height:1.6">
-    <div></div><div>
-    <div>Hello,</div><div>=C2=A0Nate.<span style=3D"color:rgb(49,53,59);fon=
-t-family:&quot;Times New Roman&quot;;font-size:16px;line-height:1.6">I want=
- to use DPDK in UHD with N310 follow=C2=A0</span><a href=3D"https://files.e=
-ttus.com/manual/page_dpdk.html." style=3D"font-family:&quot;Times New Roman=
-&quot;;font-size:16px;line-height:1.6" target=3D"_blank">https://files.ettu=
-s.com/manual/page_dpdk.html</a>,but the result is not=C2=A0<span style=3D"f=
-ont-size:16px;line-height:1.6;font-family:&quot;Times New Roman&quot;;white=
--space:nowrap;color:rgb(51,51,51);background-color:rgb(255,255,255)">satisf=
-actory.I got you have some research about this from the user-list emails(</=
-span><span style=3D"font-family:arial,helvetica,sans-serif;line-height:21.5=
-36px;background-color:rgb(255,255,255)"><i><font style=3D"font-size:12px" s=
-ize=3D"2">With an i7-4790k / Intel x520-DA2 and N310, to stream at full dup=
-lex, over two channels at 125 MS/s, the lowest I can run my CPU clock freq =
-at without flow control errors is 3.8 GHz using benchmark_rate and the nati=
-ve networking stack. Using DPDK I can run 2x2 @ 125 MS/s with my CPU freq l=
-ocked at 1.5 GHz with no flow control errors.=C2=A0</font></i></span><span =
-style=3D"color:rgb(51,51,51);font-family:&quot;Times New Roman&quot;;font-s=
-ize:16px;line-height:1.6;white-space:nowrap;background-color:rgb(255,255,25=
-5)">).</span></div><div><span style=3D"color:rgb(51,51,51);font-family:&quo=
-t;Times New Roman&quot;;font-size:16px;line-height:1.6;white-space:nowrap;b=
-ackground-color:rgb(255,255,255)">May be you can do me a favor and have som=
-e idea about my quesion.</span></div><div><span style=3D"color:rgb(51,51,51=
-);font-family:&quot;Times New Roman&quot;;font-size:16px;line-height:1.6;wh=
-ite-space:nowrap;background-color:rgb(255,255,255)">(1) I use benchmark_rat=
-e to test the=C2=A0</span><span style=3D"color:rgb(49,53,59);font-family:ve=
-rdana,sans-serif;line-height:22.4px">streaming performance, I only got 122.=
-88MS/s for 1channel, or 61.44MS/s for 2x2. run with 2x2@122.88MS/s , a lot =
-of samples dropped.=C2=A0</span></div><div><span style=3D"color:rgb(49,53,5=
-9);font-family:verdana,sans-serif;line-height:22.4px">Unfortuately, my dest=
-ination is 4x4@122.88MS/s. I don&#39;t know is it possible for my present=
-=C2=A0</span><span style=3D"color:rgb(49,53,59);font-family:verdana,sans-se=
-rif;line-height:22.4px">host machine, or what configuration of host machine=
- should have?</span></div><div><span style=3D"color:rgb(49,53,59);font-fami=
-ly:verdana,sans-serif;line-height:22.4px">ubuntu server 18.04 =C2=A0 =C2=A0=
-uhd:3.14.1.1 =C2=A0dpdk 17.11.6 =C2=A0</span><span style=3D"color:rgb(49,53=
-,59);font-family:verdana,sans-serif;line-height:22.4px">=C2=A0dual 10GbE li=
-nks (</span><span style=3D"color:rgb(49,53,59);font-family:verdana,sans-ser=
-if;line-height:22.4px">XG image loaded)</span></div><div>host machine: 4 no=
-de, 8 cores in each node, tota 32 cores, cpu:=C2=A0<span style=3D"line-heig=
-ht:1.6">Intel(R) Xeon(R) CPU E5-4650 0 @ 2.70GHz</span></div><div>more info=
-rmations about my host machine is in the attchachment.(hypethread closed, c=
-pufrequtils GOVERNOR=3D&quot;perfomance&quot;)</div><div><div><i><font styl=
-e=3D"font-size:12px" size=3D"2">=C2=A0 =C2=A0--args &quot;type=3Dn3xx,mgmt_=
-addr=3D192.168.1.104,addr=3D192.168.20.2,master_clock_rate=3D122.88e6,use_d=
-pdk=3D1&quot; \</font></i></div><div><i><font style=3D"font-size:12px" size=
-=3D"2">=C2=A0 =C2=A0--duration 60 \</font></i></div><div><i><font style=3D"=
-font-size:12px" size=3D"2">=C2=A0 =C2=A0--channels &quot;0,1&quot; \</font>=
-</i></div><div><i><font style=3D"font-size:12px" size=3D"2">=C2=A0 =C2=A0--=
-rx_rate 122.88e6 \</font></i></div><div><i><font style=3D"font-size:12px" s=
-ize=3D"2">=C2=A0 =C2=A0--rx_subdev &quot;A:0 A:1&quot; \</font></i></div><d=
-iv><i><font style=3D"font-size:12px" size=3D"2">=C2=A0 =C2=A0--tx_rate 122.=
-88e6 \</font></i></div><div><i><font style=3D"font-size:12px" size=3D"2">=
-=C2=A0 =C2=A0--tx_subdev &quot;A:0 A:1&quot;=C2=A0</font></i></div><div><i>=
-<font style=3D"font-size:12px" size=3D"2">=C2=A0 =C2=A0Benchmark rate summa=
-ry:</font></i></div><div><i><font style=3D"font-size:12px" size=3D"2">=C2=
-=A0 =C2=A0 =C2=A0Num received samples: =C2=A0 =C2=A0 2744145668</font></i><=
-/div><div><i><font style=3D"font-size:12px" size=3D"2">=C2=A0 Num dropped s=
-amples: =C2=A0 =C2=A0 =C2=A06030320380</font></i></div><div><i><font style=
-=3D"font-size:12px" size=3D"2">=C2=A0 Num overruns detected: =C2=A0 =C2=A09=
-21</font></i></div><div><i><font style=3D"font-size:12px" size=3D"2">=C2=A0=
- Num transmitted samples: =C2=A014684137560</font></i></div><div><i><font s=
-tyle=3D"font-size:12px" size=3D"2">=C2=A0 Num sequence errors (Tx): 0</font=
-></i></div><div><i><font style=3D"font-size:12px" size=3D"2">=C2=A0 Num seq=
-uence errors (Rx): 0</font></i></div><div><i><font style=3D"font-size:12px"=
- size=3D"2">=C2=A0 Num underruns detected: =C2=A0 67231</font></i></div><di=
-v><i><font style=3D"font-size:12px" size=3D"2">=C2=A0 Num late commands: =
-=C2=A0 =C2=A0 =C2=A0 =C2=A00</font></i></div><div><i><font style=3D"font-si=
-ze:12px" size=3D"2">=C2=A0 Num timeouts (Tx): =C2=A0 =C2=A0 =C2=A0 =C2=A00<=
-/font></i></div><div><i><font style=3D"font-size:12px" size=3D"2">=C2=A0 Nu=
-m timeouts (Rx): =C2=A0 =C2=A0 =C2=A0 =C2=A00</font></i></div></div><h1 sty=
-le=3D"box-sizing:border-box;font-size:14px;font-family:AvertaStd-semibold,t=
-ahoma,&quot;Microsoft YaHei&quot;,&quot;\005fae\008f6f\0096c5\009ed1&quot;,=
-&quot;\005b8b\004f53&quot;,&quot;Malgun Gothic&quot;,sans-serif;color:rgb(5=
-1,51,51);height:auto;line-height:14px;background-color:rgb(255,255,255)"><b=
-r></h1>
-    <div>
-        (2) In the =C2=A0txrx_loopback_to_file test ,when I use the default=
- --setting for 4*4channels, there is a error <i>UUUUError: Receiver error E=
-RROR_CODE_LATE_COMMAND</i>=C2=A0.</div><div>I change it to=C2=A0<span style=
-=3D"line-height:22.4px">--setting 1 ,it works.</span></div><div><span style=
-=3D"line-height:22.4px">I want to know the influence to my streaming or sam=
-ple datas if 1 increase=C2=A0</span><span style=3D"line-height:22.4px">=C2=
-=A0</span><span style=3D"line-height:22.4px">--setting?</span></div><div><d=
-iv><i><font style=3D"font-size:12px" size=3D"2">(--settling arg (=3D0.20000=
-000000000001) settling time (seconds) before=C2=A0<span style=3D"line-heigh=
-t:1.6">receiving)</span></font></i></div><div style=3D"line-height:22.4px">=
-<span style=3D"font-family:Verdana,Geneva,Helvetica,Arial,sans-serif;font-s=
-ize:13.46px;line-height:1.6;background-color:rgb(255,255,255)"><br></span><=
-/div><div style=3D"line-height:22.4px"><span style=3D"font-family:Verdana,G=
-eneva,Helvetica,Arial,sans-serif;font-size:13.46px;line-height:1.6;backgrou=
-nd-color:rgb(255,255,255)">Much appreciated.</span></div></div><div style=
-=3D"line-height:22.4px"><span style=3D"font-family:Verdana,Geneva,Helvetica=
-,Arial,sans-serif;font-size:13.46px;line-height:1.6;background-color:rgb(25=
-5,255,255)"><br></span></div><div><span style=3D"line-height:22.4px">Regard=
-s,</span></div><div><span style=3D"line-height:22.4px">Panny Wang</span></d=
-iv><div><span style=3D"line-height:22.4px">=C2=A0</span></div>
-    <div id=3D"gmail-m_7026444473092057810ntes-pcmac-signature" style=3D"fo=
-nt-family:&quot;\005fae\008f6f\0096c5\009ed1&quot;">
-    =20
-    <div style=3D"font-size:14px;padding:0px;margin:0px;line-height:14px"><=
-br></div>
- </div>
-</div>
-</div>
-</div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000a81f8d05964d289b--
+--00000000000072ca7105964d453c--
 
 
---===============6867424865040347331==
+--===============3454600049319511891==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -332,5 +390,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6867424865040347331==--
+--===============3454600049319511891==--
 
