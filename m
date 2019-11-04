@@ -2,58 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CC7FEE96B
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Nov 2019 21:26:02 +0100 (CET)
-Received: from [::1] (port=33936 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F231FEE9F0
+	for <lists+usrp-users@lfdr.de>; Mon,  4 Nov 2019 21:40:41 +0100 (CET)
+Received: from [::1] (port=36226 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iRivF-0003MD-A4; Mon, 04 Nov 2019 15:25:57 -0500
-Received: from mail-qt1-f177.google.com ([209.85.160.177]:38584)
+	id 1iRj9U-00049Y-Iz; Mon, 04 Nov 2019 15:40:40 -0500
+Received: from mail-qk1-f182.google.com ([209.85.222.182]:38315)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <zcao@c3commsystems.com>)
- id 1iRivC-0003F5-4P
- for USRP-users@lists.ettus.com; Mon, 04 Nov 2019 15:25:54 -0500
-Received: by mail-qt1-f177.google.com with SMTP id p20so7659644qtq.5
- for <USRP-users@lists.ettus.com>; Mon, 04 Nov 2019 12:25:33 -0800 (PST)
+ id 1iRj9Q-00040c-OY
+ for USRP-users@lists.ettus.com; Mon, 04 Nov 2019 15:40:36 -0500
+Received: by mail-qk1-f182.google.com with SMTP id e2so19006044qkn.5
+ for <USRP-users@lists.ettus.com>; Mon, 04 Nov 2019 12:40:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=c3commsystems-com.20150623.gappssmtp.com; s=20150623;
- h=from:message-id:mime-version:subject:date:in-reply-to:cc:to
- :references; bh=gxMMZy8V/O6j8bfmCYmyLeScVLiN31ktKOd9Z7Wsn+0=;
- b=JAnorO0RVTFeoQyH8xVBjdDrxsVYDMmDbuxIIf5vRa9+FVzQKy+GHUmsYN2FldS6g9
- LNaM53+KB4OXceCiI+6acZtD8mhVtDGivEjp8stqj2evzzrg2Tjiy09ilVv/7tMhN+pR
- XLqhWlirip3EmT/c06cobEilx1VA/ooUYTNRSkQkwGOdGfg5rA1cfPFW636DkyWUCltX
- YpgJs95wQ/qrdEOpvRcDsQHglZqEpFKSCRvtEL80lsvjYAwLQ6S4uehYmjyAJQGFcsIT
- d7ly+KePzFN8LyEwQaxhhdWCLjaqrMjZrrWU9ycoBf6S2e06okQVA+ZBsvwJZUnyWz37
- y3Zg==
+ h=from:mime-version:subject:message-id:date:to;
+ bh=s9pHvTPeyG2rpEHnIMSh3ZPM4y9cjiRTh+9tgMKNHCo=;
+ b=aoEu68B1zcefDbSi8cJfqbHs0N+iYy6GfSHjksrUQmOvhee3SgeIpyGmkJqgm+7zv7
+ oilVKB1EZIUnOgDq1utinfisnYnK6NGnMAEgoO2GQcY4JLi5SIt2TzrfrdTySnZbnXJw
+ GDP40p16EVC9fzG0ge7/i6NERPJPfvaflehujZecA2AhO5aOykDu9nJY4yFLEvVy/aJ5
+ q/ZEE2siPm2WCGoDTwXhTIHIpBNWQMlfyr0Qxe3YDNvnYFL4mpoUEvIIVzxGWFg4eILq
+ G6zsdP9OChRd8L7tUrpLH33x20A2DX5UaIxl3eZgtcda2J19wCbq1E2LzlzCTVgsm0Wb
+ G1uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:message-id:mime-version:subject:date
- :in-reply-to:cc:to:references;
- bh=gxMMZy8V/O6j8bfmCYmyLeScVLiN31ktKOd9Z7Wsn+0=;
- b=uTtNZvED6fgoC/xF+6jYfbzitcVZ+MZPWmgy9QIeTF1B0zVHrFNasGS1uAXZerBge9
- ubo0ZJZf4/9eW68JG6hHTgT2DvOBxPWqbi7PKACo+NurwhNi0rCn8PA6Tya45Hdc0/Uw
- eL4AlSBu/vvmAAbFhif1k+fH+RqEtD0tJbajlVIngKJ2/KMKDZVFusViiD4bacf66Bqn
- bmpShpeAp42hj6p5F2vOct5VvwIJHmKVuRPI4WgLWcpHCos+0Hr7a0Lctjh3DqJL0JhU
- u6SOTproDilXGvgwX5tv3IHFmn/aqPcVlUOYgJ9/gBYuwhq1ZJxGLJb+cc9XpiiqqNyY
- etVw==
-X-Gm-Message-State: APjAAAXjYVoieQq4lPvIRO87vHOVsF9lkK1D4ZOosjkM4VniKw9NPmfI
- ho8Nsv6ISYhE2646KN4Kw/ylGmQ7Viw=
-X-Google-Smtp-Source: APXvYqz4qBwPtyXpUQ75/ElMvwmOE+6Abq0ZjUNXGL1fq77N28df25+e/S/HmbU0KG/Y3v0WeN1Fcg==
-X-Received: by 2002:aed:3be9:: with SMTP id s38mr14075014qte.175.1572899113301; 
- Mon, 04 Nov 2019 12:25:13 -0800 (PST)
+ h=x-gm-message-state:from:mime-version:subject:message-id:date:to;
+ bh=s9pHvTPeyG2rpEHnIMSh3ZPM4y9cjiRTh+9tgMKNHCo=;
+ b=t2cRaUHSjm2+DxZlSlcMQNglmD+5rMveXWUipwmlT8zFQiXXM/AebJJRTeLbE0APu6
+ X0X+kKuSPUj8L6vRKIvNx5Z2Vv/HQMMgHCzpkxUzz9ePZhSp6Ug4dhdJJTnHIoANgojI
+ 5gJdzxeHWGB3vCRFNl/SkzEkNbLGZIgSuY/++gQPJmxTwFsYrPf2++atD0OP/vbQ770d
+ VL0Pt4awLCA4zWAKvULUo3KpHeKKVmyfu1qXm3Iglv5i8v2MLzxvyD10nRs+9UE8LzoE
+ 0GBQgKCIUUwPuAua73N6JF+ioBTn9Fs5bbMB+SEvqOo+G8/PFomw+jKhvnyQkT+7VJHG
+ cyvA==
+X-Gm-Message-State: APjAAAUdiytxPWyOz6eJLoZHsS2F4ZFXPPdSMtLoU6C0LDUVJaaEA/zl
+ 45rH1hStIDhAWGQ3wVV0akg6NCKw03s=
+X-Google-Smtp-Source: APXvYqwYl9u6+xcK+dap4LBIOVk546nv47xeitCZa/5u0nalJ2F5d6TRDp8cyZyBbmG7jNoBkgFcug==
+X-Received: by 2002:a37:aa8b:: with SMTP id t133mr2622342qke.449.1572899995687; 
+ Mon, 04 Nov 2019 12:39:55 -0800 (PST)
 Received: from [192.170.1.102] (exchange.sharedspectrum.com. [70.163.31.2])
- by smtp.gmail.com with ESMTPSA id 143sm2731204qke.54.2019.11.04.12.25.12
+ by smtp.gmail.com with ESMTPSA id s21sm3434640qkg.24.2019.11.04.12.39.54
+ for <USRP-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 04 Nov 2019 12:25:12 -0800 (PST)
-Message-Id: <86BC5E7F-802A-4100-AC71-72CB42A42DE8@c3commsystems.com>
+ Mon, 04 Nov 2019 12:39:55 -0800 (PST)
 Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Date: Mon, 4 Nov 2019 15:25:11 -0500
-In-Reply-To: <b21ca1df-ce39-ee8e-70c7-9a89726ff11e@balister.org>
-To: Philip Balister <philip@balister.org>
-References: <F8807E43-2706-48BD-84BC-3C53C4EE65CB@c3commsystems.com>
- <b21ca1df-ce39-ee8e-70c7-9a89726ff11e@balister.org>
+Message-Id: <5D8BA051-8CC5-4A06-A56A-0E346DA718A3@c3commsystems.com>
+Date: Mon, 4 Nov 2019 15:39:54 -0500
+To: USRP-users <USRP-users@lists.ettus.com>
 X-Mailer: Apple Mail (2.3445.9.1)
-Subject: Re: [USRP-users] Problems when Running UHD_3.14.1 Examples on E310
+Subject: [USRP-users] Why Underflow happens when running
+ tx_samples_from_file on E310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -67,8 +65,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: zcao--- via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: "zcao@c3commsystems.com" <zcao@c3commsystems.com>
-Cc: USRP-users <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3246459594838526402=="
+Content-Type: multipart/mixed; boundary="===============5589612777734671428=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,222 +80,474 @@ X-Source-Args:
 X-Source-Dir: 
 
 
---===============3246459594838526402==
+--===============5589612777734671428==
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_88809E9A-DD16-4034-B318-B7594DA170AF"
+	boundary="Apple-Mail=_1CDD0019-2EAA-4CB3-8CC1-56A3792066AD"
 
 
---Apple-Mail=_88809E9A-DD16-4034-B318-B7594DA170AF
+--Apple-Mail=_1CDD0019-2EAA-4CB3-8CC1-56A3792066AD
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=utf-8
 
-Philip,
+Hi,
 
-Thanks for the response. That=E2=80=99s what we did to get through the =
-issue.=20
+We are trying to get the UHD examples running on E310, with UHD 3.14, =
+built from the release branch. It seems that the example tx_waveform =
+works fine. But tryings to send I/Q samples from a dat file always=20
+lands us with the underflow =E2=80=9CU=E2=80=9D warning. Please see the =
+following screen output.=20
 
-But is it what we supposed to do, i.e., edit these UHD provided python =
-scripts manually?
+We tried various rates and buffer sizes. None could avoid the underflow =
+warning. Did we miss any important configuration settings?
 
 Thanks,
-Zhongren
+Arnold
 
-> On Nov 4, 2019, at 2:27 PM, Philip Balister <philip@balister.org> =
-wrote:
->=20
-> On 11/4/19 5:04 PM, zcao--- via USRP-users wrote:
->> Hi,=20
->>=20
->> We are trying to run UHD examples on E310. The process we took are as =
-the following.
->>=20
->> 1. Flash a fresh SDcard using the dev image located at =
-http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg3/ =
-<http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg3/>
->>=20
->> 2. Cross-compile UHD source code on a development machine and install =
-the build on to the E310 device using sshfs. Note that this is a =
-different from what is proposed in AN-311. We installed UHD 3.14 onto =
-the device directly.
->>=20
->> 3. Running /usr/bin/uhd_find_devices, we got the following output, =
-looks normal.
->>=20
->> [INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700; =
+
+root@ettus-e3xx-sg3:~# /usr/lib/uhd/examples/tx_samples_from_file --arg =
+"serial=3D31819A1" --file ./datafiles/TX/pkt_1500_0.dat --rate 1e6 =
+--freq 2.4e9 --gain 30 --ant TX/RX --bw 250e3 --repeat --spb 500
+
+Creating the usrp device with: serial=3D31819A1...
+[INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700; =
 UHD_3.14.1.1-0-g0347a6d8
->> --------------------------------------------------
->> -- UHD Device 0
->> --------------------------------------------------
->> Device Address:
->>    serial: 31819A1
->>    name:=20
->>    node: /dev/axi_fpga
->>    product: E3XX SG3
->>    type: e3x0
->>=20
->>=20
->> However, we ran into the following problems, which seem to be =
-related.
->>=20
->> 1. We cannot run /usr/bin/uhd_usrp_probe, because of the FPGA =
-compatibility. Specifically, the error messages are
->>=20
->> Error: RuntimeError: Expected FPGA compatibility number 255.x, but =
-got 14.0:
->> The FPGA build is not compatible with the host code build.
->> Please run:
->>=20
->> "/usr/lib/uhd/utils/uhd_images_downloader.py"
->>=20
->>=20
->> 2. But running the above python script gives us the following error =
-messages.
->>=20
->> -sh: /usr/lib/uhd/utils/uhd_images_downloader.py: =
-/usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/python2: =
-bad interpreter: No such file or directory/
->=20
-> Look at the script /usr/lib/uhd/utils/uhd_images_downloader.py and =
-edit
-> the #!/bin/fo/bar/python to something reasonable.
->=20
-> Philip
->=20
->>=20
->>=20
->> Note that the python script is looking for the SDK, which should be =
-on the development machine, instead of the device itself.
->>=20
->> Would really appreciate it if anyone knows how to handle above issues =
-in E310 device itself?
->>=20
->> Thanks,
->> Arnold
->>=20
->>=20
->>=20
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>=20
+[INFO] [E300] Loading FPGA image: =
+/usr/share/uhd/images/usrp_e310_fpga_sg3.bit...
+[INFO] [E300] FPGA image loaded
+[INFO] [E300] Initializing core control (global registers)...
 
-Arnold Z. Cao, Ph.D.
+[INFO] [E300] Performing register loopback test...=20
+[INFO] [E300] Register loopback test passed
+[INFO] [0/Radio_0] Initializing block control (NOC ID: =
+0x12AD100000000000)
+[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
+[WARNING] [RFNOC] [legacy_compat] No FIFO detected. Higher transmit =
+rates may encounter errors.
+Using Device: Single USRP:
+  Device: E-Series Device
+  Mboard 0: E3XX SG3
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: FE-RX2
+  RX Channel: 1
+    RX DSP: 1
+    RX Dboard: A
+    RX Subdev: FE-RX1
+  RX Channel: 2
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: FE-RX2
+  RX Channel: 3
+    RX DSP: 1
+    RX Dboard: A
+    RX Subdev: FE-RX1
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: FE-TX2
+  TX Channel: 1
+    TX DSP: 1
+    TX Dboard: A
+    TX Subdev: FE-TX1
+  TX Channel: 2
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: FE-TX2
+  TX Channel: 3
+    TX DSP: 1
+    TX Dboard: A
+    TX Subdev: FE-TX1
 
-C-3 Comm Systems, LLC
-3100 Clarendon Blvd., Suite 200
-Arlington, VA 22201
-Phone: (703) 829-0588
-Email : zcao@c3commsystems.com <mailto:zcao@c3commsystems.com>
+Setting TX Rate: 1.000000 Msps...
+Actual TX Rate: 1.000000 Msps...
 
---Apple-Mail=_88809E9A-DD16-4034-B318-B7594DA170AF
+Setting TX Freq: 2400.000000 MHz...
+Setting TX LO Offset: 0.000000 MHz...
+Actual TX Freq: 2400.000000 MHz...
+
+Setting TX Gain: 30.000000 dB...
+Actual TX Gain: 30.000000 dB...
+
+Setting TX Bandwidth: 0.250000 MHz...
+Actual TX Bandwidth: 0.250000 MHz...
+
+Checking TX: LO: locked ...
+Press Ctrl + C to stop streaming...
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU^C
+Done!
+
+
+
+
+--Apple-Mail=_1CDD0019-2EAA-4CB3-8CC1-56A3792066AD
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html;
 	charset=utf-8
 
 <html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
 charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D"">Philip,<div class=3D""><br class=3D""></div><div =
-class=3D"">Thanks for the response. That=E2=80=99s what we did to get =
-through the issue.&nbsp;</div><div class=3D""><br class=3D""></div><div =
-class=3D"">But is it what we supposed to do, i.e., edit these UHD =
-provided python scripts manually?</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Thanks,</div><div class=3D"">Zhongren<br =
-class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Nov 4, 2019, at 2:27 PM, Philip Balister &lt;<a =
-href=3D"mailto:philip@balister.org" class=3D"">philip@balister.org</a>&gt;=
- wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><div =
-class=3D"">On 11/4/19 5:04 PM, zcao--- via USRP-users wrote:<br =
-class=3D""><blockquote type=3D"cite" class=3D"">Hi, <br class=3D""><br =
-class=3D"">We are trying to run UHD examples on E310. The process we =
-took are as the following.<br class=3D""><br class=3D"">1. Flash a fresh =
-SDcard using the dev image located at <a =
-href=3D"http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg3/"=
- =
-class=3D"">http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg=
-3/</a> &lt;<a =
-href=3D"http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg3/"=
- =
-class=3D"">http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg=
-3/</a>&gt;<br class=3D""><br class=3D"">2. Cross-compile UHD source code =
-on a development machine and install the build on to the E310 device =
-using sshfs. Note that this is a different from what is proposed in =
-AN-311. We installed UHD 3.14 onto the device directly.<br class=3D""><br =
-class=3D"">3. Running /usr/bin/uhd_find_devices, we got the following =
-output, looks normal.<br class=3D""><br class=3D"">[INFO] [UHD] linux; =
-GNU C++ version 4.9.2; Boost_105700; UHD_3.14.1.1-0-g0347a6d8<br =
-class=3D"">--------------------------------------------------<br =
-class=3D"">-- UHD Device 0<br =
-class=3D"">--------------------------------------------------<br =
-class=3D"">Device Address:<br class=3D""> &nbsp;&nbsp;&nbsp;serial: =
-31819A1<br class=3D""> &nbsp;&nbsp;&nbsp;name: <br class=3D""> =
-&nbsp;&nbsp;&nbsp;node: /dev/axi_fpga<br class=3D""> =
-&nbsp;&nbsp;&nbsp;product: E3XX SG3<br class=3D""> =
-&nbsp;&nbsp;&nbsp;type: e3x0<br class=3D""><br class=3D""><br =
-class=3D"">However, we ran into the following problems, which seem to be =
-related.<br class=3D""><br class=3D"">1. We cannot run =
-/usr/bin/uhd_usrp_probe, because of the FPGA compatibility. =
-Specifically, the error messages are<br class=3D""><br class=3D"">Error: =
-RuntimeError: Expected FPGA compatibility number 255.x, but got 14.0:<br =
-class=3D"">The FPGA build is not compatible with the host code build.<br =
-class=3D"">Please run:<br class=3D""><br class=3D""> =
-"/usr/lib/uhd/utils/uhd_images_downloader.py"<br class=3D""><br =
-class=3D""><br class=3D"">2. But running the above python script gives =
-us the following error messages.<br class=3D""><br class=3D"">-sh: =
-/usr/lib/uhd/utils/uhd_images_downloader.py: =
-/usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/python2: =
-bad interpreter: No such file or directory/<br class=3D""></blockquote><br=
- class=3D"">Look at the script =
-/usr/lib/uhd/utils/uhd_images_downloader.py and edit<br class=3D"">the =
-#!/bin/fo/bar/python to something reasonable.<br class=3D""><br =
-class=3D"">Philip<br class=3D""><br class=3D""><blockquote type=3D"cite" =
-class=3D""><br class=3D""><br class=3D"">Note that the python script is =
-looking for the SDK, which should be on the development machine, instead =
-of the device itself.<br class=3D""><br class=3D"">Would really =
-appreciate it if anyone knows how to handle above issues in E310 device =
-itself?<br class=3D""><br class=3D"">Thanks,<br class=3D"">Arnold<br =
-class=3D""><br class=3D""><br class=3D""><br =
-class=3D"">_______________________________________________<br =
-class=3D"">USRP-users mailing list<br class=3D""><a =
-href=3D"mailto:USRP-users@lists.ettus.com" =
-class=3D"">USRP-users@lists.ettus.com</a><br =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com<br class=3D""><br =
-class=3D""></blockquote></div></div></blockquote></div><br class=3D""><div=
- class=3D"">
-<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
-break-word; -webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
-break-word; -webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
-break-word; -webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
-break-word; -webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D""><div class=3D"">Arnold Z. Cao, Ph.D.</div><div class=3D""><br =
-class=3D""></div><div class=3D""><b class=3D"">C-3 Comm Systems, =
-LLC</b></div><div class=3D"">3100 Clarendon Blvd., Suite 200</div><div =
-class=3D"">Arlington, VA 22201</div><div class=3D"">Phone: (703) =
-829-0588</div><div class=3D"">Email :<span =
-class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"mailto:zcao@c3commsystems.com" =
-class=3D"">zcao@c3commsystems.com</a></div></div></div></div></div>
-</div>
-<br class=3D""></div></body></html>=
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal;" =
+class=3D"">Hi,</div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal;" class=3D""><br class=3D""></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal;" =
+class=3D"">We are trying to get the UHD examples running on E310, with =
+UHD 3.14, built from the release branch. It seems that the example =
+tx_waveform works fine. But tryings to send I/Q samples from a dat file =
+always&nbsp;</div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal;" class=3D"">lands us with the underflow =E2=80=9CU=E2=
+=80=9D warning. Please see the following screen output.&nbsp;</div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal;" =
+class=3D""><br class=3D""></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal;" class=3D"">We tried various rates and =
+buffer sizes. None could avoid the underflow warning. Did we miss any =
+important configuration settings?</div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal;" class=3D""><br =
+class=3D""></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal;" class=3D"">Thanks,</div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal;" class=3D"">Arnold</div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;;" class=3D""><br =
+class=3D""></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;;" class=3D""><br=
+ class=3D""></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D"">root@ettus-e3xx-sg3:~# =
+/usr/lib/uhd/examples/tx_samples_from_file --arg "serial=3D31819A1" =
+--file ./datafiles/TX/pkt_1500_0.dat --rate 1e6 --freq 2.4e9 --gain 30 =
+--ant TX/RX --bw 250e3 --repeat --spb 500</div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098); min-height: 16px;" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">Creating the usrp device with: =
+serial=3D31819A1...</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
+color: #34bc26" class=3D"">[INFO] [UHD] </span><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">linux; =
+GNU C++ version 4.9.2; Boost_105700; =
+UHD_3.14.1.1-0-g0347a6d8</span></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures; color: #34bc26" class=3D"">[INFO] [E300] =
+</span><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Loading FPGA image: =
+/usr/share/uhd/images/usrp_e310_fpga_sg3.bit...</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures; color: #34bc26" =
+class=3D"">[INFO] [E300] </span><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">FPGA image loaded</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures; color: #34bc26" =
+class=3D"">[INFO] [E300] </span><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">Initializing core control (global =
+registers)...</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098); =
+min-height: 16px;" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D""></span><br class=3D""></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures; color: #34bc26" =
+class=3D"">[INFO] [E300] </span><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">Performing register loopback =
+test...&nbsp;</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
+color: #34bc26" class=3D"">[INFO] [E300] </span><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">Register =
+loopback test passed</span></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures; color: #34bc26" class=3D"">[INFO] [0/Radio_0] =
+</span><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Initializing block control (NOC ID: =
+0x12AD100000000000)</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
+color: #34bc26" class=3D"">[INFO] [0/DDC_0] </span><span =
+style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Initializing block control (NOC ID: =
+0xDDC0000000000000)</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
+color: #34bc26" class=3D"">[INFO] [0/DUC_0] </span><span =
+style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Initializing block control (NOC ID: =
+0xD0C0000000000002)</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures; =
+color: #afad24" class=3D"">[WARNING] [RFNOC] </span><span =
+style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">[legacy_compat] No FIFO detected. Higher transmit rates may =
+encounter errors.</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Using Device: Single USRP:</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; Device: E-Series =
+Device</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; Mboard 0: E3XX SG3</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; RX Channel: 0</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D"">&nbsp; &nbsp; RX =
+DSP: 0</div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; RX Dboard: A</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; &nbsp; RX Subdev: =
+FE-RX2</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; RX Channel: 1</span></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">&nbsp; &nbsp; RX DSP: 1</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
+&nbsp; RX Dboard: A</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; RX Subdev: FE-RX1</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
+RX Channel: 2</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; RX DSP: 0</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; &nbsp; RX Dboard: =
+A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; RX Subdev: FE-RX2</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
+RX Channel: 3</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; RX DSP: 1</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; &nbsp; RX Dboard: =
+A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; RX Subdev: FE-RX1</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
+TX Channel: 0</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; TX DSP: 0</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; &nbsp; TX Dboard: =
+A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; TX Subdev: FE-TX2</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
+TX Channel: 1</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; TX DSP: 1</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; &nbsp; TX Dboard: =
+A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; TX Subdev: FE-TX1</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
+TX Channel: 2</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; TX DSP: 0</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; &nbsp; TX Dboard: =
+A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; TX Subdev: FE-TX2</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
+TX Channel: 3</span></div><div style=3D"margin: 0px; font-stretch: =
+normal; line-height: normal; font-family: &quot;Courier New&quot;; =
+color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; TX DSP: 1</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; &nbsp; TX Dboard: =
+A</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; TX Subdev: FE-TX1</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098); min-height: 16px;" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">Setting TX Rate: 1.000000 =
+Msps...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Actual TX Rate: 1.000000 Msps...</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098); min-height: 16px;" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">Setting TX Freq: 2400.000000 =
+MHz...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Setting TX LO Offset: 0.000000 MHz...</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">Actual =
+TX Freq: 2400.000000 MHz...</span></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098); min-height: 16px;" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">Setting TX Gain: 30.000000 =
+dB...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Actual TX Gain: 30.000000 dB...</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098); min-height: 16px;" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">Setting TX Bandwidth: 0.250000 =
+MHz...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Actual TX Bandwidth: 0.250000 MHz...</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098); min-height: 16px;" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">Checking TX: LO: locked =
+...</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Press Ctrl + C to stop streaming...</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU^C<=
+/span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">Done!</span></div><br class=3D""><br class=3D"">
+<br class=3D""></body></html>=
 
---Apple-Mail=_88809E9A-DD16-4034-B318-B7594DA170AF--
+--Apple-Mail=_1CDD0019-2EAA-4CB3-8CC1-56A3792066AD--
 
 
---===============3246459594838526402==
+--===============5589612777734671428==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -309,5 +558,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3246459594838526402==--
+--===============5589612777734671428==--
 
