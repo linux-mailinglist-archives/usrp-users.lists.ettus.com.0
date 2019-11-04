@@ -2,40 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A372EED7E5
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Nov 2019 03:54:38 +0100 (CET)
-Received: from [::1] (port=48484 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5B7CEE460
+	for <lists+usrp-users@lfdr.de>; Mon,  4 Nov 2019 17:05:35 +0100 (CET)
+Received: from [::1] (port=60470 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iRSVl-0001ja-PP; Sun, 03 Nov 2019 21:54:33 -0500
-Received: from m15-74.126.com ([220.181.15.74]:30481)
- by mm2.emwd.com with esmtp (Exim 4.92)
- (envelope-from <ruoyilei@126.com>) id 1iRSVh-0001fC-LE
- for usrp-users@lists.ettus.com; Sun, 03 Nov 2019 21:54:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
- s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=1Ch2+
- UtyhLilN8ZfAugYPou0srKQ5/0d9Je0DW2W76E=; b=ZwI6B1X0ARTj4OGWsc6se
- f1GV/mZYbAx8IjZvkbKBSAX87bgExmgJ/U9klAtPeV5aObRVY7Qg7sGJW4wytTbe
- UuBbztOfjhZYs4OA9aMQ5VWhgF4JHwaKUUa0iI1MQB2DiZ6awNPdOvOPnbRBwkJA
- N4PfgdV+O76YMtd97254rw=
-Received: from ruoyilei$126.com ( [58.213.113.89] ) by ajax-webmail-wmsvr186
- (Coremail) ; Mon, 4 Nov 2019 10:53:35 +0800 (GMT+08:00)
-X-Originating-IP: [58.213.113.89]
-Date: Mon, 4 Nov 2019 10:53:35 +0800 (GMT+08:00)
-To: "sam.reiter@ettus.com" <sam.reiter@ettus.com>
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
- 20180820(5a019900) Copyright (c) 2002-2019 www.mailtech.cn 126com
-In-Reply-To: <CANf970aHdsoTV5QAnECkpT3cv-2dGYJzCLr+bAYC8b0=fBAn2g@mail.gmail.com>
-References: <4641024f.15948.16e1bbf492a.Coremail.ruoyilei@126.com>
- <CANf970aHdsoTV5QAnECkpT3cv-2dGYJzCLr+bAYC8b0=fBAn2g@mail.gmail.com>
-MIME-Version: 1.0
-Message-ID: <7524c856.d8d.16e3454fe58.Coremail.ruoyilei@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: VsqowAD3Bh+wkr9dslWfAA--.660W
-X-CM-SenderInfo: 5uxr5xxohlqiyswou0bp/1tbiTxBjH1pD+vLBsAABsC
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Subject: Re: [USRP-users] questions about uhd-dpdk with n310
+	id 1iRerD-00043y-QU; Mon, 04 Nov 2019 11:05:31 -0500
+Received: from mail-qk1-f177.google.com ([209.85.222.177]:41241)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <zcao@c3commsystems.com>)
+ id 1iRer9-0003yQ-FW
+ for USRP-users@lists.ettus.com; Mon, 04 Nov 2019 11:05:27 -0500
+Received: by mail-qk1-f177.google.com with SMTP id m125so18068955qkd.8
+ for <USRP-users@lists.ettus.com>; Mon, 04 Nov 2019 08:05:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=c3commsystems-com.20150623.gappssmtp.com; s=20150623;
+ h=from:mime-version:subject:message-id:date:to;
+ bh=NzTrTrXQ2L8peO88th+lb88y24GbTjNE6Kx3ok7IoK0=;
+ b=Sta0gZ2EWS2FxOcM+w3EuVkifiUNB5OR3cg0eq/AaGeCrlWWRPZm77e+3dKHUNCJgK
+ MZtMu8mfXIu8ebhtCSwo9IVJgP5x3H9BiX7Gy61b+nhgQ1V+mysZqfiwMNXAZLEDG6Gt
+ H3Gv4zGq9MISfuhbHaavO3wkf0BQyYqYnOMJxGKrWQG/snC0qgdZE+UrrQPiNQivcN4A
+ 29z2ZHsHmTnTxvld62AbrpezjtL3trKAwoSi24Xm4lsqkvKDWmbbxreYy0PKKNyYzUkO
+ KIrFCGb1SSkw0VZX3nYTaMIlr8HXi8d5wu66krFXBlq9cReuCQ6AxSL6IrCRawJmcv8e
+ RWhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:mime-version:subject:message-id:date:to;
+ bh=NzTrTrXQ2L8peO88th+lb88y24GbTjNE6Kx3ok7IoK0=;
+ b=m+p/YSNE0rf6TgnZ799lx6Jx74k4I4awfoALGTmvR8kHlSF2KiCZpZ2Kv55gbXFSjq
+ KhXCFZ+gFrUO7gKWuigjIpDv/QtWuVpO3I+/4o7gOmIvEdb5FFneoJ+/ZgU5kSV70yDR
+ fbKxQBLFp5pmpPWwVvnrLyx6YR3vp1CAuZr16/8kJ0gQymccbLiYQcyhxeQmNubhIpIl
+ farobttfxjuFK5+gs5wtWP5RYQIKrD0+Gy20h4fc992lDAJrSuu26MbVhJOiILp9XJVL
+ bJcqU0JGWGgyvXtsB1FhZnUPLw56Qyqvb8/1d3M4qXTB93/DYvNdbnYxmBOeKc3Am8yB
+ JoMA==
+X-Gm-Message-State: APjAAAX7vCk4xH4LP6lqF4i4Z+B0DZ6+bVLji1LOTPxSjK0jH1kcyZh9
+ SWf0SouOOt1yG6Y1x51uLfnRcDajSsY=
+X-Google-Smtp-Source: APXvYqxtTVCDWGjUIw9aLJoObw8svM7VKE1D1VjOBgdf3xWbKgR4+m0zohUzBwfrHXOerjAv/HxD9g==
+X-Received: by 2002:a37:2716:: with SMTP id n22mr14050150qkn.500.1572883486258; 
+ Mon, 04 Nov 2019 08:04:46 -0800 (PST)
+Received: from [192.170.1.102] (exchange.sharedspectrum.com. [70.163.31.2])
+ by smtp.gmail.com with ESMTPSA id e44sm10440753qtc.53.2019.11.04.08.04.45
+ for <USRP-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 04 Nov 2019 08:04:45 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
+Message-Id: <F8807E43-2706-48BD-84BC-3C53C4EE65CB@c3commsystems.com>
+Date: Mon, 4 Nov 2019 11:04:44 -0500
+To: USRP-users <USRP-users@lists.ettus.com>
+X-Mailer: Apple Mail (2.3445.9.1)
+Subject: [USRP-users] Problems when Running UHD_3.14.1 Examples on E310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -47,10 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?546L55u8IHZpYSBVU1JQLXVzZXJz?= <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?546L55u8?= <ruoyilei@126.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1950651016616362818=="
+From: zcao--- via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: "zcao@c3commsystems.com" <zcao@c3commsystems.com>
+Content-Type: multipart/mixed; boundary="===============8046823863791414128=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -64,327 +78,204 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1950651016616362818==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_10270_1995862219.1572836015703"
 
-------=_Part_10270_1995862219.1572836015703
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-
-SGVsbG8sClNhbSBSZWl0ZXIuIFdoZW4gbGV2ZXJhZ2luZyBkdWFsIDEwR2JFIGxpbmtzLEkgIHNw
-ZWNpZnkiIGFkZHI9MTkyLjE2OC4yMC4yLHNlY29uZF9hZGRyPTE5Mi4xNjguMTAuMiIsbGFzdCBl
-bWFpbCBJIGRpZG4ndCBnaXZlIHRoZSBleGFtcGxlIC4gVGhlIHJlc3VsdCBpcyBub3QgbXVjaCBk
-aWZmcmVudCB3aXRoIHVzZSBhIHNpbmdsZSAxMEdiRSBsaW5rLgpJIHRoaW5rIGl0IGlzICAiYWRk
-cj08eHh4Lnh4eC54eHgueHh4PixzZWNvbmRfYWRkcj08eHh4Lnh4eC54eHgueHh4PiIgYnV0IG5v
-dCAiYWRkcjA9PHh4eC54eHgueHh4Lnh4eD4sYWRkcjE9PHh4eC54eHgueHh4Lnh4eD4iLiB3aGVu
-IHVzZSAgImFkZHIwPTx4eHgueHh4Lnh4eC54eHg+LGFkZHIxPTx4eHgueHh4Lnh4eC54eHg+IixJ
-IGdldCBlcnJvcnM6CltJTkZPXSBbTVBNRF0gSW5pdGlhbGl6aW5nIDMgZGV2aWNlKHMpIGluIHBh
-cmFsbGVsIHdpdGggYXJnczogbWdtdF9hZGRyMD0xOTIuMTY4LjIuMjMwLHR5cGUwPW4zeHgscHJv
-ZHVjdDA9bjMxMCxzZXJpYWwwPTMxNjY0NUIsY2xhaW1lZDA9RmFsc2UsbWdtdF9hZGRyMT0xOTIu
-MTY4LjIuMjMwLHR5cGUxPW4zeHgscHJvZHVjdDE9bjMxMCxzZXJpYWwxPTMxNjY0NUIsY2xhaW1l
-ZDE9RmFsc2UsbWdtdF9hZGRyMj0xOTIuMTY4LjIuMjMwLHR5cGUyPW4zeHgscHJvZHVjdDI9bjMx
-MCxzZXJpYWwyPTMxNjY0NUIsY2xhaW1lZDI9RmFsc2UsdHlwZT1uM3h4LG1nbXRfYWRkcj0xOTIu
-MTY4LjIuMjMwLGFkZHIxPTE5Mi4xNjguMTAuMixhZGRyMj0xOTIuMTY4LjIwLjIsbWFzdGVyX2Ns
-b2NrX3JhdGU9MTIyLjg4ZTYsdXNlX2RwZGs9MQpbRVJST1JdIFtSUENdIFNvbWVvbmUgdHJpZWQg
-dG8gY2xhaW0gdGhpcyBkZXZpY2UgYWdhaW4gKEZyb206IDE5Mi4xNjguMi4yNTQpCltXQVJOSU5H
-XSBbTVBNLlJQQ1NlcnZlcl0gU29tZW9uZSB0cmllZCB0byBjbGFpbSB0aGlzIGRldmljZSBhZ2Fp
-biAoRnJvbTogMTkyLjE2OC4yLjI1NCkKRXJyb3I6IFJ1bnRpbWVFcnJvcjogRXJyb3IgZHVyaW5n
-IFJQQyBjYWxsIHRvIGBjbGFpbScuIEVycm9yIG1lc3NhZ2U6IFNvbWVvbmUgdHJpZWQgdG8gY2xh
-aW0gdGhpcyBkZXZpY2UgYWdhaW4gKEZyb206IDE5Mi4xNjguMi4yNTQpCnJvb3RAc2V1NzM6L2hv
-bWUvc2V1IyAKT24gMTEvMi8yMDE5IDAyOjMw77yMU2FtIFJlaXRlcjxzYW0ucmVpdGVyQGV0dHVz
-LmNvbT4gd3JvdGXvvJoKUGFubnkgV2FuZywKCgpJIG5vdGljZSB0aGF0IHlvdSdyZSBvbmx5IHNw
-ZWNpZnlpbmcgYSBzaW5nbGUgc3RyZWFtaW5nIGFkZHJlc3MgaW4geW91ciBjYWxsIHRvIGJlbmNo
-bWFyayByYXRlLCBpbXBseWluZyB0aGF0IHlvdSdyZSBvbmx5IGxldmVyYWdpbmcgYSBzaW5nbGUg
-MTBHYkUgbGluay4gWW91IGNhbiBzcGVjaWZ5ICJhZGRyMD08eHh4Lnh4eC54eHgueHh4PixhZGRy
-MT08eHh4Lnh4eC54eHgueHh4PiIgaW4geW91ciBkZXZpY2UgYXJncy4KCgoKQmVzdCwKClNhbSBS
-ZWl0ZXIKU0RSIEFwcGxpY2F0aW9ucyBFbmdpbmVlcgpFdHR1cyBSZXNlYXJjaAoKCgpPbiBXZWQs
-IE9jdCAzMCwgMjAxOSBhdCAzOjIwIEFNIOeOi+ebvCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgoKSGVsbG8sCiBOYXRlLkkgd2FudCB0byB1c2UgRFBE
-SyBpbiBVSEQgd2l0aCBOMzEwIGZvbGxvdyBodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwv
-cGFnZV9kcGRrLmh0bWwsYnV0IHRoZSByZXN1bHQgaXMgbm90IHNhdGlzZmFjdG9yeS5JIGdvdCB5
-b3UgaGF2ZSBzb21lIHJlc2VhcmNoIGFib3V0IHRoaXMgZnJvbSB0aGUgdXNlci1saXN0IGVtYWls
-cyhXaXRoIGFuIGk3LTQ3OTBrIC8gSW50ZWwgeDUyMC1EQTIgYW5kIE4zMTAsIHRvIHN0cmVhbSBh
-dCBmdWxsIGR1cGxleCwgb3ZlciB0d28gY2hhbm5lbHMgYXQgMTI1IE1TL3MsIHRoZSBsb3dlc3Qg
-SSBjYW4gcnVuIG15IENQVSBjbG9jayBmcmVxIGF0IHdpdGhvdXQgZmxvdyBjb250cm9sIGVycm9y
-cyBpcyAzLjggR0h6IHVzaW5nIGJlbmNobWFya19yYXRlIGFuZCB0aGUgbmF0aXZlIG5ldHdvcmtp
-bmcgc3RhY2suIFVzaW5nIERQREsgSSBjYW4gcnVuIDJ4MiBAIDEyNSBNUy9zIHdpdGggbXkgQ1BV
-IGZyZXEgbG9ja2VkIGF0IDEuNSBHSHogd2l0aCBubyBmbG93IGNvbnRyb2wgZXJyb3JzLiApLgpN
-YXkgYmUgeW91IGNhbiBkbyBtZSBhIGZhdm9yIGFuZCBoYXZlIHNvbWUgaWRlYSBhYm91dCBteSBx
-dWVzaW9uLgooMSkgSSB1c2UgYmVuY2htYXJrX3JhdGUgdG8gdGVzdCB0aGUgc3RyZWFtaW5nIHBl
-cmZvcm1hbmNlLCBJIG9ubHkgZ290IDEyMi44OE1TL3MgZm9yIDFjaGFubmVsLCBvciA2MS40NE1T
-L3MgZm9yIDJ4Mi4gcnVuIHdpdGggMngyQDEyMi44OE1TL3MgLCBhIGxvdCBvZiBzYW1wbGVzIGRy
-b3BwZWQuIApVbmZvcnR1YXRlbHksIG15IGRlc3RpbmF0aW9uIGlzIDR4NEAxMjIuODhNUy9zLiBJ
-IGRvbid0IGtub3cgaXMgaXQgcG9zc2libGUgZm9yIG15IHByZXNlbnQgaG9zdCBtYWNoaW5lLCBv
-ciB3aGF0IGNvbmZpZ3VyYXRpb24gb2YgaG9zdCBtYWNoaW5lIHNob3VsZCBoYXZlPwp1YnVudHUg
-c2VydmVyIDE4LjA0ICAgIHVoZDozLjE0LjEuMSAgZHBkayAxNy4xMS42ICAgZHVhbCAxMEdiRSBs
-aW5rcyAoWEcgaW1hZ2UgbG9hZGVkKQpob3N0IG1hY2hpbmU6IDQgbm9kZSwgOCBjb3JlcyBpbiBl
-YWNoIG5vZGUsIHRvdGEgMzIgY29yZXMsIGNwdTogSW50ZWwoUikgWGVvbihSKSBDUFUgRTUtNDY1
-MCAwIEAgMi43MEdIegptb3JlIGluZm9ybWF0aW9ucyBhYm91dCBteSBob3N0IG1hY2hpbmUgaXMg
-aW4gdGhlIGF0dGNoYWNobWVudC4oaHlwZXRocmVhZCBjbG9zZWQsIGNwdWZyZXF1dGlscyBHT1ZF
-Uk5PUj0icGVyZm9tYW5jZSIpCiAgIC0tYXJncyAidHlwZT1uM3h4LG1nbXRfYWRkcj0xOTIuMTY4
-LjEuMTA0LGFkZHI9MTkyLjE2OC4yMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyMi44OGU2LHVzZV9k
-cGRrPTEiIFwKICAgLS1kdXJhdGlvbiA2MCBcCiAgIC0tY2hhbm5lbHMgIjAsMSIgXAogICAtLXJ4
-X3JhdGUgMTIyLjg4ZTYgXAogICAtLXJ4X3N1YmRldiAiQTowIEE6MSIgXAogICAtLXR4X3JhdGUg
-MTIyLjg4ZTYgXAogICAtLXR4X3N1YmRldiAiQTowIEE6MSIgCiAgIEJlbmNobWFyayByYXRlIHN1
-bW1hcnk6CiAgICAgTnVtIHJlY2VpdmVkIHNhbXBsZXM6ICAgICAyNzQ0MTQ1NjY4CiAgTnVtIGRy
-b3BwZWQgc2FtcGxlczogICAgICA2MDMwMzIwMzgwCiAgTnVtIG92ZXJydW5zIGRldGVjdGVkOiAg
-ICA5MjEKICBOdW0gdHJhbnNtaXR0ZWQgc2FtcGxlczogIDE0Njg0MTM3NTYwCiAgTnVtIHNlcXVl
-bmNlIGVycm9ycyAoVHgpOiAwCiAgTnVtIHNlcXVlbmNlIGVycm9ycyAoUngpOiAwCiAgTnVtIHVu
-ZGVycnVucyBkZXRlY3RlZDogICA2NzIzMQogIE51bSBsYXRlIGNvbW1hbmRzOiAgICAgICAgMAog
-IE51bSB0aW1lb3V0cyAoVHgpOiAgICAgICAgMAogIE51bSB0aW1lb3V0cyAoUngpOiAgICAgICAg
-MAoKCigyKSBJbiB0aGUgIHR4cnhfbG9vcGJhY2tfdG9fZmlsZSB0ZXN0ICx3aGVuIEkgdXNlIHRo
-ZSBkZWZhdWx0IC0tc2V0dGluZyBmb3IgNCo0Y2hhbm5lbHMsIHRoZXJlIGlzIGEgZXJyb3IgVVVV
-VUVycm9yOiBSZWNlaXZlciBlcnJvciBFUlJPUl9DT0RFX0xBVEVfQ09NTUFORCAuCkkgY2hhbmdl
-IGl0IHRvIC0tc2V0dGluZyAxICxpdCB3b3Jrcy4KSSB3YW50IHRvIGtub3cgdGhlIGluZmx1ZW5j
-ZSB0byBteSBzdHJlYW1pbmcgb3Igc2FtcGxlIGRhdGFzIGlmIDEgaW5jcmVhc2UgIC0tc2V0dGlu
-Zz8KKC0tc2V0dGxpbmcgYXJnICg9MC4yMDAwMDAwMDAwMDAwMDAwMSkgc2V0dGxpbmcgdGltZSAo
-c2Vjb25kcykgYmVmb3JlIHJlY2VpdmluZykKCgpNdWNoIGFwcHJlY2lhdGVkLgoKClJlZ2FyZHMs
-ClBhbm55IFdhbmcKIAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-Cmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3Rz
-LmV0dHVzLmNvbQo=
-------=_Part_10270_1995862219.1572836015703
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
-
-PGh0bWw+CjxoZWFkPgogICAgPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50
-PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPgo8L2hlYWQ+Cjxib2R5Pgo8c3R5bGU+CiAgICBm
-b250ewogICAgICAgIGxpbmUtaGVpZ2h0OiAxLjY7CiAgICB9CiAgICB1bCxvbHsKICAgICAgICBw
-YWRkaW5nLWxlZnQ6IDIwcHg7CiAgICAgICAgbGlzdC1zdHlsZS1wb3NpdGlvbjogaW5zaWRlOwog
-ICAgfQo8L3N0eWxlPgo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTrlvq7ova/pm4Xpu5EsVmVyZGFu
-YSwmcXVvdDtNaWNyb3NvZnQgWWFoZWkmcXVvdDssU2ltU3VuLHNhbnMtc2VyaWY7Zm9udC1zaXpl
-OjE0cHg7IGxpbmUtaGVpZ2h0OjEuNjsiPgogICAgPGRpdj48L2Rpdj48ZGl2PgogICAgPGRpdj5I
-ZWxsbyw8L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMjIuNHB4OyBmb250LWZh
-bWlseTogdmVyZGFuYSwgc2Fucy1zZXJpZjsiPlNhbSBSZWl0ZXIuJm5ic3A7PC9zcGFuPjxzcGFu
-IHN0eWxlPSJsaW5lLWhlaWdodDogMjIuNHB4OyBmb250LWZhbWlseTogdmVyZGFuYSwgc2Fucy1z
-ZXJpZjsiPldoZW4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAyMi40cHg7
-IGZvbnQtZmFtaWx5OiB2ZXJkYW5hLCBzYW5zLXNlcmlmOyI+bGV2ZXJhZ2luZzwvc3Bhbj48c3Bh
-biBzdHlsZT0ibGluZS1oZWlnaHQ6IDIyLjRweDsgY29sb3I6IHJnYig0OSwgNTMsIDU5KTsgZm9u
-dC1mYW1pbHk6IHZlcmRhbmEsIHNhbnMtc2VyaWY7Ij4mbmJzcDtkdWFsIDEwR2JFIGxpbmtzLEkm
-bmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAyMi40cHg7IGNvbG9yOiByZ2Io
-NDksIDUzLCA1OSk7IGZvbnQtZmFtaWx5OiB2ZXJkYW5hLCBzYW5zLXNlcmlmOyI+Jm5ic3A7PC9z
-cGFuPjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMjIuNHB4OyBmb250LWZhbWlseTogdmVyZGFu
-YSwgc2Fucy1zZXJpZjsiPnNwZWNpZnkiPC9zcGFuPjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDog
-MjIuNHB4OyBmb250LWZhbWlseTogdmVyZGFuYSwgc2Fucy1zZXJpZjsiPiZuYnNwOzwvc3Bhbj48
-Zm9udCBmYWNlPSJ2ZXJkYW5hLCBzYW5zLXNlcmlmIj5hZGRyPTE5Mi4xNjguMjAuMixzZWNvbmRf
-YWRkcj0xOTIuMTY4LjEwLjIiLDwvZm9udD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IHZlcmRh
-bmEsIHNhbnMtc2VyaWY7IGxpbmUtaGVpZ2h0OiAyMi40cHg7Ij5sYXN0IGVtYWlsIEkgZGlkbid0
-IGdpdmUgdGhlIGV4YW1wbGUmbmJzcDs8L3NwYW4+PGZvbnQgZmFjZT0idmVyZGFuYSwgc2Fucy1z
-ZXJpZiI+LiBUaGUgcmVzdWx0IGlzIG5vdCBtdWNoIGRpZmZyZW50IHdpdGggdXNlJm5ic3A7PC9m
-b250PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMjIuNHB4OyBmb250LWZhbWlseTogdmVyZGFu
-YSwgc2Fucy1zZXJpZjsiPmEgc2luZ2xlIDEwR2JFIGxpbmsuPC9zcGFuPjwvZGl2PjxkaXY+PHNw
-YW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAyMi40cHg7IGZvbnQtZmFtaWx5OiB2ZXJkYW5hLCBzYW5z
-LXNlcmlmOyI+SSB0aGluayBpdCBpcyAmbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
-aWx5OiB2ZXJkYW5hLCBzYW5zLXNlcmlmOyBsaW5lLWhlaWdodDogMjIuNHB4OyI+Ijwvc3Bhbj48
-c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IHZlcmRhbmEsIHNhbnMtc2VyaWY7IGxpbmUtaGVpZ2h0
-OiAyMi40cHg7Ij5hZGRyPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogdmVyZGFuYSwg
-c2Fucy1zZXJpZjsgbGluZS1oZWlnaHQ6IDIyLjRweDsiPj0mbHQ7eHh4Lnh4eC54eHgueHh4Jmd0
-Oyw8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiB2ZXJkYW5hLCBzYW5zLXNlcmlmOyBs
-aW5lLWhlaWdodDogMjIuNHB4OyI+c2Vjb25kX2FkZHI8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQt
-ZmFtaWx5OiB2ZXJkYW5hLCBzYW5zLXNlcmlmOyBsaW5lLWhlaWdodDogMjIuNHB4OyI+PSZsdDt4
-eHgueHh4Lnh4eC54eHgmZ3Q7IiBidXQgbm90Jm5ic3A7PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTogdmVyZGFuYSwgc2Fucy1zZXJpZjsgbGluZS1oZWlnaHQ6IDIyLjRweDsiPiJhZGRy
-MD0mbHQ7eHh4Lnh4eC54eHgueHh4Jmd0OyxhZGRyMT0mbHQ7eHh4Lnh4eC54eHgueHh4Jmd0OyIu
-IHdoZW4gdXNlJm5ic3A7PC9zcGFuPjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMjIuNHB4OyBm
-b250LWZhbWlseTogdmVyZGFuYSwgc2Fucy1zZXJpZjsiPiZuYnNwOzwvc3Bhbj48c3BhbiBzdHls
-ZT0ibGluZS1oZWlnaHQ6IDIyLjRweDsgZm9udC1mYW1pbHk6IHZlcmRhbmEsIHNhbnMtc2VyaWY7
-Ij4iYWRkcjA9Jmx0O3h4eC54eHgueHh4Lnh4eCZndDssYWRkcjE9Jmx0O3h4eC54eHgueHh4Lnh4
-eCZndDsiLEkgZ2V0IGVycm9yczo8L3NwYW4+PC9kaXY+PGRpdj48ZGl2Pjxmb250IGZhY2U9InZl
-cmRhbmEsIHNhbnMtc2VyaWYiIHNpemU9IjIiIHN0eWxlPSJmb250LXNpemU6IDEycHg7Ij48aT5b
-SU5GT10gW01QTURdIEluaXRpYWxpemluZyAzIGRldmljZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFy
-Z3M6IG1nbXRfYWRkcjA9MTkyLjE2OC4yLjIzMCx0eXBlMD1uM3h4LHByb2R1Y3QwPW4zMTAsc2Vy
-aWFsMD0zMTY2NDVCLGNsYWltZWQwPUZhbHNlLG1nbXRfYWRkcjE9MTkyLjE2OC4yLjIzMCx0eXBl
-MT1uM3h4LHByb2R1Y3QxPW4zMTAsc2VyaWFsMT0zMTY2NDVCLGNsYWltZWQxPUZhbHNlLG1nbXRf
-YWRkcjI9MTkyLjE2OC4yLjIzMCx0eXBlMj1uM3h4LHByb2R1Y3QyPW4zMTAsc2VyaWFsMj0zMTY2
-NDVCLGNsYWltZWQyPUZhbHNlLHR5cGU9bjN4eCxtZ210X2FkZHI9MTkyLjE2OC4yLjIzMCxhZGRy
-MT0xOTIuMTY4LjEwLjIsYWRkcjI9MTkyLjE2OC4yMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTEyMi44
-OGU2LHVzZV9kcGRrPTE8L2k+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0idmVyZGFuYSwg
-c2Fucy1zZXJpZiIgc2l6ZT0iMiIgc3R5bGU9ImZvbnQtc2l6ZTogMTJweDsiPjxpPltFUlJPUl0g
-W1JQQ10gU29tZW9uZSB0cmllZCB0byBjbGFpbSB0aGlzIGRldmljZSBhZ2FpbiAoRnJvbTogMTky
-LjE2OC4yLjI1NCk8L2k+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0idmVyZGFuYSwgc2Fu
-cy1zZXJpZiIgc2l6ZT0iMiIgc3R5bGU9ImZvbnQtc2l6ZTogMTJweDsiPjxpPltXQVJOSU5HXSBb
-TVBNLlJQQ1NlcnZlcl0gU29tZW9uZSB0cmllZCB0byBjbGFpbSB0aGlzIGRldmljZSBhZ2FpbiAo
-RnJvbTogMTkyLjE2OC4yLjI1NCk8L2k+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0idmVy
-ZGFuYSwgc2Fucy1zZXJpZiIgc2l6ZT0iMiIgc3R5bGU9ImZvbnQtc2l6ZTogMTJweDsiPjxpPkVy
-cm9yOiBSdW50aW1lRXJyb3I6IEVycm9yIGR1cmluZyBSUEMgY2FsbCB0byBgY2xhaW0nLiBFcnJv
-ciBtZXNzYWdlOiBTb21lb25lIHRyaWVkIHRvIGNsYWltIHRoaXMgZGV2aWNlIGFnYWluIChGcm9t
-OiAxOTIuMTY4LjIuMjU0KTwvaT48L2ZvbnQ+PC9kaXY+PGRpdj48Zm9udCBmYWNlPSJ2ZXJkYW5h
-LCBzYW5zLXNlcmlmIiBzaXplPSIyIiBzdHlsZT0iZm9udC1zaXplOiAxMnB4OyI+PGk+cm9vdEBz
-ZXU3MzovaG9tZS9zZXUjJm5ic3A7PC9pPjwvZm9udD48L2Rpdj48L2Rpdj48ZGl2IGlkPSJudGVz
-LXBjbWFjLXNpZ25hdHVyZSIgc3R5bGU9ImZvbnQtZmFtaWx5Oiflvq7ova/pm4Xpu5EnIj4KIDwv
-ZGl2Pgo8L2Rpdj48ZGl2IGNsYXNzPSJKLXJlcGx5IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjoj
-ZjJmMmYyO2NvbG9yOmJsYWNrO3BhZGRpbmctdG9wOjZweDtwYWRkaW5nLWJvdHRvbTo2cHg7Ym9y
-ZGVyLXJhZGl1czozcHg7LW1vei1ib3JkZXItcmFkaXVzOjNweDstd2Via2l0LWJvcmRlci1yYWRp
-dXM6M3B4O21hcmdpbi10b3A6NDVweDttYXJnaW4tYm90dG9tOjIwcHg7Zm9udC1mYW1pbHk6J+W+
-rui9r+mbhem7kSc7Ij4KICAgIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMnB4O2xpbmUtaGVpZ2h0
-OjEuNTt3b3JkLWJyZWFrOmJyZWFrLWFsbDttYXJnaW4tbGVmdDoxMHB4O21hcmdpbi1yaWdodDox
-MHB4Ij5PbiA8c3BhbiBjbGFzcz0ibWFpbC1kYXRlIj4xMS8yLzIwMTkgMDI6MzA8L3NwYW4+77yM
-PGEgY2xhc3M9Im1haWwtdG8iIHN0eWxlPSJ0ZXh0LWRlY29yYXRpb246bm9uZTtjb2xvcjojMmE4
-M2YyOyIgaHJlZj0ibWFpbHRvOnNhbS5yZWl0ZXJAZXR0dXMuY29tIj5TYW0gUmVpdGVyJmx0O3Nh
-bS5yZWl0ZXJAZXR0dXMuY29tJmd0OzwvYT4gd3JvdGXvvJo8L2Rpdj4KPC9kaXY+CjxibG9ja3F1
-b3RlIGlkPSJudGVzLXBjbWFpbC1xdW90ZSIgc3R5bGU9Im1hcmdpbjogMHB4OyBwYWRkaW5nOiAw
-cHg7IGZvbnQtc2l6ZTogMTRweDsgZm9udC1mYW1pbHk6IOW+rui9r+mbhem7kTsiPgo8ZGl2IGRp
-cj0ibHRyIj48ZGl2IGNsYXNzPSJnbWFpbF9kZWZhdWx0IiBzdHlsZT0iZm9udC1mYW1pbHk6dmVy
-ZGFuYSxzYW5zLXNlcmlmIj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6MjIuNHB4Ij5QYW5ueSBX
-YW5nLDwvc3Bhbj48L2Rpdj48ZGl2IGNsYXNzPSJnbWFpbF9kZWZhdWx0IiBzdHlsZT0iZm9udC1m
-YW1pbHk6dmVyZGFuYSxzYW5zLXNlcmlmIj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6MjIuNHB4
-Ij48L3NwYW4+PC9kaXY+PGRpdiBjbGFzcz0iZ21haWxfZGVmYXVsdCIgc3R5bGU9ImZvbnQtZmFt
-aWx5OnZlcmRhbmEsc2Fucy1zZXJpZiI+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OjIyLjRweCI+
-PGJyPjwvc3Bhbj48L2Rpdj48ZGl2IGNsYXNzPSJnbWFpbF9kZWZhdWx0IiBzdHlsZT0iZm9udC1m
-YW1pbHk6dmVyZGFuYSxzYW5zLXNlcmlmIj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6MjIuNHB4
-Ij5JIG5vdGljZSB0aGF0IHlvdSdyZSBvbmx5IHNwZWNpZnlpbmcgYSBzaW5nbGUgc3RyZWFtaW5n
-IGFkZHJlc3MgaW4geW91ciBjYWxsIAp0byBiZW5jaG1hcmsgcmF0ZSwgaW1wbHlpbmcgdGhhdCB5
-b3UncmUgb25seSBsZXZlcmFnaW5nIGEgc2luZ2xlIDEwR2JFIApsaW5rLiBZb3UgY2FuIHNwZWNp
-ZnkgCiJhZGRyMD0mbHQ7eHh4Lnh4eC54eHgueHh4Jmd0OyxhZGRyMT0mbHQ7eHh4Lnh4eC54eHgu
-eHh4Jmd0OyIgaW4geW91ciAKZGV2aWNlIGFyZ3MuIDxicj48L3NwYW4+PC9kaXY+PGRpdiBjbGFz
-cz0iZ21haWxfZGVmYXVsdCIgc3R5bGU9ImZvbnQtZmFtaWx5OnZlcmRhbmEsc2Fucy1zZXJpZiI+
-PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OjIyLjRweCI+PGJyPjwvc3Bhbj48L2Rpdj48ZGl2IGNs
-YXNzPSJnbWFpbF9kZWZhdWx0IiBzdHlsZT0iZm9udC1mYW1pbHk6dmVyZGFuYSxzYW5zLXNlcmlm
-Ij48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6MjIuNHB4Ij5CZXN0LDxicj48YnI+U2FtIFJlaXRl
-cjxicj5TRFIgQXBwbGljYXRpb25zIEVuZ2luZWVyPGJyPkV0dHVzIFJlc2VhcmNoPGJyPjwvc3Bh
-bj48L2Rpdj48L2Rpdj48YnI+PGRpdiBjbGFzcz0iZ21haWxfcXVvdGUiPjxkaXYgZGlyPSJsdHIi
-IGNsYXNzPSJnbWFpbF9hdHRyIj5PbiBXZWQsIE9jdCAzMCwgMjAxOSBhdCAzOjIwIEFNIOeOi+eb
-vCB2aWEgVVNSUC11c2VycyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxicj48L2Rp
-dj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4IDBweCAw
-cHggMC44ZXg7Ym9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7cGFkZGluZy1s
-ZWZ0OjFleCI+CgogICAgCgo8ZGl2PgoKPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk65b6u6L2v6ZuF
-6buRLFZlcmRhbmEsJnF1b3Q7TWljcm9zb2Z0IFlhaGVpJnF1b3Q7LFNpbVN1bixzYW5zLXNlcmlm
-O2ZvbnQtc2l6ZToxNHB4O2xpbmUtaGVpZ2h0OjEuNiI+CiAgICA8ZGl2PjwvZGl2PjxkaXY+CiAg
-ICA8ZGl2PkhlbGxvLDwvZGl2PjxkaXY+Jm5ic3A7TmF0ZS48c3BhbiBzdHlsZT0iY29sb3I6cmdi
-KDQ5LDUzLDU5KTtmb250LWZhbWlseTomcXVvdDtUaW1lcyBOZXcgUm9tYW4mcXVvdDs7Zm9udC1z
-aXplOjE2cHg7bGluZS1oZWlnaHQ6MS42Ij5JIHdhbnQgdG8gdXNlIERQREsgaW4gVUhEIHdpdGgg
-TjMxMCBmb2xsb3cmbmJzcDs8L3NwYW4+PGEgaHJlZj0iaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20v
-bWFudWFsL3BhZ2VfZHBkay5odG1sLiIgc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O1RpbWVzIE5l
-dyBSb21hbiZxdW90Oztmb250LXNpemU6MTZweDtsaW5lLWhlaWdodDoxLjYiIHRhcmdldD0iX2Js
-YW5rIj5odHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV9kcGRrLmh0bWw8L2E+LGJ1
-dCB0aGUgcmVzdWx0IGlzIG5vdCZuYnNwOzxzcGFuIHN0eWxlPSJmb250LXNpemU6MTZweDtsaW5l
-LWhlaWdodDoxLjY7Zm9udC1mYW1pbHk6JnF1b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7O3doaXRl
-LXNwYWNlOm5vd3JhcDtjb2xvcjpyZ2IoNTEsNTEsNTEpO2JhY2tncm91bmQtY29sb3I6cmdiKDI1
-NSwyNTUsMjU1KSI+c2F0aXNmYWN0b3J5LkkgZ290IHlvdSBoYXZlIHNvbWUgcmVzZWFyY2ggYWJv
-dXQgdGhpcyBmcm9tIHRoZSB1c2VyLWxpc3QgZW1haWxzKDwvc3Bhbj48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6YXJpYWwsaGVsdmV0aWNhLHNhbnMtc2VyaWY7bGluZS1oZWlnaHQ6MjEuNTM2cHg7
-YmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj48aT48Zm9udCBzdHlsZT0iZm9udC1z
-aXplOjEycHgiIHNpemU9IjIiPldpdGggYW4gaTctNDc5MGsgLyBJbnRlbCB4NTIwLURBMiBhbmQg
-TjMxMCwgdG8gc3RyZWFtIGF0IGZ1bGwgZHVwbGV4LCBvdmVyIHR3byBjaGFubmVscyBhdCAxMjUg
-TVMvcywgdGhlIGxvd2VzdCBJIGNhbiBydW4gbXkgQ1BVIGNsb2NrIGZyZXEgYXQgd2l0aG91dCBm
-bG93IGNvbnRyb2wgZXJyb3JzIGlzIDMuOCBHSHogdXNpbmcgYmVuY2htYXJrX3JhdGUgYW5kIHRo
-ZSBuYXRpdmUgbmV0d29ya2luZyBzdGFjay4gVXNpbmcgRFBESyBJIGNhbiBydW4gMngyIEAgMTI1
-IE1TL3Mgd2l0aCBteSBDUFUgZnJlcSBsb2NrZWQgYXQgMS41IEdIeiB3aXRoIG5vIGZsb3cgY29u
-dHJvbCBlcnJvcnMuJm5ic3A7PC9mb250PjwvaT48L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9yOnJn
-Yig1MSw1MSw1MSk7Zm9udC1mYW1pbHk6JnF1b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7O2ZvbnQt
-c2l6ZToxNnB4O2xpbmUtaGVpZ2h0OjEuNjt3aGl0ZS1zcGFjZTpub3dyYXA7YmFja2dyb3VuZC1j
-b2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4pLjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJj
-b2xvcjpyZ2IoNTEsNTEsNTEpO2ZvbnQtZmFtaWx5OiZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90
-Oztmb250LXNpemU6MTZweDtsaW5lLWhlaWdodDoxLjY7d2hpdGUtc3BhY2U6bm93cmFwO2JhY2tn
-cm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+TWF5IGJlIHlvdSBjYW4gZG8gbWUgYSBmYXZv
-ciBhbmQgaGF2ZSBzb21lIGlkZWEgYWJvdXQgbXkgcXVlc2lvbi48L3NwYW4+PC9kaXY+PGRpdj48
-c3BhbiBzdHlsZT0iY29sb3I6cmdiKDUxLDUxLDUxKTtmb250LWZhbWlseTomcXVvdDtUaW1lcyBO
-ZXcgUm9tYW4mcXVvdDs7Zm9udC1zaXplOjE2cHg7bGluZS1oZWlnaHQ6MS42O3doaXRlLXNwYWNl
-Om5vd3JhcDtiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPigxKSBJIHVzZSBiZW5j
-aG1hcmtfcmF0ZSB0byB0ZXN0IHRoZSZuYnNwOzwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6cmdi
-KDQ5LDUzLDU5KTtmb250LWZhbWlseTp2ZXJkYW5hLHNhbnMtc2VyaWY7bGluZS1oZWlnaHQ6MjIu
-NHB4Ij5zdHJlYW1pbmcgcGVyZm9ybWFuY2UsIEkgb25seSBnb3QgMTIyLjg4TVMvcyBmb3IgMWNo
-YW5uZWwsIG9yIDYxLjQ0TVMvcyBmb3IgMngyLiBydW4gd2l0aCA8YSBkYXRhLWF1dG8tbGluaz0i
-MSIgaHJlZj0ibWFpbHRvOjJ4MkAxMjIuODhNUyI+MngyQDEyMi44OE1TPC9hPi9zICwgYSBsb3Qg
-b2Ygc2FtcGxlcyBkcm9wcGVkLiZuYnNwOzwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJj
-b2xvcjpyZ2IoNDksNTMsNTkpO2ZvbnQtZmFtaWx5OnZlcmRhbmEsc2Fucy1zZXJpZjtsaW5lLWhl
-aWdodDoyMi40cHgiPlVuZm9ydHVhdGVseSwgbXkgZGVzdGluYXRpb24gaXMgPGEgZGF0YS1hdXRv
-LWxpbms9IjEiIGhyZWY9Im1haWx0bzo0eDRAMTIyLjg4TVMiPjR4NEAxMjIuODhNUzwvYT4vcy4g
-SSBkb24ndCBrbm93IGlzIGl0IHBvc3NpYmxlIGZvciBteSBwcmVzZW50Jm5ic3A7PC9zcGFuPjxz
-cGFuIHN0eWxlPSJjb2xvcjpyZ2IoNDksNTMsNTkpO2ZvbnQtZmFtaWx5OnZlcmRhbmEsc2Fucy1z
-ZXJpZjtsaW5lLWhlaWdodDoyMi40cHgiPmhvc3QgbWFjaGluZSwgb3Igd2hhdCBjb25maWd1cmF0
-aW9uIG9mIGhvc3QgbWFjaGluZSBzaG91bGQgaGF2ZT88L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBz
-dHlsZT0iY29sb3I6cmdiKDQ5LDUzLDU5KTtmb250LWZhbWlseTp2ZXJkYW5hLHNhbnMtc2VyaWY7
-bGluZS1oZWlnaHQ6MjIuNHB4Ij51YnVudHUgc2VydmVyIDE4LjA0ICZuYnNwOyAmbmJzcDt1aGQ6
-My4xNC4xLjEgJm5ic3A7ZHBkayAxNy4xMS42ICZuYnNwOzwvc3Bhbj48c3BhbiBzdHlsZT0iY29s
-b3I6cmdiKDQ5LDUzLDU5KTtmb250LWZhbWlseTp2ZXJkYW5hLHNhbnMtc2VyaWY7bGluZS1oZWln
-aHQ6MjIuNHB4Ij4mbmJzcDtkdWFsIDEwR2JFIGxpbmtzICg8L3NwYW4+PHNwYW4gc3R5bGU9ImNv
-bG9yOnJnYig0OSw1Myw1OSk7Zm9udC1mYW1pbHk6dmVyZGFuYSxzYW5zLXNlcmlmO2xpbmUtaGVp
-Z2h0OjIyLjRweCI+WEcgaW1hZ2UgbG9hZGVkKTwvc3Bhbj48L2Rpdj48ZGl2Pmhvc3QgbWFjaGlu
-ZTogNCBub2RlLCA4IGNvcmVzIGluIGVhY2ggbm9kZSwgdG90YSAzMiBjb3JlcywgY3B1OiZuYnNw
-OzxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDoxLjYiPkludGVsKFIpIFhlb24oUikgQ1BVIEU1LTQ2
-NTAgMCBAIDIuNzBHSHo8L3NwYW4+PC9kaXY+PGRpdj5tb3JlIGluZm9ybWF0aW9ucyBhYm91dCBt
-eSBob3N0IG1hY2hpbmUgaXMgaW4gdGhlIGF0dGNoYWNobWVudC4oaHlwZXRocmVhZCBjbG9zZWQs
-IGNwdWZyZXF1dGlscyBHT1ZFUk5PUj0icGVyZm9tYW5jZSIpPC9kaXY+PGRpdj48ZGl2PjxpPjxm
-b250IHN0eWxlPSJmb250LXNpemU6MTJweCIgc2l6ZT0iMiI+Jm5ic3A7ICZuYnNwOy0tYXJncyAi
-dHlwZT1uM3h4LG1nbXRfYWRkcj0xOTIuMTY4LjEuMTA0LGFkZHI9MTkyLjE2OC4yMC4yLG1hc3Rl
-cl9jbG9ja19yYXRlPTEyMi44OGU2LHVzZV9kcGRrPTEiIFw8L2ZvbnQ+PC9pPjwvZGl2PjxkaXY+
-PGk+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMnB4IiBzaXplPSIyIj4mbmJzcDsgJm5ic3A7LS1k
-dXJhdGlvbiA2MCBcPC9mb250PjwvaT48L2Rpdj48ZGl2PjxpPjxmb250IHN0eWxlPSJmb250LXNp
-emU6MTJweCIgc2l6ZT0iMiI+Jm5ic3A7ICZuYnNwOy0tY2hhbm5lbHMgIjAsMSIgXDwvZm9udD48
-L2k+PC9kaXY+PGRpdj48aT48Zm9udCBzdHlsZT0iZm9udC1zaXplOjEycHgiIHNpemU9IjIiPiZu
-YnNwOyAmbmJzcDstLXJ4X3JhdGUgMTIyLjg4ZTYgXDwvZm9udD48L2k+PC9kaXY+PGRpdj48aT48
-Zm9udCBzdHlsZT0iZm9udC1zaXplOjEycHgiIHNpemU9IjIiPiZuYnNwOyAmbmJzcDstLXJ4X3N1
-YmRldiAiQTowIEE6MSIgXDwvZm9udD48L2k+PC9kaXY+PGRpdj48aT48Zm9udCBzdHlsZT0iZm9u
-dC1zaXplOjEycHgiIHNpemU9IjIiPiZuYnNwOyAmbmJzcDstLXR4X3JhdGUgMTIyLjg4ZTYgXDwv
-Zm9udD48L2k+PC9kaXY+PGRpdj48aT48Zm9udCBzdHlsZT0iZm9udC1zaXplOjEycHgiIHNpemU9
-IjIiPiZuYnNwOyAmbmJzcDstLXR4X3N1YmRldiAiQTowIEE6MSImbmJzcDs8L2ZvbnQ+PC9pPjwv
-ZGl2PjxkaXY+PGk+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMnB4IiBzaXplPSIyIj4mbmJzcDsg
-Jm5ic3A7QmVuY2htYXJrIHJhdGUgc3VtbWFyeTo8L2ZvbnQ+PC9pPjwvZGl2PjxkaXY+PGk+PGZv
-bnQgc3R5bGU9ImZvbnQtc2l6ZToxMnB4IiBzaXplPSIyIj4mbmJzcDsgJm5ic3A7ICZuYnNwO051
-bSByZWNlaXZlZCBzYW1wbGVzOiAmbmJzcDsgJm5ic3A7IDI3NDQxNDU2Njg8L2ZvbnQ+PC9pPjwv
-ZGl2PjxkaXY+PGk+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMnB4IiBzaXplPSIyIj4mbmJzcDsg
-TnVtIGRyb3BwZWQgc2FtcGxlczogJm5ic3A7ICZuYnNwOyAmbmJzcDs2MDMwMzIwMzgwPC9mb250
-PjwvaT48L2Rpdj48ZGl2PjxpPjxmb250IHN0eWxlPSJmb250LXNpemU6MTJweCIgc2l6ZT0iMiI+
-Jm5ic3A7IE51bSBvdmVycnVucyBkZXRlY3RlZDogJm5ic3A7ICZuYnNwOzkyMTwvZm9udD48L2k+
-PC9kaXY+PGRpdj48aT48Zm9udCBzdHlsZT0iZm9udC1zaXplOjEycHgiIHNpemU9IjIiPiZuYnNw
-OyBOdW0gdHJhbnNtaXR0ZWQgc2FtcGxlczogJm5ic3A7MTQ2ODQxMzc1NjA8L2ZvbnQ+PC9pPjwv
-ZGl2PjxkaXY+PGk+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMnB4IiBzaXplPSIyIj4mbmJzcDsg
-TnVtIHNlcXVlbmNlIGVycm9ycyAoVHgpOiAwPC9mb250PjwvaT48L2Rpdj48ZGl2PjxpPjxmb250
-IHN0eWxlPSJmb250LXNpemU6MTJweCIgc2l6ZT0iMiI+Jm5ic3A7IE51bSBzZXF1ZW5jZSBlcnJv
-cnMgKFJ4KTogMDwvZm9udD48L2k+PC9kaXY+PGRpdj48aT48Zm9udCBzdHlsZT0iZm9udC1zaXpl
-OjEycHgiIHNpemU9IjIiPiZuYnNwOyBOdW0gdW5kZXJydW5zIGRldGVjdGVkOiAmbmJzcDsgNjcy
-MzE8L2ZvbnQ+PC9pPjwvZGl2PjxkaXY+PGk+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMnB4IiBz
-aXplPSIyIj4mbmJzcDsgTnVtIGxhdGUgY29tbWFuZHM6ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
-YnNwOzA8L2ZvbnQ+PC9pPjwvZGl2PjxkaXY+PGk+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMnB4
-IiBzaXplPSIyIj4mbmJzcDsgTnVtIHRpbWVvdXRzIChUeCk6ICZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwOzA8L2ZvbnQ+PC9pPjwvZGl2PjxkaXY+PGk+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZTox
-MnB4IiBzaXplPSIyIj4mbmJzcDsgTnVtIHRpbWVvdXRzIChSeCk6ICZuYnNwOyAmbmJzcDsgJm5i
-c3A7ICZuYnNwOzA8L2ZvbnQ+PC9pPjwvZGl2PjwvZGl2PjxoMSBzdHlsZT0iIj48YnI+PC9oMT4K
-ICAgIDxkaXY+CiAgICAgICAgKDIpIEluIHRoZSAmbmJzcDt0eHJ4X2xvb3BiYWNrX3RvX2ZpbGUg
-dGVzdCAsd2hlbiBJIHVzZSB0aGUgZGVmYXVsdCAtLXNldHRpbmcgZm9yIDQqNGNoYW5uZWxzLCB0
-aGVyZSBpcyBhIGVycm9yIDxpPlVVVVVFcnJvcjogUmVjZWl2ZXIgZXJyb3IgRVJST1JfQ09ERV9M
-QVRFX0NPTU1BTkQ8L2k+Jm5ic3A7LjwvZGl2PjxkaXY+SSBjaGFuZ2UgaXQgdG8mbmJzcDs8c3Bh
-biBzdHlsZT0ibGluZS1oZWlnaHQ6MjIuNHB4Ij4tLXNldHRpbmcgMSAsaXQgd29ya3MuPC9zcGFu
-PjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OjIyLjRweCI+SSB3YW50IHRvIGtu
-b3cgdGhlIGluZmx1ZW5jZSB0byBteSBzdHJlYW1pbmcgb3Igc2FtcGxlIGRhdGFzIGlmIDEgaW5j
-cmVhc2UmbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OjIyLjRweCI+Jm5ic3A7
-PC9zcGFuPjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDoyMi40cHgiPi0tc2V0dGluZz88L3NwYW4+
-PC9kaXY+PGRpdj48ZGl2PjxpPjxmb250IHN0eWxlPSJmb250LXNpemU6MTJweCIgc2l6ZT0iMiI+
-KC0tc2V0dGxpbmcgYXJnICg9MC4yMDAwMDAwMDAwMDAwMDAwMSkgc2V0dGxpbmcgdGltZSAoc2Vj
-b25kcykgYmVmb3JlJm5ic3A7PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OjEuNiI+cmVjZWl2aW5n
-KTwvc3Bhbj48L2ZvbnQ+PC9pPjwvZGl2PjxkaXYgc3R5bGU9ImxpbmUtaGVpZ2h0OjIyLjRweCI+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OlZlcmRhbmEsR2VuZXZhLEhlbHZldGljYSxBcmlhbCxz
-YW5zLXNlcmlmO2ZvbnQtc2l6ZToxMy40NnB4O2xpbmUtaGVpZ2h0OjEuNjtiYWNrZ3JvdW5kLWNv
-bG9yOnJnYigyNTUsMjU1LDI1NSkiPjxicj48L3NwYW4+PC9kaXY+PGRpdiBzdHlsZT0ibGluZS1o
-ZWlnaHQ6MjIuNHB4Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6VmVyZGFuYSxHZW5ldmEsSGVs
-dmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEzLjQ2cHg7bGluZS1oZWlnaHQ6MS42
-O2JhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+TXVjaCBhcHByZWNpYXRlZC48L3Nw
-YW4+PC9kaXY+PC9kaXY+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MjIuNHB4Ij48c3BhbiBzdHls
-ZT0iZm9udC1mYW1pbHk6VmVyZGFuYSxHZW5ldmEsSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7
-Zm9udC1zaXplOjEzLjQ2cHg7bGluZS1oZWlnaHQ6MS42O2JhY2tncm91bmQtY29sb3I6cmdiKDI1
-NSwyNTUsMjU1KSI+PGJyPjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdo
-dDoyMi40cHgiPlJlZ2FyZHMsPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVp
-Z2h0OjIyLjRweCI+UGFubnkgV2FuZzwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5l
-LWhlaWdodDoyMi40cHgiPiZuYnNwOzwvc3Bhbj48L2Rpdj4KICAgIDxkaXYgaWQ9ImdtYWlsLW1f
-NzAyNjQ0NDQ3MzA5MjA1NzgxMG50ZXMtcGNtYWMtc2lnbmF0dXJlIiBzdHlsZT0iIj4KICAgICAK
-ICAgIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxNHB4O3BhZGRpbmc6MHB4O21hcmdpbjowcHg7bGlu
-ZS1oZWlnaHQ6MTRweCI+PGJyPjwvZGl2PgogPC9kaXY+CjwvZGl2Pgo8L2Rpdj4KPC9kaXY+Cl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPgpVU1JQLXVz
-ZXJzIG1haWxpbmcgbGlzdDxicj4KPGEgaHJlZj0ibWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJy
-Pgo8YSBocmVmPSJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
-c2Vyc19saXN0cy5ldHR1cy5jb20iIHJlbD0ibm9yZWZlcnJlciIgdGFyZ2V0PSJfYmxhbmsiPmh0
-dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0
-dHVzLmNvbTwvYT48YnI+CjwvYmxvY2txdW90ZT48L2Rpdj4KPC9ibG9ja3F1b3RlPjwhLS3wn5iA
-LS0+CjwvZGl2Pgo8L2JvZHk+CjwvaHRtbD4=
-------=_Part_10270_1995862219.1572836015703--
+--===============8046823863791414128==
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_313BDADB-118A-403E-8953-555A6CF1B794"
 
 
+--Apple-Mail=_313BDADB-118A-403E-8953-555A6CF1B794
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
---===============1950651016616362818==
+Hi,=20
+
+We are trying to run UHD examples on E310. The process we took are as =
+the following.
+
+1. Flash a fresh SDcard using the dev image located at =
+http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg3/ =
+<http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg3/>
+
+2. Cross-compile UHD source code on a development machine and install =
+the build on to the E310 device using sshfs. Note that this is a =
+different from what is proposed in AN-311. We installed UHD 3.14 onto =
+the device directly.
+
+3. Running /usr/bin/uhd_find_devices, we got the following output, looks =
+normal.
+
+[INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700; =
+UHD_3.14.1.1-0-g0347a6d8
+--------------------------------------------------
+-- UHD Device 0
+--------------------------------------------------
+Device Address:
+    serial: 31819A1
+    name:=20
+    node: /dev/axi_fpga
+    product: E3XX SG3
+    type: e3x0
+
+
+However, we ran into the following problems, which seem to be related.
+
+1. We cannot run /usr/bin/uhd_usrp_probe, because of the FPGA =
+compatibility. Specifically, the error messages are
+
+Error: RuntimeError: Expected FPGA compatibility number 255.x, but got =
+14.0:
+The FPGA build is not compatible with the host code build.
+Please run:
+
+ "/usr/lib/uhd/utils/uhd_images_downloader.py"
+
+
+2. But running the above python script gives us the following error =
+messages.
+
+-sh: /usr/lib/uhd/utils/uhd_images_downloader.py: =
+/usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/python2: =
+bad interpreter: No such file or directory/
+
+
+Note that the python script is looking for the SDK, which should be on =
+the development machine, instead of the device itself.
+
+Would really appreciate it if anyone knows how to handle above issues in =
+E310 device itself?
+
+Thanks,
+Arnold
+
+
+--Apple-Mail=_313BDADB-118A-403E-8953-555A6CF1B794
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" =
+class=3D"">Hi,&nbsp;<div class=3D""><br class=3D""></div><div =
+class=3D"">We are trying to run UHD examples on E310. The process we =
+took are as the following.</div><div class=3D""><br class=3D""></div><div =
+class=3D"">1. Flash a fresh SDcard using the dev image located =
+at&nbsp;<a =
+href=3D"http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg3/"=
+ =
+class=3D"">http://files.ettus.com/e3xx_images/e3xx-release-4/ettus-e3xx-sg=
+3/</a></div><div class=3D""><br class=3D""></div><div class=3D"">2. =
+Cross-compile UHD source code on a development machine and install the =
+build on to the E310 device using sshfs. Note that this is a different =
+from what is proposed in AN-311. We installed UHD 3.14 onto the device =
+directly.</div><div class=3D""><br class=3D""></div><div class=3D"">3. =
+Running /usr/bin/uhd_find_devices, we got the following output, looks =
+normal.</div><div class=3D""><br class=3D""></div><div class=3D""><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures; color: #34bc26" =
+class=3D"">[INFO] [UHD] </span><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">linux; GNU C++ version 4.9.2; =
+Boost_105700; UHD_3.14.1.1-0-g0347a6d8</span></div><div style=3D"margin: =
+0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" =
+class=3D"">--------------------------------------------------</span></div>=
+<div style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">-- UHD =
+Device 0</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">--------------------------------------------------</span></div>=
+<div style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">Device =
+Address:</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; serial: 31819A1</span></div><div style=3D"margin:=
+ 0px; font-stretch: normal; line-height: normal; font-family: =
+&quot;Courier New&quot;; color: rgb(244, 244, 244); background-color: =
+rgba(0, 0, 0, 0.85098);" class=3D""><span style=3D"font-variant-ligatures:=
+ no-common-ligatures" class=3D"">&nbsp; &nbsp; =
+name:&nbsp;</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098);" =
+class=3D""><span style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp; &nbsp; node: /dev/axi_fpga</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">&nbsp; =
+&nbsp; product: E3XX SG3</span></div><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">&nbsp; &nbsp; type: =
+e3x0</span></div><div class=3D"">
+<br class=3D""></div></div><div class=3D""><br class=3D""></div><div =
+class=3D"">However, we ran into the following problems, which seem to be =
+related.</div><div class=3D""><br class=3D""></div><div class=3D"">1. We =
+cannot run /usr/bin/uhd_usrp_probe, because of the FPGA compatibility. =
+Specifically, the error messages are</div><div class=3D""><br =
+class=3D""></div><div class=3D""><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">Error: RuntimeError: Expected FPGA =
+compatibility number 255.x, but got 14.0:</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">The =
+FPGA build is not compatible with the host code build.</span></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" class=3D"">Please =
+run:</span></div><div style=3D"margin: 0px; font-stretch: normal; =
+line-height: normal; font-family: &quot;Courier New&quot;; color: =
+rgb(244, 244, 244); background-color: rgba(0, 0, 0, 0.85098); =
+min-height: 16px;" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D""></span><br class=3D""></div><div =
+style=3D"margin: 0px; font-stretch: normal; line-height: normal; =
+font-family: &quot;Courier New&quot;; color: rgb(244, 244, 244); =
+background-color: rgba(0, 0, 0, 0.85098);" class=3D""><span =
+style=3D"font-variant-ligatures: no-common-ligatures" =
+class=3D"">&nbsp;"/usr/lib/uhd/utils/uhd_images_downloader.py"</span></div=
+></div><div class=3D""><br class=3D""></div><div class=3D""><br =
+class=3D""></div><div class=3D"">2. But running the above python script =
+gives us the following error messages.</div><div class=3D""><br =
+class=3D""></div><div class=3D""><div style=3D"margin: 0px; =
+font-stretch: normal; line-height: normal; font-family: &quot;Courier =
+New&quot;; color: rgb(244, 244, 244); background-color: rgba(0, 0, 0, =
+0.85098);" class=3D""><span style=3D"font-variant-ligatures: =
+no-common-ligatures" class=3D"">-sh: =
+/usr/lib/uhd/utils/uhd_images_downloader.py: =
+/usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/python2: =
+bad interpreter: No such file or directory/</span></div></div><div =
+class=3D""><br class=3D""></div><div class=3D""><br class=3D""></div><div =
+class=3D"">Note that the python script is looking for the SDK, which =
+should be on the development machine, instead of the device =
+itself.</div><div class=3D""><br class=3D""></div><div class=3D"">Would =
+really appreciate it if anyone knows how to handle above issues in E310 =
+device itself?</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Thanks,</div><div class=3D"">Arnold</div><div class=3D""><br =
+class=3D""></div></body></html>=
+
+--Apple-Mail=_313BDADB-118A-403E-8953-555A6CF1B794--
+
+
+--===============8046823863791414128==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -395,6 +286,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1950651016616362818==--
-
+--===============8046823863791414128==--
 
