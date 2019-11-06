@@ -2,61 +2,78 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8328F1D2A
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2019 19:10:13 +0100 (CET)
-Received: from [::1] (port=35528 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D568BF1F28
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2019 20:43:58 +0100 (CET)
+Received: from [::1] (port=51232 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iSPkv-0005Vs-7c; Wed, 06 Nov 2019 13:10:09 -0500
-Received: from smtp07.smtpout.orange.fr ([80.12.242.129]:55812
- helo=smtp.smtpout.orange.fr)
- by mm2.emwd.com with esmtps (TLSv1:DHE-RSA-AES128-SHA:128)
- (Exim 4.92) (envelope-from <olivier.ravard@novagrid.com>)
- id 1iSPkr-0005SF-P8
- for usrp-users@lists.ettus.com; Wed, 06 Nov 2019 13:10:06 -0500
-Received: from [192.168.1.21] ([81.250.184.13]) by mwinf5d42 with ME
- id Ni9Q2100D0HlroZ03i9Qts; Wed, 06 Nov 2019 19:09:24 +0100
-X-ME-Helo: [192.168.1.21]
-X-ME-Auth: Y2hyaXN0aWFuZS5yYXZhcmRAd2FuYWRvby5mcg==
-X-ME-Date: Wed, 06 Nov 2019 19:09:24 +0100
-X-ME-IP: 81.250.184.13
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-References: <978d5f24-1129-7f41-1a63-9e219b0f2fee@novagrid.com>
- <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
- <6377ea27-7921-8d88-c40e-d9f202d39b05@novagrid.com>
- <5DC307AD.5030704@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=olivier.ravard@novagrid.com; prefer-encrypt=mutual; keydata=
- mQENBFOZoNIBCACgxTvpz/Sw5h89QVOm048NN/oUpnQRhzEGH4l+ckDFY7v4h3wN43Dx8ami
- +Rc3JyqyOaQU0tTKFPesELckfm00NBLBv2FxbTcA05EI3zZRMHamEyigz2CK78Jolv/ydWFE
- HssruREi+ol7cswsKkoAxi6N5+OUmby6Bi6g3QuZkqQ3gVcpuaK7lNjd43rnF/V7keBfPfv+
- poqvfScPAE4PcgZ54uFEEBK+P7PaIs1j94Yn0C++LzA3s5g56Oad8U8ruoffLWSwZozY2C+i
- 6iME3tD+QNHy08JWZlKIegL7nn74dRyvcjhOoT+yzur3Du7btw9qLjD6S/Cbk+SxpGYTABEB
- AAG0LE9saXZpZXIgUmF2YXJkIDxvbGl2aWVyLnJhdmFyZEBub3ZhZ3JpZC5jb20+iQE4BBMB
- AgAiAhsjBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAUCV2k34AAKCRAQ4yLlBdy0jefHB/40
- uwjnt4PKpqFt29AhkG/u2DKmrwH837B7XLS3Ml03MmxB+F8EgmEAgZQElY9JNWMvZJGzlszz
- kFJ0dJMqIDp1+2v2Kv0gJwFG8HK5kXgFLwHR+T0WBJXzZ4YArgP7d4JZetoMZMEDHq7XyOTj
- HGUWDvhHdGIvgLPq+AabtMXXJCh9aALmPM8w/E8dQJ60SGRDE24kwUoJWm5p6xlsOx7DBj0v
- PpZcy2ows6eVgL8oyFFdyhQMkjlcbC51A3TlMdSRAphK2F/+HviqR/R/cGeKimHvQShbsD/7
- dwcT/Rxk9sm4oGSKVRr2/A9oJatmguQf92VhzohKlx0Kn/T6KJF3uQENBFOZoNIBCADAS/CX
- /9IegJKNtRZ1o5YDN+eCrQtdbXFJWIS4dPboyVTaJNv/G/1flQHbddKFjZ3UytxSB+mYVpuT
- t+z4ZFfoEp802RWlxo2K1wcQaSqf5kJ29AuX4PaT+/FdKkiABNUv9+kgN3vNhRyHqlhjCn8w
- RgvzbEzPiE5RFn0l7qf9zuc8z1qo8s/B/3WVbAKnJ8GmR7ODHJ4s9g95Ms4WwB+vhdN0dm5j
- /Rk2oOt4YIew3OsrsqaXQn4kPHc7L2eA87J6uuyxBisD4nuyakFzsHQN8Rim5di1g1QpXWPK
- VvSKFHlPNhVd1VZLPUY5WKCFOWZZiRNDQdI7kVKKa8WrRWc5ABEBAAGJAR8EGAECAAkCGwwF
- AldpN+AACgkQEOMi5QXctI1mfwf9F3a8HvD6oNmbOS4yOjBE2ZKp6oyKVOhU3W71hMab6Qcf
- OcdKGu4thm7EvfLE3lWjvaFS/nhPv8al9oLOfbin8nYLb88sHbKuxNdX6IRm4Gf4T88Ul6Ph
- k1zOO7G65uMXfCoA9XsxzwyM0cBZTApYR/bS5+iWlNh2+PhPYWI2ZfadA6eHwbKZ4dXibFuz
- l8Xcx9APaDmq3SZUNJElM/l3CiE6mURXjSpRDGN+MWBHFB9YKfC3A71Wd1cdvcf9sIsKDdDa
- F4CY4evZaWI1nUfSK27yr/wInKhZMbu7UHVf51dE8WLjLZAMi3hK+iG3yiTC4IgNYjR3y7yo
- rF52fiUwYA==
-Message-ID: <6ca7ca1a-75c7-788a-1535-09c2d8bc297c@novagrid.com>
-Date: Wed, 6 Nov 2019 19:09:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+	id 1iSRDc-00029k-TU; Wed, 06 Nov 2019 14:43:52 -0500
+Received: from mail-oln040092004100.outbound.protection.outlook.com
+ ([40.92.4.100]:5248 helo=NAM02-CY1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <e070832@hotmail.com>) id 1iSRDZ-00024Y-2o
+ for usrp-users@lists.ettus.com; Wed, 06 Nov 2019 14:43:49 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G2VOlwDQkVsEpcl445o5K2bTo2A/f7R03gc0PloW+/Ry8lMeQi9M4Pz42qKkwQZBM187ymr0zjYaWyCiQ9Tzji2/25ONNAN6V4ntBlv/TG+VqTsfO0kz/+7t9shGvKj8PqtoeLzw+CP5VjE4TQalEqxU3kM1eBx0uHjIeaNg3KNqIAFchocsishb8WxpUS3r8WJ9tvQ+CjrYA7EdxRPTrcI0z1KudmHhkBkIDBTUA8vHe2SHT6rrprsyc4alaK6m71g7JOTFHiSEiz3anSJdI7VciUwjNH+nBe3YBC8H5bsAYoWxGi7GWp/2OrMfpXgzcSIg1aMI2yS54s/PhzyUcw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FmMd79BhK8aNSZ7g/H9JbEun8GtkFUzUtOOtAnp8yA8=;
+ b=Tb1iptovp6GeUzo2ynu5ouTVlTbgfn/zAgbCtnHqT/gTs3TXYN1gRMd9HMm5SQfEL+YcnlQ9YevyqmGEc/qIAJb2Ljr9h84s33VbT+xJp+xEs0apsGexZgmIxSABCRa2qy+PJuKL+YaxeDng4H7DnuH+oLpcNwOKm3crPtupn4FvZFBWVHn++woW7zMXOr0x0UkjW7J6eSpOhWB0Gm64dj2TLDyYa9neDhoKyhDXDG/6RIfA+iMCXrJrseuXHg5DyB8mCnQa0/+if/mok/E0NmGvzwuwTd4QeKSsKGZzBvbZhEGsqIEMvJjxZA/H6n1fZA8u63ENi+BIp8ZyJUweHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FmMd79BhK8aNSZ7g/H9JbEun8GtkFUzUtOOtAnp8yA8=;
+ b=pZcL7JHLYHjdhWuNsWOmDucRplVWjYfS9g/cMGUcMvcwWv/FSD54drbkay40wKtVH6VuulmgKyj9HtR3bwKPP8IZfVF+1ar85/EB9zdlFdvEF5usqrBxUNr5J3m0bh8poss5Y804h4HkNw6AdzWKaKbo/MdIVow8txnQC/l9qTsa/wKXUJ/Ouw5U6i0X1hnxnosAnRwHeUfSVnZmDMsYwfkPTvTrxkWYIF6zGRV2LMyDqTH53mOcabDFrwiRgFDJ5Vqy33HBvL1eCEnPmC9quQyqIVVL1LisBtr5wubccZ6omcjYryqTWvfkvcuGzeE528RaizgcU7537Y9S3Xf/Og==
+Received: from SN1NAM02FT049.eop-nam02.prod.protection.outlook.com
+ (10.152.72.51) by SN1NAM02HT126.eop-nam02.prod.protection.outlook.com
+ (10.152.73.115) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2387.20; Wed, 6 Nov
+ 2019 19:43:07 +0000
+Received: from CY4PR19MB0984.namprd19.prod.outlook.com (10.152.72.51) by
+ SN1NAM02FT049.mail.protection.outlook.com (10.152.72.166) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2387.20 via Frontend Transport; Wed, 6 Nov 2019 19:43:07 +0000
+Received: from CY4PR19MB0984.namprd19.prod.outlook.com
+ ([fe80::146a:888e:c688:a94c]) by CY4PR19MB0984.namprd19.prod.outlook.com
+ ([fe80::146a:888e:c688:a94c%7]) with mapi id 15.20.2430.020; Wed, 6 Nov 2019
+ 19:43:07 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Programming N310 micro SD Card Image Problem
+Thread-Index: AQHVk/mtjhIeV3VcLUKPla3Wlx/rIKd+idTa
+Date: Wed, 6 Nov 2019 19:43:07 +0000
+Message-ID: <CY4PR19MB0984DDBD5EBB744F3071039EA4790@CY4PR19MB0984.namprd19.prod.outlook.com>
+References: <BN6PR19MB098066E4121E57DC0E06B8A4A47E0@BN6PR19MB0980.namprd19.prod.outlook.com>
+In-Reply-To: <BN6PR19MB098066E4121E57DC0E06B8A4A47E0@BN6PR19MB0980.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:5C66D544AB6D2CDC7EFE60A515C7D99468C8F659BE4B69D7232495785ACACC9E;
+ UpperCasedChecksum:3FE1B53C20BFFFFA0B8DE55A5F622057CBB9D8A68E608F9D3D04B7FB20C7CC5F;
+ SizeAsReceived:6943; Count:45
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [/G4N+Kyve87Q4LA2sDarOPIeFJysiFpM]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 45
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 174d6871-5ca6-48f2-10a7-08d762f18c21
+x-ms-traffictypediagnostic: SN1NAM02HT126:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: CX3I+3q/FYpKJ4GP4jquM6v6QtpxdyqaPHH+m4CPC3PtnQh6MAEYudcs4NPD2jqEoFZJNg8Rd6JatcQBNeD7EfGy16hyk7Myq/IA1xlKvq3j2yl+B+G5wKXm1I2sT5gmR/6kXVmKLpfryIK62k20j1EonKuzKqxxY/0F73LniUIICb78JbbuUjHbu950tWwD
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-In-Reply-To: <5DC307AD.5030704@gmail.com>
-Subject: Re: [USRP-users] TwinRx transfert function
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 174d6871-5ca6-48f2-10a7-08d762f18c21
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2019 19:43:07.2552 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1NAM02HT126
+Subject: Re: [USRP-users] Programming N310 micro SD Card Image Problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,10 +85,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Olivier Ravard via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olivier Ravard <olivier.ravard@novagrid.com>
-Cc: USRP-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============5829043729136996123=="
+From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jeff S <e070832@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============6082469422473802045=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,152 +101,276 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============5829043729136996123==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="Gvg8DXgH4qxWG9giMTMbDI2fXTryxeG9S"
+--===============6082469422473802045==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY4PR19MB0984DDBD5EBB744F3071039EA4790CY4PR19MB0984namp_"
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---Gvg8DXgH4qxWG9giMTMbDI2fXTryxeG9S
-Content-Type: multipart/mixed; boundary="sVCrLqcGWNdE1curpHYvfjGiwycl9f5YB";
- protected-headers="v1"
-From: Olivier Ravard <olivier.ravard@novagrid.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: USRP-users@lists.ettus.com
-Message-ID: <6ca7ca1a-75c7-788a-1535-09c2d8bc297c@novagrid.com>
-Subject: Re: [USRP-users] TwinRx transfert function
-References: <978d5f24-1129-7f41-1a63-9e219b0f2fee@novagrid.com>
- <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
- <6377ea27-7921-8d88-c40e-d9f202d39b05@novagrid.com>
- <5DC307AD.5030704@gmail.com>
-In-Reply-To: <5DC307AD.5030704@gmail.com>
-
---sVCrLqcGWNdE1curpHYvfjGiwycl9f5YB
-Content-Type: text/plain; charset=utf-8
+--_000_CY4PR19MB0984DDBD5EBB744F3071039EA4790CY4PR19MB0984namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Language: en-IE
+
+It appears that the 16GB microSD card I was using was not actually large en=
+ough for the partitions to write.  The original 16GB mSD has free space at =
+the end of the partitions, whereas the 16GB I programmed had no free space =
+at the end and sdb3 and sdb4 did not seem to mount.  Since dd does not give=
+ any kind of pass/fail indication, and none of the documentation seemed to =
+indicate that I needed more than 16GB, I found this by:
+
+$ sudo cfdisk /dev/sdb
+
+From there, the last partitions did not look correct and the overall size s=
+eemed off.  I deleted sdb4 partition and no free space showed back up, whic=
+h seemed off as well.
+
+I got a 64GB microSD card and programmed it the same way, and the unit seem=
+ed to boot correctly, and the partitions seemed correct.
+
+Jeff
+
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Jeff S v=
+ia USRP-users <usrp-users@lists.ettus.com>
+Sent: Tuesday, November 5, 2019 11:50 AM
+To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Programming N310 micro SD Card Image Problem
+
+The original SD card that came with the unit works, but I programmed an ima=
+ge onto a 16GB microSD card for the N310 using:
+
+$ sudo dd if=3D./installs/share/uhd/images/usrp_n3xx_fs.sdimg of=3D/dev/sdb=
+ bs=3D1M
+
+after downloading the most recent images.  When I insert the card into the =
+N310 and power on, it seems to go into some sort of "emergency mode," when =
+I try and connect using the serial interface, "screen /dev/ttyUSB0 115200."
 
 
-Le 06/11/2019 =C3=A0 18:49, Marcus D. Leech a =C3=A9crit=C2=A0:
-> On 11/06/2019 12:28 PM, Olivier Ravard wrote:
->> 1. The tune frequency is 1200 MHz in this case but we obtain same orde=
-r of magnitude
->> for fluctuations if another frequency is tuned (but transfert function=
- could be
->> different).
->> Our tests includes L band acquisitions (950 - 2150 MHz).
->>
->> 2. The gain in this case is set in order to have 15 dB backoff (which =
-is margin relative
->> to the
->> maximum ADC amplitude). In this case, we use 85dB gain because the noi=
-se generator gives
->> a level around -135 dBm/Hz. But we observed the same things when we sa=
-mple satellite
->> signals using 65dB gain.
->>
->> 3. what do you mean by "overruns".
-> https://files.ettus.com/manual/page_general.html#general_ounotes
+If I do a "journalctl -xb" from the serial root login, I see the following =
+(snapshot of the first failure I found):
+
+Jan 12 22:21:50 ni-sulfur-rev6-mender systemd[1]: Mounting /uboot...
+-- Subject: Unit uboot.mount has begun start-up
+-- Defined-By: systemd
+-- Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit uboot.mount has begun starting up.
+Jan 12 22:21:50 ni-sulfur-rev6-mender systemd[1]: Mounted /uboot.
+-- Subject: Unit uboot.mount has finished start-up
+-- Defined-By: systemd
+-- Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit uboot.mount has finished starting up.
+--
+-- The start-up result is RESULT.
+Jan 12 22:23:12 ni-sulfur-rev6-mender systemd[1]: dev-mmcblk0p4.device: Job=
+ dev-mmcblk0p4.device/start timed out.
+Jan 12 22:23:12 ni-sulfur-rev6-mender systemd[1]: Timed out waiting for dev=
+ice dev-mmcblk0p4.device.
+-- Subject: Unit dev-mmcblk0p4.device has failed
+-- Defined-By: systemd
+-- Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit dev-mmcblk0p4.device has failed.
+--
+
+Has anyone come across this before?
+
+Jeff
+
+--_000_CY4PR19MB0984DDBD5EBB744F3071039EA4790CY4PR19MB0984namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+It appears that the 16GB microSD card I was using was not actually large en=
+ough for the partitions to write.&nbsp; The original 16GB mSD has free spac=
+e at the end of the partitions, whereas the 16GB I programmed had no free s=
+pace at the end and sdb3 and sdb4 did
+ not seem to mount.&nbsp; Since dd does not give any kind of pass/fail indi=
+cation, and none of the documentation seemed to indicate that I needed more=
+ than 16GB, I found this by:</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ sudo cfdisk /dev/sdb</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+From there, the last partitions did not look correct and the overall size s=
+eemed off.&nbsp; I deleted sdb4 partition and no free space showed back up,=
+ which seemed off as well.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I got a 64GB microSD card and programmed it the same way, and the unit seem=
+ed to boot correctly, and the partitions seemed correct.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Jeff<br>
+</div>
+<div id=3D"Signature">
+<div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
+=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp=
+-users-bounces@lists.ettus.com&gt; on behalf of Jeff S via USRP-users &lt;u=
+srp-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Tuesday, November 5, 2019 11:50 AM<br>
+<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
 >
-> Also, How was this spectrum actually capture (in the software sense)?=C2=
-=A0 I'll note that
-> 80Msps is not a valid delivered sample-rate for the
-> =C2=A0 X310 with any of the standard master clocks, so to capture 80Mhz=
- of (analog)
-> bandwidth, you'd need a 100Msps sample rate, which IS
-> =C2=A0 supported.
-The sample rate is of course 100 Msps... I just display only the 80 MHz u=
-sefull bandwidth.
->
->
->>
->> regards,
->>
->> Olivier
->>
->> Le 06/11/2019 =C3=A0 17:59, Marcus D Leech a =C3=A9crit :
->>> That is more passband ripple than I would expect.
->>>
->>> What is your tunes frequency. What gain setting? Are you getting over=
-runs during the
->>> measurement?
->>>
->>>
->>> Sent from my iPhone
->>>
->>>> On Nov 6, 2019, at 6:32 AM, Olivier Ravard via USRP-users <usrp-user=
-s@lists.ettus.com>
->>>> wrote:
->>>>
->>>> =EF=BB=BF
->>>>
->>>> Hello,
->>>>
->>>> We use X300 with 2 TwinRx boards for acquisitions in L band (UHD 3.1=
-0.3).
->>>>
->>>> It seems that the transfert function of the couple (X300 - TwinRx) s=
-hows strong
->>>> fluctuations.
->>>> To measure these fluctuations, we put a white noise generator at the=
- input (this
->>>> generator was
->>>> measured before with a spectrum analyser and it show a very flat tra=
-nsfert function
->>>> over 1 GHz)
->>>> and we measure the PSD of the sampled 80MHz bw signal for the 4 inpu=
-ts.
->>>> https://files.ettus.com/manual/page_general.html#general_ounotes
->>>> The result is shown on figures below:
->>>>
->>>> inputs 1 and 2 (first TwinRx):
->>>>
->>>> <bbhnehmblikapiem.png>
->>>> <fpnpgddncnklhkma.png>
->>>>
->>>> inputs 3 and 4 (second TwinRx):
->>>>
->>>> <lfkojlkpiadfgnml.png>
->>>> <bnokbonaahldkokn.png>
->>>>
->>>> Are these fluctuations normal ?
->>>>
->>>> regards,
->>>>
->>>> --=C2=A0
->>>> Olivier
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
+<b>Subject:</b> [USRP-users] Programming N310 micro SD Card Image Problem</=
+font>
+<div>&nbsp;</div>
+</div>
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+The original SD card that came with the unit works, but I programmed an ima=
+ge onto a 16GB microSD card for the N310 using:</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<blockquote style=3D"margin-top:0px; margin-bottom:0px">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+$ sudo dd if=3D./installs/share/uhd/images/usrp_n3xx_fs.sdimg of=3D/dev/sdb=
+ bs=3D1M</div>
+</blockquote>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+after downloading the most recent images.&nbsp; When I insert the card into=
+ the N310 and power on, it seems to go into some sort of &quot;emergency mo=
+de,&quot; when I try and connect using the serial interface, &quot;screen /=
+dev/ttyUSB0 115200.&quot;<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+If I do a &quot;journalctl -xb&quot; from the serial root login, I see the =
+following (snapshot of the first failure I found):</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<span>Jan 12 22:21:50 ni-sulfur-rev6-mender systemd[1]: Mounting /uboot...<=
+br>
+</span>
+<div>-- Subject: Unit uboot.mount has begun start-up<br>
+</div>
+<div>-- Defined-By: systemd<br>
+</div>
+<div>-- Support: https://lists.freedesktop.org/mailman/listinfo/systemd-dev=
+el<br>
+</div>
+<div>-- <br>
+</div>
+<div>-- Unit uboot.mount has begun starting up.<br>
+</div>
+<div>Jan 12 22:21:50 ni-sulfur-rev6-mender systemd[1]: Mounted /uboot.<br>
+</div>
+<div>-- Subject: Unit uboot.mount has finished start-up<br>
+</div>
+<div>-- Defined-By: systemd<br>
+</div>
+<div>-- Support: https://lists.freedesktop.org/mailman/listinfo/systemd-dev=
+el<br>
+</div>
+<div>-- <br>
+</div>
+<div>-- Unit uboot.mount has finished starting up.<br>
+</div>
+<div>-- <br>
+</div>
+<div>-- The start-up result is RESULT.<br>
+</div>
+<div>Jan 12 22:23:12 ni-sulfur-rev6-mender systemd[1]: dev-mmcblk0p4.device=
+: Job dev-mmcblk0p4.device/start timed out.<br>
+</div>
+<div>Jan 12 22:23:12 ni-sulfur-rev6-mender systemd[1]: Timed out waiting fo=
+r device dev-mmcblk0p4.device.<br>
+</div>
+<div>-- Subject: Unit dev-mmcblk0p4.device has failed<br>
+</div>
+<div>-- Defined-By: systemd<br>
+</div>
+<div>-- Support: https://lists.freedesktop.org/mailman/listinfo/systemd-dev=
+el<br>
+</div>
+<div>-- <br>
+</div>
+<div>-- Unit dev-mmcblk0p4.device has failed.<br>
+</div>
+<div>-- <br>
+</div>
+<span></span></div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+Has anyone come across this before?<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+Jeff<br>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_CY4PR19MB0984DDBD5EBB744F3071039EA4790CY4PR19MB0984namp_--
 
 
---sVCrLqcGWNdE1curpHYvfjGiwycl9f5YB--
-
---Gvg8DXgH4qxWG9giMTMbDI2fXTryxeG9S
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEo6IEs2M8HtVrgPe4EOMi5QXctI0FAl3DDFQACgkQEOMi5QXc
-tI3exgf+MBGQYu6hcHimEqqNWoFYeN5+/ZAI7wSmYjd6CUAgZ1qgH03U8Vtv+9jh
-rYooF4Px1bCm0uFOhPI69y3vkNI3T9Ee/1vTTm4Ws+rGEwQH6I+fG85cCogPh3LS
-t899qQsywcKjrwYRvTBJba5jvSevOQ9yA5PBrex0N4rPGNN3MpWQpEE7hrkcOofW
-m67tJVqhOorBB2wSorzUCAYuEO01QZStFylAuM5Ca9EVgVXCICU+aTcUEqhBwqWk
-8YjqnijO+ki+23vBsbG2V4eWagf448mGxP+HGbcJSMOXnMCLtwc7yihnb0M5yf4e
-iXfxT5UQmldbupXBzfljjEFTJO2K5g==
-=dJSF
------END PGP SIGNATURE-----
-
---Gvg8DXgH4qxWG9giMTMbDI2fXTryxeG9S--
-
-
---===============5829043729136996123==
+--===============6082469422473802045==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -241,5 +381,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5829043729136996123==--
+--===============6082469422473802045==--
 
