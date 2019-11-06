@@ -2,58 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B6A2F1C7D
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2019 18:29:42 +0100 (CET)
-Received: from [::1] (port=56548 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C335F1CC8
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2019 18:50:21 +0100 (CET)
+Received: from [::1] (port=60400 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iSP7l-00033Y-6D; Wed, 06 Nov 2019 12:29:41 -0500
-Received: from smtp07.smtpout.orange.fr ([80.12.242.129]:46089
- helo=smtp.smtpout.orange.fr)
- by mm2.emwd.com with esmtps (TLSv1:DHE-RSA-AES128-SHA:128)
- (Exim 4.92) (envelope-from <olivier.ravard@novagrid.com>)
- id 1iSP7h-0002w9-6a
- for usrp-users@lists.ettus.com; Wed, 06 Nov 2019 12:29:37 -0500
-Received: from [192.168.1.21] ([81.250.184.13]) by mwinf5d42 with ME
- id NhUu2100S0HlroZ03hUv6Z; Wed, 06 Nov 2019 18:28:55 +0100
-X-ME-Helo: [192.168.1.21]
-X-ME-Auth: Y2hyaXN0aWFuZS5yYXZhcmRAd2FuYWRvby5mcg==
-X-ME-Date: Wed, 06 Nov 2019 18:28:55 +0100
-X-ME-IP: 81.250.184.13
-To: Marcus D Leech <patchvonbraun@gmail.com>
+	id 1iSPRk-0004Uw-7p; Wed, 06 Nov 2019 12:50:20 -0500
+Received: from mail-qk1-f178.google.com ([209.85.222.178]:42167)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1iSPRg-0004Nw-1h
+ for USRP-users@lists.ettus.com; Wed, 06 Nov 2019 12:50:16 -0500
+Received: by mail-qk1-f178.google.com with SMTP id m4so25362099qke.9
+ for <USRP-users@lists.ettus.com>; Wed, 06 Nov 2019 09:49:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=Irf4nuHDVZG7wAwyeiQ0E1GFr5oO5wZVRgMZkCSRB4k=;
+ b=WU4koSpiPm4E6jO5EH7OqXtEOVgQeli7XsOKGdjMsCKtYMxb1aIPckcO8Ys2QWNJXS
+ YZ2jLGiLDRLdzJmvIdIb5uJFewMSGAuDogRObsadyjTUu9/NBOT8ediz9j2AMwUWLa7k
+ XGQ8YJfxA/doUn2d+Sr8YoipGUsmdca9EFvRnDasO4BmSnOcuDP6hY/xCGxKA/pSNmkz
+ Gw0/fWNxJ5CgWRCSJrytgFsDrBkOjCm10mhp9tnLFCs62eXKN339wYEpq3bu6NM6Lt0Z
+ a/enH3xHzOAVvpVkFqlrh2UBFQhshoBjAtNW+rbixGsSTeV6EWIJHTECAASDQVxn9Cfl
+ WN0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=Irf4nuHDVZG7wAwyeiQ0E1GFr5oO5wZVRgMZkCSRB4k=;
+ b=li4ZjrRYlUrswjPtnbZEvmh78/mUWs5MBkOTG4YqgBtE/NbGDq4h8y1L7jz2IIC+AY
+ MVYxUK5uWDWgmuJgUCZ0QIwfL0IoRDkvyeCCce1yOhzUbcIuSCaWYLw9Rd/234WbEs51
+ BxixyLNNOLT5XHrP0EVqvpXpws1pLy6TCWjFEnmtvZxqYHl6ojg0dNgrEVrRp1Xi1K3b
+ gkwmWkIVPs6D4jtciuCDpdXpMcN41oCK1WD9GamskGDpJo9H5JED5dIgWKFunjeXYDwx
+ MYCiukDj9Ha1MmNH3oCvkskMRWYEKHaxW90gqVBOl4pYPI0NcjpCT0drGBxSWI7AD1IX
+ YKoA==
+X-Gm-Message-State: APjAAAV3TUmjLP+fbZ7f1mdxnlsT/rlWpzfe2xXTSZRso5tR18cAP6xL
+ THAs3/yXYd5ry855cRQowTQysdiZUIw=
+X-Google-Smtp-Source: APXvYqxw3DGepZ8jDP4UDAatMjxOMbrn1mwIIm8VNFzvbAnB/hojQSoqa5KYfSIIxysCGxfUUbIEKw==
+X-Received: by 2002:ae9:dd07:: with SMTP id r7mr3227579qkf.248.1573062575166; 
+ Wed, 06 Nov 2019 09:49:35 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
+ [174.95.14.228])
+ by smtp.googlemail.com with ESMTPSA id n56sm15451903qtb.73.2019.11.06.09.49.34
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 06 Nov 2019 09:49:34 -0800 (PST)
+Message-ID: <5DC307AD.5030704@gmail.com>
+Date: Wed, 06 Nov 2019 12:49:33 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: Olivier Ravard <olivier.ravard@novagrid.com>
 References: <978d5f24-1129-7f41-1a63-9e219b0f2fee@novagrid.com>
  <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=olivier.ravard@novagrid.com; prefer-encrypt=mutual; keydata=
- mQENBFOZoNIBCACgxTvpz/Sw5h89QVOm048NN/oUpnQRhzEGH4l+ckDFY7v4h3wN43Dx8ami
- +Rc3JyqyOaQU0tTKFPesELckfm00NBLBv2FxbTcA05EI3zZRMHamEyigz2CK78Jolv/ydWFE
- HssruREi+ol7cswsKkoAxi6N5+OUmby6Bi6g3QuZkqQ3gVcpuaK7lNjd43rnF/V7keBfPfv+
- poqvfScPAE4PcgZ54uFEEBK+P7PaIs1j94Yn0C++LzA3s5g56Oad8U8ruoffLWSwZozY2C+i
- 6iME3tD+QNHy08JWZlKIegL7nn74dRyvcjhOoT+yzur3Du7btw9qLjD6S/Cbk+SxpGYTABEB
- AAG0LE9saXZpZXIgUmF2YXJkIDxvbGl2aWVyLnJhdmFyZEBub3ZhZ3JpZC5jb20+iQE4BBMB
- AgAiAhsjBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAUCV2k34AAKCRAQ4yLlBdy0jefHB/40
- uwjnt4PKpqFt29AhkG/u2DKmrwH837B7XLS3Ml03MmxB+F8EgmEAgZQElY9JNWMvZJGzlszz
- kFJ0dJMqIDp1+2v2Kv0gJwFG8HK5kXgFLwHR+T0WBJXzZ4YArgP7d4JZetoMZMEDHq7XyOTj
- HGUWDvhHdGIvgLPq+AabtMXXJCh9aALmPM8w/E8dQJ60SGRDE24kwUoJWm5p6xlsOx7DBj0v
- PpZcy2ows6eVgL8oyFFdyhQMkjlcbC51A3TlMdSRAphK2F/+HviqR/R/cGeKimHvQShbsD/7
- dwcT/Rxk9sm4oGSKVRr2/A9oJatmguQf92VhzohKlx0Kn/T6KJF3uQENBFOZoNIBCADAS/CX
- /9IegJKNtRZ1o5YDN+eCrQtdbXFJWIS4dPboyVTaJNv/G/1flQHbddKFjZ3UytxSB+mYVpuT
- t+z4ZFfoEp802RWlxo2K1wcQaSqf5kJ29AuX4PaT+/FdKkiABNUv9+kgN3vNhRyHqlhjCn8w
- RgvzbEzPiE5RFn0l7qf9zuc8z1qo8s/B/3WVbAKnJ8GmR7ODHJ4s9g95Ms4WwB+vhdN0dm5j
- /Rk2oOt4YIew3OsrsqaXQn4kPHc7L2eA87J6uuyxBisD4nuyakFzsHQN8Rim5di1g1QpXWPK
- VvSKFHlPNhVd1VZLPUY5WKCFOWZZiRNDQdI7kVKKa8WrRWc5ABEBAAGJAR8EGAECAAkCGwwF
- AldpN+AACgkQEOMi5QXctI1mfwf9F3a8HvD6oNmbOS4yOjBE2ZKp6oyKVOhU3W71hMab6Qcf
- OcdKGu4thm7EvfLE3lWjvaFS/nhPv8al9oLOfbin8nYLb88sHbKuxNdX6IRm4Gf4T88Ul6Ph
- k1zOO7G65uMXfCoA9XsxzwyM0cBZTApYR/bS5+iWlNh2+PhPYWI2ZfadA6eHwbKZ4dXibFuz
- l8Xcx9APaDmq3SZUNJElM/l3CiE6mURXjSpRDGN+MWBHFB9YKfC3A71Wd1cdvcf9sIsKDdDa
- F4CY4evZaWI1nUfSK27yr/wInKhZMbu7UHVf51dE8WLjLZAMi3hK+iG3yiTC4IgNYjR3y7yo
- rF52fiUwYA==
-Message-ID: <6377ea27-7921-8d88-c40e-d9f202d39b05@novagrid.com>
-Date: Wed, 6 Nov 2019 18:28:54 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
-MIME-Version: 1.0
-In-Reply-To: <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
+ <6377ea27-7921-8d88-c40e-d9f202d39b05@novagrid.com>
+In-Reply-To: <6377ea27-7921-8d88-c40e-d9f202d39b05@novagrid.com>
 Subject: Re: [USRP-users] TwinRx transfert function
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -66,10 +68,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Olivier Ravard via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olivier Ravard <olivier.ravard@novagrid.com>
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: USRP-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============1373128242932118667=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,140 +86,49 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1373128242932118667==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="SsKEwqPT1mjLUEmfnvJF6xd9o6ARq67aO"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---SsKEwqPT1mjLUEmfnvJF6xd9o6ARq67aO
-Content-Type: multipart/mixed; boundary="2swRvRYIrZYYjdw3KiIq3fR7JTgEf7R03";
- protected-headers="v1"
-From: Olivier Ravard <olivier.ravard@novagrid.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: USRP-users@lists.ettus.com
-Message-ID: <6377ea27-7921-8d88-c40e-d9f202d39b05@novagrid.com>
-Subject: Re: [USRP-users] TwinRx transfert function
-References: <978d5f24-1129-7f41-1a63-9e219b0f2fee@novagrid.com>
- <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
-In-Reply-To: <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
-
---2swRvRYIrZYYjdw3KiIq3fR7JTgEf7R03
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-IE
-
-1. The tune frequency is 1200 MHz in this case but we obtain same order o=
-f magnitude
-for fluctuations if another frequency is tuned (but transfert function co=
-uld be different).
-Our tests includes L band acquisitions (950 - 2150 MHz).
-
-2. The gain in this case is set in order to have 15 dB backoff (which is =
-margin relative
-to the
-maximum ADC amplitude). In this case, we use 85dB gain because the noise =
-generator gives
-a level around -135 dBm/Hz. But we observed the same things when we sampl=
-e satellite
-signals using 65dB gain.
-
-3. what do you mean by "overruns".
-
-regards,
-
-Olivier=20
-
-Le 06/11/2019 =C3=A0 17:59, Marcus D Leech a =C3=A9crit=C2=A0:
-> That is more passband ripple than I would expect.=C2=A0
->
-> What is your tunes frequency. What gain setting? Are you getting overru=
-ns during the
-> measurement?
->
->
-> Sent from my iPhone
->
->> On Nov 6, 2019, at 6:32 AM, Olivier Ravard via USRP-users <usrp-users@=
-lists.ettus.com>
->> wrote:
->>
->> =EF=BB=BF
->>
->> Hello,
->>
->> We use X300 with 2 TwinRx boards for acquisitions in L band (UHD 3.10.=
-3).
->>
->> It seems that the transfert function of the couple (X300 - TwinRx) sho=
-ws strong
->> fluctuations.
->> To measure these fluctuations, we put a white noise generator at the i=
-nput (this
->> generator was
->> measured before with a spectrum analyser and it show a very flat trans=
-fert function
->> over 1 GHz)
->> and we measure the PSD of the sampled 80MHz bw signal for the 4 inputs=
-=2E
->>
->> The result is shown on figures below:
->>
->> inputs 1 and 2 (first TwinRx):
->>
->> <bbhnehmblikapiem.png>
->> <fpnpgddncnklhkma.png>
->>
->> inputs 3 and 4 (second TwinRx):
->>
->> <lfkojlkpiadfgnml.png>
->> <bnokbonaahldkokn.png>
->>
->> Are these fluctuations normal ?
->>
->> regards,
->>
->> --=20
->> Olivier
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-
---2swRvRYIrZYYjdw3KiIq3fR7JTgEf7R03--
-
---SsKEwqPT1mjLUEmfnvJF6xd9o6ARq67aO
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEo6IEs2M8HtVrgPe4EOMi5QXctI0FAl3DAtYACgkQEOMi5QXc
-tI1aLAf9E19C45axrDXGM1LSAr73pMrJ30Zmt+8Enpc/9NHyv01Dvz65gJhWnABH
-CxHGCq4qlKtORV776JSvxVtu5u2MRmGngT+skgLgDW4EbVQ54fYOQfmLZaFs6P+r
-suOYVGbHfsWc6QiWCnAYCKdNYq5dpvPgHRIINUUQRIW3lQ4Xf19uKgt5h99R/H6N
-nXjYkujYflX70d5+CmFXRM66AjhOpK5ookfnpuOxB1ZqFriasKdINvHoFnF06WOn
-pDcimPaDGOPQ8WX0WpMwgf4jMGcfEOD9V6mHp672dlkKrb7B8t0aPmAUa6dPnFSe
-DIwRCdsAvLgaOmWqgb66lmxGUhrEoA==
-=UfLW
------END PGP SIGNATURE-----
-
---SsKEwqPT1mjLUEmfnvJF6xd9o6ARq67aO--
-
-
---===============1373128242932118667==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1373128242932118667==--
-
+T24gMTEvMDYvMjAxOSAxMjoyOCBQTSwgT2xpdmllciBSYXZhcmQgd3JvdGU6Cj4gMS4gVGhlIHR1
+bmUgZnJlcXVlbmN5IGlzIDEyMDAgTUh6IGluIHRoaXMgY2FzZSBidXQgd2Ugb2J0YWluIHNhbWUg
+b3JkZXIgb2YgbWFnbml0dWRlCj4gZm9yIGZsdWN0dWF0aW9ucyBpZiBhbm90aGVyIGZyZXF1ZW5j
+eSBpcyB0dW5lZCAoYnV0IHRyYW5zZmVydCBmdW5jdGlvbiBjb3VsZCBiZSBkaWZmZXJlbnQpLgo+
+IE91ciB0ZXN0cyBpbmNsdWRlcyBMIGJhbmQgYWNxdWlzaXRpb25zICg5NTAgLSAyMTUwIE1Ieiku
+Cj4KPiAyLiBUaGUgZ2FpbiBpbiB0aGlzIGNhc2UgaXMgc2V0IGluIG9yZGVyIHRvIGhhdmUgMTUg
+ZEIgYmFja29mZiAod2hpY2ggaXMgbWFyZ2luIHJlbGF0aXZlCj4gdG8gdGhlCj4gbWF4aW11bSBB
+REMgYW1wbGl0dWRlKS4gSW4gdGhpcyBjYXNlLCB3ZSB1c2UgODVkQiBnYWluIGJlY2F1c2UgdGhl
+IG5vaXNlIGdlbmVyYXRvciBnaXZlcwo+IGEgbGV2ZWwgYXJvdW5kIC0xMzUgZEJtL0h6LiBCdXQg
+d2Ugb2JzZXJ2ZWQgdGhlIHNhbWUgdGhpbmdzIHdoZW4gd2Ugc2FtcGxlIHNhdGVsbGl0ZQo+IHNp
+Z25hbHMgdXNpbmcgNjVkQiBnYWluLgo+Cj4gMy4gd2hhdCBkbyB5b3UgbWVhbiBieSAib3ZlcnJ1
+bnMiLgpodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV9nZW5lcmFsLmh0bWwjZ2Vu
+ZXJhbF9vdW5vdGVzCgpBbHNvLCBIb3cgd2FzIHRoaXMgc3BlY3RydW0gYWN0dWFsbHkgY2FwdHVy
+ZSAoaW4gdGhlIHNvZnR3YXJlIHNlbnNlKT8gIApJJ2xsIG5vdGUgdGhhdCA4ME1zcHMgaXMgbm90
+IGEgdmFsaWQgZGVsaXZlcmVkIHNhbXBsZS1yYXRlIGZvciB0aGUKICAgWDMxMCB3aXRoIGFueSBv
+ZiB0aGUgc3RhbmRhcmQgbWFzdGVyIGNsb2Nrcywgc28gdG8gY2FwdHVyZSA4ME1oeiBvZiAKKGFu
+YWxvZykgYmFuZHdpZHRoLCB5b3UnZCBuZWVkIGEgMTAwTXNwcyBzYW1wbGUgcmF0ZSwgd2hpY2gg
+SVMKICAgc3VwcG9ydGVkLgoKCj4KPiByZWdhcmRzLAo+Cj4gT2xpdmllcgo+Cj4gTGUgMDYvMTEv
+MjAxOSDDoCAxNzo1OSwgTWFyY3VzIEQgTGVlY2ggYSDDqWNyaXQgOgo+PiBUaGF0IGlzIG1vcmUg
+cGFzc2JhbmQgcmlwcGxlIHRoYW4gSSB3b3VsZCBleHBlY3QuCj4+Cj4+IFdoYXQgaXMgeW91ciB0
+dW5lcyBmcmVxdWVuY3kuIFdoYXQgZ2FpbiBzZXR0aW5nPyBBcmUgeW91IGdldHRpbmcgb3ZlcnJ1
+bnMgZHVyaW5nIHRoZQo+PiBtZWFzdXJlbWVudD8KPj4KPj4KPj4gU2VudCBmcm9tIG15IGlQaG9u
+ZQo+Pgo+Pj4gT24gTm92IDYsIDIwMTksIGF0IDY6MzIgQU0sIE9saXZpZXIgUmF2YXJkIHZpYSBV
+U1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPj4+IHdyb3RlOgo+Pj4KPj4+
+IO+7vwo+Pj4KPj4+IEhlbGxvLAo+Pj4KPj4+IFdlIHVzZSBYMzAwIHdpdGggMiBUd2luUnggYm9h
+cmRzIGZvciBhY3F1aXNpdGlvbnMgaW4gTCBiYW5kIChVSEQgMy4xMC4zKS4KPj4+Cj4+PiBJdCBz
+ZWVtcyB0aGF0IHRoZSB0cmFuc2ZlcnQgZnVuY3Rpb24gb2YgdGhlIGNvdXBsZSAoWDMwMCAtIFR3
+aW5SeCkgc2hvd3Mgc3Ryb25nCj4+PiBmbHVjdHVhdGlvbnMuCj4+PiBUbyBtZWFzdXJlIHRoZXNl
+IGZsdWN0dWF0aW9ucywgd2UgcHV0IGEgd2hpdGUgbm9pc2UgZ2VuZXJhdG9yIGF0IHRoZSBpbnB1
+dCAodGhpcwo+Pj4gZ2VuZXJhdG9yIHdhcwo+Pj4gbWVhc3VyZWQgYmVmb3JlIHdpdGggYSBzcGVj
+dHJ1bSBhbmFseXNlciBhbmQgaXQgc2hvdyBhIHZlcnkgZmxhdCB0cmFuc2ZlcnQgZnVuY3Rpb24K
+Pj4+IG92ZXIgMSBHSHopCj4+PiBhbmQgd2UgbWVhc3VyZSB0aGUgUFNEIG9mIHRoZSBzYW1wbGVk
+IDgwTUh6IGJ3IHNpZ25hbCBmb3IgdGhlIDQgaW5wdXRzLgo+Pj4gaHR0cHM6Ly9maWxlcy5ldHR1
+cy5jb20vbWFudWFsL3BhZ2VfZ2VuZXJhbC5odG1sI2dlbmVyYWxfb3Vub3Rlcwo+Pj4gVGhlIHJl
+c3VsdCBpcyBzaG93biBvbiBmaWd1cmVzIGJlbG93Ogo+Pj4KPj4+IGlucHV0cyAxIGFuZCAyIChm
+aXJzdCBUd2luUngpOgo+Pj4KPj4+IDxiYmhuZWhtYmxpa2FwaWVtLnBuZz4KPj4+IDxmcG5wZ2Rk
+bmNua2xoa21hLnBuZz4KPj4+Cj4+PiBpbnB1dHMgMyBhbmQgNCAoc2Vjb25kIFR3aW5SeCk6Cj4+
+Pgo+Pj4gPGxma29qbGtwaWFkZmdubWwucG5nPgo+Pj4gPGJub2tib25hYWhsZGtva24ucG5nPgo+
+Pj4KPj4+IEFyZSB0aGVzZSBmbHVjdHVhdGlvbnMgbm9ybWFsID8KPj4+Cj4+PiByZWdhcmRzLAo+
+Pj4KPj4+IC0tIAo+Pj4gT2xpdmllcgo+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KPj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+PiBVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xp
+c3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
+bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
