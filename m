@@ -2,60 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C00ACF1BEE
-	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2019 18:01:17 +0100 (CET)
-Received: from [::1] (port=51442 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B6A2F1C7D
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Nov 2019 18:29:42 +0100 (CET)
+Received: from [::1] (port=56548 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iSOg8-0001EX-OB; Wed, 06 Nov 2019 12:01:08 -0500
-Received: from mail-qt1-f174.google.com ([209.85.160.174]:41402)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iSOfI-00062d-DL
- for USRP-users@lists.ettus.com; Wed, 06 Nov 2019 12:00:16 -0500
-Received: by mail-qt1-f174.google.com with SMTP id o3so34441461qtj.8
- for <USRP-users@lists.ettus.com>; Wed, 06 Nov 2019 08:59:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:subject:mime-version:to:from:in-reply-to
- :cc:date:message-id:references;
- bh=vuJ/nb4Uz4n64aQE2DE4uLIKTcmPFWdsH/wqxsQ1Ij4=;
- b=OfhHLq7JuiEjZWISfkWMu9xTgeYCd6jMRz+x408WrJBKX8IyTJGBnH6jFBCYxPkoAW
- hzwnjMyeaAHXbBJrdS+FldllC7WOrwRJa8N02F3rIiSPu3H2AKeX9pKsENe2g8TmFUTW
- 2jt/ZC4NIph5FleIOe4AdSEOOq8gaeCYG0GvJIvEKIYiK3RR40t3v+AY+qZ+a/TFqiRx
- /TSunfy7bulJdU6KgUkkt/MBDuRCom70gO/LlAnukuAjfkTJTIkD1Bbx86E3+5BgpkWd
- ES36Fd8fdANUJVp0uC8FcbuL2cCSjGGUfpJvhXSSU3gKtiUOtuQmsLqcaNiBjMhcLOCB
- 0xDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:subject:mime-version
- :to:from:in-reply-to:cc:date:message-id:references;
- bh=vuJ/nb4Uz4n64aQE2DE4uLIKTcmPFWdsH/wqxsQ1Ij4=;
- b=P6JXeNvvZM9wKXTYKD7lnY3h3vDnMSYWh+e1HvtaN+tWR74XFrlS987lyLiU0gGlfB
- 8HiNkQT1pRcLN3vHtQB2sgWrfMSDTx6xHrBZD7JbvOPj8xqBrGz88YIlZ5MbpZXtJpTY
- 4CuZpT7XdQZPMe7OANi1AsUq3HzYhPTsVrXqrRKDYWl1B9Z/bhm1pv45rw89NQwm+9xY
- 28G8ubgkIE66DjttudMzMkGMDwCBrda2bhyf6nOUpX9y57uG8zE4NwxQvtvaIsDPlKqS
- ZdKowQ0mQgMDZ5hxKAairiz7MgoU9g89ZRFG65dX9B4aFEARmlLoKNqxAkntyFPnH9ma
- jf6A==
-X-Gm-Message-State: APjAAAX6INXdvuHmvkl1p+o8nPUPf+4zi/42ohf44R0XufUBFszsoWp6
- ft/R6gQuF3lFcxRwuw1bVcgzxv7uXfg=
-X-Google-Smtp-Source: APXvYqy4od6+wDQAPz4mnRuQkEMYZ8E4YO1SgYSGnQ0nwxGtDt3lJC3hX8Oo4fj8W2pvgEUs6SAT8Q==
-X-Received: by 2002:ac8:7258:: with SMTP id l24mr3461926qtp.124.1573059575684; 
- Wed, 06 Nov 2019 08:59:35 -0800 (PST)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
- [174.95.14.228])
- by smtp.gmail.com with ESMTPSA id o3sm23333331qtf.84.2019.11.06.08.59.35
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 06 Nov 2019 08:59:35 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-To: Olivier Ravard <olivier.ravard@novagrid.com>
-X-Universally-Unique-Identifier: 5662A84F-DA64-47BD-87D6-FCDF049DA2EB
-In-Reply-To: <978d5f24-1129-7f41-1a63-9e219b0f2fee@novagrid.com>
-Date: Wed, 6 Nov 2019 11:59:34 -0500
-X-Apple-Message-Smime-Encrypt: NO
-Message-Id: <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
+	id 1iSP7l-00033Y-6D; Wed, 06 Nov 2019 12:29:41 -0500
+Received: from smtp07.smtpout.orange.fr ([80.12.242.129]:46089
+ helo=smtp.smtpout.orange.fr)
+ by mm2.emwd.com with esmtps (TLSv1:DHE-RSA-AES128-SHA:128)
+ (Exim 4.92) (envelope-from <olivier.ravard@novagrid.com>)
+ id 1iSP7h-0002w9-6a
+ for usrp-users@lists.ettus.com; Wed, 06 Nov 2019 12:29:37 -0500
+Received: from [192.168.1.21] ([81.250.184.13]) by mwinf5d42 with ME
+ id NhUu2100S0HlroZ03hUv6Z; Wed, 06 Nov 2019 18:28:55 +0100
+X-ME-Helo: [192.168.1.21]
+X-ME-Auth: Y2hyaXN0aWFuZS5yYXZhcmRAd2FuYWRvby5mcg==
+X-ME-Date: Wed, 06 Nov 2019 18:28:55 +0100
+X-ME-IP: 81.250.184.13
+To: Marcus D Leech <patchvonbraun@gmail.com>
 References: <978d5f24-1129-7f41-1a63-9e219b0f2fee@novagrid.com>
-X-Apple-Notify-Thread: NO
-X-Mailer: iPhone Mail (17A878)
+ <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=olivier.ravard@novagrid.com; prefer-encrypt=mutual; keydata=
+ mQENBFOZoNIBCACgxTvpz/Sw5h89QVOm048NN/oUpnQRhzEGH4l+ckDFY7v4h3wN43Dx8ami
+ +Rc3JyqyOaQU0tTKFPesELckfm00NBLBv2FxbTcA05EI3zZRMHamEyigz2CK78Jolv/ydWFE
+ HssruREi+ol7cswsKkoAxi6N5+OUmby6Bi6g3QuZkqQ3gVcpuaK7lNjd43rnF/V7keBfPfv+
+ poqvfScPAE4PcgZ54uFEEBK+P7PaIs1j94Yn0C++LzA3s5g56Oad8U8ruoffLWSwZozY2C+i
+ 6iME3tD+QNHy08JWZlKIegL7nn74dRyvcjhOoT+yzur3Du7btw9qLjD6S/Cbk+SxpGYTABEB
+ AAG0LE9saXZpZXIgUmF2YXJkIDxvbGl2aWVyLnJhdmFyZEBub3ZhZ3JpZC5jb20+iQE4BBMB
+ AgAiAhsjBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAUCV2k34AAKCRAQ4yLlBdy0jefHB/40
+ uwjnt4PKpqFt29AhkG/u2DKmrwH837B7XLS3Ml03MmxB+F8EgmEAgZQElY9JNWMvZJGzlszz
+ kFJ0dJMqIDp1+2v2Kv0gJwFG8HK5kXgFLwHR+T0WBJXzZ4YArgP7d4JZetoMZMEDHq7XyOTj
+ HGUWDvhHdGIvgLPq+AabtMXXJCh9aALmPM8w/E8dQJ60SGRDE24kwUoJWm5p6xlsOx7DBj0v
+ PpZcy2ows6eVgL8oyFFdyhQMkjlcbC51A3TlMdSRAphK2F/+HviqR/R/cGeKimHvQShbsD/7
+ dwcT/Rxk9sm4oGSKVRr2/A9oJatmguQf92VhzohKlx0Kn/T6KJF3uQENBFOZoNIBCADAS/CX
+ /9IegJKNtRZ1o5YDN+eCrQtdbXFJWIS4dPboyVTaJNv/G/1flQHbddKFjZ3UytxSB+mYVpuT
+ t+z4ZFfoEp802RWlxo2K1wcQaSqf5kJ29AuX4PaT+/FdKkiABNUv9+kgN3vNhRyHqlhjCn8w
+ RgvzbEzPiE5RFn0l7qf9zuc8z1qo8s/B/3WVbAKnJ8GmR7ODHJ4s9g95Ms4WwB+vhdN0dm5j
+ /Rk2oOt4YIew3OsrsqaXQn4kPHc7L2eA87J6uuyxBisD4nuyakFzsHQN8Rim5di1g1QpXWPK
+ VvSKFHlPNhVd1VZLPUY5WKCFOWZZiRNDQdI7kVKKa8WrRWc5ABEBAAGJAR8EGAECAAkCGwwF
+ AldpN+AACgkQEOMi5QXctI1mfwf9F3a8HvD6oNmbOS4yOjBE2ZKp6oyKVOhU3W71hMab6Qcf
+ OcdKGu4thm7EvfLE3lWjvaFS/nhPv8al9oLOfbin8nYLb88sHbKuxNdX6IRm4Gf4T88Ul6Ph
+ k1zOO7G65uMXfCoA9XsxzwyM0cBZTApYR/bS5+iWlNh2+PhPYWI2ZfadA6eHwbKZ4dXibFuz
+ l8Xcx9APaDmq3SZUNJElM/l3CiE6mURXjSpRDGN+MWBHFB9YKfC3A71Wd1cdvcf9sIsKDdDa
+ F4CY4evZaWI1nUfSK27yr/wInKhZMbu7UHVf51dE8WLjLZAMi3hK+iG3yiTC4IgNYjR3y7yo
+ rF52fiUwYA==
+Message-ID: <6377ea27-7921-8d88-c40e-d9f202d39b05@novagrid.com>
+Date: Wed, 6 Nov 2019 18:28:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
+MIME-Version: 1.0
+In-Reply-To: <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
 Subject: Re: [USRP-users] TwinRx transfert function
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -68,10 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+From: Olivier Ravard via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Olivier Ravard <olivier.ravard@novagrid.com>
 Cc: USRP-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============2676801768887819171=="
+Content-Type: multipart/mixed; boundary="===============1373128242932118667=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,119 +83,131 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1373128242932118667==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="SsKEwqPT1mjLUEmfnvJF6xd9o6ARq67aO"
 
---===============2676801768887819171==
-Content-Type: multipart/alternative; boundary=Apple-Mail-DB1AB944-0F6B-4E5A-BDB2-5ECF2F0135DB
-Content-Transfer-Encoding: 7bit
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--SsKEwqPT1mjLUEmfnvJF6xd9o6ARq67aO
+Content-Type: multipart/mixed; boundary="2swRvRYIrZYYjdw3KiIq3fR7JTgEf7R03";
+ protected-headers="v1"
+From: Olivier Ravard <olivier.ravard@novagrid.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: USRP-users@lists.ettus.com
+Message-ID: <6377ea27-7921-8d88-c40e-d9f202d39b05@novagrid.com>
+Subject: Re: [USRP-users] TwinRx transfert function
+References: <978d5f24-1129-7f41-1a63-9e219b0f2fee@novagrid.com>
+ <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
+In-Reply-To: <DC77B03C-58E3-4BD9-81AA-750F82B2C917@gmail.com>
 
-
---Apple-Mail-DB1AB944-0F6B-4E5A-BDB2-5ECF2F0135DB
-Content-Type: text/plain;
-	charset=utf-8
+--2swRvRYIrZYYjdw3KiIq3fR7JTgEf7R03
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Content-Language: en-IE
 
-That is more passband ripple than I would expect.=20
+1. The tune frequency is 1200 MHz in this case but we obtain same order o=
+f magnitude
+for fluctuations if another frequency is tuned (but transfert function co=
+uld be different).
+Our tests includes L band acquisitions (950 - 2150 MHz).
 
-What is your tunes frequency. What gain setting? Are you getting overruns du=
-ring the measurement?
+2. The gain in this case is set in order to have 15 dB backoff (which is =
+margin relative
+to the
+maximum ADC amplitude). In this case, we use 85dB gain because the noise =
+generator gives
+a level around -135 dBm/Hz. But we observed the same things when we sampl=
+e satellite
+signals using 65dB gain.
 
+3. what do you mean by "overruns".
 
-Sent from my iPhone
+regards,
 
-> On Nov 6, 2019, at 6:32 AM, Olivier Ravard via USRP-users <usrp-users@list=
-s.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> Hello,
->=20
-> We use X300 with 2 TwinRx boards for acquisitions in L band (UHD 3.10.3).
->=20
-> It seems that the transfert function of the couple (X300 - TwinRx) shows s=
-trong fluctuations.
-> To measure these fluctuations, we put a white noise generator at the input=
- (this generator was
-> measured before with a spectrum analyser and it show a very flat transfert=
- function over 1 GHz)
-> and we measure the PSD of the sampled 80MHz bw signal for the 4 inputs.
->=20
-> The result is shown on figures below:
->=20
-> inputs 1 and 2 (first TwinRx):
->=20
-> <bbhnehmblikapiem.png>
-> <fpnpgddncnklhkma.png>
->=20
-> inputs 3 and 4 (second TwinRx):
->=20
-> <lfkojlkpiadfgnml.png>
-> <bnokbonaahldkokn.png>
->=20
-> Are these fluctuations normal ?
->=20
-> regards,
->=20
-> --=20
-> Olivier
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+Olivier=20
 
---Apple-Mail-DB1AB944-0F6B-4E5A-BDB2-5ECF2F0135DB
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">That is more passband ripple than I would e=
-xpect.&nbsp;<div><br></div><div>What is your tunes frequency. What gain sett=
-ing? Are you getting overruns during the measurement?</div><div><br></div><d=
-iv><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><block=
-quote type=3D"cite">On Nov 6, 2019, at 6:32 AM, Olivier Ravard via USRP-user=
-s &lt;usrp-users@lists.ettus.com&gt; wrote:<br><br></blockquote></div><block=
-quote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
- =20
-
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF-8"=
+Le 06/11/2019 =C3=A0 17:59, Marcus D Leech a =C3=A9crit=C2=A0:
+> That is more passband ripple than I would expect.=C2=A0
 >
- =20
- =20
-    <p>Hello,</p>
-    <p>We use X300 with 2 TwinRx boards for acquisitions in L band (UHD
-      3.10.3).</p>
-    <p>It seems that the transfert function of the couple (X300 -
-      TwinRx) shows strong fluctuations.<br>
-      To measure these fluctuations, we put a white noise generator at
-      the input (this generator was<br>
-      measured before with a spectrum analyser and it show a very flat
-      transfert function over 1 GHz)<br>
-      and we measure the PSD of the sampled 80MHz bw signal for the 4
-      inputs.</p>
-    <p>The result is shown on figures below:</p>
-    <p>inputs 1 and 2 (first TwinRx):<br>
-    </p>
-    <p><div>&lt;bbhnehmblikapiem.png&gt;</div><div>&lt;fpnpgddncnklhkma.png&=
-gt;</div></p>
-    <p>inputs 3 and 4 (second TwinRx):</p>
-    <p><div>&lt;lfkojlkpiadfgnml.png&gt;</div><div>&lt;bnokbonaahldkokn.png&=
-gt;</div></p>
-    <p>Are these fluctuations normal ?</p>
-    <p>regards,<br>
-    </p>
-    <pre class=3D"moz-signature" cols=3D"90">--=20
-Olivier
-</pre>
- =20
+> What is your tunes frequency. What gain setting? Are you getting overru=
+ns during the
+> measurement?
+>
+>
+> Sent from my iPhone
+>
+>> On Nov 6, 2019, at 6:32 AM, Olivier Ravard via USRP-users <usrp-users@=
+lists.ettus.com>
+>> wrote:
+>>
+>> =EF=BB=BF
+>>
+>> Hello,
+>>
+>> We use X300 with 2 TwinRx boards for acquisitions in L band (UHD 3.10.=
+3).
+>>
+>> It seems that the transfert function of the couple (X300 - TwinRx) sho=
+ws strong
+>> fluctuations.
+>> To measure these fluctuations, we put a white noise generator at the i=
+nput (this
+>> generator was
+>> measured before with a spectrum analyser and it show a very flat trans=
+fert function
+>> over 1 GHz)
+>> and we measure the PSD of the sampled 80MHz bw signal for the 4 inputs=
+=2E
+>>
+>> The result is shown on figures below:
+>>
+>> inputs 1 and 2 (first TwinRx):
+>>
+>> <bbhnehmblikapiem.png>
+>> <fpnpgddncnklhkma.png>
+>>
+>> inputs 3 and 4 (second TwinRx):
+>>
+>> <lfkojlkpiadfgnml.png>
+>> <bnokbonaahldkokn.png>
+>>
+>> Are these fluctuations normal ?
+>>
+>> regards,
+>>
+>> --=20
+>> Olivier
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></div></body></html>=
 
---Apple-Mail-DB1AB944-0F6B-4E5A-BDB2-5ECF2F0135DB--
+--2swRvRYIrZYYjdw3KiIq3fR7JTgEf7R03--
+
+--SsKEwqPT1mjLUEmfnvJF6xd9o6ARq67aO
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEo6IEs2M8HtVrgPe4EOMi5QXctI0FAl3DAtYACgkQEOMi5QXc
+tI1aLAf9E19C45axrDXGM1LSAr73pMrJ30Zmt+8Enpc/9NHyv01Dvz65gJhWnABH
+CxHGCq4qlKtORV776JSvxVtu5u2MRmGngT+skgLgDW4EbVQ54fYOQfmLZaFs6P+r
+suOYVGbHfsWc6QiWCnAYCKdNYq5dpvPgHRIINUUQRIW3lQ4Xf19uKgt5h99R/H6N
+nXjYkujYflX70d5+CmFXRM66AjhOpK5ookfnpuOxB1ZqFriasKdINvHoFnF06WOn
+pDcimPaDGOPQ8WX0WpMwgf4jMGcfEOD9V6mHp672dlkKrb7B8t0aPmAUa6dPnFSe
+DIwRCdsAvLgaOmWqgb66lmxGUhrEoA==
+=UfLW
+-----END PGP SIGNATURE-----
+
+--SsKEwqPT1mjLUEmfnvJF6xd9o6ARq67aO--
 
 
---===============2676801768887819171==
+--===============1373128242932118667==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -208,5 +218,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2676801768887819171==--
+--===============1373128242932118667==--
 
