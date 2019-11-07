@@ -2,51 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D93F3799
-	for <lists+usrp-users@lfdr.de>; Thu,  7 Nov 2019 19:51:57 +0100 (CET)
-Received: from [::1] (port=46020 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0945DF3995
+	for <lists+usrp-users@lfdr.de>; Thu,  7 Nov 2019 21:36:28 +0100 (CET)
+Received: from [::1] (port=59192 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iSmsr-0004mr-Mu; Thu, 07 Nov 2019 13:51:53 -0500
-Received: from secgw1.intern.tuwien.ac.at ([128.130.30.71]:34834)
+	id 1iSoVu-0002Jb-JT; Thu, 07 Nov 2019 15:36:18 -0500
+Received: from starfish.geekisp.com ([216.168.135.166]:30750)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <daniel.neunteufel@tuwien.ac.at>)
- id 1iSmso-0004fz-3y
- for usrp-users@lists.ettus.com; Thu, 07 Nov 2019 13:51:50 -0500
-Received: from totemomail (localhost [127.0.0.1])
- by secgw1.intern.tuwien.ac.at (8.14.7/8.14.7) with ESMTP id xA7Ip80V012452
- for <usrp-users@lists.ettus.com>; Thu, 7 Nov 2019 19:51:08 +0100
-Received: from localhost ([127.0.0.1])
- by totemomail (Totemo SMTP Server) with SMTP ID 956
- for <usrp-users@lists.ettus.com>;
- Thu, 7 Nov 2019 19:51:08 +0100 (CET)
-Received: from edge13b.intern.tuwien.ac.at (edge13b.intern.tuwien.ac.at
- [IPv6:2001:629:1005:30::67])
- by secgw1.intern.tuwien.ac.at (8.14.7/8.14.7) with ESMTP id xA7Ip8e1012439
- (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=OK)
- for <usrp-users@lists.ettus.com>; Thu, 7 Nov 2019 19:51:08 +0100
-Received: from mbx13a.intern.tuwien.ac.at (2001:629:1005:30::61) by
- edge13b.intern.tuwien.ac.at (2001:629:1005:30::67) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Thu, 7 Nov 2019 19:51:08 +0100
-Received: from mbx13b.intern.tuwien.ac.at (2001:629:1005:30::62) by
- mbx13a.intern.tuwien.ac.at (2001:629:1005:30::61) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Thu, 7 Nov 2019 19:51:08 +0100
-Received: from mbx13b.intern.tuwien.ac.at ([fe80::f0e9:7c2:196e:5846]) by
- mbx13b.intern.tuwien.ac.at ([fe80::f0e9:7c2:196e:5846%20]) with mapi id
- 15.00.1497.000; Thu, 7 Nov 2019 19:51:07 +0100
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: TwinRX RX1 LO1 occasionally at wrong frequency
-Thread-Index: AQHVlZw0sw0BkcMIjkeMj62SWLx4Nw==
-Date: Thu, 7 Nov 2019 18:51:07 +0000
-Message-ID: <1573152667302.33446@tuwien.ac.at>
-Accept-Language: en-US, de-AT
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [128.130.30.11]
+ (Exim 4.92) (envelope-from <philip@balister.org>) id 1iSoVq-0002ES-HE
+ for USRP-users@lists.ettus.com; Thu, 07 Nov 2019 15:36:14 -0500
+Received: (qmail 9470 invoked by uid 1003); 7 Nov 2019 20:35:28 -0000
+Received: from unknown (HELO ?192.168.11.139?)
+ (philip@opensdr.com@73.152.143.112)
+ by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+ 7 Nov 2019 20:35:28 -0000
+To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+ mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+ HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+ rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+ 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+ fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+ AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
+ CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+ nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+ 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+ YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+ 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+ yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
+ gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+ GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+ uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+ LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+ gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
+ WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+ 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+ ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+ icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+ ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+ 6eUfr0u7CwnEyqiQ
+Message-ID: <a781b923-d7cb-6c21-4b97-89ca0c73c0e8@balister.org>
+Date: Thu, 7 Nov 2019 21:35:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
 MIME-Version: 1.0
-Subject: [USRP-users] TwinRX RX1 LO1 occasionally at wrong frequency
+Content-Language: en-US
+Subject: [USRP-users] Musl default for future E320 builds?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -58,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Neunteufel, Daniel via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Neunteufel, Daniel" <daniel.neunteufel@tuwien.ac.at>
-Content-Type: multipart/mixed; boundary="===============8272165680778766727=="
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,142 +77,17 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8272165680778766727==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_157315266730233446tuwienacat_"
+I'm working on getting gnuradio on the E#@) and am testing the thud
+branch of meta-ettus (Which is still a bit dated :(). I noticed in:
 
---_000_157315266730233446tuwienacat_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+https://github.com/EttusResearch/meta-ettus/commit/14ae3db3d794c90b40a16639e63d5a2cd58c1693#diff-e349d3011c378939978585aa9c11e201
 
-Hi all,
+the default c library changed from glibc to musl. Any particular reason
+for this switch? Has anyone built gnuradio with musl yet?
 
-I'm using two X310, each with two TwinRX daughterboards, connected to a hos=
-t via two 10Gbit SFP+ links per X310. The host machine runs UHD 3.14.1.1 us=
-ing DPDK on ubuntu 18.04.
-
-When applying a CW (2.44 GHz) signal at the input of all 8 ports and runnin=
-g rx_samples_to_file for all channels, occasionally, the obtained IQ data d=
-oes not contain the applied signal. This happens randomly, in about 50 % of=
- the cases, only on the TwinRX RX1 channels and only on three out of four T=
-winRX daughterboards.
-
-I tried to debug the problem and it turns out that in those cases the LO1 o=
-f the affected channels cannot be observed at 3.69 GHz as expected, but rat=
-her around 3.25 GHz.
-The UHD API, however, claims that everything is in best order when reading =
-back the LO values. Inserting delays after setting the frequency values as =
-recommended does not help, either.
-All LO sources are set to "internal".
-
-Any ideas what could be the issue here? Thanks!
-
-Regards,
-Daniel
-
-
-
---_000_157315266730233446tuwienacat_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
-ottom:0;} @font-face=0A=
-	{font-family:"Cambria Math"}=0A=
-@font-face=0A=
-	{font-family:Calibri}=0A=
-p.MsoNormal, li.MsoNormal, div.MsoNormal=0A=
-	{margin:0cm;=0A=
-	margin-bottom:.0001pt;=0A=
-	font-size:11.0pt;=0A=
-	font-family:"Calibri",sans-serif}=0A=
-a:link, span.MsoHyperlink=0A=
-	{color:#0563C1;=0A=
-	text-decoration:underline}=0A=
-a:visited, span.MsoHyperlinkFollowed=0A=
-	{color:#954F72;=0A=
-	text-decoration:underline}=0A=
-span.EmailStyle17=0A=
-	{font-family:"Calibri",sans-serif;=0A=
-	color:windowtext}=0A=
-span.SpellE=0A=
-	{}=0A=
-.MsoChpDefault=0A=
-	{font-family:"Calibri",sans-serif}=0A=
-@page WordSection1=0A=
-	{margin:72.0pt 72.0pt 72.0pt 72.0pt}=0A=
-div.WordSection1=0A=
-	{}--></style>
-</head>
-<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
-FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US">Hi all,</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US">I&#8217;m using two =
-X310, each with two
-<span class=3D"SpellE">TwinRX</span> daughterboards, connected to a host vi=
-a two 10Gbit SFP&#43; links per X310. The host machine runs UHD 3.14.1.1 us=
-ing DPDK on<span style=3D"" lang=3D"EN-US">&nbsp;ubuntu 18.04.</span><br>
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US"><br>
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US">When applying a CW (=
-<span style=3D"" lang=3D"EN-US">2.44 GHz</span>) signal at the input of all=
- 8 ports and running rx_samples_to_file for all channels, occasionally, the=
- obtained IQ data does not contain the applied
- signal. This happens randomly, in about 50 % of the cases, only<span style=
-=3D"" lang=3D"EN-US">&nbsp;on the TwinRX RX1 channels&nbsp;and only&nbsp;on=
- three out of four TwinRX daughterboards.</span><br>
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US"><br>
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US">I tried to debug the=
- problem and it turns out that in&nbsp;those cases the LO1 of the affected =
-channels cannot be observed at 3.69 GHz as expected, but rather around 3.25=
- GHz.<br>
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US">The UHD API, however=
-, claims that everything is in best order when reading back the LO values. =
-Inserting delays after setting the frequency values as recommended does not=
- help, either.<br>
-All LO sources are set to &quot;internal&quot;.<br>
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US"><br>
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US">Any&nbsp;ideas what&=
-nbsp;could be the issue here? Thanks!<br>
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US"><br>
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"" lang=3D"EN-US">Regards,<br>
-Daniel <br>
-<br>
-</span></p>
-<p class=3D"MsoNormal"><br>
-<span style=3D"" lang=3D"EN-US"></span></p>
-</div>
-</body>
-</html>
-
---_000_157315266730233446tuwienacat_--
-
-
---===============8272165680778766727==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Philip
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8272165680778766727==--
-
