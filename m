@@ -2,54 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0603F5493
-	for <lists+usrp-users@lfdr.de>; Fri,  8 Nov 2019 20:25:18 +0100 (CET)
-Received: from [::1] (port=56064 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95722F5F97
+	for <lists+usrp-users@lfdr.de>; Sat,  9 Nov 2019 15:49:12 +0100 (CET)
+Received: from [::1] (port=47724 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iT9sj-0005Zn-OM; Fri, 08 Nov 2019 14:25:17 -0500
-Received: from mail-lf1-f41.google.com ([209.85.167.41]:42674)
+	id 1iTS33-00029M-PP; Sat, 09 Nov 2019 09:49:09 -0500
+Received: from mail-wm1-f51.google.com ([209.85.128.51]:38014)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jlockhartrt@gmail.com>)
- id 1iT9se-0005Sg-OY
- for usrp-users@lists.ettus.com; Fri, 08 Nov 2019 14:25:13 -0500
-Received: by mail-lf1-f41.google.com with SMTP id z12so5278512lfj.9
- for <usrp-users@lists.ettus.com>; Fri, 08 Nov 2019 11:24:52 -0800 (PST)
+ (Exim 4.92) (envelope-from <ejkreinar@gmail.com>) id 1iTS2z-00024U-30
+ for usrp-users@lists.ettus.com; Sat, 09 Nov 2019 09:49:05 -0500
+Received: by mail-wm1-f51.google.com with SMTP id z19so9036202wmk.3
+ for <usrp-users@lists.ettus.com>; Sat, 09 Nov 2019 06:48:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Z7wJlT99wjx+MMwVHipeVzNh0WtPEcRbmMlzMkStmQo=;
- b=Txkd9CEJWIPalg90FWfOUWLqzHHfyxPe7MzYv5rjel58FuV11XHhBQXMhx1kvQDBej
- HQuC+NNUYFzXDB4uOlOAA2TfvNlP4kcTO37bIEzbaAgCTwUraDV3NRdrryxtIM+gfR6o
- vzhcVtqxrf1wrgXAeHMUptCVi/R2b/II313crAfW35VWFzNPHMiJQcUJEDMLGTVyVxKP
- gpidDgDJjSdEo0yF5Zuq7RDHnlW5Ti+QN+gIJSd1cwTLBl4m3pXkdhf1MLek1JJud7/C
- 7lMoGff1CPPYVKP4miiw6e2dvWY8jtAuwdU3zpdZ/aBH2sW/eok3Lj1endn+KJTZsR3+
- SznA==
+ :cc; bh=hHPkcJOTgeZocM4Q1Io1vuCpjv+weO3j+hkZumIduRg=;
+ b=jBsWuqtNcIvJzfEvXizaRdPd0Y8R56ai3vaG5GrhbF52XZ+sXqVTZ5MoC5ARg1FPYv
+ 6Ryh9QGQ7enhLKdXx/X4SJPiwMRmWHE5AJe2NPj6kKcBiaBbs01UQtQoSO0Hwghfdbjp
+ mikGW1fjvlpDbtFFp+3wMr3GGQqJr0h0FJmJp81x1Ew7RuBP5fVrAvS7baO8tJvHzjAB
+ u4JvI5I7kBsxIl9f9VgoWbgz5llPOEZWZ98+uxSADh+G5vNw8qGolsviXj6/nXx+wgDO
+ pj3A6yGdE0Df2eDLViouecn5VFcOp3fzW01f4cK+2MuVzc1Wf/aI7Gp7KwfFky1NxB1j
+ ZeeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Z7wJlT99wjx+MMwVHipeVzNh0WtPEcRbmMlzMkStmQo=;
- b=Ors8gHA4o/nYqaC8RuIJmgFf0OFQnu3PCsQkyssuRffduGN/3qt/fVbMjSCd7/haHZ
- /s6vYRVgJEtT7HhStVXzELh7K2umuYgdibMMOA0Sct/CX/oW41q2lTf4bW74ly0PO2xh
- DW54VV+UV1UIGHR1h8veZzGGJ5Yu/VtilLlAI+G0zgmY5FiKIbXYWQmggkfrmdVmKZDb
- lFG1kYeTV3t5t3lWduPFA4o8mBLEKKKofz5tUXKxjDIMsYQkK9yszqPSJyhb2RkB13Gq
- N9aAJPor1rPEqn/5832vxGdCDviDWCw0fB6rQIiUL5QwfXp8AEtq4o5p5cBSzSBfCUmb
- Dt5A==
-X-Gm-Message-State: APjAAAV+zjB/JMMXx/fPqUuh4ChPjILbfWAAeAURBwYFesg27PI80oiX
- 1MdD8uj8HH0LxSGJ9EmJ/9WJHs6nHenEbX8vqpE=
-X-Google-Smtp-Source: APXvYqw9VqTjXFnlGCquGCMhgWid9tNVYZIi3wo4sfIlQd2XtqEYvRbQLR99eMZxSncA79CfuyOqprlPE78lDTa0nyI=
-X-Received: by 2002:a19:e058:: with SMTP id g24mr7764511lfj.8.1573241071073;
- Fri, 08 Nov 2019 11:24:31 -0800 (PST)
+ bh=hHPkcJOTgeZocM4Q1Io1vuCpjv+weO3j+hkZumIduRg=;
+ b=h0Pq4VGNB5OKXsz7YGlNQhZDeDDnCEU+8Szb6IHvKQ8Yr6ARdLYpSRZM0UlpoqoYMW
+ /wbNjFtgUCmPvYdHiYBsirqJRMiRqgewEvPEZwTNaHvHXaUwG0sVvMMX4mGhmUtHWIoV
+ xxon1skDae/GI4Fcnk2pfLEWNfnED6HSqeke9s0wvHlXRN//4F8aZ/OiIU+qu5RDWBvB
+ HEg30YDsaL2CDgHGMzfPHbsYQGIwqobGIHNcIKBC+7Ht03iYtU28dd18mkKCBU9oyGuD
+ jJ9CX5WNC3qRh643sdS6pazDjrLxo2xw/6Nnn3JE9zS0GnLoHUj/wYRMIMJ8caJY/j/x
+ qJKA==
+X-Gm-Message-State: APjAAAXfqbKQiXlUBMuBEKI17DEGyBHCiy2XqtWNKAC1U2nmu+M1+TO5
+ QjoTFm425K4zYMnupQ4ksDPkjQ+ni4WHHr2DpKQ=
+X-Google-Smtp-Source: APXvYqwzjVkQXlJoUuLjmPkamBjwTuPdDJGuEmYJSeZ3sJqEMVTEm98U32txYTvQQWut/r0mpTukV+R2Lj5hgTYRCM4=
+X-Received: by 2002:a1c:4456:: with SMTP id r83mr12430972wma.2.1573310903828; 
+ Sat, 09 Nov 2019 06:48:23 -0800 (PST)
 MIME-Version: 1.0
 References: <CALY+5sK3V1J+r2Vrf1gw=-Ok=L9OoAks-oqkBPFqtcnRusLomw@mail.gmail.com>
  <CA+JMMq9wAx+ML3=AsrSjyi+-E0gQrub0UnV8BC_wS7+ypANkFg@mail.gmail.com>
  <CALY+5sK3M_Jb0aAv9QWoC+kHfn=8UPpWo1i94_oWXxy0JjU13g@mail.gmail.com>
  <CAL7q81uDv2=rZSe0vmx+AzN1AE8uPgYDF1NNt_2aYeE9KiXSHg@mail.gmail.com>
  <CA+JMMq9McBUDdfMotYf7cPMdmgLcdEPiTotW=sVOYv+QFrf9UQ@mail.gmail.com>
-In-Reply-To: <CA+JMMq9McBUDdfMotYf7cPMdmgLcdEPiTotW=sVOYv+QFrf9UQ@mail.gmail.com>
-Date: Fri, 8 Nov 2019 14:24:20 -0500
-Message-ID: <CALY+5sJ_co9mAFUsXyi647W3DW18wc4Ruc+9UaUpppFxt1r29Q@mail.gmail.com>
-To: Nick Foster <bistromath@gmail.com>
+ <CALY+5sJ_co9mAFUsXyi647W3DW18wc4Ruc+9UaUpppFxt1r29Q@mail.gmail.com>
+In-Reply-To: <CALY+5sJ_co9mAFUsXyi647W3DW18wc4Ruc+9UaUpppFxt1r29Q@mail.gmail.com>
+Date: Sat, 9 Nov 2019 09:48:11 -0500
+Message-ID: <CADRnH21gzFR3-aQSet4tS1fks5Rdp2qjSH_p8JerhY+AL=YTaw@mail.gmail.com>
+To: Jonathan Lockhart <jlockhartrt@gmail.com>
 Subject: Re: [USRP-users] Receiving IO Block Error when Using RFNoC Split
  Stream
 X-BeenThere: usrp-users@lists.ettus.com
@@ -63,10 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathan Lockhart via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathan Lockhart <jlockhartrt@gmail.com>
+From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: EJ Kreinar <ejkreinar@gmail.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6965170825018592175=="
+Content-Type: multipart/mixed; boundary="===============5114593063051113003=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,297 +80,368 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6965170825018592175==
-Content-Type: multipart/related; boundary="0000000000003091150596dabb00"
+--===============5114593063051113003==
+Content-Type: multipart/related; boundary="0000000000008b88150596eafd33"
 
---0000000000003091150596dabb00
-Content-Type: multipart/alternative; boundary="0000000000003091130596dabbff"
+--0000000000008b88150596eafd33
+Content-Type: multipart/alternative; boundary="0000000000008b88130596eafd32"
 
---0000000000003091130596dabbff
+--0000000000008b88130596eafd32
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Jonathon,
+Hi there,
 
-I will give that a try and see if it works.
+Just want to chime in since I recently went through the upgrade process to
+UHD-3.14...
+
+Can you confirm you're using uhd-3.14? If so, this is actually a split
+stream fpga bug caused by the commit Jon referred to, not the "not enough
+bandwidth" problem.
+
+Fortunately, rather than referring the old commit, the bug seems to have
+been fixed in October on the master branch: https://
+github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d203eb62ae26=
+c9
+(but not yet ported onto 3.14)
+
+I just cherry-picked 1102779f onto my UHD-3.14 and it cleaned it up for me.
+
+I assume this will eventually make it to the UHD-3.14 branch? But if not
+the cherry pick works fine
+
+EJ
 
 
-Nick,
+On Fri, Nov 8, 2019, 2:43 PM Jonathan Lockhart via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-If the revert on Split_Stream fails, I will try switching from ce_clk to
-bus_clk and give that a try.
-
-
-Regards,
-Jon
-
-On Fri, Nov 8, 2019 at 1:52 PM Nick Foster <bistromath@gmail.com> wrote:
-
-> Jonathon (Pendlum), correct me if I'm wrong, but I think this is the usua=
-l
-> split-stream-demands-more-bandwidth-than-RFNoC-bus-allows problem.
+> Jonathon,
 >
-> Jonathan (Lockhart), if I'm right, then in your rfnoc_ce_auto_inst_e310.v=
-,
-> if you change the ce_clk/ce_rst in the noc_block_split_stream instantiati=
-on
-> to bus_clk/bus_rst, this may fix the problem.
+> I will give that a try and see if it works.
 >
-> Nick
 >
-> On Fri, Nov 8, 2019 at 10:20 AM Jonathon Pendlum <
-> jonathon.pendlum@ettus.com> wrote:
+> Nick,
 >
->> Hi Jon,
+> If the revert on Split_Stream fails, I will try switching from ce_clk to
+> bus_clk and give that a try.
+>
+>
+> Regards,
+> Jon
+>
+> On Fri, Nov 8, 2019 at 1:52 PM Nick Foster <bistromath@gmail.com> wrote:
+>
+>> Jonathon (Pendlum), correct me if I'm wrong, but I think this is the
+>> usual split-stream-demands-more-bandwidth-than-RFNoC-bus-allows problem.
 >>
->> Can you try reverting commit e39334fe on the fpga repo and rebuilding
->> your bitstream? Let me know if that makes a difference or not.
+>> Jonathan (Lockhart), if I'm right, then in your
+>> rfnoc_ce_auto_inst_e310.v, if you change the ce_clk/ce_rst in the
+>> noc_block_split_stream instantiation to bus_clk/bus_rst, this may fix th=
+e
+>> problem.
 >>
->> Jonathon
+>> Nick
 >>
->> On Sat, Nov 9, 2019 at 12:13 AM Jonathan Lockhart via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
+>> On Fri, Nov 8, 2019 at 10:20 AM Jonathon Pendlum <
+>> jonathon.pendlum@ettus.com> wrote:
 >>
->>> Greetings Nick,
+>>> Hi Jon,
 >>>
->>> Here is the screenshot of my GR flow graph, though it shouldn't matter
->>> as the Split_Stream RFNoC Block I believe is a failure of the python or
->>> Verilog but the solutions in the link I sent in my previous email did n=
-ot
->>> resolve the issue.
+>>> Can you try reverting commit e39334fe on the fpga repo and rebuilding
+>>> your bitstream? Let me know if that makes a difference or not.
 >>>
->>> [image: Screenshot from 2019-11-08 10-06-50.png]
+>>> Jonathon
 >>>
->>> Regards,
->>> Jon
+>>> On Sat, Nov 9, 2019 at 12:13 AM Jonathan Lockhart via USRP-users <
+>>> usrp-users@lists.ettus.com> wrote:
 >>>
->>> On Thu, Nov 7, 2019 at 5:33 PM Nick Foster <bistromath@gmail.com> wrote=
-:
->>>
->>>> Can you be more specific about what your flowgraph looks like?
+>>>> Greetings Nick,
 >>>>
->>>> On Thu, Nov 7, 2019 at 2:22 PM Jonathan Lockhart via USRP-users <
->>>> usrp-users@lists.ettus.com> wrote:
+>>>> Here is the screenshot of my GR flow graph, though it shouldn't matter
+>>>> as the Split_Stream RFNoC Block I believe is a failure of the python o=
+r
+>>>> Verilog but the solutions in the link I sent in my previous email did =
+not
+>>>> resolve the issue.
 >>>>
->>>>> Greetings,
+>>>> [image: Screenshot from 2019-11-08 10-06-50.png]
+>>>>
+>>>> Regards,
+>>>> Jon
+>>>>
+>>>> On Thu, Nov 7, 2019 at 5:33 PM Nick Foster <bistromath@gmail.com>
+>>>> wrote:
+>>>>
+>>>>> Can you be more specific about what your flowgraph looks like?
 >>>>>
->>>>> I was wondering if anyone had encountered the following error and had
->>>>> a way to fix it?
+>>>>> On Thu, Nov 7, 2019 at 2:22 PM Jonathan Lockhart via USRP-users <
+>>>>> usrp-users@lists.ettus.com> wrote:
 >>>>>
->>>>> [INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700;
->>>>> UHD_3.14.1.HEAD-0-g0347a6d8
->>>>> [INFO] [E300] Loading FPGA image: /home/root/localinstall/e300.bit...
->>>>> [INFO] [E300] FPGA image loaded
->>>>> [INFO] [E300] Detecting internal GPS
->>>>> .... [INFO] [E300] GPSDO found
->>>>> [INFO] [E300] Initializing core control (global registers)...
->>>>>
->>>>> [INFO] [E300] Performing register loopback test...
->>>>> [INFO] [E300] Register loopback test passed
->>>>> [INFO] [0/Radio_0] Initializing block control (NOC ID:
->>>>> 0x12AD100000000000)
->>>>> [WARNING] [RFNOC] Can't find a block controller for key SplitStream,
->>>>> using default block controller!
->>>>> [INFO] [0/SplitStream_0] Initializing block control (NOC ID:
->>>>> 0x5757000000000000)
->>>>> [ERROR] [UHD] Exception caught in safe-call.
->>>>>   in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with
->>>>> uhd::endianness_t _endianness =3D (uhd::endianness_t)1u]
->>>>>   at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:5=
-2
->>>>> this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block
->>>>> ctrl (CE_01_Port_21) no response packet - AssertionError: bool(buff)
->>>>>   in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double=
-)
->>>>> [with uhd::endianness_t _endianness =3D (uhd::endianness_t)1u; uint64=
-_t =3D
->>>>> long long unsigned int]
->>>>>   at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:1=
-42
->>>>>
->>>>> Traceback (most recent call last):
->>>>>   File "rfnoc_fosphor_network_usrp.py", line 283, in <module>
->>>>>     main()
->>>>>   File "rfnoc_fosphor_network_usrp.py", line 272, in main
->>>>>     tb =3D top_block_cls(fft_size=3Doptions.fft_size,
->>>>> fpga_path=3Doptions.fpga_path, freq=3Doptions.freq, gain=3Doptions.ga=
-in,
->>>>> host_ip_addr=3Doptions.host_ip_addr, samp_rate=3Doptions.samp_rate,
->>>>> tdecay=3Doptions.tdecay, trise=3Doptions.trise)
->>>>>   File "rfnoc_fosphor_network_usrp.py", line 43, in __init__
->>>>>     self.device3 =3D variable_uhd_device3_0 =3D
->>>>> ettus.device3(uhd.device_addr_t( ",".join(('type=3De3x0',
->>>>> "master_clock_rate=3D%d,fpga=3D%s" % (samp_rate,fpga_path))) ))
->>>>>   File
->>>>> "/home/root/localinstall/usr/lib/python2.7/site-packages/ettus/ettus_=
-swig.py",
->>>>> line 1307, in make
->>>>>     return _ettus_swig.device3_make(*args, **kwargs)
->>>>> RuntimeError: EnvironmentError: IOError: [0/SplitStream_0] sr_read64(=
-)
->>>>> failed: EnvironmentError: IOError: Block ctrl (CE_01_Port_21) no resp=
-onse
->>>>> packet - AssertionError: bool(buff)
->>>>>   in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double=
-)
->>>>> [with uhd::endianness_t _endianness =3D (uhd::endianness_t)1u; uint64=
-_t =3D
->>>>> long long unsigned int]
->>>>>   at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:1=
-42
->>>>>
->>>>> This is only occurring when I use the split stream block in RFNoC. I
->>>>> have tried the fixes in [1] but unfortunately they have not helped. A=
-lso,
->>>>> fix 1, I can't seem to before b/c I am missing the file
->>>>> rfnoc_ce_auto_inst_<device>.v  as shown from the output when
->>>>> attempting a "find" command in Ubuntu.
->>>>>
->>>>> find: =E2=80=98rfnoc_ce_auto_inst_e310.v=E2=80=99: No such file or di=
-rectory
->>>>>
->>>>> I ran it on both ~/* and /* with no luck.
->>>>>
->>>>> Regards,
->>>>> Jon Lockhart
->>>>>
->>>>> [1]
->>>>> https://kb.ettus.com/RFNoC#Why_do_I_have_a_command_timeout_error.3F
->>>>>
+>>>>>> Greetings,
+>>>>>>
+>>>>>> I was wondering if anyone had encountered the following error and ha=
+d
+>>>>>> a way to fix it?
+>>>>>>
+>>>>>> [INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700;
+>>>>>> UHD_3.14.1.HEAD-0-g0347a6d8
+>>>>>> [INFO] [E300] Loading FPGA image: /home/root/localinstall/e300.bit..=
+.
+>>>>>> [INFO] [E300] FPGA image loaded
+>>>>>> [INFO] [E300] Detecting internal GPS
+>>>>>> .... [INFO] [E300] GPSDO found
+>>>>>> [INFO] [E300] Initializing core control (global registers)...
+>>>>>>
+>>>>>> [INFO] [E300] Performing register loopback test...
+>>>>>> [INFO] [E300] Register loopback test passed
+>>>>>> [INFO] [0/Radio_0] Initializing block control (NOC ID:
+>>>>>> 0x12AD100000000000)
+>>>>>> [WARNING] [RFNOC] Can't find a block controller for key SplitStream,
+>>>>>> using default block controller!
+>>>>>> [INFO] [0/SplitStream_0] Initializing block control (NOC ID:
+>>>>>> 0x5757000000000000)
+>>>>>> [ERROR] [UHD] Exception caught in safe-call.
+>>>>>>   in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with
+>>>>>> uhd::endianness_t _endianness =3D (uhd::endianness_t)1u]
+>>>>>>   at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:=
+52
+>>>>>> this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block
+>>>>>> ctrl (CE_01_Port_21) no response packet - AssertionError: bool(buff)
+>>>>>>   in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool,
+>>>>>> double) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)1=
+u;
+>>>>>> uint64_t =3D long long unsigned int]
+>>>>>>   at
+>>>>>> /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142
+>>>>>>
+>>>>>> Traceback (most recent call last):
+>>>>>>   File "rfnoc_fosphor_network_usrp.py", line 283, in <module>
+>>>>>>     main()
+>>>>>>   File "rfnoc_fosphor_network_usrp.py", line 272, in main
+>>>>>>     tb =3D top_block_cls(fft_size=3Doptions.fft_size,
+>>>>>> fpga_path=3Doptions.fpga_path, freq=3Doptions.freq, gain=3Doptions.g=
+ain,
+>>>>>> host_ip_addr=3Doptions.host_ip_addr, samp_rate=3Doptions.samp_rate,
+>>>>>> tdecay=3Doptions.tdecay, trise=3Doptions.trise)
+>>>>>>   File "rfnoc_fosphor_network_usrp.py", line 43, in __init__
+>>>>>>     self.device3 =3D variable_uhd_device3_0 =3D
+>>>>>> ettus.device3(uhd.device_addr_t( ",".join(('type=3De3x0',
+>>>>>> "master_clock_rate=3D%d,fpga=3D%s" % (samp_rate,fpga_path))) ))
+>>>>>>   File
+>>>>>> "/home/root/localinstall/usr/lib/python2.7/site-packages/ettus/ettus=
+_swig.py",
+>>>>>> line 1307, in make
+>>>>>>     return _ettus_swig.device3_make(*args, **kwargs)
+>>>>>> RuntimeError: EnvironmentError: IOError: [0/SplitStream_0]
+>>>>>> sr_read64() failed: EnvironmentError: IOError: Block ctrl (CE_01_Por=
+t_21)
+>>>>>> no response packet - AssertionError: bool(buff)
+>>>>>>   in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool,
+>>>>>> double) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)1=
+u;
+>>>>>> uint64_t =3D long long unsigned int]
+>>>>>>   at
+>>>>>> /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142
+>>>>>>
+>>>>>> This is only occurring when I use the split stream block in RFNoC. I
+>>>>>> have tried the fixes in [1] but unfortunately they have not helped. =
+Also,
+>>>>>> fix 1, I can't seem to before b/c I am missing the file
+>>>>>> rfnoc_ce_auto_inst_<device>.v  as shown from the output when
+>>>>>> attempting a "find" command in Ubuntu.
+>>>>>>
+>>>>>> find: =E2=80=98rfnoc_ce_auto_inst_e310.v=E2=80=99: No such file or d=
+irectory
+>>>>>>
+>>>>>> I ran it on both ~/* and /* with no luck.
+>>>>>>
+>>>>>> Regards,
+>>>>>> Jon Lockhart
+>>>>>>
+>>>>>> [1]
+>>>>>> https://kb.ettus.com/RFNoC#Why_do_I_have_a_command_timeout_error.3F
+>>>>>>
+>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list
+>>>>>> USRP-users@lists.ettus.com
+>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>
 >>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>
->>>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
+>>>> USRP-users mailing list
+>>>> USRP-users@lists.ettus.com
+>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>
+>>> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---0000000000003091130596dabbff
+--0000000000008b88130596eafd32
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Jonathon,<div><br></div><div>I will give that a try and se=
-e if it works.</div><div><br></div><div><br></div><div>Nick,</div><div><br>=
-</div><div>If the revert on Split_Stream fails, I will try switching=C2=A0f=
-rom ce_clk to bus_clk and give that a try.=C2=A0</div><div><br></div><div><=
-br></div><div>Regards,</div><div>Jon</div></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 8, 2019 at 1:52 PM Ni=
-ck Foster &lt;<a href=3D"mailto:bistromath@gmail.com">bistromath@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr"><div>Jonathon (Pendlum), correct me if I&#39;m wrong, but I=
- think this is the usual split-stream-demands-more-bandwidth-than-RFNoC-bus=
--allows problem.<br></div><div><br></div><div>Jonathan (Lockhart), if I&#39=
-;m right, then in your rfnoc_ce_auto_inst_e310.v, if you change the ce_clk/=
-ce_rst in the noc_block_split_stream instantiation to bus_clk/bus_rst, this=
- may fix the problem.</div><div><br></div><div>Nick<br></div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 8,=
- 2019 at 10:20 AM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@e=
-ttus.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi J=
-on,<div><br></div><div>Can you try reverting commit e39334fe on the fpga re=
-po and rebuilding your bitstream? Let me know if that makes a difference or=
- not.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Nov 9, 2019 at 12:13 A=
-M Jonathan Lockhart via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.e=
-ttus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
->Greetings Nick,</div><div><br></div><div>Here is the screenshot of my GR f=
-low graph, though it shouldn&#39;t matter as the Split_Stream RFNoC Block I=
- believe is a failure of the python or Verilog but the solutions in the lin=
-k I sent in my previous email did not resolve the issue. <br></div><div><br=
-></div><div><div><img src=3D"cid:ii_k2qa0bd70" alt=3D"Screenshot from 2019-=
-11-08 10-06-50.png" width=3D"566" height=3D"243"><br></div></div><div><br><=
-/div><div>Regards,</div><div>Jon<br></div></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 7, 2019 at 5:33 PM Ni=
-ck Foster &lt;<a href=3D"mailto:bistromath@gmail.com" target=3D"_blank">bis=
-tromath@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><div dir=3D"ltr">Can you be more specific about what your =
-flowgraph looks like?<br></div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">On Thu, Nov 7, 2019 at 2:22 PM Jonathan Lockhart v=
-ia USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_=
-blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Greetings,</div><div=
-><br></div><div>I was wondering if anyone had encountered the following err=
-or and had a way to fix it?</div><div><br></div><div>[INFO] [UHD] linux; GN=
-U C++ version 4.9.2; Boost_105700; UHD_3.14.1.HEAD-0-g0347a6d8<br>[INFO] [E=
-300] Loading FPGA image: /home/root/localinstall/e300.bit...<br>[INFO] [E30=
-0] FPGA image loaded<br>[INFO] [E300] Detecting internal GPS <br>.... [INFO=
-] [E300] GPSDO found<br>[INFO] [E300] Initializing core control (global reg=
-isters)...<br><br>[INFO] [E300] Performing register loopback test... <br>[I=
-NFO] [E300] Register loopback test passed<br>[INFO] [0/Radio_0] Initializin=
-g block control (NOC ID: 0x12AD100000000000)<br>[WARNING] [RFNOC] Can&#39;t=
- find a block controller for key SplitStream, using default block controlle=
-r!<br>[INFO] [0/SplitStream_0] Initializing block control (NOC ID: 0x575700=
-0000000000)<br>[ERROR] [UHD] Exception caught in safe-call.<br>=C2=A0 in ct=
-rl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl() [with uhd::endianness_=
-t _endianness =3D (uhd::endianness_t)1u]<br>=C2=A0 at /home/jon/rfnoc_3.14.=
-1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:52<br>this-&gt;send_cmd_pkt(0, 0,=
- true); -&gt; EnvironmentError: IOError: Block ctrl (CE_01_Port_21) no resp=
-onse packet - AssertionError: bool(buff)<br>=C2=A0 in uint64_t ctrl_iface_i=
-mpl&lt;_endianness&gt;::wait_for_ack(bool, double) [with uhd::endianness_t =
-_endianness =3D (uhd::endianness_t)1u; uint64_t =3D long long unsigned int]=
-<br>=C2=A0 at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cp=
-p:142<br><br>Traceback (most recent call last):<br>=C2=A0 File &quot;rfnoc_=
-fosphor_network_usrp.py&quot;, line 283, in &lt;module&gt;<br>=C2=A0 =C2=A0=
- main()<br>=C2=A0 File &quot;rfnoc_fosphor_network_usrp.py&quot;, line 272,=
- in main<br>=C2=A0 =C2=A0 tb =3D top_block_cls(fft_size=3Doptions.fft_size,=
- fpga_path=3Doptions.fpga_path, freq=3Doptions.freq, gain=3Doptions.gain, h=
-ost_ip_addr=3Doptions.host_ip_addr, samp_rate=3Doptions.samp_rate, tdecay=
-=3Doptions.tdecay, trise=3Doptions.trise)<br>=C2=A0 File &quot;rfnoc_fospho=
-r_network_usrp.py&quot;, line 43, in __init__<br>=C2=A0 =C2=A0 self.device3=
- =3D variable_uhd_device3_0 =3D ettus.device3(uhd.device_addr_t( &quot;,&qu=
-ot;.join((&#39;type=3De3x0&#39;, &quot;master_clock_rate=3D%d,fpga=3D%s&quo=
-t; % (samp_rate,fpga_path))) ))<br>=C2=A0 File &quot;/home/root/localinstal=
-l/usr/lib/python2.7/site-packages/ettus/ettus_swig.py&quot;, line 1307, in =
-make<br>=C2=A0 =C2=A0 return _ettus_swig.device3_make(*args, **kwargs)<br>R=
-untimeError: EnvironmentError: IOError: [0/SplitStream_0] sr_read64() faile=
-d: EnvironmentError: IOError: Block ctrl (CE_01_Port_21) no response packet=
- - AssertionError: bool(buff)<br>=C2=A0 in uint64_t ctrl_iface_impl&lt;_end=
-ianness&gt;::wait_for_ack(bool, double) [with uhd::endianness_t _endianness=
- =3D (uhd::endianness_t)1u; uint64_t =3D long long unsigned int]<br>=C2=A0 =
-at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142</div>=
-<div><br></div><div>This is only occurring when I use the split stream bloc=
-k in RFNoC. I have tried the fixes in [1] but unfortunately they have not h=
-elped. Also, fix 1, I can&#39;t seem to before b/c I am missing the file <c=
-ode>rfnoc_ce_auto_inst_&lt;device&gt;.v</code>=C2=A0 as shown from the outp=
-ut when attempting a &quot;find&quot; command in Ubuntu.=C2=A0</div><div><b=
-r></div><div>find: =E2=80=98rfnoc_ce_auto_inst_e310.v=E2=80=99: No such fil=
-e or directory</div><div><br></div><div>I ran it on both ~/* and /* with no=
- luck. <br></div><div><br></div><div>Regards,</div><div>Jon Lockhart</div><=
-div><br></div><div>[1] <a href=3D"https://kb.ettus.com/RFNoC#Why_do_I_have_=
-a_command_timeout_error.3F" target=3D"_blank">https://kb.ettus.com/RFNoC#Wh=
-y_do_I_have_a_command_timeout_error.3F</a></div><div><br></div></div>
+<div dir=3D"auto">Hi there,<div dir=3D"auto"><br></div><div dir=3D"auto">Ju=
+st want to chime in since I recently went through the upgrade process to UH=
+D-3.14...</div><div dir=3D"auto"><br></div><div dir=3D"auto"><span style=3D=
+"font-family:sans-serif">Can you confirm you&#39;re using uhd-3.14? If</spa=
+n><span style=3D"font-family:sans-serif">=C2=A0so, this is actually a split=
+ stream fpga bug caused by the commit Jon referred to, not the &quot;not en=
+ough bandwidth&quot; problem.</span></div><div dir=3D"auto"><span style=3D"=
+font-family:sans-serif"><br></span></div><div dir=3D"auto"><span style=3D"f=
+ont-family:sans-serif">Fortunately, rather than referring the old commit, t=
+he bug seems to have been fixed in October on the master branch: https</spa=
+n><font face=3D"sans-serif">://<a href=3D"http://github.com/EttusResearch/f=
+pga/commit/1102779f49d44c9e8b88ce7251d203eb62ae26c9">github.com/EttusResear=
+ch/fpga/commit/1102779f49d44c9e8b88ce7251d203eb62ae26c9</a> (but not yet po=
+rted onto 3.14)</font></div><div dir=3D"auto"><font face=3D"sans-serif"><br=
+></font></div><div dir=3D"auto"><font face=3D"sans-serif">I just cherry-pic=
+ked 1102779f onto my UHD-3.14 and it cleaned it up for me.</font></div><div=
+ dir=3D"auto"><font face=3D"sans-serif"><br></font></div><div dir=3D"auto">=
+<font face=3D"sans-serif">I assume this will eventually make it to the UHD-=
+3.14 branch? But if not the cherry pick works fine</font></div><div dir=3D"=
+auto"><font face=3D"sans-serif"><br></font></div><div dir=3D"auto"><font fa=
+ce=3D"sans-serif">EJ</font></div><div dir=3D"auto"><font face=3D"sans-serif=
+"><br></font></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Fri, Nov 8, 2019, 2:43 PM Jonathan Lockhart via USRP-=
+users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" r=
+el=3D"noreferrer">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
+ solid;padding-left:1ex"><div dir=3D"ltr">Jonathon,<div><br></div><div>I wi=
+ll give that a try and see if it works.</div><div><br></div><div><br></div>=
+<div>Nick,</div><div><br></div><div>If the revert on Split_Stream fails, I =
+will try switching=C2=A0from ce_clk to bus_clk and give that a try.=C2=A0</=
+div><div><br></div><div><br></div><div>Regards,</div><div>Jon</div></div><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, =
+Nov 8, 2019 at 1:52 PM Nick Foster &lt;<a href=3D"mailto:bistromath@gmail.c=
+om" rel=3D"noreferrer noreferrer" target=3D"_blank">bistromath@gmail.com</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"ltr"><div>Jonathon (Pendlum), correct me if I&#39;m wrong, but I t=
+hink this is the usual split-stream-demands-more-bandwidth-than-RFNoC-bus-a=
+llows problem.<br></div><div><br></div><div>Jonathan (Lockhart), if I&#39;m=
+ right, then in your rfnoc_ce_auto_inst_e310.v, if you change the ce_clk/ce=
+_rst in the noc_block_split_stream instantiation to bus_clk/bus_rst, this m=
+ay fix the problem.</div><div><br></div><div>Nick<br></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 8, 2=
+019 at 10:20 AM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ett=
+us.com" rel=3D"noreferrer noreferrer" target=3D"_blank">jonathon.pendlum@et=
+tus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><div dir=3D"ltr">Hi Jon,<div><br></div><div>Can you try reverting co=
+mmit e39334fe on the fpga repo and rebuilding your bitstream? Let me know i=
+f that makes a difference or not.</div><div><br></div><div>Jonathon</div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Sat, Nov 9, 2019 at 12:13 AM Jonathan Lockhart via USRP-users &lt;<a href=
+=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer noreferrer" target=
+=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Greetings Nick,=
+</div><div><br></div><div>Here is the screenshot of my GR flow graph, thoug=
+h it shouldn&#39;t matter as the Split_Stream RFNoC Block I believe is a fa=
+ilure of the python or Verilog but the solutions in the link I sent in my p=
+revious email did not resolve the issue. <br></div><div><br></div><div><div=
+><img src=3D"https://mail.google.com/mail/?ui=3D2&amp;ik=3D1ae818862e&amp;a=
+ttid=3D0.1&amp;th=3D16e50a0101adc4f2&amp;view=3Dfimg&amp;rm=3D16e50a0101adc=
+4f2&amp;sz=3Dw1600-h1000&amp;attbid=3DANGjdJ99ZIcYsSIzDc4CWbFXICEswBw_zKbYx=
+EPrUUzifdVbwxV4DA5-2ZfQVUkIJkApVRObYcGTjPk7XNPRZOpXERJ0z1KQjoXiW9JBGPgI82fh=
+voAzlecorcyXTfU&amp;disp=3Demb&amp;realattid=3Dii_k2qa0bd70&amp;zw" alt=3D"=
+Screenshot from 2019-11-08 10-06-50.png" width=3D"566" height=3D"243"><br><=
+/div></div><div><br></div><div>Regards,</div><div>Jon<br></div></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov =
+7, 2019 at 5:33 PM Nick Foster &lt;<a href=3D"mailto:bistromath@gmail.com" =
+rel=3D"noreferrer noreferrer" target=3D"_blank">bistromath@gmail.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
+r=3D"ltr">Can you be more specific about what your flowgraph looks like?<br=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Thu, Nov 7, 2019 at 2:22 PM Jonathan Lockhart via USRP-users &lt;<a hre=
+f=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer noreferrer" targe=
+t=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Greetings,</di=
+v><div><br></div><div>I was wondering if anyone had encountered the followi=
+ng error and had a way to fix it?</div><div><br></div><div>[INFO] [UHD] lin=
+ux; GNU C++ version 4.9.2; Boost_105700; UHD_3.14.1.HEAD-0-g0347a6d8<br>[IN=
+FO] [E300] Loading FPGA image: /home/root/localinstall/e300.bit...<br>[INFO=
+] [E300] FPGA image loaded<br>[INFO] [E300] Detecting internal GPS <br>....=
+ [INFO] [E300] GPSDO found<br>[INFO] [E300] Initializing core control (glob=
+al registers)...<br><br>[INFO] [E300] Performing register loopback test... =
+<br>[INFO] [E300] Register loopback test passed<br>[INFO] [0/Radio_0] Initi=
+alizing block control (NOC ID: 0x12AD100000000000)<br>[WARNING] [RFNOC] Can=
+&#39;t find a block controller for key SplitStream, using default block con=
+troller!<br>[INFO] [0/SplitStream_0] Initializing block control (NOC ID: 0x=
+5757000000000000)<br>[ERROR] [UHD] Exception caught in safe-call.<br>=C2=A0=
+ in ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl() [with uhd::endia=
+nness_t _endianness =3D (uhd::endianness_t)1u]<br>=C2=A0 at /home/jon/rfnoc=
+_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:52<br>this-&gt;send_cmd_pkt=
+(0, 0, true); -&gt; EnvironmentError: IOError: Block ctrl (CE_01_Port_21) n=
+o response packet - AssertionError: bool(buff)<br>=C2=A0 in uint64_t ctrl_i=
+face_impl&lt;_endianness&gt;::wait_for_ack(bool, double) [with uhd::endiann=
+ess_t _endianness =3D (uhd::endianness_t)1u; uint64_t =3D long long unsigne=
+d int]<br>=C2=A0 at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_if=
+ace.cpp:142<br><br>Traceback (most recent call last):<br>=C2=A0 File &quot;=
+rfnoc_fosphor_network_usrp.py&quot;, line 283, in &lt;module&gt;<br>=C2=A0 =
+=C2=A0 main()<br>=C2=A0 File &quot;rfnoc_fosphor_network_usrp.py&quot;, lin=
+e 272, in main<br>=C2=A0 =C2=A0 tb =3D top_block_cls(fft_size=3Doptions.fft=
+_size, fpga_path=3Doptions.fpga_path, freq=3Doptions.freq, gain=3Doptions.g=
+ain, host_ip_addr=3Doptions.host_ip_addr, samp_rate=3Doptions.samp_rate, td=
+ecay=3Doptions.tdecay, trise=3Doptions.trise)<br>=C2=A0 File &quot;rfnoc_fo=
+sphor_network_usrp.py&quot;, line 43, in __init__<br>=C2=A0 =C2=A0 self.dev=
+ice3 =3D variable_uhd_device3_0 =3D ettus.device3(uhd.device_addr_t( &quot;=
+,&quot;.join((&#39;type=3De3x0&#39;, &quot;master_clock_rate=3D%d,fpga=3D%s=
+&quot; % (samp_rate,fpga_path))) ))<br>=C2=A0 File &quot;/home/root/localin=
+stall/usr/lib/python2.7/site-packages/ettus/ettus_swig.py&quot;, line 1307,=
+ in make<br>=C2=A0 =C2=A0 return _ettus_swig.device3_make(*args, **kwargs)<=
+br>RuntimeError: EnvironmentError: IOError: [0/SplitStream_0] sr_read64() f=
+ailed: EnvironmentError: IOError: Block ctrl (CE_01_Port_21) no response pa=
+cket - AssertionError: bool(buff)<br>=C2=A0 in uint64_t ctrl_iface_impl&lt;=
+_endianness&gt;::wait_for_ack(bool, double) [with uhd::endianness_t _endian=
+ness =3D (uhd::endianness_t)1u; uint64_t =3D long long unsigned int]<br>=C2=
+=A0 at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142</=
+div><div><br></div><div>This is only occurring when I use the split stream =
+block in RFNoC. I have tried the fixes in [1] but unfortunately they have n=
+ot helped. Also, fix 1, I can&#39;t seem to before b/c I am missing the fil=
+e <code>rfnoc_ce_auto_inst_&lt;device&gt;.v</code>=C2=A0 as shown from the =
+output when attempting a &quot;find&quot; command in Ubuntu.=C2=A0</div><di=
+v><br></div><div>find: =E2=80=98rfnoc_ce_auto_inst_e310.v=E2=80=99: No such=
+ file or directory</div><div><br></div><div>I ran it on both ~/* and /* wit=
+h no luck. <br></div><div><br></div><div>Regards,</div><div>Jon Lockhart</d=
+iv><div><br></div><div>[1] <a href=3D"https://kb.ettus.com/RFNoC#Why_do_I_h=
+ave_a_command_timeout_error.3F" rel=3D"noreferrer noreferrer" target=3D"_bl=
+ank">https://kb.ettus.com/RFNoC#Why_do_I_have_a_command_timeout_error.3F</a=
+></div><div><br></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
+ target=3D"_blank">USRP-users@lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
+om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
+.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
+ target=3D"_blank">USRP-users@lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
+om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
+.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
+ target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
+.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---0000000000003091130596dabbff--
---0000000000003091150596dabb00
+--0000000000008b88130596eafd32--
+--0000000000008b88150596eafd33
 Content-Type: image/png; name="Screenshot from 2019-11-08 10-06-50.png"
 Content-Disposition: inline; 
 	filename="Screenshot from 2019-11-08 10-06-50.png"
@@ -2806,10 +2877,10 @@ kiRJkiQpyzC0liRJkiRJkiRlGYbWkiRJkiRJkqQsw9BakiRJkiRJkpRlBKLRaDSzi5AkSZKkjCQk
 JGR2CcpEycnJmV2CJEn6ixlaS5IkSZIkSZKyDLcHkSRJkiRJkiRlGYbWkiRJkiRJkqQsw9BakiRJ
 kiRJkpRlGFpLkiRJkiRJkrIMQ2tJkiRJkiRJUpZhaC1JkiRJkiRJyjIMrSVJkiRJkiRJWYahtSRJ
 kiRJkiQpy/h/DAAg284GWEkAAAAASUVORK5CYII=
---0000000000003091150596dabb00--
+--0000000000008b88150596eafd33--
 
 
---===============6965170825018592175==
+--===============5114593063051113003==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2820,5 +2891,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6965170825018592175==--
+--===============5114593063051113003==--
 
