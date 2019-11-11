@@ -2,49 +2,75 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B9C8F7307
-	for <lists+usrp-users@lfdr.de>; Mon, 11 Nov 2019 12:23:09 +0100 (CET)
-Received: from [::1] (port=45626 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 728E8F73B1
+	for <lists+usrp-users@lfdr.de>; Mon, 11 Nov 2019 13:19:22 +0100 (CET)
+Received: from [::1] (port=50038 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iU7mj-0003Yq-UP; Mon, 11 Nov 2019 06:23:05 -0500
-Received: from mail-lf1-f51.google.com ([209.85.167.51]:42405)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <anabel.almodovar@gmail.com>)
- id 1iU7mg-0003S2-GM
- for usrp-users@lists.ettus.com; Mon, 11 Nov 2019 06:23:02 -0500
-Received: by mail-lf1-f51.google.com with SMTP id z12so9523817lfj.9
- for <usrp-users@lists.ettus.com>; Mon, 11 Nov 2019 03:22:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=XY0V6W+IvhLiV/aZBN89Veico8reMd/r6Rc2f50p9P8=;
- b=HYssi0oK2n1NXOuSJQlWMXwZ2zSVCRrqFmIsvYVaOkFqgj+tbMCtajwqahG0hFaIky
- /ggPO5VymHD9ejzxkHUWbXBKO5wFGUu+cJpf0KMy3VHUDagGP7VR/UX9uupwItkb/St1
- nKdwaq6yiKueCPBEuNmnBUp3GkP72x+JrGsOcXHWBJayGlNYbvmdXSCGxcqvISUBsZhH
- /t0F7PgX+dK/TS3FO8E0ORW+xp53kkQn/oBibVdTB6ppBTtRRcMmBLm8cm4BGfiIOxQf
- uSyl1S/J8HKrQfwvwMDXREtRJyCxLnP0c0B1UlWlwqp+ptoIeIJpzlEhSeL6CNAwnVhX
- i9dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=XY0V6W+IvhLiV/aZBN89Veico8reMd/r6Rc2f50p9P8=;
- b=VAuOU4+/ktLvlhPKuJ2oyAnCmqQDfwc3MSBuSpgmtOEjyh8g6+6Op3RvsaNymnwEoy
- mcVlTn1N1/bXkBiFflsK4lerT+l/6etcJ3x62fw/3gdeQhd9YGehrj1GrZZ7VutL+hQC
- RQffGx64eyEpeBZcOMgMXSkf1hvmBj40xlbeBj6b1jFURdLN1OkKDIgD2VxZUuQzkjdQ
- Tvagz3iWfVSBt9i+QBRK9b77z2RVcbltGgIQ1sUs4geStS2yV5S+SucWDfqkEi675ldv
- RUNGqruQH4FFr++HMikhnq08CQZBWPgl1Grg1NHx+5adbgNjVh5E+bJkDKi/M+axvazx
- u1/w==
-X-Gm-Message-State: APjAAAXbqbGg4ugLO4xssSZyvADGR3NBY0ZXC5RLyU+gqtS9KgmdnwYr
- /GPTdpGNI1pUhlvC1RYAn8uIixNhwnSyf9OMLmYGYrzE
-X-Google-Smtp-Source: APXvYqx9WDKGUlaFnY2QYP/Bd58PGVtvhh2lSsej3G2+DAVAEBNkQPKav37Uskg/M88JQquKNGpOigXadeS5irpls5M=
-X-Received: by 2002:a19:41d7:: with SMTP id
- o206mr15159438lfa.188.1573471340825; 
- Mon, 11 Nov 2019 03:22:20 -0800 (PST)
+	id 1iU8f5-0005Ve-PR; Mon, 11 Nov 2019 07:19:15 -0500
+Received: from mail-oln040092008034.outbound.protection.outlook.com
+ ([40.92.8.34]:38813 helo=NAM03-DM3-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+ (Exim 4.92) (envelope-from <e070832@hotmail.com>) id 1iU8f1-0005Pk-Ro
+ for usrp-users@lists.ettus.com; Mon, 11 Nov 2019 07:19:11 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eoRFxNrLOQAVNBMVZ/h5hLB5BV52F12k25Oyx4vUuNAJ150K4Uw/zDx+3Qw5uMaWrV6Ly32cOxrcrB7tg86tt+jif9I688cXoLGNUYnHWhlzxMakPj2uGmQIywvEfRrXnp49MQ0utT9QVBy/Aqbw112kZ756wFf3tZoXuqzbQeSN1E9WmO/u9lpiD7BdU1ild8LdOd5Frjg9ShO5S3zuj55LB1D2GOLcAR0HlNpY0tFGsa4cKsOPVS/9mghXj93I5NxjmVR6PSrvMuRHnXggCb69AUf0Ez4O2kWtTj4tnWaL1UO/ErulzCJLFsjC0vDpFjPJ3AIJ22LKYmTc3yNk/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IzUtdrnQyJOrP58CUQcSPbkWPPaTZSgqrSoDaMc04MA=;
+ b=KC71I1xF6iu/GHk9xvOBlCiUlu9grD+8wRJI7Fwn57NhbPpO38al2RqrsngxuwREgxECXzuggx1yAUuHgkH1hbscD0+Wy7rbQczINk6RKsgfpn5osYOV0lDUhwJb8R1F6NNV5qIL09G4qIUHwNFZOIgFP/MjIoX/ztCJOnsLjy44zJeU3yIDqOIJjxVBMoZHYJ2g2UxTUf8akRMbY9LTARUr/xDFv11WqGI3uJ2XMZTSuUJPXS57jAcB3c+LPR0Iyuvumq083aeZHnUsivJEbn0HXLCCHYgwnL+CHpzUS2kNoMHYcSUENwkb9/BVMvISG/tHegg/RTqjrmIuFlSX7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IzUtdrnQyJOrP58CUQcSPbkWPPaTZSgqrSoDaMc04MA=;
+ b=bjUXg0beiBZZINEjKsAvXuqMzqvnZ1OJZzK6bx6GHGdmMQ1gcTCvhSL5kwOBaYP3KpCKcqMHgWkHw7xNkMvS8H5mS2tXkXWzn2CiZn5PHT7MJrDlwxidvWkRSTi+xOjsTgD+BCodahlt87x55tLQ5xWXXF2KxsPum9+TVVyNpTQInonG2kAJQgoVbwk0oPlXSW+yPylhS3Lsw5+dBG4ubWXgrqMduc7AReAFYKhcbdu4fkswkB3dpuUdnRc81OWhluKI+vj7nFxQEMEYy38fr61RvlTAxA2Vui+I7XqQcxat2Ov7LbP+uOAN0bCtGEnKnd/ALelErT+Nnucp4NKPEQ==
+Received: from DM3NAM03FT030.eop-NAM03.prod.protection.outlook.com
+ (10.152.82.51) by DM3NAM03HT137.eop-NAM03.prod.protection.outlook.com
+ (10.152.83.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2430.20; Mon, 11 Nov
+ 2019 12:18:30 +0000
+Received: from BN6PR19MB1635.namprd19.prod.outlook.com (10.152.82.52) by
+ DM3NAM03FT030.mail.protection.outlook.com (10.152.82.203) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2430.20 via Frontend Transport; Mon, 11 Nov 2019 12:18:30 +0000
+Received: from BN6PR19MB1635.namprd19.prod.outlook.com
+ ([fe80::bd1d:f9bf:71cc:36d9]) by BN6PR19MB1635.namprd19.prod.outlook.com
+ ([fe80::bd1d:f9bf:71cc:36d9%11]) with mapi id 15.20.2430.027; Mon, 11 Nov
+ 2019 12:18:30 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Virtual Machine (VM) Application Note
+Thread-Index: AQHVmIkEryRQNIwjYEC0WJST+AXVWA==
+Date: Mon, 11 Nov 2019 12:18:30 +0000
+Message-ID: <BN6PR19MB16354D6DF912FDD8DD841069A4740@BN6PR19MB1635.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:EC773B4CC3E7FD4F11FE52C7C6F7DF4E79B3D10C925A4779CA6F8E3A3EA90EAD;
+ UpperCasedChecksum:E7016C1EAF5D5ABCFDF90C41BA67727B1C24CDE32AAB97D65271EBF4BBD5712B;
+ SizeAsReceived:6676; Count:42
+x-tmn: [HIvD2cGtWBgD5bzDqJ0ZE3bJM5wHosFH]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 869c87d1-561f-487a-8272-08d766a1436e
+x-ms-traffictypediagnostic: DM3NAM03HT137:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: aaR24lVulwKOeq4ePgqrSdBVaxZRN2pXvPwlZ5Vhgqlyj6iHdt+iWqhTvca48kPE9yB4J5raja+HWpUu+TUxqBLTfq2YD6WxMRpa4lkMiVDXgT6+j+J+CXkN3AX4KthkzV+9jfXc64UKWefpWhRYtk9wjfOzhoAkQQ5bbMz6O3lrLnoJRsJXMEcqqFzHUEIJ
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Date: Mon, 11 Nov 2019 12:22:09 +0100
-Message-ID: <CAFPzw1kPRdVTo7+uWy2LE8aDtub_XTUBbt8uXWLJ4zT4VbwKug@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Long time adquisitions with an x310
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 869c87d1-561f-487a-8272-08d766a1436e
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2019 12:18:30.2588 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3NAM03HT137
+Subject: [USRP-users] Virtual Machine (VM) Application Note
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -56,9 +82,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Anabel Almodovar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Anabel Almodovar <anabel.almodovar@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1283542416048860945=="
+From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jeff S <e070832@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============6763204909376042855=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,248 +98,86 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1283542416048860945==
-Content-Type: multipart/alternative; boundary="000000000000559109059710584d"
+--===============6763204909376042855==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR19MB16354D6DF912FDD8DD841069A4740BN6PR19MB1635namp_"
 
---000000000000559109059710584d
-Content-Type: text/plain; charset="UTF-8"
-
-Hello,
-
-I am working with two ettus x310 cards whose daughter boards are TwinRx. I
-am trying to acquire and save to disk 20sg at 100MHz, however this gives me
-overflow. The receive buffer size is the max.
-My code sends 32 bursts divided into 3 cases.
-
-*uhd::stream_cmd_t
-stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_MORE); *
-
-* stream_cmd.num_samps = ceil(acq_num_samps/32);; *
-
-* stream_cmd.stream_now = false;*
-
-*stream_cmd.time_spec = usrp->get_time_last_pps(0)+1.1;*
-*uhd::stream_cmd_t
-stream_cmd1(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_MORE); *
-
-* stream_cmd1.num_samps = ceil(acq_num_samps/32);*
-
-* stream_cmd1.stream_now = true; *
-
-* uhd::stream_cmd_t
-stream_cmd2(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE); *
-
-* stream_cmd2.num_samps = ceil(acq_num_samps/32);*
-
-* stream_cmd2.stream_now = true; *
-
-* usrp->issue_stream_cmd(stream_cmd); *
-
-* for (size_t c=0; c<30 ; c++)*
-
-
-* usrp->issue_stream_cmd(stream_cmd1); *
-
-*usrp->issue_stream_cmd(stream_cmd2); *
-
-I have also tried 25MHz acquisitions of more than 85 sg, limit imposed by
-the decimated block, obtaining as error an excess in the number of samples
-per burst.
-
-*[WARNING] [X300 RADIO] Requesting invalid sampling rate from device: 200
-MHz. Actual rate is: 100 MHz.*
-
-*[INFO] [MULTI_USRP] 1) catch time transition at pps edge*
-
-*[INFO] [MULTI_USRP] 2) set times next pps (synchronously)*
-
-*[ERROR] [RFNOC RADIO] Requesting too many samples in a single burst!
-Requested 312687500, maximum is 268435455.*
-
-*[INFO] [RFNOC RADIO] Note that a decimation block will increase the number
-of samples per burst by the decimation factor. Your application may have
-requested fewer samples.*
-
-To solve this problem, I have increased the number of bursts to have a
-smaller number of samples per burst. however, I get both the broken_chain
-or timeout error.
-
-I don't know how to solve this problem and try to make longer adquisitions
-without getting any kind of error (overflow, broken_chain. timeout). Could
-someone offer me any help?
-
-Thank you in advanced.
-
-Regards,
-Anabel
-
---000000000000559109059710584d
-Content-Type: text/html; charset="UTF-8"
+--_000_BN6PR19MB16354D6DF912FDD8DD841069A4740BN6PR19MB1635namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div><span class=3D"gmail-=
-tlid-translation gmail-translation" lang=3D"en"><span title=3D"" class=3D"g=
-mail-">I am working with two ettus x310 cards whose daughter boards are Twi=
-nRx.</span> <span title=3D"" class=3D"gmail-">I am trying to acquire and sa=
-ve to disk 20sg at 100MHz, however this gives me overflow.</span> The recei=
-ve buffer size is the max.<br><span title=3D"" class=3D"gmail-">My code sen=
-ds 32 bursts divided into 3 cases.</span><span title=3D""></span></span></d=
-iv><div><br></div><div>
+Application Note AN-445 has a section that references "Using a Virtual Mach=
+ine (VM)" and says that there is another Application Note which describes s=
+pecial issues regarding VMs, but does not have a link to it.  I did not see=
+ anything in the list of application notes which seems to match.  Which app=
+lication note is needed for VMs?
+
+Link used for AN-445: https://kb.ettus.com/Building_and_Installing_the_USRP=
+_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux
+
+Link used for Application Notes: https://kb.ettus.com/Application_Notes
+
+Jeff
 
 
-=09
-	<span></span><p style=3D"margin-bottom:0cm;line-height:100%"><font color=
-=3D"#000000">
-           <b><i><font face=3D"lucidatypewriter, serif"><font style=3D"font=
--size:10pt" size=3D"2">uhd::stream_cmd_t
-stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_MORE);   </font></f=
-ont></i></b></font><b><i>
-</i></b></p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%">
-</p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i><font color=
-=3D"#000000">
-           <font face=3D"lucidatypewriter, serif"><font style=3D"font-size:=
-10pt" size=3D"2">stream_cmd.num_samps
-=3D ceil(acq_num_samps/32);;   </font></font></font></i></b>
-</p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i><font color=
-=3D"#000000">
-           <font face=3D"lucidatypewriter, serif"><font style=3D"font-size:=
-10pt" size=3D"2">stream_cmd.stream_now
-=3D </font></font></font><font color=3D"#0000ff"><font face=3D"lucidatypewr=
-iter, serif"><font style=3D"font-size:10pt" size=3D"2">false</font></font><=
-/font><font color=3D"#000000"><font face=3D"lucidatypewriter, serif"><font =
-style=3D"font-size:10pt" size=3D"2">;</font></font></font></i></b></p><p st=
-yle=3D"margin-bottom:0cm;line-height:100%"><b><i><font color=3D"#000000"><f=
-ont face=3D"lucidatypewriter, serif"><font style=3D"font-size:10pt" size=3D=
-"2">stream_cmd.time_spec
-=3D usrp-&gt;get_time_last_pps(0)+1.1;</font></font></font></i></b></p><b><=
-i><font color=3D"#000000"><font face=3D"lucidatypewriter, serif"><font styl=
-e=3D"font-size:10pt" size=3D"2">uhd::stream_cmd_t
-stream_cmd1(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_MORE);   </font></=
-font></font>
+--_000_BN6PR19MB16354D6DF912FDD8DD841069A4740BN6PR19MB1635namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-</i><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i><font color=
-=3D"#000000">
-           <font face=3D"lucidatypewriter, serif"><font style=3D"font-size:=
-10pt" size=3D"2">stream_cmd1.num_samps
-=3D ceil(acq_num_samps/32);</font></font></font></i></b></p><p style=3D"mar=
-gin-bottom:0cm;line-height:100%"><b><i><font color=3D"#000000">
-           <font face=3D"lucidatypewriter, serif"><font style=3D"font-size:=
-10pt" size=3D"2">stream_cmd1.stream_now
-=3D </font></font></font><font color=3D"#0000ff"><font face=3D"lucidatypewr=
-iter, serif"><font style=3D"font-size:10pt" size=3D"2">true</font></font></=
-font><font color=3D"#000000"><font face=3D"lucidatypewriter, serif"><font s=
-tyle=3D"font-size:10pt" size=3D"2">;
-</font></font></font></i></b>
-</p><b><i></i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i><fo=
-nt color=3D"#000000">
-           <font face=3D"lucidatypewriter, serif"><font style=3D"font-size:=
-10pt" size=3D"2">uhd::stream_cmd_t
-stream_cmd2(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);      </font=
-></font></font></i></b>
-</p><b><i>
-</i><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i><font color=
-=3D"#000000">
-           <font face=3D"lucidatypewriter, serif"><font style=3D"font-size:=
-10pt" size=3D"2">stream_cmd2.num_samps
-=3D ceil(acq_num_samps/32);</font></font></font></i></b></p><p style=3D"mar=
-gin-bottom:0cm;line-height:100%"><b><i><font color=3D"#000000">
-           <font face=3D"lucidatypewriter, serif"><font style=3D"font-size:=
-10pt" size=3D"2">stream_cmd2.stream_now
-=3D </font></font></font><font color=3D"#0000ff"><font face=3D"lucidatypewr=
-iter, serif"><font style=3D"font-size:10pt" size=3D"2">true</font></font></=
-font><font color=3D"#000000"><font face=3D"lucidatypewriter, serif"><font s=
-tyle=3D"font-size:10pt" size=3D"2">;
- </font></font></font></i></b>
-</p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i><font color=
-=3D"#000000">
-           </font></i></b>
-</p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i><font color=
-=3D"#000000">
-       <font face=3D"lucidatypewriter, serif"><font style=3D"font-size:10pt=
-" size=3D"2">usrp-&gt;issue_stream_cmd(stream_cmd);=C2=A0</font></font></fo=
-nt><font color=3D"#228b22"><font face=3D"lucidatypewriter, serif"><font sty=
-le=3D"font-size:10pt" size=3D"2"></font></font></font></i></b></p><b><i></i=
-></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i><font color=3D"#=
-000000">
-       </font><font color=3D"#0000ff"><font face=3D"lucidatypewriter, serif=
-"><font style=3D"font-size:10pt" size=3D"2">for</font></font></font><font c=
-olor=3D"#000000"><font face=3D"lucidatypewriter, serif"><font style=3D"font=
--size:10pt" size=3D"2">
-(size_t c=3D0; c&lt;30 ; c++)</font></font></font></i></b></p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i><font color=
-=3D"#000000">
-           <font face=3D"lucidatypewriter, serif"><font style=3D"font-size:=
-10pt" size=3D"2">usrp-&gt;issue_stream_cmd(stream_cmd1);
-</font></font></font><font color=3D"#228b22"><font face=3D"lucidatypewriter=
-, serif"><font style=3D"font-size:10pt" size=3D"2"><br></font></font></font=
-></i></b></p><b><i></i></b><p style=3D"margin-bottom:0cm;line-height:100%">=
-<font color=3D"#000000"><b><i>
-           </i></b><font face=3D"lucidatypewriter, serif"><font style=3D"fo=
-nt-size:10pt" size=3D"2"><b><i>usrp-&gt;issue_stream_cmd(stream_cmd2); </i>=
-</b><br></font></font></font></p>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Application Note AN-445 has a section that references &quot;Using a Virtual=
+ Machine (VM)&quot; and says that there is another Application Note which d=
+escribes special issues regarding VMs, but does not have a link to it.&nbsp=
+; I did not see anything in the list of application
+ notes which seems to match.&nbsp; Which application note is needed for VMs=
+?</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Link used for AN-445: <a href=3D"https://kb.ettus.com/Building_and_Installi=
+ng_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux" id=3D"LPNoL=
+P126935">
+https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain=
+_(UHD_and_GNU_Radio)_on_Linux</a></div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Link used for Application Notes: <a href=3D"https://kb.ettus.com/Applicatio=
+n_Notes" id=3D"LPNoLP860032">
+https://kb.ettus.com/Application_Notes</a><br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Jeff<br>
+</div>
+<br>
+</body>
+</html>
 
-</div><div><br><span class=3D"gmail-tlid-translation gmail-translation" lan=
-g=3D"en"><span title=3D""></span></span></div><div><span class=3D"gmail-tli=
-d-translation gmail-translation" lang=3D"en"><span title=3D""></span><span =
-title=3D"" class=3D"gmail-">I have also tried 25MHz acquisitions of more th=
-an 85 sg, limit imposed by the decimated block, obtaining as error an exces=
-s in the number of samples per burst.</span></span></div><div>
+--_000_BN6PR19MB16354D6DF912FDD8DD841069A4740BN6PR19MB1635namp_--
 
 
-=09
-	<span></span>
-=09
-=09
-
-
-<p style=3D"margin-bottom:0cm;line-height:100%"><b><i>[WARNING] [X300
-RADIO] Requesting invalid sampling rate from device: 200 MHz. Actual
-rate is: 100 MHz.</i></b></p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i>[INFO] [MULTI=
-_USRP]=20
-   1) catch time transition at pps edge</i></b></p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i>[INFO] [MULTI=
-_USRP]=20
-   2) set times next pps (synchronously)</i></b></p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i>[ERROR] [RFNO=
-C
-RADIO] Requesting too many samples in a single burst! Requested
-312687500, maximum is 268435455.</i></b></p><b><i>
-</i></b><p style=3D"margin-bottom:0cm;line-height:100%"><b><i>[INFO] [RFNOC=
- RADIO]
-Note that a decimation block will increase the number of samples per
-burst by the decimation factor. Your application may have requested
-fewer samples.</i></b></p>
-
-</div><div><br><span class=3D"gmail-tlid-translation gmail-translation" lan=
-g=3D"en"></span></div><div><span class=3D"gmail-tlid-translation gmail-tran=
-slation" lang=3D"en"><span title=3D"" class=3D"gmail-">To solve this proble=
-m, I have increased the number of bursts to have a smaller number of sample=
-s per burst.</span> <span title=3D"">however, I get both the broken_chain o=
-r timeout error.</span><br><br><span title=3D"">I don&#39;t know how to sol=
-ve this problem and try to make longer adquisitions without getting any kin=
-d of error (overflow, broken_chain. timeout).</span> <span title=3D"">Could=
- someone offer me any help?</span></span></div><div><span class=3D"gmail-tl=
-id-translation gmail-translation" lang=3D"en"><span title=3D""><br></span><=
-/span></div><div><span class=3D"gmail-tlid-translation gmail-translation" l=
-ang=3D"en"><span title=3D"">Thank you in advanced.</span></span></div><div>=
-<span class=3D"gmail-tlid-translation gmail-translation" lang=3D"en"><span =
-title=3D""><br></span></span></div><div><span class=3D"gmail-tlid-translati=
-on gmail-translation" lang=3D"en"><span title=3D"">Regards,</span></span></=
-div><div><span class=3D"gmail-tlid-translation gmail-translation" lang=3D"e=
-n"><span title=3D"">Anabel<br></span></span></div></div>
-
---000000000000559109059710584d--
-
-
---===============1283542416048860945==
+--===============6763204909376042855==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -324,5 +188,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1283542416048860945==--
+--===============6763204909376042855==--
 
