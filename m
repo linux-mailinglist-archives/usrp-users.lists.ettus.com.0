@@ -2,61 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D80F60A9
-	for <lists+usrp-users@lfdr.de>; Sat,  9 Nov 2019 18:26:45 +0100 (CET)
-Received: from [::1] (port=47782 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ABFFF72B0
+	for <lists+usrp-users@lfdr.de>; Mon, 11 Nov 2019 12:02:05 +0100 (CET)
+Received: from [::1] (port=43270 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iTUVW-0000CL-0c; Sat, 09 Nov 2019 12:26:42 -0500
-Received: from mail-io1-f54.google.com ([209.85.166.54]:41200)
+	id 1iU7SL-0002mE-Lt; Mon, 11 Nov 2019 06:02:01 -0500
+Received: from mail-lf1-f53.google.com ([209.85.167.53]:36386)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iTUVS-00006b-Oa
- for usrp-users@lists.ettus.com; Sat, 09 Nov 2019 12:26:38 -0500
-Received: by mail-io1-f54.google.com with SMTP id r144so9756666iod.8
- for <usrp-users@lists.ettus.com>; Sat, 09 Nov 2019 09:26:18 -0800 (PST)
+ (Exim 4.92) (envelope-from <anabel.almodovar@gmail.com>)
+ id 1iU7SI-0002hf-OW
+ for usrp-users@lists.ettus.com; Mon, 11 Nov 2019 06:01:58 -0500
+Received: by mail-lf1-f53.google.com with SMTP id m6so9514221lfl.3
+ for <usrp-users@lists.ettus.com>; Mon, 11 Nov 2019 03:01:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=DD/q4/d1ojoOtraYUOLyE7bbmpxelmGRDwrxpiUtdHo=;
- b=g2hU6Rd/XwWyEEnQpEILYtqwi1uiEEuqaeFK/pi/LonJFYOtl7vx3RRZEFtkiDejwb
- WMyKG81sELeHf5lf4c5KxiCsn2Vv3brMV03M+DjnAFXythHz649fB8XtxfjJHUdfPLK9
- 8ZoiOumhV6bfweTW4LYvdGNc98km8zlvQ8aJcZkWuxRpMFtvqioo/KThOE5gPhe7MZii
- laI+idIvdini32hD+XXAjdFB8yJ95BZpvVr/YKoxuJK2JN03xcGrR4acH5owd3tQb8Sx
- 1uiyRQd/AU8rvR8gWDkDCLj/UeTCnbVfZh/ialcsqRtYBa3THpLSB/2yQg83e9JEcbhs
- VX2A==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=TWMnbq/2f1kCh+JPzBSlj1VFtlWE8BTpyAZOzOgsFWg=;
+ b=OyfOhWEMOI4mbR8XOOd9LlFinafTBextw64Oy5YL96gnOujxJNwlpsw/9ZD/iiRv3U
+ gV4fF0PAyCs/RNESOYtdgIcQGHEeWqyvOXkOjI7rObIBv2tJPKGb0u62j6KyRKZLJKIh
+ gq9ASio9Z2wRd1R5+OmujZNzma912TAnNLTsQrZoO8rKkbB1InjeinWkvhA5RWXA8qwA
+ JPof97W2ZD+1Ua6EVM60k1GgQ7worNdkZrmLMWPW1Vwe8AQZ+2yQpqYABzMtu/+DG9rc
+ BqCeianrvgD+K0fH8i3dAm3/juP4xEMFJeLImFNArcUePfzfK7yuRln18dllOnHzV0op
+ N06A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=DD/q4/d1ojoOtraYUOLyE7bbmpxelmGRDwrxpiUtdHo=;
- b=X/FoPQ5Q/RY5e67e2HflTRretoQu9T7Ne3jDlJ4UDzF4uQJ+5OMy5zrtTXyCqsivq8
- ikpdKeXasVidjc9znMjtqTZulTlsQcusBeuCTQecEnaSJXIVoBN1fFHqtlihLHz4FFZw
- 3Sj6yg/999DuBQyE1Tl4RVsbgOqHSurXH2Kvq5gwwR8gxWjsiW6QujAwZU1mmc4JeRFD
- yhMVsihJQ+gaqUYKV7GMtfKAn4Qih5SY8MTsV3Ghs5g0CMfmZd/D940hndxj0zQpiM8i
- vgozrts08dwiLvgzDE2d9EIqO2f8xIsE+z90dEoVHIakQzi03BRH72lAnxdaaLniu6LL
- 0SMw==
-X-Gm-Message-State: APjAAAXgczxStcMUzgSKt5gpuhmss4RT1P8j8PQ0CrlTzLT0H4xf9+SO
- +1xj8k3STK3FbP6htTWpv97W2DWSlR8=
-X-Google-Smtp-Source: APXvYqyoKYKkr6ieaNJ8b+Ep1upaVQQ3HNqmOYKaHRMQKf3pcRUArDNWFhuIxsa522d76woXaQW8BQ==
-X-Received: by 2002:a6b:908a:: with SMTP id
- s132mr17137604iod.118.1573320357731; 
- Sat, 09 Nov 2019 09:25:57 -0800 (PST)
-Received: from [192.168.2.62] (cksnon1659w-lp130-06-70-27-5-112.dsl.bell.ca.
- [70.27.5.112])
- by smtp.googlemail.com with ESMTPSA id a12sm698518iok.38.2019.11.09.09.25.56
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 09 Nov 2019 09:25:57 -0800 (PST)
-Message-ID: <5DC6F6A4.1040700@gmail.com>
-Date: Sat, 09 Nov 2019 12:25:56 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=TWMnbq/2f1kCh+JPzBSlj1VFtlWE8BTpyAZOzOgsFWg=;
+ b=UdXKF+tdZn0WOhPDU4oC8M22F16O8Z7XCjSlIHjDTPMStfHe8UAO4UiKv0cSTrLkvs
+ CGrLwiSSkx/wDDM+SeuNFkiluSZ0uU/68abcsW2BOsQ4QC1iB2XEJ7DpLqjgg6OwWRcF
+ E6wjHpS+yT6wrNdvLObO38Wna/cBKvZYBHFeiu4b00qHIsinMFnvuwnpHztBlxu8BwAC
+ ZnpWHj8sXd49SB0oMRSg7c+obxTFdySqLyv8AxjErt+TKomrTlzuDOxem5lCnXIwy7gy
+ 0rST0yZ+XZjMvXamR3ukR69uGkzGLD/Kh7iAma/bEswL6BQExKhipW93kYWfpT41RTq0
+ q99w==
+X-Gm-Message-State: APjAAAVnH3fxw8pQHWpIX5vqGa8R+8IEXTpUeuF5P3s+fKMU/GX1BcjK
+ UmZrPxLNHlW8h5HWyWwIqc/AgpW4/dm91wiL79CTCWLm
+X-Google-Smtp-Source: APXvYqylfVie1gYDmMAB67n9rQMFAw0X+hzc7klyjuy7ixgq+3cQuv5q8wxolCDrHo7xniLZC6K2wtMOS43yXMFG6NU=
+X-Received: by 2002:a19:41d7:: with SMTP id
+ o206mr15092045lfa.188.1573470076923; 
+ Mon, 11 Nov 2019 03:01:16 -0800 (PST)
 MIME-Version: 1.0
+Date: Mon, 11 Nov 2019 12:01:05 +0100
+Message-ID: <CAFPzw1nnhxhioT1_dt0X9NgjAwbvPfEc2fjURg4ywOid1Vjt3Q@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <978d5f24-1129-7f41-1a63-9e219b0f2fee@novagrid.com>
- <7c38aba6-135f-ac39-b826-d2710cde82a0@novagrid.com>
-In-Reply-To: <7c38aba6-135f-ac39-b826-d2710cde82a0@novagrid.com>
-Subject: Re: [USRP-users] TwinRx transfert function
+Subject: [USRP-users] Record in disc 4 channels in continuos mode
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -68,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2642204383793660858=="
+From: Anabel Almodovar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Anabel Almodovar <anabel.almodovar@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8734760104933737063=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,67 +72,66 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============2642204383793660858==
-Content-Type: multipart/alternative;
- boundary="------------060701030504040504040401"
+--===============8734760104933737063==
+Content-Type: multipart/alternative; boundary="000000000000fff2e80597100c9c"
 
-This is a multi-part message in MIME format.
---------------060701030504040504040401
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000fff2e80597100c9c
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/08/2019 03:56 AM, Olivier Ravard via USRP-users wrote:
->
-> Hello,
->
-> Is there anyone to answer this question ? Did someone experience the 
-> same 4dB fluctuations
-> in the 80 MHz bandwidth for acquisitions with TwinRx ?
->
-> thanks
->
->
-I've sent a note on to Ettus R&D to do some tests.
+Hello,
+
+I am trying to make a continuous acquisition with an ettus x310 card whose
+daughter boards are TwinRx. I have used as a base the example
+"rx_samples_to_file.cpp" and I have modified it to be able to acquire
+continuously with the 4 available channels. However, this gives me an error
+and saves a lot of zeros even though I don't get the overflow error. By
+testing the unmodified example I also get those zeros.
+
+Could someone tell me why this happens? How can I solve this error and save
+the acquisition continuously on disk with the 4 channels?
+
+Thank you in advanced.
+
+Regards,
+Anabel
+
+--000000000000fff2e80597100c9c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><span class=3D"gmail-tlid-translation gmail-translati=
+on" lang=3D"en"><span title=3D"" class=3D"gmail-">Hello,</span></span></div=
+><div><span class=3D"gmail-tlid-translation gmail-translation" lang=3D"en">=
+<span title=3D"" class=3D"gmail-"><br></span></span></div><div><span class=
+=3D"gmail-tlid-translation gmail-translation" lang=3D"en"><span title=3D"" =
+class=3D"gmail-">I am trying to make a continuous acquisition with an ettus=
+ x310 card whose daughter boards are TwinRx.</span> <span title=3D"" class=
+=3D"gmail-">I have used as a base the example=C2=A0 &quot;rx_samples_to_fil=
+e.cpp&quot; and I have modified it to be able to acquire continuously with =
+the 4 available channels.</span> <span title=3D"" class=3D"gmail-">However,=
+ this gives me an error and saves a lot of zeros even though I don&#39;t ge=
+t the overflow error.</span> <span title=3D"" class=3D"gmail-">By testing t=
+he unmodified example I also get those zeros.</span> <br></span></div><div>=
+<span class=3D"gmail-tlid-translation gmail-translation" lang=3D"en"><span =
+title=3D"" class=3D"gmail-"><br></span></span></div><div><span class=3D"gma=
+il-tlid-translation gmail-translation" lang=3D"en"><span title=3D"" class=
+=3D"gmail-">Could someone tell me why this happens?</span> <span title=3D""=
+ class=3D"gmail-">How can I solve this error and save the acquisition conti=
+nuously on disk with the 4 channels?</span></span></div><div><span class=3D=
+"gmail-tlid-translation gmail-translation" lang=3D"en"><span title=3D"" cla=
+ss=3D"gmail-"><br></span></span></div><div><span class=3D"gmail-tlid-transl=
+ation gmail-translation" lang=3D"en"><span title=3D"" class=3D"gmail-">Than=
+k you in advanced.</span></span></div><div><span class=3D"gmail-tlid-transl=
+ation gmail-translation" lang=3D"en"><span title=3D"" class=3D"gmail-"><br>=
+</span></span></div><div><span class=3D"gmail-tlid-translation gmail-transl=
+ation" lang=3D"en"><span title=3D"" class=3D"gmail-">Regards,</span></span>=
+</div><div><span class=3D"gmail-tlid-translation gmail-translation" lang=3D=
+"en"><span title=3D"" class=3D"gmail-">Anabel<br></span></span></div></div>
+
+--000000000000fff2e80597100c9c--
 
 
-
---------------060701030504040504040401
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 11/08/2019 03:56 AM, Olivier Ravard
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote
-      cite="mid:7c38aba6-135f-ac39-b826-d2710cde82a0@novagrid.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <p>Hello,</p>
-      <p>Is there anyone to answer this question ? Did someone
-        experience the same 4dB fluctuations<br>
-        in the 80 MHz bandwidth for acquisitions with TwinRx ?</p>
-      <p>thanks<br>
-      </p>
-      <br>
-    </blockquote>
-    I've sent a note on to Ettus R&amp;D to do some tests.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------060701030504040504040401--
-
-
---===============2642204383793660858==
+--===============8734760104933737063==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -155,5 +142,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2642204383793660858==--
+--===============8734760104933737063==--
 
