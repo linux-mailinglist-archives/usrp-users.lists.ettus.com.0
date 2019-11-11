@@ -2,58 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7715EF763F
-	for <lists+usrp-users@lfdr.de>; Mon, 11 Nov 2019 15:21:18 +0100 (CET)
-Received: from [::1] (port=41554 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAB1EF7822
+	for <lists+usrp-users@lfdr.de>; Mon, 11 Nov 2019 16:56:15 +0100 (CET)
+Received: from [::1] (port=57760 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iUAZA-0004BE-Re; Mon, 11 Nov 2019 09:21:16 -0500
-Received: from mail-qt1-f180.google.com ([209.85.160.180]:39259)
+	id 1iUC2x-0001MT-OT; Mon, 11 Nov 2019 10:56:07 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:42996)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iUAZ7-00045b-Hr
- for USRP-users@lists.ettus.com; Mon, 11 Nov 2019 09:21:13 -0500
-Received: by mail-qt1-f180.google.com with SMTP id t8so15837038qtc.6
- for <USRP-users@lists.ettus.com>; Mon, 11 Nov 2019 06:20:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=g3kwnCBVE/WRQZHjXHWL+8un2RvW7wkSEuU4io7K9sY=;
- b=PPpxN+xyuKnJuU2xkZoP9ej+oskDxS2OT0tXZDZ/e5BDEkOtUf4C2Z8CPgiKdO/Vie
- flYhNy32/Um2r6kpX5qUfVV3xqLgwN0ongV+CIppf/ar8yEIeCAeE5n1TNrgMH684HRX
- NqV99iSTe7rUNY5Wo3szwfonimqv0ZXrRFbQSNkKB0eHXcWvG2P4jzsQruOY1HP3QxqY
- aQ1gBKB3OT0MgPNsSSyzHHwalM1KRIc+pETt9bt/brukRV3JjyelUrQK7Vc8YR+QLVXN
- xwKRUnfhViinqPgPPPWRU4JS8LGfpQQf8Rl4WL8I70KTu5NLRHtUo+FY1m3ZqghgNvkn
- yWSA==
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1iUC2u-0001Gq-SK
+ for usrp-users@lists.ettus.com; Mon, 11 Nov 2019 10:56:04 -0500
+Received: by mail-ot1-f45.google.com with SMTP id b16so11628703otk.9
+ for <usrp-users@lists.ettus.com>; Mon, 11 Nov 2019 07:55:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=foty5NOyOERVmfGffiCX1scYEU2K3dJztVeUArIZ7tc=;
+ b=tmwKCrbLlAwx3Hv5IAWYT3uUOSLvJMPAHT2EKqV/6WkZTAQ0M93jXfydywUI0Akgr2
+ qOeaHzQ7wLJIJwZ3FEhFBv1I+1aOYn6d75+G8A+LqufYHMXWbrJkUrUZEC+cxmr9uGEL
+ BzPd7wj68DqgxYdEBRrnZiOcbNBKbeTmIorKudMdm4gubpwkrsWto6r8qVK2i/gSXGNo
+ djv/2AVzBxOlk81NPuIV/v7x+6kKasxkOeWiuxl6qwiJ7rvE8cHAyuM7URm05OddFFdl
+ DfkEsXYQTKBiA9oMutZZG8ZwsuWcTs+mZYmuzymzBC+Bh46PcdLNgPNQns4RBrm/5Hqm
+ 4mYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=g3kwnCBVE/WRQZHjXHWL+8un2RvW7wkSEuU4io7K9sY=;
- b=A7fX5gGj6Nu8Qyhc0rPU90OLQ1IUcdZ7VyDKQbfPNgGzRRhAv96+fDZGq1RIYckA2J
- GOT/+1Nvtg95ZpsvQr+NLE/7r+IriqyJ+/TGJsc5EYgG41fJbiLiu7FnaqlYK0b097DG
- nr/wpDifQNkz48XI3w+iFJ79M7KvUzCWVld2/dnSDoa07d3x104bfIDJNzVb9edQXqVV
- Onrv/ka6S3DmBwZ8Ppvai+0WumoUFBOjtcMN5ZT2kvD9kTuX7DBILR+hKS95jiRwpbje
- M3KzEJNPWouabnkaXiPAPvaL/fIK80Tvsk4lE2qZFuD9UjiOsZLzRPYT9wB3xafl7Jx4
- L0og==
-X-Gm-Message-State: APjAAAUF1ykxKzlu3lH4+ZsowKO4l5UufphlJWSyaWYLb6Z8xpIJebC8
- Dpa/W0dwHJhV220v/NxG5CM=
-X-Google-Smtp-Source: APXvYqzcsdrMrCZYC6+iRMRKD1RU7ln5PcLABP0ndmAzIn7E/z8pGTKSD3n6jC9kv63QpFB/+1NBAw==
-X-Received: by 2002:ac8:2f4e:: with SMTP id k14mr26469682qta.357.1573482032966; 
- Mon, 11 Nov 2019 06:20:32 -0800 (PST)
-Received: from [10.255.9.13]
- (CPE001145103080-CMf81d0fa05d80.cpe.net.cable.rogers.com. [99.246.132.253])
- by smtp.gmail.com with ESMTPSA id 187sm7913139qkk.103.2019.11.11.06.20.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Nov 2019 06:20:32 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Mon, 11 Nov 2019 09:20:31 -0500
-Message-Id: <E82B509C-A4D3-420B-9BCE-22DAF2177913@gmail.com>
-References: <MAXPR0101MB161284FD3EDE2B5F745FE13A88740@MAXPR0101MB1612.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <MAXPR0101MB161284FD3EDE2B5F745FE13A88740@MAXPR0101MB1612.INDPRD01.PROD.OUTLOOK.COM>
-To: Snehasish Kar <snehasish.cse@live.com>
-X-Mailer: iPhone Mail (17A878)
-Subject: Re: [USRP-users] Help in frequency shifting with USRP
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=foty5NOyOERVmfGffiCX1scYEU2K3dJztVeUArIZ7tc=;
+ b=tYR9SbirmLAErMBsXqT2mE1D6vCGkJ2IX5iENH04k9GRwz1zcIclT90my7NzE4eoVO
+ kksFC8v3TO+myUGmCeSe+Wvu4F0byLUPc4dlmHCIRgLYLLLeYIg3eWiKAznjC9ByeLa0
+ aRHsngNKCZEnK6mmg0CDa1VVE+4VPceiUu3UkzM1XeRCAKupywAFScJdneICztbjdALa
+ b96r3ooo5ZuhVRpHJv6b5CQhHSHYDNxMhzAE+oPA4rwGmSYkOyzvgHBd4WEq3IA5BcSm
+ vWbmiPfn9l0fvoQz+CE/SoSRg6RysEiwopELoy0f/9CcZwkg84FXUrZ9143X/qPzbdOj
+ 489A==
+X-Gm-Message-State: APjAAAXRV5uEDSTd+s/i1kbVblVYE5/F5HBMmH1SGqqeEjifJOSNzLCe
+ 2MLMD80qgUZhCowE8qeEA2d2lahgYDkZmObokxCWn/9R
+X-Google-Smtp-Source: APXvYqxLzo/fHz6qkgDaoHRXW2T4rytumcs3Jeqt9uIJD0hVnHrfBzsF4NA1P+Yxa7koeA2IZcnAMWkqT51sK2uW4n8=
+X-Received: by 2002:a9d:37e6:: with SMTP id x93mr12850805otb.183.1573487723864; 
+ Mon, 11 Nov 2019 07:55:23 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFPzw1nnhxhioT1_dt0X9NgjAwbvPfEc2fjURg4ywOid1Vjt3Q@mail.gmail.com>
+In-Reply-To: <CAFPzw1nnhxhioT1_dt0X9NgjAwbvPfEc2fjURg4ywOid1Vjt3Q@mail.gmail.com>
+Date: Mon, 11 Nov 2019 07:56:04 -0800
+Message-ID: <CAL263iwxzsfpxbQ+o5t+RF8oUcbaGcPJGSySEC_6rAA0cQL-fA@mail.gmail.com>
+To: Anabel Almodovar <anabel.almodovar@gmail.com>
+Subject: Re: [USRP-users] Record in disc 4 channels in continuos mode
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -65,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7687973219504881712=="
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6942379548172186983=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,161 +76,87 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============6942379548172186983==
+Content-Type: multipart/alternative; boundary="000000000000d7145305971428fd"
 
---===============7687973219504881712==
-Content-Type: multipart/alternative; boundary=Apple-Mail-F5D2A0CE-6C76-412F-95F5-AEDDECF718FF
-Content-Transfer-Encoding: 7bit
+--000000000000d7145305971428fd
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Anabel,
 
---Apple-Mail-F5D2A0CE-6C76-412F-95F5-AEDDECF718FF
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+What parameters are you using with the rx_samples_to_file example?
 
-This is more of a generic DSP question. It=E2=80=99s the sort of thing that f=
-olks on the discuss-gnuradio list do all the time.=20
+Regards,
+Nate Temple
 
+On Mon, Nov 11, 2019 at 3:02 AM Anabel Almodovar via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-
-Sent from my iPhone
-
-> On Nov 11, 2019, at 8:35 AM, Snehasish Kar via USRP-users <usrp-users@list=
-s.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> Hello=20
->=20
-> I tried capturing GSM 900 band at a sample rate of 25e6 centered at 947.4e=
-6 and stored in a file. Then on the captured data I tried shifting 935.2e6 t=
-o the center and perform a low pass filter samples out followed by a re-samp=
-ler to get 200e3 samples out. But I think the spectrum shifting is not wroki=
-ng as it should be I am following the following link for spectrum shifting h=
-ttps://dsp.stackexchange.com/a/1993. I am using twinrx with 10gig sfp, UHD_3=
-.13.1.0-0-unknown, ubuntu 16.04 and liquid dsp for signal processing.
->=20
-> fft - How to shift the frequency spectrum? - Signal Processing Stack Excha=
-nge
-> Stack Exchange network consists of 175 Q&A communities including Stack Ove=
-rflow, the largest, most trusted online community for developers to learn, s=
-hare their knowledge, and build their careers.. Visit Stack Exchange
-> dsp.stackexchange.com
-> Please let me know, where I might be going wrong.
->=20
-> BR
-> Snehasish
+> Hello,
+>
+> I am trying to make a continuous acquisition with an ettus x310 card whose
+> daughter boards are TwinRx. I have used as a base the example
+> "rx_samples_to_file.cpp" and I have modified it to be able to acquire
+> continuously with the 4 available channels. However, this gives me an
+> error and saves a lot of zeros even though I don't get the overflow error. By
+> testing the unmodified example I also get those zeros.
+>
+> Could someone tell me why this happens? How can I solve this error and
+> save the acquisition continuously on disk with the 4 channels?
+>
+> Thank you in advanced.
+>
+> Regards,
+> Anabel
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---Apple-Mail-F5D2A0CE-6C76-412F-95F5-AEDDECF718FF
-Content-Type: text/html;
-	charset=utf-8
+--000000000000d7145305971428fd
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">This is more of a generic DSP question. It=E2=
-=80=99s the sort of thing that folks on the discuss-gnuradio list do all the=
- time.&nbsp;<div><br></div><div><br><br><div dir=3D"ltr">Sent from my iPhone=
-</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Nov 11, 2019, at 8:3=
-5 AM, Snehasish Kar via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:=
-<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
-=BF
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi Anabel,<br><br>What parameters are you using with th=
+e rx_samples_to_file example?<br><br>Regards,<br>Nate Temple</div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, N=
+ov 11, 2019 at 3:02 AM Anabel Almodovar via USRP-users &lt;<a href=3D"mailt=
+o:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><d=
+iv><span lang=3D"en"><span title=3D"">Hello,</span></span></div><div><span =
+lang=3D"en"><span title=3D""><br></span></span></div><div><span lang=3D"en"=
+><span title=3D"">I am trying to make a continuous acquisition with an ettu=
+s x310 card whose daughter boards are TwinRx.</span> <span title=3D"">I hav=
+e used as a base the example=C2=A0 &quot;rx_samples_to_file.cpp&quot; and I=
+ have modified it to be able to acquire continuously with the 4 available c=
+hannels.</span> <span title=3D"">However, this gives me an error and saves =
+a lot of zeros even though I don&#39;t get the overflow error.</span> <span=
+ title=3D"">By testing the unmodified example I also get those zeros.</span=
+> <br></span></div><div><span lang=3D"en"><span title=3D""><br></span></spa=
+n></div><div><span lang=3D"en"><span title=3D"">Could someone tell me why t=
+his happens?</span> <span title=3D"">How can I solve this error and save th=
+e acquisition continuously on disk with the 4 channels?</span></span></div>=
+<div><span lang=3D"en"><span title=3D""><br></span></span></div><div><span =
+lang=3D"en"><span title=3D"">Thank you in advanced.</span></span></div><div=
+><span lang=3D"en"><span title=3D""><br></span></span></div><div><span lang=
+=3D"en"><span title=3D"">Regards,</span></span></div><div><span lang=3D"en"=
+><span title=3D"">Anabel<br></span></span></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-1=
-">
-
-
-
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Hello <br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-I tried capturing GSM 900 band at a sample rate of 25e6 centered at 947.4e6 a=
-nd stored in a file. Then on the captured data I tried shifting 935.2e6 to t=
-he center and perform a low pass filter samples out followed by a re-sampler=
- to get 200e3 samples out. But
- I think the spectrum shifting is not wroking as it should be I am following=
- the following link for spectrum shifting
-<a href=3D"https://dsp.stackexchange.com/a/1993" id=3D"LPlnk489535">https://=
-dsp.stackexchange.com/a/1993</a>. I am using twinrx with 10gig sfp, UHD_3.13=
-.1.0-0-unknown, ubuntu 16.04 and liquid dsp for signal processing.<br>
-</div>
-<div id=3D"LPBorder_GTaHR0cHM6Ly9kc3Auc3RhY2tleGNoYW5nZS5jb20vYS8xOTkz" clas=
-s=3D"LPBorder863734" style=3D"width: 100%; margin-top: 16px; margin-bottom: 1=
-6px; position: relative; max-width: 800px; min-width: 424px;" contenteditabl=
-e=3D"false">
-<table id=3D"LPContainer863734" role=3D"presentation" style=3D"padding: 12px=
- 36px 12px 12px; width: 100%; border-width: 1px; border-style: solid; border=
--color: rgb(200, 200, 200); border-radius: 2px;">
-<tbody>
-<tr style=3D"border-spacing: 0px;" valign=3D"top">
-<td>
-<div id=3D"LPImageContainer863734" style=3D"position: relative; margin-right=
-: 12px; height: 160px; overflow: hidden;">
-<a target=3D"_blank" id=3D"LPImageAnchor863734" href=3D"https://dsp.stackexc=
-hange.com/a/1993"><img id=3D"LPThumbnailImageId863734" alt=3D"" style=3D"dis=
-play: block;" width=3D"160" height=3D"160" src=3D"https://cdn.sstatic.net/Si=
-tes/dsp/img/apple-touch-icon@2.png?v=3De0439310c223" data-unique-identifier=3D=
-""></a></div>
-</td>
-<td style=3D"width: 100%;">
-<div id=3D"LPTitle863734" style=3D"font-size: 21px; font-weight: 300; margin=
--right: 8px; font-family: &quot;wf_segoe-ui_light&quot;, &quot;Segoe UI Ligh=
-t&quot;, &quot;Segoe WP Light&quot;, &quot;Segoe UI&quot;, &quot;Segoe WP&qu=
-ot;, Tahoma, Arial, sans-serif; margin-bottom: 12px;">
-<a target=3D"_blank" id=3D"LPUrlAnchor863734" href=3D"https://dsp.stackexcha=
-nge.com/a/1993" style=3D"text-decoration: none; color:var(--themePrimary);">=
-fft - How to shift the frequency spectrum? - Signal Processing Stack Exchang=
-e</a></div>
-<div id=3D"LPDescription863734" style=3D"font-size: 14px; max-height: 100px;=
- color: rgb(102, 102, 102); font-family: &quot;wf_segoe-ui_normal&quot;, &qu=
-ot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; margin-b=
-ottom: 12px; margin-right: 8px; overflow: hidden;">
-Stack Exchange network consists of 175 Q&amp;A communities including Stack O=
-verflow, the largest, most trusted online community for developers to learn,=
- share their knowledge, and build their careers.. Visit Stack Exchange</div>=
-
-<div id=3D"LPMetadata863734" style=3D"font-size: 14px; font-weight: 400; col=
-or: rgb(166, 166, 166); font-family: &quot;wf_segoe-ui_normal&quot;, &quot;S=
-egoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif;">
-dsp.stackexchange.com</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Please let me know, where I might be going wrong.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-BR</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Snehasish<br>
-</div>
+--000000000000d7145305971428fd--
 
 
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></div></body></html>=
-
---Apple-Mail-F5D2A0CE-6C76-412F-95F5-AEDDECF718FF--
-
-
---===============7687973219504881712==
+--===============6942379548172186983==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -247,5 +167,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7687973219504881712==--
+--===============6942379548172186983==--
 
