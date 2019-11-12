@@ -2,51 +2,79 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F16ADF965B
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Nov 2019 17:56:36 +0100 (CET)
-Received: from [::1] (port=53012 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B93F970C
+	for <lists+usrp-users@lfdr.de>; Tue, 12 Nov 2019 18:25:07 +0100 (CET)
+Received: from [::1] (port=50260 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iUZSz-0007qk-Pr; Tue, 12 Nov 2019 11:56:33 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:45101)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
- id 1iUZSx-0007j2-4A
- for USRP-users@lists.ettus.com; Tue, 12 Nov 2019 11:56:31 -0500
-Received: by mail-oi1-f175.google.com with SMTP id 14so9432904oir.12
- for <USRP-users@lists.ettus.com>; Tue, 12 Nov 2019 08:56:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+PdqZflGwmkCUWF+WtqzoMobttQ/Kr0PCStx3KRNpnM=;
- b=rljPPxFBBCS5KC/+eGc+T9ZQhkzpkfV8dIx3ZHmo4pzsYDYOV4vsQoGmxfNIe5LNh0
- 389PwHytGiMamc1vt4OCcNjaA0ZIspP1+uQoeIlIO744+F8QZtTWLrcQLr84PgzGu2c7
- Y0QdrNA/xPcw7aZDWPYQeyRte46LffiObrrw8asbXlSYFByKLdIhzR7WVw0iXnjzbWgt
- WRG6dllWFEeRM9fDYaR5akm0R3nc9+2vy+ybCkYAZVkFDejm18+fzyD1K15WKarSwIQ2
- jHggkhJddw2CMZHCB0MPgEU6sUbsCphEGAYEAYEWVzUOqSpNFORjHoWqakeePRY/CVuW
- Xkug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=+PdqZflGwmkCUWF+WtqzoMobttQ/Kr0PCStx3KRNpnM=;
- b=FTb0YL3bxf5ZzP3B/v3mA0mqE9QZ9G84CNSXpT+iImvjcGx4v5Z9wm4H0Pgfd+23g0
- hdE/WY9V3mIHbV4GoyKzYiWbVF/zAnJH1MZ8934YAthZjWaJHhRMrCLilE/y/WgkRbV8
- 3uQ3vRlPM/y9/109ZMRa/4woC4j3R/X+oHoSxxlIM6kiJVJZeI+0j03oEfJ6rqa3qmbq
- W/FNAr4Z4gVuXj7avk0HYj499mReYMYgKXPTfHAnCqxLMFewtW+jdLfGB8ZTHP1BXypX
- SbZ80lSHh/V03cKE+VFAY3r/7KvWaKg5yAHM0ACoj7GnejEINqGcbiy7gLscpS253IxC
- ZSiA==
-X-Gm-Message-State: APjAAAWCX7AEic9Q7SRLkrlhgyO1V5ttLpcvW2eIcXfke5TYjW1csCuC
- 8icxWr2BeOcox8Lu2DVnm3AaS0ZQuljMA3xz2OEww+719esAzw==
-X-Google-Smtp-Source: APXvYqxGxWyoqdida1Kt/811dzejGzzdXsw7DWU1ca7MstFrMocGHbnZBOWjOWcagdFkU0B2o9tfH39OWn3Wxh2O2Rk=
-X-Received: by 2002:aca:c7c1:: with SMTP id x184mr5002828oif.158.1573577750230; 
- Tue, 12 Nov 2019 08:55:50 -0800 (PST)
+	id 1iUZuc-0005XE-2g; Tue, 12 Nov 2019 12:25:06 -0500
+Received: from mail1.bemta26.messagelabs.com ([85.158.142.3]:60672)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <Joern.Skorstad@Nkom.no>)
+ id 1iUZuY-0005Of-Sl
+ for USRP-users@lists.ettus.com; Tue, 12 Nov 2019 12:25:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=s1;
+ t=1573579461; i=@nkom.no;
+ bh=wgoM86Cy2162r7wo7f/Tx8ofHWgVZPya0kQkfQ71LUc=;
+ h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+ Content-Type:Content-Transfer-Encoding:MIME-Version;
+ b=tEkRq83ud70CHECMxFSps32/snogRI1lQjl4b78kjoYzngvPX30eTI4Fz3gFyo1ys
+ A4uPPVA+nZOC9Ol5xCIB6YTGo3+Z/C6BpZMK9wfrPRRuEDzD+uEpy0hi2G/lPgvUtY
+ caEuNFUaej65OoeI+Wxx0mltHcGRjdRGFD+XGoaIAYdRPVfGHeLxpClUZlTz6yerFk
+ k1k9A5wLw6spGiy//omG3Z6593akmj1XtMMIkIuctwU4uU4OzxOS4ltAkOHxEV2IPp
+ b8tignOv+Mk8TrPTXehva7DiSOjW05d4d4SWdDT+/0Wffw8zsovz98K8jZsEkVacWD
+ j4vcMqT2ib0gg==
+Received: from [85.158.142.100] (using TLSv1.2 with cipher
+ DHE-RSA-AES256-GCM-SHA384 (256 bits))
+ by server-3.bemta.az-a.eu-central-1.aws.symcld.net id CA/42-23277-4CAEACD5;
+ Tue, 12 Nov 2019 17:24:20 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrIKsWRWlGSWpSXmKPExsViF5OXq3vk1al
+ Yg/s/tSxO79nCYnGhcw67A5PHzFNb2D0mrjzEHMAUxZqZl5RfkcCacXTJPOaCewIVWzaeY29g
+ XMPXxcjFISTQwijR/e4nWxcjJwebgLPE7yWfmEFsEQF1ifurmxhBbGYBW4lZH1cxgdjCAloSW
+ 46+Y4Wo0ZZY/vQ2C4RtJbGjazNYnEVAVeLzoR1gM3kFXCTaL55jh1jWzChx+sUdsASnQKDEk0
+ s/gGwODkYBWYm5TbwQu8QlZhy9AzZTQkBAYsme88wQtqjEy8f/WCFsK4nnJxcwQdiaEkcudEL
+ VK0ic23qGDcKWl9j/cgozxEwDiffn5kPZ2hLLFr5mhrhNUOLkzCcsExjFZiFZPQtJyywkLbOQ
+ tCxgZFnFaJFUlJmeUZKbmJmja2hgoGtoaKxrrGtmqJdYpZuol1qqm5yaV1KUCJTUSywv1iuuz
+ E3OSdHLSy3ZxAiMvZRCZtsdjGffv9U7xCjJwaQkynvz0qlYIb6k/JTKjMTijPii0pzU4kOMMh
+ wcShK8PM+BcoJFqempFWmZOcA0AJOW4OBREuG9+QIozVtckJhbnJkOkTrFqMsx4eXcRcxCLHn
+ 5ealS4rx3QIoEQIoySvPgRsBS0iVGWSlhXkYGBgYhnoLUotzMElT5V4ziHIxKwryKL4Gm8GTm
+ lcBtegV0BBPQES2HwY4oSURISTUwzSudN1sk6vVT07NCXM7Xk5eEb4m4y3z2+XLR2W587DNzW
+ nnZXf4cqlkZvfGlWsVHtsI5y091Knn2e356FBA8affy8MhWFeEjF+RuR/I5yswNlz7jZqF875
+ NPdNO5WeZq73w2fVg4saegbG7CVM/H/E2PFs2ovX1z3VXtnuJrBxkCN6y/qpT1XvaiH1PMg7c
+ mh84uX3uldG3z8tt5DP+KdcLfzxA+9Ta67LPO8vtrWW880Jx2aE3+k3V851ym+q00C9rsE9md
+ yLv3o95drjk1LlN08z+cMFHb9bp02pslUn9zVcLmzBLZFaehtzxySVm5pXWgIG8AyyM5oZ7Wy
+ Afpp+6WHLCtXLNAc979J9k8tUosxRmJhlrMRcWJAG+zwoDEAwAA
+X-Env-Sender: Joern.Skorstad@Nkom.no
+X-Msg-Ref: server-16.tower-225.messagelabs.com!1573579460!289711!1
+X-Originating-IP: [62.92.110.109]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.44.22; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 4984 invoked from network); 12 Nov 2019 17:24:20 -0000
+Received: from 109.110.92.62.static.cust.telenor.com (HELO smtp.nkom.no)
+ (62.92.110.109)
+ by server-16.tower-225.messagelabs.com with ECDHE-RSA-AES256-SHA encrypted
+ SMTP; 12 Nov 2019 17:24:20 -0000
+Received: from EXMBX01.npta.no ([10.10.2.97]) by EXCAS.npta.no ([::1]) with
+ mapi id 14.03.0468.000; Tue, 12 Nov 2019 18:24:18 +0100
+To: Nate Temple <nate.temple@ettus.com>
+Thread-Topic: [USRP-users] E310 RFNoC image
+Thread-Index: AdWZLCnHsJoqHaTiQkOJ5gEZ7l9tRgARZUaAAAMRPSw=
+Date: Tue, 12 Nov 2019 17:24:18 +0000
+Message-ID: <6647c899-4322-4059-b9d7-bf69ead4dedd@email.android.com>
+References: <D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8@exmbx01>,
+ <CAL263iyu=4WX8SpPUUu1ue+-sjsZUM0rvZVnd+taOJx9x8GC_Q@mail.gmail.com>
+In-Reply-To: <CAL263iyu=4WX8SpPUUu1ue+-sjsZUM0rvZVnd+taOJx9x8GC_Q@mail.gmail.com>
+Accept-Language: nb-NO, en-US
+Content-Language: nb-NO
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-tm-as-product-ver: SMEX-11.0.0.1251-8.100.1062-25038.003
+x-tm-as-result: No--15.084200-8.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-References: <D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8@exmbx01>
-In-Reply-To: <D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8@exmbx01>
-Date: Tue, 12 Nov 2019 08:56:29 -0800
-Message-ID: <CAL263iyu=4WX8SpPUUu1ue+-sjsZUM0rvZVnd+taOJx9x8GC_Q@mail.gmail.com>
-To: =?UTF-8?B?U2tvcnN0YWQsSsO4cm4=?= <Joern.Skorstad@nkom.no>
 Subject: Re: [USRP-users] E310 RFNoC image
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
@@ -59,10 +87,12 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nate Temple <nate.temple@ettus.com>
+From: =?utf-8?q?Skorstad=2CJ=C3=B8rn_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?Windows-1252?Q?Skorstad=2CJ=F8rn?= <Joern.Skorstad@Nkom.no>
 Cc: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2324605633912542182=="
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,19 +106,17 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2324605633912542182==
-Content-Type: multipart/alternative; boundary="000000000000d4517c0597291e43"
+Thanks Nate, I will try to install it as described below.
 
---000000000000d4517c0597291e43
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Jorn
 
+12. nov. 2019 17:55 skrev Nate Temple <nate.temple@ettus.com>:
 Hi Jorn,
 
 The process for installing Xilinx Vivado WebPACK is fairly easy.
 
-Download "Vivado Design Suite - HLx Editions - 2017.4  Full Product
-Installation" from here:
+Download "Vivado Design Suite - HLx Editions - 2017.4  Full Product Install=
+ation" from here:
 
 https://www.xilinx.com/support/download/index.html/content/xilinx/en/downlo=
 adNav/vivado-design-tools/archive.html
@@ -97,140 +125,48 @@ Decompress the tarball
 
 Run "sudo ./xsetup"
 
-When prompted to download the latest version, ignore and click "Continue",
+When prompted to download the latest version, ignore and click "Continue", =
 2017.4 is required.
 
-Click Next, and agree to the EULA and other terms, click Next and keep the
+Click Next, and agree to the EULA and other terms, click Next and keep the =
 default /opt/Xilinx install prefix.
 
 Click next through the rest of the menus and "install"
 
-You'll now have Vivado installed to /opt/Xilinx/Vivado/2017.4 and can use
-it with the build tools as described in the previously linked app note.
+You'll now have Vivado installed to /opt/Xilinx/Vivado/2017.4 and can use i=
+t with the build tools as described in the previously linked app note.
 
 
 
 Regards,
 Nate Temple
 
-On Mon, Nov 11, 2019 at 11:56 PM Skorstad,J=C3=B8rn via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+On Mon, Nov 11, 2019 at 11:56 PM Skorstad,J=F8rn via USRP-users <usrp-users=
+@lists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
+Hi list,
 
-> Hi list,
->
->
->
-> I have followed the application note
-> https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFN=
-oC_UHD_/_GNU_Radio_/_gr-ettus_from_Source
-> to set up a cross compile environment for an E310 SDR. It works well,
-> however I have not been able to get past chapter 7: Building a custom RFN=
-oC
-> FPGA Image, as I haven=E2=80=99t set up Vivado 2017.4, as required.
->
->
->
-> I would like to experiment with RFNoC development also. The application
-> note states =C2=ABA future application note will cover a step-by-step ins=
-tall
-> guide for Vivado=C2=BB. Until this application note is ready, is it possi=
-ble to
-> use an image built by someone else using this software version?
-> (UHD_3.14.1.HEAD-0-gbfb9c1c7). If so, where could I eventually download i=
-t?
-> What I need is 1xwindow, 1xFFT, 1xFIFO and 1xFosphor if there is space
-> left. Radio and DDC is already on FPGA available as blocks?
->
->
->
-> Regards,
->
-> Jorn
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+I have followed the application note https://kb.ettus.com/Software_Developm=
+ent_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Sourc=
+e to set up a cross compile environment for an E310 SDR. It works well, how=
+ever I have not been able to get past chapter 7: Building a custom RFNoC FP=
+GA Image, as I haven=92t set up Vivado 2017.4, as required.
 
---000000000000d4517c0597291e43
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I would like to experiment with RFNoC development also. The application not=
+e states =ABA future application note will cover a step-by-step install gui=
+de for Vivado=BB. Until this application note is ready, is it possible to u=
+se an image built by someone else using this software version? (UHD_3.14.1.=
+HEAD-0-gbfb9c1c7). If so, where could I eventually download it? What I need=
+ is 1xwindow, 1xFFT, 1xFIFO and 1xFosphor if there is space left. Radio and=
+ DDC is already on FPGA available as blocks?
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hi Jorn,<br><br>The process for installing Xilinx Vivad=
-o WebPACK is fairly easy. <br><br>Download &quot;Vivado Design Suite - HLx =
-Editions - 2017.4 =C2=A0Full Product Installation&quot; from here:<br><br><=
-a href=3D"https://www.xilinx.com/support/download/index.html/content/xilinx=
-/en/downloadNav/vivado-design-tools/archive.html">https://www.xilinx.com/su=
-pport/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools=
-/archive.html</a><br><br>Decompress the tarball<br><br>Run &quot;sudo ./xse=
-tup&quot;<br><br>When prompted to download the latest version, ignore and c=
-lick &quot;Continue&quot;, 2017.4 is required.<br><br>Click Next, and agree=
- to the EULA and other terms, click Next and keep the default /opt/Xilinx i=
-nstall prefix.<br><br>Click next through the rest of the menus and &quot;in=
-stall&quot;<br><br>You&#39;ll now have Vivado installed to /opt/Xilinx/Viva=
-do/2017.4 and can use it with the build tools as described in the previousl=
-y linked app note.<br><br><br><br>Regards,<br>Nate Temple</div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov =
-11, 2019 at 11:56 PM Skorstad,J=C3=B8rn via USRP-users &lt;<a href=3D"mailt=
-o:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"NO-BOK">
-<div class=3D"gmail-m_-6737176487815908089WordSection1">
-<p class=3D"MsoNormal">Hi list,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I have followed the application note <a href=3D"http=
-s://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD=
-_/_GNU_Radio_/_gr-ettus_from_Source" target=3D"_blank">
-https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC=
-_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a> to set up a cross compile envir=
-onment for an E310 SDR. It works well, however I have not been able to get =
-past chapter 7: Building a custom
- RFNoC FPGA Image, as I haven=E2=80=99t set up Vivado 2017.4, as required. =
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I would like to experiment with RFNoC development al=
-so. The application note states =C2=ABA future application note will cover =
-a step-by-step install guide for Vivado=C2=BB. Until this application note =
-is ready, is it possible to use an image built
- by someone else using this software version? (UHD_3.14.1.HEAD-0-gbfb9c1c7)=
-. If so, where could I eventually download it? What I need is 1xwindow, 1xF=
-FT, 1xFIFO and 1xFosphor if there is space left. Radio and DDC is already o=
-n FPGA available as blocks?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Regards,<u></u><u></u></p>
-<p class=3D"MsoNormal">Jorn<u></u><u></u></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000d4517c0597291e43--
-
-
---===============2324605633912542182==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Regards,
+Jorn
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2324605633912542182==--
-
