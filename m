@@ -2,52 +2,77 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABEA7F7A47
-	for <lists+usrp-users@lfdr.de>; Mon, 11 Nov 2019 18:53:40 +0100 (CET)
-Received: from [::1] (port=44452 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12EA6F8A09
+	for <lists+usrp-users@lfdr.de>; Tue, 12 Nov 2019 08:56:31 +0100 (CET)
+Received: from [::1] (port=39652 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iUDsg-0004RY-Rh; Mon, 11 Nov 2019 12:53:38 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:44906)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
- id 1iUDsd-0004Mq-1P
- for usrp-users@lists.ettus.com; Mon, 11 Nov 2019 12:53:35 -0500
-Received: by mail-oi1-f171.google.com with SMTP id s71so12230797oih.11
- for <usrp-users@lists.ettus.com>; Mon, 11 Nov 2019 09:53:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=xL2BrubDe5pO8Eu8YilahqMdm0FNOU5cKL9PhorjGA0=;
- b=Q2fdZOw30H2IAzuSOYyHyY/3RD7xPAKB0fuMP3UImjkb/+9WD5k3scMOagae9GYmZ7
- ta5jH7xpOYx2as3oYZOyzg7pceLBP+oI5CuJV+OPhZ7cIyRGAev6Iq+cp0LfbNcvhfN8
- 4/k6fGCqr0XCApcoU+I6TJQwRX6fgIpQJaRtImX77GDy/MGzzicaGlvYLaSxq/kfLm/T
- SiJIQLPcreIhiN9Ys1vUxxYtNYq5f2x7UDxCPWlKGWWlJcZu+0GEwTVJHQqfYka72qL1
- 1ZAFAUgJAHle30UW1SIYh9hJ3jhPv7zg/IQXr1Qa/OTLeOICxrPljHMMrEhxpj/lQ8za
- aLMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=xL2BrubDe5pO8Eu8YilahqMdm0FNOU5cKL9PhorjGA0=;
- b=XNHm44ydnhllk2g529ireNxEUT0h/5cNcg+mU6KnJQcNeGpWm50AkbcyXPlg9RvrHe
- 9dliZxtYtVfFjf47I9pNhWsLk6IVnF4z9BVzpz9vXe9qFEEsXd3afsmvmVyx7jDZ3Ccb
- xmnV6+DFW+U3dzf015OIv1A59M+ABn094dlfNRQvxjURuWWy0BHNSDR6L67wURfBRxwM
- h6Qdxk+KqmGZfGZ79txT9YXTm12oH+g9ehV6kXUdQQKEbuHCc+lJvkfW17VbHIDYa83j
- K7Lkmo/PWU7LQXtnwskgKELZ+2zFxwnoyrTVHTIa45nJczAHqgTjiq60SkxW1vIfRwXh
- iNrQ==
-X-Gm-Message-State: APjAAAVGkz7I2cGrErVsc7jWvaBpOZYPn+/E/LlhUDGw8IM6KKeH0uAm
- f1qtsVOu9i95FdHzc0OPyGiPkDqOlCjg13IK8xrwXHoj
-X-Google-Smtp-Source: APXvYqyLN+wRq2TXvcGozUvfUTUP4OQmLSNerJsffJK8djNCml05SxWtcSjsc9XUoUgBwIrgbzZcRxSf/pm5dgpiG6g=
-X-Received: by 2002:aca:c7c1:: with SMTP id x184mr192989oif.158.1573494774251; 
- Mon, 11 Nov 2019 09:52:54 -0800 (PST)
+	id 1iUR2F-0002kT-5O; Tue, 12 Nov 2019 02:56:23 -0500
+Received: from mail1.bemta26.messagelabs.com ([85.158.142.3]:35035)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <Joern.Skorstad@Nkom.no>)
+ id 1iUR2B-0002go-9u
+ for USRP-users@lists.ettus.com; Tue, 12 Nov 2019 02:56:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=s1;
+ t=1573545338; i=@nkom.no;
+ bh=jaFa7tzLTQRGYVZdxVn15HCV9tYQoPWCkoLxdOur8us=;
+ h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
+ b=O/SJeOVPKaIZQVUzf5OVv2vjwF9wVUEqldbtEibPiH9rxuXCRFxw4A4ShABYX/zBH
+ zsfQnl6o/n/r/uEYsK1+pX1B4JyHGBHH5Ll0pXzCd0QfJVkIFDRCTCv1X2TUD2ABXr
+ W0Bgf5yB4O+5ExEzfzLMqb7hOxfS5XVQsHIeChz7gvPydqhxEwDLEbj05xY8bcpKtw
+ wQPYzWoVzGUvPjd+zP6RS7RKBfH/jk7VDQC/8yLnv5Hnsq/nRq3RS2yvjTf5K30v8p
+ W4Ir16erjvew0AUeMqeiUcj5FgACw450mm2tJH8GKJdjGK4i4zeeQ1+B7oaASmLipu
+ l1XK4vdl/RYgw==
+Received: from [85.158.142.100] (using TLSv1.2 with cipher
+ DHE-RSA-AES256-GCM-SHA384 (256 bits))
+ by server-3.bemta.az-a.eu-central-1.aws.symcld.net id D9/BE-23277-9756ACD5;
+ Tue, 12 Nov 2019 07:55:37 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrEKsWRWlGSWpSXmKPExsViF5OXq1uZeir
+ W4NcnFYsLnXPYHRg9Jq48xBzAGMWamZeUX5HAmrH38TTWgkWKFWdPnmJsYLwq28XIxSEk0MIo
+ cWfDDtYuRk4ONgFHidXbP7OA2CICthJT994As4UFJCVmvPjJCBGXk+iafweqRk/i8bdJYL0sA
+ qoSS48tY+9i5ODgFbCT+HYuAsRkFJCVmNvEC1LBLCAuMeMoRKeEgIDEkj3nmSFsUYmXj/+xQt
+ iKEncOzoCyrSSen1zABGFrSrx4uw+qXkHi3NYzbBC2vMT+l1OYIeanSfROmsgOYvMKCEqcnPm
+ EZQKj8Cwkq2chKZuFpAwiridxY+oUNghbW2LZwtfMELauxIx/h1iQxRcwsq9itEwqykzPKMlN
+ zMzRNTQw0DU0NNY11jUyMNNLrNJN1Est1U1OzSspSgTK6iWWF+sVV+Ym56To5aWWbGIERllKI
+ fO5HYzt397qHWKU5GBSEuU9InEqVogvKT+lMiOxOCO+qDQntfgQowwHh5IE780koJxgUWp6ak
+ VaZg4w4mHSEhw8SiK8S5KB0rzFBYm5xZnpEKlTjJYcE17OXcTM8XHVEiD5HUQKseTl56VKifN
+ WpwA1CIA0ZJTmwY2DJaVLjLJSwryMDAwMQjwFqUW5mSWo8q8YxTkYlYR5n4Cs5cnMK4Hb+gro
+ ICaggw6cPQZyUEkiQkqqgWn3hCxPGwm/OX9mdb+f6+BjvHZT5qz9Fz2ZuP1+re7vm5qV85Nxt
+ WZPx62b/mdy/i6ILXrj2syRKlfsmnNuxpyJ+c3rJp/3DNVIf6fAP1M4Y+HkXKPnIgK5XlFHai
+ ruLfPuLMhcIr2JxV3Kb//khfYVbt9Cs5iWHLDoKGTdGfSuX5zD80Hl4aI/yvHTQ4qSGtXX1X+
+ ZpnRhxzHD1cV1uSXPvAreRsWU8xxMfNDZ1DP93RRXbj2vbRfkJ0qw1JfyGhjOECsX+L/2dvHG
+ /sN/PCem+XcZ+c3bYRZ4YEZdWfTZlOgFrBvEpblWa/OsZws/WDdTXzumannj1Rf79SbpvdW0d
+ pgZIz3hrMEX3g8eSizFGYmGWsxFxYkAE8ODNcUDAAA=
+X-Env-Sender: Joern.Skorstad@Nkom.no
+X-Msg-Ref: server-11.tower-225.messagelabs.com!1573545336!229359!1
+X-Originating-IP: [62.92.110.109]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.44.22; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 692 invoked from network); 12 Nov 2019 07:55:37 -0000
+Received: from 109.110.92.62.static.cust.telenor.com (HELO smtp.nkom.no)
+ (62.92.110.109)
+ by server-11.tower-225.messagelabs.com with ECDHE-RSA-AES256-SHA encrypted
+ SMTP; 12 Nov 2019 07:55:37 -0000
+Received: from EXMBX01.npta.no ([10.10.2.97]) by EXCAS.npta.no ([::1]) with
+ mapi id 14.03.0468.000; Tue, 12 Nov 2019 08:55:36 +0100
+To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Thread-Topic: E310 RFNoC image
+Thread-Index: AdWZLCnHsJoqHaTiQkOJ5gEZ7l9tRg==
+Date: Tue, 12 Nov 2019 07:55:35 +0000
+Message-ID: <D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8@exmbx01>
+Accept-Language: nb-NO, en-US
+Content-Language: nb-NO
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.13.23]
+x-tm-as-product-ver: SMEX-11.0.0.1251-8.100.1062-25038.003
+x-tm-as-result: Yes-34.631000-8.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-References: <BN6PR19MB16354D6DF912FDD8DD841069A4740@BN6PR19MB1635.namprd19.prod.outlook.com>
-In-Reply-To: <BN6PR19MB16354D6DF912FDD8DD841069A4740@BN6PR19MB1635.namprd19.prod.outlook.com>
-Date: Mon, 11 Nov 2019 09:53:34 -0800
-Message-ID: <CAL263ixtrNXFh_yQrDC7CWsXY=eX-CEcwyuFHm0MijrfZTxGTg@mail.gmail.com>
-To: Jeff S <e070832@hotmail.com>
-Subject: Re: [USRP-users] Virtual Machine (VM) Application Note
+Subject: [USRP-users] E310 RFNoC image
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.27
 Precedence: list
@@ -59,10 +84,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nate Temple <nate.temple@ettus.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7212575231667000957=="
+From: =?utf-8?q?Skorstad=2CJ=C3=B8rn_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?iso-8859-1?Q?Skorstad=2CJ=F8rn?= <Joern.Skorstad@Nkom.no>
+Content-Type: multipart/mixed; boundary="===============0612190975623454949=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,120 +101,121 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7212575231667000957==
-Content-Type: multipart/alternative; boundary="000000000000136544059715cdcc"
+--===============0612190975623454949==
+Content-Language: nb-NO
+Content-Type: multipart/alternative;
+	boundary="_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8exmbx01_"
 
---000000000000136544059715cdcc
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Jeff,
-
-That application note has not yet been posted. We hope to have it posted
-soon. I've removed that section from the existing app note for now.
-
-The main takeaways are that you should expect about half the performance as
-running on bare metal when running a VM. If you're running with a B2xx
-USRP, you will need to add VID/PID pass through rules.
-
-Regards,
-Nate Temple
-
-On Mon, Nov 11, 2019 at 4:19 AM Jeff S via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Application Note AN-445 has a section that references "Using a Virtual
-> Machine (VM)" and says that there is another Application Note which
-> describes special issues regarding VMs, but does not have a link to it.  I
-> did not see anything in the list of application notes which seems to
-> match.  Which application note is needed for VMs?
->
-> Link used for AN-445:
-> https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux
->
-> Link used for Application Notes: https://kb.ettus.com/Application_Notes
->
-> Jeff
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000136544059715cdcc
-Content-Type: text/html; charset="UTF-8"
+--_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8exmbx01_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hi Jeff,<br><br>That application note has not yet been =
-posted. We hope to have it posted soon. I&#39;ve removed that section from =
-the existing app note for now.<br><br>The main takeaways are that you shoul=
-d expect about half the performance as running on bare metal when running a=
- VM. If you&#39;re running with a B2xx USRP, you will need to add VID/PID p=
-ass through rules.<br><br>Regards,<br>Nate Temple</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov 11, 2019=
- at 4:19 AM Jeff S via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.et=
-tus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex">
+Hi list,
 
+I have followed the application note https://kb.ettus.com/Software_Developm=
+ent_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Sourc=
+e to set up a cross compile environment for an E310 SDR. It works well, how=
+ever I have not been able to get past chapter 7: Building a custom RFNoC FP=
+GA Image, as I haven't set up Vivado 2017.4, as required.
 
+I would like to experiment with RFNoC development also. The application not=
+e states =ABA future application note will cover a step-by-step install gui=
+de for Vivado=BB. Until this application note is ready, is it possible to u=
+se an image built by someone else using this software version? (UHD_3.14.1.=
+HEAD-0-gbfb9c1c7). If so, where could I eventually download it? What I need=
+ is 1xwindow, 1xFFT, 1xFIFO and 1xFosphor if there is space left. Radio and=
+ DDC is already on FPGA available as blocks?
 
+Regards,
+Jorn
 
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Application Note AN-445 has a section that references &quot;Using a Virtual=
- Machine (VM)&quot; and says that there is another Application Note which d=
-escribes special issues regarding VMs, but does not have a link to it.=C2=
-=A0 I did not see anything in the list of application
- notes which seems to match.=C2=A0 Which application note is needed for VMs=
-?</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<br>
+--_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8exmbx01_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EpostStil17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"NO-BOK" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi list,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have followed the application note <a href=3D"http=
+s://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD=
+_/_GNU_Radio_/_gr-ettus_from_Source">
+https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC=
+_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a> to set up a cross compile envir=
+onment for an E310 SDR. It works well, however I have not been able to get =
+past chapter 7: Building a custom
+ RFNoC FPGA Image, as I haven&#8217;t set up Vivado 2017.4, as required. <o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I would like to experiment with RFNoC development al=
+so. The application note states =ABA future application note will cover a s=
+tep-by-step install guide for Vivado=BB. Until this application note is rea=
+dy, is it possible to use an image built
+ by someone else using this software version? (UHD_3.14.1.HEAD-0-gbfb9c1c7)=
+. If so, where could I eventually download it? What I need is 1xwindow, 1xF=
+FT, 1xFIFO and 1xFosphor if there is space left. Radio and DDC is already o=
+n FPGA available as blocks?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Jorn<o:p></o:p></p>
 </div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Link used for AN-445: <a href=3D"https://kb.ettus.com/Building_and_Installi=
-ng_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux" id=3D"gmail=
--m_6905043452431796337LPNoLP126935" target=3D"_blank">
-https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain=
-_(UHD_and_GNU_Radio)_on_Linux</a></div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Link used for Application Notes: <a href=3D"https://kb.ettus.com/Applicatio=
-n_Notes" id=3D"gmail-m_6905043452431796337LPNoLP860032" target=3D"_blank">
-https://kb.ettus.com/Application_Notes</a><br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Jeff<br>
-</div>
-<br>
-</div>
+</body>
+</html>
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000136544059715cdcc--
+--_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8exmbx01_--
 
 
---===============7212575231667000957==
+--===============0612190975623454949==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -200,5 +226,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7212575231667000957==--
+--===============0612190975623454949==--
 
