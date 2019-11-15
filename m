@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAF71FDDE1
-	for <lists+usrp-users@lfdr.de>; Fri, 15 Nov 2019 13:30:59 +0100 (CET)
-Received: from [::1] (port=51776 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8170FFE0D7
+	for <lists+usrp-users@lfdr.de>; Fri, 15 Nov 2019 16:06:21 +0100 (CET)
+Received: from [::1] (port=39562 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iVakc-00028z-Ns; Fri, 15 Nov 2019 07:30:58 -0500
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:35788)
+	id 1iVdAs-0006RA-Cd; Fri, 15 Nov 2019 10:06:14 -0500
+Received: from mail-qt1-f179.google.com ([209.85.160.179]:45686)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <maliksaad84@gmail.com>)
- id 1iVakZ-00020M-32
- for usrp-users@lists.ettus.com; Fri, 15 Nov 2019 07:30:55 -0500
-Received: by mail-ot1-f52.google.com with SMTP id c14so871733oth.2
- for <usrp-users@lists.ettus.com>; Fri, 15 Nov 2019 04:30:35 -0800 (PST)
+ (Exim 4.92) (envelope-from <vapham.inria@gmail.com>)
+ id 1iVdAo-0006JM-8U
+ for usrp-users@lists.ettus.com; Fri, 15 Nov 2019 10:06:10 -0500
+Received: by mail-qt1-f179.google.com with SMTP id 30so11075282qtz.12
+ for <usrp-users@lists.ettus.com>; Fri, 15 Nov 2019 07:05:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=7NRfujPEiHdeWPkiWgY6QVXGYMLcfgSAGunYJzyr43Q=;
- b=SNrT5gcJTiEQAtdA8nP5VQus4oGNf6oFMeE5jtjjvnQnEngayqG5DgOtLf6lsjjLD0
- 1DOqd+LPRifkxaKLWZbbPn+SYWuJvQetKpasAm4DmwTZniMKj/23hg1F5/MI6LvcaIT8
- tLSvndZKDHAVXOG4XEEHQJWKAuzEd9WlQ8azS/Em7zjTOG46kS/kiZJNDqCoNaawXfYR
- fxtHywhwbaK957unhoVw1SfAFPhw+kpsHN24La5UHZ3mON/AZjCNt9Et7Lv36/VYlfQu
- knqCrk2lMispNwcMdEOdn4MUthq130a0TeUNbjtDWADuXhYK8de1DdyOj5K2Nh0EKJrr
- BfXw==
+ :cc; bh=no2umSNytynjZC2JNHipfRbIRUR19tY+0UoQLGUh4Fw=;
+ b=VCCC1+o84ZDoq7OOkRrFp6k8YotrPKHovqHDQHnXH9iRniz128xLWwOAw0/X07yfdk
+ ovjZSZyoarXaGAiGERlAsIgMTZ5f4RkC0Df3PnF8W0sf+Q19RH8aG6TxLL21GHJ5Z6wZ
+ OhLnfAJOUropPIvMCt/stfD55VXoY1MXPGlIbQ4XV7SSOOcQ6H0fL/dnL52TCzNmubw4
+ zrF7ySQ8cd0GvqobSCdf1ebQw8jV9fIboj+KVF1QFvpLNCL/7nFfmgZiTtmN2eqk/OJ5
+ MEE0cCRrCsp37nYU8OHfWihRzVTfJ7aG+QfIVSgdLrx4LiHtudK1SIDhtHeUeIvkmp6J
+ OD7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=7NRfujPEiHdeWPkiWgY6QVXGYMLcfgSAGunYJzyr43Q=;
- b=SAtRfjtOyQ69i4BzjICh3hHIptxSNQWSrKeQCA5f/QNw9qJk3TGkUwPwtyloEHN0VU
- 7YClT19kh4Oq3aQ5DfdeI9jvczUSVL+a25fLYcNeq84cyo+1FbK9+IQ+6rvNgTTEPhiV
- 8/TGS6KVM389bJVRiBKS/wtDV3UETckteYZcapj6JMD3guKbdpqPR/zpWgwJPIptuSEu
- ityLgd2vVCT8bhKv96cBRsoSacQdFhpVFwOX70WR0QoTa+FmtGDAtmLqpev2iWkv5nBN
- j4N+MsYO88gNWT8V4X4rbEEOH31t2IEHLDsw/1GqbO5hlZ/LLZGLFD7tiPUN64sYFtou
- dV/w==
-X-Gm-Message-State: APjAAAUfCTFr40/pJz3twlBPjHkWgMMq/p1EAqJL9c/JR+CMGbi9W0Az
- 8seFtyV9UDFH4SaoffTi1TgUpL0NzqUxrV+Rxz8=
-X-Google-Smtp-Source: APXvYqxsI7Dfozfimc7HhWhNXgYmq+PulFjfV1Tw8f6zZA9tZLAZnjo53651COlru3BT61YqeVaq5jyL8uDK78EwBIY=
-X-Received: by 2002:a05:6830:4ae:: with SMTP id
- l14mr11493699otd.185.1573821014425; 
- Fri, 15 Nov 2019 04:30:14 -0800 (PST)
+ bh=no2umSNytynjZC2JNHipfRbIRUR19tY+0UoQLGUh4Fw=;
+ b=RfSsmamo1ExK85Ox8DSOBMOnm7BOHZqyFqQkjMkCeZeEhBncUYmgWoOcC6tSmi7WHd
+ k+RiXLjNXdy/Mo9jHvlIrLt5eAVGJvuoTCfjS3x67mR+GCKo95e/BasRgyi69hujRcIh
+ JV0pxlZKIpKe/HM6SOsnwB47WDBrZRup237iDeWtJxouluoB4Q0a0+DWR/JI98Lbg0LA
+ Bi3T9OxHxMdISPQmiwGS/lDohpDi4zANP8Z0vYhlmzzeDZjDsyyF3OfLlnbWczOx9nrx
+ ORbCqybJi5q0CKb7Okdsm2czEZphmfdREEtvv5AcExS0R/jSIPYSuHTtxeaL6a6WqPhA
+ ThOg==
+X-Gm-Message-State: APjAAAVEsAmfstLKBsU/70uaxBFjNvY3dT1D/DcYrLFHNIQ/VZTBpuGV
+ BVmWhVmCx+yykWWnJqVF94YJo8YIPQG00VeChTc=
+X-Google-Smtp-Source: APXvYqw0OPAyQQ4KhC2TWCVEdlW6QwQymJjxLVP11ocViJXsiA6ezndxlija8wVBXEChl2JBxP4Is85U8wOvPJ8JovU=
+X-Received: by 2002:ac8:7216:: with SMTP id a22mr14088905qtp.187.1573830329362; 
+ Fri, 15 Nov 2019 07:05:29 -0800 (PST)
 MIME-Version: 1.0
 References: <CAGLe3RnJAJQ=pf1F0SvDfG3AexdS52KRKrQ6CsouhXvAFxyfNg@mail.gmail.com>
  <88768f87-f59e-e5a3-3a17-d884721fc3fa@comcast.net>
-In-Reply-To: <88768f87-f59e-e5a3-3a17-d884721fc3fa@comcast.net>
-Date: Fri, 15 Nov 2019 21:30:03 +0900
-Message-ID: <CABcX43wPiE17s-149n4GKrhwLAArjybpe5dgHyBm9AEQncTDBQ@mail.gmail.com>
-To: Ron Economos <w6rz@comcast.net>
+ <CABcX43wPiE17s-149n4GKrhwLAArjybpe5dgHyBm9AEQncTDBQ@mail.gmail.com>
+In-Reply-To: <CABcX43wPiE17s-149n4GKrhwLAArjybpe5dgHyBm9AEQncTDBQ@mail.gmail.com>
+Date: Fri, 15 Nov 2019 16:05:17 +0100
+Message-ID: <CAGLe3RntXa0ia0ziNak8SCZBk1+NwT65ywz_wuAWEV5qvNbhsg@mail.gmail.com>
+To: Malik Saad <maliksaad84@gmail.com>
 Subject: Re: [USRP-users] Creat a sinwave signal by usrp-b200
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -60,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Malik Saad via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Malik Saad <maliksaad84@gmail.com>
+From: Van-Dung PHAM via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Van-Dung PHAM <vapham.inria@gmail.com>
 Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============0569675116034352621=="
+Content-Type: multipart/mixed; boundary="===============8825994883528962817=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,68 +77,115 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0569675116034352621==
-Content-Type: multipart/related; boundary="000000000000815eb8059761c2fc"
+--===============8825994883528962817==
+Content-Type: multipart/related; boundary="000000000000b87b8f059763ed9e"
 
---000000000000815eb8059761c2fc
-Content-Type: multipart/alternative; boundary="000000000000815eb5059761c2fb"
+--000000000000b87b8f059763ed9e
+Content-Type: multipart/alternative; boundary="000000000000b87b8d059763ed9d"
 
---000000000000815eb5059761c2fb
+--000000000000b87b8d059763ed9d
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dear,
+Dear @Ron,
 
-You can change the signal waveform (fro signal source) from sine to cosine.
+Thank you for your kindly reply
 
-On Fri, Nov 15, 2019 at 9:25 PM Ron Economos via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+As you said, I change the frequency to 50MHz-6GHz, and I the Oscilloscope I
+got the correct frequency as I want
 
-> You can't have a center frequency of 1 kHz in your UHD Sink block. The
-> frequency range of the B200 is 50 MHz to 6 GHz.
+However, the shape of the signal isn't really sinus. The maximum sampling
+rate of my oscilloscope is 5 GSa/s
+
+Do you think the sample rate could change the shape of the sine waveform?
+(I set the samp_rate=3D50MHz)
+
+Best,
+
+Van-Dung
+
+
+V=C3=A0o Th 6, 15 thg 11, 2019 va=CC=80o lu=CC=81c 13:30 Malik Saad via USR=
+P-users <
+usrp-users@lists.ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
+
+> Dear,
 >
-> If you change the center frequency to 50 MHz, you should see a 50.001 MHz
-> signal.
+> You can change the signal waveform (fro signal source) from sine to cosin=
+e.
 >
-> Be sure to terminate the output of the B200 with 50 ohms. With Gain Type =
-> Normalized, Gain Value = 1 and Amplitude = 1 in the Signal Source, you'll
-> be transmitting at maximum power.
+> On Fri, Nov 15, 2019 at 9:25 PM Ron Economos via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
-> Ron
-> On 11/15/19 00:44, Van-Dung PHAM via USRP-users wrote:
->
-> Dear all,
->
-> I am a newbie in this domain. I want to generate a cosine waveform in the
-> output of usrp-B200 (TX/RX). So I make it as the following picture
-> [image: image.png]
-> But what I got in the oscilloscope is not a cosine/sine waveform. I don't
-> know where I have a mistake.
->
-> Thank you very much for your answers
->
->
->
->
-> _______________________________________________
-> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+>> You can't have a center frequency of 1 kHz in your UHD Sink block. The
+>> frequency range of the B200 is 50 MHz to 6 GHz.
+>>
+>> If you change the center frequency to 50 MHz, you should see a 50.001 MH=
+z
+>> signal.
+>>
+>> Be sure to terminate the output of the B200 with 50 ohms. With Gain Type
+>> =3D Normalized, Gain Value =3D 1 and Amplitude =3D 1 in the Signal Sourc=
+e, you'll
+>> be transmitting at maximum power.
+>>
+>> Ron
+>> On 11/15/19 00:44, Van-Dung PHAM via USRP-users wrote:
+>>
+>> Dear all,
+>>
+>> I am a newbie in this domain. I want to generate a cosine waveform in th=
+e
+>> output of usrp-B200 (TX/RX). So I make it as the following picture
+>> [image: image.png]
+>> But what I got in the oscilloscope is not a cosine/sine waveform. I don'=
+t
+>> know where I have a mistake.
+>>
+>> Thank you very much for your answers
+>>
+>>
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000815eb5059761c2fb
+--000000000000b87b8d059763ed9d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Dear,<div><br></div><div>You can change the signal wavefor=
-m (fro signal source) from sine to cosine.</div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 15, 2019 at 9:2=
-5 PM Ron Economos via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ett=
-us.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">Dear @Ron,=C2=A0<div><br></div><div>Thank you for your kin=
+dly reply</div><div><br></div><div>As you said, I change the frequency to 5=
+0MHz-6GHz, and I the Oscilloscope I got the correct frequency as I want</di=
+v><div><br></div><div>However, the shape of the signal isn&#39;t really sin=
+us. The maximum sampling rate of my oscilloscope is 5 GSa/s</div><div><br><=
+/div><div>Do you think the sample rate could change the shape of the sine w=
+aveform? (I set the samp_rate=3D50MHz)</div><div><br></div><div>Best,</div>=
+<div><br></div><div>Van-Dung</div><div>=C2=A0</div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">V=C3=A0o Th 6, 15 thg 11, 2019=
+ va=CC=80o lu=CC=81c 13:30 Malik Saad via USRP-users &lt;<a href=3D"mailto:=
+usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a=
+>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div dir=3D"ltr">Dear,<div><br></div><div>You can change t=
+he signal waveform (fro signal source) from sine to cosine.</div></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, No=
+v 15, 2019 at 9:25 PM Ron Economos via USRP-users &lt;<a href=3D"mailto:usr=
+p-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
  =20
    =20
  =20
@@ -166,7 +213,7 @@ gb(204,204,204);padding-left:1ex">
           the following picture</div>
         <div>
           <div><img src=3D"cid:16e6f0a0f54cb971f161" alt=3D"image.png" styl=
-e=3D"margin-right: 0px;" width=3D"542" height=3D"355"><br>
+e=3D"margin-right:0px" width=3D"542" height=3D"355"><br>
           </div>
         </div>
         <div>But what I got in the oscilloscope=C2=A0is not a cosine/sine
@@ -202,9 +249,17 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
 
---000000000000815eb5059761c2fb--
---000000000000815eb8059761c2fc
+--000000000000b87b8d059763ed9d--
+--000000000000b87b8f059763ed9e
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -1066,10 +1121,10 @@ AAgAAVwTgHyG6/CAcUAACAABICAhAchnEoKCZkAACAABIIBrApDPcB0eMA4IAAEgAAQkJAD5TEJQ
 5DMJQUEzIAAEgAAQwDUByGe4Dg8YBwSAABAAAhISgHwmIShoBgSAABAAArgmAPkM1+EB44AAEAAC
 QEBCApDPJAQFzYAAEAACQADXBCCf4To8YBwQAAJAAAhISADymYSgoBkQAAJAAAjgmgDkM1yHB4wD
 AkAACAABCQn8HwL7gNUOkpinAAAAAElFTkSuQmCC
---000000000000815eb8059761c2fc--
+--000000000000b87b8f059763ed9e--
 
 
---===============0569675116034352621==
+--===============8825994883528962817==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1080,5 +1135,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0569675116034352621==--
+--===============8825994883528962817==--
 
