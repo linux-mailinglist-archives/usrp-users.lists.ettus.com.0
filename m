@@ -2,58 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97143FFE0B
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Nov 2019 06:28:28 +0100 (CET)
-Received: from [::1] (port=48754 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B5BFFFE18
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Nov 2019 06:41:53 +0100 (CET)
+Received: from [::1] (port=50168 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iWZaN-0006at-DS; Mon, 18 Nov 2019 00:28:27 -0500
-Received: from mail-qk1-f181.google.com ([209.85.222.181]:39355)
+	id 1iWZnM-0007IN-8I; Mon, 18 Nov 2019 00:41:52 -0500
+Received: from mail-il1-f169.google.com ([209.85.166.169]:43138)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iWZaJ-0006Tl-TC
- for USRP-users@lists.ettus.com; Mon, 18 Nov 2019 00:28:23 -0500
-Received: by mail-qk1-f181.google.com with SMTP id 15so13364914qkh.6
- for <USRP-users@lists.ettus.com>; Sun, 17 Nov 2019 21:28:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=tA0LlPTUefTmWuhilcGhCsT0TYwVVJV3UAgACRS+yks=;
- b=Ria+jhl81A2xGulIIbl/+Pkn8pcMzMnrvPQE6Cyzbz0xhOPpDD+IQ9kuHxxj+vm5h1
- Gs2xxJ7msLgK90STfF9BywspmZdG48ZhyV0Y0FIgupE8wLMCv+TSXJ0Tm8EHaxXd6VAq
- Swmd7gwipwWw7gRJ4WOUnIhpw6wtlrsfVf/Q8uqhMYgkciuL0cRXCwjB1WMaDuEsXjGD
- 7MCdB9m7aHo3vl5zJ14mJ41NNc7gQEwSQxa5jKgdcJo0KBp+U8mEMm9PJJ3vH44b1l0Y
- 1zkP1UXl6pj/HnUPul2trB/Gva3/Ep/rOUqQfm7g6imImoK4DzLn5jZ+wGhnyVSmGsW2
- WTAw==
+ (Exim 4.92) (envelope-from <coxe@close-haul.com>) id 1iWZnI-00072p-1Q
+ for USRP-users@lists.ettus.com; Mon, 18 Nov 2019 00:41:48 -0500
+Received: by mail-il1-f169.google.com with SMTP id r9so14831999ilq.10
+ for <USRP-users@lists.ettus.com>; Sun, 17 Nov 2019 21:41:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quanttux-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BVUbqx9/IFx5j89KeTpC/zEjjzTgMnOx50cZNDxkhu4=;
+ b=bJ/bidogxeG0Tk2ZwkdredzyX9tSZEAuWV2E+SMBh/XlrTQXmBCgyn/2ONebSco6tZ
+ seeByt4K8QNB9L+ISXcG1r9J09uf6fsDTHqLumePwrWPuEEVyV9DaVy9iaLj94jMhHOX
+ UYiQ7OxRB/4d6yfd7InITBEr47ofg0l7y3DFhOoTFG7r9mgxvZhB1kxhsM9SJ9Limeap
+ K3ARWDhdZzIbfG/fqNJ6cLvbjVE6U57fZ/KOJJi255vGBHOEWzNlO4Kab+Y/qOyOJEBF
+ 0iqrl54WrNKZqwbs5KecGVqjDePMFdD4ZnSY6N+c8lvIehUQ2j2FYhaSsFqMMVABb+oL
+ vlzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=tA0LlPTUefTmWuhilcGhCsT0TYwVVJV3UAgACRS+yks=;
- b=jd/PDXcjo7VYQ3mvETtvRzfNM11fjW2IomwOUvjCFaQcQ8UiJQSh3sEv3RYzq/0UgP
- 2gVOpvxUUfpaHRNlCYjtesueh89A5L8RoJ7VAgwH6qKcY7HizHXberugzHLfdyPfJ8Ls
- ssHtuXNL71Z8XR2u3JFi4YXoM9A7tOL9aLVFoMLa9iPjY7uXzR8v8hwgexnKQ8L6jBbJ
- 1Lw8LIIm/rV93XVeGtZLAUbz8VRoGuG7+vi94Z9bd8yT9jPqQwt3CWVSvXv3R3WhRU/C
- XEp1i8/BoyIdo4PvkhWaouQc4KKMcn74ZFyYEb65DViVrGT06e9vKUBNBCbx+02Ri4H7
- jkIg==
-X-Gm-Message-State: APjAAAWi1JlDEzZyFa/W6aGdWrJBzjXXw1kNjubiNhDayroK6uzt5rlg
- 4PQBCPe7yYNKhZ8F5nGHmrWq7JguA2I=
-X-Google-Smtp-Source: APXvYqxzS7pOffdpyVkVWtwtbjey64bihT4YklzuyyiUnC+pGzKQNeIgQnQIBSBn7KKEkeY+LsVB+A==
-X-Received: by 2002:a05:620a:149c:: with SMTP id
- w28mr22784255qkj.37.1574054863058; 
- Sun, 17 Nov 2019 21:27:43 -0800 (PST)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
- [174.95.14.228])
- by smtp.gmail.com with ESMTPSA id o2sm8110456qkf.68.2019.11.17.21.27.42
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 17 Nov 2019 21:27:42 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Mon, 18 Nov 2019 00:27:41 -0500
-Message-Id: <7BAFE73A-6429-4070-B312-839D557B6C3B@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BVUbqx9/IFx5j89KeTpC/zEjjzTgMnOx50cZNDxkhu4=;
+ b=DHC2fr+HuHUGaGW9TkS8U+ouUIqaZ5H0QCP9MGObj9fwjDi+lPrsjK4DCEtbToxVjQ
+ z2qgrRwvvFuFvIjIneQNbmbZQb/Lo+Er7nAvVCsd1NuG9p/ycIz1UeAHysRLpb174u9O
+ QS0+LNTQARqXGTccVCqcnLnrvpQyvwyrJ63P/4ftIXDtznhuFIwPzwJgbUx+mumK3WxO
+ uKYF37SYAWjCgxKIxAHuvBPqSWeGIANWJxr5gWN06B6AumPpOmgYDHUZVWZQOPdTSUIv
+ uo/dHctdCSexT4Tm67uKu14/PfQqGDJR9av8wKjCPL8jc5VkSdsVT5xWd4mpgRJk3hbN
+ QKvw==
+X-Gm-Message-State: APjAAAWyaApjHfE/CHhCaUCFP415vGw+z/TpZn1tmKPxVIiJBbqQsmZi
+ rbm/1U1ffgdsnP4muELgOcD2ZW0R+WmiDayAhUHc2g==
+X-Google-Smtp-Source: APXvYqxvIGJY39DCfJnoKFyq94VwWoiQIBU7sM6v/DiB5Vu/1rzgGOR56VLyaoQTNTF/GLJrCJZXYSuuaZ3CSDu6QgU=
+X-Received: by 2002:a92:4804:: with SMTP id v4mr14099733ila.201.1574055667223; 
+ Sun, 17 Nov 2019 21:41:07 -0800 (PST)
+MIME-Version: 1.0
 References: <HK0PR03MB5091427A23E5530B6A978CCF9D4D0@HK0PR03MB5091.apcprd03.prod.outlook.com>
-In-Reply-To: <HK0PR03MB5091427A23E5530B6A978CCF9D4D0@HK0PR03MB5091.apcprd03.prod.outlook.com>
-To: Thomas james <james_ttfun@hotmail.com>
-X-Mailer: iPhone Mail (17A878)
+ <7BAFE73A-6429-4070-B312-839D557B6C3B@gmail.com>
+In-Reply-To: <7BAFE73A-6429-4070-B312-839D557B6C3B@gmail.com>
+Date: Sun, 17 Nov 2019 21:40:56 -0800
+Message-ID: <CAKJyDkJiABmoJDXUHxH0=-=SshPp6SHSSJ31n0boE2TNwtWTZg@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
 Subject: Re: [USRP-users] N310 schematic don't show all part
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -66,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robin Coxe <coxe@quanttux.com>
 Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3735476503850284971=="
+Content-Type: multipart/mixed; boundary="===============4563844882497684239=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,69 +76,112 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============4563844882497684239==
+Content-Type: multipart/alternative; boundary="000000000000e6e85605979864dc"
 
---===============3735476503850284971==
-Content-Type: multipart/alternative; boundary=Apple-Mail-B2048721-019F-4065-97AC-BABABA8B0487
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-B2048721-019F-4065-97AC-BABABA8B0487
-Content-Type: text/plain;
-	charset=utf-8
+--000000000000e6e85605979864dc
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-That is, AFAIR, the properietary PCIE interface that NI don=E2=80=99t publis=
-h schematics for.=20
+The N310 motherboard does not have a PCIe interface, proprietary or
+otherwise.  Schematic p. 20 was a PoE controller on earlier, unreleased
+versions of the N310, but it was omitted because it could not source enough
+current to the device when both RF daughtercards were enabled.   The PoE
+components were not populated on earlier module revisions and have been
+eliminated entirely from recent revisions of the motherboard PCB.
 
-Sent from my iPhone
+Marcus is correct that several pages of the X310 schematic featuring the NI
+PCIe ASIC were redacted because NI never authorized them for public release=
+.
 
-> On Nov 18, 2019, at 12:12 AM, Thomas james via USRP-users <usrp-users@list=
-s.ettus.com> wrote:
->=20
+
+
+
+On Sun, Nov 17, 2019 at 9:28 PM Marcus D Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> That is, AFAIR, the properietary PCIE interface that NI don=E2=80=99t pub=
+lish
+> schematics for.
+>
+> Sent from my iPhone
+>
+> On Nov 18, 2019, at 12:12 AM, Thomas james via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
 > =EF=BB=BF
 > Hi,
-> i read N310 mother board schematic find that there should be a sheet 20 bu=
-t not in the pdf schematic. what is this part for?
+> i read N310 mother board schematic find that there should be a sheet 20
+> but not in the pdf schematic. what is this part for?
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---Apple-Mail-B2048721-019F-4065-97AC-BABABA8B0487
-Content-Type: text/html;
-	charset=utf-8
+--000000000000e6e85605979864dc
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">That is, AFAIR, the properietary PCIE inter=
-face that NI don=E2=80=99t publish schematics for.&nbsp;<br><br><div dir=3D"=
-ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite"=
->On Nov 18, 2019, at 12:12 AM, Thomas james via USRP-users &lt;usrp-users@li=
-sts.ettus.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"=
-><div dir=3D"ltr">=EF=BB=BF
+<div dir=3D"ltr">The N310 motherboard does not have a PCIe interface, propr=
+ietary or otherwise.=C2=A0 Schematic p. 20 was a PoE controller on earlier,=
+ unreleased versions of the N310, but it was omitted because it could not s=
+ource enough current to the device when both RF daughtercards=C2=A0were ena=
+bled.=C2=A0 =C2=A0The PoE components were not populated on earlier module r=
+evisions and have been eliminated entirely from recent revisions of the mot=
+herboard PCB.<div><div><br><div>Marcus is correct that several pages of the=
+ X310 schematic featuring the NI PCIe ASIC were redacted because NI never a=
+uthorized them for public release.</div><div><br></div><div><br></div><div>=
+<br></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Sun, Nov 17, 2019 at 9:28 PM Marcus D Leech via US=
+RP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists=
+.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"auto">That is, AFAIR, the properietary PCIE interfac=
+e that NI don=E2=80=99t publish schematics for.=C2=A0<br><br><div dir=3D"lt=
+r">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">=
+On Nov 18, 2019, at 12:12 AM, Thomas james via USRP-users &lt;<a href=3D"ma=
+ilto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.c=
+om</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div =
+dir=3D"ltr">=EF=BB=BF
 
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
 
 
 
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
+
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 Hi,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-i read N310 mother board schematic find that there should be a sheet 20 but n=
-ot in the pdf schematic. what is this part for?</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+i read N310 mother board schematic find that there should be a sheet 20 but=
+ not in the pdf schematic. what is this part for?</div>
 
 
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></body></html>=
+<span>_______________________________________________</span><br><span>USRP-=
+users mailing list</span><br><span><a href=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank">USRP-users@lists.ettus.com</a></span><br><span><a h=
+ref=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" =
+target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.=
+ettus.com</a></span><br></div></blockquote></div>__________________________=
+_____________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---Apple-Mail-B2048721-019F-4065-97AC-BABABA8B0487--
+--000000000000e6e85605979864dc--
 
 
---===============3735476503850284971==
+--===============4563844882497684239==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -156,5 +192,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3735476503850284971==--
+--===============4563844882497684239==--
 
