@@ -2,76 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55539FFDC4
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Nov 2019 06:12:34 +0100 (CET)
-Received: from [::1] (port=44762 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97143FFE0B
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Nov 2019 06:28:28 +0100 (CET)
+Received: from [::1] (port=48754 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iWZKv-0005Q9-7a; Mon, 18 Nov 2019 00:12:29 -0500
-Received: from mail-oln040092255070.outbound.protection.outlook.com
- ([40.92.255.70]:56576 helo=APC01-HK2-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
- (Exim 4.92) (envelope-from <james_ttfun@hotmail.com>)
- id 1iWZKr-0005MD-Cb
- for usrp-users@lists.ettus.com; Mon, 18 Nov 2019 00:12:25 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Uuw+MgiAVbnliZcOFkv0llj7HMJ/7QI1mYCcaY4vwjMbU4vbnzrzJvG/tawpap/Z+v9Khy0HWbenrE79DYkY0JLzPyfKZN7I5SqL0F7GrNSUjTc+tH048QNfI97RX1vGxl+CckvuMvM+igXX1lMxqUlMIh2Ws2w9hGI3rhnvqhecMmTEL983jrq2WY4L1DdfQ3g9feCAIEZbm7cFGycnhfW0zwWKBLykMX7bbS3UWZibWAYIqZN1YucOAHd4vFh5cugqZ7OEIkZvfQAe13gdU7mI9e5m4LDNVHfzIOLUZr3LgI+hOrEl/+XsvS2IiBDG60zAyNl8KZswNbmpoORYxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qawJaUdbBrZXxqTUX8WwbPBbwsifv8Y62XFLmVanz3U=;
- b=mumPzn115Sez+wI7ntO1obsw/tUVDbk4iVMRVsHzQepR1R4UKJfJa9r6/+ttcul8Qr5tpMNzlHL89bnnlqlsdWpsIqYwHt56aW/cNKBHWP1J9X2vOMTyo/1fhcAgOuh/mqY0ye6/fOMMB6ODGljm9dA0vNsjxvRUTkRDXb3QbN63PcrBlB/SMlS/24r56jIBRktBF0SsfchW2Cq0T2ybgaDaVIRJZmvKQvVdCke4C3muwABJQC2MXBKWx/sGfkpKEgaA+f1QzKSbI/bj3weFvCbtXcZoR5X9aaDZxjxAnyyTEAY9VdGkkGaSKoZmDxbeYw1kzI9c466Ro0H3IxajrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qawJaUdbBrZXxqTUX8WwbPBbwsifv8Y62XFLmVanz3U=;
- b=cA1SBVvaehkO4QeSUiaJiWp+5jFQtK4osY5litz2B0lQpVNPBwZsUheHcfSxzZRuH+XsVcMpwwJHYQZc5Z/Jsne23k8pteN27OrUA5MTOz58qZvmqIfVUtFQHB5rtsqLQHKCPzI03JySXqieUt9oJLNDy5s78OMGK3uIhDmAYslPSDRx6ZWzxkmVxbdPRpe7Lp7ABTCvZ96mVhFpeZYGo5fXIbbvE5Mr4hIxp+iqpm1mz6YBBfnCX+YCna5kAnhNNXxJJwRZu1aa3iyc2I7WEeu1p/RXbDFXVbX/evhlYqkyff3Jw0nJEuRmTRDmAJFdWpqQ8tc5DIfO2CGWwZRdzA==
-Received: from PU1APC01FT003.eop-APC01.prod.protection.outlook.com
- (10.152.252.56) by PU1APC01HT037.eop-APC01.prod.protection.outlook.com
- (10.152.253.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2451.23; Mon, 18 Nov
- 2019 05:11:42 +0000
-Received: from HK0PR03MB5091.apcprd03.prod.outlook.com (10.152.252.55) by
- PU1APC01FT003.mail.protection.outlook.com (10.152.252.95) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2451.23 via Frontend Transport; Mon, 18 Nov 2019 05:11:42 +0000
-Received: from HK0PR03MB5091.apcprd03.prod.outlook.com
- ([fe80::5dd8:c036:482e:61b9]) by HK0PR03MB5091.apcprd03.prod.outlook.com
- ([fe80::5dd8:c036:482e:61b9%3]) with mapi id 15.20.2474.012; Mon, 18 Nov 2019
- 05:11:41 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: N310 schematic don't show all part
-Thread-Index: AQHVnc3GXW5eVntr3Uu9GeSyunr6xw==
-Date: Mon, 18 Nov 2019 05:11:41 +0000
-Message-ID: <HK0PR03MB5091427A23E5530B6A978CCF9D4D0@HK0PR03MB5091.apcprd03.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:49BCB7BC8BD0F1ACF81CC0914E4AD8BD17FF72CD35BB12C81851E2F80363397A;
- UpperCasedChecksum:39E9C564783B44CD77A610C85ACAC3F80B6C22594137224BB56D0281FD353F3F;
- SizeAsReceived:6705; Count:42
-x-tmn: [PZ0K8W9DYOHEm8lThIZXsAzKqMSiMIWY]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 42
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: 3b07968c-1738-4b03-7f66-08d76be5cc56
-x-ms-traffictypediagnostic: PU1APC01HT037:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mSj2daCi1LBq5SvVcfCZpqPX+qna540Da8qjG6D/egWeYb6dLa6vV0ycHixzDDQEefo3OM/12mFvO0rgAjnLO7sf0XIvISOFv84Z0+tloJS6bBhBAphR53jhzNl4gYwXq6xn0ctCSLMp883p9aqMTTEqkZdp8ZXQ4POo44eiWHeMbATnmX1TUe1aUl8PnpQ5
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b07968c-1738-4b03-7f66-08d76be5cc56
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Nov 2019 05:11:41.5618 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT037
-Subject: [USRP-users] N310 schematic don't show all part
+	id 1iWZaN-0006at-DS; Mon, 18 Nov 2019 00:28:27 -0500
+Received: from mail-qk1-f181.google.com ([209.85.222.181]:39355)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1iWZaJ-0006Tl-TC
+ for USRP-users@lists.ettus.com; Mon, 18 Nov 2019 00:28:23 -0500
+Received: by mail-qk1-f181.google.com with SMTP id 15so13364914qkh.6
+ for <USRP-users@lists.ettus.com>; Sun, 17 Nov 2019 21:28:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=tA0LlPTUefTmWuhilcGhCsT0TYwVVJV3UAgACRS+yks=;
+ b=Ria+jhl81A2xGulIIbl/+Pkn8pcMzMnrvPQE6Cyzbz0xhOPpDD+IQ9kuHxxj+vm5h1
+ Gs2xxJ7msLgK90STfF9BywspmZdG48ZhyV0Y0FIgupE8wLMCv+TSXJ0Tm8EHaxXd6VAq
+ Swmd7gwipwWw7gRJ4WOUnIhpw6wtlrsfVf/Q8uqhMYgkciuL0cRXCwjB1WMaDuEsXjGD
+ 7MCdB9m7aHo3vl5zJ14mJ41NNc7gQEwSQxa5jKgdcJo0KBp+U8mEMm9PJJ3vH44b1l0Y
+ 1zkP1UXl6pj/HnUPul2trB/Gva3/Ep/rOUqQfm7g6imImoK4DzLn5jZ+wGhnyVSmGsW2
+ WTAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=tA0LlPTUefTmWuhilcGhCsT0TYwVVJV3UAgACRS+yks=;
+ b=jd/PDXcjo7VYQ3mvETtvRzfNM11fjW2IomwOUvjCFaQcQ8UiJQSh3sEv3RYzq/0UgP
+ 2gVOpvxUUfpaHRNlCYjtesueh89A5L8RoJ7VAgwH6qKcY7HizHXberugzHLfdyPfJ8Ls
+ ssHtuXNL71Z8XR2u3JFi4YXoM9A7tOL9aLVFoMLa9iPjY7uXzR8v8hwgexnKQ8L6jBbJ
+ 1Lw8LIIm/rV93XVeGtZLAUbz8VRoGuG7+vi94Z9bd8yT9jPqQwt3CWVSvXv3R3WhRU/C
+ XEp1i8/BoyIdo4PvkhWaouQc4KKMcn74ZFyYEb65DViVrGT06e9vKUBNBCbx+02Ri4H7
+ jkIg==
+X-Gm-Message-State: APjAAAWi1JlDEzZyFa/W6aGdWrJBzjXXw1kNjubiNhDayroK6uzt5rlg
+ 4PQBCPe7yYNKhZ8F5nGHmrWq7JguA2I=
+X-Google-Smtp-Source: APXvYqxzS7pOffdpyVkVWtwtbjey64bihT4YklzuyyiUnC+pGzKQNeIgQnQIBSBn7KKEkeY+LsVB+A==
+X-Received: by 2002:a05:620a:149c:: with SMTP id
+ w28mr22784255qkj.37.1574054863058; 
+ Sun, 17 Nov 2019 21:27:43 -0800 (PST)
+Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
+ [174.95.14.228])
+ by smtp.gmail.com with ESMTPSA id o2sm8110456qkf.68.2019.11.17.21.27.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 17 Nov 2019 21:27:42 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Mon, 18 Nov 2019 00:27:41 -0500
+Message-Id: <7BAFE73A-6429-4070-B312-839D557B6C3B@gmail.com>
+References: <HK0PR03MB5091427A23E5530B6A978CCF9D4D0@HK0PR03MB5091.apcprd03.prod.outlook.com>
+In-Reply-To: <HK0PR03MB5091427A23E5530B6A978CCF9D4D0@HK0PR03MB5091.apcprd03.prod.outlook.com>
+To: Thomas james <james_ttfun@hotmail.com>
+X-Mailer: iPhone Mail (17A878)
+Subject: Re: [USRP-users] N310 schematic don't show all part
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Thomas james via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Thomas james <james_ttfun@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============1644806628525579639=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3735476503850284971=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -99,44 +83,69 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1644806628525579639==
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_HK0PR03MB5091427A23E5530B6A978CCF9D4D0HK0PR03MB5091apcp_"
 
---_000_HK0PR03MB5091427A23E5530B6A978CCF9D4D0HK0PR03MB5091apcp_
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+--===============3735476503850284971==
+Content-Type: multipart/alternative; boundary=Apple-Mail-B2048721-019F-4065-97AC-BABABA8B0487
+Content-Transfer-Encoding: 7bit
 
-SGksDQppIHJlYWQgTjMxMCBtb3RoZXIgYm9hcmQgc2NoZW1hdGljIGZpbmQgdGhhdCB0aGVyZSBz
-aG91bGQgYmUgYSBzaGVldCAyMCBidXQgbm90IGluIHRoZSBwZGYgc2NoZW1hdGljLiB3aGF0IGlz
-IHRoaXMgcGFydCBmb3I/DQo=
 
---_000_HK0PR03MB5091427A23E5530B6A978CCF9D4D0HK0PR03MB5091apcp_
-Content-Type: text/html; charset="gb2312"
+--Apple-Mail-B2048721-019F-4065-97AC-BABABA8B0487
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
+That is, AFAIR, the properietary PCIE interface that NI don=E2=80=99t publis=
+h schematics for.=20
+
+Sent from my iPhone
+
+> On Nov 18, 2019, at 12:12 AM, Thomas james via USRP-users <usrp-users@list=
+s.ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> Hi,
+> i read N310 mother board schematic find that there should be a sheet 20 bu=
+t not in the pdf schematic. what is this part for?
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--Apple-Mail-B2048721-019F-4065-97AC-BABABA8B0487
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">That is, AFAIR, the properietary PCIE inter=
+face that NI don=E2=80=99t publish schematics for.&nbsp;<br><br><div dir=3D"=
+ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite"=
+>On Nov 18, 2019, at 12:12 AM, Thomas james via USRP-users &lt;usrp-users@li=
+sts.ettus.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"=
+><div dir=3D"ltr">=EF=BB=BF
+
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+
+
+
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
 Hi,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-i read N310 mother board schematic find that there should be a sheet 20 but=
- not in the pdf schematic. what is this part for?</div>
-</body>
-</html>
-
---_000_HK0PR03MB5091427A23E5530B6A978CCF9D4D0HK0PR03MB5091apcp_--
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+i read N310 mother board schematic find that there should be a sheet 20 but n=
+ot in the pdf schematic. what is this part for?</div>
 
 
---===============1644806628525579639==
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
+r></div></blockquote></body></html>=
+
+--Apple-Mail-B2048721-019F-4065-97AC-BABABA8B0487--
+
+
+--===============3735476503850284971==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -147,5 +156,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1644806628525579639==--
+--===============3735476503850284971==--
 
