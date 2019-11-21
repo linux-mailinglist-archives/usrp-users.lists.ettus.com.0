@@ -2,64 +2,82 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FDDA104506
-	for <lists+usrp-users@lfdr.de>; Wed, 20 Nov 2019 21:27:45 +0100 (CET)
-Received: from [::1] (port=47396 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14DD710523D
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Nov 2019 13:24:12 +0100 (CET)
+Received: from [::1] (port=42216 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iXWZk-0004VT-Hm; Wed, 20 Nov 2019 15:27:44 -0500
-Received: from mail-lj1-f171.google.com ([209.85.208.171]:36388)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jlockhartrt@gmail.com>)
- id 1iXWZg-0004NT-U2
- for usrp-users@lists.ettus.com; Wed, 20 Nov 2019 15:27:41 -0500
-Received: by mail-lj1-f171.google.com with SMTP id k15so620787lja.3
- for <usrp-users@lists.ettus.com>; Wed, 20 Nov 2019 12:27:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4ob2ydxTucvBl0fers6OuYeD1huKzrWjkqRU6+wkEy0=;
- b=PkriyCrCkALTTTWdJV1uzXO//GOOeJmkhWnLvPlDgfRszUahOrfochAxFBq+32vcRq
- lPpruIIhThUuCOHWm2xFmJAM46PTktlrhiRTpMaYw5ZK4LObNLGW9ZZyyY1Ga0Oig5eM
- A17JKR2TBgd5QDPu6kwx0JMtBqWRD4EumdCoLVIeVVFcHWuY/4pVBKi8BMCoGtSO80Gd
- qdYvB/YHEOK/iE2MJhZr1k/KPcPT1SDnstu6BJS0f0ZONoJGb9WrBoT/0fGiXjJYQ3P2
- ZdkXNT1SxiKMG7QGTduAxnzi7URdw/btQo4e3PDxnhbNg/Rkv0PCDZ/1XOcuhwjsgFGN
- 55aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=4ob2ydxTucvBl0fers6OuYeD1huKzrWjkqRU6+wkEy0=;
- b=X3ipDN0g3XoFjil9VfqIbznTHJwGwlruNbbacOP9wIJuh/vjVqowyhH5y5HKAkiAED
- bgR8oDzC2idWlgDfZVDaVgj1ye6i+qKsIsNDb5Owm9vKT1/3Inetl+sYAXzbjfA070S+
- BbYuET/BJMPO1TAhbr+wbLjJ3F7Q7FZbCysnQaMGhs2kB0ndlGjH6KnR2l34JIpO+fGq
- 4j0CwlxZR8vdpCVo6hyZPOMI1+OE7+YlTJk7NZfZUmx7RgkqE1FlgluWdo0jJxErp7JC
- RmUcC7DMKmTuXo1w4IracboYcImfVrnaPVhMEO0aSrpo6ZpIWLOsPuyA/guXisodt3S+
- 4ncA==
-X-Gm-Message-State: APjAAAVEp5salQ+0OApolCFk0bbtfCbLKtbQuZsAZuQLhkxb4G+BfDlc
- sG90AR6QcN77XszvRsZizI8tebedC8GFzGUnaIhzTQ==
-X-Google-Smtp-Source: APXvYqxDiip0fuJhpy54D+Eq7lVG35VFH4z7wc9ojZZtn6wx2m3CldF11S0x2/a+U/JCosvWWxABJqA1VUvUPC2+of4=
-X-Received: by 2002:a05:651c:303:: with SMTP id
- a3mr4194163ljp.55.1574281619585; 
- Wed, 20 Nov 2019 12:26:59 -0800 (PST)
+	id 1iXlVH-0007OS-Vg; Thu, 21 Nov 2019 07:24:07 -0500
+Received: from mail1.bemta25.messagelabs.com ([195.245.230.70]:51866)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <Joern.Skorstad@Nkom.no>)
+ id 1iXlVD-0007FY-WB
+ for USRP-users@lists.ettus.com; Thu, 21 Nov 2019 07:24:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=s1;
+ t=1574339002; i=@nkom.no;
+ bh=52eDxy9CEUFlr1QoT/tf6xV4MilgJ91JJm/PXYPCHT8=;
+ h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+ Content-Type:MIME-Version;
+ b=itH8/ngCLli/r8TGvYVjvADt84Wuai8Kz1Ma7LeJWcDQCTakFoB7NWfrPK2ZkSjy9
+ od+wQYRzlS0WvXwY4tZcBJmdWM7SxEATe6grV2X2T85d8eilVM4xVzEeTO6msVV/N8
+ 0Je0fiE7qJNrZbXm/7+jzRi6s2r7ON7+odc0BYvHbYImJiM8pT9zsinA9DJH+ALaPk
+ o36YmwYEUFRPEBhdrjvJ6HwRh1ix3w/LlFO1oIa0jq7MnsoQdaTuVVol10PgtfLD9w
+ itKf7VFi3SSzuF780TSGiRgGBj3ok0mk4uA8/LYn2pzeeTxVBGYm2fUUdudSRFzroD
+ a23f3ptK4TSZQ==
+Received: from [46.226.52.196] (using TLSv1.2 with cipher
+ DHE-RSA-AES256-GCM-SHA384 (256 bits))
+ by server-6.bemta.az-b.eu-west-1.aws.symcld.net id 38/52-28136-AB186DD5;
+ Thu, 21 Nov 2019 12:23:22 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFKsWRWlGSWpSXmKPExsViF5OXq7uz8Vq
+ swYkpFhYXOuewOzB6TFx5iDmAMYo1My8pvyKBNePVutqCJYkVz79eZ25gfBXWxcjFISTQwihx
+ cOUspi5GTg42AUeJ1ds/s4DYIgK2ElP33gCzhQW0JD5v+sIMEdeWWP70NlSNk8S7W5vAbBYBV
+ Yl5/+6zgti8AnYSF65/Z4dYsJdR4l1fLztIglPAVeLu9Q6gIg4ORgFZiblNvCBhZgFxiRlH74
+ DNkRAQkFiy5zwzhC0q8fLxP1YIW1HizsEZULaVxLaDj9kgbE2JhR8/MELYChLntp6BistL7H8
+ 5hRlifprEi6lnoW4TlDg58wnLBEbRWUhWz0JSNgtJGURcT+LG1ClsELa2xLKFr5khbF2JGf8O
+ sSCLL2BkX8VokVSUmZ5RkpuYmaNraGCga2hopGtoaaZrZGCkl1ilm6SXWqpbnlpcomuol1her
+ FdcmZuck6KXl1qyiREYlSkFR07tYDz09a3eIUZJDiYlUd6pytdihfiS8lMqMxKLM+KLSnNSiw
+ 8xynBwKEnwatYA5QSLUtNTK9Iyc4AJAiYtwcGjJMJbDZLmLS5IzC3OTIdInWK05Jjwcu4iZo6
+ Pq5YAye8gUoglLz8vVUqc91Y1UIMASENGaR7cOFgSu8QoKyXMy8jAwCDEU5BalJtZgir/ilGc
+ g1FJmHcpyBSezLwSuK2vgA5iAjpo49pLIAeVJCKkpBqY7Cb1R27lrZinwT1RiIf5bF7YuR3tv
+ ww0L3qnWT6bvinr0XnnSG0dznK+B5ve+KWyvz5x+Gba4XnzVm+9tsfolPHspK2dy1NOzOA/nS
+ 11fteseOO7axYa/j1ec3mdImfKk+DY+Oldj+OXyazJ+hB0Y9pmuQXX+xRjN7KL1kUtC/4acX1
+ 9fFCyqazZm59fbhS7N1oJnmXz7mU17DTQ6w/mF/t7beLz4wYPdVl7957obVSRN1nDa7ni4anM
+ 7IsrPz+TLfPoyXAsFfE5ufHlubdBYRKmO6I3ilbYxhxwss/kYAqQnSVc+WHGjWdNXPGhx6ZZ9
+ 91w79i0gS0o5Ue8Xe+3WCO/bQtTEra23eycsltKiaU4I9FQi7moOBEAkb6UtN0DAAA=
+X-Env-Sender: Joern.Skorstad@Nkom.no
+X-Msg-Ref: server-13.tower-284.messagelabs.com!1574339001!1074043!1
+X-Originating-IP: [62.92.110.109]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.44.22; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 16580 invoked from network); 21 Nov 2019 12:23:21 -0000
+Received: from 109.110.92.62.static.cust.telenor.com (HELO smtp.nkom.no)
+ (62.92.110.109)
+ by server-13.tower-284.messagelabs.com with ECDHE-RSA-AES256-SHA encrypted
+ SMTP; 21 Nov 2019 12:23:21 -0000
+Received: from EXMBX01.npta.no ([10.10.2.97]) by EXCAS.npta.no ([::1]) with
+ mapi id 14.03.0468.000; Thu, 21 Nov 2019 13:23:20 +0100
+To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Thread-Topic: [USRP-users] E310 RFNoC image
+Thread-Index: AdWZLCnHsJoqHaTiQkOJ5gEZ7l9tRgARZUaAAAMRPSwBuavoAA==
+Date: Thu, 21 Nov 2019 12:23:19 +0000
+Message-ID: <D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781@exmbx01>
+References: <D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8@exmbx01>,
+ <CAL263iyu=4WX8SpPUUu1ue+-sjsZUM0rvZVnd+taOJx9x8GC_Q@mail.gmail.com>
+ <6647c899-4322-4059-b9d7-bf69ead4dedd@email.android.com>
+In-Reply-To: <6647c899-4322-4059-b9d7-bf69ead4dedd@email.android.com>
+Accept-Language: nb-NO, en-US
+Content-Language: nb-NO
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.13.23]
+x-tm-as-product-ver: SMEX-11.0.0.1251-8.100.1062-25056.003
+x-tm-as-result: No--24.821800-8.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-References: <CALY+5sK3V1J+r2Vrf1gw=-Ok=L9OoAks-oqkBPFqtcnRusLomw@mail.gmail.com>
- <CA+JMMq9wAx+ML3=AsrSjyi+-E0gQrub0UnV8BC_wS7+ypANkFg@mail.gmail.com>
- <CALY+5sK3M_Jb0aAv9QWoC+kHfn=8UPpWo1i94_oWXxy0JjU13g@mail.gmail.com>
- <CAL7q81uDv2=rZSe0vmx+AzN1AE8uPgYDF1NNt_2aYeE9KiXSHg@mail.gmail.com>
- <CA+JMMq9McBUDdfMotYf7cPMdmgLcdEPiTotW=sVOYv+QFrf9UQ@mail.gmail.com>
- <CALY+5sJ_co9mAFUsXyi647W3DW18wc4Ruc+9UaUpppFxt1r29Q@mail.gmail.com>
- <CADRnH21gzFR3-aQSet4tS1fks5Rdp2qjSH_p8JerhY+AL=YTaw@mail.gmail.com>
- <CALY+5s+UO+SUdKjdyb-H6t40q54reOD-n396DoUh_U_Bk9-+yQ@mail.gmail.com>
- <CALY+5sLH3EbXH3eiCYht99y8TVcNmbO=UMkuoTdn-6n8=6-UQg@mail.gmail.com>
- <CA+JMMq8Ubw2TiUc-pPBRGVF6DLrLRvjohpJTw4BR+fqn24Zb4g@mail.gmail.com>
- <CA+JMMq-7eRAbDsp7A6Kh9dQEKfMsQPyUyrnHmSgpnBxpSCueig@mail.gmail.com>
- <CADRnH22pBed-g4_g407i_Kp-O2p=Sb2LU5GJj-tXA93z5ibDLg@mail.gmail.com>
-In-Reply-To: <CADRnH22pBed-g4_g407i_Kp-O2p=Sb2LU5GJj-tXA93z5ibDLg@mail.gmail.com>
-Date: Wed, 20 Nov 2019 15:24:18 -0500
-Message-ID: <CALY+5sKthFSjSBKJX0_YkRyJBxxT1-sZ_LBGMBuNieV5Zrx_sw@mail.gmail.com>
-To: EJ Kreinar <ejkreinar@gmail.com>
-Subject: Re: [USRP-users] Receiving IO Block Error when Using RFNoC Split
- Stream
+Subject: Re: [USRP-users] E310 RFNoC image
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,10 +89,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathan Lockhart via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathan Lockhart <jlockhartrt@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7075276596357294484=="
+From: =?utf-8?q?Skorstad=2CJ=C3=B8rn_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?iso-8859-1?Q?Skorstad=2CJ=F8rn?= <Joern.Skorstad@Nkom.no>
+Content-Type: multipart/mixed; boundary="===============2267725624834985733=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,596 +106,329 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7075276596357294484==
-Content-Type: multipart/alternative; boundary="000000000000b63f3d0597cd0028"
+--===============2267725624834985733==
+Content-Language: nb-NO
+Content-Type: multipart/alternative;
+	boundary="_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781exmbx01_"
 
---000000000000b63f3d0597cd0028
-Content-Type: text/plain; charset="UTF-8"
+--_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781exmbx01_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Greetings Nick and EJ,
+I have successfully built an RFNoC image with a DDC, Window and FFT block u=
+sing the recipe mentioned. Also I have been able to connect the blocks usin=
+g the UHD library in a C++ program, and I am receiving FFT output to my pro=
+gram. However, I am still only able to achieve an FFT size of max. 512 bins=
+. Reading an older post it seems this is caused by some FPGA - host packet =
+limit of 4000 bytes?
 
-Yes you are correct, the split stream does require a FIFO after the output
-if I want to port to the arm or ZMQ. That resolved the run error.
+Anyone been able to achieve more than 512 bins FFT on an E310? I only need =
+the magnitude data of the FFT, and from what I can see the SC16 format is a=
+lso used when transferring magnitude, which means the imaginery part is not=
+ used.
 
-EJ,
+Is it possible to modify the FFT block to do a 1024 bin FFT, and send FFT m=
+agnitude data on both real and imag bytes? I tried to look at the code, but=
+ no luck... Eventually, is it possible to split the data transfer into seve=
+ral blocks?
 
-Currently I am just modifying the default installation example that comes
-with UHD for the fosphor GNR files, and by default Ettus has it set to 56
-MHz, which does appear to be a valid sample rate for the E312 SG3. I
-haven't seen any odd behavior with the default example, albeit I am still
-playing with the split stream so I may run into issues still.
+Jorn
+
+Fra: Skorstad,J=F8rn <Joern.Skorstad@Nkom.no>
+Sendt: tirsdag 12. november 2019 18:24
+Til: Nate Temple <nate.temple@ettus.com>
+Kopi: USRP-users@lists.ettus.com
+Emne: Re: [USRP-users] E310 RFNoC image
+
+Thanks Nate, I will try to install it as described below.
+
+Jorn
+
+12. nov. 2019 17:55 skrev Nate Temple <nate.temple@ettus.com<mailto:nate.te=
+mple@ettus.com>>:
+Hi Jorn,
+
+The process for installing Xilinx Vivado WebPACK is fairly easy.
+
+Download "Vivado Design Suite - HLx Editions - 2017.4  Full Product Install=
+ation" from here:
+
+https://www.xilinx.com/support/download/index.html/content/xilinx/en/downlo=
+adNav/vivado-design-tools/archive.html
+
+Decompress the tarball
+
+Run "sudo ./xsetup"
+
+When prompted to download the latest version, ignore and click "Continue", =
+2017.4 is required.
+
+Click Next, and agree to the EULA and other terms, click Next and keep the =
+default /opt/Xilinx install prefix.
+
+Click next through the rest of the menus and "install"
+
+You'll now have Vivado installed to /opt/Xilinx/Vivado/2017.4 and can use i=
+t with the build tools as described in the previously linked app note.
+
 
 
 Regards,
-Jon
+Nate Temple
 
-On Thu, Nov 14, 2019 at 6:11 PM EJ Kreinar <ejkreinar@gmail.com> wrote:
+On Mon, Nov 11, 2019 at 11:56 PM Skorstad,J=F8rn via USRP-users <usrp-users=
+@lists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
+Hi list,
 
-> Cool!
->
-> I'll point out that your new build actually got past the old failure poin=
-t
-> you noted before, which was immediately after attempting to interact with
-> the SplitStream RFNOC block!
->
-> ```
-> [INFO] [0/SplitStream_0] Initializing block control (NOC ID:
-> 0x5757000000000000)
-> [ERROR] [UHD] Exception caught in safe-call.
-> [...etc...]
-> ```
->
-> I second Nick's thought. Try adding a FIFO after the second split-stream
-> port.
->
-> Though on further inspection, I actually doubt this particular applicatio=
-n
-> would work at all, since it looks like you're trying to push 56 MHz
-> through the RFNoC FPGA->ARM transport and then through ZMQ. The E310
-> definitely cannot handle that sort of load, and you might get undefined
-> behavior in RFNOC fosphor because the underflow will propagate back to th=
-e
-> RFNoC Radio and momentarily stop the RF stream before restarting...
->
-> EJ
->
-> On Thu, Nov 14, 2019 at 6:05 PM Nick Foster <bistromath@gmail.com> wrote:
->
->> I also haven't tested to see if this is a gr-ettus limitation or a UHD
->> limitation.
->>
->> On Thu, Nov 14, 2019 at 3:04 PM Nick Foster <bistromath@gmail.com> wrote=
-:
->>
->>> You can't have heterogenous output destinations on RFNoC blocks -- i.e.=
-,
->>> you can't send one output to the host and one output to another RFNoC b=
-lock.
->>>
->>> I'm not sure why this limitation exists as there is no architectural
->>> reason I can see.
->>>
->>> Nick
->>>
->>> On Thu, Nov 14, 2019 at 12:35 PM Jonathan Lockhart <
->>> jlockhartrt@gmail.com> wrote:
->>>
->>>> Greetings EJ,
->>>>
->>>> So went and dug out the E312 b/c I couldn't wait and unfortunately tha=
-t
->>>> didn't resolve the issue I was experiencing. I cherry picked the new
->>>> split_stream block, I am using the same flow graph as provided before,=
- but
->>>> when it goes to run on the E312 I get the following error.
->>>>
->>>> Traceback (most recent call last):
->>>>   File "rfnoc_fosphor_radio_network_usrp.py", line 281, in <module>
->>>>     main()
->>>>   File "rfnoc_fosphor_radio_network_usrp.py", line 271, in main
->>>>     tb.start()
->>>>   File
->>>> "/home/root/localinstall/usr/lib/python2.7/site-packages/gnuradio/gr/t=
-op_block.py",
->>>> line 109, in start
->>>>     top_block_start_unlocked(self._impl, max_noutput_items)
->>>>   File
->>>> "/home/root/localinstall/usr/lib/python2.7/site-packages/gnuradio/gr/r=
-untime_swig.py",
->>>> line 3671, in top_block_start_unlocked
->>>>     return _runtime_swig.top_block_start_unlocked(*args, **kwargs)
->>>> RuntimeError: uhd_rfnoc_SplitStream(9): missing connection from output
->>>> port 0
->>>>
->>>> Looks like something is missing from the split stream. I assume it
->>>> needs to be fixed in the verilog.
->>>>
->>>> I attached a screenshot of the new, cleaned up GNU radio file. I had t=
-o
->>>> remove a FIFO and switch to using a throttle b/c I wasn't able to get =
-it
->>>> all to fit in the bit file.
->>>>
->>>> Regards,
->>>> Jon
->>>>
->>>> On Wed, Nov 13, 2019 at 10:46 AM Jonathan Lockhart <
->>>> jlockhartrt@gmail.com> wrote:
->>>>
->>>>> Greetings EJ,
->>>>>
->>>>> Thanks for the info. I haven't had time to grab the new block as my
->>>>> dev box is packed for moving this weekend. I will get it downloaded a=
-nd try
->>>>> it as soon as I can.
->>>>>
->>>>> Regards,
->>>>> Jon
->>>>>
->>>>> On Sat, Nov 9, 2019 at 9:48 AM EJ Kreinar <ejkreinar@gmail.com> wrote=
-:
->>>>>
->>>>>> Hi there,
->>>>>>
->>>>>> Just want to chime in since I recently went through the upgrade
->>>>>> process to UHD-3.14...
->>>>>>
->>>>>> Can you confirm you're using uhd-3.14? If so, this is actually a
->>>>>> split stream fpga bug caused by the commit Jon referred to, not the =
-"not
->>>>>> enough bandwidth" problem.
->>>>>>
->>>>>> Fortunately, rather than referring the old commit, the bug seems to
->>>>>> have been fixed in October on the master branch: https://
->>>>>> github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d203e=
-b62ae26c9
->>>>>> (but not yet ported onto 3.14)
->>>>>>
->>>>>> I just cherry-picked 1102779f onto my UHD-3.14 and it cleaned it up
->>>>>> for me.
->>>>>>
->>>>>> I assume this will eventually make it to the UHD-3.14 branch? But if
->>>>>> not the cherry pick works fine
->>>>>>
->>>>>> EJ
->>>>>>
->>>>>>
->>>>>> On Fri, Nov 8, 2019, 2:43 PM Jonathan Lockhart via USRP-users <
->>>>>> usrp-users@lists.ettus.com> wrote:
->>>>>>
->>>>>>> Jonathon,
->>>>>>>
->>>>>>> I will give that a try and see if it works.
->>>>>>>
->>>>>>>
->>>>>>> Nick,
->>>>>>>
->>>>>>> If the revert on Split_Stream fails, I will try switching from
->>>>>>> ce_clk to bus_clk and give that a try.
->>>>>>>
->>>>>>>
->>>>>>> Regards,
->>>>>>> Jon
->>>>>>>
->>>>>>> On Fri, Nov 8, 2019 at 1:52 PM Nick Foster <bistromath@gmail.com>
->>>>>>> wrote:
->>>>>>>
->>>>>>>> Jonathon (Pendlum), correct me if I'm wrong, but I think this is
->>>>>>>> the usual split-stream-demands-more-bandwidth-than-RFNoC-bus-allow=
-s problem.
->>>>>>>>
->>>>>>>> Jonathan (Lockhart), if I'm right, then in your
->>>>>>>> rfnoc_ce_auto_inst_e310.v, if you change the ce_clk/ce_rst in the
->>>>>>>> noc_block_split_stream instantiation to bus_clk/bus_rst, this may =
-fix the
->>>>>>>> problem.
->>>>>>>>
->>>>>>>> Nick
->>>>>>>>
->>>>>>>> On Fri, Nov 8, 2019 at 10:20 AM Jonathon Pendlum <
->>>>>>>> jonathon.pendlum@ettus.com> wrote:
->>>>>>>>
->>>>>>>>> Hi Jon,
->>>>>>>>>
->>>>>>>>> Can you try reverting commit e39334fe on the fpga repo and
->>>>>>>>> rebuilding your bitstream? Let me know if that makes a difference=
- or not.
->>>>>>>>>
->>>>>>>>> Jonathon
->>>>>>>>>
->>>>>>>>> On Sat, Nov 9, 2019 at 12:13 AM Jonathan Lockhart via USRP-users =
-<
->>>>>>>>> usrp-users@lists.ettus.com> wrote:
->>>>>>>>>
->>>>>>>>>> Greetings Nick,
->>>>>>>>>>
->>>>>>>>>> Here is the screenshot of my GR flow graph, though it shouldn't
->>>>>>>>>> matter as the Split_Stream RFNoC Block I believe is a failure of=
- the python
->>>>>>>>>> or Verilog but the solutions in the link I sent in my previous e=
-mail did
->>>>>>>>>> not resolve the issue.
->>>>>>>>>>
->>>>>>>>>> [image: Screenshot from 2019-11-08 10-06-50.png]
->>>>>>>>>>
->>>>>>>>>> Regards,
->>>>>>>>>> Jon
->>>>>>>>>>
->>>>>>>>>> On Thu, Nov 7, 2019 at 5:33 PM Nick Foster <bistromath@gmail.com=
->
->>>>>>>>>> wrote:
->>>>>>>>>>
->>>>>>>>>>> Can you be more specific about what your flowgraph looks like?
->>>>>>>>>>>
->>>>>>>>>>> On Thu, Nov 7, 2019 at 2:22 PM Jonathan Lockhart via USRP-users=
- <
->>>>>>>>>>> usrp-users@lists.ettus.com> wrote:
->>>>>>>>>>>
->>>>>>>>>>>> Greetings,
->>>>>>>>>>>>
->>>>>>>>>>>> I was wondering if anyone had encountered the following error
->>>>>>>>>>>> and had a way to fix it?
->>>>>>>>>>>>
->>>>>>>>>>>> [INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700;
->>>>>>>>>>>> UHD_3.14.1.HEAD-0-g0347a6d8
->>>>>>>>>>>> [INFO] [E300] Loading FPGA image:
->>>>>>>>>>>> /home/root/localinstall/e300.bit...
->>>>>>>>>>>> [INFO] [E300] FPGA image loaded
->>>>>>>>>>>> [INFO] [E300] Detecting internal GPS
->>>>>>>>>>>> .... [INFO] [E300] GPSDO found
->>>>>>>>>>>> [INFO] [E300] Initializing core control (global registers)...
->>>>>>>>>>>>
->>>>>>>>>>>> [INFO] [E300] Performing register loopback test...
->>>>>>>>>>>> [INFO] [E300] Register loopback test passed
->>>>>>>>>>>> [INFO] [0/Radio_0] Initializing block control (NOC ID:
->>>>>>>>>>>> 0x12AD100000000000)
->>>>>>>>>>>> [WARNING] [RFNOC] Can't find a block controller for key
->>>>>>>>>>>> SplitStream, using default block controller!
->>>>>>>>>>>> [INFO] [0/SplitStream_0] Initializing block control (NOC ID:
->>>>>>>>>>>> 0x5757000000000000)
->>>>>>>>>>>> [ERROR] [UHD] Exception caught in safe-call.
->>>>>>>>>>>>   in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with
->>>>>>>>>>>> uhd::endianness_t _endianness =3D (uhd::endianness_t)1u]
->>>>>>>>>>>>   at
->>>>>>>>>>>> /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp=
-:52
->>>>>>>>>>>> this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError:
->>>>>>>>>>>> Block ctrl (CE_01_Port_21) no response packet - AssertionError=
-: bool(buff)
->>>>>>>>>>>>   in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool,
->>>>>>>>>>>> double) [with uhd::endianness_t _endianness =3D (uhd::endianne=
-ss_t)1u;
->>>>>>>>>>>> uint64_t =3D long long unsigned int]
->>>>>>>>>>>>   at
->>>>>>>>>>>> /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp=
-:142
->>>>>>>>>>>>
->>>>>>>>>>>> Traceback (most recent call last):
->>>>>>>>>>>>   File "rfnoc_fosphor_network_usrp.py", line 283, in <module>
->>>>>>>>>>>>     main()
->>>>>>>>>>>>   File "rfnoc_fosphor_network_usrp.py", line 272, in main
->>>>>>>>>>>>     tb =3D top_block_cls(fft_size=3Doptions.fft_size,
->>>>>>>>>>>> fpga_path=3Doptions.fpga_path, freq=3Doptions.freq, gain=3Dopt=
-ions.gain,
->>>>>>>>>>>> host_ip_addr=3Doptions.host_ip_addr, samp_rate=3Doptions.samp_=
-rate,
->>>>>>>>>>>> tdecay=3Doptions.tdecay, trise=3Doptions.trise)
->>>>>>>>>>>>   File "rfnoc_fosphor_network_usrp.py", line 43, in __init__
->>>>>>>>>>>>     self.device3 =3D variable_uhd_device3_0 =3D
->>>>>>>>>>>> ettus.device3(uhd.device_addr_t( ",".join(('type=3De3x0',
->>>>>>>>>>>> "master_clock_rate=3D%d,fpga=3D%s" % (samp_rate,fpga_path))) )=
-)
->>>>>>>>>>>>   File
->>>>>>>>>>>> "/home/root/localinstall/usr/lib/python2.7/site-packages/ettus=
-/ettus_swig.py",
->>>>>>>>>>>> line 1307, in make
->>>>>>>>>>>>     return _ettus_swig.device3_make(*args, **kwargs)
->>>>>>>>>>>> RuntimeError: EnvironmentError: IOError: [0/SplitStream_0]
->>>>>>>>>>>> sr_read64() failed: EnvironmentError: IOError: Block ctrl (CE_=
-01_Port_21)
->>>>>>>>>>>> no response packet - AssertionError: bool(buff)
->>>>>>>>>>>>   in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool,
->>>>>>>>>>>> double) [with uhd::endianness_t _endianness =3D (uhd::endianne=
-ss_t)1u;
->>>>>>>>>>>> uint64_t =3D long long unsigned int]
->>>>>>>>>>>>   at
->>>>>>>>>>>> /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp=
-:142
->>>>>>>>>>>>
->>>>>>>>>>>> This is only occurring when I use the split stream block in
->>>>>>>>>>>> RFNoC. I have tried the fixes in [1] but unfortunately they ha=
-ve not
->>>>>>>>>>>> helped. Also, fix 1, I can't seem to before b/c I am missing t=
-he file
->>>>>>>>>>>> rfnoc_ce_auto_inst_<device>.v  as shown from the output when
->>>>>>>>>>>> attempting a "find" command in Ubuntu.
->>>>>>>>>>>>
->>>>>>>>>>>> find: =E2=80=98rfnoc_ce_auto_inst_e310.v=E2=80=99: No such fil=
-e or directory
->>>>>>>>>>>>
->>>>>>>>>>>> I ran it on both ~/* and /* with no luck.
->>>>>>>>>>>>
->>>>>>>>>>>> Regards,
->>>>>>>>>>>> Jon Lockhart
->>>>>>>>>>>>
->>>>>>>>>>>> [1]
->>>>>>>>>>>> https://kb.ettus.com/RFNoC#Why_do_I_have_a_command_timeout_err=
-or.3F
->>>>>>>>>>>>
->>>>>>>>>>>> _______________________________________________
->>>>>>>>>>>> USRP-users mailing list
->>>>>>>>>>>> USRP-users@lists.ettus.com
->>>>>>>>>>>>
->>>>>>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus=
-.com
->>>>>>>>>>>>
->>>>>>>>>>> _______________________________________________
->>>>>>>>>> USRP-users mailing list
->>>>>>>>>> USRP-users@lists.ettus.com
->>>>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om
->>>>>>>>>>
->>>>>>>>> _______________________________________________
->>>>>>> USRP-users mailing list
->>>>>>> USRP-users@lists.ettus.com
->>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>>>
->>>>>>
+I have followed the application note https://kb.ettus.com/Software_Developm=
+ent_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Sourc=
+e to set up a cross compile environment for an E310 SDR. It works well, how=
+ever I have not been able to get past chapter 7: Building a custom RFNoC FP=
+GA Image, as I haven't set up Vivado 2017.4, as required.
 
---000000000000b63f3d0597cd0028
-Content-Type: text/html; charset="UTF-8"
+I would like to experiment with RFNoC development also. The application not=
+e states =ABA future application note will cover a step-by-step install gui=
+de for Vivado=BB. Until this application note is ready, is it possible to u=
+se an image built by someone else using this software version? (UHD_3.14.1.=
+HEAD-0-gbfb9c1c7). If so, where could I eventually download it? What I need=
+ is 1xwindow, 1xFFT, 1xFIFO and 1xFosphor if there is space left. Radio and=
+ DDC is already on FPGA available as blocks?
+
+Regards,
+Jorn
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781exmbx01_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Greetings Nick and EJ,</div><div><br></div><div>Yes y=
-ou are correct, the split stream does require a FIFO after the output if I =
-want to port to the arm or ZMQ. That resolved the run error.</div><div><br>=
-</div><div>EJ,</div><div><br></div><div>Currently I am just modifying the d=
-efault installation example that comes with UHD for the fosphor GNR files, =
-and by default Ettus has it set to 56 MHz, which does appear to be a valid =
-sample rate for the E312 SG3. I haven&#39;t seen any odd behavior with the =
-default example, albeit I am still playing with the split stream so I may r=
-un into issues still. <br></div><div><br></div><div><br></div><div>Regards,=
-</div><div>Jon<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Thu, Nov 14, 2019 at 6:11 PM EJ Kreinar &lt;<a h=
-ref=3D"mailto:ejkreinar@gmail.com">ejkreinar@gmail.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Cool=
-! <br><br>I&#39;ll point out that your new build actually got past the old =
-failure point you noted before, which was immediately after attempting to i=
-nteract with the SplitStream RFNOC block!<br><br>```<br>[INFO] [0/SplitStre=
-am_0] Initializing block control (NOC ID: 0x5757000000000000)<br>[ERROR] [U=
-HD] Exception caught in safe-call.<br>[...etc...]<br>```<div><br><div>I sec=
-ond Nick&#39;s thought. Try adding a FIFO after the second split-stream por=
-t.</div><div><br></div><div>Though on further inspection, I actually doubt =
-this particular application would work at all, since it looks like you&#39;=
-re trying to push 56 MHz through=C2=A0the RFNoC FPGA-&gt;ARM transport and =
-then through ZMQ. The E310 definitely cannot handle that sort of load, and =
-you might get undefined behavior in RFNOC fosphor because the underflow wil=
-l propagate back to the RFNoC Radio and momentarily stop the RF stream befo=
-re restarting...<br></div></div><div><br></div><div>EJ</div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 14,=
- 2019 at 6:05 PM Nick Foster &lt;<a href=3D"mailto:bistromath@gmail.com" ta=
-rget=3D"_blank">bistromath@gmail.com</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I also haven&#39;t tes=
-ted to see if this is a gr-ettus limitation or a UHD limitation.<br></div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu,=
- Nov 14, 2019 at 3:04 PM Nick Foster &lt;<a href=3D"mailto:bistromath@gmail=
-.com" target=3D"_blank">bistromath@gmail.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>You can&#=
-39;t have heterogenous output destinations on RFNoC blocks -- i.e., you can=
-&#39;t send one output to the host and one output to another RFNoC block.</=
-div><div><br></div><div>I&#39;m not sure why this limitation exists as ther=
-e is no architectural reason I can see.<br></div><div><br></div><div>Nick<b=
-r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Thu, Nov 14, 2019 at 12:35 PM Jonathan Lockhart &lt;<a href=3D"m=
-ailto:jlockhartrt@gmail.com" target=3D"_blank">jlockhartrt@gmail.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
-r=3D"ltr"><div>Greetings EJ,</div><div><br></div><div>So went and dug out t=
-he E312 b/c I couldn&#39;t wait and unfortunately that didn&#39;t resolve t=
-he issue I was experiencing. I cherry picked the new split_stream block, I =
-am using the same flow graph as provided before, but when it goes to run on=
- the E312 I get the following error. <br></div><div><br></div><div>Tracebac=
-k (most recent call last):<br>=C2=A0 File &quot;rfnoc_fosphor_radio_network=
-_usrp.py&quot;, line 281, in &lt;module&gt;<br>=C2=A0 =C2=A0 main()<br>=C2=
-=A0 File &quot;rfnoc_fosphor_radio_network_usrp.py&quot;, line 271, in main=
-<br>=C2=A0 =C2=A0 tb.start()<br>=C2=A0 File &quot;/home/root/localinstall/u=
-sr/lib/python2.7/site-packages/gnuradio/gr/top_block.py&quot;, line 109, in=
- start<br>=C2=A0 =C2=A0 top_block_start_unlocked(self._impl, max_noutput_it=
-ems)<br>=C2=A0 File &quot;/home/root/localinstall/usr/lib/python2.7/site-pa=
-ckages/gnuradio/gr/runtime_swig.py&quot;, line 3671, in top_block_start_unl=
-ocked<br>=C2=A0 =C2=A0 return _runtime_swig.top_block_start_unlocked(*args,=
- **kwargs)<br>RuntimeError: uhd_rfnoc_SplitStream(9): missing connection fr=
-om output port 0</div><div><br></div><div>Looks like something is missing f=
-rom the split stream. I assume it needs to be fixed in the verilog. <br></d=
-iv><div><br></div><div>I attached a screenshot of the new, cleaned up GNU r=
-adio file. I had to remove a FIFO and switch to using a throttle b/c I wasn=
-&#39;t able to get it all to fit in the bit file. <br></div><div><br></div>=
-<div>Regards,</div><div>Jon<br></div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 13, 2019 at 10:46 AM Jonat=
-han Lockhart &lt;<a href=3D"mailto:jlockhartrt@gmail.com" target=3D"_blank"=
->jlockhartrt@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex"><div dir=3D"ltr">Greetings EJ,<div><br></div><div>Tha=
-nks for the info. I haven&#39;t had time to grab the new block as my dev bo=
-x is packed for moving this weekend. I will get it downloaded and try it as=
- soon as I can.=C2=A0</div><div><br></div><div>Regards,</div><div>Jon</div>=
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Sat, Nov 9, 2019 at 9:48 AM EJ Kreinar &lt;<a href=3D"mailto:ejkreinar@g=
-mail.com" target=3D"_blank">ejkreinar@gmail.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Hi there,<=
-div dir=3D"auto"><br></div><div dir=3D"auto">Just want to chime in since I =
-recently went through the upgrade process to UHD-3.14...</div><div dir=3D"a=
-uto"><br></div><div dir=3D"auto"><span style=3D"font-family:sans-serif">Can=
- you confirm you&#39;re using uhd-3.14? If</span><span style=3D"font-family=
-:sans-serif">=C2=A0so, this is actually a split stream fpga bug caused by t=
-he commit Jon referred to, not the &quot;not enough bandwidth&quot; problem=
-.</span></div><div dir=3D"auto"><span style=3D"font-family:sans-serif"><br>=
-</span></div><div dir=3D"auto"><span style=3D"font-family:sans-serif">Fortu=
-nately, rather than referring the old commit, the bug seems to have been fi=
-xed in October on the master branch: https</span><font face=3D"sans-serif">=
-://<a href=3D"http://github.com/EttusResearch/fpga/commit/1102779f49d44c9e8=
-b88ce7251d203eb62ae26c9" target=3D"_blank">github.com/EttusResearch/fpga/co=
-mmit/1102779f49d44c9e8b88ce7251d203eb62ae26c9</a> (but not yet ported onto =
-3.14)</font></div><div dir=3D"auto"><font face=3D"sans-serif"><br></font></=
-div><div dir=3D"auto"><font face=3D"sans-serif">I just cherry-picked 110277=
-9f onto my UHD-3.14 and it cleaned it up for me.</font></div><div dir=3D"au=
-to"><font face=3D"sans-serif"><br></font></div><div dir=3D"auto"><font face=
-=3D"sans-serif">I assume this will eventually make it to the UHD-3.14 branc=
-h? But if not the cherry pick works fine</font></div><div dir=3D"auto"><fon=
-t face=3D"sans-serif"><br></font></div><div dir=3D"auto"><font face=3D"sans=
--serif">EJ</font></div><div dir=3D"auto"><font face=3D"sans-serif"><br></fo=
-nt></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Fri, Nov 8, 2019, 2:43 PM Jonathan Lockhart via USRP-users &lt;=
-<a href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer" target=3D"=
-_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Jonathon,<div><br></div>=
-<div>I will give that a try and see if it works.</div><div><br></div><div><=
-br></div><div>Nick,</div><div><br></div><div>If the revert on Split_Stream =
-fails, I will try switching=C2=A0from ce_clk to bus_clk and give that a try=
-.=C2=A0</div><div><br></div><div><br></div><div>Regards,</div><div>Jon</div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->On Fri, Nov 8, 2019 at 1:52 PM Nick Foster &lt;<a href=3D"mailto:bistromat=
-h@gmail.com" rel=3D"noreferrer noreferrer" target=3D"_blank">bistromath@gma=
-il.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex"><div dir=3D"ltr"><div>Jonathon (Pendlum), correct me if I&#39;m wrong=
-, but I think this is the usual split-stream-demands-more-bandwidth-than-RF=
-NoC-bus-allows problem.<br></div><div><br></div><div>Jonathan (Lockhart), i=
-f I&#39;m right, then in your rfnoc_ce_auto_inst_e310.v, if you change the =
-ce_clk/ce_rst in the noc_block_split_stream instantiation to bus_clk/bus_rs=
-t, this may fix the problem.</div><div><br></div><div>Nick<br></div></div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri,=
- Nov 8, 2019 at 10:20 AM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pe=
-ndlum@ettus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">jonathon.p=
-endlum@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex"><div dir=3D"ltr">Hi Jon,<div><br></div><div>Can you try rev=
-erting commit e39334fe on the fpga repo and rebuilding your bitstream? Let =
-me know if that makes a difference or not.</div><div><br></div><div>Jonatho=
-n</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Sat, Nov 9, 2019 at 12:13 AM Jonathan Lockhart via USRP-users &lt=
-;<a href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer noreferrer=
-" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Greetin=
-gs Nick,</div><div><br></div><div>Here is the screenshot of my GR flow grap=
-h, though it shouldn&#39;t matter as the Split_Stream RFNoC Block I believe=
- is a failure of the python or Verilog but the solutions in the link I sent=
- in my previous email did not resolve the issue. <br></div><div><br></div><=
-div><div><img src=3D"https://mail.google.com/mail/?ui=3D2&amp;ik=3D1ae81886=
-2e&amp;attid=3D0.1&amp;th=3D16e50a0101adc4f2&amp;view=3Dfimg&amp;rm=3D16e50=
-a0101adc4f2&amp;sz=3Dw1600-h1000&amp;attbid=3DANGjdJ99ZIcYsSIzDc4CWbFXICEsw=
-Bw_zKbYxEPrUUzifdVbwxV4DA5-2ZfQVUkIJkApVRObYcGTjPk7XNPRZOpXERJ0z1KQjoXiW9JB=
-GPgI82fhvoAzlecorcyXTfU&amp;disp=3Demb&amp;realattid=3Dii_k2qa0bd70&amp;zw"=
- alt=3D"Screenshot from 2019-11-08 10-06-50.png" width=3D"566" height=3D"24=
-3"><br></div></div><div><br></div><div>Regards,</div><div>Jon<br></div></di=
-v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
-hu, Nov 7, 2019 at 5:33 PM Nick Foster &lt;<a href=3D"mailto:bistromath@gma=
-il.com" rel=3D"noreferrer noreferrer" target=3D"_blank">bistromath@gmail.co=
-m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
-><div dir=3D"ltr">Can you be more specific about what your flowgraph looks =
-like?<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Thu, Nov 7, 2019 at 2:22 PM Jonathan Lockhart via USRP-users &l=
-t;<a href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer noreferre=
-r" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Greeti=
-ngs,</div><div><br></div><div>I was wondering if anyone had encountered the=
- following error and had a way to fix it?</div><div><br></div><div>[INFO] [=
-UHD] linux; GNU C++ version 4.9.2; Boost_105700; UHD_3.14.1.HEAD-0-g0347a6d=
-8<br>[INFO] [E300] Loading FPGA image: /home/root/localinstall/e300.bit...<=
-br>[INFO] [E300] FPGA image loaded<br>[INFO] [E300] Detecting internal GPS =
-<br>.... [INFO] [E300] GPSDO found<br>[INFO] [E300] Initializing core contr=
-ol (global registers)...<br><br>[INFO] [E300] Performing register loopback =
-test... <br>[INFO] [E300] Register loopback test passed<br>[INFO] [0/Radio_=
-0] Initializing block control (NOC ID: 0x12AD100000000000)<br>[WARNING] [RF=
-NOC] Can&#39;t find a block controller for key SplitStream, using default b=
-lock controller!<br>[INFO] [0/SplitStream_0] Initializing block control (NO=
-C ID: 0x5757000000000000)<br>[ERROR] [UHD] Exception caught in safe-call.<b=
-r>=C2=A0 in ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl() [with uh=
-d::endianness_t _endianness =3D (uhd::endianness_t)1u]<br>=C2=A0 at /home/j=
-on/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:52<br>this-&gt;send=
-_cmd_pkt(0, 0, true); -&gt; EnvironmentError: IOError: Block ctrl (CE_01_Po=
-rt_21) no response packet - AssertionError: bool(buff)<br>=C2=A0 in uint64_=
-t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double) [with uhd:=
-:endianness_t _endianness =3D (uhd::endianness_t)1u; uint64_t =3D long long=
- unsigned int]<br>=C2=A0 at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc=
-/ctrl_iface.cpp:142<br><br>Traceback (most recent call last):<br>=C2=A0 Fil=
-e &quot;rfnoc_fosphor_network_usrp.py&quot;, line 283, in &lt;module&gt;<br=
->=C2=A0 =C2=A0 main()<br>=C2=A0 File &quot;rfnoc_fosphor_network_usrp.py&qu=
-ot;, line 272, in main<br>=C2=A0 =C2=A0 tb =3D top_block_cls(fft_size=3Dopt=
-ions.fft_size, fpga_path=3Doptions.fpga_path, freq=3Doptions.freq, gain=3Do=
-ptions.gain, host_ip_addr=3Doptions.host_ip_addr, samp_rate=3Doptions.samp_=
-rate, tdecay=3Doptions.tdecay, trise=3Doptions.trise)<br>=C2=A0 File &quot;=
-rfnoc_fosphor_network_usrp.py&quot;, line 43, in __init__<br>=C2=A0 =C2=A0 =
-self.device3 =3D variable_uhd_device3_0 =3D ettus.device3(uhd.device_addr_t=
-( &quot;,&quot;.join((&#39;type=3De3x0&#39;, &quot;master_clock_rate=3D%d,f=
-pga=3D%s&quot; % (samp_rate,fpga_path))) ))<br>=C2=A0 File &quot;/home/root=
-/localinstall/usr/lib/python2.7/site-packages/ettus/ettus_swig.py&quot;, li=
-ne 1307, in make<br>=C2=A0 =C2=A0 return _ettus_swig.device3_make(*args, **=
-kwargs)<br>RuntimeError: EnvironmentError: IOError: [0/SplitStream_0] sr_re=
-ad64() failed: EnvironmentError: IOError: Block ctrl (CE_01_Port_21) no res=
-ponse packet - AssertionError: bool(buff)<br>=C2=A0 in uint64_t ctrl_iface_=
-impl&lt;_endianness&gt;::wait_for_ack(bool, double) [with uhd::endianness_t=
- _endianness =3D (uhd::endianness_t)1u; uint64_t =3D long long unsigned int=
-]<br>=C2=A0 at /home/jon/rfnoc_3.14.1.1/src/uhd/host/lib/rfnoc/ctrl_iface.c=
-pp:142</div><div><br></div><div>This is only occurring when I use the split=
- stream block in RFNoC. I have tried the fixes in [1] but unfortunately the=
-y have not helped. Also, fix 1, I can&#39;t seem to before b/c I am missing=
- the file <code>rfnoc_ce_auto_inst_&lt;device&gt;.v</code>=C2=A0 as shown f=
-rom the output when attempting a &quot;find&quot; command in Ubuntu.=C2=A0<=
-/div><div><br></div><div>find: =E2=80=98rfnoc_ce_auto_inst_e310.v=E2=80=99:=
- No such file or directory</div><div><br></div><div>I ran it on both ~/* an=
-d /* with no luck. <br></div><div><br></div><div>Regards,</div><div>Jon Loc=
-khart</div><div><br></div><div>[1] <a href=3D"https://kb.ettus.com/RFNoC#Wh=
-y_do_I_have_a_command_timeout_error.3F" rel=3D"noreferrer noreferrer" targe=
-t=3D"_blank">https://kb.ettus.com/RFNoC#Why_do_I_have_a_command_timeout_err=
-or.3F</a></div><div><br></div></div>
-_______________________________________________<br>
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EpostStil18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EpostStil19
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+</head>
+<body lang=3D"NO-BOK" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">I have suc=
+cessfully built an RFNoC image with a DDC, Window and FFT block using the r=
+ecipe mentioned. Also I have been able to connect
+ the blocks using the UHD library in a C&#43;&#43; program, and I am receiv=
+ing FFT output to my program. However, I am still only able to achieve an F=
+FT size of max. 512 bins. Reading an older post it seems this is caused by =
+some FPGA &#8211; host packet limit of 4000 bytes?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p>&nbsp=
+;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Anyone bee=
+n able to achieve more than 512 bins FFT on an E310? I only need the magnit=
+ude data of the FFT, and from what I can see the
+ SC16 format is also used when transferring magnitude, which means the imag=
+inery part is not used.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p>&nbsp=
+;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Is it poss=
+ible to modify the FFT block to do a 1024 bin FFT, and send FFT magnitude d=
+ata on both real and imag bytes? I tried to look
+ at the code, but no luck&#8230; Eventually, is it possible to split the da=
+ta transfer into several blocks?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p>&nbsp=
+;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Jorn<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">Fra:</span></b><span style=3D"font-size:11.0pt;f=
+ont-family:&quot;Calibri&quot;,sans-serif"> Skorstad,J=F8rn &lt;Joern.Skors=
+tad@Nkom.no&gt;
+<br>
+<b>Sendt:</b> tirsdag 12. november 2019 18:24<br>
+<b>Til:</b> Nate Temple &lt;nate.temple@ettus.com&gt;<br>
+<b>Kopi:</b> USRP-users@lists.ettus.com<br>
+<b>Emne:</b> Re: [USRP-users] E310 RFNoC image<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">Thanks Nate, I will try to install it as described b=
+elow. <o:p>
+</o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Jorn&nbsp;<o:p></o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">12. nov. 2019 17:55 skrev Nate Temple &lt;<a href=3D=
+"mailto:nate.temple@ettus.com">nate.temple@ettus.com</a>&gt;:<o:p></o:p></p=
+>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif">Hi Jorn,<br>
+<br>
+The process for installing Xilinx Vivado WebPACK is fairly easy. <br>
+<br>
+Download &quot;Vivado Design Suite - HLx Editions - 2017.4 &nbsp;Full Produ=
+ct Installation&quot; from here:<br>
+<br>
+<a href=3D"https://www.xilinx.com/support/download/index.html/content/xilin=
+x/en/downloadNav/vivado-design-tools/archive.html">https://www.xilinx.com/s=
+upport/download/index.html/content/xilinx/en/downloadNav/vivado-design-tool=
+s/archive.html</a><br>
+<br>
+Decompress the tarball<br>
+<br>
+Run &quot;sudo ./xsetup&quot;<br>
+<br>
+When prompted to download the latest version, ignore and click &quot;Contin=
+ue&quot;, 2017.4 is required.<br>
+<br>
+Click Next, and agree to the EULA and other terms, click Next and keep the =
+default /opt/Xilinx install prefix.<br>
+<br>
+Click next through the rest of the menus and &quot;install&quot;<br>
+<br>
+You'll now have Vivado installed to /opt/Xilinx/Vivado/2017.4 and can use i=
+t with the build tools as described in the previously linked app note.<br>
+<br>
+<br>
+<br>
+Regards,<br>
+Nate Temple<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Mon, Nov 11, 2019 at 11:56 PM Skorstad,J=F8rn via=
+ USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@li=
+sts.ettus.com</a>&gt; wrote:<o:p></o:p></p>
+</div>
+<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0c=
+m 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Hi list,<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">I have followed the application note
+<a href=3D"https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Bui=
+lding_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source" target=3D"_blank">
+https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC=
+_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a> to set up a cross compile envir=
+onment for an E310 SDR. It works well, however I have not been able to get =
+past chapter 7: Building a custom
+ RFNoC FPGA Image, as I haven&#8217;t set up Vivado 2017.4, as required. <o=
+:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">I would like to experiment with RFNoC development also. The applic=
+ation note states =ABA future application note will cover a step-by-step in=
+stall guide for Vivado=BB. Until this application
+ note is ready, is it possible to use an image built by someone else using =
+this software version? (UHD_3.14.1.HEAD-0-gbfb9c1c7). If so, where could I =
+eventually download it? What I need is 1xwindow, 1xFFT, 1xFIFO and 1xFospho=
+r if there is space left. Radio
+ and DDC is already on FPGA available as blocks?<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Jorn<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal">_______________________________________________<br>
 USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
- target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
-.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
- target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
-.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
- target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
-.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a><o:p></o:p></p>
+</blockquote>
+</div>
+</div>
+</div>
+</body>
+</html>
 
---000000000000b63f3d0597cd0028--
+--_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781exmbx01_--
 
 
---===============7075276596357294484==
+--===============2267725624834985733==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -688,5 +439,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7075276596357294484==--
+--===============2267725624834985733==--
 
