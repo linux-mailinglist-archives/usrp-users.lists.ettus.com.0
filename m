@@ -2,82 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14DD710523D
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Nov 2019 13:24:12 +0100 (CET)
-Received: from [::1] (port=42216 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DA691058A2
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Nov 2019 18:35:38 +0100 (CET)
+Received: from [::1] (port=35778 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iXlVH-0007OS-Vg; Thu, 21 Nov 2019 07:24:07 -0500
-Received: from mail1.bemta25.messagelabs.com ([195.245.230.70]:51866)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <Joern.Skorstad@Nkom.no>)
- id 1iXlVD-0007FY-WB
- for USRP-users@lists.ettus.com; Thu, 21 Nov 2019 07:24:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=s1;
- t=1574339002; i=@nkom.no;
- bh=52eDxy9CEUFlr1QoT/tf6xV4MilgJ91JJm/PXYPCHT8=;
- h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
- Content-Type:MIME-Version;
- b=itH8/ngCLli/r8TGvYVjvADt84Wuai8Kz1Ma7LeJWcDQCTakFoB7NWfrPK2ZkSjy9
- od+wQYRzlS0WvXwY4tZcBJmdWM7SxEATe6grV2X2T85d8eilVM4xVzEeTO6msVV/N8
- 0Je0fiE7qJNrZbXm/7+jzRi6s2r7ON7+odc0BYvHbYImJiM8pT9zsinA9DJH+ALaPk
- o36YmwYEUFRPEBhdrjvJ6HwRh1ix3w/LlFO1oIa0jq7MnsoQdaTuVVol10PgtfLD9w
- itKf7VFi3SSzuF780TSGiRgGBj3ok0mk4uA8/LYn2pzeeTxVBGYm2fUUdudSRFzroD
- a23f3ptK4TSZQ==
-Received: from [46.226.52.196] (using TLSv1.2 with cipher
- DHE-RSA-AES256-GCM-SHA384 (256 bits))
- by server-6.bemta.az-b.eu-west-1.aws.symcld.net id 38/52-28136-AB186DD5;
- Thu, 21 Nov 2019 12:23:22 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFKsWRWlGSWpSXmKPExsViF5OXq7uz8Vq
- swYkpFhYXOuewOzB6TFx5iDmAMYo1My8pvyKBNePVutqCJYkVz79eZ25gfBXWxcjFISTQwihx
- cOUspi5GTg42AUeJ1ds/s4DYIgK2ElP33gCzhQW0JD5v+sIMEdeWWP70NlSNk8S7W5vAbBYBV
- Yl5/+6zgti8AnYSF65/Z4dYsJdR4l1fLztIglPAVeLu9Q6gIg4ORgFZiblNvCBhZgFxiRlH74
- DNkRAQkFiy5zwzhC0q8fLxP1YIW1HizsEZULaVxLaDj9kgbE2JhR8/MELYChLntp6BistL7H8
- 5hRlifprEi6lnoW4TlDg58wnLBEbRWUhWz0JSNgtJGURcT+LG1ClsELa2xLKFr5khbF2JGf8O
- sSCLL2BkX8VokVSUmZ5RkpuYmaNraGCga2hopGtoaaZrZGCkl1ilm6SXWqpbnlpcomuol1her
- FdcmZuck6KXl1qyiREYlSkFR07tYDz09a3eIUZJDiYlUd6pytdihfiS8lMqMxKLM+KLSnNSiw
- 8xynBwKEnwatYA5QSLUtNTK9Iyc4AJAiYtwcGjJMJbDZLmLS5IzC3OTIdInWK05Jjwcu4iZo6
- Pq5YAye8gUoglLz8vVUqc91Y1UIMASENGaR7cOFgSu8QoKyXMy8jAwCDEU5BalJtZgir/ilGc
- g1FJmHcpyBSezLwSuK2vgA5iAjpo49pLIAeVJCKkpBqY7Cb1R27lrZinwT1RiIf5bF7YuR3tv
- ww0L3qnWT6bvinr0XnnSG0dznK+B5ve+KWyvz5x+Gba4XnzVm+9tsfolPHspK2dy1NOzOA/nS
- 11fteseOO7axYa/j1ec3mdImfKk+DY+Oldj+OXyazJ+hB0Y9pmuQXX+xRjN7KL1kUtC/4acX1
- 9fFCyqazZm59fbhS7N1oJnmXz7mU17DTQ6w/mF/t7beLz4wYPdVl7957obVSRN1nDa7ni4anM
- 7IsrPz+TLfPoyXAsFfE5ufHlubdBYRKmO6I3ilbYxhxwss/kYAqQnSVc+WHGjWdNXPGhx6ZZ9
- 91w79i0gS0o5Ue8Xe+3WCO/bQtTEra23eycsltKiaU4I9FQi7moOBEAkb6UtN0DAAA=
-X-Env-Sender: Joern.Skorstad@Nkom.no
-X-Msg-Ref: server-13.tower-284.messagelabs.com!1574339001!1074043!1
-X-Originating-IP: [62.92.110.109]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.44.22; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 16580 invoked from network); 21 Nov 2019 12:23:21 -0000
-Received: from 109.110.92.62.static.cust.telenor.com (HELO smtp.nkom.no)
- (62.92.110.109)
- by server-13.tower-284.messagelabs.com with ECDHE-RSA-AES256-SHA encrypted
- SMTP; 21 Nov 2019 12:23:21 -0000
-Received: from EXMBX01.npta.no ([10.10.2.97]) by EXCAS.npta.no ([::1]) with
- mapi id 14.03.0468.000; Thu, 21 Nov 2019 13:23:20 +0100
-To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Thread-Topic: [USRP-users] E310 RFNoC image
-Thread-Index: AdWZLCnHsJoqHaTiQkOJ5gEZ7l9tRgARZUaAAAMRPSwBuavoAA==
-Date: Thu, 21 Nov 2019 12:23:19 +0000
-Message-ID: <D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781@exmbx01>
-References: <D71B2B9BB39CE44CACCAB6646DF20CFD48DAD5A8@exmbx01>,
- <CAL263iyu=4WX8SpPUUu1ue+-sjsZUM0rvZVnd+taOJx9x8GC_Q@mail.gmail.com>
- <6647c899-4322-4059-b9d7-bf69ead4dedd@email.android.com>
-In-Reply-To: <6647c899-4322-4059-b9d7-bf69ead4dedd@email.android.com>
-Accept-Language: nb-NO, en-US
-Content-Language: nb-NO
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.13.23]
-x-tm-as-product-ver: SMEX-11.0.0.1251-8.100.1062-25056.003
-x-tm-as-result: No--24.821800-8.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+	id 1iXqMf-0007Lw-Rz; Thu, 21 Nov 2019 12:35:33 -0500
+Received: from sonic311-24.consmr.mail.ne1.yahoo.com ([66.163.188.205]:37510)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
+ id 1iXqMc-0007E0-Uz
+ for usrp-users@lists.ettus.com; Thu, 21 Nov 2019 12:35:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1574357690; bh=Fq8fIMlYmsI5TNtAkJf0JaiPIT2KvJmYncygyLeHY8o=;
+ h=Date:From:To:Subject:References:From:Subject;
+ b=rxl8f5SuS4E76fPgXimm0NRVMTDnqx33qxZa6aQms3mEWk88Mc8F7Y6s2ft5yET6/1TNcGegbx2AUzCqIv+IBBA/h1fPU+GV7s3aaoNScqmpJXO0TMTzq2eV1j+Nk/JCGdCFsKfZM2N/0A0vb0ljym87sK+zp1eVzxmFOZkt9YNZ0sGLC28tjZJq+FgzXwvMCsZGHK3aGB8w1fwUe4s9yokxcdzOC65jvb+cp34LconVSVHBC1cIOFdknlLIZNCsphyrSLlcUCacZqbpmlI8Lh6Rorf9qRrnvRpU+Jrc12uz252PFLp8+T/60T9/Obqgcig1NfnoK3JnLqV9FiD0ig==
+X-YMail-OSG: dKgoMwcVM1n68putp_Z7o2QnABfVs3R9n2IoveFv3SzIMkzhbFo_W55HtM91bYW
+ un.h5xd08.x97F6rq5uyZWJQxoa50_4LGuCsF5ApwU7bNAhFelO.e8nZfbT4Vze9tiFy6b1p5jMz
+ Tokzcaucoxf.hlCsjE9XxkInHfSkd4iePrVBi_JWzfLaxS618DPFXINfFAT5CE99fEG25E_k5g8m
+ p9nU0KIQqpLXZchQfl5tAhTamsvx25Iq5mOMcqK7Grsq0YxOuTQfMXNn0ZqIrGu_mGJ8XVRaQk9z
+ m_kp5MvHTblqmdh2h4Cy64ZVHgE8FR8_Hqki_iww7RomYJ2crSnxoNrUugp7yRX.ovMVOcLpDpFk
+ tMEq7y6UewMc3FCq0GQFvQjycq7xFW_BjmpZevA3HFZjuEoBPTDda2NHQhFWFA4okL3WJonFGe0o
+ g0769O.gosOyxzKCh8Q1HoDlQ4u1_bDwR8b8J7dmYHM32M20dvtMhhYz3GuV_SgUjjVkbqequYl.
+ 4tgUJ7.EBjBqqTQSDCzxesm3veJ6sGVoswJX2SiqeIGnJj6HpyqNFpHvW9gOFgMnZkV7_lAmBpRt
+ uMEjwP_ss9FU6Ihg_2iCsSVJNisIo9EA6EeW5_9REHyZnzBxPmiVh3ckIUh7oKZuriJnM7EIuxNh
+ YUjXjrIWhlhkf2yLUEzDV_D4KnmF3m8Gkm3_9RoMhhsHOxHvpRxaCy742eYh.vcRVHNPc_HG21iu
+ 82quGioONdQPch4dqfBvFiPshjvVzNaOvlDyxkWpmTe9vhs0EokUTFHi2qFNljelNbqeQOmXhOcB
+ oXuDtmS8O2KTjU..t7LCDWqZPlh3CwXp7xc0n4DY.hHDp_dEnS_RMfXBIh_WknahtxliX1g31AOW
+ qneEUxaAob8k6jeLYZvlmoefcsOLANdAZxM473UWQa_cTy26RGfsFXorzMqy9zhzObcucrAF5sCf
+ DB2tIM0cwJ4RTK8QPzudLW.H7vPQwXhDcU.o8HhTSdTJH8CSBA35Te.MxhFSDCVmTxjJvbRfvV1O
+ ltk92DwtY2qr3IM0CXAcD8WT2P4k_e2nbITiaUbeW5DhjVUXVZrq1BONUOmf_ZtPTIBbwhAVBHPM
+ fvZyzMZlBhNifycBp9zlIiRPnHgpL2M0QRJWCuRLRSEbCta1I.xQyDZtXJhbA4Suu63XnBAJGWNd
+ W6W3fdm2aDe5BjbeNdEV_LjOLPUzs563UWpFH8sck3yQBiJrR2eH_yXSVsbomqLTTWYZvsiAqi57
+ R57uUhChYZM2czct3TB1JnYRx3ESclvO556K7Thfe3Tzf5qPeV.WFh_BExPEaiRwuPqrC00zBYav
+ GInIU4cNCMp9LkeDK9w3u
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic311.consmr.mail.ne1.yahoo.com with HTTP; Thu, 21 Nov 2019 17:34:49 +0000
+Date: Thu, 21 Nov 2019 17:34:45 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <1027805479.3576226.1574357685417@mail.yahoo.com>
 MIME-Version: 1.0
-Subject: Re: [USRP-users] E310 RFNoC image
+References: <1027805479.3576226.1574357685417.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.14728 YMailNorrin Mozilla/5.0 (X11; Linux x86_64;
+ rv:68.0) Gecko/20100101 Firefox/68.0
+Subject: [USRP-users] X300 underflows with tx_rate 100Msps
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,10 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Skorstad=2CJ=C3=B8rn_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?iso-8859-1?Q?Skorstad=2CJ=F8rn?= <Joern.Skorstad@Nkom.no>
-Content-Type: multipart/mixed; boundary="===============2267725624834985733=="
+From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: voonna santosh <santu_voonna@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============4826392845578309442=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -106,329 +73,134 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2267725624834985733==
-Content-Language: nb-NO
-Content-Type: multipart/alternative;
-	boundary="_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781exmbx01_"
+--===============4826392845578309442==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3576225_1101914029.1574357685416"
+Content-Length: 6005
 
---_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781exmbx01_
-Content-Type: text/plain; charset="iso-8859-1"
+------=_Part_3576225_1101914029.1574357685416
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I have successfully built an RFNoC image with a DDC, Window and FFT block u=
-sing the recipe mentioned. Also I have been able to connect the blocks usin=
-g the UHD library in a C++ program, and I am receiving FFT output to my pro=
-gram. However, I am still only able to achieve an FFT size of max. 512 bins=
-. Reading an older post it seems this is caused by some FPGA - host packet =
-limit of 4000 bytes?
+Hi Michael,
+=C2=A0=C2=A0=C2=A0 I am experiencing lots of underflows when I use benchmar=
+k_rate example app. Following is the configuration:
+=C2=A0=C2=A0 =C2=A0
+Host processor=C2=A0=C2=A0 =C2=A0: Intel=C2=AE Xeon=C2=AE Processor D-1500 =
+System on Chip (SoC)
+Host OS: Centos 7
+UHD: release_003_010_001_000
+SDR HW: X300 with UBX-160 (Calibration done as documented)
+Eth link: SFP
+=C2=A0- Maximum socket buffer sizes (wmem_max, rmem_max)
+=C2=A0- MTU 9000
+=C2=A0- Tx/Rx descriptors (sudo ethtool -G <interface> tx 4096 rx 4096)
+=C2=A0- thread priority set to 1
+CPU usage: Only two CPUs are being used, but rest of the cores are free and=
+ the host is headless(No CPU consuming apps).
 
-Anyone been able to achieve more than 512 bins FFT on an E310? I only need =
-the magnitude data of the FFT, and from what I can see the SC16 format is a=
-lso used when transferring magnitude, which means the imaginery part is not=
- used.
+=C2=A0 If I test rx_rate with 200Msps, it works well. But when I use tx_rat=
+e with 100Msps, I could see lots of underflows (Us).
 
-Is it possible to modify the FFT block to do a 1024 bin FFT, and send FFT m=
-agnitude data on both real and imag bytes? I tried to look at the code, but=
- no luck... Eventually, is it possible to split the data transfer into seve=
-ral blocks?
-
-Jorn
-
-Fra: Skorstad,J=F8rn <Joern.Skorstad@Nkom.no>
-Sendt: tirsdag 12. november 2019 18:24
-Til: Nate Temple <nate.temple@ettus.com>
-Kopi: USRP-users@lists.ettus.com
-Emne: Re: [USRP-users] E310 RFNoC image
-
-Thanks Nate, I will try to install it as described below.
-
-Jorn
-
-12. nov. 2019 17:55 skrev Nate Temple <nate.temple@ettus.com<mailto:nate.te=
-mple@ettus.com>>:
-Hi Jorn,
-
-The process for installing Xilinx Vivado WebPACK is fairly easy.
-
-Download "Vivado Design Suite - HLx Editions - 2017.4  Full Product Install=
-ation" from here:
-
-https://www.xilinx.com/support/download/index.html/content/xilinx/en/downlo=
-adNav/vivado-design-tools/archive.html
-
-Decompress the tarball
-
-Run "sudo ./xsetup"
-
-When prompted to download the latest version, ignore and click "Continue", =
-2017.4 is required.
-
-Click Next, and agree to the EULA and other terms, click Next and keep the =
-default /opt/Xilinx install prefix.
-
-Click next through the rest of the menus and "install"
-
-You'll now have Vivado installed to /opt/Xilinx/Vivado/2017.4 and can use i=
-t with the build tools as described in the previously linked app note.
+./benchmark_rate --args=3D"addr=3D192.168.40.2" --tx_rate=3D100e6=C2=A0 --c=
+hannels=3D"0" --duration 200
+linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-39); Boost_105800; UHD=
+_003.010.001.HEAD-0-g929e3b32
 
 
+Creating the usrp device with: addr=3D192.168.40.2...
+-- X300 initialization sequence...
+-- Determining maximum frame size... 8000 bytes.
+-- Setup basic communication...
+-- Loading values from EEPROM...
+-- Setup RF frontend clocking...
+-- Radio 1x clock:200
+-- Detecting internal GPSDO.... Found an internal GPSDO: LC_XO, Firmware Re=
+v 0.929b
+-- [DMA FIFO] Running BIST for FIFO 0... pass (Throughput: 1179.5MB/s)
+-- [DMA FIFO] Running BIST for FIFO 1... pass (Throughput: 1184.4MB/s)
+-- [RFNoC Radio] Performing register loopback test... pass
+-- [RFNoC Radio] Performing register loopback test... pass
+-- [RFNoC Radio] Performing register loopback test... pass
+-- [RFNoC Radio] Performing register loopback test... pass
+-- Performing timer loopback test... pass
+-- Performing timer loopback test... pass
+Using Device: Single USRP:
+=C2=A0 Device: X-Series Device
+=C2=A0 Mboard 0: X300
+=C2=A0 RX Channel: 0
+=C2=A0=C2=A0=C2=A0 RX DSP: 0
+=C2=A0=C2=A0=C2=A0 RX Dboard: A
+=C2=A0=C2=A0=C2=A0 RX Subdev: UBX RX
+=C2=A0 RX Channel: 1
+=C2=A0=C2=A0=C2=A0 RX DSP: 0
+=C2=A0=C2=A0=C2=A0 RX Dboard: B
+=C2=A0=C2=A0=C2=A0 RX Subdev: Unknown (0xffff) - 0
+=C2=A0 TX Channel: 0
+=C2=A0=C2=A0=C2=A0 TX DSP: 0
+=C2=A0=C2=A0=C2=A0 TX Dboard: A
+=C2=A0=C2=A0=C2=A0 TX Subdev: UBX TX
+=C2=A0 TX Channel: 1
+=C2=A0=C2=A0=C2=A0 TX DSP: 0
+=C2=A0=C2=A0=C2=A0 TX Dboard: B
+=C2=A0=C2=A0=C2=A0 TX Subdev: Unknown (0xffff) - 0
 
-Regards,
-Nate Temple
+Setting device timestamp to 0...
+Testing transmit rate 100.000000 Msps on 1 channels
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU ....... Lots of under=
+flows
 
-On Mon, Nov 11, 2019 at 11:56 PM Skorstad,J=F8rn via USRP-users <usrp-users=
-@lists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-Hi list,
+Thanks in advance.
 
-I have followed the application note https://kb.ettus.com/Software_Developm=
-ent_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Sourc=
-e to set up a cross compile environment for an E310 SDR. It works well, how=
-ever I have not been able to get past chapter 7: Building a custom RFNoC FP=
-GA Image, as I haven't set up Vivado 2017.4, as required.
-
-I would like to experiment with RFNoC development also. The application not=
-e states =ABA future application note will cover a step-by-step install gui=
-de for Vivado=BB. Until this application note is ready, is it possible to u=
-se an image built by someone else using this software version? (UHD_3.14.1.=
-HEAD-0-gbfb9c1c7). If so, where could I eventually download it? What I need=
- is 1xwindow, 1xFFT, 1xFIFO and 1xFosphor if there is space left. Radio and=
- DDC is already on FPGA available as blocks?
-
-Regards,
-Jorn
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781exmbx01_
-Content-Type: text/html; charset="iso-8859-1"
+------=_Part_3576225_1101914029.1574357685416
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
-hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
-fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EpostStil18
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EpostStil19
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style>
-</head>
-<body lang=3D"NO-BOK" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">I have suc=
-cessfully built an RFNoC image with a DDC, Window and FFT block using the r=
-ecipe mentioned. Also I have been able to connect
- the blocks using the UHD library in a C&#43;&#43; program, and I am receiv=
-ing FFT output to my program. However, I am still only able to achieve an F=
-FT size of max. 512 bins. Reading an older post it seems this is caused by =
-some FPGA &#8211; host packet limit of 4000 bytes?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p>&nbsp=
-;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Anyone bee=
-n able to achieve more than 512 bins FFT on an E310? I only need the magnit=
-ude data of the FFT, and from what I can see the
- SC16 format is also used when transferring magnitude, which means the imag=
-inery part is not used.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p>&nbsp=
-;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Is it poss=
-ible to modify the FFT block to do a 1024 bin FFT, and send FFT magnitude d=
-ata on both real and imag bytes? I tried to look
- at the code, but no luck&#8230; Eventually, is it possible to split the da=
-ta transfer into several blocks?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p>&nbsp=
-;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Jorn<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif">Fra:</span></b><span style=3D"font-size:11.0pt;f=
-ont-family:&quot;Calibri&quot;,sans-serif"> Skorstad,J=F8rn &lt;Joern.Skors=
-tad@Nkom.no&gt;
-<br>
-<b>Sendt:</b> tirsdag 12. november 2019 18:24<br>
-<b>Til:</b> Nate Temple &lt;nate.temple@ettus.com&gt;<br>
-<b>Kopi:</b> USRP-users@lists.ettus.com<br>
-<b>Emne:</b> Re: [USRP-users] E310 RFNoC image<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">Thanks Nate, I will try to install it as described b=
-elow. <o:p>
-</o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Jorn&nbsp;<o:p></o:p></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">12. nov. 2019 17:55 skrev Nate Temple &lt;<a href=3D=
-"mailto:nate.temple@ettus.com">nate.temple@ettus.com</a>&gt;:<o:p></o:p></p=
->
-</div>
-</div>
-<div>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
-rif">Hi Jorn,<br>
-<br>
-The process for installing Xilinx Vivado WebPACK is fairly easy. <br>
-<br>
-Download &quot;Vivado Design Suite - HLx Editions - 2017.4 &nbsp;Full Produ=
-ct Installation&quot; from here:<br>
-<br>
-<a href=3D"https://www.xilinx.com/support/download/index.html/content/xilin=
-x/en/downloadNav/vivado-design-tools/archive.html">https://www.xilinx.com/s=
-upport/download/index.html/content/xilinx/en/downloadNav/vivado-design-tool=
-s/archive.html</a><br>
-<br>
-Decompress the tarball<br>
-<br>
-Run &quot;sudo ./xsetup&quot;<br>
-<br>
-When prompted to download the latest version, ignore and click &quot;Contin=
-ue&quot;, 2017.4 is required.<br>
-<br>
-Click Next, and agree to the EULA and other terms, click Next and keep the =
-default /opt/Xilinx install prefix.<br>
-<br>
-Click next through the rest of the menus and &quot;install&quot;<br>
-<br>
-You'll now have Vivado installed to /opt/Xilinx/Vivado/2017.4 and can use i=
-t with the build tools as described in the previously linked app note.<br>
-<br>
-<br>
-<br>
-Regards,<br>
-Nate Temple<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Mon, Nov 11, 2019 at 11:56 PM Skorstad,J=F8rn via=
- USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@li=
-sts.ettus.com</a>&gt; wrote:<o:p></o:p></p>
-</div>
-<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0c=
-m 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Hi list,<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">I have followed the application note
-<a href=3D"https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Bui=
-lding_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source" target=3D"_blank">
-https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC=
-_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a> to set up a cross compile envir=
-onment for an E310 SDR. It works well, however I have not been able to get =
-past chapter 7: Building a custom
- RFNoC FPGA Image, as I haven&#8217;t set up Vivado 2017.4, as required. <o=
-:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">I would like to experiment with RFNoC development also. The applic=
-ation note states =ABA future application note will cover a step-by-step in=
-stall guide for Vivado=BB. Until this application
- note is ready, is it possible to use an image built by someone else using =
-this software version? (UHD_3.14.1.HEAD-0-gbfb9c1c7). If so, where could I =
-eventually download it? What I need is 1xwindow, 1xFFT, 1xFIFO and 1xFospho=
-r if there is space left. Radio
- and DDC is already on FPGA available as blocks?<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Jorn<o:p></o:p></p>
-</div>
-</div>
-<p class=3D"MsoNormal">_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
-sts.ettus.com</a><o:p></o:p></p>
-</blockquote>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_D71B2B9BB39CE44CACCAB6646DF20CFD48DCF781exmbx01_--
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false"><div>Hi Michael,<br>&nbsp;&nbsp;&nbsp; I am =
+experiencing lots of underflows when I use benchmark_rate example app. Foll=
+owing is the configuration:<br>&nbsp;&nbsp; &nbsp;<br>Host processor&nbsp;&=
+nbsp; &nbsp;: Intel=C2=AE Xeon=C2=AE Processor D-1500 System on Chip (SoC)<=
+br>Host OS: Centos 7<br>UHD: release_003_010_001_000<br>SDR HW: X300 with U=
+BX-160 (Calibration done as documented)<br>Eth link: SFP<br>&nbsp;- Maximum=
+ socket buffer sizes (wmem_max, rmem_max)<br>&nbsp;- MTU 9000<br>&nbsp;- Tx=
+/Rx descriptors (sudo ethtool -G &lt;interface&gt; tx 4096 rx 4096)<br>&nbs=
+p;- thread priority set to 1<br>CPU usage: Only two CPUs are being used, bu=
+t rest of the cores are free and the host is headless(No CPU consuming apps=
+).<br><br>&nbsp; If I test rx_rate with 200Msps, it works well. But when I =
+use tx_rate with 100Msps, I could see lots of underflows (Us).<br><br>./ben=
+chmark_rate --args=3D"addr=3D192.168.40.2" --tx_rate=3D100e6&nbsp; --channe=
+ls=3D"0" --duration 200<br>linux; GNU C++ version 4.8.5 20150623 (Red Hat 4=
+.8.5-39); Boost_105800; UHD_003.010.001.HEAD-0-g929e3b32<br><br><br>Creatin=
+g the usrp device with: addr=3D192.168.40.2...<br>-- X300 initialization se=
+quence...<br>-- Determining maximum frame size... 8000 bytes.<br>-- Setup b=
+asic communication...<br>-- Loading values from EEPROM...<br>-- Setup RF fr=
+ontend clocking...<br>-- Radio 1x clock:200<br>-- Detecting internal GPSDO.=
+... Found an internal GPSDO: LC_XO, Firmware Rev 0.929b<br>-- [DMA FIFO] Ru=
+nning BIST for FIFO 0... pass (Throughput: 1179.5MB/s)<br>-- [DMA FIFO] Run=
+ning BIST for FIFO 1... pass (Throughput: 1184.4MB/s)<br>-- [RFNoC Radio] P=
+erforming register loopback test... pass<br>-- [RFNoC Radio] Performing reg=
+ister loopback test... pass<br>-- [RFNoC Radio] Performing register loopbac=
+k test... pass<br>-- [RFNoC Radio] Performing register loopback test... pas=
+s<br>-- Performing timer loopback test... pass<br>-- Performing timer loopb=
+ack test... pass<br>Using Device: Single USRP:<br>&nbsp; Device: X-Series D=
+evice<br>&nbsp; Mboard 0: X300<br>&nbsp; RX Channel: 0<br>&nbsp;&nbsp;&nbsp=
+; RX DSP: 0<br>&nbsp;&nbsp;&nbsp; RX Dboard: A<br>&nbsp;&nbsp;&nbsp; RX Sub=
+dev: UBX RX<br>&nbsp; RX Channel: 1<br>&nbsp;&nbsp;&nbsp; RX DSP: 0<br>&nbs=
+p;&nbsp;&nbsp; RX Dboard: B<br>&nbsp;&nbsp;&nbsp; RX Subdev: Unknown (0xfff=
+f) - 0<br>&nbsp; TX Channel: 0<br>&nbsp;&nbsp;&nbsp; TX DSP: 0<br>&nbsp;&nb=
+sp;&nbsp; TX Dboard: A<br>&nbsp;&nbsp;&nbsp; TX Subdev: UBX TX<br>&nbsp; TX=
+ Channel: 1<br>&nbsp;&nbsp;&nbsp; TX DSP: 0<br>&nbsp;&nbsp;&nbsp; TX Dboard=
+: B<br>&nbsp;&nbsp;&nbsp; TX Subdev: Unknown (0xffff) - 0<br><br>Setting de=
+vice timestamp to 0...<br>Testing transmit rate 100.000000 Msps on 1 channe=
+ls<br>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU ....... Lots of=
+ underflows<br><br>Thanks in advance.</div><div><br></div></div></div></bod=
+y></html>
+------=_Part_3576225_1101914029.1574357685416--
 
 
---===============2267725624834985733==
+--===============4826392845578309442==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -439,5 +211,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2267725624834985733==--
+--===============4826392845578309442==--
 
