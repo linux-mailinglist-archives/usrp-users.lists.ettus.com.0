@@ -2,43 +2,44 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B3B01074B9
-	for <lists+usrp-users@lfdr.de>; Fri, 22 Nov 2019 16:21:30 +0100 (CET)
-Received: from [::1] (port=56234 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA1A10753B
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Nov 2019 16:52:28 +0100 (CET)
+Received: from [::1] (port=35274 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iYAkT-00023v-1h; Fri, 22 Nov 2019 10:21:29 -0500
-Received: from mail-wm1-f41.google.com ([209.85.128.41]:39016)
+	id 1iYBEO-0004Q0-3k; Fri, 22 Nov 2019 10:52:24 -0500
+Received: from mail-lj1-f179.google.com ([209.85.208.179]:45293)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ejkreinar@gmail.com>) id 1iYAkO-0001sv-Nq
- for usrp-users@lists.ettus.com; Fri, 22 Nov 2019 10:21:24 -0500
-Received: by mail-wm1-f41.google.com with SMTP id t26so8020207wmi.4
- for <usrp-users@lists.ettus.com>; Fri, 22 Nov 2019 07:21:04 -0800 (PST)
+ (Exim 4.92) (envelope-from <jlockhartrt@gmail.com>)
+ id 1iYBEK-0004Kq-E2
+ for usrp-users@lists.ettus.com; Fri, 22 Nov 2019 10:52:20 -0500
+Received: by mail-lj1-f179.google.com with SMTP id n21so7867115ljg.12
+ for <usrp-users@lists.ettus.com>; Fri, 22 Nov 2019 07:52:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Tx8PPczkW6bwZngh5Z7cJ4CAZgv5f+KtF9eyHxXYtRM=;
- b=MbsXzHrN1udpJ8l89CKWUNvvbB9ElDwwZBY1bnXAW5FPQphDM42t/Xd8kEdhdb+Ypa
- mkFWO83fpFyUxPnFH9LOnPJmnQZjv1BpJujXkxzglEN1WYha2IH+XGQ8AzIo3vhF/Kjj
- sIt9UG8fDtTiSVm/YXy+Z/z/cSFlRvhVPsI5MQY3pwXkLCep9tnGe36JGztS3kymNj4Z
- jmthZUjlAtp8d50rJ8QicHSvM3QXBEuDDtSgTIgGxLFUw7Nd3MyfdwEIx6+xAfzvHpCC
- SkdkPwKllAJJuUABJQLfFk6AbWN5IM5eyWYBnG9CTnn57D9dvXIw73ZGjwjWruGZrpyL
- WtTQ==
+ :cc; bh=CtM4vztWYUHmrJNPS8STf5Fk6aDUanGBFKWSvqeBvIc=;
+ b=nJfSW0tJvHzwJd/Z8eXjvjILowQyPqE9yh+LsyWapf70hxfPuUKtB+FOZj/1brzm/q
+ AbIOf9sBRIlGIfPCM13xQxFYr3593wW98tP8dBmRzZMFOhThwsx6Kz2L6s+a7HJwzu9D
+ Qs52Pyft3bACySV4P6V72XUkxPXeW/cacsDyDRTOjc1bbX9kMs5oWosN0UKZOL29pYa0
+ JG/GL0m1+LAVtg022TknJKOJbPuInyTjpfGtVI+KL+mtYbfhvoUyINcXInCnXZ8LWtvP
+ jHzwQbVSgZHc6pQ2gOMsXN/9off3LZHfucX1yZD2X+LazZgmuXLWpwKO+A/1nYECe2D8
+ WKbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Tx8PPczkW6bwZngh5Z7cJ4CAZgv5f+KtF9eyHxXYtRM=;
- b=IlnS0x2hcZRS6R5iZvfByav6x/s2tnHFzXrJV60gdopz0m+uYtx96Lu490aZ0Zpnbv
- runa3nvaEc3UIPTu1mB4U18T99zsRzSwRRun+s9TK8FoI76MsFm8QT4VHghtm/QLXrhA
- MLaoJW0B29IQmxQnvnKcJC3PiWA5fNiicExyK31xnyQ9LALzMXHPBNPvN9pXBObvXyZd
- sSpn5NpKVDhfTek4xLkAkmtlIFHeEEA6Tpqd+wBroBjuuRa7n5QYE6sR5/to0AiJXKmU
- Tv6zTcDeVViaQmzUxIwnisPcPkSyK/fzYfGL/7N0nrQCQQgzccdo5iaVWT3T5w5v8084
- rNpg==
-X-Gm-Message-State: APjAAAWc6GpHRwse6pWIUMfzfleAxW+TqXmlEO1KmF4/VQXOWs2MLqDd
- devr65opTJTfOXDsQM5FuyirFJJ4g/rDVU8NEFc=
-X-Google-Smtp-Source: APXvYqzNwCfUSiRjvYO3+gBIhi1Iol+OQIkcCen99anM8S3kfDoVkAeqj1iqEx+5jyN1BWHV6QYQFSer19qyFReEWNY=
-X-Received: by 2002:a1c:3b08:: with SMTP id i8mr16559047wma.56.1574436043359; 
- Fri, 22 Nov 2019 07:20:43 -0800 (PST)
+ bh=CtM4vztWYUHmrJNPS8STf5Fk6aDUanGBFKWSvqeBvIc=;
+ b=RsV3V4LFYPo5Mpz7Adr0lH2f0vvoYNLrpaeKLkfaO6o9v0bzLGNkfBuvxyzaRPkrJb
+ BAIuikOHclT2/hCinXkTyZ6WpcwV5xr9WDXu+uKLMHlumNzgS2mCDEy0pAw9rHLdikpN
+ 1IYexq5BoentYlu/EpGO9UL1SQUapLo4A0tShs80uhNLY3KG3HFimyULcvsWY+J2gqL9
+ 2Z8UgEcFeOdVMRl+K0VKUosGAwYrwsYb2jUMSTFoRDNUufwY6cO82r7AcrKjG/5Xv/9Q
+ ShsityE+mDebwDQQdvWGJefqw7mnjvaAyXl/ST3WWiBL0jKRmuWcBSUchdzmpI+27Sr+
+ Hmkw==
+X-Gm-Message-State: APjAAAX7a40fOdxFrqk8GYvvoYwd/Em2SJljLWj9+PeUGXxCbGk/C6SJ
+ cB7DmJQsr1ctEOmADLGBWx0ScBxBJ620tRO+3wk=
+X-Google-Smtp-Source: APXvYqwQLjTWyXopAQzj/+YYB1X+F8TTjLSTnsMS9odPGFnxFPpUCQyixapJk0x8rhASPw/YW9i818adPUv5hc1Jdyw=
+X-Received: by 2002:a2e:84d0:: with SMTP id q16mr1219522ljh.48.1574437899056; 
+ Fri, 22 Nov 2019 07:51:39 -0800 (PST)
 MIME-Version: 1.0
 References: <CALY+5sLFttRpt+J_PSv1Oa7afRJDHr027vvpA9u2BNME7qmscg@mail.gmail.com>
  <CALY+5sKSb9dq-rQM9nJ8i_2UxpmzPBksNoFChccd0YnHQh1arw@mail.gmail.com>
@@ -47,10 +48,11 @@ References: <CALY+5sLFttRpt+J_PSv1Oa7afRJDHr027vvpA9u2BNME7qmscg@mail.gmail.com>
  <CALY+5sKfTtaUu-qhvbKcVNPke3Lb4zkurwqf7LmDJVmn3vyL+Q@mail.gmail.com>
  <CADRnH2296cr7moDbDLPg1gSt2Q+VT_P_Jin5Vh8r_s=eCZdbwQ@mail.gmail.com>
  <CALY+5sK3D-ndWG-anNPEejrpGkk2vNz2EpfBA6eQ7edjj3q3NA@mail.gmail.com>
-In-Reply-To: <CALY+5sK3D-ndWG-anNPEejrpGkk2vNz2EpfBA6eQ7edjj3q3NA@mail.gmail.com>
-Date: Fri, 22 Nov 2019 10:20:29 -0500
-Message-ID: <CADRnH23e-pQNbFNE7C9qPv6a3PpuLY6daaXSAhBkx+VGYo3=+g@mail.gmail.com>
-To: Jonathan Lockhart <jlockhartrt@gmail.com>
+ <CADRnH23e-pQNbFNE7C9qPv6a3PpuLY6daaXSAhBkx+VGYo3=+g@mail.gmail.com>
+In-Reply-To: <CADRnH23e-pQNbFNE7C9qPv6a3PpuLY6daaXSAhBkx+VGYo3=+g@mail.gmail.com>
+Date: Fri, 22 Nov 2019 10:51:27 -0500
+Message-ID: <CALY+5sKym9oDpbHb48n4DopxMsnxkHKLDsV+zA_XVJ+pPN3jTg@mail.gmail.com>
+To: EJ Kreinar <ejkreinar@gmail.com>
 Subject: Re: [USRP-users] E312 - Migrating OOT Modules to the USRP
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -63,10 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: EJ Kreinar <ejkreinar@gmail.com>
+From: Jonathan Lockhart via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathan Lockhart <jlockhartrt@gmail.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0596681957251244794=="
+Content-Type: multipart/mixed; boundary="===============1381949141151588033=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,751 +82,764 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0596681957251244794==
-Content-Type: multipart/alternative; boundary="000000000000160bfe0597f0f54d"
+--===============1381949141151588033==
+Content-Type: multipart/alternative; boundary="000000000000b1ba7e0597f16331"
 
---000000000000160bfe0597f0f54d
+--000000000000b1ba7e0597f16331
 Content-Type: text/plain; charset="UTF-8"
 
-Good progress, agreed it looks like the gain arg isn't getting created
-here...
+NVM, I got it set. I am teasing through the long console output now. Might
+of wanted to set the file log instead. Live and learn.
 
-If you run with log level trace, rfnoc should (might?) indicate the xml
-file it loaded. I'd try to find that xml and confirm it looks like what you
-expect, with the gain arg entry.
+On Fri, Nov 22, 2019 at 10:20 AM EJ Kreinar <ejkreinar@gmail.com> wrote:
 
-Also, perhaps grep your prefix and share directories on the embedded device
-to search for any other xml files that might match the noc id or provide
-the same "gain" block... I've definitely fought with conflicting xml
-definitions before, you might be seeing that here.
-
-EJ
-
-On Fri, Nov 22, 2019, 9:36 AM Jonathan Lockhart <jlockhartrt@gmail.com>
-wrote:
-
-> Hey EJ,
+> Good progress, agreed it looks like the gain arg isn't getting created
+> here...
 >
-> Sorry for being slow I had to dig around to set that UHD Log variable,
-> which easy enough it was just a simple export. I then ran uhd_usrp_probe
-> with the --tree and setting the fpga to my bit file. Here is the output
-> from the probe.
+> If you run with log level trace, rfnoc should (might?) indicate the xml
+> file it loaded. I'd try to find that xml and confirm it looks like what you
+> expect, with the gain arg entry.
 >
-> root@ettus-e3xx-sg3:~# uhd_usrp_probe --args="fpga=./newinstall/e300.bit"
-> --tree
-> [INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700;
-> UHD_3.14.1.HEAD-0-g0347a6d8
-> [INFO] [E300] Loading FPGA image: ./newinstall/e300.bit...
-> [INFO] [E300] FPGA image loaded
-> [INFO] [E300] Detecting internal GPS
-> .... [INFO] [E300] GPSDO found
-> [INFO] [E300] Initializing core control (global registers)...
+> Also, perhaps grep your prefix and share directories on the embedded
+> device to search for any other xml files that might match the noc id or
+> provide the same "gain" block... I've definitely fought with conflicting
+> xml definitions before, you might be seeing that here.
 >
-> [INFO] [E300] Performing register loopback test...
-> [INFO] [E300] Register loopback test passed
-> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000000)
-> [WARNING] [RFNOC] Can't find a block controller for key gain, using
-> default block controller!
-> [INFO] [0/gain_0] Initializing block control (NOC ID: 0xB7DD64941A952AAC)
-> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [WARNING] [RFNOC] Can't find a block controller for key FFT, using default
-> block controller!
-> [INFO] [0/FFT_0] Initializing block control (NOC ID: 0xFF70000000000000)
-> /
-> /name
-> /mboards
-> /mboards/0
-> /mboards/0/name
-> /mboards/0/codename
-> /mboards/0/fpga_version
-> /mboards/0/fpga_version_hash
-> /mboards/0/clock_source
-> /mboards/0/clock_source/value
-> /mboards/0/clock_source/options
-> /mboards/0/sensors
-> /mboards/0/sensors/temp
-> /mboards/0/sensors/ref_locked
-> /mboards/0/sensors/gps_locked
-> /mboards/0/sensors/gps_time
-> /mboards/0/sensors/gps_position
-> /mboards/0/sensors/gps_gpgga
-> /mboards/0/sensors/gps_gprmc
-> /mboards/0/eeprom
-> /mboards/0/dboards
-> /mboards/0/dboards/A
-> /mboards/0/dboards/A/rx_eeprom
-> /mboards/0/dboards/A/tx_eeprom
-> /mboards/0/dboards/A/gdb_eeprom
-> /mboards/0/dboards/A/rx_frontends
-> /mboards/0/dboards/A/rx_frontends/A
-> /mboards/0/dboards/A/rx_frontends/A/name
-> /mboards/0/dboards/A/rx_frontends/A/sensors
-> /mboards/0/dboards/A/rx_frontends/A/sensors/temp
-> /mboards/0/dboards/A/rx_frontends/A/sensors/rssi
-> /mboards/0/dboards/A/rx_frontends/A/sensors/lo_locked
-> /mboards/0/dboards/A/rx_frontends/A/gains
-> /mboards/0/dboards/A/rx_frontends/A/gains/PGA
-> /mboards/0/dboards/A/rx_frontends/A/gains/PGA/range
-> /mboards/0/dboards/A/rx_frontends/A/gains/PGA/value
-> /mboards/0/dboards/A/rx_frontends/A/connection
-> /mboards/0/dboards/A/rx_frontends/A/enabled
-> /mboards/0/dboards/A/rx_frontends/A/use_lo_offset
-> /mboards/0/dboards/A/rx_frontends/A/bandwidth
-> /mboards/0/dboards/A/rx_frontends/A/bandwidth/value
-> /mboards/0/dboards/A/rx_frontends/A/bandwidth/range
-> /mboards/0/dboards/A/rx_frontends/A/freq
-> /mboards/0/dboards/A/rx_frontends/A/freq/range
-> /mboards/0/dboards/A/rx_frontends/A/freq/value
-> /mboards/0/dboards/A/rx_frontends/A/dc_offset
-> /mboards/0/dboards/A/rx_frontends/A/dc_offset/enable
-> /mboards/0/dboards/A/rx_frontends/A/iq_balance
-> /mboards/0/dboards/A/rx_frontends/A/iq_balance/enable
-> /mboards/0/dboards/A/rx_frontends/A/gain
-> /mboards/0/dboards/A/rx_frontends/A/gain/agc
-> /mboards/0/dboards/A/rx_frontends/A/gain/agc/enable
-> /mboards/0/dboards/A/rx_frontends/A/gain/agc/mode
-> /mboards/0/dboards/A/rx_frontends/A/gain/agc/mode/value
-> /mboards/0/dboards/A/rx_frontends/A/gain/agc/mode/options
-> /mboards/0/dboards/A/rx_frontends/A/filters
-> /mboards/0/dboards/A/rx_frontends/A/filters/DEC_3
-> /mboards/0/dboards/A/rx_frontends/A/filters/DEC_3/value
-> /mboards/0/dboards/A/rx_frontends/A/filters/FIR_1
-> /mboards/0/dboards/A/rx_frontends/A/filters/FIR_1/value
-> /mboards/0/dboards/A/rx_frontends/A/filters/HB_1
-> /mboards/0/dboards/A/rx_frontends/A/filters/HB_1/value
-> /mboards/0/dboards/A/rx_frontends/A/filters/HB_2
-> /mboards/0/dboards/A/rx_frontends/A/filters/HB_2/value
-> /mboards/0/dboards/A/rx_frontends/A/filters/HB_3
-> /mboards/0/dboards/A/rx_frontends/A/filters/HB_3/value
-> /mboards/0/dboards/A/rx_frontends/A/filters/LPF_BB
-> /mboards/0/dboards/A/rx_frontends/A/filters/LPF_BB/value
-> /mboards/0/dboards/A/rx_frontends/A/filters/LPF_TIA
-> /mboards/0/dboards/A/rx_frontends/A/filters/LPF_TIA/value
-> /mboards/0/dboards/A/rx_frontends/A/antenna
-> /mboards/0/dboards/A/rx_frontends/A/antenna/options
-> /mboards/0/dboards/A/rx_frontends/A/antenna/value
-> /mboards/0/dboards/A/rx_frontends/B
-> /mboards/0/dboards/A/rx_frontends/B/name
-> /mboards/0/dboards/A/rx_frontends/B/sensors
-> /mboards/0/dboards/A/rx_frontends/B/sensors/temp
-> /mboards/0/dboards/A/rx_frontends/B/sensors/rssi
-> /mboards/0/dboards/A/rx_frontends/B/sensors/lo_locked
-> /mboards/0/dboards/A/rx_frontends/B/gains
-> /mboards/0/dboards/A/rx_frontends/B/gains/PGA
-> /mboards/0/dboards/A/rx_frontends/B/gains/PGA/range
-> /mboards/0/dboards/A/rx_frontends/B/gains/PGA/value
-> /mboards/0/dboards/A/rx_frontends/B/connection
-> /mboards/0/dboards/A/rx_frontends/B/enabled
-> /mboards/0/dboards/A/rx_frontends/B/use_lo_offset
-> /mboards/0/dboards/A/rx_frontends/B/bandwidth
-> /mboards/0/dboards/A/rx_frontends/B/bandwidth/value
-> /mboards/0/dboards/A/rx_frontends/B/bandwidth/range
-> /mboards/0/dboards/A/rx_frontends/B/freq
-> /mboards/0/dboards/A/rx_frontends/B/freq/range
-> /mboards/0/dboards/A/rx_frontends/B/freq/value
-> /mboards/0/dboards/A/rx_frontends/B/dc_offset
-> /mboards/0/dboards/A/rx_frontends/B/dc_offset/enable
-> /mboards/0/dboards/A/rx_frontends/B/iq_balance
-> /mboards/0/dboards/A/rx_frontends/B/iq_balance/enable
-> /mboards/0/dboards/A/rx_frontends/B/gain
-> /mboards/0/dboards/A/rx_frontends/B/gain/agc
-> /mboards/0/dboards/A/rx_frontends/B/gain/agc/enable
-> /mboards/0/dboards/A/rx_frontends/B/gain/agc/mode
-> /mboards/0/dboards/A/rx_frontends/B/gain/agc/mode/value
-> /mboards/0/dboards/A/rx_frontends/B/gain/agc/mode/options
-> /mboards/0/dboards/A/rx_frontends/B/filters
-> /mboards/0/dboards/A/rx_frontends/B/filters/DEC_3
-> /mboards/0/dboards/A/rx_frontends/B/filters/DEC_3/value
-> /mboards/0/dboards/A/rx_frontends/B/filters/FIR_1
-> /mboards/0/dboards/A/rx_frontends/B/filters/FIR_1/value
-> /mboards/0/dboards/A/rx_frontends/B/filters/HB_1
-> /mboards/0/dboards/A/rx_frontends/B/filters/HB_1/value
-> /mboards/0/dboards/A/rx_frontends/B/filters/HB_2
-> /mboards/0/dboards/A/rx_frontends/B/filters/HB_2/value
-> /mboards/0/dboards/A/rx_frontends/B/filters/HB_3
-> /mboards/0/dboards/A/rx_frontends/B/filters/HB_3/value
-> /mboards/0/dboards/A/rx_frontends/B/filters/LPF_BB
-> /mboards/0/dboards/A/rx_frontends/B/filters/LPF_BB/value
-> /mboards/0/dboards/A/rx_frontends/B/filters/LPF_TIA
-> /mboards/0/dboards/A/rx_frontends/B/filters/LPF_TIA/value
-> /mboards/0/dboards/A/rx_frontends/B/antenna
-> /mboards/0/dboards/A/rx_frontends/B/antenna/options
-> /mboards/0/dboards/A/rx_frontends/B/antenna/value
-> /mboards/0/dboards/A/tx_frontends
-> /mboards/0/dboards/A/tx_frontends/A
-> /mboards/0/dboards/A/tx_frontends/A/name
-> /mboards/0/dboards/A/tx_frontends/A/sensors
-> /mboards/0/dboards/A/tx_frontends/A/sensors/temp
-> /mboards/0/dboards/A/tx_frontends/A/sensors/lo_locked
-> /mboards/0/dboards/A/tx_frontends/A/gains
-> /mboards/0/dboards/A/tx_frontends/A/gains/PGA
-> /mboards/0/dboards/A/tx_frontends/A/gains/PGA/range
-> /mboards/0/dboards/A/tx_frontends/A/gains/PGA/value
-> /mboards/0/dboards/A/tx_frontends/A/connection
-> /mboards/0/dboards/A/tx_frontends/A/enabled
-> /mboards/0/dboards/A/tx_frontends/A/use_lo_offset
-> /mboards/0/dboards/A/tx_frontends/A/bandwidth
-> /mboards/0/dboards/A/tx_frontends/A/bandwidth/value
-> /mboards/0/dboards/A/tx_frontends/A/bandwidth/range
-> /mboards/0/dboards/A/tx_frontends/A/freq
-> /mboards/0/dboards/A/tx_frontends/A/freq/range
-> /mboards/0/dboards/A/tx_frontends/A/freq/value
-> /mboards/0/dboards/A/tx_frontends/A/filters
-> /mboards/0/dboards/A/tx_frontends/A/filters/FIR_1
-> /mboards/0/dboards/A/tx_frontends/A/filters/FIR_1/value
-> /mboards/0/dboards/A/tx_frontends/A/filters/HB_1
-> /mboards/0/dboards/A/tx_frontends/A/filters/HB_1/value
-> /mboards/0/dboards/A/tx_frontends/A/filters/HB_2
-> /mboards/0/dboards/A/tx_frontends/A/filters/HB_2/value
-> /mboards/0/dboards/A/tx_frontends/A/filters/HB_3
-> /mboards/0/dboards/A/tx_frontends/A/filters/HB_3/value
-> /mboards/0/dboards/A/tx_frontends/A/filters/INT_3
-> /mboards/0/dboards/A/tx_frontends/A/filters/INT_3/value
-> /mboards/0/dboards/A/tx_frontends/A/filters/LPF_BB
-> /mboards/0/dboards/A/tx_frontends/A/filters/LPF_BB/value
-> /mboards/0/dboards/A/tx_frontends/A/filters/LPF_SECONDARY
-> /mboards/0/dboards/A/tx_frontends/A/filters/LPF_SECONDARY/value
-> /mboards/0/dboards/A/tx_frontends/A/antenna
-> /mboards/0/dboards/A/tx_frontends/A/antenna/options
-> /mboards/0/dboards/A/tx_frontends/A/antenna/value
-> /mboards/0/dboards/A/tx_frontends/B
-> /mboards/0/dboards/A/tx_frontends/B/name
-> /mboards/0/dboards/A/tx_frontends/B/sensors
-> /mboards/0/dboards/A/tx_frontends/B/sensors/temp
-> /mboards/0/dboards/A/tx_frontends/B/sensors/lo_locked
-> /mboards/0/dboards/A/tx_frontends/B/gains
-> /mboards/0/dboards/A/tx_frontends/B/gains/PGA
-> /mboards/0/dboards/A/tx_frontends/B/gains/PGA/range
-> /mboards/0/dboards/A/tx_frontends/B/gains/PGA/value
-> /mboards/0/dboards/A/tx_frontends/B/connection
-> /mboards/0/dboards/A/tx_frontends/B/enabled
-> /mboards/0/dboards/A/tx_frontends/B/use_lo_offset
-> /mboards/0/dboards/A/tx_frontends/B/bandwidth
-> /mboards/0/dboards/A/tx_frontends/B/bandwidth/value
-> /mboards/0/dboards/A/tx_frontends/B/bandwidth/range
-> /mboards/0/dboards/A/tx_frontends/B/freq
-> /mboards/0/dboards/A/tx_frontends/B/freq/range
-> /mboards/0/dboards/A/tx_frontends/B/freq/value
-> /mboards/0/dboards/A/tx_frontends/B/filters
-> /mboards/0/dboards/A/tx_frontends/B/filters/FIR_1
-> /mboards/0/dboards/A/tx_frontends/B/filters/FIR_1/value
-> /mboards/0/dboards/A/tx_frontends/B/filters/HB_1
-> /mboards/0/dboards/A/tx_frontends/B/filters/HB_1/value
-> /mboards/0/dboards/A/tx_frontends/B/filters/HB_2
-> /mboards/0/dboards/A/tx_frontends/B/filters/HB_2/value
-> /mboards/0/dboards/A/tx_frontends/B/filters/HB_3
-> /mboards/0/dboards/A/tx_frontends/B/filters/HB_3/value
-> /mboards/0/dboards/A/tx_frontends/B/filters/INT_3
-> /mboards/0/dboards/A/tx_frontends/B/filters/INT_3/value
-> /mboards/0/dboards/A/tx_frontends/B/filters/LPF_BB
-> /mboards/0/dboards/A/tx_frontends/B/filters/LPF_BB/value
-> /mboards/0/dboards/A/tx_frontends/B/filters/LPF_SECONDARY
-> /mboards/0/dboards/A/tx_frontends/B/filters/LPF_SECONDARY/value
-> /mboards/0/dboards/A/tx_frontends/B/antenna
-> /mboards/0/dboards/A/tx_frontends/B/antenna/options
-> /mboards/0/dboards/A/tx_frontends/B/antenna/value
-> /mboards/0/global_regs
-> /mboards/0/global_regs/misc
-> /mboards/0/global_regs/pll
-> /mboards/0/tick_rate
-> /mboards/0/xbar
-> /mboards/0/xbar/Radio_0
-> /mboards/0/xbar/Radio_0/noc_id
-> /mboards/0/xbar/Radio_0/input_buffer_size
-> /mboards/0/xbar/Radio_0/input_buffer_size/0
-> /mboards/0/xbar/Radio_0/input_buffer_size/1
-> /mboards/0/xbar/Radio_0/mtu
-> /mboards/0/xbar/Radio_0/mtu/0
-> /mboards/0/xbar/Radio_0/mtu/1
-> /mboards/0/xbar/Radio_0/ports
-> /mboards/0/xbar/Radio_0/ports/in
-> /mboards/0/xbar/Radio_0/ports/in/0
-> /mboards/0/xbar/Radio_0/ports/in/1
-> /mboards/0/xbar/Radio_0/ports/out
-> /mboards/0/xbar/Radio_0/ports/out/0
-> /mboards/0/xbar/Radio_0/ports/out/1
-> /mboards/0/xbar/Radio_0/args
-> /mboards/0/xbar/Radio_0/args/0
-> /mboards/0/xbar/Radio_0/args/0/spp
-> /mboards/0/xbar/Radio_0/args/0/spp/type
-> /mboards/0/xbar/Radio_0/args/0/spp/value
-> /mboards/0/xbar/Radio_0/args/1
-> /mboards/0/xbar/gain_0
-> /mboards/0/xbar/gain_0/noc_id
-> /mboards/0/xbar/gain_0/input_buffer_size
-> /mboards/0/xbar/gain_0/input_buffer_size/0
-> /mboards/0/xbar/gain_0/mtu
-> /mboards/0/xbar/gain_0/mtu/0
-> /mboards/0/xbar/gain_0/registers
-> /mboards/0/xbar/gain_0/registers/sr
-> /mboards/0/xbar/gain_0/registers/sr/Gain
-> /mboards/0/xbar/gain_0/ports
-> /mboards/0/xbar/gain_0/ports/in
-> /mboards/0/xbar/gain_0/ports/in/0
-> /mboards/0/xbar/gain_0/ports/out
-> /mboards/0/xbar/gain_0/ports/out/0
-> /mboards/0/xbar/gain_0/args
-> /mboards/0/xbar/gain_0/args/0
-> /mboards/0/xbar/DDC_0
-> /mboards/0/xbar/DDC_0/noc_id
-> /mboards/0/xbar/DDC_0/input_buffer_size
-> /mboards/0/xbar/DDC_0/input_buffer_size/0
-> /mboards/0/xbar/DDC_0/input_buffer_size/1
-> /mboards/0/xbar/DDC_0/mtu
-> /mboards/0/xbar/DDC_0/mtu/0
-> /mboards/0/xbar/DDC_0/mtu/1
-> /mboards/0/xbar/DDC_0/registers
-> /mboards/0/xbar/DDC_0/registers/sr
-> /mboards/0/xbar/DDC_0/registers/sr/N
-> /mboards/0/xbar/DDC_0/registers/sr/M
-> /mboards/0/xbar/DDC_0/registers/sr/CONFIG
-> /mboards/0/xbar/DDC_0/registers/sr/DDS_FREQ
-> /mboards/0/xbar/DDC_0/registers/sr/SCALE_IQ
-> /mboards/0/xbar/DDC_0/registers/sr/DECIM_WORD
-> /mboards/0/xbar/DDC_0/registers/sr/MODE
-> /mboards/0/xbar/DDC_0/registers/sr/RELOAD
-> /mboards/0/xbar/DDC_0/ports
-> /mboards/0/xbar/DDC_0/ports/in
-> /mboards/0/xbar/DDC_0/ports/in/0
-> /mboards/0/xbar/DDC_0/ports/in/1
-> /mboards/0/xbar/DDC_0/ports/out
-> /mboards/0/xbar/DDC_0/ports/out/0
-> /mboards/0/xbar/DDC_0/ports/out/1
-> /mboards/0/xbar/DDC_0/args
-> /mboards/0/xbar/DDC_0/args/0
-> /mboards/0/xbar/DDC_0/args/0/freq
-> /mboards/0/xbar/DDC_0/args/0/freq/type
-> /mboards/0/xbar/DDC_0/args/0/freq/value
-> /mboards/0/xbar/DDC_0/args/0/input_rate
-> /mboards/0/xbar/DDC_0/args/0/input_rate/type
-> /mboards/0/xbar/DDC_0/args/0/input_rate/value
-> /mboards/0/xbar/DDC_0/args/0/output_rate
-> /mboards/0/xbar/DDC_0/args/0/output_rate/type
-> /mboards/0/xbar/DDC_0/args/0/output_rate/value
-> /mboards/0/xbar/DDC_0/args/0/fullscale
-> /mboards/0/xbar/DDC_0/args/0/fullscale/type
-> /mboards/0/xbar/DDC_0/args/0/fullscale/value
-> /mboards/0/xbar/DDC_0/args/0/scalar_correction
-> /mboards/0/xbar/DDC_0/args/0/scalar_correction/type
-> /mboards/0/xbar/DDC_0/args/0/scalar_correction/value
-> /mboards/0/xbar/DDC_0/args/1
-> /mboards/0/xbar/DDC_0/args/1/freq
-> /mboards/0/xbar/DDC_0/args/1/freq/type
-> /mboards/0/xbar/DDC_0/args/1/freq/value
-> /mboards/0/xbar/DDC_0/args/1/input_rate
-> /mboards/0/xbar/DDC_0/args/1/input_rate/type
-> /mboards/0/xbar/DDC_0/args/1/input_rate/value
-> /mboards/0/xbar/DDC_0/args/1/output_rate
-> /mboards/0/xbar/DDC_0/args/1/output_rate/type
-> /mboards/0/xbar/DDC_0/args/1/output_rate/value
-> /mboards/0/xbar/DDC_0/args/1/fullscale
-> /mboards/0/xbar/DDC_0/args/1/fullscale/type
-> /mboards/0/xbar/DDC_0/args/1/fullscale/value
-> /mboards/0/xbar/DDC_0/args/1/scalar_correction
-> /mboards/0/xbar/DDC_0/args/1/scalar_correction/type
-> /mboards/0/xbar/DDC_0/args/1/scalar_correction/value
-> /mboards/0/xbar/DDC_0/legacy_api
-> /mboards/0/xbar/DDC_0/legacy_api/0
-> /mboards/0/xbar/DDC_0/legacy_api/0/rate
-> /mboards/0/xbar/DDC_0/legacy_api/0/rate/value
-> /mboards/0/xbar/DDC_0/legacy_api/0/rate/range
-> /mboards/0/xbar/DDC_0/legacy_api/0/freq
-> /mboards/0/xbar/DDC_0/legacy_api/0/freq/value
-> /mboards/0/xbar/DDC_0/legacy_api/0/freq/range
-> /mboards/0/xbar/DDC_0/legacy_api/1
-> /mboards/0/xbar/DDC_0/legacy_api/1/rate
-> /mboards/0/xbar/DDC_0/legacy_api/1/rate/value
-> /mboards/0/xbar/DDC_0/legacy_api/1/rate/range
-> /mboards/0/xbar/DDC_0/legacy_api/1/freq
-> /mboards/0/xbar/DDC_0/legacy_api/1/freq/value
-> /mboards/0/xbar/DDC_0/legacy_api/1/freq/range
-> /mboards/0/xbar/FFT_0
-> /mboards/0/xbar/FFT_0/noc_id
-> /mboards/0/xbar/FFT_0/input_buffer_size
-> /mboards/0/xbar/FFT_0/input_buffer_size/0
-> /mboards/0/xbar/FFT_0/mtu
-> /mboards/0/xbar/FFT_0/mtu/0
-> /mboards/0/xbar/FFT_0/registers
-> /mboards/0/xbar/FFT_0/registers/sr
-> /mboards/0/xbar/FFT_0/registers/sr/FFT_RESET
-> /mboards/0/xbar/FFT_0/registers/sr/FFT_SIZE_LOG2
-> /mboards/0/xbar/FFT_0/registers/sr/MAGNITUDE_OUT
-> /mboards/0/xbar/FFT_0/registers/sr/FFT_DIRECTION
-> /mboards/0/xbar/FFT_0/registers/sr/FFT_SCALING
-> /mboards/0/xbar/FFT_0/registers/sr/FFT_SHIFT_CONFIG
-> /mboards/0/xbar/FFT_0/registers/rb
-> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_RESET
-> /mboards/0/xbar/FFT_0/registers/rb/RB_MAGNITUDE_OUT
-> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_SIZE_LOG2
-> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_DIRECTION
-> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_SCALING
-> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_SHIFT_CONFIG
-> /mboards/0/xbar/FFT_0/ports
-> /mboards/0/xbar/FFT_0/ports/in
-> /mboards/0/xbar/FFT_0/ports/in/0
-> /mboards/0/xbar/FFT_0/ports/out
-> /mboards/0/xbar/FFT_0/ports/out/0
-> /mboards/0/xbar/FFT_0/args
-> /mboards/0/xbar/FFT_0/args/0
-> /mboards/0/xbar/FFT_0/args/0/spp
-> /mboards/0/xbar/FFT_0/args/0/spp/type
-> /mboards/0/xbar/FFT_0/args/0/spp/value
-> /mboards/0/xbar/FFT_0/args/0/shift
-> /mboards/0/xbar/FFT_0/args/0/shift/type
-> /mboards/0/xbar/FFT_0/args/0/shift/value
-> /mboards/0/xbar/FFT_0/args/0/direction
-> /mboards/0/xbar/FFT_0/args/0/direction/type
-> /mboards/0/xbar/FFT_0/args/0/direction/value
-> /mboards/0/xbar/FFT_0/args/0/scaling
-> /mboards/0/xbar/FFT_0/args/0/scaling/type
-> /mboards/0/xbar/FFT_0/args/0/scaling/value
-> /mboards/0/xbar/FFT_0/args/0/otype
-> /mboards/0/xbar/FFT_0/args/0/otype/type
-> /mboards/0/xbar/FFT_0/args/0/otype/value
-> /mboards/0/xbar/FFT_0/args/0/reset
-> /mboards/0/xbar/FFT_0/args/0/reset/type
-> /mboards/0/xbar/FFT_0/args/0/reset/value
-> /mboards/0/xbar/FFT_0/args/0/magnitude_out
-> /mboards/0/xbar/FFT_0/args/0/magnitude_out/type
-> /mboards/0/xbar/FFT_0/args/0/magnitude_out/value
-> /mboards/0/time
-> /mboards/0/time/now
-> /mboards/0/time/pps
-> /mboards/0/time/cmd
-> /mboards/0/time_source
-> /mboards/0/time_source/value
-> /mboards/0/time_source/options
-> /mboards/0/rx_codecs
-> /mboards/0/rx_codecs/A
-> /mboards/0/rx_codecs/A/name
-> /mboards/0/rx_codecs/A/gains
-> /mboards/0/tx_codecs
-> /mboards/0/tx_codecs/A
-> /mboards/0/tx_codecs/A/name
-> /mboards/0/tx_codecs/A/gains
-> /mboards/0/gpio
-> /mboards/0/gpio/INT0
-> /mboards/0/gpio/INT0/SRC
-> /mboards/0/gpio/INT0/CTRL
-> /mboards/0/gpio/INT0/DDR
-> /mboards/0/gpio/INT0/OUT
-> /mboards/0/gpio/INT0/ATR_0X
-> /mboards/0/gpio/INT0/ATR_RX
-> /mboards/0/gpio/INT0/ATR_TX
-> /mboards/0/gpio/INT0/ATR_XX
-> /mboards/0/gpio/INT0/READBACK
-> /mboards/0/rx_dsps
-> /mboards/0/rx_dsps/0
-> /mboards/0/rx_dsps/0/stream_cmd
-> /mboards/0/rx_dsps/0/freq
-> /mboards/0/rx_dsps/0/freq/value
-> /mboards/0/rx_dsps/0/freq/range
-> /mboards/0/rx_dsps/0/rate
-> /mboards/0/rx_dsps/0/rate/value
-> /mboards/0/rx_dsps/1
-> /mboards/0/rx_dsps/1/stream_cmd
-> /mboards/0/rx_dsps/1/freq
-> /mboards/0/rx_dsps/1/freq/value
-> /mboards/0/rx_dsps/1/freq/range
-> /mboards/0/rx_dsps/1/rate
-> /mboards/0/rx_dsps/1/rate/value
-> /mboards/0/tx_dsps
-> /mboards/0/tx_dsps/0
-> /mboards/0/tx_dsps/0/freq
-> /mboards/0/tx_dsps/0/freq/value
-> /mboards/0/tx_dsps/0/freq/range
-> /mboards/0/tx_dsps/0/rate
-> /mboards/0/tx_dsps/0/rate/value
-> /mboards/0/tx_dsps/1
-> /mboards/0/tx_dsps/1/freq
-> /mboards/0/tx_dsps/1/freq/value
-> /mboards/0/tx_dsps/1/freq/range
-> /mboards/0/tx_dsps/1/rate
-> /mboards/0/tx_dsps/1/rate/value
-> /mboards/0/rx_subdev_spec
-> /mboards/0/tx_subdev_spec
-> [INFO] [E300] Loading FPGA image:
-> /home/root/newinstall/usr/share/uhd/images/usrp_e3xx_fpga_idle_sg3.bit...
-> [INFO] [E300] FPGA image loaded
+> EJ
 >
-> The failure output I got from running the python script shows that it
-> can't find "/mboards/0/xbar/gain_0/args/0/gain/value" and when I look at
-> the tree, there is no value instantiated by the probe. It only looks like
-> the furthest that the probe goes down in the mboards is
-> "/mboards/0/xbar/gain_0/args/0". I am assuming its something in the
-> arguments file not getting loaded, but everything appears ok to me on
-> glance in that XML file.
+> On Fri, Nov 22, 2019, 9:36 AM Jonathan Lockhart <jlockhartrt@gmail.com>
+> wrote:
 >
-> Regards,
-> Jon
->
-> On Thu, Nov 21, 2019 at 4:49 PM EJ Kreinar <ejkreinar@gmail.com> wrote:
->
->> Okay, great...
+>> Hey EJ,
 >>
->> You might want to try increasing the log level. Export
->> UHD_LOG_CONSOLE_LEVEL=trace or debug and try to make sure the correct xml
->> file is getting applied to the block correctly.
+>> Sorry for being slow I had to dig around to set that UHD Log variable,
+>> which easy enough it was just a simple export. I then ran uhd_usrp_probe
+>> with the --tree and setting the fpga to my bit file. Here is the output
+>> from the probe.
 >>
->> There's also something like a "--tree" parameter in the uhd_usrp_probe so
->> try running the probe with the tree option to print out the device tree and
->> look for the arguments assigned to your new block.
+>> root@ettus-e3xx-sg3:~# uhd_usrp_probe
+>> --args="fpga=./newinstall/e300.bit" --tree
+>> [INFO] [UHD] linux; GNU C++ version 4.9.2; Boost_105700;
+>> UHD_3.14.1.HEAD-0-g0347a6d8
+>> [INFO] [E300] Loading FPGA image: ./newinstall/e300.bit...
+>> [INFO] [E300] FPGA image loaded
+>> [INFO] [E300] Detecting internal GPS
+>> .... [INFO] [E300] GPSDO found
+>> [INFO] [E300] Initializing core control (global registers)...
 >>
->> Let's see if any of that helps figure out what's going on...
->> EJ
+>> [INFO] [E300] Performing register loopback test...
+>> [INFO] [E300] Register loopback test passed
+>> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000000)
+>> [WARNING] [RFNOC] Can't find a block controller for key gain, using
+>> default block controller!
+>> [INFO] [0/gain_0] Initializing block control (NOC ID: 0xB7DD64941A952AAC)
+>> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+>> [WARNING] [RFNOC] Can't find a block controller for key FFT, using
+>> default block controller!
+>> [INFO] [0/FFT_0] Initializing block control (NOC ID: 0xFF70000000000000)
+>> /
+>> /name
+>> /mboards
+>> /mboards/0
+>> /mboards/0/name
+>> /mboards/0/codename
+>> /mboards/0/fpga_version
+>> /mboards/0/fpga_version_hash
+>> /mboards/0/clock_source
+>> /mboards/0/clock_source/value
+>> /mboards/0/clock_source/options
+>> /mboards/0/sensors
+>> /mboards/0/sensors/temp
+>> /mboards/0/sensors/ref_locked
+>> /mboards/0/sensors/gps_locked
+>> /mboards/0/sensors/gps_time
+>> /mboards/0/sensors/gps_position
+>> /mboards/0/sensors/gps_gpgga
+>> /mboards/0/sensors/gps_gprmc
+>> /mboards/0/eeprom
+>> /mboards/0/dboards
+>> /mboards/0/dboards/A
+>> /mboards/0/dboards/A/rx_eeprom
+>> /mboards/0/dboards/A/tx_eeprom
+>> /mboards/0/dboards/A/gdb_eeprom
+>> /mboards/0/dboards/A/rx_frontends
+>> /mboards/0/dboards/A/rx_frontends/A
+>> /mboards/0/dboards/A/rx_frontends/A/name
+>> /mboards/0/dboards/A/rx_frontends/A/sensors
+>> /mboards/0/dboards/A/rx_frontends/A/sensors/temp
+>> /mboards/0/dboards/A/rx_frontends/A/sensors/rssi
+>> /mboards/0/dboards/A/rx_frontends/A/sensors/lo_locked
+>> /mboards/0/dboards/A/rx_frontends/A/gains
+>> /mboards/0/dboards/A/rx_frontends/A/gains/PGA
+>> /mboards/0/dboards/A/rx_frontends/A/gains/PGA/range
+>> /mboards/0/dboards/A/rx_frontends/A/gains/PGA/value
+>> /mboards/0/dboards/A/rx_frontends/A/connection
+>> /mboards/0/dboards/A/rx_frontends/A/enabled
+>> /mboards/0/dboards/A/rx_frontends/A/use_lo_offset
+>> /mboards/0/dboards/A/rx_frontends/A/bandwidth
+>> /mboards/0/dboards/A/rx_frontends/A/bandwidth/value
+>> /mboards/0/dboards/A/rx_frontends/A/bandwidth/range
+>> /mboards/0/dboards/A/rx_frontends/A/freq
+>> /mboards/0/dboards/A/rx_frontends/A/freq/range
+>> /mboards/0/dboards/A/rx_frontends/A/freq/value
+>> /mboards/0/dboards/A/rx_frontends/A/dc_offset
+>> /mboards/0/dboards/A/rx_frontends/A/dc_offset/enable
+>> /mboards/0/dboards/A/rx_frontends/A/iq_balance
+>> /mboards/0/dboards/A/rx_frontends/A/iq_balance/enable
+>> /mboards/0/dboards/A/rx_frontends/A/gain
+>> /mboards/0/dboards/A/rx_frontends/A/gain/agc
+>> /mboards/0/dboards/A/rx_frontends/A/gain/agc/enable
+>> /mboards/0/dboards/A/rx_frontends/A/gain/agc/mode
+>> /mboards/0/dboards/A/rx_frontends/A/gain/agc/mode/value
+>> /mboards/0/dboards/A/rx_frontends/A/gain/agc/mode/options
+>> /mboards/0/dboards/A/rx_frontends/A/filters
+>> /mboards/0/dboards/A/rx_frontends/A/filters/DEC_3
+>> /mboards/0/dboards/A/rx_frontends/A/filters/DEC_3/value
+>> /mboards/0/dboards/A/rx_frontends/A/filters/FIR_1
+>> /mboards/0/dboards/A/rx_frontends/A/filters/FIR_1/value
+>> /mboards/0/dboards/A/rx_frontends/A/filters/HB_1
+>> /mboards/0/dboards/A/rx_frontends/A/filters/HB_1/value
+>> /mboards/0/dboards/A/rx_frontends/A/filters/HB_2
+>> /mboards/0/dboards/A/rx_frontends/A/filters/HB_2/value
+>> /mboards/0/dboards/A/rx_frontends/A/filters/HB_3
+>> /mboards/0/dboards/A/rx_frontends/A/filters/HB_3/value
+>> /mboards/0/dboards/A/rx_frontends/A/filters/LPF_BB
+>> /mboards/0/dboards/A/rx_frontends/A/filters/LPF_BB/value
+>> /mboards/0/dboards/A/rx_frontends/A/filters/LPF_TIA
+>> /mboards/0/dboards/A/rx_frontends/A/filters/LPF_TIA/value
+>> /mboards/0/dboards/A/rx_frontends/A/antenna
+>> /mboards/0/dboards/A/rx_frontends/A/antenna/options
+>> /mboards/0/dboards/A/rx_frontends/A/antenna/value
+>> /mboards/0/dboards/A/rx_frontends/B
+>> /mboards/0/dboards/A/rx_frontends/B/name
+>> /mboards/0/dboards/A/rx_frontends/B/sensors
+>> /mboards/0/dboards/A/rx_frontends/B/sensors/temp
+>> /mboards/0/dboards/A/rx_frontends/B/sensors/rssi
+>> /mboards/0/dboards/A/rx_frontends/B/sensors/lo_locked
+>> /mboards/0/dboards/A/rx_frontends/B/gains
+>> /mboards/0/dboards/A/rx_frontends/B/gains/PGA
+>> /mboards/0/dboards/A/rx_frontends/B/gains/PGA/range
+>> /mboards/0/dboards/A/rx_frontends/B/gains/PGA/value
+>> /mboards/0/dboards/A/rx_frontends/B/connection
+>> /mboards/0/dboards/A/rx_frontends/B/enabled
+>> /mboards/0/dboards/A/rx_frontends/B/use_lo_offset
+>> /mboards/0/dboards/A/rx_frontends/B/bandwidth
+>> /mboards/0/dboards/A/rx_frontends/B/bandwidth/value
+>> /mboards/0/dboards/A/rx_frontends/B/bandwidth/range
+>> /mboards/0/dboards/A/rx_frontends/B/freq
+>> /mboards/0/dboards/A/rx_frontends/B/freq/range
+>> /mboards/0/dboards/A/rx_frontends/B/freq/value
+>> /mboards/0/dboards/A/rx_frontends/B/dc_offset
+>> /mboards/0/dboards/A/rx_frontends/B/dc_offset/enable
+>> /mboards/0/dboards/A/rx_frontends/B/iq_balance
+>> /mboards/0/dboards/A/rx_frontends/B/iq_balance/enable
+>> /mboards/0/dboards/A/rx_frontends/B/gain
+>> /mboards/0/dboards/A/rx_frontends/B/gain/agc
+>> /mboards/0/dboards/A/rx_frontends/B/gain/agc/enable
+>> /mboards/0/dboards/A/rx_frontends/B/gain/agc/mode
+>> /mboards/0/dboards/A/rx_frontends/B/gain/agc/mode/value
+>> /mboards/0/dboards/A/rx_frontends/B/gain/agc/mode/options
+>> /mboards/0/dboards/A/rx_frontends/B/filters
+>> /mboards/0/dboards/A/rx_frontends/B/filters/DEC_3
+>> /mboards/0/dboards/A/rx_frontends/B/filters/DEC_3/value
+>> /mboards/0/dboards/A/rx_frontends/B/filters/FIR_1
+>> /mboards/0/dboards/A/rx_frontends/B/filters/FIR_1/value
+>> /mboards/0/dboards/A/rx_frontends/B/filters/HB_1
+>> /mboards/0/dboards/A/rx_frontends/B/filters/HB_1/value
+>> /mboards/0/dboards/A/rx_frontends/B/filters/HB_2
+>> /mboards/0/dboards/A/rx_frontends/B/filters/HB_2/value
+>> /mboards/0/dboards/A/rx_frontends/B/filters/HB_3
+>> /mboards/0/dboards/A/rx_frontends/B/filters/HB_3/value
+>> /mboards/0/dboards/A/rx_frontends/B/filters/LPF_BB
+>> /mboards/0/dboards/A/rx_frontends/B/filters/LPF_BB/value
+>> /mboards/0/dboards/A/rx_frontends/B/filters/LPF_TIA
+>> /mboards/0/dboards/A/rx_frontends/B/filters/LPF_TIA/value
+>> /mboards/0/dboards/A/rx_frontends/B/antenna
+>> /mboards/0/dboards/A/rx_frontends/B/antenna/options
+>> /mboards/0/dboards/A/rx_frontends/B/antenna/value
+>> /mboards/0/dboards/A/tx_frontends
+>> /mboards/0/dboards/A/tx_frontends/A
+>> /mboards/0/dboards/A/tx_frontends/A/name
+>> /mboards/0/dboards/A/tx_frontends/A/sensors
+>> /mboards/0/dboards/A/tx_frontends/A/sensors/temp
+>> /mboards/0/dboards/A/tx_frontends/A/sensors/lo_locked
+>> /mboards/0/dboards/A/tx_frontends/A/gains
+>> /mboards/0/dboards/A/tx_frontends/A/gains/PGA
+>> /mboards/0/dboards/A/tx_frontends/A/gains/PGA/range
+>> /mboards/0/dboards/A/tx_frontends/A/gains/PGA/value
+>> /mboards/0/dboards/A/tx_frontends/A/connection
+>> /mboards/0/dboards/A/tx_frontends/A/enabled
+>> /mboards/0/dboards/A/tx_frontends/A/use_lo_offset
+>> /mboards/0/dboards/A/tx_frontends/A/bandwidth
+>> /mboards/0/dboards/A/tx_frontends/A/bandwidth/value
+>> /mboards/0/dboards/A/tx_frontends/A/bandwidth/range
+>> /mboards/0/dboards/A/tx_frontends/A/freq
+>> /mboards/0/dboards/A/tx_frontends/A/freq/range
+>> /mboards/0/dboards/A/tx_frontends/A/freq/value
+>> /mboards/0/dboards/A/tx_frontends/A/filters
+>> /mboards/0/dboards/A/tx_frontends/A/filters/FIR_1
+>> /mboards/0/dboards/A/tx_frontends/A/filters/FIR_1/value
+>> /mboards/0/dboards/A/tx_frontends/A/filters/HB_1
+>> /mboards/0/dboards/A/tx_frontends/A/filters/HB_1/value
+>> /mboards/0/dboards/A/tx_frontends/A/filters/HB_2
+>> /mboards/0/dboards/A/tx_frontends/A/filters/HB_2/value
+>> /mboards/0/dboards/A/tx_frontends/A/filters/HB_3
+>> /mboards/0/dboards/A/tx_frontends/A/filters/HB_3/value
+>> /mboards/0/dboards/A/tx_frontends/A/filters/INT_3
+>> /mboards/0/dboards/A/tx_frontends/A/filters/INT_3/value
+>> /mboards/0/dboards/A/tx_frontends/A/filters/LPF_BB
+>> /mboards/0/dboards/A/tx_frontends/A/filters/LPF_BB/value
+>> /mboards/0/dboards/A/tx_frontends/A/filters/LPF_SECONDARY
+>> /mboards/0/dboards/A/tx_frontends/A/filters/LPF_SECONDARY/value
+>> /mboards/0/dboards/A/tx_frontends/A/antenna
+>> /mboards/0/dboards/A/tx_frontends/A/antenna/options
+>> /mboards/0/dboards/A/tx_frontends/A/antenna/value
+>> /mboards/0/dboards/A/tx_frontends/B
+>> /mboards/0/dboards/A/tx_frontends/B/name
+>> /mboards/0/dboards/A/tx_frontends/B/sensors
+>> /mboards/0/dboards/A/tx_frontends/B/sensors/temp
+>> /mboards/0/dboards/A/tx_frontends/B/sensors/lo_locked
+>> /mboards/0/dboards/A/tx_frontends/B/gains
+>> /mboards/0/dboards/A/tx_frontends/B/gains/PGA
+>> /mboards/0/dboards/A/tx_frontends/B/gains/PGA/range
+>> /mboards/0/dboards/A/tx_frontends/B/gains/PGA/value
+>> /mboards/0/dboards/A/tx_frontends/B/connection
+>> /mboards/0/dboards/A/tx_frontends/B/enabled
+>> /mboards/0/dboards/A/tx_frontends/B/use_lo_offset
+>> /mboards/0/dboards/A/tx_frontends/B/bandwidth
+>> /mboards/0/dboards/A/tx_frontends/B/bandwidth/value
+>> /mboards/0/dboards/A/tx_frontends/B/bandwidth/range
+>> /mboards/0/dboards/A/tx_frontends/B/freq
+>> /mboards/0/dboards/A/tx_frontends/B/freq/range
+>> /mboards/0/dboards/A/tx_frontends/B/freq/value
+>> /mboards/0/dboards/A/tx_frontends/B/filters
+>> /mboards/0/dboards/A/tx_frontends/B/filters/FIR_1
+>> /mboards/0/dboards/A/tx_frontends/B/filters/FIR_1/value
+>> /mboards/0/dboards/A/tx_frontends/B/filters/HB_1
+>> /mboards/0/dboards/A/tx_frontends/B/filters/HB_1/value
+>> /mboards/0/dboards/A/tx_frontends/B/filters/HB_2
+>> /mboards/0/dboards/A/tx_frontends/B/filters/HB_2/value
+>> /mboards/0/dboards/A/tx_frontends/B/filters/HB_3
+>> /mboards/0/dboards/A/tx_frontends/B/filters/HB_3/value
+>> /mboards/0/dboards/A/tx_frontends/B/filters/INT_3
+>> /mboards/0/dboards/A/tx_frontends/B/filters/INT_3/value
+>> /mboards/0/dboards/A/tx_frontends/B/filters/LPF_BB
+>> /mboards/0/dboards/A/tx_frontends/B/filters/LPF_BB/value
+>> /mboards/0/dboards/A/tx_frontends/B/filters/LPF_SECONDARY
+>> /mboards/0/dboards/A/tx_frontends/B/filters/LPF_SECONDARY/value
+>> /mboards/0/dboards/A/tx_frontends/B/antenna
+>> /mboards/0/dboards/A/tx_frontends/B/antenna/options
+>> /mboards/0/dboards/A/tx_frontends/B/antenna/value
+>> /mboards/0/global_regs
+>> /mboards/0/global_regs/misc
+>> /mboards/0/global_regs/pll
+>> /mboards/0/tick_rate
+>> /mboards/0/xbar
+>> /mboards/0/xbar/Radio_0
+>> /mboards/0/xbar/Radio_0/noc_id
+>> /mboards/0/xbar/Radio_0/input_buffer_size
+>> /mboards/0/xbar/Radio_0/input_buffer_size/0
+>> /mboards/0/xbar/Radio_0/input_buffer_size/1
+>> /mboards/0/xbar/Radio_0/mtu
+>> /mboards/0/xbar/Radio_0/mtu/0
+>> /mboards/0/xbar/Radio_0/mtu/1
+>> /mboards/0/xbar/Radio_0/ports
+>> /mboards/0/xbar/Radio_0/ports/in
+>> /mboards/0/xbar/Radio_0/ports/in/0
+>> /mboards/0/xbar/Radio_0/ports/in/1
+>> /mboards/0/xbar/Radio_0/ports/out
+>> /mboards/0/xbar/Radio_0/ports/out/0
+>> /mboards/0/xbar/Radio_0/ports/out/1
+>> /mboards/0/xbar/Radio_0/args
+>> /mboards/0/xbar/Radio_0/args/0
+>> /mboards/0/xbar/Radio_0/args/0/spp
+>> /mboards/0/xbar/Radio_0/args/0/spp/type
+>> /mboards/0/xbar/Radio_0/args/0/spp/value
+>> /mboards/0/xbar/Radio_0/args/1
+>> /mboards/0/xbar/gain_0
+>> /mboards/0/xbar/gain_0/noc_id
+>> /mboards/0/xbar/gain_0/input_buffer_size
+>> /mboards/0/xbar/gain_0/input_buffer_size/0
+>> /mboards/0/xbar/gain_0/mtu
+>> /mboards/0/xbar/gain_0/mtu/0
+>> /mboards/0/xbar/gain_0/registers
+>> /mboards/0/xbar/gain_0/registers/sr
+>> /mboards/0/xbar/gain_0/registers/sr/Gain
+>> /mboards/0/xbar/gain_0/ports
+>> /mboards/0/xbar/gain_0/ports/in
+>> /mboards/0/xbar/gain_0/ports/in/0
+>> /mboards/0/xbar/gain_0/ports/out
+>> /mboards/0/xbar/gain_0/ports/out/0
+>> /mboards/0/xbar/gain_0/args
+>> /mboards/0/xbar/gain_0/args/0
+>> /mboards/0/xbar/DDC_0
+>> /mboards/0/xbar/DDC_0/noc_id
+>> /mboards/0/xbar/DDC_0/input_buffer_size
+>> /mboards/0/xbar/DDC_0/input_buffer_size/0
+>> /mboards/0/xbar/DDC_0/input_buffer_size/1
+>> /mboards/0/xbar/DDC_0/mtu
+>> /mboards/0/xbar/DDC_0/mtu/0
+>> /mboards/0/xbar/DDC_0/mtu/1
+>> /mboards/0/xbar/DDC_0/registers
+>> /mboards/0/xbar/DDC_0/registers/sr
+>> /mboards/0/xbar/DDC_0/registers/sr/N
+>> /mboards/0/xbar/DDC_0/registers/sr/M
+>> /mboards/0/xbar/DDC_0/registers/sr/CONFIG
+>> /mboards/0/xbar/DDC_0/registers/sr/DDS_FREQ
+>> /mboards/0/xbar/DDC_0/registers/sr/SCALE_IQ
+>> /mboards/0/xbar/DDC_0/registers/sr/DECIM_WORD
+>> /mboards/0/xbar/DDC_0/registers/sr/MODE
+>> /mboards/0/xbar/DDC_0/registers/sr/RELOAD
+>> /mboards/0/xbar/DDC_0/ports
+>> /mboards/0/xbar/DDC_0/ports/in
+>> /mboards/0/xbar/DDC_0/ports/in/0
+>> /mboards/0/xbar/DDC_0/ports/in/1
+>> /mboards/0/xbar/DDC_0/ports/out
+>> /mboards/0/xbar/DDC_0/ports/out/0
+>> /mboards/0/xbar/DDC_0/ports/out/1
+>> /mboards/0/xbar/DDC_0/args
+>> /mboards/0/xbar/DDC_0/args/0
+>> /mboards/0/xbar/DDC_0/args/0/freq
+>> /mboards/0/xbar/DDC_0/args/0/freq/type
+>> /mboards/0/xbar/DDC_0/args/0/freq/value
+>> /mboards/0/xbar/DDC_0/args/0/input_rate
+>> /mboards/0/xbar/DDC_0/args/0/input_rate/type
+>> /mboards/0/xbar/DDC_0/args/0/input_rate/value
+>> /mboards/0/xbar/DDC_0/args/0/output_rate
+>> /mboards/0/xbar/DDC_0/args/0/output_rate/type
+>> /mboards/0/xbar/DDC_0/args/0/output_rate/value
+>> /mboards/0/xbar/DDC_0/args/0/fullscale
+>> /mboards/0/xbar/DDC_0/args/0/fullscale/type
+>> /mboards/0/xbar/DDC_0/args/0/fullscale/value
+>> /mboards/0/xbar/DDC_0/args/0/scalar_correction
+>> /mboards/0/xbar/DDC_0/args/0/scalar_correction/type
+>> /mboards/0/xbar/DDC_0/args/0/scalar_correction/value
+>> /mboards/0/xbar/DDC_0/args/1
+>> /mboards/0/xbar/DDC_0/args/1/freq
+>> /mboards/0/xbar/DDC_0/args/1/freq/type
+>> /mboards/0/xbar/DDC_0/args/1/freq/value
+>> /mboards/0/xbar/DDC_0/args/1/input_rate
+>> /mboards/0/xbar/DDC_0/args/1/input_rate/type
+>> /mboards/0/xbar/DDC_0/args/1/input_rate/value
+>> /mboards/0/xbar/DDC_0/args/1/output_rate
+>> /mboards/0/xbar/DDC_0/args/1/output_rate/type
+>> /mboards/0/xbar/DDC_0/args/1/output_rate/value
+>> /mboards/0/xbar/DDC_0/args/1/fullscale
+>> /mboards/0/xbar/DDC_0/args/1/fullscale/type
+>> /mboards/0/xbar/DDC_0/args/1/fullscale/value
+>> /mboards/0/xbar/DDC_0/args/1/scalar_correction
+>> /mboards/0/xbar/DDC_0/args/1/scalar_correction/type
+>> /mboards/0/xbar/DDC_0/args/1/scalar_correction/value
+>> /mboards/0/xbar/DDC_0/legacy_api
+>> /mboards/0/xbar/DDC_0/legacy_api/0
+>> /mboards/0/xbar/DDC_0/legacy_api/0/rate
+>> /mboards/0/xbar/DDC_0/legacy_api/0/rate/value
+>> /mboards/0/xbar/DDC_0/legacy_api/0/rate/range
+>> /mboards/0/xbar/DDC_0/legacy_api/0/freq
+>> /mboards/0/xbar/DDC_0/legacy_api/0/freq/value
+>> /mboards/0/xbar/DDC_0/legacy_api/0/freq/range
+>> /mboards/0/xbar/DDC_0/legacy_api/1
+>> /mboards/0/xbar/DDC_0/legacy_api/1/rate
+>> /mboards/0/xbar/DDC_0/legacy_api/1/rate/value
+>> /mboards/0/xbar/DDC_0/legacy_api/1/rate/range
+>> /mboards/0/xbar/DDC_0/legacy_api/1/freq
+>> /mboards/0/xbar/DDC_0/legacy_api/1/freq/value
+>> /mboards/0/xbar/DDC_0/legacy_api/1/freq/range
+>> /mboards/0/xbar/FFT_0
+>> /mboards/0/xbar/FFT_0/noc_id
+>> /mboards/0/xbar/FFT_0/input_buffer_size
+>> /mboards/0/xbar/FFT_0/input_buffer_size/0
+>> /mboards/0/xbar/FFT_0/mtu
+>> /mboards/0/xbar/FFT_0/mtu/0
+>> /mboards/0/xbar/FFT_0/registers
+>> /mboards/0/xbar/FFT_0/registers/sr
+>> /mboards/0/xbar/FFT_0/registers/sr/FFT_RESET
+>> /mboards/0/xbar/FFT_0/registers/sr/FFT_SIZE_LOG2
+>> /mboards/0/xbar/FFT_0/registers/sr/MAGNITUDE_OUT
+>> /mboards/0/xbar/FFT_0/registers/sr/FFT_DIRECTION
+>> /mboards/0/xbar/FFT_0/registers/sr/FFT_SCALING
+>> /mboards/0/xbar/FFT_0/registers/sr/FFT_SHIFT_CONFIG
+>> /mboards/0/xbar/FFT_0/registers/rb
+>> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_RESET
+>> /mboards/0/xbar/FFT_0/registers/rb/RB_MAGNITUDE_OUT
+>> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_SIZE_LOG2
+>> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_DIRECTION
+>> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_SCALING
+>> /mboards/0/xbar/FFT_0/registers/rb/RB_FFT_SHIFT_CONFIG
+>> /mboards/0/xbar/FFT_0/ports
+>> /mboards/0/xbar/FFT_0/ports/in
+>> /mboards/0/xbar/FFT_0/ports/in/0
+>> /mboards/0/xbar/FFT_0/ports/out
+>> /mboards/0/xbar/FFT_0/ports/out/0
+>> /mboards/0/xbar/FFT_0/args
+>> /mboards/0/xbar/FFT_0/args/0
+>> /mboards/0/xbar/FFT_0/args/0/spp
+>> /mboards/0/xbar/FFT_0/args/0/spp/type
+>> /mboards/0/xbar/FFT_0/args/0/spp/value
+>> /mboards/0/xbar/FFT_0/args/0/shift
+>> /mboards/0/xbar/FFT_0/args/0/shift/type
+>> /mboards/0/xbar/FFT_0/args/0/shift/value
+>> /mboards/0/xbar/FFT_0/args/0/direction
+>> /mboards/0/xbar/FFT_0/args/0/direction/type
+>> /mboards/0/xbar/FFT_0/args/0/direction/value
+>> /mboards/0/xbar/FFT_0/args/0/scaling
+>> /mboards/0/xbar/FFT_0/args/0/scaling/type
+>> /mboards/0/xbar/FFT_0/args/0/scaling/value
+>> /mboards/0/xbar/FFT_0/args/0/otype
+>> /mboards/0/xbar/FFT_0/args/0/otype/type
+>> /mboards/0/xbar/FFT_0/args/0/otype/value
+>> /mboards/0/xbar/FFT_0/args/0/reset
+>> /mboards/0/xbar/FFT_0/args/0/reset/type
+>> /mboards/0/xbar/FFT_0/args/0/reset/value
+>> /mboards/0/xbar/FFT_0/args/0/magnitude_out
+>> /mboards/0/xbar/FFT_0/args/0/magnitude_out/type
+>> /mboards/0/xbar/FFT_0/args/0/magnitude_out/value
+>> /mboards/0/time
+>> /mboards/0/time/now
+>> /mboards/0/time/pps
+>> /mboards/0/time/cmd
+>> /mboards/0/time_source
+>> /mboards/0/time_source/value
+>> /mboards/0/time_source/options
+>> /mboards/0/rx_codecs
+>> /mboards/0/rx_codecs/A
+>> /mboards/0/rx_codecs/A/name
+>> /mboards/0/rx_codecs/A/gains
+>> /mboards/0/tx_codecs
+>> /mboards/0/tx_codecs/A
+>> /mboards/0/tx_codecs/A/name
+>> /mboards/0/tx_codecs/A/gains
+>> /mboards/0/gpio
+>> /mboards/0/gpio/INT0
+>> /mboards/0/gpio/INT0/SRC
+>> /mboards/0/gpio/INT0/CTRL
+>> /mboards/0/gpio/INT0/DDR
+>> /mboards/0/gpio/INT0/OUT
+>> /mboards/0/gpio/INT0/ATR_0X
+>> /mboards/0/gpio/INT0/ATR_RX
+>> /mboards/0/gpio/INT0/ATR_TX
+>> /mboards/0/gpio/INT0/ATR_XX
+>> /mboards/0/gpio/INT0/READBACK
+>> /mboards/0/rx_dsps
+>> /mboards/0/rx_dsps/0
+>> /mboards/0/rx_dsps/0/stream_cmd
+>> /mboards/0/rx_dsps/0/freq
+>> /mboards/0/rx_dsps/0/freq/value
+>> /mboards/0/rx_dsps/0/freq/range
+>> /mboards/0/rx_dsps/0/rate
+>> /mboards/0/rx_dsps/0/rate/value
+>> /mboards/0/rx_dsps/1
+>> /mboards/0/rx_dsps/1/stream_cmd
+>> /mboards/0/rx_dsps/1/freq
+>> /mboards/0/rx_dsps/1/freq/value
+>> /mboards/0/rx_dsps/1/freq/range
+>> /mboards/0/rx_dsps/1/rate
+>> /mboards/0/rx_dsps/1/rate/value
+>> /mboards/0/tx_dsps
+>> /mboards/0/tx_dsps/0
+>> /mboards/0/tx_dsps/0/freq
+>> /mboards/0/tx_dsps/0/freq/value
+>> /mboards/0/tx_dsps/0/freq/range
+>> /mboards/0/tx_dsps/0/rate
+>> /mboards/0/tx_dsps/0/rate/value
+>> /mboards/0/tx_dsps/1
+>> /mboards/0/tx_dsps/1/freq
+>> /mboards/0/tx_dsps/1/freq/value
+>> /mboards/0/tx_dsps/1/freq/range
+>> /mboards/0/tx_dsps/1/rate
+>> /mboards/0/tx_dsps/1/rate/value
+>> /mboards/0/rx_subdev_spec
+>> /mboards/0/tx_subdev_spec
+>> [INFO] [E300] Loading FPGA image:
+>> /home/root/newinstall/usr/share/uhd/images/usrp_e3xx_fpga_idle_sg3.bit...
+>> [INFO] [E300] FPGA image loaded
 >>
->> On Thu, Nov 21, 2019, 4:01 PM Jonathan Lockhart <jlockhartrt@gmail.com>
->> wrote:
+>> The failure output I got from running the python script shows that it
+>> can't find "/mboards/0/xbar/gain_0/args/0/gain/value" and when I look at
+>> the tree, there is no value instantiated by the probe. It only looks like
+>> the furthest that the probe goes down in the mboards is
+>> "/mboards/0/xbar/gain_0/args/0". I am assuming its something in the
+>> arguments file not getting loaded, but everything appears ok to me on
+>> glance in that XML file.
 >>
->>> Also, when I compiled from the OOT directory for ARM, I used this
->>> command, which I pieced together from the RFNoC build guide, and the
->>> release-4 guide for cross-compiling gr-ettus.
+>> Regards,
+>> Jon
+>>
+>> On Thu, Nov 21, 2019 at 4:49 PM EJ Kreinar <ejkreinar@gmail.com> wrote:
+>>
+>>> Okay, great...
 >>>
->>> cmake
->>> -DCMAKE_TOOLCHAIN_FILE=~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_cross.cmake
->>> -DCMAKE_INSTALL_PREFIX=/usr
->>> -DUHD_FPGA_DIR="/home/jon/rfnoc/src/uhd/fpga-src/" ../
+>>> You might want to try increasing the log level. Export
+>>> UHD_LOG_CONSOLE_LEVEL=trace or debug and try to make sure the correct xml
+>>> file is getting applied to the block correctly.
 >>>
->>> Regards,
->>> Jon
+>>> There's also something like a "--tree" parameter in the uhd_usrp_probe
+>>> so try running the probe with the tree option to print out the device tree
+>>> and look for the arguments assigned to your new block.
 >>>
->>> On Thu, Nov 21, 2019 at 3:48 PM Jonathan Lockhart <jlockhartrt@gmail.com>
+>>> Let's see if any of that helps figure out what's going on...
+>>> EJ
+>>>
+>>> On Thu, Nov 21, 2019, 4:01 PM Jonathan Lockhart <jlockhartrt@gmail.com>
 >>> wrote:
 >>>
->>>> Greetings EJ,
+>>>> Also, when I compiled from the OOT directory for ARM, I used this
+>>>> command, which I pieced together from the RFNoC build guide, and the
+>>>> release-4 guide for cross-compiling gr-ettus.
 >>>>
->>>> So, from the tutorial, they have you edit the gain.xml file, and this
->>>> is what I have for it.
->>>>
->>>> <?xml version="1.0"?>
->>>> <!--Default XML file-->
->>>> <nocblock>
->>>>   <name>gain</name>
->>>>   <blockname>gain</blockname>
->>>>   <ids>
->>>>     <id revision="0">B7DD64941A952AAC</id>
->>>>   </ids>
->>>>   <!-- Registers -->
->>>>   <registers>
->>>>     <setreg>
->>>>       <name>Gain</name>
->>>>       <address>128</address>
->>>>     </setreg>
->>>>   </registers>
->>>>   <!-- Args -->
->>>>   <args>
->>>>     <args>
->>>>       <name>gain</name>
->>>>       <type>double</type>
->>>>       <value>1.0</value>
->>>>       <check>GE($gain, 0.0) AND LE($gain, 32767.0)</check>
->>>>       <check_message>Invalid Gain!</check_message>
->>>>       <action>
->>>>         SR_WRITE("GAIN", IROUND($gain))
->>>>       </action>
->>>>     </args>
->>>>   </args>
->>>>   <!--One input, one output. If this is used, better have all the info
->>>> the C++ file.-->
->>>>   <ports>
->>>>     <sink>
->>>>       <name>in0</name>
->>>>       <type>sc16</name>
->>>>     </sink>
->>>>     <source>
->>>>       <name>out0</name>
->>>>       <type>sc16</name>
->>>>     </source>
->>>>   </ports>
->>>> </nocblock>
->>>>
->>>> There is an args value and it is declared as gain.
->>>>
->>>> So from there, I followed your second suggestion and tried to find
->>>> where it was installed when I did the cross compile. It was not placed in
->>>> the "GRC_BLOCKS_PATH" of "/share/gnuradio/grc/blocks" like the default
->>>> RFNoC blocks. It was instead placed in "/share/uhd/rfnoc/bocks" so I added
->>>> that to the setup.env file, included below.
->>>>
->>>> LOCALPREFIX=~/newinstall/usr
->>>> export PATH=$LOCALPREFIX/bin:$PATH
->>>> export LD_LOAD_LIBRARY=$LOCALPREFIX/lib:$LD_LOAD_LIBRARY
->>>> export LD_LIBRARY_PATH=$LOCALPREFIX/lib:$LD_LIBRARY_PATH
->>>> export PYTHONPATH=$LOCALPREFIX/lib/python2.7/site-packages:$PYTHONPATH
->>>> export PKG_CONFIG_PATH=$LOCALPREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
->>>> export
->>>> GRC_BLOCKS_PATH=$LOCALPREFIX/share/gnuradio/grc/blocks:$GRC_BLOCKS_PATH
->>>> export UHD_RFNOC_DIR=$LOCALPREFIX/share/uhd/rfnoc/
->>>> export UHD_IMAGES_DIR=$LOCALPREFIX/share/uhd/images
->>>> export
->>>> GRC_BLOCKS_PATH=$LOCALPREFIX/share/uhd/rfnoc/blocks:$GRC_BLOCKS_PATH
->>>>
->>>> Unfortunately, after re-sourcing the setup.env, I still get the same
->>>> message.
->>>>
->>>>   File "rfnoc_myGain_usrp.py", line 223, in <module>
->>>>     main()
->>>>   File "rfnoc_myGain_usrp.py", line 212, in main
->>>>     tb = top_block_cls(fpga_path=options.fpga_path,
->>>> rx_gain=options.rx_gain, rx_digital_gain=options.rx_digital_gain,
->>>> rx_freq=options.rx_freq, host_ip_addr=options.host_ip_addr)
->>>>   File "rfnoc_myGain_usrp.py", line 117, in __init__
->>>>     self.tutorial_gain_0.set_arg("gain", rx_digital_gain)
->>>>   File
->>>> "/home/root/newinstall/usr/lib/python2.7/site-packages/tutorial/tutorial_swig.py",
->>>> line 315, in set_arg
->>>>     return _tutorial_swig.gain_sptr_set_arg(self, *args)
->>>> RuntimeError: LookupError: Path not found in tree:
->>>> /mboards/0/xbar/gain_0/args/0/gain/value
->>>>
->>>> I looked at some of your examples (which have been very helpful to get
->>>> me this far) from what I believe is your github someone linked me.
->>>> Everything appears to match what it should, for what gain is trying to
->>>> accomplish.
+>>>> cmake
+>>>> -DCMAKE_TOOLCHAIN_FILE=~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_cross.cmake
+>>>> -DCMAKE_INSTALL_PREFIX=/usr
+>>>> -DUHD_FPGA_DIR="/home/jon/rfnoc/src/uhd/fpga-src/" ../
 >>>>
 >>>> Regards,
 >>>> Jon
 >>>>
->>>> On Thu, Nov 21, 2019 at 3:27 PM EJ Kreinar <ejkreinar@gmail.com> wrote:
+>>>> On Thu, Nov 21, 2019 at 3:48 PM Jonathan Lockhart <
+>>>> jlockhartrt@gmail.com> wrote:
 >>>>
->>>>> Hi Jon,
+>>>>> Greetings EJ,
 >>>>>
->>>>> The rfnoc "nocscript" xml definition can create arguments and attach
->>>>> to the device tree like you are trying to set there (it's not compiled
->>>>> directly, but rather created dynamically from the xml definition)
+>>>>> So, from the tutorial, they have you edit the gain.xml file, and this
+>>>>> is what I have for it.
 >>>>>
->>>>> Recommended debugging...
->>>>> 1. Check your OOT gain block xml (in rfnoc/blocks) and make sure it
->>>>> has a "gain" field in the "args" list. You'll also want to make sure it
->>>>> writes your desired register, but I don't think you're even getting that far
->>>>> 2. Make sure the block xml is installed on the e310 embedded prefix
->>>>> and is found at run time during uhd_usrp_probe and when running your
->>>>> application. If it's not in the right place or not attaching to your block
->>>>> then it won't create the gain argument
+>>>>> <?xml version="1.0"?>
+>>>>> <!--Default XML file-->
+>>>>> <nocblock>
+>>>>>   <name>gain</name>
+>>>>>   <blockname>gain</blockname>
+>>>>>   <ids>
+>>>>>     <id revision="0">B7DD64941A952AAC</id>
+>>>>>   </ids>
+>>>>>   <!-- Registers -->
+>>>>>   <registers>
+>>>>>     <setreg>
+>>>>>       <name>Gain</name>
+>>>>>       <address>128</address>
+>>>>>     </setreg>
+>>>>>   </registers>
+>>>>>   <!-- Args -->
+>>>>>   <args>
+>>>>>     <args>
+>>>>>       <name>gain</name>
+>>>>>       <type>double</type>
+>>>>>       <value>1.0</value>
+>>>>>       <check>GE($gain, 0.0) AND LE($gain, 32767.0)</check>
+>>>>>       <check_message>Invalid Gain!</check_message>
+>>>>>       <action>
+>>>>>         SR_WRITE("GAIN", IROUND($gain))
+>>>>>       </action>
+>>>>>     </args>
+>>>>>   </args>
+>>>>>   <!--One input, one output. If this is used, better have all the info
+>>>>> the C++ file.-->
+>>>>>   <ports>
+>>>>>     <sink>
+>>>>>       <name>in0</name>
+>>>>>       <type>sc16</name>
+>>>>>     </sink>
+>>>>>     <source>
+>>>>>       <name>out0</name>
+>>>>>       <type>sc16</name>
+>>>>>     </source>
+>>>>>   </ports>
+>>>>> </nocblock>
 >>>>>
->>>>> I'm guessing it's one of those two possibilities...
->>>>> EJ
+>>>>> There is an args value and it is declared as gain.
 >>>>>
->>>>> On Thu, Nov 21, 2019, 3:19 PM Jonathan Lockhart via USRP-users <
->>>>> usrp-users@lists.ettus.com> wrote:
+>>>>> So from there, I followed your second suggestion and tried to find
+>>>>> where it was installed when I did the cross compile. It was not placed in
+>>>>> the "GRC_BLOCKS_PATH" of "/share/gnuradio/grc/blocks" like the default
+>>>>> RFNoC blocks. It was instead placed in "/share/uhd/rfnoc/bocks" so I added
+>>>>> that to the setup.env file, included below.
 >>>>>
->>>>>> Greetings,
+>>>>> LOCALPREFIX=~/newinstall/usr
+>>>>> export PATH=$LOCALPREFIX/bin:$PATH
+>>>>> export LD_LOAD_LIBRARY=$LOCALPREFIX/lib:$LD_LOAD_LIBRARY
+>>>>> export LD_LIBRARY_PATH=$LOCALPREFIX/lib:$LD_LIBRARY_PATH
+>>>>> export PYTHONPATH=$LOCALPREFIX/lib/python2.7/site-packages:$PYTHONPATH
+>>>>> export PKG_CONFIG_PATH=$LOCALPREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
+>>>>> export
+>>>>> GRC_BLOCKS_PATH=$LOCALPREFIX/share/gnuradio/grc/blocks:$GRC_BLOCKS_PATH
+>>>>> export UHD_RFNOC_DIR=$LOCALPREFIX/share/uhd/rfnoc/
+>>>>> export UHD_IMAGES_DIR=$LOCALPREFIX/share/uhd/images
+>>>>> export
+>>>>> GRC_BLOCKS_PATH=$LOCALPREFIX/share/uhd/rfnoc/blocks:$GRC_BLOCKS_PATH
+>>>>>
+>>>>> Unfortunately, after re-sourcing the setup.env, I still get the same
+>>>>> message.
+>>>>>
+>>>>>   File "rfnoc_myGain_usrp.py", line 223, in <module>
+>>>>>     main()
+>>>>>   File "rfnoc_myGain_usrp.py", line 212, in main
+>>>>>     tb = top_block_cls(fpga_path=options.fpga_path,
+>>>>> rx_gain=options.rx_gain, rx_digital_gain=options.rx_digital_gain,
+>>>>> rx_freq=options.rx_freq, host_ip_addr=options.host_ip_addr)
+>>>>>   File "rfnoc_myGain_usrp.py", line 117, in __init__
+>>>>>     self.tutorial_gain_0.set_arg("gain", rx_digital_gain)
+>>>>>   File
+>>>>> "/home/root/newinstall/usr/lib/python2.7/site-packages/tutorial/tutorial_swig.py",
+>>>>> line 315, in set_arg
+>>>>>     return _tutorial_swig.gain_sptr_set_arg(self, *args)
+>>>>> RuntimeError: LookupError: Path not found in tree:
+>>>>> /mboards/0/xbar/gain_0/args/0/gain/value
+>>>>>
+>>>>> I looked at some of your examples (which have been very helpful to get
+>>>>> me this far) from what I believe is your github someone linked me.
+>>>>> Everything appears to match what it should, for what gain is trying to
+>>>>> accomplish.
+>>>>>
+>>>>> Regards,
+>>>>> Jon
+>>>>>
+>>>>> On Thu, Nov 21, 2019 at 3:27 PM EJ Kreinar <ejkreinar@gmail.com>
+>>>>> wrote:
+>>>>>
+>>>>>> Hi Jon,
 >>>>>>
->>>>>> I was able to get the ARM cross compile working. I removed the build
->>>>>> directory and re-sourced the dev environment and then the cross-compile
->>>>>> used the -mfloar=hard flag. Not sure what caused the issue earlier and why
->>>>>> it wasn't picking it up.
+>>>>>> The rfnoc "nocscript" xml definition can create arguments and attach
+>>>>>> to the device tree like you are trying to set there (it's not compiled
+>>>>>> directly, but rather created dynamically from the xml definition)
 >>>>>>
->>>>>> Now I have a different issue. So I have completed this guide:
->>>>>> https://kb.ettus.com/Getting_Started_with_RFNoC_Development
+>>>>>> Recommended debugging...
+>>>>>> 1. Check your OOT gain block xml (in rfnoc/blocks) and make sure it
+>>>>>> has a "gain" field in the "args" list. You'll also want to make sure it
+>>>>>> writes your desired register, but I don't think you're even getting that far
+>>>>>> 2. Make sure the block xml is installed on the e310 embedded prefix
+>>>>>> and is found at run time during uhd_usrp_probe and when running your
+>>>>>> application. If it's not in the right place or not attaching to your block
+>>>>>> then it won't create the gain argument
 >>>>>>
->>>>>> I modified the GNURadio just a bit so that the output from gain was
->>>>>> placed on a ZMQ push, and the graphics were on the host to graph the signal
->>>>>> (seen in the screenshots below).
+>>>>>> I'm guessing it's one of those two possibilities...
+>>>>>> EJ
 >>>>>>
->>>>>> [image: Screenshot from 2019-11-21 15-06-33.jpg]
->>>>>>
->>>>>> [image: Screenshot from 2019-11-21 15-010-44.jpg]
->>>>>>
->>>>>> However, when I run the top file for the USRP, I am running into this
->>>>>> error.
->>>>>>
->>>>>> Traceback (most recent call last):
->>>>>>   File "rfnoc_myGain_usrp.py", line 223, in <module>
->>>>>>     main()
->>>>>>   File "rfnoc_myGain_usrp.py", line 212, in main
->>>>>>     tb = top_block_cls(fpga_path=options.fpga_path,
->>>>>> rx_gain=options.rx_gain, rx_digital_gain=options.rx_digital_gain,
->>>>>> rx_freq=options.rx_freq, host_ip_addr=options.host_ip_addr)
->>>>>>   File "rfnoc_myGain_usrp.py", line 117, in __init__
->>>>>>     self.tutorial_gain_0.set_arg("gain", rx_digital_gain)
->>>>>>   File
->>>>>> "/home/root/newinstall/usr/lib/python2.7/site-packages/tutorial/tutorial_swig.py",
->>>>>> line 315, in set_arg
->>>>>>     return _tutorial_swig.gain_sptr_set_arg(self, *args)
->>>>>> RuntimeError: LookupError: Path not found in tree:
->>>>>> /mboards/0/xbar/gain_0/args/0/gain/value
->>>>>>
->>>>>> No where else in building GNURadio scripts and .bit files does this
->>>>>> "/mboards" arise, and I have looked through my verilog file for gain
->>>>>> (gain.v) and it is correct per the instructions in the linked guide, and I
->>>>>> built the python and gnuradio hook exactly as the instructions stated to.
->>>>>>
->>>>>> Anyone have an troubleshooting ideas b/c I am currently at a loss. It
->>>>>> did past the test bench they have you build with no issues.
->>>>>>
->>>>>> Regards,
->>>>>> Jon
->>>>>>
->>>>>>
->>>>>>
->>>>>>
->>>>>> On Wed, Nov 20, 2019 at 3:21 PM Jonathan Lockhart <
->>>>>> jlockhartrt@gmail.com> wrote:
+>>>>>> On Thu, Nov 21, 2019, 3:19 PM Jonathan Lockhart via USRP-users <
+>>>>>> usrp-users@lists.ettus.com> wrote:
 >>>>>>
 >>>>>>> Greetings,
 >>>>>>>
->>>>>>> I am having some issues completing the RFNOC build tutorial on the
->>>>>>> Ettus E312. The reference documentation is using an X3xx series radio, and
->>>>>>> from the final python script it appears to be running the GNR script
->>>>>>> natively on the host. I built the exact script from the KB but when running
->>>>>>> on the radio it fails stating it can't "import tutorial." I realized all
->>>>>>> the files that were installed were placed on the host but not cross
->>>>>>> compiled for the E3xx using the SDK and ARM cross compile tool. I tried to
->>>>>>> complete this task, but unfortunately the compilation dies here.
+>>>>>>> I was able to get the ARM cross compile working. I removed the build
+>>>>>>> directory and re-sourced the dev environment and then the cross-compile
+>>>>>>> used the -mfloar=hard flag. Not sure what caused the issue earlier and why
+>>>>>>> it wasn't picking it up.
 >>>>>>>
->>>>>>> /home/jon/rfnoc/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/include/gnu/stubs.h:7:11:
->>>>>>> fatal error: gnu/stubs-soft.h: No such file or directory
->>>>>>>  # include <gnu/stubs-soft.h>
->>>>>>>            ^~~~~~~~~~~~~~~~~~
->>>>>>> compilation terminated.
+>>>>>>> Now I have a different issue. So I have completed this guide:
+>>>>>>> https://kb.ettus.com/Getting_Started_with_RFNoC_Development
 >>>>>>>
->>>>>>> Now I did find the stubs-soft.h file in the libc6-dev-armel-cross in
->>>>>>> the apt repo. I installed it and tried to cp the file into the
->>>>>>> /home/jon/rfnoc/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/include/gnu/
->>>>>>> location but it still doesn't like that. I verified that on my echo $CC
->>>>>>> that the -mfloat is set to hard as shown here.
+>>>>>>> I modified the GNURadio just a bit so that the output from gain was
+>>>>>>> placed on a ZMQ push, and the graphics were on the host to graph the signal
+>>>>>>> (seen in the screenshots below).
 >>>>>>>
->>>>>>> jon@jon-OptiPlex-9020:~/rfnoc/src/rfnoc-tutorial$ echo $CC
->>>>>>> arm-oe-linux-gnueabi-gcc -march=armv7-a -mfloat-abi=hard -mfpu=neon
->>>>>>> --sysroot=/home/jon/rfnoc/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi
+>>>>>>> [image: Screenshot from 2019-11-21 15-06-33.jpg]
 >>>>>>>
->>>>>>> So I am not sure why the gain module in the tutorial is looking for
->>>>>>> the soft file.
+>>>>>>> [image: Screenshot from 2019-11-21 15-010-44.jpg]
 >>>>>>>
->>>>>>> If anyone has experience in porting their OOT modules over to the
->>>>>>> E-series of radios I would appreciate the help.
+>>>>>>> However, when I run the top file for the USRP, I am running into
+>>>>>>> this error.
+>>>>>>>
+>>>>>>> Traceback (most recent call last):
+>>>>>>>   File "rfnoc_myGain_usrp.py", line 223, in <module>
+>>>>>>>     main()
+>>>>>>>   File "rfnoc_myGain_usrp.py", line 212, in main
+>>>>>>>     tb = top_block_cls(fpga_path=options.fpga_path,
+>>>>>>> rx_gain=options.rx_gain, rx_digital_gain=options.rx_digital_gain,
+>>>>>>> rx_freq=options.rx_freq, host_ip_addr=options.host_ip_addr)
+>>>>>>>   File "rfnoc_myGain_usrp.py", line 117, in __init__
+>>>>>>>     self.tutorial_gain_0.set_arg("gain", rx_digital_gain)
+>>>>>>>   File
+>>>>>>> "/home/root/newinstall/usr/lib/python2.7/site-packages/tutorial/tutorial_swig.py",
+>>>>>>> line 315, in set_arg
+>>>>>>>     return _tutorial_swig.gain_sptr_set_arg(self, *args)
+>>>>>>> RuntimeError: LookupError: Path not found in tree:
+>>>>>>> /mboards/0/xbar/gain_0/args/0/gain/value
+>>>>>>>
+>>>>>>> No where else in building GNURadio scripts and .bit files does this
+>>>>>>> "/mboards" arise, and I have looked through my verilog file for gain
+>>>>>>> (gain.v) and it is correct per the instructions in the linked guide, and I
+>>>>>>> built the python and gnuradio hook exactly as the instructions stated to.
+>>>>>>>
+>>>>>>> Anyone have an troubleshooting ideas b/c I am currently at a loss.
+>>>>>>> It did past the test bench they have you build with no issues.
 >>>>>>>
 >>>>>>> Regards,
 >>>>>>> Jon
 >>>>>>>
->>>>>> _______________________________________________
->>>>>> USRP-users mailing list
->>>>>> USRP-users@lists.ettus.com
->>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> On Wed, Nov 20, 2019 at 3:21 PM Jonathan Lockhart <
+>>>>>>> jlockhartrt@gmail.com> wrote:
+>>>>>>>
+>>>>>>>> Greetings,
+>>>>>>>>
+>>>>>>>> I am having some issues completing the RFNOC build tutorial on the
+>>>>>>>> Ettus E312. The reference documentation is using an X3xx series radio, and
+>>>>>>>> from the final python script it appears to be running the GNR script
+>>>>>>>> natively on the host. I built the exact script from the KB but when running
+>>>>>>>> on the radio it fails stating it can't "import tutorial." I realized all
+>>>>>>>> the files that were installed were placed on the host but not cross
+>>>>>>>> compiled for the E3xx using the SDK and ARM cross compile tool. I tried to
+>>>>>>>> complete this task, but unfortunately the compilation dies here.
+>>>>>>>>
+>>>>>>>> /home/jon/rfnoc/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/include/gnu/stubs.h:7:11:
+>>>>>>>> fatal error: gnu/stubs-soft.h: No such file or directory
+>>>>>>>>  # include <gnu/stubs-soft.h>
+>>>>>>>>            ^~~~~~~~~~~~~~~~~~
+>>>>>>>> compilation terminated.
+>>>>>>>>
+>>>>>>>> Now I did find the stubs-soft.h file in the libc6-dev-armel-cross
+>>>>>>>> in the apt repo. I installed it and tried to cp the file into the
+>>>>>>>> /home/jon/rfnoc/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/include/gnu/
+>>>>>>>> location but it still doesn't like that. I verified that on my echo $CC
+>>>>>>>> that the -mfloat is set to hard as shown here.
+>>>>>>>>
+>>>>>>>> jon@jon-OptiPlex-9020:~/rfnoc/src/rfnoc-tutorial$ echo $CC
+>>>>>>>> arm-oe-linux-gnueabi-gcc -march=armv7-a -mfloat-abi=hard -mfpu=neon
+>>>>>>>> --sysroot=/home/jon/rfnoc/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi
+>>>>>>>>
+>>>>>>>> So I am not sure why the gain module in the tutorial is looking for
+>>>>>>>> the soft file.
+>>>>>>>>
+>>>>>>>> If anyone has experience in porting their OOT modules over to the
+>>>>>>>> E-series of radios I would appreciate the help.
+>>>>>>>>
+>>>>>>>> Regards,
+>>>>>>>> Jon
+>>>>>>>>
+>>>>>>> _______________________________________________
+>>>>>>> USRP-users mailing list
+>>>>>>> USRP-users@lists.ettus.com
+>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>
 >>>>>>
->>>>>
 
---000000000000160bfe0597f0f54d
+--000000000000b1ba7e0597f16331
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Good progress, agreed it looks like the gain arg isn&#39;=
-t getting created here...=C2=A0<div dir=3D"auto"><br></div><div dir=3D"auto=
-">If you run with log level trace, rfnoc should (might?) indicate the xml f=
-ile it loaded. I&#39;d try to find that xml and confirm it looks like what =
-you expect, with the gain arg entry.</div><div dir=3D"auto"><br></div><div =
-dir=3D"auto">Also, perhaps grep your prefix and share directories on the em=
-bedded device to search for any other xml files that might match the noc id=
- or provide the same &quot;gain&quot; block... I&#39;ve definitely fought w=
-ith conflicting xml definitions before, you might be seeing that here.</div=
-><div dir=3D"auto"><br></div><div dir=3D"auto">EJ</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 22, 2019=
-, 9:36 AM Jonathan Lockhart &lt;<a href=3D"mailto:jlockhartrt@gmail.com" re=
-l=3D"noreferrer noreferrer" target=3D"_blank">jlockhartrt@gmail.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
-ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>Hey E=
-J,</div><div><br></div><div>Sorry for being slow I had to dig=20
+<div dir=3D"ltr">NVM, I got it set. I am teasing through the long console o=
+utput now. Might of wanted to set the file log instead. Live and learn. <br=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Fri, Nov 22, 2019 at 10:20 AM EJ Kreinar &lt;<a href=3D"mailto:ejkreina=
+r@gmail.com">ejkreinar@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"auto">Good progress, agreed it=
+ looks like the gain arg isn&#39;t getting created here...=C2=A0<div dir=3D=
+"auto"><br></div><div dir=3D"auto">If you run with log level trace, rfnoc s=
+hould (might?) indicate the xml file it loaded. I&#39;d try to find that xm=
+l and confirm it looks like what you expect, with the gain arg entry.</div>=
+<div dir=3D"auto"><br></div><div dir=3D"auto">Also, perhaps grep your prefi=
+x and share directories on the embedded device to search for any other xml =
+files that might match the noc id or provide the same &quot;gain&quot; bloc=
+k... I&#39;ve definitely fought with conflicting xml definitions before, yo=
+u might be seeing that here.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">EJ</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Fri, Nov 22, 2019, 9:36 AM Jonathan Lockhart &lt;<a href=3D=
+"mailto:jlockhartrt@gmail.com" rel=3D"noreferrer noreferrer" target=3D"_bla=
+nk">jlockhartrt@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"ltr"><div>Hey EJ,</div><div><br></div>=
+<div>Sorry for being slow I had to dig=20
 around to set that UHD Log variable, which easy enough it was just a=20
 simple export. I then ran uhd_usrp_probe with the --tree and setting the
  fpga to my bit file. Here is the output from the probe. <br></div><div><br=
@@ -1298,11 +1313,12 @@ istinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div>
 
---000000000000160bfe0597f0f54d--
+--000000000000b1ba7e0597f16331--
 
 
---===============0596681957251244794==
+--===============1381949141151588033==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1313,5 +1329,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0596681957251244794==--
+--===============1381949141151588033==--
 
