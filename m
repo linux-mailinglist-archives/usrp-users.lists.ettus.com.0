@@ -2,58 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1861080E6
-	for <lists+usrp-users@lfdr.de>; Sat, 23 Nov 2019 23:32:34 +0100 (CET)
-Received: from [::1] (port=40382 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83CF91080F1
+	for <lists+usrp-users@lfdr.de>; Sat, 23 Nov 2019 23:49:34 +0100 (CET)
+Received: from [::1] (port=43698 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iYdx8-0000zG-Fx; Sat, 23 Nov 2019 17:32:30 -0500
-Received: from mail-qk1-f170.google.com ([209.85.222.170]:40426)
+	id 1iYeDb-0001xq-KG; Sat, 23 Nov 2019 17:49:31 -0500
+Received: from mail-il1-f172.google.com ([209.85.166.172]:45733)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iYdx5-0000vA-GA
- for usrp-users@lists.ettus.com; Sat, 23 Nov 2019 17:32:27 -0500
-Received: by mail-qk1-f170.google.com with SMTP id a137so7682481qkc.7
- for <usrp-users@lists.ettus.com>; Sat, 23 Nov 2019 14:32:07 -0800 (PST)
+ (Exim 4.92) (envelope-from <austinadam42@gmail.com>)
+ id 1iYeDY-0001oK-3F
+ for usrp-users@lists.ettus.com; Sat, 23 Nov 2019 17:49:28 -0500
+Received: by mail-il1-f172.google.com with SMTP id o18so10712753ils.12
+ for <usrp-users@lists.ettus.com>; Sat, 23 Nov 2019 14:49:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=iuhbmEaGCfEGnwpzrD+zc1k690g/AdhJb/QGbogkLw0=;
- b=mQhrxVOzUZtjzh7I4meSeoldGUfuixncIXCcqT606BVT39L+bs+v21dcfjkyjZZkCL
- t+RiHEd1CcZRMqxxEqH8kpWVHFa77K0ntVrEjC8qWkwQba5HobLJW0wQUQ3li51tm/29
- /Av7xd6TkjKD0B6+1sD/yKBjF3X2VJaShqfkmlNmMf0vnofuECnioyuWGMnjeqpypDuT
- 3txY1++bvHehRIs2u1i/x2Bx2EiIaobMGw/z0SihrYufFTBRf5HUG9AxwgzBXD1AjCl/
- VO7jXI3YuKhCnQiyO0dU3oHRLCD1TzjQomDRZLYagzKfnl4QBICpkATA/LnO7e81oXgL
- vS1g==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Mmp7EQVDfIAkCgZlzPl9SnbVh9NvXe+XuO3fbTv0Svk=;
+ b=tBYC8s+CL7kj9Ygjskz+QCUc+rv7fix646TRuwJE0SVPljRshZvlM6K836z/k6b7da
+ vRxc+GzXwsVSksYf7GCMY2luDKnqJgMJYU7pejViOaA5kwPSzAwWuBq4WEcrLGRtOgR7
+ L223py8mTeU87DgxkAlV5QrJBQ9qaOLrvGwtN331ggrXR9ty/4D8Y/y/Md7gSPETuUKJ
+ 674yvk6fqIwRz7oZTQ4N7aNk+AhgLK6L4cs9aarv9swSQdk9rA4NQ5C4KmZ+N5VK7GJT
+ vdPvNinpmoFJFdw6RlYjJwIbfoZsGMIsFxkYuX55jHAHB/9rS3L1QJ2/EV4+MgjLSscF
+ vEYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=iuhbmEaGCfEGnwpzrD+zc1k690g/AdhJb/QGbogkLw0=;
- b=SyFRhkPOWXRgXlyw0ftbSpFieCXViHYAqzsnIwQMhjngwec/BXhgo4B+v1Jv+jXB44
- Xf696tcafKnA9JUx/XORUUWgFh3tn/HLv+XdT0re1zJHDldw67J+Lpl1/PPJ69xXNitA
- JubfFm4RMFxPDXF2pX+MnlRslh5UPZGnFImq7Y0/Nt4zhSUzrNTgXLR5PuvVZCl0ixSH
- S9D7b7hBCYEW1gsYJYE8YIP6luhhoJQwxaGy6Tpc6XoyBM7rVa2uHmwAmylGQFj++vXF
- df4FEEB6Wo70LeAW5q+snGz3LRd+u8KEGrawVCB9dFoZAdUyKjR9HSrFjXl9bha+AXap
- ksyg==
-X-Gm-Message-State: APjAAAVNergiUB8PHJnJi0sbGQLG1GjM6MmvmwVchyCzqBUOMvvedF/8
- +C8FVNkjzbCSjcWajneENrjQOU2Ahck=
-X-Google-Smtp-Source: APXvYqy4if0+wnxTp5QbrxYsmceOb6gE5riCtngb4Wii5Tu2bliUvLziM6D3IL0chIDtoDw53lGs0A==
-X-Received: by 2002:a37:dc03:: with SMTP id v3mr20199613qki.309.1574548306694; 
- Sat, 23 Nov 2019 14:31:46 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
- [174.95.14.228])
- by smtp.googlemail.com with ESMTPSA id i4sm1233271qtp.57.2019.11.23.14.31.45
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 23 Nov 2019 14:31:46 -0800 (PST)
-Message-ID: <5DD9B351.5040406@gmail.com>
-Date: Sat, 23 Nov 2019 17:31:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Mmp7EQVDfIAkCgZlzPl9SnbVh9NvXe+XuO3fbTv0Svk=;
+ b=Oyfsgiv6smyPnhdOrqy9Ln4/aJiQr9uSL9I3FXfDVGueucTwS8d53PjASKQdWAp/kG
+ Srv6gbKAdbaTRo/JtSiwS8wrfglo/0OpYMtPnZjhSy+2hTA3QZ/ccS+EQPpFnP/5m9kH
+ K4VW3V2Vh6YT7TmY6Pyu7W3waIkjIBT78gsVlTZC0sM3OPK8VCrHFYSwmoci48+N2kWF
+ EQg2OUkM9ZZFQ5PxlhSIZRmJw/YxogKRm7bi8F5vuIv3WjeVrSlzfFbPcDgb3m/aT0du
+ 5aWFvUnrZ7iEIT5mcp4GOD4/r9U2Qmj7YQaVSzuV/1VRxgXwKdhKzUuHbJXLuJx/PhTW
+ 0+lw==
+X-Gm-Message-State: APjAAAXt6KmVHllZu/sp1zzVcwQGEbZfV5isC2Ot6YNAqAi3PXJwpdW2
+ Q0Ga0yUWfVv+RleaGsJlyNGfRYJMYMrXYAFBdvk=
+X-Google-Smtp-Source: APXvYqy/8Q7tDs5yYAiDS/hxRzykgGW68WGQLfPg058ZTYAPfhIUHNYM5TeyWQa0nEgMo6LW/q8IysrAjuYlBdO8ado=
+X-Received: by 2002:a92:8404:: with SMTP id l4mr26726891ild.137.1574549327200; 
+ Sat, 23 Nov 2019 14:48:47 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
 References: <CAMKs6hfoUZdBUPQf5DjRdcRBjqgzAVRbT6xNVT2CncGPntAsTA@mail.gmail.com>
-In-Reply-To: <CAMKs6hfoUZdBUPQf5DjRdcRBjqgzAVRbT6xNVT2CncGPntAsTA@mail.gmail.com>
+ <5DD9B351.5040406@gmail.com>
+In-Reply-To: <5DD9B351.5040406@gmail.com>
+Date: Sat, 23 Nov 2019 14:48:36 -0800
+Message-ID: <CAMKs6heE4bsDnBi5Yvb5gzPRb3nHyd15dmK1mO0Nbwson95J0A@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Subject: Re: [USRP-users] USRP N310 Losing Connection Occassionally
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -66,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4296764373992135955=="
+From: Austin Adam via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Austin Adam <austinadam42@gmail.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2515153206699610667=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,146 +76,167 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4296764373992135955==
-Content-Type: multipart/alternative;
- boundary="------------000100010309070102030606"
+--===============2515153206699610667==
+Content-Type: multipart/alternative; boundary="00000000000054491e05980b551f"
 
-This is a multi-part message in MIME format.
---------------000100010309070102030606
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--00000000000054491e05980b551f
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/23/2019 03:49 PM, Austin Adam via USRP-users wrote:
-> I am trying to run a Gnu Radio python file via the terminal and only 
-> want to run in for a few seconds and then kill it. Then, wait a little 
-> bit, and rerun the script again. My problem is that sometimes, when I 
-> rerun it, I get an issue with my USRP N310 in that it decides to just 
-> disconnect with either a "No devices found for" or "Someone tried to 
-> claim this device again" message. I have posted the error messages 
-> below from two different instances.
+Hey Marcus,
+Thank you for the quick response! This sounds like a good solution, could
+you give some insight on how to go about doing it?
+
+Thank you so much!
+
+On Sat, Nov 23, 2019 at 2:32 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 11/23/2019 03:49 PM, Austin Adam via USRP-users wrote:
 >
-> When this happens, running uhd_find_devices does not find the N310, 
+> I am trying to run a Gnu Radio python file via the terminal and only want
+> to run in for a few seconds and then kill it. Then, wait a little bit, and
+> rerun the script again. My problem is that sometimes, when I rerun it, I
+> get an issue with my USRP N310 in that it decides to just disconnect with
+> either a "No devices found for" or "Someone tried to claim this device
+> again" message. I have posted the error messages below from two different
+> instances.
+>
+> When this happens, running uhd_find_devices does not find the N310,
 > neither does uhd_find_devices --args=addr=192.168.10.2.
 >
-> Upon restarting the N310 by manually pressing the power button, it is 
-> able to be found by uhd_find_devices, and I can continue running the 
-> script until the error happens, and I have to go manually restart the 
-> USRP.
+> Upon restarting the N310 by manually pressing the power button, it is able
+> to be found by uhd_find_devices, and I can continue running the script
+> until the error happens, and I have to go manually restart the USRP.
 >
-> I am trying to make an entire automated system and this is the one 
-> thing that requires manual effort, which is to get up and restart the 
-> USRP.
+> I am trying to make an entire automated system and this is the one thing
+> that requires manual effort, which is to get up and restart the USRP.
 >
-> I am looking for a way to either, reboot the USRP via commands for 
-> when the error occurs, or a solution/workaround to the problem if it 
-> exists.
+> I am looking for a way to either, reboot the USRP via commands for when
+> the error occurs, or a solution/workaround to the problem if it exists.
 >
-> Is there any way to keep the USRP claimed and just tell the GNU part 
-> of the script to run each time I want to rerun it? Because each time I 
-> have to run the script, the USRP has to again be claimed and 
-> initiated. How can I keep it on at all times, or just skip the 
-> claiming step each time?
+> Is there any way to keep the USRP claimed and just tell the GNU part of
+> the script to run each time I want to rerun it? Because each time I have to
+> run the script, the USRP has to again be claimed and initiated. How can I
+> keep it on at all times, or just skip the claiming step each time?
 >
 > Thank you in advance for any help you can provide!
 >
 > Here are the error messages:
-> /[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; 
-> UHD_3.14.0.HEAD-0-g6875d061/
-> /Traceback (most recent call last):
->   File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 296, 
-> in <module>
->     main()
->   File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 284, 
-> in main
->     tb = top_block_cls()
->   File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 79, 
-> in __init__
->     channels=range(4),
->   File 
-> "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py", 
-> line 122, in constructor_interceptor
->     return old_constructor(*args)
->   File 
-> "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py", 
-> line 2782, in make
->     return _uhd_swig.usrp_source_make(*args)
-> RuntimeError: LookupError: KeyError: No devices found for ----->
-> Device Address:
->     addr: 192.168.10.2
->     rx_lo_source: external
->     init_cals: 
-> BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_RX_LO_DELAY/
-> /
-> /
+> *[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
+> UHD_3.14.0.HEAD-0-g6875d061*
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *Traceback (most recent call last):   File
+> "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 296, in <module>
+>     main()   File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
+> line 284, in main     tb = top_block_cls()   File
+> "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 79, in __init__
+>     channels=range(4),   File
+> "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py", line
+> 122, in constructor_interceptor     return old_constructor(*args)   File
+> "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py", line
+> 2782, in make     return _uhd_swig.usrp_source_make(*args) RuntimeError:
+> LookupError: KeyError: No devices found for -----> Device Address:
+> addr: 192.168.10.2     rx_lo_source: external     init_cals:
+> BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_RX_LO_DELAY*
+>
 > *Here is the second time it happened:*
-> /[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; 
-> UHD_3.14.0.HEAD-0-g6875d061
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args: 
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
+> UHD_3.14.0.HEAD-0-g6875d061 [INFO] [MPMD] Initializing 1 device(s) in
+> parallel with args:
 > mgmt_addr=192.168.10.2,type=n3xx,product=n310,serial=3177E63,claimed=True,addr=192.168.10.2,rx_lo_source=external,init_cals=BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_RX_LO_DELAY
-> [ERROR] [RPC] Someone tried to claim this device again (From: 
-> 192.168.10.1)
-> Traceback (most recent call last):
->   File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 296, 
-> in <module>
->     main()
->   File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 284, 
-> in main
->     tb = top_block_cls()
->   File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 79, 
-> in __init__
->     channels=range(4),
->   File 
-> "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py", 
-> line 122, in constructor_interceptor
->     return old_constructor(*args)
->   File 
-> "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py", 
-> line 2782, in make
->     return _uhd_swig.usrp_source_make(*args)
-> RuntimeError: RuntimeError: Error during RPC call to `claim'. Error 
-> message: Someone tried to claim this device again (From: 192.168.10.1)/*
-> *
+> [ERROR] [RPC] Someone tried to claim this device again (From: 192.168.10.1)
+> Traceback (most recent call last):   File
+> "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 296, in <module>
+>     main()   File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
+> line 284, in main     tb = top_block_cls()   File
+> "/home/ugikie/Desktop/PositionControl/ArrayTest2.py", line 79, in __init__
+>     channels=range(4),   File
+> "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py", line
+> 122, in constructor_interceptor     return old_constructor(*args)   File
+> "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py", line
+> 2782, in make     return _uhd_swig.usrp_source_make(*args) RuntimeError:
+> RuntimeError: Error during RPC call to `claim'. Error message: Someone
+> tried to claim this device again (From: 192.168.10.1)*
 >
 > i\
-Instead of interrupting the GR script, you could use the "Head" block to 
-have it run for a finite number of samples, then exit gracefully.
-   When you interrupt it, some things are clearly not getting cleaned up 
-gracefully.
+>
+> Instead of interrupting the GR script, you could use the "Head" block to
+> have it run for a finite number of samples, then exit gracefully.
+>   When you interrupt it, some things are clearly not getting cleaned up
+> gracefully.
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
+--00000000000054491e05980b551f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
---------------000100010309070102030606
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 11/23/2019 03:49 PM, Austin Adam via
+<div dir=3D"ltr">Hey Marcus,<div>Thank you for the quick response! This sou=
+nds like a good solution, could you give some insight on how to go about do=
+ing it?</div><div><br></div><div>Thank you so much!=C2=A0</div></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Nov =
+23, 2019 at 2:32 PM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:us=
+rp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 11/23/2019 03:49 PM, Austin Adam via
       USRP-users wrote:<br>
     </div>
-    <blockquote
-cite="mid:CAMKs6hfoUZdBUPQf5DjRdcRBjqgzAVRbT6xNVT2CncGPntAsTA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">I am trying to run a Gnu Radio python file via the
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">I am trying to run a Gnu Radio python file via the
         terminal and only want to run in for a few seconds and then kill
         it. Then, wait a little bit, and rerun the script again. My
         problem is that sometimes, when I rerun it, I get an issue with
         my USRP N310 in that it decides to just disconnect with either a
-        "No devices found for" or "Someone tried to claim this device
-        again" message. I have posted the error messages below from two
+        &quot;No devices found for&quot; or &quot;Someone tried to claim th=
+is device
+        again&quot; message. I have posted the error messages below from tw=
+o
         different instances.
         <div><br>
         </div>
         <div>
           <div>When this happens, running uhd_find_devices does not find
             the N310, neither does uhd_find_devices
-            --args=addr=192.168.10.2.</div>
+            --args=3Daddr=3D192.168.10.2.</div>
           <div><br>
           </div>
           <div>Upon restarting the N310 by manually pressing the power
@@ -238,7 +253,7 @@ cite="mid:CAMKs6hfoUZdBUPQf5DjRdcRBjqgzAVRbT6xNVT2CncGPntAsTA@mail.gmail.com"
         </div>
         <div>I am looking for a way to either, reboot the USRP via
           commands for when the error occurs, or a solution/workaround
-          to the problem if it exists. </div>
+          to the problem if it exists.=C2=A0</div>
         <div><br>
         </div>
         <div>Is there any way to keep the USRP claimed and just tell the
@@ -255,81 +270,105 @@ cite="mid:CAMKs6hfoUZdBUPQf5DjRdcRBjqgzAVRbT6xNVT2CncGPntAsTA@mail.gmail.com"
         <div><i>[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
             UHD_3.14.0.HEAD-0-g6875d061</i></div>
         <i>Traceback (most recent call last):<br>
-            File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
+          =C2=A0 File &quot;/home/ugikie/Desktop/PositionControl/ArrayTest2=
+.py&quot;,
           line 296, in &lt;module&gt;<br>
-              main()<br>
-            File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
+          =C2=A0 =C2=A0 main()<br>
+          =C2=A0 File &quot;/home/ugikie/Desktop/PositionControl/ArrayTest2=
+.py&quot;,
           line 284, in main<br>
-              tb = top_block_cls()<br>
-            File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
+          =C2=A0 =C2=A0 tb =3D top_block_cls()<br>
+          =C2=A0 File &quot;/home/ugikie/Desktop/PositionControl/ArrayTest2=
+.py&quot;,
           line 79, in __init__<br>
-              channels=range(4),<br>
-            File
-          "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py",
+          =C2=A0 =C2=A0 channels=3Drange(4),<br>
+          =C2=A0 File
+          &quot;/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init_=
+_.py&quot;,
           line 122, in constructor_interceptor<br>
-              return old_constructor(*args)<br>
-            File
-          "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py",
+          =C2=A0 =C2=A0 return old_constructor(*args)<br>
+          =C2=A0 File
+          &quot;/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swi=
+g.py&quot;,
           line 2782, in make<br>
-              return _uhd_swig.usrp_source_make(*args)<br>
+          =C2=A0 =C2=A0 return _uhd_swig.usrp_source_make(*args)<br>
           RuntimeError: LookupError: KeyError: No devices found for
           -----&gt;<br>
           Device Address:<br>
-              addr: 192.168.10.2<br>
-              rx_lo_source: external<br>
-              init_cals:
-BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_RX_LO_DELAY</i><br>
+          =C2=A0 =C2=A0 addr: 192.168.10.2<br>
+          =C2=A0 =C2=A0 rx_lo_source: external<br>
+          =C2=A0 =C2=A0 init_cals:
+BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|=
+LOOPBACK_RX_LO_DELAY</i><br>
         <div><i><br>
           </i></div>
-        <div><b style="">Here is the second time it happened:</b></div>
+        <div><b>Here is the second time it happened:</b></div>
         <div><i>[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
             UHD_3.14.0.HEAD-0-g6875d061<br>
             [INFO] [MPMD] Initializing 1 device(s) in parallel with
             args:
-mgmt_addr=192.168.10.2,type=n3xx,product=n310,serial=3177E63,claimed=True,addr=192.168.10.2,rx_lo_source=external,init_cals=BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_RX_LO_DELAY<br>
+mgmt_addr=3D192.168.10.2,type=3Dn3xx,product=3Dn310,serial=3D3177E63,claime=
+d=3DTrue,addr=3D192.168.10.2,rx_lo_source=3Dexternal,init_cals=3DBASIC|TX_A=
+TTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_R=
+X_LO_DELAY<br>
             [ERROR] [RPC] Someone tried to claim this device again
             (From: 192.168.10.1)<br>
             Traceback (most recent call last):<br>
-              File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
+            =C2=A0 File &quot;/home/ugikie/Desktop/PositionControl/ArrayTes=
+t2.py&quot;,
             line 296, in &lt;module&gt;<br>
-                main()<br>
-              File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
+            =C2=A0 =C2=A0 main()<br>
+            =C2=A0 File &quot;/home/ugikie/Desktop/PositionControl/ArrayTes=
+t2.py&quot;,
             line 284, in main<br>
-                tb = top_block_cls()<br>
-              File "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
+            =C2=A0 =C2=A0 tb =3D top_block_cls()<br>
+            =C2=A0 File &quot;/home/ugikie/Desktop/PositionControl/ArrayTes=
+t2.py&quot;,
             line 79, in __init__<br>
-                channels=range(4),<br>
-              File
-            "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py",
+            =C2=A0 =C2=A0 channels=3Drange(4),<br>
+            =C2=A0 File
+            &quot;/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__ini=
+t__.py&quot;,
             line 122, in constructor_interceptor<br>
-                return old_constructor(*args)<br>
-              File
-            "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py",
+            =C2=A0 =C2=A0 return old_constructor(*args)<br>
+            =C2=A0 File
+            &quot;/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_s=
+wig.py&quot;,
             line 2782, in make<br>
-                return _uhd_swig.usrp_source_make(*args)<br>
+            =C2=A0 =C2=A0 return _uhd_swig.usrp_source_make(*args)<br>
             RuntimeError: RuntimeError: Error during RPC call to
-            `claim'. Error message: Someone tried to claim this device
-            again (From: 192.168.10.1)</i><b style=""><br>
+            `claim&#39;. Error message: Someone tried to claim this device
+            again (From: 192.168.10.1)</i><b><br>
           </b></div>
       </div>
       <br>
       i\<br>
     </blockquote>
-    Instead of interrupting the GR script, you could use the "Head"
+    Instead of interrupting the GR script, you could use the &quot;Head&quo=
+t;
     block to have it run for a finite number of samples, then exit
     gracefully.<br>
-      When you interrupt it, some things are clearly not getting cleaned
+    =C2=A0 When you interrupt it, some things are clearly not getting clean=
+ed
     up gracefully.<br>
     <br>
     <br>
     <br>
-  </body>
-</html>
+  </div>
 
---------------000100010309070102030606--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000054491e05980b551f--
 
 
---===============4296764373992135955==
+--===============2515153206699610667==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -340,5 +379,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4296764373992135955==--
+--===============2515153206699610667==--
 
