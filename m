@@ -2,67 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D018108163
-	for <lists+usrp-users@lfdr.de>; Sun, 24 Nov 2019 02:51:23 +0100 (CET)
-Received: from [::1] (port=48910 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CBD61082F1
+	for <lists+usrp-users@lfdr.de>; Sun, 24 Nov 2019 11:40:25 +0100 (CET)
+Received: from [::1] (port=48678 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iYh3a-0002cV-I8; Sat, 23 Nov 2019 20:51:22 -0500
-Received: from mail-qv1-f52.google.com ([209.85.219.52]:42380)
+	id 1iYpJV-0007pr-Kn; Sun, 24 Nov 2019 05:40:21 -0500
+Received: from mail-qv1-f46.google.com ([209.85.219.46]:40035)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iYh3X-0002VY-DT
- for usrp-users@lists.ettus.com; Sat, 23 Nov 2019 20:51:19 -0500
-Received: by mail-qv1-f52.google.com with SMTP id n4so4373977qvq.9
- for <usrp-users@lists.ettus.com>; Sat, 23 Nov 2019 17:50:59 -0800 (PST)
+ (Exim 4.92) (envelope-from <cuervonicolas@gmail.com>)
+ id 1iYpJS-0007lL-JC
+ for usrp-users@lists.ettus.com; Sun, 24 Nov 2019 05:40:18 -0500
+Received: by mail-qv1-f46.google.com with SMTP id i3so4582773qvv.7
+ for <usrp-users@lists.ettus.com>; Sun, 24 Nov 2019 02:39:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=5Sf14noxWy5NF0p6ZTGUsWABmOTS/OtY29fgotcJrCE=;
- b=u8FtObp0288g59+q47ae5d6HHez4RnR17tFF81/OcfAtvajr8jYAozR7tceFJeK2wd
- iLR0ZhBH17wWKCX29Q2bybT1Rd1798+MA3aSVsLkLn3EFbeTH81v1Mvo+/FnI4wdwc5X
- c4SfcTyWOmJCykT0Z26QlKH80dm3DtwGgw/HWgJmyLIMdehzNfMtPvWKI3wwSIPSwVpb
- NQVGUJGn8zis9WtEIK7xhch7M8805y4ChOLoF0nskxVBKlHwNvf5IwRGv/TufSPiweov
- hescqyy2kARCt/S92BIqx40ZSnnn/s1KEB9iHE+mRshxgRmEfFoAmLnqnnZM0HtRiMSy
- 1rNg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=GMAxibViPHVyA8AvD8V0O5yEpVWmFluIl6QN3bdjD5E=;
+ b=PJlqpnGER2zCXS/5X7zb7Q2ncft6NTKpybzh1KiREodxWVarTX3ML5335fY8nj5TvC
+ zbsvNtGejMMSGU3fN9ooY25e5pUsuGpKwOclxVVSTzK9uoueHjhGlGCCyZduyBaUQrLF
+ kCfSKZ9wtKydjJ3kcud/HZSgSa4P+1u408ix3eBz0An9hltOd7FMMLc1EBoFnA9qIfu/
+ APkNJwUHvKVWg0B5bm+kjpROKzGCLCoKubruQjBc2U6Q8zo29nb/kht8mi63KaXs1Udz
+ cUP37v9pm8NKN4Rpk792wHFRvokxXSU5o7axzztReMUIOYWDVyuwEGoK+Hztv0v/EQom
+ 1yLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=5Sf14noxWy5NF0p6ZTGUsWABmOTS/OtY29fgotcJrCE=;
- b=hzomu8zIItaOhzDATpz0f9hRdQN1FIhKfFlHDwE+S3yWNczaJkiNsOvIHgWBV8OfB+
- XBhEYGXm6JUMyg+hZPKibetT8c7WTaSQZKJTk4m+8LWx8UTfUY0UEV72UJ0oXpI4KKF7
- 3hE1WY+oix225/ryuByUV2tVEe4OwSQhy3BTTLSwq0gpC80qPYyBeFAxPtxzeOelqXOA
- 8vrlYp2Rllxz8QziVLOpR7hK/uDdSHN/noBpk/6ivaVlXYDfahKk2ACuXqsisedPye/y
- 39Mk2a/xN2igUgURBeNvNc4/NIiQUatdrafdVmi38hPplvUwvFEjmtRVNXdsNJW7YUh0
- ZzCg==
-X-Gm-Message-State: APjAAAUlQQ0NIsWPbt7gRGoEdQvxIhV1DKl9dZD+ilIt/E1LA4MemP3U
- fveja1QA253T9Slj1YrKf9IpH8f0ZGE=
-X-Google-Smtp-Source: APXvYqyBp96g0nhzVRbA7wkm1jVP7f03NlZuqs897cWAJrs8bziDCqxysRT5O6LnqShVaewMwfYJLA==
-X-Received: by 2002:ad4:4b08:: with SMTP id r8mr20886539qvw.75.1574560238450; 
- Sat, 23 Nov 2019 17:50:38 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
- [174.95.14.228])
- by smtp.googlemail.com with ESMTPSA id w2sm1190332qkw.31.2019.11.23.17.50.37
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 23 Nov 2019 17:50:37 -0800 (PST)
-Message-ID: <5DD9E1EC.6090203@gmail.com>
-Date: Sat, 23 Nov 2019 20:50:36 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=GMAxibViPHVyA8AvD8V0O5yEpVWmFluIl6QN3bdjD5E=;
+ b=uZ/3Zaxnm/fntcwbssPqkagsVuPlXHvYpjj/3qMQDROEpS88ICY4ts87Y6xkG4ZnBB
+ 2HM6A6YxQKbEZTOWh+7r9rLzLcHJhYzpcgv+IaoIWKim1otG7isxPtEcA/ihSrMTuEIb
+ iN3AK0ASx1z+Yjcva+VKIkHjtMlqo1bu2sXzvo8VXfJAeuLincPhyJMYoy1Vhua/Bpjl
+ XGGgRCWUHWpIA6Ji5DH1Kw8ytJwmJivWC4U6D8TpO6j2yq8sq048iOQGCNy7I9Z9ETUz
+ J+g50onJeynWzzO2gc6AKqGZj6iM82ZZufepgoGMCCUzRk0G6H1BT2DM+smrgqUGIdqA
+ 23rQ==
+X-Gm-Message-State: APjAAAXBgdYp+/p4sWxkhImmvkhjbAp5PMnv2JVJcfja82VcX0/MWKo7
+ fbc27NBCm3QCF3MwZsJIkaxXO3vjFPvRvMqW1FU=
+X-Google-Smtp-Source: APXvYqyn5uSHLxydUbj0uhfy4PT5RwCB5bc4S4m7rzJhqtgREAeeOKP5C4aGEr/yqIjX7rKjlp8IBO6gqQu8KKBcIRs=
+X-Received: by 2002:ad4:51d0:: with SMTP id p16mr5379912qvq.82.1574591977766; 
+ Sun, 24 Nov 2019 02:39:37 -0800 (PST)
 MIME-Version: 1.0
-To: Austin Adam <austinadam42@gmail.com>
-References: <CAMKs6hfoUZdBUPQf5DjRdcRBjqgzAVRbT6xNVT2CncGPntAsTA@mail.gmail.com>
- <5DD9B351.5040406@gmail.com>
- <CAMKs6heE4bsDnBi5Yvb5gzPRb3nHyd15dmK1mO0Nbwson95J0A@mail.gmail.com>
- <5DD9B8E1.80705@gmail.com>
- <CAMKs6hejPSHcQE1K_AyH7yv1dRgy69j3vWErosJuu46-0fJdvQ@mail.gmail.com>
- <5DD9BE1D.1040300@gmail.com>
- <CAMKs6hdMw5DjX37q=Lvn=UD2D_xf2G3zFtuAqASS27ELb9tPjQ@mail.gmail.com>
- <5DD9C0A0.6030600@gmail.com>
- <CAMKs6heYHr3yN7ySoW3oktsfSo4hysvsZ0_ZYWDW-=RY8pqn6g@mail.gmail.com>
-In-Reply-To: <CAMKs6heYHr3yN7ySoW3oktsfSo4hysvsZ0_ZYWDW-=RY8pqn6g@mail.gmail.com>
-Subject: Re: [USRP-users] USRP N310 Losing Connection Occassionally
+References: <CAG-BkhYSJvb4TvVR+nMRzZqW+6pew4ArFHCiCviifVoAQp4LLQ@mail.gmail.com>
+In-Reply-To: <CAG-BkhYSJvb4TvVR+nMRzZqW+6pew4ArFHCiCviifVoAQp4LLQ@mail.gmail.com>
+Date: Sun, 24 Nov 2019 11:39:26 +0100
+Message-ID: <CAG-BkhaOXe=9dfNAVPqqrKiU3zAH4aC_uJtmcAqXEBf4_CWidA@mail.gmail.com>
+To: discuss-gnuradio <discuss-gnuradio@gnu.org>, 
+ "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] FOSDEM 2020: Free Software Radio Devroom CfP
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,10 +59,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0563283637164452804=="
+From: Nicolas Cuervo Benavides via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nicolas Cuervo Benavides <cuervonicolas@gmail.com>
+Cc: Martin Braun <martin@gnuradio.org>, philip.balister@gmail.com,
+ derek@bitstovolts.com, osmocom-sdr@lists.osmocom.org
+Content-Type: multipart/mixed; boundary="===============4358479823050492204=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -91,587 +77,266 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0563283637164452804==
-Content-Type: multipart/alternative;
- boundary="------------060108000607090300050007"
+--===============4358479823050492204==
+Content-Type: multipart/alternative; boundary="0000000000008043c805981543f2"
 
-This is a multi-part message in MIME format.
---------------060108000607090300050007
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000008043c805981543f2
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/23/2019 08:42 PM, Austin Adam wrote:
-> Thank you for your help Marcus, that seems to have done the trick! It 
-> was the "no gui" and "run to completion" options that did it, for any 
-> others who may come along this post and want to know if your solution 
-> worked!
-I think the basic problem in the Qt case is that the Qt state machine 
-"runs" independent of GR, and really, the Qt library, as such, knows nothing
-   about GR, so it has no way of really understanding that the framework 
-it's running inside is "done".
+Dear friends and fans of software-defined radio,
 
 
+
+the SDR track at next year's FOSDEM still has some slots left! We already
+have
+some submissions and we are in the process of ranking those, but we will
+gladly
+add YOUR presentation to the list!
+
+
+
+If you have anything related to the field of free software radio, please
+
+head to:
+
+
+
+https://penta.fosdem.org/submission/FOSDEM20
+
+
+
+and submit your short abstract! We're looking very much forward to your
+submission.
+
+
+
+For the committee,
+
+
+
+Nicolas Cuervo
+
+On Wed, Oct 16, 2019 at 8:19 PM Nicolas Cuervo Benavides <
+cuervonicolas@gmail.com> wrote:
+
+> Dear friends and fans of software-defined radio and free/open-source radio
+> topics in general,
 >
-> On Sat, Nov 23, 2019 at 3:28 PM Marcus D. Leech 
-> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->
->     On 11/23/2019 06:24 PM, Austin Adam wrote:
->>     For testing, I just put a simple signal source, added a head
->>     block, and then a QT Time sink and it seems to just go for a
->>     second and freeze. I am sure this is the correct way to do it.
->>     When it issues the 'done' is it supposed to close? Or send a
->>     message? Or change some variable that I then have to check in the
->>     code?
->     When a block marks "done", that propagates inwards, and it's
->     possibly the case that the QT blocks don't honor that?
->
->     Try it with something like a null sink, or a file sink going to
->     /dev/null, and see that it nicely terminates--configure your block
->     for "no gui" and
->       "exit when done".
->
->     This question is drifting more into Gnu Radio land, so if this
->     drifts into straight-up Gnu Radio territory, the discussion should
->     be held on
->       the discuss-gnuradio mailing list--where there are more people
->     who have opinions about GR "stuff".
+> FOSDEM 2020 (the free and open-source developer's meeting in Brussels,
+> Europe) will, once again, feature a track on Software Defined Radio, and
+> any other radio-related topics in the (now known as) *Free Software Radio* devroom.
+> Therefore, we invite developers and users from the free software radio
+> community to join us for this track and present your talks or demos.
 >
 >
->>
->>     On Sat, Nov 23, 2019 at 3:17 PM Marcus D. Leech
->>     <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->>
->>         On 11/23/2019 06:06 PM, Austin Adam wrote:
->>>         So I just put it in between my source and sink and when it
->>>         hits lets say 1000000 samples, it will automatically
->>>         terminate the script? I just tried doing it and it doesn't
->>>         seem to be working, it just sort of freezes up after about a
->>>         second. Maybe I am not doing it correctly..
->>         You put it after your source, and the rest of the graph is
->>         the same.
->>
->>         If it just "freezes up", that's, I think, unexpected, and may
->>         indicate some deficiencies in flowgraph shutdown on N3xx
->>         hardware.
->>
->>         What does you GR script look like?
->>
->>
->>>
->>>         On Sat, Nov 23, 2019 at 2:55 PM Marcus D. Leech
->>>         <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>>
->>>         wrote:
->>>
->>>             On 11/23/2019 05:48 PM, Austin Adam wrote:
->>>>             Hey Marcus,
->>>>             Thank you for the quick response! This sounds like a
->>>>             good solution, could you give some insight on how to go
->>>>             about doing it?
->>>>
->>>>             Thank you so much!
->>>             The "head" block takes a number, which is the count of
->>>             samples that it will allow through it before it declares
->>>             "Done", and thus causes
->>>               clean termination of your GR Script.
->>>
->>>
->>>>
->>>>             On Sat, Nov 23, 2019 at 2:32 PM Marcus D. Leech via
->>>>             USRP-users <usrp-users@lists.ettus.com
->>>>             <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>
->>>>                 On 11/23/2019 03:49 PM, Austin Adam via USRP-users
->>>>                 wrote:
->>>>>                 I am trying to run a Gnu Radio python file via the
->>>>>                 terminal and only want to run in for a few seconds
->>>>>                 and then kill it. Then, wait a little bit, and
->>>>>                 rerun the script again. My problem is that
->>>>>                 sometimes, when I rerun it, I get an issue with my
->>>>>                 USRP N310 in that it decides to just disconnect
->>>>>                 with either a "No devices found for" or "Someone
->>>>>                 tried to claim this device again" message. I have
->>>>>                 posted the error messages below from two different
->>>>>                 instances.
->>>>>
->>>>>                 When this happens, running uhd_find_devices does
->>>>>                 not find the N310, neither does uhd_find_devices
->>>>>                 --args=addr=192.168.10.2.
->>>>>
->>>>>                 Upon restarting the N310 by manually pressing the
->>>>>                 power button, it is able to be found by
->>>>>                 uhd_find_devices, and I can continue running the
->>>>>                 script until the error happens, and I have to go
->>>>>                 manually restart the USRP.
->>>>>
->>>>>                 I am trying to make an entire automated system and
->>>>>                 this is the one thing that requires manual effort,
->>>>>                 which is to get up and restart the USRP.
->>>>>
->>>>>                 I am looking for a way to either, reboot the USRP
->>>>>                 via commands for when the error occurs, or a
->>>>>                 solution/workaround to the problem if it exists.
->>>>>
->>>>>                 Is there any way to keep the USRP claimed and just
->>>>>                 tell the GNU part of the script to run each time I
->>>>>                 want to rerun it? Because each time I have to run
->>>>>                 the script, the USRP has to again be claimed and
->>>>>                 initiated. How can I keep it on at all times, or
->>>>>                 just skip the claiming step each time?
->>>>>
->>>>>                 Thank you in advance for any help you can provide!
->>>>>
->>>>>                 Here are the error messages:
->>>>>                 /[INFO] [UHD] linux; GNU C++ version 8.3.0;
->>>>>                 Boost_106700; UHD_3.14.0.HEAD-0-g6875d061/
->>>>>                 /Traceback (most recent call last):
->>>>>                   File
->>>>>                 "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
->>>>>                 line 296, in <module>
->>>>>                     main()
->>>>>                   File
->>>>>                 "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
->>>>>                 line 284, in main
->>>>>                     tb = top_block_cls()
->>>>>                   File
->>>>>                 "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
->>>>>                 line 79, in __init__
->>>>>                     channels=range(4),
->>>>>                   File
->>>>>                 "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py",
->>>>>                 line 122, in constructor_interceptor
->>>>>                     return old_constructor(*args)
->>>>>                   File
->>>>>                 "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py",
->>>>>                 line 2782, in make
->>>>>                     return _uhd_swig.usrp_source_make(*args)
->>>>>                 RuntimeError: LookupError: KeyError: No devices
->>>>>                 found for ----->
->>>>>                 Device Address:
->>>>>                     addr: 192.168.10.2
->>>>>                     rx_lo_source: external
->>>>>                     init_cals:
->>>>>                 BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_RX_LO_DELAY/
->>>>>                 /
->>>>>                 /
->>>>>                 *Here is the second time it happened:*
->>>>>                 /[INFO] [UHD] linux; GNU C++ version 8.3.0;
->>>>>                 Boost_106700; UHD_3.14.0.HEAD-0-g6875d061
->>>>>                 [INFO] [MPMD] Initializing 1 device(s) in parallel
->>>>>                 with args:
->>>>>                 mgmt_addr=192.168.10.2,type=n3xx,product=n310,serial=3177E63,claimed=True,addr=192.168.10.2,rx_lo_source=external,init_cals=BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_RX_LO_DELAY
->>>>>                 [ERROR] [RPC] Someone tried to claim this device
->>>>>                 again (From: 192.168.10.1)
->>>>>                 Traceback (most recent call last):
->>>>>                   File
->>>>>                 "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
->>>>>                 line 296, in <module>
->>>>>                     main()
->>>>>                   File
->>>>>                 "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
->>>>>                 line 284, in main
->>>>>                     tb = top_block_cls()
->>>>>                   File
->>>>>                 "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
->>>>>                 line 79, in __init__
->>>>>                     channels=range(4),
->>>>>                   File
->>>>>                 "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py",
->>>>>                 line 122, in constructor_interceptor
->>>>>                     return old_constructor(*args)
->>>>>                   File
->>>>>                 "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py",
->>>>>                 line 2782, in make
->>>>>                     return _uhd_swig.usrp_source_make(*args)
->>>>>                 RuntimeError: RuntimeError: Error during RPC call
->>>>>                 to `claim'. Error message: Someone tried to claim
->>>>>                 this device again (From: 192.168.10.1)/*
->>>>>                 *
->>>>>
->>>>>                 i\
->>>>                 Instead of interrupting the GR script, you could
->>>>                 use the "Head" block to have it run for a finite
->>>>                 number of samples, then exit gracefully.
->>>>                   When you interrupt it, some things are clearly
->>>>                 not getting cleaned up gracefully.
->>>>
->>>>
->>>>
->>>>                 _______________________________________________
->>>>                 USRP-users mailing list
->>>>                 USRP-users@lists.ettus.com
->>>>                 <mailto:USRP-users@lists.ettus.com>
->>>>                 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
->>
+> Software Radio has become an important tool to allow anyone to access the
+> EM spectrum. Using free software radio libraries and applications and cheap
+> hardware, anyone can now start hacking on wireless communications, remote
+> sensing, radar, fun hacks of all sorts, or other applications. At FOSDEM,
+> we hope to network all these projects and improve collaboration, bring new
+> ideas forward and get more people involved.
+>
+>
+> The track's web site resides at the link below. The final schedule will be
+> available through Pentabarf and the official FOSDEM website.
+>
+> https://fosdem.org/2020/schedule/track/free_software_radio/
+>
+>
+> Additional Information will be also available at:
+> https://wiki.gnuradio.org/index.php/FOSDEM_2020
+>
+>
+> ** Submit your presentations
+>
+> To suggest a talk, go to https://penta.fosdem.org/submission/FOSDEM20 and
+> follow the instructions (you need an account, but can use your account from
+> last year if you have one). You need to create an 'Event'; make sure it's
+> in the Free Software Radio track! Lengths aren't fixed, but give a
+> realistic estimate and please don't exceed 30 minutes unless you have
+> something special planned (in that case, contact one of us). Also, don't
+> forget to include time for Q&A.
+> We will typically go for 30-minute slots -- shorter talks, unless they're
+> really short, usually tend to screw up the schedule too much.
+>
+> You aren't limited to slide presentations, of course. Be creative.
+> However, FOSDEM is an open-source conference, therefore we ask you to stay
+> clear of marketing presentations and present something relevant to
+> free/open software. We like nitty-gritty technical stuff.
+>
+> Topics discussed in this devroom include:
+>
+> * SDR Frameworks + Tools
+> * Cellular/telecoms software
+> * Free/Open SDR hardware
+> * Wireless security
+> * Random fun wireless hacks
+> * SDR in education
+> * Satellite/spacecraft communication
+> * Ham radio related topics
+>
+>
+> ** Important Dates
+>
+> FOSDEM is February 1st and 2nd, 2020. The Free Software Radio devroom is
+> happening on Sunday, the 2nd of February.
+>
+> The submission deadline is Friday, December 6th. A complete schedule for
+> the presentations in the devroom will be available on the 15th of December.
+>
+>
+> In the last years we were always full to the brim with presentations, so
+> if you want to present, please make sure to submit your abstracts soon!
+>
+> ** Steering Committee
+> The track committee consists of:
+>
+> * Phil Balister - "Crofton"
+> * Sylvain Munaut -"tnt"
+> * Derek Kozel - "dkozel"
+> * Nicolas Cuervo - "primercuervo"
+> * Martin Braun - "mbr0wn"  (Emeritus)
+>
+>
+> Hope to hear from you soon! And please forward this announcement.
 >
 
+--0000000000008043c805981543f2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------060108000607090300050007
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+<div dir=3D"ltr">Dear friends and fans of software-defined radio, =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 <br>the SDR track at next year&#39;s FOSDEM still has =
+some slots left! We already have =C2=A0<br>some submissions and we are in t=
+he process of ranking those, but we will gladly <br>add YOUR presentation t=
+o the list! =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 <br>If you have anything related to the field of free softwar=
+e radio, please =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>head to: =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 <br><a href=3D"https://penta.fosdem.org/submission/FOSDEM=
+20">https://penta.fosdem.org/submission/FOSDEM20</a> =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 <br>and submit your short abstract! We&#39;re looking =
+very much forward to your=C2=A0<br>submission. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>For the committee,=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>Nicolas Cue=
+rvo=C2=A0<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Wed, Oct 16, 2019 at 8:19 PM Nicolas Cuervo Benavides &lt;<=
+a href=3D"mailto:cuervonicolas@gmail.com">cuervonicolas@gmail.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr">Dear friends and fans of software-defined radio and free/open-sour=
+ce radio topics in general,<br><div><br></div><div><p style=3D"margin:0.5em=
+ 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif">FOSDEM=
+ 2020 (the free and open-source developer&#39;s meeting in Brussels, Europe=
+) will, once again, feature a track on Software Defined Radio, and any othe=
+r radio-related topics in the (now known as)=C2=A0<i>Free Software Radio</i=
+>=C2=A0devroom. Therefore, we invite developers and users from the free sof=
+tware radio community to join us for this track and present your talks or d=
+emos.</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,3=
+7);font-family:sans-serif"><br></p><p style=3D"margin:0.5em 0px;line-height=
+:inherit;color:rgb(37,37,37);font-family:sans-serif">Software Radio has bec=
+ome an important tool to allow anyone to access the EM spectrum. Using free=
+ software radio libraries and applications and cheap hardware, anyone can n=
+ow start hacking on wireless communications, remote sensing, radar, fun hac=
+ks of all sorts, or other applications. At FOSDEM, we hope to network all t=
+hese projects and improve collaboration, bring new ideas forward and get mo=
+re people involved.</p><p style=3D"margin:0.5em 0px;line-height:inherit;col=
+or:rgb(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin:0.5em 0=
+px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif">The trac=
+k&#39;s web site resides at the link below<span style=3D"font-family:Arial,=
+Helvetica,sans-serif;color:rgb(34,34,34)">. The final schedule will=C2=A0</=
+span><span style=3D"font-family:Arial,Helvetica,sans-serif;color:rgb(34,34,=
+34)">be available through Pentabarf and the official FOSDEM website.</span>=
+</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);fo=
+nt-family:sans-serif"><a href=3D"https://fosdem.org/2020/schedule/track/fre=
+e_software_radio/" target=3D"_blank">https://fosdem.org/2020/schedule/track=
+/free_software_radio/</a><br></p><p style=3D"margin:0.5em 0px;line-height:i=
+nherit;color:rgb(37,37,37);font-family:sans-serif"><br></p><p style=3D"marg=
+in:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif=
+">Additional Information will be also available at:=C2=A0<a href=3D"https:/=
+/wiki.gnuradio.org/index.php/FOSDEM_2020" style=3D"font-family:Arial,Helvet=
+ica,sans-serif" target=3D"_blank">https://wiki.gnuradio.org/index.php/FOSDE=
+M_2020</a></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37=
+,37,37);font-family:sans-serif"><br>** Submit your presentations<br></p><p =
+style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-fami=
+ly:sans-serif">To suggest a talk, go to=C2=A0<a href=3D"https://penta.fosde=
+m.org/submission/FOSDEM20" target=3D"_blank">https://penta.fosdem.org/submi=
+ssion/FOSDEM20</a>=C2=A0and follow the instructions (you need an account, b=
+ut can use your account from last year if you have one). You need to create=
+ an &#39;Event&#39;; make sure it&#39;s in the Free Software Radio track! L=
+engths aren&#39;t fixed, but give a realistic estimate and please don&#39;t=
+ exceed 30 minutes unless you have something special planned (in that case,=
+ contact one of us). Also, don&#39;t forget to include time for Q&amp;A.<br=
+>We will typically go for 30-minute slots -- shorter talks, unless they&#39=
+;re really short, usually tend to screw up the schedule too much.<br></p><p=
+ style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-fam=
+ily:sans-serif">You aren&#39;t limited to slide presentations, of course. B=
+e creative. However, FOSDEM is an open-source conference, therefore we ask =
+you to stay clear of marketing presentations and present something relevant=
+ to free/open software. We like nitty-gritty technical stuff.<br><br>Topics=
+ discussed in this devroom include:<br><br>* SDR Frameworks + Tools<br>* Ce=
+llular/telecoms software<br>* Free/Open SDR hardware<br>* Wireless security=
+<br>* Random fun wireless hacks<br>* SDR in education<br>* Satellite/spacec=
+raft communication<br>* Ham radio related topics<br><br><br>** Important Da=
+tes<br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37=
+,37);font-family:sans-serif">FOSDEM is February 1st and 2nd, 2020. The Free=
+ Software Radio devroom is happening on Sunday, the 2nd of February.</p><p =
+style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-fami=
+ly:sans-serif">The submission deadline is Friday, December 6th. A complete =
+schedule for the presentations in the devroom will be available on the 15th=
+ of December.</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb=
+(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin:0.5em 0px;lin=
+e-height:inherit;color:rgb(37,37,37);font-family:sans-serif">In the last ye=
+ars we were always full to the brim with presentations, so if you want to p=
+resent, please make sure to submit your abstracts soon!<br><br>** Steering =
+Committee<br>The track committee consists of:<br><br>* Phil Balister -=C2=
+=A0&quot;Crofton&quot;<br>* Sylvain Munaut -&quot;tnt&quot;<br>* Derek Koze=
+l - &quot;dkozel&quot;<br>* Nicolas Cuervo - &quot;primercuervo&quot;<br>* =
+Martin Braun -=C2=A0&quot;mbr0wn&quot;=C2=A0 (Emeritus)<br></p><p style=3D"=
+margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-s=
+erif"><br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37=
+,37,37);font-family:sans-serif">Hope to hear from you soon! And please forw=
+ard this announcement.<span><font color=3D"#888888"><br></font></span></p><=
+/div></div>
+</blockquote></div>
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 11/23/2019 08:42 PM, Austin Adam
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAMKs6heYHr3yN7ySoW3oktsfSo4hysvsZ0_ZYWDW-=RY8pqn6g@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Thank you for your help Marcus, that seems to have
-        done the trick! It was the "no gui" and "run to completion"
-        options that did it, for any others who may come along this post
-        and want to know if your solution worked!</div>
-    </blockquote>
-    I think the basic problem in the Qt case is that the Qt state
-    machine "runs" independent of GR, and really, the Qt library, as
-    such, knows nothing<br>
-      about GR, so it has no way of really understanding that the
-    framework it's running inside is "done".<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CAMKs6heYHr3yN7ySoW3oktsfSo4hysvsZ0_ZYWDW-=RY8pqn6g@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Sat, Nov 23, 2019 at 3:28
-          PM Marcus D. Leech &lt;<a moz-do-not-send="true"
-            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div bgcolor="#FFFFFF">
-            <div>On 11/23/2019 06:24 PM, Austin Adam wrote:<br>
-            </div>
-            <blockquote type="cite">
-              <div dir="ltr">For testing, I just put a simple signal
-                source, added a head block, and then a QT Time sink and
-                it seems to just go for a second and freeze. I am sure
-                this is the correct way to do it. When it issues the
-                'done' is it supposed to close? Or send a message? Or
-                change some variable that I then have to check in the
-                code? <br>
-              </div>
-            </blockquote>
-            When a block marks "done", that propagates inwards, and it's
-            possibly the case that the QT blocks don't honor that?<br>
-            <br>
-            Try it with something like a null sink, or a file sink going
-            to /dev/null, and see that it nicely terminates--configure
-            your block for "no gui" and<br>
-              "exit when done".<br>
-            <br>
-            This question is drifting more into Gnu Radio land, so if
-            this drifts into straight-up Gnu Radio territory, the
-            discussion should be held on<br>
-              the discuss-gnuradio mailing list--where there are more
-            people who have opinions about GR "stuff".<br>
-            <br>
-            <br>
-            <blockquote type="cite"><br>
-              <div class="gmail_quote">
-                <div dir="ltr" class="gmail_attr">On Sat, Nov 23, 2019
-                  at 3:17 PM Marcus D. Leech &lt;<a
-                    moz-do-not-send="true"
-                    href="mailto:patchvonbraun@gmail.com"
-                    target="_blank">patchvonbraun@gmail.com</a>&gt;
-                  wrote:<br>
-                </div>
-                <blockquote class="gmail_quote" style="margin:0px 0px
-                  0px 0.8ex;border-left:1px solid
-                  rgb(204,204,204);padding-left:1ex">
-                  <div bgcolor="#FFFFFF">
-                    <div>On 11/23/2019 06:06 PM, Austin Adam wrote:<br>
-                    </div>
-                    <blockquote type="cite">
-                      <div dir="ltr">So I just put it in between my
-                        source and sink and when it hits lets say
-                        1000000 samples, it will automatically terminate
-                        the script? I just tried doing it and it doesn't
-                        seem to be working, it just sort of freezes up
-                        after about a second. Maybe I am not doing it
-                        correctly..</div>
-                    </blockquote>
-                    You put it after your source, and the rest of the
-                    graph is the same.<br>
-                    <br>
-                    If it just "freezes up", that's, I think,
-                    unexpected, and may indicate some deficiencies in
-                    flowgraph shutdown on N3xx hardware.<br>
-                    <br>
-                    What does you GR script look like?<br>
-                    <br>
-                    <br>
-                    <blockquote type="cite"><br>
-                      <div class="gmail_quote">
-                        <div dir="ltr" class="gmail_attr">On Sat, Nov
-                          23, 2019 at 2:55 PM Marcus D. Leech &lt;<a
-                            moz-do-not-send="true"
-                            href="mailto:patchvonbraun@gmail.com"
-                            target="_blank">patchvonbraun@gmail.com</a>&gt;
-
-                          wrote:<br>
-                        </div>
-                        <blockquote class="gmail_quote"
-                          style="margin:0px 0px 0px
-                          0.8ex;border-left:1px solid
-                          rgb(204,204,204);padding-left:1ex">
-                          <div bgcolor="#FFFFFF">
-                            <div>On 11/23/2019 05:48 PM, Austin Adam
-                              wrote:<br>
-                            </div>
-                            <blockquote type="cite">
-                              <div dir="ltr">Hey Marcus,
-                                <div>Thank you for the quick response!
-                                  This sounds like a good solution,
-                                  could you give some insight on how to
-                                  go about doing it?</div>
-                                <div><br>
-                                </div>
-                                <div>Thank you so much! <br>
-                                </div>
-                              </div>
-                            </blockquote>
-                            The "head" block takes a number, which is
-                            the count of samples that it will allow
-                            through it before it declares "Done", and
-                            thus causes<br>
-                              clean termination of your GR Script.<br>
-                            <br>
-                            <br>
-                            <blockquote type="cite"><br>
-                              <div class="gmail_quote">
-                                <div dir="ltr" class="gmail_attr">On
-                                  Sat, Nov 23, 2019 at 2:32 PM Marcus D.
-                                  Leech via USRP-users &lt;<a
-                                    moz-do-not-send="true"
-                                    href="mailto:usrp-users@lists.ettus.com"
-                                    target="_blank">usrp-users@lists.ettus.com</a>&gt;
+--0000000000008043c805981543f2--
 
 
-                                  wrote:<br>
-                                </div>
-                                <blockquote class="gmail_quote"
-                                  style="margin:0px 0px 0px
-                                  0.8ex;border-left:1px solid
-                                  rgb(204,204,204);padding-left:1ex">
-                                  <div bgcolor="#FFFFFF">
-                                    <div>On 11/23/2019 03:49 PM, Austin
-                                      Adam via USRP-users wrote:<br>
-                                    </div>
-                                    <blockquote type="cite">
-                                      <div dir="ltr">I am trying to run
-                                        a Gnu Radio python file via the
-                                        terminal and only want to run in
-                                        for a few seconds and then kill
-                                        it. Then, wait a little bit, and
-                                        rerun the script again. My
-                                        problem is that sometimes, when
-                                        I rerun it, I get an issue with
-                                        my USRP N310 in that it decides
-                                        to just disconnect with either a
-                                        "No devices found for" or
-                                        "Someone tried to claim this
-                                        device again" message. I have
-                                        posted the error messages below
-                                        from two different instances.
-                                        <div><br>
-                                        </div>
-                                        <div>
-                                          <div>When this happens,
-                                            running uhd_find_devices
-                                            does not find the N310,
-                                            neither does
-                                            uhd_find_devices
-                                            --args=addr=192.168.10.2.</div>
-                                          <div><br>
-                                          </div>
-                                          <div>Upon restarting the N310
-                                            by manually pressing the
-                                            power button, it is able to
-                                            be found by
-                                            uhd_find_devices, and I can
-                                            continue running the script
-                                            until the error happens, and
-                                            I have to go manually
-                                            restart the USRP.</div>
-                                        </div>
-                                        <div><br>
-                                        </div>
-                                        <div>I am trying to make an
-                                          entire automated system and
-                                          this is the one thing that
-                                          requires manual effort, which
-                                          is to get up and restart the
-                                          USRP.</div>
-                                        <div><br>
-                                        </div>
-                                        <div>I am looking for a way to
-                                          either, reboot the USRP via
-                                          commands for when the error
-                                          occurs, or a
-                                          solution/workaround to the
-                                          problem if it exists. </div>
-                                        <div><br>
-                                        </div>
-                                        <div>Is there any way to keep
-                                          the USRP claimed and just tell
-                                          the GNU part of the script to
-                                          run each time I want to rerun
-                                          it? Because each time I have
-                                          to run the script, the USRP
-                                          has to again be claimed and
-                                          initiated. How can I keep it
-                                          on at all times, or just skip
-                                          the claiming step each time?</div>
-                                        <div><br>
-                                        </div>
-                                        <div>Thank you in advance for
-                                          any help you can provide!</div>
-                                        <div><br>
-                                        </div>
-                                        <div>Here are the error
-                                          messages:</div>
-                                        <div><i>[INFO] [UHD] linux; GNU
-                                            C++ version 8.3.0;
-                                            Boost_106700;
-                                            UHD_3.14.0.HEAD-0-g6875d061</i></div>
-                                        <i>Traceback (most recent call
-                                          last):<br>
-                                            File
-                                          "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
-                                          line 296, in &lt;module&gt;<br>
-                                              main()<br>
-                                            File
-                                          "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
-                                          line 284, in main<br>
-                                              tb = top_block_cls()<br>
-                                            File
-                                          "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
-                                          line 79, in __init__<br>
-                                              channels=range(4),<br>
-                                            File
-                                          "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py",
-                                          line 122, in
-                                          constructor_interceptor<br>
-                                              return
-                                          old_constructor(*args)<br>
-                                            File
-                                          "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py",
-                                          line 2782, in make<br>
-                                              return
-                                          _uhd_swig.usrp_source_make(*args)<br>
-                                          RuntimeError: LookupError:
-                                          KeyError: No devices found for
-                                          -----&gt;<br>
-                                          Device Address:<br>
-                                              addr: 192.168.10.2<br>
-                                              rx_lo_source: external<br>
-                                              init_cals:
-BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_RX_LO_DELAY</i><br>
-                                        <div><i><br>
-                                          </i></div>
-                                        <div><b>Here is the second time
-                                            it happened:</b></div>
-                                        <div><i>[INFO] [UHD] linux; GNU
-                                            C++ version 8.3.0;
-                                            Boost_106700;
-                                            UHD_3.14.0.HEAD-0-g6875d061<br>
-                                            [INFO] [MPMD] Initializing 1
-                                            device(s) in parallel with
-                                            args:
-mgmt_addr=192.168.10.2,type=n3xx,product=n310,serial=3177E63,claimed=True,addr=192.168.10.2,rx_lo_source=external,init_cals=BASIC|TX_ATTENUATION_DELAY|RX_GAIN_DELAY|PATH_DELAY|TX_LO_LEAKAGE_INTERNAL|LOOPBACK_RX_LO_DELAY<br>
-                                            [ERROR] [RPC] Someone tried
-                                            to claim this device again
-                                            (From: 192.168.10.1)<br>
-                                            Traceback (most recent call
-                                            last):<br>
-                                              File
-                                            "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
-                                            line 296, in &lt;module&gt;<br>
-                                                main()<br>
-                                              File
-                                            "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
-                                            line 284, in main<br>
-                                                tb = top_block_cls()<br>
-                                              File
-                                            "/home/ugikie/Desktop/PositionControl/ArrayTest2.py",
-                                            line 79, in __init__<br>
-                                                channels=range(4),<br>
-                                              File
-                                            "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/__init__.py",
-                                            line 122, in
-                                            constructor_interceptor<br>
-                                                return
-                                            old_constructor(*args)<br>
-                                              File
-                                            "/usr/local/lib/python2.7/dist-packages/gnuradio/uhd/uhd_swig.py",
-                                            line 2782, in make<br>
-                                                return
-                                            _uhd_swig.usrp_source_make(*args)<br>
-                                            RuntimeError: RuntimeError:
-                                            Error during RPC call to
-                                            `claim'. Error message:
-                                            Someone tried to claim this
-                                            device again (From:
-                                            192.168.10.1)</i><b><br>
-                                          </b></div>
-                                      </div>
-                                      <br>
-                                      i\<br>
-                                    </blockquote>
-                                    Instead of interrupting the GR
-                                    script, you could use the "Head"
-                                    block to have it run for a finite
-                                    number of samples, then exit
-                                    gracefully.<br>
-                                      When you interrupt it, some things
-                                    are clearly not getting cleaned up
-                                    gracefully.<br>
-                                    <br>
-                                    <br>
-                                    <br>
-                                  </div>
-_______________________________________________<br>
-                                  USRP-users mailing list<br>
-                                  <a moz-do-not-send="true"
-                                    href="mailto:USRP-users@lists.ettus.com"
-                                    target="_blank">USRP-users@lists.ettus.com</a><br>
-                                  <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                                    rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-                                </blockquote>
-                              </div>
-                            </blockquote>
-                            <br>
-                          </div>
-                        </blockquote>
-                      </div>
-                    </blockquote>
-                    <br>
-                  </div>
-                </blockquote>
-              </div>
-            </blockquote>
-            <br>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------060108000607090300050007--
-
-
---===============0563283637164452804==
+--===============4358479823050492204==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -682,5 +347,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0563283637164452804==--
+--===============4358479823050492204==--
 
