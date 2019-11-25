@@ -2,52 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CBD61082F1
-	for <lists+usrp-users@lfdr.de>; Sun, 24 Nov 2019 11:40:25 +0100 (CET)
-Received: from [::1] (port=48678 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1807C108AF4
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Nov 2019 10:33:28 +0100 (CET)
+Received: from [::1] (port=43872 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iYpJV-0007pr-Kn; Sun, 24 Nov 2019 05:40:21 -0500
-Received: from mail-qv1-f46.google.com ([209.85.219.46]:40035)
+	id 1iZAkF-00071T-53; Mon, 25 Nov 2019 04:33:23 -0500
+Received: from mail-wm1-f48.google.com ([209.85.128.48]:37544)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <cuervonicolas@gmail.com>)
- id 1iYpJS-0007lL-JC
- for usrp-users@lists.ettus.com; Sun, 24 Nov 2019 05:40:18 -0500
-Received: by mail-qv1-f46.google.com with SMTP id i3so4582773qvv.7
- for <usrp-users@lists.ettus.com>; Sun, 24 Nov 2019 02:39:58 -0800 (PST)
+ (Exim 4.92) (envelope-from <julian.ilinca.fgi@gmail.com>)
+ id 1iZAkB-0006xz-N9
+ for usrp-users@lists.ettus.com; Mon, 25 Nov 2019 04:33:19 -0500
+Received: by mail-wm1-f48.google.com with SMTP id f129so13672012wmf.2
+ for <usrp-users@lists.ettus.com>; Mon, 25 Nov 2019 01:32:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=GMAxibViPHVyA8AvD8V0O5yEpVWmFluIl6QN3bdjD5E=;
- b=PJlqpnGER2zCXS/5X7zb7Q2ncft6NTKpybzh1KiREodxWVarTX3ML5335fY8nj5TvC
- zbsvNtGejMMSGU3fN9ooY25e5pUsuGpKwOclxVVSTzK9uoueHjhGlGCCyZduyBaUQrLF
- kCfSKZ9wtKydjJ3kcud/HZSgSa4P+1u408ix3eBz0An9hltOd7FMMLc1EBoFnA9qIfu/
- APkNJwUHvKVWg0B5bm+kjpROKzGCLCoKubruQjBc2U6Q8zo29nb/kht8mi63KaXs1Udz
- cUP37v9pm8NKN4Rpk792wHFRvokxXSU5o7axzztReMUIOYWDVyuwEGoK+Hztv0v/EQom
- 1yLQ==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=7j6dc799MdxaMIJufovikF5ILR830qFz3UIxY5PwI7s=;
+ b=DDQ0nOeRpeBLFH4LJYhqeUIlEZQgO654IeD+2ugWx7a9WREmEgg4/8JX0nBJFJ50cY
+ SBJiXuld+HZE0QfQBDXCsbcPmomZV3lpcGXAB8PNecUmw/URThK2n4XY+NBkThLDWKjk
+ a7foeAr7B7EzOs/GaJ8y+/qrV9ST35wpM5sDwT8JCdmB2mWtGlxlAeCkuUTAEF3S8iMI
+ 1ij6nBUajO0O2JuZM/GddADmgzyz38giWUeX9GM8pXk6lZLclFO7KBNfoTz1zHP0vngG
+ CXwMllj5FtTd4WkzxEAUbfwmK5DX0Tbm4oJ/aRDkuT5Qk2A/NILpxEmuAqoj0r/JZxDM
+ HYDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=GMAxibViPHVyA8AvD8V0O5yEpVWmFluIl6QN3bdjD5E=;
- b=uZ/3Zaxnm/fntcwbssPqkagsVuPlXHvYpjj/3qMQDROEpS88ICY4ts87Y6xkG4ZnBB
- 2HM6A6YxQKbEZTOWh+7r9rLzLcHJhYzpcgv+IaoIWKim1otG7isxPtEcA/ihSrMTuEIb
- iN3AK0ASx1z+Yjcva+VKIkHjtMlqo1bu2sXzvo8VXfJAeuLincPhyJMYoy1Vhua/Bpjl
- XGGgRCWUHWpIA6Ji5DH1Kw8ytJwmJivWC4U6D8TpO6j2yq8sq048iOQGCNy7I9Z9ETUz
- J+g50onJeynWzzO2gc6AKqGZj6iM82ZZufepgoGMCCUzRk0G6H1BT2DM+smrgqUGIdqA
- 23rQ==
-X-Gm-Message-State: APjAAAXBgdYp+/p4sWxkhImmvkhjbAp5PMnv2JVJcfja82VcX0/MWKo7
- fbc27NBCm3QCF3MwZsJIkaxXO3vjFPvRvMqW1FU=
-X-Google-Smtp-Source: APXvYqyn5uSHLxydUbj0uhfy4PT5RwCB5bc4S4m7rzJhqtgREAeeOKP5C4aGEr/yqIjX7rKjlp8IBO6gqQu8KKBcIRs=
-X-Received: by 2002:ad4:51d0:: with SMTP id p16mr5379912qvq.82.1574591977766; 
- Sun, 24 Nov 2019 02:39:37 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=7j6dc799MdxaMIJufovikF5ILR830qFz3UIxY5PwI7s=;
+ b=jFHWFtZaHhu/IoIPTVq5A7rH9lmTxHFeswhYtmlmN1TLN/xL5KddU0HP3OxGUPuKd9
+ TANQNBfmAZEn0bobwsLzt73R0NyS4ksfC5s/q8iWlIfo0W0nBmKiURuekE2AGr17LNs8
+ aH8+BjtkZHhiwaKW1mXMLXEDmQ2sKqFa5fCq8nMZad7XKnCi4IMfCmrO/oiBAsWUMrOe
+ 9KyuPF1V9q5MbeIEM18/H7ZBKx8N+5FvptKNqlawjDh5kl3hjpFCYhd2aGyZoGqfWN0v
+ JfL9Vg1zH2x6mchz7INMqHtAGlt+8h0VgM8pF2DSuX3Sarw+rIe1LI7d2DQnWPkW5+77
+ ylzg==
+X-Gm-Message-State: APjAAAUFdRQxZOMnfYvMeFxNSMOg5TsOleb9LZx9euOrGJ13eS/3Cv/r
+ YRlpXABDfrZZ7HeNSprdN5Ew1jFFI3y7yrs4S30gc+q5
+X-Google-Smtp-Source: APXvYqwuvCAwbYlfxqzrlO1hYw4A+O7wm0KR14+iVqtPpoPV1VRJKNnawd6FPtOohi6H1EvV4F6FMywb/zLjGBnVBzU=
+X-Received: by 2002:a7b:c92c:: with SMTP id h12mr14108087wml.106.1574674358285; 
+ Mon, 25 Nov 2019 01:32:38 -0800 (PST)
 MIME-Version: 1.0
-References: <CAG-BkhYSJvb4TvVR+nMRzZqW+6pew4ArFHCiCviifVoAQp4LLQ@mail.gmail.com>
-In-Reply-To: <CAG-BkhYSJvb4TvVR+nMRzZqW+6pew4ArFHCiCviifVoAQp4LLQ@mail.gmail.com>
-Date: Sun, 24 Nov 2019 11:39:26 +0100
-Message-ID: <CAG-BkhaOXe=9dfNAVPqqrKiU3zAH4aC_uJtmcAqXEBf4_CWidA@mail.gmail.com>
-To: discuss-gnuradio <discuss-gnuradio@gnu.org>, 
- "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] FOSDEM 2020: Free Software Radio Devroom CfP
+Date: Mon, 25 Nov 2019 11:32:54 +0200
+Message-ID: <CAB1PH1557Loir3KTYXmky=PCtqYmYz+SPga9tN+phXmhraGT3w@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Configuring RX connection type on N210/TVRX2
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,11 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nicolas Cuervo Benavides via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nicolas Cuervo Benavides <cuervonicolas@gmail.com>
-Cc: Martin Braun <martin@gnuradio.org>, philip.balister@gmail.com,
- derek@bitstovolts.com, osmocom-sdr@lists.osmocom.org
-Content-Type: multipart/mixed; boundary="===============4358479823050492204=="
+From: Julian Ilinca via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Julian Ilinca <julian.ilinca.fgi@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6045762807548078381=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,266 +71,106 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4358479823050492204==
-Content-Type: multipart/alternative; boundary="0000000000008043c805981543f2"
+--===============6045762807548078381==
+Content-Type: multipart/alternative; boundary="000000000000c3385405982871f9"
 
---0000000000008043c805981543f2
+--000000000000c3385405982871f9
 Content-Type: text/plain; charset="UTF-8"
 
-Dear friends and fans of software-defined radio,
+Hello all,
 
+This message is a reply to a previous thread which I started. The contents
+of which can be found below.
 
+https://www.mail-archive.com/usrp-users@lists.ettus.com/msg09327.html
 
-the SDR track at next year's FOSDEM still has some slots left! We already
-have
-some submissions and we are in the process of ranking those, but we will
-gladly
-add YOUR presentation to the list!
+My question now concerns what data is actually stored in the final I and Q
+components that are sent to the host. The question and the answer are
+presented below.
 
+Q1
+The daughter-board is set so that one channel retrieves the I component and
+the other channel the Q. I retrieved this information with the
+uhd_usrp_probe command. In the output under RX0 its says connection type =
+Q and on RX1 connection type = I. What command do I have to use to change
+connection type of RX0 from Q to I, so that I could have two channels
+measuring the real component.
 
+A1
+That isn't possible.  Signals are presented to the host as complex
+samples.  The TVRX2 *analog hardware* uses a so-called "low-IF"
+architecture, and the N210 has a single 2-channel complex ADC.  Each of
+those two channels is *hard wired* to go to one of the ADC channels, and
+the DDC algorithms in the FPGA convert that to a complex base-band signal
+that is then filtered, downsampled, and sent to the host computer.
 
-If you have anything related to the field of free software radio, please
+From this answer, am I to understand that both of the signals coming from
+antenna 1 and 2 respectively are first mixed with a signal provided by the
+local oscillator (LO) so that they are separately converted to baseband.
+After which the information of the baseband originating from antenna 1 is
+stored in the Real part of the complex number and the signal coming from
+antenna 2 to imaginary part. And only then then filtering and down sampling
+occurs. What I want to know is that are the downsampled and filtered
+baseband signals from antenna 1 and 2 preserved in the IQ components
+respectively.
 
-head to:
+Furthermore, as I and Q usually mean in-phase and quadrature component, is
+the signal coming from antenna 2 mixed with a LO-signal that has been
+shifted by 90 degrees in phase compared to the LO-signal that is mixed with
+channel 1.
 
+Thank you again
 
+PS.
+I'm sorry, but I could not reply directly to the thread as I did not
+receive a response email to my in-box. If someone can instruct me how to
+accomplish the reply procedure with gmail, or provide a link with the
+relevant information I would be more than happy to use the list as it is
+intended to be used.
 
-https://penta.fosdem.org/submission/FOSDEM20
-
-
-
-and submit your short abstract! We're looking very much forward to your
-submission.
-
-
-
-For the committee,
-
-
-
-Nicolas Cuervo
-
-On Wed, Oct 16, 2019 at 8:19 PM Nicolas Cuervo Benavides <
-cuervonicolas@gmail.com> wrote:
-
-> Dear friends and fans of software-defined radio and free/open-source radio
-> topics in general,
->
-> FOSDEM 2020 (the free and open-source developer's meeting in Brussels,
-> Europe) will, once again, feature a track on Software Defined Radio, and
-> any other radio-related topics in the (now known as) *Free Software Radio* devroom.
-> Therefore, we invite developers and users from the free software radio
-> community to join us for this track and present your talks or demos.
->
->
-> Software Radio has become an important tool to allow anyone to access the
-> EM spectrum. Using free software radio libraries and applications and cheap
-> hardware, anyone can now start hacking on wireless communications, remote
-> sensing, radar, fun hacks of all sorts, or other applications. At FOSDEM,
-> we hope to network all these projects and improve collaboration, bring new
-> ideas forward and get more people involved.
->
->
-> The track's web site resides at the link below. The final schedule will be
-> available through Pentabarf and the official FOSDEM website.
->
-> https://fosdem.org/2020/schedule/track/free_software_radio/
->
->
-> Additional Information will be also available at:
-> https://wiki.gnuradio.org/index.php/FOSDEM_2020
->
->
-> ** Submit your presentations
->
-> To suggest a talk, go to https://penta.fosdem.org/submission/FOSDEM20 and
-> follow the instructions (you need an account, but can use your account from
-> last year if you have one). You need to create an 'Event'; make sure it's
-> in the Free Software Radio track! Lengths aren't fixed, but give a
-> realistic estimate and please don't exceed 30 minutes unless you have
-> something special planned (in that case, contact one of us). Also, don't
-> forget to include time for Q&A.
-> We will typically go for 30-minute slots -- shorter talks, unless they're
-> really short, usually tend to screw up the schedule too much.
->
-> You aren't limited to slide presentations, of course. Be creative.
-> However, FOSDEM is an open-source conference, therefore we ask you to stay
-> clear of marketing presentations and present something relevant to
-> free/open software. We like nitty-gritty technical stuff.
->
-> Topics discussed in this devroom include:
->
-> * SDR Frameworks + Tools
-> * Cellular/telecoms software
-> * Free/Open SDR hardware
-> * Wireless security
-> * Random fun wireless hacks
-> * SDR in education
-> * Satellite/spacecraft communication
-> * Ham radio related topics
->
->
-> ** Important Dates
->
-> FOSDEM is February 1st and 2nd, 2020. The Free Software Radio devroom is
-> happening on Sunday, the 2nd of February.
->
-> The submission deadline is Friday, December 6th. A complete schedule for
-> the presentations in the devroom will be available on the 15th of December.
->
->
-> In the last years we were always full to the brim with presentations, so
-> if you want to present, please make sure to submit your abstracts soon!
->
-> ** Steering Committee
-> The track committee consists of:
->
-> * Phil Balister - "Crofton"
-> * Sylvain Munaut -"tnt"
-> * Derek Kozel - "dkozel"
-> * Nicolas Cuervo - "primercuervo"
-> * Martin Braun - "mbr0wn"  (Emeritus)
->
->
-> Hope to hear from you soon! And please forward this announcement.
->
-
---0000000000008043c805981543f2
+--000000000000c3385405982871f9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Dear friends and fans of software-defined radio, =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 <br>the SDR track at next year&#39;s FOSDEM still has =
-some slots left! We already have =C2=A0<br>some submissions and we are in t=
-he process of ranking those, but we will gladly <br>add YOUR presentation t=
-o the list! =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 <br>If you have anything related to the field of free softwar=
-e radio, please =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>head to: =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 <br><a href=3D"https://penta.fosdem.org/submission/FOSDEM=
-20">https://penta.fosdem.org/submission/FOSDEM20</a> =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 <br>and submit your short abstract! We&#39;re looking =
-very much forward to your=C2=A0<br>submission. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>For the committee,=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>Nicolas Cue=
-rvo=C2=A0<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Wed, Oct 16, 2019 at 8:19 PM Nicolas Cuervo Benavides &lt;<=
-a href=3D"mailto:cuervonicolas@gmail.com">cuervonicolas@gmail.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">Dear friends and fans of software-defined radio and free/open-sour=
-ce radio topics in general,<br><div><br></div><div><p style=3D"margin:0.5em=
- 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif">FOSDEM=
- 2020 (the free and open-source developer&#39;s meeting in Brussels, Europe=
-) will, once again, feature a track on Software Defined Radio, and any othe=
-r radio-related topics in the (now known as)=C2=A0<i>Free Software Radio</i=
->=C2=A0devroom. Therefore, we invite developers and users from the free sof=
-tware radio community to join us for this track and present your talks or d=
-emos.</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,3=
-7);font-family:sans-serif"><br></p><p style=3D"margin:0.5em 0px;line-height=
-:inherit;color:rgb(37,37,37);font-family:sans-serif">Software Radio has bec=
-ome an important tool to allow anyone to access the EM spectrum. Using free=
- software radio libraries and applications and cheap hardware, anyone can n=
-ow start hacking on wireless communications, remote sensing, radar, fun hac=
-ks of all sorts, or other applications. At FOSDEM, we hope to network all t=
-hese projects and improve collaboration, bring new ideas forward and get mo=
-re people involved.</p><p style=3D"margin:0.5em 0px;line-height:inherit;col=
-or:rgb(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin:0.5em 0=
-px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif">The trac=
-k&#39;s web site resides at the link below<span style=3D"font-family:Arial,=
-Helvetica,sans-serif;color:rgb(34,34,34)">. The final schedule will=C2=A0</=
-span><span style=3D"font-family:Arial,Helvetica,sans-serif;color:rgb(34,34,=
-34)">be available through Pentabarf and the official FOSDEM website.</span>=
-</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);fo=
-nt-family:sans-serif"><a href=3D"https://fosdem.org/2020/schedule/track/fre=
-e_software_radio/" target=3D"_blank">https://fosdem.org/2020/schedule/track=
-/free_software_radio/</a><br></p><p style=3D"margin:0.5em 0px;line-height:i=
-nherit;color:rgb(37,37,37);font-family:sans-serif"><br></p><p style=3D"marg=
-in:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-serif=
-">Additional Information will be also available at:=C2=A0<a href=3D"https:/=
-/wiki.gnuradio.org/index.php/FOSDEM_2020" style=3D"font-family:Arial,Helvet=
-ica,sans-serif" target=3D"_blank">https://wiki.gnuradio.org/index.php/FOSDE=
-M_2020</a></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37=
-,37,37);font-family:sans-serif"><br>** Submit your presentations<br></p><p =
-style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-fami=
-ly:sans-serif">To suggest a talk, go to=C2=A0<a href=3D"https://penta.fosde=
-m.org/submission/FOSDEM20" target=3D"_blank">https://penta.fosdem.org/submi=
-ssion/FOSDEM20</a>=C2=A0and follow the instructions (you need an account, b=
-ut can use your account from last year if you have one). You need to create=
- an &#39;Event&#39;; make sure it&#39;s in the Free Software Radio track! L=
-engths aren&#39;t fixed, but give a realistic estimate and please don&#39;t=
- exceed 30 minutes unless you have something special planned (in that case,=
- contact one of us). Also, don&#39;t forget to include time for Q&amp;A.<br=
->We will typically go for 30-minute slots -- shorter talks, unless they&#39=
-;re really short, usually tend to screw up the schedule too much.<br></p><p=
- style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-fam=
-ily:sans-serif">You aren&#39;t limited to slide presentations, of course. B=
-e creative. However, FOSDEM is an open-source conference, therefore we ask =
-you to stay clear of marketing presentations and present something relevant=
- to free/open software. We like nitty-gritty technical stuff.<br><br>Topics=
- discussed in this devroom include:<br><br>* SDR Frameworks + Tools<br>* Ce=
-llular/telecoms software<br>* Free/Open SDR hardware<br>* Wireless security=
-<br>* Random fun wireless hacks<br>* SDR in education<br>* Satellite/spacec=
-raft communication<br>* Ham radio related topics<br><br><br>** Important Da=
-tes<br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37=
-,37);font-family:sans-serif">FOSDEM is February 1st and 2nd, 2020. The Free=
- Software Radio devroom is happening on Sunday, the 2nd of February.</p><p =
-style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-fami=
-ly:sans-serif">The submission deadline is Friday, December 6th. A complete =
-schedule for the presentations in the devroom will be available on the 15th=
- of December.</p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb=
-(37,37,37);font-family:sans-serif"><br></p><p style=3D"margin:0.5em 0px;lin=
-e-height:inherit;color:rgb(37,37,37);font-family:sans-serif">In the last ye=
-ars we were always full to the brim with presentations, so if you want to p=
-resent, please make sure to submit your abstracts soon!<br><br>** Steering =
-Committee<br>The track committee consists of:<br><br>* Phil Balister -=C2=
-=A0&quot;Crofton&quot;<br>* Sylvain Munaut -&quot;tnt&quot;<br>* Derek Koze=
-l - &quot;dkozel&quot;<br>* Nicolas Cuervo - &quot;primercuervo&quot;<br>* =
-Martin Braun -=C2=A0&quot;mbr0wn&quot;=C2=A0 (Emeritus)<br></p><p style=3D"=
-margin:0.5em 0px;line-height:inherit;color:rgb(37,37,37);font-family:sans-s=
-erif"><br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(37=
-,37,37);font-family:sans-serif">Hope to hear from you soon! And please forw=
-ard this announcement.<span><font color=3D"#888888"><br></font></span></p><=
-/div></div>
-</blockquote></div>
+<div dir=3D"ltr">Hello all,<br><br>This message is a reply to a previous th=
+read which I started. The contents of which can be found below.<br><br><a h=
+ref=3D"https://www.mail-archive.com/usrp-users@lists.ettus.com/msg09327.htm=
+l">https://www.mail-archive.com/usrp-users@lists.ettus.com/msg09327.html</a=
+><br><br>My question now concerns what data is actually stored in the final=
+ I and Q components that are sent to the host. The question and the answer =
+are presented below. <br><br>Q1<br>The daughter-board is set so that one ch=
+annel retrieves the I component and the other channel the Q. I retrieved th=
+is information with the uhd_usrp_probe command. In the output under RX0 its=
+ says connection type =3D Q and on RX1 connection type =3D I. What command =
+do I have to use to change connection type of RX0 from Q to I, so that I co=
+uld have two channels measuring the real component.<br><br>A1<br>That isn&#=
+39;t possible.=C2=A0 Signals are presented to the host as complex samples.=
+=C2=A0 The TVRX2 *analog hardware* uses a so-called &quot;low-IF&quot; arch=
+itecture, and the N210 has a single 2-channel complex ADC.=C2=A0 Each of th=
+ose two channels is *hard wired* to go to one of the ADC channels, and the =
+DDC algorithms in the FPGA convert that to a complex base-band signal that =
+is then filtered, downsampled, and sent to the host computer.<br><br>From t=
+his answer, am I to understand that both of the signals coming from antenna=
+ 1 and 2 respectively are first mixed with a signal provided by the local o=
+scillator (LO) so that they are separately converted to baseband. After whi=
+ch the information of the baseband originating from antenna 1 is stored in =
+the Real part of the complex number and the signal coming from antenna 2 to=
+ imaginary part. And only then then filtering and down sampling occurs. Wha=
+t I want to know is that are the downsampled and filtered baseband signals =
+from antenna 1 and 2 preserved in the IQ components respectively.<br><br>Fu=
+rthermore, as I and Q usually mean in-phase and quadrature component, is th=
+e signal coming from antenna 2 mixed with a LO-signal that has been shifted=
+ by 90 degrees in phase compared to the LO-signal that is mixed with channe=
+l 1.<br><br>Thank you again<br><br>PS.<br>I&#39;m sorry, but I could not re=
+ply directly to the thread as I did not receive a response email to my in-b=
+ox. If someone can instruct me how to accomplish the reply procedure with g=
+mail, or provide a link with the relevant information I would be more than =
+happy to use the list as it is intended to be used.</div>
 
---0000000000008043c805981543f2--
+--000000000000c3385405982871f9--
 
 
---===============4358479823050492204==
+--===============6045762807548078381==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -347,5 +181,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4358479823050492204==--
+--===============6045762807548078381==--
 
