@@ -2,30 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483AB10E878
-	for <lists+usrp-users@lfdr.de>; Mon,  2 Dec 2019 11:15:29 +0100 (CET)
-Received: from [::1] (port=55910 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E6610ECE8
+	for <lists+usrp-users@lfdr.de>; Mon,  2 Dec 2019 17:16:51 +0100 (CET)
+Received: from [::1] (port=52050 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ibijg-0002yy-79; Mon, 02 Dec 2019 05:15:20 -0500
-Received: from mailgate.nsl.eu.com ([77.111.227.135]:55024)
+	id 1iboNT-0003mY-7Z; Mon, 02 Dec 2019 11:16:47 -0500
+Received: from mail-lj1-f172.google.com ([209.85.208.172]:44802)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <david.scott@nsl.eu.com>)
- id 1ibijd-0002vX-Cz
- for usrp-users@lists.ettus.com; Mon, 02 Dec 2019 05:15:17 -0500
-Received: from mailgate.nsl.eu.com ([77.111.227.135] helo=[192.168.16.148])
- by mailgate.nsl.eu.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.86_2) (envelope-from <david.scott@nsl.eu.com>)
- id 1ibiix-0005aH-Qd
- for usrp-users@lists.ettus.com; Mon, 02 Dec 2019 10:14:35 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <e4318420-c94d-2511-d415-e4a6fb5c0dca@nsl.eu.com>
-Date: Mon, 2 Dec 2019 10:14:35 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+ (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
+ id 1iboNP-0003iJ-9l
+ for usrp-users@lists.ettus.com; Mon, 02 Dec 2019 11:16:43 -0500
+Received: by mail-lj1-f172.google.com with SMTP id c19so30746lji.11
+ for <usrp-users@lists.ettus.com>; Mon, 02 Dec 2019 08:16:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=+3cSHJZILvunxsQgpuvJ4Lnmbr+9XR2rh8piov2ZK8Q=;
+ b=XgiDhxMC4SsV2tqgyP7zXTg0T5l7du4+gZQ/WSp2vrXmtgUIOdBJfTDYLrq6Hy8rnm
+ a2SJUUj+o5VlZjw5t8f4az4Kkdqi8gHNvYiemrbuNwz/qWJrWUwRJlCzXFe5O3vfgZ0J
+ m3seahhxPWr83lYc52P3GSrLzkH7VfbE9sXdJwEJ9EYCCFkj28DZ98v7Yfum1cWTPRXV
+ JVg8XAYlu8rJm+x77ynLtkOutpZEJbpKpA+C6K1OBLP8UvfXi7EMXIMTl8+AyVxNvlb0
+ 2uHvyW9OtGpKF+mk37W1+2ytHwu2vwDdD9FbTQUHGENzL4HrHFy7V2B7qJPeilbSvtl0
+ WmiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=+3cSHJZILvunxsQgpuvJ4Lnmbr+9XR2rh8piov2ZK8Q=;
+ b=FXSpvg6IbfZuHSD6XMaOJBUJ3o5K7gL+5eZF4Z4XO3lE4sc5tnA3bn0I/8iPZvVJVX
+ ZFCpmxAQiN98vMVOsq8droOJ7bg0uHh011McUjm6z7lCK3CZgCgOvocmz5/sST1y5y1p
+ NobUyvQal1ceoa9Q8w4J+hUjirEvFD2V3etT4xrAnencX7TVGaPQyUaI570yg1ous47X
+ DTiI0rjW6hBdOnl5lFd5LUNzzEM3aFn/lbn1DLh6xiydUlYk4PLw2HEOywLNBRcczWP/
+ h0iWEIVmyKupU6GraFbq3AjXu5vogkRJ/YYAq8DYQYpOoV9Ixv6jbTvDb22xotW7EA3O
+ bB4w==
+X-Gm-Message-State: APjAAAUEtnWgi9MnT90JtJvA/iI54CSL/yHu3I0AQgjLNILtDoXSLp5f
+ liwHquVxDOr0KxHmMdW0y/xvQGOoM7kAmu5Kl9a2inx7
+X-Google-Smtp-Source: APXvYqyX1vs5kERWgC9vVqgEctf6txaeeIz88Lt8oXK+acvYZb7832pZzITQfjPDPPJkoVaMHHqq+LJzOmZz64Pkt04=
+X-Received: by 2002:a2e:9ac4:: with SMTP id p4mr15281685ljj.207.1575303361738; 
+ Mon, 02 Dec 2019 08:16:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Language: en-GB
-Subject: [USRP-users] Spectral flatness with USRP x310 and TwinRX
+References: <CAFGMRUA3J2+jmxMTveXitsD22DEVMA9ea7tORC6_HwDqmqPBJQ@mail.gmail.com>
+In-Reply-To: <CAFGMRUA3J2+jmxMTveXitsD22DEVMA9ea7tORC6_HwDqmqPBJQ@mail.gmail.com>
+Date: Mon, 2 Dec 2019 10:15:50 -0600
+Message-ID: <CANf970ZC0aOh-GRSAtUTYQpgZmU-1VpbxV+Kn7k1FiMAC+yaHA@mail.gmail.com>
+To: Keith k <keithkotyk@gmail.com>
+Subject: Re: [USRP-users] GPIO ATR signals
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: David Scott via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: David Scott <david.scott@nsl.eu.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0617591052108928797=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -54,37 +76,88 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgYWxsLAoKV2UgYXJlIG1ha2luZyB1c2Ugb2YgYSBVU1JQIFgzMTAgd2l0aCBUd2luUlggZGF1
-Z2h0ZXJib2FyZCB0byBjYXB0dXJlIApkYXRhIG9uIDIgY2hhaW5zIGF0IHRoZSBzYW1lIHRpbWUu
-IEZvciB0aGUgaW50ZW5kZWQgdXNlIG9mIHRoZSBkYXRhIGl0IAppcyBpbXBvcnRhbnQgdGhhdCB0
-aGUgc3BlY3RydW0gaXMgdmVyeSBmbGF0LiBCZWxvdyBpcyBhIHNjcmVlbnNob3Qgb2YgCnRoZSAy
-IGNoYWlucyB3aGVuIGZlZCB3aXRoIEFXR04gZnJvbSBhIHNpZ25hbCBnZW5lcmF0b3I6CgpodHRw
-czovL2ltZ3VyLmNvbS9hL1I3WjFCeWEKCkFzIHlvdSBjYW4gc2VlIHRoZXJlIGlzIG92ZXIgMmRC
-IGRyb3AsIG1vcmUgcHJvbm91bmNlZCBvbiB0aGUgc2Vjb25kIApjaGFpbi4gVGhpcyBkYXRhIHdh
-cyByZWNvcmRlZCB3aXRoIGEgbW9kaWZpZWQgdmVyc2lvbiBvZiAKcnhfbXVsdGlfc2FtcGxlcyAo
-dGhlIG9ubHkgbW9kaWZpY2F0aW9ucyB3ZXJlIHRvIGFsbG93IGZyZXF1ZW5jeSBhbmQgCmdhaW4g
-c2VsZWN0aW9uIGZvciBlYWNoIGNoYW5uZWwsIGFuZCB0byB3cml0ZSB0aGUgY29sbGVjdGVkIGRh
-dGEgdG8gZmlsZSAKZm9yIGFuYWx5c2lzLCBtaW1pY2tpbmcgdGhlIHByb2Nlc3MgY2FycmllZCBv
-dXQgYnkgb3VyIGFwcGxpY2F0aW9uKS4gV2UgCmhhdmUgcGxheWVkIGFyb3VuZCB3aXRoIGNoYW5n
-aW5nIHRoZSBsb3diYW5kIHRocmVzaG9sZHMgaW4gCnR3aW5yeF9leHBlcnRzLmNwcCBhbmQgbW9k
-aWZ5aW5nIHRoZSBwcmVhbXAgc2VsZWN0aW9uIGluIAp0d2lucnhfY3RybC5jcHAsIGluIHRoZSBo
-b3BlIHRoYXQgd2UgY291bGQgcHJvZHVjZSBhIGZsYXR0ZXIgc3BlY3RydW0sIApidXQgdGhpcyBo
-YXMgcHJvdmVuIGZydWl0bGVzcyBzbyBmYXIuCgpXZSBhbHNvIGhhdmUgYSBVQlgxNjAgZGF1Z2h0
-ZXJib2FyZCB3aGljaCBwcm9kdWNlcyBhIG11Y2ggZmxhdHRlciAKc3BlY3RydW0gdW5kZXIgdGhl
-IHNhbWUgdGVzdCBjb25kaXRpb25zIChzZWUgc2NyZWVuc2hvdCBiZWxvdyk6CgpodHRwczovL2lt
-Z3VyLmNvbS9hL3MxQXNicVcKClVuZm9ydHVuYXRlbHksIHRoZSBVQlggaXMgc2luZ2xlIGNoYWlu
-IGFuZCB3ZSByZXF1aXJlIDIgY2hhaW5zLgoKSXMgdGhlcmUgYW55dGhpbmcgd2UgYXJlIG1pc3Np
-bmc/IFNvbWUgd2F5IHRoYXQgd2UgY2FuIGNvbmZpZ3VyZSB0aGUgClR3aW5SWCBzbyB0aGF0IHRo
-ZSBzcGVjdHJ1bSBpcyBzaW1pbGFyIHRvIHRoZSBVQlgtMTYwPyBIYXZlIGFueSBvZiB5b3UgCmNv
-bWUgYWNyb3NzIHRoaXMgYmVmb3JlPyBXZSByZWFsaXNlIHRoYXQgd2UgY291bGQgdXNlIHR3byBV
-QlgtMTYwJ3MgYnV0IAp3b3VsZCByYXRoZXIgbm90IHB1cmNoYXNlIGFuIGV4dHJhIG9uZSBpZiB3
-ZSBjYW4gY29uZmlndXJlIHRoZSBUd2luUlggCmFub3RoZXIgd2F5LgoKVGhlIGNvbW1hbmQgZ2l2
-ZW4gdG8gcnhfbXVsdGlfc2FtcGxlcyBpcyA6CgogwqDCoMKgIC4vcnhfbXVsdGlfc2FtcGxlcyAt
-LXN1YmRldj0iQTowIEE6MSIgLS1idz0yNWU2IC0tcmF0ZT0yNWU2IAotLXN5bmM9bm93IC0tbnNh
-bXBzPTEwMDAwMAoKV2UgaGF2ZSB0ZXN0ZWQgdGhpcyB3aXRoIHNldmVyYWwgdmVyc2lvbnMgb2Yg
-VUhELCBpbmNsdWRpbmcgMy4xMSwgMy4xNCAKYW5kIDMuMTUgYW5kIG9ic2VydmVkIG5vIGRpZmZl
-cmVuY2UgYmV0d2VlbiB2ZXJzaW9ucy4KCkFueSBhZHZpY2UgeW91IGNhbiBwcm92aWRlIGlzIG11
-Y2ggYXBwcmVjaWF0ZWQuCgpNYW55IHRoYW5rcywKCkRhdmlkCgoKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
-UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
-aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============0617591052108928797==
+Content-Type: multipart/alternative; boundary="0000000000004a4d1d0598bae523"
+
+--0000000000004a4d1d0598bae523
+Content-Type: text/plain; charset="UTF-8"
+
+Keith,
+
+If I'm understanding your question correctly, the answer is yes. ATR is set
+up to allow a GPIO pin to vary its state based on whether a channel of the
+radio is transmitting or receiving. You can set this per-pin and
+per-channel. You can also use GPIO without tying it to ATR at all. Here's a
+GPIO example that goes through setup and demonstrates these options:
+
+https://github.com/EttusResearch/uhd/blob/master/host/examples/gpio.cpp
+
+Best,
+
+Sam Reiter
+
+On Thu, Nov 28, 2019 at 4:01 PM Keith k via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello all
+>
+> Is it possible to switch between active-low and active-high states if
+> using ATR on the gpios?
+>
+> --
+> -Keith Kotyk
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000004a4d1d0598bae523
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Keith,</div><div><br></div><div>If I&#39;m understand=
+ing your question correctly, the answer is yes. ATR is set up to allow a GP=
+IO pin to vary its state based on whether a channel of the radio is transmi=
+tting or receiving. You can set this per-pin and per-channel. You can also =
+use GPIO without tying it to ATR at all. Here&#39;s a GPIO example that goe=
+s through setup and demonstrates these options:</div><div><br></div><div><a=
+ href=3D"https://github.com/EttusResearch/uhd/blob/master/host/examples/gpi=
+o.cpp">https://github.com/EttusResearch/uhd/blob/master/host/examples/gpio.=
+cpp</a></div><div><br></div><div>Best,</div><div><br></div><div><div><div d=
+ir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><di=
+v dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter <br></div></div></div></div>=
+</div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Thu, Nov 28, 2019 at 4:01 PM Keith k via USRP-users &lt;<a h=
+ref=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
+r=3D"ltr"><div>Hello all</div><div><br></div><div>Is it possible to switch =
+between active-low and active-high states if using ATR on the gpios? <br></=
+div><div><br>-- <br><div dir=3D"ltr"><div dir=3D"ltr">-Keith Kotyk</div></d=
+iv></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000004a4d1d0598bae523--
+
+
+--===============0617591052108928797==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0617591052108928797==--
+
