@@ -2,62 +2,39 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B56111EAF
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Dec 2019 00:03:57 +0100 (CET)
-Received: from [::1] (port=55404 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D69611285C
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Dec 2019 10:48:57 +0100 (CET)
+Received: from [::1] (port=54252 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1icHCw-0001f2-UI; Tue, 03 Dec 2019 18:03:50 -0500
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:34438)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1icHCt-0001Zo-OX
- for usrp-users@lists.ettus.com; Tue, 03 Dec 2019 18:03:47 -0500
-Received: by mail-qk1-f171.google.com with SMTP id d202so5316491qkb.1
- for <usrp-users@lists.ettus.com>; Tue, 03 Dec 2019 15:03:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=TBiGhKocCErAIuoEGxsuqHnM1A5WlcR7eJMb+GrjcwI=;
- b=FjElcH70Sw2We+Hu4plourrJ91UhhlEV3L0Erl0MLc11F74HUHyNo8uz9uwHD5wVog
- s20Mq8ij1/iKul+ZP3mubZKY0RPfoRxSjgMzdWNQ0M28K5vEEiMl3ud7CSzhGkg3sqxb
- ihRfNFZ6d7T+a4jWpR4w6saDy8dT04KVRD+Q5yEfhQxv3BZM7QD6oYLnpcfNZ+CpOJt6
- MM69bxB/951/EvncNlpHyfjMTkDn0EetVoSa1j0Jg9z1mj6fKuNCWHNHX8R5DlfhWGwU
- z4pWyZiLKdyheGG/OT4zXBNtlRPuQ85ipq0nPk6a9SH+/nrZXwXoRk8+5OwKqL0tR2nJ
- mHsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=TBiGhKocCErAIuoEGxsuqHnM1A5WlcR7eJMb+GrjcwI=;
- b=LR1JfBXgtMIaMD9C9RGvPpDGCFu3Zg303F2151+4Qt9GWIn5MT37G4+k+5+5jhOptT
- vT1Y30Z7xmL/Aovbvo/dKZs2rInNfpkEPCVf+kDX80E5AOHAqRlVzRfJcP7GNDXBgFz6
- 8JcKirFLFAoUpP88wS3WkKeG3WK5Q3sZeKQ+a8sgJwQeb4em9cvWD4KRSSWCdn0DKFLU
- OPLfa01LTT6oTOIXyxUqQNGCjXV+NfOiNIL50NxTqFd0zbeI/stnNEmQpXDc3VTDFzVj
- qivK6rGTrgPe5m7e+yqjTKzlynJeeI4OT89HZLJIcwhId6jqQruf+nujQK9tvxRwmZfU
- 1neg==
-X-Gm-Message-State: APjAAAW0mPhCv+1L5vrs1fI2/B54ugwhkuBozShNy4kvrS3pOCQM8bEX
- x0gifxrFirSvhXci92/Vhb/RGw7S
-X-Google-Smtp-Source: APXvYqzwHsjqyy6BgAhorCZXvQttJh5WnBScoRhW1YFeDkIejcR3xrRqlPl4mbEvOLDQdzoFiGQ2TA==
-X-Received: by 2002:a37:9245:: with SMTP id u66mr8145668qkd.102.1575414186910; 
- Tue, 03 Dec 2019 15:03:06 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
- [174.95.14.228])
- by smtp.googlemail.com with ESMTPSA id 3sm2618600qth.2.2019.12.03.15.03.03
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 03 Dec 2019 15:03:03 -0800 (PST)
-Message-ID: <5DE6E9A6.3050506@gmail.com>
-Date: Tue, 03 Dec 2019 18:03:02 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1icRHB-0003NW-4t; Wed, 04 Dec 2019 04:48:53 -0500
+Received: from smtpout01-ext1.partage.renater.fr ([194.254.240.32]:42428)
+ by mm2.emwd.com with esmtp (Exim 4.92)
+ (envelope-from <Thomas.Harder@oca.eu>) id 1icRH7-0003JF-UX
+ for usrp-users@lists.ettus.com; Wed, 04 Dec 2019 04:48:50 -0500
+Received: from zmtaauth01.partage.renater.fr (zmtaauth01.partage.renater.fr
+ [194.254.240.25])
+ by smtpout10.partage.renater.fr (Postfix) with ESMTP id 261AD61360
+ for <usrp-users@lists.ettus.com>; Wed,  4 Dec 2019 10:48:07 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+ by zmtaauth01.partage.renater.fr (Postfix) with ESMTP id 60E0C140100
+ for <usrp-users@lists.ettus.com>; Wed,  4 Dec 2019 10:47:50 +0100 (CET)
+X-Virus-Scanned: amavisd-new at zmtaauth01.partage.renater.fr
+Received: from zmtaauth01.partage.renater.fr ([127.0.0.1])
+ by localhost (zmtaauth01.partage.renater.fr [127.0.0.1]) (amavisd-new,
+ port 10026)
+ with ESMTP id r20jUosdXWXL for <usrp-users@lists.ettus.com>;
+ Wed,  4 Dec 2019 10:47:50 +0100 (CET)
+Received: from [IPv6:::ffff:10.252.71.233] (unknown [194.254.241.251])
+ by zmtaauth01.partage.renater.fr (Postfix) with ESMTPA id 31BCC1400BB
+ for <usrp-users@lists.ettus.com>; Wed,  4 Dec 2019 10:47:50 +0100 (CET)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <D7790F43D25BB04383227944C1AC1891010C0FCB4E@MXSRV2.fe.hhi.de>
- <CAEXYVK5bF4PXkRcAbY5NAJu80xZxR0uak2S89vYRO1SaE28ECA@mail.gmail.com>
- <BN6PR19MB16353307DC5C994FC836EB37A4420@BN6PR19MB1635.namprd19.prod.outlook.com>
- <CAEXYVK5PS_hscpMwWogAj24PQu4oa-kxGNOi28JVhFh6yn_96Q@mail.gmail.com>
-In-Reply-To: <CAEXYVK5PS_hscpMwWogAj24PQu4oa-kxGNOi28JVhFh6yn_96Q@mail.gmail.com>
-Subject: Re: [USRP-users] IQ-sample with a magnitude larger than 1.0
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Wed, 4 Dec 2019 10:47:50 +0100
+Importance: normal
+X-Priority: 3
+Message-Id: <20191204094750.31BCC1400BB@zmtaauth01.partage.renater.fr>
+Subject: [USRP-users] transmitting on two channels with replay block
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,9 +46,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7189977274204272430=="
+From: Thomas Harder via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Thomas Harder <Thomas.Harder@oca.eu>
+Content-Type: multipart/mixed; boundary="===============0714319763371663180=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,203 +62,182 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============7189977274204272430==
+--===============0714319763371663180==
 Content-Type: multipart/alternative;
- boundary="------------050902060507090207060601"
+	boundary="_C9A6657D-6B13-4258-94C0-CBC75260CC7E_"
 
-This is a multi-part message in MIME format.
---------------050902060507090207060601
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--_C9A6657D-6B13-4258-94C0-CBC75260CC7E_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 12/03/2019 04:37 PM, Brian Padalino via USRP-users wrote:
-> On Tue, Dec 3, 2019 at 1:53 PM Jeff S <e070832@hotmail.com 
-> <mailto:e070832@hotmail.com>> wrote:
->
->     I'm fairly new to GNURadio, so I may have (most likely) missed it,
->     but I had the same problem that was fixed by multiplying the
->     complex number going into my sink by 0.25 to get my QPSK
->     modulation to work on my X310. Since doing that, I have found
->     references to over driving the TX on this list.  Is the [1, -1]
->     limit an Ettus device limit, or is it a GNURadio limit?  And where
->     is that documented (so I can maybe find what else I'm missing)?
->
->
-> Ettus radios.  Normalized complex values:
->
-> https://files.ettus.com/manual/page_stream.html#stream_datatypes_cpu
->
-> If the values aren't normalized, it seems difficult to try to figure 
-> out what "full scale" means.  Right?
->
->
->     Also, it seems like the consensus is that going [1,-1] is still
->     too much, and going less than 0.707 may be better.
->
->
-> 3dB sounds like a lot to drop, but 0.1dB or even 0.5dB is probably 
-> just fine.  This is just the level coming out of the DAC.  Further 
-> amplification down the line might cause other non-linearity issues, 
-> but overall you probably want to exercise as much dynamic range as 
-> possible.
->
-> Brian
->
->
-Indeed the {-1.0,+1.0} normalization is short-hand for "somewhere around 
-the largest value the DAC/ADC can support".  But there are provisos.
+Hello everyone,
+Is it possible to transmit two different waveforms on the two channels of t=
+he USRP X310 with the two UBX-160 daughterboards?
+I want to transmit two different waveforms simultaneous (synchronized ) on =
+the two channels of the USRP with the full sample rate of 200 MS/s. I tried=
+ already to do it with a dual 10Gbit-ethernet connection and I seemed to be=
+ limited by my computer. Now I am trying to do it with the replay block.
 
-The "wire format" is very typically 16-bit complex integers, which the 
-FPGA DSP logic will (considering the TX path):
+I built the FPGA image with one Replay block as described in https://kb.ett=
+us.com/Using_the_RFNoC_Replay_Block to run the example =E2=80=9Creplay_samp=
+les_from_file=E2=80=9D and it is working fine if I transmit just on one cha=
+nnel. Now I was modifying the code by connecting the replay block to both c=
+hannels:
+replay_graph->connect(replay_ctrl->get_block_id(),replay_chan,tx_blockid,tx=
+_chan,replay_spp);
+replay_graph->connect(replay_ctrl->get_block_id(),replay_chan1,tx_blockid1,=
+tx_chan,replay_spp);
 
-     o interpolate up to the sample-rate of the DAC
-     o scale to the resolution of the DAC
+and writing the same waveform into another region of the DRAM-buffer:
+replay_ctrl->config_record(0,words_to_replay*replay_word_size, replay_chan)=
+;
+replay_ctrl->config_record(20000,words_to_replay*replay_word_size, replay_c=
+han1);
+and
+replay_ctrl->config_play(0,words_to_replay*replay_word_size, replay_chan);
+replay_ctrl->config_play(20000,words_to_replay*replay_word_size, replay_cha=
+n1);
 
-There may be slight accumulated errors there, so "staying away from the 
-edge" is a good practice.
+where=20
+words_to_replay*replay_word_size=3D16000
+replay_chan=3D0
+replay_chan1=3D1
+tx_blockid=3D0/Radio_0
+tx_blockid=3D0/Radio_1
 
-But *further*, when the signal leaves the DAC, it meets a lot of analog 
-hardware--notably a mixer, and some RF amplifiers and filters.  There's
-   no way to guarantee (without much extra expense in hardware and 
-fine-scale calibrated software adjustments) that full-scale coming out 
-of the
-   DAC will *not* result in non-linearities in the analog 
-chain--particularly given the very-wide tuning range and signal bandwidth
-   of most of this hardware.
+then I stream my waveforms to the replay block as defined in the example an=
+d I start to replay the data:
+replay_ctrl->issue_stream_cmd(stream_cmd, replay_chan);
+replay_ctrl->issue_stream_cmd(stream_cmd, replay_chan1);
 
+It works but with plenty of Underflows!!
 
+So what does it mean when it says in the manual:
+=E2=80=9CNote that the record and playback buffers do not need to the same,=
+ allowing a single Replay block to both record and playback to different re=
+gions of memory simultaneously.=E2=80=9D
+(https://kb.ettus.com/Using_the_RFNoC_Replay_Block)?
 
+Because in the manual it says also:
+=E2=80=9CThe replay block has the following features: One input and one out=
+put=E2=80=9D
+(https://files.ettus.com/manual/classuhd_1_1rfnoc_1_1replay__block__ctrl.ht=
+ml)
 
+So if the replay block has just one output why does it have two channels co=
+nnected to it (replay_chan=3D 0 and 1)?
 
---------------050902060507090207060601
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+If one replay block can just stream to one channel at the same time, can I =
+implement easily a second replay block in the FPGA to stream on the two cha=
+nnels of my USRP two different waveforms simultaneously?
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 12/03/2019 04:37 PM, Brian Padalino
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAEXYVK5PS_hscpMwWogAj24PQu4oa-kxGNOi28JVhFh6yn_96Q@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div dir="ltr">On Tue, Dec 3, 2019 at 1:53 PM Jeff S &lt;<a
-            moz-do-not-send="true" href="mailto:e070832@hotmail.com">e070832@hotmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <div class="gmail_quote">
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div dir="ltr">
-              <div
-style="font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">I'm
-                fairly new to GNURadio, so I may have (most likely)
-                missed it, but I had the same problem that was fixed by
-                multiplying the complex number going into my sink by
-                0.25 to get my QPSK modulation to work on my X310. 
-                Since doing that, I have found references to over
-                driving the TX on this list.  Is the [1, -1] limit an
-                Ettus device limit, or is it a GNURadio limit?  And
-                where is that documented (so I can maybe find what else
-                I'm missing)?</div>
-            </div>
-          </blockquote>
-          <div><br>
-          </div>
-          <div>Ettus radios.  Normalized complex values:</div>
-          <div><br>
-          </div>
-          <div>  <a moz-do-not-send="true"
-href="https://files.ettus.com/manual/page_stream.html#stream_datatypes_cpu">https://files.ettus.com/manual/page_stream.html#stream_datatypes_cpu</a></div>
-          <div><br>
-          </div>
-          <div>If the values aren't normalized, it seems difficult to
-            try to figure out what "full scale" means.  Right?</div>
-          <div> </div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div dir="ltr">
-              <div
-style="font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)"><br>
-              </div>
-              <div
-style="font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">Also,
-                it seems like the consensus is that going [1,-1] is
-                still too much, and going less than 0.707 may be better.</div>
-            </div>
-          </blockquote>
-          <div><br>
-          </div>
-          <div>3dB sounds like a lot to drop, but 0.1dB or even 0.5dB is
-            probably just fine.  This is just the level coming out of
-            the DAC.  Further amplification down the line might cause
-            other non-linearity issues, but overall you probably want to
-            exercise as much dynamic range as possible.</div>
-          <div><br>
-          </div>
-          <div>Brian</div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div dir="ltr">
-              <div id="gmail-m_6265047434519115788Signature">
-                <div>
-                  <div>
-                    <div dir="ltr">
-                      <div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-      <br>
-    </blockquote>
-    Indeed the {-1.0,+1.0} normalization is short-hand for "somewhere
-    around the largest value the DAC/ADC can support".  But there are
-    provisos.<br>
-    <br>
-    The "wire format" is very typically 16-bit complex integers, which
-    the FPGA DSP logic will (considering the TX path):<br>
-    <br>
-        o interpolate up to the sample-rate of the DAC<br>
-        o scale to the resolution of the DAC<br>
-    <br>
-    There may be slight accumulated errors there, so "staying away from
-    the edge" is a good practice.<br>
-    <br>
-    But *further*, when the signal leaves the DAC, it meets a lot of
-    analog hardware--notably a mixer, and some RF amplifiers and
-    filters.  There's<br>
-      no way to guarantee (without much extra expense in hardware and
-    fine-scale calibrated software adjustments) that full-scale coming
-    out of the<br>
-      DAC will *not* result in non-linearities in the analog
-    chain--particularly given the very-wide tuning range and signal
-    bandwidth<br>
-      of most of this hardware.<br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------050902060507090207060601--
+Thank you,
+Thomas
 
 
---===============7189977274204272430==
+
+
+
+
+--_C9A6657D-6B13-4258-94C0-CBC75260CC7E_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta ht=
+tp-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta name=
+=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style></head><body lang=3DEN-US link=3D"#0563C1" vlink=3D"#954F72"><di=
+v class=3DWordSection1><p class=3DMsoNormal>Hello everyone,</p><p class=3DM=
+soNormal>Is it possible to transmit two different waveforms on the two chan=
+nels of the USRP X310 with the two UBX-160 daughterboards?</p><p class=3DMs=
+oNormal>I want to transmit two different waveforms simultaneous (synchroniz=
+ed ) on the two channels of the USRP with the full sample rate of 200 MS/s.=
+ I tried already to do it with a dual 10Gbit-ethernet connection and I seem=
+ed to be limited by my computer. Now I am trying to do it with the replay b=
+lock.</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I b=
+uilt the FPGA image with one Replay block as described in <a href=3D"https:=
+//kb.ettus.com/Using_the_RFNoC_Replay_Block">https://kb.ettus.com/Using_the=
+_RFNoC_Replay_Block</a> to run the example =E2=80=9Creplay_samples_from_fil=
+e=E2=80=9D and it is working fine if I transmit just on one channel. Now I =
+was modifying the code by connecting the replay block to both channels:</p>=
+<p class=3DMsoNormal>replay_graph-&gt;connect(replay_ctrl-&gt;get_block_id(=
+),replay_chan,tx_blockid,tx_chan,replay_spp);</p><p class=3DMsoNormal>repla=
+y_graph-&gt;connect(replay_ctrl-&gt;get_block_id(),replay_chan1,tx_blockid1=
+,tx_chan,replay_spp);</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=
+=3DMsoNormal>and writing the same waveform into another region of the DRAM-=
+buffer:</p><p class=3DMsoNormal>replay_ctrl-&gt;config_record(0,words_to_re=
+play*replay_word_size, replay_chan);</p><p class=3DMsoNormal>replay_ctrl-&g=
+t;config_record(20000,words_to_replay*replay_word_size, replay_chan1);</p><=
+p class=3DMsoNormal>and</p><p class=3DMsoNormal>replay_ctrl-&gt;config_play=
+(0,words_to_replay*replay_word_size, replay_chan);<o:p></o:p></p><p class=
+=3DMsoNormal>replay_ctrl-&gt;config_play(20000,words_to_replay*replay_word_=
+size, replay_chan1);</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=
+=3DMsoNormal>where </p><p class=3DMsoNormal>words_to_replay*replay_word_siz=
+e=3D16000</p><p class=3DMsoNormal>replay_chan=3D0</p><p class=3DMsoNormal>r=
+eplay_chan1=3D1</p><p class=3DMsoNormal>tx_blockid=3D0/Radio_0</p><p class=
+=3DMsoNormal>tx_blockid=3D0/Radio_1</p><p class=3DMsoNormal><o:p>&nbsp;</o:=
+p></p><p class=3DMsoNormal>then I stream my waveforms to the replay block a=
+s defined in the example and I start to replay the data:</p><p class=3DMsoN=
+ormal>replay_ctrl-&gt;issue_stream_cmd(stream_cmd, replay_chan);<o:p></o:p>=
+</p><p class=3DMsoNormal>replay_ctrl-&gt;issue_stream_cmd(stream_cmd, repla=
+y_chan1);</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal=
+>It works but with plenty of Underflows!!</p><p class=3DMsoNormal><o:p>&nbs=
+p;</o:p></p><p class=3DMsoNormal>So what does it mean when it says in the m=
+anual:</p><p class=3DMsoNormal>=E2=80=9CNote that the record and playback b=
+uffers do not need to the same, allowing a single Replay block to both reco=
+rd and playback to different regions of memory<b> simultaneously</b>.=E2=80=
+=9D<o:p></o:p></p><p class=3DMsoNormal>(<a href=3D"https://kb.ettus.com/Usi=
+ng_the_RFNoC_Replay_Block">https://kb.ettus.com/Using_the_RFNoC_Replay_Bloc=
+k</a>)?<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3D=
+MsoNormal>Because in the manual it says also:<o:p></o:p></p><p class=3DMsoN=
+ormal>=E2=80=9CThe replay block has the following features: One input and <=
+b>one</b> output=E2=80=9D<o:p></o:p></p><p class=3DMsoNormal>(https://files=
+.ettus.com/manual/classuhd_1_1rfnoc_1_1replay__block__ctrl.html)</p><p clas=
+s=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>So if the replay bl=
+ock has just one output why does it have two channels connected to it (repl=
+ay_chan=3D 0 and 1)?<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></=
+p><p class=3DMsoNormal>If one replay block can just stream to one channel a=
+t the same time, can I implement easily a second replay block in the FPGA t=
+o stream on the two channels of my USRP two different waveforms simultaneou=
+sly?<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMso=
+Normal>Thank you,<o:p></o:p></p><p class=3DMsoNormal>Thomas<o:p></o:p></p><=
+p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><o:p>&nbsp;</=
+o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><o:p=
+>&nbsp;</o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></h=
+tml>=
+
+--_C9A6657D-6B13-4258-94C0-CBC75260CC7E_--
+
+
+
+--===============0714319763371663180==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -292,5 +248,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7189977274204272430==--
+--===============0714319763371663180==--
+
 
