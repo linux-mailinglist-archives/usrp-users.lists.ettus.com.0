@@ -2,57 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B370E113CEE
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2019 09:18:48 +0100 (CET)
-Received: from [::1] (port=36120 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B657113D18
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2019 09:34:44 +0100 (CET)
+Received: from [::1] (port=38684 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1icmLU-0007JX-El; Thu, 05 Dec 2019 03:18:44 -0500
-Received: from mailin.dlr.de ([194.94.201.12]:8485)
+	id 1icmav-0008Ju-Ag; Thu, 05 Dec 2019 03:34:41 -0500
+Received: from mailin.dlr.de ([194.94.201.12]:40459)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
  (Exim 4.92) (envelope-from <Emanuel.Staudinger@dlr.de>)
- id 1icmLQ-0007Fk-OO
- for usrp-users@lists.ettus.com; Thu, 05 Dec 2019 03:18:40 -0500
-IronPort-SDR: JnSItZAQwFNdieMDfkWiG1DTj1UMyntSBCgNEcGjsimdNbth66EPrcSrWBeMZNh1hQU9YXJfjI
- +fDJS+4GN5Ow==
-IronPort-PHdr: =?us-ascii?q?9a23=3ArjuWmhfARQD2X64JdZF0oVKLlGMj4u6mDksu8p?=
- =?us-ascii?q?Mizoh2WeGdxcS4bR7h7PlgxGXEQZ/co6odzbaP6Oa5CTRLuM/f+Fk5M7V0Hy?=
- =?us-ascii?q?cfjssXmwFySOWkMmbcaMDQUiohAc5ZX0Vk9XzoeWJcGcL5ekGA6ibqtW1aFR?=
- =?us-ascii?q?rwLxd6KfroEYDOkcu3y/qy+5rOaAlUmTaxe7x/IAi4oAnLq8UbgpduJqksxh?=
- =?us-ascii?q?fUo3ZDZvhby35vKV+PhRj3+92+/IRk8yReuvIh89BPXKDndKkmTrJWESorPX?=
- =?us-ascii?q?kt6MLkqRfMQw2P5mABUmoNiRpHHxLF7BDhUZjvtCbxq/dw1zObPc3ySrA0RC?=
- =?us-ascii?q?ii4qJ2QxLmlCsLKzg0+3zRh8dtjqxUvQihqgR/zYDKfY+VKPRwcKDcfdwGSm?=
- =?us-ascii?q?VMRdxeWzBDAo6mc4cDE/QNMOBFpIf9vVsOqh6+CBGrCe3gzz9HnHn23bAk3O?=
- =?us-ascii?q?QlCw3IwRAgEMgTsHvJrdX1MqgSXv6vzKTT0DrDa+lW1S3g54fWax0sp+yHU7?=
- =?us-ascii?q?FoccfJ1EUjCxnJgkiTpIHqJT+Zy+oAvmuB4+Z+W++jk3Mrpx1rrjSyxcohhZ?=
- =?us-ascii?q?PFip8bx13H7yl13oY4KNKgRE51f9GpE4dcuiSfOoZyRs4iTXtntSMkxrIap5?=
- =?us-ascii?q?K2fi0HxIo7yBHCZPGKdoaF7xb5W+ufJzpzmWhrd6ilhxmo9Eit0uj8Vs6p31?=
- =?us-ascii?q?lUtidFidzMtmwV1xzU98iHVuNx/ke/1jaL0ADe8u9KL0Y6m6TUK5Avwrk+mJ?=
- =?us-ascii?q?kUv0rZACP7lkr4g66Ie0k+++io7fjnYq/8qZOGKoB0jhv+Pr4zlcOhGeg4Mw?=
- =?us-ascii?q?4OUHaH+emkybHv4Vf1TKhJg/A5iKXVrZ7XKMcBqqKnDQJZyoMj5Ay+Dzei3t?=
- =?us-ascii?q?QYh34HLFdddRyIiojmIVfOIO3mAve7mViijStryOrbPrL8A5XNKHfDn6n7fb?=
- =?us-ascii?q?tm9kFczBAzwcpC6J1KEr0BOu78WlfttNzECR80KxG0w/39CNVlz48eRHmPDb?=
- =?us-ascii?q?GDMKPJqlKI4uMvI/KQZI8OojryNeQl5+LzjX8ig1MSYa6p3Z5EIEy/S6B7OF?=
- =?us-ascii?q?+BJGf3j80aOWMLpRYlCuH2lECZFzVUYiDhcbg742RvJYevC5rOQsaWnLWc0C?=
- =?us-ascii?q?a9EZBMTmxCEBaAHCG7JM2/R/4QZXfKcYdamTseWO35Rg=3D=3D?=
+ id 1icmar-0008An-Km
+ for usrp-users@lists.ettus.com; Thu, 05 Dec 2019 03:34:37 -0500
+IronPort-SDR: Sej7DxCMOczceATVpUv9oBbJxqJYw49PhdmYR7FZbO7/43JbJBW7kJ7tzdiRa8YLmwuecg1cXF
+ HFCQFUNg+CEA==
+IronPort-PHdr: =?us-ascii?q?9a23=3AATktiBDJkl1MoyO01TaNUyQJP3N1i/DPJgcQr6?=
+ =?us-ascii?q?AfoPdwSPT5rsbcNUDSrc9gkEXOFd2Cra4d0KyP4/irADVQqb+681k6OKRWUB?=
+ =?us-ascii?q?EEjchE1ycBO+WiTXPBEfjxciYhF95DXlI2t1uyMExSBdqsLwaK+i764jEdAA?=
+ =?us-ascii?q?jwOhRoLerpBIHSk9631+ev8JHPfglEnjWwba58IRmssAnctdUajYR/JqosyR?=
+ =?us-ascii?q?bCv2dFdflRyW50P1yYggzy5t23/J5t8iRQv+wu+stdWqjkfKo2UKJVAi0+P2?=
+ =?us-ascii?q?86+MPkux/DTRCS5nQHSWUZjgBIAwne4x7kWJr6rzb3ufB82CmeOs32UKw0VD?=
+ =?us-ascii?q?G/5KplVBPklCEKPCM//WrKiMJ/kbhbrQqhqRJh3oDUfI+bOvl/fqzBctwXXn?=
+ =?us-ascii?q?BOUtpTVyFbHo+wc5UDAuwcNuhYtYn9oF4OoAO5CAejAePg0DlIhmLo0q0+ye?=
+ =?us-ascii?q?gvDB3G0xY9H90TsXTUqtr1O7kIUe2u0abIyS/DY+lL1jjj8YXFdA0qr/KUXb?=
+ =?us-ascii?q?9obMbd1VMjGx7Gg1ifs4DpIj2Y2+cXv2SF8eZsTf+jh3I9pw1soTWiyd0ghp?=
+ =?us-ascii?q?THi48W0FzI6yV0zYktKd22VkF2YsKoHZ5VuiyeM4Z2TNktTmR2tCkm1LELu5?=
+ =?us-ascii?q?u2cDYWx5s6yBPSbvKKfoyS7R/tUuuaPC12i2h/eL2lgha/6U2gyurhWcaqyF?=
+ =?us-ascii?q?tKtS9FksXUtnAKyhzT9tCLSvtj8Uel3jaCzw7d5OdKL047laTVK5kvzL03mJ?=
+ =?us-ascii?q?QJr0jPACD4l0TogaOMd0Uk/PSo6/79bbn8u5CcM5V0hhvjPaswgsC/AOI4PR?=
+ =?us-ascii?q?YSX2WD5OiwyKfv8VD6TbhFlPE6j6fUvZPAKcgFuKK1GwpV3Zwi6xa7ATemyt?=
+ =?us-ascii?q?MYnXwfIVxKfRKIlY7pO0zQL/D8F/uxnkisny12x//bP73hBJrNIWbZkLr6YL?=
+ =?us-ascii?q?l971RcxBAuwt9B/55UEK0OIOrvWk/ts9zVFgI5Mxeuw+b/Edl9y5geVnyVAq?=
+ =?us-ascii?q?+CK67StV6I5vkzI+mXfoMapir9K+Q45/71l3M2hVgdfaz6lacQPSSlBe5+Zl?=
+ =?us-ascii?q?iCbGD3qtMACnsR+AciUPHxzlaFVGgASWy1WvdoyzQyDp+rCcH4WomwjL2H0y?=
+ =?us-ascii?q?qhNpFSfCZKBwbfQj/Ta4yYVqJUO2qpKch7n2lcWA=3D=3D?=
 X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2F3EgBovOhd/xeKuAplgkaBGoFdE4E?=
- =?us-ascii?q?7rncTgWcJAQEBAQEBAQEBBwEvAQGGeToEDQIDAQwBAQUBAQEBAQUEAQEChiy?=
- =?us-ascii?q?COyKDfl4BGhtLFw8BBBuDG4F5sSiFT4R5gTeOMIRihASBBA6FIQSVbJheB4F?=
- =?us-ascii?q?Elj8jjkKLZKhtAgQCBAUCFYFsAoF2cYM8TxEUmyyRTIEQAQE?=
-X-IronPort-AV: E=Sophos;i="5.69,280,1571695200"; d="scan'208,217";a="25705348"
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2EmCQCav+hd/xaKuAplHgELHIIAgRq?=
+ =?us-ascii?q?BXROBO65ZghcJAQEBAQEBAQEBBwEvAQGGeTkFDQIDAQwBAQUBAQEBAQUEAQE?=
+ =?us-ascii?q?ChiyCOyKDfl4BDHQmAQQbgxuBebE0hU+EeYE3jjCJBHSFIQSVbJheB4FElj8?=
+ =?us-ascii?q?jjkKLZKhtAgQCBAUCFYFqgXpxgzxPERSbLJAbgTGBEAEB?=
+X-IronPort-AV: E=Sophos;i="5.69,280,1571695200"; d="scan'208,217";a="25983165"
 To: <usrp-users@lists.ettus.com>
-Thread-Topic: B200mini external clock: loop over VCTCXO
-Thread-Index: AdWrQyTyB42utelERK2XOAFfERl2rA==
-Date: Thu, 5 Dec 2019 08:17:58 +0000
-Message-ID: <3d5ac01de97843d8aa5e64294f0585bb@dlr.de>
+Thread-Topic: GPIOs timed commands
+Thread-Index: AdWrRn1Fq1nUqsi+SkupwTNLNRY/Gg==
+Date: Thu, 5 Dec 2019 08:33:55 +0000
+Message-ID: <331d9c2e396b4f499b1af018f335899c@dlr.de>
 Accept-Language: de-DE, en-US
 Content-Language: de-DE
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-tm-snts-smtp: F769ECB6E70DF10452A227B27ACCD33A4A4603F423A103910B7C9595750003C62000:8
 MIME-Version: 1.0
-Subject: [USRP-users] B200mini external clock: loop over VCTCXO
+Subject: [USRP-users] GPIOs timed commands
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,7 +65,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Emanuel via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Emanuel.Staudinger@dlr.de
-Content-Type: multipart/mixed; boundary="===============8912658524332182028=="
+Content-Type: multipart/mixed; boundary="===============3672749863641852929=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,44 +79,24 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8912658524332182028==
+--===============3672749863641852929==
 Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="_000_3d5ac01de97843d8aa5e64294f0585bbdlrde_"
+	boundary="_000_331d9c2e396b4f499b1af018f335899cdlrde_"
 
---_000_3d5ac01de97843d8aa5e64294f0585bbdlrde_
+--_000_331d9c2e396b4f499b1af018f335899cdlrde_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 Hi everybody,
 
-we are using an external 10MHz clock for the B200mini and have some concern=
-s/questions about the clocking architecture:
-
-1.       Do I see it correctly from the schematics, that the external 10MHz=
- reference is used in a control-loop within the FPGA to actually steer the =
-40MHz VCTCXO with the DAC?
-
-2.       We used two B200mini with the same external clock and saw some wei=
-rd bumps in the Allan deviation plot, indicating partly contributions from =
-a whatsoever control loop and from the VCTCXO.
-
-3.       Why has the B200mini clocking architecture been chosen like that?
-
-a.       Is the same architecture used for the B210 as well?
-
-4.       How is the control loop for the external clock exactly implemented=
-, and which parameters are used?
-
-a.       Are stability characteristics of the used VCTCXO taken into accoun=
-t?
-
-b.      Could those parameters bee changed? If so, where and how?
+could the GPIOs, e.g., on a B200mini be set/unset precisely in time (limite=
+d to the sampling rate used)?
 
 Best regards,
 Emanuel
 
---_000_3d5ac01de97843d8aa5e64294f0585bbdlrde_
+--_000_331d9c2e396b4f499b1af018f335899cdlrde_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -148,15 +127,6 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
 span.E-MailFormatvorlage17
 	{mso-style-type:personal-compose;
 	font-family:"Calibri","sans-serif";
@@ -169,58 +139,6 @@ span.E-MailFormatvorlage17
 	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
 div.WordSection1
 	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:2080863241;
-	mso-list-type:hybrid;
-	mso-list-template-ids:2021580788 67698703 67698713 67698715 67698703 67698=
-713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
 --></style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
@@ -232,55 +150,8 @@ ul
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hi everybody,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">we are using an external 10MHz clock for the B200min=
-i and have some concerns/questions about the clocking architecture:<o:p></o=
-:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">1.<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;
-</span></span><![endif]>Do I see it correctly from the schematics, that the=
- external 10MHz reference is used in a control-loop within the FPGA to actu=
-ally steer the 40MHz VCTCXO with the DAC?<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">2.<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;
-</span></span><![endif]>We used two B200mini with the same external clock a=
-nd saw some weird bumps in the Allan deviation plot, indicating partly cont=
-ributions from a whatsoever control loop and from the VCTCXO.<o:p></o:p></p=
->
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">3.<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;
-</span></span><![endif]>Why has the B200mini clocking architecture been cho=
-sen like that?
-<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
-pt;mso-list:l0 level2 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">a.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Is the same architecture used for the B210 as well?=
-<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">4.<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;
-</span></span><![endif]>How is the control loop for the external clock exac=
-tly implemented, and which parameters are used?<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
-pt;mso-list:l0 level2 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">a.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Are stability characteristics of the used VCTCXO ta=
-ken into account?<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
-pt;mso-list:l0 level2 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">b.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Could those parameters bee changed? If so, where an=
-d how?<o:p></o:p></p>
+<p class=3D"MsoNormal">could the GPIOs, e.g., on a B200mini be set/unset pr=
+ecisely in time (limited to the sampling rate used)?<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
 <p class=3D"MsoNormal">Emanuel<o:p></o:p></p>
@@ -288,10 +159,10 @@ d how?<o:p></o:p></p>
 </body>
 </html>
 
---_000_3d5ac01de97843d8aa5e64294f0585bbdlrde_--
+--_000_331d9c2e396b4f499b1af018f335899cdlrde_--
 
 
---===============8912658524332182028==
+--===============3672749863641852929==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -302,5 +173,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8912658524332182028==--
+--===============3672749863641852929==--
 
