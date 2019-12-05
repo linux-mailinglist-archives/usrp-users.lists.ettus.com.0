@@ -2,51 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79EA1145D0
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2019 18:24:23 +0100 (CET)
-Received: from [::1] (port=46398 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 699281147BD
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Dec 2019 20:38:45 +0100 (CET)
+Received: from [::1] (port=56856 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1icurU-0002Lu-8M; Thu, 05 Dec 2019 12:24:20 -0500
-Received: from mail-qk1-f182.google.com ([209.85.222.182]:40826)
+	id 1icwxW-0004uS-Iw; Thu, 05 Dec 2019 14:38:42 -0500
+Received: from mail-qv1-f49.google.com ([209.85.219.49]:40785)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <wddias@gmail.com>) id 1icurR-0002GY-00
- for usrp-users@lists.ettus.com; Thu, 05 Dec 2019 12:24:17 -0500
-Received: by mail-qk1-f182.google.com with SMTP id a137so3991642qkc.7
- for <usrp-users@lists.ettus.com>; Thu, 05 Dec 2019 09:23:56 -0800 (PST)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1icwxT-0004qY-IY
+ for usrp-users@lists.ettus.com; Thu, 05 Dec 2019 14:38:39 -0500
+Received: by mail-qv1-f49.google.com with SMTP id i3so1746393qvv.7
+ for <usrp-users@lists.ettus.com>; Thu, 05 Dec 2019 11:38:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=UAMjSJovic5NNJLKoI5ZM+432i7aXssND9KgewhuO/I=;
- b=ik8ujsikP/LgMPMEdidkEKDSMfyyZQxUFoGsj8bCMWO8Lqry78/HFrDbzpi12qJmGF
- GCm8W8KJ/HlvzqqB4xKdBzLDmAkMkoIapGBeuWz9BXbQ40yuiXrYEK6wl/hNuwzKyts0
- 2VUXPXi90TWB9bZ0ZUqH527/PbCkjluFTrNsYUSO6/2jbBYFi1UELJUyF6k/PeP8zdXR
- IFv3RBAQDBPZvHd6JMhxE30j/hN6z8DNxcw5PrHUsffFqxc2Qy05dlS0gleyt0wjs5T+
- g3LgATzKK96N252/oIRcvmZSWTABcwj7pupsC3Qh+Glwq0rAylMRH7NwBv9UTwbXVgnH
- c7yw==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=zpODkBxARnrevKgAyCcx0cBzjfjwcjO+LyxX8PRB6Sw=;
+ b=chlQWjAWU8K/qGBbYUJ1ZQxNJmpUW1sN/cj7+7Htx/FlL/3xAfdILDGOxDzuggX7wU
+ RcUe+ZuFrCM93UGBSsCHIxPeYw07AzdSHI6ghbkJ9jwbWrQwsdJMa0i+VMHjo+xa1PIY
+ hbaFteT8S/vXuLQZYYivVjalrqx3cnKEm0Qi1wPZsWIPrC+L/arS93FpnbcXZEXq2gwj
+ Jn16baI4NYo3okS9uYmpGMqjI4Jw1GbY5eDgeuxm9F1q9NTO8eBqcnikOF6w2oRYClaS
+ p/8EE5duraZeXKNWW86SzPAmkaFv/m5/S404OCT1K3tVBmNyLmyq8v9szPbo7pX3msJm
+ lQtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=UAMjSJovic5NNJLKoI5ZM+432i7aXssND9KgewhuO/I=;
- b=XDif1rnEp4isznx49BM/9tl8rsVVultwqUubxtZSGNeW9hnG0S6qQuq7ZnTfe4hLY+
- hFrPb2iNkZTkkfkZO07zrYJXpYwcpQEc2vGLGyBO/0JhZq3mDl56wNQ3heFJIx4eYYpz
- NWA/N457hIPaQrDMtTWInuFXqNmevYxXozzJF6ucyoijEPZFhuXmuyvx7Un0856pEtC2
- k8ZzH1gp4+SyRosGXzjUnwS/6ZduLAZb8TWHb76yY7lr9HLLD0tb0RYQQZoayBudep/G
- MH1hAuCSyoWEeeaGUKJtaiR3TKE65RwVyOPnfINaCDvEh8uZDdHhc9X06ePxbHWnl0jf
- N0AQ==
-X-Gm-Message-State: APjAAAWDFMxkLUs0Nfd2czOXgsi3URypqnFH5eIyISdMt7/Wxr4EqwCI
- TQKe+fgRQE/iio1+q0hmlfDnA7tasZVfcM6BWV4=
-X-Google-Smtp-Source: APXvYqzGtK6IKOQglGjsW0ohdATefQ0E/r7/J39QeCRTeP8hyzD6EEz6hi3eQX1TLLON+dkRylrJuqrlaPkMx8SkL98=
-X-Received: by 2002:a37:9ace:: with SMTP id c197mr9682240qke.482.1575566616096; 
- Thu, 05 Dec 2019 09:23:36 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=zpODkBxARnrevKgAyCcx0cBzjfjwcjO+LyxX8PRB6Sw=;
+ b=T2WLJriKOJ80U9MJljtYrNhRF3ACugggcIsTlDWV8WBN0FZg4oNRQlMYjhnE1ZM42m
+ ZZzlArQDtZSZm+aUD5+03FVYUYNQaPbbRiXqPAbvpIHq4GQr+PsoZc64pESPCyhRyGYK
+ c5JzNmyh+zfh13noT4GHBc4N2NgO248mK3XsNVLl/CsWcu+zZQfEFHxD6RcyyWsFNUmc
+ wuLXZocrlOzb54pZNAUe5nnrcbS8hRegHPO33BoaH2+TqX2Gyq56ydXOoU48U1VIjX0Q
+ +XFimTC/9syQGT8FbYL6zjylgvXGGktgVRUQ08DHH+1q7rHRCV1x/4zWXF94PkF9Uh2+
+ hmCQ==
+X-Gm-Message-State: APjAAAUqOxKqPyIbrM3lzDbd19hsxzBtB508AopXRoGxbp5MOLlWCHd9
+ HKMt97eQUpYvFh1t9kCk3AlQXtUq
+X-Google-Smtp-Source: APXvYqx0msdw3hwfPUpd47KwDz18eReHj4eW/Ps/e9DUFtlItqYhmYAbVj9n7hQIaRtVWzOQkQptgQ==
+X-Received: by 2002:a0c:e4cc:: with SMTP id g12mr9297623qvm.237.1575574678658; 
+ Thu, 05 Dec 2019 11:37:58 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
+ [174.95.14.228])
+ by smtp.googlemail.com with ESMTPSA id d32sm4090901qtd.31.2019.12.05.11.37.57
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 05 Dec 2019 11:37:58 -0800 (PST)
+Message-ID: <5DE95C95.2030600@gmail.com>
+Date: Thu, 05 Dec 2019 14:37:57 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CALSKgPzX3DnB8iu4OMqZzht-iZ+M4754vUjraPc6vMryG707_Q@mail.gmail.com>
- <CANf970bheGwVmr3zWbO8Pa-FtO-3wB-H=6PKCmDOGcme8ibo5Q@mail.gmail.com>
-In-Reply-To: <CANf970bheGwVmr3zWbO8Pa-FtO-3wB-H=6PKCmDOGcme8ibo5Q@mail.gmail.com>
-Date: Thu, 5 Dec 2019 14:23:24 -0300
-Message-ID: <CALSKgPwFYE3vGNYb5djdMH-EasGkQnu6q=Uj0XkPtOJuwWai0w@mail.gmail.com>
-To: Sam Reiter <sam.reiter@ettus.com>, usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] USRP X3x0 FPGA source (LV)
+To: usrp-users@lists.ettus.com
+References: <3d5ac01de97843d8aa5e64294f0585bb@dlr.de>
+In-Reply-To: <3d5ac01de97843d8aa5e64294f0585bb@dlr.de>
+Subject: Re: [USRP-users] B200mini external clock: loop over VCTCXO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Wheberth Damascena Dias via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Wheberth Damascena Dias <wheberth@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2682906478446966266=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5953740062633281659=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,205 +82,281 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2682906478446966266==
-Content-Type: multipart/alternative; boundary="00000000000078f4f80598f830c7"
+This is a multi-part message in MIME format.
+--===============5953740062633281659==
+Content-Type: multipart/alternative;
+ boundary="------------070508010601040906080709"
 
---00000000000078f4f80598f830c7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------070508010601040906080709
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-HI Sam,
-
-Thank you for your answer.
-Let me explain our situation a little bit better. Here at Inatel we have
-been developing for the USRPs using the LabVIEW FPGA (USRP-RIO) flow for a
-while. So we have many blocks already implemented in this paradigm. We are
-now switching for the software flow using GNU Radio, due to the development
-agility it provides compared to any FPGA flow. Although, for some blocks,
-is very difficult to achieve the required processing throughput in a
-software implementation. The Digital pre-distorter is one of those. The
-bandwidth required at the output of this block must be many times (3x to
-5x) the bandwidth of the desired signal. Then an hybrid approach with FPGA
-and as software development is needed.
-As pointed out in the previous message, it turns out that the stock USRP
-images were generated using the same tool we have been using by tha last 4
-years, This way, if we could modify the stock image, using the LabVIEW flow
-and could insert the DPD block just before the DAC output (running at the
-master_clock_rate 200MHz or 184.32MHz) it would be a perfect fit for our
-need. So if that code were available it would be straightforward to us to
-do this modification (Depending on the LabVIEW version).
-I know that is not the intended flow, but that source code would be really
-helpful, if available.
-
-Best Regards,
-
-
-
-Em qui., 5 de dez. de 2019 =C3=A0s 13:30, Sam Reiter <sam.reiter@ettus.com>
-escreveu:
-
-> Wheberth,
+On 12/05/2019 03:17 AM, Emanuel via USRP-users wrote:
 >
-> What you're trying to do sounds possible, but I think you're approaching
-> it the wrong way. When you use the USRP with a default FPGA image
-> (usrp_x310_fpga_HG.lvbitx), you just get the HG image that you can
-> interface with using the NI-USRP driver in LabVIEW. In that case,
-> everything you program is on the host side. With this HG image, you're
-> pretty much just getting default RFNoC under the hood with a few changes
-> including header modifications. The project isn't available and wouldn't =
-be
-> useful to you for integrating your code, even if you had it.
+> Hi everybody,
 >
-> You'll want to use your X310 as a USRP RIO and interact with it via the
-> LabVIEW FPGA module (or something along those lines, I'm not particularly
-> familiar with this paradigm myself). This will give you a blank block
-> diagram to implement your IP and pass data over DMA to the host while
-> preserving the static logic necessary to allow the radio to work as you'd
-> expect. This is all LabVIEW and no UHD/GR. You might poke around some of
-> the USRP RIO examples [1] to see how similar functionality has been
-> implemented before you drop yours in. Beyond that, reaching out to NI
-> Support might be a good call for follow up questions.
+> we are using an external 10MHz clock for the B200mini and have some 
+> concerns/questions about the clocking architecture:
 >
-> Sam Reiter
-> Ettus Research
+> 1.Do I see it correctly from the schematics, that the external 10MHz 
+> reference is used in a control-loop within the FPGA to actually steer 
+> the 40MHz VCTCXO with the DAC?
 >
-> [1]
-> https://knowledge.ni.com/KnowledgeArticleDetails?id=3DkA00Z0000019TmVSAU&=
-l=3Den-US
+> 2.We used two B200mini with the same external clock and saw some weird 
+> bumps in the Allan deviation plot, indicating partly contributions 
+> from a whatsoever control loop and from the VCTCXO.
 >
-> On Thu, Dec 5, 2019 at 7:13 AM Wheberth Damascena Dias via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
+> 3.Why has the B200mini clocking architecture been chosen like that?
 >
->>
->> Hi All,
->>
->> Looking at the bitfile "usrp_x310_fpga_HG.lvbitx", as the name suggests,
->> it looks like it came from LabVIEW/LabVIEW Comms. It is possible even to
->> see the top ..vi filename which is "USRP_X3x0_Top.vi".
->> Although I wasn't able to find the LabVIEW source project for this
->> bitfile. Is this source available anywhere?
->> I am asking, because we have to include some custom code (a digital
->> baseband pre-distorter) to run on the USRP FPGA. As we already have this
->> implemented in LabVIEW it would save us a lot of time comparing to going
->> through the RFNoC route.
->>
->> Thank you in advance,
->> Best Regards
->> --
->> *Wheberth Damascena Dias*
->> _______________ _____ _____ __ ___ __ _ _ _  _
->> http://www.linkedin.com/in/wheberth
->> e-mail:wheberth@gmail.com
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
+> a.Is the same architecture used for the B210 as well?
 >
+I can't tell *why* the architecture was chosen as it is.  But the B210 
+has a hardware external-reference PLL, so behaves very differently.
 
---=20
-*Wheberth Damascena Dias*
-_______________ _____ _____ __ ___ __ _ _ _  _
-http://www.linkedin.com/in/wheberth
-e-mail:wheberth@gmail.com
+> 4.How is the control loop for the external clock exactly implemented, 
+> and which parameters are used?
+>
+> a.Are stability characteristics of the used VCTCXO taken into account?
+>
+> b.Could those parameters bee changed? If so, where and how?
+>
+The control loop is implemented in the FPGA code:
 
---00000000000078f4f80598f830c7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>HI Sam,</div><div><br></div><div>Thank you for your a=
-nswer.<br></div><div>Let me explain our situation a little bit better. Here=
- at Inatel we have been developing for the USRPs using the LabVIEW FPGA (US=
-RP-RIO) flow for a while. So we have many blocks already implemented in thi=
-s paradigm. We are now switching for the software flow using GNU Radio, due=
- to the development agility it provides compared to any FPGA flow. Although=
-, for some blocks, is very difficult to achieve the required processing thr=
-oughput in a software implementation. The Digital pre-distorter is one of t=
-hose. The bandwidth required at the output of this block must be many times=
- (3x to 5x) the bandwidth of the desired signal. Then an hybrid approach wi=
-th FPGA and as software development is needed.</div><div></div><div>As poin=
-ted out in the previous message, it turns out that the stock USRP images we=
-re generated using the same tool we have been using by tha last 4 years, Th=
-is way, if we could modify the stock image, using the LabVIEW flow and coul=
-d insert the DPD block just before the DAC output (running at the master_cl=
-ock_rate 200MHz or 184.32MHz) it would be a perfect fit for our need. So if=
- that code were available it would be straightforward to us to do this modi=
-fication (Depending on the LabVIEW version).</div><div></div><div>I know th=
-at is not the intended flow, but that source code would be really helpful, =
-if available.<br></div><div><br></div><div>Best Regards,</div><div></div><d=
-iv><br></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">Em qui., 5 de dez. de 2019 =C3=A0s 13:30, Sam=
- Reiter &lt;<a href=3D"mailto:sam.reiter@ettus.com">sam.reiter@ettus.com</a=
->&gt; escreveu:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<div dir=3D"ltr"><div>Wheberth,</div><div><br></div><div>What you&#39;re tr=
-ying to do sounds possible, but I think you&#39;re approaching it the wrong=
- way. When you use the USRP with a default FPGA image (usrp_x310_fpga_HG.lv=
-bitx), you just get the HG image that you can interface with using the NI-U=
-SRP driver in LabVIEW. In that case, everything you program is on the host =
-side. With this HG image, you&#39;re pretty much just getting default RFNoC=
- under the hood with a few changes including header modifications. The proj=
-ect isn&#39;t available and wouldn&#39;t be useful to you for integrating y=
-our code, even if you had it. <br></div><div><br></div><div>You&#39;ll want=
- to use your X310 as a USRP RIO and interact with it via the LabVIEW FPGA m=
-odule (or something along those lines, I&#39;m not particularly familiar wi=
-th this paradigm myself). This will give you a blank block diagram to imple=
-ment your IP and pass data over DMA to the host while preserving the static=
- logic necessary to allow the radio to work as you&#39;d expect. This is al=
-l LabVIEW and no UHD/GR. You might poke around some of the USRP RIO example=
-s [1] to see how similar functionality has been implemented before you drop=
- yours in. Beyond that, reaching out to NI Support might be a good call for=
- follow up questions. <br></div><div><br></div><div><div dir=3D"ltr"><div d=
-ir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter <br><div>Ettus Research</div><d=
-iv><br></div><div>[1] <a href=3D"https://knowledge.ni.com/KnowledgeArticleD=
-etails?id=3DkA00Z0000019TmVSAU&amp;l=3Den-US" target=3D"_blank">https://kno=
-wledge.ni.com/KnowledgeArticleDetails?id=3DkA00Z0000019TmVSAU&amp;l=3Den-US=
-</a></div></div></div></div></div></div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 5, 2019 at 7:13 AM Wheb=
-erth Damascena Dias via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.e=
-ttus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
-><br clear=3D"all"></div><div>Hi All,</div><div><br></div><div></div><div><=
-/div><div>Looking at the bitfile &quot;usrp_x310_fpga_HG.lvbitx&quot;, as t=
-he name suggests, it looks like it came from LabVIEW/LabVIEW Comms. It is p=
-ossible even to see the top ..vi filename which is &quot;USRP_X3x0_Top.vi&q=
-uot;.</div><div>Although I wasn&#39;t able to find the LabVIEW source proje=
-ct for this bitfile. Is this source available anywhere?</div><div></div><di=
-v>I am asking, because we have to include some custom code (a digital baseb=
-and pre-distorter) to run on the USRP FPGA. As we already have this impleme=
-nted in LabVIEW it would save us a lot of time comparing to going through t=
-he RFNoC route.<br></div><div><br></div><div>Thank you in advance,<br></div=
-><div>Best Regards</div><div></div><div>-- <br><div dir=3D"ltr"><div dir=3D=
-"ltr"><div><span style=3D"font-size:12.8px"><b>Wheberth Damascena Dias</b><=
-/span><br></div><div><span style=3D"color:rgb(80,0,80);font-size:12.8px">__=
-_____________ _____ _____ __ ___ __ _ _ _=C2=A0 _=C2=A0</span><br><div><a h=
-ref=3D"http://www.linkedin.com/in/wheberth" target=3D"_blank">http://www.li=
-nkedin.com/in/wheberth</a></div><div><a href=3D"mailto:e-mail%3Awheberth@gm=
-ail.com" target=3D"_blank">e-mail:wheberth@gmail.com</a></div><div><div><di=
-v><br></div></div></div></div></div></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
-mail_signature"><div dir=3D"ltr"><div><span style=3D"font-size:12.8px"><b>W=
-heberth Damascena Dias</b></span><br></div><div><span style=3D"color:rgb(80=
-,0,80);font-size:12.8px">_______________ _____ _____ __ ___ __ _ _ _=C2=A0 =
-_=C2=A0</span><br><div><a href=3D"http://www.linkedin.com/in/wheberth" targ=
-et=3D"_blank">http://www.linkedin.com/in/wheberth</a></div><div><a href=3D"=
-mailto:e-mail%3Awheberth@gmail.com" target=3D"_blank">e-mail:wheberth@gmail=
-.com</a></div><div><div><div><br></div></div></div></div></div></div>
-
---00000000000078f4f80598f830c7--
+...uhd/fpga-src/usrp3/top/b2xxmini/b205_ref_pll.v
 
 
---===============2682906478446966266==
+> Best regards,
+>
+> Emanuel
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+--------------070508010601040906080709
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 12/05/2019 03:17 AM, Emanuel via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote cite="mid:3d5ac01de97843d8aa5e64294f0585bb@dlr.de"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 14 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:2080863241;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2021580788 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">Hi everybody,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">we are using an external 10MHz clock for
+          the B200mini and have some concerns/questions about the
+          clocking architecture:<o:p></o:p></p>
+        <p class="MsoListParagraph"
+          style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span
+            style="mso-list:Ignore">1.<span style="font:7.0pt
+              &quot;Times New Roman&quot;">      
+            </span></span><!--[endif]-->Do I see it correctly from the
+          schematics, that the external 10MHz reference is used in a
+          control-loop within the FPGA to actually steer the 40MHz
+          VCTCXO with the DAC?<o:p></o:p></p>
+        <p class="MsoListParagraph"
+          style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span
+            style="mso-list:Ignore">2.<span style="font:7.0pt
+              &quot;Times New Roman&quot;">      
+            </span></span><!--[endif]-->We used two B200mini with the
+          same external clock and saw some weird bumps in the Allan
+          deviation plot, indicating partly contributions from a
+          whatsoever control loop and from the VCTCXO.<o:p></o:p></p>
+        <p class="MsoListParagraph"
+          style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span
+            style="mso-list:Ignore">3.<span style="font:7.0pt
+              &quot;Times New Roman&quot;">      
+            </span></span><!--[endif]-->Why has the B200mini clocking
+          architecture been chosen like that?
+          <o:p></o:p></p>
+        <p class="MsoListParagraph"
+          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l0
+          level2 lfo1">
+          <!--[if !supportLists]--><span style="mso-list:Ignore">a.<span
+              style="font:7.0pt &quot;Times New Roman&quot;">      
+            </span></span><!--[endif]-->Is the same architecture used
+          for the B210 as well?</p>
+      </div>
+    </blockquote>
+    I can't tell *why* the architecture was chosen as it is.  But the
+    B210 has a hardware external-reference PLL, so behaves very
+    differently.<br>
+    <br>
+    <blockquote cite="mid:3d5ac01de97843d8aa5e64294f0585bb@dlr.de"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoListParagraph"
+          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l0
+          level2 lfo1"><o:p></o:p></p>
+        <p class="MsoListParagraph"
+          style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span
+            style="mso-list:Ignore">4.<span style="font:7.0pt
+              &quot;Times New Roman&quot;">      
+            </span></span><!--[endif]-->How is the control loop for the
+          external clock exactly implemented, and which parameters are
+          used?<o:p></o:p></p>
+        <p class="MsoListParagraph"
+          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l0
+          level2 lfo1">
+          <!--[if !supportLists]--><span style="mso-list:Ignore">a.<span
+              style="font:7.0pt &quot;Times New Roman&quot;">      
+            </span></span><!--[endif]-->Are stability characteristics of
+          the used VCTCXO taken into account?<o:p></o:p></p>
+        <p class="MsoListParagraph"
+          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l0
+          level2 lfo1">
+          <!--[if !supportLists]--><span style="mso-list:Ignore">b.<span
+              style="font:7.0pt &quot;Times New Roman&quot;">     
+            </span></span><!--[endif]-->Could those parameters bee
+          changed? If so, where and how?</p>
+      </div>
+    </blockquote>
+    The control loop is implemented in the FPGA code:<br>
+    <br>
+    ...uhd/fpga-src/usrp3/top/b2xxmini/b205_ref_pll.v<br>
+    <br>
+    <br>
+    <blockquote cite="mid:3d5ac01de97843d8aa5e64294f0585bb@dlr.de"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoListParagraph"
+          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l0
+          level2 lfo1"><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Best regards,<o:p></o:p></p>
+        <p class="MsoNormal">Emanuel<o:p></o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------070508010601040906080709--
+
+
+--===============5953740062633281659==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -283,5 +367,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2682906478446966266==--
+--===============5953740062633281659==--
 
