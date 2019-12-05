@@ -2,60 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DA751149BB
-	for <lists+usrp-users@lfdr.de>; Fri,  6 Dec 2019 00:16:47 +0100 (CET)
-Received: from [::1] (port=33054 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B8DA1149E9
+	for <lists+usrp-users@lfdr.de>; Fri,  6 Dec 2019 00:33:03 +0100 (CET)
+Received: from [::1] (port=35516 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1id0MY-00067e-BY; Thu, 05 Dec 2019 18:16:46 -0500
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:43480)
+	id 1id0cH-0006v0-KR; Thu, 05 Dec 2019 18:33:01 -0500
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:39163)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1id0MU-00061s-SA
- for usrp-users@lists.ettus.com; Thu, 05 Dec 2019 18:16:42 -0500
-Received: by mail-qt1-f173.google.com with SMTP id q8so5237015qtr.10
- for <usrp-users@lists.ettus.com>; Thu, 05 Dec 2019 15:16:22 -0800 (PST)
+ (Exim 4.92) (envelope-from <saeidh@gmail.com>) id 1id0cE-0006nL-Ik
+ for usrp-users@lists.ettus.com; Thu, 05 Dec 2019 18:32:58 -0500
+Received: by mail-lf1-f68.google.com with SMTP id c9so3304846lfi.6
+ for <usrp-users@lists.ettus.com>; Thu, 05 Dec 2019 15:32:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=m/5y18/1mrAvrq9YMkSw3FZCA4u98AiIsC+VjWEK1NE=;
- b=G9fxe1HP2rgLkTebe/eeCCkbUSIURbZlOEoVpjgYnQ11xZNy0fy5gSogIV36802Vz/
- 7BDOGSTuQavI1kNfuoqBCYab4WBYx12R1yra/t6O/XQTnRdn5sXdXiIWRLD75pdIIIu/
- ccvE9Dto7hZYdaQcXSkMFuUYrSwRksoH145+4xWO00X6tEw5CqJiuwR2HdEqbUr4cQkU
- 2e/VPnCDXuvXs6fYlQX1U+hLWpHhzvzgGTGftuixxpWLq0v4YvFncM26HB4iMdjMTdsx
- uDmuTV1GOtv3/NLlrv1hggXuQYk18GFtnU+vSnCoDzG2jIBwnMXN8j2wgy58LkBFiSiS
- ad2w==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=HB/fpw1/NPK+qTHFtWKHxrwBB23xyh6rSy5et1wym00=;
+ b=f//lRbsPvQ30GezUXpe7wDrN6UJ4d3tHLbloBYETHzrFLik+IZ2JoayjE7kOvFMKZu
+ +sYBQ83ri+Bwra9fvBA6meORec+ItyzzO5VXore1EknCXP0qgnzhpxLn+iE5hgDPVJUi
+ UG6QcbKUuk3d6AGpu/JWhww30JjAY32cyixKV1WZvb0+LNG4XCq6JXi7Ma9F0Uf2zmCm
+ JjzxQst0M1UehkdN+tvK7qgmIoqFhNj1AlpeRjGGz67j7CMfCqOh8+aBZ898jcgjQEaq
+ Ut+D1wtyS2xFCCEAJ79TSbbi5mQeqe8bdfWArIY3dR72JrtgjGHyxy78aARlDyhWH0NZ
+ LxpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=m/5y18/1mrAvrq9YMkSw3FZCA4u98AiIsC+VjWEK1NE=;
- b=m6wzs47zcy0nnuWRKT0dikq9PWjjZ6bCz7njekJHuJLf7r17W6gOYzrLrCcXsYkw8u
- Ph+63BFY/Juwz8nRAOUwKSrztQuHgnVizA3NQ6tf1bJ2vf+pRzhiefuZ7aG7FaejCx7I
- puRJwwRKqggEJCzjMc16qDv+ShL4W3dm00vBpm1CcJGAFJKbrBAnlduXnK51QdhW80Ei
- aqECY6O8gxOvtq+9e6HRP7Uyle8PgE0TpylufKiIwSZwTz07iAiRZWNd+sBgxyy3Wzn6
- Q0p3GjxbYF8Fp1Wnv+vxB1F9D/x6c06Gl2HNC6co1xMJgDeG1+Mr7W0sQAY9IxhyZsHJ
- fLkQ==
-X-Gm-Message-State: APjAAAU7FS7Ryv1TVxuRvJoKl5XXRGVcI4EKOPTJo3lOSDo4eC1lmuJ/
- MYKMIRcgRyKAsIPTwLSRrv0CMXPj
-X-Google-Smtp-Source: APXvYqxQGKDC9hfk6+euLzat2PqNqixAMjRWDKiHI1ouqAXV/dRfWEtcqsFW2s54bwvwCLi8gFgvlA==
-X-Received: by 2002:aed:23a2:: with SMTP id j31mr8583641qtc.6.1575587762250;
- Thu, 05 Dec 2019 15:16:02 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
- [174.95.14.228])
- by smtp.googlemail.com with ESMTPSA id 184sm5422551qke.73.2019.12.05.15.16.01
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 05 Dec 2019 15:16:01 -0800 (PST)
-Message-ID: <5DE98FB0.3020108@gmail.com>
-Date: Thu, 05 Dec 2019 18:16:00 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=HB/fpw1/NPK+qTHFtWKHxrwBB23xyh6rSy5et1wym00=;
+ b=EApXtQFRudNCKXng+woybhHRVAzD+s0TnOHd5y3fLYam5lFNngM17zor3+r9G0YTVa
+ PwSVNn5qL5iovjpRikRw6oNS1Hn2eJg2JGPXOlw3C8VlFxoPvCW4jMAgPSTgXOHA+1fM
+ 5S3JcCABnPa1+YVZXgp83ZweU18pTCGf+UiVHU6l1lFmPz3q2PJlCZtRHCJyogtI3yfn
+ +WmUZ7mkOm1/ajDAN2Rp3X93WbqPKP7o5d6W/UNj07D3Jj0QMzgsNjQ/PZT4Pv8q6xWi
+ 7HsnfDEw3YHc/E1wx4o9T5sHtG6kq5ZpdnFU0ai1rWFHKlO4rvlTjJ7EUfHlSqdtO7xi
+ R3kg==
+X-Gm-Message-State: APjAAAWVgnAd1XKS+FethyA/YTZaQ8JsXZa+1rdKcn/2iBRrWD4nicdX
+ 5lUsjae5+LuT85j6/p3CfOUR8VfI05EP9N70TFL+uu7U5a3BrWzt
+X-Google-Smtp-Source: APXvYqx6hK8D5okniOrA2Y+3YEYxw6ZLQ4yjUvWLx4R1I5pmhjGWOUlJVyP8gwWzwrwAlQbvtkH5tJe1C2hTjJaJ21c=
+X-Received: by 2002:ac2:43a7:: with SMTP id t7mr5984086lfl.125.1575588735948; 
+ Thu, 05 Dec 2019 15:32:15 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAFGMRUBC+j_FsScHG1+7_p9GJwbe2Weh+KwghvokM58foJ-wWg@mail.gmail.com>
-In-Reply-To: <CAFGMRUBC+j_FsScHG1+7_p9GJwbe2Weh+KwghvokM58foJ-wWg@mail.gmail.com>
-Subject: Re: [USRP-users] DPDK
+Date: Thu, 5 Dec 2019 18:31:41 -0500
+Message-ID: <CANQ3h38Ld+PabG4QosHwhyhg4=BYWBC+uEyhZDrTUstaxNAT7g@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Libuhd issues - "uhd_find_devices: error while loading
+ shared libraries"
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Saeid Hashemi via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Saeid Hashemi <saeidh@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2146966361033282302=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,23 +71,80 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 12/05/2019 06:06 PM, Keith k via USRP-users wrote:
-> Just wondering if there are plans to add DPDK support for the N2xx 
-> devices?
->
-> -- 
-> -Keith Kotyk
->
->
-That seems unlikely since 'new feature' support for N2xx has been 
-somewhat "dead" for a few years now.
+--===============2146966361033282302==
+Content-Type: multipart/alternative; boundary="000000000000eb1cd10598fd5626"
+
+--000000000000eb1cd10598fd5626
+Content-Type: text/plain; charset="UTF-8"
+
+Hello everyone,
+
+I have an Intel NUC running Ubuntu 16.04 and a low latency kernel which I
+use for OAI LTE software on top of UHD.
+
+After updating my system repositories, UHD broke somehow with the following
+result:
+
+nuc8-3@nuc83-NUC8i7BEH:~$ uhd_find_devices
+uhd_find_devices: error while loading shared libraries: libuhd.so.3.14.1:
+cannot open shared object file: No such file or directory
+
+Attempting to manually install the version cited in the error gives me this:
+
+Unpacking libuhd3.14.1:amd64 (3.14.1.1-0ubuntu1~trusty1) ...
+dpkg: error processing archive
+/var/cache/apt/archives/libuhd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.deb
+(--unpack):
+ trying to overwrite '/usr/share/uhd/rfnoc/blocks/keep_one_in_n.xml', which
+is also in package libuhd3.14.0:amd64 3.14.0.0-0ubuntu1~trusty1
+dpkg-deb: error: subprocess paste was killed by signal (Broken pipe)
+Errors were encountered while processing:
+ /var/cache/apt/archives/libuhd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.deb
+E: Sub-process /usr/bin/dpkg returned an error code (1)
 
 
+Would anyone have any recommendations on what to do to make sure I have the
+right version of everything present?
+
+--000000000000eb1cd10598fd5626
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello everyone,</div><div><br></div><div>I have an In=
+tel NUC running Ubuntu 16.04 and a low latency kernel which I use for OAI L=
+TE software on top of UHD.<br></div><div><br></div><div>After updating my s=
+ystem repositories, UHD broke somehow with the following result:</div><div>=
+<br></div><div style=3D"margin-left:40px"><span style=3D"font-family:monosp=
+ace">nuc8-3@nuc83-NUC8i7BEH:~$ uhd_find_devices <br>uhd_find_devices: error=
+ while loading shared libraries: libuhd.so.3.14.1: cannot open shared objec=
+t file: No such file or directory</span></div><div style=3D"margin-left:40p=
+x"><br></div><div>Attempting to manually install the version cited in the e=
+rror gives me this:</div><div><br></div><div style=3D"margin-left:40px"><sp=
+an style=3D"font-family:monospace">Unpacking libuhd3.14.1:amd64 (3.14.1.1-0=
+ubuntu1~trusty1) ...<br>dpkg: error processing archive /var/cache/apt/archi=
+ves/libuhd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.deb (--unpack):<br>=C2=A0t=
+rying to overwrite &#39;/usr/share/uhd/rfnoc/blocks/keep_one_in_n.xml&#39;,=
+ which is also in package libuhd3.14.0:amd64 3.14.0.0-0ubuntu1~trusty1<br>d=
+pkg-deb: error: subprocess paste was killed by signal (Broken pipe)<br>Erro=
+rs were encountered while processing:<br>=C2=A0/var/cache/apt/archives/libu=
+hd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.deb<br>E: Sub-process /usr/bin/dpk=
+g returned an error code (1)</span></div><div><br></div><div><br></div><div=
+>Would anyone have any recommendations on what to do to make sure I have th=
+e right version of everything present?</div><div><br></div></div>
+
+--000000000000eb1cd10598fd5626--
 
 
-
+--===============2146966361033282302==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2146966361033282302==--
+
