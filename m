@@ -2,48 +2,39 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B8DA1149E9
-	for <lists+usrp-users@lfdr.de>; Fri,  6 Dec 2019 00:33:03 +0100 (CET)
-Received: from [::1] (port=35516 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40627114D0A
+	for <lists+usrp-users@lfdr.de>; Fri,  6 Dec 2019 08:58:58 +0100 (CET)
+Received: from [::1] (port=60656 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1id0cH-0006v0-KR; Thu, 05 Dec 2019 18:33:01 -0500
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:39163)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <saeidh@gmail.com>) id 1id0cE-0006nL-Ik
- for usrp-users@lists.ettus.com; Thu, 05 Dec 2019 18:32:58 -0500
-Received: by mail-lf1-f68.google.com with SMTP id c9so3304846lfi.6
- for <usrp-users@lists.ettus.com>; Thu, 05 Dec 2019 15:32:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=HB/fpw1/NPK+qTHFtWKHxrwBB23xyh6rSy5et1wym00=;
- b=f//lRbsPvQ30GezUXpe7wDrN6UJ4d3tHLbloBYETHzrFLik+IZ2JoayjE7kOvFMKZu
- +sYBQ83ri+Bwra9fvBA6meORec+ItyzzO5VXore1EknCXP0qgnzhpxLn+iE5hgDPVJUi
- UG6QcbKUuk3d6AGpu/JWhww30JjAY32cyixKV1WZvb0+LNG4XCq6JXi7Ma9F0Uf2zmCm
- JjzxQst0M1UehkdN+tvK7qgmIoqFhNj1AlpeRjGGz67j7CMfCqOh8+aBZ898jcgjQEaq
- Ut+D1wtyS2xFCCEAJ79TSbbi5mQeqe8bdfWArIY3dR72JrtgjGHyxy78aARlDyhWH0NZ
- LxpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=HB/fpw1/NPK+qTHFtWKHxrwBB23xyh6rSy5et1wym00=;
- b=EApXtQFRudNCKXng+woybhHRVAzD+s0TnOHd5y3fLYam5lFNngM17zor3+r9G0YTVa
- PwSVNn5qL5iovjpRikRw6oNS1Hn2eJg2JGPXOlw3C8VlFxoPvCW4jMAgPSTgXOHA+1fM
- 5S3JcCABnPa1+YVZXgp83ZweU18pTCGf+UiVHU6l1lFmPz3q2PJlCZtRHCJyogtI3yfn
- +WmUZ7mkOm1/ajDAN2Rp3X93WbqPKP7o5d6W/UNj07D3Jj0QMzgsNjQ/PZT4Pv8q6xWi
- 7HsnfDEw3YHc/E1wx4o9T5sHtG6kq5ZpdnFU0ai1rWFHKlO4rvlTjJ7EUfHlSqdtO7xi
- R3kg==
-X-Gm-Message-State: APjAAAWVgnAd1XKS+FethyA/YTZaQ8JsXZa+1rdKcn/2iBRrWD4nicdX
- 5lUsjae5+LuT85j6/p3CfOUR8VfI05EP9N70TFL+uu7U5a3BrWzt
-X-Google-Smtp-Source: APXvYqx6hK8D5okniOrA2Y+3YEYxw6ZLQ4yjUvWLx4R1I5pmhjGWOUlJVyP8gwWzwrwAlQbvtkH5tJe1C2hTjJaJ21c=
-X-Received: by 2002:ac2:43a7:: with SMTP id t7mr5984086lfl.125.1575588735948; 
- Thu, 05 Dec 2019 15:32:15 -0800 (PST)
+	id 1id8Vq-0004gT-Gr; Fri, 06 Dec 2019 02:58:54 -0500
+Received: from sidious.ihf.ing.tu-bs.de ([134.169.78.12]:60694)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <fabian.schwartau@ihf.tu-bs.de>)
+ id 1id8Vm-0004dD-MA
+ for usrp-users@lists.ettus.com; Fri, 06 Dec 2019 02:58:50 -0500
+Received: from localhost (localhost [127.0.0.1])
+ by sidious.ihf.ing.tu-bs.de (Postfix) with ESMTP id E00F683D3027
+ for <usrp-users@lists.ettus.com>; Fri,  6 Dec 2019 08:58:08 +0100 (CET)
+X-Virus-Scanned: by amavisd-new-2.10.1 (20141025) (Debian) at ihf.ing.tu-bs.de
+Received: from sidious.ihf.ing.tu-bs.de ([127.0.0.1])
+ by localhost (sidious.ihf.ing.tu-bs.de [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id S3B8rA-V0p81; Fri,  6 Dec 2019 08:58:08 +0100 (CET)
+Received: from [134.169.78.184] (unknown [134.169.78.184])
+ by sidious.ihf.ing.tu-bs.de (Postfix) with ESMTPSA id 683BF83D3022
+ for <usrp-users@lists.ettus.com>; Fri,  6 Dec 2019 08:58:08 +0100 (CET)
+To: usrp-users@lists.ettus.com
+References: <CANQ3h38Ld+PabG4QosHwhyhg4=BYWBC+uEyhZDrTUstaxNAT7g@mail.gmail.com>
+Message-ID: <2d9189fb-9713-f432-e827-c28336f68db4@ihf.tu-bs.de>
+Date: Fri, 6 Dec 2019 08:58:06 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-Date: Thu, 5 Dec 2019 18:31:41 -0500
-Message-ID: <CANQ3h38Ld+PabG4QosHwhyhg4=BYWBC+uEyhZDrTUstaxNAT7g@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Libuhd issues - "uhd_find_devices: error while loading
- shared libraries"
+In-Reply-To: <CANQ3h38Ld+PabG4QosHwhyhg4=BYWBC+uEyhZDrTUstaxNAT7g@mail.gmail.com>
+X-Antivirus: AVG (VPS 191205-0, 05.12.2019), Outbound message
+X-Antivirus-Status: Clean
+Subject: Re: [USRP-users] Libuhd issues - "uhd_find_devices: error while
+ loading shared libraries"
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,9 +46,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Saeid Hashemi via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Saeid Hashemi <saeidh@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2146966361033282302=="
+From: Fabian Schwartau via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Fabian Schwartau <fabian.schwartau@ihf.tu-bs.de>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,80 +63,43 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2146966361033282302==
-Content-Type: multipart/alternative; boundary="000000000000eb1cd10598fd5626"
-
---000000000000eb1cd10598fd5626
-Content-Type: text/plain; charset="UTF-8"
-
-Hello everyone,
-
-I have an Intel NUC running Ubuntu 16.04 and a low latency kernel which I
-use for OAI LTE software on top of UHD.
-
-After updating my system repositories, UHD broke somehow with the following
-result:
-
-nuc8-3@nuc83-NUC8i7BEH:~$ uhd_find_devices
-uhd_find_devices: error while loading shared libraries: libuhd.so.3.14.1:
-cannot open shared object file: No such file or directory
-
-Attempting to manually install the version cited in the error gives me this:
-
-Unpacking libuhd3.14.1:amd64 (3.14.1.1-0ubuntu1~trusty1) ...
-dpkg: error processing archive
-/var/cache/apt/archives/libuhd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.deb
-(--unpack):
- trying to overwrite '/usr/share/uhd/rfnoc/blocks/keep_one_in_n.xml', which
-is also in package libuhd3.14.0:amd64 3.14.0.0-0ubuntu1~trusty1
-dpkg-deb: error: subprocess paste was killed by signal (Broken pipe)
-Errors were encountered while processing:
- /var/cache/apt/archives/libuhd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.deb
-E: Sub-process /usr/bin/dpkg returned an error code (1)
-
-
-Would anyone have any recommendations on what to do to make sure I have the
-right version of everything present?
-
---000000000000eb1cd10598fd5626
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello everyone,</div><div><br></div><div>I have an In=
-tel NUC running Ubuntu 16.04 and a low latency kernel which I use for OAI L=
-TE software on top of UHD.<br></div><div><br></div><div>After updating my s=
-ystem repositories, UHD broke somehow with the following result:</div><div>=
-<br></div><div style=3D"margin-left:40px"><span style=3D"font-family:monosp=
-ace">nuc8-3@nuc83-NUC8i7BEH:~$ uhd_find_devices <br>uhd_find_devices: error=
- while loading shared libraries: libuhd.so.3.14.1: cannot open shared objec=
-t file: No such file or directory</span></div><div style=3D"margin-left:40p=
-x"><br></div><div>Attempting to manually install the version cited in the e=
-rror gives me this:</div><div><br></div><div style=3D"margin-left:40px"><sp=
-an style=3D"font-family:monospace">Unpacking libuhd3.14.1:amd64 (3.14.1.1-0=
-ubuntu1~trusty1) ...<br>dpkg: error processing archive /var/cache/apt/archi=
-ves/libuhd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.deb (--unpack):<br>=C2=A0t=
-rying to overwrite &#39;/usr/share/uhd/rfnoc/blocks/keep_one_in_n.xml&#39;,=
- which is also in package libuhd3.14.0:amd64 3.14.0.0-0ubuntu1~trusty1<br>d=
-pkg-deb: error: subprocess paste was killed by signal (Broken pipe)<br>Erro=
-rs were encountered while processing:<br>=C2=A0/var/cache/apt/archives/libu=
-hd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.deb<br>E: Sub-process /usr/bin/dpk=
-g returned an error code (1)</span></div><div><br></div><div><br></div><div=
->Would anyone have any recommendations on what to do to make sure I have th=
-e right version of everything present?</div><div><br></div></div>
-
---000000000000eb1cd10598fd5626--
-
-
---===============2146966361033282302==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2146966361033282302==--
-
+WW91IGhhdmUgYW4gb2xkIHZlcnNpb24gb2YgbGlidWhkIGFscmVhZHkgaW5zdGFsbGVkLiBVbmlu
+c3RhbGwgaXQgdXNpbmc6CiQgc3VkbyBkcGtnIC1QIGxpYnVoZApUaGVuIHJldHJ5IGluc3RhbGxp
+bmcgaXQuIFNvbWV0aW1lcyBsaWJyYXJpZXMgYXJlIG5vdCBmb3VuZCBhbmQgeW91IGhhdmUgCnRv
+IHJ1bgokIHN1ZG8gbGRjb25maWcKYnV0IHRoYXQgaXMgdXN1YWxseSBkb25lIGJ5IGRwa2cuCgpB
+bSAwNi4xMi4yMDE5IHVtIDAwOjMxIHNjaHJpZWIgU2FlaWQgSGFzaGVtaSB2aWEgVVNSUC11c2Vy
+czoKPiBIZWxsbyBldmVyeW9uZSwKPiAKPiBJIGhhdmUgYW4gSW50ZWwgTlVDIHJ1bm5pbmcgVWJ1
+bnR1IDE2LjA0IGFuZCBhIGxvdyBsYXRlbmN5IGtlcm5lbCB3aGljaCAKPiBJIHVzZSBmb3IgT0FJ
+IExURSBzb2Z0d2FyZSBvbiB0b3Agb2YgVUhELgo+IAo+IEFmdGVyIHVwZGF0aW5nIG15IHN5c3Rl
+bSByZXBvc2l0b3JpZXMsIFVIRCBicm9rZSBzb21laG93IHdpdGggdGhlIAo+IGZvbGxvd2luZyBy
+ZXN1bHQ6Cj4gCj4gbnVjOC0zQG51YzgzLU5VQzhpN0JFSDp+JCB1aGRfZmluZF9kZXZpY2VzCj4g
+dWhkX2ZpbmRfZGV2aWNlczogZXJyb3Igd2hpbGUgbG9hZGluZyBzaGFyZWQgbGlicmFyaWVzOiAK
+PiBsaWJ1aGQuc28uMy4xNC4xOiBjYW5ub3Qgb3BlbiBzaGFyZWQgb2JqZWN0IGZpbGU6IE5vIHN1
+Y2ggZmlsZSBvciBkaXJlY3RvcnkKPiAKPiBBdHRlbXB0aW5nIHRvIG1hbnVhbGx5IGluc3RhbGwg
+dGhlIHZlcnNpb24gY2l0ZWQgaW4gdGhlIGVycm9yIGdpdmVzIG1lIHRoaXM6Cj4gCj4gVW5wYWNr
+aW5nIGxpYnVoZDMuMTQuMTphbWQ2NCAoMy4xNC4xLjEtMHVidW50dTF+dHJ1c3R5MSkgLi4uCj4g
+ZHBrZzogZXJyb3IgcHJvY2Vzc2luZyBhcmNoaXZlIAo+IC92YXIvY2FjaGUvYXB0L2FyY2hpdmVz
+L2xpYnVoZDMuMTQuMV8zLjE0LjEuMS0wdWJ1bnR1MX50cnVzdHkxX2FtZDY0LmRlYiAKPiAoLS11
+bnBhY2spOgo+ICDCoHRyeWluZyB0byBvdmVyd3JpdGUgJy91c3Ivc2hhcmUvdWhkL3Jmbm9jL2Js
+b2Nrcy9rZWVwX29uZV9pbl9uLnhtbCcsIAo+IHdoaWNoIGlzIGFsc28gaW4gcGFja2FnZSBsaWJ1
+aGQzLjE0LjA6YW1kNjQgMy4xNC4wLjAtMHVidW50dTF+dHJ1c3R5MQo+IGRwa2ctZGViOiBlcnJv
+cjogc3VicHJvY2VzcyBwYXN0ZSB3YXMga2lsbGVkIGJ5IHNpZ25hbCAoQnJva2VuIHBpcGUpCj4g
+RXJyb3JzIHdlcmUgZW5jb3VudGVyZWQgd2hpbGUgcHJvY2Vzc2luZzoKPiAgwqAvdmFyL2NhY2hl
+L2FwdC9hcmNoaXZlcy9saWJ1aGQzLjE0LjFfMy4xNC4xLjEtMHVidW50dTF+dHJ1c3R5MV9hbWQ2
+NC5kZWIKPiBFOiBTdWItcHJvY2VzcyAvdXNyL2Jpbi9kcGtnIHJldHVybmVkIGFuIGVycm9yIGNv
+ZGUgKDEpCj4gCj4gCj4gV291bGQgYW55b25lIGhhdmUgYW55IHJlY29tbWVuZGF0aW9ucyBvbiB3
+aGF0IHRvIGRvIHRvIG1ha2Ugc3VyZSBJIGhhdmUgCj4gdGhlIHJpZ2h0IHZlcnNpb24gb2YgZXZl
+cnl0aGluZyBwcmVzZW50Pwo+IAo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
+c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+IAoKLS0gCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCk0uLVNjLiBGYWJpYW4gU2Nod2FydGF1ClRlY2hu
+aXNjaGUgVW5pdmVyc2l0w6R0IEJyYXVuc2Nod2VpZwpJbnN0aXR1dCBmw7xyIEhvY2hmcmVxdWVu
+enRlY2huaWsKU2NobGVpbml0enN0ci4gMjIKMzgxMDYgQnJhdW5zY2h3ZWlnCkdlcm1hbnkKClRl
+bC46ICAgKzQ5LSgwKTUzMS0zOTEtMjAxNwpGYXg6ICAgICs0OS0oMCk1MzEtMzkxLTIwNDUKRW1h
+aWw6ICBmYWJpYW4uc2Nod2FydGF1QGloZi50dS1icy5kZQpXV1c6ICAgIGh0dHA6Ly93d3cudHUt
+YnJhdW5zY2h3ZWlnLmRlL2loZgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20K
+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29tCg==
