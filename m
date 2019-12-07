@@ -2,55 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CFA7115E3C
-	for <lists+usrp-users@lfdr.de>; Sat,  7 Dec 2019 20:35:58 +0100 (CET)
-Received: from [::1] (port=47200 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31410115E40
+	for <lists+usrp-users@lfdr.de>; Sat,  7 Dec 2019 20:40:28 +0100 (CET)
+Received: from [::1] (port=48972 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1idfrr-0001T1-RB; Sat, 07 Dec 2019 14:35:51 -0500
-Received: from mout.gmx.net ([212.227.17.21]:49641)
+	id 1idfwJ-0001ri-2Q; Sat, 07 Dec 2019 14:40:27 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:35478)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <lukashaase@gmx.at>) id 1idfrn-0001Ov-VY
- for usrp-users@lists.ettus.com; Sat, 07 Dec 2019 14:35:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1575747306;
- bh=QYxJ46mnwuFe+4aSnlT1plut+h7dSom+qok4ECEOb0I=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=KCshsXPEyzlnodNhFVnOVDx7rnmTAviPZRHjgKpMBHe/tkEKhhb43PywlxZXNe8Xw
- 5VkbHlzQ1/FFIicrWrLRI3l4bwj77OqdDbOACWTgTk0Znb9DZwtewrNHDwdRLkJxuc
- zndAxBDUY0VGg6nPBFimR2fj2UzPmVIVFTUwGWJ4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bs76.server.lan [172.19.170.224]) (via HTTP); Sat, 7 Dec 2019
- 20:35:06 +0100
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1idfwF-0001jT-2R
+ for usrp-users@lists.ettus.com; Sat, 07 Dec 2019 14:40:23 -0500
+Received: by mail-oi1-f196.google.com with SMTP id k196so2948643oib.2
+ for <usrp-users@lists.ettus.com>; Sat, 07 Dec 2019 11:40:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=bSCKJrOq5dDUeNCoaKKpUhilg4W0F3YC6MY/MUAD0ME=;
+ b=0Jojqq7HB3aKtBVw4MITyVayIsWiKgBgvQl6/tPQqzyOw9hoIZKtDVD0ch+pLgOJOd
+ unPxpKfyOOyD+uO4hxgNHtg671Km52vsQrERIbWpNdjp2omfUjYIy1rvFiU+DHYhV0Bs
+ 5D/o+oNyfCFkyWTw4/9TZpixC5acrBt85E8CG68BKhNe4ijXakyG6L2HLx/mofJ5AQpK
+ 3zIO6j7UJhi55sLjPCZnLAbwpMT03FJgP/VkychlA8I2ze//CvS1EG+8x0mO2sble6Oc
+ bUfErV99LVf3B6kbu+oMLjBZ5aWWRrwFu1RciM+XkaAIB6oiH8pbqtxaSqmbIayy4JYX
+ 6QPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=bSCKJrOq5dDUeNCoaKKpUhilg4W0F3YC6MY/MUAD0ME=;
+ b=IUfuzlDAaX7zUkm9SykJrAKtrcJyoeye3gKt25wdDjhQxUxetNIfFga3KWZnEWHKYg
+ oph7Qkel+G/vQLxfZ503LstmYsfaU2qLtENHUM1MDxjOayR7zmbaWOAbdqYxMwHow1vZ
+ SOBdZR46qsTD6HAVhndn4uaIzkUnHuGSgKtc/JSa9zw5j007+1iAVZoKHt514q5h3hhs
+ eT9GLyPr+gijcARD+8viQcI4zuuXQSNSEjyakDhjxEHsiG0m3zA7gFG1GC5+/pJh8foh
+ 2Ami1E/TI02RE297g/IewWWiuSoMBgUsPDzoyp411GYi0EnBJOvEe3oeTl3qSlHwCO8Z
+ uo5A==
+X-Gm-Message-State: APjAAAULEhB+12oaWhX81MBinzCd3IVkL6A9ae0TGCR2Ab+AwtjPMFLT
+ sbq4LNZOPVQ5+ftOrvcDT+F6rio8X2zOhO8EKmOa9kgT
+X-Google-Smtp-Source: APXvYqzGifR735D7d6NGo2iT2RHy51Jt5NPzhRblW+n1wWLf1CPwnVfWohWPeg+yOEP7cpyNs3IAPbf8gJtfC7D+4oY=
+X-Received: by 2002:aca:3456:: with SMTP id b83mr13327740oia.82.1575747582189; 
+ Sat, 07 Dec 2019 11:39:42 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-0ce9eefc-d9c2-4f7a-aa5b-342a8c0f5f36-1575747306151@3c-app-gmx-bs76>
-To: "Nate Temple" <nate.temple@ettus.com>
-Date: Sat, 7 Dec 2019 20:35:06 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com>
 References: <trinity-7cb4be4f-5d41-4268-b5a8-2084b39834b6-1575702620460@3c-app-gmx-bs13>
  <CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:+B15UZJzWl5cEtGBgJcSA5TcjJZD8gisibkTVNIXoUT76tQzSds+XrzcCDTtNCDYvFx/f
- /2Vq0mX+KFffkHDDrd3exwAYt5rnIl+amu76CWnG6obKSbYMK01sTHFNGHTjFlW/OWeb6kUGWBec
- LqYDXiGS74YabJ8FsSWc3mHbZ+lmXKYfdztupc5+/ku5mMLG01N3q7c89uHLgbIbW+NdY2aIK97m
- 3Wo88VmwK/2plQ537gmKVVXoPp7AepQljVcRZNn2LVyv3bVtZtbyO+AP7ouTuZ1SHOgBlLbjpKiK
- 20=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:h67Wl6pgMo0=:hdwotpZVeby8UUVIooElfO
- uRmF7bYzvwaohxKcTUf5jAGFhWJlsXB6nniebtFiLWqTy1wRWVe0eKCyzaxx+gMcHimC6b2z6
- I3DQTQfi4iG2KuaJ6ZSwsGbEMCqj77zXVo2DAVac/v1B/09roG8CuSATApbYQt0Sox/sNO0FF
- OWbLpFWAZcaFO/QbbTMwnMw30lNgHS3H8q7YKNNyQJGpdnkxVLSjIv4y1m2iMKENeu0o8Ko7d
- PGIPsVMI1O3s8mM8m3aGlHPwZFFo1xX9NHEj7fBp6e6nVu3yVTMr91AkBbYuxi6qROV9MRDxL
- ecWDRaM33Ya5M0Jw9beebetD8OqovB83DMwvgAObEuAfIfY4yBZbve6WN1M/PBVG/IHC7YFkG
- jsXyfE9ba8UEBkixoxA1ww6cExACUPoOQbehnGN2Im/mtdK+0rR7xetcdyEvXTl5AIGKbWqTj
- YbcWRmL0vYYazLJFDdM6EpUQLeAfCxcLwLslBs9cvuF0dax8JQK8NSpvJ3FBjYUCpX0AxmZXQ
- WpqFN2JXO9dS7J4G4nBmTskWcSBDhOCa4VxPEiX4d7kGzO8pRZZCMqKMhUkoVPXHUMr01FWUr
- SjlZFEf5kjuiXFDuowfsPeft/Mkpm0LYsI24+pzNAZhj1KY66d2/qovZa9+FXWzg2D2SdM855
- tWeCwRC+5DDGb9tkbHERIOGRBJtey3qFVhiMhcHrwvdUz4w==
+ <trinity-0ce9eefc-d9c2-4f7a-aa5b-342a8c0f5f36-1575747306151@3c-app-gmx-bs76>
+In-Reply-To: <trinity-0ce9eefc-d9c2-4f7a-aa5b-342a8c0f5f36-1575747306151@3c-app-gmx-bs76>
+Date: Sat, 7 Dec 2019 11:40:40 -0800
+Message-ID: <CAL263iyCdU5b5p2SUJ92eNy+c7YLNuxbzi_NzrYCNOvb5OFQ5Q@mail.gmail.com>
+To: Lukas Haase <lukashaase@gmx.at>
 Subject: Re: [USRP-users] Phase relation between RX/TX LO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -63,11 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5556130006479196687=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -81,121 +78,441 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgTmF0ZSwKClRoYW5rIHlvdSBzbyBtdWNoLCB0aGlzIGlzIHZlcnkgdXNlZnVsLgoKSSBhbSB1
-c2luZyBHbnVyYWRpbyAzLjcgb24gV2luZG93cyBhbmQgYWNjb3JkaW5nIHRvIHVoZF9jYWxfcnhf
-aXFfYmFsYW5jZS5leGUgZm9yIGV4YW1wbGUsIFVIRCB2ZXJzaW9uIGlzIFVIRF8zLjE0LjEuSEVB
-RC0wLWc1NDkxYjgwZS4gVGhhdCBzaG91bGQgaGF2ZSB0aGUgaXNzdWUgZml4ZWQsIHJpZ2h0PwoK
-CldvdWxkIHlvdSBtaW5kIHRvIGVsYWJvcmF0ZSBicmllZmx5IGhvdyB0byBnZXQgdGhlICJ0aW1l
-ZCBjb21tYW5kIj8gKEkgYW0gd29ya2luZyB3aXRoIGdyYyBmb3IgYSBmZXcgd2Vla3MgYW5kIEkg
-YW0gZmFpcmx5IG5ldyB0byBpdCkKCkp1c3QgY29uY2VwdHVhbGx5IGhvdyB0byBkbyBpdCB3b3Vs
-ZCBiZSBhbWF6aW5nIG9yIGEgcG9pbnRlciB0byBhbiBleGFtcGxlIHRoYXQgSSBjb3VsZCBtb2Rp
-ZnkgZXZlbiBiZXR0ZXIhCgpGb3IgZXhhbXBsZSwgSSB3ZW50IHRocm91Z2ggdGhlIGV4YW1wbGUg
-YXQgaHR0cHM6Ly93aWtpLmdudXJhZGlvLm9yZy9pbmRleC5waHAvR3VpZGVkX1R1dG9yaWFsX0dO
-VV9SYWRpb19pbl9QeXRob24jMy4xLl9JbnRyb190b19Vc2luZ19HTlVfUmFkaW9fd2l0aF9QeXRo
-b24gYnV0IEkgZG8gbm90IGtub3cgaWYgdGhpcyByZWFsbHkgY3JlYXRlcyB0aGVzZSAidGltZWQg
-Y29tbWFuZHMiLgpZZXMsIEkgY2FuIHN0b3JlIHRoZSBmcmVxdWVuY3kgdmFsdWUgaW4gYSB2YXJp
-YWJsZSBidXQgaG93IGRvIEkgZW5zdXJlIHRoYXQgaXQncyB1cGRhdGVkIGV4YWN0bHkgYXQgYSBy
-YXRlIG9mIHNheSwgMS8xMDBtcz8KCkFsc286IFdoeSB3b3VsZG4ndCBzdWNoIGFuIGFwcHJvYWNo
-IGNhdXNlIGlzc3VlcyBkdWUgdG8gdGhlIGNsb2NrIGRpZmZlcmVuY2VzIGJldHdlZW4gdGhlIGhv
-c3QgY29tcHV0ZXIgYW5kIHRoZSBVU1JQPwoKQW5kIGlmIHlvdSBhcmUgYWJsZSB0byBkaWcgdXAg
-YW55IG1vcmUgaW5mb3JtYXRpb24gYWJvdXQgdGhlIGFkZGl0aW9uYWwgY2F2ZWF0cyB5b3Ugd2Vy
-ZSBtZW50aW9uaW5nLCB0aGF0IHdvdWxkIGJlIHRydWx5IGFtYXppbmcuCgpUaGFua3MgYSBsb3Qs
-Ckx1a2UKCsKgCsKgCsKgCgpHZXNlbmRldDrCoFNhbXN0YWcsIDA3LiBEZXplbWJlciAyMDE5IHVt
-IDEyOjA1IFVocgpWb246wqAiTmF0ZSBUZW1wbGUiIDxuYXRlLnRlbXBsZUBldHR1cy5jb20+CkFu
-OsKgIkx1a2FzIEhhYXNlIiA8bHVrYXNoYWFzZUBnbXguYXQ+CkNjOsKgIlVTUlAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tIiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+CkJldHJlZmY6wqBSZTog
-W1VTUlAtdXNlcnNdIFBoYXNlIHJlbGF0aW9uIGJldHdlZW4gUlgvVFggTE8KCkhpIEx1a2UsCgpX
-aGF0IHZlcnNpb24gb2YgVUhEIGFyZSB5b3UgdXNpbmc/CgpUaGVyZSB3YXMgYW4gaXNzdWUgd2l0
-aCB0aGUgRFVDL0REQyBwaGFzZSBhY2N1bXVsYXRvcidzIHJlc29sdXRpb24sIGJ1dCBpdCB3YXMg
-Zml4ZWQgd2l0aCBVSEQgMy4xNC4xLjAuCgpUaGUgdGhyZWFkcyBiZWxvdyBhcmUgd2VyZSB0aGlz
-IHdhcyBpZGVudGlmaWVkOgoKaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9waXBlcm1haWwvdXNycC11
-c2Vyc19saXN0cy5ldHR1cy5jb20vMjAxOS1NYXkvMDU5OTE0Lmh0bWwKaHR0cDovL2xpc3RzLmV0
-dHVzLmNvbS9waXBlcm1haWwvdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20vMjAxOS1BcHJpbC8w
-NTk0NjUuaHRtbAoKQXMgcmVjb21tZW5kZWQgZnJvbSB0aGUgdGhyZWFkOgoKUGhhc2UgbWF5IGNo
-YW5nZSBlYWNoIHRpbWUgc3RyZWFtZXJzIGFyZSBjcmVhdGVkLCBidXQgdGhlIHBoYXNlIGJldHdl
-ZW4gVFgKYW5kIFJYIHNob3VsZCByZW1haW4gY29uc2lzdGVudCBkdXJpbmcgc3RyZWFtaW5nLsKg
-IFR1bmluZyBtdXN0IGJlIGRvbmUgd2l0aAp0aW1lZCBjb21tYW5kcyBhbmQgYSBjb25zaXN0ZW50
-IHRpbWUgZGVsdGEgYmV0d2VlbiB0aGUgdHVuZSB0aW1lIG9mIFRYIGFuZApSWCBtdXN0IGJlIG1h
-aW50YWluZWQgdGhhdCBpcyBncmVhdGVyIHRoYW4gNTAwdXMgdG8gbWFpbnRhaW4gdGhlIGNvaGVy
-ZW5jZQphY3Jvc3MgcmUtdHVuZXMuCgoKCklmIHlvdSdyZSB1c2luZyB0aGUgUVQgd2lkZ2V0IHdp
-dGhvdXQgYW55IG1vZGlmaWNhdGlvbnMsIGl0IHdpbGwgbm90IGJlIHVzaW5nIHRpbWVkIGNvbW1h
-bmRzLCB5b3UnbGwgbmVlZCB0byBnZW5lcmF0ZSB0aGUgcHl0aG9uIGZpbGUgYW5kIG1hbnVhbGx5
-IGFkZCBpbiB0aGUgdGltZWQgY29tbWFuZHMgdG8gdGhlIHNldF9mcmVxIGNhbGxzLgrCoApBbHNv
-LCBpZiBJIHJlbWVtYmVyIGNvcnJlY3RseSwgZXZlbiB3aXRoIHRoZSBwaGFzZSBhY2N1bXVsYXRv
-ciBmaXgsIHRoZXJlIHdhcyBzb21lIGNhdmVhdHMgdG8gd2hpY2ggZnJlcXVlbmNpZXMgd291bGQg
-c3RheSBjb2hlcmVudC4gSSBuZWVkIHRvIGdvIGJhY2sgYW5kIGxvb2sgYXQgc29tZSBub3RlcyBv
-biBpdC7CoApSZWdhcmRzLApOYXRlIFRlbXBsZcKgCgpPbiBGcmksIERlYyA2LCAyMDE5IGF0IDEx
-OjExIFBNIEx1a2FzIEhhYXNlIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dPiB3cm90ZTpIaSBNYXJjdXMs
-CgpNYXJjdXMgd3JvdGU6PiBPbiAxMi8wNi8yMDE5IDA5OjMzIFBNLCBMdWthcyBIYWFzZSB2aWEg
-VVNSUC11c2VycyB3cm90ZToKPj4gSGksCj4+Cj4+IEkgYW0gdXNpbmcgdGhlIFVTUlAgWDMxMCtV
-QlgxNjAgd2l0aCBnbnVyYWRpbyB0byBwZXJmb3JtIHZlcnkKPj4gcHJlY2ljc2UgcGhhc2UgbWVh
-c3VyZW1lbnRzOiBUaGUgVFggdHJhbnNtaXRzIGEgQ1cgd2hpY2ggaXMKPj4gcmVmbGVjdGVkIGJ5
-IGFuIG9iamVjdCBhbmQgcmVjZWl2ZWQgYnkgdGhlIFJYLgo+Pgo+PiBUaGUgcmVjZWl2ZWQgcGhh
-c2UgcHJvdmlkZXMgYW4gYWNjdXJhdGUgZXN0aW1hdGUgb2YgdGhlIGRpc3RhbmNlCj4+IHRvPj4g
-dGhlIHJlZmxlY3RlZCBvYmplY3QsIG9uY2UgdGhlIGZpeGVkIHBoYXNlIHJlbGF0aW9uIChiZXR3
-ZWVuCj4+IFRYL1JYLSBMTywgZmlsdGVycywgY2FibGVzIGV0Yy4pIGhhcyBiZWVuIHN1YnRyYWN0
-ZWQgb3V0Lgo+Pgo+PiBUaGlzIHdvcmtzIG5pY2VseSBzbyBmYXIuCj4+Cj4+IEhvd2V2ZXIsIEkg
-bmVlZCBteSBzeXN0ZW0gdG8gd29yayBhY3Jvc3MgcG93ZXIgY3ljbGVzLCBhbmQgbW9yZQo+PiBp
-bXBvcnRhbnRseSwgYWNyb3NzIGRpZmZlcmVudCBmcmVxdWVuY2llczogVGhlIGdvYWwgaXMgdG8g
-cGVyZm9ybQo+PiBmYXN0IGZyZXF1ZW5jeSBob3BwaW5nIGFuZCBvYnRhaW4gdGhlIHBoYXNlIGZv
-ciBlYWNoIGZyZXF1ZW5jeS4KPj4KPj4gVW5mb3J0dW5hdGVseSBpdCBzZWVtcyB0aGF0IHRoZSBw
-aGFzZSByZWxhdGlvbnNoaXAgYmV0d2VlbiBUWC9SWAo+PiBpcz4+IGxvc3Qgd2hlbiBJIHR1bmUg
-dGhlIFVTUlAgdG8gYSBkaWZmZXJlbnQgY2VudGVyIGZyZXF1ZW5jeSBhbmQKPj4gYmFjay4gRm9y
-IGV4YW1wbGUsIEkgaGF2ZSB0aGUgY2VudGVyIGZyZXF1ZW5jeSBzZXQgdG8gOTAwIE1IeiBhbmQK
-Pj4gdGhlIHBoYXNlLiBJIG1lYXN1cmUgKGJ5IGNvbXB1dGluZyB0aGUgYW5nbGUgb2YgdGhlIEkv
-USBzYW1wbGVzKQo+PiBzdGF5cyBjb25zdGFudC4gQnV0IHdoZW4gSSBzZXQgdGhlIGNlbnRlciBm
-cmVxdWVuY3kgdG8gOTUwIE1IeiBhbmQKPj4gdGhlbiBiYWNrIHRvIDkwMCBNSHosIHRoZSBwaGFz
-ZSBoYXMgYSByYW5kb20gdmFsdWUgYWdhaW4uCj4+Cj4+IElzIHRoZXJlIGFueSB3YXkgdG8gYXZv
-aWQgdGhpcz8gT3IgaXMgdGhlcmUgYW55IHdheSB0byBsb2NrIHRoZSBMTwo+PiBwaGFzZSB0byBh
-IHBhcnRpY3VsYXIgcGhhc2Ugd2hlbj4+IHR1bmluZyBiYWNrIHRvIHRoZSBvcmlnaW5hbAo+PiBm
-cmVxdWVuY3k/Cj4KPiBJdCAqbWlnaHQqIGJlIHBvc3NpYmxlIHRvIHBoYXNlLXN5bmNocm9uaWV6
-IHRoZSBSWCBhbmQgVFggTE9zIHVzaW5nCj4gdGltZWQgY29tbWFuZHMgY29tYmluZWQsIHBvc3Np
-Ymx5IHdpdGggSU5URUdFUl9OIHR1bmluZy4KPgo+IFRoZXJlJ3MgYW4gQVBQIE5vdGUgb24gcGhh
-c2Utc3luY2hyb25pemF0aW9uIGhlcmU6Cj4KPiBodHRwczovL2tiLmV0dHVzLmNvbS9TeW5jaHJv
-bml6YXRpb25fYW5kX01JTU9fQ2FwYWJpbGl0eV93aXRoX1VTUlBfRGV2aWNlc1todHRwczovL2ti
-LmV0dHVzLmNvbS9TeW5jaHJvbml6YXRpb25fYW5kX01JTU9fQ2FwYWJpbGl0eV93aXRoX1VTUlBf
-RGV2aWNlc10KClRoYW5rIHlvdSwgSSdtIHN0dWR5aW5nIHRoaXMgcmlnaHQgbm93LgoKPiBNeSBn
-dXQgdGVsbHMgbWUgdGhpcyBpcyBnb2luZyB0byBiZSBoYXJkLCB0aG91Z2gsIHNpbmNlIHRoZQo+
-IHJlcXVpcmVtZW50IGlzIHRvIGJyaW5nIGEgc3ludGhlc2l6ZXIgYmFjayB0byB0aGUgc2FtZSBy
-ZWxhdGl2ZSBwaGFzZQo+IGl0IGhhZCB3aGVuIGl0IHdhcyBwcmV2aW91c2x5IHR1bmVkIHRvIHRo
-ZSBzYW1lIGZyZXF1ZW5jeS4KClllcywgdGhpcyBpcyBhYm91dCBtdWx0aXBsZSBkZXZpY2VzLCBj
-ZXJ0YWlubHkgaGFyZC4KCkxldCdzIHRha2UgYSBzdGVwIGJhY2sgYW5kIEkgYW0gaGFwcHkgd2hl
-biBqdXN0IHRoZSBUWC9SWCBMTyBvbiBhIHNpbmdsZSBkZXZpY2UgaXMgc3luY2hyb25pemVkLgoK
-VGhpcyBpcyB3aGF0IEkgZG8gcmlnaHQgbm93OiBJbiBnbnVyYWRpbywgSSBnZW5lcmF0ZSBhIHNp
-bnVkb2lkIChmaWY9MU1IeikgYXQgYmFzZWJhbmQgYW5kIHRyYW5zbWl0IChVSEQ6IFVTUlAgU2lu
-aykgaXQgd2l0aCBmY2VudGVyPTkwME1Iei4KVGhlbiBJIHJlY2VpdmUgKFVIRDogVVNSUCBTb3Vy
-Y2UpIGl0IGFuZCBtdWx0aXBseSBpdCB3aXRoICItZmlmIiBhZ2Fpbi4gVGhpcyBnaXZlcyBtZSBh
-IGNvbnN0YW50IHNpZ25hbCBpbiBJIGFuZCBRLgoKVGhlIGNlbnRlciBmcmVxdWVuY3kgaXMgY29u
-ZmlndXJlZCB2aWEgIlFUIEdVSSBFbnRyeSIuIEkgZW50ZXIgOTAwZTYgYW5kIHByZXNzIGVudGVy
-LiBUaGVuIEkgcGxvdCAiQ29tcGxleCB0byBBcmciLiBBcyBsb25nIGFzIEkgZG8gbm90aGluZyB0
-aGlzIHZhbHVlIGlzIGZhaXJseSBjb25zdGFudCAoc29tZXdoZXJlIGJldHdlZW4gLXBpIGFuZCBw
-aSkuCgpOb3cgSSBoaXQgZW50ZXIgYWdhaW4gaW4gdGhlIFFUIEdVSSBFbnRyeS4gQWx0aG91Z2gg
-aXQncyB0aGUgc2FtZSBjZW50ZXIgZnJlcXVlbmN5LCB0aGUgVVNSUCByZXR1bmVzIGFuZCB0aGUg
-cGhhc2UganVtcHMgdG8gYW5vdGhlciB2YWx1ZS4KCk5vdyBsZXQncyBsb29rIGF0IHRoZSBVU1JQ
-IGJsb2NrIGRpYWdyYW06CgpodHRwczovL2tiLmV0dHVzLmNvbS9pbWFnZXMvMS8xNi8yOTIwX3Np
-bXBsaWZpZWRfc3lzdGVtX2RpYWdyYW0uZ2lmW2h0dHBzOi8va2IuZXR0dXMuY29tL2ltYWdlcy8x
-LzE2LzI5MjBfc2ltcGxpZmllZF9zeXN0ZW1fZGlhZ3JhbS5naWZdCgpZZXMsIGJvdGggVFggYW5k
-IFJYIHBhdGggaGF2ZSBhIHNlcGFyYXRlIFBMTCBhbmQgVkNPLgpIb3dldmVyLCB0aGUgKnJlZmVy
-ZW5jZSogZm9yIHRoaXMgUExMIGlzIHRoZSBzYW1lLiBIZW5jZSB0aGUgUExMIHNob3VsZCBsb2Nr
-IHRvIHRoZSBwaGFzZSBvZiB0aGlzIHJlZmVyZW5jZSAoYWZ0ZXIgYWxsLCBpdCdzIGEgKnBoYXNl
-KiBsb2NrZWQgbG9vcCkuIEFuZCB0aGlzIGltcGxpZXMgdGhhdCB0aGUgKnJlbGF0aXZlKiBwaGFz
-ZSBiZXR3ZWVuIFRYIGFuZCBSWCwgZm9yIGEgZ2l2ZW4gZnJlcXVlbmN5LCBzaG91bGQgYmUgZml4
-ZWQgLS0gYXQgbGVhc3QgYXMgbG9uZyBhcyB0aGUgVVNSUCBpcyBwb3dlcmVkLgoKU28sIGhvdyBj
-YW4gaXQgYmUgdGhhdCB0aGlzIGlzIG5vdCB0aGUgY2FzZT8hCgoKVGhlcmUgaXMganVzdCBhIHNp
-bmdsZSBzdXNwaWNpb24gdGhhdCBJIGhhdmU6IERTUCBvbiBnbnVyYWRpbyAoaG9zdCBjb21wdXRl
-ciBydW5zIGEgZGlmZmVyZW50IGNsb2NrKSB2ZXJzdXMgVVNSUCBjbG9jay4gV2hhdCBkbyBJIG1l
-YW4gYnkgdGhhdD8gSW5pdGlhbGx5IEkgd2FzIHRyYW5zbWl0dGluZyBhIHB1cmUgQ1cgKGluIGdu
-dXJhZGlvLCBjb25uZWN0aW5nIGEgIkNvbnN0YW50IFNvdXJjZSIgdG8gVVNSUCBTaW5rIGFuZCBz
-ZXR0aW5nIHRoZSBmcmVxdWVuY3kgdG8gZmNlbnRlcitmaWYpLiBIb3dldmVyLCBkb3duY29udmVy
-c2lvbiB3YXMgcGVyZm9ybWVkIHdpdGggZmNlbnRlciBvbmx5IGFuZCBtdWx0aXBseWluZyB3aXRo
-IGZpZiBpbiBnbnVyYWRpby4gSSBjb3VsZCBzZWUgYSBzbG93IHBoYXNlIGRyaWZ0LiBJdCB0b29r
-IG1lIGhvdXJzIHRvIGZpZ3VyZSBvdXQgdGhhdCB0aGlzIGlzIGNhdXNlZCBieSB0aGUgZGlmZmVy
-ZW50IGNsb2Nrcy4gVGhlIGVmZmVjdCB3YXMgZ29uZSBvbmNlIEkgYWxzbyBnZW5lcmF0ZWQgdGhl
-IHRyYW5zbWl0dGVkIHdhdmVmb3JtIGluIGdudXJhZGlvLgpJbiBvcmRlciB0byBmaXggdGhpcywg
-SSB3b3VsZCBzdWJ0cmFjdCB0aGUgcGhhc2Ugb2YgdGhpcyBnZW5lcmF0ZWQgd2F2ZWZvcm0gaW4g
-Z251cmFkaW8uIEJ1dCBvYnZpb3VzbHkgdGhpcyBwaGFzZSBpcyBhbHdheXMgemVybyAuLi4KCkkg
-aG9wZSB5b3UgdW5kZXJzdGFuZCB3aGF0IEkgYW0gd3JpdGluZy4KCgoKQmVzdCwKTHVrZQoKCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJz
-IG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0
-dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============5556130006479196687==
+Content-Type: multipart/alternative; boundary="000000000000e4768205992252f0"
+
+--000000000000e4768205992252f0
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Luke,
+
+There is an example of setting timed commands in a custom block for the
+TwinRX in gr-doa here:
+
+https://github.com/EttusResearch/gr-doa/blob/master/python/twinrx_usrp_source.py#L101-L121
+
+You can do this with the standard UHD source/sink blocks, by first making
+your flowgraph, then generate the .py in GRC, then open up that .py file
+and modify it to add the timed command calls.
+
+If you modify the GRC and regenerate the .py, it'll overwrite your changes.
+
+Regards,
+Nate Temple
+
+On Sat, Dec 7, 2019 at 11:35 AM Lukas Haase <lukashaase@gmx.at> wrote:
+
+> Hi Nate,
+>
+> Thank you so much, this is very useful.
+>
+> I am using Gnuradio 3.7 on Windows and according to
+> uhd_cal_rx_iq_balance.exe for example, UHD version is
+> UHD_3.14.1.HEAD-0-g5491b80e. That should have the issue fixed, right?
+>
+>
+> Would you mind to elaborate briefly how to get the "timed command"? (I am
+> working with grc for a few weeks and I am fairly new to it)
+>
+> Just conceptually how to do it would be amazing or a pointer to an example
+> that I could modify even better!
+>
+> For example, I went through the example at
+> https://wiki.gnuradio.org/index.php/Guided_Tutorial_GNU_Radio_in_Python#3.1._Intro_to_Using_GNU_Radio_with_Python
+> but I do not know if this really creates these "timed commands".
+> Yes, I can store the frequency value in a variable but how do I ensure
+> that it's updated exactly at a rate of say, 1/100ms?
+>
+> Also: Why wouldn't such an approach cause issues due to the clock
+> differences between the host computer and the USRP?
+>
+> And if you are able to dig up any more information about the additional
+> caveats you were mentioning, that would be truly amazing.
+>
+> Thanks a lot,
+> Luke
+>
+>
+>
+>
+>
+> Gesendet: Samstag, 07. Dezember 2019 um 12:05 Uhr
+> Von: "Nate Temple" <nate.temple@ettus.com>
+> An: "Lukas Haase" <lukashaase@gmx.at>
+> Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+> Betreff: Re: [USRP-users] Phase relation between RX/TX LO
+>
+> Hi Luke,
+>
+> What version of UHD are you using?
+>
+> There was an issue with the DUC/DDC phase accumulator's resolution, but it
+> was fixed with UHD 3.14.1.0.
+>
+> The threads below are were this was identified:
+>
+>
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-May/059914.html
+>
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-April/059465.html
+>
+> As recommended from the thread:
+>
+> Phase may change each time streamers are created, but the phase between TX
+> and RX should remain consistent during streaming.  Tuning must be done with
+> timed commands and a consistent time delta between the tune time of TX and
+> RX must be maintained that is greater than 500us to maintain the coherence
+> across re-tunes.
+>
+>
+>
+> If you're using the QT widget without any modifications, it will not be
+> using timed commands, you'll need to generate the python file and manually
+> add in the timed commands to the set_freq calls.
+>
+> Also, if I remember correctly, even with the phase accumulator fix, there
+> was some caveats to which frequencies would stay coherent. I need to go
+> back and look at some notes on it.
+> Regards,
+> Nate Temple
+>
+> On Fri, Dec 6, 2019 at 11:11 PM Lukas Haase via USRP-users <
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:Hi
+> Marcus,
+>
+> Marcus wrote:> On 12/06/2019 09:33 PM, Lukas Haase via USRP-users wrote:
+> >> Hi,
+> >>
+> >> I am using the USRP X310+UBX160 with gnuradio to perform very
+> >> precicse phase measurements: The TX transmits a CW which is
+> >> reflected by an object and received by the RX.
+> >>
+> >> The received phase provides an accurate estimate of the distance
+> >> to>> the reflected object, once the fixed phase relation (between
+> >> TX/RX- LO, filters, cables etc.) has been subtracted out.
+> >>
+> >> This works nicely so far.
+> >>
+> >> However, I need my system to work across power cycles, and more
+> >> importantly, across different frequencies: The goal is to perform
+> >> fast frequency hopping and obtain the phase for each frequency.
+> >>
+> >> Unfortunately it seems that the phase relationship between TX/RX
+> >> is>> lost when I tune the USRP to a different center frequency and
+> >> back. For example, I have the center frequency set to 900 MHz and
+> >> the phase. I measure (by computing the angle of the I/Q samples)
+> >> stays constant. But when I set the center frequency to 950 MHz and
+> >> then back to 900 MHz, the phase has a random value again.
+> >>
+> >> Is there any way to avoid this? Or is there any way to lock the LO
+> >> phase to a particular phase when>> tuning back to the original
+> >> frequency?
+> >
+> > It *might* be possible to phase-synchroniez the RX and TX LOs using
+> > timed commands combined, possibly with INTEGER_N tuning.
+> >
+> > There's an APP Note on phase-synchronization here:
+> >
+> >
+> https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices[https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices]
+>
+> Thank you, I'm studying this right now.
+>
+> > My gut tells me this is going to be hard, though, since the
+> > requirement is to bring a synthesizer back to the same relative phase
+> > it had when it was previously tuned to the same frequency.
+>
+> Yes, this is about multiple devices, certainly hard.
+>
+> Let's take a step back and I am happy when just the TX/RX LO on a single
+> device is synchronized.
+>
+> This is what I do right now: In gnuradio, I generate a sinudoid (fif=1MHz)
+> at baseband and transmit (UHD: USRP Sink) it with fcenter=900MHz.
+> Then I receive (UHD: USRP Source) it and multiply it with "-fif" again.
+> This gives me a constant signal in I and Q.
+>
+> The center frequency is configured via "QT GUI Entry". I enter 900e6 and
+> press enter. Then I plot "Complex to Arg". As long as I do nothing this
+> value is fairly constant (somewhere between -pi and pi).
+>
+> Now I hit enter again in the QT GUI Entry. Although it's the same center
+> frequency, the USRP retunes and the phase jumps to another value.
+>
+> Now let's look at the USRP block diagram:
+>
+>
+> https://kb.ettus.com/images/1/16/2920_simplified_system_diagram.gif[https://kb.ettus.com/images/1/16/2920_simplified_system_diagram.gif]
+>
+> Yes, both TX and RX path have a separate PLL and VCO.
+> However, the *reference* for this PLL is the same. Hence the PLL should
+> lock to the phase of this reference (after all, it's a *phase* locked
+> loop). And this implies that the *relative* phase between TX and RX, for a
+> given frequency, should be fixed -- at least as long as the USRP is powered.
+>
+> So, how can it be that this is not the case?!
+>
+>
+> There is just a single suspicion that I have: DSP on gnuradio (host
+> computer runs a different clock) versus USRP clock. What do I mean by that?
+> Initially I was transmitting a pure CW (in gnuradio, connecting a "Constant
+> Source" to USRP Sink and setting the frequency to fcenter+fif). However,
+> downconversion was performed with fcenter only and multiplying with fif in
+> gnuradio. I could see a slow phase drift. It took me hours to figure out
+> that this is caused by the different clocks. The effect was gone once I
+> also generated the transmitted waveform in gnuradio.
+> In order to fix this, I would subtract the phase of this generated
+> waveform in gnuradio. But obviously this phase is always zero ...
+>
+> I hope you understand what I am writing.
+>
+>
+>
+> Best,
+> Luke
+>
+>
+>
+
+--000000000000e4768205992252f0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi Luke,<br><br>There is an example of setting timed co=
+mmands in a custom block for the TwinRX in gr-doa here:<br><br><a href=3D"h=
+ttps://github.com/EttusResearch/gr-doa/blob/master/python/twinrx_usrp_sourc=
+e.py#L101-L121">https://github.com/EttusResearch/gr-doa/blob/master/python/=
+twinrx_usrp_source.py#L101-L121</a><br><br>You can do this with the standar=
+d UHD source/sink blocks, by first making your flowgraph, then generate the=
+ .py in GRC, then open up that .py file and modify it to add the timed comm=
+and calls. <br><br>If you modify the GRC and regenerate the .py, it&#39;ll =
+overwrite your changes.<br><br>Regards,<br>Nate Temple</div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Dec 7, =
+2019 at 11:35 AM Lukas Haase &lt;<a href=3D"mailto:lukashaase@gmx.at">lukas=
+haase@gmx.at</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex">Hi Nate,<br>
+<br>
+Thank you so much, this is very useful.<br>
+<br>
+I am using Gnuradio 3.7 on Windows and according to uhd_cal_rx_iq_balance.e=
+xe for example, UHD version is UHD_3.14.1.HEAD-0-g5491b80e. That should hav=
+e the issue fixed, right?<br>
+<br>
+<br>
+Would you mind to elaborate briefly how to get the &quot;timed command&quot=
+;? (I am working with grc for a few weeks and I am fairly new to it)<br>
+<br>
+Just conceptually how to do it would be amazing or a pointer to an example =
+that I could modify even better!<br>
+<br>
+For example, I went through the example at <a href=3D"https://wiki.gnuradio=
+.org/index.php/Guided_Tutorial_GNU_Radio_in_Python#3.1._Intro_to_Using_GNU_=
+Radio_with_Python" rel=3D"noreferrer" target=3D"_blank">https://wiki.gnurad=
+io.org/index.php/Guided_Tutorial_GNU_Radio_in_Python#3.1._Intro_to_Using_GN=
+U_Radio_with_Python</a> but I do not know if this really creates these &quo=
+t;timed commands&quot;.<br>
+Yes, I can store the frequency value in a variable but how do I ensure that=
+ it&#39;s updated exactly at a rate of say, 1/100ms?<br>
+<br>
+Also: Why wouldn&#39;t such an approach cause issues due to the clock diffe=
+rences between the host computer and the USRP?<br>
+<br>
+And if you are able to dig up any more information about the additional cav=
+eats you were mentioning, that would be truly amazing.<br>
+<br>
+Thanks a lot,<br>
+Luke<br>
+<br>
+=C2=A0<br>
+=C2=A0<br>
+=C2=A0<br>
+<br>
+Gesendet:=C2=A0Samstag, 07. Dezember 2019 um 12:05 Uhr<br>
+Von:=C2=A0&quot;Nate Temple&quot; &lt;<a href=3D"mailto:nate.temple@ettus.c=
+om" target=3D"_blank">nate.temple@ettus.com</a>&gt;<br>
+An:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
+arget=3D"_blank">lukashaase@gmx.at</a>&gt;<br>
+Cc:=C2=A0&quot;<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_bla=
+nk">USRP-users@lists.ettus.com</a>&quot; &lt;<a href=3D"mailto:usrp-users@l=
+ists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+Betreff:=C2=A0Re: [USRP-users] Phase relation between RX/TX LO<br>
+<br>
+Hi Luke,<br>
+<br>
+What version of UHD are you using?<br>
+<br>
+There was an issue with the DUC/DDC phase accumulator&#39;s resolution, but=
+ it was fixed with UHD 3.14.1.0.<br>
+<br>
+The threads below are were this was identified:<br>
+<br>
+<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019=
+-May/059914.html" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.c=
+om/pipermail/usrp-users_lists.ettus.com/2019-May/059914.html</a><br>
+<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019=
+-April/059465.html" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus=
+.com/pipermail/usrp-users_lists.ettus.com/2019-April/059465.html</a><br>
+<br>
+As recommended from the thread:<br>
+<br>
+Phase may change each time streamers are created, but the phase between TX<=
+br>
+and RX should remain consistent during streaming.=C2=A0 Tuning must be done=
+ with<br>
+timed commands and a consistent time delta between the tune time of TX and<=
+br>
+RX must be maintained that is greater than 500us to maintain the coherence<=
+br>
+across re-tunes.<br>
+<br>
+<br>
+<br>
+If you&#39;re using the QT widget without any modifications, it will not be=
+ using timed commands, you&#39;ll need to generate the python file and manu=
+ally add in the timed commands to the set_freq calls.<br>
+=C2=A0<br>
+Also, if I remember correctly, even with the phase accumulator fix, there w=
+as some caveats to which frequencies would stay coherent. I need to go back=
+ and look at some notes on it.=C2=A0<br>
+Regards,<br>
+Nate Temple=C2=A0<br>
+<br>
+On Fri, Dec 6, 2019 at 11:11 PM Lukas Haase via USRP-users &lt;<a href=3D"m=
+ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
+com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
+nk">usrp-users@lists.ettus.com</a>]&gt; wrote:Hi Marcus,<br>
+<br>
+Marcus wrote:&gt; On 12/06/2019 09:33 PM, Lukas Haase via USRP-users wrote:=
+<br>
+&gt;&gt; Hi,<br>
+&gt;&gt;<br>
+&gt;&gt; I am using the USRP X310+UBX160 with gnuradio to perform very<br>
+&gt;&gt; precicse phase measurements: The TX transmits a CW which is<br>
+&gt;&gt; reflected by an object and received by the RX.<br>
+&gt;&gt;<br>
+&gt;&gt; The received phase provides an accurate estimate of the distance<b=
+r>
+&gt;&gt; to&gt;&gt; the reflected object, once the fixed phase relation (be=
+tween<br>
+&gt;&gt; TX/RX- LO, filters, cables etc.) has been subtracted out.<br>
+&gt;&gt;<br>
+&gt;&gt; This works nicely so far.<br>
+&gt;&gt;<br>
+&gt;&gt; However, I need my system to work across power cycles, and more<br=
+>
+&gt;&gt; importantly, across different frequencies: The goal is to perform<=
+br>
+&gt;&gt; fast frequency hopping and obtain the phase for each frequency.<br=
+>
+&gt;&gt;<br>
+&gt;&gt; Unfortunately it seems that the phase relationship between TX/RX<b=
+r>
+&gt;&gt; is&gt;&gt; lost when I tune the USRP to a different center frequen=
+cy and<br>
+&gt;&gt; back. For example, I have the center frequency set to 900 MHz and<=
+br>
+&gt;&gt; the phase. I measure (by computing the angle of the I/Q samples)<b=
+r>
+&gt;&gt; stays constant. But when I set the center frequency to 950 MHz and=
+<br>
+&gt;&gt; then back to 900 MHz, the phase has a random value again.<br>
+&gt;&gt;<br>
+&gt;&gt; Is there any way to avoid this? Or is there any way to lock the LO=
+<br>
+&gt;&gt; phase to a particular phase when&gt;&gt; tuning back to the origin=
+al<br>
+&gt;&gt; frequency?<br>
+&gt;<br>
+&gt; It *might* be possible to phase-synchroniez the RX and TX LOs using<br=
+>
+&gt; timed commands combined, possibly with INTEGER_N tuning.<br>
+&gt;<br>
+&gt; There&#39;s an APP Note on phase-synchronization here:<br>
+&gt;<br>
+&gt; <a href=3D"https://kb.ettus.com/Synchronization_and_MIMO_Capability_wi=
+th_USRP_Devices%5Bhttps://kb.ettus.com/Synchronization_and_MIMO_Capability_=
+with_USRP_Devices%5D" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus=
+.com/Synchronization_and_MIMO_Capability_with_USRP_Devices[https://kb.ettus=
+.com/Synchronization_and_MIMO_Capability_with_USRP_Devices]</a><br>
+<br>
+Thank you, I&#39;m studying this right now.<br>
+<br>
+&gt; My gut tells me this is going to be hard, though, since the<br>
+&gt; requirement is to bring a synthesizer back to the same relative phase<=
+br>
+&gt; it had when it was previously tuned to the same frequency.<br>
+<br>
+Yes, this is about multiple devices, certainly hard.<br>
+<br>
+Let&#39;s take a step back and I am happy when just the TX/RX LO on a singl=
+e device is synchronized.<br>
+<br>
+This is what I do right now: In gnuradio, I generate a sinudoid (fif=3D1MHz=
+) at baseband and transmit (UHD: USRP Sink) it with fcenter=3D900MHz.<br>
+Then I receive (UHD: USRP Source) it and multiply it with &quot;-fif&quot; =
+again. This gives me a constant signal in I and Q.<br>
+<br>
+The center frequency is configured via &quot;QT GUI Entry&quot;. I enter 90=
+0e6 and press enter. Then I plot &quot;Complex to Arg&quot;. As long as I d=
+o nothing this value is fairly constant (somewhere between -pi and pi).<br>
+<br>
+Now I hit enter again in the QT GUI Entry. Although it&#39;s the same cente=
+r frequency, the USRP retunes and the phase jumps to another value.<br>
+<br>
+Now let&#39;s look at the USRP block diagram:<br>
+<br>
+<a href=3D"https://kb.ettus.com/images/1/16/2920_simplified_system_diagram.=
+gif%5Bhttps://kb.ettus.com/images/1/16/2920_simplified_system_diagram.gif%5=
+D" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus.com/images/1/16/29=
+20_simplified_system_diagram.gif[https://kb.ettus.com/images/1/16/2920_simp=
+lified_system_diagram.gif]</a><br>
+<br>
+Yes, both TX and RX path have a separate PLL and VCO.<br>
+However, the *reference* for this PLL is the same. Hence the PLL should loc=
+k to the phase of this reference (after all, it&#39;s a *phase* locked loop=
+). And this implies that the *relative* phase between TX and RX, for a give=
+n frequency, should be fixed -- at least as long as the USRP is powered.<br=
+>
+<br>
+So, how can it be that this is not the case?!<br>
+<br>
+<br>
+There is just a single suspicion that I have: DSP on gnuradio (host compute=
+r runs a different clock) versus USRP clock. What do I mean by that? Initia=
+lly I was transmitting a pure CW (in gnuradio, connecting a &quot;Constant =
+Source&quot; to USRP Sink and setting the frequency to fcenter+fif). Howeve=
+r, downconversion was performed with fcenter only and multiplying with fif =
+in gnuradio. I could see a slow phase drift. It took me hours to figure out=
+ that this is caused by the different clocks. The effect was gone once I al=
+so generated the transmitted waveform in gnuradio.<br>
+In order to fix this, I would subtract the phase of this generated waveform=
+ in gnuradio. But obviously this phase is always zero ...<br>
+<br>
+I hope you understand what I am writing.<br>
+<br>
+<br>
+<br>
+Best,<br>
+Luke<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000e4768205992252f0--
+
+
+--===============5556130006479196687==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5556130006479196687==--
+
