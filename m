@@ -2,59 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33972115DE1
-	for <lists+usrp-users@lfdr.de>; Sat,  7 Dec 2019 19:12:12 +0100 (CET)
-Received: from [::1] (port=40286 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CFA7115E3C
+	for <lists+usrp-users@lfdr.de>; Sat,  7 Dec 2019 20:35:58 +0100 (CET)
+Received: from [::1] (port=47200 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ideYp-0007Fe-J6; Sat, 07 Dec 2019 13:12:07 -0500
-Received: from mail-qt1-f172.google.com ([209.85.160.172]:34769)
+	id 1idfrr-0001T1-RB; Sat, 07 Dec 2019 14:35:51 -0500
+Received: from mout.gmx.net ([212.227.17.21]:49641)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1ideYm-0006oO-1g
- for usrp-users@lists.ettus.com; Sat, 07 Dec 2019 13:12:04 -0500
-Received: by mail-qt1-f172.google.com with SMTP id 5so10840545qtz.1
- for <usrp-users@lists.ettus.com>; Sat, 07 Dec 2019 10:11:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=frupZG/tA+kVSjWSjQKD8S2JYISMwQu17lilCz6yI4I=;
- b=t1pSaMpqZNCxRea2OO/eWURsHEJBfMjX1m4flgVa0H/uTPBr8WaP6hzkyV4nT7hou1
- VY8GoRbBQ7M/82oWQoOFJGiMJV+/tQtNE719fl2kNWqxnl9SltGmuMbdcA9dwqO7CXba
- nhkE0qQN0EJ/UK1cnPJsYVl78qHOHxs1Znb0b9ABi/iFYa/V4UbgvSE+BW3o4IG8x3Cd
- 2suJ4wX1b+0IKxs8jR6fafrmzIqJk2bW2brbnR2xLQLsdfsCfWvazWYxgOVu6ag5ZiOi
- d4ufBY8dnjNCRE3AW0go3IEH4jMK6dS9g6qV6FdsYGoZJD8KFj+Z2GdU97/MvH4tBwG7
- UnRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=frupZG/tA+kVSjWSjQKD8S2JYISMwQu17lilCz6yI4I=;
- b=mI5rhK6HG0pLZ4KrnKc0u+Wd1ntORIo64D6ZC/KDkcFERZ+LanB25+0ATe+ppzvmng
- 7hJc0y/yF8AKP7BmC+GPNAhDVttZg1uZTknxzCClpmg28FaT1kA0HOsUVrxC9VqgzwAX
- 0rDo+xXL7Whu4hP4rIVCQkLJ6dmfII/MZkcNeImC3wXJ/EqDFoNv0CkULFrdhYkoVaCb
- zrGVT9vJyy6DuQhN6qznZlzTeRgiX7K1Y+6qgIZgjxkH7VhTdgXKdTkokniZ0EBywoy0
- r5TV0Wi8cp3qSn0ladUi8Fg+Muaeg9YoXzTYLo/pRCZlqbrJp3sww746+zjCnVIx+wN/
- KS7A==
-X-Gm-Message-State: APjAAAU84u/8r43HNa5uCLpYHngWAPx5SVpwxfv9B7VmzwLHRyHtMoEf
- 2KxCdDuuEDz1if6xuAdowz/cJ4a6
-X-Google-Smtp-Source: APXvYqz5eViie9pULJpdXA35SmVJvp5xr2rT0dfse8hwi+l2naBH1fo1VkCBM9jbVE/NEFwbvhFTtw==
-X-Received: by 2002:ac8:3793:: with SMTP id d19mr18347538qtc.30.1575742283341; 
- Sat, 07 Dec 2019 10:11:23 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
- [174.95.14.228])
- by smtp.googlemail.com with ESMTPSA id g21sm1869397qkl.116.2019.12.07.10.11.22
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 07 Dec 2019 10:11:22 -0800 (PST)
-Message-ID: <5DEBEB49.4040607@gmail.com>
-Date: Sat, 07 Dec 2019 13:11:21 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ (Exim 4.92) (envelope-from <lukashaase@gmx.at>) id 1idfrn-0001Ov-VY
+ for usrp-users@lists.ettus.com; Sat, 07 Dec 2019 14:35:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1575747306;
+ bh=QYxJ46mnwuFe+4aSnlT1plut+h7dSom+qok4ECEOb0I=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=KCshsXPEyzlnodNhFVnOVDx7rnmTAviPZRHjgKpMBHe/tkEKhhb43PywlxZXNe8Xw
+ 5VkbHlzQ1/FFIicrWrLRI3l4bwj77OqdDbOACWTgTk0Znb9DZwtewrNHDwdRLkJxuc
+ zndAxBDUY0VGg6nPBFimR2fj2UzPmVIVFTUwGWJ4=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
+ (3c-app-gmx-bs76.server.lan [172.19.170.224]) (via HTTP); Sat, 7 Dec 2019
+ 20:35:06 +0100
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
+Message-ID: <trinity-0ce9eefc-d9c2-4f7a-aa5b-342a8c0f5f36-1575747306151@3c-app-gmx-bs76>
+To: "Nate Temple" <nate.temple@ettus.com>
+Date: Sat, 7 Dec 2019 20:35:06 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com>
 References: <trinity-7cb4be4f-5d41-4268-b5a8-2084b39834b6-1575702620460@3c-app-gmx-bs13>
  <CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com>
-In-Reply-To: <CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:+B15UZJzWl5cEtGBgJcSA5TcjJZD8gisibkTVNIXoUT76tQzSds+XrzcCDTtNCDYvFx/f
+ /2Vq0mX+KFffkHDDrd3exwAYt5rnIl+amu76CWnG6obKSbYMK01sTHFNGHTjFlW/OWeb6kUGWBec
+ LqYDXiGS74YabJ8FsSWc3mHbZ+lmXKYfdztupc5+/ku5mMLG01N3q7c89uHLgbIbW+NdY2aIK97m
+ 3Wo88VmwK/2plQ537gmKVVXoPp7AepQljVcRZNn2LVyv3bVtZtbyO+AP7ouTuZ1SHOgBlLbjpKiK
+ 20=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:h67Wl6pgMo0=:hdwotpZVeby8UUVIooElfO
+ uRmF7bYzvwaohxKcTUf5jAGFhWJlsXB6nniebtFiLWqTy1wRWVe0eKCyzaxx+gMcHimC6b2z6
+ I3DQTQfi4iG2KuaJ6ZSwsGbEMCqj77zXVo2DAVac/v1B/09roG8CuSATApbYQt0Sox/sNO0FF
+ OWbLpFWAZcaFO/QbbTMwnMw30lNgHS3H8q7YKNNyQJGpdnkxVLSjIv4y1m2iMKENeu0o8Ko7d
+ PGIPsVMI1O3s8mM8m3aGlHPwZFFo1xX9NHEj7fBp6e6nVu3yVTMr91AkBbYuxi6qROV9MRDxL
+ ecWDRaM33Ya5M0Jw9beebetD8OqovB83DMwvgAObEuAfIfY4yBZbve6WN1M/PBVG/IHC7YFkG
+ jsXyfE9ba8UEBkixoxA1ww6cExACUPoOQbehnGN2Im/mtdK+0rR7xetcdyEvXTl5AIGKbWqTj
+ YbcWRmL0vYYazLJFDdM6EpUQLeAfCxcLwLslBs9cvuF0dax8JQK8NSpvJ3FBjYUCpX0AxmZXQ
+ WpqFN2JXO9dS7J4G4nBmTskWcSBDhOCa4VxPEiX4d7kGzO8pRZZCMqKMhUkoVPXHUMr01FWUr
+ SjlZFEf5kjuiXFDuowfsPeft/Mkpm0LYsI24+pzNAZhj1KY66d2/qovZa9+FXWzg2D2SdM855
+ tWeCwRC+5DDGb9tkbHERIOGRBJtey3qFVhiMhcHrwvdUz4w==
 Subject: Re: [USRP-users] Phase relation between RX/TX LO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -67,9 +63,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6800596020687364387=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,215 +81,121 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============6800596020687364387==
-Content-Type: multipart/alternative;
- boundary="------------090804050609010807030403"
-
-This is a multi-part message in MIME format.
---------------090804050609010807030403
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 12/07/2019 12:05 PM, Nate Temple via USRP-users wrote:
-> Hi Luke,
->
-> What version of UHD are you using?
->
-> There was an issue with the DUC/DDC phase accumulator's resolution, 
-> but it was fixed with UHD 3.14.1.0.
->
-> The threads below are were this was identified:
->
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-May/059914.html
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-April/059465.html
->
-> As recommended from the thread:
->
-> Phase may change each time streamers are created, but the phase between TX
-> and RX should remain consistent during streaming.  Tuning must be done 
-> with
-> timed commands and a consistent time delta between the tune time of TX and
-> RX must be maintained that is greater than 500us to maintain the coherence
-> across re-tunes.
->
->
->
-> If you're using the QT widget without any modifications, it will not 
-> be using timed commands, you'll need to generate the python file and 
-> manually add in the timed commands to the set_freq calls.
->
-> Also, if I remember correctly, even with the phase accumulator fix, 
-> there was some caveats to which frequencies would stay coherent. I 
-> need to go back and look at some notes on it.
->
-> Regards,
-> Nate Temple
->
-The other thing to consider is the contribution of Fractional-N 
-synthesis to the unpredictable nature of the phase of two synthesizers, 
-even when
-   using a common reference.
-
-Many years ago, Texas Instruments published a quite-nice technical brief 
-on the difference between Fractional-N and Integer-N synthesis:
-
-http://www.ti.com/lit/an/swra029/swra029.pdf
-
-A side-effect of fractional-N synthesis is that two frac-N synthesizers 
-will not necessarily have a zero phase-offset with respect to one another,
-   without a bit of "help".  That "help" comes in the form of a special 
-"phase reset" signal on *some* modern PLL synthesizers.  One of the
-   caveats is that all the synthesizers have to have this "phase reset" 
-signal triggered at the same time (or, I think, more properly, within less
-   than one cycle of Fref).   So, that is the reason that timed commands 
-must be used to allow predictable phase-offset. Fortunately, the MAX2871
-   used on the UBX is such a synthesizer.
-
-A further complication, just as a bit of trivia not relevant to this 
-case, is that SOME fractional-N synthesizers "dither" the averaging schedule
-   used to change between N and N+1 states, in order to spread-out 
-synthesizer spurs to reduce energy at sharply-defined frequencies.
-   In those cases, it's easy to see how maintaining coherence among 
-multiple instances would be impossible, even with a common
-   reference.
-
-But this also brings up another issue (not relevant in this case, but 
-something to be aware of).  Two frac-N synthesizers of different
-   design may not be able to maintain mutual coherence of predictable 
-phase-offset.  So these "timed command" tricks can only
-   really be used among synthesizers of exactly the same type.  In the 
-Ettus case, that means among daughterboards of exactly
-   the same type.
-
-
-
---------------090804050609010807030403
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 12/07/2019 12:05 PM, Nate Temple via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_default"
-          style="font-family:arial,helvetica,sans-serif">Hi Luke,<br>
-          <br>
-          What version of UHD are you using?<br>
-          <br>
-          There was an issue with the DUC/DDC phase accumulator's
-          resolution, but it was fixed with UHD 3.14.1.0.<br>
-          <br>
-          The threads below are were this was identified:<br>
-          <br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-May/059914.html">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-May/059914.html</a><br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-April/059465.html">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2019-April/059465.html</a><br>
-          <br>
-          As recommended from the thread:<br>
-          <br>
-          Phase may change each time streamers are created, but the
-          phase between TX<br>
-          and RX should remain consistent during streaming.  Tuning must
-          be done with<br>
-          timed commands and a consistent time delta between the tune
-          time of TX and<br>
-          RX must be maintained that is greater than 500us to maintain
-          the coherence<br>
-          across re-tunes.<br>
-          <br>
-          <br>
-          <br>
-          If you're using the QT widget without any modifications, it
-          will not be using timed commands, you'll need to generate the
-          python file and manually add in the timed commands to the
-          set_freq calls.<br>
-        </div>
-        <div class="gmail_default"
-          style="font-family:arial,helvetica,sans-serif"><br>
-        </div>
-        <div class="gmail_default"
-          style="font-family:arial,helvetica,sans-serif">Also, if I
-          remember correctly, even with the phase accumulator fix, there
-          was some caveats to which frequencies would stay coherent. I
-          need to go back and look at some notes on it.  <br>
-        </div>
-        <div class="gmail_default"
-          style="font-family:arial,helvetica,sans-serif"><br>
-          Regards,<br>
-          Nate Temple</div>
-      </div>
-      <br>
-    </blockquote>
-    The other thing to consider is the contribution of Fractional-N
-    synthesis to the unpredictable nature of the phase of two
-    synthesizers, even when<br>
-      using a common reference.<br>
-    <br>
-    Many years ago, Texas Instruments published a quite-nice technical
-    brief on the difference between Fractional-N and Integer-N
-    synthesis:<br>
-    <br>
-    <a class="moz-txt-link-freetext" href="http://www.ti.com/lit/an/swra029/swra029.pdf">http://www.ti.com/lit/an/swra029/swra029.pdf</a><br>
-    <br>
-    A side-effect of fractional-N synthesis is that two frac-N
-    synthesizers will not necessarily have a zero phase-offset with
-    respect to one another,<br>
-      without a bit of "help".  That "help" comes in the form of a
-    special "phase reset" signal on *some* modern PLL synthesizers.  One
-    of the<br>
-      caveats is that all the synthesizers have to have this "phase
-    reset" signal triggered at the same time (or, I think, more
-    properly, within less<br>
-      than one cycle of Fref).   So, that is the reason that timed
-    commands must be used to allow predictable phase-offset. 
-    Fortunately, the MAX2871<br>
-      used on the UBX is such a synthesizer.<br>
-    <br>
-    A further complication, just as a bit of trivia not relevant to this
-    case, is that SOME fractional-N synthesizers "dither" the averaging
-    schedule<br>
-      used to change between N and N+1 states, in order to spread-out
-    synthesizer spurs to reduce energy at sharply-defined frequencies.<br>
-      In those cases, it's easy to see how maintaining coherence among
-    multiple instances would be impossible, even with a common<br>
-      reference.<br>
-    <br>
-    But this also brings up another issue (not relevant in this case,
-    but something to be aware of).  Two frac-N synthesizers of different<br>
-      design may not be able to maintain mutual coherence of predictable
-    phase-offset.  So these "timed command" tricks can only<br>
-      really be used among synthesizers of exactly the same type.  In
-    the Ettus case, that means among daughterboards of exactly<br>
-      the same type.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------090804050609010807030403--
-
-
---===============6800596020687364387==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6800596020687364387==--
-
+SGkgTmF0ZSwKClRoYW5rIHlvdSBzbyBtdWNoLCB0aGlzIGlzIHZlcnkgdXNlZnVsLgoKSSBhbSB1
+c2luZyBHbnVyYWRpbyAzLjcgb24gV2luZG93cyBhbmQgYWNjb3JkaW5nIHRvIHVoZF9jYWxfcnhf
+aXFfYmFsYW5jZS5leGUgZm9yIGV4YW1wbGUsIFVIRCB2ZXJzaW9uIGlzIFVIRF8zLjE0LjEuSEVB
+RC0wLWc1NDkxYjgwZS4gVGhhdCBzaG91bGQgaGF2ZSB0aGUgaXNzdWUgZml4ZWQsIHJpZ2h0PwoK
+CldvdWxkIHlvdSBtaW5kIHRvIGVsYWJvcmF0ZSBicmllZmx5IGhvdyB0byBnZXQgdGhlICJ0aW1l
+ZCBjb21tYW5kIj8gKEkgYW0gd29ya2luZyB3aXRoIGdyYyBmb3IgYSBmZXcgd2Vla3MgYW5kIEkg
+YW0gZmFpcmx5IG5ldyB0byBpdCkKCkp1c3QgY29uY2VwdHVhbGx5IGhvdyB0byBkbyBpdCB3b3Vs
+ZCBiZSBhbWF6aW5nIG9yIGEgcG9pbnRlciB0byBhbiBleGFtcGxlIHRoYXQgSSBjb3VsZCBtb2Rp
+ZnkgZXZlbiBiZXR0ZXIhCgpGb3IgZXhhbXBsZSwgSSB3ZW50IHRocm91Z2ggdGhlIGV4YW1wbGUg
+YXQgaHR0cHM6Ly93aWtpLmdudXJhZGlvLm9yZy9pbmRleC5waHAvR3VpZGVkX1R1dG9yaWFsX0dO
+VV9SYWRpb19pbl9QeXRob24jMy4xLl9JbnRyb190b19Vc2luZ19HTlVfUmFkaW9fd2l0aF9QeXRo
+b24gYnV0IEkgZG8gbm90IGtub3cgaWYgdGhpcyByZWFsbHkgY3JlYXRlcyB0aGVzZSAidGltZWQg
+Y29tbWFuZHMiLgpZZXMsIEkgY2FuIHN0b3JlIHRoZSBmcmVxdWVuY3kgdmFsdWUgaW4gYSB2YXJp
+YWJsZSBidXQgaG93IGRvIEkgZW5zdXJlIHRoYXQgaXQncyB1cGRhdGVkIGV4YWN0bHkgYXQgYSBy
+YXRlIG9mIHNheSwgMS8xMDBtcz8KCkFsc286IFdoeSB3b3VsZG4ndCBzdWNoIGFuIGFwcHJvYWNo
+IGNhdXNlIGlzc3VlcyBkdWUgdG8gdGhlIGNsb2NrIGRpZmZlcmVuY2VzIGJldHdlZW4gdGhlIGhv
+c3QgY29tcHV0ZXIgYW5kIHRoZSBVU1JQPwoKQW5kIGlmIHlvdSBhcmUgYWJsZSB0byBkaWcgdXAg
+YW55IG1vcmUgaW5mb3JtYXRpb24gYWJvdXQgdGhlIGFkZGl0aW9uYWwgY2F2ZWF0cyB5b3Ugd2Vy
+ZSBtZW50aW9uaW5nLCB0aGF0IHdvdWxkIGJlIHRydWx5IGFtYXppbmcuCgpUaGFua3MgYSBsb3Qs
+Ckx1a2UKCsKgCsKgCsKgCgpHZXNlbmRldDrCoFNhbXN0YWcsIDA3LiBEZXplbWJlciAyMDE5IHVt
+IDEyOjA1IFVocgpWb246wqAiTmF0ZSBUZW1wbGUiIDxuYXRlLnRlbXBsZUBldHR1cy5jb20+CkFu
+OsKgIkx1a2FzIEhhYXNlIiA8bHVrYXNoYWFzZUBnbXguYXQ+CkNjOsKgIlVTUlAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tIiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+CkJldHJlZmY6wqBSZTog
+W1VTUlAtdXNlcnNdIFBoYXNlIHJlbGF0aW9uIGJldHdlZW4gUlgvVFggTE8KCkhpIEx1a2UsCgpX
+aGF0IHZlcnNpb24gb2YgVUhEIGFyZSB5b3UgdXNpbmc/CgpUaGVyZSB3YXMgYW4gaXNzdWUgd2l0
+aCB0aGUgRFVDL0REQyBwaGFzZSBhY2N1bXVsYXRvcidzIHJlc29sdXRpb24sIGJ1dCBpdCB3YXMg
+Zml4ZWQgd2l0aCBVSEQgMy4xNC4xLjAuCgpUaGUgdGhyZWFkcyBiZWxvdyBhcmUgd2VyZSB0aGlz
+IHdhcyBpZGVudGlmaWVkOgoKaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9waXBlcm1haWwvdXNycC11
+c2Vyc19saXN0cy5ldHR1cy5jb20vMjAxOS1NYXkvMDU5OTE0Lmh0bWwKaHR0cDovL2xpc3RzLmV0
+dHVzLmNvbS9waXBlcm1haWwvdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20vMjAxOS1BcHJpbC8w
+NTk0NjUuaHRtbAoKQXMgcmVjb21tZW5kZWQgZnJvbSB0aGUgdGhyZWFkOgoKUGhhc2UgbWF5IGNo
+YW5nZSBlYWNoIHRpbWUgc3RyZWFtZXJzIGFyZSBjcmVhdGVkLCBidXQgdGhlIHBoYXNlIGJldHdl
+ZW4gVFgKYW5kIFJYIHNob3VsZCByZW1haW4gY29uc2lzdGVudCBkdXJpbmcgc3RyZWFtaW5nLsKg
+IFR1bmluZyBtdXN0IGJlIGRvbmUgd2l0aAp0aW1lZCBjb21tYW5kcyBhbmQgYSBjb25zaXN0ZW50
+IHRpbWUgZGVsdGEgYmV0d2VlbiB0aGUgdHVuZSB0aW1lIG9mIFRYIGFuZApSWCBtdXN0IGJlIG1h
+aW50YWluZWQgdGhhdCBpcyBncmVhdGVyIHRoYW4gNTAwdXMgdG8gbWFpbnRhaW4gdGhlIGNvaGVy
+ZW5jZQphY3Jvc3MgcmUtdHVuZXMuCgoKCklmIHlvdSdyZSB1c2luZyB0aGUgUVQgd2lkZ2V0IHdp
+dGhvdXQgYW55IG1vZGlmaWNhdGlvbnMsIGl0IHdpbGwgbm90IGJlIHVzaW5nIHRpbWVkIGNvbW1h
+bmRzLCB5b3UnbGwgbmVlZCB0byBnZW5lcmF0ZSB0aGUgcHl0aG9uIGZpbGUgYW5kIG1hbnVhbGx5
+IGFkZCBpbiB0aGUgdGltZWQgY29tbWFuZHMgdG8gdGhlIHNldF9mcmVxIGNhbGxzLgrCoApBbHNv
+LCBpZiBJIHJlbWVtYmVyIGNvcnJlY3RseSwgZXZlbiB3aXRoIHRoZSBwaGFzZSBhY2N1bXVsYXRv
+ciBmaXgsIHRoZXJlIHdhcyBzb21lIGNhdmVhdHMgdG8gd2hpY2ggZnJlcXVlbmNpZXMgd291bGQg
+c3RheSBjb2hlcmVudC4gSSBuZWVkIHRvIGdvIGJhY2sgYW5kIGxvb2sgYXQgc29tZSBub3RlcyBv
+biBpdC7CoApSZWdhcmRzLApOYXRlIFRlbXBsZcKgCgpPbiBGcmksIERlYyA2LCAyMDE5IGF0IDEx
+OjExIFBNIEx1a2FzIEhhYXNlIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dPiB3cm90ZTpIaSBNYXJjdXMs
+CgpNYXJjdXMgd3JvdGU6PiBPbiAxMi8wNi8yMDE5IDA5OjMzIFBNLCBMdWthcyBIYWFzZSB2aWEg
+VVNSUC11c2VycyB3cm90ZToKPj4gSGksCj4+Cj4+IEkgYW0gdXNpbmcgdGhlIFVTUlAgWDMxMCtV
+QlgxNjAgd2l0aCBnbnVyYWRpbyB0byBwZXJmb3JtIHZlcnkKPj4gcHJlY2ljc2UgcGhhc2UgbWVh
+c3VyZW1lbnRzOiBUaGUgVFggdHJhbnNtaXRzIGEgQ1cgd2hpY2ggaXMKPj4gcmVmbGVjdGVkIGJ5
+IGFuIG9iamVjdCBhbmQgcmVjZWl2ZWQgYnkgdGhlIFJYLgo+Pgo+PiBUaGUgcmVjZWl2ZWQgcGhh
+c2UgcHJvdmlkZXMgYW4gYWNjdXJhdGUgZXN0aW1hdGUgb2YgdGhlIGRpc3RhbmNlCj4+IHRvPj4g
+dGhlIHJlZmxlY3RlZCBvYmplY3QsIG9uY2UgdGhlIGZpeGVkIHBoYXNlIHJlbGF0aW9uIChiZXR3
+ZWVuCj4+IFRYL1JYLSBMTywgZmlsdGVycywgY2FibGVzIGV0Yy4pIGhhcyBiZWVuIHN1YnRyYWN0
+ZWQgb3V0Lgo+Pgo+PiBUaGlzIHdvcmtzIG5pY2VseSBzbyBmYXIuCj4+Cj4+IEhvd2V2ZXIsIEkg
+bmVlZCBteSBzeXN0ZW0gdG8gd29yayBhY3Jvc3MgcG93ZXIgY3ljbGVzLCBhbmQgbW9yZQo+PiBp
+bXBvcnRhbnRseSwgYWNyb3NzIGRpZmZlcmVudCBmcmVxdWVuY2llczogVGhlIGdvYWwgaXMgdG8g
+cGVyZm9ybQo+PiBmYXN0IGZyZXF1ZW5jeSBob3BwaW5nIGFuZCBvYnRhaW4gdGhlIHBoYXNlIGZv
+ciBlYWNoIGZyZXF1ZW5jeS4KPj4KPj4gVW5mb3J0dW5hdGVseSBpdCBzZWVtcyB0aGF0IHRoZSBw
+aGFzZSByZWxhdGlvbnNoaXAgYmV0d2VlbiBUWC9SWAo+PiBpcz4+IGxvc3Qgd2hlbiBJIHR1bmUg
+dGhlIFVTUlAgdG8gYSBkaWZmZXJlbnQgY2VudGVyIGZyZXF1ZW5jeSBhbmQKPj4gYmFjay4gRm9y
+IGV4YW1wbGUsIEkgaGF2ZSB0aGUgY2VudGVyIGZyZXF1ZW5jeSBzZXQgdG8gOTAwIE1IeiBhbmQK
+Pj4gdGhlIHBoYXNlLiBJIG1lYXN1cmUgKGJ5IGNvbXB1dGluZyB0aGUgYW5nbGUgb2YgdGhlIEkv
+USBzYW1wbGVzKQo+PiBzdGF5cyBjb25zdGFudC4gQnV0IHdoZW4gSSBzZXQgdGhlIGNlbnRlciBm
+cmVxdWVuY3kgdG8gOTUwIE1IeiBhbmQKPj4gdGhlbiBiYWNrIHRvIDkwMCBNSHosIHRoZSBwaGFz
+ZSBoYXMgYSByYW5kb20gdmFsdWUgYWdhaW4uCj4+Cj4+IElzIHRoZXJlIGFueSB3YXkgdG8gYXZv
+aWQgdGhpcz8gT3IgaXMgdGhlcmUgYW55IHdheSB0byBsb2NrIHRoZSBMTwo+PiBwaGFzZSB0byBh
+IHBhcnRpY3VsYXIgcGhhc2Ugd2hlbj4+IHR1bmluZyBiYWNrIHRvIHRoZSBvcmlnaW5hbAo+PiBm
+cmVxdWVuY3k/Cj4KPiBJdCAqbWlnaHQqIGJlIHBvc3NpYmxlIHRvIHBoYXNlLXN5bmNocm9uaWV6
+IHRoZSBSWCBhbmQgVFggTE9zIHVzaW5nCj4gdGltZWQgY29tbWFuZHMgY29tYmluZWQsIHBvc3Np
+Ymx5IHdpdGggSU5URUdFUl9OIHR1bmluZy4KPgo+IFRoZXJlJ3MgYW4gQVBQIE5vdGUgb24gcGhh
+c2Utc3luY2hyb25pemF0aW9uIGhlcmU6Cj4KPiBodHRwczovL2tiLmV0dHVzLmNvbS9TeW5jaHJv
+bml6YXRpb25fYW5kX01JTU9fQ2FwYWJpbGl0eV93aXRoX1VTUlBfRGV2aWNlc1todHRwczovL2ti
+LmV0dHVzLmNvbS9TeW5jaHJvbml6YXRpb25fYW5kX01JTU9fQ2FwYWJpbGl0eV93aXRoX1VTUlBf
+RGV2aWNlc10KClRoYW5rIHlvdSwgSSdtIHN0dWR5aW5nIHRoaXMgcmlnaHQgbm93LgoKPiBNeSBn
+dXQgdGVsbHMgbWUgdGhpcyBpcyBnb2luZyB0byBiZSBoYXJkLCB0aG91Z2gsIHNpbmNlIHRoZQo+
+IHJlcXVpcmVtZW50IGlzIHRvIGJyaW5nIGEgc3ludGhlc2l6ZXIgYmFjayB0byB0aGUgc2FtZSBy
+ZWxhdGl2ZSBwaGFzZQo+IGl0IGhhZCB3aGVuIGl0IHdhcyBwcmV2aW91c2x5IHR1bmVkIHRvIHRo
+ZSBzYW1lIGZyZXF1ZW5jeS4KClllcywgdGhpcyBpcyBhYm91dCBtdWx0aXBsZSBkZXZpY2VzLCBj
+ZXJ0YWlubHkgaGFyZC4KCkxldCdzIHRha2UgYSBzdGVwIGJhY2sgYW5kIEkgYW0gaGFwcHkgd2hl
+biBqdXN0IHRoZSBUWC9SWCBMTyBvbiBhIHNpbmdsZSBkZXZpY2UgaXMgc3luY2hyb25pemVkLgoK
+VGhpcyBpcyB3aGF0IEkgZG8gcmlnaHQgbm93OiBJbiBnbnVyYWRpbywgSSBnZW5lcmF0ZSBhIHNp
+bnVkb2lkIChmaWY9MU1IeikgYXQgYmFzZWJhbmQgYW5kIHRyYW5zbWl0IChVSEQ6IFVTUlAgU2lu
+aykgaXQgd2l0aCBmY2VudGVyPTkwME1Iei4KVGhlbiBJIHJlY2VpdmUgKFVIRDogVVNSUCBTb3Vy
+Y2UpIGl0IGFuZCBtdWx0aXBseSBpdCB3aXRoICItZmlmIiBhZ2Fpbi4gVGhpcyBnaXZlcyBtZSBh
+IGNvbnN0YW50IHNpZ25hbCBpbiBJIGFuZCBRLgoKVGhlIGNlbnRlciBmcmVxdWVuY3kgaXMgY29u
+ZmlndXJlZCB2aWEgIlFUIEdVSSBFbnRyeSIuIEkgZW50ZXIgOTAwZTYgYW5kIHByZXNzIGVudGVy
+LiBUaGVuIEkgcGxvdCAiQ29tcGxleCB0byBBcmciLiBBcyBsb25nIGFzIEkgZG8gbm90aGluZyB0
+aGlzIHZhbHVlIGlzIGZhaXJseSBjb25zdGFudCAoc29tZXdoZXJlIGJldHdlZW4gLXBpIGFuZCBw
+aSkuCgpOb3cgSSBoaXQgZW50ZXIgYWdhaW4gaW4gdGhlIFFUIEdVSSBFbnRyeS4gQWx0aG91Z2gg
+aXQncyB0aGUgc2FtZSBjZW50ZXIgZnJlcXVlbmN5LCB0aGUgVVNSUCByZXR1bmVzIGFuZCB0aGUg
+cGhhc2UganVtcHMgdG8gYW5vdGhlciB2YWx1ZS4KCk5vdyBsZXQncyBsb29rIGF0IHRoZSBVU1JQ
+IGJsb2NrIGRpYWdyYW06CgpodHRwczovL2tiLmV0dHVzLmNvbS9pbWFnZXMvMS8xNi8yOTIwX3Np
+bXBsaWZpZWRfc3lzdGVtX2RpYWdyYW0uZ2lmW2h0dHBzOi8va2IuZXR0dXMuY29tL2ltYWdlcy8x
+LzE2LzI5MjBfc2ltcGxpZmllZF9zeXN0ZW1fZGlhZ3JhbS5naWZdCgpZZXMsIGJvdGggVFggYW5k
+IFJYIHBhdGggaGF2ZSBhIHNlcGFyYXRlIFBMTCBhbmQgVkNPLgpIb3dldmVyLCB0aGUgKnJlZmVy
+ZW5jZSogZm9yIHRoaXMgUExMIGlzIHRoZSBzYW1lLiBIZW5jZSB0aGUgUExMIHNob3VsZCBsb2Nr
+IHRvIHRoZSBwaGFzZSBvZiB0aGlzIHJlZmVyZW5jZSAoYWZ0ZXIgYWxsLCBpdCdzIGEgKnBoYXNl
+KiBsb2NrZWQgbG9vcCkuIEFuZCB0aGlzIGltcGxpZXMgdGhhdCB0aGUgKnJlbGF0aXZlKiBwaGFz
+ZSBiZXR3ZWVuIFRYIGFuZCBSWCwgZm9yIGEgZ2l2ZW4gZnJlcXVlbmN5LCBzaG91bGQgYmUgZml4
+ZWQgLS0gYXQgbGVhc3QgYXMgbG9uZyBhcyB0aGUgVVNSUCBpcyBwb3dlcmVkLgoKU28sIGhvdyBj
+YW4gaXQgYmUgdGhhdCB0aGlzIGlzIG5vdCB0aGUgY2FzZT8hCgoKVGhlcmUgaXMganVzdCBhIHNp
+bmdsZSBzdXNwaWNpb24gdGhhdCBJIGhhdmU6IERTUCBvbiBnbnVyYWRpbyAoaG9zdCBjb21wdXRl
+ciBydW5zIGEgZGlmZmVyZW50IGNsb2NrKSB2ZXJzdXMgVVNSUCBjbG9jay4gV2hhdCBkbyBJIG1l
+YW4gYnkgdGhhdD8gSW5pdGlhbGx5IEkgd2FzIHRyYW5zbWl0dGluZyBhIHB1cmUgQ1cgKGluIGdu
+dXJhZGlvLCBjb25uZWN0aW5nIGEgIkNvbnN0YW50IFNvdXJjZSIgdG8gVVNSUCBTaW5rIGFuZCBz
+ZXR0aW5nIHRoZSBmcmVxdWVuY3kgdG8gZmNlbnRlcitmaWYpLiBIb3dldmVyLCBkb3duY29udmVy
+c2lvbiB3YXMgcGVyZm9ybWVkIHdpdGggZmNlbnRlciBvbmx5IGFuZCBtdWx0aXBseWluZyB3aXRo
+IGZpZiBpbiBnbnVyYWRpby4gSSBjb3VsZCBzZWUgYSBzbG93IHBoYXNlIGRyaWZ0LiBJdCB0b29r
+IG1lIGhvdXJzIHRvIGZpZ3VyZSBvdXQgdGhhdCB0aGlzIGlzIGNhdXNlZCBieSB0aGUgZGlmZmVy
+ZW50IGNsb2Nrcy4gVGhlIGVmZmVjdCB3YXMgZ29uZSBvbmNlIEkgYWxzbyBnZW5lcmF0ZWQgdGhl
+IHRyYW5zbWl0dGVkIHdhdmVmb3JtIGluIGdudXJhZGlvLgpJbiBvcmRlciB0byBmaXggdGhpcywg
+SSB3b3VsZCBzdWJ0cmFjdCB0aGUgcGhhc2Ugb2YgdGhpcyBnZW5lcmF0ZWQgd2F2ZWZvcm0gaW4g
+Z251cmFkaW8uIEJ1dCBvYnZpb3VzbHkgdGhpcyBwaGFzZSBpcyBhbHdheXMgemVybyAuLi4KCkkg
+aG9wZSB5b3UgdW5kZXJzdGFuZCB3aGF0IEkgYW0gd3JpdGluZy4KCgoKQmVzdCwKTHVrZQoKCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJz
+IG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0
+dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
