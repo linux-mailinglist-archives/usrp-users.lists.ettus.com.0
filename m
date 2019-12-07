@@ -2,52 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C155115ABC
-	for <lists+usrp-users@lfdr.de>; Sat,  7 Dec 2019 03:33:51 +0100 (CET)
-Received: from [::1] (port=44412 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B17115AD8
+	for <lists+usrp-users@lfdr.de>; Sat,  7 Dec 2019 04:36:52 +0100 (CET)
+Received: from [::1] (port=50672 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1idPuk-0003sl-UW; Fri, 06 Dec 2019 21:33:46 -0500
-Received: from mout.gmx.net ([212.227.17.21]:60359)
+	id 1idQtk-0005xd-LQ; Fri, 06 Dec 2019 22:36:48 -0500
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:39391)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <lukashaase@gmx.at>) id 1idPuh-0003pU-H9
- for usrp-users@lists.ettus.com; Fri, 06 Dec 2019 21:33:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1575685982;
- bh=JYcls15WKoIVL4sFT3ze9845tCr9V3+o52oXdre50aA=;
- h=X-UI-Sender-Class:From:To:Subject:Date;
- b=derKS/jU6kJkc0Mn9oRF3qG8UCs321/gwGKJA/ulp72Vchec1AZ/I9j4FUj9UYP+N
- y03/MBL0r2x8mSa/E+Zb3Wk8K0nkQg2/9U6Csr5AnNE683qEKVzU4gX4aRAMjoL1Rb
- L3QovF0TNCI1MId3JJ8E1flouNuMGjYzhsoDXhZ4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [87.101.50.206] ([87.101.50.206]) by web-mail.gmx.net
- (3c-app-gmx-bs31.server.lan [172.19.170.83]) (via HTTP); Sat, 7 Dec 2019
- 03:33:02 +0100
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1idQth-0005te-Sr
+ for usrp-users@lists.ettus.com; Fri, 06 Dec 2019 22:36:45 -0500
+Received: by mail-qk1-f175.google.com with SMTP id d124so8294327qke.6
+ for <usrp-users@lists.ettus.com>; Fri, 06 Dec 2019 19:36:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=w2LC8Q73yHBNad4Ui6Knx4Z1kAlz6i0+jEM2pUTLzBI=;
+ b=skEIBJOj9sE8w5MtdCJhigxGFm5S7nv+ZjInTqAHl4845gVqYzN2l/Sw4urusyoiXr
+ w+6IYFpUtD5Bt0NanYf1VfUvmJIBFZe8kWh3h9PtLKgnaHyB+f7ol0xZYBaMrAwPY170
+ clSJjbKfUm4jeO24G/fdH/WHkqluMuJ9OT+zlxe92qKNhh1/tjLOvE06kQmOjLEEyLoc
+ V9LTQKFNMOS08ZyUeqGkTv3FAm3NOweiVZzqDkuJwv44JFDwMQVJ7087l9ZnCyPvVCPb
+ OyMU06RC9rYCnTCeS1FitcXWlbktPlyX9WAIpZlJZLYmgUXMqZPJ7Tp0uBSAb3jLd+oR
+ HADA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=w2LC8Q73yHBNad4Ui6Knx4Z1kAlz6i0+jEM2pUTLzBI=;
+ b=dYW2C3mJJ/MZhMMDgXJFaXv13MI0tIUlLarTyEtGLceVkfWCQsXx5GozsjqKlmqN/j
+ 0cHqgNBK8e+cPysWMMhKL5FXmU8Mo5hP+Za/OYAn6WEzAKhzBSrmEimtKb2ZUe/OrrYN
+ hQejNTuXDLC3ALMnqH1Wh9rcFj1uLLDS5s/kagrjTRODmGqee+6HfT8c4mYmRKkp8OQY
+ 0AWMuxw6XfJdG1ha9W+LP1DBGjiCawOlEI5EzBkHn5zvc04TvtIaMTm6wOqX67diQi9z
+ Jl8eyJfSvj9cKmXBi56RhHPwNK3/HpynuuD1pfuOGKE6dWpWNmwuazBOPrabI2FvSDVy
+ a2Ag==
+X-Gm-Message-State: APjAAAUvbLuE6l37SWt9ulCHl19yq4hVNpH/R7TJWtnHCEvRTJQpbCYI
+ KCgjHUQCYW+7hqo2pOtzXsZ+CeOs
+X-Google-Smtp-Source: APXvYqxOET8bccohsrNhT0lxaAZaLRr/Zj1j2civVr88isvHdM4alb1syMrjJr7CyvmxJ5HDTGbgFg==
+X-Received: by 2002:a37:4b97:: with SMTP id
+ y145mr16988448qka.133.1575689764959; 
+ Fri, 06 Dec 2019 19:36:04 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
+ [174.95.14.228])
+ by smtp.googlemail.com with ESMTPSA id k15sm6483374qta.75.2019.12.06.19.36.04
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 06 Dec 2019 19:36:04 -0800 (PST)
+Message-ID: <5DEB1E23.80107@gmail.com>
+Date: Fri, 06 Dec 2019 22:36:03 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Message-ID: <trinity-1bb7574a-e0e8-4b44-b04c-dfc7fe55e8f2-1575685982004@3c-app-gmx-bs31>
 To: usrp-users@lists.ettus.com
-Date: Sat, 7 Dec 2019 03:33:02 +0100
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:OTDRCvzh8MfATwE8wEysiAWe9Qf3eJJbHOqfxtMMb/xsWX/ZNRXFpudvbnZnv7oHwaYDZ
- QPdZ0ayuZdCVAAHOThMCr2VEjXphucf8BrDrhaIHl+6T8PKMrMqTJ59xxCXASHjUJRmnG5t3RAE3
- 7zuHSl01QBvQHA8MyuuwmSMuiH7040rmS6IoASF4waId9KpwqTbfnRyE/KA8C2zm0M5oVGh9fLk+
- N4DpHOt2pVYib55vnLf7og4wo71Gp/HDLLFUnQfJd6FaIK1/cPhqQE9wHco2l65UHP5Wx55jQFjC
- 88=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:mBjSezJfJBY=:0t0Dm254zX3xnQPPQRAH2f
- hsidkHrTB4B+fBfkt55mOI5013bsceUVpvn04WNvwz6rLkD+fkkKQe49RSu1wBUppcR+7/93R
- ofMee9q3Vyvf5vRHsBsJoMJLHEINmpshgwfHkhqXIzOBIrMONjJUpufn1uosjYJgfbQDWEaQ2
- IWLT9SFsRhxNJKVEnQWMkGKUgNj5XGG0jAFfwKY0yfSy3UTvmCvj8zD28t/FwVwYVWNNAapSj
- QHq1TNvlj9WWjHMkI/lEYjcD6kamHYp7sRq7iusUgdh0uN+gPTt8taKRHuesR79SJP5B8aHSZ
- w/OlhtsC5mY9QB12kV0jW0CjLsaD3OiTVF/GcB81q9nL9Wy17fiwChYWR5SAKqRKXd0ZdphIl
- 96zw1K/Zo6f04DJOn1KPY7lMFdLUzoKmD2/VRpIAF7ZPW26LMO1RU09M5l5nSYZYFLh3FaPp4
- sLbpCU2XVpfcJ8G9HIaTVl06ry5p4hA/Y8nrIO1hocBOgJ2Ih7LrtIRl/p7I6Ksrby/X7l7Hg
- 7Jv342u19PtLKjgPTYYRH6u44uf4Os2N1S/BIPQ1N/QsfJR0rPhBkonhJuogQVne44cJ5xMVu
- rXXtntlafS70739TagjsMHNDLJTJ3Xu31v2cWHiraMJea+2MjHEiayaQ+U2HOf9YzqKRIheFq
- sx0nVODqBGTqdse/1NzrGuFr5aFAamr01Z5c0oyVZ0Ppeqw==
-Subject: [USRP-users] Phase relation between RX/TX LO
+References: <trinity-1bb7574a-e0e8-4b44-b04c-dfc7fe55e8f2-1575685982004@3c-app-gmx-bs31>
+In-Reply-To: <trinity-1bb7574a-e0e8-4b44-b04c-dfc7fe55e8f2-1575685982004@3c-app-gmx-bs31>
+Subject: Re: [USRP-users] Phase relation between RX/TX LO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +68,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="us-ascii"
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,23 +85,37 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi,
+On 12/06/2019 09:33 PM, Lukas Haase via USRP-users wrote:
+> Hi,
+>
+> I am using the USRP X310+UBX160 with gnuradio to perform very precicse phase measurements: The TX transmits a CW which is reflected by an object and received by the RX.
+>
+> The received phase provides an accurate estimate of the distance to the reflected object, once the fixed phase relation (between TX/RX-LO, filters, cables etc.) has been subtracted out.
+>
+> This works nicely so far.
+>
+> However, I need my system to work across power cycles, and more importantly, across different frequencies: The goal is to perform fast frequency hopping and obtain the phase for each frequency.
+>
+> Unfortunately it seems that the phase relationship between TX/RX is lost when I tune the USRP to a different center frequency and back. For example, I have the center frequency set to 900 MHz and the phase I measure (by computing the angle of the I/Q samples) stays constant. But when I set the center frequency to 950 MHz and then back to 900 MHz, the phase has a random value again.
+>
+> Is there any way to avoid this?
+> Or is there any way to lock the LO phase to a particular phase when tuning back to the original frequency?
+>
+> Thanks,
+> Luke
+>
+It *might* be possible to phase-synchroniez the RX and TX LOs using 
+timed commands combined, possibly with INTEGER_N tuning.
 
-I am using the USRP X310+UBX160 with gnuradio to perform very precicse phase measurements: The TX transmits a CW which is reflected by an object and received by the RX.
+There's an APP Note on phase-synchronization here:
 
-The received phase provides an accurate estimate of the distance to the reflected object, once the fixed phase relation (between TX/RX-LO, filters, cables etc.) has been subtracted out.
+https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices
 
-This works nicely so far.
+My gut tells me this is going to be hard, though, since the requirement 
+is to bring a synthesizer back to the same relative phase it had when it
+   was previously tuned to the same frequency.
 
-However, I need my system to work across power cycles, and more importantly, across different frequencies: The goal is to perform fast frequency hopping and obtain the phase for each frequency.
 
-Unfortunately it seems that the phase relationship between TX/RX is lost when I tune the USRP to a different center frequency and back. For example, I have the center frequency set to 900 MHz and the phase I measure (by computing the angle of the I/Q samples) stays constant. But when I set the center frequency to 950 MHz and then back to 900 MHz, the phase has a random value again.
-
-Is there any way to avoid this?
-Or is there any way to lock the LO phase to a particular phase when tuning back to the original frequency?
-
-Thanks,
-Luke
 
 
 _______________________________________________
