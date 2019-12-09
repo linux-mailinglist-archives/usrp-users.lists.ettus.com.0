@@ -2,70 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85121117818
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Dec 2019 22:11:40 +0100 (CET)
-Received: from [::1] (port=48452 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF241117831
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Dec 2019 22:16:36 +0100 (CET)
+Received: from [::1] (port=50138 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ieQJf-0002D0-Cr; Mon, 09 Dec 2019 16:11:39 -0500
-Received: from mail-qk1-f175.google.com ([209.85.222.175]:45981)
+	id 1ieQOR-0002bT-QX; Mon, 09 Dec 2019 16:16:35 -0500
+Received: from mail-lj1-f169.google.com ([209.85.208.169]:35544)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1ieQJb-00025x-A5
- for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 16:11:35 -0500
-Received: by mail-qk1-f175.google.com with SMTP id x1so14403605qkl.12
- for <usrp-users@lists.ettus.com>; Mon, 09 Dec 2019 13:11:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=KedwKstRxEwHrrixztDt05MYyoVyvO63GMobt1EnZhg=;
- b=W2oyWikWM9c5uiJrnu8yPF0F3bpualLvajhdP+ZSvFJu+yY5vqGC6gyr32KYoxThv4
- 6VizC1r/nFTN8wltcpzVTJjuR97OyUepvCSE6mgjftfk+IQ3nkhNJMFuxGo5EMMxHOCq
- PnCOSvt2OkjSqyIVl5mh6Prrte2P8ogGycK13xh5Tibj0Iw8nNMXJK8VrbF8/Coy7VH2
- OIfHRJjmNP4M7wpQanwoqY1DtNDojhuUHcEdjOKFQq2Eq2+gkUkwUSsaWygwbvdI45Jj
- OoQL/+n2yyo8546fTkdCSRVueHhLl/8u0Ray7/pnJfD3L9ZKZ8Ej/jyrHV6kxQ9CMuoK
- VulA==
+ (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
+ id 1ieQON-0002Ti-GI
+ for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 16:16:31 -0500
+Received: by mail-lj1-f169.google.com with SMTP id j6so17369903lja.2
+ for <usrp-users@lists.ettus.com>; Mon, 09 Dec 2019 13:16:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=XWOqkdswpY+4RBrYxnFzHFAGteel7rEY1oFM/vp1unY=;
+ b=WM9fCr4P8JRbv2txYeDNw/Z9osQvRPLPbDcd+bPi0ACUCPdU/2umfC7Ry4f4FTBPjF
+ 3uCiWHegJpIjcJuMepqAMl4L1w69PKB1Jowl9ecTy1cDTaNBE8+NJBoYCvL/GmguTdrU
+ wt8jQLi13xkexTg/rfUmtOxVwqHClvX8LqQLxJrSFuiXOR7T4OzgOLJ/zkPNDWFtkKCk
+ N4cYDmEoiA9gfIJ077dXQShM34KRGKakeSznu2kuiRl6NNK7dJjsolLa24xNh1ZtTpY2
+ uotxpVzLm6DHuChIoDEcy+THVVo3Mv3qRfd/tYO+GOT9bt1y4YlMI4Ml6ubE97gi3HU+
+ qJcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=KedwKstRxEwHrrixztDt05MYyoVyvO63GMobt1EnZhg=;
- b=kyWrBXDd1/suJF1HqyHEI+YrIgh3qtMtI8hRD4lSXGQBosW0pI+aJfAj4fByq7xtuD
- zyczniwafT/iX5DTX8V5XI1rmLANdRNuSJAeBMlX+d2kH1V7/iYUEqrXA5v7Qs0iALoS
- AzAbJgkYbNnzOUmxpDCwpatP20xks15gkMhyeO8uRL7Cn4NDxLkapXCXuaP54wKPYxH3
- n4ViPsqzuug9WbyKTUit4Ja54e0BzPjgn1lqQ99caOQANvPCMvnNmUXHHoIQWD3H7tGa
- dq7GzhP4E9i+qdSJebN/fKPkrQ/TEOsZ+s/ynK585vPLpz073Ch8A5oWancoZQWJYNia
- FSag==
-X-Gm-Message-State: APjAAAWd4iodC5EesPULj3ZMv4Moy4rVD5bVx37cJEWTFB/MhNRYyCIA
- QDIBOeBepUgxSawIo7AUwnJ3GQ+R
-X-Google-Smtp-Source: APXvYqztyzosLg2EPTL+lFgjn4/FT7uyufNm6amfFbR1Vn2prQ0g2oWUEZF6geuulCoHvU65SJDrvA==
-X-Received: by 2002:a37:2f81:: with SMTP id
- v123mr27365710qkh.249.1575925854219; 
- Mon, 09 Dec 2019 13:10:54 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
- [174.95.14.228])
- by smtp.googlemail.com with ESMTPSA id t38sm291314qta.78.2019.12.09.13.10.53
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 09 Dec 2019 13:10:53 -0800 (PST)
-Message-ID: <5DEEB85C.6010603@gmail.com>
-Date: Mon, 09 Dec 2019 16:10:52 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=XWOqkdswpY+4RBrYxnFzHFAGteel7rEY1oFM/vp1unY=;
+ b=RMvclVLugf4westEKT7Oe1OYtqdkr0hRwQEUzw7JDi7AbOIWccoiL1S9NJfuqVRMVc
+ /vzr+UiO0kXrQqBq0dPGd+9cuMFvOdHYkOD4OaRjo780NswDNP348CTqvlaZBWmiRAH5
+ UXoYoX1oky6uwago9cUp9cHb6vVj+sxVcf8XtcLI7afKSU9vg3XwFVl9lrnG15KWjfsu
+ UnDxGc9nwylxqcCNrZdo0ioZ5X1Dlksu8UPv94/EUHiog2Z5BCFHOBx74TF6a6rzBhzO
+ tQmgF6kv52/lmfI8jC4Jm97hrWQcQv3R3YpRsWLAQG4mDRaX4fENzFasTQcX63oBfIAm
+ DsbA==
+X-Gm-Message-State: APjAAAVlBYsTLvvmWtg36Np/csZueXQS7PohP3lUGb2S8mg/laf9c5zh
+ RC32nj7OXgcSzMGAhPhkslkhIm10MY/rmeEtk64a192oCEKSPg==
+X-Google-Smtp-Source: APXvYqxrikHOUO5aAwGKfnrGa2cdxhyQ6cWm47a9uhBrOa4wG6fptaqTQ7XTMJEcTi0RiIEADUkbkzMwXQdnpSAT1Lw=
+X-Received: by 2002:a2e:585e:: with SMTP id x30mr18897253ljd.141.1575926150250; 
+ Mon, 09 Dec 2019 13:15:50 -0800 (PST)
 MIME-Version: 1.0
-To: Lukas Haase <lukashaase@gmx.at>
-References: <trinity-7cb4be4f-5d41-4268-b5a8-2084b39834b6-1575702620460@3c-app-gmx-bs13>
- <CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com>
- <trinity-0ce9eefc-d9c2-4f7a-aa5b-342a8c0f5f36-1575747306151@3c-app-gmx-bs76>
- <CAL263iyCdU5b5p2SUJ92eNy+c7YLNuxbzi_NzrYCNOvb5OFQ5Q@mail.gmail.com>
- <trinity-43a8d710-cd0a-4b9b-a1e8-f62e485ff30c-1575843547979@3c-app-gmx-bs36>
- <5DEEA191.8000704@gmail.com>
- <trinity-8e728448-2993-4aed-830a-473bf70242bf-1575920305869@3c-app-gmx-bap48>
- <5DEEA426.1020108@gmail.com>
- <trinity-31ea48d5-e13c-4c84-873c-f3e1f3ff3aae-1575922308346@3c-app-gmx-bap48>
- <5DEEAC89.60403@gmail.com>
- <trinity-fca4d966-0044-494d-9d62-259818a05f79-1575923718171@3c-app-gmx-bap48>
-In-Reply-To: <trinity-fca4d966-0044-494d-9d62-259818a05f79-1575923718171@3c-app-gmx-bap48>
-Subject: Re: [USRP-users] Phase relation between RX/TX LO
+References: <331d9c2e396b4f499b1af018f335899c@dlr.de>
+In-Reply-To: <331d9c2e396b4f499b1af018f335899c@dlr.de>
+Date: Mon, 9 Dec 2019 15:15:38 -0600
+Message-ID: <CANf970b9UjxkmFrz3ASkpzvgedtUo69FEaZ8+JBk4rpKH6xJvg@mail.gmail.com>
+To: Emanuel.Staudinger@dlr.de
+Subject: Re: [USRP-users] GPIOs timed commands
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,11 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5470072883385392438=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -95,22 +76,93 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============5470072883385392438==
+Content-Type: multipart/alternative; boundary="00000000000060d6fe05994be653"
 
-Something that MAY help here is to use integer_n tuning:
+--00000000000060d6fe05994be653
+Content-Type: text/plain; charset="UTF-8"
 
-     treq=uhd.tune_request(my_frequency)
-     treq.args=uhd.device_addr("mode_n=integer")
+I believe this will work. It should just be a matter of setting the command
+time before you send over a usrp->set_gpio_attr()
 
-     ...
-
-     ...set_center_freq(treq, 0)
-
-This will force the PLL to use INTEGER_N tuning, which has more 
-predictable phase behavior with respect to the reference.
+Sam Reiter
+Ettus Research
 
 
+On Thu, Dec 5, 2019 at 2:34 AM Emanuel via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi everybody,
+>
+>
+>
+> could the GPIOs, e.g., on a B200mini be set/unset precisely in time
+> (limited to the sampling rate used)?
+>
+>
+>
+> Best regards,
+>
+> Emanuel
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000060d6fe05994be653
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I believe this will work. It should just be a matter =
+of setting the command time before you send over a usrp-&gt;set_gpio_attr()=
+</div><div><br></div><div><div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sa=
+m Reiter <br><div>Ettus Research<br></div></div></div></div></div></div><br=
+></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Thu, Dec 5, 2019 at 2:34 AM Emanuel via USRP-users &lt;<a href=3D=
+"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-5266756029369804498WordSection1">
+<p class=3D"MsoNormal">Hi everybody,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">could the GPIOs, e.g., on a B200mini be set/unset pr=
+ecisely in time (limited to the sampling rate used)?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Best regards,<u></u><u></u></p>
+<p class=3D"MsoNormal">Emanuel<u></u><u></u></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000060d6fe05994be653--
+
+
+--===============5470072883385392438==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5470072883385392438==--
+
