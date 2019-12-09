@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 764251177D9
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Dec 2019 21:59:01 +0100 (CET)
-Received: from [::1] (port=46196 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85121117818
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Dec 2019 22:11:40 +0100 (CET)
+Received: from [::1] (port=48452 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ieQ7M-0001WU-BE; Mon, 09 Dec 2019 15:58:56 -0500
-Received: from mail-qt1-f174.google.com ([209.85.160.174]:35930)
+	id 1ieQJf-0002D0-Cr; Mon, 09 Dec 2019 16:11:39 -0500
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:45981)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1ieQ7I-0001PZ-Qh
- for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 15:58:52 -0500
-Received: by mail-qt1-f174.google.com with SMTP id k11so564607qtm.3
- for <usrp-users@lists.ettus.com>; Mon, 09 Dec 2019 12:58:32 -0800 (PST)
+ id 1ieQJb-00025x-A5
+ for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 16:11:35 -0500
+Received: by mail-qk1-f175.google.com with SMTP id x1so14403605qkl.12
+ for <usrp-users@lists.ettus.com>; Mon, 09 Dec 2019 13:11:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:cc:subject
  :references:in-reply-to:content-transfer-encoding;
- bh=eniGAPXyOSan4ES52iGdrVHr9qQVepOz7ev0FAtgTwA=;
- b=jKqFL5ZJVwwcBqjpP6JVn0U31ZAR6FgT5pxN8hjYgQNRMJtimsHc623+k75AebsByD
- MeJ7SoGhKgZwoZgKLn5Ts7ZE1LQulhzPd4OihqlfHVWTAh6g12qgYJNO6okIJE42nMnF
- P4s7cNbcrgWfFXU80O4bn9YKGVTVriJ6weGIzD6FDBkVXVYL+7e3tkHYsNs10bPYZnT9
- aU+Wp9wa2HlJ/msHvIgPpoSL3UDyEQdp5q5M1+G8O8SIJyVuRmvypqUQucG0wG599Ovu
- mRs373FJWjxbtM88/+XT9hzrCYHXizz/hVs+zvbSmWf30iXTBT3rt+6hexbRc7goANXZ
- AUjw==
+ bh=KedwKstRxEwHrrixztDt05MYyoVyvO63GMobt1EnZhg=;
+ b=W2oyWikWM9c5uiJrnu8yPF0F3bpualLvajhdP+ZSvFJu+yY5vqGC6gyr32KYoxThv4
+ 6VizC1r/nFTN8wltcpzVTJjuR97OyUepvCSE6mgjftfk+IQ3nkhNJMFuxGo5EMMxHOCq
+ PnCOSvt2OkjSqyIVl5mh6Prrte2P8ogGycK13xh5Tibj0Iw8nNMXJK8VrbF8/Coy7VH2
+ OIfHRJjmNP4M7wpQanwoqY1DtNDojhuUHcEdjOKFQq2Eq2+gkUkwUSsaWygwbvdI45Jj
+ OoQL/+n2yyo8546fTkdCSRVueHhLl/8u0Ray7/pnJfD3L9ZKZ8Ej/jyrHV6kxQ9CMuoK
+ VulA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=eniGAPXyOSan4ES52iGdrVHr9qQVepOz7ev0FAtgTwA=;
- b=TaRYFfA0Sjl7lTEGGDJtfNlWJuy+URoRAswQn4K+akWbr8gT640Wwr58SC51+75rS/
- yH4J0gQCR5glly/kmxEdEiompng/FyL+YkJQCxMqSDSms9jbRJrXGP5o013LAUkzPL3B
- bvaQqHb90rco23tsB63sNNmLb151FLLUsQSBbB8q8xApSC+t3cqv3nE3DwuKrlcu0l7Z
- /blGBEJZrjf5wm9xlhuXZ8L+u3nbBJVx9XhQG0Y3SOdp0oyjmb4DKnBtqmGJkIpRoFil
- vIa+yYNZUlC0LUWEc4ae20lzr3MoiUuNXPo3r9vvJ6hH8+pUaQiGpek6LGVykQRupxHX
- za7Q==
-X-Gm-Message-State: APjAAAVdex7OenzVAQsIbIPG/zwop7DWDVF7/AxtxYz4Gqn+ikDKTk2L
- t6J9GAYd55vnXYTsltxE3eGHctE3
-X-Google-Smtp-Source: APXvYqwTPyLLtAKRC45b9bMK71E998H+t5QyfRNC/Df2M3BxG9fdnP4Mvc/MEXx37mzqXQEt7Vvc+w==
-X-Received: by 2002:aed:20e5:: with SMTP id 92mr12961045qtb.294.1575925092190; 
- Mon, 09 Dec 2019 12:58:12 -0800 (PST)
+ bh=KedwKstRxEwHrrixztDt05MYyoVyvO63GMobt1EnZhg=;
+ b=kyWrBXDd1/suJF1HqyHEI+YrIgh3qtMtI8hRD4lSXGQBosW0pI+aJfAj4fByq7xtuD
+ zyczniwafT/iX5DTX8V5XI1rmLANdRNuSJAeBMlX+d2kH1V7/iYUEqrXA5v7Qs0iALoS
+ AzAbJgkYbNnzOUmxpDCwpatP20xks15gkMhyeO8uRL7Cn4NDxLkapXCXuaP54wKPYxH3
+ n4ViPsqzuug9WbyKTUit4Ja54e0BzPjgn1lqQ99caOQANvPCMvnNmUXHHoIQWD3H7tGa
+ dq7GzhP4E9i+qdSJebN/fKPkrQ/TEOsZ+s/ynK585vPLpz073Ch8A5oWancoZQWJYNia
+ FSag==
+X-Gm-Message-State: APjAAAWd4iodC5EesPULj3ZMv4Moy4rVD5bVx37cJEWTFB/MhNRYyCIA
+ QDIBOeBepUgxSawIo7AUwnJ3GQ+R
+X-Google-Smtp-Source: APXvYqztyzosLg2EPTL+lFgjn4/FT7uyufNm6amfFbR1Vn2prQ0g2oWUEZF6geuulCoHvU65SJDrvA==
+X-Received: by 2002:a37:2f81:: with SMTP id
+ v123mr27365710qkh.249.1575925854219; 
+ Mon, 09 Dec 2019 13:10:54 -0800 (PST)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
  [174.95.14.228])
- by smtp.googlemail.com with ESMTPSA id p35sm267333qtd.12.2019.12.09.12.58.11
+ by smtp.googlemail.com with ESMTPSA id t38sm291314qta.78.2019.12.09.13.10.53
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 09 Dec 2019 12:58:11 -0800 (PST)
-Message-ID: <5DEEB562.4030602@gmail.com>
-Date: Mon, 09 Dec 2019 15:58:10 -0500
+ Mon, 09 Dec 2019 13:10:53 -0800 (PST)
+Message-ID: <5DEEB85C.6010603@gmail.com>
+Date: Mon, 09 Dec 2019 16:10:52 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -94,78 +95,19 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 12/09/2019 03:35 PM, Lukas Haase wrote:
-> Hi Marcus,
->
->> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
->>
->> On 12/09/2019 03:11 PM, Lukas Haase wrote:
->>> No, I only have one RX channel at the moment.
->>> --> One TX @ f and one RX @ 2f.
->>> The phase relation between this TX+RX should stay constant/coherent once both TX+RX tune to a different f and back.
->>>
->>> Let me know if the setup is clear, otherwise I'll try to draw a block diagram/equations or I can also send the GRC screenshots.
->>>
->>> Thanks,
->>> Luke
->>>
->>>
->> You code shows two RX channels:
->>
->>           now = self.uhd_usrp_sink_0.get_time_now()
->>            self.uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(1))
->>            self.uhd_usrp_source_0.set_command_time(now + uhd.time_spec(1))
->>
->>            self.uhd_usrp_source_0.set_center_freq(2*self.fcenter, 0)
->>            self.uhd_usrp_source_0.set_center_freq(2*self.fcenter, 1)
->>            self.uhd_usrp_sink_0.set_center_freq(self.fcenter, 0)
->>
->>            self.uhd_usrp_source_0.clear_command_time()
->>            self.uhd_usrp_sink_0.clear_command_time()
-> Sorry for the confusion.
-> You are right, there are 2 RX channels but I only use one of them.
->
->> So, you're measuring the phase-offset between the TX side and the RX
->> side at the 2nd harmonic, and expecting that phase relationship to be
->>     the same across re-tunes?
-> Yes, this is exactly what I want.
->
->> I'm not sure that's possible.
-> Why not?
->
-> Conceptually it must be possible: The phase offset is only defined by the *relative* phase between RX/TX-LO.
->
-> Let's assume that both RX + TX mixer are driven by the *same* LO but the RX side has an additional frequency doubler.
-> Then the phase relationship is ALWAYS constant. By construction.
-But, that's not the situation we find ourselves in with the hardware 
-(including FPGA) in front of us.
->
-> The USRP just makes things complicated because RX and TX are driven by different PLLs and allow their LO to be retuned separately. But ultimately both PLLs are driven by the same reference (to which phase they lock) so there must be a way to have a constant phase relationship.
-Did you look at the reference I posted about Fractional-N vs Integer-N 
-synthesis?  They behave very differently in this regard--the "phase reset"
-   feature helps, but in this case, the UBX was never designed to 
-maintain constant phase offsets between RX/TX (because this is a very very
-   unusual case), PARTICULARLY ACROSS RETUNES.
 
-Quite apart from what the PLL synthesizers are doing, there's the 
-DDC/DUC within the FPGA, and they are driven by what amounts to a
-   digital oscillator, and THOSE digital oscillators aren't shared, 
-either.   Sharing phase constancy across TX/RX was never a design goal
-   of the hardware.
+Something that MAY help here is to use integer_n tuning:
 
-Now, having said all that, it may be the case that there are specific 
-configurations in which this can be made to work, and I'm in discussions
-   with R&D about that.   Details like what the management policy is for 
-the phase-accumulators in the DDC/DUC digital oscillators matters,
-   along with hardware details like whether the RX and TX synthesizers 
-shared a control bus or whether it's in parallel really matter, for example.
+     treq=uhd.tune_request(my_frequency)
+     treq.args=uhd.device_addr("mode_n=integer")
 
+     ...
 
->
-> Thanks,
-> Luke
->
->
+     ...set_center_freq(treq, 0)
+
+This will force the PLL to use INTEGER_N tuning, which has more 
+predictable phase behavior with respect to the reference.
+
 
 
 _______________________________________________
