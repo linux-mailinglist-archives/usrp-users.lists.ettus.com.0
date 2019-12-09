@@ -2,34 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2FF4117784
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Dec 2019 21:36:04 +0100 (CET)
-Received: from [::1] (port=35718 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 764251177D9
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Dec 2019 21:59:01 +0100 (CET)
+Received: from [::1] (port=46196 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iePlC-0007aq-DH; Mon, 09 Dec 2019 15:36:02 -0500
-Received: from mout.gmx.net ([212.227.17.20]:44955)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <lukashaase@gmx.at>) id 1iePl9-0007XK-Ha
- for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 15:35:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1575923718;
- bh=qwucMj6/IiDjNUMcHwY+nCVw/RU2eRBKo1rC5MdumRQ=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=KFoBj9EiaduI3/TpyLk6BEL2pn4/r0+mybrMpgpV20h76acMhf9yxk+oo9FqR/9aP
- CJJpOwTBekSI99wRQMD92ytp9CN60OWilV91/jSi564ivSjtsJA36y4ndfHwhI4hSZ
- gXWMKSah3faDM26fav6TDLYpW3NspMslsncnn5P8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bap48.server.lan [172.19.172.118]) (via HTTP); Mon, 9 Dec 2019
- 21:35:18 +0100
+	id 1ieQ7M-0001WU-BE; Mon, 09 Dec 2019 15:58:56 -0500
+Received: from mail-qt1-f174.google.com ([209.85.160.174]:35930)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ieQ7I-0001PZ-Qh
+ for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 15:58:52 -0500
+Received: by mail-qt1-f174.google.com with SMTP id k11so564607qtm.3
+ for <usrp-users@lists.ettus.com>; Mon, 09 Dec 2019 12:58:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=eniGAPXyOSan4ES52iGdrVHr9qQVepOz7ev0FAtgTwA=;
+ b=jKqFL5ZJVwwcBqjpP6JVn0U31ZAR6FgT5pxN8hjYgQNRMJtimsHc623+k75AebsByD
+ MeJ7SoGhKgZwoZgKLn5Ts7ZE1LQulhzPd4OihqlfHVWTAh6g12qgYJNO6okIJE42nMnF
+ P4s7cNbcrgWfFXU80O4bn9YKGVTVriJ6weGIzD6FDBkVXVYL+7e3tkHYsNs10bPYZnT9
+ aU+Wp9wa2HlJ/msHvIgPpoSL3UDyEQdp5q5M1+G8O8SIJyVuRmvypqUQucG0wG599Ovu
+ mRs373FJWjxbtM88/+XT9hzrCYHXizz/hVs+zvbSmWf30iXTBT3rt+6hexbRc7goANXZ
+ AUjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=eniGAPXyOSan4ES52iGdrVHr9qQVepOz7ev0FAtgTwA=;
+ b=TaRYFfA0Sjl7lTEGGDJtfNlWJuy+URoRAswQn4K+akWbr8gT640Wwr58SC51+75rS/
+ yH4J0gQCR5glly/kmxEdEiompng/FyL+YkJQCxMqSDSms9jbRJrXGP5o013LAUkzPL3B
+ bvaQqHb90rco23tsB63sNNmLb151FLLUsQSBbB8q8xApSC+t3cqv3nE3DwuKrlcu0l7Z
+ /blGBEJZrjf5wm9xlhuXZ8L+u3nbBJVx9XhQG0Y3SOdp0oyjmb4DKnBtqmGJkIpRoFil
+ vIa+yYNZUlC0LUWEc4ae20lzr3MoiUuNXPo3r9vvJ6hH8+pUaQiGpek6LGVykQRupxHX
+ za7Q==
+X-Gm-Message-State: APjAAAVdex7OenzVAQsIbIPG/zwop7DWDVF7/AxtxYz4Gqn+ikDKTk2L
+ t6J9GAYd55vnXYTsltxE3eGHctE3
+X-Google-Smtp-Source: APXvYqwTPyLLtAKRC45b9bMK71E998H+t5QyfRNC/Df2M3BxG9fdnP4Mvc/MEXx37mzqXQEt7Vvc+w==
+X-Received: by 2002:aed:20e5:: with SMTP id 92mr12961045qtb.294.1575925092190; 
+ Mon, 09 Dec 2019 12:58:12 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
+ [174.95.14.228])
+ by smtp.googlemail.com with ESMTPSA id p35sm267333qtd.12.2019.12.09.12.58.11
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 09 Dec 2019 12:58:11 -0800 (PST)
+Message-ID: <5DEEB562.4030602@gmail.com>
+Date: Mon, 09 Dec 2019 15:58:10 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Message-ID: <trinity-fca4d966-0044-494d-9d62-259818a05f79-1575923718171@3c-app-gmx-bap48>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Date: Mon, 9 Dec 2019 21:35:18 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <5DEEAC89.60403@gmail.com>
+To: Lukas Haase <lukashaase@gmx.at>
 References: <trinity-7cb4be4f-5d41-4268-b5a8-2084b39834b6-1575702620460@3c-app-gmx-bs13>
  <CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com>
  <trinity-0ce9eefc-d9c2-4f7a-aa5b-342a8c0f5f36-1575747306151@3c-app-gmx-bs76>
@@ -40,25 +62,8 @@ References: <trinity-7cb4be4f-5d41-4268-b5a8-2084b39834b6-1575702620460@3c-app-g
  <5DEEA426.1020108@gmail.com>
  <trinity-31ea48d5-e13c-4c84-873c-f3e1f3ff3aae-1575922308346@3c-app-gmx-bap48>
  <5DEEAC89.60403@gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:37xxWxy1uGhQTxJrYsGWHSm6SKmcEwCLrIO0ufkK1wDxfADofh594CTKrfgKz86Y8IDU0
- tcA4tlD/QqzXWuK5bNAtUv2x0M6oAXQasFEzx/n2/za3f+4NKb4RSgum6ybTUoBXrW7X54T6oZ+M
- nxoAELMAtE80uHDzPvkg3AChs821iYUUXYLzmdowMyufNJK2JTNYdJHYf6BCHUJtT4kIEKv0RfpC
- J5DEDi6xcbBC7gAc1L5N1ZMbrxflVgxRdEadPB7j2uZi44I00GOGQe3qDtlGggY75YrJrx0KhBgT
- hY=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:6F9VC8o1H54=:tFHOpVpSJhJNbee7wcxlcD
- gXa+oRtO8sBt34UI9HAGb6vx1ba9vKGTTmDLV2DxkoN69GxElbYaWXrAzjbVkRv4ImAHNZnwH
- zv8PGWcQ5RyiGLrxH+m1qrXvAzedea7XoyuM/jKxBREhS8Dh6E8n7cleTs7N3vElsfYFZ+crp
- 09w1nRrGu2ejI6ebdU2vt2sCpYdX9GIpMsSpNE2j3JfNE6GLU8C2L+bpFiHJ41qXiOa7PelrS
- MRc0zV5uzQIp3/WKsx5fKPPycOQFPQp277oWMBeGcJR8YHXjzK2I9PsFt6ohi1j5wX33uOU4W
- ouuZOcQ6X82Ou9EdcsmpQIG4HExpNw57gW0fz98iO+Lf+Hc55p6RrrVYM+yCf1EteiesKAc2k
- 1BmszXg1W+HuIRH6g1h/u3sGHR7PiNyL7vkItRth2W4ALx4D9BgDqkAp7WZ8i+vfH3WQtSIzD
- 0DAFVISLW16NOYtJ9a0Svfsrte7VeAQ4PKtI55Knkv2ye22gQICskQU+kBeJxjQck+hHP43FA
- Jjcck/XuVdp8nNGdojPdS5+H8cPLKnEnb/0bAHaiD2cgUilFh0ubp6ujc4zF+e9j1HdnCnC7v
- b/u9xCV1kXveWnqOZhb9+7/emFxMqyBqVKGI8Ora6/k0Kg68DkaIxze2I71D0GHbEenuC1TNt
- uBGPr4w6b+jHMj6drQQkX7TMerBTrDzySDkbMPq2J/LQ5RA==
+ <trinity-fca4d966-0044-494d-9d62-259818a05f79-1575923718171@3c-app-gmx-bap48>
+In-Reply-To: <trinity-fca4d966-0044-494d-9d62-259818a05f79-1575923718171@3c-app-gmx-bap48>
 Subject: Re: [USRP-users] Phase relation between RX/TX LO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -71,11 +76,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,58 +94,78 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Marcus,
-
-> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
+On 12/09/2019 03:35 PM, Lukas Haase wrote:
+> Hi Marcus,
 >
-> On 12/09/2019 03:11 PM, Lukas Haase wrote:
-> >
-> > No, I only have one RX channel at the moment.
-> > --> One TX @ f and one RX @ 2f.
-> > The phase relation between this TX+RX should stay constant/coherent once both TX+RX tune to a different f and back.
-> >
-> > Let me know if the setup is clear, otherwise I'll try to draw a block diagram/equations or I can also send the GRC screenshots.
-> >
-> > Thanks,
-> > Luke
-> >
-> >
-> You code shows two RX channels:
+>> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
+>>
+>> On 12/09/2019 03:11 PM, Lukas Haase wrote:
+>>> No, I only have one RX channel at the moment.
+>>> --> One TX @ f and one RX @ 2f.
+>>> The phase relation between this TX+RX should stay constant/coherent once both TX+RX tune to a different f and back.
+>>>
+>>> Let me know if the setup is clear, otherwise I'll try to draw a block diagram/equations or I can also send the GRC screenshots.
+>>>
+>>> Thanks,
+>>> Luke
+>>>
+>>>
+>> You code shows two RX channels:
+>>
+>>           now = self.uhd_usrp_sink_0.get_time_now()
+>>            self.uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(1))
+>>            self.uhd_usrp_source_0.set_command_time(now + uhd.time_spec(1))
+>>
+>>            self.uhd_usrp_source_0.set_center_freq(2*self.fcenter, 0)
+>>            self.uhd_usrp_source_0.set_center_freq(2*self.fcenter, 1)
+>>            self.uhd_usrp_sink_0.set_center_freq(self.fcenter, 0)
+>>
+>>            self.uhd_usrp_source_0.clear_command_time()
+>>            self.uhd_usrp_sink_0.clear_command_time()
+> Sorry for the confusion.
+> You are right, there are 2 RX channels but I only use one of them.
 >
->          now = self.uhd_usrp_sink_0.get_time_now()
->           self.uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(1))
->           self.uhd_usrp_source_0.set_command_time(now + uhd.time_spec(1))
+>> So, you're measuring the phase-offset between the TX side and the RX
+>> side at the 2nd harmonic, and expecting that phase relationship to be
+>>     the same across re-tunes?
+> Yes, this is exactly what I want.
 >
->           self.uhd_usrp_source_0.set_center_freq(2*self.fcenter, 0)
->           self.uhd_usrp_source_0.set_center_freq(2*self.fcenter, 1)
->           self.uhd_usrp_sink_0.set_center_freq(self.fcenter, 0)
+>> I'm not sure that's possible.
+> Why not?
 >
->           self.uhd_usrp_source_0.clear_command_time()
->           self.uhd_usrp_sink_0.clear_command_time()
+> Conceptually it must be possible: The phase offset is only defined by the *relative* phase between RX/TX-LO.
+>
+> Let's assume that both RX + TX mixer are driven by the *same* LO but the RX side has an additional frequency doubler.
+> Then the phase relationship is ALWAYS constant. By construction.
+But, that's not the situation we find ourselves in with the hardware 
+(including FPGA) in front of us.
+>
+> The USRP just makes things complicated because RX and TX are driven by different PLLs and allow their LO to be retuned separately. But ultimately both PLLs are driven by the same reference (to which phase they lock) so there must be a way to have a constant phase relationship.
+Did you look at the reference I posted about Fractional-N vs Integer-N 
+synthesis?  They behave very differently in this regard--the "phase reset"
+   feature helps, but in this case, the UBX was never designed to 
+maintain constant phase offsets between RX/TX (because this is a very very
+   unusual case), PARTICULARLY ACROSS RETUNES.
 
-Sorry for the confusion.
-You are right, there are 2 RX channels but I only use one of them.
+Quite apart from what the PLL synthesizers are doing, there's the 
+DDC/DUC within the FPGA, and they are driven by what amounts to a
+   digital oscillator, and THOSE digital oscillators aren't shared, 
+either.   Sharing phase constancy across TX/RX was never a design goal
+   of the hardware.
 
-> So, you're measuring the phase-offset between the TX side and the RX
-> side at the 2nd harmonic, and expecting that phase relationship to be
->    the same across re-tunes?
+Now, having said all that, it may be the case that there are specific 
+configurations in which this can be made to work, and I'm in discussions
+   with R&D about that.   Details like what the management policy is for 
+the phase-accumulators in the DDC/DUC digital oscillators matters,
+   along with hardware details like whether the RX and TX synthesizers 
+shared a control bus or whether it's in parallel really matter, for example.
 
-Yes, this is exactly what I want.
 
-> I'm not sure that's possible.
-
-Why not?
-
-Conceptually it must be possible: The phase offset is only defined by the *relative* phase between RX/TX-LO.
-
-Let's assume that both RX + TX mixer are driven by the *same* LO but the RX side has an additional frequency doubler.
-Then the phase relationship is ALWAYS constant. By construction.
-
-The USRP just makes things complicated because RX and TX are driven by different PLLs and allow their LO to be retuned separately. But ultimately both PLLs are driven by the same reference (to which phase they lock) so there must be a way to have a constant phase relationship.
-
-Thanks,
-Luke
-
+>
+> Thanks,
+> Luke
+>
+>
 
 
 _______________________________________________
