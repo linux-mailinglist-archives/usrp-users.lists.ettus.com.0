@@ -2,52 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0285F117461
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Dec 2019 19:38:06 +0100 (CET)
-Received: from [::1] (port=57898 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5BD41175F5
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Dec 2019 20:34:26 +0100 (CET)
+Received: from [::1] (port=45836 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ieNv0-0007pH-2i; Mon, 09 Dec 2019 13:38:02 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:44557)
+	id 1ieOnX-0003Lk-CC; Mon, 09 Dec 2019 14:34:23 -0500
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:37899)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
- id 1ieNux-0007jx-0U
- for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 13:37:59 -0500
-Received: by mail-ot1-f54.google.com with SMTP id x3so13056174oto.11
- for <usrp-users@lists.ettus.com>; Mon, 09 Dec 2019 10:37:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sBA/u3Zw2zOuYjDoWX5dnsWjrhhciYDeWtufG5h08S0=;
- b=OK0L2SGku3cNSDGrxt3QcCexYftTBSz/dWgw4mhRYjmXKdxFIN3st3GYSfqSV7iSdz
- eiguZONEfopUePH/tx8s3p9FqYepbcMRfnKt6AMiyFkAsfeaAzlK5oukt6DOj6XBo17i
- lsZIoSwQyYZFOUdT21CKvTPkTly5nIUm/6aw3tj3MHQYV9LGfAJnrfWLFQsOjfVlzQHu
- ETf6Lx/2+pwpdTjnQ3b/WZY6kp5sZmwjqSEUaCYVtqPxyTx7XU4MpTZhTGwNMKjA7CZT
- wmEa/FZDBgw7G+mfkLkD9JsRB2kn/lvDlKzi6rKPrhL5YC1d/c5LZ3r5ULVrcCmuBnnk
- SuPQ==
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ieOnU-00038G-2s
+ for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 14:34:20 -0500
+Received: by mail-qk1-f175.google.com with SMTP id k6so14189002qki.5
+ for <usrp-users@lists.ettus.com>; Mon, 09 Dec 2019 11:33:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=7mbb0itHbrhIkjq1Xn2yRjm1ysfI5ZvEJ/oC1ZjjwoA=;
+ b=KCtBjYN+DMsgHjjRAIQ/1QPRoDuKuutGF8iXEdNJlh1R6nFuvNwZTgggkRJ8WDbgyX
+ lkLpv7GUNHTWnquU3syF3+/d7uX/dniQxGUQoy/+XuQ8BkrzpBTYRvYF96ZQgHw8h9Re
+ xjeEigIRBYIGAw86pfT4E0MjgM1V/faPKnlMg1JVFp4aH2Kb1khebuMB8UmZXpGPyYeA
+ jQItE5dLdvLDxcjCB4JTJCZgI5e4eILnPyZmT5G/66GRz9rbbZbH1ssVzHMb8rwsNYNI
+ C2G76BprW5tDsjyKAvYsIHn9u6R3ng2m3WZFwoJ3cJisYiJFqdZ7HFHnYB98KEMoCwsI
+ 6+XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=sBA/u3Zw2zOuYjDoWX5dnsWjrhhciYDeWtufG5h08S0=;
- b=mY5znjbB0zBHXk/zrcrwt9wGMA3onEHzpwWQmX1y4EmUXfgqJxtnKxliRpuuCoUoB0
- 7yAVEowRsLpIUT8+WY/opjfpcTP1Vt13Or+f3Deau9JMpv2Eyi2oiAu6dlhwTqP6GCEf
- rosEJG7CELAYkhUouBIw7coDSok+UKlOkErqkih5bzQ48hROuVqZlYHORGnY3qkKVrE4
- ASgZYMNSFBJsja+o73Xh9urTLudei/5qQAMGgxbaqyAjVeqZPRUwAZaa0x9oHkXki/Kr
- VVbKPCC3bGIoTerb63E4TbciXuNDJFPsJKt68Akivn1PUYAFBD+nlJhqv83sXjW/0tAb
- kQFA==
-X-Gm-Message-State: APjAAAXw9caHx4dyhasDPlc2CztJjaUi9fFE7uBRDAbap7IKoZrhg94N
- 4vrdqpqQuTITNvf1vdxhVWMp1KrcvT7lTd7y3RuS6/YuNHGo4g==
-X-Google-Smtp-Source: APXvYqwgwm4cVh9mWCFY2+N5VxVgJROokxVOnL0nf+YFb+jrdeP4Z/motLfH451ZKBo4SQRz7yOkVHQ9Js2KvG3rw4M=
-X-Received: by 2002:a9d:366:: with SMTP id 93mr1119551otv.183.1575916638211;
- Mon, 09 Dec 2019 10:37:18 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=7mbb0itHbrhIkjq1Xn2yRjm1ysfI5ZvEJ/oC1ZjjwoA=;
+ b=lz9LsXf+O9AaO0LRChVpiCFHFC0QHipmPQlQ7HwXn7Z65qIT1cRfZAWnnpluOZRmLR
+ kkR/A1UkF27F/u+adMabwgol453KU4FELZy0ejoy1R8WJ7/zL6Wv2VVJ1Nnaq8m3PPmZ
+ 4ClNDUmkuHElzHNbKQDhybjZ5qgbLRwtIDhdIgogoIQZKknMNuKAYZSxzTPoWSvVExDb
+ S67MejpmGkzLZ//IHf5iXdYnFTlM+pmfmlKsWVkyGngf1zhlNteMwjemdw+eo3qHiykx
+ SAgQjqucJuBdxhYE9vBxi/HU3kZxXtq/twGLo8c8i7K4N9p16pLTDPZygnv+cS1N9B1a
+ FZHA==
+X-Gm-Message-State: APjAAAV3nX11tQIpz5dFdITj34BBNhXNVRkD9d7skJ5ztpRiCX44nJE/
+ yEFLwS+MgOVGu/od7cOS81UIODanFM0=
+X-Google-Smtp-Source: APXvYqw7uC289CcBl1S1yC2+4ZOEUWn9G2qWfNq8un8UQnxxqldKGFWWSg6u/ephtvkISU206/62Lg==
+X-Received: by 2002:a37:4943:: with SMTP id w64mr13600412qka.300.1575920019292; 
+ Mon, 09 Dec 2019 11:33:39 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
+ [174.95.14.228])
+ by smtp.googlemail.com with ESMTPSA id c7sm171627qtj.91.2019.12.09.11.33.37
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 09 Dec 2019 11:33:38 -0800 (PST)
+Message-ID: <5DEEA191.8000704@gmail.com>
+Date: Mon, 09 Dec 2019 14:33:37 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <d509cd368f8d4167a1fdff12613c35a2@dlr.de>
-In-Reply-To: <d509cd368f8d4167a1fdff12613c35a2@dlr.de>
-Date: Mon, 9 Dec 2019 10:38:13 -0800
-Message-ID: <CAL263iwKA_R=30JEohT88GPAP6xm-V1VLSL2mNtk1UbJJ9bJPw@mail.gmail.com>
-To: Robert.Poehlmann@dlr.de
-Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
+To: Lukas Haase <lukashaase@gmx.at>
+References: <trinity-7cb4be4f-5d41-4268-b5a8-2084b39834b6-1575702620460@3c-app-gmx-bs13>
+ <CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com>
+ <trinity-0ce9eefc-d9c2-4f7a-aa5b-342a8c0f5f36-1575747306151@3c-app-gmx-bs76>
+ <CAL263iyCdU5b5p2SUJ92eNy+c7YLNuxbzi_NzrYCNOvb5OFQ5Q@mail.gmail.com>
+ <trinity-43a8d710-cd0a-4b9b-a1e8-f62e485ff30c-1575843547979@3c-app-gmx-bs36>
+In-Reply-To: <trinity-43a8d710-cd0a-4b9b-a1e8-f62e485ff30c-1575843547979@3c-app-gmx-bs36>
+Subject: Re: [USRP-users] Phase relation between RX/TX LO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +70,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nate Temple <nate.temple@ettus.com>
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2994867572792355519=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,192 +88,48 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2994867572792355519==
-Content-Type: multipart/alternative; boundary="0000000000006aa53d059949afe9"
-
---0000000000006aa53d059949afe9
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Robert,
-
-Thanks for the bug report.
-
-If you're just trying to use RFNoC at this point, I would recommend to
-stick with the latest stable release, which at this time is v3.14.1.1.
-
-Note, 3.14.x.x UHD will require Vivado 2017.4.
-
-
-Regards,
-Nate Temple
-
-On Mon, Dec 9, 2019 at 7:33 AM Robert via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi all!
+On 12/08/2019 05:19 PM, Lukas Haase wrote:
+> Hi Marcus,
 >
-> I tried to compile the default RFNoC image for the N310, using UHD on tag
-> v3.15.0.0-rc2 and Xilinx Vivado 2018.3.1.
+>> You'll need to look at the API here:
+>>
+>> https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a191b78b00d051d3d51c2f719361c1fb5
+>>
+>> and here:
+>>
+>> https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a607aee766d21228a7aaabde2771eb46f
+>>
+>> Basically, GRC will generate python code where it calls the
+>> set_rx_freq() method (or set_tx_freq() method), and you need to modify this
+>>    code to have set_command_time() and clear_command_time() wrapped
+>> around those operations.
+> Thank you.
 >
-> Running "make N310_RFNOC_XG", the IP cores are compiled successfully, but
-> then Vivado shows the following errors:
+> As I understand you referenced the USRP driver whereas GRC creates gnuradio objects (e.g.: usrp_source https://www.gnuradio.org/doc/doxygen-3.7.2/classgr_1_1uhd_1_1usrp__source.html )
 >
-> ERROR: [Synth 8-524] part-select [15:8] out of range of prefix
-> 'STR_SINK_FIFOSIZE'
-> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
-> ERROR: [Synth 8-521] parameter assignment could not be resolved to a
-> constant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
-> ERROR: [Synth 8-196] conditional expression could not be resolved to a
-> constant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:239]
-> WARNING: [Synth 8-693] zero replication count - replication ignored
-> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:26]
-> WARNING: [Synth 8-693] zero replication count - replication ignored
-> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:27]
-> WARNING: [Synth 8-693] zero replication count - replication ignored
-> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:31]
-> ERROR: [Synth 8-6156] failed synthesizing module
-> 'noc_shell__parameterized9'
-> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:21]
-> ERROR: [Synth 8-6156] failed synthesizing module 'noc_block_fosphor'
-> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_block_fosphor.v:8]
-> ERROR: [Synth 8-6156] failed synthesizing module 'n3xx_core'
-> [/usr/local/src/uhd/fpga-src/usrp3/top/n3xx/n3xx_core.v:17]
-> ERROR: [Synth 8-6156] failed synthesizing module 'n3xx'
-> [/usr/local/src/uhd/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]
+> My dilemma is that I need to set the center frequency of the TX to "fc" and the center frequency of the RX to "2*fc" and its phase relationship should be identical for each "fc" (at least as long the USRP does not power cycle).
 >
-> The full build.log file is attached. I did not modify any files, just
-> trying to compile the RFNoC example as provided.
+> The gnuradio API als exposes the USRP API you mentioned so I tried:
 >
+>          now = self.uhd_usrp_sink_0.get_time_now()
+>          self.uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(1))
+>          self.uhd_usrp_source_0.set_command_time(now + uhd.time_spec(1))
 >
+>          self.uhd_usrp_source_0.set_center_freq(2*self.fcenter, 0)
+>          self.uhd_usrp_source_0.set_center_freq(2*self.fcenter, 1)
+>          self.uhd_usrp_sink_0.set_center_freq(self.fcenter, 0)
 >
+>          self.uhd_usrp_source_0.clear_command_time()
+>          self.uhd_usrp_sink_0.clear_command_time()
 >
-> Btw I also tried to build the default image with "make N310_XG", this one
-> compiles but failed later during DRC:
->
-> [DRC BIVC-1] Bank IO standard Vcc: Conflicting Vcc voltages in bank 34.
-> For example, the following two ports in this bank have conflicting VCCOs:
-> ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=1.500) and ddr3_addr[15]
-> (LVCMOS18, requiring VCCO=1.800)
-> [Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+> But this this the phase still jumps after a frequency change.
+So, you're trying to measure the 2nd-harmonic energy of the TX signal?
 
---0000000000006aa53d059949afe9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hi Robert,<br><br>Thanks for the bug report. <br><br>If=
- you&#39;re just trying to use RFNoC at this point, I would recommend to st=
-ick with the latest stable release, which at this time is v3.14.1.1. <br><b=
-r>Note, 3.14.x.x UHD will require Vivado 2017.4.<br><br><br>Regards,<br>Nat=
-e Temple</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Mon, Dec 9, 2019 at 7:33 AM Robert via USRP-users &lt;<a=
- href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+What frequencies are involved here?
 
 
-
-
-<div dir=3D"ltr">
-<div id=3D"gmail-m_1503436027014080033divtagdefaultwrapper" style=3D"font-s=
-ize:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D"=
-ltr">
-<p></p>
-<div>Hi all!</div>
-<div><br>
-</div>
-<div>I tried to compile the default RFNoC image for the N310, using UHD on =
-tag v3.15.0.0-rc2 and Xilinx Vivado 2018.3.1.
-<br>
-</div>
-<div><br>
-</div>
-<div>Running<code> &quot;make</code><code> N310_RFNOC_XG&quot;, the IP core=
-s are compiled successfully, but then Vivado shows the following errors:</c=
-ode></div>
-<div><code></code><br>
-</div>
-<div>ERROR: [Synth 8-524] part-select [15:8] out of range of prefix &#39;ST=
-R_SINK_FIFOSIZE&#39; [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell=
-.v:270]<br>
-ERROR: [Synth 8-521] parameter assignment could not be resolved to a consta=
-nt [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]<br>
-ERROR: [Synth 8-196] conditional expression could not be resolved to a cons=
-tant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:239]<br>
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:26]<br>
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:27]<br>
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:31]<br>
-ERROR: [Synth 8-6156] failed synthesizing module &#39;noc_shell__parameteri=
-zed9&#39; [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:21]<br>
-ERROR: [Synth 8-6156] failed synthesizing module &#39;noc_block_fosphor&#39=
-; [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_block_fosphor.v:8]<br>
-ERROR: [Synth 8-6156] failed synthesizing module &#39;n3xx_core&#39; [/usr/=
-local/src/uhd/fpga-src/usrp3/top/n3xx/n3xx_core.v:17]<br>
-ERROR: [Synth 8-6156] failed synthesizing module &#39;n3xx&#39; [/usr/local=
-/src/uhd/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]</div>
-<div><br>
-</div>
-<div>The full build.log file is attached. I did not modify any files, just =
-trying to compile the RFNoC example as provided.<br>
-</div>
-<p></p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p>Btw I also tried to build the default image with &quot;make N310_XG&quot=
-;, this one compiles but failed later during DRC:</p>
-<p></p>
-<div>[DRC BIVC-1] Bank IO standard Vcc: Conflicting Vcc voltages in bank 34=
-. For example, the following two ports in this bank have conflicting VCCOs:
-<br>
-ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=3D1.500) and ddr3_addr[15] (LVCMO=
-S18, requiring VCCO=3D1.800)<br>
-</div>
-<div>
-<div>[Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.<br>
-<br>
-</div>
-<br>
-</div>
-<p></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000006aa53d059949afe9--
-
-
---===============2994867572792355519==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2994867572792355519==--
-
