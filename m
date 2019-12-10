@@ -2,50 +2,73 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B1F2119F44
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Dec 2019 00:20:30 +0100 (CET)
-Received: from [::1] (port=42182 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AD02119FA1
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Dec 2019 00:46:04 +0100 (CET)
+Received: from [::1] (port=46100 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ieonr-0001FY-4F; Tue, 10 Dec 2019 18:20:27 -0500
-Received: from mail-vs1-f47.google.com ([209.85.217.47]:39656)
+	id 1iepCc-0002Ws-3Q; Tue, 10 Dec 2019 18:46:02 -0500
+Received: from mail-il1-f179.google.com ([209.85.166.179]:45074)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ejkreinar@gmail.com>) id 1ieonn-0000wa-RE
- for usrp-users@lists.ettus.com; Tue, 10 Dec 2019 18:20:23 -0500
-Received: by mail-vs1-f47.google.com with SMTP id p21so14439456vsq.6
- for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2019 15:20:03 -0800 (PST)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1iepCY-0002O0-VK
+ for usrp-users@lists.ettus.com; Tue, 10 Dec 2019 18:45:59 -0500
+Received: by mail-il1-f179.google.com with SMTP id p8so17736558iln.12
+ for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2019 15:45:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=RhYyNEW58nHBKfiCVnIFxg6rc+fYsyRljbDDbD6CYOw=;
- b=nSkfGV+eZF0jjt3p/oW7JyaQPwp5KfU+ROGkt2dvlzsn9vFBILU8pYijVm6gmp6uzz
- i94WovN8dj2Gg/NT9dix2T38ynwCTRwlWB22+Yol2ULzgD/cueUHYhWQri18toiIOvZN
- nwUjp8itxP0Gy5SHEpijnztxymDKATezvcplejPD5NadOvCPGyK462lVL0+Juw0t41yY
- 9OQf2MLSoHJE/f3KnLFTHKej0x1tpfAO+1cBasgTyAtkY0cwpo4gIuYoeHTGyDq4HhD1
- XCJRoChQdK9wpU+RNhSv3dSFItyLjUoRQqHTMUGU8ce4TBnk9KqcZnGpLjvPt1BkKwFC
- qOGQ==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=GaYDnVDv80CL4q8ufCHpmgMy1/yplXOK3Ud77XB7nmc=;
+ b=cjZ6PLF0vmgp4wDts0fRaSejW5RdV8mtRfE6tTUU1EtvwOWoKjNTX25/j3wgnjw+0e
+ EjkGMuUtejNJMAQHm1HDVNC9cWTXQm3tWZcRb4f2CrDKtIJiS+Pcx8IHVUgo8h7zERto
+ ZbSkWPtQcViuygqq82J6Pmgn5PgQGjuZgTPF+KQDHCGUGjLhA0JmOc8LnKPvKJopdcAf
+ 0+HUDUgTvm/AGsQvbDUtfi3zwS3cCCxm2HjFzc9+fHv627ekA8eBJTGXybYG3rD3Ljxf
+ VAqXlRdZ1whoVRKWajsMjptdzZfBATI4z0f4MOzLAI2W4H+hGmKVALatMi156CPKDf0X
+ lFJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RhYyNEW58nHBKfiCVnIFxg6rc+fYsyRljbDDbD6CYOw=;
- b=gpT5weY9fJ5aOfXcLAQiyLVJ/b63uvI36Ic2vbSsV2TtJ9XoBSCEtr4Yh1mTUvHKcU
- FH7KBYbmyA0wBUR4Y0xgO50vPijyfSaO54GVTU9LOyqW3DCciDqWPeExWrUoF/YjVL0N
- kNQyt05DQ4PmihxtMvBGs7Sq9mjkPOyoj91Ie1YC3mmJGAH0mZiaZM4OJJArF+hlDLQF
- pvvrHuXcmmQeGBGY8xVjoEVrKMGJRQWcBgh5Cp43Ch9qgt4WQdzwVRpFgN2SiWY0wK4J
- kl6hTuf2BtMMyTJtik0rrVqnwtZG8o9UmiQPPWRTQYT1OfOE/zvaAAgEQ/b0HXdSXswz
- uIrQ==
-X-Gm-Message-State: APjAAAXyiwQdoF5FXQ10wyv2yTcFPfKeWzuA4RtrtBkiUr3zQPgbolke
- CqQIK3V1E4fcPJ1jNMykoXzlgGX/PhHa1Dl7QrY=
-X-Google-Smtp-Source: APXvYqyXHgKULPvP11tpkePSxm9DL2Vy1lrKcdKTxN4n8JVyEiwvi2Q5Nl/5moldzu2tQG2YFkKlfbYIAUQg2r0HfoY=
-X-Received: by 2002:a67:30c3:: with SMTP id w186mr115410vsw.179.1576019983110; 
- Tue, 10 Dec 2019 15:19:43 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=GaYDnVDv80CL4q8ufCHpmgMy1/yplXOK3Ud77XB7nmc=;
+ b=EIed6syFwOLRjurCMSPcTG58nhHKE6JpCU3DP7zHJm/ljduTnaJU74/ZIYAA7g4rib
+ 8AHjLq/y+orUMhAEpn2GyoiewvDVIe9UFSce/saOs9N22aUHhmcadLYVsGQK+Lvr7bCt
+ 8V7v1OYa0UFdxrSP0PALNakTIHesZSsf0tbva9NLUgGXGeyxYkfnN2txXm8ZQFt/DLaN
+ 7Fo1dXvgQI2Jo1nOblBK8wgJNO1Eh2yowG5gZHs+EG/0CuiDnk85OmOKTOxBGFINAMJo
+ w0bDQVwF81VAIJdM9gl5rkcwGicewQDRa3yXTbF3+zcumrilx/ZiJjd0D2X7vH+8NpGA
+ uUoA==
+X-Gm-Message-State: APjAAAXQ2qozZB2COJti1qdb0Qwqg+4Y8wKWRL0ST4RMlkFr743OqJdI
+ DrIDHtWXPJ1uO4liR1BBkHs8VcLo
+X-Google-Smtp-Source: APXvYqw2wIIX/XL/bX2Q7YxoQlFXZXCRk3MFivR2HyQ5aH4LZlX9k7T7m375moKuxFmb/KXffPZRAA==
+X-Received: by 2002:a92:49db:: with SMTP id k88mr302577ilg.25.1576021518038;
+ Tue, 10 Dec 2019 15:45:18 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-228.dsl.bell.ca.
+ [174.95.14.228])
+ by smtp.googlemail.com with ESMTPSA id f7sm91288ioo.27.2019.12.10.15.45.16
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 10 Dec 2019 15:45:17 -0800 (PST)
+Message-ID: <5DF02E07.2000504@gmail.com>
+Date: Tue, 10 Dec 2019 18:45:11 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CAB__hTTmo8sGCkJOMey4wuAkNK=t4iJVnCGouHMw48bwoiUovg@mail.gmail.com>
-In-Reply-To: <CAB__hTTmo8sGCkJOMey4wuAkNK=t4iJVnCGouHMw48bwoiUovg@mail.gmail.com>
-Date: Tue, 10 Dec 2019 18:19:30 -0500
-Message-ID: <CADRnH22p=7nO3W0F6yDoAzHfLZUmWbeYLTxovR0XH+Rn0Oe4Gw@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Subject: Re: [USRP-users] Configure build for RFNoC block with custom IP
+To: Lukas Haase <lukashaase@gmx.at>
+References: <trinity-7cb4be4f-5d41-4268-b5a8-2084b39834b6-1575702620460@3c-app-gmx-bs13>
+ <CAL263iwG9u0mE_uQPLM+pxk-RJ2B5fHpsxBaeKg1dnzOZnrzuw@mail.gmail.com>
+ <trinity-0ce9eefc-d9c2-4f7a-aa5b-342a8c0f5f36-1575747306151@3c-app-gmx-bs76>
+ <CAL263iyCdU5b5p2SUJ92eNy+c7YLNuxbzi_NzrYCNOvb5OFQ5Q@mail.gmail.com>
+ <trinity-43a8d710-cd0a-4b9b-a1e8-f62e485ff30c-1575843547979@3c-app-gmx-bs36>
+ <5DEEA191.8000704@gmail.com>
+ <trinity-8e728448-2993-4aed-830a-473bf70242bf-1575920305869@3c-app-gmx-bap48>
+ <5DEEA426.1020108@gmail.com>
+ <trinity-31ea48d5-e13c-4c84-873c-f3e1f3ff3aae-1575922308346@3c-app-gmx-bap48>
+ <5DEEAC89.60403@gmail.com>
+ <trinity-fca4d966-0044-494d-9d62-259818a05f79-1575923718171@3c-app-gmx-bap48>
+ <5DEEB562.4030602@gmail.com>
+ <trinity-459dbf7b-f04c-4912-9571-52b962a344fb-1575950607303@3c-app-gmx-bs45>
+ <5DEF2185.5010308@gmail.com>
+ <trinity-f74e7b0f-88a0-4aa0-ac0f-ac8cd023596e-1576015922416@3c-app-gmx-bap30>
+In-Reply-To: <trinity-f74e7b0f-88a0-4aa0-ac0f-ac8cd023596e-1576015922416@3c-app-gmx-bap30>
+Subject: Re: [USRP-users] Phase relation between RX/TX LO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,10 +80,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: EJ Kreinar <ejkreinar@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5395492567356313255=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,105 +98,33 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5395492567356313255==
-Content-Type: multipart/alternative; boundary="0000000000004098ee059961bfad"
-
---0000000000004098ee059961bfad
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Rob,
-
-I do this pretty often, and the uhd-fpga repo does let you use the
-Makefile.OOT.inc files to add OOT repos to device builds.
-
-If you follow the Makefile examples in github.com/ejk43/rfnoc-ootexample,
-then use the uhd_image_builder.py script to add the OOT repo, it should
-recognize the Makefile.inc in the OOT repo and set up the device's
-Makefile.OOT.inc for you.
-
-I get the impression others here have had success with this approach too,
-but let me know if this doesn't work for you for any reason?
-
-EJ
-
-On Tue, Dec 10, 2019, 5:51 PM Rob Kossler via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi,
-> I created my own FFT IP core and corresponding xci file using Vivado and
-> created a new RFNoC block to use it, noc_block_myfft.  I was able to
-> manually modify the makefile in the rfnoc/testbenches/noc_block_myfft_tb/
-> folder to add a new makefile which I created next to the xci file.  I did
-> this following an example from the stock noc block testbenches.  This works
-> for me.
+On 12/10/2019 05:12 PM, Lukas Haase wrote:
+> Hi Marcus,
 >
-> However, now when I want to build an actual FPGA image, the IP core is not
-> found.  I can copy it to usrp3/top/e300/ip/ and then adjust the Ettus
-> makefiles accordingly, but this doesn't seem like the best approach.
+>> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
+>> [...]
+>> You're using the MANUAL policy for BOTH DSP and RF. Let the automatic
+>> "stuff" do its thing, with the only difference being integer-N tuning.
+> Pretty incredible, I think I found the(?) issue.
+> https://kb.ettus.com/UBX#Phase_Synchronization:
 >
-> Is there a preferred way to locate custom IP when used with OOT rfnoc
-> blocks and then configure makefiles such that they will be found in the
-> build?
-> Rob
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> "If you are operating the UBX at frequencies below 1 GHz and need phase synchronization, then it is necessary to select a 20 MHz daughterboard clock rate, instead of using the default 50 MHz rate [...] If you're using GNU Radio, then you can add "dboard_clock_rate=20e6" to the "Device Arguments" field of the properties for the UHD Sink and UHD Source blocks."
 >
+>
+> I did this and lo and behold, the phase stays constant across tunes!
+> It even works without mode_n=integer most of the time ... I think sometimes I get the frequency shift I was mentioning in a previous message.
+> With mode_n=integer it works for all frequencies I have tried. I really hope I did not miss anything.
+>
+>
+Well, that is something I did not know, although perhaps I should 
+have.   Hard to keep *everything* in my brain about all the various bits of
+  hardware Ettus has released in the last few years...
 
---0000000000004098ee059961bfad
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Hi Rob,<div dir=3D"auto"><br></div><div dir=3D"auto">I do=
- this pretty often, and the uhd-fpga repo does let you use the Makefile.OOT=
-.inc files to add OOT repos to device builds.=C2=A0</div><div dir=3D"auto">=
-<br></div><div dir=3D"auto">If you follow the Makefile examples in <a href=
-=3D"http://github.com/ejk43/rfnoc-ootexample">github.com/ejk43/rfnoc-ootexa=
-mple</a>, then use the uhd_image_builder.py script to add the OOT repo, it =
-should recognize the Makefile.inc in the OOT repo and set up the device&#39=
-;s Makefile.OOT.inc for you.</div><div dir=3D"auto"><br></div><div dir=3D"a=
-uto">I get the impression others here have had success with this approach t=
-oo, but let me know if this doesn&#39;t work for you for any reason?</div><=
-div dir=3D"auto"><br></div><div dir=3D"auto">EJ</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Dec 10, 2019=
-, 5:51 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-users@lists=
-.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
-;padding-left:1ex"><div dir=3D"ltr">Hi,<div>I created my own FFT IP core an=
-d corresponding xci file using Vivado and created a new RFNoC block to use =
-it, noc_block_myfft.=C2=A0 I was able to manually modify the makefile in th=
-e rfnoc/testbenches/noc_block_myfft_tb/ folder to add a new makefile which =
-I created next to the xci file.=C2=A0 I did this following an example from =
-the stock noc block testbenches.=C2=A0 This works for me.</div><div><br></d=
-iv><div>However, now when I want to build an actual FPGA image, the IP core=
- is not found.=C2=A0 I can copy it to usrp3/top/e300/ip/ and then adjust=C2=
-=A0the Ettus makefiles accordingly, but this doesn&#39;t seem like the best=
- approach.=C2=A0</div><div><br></div><div>Is there a preferred way to locat=
-e custom IP when used with OOT rfnoc blocks and then configure makefiles su=
-ch that they will be found in the build?</div><div>Rob</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000004098ee059961bfad--
+Please let us know if there's anything *else* that crops up...
 
 
---===============5395492567356313255==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5395492567356313255==--
-
