@@ -2,52 +2,39 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 064D6117B35
-	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2019 00:08:10 +0100 (CET)
-Received: from [::1] (port=37176 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D474117C56
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2019 01:22:03 +0100 (CET)
+Received: from [::1] (port=49724 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ieS8J-0007By-SM; Mon, 09 Dec 2019 18:08:03 -0500
-Received: from mail-lf1-f43.google.com ([209.85.167.43]:44011)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <saeidh@gmail.com>) id 1ieS8F-00078f-PD
- for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 18:07:59 -0500
-Received: by mail-lf1-f43.google.com with SMTP id 9so12086170lfq.10
- for <usrp-users@lists.ettus.com>; Mon, 09 Dec 2019 15:07:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IGvshdtEYwB4pDE23ve5TLcZo954QxgtX54IotWYq6w=;
- b=NqvhIYNf0AC6Qi9wegxcaEsSpvO9JdTV/VvZ7oTBtljMB65XjRStx9FkWJj79JVRBn
- guqhcwzRm3tzPwGkVvcSGnRsot4Q5LK7YGuJTjQFTJbnIfgP5ec20TxRgOzzXZfxPkWs
- p13ktAwGTM8mnstc8bSLt5UvnvoiFP/2P8IiW85dRnoYj7SmT7GrI0lkl+QMSSxWg1wF
- FWM5m75K5g1vYuqu4cutIOi5rJumzeppKTYG44RV/0ugNo2ps+RHdv9WV52HQZ4XAslH
- Vv96OhQXswCXGWQEv/AdesWYzuQDcedXYlSvEFvjAonCxxgOcP2+/cYF60t8mbrjp8Wj
- T0TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IGvshdtEYwB4pDE23ve5TLcZo954QxgtX54IotWYq6w=;
- b=Vzw8JO9pqh66ns2O5BNS7CEJeQtRgbF5K3XUHmwtLQ8MvPs0Q5t/t9b4NQDH7OOOhb
- KKPXls69n0TCWA1ZIdyFHrCya7FzvFakPNS8GHodkjOub0RY2nwc1RLPFdytHJMikl73
- 2QFCwDy1uOpRxBO7ytQuolxrsHAdjbf1sxbGMF7wNIqWQpPoZcSDDMsSvvIHbSUgDBFs
- Qqu9DbucK1yqJgIVDaTEunbnfvhnEIRUCbfp/5JDoqEB9bcwZHcuEbqGPcON6SEaoUkQ
- wP4unMBM/Wr23XMlWPRBZStrouL5TBhXmtIPleWBHfcJcIjb9LVm8Gj+4wI+iWQ7aMGN
- THkg==
-X-Gm-Message-State: APjAAAWR4cl00GfT6abxPFh5TgM956oGIaG7cVn30UKnM12qfuizsqzc
- 6Yu3NNuwDOKOfB4miXhmlYlxddvcpN3sGbXTu1E=
-X-Google-Smtp-Source: APXvYqwQCiJf2WE+vmTO6X//aMG4xVMHGxaHolAbMnBnIqFJLz/DOKX4TVXk/cYaxTZOo7lUSEpfWnMIox7UPoiD3sE=
-X-Received: by 2002:a19:c210:: with SMTP id l16mr17910790lfc.35.1575932838316; 
- Mon, 09 Dec 2019 15:07:18 -0800 (PST)
+	id 1ieTHn-0002bs-SS; Mon, 09 Dec 2019 19:21:55 -0500
+Received: from zeus.iit.demokritos.gr ([143.233.226.2]:47742)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <akis.kourtis@iit.demokritos.gr>)
+ id 1ieTHk-0002XM-DM
+ for usrp-users@lists.ettus.com; Mon, 09 Dec 2019 19:21:52 -0500
+Received: from localhost (localhost [127.0.0.1])
+ by zeus.iit.demokritos.gr (Postfix) with ESMTP id 47X11y4JyZz1Sk3
+ for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2019 02:21:10 +0200 (EET)
+X-Virus-Scanned: Debian amavisd-new at iit.demokritos.gr
+Received: from zeus.iit.demokritos.gr ([127.0.0.1])
+ by localhost (zeus.iit.demokritos.gr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id lBm9Mueo9JgO for <usrp-users@lists.ettus.com>;
+ Tue, 10 Dec 2019 02:21:08 +0200 (EET)
+Received: from DESKTOPJIPSV41 (telcom-143-233-227-107.iit.demokritos.gr
+ [143.233.227.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by zeus.iit.demokritos.gr (Postfix) with ESMTPSA id 47X11w1tZ5z1S8v
+ for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2019 02:21:08 +0200 (EET)
+To: <usrp-users@lists.ettus.com>
+Date: Tue, 10 Dec 2019 02:21:06 +0200
+Message-ID: <037c01d5aeef$b73a84a0$25af8de0$@iit.demokritos.gr>
 MIME-Version: 1.0
-References: <CANQ3h38Ld+PabG4QosHwhyhg4=BYWBC+uEyhZDrTUstaxNAT7g@mail.gmail.com>
- <2d9189fb-9713-f432-e827-c28336f68db4@ihf.tu-bs.de>
-In-Reply-To: <2d9189fb-9713-f432-e827-c28336f68db4@ihf.tu-bs.de>
-Date: Mon, 9 Dec 2019 18:06:35 -0500
-Message-ID: <CANQ3h38SDVKKH0gSmtZ5k2KruMPT_xQvmzVs1Dywi2YcDx0n=Q@mail.gmail.com>
-To: Fabian Schwartau <fabian.schwartau@ihf.tu-bs.de>
-Subject: Re: [USRP-users] Libuhd issues - "uhd_find_devices: error while
- loading shared libraries"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdWu77b6FruiZtVoSDe1q7/45/yavQ==
+Content-Language: en-us
+Subject: [USRP-users] DPDK build with N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +46,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Saeid Hashemi via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Saeid Hashemi <saeidh@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3046917616389870539=="
+From: Akis Kourtis via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Akis Kourtis <akis.kourtis@iit.demokritos.gr>
+Content-Type: multipart/mixed; boundary="===============1249468786102818440=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,228 +62,390 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3046917616389870539==
-Content-Type: multipart/alternative; boundary="000000000000048f2a05994d75bd"
+This is a multipart message in MIME format.
 
---000000000000048f2a05994d75bd
-Content-Type: text/plain; charset="UTF-8"
+--===============1249468786102818440==
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_037D_01D5AF00.7AC3F0E0"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_037D_01D5AF00.7AC3F0E0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_037E_01D5AF00.7AC3F0E0"
+
+
+------=_NextPart_001_037E_01D5AF00.7AC3F0E0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hello all,
+
+ 
+
+I am trying to build the oai-5g-gNB. I have managed to build the DPDK with
+uhd successfully, however when I run the probe command I receive the
+following error.
+
+ 
+
+EAL: Starting I/O threads!
+
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+UHD_3.14.1.HEAD-0-g0347a6d8
+
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=10.30.0.218,type=n3xx,product=n310,serial=3177E48,claimed=False,ad
+dr=192.168.20.2,second_addr=192.168.20.2,use_dpdk=1
+
+[ERROR] [MPMD] No viable transport path found!
+
+[ERROR] [MPMD] Failure during block enumeration: RuntimeError: No viable
+transport path found!
+
+[INFO] [MPM.PeriphManager] init() called with device args
+`time_source=internal,clock_source=internal,second_addr=192.168.20.2,mgmt_ad
+dr=10.30.0.218,product=n310,use_dpdk=1'.
+
+[WARNING] [MPM.PeriphManager.UDP] Number of detected CHDR devices is
+inconsistent. Dropped from 1 to 0.
+
+[INFO] [MPM.PeriphManager.UDP] No CHDR interfaces found!
+
+Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
+
+ 
+
+My guess from reading back posts from the forum, is that the proper DPDK
+file is not read.
+
+I can see a /etc/conf/uhd.conf file, but no /root/.uhd/uhd.conf file.
+
+Am I in the right direction, and if so, how do I enable the user conf file?
+
+ 
+
+If not, is there a direction I should head towards?
+
+ 
+
+Thank you,
+
+ 
+
+Akis
+
+ 
+
+Akis Kourtis
+
+M.Sc, Ph.D
+
+Research Associate 
+
+Media Networks Laboratory
+
+Institute of Information & Telecommunications
+
+National Centre for Scientific Research "DEMOKRITOS"
+
+ 
+
+akis.kourtis@ iit.demokritos.gr
+
++306948386769
+
+
+
+ 
+
+
+------=_NextPart_001_037E_01D5AF00.7AC3F0E0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Thank you for your advice Fabian!
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><!--[if !mso]><style>v\:* =
+{behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Bookman Old Style";
+	panose-1:2 5 6 4 5 5 5 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hello all,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I am trying =
+to build the oai-5g-gNB. I have managed to build the DPDK with uhd =
+successfully, however when I run the probe command I receive the =
+following error.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>EAL: =
+Starting I/O threads!<o:p></o:p></p><p class=3DMsoNormal>[INFO] [UHD] =
+linux; GNU C++ version 7.4.0; Boost_106501; =
+UHD_3.14.1.HEAD-0-g0347a6d8<o:p></o:p></p><p class=3DMsoNormal>[INFO] =
+[MPMD] Initializing 1 device(s) in parallel with args: =
+mgmt_addr=3D10.30.0.218,type=3Dn3xx,product=3Dn310,serial=3D3177E48,claim=
+ed=3DFalse,addr=3D192.168.20.2,second_addr=3D192.168.20.2,use_dpdk=3D1<o:=
+p></o:p></p><p class=3DMsoNormal>[ERROR] [MPMD] No viable transport path =
+found!<o:p></o:p></p><p class=3DMsoNormal>[ERROR] [MPMD] Failure during =
+block enumeration: RuntimeError: No viable transport path =
+found!<o:p></o:p></p><p class=3DMsoNormal>[INFO] [MPM.PeriphManager] =
+init() called with device args =
+`time_source=3Dinternal,clock_source=3Dinternal,second_addr=3D192.168.20.=
+2,mgmt_addr=3D10.30.0.218,product=3Dn310,use_dpdk=3D1'.<o:p></o:p></p><p =
+class=3DMsoNormal>[WARNING] [MPM.PeriphManager.UDP] Number of detected =
+CHDR devices is inconsistent. Dropped from 1 to 0.<o:p></o:p></p><p =
+class=3DMsoNormal>[INFO] [MPM.PeriphManager.UDP] No CHDR interfaces =
+found!<o:p></o:p></p><p class=3DMsoNormal>Error: RuntimeError: Failed to =
+run enumerate_rfnoc_blocks()<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>My guess =
+from reading back posts from the forum, is that the proper DPDK file is =
+not read.<o:p></o:p></p><p class=3DMsoNormal>I can see a =
+/etc/conf/uhd.conf file, but no /root/.uhd/uhd.conf =
+file.<o:p></o:p></p><p class=3DMsoNormal>Am I in the right direction, =
+and if so, how do I enable the user conf file?<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>If not, is =
+there a direction I should head towards?<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Thank =
+you,<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Akis<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><b><span =
+lang=3DEN-GB style=3D'font-size:10.0pt;font-family:"Bookman Old =
+Style",serif'>Akis Kourtis<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;mso-fareast-language:EN-GB'>M.Sc, =
+Ph.D<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>Research Associate <o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>Media Networks Laboratory</span><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#AEAAAA'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#AEAAAA'>Institute</span><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'> of Information &amp; =
+Telecommunications<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>National Centre for Scientific Research =
+&#8220;DEMOKRITOS&#8221;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-GB style=3D'font-size:3.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>akis.kourtis@ =
+iit.demokritos.gr<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>+306948386769<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEL =
+style=3D'font-size:10.0pt;color:#1F497D'><img width=3D576 height=3D104 =
+style=3D'width:6.0in;height:1.0833in' =
+id=3D"_x0395__x03b9__x03ba__x03cc__x03bd__x03b1__x0020_1" =
+src=3D"cid:image001.jpg@01D5AF00.7A92CEC0" alt=3D"engl LOGOTYPO XORIS =
+ETHNOSIMO ME DIEYTHINSI_3"></span><span =
+lang=3DEN-GB><o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_001_037E_01D5AF00.7AC3F0E0--
 
-It seems there is no package called libuhd, just the following versions:
-libuhd003     libuhd3.14.0  libuhd-dev
+------=_NextPart_000_037D_01D5AF00.7AC3F0E0
+Content-Type: image/jpeg;
+	name="image001.jpg"
+Content-Transfer-Encoding: base64
+Content-ID: <image001.jpg@01D5AF00.7A92CEC0>
 
-So I did:
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMg
+IyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wAARCABoAkADASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDuNQ+J
+Oi6bqFxZzrdebA5R9sWRkenNV/8Aha2gA/dvP+/P/wBevPtaszqHxEu7Res1/s/AkZ/SqvinTbbT
+dWZtPO7T518y3I9MkFfwINd8cPTdk92crqz1PS/+FraB/dvP+/P/ANetfw94v07xNNPHYCcNCoZv
+MTbwa8hs9ECJrEd/Hie1sRcRhX6ElcE468Gum+ELqupaluIBMSY9+TUVKNNQbj0HCpJySZ6tRms6
+TXLNJWiEmZFGWBH3fqOtNGsBrYyxQSSnYZFwpAI9yen41xnSalFZem67DfrEGilt5Zc7Y5Rgtjrj
+1rUoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACi
+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
 
-$ sudo dpkg -P libuhd3.14.0
-(Reading database ... 291299 files and directories currently installed.)
-Removing libuhd3.14.0:amd64 (3.14.0.0-0ubuntu1~trusty1) ...
-Purging configuration files for libuhd3.14.0:amd64
-(3.14.0.0-0ubuntu1~trusty1) ...
-Processing triggers for libc-bin (2.19-0ubuntu6.15) ...
-$ sudo apt-get install libuhd3.14.1
-
-And now UHD tools work, also within the LTE software, but they won't find
-my B210 saying:
-
-[INFO] [UHD] linux; GNU C++ version 4.8.4; Boost_105400;
-UHD_3.14.1.1-release
-Error: LookupError: KeyError: No devices found for ----->
-Empty Device Address
-
-Regards,
-Saeid
-
-
-
-
-On Fri, Dec 6, 2019 at 2:58 AM Fabian Schwartau via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> You have an old version of libuhd already installed. Uninstall it using:
-> $ sudo dpkg -P libuhd
-> Then retry installing it. Sometimes libraries are not found and you have
-> to run
-> $ sudo ldconfig
-> but that is usually done by dpkg.
->
-> Am 06.12.2019 um 00:31 schrieb Saeid Hashemi via USRP-users:
-> > Hello everyone,
-> >
-> > I have an Intel NUC running Ubuntu 16.04 and a low latency kernel which
-> > I use for OAI LTE software on top of UHD.
-> >
-> > After updating my system repositories, UHD broke somehow with the
-> > following result:
-> >
-> > nuc8-3@nuc83-NUC8i7BEH:~$ uhd_find_devices
-> > uhd_find_devices: error while loading shared libraries:
-> > libuhd.so.3.14.1: cannot open shared object file: No such file or
-> directory
-> >
-> > Attempting to manually install the version cited in the error gives me
-> this:
-> >
-> > Unpacking libuhd3.14.1:amd64 (3.14.1.1-0ubuntu1~trusty1) ...
-> > dpkg: error processing archive
-> > /var/cache/apt/archives/libuhd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.de=
-b
-> > (--unpack):
-> >   trying to overwrite '/usr/share/uhd/rfnoc/blocks/keep_one_in_n.xml',
-> > which is also in package libuhd3.14.0:amd64 3.14.0.0-0ubuntu1~trusty1
-> > dpkg-deb: error: subprocess paste was killed by signal (Broken pipe)
-> > Errors were encountered while processing:
-> >
->  /var/cache/apt/archives/libuhd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.deb
-> > E: Sub-process /usr/bin/dpkg returned an error code (1)
-> >
-> >
-> > Would anyone have any recommendations on what to do to make sure I have
-> > the right version of everything present?
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >
->
-> --
-> --------------------------------------------------
-> M.-Sc. Fabian Schwartau
-> Technische Universit=C3=A4t Braunschweig
-> Institut f=C3=BCr Hochfrequenztechnik
-> Schleinitzstr. 22
-> 38106 Braunschweig
-> Germany
->
-> Tel.:   +49-(0)531-391-2017
-> Fax:    +49-(0)531-391-2045
-> Email:  fabian.schwartau@ihf.tu-bs.de
-> WWW:    http://www.tu-braunschweig.de/ihf
-> --------------------------------------------------
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000048f2a05994d75bd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Thank you for your advice Fabian!</div><div><br></div=
-><div>It seems there is no package called libuhd, just the following versio=
-ns:</div><div style=3D"margin-left:40px">libuhd003 =C2=A0 =C2=A0 libuhd3.14=
-.0 =C2=A0libuhd-dev =C2=A0 <br></div><div style=3D"margin-left:40px"><br></=
-div><div>So I did:</div><div><br></div><div style=3D"margin-left:40px"><spa=
-n style=3D"font-family:monospace">$ sudo dpkg -P libuhd3.14.0 <br>(Reading =
-database ... 291299 files and directories currently installed.)<br>Removing=
- libuhd3.14.0:amd64 (3.14.0.0-0ubuntu1~trusty1) ...<br>Purging configuratio=
-n files for libuhd3.14.0:amd64 (3.14.0.0-0ubuntu1~trusty1) ...<br>Processin=
-g triggers for libc-bin (2.19-0ubuntu6.15) ...</span></div><div style=3D"ma=
-rgin-left:40px"><span style=3D"font-family:monospace">$ sudo apt-get instal=
-l libuhd3.14.1 </span><br></div><div><br></div><div>And now UHD tools work,=
- also within the LTE software, but they won&#39;t find my B210 saying:</div=
-><div><br></div><div style=3D"margin-left:40px"><span style=3D"font-family:=
-monospace">[INFO] [UHD] linux; GNU C++ version 4.8.4; Boost_105400; UHD_3.1=
-4.1.1-release<br>Error: LookupError: KeyError: No devices found for -----&g=
-t;<br>Empty Device Address</span></div><div><br></div><div>Regards,</div><d=
-iv>Saeid<br></div><div><br></div><div><br></div><div><br></div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec =
-6, 2019 at 2:58 AM Fabian Schwartau via USRP-users &lt;<a href=3D"mailto:us=
-rp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex">You have an old version=
- of libuhd already installed. Uninstall it using:<br>
-$ sudo dpkg -P libuhd<br>
-Then retry installing it. Sometimes libraries are not found and you have <b=
-r>
-to run<br>
-$ sudo ldconfig<br>
-but that is usually done by dpkg.<br>
-<br>
-Am 06.12.2019 um 00:31 schrieb Saeid Hashemi via USRP-users:<br>
-&gt; Hello everyone,<br>
-&gt; <br>
-&gt; I have an Intel NUC running Ubuntu 16.04 and a low latency kernel whic=
-h <br>
-&gt; I use for OAI LTE software on top of UHD.<br>
-&gt; <br>
-&gt; After updating my system repositories, UHD broke somehow with the <br>
-&gt; following result:<br>
-&gt; <br>
-&gt; nuc8-3@nuc83-NUC8i7BEH:~$ uhd_find_devices<br>
-&gt; uhd_find_devices: error while loading shared libraries: <br>
-&gt; libuhd.so.3.14.1: cannot open shared object file: No such file or dire=
-ctory<br>
-&gt; <br>
-&gt; Attempting to manually install the version cited in the error gives me=
- this:<br>
-&gt; <br>
-&gt; Unpacking libuhd3.14.1:amd64 (3.14.1.1-0ubuntu1~trusty1) ...<br>
-&gt; dpkg: error processing archive <br>
-&gt; /var/cache/apt/archives/libuhd3.14.1_3.14.1.1-0ubuntu1~trusty1_amd64.d=
-eb <br>
-&gt; (--unpack):<br>
-&gt;=C2=A0 =C2=A0trying to overwrite &#39;/usr/share/uhd/rfnoc/blocks/keep_=
-one_in_n.xml&#39;, <br>
-&gt; which is also in package libuhd3.14.0:amd64 3.14.0.0-0ubuntu1~trusty1<=
-br>
-&gt; dpkg-deb: error: subprocess paste was killed by signal (Broken pipe)<b=
-r>
-&gt; Errors were encountered while processing:<br>
-&gt;=C2=A0 =C2=A0/var/cache/apt/archives/libuhd3.14.1_3.14.1.1-0ubuntu1~tru=
-sty1_amd64.deb<br>
-&gt; E: Sub-process /usr/bin/dpkg returned an error code (1)<br>
-&gt; <br>
-&gt; <br>
-&gt; Would anyone have any recommendations on what to do to make sure I hav=
-e <br>
-&gt; the right version of everything present?<br>
-&gt; <br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt; <br>
-<br>
--- <br>
---------------------------------------------------<br>
-M.-Sc. Fabian Schwartau<br>
-Technische Universit=C3=A4t Braunschweig<br>
-Institut f=C3=BCr Hochfrequenztechnik<br>
-Schleinitzstr. 22<br>
-38106 Braunschweig<br>
-Germany<br>
-<br>
-Tel.:=C2=A0 =C2=A0+49-(0)531-391-2017<br>
-Fax:=C2=A0 =C2=A0 +49-(0)531-391-2045<br>
-Email:=C2=A0 <a href=3D"mailto:fabian.schwartau@ihf.tu-bs.de" target=3D"_bl=
-ank">fabian.schwartau@ihf.tu-bs.de</a><br>
-WWW:=C2=A0 =C2=A0 <a href=3D"http://www.tu-braunschweig.de/ihf" rel=3D"nore=
-ferrer" target=3D"_blank">http://www.tu-braunschweig.de/ihf</a><br>
---------------------------------------------------<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000048f2a05994d75bd--
+------=_NextPart_000_037D_01D5AF00.7AC3F0E0--
 
 
---===============3046917616389870539==
+
+--===============1249468786102818440==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -308,5 +456,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3046917616389870539==--
+--===============1249468786102818440==--
+
 
