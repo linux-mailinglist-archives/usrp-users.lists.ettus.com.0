@@ -2,37 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D8511182C6
-	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2019 09:49:59 +0100 (CET)
-Received: from [::1] (port=57632 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F51B118CC4
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2019 16:41:33 +0100 (CET)
+Received: from [::1] (port=49632 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iebDM-0001pA-G1; Tue, 10 Dec 2019 03:49:52 -0500
-Received: from smtp.eurecom.fr ([193.55.113.210]:2090)
- by mm2.emwd.com with esmtp (Exim 4.92)
- (envelope-from <cedric.roux@eurecom.fr>) id 1iebDH-0001ku-St
- for usrp-users@lists.ettus.com; Tue, 10 Dec 2019 03:49:47 -0500
-X-IronPort-AV: E=Sophos;i="5.69,299,1571695200"; d="scan'208";a="11570481"
-Received: from waha.eurecom.fr (HELO smtps.eurecom.fr) ([10.3.2.236])
- by drago1i.eurecom.fr with ESMTP; 10 Dec 2019 09:49:06 +0100
-Received: from [172.24.10.173] (unknown [172.24.10.173])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtps.eurecom.fr (Postfix) with ESMTPSA id BA479B4D;
- Tue, 10 Dec 2019 09:49:05 +0100 (CET)
-To: Saeid Hashemi <saeidh@gmail.com>
-References: <CANQ3h38Ld+PabG4QosHwhyhg4=BYWBC+uEyhZDrTUstaxNAT7g@mail.gmail.com>
- <2d9189fb-9713-f432-e827-c28336f68db4@ihf.tu-bs.de>
- <CANQ3h38SDVKKH0gSmtZ5k2KruMPT_xQvmzVs1Dywi2YcDx0n=Q@mail.gmail.com>
-Message-ID: <f4cc9ffe-ca34-48d4-423e-beae073b880b@eurecom.fr>
-Date: Tue, 10 Dec 2019 09:49:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+	id 1iehdg-0003FF-Ee; Tue, 10 Dec 2019 10:41:28 -0500
+Received: from gwsmtp1.avdtec.ch ([145.232.233.54]:33148
+ helo=mail02.heig-vd.ch)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92)
+ (envelope-from <btv1==247d6490247==david.truan@heig-vd.ch>)
+ id 1iehdd-0003BL-Nu
+ for usrp-users@lists.ettus.com; Tue, 10 Dec 2019 10:41:25 -0500
+X-ASG-Debug-ID: 1575992443-111d9816da3ba4d0001-5wTQH4
+Received: from EIMAIL01.einet.ad.eivd.ch ([193.134.222.4]) by
+ mail02.heig-vd.ch with ESMTP id Qtd8JQplq3BSx1p1 (version=TLSv1.2
+ cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO) for
+ <usrp-users@lists.ettus.com>; Tue, 10 Dec 2019 16:40:43 +0100 (CET)
+X-Barracuda-Envelope-From: david.truan@heig-vd.ch
+X-Barracuda-Effective-Source-IP: UNKNOWN[193.134.222.4]
+X-Barracuda-Apparent-Source-IP: 193.134.222.4
+Received: from EIMAIL02.einet.ad.eivd.ch (10.192.41.72) by
+ EIMAIL01.einet.ad.eivd.ch (10.192.41.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1847.3; Tue, 10 Dec 2019 16:40:42 +0100
+Received: from EIMAIL02.einet.ad.eivd.ch ([fe80::f1b4:a7a1:bd8c:216d]) by
+ EIMAIL02.einet.ad.eivd.ch ([fe80::f1b4:a7a1:bd8c:216d%10]) with mapi id
+ 15.01.1847.005; Tue, 10 Dec 2019 16:40:42 +0100
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] N320: XQ image issue using sfp0 as time_source
+X-ASG-Orig-Subj: [USRP-users] N320: XQ image issue using sfp0 as time_source
+Thread-Index: AQHVr3AtveYQW5f0vUa/2oD506v+sg==
+Date: Tue, 10 Dec 2019 15:40:42 +0000
+Message-ID: <a343ea0c848d44c6bbaaab53bd80a4c1@heig-vd.ch>
+Accept-Language: fr-CH, en-US
+Content-Language: fr-CH
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.192.204.11]
 MIME-Version: 1.0
-In-Reply-To: <CANQ3h38SDVKKH0gSmtZ5k2KruMPT_xQvmzVs1Dywi2YcDx0n=Q@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] Libuhd issues - "uhd_find_devices: error while
- loading shared libraries"
+X-Barracuda-Connect: UNKNOWN[193.134.222.4]
+X-Barracuda-Start-Time: 1575992443
+X-Barracuda-Encrypted: ECDHE-RSA-AES128-GCM-SHA256
+X-Barracuda-URL: https://quarantine.heig-vd.ch:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at heig-vd.ch
+X-Barracuda-Scan-Msg-Size: 793
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+ QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 tests=
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.78414
+ Rule breakdown below
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+Subject: [USRP-users] N320: XQ image issue using sfp0 as time_source
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,11 +68,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Cedric Roux via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Cedric Roux <cedric.roux@eurecom.fr>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Truan David via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Truan David <david.truan@heig-vd.ch>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -62,16 +85,23 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-RGVhciBTYWVpZCwKCmEgYml0IE9ULCBidXQsCgpPbiAyMDE5LTEyLTEwIDAwOjA2LCBTYWVpZCBI
-YXNoZW1pIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+IEFuZCBub3cgVUhEIHRvb2xzIHdvcmssIGFs
-c28gd2l0aGluIHRoZSBMVEUgc29mdHdhcmUsIGJ1dCB0aGV5IHdvbid0IAo+IGZpbmQgbXkgQjIx
-MCBzYXlpbmc6Cj4gCj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gNC44LjQ7
-IEJvb3N0XzEwNTQwMDsgCj4gVUhEXzMuMTQuMS4xLXJlbGVhc2UKPiBFcnJvcjogTG9va3VwRXJy
-b3I6IEtleUVycm9yOiBObyBkZXZpY2VzIGZvdW5kIGZvciAtLS0tLT4KPiBFbXB0eSBEZXZpY2Ug
-QWRkcmVzcwoKaWYgaXQncyBvcGVuYWlyaW50ZXJmYWNlLCB0aGVuIGNoZWNrIHlvdXIgY29uZiBm
-aWxlLgpGb3IgYjIxMCB5b3UgbXVzdCByZW1vdmUgdGhlIGxpbmUgc3RhcnRpbmcgd2l0aAoic2Ry
-X2FkZHJzID0gIi4KClNvcnJ5IGZvciB0aGUgbm9pc2UgZXZlcnlvbmUuCgpSZWdhcmRzLApDw6lk
-cmljLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNS
-UC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xp
-c3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29t
-Cg==
+Hi!
+
+We are using multiples N320 (UHD 3.14) and we want to synchronize our setup using the White Rabbit protocol and using the N320 as the WR Slave and the Master being an OPNT Switch.
+
+We have to be able to stream the IQ over the QSFP+ port (seen as sfp0) and use the SFP0 as the WR input so we have the XQ image loaded.
+
+However, when setting sfp0 as the time_source, I get an error saying I need the WX image. I checked the "MPM/periph_manager/n3xx" python code and saw it only checks for the WX (line 692 of the 3.14 UHD on github). Is this normal?
+
+If not, can I patch it by adding the XQ string to the "sfp_time_source_images", pack it and only replace the MPM package or should I totally rebuild UHD and flash my SD?
+
+
+Thank you in advance for your answer!
+
+
+David Truan
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
