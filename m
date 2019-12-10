@@ -2,67 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E564118E17
-	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2019 17:47:36 +0100 (CET)
-Received: from [::1] (port=36916 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 249FD118E50
+	for <lists+usrp-users@lfdr.de>; Tue, 10 Dec 2019 17:57:12 +0100 (CET)
+Received: from [::1] (port=39882 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ieifd-0007v6-Gs; Tue, 10 Dec 2019 11:47:33 -0500
-Received: from mailin.dlr.de ([194.94.201.12]:25889)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <Robert.Poehlmann@dlr.de>)
- id 1ieifZ-0007jZ-Of
- for usrp-users@lists.ettus.com; Tue, 10 Dec 2019 11:47:29 -0500
-IronPort-SDR: zl2FP3MZt9tUzJL8+pV8ZIfwqJMWIjRUodLlCBsAy42FDFBXdoQG1ZnS5I/kMwZynK+rOzDxkF
- g5oWI5GS6YTg==
-IronPort-PHdr: =?us-ascii?q?9a23=3ArxFwFx36G2srkvPVsmDT+DRfVm0co7zxezQtwd?=
- =?us-ascii?q?8ZseMTKfad9pjvdHbS+e9qxAeQG9mCsLQd2rGd4/GocFdDyK7JiGoFfp1IWk?=
- =?us-ascii?q?1NouQttCtkPvS4D1bmJuXhdS0wEZcKflZk+3amLRodQ56mNBXdrXKo8DEdBA?=
- =?us-ascii?q?j0OxZrKeTpAI7SiNm82/yv95HJbAhEmTSwbalvIBiyowjducobjI9/Iast1x?=
- =?us-ascii?q?XFpWdFdf5Lzm1yP1KTmBj85sa0/JF99ilbpuws+c1dX6jkZqo0VbNXAigoPG?=
- =?us-ascii?q?Az/83rqALMTRCT6XsGU2UZiQRHDg7Y5xznRJjxsy/6tu1g2CmGOMD9UL45VS?=
- =?us-ascii?q?i+46ptVRTljjoMOTwk/2HNksF+jLxVrg+9pxJxwIDUboOaNPticazSZt4VX3?=
- =?us-ascii?q?ZNXsRLWiBdHo+xbY0CBPcBM+ZCqIn9okMDoByiCwmrH+zg1CVIhmPs0aMg1O?=
- =?us-ascii?q?QuDwHG3AglH90UtnTUqs74O7oWUeCv1qXH0CvMYupQ1Dzg5obIdRUhruuNXb?=
- =?us-ascii?q?J2acfe11UvFx/YjlWLs4DqIzSV1uEVv2iU7upgSeKvi3M8pA1rvjevwcIshp?=
- =?us-ascii?q?HGh4IUzlDE9CN5wYkvKdKkT057ZNipG4ZTuSGCL4Z6X98uT3t1tCs5xbAKo4?=
- =?us-ascii?q?O3cSYJxZg92RLSZOSLf5WU7h75SeqcIjh1iGh4dL+xhBu+61asx+3zW8Ws3l?=
- =?us-ascii?q?ZFsClInsXJu30I0xHe7saHReF480u/xTmDyQLe5+RaLU8oiKXWJJssz7A0m5?=
- =?us-ascii?q?UJv0nOGDL9ll/sg6+MbEok//Cl6+HgYrr7uJCRL5R0igTiMqQ2ncy/HPg4Ph?=
- =?us-ascii?q?AOX2eF/eS806Xu80P/TrtEgfM4kqnXvpfZK8ocvKC1HQBY3Iki5BuhFTum0d?=
- =?us-ascii?q?IYnWUdLF1fYh6IkozpO0vULP/lE/izm1WskDF1yPDaJrDtH4nBImLenLricr?=
- =?us-ascii?q?tx8VNQxQQwwNxF+Z5ZBakNIPfpVU/wsNzYAAU5Mwuxw+v/FNt90ZgRVnyVAq?=
- =?us-ascii?q?+FKq/cq1iI6fwvI+mIYY8aojD9K/4+6vHziX85g0URcrS30pcPcnC3AuxmI1?=
- =?us-ascii?q?mFYXrrmtoBF30FvhYgQ+DwlF2NTztTZ262X60i/Tw0Fp6mDZveRoC2mrCOwC?=
- =?us-ascii?q?C7HphObGBcFl+MCWvod5mDW/oUdSKSOdVhkiQdWbi8UI8uywuutBThxrpjL+?=
- =?us-ascii?q?rU4TEYtYn52Ndr++3TiQwy9SduA8uB1GGNSjI8omRdEzk/wK05vUF40lOO+a?=
- =?us-ascii?q?Vkn+FDU9dU4qUafB09MMuI9etwBsruHDrGc9eNTV+gRP2qBSt3Qt9nkIxGWF?=
- =?us-ascii?q?p0B9j31kOL5CGtGbJAz7E=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2EZAgC0y+9d/xiKuApPFhsBAQEBAQE?=
- =?us-ascii?q?BBQEBAREBAQMDAQEBgX6BHIFdE4ExCoN5kSyacxcgBQkBAQEBAQEBAQEHARg?=
- =?us-ascii?q?BDAoBAQKEPgIXghE4EwIDAQwBAQUBAQEBAQUEAQEChiAMgjsiGAFYOAcFAQE?=
- =?us-ascii?q?BAQEBAQEBJAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBDwIIBTYZBTcSAQE?=
- =?us-ascii?q?dAQEBAQMBASEKQQsQAgEIEQQBARQUAwICAiUBChQJCAIEDgUIgxuBeYENrVd?=
- =?us-ascii?q?1gTKEOgEUQECFC4E2jjKBEYJlLj6CZAEBAQKBHXmCWoI8IgSNLIJ4hVOCQYc?=
- =?us-ascii?q?TjidyB4FEiBGJCoU7I4M2ixeLa5cPkWwCBAIEBQIVgT8qYYEacU+CBGgJRxE?=
- =?us-ascii?q?UjHIXg1CKU3QBAQiOEYEQAQE?=
-X-IronPort-AV: E=Sophos;i="5.69,300,1571695200"; d="scan'208,217";a="26204590"
-To: <nate.temple@ettus.com>
-Thread-Topic: [USRP-users] Default RFNoC image for N310 does not compile
-Thread-Index: AQHVrqJVbfbx+2jRgkCvVFb9ZGvXmKeyEZeAgAASOICAAQO7AA==
-Date: Tue, 10 Dec 2019 16:46:47 +0000
-Message-ID: <23a286638bd44719a36b213cbfad0fa5@dlr.de>
+	id 1ieiox-0000Hs-1A; Tue, 10 Dec 2019 11:57:11 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:37366)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1ieiot-0000AD-00
+ for usrp-users@lists.ettus.com; Tue, 10 Dec 2019 11:57:07 -0500
+Received: by mail-ot1-f42.google.com with SMTP id k14so16129148otn.4
+ for <usrp-users@lists.ettus.com>; Tue, 10 Dec 2019 08:56:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=sF1ia/3Iuc567pIWNv7XXfbD9eHft066t5VBBisHvYg=;
+ b=CYg1ILqsSkscpPR3IZrNZ/d3xlZDWUPnJc3Li2OP/YjaoX78O+ErKS32hVcB/+kViz
+ eqKikMjIAmaNjNSTL1N0LevHMmDuOUAVpKJAALj74IsrXOOX3qba5KLzupEQYlRCT8uO
+ 9Y5UaSeAq0ZmsLrhG30Nk5y+23A5vVnqRLK4GfsVIlD0EMtU4QrquMKKkKsbQb0rmMmi
+ 4k7pF5JclGyWaNrphRAn98+8h9rb8fi9IuNe4ILbaR6QRDwmzqqY3MvM3oZiZ5RWQo9W
+ pp/YXqsOAkJeN8hi8A5bX17JGIvunp5YqtdXQFo0akBuEf0f9CuSYL81HbyB9S6aaSCv
+ wtZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=sF1ia/3Iuc567pIWNv7XXfbD9eHft066t5VBBisHvYg=;
+ b=d/Mx5vtkhgvgXj1lxY8vW7v0gENQHrYtlf1Frt/xfY77D8TACfQkzy7GYtk/JTwGCk
+ XKVh3TO9Z6WtXLuu+KqqtGMSaiqS0MII7Hv2bLbMfYqUtDRGbzNDa5e0WDBx+/+kf6NE
+ x0OEXekCZeC/+ca4IEiRosKcwTv6d85xXWXEjn4pgKmp7F9S02dwh2q9QaXLKxqr2KLM
+ HjwCtYHuyLrO21RGaWTZ5C1Axdxw/zDJMbIZidFvr0rXpuK1UcglSr2tGpmqBk0NkS9m
+ Zq55WyqVo/JDg+uUlKrfLgNsDK/CRzHKRDv+YkdTsPotYplld1x76PQdBM2nRW4TpfX7
+ JeKA==
+X-Gm-Message-State: APjAAAVEgcphSJpI67HYgsTElS4zXtWmunhMCxaAv350igj4ZZPm+oYa
+ NogUp6I4bp7ms0uwr0RNWHjMP1anFHe9aMA6Ul3pvh053rsl6g==
+X-Google-Smtp-Source: APXvYqynhddPTnwSd8XGftgzW3r8NG917fVjCVDZBEEtnmin6ynZZxWRKBUh6KvuA6Js2Tmcgt8VuQNgDX8C7AoNOtE=
+X-Received: by 2002:a05:6830:1b6d:: with SMTP id
+ d13mr16615010ote.258.1575996986129; 
+ Tue, 10 Dec 2019 08:56:26 -0800 (PST)
+MIME-Version: 1.0
 References: <d509cd368f8d4167a1fdff12613c35a2@dlr.de>
  <CAL263iwKA_R=30JEohT88GPAP6xm-V1VLSL2mNtk1UbJJ9bJPw@mail.gmail.com>
  <CAL263iyqgz_ALuntLoCcpum7k20eXKEXYHUZhqNouUr9r7cwig@mail.gmail.com>
-In-Reply-To: <CAL263iyqgz_ALuntLoCcpum7k20eXKEXYHUZhqNouUr9r7cwig@mail.gmail.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-tm-snts-smtp: A828D1F357D23BC0BF17DAE241353EE4452A3B7DFF7CA77529441FB64446C7EC2000:8
-MIME-Version: 1.0
+ <23a286638bd44719a36b213cbfad0fa5@dlr.de>
+In-Reply-To: <23a286638bd44719a36b213cbfad0fa5@dlr.de>
+Date: Tue, 10 Dec 2019 08:57:20 -0800
+Message-ID: <CAL263izHBHnBjKEYLzEyy-KP67kwKWVzN6LZCwdsmKKdqfWj9w@mail.gmail.com>
+To: Robert.Poehlmann@dlr.de
 Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -75,10 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robert via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robert.Poehlmann@dlr.de
-Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============1773267133117141559=="
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3295545959664496154=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -92,316 +80,479 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1773267133117141559==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_23a286638bd44719a36b213cbfad0fa5dlrde_"
+--===============3295545959664496154==
+Content-Type: multipart/alternative; boundary="00000000000086947c05995c64cc"
 
---_000_23a286638bd44719a36b213cbfad0fa5dlrde_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000086947c05995c64cc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgTmF0ZSENCg0KSSBmb2xsb3dlZCB0aGUgZ3VpZGUgaW4gaHR0cHM6Ly9maWxlcy5ldHR1cy5j
-b20vbWFudWFsL21kX3VzcnAzX2J1aWxkX2luc3RydWN0aW9ucy5odG1sLCB0aHVzIGVuZGVkIHVw
-IHdpdGggVml2YWRvIDIwMTguMyBhbmQgdGhlbiBsYXRlciBmb3VuZCBvdXQgdGhpcyByZXF1aXJl
-cyBVSEQgMy4xNS4gVGhhbmtzIGZvciBwb2ludGluZyBtZSB0byB0aGUgVml2YWRvIGJ1Zy4gSSB0
-aG91Z2h0IHdpdGggMjAxOC4zLjEgdGhpcyB3b3VsZCBiZSBmaXhlZCwgYnV0IGFwcGFyZW50bHkg
-dGhhdCBpcyBub3QgdGhlIGNhc2UuIE5vdyBJIHdlbnQgYmFjayB0byAyMDE4LjMgKGNsZWFuIHJl
-LWluc3RhbGwpIGFuZCBpbnN0YWxsZWQgdGhlIHBhdGNoIEFSIzcxODk4LiBUaGUgc3RhbmRhcmQg
-TjMxMCBpbWFnZSBjb21waWxlcyBmaW5lIG5vdy4NCg0KVGhlIG90aGVyIGVycm9yDQpFUlJPUjog
-W1N5bnRoIDgtNTI0XSBwYXJ0LXNlbGVjdCBbMTU6OF0gb3V0IG9mIHJhbmdlIG9mIHByZWZpeCAn
-U1RSX1NJTktfRklGT1NJWkUnIFsvdXNyL2xvY2FsL3NyYy91aGQvZnBnYS1zcmMvdXNycDMvbGli
-L3Jmbm9jL25vY19zaGVsbC52OjI3MF0NCnNlZW1zIHRvIGJlIGhhcHBlbmluZyBvbmx5IGZvciBm
-ZXcgc3BlY2lmaWMgUkZOb0MgYmxvY2tzIChmb3NwaG9yIGFuZCBzcGxpdF9zdHJlYW0sIHNwZWNp
-ZmljYWxseSkuIExlYXZpbmcgdGhlc2Ugb3V0LCB0aGUgUkZOb0MgaW1hZ2UgZG9lcyBjb21waWxl
-LiBOb3Qgc3VyZSB3aGF0IGV4YWN0bHkgaXMgdGhlIHByb2JsZW0sIHRob3VnaC4gVGhlIHJlY2Vu
-dCBjb21taXQgaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvZnBnYS9jb21taXQvMTEw
-Mjc3OWY0OWQ0NGM5ZThiODhjZTcyNTFkMjAzZWI2MmFlMjZjOSBkaWQgbm90IGhlbHAgKHRyaWVk
-IGJvdGggdmVyc2lvbnMsIG5laXRoZXIgb2YgdGhlbSB3b3JrcykuDQoNClJlZ2FyZHMNClJvYmVy
-dA0KDQoNCkZyb206IE5hdGUgVGVtcGxlIFttYWlsdG86bmF0ZS50ZW1wbGVAZXR0dXMuY29tXQ0K
-U2VudDogTW9uZGF5LCBEZWNlbWJlciAwOSwgMjAxOSA4OjQzIFBNDQpUbzogUMO2aGxtYW5uLCBS
-b2JlcnQNCkNjOiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6IFtVU1JQ
-LXVzZXJzXSBEZWZhdWx0IFJGTm9DIGltYWdlIGZvciBOMzEwIGRvZXMgbm90IGNvbXBpbGUNCg0K
-SGkgUm9iZXJ0LA0KDQpTbyB0aGlzIGlzIGEgYnVnIHJlbGF0ZWQgdG8gVml2YWRvLCB5b3Ugd2ls
-bCBuZWVkIHRvIGluc3RhbGwgdGhpcyBsaW5rZWQgYmVsb3cgcGF0Y2ggYW5kIGl0IHNob3VsZCBy
-ZXNvbHZlIGl0Lg0KDQpodHRwczovL3d3dy54aWxpbnguY29tL3N1cHBvcnQvYW5zd2Vycy83MTg5
-OC5odG1sDQoNClJlZ2FyZHMsDQpOYXRlIFRlbXBsZQ0KDQpPbiBNb24sIERlYyA5LCAyMDE5IGF0
-IDEwOjM4IEFNIE5hdGUgVGVtcGxlIDxuYXRlLnRlbXBsZUBldHR1cy5jb208bWFpbHRvOm5hdGUu
-dGVtcGxlQGV0dHVzLmNvbT4+IHdyb3RlOg0KSGkgUm9iZXJ0LA0KDQpUaGFua3MgZm9yIHRoZSBi
-dWcgcmVwb3J0Lg0KDQpJZiB5b3UncmUganVzdCB0cnlpbmcgdG8gdXNlIFJGTm9DIGF0IHRoaXMg
-cG9pbnQsIEkgd291bGQgcmVjb21tZW5kIHRvIHN0aWNrIHdpdGggdGhlIGxhdGVzdCBzdGFibGUg
-cmVsZWFzZSwgd2hpY2ggYXQgdGhpcyB0aW1lIGlzIHYzLjE0LjEuMS4NCg0KTm90ZSwgMy4xNC54
-LnggVUhEIHdpbGwgcmVxdWlyZSBWaXZhZG8gMjAxNy40Lg0KDQoNClJlZ2FyZHMsDQpOYXRlIFRl
-bXBsZQ0KDQpPbiBNb24sIERlYyA5LCAyMDE5IGF0IDc6MzMgQU0gUm9iZXJ0IHZpYSBVU1JQLXVz
-ZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20+PiB3cm90ZToNCkhpIGFsbCENCg0KSSB0cmllZCB0byBjb21waWxlIHRoZSBkZWZh
-dWx0IFJGTm9DIGltYWdlIGZvciB0aGUgTjMxMCwgdXNpbmcgVUhEIG9uIHRhZyB2My4xNS4wLjAt
-cmMyIGFuZCBYaWxpbnggVml2YWRvIDIwMTguMy4xLg0KDQpSdW5uaW5nICJtYWtlIE4zMTBfUkZO
-T0NfWEciLCB0aGUgSVAgY29yZXMgYXJlIGNvbXBpbGVkIHN1Y2Nlc3NmdWxseSwgYnV0IHRoZW4g
-Vml2YWRvIHNob3dzIHRoZSBmb2xsb3dpbmcgZXJyb3JzOg0KDQpFUlJPUjogW1N5bnRoIDgtNTI0
-XSBwYXJ0LXNlbGVjdCBbMTU6OF0gb3V0IG9mIHJhbmdlIG9mIHByZWZpeCAnU1RSX1NJTktfRklG
-T1NJWkUnIFsvdXNyL2xvY2FsL3NyYy91aGQvZnBnYS1zcmMvdXNycDMvbGliL3Jmbm9jL25vY19z
-aGVsbC52OjI3MF0NCkVSUk9SOiBbU3ludGggOC01MjFdIHBhcmFtZXRlciBhc3NpZ25tZW50IGNv
-dWxkIG5vdCBiZSByZXNvbHZlZCB0byBhIGNvbnN0YW50IFsvdXNyL2xvY2FsL3NyYy91aGQvZnBn
-YS1zcmMvdXNycDMvbGliL3Jmbm9jL25vY19zaGVsbC52OjI3MF0NCkVSUk9SOiBbU3ludGggOC0x
-OTZdIGNvbmRpdGlvbmFsIGV4cHJlc3Npb24gY291bGQgbm90IGJlIHJlc29sdmVkIHRvIGEgY29u
-c3RhbnQgWy91c3IvbG9jYWwvc3JjL3VoZC9mcGdhLXNyYy91c3JwMy9saWIvcmZub2Mvbm9jX3No
-ZWxsLnY6MjM5XQ0KV0FSTklORzogW1N5bnRoIDgtNjkzXSB6ZXJvIHJlcGxpY2F0aW9uIGNvdW50
-IC0gcmVwbGljYXRpb24gaWdub3JlZCBbL3Vzci9sb2NhbC9zcmMvdWhkL2ZwZ2Etc3JjL3VzcnAz
-L2xpYi9yZm5vYy9ub2Nfc2hlbGwudjoyNl0NCldBUk5JTkc6IFtTeW50aCA4LTY5M10gemVybyBy
-ZXBsaWNhdGlvbiBjb3VudCAtIHJlcGxpY2F0aW9uIGlnbm9yZWQgWy91c3IvbG9jYWwvc3JjL3Vo
-ZC9mcGdhLXNyYy91c3JwMy9saWIvcmZub2Mvbm9jX3NoZWxsLnY6MjddDQpXQVJOSU5HOiBbU3lu
-dGggOC02OTNdIHplcm8gcmVwbGljYXRpb24gY291bnQgLSByZXBsaWNhdGlvbiBpZ25vcmVkIFsv
-dXNyL2xvY2FsL3NyYy91aGQvZnBnYS1zcmMvdXNycDMvbGliL3Jmbm9jL25vY19zaGVsbC52OjMx
-XQ0KRVJST1I6IFtTeW50aCA4LTYxNTZdIGZhaWxlZCBzeW50aGVzaXppbmcgbW9kdWxlICdub2Nf
-c2hlbGxfX3BhcmFtZXRlcml6ZWQ5JyBbL3Vzci9sb2NhbC9zcmMvdWhkL2ZwZ2Etc3JjL3VzcnAz
-L2xpYi9yZm5vYy9ub2Nfc2hlbGwudjoyMV0NCkVSUk9SOiBbU3ludGggOC02MTU2XSBmYWlsZWQg
-c3ludGhlc2l6aW5nIG1vZHVsZSAnbm9jX2Jsb2NrX2Zvc3Bob3InIFsvdXNyL2xvY2FsL3NyYy91
-aGQvZnBnYS1zcmMvdXNycDMvbGliL3Jmbm9jL25vY19ibG9ja19mb3NwaG9yLnY6OF0NCkVSUk9S
-OiBbU3ludGggOC02MTU2XSBmYWlsZWQgc3ludGhlc2l6aW5nIG1vZHVsZSAnbjN4eF9jb3JlJyBb
-L3Vzci9sb2NhbC9zcmMvdWhkL2ZwZ2Etc3JjL3VzcnAzL3RvcC9uM3h4L24zeHhfY29yZS52OjE3
-XQ0KRVJST1I6IFtTeW50aCA4LTYxNTZdIGZhaWxlZCBzeW50aGVzaXppbmcgbW9kdWxlICduM3h4
-JyBbL3Vzci9sb2NhbC9zcmMvdWhkL2ZwZ2Etc3JjL3VzcnAzL3RvcC9uM3h4L2Rib2FyZHMvbWcv
-bjN4eC52OjEzXQ0KDQpUaGUgZnVsbCBidWlsZC5sb2cgZmlsZSBpcyBhdHRhY2hlZC4gSSBkaWQg
-bm90IG1vZGlmeSBhbnkgZmlsZXMsIGp1c3QgdHJ5aW5nIHRvIGNvbXBpbGUgdGhlIFJGTm9DIGV4
-YW1wbGUgYXMgcHJvdmlkZWQuDQoNCg0KDQoNCg0KDQoNCkJ0dyBJIGFsc28gdHJpZWQgdG8gYnVp
-bGQgdGhlIGRlZmF1bHQgaW1hZ2Ugd2l0aCAibWFrZSBOMzEwX1hHIiwgdGhpcyBvbmUgY29tcGls
-ZXMgYnV0IGZhaWxlZCBsYXRlciBkdXJpbmcgRFJDOg0KW0RSQyBCSVZDLTFdIEJhbmsgSU8gc3Rh
-bmRhcmQgVmNjOiBDb25mbGljdGluZyBWY2Mgdm9sdGFnZXMgaW4gYmFuayAzNC4gRm9yIGV4YW1w
-bGUsIHRoZSBmb2xsb3dpbmcgdHdvIHBvcnRzIGluIHRoaXMgYmFuayBoYXZlIGNvbmZsaWN0aW5n
-IFZDQ09zOg0KZGRyM19ja19wWzBdIChESUZGX1NTVEwxNSwgcmVxdWlyaW5nIFZDQ089MS41MDAp
-IGFuZCBkZHIzX2FkZHJbMTVdIChMVkNNT1MxOCwgcmVxdWlyaW5nIFZDQ089MS44MDApDQpbVml2
-YWRvX1RjbCA0LTIzXSBFcnJvcihzKSBmb3VuZCBkdXJpbmcgRFJDLiBQbGFjZXIgbm90IHJ1bi4N
-Cg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAt
-dXNlcnMgbWFpbGluZyBsaXN0DQpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86VVNS
-UC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4v
-bGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
+Hi Robert,
 
---_000_23a286638bd44719a36b213cbfad0fa5dlrde_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+This patch/line change detailed below should resolve that issue and will be
+included in the official 3.15.0.0 release:
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcA0KCXttc28tc3R5bGUtcHJpb3JpdHk6
-OTk7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBjbTsNCgltc28t
-bWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowY207DQoJZm9udC1zaXplOjEy
-LjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmNvZGUNCgl7
-bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KcC5N
-c29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNvTGlzdFBhcmFncmFw
-aA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowY207DQoJbWFyZ2luLXJp
-Z2h0OjBjbTsNCgltYXJnaW4tYm90dG9tOjBjbTsNCgltYXJnaW4tbGVmdDozNi4wcHQ7DQoJbWFy
-Z2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRp
-bWVzIE5ldyBSb21hbiIsInNlcmlmIjt9DQpzcGFuLkVtYWlsU3R5bGUyMA0KCXttc28tc3R5bGUt
-dHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYi
-Ow0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhw
-b3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNh
-bnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsN
-CgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlvbjEN
-Cgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHht
-bD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3ht
-bD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6
-ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBl
-bGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxp
-bms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPkhpIE5hdGUhPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgZm9s
-bG93ZWQgdGhlIGd1aWRlIGluIDxhIGhyZWY9Imh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVh
-bC9tZF91c3JwM19idWlsZF9pbnN0cnVjdGlvbnMuaHRtbCI+DQpodHRwczovL2ZpbGVzLmV0dHVz
-LmNvbS9tYW51YWwvbWRfdXNycDNfYnVpbGRfaW5zdHJ1Y3Rpb25zLmh0bWw8L2E+LCB0aHVzIGVu
-ZGVkIHVwIHdpdGggVml2YWRvIDIwMTguMyBhbmQgdGhlbiBsYXRlciBmb3VuZCBvdXQgdGhpcyBy
-ZXF1aXJlcyBVSEQgMy4xNS4gVGhhbmtzIGZvciBwb2ludGluZyBtZSB0byB0aGUgVml2YWRvIGJ1
-Zy4gSSB0aG91Z2h0IHdpdGggMjAxOC4zLjEgdGhpcyB3b3VsZCBiZSBmaXhlZCwgYnV0IGFwcGFy
-ZW50bHkgdGhhdA0KIGlzIG5vdCB0aGUgY2FzZS4gTm93IEkgd2VudCBiYWNrIHRvIDIwMTguMyAo
-Y2xlYW4gcmUtaW5zdGFsbCkgYW5kIGluc3RhbGxlZCB0aGUgcGF0Y2ggQVIjNzE4OTguIFRoZSBz
-dGFuZGFyZCBOMzEwIGltYWdlIGNvbXBpbGVzIGZpbmUgbm93LjxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5UaGUgb3RoZXIgZXJyb3I8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+RVJST1I6IFtTeW50aCA4LTUyNF0gcGFydC1zZWxl
-Y3QgWzE1OjhdIG91dCBvZiByYW5nZSBvZiBwcmVmaXggJ1NUUl9TSU5LX0ZJRk9TSVpFJyBbL3Vz
-ci9sb2NhbC9zcmMvdWhkL2ZwZ2Etc3JjL3VzcnAzL2xpYi9yZm5vYy9ub2Nfc2hlbGwudjoyNzBd
-PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+c2VlbXMgdG8gYmUg
-aGFwcGVuaW5nIG9ubHkgZm9yIGZldyBzcGVjaWZpYyBSRk5vQyBibG9ja3MgKGZvc3Bob3IgYW5k
-IHNwbGl0X3N0cmVhbSwgc3BlY2lmaWNhbGx5KS4gTGVhdmluZyB0aGVzZSBvdXQsIHRoZSBSRk5v
-QyBpbWFnZSBkb2VzIGNvbXBpbGUuIE5vdCBzdXJlIHdoYXQgZXhhY3RseSBpcyB0aGUgcHJvYmxl
-bSwgdGhvdWdoLiBUaGUgcmVjZW50IGNvbW1pdA0KPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29t
-L0V0dHVzUmVzZWFyY2gvZnBnYS9jb21taXQvMTEwMjc3OWY0OWQ0NGM5ZThiODhjZTcyNTFkMjAz
-ZWI2MmFlMjZjOSI+DQpodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC9mcGdhL2NvbW1p
-dC8xMTAyNzc5ZjQ5ZDQ0YzllOGI4OGNlNzI1MWQyMDNlYjYyYWUyNmM5PC9hPiBkaWQgbm90IGhl
-bHAgKHRyaWVkIGJvdGggdmVyc2lvbnMsIG5laXRoZXIgb2YgdGhlbSB3b3JrcykuPG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPlJlZ2FyZHM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPlJvYmVydDxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2NvbG9yOiMxRjQ5N0QiPiA8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9y
-OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1Rh
-aG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZx
-dW90O3NhbnMtc2VyaWYmcXVvdDsiPiBOYXRlIFRlbXBsZSBbbWFpbHRvOm5hdGUudGVtcGxlQGV0
-dHVzLmNvbV0NCjxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIERlY2VtYmVyIDA5LCAyMDE5IDg6
-NDMgUE08YnI+DQo8Yj5Ubzo8L2I+IFDDtmhsbWFubiwgUm9iZXJ0PGJyPg0KPGI+Q2M6PC9iPiBV
-U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAt
-dXNlcnNdIERlZmF1bHQgUkZOb0MgaW1hZ2UgZm9yIE4zMTAgZG9lcyBub3QgY29tcGlsZTxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+SGkgUm9i
-ZXJ0LCA8bzpwPg0KPC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+U28gdGhpcyBpcyBhIGJ1ZyBy
-ZWxhdGVkIHRvIFZpdmFkbywgeW91IHdpbGwgbmVlZCB0byBpbnN0YWxsIHRoaXMgbGlua2VkIGJl
-bG93IHBhdGNoIGFuZCBpdCBzaG91bGQgcmVzb2x2ZSBpdC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1m
-YW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PG86cD4mbmJz
-cDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PGEgaHJlZj0iaHR0cHM6Ly93d3cueGlsaW54LmNvbS9zdXBwb3J0L2Fuc3dlcnMvNzE4OTguaHRt
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMt
-c2VyaWYmcXVvdDsiPmh0dHBzOi8vd3d3LnhpbGlueC5jb20vc3VwcG9ydC9hbnN3ZXJzLzcxODk4
-Lmh0bWw8L3NwYW4+PC9hPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90
-OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PG86cD4mbmJzcDs8L286cD48
-L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsi
-PlJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZx
-dW90O3NhbnMtc2VyaWYmcXVvdDsiPk5hdGUgVGVtcGxlPG86cD48L286cD48L3NwYW4+PC9wPg0K
-PC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
-Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBNb24sIERlYyA5LCAyMDE5
-IGF0IDEwOjM4IEFNIE5hdGUgVGVtcGxlICZsdDs8YSBocmVmPSJtYWlsdG86bmF0ZS50ZW1wbGVA
-ZXR0dXMuY29tIj5uYXRlLnRlbXBsZUBldHR1cy5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0
-OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNtIDBjbSA2LjBwdDttYXJnaW4tbGVm
-dDo0LjhwdDttYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1yaWdodDowY207bWFyZ2luLWJvdHRvbTo1
-LjBwdCI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
-b250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5IaSBS
-b2JlcnQsPGJyPg0KPGJyPg0KVGhhbmtzIGZvciB0aGUgYnVnIHJlcG9ydC4gPGJyPg0KPGJyPg0K
-SWYgeW91J3JlIGp1c3QgdHJ5aW5nIHRvIHVzZSBSRk5vQyBhdCB0aGlzIHBvaW50LCBJIHdvdWxk
-IHJlY29tbWVuZCB0byBzdGljayB3aXRoIHRoZSBsYXRlc3Qgc3RhYmxlIHJlbGVhc2UsIHdoaWNo
-IGF0IHRoaXMgdGltZSBpcyB2My4xNC4xLjEuDQo8YnI+DQo8YnI+DQpOb3RlLCAzLjE0LngueCBV
-SEQgd2lsbCByZXF1aXJlIFZpdmFkbyAyMDE3LjQuPGJyPg0KPGJyPg0KPGJyPg0KUmVnYXJkcyw8
-YnI+DQpOYXRlIFRlbXBsZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gTW9uLCBEZWMgOSwgMjAxOSBhdCA3OjMzIEFNIFJvYmVy
-dCB2aWEgVVNSUC11c2VycyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+Jmd0
-OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRl
-cjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNtIDBj
-bSA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1yaWdodDow
-Y207bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPGRpdiBpZD0iZ21haWwtbV8tNzcyNDQx
-OTI1Mjk2MzU0MDI1MWdtYWlsLW1fMTUwMzQzNjAyNzAxNDA4MDAzM2RpdnRhZ2RlZmF1bHR3cmFw
-cGVyIj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOmJsYWNr
-Ij5IaSBhbGwhPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3Nw
-YW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
-b2xvcjpibGFjayI+SSB0cmllZCB0byBjb21waWxlIHRoZSBkZWZhdWx0IFJGTm9DIGltYWdlIGZv
-ciB0aGUgTjMxMCwgdXNpbmcgVUhEIG9uIHRhZyB2My4xNS4wLjAtcmMyIGFuZCBYaWxpbnggVml2
-YWRvIDIwMTguMy4xLg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286
-cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
-dW90Oztjb2xvcjpibGFjayI+UnVubmluZzwvc3Bhbj48Y29kZT48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjEwLjBwdDtjb2xvcjpibGFjayI+ICZxdW90O21ha2UgTjMxMF9SRk5PQ19YRyZxdW90Oywg
-dGhlIElQIGNvcmVzIGFyZSBjb21waWxlZCBzdWNjZXNzZnVsbHksIGJ1dCB0aGVuIFZpdmFkbyBz
-aG93cyB0aGUgZm9sbG93aW5nIGVycm9yczo8L3NwYW4+PC9jb2RlPjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
-YmxhY2siPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
-dW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29s
-b3I6YmxhY2siPkVSUk9SOiBbU3ludGggOC01MjRdIHBhcnQtc2VsZWN0IFsxNTo4XSBvdXQgb2Yg
-cmFuZ2Ugb2YgcHJlZml4ICdTVFJfU0lOS19GSUZPU0laRScgWy91c3IvbG9jYWwvc3JjL3VoZC9m
-cGdhLXNyYy91c3JwMy9saWIvcmZub2Mvbm9jX3NoZWxsLnY6MjcwXTxicj4NCkVSUk9SOiBbU3lu
-dGggOC01MjFdIHBhcmFtZXRlciBhc3NpZ25tZW50IGNvdWxkIG5vdCBiZSByZXNvbHZlZCB0byBh
-IGNvbnN0YW50IFsvdXNyL2xvY2FsL3NyYy91aGQvZnBnYS1zcmMvdXNycDMvbGliL3Jmbm9jL25v
-Y19zaGVsbC52OjI3MF08YnI+DQpFUlJPUjogW1N5bnRoIDgtMTk2XSBjb25kaXRpb25hbCBleHBy
-ZXNzaW9uIGNvdWxkIG5vdCBiZSByZXNvbHZlZCB0byBhIGNvbnN0YW50IFsvdXNyL2xvY2FsL3Ny
-Yy91aGQvZnBnYS1zcmMvdXNycDMvbGliL3Jmbm9jL25vY19zaGVsbC52OjIzOV08YnI+DQpXQVJO
-SU5HOiBbU3ludGggOC02OTNdIHplcm8gcmVwbGljYXRpb24gY291bnQgLSByZXBsaWNhdGlvbiBp
-Z25vcmVkIFsvdXNyL2xvY2FsL3NyYy91aGQvZnBnYS1zcmMvdXNycDMvbGliL3Jmbm9jL25vY19z
-aGVsbC52OjI2XTxicj4NCldBUk5JTkc6IFtTeW50aCA4LTY5M10gemVybyByZXBsaWNhdGlvbiBj
-b3VudCAtIHJlcGxpY2F0aW9uIGlnbm9yZWQgWy91c3IvbG9jYWwvc3JjL3VoZC9mcGdhLXNyYy91
-c3JwMy9saWIvcmZub2Mvbm9jX3NoZWxsLnY6MjddPGJyPg0KV0FSTklORzogW1N5bnRoIDgtNjkz
-XSB6ZXJvIHJlcGxpY2F0aW9uIGNvdW50IC0gcmVwbGljYXRpb24gaWdub3JlZCBbL3Vzci9sb2Nh
-bC9zcmMvdWhkL2ZwZ2Etc3JjL3VzcnAzL2xpYi9yZm5vYy9ub2Nfc2hlbGwudjozMV08YnI+DQpF
-UlJPUjogW1N5bnRoIDgtNjE1Nl0gZmFpbGVkIHN5bnRoZXNpemluZyBtb2R1bGUgJ25vY19zaGVs
-bF9fcGFyYW1ldGVyaXplZDknIFsvdXNyL2xvY2FsL3NyYy91aGQvZnBnYS1zcmMvdXNycDMvbGli
-L3Jmbm9jL25vY19zaGVsbC52OjIxXTxicj4NCkVSUk9SOiBbU3ludGggOC02MTU2XSBmYWlsZWQg
-c3ludGhlc2l6aW5nIG1vZHVsZSAnbm9jX2Jsb2NrX2Zvc3Bob3InIFsvdXNyL2xvY2FsL3NyYy91
-aGQvZnBnYS1zcmMvdXNycDMvbGliL3Jmbm9jL25vY19ibG9ja19mb3NwaG9yLnY6OF08YnI+DQpF
-UlJPUjogW1N5bnRoIDgtNjE1Nl0gZmFpbGVkIHN5bnRoZXNpemluZyBtb2R1bGUgJ24zeHhfY29y
-ZScgWy91c3IvbG9jYWwvc3JjL3VoZC9mcGdhLXNyYy91c3JwMy90b3AvbjN4eC9uM3h4X2NvcmUu
-djoxN108YnI+DQpFUlJPUjogW1N5bnRoIDgtNjE1Nl0gZmFpbGVkIHN5bnRoZXNpemluZyBtb2R1
-bGUgJ24zeHgnIFsvdXNyL2xvY2FsL3NyYy91aGQvZnBnYS1zcmMvdXNycDMvdG9wL24zeHgvZGJv
-YXJkcy9tZy9uM3h4LnY6MTNdPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8
-L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
-ZiZxdW90Oztjb2xvcjpibGFjayI+VGhlIGZ1bGwgYnVpbGQubG9nIGZpbGUgaXMgYXR0YWNoZWQu
-IEkgZGlkIG5vdCBtb2RpZnkgYW55IGZpbGVzLCBqdXN0IHRyeWluZyB0byBjb21waWxlIHRoZSBS
-Rk5vQyBleGFtcGxlIGFzIHByb3ZpZGVkLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
-PHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
-cy1zZXJpZiZxdW90Oztjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
-cy1zZXJpZiZxdW90Oztjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
-cy1zZXJpZiZxdW90Oztjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
-cy1zZXJpZiZxdW90Oztjb2xvcjpibGFjayI+QnR3IEkgYWxzbyB0cmllZCB0byBidWlsZCB0aGUg
-ZGVmYXVsdCBpbWFnZSB3aXRoICZxdW90O21ha2UgTjMxMF9YRyZxdW90OywgdGhpcyBvbmUgY29t
-cGlsZXMgYnV0IGZhaWxlZCBsYXRlciBkdXJpbmcgRFJDOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOmJsYWNrIj5bRFJD
-IEJJVkMtMV0gQmFuayBJTyBzdGFuZGFyZCBWY2M6IENvbmZsaWN0aW5nIFZjYyB2b2x0YWdlcyBp
-biBiYW5rIDM0LiBGb3IgZXhhbXBsZSwgdGhlIGZvbGxvd2luZyB0d28gcG9ydHMgaW4gdGhpcyBi
-YW5rIGhhdmUgY29uZmxpY3RpbmcgVkNDT3M6DQo8YnI+DQpkZHIzX2NrX3BbMF0gKERJRkZfU1NU
-TDE1LCByZXF1aXJpbmcgVkNDTz0xLjUwMCkgYW5kIGRkcjNfYWRkclsxNV0gKExWQ01PUzE4LCBy
-ZXF1aXJpbmcgVkNDTz0xLjgwMCk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0
-Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
-LXNlcmlmJnF1b3Q7O2NvbG9yOmJsYWNrIj5bVml2YWRvX1RjbCA0LTIzXSBFcnJvcihzKSBmb3Vu
-ZCBkdXJpbmcgRFJDLiBQbGFjZXIgbm90IHJ1bi48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6YmxhY2siPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-PGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Q8YnI+DQo8YSBocmVmPSJtYWlsdG86VVNSUC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj5VU1JQLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbTwvYT48YnI+DQo8YSBocmVmPSJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4v
-bGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj5odHRw
-Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
-cy5jb208L2E+PG86cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvYmxvY2tx
-dW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+---
+ usrp3/lib/rfnoc/noc_shell.v | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---_000_23a286638bd44719a36b213cbfad0fa5dlrde_--
+diff --git a/usrp3/lib/rfnoc/noc_shell.v b/usrp3/lib/rfnoc/noc_shell.v
+index 927f40a70..732d41afa 100644
+--- a/usrp3/lib/rfnoc/noc_shell.v
++++ b/usrp3/lib/rfnoc/noc_shell.v
+@@ -267,7 +267,7 @@ module noc_shell
+           .o_tdata({set_addr_bclk[8*k+7:8*k],
+set_data_bclk[32*k+31:32*k]}),
+           .o_tvalid(set_stb_bclk[k]), .o_tready(set_stb_bclk[k]));
+
+-       localparam [31:0] STR_SINK_FIFO_SIZE_BYTES =3D
+2**(STR_SINK_FIFOSIZE[8*k+7:8*k]+3);
++       localparam [31:0] STR_SINK_FIFO_SIZE_BYTES =3D (k < INPUT_PORTS) ?
+2**(STR_SINK_FIFOSIZE[8*k+7:8*k]+3) : 0;
+        // "Lines" is the most useful unit for the command FIFO size, since
+        // commands take either 2 or 3 lines. Software can do the rest of
+the
+        // math to figure out how many actual command packets it can send.
 
 
---===============1773267133117141559==
+
+Regards,
+Nate Temple
+
+On Tue, Dec 10, 2019 at 8:46 AM <Robert.Poehlmann@dlr.de> wrote:
+
+> Hi Nate!
+>
+>
+>
+> I followed the guide in
+> https://files.ettus.com/manual/md_usrp3_build_instructions.html, thus
+> ended up with Vivado 2018.3 and then later found out this requires UHD
+> 3.15. Thanks for pointing me to the Vivado bug. I thought with 2018.3.1
+> this would be fixed, but apparently that is not the case. Now I went back
+> to 2018.3 (clean re-install) and installed the patch AR#71898. The standa=
+rd
+> N310 image compiles fine now.
+>
+>
+>
+> The other error
+>
+> ERROR: [Synth 8-524] part-select [15:8] out of range of prefix
+> 'STR_SINK_FIFOSIZE'
+> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
+>
+> seems to be happening only for few specific RFNoC blocks (fosphor and
+> split_stream, specifically). Leaving these out, the RFNoC image does
+> compile. Not sure what exactly is the problem, though. The recent commit
+> https://github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d2=
+03eb62ae26c9
+> did not help (tried both versions, neither of them works).
+>
+>
+>
+> Regards
+>
+> Robert
+>
+>
+>
+>
+>
+> *From:* Nate Temple [mailto:nate.temple@ettus.com]
+> *Sent:* Monday, December 09, 2019 8:43 PM
+> *To:* P=C3=B6hlmann, Robert
+> *Cc:* USRP-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] Default RFNoC image for N310 does not compile
+>
+>
+>
+> Hi Robert,
+>
+>
+>
+> So this is a bug related to Vivado, you will need to install this linked
+> below patch and it should resolve it.
+>
+>
+>
+> https://www.xilinx.com/support/answers/71898.html
+>
+>
+>
+> Regards,
+>
+> Nate Temple
+>
+>
+>
+> On Mon, Dec 9, 2019 at 10:38 AM Nate Temple <nate.temple@ettus.com> wrote=
+:
+>
+> Hi Robert,
+>
+> Thanks for the bug report.
+>
+> If you're just trying to use RFNoC at this point, I would recommend to
+> stick with the latest stable release, which at this time is v3.14.1.1.
+>
+> Note, 3.14.x.x UHD will require Vivado 2017.4.
+>
+>
+> Regards,
+> Nate Temple
+>
+>
+>
+> On Mon, Dec 9, 2019 at 7:33 AM Robert via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+> Hi all!
+>
+>
+>
+> I tried to compile the default RFNoC image for the N310, using UHD on tag
+> v3.15.0.0-rc2 and Xilinx Vivado 2018.3.1.
+>
+>
+>
+> Running "make N310_RFNOC_XG", the IP cores are compiled successfully, but
+> then Vivado shows the following errors:
+>
+>
+>
+> ERROR: [Synth 8-524] part-select [15:8] out of range of prefix
+> 'STR_SINK_FIFOSIZE'
+> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
+> ERROR: [Synth 8-521] parameter assignment could not be resolved to a
+> constant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
+> ERROR: [Synth 8-196] conditional expression could not be resolved to a
+> constant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:239]
+> WARNING: [Synth 8-693] zero replication count - replication ignored
+> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:26]
+> WARNING: [Synth 8-693] zero replication count - replication ignored
+> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:27]
+> WARNING: [Synth 8-693] zero replication count - replication ignored
+> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:31]
+> ERROR: [Synth 8-6156] failed synthesizing module
+> 'noc_shell__parameterized9'
+> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:21]
+> ERROR: [Synth 8-6156] failed synthesizing module 'noc_block_fosphor'
+> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_block_fosphor.v:8]
+> ERROR: [Synth 8-6156] failed synthesizing module 'n3xx_core'
+> [/usr/local/src/uhd/fpga-src/usrp3/top/n3xx/n3xx_core.v:17]
+> ERROR: [Synth 8-6156] failed synthesizing module 'n3xx'
+> [/usr/local/src/uhd/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]
+>
+>
+>
+> The full build.log file is attached. I did not modify any files, just
+> trying to compile the RFNoC example as provided.
+>
+>
+>
+>
+>
+>
+>
+> Btw I also tried to build the default image with "make N310_XG", this one
+> compiles but failed later during DRC:
+>
+> [DRC BIVC-1] Bank IO standard Vcc: Conflicting Vcc voltages in bank 34.
+> For example, the following two ports in this bank have conflicting VCCOs:
+> ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=3D1.500) and ddr3_addr[15]
+> (LVCMOS18, requiring VCCO=3D1.800)
+>
+> [Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+
+--00000000000086947c05995c64cc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi Robert,<br><br>This patch/line change detailed below=
+ should resolve that issue and will be included in the official 3.15.0.0 re=
+lease:<br><br>---<br>=C2=A0usrp3/lib/rfnoc/noc_shell.v | 2 +-<br>=C2=A01 fi=
+le changed, 1 insertion(+), 1 deletion(-)<br><br>diff --git a/usrp3/lib/rfn=
+oc/noc_shell.v b/usrp3/lib/rfnoc/noc_shell.v<br>index 927f40a70..732d41afa =
+100644<br>--- a/usrp3/lib/rfnoc/noc_shell.v<br>+++ b/usrp3/lib/rfnoc/noc_sh=
+ell.v<br>@@ -267,7 +267,7 @@ module noc_shell<br>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0.o_tdata({set_addr_bclk[8*k+7:8*k], set_data_bclk[32*k+31:=
+32*k]}),<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.o_tvalid(set_stb_bclk=
+[k]), .o_tready(set_stb_bclk[k]));<br>=C2=A0<br>- =C2=A0 =C2=A0 =C2=A0 loca=
+lparam [31:0] STR_SINK_FIFO_SIZE_BYTES =3D 2**(STR_SINK_FIFOSIZE[8*k+7:8*k]=
++3);<br>+ =C2=A0 =C2=A0 =C2=A0 localparam [31:0] STR_SINK_FIFO_SIZE_BYTES =
+=3D (k &lt; INPUT_PORTS) ? 2**(STR_SINK_FIFOSIZE[8*k+7:8*k]+3) : 0;<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 // &quot;Lines&quot; is the most useful unit for t=
+he command FIFO size, since<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 // commands take=
+ either 2 or 3 lines. Software can do the rest of the<br>=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 // math to figure out how many actual command packets it can sen=
+d.<br><br><br><br>Regards,<br>Nate Temple</div></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Dec 10, 2019 at 8:46=
+ AM &lt;<a href=3D"mailto:Robert.Poehlmann@dlr.de">Robert.Poehlmann@dlr.de<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-6331373918561515169WordSection1">
+<p class=3D"MsoNormal">Hi Nate!<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I followed the guide in <a href=3D"https://files.ett=
+us.com/manual/md_usrp3_build_instructions.html" target=3D"_blank">
+https://files.ettus.com/manual/md_usrp3_build_instructions.html</a>, thus e=
+nded up with Vivado 2018.3 and then later found out this requires UHD 3.15.=
+ Thanks for pointing me to the Vivado bug. I thought with 2018.3.1 this wou=
+ld be fixed, but apparently that
+ is not the case. Now I went back to 2018.3 (clean re-install) and installe=
+d the patch AR#71898. The standard N310 image compiles fine now.<u></u><u><=
+/u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">The other error<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">ERROR: [Synth 8-524] par=
+t-select [15:8] out of range of prefix &#39;STR_SINK_FIFOSIZE&#39; [/usr/lo=
+cal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]</span><u></u><u></u><=
+/p>
+<p class=3D"MsoNormal">seems to be happening only for few specific RFNoC bl=
+ocks (fosphor and split_stream, specifically). Leaving these out, the RFNoC=
+ image does compile. Not sure what exactly is the problem, though. The rece=
+nt commit
+<a href=3D"https://github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b8=
+8ce7251d203eb62ae26c9" target=3D"_blank">
+https://github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d203=
+eb62ae26c9</a> did not help (tried both versions, neither of them works).<u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Regards<u></u><u></u></p>
+<p class=3D"MsoNormal">Robert<span style=3D"font-size:11pt;color:rgb(31,73,=
+125)"> <u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,&quot;sans-serif&quot;;color:rgb(31,73,125)"><u></u>=C2=A0<u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,&quot;sans-serif&quot;;color:rgb(31,73,125)"><u></u>=C2=A0<u></u>=
+</span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10pt;font-family:&quot;T=
+ahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-siz=
+e:10pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Nate Temple =
+[mailto:<a href=3D"mailto:nate.temple@ettus.com" target=3D"_blank">nate.tem=
+ple@ettus.com</a>]
+<br>
+<b>Sent:</b> Monday, December 09, 2019 8:43 PM<br>
+<b>To:</b> P=C3=B6hlmann, Robert<br>
+<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">=
+USRP-users@lists.ettus.com</a><br>
+<b>Subject:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
+ile<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;">Hi Robert, <u></u>
+<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;">So this is a bug related to Vivado, you will need to insta=
+ll this linked below patch and it should resolve it.<u></u><u></u></span></=
+p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><a href=3D"https://www.xilinx.com/support/answers/71=
+898.html" target=3D"_blank"><span style=3D"font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;">https://www.xilinx.com/support/answers/71898.html</sp=
+an></a><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;"=
+><u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;">Regards,<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;">Nate Temple<u></u><u></u></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Mon, Dec 9, 2019 at 10:38 AM Nate Temple &lt;<a h=
+ref=3D"mailto:nate.temple@ettus.com" target=3D"_blank">nate.temple@ettus.co=
+m</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-color:currentcolor currentcolor currentcolor rg=
+b(204,204,204);border-style:none none none solid;border-width:medium medium=
+ medium 1pt;padding:0cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt">
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;">Hi Robert,<br>
+<br>
+Thanks for the bug report. <br>
+<br>
+If you&#39;re just trying to use RFNoC at this point, I would recommend to =
+stick with the latest stable release, which at this time is v3.14.1.1.
+<br>
+<br>
+Note, 3.14.x.x UHD will require Vivado 2017.4.<br>
+<br>
+<br>
+Regards,<br>
+Nate Temple<u></u><u></u></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Mon, Dec 9, 2019 at 7:33 AM Robert via USRP-users=
+ &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-color:currentcolor currentcolor currentcolor rg=
+b(204,204,204);border-style:none none none solid;border-width:medium medium=
+ medium 1pt;padding:0cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt">
+<div>
+<div id=3D"gmail-m_-6331373918561515169gmail-m_-7724419252963540251gmail-m_=
+1503436027014080033divtagdefaultwrapper">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">Hi all!<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">I tried to compile the default RFNoC image f=
+or the N310, using UHD on tag v3.15.0.0-rc2 and Xilinx Vivado 2018.3.1.
+<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">Running</span><code><span style=3D"font-size=
+:10pt;color:black"> &quot;make N310_RFNOC_XG&quot;, the IP cores are compil=
+ed successfully, but then Vivado shows the following errors:</span></code><=
+span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:=
+black"><u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">ERROR: [Synth 8-524] part-select [15:8] out =
+of range of prefix &#39;STR_SINK_FIFOSIZE&#39; [/usr/local/src/uhd/fpga-src=
+/usrp3/lib/rfnoc/noc_shell.v:270]<br>
+ERROR: [Synth 8-521] parameter assignment could not be resolved to a consta=
+nt [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]<br>
+ERROR: [Synth 8-196] conditional expression could not be resolved to a cons=
+tant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:239]<br>
+WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
+ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:26]<br>
+WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
+ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:27]<br>
+WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
+ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:31]<br>
+ERROR: [Synth 8-6156] failed synthesizing module &#39;noc_shell__parameteri=
+zed9&#39; [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:21]<br>
+ERROR: [Synth 8-6156] failed synthesizing module &#39;noc_block_fosphor&#39=
+; [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_block_fosphor.v:8]<br>
+ERROR: [Synth 8-6156] failed synthesizing module &#39;n3xx_core&#39; [/usr/=
+local/src/uhd/fpga-src/usrp3/top/n3xx/n3xx_core.v:17]<br>
+ERROR: [Synth 8-6156] failed synthesizing module &#39;n3xx&#39; [/usr/local=
+/src/uhd/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]<u></u><u></u></span>=
+</p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">The full build.log file is attached. I did n=
+ot modify any files, just trying to compile the RFNoC example as provided.<=
+u></u><u></u></span></p>
+</div>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black"><u></u>=C2=A0<u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black"><u></u>=C2=A0<u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black"><u></u>=C2=A0<u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">Btw I also tried to build the default image with &quot;make N310=
+_XG&quot;, this one compiles but failed later during DRC:<u></u><u></u></sp=
+an></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">[DRC BIVC-1] Bank IO standard Vcc: Conflicti=
+ng Vcc voltages in bank 34. For example, the following two ports in this ba=
+nk have conflicting VCCOs:
+<br>
+ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=3D1.500) and ddr3_addr[15] (LVCMO=
+S18, requiring VCCO=3D1.800)<u></u><u></u></span></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><span style=3D"font-fam=
+ily:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:black">[Vivado_Tcl 4-2=
+3] Error(s) found during DRC. Placer not run.<u></u><u></u></span></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><u></u>=C2=A0<u></u></span></p>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a><u></u><u></u></p>
+</blockquote>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+
+</blockquote></div>
+
+--00000000000086947c05995c64cc--
+
+
+--===============3295545959664496154==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -412,5 +563,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1773267133117141559==--
+--===============3295545959664496154==--
 
