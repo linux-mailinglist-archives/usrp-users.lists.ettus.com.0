@@ -2,50 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FBD612092F
-	for <lists+usrp-users@lfdr.de>; Mon, 16 Dec 2019 16:01:23 +0100 (CET)
-Received: from [::1] (port=42864 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5D812111D
+	for <lists+usrp-users@lfdr.de>; Mon, 16 Dec 2019 18:09:00 +0100 (CET)
+Received: from [::1] (port=42872 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1igrsA-0004im-Gv; Mon, 16 Dec 2019 10:01:22 -0500
-Received: from sonic302-21.consmr.mail.ne1.yahoo.com ([66.163.186.147]:35565)
+	id 1igtrY-0005LP-U1; Mon, 16 Dec 2019 12:08:52 -0500
+Received: from mout.gmx.net ([212.227.17.22]:48347)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
- id 1igrs5-0004Yq-LB
- for usrp-users@lists.ettus.com; Mon, 16 Dec 2019 10:01:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1576508436; bh=UqId7ByZ4W+0lwckWaQxqOGiBkjzUZWqfn0PSWgSAXo=;
- h=Date:From:To:Subject:References:From:Subject;
- b=CLJNAcYQ9KSixWTEnjeJdrdJ7Oa7J52smFrOMqlGZDvqdnfCRoCsF7Bdxylyp1UHl8wFBOfPq6lFEjttkNoqkOqQ+6IxwqWH+zqPNBdQUXUHPAHcys02xFppc7YGW5sxI0TS05zlL0Xbvf//e8PcnlIDT8PSMXitrxFithi+gpFCiTfkDJtvmX+dEeZ0CJoOLaQCD6/9rtghVP968duZWfqhi8bjF6csArsecYVgwJJRSA8jzyqM5JlaYRpz9keRKU5J/xrtgj1MhcN0TAnNNTF5q/EQsXkjNlL2I2QvPbhFUexmoKrL7JDR8UOoTJP1lAO/nLQBywIc5Qa4PYpv2w==
-X-YMail-OSG: ZMW1yLQVM1nuHOjeF0F8Ywc37AEDIiqawk6Dw7jZFDY7yghPKlpmmD53NIqi_CL
- TDSVhvGN5.CKyT3zOxB5iYKJBIYiOlRYEIx3UYAiqSZUC2dP2uwSpiJFvZcvU4brXVaJKb6b1IvL
- c6Xw5QU5.2Ye08gePhmN46hiZcN8Pfl9B5QGKZVt395tog0PEPTVQbMmiwL9MBncrPbR9aNOyuls
- vXw0SR8MIl64BVgkKwapDzDheN4lie9HRfNFoZhulvacKl2BTpyDSR7FsiV7NC3F.WohQZ0QZBVQ
- tATO3JeQ.0SlKPmTMUWWEUs8udolRokSTb._nJsi2U8SnqU76QVMGsdkU2LGmFqVFhWpy.hEWZnf
- ut_OpSkBDuKTZ7oM8yP88Enf5o_8N.ruAXRWhOBVJaAq1ypAyhTRlMGUEaSyhYPLUt0HbVwn48Pv
- s66mdr2F_xKvz6pnJTKamz0idXaJMUVfdVRAGBDsnXIGzai_ibQdDACSSZSy_QXZdtm7pbeYW4qJ
- WxIfueLdFDpgA0_oRimmbDI7XXJPXgc_aD1zCi5Gy5jbHbtmGXy6o9tZcRf5VPi0r2xBT2oH9iu.
- m953WthCG6PAy8p.eFO.lsH1Tizh_3hAfO27w3tprIsvf0hJ91gSaVlkUsyUyMj.Xob6ir85FTcO
- r2hWjAtjfO87Fr2TxJ8e6RR0R0r6jj8chuALgvGOL4JHCwJeysiyJMWD1.mgL0jUfAs8TSQtuDq1
- oCppO_KYUgq6Zb.v_AcEfzoUNySGWh_P7Gsnd59dwDKrFCV8_iJ7yo.3NtxpgCDCKOXyWYVqlduV
- 2pQyc9vScdycd.chKbX65dfde6Oc7.Hmhioooi57.8WvosgpOsznrCN0k9YQ1juloEh3Qy3YgNOm
- 8D0vG6hiTFgtPbwvHb9LOMoPXz8NVLpyeyHgDuSSmK02Sfr4xhqiORjxHsgOM3gksGsGeOcLCE1h
- ODDiqPQ1UzLp_s5iN7ELcTwrEnRYeag6SpLE6aIAHOQg5VOgDIu_q57j094ikLeE0Pt1QaMviXFV
- KxFxbiKf8jwefgAUk1FkcRcgLPlslIBdxESiLofto.0ydTidTOUgRjrjFk6L1ix5A5RAqPWG5Kkw
- IXDlPLrHguAQRBlnENv.aK4AG5du_ZcNANxSbQoEk30sfhEBqiNtw8qklEGyekZGqUZKjC7XAdyc
- 6n.n2fHe5O2Wj5aWJ0DTBOM6vaa4Fwt5ODV9A8G7T6FiPg1DrjVuA.2z8jMZ2qC6pWyVtoNXj6zh
- uFgDWcrqjhPHlPhXAh5a3KYWKGoMxqRHxFRelxc07sVeelAkogon12znMNWtZdfoI1Z6RMaY_I9L
- j9KfeV5Y8BONf5SVMnmgmAwa7HoRz7Pii
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic302.consmr.mail.ne1.yahoo.com with HTTP; Mon, 16 Dec 2019 15:00:36 +0000
-Date: Mon, 16 Dec 2019 15:00:32 +0000 (UTC)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <1273926885.14075492.1576508432546@mail.yahoo.com>
+ (Exim 4.92) (envelope-from <lukashaase@gmx.at>) id 1igtrW-0005Hx-3H
+ for usrp-users@lists.ettus.com; Mon, 16 Dec 2019 12:08:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1576516088;
+ bh=/8TI0tQnFR1oIS+s5FNqq7YkUyyqTbpCyRLgj+MIo2g=;
+ h=X-UI-Sender-Class:From:To:Subject:Date;
+ b=csHMKJTS54+z+OWVNAVy/9u1Scj8x6W74VK/5XaYYy9TFWziIhay1kxtYrii6wGp7
+ v71o8LSCZ8DAGdEDtra6cAUuB3eeyvMlh3cB7273XmnX6grXeK0aKjW9hHgSSnz0G1
+ SWO/uMIXv7hR7pZWkQX/aV/swsKaSTpC+AZkyw7M=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
+ (3c-app-gmx-bap63.server.lan [172.19.172.133]) (via HTTP); Mon, 16 Dec 2019
+ 18:08:08 +0100
 MIME-Version: 1.0
-References: <1273926885.14075492.1576508432546.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.14728 YMailNorrin Mozilla/5.0 (X11; Linux x86_64;
- rv:68.0) Gecko/20100101 Firefox/68.0
-Subject: [USRP-users] set_tx_freq is not functioning properly
+Message-ID: <trinity-88a878c2-c71a-4ced-a774-012a0c505ff1-1576516088747@3c-app-gmx-bap63>
+To: usrp-users@lists.ettus.com
+Date: Mon, 16 Dec 2019 18:08:08 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:BAdjbilsEqovm03YgDrXRGyKEE2hoFTunhAQOdUjB9fd7XHK5i1ySKQdhJHHeRx0TncU+
+ lEk6MH+arYSDwesfZPu8q0jdCkc103yb5Foar9K/naRgsILiIkApnh4GzbTcNts49RRQfEvFyEzu
+ xytjb7F+ssUUmyL8zzwBuhMBakUesAN4O7Z0yKsljfZpDfB09YNdw6RKZpkLq84DqLB2IScPws2I
+ Y4CXgVxLsGZn2g/EIjtblarBFveMOyRtyL3CyyFKQLOoguHYLDciuUrKHJknZrNUCofNUbapMD2E
+ tw=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dET3KV7RGEM=:GiD+20/mfTcusAc1EBfbfa
+ DFoxpMaiplkio19WqPAiug/td5IBzqfiHL3RpMWRsBJXYPHud+EkFUZ62P4hayWVAjetf99LI
+ kYkfrdkCSAWqKkK3NuzzB/IH5eW9wWMjIpj23rn/ZOzdlzCails/Pfy/Cag13QMhS5Xe9FQke
+ W1YEGy9sJDcT4kMRxhVyjUSc12dthUhQBVOdec7jIs1IIrK9z21eWO8F/VzpA++qSTkMW+Gq/
+ Op0DgXKENTnCvKo4ow5w0tj/ZsLBZ1xkzlvTRY0yrpa6BhfOTD1/bKOInH55OGqZGLaw8sGK3
+ 0GarQbb9q8OU9sJniDkpbuBIW99cg4RJukKBG8RvS7MxSm+z8IOUuDM4it7DoFZB6d577Mgjt
+ PDV99B0sAc7t37h5dKJftYpe8Bo0tPbnGOZJxtKn65aQo6FIp3Q9WcZVjIdKIAB8ZpYavrZtB
+ 6XMuOfU+D/q1om7zisvjTd0onAqC3AOcF++sgaAH/76Ov6bJPB8EBeg+wJSLIY8USR1qD8xyB
+ FAxQMxLqqI/9JOs0BeD+nsrCu0merj9HdC8itRkc5Uzh8m60+KvqUwCuS+MrEnpLLzuqjhvKt
+ iNKvGDZUrvH5438G8P1rPxYW46SEt0CVhh6mMOeBLkGnyol/NMS84j3YzZJxhHxUIW9A4+qqf
+ KtEzBNnulJj7SmlTU8dnL+vFEE2xrJBlhLiy+t0Er5Fh3/w==
+Subject: [USRP-users] USRP Source generates more tags than expected
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: voonna santosh <santu_voonna@yahoo.com>
-Content-Type: multipart/mixed; boundary="===============6671317846338689174=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,68 +76,75 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6671317846338689174==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_14075491_1309873985.1576508432545"
-Content-Length: 2579
+Hi,
 
-------=_Part_14075491_1309873985.1576508432545
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+According to the manual, USRP Source generates tags whenever settings change (e.g. center frequency). I would like to use this for my frequency hopping system: A python code regularly changes the center frequency of the USRP Source (and Sink) block and then I use "rx_freq" tags to detect whenever a switch happened and patch together a packet.
 
-Hi There,=C2=A0=C2=A0 I have bench marked X300 against my development PC. T=
-hen I took benchmark_rate code and modified a bit. Everything works fine ex=
-cept setting the center freq.=C2=A0=C2=A0 When ever I set the center freque=
-ncy, there is no error returned by the call. But when I transmit the data, =
-it doesn't appear in scope. Whenever I remove the code to set the center fr=
-equency, things work fine and I cann see a spike at 10Mhz which is default =
-frequency I guess. Any clues?
-std::cout << boost::format("Setting TX Freq: %f MHz...") % (freq/1e6) << st=
-d::endl;
-uhd::tune_request_t tune_request(freq);
-//usrp->set_tx_freq(tune_request, 0); - This line also doesn't work
-usrp->set_tx_freq(freq, 0);
-std::cout << boost::format("Actual TX Freq: %f MHz...") % (usrp->get_tx_fre=
-q(0)/1e6) << std::endl << std::endl;
+I need to convert the sequential data due to hopping to a "parallel" data: For example, I hop between three frequencies than after the last frequency, I need to process the data for all three frequencies. Hence I need to know when the different switch occured.
 
-Thanks and Regards
+However, using the "Tag Debug" block I see that for each tune request 6 tags are created. For example:
 
-------=_Part_14075491_1309873985.1576508432545
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+----------------------------------------------------------------------
+Tag Debug:
+Input Stream: 00
+  Offset: 14537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
+  Offset: 14537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.0988063}
+  Offset: 14537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
+----------------------------------------------------------------------
 
-<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
-ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
-=3D"ltr" data-setdir=3D"false">Hi There,</div><div dir=3D"ltr" data-setdir=
-=3D"false">&nbsp;&nbsp; I have bench marked X300 against my development PC.=
- Then I took benchmark_rate code and modified a bit. Everything works fine =
-except setting the center freq.</div><div dir=3D"ltr" data-setdir=3D"false"=
->&nbsp;&nbsp; When ever I set the center frequency, there is no error retur=
-ned by the call. But when I transmit the data, it doesn't appear in scope. =
-Whenever I remove the code to set the center frequency, things work fine an=
-d I cann see a spike at 10Mhz which is default frequency I guess. Any clues=
-?</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" da=
-ta-setdir=3D"false"><div dir=3D"ltr" data-setdir=3D"false">std::cout &lt;&l=
-t; boost::format("Setting TX Freq: %f MHz...") % (freq/1e6) &lt;&lt; std::e=
-ndl;<br>uhd::tune_request_t tune_request(freq);<br><div>//usrp-&gt;set_tx_f=
-req(tune_request, 0); - This line also doesn't work<br></div>usrp-&gt;set_t=
-x_freq(freq, 0);<br>std::cout &lt;&lt; boost::format("Actual TX Freq: %f MH=
-z...") % (usrp-&gt;get_tx_freq(0)/1e6) &lt;&lt; std::endl &lt;&lt; std::end=
-l;<br><br></div><div dir=3D"ltr" data-setdir=3D"false">Thanks and Regards<b=
-r></div></div></div></body></html>
-------=_Part_14075491_1309873985.1576508432545--
+----------------------------------------------------------------------
+Tag Debug:
+Input Stream: 00
+  Offset: 15537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
+  Offset: 15537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.298806}
+  Offset: 15537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Tag Debug:
+Input Stream: 00
+  Offset: 16537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
+  Offset: 16537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.498806}
+  Offset: 16537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Tag Debug:
+Input Stream: 00
+  Offset: 17537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
+  Offset: 17537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.698806}
+  Offset: 17537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Tag Debug:
+Input Stream: 00
+  Offset: 18537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
+  Offset: 18537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.898806}
+  Offset: 18537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Tag Debug:
+Input Stream: 00
+  Offset: 19537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
+  Offset: 19537796  Source: file_meta_source0     Key: rx_time   Value: {1576453290 0.0988063}
+  Offset: 19537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
+----------------------------------------------------------------------
 
 
---===============6671317846338689174==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
+I expected only one. Why are there six of them?
+
+
+Thanks,
+Luke
+
+
+
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6671317846338689174==--
-
