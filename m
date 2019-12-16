@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5D812111D
-	for <lists+usrp-users@lfdr.de>; Mon, 16 Dec 2019 18:09:00 +0100 (CET)
-Received: from [::1] (port=42872 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B8D121AD9
+	for <lists+usrp-users@lfdr.de>; Mon, 16 Dec 2019 21:26:19 +0100 (CET)
+Received: from [::1] (port=57736 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1igtrY-0005LP-U1; Mon, 16 Dec 2019 12:08:52 -0500
-Received: from mout.gmx.net ([212.227.17.22]:48347)
+	id 1igwwa-0003Tt-U9; Mon, 16 Dec 2019 15:26:16 -0500
+Received: from mail-ed1-f51.google.com ([209.85.208.51]:38356)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <lukashaase@gmx.at>) id 1igtrW-0005Hx-3H
- for usrp-users@lists.ettus.com; Mon, 16 Dec 2019 12:08:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1576516088;
- bh=/8TI0tQnFR1oIS+s5FNqq7YkUyyqTbpCyRLgj+MIo2g=;
- h=X-UI-Sender-Class:From:To:Subject:Date;
- b=csHMKJTS54+z+OWVNAVy/9u1Scj8x6W74VK/5XaYYy9TFWziIhay1kxtYrii6wGp7
- v71o8LSCZ8DAGdEDtra6cAUuB3eeyvMlh3cB7273XmnX6grXeK0aKjW9hHgSSnz0G1
- SWO/uMIXv7hR7pZWkQX/aV/swsKaSTpC+AZkyw7M=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bap63.server.lan [172.19.172.133]) (via HTTP); Mon, 16 Dec 2019
- 18:08:08 +0100
+ (Exim 4.92) (envelope-from <daniel.jepson@ettus.com>)
+ id 1igwwX-0003PJ-Bj
+ for usrp-users@lists.ettus.com; Mon, 16 Dec 2019 15:26:13 -0500
+Received: by mail-ed1-f51.google.com with SMTP id i16so5108971edr.5
+ for <usrp-users@lists.ettus.com>; Mon, 16 Dec 2019 12:25:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=09DrCa4eyJGzCCOUMW2FfFV1juuImYsyoLQau0Vi+Xk=;
+ b=RqQoliS8xRJn+Lui3CsTf42S5FzmZHvg5S3YFZqzX9J3/khJA2zfNyj7Oek2Xwcxng
+ PPmIILdF5t1HCQtotJOKgX1+AaW2rZBm6qfL+iK5YOEJAhLzEoqQUKmrD2/4Y73l2nkG
+ NTwQu3YdXCAuyvHXWq9w3yYaLPvf1iX/uDmA0EAcD2wQhM2M6FpG4Ht/WpZJl9Y6Bu9+
+ pJ7Qe+l90iVbuDxI3g/bvQI2UnwoLuSTlj1CJx0r0s2o6P1u6P+e82HSu7QMrBo2WrXV
+ YANPdz7c44P1C1q7NK524P+VRly6pd5VSFpkZvKRUzGzaFbHingYU4EKKDYOuFzO97jc
+ RdMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=09DrCa4eyJGzCCOUMW2FfFV1juuImYsyoLQau0Vi+Xk=;
+ b=UuJ5HkmHrGCg12NVHjjHjZHe1goziUoLUVuALd0QNYxFV8E2vx58iMt0geM5oKOfvj
+ OlxIzlEC5xnJ0b0SGuII80XnBJf+bsAHfKuYjkf4FQKRObQ2FN0PvAnocRoxuVhUwr5B
+ xYbhNsvu1Xjqm4aPVI5ntt8BaMcI7KfRTMx5cREzOC7LM8sm5pUIJf3x+8zauqI3iksq
+ DpTymsPpaPnHRgVQ7c+fH9pgGUTJSLZmy5tXueseXwEp+sevSgigpxDd8yeP8XcAf6xA
+ aXm7uCjM4GXTE+TO3jIhVM6+f0RWq0aQbX30XqCp23fjuaSm7qHRmHwXCuwvdsYpZyb4
+ +dCQ==
+X-Gm-Message-State: APjAAAWbT57mSjz8VNHmKlYzv+54r26TdoV9DQEAQAep4d6D4I2yz9ev
+ +1vKGzslNx3Guf/tAB348mgt0hVx8S5rDZ65/1KlU4BPiHS0Nw==
+X-Google-Smtp-Source: APXvYqz3Hw3SusA0mcnoLUMb41aIA4d45dksI3YqB0Sar51Udi/UNpk1gdhF5+mDUmcjpGrA6CkAuawdX85CQI3wVQw=
+X-Received: by 2002:a17:906:1354:: with SMTP id
+ x20mr908337ejb.279.1576527932243; 
+ Mon, 16 Dec 2019 12:25:32 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-88a878c2-c71a-4ced-a774-012a0c505ff1-1576516088747@3c-app-gmx-bap63>
-To: usrp-users@lists.ettus.com
-Date: Mon, 16 Dec 2019 18:08:08 +0100
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:BAdjbilsEqovm03YgDrXRGyKEE2hoFTunhAQOdUjB9fd7XHK5i1ySKQdhJHHeRx0TncU+
- lEk6MH+arYSDwesfZPu8q0jdCkc103yb5Foar9K/naRgsILiIkApnh4GzbTcNts49RRQfEvFyEzu
- xytjb7F+ssUUmyL8zzwBuhMBakUesAN4O7Z0yKsljfZpDfB09YNdw6RKZpkLq84DqLB2IScPws2I
- Y4CXgVxLsGZn2g/EIjtblarBFveMOyRtyL3CyyFKQLOoguHYLDciuUrKHJknZrNUCofNUbapMD2E
- tw=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dET3KV7RGEM=:GiD+20/mfTcusAc1EBfbfa
- DFoxpMaiplkio19WqPAiug/td5IBzqfiHL3RpMWRsBJXYPHud+EkFUZ62P4hayWVAjetf99LI
- kYkfrdkCSAWqKkK3NuzzB/IH5eW9wWMjIpj23rn/ZOzdlzCails/Pfy/Cag13QMhS5Xe9FQke
- W1YEGy9sJDcT4kMRxhVyjUSc12dthUhQBVOdec7jIs1IIrK9z21eWO8F/VzpA++qSTkMW+Gq/
- Op0DgXKENTnCvKo4ow5w0tj/ZsLBZ1xkzlvTRY0yrpa6BhfOTD1/bKOInH55OGqZGLaw8sGK3
- 0GarQbb9q8OU9sJniDkpbuBIW99cg4RJukKBG8RvS7MxSm+z8IOUuDM4it7DoFZB6d577Mgjt
- PDV99B0sAc7t37h5dKJftYpe8Bo0tPbnGOZJxtKn65aQo6FIp3Q9WcZVjIdKIAB8ZpYavrZtB
- 6XMuOfU+D/q1om7zisvjTd0onAqC3AOcF++sgaAH/76Ov6bJPB8EBeg+wJSLIY8USR1qD8xyB
- FAxQMxLqqI/9JOs0BeD+nsrCu0merj9HdC8itRkc5Uzh8m60+KvqUwCuS+MrEnpLLzuqjhvKt
- iNKvGDZUrvH5438G8P1rPxYW46SEt0CVhh6mMOeBLkGnyol/NMS84j3YzZJxhHxUIW9A4+qqf
- KtEzBNnulJj7SmlTU8dnL+vFEE2xrJBlhLiy+t0Er5Fh3/w==
-Subject: [USRP-users] USRP Source generates more tags than expected
+References: <a343ea0c848d44c6bbaaab53bd80a4c1@heig-vd.ch>
+In-Reply-To: <a343ea0c848d44c6bbaaab53bd80a4c1@heig-vd.ch>
+Date: Mon, 16 Dec 2019 14:25:19 -0600
+Message-ID: <CA+Zwmn7rDB6ghMTiLkvt1LhYM0E9Y8KYpKNtqJ5SGODazU1NtA@mail.gmail.com>
+To: Truan David <david.truan@heig-vd.ch>
+Subject: Re: [USRP-users] N320: XQ image issue using sfp0 as time_source
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Daniel Jepson via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Daniel Jepson <daniel.jepson@ettus.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7970896730843751715=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,75 +77,165 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi,
+--===============7970896730843751715==
+Content-Type: multipart/alternative; boundary="000000000000615de40599d80339"
 
-According to the manual, USRP Source generates tags whenever settings change (e.g. center frequency). I would like to use this for my frequency hopping system: A python code regularly changes the center frequency of the USRP Source (and Sink) block and then I use "rx_freq" tags to detect whenever a switch happened and patch together a packet.
+--000000000000615de40599d80339
+Content-Type: text/plain; charset="UTF-8"
 
-I need to convert the sequential data due to hopping to a "parallel" data: For example, I hop between three frequencies than after the last frequency, I need to process the data for all three frequencies. Hence I need to know when the different switch occured.
+Hi David,
 
-However, using the "Tag Debug" block I see that for each tune request 6 tags are created. For example:
+Indeed, this sounds like a bug, and I believe you have the correct solution
+identified. We will begin validating the fix on our side, but you can try
+adding `XQ` to the list here: sfp_time_source_images = ('WX',) and then
+recompiling. You should be able to just modify the installed file directly
+on your N320 and then reboot to restart MPM.
 
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 14537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
-  Offset: 14537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.0988063}
-  Offset: 14537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
-----------------------------------------------------------------------
+Just keep in mind I haven't tested this yet, but it seems like it's the
+right way to go!
 
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 15537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
-  Offset: 15537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.298806}
-  Offset: 15537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
-----------------------------------------------------------------------
-
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 16537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
-  Offset: 16537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.498806}
-  Offset: 16537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
-----------------------------------------------------------------------
-
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 17537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
-  Offset: 17537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.698806}
-  Offset: 17537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
-----------------------------------------------------------------------
-
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 18537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
-  Offset: 18537796  Source: file_meta_source0     Key: rx_time   Value: {1576453289 0.898806}
-  Offset: 18537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
-----------------------------------------------------------------------
-
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 19537796  Source: file_meta_source0     Key: rx_freq   Value: 1.85e+09
-  Offset: 19537796  Source: file_meta_source0     Key: rx_time   Value: {1576453290 0.0988063}
-  Offset: 19537796  Source: file_meta_source0     Key: rx_rate   Value: 5e+06
-----------------------------------------------------------------------
+-Daniel
 
 
+On Tue, Dec 10, 2019 at 9:41 AM Truan David via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-I expected only one. Why are there six of them?
+> Hi!
+>
+> We are using multiples N320 (UHD 3.14) and we want to synchronize our
+> setup using the White Rabbit protocol and using the N320 as the WR Slave
+> and the Master being an OPNT Switch.
+>
+> We have to be able to stream the IQ over the QSFP+ port (seen as sfp0) and
+> use the SFP0 as the WR input so we have the XQ image loaded.
+>
+> However, when setting sfp0 as the time_source, I get an error saying I
+> need the WX image. I checked the "MPM/periph_manager/n3xx" python code and
+> saw it only checks for the WX (line 692 of the 3.14 UHD on github). Is this
+> normal?
+>
+> If not, can I patch it by adding the XQ string to the
+> "sfp_time_source_images", pack it and only replace the MPM package or
+> should I totally rebuild UHD and flash my SD?
+>
+>
+> Thank you in advance for your answer!
+>
+>
+> David Truan
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
 
-Thanks,
-Luke
+-- 
+
+Daniel Jepson
+
+Digital Hardware Engineer
+
+National Instruments
 
 
 
+O: +1.512.683.6163
 
+daniel.jepson@ni.com
+
+--000000000000615de40599d80339
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi David,<div><br></div><div>Indeed, this=
+ sounds like a bug, and I believe you have the correct solution identified.=
+ We will begin validating the fix on our side, but you can try adding `XQ` =
+to the list here:=C2=A0<span style=3D"color:rgb(36,41,46);font-family:SFMon=
+o-Regular,Consolas,&quot;Liberation Mono&quot;,Menlo,monospace;font-size:12=
+px;white-space:pre;background-color:rgb(255,251,221)">sfp_time_source_image=
+s </span><span class=3D"gmail-pl-k" style=3D"box-sizing:border-box;color:rg=
+b(215,58,73);font-family:SFMono-Regular,Consolas,&quot;Liberation Mono&quot=
+;,Menlo,monospace;font-size:12px;white-space:pre">=3D</span><span style=3D"=
+color:rgb(36,41,46);font-family:SFMono-Regular,Consolas,&quot;Liberation Mo=
+no&quot;,Menlo,monospace;font-size:12px;white-space:pre;background-color:rg=
+b(255,251,221)"> (</span><span class=3D"gmail-pl-s" style=3D"box-sizing:bor=
+der-box;color:rgb(3,47,98);font-family:SFMono-Regular,Consolas,&quot;Libera=
+tion Mono&quot;,Menlo,monospace;font-size:12px;white-space:pre"><span class=
+=3D"gmail-pl-pds" style=3D"box-sizing:border-box">&#39;</span>WX<span class=
+=3D"gmail-pl-pds" style=3D"box-sizing:border-box">&#39;</span></span><span =
+style=3D"color:rgb(36,41,46);font-family:SFMono-Regular,Consolas,&quot;Libe=
+ration Mono&quot;,Menlo,monospace;font-size:12px;white-space:pre;background=
+-color:rgb(255,251,221)">,) </span>and then recompiling. You should be able=
+ to just modify the installed file directly on your N320 and then reboot to=
+ restart MPM.=C2=A0</div><div><br></div><div>Just keep in mind I haven&#39;=
+t tested this yet, but it seems like it&#39;s the right way to go!</div><di=
+v><br></div><div>-Daniel</div><div><br></div></div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Dec 10, 2019 at 9:41 A=
+M Truan David via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.c=
+om">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex">Hi!<br>
+<br>
+We are using multiples N320 (UHD 3.14) and we want to synchronize our setup=
+ using the White Rabbit protocol and using the N320 as the WR Slave and the=
+ Master being an OPNT Switch.<br>
+<br>
+We have to be able to stream the IQ over the QSFP+ port (seen as sfp0) and =
+use the SFP0 as the WR input so we have the XQ image loaded.<br>
+<br>
+However, when setting sfp0 as the time_source, I get an error saying I need=
+ the WX image. I checked the &quot;MPM/periph_manager/n3xx&quot; python cod=
+e and saw it only checks for the WX (line 692 of the 3.14 UHD on github). I=
+s this normal?<br>
+<br>
+If not, can I patch it by adding the XQ string to the &quot;sfp_time_source=
+_images&quot;, pack it and only replace the MPM package or should I totally=
+ rebuild UHD and flash my SD?<br>
+<br>
+<br>
+Thank you in advance for your answer!<br>
+<br>
+<br>
+David Truan<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><p><a name=3D"SignatureSanitize=
+r_SafeHtmlFilter__MailAutoSig"><span style=3D"color:black">Daniel
+Jepson</span></a></p>
+
+<p><span style=3D"color:black">Digital Hardware Engineer</span></p>
+
+<p><span style=3D"color:black">National Instruments</span></p>
+
+<p><span style=3D"color:black">=C2=A0</span></p>
+
+<p><span style=3D"color:black">O: +1.512.683.6163</span></p>
+
+<p><span style=3D"color:black"><a href=3D"mailto:daniel.jepson@ni.com" targ=
+et=3D"_blank">daniel.jepson@ni.com</a></span></p></div></div></div>
+
+--000000000000615de40599d80339--
+
+
+--===============7970896730843751715==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7970896730843751715==--
+
