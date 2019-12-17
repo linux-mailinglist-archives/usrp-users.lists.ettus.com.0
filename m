@@ -2,53 +2,77 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 007F6122FEC
-	for <lists+usrp-users@lfdr.de>; Tue, 17 Dec 2019 16:17:01 +0100 (CET)
-Received: from [::1] (port=46568 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 373AA123554
+	for <lists+usrp-users@lfdr.de>; Tue, 17 Dec 2019 20:00:28 +0100 (CET)
+Received: from [::1] (port=52568 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ihEan-0002ZJ-RJ; Tue, 17 Dec 2019 10:16:57 -0500
-Received: from mail-lf1-f50.google.com ([209.85.167.50]:39174)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1ihEaj-0002PZ-63
- for usrp-users@lists.ettus.com; Tue, 17 Dec 2019 10:16:53 -0500
-Received: by mail-lf1-f50.google.com with SMTP id y1so7237106lfb.6
- for <usrp-users@lists.ettus.com>; Tue, 17 Dec 2019 07:16:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=iauRiDLAmPpkV3+F4JTfh7rPzlsn7ciWUN/K7R5aBWg=;
- b=O3UGP+eAWuqwKtsI+e4bG/gMDnSU/o7gR/oQMe9YhNGen8MdUHtthGxBl/cNlYLwPU
- 29IkxOtBdBowCP1/nv5UMRZYyxEN5072BaLxEhSDWtRJ38preXh8F4helj2Gk61ziV/x
- PUNokRLNSMdvYLLRO6haCQkd2Eu70peQ+Hs4YSIrQ7omKQy4Z5Ewy4eDZjRfUa2P4T06
- 8M7UGINWi92GloniXN2wCKp8ki2oogmy2SQr8SPBXwrs00xxOUkx401B9C/iU+SeqHF0
- JidnWKd9hgW8bfvImumDF+ryErMyaTHIG3bLz6tl2LwX25/cFDNEEx8fvDLlR1Kgoili
- Lyrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=iauRiDLAmPpkV3+F4JTfh7rPzlsn7ciWUN/K7R5aBWg=;
- b=KegP/OlPeH9jTDBxLozhuaNUFWUZ5/ETGYWyD3OSNFnchVNzZXfnius9xz+vvdKbz4
- Ur8yCNVP6eq67WoKvp0tA/Bnt22L0Xr2b/Vs5dTvzHm91Ud3ELUeyYWqPlIUuT+mGLf3
- XDJdQH96MDCRU/FpTua2min9XNxpbYiof+4FoX4vRa3uJ398jTkiQQKtGC+I7W7+Bjr4
- RZYWKpsrg+jKkuRJo7YEHoNmS0z5gmIbVJPyMwFFvb7QhrEcWYa7k5FKomEJjdEhLg9/
- WpWBP16x5tjZ4hsXsXNUAVg6C9Yl6WGhk6GQLN7UNcCz6KVmKttzY7vCWfzMf/0KepNT
- b5KA==
-X-Gm-Message-State: APjAAAViHv6zoMemsVM906Gkz4FOtL6Re9wvh7gdyywVrMxN/ccGWE7A
- ACau+1A9NVnQhY+MzSCpPQq2XftkPku5b9a79AgPuJ6V
-X-Google-Smtp-Source: APXvYqyMrcd0enLlSqtUbNpdMzD47lvpeXYKIkFTdFatylNNX/r4df05w4ZMDXp1jW/Ri9mVrVreDoo0ZN1QPPH70ko=
-X-Received: by 2002:ac2:485c:: with SMTP id 28mr3051237lfy.118.1576595771834; 
- Tue, 17 Dec 2019 07:16:11 -0800 (PST)
+	id 1ihI4y-0006lq-1J; Tue, 17 Dec 2019 14:00:20 -0500
+Received: from mail-oln040092253044.outbound.protection.outlook.com
+ ([40.92.253.44]:63232 helo=APC01-SG2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <snehasish.cse@live.com>)
+ id 1ihI4u-0006V6-Ej
+ for usrp-users@lists.ettus.com; Tue, 17 Dec 2019 14:00:16 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R09mvEhWQLSAbZ8rll7YdZSUm8jnKwAHMaduXDF9ECv2zw2N5knNZWBX+jKfJp/SrvXKZVcjDdzdKPegFQew+hvXXnn6mU9Fg3pNG3Y5d165r0UamevqpICfim21frvS21HBx9ZjD0tPyANvpEIqMmrL9naVBh8ZGLIuNPub8xQnKbRGRILT9LDuM0DjJJBQNPOfOdZofnBXCYmSibH6SZs5HrMPO2rOweILuaWIPEegiGdkhr7KoDKtIxrXOjG+BohZj1ZP+2WxDJhHbkw9zCmMkW43cJBb1RrSTm55/YG4bQLJ77TQqo91cWy4Phd+LOJTorUXnSBmWC6LBLglhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ENghDYnNwZtvF2yl1tfGIQ7xU/CipuT7ZY7Xkv+N0gg=;
+ b=KQFRX60eFsYAJVB1Gd8MXvYrZgIdyzPluzMK0bmeFvUcP+5fGYpB6b/efADvM8pTUwWzNYz+2QhEokSDN8ji3hXnAxKMSS9WlNsTrCghFP7c2fsNAbMGBrrFam0lHsU8KhbnN/yzYCT7g27P+mkzq+ypty37AxqTjNd1LADZooV3EhDouv+tslPGyvocatDEGtAkMvB+LtvwF9r32nRUKe8tZicYkQhsIFgxk7DxtpxyE38ehyJzvEXogAstZWPjipKFeYcCsPfuenf0XmBBQTBfo6gtU+sqvqnHXiCDFdsmSkndy0YNGmKz3MzUgWU6dr4gUz2/65i0VPLZODZkTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ENghDYnNwZtvF2yl1tfGIQ7xU/CipuT7ZY7Xkv+N0gg=;
+ b=QvdZisAwt4cB80FZemqB+wOR7GPOj8Vt0ex0jko5NUyVe2C6dROwWNZhfNo1ToPu6yJu0yu33NSia8s39PDhOXYHgLjwEIpvQjZNi+8+wA8ryRgwfaaWlox/llYVp1JcrZ8tV3WwQLYoVv3MdAeXBS6rFj/hA5yjeHBqz0K7x14NcRmFu4qzlLdn9y4yIgc8CoRWoQ862+pYGyg5x17w8tt/VBT/DYUDJXjZ9IE98Dmy98kyEC4ANedZWJS68KB1VffzPymPArGIajNOu/ANkWKfjUos8RfrMEwdMhrKviXCEMHLasOQnbsk4G/TQsLZO2zXny7XcvNgXfR1EQ199Q==
+Received: from SG2APC01FT033.eop-APC01.prod.protection.outlook.com
+ (10.152.250.59) by SG2APC01HT053.eop-APC01.prod.protection.outlook.com
+ (10.152.251.119) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.15; Tue, 17 Dec
+ 2019 18:59:33 +0000
+Received: from BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM (10.152.250.51) by
+ SG2APC01FT033.mail.protection.outlook.com (10.152.250.119) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2538.15 via Frontend Transport; Tue, 17 Dec 2019 18:59:33 +0000
+Received: from BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::adfe:c8d4:6ece:3921]) by BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::adfe:c8d4:6ece:3921%7]) with mapi id 15.20.2538.019; Tue, 17 Dec 2019
+ 18:59:33 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Api to call rfnoc split stream
+Thread-Index: AQHVtQwddBT+QtlTJUCTEkuACuqnDw==
+Date: Tue, 17 Dec 2019 18:59:32 +0000
+Message-ID: <BMXPR01MB39447CA3F4BA58C9B9D1B09988500@BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:A4F5DB579BF5C16746290548568E223ED82361316ABBE0A2874EE4B453FDDF16;
+ UpperCasedChecksum:0863F41E2C8F8CC726BFEE57BACFF26A36786C9516E5CFAA36FF305A8A1AFB69;
+ SizeAsReceived:6727; Count:43
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [s58Q5MXdSos4Mus0prAOxg4JNg3ddz3y]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 43
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 4d15a778-ad56-4f9d-10b9-08d7832340ed
+x-ms-traffictypediagnostic: SG2APC01HT053:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: utqUJlb6iRgHgi1Huwx4P5kCfod39czl5XX+2MFlHq/mqKDfYQZ33AGP7wmb3CxkfnWO49bQ3t6j35z7ajuSaUb5TlP57SvIrISl1fQ7kfipM3Pg7968q4Hjfsm6M4UwVZiNJCYjKOMEJx68FVZeKrtv8louj3CrhAp2lGyrN4ObhL4HMFyVYsZjGrkafU40
+x-ms-exchange-transport-forked: True
+Content-ID: <97813B63B247B84D81295DE628C021EC@sct-15-20-2387-20-msonline-outlook-56dde.templateTenant>
 MIME-Version: 1.0
-References: <541389374.290743.1576592576592.ref@mail.yahoo.com>
- <541389374.290743.1576592576592@mail.yahoo.com>
-In-Reply-To: <541389374.290743.1576592576592@mail.yahoo.com>
-Date: Tue, 17 Dec 2019 09:16:00 -0600
-Message-ID: <CANf970bYMiqJA1WmczV4Qe=mJfE4JitjgM8obhEyRpcTcx=FHQ@mail.gmail.com>
-To: voonna santosh <santu_voonna@yahoo.com>
-Subject: Re: [USRP-users] Crash detected - X300
+X-OriginatorOrg: live.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d15a778-ad56-4f9d-10b9-08d7832340ed
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2019 18:59:32.2333 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2APC01HT053
+Subject: [USRP-users] Api to call rfnoc split stream
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,10 +84,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3530958995121664619=="
+From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Snehasish Kar <snehasish.cse@live.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,101 +101,13 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3530958995121664619==
-Content-Type: multipart/alternative; boundary="000000000000ef59d80599e7ce6b"
+Hello
 
---000000000000ef59d80599e7ce6b
-Content-Type: text/plain; charset="UTF-8"
+Please let me know ho do we use the rfnoc split stream from C++ I am not able to find the concerned header file.
 
-Santosh,
-
-Does this error occur with a shipping example like "tx_samples_from_file"?
-
-If the answer is yes, I'd recommend upgrading UHD to a more recent version.
-Not sure what your versioning constraints are, but I'd recommend the tag
-"v3.14.1.1" - this is the current release of UHD.
-
-If the answer is no, you should figure out how your streaming code differs
-from the example. If there's some key difference that you believe is
-implemented correctly, let us know what it is here on the mailing list.
-
-Sam Reiter
-Ettus Research
-
-On Tue, Dec 17, 2019 at 8:23 AM voonna santosh via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi There,
->    I have and example app to read from file and writing to SDR. I am
-> seeing a crash/credump @ convert_fc32_1_to_item32_1_bswap_guts. I have
-> attached call stack and any pointers on this would be highly appreciated.
->
-> Environment: linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-39);
-> Boost_105800; UHD_003.010.001.HEAD-0-g929e3b
-> Hardware: X300 with UBX (TX only with single channel)
->
-> BR,
-> Santosh
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000ef59d80599e7ce6b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div>Santosh,</div><div><br></div><div>Does this error occur with=
- a shipping example like &quot;tx_samples_from_file&quot;?</div><div><br></=
-div><div>If the answer is yes, I&#39;d recommend upgrading UHD to a more re=
-cent version. Not sure what your versioning constraints are, but I&#39;d re=
-commend the tag &quot;v3.14.1.1&quot; - this is the current release of UHD.=
-</div><div><br></div><div>If the answer is no, you should figure out how yo=
-ur streaming code differs from the example. If there&#39;s some key differe=
-nce that you believe is implemented correctly, let us know what it is here =
-on the mailing list.<br></div><div><br></div><div><div><div dir=3D"ltr" cla=
-ss=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter <b=
-r><div>Ettus Research<br></div></div></div></div></div></div></div></div></=
-div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Tue, Dec 17, 2019 at 8:23 AM voonna santosh via USRP-use=
-rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><div><div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-seri=
-f;font-size:16px"><div dir=3D"ltr">Hi There,</div><div dir=3D"ltr">=C2=A0=
-=C2=A0 I have and example app to read from file and writing to SDR. I am se=
-eing a crash/credump @ <span>convert_fc32_1_to_item32_1_bswap_guts. I have =
-attached call stack and any pointers on this would be highly appreciated.</=
-span></div><div dir=3D"ltr"><span><br></span></div><div dir=3D"ltr"><span>E=
-nvironment: <span>linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-39);=
- Boost_105800; UHD_003.010.001.HEAD-0-g929e3b</span></span></div><div dir=
-=3D"ltr"><span><span>Hardware: X300 with UBX (TX only with single channel)<=
-/span><br></span></div><div dir=3D"ltr"><span><br></span></div><div dir=3D"=
-ltr"><span>BR,</span></div><div dir=3D"ltr"><span>Santosh</span><br></div><=
-/div></div>_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000ef59d80599e7ce6b--
-
-
---===============3530958995121664619==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Regards
+Snehasish
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3530958995121664619==--
-
