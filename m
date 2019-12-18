@@ -2,50 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4656B124B61
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Dec 2019 16:16:45 +0100 (CET)
-Received: from [::1] (port=59824 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45771124C2C
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Dec 2019 16:50:44 +0100 (CET)
+Received: from [::1] (port=42166 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ihb47-00020F-CH; Wed, 18 Dec 2019 10:16:43 -0500
-Received: from sonic308-55.consmr.mail.gq1.yahoo.com ([98.137.68.31]:40466)
+	id 1ihbay-0005GF-Sg; Wed, 18 Dec 2019 10:50:40 -0500
+Received: from mail-lj1-f177.google.com ([209.85.208.177]:34722)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <angilberto@yahoo.com>)
- id 1ihb3Z-0006Ub-Jb
- for usrp-users@lists.ettus.com; Wed, 18 Dec 2019 10:16:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1576682128; bh=NWg6I3xBLXPF8+nLrBoHsmcGIYcMdwv7p1462IyQrLo=;
- h=Date:From:To:Subject:References:From:Subject;
- b=X4aVxyJRCasUOvIhsEpJ/F6mnbHYFGadKGujigjH4BwYQhc+qTHcFtgsS2uuWCDpW3tL9H/6KqflCRmjO87O6Wit5vgEKoybUUPJigmPZX8pB/A6bedCjgTKyk0tbzIOW1qPtuyBZ3qOuKsTGzd92df0GRNticbgHfFc2Agp6f9K35yuIoeSQ+Id6OsDo2WQEXZXH0i+vbDnjgNLe6rTvWIvE0+ks37Hb7errOWlJHWKsL92WpglO8zw66PtmrfVQXi6NuqkTbiJRUrvpCFMvMHrAvPoZsHh6wYZ8AdUFGNl9i6RTKxZAEYi/EadCtjxioQcVfnIT4xTsrk01P4nQg==
-X-YMail-OSG: _nfI5.cVM1nQNcgOEqBma1tlLxh2A_wvnkkoMZRxUYYaAPxnMAGDq2px12lRW9d
- BATAS.yZwRG1FEHC1aI11kIWJsPpFGcEBZbBMqpx7.Hzc2mUaseWvimZkj7SwZ9Pg7LULNac7G79
- RV3RHXopRipfGmZX.1xu06BcpkG1pshnYCNIDEsR4e6_DkGMFfOf4JOGwgS0jL1nauZ8SI7nA3_S
- hpvnFk0oKi6mBzuMTi1IqdwX_KKwDozCz6X_MAS_iR0TyC9iXDb92qIeu.9qXO7IYfPtD6CCE.YA
- lKlZrJHl7KM3DGMf0KAdARapoyg5XrQlbKW03xrwiMS2VHVThUDnsxtHeTwxlEQjS8qZNc3kJYY1
- MQCEGI5YyXBBoDXHVXB.ahYlgXBx_JYn06IDxKobXvtWJ8WERHcnMjPwUMKnCazkLvU889ZwmKun
- BUosEnUHRLLp1.cmPW9zTswbB18kn9tgj3BBkoOSLz3qUvCWoBsaMOof5KSgA1pGwYXeuqdrkuqA
- mhcNQivFGEX9Bbh3oPKebhG9NtH2qYhEspp.6oEm1ONGsLVHpj_Q_mngH2DbHLesuTjY4HudzCyY
- bH.wVjFuR7tjKy3SI2NNwW7ryXjZxBLT6IfMjluv7nTldIElqBcWiuNwCvKRdQV2IPUpFrisibi8
- r9TZKqEeLFVhK1h_5bKv7nY_igHvteHtKsTmssW9Lu8Deehwa2mSU0bAumPnqoUDnhofzWqgfjPe
- vjS5_ZKliWWv3GIb6MNeCoFDhZWP41HIXGzhEEWzqqaR_n0.iWDVKaVuBndsYDXPKxYjM2pZYz3k
- EpD3qJjXy33jUV_y7L0.HLtzztS9sHrhHyL9jGTfngSlN33cuFX2l6Iokro41KgLJ_ur5cJSfv9L
- BODyn.NZnc.KkVDLJBiratfQogPER3wFQ9n21UysERfg.mBiVxXTYQWHJsI5ySFOXmjPymP2IsJW
- lTdpAEBvm4SGTlfVpNjeskMPxshmAlZEayjh9iS9kuJ7uWtJgIYb7ZTnXkysNhxlzV_tNOB1SIhG
- qFR3WmooGbKlnO4cmHPuazhI_buoLD.ytwBNbXwdLdKx3BtczGRI.8A5wSmdizKhpvQL_pR.VItV
- 6ZcB3BX9S84XSXz3JyT.OROQzckHfcdDpTU1N252mrne5iFS.3S0W2qGXyckhoitq4tZkV9_oZNH
- kUKaXRnA8ZvTP0jXB7vRCoH1HL__5nOMjNvibjacZtmOUUnPk42wh64KH97n_m5ZMo7JgLTAFYnO
- 0bTEYE5UqqH6kcnTSNCJGv60Ju0t8BH6zICvG2znOuWj58cKJf2pezD0OxzlUDsSHszg.gZpt.vY
- rGOfq
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic308.consmr.mail.gq1.yahoo.com with HTTP; Wed, 18 Dec 2019 15:15:28 +0000
-Date: Wed, 18 Dec 2019 15:15:25 +0000 (UTC)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <1399630627.948933.1576682125398@mail.yahoo.com>
+ (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
+ id 1ihbau-000573-LU
+ for usrp-users@lists.ettus.com; Wed, 18 Dec 2019 10:50:36 -0500
+Received: by mail-lj1-f177.google.com with SMTP id k1so2033744ljg.1
+ for <usrp-users@lists.ettus.com>; Wed, 18 Dec 2019 07:50:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=IhZsJUHY9uVWx8/3OHbRB30RRoZlBmxB+u5Mj+jgXIM=;
+ b=dPbUOL8Ul7BGvno5yFqsNsO6F19y44Xgsouo39JFzYXDguiqlz3nhIo9gLWVmMwxPA
+ 8eGBrXAx9QnKRMCcxfu/XLiQNMBl32pkKe999D7UiXOEBJKNVlcvjT5Gk38UsptnL9gn
+ aSuIb4tPBd7I9b6Hran0VtBzUcmHGGhUrTUnoTlFeeaTkXGY1m7Q7m3Cw/8ry0d9xLh6
+ IFerh+NJedlePU14qsM9sUl3xAQXjHWcdMpUI2VgaMFtCnMknxfdvJ9O9bYlhV2A3wL+
+ u7DeAZUhhUHhaCmFXliGRLdanxmdFTvWsdPY4/95sPimg89B9urKbNAbHgD3/i0Ewrpn
+ sGDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=IhZsJUHY9uVWx8/3OHbRB30RRoZlBmxB+u5Mj+jgXIM=;
+ b=lAi44FyB+K3j+1GjqQo0iFwf0tMJ4g6Qv1t5feLjlFIWi89U36pMcmp7dEOq7+dvpY
+ BIlsaTIUDDx0I/KUqtZilnNylqj4TFULlTlqIL88x6hg51fSUzOz4bT64Uci68cc0jhH
+ eS08XR5+AdyGQL9YPCD+fOAQOg49C6M4nWVUHybO9NTuHjheK7kOozeaa+KtdVvB9BtG
+ 7DGvNKWywPCV0TKKbjy/3mntIt3RaUq5VhXo4PbSp5OB4ZnfA+ZpFGvMvWL5dOJfmxn9
+ InMcBfydT0B+xJSlXXVpRrRH9VwWXCQlAZSuNfuxdk0oXbw92dJ+VArKMy0Ew4k0NN9B
+ awGQ==
+X-Gm-Message-State: APjAAAVtRrRT3DYUu3l9WiEhFhZFu21T6QE9e9EHezfe2l1vDvIavH3c
+ anl7HO49tHdGD1AXwKMEv9T7WNNgcyHBeHhHr4QNTtPP
+X-Google-Smtp-Source: APXvYqwug8kaOtbgpQkmicSThbNicpFT5jXRSmGvIRAXQEY700P7uALoAuM/q7L1p2/rMWdA3Q7aey+Vl2u7Hv4pjfc=
+X-Received: by 2002:a2e:86c4:: with SMTP id n4mr2245779ljj.97.1576684195401;
+ Wed, 18 Dec 2019 07:49:55 -0800 (PST)
 MIME-Version: 1.0
-References: <1399630627.948933.1576682125398.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (Windows NT 10.0; Win64;
- x64; rv:71.0) Gecko/20100101 Firefox/71.0
-Subject: [USRP-users] Xlating filter delay
+References: <CADfCwn0ty1KmKt2ba_dBEapoJ5-vyb=i0JffE=V2aXTNK_vuhw@mail.gmail.com>
+In-Reply-To: <CADfCwn0ty1KmKt2ba_dBEapoJ5-vyb=i0JffE=V2aXTNK_vuhw@mail.gmail.com>
+Date: Wed, 18 Dec 2019 09:49:43 -0600
+Message-ID: <CANf970YugamZVx6BW=XD_es4VSnHkLPudPcLCdA864MsEMk8Ew@mail.gmail.com>
+To: =?UTF-8?B?0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQug==?=
+ <gena.kazachek@gmail.com>
+Subject: Re: [USRP-users] Pulsations on a QPSK transmission
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Angilberto Muniz Sb via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Angilberto Muniz Sb <angilberto@yahoo.com>
-Content-Type: multipart/mixed; boundary="===============3966753313363634781=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7806569313445745463=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,32 +77,95 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3966753313363634781==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_948932_1033948001.1576682125397"
-Content-Length: 1651
+--===============7806569313445745463==
+Content-Type: multipart/alternative; boundary="00000000000063e1a70599fc6508"
 
-------=_Part_948932_1033948001.1576682125397
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+--00000000000063e1a70599fc6508
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-I have a dual tone signal that I down converte and split into two signals with a common frequency with the Xlating-fir filter. So far so good. 
+Just to be clear, you see these pulsations when transmitting with a
+b205mini, but *not* with the b210?
 
-However I noticed there is a phase shift between the signals generated (I assume this is due the filter delay). I have to compensate for that.
-The question: How to determine or estimate that delay?
-Thank you,
+Is the b205mini a bare board or an industrial model with a case and
+aluminum heat sync?
 
-Angilberto.
-------=_Part_948932_1033948001.1576682125397
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html><head></head><body><div class="ydp84ce0584yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div><div dir="ltr" data-setdir="false">Hi all,</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">I have a dual tone signal that I down converte and split into two signals with a common frequency with the Xlating-fir filter. So far so good. <br></div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">However I noticed there is a phase shift between the signals generated (I assume this is due the filter delay). I have to compensate for that.</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">The question: How to determine or estimate that delay?</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">Thank you,<br></div><div><br></div><div class="ydp84ce0584signature">Angilberto.</div></div></div></body></html>
-------=_Part_948932_1033948001.1576682125397--
+Sam Reiter
+Ettus Research
 
 
---===============3966753313363634781==
+On Wed, Dec 11, 2019 at 11:48 PM =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=
+=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello!
+> I'm trying to build QPSK based system on GNURadio.
+> I'm using two USRP B205-mini boards as transmitter and receiver, also I
+> got B210 board that I run gqrx on to watch what is really going on.
+> I noticed a strange behaviour on my tests, so I began to investigate it
+> and ended to a very simple graph, that is in attachment. On a frequencies
+> that are multiple of 10Mhz, like 1020Mhz all works like expected and
+> sonogram looks good. If I tune to any other frequency, even 1Hz more or
+> less, the sonogram is full of pulsations and frequency of that pulsation =
+is
+> depends of exact tune frequency. I attached some screenshots of that
+> pulsations.
+> On receiving part that pulsations cause many errors while decoding.
+> I got another board, LimeSDR-Mini, and no such behaviour observed while
+> running graph on it.
+> I wonder what is going on, and how can I fix this problem.
+> Thank you.
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000063e1a70599fc6508
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Just to be clear, you see these pulsations when transmitti=
+ng with a b205mini, but <i>not</i>=C2=A0with the b210?<div><br></div><div>I=
+s the b205mini a bare board or an industrial model with a case and aluminum=
+ heat sync?</div><div><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmai=
+l_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div =
+dir=3D"ltr">Sam Reiter=C2=A0</div><div dir=3D"ltr">Ettus Research</div></di=
+v></div></div></div><br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Wed, Dec 11, 2019 at 11:48 PM =D0=93=D0=B5=
+=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=
+=D0=BA via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usr=
+p-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr"><div>Hello!</div><div>I&#39;m tryin=
+g to build QPSK based system on GNURadio.<br></div><div>I&#39;m
+ using two USRP B205-mini boards as transmitter and receiver, also I got
+ B210 board that I run gqrx on to watch what is really going on. <br></div>=
+<div>I
+ noticed a strange behaviour on my tests, so I began to investigate it=20
+and ended to a very simple graph, that is in attachment. On a=20
+frequencies that are multiple of 10Mhz, like 1020Mhz all works like=20
+expected and sonogram looks good. If I tune to any other frequency, even
+ 1Hz more or less, the sonogram is full of pulsations and frequency of=20
+that pulsation is depends of exact tune frequency. I attached some=20
+screenshots of that pulsations.</div><div>On receiving part that pulsations=
+ cause many errors while decoding.</div><div>I got another board, LimeSDR-M=
+ini, and no such behaviour observed while running graph on it.</div><div>I =
+wonder what is going on, and how can I fix this problem.</div><div>Thank yo=
+u.</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000063e1a70599fc6508--
+
+
+--===============7806569313445745463==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,5 +176,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3966753313363634781==--
+--===============7806569313445745463==--
 
