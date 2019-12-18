@@ -2,54 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7CDB1250A9
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Dec 2019 19:29:29 +0100 (CET)
-Received: from [::1] (port=43044 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E18321250AB
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Dec 2019 19:30:27 +0100 (CET)
+Received: from [::1] (port=44680 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ihe4d-0004jF-Ij; Wed, 18 Dec 2019 13:29:27 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:36451)
+	id 1ihe5a-00054O-UL; Wed, 18 Dec 2019 13:30:26 -0500
+Received: from mail-qk1-f176.google.com ([209.85.222.176]:38655)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <gena.kazachek@gmail.com>)
- id 1ihe4a-0004cr-2g
- for usrp-users@lists.ettus.com; Wed, 18 Dec 2019 13:29:24 -0500
-Received: by mail-ot1-f50.google.com with SMTP id w1so3606158otg.3
- for <usrp-users@lists.ettus.com>; Wed, 18 Dec 2019 10:29:03 -0800 (PST)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ihe5W-0004uZ-UA
+ for USRP-users@lists.ettus.com; Wed, 18 Dec 2019 13:30:22 -0500
+Received: by mail-qk1-f176.google.com with SMTP id k6so2406940qki.5
+ for <USRP-users@lists.ettus.com>; Wed, 18 Dec 2019 10:30:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=n4rk56KIXTzq8XGTMMNfAPtxlEq95V/RNwcFkuaF/mU=;
- b=X0z6LutkctWOQJ+ho9lsgjEocQrXkw1cwlb3eP/iuPIUnf+BrRKuF7UwrYHXHk6BW3
- 10fJzKZpB4PI1+wZKGbLzwLMaNZm7F2pnUZKKcZ1vTyWFuuEIKx/ln7HscgSMn0eoVLv
- Qnfa3hTpuMScr0vrQnaQZOADAWvWB8ctMyBO4xf1xWBJ94uSA4sD6j6lIkE4TyA5uvYW
- +tw79zOiHdep5QmQOEkF3snMM078qyXtefIwaY96SodwC1vm8js71XeeNds1MspIN73L
- X7UQJeNZPburbH/fuqu3N5d85yjMuPRjr1UXLYPH+9levbWQ81QGRP47RNNJa136f4s2
- eCYA==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=ux1FYGXYoabp1J/QvUwYIAhn29LImiy/VAAw26SuIJo=;
+ b=cozMtzRO6D4oKzDn7T1RFfUGG5b/VuGf1tBXeQcUGtT0TwBka8GKBh6bJIRk/rsUsT
+ qkVoEKXxMiqTa+C84ZLNS/EJMaBwi/sNrn8LfCgxl/KlqUe3H1suC9nMszivfpcsU/CF
+ dUanYq1u2SocriNVXWlxx67kOE64kKQo4aVMqKs15p3SzGQnNTNCDOfsUy0zPFscSIoX
+ 1O3EmZHpU9SbOxJNCgn77odD/QAwD1pz658yozejvkpVXvd+qcxusRawemISVHYutvHt
+ kXMADA5f0lsTykBHVvRHYQnpB3/MEaBVkaJfnh3cL1IdI08wSAWOsBVs8MRebsZ0A7Uq
+ XZ5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=n4rk56KIXTzq8XGTMMNfAPtxlEq95V/RNwcFkuaF/mU=;
- b=paQ3YhPNhpIjj0CeB76Wkfw8l82GVi2QaL/EwrcaIMdMmziq0zDdF+yQmMHlQ4Lpm0
- 9jR2vjh5WZyneC3hM52rN+G6+K8ZUQiMfPECfOPE//A+BpmUKWyJyn75CAnhLWoDx5cq
- rcPjvifusTarzAKof8s53Pj1PvX2HzkxLxOGlYQUN4FRThsh4wQXIjVESL1YuOjWSCq3
- 2oXAYRgI2iu2uLOf6mJvR91fuknkyttOsV+KLQzCve8IEEVnEW1x+KFNt94Xb45mZwfM
- VYAQau3QMBI+z+86ZPkcIBmlShOZ2FfPgTsYDhh9GS4QbpNK0QKU3FQk1ocO00vq+SBZ
- h2EQ==
-X-Gm-Message-State: APjAAAXtU9JSbrioJL2yEMF2OB99jgfTk510VzVDNOc3oou+0u5upQ3d
- PQlruMMiMunWIonSyUf6vLqu2uQ34tcpyy+HKXE=
-X-Google-Smtp-Source: APXvYqzQLLiCQZ2Hv6m4HIjr8lruOJ228IWZwrpCS645LYCh193Yp01ULspyAEzqM5OmS+EVXEN7TgFSAAgTbhhk8ak=
-X-Received: by 2002:a9d:133:: with SMTP id 48mr3928329otu.15.1576693723353;
- Wed, 18 Dec 2019 10:28:43 -0800 (PST)
-MIME-Version: 1.0
-References: <CADfCwn0ty1KmKt2ba_dBEapoJ5-vyb=i0JffE=V2aXTNK_vuhw@mail.gmail.com>
- <CANf970YugamZVx6BW=XD_es4VSnHkLPudPcLCdA864MsEMk8Ew@mail.gmail.com>
- <CADfCwn2mNfRYh0HpOr-cYPGw99oZW2D08Y2fab=10Tvg3SE9dw@mail.gmail.com>
- <CADfCwn09ypZGMRPAvGoGi6nMcM2ZMXeOn44g9CHas78Wdi04gQ@mail.gmail.com>
-In-Reply-To: <CADfCwn09ypZGMRPAvGoGi6nMcM2ZMXeOn44g9CHas78Wdi04gQ@mail.gmail.com>
-Date: Wed, 18 Dec 2019 21:28:03 +0300
-Message-ID: <CADfCwn04HwSBiaCef8f4QK_YOhoNGQe+9TFs5cqFLo4D2VPpTA@mail.gmail.com>
-To: Sam Reiter <sam.reiter@ettus.com>, usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] Pulsations on a QPSK transmission
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=ux1FYGXYoabp1J/QvUwYIAhn29LImiy/VAAw26SuIJo=;
+ b=DFIV2njBbSDetlnWcVkz0gXPM516P4bjlqDgUQ2EqTwuRFRw9WemmKyNjNmEcYs0o+
+ aH4fk/pff76b4CYDT2lWQucHIm3MBRsayk5jSClviCYvvaXq8jHO6mG4t3in9urPkhCQ
+ ya6f7X9Tw1oblp+8pDDlPMouT/XJB40B7AXHoXiCpDdBgL4oh9NFzBenB387WVjDQouL
+ bxAuhU9NC/lCPBCdeEhIjeFR3zEDtzyxW5bOYnIPOKTn/lmz1aM7UhKUdljse6eofQR2
+ ADRgrAyyNsLgpK5RRb1JyoXN1jIa8CEpp5TDi+ysigNVU/TisBTXCLIY89T0g6Cu/s+r
+ LVsw==
+X-Gm-Message-State: APjAAAXYvCDuQr32phFJ9BoFjwGlmYIR7273z+g7uJFlBXwXUapYPd39
+ fTSFTdCfIiK4qptdsAnEe9U=
+X-Google-Smtp-Source: APXvYqw3/uLskQTMsotUu9vTLrcjMMTodlDr5E80yGAq4wqkYjJZuliUPKTJBRgeAS+WPmhgVB+eGA==
+X-Received: by 2002:a05:620a:149b:: with SMTP id
+ w27mr4204166qkj.229.1576693782363; 
+ Wed, 18 Dec 2019 10:29:42 -0800 (PST)
+Received: from ?IPv6:2605:b100:d12:debb:4971:c944:c6fa:c86e?
+ ([2605:b100:d12:debb:4971:c944:c6fa:c86e])
+ by smtp.gmail.com with ESMTPSA id m21sm881039qka.117.2019.12.18.10.29.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 18 Dec 2019 10:29:41 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Wed, 18 Dec 2019 13:29:40 -0500
+Message-Id: <8F849698-7CFA-408C-A7B5-08998DC51422@gmail.com>
+References: <1399630627.948933.1576682125398@mail.yahoo.com>
+In-Reply-To: <1399630627.948933.1576682125398@mail.yahoo.com>
+To: Angilberto Muniz Sb <angilberto@yahoo.com>
+X-Mailer: iPhone Mail (17A878)
+Subject: Re: [USRP-users] Xlating filter delay
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,11 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQuiB2aWEgVVNSUC11c2Vy?=
- =?utf-8?q?s?= <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQug==?=
- <gena.kazachek@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5834592031251806509=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5454276153191884376=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,183 +83,82 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5834592031251806509==
-Content-Type: multipart/alternative; boundary="0000000000004cd76c0599fe9dd1"
 
---0000000000004cd76c0599fe9dd1
-Content-Type: text/plain; charset="UTF-8"
+--===============5454276153191884376==
+Content-Type: multipart/alternative; boundary=Apple-Mail-03C2B52A-2408-4E09-BFC0-9C9A434329C8
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-03C2B52A-2408-4E09-BFC0-9C9A434329C8
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello, Sam!
-No, I use two devices as transmitter and receiver and third board I use
-just to observe sonogram.
-Pulsations exist on both b205 and b210 devices if I use them as a
-transmitter and not exist if I use as transmitter another vendor's device -
-LimeSDR.
-
-All 3 USRP devices are industrial with metal case, and LimeSDR is not.
-
-On Wed, 18 Dec 2019 at 21:26, =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=
-=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA <gena.kazachek@gmail.com>
-wrote:
-
-> All 3 USRP devices are industrial with metal case, and LimeSDR is not.
->
-> On Wed, 18 Dec 2019 at 21:25, =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=
-=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA <gena.kazachek@gmail.com>
-> wrote:
->
->> Hello, Sam!
->> No, I use two devices as transmitter and receiver and third board I use
->> just to observe sonogram.
->> Pulsations exist on both b205 and b210 devices if I use them as a
->> transmitter and not exist if I use as transmitter another vendor's devic=
-e -
->> LimeSDR.
->>
->> On Wed, 18 Dec 2019 at 18:49, Sam Reiter <sam.reiter@ettus.com> wrote:
->>
->>> Just to be clear, you see these pulsations when transmitting with a
->>> b205mini, but *not* with the b210?
->>>
->>> Is the b205mini a bare board or an industrial model with a case and
->>> aluminum heat sync?
->>>
->>> Sam Reiter
->>> Ettus Research
->>>
->>>
->>> On Wed, Dec 11, 2019 at 11:48 PM =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=
-=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> Hello!
->>>> I'm trying to build QPSK based system on GNURadio.
->>>> I'm using two USRP B205-mini boards as transmitter and receiver, also =
-I
->>>> got B210 board that I run gqrx on to watch what is really going on.
->>>> I noticed a strange behaviour on my tests, so I began to investigate i=
-t
->>>> and ended to a very simple graph, that is in attachment. On a frequenc=
-ies
->>>> that are multiple of 10Mhz, like 1020Mhz all works like expected and
->>>> sonogram looks good. If I tune to any other frequency, even 1Hz more o=
-r
->>>> less, the sonogram is full of pulsations and frequency of that pulsati=
-on is
->>>> depends of exact tune frequency. I attached some screenshots of that
->>>> pulsations.
->>>> On receiving part that pulsations cause many errors while decoding.
->>>> I got another board, LimeSDR-Mini, and no such behaviour observed whil=
-e
->>>> running graph on it.
->>>> I wonder what is going on, and how can I fix this problem.
->>>> Thank you.
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
->>
->> --
->> =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=
-=B0=D1=87=D1=91=D0=BA
->>
->
->
-> --
-> =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=
-=D1=87=D1=91=D0=BA
->
+This is clearly a question for the discuss-GnURadio mailing list, not here.=20=
 
 
---=20
-=D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=
-=D1=87=D1=91=D0=BA
+But there are delay blocks in GR. And you can effect a simple phase shift wi=
+th a complex multiply.=20
 
---0000000000004cd76c0599fe9dd1
-Content-Type: text/html; charset="UTF-8"
+Sent from my iPhone
+
+> On Dec 18, 2019, at 10:16 AM, Angilberto Muniz Sb via USRP-users <usrp-use=
+rs@lists.ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> Hi all,
+>=20
+> I have a dual tone signal that I down converte and split into two signals w=
+ith a common frequency with the Xlating-fir filter. So far so good.=20
+>=20
+> However I noticed there is a phase shift between the signals generated (I a=
+ssume this is due the filter delay). I have to compensate for that.
+>=20
+> The question: How to determine or estimate that delay?
+>=20
+> Thank you,
+>=20
+> Angilberto.
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--Apple-Mail-03C2B52A-2408-4E09-BFC0-9C9A434329C8
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello, Sam!</div><div>No, I use two devices as transm=
-itter and receiver and third board I use just to observe sonogram.</div><di=
-v>Pulsations
- exist on both b205 and b210 devices if I use them as a transmitter and=20
-not exist if I use as transmitter another vendor&#39;s device - LimeSDR.</d=
-iv><div><br></div><div>All 3 USRP devices are industrial with metal case, a=
-nd LimeSDR is not.</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Wed, 18 Dec 2019 at 21:26, =D0=93=D0=B5=D0=BD=D0=
-=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA &lt;=
-<a href=3D"mailto:gena.kazachek@gmail.com">gena.kazachek@gmail.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">All 3 USRP devices are industrial with metal case, and LimeSDR is =
-not.<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Wed, 18 Dec 2019 at 21:25, =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=
-=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA &lt;<a href=3D"mail=
-to:gena.kazachek@gmail.com" target=3D"_blank">gena.kazachek@gmail.com</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
-ir=3D"ltr"><div>Hello, Sam!</div><div>No, I use two devices as transmitter =
-and receiver and third board I use just to observe sonogram.</div><div>Puls=
-ations exist on both b205 and b210 devices if I use them as a transmitter a=
-nd not exist if I use as transmitter another vendor&#39;s device - LimeSDR.=
-<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Wed, 18 Dec 2019 at 18:49, Sam Reiter &lt;<a href=3D"mailto:sa=
-m.reiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
-Just to be clear, you see these pulsations when transmitting with a b205min=
-i, but <i>not</i>=C2=A0with the b210?<div><br></div><div>Is the b205mini a =
-bare board or an industrial model with a case and aluminum heat sync?</div>=
-<div><br clear=3D"all"><div><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=
-=3D"ltr">Sam Reiter=C2=A0</div><div dir=3D"ltr">Ettus Research</div></div><=
-/div></div></div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Wed, Dec 11, 2019 at 11:48 PM =D0=93=D0=B5=D0=
-=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=
-=BA via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello!</div><di=
-v>I&#39;m trying to build QPSK based system on GNURadio.<br></div><div>I&#3=
-9;m
- using two USRP B205-mini boards as transmitter and receiver, also I got
- B210 board that I run gqrx on to watch what is really going on. <br></div>=
-<div>I
- noticed a strange behaviour on my tests, so I began to investigate it=20
-and ended to a very simple graph, that is in attachment. On a=20
-frequencies that are multiple of 10Mhz, like 1020Mhz all works like=20
-expected and sonogram looks good. If I tune to any other frequency, even
- 1Hz more or less, the sonogram is full of pulsations and frequency of=20
-that pulsation is depends of exact tune frequency. I attached some=20
-screenshots of that pulsations.</div><div>On receiving part that pulsations=
- cause many errors while decoding.</div><div>I got another board, LimeSDR-M=
-ini, and no such behaviour observed while running graph on it.</div><div>I =
-wonder what is going on, and how can I fix this problem.</div><div>Thank yo=
-u.</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr"><div dir=
-=3D"ltr">=D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=
-=B7=D0=B0=D1=87=D1=91=D0=BA<br></div></div>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr"><div dir=
-=3D"ltr">=D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=
-=B7=D0=B0=D1=87=D1=91=D0=BA<br></div></div>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
-mail_signature"><div dir=3D"ltr">=D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=
-=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA<br></div></div>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">This is clearly a question for the discuss-=
+GnURadio mailing list, not here.&nbsp;<div><br></div><div>But there are dela=
+y blocks in GR. And you can effect a simple phase shift with a complex multi=
+ply.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"=
+><br><blockquote type=3D"cite">On Dec 18, 2019, at 10:16 AM, Angilberto Muni=
+z Sb via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:<br><br></block=
+quote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div class=3D=
+"ydp84ce0584yahoo-style-wrap" style=3D"font-family:Helvetica Neue, Helvetica=
+, Arial, sans-serif;font-size:16px;"><div><div dir=3D"ltr" data-setdir=3D"fa=
+lse">Hi all,</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D=
+"ltr" data-setdir=3D"false">I have a dual tone signal that I down converte a=
+nd split into two signals with a common frequency with the Xlating-fir filte=
+r. So far so good. <br></div><div dir=3D"ltr" data-setdir=3D"false"><br></di=
+v><div dir=3D"ltr" data-setdir=3D"false">However I noticed there is a phase s=
+hift between the signals generated (I assume this is due the filter delay). I=
+ have to compensate for that.</div><div dir=3D"ltr" data-setdir=3D"false"><b=
+r></div><div dir=3D"ltr" data-setdir=3D"false">The question: How to determin=
+e or estimate that delay?</div><div dir=3D"ltr" data-setdir=3D"false"><br></=
+div><div dir=3D"ltr" data-setdir=3D"false">Thank you,<br></div><div><br></di=
+v><div class=3D"ydp84ce0584signature">Angilberto.</div></div></div><span>___=
+____________________________________________</span><br><span>USRP-users mail=
+ing list</span><br><span>USRP-users@lists.ettus.com</span><br><span>http://l=
+ists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><br></div><=
+/blockquote></div></body></html>=
 
---0000000000004cd76c0599fe9dd1--
+--Apple-Mail-03C2B52A-2408-4E09-BFC0-9C9A434329C8--
 
 
---===============5834592031251806509==
+--===============5454276153191884376==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -266,5 +169,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5834592031251806509==--
+--===============5454276153191884376==--
 
