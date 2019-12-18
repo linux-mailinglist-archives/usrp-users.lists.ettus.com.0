@@ -2,53 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45771124C2C
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Dec 2019 16:50:44 +0100 (CET)
-Received: from [::1] (port=42166 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E71124E6B
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Dec 2019 17:54:14 +0100 (CET)
+Received: from [::1] (port=56792 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ihbay-0005GF-Sg; Wed, 18 Dec 2019 10:50:40 -0500
-Received: from mail-lj1-f177.google.com ([209.85.208.177]:34722)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1ihbau-000573-LU
- for usrp-users@lists.ettus.com; Wed, 18 Dec 2019 10:50:36 -0500
-Received: by mail-lj1-f177.google.com with SMTP id k1so2033744ljg.1
- for <usrp-users@lists.ettus.com>; Wed, 18 Dec 2019 07:50:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IhZsJUHY9uVWx8/3OHbRB30RRoZlBmxB+u5Mj+jgXIM=;
- b=dPbUOL8Ul7BGvno5yFqsNsO6F19y44Xgsouo39JFzYXDguiqlz3nhIo9gLWVmMwxPA
- 8eGBrXAx9QnKRMCcxfu/XLiQNMBl32pkKe999D7UiXOEBJKNVlcvjT5Gk38UsptnL9gn
- aSuIb4tPBd7I9b6Hran0VtBzUcmHGGhUrTUnoTlFeeaTkXGY1m7Q7m3Cw/8ry0d9xLh6
- IFerh+NJedlePU14qsM9sUl3xAQXjHWcdMpUI2VgaMFtCnMknxfdvJ9O9bYlhV2A3wL+
- u7DeAZUhhUHhaCmFXliGRLdanxmdFTvWsdPY4/95sPimg89B9urKbNAbHgD3/i0Ewrpn
- sGDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IhZsJUHY9uVWx8/3OHbRB30RRoZlBmxB+u5Mj+jgXIM=;
- b=lAi44FyB+K3j+1GjqQo0iFwf0tMJ4g6Qv1t5feLjlFIWi89U36pMcmp7dEOq7+dvpY
- BIlsaTIUDDx0I/KUqtZilnNylqj4TFULlTlqIL88x6hg51fSUzOz4bT64Uci68cc0jhH
- eS08XR5+AdyGQL9YPCD+fOAQOg49C6M4nWVUHybO9NTuHjheK7kOozeaa+KtdVvB9BtG
- 7DGvNKWywPCV0TKKbjy/3mntIt3RaUq5VhXo4PbSp5OB4ZnfA+ZpFGvMvWL5dOJfmxn9
- InMcBfydT0B+xJSlXXVpRrRH9VwWXCQlAZSuNfuxdk0oXbw92dJ+VArKMy0Ew4k0NN9B
- awGQ==
-X-Gm-Message-State: APjAAAVtRrRT3DYUu3l9WiEhFhZFu21T6QE9e9EHezfe2l1vDvIavH3c
- anl7HO49tHdGD1AXwKMEv9T7WNNgcyHBeHhHr4QNTtPP
-X-Google-Smtp-Source: APXvYqwug8kaOtbgpQkmicSThbNicpFT5jXRSmGvIRAXQEY700P7uALoAuM/q7L1p2/rMWdA3Q7aey+Vl2u7Hv4pjfc=
-X-Received: by 2002:a2e:86c4:: with SMTP id n4mr2245779ljj.97.1576684195401;
- Wed, 18 Dec 2019 07:49:55 -0800 (PST)
+	id 1ihcaR-0001Ym-Pu; Wed, 18 Dec 2019 11:54:11 -0500
+Received: from mout.gmx.net ([212.227.17.20]:55407)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <lukashaase@gmx.at>) id 1ihcaO-0001Sb-1k
+ for usrp-users@lists.ettus.com; Wed, 18 Dec 2019 11:54:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1576688006;
+ bh=V5KxGsHQpAJGNfznzdrrWm85aOaOmGOAbny6ABtOTQA=;
+ h=X-UI-Sender-Class:From:To:Subject:Date:References;
+ b=dVHjpTGXfy23YjCq660zeV2WnwC+9P2fK1QWOqTiBg57wBJR1U/4U1M0bcbevyU+A
+ v8MINwo2g0I23yCRkRaDJ5Y/kgsBWO8f2Nbfx/r6L26GP+M/uUE858ao9JENAKgxNp
+ MCvr+PwjZP2gLsxSsebDVm1nYfoG9hhUSdhPk+gU=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
+ (3c-app-gmx-bap35.server.lan [172.19.172.105]) (via HTTP); Wed, 18 Dec 2019
+ 17:53:26 +0100
 MIME-Version: 1.0
-References: <CADfCwn0ty1KmKt2ba_dBEapoJ5-vyb=i0JffE=V2aXTNK_vuhw@mail.gmail.com>
-In-Reply-To: <CADfCwn0ty1KmKt2ba_dBEapoJ5-vyb=i0JffE=V2aXTNK_vuhw@mail.gmail.com>
-Date: Wed, 18 Dec 2019 09:49:43 -0600
-Message-ID: <CANf970YugamZVx6BW=XD_es4VSnHkLPudPcLCdA864MsEMk8Ew@mail.gmail.com>
-To: =?UTF-8?B?0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQug==?=
- <gena.kazachek@gmail.com>
-Subject: Re: [USRP-users] Pulsations on a QPSK transmission
+Message-ID: <trinity-8bb4682d-afc9-48fa-89d1-73cb93c2545c-1576688006803@3c-app-gmx-bap35>
+To: "USRP-userslists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Wed, 18 Dec 2019 17:53:26 +0100
+Importance: normal
+Sensitivity: Normal
+References: <trinity-6c4af0fa-52cb-4d53-9353-13491cb25809-1576295403539@3c-app-gmx-bs40>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:7pDEyQlLNIiVN9/J9ihzGJRmtqNa6W1s8Kk672y7MZ1N0RI9xeORaY7CBojRfTM5tcO5a
+ C3vDVhPwv89IoE/5O1w5rgIYD8kFKz33ppTUGHRJJdVynlQ0UqgSFv/MZyfjwXpEdSD/jxDJTf+G
+ AT+qnd8V8V4kIBviPGSyz1PuX517sSiqr8QR2ixACM8+jTE7vo69xwBFULBZVObY83T/+5cA8XN/
+ lsQ5fOVtU9206ZWnj05tM42XEK2d+BTvIApa8F8byxhI142Q9FEo6o1XlVAu221fhCz4PF3DKCfh
+ ho=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:AfGuvryo6Po=:/7aPjWd9+q+7+t+dIeu0F5
+ wZ8qjpLwMqYRR95MVmW5EEqGjOH0eLtO91X/1/RtTROuRZuEQuW/iF+mO2g9/P2obEcZ78BXm
+ 8Y+y8w8T0G0+v/fTYl/xAON2yOq2ekjrDxVFz95O4hDG1QyqwyNF/iXnq40H5NhiHl/ohZnGo
+ /ffUX2dLVHZdaCk8T6vKRf+eKqOlPlV6XSm7Doe9UBOil5h72iMX6QjxLzun1npOL1yHFrYku
+ Ucc8m07Cjb4f1dZSHrWZaPkatfxbhoTlCSU+an1rLpa/c4/aD7/Ur4G4QeN5XSfG6sMb49vXv
+ U6L9+3UZSskceFo9LiJpAvCiVGh1cNnaYN8gpq6uFXhd3lbS1QP0WsytcZ+Lh2GSggAQKI5FQ
+ yVJ05DnWxyft9QbyXZS7eu4BuOxCSE78JY5c5mGtpvgitcOWwZ/eyeeN1qpupqYREXQMdgwPo
+ fF6hqc+CVrlNNC/nb6PMQLF4X0w/uQW3tn0Wpq1lf10spK4kOANwCmHEuP9dcm7EHUMMpEknD
+ rYYaZw1dFrDvlHyCuo1iZS1M5P2fkJuxPOQ1cBQd4ETv8Ewdg4JojdyIiJDog26VtCSNu1CBT
+ upPG+7dy9MSU4qv6TEOUy6swJm//PADExlsn610CiofKrk1nf30TVcH4H/r3fsrkoWjo/Bke8
+ XbnO+vvfp1fvyNsUa40a321PozBSR086vg1XuHRPQxlw/CA==
+Subject: Re: [USRP-users] Config USRP Source/Sink integer-N mode and timed
+ commans via messages
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,10 +62,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7806569313445745463=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,104 +79,61 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7806569313445745463==
-Content-Type: multipart/alternative; boundary="00000000000063e1a70599fc6508"
+Hi,
 
---00000000000063e1a70599fc6508
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I just wanted to follow up on the question below.
+I am currently (ab)using the "Function Probe" to execute the tuning code at the "Poll Rate". But I'd like to avoid this because it does not seem reliable.
 
-Just to be clear, you see these pulsations when transmitting with a
-b205mini, but *not* with the b210?
+My main concerns are (a) setting integer-N mode via the messages port and (b) obtaining the current USRP time (get_time_now) for the timed commands when using the message port.
 
-Is the b205mini a bare board or an industrial model with a case and
-aluminum heat sync?
-
-Sam Reiter
-Ettus Research
+If this is something that's just not possible, that would be a valuable answer as well.
 
 
-On Wed, Dec 11, 2019 at 11:48 PM =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=
-=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Thanks,
+Luke
 
-> Hello!
-> I'm trying to build QPSK based system on GNURadio.
-> I'm using two USRP B205-mini boards as transmitter and receiver, also I
-> got B210 board that I run gqrx on to watch what is really going on.
-> I noticed a strange behaviour on my tests, so I began to investigate it
-> and ended to a very simple graph, that is in attachment. On a frequencies
-> that are multiple of 10Mhz, like 1020Mhz all works like expected and
-> sonogram looks good. If I tune to any other frequency, even 1Hz more or
-> less, the sonogram is full of pulsations and frequency of that pulsation =
-is
-> depends of exact tune frequency. I attached some screenshots of that
-> pulsations.
-> On receiving part that pulsations cause many errors while decoding.
-> I got another board, LimeSDR-Mini, and no such behaviour observed while
-> running graph on it.
-> I wonder what is going on, and how can I fix this problem.
-> Thank you.
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+> Gesendet: Freitag, 13. Dezember 2019 um 22:50 Uhr
+> Von: "Lukas Haase" <lukashaase@gmx.at>
+> An: usrp-users@lists.ettus.com
+> Betreff: Config USRP Source/Sink integer-N mode and timed commans via messages
 >
-
---00000000000063e1a70599fc6508
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Just to be clear, you see these pulsations when transmitti=
-ng with a b205mini, but <i>not</i>=C2=A0with the b210?<div><br></div><div>I=
-s the b205mini a bare board or an industrial model with a case and aluminum=
- heat sync?</div><div><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmai=
-l_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div =
-dir=3D"ltr">Sam Reiter=C2=A0</div><div dir=3D"ltr">Ettus Research</div></di=
-v></div></div></div><br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Wed, Dec 11, 2019 at 11:48 PM =D0=93=D0=B5=
-=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=
-=D0=BA via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usr=
-p-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex"><div dir=3D"ltr"><div>Hello!</div><div>I&#39;m tryin=
-g to build QPSK based system on GNURadio.<br></div><div>I&#39;m
- using two USRP B205-mini boards as transmitter and receiver, also I got
- B210 board that I run gqrx on to watch what is really going on. <br></div>=
-<div>I
- noticed a strange behaviour on my tests, so I began to investigate it=20
-and ended to a very simple graph, that is in attachment. On a=20
-frequencies that are multiple of 10Mhz, like 1020Mhz all works like=20
-expected and sonogram looks good. If I tune to any other frequency, even
- 1Hz more or less, the sonogram is full of pulsations and frequency of=20
-that pulsation is depends of exact tune frequency. I attached some=20
-screenshots of that pulsations.</div><div>On receiving part that pulsations=
- cause many errors while decoding.</div><div>I got another board, LimeSDR-M=
-ini, and no such behaviour observed while running graph on it.</div><div>I =
-wonder what is going on, and how can I fix this problem.</div><div>Thank yo=
-u.</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000063e1a70599fc6508--
+> Hi,
+>
+> The UHD interface supports messages to change center frequency etc [1].
+> I would want to send the following commands via messages to the USRP Sink and USRP Source, respectively:
+>
+> now = self.uhd_usrp_sink_0.get_time_now()
+> timeStamp = now + uhd.time_spec(0.1)
+>
+> tune_req_tx = uhd.tune_request(fcenter-1e6, 1e6)
+> tune_req_tx.args=uhd.device_addr(','.join(["mode_n=integer", "int_n_step=1000e3",]))
+> self.uhd_usrp_sink_0.set_command_time(timeStamp)
+> res1 = self.uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
+> self.uhd_usrp_sink_0.clear_command_time()
+>
+> tune_req_rx = uhd.tune_request(2*fcenter)
+> tune_req_rx.args=uhd.device_addr(','.join(["mode_n=integer", "int_n_step=1000e3",]))
+> now = self.uhd_usrp_sink_0.get_time_now()
+> self.uhd_usrp_source_0.set_command_time(timeStamp)
+> res2 = self.uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
+> self.uhd_usrp_source_0.clear_command_time()
+>
+> The first issue is that the "tune_request" described in [1] is a simple pair. However, the real uhd::tune_request_t is more comprehensive and includes the "args" element that I need to set to "mode_n=integer", "int_n_step=1000e3" for integer N PLL.
+>
+> The second issue is the timed command. It seems usrp_block::set_command_time translates into "time" with "timestamp" and usrp_block::clear_command_time translates into "time" with PMT_NIL. However, how to I obtain the current UHD time (uhd_usrp_sink_0.get_time_now)?
+>
+> Thanks,
+> Luke
+>
+>
+> [1] https://www.gnuradio.org/doc/doxygen/page_uhd.html
 
 
---===============7806569313445745463==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7806569313445745463==--
-
