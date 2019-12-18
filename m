@@ -2,51 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE653124980
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Dec 2019 15:26:33 +0100 (CET)
-Received: from [::1] (port=38886 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4656B124B61
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Dec 2019 16:16:45 +0100 (CET)
+Received: from [::1] (port=59824 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ihaHY-0004Co-Kn; Wed, 18 Dec 2019 09:26:32 -0500
-Received: from mail-qt1-f180.google.com ([209.85.160.180]:40959)
+	id 1ihb47-00020F-CH; Wed, 18 Dec 2019 10:16:43 -0500
+Received: from sonic308-55.consmr.mail.gq1.yahoo.com ([98.137.68.31]:40466)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <support@ettus.com>) id 1ihaHU-00044q-8V
- for usrp-users@lists.ettus.com; Wed, 18 Dec 2019 09:26:28 -0500
-Received: by mail-qt1-f180.google.com with SMTP id e6so2068327qtq.7
- for <usrp-users@lists.ettus.com>; Wed, 18 Dec 2019 06:26:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=F8mtrWKU4GxJVUvtMwE0OUMa0Y5ZWiwjQb1UpnwntQo=;
- b=pNfjEFAJ1ub2i83nh2JSe+biBqp8LFl5tezBPUF4SY0K9BLpZRRqmNmW8yHpwj3KwI
- HV87jq1BLcik/lN2SOisR1UyGhYUVnq2aZrMquk0OJVUoKDqxtnKDmRPZdkfhVNQC4NW
- rqdl7VywV4Zol97j+EjI0tPE1cCTyp6HIEIXDsf8OtXwaQvigX10ZuiYjIrfJtH4dIol
- YdwoPLLfzc0HZZrPXAp69QrW56VSi4NfRtK5HMbA0HjSKROCuVM1+17u1WahNxlf5foQ
- wg8w4aifmIwS8DlENXZRcJEOQ9c2A3u0wX8ucSpHlOK/2fiUV0z4z+FoaWNu1Yo2EWWx
- YYDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=F8mtrWKU4GxJVUvtMwE0OUMa0Y5ZWiwjQb1UpnwntQo=;
- b=oohOzf+RBzDWpKsgiHs+yEvbFIQgLzgbDVIRt23uN84VSYV64nfLvAR3SU7PmChjcV
- dOzdNBgVoWPvjCPS531WRs8nPlxY0qWBkZ0I33k7qNLmMfBbvZi8mgVU99f4YEUH4Ka5
- ZF1ai6y2E29R5J5olMaZyavGkw051I9Y+pvrSsfuFYUong/r5BjGlbxKN8GBBZtE0Rj7
- IFzqvKNLBv8+3RhTlljfqKMH+9XKaEENeWtgrSmNdCCxsRMS2yToFOuZxFAXUn2vV4UN
- E9Pw9CUuOTaxtOZkZ50jdBBSgZfxX+IWl9R9RiEX6ml+AqFnljsH4FHnm2u6sR8z+ao6
- izSA==
-X-Gm-Message-State: APjAAAVEf+dYY4t1dPCfGVd0EHClAwOWT3v1fcsH4JID9pBEWzse2GEB
- +XRxcAe6Efy/NbbCs452WPW6g7o3/ffyJMQf0NTRjljI
-X-Google-Smtp-Source: APXvYqy9vmdk6VK6KUXRBKaRISnSaHmaGB7auTu9ATWkkhsfEwxIl3xcAPiCKjDcIia9UBqBcJkjIF68M6LhlJ4WKA0=
-X-Received: by 2002:aed:238f:: with SMTP id j15mr2401657qtc.240.1576679147648; 
- Wed, 18 Dec 2019 06:25:47 -0800 (PST)
+ (Exim 4.92) (envelope-from <angilberto@yahoo.com>)
+ id 1ihb3Z-0006Ub-Jb
+ for usrp-users@lists.ettus.com; Wed, 18 Dec 2019 10:16:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1576682128; bh=NWg6I3xBLXPF8+nLrBoHsmcGIYcMdwv7p1462IyQrLo=;
+ h=Date:From:To:Subject:References:From:Subject;
+ b=X4aVxyJRCasUOvIhsEpJ/F6mnbHYFGadKGujigjH4BwYQhc+qTHcFtgsS2uuWCDpW3tL9H/6KqflCRmjO87O6Wit5vgEKoybUUPJigmPZX8pB/A6bedCjgTKyk0tbzIOW1qPtuyBZ3qOuKsTGzd92df0GRNticbgHfFc2Agp6f9K35yuIoeSQ+Id6OsDo2WQEXZXH0i+vbDnjgNLe6rTvWIvE0+ks37Hb7errOWlJHWKsL92WpglO8zw66PtmrfVQXi6NuqkTbiJRUrvpCFMvMHrAvPoZsHh6wYZ8AdUFGNl9i6RTKxZAEYi/EadCtjxioQcVfnIT4xTsrk01P4nQg==
+X-YMail-OSG: _nfI5.cVM1nQNcgOEqBma1tlLxh2A_wvnkkoMZRxUYYaAPxnMAGDq2px12lRW9d
+ BATAS.yZwRG1FEHC1aI11kIWJsPpFGcEBZbBMqpx7.Hzc2mUaseWvimZkj7SwZ9Pg7LULNac7G79
+ RV3RHXopRipfGmZX.1xu06BcpkG1pshnYCNIDEsR4e6_DkGMFfOf4JOGwgS0jL1nauZ8SI7nA3_S
+ hpvnFk0oKi6mBzuMTi1IqdwX_KKwDozCz6X_MAS_iR0TyC9iXDb92qIeu.9qXO7IYfPtD6CCE.YA
+ lKlZrJHl7KM3DGMf0KAdARapoyg5XrQlbKW03xrwiMS2VHVThUDnsxtHeTwxlEQjS8qZNc3kJYY1
+ MQCEGI5YyXBBoDXHVXB.ahYlgXBx_JYn06IDxKobXvtWJ8WERHcnMjPwUMKnCazkLvU889ZwmKun
+ BUosEnUHRLLp1.cmPW9zTswbB18kn9tgj3BBkoOSLz3qUvCWoBsaMOof5KSgA1pGwYXeuqdrkuqA
+ mhcNQivFGEX9Bbh3oPKebhG9NtH2qYhEspp.6oEm1ONGsLVHpj_Q_mngH2DbHLesuTjY4HudzCyY
+ bH.wVjFuR7tjKy3SI2NNwW7ryXjZxBLT6IfMjluv7nTldIElqBcWiuNwCvKRdQV2IPUpFrisibi8
+ r9TZKqEeLFVhK1h_5bKv7nY_igHvteHtKsTmssW9Lu8Deehwa2mSU0bAumPnqoUDnhofzWqgfjPe
+ vjS5_ZKliWWv3GIb6MNeCoFDhZWP41HIXGzhEEWzqqaR_n0.iWDVKaVuBndsYDXPKxYjM2pZYz3k
+ EpD3qJjXy33jUV_y7L0.HLtzztS9sHrhHyL9jGTfngSlN33cuFX2l6Iokro41KgLJ_ur5cJSfv9L
+ BODyn.NZnc.KkVDLJBiratfQogPER3wFQ9n21UysERfg.mBiVxXTYQWHJsI5ySFOXmjPymP2IsJW
+ lTdpAEBvm4SGTlfVpNjeskMPxshmAlZEayjh9iS9kuJ7uWtJgIYb7ZTnXkysNhxlzV_tNOB1SIhG
+ qFR3WmooGbKlnO4cmHPuazhI_buoLD.ytwBNbXwdLdKx3BtczGRI.8A5wSmdizKhpvQL_pR.VItV
+ 6ZcB3BX9S84XSXz3JyT.OROQzckHfcdDpTU1N252mrne5iFS.3S0W2qGXyckhoitq4tZkV9_oZNH
+ kUKaXRnA8ZvTP0jXB7vRCoH1HL__5nOMjNvibjacZtmOUUnPk42wh64KH97n_m5ZMo7JgLTAFYnO
+ 0bTEYE5UqqH6kcnTSNCJGv60Ju0t8BH6zICvG2znOuWj58cKJf2pezD0OxzlUDsSHszg.gZpt.vY
+ rGOfq
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic308.consmr.mail.gq1.yahoo.com with HTTP; Wed, 18 Dec 2019 15:15:28 +0000
+Date: Wed, 18 Dec 2019 15:15:25 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <1399630627.948933.1576682125398@mail.yahoo.com>
 MIME-Version: 1.0
-References: <BMXPR01MB39447CA3F4BA58C9B9D1B09988500@BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <BMXPR01MB39447CA3F4BA58C9B9D1B09988500@BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM>
-Date: Wed, 18 Dec 2019 08:25:11 -0600
-Message-ID: <CACSOXP0TZKt-9QfnG3eNuYNRRZ_EPwrzJmDnH6j1x40bxAuZ5Q@mail.gmail.com>
-To: Snehasish Kar <snehasish.cse@live.com>
-Subject: Re: [USRP-users] Api to call rfnoc split stream
+References: <1399630627.948933.1576682125398.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (Windows NT 10.0; Win64;
+ x64; rv:71.0) Gecko/20100101 Firefox/71.0
+Subject: [USRP-users] Xlating filter delay
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,10 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ettus Research Support via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ettus Research Support <support@ettus.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6200040575514950919=="
+From: Angilberto Muniz Sb via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Angilberto Muniz Sb <angilberto@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============3966753313363634781=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,80 +73,32 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6200040575514950919==
-Content-Type: multipart/alternative; boundary="0000000000008552360599fb3874"
+--===============3966753313363634781==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_948932_1033948001.1576682125397"
+Content-Length: 1651
 
---0000000000008552360599fb3874
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_948932_1033948001.1576682125397
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello Snehasish:
+Hi all,
+I have a dual tone signal that I down converte and split into two signals with a common frequency with the Xlating-fir filter. So far so good. 
 
-The Split Stream Block uses the generic block controller, so there should
-not be anything "extra" that you have to do.
+However I noticed there is a phase shift between the signals generated (I assume this is due the filter delay). I have to compensate for that.
+The question: How to determine or estimate that delay?
+Thank you,
 
-Are you getting any errors or warnings when you build your C++ program?
+Angilberto.
+------=_Part_948932_1033948001.1576682125397
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---Neel Pandeya
-
-
-
-On Tue, Dec 17, 2019 at 1:00 PM Snehasish Kar via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hello
->
-> Please let me know ho do we use the rfnoc split stream from C++ I am not
-> able to find the concerned header file.
->
-> Regards
-> Snehasish
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000008552360599fb3874
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">Hello Snehasish:</div><div class=3D"gmail_default" style=3D"fon=
-t-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif">The Split Stream Block uses the generic=
- block controller, so there should not be anything &quot;extra&quot; that y=
-ou have to do.</div><div class=3D"gmail_default" style=3D"font-family:verda=
-na,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:=
-verdana,sans-serif">Are you getting any errors or warnings when you build y=
-our C++ program?</div><div class=3D"gmail_default" style=3D"font-family:ver=
-dana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-famil=
-y:verdana,sans-serif">--Neel Pandeya</div><div class=3D"gmail_default" styl=
-e=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_default"=
- style=3D"font-family:verdana,sans-serif"><br></div></div><br><div class=3D=
-"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Dec 17, 2019 at=
- 1:00 PM Snehasish Kar via USRP-users &lt;<a href=3D"mailto:usrp-users@list=
-s.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">Hello<br>
-<br>
-Please let me know ho do we use the rfnoc split stream from C++ I am not ab=
-le to find the concerned header file.<br>
-<br>
-Regards<br>
-Snehasish<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000008552360599fb3874--
+<html><head></head><body><div class="ydp84ce0584yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div><div dir="ltr" data-setdir="false">Hi all,</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">I have a dual tone signal that I down converte and split into two signals with a common frequency with the Xlating-fir filter. So far so good. <br></div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">However I noticed there is a phase shift between the signals generated (I assume this is due the filter delay). I have to compensate for that.</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">The question: How to determine or estimate that delay?</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">Thank you,<br></div><div><br></div><div class="ydp84ce0584signature">Angilberto.</div></div></div></body></html>
+------=_Part_948932_1033948001.1576682125397--
 
 
---===============6200040575514950919==
+--===============3966753313363634781==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -159,5 +109,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6200040575514950919==--
+--===============3966753313363634781==--
 
