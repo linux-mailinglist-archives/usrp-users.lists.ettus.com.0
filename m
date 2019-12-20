@@ -2,77 +2,41 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 527211278F4
-	for <lists+usrp-users@lfdr.de>; Fri, 20 Dec 2019 11:12:47 +0100 (CET)
-Received: from [::1] (port=52454 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F0BD128016
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Dec 2019 16:54:27 +0100 (CET)
+Received: from [::1] (port=42562 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iiFGz-0001w9-QO; Fri, 20 Dec 2019 05:12:41 -0500
-Received: from mailin.dlr.de ([194.94.201.12]:35953)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <Robert.Poehlmann@dlr.de>)
- id 1iiFGv-0001rW-7L
- for usrp-users@lists.ettus.com; Fri, 20 Dec 2019 05:12:37 -0500
-IronPort-SDR: oZO0rDNAuPtc23bwY8tdzBqjbhFHZvCpkrANSv8k/jcCt9a7wH9b9VIR5kgGySPnSAfZXqZLYo
- FR39JOGEwgVw==
-IronPort-PHdr: =?us-ascii?q?9a23=3ApyZnih9Mj6HhB/9uRHKM819IXTAuvvDOBiVQ1K?=
- =?us-ascii?q?B21u0cTK2v8tzYMVDF4r011RmVBN6dsasfwLOP+4nbGkU4qa6bt34DdJEeHz?=
- =?us-ascii?q?Qksu4x2zIaPcieFEfgJ+TrZSFpVO5LVVti4m3peRMNQJW2aFLduGC94iAPER?=
- =?us-ascii?q?vjKwV1Ov71GonPhMiryuy+4ZLebxhGiTanf79+MRu7oQrMusULnIBvNrs/xh?=
- =?us-ascii?q?zVr3VSZu9Y33loJVWdnxb94se/4ptu+DlOtvwi6sBNT7z0c7w3QrJEAjsmNX?=
- =?us-ascii?q?s15NDwuhnYUQSP/HocXX4InRdOHgPI8Qv1Xpb1siv9q+p9xCyXNtD4QLwoRT?=
- =?us-ascii?q?iv6bpgRRn1gykFKjE56nnahMxugqxGvBKvqR9xw4DWb4GUKPVxcbjQcskGSW?=
- =?us-ascii?q?pDRMtdSzBNDp66YoASD+QBJ+FYr4zlqlYJsRW+AhKjC/31yj9UnHP4x6o63P?=
- =?us-ascii?q?ohEQHC2QwvBdQOsHLPodroMKcSS/q5w7TWwjjaaf5dxDnz6I/Nch87oPGMW6?=
- =?us-ascii?q?p9cdHLxUkzFwPJlkufqZD5PzOIzeQBqXSU7+1lVe63hG4nqh1xojiyxsg3kI?=
- =?us-ascii?q?XGmoUVylXc+SR2wYY1Idy4SEh0YNK+DJRQsCSaOo1rSc0hW2FloDs2xqEctZ?=
- =?us-ascii?q?KmfyUHx44rywPRZvGEaYSE/AzvWP6MLTtknn5pZbGyihmo/US9xODxVdO43E?=
- =?us-ascii?q?hKoydKitXMuG4C2h/P5sWCT/Zw+kOs2TiV2A3W9O1LPV44mKjeJpI/3rE/i5?=
- =?us-ascii?q?UevEHNEyLygkr7gqmbfVg+9Oey8eToeLDmq4eZN49zlw7xLLwjmte6AeQkKg?=
- =?us-ascii?q?gOWHWb+fik2L3j40L5RLJKg+U4nKffvp7UKsQVqK6+DQFW1Ygt8QizAymp3t?=
- =?us-ascii?q?sZg3QLNlNFeBSbj4jzIV7COu33DfOlg1i2jThk2ejKPrznAprTMnjOiKrtca?=
- =?us-ascii?q?pn50JBywc+wspT649aB7wCOv7/RFH9uMTdDhAjMgy0x+jnCM961oMbQW+BHq?=
- =?us-ascii?q?iZP7jMvl+S+uIjOfOCZIgLtzb9L/gl4uThjXk/mVIGYKap2YEXZGqlEft4O0?=
- =?us-ascii?q?mZe2bjgs8dEWcWuQozVPLliF+BUT5JeXmyXqQ86SshCI+9AofDQ5qigL2F3C?=
- =?us-ascii?q?uhApJWYWVGAEiWEXj0b4WER+sMaCWKL898iTwET6ChR5Y81RG1qgD60aFnI/?=
- =?us-ascii?q?HQ+i0ZrpLjyMN16/fNmhEu6Tx0Et+d33uRQGFzm2NbDwMxifRyo09nx1aF2L?=
- =?us-ascii?q?JQjPlRFNgV7PRMBFQUL5nZmrhADNr/QB6HRtCESFKjS9OgKT01VJQ9zoldMA?=
- =?us-ascii?q?5GB9y+g0WbjGKRCLgPmunTCQ=3D=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2FEAgDNnfxd/xaKuApOFhsBAQEBAQE?=
- =?us-ascii?q?BBQEBAREBAQMDAQEBgXyBHoFdE4ExCodGjVOBAYFnhnaRFxchBAkBAQEBAQE?=
- =?us-ascii?q?BAQEHARgBDAoBAQKBAkiCdAKCQTgTAgMBDAEBBQEBAQEBBQQBAQKGIAyCOyI?=
- =?us-ascii?q?ZWDgHMQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ8CCAU2GQUmERIBAR0?=
- =?us-ascii?q?BAQEBAwEBGA0GQQsQAgEIEQQBARQNAQYHIQYBChQJCAIEDgUIEgFLgj2BeU0?=
- =?us-ascii?q?DPaoqgXQzg3w+ARRAgxoNgiCBNo4zgRGCXgcuPoIbSQEBAQKBHQxFKAiFDiI?=
- =?us-ascii?q?EjTmBHoc0gQSBPocfji0xQweBRogjiRmBJwGEHSODOosajAGNGooJghyDbId?=
- =?us-ascii?q?uHyODSgIEAgQFAhWBPyphgRpxT4IEaAlHGA2NHheDUIdBgxJ0AQEBAQaRDYE?=
- =?us-ascii?q?xgRABAQ?=
-X-IronPort-AV: E=Sophos;i="5.69,335,1571695200"; d="scan'208,217";a="26653985"
-To: <ejkreinar@gmail.com>
-Thread-Topic: [USRP-users] Default RFNoC image for N310 does not compile
-Thread-Index: AQHVrqJVbfbx+2jRgkCvVFb9ZGvXmKeyEZeAgAASOICAAQO7AIAAYDMAgAFC9TaADGs6k4AAQNQAgAAnX4CAABdUgIAAEoaAgAEWU4A=
-Date: Fri, 20 Dec 2019 10:11:52 +0000
-Message-ID: <4719098b9005427c9189307266d2d659@dlr.de>
-References: <d509cd368f8d4167a1fdff12613c35a2@dlr.de>
- <CAL263iwKA_R=30JEohT88GPAP6xm-V1VLSL2mNtk1UbJJ9bJPw@mail.gmail.com>
- <CAL263iyqgz_ALuntLoCcpum7k20eXKEXYHUZhqNouUr9r7cwig@mail.gmail.com>
- <23a286638bd44719a36b213cbfad0fa5@dlr.de>
- <CAL263izHBHnBjKEYLzEyy-KP67kwKWVzN6LZCwdsmKKdqfWj9w@mail.gmail.com>
- <b7eebc15f5414fc8974d6bff6e597a2b@dlr.de>
- <a70f323b443e4642babc303f482ee157@dlr.de>
- <CADRnH21VEAsgapngZ__=B1WpEsTst6o=t3ME2zDHaZqPwpDpBQ@mail.gmail.com>
- <BN6PR19MB1635996E17A73C996A346A24A4520@BN6PR19MB1635.namprd19.prod.outlook.com>,
- <CADRnH23sddChq07yWakGvsNfyyDEuEQnQ7heq1KQ9B9f8Cg53w@mail.gmail.com>
- <BN6PR19MB16354CC48D17A7020ECF6F69A4520@BN6PR19MB1635.namprd19.prod.outlook.com>
-In-Reply-To: <BN6PR19MB16354CC48D17A7020ECF6F69A4520@BN6PR19MB1635.namprd19.prod.outlook.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-tm-snts-smtp: E2C4DF0382F003D6EC5B23B13AFF52415F1AA699BE44F6A1879F8A14C558FCA12000:8
+	id 1iiKbe-0007hk-Tl; Fri, 20 Dec 2019 10:54:22 -0500
+Received: from zeus.iit.demokritos.gr ([143.233.226.2]:59161)
+ by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
+ (Exim 4.92) (envelope-from <akis.kourtis@iit.demokritos.gr>)
+ id 1iiKba-0007cK-7G
+ for usrp-users@lists.ettus.com; Fri, 20 Dec 2019 10:54:18 -0500
+Received: from localhost (localhost [127.0.0.1])
+ by zeus.iit.demokritos.gr (Postfix) with ESMTP id 47fYFD0lFMz15RR;
+ Fri, 20 Dec 2019 17:53:36 +0200 (EET)
+X-Virus-Scanned: Debian amavisd-new at iit.demokritos.gr
+Received: from zeus.iit.demokritos.gr ([127.0.0.1])
+ by localhost (zeus.iit.demokritos.gr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 2wJ0LSDnTwMC; Fri, 20 Dec 2019 17:53:33 +0200 (EET)
+Received: from DESKTOPJIPSV41 (telcom-143-233-227-107.iit.demokritos.gr
+ [143.233.227.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by zeus.iit.demokritos.gr (Postfix) with ESMTPSA id 47fYF95T8Bzqpl;
+ Fri, 20 Dec 2019 17:53:33 +0200 (EET)
+To: "'Sam Reiter'" <sam.reiter@ettus.com>
+References: <037c01d5aeef$b73a84a0$25af8de0$@iit.demokritos.gr>
+ <CANf970Ztj8XHeLzcOZ0NVbXFACnXriJY4mqWuouTQsYpKnWVmw@mail.gmail.com>
+In-Reply-To: <CANf970Ztj8XHeLzcOZ0NVbXFACnXriJY4mqWuouTQsYpKnWVmw@mail.gmail.com>
+Date: Fri, 20 Dec 2019 17:53:33 +0200
+Message-ID: <000001d5b74d$a27c7d50$e77577f0$@iit.demokritos.gr>
 MIME-Version: 1.0
-Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQF8WayxknlgGiCFmd6R+joogTHHJwIb0M+YqGUH+yA=
+Content-Language: en-us
+Subject: Re: [USRP-users] DPDK build with N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,10 +48,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robert via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robert.Poehlmann@dlr.de
-Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============3006135639286184545=="
+From: Akis Kourtis via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Akis Kourtis <akis.kourtis@iit.demokritos.gr>
+Cc: 'usrp-users' <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============1527995845183153506=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -101,417 +65,232 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3006135639286184545==
-Content-Language: en-US
+This is a multipart message in MIME format.
+
+--===============1527995845183153506==
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0001_01D5B75E.6607BE50"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0001_01D5B75E.6607BE50
 Content-Type: multipart/alternative;
-	boundary="_000_4719098b9005427c9189307266d2d659dlrde_"
+	boundary="----=_NextPart_001_0002_01D5B75E.6607BE50"
 
---_000_4719098b9005427c9189307266d2d659dlrde_
-Content-Type: text/plain; charset="iso-8859-1"
+
+------=_NextPart_001_0002_01D5B75E.6607BE50
+Content-Type: text/plain;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Your solution works! Cherry picked split_stream from the master branch, the=
- image compiles and the block works fine!
+Hello Sam,
 
-Thanks a lot!
+=20
 
-Robert
+We are using the DPDK 19.11, and UHD 3.14.1.=20
 
+The hardware setup is N310(SFP1)<->(ethernet-to-thunderbolt)<->Laptop =
+(with thunderbolt).
 
-From: USRP-users [mailto:usrp-users-bounces@lists.ettus.com] On Behalf Of J=
-eff S via USRP-users
-Sent: Thursday, December 19, 2019 7:35 PM
-To: EJ Kreinar
-Cc: USRP-users@lists.ettus.com
-Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
+The problem with the config file is, that we could not find the config =
+file anywhere neither on the root or the user folder.
 
-We weren't intending on using the split_stream block yet, and we haven't st=
-arted building images from source either (waiting on Vivado license still).=
-  I simply picked the default RFNoC branch so we could start looking at som=
-e of the pre-built blocks as we start investigating building some custom bl=
-ocks in the future.  I assumed that the default RFNoC images would work out=
- of the box, kind of like they did with the X310.
+We have created one, and added the DPDK one (from the site). But I =
+seriously believe that it is not seen/used.
 
-Jeff
+As the error=20
 
-________________________________
-From: EJ Kreinar <ejkreinar@gmail.com>
-Sent: Thursday, December 19, 2019 11:28 AM
-To: Jeff S <e070832@hotmail.com>
-Cc: USRP-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
+No CHDR interfaces found!
 
-Ah, Sorry for the confusion. I assume anyone using the split_stream block i=
-s already building FPGA images from source... To clarify, I'm referring to =
-rebuilding the FPGA images from source using the uhd-fpga repo, which follo=
-ws the instructions here: https://files.ettus.com/manual_archive/v3.14.1.1/=
-html/md_usrp3_build_instructions.html
+Is related to the no IP DPDK interfaces (presumably).
 
-Depending on the target platform you may also need a Vivado license (or tri=
-al license). You'll want to clone the uhd-fpga repo, then `git checkout UHD=
--3.14`, then `git cherry-pick 1102779f`, THEN build the images.
+=20
 
-Definitely a bummer there's not a patched image released. I didnt realize t=
-here were images "in the wild" that used split stream block
+Thank you for your support!
 
-EJ
+=20
 
-On Thu, Dec 19, 2019 at 11:05 AM Jeff S via USRP-users <usrp-users@lists.et=
-tus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-EJ,
+Akis Kourtis
 
-I'm finding that I have the same problem after installing 3.14.1.1.
+M.Sc, Ph.D
 
-I did the following:
+Research Associate=20
 
-$ uhd_images_downloader
-$ uhd_image_loader --args "type=3Dn3xx"
+Media Networks Laboratory
 
-which is what I thought we were supposed to do, but I got the same error on=
- my uhd_usrp_probe that Robert did.
+Institute of Information & Telecommunications
 
-I'll see if I can figure out how to cherry-pick the fpga branch.  That may =
-be more research since I have a lot of new stuff I "git" to learn.
+National Centre for Scientific Research =E2=80=9CDEMOKRITOS=E2=80=9D
 
-Jeff
+=20
 
+akis.kourtis@ iit.demokritos.gr
 
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com<mailto:usrp-users-boun=
-ces@lists.ettus.com>> on behalf of EJ Kreinar via USRP-users <usrp-users@li=
-sts.ettus.com<mailto:usrp-users@lists.ettus.com>>
-Sent: Thursday, December 19, 2019 7:44 AM
-To: Robert.Poehlmann@dlr.de<mailto:Robert.Poehlmann@dlr.de> <Robert.Poehlma=
-nn@dlr.de<mailto:Robert.Poehlmann@dlr.de>>
-Cc: USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com> <usrp-use=
-rs@lists.ettus.com<mailto:usrp-users@lists.ettus.com>>
-Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
-
-The split stream bug seems to have been fixed in October on the master bran=
-ch: https://github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251=
-d203eb62ae26c9<http://github.com/EttusResearch/fpga/commit/1102779f49d44c9e=
-8b88ce7251d203eb62ae26c9> (but not yet ported onto 3.14)
-
-I just cherry-picked 1102779f onto my uhd-fpga UHD-3.14 and it cleaned it u=
-p for me.
-
-I assume this will eventually make it to the UHD-3.14 branch? But if not th=
-e cherry pick works fine
-
-EJ
-
-On Thu, Dec 19, 2019, 4:00 AM Robert via USRP-users <usrp-users@lists.ettus=
-.com<mailto:usrp-users@lists.ettus.com>> wrote:
-
-Hi Nate,
++306948386769
 
 
 
-some news from my side about this issue:
+=20
 
-- For v3.15.0.0-rc2, the error shows up when using split_stream or packet_r=
-esizer block (and possibly others)
+From: Sam Reiter <sam.reiter@ettus.com>=20
+Sent: Wednesday, December 18, 2019 9:22 PM
+To: Akis Kourtis <akis.kourtis@iit.demokritos.gr>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] DPDK build with N310
 
+=20
 
+Hey Akis,
 
-I then followed your advice and went back to v3.14.1.1, which should be sta=
-ble. Here two problems pop up:
+=20
 
-- Timing constraints are no fulfilled (using Viado 2017.4)
+What version of DPDK are you using? What version of UHD do you have on =
+the host? I'm not sure that mode of failure is something I'd chalk up to =
+the DPDK install.=20
 
-- A similar error pops up when probing the device:
+=20
 
+Could you give some detail on your config file, DPDK install version(s), =
+and hardware setup as well?
 
-[INFO] [0/PacketResizer_0] Initializing block control (NOC ID: 0x12E5000000=
-000000)
-[ERROR] [UHD] Exception caught in safe-call.
-  in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with uhd::endianness=
-_t _endianness =3D (uhd::endianness_t)0]
-  at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:52
-this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl (C=
-E_10_Port_D0) no response packet - AssertionError: bool(buff)
-  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [wit=
-h uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D long=
- unsigned int]
-  at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142
+=20
 
-[ERROR] [MPMD] Failure during block enumeration: EnvironmentError: IOError:=
- [0/PacketResizer_0] sr_read64() failed: EnvironmentError: IOError: Block c=
-trl (CE_10_Port_D0) no response packet - AssertionError: bool(buff)
-  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [wit=
-h uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D long=
- unsigned int]
-  at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142
+Best,
+
+=20
+
+Sam Reiter=20
+
+Ettus Research
+
+=20
+
+=20
+
+On Mon, Dec 9, 2019 at 6:21 PM Akis Kourtis via USRP-users =
+<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com> > wrote:
+
+Hello all,
+
+=20
+
+I am trying to build the oai-5g-gNB. I have managed to build the DPDK =
+with uhd successfully, however when I run the probe command I receive =
+the following error.
+
+=20
+
+EAL: Starting I/O threads!
+
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; =
+UHD_3.14.1.HEAD-0-g0347a6d8
+
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: =
+mgmt_addr=3D10.30.0.218,type=3Dn3xx,product=3Dn310,serial=3D3177E48,claim=
+ed=3DFalse,addr=3D192.168.20.2,second_addr=3D192.168.20.2,use_dpdk=3D1
+
+[ERROR] [MPMD] No viable transport path found!
+
+[ERROR] [MPMD] Failure during block enumeration: RuntimeError: No viable =
+transport path found!
+
+[INFO] [MPM.PeriphManager] init() called with device args =
+`time_source=3Dinternal,clock_source=3Dinternal,second_addr=3D192.168.20.=
+2,mgmt_addr=3D10.30.0.218,product=3Dn310,use_dpdk=3D1'.
+
+[WARNING] [MPM.PeriphManager.UDP] Number of detected CHDR devices is =
+inconsistent. Dropped from 1 to 0.
+
+[INFO] [MPM.PeriphManager.UDP] No CHDR interfaces found!
 
 Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
 
+=20
 
-Is there a fix available for ctrl_iface.cpp?
+My guess from reading back posts from the forum, is that the proper DPDK =
+file is not read.
 
+I can see a /etc/conf/uhd.conf file, but no /root/.uhd/uhd.conf file.
 
+Am I in the right direction, and if so, how do I enable the user conf =
+file?
 
-Regards,
+=20
 
-Robert
+If not, is there a direction I should head towards?
 
-________________________________
-Von: P=F6hlmann, Robert
-Gesendet: Mittwoch, 11. Dezember 2019 12:14:40
-An: Nate Temple
-Cc: USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-Betreff: AW: [USRP-users] Default RFNoC image for N310 does not compile
+=20
 
+Thank you,
 
-Hi Nate,
+=20
 
+Akis
 
+=20
 
-the image does compile now with the patch. However there still seems to be =
-s.th<http://s.th>. wrong on the host side. When running uhd_usrp_probe, it =
-fails when it reaches the split_stream block:
+Akis Kourtis
 
+M.Sc, Ph.D
 
-[INFO] [0/SplitStream_0] Initializing block control (NOC ID: 0x575700000000=
-0000)
-[ERROR] [MPMD] Failure during block enumeration: EnvironmentError: IOError:=
- [0/SplitStream_0] sr_write() failed: AssertionError: not _outstanding_seqs=
-.empty()
-  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [wit=
-h uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D long=
- unsigned int]
-  at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:139
+Research Associate=20
 
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
+Media Networks Laboratory
 
+Institute of Information & Telecommunications
 
+National Centre for Scientific Research =E2=80=9CDEMOKRITOS=E2=80=9D
 
-Regards,
+=20
 
-Robert
+akis.kourtis@ iit.demokritos.gr <http://iit.demokritos.gr>=20
 
-________________________________
-Von: Nate Temple <nate.temple@ettus.com<mailto:nate.temple@ettus.com>>
-Gesendet: Dienstag, 10. Dezember 2019 17:57:20
-An: P=F6hlmann, Robert
-Cc: USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-Betreff: Re: [USRP-users] Default RFNoC image for N310 does not compile
++306948386769
 
-Hi Robert,
 
-This patch/line change detailed below should resolve that issue and will be=
- included in the official 3.15.0.0 release:
 
----
- usrp3/lib/rfnoc/noc_shell.v | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/usrp3/lib/rfnoc/noc_shell.v b/usrp3/lib/rfnoc/noc_shell.v
-index 927f40a70..732d41afa 100644
---- a/usrp3/lib/rfnoc/noc_shell.v
-+++ b/usrp3/lib/rfnoc/noc_shell.v
-@@ -267,7 +267,7 @@ module noc_shell
-           .o_tdata({set_addr_bclk[8*k+7:8*k], set_data_bclk[32*k+31:32*k]}=
-),
-           .o_tvalid(set_stb_bclk[k]), .o_tready(set_stb_bclk[k]));
-
--       localparam [31:0] STR_SINK_FIFO_SIZE_BYTES =3D 2**(STR_SINK_FIFOSIZ=
-E[8*k+7:8*k]+3);
-+       localparam [31:0] STR_SINK_FIFO_SIZE_BYTES =3D (k < INPUT_PORTS) ? =
-2**(STR_SINK_FIFOSIZE[8*k+7:8*k]+3) : 0;
-        // "Lines" is the most useful unit for the command FIFO size, since
-        // commands take either 2 or 3 lines. Software can do the rest of t=
-he
-        // math to figure out how many actual command packets it can send.
-
-
-
-Regards,
-Nate Temple
-
-On Tue, Dec 10, 2019 at 8:46 AM <Robert.Poehlmann@dlr.de<mailto:Robert.Poeh=
-lmann@dlr.de>> wrote:
-
-Hi Nate!
-
-
-
-I followed the guide in https://files.ettus.com/manual/md_usrp3_build_instr=
-uctions.html, thus ended up with Vivado 2018.3 and then later found out thi=
-s requires UHD 3.15. Thanks for pointing me to the Vivado bug. I thought wi=
-th 2018.3.1 this would be fixed, but apparently that is not the case. Now I=
- went back to 2018.3 (clean re-install) and installed the patch AR#71898. T=
-he standard N310 image compiles fine now.
-
-
-
-The other error
-
-ERROR: [Synth 8-524] part-select [15:8] out of range of prefix 'STR_SINK_FI=
-FOSIZE' [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
-
-seems to be happening only for few specific RFNoC blocks (fosphor and split=
-_stream, specifically). Leaving these out, the RFNoC image does compile. No=
-t sure what exactly is the problem, though. The recent commit https://githu=
-b.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d203eb62ae26c9 di=
-d not help (tried both versions, neither of them works).
-
-
-
-Regards
-
-Robert
-
-
-
-
-
-From: Nate Temple [mailto:nate.temple@ettus.com<mailto:nate.temple@ettus.co=
-m>]
-Sent: Monday, December 09, 2019 8:43 PM
-To: P=F6hlmann, Robert
-Cc: USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
-
-
-
-Hi Robert,
-
-
-
-So this is a bug related to Vivado, you will need to install this linked be=
-low patch and it should resolve it.
-
-
-
-https://www.xilinx.com/support/answers/71898.html
-
-
-
-Regards,
-
-Nate Temple
-
-
-
-On Mon, Dec 9, 2019 at 10:38 AM Nate Temple <nate.temple@ettus.com<mailto:n=
-ate.temple@ettus.com>> wrote:
-
-Hi Robert,
-
-Thanks for the bug report.
-
-If you're just trying to use RFNoC at this point, I would recommend to stic=
-k with the latest stable release, which at this time is v3.14.1.1.
-
-Note, 3.14.x.x UHD will require Vivado 2017.4.
-
-
-Regards,
-Nate Temple
-
-
-
-On Mon, Dec 9, 2019 at 7:33 AM Robert via USRP-users <usrp-users@lists.ettu=
-s.com<mailto:usrp-users@lists.ettus.com>> wrote:
-
-Hi all!
-
-
-
-I tried to compile the default RFNoC image for the N310, using UHD on tag v=
-3.15.0.0-rc2 and Xilinx Vivado 2018.3.1.
-
-
-
-Running "make N310_RFNOC_XG", the IP cores are compiled successfully, but t=
-hen Vivado shows the following errors:
-
-
-
-ERROR: [Synth 8-524] part-select [15:8] out of range of prefix 'STR_SINK_FI=
-FOSIZE' [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
-ERROR: [Synth 8-521] parameter assignment could not be resolved to a consta=
-nt [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
-ERROR: [Synth 8-196] conditional expression could not be resolved to a cons=
-tant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:239]
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:26]
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:27]
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:31]
-ERROR: [Synth 8-6156] failed synthesizing module 'noc_shell__parameterized9=
-' [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:21]
-ERROR: [Synth 8-6156] failed synthesizing module 'noc_block_fosphor' [/usr/=
-local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_block_fosphor.v:8]
-ERROR: [Synth 8-6156] failed synthesizing module 'n3xx_core' [/usr/local/sr=
-c/uhd/fpga-src/usrp3/top/n3xx/n3xx_core.v:17]
-ERROR: [Synth 8-6156] failed synthesizing module 'n3xx' [/usr/local/src/uhd=
-/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]
-
-
-
-The full build.log file is attached. I did not modify any files, just tryin=
-g to compile the RFNoC example as provided.
-
-
-
-
-
-
-
-Btw I also tried to build the default image with "make N310_XG", this one c=
-ompiles but failed later during DRC:
-
-[DRC BIVC-1] Bank IO standard Vcc: Conflicting Vcc voltages in bank 34. For=
- example, the following two ports in this bank have conflicting VCCOs:
-ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=3D1.500) and ddr3_addr[15] (LVCMO=
-S18, requiring VCCO=3D1.800)
-
-[Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.
-
-
+=20
 
 _______________________________________________
 USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>=20
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_000_4719098b9005427c9189307266d2d659dlrde_
-Content-Type: text/html; charset="iso-8859-1"
+
+------=_NextPart_001_0002_01D5B75E.6607BE50
+Content-Type: text/html;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><!--[if =
+!mso]><style>v\:* {behavior:url(#default#VML);}
 o\:* {behavior:url(#default#VML);}
 w\:* {behavior:url(#default#VML);}
 .shape {behavior:url(#default#VML);}
 </style><![endif]--><style><!--
 /* Font Definitions */
 @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
 @font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
+	{font-family:"Bookman Old Style";
+	panose-1:2 5 6 4 5 5 5 2 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
+	{margin:0in;
 	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:blue;
@@ -520,25 +299,24 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-code
-	{mso-style-priority:99;
-	font-family:"Courier New";}
-span.EmailStyle19
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
 	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri",sans-serif;}
 @page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
@@ -546,758 +324,361 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
-text-autospace:none">
-<a name=3D"Gru=DF"></a><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Your solution works! Cher=
-ry picked split_stream from the master branch, the image compiles and the b=
-lock works fine!<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
-text-autospace:none">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
-text-autospace:none">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">Thanks a lot!<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
-text-autospace:none">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
-text-autospace:none">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">Robert<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> USRP-use=
-rs [mailto:usrp-users-bounces@lists.ettus.com]
-<b>On Behalf Of </b>Jeff S via USRP-users<br>
-<b>Sent:</b> Thursday, December 19, 2019 7:35 PM<br>
-<b>To:</b> EJ Kreinar<br>
-<b>Cc:</b> USRP-users@lists.ettus.com<br>
-<b>Subject:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
-ile<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">We weren't intending on using the split_stre=
-am block yet, and we haven't started building images from source either (wa=
-iting on Vivado license still).&nbsp; I simply picked the default
- RFNoC branch so we could start looking at some of the pre-built blocks as =
-we start investigating building some custom blocks in the future.&nbsp; I a=
-ssumed that the default RFNoC images would work out of the box, kind of lik=
-e they did with the X310.<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">Jeff<o:p></o:p></span></p>
-</div>
-<div id=3D"Signature">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:black">From:</span></b><span st=
-yle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&qu=
-ot;;color:black"> EJ Kreinar &lt;ejkreinar@gmail.com&gt;<br>
-<b>Sent:</b> Thursday, December 19, 2019 11:28 AM<br>
-<b>To:</b> Jeff S &lt;e070832@hotmail.com&gt;<br>
-<b>Cc:</b> USRP-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
-ile</span>
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal">Ah, Sorry for the confusion. I assume anyone using t=
-he split_stream block is already building FPGA images from source... To cla=
-rify, I'm referring to rebuilding the FPGA images from source using the uhd=
--fpga repo, which follows the instructions
- here:&nbsp;<a href=3D"https://files.ettus.com/manual_archive/v3.14.1.1/htm=
-l/md_usrp3_build_instructions.html">https://files.ettus.com/manual_archive/=
-v3.14.1.1/html/md_usrp3_build_instructions.html</a>
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Depending on the target platform you may also need a=
- Vivado license (or trial license). You'll want to clone the uhd-fpga repo,=
- then `git checkout UHD-3.14`, then `git cherry-pick 1102779f`, THEN build =
-the images.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Definitely a bummer there's not a patched image rele=
-ased. I didnt realize there were images &quot;in the wild&quot; that used s=
-plit stream block<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">EJ<o:p></o:p></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Thu, Dec 19, 2019 at 11:05 AM Jeff S via USRP-use=
-rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus=
-.com</a>&gt; wrote:<o:p></o:p></p>
-</div>
-<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0c=
-m 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">EJ,<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">I'm finding that I have the same problem aft=
-er installing 3.14.1.1.<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">I did the following:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<blockquote>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">$ uhd_images_downloader<o:p></o:p></span></p=
->
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">$ uhd_image_loader --args &quot;type=3Dn3xx&=
-quot;<o:p></o:p></span></p>
-</div>
-</blockquote>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">which is what I thought we were supposed to =
-do, but I got the same error on my uhd_usrp_probe that Robert did.<o:p></o:=
-p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">I'll see if I can figure out how to cherry-p=
-ick the fpga branch.&nbsp; That may be more research since I have a lot of =
-new stuff I &quot;git&quot; to learn.<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">Jeff<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div id=3D"x_gmail-m_-4851837339978986592Signature">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</div>
-<div id=3D"x_gmail-m_-4851837339978986592divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:black">From:</span></b><span st=
-yle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&qu=
-ot;;color:black"> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists=
-.ettus.com" target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt;
- on behalf of EJ Kreinar via USRP-users &lt;<a href=3D"mailto:usrp-users@li=
-sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Sent:</b> Thursday, December 19, 2019 7:44 AM<br>
-<b>To:</b> <a href=3D"mailto:Robert.Poehlmann@dlr.de" target=3D"_blank">Rob=
-ert.Poehlmann@dlr.de</a> &lt;<a href=3D"mailto:Robert.Poehlmann@dlr.de" tar=
-get=3D"_blank">Robert.Poehlmann@dlr.de</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">=
-USRP-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
-.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
-ile</span>
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-</div>
-</div>
-<div>
-<div>
-<div>
-<p class=3D"MsoNormal">The split stream bug seems to have been fixed in Oct=
-ober on the master branch: https<span style=3D"font-size:9.5pt;font-family:=
-&quot;Arial&quot;,&quot;sans-serif&quot;">://</span><a href=3D"http://githu=
-b.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d203eb62ae26c9" t=
-arget=3D"_blank">github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88c=
-e7251d203eb62ae26c9</a>&nbsp;(but
- not yet ported onto 3.14)<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I just cherry-picked 1102779f onto my uhd-fpga UHD-3=
-.14 and it cleaned it up for me.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I assume this will eventually make it to the UHD-3.1=
-4 branch? But if not the cherry pick works fine<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">EJ<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal">On Thu, Dec 19, 2019, 4:00 AM Robert via USRP-users =
-&lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a>&gt; wrote:<o:p></o:p></p>
-</div>
-<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0c=
-m 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
-<div>
-<div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
-9902199952divtagdefaultwrapper">
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">Hi Nate,<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black"><o:p>&nbsp;</o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">some news from my side about this issue:<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">- For v3.15.0.0-rc2, the error shows up when using split_stream =
-or packet_resizer block (and possibly others)<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black"><o:p>&nbsp;</o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">I then followed your advice and went back to v3.14.1.1, which sh=
-ould be stable. Here two problems pop up:<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">- Timing constraints are no fulfilled (using Viado 2017.4)<o:p><=
-/o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">- A similar error pops up when probing the device:<o:p></o:p></s=
-pan></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black"><o:p>&nbsp;</o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">[INFO] [0/PacketResizer_0] Initializing bloc=
-k control (NOC ID: 0x12E5000000000000)<br>
-[ERROR] [UHD] Exception caught in safe-call.<br>
-&nbsp; in ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl() [with uhd:=
-:endianness_t _endianness =3D (uhd::endianness_t)0]<br>
-&nbsp; at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:52<br>
-this-&gt;send_cmd_pkt(0, 0, true); -&gt; EnvironmentError: IOError: Block c=
-trl (CE_10_Port_D0) no response packet - AssertionError: bool(buff)<br>
-&nbsp; in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, d=
-ouble) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64=
-_t =3D long unsigned int]<br>
-&nbsp; at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142<br>
-<br>
-[ERROR] [MPMD] Failure during block enumeration: EnvironmentError: IOError:=
- [0/PacketResizer_0] sr_read64() failed: EnvironmentError: IOError: Block c=
-trl (CE_10_Port_D0) no response packet - AssertionError: bool(buff)<br>
-&nbsp; in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, d=
-ouble) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64=
-_t =3D long unsigned int]<br>
-&nbsp; at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142<br>
-<br>
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()<o:p></o:p></spa=
-n></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">Is there a fix available for ctrl_iface.cpp?=
-<o:p></o:p></span></p>
-</div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black"><o:p>&nbsp;</o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">Regards,<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">Robert<o:p></o:p></span></p>
-</div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</div>
-<div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
-9902199952divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:black">Von:</span></b><span sty=
-le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quo=
-t;;color:black"> P=F6hlmann, Robert<br>
-<b>Gesendet:</b> Mittwoch, 11. Dezember 2019 12:14:40<br>
-<b>An:</b> Nate Temple<br>
-<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">=
-USRP-users@lists.ettus.com</a><br>
-<b>Betreff:</b> AW: [USRP-users] Default RFNoC image for N310 does not comp=
-ile</span>
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-</div>
-</div>
-<div>
-<div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
-9902199952divtagdefaultwrapper">
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">Hi Nate,<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black"><o:p>&nbsp;</o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">the image does compile now with the patch. However there still s=
-eems to be
-<a href=3D"http://s.th" target=3D"_blank">s.th</a>. wrong on the host side.=
- When running uhd_usrp_probe, it fails when it reaches the split_stream blo=
-ck:<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black"><o:p>&nbsp;</o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">[INFO] [0/SplitStream_0] Initializing block =
-control (NOC ID: 0x5757000000000000)<br>
-[ERROR] [MPMD] Failure during block enumeration: EnvironmentError: IOError:=
- [0/SplitStream_0] sr_write() failed: AssertionError: not _outstanding_seqs=
-.empty()<br>
-&nbsp; in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, d=
-ouble) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64=
-_t =3D long unsigned int]<br>
-&nbsp; at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:139<br>
-<br>
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()<o:p></o:p></spa=
-n></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;;color:black">Regards,
-<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">Robert<o:p></o:p></span></p>
-</div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</div>
-<div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
-9902199952divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:black">Von:</span></b><span sty=
-le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quo=
-t;;color:black"> Nate Temple &lt;<a href=3D"mailto:nate.temple@ettus.com" t=
-arget=3D"_blank">nate.temple@ettus.com</a>&gt;<br>
-<b>Gesendet:</b> Dienstag, 10. Dezember 2019 17:57:20<br>
-<b>An:</b> P=F6hlmann, Robert<br>
-<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">=
-USRP-users@lists.ettus.com</a><br>
-<b>Betreff:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
-ile</span>
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-</div>
-</div>
-<div>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;">Hi Robert,<br>
-<br>
-This patch/line change detailed below should resolve that issue and will be=
- included in the official 3.15.0.0 release:<br>
-<br>
----<br>
-&nbsp;usrp3/lib/rfnoc/noc_shell.v | 2 &#43;-<br>
-&nbsp;1 file changed, 1 insertion(&#43;), 1 deletion(-)<br>
-<br>
-diff --git a/usrp3/lib/rfnoc/noc_shell.v b/usrp3/lib/rfnoc/noc_shell.v<br>
-index 927f40a70..732d41afa 100644<br>
---- a/usrp3/lib/rfnoc/noc_shell.v<br>
-&#43;&#43;&#43; b/usrp3/lib/rfnoc/noc_shell.v<br>
-@@ -267,7 &#43;267,7 @@ module noc_shell<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;.o_tdata({set_addr_bclk[8*k&#43;7:=
-8*k], set_data_bclk[32*k&#43;31:32*k]}),<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;.o_tvalid(set_stb_bclk[k]), .o_tre=
-ady(set_stb_bclk[k]));<br>
-&nbsp;<br>
-- &nbsp; &nbsp; &nbsp; localparam [31:0] STR_SINK_FIFO_SIZE_BYTES =3D 2**(S=
-TR_SINK_FIFOSIZE[8*k&#43;7:8*k]&#43;3);<br>
-&#43; &nbsp; &nbsp; &nbsp; localparam [31:0] STR_SINK_FIFO_SIZE_BYTES =3D (=
-k &lt; INPUT_PORTS) ? 2**(STR_SINK_FIFOSIZE[8*k&#43;7:8*k]&#43;3) : 0;<br>
-&nbsp; &nbsp; &nbsp; &nbsp; // &quot;Lines&quot; is the most useful unit fo=
-r the command FIFO size, since<br>
-&nbsp; &nbsp; &nbsp; &nbsp; // commands take either 2 or 3 lines. Software =
-can do the rest of the<br>
-&nbsp; &nbsp; &nbsp; &nbsp; // math to figure out how many actual command p=
-ackets it can send.<br>
-<br>
-<br>
-<br>
-Regards,<br>
-Nate Temple<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Tue, Dec 10, 2019 at 8:46 AM &lt;<a href=3D"mailt=
-o:Robert.Poehlmann@dlr.de" target=3D"_blank">Robert.Poehlmann@dlr.de</a>&gt=
-; wrote:<o:p></o:p></p>
-</div>
-<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0c=
-m 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
-<div>
-<div>
-<p>Hi Nate!<o:p></o:p></p>
-<p>&nbsp;<o:p></o:p></p>
-<p>I followed the guide in <a href=3D"https://files.ettus.com/manual/md_usr=
-p3_build_instructions.html" target=3D"_blank">
-https://files.ettus.com/manual/md_usrp3_build_instructions.html</a>, thus e=
-nded up with Vivado 2018.3 and then later found out this requires UHD 3.15.=
- Thanks for pointing me to the Vivado bug. I thought with 2018.3.1 this wou=
-ld be fixed, but apparently that
- is not the case. Now I went back to 2018.3 (clean re-install) and installe=
-d the patch AR#71898. The standard N310 image compiles fine now.<o:p></o:p>=
-</p>
-<p>&nbsp;<o:p></o:p></p>
-<p>The other error<o:p></o:p></p>
-<p><span style=3D"color:black">ERROR: [Synth 8-524] part-select [15:8] out =
-of range of prefix 'STR_SINK_FIFOSIZE' [/usr/local/src/uhd/fpga-src/usrp3/l=
-ib/rfnoc/noc_shell.v:270]</span><o:p></o:p></p>
-<p>seems to be happening only for few specific RFNoC blocks (fosphor and sp=
-lit_stream, specifically). Leaving these out, the RFNoC image does compile.=
- Not sure what exactly is the problem, though. The recent commit
-<a href=3D"https://github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b8=
-8ce7251d203eb62ae26c9" target=3D"_blank">
-https://github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d203=
-eb62ae26c9</a> did not help (tried both versions, neither of them works).<o=
-:p></o:p></p>
-<p>&nbsp;<o:p></o:p></p>
-<p>Regards<o:p></o:p></p>
-<p>Robert<span style=3D"font-size:11.0pt;color:#1F497D"> </span><o:p></o:p>=
-</p>
-<p><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
-ns-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
-<p><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
-ns-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
-<p><b><span style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;=
-sans-serif&quot;">From:</span></b><span style=3D"font-size:10.0pt;font-fami=
-ly:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Nate Temple [mailto:<a href=
-=3D"mailto:nate.temple@ettus.com" target=3D"_blank">nate.temple@ettus.com</=
-a>]
-<br>
-<b>Sent:</b> Monday, December 09, 2019 8:43 PM<br>
-<b>To:</b> P=F6hlmann, Robert<br>
-<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">=
-USRP-users@lists.ettus.com</a><br>
-<b>Subject:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
-ile</span><o:p></o:p></p>
-<p>&nbsp;<o:p></o:p></p>
-<div>
-<div>
-<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Hi =
-Robert, </span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">&nb=
-sp;</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">So =
-this is a bug related to Vivado, you will need to install this linked below=
- patch and it should resolve it.</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">&nb=
-sp;</span><o:p></o:p></p>
-</div>
-<div>
-<p><a href=3D"https://www.xilinx.com/support/answers/71898.html" target=3D"=
-_blank"><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;=
-">https://www.xilinx.com/support/answers/71898.html</span></a><o:p></o:p></=
-p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">&nb=
-sp;</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Reg=
-ards,</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Nat=
-e Temple</span><o:p></o:p></p>
-</div>
-</div>
-<p>&nbsp;<o:p></o:p></p>
-<div>
-<div>
-<p>On Mon, Dec 9, 2019 at 10:38 AM Nate Temple &lt;<a href=3D"mailto:nate.t=
-emple@ettus.com" target=3D"_blank">nate.temple@ettus.com</a>&gt; wrote:<o:p=
-></o:p></p>
-</div>
-<blockquote style=3D"border:none;border-left:solid windowtext 1.0pt;padding=
-:0cm 0cm 0cm 6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;marg=
-in-bottom:5.0pt;border-color:currentcolor currentcolor currentcolor rgb(204=
-,204,204)">
-<div>
-<div>
-<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Hi =
-Robert,<br>
-<br>
-Thanks for the bug report. <br>
-<br>
-If you're just trying to use RFNoC at this point, I would recommend to stic=
-k with the latest stable release, which at this time is v3.14.1.1.
-<br>
-<br>
-Note, 3.14.x.x UHD will require Vivado 2017.4.<br>
-<br>
-<br>
-Regards,<br>
-Nate Temple</span><o:p></o:p></p>
-</div>
-</div>
-<p>&nbsp;<o:p></o:p></p>
-<div>
-<div>
-<p>On Mon, Dec 9, 2019 at 7:33 AM Robert via USRP-users &lt;<a href=3D"mail=
-to:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com=
-</a>&gt; wrote:<o:p></o:p></p>
-</div>
-<blockquote style=3D"border:none;border-left:solid windowtext 1.0pt;padding=
-:0cm 0cm 0cm 6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;marg=
-in-bottom:5.0pt;border-color:currentcolor currentcolor currentcolor rgb(204=
-,204,204)">
-<div>
-<div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
-9902199952gmail-m_-6331373918561515169gmail-m_-7724419252963540251gmail-m_1=
-503436027014080033divtagdefaultwrapper">
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">Hi all!</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">&nbsp;</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">I tried to compile the default RFNoC image for the N310, using U=
-HD on tag v3.15.0.0-rc2 and Xilinx Vivado 2018.3.1.
-</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">&nbsp;</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">Running</span><code><span style=3D"font-size:10.0pt;color:black"=
-> &quot;make N310_RFNOC_XG&quot;, the IP cores are compiled successfully, b=
-ut then Vivado shows the following errors:</span></code><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">&nbsp;</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">ERROR: [Synth 8-524] part-select [15:8] out of range of prefix '=
-STR_SINK_FIFOSIZE' [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v=
-:270]<br>
-ERROR: [Synth 8-521] parameter assignment could not be resolved to a consta=
-nt [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]<br>
-ERROR: [Synth 8-196] conditional expression could not be resolved to a cons=
-tant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:239]<br>
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:26]<br>
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:27]<br>
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:31]<br>
-ERROR: [Synth 8-6156] failed synthesizing module 'noc_shell__parameterized9=
-' [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:21]<br>
-ERROR: [Synth 8-6156] failed synthesizing module 'noc_block_fosphor' [/usr/=
-local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_block_fosphor.v:8]<br>
-ERROR: [Synth 8-6156] failed synthesizing module 'n3xx_core' [/usr/local/sr=
-c/uhd/fpga-src/usrp3/top/n3xx/n3xx_core.v:17]<br>
-ERROR: [Synth 8-6156] failed synthesizing module 'n3xx' [/usr/local/src/uhd=
-/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">&nbsp;</span><o:p></o:p></p>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">The full build.log file is attached. I did not modify any files,=
- just trying to compile the RFNoC example as provided.</span><o:p></o:p></p=
->
-</div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">&nbsp;</span><o:p></o:p></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">&nbsp;</span><o:p></o:p></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">&nbsp;</span><o:p></o:p></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">Btw I also tried to build the default image with &quot;make N310=
-_XG&quot;, this one compiles but failed later during DRC:</span><o:p></o:p>=
-</p>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">[DRC BIVC-1] Bank IO standard Vcc: Conflicting Vcc voltages in b=
-ank 34. For example, the following two ports in this bank have conflicting =
-VCCOs:
-<br>
-ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=3D1.500) and ddr3_addr[15] (LVCMO=
-S18, requiring VCCO=3D1.800)</span><o:p></o:p></p>
-</div>
-<div>
-<div>
-<p style=3D"margin-bottom:12.0pt"><span style=3D"font-family:&quot;Calibri&=
-quot;,&quot;sans-serif&quot;;color:black">[Vivado_Tcl 4-23] Error(s) found =
-during DRC. Placer not run.</span><o:p></o:p></p>
-</div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:black">&nbsp;</span><o:p></o:p></p>
-</div>
-</div>
-</div>
-<p>_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
-sts.ettus.com</a><o:p></o:p></p>
-</blockquote>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-<p class=3D"MsoNormal">_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
-sts.ettus.com</a><o:p></o:p></p>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p class=3D"MsoNormal">_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
-sts.ettus.com</a><o:p></o:p></p>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>Hello =
+Sam,<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>We are using the DPDK 19.11, and UHD 3.14.1. =
+<o:p></o:p></p><p class=3DMsoNormal>The hardware setup is =
+N310(SFP1)&lt;-&gt;(ethernet-to-thunderbolt)&lt;-&gt;Laptop (with =
+thunderbolt).<o:p></o:p></p><p class=3DMsoNormal>The problem with the =
+config file is, that we could not find the config file anywhere neither =
+on the root or the user folder.<o:p></o:p></p><p class=3DMsoNormal>We =
+have created one, and added the DPDK one (from the site). But I =
+seriously believe that it is not seen/used.<o:p></o:p></p><p =
+class=3DMsoNormal>As the error <o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>No CHDR =
+interfaces found!<o:p></o:p></p><p class=3DMsoNormal>Is related to the =
+no IP DPDK interfaces (presumably).<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Thank you =
+for your support!<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><b><span =
+lang=3DEN-GB style=3D'font-size:10.0pt;font-family:"Bookman Old =
+Style",serif'>Akis Kourtis<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;mso-fareast-language:EN-GB'>M.Sc, =
+Ph.D<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>Research Associate <o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>Media Networks Laboratory</span><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#AEAAAA'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#AEAAAA'>Institute</span><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'> of Information &amp; =
+Telecommunications<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>National Centre for Scientific Research =
+=E2=80=9CDEMOKRITOS=E2=80=9D<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:3.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>akis.kourtis@ =
+iit.demokritos.gr<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>+306948386769<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEL =
+style=3D'font-size:10.0pt;color:#1F497D'><img width=3D576 height=3D104 =
+style=3D'width:6.0in;height:1.0833in' =
+id=3D"=CE=95=CE=B9=CE=BA=CF=8C=CE=BD=CE=B1_x0020_1" =
+src=3D"cid:image001.jpg@01D5B75E.656EB2A0" alt=3D"engl LOGOTYPO XORIS =
+ETHNOSIMO ME DIEYTHINSI_3"></span><span =
+lang=3DEN-GB><o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><b>From:</b> =
+Sam Reiter &lt;sam.reiter@ettus.com&gt; <br><b>Sent:</b> Wednesday, =
+December 18, 2019 9:22 PM<br><b>To:</b> Akis Kourtis =
+&lt;akis.kourtis@iit.demokritos.gr&gt;<br><b>Cc:</b> usrp-users =
+&lt;usrp-users@lists.ettus.com&gt;<br><b>Subject:</b> Re: [USRP-users] =
+DPDK build with N310<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal>Hey =
+Akis,<o:p></o:p></p><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>What version of DPDK are you using? What version of =
+UHD do you have on the host? I'm not sure that mode of failure is =
+something I'd chalk up to the DPDK =
+install.&nbsp;<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Could you give some detail on your&nbsp;config file, =
+DPDK install version(s), and hardware setup as =
+well?<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Best,<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><div><div><div><p =
+class=3DMsoNormal>Sam Reiter&nbsp;<o:p></o:p></p><div><p =
+class=3DMsoNormal>Ettus =
+Research<o:p></o:p></p></div></div></div></div></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=3DMsoNormal>On =
+Mon, Dec 9, 2019 at 6:21 PM Akis Kourtis via USRP-users &lt;<a =
+href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
+&gt; wrote:<o:p></o:p></p></div><blockquote =
+style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0in 0in 0in =
+6.0pt;margin-left:4.8pt;margin-right:0in'><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Hello =
+all,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I am trying =
+to build the oai-5g-gNB. I have managed to build the DPDK with uhd =
+successfully, however when I run the probe command I receive the =
+following error.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>EAL: =
+Starting I/O threads!<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[INFO] =
+[UHD] linux; GNU C++ version 7.4.0; Boost_106501; =
+UHD_3.14.1.HEAD-0-g0347a6d8<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[INFO] =
+[MPMD] Initializing 1 device(s) in parallel with args: =
+mgmt_addr=3D10.30.0.218,type=3Dn3xx,product=3Dn310,serial=3D3177E48,claim=
+ed=3DFalse,addr=3D192.168.20.2,second_addr=3D192.168.20.2,use_dpdk=3D1<o:=
+p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[ERROR] =
+[MPMD] No viable transport path found!<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[ERROR] =
+[MPMD] Failure during block enumeration: RuntimeError: No viable =
+transport path found!<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[INFO] =
+[MPM.PeriphManager] init() called with device args =
+`time_source=3Dinternal,clock_source=3Dinternal,second_addr=3D192.168.20.=
+2,mgmt_addr=3D10.30.0.218,product=3Dn310,use_dpdk=3D1'.<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[WARNING] =
+[MPM.PeriphManager.UDP] Number of detected CHDR devices is inconsistent. =
+Dropped from 1 to 0.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[INFO] =
+[MPM.PeriphManager.UDP] No CHDR interfaces found!<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Error: =
+RuntimeError: Failed to run enumerate_rfnoc_blocks()<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>My guess =
+from reading back posts from the forum, is that the proper DPDK file is =
+not read.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I can see a =
+/etc/conf/uhd.conf file, but no /root/.uhd/uhd.conf =
+file.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Am I in the =
+right direction, and if so, how do I enable the user conf =
+file?<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>If not, is =
+there a direction I should head towards?<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Thank =
+you,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Akis<o:p></o=
+:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
+lang=3DEN-GB style=3D'font-size:10.0pt;font-family:"Bookman Old =
+Style",serif'>Akis Kourtis</span></b><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif'>M.Sc, Ph.D</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>Research Associate </span><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>Media Networks =
+Laboratory</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#AEAAAA'>Institute</span><span lang=3DEN-GB =
+style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'> of Information &amp; =
+Telecommunications</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>National Centre for Scientific Research =
+=E2=80=9CDEMOKRITOS=E2=80=9D</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-GB style=3D'font-size:3.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>&nbsp;</span><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>akis.kourtis@ <a =
+href=3D"http://iit.demokritos.gr" =
+target=3D"_blank">iit.demokritos.gr</a></span><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
+Style",serif;color:#A6A6A6'>+306948386769</span><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+lang=3DEL style=3D'font-size:10.0pt;color:#1F497D'><img border=3D0 =
+width=3D576 height=3D104 style=3D'width:6.0in;height:1.0833in' =
+id=3D"gmail-m_766158547667184598=CE=95=CE=B9=CE=BA=CF=8C=CE=BD=CE=B1_x002=
+0_1" src=3D"cid:image001.jpg@01D5B75E.656EB2A0" alt=3D"engl LOGOTYPO =
+XORIS ETHNOSIMO ME DIEYTHINSI_3"></span><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p></div></div><p =
+class=3DMsoNormal>_______________________________________________<br>USRP=
+-users mailing list<br><a href=3D"mailto:USRP-users@lists.ettus.com" =
+target=3D"_blank">USRP-users@lists.ettus.com</a><br><a =
+href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
+m" =
+target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_list=
+s.ettus.com</a><o:p></o:p></p></blockquote></div></div></body></html>
+------=_NextPart_001_0002_01D5B75E.6607BE50--
 
---_000_4719098b9005427c9189307266d2d659dlrde_--
+------=_NextPart_000_0001_01D5B75E.6607BE50
+Content-Type: image/jpeg;
+	name="image001.jpg"
+Content-Transfer-Encoding: base64
+Content-ID: <image001.jpg@01D5B75E.656EB2A0>
+
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMg
+IyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wAARCABoAkADASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDuNQ+J
+Oi6bqFxZzrdebA5R9sWRkenNV/8Aha2gA/dvP+/P/wBevPtaszqHxEu7Res1/s/AkZ/SqvinTbbT
+dWZtPO7T518y3I9MkFfwINd8cPTdk92crqz1PS/+FraB/dvP+/P/ANetfw94v07xNNPHYCcNCoZv
+MTbwa8hs9ECJrEd/Hie1sRcRhX6ElcE468Gum+ELqupaluIBMSY9+TUVKNNQbj0HCpJySZ6tRms6
+TXLNJWiEmZFGWBH3fqOtNGsBrYyxQSSnYZFwpAI9yen41xnSalFZem67DfrEGilt5Zc7Y5Rgtjrj
+1rUoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACi
+iigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKK
+KACiiigAooooAKKKKACiiigDxK61C20v4laldXhdY1mlCui7ijFcBsdwM1KNCe48Kzq8y3trYy/a
+Yrq1bJaNuJUweVbocH3pkltFd/Fa5juEDwC8d5FYZBVVyf5VdGlWWmmax0y7lOo6lE1zZzRtgeVy
+ViPYlhuH4CvRk1ZW3sjjS1fzH6jrFvctrttarbJb/wBmIRIuDJKwCcM3fA4wPSsnwNgX9yWJCiME
+sJdm3n9fpViz8M6bFYx/bLe4kUwedPfGXyobfIyFQfxt2x61m+Ftu66JRCQqkM3Uc9qUuX2clEcb
+86uei6PHqN3FlLKLKLviuJHIy3ccHqR3q3Jpd95kLSWKmOL5wRc/OGHrnhh+P1qfS5IxpFvcb2jj
+4VmCfhnHanSajp4Zp7jUcxJkKobHT1A61wHUc/cXl1FfwRzWoRo3Bil80uzc9Mdu4/SvQQcgGuVg
+0lNXvEvYpQsccu5jnJYdlBBwK6ocUhi0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRR
+RQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFF
+ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHitzcR2vjzxDNJIqOqXAiyeWcqA
+APfms3StOuYruee/knthpQUDn5klJ/dxjOR15PtmmeKiB401POBi7Jz6ciuh8SarpF7LeafayqGE
+yXiXIbImmJG5Pptxj3Br09Ulbqji0u7mZN4R1S41lYr25gZJ7kxyTQSBljkILY2dj+FVPDQQT3Ym
+QtEFG/a21sA9veug1XXIoviDbxsPs9jYzNJKQCdzlfmdsfgK5zQH2XF0yruJHXPCjP3qiTk6TuVB
+JTVjr7jQ7ZdL+2RvKdOKkrHcXLK27HAGODzjp1q9Y6TZXHhqxklVA28q8z/NsIJxu/lWOlzGluWa
+B9QjyRgLlYux4OOfeoovPRjBpdlPm6+cJLI2xcAgkA9T9a4TqPQfCZthpbpaRJEiSFSFxz/tEDgZ
+reri/A032dJIVt3/AHrZMjOBtA4Ax379K7OpGLSUtJQBXtr+3vGmW3lV2gkMUgHVGHY0sd7BLdzW
+0bgzQqrOn90N0/PBrl7DT5vtGpajpuFvY76VWRjhbhOPkb39D2pkOuot7ruoQIxlWGCNYWGGEx3A
+IR67jV8nYjmOpTUbaWK4kjlDrbuyS7Rkqy9Rgd6oQ+K9KneRY55MxAtJmBwEAGTnI44rH0B5NJ1W
+C2msrm2ju4grvNtw9wvJPBPLDP5CpX5t/F3OeT/6JFNRQczNu813T7GGGS4nx54zEqqWZx7KOaWz
+1uwv45nt5smEZkRlKug91PNYvh9o01ucXWPtT2sBti3eHZyF/wCBZzj2pdeaJ9ftBbY+1pBMbgqe
+RDsON3/AsYpcqvYd+p0VpeQX1rHcWsiywyruR1OQRTYb+2uIJJ4pQ0UbMrt2BX735YrmdHhl0TRr
+G/s42ks5YEa6tkGSpwMyIP5jv1qnHf8AneHPstmr3LahfTACEjc0O8lyM47cfjRyauwuY69tVs10
+wagZ1+yFBIJRyNp6H9at7hx71wtzdGLw3rWmyW0tqIgJreKQDPlMw6YJ4DZH5V2/Pl/L1xx9aTVh
+pmfeeI9NsblreWZmmQZdIo2kKD/a2g4/GmzeJdLgEBNyXE6eZH5cbPuXOM8A96q+D2hGjFMgXiyP
+9sB+/wCbuOS39PbFVrtZ5/Flt/ZVzBDmxk+Yx+YpHmDOACO9Oyu0F2bkOq2c9xHAkwE0sXnIjAqz
+JnGcGn3WoW1k0a3Em1pd2wBSS2Bk4x7CuevdMOoeJY4ribbdRaeHjuIhtKSCT7wHp7dxTX1CWfxB
+o1nfII76CaQuF+7IvlnEi+x/TpRyoOY1rXxNpl7OYYJZGdc7gYXXbgZ5JHHFOsvEemahuFvc5Ij8
+3DIykp/eGQMj6VSsOZ/Eec/64/8AopaxND8+7ghGoPFG9lpxNtFGp/eRugG8seuMYI7GnyonmZ1V
+hr9hqcojtJJHLLuBMLqpH1IxT7/XLHTJkhupHEjqXVUjZyQOp4BrO8LxaimlWD3F5DJbG2TZGkO0
+j5RjnPOPpUepR3kvi62WwuY7eT7E+Wkj3gjevbIpWV7FXdjUvdcsdPjie4mKmYZjQIWdh7KBmls9
+csL+GaS3nyIBmVWUq0Y68qeRWZp22PxXqa3hX7ayR+Sx43Rbedv/AALOfwqv4gMT65Ctvg3KWc/2
+kr2iKfKG/wCBYx+NFlsF3ubOn6/p+qSeXaT75NgcKyMpK+oBAyPcVpVxnhUz3l5atqDxxzWVmq28
+ManEkbqv7zcevTGOxrsh0pSVnYIu6FoooqSgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKK
+KACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA8P1GWJPiLfxT2dv
+dRz3ojKzAkKCwGRgjmn3sX2/VtR0vTNF0y3W1kYm5+ZPJRT94sTgVU1yVIfiJdyyttRNQDM3oAwy
+afLrtomoa3FJC9zZX1yJQYn2FwrEgEkfdPfvXp2dk12OK6Tdy5bw3U6a7ZyyKPEE4BctjbJABlgj
+DgEjB9xWT4cwTdJ5rRlowAV4PWtLTL1ta/tl45oYtZv1EcEbHavld0Rum7AAGewqp4b02d7u9UxM
+r2oG9COVOcdPrUzvyST8iofEjdg12909Fj8i0uwG3AFcE+1WLzxJqN1vZIY7NgPuFfmT3Hpmp720
+2W8dyi7TzjYmOaqweGL7VnjNtbug3FpZnbGT1H1rgOom+2XC6hpEtj5cMksbkpn5N44zj1I4P1rs
+LIalFcpNDeLdWsxLmCXh4x32t3APrXJXcMdjflrUmQ2ii0t8n71w4+Y/RRyffFdhabbfUbbTU+Y2
+1uMyA9/THvSGbSOGyAeR1HpTqxYrwDxCLaGTfu3GQHkgAD+tbVICGG3t7ZpFhRUaVzIwHVmPU1DL
+pti1ybqWCLzSysXPGWXO0n3GTXOXdpDp+r3N5rVk80Ms4khv42JMA4AVgOVAPccc81ZsdPg8QXV7
+eaoouFjuHghgckxxKvGdvTJ65PtV2trcm50E9tBdCPz0V/LcSJnsw6EVH9jsyLlfLjxc/wCvGfv8
+Y5/CsS6sIdM1LRoLQOkRmmYIXJC5jPAz29qzvC9rENLhn/sZo5DbuftpZTu4PPXPP0otpcV9bHU3
+ej2F/bRwXNrHJHFjy88FO3BHIptppOnadDJDa28USS/fx1ftyTyawPDd5PpGlaat9K0thcxJ5U78
+mFyPuOf7p7H8DVO9sLe68MapcTwq80N7KI3OcqDKOlOzva+gX6nawRQ28KRQBVijUKqg8ACoLfTb
+C3mE1vBEjqGAK9txy2PTJ5rmtXs4NPup4LOMQxDSbghE4AORzUDW8cHhZ3i0ltPZjbZk3qfN+dee
+D/P1pcvmHMdZe6bY3oJvYI3BQxEtx8pIJH6Cn2Nhbadb+TZxCKIndtBJ5/GsKx0+DX7y9vNUUXHl
+XL28MDk+XEqHH3em49cn2rb0/T4NMt/ItQyxbiyqWLBc9hnoPapemg0QXmg6XqFwZbm1iebGGYEh
+iPQ4PP40240DSLoQpLZwHyV8uMKdu1fQYNclbIl1r9xb2ltIupJqTTG6LbVEIYbhnPzemMd6vaRa
+Qy6tdyvojXDrqEuLzevyYbjgnPFW011EmjqILCztpUMMSLIkXlLzyEznH0zT5be2muIZZUjaaEkx
+seq5GDj61zBtYdL1aW41qzd/MuvMh1JGJ2An5UbHKgdPQ1HpdrFNrF9K+itcuNQfF3uXCYI7E54+
+lLl6hc6xLO3jacpEoNwd0v8AtnGOfwqL+y7AC3X7PEPs6GOEf3VIwQPbFczrmtxRa61wL2ONdJ2g
+wl8GYv8A6zjvhcY96h8Sy2cniLbNaSXbXFkiWxQ4CuzNg7sjbn19qFFsHJI6ay0DTNLmE1napC4X
+bkMeB+JxVv7PbtcrdbEMwQxrJ32k5I/MVzdrYyarqIsNYlM0en20O+Hcds0jA5Zv7wGMCl17S7XR
+9GmfT4Wj8yeDMUb4UkSDoOgJotra47+RvX+lWOpoq31uk2w5UtwVPsRyKS10ewsLaWG2tY4opQfM
+x1f6nqaw9Zv7yd9NSbTJ7ZPt8P7xpEI69MA5rob61F9ZS2zO8ayrtLIecd6TukF02MWxskkt5Fij
+D2ymOJgeUXHT6cCreQBnIxXK3uiWi6no1hMhnhL3DsJOdxK5ycVn69ENKt9U0y2d3s5bQXCQs5Pl
+HzApAJ6BvT601G/UHKx3IdT0YHHoaXI9a5SVI9P0HUWt9HbTJJUESkspLljtHQnpmmteXMnh7+xh
+MRqRl/s8yd8AZ8z/AL45+ppcocx1mffikV1cZVgw9Qc1yNrIdffTLC5kcWyWZmnjViPOdW2bTjnA
+IJI+lWdS0620F7a/0pBbMJ44pIYzhJ1ZguCvTPOQfajl1sHN1OnyMZzxSBlJxuGfTNcPozHVrqbS
+bmRobSK4mlZCSGu/3h4B/uDjI6n6VBfxx3HiLUrO2tZDqbzRm1uAdixBUUn5s9hzt75p+z1DmO/L
+qOrAfU0Bg3Qg/Q1x19ZW95B4ma5iWVoGLxls/IfJHIp66fbs+k6TCv2a0uoDcXAiJUzFVX5c9ec5
+P0pcqDmOuV1fO1gwHoc0bwGClhk9BnmuY1nSrTQbL+09JjFpcW7LlYzhZlLAFGHQ5zweuar3lrDY
+arc3utWbzQSzLJFfRsSbdeMKwByoB7jg55oUbhc64OpbbuGfTNPrMs9Gt7XUJb5Gd5ZskliMDccn
+H5AfgK06kaCiiigYUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABR
+RRQAUUUUAeZa38MNQ1TXL2+ivrZEuJTIqsrZAPrVL/hUWp/9BGz/AO+Wr1Fb22ed4EniaVPvIGGR
+9RSwXcFzu+zzJJt67SDit1iKqVrmPsYM8t/4VFqeQf7RtOOh2txW/wCGPAd/os95JdX0EwuECnCE
+knPXJrsRqFqTIPtEWYvvjePl+tC31s0e9biEoQWyHGMDqfwpTr1JK0io04xd0U10QvZi3ln+UOHA
+RcDIq/cQvJayRwusblSqsVyF/CnNPGrIGkQF/ugnBP0qP7fbbQwuISpbaG3jBPp9axNLmNYeD7ey
+nt5WneT7MhESkcBz95z6kmr0ehxR3clyrkTyPvLgc5xj+VWzf2yhy1xCAhw2XHyn0PpTluopDGEk
+VvMBZMHIYDqR+dAFSz0eO11KW9LBpJE2DC4xzkn3J4/KtGoHvLeNC7TxKgbaWLjG70+tH2yDLjz4
+sxjL/MPlHqfSgDKuvDkt00kL6ncfYJX3yW5UEkE5Kh+oXPapJ9CcXsl3p19JZSzY85VQOkhAwCVP
+fHcVp/aYvMSPzY97jcq7hlh6ij7RGJGjMib0Xcy55A9TTuxWRnR6Gwe0kuL6e4mt5Hk3yAfMWXbj
+A6AdgKj03QrnToEtv7UkltERkERhQcHP8Q54zWlFfW0+PKnjfJIG1gckdaU3kAtvtHnR+T/z03fL
+6daLsVkQ2mlw22kRac4E0McQiO8D5hjHIqjF4Yt4dCn0qOaUQyyFwzHcy5YNjJ69K00vIJCoSaJi
+6llAYZIHU0iahaPC0qXMLRrjc4cYH1oux6FXUNEj1C4kleV0L2slqQAMAPjJ+vFSXmkpeaSlg0jK
+ieX8wAz8hBH8qsPewRSmOSeNXC7ipYAgetMfUbWNwj3MKsSRtLDOR1ouwsilcaFJ9ulvNOvpLKWb
+HnKEDxyEdGKnofcVdsLOSzt9k11NdSFtzSS4yT6ADgD2qT7VDuRfOTdIMoNw+b6VLmi7BWMc+G4g
+fMjuJEnW7a6SUAZUt95fdSOKLXRLqzu5Xt9TkW3lnadoDCpHzHJGeuKvf2pZgOftUOEIDEOMA9qX
++07QNtN1DkLv++Pu+v0ouw0MyXw3LOTDNqdxJYGTzDbMoyec7S/XbntUlvol1aXk0tvqkiQzTmdo
+TCpGT1GeuKv/ANpWmxH+0xbZDhDuHzH2pV1C2dJGS4jZYvvlTnb9ad2FkQWOjW9nZtA4E7OzvJJI
+o3OWOTn88VSi8KWywNDPNJNG1sLbDYBChiykH1GRg+1acmpWkU3lSXUKSYzsZwDj1p8F5Bc48iaO
+TPPytnildhZGdNoDSC2mS/niv4I/L+1KBmRfR16H1pr6BLc20kd9qU9w7yRvnYqquxgwAUeuOa1p
+J44nRZJEVnOFDNjJ9qjN/bBWY3EICtsYlxw3ofei7CyGajpy6ituruyCCdJxjuVOcVbxUQuI2mMS
+yIZAMlARkfhTVvbdlLC4hKhtpIcYDen1pDKmq6TJqFxa3FvePazWxbayor53DB4NVX8LxSafeQy3
+U0lzeACW6cAvwcgAdAB6VrrcRtK0ayIZFHzIGBI+opj31vGCXuIlCttYlwMH0+tNNiaRnnRbm4CL
+falJcIkyTBfKVPunOOO3T8qnGi2411tVGfPaHyiO3Xr9ccfSri3MbyMiyIXQZZQwJA9xTBf23lhx
+cRFC20MHGM+maLsLIzG8MQ+X+5uZoZ455JoJkxui3nLLjoV9jToNBla8iutT1CS+eA7oUKCNEb+9
+tHU+56Vom9gXzN08Q8v7+WHy/X0p7XEUcIlaRRGcYbOQc9Kd2KyMpvDMDaf9n86QSpO9xDcLgPE7
+MTx7c4x3FE3hqOcXDPcyC4mlSdZlUAxSKoXK/XHT3NbNLSux2Rmf2Ihi1JDM+dQ++QB8vyBePyou
+9Dhu7K2hMskctrjyJ4zh0IGMj6jqOhrTqP7RGLgQF1EpUuEzyQOCf1pXYWMlNAmmuIZNV1KW9SBg
+8cRjWNNw6MwH3iPy9qS78Oy3fmwvqlx9gmctJblQScnJUP1Cn0rbpskiwxPJIwVEBZmPQAdafMws
+hVUKoAGABgCnVF58f2fzt6+Vt3788YxnNOSQSKGVgwIzkUhj6KSigBaKSloAKKKKACiiigAooooA
+KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA54+H5WmvpGfLXEztHhsCNWQKW9zx
+Vq0s7uO9jnkhhjCQiArGxwR1LdPYYHua16KdxWOZ/sC8N1JLmPAlaRVdyQ/7zcBjHyj169qfc6Hd
+3crTEQxsZfPCZJGQAApPcHGT9BXR0U+ZhyowdR0e6u9QaaGXyxJGsZYMcoBncAO+c1WOgXj73KQB
+pIvJMeTtQbQu8cdeP5V09FHMwsYR0u8M926FE86JYVLNuIweWHHHB6etXBbLb39jHChWKKF0GBwB
+8uP5Vo0mKVwsYlxpMxguFhRfMe4aaJlfZ5ZK4B6c/SnPplzNeSyyhCrWrQfMchye4GPl569a2qKL
+hYwV0W4W7gb92UXyWZ8ncpRcbR7H/GorrQby5ubi4E6B7gsjKRwE42jPU8qM/U10dFPmYWOem03V
+LiUy5iiK7hEm7cI8ptJBx09qcuhzxaVcafHKPLMqvC+MFRkFuOnUH8636KXMwsc8fD88d99pglHy
+NhFfkspzvycdSWJ/AVCvhm4a3W1knUwusfmORub5UwFweNoPIrp6KfMxcqObm0XUJ4XTfGjSweXO
+4ckSsBgHGOD70+DRru2vLdgBJFCrR5Em1mUsDluOT1z6/jXQ0UczDlRz9roU8M8UjujCGceX1+WE
+BsD65atOezmmnlb7VIsMkBi8kKMKx/jz1z2q7RSbuOxzn9j6hMIIZHSCCHywBE3dT95eOCRUS6Be
+x291AAhE0AjBWUhcgEZK4711FFPmYcqMW2sr23uY7jykkJjETrJLuZMHOQ2Oc56ewqGCwurPRb2C
+VSxKuUxJuzkk8DHHWugpKXMFjK1DTZbuRnjKDdZvCM/3mxj+VQWtjfW9xBKYVYLAYXDT5I5ByDjp
+W7RRcLGFfaPcXRj2bVDQLExLkmLDBsqe54/lUH9h3Ys5otkeXhW3GyTbkDPznjvnpXSUU1JoLIxL
+HSbi3v0kk8spH5jb04Ll8cY7AY/lTE0q6nt7o3MMKTzSxuNrZUKpGAOODgdfet6ilcLGLb6TPHfv
+IWRUHmlXX7zbyDz9MVTi0O9isxEuN8ZHlN5p/dvggydOc5+7XTUU+ZhYxbLS7i3vjLJ5ZVPMIcfe
+kLsDz6YqpJod48k0m2ImUuNjsTt3KBuzjnGOB6V0tFHMwscyugXaNCw8p/szFl3HmfLBvn+n86vP
+ZSWvh+O2PzyIy5C/74OB7D+lbFJik5NhY5zVdE1S61GSayvjFA+0hN5HJ+V/w28j3pn/AAj2o/2l
+uF632LzceXvbd5X3j+O4Y+ldNS0+di5UcvZ6JrFpdrNJdidEziJpGAJHCZ/4CST7gVVbwzqxmmlF
+wglKMhl81i0oMgbkEfLwMcV2VFPnYciOUXwzeu8RmuZWRfLBBuGztAbcOMZ6jn2ph8O6s+1ZLpWP
+lBDIZWPHllSm3oQSc7utddRRzsORHJQ+GtTS1SCa7DmKKVQ4kZd7MoCEjp8uD7U1vDWoRGcwmNhL
+IHdfOdfM/dheSOm1hu46119FHOw5Ec5baXq9pPO32hZfNiSMySOSwYDBZRjA9ceves7R9I1Ce5Rr
+jz47aKWMsryyAy7UIJAPOCxBIrs6WlzsOUSlooqSgooooAKKKKACiiigAooooAKKKKACiiigAooo
+oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig
+AooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAC
+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Z
+
+------=_NextPart_000_0001_01D5B75E.6607BE50--
 
 
---===============3006135639286184545==
+
+--===============1527995845183153506==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1308,5 +689,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3006135639286184545==--
+--===============1527995845183153506==--
+
 
