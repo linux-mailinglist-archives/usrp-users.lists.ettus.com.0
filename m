@@ -2,41 +2,75 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F0BD128016
-	for <lists+usrp-users@lfdr.de>; Fri, 20 Dec 2019 16:54:27 +0100 (CET)
-Received: from [::1] (port=42562 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79621128080
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Dec 2019 17:19:47 +0100 (CET)
+Received: from [::1] (port=50760 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iiKbe-0007hk-Tl; Fri, 20 Dec 2019 10:54:22 -0500
-Received: from zeus.iit.demokritos.gr ([143.233.226.2]:59161)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <akis.kourtis@iit.demokritos.gr>)
- id 1iiKba-0007cK-7G
- for usrp-users@lists.ettus.com; Fri, 20 Dec 2019 10:54:18 -0500
-Received: from localhost (localhost [127.0.0.1])
- by zeus.iit.demokritos.gr (Postfix) with ESMTP id 47fYFD0lFMz15RR;
- Fri, 20 Dec 2019 17:53:36 +0200 (EET)
-X-Virus-Scanned: Debian amavisd-new at iit.demokritos.gr
-Received: from zeus.iit.demokritos.gr ([127.0.0.1])
- by localhost (zeus.iit.demokritos.gr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 2wJ0LSDnTwMC; Fri, 20 Dec 2019 17:53:33 +0200 (EET)
-Received: from DESKTOPJIPSV41 (telcom-143-233-227-107.iit.demokritos.gr
- [143.233.227.107])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by zeus.iit.demokritos.gr (Postfix) with ESMTPSA id 47fYF95T8Bzqpl;
- Fri, 20 Dec 2019 17:53:33 +0200 (EET)
-To: "'Sam Reiter'" <sam.reiter@ettus.com>
-References: <037c01d5aeef$b73a84a0$25af8de0$@iit.demokritos.gr>
- <CANf970Ztj8XHeLzcOZ0NVbXFACnXriJY4mqWuouTQsYpKnWVmw@mail.gmail.com>
-In-Reply-To: <CANf970Ztj8XHeLzcOZ0NVbXFACnXriJY4mqWuouTQsYpKnWVmw@mail.gmail.com>
-Date: Fri, 20 Dec 2019 17:53:33 +0200
-Message-ID: <000001d5b74d$a27c7d50$e77577f0$@iit.demokritos.gr>
+	id 1iiL0A-0001AX-Uj; Fri, 20 Dec 2019 11:19:42 -0500
+Received: from mail-mw2nam12olkn2075.outbound.protection.outlook.com
+ ([40.92.23.75]:35809 helo=NAM12-MW2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <e070832@hotmail.com>) id 1iiL06-00012g-Qv
+ for usrp-users@lists.ettus.com; Fri, 20 Dec 2019 11:19:38 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GOuVNmJp9q73zjP9440XQQxptilAB3F2bSX2FryIWPV9pIVsdLYz66cESl2/CiyDCH7IHop61VWq+QbameA4AXsJn67p2n/OCDRsJREF+r/5zry/qRayXItPvQKq0mZ8mkmiCwDoUD7fJFDdOEjyQz2kjkVj9xl+d1fHn6vdgt1MPzHy/AoTRftUNmGytRDQYk3vztrhyGKqbkbk4wn0f0sU5Bf1hffP3lkjH0GvQ/ivImpxHIALWhX8Nx6d9+4Z8tda4xMXQLs0em7E8Z4qIBsTGcO10izXLUeyxsChx83oVdRpPcoSwCtSasxKIhYL2yW9B2tgz3hgieLXnwG+Cw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ysH6h01J8Ay7V904HP+jt01Pmv8aTr9cj8DlICU3ktY=;
+ b=IvzesqV2FYMtcYjcICM7WXSFkC9EY/2Xg//0N9+2qp9zuIroS5QCjVej7TxavoSXVW2Ho4c6dzHzAGPdLwuBDKA4V5nbTEwQiuWr3dfEIVpJ+KKdBl8IvsYow5pINJm0uoYHa8lETbJngTl8WQLYqB3aK2sQitCCyvrSxsJx9WsNfrFq4qrHxZyg18ZXr3hU8nOrh/ba0qFpxa9FomLAvz5/FISMMZwnIG9UGu8qlU3z1Q/pKttTm0cVwQyRHiFT+SuWA9V12WsPfjfL86q8YU4zsxFVjUqClzDINWtf7ofBOSwHGdY1zRP/wMhihERma1DO35IycYd/qX5+rhzaaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ysH6h01J8Ay7V904HP+jt01Pmv8aTr9cj8DlICU3ktY=;
+ b=JnWY9U/VnvRBSeb2fp4qQMA5cVxMy80bR9KrP5IrFMnJoVJ+E0nw5mqnPLRX4vnR8l/n+fwBBS3JMInL88aB+1cah3XUP//gKJ9mpi66lEvPZRRxSHlPQY3cA3iMW8aZUzQ7IB+0Ua9bSBkUcEcBF5aDtE6Si67rpW2B+kd1NellAF29lxA5zyUIEdkVXtgyUgWJ1xOcSM77rA+rKJ1Ax6rZS1xewf6Dn585WXKrVy3uB3YSL0epO4cefP8bM/t2m6bfdEeld+c37pN1UwTf9bnB0Rfz62kkY1PptVd0cAOfUMJKRmKVlPBEp1NfVeoXvkgd3eooB5RgGRVflPNl/w==
+Received: from MW2NAM12FT032.eop-nam12.prod.protection.outlook.com
+ (10.13.180.56) by MW2NAM12HT257.eop-nam12.prod.protection.outlook.com
+ (10.13.181.94) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.16; Fri, 20 Dec
+ 2019 16:18:57 +0000
+Received: from BN6PR19MB1635.namprd19.prod.outlook.com (10.13.180.56) by
+ MW2NAM12FT032.mail.protection.outlook.com (10.13.180.225) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2538.16 via Frontend Transport; Fri, 20 Dec 2019 16:18:57 +0000
+Received: from BN6PR19MB1635.namprd19.prod.outlook.com
+ ([fe80::6024:225f:b6e0:1c49]) by BN6PR19MB1635.namprd19.prod.outlook.com
+ ([fe80::6024:225f:b6e0:1c49%6]) with mapi id 15.20.2559.015; Fri, 20 Dec 2019
+ 16:18:57 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: GPIO Example Failure on N310 
+Thread-Index: AQHVt08Kp/nE4uZIdEWWJjcBb2zMHw==
+Date: Fri, 20 Dec 2019 16:18:57 +0000
+Message-ID: <BN6PR19MB1635ECADF20FD97282F02D06A42D0@BN6PR19MB1635.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:144AA73B3822A5133F29283C34060DE4E59F122845002E9EE92B5DEF5F8C4A67;
+ UpperCasedChecksum:F4F640550CF1317A55F467F39E50C52EAD8938D711BBEAA31073893F33B48E9F;
+ SizeAsReceived:6642; Count:42
+x-tmn: [5/tPri9tebCxkhBbmP35DEMdtFvrLKdT]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 05703f04-05bc-40bb-38be-08d785685097
+x-ms-traffictypediagnostic: MW2NAM12HT257:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: vKeq/LoE3waGTULMvFt8bDi3mrBb2kfSrRxdL8srFWTi6vn2XsrY+IBP5fyKisEjOn97q8lJbg1ffFRctRAXbrBr4sf7JVxifL4suDwCEOM4OxhcvCO8FwalMuXaAndxwkHnr1nx9vphrPpPQ9qgIHGlOf8VqH2DEfYnBgl/H8UxUVsMs2zk7R1fUrsOyKyM
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQF8WayxknlgGiCFmd6R+joogTHHJwIb0M+YqGUH+yA=
-Content-Language: en-us
-Subject: Re: [USRP-users] DPDK build with N310
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05703f04-05bc-40bb-38be-08d785685097
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Dec 2019 16:18:57.1055 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2NAM12HT257
+Subject: [USRP-users] GPIO Example Failure on N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,10 +82,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Akis Kourtis via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Akis Kourtis <akis.kourtis@iit.demokritos.gr>
-Cc: 'usrp-users' <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1527995845183153506=="
+From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jeff S <e070832@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============0449294149027398044=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -65,620 +98,321 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multipart message in MIME format.
-
---===============1527995845183153506==
-Content-Type: multipart/related;
-	boundary="----=_NextPart_000_0001_01D5B75E.6607BE50"
-Content-Language: en-us
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0001_01D5B75E.6607BE50
+--===============0449294149027398044==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_0002_01D5B75E.6607BE50"
+	boundary="_000_BN6PR19MB1635ECADF20FD97282F02D06A42D0BN6PR19MB1635namp_"
 
-
-------=_NextPart_001_0002_01D5B75E.6607BE50
-Content-Type: text/plain;
-	charset="utf-8"
+--_000_BN6PR19MB1635ECADF20FD97282F02D06A42D0BN6PR19MB1635namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Sam,
-
-=20
-
-We are using the DPDK 19.11, and UHD 3.14.1.=20
-
-The hardware setup is N310(SFP1)<->(ethernet-to-thunderbolt)<->Laptop =
-(with thunderbolt).
-
-The problem with the config file is, that we could not find the config =
-file anywhere neither on the root or the user folder.
-
-We have created one, and added the DPDK one (from the site). But I =
-seriously believe that it is not seen/used.
-
-As the error=20
-
-No CHDR interfaces found!
-
-Is related to the no IP DPDK interfaces (presumably).
-
-=20
-
-Thank you for your support!
-
-=20
-
-Akis Kourtis
-
-M.Sc, Ph.D
-
-Research Associate=20
-
-Media Networks Laboratory
-
-Institute of Information & Telecommunications
-
-National Centre for Scientific Research =E2=80=9CDEMOKRITOS=E2=80=9D
-
-=20
-
-akis.kourtis@ iit.demokritos.gr
-
-+306948386769
-
-
-
-=20
-
-From: Sam Reiter <sam.reiter@ettus.com>=20
-Sent: Wednesday, December 18, 2019 9:22 PM
-To: Akis Kourtis <akis.kourtis@iit.demokritos.gr>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] DPDK build with N310
-
-=20
-
-Hey Akis,
-
-=20
-
-What version of DPDK are you using? What version of UHD do you have on =
-the host? I'm not sure that mode of failure is something I'd chalk up to =
-the DPDK install.=20
-
-=20
-
-Could you give some detail on your config file, DPDK install version(s), =
-and hardware setup as well?
-
-=20
-
-Best,
-
-=20
-
-Sam Reiter=20
-
-Ettus Research
-
-=20
-
-=20
-
-On Mon, Dec 9, 2019 at 6:21 PM Akis Kourtis via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com> > wrote:
-
-Hello all,
-
-=20
-
-I am trying to build the oai-5g-gNB. I have managed to build the DPDK =
-with uhd successfully, however when I run the probe command I receive =
-the following error.
-
-=20
-
-EAL: Starting I/O threads!
-
-[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; =
-UHD_3.14.1.HEAD-0-g0347a6d8
-
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: =
-mgmt_addr=3D10.30.0.218,type=3Dn3xx,product=3Dn310,serial=3D3177E48,claim=
-ed=3DFalse,addr=3D192.168.20.2,second_addr=3D192.168.20.2,use_dpdk=3D1
-
-[ERROR] [MPMD] No viable transport path found!
-
-[ERROR] [MPMD] Failure during block enumeration: RuntimeError: No viable =
-transport path found!
-
-[INFO] [MPM.PeriphManager] init() called with device args =
-`time_source=3Dinternal,clock_source=3Dinternal,second_addr=3D192.168.20.=
-2,mgmt_addr=3D10.30.0.218,product=3Dn310,use_dpdk=3D1'.
-
-[WARNING] [MPM.PeriphManager.UDP] Number of detected CHDR devices is =
-inconsistent. Dropped from 1 to 0.
-
-[INFO] [MPM.PeriphManager.UDP] No CHDR interfaces found!
-
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
-
-=20
-
-My guess from reading back posts from the forum, is that the proper DPDK =
-file is not read.
-
-I can see a /etc/conf/uhd.conf file, but no /root/.uhd/uhd.conf file.
-
-Am I in the right direction, and if so, how do I enable the user conf =
-file?
-
-=20
-
-If not, is there a direction I should head towards?
-
-=20
-
-Thank you,
-
-=20
-
-Akis
-
-=20
-
-Akis Kourtis
-
-M.Sc, Ph.D
-
-Research Associate=20
-
-Media Networks Laboratory
-
-Institute of Information & Telecommunications
-
-National Centre for Scientific Research =E2=80=9CDEMOKRITOS=E2=80=9D
-
-=20
-
-akis.kourtis@ iit.demokritos.gr <http://iit.demokritos.gr>=20
-
-+306948386769
-
-
-
-=20
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>=20
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-
-------=_NextPart_001_0002_01D5B75E.6607BE50
-Content-Type: text/html;
-	charset="utf-8"
+I built the UHD example, gpio.cpp (no modifications), and ran it on my N310=
+ to start experimenting with the GPIO.  It returned with two failures:
+
+Testing ATR TX output...fail:
+Bit 2 should be set, but is not
+       Bit  10  9  8  7  6  5  4  3  2  1  0
+      CTRL:  0  0  0  0  0  0  0  1  1  1  1
+       DDR:  0  0  0  0  0  0  1  1  1  1  1
+    ATR_0X:  0  0  0  0  0  0  0  0  0  0  1
+    ATR_RX:  0  0  0  0  0  0  0  0  0  1  0
+    ATR_TX:  0  0  0  0  0  0  0  0  1  0  0
+    ATR_XX:  0  0  0  0  0  0  0  1  0  0  0
+       OUT:  0  0  0  0  0  0  0  0  0  0  0
+  READBACK:  1  1  1  1  1  1  0  0  0  0  1
+
+Testing ATR full duplex output...fail:
+Bit 3 should be set, but is not
+       Bit  10  9  8  7  6  5  4  3  2  1  0
+      CTRL:  0  0  0  0  0  0  0  1  1  1  1
+       DDR:  0  0  0  0  0  0  1  1  1  1  1
+    ATR_0X:  0  0  0  0  0  0  0  0  0  0  1
+    ATR_RX:  0  0  0  0  0  0  0  0  0  1  0
+    ATR_TX:  0  0  0  0  0  0  0  0  1  0  0
+    ATR_XX:  0  0  0  0  0  0  0  1  0  0  0
+       OUT:  0  0  0  0  0  0  0  0  0  0  0
+  READBACK:  1  1  1  1  1  1  0  0  0  0  1
+
+2 tests failed
+
+Done!
+
+Is this something that I should be concerned about?
+
+If I compile and run the same example with my X310, everything passes.
+
+Here's the uhd_config_info --print-all from my N310:
+
+UHD 3.14.1.1-0-g0347a6d8
+Build date: Thu, 26 Sep 2019 01:26:32
+C compiler: GNU 7.3.0
+C++ compiler: GNU 7.3.0
+C flags: -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CONSOLE_LEVEL=3D=
+2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBER
+IO -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a9=
+  --sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon
+-oe-linux-gnueabi/uhd/3.14.1.1-r1/recipe-sysroot  -O2 -pipe -g -feliminate-=
+unused-debug-types -fdebug-prefix-map=3D/home/oe-builder/bu
+ild/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1=3D/usr/=
+src/debug/uhd/3.14.1.1-r1 -fdebug-prefix-map=3D/home/oe-build
+er/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1/re=
+cipe-sysroot=3D -fdebug-prefix-map=3D/home/oe-builder/build/t
+mp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1/recipe-sysro=
+ot-native=3D   -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3D
+hard -mcpu=3Dcortex-a9  --sysroot=3D/home/oe-builder/build/tmp-glibc/work/c=
+ortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1/recipe-sysroo
+t
+C++ flags: -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CONSOLE_LEVEL=
+=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -DHAVE_LIB
+ERIO -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-=
+a9  --sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-ne
+on-oe-linux-gnueabi/uhd/3.14.1.1-r1/recipe-sysroot  -O2 -pipe -g -feliminat=
+e-unused-debug-types -fdebug-prefix-map=3D/home/oe-builder/
+build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1=3D/us=
+r/src/debug/uhd/3.14.1.1-r1 -fdebug-prefix-map=3D/home/oe-bui
+lder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1/=
+recipe-sysroot=3D -fdebug-prefix-map=3D/home/oe-builder/build
+/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1/recipe-sys=
+root-native=3D  -fvisibility-inlines-hidden  -march=3Darmv7-a
+ -marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a9  --sysroot=3D/home=
+/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi
+/uhd/3.14.1.1-r1/recipe-sysroot -fvisibility=3Dhidden -fvisibility-inlines-=
+hidden
+Enabled components: LibUHD, LibUHD - C API, Examples, Utils, Tests, LIBERIO=
+, USB, GPSD, MPMD, N300, N320, E320
+Install prefix: /usr
+Boost version: 1.66
+Libusb version: 1.0.23
+Package path: /usr
+Images directory: /usr/share/uhd/images
+ABI version string: 3.14.1
+
+Thanks,
+Jeff
+
+
+--_000_BN6PR19MB1635ECADF20FD97282F02D06A42D0BN6PR19MB1635namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><!--[if =
-!mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Bookman Old Style";
-	panose-1:2 5 6 4 5 5 5 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>Hello =
-Sam,<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>We are using the DPDK 19.11, and UHD 3.14.1. =
-<o:p></o:p></p><p class=3DMsoNormal>The hardware setup is =
-N310(SFP1)&lt;-&gt;(ethernet-to-thunderbolt)&lt;-&gt;Laptop (with =
-thunderbolt).<o:p></o:p></p><p class=3DMsoNormal>The problem with the =
-config file is, that we could not find the config file anywhere neither =
-on the root or the user folder.<o:p></o:p></p><p class=3DMsoNormal>We =
-have created one, and added the DPDK one (from the site). But I =
-seriously believe that it is not seen/used.<o:p></o:p></p><p =
-class=3DMsoNormal>As the error <o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>No CHDR =
-interfaces found!<o:p></o:p></p><p class=3DMsoNormal>Is related to the =
-no IP DPDK interfaces (presumably).<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Thank you =
-for your support!<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><b><span =
-lang=3DEN-GB style=3D'font-size:10.0pt;font-family:"Bookman Old =
-Style",serif'>Akis Kourtis<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span lang=3DEN-GB =
-style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;mso-fareast-language:EN-GB'>M.Sc, =
-Ph.D<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-GB =
-style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>Research Associate <o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-GB =
-style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>Media Networks Laboratory</span><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#AEAAAA'><o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-GB =
-style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#AEAAAA'>Institute</span><span lang=3DEN-GB =
-style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'> of Information &amp; =
-Telecommunications<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>National Centre for Scientific Research =
-=E2=80=9CDEMOKRITOS=E2=80=9D<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-GB =
-style=3D'font-size:3.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-GB =
-style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>akis.kourtis@ =
-iit.demokritos.gr<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>+306948386769<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEL =
-style=3D'font-size:10.0pt;color:#1F497D'><img width=3D576 height=3D104 =
-style=3D'width:6.0in;height:1.0833in' =
-id=3D"=CE=95=CE=B9=CE=BA=CF=8C=CE=BD=CE=B1_x0020_1" =
-src=3D"cid:image001.jpg@01D5B75E.656EB2A0" alt=3D"engl LOGOTYPO XORIS =
-ETHNOSIMO ME DIEYTHINSI_3"></span><span =
-lang=3DEN-GB><o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><b>From:</b> =
-Sam Reiter &lt;sam.reiter@ettus.com&gt; <br><b>Sent:</b> Wednesday, =
-December 18, 2019 9:22 PM<br><b>To:</b> Akis Kourtis =
-&lt;akis.kourtis@iit.demokritos.gr&gt;<br><b>Cc:</b> usrp-users =
-&lt;usrp-users@lists.ettus.com&gt;<br><b>Subject:</b> Re: [USRP-users] =
-DPDK build with N310<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal>Hey =
-Akis,<o:p></o:p></p><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal>What version of DPDK are you using? What version of =
-UHD do you have on the host? I'm not sure that mode of failure is =
-something I'd chalk up to the DPDK =
-install.&nbsp;<o:p></o:p></p></div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal>Could you give some detail on your&nbsp;config file, =
-DPDK install version(s), and hardware setup as =
-well?<o:p></o:p></p></div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal>Best,<o:p></o:p></p></div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><div><div><div><p =
-class=3DMsoNormal>Sam Reiter&nbsp;<o:p></o:p></p><div><p =
-class=3DMsoNormal>Ettus =
-Research<o:p></o:p></p></div></div></div></div></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=3DMsoNormal>On =
-Mon, Dec 9, 2019 at 6:21 PM Akis Kourtis via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
-&gt; wrote:<o:p></o:p></p></div><blockquote =
-style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0in 0in 0in =
-6.0pt;margin-left:4.8pt;margin-right:0in'><div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Hello =
-all,<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I am trying =
-to build the oai-5g-gNB. I have managed to build the DPDK with uhd =
-successfully, however when I run the probe command I receive the =
-following error.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>EAL: =
-Starting I/O threads!<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[INFO] =
-[UHD] linux; GNU C++ version 7.4.0; Boost_106501; =
-UHD_3.14.1.HEAD-0-g0347a6d8<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[INFO] =
-[MPMD] Initializing 1 device(s) in parallel with args: =
-mgmt_addr=3D10.30.0.218,type=3Dn3xx,product=3Dn310,serial=3D3177E48,claim=
-ed=3DFalse,addr=3D192.168.20.2,second_addr=3D192.168.20.2,use_dpdk=3D1<o:=
-p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[ERROR] =
-[MPMD] No viable transport path found!<o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[ERROR] =
-[MPMD] Failure during block enumeration: RuntimeError: No viable =
-transport path found!<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[INFO] =
-[MPM.PeriphManager] init() called with device args =
-`time_source=3Dinternal,clock_source=3Dinternal,second_addr=3D192.168.20.=
-2,mgmt_addr=3D10.30.0.218,product=3Dn310,use_dpdk=3D1'.<o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[WARNING] =
-[MPM.PeriphManager.UDP] Number of detected CHDR devices is inconsistent. =
-Dropped from 1 to 0.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>[INFO] =
-[MPM.PeriphManager.UDP] No CHDR interfaces found!<o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Error: =
-RuntimeError: Failed to run enumerate_rfnoc_blocks()<o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>My guess =
-from reading back posts from the forum, is that the proper DPDK file is =
-not read.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I can see a =
-/etc/conf/uhd.conf file, but no /root/.uhd/uhd.conf =
-file.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Am I in the =
-right direction, and if so, how do I enable the user conf =
-file?<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>If not, is =
-there a direction I should head towards?<o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Thank =
-you,<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Akis<o:p></o=
-:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
-lang=3DEN-GB style=3D'font-size:10.0pt;font-family:"Bookman Old =
-Style",serif'>Akis Kourtis</span></b><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif'>M.Sc, Ph.D</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>Research Associate </span><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>Media Networks =
-Laboratory</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#AEAAAA'>Institute</span><span lang=3DEN-GB =
-style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'> of Information &amp; =
-Telecommunications</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>National Centre for Scientific Research =
-=E2=80=9CDEMOKRITOS=E2=80=9D</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-GB style=3D'font-size:3.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>&nbsp;</span><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>akis.kourtis@ <a =
-href=3D"http://iit.demokritos.gr" =
-target=3D"_blank">iit.demokritos.gr</a></span><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-GB style=3D'font-size:9.0pt;font-family:"Bookman Old =
-Style",serif;color:#A6A6A6'>+306948386769</span><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEL style=3D'font-size:10.0pt;color:#1F497D'><img border=3D0 =
-width=3D576 height=3D104 style=3D'width:6.0in;height:1.0833in' =
-id=3D"gmail-m_766158547667184598=CE=95=CE=B9=CE=BA=CF=8C=CE=BD=CE=B1_x002=
-0_1" src=3D"cid:image001.jpg@01D5B75E.656EB2A0" alt=3D"engl LOGOTYPO =
-XORIS ETHNOSIMO ME DIEYTHINSI_3"></span><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p></div></div><p =
-class=3DMsoNormal>_______________________________________________<br>USRP=
--users mailing list<br><a href=3D"mailto:USRP-users@lists.ettus.com" =
-target=3D"_blank">USRP-users@lists.ettus.com</a><br><a =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m" =
-target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_list=
-s.ettus.com</a><o:p></o:p></p></blockquote></div></div></body></html>
-------=_NextPart_001_0002_01D5B75E.6607BE50--
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I built the UHD example, gpio.cpp (no modifications), and ran it on my N310=
+ to start experimenting with the GPIO.&nbsp; It returned with two failures:=
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<blockquote style=3D"margin-top: 0px; margin-bottom: 0px;">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<span>Testing ATR TX output...fail:<br>
+</span>
+<div>Bit 2 should be set, but is not<br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;Bit &nbsp;10 &nbsp;9 &nbsp;8 &nbsp;7 &nbsp;=
+6 &nbsp;5 &nbsp;4 &nbsp;3 &nbsp;2 &nbsp;1 &nbsp;0<br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; CTRL: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nb=
+sp;0 &nbsp;0 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1<br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;DDR: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;=
+0 &nbsp;0 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1<br>
+</div>
+<div>&nbsp; &nbsp; ATR_0X: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 =
+&nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1<br>
+</div>
+<div>&nbsp; &nbsp; ATR_RX: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 =
+&nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1 &nbsp;0<br>
+</div>
+<div>&nbsp; &nbsp; ATR_TX: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 =
+&nbsp;0 &nbsp;0 &nbsp;1 &nbsp;0 &nbsp;0<br>
+</div>
+<div>&nbsp; &nbsp; ATR_XX: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 =
+&nbsp;0 &nbsp;1 &nbsp;0 &nbsp;0 &nbsp;0<br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;OUT: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;=
+0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0<br>
+</div>
+<div>&nbsp; READBACK: &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp=
+;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1<br>
+</div>
+<div><br>
+</div>
+<div>Testing ATR full duplex output...fail:<br>
+</div>
+<div>Bit 3 should be set, but is not<br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;Bit &nbsp;10 &nbsp;9 &nbsp;8 &nbsp;7 &nbsp;=
+6 &nbsp;5 &nbsp;4 &nbsp;3 &nbsp;2 &nbsp;1 &nbsp;0<br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; CTRL: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nb=
+sp;0 &nbsp;0 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1<br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;DDR: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;=
+0 &nbsp;0 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1<br>
+</div>
+<div>&nbsp; &nbsp; ATR_0X: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 =
+&nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1<br>
+</div>
+<div>&nbsp; &nbsp; ATR_RX: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 =
+&nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1 &nbsp;0<br>
+</div>
+<div>&nbsp; &nbsp; ATR_TX: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 =
+&nbsp;0 &nbsp;0 &nbsp;1 &nbsp;0 &nbsp;0<br>
+</div>
+<div>&nbsp; &nbsp; ATR_XX: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 =
+&nbsp;0 &nbsp;1 &nbsp;0 &nbsp;0 &nbsp;0<br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;OUT: &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;=
+0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0<br>
+</div>
+<div>&nbsp; READBACK: &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp=
+;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1<br>
+</div>
+<div><br>
+</div>
+<div>2 tests failed<br>
+</div>
+<div><br>
+</div>
+<span>Done!</span></div>
+</blockquote>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt"=
+>Is this something that I should be concerned about?</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt"=
+><br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt"=
+></div>
+If I compile and run the same example with my X310, everything passes.</div=
+>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+Here's the uhd_config_info --print-all from my N310:
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<blockquote style=3D"margin-top: 0px; margin-bottom: 0px;">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<span>UHD 3.14.1.1-0-g0347a6d8<br>
+</span>
+<div>Build date: Thu, 26 Sep 2019 01:26:32<br>
+</div>
+<div>C compiler: GNU 7.3.0<br>
+</div>
+<div>C&#43;&#43; compiler: GNU 7.3.0<br>
+</div>
+<div>C flags: -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CONSOLE_LEV=
+EL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBER<br>
+</div>
+<div>IO -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcort=
+ex-a9 &nbsp;--sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-ne=
+on<br>
+</div>
+<div>-oe-linux-gnueabi/uhd/3.14.1.1-r1/recipe-sysroot &nbsp;-O2 -pipe -g -f=
+eliminate-unused-debug-types -fdebug-prefix-map=3D/home/oe-builder/bu<br>
+</div>
+<div>ild/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1=3D=
+/usr/src/debug/uhd/3.14.1.1-r1 -fdebug-prefix-map=3D/home/oe-build<br>
+</div>
+<div>er/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-=
+r1/recipe-sysroot=3D -fdebug-prefix-map=3D/home/oe-builder/build/t<br>
+</div>
+<div>mp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1/recipe-=
+sysroot-native=3D &nbsp; -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3D=
+<br>
+</div>
+<div>hard -mcpu=3Dcortex-a9 &nbsp;--sysroot=3D/home/oe-builder/build/tmp-gl=
+ibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1/recipe-sysroo<br>
+</div>
+<div>t<br>
+</div>
+<div>C&#43;&#43; flags: -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_C=
+ONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -DHAVE_LI=
+B<br>
+</div>
+<div>ERIO -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dco=
+rtex-a9 &nbsp;--sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-=
+ne<br>
+</div>
+<div>on-oe-linux-gnueabi/uhd/3.14.1.1-r1/recipe-sysroot &nbsp;-O2 -pipe -g =
+-feliminate-unused-debug-types -fdebug-prefix-map=3D/home/oe-builder/<br>
+</div>
+<div>build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1=
+=3D/usr/src/debug/uhd/3.14.1.1-r1 -fdebug-prefix-map=3D/home/oe-bui<br>
+</div>
+<div>lder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.=
+1-r1/recipe-sysroot=3D -fdebug-prefix-map=3D/home/oe-builder/build<br>
+</div>
+<div>/tmp-glibc/work/cortexa9hf-neon-oe-linux-gnueabi/uhd/3.14.1.1-r1/recip=
+e-sysroot-native=3D &nbsp;-fvisibility-inlines-hidden &nbsp;-march=3Darmv7-=
+a<br>
+</div>
+<div>&nbsp;-marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a9 &nbsp;--=
+sysroot=3D/home/oe-builder/build/tmp-glibc/work/cortexa9hf-neon-oe-linux-gn=
+ueabi<br>
+</div>
+<div>/uhd/3.14.1.1-r1/recipe-sysroot -fvisibility=3Dhidden -fvisibility-inl=
+ines-hidden<br>
+</div>
+<div>Enabled components: LibUHD, LibUHD - C API, Examples, Utils, Tests, LI=
+BERIO, USB, GPSD, MPMD, N300, N320, E320<br>
+</div>
+<div>Install prefix: /usr<br>
+</div>
+<div>Boost version: 1.66<br>
+</div>
+<div>Libusb version: 1.0.23<br>
+</div>
+<div>Package path: /usr<br>
+</div>
+<div>Images directory: /usr/share/uhd/images<br>
+</div>
+<div>ABI version string: 3.14.1<br>
+</div>
+<span></span><br>
+</div>
+</blockquote>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Thanks,<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Jeff<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+</body>
+</html>
 
-------=_NextPart_000_0001_01D5B75E.6607BE50
-Content-Type: image/jpeg;
-	name="image001.jpg"
-Content-Transfer-Encoding: base64
-Content-ID: <image001.jpg@01D5B75E.656EB2A0>
-
-/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMg
-IyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wAARCABoAkADASIA
-AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
-AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
-ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
-p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
-AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
-BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
-U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
-uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDuNQ+J
-Oi6bqFxZzrdebA5R9sWRkenNV/8Aha2gA/dvP+/P/wBevPtaszqHxEu7Res1/s/AkZ/SqvinTbbT
-dWZtPO7T518y3I9MkFfwINd8cPTdk92crqz1PS/+FraB/dvP+/P/ANetfw94v07xNNPHYCcNCoZv
-MTbwa8hs9ECJrEd/Hie1sRcRhX6ElcE468Gum+ELqupaluIBMSY9+TUVKNNQbj0HCpJySZ6tRms6
-TXLNJWiEmZFGWBH3fqOtNGsBrYyxQSSnYZFwpAI9yen41xnSalFZem67DfrEGilt5Zc7Y5Rgtjrj
-1rUoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACi
-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
-
-------=_NextPart_000_0001_01D5B75E.6607BE50--
+--_000_BN6PR19MB1635ECADF20FD97282F02D06A42D0BN6PR19MB1635namp_--
 
 
-
---===============1527995845183153506==
+--===============0449294149027398044==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -689,6 +423,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1527995845183153506==--
-
+--===============0449294149027398044==--
 
