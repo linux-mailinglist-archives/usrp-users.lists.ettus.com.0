@@ -2,49 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556FB126933
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Dec 2019 19:35:41 +0100 (CET)
-Received: from [::1] (port=34276 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 527211278F4
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Dec 2019 11:12:47 +0100 (CET)
+Received: from [::1] (port=52454 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ii0eB-0007EX-E1; Thu, 19 Dec 2019 13:35:39 -0500
-Received: from mail-bn8nam12olkn2109.outbound.protection.outlook.com
- ([40.92.21.109]:6316 helo=NAM12-BN8-obe.outbound.protection.outlook.com)
+	id 1iiFGz-0001w9-QO; Fri, 20 Dec 2019 05:12:41 -0500
+Received: from mailin.dlr.de ([194.94.201.12]:35953)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <e070832@hotmail.com>) id 1ii0e7-00077f-CG
- for usrp-users@lists.ettus.com; Thu, 19 Dec 2019 13:35:35 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HzO2ppIIKr+NoeojFeHI55wuvtuF6DJR3ls6krFN00Tx3Kb7IuPZ062oFC69FZU4O32QXSqyErLgKrpvQXp//cQuxrBltl7AYYs5kftQdS/7YKsOhen6YvLY7mKjd0JTJcS23SrNFFvF/YjqzUoeggZH5rpDswqCLDN4LLpiQHIveUXbBqgSt7TSb051xD4yHvree0rLPkFBQZbBY0JgZD9O9JULun8Xra9vadb3psAzCJqkM4b0zgabp1uBwWLvTsil2hZF/BEtrNyjP2i05nFR30RyXEUjU1PHrMvEz+Cm3e4Mp4R1vavX1nWxVy2sYnpvkamCuToAHKnT6FYdlw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IrWMUXqmII4VX92HC+NJAU0bM2BNfDeRZkG2grTajtU=;
- b=bEyDl6IdFy2w4USumkehxWxMH9dH9BpxHPluCrr+gRUgsueAg9QAFZNDAZrUdS4EA5bOwyzR/r4pXWxdbvrnJWFGDOWKw/rYvRllhU9nIA7JJecyaXEufrIRzVondRsRYZUeNa0GEkXqW9H0hlfiW6fVYIGjHXJqxXXMc2BYjkHokSoxJ9GEQ2o5cr4LU3Fe3ENF8iJKp/eqN2HxzOKmm1FfAE7tGU1zoK5YEJw8h+jGBEpHLoRlMXKXCYRjfPPxbrewLEHyv5OHnJhym2eLVFPDQf38fiD5lj7kxP21bKnNhW/pWCLFUgpkHhN+hbyo6PO0aeoYt0bmJNIfPHTL7A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IrWMUXqmII4VX92HC+NJAU0bM2BNfDeRZkG2grTajtU=;
- b=QRReVA0jGOmlZWL6l5N1pdSTEGtaGng3HWRaBmzqjubWHIfSBuDp2E5qy+/CGfEDAnpXetJDr5F2bFn3oMldff/RJ0H/gTlxJAjWWAEjeapO/FxuCyYYiqWbQZDuLDFa1GJANwHAN0ci1qBm5f1Wd67qR09TQ1d8C5K4VaiJ3U7XmOx2vVLzLWyerQVYjIYDB7bstgsZtLBF80lJsGfIDWIhzjFPdiuca/vIrMhEAV2KvH4UFtfHDKPGGfFgzafqDZsVjrNG6epQubN00WJsENZCy1K0+63kWU5m2hAblrayu/rn2EE5DfBZt6/pp9+XwQSQcS+sLYhu/GdWSBL8Hg==
-Received: from BN8NAM12FT010.eop-nam12.prod.protection.outlook.com
- (10.13.182.52) by BN8NAM12HT024.eop-nam12.prod.protection.outlook.com
- (10.13.182.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.16; Thu, 19 Dec
- 2019 18:34:54 +0000
-Received: from BN6PR19MB1635.namprd19.prod.outlook.com (10.13.182.54) by
- BN8NAM12FT010.mail.protection.outlook.com (10.13.182.62) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.16 via Frontend Transport; Thu, 19 Dec 2019 18:34:54 +0000
-Received: from BN6PR19MB1635.namprd19.prod.outlook.com
- ([fe80::6024:225f:b6e0:1c49]) by BN6PR19MB1635.namprd19.prod.outlook.com
- ([fe80::6024:225f:b6e0:1c49%6]) with mapi id 15.20.2559.015; Thu, 19 Dec 2019
- 18:34:54 +0000
-To: EJ Kreinar <ejkreinar@gmail.com>
+ (Exim 4.92) (envelope-from <Robert.Poehlmann@dlr.de>)
+ id 1iiFGv-0001rW-7L
+ for usrp-users@lists.ettus.com; Fri, 20 Dec 2019 05:12:37 -0500
+IronPort-SDR: oZO0rDNAuPtc23bwY8tdzBqjbhFHZvCpkrANSv8k/jcCt9a7wH9b9VIR5kgGySPnSAfZXqZLYo
+ FR39JOGEwgVw==
+IronPort-PHdr: =?us-ascii?q?9a23=3ApyZnih9Mj6HhB/9uRHKM819IXTAuvvDOBiVQ1K?=
+ =?us-ascii?q?B21u0cTK2v8tzYMVDF4r011RmVBN6dsasfwLOP+4nbGkU4qa6bt34DdJEeHz?=
+ =?us-ascii?q?Qksu4x2zIaPcieFEfgJ+TrZSFpVO5LVVti4m3peRMNQJW2aFLduGC94iAPER?=
+ =?us-ascii?q?vjKwV1Ov71GonPhMiryuy+4ZLebxhGiTanf79+MRu7oQrMusULnIBvNrs/xh?=
+ =?us-ascii?q?zVr3VSZu9Y33loJVWdnxb94se/4ptu+DlOtvwi6sBNT7z0c7w3QrJEAjsmNX?=
+ =?us-ascii?q?s15NDwuhnYUQSP/HocXX4InRdOHgPI8Qv1Xpb1siv9q+p9xCyXNtD4QLwoRT?=
+ =?us-ascii?q?iv6bpgRRn1gykFKjE56nnahMxugqxGvBKvqR9xw4DWb4GUKPVxcbjQcskGSW?=
+ =?us-ascii?q?pDRMtdSzBNDp66YoASD+QBJ+FYr4zlqlYJsRW+AhKjC/31yj9UnHP4x6o63P?=
+ =?us-ascii?q?ohEQHC2QwvBdQOsHLPodroMKcSS/q5w7TWwjjaaf5dxDnz6I/Nch87oPGMW6?=
+ =?us-ascii?q?p9cdHLxUkzFwPJlkufqZD5PzOIzeQBqXSU7+1lVe63hG4nqh1xojiyxsg3kI?=
+ =?us-ascii?q?XGmoUVylXc+SR2wYY1Idy4SEh0YNK+DJRQsCSaOo1rSc0hW2FloDs2xqEctZ?=
+ =?us-ascii?q?KmfyUHx44rywPRZvGEaYSE/AzvWP6MLTtknn5pZbGyihmo/US9xODxVdO43E?=
+ =?us-ascii?q?hKoydKitXMuG4C2h/P5sWCT/Zw+kOs2TiV2A3W9O1LPV44mKjeJpI/3rE/i5?=
+ =?us-ascii?q?UevEHNEyLygkr7gqmbfVg+9Oey8eToeLDmq4eZN49zlw7xLLwjmte6AeQkKg?=
+ =?us-ascii?q?gOWHWb+fik2L3j40L5RLJKg+U4nKffvp7UKsQVqK6+DQFW1Ygt8QizAymp3t?=
+ =?us-ascii?q?sZg3QLNlNFeBSbj4jzIV7COu33DfOlg1i2jThk2ejKPrznAprTMnjOiKrtca?=
+ =?us-ascii?q?pn50JBywc+wspT649aB7wCOv7/RFH9uMTdDhAjMgy0x+jnCM961oMbQW+BHq?=
+ =?us-ascii?q?iZP7jMvl+S+uIjOfOCZIgLtzb9L/gl4uThjXk/mVIGYKap2YEXZGqlEft4O0?=
+ =?us-ascii?q?mZe2bjgs8dEWcWuQozVPLliF+BUT5JeXmyXqQ86SshCI+9AofDQ5qigL2F3C?=
+ =?us-ascii?q?uhApJWYWVGAEiWEXj0b4WER+sMaCWKL898iTwET6ChR5Y81RG1qgD60aFnI/?=
+ =?us-ascii?q?HQ+i0ZrpLjyMN16/fNmhEu6Tx0Et+d33uRQGFzm2NbDwMxifRyo09nx1aF2L?=
+ =?us-ascii?q?JQjPlRFNgV7PRMBFQUL5nZmrhADNr/QB6HRtCESFKjS9OgKT01VJQ9zoldMA?=
+ =?us-ascii?q?5GB9y+g0WbjGKRCLgPmunTCQ=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2FEAgDNnfxd/xaKuApOFhsBAQEBAQE?=
+ =?us-ascii?q?BBQEBAREBAQMDAQEBgXyBHoFdE4ExCodGjVOBAYFnhnaRFxchBAkBAQEBAQE?=
+ =?us-ascii?q?BAQEHARgBDAoBAQKBAkiCdAKCQTgTAgMBDAEBBQEBAQEBBQQBAQKGIAyCOyI?=
+ =?us-ascii?q?ZWDgHMQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ8CCAU2GQUmERIBAR0?=
+ =?us-ascii?q?BAQEBAwEBGA0GQQsQAgEIEQQBARQNAQYHIQYBChQJCAIEDgUIEgFLgj2BeU0?=
+ =?us-ascii?q?DPaoqgXQzg3w+ARRAgxoNgiCBNo4zgRGCXgcuPoIbSQEBAQKBHQxFKAiFDiI?=
+ =?us-ascii?q?EjTmBHoc0gQSBPocfji0xQweBRogjiRmBJwGEHSODOosajAGNGooJghyDbId?=
+ =?us-ascii?q?uHyODSgIEAgQFAhWBPyphgRpxT4IEaAlHGA2NHheDUIdBgxJ0AQEBAQaRDYE?=
+ =?us-ascii?q?xgRABAQ?=
+X-IronPort-AV: E=Sophos;i="5.69,335,1571695200"; d="scan'208,217";a="26653985"
+To: <ejkreinar@gmail.com>
 Thread-Topic: [USRP-users] Default RFNoC image for N310 does not compile
-Thread-Index: AQHVrqJVbfbx+2jRgkCvVFb9ZGvXmKeyIluAgAASN4CAAWD7gIAAAvMAgAEylwCADGz/gIAAT20AgAAlMceAABmDgIAAELlu
-Date: Thu, 19 Dec 2019 18:34:53 +0000
-Message-ID: <BN6PR19MB16354CC48D17A7020ECF6F69A4520@BN6PR19MB1635.namprd19.prod.outlook.com>
+Thread-Index: AQHVrqJVbfbx+2jRgkCvVFb9ZGvXmKeyEZeAgAASOICAAQO7AIAAYDMAgAFC9TaADGs6k4AAQNQAgAAnX4CAABdUgIAAEoaAgAEWU4A=
+Date: Fri, 20 Dec 2019 10:11:52 +0000
+Message-ID: <4719098b9005427c9189307266d2d659@dlr.de>
 References: <d509cd368f8d4167a1fdff12613c35a2@dlr.de>
  <CAL263iwKA_R=30JEohT88GPAP6xm-V1VLSL2mNtk1UbJJ9bJPw@mail.gmail.com>
  <CAL263iyqgz_ALuntLoCcpum7k20eXKEXYHUZhqNouUr9r7cwig@mail.gmail.com>
@@ -55,33 +64,14 @@ References: <d509cd368f8d4167a1fdff12613c35a2@dlr.de>
  <CADRnH21VEAsgapngZ__=B1WpEsTst6o=t3ME2zDHaZqPwpDpBQ@mail.gmail.com>
  <BN6PR19MB1635996E17A73C996A346A24A4520@BN6PR19MB1635.namprd19.prod.outlook.com>,
  <CADRnH23sddChq07yWakGvsNfyyDEuEQnQ7heq1KQ9B9f8Cg53w@mail.gmail.com>
-In-Reply-To: <CADRnH23sddChq07yWakGvsNfyyDEuEQnQ7heq1KQ9B9f8Cg53w@mail.gmail.com>
-Accept-Language: en-US
+ <BN6PR19MB16354CC48D17A7020ECF6F69A4520@BN6PR19MB1635.namprd19.prod.outlook.com>
+In-Reply-To: <BN6PR19MB16354CC48D17A7020ECF6F69A4520@BN6PR19MB1635.namprd19.prod.outlook.com>
+Accept-Language: de-DE, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:D0CADF40D5D3E0A18E98E9685425E511A22D6E3C7CEA0D69189F29DAAE1F501C;
- UpperCasedChecksum:86D43B62453AB1A921B225B17B54FD10692435904EA0C8F2770401DFCEAFD783;
- SizeAsReceived:7588; Count:46
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [Zl1djCCVgb/LpGoY/moOe3FEVlQJFDPP]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 46
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: 41365620-62a0-4868-b1db-08d784b2240e
-x-ms-traffictypediagnostic: BN8NAM12HT024:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +OypyUY54aWsaifo/+CdiGqTMRB1EK9MPKSmHFJRscXrgsyXRBRXQWOrmc2/HV6Yv1QeYXjnWla/IfIDvBULZyl6jf+R52eHJLNFta+1vYmVFIoxLqIn4Blu7L+Sws157/dMgpZ/ISbOTdYil+toc75hDs+b8B/dLqWs0FKADl1O7POv7bzepoyNWArybM2+mS42DKyw4mBhZ8K1GsD8bodqMR1iVhZzHvBMrFb64Os=
-x-ms-exchange-transport-forked: True
+x-tm-snts-smtp: E2C4DF0382F003D6EC5B23B13AFF52415F1AA699BE44F6A1879F8A14C558FCA12000:8
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41365620-62a0-4868-b1db-08d784b2240e
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Dec 2019 18:34:53.9072 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8NAM12HT024
 Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -94,10 +84,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jeff S <e070832@hotmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8079916485315731723=="
+From: Robert via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robert.Poehlmann@dlr.de
+Cc: usrp-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============3006135639286184545=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -111,14 +101,29 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8079916485315731723==
+--===============3006135639286184545==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BN6PR19MB16354CC48D17A7020ECF6F69A4520BN6PR19MB1635namp_"
+	boundary="_000_4719098b9005427c9189307266d2d659dlrde_"
 
---_000_BN6PR19MB16354CC48D17A7020ECF6F69A4520BN6PR19MB1635namp_
+--_000_4719098b9005427c9189307266d2d659dlrde_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Your solution works! Cherry picked split_stream from the master branch, the=
+ image compiles and the block works fine!
+
+Thanks a lot!
+
+Robert
+
+
+From: USRP-users [mailto:usrp-users-bounces@lists.ettus.com] On Behalf Of J=
+eff S via USRP-users
+Sent: Thursday, December 19, 2019 7:35 PM
+To: EJ Kreinar
+Cc: USRP-users@lists.ettus.com
+Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
 
 We weren't intending on using the split_stream block yet, and we haven't st=
 arted building images from source either (waiting on Vivado license still).=
@@ -201,10 +206,12 @@ On Thu, Dec 19, 2019, 4:00 AM Robert via USRP-users <usrp-users@lists.ettus=
 Hi Nate,
 
 
+
 some news from my side about this issue:
 
 - For v3.15.0.0-rc2, the error shows up when using split_stream or packet_r=
 esizer block (and possibly others)
+
 
 
 I then followed your advice and went back to v3.14.1.1, which should be sta=
@@ -242,6 +249,7 @@ Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
 Is there a fix available for ctrl_iface.cpp?
 
 
+
 Regards,
 
 Robert
@@ -255,6 +263,7 @@ Betreff: AW: [USRP-users] Default RFNoC image for N310 does not compile
 
 
 Hi Nate,
+
 
 
 the image does compile now with the patch. However there still seems to be =
@@ -467,7 +476,6 @@ _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
@@ -477,7 +485,7 @@ USRP-users mailing list
 USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_000_BN6PR19MB16354CC48D17A7020ECF6F69A4520BN6PR19MB1635namp_
+--_000_4719098b9005427c9189307266d2d659dlrde_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -485,140 +493,272 @@ Content-Transfer-Encoding: quoted-printable
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
 1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+code
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-We weren't intending on using the split_stream block yet, and we haven't st=
-arted building images from source either (waiting on Vivado license still).=
-&nbsp; I simply picked the default RFNoC branch so we could start looking a=
-t some of the pre-built blocks as we
- start investigating building some custom blocks in the future.&nbsp; I ass=
-umed that the default RFNoC images would work out of the box, kind of like =
-they did with the X310.<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Jeff<br>
-</div>
-<div id=3D"Signature"><br>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
+text-autospace:none">
+<a name=3D"Gru=DF"></a><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Your solution works! Cher=
+ry picked split_stream from the master branch, the image compiles and the b=
+lock works fine!<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
+text-autospace:none">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
+text-autospace:none">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1F497D">Thanks a lot!<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
+text-autospace:none">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:16.0pt;punctuation-wrap:simple;=
+text-autospace:none">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1F497D">Robert<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
 <div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
-=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> EJ Kreinar &lt;ejkr=
-einar@gmail.com&gt;<br>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> USRP-use=
+rs [mailto:usrp-users-bounces@lists.ettus.com]
+<b>On Behalf Of </b>Jeff S via USRP-users<br>
+<b>Sent:</b> Thursday, December 19, 2019 7:35 PM<br>
+<b>To:</b> EJ Kreinar<br>
+<b>Cc:</b> USRP-users@lists.ettus.com<br>
+<b>Subject:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
+ile<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">We weren't intending on using the split_stre=
+am block yet, and we haven't started building images from source either (wa=
+iting on Vivado license still).&nbsp; I simply picked the default
+ RFNoC branch so we could start looking at some of the pre-built blocks as =
+we start investigating building some custom blocks in the future.&nbsp; I a=
+ssumed that the default RFNoC images would work out of the box, kind of lik=
+e they did with the X310.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">Jeff<o:p></o:p></span></p>
+</div>
+<div id=3D"Signature">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">From:</span></b><span st=
+yle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&qu=
+ot;;color:black"> EJ Kreinar &lt;ejkreinar@gmail.com&gt;<br>
 <b>Sent:</b> Thursday, December 19, 2019 11:28 AM<br>
 <b>To:</b> Jeff S &lt;e070832@hotmail.com&gt;<br>
 <b>Cc:</b> USRP-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
 >
 <b>Subject:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
-ile</font>
-<div>&nbsp;</div>
+ile</span>
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
 </div>
 <div>
-<div dir=3D"ltr">Ah, Sorry for the confusion. I assume anyone using the spl=
-it_stream block is already building FPGA images from source... To clarify, =
-I'm referring to rebuilding the FPGA images from source using the uhd-fpga =
-repo, which follows the instructions
+<div>
+<p class=3D"MsoNormal">Ah, Sorry for the confusion. I assume anyone using t=
+he split_stream block is already building FPGA images from source... To cla=
+rify, I'm referring to rebuilding the FPGA images from source using the uhd=
+-fpga repo, which follows the instructions
  here:&nbsp;<a href=3D"https://files.ettus.com/manual_archive/v3.14.1.1/htm=
 l/md_usrp3_build_instructions.html">https://files.ettus.com/manual_archive/=
 v3.14.1.1/html/md_usrp3_build_instructions.html</a>
-<div><br>
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
-<div>Depending on the target platform you may also need a Vivado license (o=
-r trial license). You'll want to clone the uhd-fpga repo, then `git checkou=
-t UHD-3.14`, then `git cherry-pick 1102779f`, THEN build the images.</div>
-<div><br>
+<div>
+<p class=3D"MsoNormal">Depending on the target platform you may also need a=
+ Vivado license (or trial license). You'll want to clone the uhd-fpga repo,=
+ then `git checkout UHD-3.14`, then `git cherry-pick 1102779f`, THEN build =
+the images.<o:p></o:p></p>
 </div>
-<div>Definitely a bummer there's not a patched image released. I didnt real=
-ize there were images &quot;in the wild&quot; that used split stream block<=
-/div>
-<div><br>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
-<div>EJ</div>
+<div>
+<p class=3D"MsoNormal">Definitely a bummer there's not a patched image rele=
+ased. I didnt realize there were images &quot;in the wild&quot; that used s=
+plit stream block<o:p></o:p></p>
 </div>
-<br>
-<div class=3D"x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail_attr">On Thu, Dec 19, 2019 at 11:05 AM Je=
-ff S via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-=
-users@lists.ettus.com</a>&gt; wrote:<br>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
-<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
-er-left:1px solid rgb(204,204,204); padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-EJ,</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
+<div>
+<p class=3D"MsoNormal">EJ<o:p></o:p></p>
 </div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-I'm finding that I have the same problem after installing 3.14.1.1.</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
 </div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-I did the following:</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Thu, Dec 19, 2019 at 11:05 AM Jeff S via USRP-use=
+rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus=
+.com</a>&gt; wrote:<o:p></o:p></p>
 </div>
-<blockquote style=3D"margin-top:0px; margin-bottom:0px">
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-$ uhd_images_downloader<br>
+<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0c=
+m 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">EJ,<o:p></o:p></span></p>
 </div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-$ uhd_image_loader --args &quot;type=3Dn3xx&quot;<br>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">I'm finding that I have the same problem aft=
+er installing 3.14.1.1.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">I did the following:<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<blockquote>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">$ uhd_images_downloader<o:p></o:p></span></p=
+>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">$ uhd_image_loader --args &quot;type=3Dn3xx&=
+quot;<o:p></o:p></span></p>
 </div>
 </blockquote>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-which is what I thought we were supposed to do, but I got the same error on=
- my uhd_usrp_probe that Robert did.</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-I'll see if I can figure out how to cherry-pick the fpga branch.&nbsp; That=
- may be more research since I have a lot of new stuff I &quot;git&quot; to =
-learn.</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-Jeff<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<div id=3D"x_gmail-m_-4851837339978986592Signature"><br>
 <div>
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"x_gmail-m_-4851837339978986592divRplyFwdMsg" dir=3D"ltr"><font s=
-tyle=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>F=
-rom:</b> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus.co=
-m" target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt;
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">which is what I thought we were supposed to =
+do, but I got the same error on my uhd_usrp_probe that Robert did.<o:p></o:=
+p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">I'll see if I can figure out how to cherry-p=
+ick the fpga branch.&nbsp; That may be more research since I have a lot of =
+new stuff I &quot;git&quot; to learn.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">Jeff<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div id=3D"x_gmail-m_-4851837339978986592Signature">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"x_gmail-m_-4851837339978986592divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">From:</span></b><span st=
+yle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&qu=
+ot;;color:black"> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists=
+.ettus.com" target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt;
  on behalf of EJ Kreinar via USRP-users &lt;<a href=3D"mailto:usrp-users@li=
 sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
 <b>Sent:</b> Thursday, December 19, 2019 7:44 AM<br>
@@ -629,62 +769,83 @@ get=3D"_blank">Robert.Poehlmann@dlr.de</a>&gt;<br>
 USRP-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
 .com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
 <b>Subject:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
-ile</font>
-<div>&nbsp;</div>
+ile</span>
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
 </div>
 <div>
-<div dir=3D"auto">
-<div dir=3D"auto"></div>
-<div dir=3D"auto">The split stream bug seems to have been fixed in October =
-on the master branch: https<font face=3D"sans-serif"><span style=3D"font-si=
-ze:12.8px">://</span></font><a href=3D"http://github.com/EttusResearch/fpga=
-/commit/1102779f49d44c9e8b88ce7251d203eb62ae26c9" target=3D"_blank">github.=
-com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d203eb62ae26c9</a>&=
-nbsp;(but
- not yet ported onto 3.14)</div>
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto">I just cherry-picked 1102779f onto my uhd-fpga UHD-3.14 a=
-nd it cleaned it up for me.</div>
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto">I assume this will eventually make it to the UHD-3.14 bra=
-nch? But if not the cherry pick works fine</div>
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto">EJ</div>
-<div dir=3D"auto"><br>
+<div>
+<div>
+<p class=3D"MsoNormal">The split stream bug seems to have been fixed in Oct=
+ober on the master branch: https<span style=3D"font-size:9.5pt;font-family:=
+&quot;Arial&quot;,&quot;sans-serif&quot;">://</span><a href=3D"http://githu=
+b.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d203eb62ae26c9" t=
+arget=3D"_blank">github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88c=
+e7251d203eb62ae26c9</a>&nbsp;(but
+ not yet ported onto 3.14)<o:p></o:p></p>
 </div>
 <div>
-<div dir=3D"ltr">On Thu, Dec 19, 2019, 4:00 AM Robert via USRP-users &lt;<a=
- href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer" target=3D"_b=
-lank">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(20=
-4,204,204); padding-left:1ex">
+<div>
+<p class=3D"MsoNormal">I just cherry-picked 1102779f onto my uhd-fpga UHD-3=
+.14 and it cleaned it up for me.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I assume this will eventually make it to the UHD-3.1=
+4 branch? But if not the cherry pick works fine<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">EJ<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">On Thu, Dec 19, 2019, 4:00 AM Robert via USRP-users =
+&lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
+ers@lists.ettus.com</a>&gt; wrote:<o:p></o:p></p>
+</div>
+<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0c=
+m 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
 <div>
 <div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
-9902199952divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color:=
-rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif">
-<p><span>Hi Nate,</span></p>
-<p><span><br>
-</span></p>
-<p><span>some news from my side about this issue:<br>
-</span></p>
-<p><span>- For <span>v3.15.0.0-rc2</span>, the error shows up when using sp=
-lit_stream or packet_resizer block (and possibly others)</span></p>
-<p><span><br>
-</span></p>
-<p><span>I then followed your advice and went back to v3.14.1.1, which shou=
-ld be stable. Here two problems pop up:</span></p>
-<p><span>- Timing constraints are no fulfilled (using Viado 2017.4)</span><=
-/p>
-<p><span>- A similar error pops up when probing the device:</span></p>
-<p><span><br>
-</span></p>
-<p><span></span></p>
-<div>[INFO] [0/PacketResizer_0] Initializing block control (NOC ID: 0x12E50=
-00000000000)<br>
+9902199952divtagdefaultwrapper">
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">Hi Nate,<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black"><o:p>&nbsp;</o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">some news from my side about this issue:<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">- For v3.15.0.0-rc2, the error shows up when using split_stream =
+or packet_resizer block (and possibly others)<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black"><o:p>&nbsp;</o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">I then followed your advice and went back to v3.14.1.1, which sh=
+ould be stable. Here two problems pop up:<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">- Timing constraints are no fulfilled (using Viado 2017.4)<o:p><=
+/o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">- A similar error pops up when probing the device:<o:p></o:p></s=
+pan></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black"><o:p>&nbsp;</o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">[INFO] [0/PacketResizer_0] Initializing bloc=
+k control (NOC ID: 0x12E5000000000000)<br>
 [ERROR] [UHD] Exception caught in safe-call.<br>
 &nbsp; in ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl() [with uhd:=
 :endianness_t _endianness =3D (uhd::endianness_t)0]<br>
@@ -704,50 +865,68 @@ ouble) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64=
 _t =3D long unsigned int]<br>
 &nbsp; at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:142<br>
 <br>
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()</div>
-<div><br>
+Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()<o:p></o:p></spa=
+n></p>
 </div>
-<div><br>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
 </div>
-<div>Is there a fix available for <span>ctrl_iface.cpp?</span><br>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
 </div>
-<p></p>
-<p><br>
-</p>
-<p>Regards,</p>
-<p>Robert<br>
-</p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">Is there a fix available for ctrl_iface.cpp?=
+<o:p></o:p></span></p>
 </div>
-<hr style=3D"display:inline-block; width:98%">
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black"><o:p>&nbsp;</o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">Regards,<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">Robert<o:p></o:p></span></p>
+</div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
 <div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
-9902199952divRplyFwdMsg" dir=3D"ltr">
-<font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00000=
-0"><b>Von:</b> P=F6hlmann, Robert<br>
+9902199952divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">Von:</span></b><span sty=
+le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quo=
+t;;color:black"> P=F6hlmann, Robert<br>
 <b>Gesendet:</b> Mittwoch, 11. Dezember 2019 12:14:40<br>
 <b>An:</b> Nate Temple<br>
-<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer =
-noreferrer" target=3D"_blank">
+<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">=
 USRP-users@lists.ettus.com</a><br>
 <b>Betreff:</b> AW: [USRP-users] Default RFNoC image for N310 does not comp=
-ile</font>
-<div>&nbsp;</div>
+ile</span>
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
 </div>
 <div>
 <div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
-9902199952divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color:=
-rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif">
-<p>Hi Nate,</p>
-<p><br>
-</p>
-<p>the image does compile now with the patch. However there still seems to =
-be <a href=3D"http://s.th" rel=3D"noreferrer noreferrer" target=3D"_blank">
-s.th</a>. wrong on the host side. When running uhd_usrp_probe, it fails whe=
-n it reaches the split_stream block:</p>
-<p><br>
-</p>
-<p></p>
-<div>[INFO] [0/SplitStream_0] Initializing block control (NOC ID: 0x5757000=
-000000000)<br>
+9902199952divtagdefaultwrapper">
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">Hi Nate,<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black"><o:p>&nbsp;</o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">the image does compile now with the patch. However there still s=
+eems to be
+<a href=3D"http://s.th" target=3D"_blank">s.th</a>. wrong on the host side.=
+ When running uhd_usrp_probe, it fails when it reaches the split_stream blo=
+ck:<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black"><o:p>&nbsp;</o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">[INFO] [0/SplitStream_0] Initializing block =
+control (NOC ID: 0x5757000000000000)<br>
 [ERROR] [MPMD] Failure during block enumeration: EnvironmentError: IOError:=
  [0/SplitStream_0] sr_write() failed: AssertionError: not _outstanding_seqs=
 .empty()<br>
@@ -756,38 +935,53 @@ ouble) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64=
 _t =3D long unsigned int]<br>
 &nbsp; at /usr/local/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:139<br>
 <br>
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()<br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-Regards,
-<p></p>
-<p>Robert<br>
-</p>
-</div>
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
-9902199952divRplyFwdMsg" dir=3D"ltr">
-<font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00000=
-0"><b>Von:</b> Nate Temple &lt;<a href=3D"mailto:nate.temple@ettus.com" rel=
-=3D"noreferrer noreferrer" target=3D"_blank">nate.temple@ettus.com</a>&gt;<=
-br>
-<b>Gesendet:</b> Dienstag, 10. Dezember 2019 17:57:20<br>
-<b>An:</b> P=F6hlmann, Robert<br>
-<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer =
-noreferrer" target=3D"_blank">
-USRP-users@lists.ettus.com</a><br>
-<b>Betreff:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
-ile</font>
-<div>&nbsp;</div>
+Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()<o:p></o:p></spa=
+n></p>
 </div>
 <div>
-<div dir=3D"ltr">
-<div style=3D"font-family:arial,helvetica,sans-serif">Hi Robert,<br>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;;color:black">Regards,
+<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">Robert<o:p></o:p></span></p>
+</div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
+9902199952divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">Von:</span></b><span sty=
+le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quo=
+t;;color:black"> Nate Temple &lt;<a href=3D"mailto:nate.temple@ettus.com" t=
+arget=3D"_blank">nate.temple@ettus.com</a>&gt;<br>
+<b>Gesendet:</b> Dienstag, 10. Dezember 2019 17:57:20<br>
+<b>An:</b> P=F6hlmann, Robert<br>
+<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">=
+USRP-users@lists.ettus.com</a><br>
+<b>Betreff:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
+ile</span>
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;">Hi Robert,<br>
 <br>
 This patch/line change detailed below should resolve that issue and will be=
  included in the official 3.15.0.0 release:<br>
@@ -820,114 +1014,117 @@ ackets it can send.<br>
 <br>
 <br>
 Regards,<br>
-Nate Temple</div>
+Nate Temple<o:p></o:p></span></p>
 </div>
-<br>
-<div>
-<div dir=3D"ltr">On Tue, Dec 10, 2019 at 8:46 AM &lt;<a href=3D"mailto:Robe=
-rt.Poehlmann@dlr.de" rel=3D"noreferrer noreferrer" target=3D"_blank">Robert=
-.Poehlmann@dlr.de</a>&gt; wrote:<br>
 </div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(20=
-4,204,204); padding-left:1ex">
-<div lang=3D"EN-US">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <div>
-<p>Hi Nate!<u></u><u></u></p>
-<p><u></u>&nbsp;<u></u></p>
+<div>
+<p class=3D"MsoNormal">On Tue, Dec 10, 2019 at 8:46 AM &lt;<a href=3D"mailt=
+o:Robert.Poehlmann@dlr.de" target=3D"_blank">Robert.Poehlmann@dlr.de</a>&gt=
+; wrote:<o:p></o:p></p>
+</div>
+<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0c=
+m 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
+<div>
+<div>
+<p>Hi Nate!<o:p></o:p></p>
+<p>&nbsp;<o:p></o:p></p>
 <p>I followed the guide in <a href=3D"https://files.ettus.com/manual/md_usr=
-p3_build_instructions.html" rel=3D"noreferrer noreferrer" target=3D"_blank"=
->
+p3_build_instructions.html" target=3D"_blank">
 https://files.ettus.com/manual/md_usrp3_build_instructions.html</a>, thus e=
 nded up with Vivado 2018.3 and then later found out this requires UHD 3.15.=
  Thanks for pointing me to the Vivado bug. I thought with 2018.3.1 this wou=
 ld be fixed, but apparently that
  is not the case. Now I went back to 2018.3 (clean re-install) and installe=
-d the patch AR#71898. The standard N310 image compiles fine now.<u></u><u><=
-/u></p>
-<p><u></u>&nbsp;<u></u></p>
-<p>The other error<u></u><u></u></p>
+d the patch AR#71898. The standard N310 image compiles fine now.<o:p></o:p>=
+</p>
+<p>&nbsp;<o:p></o:p></p>
+<p>The other error<o:p></o:p></p>
 <p><span style=3D"color:black">ERROR: [Synth 8-524] part-select [15:8] out =
 of range of prefix 'STR_SINK_FIFOSIZE' [/usr/local/src/uhd/fpga-src/usrp3/l=
-ib/rfnoc/noc_shell.v:270]</span><u></u><u></u></p>
+ib/rfnoc/noc_shell.v:270]</span><o:p></o:p></p>
 <p>seems to be happening only for few specific RFNoC blocks (fosphor and sp=
 lit_stream, specifically). Leaving these out, the RFNoC image does compile.=
  Not sure what exactly is the problem, though. The recent commit
 <a href=3D"https://github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b8=
-8ce7251d203eb62ae26c9" rel=3D"noreferrer noreferrer" target=3D"_blank">
+8ce7251d203eb62ae26c9" target=3D"_blank">
 https://github.com/EttusResearch/fpga/commit/1102779f49d44c9e8b88ce7251d203=
-eb62ae26c9</a> did not help (tried both versions, neither of them works).<u=
-></u><u></u></p>
-<p><u></u>&nbsp;<u></u></p>
-<p>Regards<u></u><u></u></p>
-<p>Robert<span style=3D"font-size:11pt; color:rgb(31,73,125)"> <u></u><u></=
-u></span></p>
-<p><span style=3D"font-size:11pt; font-family:Calibri,sans-serif; color:rgb=
-(31,73,125)"><u></u>&nbsp;<u></u></span></p>
-<p><span style=3D"font-size:11pt; font-family:Calibri,sans-serif; color:rgb=
-(31,73,125)"><u></u>&nbsp;<u></u></span></p>
-<p><b><span style=3D"font-size:10pt; font-family:Tahoma,sans-serif">From:</=
-span></b><span style=3D"font-size:10pt; font-family:Tahoma,sans-serif"> Nat=
-e Temple [mailto:<a href=3D"mailto:nate.temple@ettus.com" rel=3D"noreferrer=
- noreferrer" target=3D"_blank">nate.temple@ettus.com</a>]
+eb62ae26c9</a> did not help (tried both versions, neither of them works).<o=
+:p></o:p></p>
+<p>&nbsp;<o:p></o:p></p>
+<p>Regards<o:p></o:p></p>
+<p>Robert<span style=3D"font-size:11.0pt;color:#1F497D"> </span><o:p></o:p>=
+</p>
+<p><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
+ns-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
+<p><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
+ns-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
+<p><b><span style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;=
+sans-serif&quot;">From:</span></b><span style=3D"font-size:10.0pt;font-fami=
+ly:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Nate Temple [mailto:<a href=
+=3D"mailto:nate.temple@ettus.com" target=3D"_blank">nate.temple@ettus.com</=
+a>]
 <br>
 <b>Sent:</b> Monday, December 09, 2019 8:43 PM<br>
 <b>To:</b> P=F6hlmann, Robert<br>
-<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer =
-noreferrer" target=3D"_blank">
+<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">=
 USRP-users@lists.ettus.com</a><br>
 <b>Subject:</b> Re: [USRP-users] Default RFNoC image for N310 does not comp=
-ile<u></u><u></u></span></p>
-<p><u></u>&nbsp;<u></u></p>
+ile</span><o:p></o:p></p>
+<p>&nbsp;<o:p></o:p></p>
 <div>
 <div>
-<p><span style=3D"font-family:Arial,sans-serif">Hi Robert, <u></u><u></u></=
-span></p>
+<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Hi =
+Robert, </span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Arial,sans-serif"><u></u>&nbsp;<u></u></span>=
-</p>
+<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">&nb=
+sp;</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Arial,sans-serif">So this is a bug related to=
- Vivado, you will need to install this linked below patch and it should res=
-olve it.<u></u><u></u></span></p>
+<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">So =
+this is a bug related to Vivado, you will need to install this linked below=
+ patch and it should resolve it.</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Arial,sans-serif"><u></u>&nbsp;<u></u></span>=
-</p>
+<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">&nb=
+sp;</span><o:p></o:p></p>
 </div>
 <div>
-<p><a href=3D"https://www.xilinx.com/support/answers/71898.html" rel=3D"nor=
-eferrer noreferrer" target=3D"_blank"><span style=3D"font-family:Arial,sans=
--serif">https://www.xilinx.com/support/answers/71898.html</span></a><span s=
-tyle=3D"font-family:Arial,sans-serif"><u></u><u></u></span></p>
+<p><a href=3D"https://www.xilinx.com/support/answers/71898.html" target=3D"=
+_blank"><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;=
+">https://www.xilinx.com/support/answers/71898.html</span></a><o:p></o:p></=
+p>
 </div>
 <div>
-<p><span style=3D"font-family:Arial,sans-serif"><u></u>&nbsp;<u></u></span>=
-</p>
+<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">&nb=
+sp;</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Arial,sans-serif">Regards,<u></u><u></u></spa=
-n></p>
+<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Reg=
+ards,</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Arial,sans-serif">Nate Temple<u></u><u></u></=
-span></p>
+<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Nat=
+e Temple</span><o:p></o:p></p>
 </div>
 </div>
-<p><u></u>&nbsp;<u></u></p>
+<p>&nbsp;<o:p></o:p></p>
 <div>
 <div>
 <p>On Mon, Dec 9, 2019 at 10:38 AM Nate Temple &lt;<a href=3D"mailto:nate.t=
-emple@ettus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">nate.templ=
-e@ettus.com</a>&gt; wrote:<u></u><u></u></p>
+emple@ettus.com" target=3D"_blank">nate.temple@ettus.com</a>&gt; wrote:<o:p=
+></o:p></p>
 </div>
-<blockquote style=3D"border-color:currentcolor currentcolor currentcolor rg=
-b(204,204,204); border-style:none none none solid; border-width:medium medi=
-um medium 1pt; padding:0cm 0cm 0cm 6pt; margin:5pt 0cm 5pt 4.8pt">
+<blockquote style=3D"border:none;border-left:solid windowtext 1.0pt;padding=
+:0cm 0cm 0cm 6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;marg=
+in-bottom:5.0pt;border-color:currentcolor currentcolor currentcolor rgb(204=
+,204,204)">
 <div>
 <div>
-<p><span style=3D"font-family:Arial,sans-serif">Hi Robert,<br>
+<p><span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Hi =
+Robert,<br>
 <br>
 Thanks for the bug report. <br>
 <br>
@@ -939,56 +1136,57 @@ Note, 3.14.x.x UHD will require Vivado 2017.4.<br>
 <br>
 <br>
 Regards,<br>
-Nate Temple<u></u><u></u></span></p>
+Nate Temple</span><o:p></o:p></p>
 </div>
 </div>
-<p><u></u>&nbsp;<u></u></p>
+<p>&nbsp;<o:p></o:p></p>
 <div>
 <div>
 <p>On Mon, Dec 9, 2019 at 7:33 AM Robert via USRP-users &lt;<a href=3D"mail=
-to:usrp-users@lists.ettus.com" rel=3D"noreferrer noreferrer" target=3D"_bla=
-nk">usrp-users@lists.ettus.com</a>&gt; wrote:<u></u><u></u></p>
+to:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com=
+</a>&gt; wrote:<o:p></o:p></p>
 </div>
-<blockquote style=3D"border-color:currentcolor currentcolor currentcolor rg=
-b(204,204,204); border-style:none none none solid; border-width:medium medi=
-um medium 1pt; padding:0cm 0cm 0cm 6pt; margin:5pt 0cm 5pt 4.8pt">
+<blockquote style=3D"border:none;border-left:solid windowtext 1.0pt;padding=
+:0cm 0cm 0cm 6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;marg=
+in-bottom:5.0pt;border-color:currentcolor currentcolor currentcolor rgb(204=
+,204,204)">
 <div>
 <div id=3D"x_gmail-m_-4851837339978986592x_m_5202243192553878687m_532602920=
 9902199952gmail-m_-6331373918561515169gmail-m_-7724419252963540251gmail-m_1=
 503436027014080033divtagdefaultwrapper">
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black">Hi all!<u></=
-u><u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">Hi all!</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black"><u></u>&nbsp=
-;<u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">&nbsp;</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black">I tried to c=
-ompile the default RFNoC image for the N310, using UHD on tag v3.15.0.0-rc2=
- and Xilinx Vivado 2018.3.1.
-<u></u><u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">I tried to compile the default RFNoC image for the N310, using U=
+HD on tag v3.15.0.0-rc2 and Xilinx Vivado 2018.3.1.
+</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black"><u></u>&nbsp=
-;<u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">&nbsp;</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black">Running</spa=
-n><code><span style=3D"font-size:10pt; color:black"> &quot;make N310_RFNOC_=
-XG&quot;, the IP cores are compiled successfully, but then Vivado shows the=
- following errors:</span></code><span style=3D"font-family:Calibri,sans-ser=
-if; color:black"><u></u><u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">Running</span><code><span style=3D"font-size:10.0pt;color:black"=
+> &quot;make N310_RFNOC_XG&quot;, the IP cores are compiled successfully, b=
+ut then Vivado shows the following errors:</span></code><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black"><u></u>&nbsp=
-;<u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">&nbsp;</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black">ERROR: [Synt=
-h 8-524] part-select [15:8] out of range of prefix 'STR_SINK_FIFOSIZE' [/us=
-r/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]<br>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">ERROR: [Synth 8-524] part-select [15:8] out of range of prefix '=
+STR_SINK_FIFOSIZE' [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v=
+:270]<br>
 ERROR: [Synth 8-521] parameter assignment could not be resolved to a consta=
 nt [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]<br>
 ERROR: [Synth 8-196] conditional expression could not be resolved to a cons=
@@ -1006,52 +1204,55 @@ local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_block_fosphor.v:8]<br>
 ERROR: [Synth 8-6156] failed synthesizing module 'n3xx_core' [/usr/local/sr=
 c/uhd/fpga-src/usrp3/top/n3xx/n3xx_core.v:17]<br>
 ERROR: [Synth 8-6156] failed synthesizing module 'n3xx' [/usr/local/src/uhd=
-/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]<u></u><u></u></span></p>
+/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black"><u></u>&nbsp=
-;<u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">&nbsp;</span><o:p></o:p></p>
 </div>
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black">The full bui=
-ld.log file is attached. I did not modify any files, just trying to compile=
- the RFNoC example as provided.<u></u><u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">The full build.log file is attached. I did not modify any files,=
+ just trying to compile the RFNoC example as provided.</span><o:p></o:p></p=
+>
 </div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black"><u></u>&nbsp=
-;<u></u></span></p>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black"><u></u>&nbsp=
-;<u></u></span></p>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black"><u></u>&nbsp=
-;<u></u></span></p>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black">Btw I also t=
-ried to build the default image with &quot;make N310_XG&quot;, this one com=
-piles but failed later during DRC:<u></u><u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">&nbsp;</span><o:p></o:p></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">&nbsp;</span><o:p></o:p></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">&nbsp;</span><o:p></o:p></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">Btw I also tried to build the default image with &quot;make N310=
+_XG&quot;, this one compiles but failed later during DRC:</span><o:p></o:p>=
+</p>
 <div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black">[DRC BIVC-1]=
- Bank IO standard Vcc: Conflicting Vcc voltages in bank 34. For example, th=
-e following two ports in this bank have conflicting VCCOs:
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">[DRC BIVC-1] Bank IO standard Vcc: Conflicting Vcc voltages in b=
+ank 34. For example, the following two ports in this bank have conflicting =
+VCCOs:
 <br>
 ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=3D1.500) and ddr3_addr[15] (LVCMO=
-S18, requiring VCCO=3D1.800)<u></u><u></u></span></p>
+S18, requiring VCCO=3D1.800)</span><o:p></o:p></p>
 </div>
 <div>
 <div>
-<p style=3D"margin-bottom:12pt"><span style=3D"font-family:Calibri,sans-ser=
-if; color:black">[Vivado_Tcl 4-23] Error(s) found during DRC. Placer not ru=
-n.<u></u><u></u></span></p>
+<p style=3D"margin-bottom:12.0pt"><span style=3D"font-family:&quot;Calibri&=
+quot;,&quot;sans-serif&quot;;color:black">[Vivado_Tcl 4-23] Error(s) found =
+during DRC. Placer not run.</span><o:p></o:p></p>
 </div>
-<p><span style=3D"font-family:Calibri,sans-serif; color:black"><u></u>&nbsp=
-;<u></u></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
+lor:black">&nbsp;</span><o:p></o:p></p>
 </div>
 </div>
 </div>
 <p>_______________________________________________<br>
 USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
- target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><u></u><u></u></p>
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a><o:p></o:p></p>
 </blockquote>
 </div>
 </blockquote>
@@ -1063,28 +1264,29 @@ mailman/listinfo/usrp-users_lists.ettus.com</a><u></u><u></u></p>
 </div>
 </div>
 </div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
- target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
-.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-_______________________________________________<br>
+<p class=3D"MsoNormal">_______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a><o:p></o:p></p>
 </blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a><o:p></o:p></p>
+</blockquote>
+</div>
 </div>
 </div>
 </div>
@@ -1092,10 +1294,10 @@ tinfo/usrp-users_lists.ettus.com</a><br>
 </body>
 </html>
 
---_000_BN6PR19MB16354CC48D17A7020ECF6F69A4520BN6PR19MB1635namp_--
+--_000_4719098b9005427c9189307266d2d659dlrde_--
 
 
---===============8079916485315731723==
+--===============3006135639286184545==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1106,5 +1308,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8079916485315731723==--
+--===============3006135639286184545==--
 
