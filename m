@@ -2,45 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3A0128B87
-	for <lists+usrp-users@lfdr.de>; Sat, 21 Dec 2019 21:36:36 +0100 (CET)
-Received: from [::1] (port=50168 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF5B4128E9C
+	for <lists+usrp-users@lfdr.de>; Sun, 22 Dec 2019 16:06:14 +0100 (CET)
+Received: from [::1] (port=41304 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iilUF-000723-74; Sat, 21 Dec 2019 15:36:31 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:37502)
+	id 1ij2o7-0001cl-7k; Sun, 22 Dec 2019 10:06:11 -0500
+Received: from mail-wr1-f48.google.com ([209.85.221.48]:36971)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <gena.kazachek@gmail.com>)
- id 1iilUA-0006t2-V4
- for usrp-users@lists.ettus.com; Sat, 21 Dec 2019 15:36:27 -0500
-Received: by mail-ot1-f54.google.com with SMTP id k14so16644560otn.4
- for <usrp-users@lists.ettus.com>; Sat, 21 Dec 2019 12:36:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6W9YTmRikc0PmqfxFfona+mr8SOKqBQvaxzXD/0e1CY=;
- b=Mu1oA8qO0lfecO8nrahPFZitzUFalaQsJyGzMLQPrsUPMZ4QkHpQ4WFV6AeN76fkEg
- Fh28mZPgAaSW0GsWuwewQHe2uj5jOyRfUvkKqsT0mCvn0HHWTsvTR2v17l4bvsbuHYYJ
- M6y5wI62gEj0Eys3+MXKpOVhDn/gr7RL2q/chfK9RIZjhjePZeV+8Y1fDUxfUnRegbok
- xp41TrCRAFdKxQemewrGKzdBthFsPXJFx/8OjU3Z4KVEPLFfrKzfbJyB7XIFz7r36VKw
- puFDzntFBU7Wqbuks0q5A6uuhSAME7XlmdrODVUhRJo/1cezZf4sTgvmBFvj2pEo3lE4
- Npfg==
+ (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
+ id 1ij2o3-0001YS-MP
+ for usrp-users@lists.ettus.com; Sun, 22 Dec 2019 10:06:07 -0500
+Received: by mail-wr1-f48.google.com with SMTP id w15so1382370wru.4
+ for <usrp-users@lists.ettus.com>; Sun, 22 Dec 2019 07:05:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :organization:user-agent:mime-version:content-transfer-encoding;
+ bh=5BgL56KuAzYfNEQVmcVl21sBjmlA5gs6JELgQJqo0vw=;
+ b=HW9ZaQeVOM5485WmVwf3JLt9q945OdOYu6wIVbG/GWH7qQmk9BMAknZAcB2B9UnkOn
+ CB/PfFhdeFZt1zTKk297iMFUKZlSKx1Z3TroU/6bRqeo7hE/CoyQZULdg6nMD7i/WCNE
+ icmwfG572lBfTSV7PlHe4o9C+vzgELeGB5mvgL4GsTZK9IO5Aoyfw5GM6rtD79cNirlc
+ T/1xJwpqR1ACnd+h6aYH5U5P6xZB6LExIv48n47sdjrjJgIPfJJoc+qive315HUCbbH6
+ QPq4dY/epGXAkR2WATVDAaepFCruBfNEZg91kHl+E1iNI9tI5bYXMJrY7TIBA5npSkPJ
+ cO8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=6W9YTmRikc0PmqfxFfona+mr8SOKqBQvaxzXD/0e1CY=;
- b=lEAKQk5KLunaHzJlcMcTkrhbfQNiI/SyYPQd/0HEBRRKkBzuKyl0BjWH7lxpNTONqp
- RioL1wdErKn/SiWzrrf7nRnTh53oZT5w5xsjMfb0arcNAW0gBAI5sgXvD1Ffkcu2vAHF
- ytEmb0k3kEIj+8dxFXuq/ddM9HO9ccLpAb0lqQ9ZZXlsFL7t+ujYYHFEfKNf6411joJB
- zEfjG1olafE7OvKVBnn1WF4LPgv6w3SJOLSHNWBla1g6TQDaQ4BwLJhyw/5ZGKgO1eD0
- Cf5MOEXvny+Hr3rbOTV4Wa89OZ5j6wA5ur7nsqumXHJRKJUQCQ/tfdmT2PGgkKIHU9Dx
- lQ+g==
-X-Gm-Message-State: APjAAAUsCDDstiYshqmYxirKFmqXJSg+/z21soW3qu6NVqht0yr5S+VC
- 3AQ6mgKFHUBXHLnqJd5ikCaS5Erw8YGaXx63yAk=
-X-Google-Smtp-Source: APXvYqxj76NtpHofIkimS8I55JbdcHdkwLZVNMcJ6bEM0Up19hvCmI6FsiHZJs98FqGaU4ZEvJ/pTJK+dgpugOfdI6U=
-X-Received: by 2002:a9d:6f8f:: with SMTP id h15mr21922445otq.1.1576960546287; 
- Sat, 21 Dec 2019 12:35:46 -0800 (PST)
-MIME-Version: 1.0
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=5BgL56KuAzYfNEQVmcVl21sBjmlA5gs6JELgQJqo0vw=;
+ b=gt7BNwU22slR16OxN5O+FHkMyehrJNlvsvcla1bEIrc2oJdX8E8Dea0nSswiRQKf1m
+ +l8dYzcsBi9x7k522Z45dMp34cgnvVrJ5SnvV1WU5+xeSFL2BwbEqc5BcFY2CoSilrBb
+ sPMRY61xzmYvrsYy4caTxV4axR71J1zKK1cqrIK/al+VikGpgUa2vmdUp0KFHB69jIO2
+ ZkXQAg4oj/V2HwZdaeQ3/DZWK/SJZFZMl5qAMkk9pIPsiXzDo/77e+4W6eJBJf7kqn5z
+ 8j0BbzLuvOnUAzQFhBQtce+4yvi1zQvogA1xJVkXiguJrmsKdAGGpPExvz/QPm5eCTSK
+ qhiA==
+X-Gm-Message-State: APjAAAXtig4lI5qj57P37yPkHTZP8PP0bOia5uZuNInHoWdhwPX02fB2
+ CQGVIj+GVuWeWo4zlhtM2IKtS6aq
+X-Google-Smtp-Source: APXvYqwbYnyCI2qQmeEbA+G5AUslwTPAgfdh5evpQJKz0ocd8q3ArsHCUDAwI+REDpY7Ly9wmJ4ueg==
+X-Received: by 2002:a5d:4ec2:: with SMTP id s2mr24959199wrv.291.1577027126445; 
+ Sun, 22 Dec 2019 07:05:26 -0800 (PST)
+Received: from racer ([46.183.103.17])
+ by smtp.gmail.com with ESMTPSA id a14sm18302394wrx.81.2019.12.22.07.05.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 22 Dec 2019 07:05:25 -0800 (PST)
+Message-ID: <c3a248a95357833e5be97bc11ba8a8d9b95dec22.camel@ettus.com>
+To: =?UTF-8?Q?=D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9_?=
+ =?UTF-8?Q?=D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA?=
+ <gena.kazachek@gmail.com>, Ron Economos <w6rz@comcast.net>
+Date: Sun, 22 Dec 2019 16:04:53 +0100
+In-Reply-To: <CADfCwn0CCHMoHXCKoURNGih5_DCV-t5ym_DMDYek4wThxJpkwg@mail.gmail.com>
 References: <CADfCwn0ty1KmKt2ba_dBEapoJ5-vyb=i0JffE=V2aXTNK_vuhw@mail.gmail.com>
  <CANf970YugamZVx6BW=XD_es4VSnHkLPudPcLCdA864MsEMk8Ew@mail.gmail.com>
  <CADfCwn2mNfRYh0HpOr-cYPGw99oZW2D08Y2fab=10Tvg3SE9dw@mail.gmail.com>
@@ -48,10 +60,10 @@ References: <CADfCwn0ty1KmKt2ba_dBEapoJ5-vyb=i0JffE=V2aXTNK_vuhw@mail.gmail.com>
  <CADfCwn04HwSBiaCef8f4QK_YOhoNGQe+9TFs5cqFLo4D2VPpTA@mail.gmail.com>
  <39281f29c310afd41aa6795a29209402fff99484.camel@ettus.com>
  <95808e09-d093-ae35-83b8-abc7ff04620e@comcast.net>
-In-Reply-To: <95808e09-d093-ae35-83b8-abc7ff04620e@comcast.net>
-Date: Sat, 21 Dec 2019 23:35:04 +0300
-Message-ID: <CADfCwn0CCHMoHXCKoURNGih5_DCV-t5ym_DMDYek4wThxJpkwg@mail.gmail.com>
-To: Ron Economos <w6rz@comcast.net>
+ <CADfCwn0CCHMoHXCKoURNGih5_DCV-t5ym_DMDYek4wThxJpkwg@mail.gmail.com>
+Organization: Ettus Research
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
+MIME-Version: 1.0
 Subject: Re: [USRP-users] Pulsations on a QPSK transmission
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -64,12 +76,12 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQuiB2aWEgVVNSUC11c2Vy?=
- =?utf-8?q?s?= <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQug==?=
- <gena.kazachek@gmail.com>
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
 Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============5946024724764791210=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,391 +95,123 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5946024724764791210==
-Content-Type: multipart/alternative; boundary="0000000000002fb587059a3cbdab"
-
---0000000000002fb587059a3cbdab
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello, thanks for your attention.
-
-> I always thought these pulsations were due to some kind of bug with
-> Gqrx. If you change the FFT size, the rate of pulsation changes.
-No, it doesn't. I've tested, FFT size doesn't affect rate of pulsation.
-
-> Also, you don't see this on a real spectrum analyzer, even an inexpensive
-one.
-I don't have one, but as I said before, decoding is failing when this
-pulsations are on the air. So, I believe, that gqrx is fine here.
-
-> the stripes go away when you turn of the USRPs?
-Yes, when I stop graph, this pulsations are gone
-
-> Also, the stripes aren't there, either, when you use the Lime on the
-> same 1.011 GHz frequency, exactly?
-Yes, it is correct, I just disable USRP block, enable Lime block and swap
-devices.
-
-> My suspicion is that this is mostly USB3 emissions
-I've tried to connect through USB2, result is the same
-
-> Also, are you using an external power supply for your USRPs
-No, they are connected to my host pc by USB only.
-
-On Sat, 21 Dec 2019 at 21:15, Ron Economos via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> I always thought these pulsations were due to some kind of bug with
-> Gqrx. If you change the FFT size, the rate of pulsation changes. Also,
-> you don't see this on a real spectrum analyzer, even an inexpensive one.
->
-> Ron
->
-> On 12/21/19 09:25, Marcus M=C3=BCller via USRP-users wrote:
-> > Just to rule out interferers:
-> >
-> > * the stripes go away when you turn of the USRPs?
-> > * Also, the stripes aren't there, either, when you use the Lime on the
-> > same 1.011 GHz frequency, exactly?
-> >
-> > My suspicion is that this is mostly USB3 emissions (those could be, but
-> > not necessarily are, happening through the USRP itself, or through
-> > cables, or through your host computer.
-> >
-> > If your sampling rates allow it (they do, I think you're using 500 kHz
-> > only=C2=B9), try to use a USB2-only cable or port and see whether these
-> > disappear.
-> >
-> > Also, are you using an external power supply for your USRPs? If this is
-> > actually an interferer, it might as well be some periodic behaviour of
-> > the power supply.
-> >
-> > Best regards,
-> > Marcus
-> >
-> >
-> > =C2=B9That's a sampling rate that should work on B200 and B20xmini, but=
- it's
-> > uncomfortably low =E2=80=93 try with 1 MHz and host-side resampling, ma=
-ybe?
-> >
-> > On Wed, 2019-12-18 at 21:28 +0300, =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=
-=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA via USRP-users
-> > wrote:
-> >> Hello, Sam!
-> >> No, I use two devices as transmitter and receiver and third board I
-> >> use just to observe sonogram.
-> >> Pulsations exist on both b205 and b210 devices if I use them as a
-> >> transmitter and not exist if I use as transmitter another vendor's
-> >> device - LimeSDR.
-> >>
-> >> All 3 USRP devices are industrial with metal case, and LimeSDR is
-> >> not.
-> >>
-> >> On Wed, 18 Dec 2019 at 21:26, =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=
-=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA <
-> >> gena.kazachek@gmail.com> wrote:
-> >>> All 3 USRP devices are industrial with metal case, and LimeSDR is
-> >>> not.
-> >>>
-> >>> On Wed, 18 Dec 2019 at 21:25, =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=
-=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA <
-> >>> gena.kazachek@gmail.com> wrote:
-> >>>> Hello, Sam!
-> >>>> No, I use two devices as transmitter and receiver and third board
-> >>>> I use just to observe sonogram.
-> >>>> Pulsations exist on both b205 and b210 devices if I use them as a
-> >>>> transmitter and not exist if I use as transmitter another
-> >>>> vendor's device - LimeSDR.
-> >>>>
-> >>>> On Wed, 18 Dec 2019 at 18:49, Sam Reiter <sam.reiter@ettus.com>
-> >>>> wrote:
-> >>>>> Just to be clear, you see these pulsations when transmitting
-> >>>>> with a b205mini, but not with the b210?
-> >>>>>
-> >>>>> Is the b205mini a bare board or an industrial model with a case
-> >>>>> and aluminum heat sync?
-> >>>>>
-> >>>>> Sam Reiter
-> >>>>> Ettus Research
-> >>>>>
-> >>>>>
-> >>>>> On Wed, Dec 11, 2019 at 11:48 PM =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=
-=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA via USRP-
-> >>>>> users <usrp-users@lists.ettus.com> wrote:
-> >>>>>> Hello!
-> >>>>>> I'm trying to build QPSK based system on GNURadio.
-> >>>>>> I'm using two USRP B205-mini boards as transmitter and
-> >>>>>> receiver, also I got B210 board that I run gqrx on to watch
-> >>>>>> what is really going on.
-> >>>>>> I noticed a strange behaviour on my tests, so I began to
-> >>>>>> investigate it and ended to a very simple graph, that is in
-> >>>>>> attachment. On a frequencies that are multiple of 10Mhz, like
-> >>>>>> 1020Mhz all works like expected and sonogram looks good. If I
-> >>>>>> tune to any other frequency, even 1Hz more or less, the
-> >>>>>> sonogram is full of pulsations and frequency of that
-> >>>>>> pulsation is depends of exact tune frequency. I attached some
-> >>>>>> screenshots of that pulsations.
-> >>>>>> On receiving part that pulsations cause many errors while
-> >>>>>> decoding.
-> >>>>>> I got another board, LimeSDR-Mini, and no such behaviour
-> >>>>>> observed while running graph on it.
-> >>>>>> I wonder what is going on, and how can I fix this problem.
-> >>>>>> Thank you.
-> >>>>>> _______________________________________________
-> >>>>>> USRP-users mailing list
-> >>>>>> USRP-users@lists.ettus.com
-> >>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >>>>
-> >>>> --
-> >>>> =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=
-=D0=B0=D1=87=D1=91=D0=BA
-> >>>
-> >>> --
-> >>> =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=
-=D0=B0=D1=87=D1=91=D0=BA
-> >>
-> >> _______________________________________________
-> >> USRP-users mailing list
-> >> USRP-users@lists.ettus.com
-> >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
-
---=20
-=D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=
-=D1=87=D1=91=D0=BA
-
---0000000000002fb587059a3cbdab
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hello, thanks for your attention.<br=
-></div><div><br></div><div dir=3D"ltr">&gt; I always thought these pulsatio=
-ns were due to some kind of bug with <br>&gt; Gqrx. If you change the FFT s=
-ize, the rate of pulsation changes.</div><div>No, it doesn&#39;t. I&#39;ve =
-tested, FFT size doesn&#39;t affect rate of pulsation.</div><div><br></div>=
-<div>&gt; Also,=20
-you don&#39;t see this on a real spectrum analyzer, even an inexpensive one=
-.</div><div>I don&#39;t have one, but as I said before, decoding is failing=
- when this pulsations are on the air. So, I believe, that gqrx is fine here=
-.</div><div><br></div><div>&gt; the stripes go away when you turn of the US=
-RPs?</div><div>Yes, when I stop graph, this pulsations are gone</div><div><=
-br></div><div>&gt; Also, the stripes aren&#39;t there, either, when you use=
- the Lime on the<br>
-&gt; same 1.011 GHz frequency, exactly?</div><div>Yes, it is correct, I jus=
-t disable USRP block, enable Lime block and swap devices.<br></div></div><d=
-iv><br></div><div>&gt; My suspicion is that this is mostly USB3 emissions</=
-div><div>I&#39;ve tried to connect through USB2, result is the same<br></di=
-v><div><br></div><div>&gt; Also, are you using an external power supply for=
- your USRPs</div><div>No, they are connected to my host pc by USB only.<br>=
-</div><div><br></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Sat, 21 Dec 2019 at 21:15, Ron Economos via USRP-users &lt;<a=
- href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">I alw=
-ays thought these pulsations were due to some kind of bug with <br>
-Gqrx. If you change the FFT size, the rate of pulsation changes. Also, <br>
-you don&#39;t see this on a real spectrum analyzer, even an inexpensive one=
-.<br>
-<br>
-Ron<br>
-<br>
-On 12/21/19 09:25, Marcus M=C3=BCller via USRP-users wrote:<br>
-&gt; Just to rule out interferers:<br>
-&gt;<br>
-&gt; * the stripes go away when you turn of the USRPs?<br>
-&gt; * Also, the stripes aren&#39;t there, either, when you use the Lime on=
- the<br>
-&gt; same 1.011 GHz frequency, exactly?<br>
-&gt;<br>
-&gt; My suspicion is that this is mostly USB3 emissions (those could be, bu=
-t<br>
-&gt; not necessarily are, happening through the USRP itself, or through<br>
-&gt; cables, or through your host computer.<br>
-&gt;<br>
-&gt; If your sampling rates allow it (they do, I think you&#39;re using 500=
- kHz<br>
-&gt; only=C2=B9), try to use a USB2-only cable or port and see whether thes=
-e<br>
-&gt; disappear.<br>
-&gt;<br>
-&gt; Also, are you using an external power supply for your USRPs? If this i=
-s<br>
-&gt; actually an interferer, it might as well be some periodic behaviour of=
-<br>
-&gt; the power supply.<br>
-&gt;<br>
-&gt; Best regards,<br>
-&gt; Marcus<br>
-&gt;<br>
-&gt;<br>
-&gt; =C2=B9That&#39;s a sampling rate that should work on B200 and B20xmini=
-, but it&#39;s<br>
-&gt; uncomfortably low =E2=80=93 try with 1 MHz and host-side resampling, m=
-aybe?<br>
-&gt;<br>
-&gt; On Wed, 2019-12-18 at 21:28 +0300, =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=
-=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA via USRP-users<b=
-r>
-&gt; wrote:<br>
-&gt;&gt; Hello, Sam!<br>
-&gt;&gt; No, I use two devices as transmitter and receiver and third board =
-I<br>
-&gt;&gt; use just to observe sonogram.<br>
-&gt;&gt; Pulsations exist on both b205 and b210 devices if I use them as a<=
-br>
-&gt;&gt; transmitter and not exist if I use as transmitter another vendor&#=
-39;s<br>
-&gt;&gt; device - LimeSDR.<br>
-&gt;&gt;<br>
-&gt;&gt; All 3 USRP devices are industrial with metal case, and LimeSDR is<=
-br>
-&gt;&gt; not.<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, 18 Dec 2019 at 21:26, =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=
-=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA &lt;<br>
-&gt;&gt; <a href=3D"mailto:gena.kazachek@gmail.com" target=3D"_blank">gena.=
-kazachek@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;&gt; All 3 USRP devices are industrial with metal case, and LimeSDR=
- is<br>
-&gt;&gt;&gt; not.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; On Wed, 18 Dec 2019 at 21:25, =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=
-=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA &lt;<br>
-&gt;&gt;&gt; <a href=3D"mailto:gena.kazachek@gmail.com" target=3D"_blank">g=
-ena.kazachek@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt; Hello, Sam!<br>
-&gt;&gt;&gt;&gt; No, I use two devices as transmitter and receiver and thir=
-d board<br>
-&gt;&gt;&gt;&gt; I use just to observe sonogram.<br>
-&gt;&gt;&gt;&gt; Pulsations exist on both b205 and b210 devices if I use th=
-em as a<br>
-&gt;&gt;&gt;&gt; transmitter and not exist if I use as transmitter another<=
-br>
-&gt;&gt;&gt;&gt; vendor&#39;s device - LimeSDR.<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; On Wed, 18 Dec 2019 at 18:49, Sam Reiter &lt;<a href=3D"ma=
-ilto:sam.reiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>&gt;<b=
-r>
-&gt;&gt;&gt;&gt; wrote:<br>
-&gt;&gt;&gt;&gt;&gt; Just to be clear, you see these pulsations when transm=
-itting<br>
-&gt;&gt;&gt;&gt;&gt; with a b205mini, but not with the b210?<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; Is the b205mini a bare board or an industrial model wi=
-th a case<br>
-&gt;&gt;&gt;&gt;&gt; and aluminum heat sync?<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; Sam Reiter<br>
-&gt;&gt;&gt;&gt;&gt; Ettus Research<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; On Wed, Dec 11, 2019 at 11:48 PM =D0=93=D0=B5=D0=BD=D0=
-=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA via =
-USRP-<br>
-&gt;&gt;&gt;&gt;&gt; users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
-" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Hello!<br>
-&gt;&gt;&gt;&gt;&gt;&gt; I&#39;m trying to build QPSK based system on GNURa=
-dio.<br>
-&gt;&gt;&gt;&gt;&gt;&gt; I&#39;m using two USRP B205-mini boards as transmi=
-tter and<br>
-&gt;&gt;&gt;&gt;&gt;&gt; receiver, also I got B210 board that I run gqrx on=
- to watch<br>
-&gt;&gt;&gt;&gt;&gt;&gt; what is really going on.<br>
-&gt;&gt;&gt;&gt;&gt;&gt; I noticed a strange behaviour on my tests, so I be=
-gan to<br>
-&gt;&gt;&gt;&gt;&gt;&gt; investigate it and ended to a very simple graph, t=
-hat is in<br>
-&gt;&gt;&gt;&gt;&gt;&gt; attachment. On a frequencies that are multiple of =
-10Mhz, like<br>
-&gt;&gt;&gt;&gt;&gt;&gt; 1020Mhz all works like expected and sonogram looks=
- good. If I<br>
-&gt;&gt;&gt;&gt;&gt;&gt; tune to any other frequency, even 1Hz more or less=
-, the<br>
-&gt;&gt;&gt;&gt;&gt;&gt; sonogram is full of pulsations and frequency of th=
-at<br>
-&gt;&gt;&gt;&gt;&gt;&gt; pulsation is depends of exact tune frequency. I at=
-tached some<br>
-&gt;&gt;&gt;&gt;&gt;&gt; screenshots of that pulsations.<br>
-&gt;&gt;&gt;&gt;&gt;&gt; On receiving part that pulsations cause many error=
-s while<br>
-&gt;&gt;&gt;&gt;&gt;&gt; decoding.<br>
-&gt;&gt;&gt;&gt;&gt;&gt; I got another board, LimeSDR-Mini, and no such beh=
-aviour<br>
-&gt;&gt;&gt;&gt;&gt;&gt; observed while running graph on it.<br>
-&gt;&gt;&gt;&gt;&gt;&gt; I wonder what is going on, and how can I fix this =
-problem.<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Thank you.<br>
-&gt;&gt;&gt;&gt;&gt;&gt; _______________________________________________<br=
->
-&gt;&gt;&gt;&gt;&gt;&gt; USRP-users mailing list<br>
-&gt;&gt;&gt;&gt;&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" targ=
-et=3D"_blank">USRP-users@lists.ettus.com</a><br>
-&gt;&gt;&gt;&gt;&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo=
-/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://li=
-sts.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; -- <br>
-&gt;&gt;&gt;&gt; =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=
-=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; -- <br>
-&gt;&gt;&gt; =D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9 =D0=9A=D0=B0=
-=D0=B7=D0=B0=D1=87=D1=91=D0=BA<br>
-&gt;&gt;<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; USRP-users mailing list<br>
-&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">US=
-RP-users@lists.ettus.com</a><br>
-&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_list=
-s.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/ma=
-ilman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
-mail_signature"><div dir=3D"ltr">=D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=
-=D0=B9 =D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA<br></div></div></div>
-
---0000000000002fb587059a3cbdab--
-
-
---===============5946024724764791210==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5946024724764791210==--
-
+T0ssIHdlJ2xsIG5lZWQgYSByZWNvcmRpbmcgb2YgdGhlIHNpZ25hbCB3aXRoIHRoZSBzdHJpcGVz
+LCBub3QganVzdCBhCkdRUlggc2NyZWVuc2hvdCwgSSdtIGFmcmFpZC4gQ291bGQgeW91IHNpbXBs
+eSByZWNvcmQgdGhlIGNvbXBsZXgKYmFzZWJhbmQgZm9yIG1heWJlIDUgdG8gMTAgcHVsc2F0aW9u
+cyBkdXJhdGlvbj8KUHJlZmVyYWJseSBhbHNvIGFzZWNvbmQgcmVjb3JkaW5nIGZyb20gYSBzbGln
+aHRseSBkaWZmZXJlbnQgVFhmcmVxdWVuY3ksIGJ1dCBhdCB0aGUgc2FtZSBSWCBmcmVxdWVuY3ku
+IAoKQmVzdCByZWdhcmRzLApNYXJjdXMKCk9uIFNhdCwgMjAxOS0xMi0yMSBhdCAyMzozNSArMDMw
+MCwg0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQuiB3cm90ZToKPiBIZWxsbywgdGhhbmtz
+IGZvciB5b3VyIGF0dGVudGlvbi4KPiAKPiA+IEkgYWx3YXlzIHRob3VnaHQgdGhlc2UgcHVsc2F0
+aW9ucyB3ZXJlIGR1ZSB0byBzb21lIGtpbmQgb2YgYnVnCj4gd2l0aCAKPiA+IEdxcnguIElmIHlv
+dSBjaGFuZ2UgdGhlIEZGVCBzaXplLCB0aGUgcmF0ZSBvZiBwdWxzYXRpb24gY2hhbmdlcy4KPiBO
+bywgaXQgZG9lc24ndC4gSSd2ZSB0ZXN0ZWQsIEZGVCBzaXplIGRvZXNuJ3QgYWZmZWN0IHJhdGUg
+b2YKPiBwdWxzYXRpb24uCj4gCj4gPiBBbHNvLCB5b3UgZG9uJ3Qgc2VlIHRoaXMgb24gYSByZWFs
+IHNwZWN0cnVtIGFuYWx5emVyLCBldmVuIGFuCj4gaW5leHBlbnNpdmUgb25lLgo+IEkgZG9uJ3Qg
+aGF2ZSBvbmUsIGJ1dCBhcyBJIHNhaWQgYmVmb3JlLCBkZWNvZGluZyBpcyBmYWlsaW5nIHdoZW4g
+dGhpcwo+IHB1bHNhdGlvbnMgYXJlIG9uIHRoZSBhaXIuIFNvLCBJIGJlbGlldmUsIHRoYXQgZ3Fy
+eCBpcyBmaW5lIGhlcmUuCj4gCj4gPiB0aGUgc3RyaXBlcyBnbyBhd2F5IHdoZW4geW91IHR1cm4g
+b2YgdGhlIFVTUlBzPwo+IFllcywgd2hlbiBJIHN0b3AgZ3JhcGgsIHRoaXMgcHVsc2F0aW9ucyBh
+cmUgZ29uZQo+IAo+ID4gQWxzbywgdGhlIHN0cmlwZXMgYXJlbid0IHRoZXJlLCBlaXRoZXIsIHdo
+ZW4geW91IHVzZSB0aGUgTGltZSBvbgo+IHRoZQo+ID4gc2FtZSAxLjAxMSBHSHogZnJlcXVlbmN5
+LCBleGFjdGx5Pwo+IFllcywgaXQgaXMgY29ycmVjdCwgSSBqdXN0IGRpc2FibGUgVVNSUCBibG9j
+aywgZW5hYmxlIExpbWUgYmxvY2sgYW5kCj4gc3dhcCBkZXZpY2VzLgo+IAo+ID4gTXkgc3VzcGlj
+aW9uIGlzIHRoYXQgdGhpcyBpcyBtb3N0bHkgVVNCMyBlbWlzc2lvbnMKPiBJJ3ZlIHRyaWVkIHRv
+IGNvbm5lY3QgdGhyb3VnaCBVU0IyLCByZXN1bHQgaXMgdGhlIHNhbWUKPiAKPiA+IEFsc28sIGFy
+ZSB5b3UgdXNpbmcgYW4gZXh0ZXJuYWwgcG93ZXIgc3VwcGx5IGZvciB5b3VyIFVTUlBzCj4gTm8s
+IHRoZXkgYXJlIGNvbm5lY3RlZCB0byBteSBob3N0IHBjIGJ5IFVTQiBvbmx5Lgo+IAo+IE9uIFNh
+dCwgMjEgRGVjIDIwMTkgYXQgMjE6MTUsIFJvbiBFY29ub21vcyB2aWEgVVNSUC11c2VycyA8Cj4g
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+ID4gSSBhbHdheXMgdGhvdWdodCB0
+aGVzZSBwdWxzYXRpb25zIHdlcmUgZHVlIHRvIHNvbWUga2luZCBvZiBidWcKPiA+IHdpdGggCj4g
+PiBHcXJ4LiBJZiB5b3UgY2hhbmdlIHRoZSBGRlQgc2l6ZSwgdGhlIHJhdGUgb2YgcHVsc2F0aW9u
+IGNoYW5nZXMuCj4gPiBBbHNvLCAKPiA+IHlvdSBkb24ndCBzZWUgdGhpcyBvbiBhIHJlYWwgc3Bl
+Y3RydW0gYW5hbHl6ZXIsIGV2ZW4gYW4gaW5leHBlbnNpdmUKPiA+IG9uZS4KPiA+IAo+ID4gUm9u
+Cj4gPiAKPiA+IE9uIDEyLzIxLzE5IDA5OjI1LCBNYXJjdXMgTcO8bGxlciB2aWEgVVNSUC11c2Vy
+cyB3cm90ZToKPiA+ID4gSnVzdCB0byBydWxlIG91dCBpbnRlcmZlcmVyczoKPiA+ID4KPiA+ID4g
+KiB0aGUgc3RyaXBlcyBnbyBhd2F5IHdoZW4geW91IHR1cm4gb2YgdGhlIFVTUlBzPwo+ID4gPiAq
+IEFsc28sIHRoZSBzdHJpcGVzIGFyZW4ndCB0aGVyZSwgZWl0aGVyLCB3aGVuIHlvdSB1c2UgdGhl
+IExpbWUKPiA+IG9uIHRoZQo+ID4gPiBzYW1lIDEuMDExIEdIeiBmcmVxdWVuY3ksIGV4YWN0bHk/
+Cj4gPiA+Cj4gPiA+IE15IHN1c3BpY2lvbiBpcyB0aGF0IHRoaXMgaXMgbW9zdGx5IFVTQjMgZW1p
+c3Npb25zICh0aG9zZSBjb3VsZAo+ID4gYmUsIGJ1dAo+ID4gPiBub3QgbmVjZXNzYXJpbHkgYXJl
+LCBoYXBwZW5pbmcgdGhyb3VnaCB0aGUgVVNSUCBpdHNlbGYsIG9yCj4gPiB0aHJvdWdoCj4gPiA+
+IGNhYmxlcywgb3IgdGhyb3VnaCB5b3VyIGhvc3QgY29tcHV0ZXIuCj4gPiA+Cj4gPiA+IElmIHlv
+dXIgc2FtcGxpbmcgcmF0ZXMgYWxsb3cgaXQgKHRoZXkgZG8sIEkgdGhpbmsgeW91J3JlIHVzaW5n
+Cj4gPiA1MDAga0h6Cj4gPiA+IG9ubHnCuSksIHRyeSB0byB1c2UgYSBVU0IyLW9ubHkgY2FibGUg
+b3IgcG9ydCBhbmQgc2VlIHdoZXRoZXIKPiA+IHRoZXNlCj4gPiA+IGRpc2FwcGVhci4KPiA+ID4K
+PiA+ID4gQWxzbywgYXJlIHlvdSB1c2luZyBhbiBleHRlcm5hbCBwb3dlciBzdXBwbHkgZm9yIHlv
+dXIgVVNSUHM/IElmCj4gPiB0aGlzIGlzCj4gPiA+IGFjdHVhbGx5IGFuIGludGVyZmVyZXIsIGl0
+IG1pZ2h0IGFzIHdlbGwgYmUgc29tZSBwZXJpb2RpYwo+ID4gYmVoYXZpb3VyIG9mCj4gPiA+IHRo
+ZSBwb3dlciBzdXBwbHkuCj4gPiA+Cj4gPiA+IEJlc3QgcmVnYXJkcywKPiA+ID4gTWFyY3VzCj4g
+PiA+Cj4gPiA+Cj4gPiA+IMK5VGhhdCdzIGEgc2FtcGxpbmcgcmF0ZSB0aGF0IHNob3VsZCB3b3Jr
+IG9uIEIyMDAgYW5kIEIyMHhtaW5pLAo+ID4gYnV0IGl0J3MKPiA+ID4gdW5jb21mb3J0YWJseSBs
+b3cg4oCTIHRyeSB3aXRoIDEgTUh6IGFuZCBob3N0LXNpZGUgcmVzYW1wbGluZywKPiA+IG1heWJl
+Pwo+ID4gPgo+ID4gPiBPbiBXZWQsIDIwMTktMTItMTggYXQgMjE6MjggKzAzMDAsINCT0LXQvdC9
+0LDQtNC40Lkg0JrQsNC30LDRh9GR0LogdmlhIFVTUlAtCj4gPiB1c2Vycwo+ID4gPiB3cm90ZToK
+PiA+ID4+IEhlbGxvLCBTYW0hCj4gPiA+PiBObywgSSB1c2UgdHdvIGRldmljZXMgYXMgdHJhbnNt
+aXR0ZXIgYW5kIHJlY2VpdmVyIGFuZCB0aGlyZAo+ID4gYm9hcmQgSQo+ID4gPj4gdXNlIGp1c3Qg
+dG8gb2JzZXJ2ZSBzb25vZ3JhbS4KPiA+ID4+IFB1bHNhdGlvbnMgZXhpc3Qgb24gYm90aCBiMjA1
+IGFuZCBiMjEwIGRldmljZXMgaWYgSSB1c2UgdGhlbSBhcwo+ID4gYQo+ID4gPj4gdHJhbnNtaXR0
+ZXIgYW5kIG5vdCBleGlzdCBpZiBJIHVzZSBhcyB0cmFuc21pdHRlciBhbm90aGVyCj4gPiB2ZW5k
+b3Incwo+ID4gPj4gZGV2aWNlIC0gTGltZVNEUi4KPiA+ID4+Cj4gPiA+PiBBbGwgMyBVU1JQIGRl
+dmljZXMgYXJlIGluZHVzdHJpYWwgd2l0aCBtZXRhbCBjYXNlLCBhbmQgTGltZVNEUgo+ID4gaXMK
+PiA+ID4+IG5vdC4KPiA+ID4+Cj4gPiA+PiBPbiBXZWQsIDE4IERlYyAyMDE5IGF0IDIxOjI2LCDQ
+k9C10L3QvdCw0LTQuNC5INCa0LDQt9Cw0YfRkdC6IDwKPiA+ID4+IGdlbmEua2F6YWNoZWtAZ21h
+aWwuY29tPiB3cm90ZToKPiA+ID4+PiBBbGwgMyBVU1JQIGRldmljZXMgYXJlIGluZHVzdHJpYWwg
+d2l0aCBtZXRhbCBjYXNlLCBhbmQgTGltZVNEUgo+ID4gaXMKPiA+ID4+PiBub3QuCj4gPiA+Pj4K
+PiA+ID4+PiBPbiBXZWQsIDE4IERlYyAyMDE5IGF0IDIxOjI1LCDQk9C10L3QvdCw0LTQuNC5INCa
+0LDQt9Cw0YfRkdC6IDwKPiA+ID4+PiBnZW5hLmthemFjaGVrQGdtYWlsLmNvbT4gd3JvdGU6Cj4g
+PiA+Pj4+IEhlbGxvLCBTYW0hCj4gPiA+Pj4+IE5vLCBJIHVzZSB0d28gZGV2aWNlcyBhcyB0cmFu
+c21pdHRlciBhbmQgcmVjZWl2ZXIgYW5kIHRoaXJkCj4gPiBib2FyZAo+ID4gPj4+PiBJIHVzZSBq
+dXN0IHRvIG9ic2VydmUgc29ub2dyYW0uCj4gPiA+Pj4+IFB1bHNhdGlvbnMgZXhpc3Qgb24gYm90
+aCBiMjA1IGFuZCBiMjEwIGRldmljZXMgaWYgSSB1c2UgdGhlbQo+ID4gYXMgYQo+ID4gPj4+PiB0
+cmFuc21pdHRlciBhbmQgbm90IGV4aXN0IGlmIEkgdXNlIGFzIHRyYW5zbWl0dGVyIGFub3RoZXIK
+PiA+ID4+Pj4gdmVuZG9yJ3MgZGV2aWNlIC0gTGltZVNEUi4KPiA+ID4+Pj4KPiA+ID4+Pj4gT24g
+V2VkLCAxOCBEZWMgMjAxOSBhdCAxODo0OSwgU2FtIFJlaXRlciA8c2FtLnJlaXRlckBldHR1cy5j
+b20KPiA+ID4KPiA+ID4+Pj4gd3JvdGU6Cj4gPiA+Pj4+PiBKdXN0IHRvIGJlIGNsZWFyLCB5b3Ug
+c2VlIHRoZXNlIHB1bHNhdGlvbnMgd2hlbiB0cmFuc21pdHRpbmcKPiA+ID4+Pj4+IHdpdGggYSBi
+MjA1bWluaSwgYnV0IG5vdCB3aXRoIHRoZSBiMjEwPwo+ID4gPj4+Pj4KPiA+ID4+Pj4+IElzIHRo
+ZSBiMjA1bWluaSBhIGJhcmUgYm9hcmQgb3IgYW4gaW5kdXN0cmlhbCBtb2RlbCB3aXRoIGEKPiA+
+IGNhc2UKPiA+ID4+Pj4+IGFuZCBhbHVtaW51bSBoZWF0IHN5bmM/Cj4gPiA+Pj4+Pgo+ID4gPj4+
+Pj4gU2FtIFJlaXRlcgo+ID4gPj4+Pj4gRXR0dXMgUmVzZWFyY2gKPiA+ID4+Pj4+Cj4gPiA+Pj4+
+Pgo+ID4gPj4+Pj4gT24gV2VkLCBEZWMgMTEsIDIwMTkgYXQgMTE6NDggUE0g0JPQtdC90L3QsNC0
+0LjQuSDQmtCw0LfQsNGH0ZHQuiB2aWEgVVNSUC0KPiA+ID4+Pj4+IHVzZXJzIDx1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4gPiA+Pj4+Pj4gSGVsbG8hCj4gPiA+Pj4+Pj4gSSdt
+IHRyeWluZyB0byBidWlsZCBRUFNLIGJhc2VkIHN5c3RlbSBvbiBHTlVSYWRpby4KPiA+ID4+Pj4+
+PiBJJ20gdXNpbmcgdHdvIFVTUlAgQjIwNS1taW5pIGJvYXJkcyBhcyB0cmFuc21pdHRlciBhbmQK
+PiA+ID4+Pj4+PiByZWNlaXZlciwgYWxzbyBJIGdvdCBCMjEwIGJvYXJkIHRoYXQgSSBydW4gZ3Fy
+eCBvbiB0byB3YXRjaAo+ID4gPj4+Pj4+IHdoYXQgaXMgcmVhbGx5IGdvaW5nIG9uLgo+ID4gPj4+
+Pj4+IEkgbm90aWNlZCBhIHN0cmFuZ2UgYmVoYXZpb3VyIG9uIG15IHRlc3RzLCBzbyBJIGJlZ2Fu
+IHRvCj4gPiA+Pj4+Pj4gaW52ZXN0aWdhdGUgaXQgYW5kIGVuZGVkIHRvIGEgdmVyeSBzaW1wbGUg
+Z3JhcGgsIHRoYXQgaXMgaW4KPiA+ID4+Pj4+PiBhdHRhY2htZW50LiBPbiBhIGZyZXF1ZW5jaWVz
+IHRoYXQgYXJlIG11bHRpcGxlIG9mIDEwTWh6LAo+ID4gbGlrZQo+ID4gPj4+Pj4+IDEwMjBNaHog
+YWxsIHdvcmtzIGxpa2UgZXhwZWN0ZWQgYW5kIHNvbm9ncmFtIGxvb2tzIGdvb2QuIElmCj4gPiBJ
+Cj4gPiA+Pj4+Pj4gdHVuZSB0byBhbnkgb3RoZXIgZnJlcXVlbmN5LCBldmVuIDFIeiBtb3JlIG9y
+IGxlc3MsIHRoZQo+ID4gPj4+Pj4+IHNvbm9ncmFtIGlzIGZ1bGwgb2YgcHVsc2F0aW9ucyBhbmQg
+ZnJlcXVlbmN5IG9mIHRoYXQKPiA+ID4+Pj4+PiBwdWxzYXRpb24gaXMgZGVwZW5kcyBvZiBleGFj
+dCB0dW5lIGZyZXF1ZW5jeS4gSSBhdHRhY2hlZAo+ID4gc29tZQo+ID4gPj4+Pj4+IHNjcmVlbnNo
+b3RzIG9mIHRoYXQgcHVsc2F0aW9ucy4KPiA+ID4+Pj4+PiBPbiByZWNlaXZpbmcgcGFydCB0aGF0
+IHB1bHNhdGlvbnMgY2F1c2UgbWFueSBlcnJvcnMgd2hpbGUKPiA+ID4+Pj4+PiBkZWNvZGluZy4K
+PiA+ID4+Pj4+PiBJIGdvdCBhbm90aGVyIGJvYXJkLCBMaW1lU0RSLU1pbmksIGFuZCBubyBzdWNo
+IGJlaGF2aW91cgo+ID4gPj4+Pj4+IG9ic2VydmVkIHdoaWxlIHJ1bm5pbmcgZ3JhcGggb24gaXQu
+Cj4gPiA+Pj4+Pj4gSSB3b25kZXIgd2hhdCBpcyBnb2luZyBvbiwgYW5kIGhvdyBjYW4gSSBmaXgg
+dGhpcyBwcm9ibGVtLgo+ID4gPj4+Pj4+IFRoYW5rIHlvdS4KPiA+ID4+Pj4+PiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gPj4+Pj4+IFVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0Cj4gPiA+Pj4+Pj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiA+
+ID4+Pj4+PiAKPiA+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3Jw
+LXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+ID4gPj4+Pgo+ID4gPj4+PiAtLSAKPiA+ID4+Pj4g0JPQ
+tdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQugo+ID4gPj4+Cj4gPiA+Pj4gLS0gCj4gPiA+Pj4g
+0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQugo+ID4gPj4KPiA+ID4+IF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiA+PiBVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdAo+ID4gPj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiA+ID4+IAo+ID4g
+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29tCj4gPiA+Cj4gPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCj4gPiA+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gPiA+IFVTUlAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tCj4gPiA+IAo+ID4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
+bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gPiAKPiA+IF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdAo+ID4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiA+IGh0dHA6Ly9saXN0
+cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+
+IAo+IAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVT
+UlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9s
+aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
+bQo=
