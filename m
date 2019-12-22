@@ -2,98 +2,75 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC61128ED3
-	for <lists+usrp-users@lfdr.de>; Sun, 22 Dec 2019 17:12:18 +0100 (CET)
-Received: from [::1] (port=52940 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1795D128ED4
+	for <lists+usrp-users@lfdr.de>; Sun, 22 Dec 2019 17:16:38 +0100 (CET)
+Received: from [::1] (port=55206 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ij3q3-000501-NY; Sun, 22 Dec 2019 11:12:15 -0500
-Received: from mail-eopbgr20080.outbound.protection.outlook.com
- ([40.107.2.80]:63301 helo=EUR02-VE1-obe.outbound.protection.outlook.com)
+	id 1ij3uH-0005UB-4k; Sun, 22 Dec 2019 11:16:37 -0500
+Received: from mail-oln040092253093.outbound.protection.outlook.com
+ ([40.92.253.93]:21052 helo=APC01-SG2-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <Roman.Melnikov@verint.com>)
- id 1ij3pz-0004pw-Go
- for usrp-users@lists.ettus.com; Sun, 22 Dec 2019 11:12:11 -0500
+ (Exim 4.92) (envelope-from <snehasish.cse@LIVE.COM>)
+ id 1ij3uC-0005KY-P1
+ for usrp-users@lists.ettus.com; Sun, 22 Dec 2019 11:16:33 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nuo2RKtZjkGQCzrLjUjN6WBp+rM/YRhpPid/lQzFIBfc198pSleN7RGKzsFlRdCo1AClEOHmY+JTdUqy7TPf2Mv7LrOfdSKAyJBrkp8Qx22OJmvJHpV0YX/sUtfLTGsdOOUgwXP5pXP+2szROJfJZ39d5v0ESOLwA9POfvQMz54+L/mgX31hnrqtAPqdT8gIDlnOPFGGJfr91NlPxNnkpNs11YyrifRZMbfLaxSZ7NIzUflwS3zM9Mz9RDGQMQZuuvEsG1yZZxfTqRQDmqp3WuzmG4nx88lj8Z25YnuYbuRzIepnSEPmk7zSEX1HXYfCkPpVByet5ES1uMateTmexg==
+ b=gjghjpX+yuY79FCH4Hstn0JfTyXShrVMN4LzK1Ahh6nfLInzpss41u6jOgTTaDKpV2/RM6XwDXHe4Exjtdx54KKub1RNrfT/7aeHgrCs+7UZZ5tl2tNoBybWv9HduOKyqu6VczrkeI6RAmcBVyJlcSi+1KE4FS5qb4NaO8W0DX/+ja01XnOfMBZzvDqMFa260bSapdO4aiiaGSqG5L5FLfdrkeZAyEkhfZMRLYks6l16Y/ngqvYESSosqcRaU0ex374S/gqcxiuJMdy0kRXTHFkSHlOWdh+qfgGA3diFhqPrYn4s0IJdELpCpzp4EJ81jNz0O7s5XkhrXDm3FFad9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z7NqvF9VusyzIUzCt8i7u8hsVmgamkrM5XZRckpgtHk=;
- b=HVhW7PWrDnAixJLdmn9G+r9h3EJuwgFwsEn1qIJJczB37ZAW4K5qYS9aVB74MzEhT/f17yRwSQ2THSbcK8E0LZ3ZBQn+n52MFJ+XIHDpdGP6APQ0UmCDp6sg23kJVQd9RoiDZMDrsBQgpfv/hw9OqbdFP8Pc0DXviogLlDGLSTIKqem0ty/uF3uKb4N1/4vbf8WlKOgBFNrsAbRy6t4YGpMRNLldf7pH1PlP/JTSdb4XgCjoNTwDbW0VA0BPnv5P7MeEEvcVrWbKjvfofZ6yyzDN+hUZS2dwynBxS4QETAIOasUaRepunaexzIacRWdpeTEOAmaDt2Yy7ibFOt4Jvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 193.27.93.20) smtp.rcpttodomain=lists.ettus.com smtp.mailfrom=verint.com;
- dmarc=bestguesspass action=none header.from=verint.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verint.com;
- s=selector1;
+ bh=gT84ehJpyvlIRi0719s2WZSEMbzaUx8mygv7ZkMQT70=;
+ b=Gkg5yNnXvsAqDIFRfiZz3dp28SPtyQAb00FzIO5cOCJnIG3jmM4j2h4NhG9M9A1lF7diI1gIu1KXS45fO0muqkjKJI/wdXs4niyO0i1U8PDY2WXFjlklkoU5U/ODXuJEoCDGOF+mM2w+zITN7p3bhMxnWkA/2DnRkRVyzkYga71hgJUCtETDGJALOnMmVgZJTsa9IdDSlkZYuHu4lsg7S07nRB9wTsZiedQ8gue7DpEEcoPMQSCpzrxnTai5Z5YFmzEiuvlvnombU2npx/B2Grn9CxMFEoj/1Iu56V7qRAjhq3z9C4uy943iow/0gBJ2QT0HIgYCcFeVyvARD/0hJQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z7NqvF9VusyzIUzCt8i7u8hsVmgamkrM5XZRckpgtHk=;
- b=lvEVO/jznJ494mzesAhnpPNZrcopzjQMBBLpY1gZJ+W0Pgbw0h3hidqFowby/RrkQy3BiYinsywpNpRMllABSKJ3kl+pfXKRnzNtpnFNGB0YrMGi7s4s0VrxH7qOXqune4pq68ICDLOMPjf3JcUSzAQfwb6vHKa7fwx1A35Yn1U=
-Received: from AM5PR0102CA0020.eurprd01.prod.exchangelabs.com
- (2603:10a6:206::33) by DB7PR01MB4729.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:63::31) with Microsoft SMTP Server (version=TLS1_2,
+ bh=gT84ehJpyvlIRi0719s2WZSEMbzaUx8mygv7ZkMQT70=;
+ b=CGrOc8uGRdFAe5WXsh+NLjZ3LmCE1Tx7Lh4KhsJwhtLwSOu+ZfhgzrFRSnHN9esfQH/xQ+R6wRtEPzKJRZxCLwdPE/QiF9BpXhUoYayILyqOwWNZOCnEv0u/4grnwqgXoTaVmlSbhudLyvvJWz/EMdsHTfqOEBZH5MUonp0aknhaukQPStHetLvVAUeSW/ZrdHJzsAt5WsBKR1qKVOmm+UXISE2F66v+8k3NPzgcreo+XyLJkMF+6GuMk/uWWn2fKhtuyqdmZ41FqXpbJZzFm1vYS6sgBNT/Jp/3dA5u9HmWmCMrxbNuznSaaWusjJSLdCnrU8S9H+gGk0lo/2bzvA==
+Received: from SG2APC01FT026.eop-APC01.prod.protection.outlook.com
+ (10.152.250.60) by SG2APC01HT228.eop-APC01.prod.protection.outlook.com
+ (10.152.250.233) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2559.14; Sun, 22 Dec
- 2019 16:11:27 +0000
-Received: from DB5EUR01FT003.eop-EUR01.prod.protection.outlook.com
- (2a01:111:f400:7e02::202) by AM5PR0102CA0020.outlook.office365.com
- (2603:10a6:206::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2559.14 via Frontend
- Transport; Sun, 22 Dec 2019 16:11:27 +0000
-Authentication-Results: spf=pass (sender IP is 193.27.93.20)
- smtp.mailfrom=verint.com; lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=bestguesspass action=none
- header.from=verint.com;
-Received-SPF: Pass (protection.outlook.com: domain of verint.com designates
- 193.27.93.20 as permitted sender) receiver=protection.outlook.com;
- client-ip=193.27.93.20; helo=mail.verint.com;
-Received: from mail.verint.com (193.27.93.20) by
- DB5EUR01FT003.mail.protection.outlook.com (10.152.4.101) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2559.14 via Frontend Transport; Sun, 22 Dec 2019 16:11:26 +0000
-Received: from TLVPEXCH1.Verint.Corp.Verintsystems.com (10.61.241.30) by
- TLVPEXCH1.verint.corp.verintsystems.com (10.61.241.30) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.1847.3; Sun, 22 Dec 2019 18:11:26 +0200
-Received: from TLVPEXCH1.Verint.Corp.Verintsystems.com ([10.61.241.30]) by
- TLVPEXCH1.verint.corp.verintsystems.com ([10.61.241.30]) with mapi id
- 15.01.1847.003; Sun, 22 Dec 2019 18:11:26 +0200
+ 2019 16:15:49 +0000
+Received: from BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM (10.152.250.53) by
+ SG2APC01FT026.mail.protection.outlook.com (10.152.250.190) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2559.14 via Frontend Transport; Sun, 22 Dec 2019 16:15:49 +0000
+Received: from BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::adfe:c8d4:6ece:3921]) by BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::adfe:c8d4:6ece:3921%7]) with mapi id 15.20.2559.017; Sun, 22 Dec 2019
+ 16:15:48 +0000
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: USRP B205 mini + uhd::usrp::multi_usrp_uhd + multithreading 
-Thread-Index: AdW44hysSz94NxP/TDODMk9P27Y5bQ==
-Date: Sun, 22 Dec 2019 16:11:25 +0000
-Message-ID: <14079f7f31174b1092aa00039ba9602b@verint.com>
+Thread-Topic: uhd error
+Thread-Index: AQHVuOKvYn/9f3QiwES8Sbxnhcdh+g==
+Date: Sun, 22 Dec 2019 16:15:48 +0000
+Message-ID: <BMXPR01MB3944A65A50C00946F7389A26882F0@BMXPR01MB3944.INDPRD01.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.61.241.83]
+x-incomingtopheadermarker: OriginalChecksum:0684CE86F1C27859EFD020C63829A5B3A693C2A93E3FC1D5956545A51A3F5E82;
+ UpperCasedChecksum:4C06FDB7F3D1B20B7E1C19329563CE6CE6C2A8B14453F59C5A8122C3CDD39C40;
+ SizeAsReceived:6643; Count:42
+x-tmn: [OTmk+cOX1mE/BPn4+4U4bES4QbuzcvEj]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: acd125bd-1955-48d6-b42e-08d786fa352d
+x-ms-traffictypediagnostic: SG2APC01HT228:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: j802vwm22zWc3PvZyoccmGk5NDBomwOKb1Iccg2oL6VRmcFAlFtijsJ2vnvv+rhYbzWhfZSHnNi2gxbQX5BhtEUAM63usA/R3bF0tCLEkCJr7ICMRVRt8x0BspWtvH64yqtexEcFlnYV7x53rTWt81fPaoMTFmspaRjcEbMrgvlIuzaRcr19rcywGb7gz9go
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:193.27.93.20; IPV:; CTRY:IL; EFV:NLI; SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(346002)(396003)(39860400002)(376002)(53754006)(199004)(189003)(24736004)(81166006)(2906002)(336012)(86362001)(356004)(8676002)(8936002)(81156014)(2616005)(108616005)(70206006)(36906005)(70586007)(5660300002)(316002)(478600001)(36756003)(4743002)(186003)(6916009)(26005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DB7PR01MB4729; H:mail.verint.com; FPR:;
- SPF:Pass; LANG:en; PTR:bzq-193.27.93-20.bgp.bezeqint.net; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3da2f419-304e-4277-8fe1-08d786f9991f
-X-MS-TrafficTypeDiagnostic: DB7PR01MB4729:
-X-Microsoft-Antispam-PRVS: <DB7PR01MB47299E138B2C7CAAEAD2E485E72F0@DB7PR01MB4729.eurprd01.prod.exchangelabs.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-Forefront-PRVS: 02596AB7DA
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: j5vs3t6FIN9dNb4NrZ7HKDBzR2Bwgc9X4A1QN3PqLh/ycxdcR4vkYw72aWjkhx2W1EHIgK0V8Kp5qLFluiYRH0KKYlfAX2bLW5PDDnktM4PQVZkyF+eqLWeOwgWe3TiGllBQNWYjTOrLyI5oBSxVQBqRASKFbCHiR0pZHH+erICxYuKVbb8G+4uzYqAHF0fVHy6TPlwceu+7gTVXRwEfl7vdc8XAqb0xZOIcXxe203gwbzu+B2A9wVwDUVtoSrfcADBXaGkXndB0uyosUvCiQzRZ6bOQx/SX5crxsIXFCoEHbeqHPGjD3hBN4c4D12Yv7oSTGwcktkzGlIppacTGM36CV2uw8ecRIKsLVrbozxhvxXNkMb7sEdRhvVPXz7cc0WYfAb9X41mBrD3CP5ohEPGKwXbchamR3zxyunGNQHW2ZDI12NXyU6wF69Sn5RYjmtTbhSEhJHGwkpH7Bht1bQS083Y1NUjHqGFuyJXB+jqD3WrufWwb187405+0HCp7
-X-OriginatorOrg: verint.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Dec 2019 16:11:26.8394 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3da2f419-304e-4277-8fe1-08d786f9991f
-X-MS-Exchange-CrossTenant-Id: bb2ed304-4099-49cf-b081-cbb7a3a580ca
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bb2ed304-4099-49cf-b081-cbb7a3a580ca; Ip=[193.27.93.20];
- Helo=[mail.verint.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR01MB4729
-Subject: [USRP-users] USRP B205 mini + uhd::usrp::multi_usrp_uhd +
- multithreading
+X-OriginatorOrg: live.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: acd125bd-1955-48d6-b42e-08d786fa352d
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Dec 2019 16:15:48.1862 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2APC01HT228
+Subject: [USRP-users] uhd error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,9 +82,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Melnikov, Roman via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Melnikov, Roman" <Roman.Melnikov@verint.com>
-Content-Type: multipart/mixed; boundary="===============3800860966834121091=="
+From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Snehasish Kar <snehasish.cse@LIVE.COM>
+Content-Type: multipart/mixed; boundary="===============5851688334830027829=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -121,210 +98,81 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3800860966834121091==
+--===============5851688334830027829==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_14079f7f31174b1092aa00039ba9602bverintcom_"
+	boundary="_000_BMXPR01MB3944A65A50C00946F7389A26882F0BMXPR01MB3944INDP_"
 
---_000_14079f7f31174b1092aa00039ba9602bverintcom_
-Content-Type: text/plain; charset="us-ascii"
+--_000_BMXPR01MB3944A65A50C00946F7389A26882F0BMXPR01MB3944INDP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hello everyone,
+Hello
 
-I have 8 b205mini devices, and I use uhd::usrp::multi_usrp::make(...)
+Does anyone have a idea why the following error occurs
+terminate called after throwing an instance of 'uhd::io_error'
+  what():  EnvironmentError: IOError: [0/Radio_1] sr_write() failed: Enviro=
+nmentError: IOError: Block ctrl (CE_02_Port_50) no response packet - Assert=
+ionError: bool(buff)
+  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [wit=
+h uhd::endianness_t _endianness =3D (uhd::endianness_t)0u; uint64_t =3D lon=
+g unsigned int]
+  at /home/snehasish/dsp_dev/uhd-3.14.1.1/host/lib/rfnoc/ctrl_iface.cpp:142
 
-I try to read from each device from different thread
+Aborted (core dumped)
 
-When I run the profiler what I see is that libusb has single thread that do=
- polling !
+I am using uhd-3.14.1.1 with NI USRP 2955.
 
-When I run 8 applications each in different process my performance is OK. S=
-ince I really have multiple contexts ( libusb polling ) receiving data.
+Regards
+Snehasish
 
-Here is peace of code I run for each USRP device:
-
-sprintf ( args,
-              "type=3Db200,enable_user_regs,serial=3D%X,master_clock_rate=
-=3D%d,recv_buff_size=3D%d,fpga=3D%s",
-              this->Id,
-              ( int ) MaxMasterClockRate,
-              ( int ) RECV_BUFFER_SIZE_BYTES,
-              fpga_path );
-
-_usrp =3D uhd::usrp::multi_usrp::make ( uhd::device_addr_t ( args ) );
-
-// configuration ....
-
-_stream =3D _usrp->get_rx_stream ( stream_args );
-
-I have 8 streamers objects each in its own thread, doing
-
-_stream->recv ( ... ) call
-
-Will appreciate any help.
-
-Roma M.
-
-
-
-
-This electronic message may contain proprietary and confidential informatio=
-n of Verint Systems Inc., its affiliates and/or subsidiaries. The informati=
-on is intended to be for the use of the individual(s) or entity(ies) named =
-above. If you are not the intended recipient (or authorized to receive this=
- e-mail for the intended recipient), you may not use, copy, disclose or dis=
-tribute to anyone this message or any information contained in this message=
-. If you have received this electronic message in error, please notify us b=
-y replying to this e-mail.
-
---_000_14079f7f31174b1092aa00039ba9602bverintcom_
-Content-Type: text/html; charset="us-ascii"
+--_000_BMXPR01MB3944A65A50C00946F7389A26882F0BMXPR01MB3944INDP_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
 </head>
-<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello everyone, <o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have 8 b205mini devices, and =
-I use uhd::usrp::multi_usrp::make(&#8230;)
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I try to read from each device =
-from different thread
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">When I run the profiler what I =
-see is that libusb has
-<span style=3D"background:yellow;mso-highlight:yellow">single</span> thread=
- that do polling !
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">When I run 8 applications each =
-in different
-<span style=3D"background:yellow;mso-highlight:yellow">process</span> my pe=
-rformance is OK. Since I really have multiple contexts ( libusb polling ) r=
-eceiving data.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Here is peace of code I run for=
- each USRP device:
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">sprintf ( args,<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;type=3Db200,enable_us=
-er_regs,serial=3D%X,master_clock_rate=3D%d,recv_buff_size=3D%d,fpga=3D%s&qu=
-ot;,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this-&gt;Id,<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( int ) MaxMasterClockRate,=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( int ) RECV_BUFFER_SIZE_BY=
-TES,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fpga_path );<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">_usrp =3D uhd::usrp::multi_usrp=
-::make ( uhd::device_addr_t ( args ) );<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">// configuration &#8230;. <o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">_stream =3D _usrp-&gt;get_rx_st=
-ream ( stream_args );<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have 8 streamers objects each=
- in its own thread, doing
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">_stream-&gt;recv ( &#8230; ) ca=
-ll <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Will appreciate any help.<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Roma M. &nbsp;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p></o:p></span></p>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri,Helvetica,sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Hello <br>
+<br>
+Does anyone have a idea why the following error occurs<br>
+<span>terminate called after throwing an instance of 'uhd::io_error'<br>
+</span>
+<div>&nbsp; what(): &nbsp;EnvironmentError: IOError: [0/Radio_1] sr_write()=
+ failed: EnvironmentError: IOError: Block ctrl (CE_02_Port_50) no response =
+packet - AssertionError: bool(buff)<br>
 </div>
+<div>&nbsp; in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bo=
+ol, double) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0u; =
+uint64_t =3D long unsigned int]<br>
+</div>
+<div>&nbsp; at /home/snehasish/dsp_dev/uhd-3.14.1.1/host/lib/rfnoc/ctrl_ifa=
+ce.cpp:142<br>
+</div>
+<div><br>
+</div>
+<div>Aborted (core dumped)<br>
+</div>
+<span></span><br>
+I am using uhd-3.14.1.1 with NI USRP 2955.<br>
 <br>
-<br>
-This electronic message may contain proprietary and confidential informatio=
-n of Verint Systems Inc., its affiliates and/or subsidiaries. The informati=
-on is intended to be for the use of the individual(s) or entity(ies) named =
-above. If you are not the intended
- recipient (or authorized to receive this e-mail for the intended recipient=
-), you may not use, copy, disclose or distribute to anyone this message or =
-any information contained in this message. If you have received this electr=
-onic message in error, please notify
- us by replying to this e-mail.
+Regards<br>
+Snehasish<br>
+</div>
 </body>
 </html>
 
---_000_14079f7f31174b1092aa00039ba9602bverintcom_--
+--_000_BMXPR01MB3944A65A50C00946F7389A26882F0BMXPR01MB3944INDP_--
 
 
---===============3800860966834121091==
+--===============5851688334830027829==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -335,5 +183,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3800860966834121091==--
+--===============5851688334830027829==--
 
