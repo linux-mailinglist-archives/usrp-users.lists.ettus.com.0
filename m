@@ -2,60 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 007F012A852
-	for <lists+usrp-users@lfdr.de>; Wed, 25 Dec 2019 15:19:18 +0100 (CET)
-Received: from [::1] (port=40548 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2203112A897
+	for <lists+usrp-users@lfdr.de>; Wed, 25 Dec 2019 17:57:16 +0100 (CET)
+Received: from [::1] (port=56372 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ik7VH-0002yb-VU; Wed, 25 Dec 2019 09:19:11 -0500
-Received: from mail-wr1-f43.google.com ([209.85.221.43]:36324)
+	id 1ik9yA-0000ks-Sn; Wed, 25 Dec 2019 11:57:10 -0500
+Received: from mail-qt1-f170.google.com ([209.85.160.170]:35321)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
- id 1ik7VE-0002rh-7R
- for usrp-users@lists.ettus.com; Wed, 25 Dec 2019 09:19:08 -0500
-Received: by mail-wr1-f43.google.com with SMTP id z3so21885797wru.3
- for <usrp-users@lists.ettus.com>; Wed, 25 Dec 2019 06:18:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:date:in-reply-to:references:organization
- :user-agent:mime-version:content-transfer-encoding;
- bh=XFQ1LJ2sag7PA3W7HlM+fBfTT4Mbe6olzP9Og839cqo=;
- b=SU/pwZRGwNIoShVmd6I/28eg0pPmTbtpw7eZZrIeg6mKQOocEMR2db+kOydRdNLxcc
- WbxBJ+Jor4jg860wKgGiaE1SGo/oIuCB+kZHWgB3WpnG94tOp5rO+vSyHZ16N6yv+eEY
- QOi3s/zOTUXhKxWX4MQS6XV7r002hAXvSw4iv7ZJV7CavcDNzTtg8axKJEr6X620VG9q
- 0ntJ/ePfBX/8hekMvSucWvTVkxo3QqZulsDpaiw376Mtj2SVRc5g+oSGpDYcyK7q7gvA
- YOUMJ5ikrofYH2B/w9SRdLNJ2LsdLnqFiCtD/8yE2sUolFjSUkrHMXQ8JfLry2mAqf7x
- jryA==
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ik9y7-0000hK-Ei
+ for USRP-users@lists.ettus.com; Wed, 25 Dec 2019 11:57:07 -0500
+Received: by mail-qt1-f170.google.com with SMTP id e12so20618762qto.2
+ for <USRP-users@lists.ettus.com>; Wed, 25 Dec 2019 08:56:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=P/i0MZfi4n3wdwn5cGNuGfsPaqJIId5PevFLL2v/hlk=;
+ b=uFG4j3mtoM32oZEF1bVF90CeuY8gKj7ZToWLtUYynx/XJG6hG1AdkNjJeDaTxMy78N
+ MuDxoAAy0w8vZANHmgCfQ2dFayE36TEsqpDe1yE5OAYNCfp6J20WmzPr9mJfR2+CqLHD
+ /0JGKv+ZE8CxSdWaRtbVa5CCrHZUB7q1+pXH+8+VqxjztiMjaakNljKzONxlEme7ka6x
+ G7heB6fDHrQSH0G3bcLZT/4EiVAPEMzQkCt9zxXtSzNhXKFOUhB/2zBug0reH8LbjyKe
+ pvDMO/H+iNR6QUfG3aaDQHd031+t1BuhOXlxPjUrRmX1BGKmMjfGW8ZJZVuS9qIMxe1C
+ phWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
- :references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=XFQ1LJ2sag7PA3W7HlM+fBfTT4Mbe6olzP9Og839cqo=;
- b=CS5DW5jpphfjlMq0FkIqVL0mDy5hW45NkHsAhJhEOCMOpVPzCST75Mis0Ll/ABT3rL
- i5N/YAJdgj4ZIiRx8373sW0Afo113ULKfWutMQYgyroq9jiFVBC09hPn7jQSq4PB2BIW
- qzaDXIoHpLOJpibWu1jWQ1Iqw7lf5GYzFa7HZGzg5AkcAoH387KIeJaZySfr1+J5rmv2
- uZ5Wa9SlHNUqSB/eBC78qVx/0Zt/1NEZ6jdQ5Ig2SzLslhr+OI7nW1B3IuOhgDrrG+gB
- 01ufSo4icrTkg5uDow55dTCiS8bKoxuorPKLEjlyMvdEVbM7P5tBm2GEMW0KJ2AcZFVt
- RCBQ==
-X-Gm-Message-State: APjAAAUMewF6jiVz7/X2Xn3b5YDVrx7NRGqkZDqgNPI4JLM5wrmlpcxL
- EJ3orJlfybY0cimKZmV1e+wkug4l
-X-Google-Smtp-Source: APXvYqw3y44740e2IXzUMfg/ioCNxPrqPCuPxbEOAZCDigrtJu+eIpMiuH/ul9w2zvBHzeYKwwVuNA==
-X-Received: by 2002:adf:ea0f:: with SMTP id q15mr39481842wrm.324.1577283507284; 
- Wed, 25 Dec 2019 06:18:27 -0800 (PST)
-Received: from localhost (dslb-094-220-198-130.094.220.pools.vodafone-ip.de.
- [94.220.198.130])
- by smtp.gmail.com with ESMTPSA id t190sm5673877wmt.44.2019.12.25.06.18.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Dec 2019 06:18:26 -0800 (PST)
-Message-ID: <d750d9ab21391528e690db20bc4e4530baaebcb1.camel@ettus.com>
-To: Baroch Oren <baroch@6tzvaim.com>, usrp-users@lists.ettus.com
-Date: Wed, 25 Dec 2019 15:18:25 +0100
-In-Reply-To: <c00377a3-bfc9-79eb-a033-6b11611b372d@6tzvaim.com>
-References: <c00377a3-bfc9-79eb-a033-6b11611b372d@6tzvaim.com>
-Organization: Ettus Research
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
-MIME-Version: 1.0
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=P/i0MZfi4n3wdwn5cGNuGfsPaqJIId5PevFLL2v/hlk=;
+ b=cDAcZXQG6TsJlrQ+zSzwLILm1sJm67PlDZUBZAGQg61l3vhqX1725V5vFobdHmYcjV
+ jnQ9q1qOggtU8hPvoye2vlA2cI404XKIR6S2HBPj4j8Orla06Ds3KC4ZQw26OteHYwll
+ FWhnI/XKOksJuiKJNF/PvwxRI4g9tFY4Bmhzh2SHIjUtxH3ScnfaMmarQv6daxalu4Sc
+ QgEVmb2lZxxp07qXkNTawjODwSBK5RRbq9ddH4uAOzCdfQPjt4bV+No5gHU3ZbUUziLH
+ Zq5A6kvJJAbe99y7at13j6twYPZnFF0okxRu879vI0SLklSIl4LcX4hQtX5LQxymMMVv
+ HJRQ==
+X-Gm-Message-State: APjAAAUd3mRJ3PDAtqtuVSHQlnJcE0Zh9Ec4fAW2x6eSbN+nREZpAeEx
+ JVkqxcPZZ2uvAyyiXd1O3JE=
+X-Google-Smtp-Source: APXvYqzfCZ4MT1cyh/ZuMlLc8rlHCw4XPq+J4QV7UyS/YfqPeQBlDa6oqgC0T5cxauvC03FHR7Q3KQ==
+X-Received: by 2002:ac8:4513:: with SMTP id q19mr25723458qtn.253.1577292986910; 
+ Wed, 25 Dec 2019 08:56:26 -0800 (PST)
+Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
+ [174.95.14.83])
+ by smtp.gmail.com with ESMTPSA id f5sm7886324qke.109.2019.12.25.08.56.26
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 25 Dec 2019 08:56:26 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Wed, 25 Dec 2019 11:56:25 -0500
+Message-Id: <E13C78DD-5B67-48C0-B605-6A55F3AE6E0C@gmail.com>
+References: <d750d9ab21391528e690db20bc4e4530baaebcb1.camel@ettus.com>
+In-Reply-To: <d750d9ab21391528e690db20bc4e4530baaebcb1.camel@ettus.com>
+To: =?utf-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+X-Mailer: iPhone Mail (17C54)
 Subject: Re: [USRP-users] Gain difference in 4 RX on N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -68,11 +65,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: USRP-users@lists.ettus.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,45 +83,41 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Baroch,
-
-oh, that's interesting and I must admit I don't really know where to
-start looking into this, but let's take this top-down:
-How are you setting the gain, and how are you doing the capturing?
-My gut feeling tells me there's something in UHD not handling multi-
-channel gain setting right, but lacking an N310 on my desk right now, I
-can't just trace this with a debugger.
-How did you build and install your UHD?
-Best regards,
-Marcus
-
-On Wed, 2019-12-25 at 15:29 +0200, Baroch Oren via USRP-users wrote:
-> Hello.
-> I've been capturing with N310 on 4 channels simultaneously. A strange
-> behavioure occurs:
-> First experiment: capturing on a single channel when all the other 3
-> rx channels are terminated, I get a similar captured gain on every
-> one of the RX channels.
-> Second experiment: capturing simultaneously, channel 3 (RF2 RX2)
-> shows a decreased capture gain in about -14db. all other channels
-> show capture gain similar to first experiment.
-> Third experiment: capturing simultaneously on 4 channels, all inputs
-> terminated: thermal noise of same gain on all 4 channels.
-> 
-> Anyone has any clue for direction to further research this?
-> 
-> My setup: UHD_3.14.1.HEAD-0-g0347a6d8 on Ubuntu
-> 
-> Thanks,
-> Baroch Oren
-> 
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+WW91IHdvbuKAmXQgYmUgYWJsZSB0byDigJxzZWXigJ0gdGhlIHRoZXJtYWwgbm9pc2Ugb2YgdGhl
+IHRlcm1pbmF0b3IgdW5sZXNzIHRoZSBnYWluIGlzIHR1cm5lZCBhbGwgdGhlIHdheSB1cC4gT3Ro
+ZXJ3aXNlIGl04oCZcyBiZWxvdyB0aGUgbm9pc2UgZmxvb3Igb2YgdGhlIHJlY2VpdmVyLiAKCgoK
+U2VudCBmcm9tIG15IGlQaG9uZQoKPiBPbiBEZWMgMjUsIDIwMTksIGF0IDk6MTkgQU0sIE1hcmN1
+cyBNw7xsbGVyIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3Jv
+dGU6Cj4gCj4g77u/SGkgQmFyb2NoLAo+IAo+IG9oLCB0aGF0J3MgaW50ZXJlc3RpbmcgYW5kIEkg
+bXVzdCBhZG1pdCBJIGRvbid0IHJlYWxseSBrbm93IHdoZXJlIHRvCj4gc3RhcnQgbG9va2luZyBp
+bnRvIHRoaXMsIGJ1dCBsZXQncyB0YWtlIHRoaXMgdG9wLWRvd246Cj4gSG93IGFyZSB5b3Ugc2V0
+dGluZyB0aGUgZ2FpbiwgYW5kIGhvdyBhcmUgeW91IGRvaW5nIHRoZSBjYXB0dXJpbmc/Cj4gTXkg
+Z3V0IGZlZWxpbmcgdGVsbHMgbWUgdGhlcmUncyBzb21ldGhpbmcgaW4gVUhEIG5vdCBoYW5kbGlu
+ZyBtdWx0aS0KPiBjaGFubmVsIGdhaW4gc2V0dGluZyByaWdodCwgYnV0IGxhY2tpbmcgYW4gTjMx
+MCBvbiBteSBkZXNrIHJpZ2h0IG5vdywgSQo+IGNhbid0IGp1c3QgdHJhY2UgdGhpcyB3aXRoIGEg
+ZGVidWdnZXIuCj4gSG93IGRpZCB5b3UgYnVpbGQgYW5kIGluc3RhbGwgeW91ciBVSEQ/Cj4gQmVz
+dCByZWdhcmRzLAo+IE1hcmN1cwo+IAo+PiBPbiBXZWQsIDIwMTktMTItMjUgYXQgMTU6MjkgKzAy
+MDAsIEJhcm9jaCBPcmVuIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+PiBIZWxsby4KPj4gSSd2ZSBi
+ZWVuIGNhcHR1cmluZyB3aXRoIE4zMTAgb24gNCBjaGFubmVscyBzaW11bHRhbmVvdXNseS4gQSBz
+dHJhbmdlCj4+IGJlaGF2aW91cmUgb2NjdXJzOgo+PiBGaXJzdCBleHBlcmltZW50OiBjYXB0dXJp
+bmcgb24gYSBzaW5nbGUgY2hhbm5lbCB3aGVuIGFsbCB0aGUgb3RoZXIgMwo+PiByeCBjaGFubmVs
+cyBhcmUgdGVybWluYXRlZCwgSSBnZXQgYSBzaW1pbGFyIGNhcHR1cmVkIGdhaW4gb24gZXZlcnkK
+Pj4gb25lIG9mIHRoZSBSWCBjaGFubmVscy4KPj4gU2Vjb25kIGV4cGVyaW1lbnQ6IGNhcHR1cmlu
+ZyBzaW11bHRhbmVvdXNseSwgY2hhbm5lbCAzIChSRjIgUlgyKQo+PiBzaG93cyBhIGRlY3JlYXNl
+ZCBjYXB0dXJlIGdhaW4gaW4gYWJvdXQgLTE0ZGIuIGFsbCBvdGhlciBjaGFubmVscwo+PiBzaG93
+IGNhcHR1cmUgZ2FpbiBzaW1pbGFyIHRvIGZpcnN0IGV4cGVyaW1lbnQuCj4+IFRoaXJkIGV4cGVy
+aW1lbnQ6IGNhcHR1cmluZyBzaW11bHRhbmVvdXNseSBvbiA0IGNoYW5uZWxzLCBhbGwgaW5wdXRz
+Cj4+IHRlcm1pbmF0ZWQ6IHRoZXJtYWwgbm9pc2Ugb2Ygc2FtZSBnYWluIG9uIGFsbCA0IGNoYW5u
+ZWxzLgo+PiAKPj4gQW55b25lIGhhcyBhbnkgY2x1ZSBmb3IgZGlyZWN0aW9uIHRvIGZ1cnRoZXIg
+cmVzZWFyY2ggdGhpcz8KPj4gCj4+IE15IHNldHVwOiBVSERfMy4xNC4xLkhFQUQtMC1nMDM0N2E2
+ZDggb24gVWJ1bnR1Cj4+IAo+PiBUaGFua3MsCj4+IEJhcm9jaCBPcmVuCj4+IAo+PiBfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiBodHRwOi8vbGlzdHMu
+ZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAK
+PiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVT
+UlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRw
+Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
+cy5jb20KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVT
+UlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9s
+aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
+bQo=
