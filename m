@@ -2,62 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A726912BD42
-	for <lists+usrp-users@lfdr.de>; Sat, 28 Dec 2019 11:14:17 +0100 (CET)
-Received: from [::1] (port=40160 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF7D12BD44
+	for <lists+usrp-users@lfdr.de>; Sat, 28 Dec 2019 11:19:09 +0100 (CET)
+Received: from [::1] (port=42826 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1il96r-0002Li-90; Sat, 28 Dec 2019 05:14:13 -0500
-Received: from mail-wm1-f48.google.com ([209.85.128.48]:35576)
+	id 1il9Bb-0002tr-Sa; Sat, 28 Dec 2019 05:19:07 -0500
+Received: from mail-wr1-f48.google.com ([209.85.221.48]:45939)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
- id 1il96n-0002Ge-Ii
- for usrp-users@lists.ettus.com; Sat, 28 Dec 2019 05:14:09 -0500
-Received: by mail-wm1-f48.google.com with SMTP id p17so10230896wmb.0
- for <usrp-users@lists.ettus.com>; Sat, 28 Dec 2019 02:13:49 -0800 (PST)
+ id 1il9BY-0002mR-9A
+ for usrp-users@lists.ettus.com; Sat, 28 Dec 2019 05:19:04 -0500
+Received: by mail-wr1-f48.google.com with SMTP id j42so28227036wrj.12
+ for <usrp-users@lists.ettus.com>; Sat, 28 Dec 2019 02:18:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=message-id:subject:from:to:date:in-reply-to:references:organization
  :user-agent:mime-version:content-transfer-encoding;
- bh=faxUXLGybGLlkoIk4PPBT7zQN04buzbkuWcKfniRavI=;
- b=gPkJBnH549YmWAnzWK9CbliYqYuTQ5RqDTxEvBWXnGWQMvUXARzzcUF1uZ9LNyDsIz
- 1Ee/4iHhi0rd2DNOVvlB/hWsOjXPwE1wtzmTcF2dVGQI9Qyoky/5k0YA2qvTPmh8RvaZ
- 8aMzJzCHGRDmOCOIuh41FWAm+24obbBZ27m2s7OgZ7cPgxRUP3tZzNdNn+kX7FwmKk6S
- RbOCBkwZ4gjQhjnV/JoDQhmvcBS9aUCtRtzctdhErvNi9kgWhY11dOliqWBORn/RejtS
- lNlN2o4T99BGQVXPwIHgdJfy9UyMj8w3c6wKRfjovRe56MBwXswt7ZziaOgwAYOyjaKc
- baYg==
+ bh=yPZUMe7q3neATXDk/4Qn9Clba4S+sdiWV84lh9i7O08=;
+ b=dLjNLFIN9lyAVxKiZwM5fG+eY0zbencPv3bvutbYHy2BbEUR6s8umhsg5IyXQ9K5ta
+ XsDB7Fu2jS03M+5zLnN50yMyzZJzweO2v+mroslcJHfMCIPM9qS5k5pR6X4TeQFm4pTC
+ R4uv+ndJ+xSJVDUCqW698NRs+WtvhuA5R1bFqEXcMQwHCiqPJyVTLCQUp1xOplkfDCic
+ m56Sh3KJuQdAR5cIbyBJk6hKZjiRWv1XLVO9yUTOkdR5qDBDIUR5gLeBkaPumtaarV67
+ 1PHzAZ2HgHaSDt+Sv2764ECJgPKR4/UWOStf6S6uOImqqXaQ1iJ+2dc5yeurbCxH7XDj
+ aLsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
  :references:organization:user-agent:mime-version
  :content-transfer-encoding;
- bh=faxUXLGybGLlkoIk4PPBT7zQN04buzbkuWcKfniRavI=;
- b=FDINEInZstFJo/9qNXm43bFyFvBDudCMjL2Wh2HHQWqs3Ve3JW19TDmTyCnO3l1yZG
- dz1hp1TY2c3jn/Ici0RyJMBN3TztBKoZaRHVHUGlBlMNR+pQoOtGR1jSMs2NYTTOylWo
- Pdekvg/lgvauV4aL+3tzdHK2jiT3/nTQi2a2oXPFQwI5ygLoZsfh0yIE/jPYa0EgxDmD
- tfr8BjCVvyPAzNos20Qh/wxaaHxeOMj8llYWO+Xc0peYJcS/XyDb5j80TMq2OyIod88w
- iorSNfAQbinH3dR84pubxwRCOlr9rH3QczTaDwsYTU3Z27qbOGQKYwGhVe2Bh41YUjtr
- 33Qg==
-X-Gm-Message-State: APjAAAWDs/QwZlxl9rVih3VzzY7HfGUQvDF3rO0q22PaF6/Pz8CIxjHj
- xT9NkhaGdEqSC/+YaEKkhthMKktI
-X-Google-Smtp-Source: APXvYqw1A5T/7RZcHAxOEYkOnJ/px11kclgCMtO83HxbeevxkD0OfnkzaVCKgio7d5pLeRg86RJDVA==
-X-Received: by 2002:a1c:61d6:: with SMTP id v205mr24756092wmb.91.1577528008432; 
- Sat, 28 Dec 2019 02:13:28 -0800 (PST)
+ bh=yPZUMe7q3neATXDk/4Qn9Clba4S+sdiWV84lh9i7O08=;
+ b=tepqaOUOvXk4TP1fcyeUU5DG/jMMw+b3eRfyAn3WSa2tr2gjaQlOw8IWjMa/t6+21V
+ LLkfHbN9Q8v8P/lydvvEB9d9svrEZkNiaEC5WSZnZbGzSS4BTrKvM0D55zw/fDbU9vj9
+ wnlnhrmRu1AseITiPqR5WW/bKYha72RwL5oppPEcCcbBYvnEXDGamY+rKk/nFy5QnjVZ
+ nYuRVBtvumCebzNMja9+VKnzu6b/Py1aVgEkrEf+P1WsTgRJAMAYDpdteC/za5aOyjpR
+ 1AvO31TwBC/O4vwb1JISXkvQw2tv3ZOpMHZAG57rlEq407WtTtMSVqUywFBcfmbcjwDs
+ zhYw==
+X-Gm-Message-State: APjAAAWKdDu+e3Nf0AIhpMPH2/Z0r3FMnq+3rFGlEcpK2DBcG2iJyueG
+ fGjqvXWigKXD1/tCAr05bokSQNLZ
+X-Google-Smtp-Source: APXvYqzqX0vqibjdXeOtm9aqwVatEEbGaPKqx5Mv1+xwGwoni3EZL2WxHpYbXBY0hgr/L3IW/b10lQ==
+X-Received: by 2002:a5d:6551:: with SMTP id z17mr58448084wrv.269.1577528303309; 
+ Sat, 28 Dec 2019 02:18:23 -0800 (PST)
 Received: from racer ([46.183.103.8])
- by smtp.gmail.com with ESMTPSA id h17sm39438836wrs.18.2019.12.28.02.13.26
+ by smtp.gmail.com with ESMTPSA id c15sm37886362wrt.1.2019.12.28.02.18.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 28 Dec 2019 02:13:27 -0800 (PST)
-Message-ID: <91be310516a5f964d97e1289b41895ae6420cdb6.camel@ettus.com>
-To: Varban Metodiev <varban.metodiev@gmail.com>, usrp-users
- <usrp-users@lists.ettus.com>
-Date: Sat, 28 Dec 2019 11:13:12 +0100
-In-Reply-To: <CAKA0MUjRDT3FH3J64adsLZmXQ4iC9q9EbscaiePWv=MRQfk2+Q@mail.gmail.com>
-References: <CAKA0MUjRDT3FH3J64adsLZmXQ4iC9q9EbscaiePWv=MRQfk2+Q@mail.gmail.com>
+ Sat, 28 Dec 2019 02:18:22 -0800 (PST)
+Message-ID: <758569ee796e2542bd4ecab8262eec008833363b.camel@ettus.com>
+To: Jerrid Plymale <jerrid.plymale@canyon-us.com>, 
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Sat, 28 Dec 2019 11:17:57 +0100
+In-Reply-To: <MW2PR1901MB2137457D7A0A319B788A4264C62A0@MW2PR1901MB2137.namprd19.prod.outlook.com>
+References: <MW2PR1901MB2137457D7A0A319B788A4264C62A0@MW2PR1901MB2137.namprd19.prod.outlook.com>
 Organization: Ettus Research
 User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-Subject: Re: [USRP-users] Header files cannot be opened upon trying to
- compile the FPGA image for b205mini
+Subject: Re: [USRP-users] Building RFNoC image with default blocks fails,
+ [DRC MDRV-1] Multiple Driver Nets: Net has multiple drivers
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,107 +87,60 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Varban,
+Hello Jerrid,
 
-just a transient observation: your $PATH contains *a lot* of redundant
-ISE paths, as if some script kept recursively sourcing the xilinx
-settings. How are these set? Do you have a specific shell that you
-prepare for synthesis?
+huh, a cursory glance tells me this is in the generated IP cores, i.e.
+not even in UHD code itself.
+
+I've not encountered that before; maybe there's a half-built IP core
+still present in the source tree? You can get that really pristine by
+cd uhd-fpga; git clean -xdf
 
 Best regards,
 Marcus
-On Fri, 2019-12-27 at 12:47 +0000, Varban Metodiev via USRP-users
-wrote:
-> Hi,
+
+On Fri, 2019-12-27 at 23:54 +0000, Jerrid Plymale via USRP-users wrote:
+> Hello all,
 > 
-> I am trying to compile the FPGA image for a b205mini as per the
-> official instructions. My environment looks like this:
+> So I have been attempting to build an X310 HG FPGA image following
+> the steps in the getting started guide for RFNoC for a while now, and
+> I have been getting the following error:
 > 
-> [ise@localhost b2xxmini]$ which xtclsh
-> /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/xtclsh
-> [ise@localhost b2xxmini]$ pwd
-> /home/ise/USRP/fpga/usrp3/top/b2xxmini
+> Starting DRC Task
+> INFO: [DRC 23-27] Running DRC with 8 threads
+> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net
+> bus_clk_gen/inst/CLK_OUT4 has multiple drivers:
+> bus_clk_gen/inst/clkout4_buf/O, and radio_clk_gen/inst/clkout1_buf/O.
+> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net
+> radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9
+> has multiple drivers:
+> radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].
+> value_reg[9][0]/Q, and
+> ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].val
+> ue_reg[9][0]/Q.
+> INFO: [Project 1-461] DRC finished with 2 Errors
+> INFO: [Project 1-462] Please refer to the DRC report (report_drc) for
+> more information.
+> ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design not
+> run.
 > 
-> [ise@localhost b2xxmini]$ echo $PATH
-> /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64:/opt/Xilinx/14.7/ISE_DS/ISE/sys
-> gen/util:/opt/Xilinx/14.7/ISE_DS/ISE/sysgen/bin:/opt/Xilinx/14.7/ISE_
-> DS/ISE/../../../DocNav:/opt/Xilinx/14.7/ISE_DS/PlanAhead/bin:/opt/Xil
-> inx/14.7/ISE_DS/EDK/bin/lin64:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/microbl
-> aze/lin/bin:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/powerpc-
-> eabi/lin/bin:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/arm/lin/bin:/opt/Xilinx/
-> 14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_be/bin:/opt/Xili
-> nx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_le/bin:/opt/X
-> ilinx/14.7/ISE_DS/common/bin/lin64:/opt/Xilinx/14.7/ISE_DS/ISE/bin/li
-> n64:/opt/Xilinx/14.7/ISE_DS/ISE/sysgen/util:/opt/Xilinx/14.7/ISE_DS/I
-> SE/sysgen/bin:/opt/Xilinx/14.7/ISE_DS/ISE/../../../DocNav:/opt/Xilinx
-> /14.7/ISE_DS/PlanAhead/bin:/opt/Xilinx/14.7/ISE_DS/EDK/bin/lin64:/opt
-> /Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin:/opt/Xilinx/14.7/ISE_D
-> S/EDK/gnu/powerpc-
-> eabi/lin/bin:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/arm/lin/bin:/opt/Xilinx/
-> 14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_be/bin:/opt/Xili
-> nx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_le/bin:/opt/X
-> ilinx/14.7/ISE_DS/common/bin/lin64:/opt/Xilinx/14.7/ISE_DS/ISE/bin/li
-> n64:/opt/Xilinx/14.7/ISE_DS/ISE/sysgen/util:/opt/Xilinx/14.7/ISE_DS/I
-> SE/sysgen/bin:/opt/Xilinx/14.7/ISE_DS/ISE/../../../DocNav:/opt/Xilinx
-> /14.7/ISE_DS/PlanAhead/bin:/opt/Xilinx/14.7/ISE_DS/EDK/bin/lin64:/opt
-> /Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin:/opt/Xilinx/14.7/ISE_D
-> S/EDK/gnu/powerpc-
-> eabi/lin/bin:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/arm/lin/bin:/opt/Xilinx/
-> 14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_be/bin:/opt/Xili
-> nx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_le/bin:/opt/X
-> ilinx/14.7/ISE_DS/common/bin/lin64:/opt/Xilinx/14.7/ISE_DS/ISE/bin/li
-> n64:/opt/Xilinx/14.7/ISE_DS/ISE/sysgen/util:/opt/Xilinx/14.7/ISE_DS/I
-> SE/sysgen/bin:/opt/Xilinx/14.7/ISE_DS/ISE/../../../DocNav:/opt/Xilinx
-> /14.7/ISE_DS/PlanAhead/bin:/opt/Xilinx/14.7/ISE_DS/EDK/bin/lin64:/opt
-> /Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin:/opt/Xilinx/14.7/ISE_D
-> S/EDK/gnu/powerpc-
-> eabi/lin/bin:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/arm/lin/bin:/opt/Xilinx/
-> 14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_be/bin:/opt/Xili
-> nx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_le/bin:/opt/X
-> ilinx/14.7/ISE_DS/common/bin/lin64:/usr/lib64/qt-
-> 3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:
-> /home/ise/bin:/home/ise/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/xtclsh
+> Time (s): cpu = 00:00:05 ; elapsed = 00:00:02 . Memory (MB): peak =
+> 13791.785 ; gain = 1.887 ; free physical = 109997 ; free virtual =
+> 117079
+> INFO: [Common 17-83] Releasing license: Implementation
+> 7 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.
+> opt_design failed
+> ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
 > 
 > 
-> Upon starting the "make B205mini", the header files inside
-> /fpga/usrp3/lib/ cannot be accessed.
+> I have attached the build log for those who may want to look at it
+> for more info. Can someone direct me in what I need to do to resolve
+> this issue so I can build an FPGA image successfully? any help would
+> be greatly appreciated. 
 > 
-> INFO:ProjectMgmt - Include file found:
->    '/home/ise/USRP/fpga/usrp3/lib/wishbone/i2c_master_defines.v' in
-> file
->    "/home/ise/USRP/fpga/usrp3/lib/wishbone/i2c_master_byte_ctrl.v"
-> line 73
-> ERROR:ProjectMgmt - 1 error(s) found while parsing design hierarchy.
-> WARNING:ProjectMgmt - Circular Reference:
-> work:Module|cam_priority_encoder
-> > > > Adding source to project:
-> > > > /home/ise/USRP/fpga/usrp3/lib/wishbone/axi_stream_to_wb.v
-> INFO:HDLCompiler:1845 - Analyzing Verilog file
->    "/home/ise/USRP/fpga/usrp3/lib/packet_proc/source_flow_control.v"
-> into
->    library work
-> ERROR:HDLCompiler:281 -
->    "/home/ise/USRP/fpga/usrp3/lib/packet_proc/source_flow_control.v"
-> Line 55:
->    Cannot open include file "chdr_pkt_types.vh".
-> INFO:HDLCompiler:1845 - Analyzing Verilog file
->    "/home/ise/USRP/fpga/usrp3/lib/wishbone/axi_stream_to_wb.v" into
-> library work
-> ERROR:ProjectMgmt - 1 error(s) found while parsing design hierarchy.
-> WARNING:ProjectMgmt - Circular Reference:
-> work:Module|cam_priority_encoder
-> > > > Adding source to project:
-> > > > /home/ise/USRP/fpga/usrp3/lib/timing/time_compare.v
-> INFO:TclTasksC - File
-> "/home/ise/USRP/fpga/usrp3/lib/timing/time_compare.v" is
->    already present in the project
+> Best Regards,
 > 
-> May you please advise how add the search path correctly? Or maybe I
-> have missed something in the environment configuration?
-> 
-> Regards,
-> Varban
-> 
+> Jerrid
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
