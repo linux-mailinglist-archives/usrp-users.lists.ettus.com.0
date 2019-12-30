@@ -2,54 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B8FD12D497
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Dec 2019 21:54:46 +0100 (CET)
-Received: from [::1] (port=55048 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C19E12D4B5
+	for <lists+usrp-users@lfdr.de>; Mon, 30 Dec 2019 22:44:57 +0100 (CET)
+Received: from [::1] (port=34742 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1im23m-0002Re-2c; Mon, 30 Dec 2019 15:54:42 -0500
-Received: from mail-lj1-f179.google.com ([209.85.208.179]:40747)
+	id 1im2qM-0004oe-9h; Mon, 30 Dec 2019 16:44:54 -0500
+Received: from sonic311-24.consmr.mail.ne1.yahoo.com ([66.163.188.205]:36781)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1im23i-0002KP-69
- for usrp-users@lists.ettus.com; Mon, 30 Dec 2019 15:54:38 -0500
-Received: by mail-lj1-f179.google.com with SMTP id u1so34506795ljk.7
- for <usrp-users@lists.ettus.com>; Mon, 30 Dec 2019 12:54:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=deE7PWl6XNzbGLB0CrsRR4njlNf98wEsL1XeHdH8ZC8=;
- b=VxcsT7z1ZBkAgPSU80tdVx98Ff/zpeWqpnqDT4jqSGLNPDurKXPUf/4bmx3TR51dv7
- HAhcRIWa2e8CJzqKl9ryeHVi9LVzUB+D41SPlwmekhXYdm3yyINE6g7bHyOjTcwd8Vl5
- 1ApC1c+tuFPobvR8lJawGx5l4Sx5047iSyIvtFxyqunr40ib6tRqHPA1dm/S557pw0c0
- d2zRSpF3b8Mp/iYvB5SJ52g2BRgMSbNq0rBI10KzDXzkbvX3kVcwFwOvIuEpurGyI3OW
- SkY4symKPT6DUnXUKkrWHgOp6yTzMwPAfKXmj41cJipXUsPIGD0O8IKpMUKSCvkAEZKD
- M3Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=deE7PWl6XNzbGLB0CrsRR4njlNf98wEsL1XeHdH8ZC8=;
- b=s5B0z0401IgVdgB1qLGuDKY6tHmqrmOKv6ySN8H6na90XKuVld3n8UoF0Kq9jCkKNw
- ztbIRqrb+zBfPzDGwdKOvVLcqQgw9386fDSApoYT2TBI/77chtUlouR9Yih1O3Vyf1bQ
- CBzXQ9Ylz5nN+94L0OZnN9QKleJ9rSSHKHUAZesznHt6ObwgiJ7jgyUkXJkASrq5ETn9
- 5BT4TCME/rUlKUVj1z5CsteGi95pxra3FlH0QZ+mnPqFBdF6qreculogojLIreAuTPYc
- lY5+txBUsywN0T/CoKBN5qZLDpfQ6DsPK5j1NLJN6C22Pr0/3zaB+wrdGCSxrj53N9BL
- g4Tg==
-X-Gm-Message-State: APjAAAUkkM0/2Ck0S3uTq4vqnMq4bYZ88pZmybvVQw6nRV5LGI2Kqlse
- gs7EZRiLSUOU5a/yM9zfeQYIJi48ALMfZ9hemHXOmvpl
-X-Google-Smtp-Source: APXvYqxDcTYCk3gRitd0MV/VKt4Qxe+tIY4G3bPxCSAXz151fs1I12mGC3YNvsB4oau1BicLci5sJgunf9o7JiH70yA=
-X-Received: by 2002:a2e:9691:: with SMTP id q17mr39344810lji.91.1577739236242; 
- Mon, 30 Dec 2019 12:53:56 -0800 (PST)
+ (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
+ id 1im2qI-0004ih-DC
+ for usrp-users@lists.ettus.com; Mon, 30 Dec 2019 16:44:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1577742249; bh=hPkdgd19Q5yYSGQ1o309e5bx49VAbDYPXw2rQp46weg=;
+ h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject;
+ b=Vx0iMB/+5FBmg9FGqvzQBz29T+teBgCprOw2FyXzwhVaRuHXloEmd4iuQZ1C3EhqN8AtWDSfBtOXEv3caGbFADo8ULbd23AtVPT0BODjxVVd7ohvO0LSaP31b5n0FnCIFntlPzmCjZ/c9VVWhMuHKZU9trHInB8c8ykXweRH4lsYAKNvraGi+FkyBQKLGhblfZlcqhnv6T3r9hrOtC8A5Rp6ykOXQJXAunwHB/ACIp34XnzxmiGGJl6yI3IwjAPcmoKWG1ZsqJ/ZhoFgchuw/Ew1qT0FfrUSPOMtEyyx0OENAa3Stz0PrU5uMnSSA+1brQ9PIjrt38xF7MIXJYiLwA==
+X-YMail-OSG: hMy2b5IVM1mnD38JiUwQtWhhTa9ptVXNsOqT7MXN95gRPGQ4rB5JktLGuxDu5ql
+ WuvxpRN3yisykWjRdIzrEK9V3vbomjg_jGcBT56PTDX8.ptJOUIFEU5IHxe0ZT9eIemCylQTLrtO
+ 4oyOWn8C7JYsvkSkvZgMMeWEDl9YPbeK3d9EWJf7CVPxKu5BKcHiaKoqbziMDpM9d7TZgfnalhQl
+ tsCIxgEFGlZk9.gjHt4VZHI4aOpnDXQG9LkSw8mxqU7GTh92Hwr4VAbJlEwJrh5R6sJ0DdqDRrjj
+ YX2_gyEXFj2WKV_x6HrlfLiAO0T8ptQ.zdwyKaFaokF_M2wAXdZXGyDoCq.29PZw89vZ13zp37ZG
+ Ti5YRYiVW4ovJxS9wf4LqZMBP65thhqJuA6KZMZnB66SjnA3od.cQELtA2.fZ9xp0pXcpIFC9_UT
+ h0RY5LXIWPx0BnJiiKwfbhwgxVt1iA5W2t0DLvEaN1oBXhFFnnFQpLz8BKbirK3XitNykB7Pkxub
+ edWzxEsLTJ_BDLaQutl90lRhcBNZmjoFA5cnItaWS7Zdeqx7JN0QtZwaQWRa3ZRBpqYNmvuTremT
+ hxmTORFVra8aeQu.FVupm782gWrjKeNLxIUR8ppgJMOyOzKCd0kealM1uA02z4kZq81j_oD5aPtf
+ 7DqqE11z0jFajlrprTeklWPZMI6AsXzpEHlUc.Yxgk6VpIAPu8NEIDEIRHOa2Fhc8WWm2eGFY2bl
+ R4lRVqAPRh4RPOqLCNkveSsHdZjvKJARFC09N0FnfaG1Jzo168XqaSh48OefToU2rSeWZPdpHIgF
+ D1ijAPrDZ_25iuFXBD1XG6DnNB7ppYQakNlz4M9x65aARKfwNRtnfziPLFhsnp.xczdmxLRXYl3d
+ 7sr8P4A88utb7HJaR6jX5.8ZpPz0KE2lnh3uNB58kffhzo.MrMcj1NBAWz_a2K6jMRZ..8V8wSpF
+ HncpENpY8_fYvFboBqpzwHf1a0F.gVWUjVy0ovOIm7cR2h38x6IkIO.2Jml1WoDxx4O6AHEBe.9U
+ gF_ljZ3R1hoaYNBiSzZa3CkRBrk1T5zMxwXqPmPyrc8rVh9jJHb612mSItStMU9DpT1b7MHnOLpR
+ 9LLCISql8O4bKeOFKgA0hNEb.5wml6xpl9Y3KDo4MlV8R9xoHA0li2Q_n0QbFY8_yPBM8Jpyit.l
+ 91o0b_tA91l9ThjDDcsuZbDTW5KCxbDUt5bOWc8e8mI0vjYcEC917i1fR9WDoRp_WkaGFRg9qYox
+ rMAEMMncK5ryOJomS_8t18hg3ZGZJrrt3FAUHHuc6SwClu9digH73oy1Gu3lGN5pfM_TLouDgqbC
+ hC_Ebi08oOG99yjTVloZZ_Q4TTPHHkYZVKy69Jfz2QlX4ofXWATbXD2RviOX40OhvuScRyUNJbvK
+ Naw--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic311.consmr.mail.ne1.yahoo.com with HTTP; Mon, 30 Dec 2019 21:44:09 +0000
+Date: Mon, 30 Dec 2019 21:44:06 +0000 (UTC)
+To: "rkossler@nd.edu" <rkossler@nd.edu>
+Message-ID: <499433417.5064469.1577742246595@mail.yahoo.com>
+In-Reply-To: <CAB__hTQOaq9Gvb=1GzivNEif+P1cRCdAEnuL=rYW8cTs5KMuFA@mail.gmail.com>
+References: <1273926885.14075492.1576508432546.ref@mail.yahoo.com>
+ <1273926885.14075492.1576508432546@mail.yahoo.com>
+ <CANf970ZfAdBmr0QgutUbQoJseNF6F24W78XvhbKWzbcheDRRVQ@mail.gmail.com>
+ <1913144600.796210.1576668010291@mail.yahoo.com>
+ <775991377.807374.1576670484801@mail.yahoo.com>
+ <CAB__hTQOaq9Gvb=1GzivNEif+P1cRCdAEnuL=rYW8cTs5KMuFA@mail.gmail.com>
 MIME-Version: 1.0
-References: <037c01d5aeef$b73a84a0$25af8de0$@iit.demokritos.gr>
- <CANf970Ztj8XHeLzcOZ0NVbXFACnXriJY4mqWuouTQsYpKnWVmw@mail.gmail.com>
- <000001d5b74d$a27c7d50$e77577f0$@iit.demokritos.gr>
-In-Reply-To: <000001d5b74d$a27c7d50$e77577f0$@iit.demokritos.gr>
-Date: Mon, 30 Dec 2019 14:53:45 -0600
-Message-ID: <CANf970Y5Cj_aY71dLnsPNNtXtmcKXz32UgDUw2hAC1rAiUDQ=w@mail.gmail.com>
-To: Akis Kourtis <akis.kourtis@iit.demokritos.gr>
-Subject: Re: [USRP-users] DPDK build with N310
+X-Mailer: WebService/1.1.14873 YahooMailAndroidMobile YMobile/1.0
+ (com.yahoo.mobile.client.android.mail/6.2.4; Android/7.0; NRD90M; zerolte;
+ samsung; SM-G925F; 5.06; 2560x1440; )
+Subject: Re: [USRP-users] set_tx_freq is not functioning properly
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,10 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2800858699116488903=="
+From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: "santu_voonna@yahoo.com" <santu_voonna@yahoo.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6779307931169159038=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,515 +82,289 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2800858699116488903==
-Content-Type: multipart/related; boundary="000000000000b9efe3059af20a02"
+--===============6779307931169159038==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5064468_779655170.1577742246593"
+Content-Length: 15274
 
---000000000000b9efe3059af20a02
-Content-Type: multipart/alternative; boundary="000000000000b9efe2059af20a01"
-
---000000000000b9efe2059af20a01
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_5064468_779655170.1577742246593
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Akis,
+Yes .. all are zeros
 
-With UHD 3.14.1 you need to run DPDK 17.11
+Sent from Yahoo Mail on Android=20
+=20
+  On Mon, 30 Dec 2019 at 15:45, Rob Kossler<rkossler@nd.edu> wrote:   Perha=
+ps the digital values are all zero for benchmark rate?
+On Wed, Dec 18, 2019 at 7:02 AM voonna santosh via USRP-users <usrp-users@l=
+ists.ettus.com> wrote:
 
-http://files.ettus.com/manual_archive/v3.14.1.0/html/page_dpdk.html
+ One more thing to add:If I run benchmark_rate with out any modifications, =
+then the output in scope if perfect.=20
 
-Best,
+I have added the following code snippet to configure the tx_freq and there =
+is nothing observed in scope.
+if (vm.count("tx_freq")){
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for(size_t ch =3D 0; ch < tx_channel_nums.si=
+ze(); ch++) {
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 std::cout << boost::format("Sett=
+ing TX Freq: %f MHz...") % (tx_freq/1e6) << std::endl;
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uhd::tune_request_t tune_request=
+(tx_freq);
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if(vm.count("int-n")) tune_reque=
+st.args =3D uhd::device_addr_t("mode_n=3Dinteger");
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp->set_tx_freq(tune_request, =
+tx_channel_nums[ch]);
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 std::cout << boost::format("Actu=
+al TX Freq: %f MHz...") % (usrp->get_tx_freq(tx_channel_nums[ch])/1e6) << s=
+td::endl << std::endl;
+=C2=A0=C2=A0=C2=A0 }
+}
+Command used for testing: ./benchmark_rate --args=3D"addr=3D192.168.40.2" -=
+-channels=3D"0" --tx_rate 50e6 --tx_freq 20e6 --duration 50
 
-Sam Reiter
-Ettus Research
+
+NOTE: I am using Agilent E4402B to analyze the spectrum (9KHz to 3 GHz)
+
+Thanks,Santosh
 
 
-On Fri, Dec 20, 2019 at 9:53 AM Akis Kourtis <akis.kourtis@iit.demokritos.g=
-r>
-wrote:
 
-> Hello Sam,
->
->
->
-> We are using the DPDK 19.11, and UHD 3.14.1.
->
-> The hardware setup is N310(SFP1)<->(ethernet-to-thunderbolt)<->Laptop
-> (with thunderbolt).
->
-> The problem with the config file is, that we could not find the config
-> file anywhere neither on the root or the user folder.
->
-> We have created one, and added the DPDK one (from the site). But I
-> seriously believe that it is not seen/used.
->
-> As the error
->
-> No CHDR interfaces found!
->
-> Is related to the no IP DPDK interfaces (presumably).
->
->
->
-> Thank you for your support!
->
->
->
-> *Akis Kourtis*
->
-> M.Sc, Ph.D
->
-> Research Associate
->
-> Media Networks Laboratory
->
-> Institute of Information & Telecommunications
->
-> National Centre for Scientific Research =E2=80=9CDEMOKRITOS=E2=80=9D
->
->
->
-> akis.kourtis@ iit.demokritos.gr
->
-> +306948386769
->
-> [image: engl LOGOTYPO XORIS ETHNOSIMO ME DIEYTHINSI_3]
->
->
->
-> *From:* Sam Reiter <sam.reiter@ettus.com>
-> *Sent:* Wednesday, December 18, 2019 9:22 PM
-> *To:* Akis Kourtis <akis.kourtis@iit.demokritos.gr>
-> *Cc:* usrp-users <usrp-users@lists.ettus.com>
-> *Subject:* Re: [USRP-users] DPDK build with N310
->
->
->
-> Hey Akis,
->
->
->
-> What version of DPDK are you using? What version of UHD do you have on th=
-e
-> host? I'm not sure that mode of failure is something I'd chalk up to the
-> DPDK install.
->
->
->
-> Could you give some detail on your config file, DPDK install version(s),
-> and hardware setup as well?
->
->
->
-> Best,
->
->
->
-> Sam Reiter
->
-> Ettus Research
->
->
->
->
->
-> On Mon, Dec 9, 2019 at 6:21 PM Akis Kourtis via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> Hello all,
->
->
->
-> I am trying to build the oai-5g-gNB. I have managed to build the DPDK wit=
-h
-> uhd successfully, however when I run the probe command I receive the
-> following error.
->
->
->
-> EAL: Starting I/O threads!
->
-> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
-> UHD_3.14.1.HEAD-0-g0347a6d8
->
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D10.30.0.218,type=3Dn3xx,product=3Dn310,serial=3D3177E48,claim=
-ed=3DFalse,addr=3D192.168.20.2,second_addr=3D192.168.20.2,use_dpdk=3D1
->
-> [ERROR] [MPMD] No viable transport path found!
->
-> [ERROR] [MPMD] Failure during block enumeration: RuntimeError: No viable
-> transport path found!
->
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `time_source=3Dinternal,clock_source=3Dinternal,second_addr=3D192.168.20.=
-2,mgmt_addr=3D10.30.0.218,product=3Dn310,use_dpdk=3D1'.
->
-> [WARNING] [MPM.PeriphManager.UDP] Number of detected CHDR devices is
-> inconsistent. Dropped from 1 to 0.
->
-> [INFO] [MPM.PeriphManager.UDP] No CHDR interfaces found!
->
-> Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
->
->
->
-> My guess from reading back posts from the forum, is that the proper DPDK
-> file is not read.
->
-> I can see a /etc/conf/uhd.conf file, but no /root/.uhd/uhd.conf file.
->
-> Am I in the right direction, and if so, how do I enable the user conf fil=
-e?
->
->
->
-> If not, is there a direction I should head towards?
->
->
->
-> Thank you,
->
->
->
-> Akis
->
->
->
-> *Akis Kourtis*
->
-> M.Sc, Ph.D
->
-> Research Associate
->
-> Media Networks Laboratory
->
-> Institute of Information & Telecommunications
->
-> National Centre for Scientific Research =E2=80=9CDEMOKRITOS=E2=80=9D
->
->
->
-> akis.kourtis@ iit.demokritos.gr
->
-> +306948386769
->
-> [image: engl LOGOTYPO XORIS ETHNOSIMO ME DIEYTHINSI_3]
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
 
---000000000000b9efe2059af20a01
-Content-Type: text/html; charset="UTF-8"
+
+    On Wednesday, December 18, 2019, 11:20:10 AM GMT, voonna santosh <santu=
+_voonna@yahoo.com> wrote: =20
+=20
+ FYI:Does something like tx_waveforms[1] output a signal at the expected fr=
+equency?=C2=A0- Yes, both tx_wavefrom and benchmark_rate works fine. I took=
+ benchamark rate and extended it to get tx_freq configured. This is not wor=
+king.
+
+With respect to the 10MHz, this is the frequency of signals used to discipl=
+ine the internal timebase to an external source. I wouldn't expect artifact=
+s from this signal to be present at the TX port under normal circumstances.=
+ Are you using an external reference? What about the GPSDO?=20
+=C2=A0 - Since my base line is benchmark_rate, the default frequency is 10M=
+Hz which always works fine. But when I change the frequency, thats when I s=
+ee the issue. I couldn't trace where it is getting set, but it does. Can yo=
+u please let me know where in the code, it sets the frequency to 10MHz ?=20
+
+BR,Santosh
+
+
+
+
+
+   On Tuesday, December 17, 2019, 11:45:29 PM GMT, Sam Reiter <sam.reiter@e=
+ttus.com> wrote: =20
+=20
+ Does something like tx_waveforms[1] output a signal at the expected freque=
+ncy?
+What are you using to measure the frequency output?
+With respect to the 10MHz, this is the frequency of signals used to discipl=
+ine the internal timebase to an external source. I wouldn't expect artifact=
+s from this signal to be present at the TX port under normal circumstances.=
+ Are you using an external reference? What about the GPSDO?=C2=A0
+[1]=C2=A0https://github.com/EttusResearch/uhd/blob/master/host/examples/tx_=
+waveforms.cpp
+
+Sam Reiter=C2=A0Ettus Research
+
+On Mon, Dec 16, 2019 at 9:01 AM voonna santosh via USRP-users <usrp-users@l=
+ists.ettus.com> wrote:
+
+Hi There,=C2=A0=C2=A0 I have bench marked X300 against my development PC. T=
+hen I took benchmark_rate code and modified a bit. Everything works fine ex=
+cept setting the center freq.=C2=A0=C2=A0 When ever I set the center freque=
+ncy, there is no error returned by the call. But when I transmit the data, =
+it doesn't appear in scope. Whenever I remove the code to set the center fr=
+equency, things work fine and I cann see a spike at 10Mhz which is default =
+frequency I guess. Any clues?
+std::cout << boost::format("Setting TX Freq: %f MHz...") % (freq/1e6) << st=
+d::endl;
+uhd::tune_request_t tune_request(freq);
+//usrp->set_tx_freq(tune_request, 0); - This line also doesn't work
+usrp->set_tx_freq(freq, 0);
+std::cout << boost::format("Actual TX Freq: %f MHz...") % (usrp->get_tx_fre=
+q(0)/1e6) << std::endl << std::endl;
+
+Thanks and Regards
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+    _______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+ =20
+
+------=_Part_5064468_779655170.1577742246593
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Akis,</div><div><br></div><div>With UHD 3.14.1 you ne=
-ed to run DPDK 17.11 <br></div><div><br></div><div><a href=3D"http://files.=
-ettus.com/manual_archive/v3.14.1.0/html/page_dpdk.html">http://files.ettus.=
-com/manual_archive/v3.14.1.0/html/page_dpdk.html</a></div><div><br></div><d=
-iv>Best,</div><div><br></div><div><div><div dir=3D"ltr" class=3D"gmail_sign=
-ature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D=
-"ltr">Sam Reiter <br><div>Ettus Research<br></div></div></div></div></div><=
-/div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Fri, Dec 20, 2019 at 9:53 AM Akis Kourtis &lt;<a href=3D=
-"mailto:akis.kourtis@iit.demokritos.gr">akis.kourtis@iit.demokritos.gr</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
-lang=3D"EN-US"><div class=3D"gmail-m_-2579902974387297553WordSection1"><p c=
-lass=3D"MsoNormal">Hello Sam,<u></u><u></u></p><p class=3D"MsoNormal"><u></=
-u>=C2=A0<u></u></p><p class=3D"MsoNormal">We are using the DPDK 19.11, and =
-UHD 3.14.1. <u></u><u></u></p><p class=3D"MsoNormal">The hardware setup is =
-N310(SFP1)&lt;-&gt;(ethernet-to-thunderbolt)&lt;-&gt;Laptop (with thunderbo=
-lt).<u></u><u></u></p><p class=3D"MsoNormal">The problem with the config fi=
-le is, that we could not find the config file anywhere neither on the root =
-or the user folder.<u></u><u></u></p><p class=3D"MsoNormal">We have created=
- one, and added the DPDK one (from the site). But I seriously believe that =
-it is not seen/used.<u></u><u></u></p><p class=3D"MsoNormal">As the error <=
-u></u><u></u></p><p class=3D"MsoNormal">No CHDR interfaces found!<u></u><u>=
-</u></p><p class=3D"MsoNormal">Is related to the no IP DPDK interfaces (pre=
-sumably).<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><=
-p class=3D"MsoNormal">Thank you for your support!<u></u><u></u></p><p class=
-=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal"><b><span styl=
-e=3D"font-size:10pt;font-family:&quot;Bookman Old Style&quot;,serif" lang=
-=3D"EN-GB">Akis Kourtis<u></u><u></u></span></b></p><p class=3D"MsoNormal">=
-<span style=3D"font-size:9pt;font-family:&quot;Bookman Old Style&quot;,seri=
-f" lang=3D"EN-GB">M.Sc, Ph.D<u></u><u></u></span></p><p class=3D"MsoNormal"=
-><span style=3D"font-size:9pt;font-family:&quot;Bookman Old Style&quot;,ser=
-if;color:rgb(166,166,166)" lang=3D"EN-GB">Research Associate <u></u><u></u>=
-</span></p><p class=3D"MsoNormal"><span style=3D"font-size:9pt;font-family:=
-&quot;Bookman Old Style&quot;,serif;color:rgb(166,166,166)" lang=3D"EN-GB">=
-Media Networks Laboratory</span><span style=3D"font-size:9pt;font-family:&q=
-uot;Bookman Old Style&quot;,serif;color:rgb(174,170,170)" lang=3D"EN-GB"><u=
-></u><u></u></span></p><p class=3D"MsoNormal"><span style=3D"font-size:9pt;=
-font-family:&quot;Bookman Old Style&quot;,serif;color:rgb(174,170,170)" lan=
-g=3D"EN-GB">Institute</span><span style=3D"font-size:9pt;font-family:&quot;=
-Bookman Old Style&quot;,serif;color:rgb(166,166,166)" lang=3D"EN-GB"> of In=
-formation &amp; Telecommunications<u></u><u></u></span></p><p class=3D"MsoN=
-ormal"><span style=3D"font-size:9pt;font-family:&quot;Bookman Old Style&quo=
-t;,serif;color:rgb(166,166,166)" lang=3D"EN-GB">National Centre for Scienti=
-fic Research =E2=80=9CDEMOKRITOS=E2=80=9D<u></u><u></u></span></p><p class=
-=3D"MsoNormal"><span style=3D"font-size:3pt;font-family:&quot;Bookman Old S=
-tyle&quot;,serif;color:rgb(166,166,166)" lang=3D"EN-GB"><u></u>=C2=A0<u></u=
-></span></p><p class=3D"MsoNormal"><span style=3D"font-size:9pt;font-family=
-:&quot;Bookman Old Style&quot;,serif;color:rgb(166,166,166)" lang=3D"EN-GB"=
->akis.kourtis@ <a href=3D"http://iit.demokritos.gr" target=3D"_blank">iit.d=
-emokritos.gr</a><u></u><u></u></span></p><p class=3D"MsoNormal"><span style=
-=3D"font-size:9pt;font-family:&quot;Bookman Old Style&quot;,serif;color:rgb=
-(166,166,166)" lang=3D"EN-GB">+306948386769<u></u><u></u></span></p><p clas=
-s=3D"MsoNormal"><span style=3D"font-size:10pt;color:rgb(31,73,125)" lang=3D=
-"EL"><img style=3D"width: 6in; height: 1.0833in;" id=3D"gmail-m_-2579902974=
-387297553=CE=95=CE=B9=CE=BA=CF=8C=CE=BD=CE=B1_x0020_1" src=3D"cid:16f589478=
-8b4ce8e91" alt=3D"engl LOGOTYPO XORIS ETHNOSIMO ME DIEYTHINSI_3" width=3D"5=
-76" height=3D"104"></span><span lang=3D"EN-GB"><u></u><u></u></span></p><p =
-class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal"><b>From:=
-</b> Sam Reiter &lt;<a href=3D"mailto:sam.reiter@ettus.com" target=3D"_blan=
-k">sam.reiter@ettus.com</a>&gt; <br><b>Sent:</b> Wednesday, December 18, 20=
-19 9:22 PM<br><b>To:</b> Akis Kourtis &lt;<a href=3D"mailto:akis.kourtis@ii=
-t.demokritos.gr" target=3D"_blank">akis.kourtis@iit.demokritos.gr</a>&gt;<b=
-r><b>Cc:</b> usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" t=
-arget=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br><b>Subject:</b> Re: =
-[USRP-users] DPDK build with N310<u></u><u></u></p><p class=3D"MsoNormal"><=
-u></u>=C2=A0<u></u></p><div><p class=3D"MsoNormal">Hey Akis,<u></u><u></u><=
-/p><div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><div><p class=
-=3D"MsoNormal">What version of DPDK are you using? What version of UHD do y=
-ou have on the host? I&#39;m not sure that mode of failure is something I&#=
-39;d chalk up to the DPDK install.=C2=A0<u></u><u></u></p></div><div><p cla=
-ss=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">=
-Could you give some detail on your=C2=A0config file, DPDK install version(s=
-), and hardware setup as well?<u></u><u></u></p></div><div><p class=3D"MsoN=
-ormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">Best,<u></=
-u><u></u></p></div><div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div=
-><div><div><div><div><div><p class=3D"MsoNormal">Sam Reiter=C2=A0<u></u><u>=
-</u></p><div><p class=3D"MsoNormal">Ettus Research<u></u><u></u></p></div><=
-/div></div></div></div></div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p=
-></div></div></div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div><div=
-><p class=3D"MsoNormal">On Mon, Dec 9, 2019 at 6:21 PM Akis Kourtis via USR=
-P-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"=
->usrp-users@lists.ettus.com</a>&gt; wrote:<u></u><u></u></p></div><blockquo=
-te style=3D"border-color:currentcolor currentcolor currentcolor rgb(204,204=
-,204);border-style:none none none solid;border-width:medium medium medium 1=
-pt;padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in"><div><div><p=
- class=3D"MsoNormal">Hello all,<u></u><u></u></p><p class=3D"MsoNormal">=C2=
-=A0<u></u><u></u></p><p class=3D"MsoNormal">I am trying to build the oai-5g=
--gNB. I have managed to build the DPDK with uhd successfully, however when =
-I run the probe command I receive the following error.<u></u><u></u></p><p =
-class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">EAL: Sta=
-rting I/O threads!<u></u><u></u></p><p class=3D"MsoNormal">[INFO] [UHD] lin=
-ux; GNU C++ version 7.4.0; Boost_106501; UHD_3.14.1.HEAD-0-g0347a6d8<u></u>=
-<u></u></p><p class=3D"MsoNormal">[INFO] [MPMD] Initializing 1 device(s) in=
- parallel with args: mgmt_addr=3D10.30.0.218,type=3Dn3xx,product=3Dn310,ser=
-ial=3D3177E48,claimed=3DFalse,addr=3D192.168.20.2,second_addr=3D192.168.20.=
-2,use_dpdk=3D1<u></u><u></u></p><p class=3D"MsoNormal">[ERROR] [MPMD] No vi=
-able transport path found!<u></u><u></u></p><p class=3D"MsoNormal">[ERROR] =
-[MPMD] Failure during block enumeration: RuntimeError: No viable transport =
-path found!<u></u><u></u></p><p class=3D"MsoNormal">[INFO] [MPM.PeriphManag=
-er] init() called with device args `time_source=3Dinternal,clock_source=3Di=
-nternal,second_addr=3D192.168.20.2,mgmt_addr=3D10.30.0.218,product=3Dn310,u=
-se_dpdk=3D1&#39;.<u></u><u></u></p><p class=3D"MsoNormal">[WARNING] [MPM.Pe=
-riphManager.UDP] Number of detected CHDR devices is inconsistent. Dropped f=
-rom 1 to 0.<u></u><u></u></p><p class=3D"MsoNormal">[INFO] [MPM.PeriphManag=
-er.UDP] No CHDR interfaces found!<u></u><u></u></p><p class=3D"MsoNormal">E=
-rror: RuntimeError: Failed to run enumerate_rfnoc_blocks()<u></u><u></u></p=
-><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal">My g=
-uess from reading back posts from the forum, is that the proper DPDK file i=
-s not read.<u></u><u></u></p><p class=3D"MsoNormal">I can see a /etc/conf/u=
-hd.conf file, but no /root/.uhd/uhd.conf file.<u></u><u></u></p><p class=3D=
-"MsoNormal">Am I in the right direction, and if so, how do I enable the use=
-r conf file?<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></=
-p><p class=3D"MsoNormal">If not, is there a direction I should head towards=
-?<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=
-=3D"MsoNormal">Thank you,<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u>=
-</u><u></u></p><p class=3D"MsoNormal">Akis<u></u><u></u></p><p class=3D"Mso=
-Normal">=C2=A0<u></u><u></u></p><p class=3D"MsoNormal"><b><span style=3D"fo=
-nt-size:10pt;font-family:&quot;Bookman Old Style&quot;,serif" lang=3D"EN-GB=
-">Akis Kourtis</span></b><u></u><u></u></p><p class=3D"MsoNormal"><span sty=
-le=3D"font-size:9pt;font-family:&quot;Bookman Old Style&quot;,serif" lang=
-=3D"EN-GB">M.Sc, Ph.D</span><u></u><u></u></p><p class=3D"MsoNormal"><span =
-style=3D"font-size:9pt;font-family:&quot;Bookman Old Style&quot;,serif;colo=
-r:rgb(166,166,166)" lang=3D"EN-GB">Research Associate </span><u></u><u></u>=
-</p><p class=3D"MsoNormal"><span style=3D"font-size:9pt;font-family:&quot;B=
-ookman Old Style&quot;,serif;color:rgb(166,166,166)" lang=3D"EN-GB">Media N=
-etworks Laboratory</span><u></u><u></u></p><p class=3D"MsoNormal"><span sty=
-le=3D"font-size:9pt;font-family:&quot;Bookman Old Style&quot;,serif;color:r=
-gb(174,170,170)" lang=3D"EN-GB">Institute</span><span style=3D"font-size:9p=
-t;font-family:&quot;Bookman Old Style&quot;,serif;color:rgb(166,166,166)" l=
-ang=3D"EN-GB"> of Information &amp; Telecommunications</span><u></u><u></u>=
-</p><p class=3D"MsoNormal"><span style=3D"font-size:9pt;font-family:&quot;B=
-ookman Old Style&quot;,serif;color:rgb(166,166,166)" lang=3D"EN-GB">Nationa=
-l Centre for Scientific Research =E2=80=9CDEMOKRITOS=E2=80=9D</span><u></u>=
-<u></u></p><p class=3D"MsoNormal"><span style=3D"font-size:3pt;font-family:=
-&quot;Bookman Old Style&quot;,serif;color:rgb(166,166,166)" lang=3D"EN-GB">=
-=C2=A0</span><u></u><u></u></p><p class=3D"MsoNormal"><span style=3D"font-s=
-ize:9pt;font-family:&quot;Bookman Old Style&quot;,serif;color:rgb(166,166,1=
-66)" lang=3D"EN-GB">akis.kourtis@ <a href=3D"http://iit.demokritos.gr" targ=
-et=3D"_blank">iit.demokritos.gr</a></span><u></u><u></u></p><p class=3D"Mso=
-Normal"><span style=3D"font-size:9pt;font-family:&quot;Bookman Old Style&qu=
-ot;,serif;color:rgb(166,166,166)" lang=3D"EN-GB">+306948386769</span><u></u=
-><u></u></p><p class=3D"MsoNormal"><span style=3D"font-size:10pt;color:rgb(=
-31,73,125)" lang=3D"EL"><img style=3D"width: 6in; height: 1.0833in;" id=3D"=
-gmail-m_-2579902974387297553gmail-m_766158547667184598=CE=95=CE=B9=CE=BA=CF=
-=8C=CE=BD=CE=B1_x0020_1" src=3D"cid:16f5894788b4ce8e91" alt=3D"engl LOGOTYP=
-O XORIS ETHNOSIMO ME DIEYTHINSI_3" width=3D"576" height=3D"104" border=3D"0=
-"></span><u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><=
-/div></div><p class=3D"MsoNormal">_________________________________________=
-______<br>USRP-users mailing list<br><a href=3D"mailto:USRP-users@lists.ett=
-us.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br><a href=3D"http=
-://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"_=
-blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</=
-a><u></u><u></u></p></blockquote></div></div></div></blockquote></div>
-
---000000000000b9efe2059af20a01--
---000000000000b9efe3059af20a02
-Content-Type: image/jpeg; name="image001.jpg"
-Content-Disposition: inline; filename="image001.jpg"
-Content-Transfer-Encoding: base64
-Content-ID: <16f5894788b4ce8e91>
-X-Attachment-Id: 16f5894788b4ce8e91
-
-/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMg
-IyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wAARCABoAkADASIA
-AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
-AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
-ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
-p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
-AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
-BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
-U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
-uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDuNQ+J
-Oi6bqFxZzrdebA5R9sWRkenNV/8Aha2gA/dvP+/P/wBevPtaszqHxEu7Res1/s/AkZ/SqvinTbbT
-dWZtPO7T518y3I9MkFfwINd8cPTdk92crqz1PS/+FraB/dvP+/P/ANetfw94v07xNNPHYCcNCoZv
-MTbwa8hs9ECJrEd/Hie1sRcRhX6ElcE468Gum+ELqupaluIBMSY9+TUVKNNQbj0HCpJySZ6tRms6
-TXLNJWiEmZFGWBH3fqOtNGsBrYyxQSSnYZFwpAI9yen41xnSalFZem67DfrEGilt5Zc7Y5Rgtjrj
-1rUoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACi
-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
---000000000000b9efe3059af20a02--
+Yes .. all are zeros<br id=3D"yMail_cursorElementTracker_1577742217147"><br=
+><div id=3D"ymail_android_signature"><a id=3D"ymail_android_signature_link"=
+ href=3D"https://go.onelink.me/107872968?pid=3DInProduct&amp;c=3DGlobal_Int=
+ernal_YGrowth_AndroidEmailSig__AndroidUsers&amp;af_wl=3Dym&amp;af_sub1=3DIn=
+ternal&amp;af_sub2=3DGlobal_YGrowth&amp;af_sub3=3DEmailSignature">Sent from=
+ Yahoo Mail on Android</a></div> <br> <blockquote style=3D"margin: 0 0 20px=
+ 0;"> <div style=3D"font-family:Roboto, sans-serif; color:#6D00F6;"> <div>O=
+n Mon, 30 Dec 2019 at 15:45, Rob Kossler</div><div>&lt;rkossler@nd.edu&gt; =
+wrote:</div> </div> <div style=3D"padding: 10px 0 0 20px; margin: 10px 0 0 =
+0; border-left: 1px solid #6D00F6;"> <div id=3D"yiv0617080586"><div><div di=
+r=3D"ltr">Perhaps the digital values are all zero for benchmark rate?</div>=
+<br clear=3D"none"><div class=3D"yiv0617080586gmail_quote"><div class=3D"yi=
+v0617080586yqt1393673793 yQTDBase" id=3D"yiv0617080586yqt47218"><div class=
+=3D"yiv0617080586gmail_attr" dir=3D"ltr">On Wed, Dec 18, 2019 at 7:02 AM vo=
+onna santosh via USRP-users &lt;<a rel=3D"nofollow" shape=3D"rect" ymailto=
+=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" href=3D"mailto:usr=
+p-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br clear=
+=3D"none"></div><blockquote class=3D"yiv0617080586gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex;"><div><div style=3D""><div></div>
+        <div dir=3D"ltr">One more thing to add:</div><div dir=3D"ltr">If I =
+run benchmark_rate with out any modifications, then the output in scope if =
+perfect. <br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div=
+><div dir=3D"ltr">I have added the following code snippet to configure the =
+tx_freq and there is nothing observed in scope.</div><div dir=3D"ltr"><br c=
+lear=3D"none"></div><div dir=3D"ltr"><div>if (vm.count("tx_freq")){<br clea=
+r=3D"none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(size_t ch =3D 0; ch &lt; tx_c=
+hannel_nums.size(); ch++) {<br clear=3D"none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; std::cout &lt;&lt; boost::format("Setting TX Freq: %f MHz..."=
+) % (tx_freq/1e6) &lt;&lt; std::endl;<br clear=3D"none">&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; uhd::tune_request_t tune_request(tx_freq);<br clear=
+=3D"none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(vm.count("int-n")) =
+tune_request.args =3D uhd::device_addr_t("mode_n=3Dinteger");<br clear=3D"n=
+one">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp-&gt;set_tx_freq(tune_r=
+equest, tx_channel_nums[ch]);<br clear=3D"none">&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; std::cout &lt;&lt; boost::format("Actual TX Freq: %f MHz...=
+") % (usrp-&gt;get_tx_freq(tx_channel_nums[ch])/1e6) &lt;&lt; std::endl &lt=
+;&lt; std::endl;<br clear=3D"none">&nbsp;&nbsp;&nbsp; }<br clear=3D"none">}=
+</div><div><br clear=3D"none"></div><div dir=3D"ltr">Command used for testi=
+ng: <span>./benchmark_rate --args=3D"addr=3D192.168.40.2" --channels=3D"0" =
+--tx_rate 50e6 --tx_freq 20e6 --duration 50</span><br clear=3D"none"></div>=
+<div><br clear=3D"none"></div><div><br clear=3D"none"></div><div dir=3D"ltr=
+">NOTE: I am using Agilent E4402B to analyze the spectrum (9KHz to 3 GHz)<b=
+r clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=
+=3D"ltr">Thanks,</div><div dir=3D"ltr">Santosh<br clear=3D"none"></div></di=
+v><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"n=
+one"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr"><br c=
+lear=3D"none"></div><div><br clear=3D"none"></div>
+       =20
+        </div><div id=3D"yiv0617080586gmail-m_3547915342933947221yahoo_quot=
+ed_7071217456">
+            <div style=3D"">
+               =20
+                <div>
+                    On Wednesday, December 18, 2019, 11:20:10 AM GMT, voonn=
+a santosh &lt;<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:santu_vo=
+onna@yahoo.com" target=3D"_blank" href=3D"mailto:santu_voonna@yahoo.com">sa=
+ntu_voonna@yahoo.com</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"yiv0617080586gmail-m_3547915342933947221yiv=
+9449169570"><div><div style=3D""><div>FYI:</div><div dir=3D"ltr"><span>Does=
+ something like tx_waveforms[1] output a signal at the expected frequency?<=
+/span></div><div dir=3D"ltr"><span>&nbsp;- Yes, both tx_wavefrom and benchm=
+ark_rate works fine. I took benchamark rate and extended it to get tx_freq =
+configured. This is not working.</span></div><div dir=3D"ltr"><span><br cle=
+ar=3D"none"></span></div><div dir=3D"ltr"><span><br clear=3D"none"></span><=
+/div><div dir=3D"ltr"><div><div>With respect to the 10MHz, this is the=20
+frequency of signals used to discipline the internal timebase to an=20
+external source. I wouldn't expect artifacts from this signal to be=20
+present at the TX port under normal circumstances. Are you using an=20
+external reference? What about the GPSDO? <br clear=3D"none"></div><div dir=
+=3D"ltr">&nbsp; - Since my base line is benchmark_rate, the default frequen=
+cy is 10MHz which always works fine. But when I change the frequency, thats=
+ when I see the issue. I couldn't trace where it is getting set, but it doe=
+s. Can you please let me know where in the code, it sets the frequency to 1=
+0MHz ? <br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><=
+div dir=3D"ltr">BR,</div><div dir=3D"ltr">Santosh<br clear=3D"none"></div><=
+/div><div><br clear=3D"none"></div><span></span></div><div dir=3D"ltr"><br =
+clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"=
+ltr"><br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><di=
+v id=3D"yiv0617080586gmail-m_3547915342933947221yiv9449169570yqt97274"><div=
+ id=3D"yiv0617080586gmail-m_3547915342933947221yiv9449169570yahoo_quoted_67=
+15818642">
+            <div style=3D"">
+               =20
+                <div>
+                    On Tuesday, December 17, 2019, 11:45:29 PM GMT, Sam Rei=
+ter &lt;<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:sam.reiter@ett=
+us.com" target=3D"_blank" href=3D"mailto:sam.reiter@ettus.com">sam.reiter@e=
+ttus.com</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"yiv0617080586gmail-m_3547915342933947221yiv=
+9449169570"><div><div dir=3D"ltr">Does something like tx_waveforms[1] outpu=
+t a signal at the expected frequency?<div><br clear=3D"none"></div><div>Wha=
+t are you using to measure the frequency output?</div><div><br clear=3D"non=
+e"></div><div>With respect to the 10MHz, this is the frequency of signals u=
+sed to discipline the internal timebase to an external source. I wouldn't e=
+xpect artifacts from this signal to be present at the TX port under normal =
+circumstances. Are you using an external reference? What about the GPSDO?&n=
+bsp;</div><div><br clear=3D"none"></div><div>[1]&nbsp;<a rel=3D"nofollow" s=
+hape=3D"rect" target=3D"_blank" href=3D"https://github.com/EttusResearch/uh=
+d/blob/master/host/examples/tx_waveforms.cpp">https://github.com/EttusResea=
+rch/uhd/blob/master/host/examples/tx_waveforms.cpp</a><br clear=3D"none"><d=
+iv><br clear=3D"none"></div><div><div><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr">Sam Reiter&nbsp;</div><div dir=3D"ltr">Ettus Research</div></=
+div></div></div><br clear=3D"none"></div></div></div><br clear=3D"none"><di=
+v><div id=3D"yiv0617080586gmail-m_3547915342933947221yiv9449169570yqt39504"=
+><div dir=3D"ltr">On Mon, Dec 16, 2019 at 9:01 AM voonna santosh via USRP-u=
+sers &lt;<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:usrp-users@li=
+sts.ettus.com" target=3D"_blank" href=3D"mailto:usrp-users@lists.ettus.com"=
+>usrp-users@lists.ettus.com</a>&gt; wrote:<br clear=3D"none"></div><blockqu=
+ote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex;"><div><div><div dir=3D"ltr">Hi There,</div><div dir=3D"=
+ltr">&nbsp;&nbsp; I have bench marked X300 against my development PC. Then =
+I took benchmark_rate code and modified a bit. Everything works fine except=
+ setting the center freq.</div><div dir=3D"ltr">&nbsp;&nbsp; When ever I se=
+t the center frequency, there is no error returned by the call. But when I =
+transmit the data, it doesn't appear in scope. Whenever I remove the code t=
+o set the center frequency, things work fine and I cann see a spike at 10Mh=
+z which is default frequency I guess. Any clues?</div><div dir=3D"ltr"><br =
+clear=3D"none"></div><div dir=3D"ltr"><div dir=3D"ltr">std::cout &lt;&lt; b=
+oost::format("Setting TX Freq: %f MHz...") % (freq/1e6) &lt;&lt; std::endl;=
+<br clear=3D"none">uhd::tune_request_t tune_request(freq);<br clear=3D"none=
+"><div>//usrp-&gt;set_tx_freq(tune_request, 0); - This line also doesn't wo=
+rk<br clear=3D"none"></div>usrp-&gt;set_tx_freq(freq, 0);<br clear=3D"none"=
+>std::cout &lt;&lt; boost::format("Actual TX Freq: %f MHz...") % (usrp-&gt;=
+get_tx_freq(0)/1e6) &lt;&lt; std::endl &lt;&lt; std::endl;<br clear=3D"none=
+"><br clear=3D"none"></div><div dir=3D"ltr">Thanks and Regards<br clear=3D"=
+none"></div></div></div></div>_____________________________________________=
+__<br clear=3D"none">
+USRP-users mailing list<br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-use=
+rs@lists.ettus.com</a><br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" target=3D"_blank" href=3D"http://lists.e=
+ttus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
+</blockquote></div></div></div></div></div>
+            </div>
+        </div></div></div></div></div></div>
+            </div>
+        </div></div>_______________________________________________<br clea=
+r=3D"none">
+USRP-users mailing list<br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-use=
+rs@lists.ettus.com</a><br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" target=3D"_blank" href=3D"http://lists.e=
+ttus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
+</blockquote></div></div></div></div> </div> </blockquote>
+------=_Part_5064468_779655170.1577742246593--
 
 
---===============2800858699116488903==
+--===============6779307931169159038==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -597,5 +375,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2800858699116488903==--
+--===============6779307931169159038==--
 
