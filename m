@@ -2,72 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C42212BD57
-	for <lists+usrp-users@lfdr.de>; Sat, 28 Dec 2019 11:59:23 +0100 (CET)
-Received: from [::1] (port=49042 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ACB412D193
+	for <lists+usrp-users@lfdr.de>; Mon, 30 Dec 2019 16:46:28 +0100 (CET)
+Received: from [::1] (port=58342 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1il9oY-0004uA-8U; Sat, 28 Dec 2019 05:59:22 -0500
-Received: from mail-wr1-f51.google.com ([209.85.221.51]:38194)
+	id 1ilxFH-0002QQ-KB; Mon, 30 Dec 2019 10:46:15 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:39917)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
- id 1il9oU-0004mp-Oz
- for usrp-users@lists.ettus.com; Sat, 28 Dec 2019 05:59:18 -0500
-Received: by mail-wr1-f51.google.com with SMTP id y17so28342338wrh.5
- for <usrp-users@lists.ettus.com>; Sat, 28 Dec 2019 02:58:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :organization:user-agent:mime-version:content-transfer-encoding;
- bh=55RVh4ANrTUjugvlZnmDuzaRrHkidJpRvCHpFXOBtQo=;
- b=x19KXwwMhhEiSgszjEh+p9bTHSJVmRZEmI/u+slDa6Swzj2RXnMxcbeMNqseTRQR7D
- qAlkS6x1HkTCqB7wB/3wR2W3yZDHRbd668OR5+6QG5DR/Lckua23YQM6gUHwv78+aryA
- dk9ydde0sTdueuA355tAuxI+61IrslJ5AhQxenZDRm6+8oD5UgH4avgvXuFbBSCuhmDC
- 8oyqimAE3u2wI1yzzKvivLhyv17zn+uN9ehgVfd8r4yNHbG3/WYBlYe8vPT+C2L5Z4w8
- qT55rIrmBVMJqm0mMEEV8omZOD+Uj3lMWJ0pOYsGGkDyCPGN7umHSKZTGdvzJyqP/sgy
- cxew==
+ (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1ilxFE-0002Mv-Lf
+ for usrp-users@lists.ettus.com; Mon, 30 Dec 2019 10:46:12 -0500
+Received: by mail-ot1-f52.google.com with SMTP id 77so46659325oty.6
+ for <usrp-users@lists.ettus.com>; Mon, 30 Dec 2019 07:45:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=uwRCkACWXsXg5n5RoouQBHHyExVOvHK/6q1JJbxGQq8=;
+ b=jE7TRzCqH2tnvutKLQzY+CK/5j2PjjFh4bDAFnVX/MRv/Yc8h5wkfWNh+5RGjrM8fx
+ ht3Zj+DPH5YvHnVQAlLAJoUfiwGWRmxpxQ4e63QzXMCqF0YwK4/QvJ0gidFUoidL1Eyd
+ xNAYwMo+MrxpXQIGVIOOBc0YoasTjzPCOHu420QzGYddCSHxCTJ4APu6TbFvHKKhfzi+
+ dZBMmL1Ow7lzNfbmkP4UJgQ8T8Xf6tw+ZmXFYXspreUEvVUJ+feaP6IpdNO+5DepMFJM
+ eUnOkzlhKjJmEsZYnvNr0J2ULVVeIGKaRdx376EsSDsYAnSo7R0t9UYCiWiSxYsqiEUG
+ huEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=55RVh4ANrTUjugvlZnmDuzaRrHkidJpRvCHpFXOBtQo=;
- b=D9kgnLFi31RPCnfi6Pq6zBkKpdJhU1sd7f5pVC5eveFonbgtNnn5sPA7zznwlz0KPZ
- L7K3hNc6TD2jQgRlZvyENdzeNzb52+hhiABNvhboZJP1h+pmkopikut/auafm3//QmL9
- cYdQbsq+zAuL9Gbu968rtb/zbUD/jm8U4mW1S/iIutJNk8nEgzAsiU1WO2OEZ5DRGmAD
- umtE+81dtncoJhF9VJiKpsnl/JK267YR85XA2TI5tJy4UFD2F48WapNwt5IuPPMR/IAe
- v8yNSy7ezzi2BnNfh+/m4lZzXS4hFIT/+Z9wNwgDzkddIe4nGgpX9RPBLYyKiUiBdSNj
- iGDw==
-X-Gm-Message-State: APjAAAW+9vGhgQavM60Xjr56hC3lcxhlKmtdBCUZU03OJYaqSzov5P+N
- F1Yr7/zxB5Y1esRmd2DVn6btm9YV
-X-Google-Smtp-Source: APXvYqxSbtwCPp8oNmtCLTkvZ83tzh5uyFNni8UbwygFbj+NOdbuiDQ2nfgwU4stOxJkBEQMvDyjqQ==
-X-Received: by 2002:adf:bc4f:: with SMTP id a15mr55641488wrh.160.1577530717297; 
- Sat, 28 Dec 2019 02:58:37 -0800 (PST)
-Received: from racer ([46.183.103.8])
- by smtp.gmail.com with ESMTPSA id c9sm13590179wmc.47.2019.12.28.02.58.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 28 Dec 2019 02:58:36 -0800 (PST)
-Message-ID: <65ab805667a937a9aaf31422427ed69086d52a22.camel@ettus.com>
-To: =?UTF-8?Q?=D0=93=D0=B5=D0=BD=D0=BD=D0=B0=D0=B4=D0=B8=D0=B9_?=
- =?UTF-8?Q?=D0=9A=D0=B0=D0=B7=D0=B0=D1=87=D1=91=D0=BA?=
- <gena.kazachek@gmail.com>, Ron Economos <w6rz@comcast.net>
-Date: Sat, 28 Dec 2019 11:58:33 +0100
-In-Reply-To: <CADfCwn1nuUteYyA7pQz4uoCPA5eowo3Gf1ThhY7Hp5M0XXTCkQ@mail.gmail.com>
-References: <CADfCwn0ty1KmKt2ba_dBEapoJ5-vyb=i0JffE=V2aXTNK_vuhw@mail.gmail.com>
- <CANf970YugamZVx6BW=XD_es4VSnHkLPudPcLCdA864MsEMk8Ew@mail.gmail.com>
- <CADfCwn2mNfRYh0HpOr-cYPGw99oZW2D08Y2fab=10Tvg3SE9dw@mail.gmail.com>
- <CADfCwn09ypZGMRPAvGoGi6nMcM2ZMXeOn44g9CHas78Wdi04gQ@mail.gmail.com>
- <CADfCwn04HwSBiaCef8f4QK_YOhoNGQe+9TFs5cqFLo4D2VPpTA@mail.gmail.com>
- <39281f29c310afd41aa6795a29209402fff99484.camel@ettus.com>
- <95808e09-d093-ae35-83b8-abc7ff04620e@comcast.net>
- <CADfCwn0CCHMoHXCKoURNGih5_DCV-t5ym_DMDYek4wThxJpkwg@mail.gmail.com>
- <c3a248a95357833e5be97bc11ba8a8d9b95dec22.camel@ettus.com>
- <3818fc0e-399c-06c8-3cbb-e42e24c10d8f@comcast.net>
- <CADfCwn1nuUteYyA7pQz4uoCPA5eowo3Gf1ThhY7Hp5M0XXTCkQ@mail.gmail.com>
-Organization: Ettus Research
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=uwRCkACWXsXg5n5RoouQBHHyExVOvHK/6q1JJbxGQq8=;
+ b=gjoaZDkVaWY74Ta+DyoNYgueqEemM2cxFUvfUMUjJo9s2rF0Nlr12C/XNu16riIU+s
+ 97WeQ2M+RyytEFL3PpW+0Cw3JjhssSnjbPU7VxYyLq7hDYCrwaTZPk5RibE0cXaviioc
+ i2Ztxp9Icpir9BurnPg36J6alKwG02NviXXav6UkP4H504bseUK+DURQe+ETwYjac88v
+ CnLf41FwKef4E/8D8H5CPjwSOplQGYw4tM204YrUhDrnPGEzj1ggq5D03roA5LaHGq9F
+ Vy9LcZzdfTKO6CPyuP7H4BKZRO8At9wx9r6oTRQ33RmRP9Y+B0gvttvceyoFUEKEwBHz
+ ubWg==
+X-Gm-Message-State: APjAAAWpQzusg9fBWC8o4g5yA7ij/WQq9SvWRxDHMhcDqy7Dzr5nshGm
+ a1o3Qk1xPf4oVS0oqDaujxy6rUZdnrPaRQkIWso7pw==
+X-Google-Smtp-Source: APXvYqwHAeZdGkQpW0AD/7CgrXMKDa4CNfPskQEThAslVc2cRJD1OakjzVoo5aLeFA0Yew+ACrsdHiXmJzTx5QvLeyM=
+X-Received: by 2002:a05:6830:4d9:: with SMTP id
+ s25mr75112003otd.171.1577720731618; 
+ Mon, 30 Dec 2019 07:45:31 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [USRP-users] Pulsations on a QPSK transmission
+References: <1273926885.14075492.1576508432546.ref@mail.yahoo.com>
+ <1273926885.14075492.1576508432546@mail.yahoo.com>
+ <CANf970ZfAdBmr0QgutUbQoJseNF6F24W78XvhbKWzbcheDRRVQ@mail.gmail.com>
+ <1913144600.796210.1576668010291@mail.yahoo.com>
+ <775991377.807374.1576670484801@mail.yahoo.com>
+In-Reply-To: <775991377.807374.1576670484801@mail.yahoo.com>
+Date: Mon, 30 Dec 2019 10:45:22 -0500
+Message-ID: <CAB__hTQOaq9Gvb=1GzivNEif+P1cRCdAEnuL=rYW8cTs5KMuFA@mail.gmail.com>
+To: voonna santosh <santu_voonna@yahoo.com>
+Subject: Re: [USRP-users] set_tx_freq is not functioning properly
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,12 +62,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
-Cc: usrp-users@lists.ettus.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2003325210404392022=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -98,161 +79,283 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SSdtIG9uIGEgdHJhaW4gd2l0aCBzaG9kZHkgaW50ZXJuZXQgYWNjZXNzLCBzbyBJIG9ubHkgY291
-bGQgY2hlY2sKcHVsc2VfMTAxMU1Iei5mYywgYnV0IHRoZXNlIHNpZ25hbHMgYXJlIHZlcnkgY2xl
-YXJseSBjbGlwcGluZy4gWW91J3JlCm92ZXJsb2FkaW5nIHlvdXIgcmVjZWl2ZXIuIFJlZHVjZSBn
-YWluLgoKQmVzdCByZWdhcmRzLApNYXJjdXMKCk9uIE1vbiwgMjAxOS0xMi0yMyBhdCAxMTo1NCAr
-MDMwMCwg0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQuiB3cm90ZToKPiA+IE9LLCB3ZSds
-bCBuZWVkIGEgcmVjb3JkaW5nIG9mIHRoZSBzaWduYWwgd2l0aCB0aGUgc3RyaXBlcywgbm90IGp1
-c3QKPiBhCj4gPiBHUVJYIHNjcmVlbnNob3QsIEknbSBhZnJhaWQuIENvdWxkIHlvdSBzaW1wbHkg
-cmVjb3JkIHRoZSBjb21wbGV4Cj4gPiBiYXNlYmFuZCBmb3IgbWF5YmUgNSB0byAxMCBwdWxzYXRp
-b25zIGR1cmF0aW9uCj4gTXkgb25seSBvcHRpb24gaXMgdG8gbWFrZSBhIGdyYXBoIHdpdGggVVNS
-UCBzb3VyY2UgYW5kIGZpbGUgc2luawo+IChib3RoIGZsb2F0IGNvbXBsZXggZm9ybWF0KS4gSSBo
-b3BlIGl0IGRvIHdoYXQgeW91IG5lZWQuCj4gU28sIHdoaWxlIG9uZSBib2FyZCBlbmRsZXNzbHkg
-dHJhbnNtaXRzIHB1bHNhdGlvbiBvbiAxMDExTUh6IHdpdGggMjUwCj4ga0h6IGJhbmR3aWR0aCBJ
-IG1hZGUgdHdvIHJlY29yZGluZ3Mgb24gYW5vdGhlciwgZmlyc3Qgb24gMTAxMU1Iego+IHJlY2Vp
-dmUgZnJlcXVlbmN5IGFuZCBzZWNvbmQgb24gMTAxMS41TUh6LCA1MDAga0h6IGJhbmR3aWR0aCBi
-b3RoLiBJCj4gaG9wZSBpdCBzdWl0cyB5b3VyIHJlcXVlc3QsIGlmIHlvdSBuZWVkIHNvbWV0aGlu
-ZyBlbHNlLCBwbGVhc2UgYXNrLgo+IEkgdXBsb2FkZWQgZmlsZXMgaGVyZTogaHR0cHM6Ly9nb2Zp
-bGUuaW8vP2M9UWgzU2JsCj4gCj4gPiBKdXN0IHRvIHNob3cgaXQsIGhlcmUncyB0aGUgR3FyeCBl
-ZmZlY3QgSSB3YXMgdGFsa2luZyBhYm91dC4KPiBJIHN1cHBvc2UsIGl0IGlzIGNvbXBsZXRlbHkg
-ZGlmZmVyZW50IHN0b3J5Lgo+IAo+IE9uIFN1biwgMjIgRGVjIDIwMTkgYXQgMTg6NTEsIFJvbiBF
-Y29ub21vcyB2aWEgVVNSUC11c2VycyA8Cj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdy
-b3RlOgo+ID4gSnVzdCB0byBzaG93IGl0LCBoZXJlJ3MgdGhlIEdxcnggZWZmZWN0IEkgd2FzIHRh
-bGtpbmcgYWJvdXQuCj4gPiAKPiA+IGh0dHA6Ly93d3cudzZyei5uZXQvZ3FyeC5tcDQKPiA+IAo+
-ID4gUm9uCj4gPiAKPiA+IE9uIDEyLzIyLzE5IDA3OjA0LCBNYXJjdXMgTcO8bGxlciB3cm90ZToK
-PiA+ID4gT0ssIHdlJ2xsIG5lZWQgYSByZWNvcmRpbmcgb2YgdGhlIHNpZ25hbCB3aXRoIHRoZSBz
-dHJpcGVzLCBub3QKPiA+IGp1c3QgYQo+ID4gPiBHUVJYIHNjcmVlbnNob3QsIEknbSBhZnJhaWQu
-IENvdWxkIHlvdSBzaW1wbHkgcmVjb3JkIHRoZSBjb21wbGV4Cj4gPiA+IGJhc2ViYW5kIGZvciBt
-YXliZSA1IHRvIDEwIHB1bHNhdGlvbnMgZHVyYXRpb24/Cj4gPiA+IFByZWZlcmFibHkgYWxzbyBh
-c2Vjb25kIHJlY29yZGluZyBmcm9tIGEgc2xpZ2h0bHkgZGlmZmVyZW50Cj4gPiBUWGZyZXF1ZW5j
-eSwgYnV0IGF0IHRoZSBzYW1lIFJYIGZyZXF1ZW5jeS4KPiA+ID4KPiA+ID4gQmVzdCByZWdhcmRz
-LAo+ID4gPiBNYXJjdXMKPiA+ID4KPiA+ID4gT24gU2F0LCAyMDE5LTEyLTIxIGF0IDIzOjM1ICsw
-MzAwLCDQk9C10L3QvdCw0LTQuNC5INCa0LDQt9Cw0YfRkdC6IHdyb3RlOgo+ID4gPj4gSGVsbG8s
-IHRoYW5rcyBmb3IgeW91ciBhdHRlbnRpb24uCj4gPiA+Pgo+ID4gPj4+IEkgYWx3YXlzIHRob3Vn
-aHQgdGhlc2UgcHVsc2F0aW9ucyB3ZXJlIGR1ZSB0byBzb21lIGtpbmQgb2YgYnVnCj4gPiA+PiB3
-aXRoCj4gPiA+Pj4gR3FyeC4gSWYgeW91IGNoYW5nZSB0aGUgRkZUIHNpemUsIHRoZSByYXRlIG9m
-IHB1bHNhdGlvbgo+ID4gY2hhbmdlcy4KPiA+ID4+IE5vLCBpdCBkb2Vzbid0LiBJJ3ZlIHRlc3Rl
-ZCwgRkZUIHNpemUgZG9lc24ndCBhZmZlY3QgcmF0ZSBvZgo+ID4gPj4gcHVsc2F0aW9uLgo+ID4g
-Pj4KPiA+ID4+PiBBbHNvLCB5b3UgZG9uJ3Qgc2VlIHRoaXMgb24gYSByZWFsIHNwZWN0cnVtIGFu
-YWx5emVyLCBldmVuIGFuCj4gPiA+PiBpbmV4cGVuc2l2ZSBvbmUuCj4gPiA+PiBJIGRvbid0IGhh
-dmUgb25lLCBidXQgYXMgSSBzYWlkIGJlZm9yZSwgZGVjb2RpbmcgaXMgZmFpbGluZyB3aGVuCj4g
-PiB0aGlzCj4gPiA+PiBwdWxzYXRpb25zIGFyZSBvbiB0aGUgYWlyLiBTbywgSSBiZWxpZXZlLCB0
-aGF0IGdxcnggaXMgZmluZQo+ID4gaGVyZS4KPiA+ID4+Cj4gPiA+Pj4gdGhlIHN0cmlwZXMgZ28g
-YXdheSB3aGVuIHlvdSB0dXJuIG9mIHRoZSBVU1JQcz8KPiA+ID4+IFllcywgd2hlbiBJIHN0b3Ag
-Z3JhcGgsIHRoaXMgcHVsc2F0aW9ucyBhcmUgZ29uZQo+ID4gPj4KPiA+ID4+PiBBbHNvLCB0aGUg
-c3RyaXBlcyBhcmVuJ3QgdGhlcmUsIGVpdGhlciwgd2hlbiB5b3UgdXNlIHRoZSBMaW1lCj4gPiBv
-bgo+ID4gPj4gdGhlCj4gPiA+Pj4gc2FtZSAxLjAxMSBHSHogZnJlcXVlbmN5LCBleGFjdGx5Pwo+
-ID4gPj4gWWVzLCBpdCBpcyBjb3JyZWN0LCBJIGp1c3QgZGlzYWJsZSBVU1JQIGJsb2NrLCBlbmFi
-bGUgTGltZSBibG9jawo+ID4gYW5kCj4gPiA+PiBzd2FwIGRldmljZXMuCj4gPiA+Pgo+ID4gPj4+
-IE15IHN1c3BpY2lvbiBpcyB0aGF0IHRoaXMgaXMgbW9zdGx5IFVTQjMgZW1pc3Npb25zCj4gPiA+
-PiBJJ3ZlIHRyaWVkIHRvIGNvbm5lY3QgdGhyb3VnaCBVU0IyLCByZXN1bHQgaXMgdGhlIHNhbWUK
-PiA+ID4+Cj4gPiA+Pj4gQWxzbywgYXJlIHlvdSB1c2luZyBhbiBleHRlcm5hbCBwb3dlciBzdXBw
-bHkgZm9yIHlvdXIgVVNSUHMKPiA+ID4+IE5vLCB0aGV5IGFyZSBjb25uZWN0ZWQgdG8gbXkgaG9z
-dCBwYyBieSBVU0Igb25seS4KPiA+ID4+Cj4gPiA+PiBPbiBTYXQsIDIxIERlYyAyMDE5IGF0IDIx
-OjE1LCBSb24gRWNvbm9tb3MgdmlhIFVTUlAtdXNlcnMgPAo+ID4gPj4gdXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20+IHdyb3RlOgo+ID4gPj4+IEkgYWx3YXlzIHRob3VnaHQgdGhlc2UgcHVsc2F0
-aW9ucyB3ZXJlIGR1ZSB0byBzb21lIGtpbmQgb2YgYnVnCj4gPiA+Pj4gd2l0aAo+ID4gPj4+IEdx
-cnguIElmIHlvdSBjaGFuZ2UgdGhlIEZGVCBzaXplLCB0aGUgcmF0ZSBvZiBwdWxzYXRpb24KPiA+
-IGNoYW5nZXMuCj4gPiA+Pj4gQWxzbywKPiA+ID4+PiB5b3UgZG9uJ3Qgc2VlIHRoaXMgb24gYSBy
-ZWFsIHNwZWN0cnVtIGFuYWx5emVyLCBldmVuIGFuCj4gPiBpbmV4cGVuc2l2ZQo+ID4gPj4+IG9u
-ZS4KPiA+ID4+Pgo+ID4gPj4+IFJvbgo+ID4gPj4+Cj4gPiA+Pj4gT24gMTIvMjEvMTkgMDk6MjUs
-IE1hcmN1cyBNw7xsbGVyIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+ID4gPj4+PiBKdXN0IHRvIHJ1
-bGUgb3V0IGludGVyZmVyZXJzOgo+ID4gPj4+Pgo+ID4gPj4+PiAqIHRoZSBzdHJpcGVzIGdvIGF3
-YXkgd2hlbiB5b3UgdHVybiBvZiB0aGUgVVNSUHM/Cj4gPiA+Pj4+ICogQWxzbywgdGhlIHN0cmlw
-ZXMgYXJlbid0IHRoZXJlLCBlaXRoZXIsIHdoZW4geW91IHVzZSB0aGUKPiA+IExpbWUKPiA+ID4+
-PiBvbiB0aGUKPiA+ID4+Pj4gc2FtZSAxLjAxMSBHSHogZnJlcXVlbmN5LCBleGFjdGx5Pwo+ID4g
-Pj4+Pgo+ID4gPj4+PiBNeSBzdXNwaWNpb24gaXMgdGhhdCB0aGlzIGlzIG1vc3RseSBVU0IzIGVt
-aXNzaW9ucyAodGhvc2UKPiA+IGNvdWxkCj4gPiA+Pj4gYmUsIGJ1dAo+ID4gPj4+PiBub3QgbmVj
-ZXNzYXJpbHkgYXJlLCBoYXBwZW5pbmcgdGhyb3VnaCB0aGUgVVNSUCBpdHNlbGYsIG9yCj4gPiA+
-Pj4gdGhyb3VnaAo+ID4gPj4+PiBjYWJsZXMsIG9yIHRocm91Z2ggeW91ciBob3N0IGNvbXB1dGVy
-Lgo+ID4gPj4+Pgo+ID4gPj4+PiBJZiB5b3VyIHNhbXBsaW5nIHJhdGVzIGFsbG93IGl0ICh0aGV5
-IGRvLCBJIHRoaW5rIHlvdSdyZSB1c2luZwo+ID4gPj4+IDUwMCBrSHoKPiA+ID4+Pj4gb25secK5
-KSwgdHJ5IHRvIHVzZSBhIFVTQjItb25seSBjYWJsZSBvciBwb3J0IGFuZCBzZWUgd2hldGhlcgo+
-ID4gPj4+IHRoZXNlCj4gPiA+Pj4+IGRpc2FwcGVhci4KPiA+ID4+Pj4KPiA+ID4+Pj4gQWxzbywg
-YXJlIHlvdSB1c2luZyBhbiBleHRlcm5hbCBwb3dlciBzdXBwbHkgZm9yIHlvdXIgVVNSUHM/Cj4g
-PiBJZgo+ID4gPj4+IHRoaXMgaXMKPiA+ID4+Pj4gYWN0dWFsbHkgYW4gaW50ZXJmZXJlciwgaXQg
-bWlnaHQgYXMgd2VsbCBiZSBzb21lIHBlcmlvZGljCj4gPiA+Pj4gYmVoYXZpb3VyIG9mCj4gPiA+
-Pj4+IHRoZSBwb3dlciBzdXBwbHkuCj4gPiA+Pj4+Cj4gPiA+Pj4+IEJlc3QgcmVnYXJkcywKPiA+
-ID4+Pj4gTWFyY3VzCj4gPiA+Pj4+Cj4gPiA+Pj4+Cj4gPiA+Pj4+IMK5VGhhdCdzIGEgc2FtcGxp
-bmcgcmF0ZSB0aGF0IHNob3VsZCB3b3JrIG9uIEIyMDAgYW5kIEIyMHhtaW5pLAo+ID4gPj4+IGJ1
-dCBpdCdzCj4gPiA+Pj4+IHVuY29tZm9ydGFibHkgbG93IOKAkyB0cnkgd2l0aCAxIE1IeiBhbmQg
-aG9zdC1zaWRlIHJlc2FtcGxpbmcsCj4gPiA+Pj4gbWF5YmU/Cj4gPiA+Pj4+IE9uIFdlZCwgMjAx
-OS0xMi0xOCBhdCAyMToyOCArMDMwMCwg0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQuiB2
-aWEgVVNSUC0KPiA+ID4+PiB1c2Vycwo+ID4gPj4+PiB3cm90ZToKPiA+ID4+Pj4+IEhlbGxvLCBT
-YW0hCj4gPiA+Pj4+PiBObywgSSB1c2UgdHdvIGRldmljZXMgYXMgdHJhbnNtaXR0ZXIgYW5kIHJl
-Y2VpdmVyIGFuZCB0aGlyZAo+ID4gPj4+IGJvYXJkIEkKPiA+ID4+Pj4+IHVzZSBqdXN0IHRvIG9i
-c2VydmUgc29ub2dyYW0uCj4gPiA+Pj4+PiBQdWxzYXRpb25zIGV4aXN0IG9uIGJvdGggYjIwNSBh
-bmQgYjIxMCBkZXZpY2VzIGlmIEkgdXNlIHRoZW0KPiA+IGFzCj4gPiA+Pj4gYQo+ID4gPj4+Pj4g
-dHJhbnNtaXR0ZXIgYW5kIG5vdCBleGlzdCBpZiBJIHVzZSBhcyB0cmFuc21pdHRlciBhbm90aGVy
-Cj4gPiA+Pj4gdmVuZG9yJ3MKPiA+ID4+Pj4+IGRldmljZSAtIExpbWVTRFIuCj4gPiA+Pj4+Pgo+
-ID4gPj4+Pj4gQWxsIDMgVVNSUCBkZXZpY2VzIGFyZSBpbmR1c3RyaWFsIHdpdGggbWV0YWwgY2Fz
-ZSwgYW5kCj4gPiBMaW1lU0RSCj4gPiA+Pj4gaXMKPiA+ID4+Pj4+IG5vdC4KPiA+ID4+Pj4+Cj4g
-PiA+Pj4+PiBPbiBXZWQsIDE4IERlYyAyMDE5IGF0IDIxOjI2LCDQk9C10L3QvdCw0LTQuNC5INCa
-0LDQt9Cw0YfRkdC6IDwKPiA+ID4+Pj4+IGdlbmEua2F6YWNoZWtAZ21haWwuY29tPiB3cm90ZToK
-PiA+ID4+Pj4+PiBBbGwgMyBVU1JQIGRldmljZXMgYXJlIGluZHVzdHJpYWwgd2l0aCBtZXRhbCBj
-YXNlLCBhbmQKPiA+IExpbWVTRFIKPiA+ID4+PiBpcwo+ID4gPj4+Pj4+IG5vdC4KPiA+ID4+Pj4+
-Pgo+ID4gPj4+Pj4+IE9uIFdlZCwgMTggRGVjIDIwMTkgYXQgMjE6MjUsINCT0LXQvdC90LDQtNC4
-0Lkg0JrQsNC30LDRh9GR0LogPAo+ID4gPj4+Pj4+IGdlbmEua2F6YWNoZWtAZ21haWwuY29tPiB3
-cm90ZToKPiA+ID4+Pj4+Pj4gSGVsbG8sIFNhbSEKPiA+ID4+Pj4+Pj4gTm8sIEkgdXNlIHR3byBk
-ZXZpY2VzIGFzIHRyYW5zbWl0dGVyIGFuZCByZWNlaXZlciBhbmQgdGhpcmQKPiA+ID4+PiBib2Fy
-ZAo+ID4gPj4+Pj4+PiBJIHVzZSBqdXN0IHRvIG9ic2VydmUgc29ub2dyYW0uCj4gPiA+Pj4+Pj4+
-IFB1bHNhdGlvbnMgZXhpc3Qgb24gYm90aCBiMjA1IGFuZCBiMjEwIGRldmljZXMgaWYgSSB1c2UK
-PiA+IHRoZW0KPiA+ID4+PiBhcyBhCj4gPiA+Pj4+Pj4+IHRyYW5zbWl0dGVyIGFuZCBub3QgZXhp
-c3QgaWYgSSB1c2UgYXMgdHJhbnNtaXR0ZXIgYW5vdGhlcgo+ID4gPj4+Pj4+PiB2ZW5kb3IncyBk
-ZXZpY2UgLSBMaW1lU0RSLgo+ID4gPj4+Pj4+Pgo+ID4gPj4+Pj4+PiBPbiBXZWQsIDE4IERlYyAy
-MDE5IGF0IDE4OjQ5LCBTYW0gUmVpdGVyIDwKPiA+IHNhbS5yZWl0ZXJAZXR0dXMuY29tCj4gPiA+
-Pj4+Pj4+IHdyb3RlOgo+ID4gPj4+Pj4+Pj4gSnVzdCB0byBiZSBjbGVhciwgeW91IHNlZSB0aGVz
-ZSBwdWxzYXRpb25zIHdoZW4KPiA+IHRyYW5zbWl0dGluZwo+ID4gPj4+Pj4+Pj4gd2l0aCBhIGIy
-MDVtaW5pLCBidXQgbm90IHdpdGggdGhlIGIyMTA/Cj4gPiA+Pj4+Pj4+Pgo+ID4gPj4+Pj4+Pj4g
-SXMgdGhlIGIyMDVtaW5pIGEgYmFyZSBib2FyZCBvciBhbiBpbmR1c3RyaWFsIG1vZGVsIHdpdGgg
-YQo+ID4gPj4+IGNhc2UKPiA+ID4+Pj4+Pj4+IGFuZCBhbHVtaW51bSBoZWF0IHN5bmM/Cj4gPiA+
-Pj4+Pj4+Pgo+ID4gPj4+Pj4+Pj4gU2FtIFJlaXRlcgo+ID4gPj4+Pj4+Pj4gRXR0dXMgUmVzZWFy
-Y2gKPiA+ID4+Pj4+Pj4+Cj4gPiA+Pj4+Pj4+Pgo+ID4gPj4+Pj4+Pj4gT24gV2VkLCBEZWMgMTEs
-IDIwMTkgYXQgMTE6NDggUE0g0JPQtdC90L3QsNC00LjQuSDQmtCw0LfQsNGH0ZHQuiB2aWEKPiA+
-IFVTUlAtCj4gPiA+Pj4+Pj4+PiB1c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdy
-b3RlOgo+ID4gPj4+Pj4+Pj4+IEhlbGxvIQo+ID4gPj4+Pj4+Pj4+IEknbSB0cnlpbmcgdG8gYnVp
-bGQgUVBTSyBiYXNlZCBzeXN0ZW0gb24gR05VUmFkaW8uCj4gPiA+Pj4+Pj4+Pj4gSSdtIHVzaW5n
-IHR3byBVU1JQIEIyMDUtbWluaSBib2FyZHMgYXMgdHJhbnNtaXR0ZXIgYW5kCj4gPiA+Pj4+Pj4+
-Pj4gcmVjZWl2ZXIsIGFsc28gSSBnb3QgQjIxMCBib2FyZCB0aGF0IEkgcnVuIGdxcnggb24gdG8K
-PiA+IHdhdGNoCj4gPiA+Pj4+Pj4+Pj4gd2hhdCBpcyByZWFsbHkgZ29pbmcgb24uCj4gPiA+Pj4+
-Pj4+Pj4gSSBub3RpY2VkIGEgc3RyYW5nZSBiZWhhdmlvdXIgb24gbXkgdGVzdHMsIHNvIEkgYmVn
-YW4gdG8KPiA+ID4+Pj4+Pj4+PiBpbnZlc3RpZ2F0ZSBpdCBhbmQgZW5kZWQgdG8gYSB2ZXJ5IHNp
-bXBsZSBncmFwaCwgdGhhdCBpcwo+ID4gaW4KPiA+ID4+Pj4+Pj4+PiBhdHRhY2htZW50LiBPbiBh
-IGZyZXF1ZW5jaWVzIHRoYXQgYXJlIG11bHRpcGxlIG9mIDEwTWh6LAo+ID4gPj4+IGxpa2UKPiA+
-ID4+Pj4+Pj4+PiAxMDIwTWh6IGFsbCB3b3JrcyBsaWtlIGV4cGVjdGVkIGFuZCBzb25vZ3JhbSBs
-b29rcyBnb29kLgo+ID4gSWYKPiA+ID4+PiBJCj4gPiA+Pj4+Pj4+Pj4gdHVuZSB0byBhbnkgb3Ro
-ZXIgZnJlcXVlbmN5LCBldmVuIDFIeiBtb3JlIG9yIGxlc3MsIHRoZQo+ID4gPj4+Pj4+Pj4+IHNv
-bm9ncmFtIGlzIGZ1bGwgb2YgcHVsc2F0aW9ucyBhbmQgZnJlcXVlbmN5IG9mIHRoYXQKPiA+ID4+
-Pj4+Pj4+PiBwdWxzYXRpb24gaXMgZGVwZW5kcyBvZiBleGFjdCB0dW5lIGZyZXF1ZW5jeS4gSSBh
-dHRhY2hlZAo+ID4gPj4+IHNvbWUKPiA+ID4+Pj4+Pj4+PiBzY3JlZW5zaG90cyBvZiB0aGF0IHB1
-bHNhdGlvbnMuCj4gPiA+Pj4+Pj4+Pj4gT24gcmVjZWl2aW5nIHBhcnQgdGhhdCBwdWxzYXRpb25z
-IGNhdXNlIG1hbnkgZXJyb3JzIHdoaWxlCj4gPiA+Pj4+Pj4+Pj4gZGVjb2RpbmcuCj4gPiA+Pj4+
-Pj4+Pj4gSSBnb3QgYW5vdGhlciBib2FyZCwgTGltZVNEUi1NaW5pLCBhbmQgbm8gc3VjaCBiZWhh
-dmlvdXIKPiA+ID4+Pj4+Pj4+PiBvYnNlcnZlZCB3aGlsZSBydW5uaW5nIGdyYXBoIG9uIGl0Lgo+
-ID4gPj4+Pj4+Pj4+IEkgd29uZGVyIHdoYXQgaXMgZ29pbmcgb24sIGFuZCBob3cgY2FuIEkgZml4
-IHRoaXMKPiA+IHByb2JsZW0uCj4gPiA+Pj4+Pj4+Pj4gVGhhbmsgeW91Lgo+ID4gPj4+Pj4+Pj4+
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiA+Pj4+
-Pj4+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiA+ID4+Pj4+Pj4+PiBVU1JQLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQo+ID4gPj4+Pj4+Pj4+Cj4gPiA+Pj4gCj4gPiBodHRwOi8vbGlzdHMuZXR0
-dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiA+ID4+
-Pj4+Pj4gLS0gCj4gPiA+Pj4+Pj4+INCT0LXQvdC90LDQtNC40Lkg0JrQsNC30LDRh9GR0LoKPiA+
-ID4+Pj4+PiAtLSAKPiA+ID4+Pj4+PiDQk9C10L3QvdCw0LTQuNC5INCa0LDQt9Cw0YfRkdC6Cj4g
-PiA+Pj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
-ID4gPj4+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiA+ID4+Pj4+IFVTUlAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tCj4gPiA+Pj4+Pgo+ID4gPj4+IAo+ID4gaHR0cDovL2xpc3RzLmV0dHVzLmNv
-bS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gPiA+Pj4+IF9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiA+Pj4+IFVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gPiA+Pj4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-Cj4gPiA+Pj4+Cj4gPiA+Pj4gCj4gPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
-dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiA+ID4+Pgo+ID4gPj4+IF9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiA+Pj4gVVNSUC11c2Vy
-cyBtYWlsaW5nIGxpc3QKPiA+ID4+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+ID4gPj4+
-IAo+ID4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
-bGlzdHMuZXR0dXMuY29tCj4gPiA+Pgo+ID4gPgo+ID4gCj4gPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
-PiA+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gPiBodHRwOi8vbGlzdHMuZXR0dXMuY29t
-L21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKPiAKCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1h
-aWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMu
-Y29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============2003325210404392022==
+Content-Type: multipart/alternative; boundary="000000000000c37c16059aedbbbb"
+
+--000000000000c37c16059aedbbbb
+Content-Type: text/plain; charset="UTF-8"
+
+Perhaps the digital values are all zero for benchmark rate?
+
+On Wed, Dec 18, 2019 at 7:02 AM voonna santosh via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> One more thing to add:
+> If I run benchmark_rate with out any modifications, then the output in
+> scope if perfect.
+>
+> I have added the following code snippet to configure the tx_freq and there
+> is nothing observed in scope.
+>
+> if (vm.count("tx_freq")){
+>       for(size_t ch = 0; ch < tx_channel_nums.size(); ch++) {
+>         std::cout << boost::format("Setting TX Freq: %f MHz...") %
+> (tx_freq/1e6) << std::endl;
+>         uhd::tune_request_t tune_request(tx_freq);
+>         if(vm.count("int-n")) tune_request.args =
+> uhd::device_addr_t("mode_n=integer");
+>         usrp->set_tx_freq(tune_request, tx_channel_nums[ch]);
+>         std::cout << boost::format("Actual TX Freq: %f MHz...") %
+> (usrp->get_tx_freq(tx_channel_nums[ch])/1e6) << std::endl << std::endl;
+>     }
+> }
+>
+> Command used for testing: ./benchmark_rate --args="addr=192.168.40.2"
+> --channels="0" --tx_rate 50e6 --tx_freq 20e6 --duration 50
+>
+>
+> NOTE: I am using Agilent E4402B to analyze the spectrum (9KHz to 3 GHz)
+>
+> Thanks,
+> Santosh
+>
+>
+>
+>
+>
+> On Wednesday, December 18, 2019, 11:20:10 AM GMT, voonna santosh <
+> santu_voonna@yahoo.com> wrote:
+>
+>
+> FYI:
+> Does something like tx_waveforms[1] output a signal at the expected
+> frequency?
+>  - Yes, both tx_wavefrom and benchmark_rate works fine. I took benchamark
+> rate and extended it to get tx_freq configured. This is not working.
+>
+>
+> With respect to the 10MHz, this is the frequency of signals used to
+> discipline the internal timebase to an external source. I wouldn't expect
+> artifacts from this signal to be present at the TX port under normal
+> circumstances. Are you using an external reference? What about the GPSDO?
+>   - Since my base line is benchmark_rate, the default frequency is 10MHz
+> which always works fine. But when I change the frequency, thats when I see
+> the issue. I couldn't trace where it is getting set, but it does. Can you
+> please let me know where in the code, it sets the frequency to 10MHz ?
+>
+> BR,
+> Santosh
+>
+>
+>
+>
+>
+> On Tuesday, December 17, 2019, 11:45:29 PM GMT, Sam Reiter <
+> sam.reiter@ettus.com> wrote:
+>
+>
+> Does something like tx_waveforms[1] output a signal at the expected
+> frequency?
+>
+> What are you using to measure the frequency output?
+>
+> With respect to the 10MHz, this is the frequency of signals used to
+> discipline the internal timebase to an external source. I wouldn't expect
+> artifacts from this signal to be present at the TX port under normal
+> circumstances. Are you using an external reference? What about the GPSDO?
+>
+> [1]
+> https://github.com/EttusResearch/uhd/blob/master/host/examples/tx_waveforms.cpp
+>
+> Sam Reiter
+> Ettus Research
+>
+>
+> On Mon, Dec 16, 2019 at 9:01 AM voonna santosh via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+> Hi There,
+>    I have bench marked X300 against my development PC. Then I took
+> benchmark_rate code and modified a bit. Everything works fine except
+> setting the center freq.
+>    When ever I set the center frequency, there is no error returned by the
+> call. But when I transmit the data, it doesn't appear in scope. Whenever I
+> remove the code to set the center frequency, things work fine and I cann
+> see a spike at 10Mhz which is default frequency I guess. Any clues?
+>
+> std::cout << boost::format("Setting TX Freq: %f MHz...") % (freq/1e6) <<
+> std::endl;
+> uhd::tune_request_t tune_request(freq);
+> //usrp->set_tx_freq(tune_request, 0); - This line also doesn't work
+> usrp->set_tx_freq(freq, 0);
+> std::cout << boost::format("Actual TX Freq: %f MHz...") %
+> (usrp->get_tx_freq(0)/1e6) << std::endl << std::endl;
+>
+> Thanks and Regards
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000c37c16059aedbbbb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Perhaps the digital values are all zero for benchmark rate=
+?</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Wed, Dec 18, 2019 at 7:02 AM voonna santosh via USRP-users &lt;<a href=
+=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div =
+style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;=
+font-size:16px"><div></div>
+        <div dir=3D"ltr">One more thing to add:</div><div dir=3D"ltr">If I =
+run benchmark_rate with out any modifications, then the output in scope if =
+perfect. <br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">I have added=
+ the following code snippet to configure the tx_freq and there is nothing o=
+bserved in scope.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div>if =
+(vm.count(&quot;tx_freq&quot;)){<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for(size=
+_t ch =3D 0; ch &lt; tx_channel_nums.size(); ch++) {<br>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 std::cout &lt;&lt; boost::format(&quot;Setting TX =
+Freq: %f MHz...&quot;) % (tx_freq/1e6) &lt;&lt; std::endl;<br>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uhd::tune_request_t tune_request(tx_freq);<b=
+r>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if(vm.count(&quot;int-n&quot;)=
+) tune_request.args =3D uhd::device_addr_t(&quot;mode_n=3Dinteger&quot;);<b=
+r>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp-&gt;set_tx_freq(tune_requ=
+est, tx_channel_nums[ch]);<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 st=
+d::cout &lt;&lt; boost::format(&quot;Actual TX Freq: %f MHz...&quot;) % (us=
+rp-&gt;get_tx_freq(tx_channel_nums[ch])/1e6) &lt;&lt; std::endl &lt;&lt; st=
+d::endl;<br>=C2=A0=C2=A0=C2=A0 }<br>}</div><div><br></div><div dir=3D"ltr">=
+Command used for testing: <span>./benchmark_rate --args=3D&quot;addr=3D192.=
+168.40.2&quot; --channels=3D&quot;0&quot; --tx_rate 50e6 --tx_freq 20e6 --d=
+uration 50</span><br></div><div><br></div><div><br></div><div dir=3D"ltr">N=
+OTE: I am using Agilent E4402B to analyze the spectrum (9KHz to 3 GHz)<br><=
+/div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Thanks,</div><div dir=3D"l=
+tr">Santosh<br></div></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br>=
+</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><div><br></div>
+       =20
+        </div><div id=3D"gmail-m_3547915342933947221yahoo_quoted_7071217456=
+">
+            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
+               =20
+                <div>
+                    On Wednesday, December 18, 2019, 11:20:10 AM GMT, voonn=
+a santosh &lt;<a href=3D"mailto:santu_voonna@yahoo.com" target=3D"_blank">s=
+antu_voonna@yahoo.com</a>&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"gmail-m_3547915342933947221yiv9449169570"><=
+div><div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sa=
+ns-serif;font-size:16px"><div>FYI:</div><div dir=3D"ltr"><span>Does somethi=
+ng like tx_waveforms[1] output a signal at the expected frequency?</span></=
+div><div dir=3D"ltr"><span>=C2=A0- Yes, both tx_wavefrom and benchmark_rate=
+ works fine. I took benchamark rate and extended it to get tx_freq configur=
+ed. This is not working.</span></div><div dir=3D"ltr"><span><br clear=3D"no=
+ne"></span></div><div dir=3D"ltr"><span><br clear=3D"none"></span></div><di=
+v dir=3D"ltr"><div><div>With respect to the 10MHz, this is the=20
+frequency of signals used to discipline the internal timebase to an=20
+external source. I wouldn&#39;t expect artifacts from this signal to be=20
+present at the TX port under normal circumstances. Are you using an=20
+external reference? What about the GPSDO? <br clear=3D"none"></div><div dir=
+=3D"ltr">=C2=A0 - Since my base line is benchmark_rate, the default frequen=
+cy is 10MHz which always works fine. But when I change the frequency, thats=
+ when I see the issue. I couldn&#39;t trace where it is getting set, but it=
+ does. Can you please let me know where in the code, it sets the frequency =
+to 10MHz ? <br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></d=
+iv><div dir=3D"ltr">BR,</div><div dir=3D"ltr">Santosh<br clear=3D"none"></d=
+iv></div><div><br clear=3D"none"></div><span></span></div><div dir=3D"ltr">=
+<br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=
+=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div=
+><div id=3D"gmail-m_3547915342933947221yiv9449169570yqt97274"><div id=3D"gm=
+ail-m_3547915342933947221yiv9449169570yahoo_quoted_6715818642">
+            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
+               =20
+                <div>
+                    On Tuesday, December 17, 2019, 11:45:29 PM GMT, Sam Rei=
+ter &lt;<a href=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam.reite=
+r@ettus.com</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"gmail-m_3547915342933947221yiv9449169570"><=
+div><div dir=3D"ltr">Does something like tx_waveforms[1] output a signal at=
+ the expected frequency?<div><br clear=3D"none"></div><div>What are you usi=
+ng to measure the frequency output?</div><div><br clear=3D"none"></div><div=
+>With respect to the 10MHz, this is the frequency of signals used to discip=
+line the internal timebase to an external source. I wouldn&#39;t expect art=
+ifacts from this signal to be present at the TX port under normal circumsta=
+nces. Are you using an external reference? What about the GPSDO?=C2=A0</div=
+><div><br clear=3D"none"></div><div>[1]=C2=A0<a rel=3D"nofollow" shape=3D"r=
+ect" href=3D"https://github.com/EttusResearch/uhd/blob/master/host/examples=
+/tx_waveforms.cpp" target=3D"_blank">https://github.com/EttusResearch/uhd/b=
+lob/master/host/examples/tx_waveforms.cpp</a><br clear=3D"none"><div><br cl=
+ear=3D"none"></div><div><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr">Sam Reiter=C2=A0</div><div dir=3D"ltr">Ettus Research</div></div></div=
+></div><br clear=3D"none"></div></div></div><br clear=3D"none"><div><div id=
+=3D"gmail-m_3547915342933947221yiv9449169570yqt39504"><div dir=3D"ltr">On M=
+on, Dec 16, 2019 at 9:01 AM voonna santosh via USRP-users &lt;<a rel=3D"nof=
+ollow" shape=3D"rect" href=3D"mailto:usrp-users@lists.ettus.com" target=3D"=
+_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br clear=3D"none"></div><=
+blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div><div><div dir=3D"ltr">Hi There,</div><div d=
+ir=3D"ltr">=C2=A0=C2=A0 I have bench marked X300 against my development PC.=
+ Then I took benchmark_rate code and modified a bit. Everything works fine =
+except setting the center freq.</div><div dir=3D"ltr">=C2=A0=C2=A0 When eve=
+r I set the center frequency, there is no error returned by the call. But w=
+hen I transmit the data, it doesn&#39;t appear in scope. Whenever I remove =
+the code to set the center frequency, things work fine and I cann see a spi=
+ke at 10Mhz which is default frequency I guess. Any clues?</div><div dir=3D=
+"ltr"><br clear=3D"none"></div><div dir=3D"ltr"><div dir=3D"ltr">std::cout =
+&lt;&lt; boost::format(&quot;Setting TX Freq: %f MHz...&quot;) % (freq/1e6)=
+ &lt;&lt; std::endl;<br clear=3D"none">uhd::tune_request_t tune_request(fre=
+q);<br clear=3D"none"><div>//usrp-&gt;set_tx_freq(tune_request, 0); - This =
+line also doesn&#39;t work<br clear=3D"none"></div>usrp-&gt;set_tx_freq(fre=
+q, 0);<br clear=3D"none">std::cout &lt;&lt; boost::format(&quot;Actual TX F=
+req: %f MHz...&quot;) % (usrp-&gt;get_tx_freq(0)/1e6) &lt;&lt; std::endl &l=
+t;&lt; std::endl;<br clear=3D"none"><br clear=3D"none"></div><div dir=3D"lt=
+r">Thanks and Regards<br clear=3D"none"></div></div></div></div>___________=
+____________________________________<br clear=3D"none">
+USRP-users mailing list<br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" href=3D"mailto:USRP-users@lists.ettus.co=
+m" target=3D"_blank">USRP-users@lists.ettus.com</a><br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" href=3D"http://lists.ettus.com/mailman/l=
+istinfo/usrp-users_lists.ettus.com" target=3D"_blank">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
+</blockquote></div></div></div></div></div>
+            </div>
+        </div></div></div></div></div></div>
+            </div>
+        </div></div>_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000c37c16059aedbbbb--
+
+
+--===============2003325210404392022==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2003325210404392022==--
+
