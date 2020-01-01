@@ -2,61 +2,32 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B552C12DAF4
-	for <lists+usrp-users@lfdr.de>; Tue, 31 Dec 2019 19:37:20 +0100 (CET)
-Received: from [::1] (port=50278 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E178B12DE5A
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Jan 2020 10:39:20 +0100 (CET)
+Received: from [::1] (port=39800 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1imMON-0003cV-97; Tue, 31 Dec 2019 13:37:19 -0500
-Received: from mail-wm1-f44.google.com ([209.85.128.44]:38386)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
- id 1imMOJ-0003W9-Ps
- for usrp-users@lists.ettus.com; Tue, 31 Dec 2019 13:37:15 -0500
-Received: by mail-wm1-f44.google.com with SMTP id u2so2416177wmc.3
- for <usrp-users@lists.ettus.com>; Tue, 31 Dec 2019 10:36:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:date:in-reply-to:references:user-agent
- :mime-version:content-transfer-encoding;
- bh=r0lvhZTcbxheFGkNNOq4Sa8H4qPAS6j1DtWiAIjyT6s=;
- b=h2QymqyQcgOc3CE4Oy2lc5T0a3z1MfsVICOtFeZ0X5DW5m1xHBVidio8Ki6/Ftpwin
- tI1SDf9EGk82sZHTWIhoZdzsddWBZcynnNcD04AW0jPND4n1STwtbO+AbXwo7xS5O2c5
- 3eAxpwi9Sm29rPR2sk+b9QnMSnVbvMee/AJADFChDNZ61sV5IOLXUPSQ+ys1VzsoQiGF
- Pvwq3aIhBIN+ayD5H7E+PGqTGe4crQNYeH5R+YPoqrSbdsRwdpICf/rX2LCe66vPaVu0
- YuLVjlPnb+odHxTLteP3519fYONR6PCNCeACWiyxLLLS6qmnCuzykaZv7jIw0nbSZ6WQ
- 91iA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=r0lvhZTcbxheFGkNNOq4Sa8H4qPAS6j1DtWiAIjyT6s=;
- b=HQfcfvhHBVFP7KC0As2WqbWrc0AH7vh5r/66EJ/CkIerCIMj/ybEp/fU2XttSsn0u5
- Jl2Sa0WSRp5BQ9ywwJdnvJDE02OWTntZgsmCZa37JXW6/fGtE4cQew7OOwc0HnfE+ksT
- AxDorxLBrteqGfuzc/gqwpuq8Ce86vbcJiuhVRhk2XR2OBXHx3mJL4/CSK8kmFzm2jhB
- eozxHvNVVTea93goPpZUDkDrdNx9jcMHdhY2rQZeRfOC/UYDGIeTT0zdkjV/d/+hRgbR
- QHz/zyEm25lyI9CQBVxb/Ewt1uV2PcLD0K7irl204wEGZg5jbcYq5X2lvdswziWbNkIf
- Uo7g==
-X-Gm-Message-State: APjAAAWOyQ3q8ClABosnvmTS4FGjPF6ttHVuPiEcoeFL3DJo5Neb2T7S
- ZLA8nzsblauuluoTH5B+vLSqAZjP
-X-Google-Smtp-Source: APXvYqxppA5b4bNQ7GxbXnJF08lbCCYaakZEfO/IqnA3eSCW9BG9atE2B1r3KvM7zlmD8tG5l1UI/g==
-X-Received: by 2002:a1c:4c10:: with SMTP id z16mr5724266wmf.136.1577817394794; 
- Tue, 31 Dec 2019 10:36:34 -0800 (PST)
-Received: from workhorse.lan
- (HSI-KBW-46-223-163-146.hsi.kabel-badenwuerttemberg.de. [46.223.163.146])
- by smtp.googlemail.com with ESMTPSA id p18sm3280678wmg.4.2019.12.31.10.36.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 Dec 2019 10:36:33 -0800 (PST)
-Message-ID: <f2ad9c99336c38d30c9e586643121a31e31866fd.camel@ettus.com>
-To: Varban Metodiev <varban.metodiev@gmail.com>, usrp-users
- <usrp-users@lists.ettus.com>
-Date: Tue, 31 Dec 2019 19:36:32 +0100
-In-Reply-To: <CAKA0MUjQQgobKGFzfjDZUsZmF5UNM75NUNewAk9ojr07V5jP8A@mail.gmail.com>
-References: <CAKA0MUjQQgobKGFzfjDZUsZmF5UNM75NUNewAk9ojr07V5jP8A@mail.gmail.com>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+	id 1imaTB-0001tO-Iq; Wed, 01 Jan 2020 04:39:13 -0500
+Received: from dslsn201.fix.netvision.net.il ([82.166.192.201]:46617
+ helo=sept12.barochoren.com) by mm2.emwd.com with esmtp (Exim 4.92)
+ (envelope-from <baroch@6tzvaim.com>) id 1imaT8-0001q9-JI
+ for usrp-users@lists.ettus.com; Wed, 01 Jan 2020 04:39:10 -0500
+Received: from [192.168.14.139] (bzq-79-178-210-118.red.bezeqint.net
+ [79.178.210.118])
+ by sept12.barochoren.com (Postfix) with ESMTPSA id E9E672251BC;
+ Wed,  1 Jan 2020 11:04:27 +0200 (IST)
+To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>,
+ usrp-users@lists.ettus.com
+References: <c00377a3-bfc9-79eb-a033-6b11611b372d@6tzvaim.com>
+ <d750d9ab21391528e690db20bc4e4530baaebcb1.camel@ettus.com>
+Message-ID: <c3277435-2654-2a3c-6f11-9849db56553e@6tzvaim.com>
+Date: Wed, 1 Jan 2020 11:38:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Subject: Re: [USRP-users] Adding my custom RX module inside the FPGA (USRP
- b205mini)
+In-Reply-To: <d750d9ab21391528e690db20bc4e4530baaebcb1.camel@ettus.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] Gain difference in 4 RX on N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,11 +39,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Baroch Oren via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Baroch Oren <baroch@6tzvaim.com>
+Content-Type: multipart/mixed; boundary="===============3134899761701982128=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,42 +55,146 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Varban,
+--===============3134899761701982128==
+Content-Type: text/html; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-not quite sure I understand what you want:
-The B2xx series only has the streamers it has, so you can either get
-the DDC output, or the output of your module, not both (unless you
-somehow interleave them, and then on the host deinterleave them).
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">body p { margin-bottom: 0cm; margin-top: 0pt; } </style>
+  </head>
+  <body bidimailui-charset-is-forced="true">
+    <p>Hi Marcus, thank you for the reply.</p>
+    <p>I've built and installed UHD using AN-445 "Building and
+      Installing the USRP Open-Source Toolchain (UHD and GNU Radio) on
+      Linux" instructions (<a
+href="https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux">https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux</a>)</p>
+    <p><br>
+    </p>
+    <p>Do you think that a gain setting bug is possible when I set the
+      gain using this code? and the screen output says all channels are
+      set to same gain (60dB)?<br>
+    </p>
+    <p>This code is an adaptation of the rx_multi_samples.cpp example.</p>
+    <p><br>
+    </p>
+    <p><tt>    // detect which channels to use &amp; init them</tt><tt><br>
+      </tt><tt>    std::vector&lt;std::string&gt; channel_strings;</tt><tt><br>
+      </tt><tt>    std::vector&lt;size_t&gt; channel_nums;</tt><tt><br>
+      </tt><tt>    boost::split(channel_strings, channel_list,
+        boost::is_any_of("\"',"));</tt><tt><br>
+      </tt><tt>    int current_channel = 0;</tt><tt><br>
+      </tt><tt>    for (size_t ch = 0; ch &lt; channel_strings.size();
+        ch++) {</tt><tt><br>
+      </tt><tt>        size_t chan = std::stoi(channel_strings[ch]);</tt><tt><br>
+      </tt><tt>        if (chan &gt;= usrp-&gt;get_rx_num_channels()) {</tt><tt><br>
+      </tt><tt>            throw std::runtime_error("Invalid channel(s)
+        specified.");</tt><tt><br>
+      </tt><tt>        } else {</tt><tt><br>
+      </tt><tt>        current_channel = std::stoi(channel_strings[ch]);</tt><tt><br>
+      </tt><tt>            channel_nums.push_back(current_channel);</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>            //set the rx center frequency</tt><tt><br>
+      </tt><tt>        std::cout &lt;&lt; boost::format("Setting RX
+        chan%d Freq: %f Mhz... ") % current_channel % (freq/1e6);</tt><tt><br>
+      </tt><tt>            usrp-&gt;set_rx_freq(freq, current_channel);</tt><tt><br>
+      </tt><tt>            std::cout &lt;&lt; boost::format("Actual: %f
+        Mhz") % (usrp-&gt;get_rx_freq()/1e6) &lt;&lt; std::endl;</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>            // set the rf gain</tt><tt><br>
+      </tt><tt>            if (vm.count("gain")) {</tt><tt><br>
+      </tt><tt>                std::cout &lt;&lt; boost::format("Setting
+        RX chan%d Gain: %f dB... ") % current_channel % gain;</tt><tt><br>
+      </tt><tt>                usrp-&gt;set_rx_gain(gain,
+        current_channel);</tt><tt><br>
+      </tt><tt>                std::cout &lt;&lt; boost::format("Actual
+        RX Gain: %f dB...")</tt><tt><br>
+      </tt><tt>                         %
+        usrp-&gt;get_rx_gain(current_channel)</tt><tt><br>
+      </tt><tt>                  &lt;&lt; std::endl;</tt><tt><br>
+      </tt><tt>            }</tt><tt><br>
+      </tt><tt>    }</tt><tt><br>
+      </tt><tt>    }</tt><br>
+    </p>
+    <p><br>
+    </p>
+    <p>Thanks,</p>
+    <p>Baroch<br>
+    </p>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 25/12/2019 16:18, Marcus Müller
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:d750d9ab21391528e690db20bc4e4530baaebcb1.camel@ettus.com">
+      <pre class="moz-quote-pre" wrap="">Hi Baroch,
 
-Also, unless latency is an important constraint: since the B205mini can
-basically output samples at ADC speed, what's the specific motivation
-to do things on the FPGA?
-
+oh, that's interesting and I must admit I don't really know where to
+start looking into this, but let's take this top-down:
+How are you setting the gain, and how are you doing the capturing?
+My gut feeling tells me there's something in UHD not handling multi-
+channel gain setting right, but lacking an N310 on my desk right now, I
+can't just trace this with a debugger.
+How did you build and install your UHD?
 Best regards,
 Marcus
 
-On Tue, 2019-12-31 at 18:11 +0200, Varban Metodiev via USRP-users
-wrote:
-> Dear all,
-> 
-> I have written a simple RX logic in Verilog and now I want to
-> integrate it inside the FPGA. I have the following questions:
->  
-> 1) What is the correct way to connect it after the DDC (so that I
-> will get 1:1 samples with those from GNURadio)?
-> 2) How should I expose it to the UHD driver? I read the
-> radio_legacy.v example about the custom UHD registers but I couldn't
-> get how to specify the register address mapping.
-> 
-> Thank you in advance,
-> Varban
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+On Wed, 2019-12-25 at 15:29 +0200, Baroch Oren via USRP-users wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">Hello.
+I've been capturing with N310 on 4 channels simultaneously. A strange
+behavioure occurs:
+First experiment: capturing on a single channel when all the other 3
+rx channels are terminated, I get a similar captured gain on every
+one of the RX channels.
+Second experiment: capturing simultaneously, channel 3 (RF2 RX2)
+shows a decreased capture gain in about -14db. all other channels
+show capture gain similar to first experiment.
+Third experiment: capturing simultaneously on 4 channels, all inputs
+terminated: thermal noise of same gain on all 4 channels.
 
+Anyone has any clue for direction to further research this?
+
+My setup: UHD_3.14.1.HEAD-0-g0347a6d8 on Ubuntu
+
+Thanks,
+Baroch Oren
+
+_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <div class="moz-signature">-- <br>
+      <div dir="rtl">
+        <p><bold>ברוך אורן بروح اورن Baroch Oren</bold></p>
+        <p>טל' 058-7799233 cell</p>
+        <p><a href="https://www.patreon.com/barochoren">תמכו באקטיביזם
+            שלי support my activism</a></p>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+--===============3134899761701982128==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3134899761701982128==--
