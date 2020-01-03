@@ -2,84 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D17B112FD05
-	for <lists+usrp-users@lfdr.de>; Fri,  3 Jan 2020 20:27:56 +0100 (CET)
-Received: from [::1] (port=34176 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B51B412FD06
+	for <lists+usrp-users@lfdr.de>; Fri,  3 Jan 2020 20:28:44 +0100 (CET)
+Received: from [::1] (port=35970 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1inSbx-0005Cj-G3; Fri, 03 Jan 2020 14:27:53 -0500
-Received: from mail-eopbgr680055.outbound.protection.outlook.com
- ([40.107.68.55]:10662 helo=NAM04-BN3-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <jerrid.plymale@canyon-us.com>)
- id 1inSbu-00058e-KM
- for usrp-users@lists.ettus.com; Fri, 03 Jan 2020 14:27:50 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kx5l0MTFeUSzD59YMFU5GikVyL/v6at/8deHjGyRHieAMdoW0kW1lQ7D3Q7NB5a2N04ygKeKZO0DFRcSvPfl9DaeRCdb9LXEepa94Q/eADzpYcFQ7yhdZaLdu7ZL2dBwpsfAv5laEYKoEas+FlfzQ0hx3PwR9X18MgrRNaLMk2AQVrntqlKmURboxPp8PdfnjZk9KxiwL/iEPLUrBtDuEXvMWTdShOdfF3bGYWiBfDi0CEnUl/sTUk6u2j87G6xqw0bCo+XaYjr+JEQMtxIwAETur/WbRlW3BOx8S6INJT5b5Jz1GxUZ+8zZ2180RCcwLinQcgt95GmBOI9h2bcWIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LStnR5EiL1lyG5KealRwe0Ff0Xag6Lr0weLSjRyjGIY=;
- b=m0eUf2fv5xKNhLpcz2rSXrhArFpbueUz6Y/32EbKjKGDA4mnF2qUkZ4n1toA/b3sCrxnszc7iBjFpEscKHKW27UowILarltMpOfWcZqCg2BMHUQwC2QNWh3CpK1iX7MIViin28Ns9j0KUuIz6V4JG4reLyvPDclLGfkwCjVg5eawSF+7xMJh0zMpzuErmx0+77Uv68FVyD5vt90A1grJjgtmp5rdw4urmHkKxowGL9RPR+0feKNjFNHSfWivxoHB6aXpHF3tcTaJKHUWQ0nOPbFFcEQfW/hNjeu3xrnKeKzVJoCmZA4MarO6i1uARQaaNrI7JPz1tDZVjppqGcNYPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=canyon-us.com; dmarc=pass action=none
- header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
+	id 1inScl-0005eW-Kh; Fri, 03 Jan 2020 14:28:43 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:43619)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1inSch-0005Sj-R5
+ for usrp-users@lists.ettus.com; Fri, 03 Jan 2020 14:28:39 -0500
+Received: by mail-oi1-f177.google.com with SMTP id p125so12671825oif.10
+ for <usrp-users@lists.ettus.com>; Fri, 03 Jan 2020 11:28:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=canyonconsulting.onmicrosoft.com;
- s=selector2-canyonconsulting-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LStnR5EiL1lyG5KealRwe0Ff0Xag6Lr0weLSjRyjGIY=;
- b=ITYZQDqvcg49oP2FBYdjusm34ZhG8Wrn/LOgTNkB+dKvwr89FzxyAJjsh6XeDGY4hv83kfpR1fQVTF2ddTe8x/2yGknFhU+7zBo6uguP93VxEtvQ8iQY5XXHyeCvuTxhQZq1jn6XDNhiq7dvJjoc/WXiUzMUoP6wUTJ617OtVts=
-Received: from MW2PR1901MB2137.namprd19.prod.outlook.com (52.132.151.149) by
- MW2PR1901MB2187.namprd19.prod.outlook.com (52.132.147.24) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2581.12; Fri, 3 Jan 2020 19:27:05 +0000
-Received: from MW2PR1901MB2137.namprd19.prod.outlook.com
- ([fe80::c5ee:2e44:f17e:c324]) by MW2PR1901MB2137.namprd19.prod.outlook.com
- ([fe80::c5ee:2e44:f17e:c324%5]) with mapi id 15.20.2581.014; Fri, 3 Jan 2020
- 19:27:05 +0000
-To: =?utf-8?B?TWFyY3VzIE3DvGxsZXI=?= <marcus.mueller@ettus.com>
-Thread-Topic: [USRP-users] IOError: [Errno 2] No such file or directory -
- uhd_image_builder_gui crashes when trying to run
-Thread-Index: AQHVwkx5t1k3hE6ezEiGldcoEpdv8KfZUAiAgAAB6DA=
-Date: Fri, 3 Jan 2020 19:27:05 +0000
-Message-ID: <MW2PR1901MB2137F7BEF77557EA8B539737C6230@MW2PR1901MB2137.namprd19.prod.outlook.com>
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=m9gDyouBk3FljFZxwGmXKNKZt1iDEewH9mMxm1QBq64=;
+ b=iRUN6eq339LFaGUCB8kdepnQtUcQa5TMx7OGENCoM+OjyTiJO/ZIHBFN6BeKijCEhB
+ r2ge19H2ETXtNl+IkUSJNyQQ2RpuuCp8QlFNd1O8MWgQ2ohNLYNUUKpQzCty1Z5Xyd6v
+ gO4qFztmFU3HjE/m40krDG0328rxQSbmIvQI4OGq/hdTg4zUr93V2qXTgiBtDD9zBrLw
+ hLlGJN1cBYsoprCLzZIP+sYc3peEswRLtANbGl5JcIVxj8MawNz6XehCZIPbgX277X4m
+ zNmT1qjLPpQqeA9K3OM+9+BrwdxwdiFFR6ok109B76ixsz55kb3YaD6nVfrlJcyziwU+
+ 9noQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=m9gDyouBk3FljFZxwGmXKNKZt1iDEewH9mMxm1QBq64=;
+ b=VuIOcowV1RMPAfQRrjM2AfglFNO2o0XJzaVyfW9gI3ZObCk4wYylFPLYfvOa4x8SZ4
+ VIYvvJVquLInArC2PmAFmGFHQYrrjZ2VrMPkFfCTMjPZn29fpaeyaejlwqGsq3v7H7G7
+ ronneD7R0AbjCsgdZIXdZZq9XjjJy6LNlIqOvOpFXOVj9/k2ePgk2csANRqTlGO9MoQS
+ +JlxE2lyXwiLHszG+bYMvlDzBWc2vH1eO7udXTFnQtGVc1Cx7O9/vT//qNvik/RQghtj
+ D9DEAol+kkbsq6Oji9+puc6g2u/vjDvPH3ombkudart5RIU+MLhnuKpDD4zFnRXdO+lx
+ FDyQ==
+X-Gm-Message-State: APjAAAVpbsHNYxPxi7arrTKqCetOuZcvoXrGs6w/QE0MQ+K27DIqEhuE
+ DDyUzk8TAilKIGQrg5+k1hjSXM6qwPXQu4rikPOzrTUM
+X-Google-Smtp-Source: APXvYqzyWWk0CVcK9o5wSwOAWuwFaeaDf1iYSrw04ITNQp7bjwiurA6HFUxypWSQbzQdwo3g1NDuf/liT7moQ6ps80A=
+X-Received: by 2002:a05:6808:8e5:: with SMTP id
+ d5mr4305378oic.154.1578079679121; 
+ Fri, 03 Jan 2020 11:27:59 -0800 (PST)
+MIME-Version: 1.0
 References: <MW2PR1901MB2137B5985ADB1D60955CA0E6C6230@MW2PR1901MB2137.namprd19.prod.outlook.com>
  <0986444f6acfa153422d73f3f3787ea1d04ef1de.camel@ettus.com>
 In-Reply-To: <0986444f6acfa153422d73f3f3787ea1d04ef1de.camel@ettus.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jerrid.plymale@canyon-us.com; 
-x-originating-ip: [98.153.200.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 04cf6faf-1856-453e-28c2-08d79082eac6
-x-ms-traffictypediagnostic: MW2PR1901MB2187:
-x-microsoft-antispam-prvs: <MW2PR1901MB2187C00FE6EE6529681B5E3AC6230@MW2PR1901MB2187.namprd19.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4502;
-x-forefront-prvs: 0271483E06
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(39830400003)(366004)(346002)(136003)(376002)(199004)(189003)(52536014)(66556008)(4326008)(186003)(26005)(33656002)(2906002)(86362001)(66446008)(66476007)(64756008)(4744005)(508600001)(66946007)(316002)(76116006)(5660300002)(7696005)(6506007)(71200400001)(55016002)(81166006)(6916009)(44832011)(8676002)(8936002)(9686003)(81156014);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR1901MB2187;
- H:MW2PR1901MB2137.namprd19.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: canyon-us.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: k74xIwCJ96WXAbkoPKpJqyFUvxvQDjich+2ERqD9QQ6mJV/nakFu5Jn80LNTMk5KHM0b9I5I6OPY78sy3XVy83+tnj60DNus7xVXSOjeUTvHoZmC7jgXu1Iboolj46nc6OprJ9h7GItTAtAht+iSFY+VXtJTiiXUIQYQR0iG2Yl1yaZbzIhaBef8av0mn7ExnkblLkf2mJlDmM5FiK2/eCm94zhgvhaXbv8voqhSX9lUBEdgZP3ABRv+o6wY1NMoxRJgucS0gRrcnxRzQMxJ9jHMjBcs4M/ABr6GhYOKhnEPOFWLwC0la+xtCx7fqEHSv08AW0Ub8odOXDQKGnVsE/IbJXdhN2sJNDogLO8c9lR0VXEXDCgU2r/G9HbFQvTsikMGEx03snb4vrcTS91EZNYFgKZME7m0pQ0Ydq/9WngsVjzHJEYMZaBXv1yaKZ0q
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: canyon-us.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04cf6faf-1856-453e-28c2-08d79082eac6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jan 2020 19:27:05.4818 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qNgbscjrB/+RsE7h+t4mdeMtn+ZV2AJ1a1wM7Y66oTpZfK5CeXa92Aa2ByCutSM1zsD2roO/uqzQyKUOv0qu5svx7JvJOZ/JoqY2vcloD8U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR1901MB2187
+Date: Fri, 3 Jan 2020 11:29:43 -0800
+Message-ID: <CAL263ix-dVci+cuH7OyL19kd3+z84cZF_5btdN7Wu-YiSJZMFQ@mail.gmail.com>
+To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
 Subject: Re: [USRP-users] IOError: [Errno 2] No such file or directory -
  uhd_image_builder_gui crashes when trying to run
 X-BeenThere: usrp-users@lists.ettus.com
@@ -93,11 +62,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
+ Jerrid Plymale <jerrid.plymale@canyon-us.com>
+Content-Type: multipart/mixed; boundary="===============0481266266085931584=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -111,15 +80,170 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hey Marcus,
+--===============0481266266085931584==
+Content-Type: multipart/alternative; boundary="000000000000b3a437059b414e69"
 
-Thanks for your reply, it reminded me what I needed to do. In the version I am running, the e300 folder has been replaced with the e31x folder, so I just changed the e300 target to e31x in the uhd_image_builder_gui python file and it is working again now. Not sure how to check the version of uhd-fpga repo to tell you the truth.
+--000000000000b3a437059b414e69
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Best Regards, 
+There was recently a change to the directory structure for the E300/E310s.
 
-Jerrid
+If you're running 3.15.0.0, this should be fixed, see the commits from ~Nov
+21 here:
+
+https://github.com/EttusResearch/fpga/commits/v3.15.0.0/usrp3
+
+Regards,
+Nate Temple
+
+On Fri, Jan 3, 2020 at 11:17 AM Marcus M=C3=BCller via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi Jerrid,
+>
+> could you check /home/ck/rfnoc/src/uhd-fpga/usrp3/top/e300/Makefile
+> exists?
+> My uhd-fpga directory has that; I think yours *should*. Which version
+> of the uhd-fpga repo are you using?
+>
+> Best regards,
+> Marcus
+>
+> On Fri, 2020-01-03 at 15:43 +0000, Jerrid Plymale via USRP-users wrote:
+> > Hey All,
+> >
+> > So I recently started having issues with the uhd_image_builder_gui
+> > after doing a fresh install of UHD and GNU Radio with RFNoC. Below is
+> > the output of the terminal when I try to run the gui. Anyone run into
+> > this issue and know how to fix it?
+> >
+> > Traceback (most recent call last):
+> >   File "./uhd_image_builder_gui.py", line 656, in <module>
+> >     main()
+> >   File "./uhd_image_builder_gui.py", line 652, in main
+> >     _window =3D MainWindow()
+> >   File "./uhd_image_builder_gui.py", line 71, in __init__
+> >     self.init_gui()
+> >   File "./uhd_image_builder_gui.py", line 149, in init_gui
+> >     self.populate_target('e300')
+> >   File "./uhd_image_builder_gui.py", line 608, in populate_target
+> >     with open(build_targets) as fil:
+> > IOError: [Errno 2] No such file or directory:
+> > '/home/ck/rfnoc/src/uhd-
+> > fpga/usrp3/tools/scripts/../../top/e300/Makefile'
+> >
+> > Best Regards,
+> >
+> > Jerrid
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000b3a437059b414e69
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">There was recently a change to the directory structure =
+for the E300/E310s.</div><div class=3D"gmail_default" style=3D"font-family:=
+arial,helvetica,sans-serif"><br></div><div class=3D"gmail_default" style=3D=
+"font-family:arial,helvetica,sans-serif">If you&#39;re running 3.15.0.0, th=
+is should be fixed, see the commits from ~Nov 21 here:</div><div class=3D"g=
+mail_default" style=3D"font-family:arial,helvetica,sans-serif"><br></div><d=
+iv class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"=
+><a href=3D"https://github.com/EttusResearch/fpga/commits/v3.15.0.0/usrp3">=
+https://github.com/EttusResearch/fpga/commits/v3.15.0.0/usrp3</a></div><div=
+ class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><=
+br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,=
+sans-serif">Regards,</div><div class=3D"gmail_default" style=3D"font-family=
+:arial,helvetica,sans-serif">Nate Temple<br></div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jan 3, 2020 at 11=
+:17 AM Marcus M=C3=BCller via USRP-users &lt;<a href=3D"mailto:usrp-users@l=
+ists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex">Hi Jerrid, <br>
+<br>
+could you check /home/ck/rfnoc/src/uhd-fpga/usrp3/top/e300/Makefile<br>
+exists?<br>
+My uhd-fpga directory has that; I think yours *should*. Which version<br>
+of the uhd-fpga repo are you using?<br>
+<br>
+Best regards,<br>
+Marcus<br>
+<br>
+On Fri, 2020-01-03 at 15:43 +0000, Jerrid Plymale via USRP-users wrote:<br>
+&gt; Hey All,<br>
+&gt; <br>
+&gt; So I recently started having issues with the uhd_image_builder_gui<br>
+&gt; after doing a fresh install of UHD and GNU Radio with RFNoC. Below is<=
+br>
+&gt; the output of the terminal when I try to run the gui. Anyone run into<=
+br>
+&gt; this issue and know how to fix it?<br>
+&gt; <br>
+&gt; Traceback (most recent call last):<br>
+&gt;=C2=A0 =C2=A0File &quot;./uhd_image_builder_gui.py&quot;, line 656, in =
+&lt;module&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0main()<br>
+&gt;=C2=A0 =C2=A0File &quot;./uhd_image_builder_gui.py&quot;, line 652, in =
+main<br>
+&gt;=C2=A0 =C2=A0 =C2=A0_window =3D MainWindow()<br>
+&gt;=C2=A0 =C2=A0File &quot;./uhd_image_builder_gui.py&quot;, line 71, in _=
+_init__<br>
+&gt;=C2=A0 =C2=A0 =C2=A0self.init_gui()<br>
+&gt;=C2=A0 =C2=A0File &quot;./uhd_image_builder_gui.py&quot;, line 149, in =
+init_gui<br>
+&gt;=C2=A0 =C2=A0 =C2=A0self.populate_target(&#39;e300&#39;)<br>
+&gt;=C2=A0 =C2=A0File &quot;./uhd_image_builder_gui.py&quot;, line 608, in =
+populate_target<br>
+&gt;=C2=A0 =C2=A0 =C2=A0with open(build_targets) as fil:<br>
+&gt; IOError: [Errno 2] No such file or directory:<br>
+&gt; &#39;/home/ck/rfnoc/src/uhd-<br>
+&gt; fpga/usrp3/tools/scripts/../../top/e300/Makefile&#39;<br>
+&gt; <br>
+&gt; Best Regards,<br>
+&gt; <br>
+&gt; Jerrid<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000b3a437059b414e69--
+
+
+--===============0481266266085931584==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0481266266085931584==--
+
