@@ -2,53 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C499F12FCBB
-	for <lists+usrp-users@lfdr.de>; Fri,  3 Jan 2020 19:50:00 +0100 (CET)
-Received: from [::1] (port=50706 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 307DA12FCE9
+	for <lists+usrp-users@lfdr.de>; Fri,  3 Jan 2020 20:17:24 +0100 (CET)
+Received: from [::1] (port=59538 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1inS1H-0001qB-EC; Fri, 03 Jan 2020 13:49:59 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:45814)
+	id 1inSRl-0004NQ-JS; Fri, 03 Jan 2020 14:17:21 -0500
+Received: from mail-wr1-f41.google.com ([209.85.221.41]:47071)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bpadalino@gmail.com>) id 1inS1D-0001iA-89
- for usrp-users@lists.ettus.com; Fri, 03 Jan 2020 13:49:55 -0500
-Received: by mail-oi1-f179.google.com with SMTP id n16so10743877oie.12
- for <usrp-users@lists.ettus.com>; Fri, 03 Jan 2020 10:49:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=90tkhNlaL/GbPTtVWqY8TYSWiO0VUszalHbct02Xc3U=;
- b=QiWymbDdjYI2Vt4rkB3oIgUmPRghUjMMbEVJN89DToxCW5vBEM2wuFZZAWDLSVefAA
- 2MSMA4Dv+wqqM51l0pfH5G5zlH6ZjR3594h3PEW8+zBPfcebwd6VObHQcvuLtrwKIr2+
- eMjwtnDeWuPqlJc+5cz6bUhmxnFJOMX1cmIjBYanp/hID9TqjZkk3vY2FZhyra8IHqst
- FW6n+J5lOQRVvhrbTXQ9E49zJ/xJIMRNhIFrruNOkKR/E4Sqmn7O2g5kMeIf+x/DRNUK
- qAv9A2nk9FSOv4eQbAkH3rGLoIX8V5Ekk7aDMYU6RO61O7u25IqpFUFU5SGBLjQJeXzq
- ujFA==
+ (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
+ id 1inSRi-0004Id-Jb
+ for usrp-users@lists.ettus.com; Fri, 03 Jan 2020 14:17:18 -0500
+Received: by mail-wr1-f41.google.com with SMTP id z7so43292344wrl.13
+ for <usrp-users@lists.ettus.com>; Fri, 03 Jan 2020 11:16:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=vQevn48x64ChSJpe1Z11ZKd+Z90EQ/gdgf2lqek3UEE=;
+ b=dkNg5aR5RK5WYgY0OidVvdaH1TliICaQZW6/f6ZJucY4gHCUAqlxBEkaFQzxJa8h/S
+ aqKicvX0zYt/DyiuxjtpjBjzlDTZYdfRadyuCbkXi385saEl2XAzeDaDhW/n1z2AvleS
+ ONmbXJDUOVE0S//Cpg6xOU4Y9yBAdczSI/7WiY3AjQjJkJUvxak2WvuwHC0rsNkd7GNW
+ 9UY+BerxdnRfvc2q7EfxuoT2rHx2qs/RO/uqVeD//oc1yvqWoW4i/Q5qx2nI9oBpXHVh
+ HLKFCXYMjDnu8uI//KSO6ahZNmgT4eBHvZGdsdWKsx4LOaWj+sXNotpYlmJ7+J+ih9+y
+ THLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=90tkhNlaL/GbPTtVWqY8TYSWiO0VUszalHbct02Xc3U=;
- b=fErPaa0VI1HClmrZ6vh7TBw6yr4Ur/3D/f2gpjznANg/Jn7SHztH6TiwYiGQeeDjmE
- nQKa161cjd+Og5QApEY9xVFxWFLTW2G+kVwUIfbrAEnzM5Q4EVrn/DL8fJ81upYDiYwv
- LbH/FpgnaRP7MK/QirLpGWk1p/hVvzJMbK0RQGJkSr45KzuP1jSw69hbom9X3B3iP4xk
- rpC81Ov0vIbFiGXNAGcEuZTRGebXA0+fjWFI0xp3RKdmYB9yOuOIbz0QUX47b7rAJjT+
- nqmLUIT1lCLr6l0P6CKEhiFt5lgDDhFBtE8j0/RkBORkMmQjeILLtOjGPTA9OeksNJ4n
- 1DLw==
-X-Gm-Message-State: APjAAAUX/YyMGssywspU3afHfpbE2sDijKfncXelXWp2MV3KDACZRqht
- vtquARlCHGXw88MtEseXYy0i16tK8tYvQv0FEdITUUr6
-X-Google-Smtp-Source: APXvYqx7F8/+KHcm4oU9l5yW7Yxzl3mlh1lHIaJwT+nfZd1nd2Uk0tN4e4vwZdlqg5yhKWigQKj3xJAy1Te3u1lXv1I=
-X-Received: by 2002:aca:d5d3:: with SMTP id m202mr4374070oig.161.1578077354475; 
- Fri, 03 Jan 2020 10:49:14 -0800 (PST)
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=vQevn48x64ChSJpe1Z11ZKd+Z90EQ/gdgf2lqek3UEE=;
+ b=Jb2qbyfakLu5bXFSQF3j1jl2rRLgod8NXoZYoHEgEQAKl9o2MVtBIG8GaJzcLoxXbv
+ eLSORwckuCzBiQeTy9EtdcEIHPDDOecxIUKUb96MmYZRu4VCBsq4L7AK8W227QeuEmtm
+ u0TnU1BkvYgjgPaD71Nwak9ATnsDfLTY0Qtro3W0Yp8bvBOeufumZssl4PgBTw6q3OCJ
+ cuMEr3bFZqBe7mmPB09o4HsMYKQy3zWPsfsh+Y9kFWt5G8eRw+2J2chVXM0H8MtUx9Uz
+ ZbWjCG6BkpvKYyK1EF7yfOc0vHBr+H/4i28F6MqDHZt3brRzsTYXP9eamUdicJY6JjyT
+ jbCA==
+X-Gm-Message-State: APjAAAVivwbeSrERh96AZW2irtgvy6Oguplj9r2oG3c11bop+vdGXlV5
+ A6CbniZ2hEsC2mvxVcvxeO5mpFNVuJTe4g==
+X-Google-Smtp-Source: APXvYqzutxI8eegJ57qfnyoj3B2ef7BAE7Q31XOe8I4t5aoOnBMFo4jaGNpJEoSyskVh1JhInL647Q==
+X-Received: by 2002:a5d:67c7:: with SMTP id n7mr57603013wrw.319.1578078997577; 
+ Fri, 03 Jan 2020 11:16:37 -0800 (PST)
+Received: from workhorse.lan
+ (HSI-KBW-46-223-163-146.hsi.kabel-badenwuerttemberg.de. [46.223.163.146])
+ by smtp.googlemail.com with ESMTPSA id q6sm65522889wrx.72.2020.01.03.11.16.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 Jan 2020 11:16:36 -0800 (PST)
+Message-ID: <0986444f6acfa153422d73f3f3787ea1d04ef1de.camel@ettus.com>
+To: Jerrid Plymale <jerrid.plymale@canyon-us.com>, 
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Fri, 03 Jan 2020 20:16:35 +0100
+In-Reply-To: <MW2PR1901MB2137B5985ADB1D60955CA0E6C6230@MW2PR1901MB2137.namprd19.prod.outlook.com>
+References: <MW2PR1901MB2137B5985ADB1D60955CA0E6C6230@MW2PR1901MB2137.namprd19.prod.outlook.com>
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
-References: <3f128547beb4452c88c27a70038afe5d@tudelft.nl>
- <CAEXYVK5k_9JsOfdD3fOd8yp+5rqMFPhCwyCKXiO6uAz980PjGA@mail.gmail.com>
- <64c3e7d188ca4d6c86cb70334f813570@tudelft.nl>
-In-Reply-To: <64c3e7d188ca4d6c86cb70334f813570@tudelft.nl>
-Date: Fri, 3 Jan 2020 13:49:02 -0500
-Message-ID: <CAEXYVK5ozBqeRTMUR58jWdiuVyWx=MvBk6FQPySixOnWn7J5hA@mail.gmail.com>
-To: Cherif Diouf <C.E.V.Diouf@tudelft.nl>
-Subject: Re: [USRP-users] Building RFNoC image with default blocks fails,
- [DRC MDRV-1] Multiple Driver Nets: Net has multiple drivers
+Subject: Re: [USRP-users] IOError: [Errno 2] No such file or directory -
+ uhd_image_builder_gui crashes when trying to run
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,10 +68,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0448347224330751716=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,82 +86,49 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0448347224330751716==
-Content-Type: multipart/alternative; boundary="0000000000002443ab059b40c4c5"
+Hi Jerrid, 
 
---0000000000002443ab059b40c4c5
-Content-Type: text/plain; charset="UTF-8"
+could you check /home/ck/rfnoc/src/uhd-fpga/usrp3/top/e300/Makefile
+exists?
+My uhd-fpga directory has that; I think yours *should*. Which version
+of the uhd-fpga repo are you using?
 
-On Fri, Jan 3, 2020 at 1:41 PM Cherif Diouf <C.E.V.Diouf@tudelft.nl> wrote:
+Best regards,
+Marcus
 
-> I have this version UHD 3.15.0.git-84-g164d76dc
->
-> but the lines are there whenever you use the  ./uhd_image_builder.py
-> scripts.
->
+On Fri, 2020-01-03 at 15:43 +0000, Jerrid Plymale via USRP-users wrote:
+> Hey All,
+> 
+> So I recently started having issues with the uhd_image_builder_gui
+> after doing a fresh install of UHD and GNU Radio with RFNoC. Below is
+> the output of the terminal when I try to run the gui. Anyone run into
+> this issue and know how to fix it?
+> 
+> Traceback (most recent call last):
+>   File "./uhd_image_builder_gui.py", line 656, in <module>
+>     main()
+>   File "./uhd_image_builder_gui.py", line 652, in main
+>     _window = MainWindow()
+>   File "./uhd_image_builder_gui.py", line 71, in __init__
+>     self.init_gui()
+>   File "./uhd_image_builder_gui.py", line 149, in init_gui
+>     self.populate_target('e300')
+>   File "./uhd_image_builder_gui.py", line 608, in populate_target
+>     with open(build_targets) as fil:
+> IOError: [Errno 2] No such file or directory:
+> '/home/ck/rfnoc/src/uhd-
+> fpga/usrp3/tools/scripts/../../top/e300/Makefile'
+> 
+> Best Regards,
+> 
+> Jerrid
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
-Ah, I see it now:
-
-
-https://github.com/EttusResearch/fpga/blob/fde2a94eb7231af859653db8caaf777ae2b66199/usrp3/tools/scripts/uhd_image_builder.py#L44
-
-Someone at Ettus should probably stop assigning those clocks.
-
-Brian
-
->
-
---0000000000002443ab059b40c4c5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"></div><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Jan 3, 2020 at 1:41 PM Cherif Diouf &=
-lt;<a href=3D"mailto:C.E.V.Diouf@tudelft.nl">C.E.V.Diouf@tudelft.nl</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-<div>
-
-<div id=3D"gmail-m_9208784750716756174divtagdefaultwrapper" style=3D"font-s=
-ize:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D"=
-ltr">
-<p></p>
-<div>I have this version UHD 3.15.0.git-84-g164d76dc</div>
-<div><br>
-</div>
-<div>but the lines are there whenever you use the <span>=C2=A0./uhd_image_b=
-uilder.py</span> scripts.</div></div></div></blockquote><div><br></div><div=
->Ah, I see it now:</div><div><br>=C2=A0=C2=A0<a href=3D"https://github.com/=
-EttusResearch/fpga/blob/fde2a94eb7231af859653db8caaf777ae2b66199/usrp3/tool=
-s/scripts/uhd_image_builder.py#L44">https://github.com/EttusResearch/fpga/b=
-lob/fde2a94eb7231af859653db8caaf777ae2b66199/usrp3/tools/scripts/uhd_image_=
-builder.py#L44</a></div><div><br>Someone at Ettus should probably stop assi=
-gning those clocks.</div><div><br>Brian</div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex"><div><div><div dir=3D"ltr"><div class=3D"gmail_quote">
-</div>
-</div>
-</div>
-</div>
-
-</blockquote></div></div>
-
---0000000000002443ab059b40c4c5--
-
-
---===============0448347224330751716==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============0448347224330751716==--
-
