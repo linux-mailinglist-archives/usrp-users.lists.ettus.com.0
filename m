@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48DE312FD6C
-	for <lists+usrp-users@lfdr.de>; Fri,  3 Jan 2020 21:08:37 +0100 (CET)
-Received: from [::1] (port=48676 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E73D12FDD6
+	for <lists+usrp-users@lfdr.de>; Fri,  3 Jan 2020 21:23:07 +0100 (CET)
+Received: from [::1] (port=56316 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1inTFM-000100-5F; Fri, 03 Jan 2020 15:08:36 -0500
-Received: from mail-lf1-f44.google.com ([209.85.167.44]:44868)
+	id 1inTTH-0003Ax-QP; Fri, 03 Jan 2020 15:22:59 -0500
+Received: from mail-lf1-f41.google.com ([209.85.167.41]:42514)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1inTFI-0000tz-52
- for usrp-users@lists.ettus.com; Fri, 03 Jan 2020 15:08:32 -0500
-Received: by mail-lf1-f44.google.com with SMTP id v201so32545714lfa.11
- for <usrp-users@lists.ettus.com>; Fri, 03 Jan 2020 12:08:11 -0800 (PST)
+ id 1inTTD-0002wm-S9
+ for usrp-users@lists.ettus.com; Fri, 03 Jan 2020 15:22:56 -0500
+Received: by mail-lf1-f41.google.com with SMTP id y19so32579289lfl.9
+ for <usrp-users@lists.ettus.com>; Fri, 03 Jan 2020 12:22:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YhspY0013Q8/ncdhFNp3mz+Mdy3rsZbi55KbVljj3jI=;
- b=d5DthE1KC4kF8FeKfwQzfL2wMcsPjJrLr9tXXbXtcTYHw3gEM6ioBIHCQCvnjqpbs5
- wDbKUSweGTESWTjrkQFcTUdjTrbqysEjL7bBJF9ZVeps4MRNf2STkxNdkAw/XUkCg7KI
- R+W1Qzp//MMvsmUSaOD8dWGh2nImpQ3BwG9iDtKJH7TpeYjL67A2ZOG88BTy9I6MyChF
- PqKmh7xZw2v7NRVx6QBaxZRjJ5VQEi9lSYC2unNtxpGw5YiDM/CBhY2DyeP9U9SbXQ+J
- NJfU125dsVd2OGLt3iPVA9wzuxJ1GPnYbUHm/CVgw4Ua8fugqCiHJJn3sCCOzUnSfzFy
- kZaA==
+ :cc; bh=OHnL53uNz7EBrWDXMzJYYHU+wVGJE538STlQ5A0VI8M=;
+ b=bAc1A1+nvN7x7BZ8nHlgrWKA8xJf4rTEtYkPrwPqbxMmxbHLnyMN/G2UBfRimbxlt6
+ cCh6yx0sz0qodYp5YziZo5Jsv97uEhNInuQhY24YgYlZmATg43CIlO9dFZg91i8KoW1b
+ WqiPXi0bBT8CnpCyEVUoGOm74vMmjHdzw4wN+gB5WL8Gh9M0P4qhtismJbCr7WPC1Djg
+ zr04YJRxkSupsdR32ZRlk23Nqei2u5XKlwaFTcD6smjPAOZFn1IW7uKX9xNINP7zdbf8
+ zszjnrmvSTgbYOde2RjEyz3RHskbwo6v83uXu4/8DCKNrJVKNSlhduasxQ1IQFtzagJr
+ FClQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=YhspY0013Q8/ncdhFNp3mz+Mdy3rsZbi55KbVljj3jI=;
- b=gr2OG/6e2gnt2drXkTrZyXM5BFr0thyN6s6U/o5NleoKTQITT0TcLdLufLyuo4I+WK
- l89tsqaZbai9myEmnyxCZvj5cF2QoDCIe85UB2CGQHDnoW8zOhitjsh8cjBMZKMBRPMN
- 3FAUJEhOc8ezzuFK5zkag9AZr4Ri+JTW0usiIgdGPM1snYt3xKRWpahDK3qslwFgrHDO
- uEDTDmBtURjUKL7fgrDJCT3ICgMXnLiPyRzbPvhyBhoyXlg45bx/Qb1MQQgNez8FLQAo
- lT5ROEtnAy/mibl04c3w87IjB0pkMCmZbUsvsQmRuUdniTSxGoDhupAxEh4KzVnsURpM
- zqjg==
-X-Gm-Message-State: APjAAAUNPV186/N1oPc302XkgMclCkJVKUErigD67Rx12Nu9m7zbzsEE
- 5puqw1vl5DgMRXF4nuu0hMNvmr5jd47FTaODzk1W+hga
-X-Google-Smtp-Source: APXvYqxs1n5E1ZhL/3ykGSTnMo75L9FLIHlhT77zoTCCPhJ254F5z91V6icOtDnJ+MqlmO+bjkRMQjZSrISl1mi+Fn0=
-X-Received: by 2002:ac2:485c:: with SMTP id 28mr50486692lfy.118.1578082070695; 
- Fri, 03 Jan 2020 12:07:50 -0800 (PST)
+ bh=OHnL53uNz7EBrWDXMzJYYHU+wVGJE538STlQ5A0VI8M=;
+ b=G1UuOGe1bXnsccwVIZwCow0Od2AZY3lxUBw/Vr8Nby9ozfLgO63/VCCsM5bfY0c6lX
+ egR7V20E/FnzUesEZAAU1aC4EiBguw5+Er4qcMuEvx2uPIp41JvWl87H7cJNA4lKpoBq
+ Dx1sziDUBwyB1wLRVYaw6vw6nGy8SW+IsBSQ+xqnnInt68L9mJWuePFrjNTm0iT6uX9r
+ 4Qn0QZdPNpch4GfOGjpK/gLOd4QeufZJM7gE7ugFaDje05pe+PsdymjmJzNh/8LPZozo
+ cLDlLoS13LPfjQXooeRfBLEO50gLljkcpqtZ1V5X1CpS3spSCT0wmmYIG3L2Qm0tP5EA
+ zfrg==
+X-Gm-Message-State: APjAAAX3HDayfsiGXx3JL+94GF/hklok+/8ZejE560VhkO+BCEZJ1DkX
+ WPjpTAz6vYq0g3FyK5V5zMrdV3CLuNT1DJ7c1umXJckl
+X-Google-Smtp-Source: APXvYqxEgakOeXTZI/saRc3uZ30Y3tk11QE4XfFNvGFizj5ANRA6YulFy7+OjP5epkTO9nAMaUaheAMSxwu/gYMVPR8=
+X-Received: by 2002:ac2:5503:: with SMTP id j3mr50276183lfk.104.1578082934633; 
+ Fri, 03 Jan 2020 12:22:14 -0800 (PST)
 MIME-Version: 1.0
-References: <CAL1aUnrOitAYD9ureD5OcTrFkwE_=bXfLtcS=NBXY2YxGe=hcg@mail.gmail.com>
-In-Reply-To: <CAL1aUnrOitAYD9ureD5OcTrFkwE_=bXfLtcS=NBXY2YxGe=hcg@mail.gmail.com>
-Date: Fri, 3 Jan 2020 14:07:41 -0600
-Message-ID: <CANf970ahoj1zKg0MG47GN8oznYz6kRV9gXC-G3BGEY_WFXY7og@mail.gmail.com>
-To: Subu Rama <subu.rama@gmail.com>
-Subject: Re: [USRP-users] Cannot update FPGA image on USRP E320
+References: <e44a32d6-8d73-b567-eda2-ce00144c592a@eurecom.fr>
+In-Reply-To: <e44a32d6-8d73-b567-eda2-ce00144c592a@eurecom.fr>
+Date: Fri, 3 Jan 2020 14:22:04 -0600
+Message-ID: <CANf970b5b0igU4ag--+4DHdopWHr+gsuwU5wEupyXcKEA9m3FQ@mail.gmail.com>
+To: Florian Kaltenberger <florian.kaltenberger@eurecom.fr>
+Subject: Re: [USRP-users] DPDK runtime error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,8 +61,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1412642211995266201=="
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0562718411084205108=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,264 +76,236 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1412642211995266201==
-Content-Type: multipart/alternative; boundary="000000000000401ef0059b41ddae"
+--===============0562718411084205108==
+Content-Type: multipart/alternative; boundary="000000000000bece5c059b4210ca"
 
---000000000000401ef0059b41ddae
+--000000000000bece5c059b4210ca
 Content-Type: text/plain; charset="UTF-8"
 
-Hey Subu,
+Florian,
 
-I'd suspect that the MPM versioning is the issue here. You can manually
-compile and install MPM on your E320, or you can simply reflash your SD
-card with the latest SDimg. Based on when this was posted vs when v3.15.0.0
-was tagged, I'd guess you're working with a release candidate and didn't
-have access to a fresh filesystem image to install. You'll want to install
-v3.15.0.0 on your host first, then follow this guide for the mender update:
-
-https://kb.ettus.com/E320_Getting_Started_Guide#Mender_Update_Process
-
-Or this guide for reflashing the SD card by physically inserting it into
-your PC (you need to take the backplate off the E320 to access the SD):
-
-https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card
+DPDK 18.11 is not supported on UHD 3.x. You'll need to use DPDK 17.11.
 
 Sam Reiter
 Ettus Research
 
-On Tue, Dec 24, 2019 at 12:15 PM Subu Rama via USRP-users <
+On Mon, Dec 23, 2019 at 9:51 AM Florian Kaltenberger via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> I am going to run my USRP E320 in host mode. To make sure that the FPGA
-> images on my development host and E320 match, I am trying to upload 1G FPGA
-> image to the E320.
+> Dear all,
 >
-> The following is the process I am following:
+> we have finally managed to set up UHD (3.15) with DPDK (18.11) support on
+> our RedHat 7 system (both installed from source) with our N310. I have
+> configured the system as explained here
+> http://files.ettus.com/manual/page_dpdk.html but when calling
 >
-> Network interfaces on the E320:
+> uhd_usrp_probe --args
+> "use_dpdk=1,mgmt_addr=192.168.12.1,addr=192.168.10.2,second_addr=192.168.20.2,master_clock_rate=122.88e6,type=n3xx"
 >
-> root@ni-e320-31BB638:~# ip a
-> 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
->     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
->     inet 127.0.0.1/8 scope host lo
->        valid_lft forever preferred_lft forever
-> 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen
-> 1000
->     link/ether 00:80:2f:28:8d:7e brd ff:ff:ff:ff:ff:ff
->     inet 192.168.1.2/24 brd 192.168.1.255 scope global eth0
->        valid_lft forever preferred_lft forever
-> 3: sfp0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen
-> 1000
->     link/ether 00:80:2f:28:8d:7f brd ff:ff:ff:ff:ff:ff
->     inet 192.168.10.2/24 brd 192.168.10.255 scope global sfp0
->        valid_lft forever preferred_lft forever
->
-> --------------------------------------------------------------
-> Trying to upload the 1G image to the E320:
->
-> gnuradio@nuc-qrc3 (UHD-3.15.LTS):/usr/local/src/uhd/fpga-src >>
-> uhd_image_loader --args
-> "type=e3xx,product=e320,mgmt_addr=192.168.1.2,fpga=1G"
-> [INFO] [UHD] linux; GNU C++ version 9.2.1 20191008; Boost_107100;
-> UHD_3.15.0.0-0-g4e06022c
+> I am getting the following runtime error (all the way at the bottom):
+> [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-39);
+> Boost_106900; UHD_3.15.0.0-0-g4e06022c
+> EAL: Detected 10 lcore(s)
+> EAL: No free hugepages reported in hugepages-1048576kB
+> EAL: Probing VFIO support...
+> EAL: VFIO support initialized
+> EAL: PCI device 0000:00:19.0 on NUMA socket 0
+> EAL:   probe driver: 8086:153a net_e1000_em
+> EAL: PCI device 0000:01:00.0 on NUMA socket 0
+> EAL:   probe driver: 8086:1572 net_i40e
+> EAL: PCI device 0000:01:00.1 on NUMA socket 0
+> EAL:   probe driver: 8086:1572 net_i40e
+> EAL:   using IOMMU type 1 (Type 1)
+> PMD: Global register is changed during enable FDIR flexible payload
+> PMD: Global register is changed during support QinQ parser
+> PMD: Global register is changed during configure hash input set
+> PMD: Global register is changed during configure fdir mask
+> PMD: Global register is changed during configure hash mask
+> PMD: Global register is changed during support QinQ cloud filter
+> PMD: Global register is changed during support TPID configuration
+> EAL: PCI device 0000:01:00.2 on NUMA socket 0
+> EAL:   probe driver: 8086:1572 net_i40e
+> EAL: PCI device 0000:01:00.3 on NUMA socket 0
+> EAL:   probe driver: 8086:1572 net_i40e
+> PMD: Global register is changed during enable FDIR flexible payload
+> PMD: Global register is changed during support QinQ parser
+> PMD: Global register is changed during configure hash input set
+> PMD: Global register is changed during configure fdir mask
+> PMD: Global register is changed during configure hash mask
+> PMD: Global register is changed during support QinQ cloud filter
+> PMD: Global register is changed during support TPID configuration
+> EAL: Waiting for links to come up...
+> EAL: Init DONE!
+> EAL: Starting I/O threads!
 > [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=192.168.1.2,type=e3xx,product=e320,serial=31BB638,claimed=False,skip_init=1
-> [INFO] [MPMD] Claimed device without full initialization.
-> [INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.
-> [INFO] [MPM.PeriphManager] Updating component `fpga'
-> [INFO] [MPM.PeriphManager] Updating component `dts'
-> [ERROR] [MPM.PeriphManager] Error executing `dtc': Command '['dtc',
-> '--symbols', '-O', 'dtb', '-q', '-o', '/lib/firmware/e320.dtbo',
-> '/lib/firmware/e320.dts']' returned non-zero exit status 1
-> [INFO] [MPM.RPCServer] Resetting peripheral manager.
-> [INFO] [MPM.PeriphManager] Device serial number: 31BB638
-> [INFO] [MPMD IMAGE LOADER] Update component function succeeded.
-> [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
-> [WARNING] [MPM.PeriphManager] Actual minor compat ahead of expected compat
-> for component `FPGA'. Expected: 3.0 Actual: 3.1
->
-> -----------------------
-> Result of a probe:
->
-> gnuradio@nuc-qrc3 (UHD-3.15.LTS):/usr/local/src/uhd/fpga-src >>
-> uhd_usrp_probe --args "addr=192.168.10.2"
-> [INFO] [UHD] linux; GNU C++ version 9.2.1 20191008; Boost_107100;
-> UHD_3.15.0.0-0-g4e06022c
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=192.168.10.2,type=e3xx,product=e320,serial=31BB638,claimed=False,addr=192.168.10.2
-> [INFO] [MPM.main] Launching USRP/MPM, version: 3.13.0.2-gunknown
-> [INFO] [MPM.main] Spawning RPC process...
-> [INFO] [MPM.PeriphManager] Device serial number: 31BB638
-> [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
-> [WARNING] [MPM.PeriphManager] Actual minor compat ahead of expected compat
-> for component `FPGA'. Expected: 3.0 Actual: 3.1
-> [INFO] [MPM.RPCServer] RPC server ready!
-> [INFO] [MPM.RPCServer] Spawning watchdog task...
-> [WARNING] [MPMD] Could not determine link speed; using 1GibE max speed of
-> 1.25e+08
-> [WARNING] [MPMD] Could not determine link speed; using 1GibE max speed of
-> 1.25e+08
-> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
-> 0xF1F0D00000000000)
+> mgmt_addr=192.168.12.1,type=n3xx,product=n310,serial=31641BC,claimed=False,use_dpdk=1,addr=192.168.10.2,second_addr=192.168.20.2,master_clock_rate=122.88e6
 > [INFO] [MPM.PeriphManager] init() called with device args
-> `product=e320,mgmt_addr=192.168.10.2'.
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1329 MB/s)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1336 MB/s)
-> [WARNING] [MPMD] Could not determine link speed; using 1GibE max speed of
-> 1.25e+08
-> [WARNING] [MPMD] Could not determine link speed; using 1GibE max speed of
-> 1.25e+08
-> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000003320)
-> [WARNING] [MPMD] Could not determine link speed; using 1GibE max speed of
-> 1.25e+08
-> [WARNING] [MPMD] Could not determine link speed; using 1GibE max speed of
-> 1.25e+08
-> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [WARNING] [MPMD] Could not determine link speed; using 1GibE max speed of
-> 1.25e+08
-> [WARNING] [MPMD] Could not determine link speed; using 1GibE max speed of
-> 1.25e+08
-> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
-> [ERROR] [UHD] Exception caught in safe-call.
->   in uhd::mpmd::mpmd_mboard_impl::~mpmd_mboard_impl()
->   at /usr/local/src/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cpp:308
-> dump_logs(); _claimer_task.reset(); _xport_mgr.reset(); if (not
-> rpc->request_with_token<bool>("unclaim")) {
-> uhd::_log::log(uhd::log::warning,
-> "/usr/local/src/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cpp", 310, "MPMD",
-> boost::this_thread::get_id()) << "Failure to ack unclaim!";; } ->
-> rpc::timeout: Timeout of 2000ms while calling RPC function 'unclaim'
-> Error: rpc::timeout: Timeout of 60000ms while calling RPC function
-> 'db_0_catalina_tune'
-> .....
+> `mgmt_addr=192.168.12.1,product=n310,master_clock_rate=122.88e6,second_addr=192.168.20.2,use_dpdk=1,clock_source=internal,time_source=internal'.
+> EAL: Please set IPv4 address for port 0 before opening socket
+> [ERROR] [MPMD] Failure during block enumeration: AssertionError: _rx_sock
+> != nullptr
+>   in uhd::transport::dpdk_zero_copy_impl::dpdk_zero_copy_impl(const
+> uhd::transport::uhd_dpdk_ctx&, unsigned int, const string&, const string&,
+> const string&, const uhd::transport::zero_copy_xport_params&)
 >
-> See that this still shows USRP 3.13 version:
+> I am also copying the output of "dpdk-devbind  --status" which shows that
+> the two interfaces connected to the USRP use the vfio-pci driver for DPDK
 >
-> [INFO] [MPM.main] Launching USRP/MPM, version: 3.13.0.2-gunknown
+> Network devices using DPDK-compatible driver
+> ============================================
+> 0000:01:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=vfio-pci
+> unused=i40e
+> 0000:01:00.3 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=vfio-pci
+> unused=i40e
 >
-> So, how do I get the uhd_image_loader command to run successfully to get
-> the 3.15 version on the E320?
+> Network devices using kernel driver
+> ===================================
+> 0000:00:19.0 'Ethernet Connection I217-LM 153a' if=enp0s25 drv=e1000e
+> unused=vfio-pci *Active*
+> 0000:01:00.0 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=p1p1
+> drv=i40e unused=vfio-pci
+> 0000:01:00.2 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=p1p3
+> drv=i40e unused=vfio-pci
 >
-> Thank you
-> Subu
+> What surprises me is that in the output of the uhd_usrp_probe, it does not
+> say it is using the driver for DPDK. any ideas what could be wrong?
 >
->
->
+> Florian.
+> --
+> Follow us on Google+ <https://plus.google.com/+OpenairinterfaceOrg>,
+> LinkedIn <https://www.linkedin.com/company/openairinterface>, or Twitter
+> <https://twitter.com/osalliance5g>!
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000401ef0059b41ddae
+--000000000000bece5c059b4210ca
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hey Subu,<div><br></div><div>I&#39;d suspect that the MPM =
-versioning is the issue here. You can manually compile and install MPM on y=
-our E320, or you can simply reflash your SD card with the latest SDimg. Bas=
-ed on when this was posted vs when v3.15.0.0 was tagged, I&#39;d guess you&=
-#39;re working with a release candidate and didn&#39;t have access to a fre=
-sh filesystem image to install. You&#39;ll want to install v3.15.0.0 on you=
-r host first, then follow this guide for the mender update:</div><div><br><=
-/div><div><a href=3D"https://kb.ettus.com/E320_Getting_Started_Guide#Mender=
-_Update_Process">https://kb.ettus.com/E320_Getting_Started_Guide#Mender_Upd=
-ate_Process</a><br></div><div><br></div><div>Or this guide for reflashing t=
-he SD card by physically inserting it into your PC (you need to take the ba=
-ckplate off the E320 to access the SD):</div><div><br></div><div><a href=3D=
-"https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card"=
->https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card<=
-/a><br></div><div><br></div><div><div><div dir=3D"ltr" class=3D"gmail_signa=
-ture" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"=
-ltr">Sam Reiter=C2=A0<div>Ettus Research</div></div></div></div></div></div=
-></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Tue, Dec 24, 2019 at 12:15 PM Subu Rama via USRP-users &lt;<a hre=
-f=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div>I am going to run my USRP E320 in host mode. To make sure tha=
-t the FPGA images on my development host and E320 match, I am trying to upl=
-oad 1G FPGA image to the E320.</div><div><br></div><div>The following is th=
-e process I am following:</div><div><br></div><div>Network interfaces on th=
-e E320:</div><div><br></div><div>root@ni-e320-31BB638:~# ip a<br>1: lo: &lt=
-;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000<br>=C2=A0 =C2=
-=A0 link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00<br>=C2=A0 =C2=A0 =
-inet <a href=3D"http://127.0.0.1/8" target=3D"_blank">127.0.0.1/8</a> scope=
- host lo<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0valid_lft forever preferred_lft fore=
-ver<br>2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfif=
-o_fast qlen 1000<br>=C2=A0 =C2=A0 link/ether 00:80:2f:28:8d:7e brd ff:ff:ff=
-:ff:ff:ff<br>=C2=A0 =C2=A0 inet <a href=3D"http://192.168.1.2/24" target=3D=
-"_blank">192.168.1.2/24</a> brd 192.168.1.255 scope global eth0<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0valid_lft forever preferred_lft forever<br>3: sfp0: &lt=
-;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000<br=
->=C2=A0 =C2=A0 link/ether 00:80:2f:28:8d:7f brd ff:ff:ff:ff:ff:ff<br>=C2=A0=
- =C2=A0 inet <a href=3D"http://192.168.10.2/24" target=3D"_blank">192.168.1=
-0.2/24</a> brd 192.168.10.255 scope global sfp0<br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0valid_lft forever preferred_lft forever</div><div><br></div><div>-------=
--------------------------------------------------------<br></div><div>Tryin=
-g to upload the 1G image to the E320:<br></div><div><br></div><div>gnuradio=
-@nuc-qrc3 (UHD-3.15.LTS):/usr/local/src/uhd/fpga-src &gt;&gt; uhd_image_loa=
-der --args &quot;type=3De3xx,product=3De320,mgmt_addr=3D192.168.1.2,fpga=3D=
-1G&quot;<br>[INFO] [UHD] linux; GNU C++ version 9.2.1 20191008; Boost_10710=
-0; UHD_3.15.0.0-0-g4e06022c<br>[INFO] [MPMD] Initializing 1 device(s) in pa=
-rallel with args: mgmt_addr=3D192.168.1.2,type=3De3xx,product=3De320,serial=
-=3D31BB638,claimed=3DFalse,skip_init=3D1<br>[INFO] [MPMD] Claimed device wi=
-thout full initialization.<br>[INFO] [MPMD IMAGE LOADER] Starting update. T=
-his may take a while.<br>[INFO] [MPM.PeriphManager] Updating component `fpg=
-a&#39;<br>[INFO] [MPM.PeriphManager] Updating component `dts&#39;<br>[ERROR=
-] [MPM.PeriphManager] Error executing `dtc&#39;: Command &#39;[&#39;dtc&#39=
-;, &#39;--symbols&#39;, &#39;-O&#39;, &#39;dtb&#39;, &#39;-q&#39;, &#39;-o&=
-#39;, &#39;/lib/firmware/e320.dtbo&#39;, &#39;/lib/firmware/e320.dts&#39;]&=
-#39; returned non-zero exit status 1<br>[INFO] [MPM.RPCServer] Resetting pe=
-ripheral manager.<br>[INFO] [MPM.PeriphManager] Device serial number: 31BB6=
-38<br>[INFO] [MPMD IMAGE LOADER] Update component function succeeded.<br>[I=
-NFO] [MPM.PeriphManager] Found 1 daughterboard(s).<br>[WARNING] [MPM.Periph=
-Manager] Actual minor compat ahead of expected compat for component `FPGA&#=
-39;. Expected: 3.0 Actual: 3.1</div><div><br></div><div>-------------------=
-----</div><div>Result of a probe:</div><div><br></div><div>gnuradio@nuc-qrc=
-3 (UHD-3.15.LTS):/usr/local/src/uhd/fpga-src &gt;&gt; uhd_usrp_probe --args=
- &quot;addr=3D192.168.10.2&quot;<br>[INFO] [UHD] linux; GNU C++ version 9.2=
-.1 20191008; Boost_107100; UHD_3.15.0.0-0-g4e06022c<br>[INFO] [MPMD] Initia=
-lizing 1 device(s) in parallel with args: mgmt_addr=3D192.168.10.2,type=3De=
-3xx,product=3De320,serial=3D31BB638,claimed=3DFalse,addr=3D192.168.10.2<br>=
-[INFO] [MPM.main] Launching USRP/MPM, version: 3.13.0.2-gunknown<br>[INFO] =
-[MPM.main] Spawning RPC process...<br>[INFO] [MPM.PeriphManager] Device ser=
-ial number: 31BB638<br>[INFO] [MPM.PeriphManager] Found 1 daughterboard(s).=
-<br>[WARNING] [MPM.PeriphManager] Actual minor compat ahead of expected com=
-pat for component `FPGA&#39;. Expected: 3.0 Actual: 3.1<br>[INFO] [MPM.RPCS=
-erver] RPC server ready!<br>[INFO] [MPM.RPCServer] Spawning watchdog task..=
-.<br>[WARNING] [MPMD] Could not determine link speed; using 1GibE max speed=
- of 1.25e+08<br>[WARNING] [MPMD] Could not determine link speed; using 1Gib=
-E max speed of 1.25e+08<br>[INFO] [0/DmaFIFO_0] Initializing block control =
-(NOC ID: 0xF1F0D00000000000)<br>[INFO] [MPM.PeriphManager] init() called wi=
-th device args `product=3De320,mgmt_addr=3D192.168.10.2&#39;.<br>[INFO] [0/=
-DmaFIFO_0] BIST passed (Throughput: 1329 MB/s)<br>[INFO] [0/DmaFIFO_0] BIST=
- passed (Throughput: 1336 MB/s)<br>[WARNING] [MPMD] Could not determine lin=
-k speed; using 1GibE max speed of 1.25e+08<br>[WARNING] [MPMD] Could not de=
-termine link speed; using 1GibE max speed of 1.25e+08<br>[INFO] [0/Radio_0]=
- Initializing block control (NOC ID: 0x12AD100000003320)<br>[WARNING] [MPMD=
-] Could not determine link speed; using 1GibE max speed of 1.25e+08<br>[WAR=
-NING] [MPMD] Could not determine link speed; using 1GibE max speed of 1.25e=
-+08<br>[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000=
-000)<br>[WARNING] [MPMD] Could not determine link speed; using 1GibE max sp=
-eed of 1.25e+08<br>[WARNING] [MPMD] Could not determine link speed; using 1=
-GibE max speed of 1.25e+08<br>[INFO] [0/DUC_0] Initializing block control (=
-NOC ID: 0xD0C0000000000002)</div><div>[ERROR] [UHD] Exception caught in saf=
-e-call.<br>=C2=A0 in uhd::mpmd::mpmd_mboard_impl::~mpmd_mboard_impl()<br>=
-=C2=A0 at /usr/local/src/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cpp:308<br=
->dump_logs(); _claimer_task.reset(); _xport_mgr.reset(); if (not rpc-&gt;re=
-quest_with_token&lt;bool&gt;(&quot;unclaim&quot;)) { uhd::_log::log(uhd::lo=
-g::warning, &quot;/usr/local/src/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cp=
-p&quot;, 310, &quot;MPMD&quot;, boost::this_thread::get_id()) &lt;&lt; &quo=
-t;Failure to ack unclaim!&quot;;; } -&gt; rpc::timeout: Timeout of 2000ms w=
-hile calling RPC function &#39;unclaim&#39;<br>Error: rpc::timeout: Timeout=
- of 60000ms while calling RPC function &#39;db_0_catalina_tune&#39;<br></di=
-v><div>.....</div><div><br></div><div>See that this still shows USRP 3.13 v=
-ersion:</div><div><br></div><div>[INFO] [MPM.main] Launching USRP/MPM, vers=
-ion: 3.13.0.2-gunknown</div><div><br></div><div>So, how do I get the uhd_im=
-age_loader command to run successfully to get the 3.15 version on the E320?=
-</div><div><br></div><div>Thank you</div><div>Subu</div><div><br></div><div=
-><br></div><div><br></div></div>
+<div dir=3D"ltr">Florian,<div><br></div><div>DPDK 18.11 is not supported on=
+ UHD 3.x. You&#39;ll need to use DPDK 17.11.=C2=A0</div><div><br clear=3D"a=
+ll"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail=
+_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0<div>Ett=
+us Research</div></div></div></div></div></div></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 23, 2019=
+ at 9:51 AM Florian Kaltenberger via USRP-users &lt;<a href=3D"mailto:usrp-=
+users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+
+   =20
+ =20
+  <div>
+    <p>Dear all,</p>
+    <p>we have finally managed to set up UHD (3.15) with DPDK (18.11)
+      support on our RedHat 7 system (both installed from source) with
+      our N310. I have configured the system as explained here <a href=3D"h=
+ttp://files.ettus.com/manual/page_dpdk.html" target=3D"_blank">http://files=
+.ettus.com/manual/page_dpdk.html</a>
+      but when calling <br>
+    </p>
+    <p>uhd_usrp_probe --args
+&quot;use_dpdk=3D1,mgmt_addr=3D192.168.12.1,addr=3D192.168.10.2,second_addr=
+=3D192.168.20.2,master_clock_rate=3D122.88e6,type=3Dn3xx&quot;<br>
+    </p>
+    <p>I am getting the following runtime error (all the way at the
+      bottom):</p>
+    [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat
+    4.8.5-39); Boost_106900; UHD_3.15.0.0-0-g4e06022c<br>
+    EAL: Detected 10 lcore(s)<br>
+    EAL: No free hugepages reported in hugepages-1048576kB<br>
+    EAL: Probing VFIO support...<br>
+    EAL: VFIO support initialized<br>
+    EAL: PCI device 0000:00:19.0 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:153a net_e1000_em<br>
+    EAL: PCI device 0000:01:00.0 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:1572 net_i40e<br>
+    EAL: PCI device 0000:01:00.1 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:1572 net_i40e<br>
+    EAL:=C2=A0=C2=A0 using IOMMU type 1 (Type 1)<br>
+    PMD: Global register is changed during enable FDIR flexible payload<br>
+    PMD: Global register is changed during support QinQ parser<br>
+    PMD: Global register is changed during configure hash input set<br>
+    PMD: Global register is changed during configure fdir mask<br>
+    PMD: Global register is changed during configure hash mask<br>
+    PMD: Global register is changed during support QinQ cloud filter<br>
+    PMD: Global register is changed during support TPID configuration<br>
+    EAL: PCI device 0000:01:00.2 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:1572 net_i40e<br>
+    EAL: PCI device 0000:01:00.3 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:1572 net_i40e<br>
+    PMD: Global register is changed during enable FDIR flexible payload<br>
+    PMD: Global register is changed during support QinQ parser<br>
+    PMD: Global register is changed during configure hash input set<br>
+    PMD: Global register is changed during configure fdir mask<br>
+    PMD: Global register is changed during configure hash mask<br>
+    PMD: Global register is changed during support QinQ cloud filter<br>
+    PMD: Global register is changed during support TPID configuration<br>
+    EAL: Waiting for links to come up...<br>
+    EAL: Init DONE!<br>
+    EAL: Starting I/O threads!<br>
+    [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=3D192.168.12.1,type=3Dn3xx,product=3Dn310,serial=3D31641BC,claime=
+d=3DFalse,use_dpdk=3D1,addr=3D192.168.10.2,second_addr=3D192.168.20.2,maste=
+r_clock_rate=3D122.88e6<br>
+    [INFO] [MPM.PeriphManager] init() called with device args
+`mgmt_addr=3D192.168.12.1,product=3Dn310,master_clock_rate=3D122.88e6,secon=
+d_addr=3D192.168.20.2,use_dpdk=3D1,clock_source=3Dinternal,time_source=3Din=
+ternal&#39;.<br>
+    <font color=3D"#ff0000">EAL: Please set IPv4 address for port 0 before
+      opening socket<br>
+      [ERROR] [MPMD] Failure during block enumeration: AssertionError:
+      _rx_sock !=3D nullptr<br>
+      =C2=A0 in
+      uhd::transport::dpdk_zero_copy_impl::dpdk_zero_copy_impl(const
+      uhd::transport::uhd_dpdk_ctx&amp;, unsigned int, const
+      string&amp;, const string&amp;, const string&amp;, const
+      uhd::transport::zero_copy_xport_params&amp;)</font><br>
+    <p>I am also copying the output of &quot;dpdk-devbind=C2=A0 --status&qu=
+ot; which
+      shows that the two interfaces connected to the USRP use the
+      vfio-pci driver for DPDK<br>
+    </p>
+    <p>Network devices using DPDK-compatible driver<br>
+      =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+      0000:01:00.1 &#39;Ethernet Controller X710 for 10GbE SFP+ 1572&#39;
+      drv=3Dvfio-pci unused=3Di40e<br>
+      0000:01:00.3 &#39;Ethernet Controller X710 for 10GbE SFP+ 1572&#39;
+      drv=3Dvfio-pci unused=3Di40e<br>
+      <br>
+      Network devices using kernel driver<br>
+      =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+      0000:00:19.0 &#39;Ethernet Connection I217-LM 153a&#39; if=3Denp0s25
+      drv=3De1000e unused=3Dvfio-pci *Active*<br>
+      0000:01:00.0 &#39;Ethernet Controller X710 for 10GbE SFP+ 1572&#39;
+      if=3Dp1p1 drv=3Di40e unused=3Dvfio-pci <br>
+      0000:01:00.2 &#39;Ethernet Controller X710 for 10GbE SFP+ 1572&#39;
+      if=3Dp1p3 drv=3Di40e unused=3Dvfio-pci <br>
+      <br>
+    </p>
+    <p>What surprises me is that in the output of the uhd_usrp_probe, it
+      does not say it is using the driver for DPDK. any ideas what could
+      be wrong?</p>
+    <p>Florian.<br>
+    </p>
+    <div>-- <br>
+     =20
+     =20
+      Follow us on <a href=3D"https://plus.google.com/+OpenairinterfaceOrg"=
+ target=3D"_blank">Google+</a>,
+      <a href=3D"https://www.linkedin.com/company/openairinterface" target=
+=3D"_blank">LinkedIn</a>,
+      or <a href=3D"https://twitter.com/osalliance5g" target=3D"_blank">Twi=
+tter</a>!<br>
+    </div>
+  </div>
+
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -343,10 +315,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000401ef0059b41ddae--
+--000000000000bece5c059b4210ca--
 
 
---===============1412642211995266201==
+--===============0562718411084205108==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -357,5 +329,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1412642211995266201==--
+--===============0562718411084205108==--
 
