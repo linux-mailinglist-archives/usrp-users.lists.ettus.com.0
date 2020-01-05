@@ -2,52 +2,103 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCE0C13049B
-	for <lists+usrp-users@lfdr.de>; Sat,  4 Jan 2020 22:21:50 +0100 (CET)
-Received: from [::1] (port=35260 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF902130835
+	for <lists+usrp-users@lfdr.de>; Sun,  5 Jan 2020 14:16:19 +0100 (CET)
+Received: from [::1] (port=57156 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1inqrf-0002rl-D9; Sat, 04 Jan 2020 16:21:43 -0500
-Received: from mail-vk1-f173.google.com ([209.85.221.173]:37306)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ejkreinar@gmail.com>) id 1inqrc-0002ms-QO
- for usrp-users@lists.ettus.com; Sat, 04 Jan 2020 16:21:40 -0500
-Received: by mail-vk1-f173.google.com with SMTP id b129so11585078vka.4
- for <usrp-users@lists.ettus.com>; Sat, 04 Jan 2020 13:21:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QuHeOMULc3U2LvDPBFYMsksDf856yKLFsrx0DL8X39U=;
- b=tCFI3VdlCl6nZKIdVohRZSpBizQy7ZkYLwcWJ3lWRmdSyHN/aov4x1D9W6ZRyOnJQv
- mAhWVTWDHgcq7zLgyfWS+qLypCICRd/TcNY+Bxkf0wSU37QJ773h5nJv2ChCVwnkCozQ
- qDEDKttN7hwaDqkTcj9VoZsgD4pflnUQhLbNksaAYqA52jTeWNrZUTTuvhADS+9wj+FP
- YU/gHMzvNX3U1VPNGYiy52uLnptGqpqpxIzW8z50e4ohOVtfKUSGJ4rqyc16vI9oajbH
- R14CUWFtRdS6Q6eW/fl64WHBYzt0GuVioljsuakhjqUmci2fv3b8Ij65TH8dk0/LrCBF
- 578w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=QuHeOMULc3U2LvDPBFYMsksDf856yKLFsrx0DL8X39U=;
- b=ChQtTMno36onF3KmdcZLu60jk4jRJ4Koi+OKIsdBXo8UuRerPsXV6mi0pN67z40Awi
- qoJMZxGMsOPLvpCnDwL7axqTJFDgNGqKOkFrQWENfFvqV/vm9+L+KRySMQKGPiF6DF1b
- 3Nvdo/uamlzYUI0Ad578o0HW4aHyYLrcCqWzWno/JOv0tTf2fZFa16EMOyuUPQhjueyY
- gvEcZHwJkwlFQ4buOQj5z84dMLb2dXpza0wVtqPMH6/xc/sFtd5/tgN9NlSD47d/DdCZ
- H1/jiu/B41XNR9czUtjB9GCKy2h0RcY8Ij2Aou1Zl1Yh8TSjoBEFyM/CZApE6xzYXMHG
- 6ghA==
-X-Gm-Message-State: APjAAAVAt51zx9H5JxpLreMBNQhgj+1cLas7hefEdwCUQ0E6lIXsYcIY
- o40HqreYqz+SycsRsdv4kBKoi/tzhK4LBNnpJq8=
-X-Google-Smtp-Source: APXvYqyorujLan6MHrayDHJSJVMxj7Kyld3kJWHlcPXEA02ZA9tN5lUsxbAdUTFVqUJHYyQAR/DgVhdJQ9jfMQbzENg=
-X-Received: by 2002:a1f:ea04:: with SMTP id i4mr49956961vkh.94.1578172860135; 
- Sat, 04 Jan 2020 13:21:00 -0800 (PST)
+	id 1io5lK-0001Ca-6g; Sun, 05 Jan 2020 08:16:10 -0500
+Received: from mail-eopbgr140077.outbound.protection.outlook.com
+ ([40.107.14.77]:62338 helo=EUR01-VE1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <Roman.Melnikov@verint.com>)
+ id 1io5lH-00019C-3D
+ for usrp-users@lists.ettus.com; Sun, 05 Jan 2020 08:16:07 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YtgCKSm4GnLkUdsMwXSsZXbxpCbnIJbZwCjm3AkqBfLpm8NFRRfWK4DS+dG5UCeDJ7uBI90ZbAgmz3526OMwEmsTB4HQ5ktaK+ZU+KsmixsFAxgwi5jxgKq5KWECsqM6c53yJ66kY3+KXAfqt9BWw4HH3f8E+Nxpr/VXD/mKnG+/+UzPqfM0mYHGWira7FUFmq7Hok5/zm97C9g/dGSCKR9RJZf5W3Mn1B9PWXK1d8KU0u1rIGiT5WMpD580ujCBRZIAgVL4SU7KbyVNJWvbSAzZ2/3BCAbue1bP0+QwLbG1US8WinAn5Fjoi6l6nYN2xwDzEjKd9h65JjMPCms/Zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n8Ef+UVAZNON0uvzoZdbR3l7b99CbAadNmw5laSpT/c=;
+ b=dE57MLMCy0Vl5kjNtsdD/gEk4WUxvWJ+RenBec0x0veq/W6T/CpHwklJWj1J4VDn6HKyhNDU0faW5GRYXebfIQJysVC1KSLaDsDWRy7e8Ymyo87YRKIgMehP8pQs0mFMN4UIDTZ4GflULzS44eDgc6X3NPTuCyttF/b+vGFuujyGJ8/wTYJ7r6M89xUq4qGQ7Qz2r6ZVv5TnF6i+PO4CZjtKPMxPOTrL7WUC4EJUu/NTlXGj9NVGVesdyk+Pam9u2bl0eJpSCyge/mAVCsJS61Ylerbb9XqCF1QFBZCF/dU5q891wLhbZCUVEr2c2jZufxr3k4X2X5rImzWLSLKhfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.27.93.21) smtp.rcpttodomain=ettus.com smtp.mailfrom=verint.com;
+ dmarc=bestguesspass action=none header.from=verint.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verint.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n8Ef+UVAZNON0uvzoZdbR3l7b99CbAadNmw5laSpT/c=;
+ b=VMEJKI7TJ2SBK6JW4R7sYZuRq5h8sxjtSUFdoubOAi4jWwCF5finxCHf5yBLIpB262Qk65OkFSjtc0YNoQ/wDpzx54/eJ+1rxbP0F36e7IfJTdOjRmEsVqoHdsLOxh4Ex30p8ieFgqsqEH2tdKP6xO6Jzc/YuZg96YUtgIk+ssg=
+Received: from AM4PR0101CA0048.eurprd01.prod.exchangelabs.com
+ (2603:10a6:200:41::16) by VI1PR0102MB3166.eurprd01.prod.exchangelabs.com
+ (2603:10a6:803:e::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2602.15; Sun, 5 Jan
+ 2020 13:15:23 +0000
+Received: from DB5EUR01FT028.eop-EUR01.prod.protection.outlook.com
+ (2a01:111:f400:7e02::200) by AM4PR0101CA0048.outlook.office365.com
+ (2603:10a6:200:41::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2602.10 via Frontend
+ Transport; Sun, 5 Jan 2020 13:15:23 +0000
+Authentication-Results: spf=pass (sender IP is 193.27.93.21)
+ smtp.mailfrom=verint.com; ettus.com; dkim=none (message not signed)
+ header.d=none;ettus.com; dmarc=bestguesspass action=none
+ header.from=verint.com;
+Received-SPF: Pass (protection.outlook.com: domain of verint.com designates
+ 193.27.93.21 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.27.93.21; helo=mail.verint.com;
+Received: from mail.verint.com (193.27.93.21) by
+ DB5EUR01FT028.mail.protection.outlook.com (10.152.4.237) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2602.11 via Frontend Transport; Sun, 5 Jan 2020 13:15:23 +0000
+Received: from TLVPEXCH1.Verint.Corp.Verintsystems.com (10.61.241.30) by
+ TLVPEXCH2.verint.corp.verintsystems.com (10.61.241.94) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.1847.3; Sun, 5 Jan 2020 15:15:22 +0200
+Received: from TLVPEXCH1.Verint.Corp.Verintsystems.com ([10.61.241.30]) by
+ TLVPEXCH1.verint.corp.verintsystems.com ([10.61.241.30]) with mapi id
+ 15.01.1847.003; Sun, 5 Jan 2020 15:15:22 +0200
+To: =?utf-8?B?TWFyY3VzIE3DvGxsZXI=?= <marcus.mueller@ettus.com>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] USRP B205 mini + uhd::usrp::multi_usrp_uhd +
+ multithreading
+Thread-Index: AdW44hysSz94NxP/TDODMk9P27Y5bQEej00AAZtCbRA=
+Date: Sun, 5 Jan 2020 13:15:22 +0000
+Message-ID: <0cafa50de13e49e99686ce31a6711fc6@verint.com>
+References: <14079f7f31174b1092aa00039ba9602b@verint.com>
+ <d1fc6b78e3a630e731136253275bf8a79bf1a3bb.camel@ettus.com>
+In-Reply-To: <d1fc6b78e3a630e731136253275bf8a79bf1a3bb.camel@ettus.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.61.241.83]
 MIME-Version: 1.0
-References: <0f08a6b07438bf71916006244562092c.squirrel@webmail.tu-dortmund.de>
- <640c149702f53cfe43d71b5da2255278.squirrel@webmail.tu-dortmund.de>
-In-Reply-To: <640c149702f53cfe43d71b5da2255278.squirrel@webmail.tu-dortmund.de>
-Date: Sat, 4 Jan 2020 16:20:46 -0500
-Message-ID: <CADRnH22jhRo3s-=URkd-bgtCHoqVAP3CzV2XGgtkbO21h2f=6Q@mail.gmail.com>
-To: felix.greiwe@tu-dortmund.de
-Subject: Re: [USRP-users] Building RFNoC Image with OOT Module on X310 -
- Module not found
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:193.27.93.21; IPV:; CTRY:IL; EFV:NLI; SFV:NSPM;
+ SFS:(10009020)(4636009)(396003)(39860400002)(346002)(376002)(136003)(13464003)(199004)(189003)(53754006)(81166006)(336012)(70206006)(70586007)(8936002)(81156014)(966005)(2616005)(4001150100001)(186003)(53546011)(26005)(478600001)(8676002)(5660300002)(36756003)(66574012)(110136005)(356004)(316002)(2906002)(108616005)(24736004)(36906005)(86362001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR0102MB3166; H:mail.verint.com; FPR:;
+ SPF:Pass; LANG:en; PTR:bzq-193.27.93-21.bgp.bezeqint.net; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ee0f8da4-551f-474d-d8ae-08d791e1525e
+X-MS-TrafficTypeDiagnostic: VI1PR0102MB3166:
+X-Microsoft-Antispam-PRVS: <VI1PR0102MB316609F48D9FA2C8096043ECE73D0@VI1PR0102MB3166.eurprd01.prod.exchangelabs.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-Forefront-PRVS: 027367F73D
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9L9cuI3OW2MlfZNoL0rX+bpiE/UsZv4xOaEEpLGGgWxEuZMxk9VUklTqKfpkX83h9UTVxujiqAY443FAM+ikkUNelkNZB1dC7+dLHGG4KJQAvQ9g2LYiSXQl3qPOnwB+Y375+bJ1rFkcuArZQS/+iHyu82epThb3KLmMIo4Xn6sAaib1b5uyBh3oxAiA1ijkn//hUj2r6kn2F9yvll8PWobv104xR/T5gbsGuXHsEOtsb3LjHfl6vim8K7cawdeFXTGXq+pxZST1VDz2WuPWdHbjpX8GGn2ZQJbkbeYlVf/fF50eiyux4SM/aQmnW+uFwZRmE32HpMV94uaAImwZiJI6wk0ISxUC3TfNr1ICR07rRSHGVm8NBjFvtNaMoga9XadU4UpFNn9wkLz6OTdghmu7j25+vIE9dq8W7dVW1vqFczNCWW+ZvF+btReP0cIQ5IsE/BT2vOiSiL9E/UVsKzZJ06IdV6mgB28at+MJzWkQLiC6iBCrwwqAFr+UzuARsncz15iNL9L6AhgzOk9Z5xljr3ORr+7bRn36E7fzTMsz3wwKifnD3eX9WT+tIPfs
+X-OriginatorOrg: verint.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2020 13:15:23.0240 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee0f8da4-551f-474d-d8ae-08d791e1525e
+X-MS-Exchange-CrossTenant-Id: bb2ed304-4099-49cf-b081-cbb7a3a580ca
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bb2ed304-4099-49cf-b081-cbb7a3a580ca; Ip=[193.27.93.21];
+ Helo=[mail.verint.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0102MB3166
+Subject: Re: [USRP-users] USRP B205 mini + uhd::usrp::multi_usrp_uhd +
+ multithreading
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +110,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: EJ Kreinar <ejkreinar@gmail.com>
-Cc: Usrp Liste <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4500229946680495931=="
+From: "Melnikov, Roman via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Melnikov, Roman" <Roman.Melnikov@verint.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,250 +127,67 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4500229946680495931==
-Content-Type: multipart/alternative; boundary="000000000000b8fdd8059b57003a"
-
---000000000000b8fdd8059b57003a
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Felix,
-
-It's tough to debug your specific issues without seeing the whole OOT repo
-structure, including makefiles, etc.
-
-However I regularly use rfnoc with OOT folders successfully and have an
-example here you might be able to refer to for some hints:
-github.com/ejk43/rfnoc-ootexample
-
-I might suggest trying to check that out and see if you can build with one
-of those blocks first, then modify for your purposes?
-
-Also, one other thing to mention is you might have some luck debugging the
-uhd_image_builder.py to see where it's going wrong in your case (it's just
-a python file so it's pretty easy to add debug markers or print statements
-if you want)...
-
-EJ
-
-On Sat, Jan 4, 2020, 5:10 AM Felix Greiwe via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hello again,
->
-> has no one an idea? I have still not managed to get it working..
-> I would take any advice!
->
-> Best regards,
->
-> Felix
->
->
-> > Hello together,
-> >
-> > recently I installed the whole UHD/GNU-Radio Toolchain on a fresh install
-> > of Kubuntu 18.04 LTS. I followed the instructions from
-> > https://kb.ettus.com/Getting_Started_with_RFNoC_Development
-> > and used the Pybombs install.
-> >
-> > (I ran into a lot of problems there and had to install a lot of stuff
-> > manually because most of the commands were not working properly. Maybe
-> the
-> > Pybombs Tutorial Section needs an update?)
-> >
-> > Finally I managed to install it successfully and the command
-> > uhd_config_version -- info prints: UHD 3.15.0.0-124-geb448043
-> > (I also installed Vivado 2018.3 and added the License which seems to
-> > work.)
-> >
-> > After the install I wanted to validate it by creating an OOT Module and
-> > OOT Block named noc_block_checkdevprocess.v. I did not edit the Verilog
-> > Code because I only wanted to know if I was able to build an Image
-> > properly.
-> > (I ran the default Testbench too, which worked without errors.)
-> >
-> > The command to build my image is:
-> >
-> > ./uhd_image_builder.py checkdevprocess digital_gain -t X310_RFNOC_HG -d
-> > X310 -I /home/lskt/rfnoc-blocks_lskt/rfnoc
-> >
-> > with "rfnoc-blocks_lskt" beeing my OOT Module and "checkdevprocess"
-> beeing
-> > my  custom block.
-> > (I also tried the paths home/lskt/rfnoc-blocks_lskt/rfnoc/;
-> > home/lskt/rfnoc-blocks_lskt/; home/lskt/rfnoc-blocks_lskt/rfnoc/fpga-src
-> )
-> >
-> > Every single time I get the same error message:
-> > ERROR: [Synth 8-439] module 'noc_block_checkdevprocess' not found
-> >
-> [/home/lskt/rfnoc/src/uhd-fpga/usrp3/top/x300/rfnoc_ce_auto_inst_x310.v:22]
-> >
-> > and I don't know why.
-> >
-> > I also tried the the uhd_image_builder_gui.py which did not even pop up
-> > until I uncommented the Line at row 149. I can see my OOT Block here
-> after
-> > adding the Module in the gui, but it prints the same error message as the
-> > non-gui version.
-> >
-> > If you need further information to help please ask.
-> >
-> > Any help is appreciated.
-> >
-> > Felix
-> >
-> >
-> >
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000b8fdd8059b57003a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Hi Felix,<div dir=3D"auto"><br></div><div dir=3D"auto">It=
-&#39;s tough to debug your specific issues without seeing the whole OOT rep=
-o structure, including makefiles, etc.</div><div dir=3D"auto"><br></div><di=
-v dir=3D"auto">However I regularly use rfnoc with OOT folders successfully =
-and have an example here you might be able to refer to for some hints: <a h=
-ref=3D"http://github.com/ejk43/rfnoc-ootexample">github.com/ejk43/rfnoc-oot=
-example</a></div><div dir=3D"auto"><br></div><div dir=3D"auto">I might sugg=
-est trying to check that out and see if you can build with one of those blo=
-cks first, then modify for your purposes?</div><div dir=3D"auto"><br></div>=
-<div dir=3D"auto">Also, one other thing to mention is you might have some l=
-uck debugging the uhd_image_builder.py to see where it&#39;s going wrong in=
- your case (it&#39;s just a python file so it&#39;s pretty easy to add debu=
-g markers or print statements if you want)...</div><div dir=3D"auto"><br></=
-div><div dir=3D"auto">EJ</div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Sat, Jan 4, 2020, 5:10 AM Felix Greiwe via=
- USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@li=
-sts.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello =
-again,<br>
-<br>
-has no one an idea? I have still not managed to get it working..<br>
-I would take any advice!<br>
-<br>
-Best regards,<br>
-<br>
-Felix<br>
-<br>
-<br>
-&gt; Hello together,<br>
-&gt;<br>
-&gt; recently I installed the whole UHD/GNU-Radio Toolchain on a fresh inst=
-all<br>
-&gt; of Kubuntu 18.04 LTS. I followed the instructions from<br>
-&gt; <a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_Development=
-" rel=3D"noreferrer noreferrer" target=3D"_blank">https://kb.ettus.com/Gett=
-ing_Started_with_RFNoC_Development</a><br>
-&gt; and used the Pybombs install.<br>
-&gt;<br>
-&gt; (I ran into a lot of problems there and had to install a lot of stuff<=
-br>
-&gt; manually because most of the commands were not working properly. Maybe=
- the<br>
-&gt; Pybombs Tutorial Section needs an update?)<br>
-&gt;<br>
-&gt; Finally I managed to install it successfully and the command<br>
-&gt; uhd_config_version -- info prints: UHD 3.15.0.0-124-geb448043<br>
-&gt; (I also installed Vivado 2018.3 and added the License which seems to<b=
-r>
-&gt; work.)<br>
-&gt;<br>
-&gt; After the install I wanted to validate it by creating an OOT Module an=
-d<br>
-&gt; OOT Block named noc_block_checkdevprocess.v. I did not edit the Verilo=
-g<br>
-&gt; Code because I only wanted to know if I was able to build an Image<br>
-&gt; properly.<br>
-&gt; (I ran the default Testbench too, which worked without errors.)<br>
-&gt;<br>
-&gt; The command to build my image is:<br>
-&gt;<br>
-&gt; ./uhd_image_builder.py checkdevprocess digital_gain -t X310_RFNOC_HG -=
-d<br>
-&gt; X310 -I /home/lskt/rfnoc-blocks_lskt/rfnoc<br>
-&gt;<br>
-&gt; with &quot;rfnoc-blocks_lskt&quot; beeing my OOT Module and &quot;chec=
-kdevprocess&quot; beeing<br>
-&gt; my=C2=A0 custom block.<br>
-&gt; (I also tried the paths home/lskt/rfnoc-blocks_lskt/rfnoc/;<br>
-&gt; home/lskt/rfnoc-blocks_lskt/; home/lskt/rfnoc-blocks_lskt/rfnoc/fpga-s=
-rc )<br>
-&gt;<br>
-&gt; Every single time I get the same error message:<br>
-&gt; ERROR: [Synth 8-439] module &#39;noc_block_checkdevprocess&#39; not fo=
-und<br>
-&gt; [/home/lskt/rfnoc/src/uhd-fpga/usrp3/top/x300/rfnoc_ce_auto_inst_x310.=
-v:22]<br>
-&gt;<br>
-&gt; and I don&#39;t know why.<br>
-&gt;<br>
-&gt; I also tried the the uhd_image_builder_gui.py which did not even pop u=
-p<br>
-&gt; until I uncommented the Line at row 149. I can see my OOT Block here a=
-fter<br>
-&gt; adding the Module in the gui, but it prints the same error message as =
-the<br>
-&gt; non-gui version.<br>
-&gt;<br>
-&gt; If you need further information to help please ask.<br>
-&gt;<br>
-&gt; Any help is appreciated.<br>
-&gt;<br>
-&gt; Felix<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D=
-"noreferrer">USRP-users@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus=
-.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000b8fdd8059b57003a--
-
-
---===============4500229946680495931==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4500229946680495931==--
-
+SGkgTWFyY3VzLA0KDQpZb3VyIHN1Z2dlc3Rpb24gaW5kZWVkIHdvcmtlZCBmb3IgbWUuICBDb21t
+ZW50ZWQgb3V0IGxpbmVzIDM0MSB0byAzNDMsIHYzLjE0LjAgbGlidXNiMV9iYXNlLmNwcA0KDQpU
+aGFuayB5b3UgIQ0KDQpSb21hIE0uDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9t
+OiBNYXJjdXMgTcO8bGxlciBbbWFpbHRvOm1hcmN1cy5tdWVsbGVyQGV0dHVzLmNvbV0NClNlbnQ6
+IFNhdHVyZGF5LCBEZWNlbWJlciAyOCwgMjAxOSAxMjo1NCBQTQ0KVG86IE1lbG5pa292LCBSb21h
+biA8Um9tYW4uTWVsbmlrb3ZAdmVyaW50LmNvbT47IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIFVTUlAgQjIwNSBtaW5pICsgdWhkOjp1c3JwOjpt
+dWx0aV91c3JwX3VoZCArIG11bHRpdGhyZWFkaW5nDQoNCkhpIFJvbWEsDQoNCkkgbXVzdCBhZG1p
+dCB0aGF0IHRoaXMga2luZCBvZiBtdWx0aS1jb3JlIGxpYnVzYiBoYW5kbGluZyB3YXNuJ3Qgb25l
+IG9mIHRoZSBvcmlnaW5hbCBkZXNpZ24gZ29hbHMuDQpFc3NlbnRpYWxseSwgaXQgKipjb3VsZCoq
+IHdvcmsgd2l0aCBsaXR0bGUgY29kZSBtb2RpZmljYXRpb24gdG8gTk9UIHJldXNlIHRoZSBzYW1l
+IGxpYnVzYiBjb250ZXh0IChvbiBhbnl0aGluZyBidXQgV2luZG93cywgYXQgbGVhc3QpLCBidXQg
+dGhlIGZhY3QgdGhhdCB3ZSBjYWNoZSB0aGUgbGlidXNiIGNvbnRleHQgY2VydGFpbmx5IGhhcyBh
+IHJlYXNvbi4NCg0KQW55d2F5cywgeW91IGNvdWxkIGRvIChyb3VnaGx5KSB0aGUgZm9sbG93aW5n
+Og0KDQpSZW1vdmUgdGhlIGNhY2hpbmcgaW4gbGlidXNiMV9iYXNlLmNwcC4gVGhhdCB3b3VsZCBy
+ZXN1bHQgaW4gKmEgbG90KiBvZiBsaWJ1c2IgY2FsbHMgZXZlcnkgdGltZSB5b3UgY3JlYXRlIGEg
+bXVsdGlfdXNycCwgYnV0IGhvbmVzdGx5LCBpdCBjb3VsZCB3b3JrLiBIaWdobHkgdW50ZXN0ZWQh
+DQoNCkJlc3QgcmVnYXJkcywNCk1hcmN1cw0KDQpPbiBTdW4sIDIwMTktMTItMjIgYXQgMTY6MTEg
+KzAwMDAsIE1lbG5pa292LCBSb21hbiB2aWEgVVNSUC11c2Vycw0Kd3JvdGU6DQo+IEhlbGxvIGV2
+ZXJ5b25lLA0KPg0KPiBJIGhhdmUgOCBiMjA1bWluaSBkZXZpY2VzLCBhbmQgSSB1c2UgdWhkOjp1
+c3JwOjptdWx0aV91c3JwOjptYWtlKOKApikNCj4NCj4gSSB0cnkgdG8gcmVhZCBmcm9tIGVhY2gg
+ZGV2aWNlIGZyb20gZGlmZmVyZW50IHRocmVhZA0KPg0KPiBXaGVuIEkgcnVuIHRoZSBwcm9maWxl
+ciB3aGF0IEkgc2VlIGlzIHRoYXQgbGlidXNiIGhhcyBzaW5nbGUgdGhyZWFkDQo+IHRoYXQgZG8g
+cG9sbGluZyAhDQo+DQo+IFdoZW4gSSBydW4gOCBhcHBsaWNhdGlvbnMgZWFjaCBpbiBkaWZmZXJl
+bnQgcHJvY2VzcyBteSBwZXJmb3JtYW5jZSBpcw0KPiBPSy4gU2luY2UgSSByZWFsbHkgaGF2ZSBt
+dWx0aXBsZSBjb250ZXh0cyAoIGxpYnVzYiBwb2xsaW5nICkgcmVjZWl2aW5nDQo+IGRhdGEuDQo+
+DQo+IEhlcmUgaXMgcGVhY2Ugb2YgY29kZSBJIHJ1biBmb3IgZWFjaCBVU1JQIGRldmljZToNCj4N
+Cj4gc3ByaW50ZiAoIGFyZ3MsDQo+DQo+ICJ0eXBlPWIyMDAsZW5hYmxlX3VzZXJfcmVncyxzZXJp
+YWw9JVgsbWFzdGVyX2Nsb2NrX3JhdGU9JWQscmVjdl9idWZmXw0KPiBzaXplPSVkLGZwZ2E9JXMi
+LA0KPiAgICAgICAgICAgICAgIHRoaXMtPklkLA0KPiAgICAgICAgICAgICAgICggaW50ICkgTWF4
+TWFzdGVyQ2xvY2tSYXRlLA0KPiAgICAgICAgICAgICAgICggaW50ICkgUkVDVl9CVUZGRVJfU0la
+RV9CWVRFUywNCj4gICAgICAgICAgICAgICBmcGdhX3BhdGggKTsNCj4NCj4gX3VzcnAgPSB1aGQ6
+OnVzcnA6Om11bHRpX3VzcnA6Om1ha2UgKCB1aGQ6OmRldmljZV9hZGRyX3QgKCBhcmdzICkgKTsN
+Cj4NCj4gLy8gY29uZmlndXJhdGlvbiDigKYuDQo+DQo+IF9zdHJlYW0gPSBfdXNycC0+Z2V0X3J4
+X3N0cmVhbSAoIHN0cmVhbV9hcmdzICk7DQo+DQo+IEkgaGF2ZSA4IHN0cmVhbWVycyBvYmplY3Rz
+IGVhY2ggaW4gaXRzIG93biB0aHJlYWQsIGRvaW5nDQo+DQo+IF9zdHJlYW0tPnJlY3YgKCDigKYg
+KSBjYWxsDQo+DQo+IFdpbGwgYXBwcmVjaWF0ZSBhbnkgaGVscC4NCj4NCj4gUm9tYSBNLg0KPg0K
+Pg0KPg0KPg0KPiBUaGlzIGVsZWN0cm9uaWMgbWVzc2FnZSBtYXkgY29udGFpbiBwcm9wcmlldGFy
+eSBhbmQgY29uZmlkZW50aWFsDQo+IGluZm9ybWF0aW9uIG9mIFZlcmludCBTeXN0ZW1zIEluYy4s
+IGl0cyBhZmZpbGlhdGVzIGFuZC9vcg0KPiBzdWJzaWRpYXJpZXMuIFRoZSBpbmZvcm1hdGlvbiBp
+cyBpbnRlbmRlZCB0byBiZSBmb3IgdGhlIHVzZSBvZiB0aGUNCj4gaW5kaXZpZHVhbChzKSBvciBl
+bnRpdHkoaWVzKSBuYW1lZCBhYm92ZS4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkDQo+IHJl
+Y2lwaWVudCAob3IgYXV0aG9yaXplZCB0byByZWNlaXZlIHRoaXMgZS1tYWlsIGZvciB0aGUgaW50
+ZW5kZWQNCj4gcmVjaXBpZW50KSwgeW91IG1heSBub3QgdXNlLCBjb3B5LCBkaXNjbG9zZSBvciBk
+aXN0cmlidXRlIHRvIGFueW9uZQ0KPiB0aGlzIG1lc3NhZ2Ugb3IgYW55IGluZm9ybWF0aW9uIGNv
+bnRhaW5lZCBpbiB0aGlzIG1lc3NhZ2UuIElmIHlvdSBoYXZlDQo+IHJlY2VpdmVkIHRoaXMgZWxl
+Y3Ryb25pYyBtZXNzYWdlIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5IHVzIGJ5DQo+IHJlcGx5aW5n
+IHRvIHRoaXMgZS1tYWlsLg0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KPiBVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbQ0KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
+cC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg0KDQoNClRoaXMgZWxlY3Ryb25pYyBtZXNzYWdlIG1h
+eSBjb250YWluIHByb3ByaWV0YXJ5IGFuZCBjb25maWRlbnRpYWwgaW5mb3JtYXRpb24gb2YgVmVy
+aW50IFN5c3RlbXMgSW5jLiwgaXRzIGFmZmlsaWF0ZXMgYW5kL29yIHN1YnNpZGlhcmllcy4gVGhl
+IGluZm9ybWF0aW9uIGlzIGludGVuZGVkIHRvIGJlIGZvciB0aGUgdXNlIG9mIHRoZSBpbmRpdmlk
+dWFsKHMpIG9yIGVudGl0eShpZXMpIG5hbWVkIGFib3ZlLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50
+ZW5kZWQgcmVjaXBpZW50IChvciBhdXRob3JpemVkIHRvIHJlY2VpdmUgdGhpcyBlLW1haWwgZm9y
+IHRoZSBpbnRlbmRlZCByZWNpcGllbnQpLCB5b3UgbWF5IG5vdCB1c2UsIGNvcHksIGRpc2Nsb3Nl
+IG9yIGRpc3RyaWJ1dGUgdG8gYW55b25lIHRoaXMgbWVzc2FnZSBvciBhbnkgaW5mb3JtYXRpb24g
+Y29udGFpbmVkIGluIHRoaXMgbWVzc2FnZS4gSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyBlbGVj
+dHJvbmljIG1lc3NhZ2UgaW4gZXJyb3IsIHBsZWFzZSBub3RpZnkgdXMgYnkgcmVwbHlpbmcgdG8g
+dGhpcyBlLW1haWwuDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20K
