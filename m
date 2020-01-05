@@ -2,29 +2,29 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47B8613C233
-	for <lists+usrp-users@lfdr.de>; Wed, 15 Jan 2020 14:03:53 +0100 (CET)
-Received: from [::1] (port=39538 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B49813C234
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Jan 2020 14:03:54 +0100 (CET)
+Received: from [::1] (port=41148 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iriKr-0004Xe-8K; Wed, 15 Jan 2020 08:03:49 -0500
-Received: from bbsoweb.bbso.njit.edu ([97.93.171.158]:54290)
+	id 1iriKu-0004on-QS; Wed, 15 Jan 2020 08:03:52 -0500
+Received: from bbsoweb.bbso.njit.edu ([97.93.171.158]:37702)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <jihs@bbso.njit.edu>) id 1inR5b-0005Zf-8s
- for usrp-users@lists.ettus.com; Fri, 03 Jan 2020 12:50:23 -0500
+ (Exim 4.92) (envelope-from <jihs@bbso.njit.edu>) id 1io1tn-0000mQ-PM
+ for usrp-users@lists.ettus.com; Sun, 05 Jan 2020 04:08:39 -0500
 Received: from User (sr091.sweetesttimes.com [192.99.175.113] (may be forged))
  (authenticated bits=0)
- by bbsoweb.bbso.njit.edu (8.14.7/8.14.7) with ESMTP id 003HbMs0027827;
- Fri, 3 Jan 2020 09:37:23 -0800
-Message-Id: <202001031737.003HbMs0027827@bbsoweb.bbso.njit.edu>
-Date: Fri, 3 Jan 2020 09:38:21 -0800
+ by bbsoweb.bbso.njit.edu (8.14.7/8.14.7) with ESMTP id 00594Lkd044717;
+ Sun, 5 Jan 2020 01:04:23 -0800
+Message-Id: <202001050904.00594Lkd044717@bbsoweb.bbso.njit.edu>
+Date: Sun, 5 Jan 2020 01:05:23 -0800
 MIME-Version: 1.0
 X-Priority: 3
 X-MSMail-Priority: Normal
 X-Mailer: Microsoft Outlook Express 6.00.2600.0000
 X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
 X-Spam-Flag: YES
-X-Spam-Status: Yes, score=39.4 required=1.1 tests=ADVANCE_FEE_5_NEW_MONEY,
+X-Spam-Status: Yes, score=38.7 required=1.1 tests=ADVANCE_FEE_5_NEW_MONEY,
  ALL_TRUSTED,AXB_XMAILER_MIMEOLE_OL_024C2,FORGED_MUA_OUTLOOK,
  FORGED_OUTLOOK_HTML,FORGED_OUTLOOK_TAGS,FREEMAIL_FORGED_REPLYTO,
  FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,FROM_MISSPACED,
@@ -35,7 +35,7 @@ X-Spam-Status: Yes, score=39.4 required=1.1 tests=ADVANCE_FEE_5_NEW_MONEY,
  SUBJ_ALL_CAPS,TO_NO_BRKTS_FROM_MSSP,UPPERCASE_75_100 autolearn=no
  autolearn_force=no version=3.4.0
 X-Spam-Report: * -3.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
- *  0.8 FSL_CTYPE_WIN1251 Content-Type only seen in 419 spam
+ *  2.5 FSL_CTYPE_WIN1251 Content-Type only seen in 419 spam
  *  1.8 NSL_RCVD_FROM_USER Received from User
  *  0.5 SUBJ_ALL_CAPS Subject is all capitals
  *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
@@ -45,29 +45,29 @@ X-Spam-Report: * -3.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
  *  0.1 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
  *  0.1 MISSING_MID Missing Message-Id: header
  *  1.2 UPPERCASE_75_100 message body is 75-100% uppercase
- *  3.0 FROM_MISSP_MSFT From misspaced + supposed Microsoft tool
+ *  2.3 FROM_MISSP_MSFT From misspaced + supposed Microsoft tool
  *  2.0 FSL_NEW_HELO_USER Spam's using Helo and User
  *  0.0 FORGED_OUTLOOK_HTML Outlook can't send HTML message only
- *  1.9 FROM_MISSP_USER From misspaced, from "User"
+ *  2.2 FROM_MISSP_USER From misspaced, from "User"
  *  0.6 FORGED_OUTLOOK_TAGS Outlook can't send HTML in this format
  *  1.0 HK_NAME_MR_MRS No description available.
  *  0.0 LOTS_OF_MONEY Huge... sums of money
  *  2.0 HK_SCAM No description available.
- *  1.4 FROM_MISSP_XPRIO Misspaced FROM + X-Priority
+ *  2.0 FROM_MISSP_XPRIO Misspaced FROM + X-Priority
  *  1.9 REPLYTO_WITHOUT_TO_CC No description available.
- *  2.9 AXB_XMAILER_MIMEOLE_OL_024C2 Yet another X header trait
+ *  1.3 AXB_XMAILER_MIMEOLE_OL_024C2 Yet another X header trait
  *  2.0 MONEY_FROM_MISSP Lots of money and misspaced From
  *  2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
  *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain different
  *      freemails
  *  2.5 TO_NO_BRKTS_FROM_MSSP Multiple header formatting problems
- *  1.6 FROM_MISSPACED From: missing whitespace
+ *  0.9 FROM_MISSPACED From: missing whitespace
  *  2.0 FROM_MISSP_EH_MATCH From misspaced, matches envelope
  *  2.8 FORGED_MUA_OUTLOOK Forged mail pretending to be from MS Outlook
- *  1.5 FROM_MISSP_FREEMAIL From misspaced + freemail provider
+ *  1.6 FROM_MISSP_FREEMAIL From misspaced + freemail provider
  *  3.0 MONEY_FRAUD_8 Lots of money and very many fraud phrases
- *  0.7 ADVANCE_FEE_5_NEW_MONEY Advance Fee fraud and lots of money
-X-Spam-Level: ***************************************
+ *  0.4 ADVANCE_FEE_5_NEW_MONEY Advance Fee fraud and lots of money
+X-Spam-Level: **************************************
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
  bbsoweb.bbso.njit.edu
 X-Mailman-Approved-At: Wed, 15 Jan 2020 08:03:45 -0500
@@ -86,7 +86,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: MRS HELEN GEORGE via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: gessh01@gmail.com
 Cc: MRS HELEN GEORGE <jihs@bbso.njit.edu>
-Content-Type: multipart/mixed; boundary="===============8061548483574669124=="
+Content-Type: multipart/mixed; boundary="===============1487790111895379081=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -100,7 +100,7 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8061548483574669124==
+--===============1487790111895379081==
 Content-Type: text/html;
 	charset="Windows-1251"
 Content-Transfer-Encoding: 7bit
@@ -225,7 +225,7 @@ Content-Transfer-Encoding: 7bit
 </BODY></HTML>
 
 
---===============8061548483574669124==
+--===============1487790111895379081==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -236,4 +236,4 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8061548483574669124==--
+--===============1487790111895379081==--
