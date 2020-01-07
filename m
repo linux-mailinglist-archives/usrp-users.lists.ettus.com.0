@@ -2,75 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6747132F11
-	for <lists+usrp-users@lfdr.de>; Tue,  7 Jan 2020 20:12:37 +0100 (CET)
-Received: from [::1] (port=37548 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEE4133082
+	for <lists+usrp-users@lfdr.de>; Tue,  7 Jan 2020 21:23:25 +0100 (CET)
+Received: from [::1] (port=58602 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iouHL-0003xj-Ur; Tue, 07 Jan 2020 14:12:35 -0500
-Received: from mail-mw2nam12olkn2026.outbound.protection.outlook.com
- ([40.92.23.26]:33632 helo=NAM12-MW2-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <e070832@hotmail.com>) id 1iouHI-0003sb-MG
- for usrp-users@lists.ettus.com; Tue, 07 Jan 2020 14:12:32 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MIUGle3yQ8/my9Oyxh9Wg3QnGwBlGndlJssexfLOI1ehUs7NCugcYWIVEtOsFBthYsYSeTO/l8qhox8DCYBXPGmjjt0W2RrjqSmwIoWZaGrvVT4BloI28PeID3x/v9aDc+egTx/wvZOwrPqEGmw4OKM9qVrTvTKRoipWw4u8aCRiq+tqnZ8JCVl7+UqlbsrtjwvFyhcdmnevXJYr15PPvTHFW2ODZWeg1an+aeH1ncRYq45Z0Yc+CZVWwAnP4Wdzq0DEoRpF8l60HZSkILBntRTQdZhPo5EGR6MWf3ulBi8Vh2WCwQleHYDDWnDe1yej2n73FtVaUetlabMYWX+SJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=15OIujXoEA+bd8OWKLsT3+UBg9J5gHGpGcPugYHja18=;
- b=Hn0Dz7J9Beed+HZ/IMAef1zvQOpCyyrVljBEIwpT3m8qs2zpnVhgPWneRr1ZdksJ5aN++D5fahryBuT/DUyySwQVC7WxQp+r2PeNCyAqUGzc/odNJgFAM+UoIZVAH/jEvTrIkoYGy1VIins4WDVgphKYlDZ58CF1IJY+tLV4mS9B+TCpy0GKv5lhJ6P65Bz3GXnh4pDVIHz9EiimelYhGDtdvFTLvrxQs1RwG1vekHvg5bQDtrMPYxpm8snX1dj9jRFlECCrMM8Lzdt9fEUiGB1eOGQvdXjcwG7g9pDcKJc4YXoDvMbelRLg1yagt0uVHeBjy+BnUSmXSqg4jzZWsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=15OIujXoEA+bd8OWKLsT3+UBg9J5gHGpGcPugYHja18=;
- b=a2QxXN9Yt30uYmaNBtIaFLGIgBpw0wiECezfJwiv/NoOxHtLGYh7XTgs4FE+o7Dmj473Nbu1vYjuF5T1dtYmG4N8swqR9rjm1KW63Uq6G+fvpxpArPnUvuI188yX8wlmRyo7wENBFUevnt6o5QUljJ5m5XrLQWOuOWOfzypWfzy+1NWBWdVc2x3YX5+UA17ozGEzQGHOaXRZv60+jtzXdKlVdcQCUCqMRLvSTkcsNHEJlvOWPw66D/l6WdlEhs3Ofl1o+5tWAZkEPztvqyjF+EVwokqeBxc7FypY3f9KSzMO4GaFGg5nPuscLzuSneyXlJcrRiwvJ6opBIwquPlgHw==
-Received: from DM6NAM12FT066.eop-nam12.prod.protection.outlook.com
- (10.13.178.56) by DM6NAM12HT081.eop-nam12.prod.protection.outlook.com
- (10.13.179.154) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2623.4; Tue, 7 Jan
- 2020 19:11:50 +0000
-Received: from BN6PR19MB1635.namprd19.prod.outlook.com (10.13.178.55) by
- DM6NAM12FT066.mail.protection.outlook.com (10.13.178.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.4 via Frontend Transport; Tue, 7 Jan 2020 19:11:50 +0000
-Received: from BN6PR19MB1635.namprd19.prod.outlook.com
- ([fe80::7032:41e7:a3a9:7125]) by BN6PR19MB1635.namprd19.prod.outlook.com
- ([fe80::7032:41e7:a3a9:7125%10]) with mapi id 15.20.2602.016; Tue, 7 Jan 2020
- 19:11:49 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: X310 GPIO Ettus Code Example Question
-Thread-Index: AQHVxY5PloyVeGnBCUeDk5Lr5lfpxQ==
-Date: Tue, 7 Jan 2020 19:11:49 +0000
-Message-ID: <BN6PR19MB1635EA176626D1A33DFA5CC5A43F0@BN6PR19MB1635.namprd19.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:7FEFB6EFD6FD24C7BCB7B5A7F7C51B3D025631928233CAE1D484BEB43B2A2FF1;
- UpperCasedChecksum:09A42BA744EEAF25900AA4A9168730954D8B9738EC56C0AD67B780033DAC4995;
- SizeAsReceived:6683; Count:42
-x-tmn: [xILIQm0IQmliNyavQ3abuKstmQqQ2iz3]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 42
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: a79ec8a1-9bb6-4118-9e81-08d793a57283
-x-ms-traffictypediagnostic: DM6NAM12HT081:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Huo46GZ5LfqG/xIIt+jwyW3dEkNTV/EjdE9THu7GAimqzMx5sn1FtUig7aAirH92MR0wTmOr3TLLbXpXohdi0fWcqGiqWPhYxJHhu9VbfjxuL8Lfvkbz64rgP8vevdXyCQdJ14vXKscGIu46ihk+0Vvni09E805ajpMoYIB8iku4s+Z1DVVGr699sCqT5n+jAM6Hzst6yT+mGC10IXFR6Y2+5ZhWraHa4xhL3/RobWo=
-x-ms-exchange-transport-forked: True
+	id 1iovNo-00016r-Vl; Tue, 07 Jan 2020 15:23:20 -0500
+Received: from mail-qv1-f53.google.com ([209.85.219.53]:36807)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <brent.stapleton@ettus.com>)
+ id 1iovNl-00010b-8T
+ for usrp-users@lists.ettus.com; Tue, 07 Jan 2020 15:23:17 -0500
+Received: by mail-qv1-f53.google.com with SMTP id m14so450397qvl.3
+ for <usrp-users@lists.ettus.com>; Tue, 07 Jan 2020 12:22:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=F9uWtIAwS301hP7uvao0iHwI1kLsts/GdrOr8KOOBYs=;
+ b=elzUD7rlkdwq3bM/TnU+GZEukNLz7cGNUSbjUFyeT7Iv1S9LrZuZG5zply2brCQAWF
+ VlqN2RFlM+Kx+cMfoeE+9KDNQJNZ8ONAs+b68yT70PX7Tg4tSJa3fFfhHHP3aq6VIwcM
+ sS1H+j4PfcTJV9g/T4v5xDK+fDH3hWWEulTxt7eo9SLNlEocvRl3UFaQDGeY1zR+cC0K
+ TNseI1VLp4HupcrkDsrY9LdtnXO5QVCenySxb2UT4SpzjCeIv7Vq/P7cUV41g+7Bw7f4
+ 2u3PnR/C/vLr/7dMK130nxx9N+uVNUd70t9ARzCYb6BGLErpjdxT/iQDAvyqRNsNIic0
+ WNNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=F9uWtIAwS301hP7uvao0iHwI1kLsts/GdrOr8KOOBYs=;
+ b=cai2As5rPwqSdP/uWTK/X0Z1IcaQASywbaiQo/GtpEpJVSVAozOHSbHet3Q39EvUIP
+ Mu26Fki8K8DDuYYfubU+mjwttewR5MilV3+TpXV5DRBmADpOd5qkzMjDqLEtW92Y4ZtG
+ E58P3lCCh7PIoxyr6BqXiIWnZBzzEkA1GW3vjxQM7q1Nkq7XrY0UJ3HGRG7iWnEvnxds
+ 1vxH+SkofUt83DCStj1ZCMSMAVdBQzuhEN9WeJEpl75GQ+R+azyaaVx6qpMJbvNiV35S
+ NoSu4a5MYSJkbnCRztSEWVinJwEQjo+hu17yAtxaWD+HTWYxX2ysHhqaSflSP9vjYTP2
+ k8cw==
+X-Gm-Message-State: APjAAAWKLTmAnHnlBZQIvx9CC11F06MHEcUx6KmFHOwGjKeAzhCa6k1E
+ nKjbxvb0IxVdqCpX9AfF9lxxMRzSdXvjub9CYivN0C43RIZ2SQ==
+X-Google-Smtp-Source: APXvYqw/GBV3DGZe8uyzzwe/C32YhL84JYl3Cy0kvNSD9YocNCSxBr1fwe1ypInu4C3fy+FnbUEdD9vnnfolwbac8iE=
+X-Received: by 2002:a05:6214:1090:: with SMTP id
+ o16mr1133527qvr.105.1578428556408; 
+ Tue, 07 Jan 2020 12:22:36 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: a79ec8a1-9bb6-4118-9e81-08d793a57283
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jan 2020 19:11:49.5340 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6NAM12HT081
-Subject: [USRP-users] X310 GPIO Ettus Code Example Question
+Date: Tue, 7 Jan 2020 12:22:25 -0800
+Message-ID: <CAN1jYK2xxTUj8JLYOJW6eEJe6BxQK8z1hXyu7vmbn9yzVEXp+Q@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] UHD RFNoC Update
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,9 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jeff S <e070832@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============4802924894153905869=="
+From: Brent Stapleton via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Brent Stapleton <brent.stapleton@ettus.com>
+Content-Type: multipart/mixed; boundary="===============7300139566990489483=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -98,212 +73,100 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4802924894153905869==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR19MB1635EA176626D1A33DFA5CC5A43F0BN6PR19MB1635namp_"
+--===============7300139566990489483==
+Content-Type: multipart/alternative; boundary="000000000000689669059b92896c"
 
---_000_BN6PR19MB1635EA176626D1A33DFA5CC5A43F0BN6PR19MB1635namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000689669059b92896c
+Content-Type: text/plain; charset="UTF-8"
+
+Hey All,
+
+A couple months ago, we released the next iteration of the RFNoC framework
+in the master-next branch of the UHD repository. Recently, we've merged
+that into our master branch, and today we've pushed our most recent work
+public. This includes large and sweeping changes to our core RFNoC
+infrastructure, as well as the UHD API, and brings us one (or maybe a few)
+steps closer to the UHD 4.0 release.
+
+If you'd like to update your MPM-based device to the most recent changes,
+you'll need to update to the most recent filesystems (based on the
+OpenEmbedded Thud release), then update MPM itself, as described in the
+"Modifying and compiling UHD and MPM" sections of the UHD manual (1).
+Again, master is an unstable branch, and these are large changes, so if you
+would like to use a stable API, we recommend using the recent v3.15.0.0
+release.
+
+Happy hacking,
+Brent
+
+(1) https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_software_dev
+and https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_software_dev
+
+--000000000000689669059b92896c
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Relating to the description of the GPIO:  https://files.ettus.com/manual/pa=
-ge_gpio_api.html
+<div dir=3D"ltr"><span style=3D"color:rgb(32,33,36);font-family:Roboto,Aria=
+l,sans-serif;font-size:16px;font-variant-ligatures:none;letter-spacing:0.1p=
+x;white-space:pre-wrap">Hey All,</span><br style=3D"color:rgb(32,33,36);fon=
+t-family:Roboto,Arial,sans-serif;font-size:16px;font-variant-ligatures:none=
+;letter-spacing:0.1px;white-space:pre-wrap"><br style=3D"color:rgb(32,33,36=
+);font-family:Roboto,Arial,sans-serif;font-size:16px;font-variant-ligatures=
+:none;letter-spacing:0.1px;white-space:pre-wrap"><span style=3D"color:rgb(3=
+2,33,36);font-family:Roboto,Arial,sans-serif;font-size:16px;font-variant-li=
+gatures:none;letter-spacing:0.1px;white-space:pre-wrap">A couple months ago=
+, we released the next iteration of the RFNoC framework in the master-next =
+branch of the UHD repository. Recently, we&#39;ve merged that into our mast=
+er branch, and today we&#39;ve pushed our most recent work public. This inc=
+ludes large and sweeping changes to our core RFNoC infrastructure, as well =
+as the UHD API, and brings us one (or maybe a few) steps closer to the UHD =
+4.0 release. </span><br style=3D"color:rgb(32,33,36);font-family:Roboto,Ari=
+al,sans-serif;font-size:16px;font-variant-ligatures:none;letter-spacing:0.1=
+px;white-space:pre-wrap"><br style=3D"color:rgb(32,33,36);font-family:Robot=
+o,Arial,sans-serif;font-size:16px;font-variant-ligatures:none;letter-spacin=
+g:0.1px;white-space:pre-wrap"><span style=3D"color:rgb(32,33,36);font-famil=
+y:Roboto,Arial,sans-serif;font-size:16px;font-variant-ligatures:none;letter=
+-spacing:0.1px;white-space:pre-wrap">If you&#39;d like to update your MPM-b=
+ased device to the most recent changes, you&#39;ll need to update to the mo=
+st recent filesystems (based on the OpenEmbedded Thud release), then update=
+ MPM itself, as described in the &quot;Modifying and compiling UHD and MPM&=
+quot; sections of the UHD manual (1). Again, master is an unstable branch, =
+and these are large changes, so if you would like to use a stable API, we r=
+ecommend using the recent v3.15.0.0 release.</span><br style=3D"color:rgb(3=
+2,33,36);font-family:Roboto,Arial,sans-serif;font-size:16px;font-variant-li=
+gatures:none;letter-spacing:0.1px;white-space:pre-wrap"><br style=3D"color:=
+rgb(32,33,36);font-family:Roboto,Arial,sans-serif;font-size:16px;font-varia=
+nt-ligatures:none;letter-spacing:0.1px;white-space:pre-wrap"><span style=3D=
+"color:rgb(32,33,36);font-family:Roboto,Arial,sans-serif;font-size:16px;fon=
+t-variant-ligatures:none;letter-spacing:0.1px;white-space:pre-wrap">Happy h=
+acking,</span><br style=3D"color:rgb(32,33,36);font-family:Roboto,Arial,san=
+s-serif;font-size:16px;font-variant-ligatures:none;letter-spacing:0.1px;whi=
+te-space:pre-wrap"><span style=3D"color:rgb(32,33,36);font-family:Roboto,Ar=
+ial,sans-serif;font-size:16px;font-variant-ligatures:none;letter-spacing:0.=
+1px;white-space:pre-wrap">Brent</span><br style=3D"color:rgb(32,33,36);font=
+-family:Roboto,Arial,sans-serif;font-size:16px;font-variant-ligatures:none;=
+letter-spacing:0.1px;white-space:pre-wrap"><br style=3D"color:rgb(32,33,36)=
+;font-family:Roboto,Arial,sans-serif;font-size:16px;font-variant-ligatures:=
+none;letter-spacing:0.1px;white-space:pre-wrap"><span style=3D"color:rgb(32=
+,33,36);font-family:Roboto,Arial,sans-serif;font-size:16px;font-variant-lig=
+atures:none;letter-spacing:0.1px;white-space:pre-wrap">(1) </span><a rel=3D=
+"nofollow" target=3D"_blank" href=3D"https://files.ettus.com/manual/page_us=
+rp_n3xx.html#n3xx_software_dev" style=3D"color:rgb(102,17,204);font-family:=
+Roboto,Arial,sans-serif;font-size:16px;font-variant-ligatures:none;letter-s=
+pacing:0.1px;white-space:pre-wrap">https://files.ettus.com/manual/page_usrp=
+_n3xx.html#n3xx_software_dev</a><span style=3D"color:rgb(32,33,36);font-fam=
+ily:Roboto,Arial,sans-serif;font-size:16px;font-variant-ligatures:none;lett=
+er-spacing:0.1px;white-space:pre-wrap"> and </span><a rel=3D"nofollow" targ=
+et=3D"_blank" href=3D"https://files.ettus.com/manual/page_usrp_e3xx.html#e3=
+xx_software_dev" style=3D"color:rgb(102,17,204);font-family:Roboto,Arial,sa=
+ns-serif;font-size:16px;font-variant-ligatures:none;letter-spacing:0.1px;wh=
+ite-space:pre-wrap">https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx=
+_software_dev</a><br></div>
+
+--000000000000689669059b92896c--
 
 
-
-Should the code example on this page, which has the following code:
-
-
-
-// finally, let's set up GPIO6 as we described above
-
-usrp_x300->set_gpio_attr("FP0", "ATR_0X", 0, AMP_GPIO_MASK);
-
-usrp_x300->set_gpio_attr("FP0", "ATR_RX", 0, AMP_GPIO_MASK);
-
-usrp_x300->set_gpio_attr("FP0", "ATR_TX", 0, AMP_GPIO_MASK);
-
-usrp_x300->set_gpio_attr("FP0", "ATR_XX", 0, AMP_GPIO_MASK);
-
-
-
-actually be:
-
-
-
-// finally, let's set up GPIO6 as we described above
-
-usrp_x300->set_gpio_attr("FP0", "ATR_0X", 0, AMP_GPIO_MASK);
-
-usrp_x300->set_gpio_attr("FP0", "ATR_RX", 0, AMP_GPIO_MASK);
-
-usrp_x300->set_gpio_attr("FP0", "ATR_TX", 1, AMP_GPIO_MASK);  // Should it =
-be a 1?
-
-usrp_x300->set_gpio_attr("FP0", "ATR_XX", 0, AMP_GPIO_MASK);
-
-
-
-for setting up GPIO6 to be high only when transmitting?  If not, then I'm n=
-ot understanding what the code is really doing to get GPIO6 to be high when=
- transmitting.
-
-
-Thx.
-
-Jeff
-
-
---_000_BN6PR19MB1635EA176626D1A33DFA5CC5A43F0BN6PR19MB1635namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p>Relating to the description of the GPIO:&nbsp; <a href=3D"https://files.=
-ettus.com/manual/page_gpio_api.html" target=3D"_blank" rel=3D"noopener nore=
-ferrer">
-https://files.ettus.com/manual/page_gpio_api.html</a></p>
-<p>&nbsp;</p>
-<p>Should the code example on this page, which has the following code:</p>
-<p>&nbsp;</p>
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><span style=3D"font-=
-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&qu=
-ot;; color: maroon">// finally, let's set up GPIO6 as we described above</s=
-pan><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;, s=
-erif, &quot;EmojiFont&quot;; color: black"></span></p>
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><span style=3D"font-=
-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&qu=
-ot;; color: black">usrp_x300-&gt;set_gpio_attr(</span><span style=3D"font-s=
-ize: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quo=
-t;; color: rgb(0, 32, 128)">&quot;FP0&quot;</span><span style=3D"font-size:=
- 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quot;; =
-color: black">,
-</span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;=
-, serif, &quot;EmojiFont&quot;; color: rgb(0, 32, 128)">&quot;ATR_0X&quot;<=
-/span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;,=
- serif, &quot;EmojiFont&quot;; color: black">, 0, AMP_GPIO_MASK);</span></p=
->
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><span style=3D"font-=
-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&qu=
-ot;; color: black">usrp_x300-&gt;set_gpio_attr(</span><span style=3D"font-s=
-ize: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quo=
-t;; color: rgb(0, 32, 128)">&quot;FP0&quot;</span><span style=3D"font-size:=
- 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quot;; =
-color: black">,
-</span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;=
-, serif, &quot;EmojiFont&quot;; color: rgb(0, 32, 128)">&quot;ATR_RX&quot;<=
-/span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;,=
- serif, &quot;EmojiFont&quot;; color: black">, 0, AMP_GPIO_MASK);</span></p=
->
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><b><span style=3D"fo=
-nt-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont=
-&quot;; color: black">usrp_x300-&gt;set_gpio_attr(</span><span style=3D"fon=
-t-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&=
-quot;; color: rgb(0, 32, 128)">&quot;FP0&quot;</span><span style=3D"font-si=
-ze: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quot=
-;; color: black">,
-</span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;=
-, serif, &quot;EmojiFont&quot;; color: rgb(0, 32, 128)">&quot;ATR_TX&quot;<=
-/span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;,=
- serif, &quot;EmojiFont&quot;; color: black">, 0, AMP_GPIO_MASK);</span></b=
-></p>
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><span style=3D"font-=
-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&qu=
-ot;; color: black">usrp_x300-&gt;set_gpio_attr(</span><span style=3D"font-s=
-ize: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quo=
-t;; color: rgb(0, 32, 128)">&quot;FP0&quot;</span><span style=3D"font-size:=
- 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quot;; =
-color: black">,
-</span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;=
-, serif, &quot;EmojiFont&quot;; color: rgb(0, 32, 128)">&quot;ATR_XX&quot;<=
-/span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;,=
- serif, &quot;EmojiFont&quot;; color: black">, 0, AMP_GPIO_MASK);</span></p=
->
-<p>&nbsp;</p>
-<p>actually be:</p>
-<p>&nbsp;</p>
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><span style=3D"font-=
-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&qu=
-ot;; color: maroon">// finally, let's set up GPIO6 as we described above</s=
-pan><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;, s=
-erif, &quot;EmojiFont&quot;; color: black"></span></p>
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><span style=3D"font-=
-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&qu=
-ot;; color: black">usrp_x300-&gt;set_gpio_attr(</span><span style=3D"font-s=
-ize: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quo=
-t;; color: rgb(0, 32, 128)">&quot;FP0&quot;</span><span style=3D"font-size:=
- 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quot;; =
-color: black">,
-</span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;=
-, serif, &quot;EmojiFont&quot;; color: rgb(0, 32, 128)">&quot;ATR_0X&quot;<=
-/span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;,=
- serif, &quot;EmojiFont&quot;; color: black">, 0, AMP_GPIO_MASK);</span></p=
->
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><span style=3D"font-=
-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&qu=
-ot;; color: black">usrp_x300-&gt;set_gpio_attr(</span><span style=3D"font-s=
-ize: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quo=
-t;; color: rgb(0, 32, 128)">&quot;FP0&quot;</span><span style=3D"font-size:=
- 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quot;; =
-color: black">,
-</span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;=
-, serif, &quot;EmojiFont&quot;; color: rgb(0, 32, 128)">&quot;ATR_RX&quot;<=
-/span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;,=
- serif, &quot;EmojiFont&quot;; color: black">, 0, AMP_GPIO_MASK);</span></p=
->
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><b><span style=3D"fo=
-nt-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont=
-&quot;; color: black">usrp_x300-&gt;set_gpio_attr(</span><span style=3D"fon=
-t-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&=
-quot;; color: rgb(0, 32, 128)">&quot;FP0&quot;</span><span style=3D"font-si=
-ze: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quot=
-;; color: black">,
-</span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;=
-, serif, &quot;EmojiFont&quot;; color: rgb(0, 32, 128)">&quot;ATR_TX&quot;<=
-/span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;,=
- serif, &quot;EmojiFont&quot;; color: black">,
-<span style=3D"background:yellow">1</span>, AMP_GPIO_MASK);&nbsp; <span sty=
-le=3D"font-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;E=
-mojiFont&quot;; color: maroon">
-// Should it be a 1?</span><br>
-</span></b></p>
-<p style=3D"margin-left:75.75pt; text-indent:-39.75pt"><span style=3D"font-=
-size: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&qu=
-ot;; color: black">usrp_x300-&gt;set_gpio_attr(</span><span style=3D"font-s=
-ize: 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quo=
-t;; color: rgb(0, 32, 128)">&quot;FP0&quot;</span><span style=3D"font-size:=
- 10pt; font-family: &quot;Courier New&quot;, serif, &quot;EmojiFont&quot;; =
-color: black">,
-</span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;=
-, serif, &quot;EmojiFont&quot;; color: rgb(0, 32, 128)">&quot;ATR_XX&quot;<=
-/span><span style=3D"font-size: 10pt; font-family: &quot;Courier New&quot;,=
- serif, &quot;EmojiFont&quot;; color: black">, 0, AMP_GPIO_MASK);</span></p=
->
-<p>&nbsp;</p>
-<p>for setting up GPIO6 to be high only when transmitting?&nbsp; If not, th=
-en I'm not understanding what the code is really doing to get GPIO6 to be h=
-igh when transmitting.</p>
-<p><br>
-</p>
-<p>Thx.</p>
-<p>Jeff<br>
-</p>
-<br>
-</body>
-</html>
-
---_000_BN6PR19MB1635EA176626D1A33DFA5CC5A43F0BN6PR19MB1635namp_--
-
-
---===============4802924894153905869==
+--===============7300139566990489483==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -314,5 +177,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4802924894153905869==--
+--===============7300139566990489483==--
 
