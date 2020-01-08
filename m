@@ -2,95 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95216134804
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 17:32:18 +0100 (CET)
-Received: from [::1] (port=39582 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24CAF134A4F
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 19:14:11 +0100 (CET)
+Received: from [::1] (port=53360 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ipEFk-0006TU-UM; Wed, 08 Jan 2020 11:32:16 -0500
-Received: from mx0b-00010702.pphosted.com ([148.163.158.57]:44832)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <prvs=427687bb5d=aaron.rossetto@ni.com>)
- id 1ipEFh-0006Oe-4z
- for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 11:32:13 -0500
-Received: from pps.filterd (m0098779.ppops.net [127.0.0.1])
- by mx0b-00010702.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 008GQWh8010173
- for <usrp-users@lists.ettus.com>; Wed, 8 Jan 2020 10:31:32 -0600
-Received: from nam10-bn7-obe.outbound.protection.outlook.com
- (mail-bn7nam10lp2108.outbound.protection.outlook.com [104.47.70.108])
- by mx0b-00010702.pphosted.com with ESMTP id 2xasddhp5m-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
- for <usrp-users@lists.ettus.com>; Wed, 08 Jan 2020 10:31:31 -0600
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n1TFEqA6Q+WmgM4FA/lMSVe0J8LUqiGmlHpODg8vf/zsKkDEwXXbc55jSAa5ncAUpSMdmO8BPFLhIyfygLNeDBsaOyz1YlId8/X7+MMJbCalnIdo9zBbsoMhq6X32lX/K6KaBpMMzkveUFf3YPN69nrKV8LiyoPD6Za0nBLleWGruiPKJI2cPK1hUZNz1TmxX6oTvUv0T77mDhHf0b0gWUsBEdxOGnli9HouXm/U0CCYhLstio/W7XmYewn+mAQ4Uc17ZJW4t3KdoiUwRTPPSCANxbrWf+eMSI0oLILMTLO85yMj2QOQdLh+mf8SkKjFMurFDv3WAK1LbRw9R58WLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zJeB5jmxCRM9cjeH2uNQ0SSXFQsZ1wu0U6zXZgMnJew=;
- b=kh+YupwWLZhnI2ELzRAIFo/3e1JpRr2S3tScMzc3tjg1vO0j7Ex2z0n8kf7m4R9FqirnUr5jvbauX18vlD6C4H2asUXhKVdxtaBrNHg3/ytJNU0Myxu21TQFLl1eAlJ/dFB/vC3QEBDtOi5Hnm8xP28fGZZgKcYDQ9qiIVCXb6tXCxEbIlQ2+A6+7NLBoMaC8hf6OlrvrlHhF6Me+7OtXNm0ku+hQy8SspFU+tFzNFAYq6L1zIg3lHbUkicOenj+h2wyIHDrTg7HDhq7vDJxyrnyHyiRRJerlOyv+VsNrZ8FUOHx2BmU9fBC9BU4hVXguMmkxMUTuCowTqU9rSPfpw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zJeB5jmxCRM9cjeH2uNQ0SSXFQsZ1wu0U6zXZgMnJew=;
- b=GsYkO2D9Napaeia+N1/yT0aAtv+Sg0vJjBKwVbFBeg7hKCYY34GjE4j02st33DU7SQM9mvaCpBayvG957WldBV7ncQr7Y2I9va7abqKVTcw675qhggA/6I82eyjJPXjtrWH9BwthzRdHh3ur4ziY0YWGThvolQsg0d7Ocaf8rxQ=
-Received: from BYAPR04MB4456.namprd04.prod.outlook.com (52.135.237.77) by
- BYAPR04MB4392.namprd04.prod.outlook.com (20.176.251.20) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.9; Wed, 8 Jan 2020 16:31:30 +0000
-Received: from BYAPR04MB4456.namprd04.prod.outlook.com
- ([fe80::7ca3:79b3:2405:29f0]) by BYAPR04MB4456.namprd04.prod.outlook.com
- ([fe80::7ca3:79b3:2405:29f0%3]) with mapi id 15.20.2623.008; Wed, 8 Jan 2020
- 16:31:30 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] DPDK runtime error
-Thread-Index: AdXGQNNGMF7UrIx9RH2RPrLMCRKjow==
-Date: Wed, 8 Jan 2020 16:31:30 +0000
-Message-ID: <BYAPR04MB4456DA8FD19AC8C087B4D6FCF83E0@BYAPR04MB4456.namprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [130.164.62.37]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 17225a19-4387-437f-e521-08d79458375c
-x-ms-traffictypediagnostic: BYAPR04MB4392:
-x-microsoft-antispam-prvs: <BYAPR04MB43920A167ED3759A11D4B822F83E0@BYAPR04MB4392.namprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-forefront-prvs: 02760F0D1C
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(366004)(346002)(396003)(136003)(376002)(39850400004)(199004)(189003)(2906002)(52536014)(6916009)(33656002)(71200400001)(66446008)(66476007)(81156014)(66556008)(8676002)(64756008)(8936002)(81166006)(478600001)(9686003)(316002)(55016002)(7696005)(66946007)(5660300002)(76116006)(26005)(44832011)(86362001)(6506007)(53546011)(186003);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BYAPR04MB4392;
- H:BYAPR04MB4456.namprd04.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: ni.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: V10yxahIZzU6pIGtMuWsKXStaR9/Yrad8nL0bnbtmLP2w7+GF9kEsn9u0JuxEXAPFo51g2cGYM6ygxEZhQe8D1By2q8czCDQ3dWRUtkG7hZypyPhmWChWpJTQenAuvlKYEDnUuDAigXoGgeSZUsT1g+wvdzdPVyXu28DDdS3ojR5LkVquXtJGR6J6rO29SvfwWHBQ2k0vAts2Vd2QKdHlCXQcs1pGw/PV8hQKUoHpoLBxb/qS4pDLv02/0T01DKDllpDwuAJSH4i8yXApFfTaLwtzx+zxz8S9ztfumDAoAg387TKEiNOekXKZFceSKHSGZB4cVO27JS8lAFlEtHkTGVpD6fvRpUc5VGquKEatVN80hkRZPCBL1Y8PFFN1fX9XWIfyW+Zsz+Y7uHQj9IsNvVJzgYav77+tH2w7v3XELelv2F6ZpmnmnCSlNROuDzF
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17225a19-4387-437f-e521-08d79458375c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2020 16:31:30.0913 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: laXGDlsPSC7fm6OkHK9XmOgitGGX28unTWhh1l7xJfMl7XL8A9D3+wXcdtEHwWrny5l9ERD9Fluz53HlobNRdQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4392
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138, 18.0.572
- definitions=2020-01-08_04:2020-01-08,
- 2020-01-08 signatures=0
-X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy
- score=30
- priorityscore=1501 mlxlogscore=999 spamscore=0 mlxscore=0 adultscore=0
- suspectscore=0 bulkscore=0 impostorscore=0 phishscore=0 lowpriorityscore=0
- clxscore=1011 malwarescore=0 classifier=spam adjust=30 reason=mlx
- scancount=1 engine=8.12.0-1910280000 definitions=main-2001080134
-Subject: Re: [USRP-users] DPDK runtime error
+	id 1ipFqK-0000HI-PY; Wed, 08 Jan 2020 13:14:08 -0500
+Received: from mail-qt1-f175.google.com ([209.85.160.175]:35654)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ipFqH-0000Dp-KB
+ for USRP-users@lists.ettus.com; Wed, 08 Jan 2020 13:14:05 -0500
+Received: by mail-qt1-f175.google.com with SMTP id e12so3574359qto.2
+ for <USRP-users@lists.ettus.com>; Wed, 08 Jan 2020 10:13:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=aPkyY3Z176fLUvUKhGASNk3OgrPGXCw/1QMcqlC1560=;
+ b=qtH2g/FAY6tOPj/Mq5a79lBvOotbbnrU7bVODQn5oSDoX3TEbRHU9vhg4WAowxYRw/
+ PY0IGe//3S7IUJ2In9PectpT3deIT29DsqC/ekNfFtRE9VsCoIrCt7FoxRQAhaVDR3hX
+ QW+BytYNzM8ww1HLdHyMZ2IkqjdVdcw+YAKjlT8XpFKJuUuqbJuXZZgwwe6nFYDR7KGs
+ pwr+VuTHh/nZF4qtlAu7iIBWsXrcwXYVXH+9h3NMF86gI5EO6I+26mXTPNI/PwAJeqjc
+ bFz+AUSewyWgwhUda15onbmVk3iM9KBPRQRFBbpVnApwMpOJdobpRp7u3tAHIplSqZyE
+ SgdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=aPkyY3Z176fLUvUKhGASNk3OgrPGXCw/1QMcqlC1560=;
+ b=Tuk4dY1HgT1Hv0M7ljEfWy/XW4f/SMvcd0wVfWSNzllJgdngNVreKkONBtabBC2bXz
+ ZPQmWEdTQ9kSfRy6iFRYxN1AhAxtTZ7zmMIabtO6E+vQWIgL07jLXqptCpaiUuxgq2fs
+ JoW+VWEoC9oZFTkGhU0AFdHUmZfaOEYB4TjMOLebEVS7IGzlkhcmDdasM3IRs7ity3Wm
+ hBzCEEF/WCI9RsF1iKIUS6urFO+E5VWTnYMZLqxdRyxqKGMO5mLhCfkrPj2bdtU73t96
+ KjQGfbXa6eGCioeDtPFJ3IIzaXzzFx92Jp/r7S91Q+A+vW6XmR0qdEpaygmYCxn3bE1C
+ bBBA==
+X-Gm-Message-State: APjAAAUmNpxal31H/EA2MG7S95iaFUiQ782GNOJfHILsDlsNEpwNsdRa
+ 8hcaVarzX9Wr57skGIPuo4s=
+X-Google-Smtp-Source: APXvYqwwZH+WAe73gZPHqKUezIuLD4P/EP6EsovThMWVlSs+QcueWr+WeWvi9A6SuF/QLk2INneSyA==
+X-Received: by 2002:ac8:330e:: with SMTP id t14mr4809787qta.232.1578507205040; 
+ Wed, 08 Jan 2020 10:13:25 -0800 (PST)
+Received: from [192.168.0.198] ([24.146.32.18])
+ by smtp.gmail.com with ESMTPSA id s91sm1928721qtd.50.2020.01.08.10.13.24
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 08 Jan 2020 10:13:24 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Wed, 8 Jan 2020 13:13:23 -0500
+Message-Id: <12EB7A0E-F5F7-4FC8-A6CD-92A42E52F6B0@gmail.com>
+References: <1258262887.8487449.1578490158766@mail.yahoo.com>
+In-Reply-To: <1258262887.8487449.1578490158766@mail.yahoo.com>
+To: voonna santosh <santu_voonna@yahoo.com>
+X-Mailer: iPhone Mail (17C54)
+Subject: Re: [USRP-users] tx_samples_from_file : Issue with repeat option
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,10 +64,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Aaron Rossetto via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Aaron Rossetto <aaron.rossetto@ni.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8561321296997235423=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -119,40 +81,94 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hello Florian,
 
-I believe in UHD 3.15, the keys in the uhd.conf file use dashes (-), not underscores between words, e.g.:
-
-[dpdk-mac=00:11:22:33:44:55]
-dpdk-io-cpu = 1
-dpdk-ipv4 = 192.168.10.1/24
-
-Hope that helps,
-Aaron
+--===============8561321296997235423==
+Content-Type: multipart/alternative; boundary=Apple-Mail-631D9547-CB46-434F-84F6-510F14BA4AF1
+Content-Transfer-Encoding: 7bit
 
 
+--Apple-Mail-631D9547-CB46-434F-84F6-510F14BA4AF1
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of Florian Kaltenberger via USRP-users
-Sent: Wednesday, January 8, 2020 10:10 AM
-Subject: [EXTERNAL] Re: [USRP-users] DPDK runtime error
+Are you able to use a more recent UHD?
 
-Hi, 
-we now installed DPDK 17.11 but I still have exactly the same problem. 
-I have a feeling the problem is that I am not addressing the device correctly. Here is what I did:
-The USRP is connected to ethernet interfaces "p1p2" (mac_addr 64:9d:99:b1:1e:8d) and "p1p4" (mac_addr 64:9d:99:b1:1e:8f) which are originally configured with IP addresses 192.168.10.1 and inet_addr 192.168.20.1. This configuration works fine without dpdk.
-Then I deactivate these two interfaces using "ifconfig p1p2 down" "ifconfig p1p4 down"and do "dpdk-devbind --bind=vfio-pci 01:00.1" and "dpdk-devbind --bind=vfio-pci 01:00.3". The status of "dpdk-devbind -s" is below.
-In the file /etc/uhd/uhd.conf I specify
-[dpdk_mac=64:9d:99:b1:1e:8d]
-dpdk_io_cpu = 1
-dpdk_ipv4 = 192.168.10.1/24
+What device type?
 
-[dpdk_mac=64:9d:99:b1:1e:8f]
-dpdk_io_cpu = 2
-dpdk_ipv4 = 192.168.20.1/24
-Is this the correct way of specifying it? What surprises me is that DPDK requires to address the device by its PCI address while UHD still requires to set the IP addresses. 
-Florian.
+Sent from my iPhone
+
+> On Jan 8, 2020, at 8:30 AM, voonna santosh via USRP-users <usrp-users@list=
+s.ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> Hi There,
+>    Good morning. I am experiencing an issue with tx_samples_from_file when=
+ using option "--repeat". Everything looks alright when it TX the file, but o=
+nce it reaches the end of the file, it prints S and nothing appears on analy=
+zer soon after that.=20
+>=20
+> The command I am using: ./tx_samples_from_file --args addr=3D192.168.40.2 =
+ --file /home/santoshvoonna/repo/test_files/test_file_SW_Samples_28G.bin   -=
+-type short --spb 3640 --rate 50e6 --freq 60e6  --gain 0 --ant TX/RX --subde=
+v A:0 --bw 40 --ref internal --delay 0 --repeat=20
+>=20
+> Git tag: release_003_010_001_000
+>=20
+>=20
+> Thanks and Regards,
+> Santosh
+>=20
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--Apple-Mail-631D9547-CB46-434F-84F6-510F14BA4AF1
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Are you able to use a more recent UHD?<div>=
+<br></div><div>What device type?<br><br><div dir=3D"ltr">Sent from my iPhone=
+</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jan 8, 2020, at 8:30=
+ AM, voonna santosh via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:=
+<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
+=BF<div class=3D"yahoo-style-wrap" style=3D"font-family:Helvetica Neue, Helv=
+etica, Arial, sans-serif;font-size:16px;"><div dir=3D"ltr" data-setdir=3D"fa=
+lse">Hi There,</div><div dir=3D"ltr" data-setdir=3D"false">&nbsp;&nbsp; Good=
+ morning. I am experiencing an issue with <span>tx_samples_from_file when us=
+ing option "--repeat". Everything looks alright when it TX the file, but onc=
+e it reaches the end of the file, it prints S and nothing appears on analyze=
+r soon after that. <br></span></div><div dir=3D"ltr" data-setdir=3D"false"><=
+span><br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span>The comma=
+nd I am using: <span>./tx_samples_from_file --args addr=3D192.168.40.2&nbsp;=
+ --file /home/santoshvoonna/repo/test_files/test_file_SW_Samples_28G.bin&nbs=
+p;&nbsp; --type short --spb 3640 --rate 50e6 --freq 60e6&nbsp; --gain 0 --an=
+t TX/RX --subdev A:0 --bw 40 --ref internal --delay 0 --repeat <br></span></=
+span><div><br></div><div dir=3D"ltr" data-setdir=3D"false">Git tag: <span>re=
+lease_003_010_001_000</span><br></div><div><br></div><div><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">Thanks and Regards,</div><div dir=3D"ltr" dat=
+a-setdir=3D"false">Santosh<br></div><span></span><br></div></div><span>_____=
+__________________________________________</span><br><span>USRP-users mailin=
+g list</span><br><span>USRP-users@lists.ettus.com</span><br><span>http://lis=
+ts.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><br></div></b=
+lockquote></div></body></html>=
+
+--Apple-Mail-631D9547-CB46-434F-84F6-510F14BA4AF1--
+
+
+--===============8561321296997235423==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8561321296997235423==--
+
