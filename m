@@ -2,52 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BD0134DD9
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 21:46:08 +0100 (CET)
-Received: from [::1] (port=36372 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3FE134DDD
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 21:47:51 +0100 (CET)
+Received: from [::1] (port=38582 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ipIDP-00039M-CK; Wed, 08 Jan 2020 15:46:07 -0500
-Received: from sonic309-21.consmr.mail.ne1.yahoo.com ([66.163.184.147]:37103)
+	id 1ipIF4-0003VS-Et; Wed, 08 Jan 2020 15:47:50 -0500
+Received: from mail-il1-f171.google.com ([209.85.166.171]:35151)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
- id 1ipIDM-00034s-4Y
- for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 15:46:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1578516322; bh=fzCHdguSV8/xMM4/9tzkod1Ka3dWi0fNlO0GJ2mtoFo=;
- h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject;
- b=BLFUeZYjR90eO8d0sDnXjcIKzHPT/z9wKoHs7wAWzDEmfxy9nHSypoHKtKubJ2f5AXMQh0x3jdTJf5kjgz3NSpTFqYlX+EojQMSdFIs9k1DL9O6n8SekbIH72tq2Fzb1jOD0bKRb+do62jCTqVk8O1v8sEYFl+J22Nw5OHXlqwKT0YINlz1oBQcaXyQT3w0AmIw/Hn2bcRqsDYHE40as4bOaRz8BxCTt5SQJ0AWG6XEndLaO/7JffTo/VSsXqJbVl3CrFM9sGvkeopXO8a9f91+6JlE41Ks5dJ1zcNCQBYH6929F7cLh4uev8hu6OvjLvI10gFrVzKH+ZFMAIWD6Lg==
-X-YMail-OSG: nNksKwgVM1lca3lgStg0UUZv.CcfBNLLIGze1b1pDaXyyaoDnCDps_5o7_1AZ2E
- Pp_YH9V_nz4r.sSWi.if.jG7HCUqD2bhK0TAB.Xs5WPgPxS.EL3oD3UP.RgHStLg26tylM6..ADL
- huUMOFQmXpEHNgGGpk9a4hIMhp2QCaHRYlcsphxxIOjfTDpHaaCDImeBeYGj.JXuBaUifNPOpZcf
- Q7Uw3vRpCm29Daggd2zAyyZNSE2s0JcnnwuEehrAW0zjf3veSzoXvq4ZXft8NCUzVMhYKbZZAfSf
- vJtWV22LlynGl9E1N2jP_bWnuXGt9HOj62chUkRo7wM0sStSif1BQlvnCAEUFDAxpufVlKLXvWe7
- IzhtCu43HmgYQbV.0UB_jPKLwtc0cwQdw_7E_sUJU5P6DfmJ.taEtTAoQB8cLza6T7nNspZEFV0a
- AKjRUBCi_rQGfCY1r1bNydcRY_moxqk671zo8RHgr7C08pjr5BTGx.r3pH2n69HETma744mr8AqJ
- F2IoOueBv8DXEtrZZGKi0qJOy5jNqyhdJ_NzTfM4UACD8OjX0GYqh0PTpbucHh0dznIMVnG40_gD
- jvj5rQaVodiCfU5AyaVmlNq4H3ytzVHEp1R.hMXHxWI1by.4zOCBy38sSIZcokK_BN74yFC5avTs
- v1TlS1iAK1PIJqKEgwLWqUyfHIZOK91k5WSo5a7Rdu7hui0u.w3zivvRE9jwizLeMyCQUrwTy7aY
- o4idlj9IVfDlhIJ8F_w3fmxJF31Dz.Qg7BP1RwSPzTDwgQqNdQCe7fSSxgM1CpMGuAZBGT9iV7JB
- SoGU3G9vZ.ja4ESODWbn0lQeE9LvRHi3je1t0j2TAjCyi9zQHHoYrQrnjwjoKiRxFKD29jmTK704
- JOS6WBM9HRclpFQV6rCTRbHvM.erIKOj8bFsdn3pRFwKeddAUC2TFg2BBnxNR8s4gP_5B.xANvhb
- UMjPNeNSSKvspwpa7CCOrdkgwDoBGs_vlyDmI0Jp7tB2AniA7m2Xf4HxdjipqgS1zLRBQe921qfD
- w8TjbthrLUTDD8863Wo5OmbBzqPPChbXFvUZEclkVotyNF4uLsZQ6Rdv935rybsFP4_orowm9vuT
- sAOF.qGJebC6K8XfThSd62phvHhSatUIW6ZRQFxmuy91dYUsuTvBAcLOCL943YVlbZCIgB0r5DR2
- 0l.j.TQbu6XJ_lBO4t_pYhBYskg84lszjke45zoL7bnkZbECgS_8FLyr9TNiAnjwTGVlSktHoQRB
- CBGJ.xix9.TNkRcNrOcBR44QGg38CkSCPvDl7kYlQSG_tD.sk.79VfHXnsIlzE9WnANviktBuxcT
- pFN_1gbbriBVxWkuYjpUjz.tO5_Mc9A8ECA--
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic309.consmr.mail.ne1.yahoo.com with HTTP; Wed, 8 Jan 2020 20:45:22 +0000
-Date: Wed, 8 Jan 2020 20:45:21 +0000 (UTC)
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <1693583403.8730630.1578516321483@mail.yahoo.com>
-In-Reply-To: <5E163E65.70104@gmail.com>
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ipIF1-0003ND-AS
+ for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 15:47:47 -0500
+Received: by mail-il1-f171.google.com with SMTP id g12so3849686ild.2
+ for <usrp-users@lists.ettus.com>; Wed, 08 Jan 2020 12:47:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=rNBjZncbkLMIfKVJgDQpjZM1orZGVYri1dljiKN3WWQ=;
+ b=iuxYbYhehqQjuxveRBP7qsjMlSA7Me4K+zcN4Rlvi6llArvyxD2LwxDd3J2gukBiso
+ EYeKrTULlBPJncxbGG9vnblCKOWyr/iZsIM06tttsztJWDR3oTRcQIKFu6HhUflQuSha
+ a5bhreavCZ9zWRh77IqpZQoo8nc55RusIuX0FBq5uW2yroAm8ZX5gVccL6NJGZNAksXQ
+ tYzBA3T1peJYmkvqZ5ycLSLmBpCzuuxasaQy0FYfyXOkN6B3XtuDGPZtweN1fsqnL2Th
+ GAyaSRerxBGEQ6q28bo3PHrocX3BE1IHjZHVYerD8pxtTbHLr5AJXLfWcb9iQF+Qq7PR
+ 5rvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=rNBjZncbkLMIfKVJgDQpjZM1orZGVYri1dljiKN3WWQ=;
+ b=Rs1OFqcCUegXK+v+0gYPQquAEHPHaIpCtr8sQSOOnaMmCA1niA8JZ/NVv+mU7JBxcY
+ GlrWNF83n5Ma44lRZ/0V+e3K/75AVYYqtXeBjNCcvT3aRhx6OEWw8F9MY8uBP1xo8sZ3
+ 7JOlxzu8S0BfIciUlrIwd5c3r33OwRdIEQRqfyKDbgfRpR3/IAEEvpzT1ruwJD3Qsjnu
+ e0Kjsvi1+fSo9V0WfgP8jyvGXfXTUQo18lm2wOXWtohnU7xiIw//jWSmBay3c4JYr5Kv
+ 2WN5vbLkFbnwt5IkTvcVHDM954VhAkhDoKLrUDC2H+e3Y4XlFgxufLqQWPURCCDCoZdv
+ pLZA==
+X-Gm-Message-State: APjAAAWQJXtjzF1VyN3mUXreskHuWsZ8mAJM0a4WRXD1nYxEiyW6OvLh
+ ssrY9q0Y2gNNhiRnfzxm4s6NuoSVX7o=
+X-Google-Smtp-Source: APXvYqw/gTkDqligBRpW2teP7Rv11ohnkoj09GXYzqGWS1L+bQLhB8yCPEwSUBp95hrDfKLYdDOrcw==
+X-Received: by 2002:a92:8c54:: with SMTP id o81mr5565055ild.163.1578516426484; 
+ Wed, 08 Jan 2020 12:47:06 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
+ [174.95.14.83])
+ by smtp.googlemail.com with ESMTPSA id n17sm1266571ile.68.2020.01.08.12.47.05
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 08 Jan 2020 12:47:05 -0800 (PST)
+Message-ID: <5E163FC9.4000802@gmail.com>
+Date: Wed, 08 Jan 2020 15:47:05 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: voonna santosh <santu_voonna@yahoo.com>
 References: <1258262887.8487449.1578490158766@mail.yahoo.com>
  <12EB7A0E-F5F7-4FC8-A6CD-92A42E52F6B0@gmail.com>
  <900064020.8665629.1578507448504@mail.yahoo.com> <5E163E65.70104@gmail.com>
-MIME-Version: 1.0
-X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
- x64; rv:71.0) Gecko/20100101 Firefox/71.0
+ <1693583403.8730630.1578516321483@mail.yahoo.com>
+In-Reply-To: <1693583403.8730630.1578516321483@mail.yahoo.com>
 Subject: Re: [USRP-users] tx_samples_from_file : Issue with repeat option
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -60,10 +69,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: voonna santosh <santu_voonna@yahoo.com>
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5725481796894379649=="
+Content-Type: multipart/mixed; boundary="===============0270438958520369333=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,231 +86,74 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5725481796894379649==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_8730629_665648044.1578516321481"
-Content-Length: 9466
+This is a multi-part message in MIME format.
+--===============0270438958520369333==
+Content-Type: multipart/alternative;
+ boundary="------------080709090806000104010203"
 
-------=_Part_8730629_665648044.1578516321481
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------080709090806000104010203
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
- Hi Marcus,=C2=A0 Which version would you suggest? Also can you please conf=
-irm whether it would work on 3.10.1.0 ?BR,Santosh
+On 01/08/2020 03:45 PM, voonna santosh wrote:
+> Hi Marcus,
+>   Which version would you suggest? Also can you please confirm whether 
+> it would work on 3.10.1.0 ?
+> BR,
+> Santosh
+>
+>
+It should work, but my recollection is that there are issues with TX for 
+X300 that have been fixed since 3.10.1.0.
 
-    On Wednesday, January 8, 2020, 8:41:11 PM GMT, Marcus D. Leech <patchvo=
-nbraun@gmail.com> wrote: =20
-=20
-  On 01/08/2020 01:17 PM, voonna santosh wrote:
- =20
-  Hi Marcus, I am using USRP X300
-  =20
- Could you try a more recent UHD?
-=20
-=20
-=20
- =20
-      On Wednesday, January 8, 2020, 6:13:26 PM GMT, Marcus D Leech <patchv=
-onbraun@gmail.com> wrote: =20
- =20
-    Are you able to use a more recent UHD?=20
-  What device type?
-=20
- Sent from my iPhone =20
-=20
-On Jan 8, 2020, at 8:30 AM, voonna santosh via USRP-users <usrp-users@lists=
-.ettus.com> wrote:
-=20
-=20
-  =20
-  =EF=BB=BF   Hi There, =C2=A0=C2=A0 Good morning. I am experiencing an iss=
-ue with tx_samples_from_file when using option "--repeat". Everything looks=
- alright when it TX the file, but once it reaches the end of the file, it p=
-rints S and nothing appears on analyzer soon after that.=20
- =20
-    The command I am using: ./tx_samples_from_file --args addr=3D192.168.40=
-.2=C2=A0 --file /home/santoshvoonna/repo/test_files/test_file_SW_Samples_28=
-G.bin=C2=A0=C2=A0 --type short --spb 3640 --rate 50e6 --freq 60e6=C2=A0 --g=
-ain 0 --ant TX/RX --subdev A:0 --bw 40 --ref internal --delay 0 --repeat=20
- =20
-  Git tag: release_003_010_001_000
- =20
- =20
-  Thanks and Regards,   Santosh=20
- =20
-   _______________________________________________
- USRP-users mailing list
- USRP-users@lists.ettus.com
- http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=20
-  =20
-      =20
-=20
-  =20
-------=_Part_8730629_665648044.1578516321481
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Something recent, like 3.14.1.1  should be tried.
 
-<html><head></head><body><div class=3D"ydp27ebd4ceyahoo-style-wrap" style=
-=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
-;"><div></div>
-        <div dir=3D"ltr" data-setdir=3D"false">Hi Marcus,</div><div dir=3D"=
-ltr" data-setdir=3D"false">&nbsp; Which version would you suggest? Also can=
- you please confirm whether it would work on 3.10.1.0 ?</div><div dir=3D"lt=
-r" data-setdir=3D"false">BR,</div><div dir=3D"ltr" data-setdir=3D"false">Sa=
-ntosh<br></div><div><br></div>
-       =20
-        </div><div id=3D"yahoo_quoted_9255235084" class=3D"yahoo_quoted">
-            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
-ans-serif;font-size:13px;color:#26282a;">
-               =20
-                <div>
-                    On Wednesday, January 8, 2020, 8:41:11 PM GMT, Marcus D=
-. Leech &lt;patchvonbraun@gmail.com&gt; wrote:
-                </div>
-                <div><br></div>
-                <div><br></div>
-                <div><div id=3D"yiv8971027758"><div>
-    <div class=3D"yiv8971027758moz-cite-prefix">On 01/08/2020 01:17 PM, voo=
-nna santosh
-      wrote:<br clear=3D"none">
+
+
+--------------080709090806000104010203
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 01/08/2020 03:45 PM, voonna santosh
+      wrote:<br>
     </div>
-    <blockquote type=3D"cite">
-      <div class=3D"yiv8971027758ydpf519db33yahoo-style-wrap" style=3D"font=
--family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;">
-        <div dir=3D"ltr">Hi Marcus,</div>
-        <div dir=3D"ltr">I am using USRP X300<br clear=3D"none">
+    <blockquote
+      cite="mid:1693583403.8730630.1578516321483@mail.yahoo.com"
+      type="cite">
+      <div class="ydp27ebd4ceyahoo-style-wrap"
+        style="font-family:Helvetica Neue, Helvetica, Arial,
+        sans-serif;font-size:16px;">
+        <div dir="ltr" data-setdir="false">Hi Marcus,</div>
+        <div dir="ltr" data-setdir="false">  Which version would you
+          suggest? Also can you please confirm whether it would work on
+          3.10.1.0 ?</div>
+        <div dir="ltr" data-setdir="false">BR,</div>
+        <div dir="ltr" data-setdir="false">Santosh<br>
+        </div>
+        <div><br>
         </div>
       </div>
+      <br>
     </blockquote>
-    Could you try a more recent UHD?<div class=3D"yiv8971027758yqt441351169=
-5" id=3D"yiv8971027758yqtfd36934"><br clear=3D"none">
-    <br clear=3D"none">
-    <br clear=3D"none">
-    <blockquote type=3D"cite">
-      <div class=3D"yiv8971027758ydpf519db33yahoo-style-wrap" style=3D"font=
--family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;">
-        <div><br clear=3D"none">
-        </div>
-      </div>
-      <div class=3D"yiv8971027758yahoo_quoted" id=3D"yiv8971027758yahoo_quo=
-ted_9326676555">
-        <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, sans-=
-serif;font-size:13px;color:#26282a;">
-          <div> On Wednesday, January 8, 2020, 6:13:26 PM GMT, Marcus D
-            Leech <a rel=3D"nofollow" shape=3D"rect" class=3D"yiv8971027758=
-moz-txt-link-rfc2396E" ymailto=3D"mailto:patchvonbraun@gmail.com" target=3D=
-"_blank" href=3D"mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.co=
-m&gt;</a> wrote: </div>
-          <div><br clear=3D"none">
-          </div>
-          <div><br clear=3D"none">
-          </div>
-          <div>
-            <div id=3D"yiv8971027758">
-              <div>Are you able to use a more recent UHD?
-                <div><br clear=3D"none">
-                </div>
-                <div>What device type?<br clear=3D"none">
-                  <br clear=3D"none">
-                  <div dir=3D"ltr">Sent from my iPhone</div>
-                  <div dir=3D"ltr">
-                    <div class=3D"yiv8971027758yqt5783188279" id=3D"yiv8971=
-027758yqtfd89129"><br clear=3D"none">
-                      <blockquote type=3D"cite">On Jan 8, 2020, at 8:30
-                        AM, voonna santosh via USRP-users
-                        <a rel=3D"nofollow" shape=3D"rect" class=3D"yiv8971=
-027758moz-txt-link-rfc2396E" ymailto=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" href=3D"mailto:usrp-users@lists.ettus.com">&lt;usrp-users=
-@lists.ettus.com&gt;</a> wrote:<br clear=3D"none">
-                        <br clear=3D"none">
-                      </blockquote>
-                    </div>
-                  </div>
-                  <blockquote type=3D"cite">
-                    <div dir=3D"ltr">
-                      <div class=3D"yiv8971027758yqt5783188279" id=3D"yiv89=
-71027758yqtfd57626">=EF=BB=BF</div>
-                      <div class=3D"yiv8971027758yahoo-style-wrap" style=3D=
-"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;">
-                        <div class=3D"yiv8971027758yqt5783188279" id=3D"yiv=
-8971027758yqtfd09113">
-                          <div dir=3D"ltr">Hi There,</div>
-                          <div dir=3D"ltr">&nbsp;&nbsp; Good morning. I am
-                            experiencing an issue with <span>tx_samples_fro=
-m_file
-                              when using option "--repeat". Everything
-                              looks alright when it TX the file, but
-                              once it reaches the end of the file, it
-                              prints S and nothing appears on analyzer
-                              soon after that. <br clear=3D"none">
-                            </span></div>
-                          <div dir=3D"ltr"><span><br clear=3D"none">
-                            </span></div>
-                        </div>
-                        <div dir=3D"ltr">
-                          <div class=3D"yiv8971027758yqt5783188279" id=3D"y=
-iv8971027758yqtfd19957"><span>The
-                              command I am using: <span>./tx_samples_from_f=
-ile
-                                --args addr=3D192.168.40.2&nbsp; --file
-                                /home/santoshvoonna/repo/test_files/test_fi=
-le_SW_Samples_28G.bin&nbsp;&nbsp;
-                                --type short --spb 3640 --rate 50e6
-                                --freq 60e6&nbsp; --gain 0 --ant TX/RX
-                                --subdev A:0 --bw 40 --ref internal
-                                --delay 0 --repeat <br clear=3D"none">
-                              </span></span>
-                            <div><br clear=3D"none">
-                            </div>
-                            <div dir=3D"ltr">Git tag: <span>release_003_010=
-_001_000</span><br clear=3D"none">
-                            </div>
-                            <div><br clear=3D"none">
-                            </div>
-                            <div><br clear=3D"none">
-                            </div>
-                            <div dir=3D"ltr">Thanks and Regards,</div>
-                          </div>
-                          <div dir=3D"ltr">
-                            <div class=3D"yiv8971027758yqt5783188279" id=3D=
-"yiv8971027758yqtfd28993">Santosh</div>
-                            <br clear=3D"none">
-                          </div>
-                          <span></span><br clear=3D"none">
-                        </div>
-                      </div>
-                      <span>_______________________________________________=
-</span><br clear=3D"none">
-                      <span>USRP-users mailing list</span><br clear=3D"none=
-">
-                      <span><a rel=3D"nofollow" shape=3D"rect" class=3D"yiv=
-8971027758moz-txt-link-abbreviated" ymailto=3D"mailto:USRP-users@lists.ettu=
-s.com" target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-us=
-ers@lists.ettus.com</a></span><br clear=3D"none">
-                      <span><a rel=3D"nofollow" shape=3D"rect" class=3D"yiv=
-8971027758moz-txt-link-freetext" target=3D"_blank" href=3D"http://lists.ett=
-us.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a></span>
-                      <div class=3D"yiv8971027758yqt5783188279" id=3D"yiv89=
-71027758yqtfd34122"><br clear=3D"none">
-                      </div>
-                    </div>
-                  </blockquote>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br clear=3D"none">
-  </div></div></div></div>
-            </div>
-        </div></body></html>
-------=_Part_8730629_665648044.1578516321481--
+    It should work, but my recollection is that there are issues with TX
+    for X300 that have been fixed since 3.10.1.0.<br>
+    <br>
+    Something recent, like 3.14.1.1  should be tried.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------080709090806000104010203--
 
 
---===============5725481796894379649==
+--===============0270438958520369333==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -312,5 +164,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5725481796894379649==--
+--===============0270438958520369333==--
 
