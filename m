@@ -2,46 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 489D4134323
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 14:00:14 +0100 (CET)
-Received: from [::1] (port=40836 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E75C11343D7
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 14:30:12 +0100 (CET)
+Received: from [::1] (port=44856 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ipAwS-0001xL-Uo; Wed, 08 Jan 2020 08:00:08 -0500
-Received: from mx1.hrz.uni-dortmund.de ([129.217.128.51]:44178
- helo=unimail.uni-dortmund.de)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <felix.greiwe@tu-dortmund.de>)
- id 1ipAwP-0001lN-HE
- for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 08:00:05 -0500
-Received: from webmail.tu-dortmund.de (webmail.tu-dortmund.de [129.217.131.82])
- (authenticated bits=0)
- by unimail.uni-dortmund.de (8.16.0.41/8.16.0.41) with ESMTPSA id
- 008CxNQf009656
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <usrp-users@lists.ettus.com>; Wed, 8 Jan 2020 13:59:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tu-dortmund.de;
- s=unimail; t=1578488363;
- bh=V5ElyH54+GPopnEzK7txBFgf4CREFQCO6dD3wVcK730=;
- h=In-Reply-To:References:Date:Subject:From:To:Reply-To;
- b=NAPTZihh15+9HR573wDsxirn3b1pWzqtZ9tbATtPnEKrVTajMQVHP1zW+u1l8dFhz
- WFpSYe4d6WrtCphIYJz0wWZfbEcyN0aHNeTyMzEuPslnkeP5wnKiR+hGhEiE5PmTPP
- 6quDTKPfL0MZ9ZiHI0RWFf9HwmXxrUsNrozz83uM=
-Received: from 129.217.182.203 (SquirrelMail authenticated user smfegrei)
- by webmail.tu-dortmund.de with HTTP; Wed, 8 Jan 2020 13:59:23 +0100
-Message-ID: <f579952b4ad7fb3a6457224d49fc6af6.squirrel@webmail.tu-dortmund.de>
-In-Reply-To: <CADRnH22jhRo3s-=URkd-bgtCHoqVAP3CzV2XGgtkbO21h2f=6Q@mail.gmail.com>
-References: <0f08a6b07438bf71916006244562092c.squirrel@webmail.tu-dortmund.de>
- <640c149702f53cfe43d71b5da2255278.squirrel@webmail.tu-dortmund.de>
- <CADRnH22jhRo3s-=URkd-bgtCHoqVAP3CzV2XGgtkbO21h2f=6Q@mail.gmail.com>
-Date: Wed, 8 Jan 2020 13:59:23 +0100
-To: "Usrp Liste" <usrp-users@lists.ettus.com>
-User-Agent: SquirrelMail/1.4.23 [SVN]
+	id 1ipBPQ-0003Fm-RV; Wed, 08 Jan 2020 08:30:04 -0500
+Received: from sonic302-21.consmr.mail.ne1.yahoo.com ([66.163.186.147]:38784)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
+ id 1ipBPN-00039H-Bh
+ for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 08:30:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1578490160; bh=EAf7dg6dOxxpVfJ4AFOrySSod1M7E+QP6OsZFa/jLC0=;
+ h=Date:From:To:Subject:References:From:Subject;
+ b=e0rDEMWi3z97foLf19AoYF/LQqdx80MhgMCSPpfKN5zTHh+MIq+A6r2Dx0/EnqG33MNT7DYBWeuL0jFp4fo6K1SFInN6PV5FFfP0rgsXdvunkRZsu/nnT04hGDtVx8sfomK9n3tXp83XLO+Y9vSfoUi9SqP8flRCs1AVQp0zVsR52lPawCFMLryPhT60gMsyBFqROlmsOqzUh5JRy1ydKgxR6G0J0MF361Ds0y4pwVdInIGNkEdGv2bofGBez1Nem/du6v/OYwl3TGigYQPpq0pMsUbz8PkhBASObhaMijf8nxdxZ2zMPv31clz4Vlr+6ETqmsZezW6qbxFtRhY8Dg==
+X-YMail-OSG: 6fSz67IVM1nZ4aDlsZIzXFX21d_QqzKkRYzDRObjdu77vE1oPAcOaU0VvOXPg7M
+ 1Qfgz.h7fK9nnUL7FxaNc8AY3g.Kkyra1.7W4u8QLgL8_pTcDs.XYTCxS6bORpRAz1rCAL2ly74Q
+ gVW56KYM8hccN9dBGh8lc0kH4IC5JlBTPF68s4UkL.N4wf5aBiSuGTd_teRjRvx01WMw7.3z.kME
+ dKJjYoP9vYH0dU7F_sbVwfecKZM37k423A9yj2R8GCI1A7RHitTgDsTeZoD05.8FisQolurRQ29o
+ HUVC3OmY3dHI4czEQl_3N1qX5zfAxWzJ.8sbkPCfuM_OQvJzAYJZex67HeUEw6RhcLET7.3HhU7r
+ .qwBYsEm6F1wBs42BVxsQF1AdEro58v.UL.uCo_hCcT2QH4jfpP.8q88IfZ48Yy0NWubY3kPM_7B
+ 70cawT.kynSlCMCPfFsnVzVPLoSIAcMrozp2SAfQb4fzNeRAzP00XZDiPVn1Y29g2vFKojrFcwNb
+ lXM7jr3OEmSxRaqhZjNst5YZGzY3.fiZiz2sxw5YFxXz3Ib3j_Fz42UCdyRW_iCCCUeWtvzuzWGC
+ HrXygn3oYubbdgPLI.3RTcECPNf4BonjMjndb4_XFB1FsfUtLjUR82nPn6708MS9umrFAnectvns
+ efiRTaFWYkkbdQKAGNtjy3Ury_CxfX9uwRf0fbuRIvnLL5Q9MtW20NkKL8jMEUCWZNO0n5BEEzY2
+ ITbOvjGRFI6Cyz7KiZvt6Cwxz.b8vMgbxke9fJhu6P0ewLxNwwJKGBAkjHF6YDy7q2eQ7CFt.vXd
+ h6141WwIrwdZcVr_RQEKkfS5aYjzNymN0kjTUst4Tz1YOpTNtZwtxFsIVkBHCBjH25YKXG0ix8AO
+ erpir08NUaQTmvzrehOTY_sP4yz66sDUmhcULI0rWgph6t7tFhKXPVP8X1UE.tdaFXR2SSjb7p96
+ bAYzbNEHjHZ2rQNfuD_iiBgej23XRtKX.EbYcSC9BXcNiD3Vd4o8Oos1Ytxn_9CkTLEOFnECeLhA
+ epQ0gSRie_VV3WT2Qubcf1mLZmkwbdkDr7gHMBEbWvMQNP5vjYC3gcCoW1.eREiwroCZlE0cf2vz
+ OReXoGrSPDZeegJeE0oN1.3xNdd4LkHGGKQbHAbSNL8bLu1WowKJV0P8iRWjulTSfdksPlUQCWV6
+ zpxskVdff4yqLphZDzf0HmGgIDUp2kjDcfd4tXcEGh3uy1Rzy7b._gQa7jr_e1Y1Smu3UYGmspea
+ HK7f86Vt5191fw32nC50UyojseX_ty9pAlnQ6CMdc8gOyCt6gfcxv.lCME7UgjyCdpPRp5Hsmvg6
+ tj14DFOTzYvnmwx19K29o6e8-
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic302.consmr.mail.ne1.yahoo.com with HTTP; Wed, 8 Jan 2020 13:29:20 +0000
+Date: Wed, 8 Jan 2020 13:29:18 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <1258262887.8487449.1578490158766@mail.yahoo.com>
 MIME-Version: 1.0
-X-Priority: 3 (Normal)
-Importance: Normal
-Subject: Re: [USRP-users] Building RFNoC Image with OOT Module on X310 -
- Module not found
+References: <1258262887.8487449.1578490158766.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (X11; Linux x86_64;
+ rv:68.0) Gecko/20100101 Firefox/68.0
+Subject: [USRP-users] tx_samples_from_file : Issue with repeat option
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,10 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Felix Greiwe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: felix.greiwe@tu-dortmund.de
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: voonna santosh <santu_voonna@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============7530496820073893258=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,254 +73,65 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi EJ,
+--===============7530496820073893258==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_8487448_1820478044.1578490158764"
+Content-Length: 2228
 
-thank you for your answer! To make my error more traceable, I created a
-new OOT Module and added the default gain block from rfnoc getting
-started.
+------=_Part_8487448_1820478044.1578490158764
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I also took your advice and looked at the uhd_image_builder.py script. I
-noticed very strange behaviour, because my print statements suggested,
-that the script did not include my makefile.srcs because it first edited
-the path
+Hi There,=C2=A0=C2=A0 Good morning. I am experiencing an issue with tx_samp=
+les_from_file when using option "--repeat". Everything looks alright when i=
+t TX the file, but once it reaches the end of the file, it prints S and not=
+hing appears on analyzer soon after that.=20
 
-/home/lskt/rfnoc/src/rfnoc-blocks_lskt/ to
-/home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc and a bit later to
-/home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc/rfnoc/fpga-src/ .
+The command I am using: ./tx_samples_from_file --args addr=3D192.168.40.2=
+=C2=A0 --file /home/santoshvoonna/repo/test_files/test_file_SW_Samples_28G.=
+bin=C2=A0=C2=A0 --type short --spb 3640 --rate 50e6 --freq 60e6=C2=A0 --gai=
+n 0 --ant TX/RX --subdev A:0 --bw 40 --ref internal --delay 0 --repeat=20
 
-As you can see two rfnoc's here hence it did not find the makefile.src in
-..../fpga-src. The changes (marked with fgr) in the create_oot_include
-here seem to resolve the issue, hopefully helpful for other people too and
-maybe even a major bug?:
-
-def create_oot_include(device, include_dirs):
-    """
-    Create the include file for OOT RFNoC sources
-    """
-    oot_dir_list =3D []
-    target_dir =3D device_dict(device.lower())
-    dest_srcs_file =3D os.path.join(get_scriptpath(), '..', '..', 'top',\
-            target_dir, 'Makefile.OOT.inc')
-    incfile =3D open(dest_srcs_file, 'w')
-    incfile.write(OOT_SRCS_FILE_HDR)
-    if include_dirs is not None:
-        for dirs in include_dirs:
-            currpath =3D os.path.abspath(str(dirs))
-            if os.path.isdir(currpath) & (os.path.basename(currpath) =3D=3D
-"rfnoc"):
-                # Case 1: Pointed directly to rfnoc directory
-                oot_path =3D currpath
-            elif os.path.isdir(os.path.join(currpath, 'rfnoc')):
-                # Case 2: Pointed to top level rfnoc module directory
-                oot_path =3D os.path.join(currpath, 'rfnoc')
-            elif os.path.isfile(os.path.join(currpath, 'Makefile.inc')):
-                # Case 3: Pointed to a random directory with a Makefile.inc
-                oot_path =3D currpath
-            else:
-                print('No RFNoC module found at ' +
-os.path.abspath(currpath))
-                continue
-            if oot_path not in oot_dir_list:
-                oot_dir_list.append(oot_path)
-                named_path =3D os.path.join('$(BASE_DIR)',
-get_relative_path(get_basedir(), oot_path))
-                incfile.write(OOT_DIR_TMPL.format(oot_dir=3Dnamed_path))
-                if os.path.isfile(os.path.join(oot_path, 'Makefile.inc')):
-                    # Check for Makefile.inc
-                    incfile.write(OOT_INC_TMPL)
-                elif os.path.isfile(os.path.join(oot_path, 'rfnoc',
-'Makefile.inc')):
-                    # Check for Makefile.inc
-                    incfile.write(OOT_INC_TMPL)
-                #elif os.path.isfile(os.path.join(oot_path, 'rfnoc',
-'fpga-src', 'Makefile.srcs')): # Original
-                elif os.path.isfile(os.path.join(oot_path, 'fpga-src',
-'Makefile.srcs')): # Anders fgr
-                    # Legacy: Check for fpga-src/Makefile.srcs
-                    # Read, then append to file
-                    # curr_srcs =3D open(os.path.join(oot_path, 'rfnoc',
-'fpga-src', 'Makefile.srcs'), 'r').read() # Original
-                    curr_srcs =3D open(os.path.join(oot_path, 'fpga-src',
-'Makefile.srcs'), 'r').read() # Anders fgr
-                    # curr_srcs =3D curr_srcs.replace('SOURCES_PATH',
-os.path.join(oot_path, 'rfnoc', 'fpga-src', '')) #
-Original
-                    curr_srcs =3D curr_srcs.replace('SOURCES_PATH',
-os.path.join(oot_path, 'fpga-src', '')) # Anders fgr
-                    print('Searching for Makefile.srcs: ' + curr_srcs) #fgr
-                    incfile.write(OOT_SRCS_TMPL.format(sources=3Dcurr_srcs))
-                else:
-                    print('No valid makefile found at ' +
-os.path.abspath(currpath))
-                    continue
-
-However 30 minutes later in the build I got the next errror and again have
-no idea what to do. My command was:
-
-./uhd_image_builder.py gain ddc fft -I
-/home/lskt/rfnoc/src/rfnoc-blocks_lskt/ -d x310 -t X310_RFNOC_HG -m 6
---fill-with-fifos
-
-Using Vivado 2018.3 and UHD 3.15.0.0-124-geb448043
+Git tag: release_003_010_001_000
 
 
-Erros are:
-
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_clk_gen/inst/CLK_OUT4
-has multiple drivers: radio_clk_gen/inst/clkout1_buf/O, and
-bus_clk_gen/inst/clkout4_buf/O.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net
-radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has
-multiple drivers:
-ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg=
-[9][0]/Q,
-and
-radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_=
-reg[9][0]/Q.
-ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design not run.
-ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
-[00:24:46] Current task: DRC +++ Current Phase: Starting
-[00:24:46] Current task: DRC +++ Current Phase: Finished
-[00:24:46] Process terminated. Status: Failure
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-Warnings:           1304
-Critical Warnings:  40
-Errors:             4
-
-Makefile.x300.inc:106: recipe for target 'bin' failed
-make[1]: *** [bin] Error 1
-make[1]: Verzeichnis =84/home/lskt/rfnoc/src/uhd-fpga/usrp3/top/x300=93 wird
-verlassen
-Makefile:112: recipe for target 'X310_RFNOC_HG' failed
-make: *** [X310_RFNOC_HG] Error 2
+Thanks and Regards,Santosh
 
 
-Again, I would be very thankful for any advice, I refuse to give up :D
+------=_Part_8487448_1820478044.1578490158764
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Thanks again and best regards,
-
-Felix
-
-
-> Hi Felix,
->
-> It's tough to debug your specific issues without seeing the whole OOT repo
-> structure, including makefiles, etc.
->
-> However I regularly use rfnoc with OOT folders successfully and have an
-> example here you might be able to refer to for some hints:
-> github.com/ejk43/rfnoc-ootexample
->
-> I might suggest trying to check that out and see if you can build with one
-> of those blocks first, then modify for your purposes?
->
-> Also, one other thing to mention is you might have some luck debugging the
-> uhd_image_builder.py to see where it's going wrong in your case (it's just
-> a python file so it's pretty easy to add debug markers or print statements
-> if you want)...
->
-> EJ
->
-> On Sat, Jan 4, 2020, 5:10 AM Felix Greiwe via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hello again,
->>
->> has no one an idea? I have still not managed to get it working..
->> I would take any advice!
->>
->> Best regards,
->>
->> Felix
->>
->>
->> > Hello together,
->> >
->> > recently I installed the whole UHD/GNU-Radio Toolchain on a fresh
->> install
->> > of Kubuntu 18.04 LTS. I followed the instructions from
->> > https://kb.ettus.com/Getting_Started_with_RFNoC_Development
->> > and used the Pybombs install.
->> >
->> > (I ran into a lot of problems there and had to install a lot of stuff
->> > manually because most of the commands were not working properly. Maybe
->> the
->> > Pybombs Tutorial Section needs an update?)
->> >
->> > Finally I managed to install it successfully and the command
->> > uhd_config_version -- info prints: UHD 3.15.0.0-124-geb448043
->> > (I also installed Vivado 2018.3 and added the License which seems to
->> > work.)
->> >
->> > After the install I wanted to validate it by creating an OOT Module
->> and
->> > OOT Block named noc_block_checkdevprocess.v. I did not edit the
->> Verilog
->> > Code because I only wanted to know if I was able to build an Image
->> > properly.
->> > (I ran the default Testbench too, which worked without errors.)
->> >
->> > The command to build my image is:
->> >
->> > ./uhd_image_builder.py checkdevprocess digital_gain -t X310_RFNOC_HG
->> -d
->> > X310 -I /home/lskt/rfnoc-blocks_lskt/rfnoc
->> >
->> > with "rfnoc-blocks_lskt" beeing my OOT Module and "checkdevprocess"
->> beeing
->> > my  custom block.
->> > (I also tried the paths home/lskt/rfnoc-blocks_lskt/rfnoc/;
->> > home/lskt/rfnoc-blocks_lskt/;
->> home/lskt/rfnoc-blocks_lskt/rfnoc/fpga-src
->> )
->> >
->> > Every single time I get the same error message:
->> > ERROR: [Synth 8-439] module 'noc_block_checkdevprocess' not found
->> >
->> [/home/lskt/rfnoc/src/uhd-fpga/usrp3/top/x300/rfnoc_ce_auto_inst_x310.v:=
-22]
->> >
->> > and I don't know why.
->> >
->> > I also tried the the uhd_image_builder_gui.py which did not even pop
->> up
->> > until I uncommented the Line at row 149. I can see my OOT Block here
->> after
->> > adding the Module in the gui, but it prints the same error message as
->> the
->> > non-gui version.
->> >
->> > If you need further information to help please ask.
->> >
->> > Any help is appreciated.
->> >
->> > Felix
->> >
->> >
->> >
->> >
->> >
->> > _______________________________________________
->> > USRP-users mailing list
->> > USRP-users@lists.ettus.com
->> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> >
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Hi There,</div><div dir=3D"ltr" data-setdir=
+=3D"false">&nbsp;&nbsp; Good morning. I am experiencing an issue with <span=
+>tx_samples_from_file when using option "--repeat". Everything looks alrigh=
+t when it TX the file, but once it reaches the end of the file, it prints S=
+ and nothing appears on analyzer soon after that. <br></span></div><div dir=
+=3D"ltr" data-setdir=3D"false"><span><br></span></div><div dir=3D"ltr" data=
+-setdir=3D"false"><span>The command I am using: <span>./tx_samples_from_fil=
+e --args addr=3D192.168.40.2&nbsp; --file /home/santoshvoonna/repo/test_fil=
+es/test_file_SW_Samples_28G.bin&nbsp;&nbsp; --type short --spb 3640 --rate =
+50e6 --freq 60e6&nbsp; --gain 0 --ant TX/RX --subdev A:0 --bw 40 --ref inte=
+rnal --delay 0 --repeat <br></span></span><div><br></div><div dir=3D"ltr" d=
+ata-setdir=3D"false">Git tag: <span>release_003_010_001_000</span><br></div=
+><div><br></div><div><br></div><div dir=3D"ltr" data-setdir=3D"false">Thank=
+s and Regards,</div><div dir=3D"ltr" data-setdir=3D"false">Santosh<br></div=
+><span></span><br></div></div></body></html>
+------=_Part_8487448_1820478044.1578490158764--
 
 
+--===============7530496820073893258==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7530496820073893258==--
+
