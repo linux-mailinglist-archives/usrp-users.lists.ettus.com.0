@@ -2,49 +2,46 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D318134193
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 13:23:54 +0100 (CET)
-Received: from [::1] (port=37958 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 489D4134323
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 14:00:14 +0100 (CET)
+Received: from [::1] (port=40836 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ipANE-0000na-N0; Wed, 08 Jan 2020 07:23:44 -0500
-Received: from mail-lj1-f178.google.com ([209.85.208.178]:41191)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <akinsoysal@gmail.com>)
- id 1ipANA-0000jr-Me
- for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 07:23:40 -0500
-Received: by mail-lj1-f178.google.com with SMTP id h23so3083485ljc.8
- for <usrp-users@lists.ettus.com>; Wed, 08 Jan 2020 04:23:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=kSY64qvHQM4z2zuI1WNP8SS/LOfqxMBliXaRwB71EYo=;
- b=O7Un2xn9VOY5dIDTtZy2J1NBPp7U/vZlGlYhkzQXkJA30ZYdX/1OtveX+m8GVGWi9b
- w1A1usOCgdWVFq2GOCKvRAnxFhFzwM//uqJEa71L3JVnnQ1nncKVOfkL+F4UtWwuHXOt
- FWFMqjYVQQ0MIZxfpWc783y0bqcU9QK4NX/Ff5c6eW8IjJSuoFWrWzKphTMt2akGzY4r
- 0Bfb3xtsSxC5GvcXVKH+oDkYnCacnYVgHA0kIJX0L2zLNisutvUYdXEV4CzfENH1Y7EO
- RzCdonGZJd8TfVDjDpMHIB2HDS582LDkbx2RS3hbWsmoVFvTmH1/+r2R4xcMTvgVCmG6
- 7MYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=kSY64qvHQM4z2zuI1WNP8SS/LOfqxMBliXaRwB71EYo=;
- b=UPQcP5fsJsJvXtw9J4QeHerizgi8ZF9NYg/qKDHtSlQ6aiEP+yFefPXV5vmW312Krc
- KPLRMYH6w6QQi/L4CW9L1So5oocys288N0EhcKd80MmvJLjJxUROkxPDYHRgYn8BgPf7
- 2Bw+Q7zNWcDjj96dmc+3CH9Pm6oKOErPtizetgrHgyR1om4M6nOuwm9FxtPZvMuz7nkT
- dSKUK1PeWPeC8Pd5z0BKuzIiMgDHVDEz+xfUr4VzNqStKP1sbImsnRLJRYSxi7/tvbJN
- 8m0MzHKw1bUy8lLM1AKzk0NTGXB5BJFfOscu0hNnVlArNkU5wmcVpxx5wzsTNgTSY9eJ
- 37sg==
-X-Gm-Message-State: APjAAAW/OwCgKnHfkhnXw4FQl/Y+o2U0km1N/4U+n8beJuB2kBWCKZXs
- fe4AtcxcgV1gJFBT0EGTwT9sjxgndbe0B2dXm+8mMnbh
-X-Google-Smtp-Source: APXvYqwgkfP92e1NisHcfg4gBGBnxjjFHRl0Nm0pPYgr7y7wlBsiapE9lXDqIcXu0LlmyeNXYwTqea4NCIVDtsgWM9Y=
-X-Received: by 2002:a2e:84d0:: with SMTP id q16mr2675225ljh.138.1578486178957; 
- Wed, 08 Jan 2020 04:22:58 -0800 (PST)
+	id 1ipAwS-0001xL-Uo; Wed, 08 Jan 2020 08:00:08 -0500
+Received: from mx1.hrz.uni-dortmund.de ([129.217.128.51]:44178
+ helo=unimail.uni-dortmund.de)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <felix.greiwe@tu-dortmund.de>)
+ id 1ipAwP-0001lN-HE
+ for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 08:00:05 -0500
+Received: from webmail.tu-dortmund.de (webmail.tu-dortmund.de [129.217.131.82])
+ (authenticated bits=0)
+ by unimail.uni-dortmund.de (8.16.0.41/8.16.0.41) with ESMTPSA id
+ 008CxNQf009656
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Wed, 8 Jan 2020 13:59:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tu-dortmund.de;
+ s=unimail; t=1578488363;
+ bh=V5ElyH54+GPopnEzK7txBFgf4CREFQCO6dD3wVcK730=;
+ h=In-Reply-To:References:Date:Subject:From:To:Reply-To;
+ b=NAPTZihh15+9HR573wDsxirn3b1pWzqtZ9tbATtPnEKrVTajMQVHP1zW+u1l8dFhz
+ WFpSYe4d6WrtCphIYJz0wWZfbEcyN0aHNeTyMzEuPslnkeP5wnKiR+hGhEiE5PmTPP
+ 6quDTKPfL0MZ9ZiHI0RWFf9HwmXxrUsNrozz83uM=
+Received: from 129.217.182.203 (SquirrelMail authenticated user smfegrei)
+ by webmail.tu-dortmund.de with HTTP; Wed, 8 Jan 2020 13:59:23 +0100
+Message-ID: <f579952b4ad7fb3a6457224d49fc6af6.squirrel@webmail.tu-dortmund.de>
+In-Reply-To: <CADRnH22jhRo3s-=URkd-bgtCHoqVAP3CzV2XGgtkbO21h2f=6Q@mail.gmail.com>
+References: <0f08a6b07438bf71916006244562092c.squirrel@webmail.tu-dortmund.de>
+ <640c149702f53cfe43d71b5da2255278.squirrel@webmail.tu-dortmund.de>
+ <CADRnH22jhRo3s-=URkd-bgtCHoqVAP3CzV2XGgtkbO21h2f=6Q@mail.gmail.com>
+Date: Wed, 8 Jan 2020 13:59:23 +0100
+To: "Usrp Liste" <usrp-users@lists.ettus.com>
+User-Agent: SquirrelMail/1.4.23 [SVN]
 MIME-Version: 1.0
-Date: Wed, 8 Jan 2020 15:22:47 +0300
-Message-ID: <CAFzRrg21Lsi3TqA7GeWQ9fo=dORm3o69WU-JfGmR6SicduCNdw@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="000000000000faf12f059b9ff398"
-Subject: [USRP-users] dpdk-test does not work
+X-Priority: 3 (Normal)
+Importance: Normal
+Subject: Re: [USRP-users] Building RFNoC Image with OOT Module on X310 -
+ Module not found
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,8 +53,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: akin soysal via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: akin soysal <akinsoysal@gmail.com>
+From: Felix Greiwe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: felix.greiwe@tu-dortmund.de
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,242 +70,254 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---000000000000faf12f059b9ff398
-Content-Type: multipart/alternative; boundary="000000000000faf12d059b9ff396"
+Hi EJ,
 
---000000000000faf12d059b9ff396
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+thank you for your answer! To make my error more traceable, I created a
+new OOT Module and added the default gain block from rfnoc getting
+started.
 
-Dear all,
+I also took your advice and looked at the uhd_image_builder.py script. I
+noticed very strange behaviour, because my print statements suggested,
+that the script did not include my makefile.srcs because it first edited
+the path
 
-We have a USRP X310 setup and we are trying to make the
-UHD_3.15.0.0-0-g4e06022c driver work. I have added a file under
-/etc/uhd/uhd.conf and it is attached to this email.
+/home/lskt/rfnoc/src/rfnoc-blocks_lskt/ to
+/home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc and a bit later to
+/home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc/rfnoc/fpga-src/ .
 
-I am not sure about the dpdk-mac and dpdk-ipv4 addresses, what are they
-used for?
+As you can see two rfnoc's here hence it did not find the makefile.src in
+..../fpga-src. The changes (marked with fgr) in the create_oot_include
+here seem to resolve the issue, hopefully helpful for other people too and
+maybe even a major bug?:
 
-I am trying to make the dpdk-test work but I am experiencing problems with
-setting of ipv4.
+def create_oot_include(device, include_dirs):
+    """
+    Create the include file for OOT RFNoC sources
+    """
+    oot_dir_list =3D []
+    target_dir =3D device_dict(device.lower())
+    dest_srcs_file =3D os.path.join(get_scriptpath(), '..', '..', 'top',\
+            target_dir, 'Makefile.OOT.inc')
+    incfile =3D open(dest_srcs_file, 'w')
+    incfile.write(OOT_SRCS_FILE_HDR)
+    if include_dirs is not None:
+        for dirs in include_dirs:
+            currpath =3D os.path.abspath(str(dirs))
+            if os.path.isdir(currpath) & (os.path.basename(currpath) =3D=3D
+"rfnoc"):
+                # Case 1: Pointed directly to rfnoc directory
+                oot_path =3D currpath
+            elif os.path.isdir(os.path.join(currpath, 'rfnoc')):
+                # Case 2: Pointed to top level rfnoc module directory
+                oot_path =3D os.path.join(currpath, 'rfnoc')
+            elif os.path.isfile(os.path.join(currpath, 'Makefile.inc')):
+                # Case 3: Pointed to a random directory with a Makefile.inc
+                oot_path =3D currpath
+            else:
+                print('No RFNoC module found at ' +
+os.path.abspath(currpath))
+                continue
+            if oot_path not in oot_dir_list:
+                oot_dir_list.append(oot_path)
+                named_path =3D os.path.join('$(BASE_DIR)',
+get_relative_path(get_basedir(), oot_path))
+                incfile.write(OOT_DIR_TMPL.format(oot_dir=3Dnamed_path))
+                if os.path.isfile(os.path.join(oot_path, 'Makefile.inc')):
+                    # Check for Makefile.inc
+                    incfile.write(OOT_INC_TMPL)
+                elif os.path.isfile(os.path.join(oot_path, 'rfnoc',
+'Makefile.inc')):
+                    # Check for Makefile.inc
+                    incfile.write(OOT_INC_TMPL)
+                #elif os.path.isfile(os.path.join(oot_path, 'rfnoc',
+'fpga-src', 'Makefile.srcs')): # Original
+                elif os.path.isfile(os.path.join(oot_path, 'fpga-src',
+'Makefile.srcs')): # Anders fgr
+                    # Legacy: Check for fpga-src/Makefile.srcs
+                    # Read, then append to file
+                    # curr_srcs =3D open(os.path.join(oot_path, 'rfnoc',
+'fpga-src', 'Makefile.srcs'), 'r').read() # Original
+                    curr_srcs =3D open(os.path.join(oot_path, 'fpga-src',
+'Makefile.srcs'), 'r').read() # Anders fgr
+                    # curr_srcs =3D curr_srcs.replace('SOURCES_PATH',
+os.path.join(oot_path, 'rfnoc', 'fpga-src', '')) #
+Original
+                    curr_srcs =3D curr_srcs.replace('SOURCES_PATH',
+os.path.join(oot_path, 'fpga-src', '')) # Anders fgr
+                    print('Searching for Makefile.srcs: ' + curr_srcs) #fgr
+                    incfile.write(OOT_SRCS_TMPL.format(sources=3Dcurr_srcs))
+                else:
+                    print('No valid makefile found at ' +
+os.path.abspath(currpath))
+                    continue
 
------
-sudo ./dpdk_test
-EAL: Detected 18 lcore(s)
-EAL: No free hugepages reported in hugepages-1048576kB
-EAL: Probing VFIO support...
-EAL: VFIO support initialized
-EAL: PCI device 0000:05:00.0 on NUMA socket 0
-EAL:   probe driver: 8086:1533 net_e1000_igb
-EAL: PCI device 0000:65:00.0 on NUMA socket 0
-EAL:   probe driver: 8086:1557 net_ixgbe
-EAL:   using IOMMU type 1 (Type 1)
-EAL: Ignore mapping IO port bar(2)
-EAL: Waiting for links to come up...
-[INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-39);
-Boost_105800; UHD_3.15.0.0-0-g4e06022c
-EAL: Init DONE!
-EAL: Starting I/O threads!
-terminate called after throwing an instance of 'uhd::assertion_error'
-  what():  AssertionError: status =3D=3D 0
-  in std::string get_ipv4_addr(unsigned int)
-  at /home/ulak-gnb/workarea-uhd/uhd/host/tests/dpdk_test.cpp:229
+However 30 minutes later in the build I got the next errror and again have
+no idea what to do. My command was:
 
-Aborted
------
+./uhd_image_builder.py gain ddc fft -I
+/home/lskt/rfnoc/src/rfnoc-blocks_lskt/ -d x310 -t X310_RFNOC_HG -m 6
+--fill-with-fifos
 
-What should be the uhd-dpdk arguments for this to run? It seems like it
-does not even read the uhd.conf file.
+Using Vivado 2018.3 and UHD 3.15.0.0-124-geb448043
 
-I am using DPDK dpdk-stable-17.11.9. I have also programmed my SFP+
-interface via dpdk-devbind.py as shown below.
 
-----------
-sudo ./dpdk-devbind.py -s
+Erros are:
 
-Network devices using DPDK-compatible driver
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_clk_gen/inst/CLK_OUT4
+has multiple drivers: radio_clk_gen/inst/clkout1_buf/O, and
+bus_clk_gen/inst/clkout4_buf/O.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net
+radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has
+multiple drivers:
+ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg=
+[9][0]/Q,
+and
+radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_=
+reg[9][0]/Q.
+ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design not run.
+ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
+[00:24:46] Current task: DRC +++ Current Phase: Starting
+[00:24:46] Current task: DRC +++ Current Phase: Finished
+[00:24:46] Process terminated. Status: Failure
+
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-0000:65:00.0 '82599 10 Gigabit Network Connection 1557' drv=3Dvfio-pci
-unused=3Dixgbe
-
-Network devices using kernel driver
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-0000:04:00.0 'AQC108 NBase-T/IEEE 802.3bz Ethernet Controller [AQtion]
-d108' if=3Deth1 drv=3Datlantic unused=3Dvfio-pci
-0000:05:00.0 'I210 Gigabit Network Connection 1533' if=3Deno1 drv=3Digb
-unused=3Dvfio-pci *Active*
+=3D=3D=3D=3D=3D=3D
+Warnings:           1304
+Critical Warnings:  40
+Errors:             4
 
-Other Network devices
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
+Makefile.x300.inc:106: recipe for target 'bin' failed
+make[1]: *** [bin] Error 1
+make[1]: Verzeichnis =84/home/lskt/rfnoc/src/uhd-fpga/usrp3/top/x300=93 wird
+verlassen
+Makefile:112: recipe for target 'X310_RFNOC_HG' failed
+make: *** [X310_RFNOC_HG] Error 2
 
-Crypto devices using DPDK-compatible driver
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
 
-Crypto devices using kernel driver
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
+Again, I would be very thankful for any advice, I refuse to give up :D
 
-Other Crypto devices
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
+Thanks again and best regards,
 
-Eventdev devices using DPDK-compatible driver
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
+Felix
 
-Eventdev devices using kernel driver
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
 
-Other Eventdev devices
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
+> Hi Felix,
+>
+> It's tough to debug your specific issues without seeing the whole OOT repo
+> structure, including makefiles, etc.
+>
+> However I regularly use rfnoc with OOT folders successfully and have an
+> example here you might be able to refer to for some hints:
+> github.com/ejk43/rfnoc-ootexample
+>
+> I might suggest trying to check that out and see if you can build with one
+> of those blocks first, then modify for your purposes?
+>
+> Also, one other thing to mention is you might have some luck debugging the
+> uhd_image_builder.py to see where it's going wrong in your case (it's just
+> a python file so it's pretty easy to add debug markers or print statements
+> if you want)...
+>
+> EJ
+>
+> On Sat, Jan 4, 2020, 5:10 AM Felix Greiwe via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hello again,
+>>
+>> has no one an idea? I have still not managed to get it working..
+>> I would take any advice!
+>>
+>> Best regards,
+>>
+>> Felix
+>>
+>>
+>> > Hello together,
+>> >
+>> > recently I installed the whole UHD/GNU-Radio Toolchain on a fresh
+>> install
+>> > of Kubuntu 18.04 LTS. I followed the instructions from
+>> > https://kb.ettus.com/Getting_Started_with_RFNoC_Development
+>> > and used the Pybombs install.
+>> >
+>> > (I ran into a lot of problems there and had to install a lot of stuff
+>> > manually because most of the commands were not working properly. Maybe
+>> the
+>> > Pybombs Tutorial Section needs an update?)
+>> >
+>> > Finally I managed to install it successfully and the command
+>> > uhd_config_version -- info prints: UHD 3.15.0.0-124-geb448043
+>> > (I also installed Vivado 2018.3 and added the License which seems to
+>> > work.)
+>> >
+>> > After the install I wanted to validate it by creating an OOT Module
+>> and
+>> > OOT Block named noc_block_checkdevprocess.v. I did not edit the
+>> Verilog
+>> > Code because I only wanted to know if I was able to build an Image
+>> > properly.
+>> > (I ran the default Testbench too, which worked without errors.)
+>> >
+>> > The command to build my image is:
+>> >
+>> > ./uhd_image_builder.py checkdevprocess digital_gain -t X310_RFNOC_HG
+>> -d
+>> > X310 -I /home/lskt/rfnoc-blocks_lskt/rfnoc
+>> >
+>> > with "rfnoc-blocks_lskt" beeing my OOT Module and "checkdevprocess"
+>> beeing
+>> > my  custom block.
+>> > (I also tried the paths home/lskt/rfnoc-blocks_lskt/rfnoc/;
+>> > home/lskt/rfnoc-blocks_lskt/;
+>> home/lskt/rfnoc-blocks_lskt/rfnoc/fpga-src
+>> )
+>> >
+>> > Every single time I get the same error message:
+>> > ERROR: [Synth 8-439] module 'noc_block_checkdevprocess' not found
+>> >
+>> [/home/lskt/rfnoc/src/uhd-fpga/usrp3/top/x300/rfnoc_ce_auto_inst_x310.v:=
+22]
+>> >
+>> > and I don't know why.
+>> >
+>> > I also tried the the uhd_image_builder_gui.py which did not even pop
+>> up
+>> > until I uncommented the Line at row 149. I can see my OOT Block here
+>> after
+>> > adding the Module in the gui, but it prints the same error message as
+>> the
+>> > non-gui version.
+>> >
+>> > If you need further information to help please ask.
+>> >
+>> > Any help is appreciated.
+>> >
+>> > Felix
+>> >
+>> >
+>> >
+>> >
+>> >
+>> > _______________________________________________
+>> > USRP-users mailing list
+>> > USRP-users@lists.ettus.com
+>> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>> >
+>>
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
-Mempool devices using DPDK-compatible driver
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
 
-Mempool devices using kernel driver
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
-
-Other Mempool devices
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<none>
-----------
-
-Thanks and regards,
-Ak=C4=B1n
-
---000000000000faf12d059b9ff396
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Dear all,</div><div><br></div><div>We have a USRP X31=
-0 setup and we are trying to make the UHD_3.15.0.0-0-g4e06022c driver work.=
- I have added a file under /etc/uhd/uhd.conf and it is attached to this ema=
-il.</div><div><br></div><div>I am not sure about the dpdk-mac and dpdk-ipv4=
- addresses, what are they used for?</div><div><br></div><div>I am trying to=
- make the dpdk-test work but I am experiencing problems with setting of ipv=
-4.</div><div><br></div><div>-----<br></div><div>sudo ./dpdk_test<br>EAL: De=
-tected 18 lcore(s)<br>EAL: No free hugepages reported in hugepages-1048576k=
-B<br>EAL: Probing VFIO support...<br>EAL: VFIO support initialized<br>EAL: =
-PCI device 0000:05:00.0 on NUMA socket 0<br>EAL: =C2=A0 probe driver: 8086:=
-1533 net_e1000_igb<br>EAL: PCI device 0000:65:00.0 on NUMA socket 0<br>EAL:=
- =C2=A0 probe driver: 8086:1557 net_ixgbe<br>EAL: =C2=A0 using IOMMU type 1=
- (Type 1)<br>EAL: Ignore mapping IO port bar(2)<br>EAL: Waiting for links t=
-o come up...<br>[INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat=
- 4.8.5-39); Boost_105800; UHD_3.15.0.0-0-g4e06022c<br>EAL: Init DONE!<br>EA=
-L: Starting I/O threads!<br>terminate called after throwing an instance of =
-&#39;uhd::assertion_error&#39;<br>=C2=A0 what(): =C2=A0AssertionError: stat=
-us =3D=3D 0<br>=C2=A0 in std::string get_ipv4_addr(unsigned int)<br>=C2=A0 =
-at /home/ulak-gnb/workarea-uhd/uhd/host/tests/dpdk_test.cpp:229<br><br>Abor=
-ted</div><div>-----</div><div><br></div><div>What should be the uhd-dpdk ar=
-guments for this to run? It seems like it does not even read the uhd.conf f=
-ile.</div><div><br></div><div>I am using DPDK dpdk-stable-17.11.9. I have a=
-lso programmed my SFP+ interface via dpdk-devbind.py as shown below.<br></d=
-iv><div><br></div><div>----------</div><div>sudo ./dpdk-devbind.py -s<br><b=
-r>Network devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:65:00.0 &#39;82599 10 Gigabit Net=
-work Connection 1557&#39; drv=3Dvfio-pci unused=3Dixgbe<br><br>Network devi=
-ces using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:04:00.0 &=
-#39;AQC108 NBase-T/IEEE 802.3bz Ethernet Controller [AQtion] d108&#39; if=
-=3Deth1 drv=3Datlantic unused=3Dvfio-pci <br>0000:05:00.0 &#39;I210 Gigabit=
- Network Connection 1533&#39; if=3Deno1 drv=3Digb unused=3Dvfio-pci *Active=
-*<br><br>Other Network devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using DPDK-c=
-ompatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-<br>&lt;none&gt;<br><br>Crypto devices using kernel driver<br>=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Crypto devices<br>=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eve=
-ntdev devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Eventdev devices u=
-sing kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<b=
-r><br>Other Eventdev devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using DPDK-=
-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D<br>&lt;none&gt;<br><br>Mempool devices using kernel driver<br>=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Mempool devices<br>=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt=
-;</div><div>----------<br></div><div><br></div><div>Thanks and regards,</di=
-v><div>Ak=C4=B1n<br></div></div>
-
---000000000000faf12d059b9ff396--
---000000000000faf12f059b9ff398
-Content-Type: text/plain; charset="US-ASCII"; name="uhd.conf"
-Content-Disposition: attachment; filename="uhd.conf"
-Content-Transfer-Encoding: base64
-Content-ID: <f_k559wjuw0>
-X-Attachment-Id: f_k559wjuw0
-
-O1doZW4gcHJlc2VudCBpbiBkZXZpY2UgYXJncywgdXNlX2RwZGsgaW5kaWNhdGVzIHlvdSB3YW50
-IERQREsgdG8gdGFrZSBvdmVyIHRoZSBVRFAgdHJhbnNwb3J0cwo7VGhlIHZhbHVlIGhlcmUgcmVw
-cmVzZW50cyBhIGNvbmZpZywgc28geW91IGNvdWxkIGhhdmUgYW5vdGhlciBzZWN0aW9uIGxhYmVs
-ZWQgdXNlX2RwZGs9bXljb25mCjtpbnN0ZWFkIGFuZCBzd2FwIGJldHdlZW4gdGhlbQpbdXNlX2Rw
-ZGs9MV0KO2RwZGtfbXR1IGlzIHRoZSBOSUMncyBNVFUgc2V0dGluZwo7VGhpcyBpcyBzZXBhcmF0
-ZSBmcm9tIE1QTSdzIG1heGltdW0gcGFja2V0IHNpemUKZHBkay1tdHU9OTAwMAo7ZHBka19kcml2
-ZXIgaXMgdGhlIC1kIGZsYWcgZm9yIHRoZSBEUERLIEVBTC4gSWYgRFBESyBkb2Vzbid0IHBpY2sg
-dXAgdGhlIGRyaXZlciBmb3IgeW91ciBOSUMKO2F1dG9tYXRpY2FsbHksIHlvdSBtYXkgbmVlZCB0
-aGlzIGFyZ3VtZW50IHRvIHBvaW50IGl0IHRvIHRoZSBmb2xkZXIgd2hlcmUgaXQgY2FuIGZpbmQg
-dGhlIGRyaXZlcnMKO05vdGUgdGhhdCBEUERLIHdpbGwgYXR0ZW1wdCB0byBsb2FkIF9ldmVyeXRo
-aW5nXyBpbiB0aGF0IGZvbGRlciBhcyBhIGRyaXZlciwgc28geW91IG1heSB3YW50IHRvCjtjcmVh
-dGUgYSBzZXBhcmF0ZSBmb2xkZXIgd2l0aCBzeW1saW5rcyB0byB0aGUgbGlicnRlX3BtZF8qIGFu
-ZCBsaWJydGVfbWVtcG9vbF8qIGxpYnJhcmllcy4KZHBkay1kcml2ZXI9L2hvbWUvdWxhay1nbmIv
-dWxhay9kcGRrLXN0YWJsZS0xNy4xMS45L3g4Nl82NC1uYXRpdmUtbGludXhhcHAtZ2NjL2xpYi9w
-bWRzCjtkcGRrX2NvcmVsaXN0IGlzIHRoZSAtbCBmbGFnIGZvciB0aGUgRFBESyBFQUwuIFNlZSBt
-b3JlIGF0IHRoZSBsaW5rCjsgaHR0cHM6Ly9kb2MuZHBkay5vcmcvZ3VpZGVzLTE4LjExL2xpbnV4
-X2dzZy9idWlsZF9zYW1wbGVfYXBwcy5odG1sI3J1bm5pbmctYS1zYW1wbGUtYXBwbGljYXRpb24K
-ZHBkay1jb3JlbGlzdD01LDYKO2RwZGtfbnVtX21idWZzIGlzIHRoZSB0b3RhbCBudW1iZXIgb2Yg
-cGFja2V0IGJ1ZmZlcnMgYWxsb2NhdGVkCjt0byBlYWNoIGRpcmVjdGlvbidzIHBhY2tldCBidWZm
-ZXIgcG9vbAo7VGhpcyB3aWxsIGJlIG11bHRpcGxpZWQgYnkgdGhlIG51bWJlciBvZiBOSUNzLCBi
-dXQgTklDcyBvbiB0aGUgc2FtZQo7Q1BVIHNvY2tldCBzaGFyZSBhIHBvb2wuCmRwZGstbnVtLW1i
-dWZzPTQwOTUKO2RwZGtfbWJ1Zl9jYWNoZV9zaXplIGlzIHRoZSBudW1iZXIgb2YgYnVmZmVycyB0
-byBjYWNoZSBmb3IgYSBDUFUKO1RoZSBjYWNoZSByZWR1Y2VzIHRoZSBpbnRlcmFjdGlvbiB3aXRo
-IHRoZSBnbG9iYWwgcG9vbApkcGRrLW1idWYtY2FjaGVfc2l6ZT0zMTUKCltkcGRrLW1hYz1hYzox
-Zjo2Yjo3ODo1YTowOV0KO2RwZGtfbGNvcmUgc2VsZWN0cyB0aGUgbGNvcmUgdGhhdCB0aGlzIE5J
-QydzIGRyaXZlciB3aWxsIHJ1biBvbgo7TXVsdGlwbGUgTklDcyBtYXkgb2NjdXB5IG9uZSBsY29y
-ZSwgYnV0IHRoZSBJL08gdGhyZWFkIHdpbGwgY29tcGxldGVseQo7Y29uc3VtZSB0aGF0IGxjb3Jl
-J3MgQ1BVLiBBbHNvLCAwIGlzIHJlc2VydmVkIGZvciB0aGUgbWFzdGVyIHRocmVhZCAoaS5lLgo7
-dGhlIGluaXRpYWwgVUhEIHRocmVhZCB0aGF0IGNhbGxzIGluaXQoKSBmb3IgRFBESykuIEF0dGVt
-cHRpbmcgdG8KO3VzZSBpdCBhcyBhbiBJL08gdGhyZWFkIHdpbGwgb25seSByZXN1bHQgaW4gaGFu
-Z2luZy4KO05vdGUgYWxzbyB0aGF0IGJ5IGRlZmF1bHQsIHRoZSBsY29yZSBJRCB3aWxsIGJlIHRo
-ZSBzYW1lIGFzIHRoZSBDUFUgSUQuCmRwZGstaW8tY3B1ID0gNQo7ZHBka19pcHY0IHNwZWNpZmll
-cyB0aGUgSVB2NCBhZGRyZXNzLCBhbmQgYm90aCB0aGUgYWRkcmVzcyBhbmQKO3N1Ym5ldCBtYXNr
-IGFyZSByZXF1aXJlZCAoYW5kIGluIHRoaXMgZm9ybWF0ISkuIERQREsgdXNlcyB0aGUKO25ldG1h
-c2sgdG8gY3JlYXRlIGEgYmFzaWMgcm91dGluZyB0YWJsZS4gUm91dGluZyB0byBvdGhlciBuZXR3
-b3Jrcwo7KGkuZS4gdmlhIGdhdGV3YXlzKSBpcyBub3QgcGVybWl0dGVkLgpkcGRrLWlwdjQgPSAx
-MC4xMC4xLjUvMjQKO2RwZGtfbnVtX2Rlc2MgaXMgdGhlIG51bWJlciBvZiBkZXNjcmlwdG9ycyBp
-biBlYWNoIERNQSByaW5nLgo7TXVzdCBiZSBhIHBvd2VyIG9mIDIuCjtkcGRrX251bV9kZXNjPTQw
-OTYKCltkcGRrLW1hYz0zYzpmZDpmZTphMjphOTowYV0KZHBkay1sY29yZSA9IDYKZHBkay1pcHY0
-ID0gMTAuMTAuMS41LzI0
---000000000000faf12f059b9ff398
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---000000000000faf12f059b9ff398--
-
