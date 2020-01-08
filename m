@@ -2,54 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89C0C1345D3
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 16:10:01 +0100 (CET)
-Received: from [::1] (port=32810 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F1471345FA
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 16:20:28 +0100 (CET)
+Received: from [::1] (port=34500 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ipCy6-0006Ex-Hm; Wed, 08 Jan 2020 10:09:58 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:45155)
+	id 1ipD8F-0006p8-BJ; Wed, 08 Jan 2020 10:20:27 -0500
+Received: from mail-lj1-f182.google.com ([209.85.208.182]:33019)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bpadalino@gmail.com>) id 1ipCy2-00064o-R5
- for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 10:09:54 -0500
-Received: by mail-oi1-f171.google.com with SMTP id n16so2839052oie.12
- for <usrp-users@lists.ettus.com>; Wed, 08 Jan 2020 07:09:34 -0800 (PST)
+ (Exim 4.92) (envelope-from <akinsoysal@gmail.com>)
+ id 1ipD8B-0006go-6k
+ for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 10:20:23 -0500
+Received: by mail-lj1-f182.google.com with SMTP id y6so3764075lji.0
+ for <usrp-users@lists.ettus.com>; Wed, 08 Jan 2020 07:19:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=eTmNJgBcgND/6R6V2vlcNnssxm8+S3SvCzgWIWchZY8=;
- b=U3b5l2rPNWyzuWvwARTmh4pEzU0b8UsxXsorTJsE3hFjxUEJd58NQM+appgj/VOqHJ
- 2aV5SIETPX/N/gLrftobR3jSQ87NHIpL+7erF+xMMZvr8lbEHICdnk0w2AYsbqCPeaQS
- tzQrSP9k7I06MWzc3UQJG2uNTquJ3CjrLb374nuMKv8xzgQCQt86tOxOxbtqY4g1TP0h
- 1AwdfmvfsK5tT6mdhd6Wiop6SO5b5A2fBJUKS6t1/awe/B7TKgzaFITAGPuJ/DCUwo7r
- XNfksIQBR5HHY6lNSVgQFoMFif7sMLG9nnCoVARNw7KkquGhE8L4QEopQ1cs3eaFaHte
- fUog==
+ :cc; bh=wT5kJOMPsV5PAMHtrvG7tmfmFrIvNaIRPGHLqzj3hW4=;
+ b=KbJ5naACkQRh+2E//vv6dG6MfEgXPrOfBndLqLegmntA/zp1CJrjz6zvklOQLmfOBf
+ cPuTDPi4h01WFyMwRiHBpAwpXvSYUxoVXVfDm1T03Z0Frkz0EhuqFf6YLzndCy8q46Da
+ jNx+hwIbNg53t2KKTKgv+Yl+eczX/cdBQ+wtFCC8ZFVR/OTG/zg4oRbRMBcE3SuIhtSg
+ uKKvNIqCyjpWFvt0pcFSlfKFqEqebtX+bhOX027trcNm6/HHYhaiDpBpTNqWDcAAZtp5
+ hQVCejgq4ahh1pqSjXyKW/26vPFICeOCHC6MgbdSRkZhTxKHMaY7PNBSdoNsDNpSvqkb
+ LVNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=eTmNJgBcgND/6R6V2vlcNnssxm8+S3SvCzgWIWchZY8=;
- b=V2p5qXcSo4CtoT9sQBqnCDeInO8S6dUDJkfdqguGswAQRwpQWjQqDaFJRF1fLRKoG3
- pYKlBIm4g1qBEXQOUegLn5GhOiYL357uD1haPVBrUfn3NQBzONKgt0Wl8kraDi4qmOmw
- Q08I8foIXj2l3vDpzWU9mzwouMBffS+JskJW5wsJyJSH8uP2J092iI8douySCPed/dtu
- WWX9nmjnfmIdQFW1nTe//5v/CG9cmAuzz1clPYyvzU1k+rykzCq+WaVH4XTQSBwfxBkF
- xfcZqBXZn4QDrLIR2m4okuk4+8fTAlGnrHU+t6B6WrfvhsKrlNqZxlEKYcZluslBY7MY
- Og5g==
-X-Gm-Message-State: APjAAAU26x2fRRM5Qy/NavZuYP4FCBvSwmXKkpc/xs8PGRSgjDOfvmhW
- s/mQvEzCSFc5/DWkJI1WchSr5e/x1uUvStvGm/FvZai1
-X-Google-Smtp-Source: APXvYqyPQhqQBTsxH3CtbpLRwlJcFt0ZofjkkgXSMYzT1YkZ8OyKb2gL09hcAu5T6DVV4XqDzhliKMWhAIZTB3WfShI=
-X-Received: by 2002:aca:ab0e:: with SMTP id u14mr3479534oie.1.1578496153837;
- Wed, 08 Jan 2020 07:09:13 -0800 (PST)
+ bh=wT5kJOMPsV5PAMHtrvG7tmfmFrIvNaIRPGHLqzj3hW4=;
+ b=nXsRfWp9Nk98RFSaG16I3zmloAbjlLIlBXsUVqAH06ZjMRh8oSdggml5sUijLZ1l3Z
+ vJIrL79aob1hb26l/id5XAcXehwDXHGi/u0fu2OJTXGadvRpyf5FFA3AiNrPKjoxQw9F
+ tYXM8rEfXDN6k7PVmFZzpWTF/djBIKx82SINH240BIWIWjsr7liQUtZ9NTTwi9+x2g2U
+ vjIkHxxdNC+LiDJ0XOn4rep4qXMq8nFrV1/WuLJD/8S9P26wI+qexAx5FRW+/DR8Vnc8
+ WANWkx5ik6xZ8NpUG1fUW4kVzsED9vu1fbYy5S9bIDerwWIFLIqsO/MX1M8IQAY91/dz
+ bdfA==
+X-Gm-Message-State: APjAAAWSdSEuyJQuNSG+/gA4e+buptGLNX2M8J2yHArt3SMjCTlQgOVu
+ gGfqV5ma2WE1Nefd+3igNERwfc0JHWyU0FKI6y4=
+X-Google-Smtp-Source: APXvYqzpLOqcn+3UuvFHcDgVcAhbuZoNiUCAlO5nHioYhLT9L78ocwKAl3UH9QIp9VZkaGRE9vWtVCkVmk41OI5RVpo=
+X-Received: by 2002:a2e:8119:: with SMTP id d25mr3289350ljg.76.1578496776784; 
+ Wed, 08 Jan 2020 07:19:36 -0800 (PST)
 MIME-Version: 1.0
-References: <0f08a6b07438bf71916006244562092c.squirrel@webmail.tu-dortmund.de>
- <640c149702f53cfe43d71b5da2255278.squirrel@webmail.tu-dortmund.de>
- <CADRnH22jhRo3s-=URkd-bgtCHoqVAP3CzV2XGgtkbO21h2f=6Q@mail.gmail.com>
- <f579952b4ad7fb3a6457224d49fc6af6.squirrel@webmail.tu-dortmund.de>
-In-Reply-To: <f579952b4ad7fb3a6457224d49fc6af6.squirrel@webmail.tu-dortmund.de>
-Date: Wed, 8 Jan 2020 10:09:01 -0500
-Message-ID: <CAEXYVK6F2+h4XCCXDoihoQUi6arcutbPy5_YXi=y4ebYcKozww@mail.gmail.com>
-To: felix.greiwe@tu-dortmund.de
-Subject: Re: [USRP-users] Building RFNoC Image with OOT Module on X310 -
- Module not found
+References: <e44a32d6-8d73-b567-eda2-ce00144c592a@eurecom.fr>
+ <CANf970b5b0igU4ag--+4DHdopWHr+gsuwU5wEupyXcKEA9m3FQ@mail.gmail.com>
+In-Reply-To: <CANf970b5b0igU4ag--+4DHdopWHr+gsuwU5wEupyXcKEA9m3FQ@mail.gmail.com>
+Date: Wed, 8 Jan 2020 18:19:24 +0300
+Message-ID: <CAFzRrg0gc9WBWdUoqSRhzu1WzvSZRkVVnsxS=6gC-ty-RPBH9Q@mail.gmail.com>
+To: Sam Reiter <sam.reiter@ettus.com>
+Subject: Re: [USRP-users] DPDK runtime error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: Usrp Liste <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6808450213076434517=="
+From: akin soysal via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: akin soysal <akinsoysal@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0432962378697595481=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,371 +76,298 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6808450213076434517==
-Content-Type: multipart/alternative; boundary="0000000000008764eb059ba24649"
+--===============0432962378697595481==
+Content-Type: multipart/alternative; boundary="000000000000a8cfba059ba26b2f"
 
---0000000000008764eb059ba24649
+--000000000000a8cfba059ba26b2f
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 8, 2020 at 8:00 AM Felix Greiwe via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Hello all,
 
-> Hi EJ,
+Is this problem fixed? If yes, could you please tell how? We have a similar
+error, so it would be helpful.
+
+Thanks and regards,
+Ak=C4=B1n
+
+3 Oca 2020 Cum 23:22 tarihinde Sam Reiter via USRP-users <
+usrp-users@lists.ettus.com> =C5=9Funu yazd=C4=B1:
+
+> Florian,
 >
-> thank you for your answer! To make my error more traceable, I created a
-> new OOT Module and added the default gain block from rfnoc getting
-> started.
+> DPDK 18.11 is not supported on UHD 3.x. You'll need to use DPDK 17.11.
 >
-> I also took your advice and looked at the uhd_image_builder.py script. I
-> noticed very strange behaviour, because my print statements suggested,
-> that the script did not include my makefile.srcs because it first edited
-> the path
+> Sam Reiter
+> Ettus Research
 >
-> /home/lskt/rfnoc/src/rfnoc-blocks_lskt/ to
-> /home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc and a bit later to
-> /home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc/rfnoc/fpga-src/ .
+> On Mon, Dec 23, 2019 at 9:51 AM Florian Kaltenberger via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
-> As you can see two rfnoc's here hence it did not find the makefile.src in
-> ..../fpga-src. The changes (marked with fgr) in the create_oot_include
-> here seem to resolve the issue, hopefully helpful for other people too an=
-d
-> maybe even a major bug?:
->
-> def create_oot_include(device, include_dirs):
->     """
->     Create the include file for OOT RFNoC sources
->     """
->     oot_dir_list =3D []
->     target_dir =3D device_dict(device.lower())
->     dest_srcs_file =3D os.path.join(get_scriptpath(), '..', '..', 'top',\
->             target_dir, 'Makefile.OOT.inc')
->     incfile =3D open(dest_srcs_file, 'w')
->     incfile.write(OOT_SRCS_FILE_HDR)
->     if include_dirs is not None:
->         for dirs in include_dirs:
->             currpath =3D os.path.abspath(str(dirs))
->             if os.path.isdir(currpath) & (os.path.basename(currpath) =3D=
-=3D
-> "rfnoc"):
->                 # Case 1: Pointed directly to rfnoc directory
->                 oot_path =3D currpath
->             elif os.path.isdir(os.path.join(currpath, 'rfnoc')):
->                 # Case 2: Pointed to top level rfnoc module directory
->                 oot_path =3D os.path.join(currpath, 'rfnoc')
->             elif os.path.isfile(os.path.join(currpath, 'Makefile.inc')):
->                 # Case 3: Pointed to a random directory with a Makefile.i=
-nc
->                 oot_path =3D currpath
->             else:
->                 print('No RFNoC module found at ' +
-> os.path.abspath(currpath))
->                 continue
->             if oot_path not in oot_dir_list:
->                 oot_dir_list.append(oot_path)
->                 named_path =3D os.path.join('$(BASE_DIR)',
-> get_relative_path(get_basedir(), oot_path))
->                 incfile.write(OOT_DIR_TMPL.format(oot_dir=3Dnamed_path))
->                 if os.path.isfile(os.path.join(oot_path, 'Makefile.inc'))=
-:
->                     # Check for Makefile.inc
->                     incfile.write(OOT_INC_TMPL)
->                 elif os.path.isfile(os.path.join(oot_path, 'rfnoc',
-> 'Makefile.inc')):
->                     # Check for Makefile.inc
->                     incfile.write(OOT_INC_TMPL)
->                 #elif os.path.isfile(os.path.join(oot_path, 'rfnoc',
-> 'fpga-src', 'Makefile.srcs')): # Original
->                 elif os.path.isfile(os.path.join(oot_path, 'fpga-src',
-> 'Makefile.srcs')): # Anders fgr
->                     # Legacy: Check for fpga-src/Makefile.srcs
->                     # Read, then append to file
->                     # curr_srcs =3D open(os.path.join(oot_path, 'rfnoc',
-> 'fpga-src', 'Makefile.srcs'), 'r').read() # Original
->                     curr_srcs =3D open(os.path.join(oot_path, 'fpga-src',
-> 'Makefile.srcs'), 'r').read() # Anders fgr
->                     # curr_srcs =3D curr_srcs.replace('SOURCES_PATH',
-> os.path.join(oot_path, 'rfnoc', 'fpga-src', '')) #
-> Original
->                     curr_srcs =3D curr_srcs.replace('SOURCES_PATH',
-> os.path.join(oot_path, 'fpga-src', '')) # Anders fgr
->                     print('Searching for Makefile.srcs: ' + curr_srcs) #f=
-gr
->                     incfile.write(OOT_SRCS_TMPL.format(sources=3Dcurr_src=
-s))
->                 else:
->                     print('No valid makefile found at ' +
-> os.path.abspath(currpath))
->                     continue
->
-> However 30 minutes later in the build I got the next errror and again hav=
+>> Dear all,
+>>
+>> we have finally managed to set up UHD (3.15) with DPDK (18.11) support o=
+n
+>> our RedHat 7 system (both installed from source) with our N310. I have
+>> configured the system as explained here
+>> http://files.ettus.com/manual/page_dpdk.html but when calling
+>>
+>> uhd_usrp_probe --args
+>> "use_dpdk=3D1,mgmt_addr=3D192.168.12.1,addr=3D192.168.10.2,second_addr=
+=3D192.168.20.2,master_clock_rate=3D122.88e6,type=3Dn3xx"
+>>
+>> I am getting the following runtime error (all the way at the bottom):
+>> [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-39);
+>> Boost_106900; UHD_3.15.0.0-0-g4e06022c
+>> EAL: Detected 10 lcore(s)
+>> EAL: No free hugepages reported in hugepages-1048576kB
+>> EAL: Probing VFIO support...
+>> EAL: VFIO support initialized
+>> EAL: PCI device 0000:00:19.0 on NUMA socket 0
+>> EAL:   probe driver: 8086:153a net_e1000_em
+>> EAL: PCI device 0000:01:00.0 on NUMA socket 0
+>> EAL:   probe driver: 8086:1572 net_i40e
+>> EAL: PCI device 0000:01:00.1 on NUMA socket 0
+>> EAL:   probe driver: 8086:1572 net_i40e
+>> EAL:   using IOMMU type 1 (Type 1)
+>> PMD: Global register is changed during enable FDIR flexible payload
+>> PMD: Global register is changed during support QinQ parser
+>> PMD: Global register is changed during configure hash input set
+>> PMD: Global register is changed during configure fdir mask
+>> PMD: Global register is changed during configure hash mask
+>> PMD: Global register is changed during support QinQ cloud filter
+>> PMD: Global register is changed during support TPID configuration
+>> EAL: PCI device 0000:01:00.2 on NUMA socket 0
+>> EAL:   probe driver: 8086:1572 net_i40e
+>> EAL: PCI device 0000:01:00.3 on NUMA socket 0
+>> EAL:   probe driver: 8086:1572 net_i40e
+>> PMD: Global register is changed during enable FDIR flexible payload
+>> PMD: Global register is changed during support QinQ parser
+>> PMD: Global register is changed during configure hash input set
+>> PMD: Global register is changed during configure fdir mask
+>> PMD: Global register is changed during configure hash mask
+>> PMD: Global register is changed during support QinQ cloud filter
+>> PMD: Global register is changed during support TPID configuration
+>> EAL: Waiting for links to come up...
+>> EAL: Init DONE!
+>> EAL: Starting I/O threads!
+>> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>> mgmt_addr=3D192.168.12.1,type=3Dn3xx,product=3Dn310,serial=3D31641BC,cla=
+imed=3DFalse,use_dpdk=3D1,addr=3D192.168.10.2,second_addr=3D192.168.20.2,ma=
+ster_clock_rate=3D122.88e6
+>> [INFO] [MPM.PeriphManager] init() called with device args
+>> `mgmt_addr=3D192.168.12.1,product=3Dn310,master_clock_rate=3D122.88e6,se=
+cond_addr=3D192.168.20.2,use_dpdk=3D1,clock_source=3Dinternal,time_source=
+=3Dinternal'.
+>> EAL: Please set IPv4 address for port 0 before opening socket
+>> [ERROR] [MPMD] Failure during block enumeration: AssertionError: _rx_soc=
+k
+>> !=3D nullptr
+>>   in uhd::transport::dpdk_zero_copy_impl::dpdk_zero_copy_impl(const
+>> uhd::transport::uhd_dpdk_ctx&, unsigned int, const string&, const string=
+&,
+>> const string&, const uhd::transport::zero_copy_xport_params&)
+>>
+>> I am also copying the output of "dpdk-devbind  --status" which shows tha=
+t
+>> the two interfaces connected to the USRP use the vfio-pci driver for DPD=
+K
+>>
+>> Network devices using DPDK-compatible driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> 0000:01:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=3Dvfio-p=
+ci
+>> unused=3Di40e
+>> 0000:01:00.3 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=3Dvfio-p=
+ci
+>> unused=3Di40e
+>>
+>> Network devices using kernel driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> 0000:00:19.0 'Ethernet Connection I217-LM 153a' if=3Denp0s25 drv=3De1000=
 e
-> no idea what to do. My command was:
->
-> ./uhd_image_builder.py gain ddc fft -I
-> /home/lskt/rfnoc/src/rfnoc-blocks_lskt/ -d x310 -t X310_RFNOC_HG -m 6
-> --fill-with-fifos
->
-> Using Vivado 2018.3 and UHD 3.15.0.0-124-geb448043
->
->
-> Erros are:
->
-> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_clk_gen/inst/CLK_OUT4
-> has multiple drivers: radio_clk_gen/inst/clkout1_buf/O, and
-> bus_clk_gen/inst/clkout4_buf/O.
-> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net
-> radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has
-> multiple drivers:
->
-> ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_r=
-eg[9][0]/Q,
-> and
->
-> radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].valu=
-e_reg[9][0]/Q.
-> ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design not run.
-> ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
-> [00:24:46] Current task: DRC +++ Current Phase: Starting
-> [00:24:46] Current task: DRC +++ Current Phase: Finished
-> [00:24:46] Process terminated. Status: Failure
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-> Warnings:           1304
-> Critical Warnings:  40
-> Errors:             4
->
-> Makefile.x300.inc:106: recipe for target 'bin' failed
-> make[1]: *** [bin] Error 1
-> make[1]: Verzeichnis =E2=80=9E/home/lskt/rfnoc/src/uhd-fpga/usrp3/top/x30=
-0=E2=80=9C wird
-> verlassen
-> Makefile:112: recipe for target 'X310_RFNOC_HG' failed
-> make: *** [X310_RFNOC_HG] Error 2
->
->
-> Again, I would be very thankful for any advice, I refuse to give up :D
+>> unused=3Dvfio-pci *Active*
+>> 0000:01:00.0 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=3Dp1p1
+>> drv=3Di40e unused=3Dvfio-pci
+>> 0000:01:00.2 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=3Dp1p3
+>> drv=3Di40e unused=3Dvfio-pci
+>>
+>> What surprises me is that in the output of the uhd_usrp_probe, it does
+>> not say it is using the driver for DPDK. any ideas what could be wrong?
+>>
+>> Florian.
+>> --
+>> Follow us on Google+ <https://plus.google.com/+OpenairinterfaceOrg>,
+>> LinkedIn <https://www.linkedin.com/company/openairinterface>, or Twitter
+>> <https://twitter.com/osalliance5g>!
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
-This was recently shown to be a reassignment of the ce_clk and ce_rst
-signals.  In your rfnoc_ce_auto_inst generated file, remove the lines that
-say:
-
-  wire ce_clk =3D radio_clk;
-  wire ce_rst =3D radio_rst;
-
-Then try to rebuild.
-
-You can remove those lines from being regenerated every time here:
-
-
-https://github.com/EttusResearch/fpga/blob/fde2a94eb7231af859653db8caaf777a=
-e2b66199/usrp3/tools/scripts/uhd_image_builder.py#L44
-
-Brian
-
---0000000000008764eb059ba24649
+--000000000000a8cfba059ba26b2f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Wed, Jan 8, 2020 at 8:00 AM Felix Grei=
-we via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-us=
-ers@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex">Hi EJ,<br>
-<br>
-thank you for your answer! To make my error more traceable, I created a<br>
-new OOT Module and added the default gain block from rfnoc getting<br>
-started.<br>
-<br>
-I also took your advice and looked at the uhd_image_builder.py script. I<br=
->
-noticed very strange behaviour, because my print statements suggested,<br>
-that the script did not include my makefile.srcs because it first edited<br=
->
-the path<br>
-<br>
-/home/lskt/rfnoc/src/rfnoc-blocks_lskt/ to<br>
-/home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc and a bit later to<br>
-/home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc/rfnoc/fpga-src/ .<br>
-<br>
-As you can see two rfnoc&#39;s here hence it did not find the makefile.src =
-in<br>
-..../fpga-src. The changes (marked with fgr) in the create_oot_include<br>
-here seem to resolve the issue, hopefully helpful for other people too and<=
-br>
-maybe even a major bug?:<br>
-<br>
-def create_oot_include(device, include_dirs):<br>
-=C2=A0 =C2=A0 &quot;&quot;&quot;<br>
-=C2=A0 =C2=A0 Create the include file for OOT RFNoC sources<br>
-=C2=A0 =C2=A0 &quot;&quot;&quot;<br>
-=C2=A0 =C2=A0 oot_dir_list =3D []<br>
-=C2=A0 =C2=A0 target_dir =3D device_dict(device.lower())<br>
-=C2=A0 =C2=A0 dest_srcs_file =3D os.path.join(get_scriptpath(), &#39;..&#39=
-;, &#39;..&#39;, &#39;top&#39;,\<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 target_dir, &#39;Makefile.OOT.inc=
-&#39;)<br>
-=C2=A0 =C2=A0 incfile =3D open(dest_srcs_file, &#39;w&#39;)<br>
-=C2=A0 =C2=A0 incfile.write(OOT_SRCS_FILE_HDR)<br>
-=C2=A0 =C2=A0 if include_dirs is not None:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 for dirs in include_dirs:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 currpath =3D os.path.abspath(str(=
-dirs))<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if os.path.isdir(currpath) &amp; =
-(os.path.basename(currpath) =3D=3D<br>
-&quot;rfnoc&quot;):<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Case 1: Pointed d=
-irectly to rfnoc directory<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 oot_path =3D currpa=
-th<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 elif os.path.isdir(os.path.join(c=
-urrpath, &#39;rfnoc&#39;)):<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Case 2: Pointed t=
-o top level rfnoc module directory<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 oot_path =3D os.pat=
-h.join(currpath, &#39;rfnoc&#39;)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 elif os.path.isfile(os.path.join(=
-currpath, &#39;Makefile.inc&#39;)):<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Case 3: Pointed t=
-o a random directory with a Makefile.inc<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 oot_path =3D currpa=
-th<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 print(&#39;No RFNoC=
- module found at &#39; +<br>
-os.path.abspath(currpath))<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 continue<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if oot_path not in oot_dir_list:<=
-br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 oot_dir_list.append=
-(oot_path)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 named_path =3D os.p=
-ath.join(&#39;$(BASE_DIR)&#39;,<br>
-get_relative_path(get_basedir(), oot_path))<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 incfile.write(OOT_D=
-IR_TMPL.format(oot_dir=3Dnamed_path))<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if os.path.isfile(o=
-s.path.join(oot_path, &#39;Makefile.inc&#39;)):<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Che=
-ck for Makefile.inc<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 incfi=
-le.write(OOT_INC_TMPL)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 elif os.path.isfile=
-(os.path.join(oot_path, &#39;rfnoc&#39;,<br>
-&#39;Makefile.inc&#39;)):<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Che=
-ck for Makefile.inc<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 incfi=
-le.write(OOT_INC_TMPL)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 #elif os.path.isfil=
-e(os.path.join(oot_path, &#39;rfnoc&#39;,<br>
-&#39;fpga-src&#39;, &#39;Makefile.srcs&#39;)): # Original<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 elif os.path.isfile=
-(os.path.join(oot_path, &#39;fpga-src&#39;,<br>
-&#39;Makefile.srcs&#39;)): # Anders fgr<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Leg=
-acy: Check for fpga-src/Makefile.srcs<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Rea=
-d, then append to file<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # cur=
-r_srcs =3D open(os.path.join(oot_path, &#39;rfnoc&#39;,<br>
-&#39;fpga-src&#39;, &#39;Makefile.srcs&#39;), &#39;r&#39;).read() # Origina=
-l<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 curr_=
-srcs =3D open(os.path.join(oot_path, &#39;fpga-src&#39;,<br>
-&#39;Makefile.srcs&#39;), &#39;r&#39;).read() # Anders fgr<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # cur=
-r_srcs =3D curr_srcs.replace(&#39;SOURCES_PATH&#39;,<br>
-os.path.join(oot_path, &#39;rfnoc&#39;, &#39;fpga-src&#39;, &#39;&#39;)) #<=
-br>
-Original<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 curr_=
-srcs =3D curr_srcs.replace(&#39;SOURCES_PATH&#39;,<br>
-os.path.join(oot_path, &#39;fpga-src&#39;, &#39;&#39;)) # Anders fgr<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 print=
-(&#39;Searching for Makefile.srcs: &#39; + curr_srcs) #fgr<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 incfi=
-le.write(OOT_SRCS_TMPL.format(sources=3Dcurr_srcs))<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 print=
-(&#39;No valid makefile found at &#39; +<br>
-os.path.abspath(currpath))<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 conti=
-nue<br>
-<br>
-However 30 minutes later in the build I got the next errror and again have<=
-br>
-no idea what to do. My command was:<br>
-<br>
-./uhd_image_builder.py gain ddc fft -I<br>
-/home/lskt/rfnoc/src/rfnoc-blocks_lskt/ -d x310 -t X310_RFNOC_HG -m 6<br>
---fill-with-fifos<br>
-<br>
-Using Vivado 2018.3 and UHD 3.15.0.0-124-geb448043<br>
-<br>
-<br>
-Erros are:<br>
-<br>
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_clk_gen/inst/CLK_OUT4<br>
-has multiple drivers: radio_clk_gen/inst/clkout1_buf/O, and<br>
-bus_clk_gen/inst/clkout4_buf/O.<br>
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net<br>
-radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has<b=
-r>
-multiple drivers:<br>
-ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg=
-[9][0]/Q,<br>
-and<br>
-radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_=
-reg[9][0]/Q.<br>
-ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design not run.<br>
-ERROR: [Common 17-39] &#39;opt_design&#39; failed due to earlier errors.<br=
->
-[00:24:46] Current task: DRC +++ Current Phase: Starting<br>
-[00:24:46] Current task: DRC +++ Current Phase: Finished<br>
-[00:24:46] Process terminated. Status: Failure<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D<br>
-Warnings:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01304<br>
-Critical Warnings:=C2=A0 40<br>
-Errors:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04<br>
-<br>
-Makefile.x300.inc:106: recipe for target &#39;bin&#39; failed<br>
-make[1]: *** [bin] Error 1<br>
-make[1]: Verzeichnis =E2=80=9E/home/lskt/rfnoc/src/uhd-fpga/usrp3/top/x300=
-=E2=80=9C wird<br>
-verlassen<br>
-Makefile:112: recipe for target &#39;X310_RFNOC_HG&#39; failed<br>
-make: *** [X310_RFNOC_HG] Error 2<br>
-<br>
-<br>
-Again, I would be very thankful for any advice, I refuse to give up :D<br><=
-/blockquote><div><br></div><div>This was recently shown to be a reassignmen=
-t of the ce_clk and ce_rst signals.=C2=A0 In your=C2=A0<span style=3D"color=
-:rgb(0,0,0);white-space:pre-wrap">rfnoc_ce_auto_inst generated file, remove=
- the lines that say:</span></div><div><span style=3D"color:rgb(0,0,0);white=
--space:pre-wrap"><br></span></div><div><font color=3D"#000000"><span style=
-=3D"white-space:pre-wrap">=C2=A0 </span></font>wire ce_clk =3D radio_clk;</=
-div>=C2=A0 wire ce_rst =3D radio_rst;</div><div class=3D"gmail_quote"><br><=
-/div><div class=3D"gmail_quote">Then try to rebuild.</div><div class=3D"gma=
-il_quote"><br></div><div class=3D"gmail_quote">You can remove those lines f=
-rom being regenerated every time here:</div><div class=3D"gmail_quote"><br>=
-</div><div class=3D"gmail_quote">=C2=A0=C2=A0<a href=3D"https://github.com/=
-EttusResearch/fpga/blob/fde2a94eb7231af859653db8caaf777ae2b66199/usrp3/tool=
-s/scripts/uhd_image_builder.py#L44">https://github.com/EttusResearch/fpga/b=
-lob/fde2a94eb7231af859653db8caaf777ae2b66199/usrp3/tools/scripts/uhd_image_=
-builder.py#L44</a></div><div class=3D"gmail_quote"><br></div><div class=3D"=
-gmail_quote">Brian</div></div>
+<div dir=3D"auto">Hello all,<div dir=3D"auto"><br></div><div dir=3D"auto">I=
+s this problem fixed? If yes, could you please tell how? We have a similar =
+error, so it would be helpful.</div><div dir=3D"auto"><br></div><div dir=3D=
+"auto">Thanks and regards,</div><div dir=3D"auto">Ak=C4=B1n</div></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">3 Oca 2020=
+ Cum 23:22 tarihinde Sam Reiter via USRP-users &lt;<a href=3D"mailto:usrp-u=
+sers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =C5=9Funu yazd=C4=
+=B1:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
+border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Florian,<div>=
+<br></div><div>DPDK 18.11 is not supported on UHD 3.x. You&#39;ll need to u=
+se DPDK 17.11.=C2=A0</div><div><br clear=3D"all"><div><div dir=3D"ltr" data=
+-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam R=
+eiter=C2=A0<div>Ettus Research</div></div></div></div></div></div></div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Mon, Dec 23, 2019 at 9:51 AM Florian Kaltenberger via USRP-users &lt;<a hre=
+f=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer=
+">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+ =20
 
---0000000000008764eb059ba24649--
+   =20
+ =20
+  <div>
+    <p>Dear all,</p>
+    <p>we have finally managed to set up UHD (3.15) with DPDK (18.11)
+      support on our RedHat 7 system (both installed from source) with
+      our N310. I have configured the system as explained here <a href=3D"h=
+ttp://files.ettus.com/manual/page_dpdk.html" target=3D"_blank" rel=3D"noref=
+errer">http://files.ettus.com/manual/page_dpdk.html</a>
+      but when calling <br>
+    </p>
+    <p>uhd_usrp_probe --args
+&quot;use_dpdk=3D1,mgmt_addr=3D192.168.12.1,addr=3D192.168.10.2,second_addr=
+=3D192.168.20.2,master_clock_rate=3D122.88e6,type=3Dn3xx&quot;<br>
+    </p>
+    <p>I am getting the following runtime error (all the way at the
+      bottom):</p>
+    [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat
+    4.8.5-39); Boost_106900; UHD_3.15.0.0-0-g4e06022c<br>
+    EAL: Detected 10 lcore(s)<br>
+    EAL: No free hugepages reported in hugepages-1048576kB<br>
+    EAL: Probing VFIO support...<br>
+    EAL: VFIO support initialized<br>
+    EAL: PCI device 0000:00:19.0 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:153a net_e1000_em<br>
+    EAL: PCI device 0000:01:00.0 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:1572 net_i40e<br>
+    EAL: PCI device 0000:01:00.1 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:1572 net_i40e<br>
+    EAL:=C2=A0=C2=A0 using IOMMU type 1 (Type 1)<br>
+    PMD: Global register is changed during enable FDIR flexible payload<br>
+    PMD: Global register is changed during support QinQ parser<br>
+    PMD: Global register is changed during configure hash input set<br>
+    PMD: Global register is changed during configure fdir mask<br>
+    PMD: Global register is changed during configure hash mask<br>
+    PMD: Global register is changed during support QinQ cloud filter<br>
+    PMD: Global register is changed during support TPID configuration<br>
+    EAL: PCI device 0000:01:00.2 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:1572 net_i40e<br>
+    EAL: PCI device 0000:01:00.3 on NUMA socket 0<br>
+    EAL:=C2=A0=C2=A0 probe driver: 8086:1572 net_i40e<br>
+    PMD: Global register is changed during enable FDIR flexible payload<br>
+    PMD: Global register is changed during support QinQ parser<br>
+    PMD: Global register is changed during configure hash input set<br>
+    PMD: Global register is changed during configure fdir mask<br>
+    PMD: Global register is changed during configure hash mask<br>
+    PMD: Global register is changed during support QinQ cloud filter<br>
+    PMD: Global register is changed during support TPID configuration<br>
+    EAL: Waiting for links to come up...<br>
+    EAL: Init DONE!<br>
+    EAL: Starting I/O threads!<br>
+    [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=3D192.168.12.1,type=3Dn3xx,product=3Dn310,serial=3D31641BC,claime=
+d=3DFalse,use_dpdk=3D1,addr=3D192.168.10.2,second_addr=3D192.168.20.2,maste=
+r_clock_rate=3D122.88e6<br>
+    [INFO] [MPM.PeriphManager] init() called with device args
+`mgmt_addr=3D192.168.12.1,product=3Dn310,master_clock_rate=3D122.88e6,secon=
+d_addr=3D192.168.20.2,use_dpdk=3D1,clock_source=3Dinternal,time_source=3Din=
+ternal&#39;.<br>
+    <font color=3D"#ff0000">EAL: Please set IPv4 address for port 0 before
+      opening socket<br>
+      [ERROR] [MPMD] Failure during block enumeration: AssertionError:
+      _rx_sock !=3D nullptr<br>
+      =C2=A0 in
+      uhd::transport::dpdk_zero_copy_impl::dpdk_zero_copy_impl(const
+      uhd::transport::uhd_dpdk_ctx&amp;, unsigned int, const
+      string&amp;, const string&amp;, const string&amp;, const
+      uhd::transport::zero_copy_xport_params&amp;)</font><br>
+    <p>I am also copying the output of &quot;dpdk-devbind=C2=A0 --status&qu=
+ot; which
+      shows that the two interfaces connected to the USRP use the
+      vfio-pci driver for DPDK<br>
+    </p>
+    <p>Network devices using DPDK-compatible driver<br>
+      =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+      0000:01:00.1 &#39;Ethernet Controller X710 for 10GbE SFP+ 1572&#39;
+      drv=3Dvfio-pci unused=3Di40e<br>
+      0000:01:00.3 &#39;Ethernet Controller X710 for 10GbE SFP+ 1572&#39;
+      drv=3Dvfio-pci unused=3Di40e<br>
+      <br>
+      Network devices using kernel driver<br>
+      =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+      0000:00:19.0 &#39;Ethernet Connection I217-LM 153a&#39; if=3Denp0s25
+      drv=3De1000e unused=3Dvfio-pci *Active*<br>
+      0000:01:00.0 &#39;Ethernet Controller X710 for 10GbE SFP+ 1572&#39;
+      if=3Dp1p1 drv=3Di40e unused=3Dvfio-pci <br>
+      0000:01:00.2 &#39;Ethernet Controller X710 for 10GbE SFP+ 1572&#39;
+      if=3Dp1p3 drv=3Di40e unused=3Dvfio-pci <br>
+      <br>
+    </p>
+    <p>What surprises me is that in the output of the uhd_usrp_probe, it
+      does not say it is using the driver for DPDK. any ideas what could
+      be wrong?</p>
+    <p>Florian.<br>
+    </p>
+    <div>-- <br>
+     =20
+     =20
+      Follow us on <a href=3D"https://plus.google.com/+OpenairinterfaceOrg"=
+ target=3D"_blank" rel=3D"noreferrer">Google+</a>,
+      <a href=3D"https://www.linkedin.com/company/openairinterface" target=
+=3D"_blank" rel=3D"noreferrer">LinkedIn</a>,
+      or <a href=3D"https://twitter.com/osalliance5g" target=3D"_blank" rel=
+=3D"noreferrer">Twitter</a>!<br>
+    </div>
+  </div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
+ferrer">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
+ferrer">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000a8cfba059ba26b2f--
 
 
---===============6808450213076434517==
+--===============0432962378697595481==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -453,5 +378,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6808450213076434517==--
+--===============0432962378697595481==--
 
