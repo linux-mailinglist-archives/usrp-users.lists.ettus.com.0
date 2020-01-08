@@ -2,37 +2,94 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9DCA134748
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 17:11:10 +0100 (CET)
-Received: from [::1] (port=53358 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95216134804
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Jan 2020 17:32:18 +0100 (CET)
+Received: from [::1] (port=39582 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ipDvI-00034u-0f; Wed, 08 Jan 2020 11:11:08 -0500
-Received: from smtp.eurecom.fr ([193.55.113.210]:35790)
- by mm2.emwd.com with esmtp (Exim 4.92)
- (envelope-from <florian.kaltenberger@eurecom.fr>) id 1ipDvD-0002yi-Nd
- for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 11:11:04 -0500
-X-IronPort-AV: E=Sophos;i="5.69,410,1571695200"; 
- d="vcf'?scan'208,217";a="11725116"
-Received: from monza.eurecom.fr ([192.168.106.15])
- by drago1i.eurecom.fr with ESMTP; 08 Jan 2020 17:10:22 +0100
-Received: from [192.168.200.21] (unknown [192.168.200.21])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by monza.eurecom.fr (Postfix) with ESMTPSA id 428A63E04;
- Wed,  8 Jan 2020 17:10:22 +0100 (CET)
-To: akin soysal <akinsoysal@gmail.com>, Sam Reiter <sam.reiter@ettus.com>
-References: <e44a32d6-8d73-b567-eda2-ce00144c592a@eurecom.fr>
- <CANf970b5b0igU4ag--+4DHdopWHr+gsuwU5wEupyXcKEA9m3FQ@mail.gmail.com>
- <CAFzRrg0gc9WBWdUoqSRhzu1WzvSZRkVVnsxS=6gC-ty-RPBH9Q@mail.gmail.com>
-Message-ID: <237af9ce-e195-24f3-af85-f7f659a25683@eurecom.fr>
-Date: Wed, 8 Jan 2020 17:10:21 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
-MIME-Version: 1.0
-In-Reply-To: <CAFzRrg0gc9WBWdUoqSRhzu1WzvSZRkVVnsxS=6gC-ty-RPBH9Q@mail.gmail.com>
-Content-Type: multipart/mixed; boundary="------------C34386DCC738A57A36862FE8"
+	id 1ipEFk-0006TU-UM; Wed, 08 Jan 2020 11:32:16 -0500
+Received: from mx0b-00010702.pphosted.com ([148.163.158.57]:44832)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <prvs=427687bb5d=aaron.rossetto@ni.com>)
+ id 1ipEFh-0006Oe-4z
+ for usrp-users@lists.ettus.com; Wed, 08 Jan 2020 11:32:13 -0500
+Received: from pps.filterd (m0098779.ppops.net [127.0.0.1])
+ by mx0b-00010702.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 008GQWh8010173
+ for <usrp-users@lists.ettus.com>; Wed, 8 Jan 2020 10:31:32 -0600
+Received: from nam10-bn7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10lp2108.outbound.protection.outlook.com [104.47.70.108])
+ by mx0b-00010702.pphosted.com with ESMTP id 2xasddhp5m-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Wed, 08 Jan 2020 10:31:31 -0600
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n1TFEqA6Q+WmgM4FA/lMSVe0J8LUqiGmlHpODg8vf/zsKkDEwXXbc55jSAa5ncAUpSMdmO8BPFLhIyfygLNeDBsaOyz1YlId8/X7+MMJbCalnIdo9zBbsoMhq6X32lX/K6KaBpMMzkveUFf3YPN69nrKV8LiyoPD6Za0nBLleWGruiPKJI2cPK1hUZNz1TmxX6oTvUv0T77mDhHf0b0gWUsBEdxOGnli9HouXm/U0CCYhLstio/W7XmYewn+mAQ4Uc17ZJW4t3KdoiUwRTPPSCANxbrWf+eMSI0oLILMTLO85yMj2QOQdLh+mf8SkKjFMurFDv3WAK1LbRw9R58WLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zJeB5jmxCRM9cjeH2uNQ0SSXFQsZ1wu0U6zXZgMnJew=;
+ b=kh+YupwWLZhnI2ELzRAIFo/3e1JpRr2S3tScMzc3tjg1vO0j7Ex2z0n8kf7m4R9FqirnUr5jvbauX18vlD6C4H2asUXhKVdxtaBrNHg3/ytJNU0Myxu21TQFLl1eAlJ/dFB/vC3QEBDtOi5Hnm8xP28fGZZgKcYDQ9qiIVCXb6tXCxEbIlQ2+A6+7NLBoMaC8hf6OlrvrlHhF6Me+7OtXNm0ku+hQy8SspFU+tFzNFAYq6L1zIg3lHbUkicOenj+h2wyIHDrTg7HDhq7vDJxyrnyHyiRRJerlOyv+VsNrZ8FUOHx2BmU9fBC9BU4hVXguMmkxMUTuCowTqU9rSPfpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
+ header.d=ni.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zJeB5jmxCRM9cjeH2uNQ0SSXFQsZ1wu0U6zXZgMnJew=;
+ b=GsYkO2D9Napaeia+N1/yT0aAtv+Sg0vJjBKwVbFBeg7hKCYY34GjE4j02st33DU7SQM9mvaCpBayvG957WldBV7ncQr7Y2I9va7abqKVTcw675qhggA/6I82eyjJPXjtrWH9BwthzRdHh3ur4ziY0YWGThvolQsg0d7Ocaf8rxQ=
+Received: from BYAPR04MB4456.namprd04.prod.outlook.com (52.135.237.77) by
+ BYAPR04MB4392.namprd04.prod.outlook.com (20.176.251.20) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2623.9; Wed, 8 Jan 2020 16:31:30 +0000
+Received: from BYAPR04MB4456.namprd04.prod.outlook.com
+ ([fe80::7ca3:79b3:2405:29f0]) by BYAPR04MB4456.namprd04.prod.outlook.com
+ ([fe80::7ca3:79b3:2405:29f0%3]) with mapi id 15.20.2623.008; Wed, 8 Jan 2020
+ 16:31:30 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] DPDK runtime error
+Thread-Index: AdXGQNNGMF7UrIx9RH2RPrLMCRKjow==
+Date: Wed, 8 Jan 2020 16:31:30 +0000
+Message-ID: <BYAPR04MB4456DA8FD19AC8C087B4D6FCF83E0@BYAPR04MB4456.namprd04.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [130.164.62.37]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 17225a19-4387-437f-e521-08d79458375c
+x-ms-traffictypediagnostic: BYAPR04MB4392:
+x-microsoft-antispam-prvs: <BYAPR04MB43920A167ED3759A11D4B822F83E0@BYAPR04MB4392.namprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-forefront-prvs: 02760F0D1C
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(366004)(346002)(396003)(136003)(376002)(39850400004)(199004)(189003)(2906002)(52536014)(6916009)(33656002)(71200400001)(66446008)(66476007)(81156014)(66556008)(8676002)(64756008)(8936002)(81166006)(478600001)(9686003)(316002)(55016002)(7696005)(66946007)(5660300002)(76116006)(26005)(44832011)(86362001)(6506007)(53546011)(186003);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BYAPR04MB4392;
+ H:BYAPR04MB4456.namprd04.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: ni.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: V10yxahIZzU6pIGtMuWsKXStaR9/Yrad8nL0bnbtmLP2w7+GF9kEsn9u0JuxEXAPFo51g2cGYM6ygxEZhQe8D1By2q8czCDQ3dWRUtkG7hZypyPhmWChWpJTQenAuvlKYEDnUuDAigXoGgeSZUsT1g+wvdzdPVyXu28DDdS3ojR5LkVquXtJGR6J6rO29SvfwWHBQ2k0vAts2Vd2QKdHlCXQcs1pGw/PV8hQKUoHpoLBxb/qS4pDLv02/0T01DKDllpDwuAJSH4i8yXApFfTaLwtzx+zxz8S9ztfumDAoAg387TKEiNOekXKZFceSKHSGZB4cVO27JS8lAFlEtHkTGVpD6fvRpUc5VGquKEatVN80hkRZPCBL1Y8PFFN1fX9XWIfyW+Zsz+Y7uHQj9IsNvVJzgYav77+tH2w7v3XELelv2F6ZpmnmnCSlNROuDzF
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 17225a19-4387-437f-e521-08d79458375c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2020 16:31:30.0913 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: laXGDlsPSC7fm6OkHK9XmOgitGGX28unTWhh1l7xJfMl7XL8A9D3+wXcdtEHwWrny5l9ERD9Fluz53HlobNRdQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4392
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138, 18.0.572
+ definitions=2020-01-08_04:2020-01-08,
+ 2020-01-08 signatures=0
+X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy
+ score=30
+ priorityscore=1501 mlxlogscore=999 spamscore=0 mlxscore=0 adultscore=0
+ suspectscore=0 bulkscore=0 impostorscore=0 phishscore=0 lowpriorityscore=0
+ clxscore=1011 malwarescore=0 classifier=spam adjust=30 reason=mlx
+ scancount=1 engine=8.12.0-1910280000 definitions=main-2001080134
 Subject: Re: [USRP-users] DPDK runtime error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -45,9 +102,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Florian Kaltenberger via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Florian Kaltenberger <florian.kaltenberger@eurecom.fr>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+From: Aaron Rossetto via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Aaron Rossetto <aaron.rossetto@ni.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -61,35 +119,29 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---------------C34386DCC738A57A36862FE8
-Content-Type: multipart/alternative;
- boundary="------------443249CA6A9D862FDC340751"
+Hello Florian,
+
+I believe in UHD 3.15, the keys in the uhd.conf file use dashes (-), not underscores between words, e.g.:
+
+[dpdk-mac=00:11:22:33:44:55]
+dpdk-io-cpu = 1
+dpdk-ipv4 = 192.168.10.1/24
+
+Hope that helps,
+Aaron
 
 
---------------443249CA6A9D862FDC340751
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-Hi,
+From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of Florian Kaltenberger via USRP-users
+Sent: Wednesday, January 8, 2020 10:10 AM
+Subject: [EXTERNAL] Re: [USRP-users] DPDK runtime error
 
-we now installed DPDK 17.11 but I still have exactly the same problem.
-
-I have a feeling the problem is that I am not addressing the device 
-correctly. Here is what I did:
-
-The USRP is connected to ethernet interfaces "p1p2" (mac_addr 
-64:9d:99:b1:1e:8d) and "p1p4" (mac_addr 64:9d:99:b1:1e:8f) which are 
-originally configured with IP addresses 192.168.10.1 and inet_addr 
-192.168.20.1. This configuration works fine without dpdk.
-
-Then I deactivate these two interfaces using "ifconfig p1p2 down" 
-"ifconfig p1p4 down"and do "dpdk-devbind --bind=vfio-pci 01:00.1" and 
-"dpdk-devbind --bind=vfio-pci 01:00.3". The status of "dpdk-devbind -s" 
-is below.
-
+Hi, 
+we now installed DPDK 17.11 but I still have exactly the same problem. 
+I have a feeling the problem is that I am not addressing the device correctly. Here is what I did:
+The USRP is connected to ethernet interfaces "p1p2" (mac_addr 64:9d:99:b1:1e:8d) and "p1p4" (mac_addr 64:9d:99:b1:1e:8f) which are originally configured with IP addresses 192.168.10.1 and inet_addr 192.168.20.1. This configuration works fine without dpdk.
+Then I deactivate these two interfaces using "ifconfig p1p2 down" "ifconfig p1p4 down"and do "dpdk-devbind --bind=vfio-pci 01:00.1" and "dpdk-devbind --bind=vfio-pci 01:00.3". The status of "dpdk-devbind -s" is below.
 In the file /etc/uhd/uhd.conf I specify
-
 [dpdk_mac=64:9d:99:b1:1e:8d]
 dpdk_io_cpu = 1
 dpdk_ipv4 = 192.168.10.1/24
@@ -97,423 +149,10 @@ dpdk_ipv4 = 192.168.10.1/24
 [dpdk_mac=64:9d:99:b1:1e:8f]
 dpdk_io_cpu = 2
 dpdk_ipv4 = 192.168.20.1/24
-
-Is this the correct way of specifying it? What surprises me is that DPDK 
-requires to address the device by its PCI address while UHD still 
-requires to set the IP addresses.
-
+Is this the correct way of specifying it? What surprises me is that DPDK requires to address the device by its PCI address while UHD still requires to set the IP addresses. 
 Florian.
-
-On 1/8/2020 16:19, akin soysal wrote:
-> Hello all,
->
-> Is this problem fixed? If yes, could you please tell how? We have a 
-> similar error, so it would be helpful.
->
-> Thanks and regards,
-> Akın
->
-> 3 Oca 2020 Cum 23:22 tarihinde Sam Reiter via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> şunu 
-> yazdı:
->
->     Florian,
->
->     DPDK 18.11 is not supported on UHD 3.x. You'll need to use DPDK
->     17.11.
->
->     Sam Reiter
->     Ettus Research
->
->     On Mon, Dec 23, 2019 at 9:51 AM Florian Kaltenberger via
->     USRP-users <usrp-users@lists.ettus.com
->     <mailto:usrp-users@lists.ettus.com>> wrote:
->
->         Dear all,
->
->         we have finally managed to set up UHD (3.15) with DPDK (18.11)
->         support on our RedHat 7 system (both installed from source)
->         with our N310. I have configured the system as explained here
->         http://files.ettus.com/manual/page_dpdk.html but when calling
->
->         uhd_usrp_probe --args
->         "use_dpdk=1,mgmt_addr=192.168.12.1,addr=192.168.10.2,second_addr=192.168.20.2,master_clock_rate=122.88e6,type=n3xx"
->
->         I am getting the following runtime error (all the way at the
->         bottom):
->
->         [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat
->         4.8.5-39); Boost_106900; UHD_3.15.0.0-0-g4e06022c
->         EAL: Detected 10 lcore(s)
->         EAL: No free hugepages reported in hugepages-1048576kB
->         EAL: Probing VFIO support...
->         EAL: VFIO support initialized
->         EAL: PCI device 0000:00:19.0 on NUMA socket 0
->         EAL:   probe driver: 8086:153a net_e1000_em
->         EAL: PCI device 0000:01:00.0 on NUMA socket 0
->         EAL:   probe driver: 8086:1572 net_i40e
->         EAL: PCI device 0000:01:00.1 on NUMA socket 0
->         EAL:   probe driver: 8086:1572 net_i40e
->         EAL:   using IOMMU type 1 (Type 1)
->         PMD: Global register is changed during enable FDIR flexible
->         payload
->         PMD: Global register is changed during support QinQ parser
->         PMD: Global register is changed during configure hash input set
->         PMD: Global register is changed during configure fdir mask
->         PMD: Global register is changed during configure hash mask
->         PMD: Global register is changed during support QinQ cloud filter
->         PMD: Global register is changed during support TPID configuration
->         EAL: PCI device 0000:01:00.2 on NUMA socket 0
->         EAL:   probe driver: 8086:1572 net_i40e
->         EAL: PCI device 0000:01:00.3 on NUMA socket 0
->         EAL:   probe driver: 8086:1572 net_i40e
->         PMD: Global register is changed during enable FDIR flexible
->         payload
->         PMD: Global register is changed during support QinQ parser
->         PMD: Global register is changed during configure hash input set
->         PMD: Global register is changed during configure fdir mask
->         PMD: Global register is changed during configure hash mask
->         PMD: Global register is changed during support QinQ cloud filter
->         PMD: Global register is changed during support TPID configuration
->         EAL: Waiting for links to come up...
->         EAL: Init DONE!
->         EAL: Starting I/O threads!
->         [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
->         mgmt_addr=192.168.12.1,type=n3xx,product=n310,serial=31641BC,claimed=False,use_dpdk=1,addr=192.168.10.2,second_addr=192.168.20.2,master_clock_rate=122.88e6
->         [INFO] [MPM.PeriphManager] init() called with device args
->         `mgmt_addr=192.168.12.1,product=n310,master_clock_rate=122.88e6,second_addr=192.168.20.2,use_dpdk=1,clock_source=internal,time_source=internal'.
->         EAL: Please set IPv4 address for port 0 before opening socket
->         [ERROR] [MPMD] Failure during block enumeration:
->         AssertionError: _rx_sock != nullptr
->           in
->         uhd::transport::dpdk_zero_copy_impl::dpdk_zero_copy_impl(const
->         uhd::transport::uhd_dpdk_ctx&, unsigned int, const string&,
->         const string&, const string&, const
->         uhd::transport::zero_copy_xport_params&)
->
->         I am also copying the output of "dpdk-devbind --status" which
->         shows that the two interfaces connected to the USRP use the
->         vfio-pci driver for DPDK
->
->         Network devices using DPDK-compatible driver
->         ============================================
->         0000:01:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572'
->         drv=vfio-pci unused=i40e
->         0000:01:00.3 'Ethernet Controller X710 for 10GbE SFP+ 1572'
->         drv=vfio-pci unused=i40e
->
->         Network devices using kernel driver
->         ===================================
->         0000:00:19.0 'Ethernet Connection I217-LM 153a' if=enp0s25
->         drv=e1000e unused=vfio-pci *Active*
->         0000:01:00.0 'Ethernet Controller X710 for 10GbE SFP+ 1572'
->         if=p1p1 drv=i40e unused=vfio-pci
->         0000:01:00.2 'Ethernet Controller X710 for 10GbE SFP+ 1572'
->         if=p1p3 drv=i40e unused=vfio-pci
->
->         What surprises me is that in the output of the uhd_usrp_probe,
->         it does not say it is using the driver for DPDK. any ideas
->         what could be wrong?
->
->         Florian.
->
->         -- 
->         Follow us on Google+
->         <https://plus.google.com/+OpenairinterfaceOrg>, LinkedIn
->         <https://www.linkedin.com/company/openairinterface>, or
->         Twitter <https://twitter.com/osalliance5g>!
->         _______________________________________________
->         USRP-users mailing list
->         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
--- 
-Follow us on Google+ <https://plus.google.com/+OpenairinterfaceOrg>, 
-LinkedIn <https://www.linkedin.com/company/openairinterface>, or Twitter 
-<https://twitter.com/osalliance5g>!
-
---------------443249CA6A9D862FDC340751
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi, <br>
-    </p>
-    <p>we now installed DPDK 17.11 but I still have exactly the same
-      problem. <br>
-    </p>
-    <p>I have a feeling the problem is that I am not addressing the
-      device correctly. Here is what I did:</p>
-    <p>The USRP is connected to ethernet interfaces "p1p2" (mac_addr
-      64:9d:99:b1:1e:8d) and "p1p4" (mac_addr 64:9d:99:b1:1e:8f) which
-      are originally configured with IP addresses 192.168.10.1 and
-      inet_addr 192.168.20.1. This configuration works fine without
-      dpdk.</p>
-    <p>Then I deactivate these two interfaces using "ifconfig p1p2 down"
-      "ifconfig p1p4 down"and do "dpdk-devbind --bind=vfio-pci 01:00.1"
-      and "dpdk-devbind --bind=vfio-pci 01:00.3". The status of
-      "dpdk-devbind -s" is below.<br>
-    </p>
-    <p>In the file /etc/uhd/uhd.conf I specify</p>
-    <p>[dpdk_mac=64:9d:99:b1:1e:8d]<br>
-      dpdk_io_cpu = 1<br>
-      dpdk_ipv4 = 192.168.10.1/24<br>
-      <br>
-      [dpdk_mac=64:9d:99:b1:1e:8f]<br>
-      dpdk_io_cpu = 2<br>
-      dpdk_ipv4 = 192.168.20.1/24<br>
-    </p>
-    <p>Is this the correct way of specifying it? What surprises me is
-      that DPDK requires to address the device by its PCI address while
-      UHD still requires to set the IP addresses. <br>
-    </p>
-    <p>Florian.<br>
-    </p>
-    <div class="moz-cite-prefix">On 1/8/2020 16:19, akin soysal wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAFzRrg0gc9WBWdUoqSRhzu1WzvSZRkVVnsxS=6gC-ty-RPBH9Q@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="auto">Hello all,
-        <div dir="auto"><br>
-        </div>
-        <div dir="auto">Is this problem fixed? If yes, could you please
-          tell how? We have a similar error, so it would be helpful.</div>
-        <div dir="auto"><br>
-        </div>
-        <div dir="auto">Thanks and regards,</div>
-        <div dir="auto">Akın</div>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">3 Oca 2020 Cum 23:22 tarihinde
-          Sam Reiter via USRP-users &lt;<a
-            href="mailto:usrp-users@lists.ettus.com"
-            moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
-          şunu yazdı:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0 0 0
-          .8ex;border-left:1px #ccc solid;padding-left:1ex">
-          <div dir="ltr">Florian,
-            <div><br>
-            </div>
-            <div>DPDK 18.11 is not supported on UHD 3.x. You'll need to
-              use DPDK 17.11. </div>
-            <div><br clear="all">
-              <div>
-                <div dir="ltr" data-smartmail="gmail_signature">
-                  <div dir="ltr">
-                    <div>
-                      <div dir="ltr">Sam Reiter 
-                        <div>Ettus Research</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div class="gmail_quote">
-            <div dir="ltr" class="gmail_attr">On Mon, Dec 23, 2019 at
-              9:51 AM Florian Kaltenberger via USRP-users &lt;<a
-                href="mailto:usrp-users@lists.ettus.com" target="_blank"
-                rel="noreferrer" moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
-              wrote:<br>
-            </div>
-            <blockquote class="gmail_quote" style="margin:0px 0px 0px
-              0.8ex;border-left:1px solid
-              rgb(204,204,204);padding-left:1ex">
-              <div>
-                <p>Dear all,</p>
-                <p>we have finally managed to set up UHD (3.15) with
-                  DPDK (18.11) support on our RedHat 7 system (both
-                  installed from source) with our N310. I have
-                  configured the system as explained here <a
-                    href="http://files.ettus.com/manual/page_dpdk.html"
-                    target="_blank" rel="noreferrer"
-                    moz-do-not-send="true">http://files.ettus.com/manual/page_dpdk.html</a>
-                  but when calling <br>
-                </p>
-                <p>uhd_usrp_probe --args
-"use_dpdk=1,mgmt_addr=192.168.12.1,addr=192.168.10.2,second_addr=192.168.20.2,master_clock_rate=122.88e6,type=n3xx"<br>
-                </p>
-                <p>I am getting the following runtime error (all the way
-                  at the bottom):</p>
-                [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red
-                Hat 4.8.5-39); Boost_106900; UHD_3.15.0.0-0-g4e06022c<br>
-                EAL: Detected 10 lcore(s)<br>
-                EAL: No free hugepages reported in hugepages-1048576kB<br>
-                EAL: Probing VFIO support...<br>
-                EAL: VFIO support initialized<br>
-                EAL: PCI device 0000:00:19.0 on NUMA socket 0<br>
-                EAL:   probe driver: 8086:153a net_e1000_em<br>
-                EAL: PCI device 0000:01:00.0 on NUMA socket 0<br>
-                EAL:   probe driver: 8086:1572 net_i40e<br>
-                EAL: PCI device 0000:01:00.1 on NUMA socket 0<br>
-                EAL:   probe driver: 8086:1572 net_i40e<br>
-                EAL:   using IOMMU type 1 (Type 1)<br>
-                PMD: Global register is changed during enable FDIR
-                flexible payload<br>
-                PMD: Global register is changed during support QinQ
-                parser<br>
-                PMD: Global register is changed during configure hash
-                input set<br>
-                PMD: Global register is changed during configure fdir
-                mask<br>
-                PMD: Global register is changed during configure hash
-                mask<br>
-                PMD: Global register is changed during support QinQ
-                cloud filter<br>
-                PMD: Global register is changed during support TPID
-                configuration<br>
-                EAL: PCI device 0000:01:00.2 on NUMA socket 0<br>
-                EAL:   probe driver: 8086:1572 net_i40e<br>
-                EAL: PCI device 0000:01:00.3 on NUMA socket 0<br>
-                EAL:   probe driver: 8086:1572 net_i40e<br>
-                PMD: Global register is changed during enable FDIR
-                flexible payload<br>
-                PMD: Global register is changed during support QinQ
-                parser<br>
-                PMD: Global register is changed during configure hash
-                input set<br>
-                PMD: Global register is changed during configure fdir
-                mask<br>
-                PMD: Global register is changed during configure hash
-                mask<br>
-                PMD: Global register is changed during support QinQ
-                cloud filter<br>
-                PMD: Global register is changed during support TPID
-                configuration<br>
-                EAL: Waiting for links to come up...<br>
-                EAL: Init DONE!<br>
-                EAL: Starting I/O threads!<br>
-                [INFO] [MPMD] Initializing 1 device(s) in parallel with
-                args:
-mgmt_addr=192.168.12.1,type=n3xx,product=n310,serial=31641BC,claimed=False,use_dpdk=1,addr=192.168.10.2,second_addr=192.168.20.2,master_clock_rate=122.88e6<br>
-                [INFO] [MPM.PeriphManager] init() called with device
-                args
-`mgmt_addr=192.168.12.1,product=n310,master_clock_rate=122.88e6,second_addr=192.168.20.2,use_dpdk=1,clock_source=internal,time_source=internal'.<br>
-                <font color="#ff0000">EAL: Please set IPv4 address for
-                  port 0 before opening socket<br>
-                  [ERROR] [MPMD] Failure during block enumeration:
-                  AssertionError: _rx_sock != nullptr<br>
-                    in
-                  uhd::transport::dpdk_zero_copy_impl::dpdk_zero_copy_impl(const
-                  uhd::transport::uhd_dpdk_ctx&amp;, unsigned int, const
-                  string&amp;, const string&amp;, const string&amp;,
-                  const uhd::transport::zero_copy_xport_params&amp;)</font><br>
-                <p>I am also copying the output of "dpdk-devbind 
-                  --status" which shows that the two interfaces
-                  connected to the USRP use the vfio-pci driver for DPDK<br>
-                </p>
-                <p>Network devices using DPDK-compatible driver<br>
-                  ============================================<br>
-                  0000:01:00.1 'Ethernet Controller X710 for 10GbE SFP+
-                  1572' drv=vfio-pci unused=i40e<br>
-                  0000:01:00.3 'Ethernet Controller X710 for 10GbE SFP+
-                  1572' drv=vfio-pci unused=i40e<br>
-                  <br>
-                  Network devices using kernel driver<br>
-                  ===================================<br>
-                  0000:00:19.0 'Ethernet Connection I217-LM 153a'
-                  if=enp0s25 drv=e1000e unused=vfio-pci *Active*<br>
-                  0000:01:00.0 'Ethernet Controller X710 for 10GbE SFP+
-                  1572' if=p1p1 drv=i40e unused=vfio-pci <br>
-                  0000:01:00.2 'Ethernet Controller X710 for 10GbE SFP+
-                  1572' if=p1p3 drv=i40e unused=vfio-pci <br>
-                  <br>
-                </p>
-                <p>What surprises me is that in the output of the
-                  uhd_usrp_probe, it does not say it is using the driver
-                  for DPDK. any ideas what could be wrong?</p>
-                <p>Florian.<br>
-                </p>
-                <div>-- <br>
-                  Follow us on <a
-                    href="https://plus.google.com/+OpenairinterfaceOrg"
-                    target="_blank" rel="noreferrer"
-                    moz-do-not-send="true">Google+</a>, <a
-                    href="https://www.linkedin.com/company/openairinterface"
-                    target="_blank" rel="noreferrer"
-                    moz-do-not-send="true">LinkedIn</a>, or <a
-                    href="https://twitter.com/osalliance5g"
-                    target="_blank" rel="noreferrer"
-                    moz-do-not-send="true">Twitter</a>!<br>
-                </div>
-              </div>
-              _______________________________________________<br>
-              USRP-users mailing list<br>
-              <a href="mailto:USRP-users@lists.ettus.com"
-                target="_blank" rel="noreferrer" moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
-              <a
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                rel="noreferrer noreferrer" target="_blank"
-                moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-            </blockquote>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a href="mailto:USRP-users@lists.ettus.com" target="_blank"
-            rel="noreferrer" moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
-          <a
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer noreferrer" target="_blank"
-            moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <div class="moz-signature">-- <br>
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <title></title>
-      Follow us on <a
-        href="https://plus.google.com/+OpenairinterfaceOrg">Google+</a>,
-      <a href="https://www.linkedin.com/company/openairinterface">LinkedIn</a>,
-      or <a href="https://twitter.com/osalliance5g">Twitter</a>!<br>
-    </div>
-  </body>
-</html>
-
---------------443249CA6A9D862FDC340751--
-
---------------C34386DCC738A57A36862FE8
-Content-Type: text/x-vcard; charset=utf-8;
- name="florian_kaltenberger.vcf"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="florian_kaltenberger.vcf"
-
-begin:vcard
-fn:Florian Kaltenberger
-n:Kaltenberger;Florian
-org:EURECOM;Mobile Communications
-adr;dom:450 route des chappes;;Campus SophiaTech;Biot;;06410
-email;internet:florian.kaltenberger@eurecom.fr
-title:Assitant Professor
-tel;work:+33 4 9300 8186
-version:2.1
-end:vcard
-
-
---------------C34386DCC738A57A36862FE8
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---------------C34386DCC738A57A36862FE8--
-
