@@ -2,48 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B3B8135763
-	for <lists+usrp-users@lfdr.de>; Thu,  9 Jan 2020 11:50:01 +0100 (CET)
-Received: from [::1] (port=55116 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40A0A135BAE
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Jan 2020 15:49:55 +0100 (CET)
+Received: from [::1] (port=47588 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ipVO0-0001oG-KG; Thu, 09 Jan 2020 05:49:56 -0500
-Received: from mx1.hrz.uni-dortmund.de ([129.217.128.51]:61254
- helo=unimail.uni-dortmund.de)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <felix.greiwe@tu-dortmund.de>)
- id 1ipVNw-0001ey-4x
- for usrp-users@lists.ettus.com; Thu, 09 Jan 2020 05:49:52 -0500
-Received: from webmail.tu-dortmund.de (webmail.tu-dortmund.de [129.217.131.82])
- (authenticated bits=0)
- by unimail.uni-dortmund.de (8.16.0.41/8.16.0.41) with ESMTPSA id
- 009AnAjc021484
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Thu, 9 Jan 2020 11:49:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tu-dortmund.de;
- s=unimail; t=1578566950;
- bh=+4IePwIe448J8bcVmHHLbOeMzG1t6fG76BsPZrkhhJg=;
- h=In-Reply-To:References:Date:Subject:From:To:Cc:Reply-To;
- b=mcJthM23MRdNOsDikiC250EB0nqRP5YOREjp2+Rg+Td/8ZZvaOxp/2cGtQ4XCbdb9
- GMeqOL4YCK3d1LMgY2u1Qsl45ANFv0FKVVdUNrwsoyNV0p5Hm9E6rmfWMrFvOdiOpz
- p+lI0ZTHG6ishAMIqXBqTMK3qJwTLDI+3MkAWSBU=
-Received: from 129.217.182.203 (SquirrelMail authenticated user smfegrei)
- by webmail.tu-dortmund.de with HTTP; Thu, 9 Jan 2020 11:49:10 +0100
-Message-ID: <97546e4fd51b795393d1018052820570.squirrel@webmail.tu-dortmund.de>
-In-Reply-To: <CAEXYVK6F2+h4XCCXDoihoQUi6arcutbPy5_YXi=y4ebYcKozww@mail.gmail.com>
-References: <0f08a6b07438bf71916006244562092c.squirrel@webmail.tu-dortmund.de>
- <640c149702f53cfe43d71b5da2255278.squirrel@webmail.tu-dortmund.de>
- <CADRnH22jhRo3s-=URkd-bgtCHoqVAP3CzV2XGgtkbO21h2f=6Q@mail.gmail.com>
- <f579952b4ad7fb3a6457224d49fc6af6.squirrel@webmail.tu-dortmund.de>
- <CAEXYVK6F2+h4XCCXDoihoQUi6arcutbPy5_YXi=y4ebYcKozww@mail.gmail.com>
-Date: Thu, 9 Jan 2020 11:49:10 +0100
-To: "Brian Padalino" <bpadalino@gmail.com>
-User-Agent: SquirrelMail/1.4.23 [SVN]
+	id 1ipZ89-0000UU-Vy; Thu, 09 Jan 2020 09:49:50 -0500
+Received: from sonic309-20.consmr.mail.ne1.yahoo.com ([66.163.184.146]:43297)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
+ id 1ipZ87-0000L1-71
+ for usrp-users@lists.ettus.com; Thu, 09 Jan 2020 09:49:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1578581345; bh=btsbzuxNJlXlD+4AK5iegMIKNo90ls+g9u1f40EhGak=;
+ h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject;
+ b=FCI9wen8xYG2hcYn2Eq/Qb+um5Xa975WWJBrmtOOIsup+HMc9gdC2xebV169dinjKJo/581SWcsSpYiaYXMUIq/oUN73RrK8KC6iEdot7mwJyQw6gH1M5phBGfptATiyQXimvTbfY+fOikghtI6aX623qItFHLjqdlm7/NAHdkOoznJtOZul6GTi/gtLMEx7ueRVALDOqx4NOfwpn+8q0F3bPQuXOphwvMSWvnDD+vVy2rLl3DsLBJQ9cMW7T31tCO11G9PV1sy2pDpY9VSKCGWZaBhJcF0lsYXVMsSWQ1Ps+1qEx1wLQZjeqdVy7oaQBD/BIMrxx+Rkig0UURfM/g==
+X-YMail-OSG: cVK7lwgVM1nxvXpZgcGvJ8QiqCAMPnKnyiLC2uJ6RhVwLpECtYhC.NEFzUtJCK8
+ izDrsWeDjERauQ9TsJE4PpO4rRRbMXNb9J9hkxFXWpOw1oTjQkYB67TtEs4txVaf3Rh3cQpMveCt
+ Ty3ZCnsyB1UeX0CerJUmTWstRNSfkiB3QZZ9A4Ivv6uvUceo1coMs_uGya5.NzdGBqYtkyTmmU6l
+ 1zSsv8sktSBoaVTJvpfbDTkkLq8.TDbxMc_54J78fW5zFr29YWgW3ituUH5UK4NILggrSiMegQWd
+ shdNU8lYcwkvAnbqPP_9B1AeX6fE0Ql_JJ12rEE8K4gGtAVsiWxyeihSIw2aBEEgVIs1TU1OO.n9
+ 0MsnIRZ5RE4gLww5HYaBz4AzvSIZnVo5fWsxkgT3vD9Nhw2Rzn67Km1iHZ9aC64IhG7cLxa2V_oe
+ UTEMQYpKMHRQXibEHfruKNY.33nI0Y0uG9ZKpWOxc627xFMNVdK9Qn6YeMBleOpAnemuLPEV625F
+ Pd0ynb_g0tXxF7AvIXYYvJY3bolIjLo8rXjRsoeKHP4yvLM.oKpyasVHnaUWFPhW6_bvBgvwORtU
+ lQNQiIfOpU3HzhVh.12uUqadNRzUVmfUyGt7HHACxeUAYIY_9theayc5GjH0kxgr799g0HpC.8X_
+ NSN.7GPZ6uOhr5X.EUPdZ1V2bCPMPWKXjaL8.vPMIxN1Fv6qgQwDjpB3lXEb91nBiFYnmD.lDHUr
+ _MVfIkPLaPwRip_utazQmRghrHBVR3uJcyD.1OT_SEzamGNtdkcKGp2eA4J3HvzBzAHqm73uBh_M
+ _DbLKww2C6IJgscFdpdeLZPK6b8anG1YDepxWDMcAVV50WREy_0ojaphuVnwJEtEY7fd6fnIZ67m
+ oSGBcPOIb3xautABvvLXnzjg1e7hW5VTHaujiNhTdcBz5.7xrmKRh7ETi0Oy1ylIQnHd0N0LK0.O
+ PwH1wY6hrmm5p5YlP20OHB9q6DVdwPxhWOOHMSg4YGfiYER3OiO8U3NiIkKmi1yv2bbWRYWx3uXk
+ 3vOLmj7ShlWeWpTORh0yJFrwQNxOO4UZ8g4vyGbJ.aGc.nXXQ6qkFAQHFmkI.ahzNfvlpjPJxqpl
+ U_XAsJ3LymILpDRVMK3m25lKVtq9Kn8u0t2qLAWvMlFEFlfG4k_Iq45TfLstXyXyXB3KTXvtz4Uq
+ rYGk9FXEOSBO0m_GyXuNrU8yS81wcus1gK93jBKploeqi7Oko0Ye999tIrBQ31LTUERUbhZwX3dR
+ VhkfX6dVoXHgs8KiVIU.aMziC48X0lrHHwJjPF4WOm3JMHJuec8KFdWdwE0nDVvlv8FsTuEKUhLC
+ 4U.vfz4rji8b2Oc54f_N4ChtIPTDqHtkH88rYvA--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic309.consmr.mail.ne1.yahoo.com with HTTP; Thu, 9 Jan 2020 14:49:05 +0000
+Date: Thu, 9 Jan 2020 14:49:04 +0000 (UTC)
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID: <373709061.9116148.1578581344482@mail.yahoo.com>
+In-Reply-To: <5E163FC9.4000802@gmail.com>
+References: <1258262887.8487449.1578490158766@mail.yahoo.com>
+ <12EB7A0E-F5F7-4FC8-A6CD-92A42E52F6B0@gmail.com>
+ <900064020.8665629.1578507448504@mail.yahoo.com> <5E163E65.70104@gmail.com>
+ <1693583403.8730630.1578516321483@mail.yahoo.com>
+ <5E163FC9.4000802@gmail.com>
 MIME-Version: 1.0
-X-Priority: 3 (Normal)
-Importance: Normal
-Subject: Re: [USRP-users] Building RFNoC Image with OOT Module on X310 -
- Module not found
+X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (Windows NT 10.0; Win64;
+ x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88
+ Safari/537.36
+Subject: Re: [USRP-users] tx_samples_from_file : Issue with repeat option
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,11 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Felix Greiwe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: felix.greiwe@tu-dortmund.de
-Cc: Usrp Liste <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: voonna santosh <santu_voonna@yahoo.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0332661018898848775=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,378 +80,89 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Brian,
+--===============0332661018898848775==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_9116147_866706878.1578581344481"
+Content-Length: 3298
 
-thank you for the answer, with your help I was able to successfully build
-an Image! One last question: Do I need to worry about all those critical
-warnings that popped up during the build? Seems like a lot to me.
+------=_Part_9116147_866706878.1578581344481
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Example:
+ Hi Marcus,=C2=A0 =C2=A0Build is failing for 3.14.1.1 and the reason is tha=
+t "uhd_dpdk.c" is written in C99 mode.BR,Santosh
+    On Wednesday, January 8, 2020, 08:47:07 PM GMT, Marcus D. Leech <patchv=
+onbraun@gmail.com> wrote: =20
+=20
+  On 01/08/2020 03:45 PM, voonna santosh wrote:
+ =20
+  Hi Marcus, =C2=A0 Which version would you suggest? Also can you please co=
+nfirm whether it would work on 3.10.1.0 ? BR, Santosh
+ =20
+  =20
+=20
+ It should work, but my recollection is that there are issues with TX for X=
+300 that have been fixed since 3.10.1.0.
+=20
+ Something recent, like 3.14.1.1=C2=A0 should be tried.
+=20
+=20
+  =20
+------=_Part_9116147_866706878.1578581344481
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-CRITICAL WARNING: [Vivado 12-1790] Evaluation License Warning: This design
-contains one or more evaluation cores that will cease to function after a
-certain period of time. This design should NOT be used in production
-systems.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[1].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[0].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[2].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[3].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[4].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[2].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[5].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[6].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[7].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[1].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[3].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[4].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[5].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[6].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[7].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[8].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[2].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[1].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[3].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[4].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[5].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[6].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[7].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[8].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[2].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[1].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[3].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[4].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[5].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[6].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[7].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
-CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL
-u_ddr3_32bit/u_ddr3_32bit_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock
-period of 4.998 ns (frequency 200.080 Mhz) but IDELAYE2
-u_ddr3_32bit/u_ddr3_32bit_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[8].iserdes_dq_.idelay_dq.idelaye2
-has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL
-REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+<html><head></head><body><div class="ydpaab9d6c7yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir="ltr" data-setdir="false">Hi Marcus,</div><div dir="ltr" data-setdir="false">&nbsp; &nbsp;Build is failing for 3.14.1.1 and the reason is that "uhd_dpdk.c" is written in C99 mode.</div><div dir="ltr" data-setdir="false">BR,</div><div dir="ltr" data-setdir="false">Santosh</div><div><br></div>
+        
+        </div><div id="yahoo_quoted_9183161140" class="yahoo_quoted">
+            <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:13px;color:#26282a;">
+                
+                <div>
+                    On Wednesday, January 8, 2020, 08:47:07 PM GMT, Marcus D. Leech &lt;patchvonbraun@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id="yiv0516350217"><div>
+    <div class="yiv0516350217yqt1622953141" id="yiv0516350217yqtfd80784"><div class="yiv0516350217moz-cite-prefix">On 01/08/2020 03:45 PM, voonna santosh
+      wrote:<br clear="none">
+    </div>
+    </div><blockquote type="cite"><div class="yiv0516350217yqt1622953141" id="yiv0516350217yqtfd46840">
+      </div><div class="yiv0516350217ydp27ebd4ceyahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div class="yiv0516350217yqt1622953141" id="yiv0516350217yqtfd62190">
+        <div dir="ltr">Hi Marcus,</div>
+        <div dir="ltr">&nbsp; Which version would you
+          suggest? Also can you please confirm whether it would work on
+          3.10.1.0 ?</div>
+        <div dir="ltr">BR,</div>
+        </div><div dir="ltr"><div class="yiv0516350217yqt1622953141" id="yiv0516350217yqtfd81969">Santosh</div><br clear="none">
+        </div>
+        <div><br clear="none">
+        </div>
+      </div>
+      <br clear="none">
+    </blockquote>
+    It should work, but my recollection is that there are issues with TX
+    for X300 that have been fixed since 3.10.1.0.<br clear="none">
+    <br clear="none">
+    Something recent, like 3.14.1.1&nbsp; should be tried.<div class="yiv0516350217yqt1622953141" id="yiv0516350217yqtfd34950"><br clear="none">
+    <br clear="none">
+    <br clear="none">
+  </div></div></div></div>
+            </div>
+        </div></body></html>
+------=_Part_9116147_866706878.1578581344481--
 
 
-
-
-
-
-
-
-
-
-Thank you and best regards, Felix
-
-> On Wed, Jan 8, 2020 at 8:00 AM Felix Greiwe via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi EJ,
->>
->> thank you for your answer! To make my error more traceable, I created a
->> new OOT Module and added the default gain block from rfnoc getting
->> started.
->>
->> I also took your advice and looked at the uhd_image_builder.py script. I
->> noticed very strange behaviour, because my print statements suggested,
->> that the script did not include my makefile.srcs because it first edited
->> the path
->>
->> /home/lskt/rfnoc/src/rfnoc-blocks_lskt/ to
->> /home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc and a bit later to
->> /home/lskt/rfnoc/src/rfnoc-blocks_lskt/rfnoc/rfnoc/fpga-src/ .
->>
->> As you can see two rfnoc's here hence it did not find the makefile.src
->> in
->> ..../fpga-src. The changes (marked with fgr) in the create_oot_include
->> here seem to resolve the issue, hopefully helpful for other people too
->> and
->> maybe even a major bug?:
->>
->> def create_oot_include(device, include_dirs):
->>     """
->>     Create the include file for OOT RFNoC sources
->>     """
->>     oot_dir_list = []
->>     target_dir = device_dict(device.lower())
->>     dest_srcs_file = os.path.join(get_scriptpath(), '..', '..', 'top',\
->>             target_dir, 'Makefile.OOT.inc')
->>     incfile = open(dest_srcs_file, 'w')
->>     incfile.write(OOT_SRCS_FILE_HDR)
->>     if include_dirs is not None:
->>         for dirs in include_dirs:
->>             currpath = os.path.abspath(str(dirs))
->>             if os.path.isdir(currpath) & (os.path.basename(currpath) ==
->> "rfnoc"):
->>                 # Case 1: Pointed directly to rfnoc directory
->>                 oot_path = currpath
->>             elif os.path.isdir(os.path.join(currpath, 'rfnoc')):
->>                 # Case 2: Pointed to top level rfnoc module directory
->>                 oot_path = os.path.join(currpath, 'rfnoc')
->>             elif os.path.isfile(os.path.join(currpath, 'Makefile.inc')):
->>                 # Case 3: Pointed to a random directory with a
->> Makefile.inc
->>                 oot_path = currpath
->>             else:
->>                 print('No RFNoC module found at ' +
->> os.path.abspath(currpath))
->>                 continue
->>             if oot_path not in oot_dir_list:
->>                 oot_dir_list.append(oot_path)
->>                 named_path = os.path.join('$(BASE_DIR)',
->> get_relative_path(get_basedir(), oot_path))
->>                 incfile.write(OOT_DIR_TMPL.format(oot_dir=named_path))
->>                 if os.path.isfile(os.path.join(oot_path,
->> 'Makefile.inc')):
->>                     # Check for Makefile.inc
->>                     incfile.write(OOT_INC_TMPL)
->>                 elif os.path.isfile(os.path.join(oot_path, 'rfnoc',
->> 'Makefile.inc')):
->>                     # Check for Makefile.inc
->>                     incfile.write(OOT_INC_TMPL)
->>                 #elif os.path.isfile(os.path.join(oot_path, 'rfnoc',
->> 'fpga-src', 'Makefile.srcs')): # Original
->>                 elif os.path.isfile(os.path.join(oot_path, 'fpga-src',
->> 'Makefile.srcs')): # Anders fgr
->>                     # Legacy: Check for fpga-src/Makefile.srcs
->>                     # Read, then append to file
->>                     # curr_srcs = open(os.path.join(oot_path, 'rfnoc',
->> 'fpga-src', 'Makefile.srcs'), 'r').read() # Original
->>                     curr_srcs = open(os.path.join(oot_path, 'fpga-src',
->> 'Makefile.srcs'), 'r').read() # Anders fgr
->>                     # curr_srcs = curr_srcs.replace('SOURCES_PATH',
->> os.path.join(oot_path, 'rfnoc', 'fpga-src', '')) #
->> Original
->>                     curr_srcs = curr_srcs.replace('SOURCES_PATH',
->> os.path.join(oot_path, 'fpga-src', '')) # Anders fgr
->>                     print('Searching for Makefile.srcs: ' + curr_srcs)
->> #fgr
->>                     incfile.write(OOT_SRCS_TMPL.format(sources=curr_srcs))
->>                 else:
->>                     print('No valid makefile found at ' +
->> os.path.abspath(currpath))
->>                     continue
->>
->> However 30 minutes later in the build I got the next errror and again
->> have
->> no idea what to do. My command was:
->>
->> ./uhd_image_builder.py gain ddc fft -I
->> /home/lskt/rfnoc/src/rfnoc-blocks_lskt/ -d x310 -t X310_RFNOC_HG -m 6
->> --fill-with-fifos
->>
->> Using Vivado 2018.3 and UHD 3.15.0.0-124-geb448043
->>
->>
->> Erros are:
->>
->> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_clk_gen/inst/CLK_OUT4
->> has multiple drivers: radio_clk_gen/inst/clkout1_buf/O, and
->> bus_clk_gen/inst/clkout4_buf/O.
->> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net
->> radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9
->> has
->> multiple drivers:
->>
->> ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q,
->> and
->>
->> radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q.
->> ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design not run.
->> ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
->> [00:24:46] Current task: DRC +++ Current Phase: Starting
->> [00:24:46] Current task: DRC +++ Current Phase: Finished
->> [00:24:46] Process terminated. Status: Failure
->>
->> ========================================================
->> Warnings:           1304
->> Critical Warnings:  40
->> Errors:             4
->>
->> Makefile.x300.inc:106: recipe for target 'bin' failed
->> make[1]: *** [bin] Error 1
->> make[1]: Verzeichnis ?/home/lskt/rfnoc/src/uhd-fpga/usrp3/top/x300? wird
->> verlassen
->> Makefile:112: recipe for target 'X310_RFNOC_HG' failed
->> make: *** [X310_RFNOC_HG] Error 2
->>
->>
->> Again, I would be very thankful for any advice, I refuse to give up :D
->>
->
-> This was recently shown to be a reassignment of the ce_clk and ce_rst
-> signals.  In your rfnoc_ce_auto_inst generated file, remove the lines that
-> say:
->
->   wire ce_clk = radio_clk;
->   wire ce_rst = radio_rst;
->
-> Then try to rebuild.
->
-> You can remove those lines from being regenerated every time here:
->
->
-> https://github.com/EttusResearch/fpga/blob/fde2a94eb7231af859653db8caaf777ae2b66199/usrp3/tools/scripts/uhd_image_builder.py#L44
->
-> Brian
->
-
-
+--===============0332661018898848775==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0332661018898848775==--
+
