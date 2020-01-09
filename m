@@ -2,49 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9567F135F03
-	for <lists+usrp-users@lfdr.de>; Thu,  9 Jan 2020 18:14:17 +0100 (CET)
-Received: from [::1] (port=50944 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16600136056
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Jan 2020 19:44:19 +0100 (CET)
+Received: from [::1] (port=47020 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ipbNn-0000VO-CK; Thu, 09 Jan 2020 12:14:07 -0500
-Received: from mail-vs1-f48.google.com ([209.85.217.48]:36709)
+	id 1ipcn0-0007cL-VF; Thu, 09 Jan 2020 13:44:14 -0500
+Received: from mail-qt1-f174.google.com ([209.85.160.174]:37537)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <richard.bell4@gmail.com>)
- id 1ipbNk-0000Ri-7i
- for USRP-users@lists.ettus.com; Thu, 09 Jan 2020 12:14:04 -0500
-Received: by mail-vs1-f48.google.com with SMTP id u14so4698215vsu.3
- for <USRP-users@lists.ettus.com>; Thu, 09 Jan 2020 09:13:44 -0800 (PST)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ipcmw-0007Xn-TM
+ for usrp-users@lists.ettus.com; Thu, 09 Jan 2020 13:44:10 -0500
+Received: by mail-qt1-f174.google.com with SMTP id w47so6732511qtk.4
+ for <usrp-users@lists.ettus.com>; Thu, 09 Jan 2020 10:43:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=S6V+CamGPGyYg7zFeVh9eRBLQfW86UEbhpa7oKTsG4I=;
- b=dTM0jNaKiiP77NYSfKbmjcS2OeoykwDp6+PJbdALXJkwyQ9ARIBGnXCFMjeL9Yl393
- gXlUn9fFCEbXaWZ9UxYQ4qrcX9oWhChge5iZaTt0TSYZltV88hxLyF1IymqaI/apgasy
- NHGLhRSBes4oyWG7s204aLm5W0gGiSCK7+LwU1zvMIe4V411WOaW/jzdl4wep4aSL9yH
- jEsiToO0PHiEiVWI93LcFbUymblxJa/apQ+B8aKqKon0nHpEoiSckiyaaY4zdvKpoJuF
- FgpD9YJAA26tVNtPHdnRfaGQEqks1pnpT6eEO0bmUElSnTzXo1bBsGnMoagV6zjPr9yv
- JldA==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=uBASdOomsFbSSz19mV8/vRVv6LcqPVPf8n8GE9aD0r8=;
+ b=g+jaGlxyG49tgk6+s5QZiHS6Z09Ewfy+z3PtWWgoqa6PF+tk+GI4x1S+Ly4yMBovIu
+ cZ+O2H2YTDT9iw4yDu3+SvSjw01ULV5MrTGwa8mb/zhiHST5FSYYwMmy4R781k9U6V5Y
+ xU/swoEqBaXLBxVq5rM9m4mwPFhpC8U245hwYrkQG2FEsGlGQkdR+H21Np4Gh99RPyy9
+ AFlnf6DQPKnYUtDYpm28HW6exU3FkAYBBhM7r+awbCHjKACh5eJ7KD2mXFD9y8nfJ1ks
+ qZg7CQvSqWawmTJqX635LwKD59f+u9zLBsiXnXi81jEbRXuz+MfTzqC3CP9MyygbGFgn
+ VIzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=S6V+CamGPGyYg7zFeVh9eRBLQfW86UEbhpa7oKTsG4I=;
- b=J5AOUEq25P+q/echZYjJURc6yujyxuRP99TuZe4x1XlrJqAY+7Tuxnm53MC07Dcf26
- d7Esp53ZeZrL0kH9FgxpUQFBqKd2eSOhEZ7ghLSB/Ge5OW5F6Sfje3ZCsbehfmIZ2u+Y
- EmH0RG18AtODSYM9s/sac6wwC04MwXM3/wG5wMBmPcsBTLmTcJg5Y1a2LM/ezaR5Be60
- xOGw242gLGV6lLrzQSdeNwTiVQ1Ry77uZWDSYtlRpqUWsHZKrYzBzcTrn2ygcaUBXVD1
- ulBLGbEiNZV3DGhutNGLK6x06bP7jm8SiMHUPuqGx5kL+IHCM3yi8Qnt+HuGM04pfXDc
- FtqA==
-X-Gm-Message-State: APjAAAXm2scdyda1a+2I5QImB+1a+pIpZcUa40Zp9hauj4C3FbNP+AOs
- sOOsfMcEgy8aMKJBQnQTJJbg5SAAl2EOAQ64BNlktA==
-X-Google-Smtp-Source: APXvYqwCFIuX+8243f0rvj24093PcoBgjnQkt0lyU9ECCysrcDSCiCD+yCQ7RNbFRIuZfR4QSwuD+ejWswwW1HOuGxU=
-X-Received: by 2002:a05:6102:31a3:: with SMTP id
- d3mr6787017vsh.60.1578590002442; 
- Thu, 09 Jan 2020 09:13:22 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=uBASdOomsFbSSz19mV8/vRVv6LcqPVPf8n8GE9aD0r8=;
+ b=aRsClJAqA61rBAUC+yJD59JF/rLC16dLsxk7g5ZWFuWiECEIJ8RF8Ex+enGLUDXgRN
+ kOaDtsoWSLiF2S7Qse2o+YOz0Wh71g9tPRibXPyjrAf7e6xr5FeldWrDtKOTkSBnUcz1
+ 4QaxNT9Mj9SNXYo1H2NmOeMQStIt2RhWwiG+4lNyS1ntwAC6asbuA2rHIStDDQo/BWDZ
+ THamFiygYuw+xbafS9tm64M7j4yW9VXs8aCoUX3fro8hZ/46TW95MWb4sb04Z0Qwi/UZ
+ 9n7gAq2pgiEAbpZPjE8uMIEajAklOlG4WI06NzdfAlexqHSInzlsiGxotZL/Z7bkMY6s
+ jR0w==
+X-Gm-Message-State: APjAAAXGrMZ3Nl3qDb5iVASnR+xApe6vDTesluG8fxMmkk7Z9SbpIBWH
+ tIYWGTmhRC6wmyBN6lQypoKLRyDL+kw=
+X-Google-Smtp-Source: APXvYqwrEuTUSgEky7x9NGc9QF4zW+UcgrM0GEc9ZLnmQ1RRxBrP6GOX7sO94xdHQqE2Cdp98A16/g==
+X-Received: by 2002:ac8:163c:: with SMTP id p57mr9530129qtj.106.1578595410219; 
+ Thu, 09 Jan 2020 10:43:30 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
+ [174.95.14.83])
+ by smtp.googlemail.com with ESMTPSA id h28sm3453858qkk.48.2020.01.09.10.43.29
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 09 Jan 2020 10:43:29 -0800 (PST)
+Message-ID: <5E177451.30602@gmail.com>
+Date: Thu, 09 Jan 2020 13:43:29 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Thu, 9 Jan 2020 09:13:11 -0800
-Message-ID: <CAMMoi3tS1W9Rhsoc22TCBGQb+4TWsOG8BATrb8vcY89Lv7+SPw@mail.gmail.com>
-To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Subject: [USRP-users] Measuring TDOA for Localization
+To: voonna santosh <santu_voonna@yahoo.com>
+References: <1258262887.8487449.1578490158766@mail.yahoo.com>
+ <12EB7A0E-F5F7-4FC8-A6CD-92A42E52F6B0@gmail.com>
+ <900064020.8665629.1578507448504@mail.yahoo.com> <5E163E65.70104@gmail.com>
+ <1693583403.8730630.1578516321483@mail.yahoo.com>
+ <5E163FC9.4000802@gmail.com> <373709061.9116148.1578581344482@mail.yahoo.com>
+In-Reply-To: <373709061.9116148.1578581344482@mail.yahoo.com>
+Subject: Re: [USRP-users] tx_samples_from_file : Issue with repeat option
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,9 +70,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Richard Bell via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Richard Bell <richard.bell4@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8324866856249587414=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0053507309638293995=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,46 +87,152 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8324866856249587414==
-Content-Type: multipart/alternative; boundary="000000000000577651059bb82093"
+This is a multi-part message in MIME format.
+--===============0053507309638293995==
+Content-Type: multipart/alternative;
+ boundary="------------080309000002070008080406"
 
---000000000000577651059bb82093
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------080309000002070008080406
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello,
-
-I'm working on a TDOA based localization platform using 3 USRP X300's as
-receivers. I have them synchronized with a 10 MHz ref and PPS signal
-generated by an OctoClock. However, I'm having trouble getting reliable
-localization performance through this system. My TDOA measurements are not
-what I would expect for the geometry I'm using.
-
-If I have the USRPs flashed with the same FPGA image and I use the same
-sample rate (i.e. 200e6/22 = 9.0909 MHz) across them all, is it possible
-the hardware could still be introducing different delays through each
-receiver?
-
-Rich
-
---000000000000577651059bb82093
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;m working on a =
-TDOA based localization platform using 3 USRP X300&#39;s as receivers. I ha=
-ve them synchronized with a 10 MHz ref and PPS signal generated by an OctoC=
-lock. However, I&#39;m having trouble getting reliable localization perform=
-ance through this system. My TDOA measurements are not what I would expect =
-for the geometry I&#39;m using. <br></div><div><br></div><div>If I have the=
- USRPs flashed with the same FPGA image and I use the same sample rate (i.e=
-. 200e6/22 =3D 9.0909 MHz) across them all, is it possible the hardware cou=
-ld still be introducing different delays through each receiver?</div><div><=
-br></div><div>Rich<br></div></div>
-
---000000000000577651059bb82093--
+On 01/09/2020 09:49 AM, voonna santosh wrote:
+> Hi Marcus,
+>    Build is failing for 3.14.1.1 and the reason is that "uhd_dpdk.c" 
+> is written in C99 mode.
+> BR,
+> Santosh
+>
+What OS and version are you using?  What compiler version?
 
 
---===============8324866856249587414==
+> On Wednesday, January 8, 2020, 08:47:07 PM GMT, Marcus D. Leech 
+> <patchvonbraun@gmail.com> wrote:
+>
+>
+> On 01/08/2020 03:45 PM, voonna santosh wrote:
+>> Hi Marcus,
+>>   Which version would you suggest? Also can you please confirm 
+>> whether it would work on 3.10.1.0 ?
+>> BR,
+>> Santosh
+>>
+>>
+>>
+> It should work, but my recollection is that there are issues with TX 
+> for X300 that have been fixed since 3.10.1.0.
+>
+> Something recent, like 3.14.1.1  should be tried.
+>
+>
+>
+
+
+--------------080309000002070008080406
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 01/09/2020 09:49 AM, voonna santosh
+      wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:373709061.9116148.1578581344482@mail.yahoo.com"
+      type="cite">
+      <div class="ydpaab9d6c7yahoo-style-wrap"
+        style="font-family:Helvetica Neue, Helvetica, Arial,
+        sans-serif;font-size:16px;">
+        <div dir="ltr" data-setdir="false">Hi Marcus,</div>
+        <div dir="ltr" data-setdir="false">   Build is failing for
+          3.14.1.1 and the reason is that "uhd_dpdk.c" is written in C99
+          mode.</div>
+        <div dir="ltr" data-setdir="false">BR,</div>
+        <div dir="ltr" data-setdir="false">Santosh</div>
+        <div><br>
+        </div>
+      </div>
+    </blockquote>
+    What OS and version are you using?  What compiler version?<br>
+    <br>
+    <br>
+    <blockquote
+      cite="mid:373709061.9116148.1578581344482@mail.yahoo.com"
+      type="cite">
+      <div class="ydpaab9d6c7yahoo-style-wrap"
+        style="font-family:Helvetica Neue, Helvetica, Arial,
+        sans-serif;font-size:16px;"> </div>
+      <div id="yahoo_quoted_9183161140" class="yahoo_quoted">
+        <div style="font-family:'Helvetica Neue', Helvetica, Arial,
+          sans-serif;font-size:13px;color:#26282a;">
+          <div> On Wednesday, January 8, 2020, 08:47:07 PM GMT, Marcus
+            D. Leech <a class="moz-txt-link-rfc2396E" href="mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> wrote: </div>
+          <div><br>
+          </div>
+          <div><br>
+          </div>
+          <div>
+            <div id="yiv0516350217">
+              <div>
+                <div class="yiv0516350217yqt1622953141"
+                  id="yiv0516350217yqtfd80784">
+                  <div class="yiv0516350217moz-cite-prefix">On
+                    01/08/2020 03:45 PM, voonna santosh wrote:<br
+                      clear="none">
+                  </div>
+                </div>
+                <blockquote type="cite">
+                  <div class="yiv0516350217yqt1622953141"
+                    id="yiv0516350217yqtfd46840"> </div>
+                  <div class="yiv0516350217ydp27ebd4ceyahoo-style-wrap"
+                    style="font-family:Helvetica Neue, Helvetica, Arial,
+                    sans-serif;font-size:16px;">
+                    <div class="yiv0516350217yqt1622953141"
+                      id="yiv0516350217yqtfd62190">
+                      <div dir="ltr">Hi Marcus,</div>
+                      <div dir="ltr">  Which version would you suggest?
+                        Also can you please confirm whether it would
+                        work on 3.10.1.0 ?</div>
+                      <div dir="ltr">BR,</div>
+                    </div>
+                    <div dir="ltr">
+                      <div class="yiv0516350217yqt1622953141"
+                        id="yiv0516350217yqtfd81969">Santosh</div>
+                      <br clear="none">
+                    </div>
+                    <div><br clear="none">
+                    </div>
+                  </div>
+                  <br clear="none">
+                </blockquote>
+                It should work, but my recollection is that there are
+                issues with TX for X300 that have been fixed since
+                3.10.1.0.<br clear="none">
+                <br clear="none">
+                Something recent, like 3.14.1.1  should be tried.
+                <div class="yiv0516350217yqt1622953141"
+                  id="yiv0516350217yqtfd34950"><br clear="none">
+                  <br clear="none">
+                  <br clear="none">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------080309000002070008080406--
+
+
+--===============0053507309638293995==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,5 +243,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8324866856249587414==--
+--===============0053507309638293995==--
 
