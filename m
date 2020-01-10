@@ -2,86 +2,85 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0D481379F9
-	for <lists+usrp-users@lfdr.de>; Sat, 11 Jan 2020 00:09:44 +0100 (CET)
-Received: from [::1] (port=59004 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F2781379FF
+	for <lists+usrp-users@lfdr.de>; Sat, 11 Jan 2020 00:15:09 +0100 (CET)
+Received: from [::1] (port=60606 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iq3PL-0003bf-U4; Fri, 10 Jan 2020 18:09:35 -0500
-Received: from mail-co1nam11on2053.outbound.protection.outlook.com
- ([40.107.220.53]:23066 helo=NAM11-CO1-obe.outbound.protection.outlook.com)
+	id 1iq3Ui-00040A-A3; Fri, 10 Jan 2020 18:15:08 -0500
+Received: from mail-dm6nam10on2064.outbound.protection.outlook.com
+ ([40.107.93.64]:35681 helo=NAM10-DM6-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
  (Exim 4.92) (envelope-from <minutolo@caltech.edu>)
- id 1iq3PI-0003Xv-7h
- for usrp-users@lists.ettus.com; Fri, 10 Jan 2020 18:09:32 -0500
+ id 1iq3Ue-0003uU-TZ
+ for usrp-users@lists.ettus.com; Fri, 10 Jan 2020 18:15:05 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xrmdyt1McxMsFBbI6Xzkpkd7y7LHTBp/lwngJ4zuxzBOBX3Kh6ouVMPJlsz5JXkvqPjXZsBRuhcmmR1u1ymIWO9GkDlCOPWl5oE8pU7IVlSYfIwEOU+O7d5yj7iWdDh0j1kqZQeYAtgn6fejAu8DWvigPJuHxaX6wYg1HPuXwm0RroBTRt3lqteg36ARmvKNoBYxJqWvR7tVbdEVjsVhJXpAXyKek6T66IMWA1N6Nj6a9hSZ32e42lzQwHzH5dE/1fgw1EZBGQ3kZbA5kQQwphP7xHXVDuqYRUQshnCuZ7iGNkLlNJpXgAlO8CaBPHR3SFQOl0tL33o1DsAGs4kyfQ==
+ b=XamqRYBi+uW4mds1icjmRzfXpom31yxqflvgenq3LNHnWAqAABBvjsLRRMmyxoCp3IJsHNfA6RYgbfpZwUdD4mLapx18BZ6gy76Sp+ogYRV2xyiw6Lq2BtmgY3yBUZRwYg2JwcGVtTuzWKlrc2zvvzChq/wwsyOqwpYX0bZhT1bozo/ips6hCFadlvkyFaC9+som0vy7jpzk3dxqA6XBp1nZsiH+yE29CuK+GWc3xH58akDsPm6NG7tn9c9Tq7Vs5sBbIJ5R7+lTiK4dRjhUIBSvyLbG7wI8XqVN0enqKuzd/TJ2JhjFEDgV+AbFhUidl6TrL0LCu6sUm/ADd/oyuA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=npAC3LKt00tXGNE3lo64NmX3zkl9xLOfNmVGuTfJnqs=;
- b=K8W13DhkdW00+EZrZMofkZ/CURXByxyMwws8RtJo2+1Gr1Ce1em6kmcXXyfUev4/APHwNEmhWCrH0KSyISMe4XvlWaA4+js1lOObyeBjQuRvX8Igdhcl4RJIZr8BAiUv7CovOnvrUdKmRZJ/Fg6tPkebJN2ajhG+/AWuMF4QlDFfgOrZbHST6zHf37wDpTkRkGXF8syOLUTHcAzRYqHrruZXG4ww6qKU+3jeHEdY4pY+qn3JSGn9P3PjDQgNP0noa8bS+UM0EZnXUROLp7T2zA09EU7x3NZN/Ay2plLfN9V19o1eedWi+o6CdqE5BkVh5LpYKB0rEl6fN4Sd3XQnyg==
+ bh=qpvSWoKrFJt4g4yCms68tGd/cdPad8nlYDPpfVH29/8=;
+ b=YD+SJ4GboYmumQVsiXrfvMwu8bdkKJ/LkNMA15MgvXXQbZPDOkSm2RgH+Jp4mQvoi/ab/JERqPCh0vzrEU8JYCGThfkah9BRbi8Bh9cKkbPrRQViCIn+5rY3zIXT2wX3vR+8RgebaBGTnmOXnivOfk6nC8NSLK5qpeZe2J+ydhPuz40y1k1k8y6VbxZHstZSvd4U5nb26Sfp5ReGM0f4AWNEBISKThh/b8wXIljjTJnTZVVqvffUPwSP9KHJqh3V4UiQXCgcPxLSkZ7AGsbTOGDjuDMGgL7dq0dJnSiBffgidRfsO9JAgaD0gdfLsUrgNzff5pwj6IewXI3hb4t5kA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=caltech.edu; dmarc=pass action=none header.from=caltech.edu;
  dkim=pass header.d=caltech.edu; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=caltech.onmicrosoft.com; s=selector2-caltech-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=npAC3LKt00tXGNE3lo64NmX3zkl9xLOfNmVGuTfJnqs=;
- b=Myh/ole2pQUq4XOCW+W2k0fE5RcAEVH5tGdjEW97WZKnA9A455p8o8Xyf7QdmoTWfqWTT85kpTjL0w2n9JYGc6FG9Indpve0EeM0KRQTGxKRIi/jphxcrwpr3wvFxBQa3w/c2NyDoox7od/RNodiw5MWlib9uq5vbF3bdlppUe8=
+ bh=qpvSWoKrFJt4g4yCms68tGd/cdPad8nlYDPpfVH29/8=;
+ b=WKP1XVDv7NWjQAkrZCNR8BHjSJbx44hKanvcqqcT4PcBhEwjM5M4EN/GAZMNfc3ywSAQmuGIheZSnisopyXbJfTzPbYkDxQKqTt1/Bgh7uNGn/a4CsWpK3CMWKqmVw4u76HnsTTBa7oNgdfKXZMZU35nf6QcyWfVApPhs8dR6Ec=
 Received: from BYAPR03MB3621.namprd03.prod.outlook.com (52.135.215.140) by
- BYAPR03MB3846.namprd03.prod.outlook.com (20.177.125.18) with Microsoft SMTP
+ BYAPR03MB4694.namprd03.prod.outlook.com (20.179.91.210) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.8; Fri, 10 Jan 2020 23:08:50 +0000
+ 15.20.2623.9; Fri, 10 Jan 2020 23:14:23 +0000
 Received: from BYAPR03MB3621.namprd03.prod.outlook.com
  ([fe80::d9ee:a980:1ccf:439c]) by BYAPR03MB3621.namprd03.prod.outlook.com
  ([fe80::d9ee:a980:1ccf:439c%5]) with mapi id 15.20.2623.013; Fri, 10 Jan 2020
- 23:08:50 +0000
-To: Sam Reiter <sam.reiter@ettus.com>
+ 23:14:23 +0000
+To: "Minutolo, Lorenzo via USRP-users" <usrp-users@lists.ettus.com>
 Thread-Topic: [USRP-users] dpdk with x300
-Thread-Index: AQHVwqQn8I+YQNNZkkioELnUvLj+vKfd1xkAgABULcSAAAolgIAGWnJW
-Date: Fri, 10 Jan 2020 23:08:50 +0000
-Message-ID: <BYAPR03MB3621B04B52C79280DE3B1C0DD3380@BYAPR03MB3621.namprd03.prod.outlook.com>
+Thread-Index: AQHVwqQn8I+YQNNZkkioELnUvLj+vKfd1xkAgABULcSAAAolgIAGWnJWgAABwG0=
+Date: Fri, 10 Jan 2020 23:14:23 +0000
+Message-ID: <BYAPR03MB3621E3B314A6F58E34EAC9E3D3380@BYAPR03MB3621.namprd03.prod.outlook.com>
 References: <DM6PR03MB3628C629B0B2462EB4C9A3A6D3220@DM6PR03MB3628.namprd03.prod.outlook.com>
  <CANf970ahrDonuDf=ROLFBkLJcA=tD=386JP+Uv+7uVFjNeibrg@mail.gmail.com>
  <BYAPR03MB36218EB0E57F003E09E58806D33C0@BYAPR03MB3621.namprd03.prod.outlook.com>,
- <CANf970YaK1aXGuxcrwNSUkA89x-4frk9N4TdHWSOHKc5PzjHzw@mail.gmail.com>
-In-Reply-To: <CANf970YaK1aXGuxcrwNSUkA89x-4frk9N4TdHWSOHKc5PzjHzw@mail.gmail.com>
+ <CANf970YaK1aXGuxcrwNSUkA89x-4frk9N4TdHWSOHKc5PzjHzw@mail.gmail.com>,
+ <BYAPR03MB3621B04B52C79280DE3B1C0DD3380@BYAPR03MB3621.namprd03.prod.outlook.com>
+In-Reply-To: <BYAPR03MB3621B04B52C79280DE3B1C0DD3380@BYAPR03MB3621.namprd03.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
  smtp.mailfrom=minutolo@caltech.edu; 
 x-originating-ip: [131.215.193.172]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c8b4588c-7e0f-47ac-2f9d-08d796220de3
-x-ms-traffictypediagnostic: BYAPR03MB3846:
-x-microsoft-antispam-prvs: <BYAPR03MB3846DA066F5F4F68A9C9F29DD3380@BYAPR03MB3846.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5236;
+x-ms-office365-filtering-correlation-id: f0d14f1d-d06b-4f8c-c6e7-08d79622d498
+x-ms-traffictypediagnostic: BYAPR03MB4694:
+x-microsoft-antispam-prvs: <BYAPR03MB46943D8C1C06122273AAA86FD3380@BYAPR03MB4694.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-forefront-prvs: 02788FF38E
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(6019001)(4636009)(39860400002)(366004)(376002)(346002)(136003)(396003)(269900001)(189003)(199004)(86362001)(6506007)(53546011)(478600001)(786003)(316002)(75432002)(76116006)(9686003)(8936002)(966005)(66616009)(7696005)(81156014)(64756008)(66476007)(186003)(66446008)(6916009)(81166006)(66946007)(8676002)(55016002)(2906002)(26005)(66556008)(19627405001)(4326008)(52536014)(71200400001)(5660300002)(33656002)(16193025007);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BYAPR03MB3846;
+ SFS:(10009020)(6019001)(4636009)(346002)(376002)(366004)(396003)(136003)(39860400002)(269900001)(199004)(189003)(186003)(75432002)(86362001)(5660300002)(26005)(316002)(19627405001)(7696005)(2906002)(786003)(8936002)(71200400001)(6506007)(81156014)(81166006)(53546011)(8676002)(6916009)(52536014)(2940100002)(9686003)(33656002)(66946007)(76116006)(478600001)(66446008)(66556008)(966005)(64756008)(66476007)(55016002)(16193025007);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BYAPR03MB4694;
  H:BYAPR03MB3621.namprd03.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: caltech.edu does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zGmHzrNJZZeWH11RdoyIHYZgC8TEF9bukIaLLhPyefih9jN307nOcCY625dUPrmH973vVBHaJrYUMV0U2Lp/r7zf4FkX1GbDiwqYV5QUdoe6zeW4OQtxBwcZgZfu54sgKTA1PziPDlQxBsYPdJZyD+Q3H9DF3ggjYEfZ+1dC4Tj/X+GPSc/PGiRmt7HwLIi5NWGH1t+nUatm0YgULk8+GPG/B6/GXToBjPYGIat3YgOmXZcybWnqax1bekUZGBzl+BYaZt4gslffjFsF5HOsWBm29eC1JWgsaSLlYSLFnTn2zq90Uzod3YeUKUnNXMYhxzuycV2nBbTAzcE3SpIFFlylkKp9kyEuYrQLHTevf7HC0sfCVslFQFTSlaj5XsC8AK7SwJGO0f+a+qXdFWiGRgzem77DiA6q85ABxq+QtUVJwOYyz8yPD2p80nkl9cJ7D2wKPCA7Rm1fenWW8pltAUCK0x8NmFc1QcPuZSM8oOofC/IbL8eyXHgH4LeiYgvuHoZOd2L5uTCE//arDXNWftniXLDSYBeEojg+1W10cNY=
+x-microsoft-antispam-message-info: KjJBosUSsvV/PqETQyFM8idOise9jKLfyLdSaZC1FtnnC23pgI3mlBfFbjitGSyTJS+Y8xoyWufUe5z/+qFSFIEmoPAnmVIW1ySJZEnip7GvdjSQ8XNdk3VZ5q8KpUM8YuYbCsHC5eOOY8Yg84kb5jrWtDDh6z80io+6cF2nsE6zeFVuSqIHFzHp4Qm4BxzuQkUtWhq+kOypxvfWUzkPdUkmDb8fByR9mTFIm0lu8Q5HesaAXsyFHmfBWnD76uEvwa8zUKf2C/xqRIaKIYW5e5++hI4RdIruqadWWjN/jwuw5AmFfoBq5W2a4c5EA2T3NxzWq6timuGSfR3Cok6uD/Hc7tf7/OZHULC8Ni6H33zP6at2WBdiYHzkG3tDL/ZuV1uyuBAj3vnvkr25bOQkInwoHk6knmrDCyHXkWcCyaIyasK86nYBvC1nJ0P4RW1J3onTjBxH0HgDSVyBPHIIYOuSnN29uSovprETl31czsof+oT2X6rm3tZpUfOc+mEYjlwpROf1yJ/zcpR+kE9Ar/lz1ms7PJ/3hfrdBUPFfziHz8gddqbONZJJp/q9jtemGZBwYM4/rRJIP6UAN0o7CA==
 x-ms-exchange-transport-forked: True
-Content-Type: multipart/mixed;
- boundary="_004_BYAPR03MB3621B04B52C79280DE3B1C0DD3380BYAPR03MB3621namp_"
 MIME-Version: 1.0
 X-OriginatorOrg: caltech.edu
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8b4588c-7e0f-47ac-2f9d-08d796220de3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jan 2020 23:08:50.0782 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0d14f1d-d06b-4f8c-c6e7-08d79622d498
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jan 2020 23:14:23.4492 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: fd5be9d9-7b72-4df9-830e-b1f9cc5b44bd
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: E+7TC8IM1vV9b3blKG+LQxSuP/zt6a5LWMr8TFFW72ULHo4T3UEdZ/oqp7Hzh8QV3EkDlKSvNpPD4IY7S7wuBA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB3846
+X-MS-Exchange-CrossTenant-userprincipalname: YFndsKrCh/HqtCfYYUihHdkWYRiiXbgv2vzpGtRBKXNwwXz2MFTe2Qg9U3AaXmzQOq7Zv+IrgUwVoMWFoR6hLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB4694
 Subject: Re: [USRP-users] dpdk with x300
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -96,7 +95,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Minutolo, Lorenzo via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Minutolo, Lorenzo" <minutolo@caltech.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8009149396449624407=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -110,13 +109,26 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---_004_BYAPR03MB3621B04B52C79280DE3B1C0DD3380BYAPR03MB3621namp_
+--===============8009149396449624407==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BYAPR03MB3621B04B52C79280DE3B1C0DD3380BYAPR03MB3621namp_"
+	boundary="_000_BYAPR03MB3621E3B314A6F58E34EAC9E3D3380BYAPR03MB3621namp_"
 
---_000_BYAPR03MB3621B04B52C79280DE3B1C0DD3380BYAPR03MB3621namp_
+--_000_BYAPR03MB3621E3B314A6F58E34EAC9E3D3380BYAPR03MB3621namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+As a side note: I tried running the program as "sudo su" with the same exac=
+t result.
+
+Lorenzo
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Minutolo=
+, Lorenzo via USRP-users <usrp-users@lists.ettus.com>
+Sent: Friday, January 10, 2020 3:08 PM
+To: Sam Reiter <sam.reiter@ettus.com>
+Cc: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] dpdk with x300
 
 Changed the driver string but the problem persists. Is it problematic that =
 the NIC is on the last PCIe slot of the motherboard (same NUMA socket)?
@@ -205,7 +217,7 @@ USRP-users mailing list
 USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_000_BYAPR03MB3621B04B52C79280DE3B1C0DD3380BYAPR03MB3621namp_
+--_000_BYAPR03MB3621E3B314A6F58E34EAC9E3D3380BYAPR03MB3621namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -219,23 +231,12 @@ ttom:0;} </style>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Changed the driver string but the problem persists. Is it problematic that =
-the NIC is on the last PCIe slot of the motherboard (same NUMA socket)?</di=
-v>
+As a side note: I tried running the program as &quot;sudo su&quot; with the=
+ same exact result.</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-I attached the command I'm giving and the output.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks,</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
 Lorenzo<br>
@@ -243,8 +244,52 @@ Lorenzo<br>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Sam Reiter &lt;sam.re=
-iter@ettus.com&gt;<br>
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
+sers-bounces@lists.ettus.com&gt; on behalf of Minutolo, Lorenzo via USRP-us=
+ers &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Friday, January 10, 2020 3:08 PM<br>
+<b>To:</b> Sam Reiter &lt;sam.reiter@ettus.com&gt;<br>
+<b>Cc:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+>
+<b>Subject:</b> Re: [USRP-users] dpdk with x300</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Changed the driver string but the problem persists. Is it problematic that =
+the NIC is on the last PCIe slot of the motherboard (same NUMA socket)?</di=
+v>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+I attached the command I'm giving and the output.</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Thanks,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Lorenzo<br>
+</div>
+<div id=3D"x_appendonsend"></div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Sam Reiter &lt;sam.=
+reiter@ettus.com&gt;<br>
 <b>Sent:</b> Monday, January 6, 2020 2:05 PM<br>
 <b>To:</b> Minutolo, Lorenzo &lt;minutolo@caltech.edu&gt;<br>
 <b>Cc:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
@@ -284,7 +329,7 @@ dpdk-ipv4 =3D <a href=3D"http://192.168.20.1/24">192.168.20.1/24</a></span>=
 </div>
 <div>
 <div>
-<div dir=3D"ltr" class=3D"x_gmail_signature">
+<div dir=3D"ltr" class=3D"x_x_gmail_signature">
 <div dir=3D"ltr">
 <div>
 <div dir=3D"ltr">Sam Reiter <br>
@@ -297,13 +342,13 @@ dpdk-ipv4 =3D <a href=3D"http://192.168.20.1/24">192.168.20.1/24</a></span>=
 </div>
 </div>
 <br>
-<div class=3D"x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail_attr">On Mon, Jan 6, 2020 at 3:29 PM Minu=
-tolo, Lorenzo &lt;<a href=3D"mailto:minutolo@caltech.edu">minutolo@caltech.=
-edu</a>&gt; wrote:<br>
+<div class=3D"x_x_gmail_quote">
+<div dir=3D"ltr" class=3D"x_x_gmail_attr">On Mon, Jan 6, 2020 at 3:29 PM Mi=
+nutolo, Lorenzo &lt;<a href=3D"mailto:minutolo@caltech.edu">minutolo@caltec=
+h.edu</a>&gt; wrote:<br>
 </div>
-<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
-er-left:1px solid rgb(204,204,204); padding-left:1ex">
+<blockquote class=3D"x_x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bo=
+rder-left:1px solid rgb(204,204,204); padding-left:1ex">
 <div dir=3D"ltr">
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
 t; color:rgb(0,0,0)">
@@ -331,12 +376,12 @@ t; color:rgb(0,0,0)">
 t; color:rgb(0,0,0)">
 Lorenzo<br>
 </div>
-<div id=3D"x_gmail-m_-8247312858927414669appendonsend"></div>
+<div id=3D"x_x_gmail-m_-8247312858927414669appendonsend"></div>
 <hr style=3D"display:inline-block; width:98%">
-<div id=3D"x_gmail-m_-8247312858927414669divRplyFwdMsg" dir=3D"ltr"><font f=
-ace=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>F=
-rom:</b> Sam Reiter &lt;<a href=3D"mailto:sam.reiter@ettus.com" target=3D"_=
-blank">sam.reiter@ettus.com</a>&gt;<br>
+<div id=3D"x_x_gmail-m_-8247312858927414669divRplyFwdMsg" dir=3D"ltr"><font=
+ face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b=
+>From:</b> Sam Reiter &lt;<a href=3D"mailto:sam.reiter@ettus.com" target=3D=
+"_blank">sam.reiter@ettus.com</a>&gt;<br>
 <b>Sent:</b> Monday, January 6, 2020 8:27 AM<br>
 <b>To:</b> Minutolo, Lorenzo &lt;<a href=3D"mailto:minutolo@caltech.edu" ta=
 rget=3D"_blank">minutolo@caltech.edu</a>&gt;<br>
@@ -435,68 +480,14 @@ tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote>
 </div>
 </div>
+</div>
 </body>
 </html>
 
---_000_BYAPR03MB3621B04B52C79280DE3B1C0DD3380BYAPR03MB3621namp_--
+--_000_BYAPR03MB3621E3B314A6F58E34EAC9E3D3380BYAPR03MB3621namp_--
 
---_004_BYAPR03MB3621B04B52C79280DE3B1C0DD3380BYAPR03MB3621namp_
-Content-Type: text/plain; name="report_dpdk.txt"
-Content-Description: report_dpdk.txt
-Content-Disposition: attachment; filename="report_dpdk.txt"; size=2656;
-	creation-date="Fri, 10 Jan 2020 23:08:19 GMT";
-	modification-date="Fri, 10 Jan 2020 23:08:49 GMT"
-Content-Transfer-Encoding: base64
 
-bGViaWNlcEBHUFVzZXJ2ZXI6fiQgc3VkbyB1aGRfdXNycF9wcm9iZSAtLWFyZ3MgImFkZHIgPSAx
-OTIuMTY4LjQwLjIsIHNlY29uZF9hZGRyID0gMTkyLjE2OC4zMC4yLCB1c2VfZHBkayA9MSIKW0lO
-Rk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gNy40LjA7IEJvb3N0XzEwNjYwMDsgVUhE
-XzMuMTUuMC4wLTEyNC1nZWI0NDgwNDMKRUFMOiBEZXRlY3RlZCAxNiBsY29yZShzKQpFQUw6IFBy
-b2JpbmcgVkZJTyBzdXBwb3J0Li4uCkVBTDogVkZJTyBzdXBwb3J0IGluaXRpYWxpemVkCkVBTDog
-UENJIGRldmljZSAwMDAwOjAwOjFmLjYgb24gTlVNQSBzb2NrZXQgLTEKRUFMOiAgIEludmFsaWQg
-TlVNQSBzb2NrZXQsIGRlZmF1bHQgdG8gMApFQUw6ICAgcHJvYmUgZHJpdmVyOiA4MDg2OjE1YmMg
-bmV0X2UxMDAwX2VtCkVBTDogUENJIGRldmljZSAwMDAwOjAyOjAwLjAgb24gTlVNQSBzb2NrZXQg
-LTEKRUFMOiAgIEludmFsaWQgTlVNQSBzb2NrZXQsIGRlZmF1bHQgdG8gMApFQUw6ICAgcHJvYmUg
-ZHJpdmVyOiA4MDg2OjE1ODMgbmV0X2k0MGUKRUFMOiBQQ0kgZGV2aWNlIDAwMDA6MDI6MDAuMSBv
-biBOVU1BIHNvY2tldCAtMQpFQUw6ICAgSW52YWxpZCBOVU1BIHNvY2tldCwgZGVmYXVsdCB0byAw
-CkVBTDogICBwcm9iZSBkcml2ZXI6IDgwODY6MTU4MyBuZXRfaTQwZQpFQUw6IFBDSSBkZXZpY2Ug
-MDAwMDowMzowMC4wIG9uIE5VTUEgc29ja2V0IC0xCkVBTDogICBJbnZhbGlkIE5VTUEgc29ja2V0
-LCBkZWZhdWx0IHRvIDAKRUFMOiAgIHByb2JlIGRyaXZlcjogODA4NjoxNTcyIG5ldF9pNDBlCkVB
-TDogICB1c2luZyBJT01NVSB0eXBlIDEgKFR5cGUgMSkKUE1EOiBHbG9iYWwgcmVnaXN0ZXIgaXMg
-Y2hhbmdlZCBkdXJpbmcgZW5hYmxlIEZESVIgZmxleGlibGUgcGF5bG9hZApQTUQ6IEdsb2JhbCBy
-ZWdpc3RlciBpcyBjaGFuZ2VkIGR1cmluZyBzdXBwb3J0IFFpblEgcGFyc2VyClBNRDogR2xvYmFs
-IHJlZ2lzdGVyIGlzIGNoYW5nZWQgZHVyaW5nIGNvbmZpZ3VyZSBoYXNoIGlucHV0IHNldApQTUQ6
-IEdsb2JhbCByZWdpc3RlciBpcyBjaGFuZ2VkIGR1cmluZyBjb25maWd1cmUgZmRpciBtYXNrClBN
-RDogR2xvYmFsIHJlZ2lzdGVyIGlzIGNoYW5nZWQgZHVyaW5nIGNvbmZpZ3VyZSBoYXNoIG1hc2sK
-UE1EOiBHbG9iYWwgcmVnaXN0ZXIgaXMgY2hhbmdlZCBkdXJpbmcgc3VwcG9ydCBRaW5RIGNsb3Vk
-IGZpbHRlcgpQTUQ6IEdsb2JhbCByZWdpc3RlciBpcyBjaGFuZ2VkIGR1cmluZyBzdXBwb3J0IFRQ
-SUQgY29uZmlndXJhdGlvbgpFQUw6IFBDSSBkZXZpY2UgMDAwMDowMzowMC4xIG9uIE5VTUEgc29j
-a2V0IC0xCkVBTDogICBJbnZhbGlkIE5VTUEgc29ja2V0LCBkZWZhdWx0IHRvIDAKRUFMOiAgIHBy
-b2JlIGRyaXZlcjogODA4NjoxNTcyIG5ldF9pNDBlCkVBTDogUENJIGRldmljZSAwMDAwOjAzOjAw
-LjIgb24gTlVNQSBzb2NrZXQgLTEKRUFMOiAgIEludmFsaWQgTlVNQSBzb2NrZXQsIGRlZmF1bHQg
-dG8gMApFQUw6ICAgcHJvYmUgZHJpdmVyOiA4MDg2OjE1NzIgbmV0X2k0MGUKRUFMOiBQQ0kgZGV2
-aWNlIDAwMDA6MDM6MDAuMyBvbiBOVU1BIHNvY2tldCAtMQpFQUw6ICAgSW52YWxpZCBOVU1BIHNv
-Y2tldCwgZGVmYXVsdCB0byAwCkVBTDogICBwcm9iZSBkcml2ZXI6IDgwODY6MTU3MiBuZXRfaTQw
-ZQpQTUQ6IEdsb2JhbCByZWdpc3RlciBpcyBjaGFuZ2VkIGR1cmluZyBlbmFibGUgRkRJUiBmbGV4
-aWJsZSBwYXlsb2FkClBNRDogR2xvYmFsIHJlZ2lzdGVyIGlzIGNoYW5nZWQgZHVyaW5nIHN1cHBv
-cnQgUWluUSBwYXJzZXIKUE1EOiBHbG9iYWwgcmVnaXN0ZXIgaXMgY2hhbmdlZCBkdXJpbmcgY29u
-ZmlndXJlIGhhc2ggaW5wdXQgc2V0ClBNRDogR2xvYmFsIHJlZ2lzdGVyIGlzIGNoYW5nZWQgZHVy
-aW5nIGNvbmZpZ3VyZSBmZGlyIG1hc2sKUE1EOiBHbG9iYWwgcmVnaXN0ZXIgaXMgY2hhbmdlZCBk
-dXJpbmcgY29uZmlndXJlIGhhc2ggbWFzawpQTUQ6IEdsb2JhbCByZWdpc3RlciBpcyBjaGFuZ2Vk
-IGR1cmluZyBzdXBwb3J0IFFpblEgY2xvdWQgZmlsdGVyClBNRDogR2xvYmFsIHJlZ2lzdGVyIGlz
-IGNoYW5nZWQgZHVyaW5nIHN1cHBvcnQgVFBJRCBjb25maWd1cmF0aW9uCkVBTDogV2FpdGluZyBm
-b3IgbGlua3MgdG8gY29tZSB1cC4uLgpFQUw6IEluaXQgRE9ORSEKRUFMOiBTdGFydGluZyBJL08g
-dGhyZWFkcyEKRUFMOiBQbGVhc2Ugc2V0IElQdjQgYWRkcmVzcyBmb3IgcG9ydCAwIGJlZm9yZSBv
-cGVuaW5nIHNvY2tldApbRVJST1JdIFtYMzAwXSBYMzAwIE5ldHdvcmsgZGlzY292ZXJ5IGVycm9y
-IEFzc2VydGlvbkVycm9yOiBfcnhfc29jayAhPSBudWxscHRyCiAgaW4gdWhkOjp0cmFuc3BvcnQ6
-OmRwZGtfc2ltcGxlX2ltcGw6OmRwZGtfc2ltcGxlX2ltcGwodWhkOjp0cmFuc3BvcnQ6OnVoZF9k
-cGRrX2N0eCYsIGNvbnN0IHN0cmluZyYsIGNvbnN0IHN0cmluZyYsIGJvb2wpCiAgYXQgL2hvbWUv
-bGViaWNlcC9Eb2N1bWVudHMvdWhkL2hvc3QvbGliL3RyYW5zcG9ydC9kcGRrX3NpbXBsZS5jcHA6
-NDQKCkVycm9yOiBMb29rdXBFcnJvcjogS2V5RXJyb3I6IE5vIGRldmljZXMgZm91bmQgZm9yIC0t
-LS0tPgpEZXZpY2UgQWRkcmVzczoKICAgIGFkZHI6IDE5Mi4xNjguNDAuMgogICAgc2Vjb25kX2Fk
-ZHI6IDE5Mi4xNjguMzAuMgogICAgdXNlX2RwZGs6IDEKCg==
-
---_004_BYAPR03MB3621B04B52C79280DE3B1C0DD3380BYAPR03MB3621namp_
+--===============8009149396449624407==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -507,5 +498,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_004_BYAPR03MB3621B04B52C79280DE3B1C0DD3380BYAPR03MB3621namp_--
+--===============8009149396449624407==--
 
