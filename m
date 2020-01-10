@@ -2,53 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A231371A3
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Jan 2020 16:47:04 +0100 (CET)
-Received: from [::1] (port=55148 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 977E21371BF
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Jan 2020 16:51:27 +0100 (CET)
+Received: from [::1] (port=58780 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ipwV4-0005cm-CA; Fri, 10 Jan 2020 10:47:02 -0500
-Received: from mail-lj1-f169.google.com ([209.85.208.169]:39361)
+	id 1ipwZK-0006hz-CZ; Fri, 10 Jan 2020 10:51:26 -0500
+Received: from mail-lf1-f48.google.com ([209.85.167.48]:44867)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1ipwV0-0005W3-V1
- for usrp-users@lists.ettus.com; Fri, 10 Jan 2020 10:46:59 -0500
-Received: by mail-lj1-f169.google.com with SMTP id l2so2600596lja.6
- for <usrp-users@lists.ettus.com>; Fri, 10 Jan 2020 07:46:38 -0800 (PST)
+ id 1ipwZF-0006dt-Tv
+ for usrp-users@lists.ettus.com; Fri, 10 Jan 2020 10:51:22 -0500
+Received: by mail-lf1-f48.google.com with SMTP id v201so1813972lfa.11
+ for <usrp-users@lists.ettus.com>; Fri, 10 Jan 2020 07:51:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=JfMUo7QTbcp9MFDTkroCZYFyAvydMREHBL3cbBmKYJY=;
- b=H2YaN9hLqnCzKB1ncYCzMHIWlHeKy8HwW4FEgNsddYpDPxwOCNzH80ahIu2+vn1swh
- LFd+HEyjk7f429h1GVV9vX9KFg0cw/YRwbLk5vlfbQb8l2I/uA9z//5Deb0QtjsxmAjl
- BmLnAp8NGyvEjpQH2e0R3f+Xv3N4RoCUFX6a61TVS7dn+PgoHve+OLPbj8zlk96975UJ
- 0rExo2Ye17CIeJn2JYfvliNrx6xQWPTt0cmQUOjsnPpFtoMnpD76bFE/4gsHHMw1rU8I
- v1Rk3vi8Z/r4TaLQ42KXTEe3w5FZk3peFbYknQU5keSJ1sNzxLatiAq4gn/hyecDe0lr
- CyiA==
+ :cc; bh=yrmIfcm+QlqaVdZIWdGHETzyrHdlcFIGRlrsjFVOadY=;
+ b=IV+2pID3jqDMaT4DbS7Qns+aLOy+ZO40ik+crccPNFHB62+QTsHiH08oh5YVculhfD
+ oVZ07GjsJrjbnT3+9UZn/YtVykqmxhGEAA/wdzwMLt9Zr6QamZpGBF6B41pN1Z2eiitv
+ AOTel4Rzw+LDZjgectpcD86qLGgZwA9YngmKjmALzkq+vwTugCBuK2WZilTpp+izwpyR
+ nEazssRkJcC0GrCu4iPH0mFPV2qdXWXySxjGlCNJG4tiFQfBAtvEtAyvcPQzXLCktKw6
+ ChxYiKUM4B1MzcedG7GDUwVmw3zI9gjz1p4IY+Nic2/+hhvnIaH8/F99iAkD7/gCNwJC
+ F/Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=JfMUo7QTbcp9MFDTkroCZYFyAvydMREHBL3cbBmKYJY=;
- b=DcK5+yL5vQzLOeINVa7tMj8RiJHXRBL3/SUPQVj35+HK46dBqaX57uhq6l/8gPgPAc
- 6W0FAZiGzRTjY2zNTSyk1Tbs60c9+7o3dS0IolFKMIqr/usAoIb3EdPMdQOC4n587X2C
- lKffe03Mef36AZGw/RBJoIi1WAjpwakhdrRlBQtXI84ra3ZPycCYn9y5XEJKXGc4tenQ
- 556HleRjuM8dhpBXE6tHlpqIi19uXu0RLK9RFboZ7cBYRcW9b/OtjD646sbtjev2MCRC
- iykcdySPRXQkw5jFhfcCX67OmmP9pHVmrNT5wXObbLWQYEy52wONBtWMzMHyFE8ZQQg+
- /6Xg==
-X-Gm-Message-State: APjAAAWUdpNItONB/C/dGDdXEiKt3BLLtZoWIPZPMuzwilfxuA5XJEH4
- +DOU4d/6PdLwzYbd+aCWceMQrht9Mg7P3z8eXiqpqHlT
-X-Google-Smtp-Source: APXvYqya+qVbCzKTJwOXHF4nVODHKDtyaQNIfTC1qhTN2c7Z8A+GVNbtfhTYsavv4pzTB2NIgqGAhlGTufVLZ110cKM=
-X-Received: by 2002:a2e:9248:: with SMTP id v8mr3060307ljg.189.1578671177671; 
- Fri, 10 Jan 2020 07:46:17 -0800 (PST)
+ bh=yrmIfcm+QlqaVdZIWdGHETzyrHdlcFIGRlrsjFVOadY=;
+ b=K+5VLx0UEzsDq1aROKauilYsBSmz2L0ttjOJkV3T1Tmmmq1cED/PiRqZ0gjHdXMM2/
+ 8079DnJSHXPKhRabRmyyWWenfkv6fod3bqzEP0rk68KqPv1aK1K2T1OAY6GRVsoCWxdP
+ pPhjdvyFXfN86aI/QbR7QSryEmOavPFsp25pO9gDBd8vnzgPJzyzXyrMohWbQnX+dIKN
+ O4VF8Dq5pmC6nelZTWV6sz9fj4Gj1UCJ2uWTiMa26xZsESlIBgU+pv8hqn0pauOIiHs6
+ SyMK9xwpQdhKZBHc7hQordiBONFXyMD+5Tlc6yaLl6Fut3ZjoGkVrRFv/sqqOlbL6skm
+ tHqA==
+X-Gm-Message-State: APjAAAU1PA/xUX05Or6VYYvPaMX9BTMft0k/SwWhU43iRRqbrqdPPWxq
+ ZdmgXv0tIGwTkkV8TCVaZ9/WeZvBDMGyd5xphouCu/lc
+X-Google-Smtp-Source: APXvYqwMBVF5GG4GqHGd5X/n22tPuQr+2cUpDeSXpROhRSMxbqKKHmYVbrShoLHhC38DIEFQJnHx/lRR5s/oEaz5Oao=
+X-Received: by 2002:ac2:5f49:: with SMTP id 9mr2719836lfz.151.1578671440639;
+ Fri, 10 Jan 2020 07:50:40 -0800 (PST)
 MIME-Version: 1.0
-References: <826572958.9669290.1578669344799.ref@mail.yahoo.com>
- <826572958.9669290.1578669344799@mail.yahoo.com>
-In-Reply-To: <826572958.9669290.1578669344799@mail.yahoo.com>
-Date: Fri, 10 Jan 2020 09:46:06 -0600
-Message-ID: <CANf970bnEtmcTCOkYseriRLnXLc668Q1Krq9EvseYxrpnrTUSQ@mail.gmail.com>
-To: voonna santosh <santu_voonna@yahoo.com>
-Subject: Re: [USRP-users] Run time issue with 3.14.1.1 (X300 with UBX)
+References: <CAC5MLo6XRYaw7MahbQvvgnda+6Yud_nkUNOYdbacfiGR1Z0jKg@mail.gmail.com>
+In-Reply-To: <CAC5MLo6XRYaw7MahbQvvgnda+6Yud_nkUNOYdbacfiGR1Z0jKg@mail.gmail.com>
+Date: Fri, 10 Jan 2020 09:50:29 -0600
+Message-ID: <CANf970a2QsvOXf4W+qfnHfwbPo=+=O5_tifcy-VcC2_S2p5WyA@mail.gmail.com>
+To: MILIND KUMAR VADDIRAJU <ee16b025@ee.iitm.ac.in>
+Subject: Re: [USRP-users] Regarding N321 shutdown
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,8 +61,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7162152086906205035=="
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8304988317186600706=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,46 +76,50 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7162152086906205035==
-Content-Type: multipart/alternative; boundary="000000000000c33a7a059bcb06fd"
+--===============8304988317186600706==
+Content-Type: multipart/alternative; boundary="0000000000006fd76e059bcb1678"
 
---000000000000c33a7a059bcb06fd
+--0000000000006fd76e059bcb1678
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Santosh,
+Milind,
 
-Could you send the output of
+You should run that command when you're ssh'ed into the device or have a
+serial session open. That command won't affect the N321 if it is simply run
+from a host terminal (I'd imagine it will just shut down your host).
 
-*ip a*
+Connecting via SSH:
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connect=
+ing_to_the_ARM_via_SSH
 
-On you machine with the X300 connected?
+Setting up a Serial Console Connection:
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Setting=
+_up_a_Serial_Console_Connection
 
-Sam
+-Sam
 
-
-On Fri, Jan 10, 2020 at 9:16 AM voonna santosh via USRP-users <
+On Fri, Jan 10, 2020 at 6:30 AM MILIND KUMAR VADDIRAJU via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Hi There,
->    I have just updated to 3.14.1 and experiencing the following issue. The
-> system starts well, then there would be couple of underflows (even at less
-> sampling rates) and the following error is shown. In this case I don't see
-> anything on the scope.
+> Hi,
 >
->    I have restarted SDR and my PC, then it is working well.
+> I'm new to the world of SDR and have just been handed a USRP N321. The
+> guide here
+> <https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide>
+> strongly recommends shutting the system down correctly instead of using a
+> long press of the power button. However the command
 >
-> Command used:
-> ./tx_samples_from_file --args addr=192.168.40.2  --file
-> /home/svoonna/repo/test_files/test_file_SW_Samples_1MHz_28G.bin   --type
-> short --spb 3640 --rate 50e6 --freq 60e6  --gain 0 --ant TX/RX --subdev A:0
-> --bw 40 --ref internal --repeat --lo_off 80000000
+> shutdown =C2=AD-h now
 >
-> *[ERROR] [X300] 192.168.40.2 <http://192.168.40.2>: x300 fw communication
-> failure #1*
-> *EnvironmentError: IOError: x300 fw poke32 - reply timed out*
+> in the terminal of a host computer connected to the USRP via an ethernet =
+cable fails. Could
+> someone please let me know what the appropriate method to shut the USRP d=
+own is?
 >
-> BR,
-> Santosh
+> Cheers,
+>
+> Milind
 >
 > _______________________________________________
 > USRP-users mailing list
@@ -124,39 +127,42 @@ usrp-users@lists.ettus.com> wrote:
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000c33a7a059bcb06fd
+--0000000000006fd76e059bcb1678
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Santosh,</div><div><br></div><div>Could you send the =
-output of <br></div><div><br></div><div><b>ip a</b></div><div><b><br></b></=
-div><div>On you machine with the X300 connected?<br></div><div><b></b></div=
-><div><br></div><div><div><div dir=3D"ltr" class=3D"gmail_signature" data-s=
-martmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam</di=
-v></div></div></div></div><br></div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Fri, Jan 10, 2020 at 9:16 AM voonna =
-santosh via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">us=
-rp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div><div style=3D"font-family:Helvetica Neue,Helve=
-tica,Arial,sans-serif;font-size:16px"><div dir=3D"ltr"><div><div dir=3D"ltr=
-">Hi There,</div><div dir=3D"ltr">=C2=A0=C2=A0 I have just updated to 3.14.=
-1 and experiencing the following issue. The system starts well, then there =
-would be couple of underflows (even at less sampling rates) and the followi=
-ng error is shown. In this case I don&#39;t see anything on the scope.</div=
-><div dir=3D"ltr"><br></div><div dir=3D"ltr">=C2=A0=C2=A0 I have restarted =
-SDR and my PC, then it is working well. <br></div><div dir=3D"ltr"><br></di=
-v><div dir=3D"ltr">Command used: <span><br></span></div><div dir=3D"ltr"><s=
-pan>./tx_samples_from_file --args addr=3D192.168.40.2=C2=A0 --file /home/sv=
-oonna/repo/test_files/test_file_SW_Samples_1MHz_28G.bin=C2=A0=C2=A0 --type =
-short --spb 3640 --rate 50e6 --freq 60e6=C2=A0 --gain 0 --ant TX/RX --subde=
-v A:0 --bw 40 --ref internal --repeat --lo_off 80000000</span></div><div><b=
-r></div><div><b>[ERROR] [X300] <a href=3D"http://192.168.40.2" target=3D"_b=
-lank">192.168.40.2</a>: x300 fw communication failure #1</b></div><b>Enviro=
-nmentError: IOError: x300 fw poke32 - reply timed out</b><br><div><br></div=
-><div dir=3D"ltr">BR,</div><div dir=3D"ltr">Santosh<br></div></div><div><br=
-></div></div></div></div>_______________________________________________<br=
->
+<div dir=3D"ltr"><div>Milind,</div><div><br></div><div>You should run that =
+command when you&#39;re ssh&#39;ed into the device or have a serial session=
+ open. That command won&#39;t affect the N321 if it is simply run from a ho=
+st terminal (I&#39;d imagine it will just shut down your host). <br></div><=
+div><br></div><div>Connecting via SSH: <a href=3D"https://kb.ettus.com/USRP=
+_N300/N310/N320/N321_Getting_Started_Guide#Connecting_to_the_ARM_via_SSH">h=
+ttps://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connecti=
+ng_to_the_ARM_via_SSH</a></div><div><br></div><div>Setting up a Serial Cons=
+ole Connection: <a href=3D"https://kb.ettus.com/USRP_N300/N310/N320/N321_Ge=
+tting_Started_Guide#Setting_up_a_Serial_Console_Connection">https://kb.ettu=
+s.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Setting_up_a_Serial_Co=
+nsole_Connection</a></div><div><br></div><div><div dir=3D"ltr" class=3D"gma=
+il_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div=
+ dir=3D"ltr">-Sam<br></div></div></div></div></div></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jan 10, 2020 at =
+6:30 AM MILIND KUMAR VADDIRAJU via USRP-users &lt;<a href=3D"mailto:usrp-us=
+ers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi,</d=
+iv><div><br></div><div>I&#39;m new to the world of SDR and have just been h=
+anded a USRP N321. The guide <a href=3D"https://kb.ettus.com/USRP_N300/N310=
+/N320/N321_Getting_Started_Guide" target=3D"_blank">here</a> strongly recom=
+mends shutting the system down correctly instead of using a long press of t=
+he power button. However the command <br><pre>shutdown =C2=AD-h now<br><fon=
+t size=3D"2"><font face=3D"georgia,serif"><br>in the terminal of a host com=
+puter connected to the USRP via an ethernet cable fails. Could <br>someone =
+please let me know what the appropriate method to shut the USRP down is?</f=
+ont></font><br><font size=3D"2"><span style=3D"font-family:georgia,serif"><=
+br>Cheers,</span></font><font size=3D"2"><span style=3D"font-family:georgia=
+,serif"><br></span></font></pre><pre><font size=3D"2"><span style=3D"font-f=
+amily:georgia,serif">Milind</span></font><br></pre> </div></div>
+_______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
@@ -165,10 +171,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000c33a7a059bcb06fd--
+--0000000000006fd76e059bcb1678--
 
 
---===============7162152086906205035==
+--===============8304988317186600706==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -179,5 +185,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7162152086906205035==--
+--===============8304988317186600706==--
 
