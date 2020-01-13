@@ -2,54 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15156139851
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Jan 2020 19:05:43 +0100 (CET)
-Received: from [::1] (port=33638 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2A81398BF
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Jan 2020 19:20:12 +0100 (CET)
+Received: from [::1] (port=35438 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ir45t-0005JH-35; Mon, 13 Jan 2020 13:05:41 -0500
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:39821)
+	id 1ir4Jr-0005yO-Mj; Mon, 13 Jan 2020 13:20:07 -0500
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:35346)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1ir45p-00057q-3c
- for usrp-users@lists.ettus.com; Mon, 13 Jan 2020 13:05:37 -0500
-Received: by mail-oi1-f174.google.com with SMTP id a67so9151158oib.6
- for <usrp-users@lists.ettus.com>; Mon, 13 Jan 2020 10:05:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=fNBVJb1tqujvO5XUEYiu0IGGYV7RMFjcRULnc7ChprA=;
- b=MJNXlJSPyPCb6YYsFs8J1We99Y+gae3gT1lbirat08W/y2n3ntUmkP+JLVLUDC4zOP
- NSuz3KCg72Bf0cqU6YGxANBu6IoUODgPLsHriT8zvwQ+tfOs/OgeteC3oC/2FPXw3Wvf
- c1S/9eNK+LYNQBVR1E7pb09Y/WDqIIFYGtexb+27Fhxh4UShPL+UMiOCVtNpDHhoGFuv
- C+I7E7IOUHqD6I3KSCkCAab62BiMZOI6eiSH7DcrjFudvMeu4DM1+aZhgm150Tf5ioYo
- ZvAq39F5wB1HYFJYUvw1nsqUmJHjtufK2AOIUAN22MrrIql2CivmeAS6XfXdGKNGexKC
- GcZQ==
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ir4Jn-0005tw-9K
+ for usrp-users@lists.ettus.com; Mon, 13 Jan 2020 13:20:03 -0500
+Received: by mail-qk1-f196.google.com with SMTP id z76so9434537qka.2
+ for <usrp-users@lists.ettus.com>; Mon, 13 Jan 2020 10:19:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=eML2vhlYQB8DO6eEqxhVTwkPGperwRLOEfV8Vzz7gOA=;
+ b=GbQec1vyP68O+FtetZifUePO9Ww39Qf+zXAS7vuzZh8P6fYjS1zGzaOnpjansmSiAM
+ tA4xj8i9aWyJ19Q53VMcQOQiE+BwUacN5T6JBVqnmrnhbDqPZCHcockmBkQuP0ODbagr
+ RufTx41ECP5JCAS+v2jcGtrQNd7y/WYjGBLbeImRno0lYEp9Q0WNLA8FWy1qLOjoKo+s
+ GdbsH6ZhVzPU9WAXe4J1W2QV6wpeLCqPtaAI4eTcvsxZ16oAa7+qgvf11FfTHxiYWvrC
+ 9DwVI9G5zuw8uW6obSf0u1YwaShsQqPVg53z8XQOSnxfbNUAuHyG4uVK1UXA3sCqFzNM
+ CbSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=fNBVJb1tqujvO5XUEYiu0IGGYV7RMFjcRULnc7ChprA=;
- b=dezVnhvD/wlGt2sIJtV+enlaKm43IZGoN8FizDlEAShhJXTwL2Wbgh6iHxo4FbIOUl
- FvVeGHjoyzxKMb8PLx6Kn4iIf9bC8RNiym3hSVWkCVgt1rFS8jjcxhY94tBQFpqEVZkv
- xZ90xZWuqX8qcdrWnPYTg/ujwuSB7Z6Ajec82S9DIfbUcZS7mQB6bhnzNre+aT7G/f6q
- AogqFT/u3kyPy2eKmx3mB5+YvT2BdRt/96x1c0wzNpXAd4F2giB+uzJ/LiZM45/EJ0hq
- igSpjIJQ8CNuSezA0HnGSVHi0otFA5yLw1R7mikiwAcx4KgiWG6bBU1+vfezuHBgoRnm
- O/0Q==
-X-Gm-Message-State: APjAAAXT7Uv7Rs/JvlhZRt976PRTxhbktu/rYgNP69Cvm3WX2/RsANJJ
- 14jTD65BKwDUMkamY62kpWsjXKqjMNHTEBmL3qlhsA==
-X-Google-Smtp-Source: APXvYqy7RYBNijKfYwTeYgCHQCdcEoncqCwoxz0my4s/z28TqyL4y9cOIRT6yDrBEeDImdIrc7oKuboaVVpSX2rxLf8=
-X-Received: by 2002:aca:36c1:: with SMTP id d184mr13762451oia.70.1578938696141; 
- Mon, 13 Jan 2020 10:04:56 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=eML2vhlYQB8DO6eEqxhVTwkPGperwRLOEfV8Vzz7gOA=;
+ b=mTn/lhmp+F8/hPr76UuxzWvNKC7hxo1fcoTSOheuqSGA+6CMQLyWpoEOBSvujUDE/V
+ Z/+Z8u9g/TTJfHr+NJdgCgpsO33hkUDFKYJpDNkPZcAFTsM3aCI2LklvSRk0xgnr9Qiw
+ G+1ar/ssPulLAdDNwJHiSKt9Gvzc5C5RIBhzqx+tqKxjAPjUROgbj+42ecS3PknDnUlk
+ 87W7n44y+CrIDNp1bvNiOq7mdinxRSbcHRxZuUQpYNxM2h68lhB0Z8WnlLAp4WKyCQ0r
+ u3y6XB+rw/nNfNsHEBK9Oqc/yUrsyRWp/fXWkjMCNYRxLvFOOolzFfEGcgoahz1Wp0xZ
+ j4/g==
+X-Gm-Message-State: APjAAAXRrkzI+bRScwXI0fShuxCuJpsJzCJXvunySM4AAUAvBmjgAgKN
+ gSsWDZl0MgNX6lKd4QlBVcXu2N9yHCo=
+X-Google-Smtp-Source: APXvYqy5yeXg82amsVp/dD/eLccuh1/F8VuY5NZwSqeiE8a0ZBIFljt+yoBxAG/mOrJE4ygvdj8GNA==
+X-Received: by 2002:a05:620a:12c4:: with SMTP id
+ e4mr13088437qkl.359.1578939562520; 
+ Mon, 13 Jan 2020 10:19:22 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
+ [174.95.14.83])
+ by smtp.googlemail.com with ESMTPSA id j194sm5321947qke.83.2020.01.13.10.19.21
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 13 Jan 2020 10:19:22 -0800 (PST)
+Message-ID: <5E1CB4A9.2030907@gmail.com>
+Date: Mon, 13 Jan 2020 13:19:21 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <826572958.9669290.1578669344799.ref@mail.yahoo.com>
- <826572958.9669290.1578669344799@mail.yahoo.com>
- <CANf970bnEtmcTCOkYseriRLnXLc668Q1Krq9EvseYxrpnrTUSQ@mail.gmail.com>
- <155074570.9720577.1578676938651@mail.yahoo.com>
- <740862592.10631399.1578910940117@mail.yahoo.com>
-In-Reply-To: <740862592.10631399.1578910940117@mail.yahoo.com>
-Date: Mon, 13 Jan 2020 13:04:44 -0500
-Message-ID: <CAB__hTQE163=GUfMpX_8TvQSEU_4wwUStYoA5OzEexLjuA2tZQ@mail.gmail.com>
-To: voonna santosh <santu_voonna@yahoo.com>
-Subject: Re: [USRP-users] Run time issue with 3.14.1.1 (X300 with UBX)
+To: usrp-users@lists.ettus.com
+References: <CAA3PG_naMDLB52GhfcSwcr0CsU4aOooc+oQS70Lqvb+yjks7Pw@mail.gmail.com>
+In-Reply-To: <CAA3PG_naMDLB52GhfcSwcr0CsU4aOooc+oQS70Lqvb+yjks7Pw@mail.gmail.com>
+Subject: Re: [USRP-users] Benchmarking set_tx_freq and set_rx_freq on X310,
+ B210 and N200
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,10 +68,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2501027844610212138=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4871702457923672067=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,278 +84,583 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2501027844610212138==
-Content-Type: multipart/alternative; boundary="0000000000001b404e059c0950c2"
+This is a multi-part message in MIME format.
+--===============4871702457923672067==
+Content-Type: multipart/alternative;
+ boundary="------------090902000006090104060001"
 
---0000000000001b404e059c0950c2
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------090902000006090104060001
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This likely has nothing to do with the error, but the command line
-parameters appear to be a bit inconsistent.  With a baseband rate of 50
-MHz, and assuming an IF bandwidth of 160 MHz, it is probably a good idea to
-keep the LO offset to a maximum of 55 MHz (rather than 80 MHz as shown in
-the command line), so that the full +/- 25 MHz baseband will not be shifted
-off the end of the +/- 80 MHz range.
-Rob
+On 01/13/2020 05:26 AM, Amrit Pal Singh via USRP-users wrote:
+> Hi All,
+>
+> I am benchmarking the following commands on X310, B210 and N200 on 
+> UHD-3.14 version:
+>
+>  1. usrp->set_tx_freq(tune_req, 0);
+>  2. usrp->set_rx_freq(tune_req, 0);
+>
+> I am changing the frequencies inside a for loop for 1000 and 5000 times.
+> The code snippet is as follows:
+>     int count = 5000;
+>     uhd::usrp::multi_usrp::sptr usrp = uhd::usrp::multi_usrp::make(args);
+>     double start = usrp->get_time_now().get_real_secs();
+>     for(int a = 0; a < count; a++){
+>         uhd::tune_request_t tune_req = uhd::tune_request_t(800e6 + (a *
+> 1e6), 0);
+>         tune_req.dsp_freq_policy = uhd::tune_request_t::POLICY_NONE;
+>         tune_req.rf_freq_policy = uhd::tune_request_t::POLICY_AUTO;
+>         //usrp->set_tx_freq(tune_req, 0);
+>         usrp->set_rx_freq(tune_req, 0);
+>     }
+>     std::cout << "time:" << ((usrp->get_time_now().get_real_secs() - 
+> start)/count) * 1000 << "(ms)" << std::endl;
+>
+> The following table summarizes the result observed with average time 
+> for a single frequency hops and the hop rate as well for both Tx and Rx.
+>
+> X310 test 	
+> 	
+> 	
+> 	
+> No of hops 	Tx time (average) ms 	Tx Hops/second 	Rx time (average) 
+> ms 	Rx Hops/second
+> 1000 	0.0453756 	22038.27608 	0.0441415 	22654.41818
+> 5000 	0.051013 	19602.84633 	0.0457056 	21879.15704
+>
+> 	
+> 	
+> 	
+> 	
+> B210 test 	
+> 	
+> 	
+> 	
+> No of hops 	Tx time (average) ms 	Tx Hops/second 	Rx time (average) 
+> ms 	Rx Hops/second
+> 1000 	3.34055 	299.3519031 	5.13762 	194.6426555
+> 5000 	3.35529 	298.0368314 	4.94233 	202.3337171
+>
+> 	
+> 	
+> 	
+> 	
+> N200 test 	
+> 	
+> 	
+> 	
+> No of hops 	Tx time (average) ms 	Tx Hops/second 	Rx time (average) 
+> ms 	Rx Hops/second
+> 1000 	0.0530515 	18849.6084 	0.0504478 	19822.46996
+> 5000 	0.0391015 	25574.46645 	0.037663 	26551.2572
+>
+>
+> As observed, the rate is really slow for B210. I also tested using 
+> another B210 and it gave similar results.
+> Could anyone share any insights into these values.
+>
+> Thanks,
+> Amrit
+>
+>
+Also, see here:
 
-On Mon, Jan 13, 2020 at 5:23 AM voonna santosh via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361?s#fastlock_mode
 
-> Hi Sam,
->    I have managed to reproduce this issue and when it happens, here is the
-> info you have asked for:
->
->
-> 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group
-> default qlen 1000
->     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
->     inet 127.0.0.1/8 scope host lo
->        valid_lft forever preferred_lft forever
->     inet6 ::1/128 scope host
->        valid_lft forever preferred_lft forever
-> 2: enp3s0f0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq state UP
-> group default qlen 1000
->     link/ether 00:e0:4b:6b:0c:41 brd ff:ff:ff:ff:ff:ff
->     inet 192.168.40.20/24 brd 192.168.40.255 scope global noprefixroute
-> enp3s0f0
->        valid_lft forever preferred_lft forever
->     inet6 fe80::2e0:4bff:fe6b:c41/64 scope link
->        valid_lft forever preferred_lft forever
-> 3: enp3s0f1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state
-> DOWN group default qlen 1000
->     link/ether 00:e0:4b:6b:0c:42 brd ff:ff:ff:ff:ff:ff
-> 4: enp8s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state
-> DOWN group default qlen 1000
->     link/ether 00:0c:8b:71:75:78 brd ff:ff:ff:ff:ff:ff
-> 5: enp15s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP
-> group default qlen 1000
->     link/ether 00:e0:4b:6b:0c:43 brd ff:ff:ff:ff:ff:ff
->     inet 192.168.10.20/24 brd 192.168.10.255 scope global noprefixroute
-> enp15s0
->        valid_lft forever preferred_lft forever
->     inet6 fe80::2e0:4bff:fe6b:c43/64 scope link
->        valid_lft forever preferred_lft forever
-> 6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue
-> state DOWN group default qlen 1000
->     link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff
->     inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
->        valid_lft forever preferred_lft forever
-> 7: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master
-> virbr0 state DOWN group default qlen 1000
->     link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff
->
->
-> BR,
-> Santosh
->
-> On Friday, January 10, 2020, 5:22:18 PM GMT, voonna santosh <
-> santu_voonna@yahoo.com> wrote:
->
->
-> Hi Sam,
->   Since I have rebooted my machine and SDR, issue not seen. I will try to
-> reproduce and share you the results.
-> BR,
-> Santosh
->
-> On Friday, January 10, 2020, 3:46:19 PM GMT, Sam Reiter <
-> sam.reiter@ettus.com> wrote:
->
->
-> Santosh,
->
-> Could you send the output of
->
-> *ip a*
->
-> On you machine with the X300 connected?
->
-> Sam
->
->
-> On Fri, Jan 10, 2020 at 9:16 AM voonna santosh via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> Hi There,
->    I have just updated to 3.14.1 and experiencing the following issue. The
-> system starts well, then there would be couple of underflows (even at less
-> sampling rates) and the following error is shown. In this case I don't see
-> anything on the scope.
->
->    I have restarted SDR and my PC, then it is working well.
->
-> Command used:
-> ./tx_samples_from_file --args addr=192.168.40.2  --file
-> /home/svoonna/repo/test_files/test_file_SW_Samples_1MHz_28G.bin   --type
-> short --spb 3640 --rate 50e6 --freq 60e6  --gain 0 --ant TX/RX --subdev A:0
-> --bw 40 --ref internal --repeat --lo_off 80000000
->
-> *[ERROR] [X300] 192.168.40.2 <http://192.168.40.2>: x300 fw communication
-> failure #1*
-> *EnvironmentError: IOError: x300 fw poke32 - reply timed out*
->
-> BR,
-> Santosh
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000001b404e059c0950c2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>This likely has nothing to do with the error, but the=
-=C2=A0command line parameters appear to be a bit inconsistent.=C2=A0 With a=
- baseband rate of 50 MHz, and assuming an IF bandwidth of 160 MHz, it is pr=
-obably a good idea to keep the LO offset to a maximum of 55 MHz (rather tha=
-n 80 MHz as shown in the command line), so that the full=C2=A0+/- 25 MHz ba=
-seband will not be shifted off the end of the=C2=A0+/- 80 MHz range.</div><=
-div>Rob<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Mon, Jan 13, 2020 at 5:23 AM voonna santosh via USRP-users &l=
-t;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div><div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sa=
-ns-serif;font-size:16px"><div></div>
-        <div dir=3D"ltr">Hi Sam,</div><div dir=3D"ltr">=C2=A0=C2=A0 I have =
-managed to reproduce this issue and when it happens, here is the info you h=
-ave asked for:</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><=
-div dir=3D"ltr"><div>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc no=
-queue state UNKNOWN group default qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/loop=
-back 00:00:00:00:00:00 brd 00:00:00:00:00:00<br>=C2=A0=C2=A0=C2=A0 inet <a =
-href=3D"http://127.0.0.1/8" target=3D"_blank">127.0.0.1/8</a> scope host lo=
-<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft fo=
-rever<br>=C2=A0=C2=A0=C2=A0 inet6 ::1/128 scope host <br>=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft forever<br>2: enp3s0f0: =
-&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9000 qdisc mq state UP group de=
-fault qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/ether 00:e0:4b:6b:0c:41 brd ff:f=
-f:ff:ff:ff:ff<br>=C2=A0=C2=A0=C2=A0 inet <a href=3D"http://192.168.40.20/24=
-" target=3D"_blank">192.168.40.20/24</a> brd 192.168.40.255 scope global no=
-prefixroute enp3s0f0<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft fore=
-ver preferred_lft forever<br>=C2=A0=C2=A0=C2=A0 inet6 fe80::2e0:4bff:fe6b:c=
-41/64 scope link <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever=
- preferred_lft forever<br>3: enp3s0f1: &lt;NO-CARRIER,BROADCAST,MULTICAST,U=
-P&gt; mtu 1500 qdisc mq state DOWN group default qlen 1000<br>=C2=A0=C2=A0=
-=C2=A0 link/ether 00:e0:4b:6b:0c:42 brd ff:ff:ff:ff:ff:ff<br>4: enp8s0: &lt=
-;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc mq state DOWN group d=
-efault qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/ether 00:0c:8b:71:75:78 brd ff:=
-ff:ff:ff:ff:ff<br>5: enp15s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1=
-500 qdisc mq state UP group default qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/et=
-her 00:e0:4b:6b:0c:43 brd ff:ff:ff:ff:ff:ff<br>=C2=A0=C2=A0=C2=A0 inet <a h=
-ref=3D"http://192.168.10.20/24" target=3D"_blank">192.168.10.20/24</a> brd =
-192.168.10.255 scope global noprefixroute enp15s0<br>=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 valid_lft forever preferred_lft forever<br>=C2=A0=C2=A0=C2=
-=A0 inet6 fe80::2e0:4bff:fe6b:c43/64 scope link <br>=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 valid_lft forever preferred_lft forever<br>6: virbr0: &lt;N=
-O-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN grou=
-p default qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/ether 52:54:00:07:9b:55 brd =
-ff:ff:ff:ff:ff:ff<br>=C2=A0=C2=A0=C2=A0 inet <a href=3D"http://192.168.122.=
-1/24" target=3D"_blank">192.168.122.1/24</a> brd 192.168.122.255 scope glob=
-al virbr0<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferr=
-ed_lft forever<br>7: virbr0-nic: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc=
- pfifo_fast master virbr0 state DOWN group default qlen 1000<br>=C2=A0=C2=
-=A0=C2=A0 link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff</div><div><br>=
-</div><div><br></div><div dir=3D"ltr">BR,</div><div dir=3D"ltr">Santosh<br>=
-</div></div><div><br></div>
-       =20
-        </div><div id=3D"gmail-m_-6048420560999029062yahoo_quoted_909775134=
-7">
-            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
-Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
-               =20
-                <div>
-                    On Friday, January 10, 2020, 5:22:18 PM GMT, voonna san=
-tosh &lt;<a href=3D"mailto:santu_voonna@yahoo.com" target=3D"_blank">santu_=
-voonna@yahoo.com</a>&gt; wrote:
-                </div>
-                <div><br></div>
-                <div><br></div>
-                <div><div id=3D"gmail-m_-6048420560999029062yiv2417742129">=
-<div><div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,s=
-ans-serif;font-size:16px"><div></div>
-        <div dir=3D"ltr">Hi Sam,</div><div dir=3D"ltr">=C2=A0 Since I have =
-rebooted my machine and SDR, issue not seen. I will try to reproduce and sh=
-are you the results.</div><div dir=3D"ltr">BR,</div><div dir=3D"ltr">Santos=
-h<br clear=3D"none"></div><div><br clear=3D"none"></div>
-       =20
-        </div><div id=3D"gmail-m_-6048420560999029062yiv2417742129yqt42620"=
-><div id=3D"gmail-m_-6048420560999029062yiv2417742129yahoo_quoted_897126375=
-8">
-            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
-Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
-               =20
-                <div>
-                    On Friday, January 10, 2020, 3:46:19 PM GMT, Sam Reiter=
- &lt;<a href=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam.reiter@e=
-ttus.com</a>&gt; wrote:
-                </div>
-                <div><br clear=3D"none"></div>
-                <div><br clear=3D"none"></div>
-                <div><div id=3D"gmail-m_-6048420560999029062yiv2417742129">=
-<div><div dir=3D"ltr"><div>Santosh,</div><div><br clear=3D"none"></div><div=
->Could you send the output of <br clear=3D"none"></div><div><br clear=3D"no=
-ne"></div><div><b>ip a</b></div><div><b><br clear=3D"none"></b></div><div>O=
-n you machine with the X300 connected?<br clear=3D"none"></div><div><b></b>=
-</div><div><br clear=3D"none"></div><div><div><div dir=3D"ltr"><div dir=3D"=
-ltr"><div><div dir=3D"ltr">Sam</div></div></div></div></div><br clear=3D"no=
-ne"></div></div><br clear=3D"none"><div><div id=3D"gmail-m_-604842056099902=
-9062yiv2417742129yqt76124"><div dir=3D"ltr">On Fri, Jan 10, 2020 at 9:16 AM=
- voonna santosh via USRP-users &lt;<a rel=3D"nofollow" shape=3D"rect" href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>&gt; wrote:<br clear=3D"none"></div><blockquote style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
-><div><div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,=
-sans-serif;font-size:16px"><div dir=3D"ltr"><div><div dir=3D"ltr">Hi There,=
-</div><div dir=3D"ltr">=C2=A0=C2=A0 I have just updated to 3.14.1 and exper=
-iencing the following issue. The system starts well, then there would be co=
-uple of underflows (even at less sampling rates) and the following error is=
- shown. In this case I don&#39;t see anything on the scope.</div><div dir=
-=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">=C2=A0=C2=A0 I have rest=
-arted SDR and my PC, then it is working well. <br clear=3D"none"></div><div=
- dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Command used: <span>=
-<br clear=3D"none"></span></div><div dir=3D"ltr"><span>./tx_samples_from_fi=
-le --args addr=3D192.168.40.2=C2=A0 --file /home/svoonna/repo/test_files/te=
-st_file_SW_Samples_1MHz_28G.bin=C2=A0=C2=A0 --type short --spb 3640 --rate =
-50e6 --freq 60e6=C2=A0 --gain 0 --ant TX/RX --subdev A:0 --bw 40 --ref inte=
-rnal --repeat --lo_off 80000000</span></div><div><br clear=3D"none"></div><=
-div><b>[ERROR] [X300] <a rel=3D"nofollow" shape=3D"rect" href=3D"http://192=
-.168.40.2" target=3D"_blank">192.168.40.2</a>: x300 fw communication failur=
-e #1</b></div><b>EnvironmentError: IOError: x300 fw poke32 - reply timed ou=
-t</b><br clear=3D"none"><div><br clear=3D"none"></div><div dir=3D"ltr">BR,<=
-/div><div dir=3D"ltr">Santosh<br clear=3D"none"></div></div><div><br clear=
-=3D"none"></div></div></div></div>_________________________________________=
-______<br clear=3D"none">
-USRP-users mailing list<br clear=3D"none">
-<a rel=3D"nofollow" shape=3D"rect" href=3D"mailto:USRP-users@lists.ettus.co=
-m" target=3D"_blank">USRP-users@lists.ettus.com</a><br clear=3D"none">
-<a rel=3D"nofollow" shape=3D"rect" href=3D"http://lists.ettus.com/mailman/l=
-istinfo/usrp-users_lists.ettus.com" target=3D"_blank">http://lists.ettus.co=
-m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
-</blockquote></div></div></div></div></div>
-            </div>
-        </div></div></div></div></div>
-            </div>
-        </div></div>_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-
---0000000000001b404e059c0950c2--
+The UHD drivers don't implement "fast lock mode", but if you only have 8 
+frequencies to manage, you could do some coding
+   and make it work.  But the fact is that for many/most F-H scenarios, 
+you need more than that.  Which requires a lot of
+   tricky stuff, using those 8 "fast lock" slots as a cache, and doing 
+cache management.  It may not end up being that much
+   faster.
 
 
---===============2501027844610212138==
+
+
+--------------090902000006090104060001
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 01/13/2020 05:26 AM, Amrit Pal Singh
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAA3PG_naMDLB52GhfcSwcr0CsU4aOooc+oQS70Lqvb+yjks7Pw@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">Hi All,
+        <div><br>
+        </div>
+        <div>I am benchmarking the following commands on X310, B210 and
+          N200 on UHD-3.14 version:</div>
+        <div>
+          <ol>
+            <li>usrp-&gt;set_tx_freq(tune_req, 0);</li>
+            <li>usrp-&gt;set_rx_freq(tune_req, 0);</li>
+          </ol>
+          <div>I am changing the frequencies inside a for loop for 1000
+            and 5000 times.</div>
+          <div>The code snippet is as follows:</div>
+          <div>    int count = 5000;</div>
+          <div>    uhd::usrp::multi_usrp::sptr usrp =
+            uhd::usrp::multi_usrp::make(args);<br>
+                double start = usrp-&gt;get_time_now().get_real_secs();<br>
+                for(int a = 0; a &lt; count; a++){<br>
+                    uhd::tune_request_t tune_req =
+            uhd::tune_request_t(800e6 + (a *<br>
+            1e6), 0);<br>
+                    tune_req.dsp_freq_policy =
+            uhd::tune_request_t::POLICY_NONE;<br>
+                    tune_req.rf_freq_policy =
+            uhd::tune_request_t::POLICY_AUTO;<br>
+                    //usrp-&gt;set_tx_freq(tune_req, 0);<br>
+                    usrp-&gt;set_rx_freq(tune_req, 0);<br>
+                }<br>
+                std::cout &lt;&lt; "time:" &lt;&lt;
+            ((usrp-&gt;get_time_now().get_real_secs() - start)/count) *
+            1000 &lt;&lt; "(ms)" &lt;&lt; std::endl;<br>
+          </div>
+          <div><br>
+          </div>
+          <div>The following table summarizes the result observed with
+            average time for a single frequency hops and the hop rate as
+            well for both Tx and Rx.</div>
+        </div>
+        <div><br>
+        </div>
+        <div>
+          <table dir="ltr"
+style="table-layout:fixed;font-size:10pt;font-family:Arial;width:0px;border-collapse:collapse;border:none"
+            border="1" cellpadding="0" cellspacing="0">
+            <colgroup><col width="100"><col width="100"><col width="100"><col
+                width="100"><col width="100"></colgroup><tbody>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(0,0,0)
+                  rgb(204,204,204) rgb(0,0,0)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;font-weight:bold;text-align:center">X310
+                  test</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(0,0,0)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">No of hops</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Tx time (average) ms</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Tx Hops/second</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Rx time (average) ms</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Rx Hops/second</td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">1000</td>
+                <td style="overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right;border:1px
+                  solid rgb(204,204,204)">0.0453756</td>
+                <td style="overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right;border:1px
+                  solid rgb(204,204,204)">22038.27608</td>
+                <td style="overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right;border:1px
+                  solid rgb(204,204,204)">0.0441415</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(204,204,204)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">22654.41818</td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(0,0,0)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">5000</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">0.051013</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">19602.84633</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">0.0457056</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">21879.15704</td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(0,0,0)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;font-weight:bold;text-align:center">B210
+                  test</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(0,0,0)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">No of hops</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Tx time (average) ms</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Tx Hops/second</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Rx time (average) ms</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Rx Hops/second</td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">1000</td>
+                <td style="overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right;border:1px
+                  solid rgb(204,204,204)">3.34055</td>
+                <td style="overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right;border:1px
+                  solid rgb(204,204,204)">299.3519031</td>
+                <td style="overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right;border:1px
+                  solid rgb(204,204,204)">5.13762</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(204,204,204)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">194.6426555</td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(0,0,0)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">5000</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">3.35529</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">298.0368314</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">4.94233</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">202.3337171</td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(0,0,0)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;font-weight:bold;text-align:center">N200
+                  test</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom"><br>
+                </td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(0,0,0)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">No of hops</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Tx time (average) ms</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Tx Hops/second</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Rx time (average) ms</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom">Rx Hops/second</td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">1000</td>
+                <td style="overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right;border:1px
+                  solid rgb(204,204,204)">0.0530515</td>
+                <td style="overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right;border:1px
+                  solid rgb(204,204,204)">18849.6084</td>
+                <td style="overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right;border:1px
+                  solid rgb(204,204,204)">0.0504478</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(204,204,204)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">19822.46996</td>
+              </tr>
+              <tr style="height:21px">
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204) rgb(0,0,0)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">5000</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">0.0391015</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">25574.46645</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(204,204,204)
+                  rgb(0,0,0);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">0.037663</td>
+                <td
+                  style="border-width:1px;border-style:solid;border-color:rgb(204,204,204)
+                  rgb(0,0,0) rgb(0,0,0)
+                  rgb(204,204,204);overflow:hidden;padding:2px
+                  3px;vertical-align:bottom;text-align:right">26551.2572</td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        </div>
+        <div>As observed, the rate is really slow for B210. I also
+          tested using another B210 and it gave similar results. </div>
+        <div>Could anyone share any insights into these values.</div>
+        <div><br>
+        </div>
+        <div>Thanks,</div>
+        <div>Amrit</div>
+        <div><br>
+        </div>
+      </div>
+      <br>
+    </blockquote>
+    Also, see here:<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361?s#fastlock_mode">https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361?s#fastlock_mode</a><br>
+    <br>
+    The UHD drivers don't implement "fast lock mode", but if you only
+    have 8 frequencies to manage, you could do some coding<br>
+      and make it work.  But the fact is that for many/most F-H
+    scenarios, you need more than that.  Which requires a lot of<br>
+      tricky stuff, using those 8 "fast lock" slots as a cache, and
+    doing cache management.  It may not end up being that much<br>
+      faster.<br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------090902000006090104060001--
+
+
+--===============4871702457923672067==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -360,5 +671,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2501027844610212138==--
+--===============4871702457923672067==--
 
