@@ -2,54 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54EC5138EF3
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Jan 2020 11:23:14 +0100 (CET)
-Received: from [::1] (port=40330 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE6CA138F00
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Jan 2020 11:27:38 +0100 (CET)
+Received: from [::1] (port=42926 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iqwsG-0006Fm-MP; Mon, 13 Jan 2020 05:23:08 -0500
-Received: from sonic311-23.consmr.mail.ne1.yahoo.com ([66.163.188.204]:32990)
+	id 1iqwwb-0006oZ-Kf; Mon, 13 Jan 2020 05:27:37 -0500
+Received: from mail-ua1-f48.google.com ([209.85.222.48]:43402)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
- id 1iqwsC-000685-Me
- for usrp-users@lists.ettus.com; Mon, 13 Jan 2020 05:23:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1578910943; bh=ybsV5VmRldnLgnZ2OadJ18WShIq1KUiFmHCvQ7y14Yg=;
- h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject;
- b=NjN4mCPiACW+iShFS1rgWps8VpdyMAlXeaZvUr+/BkNjw1JQIXuhdbP74Kp94L8v/6wVPTXgj8bySOOS0++9JCg4V8z8at/avLM0FY8YNrs4ONHtsK0zPmIE+5r8PGngoTMhuS2siYuM588e602HAdtLbnPYbARjgsxSyg+93hoOdAP6jT+unBIg5LtaY1fmh+5xsz7T/o+e7F9EexRwYUW6q+UmY9cp6paVjwT7tHWdau7tK5fsZq4I6xXDGu3oJl2cWkQGH0XjRAucdUXSMn87AVv7mWP75ah+GuE51YIMU8eSQTqrD5VQdwTkHT0bhcgtznwhipqltNTFJM5kjw==
-X-YMail-OSG: eO4M3.MVM1lmFN9d_7KhtLaEsYZTcElXtVZ1i6.18409aWClhPGIHFeE.Q.6yDo
- 6FN1H4_M4VXMd6mQuM9TBA3VkaG1rvvFeTYEesqEvnfgU6dCfr0Q_uXwfHlxWULNt3Q30PMje6gQ
- Ryp0R4_eBemQbWJ.8Ab2al1RXzt_xlweha_rdjTxIyzq81fDLOrZetoJuNkpoXMF3ZjnJE2nqBB7
- RfLrBxgE5Xg3sVsKWGyLk9LUuN8UUhHo3_X7fVzmPGAGQwo9NjF_qAfaC3piQk77jUrzJ9hK64Tu
- NnQvSFPEVc4LFZjdaRdpJ0cL2hhVW6WZkV8xtjiZ.JRh4qlzsOUUkA9PgWTgyOeJ1ZQmCiFrKOTE
- mG1rqgy6c4kU0z4lXcCXUWsNnLm4o3yhFpsM29opG_tLwEGPFSAw7FGfQV5RmaK7HqaUvNDUcrzq
- AapsD7T_o0LaZ60V1ECXM4tDxT0giAksY7xgpyqTx5OQB.oCu3HJt7jTnv24I0RTxTSjYzI64WCg
- 4EUsOgUQWjtyi76.rt23.CPyfZRASzrC5XHPsAsobH10qD8QebQ6m27JCBDpFoWPDStLt..LKZTP
- uRRQwapanAtI91qtWycfMnCm2GJ7BgnZJCLG6qJZvfV5cJq8s8UzSspD5RlD0d2BsLjB7BphcaQC
- ASWSNtVfve3c_w2sIpxJmdDBsdafBDffCiUKcKklvQVquGhNzf3nz4v1KG6xwu3KHTB7mm0Tmiw5
- O8k2mHX.pJx7zx4emNwECixpGlZiNXbWq9COTJbwGZVkNtMhgTWtL.Lro1q0vayyRt792tS68DwU
- Zmes_8lVOnYtUM2m4HVc4Uj_OA5EBbDsyALcka_I7qYMscmp_m_UTTomGhIEijx6zncZpCorci9x
- xjrool3wkU9NnnZn1v.t.sJiKaggUllhJSspVnopmn6Wbg.eQt6wzwRidLwJDN_z4tL8xYIph2Vd
- KdY4t038NUdD_TgazoRwjAMtPHPEfboThsJRBJTqZbxz.IXUC3nunnfM8YeMJDxs6nyX4VfcBlJj
- 0W4yroX1Y2xqX308aDGJ5YtPA2jy9OzBW0dzRHBcEwo3a9LuKsTpkCKaw3cvqRdPixyNwysTnWMm
- xtmMN_Vdr1aXCySCdEb4ywj4_YRSKhjQEbMqIX9vMbzGJjDqAGe1todNyulag15hhiFGUJldsCaL
- .g8SDock3IqGRMcdvzvaG5L0L1PLsR16woj1XS6r9RPcaVDrennq1hmLI1rJuTFQuUE0MZALYCDA
- e8UwWbsghsewc1ymsDgL.HVa90Qo5JYtPBqI8PHRJgEEPwK7uIJd1YSOi1VYpYkXsEFk52UwS7Il
- Tg.BI5DGkLHaRd1rgJTx5Aeq5kOml9z2d6kdV1Fk-
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic311.consmr.mail.ne1.yahoo.com with HTTP; Mon, 13 Jan 2020 10:22:23 +0000
-Date: Mon, 13 Jan 2020 10:22:20 +0000 (UTC)
-To: Sam Reiter <sam.reiter@ettus.com>
-Message-ID: <740862592.10631399.1578910940117@mail.yahoo.com>
-In-Reply-To: <155074570.9720577.1578676938651@mail.yahoo.com>
-References: <826572958.9669290.1578669344799.ref@mail.yahoo.com>
- <826572958.9669290.1578669344799@mail.yahoo.com>
- <CANf970bnEtmcTCOkYseriRLnXLc668Q1Krq9EvseYxrpnrTUSQ@mail.gmail.com>
- <155074570.9720577.1578676938651@mail.yahoo.com>
+ (Exim 4.92) (envelope-from <amritnagi32@gmail.com>)
+ id 1iqwwX-0006hB-9Z
+ for usrp-users@lists.ettus.com; Mon, 13 Jan 2020 05:27:33 -0500
+Received: by mail-ua1-f48.google.com with SMTP id o42so3092077uad.10
+ for <usrp-users@lists.ettus.com>; Mon, 13 Jan 2020 02:27:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=I2XF6qshtDzDQbkYfriurDwQsfHpmR7145oXUjxrv+k=;
+ b=qUTEoRimMrDu/5bPti1hDT7ZjrgXniSI/4YGpHsiGHU+B2S8b9eLlBofclE1V7VWob
+ d6XXD/9ezAy8AuAIUyJLAM9o37Gs1RCvbg7+ffF/85cJhiM/MLDdVz3/i31bfBHyPuIN
+ tCkK+NUteXi3/j6NIqAJ8/4OZDl2mYpC6N/xdMTF+iiX1cWYnvrAzHruMMRMp/aFClO8
+ k3P96XGMhQBd0f/72l3ZkUmVwvzhjPhKiH2kyx/UfJDeHoWRCIbzInjWCkdAh9mA8RBK
+ r4SVRodaUvZK09eRLAySAKeg77KbUPJeUUn5VZDlAD+/Ew9Nh6UtnPKNTaMci5XgWnS3
+ sPRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=I2XF6qshtDzDQbkYfriurDwQsfHpmR7145oXUjxrv+k=;
+ b=X3DHmE6nBjJRD7hSz0hTTMXeKNODZ1PUXRv2GpS0mvXmilHqI5SokmCde8btgapz0z
+ qgEkCdlmXFD6Ao/dcoGIfrnhGNhFv27nFNUnGb+ZNIV0qzH2WOoc0ArbgmYCp0v9rTK8
+ Qh4ivTpTs28NMfuMBRrt1+viVjCeLdQZNZf7OvJuswpMBKMn9vYuXuWZaXvVM5T8hv+u
+ psTeUb9GqP6il0ZNyyTfta0UgIWDeuTmwrDeY9Z9YhqVguR1BYrg05QxMYZ3qgKezmDb
+ HXgYD5igt0YdgITIyaB08VNpnhWP1vMC5U+HoU/RuZKRxG4iWdC+r7g6hFij4PefKXgi
+ zxBA==
+X-Gm-Message-State: APjAAAWidUU0yGtUjEdn2M8r/GSlDeoKhk24BLUVta/YejlifV9G9rsW
+ chHJ3l/mkl+OS4GsXAOGXVNy3x0VnJttFnDCfsJZXIJc
+X-Google-Smtp-Source: APXvYqyiUoo53/i+e7bJQX7wxUDiChvvPDo7f4HhVR59inbUDnTEf4VUpznoV9xUXNH48/MbMbrjWRXX6qhj5+7CZN4=
+X-Received: by 2002:ab0:902:: with SMTP id w2mr6861926uag.41.1578911212263;
+ Mon, 13 Jan 2020 02:26:52 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (X11; Linux x86_64;
- rv:68.0) Gecko/20100101 Firefox/68.0
-Subject: Re: [USRP-users] Run time issue with 3.14.1.1 (X300 with UBX)
+Date: Mon, 13 Jan 2020 15:56:04 +0530
+Message-ID: <CAA3PG_naMDLB52GhfcSwcr0CsU4aOooc+oQS70Lqvb+yjks7Pw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Benchmarking set_tx_freq and set_rx_freq on X310,
+ B210 and N200
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,10 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: voonna santosh <santu_voonna@yahoo.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3939430170558195799=="
+From: Amrit Pal Singh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Amrit Pal Singh <amritnagi32@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6622195144984070803=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,238 +72,270 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3939430170558195799==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_10631398_2089064108.1578910940115"
-Content-Length: 12257
+--===============6622195144984070803==
+Content-Type: multipart/alternative; boundary="000000000000f05dfb059c02e971"
 
-------=_Part_10631398_2089064108.1578910940115
-Content-Type: text/plain; charset=UTF-8
+--000000000000f05dfb059c02e971
+Content-Type: text/plain; charset="UTF-8"
+
+Hi All,
+
+I am benchmarking the following commands on X310, B210 and N200 on UHD-3.14
+version:
+
+   1. usrp->set_tx_freq(tune_req, 0);
+   2. usrp->set_rx_freq(tune_req, 0);
+
+I am changing the frequencies inside a for loop for 1000 and 5000 times.
+The code snippet is as follows:
+    int count = 5000;
+    uhd::usrp::multi_usrp::sptr usrp = uhd::usrp::multi_usrp::make(args);
+    double start = usrp->get_time_now().get_real_secs();
+    for(int a = 0; a < count; a++){
+        uhd::tune_request_t tune_req = uhd::tune_request_t(800e6 + (a *
+1e6), 0);
+        tune_req.dsp_freq_policy = uhd::tune_request_t::POLICY_NONE;
+        tune_req.rf_freq_policy = uhd::tune_request_t::POLICY_AUTO;
+        //usrp->set_tx_freq(tune_req, 0);
+        usrp->set_rx_freq(tune_req, 0);
+    }
+    std::cout << "time:" << ((usrp->get_time_now().get_real_secs() -
+start)/count) * 1000 << "(ms)" << std::endl;
+
+The following table summarizes the result observed with average time for a
+single frequency hops and the hop rate as well for both Tx and Rx.
+
+X310 test
+No of hops Tx time (average) ms Tx Hops/second Rx time (average) ms Rx
+Hops/second
+1000 0.0453756 22038.27608 0.0441415 22654.41818
+5000 0.051013 19602.84633 0.0457056 21879.15704
+B210 test
+No of hops Tx time (average) ms Tx Hops/second Rx time (average) ms Rx
+Hops/second
+1000 3.34055 299.3519031 5.13762 194.6426555
+5000 3.35529 298.0368314 4.94233 202.3337171
+N200 test
+No of hops Tx time (average) ms Tx Hops/second Rx time (average) ms Rx
+Hops/second
+1000 0.0530515 18849.6084 0.0504478 19822.46996
+5000 0.0391015 25574.46645 0.037663 26551.2572
+As observed, the rate is really slow for B210. I also tested using another
+B210 and it gave similar results.
+Could anyone share any insights into these values.
+
+Thanks,
+Amrit
+
+--000000000000f05dfb059c02e971
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
- Hi Sam,=C2=A0=C2=A0 I have managed to reproduce this issue and when it hap=
-pens, here is the info you have asked for:
+<div dir=3D"ltr">Hi All,<div><br></div><div>I am benchmarking the following=
+=C2=A0commands on X310, B210 and N200 on UHD-3.14 version:</div><div><ol><l=
+i>usrp-&gt;set_tx_freq(tune_req, 0);</li><li>usrp-&gt;set_rx_freq(tune_req,=
+ 0);</li></ol><div>I am changing the frequencies=C2=A0inside a for loop for=
+ 1000 and 5000 times.</div><div>The code snippet=C2=A0is as follows:</div><=
+div>=C2=A0 =C2=A0 int count =3D 5000;</div><div>=C2=A0 =C2=A0 uhd::usrp::mu=
+lti_usrp::sptr usrp =3D uhd::usrp::multi_usrp::make(args);<br>=C2=A0 =C2=A0=
+ double start =3D usrp-&gt;get_time_now().get_real_secs();<br>=C2=A0 =C2=A0=
+ for(int a =3D 0; a &lt; count; a++){<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd::t=
+une_request_t tune_req =3D uhd::tune_request_t(800e6 + (a *<br>1e6), 0);<br=
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req.dsp_freq_policy =3D uhd::tune_request=
+_t::POLICY_NONE;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req.rf_freq_policy =3D=
+ uhd::tune_request_t::POLICY_AUTO;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 //usrp-&g=
+t;set_tx_freq(tune_req, 0);<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp-&gt;set_rx_=
+freq(tune_req, 0);<br>=C2=A0 =C2=A0 }<br>=C2=A0 =C2=A0 std::cout &lt;&lt; &=
+quot;time:&quot; &lt;&lt; ((usrp-&gt;get_time_now().get_real_secs() - start=
+)/count) * 1000 &lt;&lt; &quot;(ms)&quot; &lt;&lt; std::endl;<br></div><div=
+><br></div><div>The following=C2=A0table summarizes the result observed wit=
+h average time for a single frequency hops and the hop rate as well for bot=
+h Tx and Rx.</div></div><div><br></div><div><table cellspacing=3D"0" cellpa=
+dding=3D"0" dir=3D"ltr" border=3D"1" style=3D"table-layout:fixed;font-size:=
+10pt;font-family:Arial;width:0px;border-collapse:collapse;border:none"><col=
+group><col width=3D"100"><col width=3D"100"><col width=3D"100"><col width=
+=3D"100"><col width=3D"100"></colgroup><tbody><tr style=3D"height:21px"><td=
+ style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(2=
+04,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-=
+align:bottom;font-weight:bold;text-align:center">X310 test</td><td style=3D=
+"border-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(204,204,20=
+4);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td><td style=3D=
+"border-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(204,204,20=
+4);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td><td style=3D=
+"border-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(204,204,20=
+4);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td><td style=3D=
+"border-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(204,204,20=
+4);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td></tr><tr sty=
+le=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border-=
+color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidd=
+en;padding:2px 3px;vertical-align:bottom">No of hops</td><td style=3D"borde=
+r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(204,204,20=
+4) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom">Tx tim=
+e (average) ms</td><td style=3D"border-width:1px;border-style:solid;border-=
+color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:=
+2px 3px;vertical-align:bottom">Tx Hops/second</td><td style=3D"border-width=
+:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0)=
+ rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom">Rx=
+ time (average) ms</td><td style=3D"border-width:1px;border-style:solid;bor=
+der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
+hidden;padding:2px 3px;vertical-align:bottom">Rx Hops/second</td></tr><tr s=
+tyle=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;borde=
+r-color:rgb(204,204,204) rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overf=
+low:hidden;padding:2px 3px;vertical-align:bottom;text-align:right">1000</td=
+><td style=3D"overflow:hidden;padding:2px 3px;vertical-align:bottom;text-al=
+ign:right;border:1px solid rgb(204,204,204)">0.0453756</td><td style=3D"ove=
+rflow:hidden;padding:2px 3px;vertical-align:bottom;text-align:right;border:=
+1px solid rgb(204,204,204)">22038.27608</td><td style=3D"overflow:hidden;pa=
+dding:2px 3px;vertical-align:bottom;text-align:right;border:1px solid rgb(2=
+04,204,204)">0.0441415</td><td style=3D"border-width:1px;border-style:solid=
+;border-color:rgb(204,204,204) rgb(0,0,0) rgb(204,204,204) rgb(204,204,204)=
+;overflow:hidden;padding:2px 3px;vertical-align:bottom;text-align:right">22=
+654.41818</td></tr><tr style=3D"height:21px"><td style=3D"border-width:1px;=
+border-style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0=
+) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom;text-ali=
+gn:right">5000</td><td style=3D"border-width:1px;border-style:solid;border-=
+color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:=
+2px 3px;vertical-align:bottom;text-align:right">0.051013</td><td style=3D"b=
+order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(204,20=
+4,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom;tex=
+t-align:right">19602.84633</td><td style=3D"border-width:1px;border-style:s=
+olid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hid=
+den;padding:2px 3px;vertical-align:bottom;text-align:right">0.0457056</td><=
+td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
+4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;v=
+ertical-align:bottom;text-align:right">21879.15704</td></tr><tr style=3D"he=
+ight:21px"><td style=3D"border-width:1px;border-style:solid;border-color:rg=
+b(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;=
+vertical-align:bottom"></td><td style=3D"border-width:1px;border-style:soli=
+d;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden=
+;padding:2px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;=
+border-style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0=
+);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td><td style=3D"=
+border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(204,2=
+04,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom"><=
+/td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,2=
+04,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertica=
+l-align:bottom"></td></tr><tr style=3D"height:21px"><td style=3D"border-wid=
+th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rg=
+b(0,0,0) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom;f=
+ont-weight:bold;text-align:center">B210 test</td><td style=3D"border-width:=
+1px;border-style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0=
+,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td><td style=
+=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(2=
+04,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:botto=
+m"></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
+04,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;ver=
+tical-align:bottom"></td><td style=3D"border-width:1px;border-style:solid;b=
+order-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;pa=
+dding:2px 3px;vertical-align:bottom"></td></tr><tr style=3D"height:21px"><t=
+d style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204=
+) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:2px 3px;ve=
+rtical-align:bottom">No of hops</td><td style=3D"border-width:1px;border-st=
+yle:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflo=
+w:hidden;padding:2px 3px;vertical-align:bottom">Tx time (average) ms</td><t=
+d style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204=
+) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-alig=
+n:bottom">Tx Hops/second</td><td style=3D"border-width:1px;border-style:sol=
+id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
+rflow:hidden;padding:2px 3px;vertical-align:bottom">Rx time (average) ms</t=
+d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
+,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3p=
+x;vertical-align:bottom">Rx Hops/second</td></tr><tr style=3D"height:21px">=
+<td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,2=
+04) rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2p=
+x 3px;vertical-align:bottom;text-align:right">1000</td><td style=3D"overflo=
+w:hidden;padding:2px 3px;vertical-align:bottom;text-align:right;border:1px =
+solid rgb(204,204,204)">3.34055</td><td style=3D"overflow:hidden;padding:2p=
+x 3px;vertical-align:bottom;text-align:right;border:1px solid rgb(204,204,2=
+04)">299.3519031</td><td style=3D"overflow:hidden;padding:2px 3px;vertical-=
+align:bottom;text-align:right;border:1px solid rgb(204,204,204)">5.13762</t=
+d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
+,204) rgb(0,0,0) rgb(204,204,204) rgb(204,204,204);overflow:hidden;padding:=
+2px 3px;vertical-align:bottom;text-align:right">194.6426555</td></tr><tr st=
+yle=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border=
+-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hid=
+den;padding:2px 3px;vertical-align:bottom;text-align:right">5000</td><td st=
+yle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rg=
+b(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bo=
+ttom;text-align:right">3.35529</td><td style=3D"border-width:1px;border-sty=
+le:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow=
+:hidden;padding:2px 3px;vertical-align:bottom;text-align:right">298.0368314=
+</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
+204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertic=
+al-align:bottom;text-align:right">4.94233</td><td style=3D"border-width:1px=
+;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb=
+(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom;text-al=
+ign:right">202.3337171</td></tr><tr style=3D"height:21px"><td style=3D"bord=
+er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(204,204,2=
+04) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td>=
+<td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,2=
+04) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-al=
+ign:bottom"></td><td style=3D"border-width:1px;border-style:solid;border-co=
+lor:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2p=
+x 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;border-styl=
+e:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:=
+hidden;padding:2px 3px;vertical-align:bottom"></td><td style=3D"border-widt=
+h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb=
+(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td></tr><t=
+r style=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;bo=
+rder-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow=
+:hidden;padding:2px 3px;vertical-align:bottom;font-weight:bold;text-align:c=
+enter">N200 test</td><td style=3D"border-width:1px;border-style:solid;borde=
+r-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;paddin=
+g:2px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;border-=
+style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overf=
+low:hidden;padding:2px 3px;vertical-align:bottom"></td><td style=3D"border-=
+width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(204,204,204)=
+ rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom"></td><td=
+ style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
+ rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align=
+:bottom"></td></tr><tr style=3D"height:21px"><td style=3D"border-width:1px;=
+border-style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0=
+) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom">No of h=
+ops</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
+04,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;ver=
+tical-align:bottom">Tx time (average) ms</td><td style=3D"border-width:1px;=
+border-style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0=
+);overflow:hidden;padding:2px 3px;vertical-align:bottom">Tx Hops/second</td=
+><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
+204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px=
+;vertical-align:bottom">Rx time (average) ms</td><td style=3D"border-width:=
+1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) =
+rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bottom">Rx =
+Hops/second</td></tr><tr style=3D"height:21px"><td style=3D"border-width:1p=
+x;border-style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(204=
+,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom;=
+text-align:right">1000</td><td style=3D"overflow:hidden;padding:2px 3px;ver=
+tical-align:bottom;text-align:right;border:1px solid rgb(204,204,204)">0.05=
+30515</td><td style=3D"overflow:hidden;padding:2px 3px;vertical-align:botto=
+m;text-align:right;border:1px solid rgb(204,204,204)">18849.6084</td><td st=
+yle=3D"overflow:hidden;padding:2px 3px;vertical-align:bottom;text-align:rig=
+ht;border:1px solid rgb(204,204,204)">0.0504478</td><td style=3D"border-wid=
+th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(204,=
+204,204) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-align:bo=
+ttom;text-align:right">19822.46996</td></tr><tr style=3D"height:21px"><td s=
+tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
+gb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:2px 3px;verti=
+cal-align:bottom;text-align:right">5000</td><td style=3D"border-width:1px;b=
+order-style:solid;border-color:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0)=
+;overflow:hidden;padding:2px 3px;vertical-align:bottom;text-align:right">0.=
+0391015</td><td style=3D"border-width:1px;border-style:solid;border-color:r=
+gb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px 3px=
+;vertical-align:bottom;text-align:right">25574.46645</td><td style=3D"borde=
+r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(204,204,20=
+4) rgb(0,0,0);overflow:hidden;padding:2px 3px;vertical-align:bottom;text-al=
+ign:right">0.037663</td><td style=3D"border-width:1px;border-style:solid;bo=
+rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow=
+:hidden;padding:2px 3px;vertical-align:bottom;text-align:right">26551.2572<=
+/td></tr></tbody></table><br></div><div>As observed, the rate is really slo=
+w for B210. I also tested using another B210 and it gave similar results.=
+=C2=A0</div><div>Could anyone share any insights into these values.</div><d=
+iv><br></div><div>Thanks,</div><div>Amrit</div><div><br></div></div>
 
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group d=
-efault qlen 1000
-=C2=A0=C2=A0=C2=A0 link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-=C2=A0=C2=A0=C2=A0 inet 127.0.0.1/8 scope host lo
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
-r
-=C2=A0=C2=A0=C2=A0 inet6 ::1/128 scope host=20
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
-r
-2: enp3s0f0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq state UP g=
-roup default qlen 1000
-=C2=A0=C2=A0=C2=A0 link/ether 00:e0:4b:6b:0c:41 brd ff:ff:ff:ff:ff:ff
-=C2=A0=C2=A0=C2=A0 inet 192.168.40.20/24 brd 192.168.40.255 scope global no=
-prefixroute enp3s0f0
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
-r
-=C2=A0=C2=A0=C2=A0 inet6 fe80::2e0:4bff:fe6b:c41/64 scope link=20
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
-r
-3: enp3s0f1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DO=
-WN group default qlen 1000
-=C2=A0=C2=A0=C2=A0 link/ether 00:e0:4b:6b:0c:42 brd ff:ff:ff:ff:ff:ff
-4: enp8s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN=
- group default qlen 1000
-=C2=A0=C2=A0=C2=A0 link/ether 00:0c:8b:71:75:78 brd ff:ff:ff:ff:ff:ff
-5: enp15s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP gr=
-oup default qlen 1000
-=C2=A0=C2=A0=C2=A0 link/ether 00:e0:4b:6b:0c:43 brd ff:ff:ff:ff:ff:ff
-=C2=A0=C2=A0=C2=A0 inet 192.168.10.20/24 brd 192.168.10.255 scope global no=
-prefixroute enp15s0
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
-r
-=C2=A0=C2=A0=C2=A0 inet6 fe80::2e0:4bff:fe6b:c43/64 scope link=20
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
-r
-6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state=
- DOWN group default qlen 1000
-=C2=A0=C2=A0=C2=A0 link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff
-=C2=A0=C2=A0=C2=A0 inet 192.168.122.1/24 brd 192.168.122.255 scope global v=
-irbr0
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
-r
-7: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr=
-0 state DOWN group default qlen 1000
-=C2=A0=C2=A0=C2=A0 link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff
-
-BR,Santosh
-
-    On Friday, January 10, 2020, 5:22:18 PM GMT, voonna santosh <santu_voon=
-na@yahoo.com> wrote: =20
-=20
-  Hi Sam,=C2=A0 Since I have rebooted my machine and SDR, issue not seen. I=
- will try to reproduce and share you the results.BR,Santosh
-
-    On Friday, January 10, 2020, 3:46:19 PM GMT, Sam Reiter <sam.reiter@ett=
-us.com> wrote: =20
-=20
- Santosh,
-Could you send the output of=20
-
-ip a
-On you machine with the X300 connected?
-
-Sam
-
-On Fri, Jan 10, 2020 at 9:16 AM voonna santosh via USRP-users <usrp-users@l=
-ists.ettus.com> wrote:
-
-Hi There,=C2=A0=C2=A0 I have just updated to 3.14.1 and experiencing the fo=
-llowing issue. The system starts well, then there would be couple of underf=
-lows (even at less sampling rates) and the following error is shown. In thi=
-s case I don't see anything on the scope.
-=C2=A0=C2=A0 I have restarted SDR and my PC, then it is working well.=20
-
-Command used:=20
-./tx_samples_from_file --args addr=3D192.168.40.2=C2=A0 --file /home/svoonn=
-a/repo/test_files/test_file_SW_Samples_1MHz_28G.bin=C2=A0=C2=A0 --type shor=
-t --spb 3640 --rate 50e6 --freq 60e6=C2=A0 --gain 0 --ant TX/RX --subdev A:=
-0 --bw 40 --ref internal --repeat --lo_off 80000000
-[ERROR] [X300] 192.168.40.2: x300 fw communication failure #1EnvironmentErr=
-or: IOError: x300 fw poke32 - reply timed out
-
-BR,Santosh
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-   =20
-------=_Part_10631398_2089064108.1578910940115
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body><div class=3D"ydp96ea2f5byahoo-style-wrap" style=
-=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
-;"><div></div>
-        <div dir=3D"ltr" data-setdir=3D"false">Hi Sam,</div><div dir=3D"ltr=
-" data-setdir=3D"false">&nbsp;&nbsp; I have managed to reproduce this issue=
- and when it happens, here is the info you have asked for:</div><div dir=3D=
-"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false=
-"><br></div><div dir=3D"ltr" data-setdir=3D"false"><div>1: lo: &lt;LOOPBACK=
-,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1=
-000<br>&nbsp;&nbsp;&nbsp; link/loopback 00:00:00:00:00:00 brd 00:00:00:00:0=
-0:00<br>&nbsp;&nbsp;&nbsp; inet 127.0.0.1/8 scope host lo<br>&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; valid_lft forever preferred_lft forever<br>&nbsp;&nb=
-sp;&nbsp; inet6 ::1/128 scope host <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- valid_lft forever preferred_lft forever<br>2: enp3s0f0: &lt;BROADCAST,MULT=
-ICAST,UP,LOWER_UP&gt; mtu 9000 qdisc mq state UP group default qlen 1000<br=
->&nbsp;&nbsp;&nbsp; link/ether 00:e0:4b:6b:0c:41 brd ff:ff:ff:ff:ff:ff<br>&=
-nbsp;&nbsp;&nbsp; inet 192.168.40.20/24 brd 192.168.40.255 scope global nop=
-refixroute enp3s0f0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_lft forev=
-er preferred_lft forever<br>&nbsp;&nbsp;&nbsp; inet6 fe80::2e0:4bff:fe6b:c4=
-1/64 scope link <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_lft forever =
-preferred_lft forever<br>3: enp3s0f1: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP=
-&gt; mtu 1500 qdisc mq state DOWN group default qlen 1000<br>&nbsp;&nbsp;&n=
-bsp; link/ether 00:e0:4b:6b:0c:42 brd ff:ff:ff:ff:ff:ff<br>4: enp8s0: &lt;N=
-O-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc mq state DOWN group def=
-ault qlen 1000<br>&nbsp;&nbsp;&nbsp; link/ether 00:0c:8b:71:75:78 brd ff:ff=
-:ff:ff:ff:ff<br>5: enp15s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 150=
-0 qdisc mq state UP group default qlen 1000<br>&nbsp;&nbsp;&nbsp; link/ethe=
-r 00:e0:4b:6b:0c:43 brd ff:ff:ff:ff:ff:ff<br>&nbsp;&nbsp;&nbsp; inet 192.16=
-8.10.20/24 brd 192.168.10.255 scope global noprefixroute enp15s0<br>&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_lft forever preferred_lft forever<br>&n=
-bsp;&nbsp;&nbsp; inet6 fe80::2e0:4bff:fe6b:c43/64 scope link <br>&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; valid_lft forever preferred_lft forever<br>6: vi=
-rbr0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue stat=
-e DOWN group default qlen 1000<br>&nbsp;&nbsp;&nbsp; link/ether 52:54:00:07=
-:9b:55 brd ff:ff:ff:ff:ff:ff<br>&nbsp;&nbsp;&nbsp; inet 192.168.122.1/24 br=
-d 192.168.122.255 scope global virbr0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; valid_lft forever preferred_lft forever<br>7: virbr0-nic: &lt;BROADCAST,=
-MULTICAST&gt; mtu 1500 qdisc pfifo_fast master virbr0 state DOWN group defa=
-ult qlen 1000<br>&nbsp;&nbsp;&nbsp; link/ether 52:54:00:07:9b:55 brd ff:ff:=
-ff:ff:ff:ff</div><div><br></div><div><br></div><div dir=3D"ltr" data-setdir=
-=3D"false">BR,</div><div dir=3D"ltr" data-setdir=3D"false">Santosh<br></div=
-></div><div><br></div>
-       =20
-        </div><div id=3D"yahoo_quoted_9097751347" class=3D"yahoo_quoted">
-            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
-ans-serif;font-size:13px;color:#26282a;">
-               =20
-                <div>
-                    On Friday, January 10, 2020, 5:22:18 PM GMT, voonna san=
-tosh &lt;santu_voonna@yahoo.com&gt; wrote:
-                </div>
-                <div><br></div>
-                <div><br></div>
-                <div><div id=3D"yiv2417742129"><div><div class=3D"yiv241774=
-2129ydpea2f055cyahoo-style-wrap" style=3D"font-family:Helvetica Neue, Helve=
-tica, Arial, sans-serif;font-size:16px;"><div></div>
-        <div dir=3D"ltr">Hi Sam,</div><div dir=3D"ltr">&nbsp; Since I have =
-rebooted my machine and SDR, issue not seen. I will try to reproduce and sh=
-are you the results.</div><div dir=3D"ltr">BR,</div><div dir=3D"ltr">Santos=
-h<br clear=3D"none"></div><div><br clear=3D"none"></div>
-       =20
-        </div><div class=3D"yiv2417742129yqt1360149814" id=3D"yiv2417742129=
-yqt42620"><div class=3D"yiv2417742129yahoo_quoted" id=3D"yiv2417742129yahoo=
-_quoted_8971263758">
-            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
-ans-serif;font-size:13px;color:#26282a;">
-               =20
-                <div>
-                    On Friday, January 10, 2020, 3:46:19 PM GMT, Sam Reiter=
- &lt;sam.reiter@ettus.com&gt; wrote:
-                </div>
-                <div><br clear=3D"none"></div>
-                <div><br clear=3D"none"></div>
-                <div><div id=3D"yiv2417742129"><div><div dir=3D"ltr"><div>S=
-antosh,</div><div><br clear=3D"none"></div><div>Could you send the output o=
-f <br clear=3D"none"></div><div><br clear=3D"none"></div><div><b>ip a</b></=
-div><div><b><br clear=3D"none"></b></div><div>On you machine with the X300 =
-connected?<br clear=3D"none"></div><div><b></b></div><div><br clear=3D"none=
-"></div><div><div><div class=3D"yiv2417742129gmail_signature" dir=3D"ltr"><=
-div dir=3D"ltr"><div><div dir=3D"ltr">Sam</div></div></div></div></div><br =
-clear=3D"none"></div></div><br clear=3D"none"><div class=3D"yiv2417742129gm=
-ail_quote"><div class=3D"yiv2417742129yqt7509426695" id=3D"yiv2417742129yqt=
-76124"><div class=3D"yiv2417742129gmail_attr" dir=3D"ltr">On Fri, Jan 10, 2=
-020 at 9:16 AM voonna santosh via USRP-users &lt;<a rel=3D"nofollow" shape=
-=3D"rect" ymailto=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" h=
-ref=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt=
-; wrote:<br clear=3D"none"></div><blockquote class=3D"yiv2417742129gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex;"><div><div style=3D"font-family:Helvetica Neue, Helvet=
-ica, Arial, sans-serif;font-size:16px;"><div dir=3D"ltr"><div><div dir=3D"l=
-tr">Hi There,</div><div dir=3D"ltr">&nbsp;&nbsp; I have just updated to 3.1=
-4.1 and experiencing the following issue. The system starts well, then ther=
-e would be couple of underflows (even at less sampling rates) and the follo=
-wing error is shown. In this case I don't see anything on the scope.</div><=
-div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">&nbsp;&nbsp; I ha=
-ve restarted SDR and my PC, then it is working well. <br clear=3D"none"></d=
-iv><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Command used:=
- <span><br clear=3D"none"></span></div><div dir=3D"ltr"><span>./tx_samples_=
-from_file --args addr=3D192.168.40.2&nbsp; --file /home/svoonna/repo/test_f=
-iles/test_file_SW_Samples_1MHz_28G.bin&nbsp;&nbsp; --type short --spb 3640 =
---rate 50e6 --freq 60e6&nbsp; --gain 0 --ant TX/RX --subdev A:0 --bw 40 --r=
-ef internal --repeat --lo_off 80000000</span></div><div><br clear=3D"none">=
-</div><div><b>[ERROR] [X300] <a rel=3D"nofollow" shape=3D"rect" target=3D"_=
-blank" onclick=3D"return window.theMainWindow.showLinkWarning(this)" href=
-=3D"http://192.168.40.2">192.168.40.2</a>: x300 fw communication failure #1=
-</b></div><b>EnvironmentError: IOError: x300 fw poke32 - reply timed out</b=
-><br clear=3D"none"><div><br clear=3D"none"></div><div dir=3D"ltr">BR,</div=
-><div dir=3D"ltr">Santosh<br clear=3D"none"></div></div><div><br clear=3D"n=
-one"></div></div></div></div>______________________________________________=
-_<br clear=3D"none">
-USRP-users mailing list<br clear=3D"none">
-<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:USRP-users@lists.ettus=
-.com" target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-use=
-rs@lists.ettus.com</a><br clear=3D"none">
-<a rel=3D"nofollow" shape=3D"rect" target=3D"_blank" href=3D"http://lists.e=
-ttus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.co=
-m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
-</blockquote></div></div></div></div></div>
-            </div>
-        </div></div></div></div></div>
-            </div>
-        </div></body></html>
-------=_Part_10631398_2089064108.1578910940115--
+--000000000000f05dfb059c02e971--
 
 
---===============3939430170558195799==
+--===============6622195144984070803==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -320,5 +346,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3939430170558195799==--
+--===============6622195144984070803==--
 
