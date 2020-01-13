@@ -2,54 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCFB21394A0
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Jan 2020 16:19:10 +0100 (CET)
-Received: from [::1] (port=53282 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 410BF1396C1
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Jan 2020 17:50:17 +0100 (CET)
+Received: from [::1] (port=50488 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ir1Uc-0004vN-PS; Mon, 13 Jan 2020 10:19:02 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:37077)
+	id 1ir2up-00041L-44; Mon, 13 Jan 2020 11:50:11 -0500
+Received: from mail-lf1-f53.google.com ([209.85.167.53]:34992)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bpadalino@gmail.com>) id 1ir1Ua-0004rp-2K
- for usrp-users@lists.ettus.com; Mon, 13 Jan 2020 10:19:00 -0500
-Received: by mail-oi1-f178.google.com with SMTP id z64so8579590oia.4
- for <usrp-users@lists.ettus.com>; Mon, 13 Jan 2020 07:18:39 -0800 (PST)
+ (Exim 4.92) (envelope-from <akinsoysal@gmail.com>)
+ id 1ir2um-0003wT-4s
+ for usrp-users@lists.ettus.com; Mon, 13 Jan 2020 11:50:08 -0500
+Received: by mail-lf1-f53.google.com with SMTP id 15so7385441lfr.2
+ for <usrp-users@lists.ettus.com>; Mon, 13 Jan 2020 08:49:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=10xrL1x4l1LDZrK5yXIo+hFYdtJbHMN32nQtaFVSM30=;
- b=lKmVxIvSuwSAkuFzT2gE8FEHrxTVGd3EMIRoYFxZhPYuxClqCZQYAlfBvj8RZZLk3C
- M2hSWRfM8chvSnne0Bs/i4Qmxjk6wslUR6TP1gBcVFU1SPftx+V96hU2z6Vj2bWHMw77
- hQPrsuvAJ9DbY6gUq+T+9qypKm3tnUG+ec538M2C19dKwlFuDC9CeStcp5TntWQ3wrcx
- /eyZL9mYWRdJFZtgcsvLdDHPjXuLWBUGPLR1dAOqMZy47iEPmeGoHijWY2zHpZ18t6wo
- /y2uXEkJL8Pqyu8nNsxXfTMZ7WW484i9efk8U4b9VO4f3LZcFqZ+2Cje1zGZp/YsyIQN
- aY5w==
+ :cc; bh=z1kOx6SstplsvogkBLrI0KL5YpIw9adVP9AcnSGuXpc=;
+ b=tHrr9afmtN0Oi0bkFAjYuXCZp0apopXiYcv2ObJRiFwx3mAqjDmc4QUmd1p1FwEv9A
+ 41VLH/7qKx2n+3fZSQV74wCIakoTBJBqmzW6yE7mrgrtXKG1KcTdk8zL8gi1rK6pXA4z
+ nfZpzfUdBWyMziRGe5mS1EBxEan5y0vG7WeCnI9V/KRrj4RO5iZbaukkp+ZUd4OhnPeA
+ +oZ/0MYnVhPF8fU0AL0xH6/z+pLvCa1rSPfYLkeXt4H98B3JUj0yVX4W2Gbtiu9yCN8U
+ 1ZYGrScPGArEEW38y0svWXsQsQZ+X6GXtwF51VaS6CWtL0N7Y0/RlECnblBOFv4y1ayJ
+ YszA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=10xrL1x4l1LDZrK5yXIo+hFYdtJbHMN32nQtaFVSM30=;
- b=g693T8yDUg9GstvIa1vHyvVe4Lw/T7G/n0HQPhdrkY71WzxxJk1pFweZtC59Prvyb4
- 1mzUEH36gbg4NYuz15kf/AIKLsHmoZ4M77vV3u9JMEHfuJDrndgaXJC2xx1g30uBKZMR
- 6huv3c34auhMGotNzCVVcs6VVRsLSFsWys6WLysOfFBgKJwn7WTZpxxRbpXr75/xdKyF
- NpK+kdkfGYwJ3tHjrUFANppSdT9Ene9XENwjUaf8jP87JfhQkh9dAkDMjMWl030YZjFV
- 2ki1K7W3LZ3S2ieGq09WIP3RXN1+8rvIyxcyl0b15MFT2KKQV1nkzGC7xNj/D/Y0s9JC
- BVgA==
-X-Gm-Message-State: APjAAAVqQmHyblRjb2qEz0grFyImREhDFFiuNAWtePETWCRO/69tqyxA
- HjoCYVsPoDb3jzgaOy+neafOsLOWh6O35EKgDkc=
-X-Google-Smtp-Source: APXvYqx87iJ0l655fra7/moqF/1zFHt/mAnjWBuvd67b9jNihqN7TJOL0va2U/dZArAk44C2tvATz+E9yrkJfw+iTPU=
-X-Received: by 2002:aca:ab0e:: with SMTP id u14mr13531661oie.1.1578928699058; 
- Mon, 13 Jan 2020 07:18:19 -0800 (PST)
+ bh=z1kOx6SstplsvogkBLrI0KL5YpIw9adVP9AcnSGuXpc=;
+ b=kOf+xOqnCGZwDeMCH0k3CpjC8HNrTgVPYRUc4jJEOGmCCwIHgu6wdX8Mm+ZouXZ5CT
+ 8F+3DU4SgxiT2zRG04D3QE5mbYM1sbAr5JkrQ2w5Nwk4KBZa+bsyvDzdigEuMge1OZV+
+ B42XR5sC5xBWpeIgUYw69fPt7gExJoi3Va8COmGGTplLCSxv+ybkd9TlFKGlAcQkPWb3
+ 83o3+O9Y5lVSzTkspwnA/oNkNVFeKKFlUuckBeTRDhIEQwQFL3d32Buw+SZFtVy92XVj
+ w4RY/zdehWBgq2NqG8egs5r6zD+2Q0jrqSheYB3lZS8/eQUSSDmf0Amtt++lDpAz3tzw
+ Yaxw==
+X-Gm-Message-State: APjAAAXTDpK9DGYMzHmDrKHNiOPosrgn2QLYl//yZ+qXuMdR6ChG173n
+ Pf79CaXWkucrpt0tIjuuSrozSXUqwBEU0yMECYslI/5K
+X-Google-Smtp-Source: APXvYqz0YquNM79RborqZXrKgs+VX6XCbMRzD6cC9GaAWd5NFHFsqltRy1+NQI19q9LzQbvCnRQveJ1IC358knRtUSs=
+X-Received: by 2002:a05:6512:c7:: with SMTP id
+ c7mr10250726lfp.120.1578934166689; 
+ Mon, 13 Jan 2020 08:49:26 -0800 (PST)
 MIME-Version: 1.0
-References: <826572958.9669290.1578669344799.ref@mail.yahoo.com>
- <826572958.9669290.1578669344799@mail.yahoo.com>
- <CANf970bnEtmcTCOkYseriRLnXLc668Q1Krq9EvseYxrpnrTUSQ@mail.gmail.com>
- <155074570.9720577.1578676938651@mail.yahoo.com>
- <740862592.10631399.1578910940117@mail.yahoo.com>
-In-Reply-To: <740862592.10631399.1578910940117@mail.yahoo.com>
-Date: Mon, 13 Jan 2020 10:18:07 -0500
-Message-ID: <CAEXYVK6uCz-To=3a-pnn+ztimOUApL5o=Zrde=QkvC2jD-qoow@mail.gmail.com>
-To: voonna santosh <santu_voonna@yahoo.com>
-Subject: Re: [USRP-users] Run time issue with 3.14.1.1 (X300 with UBX)
+References: <CAFzRrg21Lsi3TqA7GeWQ9fo=dORm3o69WU-JfGmR6SicduCNdw@mail.gmail.com>
+ <CAFzRrg0mKNMQUO9+vd_b8tmxxi04bYX4+36F9hTkb5z=TgsGgQ@mail.gmail.com>
+ <CANf970ZJoKF549cnzgwkHH0NwK+O1twKhM2OdxL82Th89=JPSg@mail.gmail.com>
+In-Reply-To: <CANf970ZJoKF549cnzgwkHH0NwK+O1twKhM2OdxL82Th89=JPSg@mail.gmail.com>
+Date: Mon, 13 Jan 2020 19:49:14 +0300
+Message-ID: <CAFzRrg3W5B=haXQPXYBwNvtL+bWbDhtQJ=QFj2XarXpjCr+O-Q@mail.gmail.com>
+To: Sam Reiter <sam.reiter@ettus.com>
+Subject: Re: [USRP-users] Fwd: dpdk-test does not work
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,10 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8469549677898785985=="
+From: akin soysal via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: akin soysal <akinsoysal@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6082049277462769243=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,127 +78,260 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8469549677898785985==
-Content-Type: multipart/alternative; boundary="0000000000003baeb7059c06fce0"
+--===============6082049277462769243==
+Content-Type: multipart/alternative; boundary="000000000000211d89059c084237"
 
---0000000000003baeb7059c06fce0
+--000000000000211d89059c084237
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 13, 2020 at 5:23 AM voonna santosh via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Works beautifully. Thanks, Sam.
 
-> Hi Sam,
->    I have managed to reproduce this issue and when it happens, here is the
-> info you have asked for:
+Ak=C4=B1n
+
+9 Oca 2020 Per 21:54 tarihinde Sam Reiter <sam.reiter@ettus.com> =C5=9Funu =
+yazd=C4=B1:
+
+> Akin,
+>
+> I'd recommend you check out our DPDK setup guide - hot off the presses:
+>
+> https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD
+>
+> Sam Reiter
+> Ettus Research
 >
 >
-> 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group
-> default qlen 1000
->     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
->     inet 127.0.0.1/8 scope host lo
->        valid_lft forever preferred_lft forever
->     inet6 ::1/128 scope host
->        valid_lft forever preferred_lft forever
-> 2: enp3s0f0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq state UP
-> group default qlen 1000
->     link/ether 00:e0:4b:6b:0c:41 brd ff:ff:ff:ff:ff:ff
->     inet 192.168.40.20/24 brd 192.168.40.255 scope global noprefixroute
-> enp3s0f0
->        valid_lft forever preferred_lft forever
->     inet6 fe80::2e0:4bff:fe6b:c41/64 scope link
->        valid_lft forever preferred_lft forever
-> 3: enp3s0f1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state
-> DOWN group default qlen 1000
->     link/ether 00:e0:4b:6b:0c:42 brd ff:ff:ff:ff:ff:ff
-> 4: enp8s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state
-> DOWN group default qlen 1000
->     link/ether 00:0c:8b:71:75:78 brd ff:ff:ff:ff:ff:ff
-> 5: enp15s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP
-> group default qlen 1000
->     link/ether 00:e0:4b:6b:0c:43 brd ff:ff:ff:ff:ff:ff
->     inet 192.168.10.20/24 brd 192.168.10.255 scope global noprefixroute
-> enp15s0
->        valid_lft forever preferred_lft forever
->     inet6 fe80::2e0:4bff:fe6b:c43/64 scope link
->        valid_lft forever preferred_lft forever
-> 6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue
-> state DOWN group default qlen 1000
->     link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff
->     inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
->        valid_lft forever preferred_lft forever
-> 7: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master
-> virbr0 state DOWN group default qlen 1000
->     link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff
+> On Wed, Jan 8, 2020 at 10:52 PM akin soysal via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>>
+>>
+>> ---------- Forwarded message ---------
+>> G=C3=B6nderen: akin soysal <akinsoysal@gmail.com>
+>> Date: 8 Oca 2020 =C3=87ar 15:22
+>> Subject: dpdk-test does not work
+>> To: USRP-users@lists.ettus.com <usrp-users@lists.ettus.com>
+>>
+>>
+>> Dear all,
+>>
+>> We have a USRP X310 setup and we are trying to make the
+>> UHD_3.15.0.0-0-g4e06022c driver work. I have added a file under
+>> /etc/uhd/uhd.conf and it is attached to this email.
+>>
+>> I am not sure about the dpdk-mac and dpdk-ipv4 addresses, what are they
+>> used for?
+>>
+>> I am trying to make the dpdk-test work but I am experiencing problems
+>> with setting of ipv4.
+>>
+>> -----
+>> sudo ./dpdk_test
+>> EAL: Detected 18 lcore(s)
+>> EAL: No free hugepages reported in hugepages-1048576kB
+>> EAL: Probing VFIO support...
+>> EAL: VFIO support initialized
+>> EAL: PCI device 0000:05:00.0 on NUMA socket 0
+>> EAL:   probe driver: 8086:1533 net_e1000_igb
+>> EAL: PCI device 0000:65:00.0 on NUMA socket 0
+>> EAL:   probe driver: 8086:1557 net_ixgbe
+>> EAL:   using IOMMU type 1 (Type 1)
+>> EAL: Ignore mapping IO port bar(2)
+>> EAL: Waiting for links to come up...
+>> [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-39);
+>> Boost_105800; UHD_3.15.0.0-0-g4e06022c
+>> EAL: Init DONE!
+>> EAL: Starting I/O threads!
+>> terminate called after throwing an instance of 'uhd::assertion_error'
+>>   what():  AssertionError: status =3D=3D 0
+>>   in std::string get_ipv4_addr(unsigned int)
+>>   at /home/ulak-gnb/workarea-uhd/uhd/host/tests/dpdk_test.cpp:229
+>>
+>> Aborted
+>> -----
+>>
+>> What should be the uhd-dpdk arguments for this to run? It seems like it
+>> does not even read the uhd.conf file.
+>>
+>> I am using DPDK dpdk-stable-17.11.9. I have also programmed my SFP+
+>> interface via dpdk-devbind.py as shown below.
+>>
+>> ----------
+>> sudo ./dpdk-devbind.py -s
+>>
+>> Network devices using DPDK-compatible driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> 0000:65:00.0 '82599 10 Gigabit Network Connection 1557' drv=3Dvfio-pci
+>> unused=3Dixgbe
+>>
+>> Network devices using kernel driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> 0000:04:00.0 'AQC108 NBase-T/IEEE 802.3bz Ethernet Controller [AQtion]
+>> d108' if=3Deth1 drv=3Datlantic unused=3Dvfio-pci
+>> 0000:05:00.0 'I210 Gigabit Network Connection 1533' if=3Deno1 drv=3Digb
+>> unused=3Dvfio-pci *Active*
+>>
+>> Other Network devices
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>>
+>> Crypto devices using DPDK-compatible driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>>
+>> Crypto devices using kernel driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>>
+>> Other Crypto devices
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>>
+>> Eventdev devices using DPDK-compatible driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>>
+>> Eventdev devices using kernel driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>>
+>> Other Eventdev devices
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>>
+>> Mempool devices using DPDK-compatible driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>>
+>> Mempool devices using kernel driver
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>>
+>> Other Mempool devices
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> <none>
+>> ----------
+>>
+>> Thanks and regards,
+>> Ak=C4=B1n
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 
-Usually when I see this happen, there has been a drop or an error on the
-interface.
-
-Can you also give the output using the -s flag, so ip -s a?
-
-Look for some non-zero number in errors or dropped columns.
-
-Brian
-
---0000000000003baeb7059c06fce0
+--000000000000211d89059c084237
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Mon, Jan 13, 2020 at 5:23 AM voonna sa=
-ntosh via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp=
--users@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><div><div style=3D"font-fa=
-mily:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:16px">=
-<div></div>
-        <div dir=3D"ltr">Hi Sam,</div><div dir=3D"ltr">=C2=A0=C2=A0 I have =
-managed to reproduce this issue and when it happens, here is the info you h=
-ave asked for:</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><=
-div dir=3D"ltr"><div>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc no=
-queue state UNKNOWN group default qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/loop=
-back 00:00:00:00:00:00 brd 00:00:00:00:00:00<br>=C2=A0=C2=A0=C2=A0 inet <a =
-href=3D"http://127.0.0.1/8" target=3D"_blank">127.0.0.1/8</a> scope host lo=
-<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft fo=
-rever<br>=C2=A0=C2=A0=C2=A0 inet6 ::1/128 scope host <br>=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft forever<br>2: enp3s0f0: =
-&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9000 qdisc mq state UP group de=
-fault qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/ether 00:e0:4b:6b:0c:41 brd ff:f=
-f:ff:ff:ff:ff<br>=C2=A0=C2=A0=C2=A0 inet <a href=3D"http://192.168.40.20/24=
-" target=3D"_blank">192.168.40.20/24</a> brd 192.168.40.255 scope global no=
-prefixroute enp3s0f0<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft fore=
-ver preferred_lft forever<br>=C2=A0=C2=A0=C2=A0 inet6 fe80::2e0:4bff:fe6b:c=
-41/64 scope link <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever=
- preferred_lft forever<br>3: enp3s0f1: &lt;NO-CARRIER,BROADCAST,MULTICAST,U=
-P&gt; mtu 1500 qdisc mq state DOWN group default qlen 1000<br>=C2=A0=C2=A0=
-=C2=A0 link/ether 00:e0:4b:6b:0c:42 brd ff:ff:ff:ff:ff:ff<br>4: enp8s0: &lt=
-;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc mq state DOWN group d=
-efault qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/ether 00:0c:8b:71:75:78 brd ff:=
-ff:ff:ff:ff:ff<br>5: enp15s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1=
-500 qdisc mq state UP group default qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/et=
-her 00:e0:4b:6b:0c:43 brd ff:ff:ff:ff:ff:ff<br>=C2=A0=C2=A0=C2=A0 inet <a h=
-ref=3D"http://192.168.10.20/24" target=3D"_blank">192.168.10.20/24</a> brd =
-192.168.10.255 scope global noprefixroute enp15s0<br>=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 valid_lft forever preferred_lft forever<br>=C2=A0=C2=A0=C2=
-=A0 inet6 fe80::2e0:4bff:fe6b:c43/64 scope link <br>=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 valid_lft forever preferred_lft forever<br>6: virbr0: &lt;N=
-O-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN grou=
-p default qlen 1000<br>=C2=A0=C2=A0=C2=A0 link/ether 52:54:00:07:9b:55 brd =
-ff:ff:ff:ff:ff:ff<br>=C2=A0=C2=A0=C2=A0 inet <a href=3D"http://192.168.122.=
-1/24" target=3D"_blank">192.168.122.1/24</a> brd 192.168.122.255 scope glob=
-al virbr0<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferr=
-ed_lft forever<br>7: virbr0-nic: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc=
- pfifo_fast master virbr0 state DOWN group default qlen 1000<br>=C2=A0=C2=
-=A0=C2=A0 link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff</div></div></d=
-iv></div></blockquote><div><br></div><div>Usually when I see this happen, t=
-here has been a drop or an error on the interface.</div><div><br></div><div=
->Can you also give the output using the -s flag, so ip -s a?</div><div><br>=
-</div><div>Look for some non-zero number in errors or dropped columns.</div=
-><div><br></div><div>Brian</div></div></div>
+<div dir=3D"auto">Works beautifully. Thanks, Sam.<div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Ak=C4=B1n</div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">9 Oca 2020 Per 21:54 tarihinde Sam Reite=
+r &lt;<a href=3D"mailto:sam.reiter@ettus.com">sam.reiter@ettus.com</a>&gt; =
+=C5=9Funu yazd=C4=B1:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"l=
+tr"><div>Akin,</div><div><br></div><div>I&#39;d recommend you check out our=
+ DPDK setup guide - hot off the presses:</div><div><br></div><div><a href=
+=3D"https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD" target=3D"_blan=
+k" rel=3D"noreferrer">https://kb.ettus.com/Getting_Started_with_DPDK_and_UH=
+D</a></div><div><br></div><div><div><div dir=3D"ltr" data-smartmail=3D"gmai=
+l_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter <br><div>Ett=
+us Research<br></div></div></div></div></div></div><br></div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jan 8,=
+ 2020 at 10:52 PM akin soysal via USRP-users &lt;<a href=3D"mailto:usrp-use=
+rs@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.e=
+ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex"><div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">---------- Forwarded message ---------<br>G=
+=C3=B6nderen: <strong class=3D"gmail_sendername" dir=3D"auto">akin soysal</=
+strong> <span dir=3D"auto">&lt;<a href=3D"mailto:akinsoysal@gmail.com" targ=
+et=3D"_blank" rel=3D"noreferrer">akinsoysal@gmail.com</a>&gt;</span><br>Dat=
+e: 8 Oca 2020 =C3=87ar 15:22<br>Subject: dpdk-test does not work<br>To: <a =
+href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"norefer=
+rer">USRP-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.=
+ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com<=
+/a>&gt;<br></div><br><br><div dir=3D"ltr"><div>Dear all,</div><div><br></di=
+v><div>We have a USRP X310 setup and we are trying to make the UHD_3.15.0.0=
+-0-g4e06022c driver work. I have added a file under /etc/uhd/uhd.conf and i=
+t is attached to this email.</div><div><br></div><div>I am not sure about t=
+he dpdk-mac and dpdk-ipv4 addresses, what are they used for?</div><div><br>=
+</div><div>I am trying to make the dpdk-test work but I am experiencing pro=
+blems with setting of ipv4.</div><div><br></div><div>-----<br></div><div>su=
+do ./dpdk_test<br>EAL: Detected 18 lcore(s)<br>EAL: No free hugepages repor=
+ted in hugepages-1048576kB<br>EAL: Probing VFIO support...<br>EAL: VFIO sup=
+port initialized<br>EAL: PCI device 0000:05:00.0 on NUMA socket 0<br>EAL: =
+=C2=A0 probe driver: 8086:1533 net_e1000_igb<br>EAL: PCI device 0000:65:00.=
+0 on NUMA socket 0<br>EAL: =C2=A0 probe driver: 8086:1557 net_ixgbe<br>EAL:=
+ =C2=A0 using IOMMU type 1 (Type 1)<br>EAL: Ignore mapping IO port bar(2)<b=
+r>EAL: Waiting for links to come up...<br>[INFO] [UHD] linux; GNU C++ versi=
+on 4.8.5 20150623 (Red Hat 4.8.5-39); Boost_105800; UHD_3.15.0.0-0-g4e06022=
+c<br>EAL: Init DONE!<br>EAL: Starting I/O threads!<br>terminate called afte=
+r throwing an instance of &#39;uhd::assertion_error&#39;<br>=C2=A0 what(): =
+=C2=A0AssertionError: status =3D=3D 0<br>=C2=A0 in std::string get_ipv4_add=
+r(unsigned int)<br>=C2=A0 at /home/ulak-gnb/workarea-uhd/uhd/host/tests/dpd=
+k_test.cpp:229<br><br>Aborted</div><div>-----</div><div><br></div><div>What=
+ should be the uhd-dpdk arguments for this to run? It seems like it does no=
+t even read the uhd.conf file.</div><div><br></div><div>I am using DPDK dpd=
+k-stable-17.11.9. I have also programmed my SFP+ interface via dpdk-devbind=
+.py as shown below.<br></div><div><br></div><div>----------</div><div>sudo =
+./dpdk-devbind.py -s<br><br>Network devices using DPDK-compatible driver<br=
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:65:00.=
+0 &#39;82599 10 Gigabit Network Connection 1557&#39; drv=3Dvfio-pci unused=
+=3Dixgbe<br><br>Network devices using kernel driver<br>=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>0000:04:00.0 &#39;AQC108 NBase-T/IEEE 802.3bz Ethernet Cont=
+roller [AQtion] d108&#39; if=3Deth1 drv=3Datlantic unused=3Dvfio-pci <br>00=
+00:05:00.0 &#39;I210 Gigabit Network Connection 1533&#39; if=3Deno1 drv=3Di=
+gb unused=3Dvfio-pci *Active*<br><br>Other Network devices<br>=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>=
+Crypto devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Crypto devices using ker=
+nel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Other Cry=
+pto devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+<br>&lt;none&gt;<br><br>Eventdev devices using DPDK-compatible driver<br>=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt=
+;<br><br>Eventdev devices using kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D<br>&lt;none&gt;<br><br>Other Eventdev devices<br>=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>=
+Mempool devices using DPDK-compatible driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Mempool devices using=
+ kernel driver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>&lt;none&gt;<br><br>Oth=
+er Mempool devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>&lt;none&gt;</div><div>----------<br></div><div><br></div><=
+div>Thanks and regards,</div><div>Ak=C4=B1n<br></div></div>
+</div></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
+ferrer">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
 
---0000000000003baeb7059c06fce0--
+--000000000000211d89059c084237--
 
 
---===============8469549677898785985==
+--===============6082049277462769243==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -209,5 +342,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8469549677898785985==--
+--===============6082049277462769243==--
 
