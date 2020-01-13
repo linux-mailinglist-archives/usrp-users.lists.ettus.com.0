@@ -2,86 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2781379FF
-	for <lists+usrp-users@lfdr.de>; Sat, 11 Jan 2020 00:15:09 +0100 (CET)
-Received: from [::1] (port=60606 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54EC5138EF3
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Jan 2020 11:23:14 +0100 (CET)
+Received: from [::1] (port=40330 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iq3Ui-00040A-A3; Fri, 10 Jan 2020 18:15:08 -0500
-Received: from mail-dm6nam10on2064.outbound.protection.outlook.com
- ([40.107.93.64]:35681 helo=NAM10-DM6-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <minutolo@caltech.edu>)
- id 1iq3Ue-0003uU-TZ
- for usrp-users@lists.ettus.com; Fri, 10 Jan 2020 18:15:05 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XamqRYBi+uW4mds1icjmRzfXpom31yxqflvgenq3LNHnWAqAABBvjsLRRMmyxoCp3IJsHNfA6RYgbfpZwUdD4mLapx18BZ6gy76Sp+ogYRV2xyiw6Lq2BtmgY3yBUZRwYg2JwcGVtTuzWKlrc2zvvzChq/wwsyOqwpYX0bZhT1bozo/ips6hCFadlvkyFaC9+som0vy7jpzk3dxqA6XBp1nZsiH+yE29CuK+GWc3xH58akDsPm6NG7tn9c9Tq7Vs5sBbIJ5R7+lTiK4dRjhUIBSvyLbG7wI8XqVN0enqKuzd/TJ2JhjFEDgV+AbFhUidl6TrL0LCu6sUm/ADd/oyuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qpvSWoKrFJt4g4yCms68tGd/cdPad8nlYDPpfVH29/8=;
- b=YD+SJ4GboYmumQVsiXrfvMwu8bdkKJ/LkNMA15MgvXXQbZPDOkSm2RgH+Jp4mQvoi/ab/JERqPCh0vzrEU8JYCGThfkah9BRbi8Bh9cKkbPrRQViCIn+5rY3zIXT2wX3vR+8RgebaBGTnmOXnivOfk6nC8NSLK5qpeZe2J+ydhPuz40y1k1k8y6VbxZHstZSvd4U5nb26Sfp5ReGM0f4AWNEBISKThh/b8wXIljjTJnTZVVqvffUPwSP9KHJqh3V4UiQXCgcPxLSkZ7AGsbTOGDjuDMGgL7dq0dJnSiBffgidRfsO9JAgaD0gdfLsUrgNzff5pwj6IewXI3hb4t5kA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=caltech.edu; dmarc=pass action=none header.from=caltech.edu;
- dkim=pass header.d=caltech.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=caltech.onmicrosoft.com; s=selector2-caltech-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qpvSWoKrFJt4g4yCms68tGd/cdPad8nlYDPpfVH29/8=;
- b=WKP1XVDv7NWjQAkrZCNR8BHjSJbx44hKanvcqqcT4PcBhEwjM5M4EN/GAZMNfc3ywSAQmuGIheZSnisopyXbJfTzPbYkDxQKqTt1/Bgh7uNGn/a4CsWpK3CMWKqmVw4u76HnsTTBa7oNgdfKXZMZU35nf6QcyWfVApPhs8dR6Ec=
-Received: from BYAPR03MB3621.namprd03.prod.outlook.com (52.135.215.140) by
- BYAPR03MB4694.namprd03.prod.outlook.com (20.179.91.210) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.9; Fri, 10 Jan 2020 23:14:23 +0000
-Received: from BYAPR03MB3621.namprd03.prod.outlook.com
- ([fe80::d9ee:a980:1ccf:439c]) by BYAPR03MB3621.namprd03.prod.outlook.com
- ([fe80::d9ee:a980:1ccf:439c%5]) with mapi id 15.20.2623.013; Fri, 10 Jan 2020
- 23:14:23 +0000
-To: "Minutolo, Lorenzo via USRP-users" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] dpdk with x300
-Thread-Index: AQHVwqQn8I+YQNNZkkioELnUvLj+vKfd1xkAgABULcSAAAolgIAGWnJWgAABwG0=
-Date: Fri, 10 Jan 2020 23:14:23 +0000
-Message-ID: <BYAPR03MB3621E3B314A6F58E34EAC9E3D3380@BYAPR03MB3621.namprd03.prod.outlook.com>
-References: <DM6PR03MB3628C629B0B2462EB4C9A3A6D3220@DM6PR03MB3628.namprd03.prod.outlook.com>
- <CANf970ahrDonuDf=ROLFBkLJcA=tD=386JP+Uv+7uVFjNeibrg@mail.gmail.com>
- <BYAPR03MB36218EB0E57F003E09E58806D33C0@BYAPR03MB3621.namprd03.prod.outlook.com>,
- <CANf970YaK1aXGuxcrwNSUkA89x-4frk9N4TdHWSOHKc5PzjHzw@mail.gmail.com>,
- <BYAPR03MB3621B04B52C79280DE3B1C0DD3380@BYAPR03MB3621.namprd03.prod.outlook.com>
-In-Reply-To: <BYAPR03MB3621B04B52C79280DE3B1C0DD3380@BYAPR03MB3621.namprd03.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=minutolo@caltech.edu; 
-x-originating-ip: [131.215.193.172]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f0d14f1d-d06b-4f8c-c6e7-08d79622d498
-x-ms-traffictypediagnostic: BYAPR03MB4694:
-x-microsoft-antispam-prvs: <BYAPR03MB46943D8C1C06122273AAA86FD3380@BYAPR03MB4694.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 02788FF38E
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(6019001)(4636009)(346002)(376002)(366004)(396003)(136003)(39860400002)(269900001)(199004)(189003)(186003)(75432002)(86362001)(5660300002)(26005)(316002)(19627405001)(7696005)(2906002)(786003)(8936002)(71200400001)(6506007)(81156014)(81166006)(53546011)(8676002)(6916009)(52536014)(2940100002)(9686003)(33656002)(66946007)(76116006)(478600001)(66446008)(66556008)(966005)(64756008)(66476007)(55016002)(16193025007);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BYAPR03MB4694;
- H:BYAPR03MB3621.namprd03.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: caltech.edu does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KjJBosUSsvV/PqETQyFM8idOise9jKLfyLdSaZC1FtnnC23pgI3mlBfFbjitGSyTJS+Y8xoyWufUe5z/+qFSFIEmoPAnmVIW1ySJZEnip7GvdjSQ8XNdk3VZ5q8KpUM8YuYbCsHC5eOOY8Yg84kb5jrWtDDh6z80io+6cF2nsE6zeFVuSqIHFzHp4Qm4BxzuQkUtWhq+kOypxvfWUzkPdUkmDb8fByR9mTFIm0lu8Q5HesaAXsyFHmfBWnD76uEvwa8zUKf2C/xqRIaKIYW5e5++hI4RdIruqadWWjN/jwuw5AmFfoBq5W2a4c5EA2T3NxzWq6timuGSfR3Cok6uD/Hc7tf7/OZHULC8Ni6H33zP6at2WBdiYHzkG3tDL/ZuV1uyuBAj3vnvkr25bOQkInwoHk6knmrDCyHXkWcCyaIyasK86nYBvC1nJ0P4RW1J3onTjBxH0HgDSVyBPHIIYOuSnN29uSovprETl31czsof+oT2X6rm3tZpUfOc+mEYjlwpROf1yJ/zcpR+kE9Ar/lz1ms7PJ/3hfrdBUPFfziHz8gddqbONZJJp/q9jtemGZBwYM4/rRJIP6UAN0o7CA==
-x-ms-exchange-transport-forked: True
+	id 1iqwsG-0006Fm-MP; Mon, 13 Jan 2020 05:23:08 -0500
+Received: from sonic311-23.consmr.mail.ne1.yahoo.com ([66.163.188.204]:32990)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
+ id 1iqwsC-000685-Me
+ for usrp-users@lists.ettus.com; Mon, 13 Jan 2020 05:23:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1578910943; bh=ybsV5VmRldnLgnZ2OadJ18WShIq1KUiFmHCvQ7y14Yg=;
+ h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject;
+ b=NjN4mCPiACW+iShFS1rgWps8VpdyMAlXeaZvUr+/BkNjw1JQIXuhdbP74Kp94L8v/6wVPTXgj8bySOOS0++9JCg4V8z8at/avLM0FY8YNrs4ONHtsK0zPmIE+5r8PGngoTMhuS2siYuM588e602HAdtLbnPYbARjgsxSyg+93hoOdAP6jT+unBIg5LtaY1fmh+5xsz7T/o+e7F9EexRwYUW6q+UmY9cp6paVjwT7tHWdau7tK5fsZq4I6xXDGu3oJl2cWkQGH0XjRAucdUXSMn87AVv7mWP75ah+GuE51YIMU8eSQTqrD5VQdwTkHT0bhcgtznwhipqltNTFJM5kjw==
+X-YMail-OSG: eO4M3.MVM1lmFN9d_7KhtLaEsYZTcElXtVZ1i6.18409aWClhPGIHFeE.Q.6yDo
+ 6FN1H4_M4VXMd6mQuM9TBA3VkaG1rvvFeTYEesqEvnfgU6dCfr0Q_uXwfHlxWULNt3Q30PMje6gQ
+ Ryp0R4_eBemQbWJ.8Ab2al1RXzt_xlweha_rdjTxIyzq81fDLOrZetoJuNkpoXMF3ZjnJE2nqBB7
+ RfLrBxgE5Xg3sVsKWGyLk9LUuN8UUhHo3_X7fVzmPGAGQwo9NjF_qAfaC3piQk77jUrzJ9hK64Tu
+ NnQvSFPEVc4LFZjdaRdpJ0cL2hhVW6WZkV8xtjiZ.JRh4qlzsOUUkA9PgWTgyOeJ1ZQmCiFrKOTE
+ mG1rqgy6c4kU0z4lXcCXUWsNnLm4o3yhFpsM29opG_tLwEGPFSAw7FGfQV5RmaK7HqaUvNDUcrzq
+ AapsD7T_o0LaZ60V1ECXM4tDxT0giAksY7xgpyqTx5OQB.oCu3HJt7jTnv24I0RTxTSjYzI64WCg
+ 4EUsOgUQWjtyi76.rt23.CPyfZRASzrC5XHPsAsobH10qD8QebQ6m27JCBDpFoWPDStLt..LKZTP
+ uRRQwapanAtI91qtWycfMnCm2GJ7BgnZJCLG6qJZvfV5cJq8s8UzSspD5RlD0d2BsLjB7BphcaQC
+ ASWSNtVfve3c_w2sIpxJmdDBsdafBDffCiUKcKklvQVquGhNzf3nz4v1KG6xwu3KHTB7mm0Tmiw5
+ O8k2mHX.pJx7zx4emNwECixpGlZiNXbWq9COTJbwGZVkNtMhgTWtL.Lro1q0vayyRt792tS68DwU
+ Zmes_8lVOnYtUM2m4HVc4Uj_OA5EBbDsyALcka_I7qYMscmp_m_UTTomGhIEijx6zncZpCorci9x
+ xjrool3wkU9NnnZn1v.t.sJiKaggUllhJSspVnopmn6Wbg.eQt6wzwRidLwJDN_z4tL8xYIph2Vd
+ KdY4t038NUdD_TgazoRwjAMtPHPEfboThsJRBJTqZbxz.IXUC3nunnfM8YeMJDxs6nyX4VfcBlJj
+ 0W4yroX1Y2xqX308aDGJ5YtPA2jy9OzBW0dzRHBcEwo3a9LuKsTpkCKaw3cvqRdPixyNwysTnWMm
+ xtmMN_Vdr1aXCySCdEb4ywj4_YRSKhjQEbMqIX9vMbzGJjDqAGe1todNyulag15hhiFGUJldsCaL
+ .g8SDock3IqGRMcdvzvaG5L0L1PLsR16woj1XS6r9RPcaVDrennq1hmLI1rJuTFQuUE0MZALYCDA
+ e8UwWbsghsewc1ymsDgL.HVa90Qo5JYtPBqI8PHRJgEEPwK7uIJd1YSOi1VYpYkXsEFk52UwS7Il
+ Tg.BI5DGkLHaRd1rgJTx5Aeq5kOml9z2d6kdV1Fk-
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic311.consmr.mail.ne1.yahoo.com with HTTP; Mon, 13 Jan 2020 10:22:23 +0000
+Date: Mon, 13 Jan 2020 10:22:20 +0000 (UTC)
+To: Sam Reiter <sam.reiter@ettus.com>
+Message-ID: <740862592.10631399.1578910940117@mail.yahoo.com>
+In-Reply-To: <155074570.9720577.1578676938651@mail.yahoo.com>
+References: <826572958.9669290.1578669344799.ref@mail.yahoo.com>
+ <826572958.9669290.1578669344799@mail.yahoo.com>
+ <CANf970bnEtmcTCOkYseriRLnXLc668Q1Krq9EvseYxrpnrTUSQ@mail.gmail.com>
+ <155074570.9720577.1578676938651@mail.yahoo.com>
 MIME-Version: 1.0
-X-OriginatorOrg: caltech.edu
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0d14f1d-d06b-4f8c-c6e7-08d79622d498
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jan 2020 23:14:23.4492 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: fd5be9d9-7b72-4df9-830e-b1f9cc5b44bd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YFndsKrCh/HqtCfYYUihHdkWYRiiXbgv2vzpGtRBKXNwwXz2MFTe2Qg9U3AaXmzQOq7Zv+IrgUwVoMWFoR6hLA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB4694
-Subject: Re: [USRP-users] dpdk with x300
+X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (X11; Linux x86_64;
+ rv:68.0) Gecko/20100101 Firefox/68.0
+Subject: Re: [USRP-users] Run time issue with 3.14.1.1 (X300 with UBX)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,9 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Minutolo, Lorenzo via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Minutolo, Lorenzo" <minutolo@caltech.edu>
-Content-Type: multipart/mixed; boundary="===============8009149396449624407=="
+From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: voonna santosh <santu_voonna@yahoo.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3939430170558195799=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -109,385 +78,238 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8009149396449624407==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BYAPR03MB3621E3B314A6F58E34EAC9E3D3380BYAPR03MB3621namp_"
+--===============3939430170558195799==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_10631398_2089064108.1578910940115"
+Content-Length: 12257
 
---_000_BYAPR03MB3621E3B314A6F58E34EAC9E3D3380BYAPR03MB3621namp_
-Content-Type: text/plain; charset="us-ascii"
+------=_Part_10631398_2089064108.1578910940115
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-As a side note: I tried running the program as "sudo su" with the same exac=
-t result.
+ Hi Sam,=C2=A0=C2=A0 I have managed to reproduce this issue and when it hap=
+pens, here is the info you have asked for:
 
-Lorenzo
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Minutolo=
-, Lorenzo via USRP-users <usrp-users@lists.ettus.com>
-Sent: Friday, January 10, 2020 3:08 PM
-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] dpdk with x300
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group d=
+efault qlen 1000
+=C2=A0=C2=A0=C2=A0 link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+=C2=A0=C2=A0=C2=A0 inet 127.0.0.1/8 scope host lo
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
+r
+=C2=A0=C2=A0=C2=A0 inet6 ::1/128 scope host=20
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
+r
+2: enp3s0f0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq state UP g=
+roup default qlen 1000
+=C2=A0=C2=A0=C2=A0 link/ether 00:e0:4b:6b:0c:41 brd ff:ff:ff:ff:ff:ff
+=C2=A0=C2=A0=C2=A0 inet 192.168.40.20/24 brd 192.168.40.255 scope global no=
+prefixroute enp3s0f0
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
+r
+=C2=A0=C2=A0=C2=A0 inet6 fe80::2e0:4bff:fe6b:c41/64 scope link=20
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
+r
+3: enp3s0f1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DO=
+WN group default qlen 1000
+=C2=A0=C2=A0=C2=A0 link/ether 00:e0:4b:6b:0c:42 brd ff:ff:ff:ff:ff:ff
+4: enp8s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN=
+ group default qlen 1000
+=C2=A0=C2=A0=C2=A0 link/ether 00:0c:8b:71:75:78 brd ff:ff:ff:ff:ff:ff
+5: enp15s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP gr=
+oup default qlen 1000
+=C2=A0=C2=A0=C2=A0 link/ether 00:e0:4b:6b:0c:43 brd ff:ff:ff:ff:ff:ff
+=C2=A0=C2=A0=C2=A0 inet 192.168.10.20/24 brd 192.168.10.255 scope global no=
+prefixroute enp15s0
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
+r
+=C2=A0=C2=A0=C2=A0 inet6 fe80::2e0:4bff:fe6b:c43/64 scope link=20
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
+r
+6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state=
+ DOWN group default qlen 1000
+=C2=A0=C2=A0=C2=A0 link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff
+=C2=A0=C2=A0=C2=A0 inet 192.168.122.1/24 brd 192.168.122.255 scope global v=
+irbr0
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 valid_lft forever preferred_lft foreve=
+r
+7: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr=
+0 state DOWN group default qlen 1000
+=C2=A0=C2=A0=C2=A0 link/ether 52:54:00:07:9b:55 brd ff:ff:ff:ff:ff:ff
 
-Changed the driver string but the problem persists. Is it problematic that =
-the NIC is on the last PCIe slot of the motherboard (same NUMA socket)?
+BR,Santosh
 
-I attached the command I'm giving and the output.
+    On Friday, January 10, 2020, 5:22:18 PM GMT, voonna santosh <santu_voon=
+na@yahoo.com> wrote: =20
+=20
+  Hi Sam,=C2=A0 Since I have rebooted my machine and SDR, issue not seen. I=
+ will try to reproduce and share you the results.BR,Santosh
 
-Thanks,
-Lorenzo
-________________________________
-From: Sam Reiter <sam.reiter@ettus.com>
-Sent: Monday, January 6, 2020 2:05 PM
-To: Minutolo, Lorenzo <minutolo@caltech.edu>
-Cc: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] dpdk with x300
+    On Friday, January 10, 2020, 3:46:19 PM GMT, Sam Reiter <sam.reiter@ett=
+us.com> wrote: =20
+=20
+ Santosh,
+Could you send the output of=20
 
-That should be fine.
+ip a
+On you machine with the X300 connected?
 
-Looking over those screenshots again, you'll need to change your dpdk drive=
-r path in uhd.conf. Here's what the uncommented parts of uhd.conf should lo=
-ok like for 17.11:
+Sam
 
-[use_dpdk=3D1]
-dpdk-mtu=3D9000
-dpdk-driver=3D/usr/lib/x86_64-linux-gnu/dpdk-17.11-drivers/
-dpdk-corelist=3D1,2,3
-dpdk-num-mbufs=3D4095
-dpdk-mbufs-cache-size=3D315
-[dpdk-mac=3Daa:bb:cc:dd:ee:f1]
-dpdk-io-cpu =3D 2
-dpdk-ipv4 =3D 192.168.10.1/24<http://192.168.10.1/24>
-[dpdk-mac=3Daa:bb:cc:dd:ee:f2]
-dpdk-io-cpu =3D 3
-dpdk-ipv4 =3D 192.168.20.1/24<http://192.168.20.1/24>
+On Fri, Jan 10, 2020 at 9:16 AM voonna santosh via USRP-users <usrp-users@l=
+ists.ettus.com> wrote:
 
-Note that the IP and MAC need to be changed for your machine.
+Hi There,=C2=A0=C2=A0 I have just updated to 3.14.1 and experiencing the fo=
+llowing issue. The system starts well, then there would be couple of underf=
+lows (even at less sampling rates) and the following error is shown. In thi=
+s case I don't see anything on the scope.
+=C2=A0=C2=A0 I have restarted SDR and my PC, then it is working well.=20
 
-Sam Reiter
-Ettus Research
+Command used:=20
+./tx_samples_from_file --args addr=3D192.168.40.2=C2=A0 --file /home/svoonn=
+a/repo/test_files/test_file_SW_Samples_1MHz_28G.bin=C2=A0=C2=A0 --type shor=
+t --spb 3640 --rate 50e6 --freq 60e6=C2=A0 --gain 0 --ant TX/RX --subdev A:=
+0 --bw 40 --ref internal --repeat --lo_off 80000000
+[ERROR] [X300] 192.168.40.2: x300 fw communication failure #1EnvironmentErr=
+or: IOError: x300 fw poke32 - reply timed out
 
-On Mon, Jan 6, 2020 at 3:29 PM Minutolo, Lorenzo <minutolo@caltech.edu<mail=
-to:minutolo@caltech.edu>> wrote:
-I' using:
+BR,Santosh
 
-dpdk-procinfo -v
-EAL: Detected 16 lcore(s)
-EAL: RTE Version: 'DPDK 17.11.9'
-
-Thanks,
-Lorenzo
-________________________________
-From: Sam Reiter <sam.reiter@ettus.com<mailto:sam.reiter@ettus.com>>
-Sent: Monday, January 6, 2020 8:27 AM
-To: Minutolo, Lorenzo <minutolo@caltech.edu<mailto:minutolo@caltech.edu>>
-Cc: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
-rs@lists.ettus.com<mailto:usrp-users@lists.ettus.com>>
-Subject: Re: [USRP-users] dpdk with x300
-
-Lorenzo,
-
-What version of DPDK are you using?
-
-Sam Reiter
-Ettus Research
-
-On Fri, Jan 3, 2020 at 8:20 PM Minutolo, Lorenzo via USRP-users <usrp-users=
-@lists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-Hi All,
-I'm using an x300 connected via a Intel X710 to a machine running Ubuntu 18=
-.04. I'm using the recently released UHD 3.15 LTS.
-I'm trying to follow the guide to connect via dpdk. Everything in the guide=
- on the Ettus website works however when launching uhd_usrp_probe (as sudo =
-uhd_usrp_probe --args "address =3D 192.168.30.2, use_dpdk=3D1") I get the o=
-utput reported in the output.png attachment. My actual dpdk-devbind.py --st=
-atus is reported in status.png attachment as well as the uhd.conf I'm using=
-.
-
-What am I doing wrong?
-
-In the configuration file I tried altering the cores to see if that was an =
-issue but nothing changed.
-
-Thanks,
-Lorenzo
 _______________________________________________
 USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_000_BYAPR03MB3621E3B314A6F58E34EAC9E3D3380BYAPR03MB3621namp_
-Content-Type: text/html; charset="us-ascii"
+   =20
+------=_Part_10631398_2089064108.1578910940115
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-As a side note: I tried running the program as &quot;sudo su&quot; with the=
- same exact result.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Lorenzo<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
-sers-bounces@lists.ettus.com&gt; on behalf of Minutolo, Lorenzo via USRP-us=
-ers &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Sent:</b> Friday, January 10, 2020 3:08 PM<br>
-<b>To:</b> Sam Reiter &lt;sam.reiter@ettus.com&gt;<br>
-<b>Cc:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> Re: [USRP-users] dpdk with x300</font>
-<div>&nbsp;</div>
-</div>
-<style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Changed the driver string but the problem persists. Is it problematic that =
-the NIC is on the last PCIe slot of the motherboard (same NUMA socket)?</di=
-v>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I attached the command I'm giving and the output.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Thanks,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Lorenzo<br>
-</div>
-<div id=3D"x_appendonsend"></div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Sam Reiter &lt;sam.=
-reiter@ettus.com&gt;<br>
-<b>Sent:</b> Monday, January 6, 2020 2:05 PM<br>
-<b>To:</b> Minutolo, Lorenzo &lt;minutolo@caltech.edu&gt;<br>
-<b>Cc:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> Re: [USRP-users] dpdk with x300</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div>That should be fine. <br>
-</div>
-<div><br>
-</div>
-<div>Looking over those screenshots again, you'll need to change your dpdk =
-driver path in uhd.conf. Here's what the uncommented parts of uhd.conf shou=
-ld look like for 17.11:<br>
-</div>
-<div><br>
-</div>
-<div><span style=3D"font-family:monospace">[use_dpdk=3D1]<br>
-dpdk-mtu=3D9000<br>
-dpdk-driver=3D/usr/lib/x86_64-linux-gnu/dpdk-17.11-drivers/<br>
-dpdk-corelist=3D1,2,3<br>
-dpdk-num-mbufs=3D4095<br>
-dpdk-mbufs-cache-size=3D315<br>
-[dpdk-mac=3Daa:bb:cc:dd:ee:f1]<br>
-dpdk-io-cpu =3D 2<br>
-dpdk-ipv4 =3D <a href=3D"http://192.168.10.1/24">192.168.10.1/24</a><br>
-[dpdk-mac=3Daa:bb:cc:dd:ee:f2]<br>
-dpdk-io-cpu =3D 3<br>
-dpdk-ipv4 =3D <a href=3D"http://192.168.20.1/24">192.168.20.1/24</a></span>=
-</div>
-<div><br>
-</div>
-<div>Note that the IP and MAC need to be changed for your machine.</div>
-<div><br>
-</div>
-<div>
-<div>
-<div dir=3D"ltr" class=3D"x_x_gmail_signature">
-<div dir=3D"ltr">
-<div>
-<div dir=3D"ltr">Sam Reiter <br>
-<div>Ettus Research</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<br>
-<div class=3D"x_x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_x_gmail_attr">On Mon, Jan 6, 2020 at 3:29 PM Mi=
-nutolo, Lorenzo &lt;<a href=3D"mailto:minutolo@caltech.edu">minutolo@caltec=
-h.edu</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"x_x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bo=
-rder-left:1px solid rgb(204,204,204); padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I' using:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-dpdk-procinfo -v<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span>EAL: Detected 16 lcore(s)<br>
-</span><span>EAL: RTE Version: '<b>DPDK 17.11.9'</b></span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span><b><br>
-</b></span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span></span>Thanks,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Lorenzo<br>
-</div>
-<div id=3D"x_x_gmail-m_-8247312858927414669appendonsend"></div>
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"x_x_gmail-m_-8247312858927414669divRplyFwdMsg" dir=3D"ltr"><font=
- face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b=
->From:</b> Sam Reiter &lt;<a href=3D"mailto:sam.reiter@ettus.com" target=3D=
-"_blank">sam.reiter@ettus.com</a>&gt;<br>
-<b>Sent:</b> Monday, January 6, 2020 8:27 AM<br>
-<b>To:</b> Minutolo, Lorenzo &lt;<a href=3D"mailto:minutolo@caltech.edu" ta=
-rget=3D"_blank">minutolo@caltech.edu</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
-.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] dpdk with x300</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div>Lorenzo,</div>
-<div><br>
-</div>
-<div>What version of DPDK are you using?</div>
-<div><br>
-</div>
-<div>
-<div>
-<div dir=3D"ltr">
-<div dir=3D"ltr">
-<div>
-<div dir=3D"ltr">Sam Reiter <br>
-<div>Ettus Research<br>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<br>
-<div>
-<div dir=3D"ltr">On Fri, Jan 3, 2020 at 8:20 PM Minutolo, Lorenzo via USRP-=
-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">u=
-srp-users@lists.ettus.com</a>&gt; wrote:<br>
-</div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(20=
-4,204,204); padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Hi All,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I'm using an x300 connected via a Intel X710 to a machine running Ubuntu 18=
-.04. I'm using the recently released UHD 3.15 LTS.<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I'm trying to follow the guide to connect via dpdk. Everything in the guide=
- on the Ettus website works however when launching uhd_usrp_probe (as sudo =
-uhd_usrp_probe --args &quot;address =3D 192.168.30.2, use_dpdk=3D1&quot;) I=
- get the output reported in the output.png attachment.
- My actual dpdk-devbind.py --status is reported in status.png attachment as=
- well as the uhd.conf I'm using.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-What am I doing wrong?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-In the configuration file I tried altering the cores to see if that was an =
-issue but nothing changed.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Thanks,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Lorenzo<br>
-</div>
-</div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_BYAPR03MB3621E3B314A6F58E34EAC9E3D3380BYAPR03MB3621namp_--
+<html><head></head><body><div class=3D"ydp96ea2f5byahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Sam,</div><div dir=3D"ltr=
+" data-setdir=3D"false">&nbsp;&nbsp; I have managed to reproduce this issue=
+ and when it happens, here is the info you have asked for:</div><div dir=3D=
+"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false=
+"><br></div><div dir=3D"ltr" data-setdir=3D"false"><div>1: lo: &lt;LOOPBACK=
+,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1=
+000<br>&nbsp;&nbsp;&nbsp; link/loopback 00:00:00:00:00:00 brd 00:00:00:00:0=
+0:00<br>&nbsp;&nbsp;&nbsp; inet 127.0.0.1/8 scope host lo<br>&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; valid_lft forever preferred_lft forever<br>&nbsp;&nb=
+sp;&nbsp; inet6 ::1/128 scope host <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ valid_lft forever preferred_lft forever<br>2: enp3s0f0: &lt;BROADCAST,MULT=
+ICAST,UP,LOWER_UP&gt; mtu 9000 qdisc mq state UP group default qlen 1000<br=
+>&nbsp;&nbsp;&nbsp; link/ether 00:e0:4b:6b:0c:41 brd ff:ff:ff:ff:ff:ff<br>&=
+nbsp;&nbsp;&nbsp; inet 192.168.40.20/24 brd 192.168.40.255 scope global nop=
+refixroute enp3s0f0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_lft forev=
+er preferred_lft forever<br>&nbsp;&nbsp;&nbsp; inet6 fe80::2e0:4bff:fe6b:c4=
+1/64 scope link <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_lft forever =
+preferred_lft forever<br>3: enp3s0f1: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP=
+&gt; mtu 1500 qdisc mq state DOWN group default qlen 1000<br>&nbsp;&nbsp;&n=
+bsp; link/ether 00:e0:4b:6b:0c:42 brd ff:ff:ff:ff:ff:ff<br>4: enp8s0: &lt;N=
+O-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc mq state DOWN group def=
+ault qlen 1000<br>&nbsp;&nbsp;&nbsp; link/ether 00:0c:8b:71:75:78 brd ff:ff=
+:ff:ff:ff:ff<br>5: enp15s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 150=
+0 qdisc mq state UP group default qlen 1000<br>&nbsp;&nbsp;&nbsp; link/ethe=
+r 00:e0:4b:6b:0c:43 brd ff:ff:ff:ff:ff:ff<br>&nbsp;&nbsp;&nbsp; inet 192.16=
+8.10.20/24 brd 192.168.10.255 scope global noprefixroute enp15s0<br>&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_lft forever preferred_lft forever<br>&n=
+bsp;&nbsp;&nbsp; inet6 fe80::2e0:4bff:fe6b:c43/64 scope link <br>&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; valid_lft forever preferred_lft forever<br>6: vi=
+rbr0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue stat=
+e DOWN group default qlen 1000<br>&nbsp;&nbsp;&nbsp; link/ether 52:54:00:07=
+:9b:55 brd ff:ff:ff:ff:ff:ff<br>&nbsp;&nbsp;&nbsp; inet 192.168.122.1/24 br=
+d 192.168.122.255 scope global virbr0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p; valid_lft forever preferred_lft forever<br>7: virbr0-nic: &lt;BROADCAST,=
+MULTICAST&gt; mtu 1500 qdisc pfifo_fast master virbr0 state DOWN group defa=
+ult qlen 1000<br>&nbsp;&nbsp;&nbsp; link/ether 52:54:00:07:9b:55 brd ff:ff:=
+ff:ff:ff:ff</div><div><br></div><div><br></div><div dir=3D"ltr" data-setdir=
+=3D"false">BR,</div><div dir=3D"ltr" data-setdir=3D"false">Santosh<br></div=
+></div><div><br></div>
+       =20
+        </div><div id=3D"yahoo_quoted_9097751347" class=3D"yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                    On Friday, January 10, 2020, 5:22:18 PM GMT, voonna san=
+tosh &lt;santu_voonna@yahoo.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"yiv2417742129"><div><div class=3D"yiv241774=
+2129ydpea2f055cyahoo-style-wrap" style=3D"font-family:Helvetica Neue, Helve=
+tica, Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir=3D"ltr">Hi Sam,</div><div dir=3D"ltr">&nbsp; Since I have =
+rebooted my machine and SDR, issue not seen. I will try to reproduce and sh=
+are you the results.</div><div dir=3D"ltr">BR,</div><div dir=3D"ltr">Santos=
+h<br clear=3D"none"></div><div><br clear=3D"none"></div>
+       =20
+        </div><div class=3D"yiv2417742129yqt1360149814" id=3D"yiv2417742129=
+yqt42620"><div class=3D"yiv2417742129yahoo_quoted" id=3D"yiv2417742129yahoo=
+_quoted_8971263758">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                    On Friday, January 10, 2020, 3:46:19 PM GMT, Sam Reiter=
+ &lt;sam.reiter@ettus.com&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"yiv2417742129"><div><div dir=3D"ltr"><div>S=
+antosh,</div><div><br clear=3D"none"></div><div>Could you send the output o=
+f <br clear=3D"none"></div><div><br clear=3D"none"></div><div><b>ip a</b></=
+div><div><b><br clear=3D"none"></b></div><div>On you machine with the X300 =
+connected?<br clear=3D"none"></div><div><b></b></div><div><br clear=3D"none=
+"></div><div><div><div class=3D"yiv2417742129gmail_signature" dir=3D"ltr"><=
+div dir=3D"ltr"><div><div dir=3D"ltr">Sam</div></div></div></div></div><br =
+clear=3D"none"></div></div><br clear=3D"none"><div class=3D"yiv2417742129gm=
+ail_quote"><div class=3D"yiv2417742129yqt7509426695" id=3D"yiv2417742129yqt=
+76124"><div class=3D"yiv2417742129gmail_attr" dir=3D"ltr">On Fri, Jan 10, 2=
+020 at 9:16 AM voonna santosh via USRP-users &lt;<a rel=3D"nofollow" shape=
+=3D"rect" ymailto=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" h=
+ref=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt=
+; wrote:<br clear=3D"none"></div><blockquote class=3D"yiv2417742129gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex;"><div><div style=3D"font-family:Helvetica Neue, Helvet=
+ica, Arial, sans-serif;font-size:16px;"><div dir=3D"ltr"><div><div dir=3D"l=
+tr">Hi There,</div><div dir=3D"ltr">&nbsp;&nbsp; I have just updated to 3.1=
+4.1 and experiencing the following issue. The system starts well, then ther=
+e would be couple of underflows (even at less sampling rates) and the follo=
+wing error is shown. In this case I don't see anything on the scope.</div><=
+div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">&nbsp;&nbsp; I ha=
+ve restarted SDR and my PC, then it is working well. <br clear=3D"none"></d=
+iv><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Command used:=
+ <span><br clear=3D"none"></span></div><div dir=3D"ltr"><span>./tx_samples_=
+from_file --args addr=3D192.168.40.2&nbsp; --file /home/svoonna/repo/test_f=
+iles/test_file_SW_Samples_1MHz_28G.bin&nbsp;&nbsp; --type short --spb 3640 =
+--rate 50e6 --freq 60e6&nbsp; --gain 0 --ant TX/RX --subdev A:0 --bw 40 --r=
+ef internal --repeat --lo_off 80000000</span></div><div><br clear=3D"none">=
+</div><div><b>[ERROR] [X300] <a rel=3D"nofollow" shape=3D"rect" target=3D"_=
+blank" onclick=3D"return window.theMainWindow.showLinkWarning(this)" href=
+=3D"http://192.168.40.2">192.168.40.2</a>: x300 fw communication failure #1=
+</b></div><b>EnvironmentError: IOError: x300 fw poke32 - reply timed out</b=
+><br clear=3D"none"><div><br clear=3D"none"></div><div dir=3D"ltr">BR,</div=
+><div dir=3D"ltr">Santosh<br clear=3D"none"></div></div><div><br clear=3D"n=
+one"></div></div></div></div>______________________________________________=
+_<br clear=3D"none">
+USRP-users mailing list<br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-use=
+rs@lists.ettus.com</a><br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" target=3D"_blank" href=3D"http://lists.e=
+ttus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
+</blockquote></div></div></div></div></div>
+            </div>
+        </div></div></div></div></div>
+            </div>
+        </div></body></html>
+------=_Part_10631398_2089064108.1578910940115--
 
 
---===============8009149396449624407==
+--===============3939430170558195799==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -498,5 +320,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8009149396449624407==--
+--===============3939430170558195799==--
 
