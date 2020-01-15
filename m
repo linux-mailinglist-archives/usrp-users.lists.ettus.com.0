@@ -2,45 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 978EF13CDCA
-	for <lists+usrp-users@lfdr.de>; Wed, 15 Jan 2020 21:10:55 +0100 (CET)
-Received: from [::1] (port=40796 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 995F413CEA8
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Jan 2020 22:15:18 +0100 (CET)
+Received: from [::1] (port=55858 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1irp09-00072B-D2; Wed, 15 Jan 2020 15:10:53 -0500
-Received: from outgoing-exchange-3.mit.edu ([18.9.28.13]:39755)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <ri28856@mit.edu>) id 1irp05-0006vO-22
- for usrp-users@lists.ettus.com; Wed, 15 Jan 2020 15:10:49 -0500
-Received: from oc11exedge1.exchange.mit.edu (OC11EXEDGE1.EXCHANGE.MIT.EDU
- [18.9.3.17])
- by outgoing-exchange-3.mit.edu (8.14.7/8.12.4) with ESMTP id 00FK9W1q015689;
- Wed, 15 Jan 2020 15:09:47 -0500
-Received: from w92expo22.exchange.mit.edu (18.7.74.76) by
- oc11exedge1.exchange.mit.edu (18.9.3.17) with Microsoft SMTP Server (TLS) id
- 15.0.1293.2; Wed, 15 Jan 2020 15:09:44 -0500
-Received: from oc11expo22.exchange.mit.edu (18.9.4.84) by
- w92expo22.exchange.mit.edu (18.7.74.76) with Microsoft SMTP Server (TLS) id
- 15.0.1365.1; Wed, 15 Jan 2020 15:09:45 -0500
-Received: from oc11expo22.exchange.mit.edu ([18.9.4.84]) by
- oc11expo22.exchange.mit.edu ([18.9.4.84]) with mapi id 15.00.1365.000; Wed,
- 15 Jan 2020 15:09:45 -0500
-To: Sam Reiter <sam.reiter@ettus.com>
-Thread-Topic: [USRP-users] X310 scheduled issue_stream_cmd()
-Thread-Index: AQHVyxUpMLQQ5YnETkGA8FyUY9FBEqfsRtOA///hLjk=
-Date: Wed, 15 Jan 2020 20:09:45 +0000
-Message-ID: <1579118984918.48649@mit.edu>
-References: <33716e89222c44d1a9064914d0955081@oc11expo22.exchange.mit.edu>,
- <CANf970ah2WysX3RpyV8DCbwkdd3B9thdXX9rLHFZo6GMx_5bZg@mail.gmail.com>
-In-Reply-To: <CANf970ah2WysX3RpyV8DCbwkdd3B9thdXX9rLHFZo6GMx_5bZg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [129.55.200.20]
+	id 1irq0S-0002t3-3h; Wed, 15 Jan 2020 16:15:16 -0500
+Received: from sonic309-21.consmr.mail.ne1.yahoo.com ([66.163.184.147]:41321)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
+ id 1irq0O-0002gB-B6
+ for usrp-users@lists.ettus.com; Wed, 15 Jan 2020 16:15:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1579122870; bh=E8ypAIf9mvKMtcnh+o7GYciObi9nbbc9KLZEP76Qxl8=;
+ h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject;
+ b=KgO8GLZXZFs6qoH51AthQWOYQmF5jKzwbcB3ixVyZlh6lInPQqTzLhq2xy9H0dXiorOHc/097IX7NCFaiReumyTaeKwcxu50No+Q8VVtnHYaS7p18arYiAQJWEyo0i/Sagcgg+UfC73ANjYhijZ8JFY/FyRyaRtIANrRE3ZUZhgZZQ4Z8mJplA1AYrS+ps2d/3d1cQheMd9Avh2ZyW7rgyenurCD0hdI/KJJq7/6f7S6X6Nt9gnWBLoPlnC+LbMIo3Hr7FbGyw9v+NZYDYftfFHK2+Zj1sulxIJTxDajbd62YNWD6velEbXgsEa+wTKx0oOZVJ07F4/aBp96F2FOHA==
+X-YMail-OSG: 3Z4bQLwVM1kaHE.K_jbe7.aRLKY1GyMV5ccQUL8eUFxlXLbE7G_6yhkBm0UL5g6
+ t9QgiUg.kYNklw34xJcDBZyJ6ARhnfGmXWTdPU5ahJyddYA6L0RLEOOz0KkS0Gs.3f6uhbT8sWU7
+ zXZQyi5Ro0miGBD.6vvSg.eM.LIY.ESRXm9ptKMlCJdW38Qp8iTstViViUyDzJUFpzIRSQjG4ESN
+ T7GkcBS8LMey0yglpjMFsXdpAburTp2bokmERVAIa5BBvvBnKrjbV1hLeFepjp4rVXZqlt5ikIeN
+ 8nlJlNJJHOt2mk2IqNMBE18EVzw2udGjglvGyWiwYm3O0XtN8WL.qVBUOiKs714Xf8fBnhYgCP6o
+ kuEdxnGOY0AhqTT47BRVh1mlb8dQh1jhtLnDYIh0fjepdtY.dq0hIKgYKSVT1uGwnq8s2VxoY0nu
+ 9qUSjNSkgB0ivThfU7FXYEHuDZgTWlTp1ZUxdl06HU_RyGkMiYsbunK3WIGsaLRwJNcZ59Sd49ry
+ O2szcsQz3UWIlYiG4TplUna5cIqq8PVnxEXOaHsOJfGgGQCbf5w1G_PGYx6ifPoEWJ.KtVjlK3uU
+ 4Njx8AXsLQhadC5N7ZuVy7LeDYqYFqlT.M_0yRol_SLMDASi6cuLTAZjADw4QXkJwdkyEprBxYd4
+ 6DeFB7ABJsiJrtsGbHcovxFb4qs7Bfnk4oSCDbPTbO7TNG65u57YNkHnIjpEDXNEh6ZKFsP2NI.4
+ hwtCuddmnfiT9gj9oVVt6q_VkX0cxMMjuhFrrEJrQmnNqnbLu_tK5WlhoWaekcpOWfCvOyWwvV65
+ VaySP6j2fHT9dolbKSXh0RQ55EGE7V4CwB6_qEImGzdqSrOMDN.ZUQw625u3K6RqqZ.RSsahjMxW
+ DZd4Dovv5hIyAn5cLWyeRPKpRSjt1H_xutDhN3uN_MM2WJkwWnfW.owWl6mSicXpFjSCwO0CxA2j
+ QuuA.hv4D_qvFO98QJ9V53ma_Tox4nMuAzWO1eF.sIQY2STFMy1ULrNDgvt49tKJ2hWU0q4GK3Xo
+ l752h2gObNPQMeXha3DhMEL.qnYoudsLMrbbYSGRP7rVB8sd_5neDTwpm3xKSTDg.Q5SJXKyAjJ0
+ YiL.g13OfJj20pgzfXXYYLHKqzPgopoCTb7s2RsV8MtVcfpCnjv7tQoIuwUdA.n0z7khFnmH09RS
+ 5ejsv7radJZUwyGQXfAsQuBrU1TNw3Bun4wmUJe57_4lc2TAfg8iRxzXoBEtbkDUjckjU1SXn5qR
+ Hkd.DdfqMVx_5zLjwwEnqDguwR__MXOjR9cH5XS3mWKBYYxssZJga8YCk2mLh.3QaPmcCVNd83Jf
+ 0vBOPW3J8YIucP4PIZtz3eJQrPdYyfjJdZcw.lNxsSaWNGt1IppBVOEXQnx3.lLoblJ.oXjOsgDO
+ DJomLLQ--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic309.consmr.mail.ne1.yahoo.com with HTTP; Wed, 15 Jan 2020 21:14:30 +0000
+Date: Wed, 15 Jan 2020 21:14:28 +0000 (UTC)
+To: "sam.reiter@ettus.com" <sam.reiter@ettus.com>
+Message-ID: <564835184.12134837.1579122868761@mail.yahoo.com>
+In-Reply-To: <CANf970Z_4UwAS3gJnQmjB0GwNqVQGZSUjjOW-5FHOHcQyHSngw@mail.gmail.com>
+References: <1991382912.12022218.1579112665200.ref@mail.yahoo.com>
+ <1991382912.12022218.1579112665200@mail.yahoo.com>
+ <CANf970Z_4UwAS3gJnQmjB0GwNqVQGZSUjjOW-5FHOHcQyHSngw@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [USRP-users] X310 scheduled issue_stream_cmd()
+X-Mailer: WebService/1.1.14873 YahooMailAndroidMobile YMobile/1.0
+ (com.yahoo.mobile.client.android.mail/6.2.4; Android/10; QP1A.190711.020;
+ beyond2; samsung; SM-G975F; 5.86; 2047x1080; )
+Subject: Re: [USRP-users] Supported ethernet controllers : X300 and U
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,10 +62,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Richard J. Muri via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Richard J. Muri" <ri28856@mit.edu>
+From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: "santu_voonna@yahoo.com" <santu_voonna@yahoo.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5074052120454224595=="
+Content-Type: multipart/mixed; boundary="===============3240288116037448303=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -69,235 +79,105 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5074052120454224595==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_157911898491848649mitedu_"
+--===============3240288116037448303==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_12134836_1696364099.1579122868759"
+Content-Length: 5479
 
---_000_157911898491848649mitedu_
-Content-Type: text/plain; charset="iso-8859-1"
+------=_Part_12134836_1696364099.1579122868759
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Sam,
+Please see my comments inline:
+That card should be fine for streaming, that controller just hasn't been ex=
+plicitly tested as far as I know.=C2=A0[SV]: I am TXing data at 50MHz (not =
+for rx) with one channel. Are there any other ethernet controllers rested?
+Are you planning on using DPDK?[SV]: NO (as I can achieve required sampling=
+ rate)
 
+Sent from Yahoo Mail on Android=20
+=20
+  On Wed, 15 Jan 2020 at 19:07, Sam Reiter<sam.reiter@ettus.com> wrote:   S=
+antosh,
+That card should be fine for streaming, that controller just hasn't been ex=
+plicitly tested as far as I know. Are you planning on using DPDK?
+Sam Reiter=20
 
-Thank you for the help. Is there somewhere where the command queue depth is=
- documented?
+On Wed, Jan 15, 2020 at 12:26 PM voonna santosh via USRP-users <usrp-users@=
+lists.ettus.com> wrote:
 
-
-Also is the same command queue used for both commands scheduled from rx_str=
-eamer and those scheduled with set_start_time()?
-
-
-Thank you,
-
-Richard
-
-________________________________
-From: Sam Reiter <sam.reiter@ettus.com>
-Sent: Wednesday, January 15, 2020 11:55 AM
-To: Richard J. Muri
-Cc: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] X310 scheduled issue_stream_cmd()
-
-Richard,
-
-I believe what you're looking for is the depth of the command queue. For th=
-e X310, this FIFO has a depth of 16. Any command that you issue to the X310=
- that has a command time set will be held in this FIFO until the radio's ti=
-me matches the command time, at which point the command is executed.
-
-You should definitely keep track of the state of the command queue - overfl=
-owing this FIFO will put the radio in a bad state, usually requiring a rest=
-art.
-
-https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a191b78=
-b00d051d3d51c2f719361c1fb5
-
-https://files.ettus.com/manual/classuhd_1_1time__spec__t.html
-
-Sam Reiter
-
-On Tue, Jan 14, 2020 at 2:01 PM Richard Joseph Muri via USRP-users <usrp-us=
-ers@lists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-
-Hello,
-
-
-I'm using an X310 with a number of scheduled receives. I suspect there is a=
- FIFO on the USRP that holds the stream_cmd_t until it is time to collect t=
-he requested samples. I have not been able to find documentation about the =
-size of this FIFO. Could anybody point me in the proper direction?
-
-
-Do I need to keep track of the number of stream_cmds in the FIFO? Is there =
-some kind of acknowledge I can use to know the stream_cmd has left the FIFO=
-? At the moment I am running an C++ application with two threads, one to is=
-sue_stream_cmd(), and one to recv(). I loop each operation, posting a semap=
-hore after each recv() and waiting on a semaphore before every issue_stream=
-_cmd().
-
-
-I found this thread about using set_start_time():
-
-http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2016-July/04902=
-2.html
-
-
-Are these commands on the same FIFO issue_stream_cmd() uses?
-
-
-Thank you!
-
-Richard Muri
-
-
-_______________________________________________
+Hi There,=C2=A0 =C2=A0Good morning. As I could see in the documentation, Et=
+tus recommends "X520 (Ethernet Controller)" at PC/host side. Is this a must=
+?=C2=A0=C2=A0 =C2=A0We are planning to use X552 Ethernet Controller and I a=
+m wondering will it cause any issue. Can you please let me know what are th=
+e Ethernet Controllers can be used at PC side for SFP+ ports?BR,Santosh=C2=
+=A0_______________________________________________
 USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_000_157911898491848649mitedu_
-Content-Type: text/html; charset="iso-8859-1"
+ =20
+
+------=_Part_12134836_1696364099.1579122868759
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
-ottom:0;} --></style>
-</head>
-<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
-FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Sam,</p>
-<p><br>
-</p>
-<p>Thank you for the help. Is there somewhere where the command queue depth=
- is documented?</p>
-<p><br>
-</p>
-<p>Also is the same command queue used for both commands scheduled from rx_=
-streamer and those scheduled with set_start_time()?</p>
-<p><br>
-</p>
-<p>Thank you,</p>
-<p>Richard<br>
-</p>
-<div style=3D"color: rgb(33, 33, 33);">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
-=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Sam Reiter &lt;sam.=
-reiter@ettus.com&gt;<br>
-<b>Sent:</b> Wednesday, January 15, 2020 11:55 AM<br>
-<b>To:</b> Richard J. Muri<br>
-<b>Cc:</b> usrp-users@lists.ettus.com<br>
-<b>Subject:</b> Re: [USRP-users] X310 scheduled issue_stream_cmd()</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div>Richard,</div>
-<div><br>
-</div>
-<div>I believe what you're looking for is the depth of the command queue. F=
-or the X310, this FIFO has a depth of 16. Any command that you issue to the=
- X310 that has a command time set will be held in this FIFO until the radio=
-'s time matches the command time,
- at which point the command is executed.</div>
-<div><br>
-</div>
-<div>You should definitely keep track of the state of the command queue - o=
-verflowing this FIFO will put the radio in a bad state, usually requiring a=
- restart.
-<br>
-</div>
-<div><br>
-</div>
-<div><a href=3D"https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__u=
-srp.html#a191b78b00d051d3d51c2f719361c1fb5">https://files.ettus.com/manual/=
-classuhd_1_1usrp_1_1multi__usrp.html#a191b78b00d051d3d51c2f719361c1fb5</a><=
-/div>
-<div><br>
-</div>
-<div><a href=3D"https://files.ettus.com/manual/classuhd_1_1time__spec__t.ht=
-ml">https://files.ettus.com/manual/classuhd_1_1time__spec__t.html</a></div>
-<div><br>
-</div>
-<div>
-<div>
-<div dir=3D"ltr" class=3D"gmail_signature">
-<div dir=3D"ltr">
-<div>
-<div dir=3D"ltr">Sam Reiter&nbsp;</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<br>
-<div class=3D"gmail_quote">
-<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jan 14, 2020 at 2:01 PM Richa=
-rd Joseph Muri via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.=
-com">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; border=
--left:1px solid rgb(204,204,204); padding-left:1ex">
-<div dir=3D"ltr" style=3D"font-size:12pt; color:rgb(0,0,0); background-colo=
-r:rgb(255,255,255); font-family:Calibri,Arial,Helvetica,sans-serif">
-<p>Hello,</p>
-<p><br>
-</p>
-<p>I'm using an X310 with a number of scheduled receives. I suspect there i=
-s a FIFO on the USRP that holds the stream_cmd_t until it is time to collec=
-t the requested samples. I have not been able to find documentation about t=
-he size of this FIFO. Could anybody
- point me in the proper direction?</p>
-<p><br>
-</p>
-<p>Do I need to keep track of the number of stream_cmds in the FIFO? Is the=
-re some kind of acknowledge I can use to know the stream_cmd has left the F=
-IFO? At the moment I am running an C&#43;&#43; application with two threads=
-, one to issue_stream_cmd(), and one to
- recv(). I loop each operation, posting a semaphore after each recv() and w=
-aiting on a semaphore before every issue_stream_cmd().
-<br>
-</p>
-<p><br>
-</p>
-<p>I found this thread about using set_start_time(): </p>
-<p><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2=
-016-July/049022.html" target=3D"_blank">http://lists.ettus.com/pipermail/us=
-rp-users_lists.ettus.com/2016-July/049022.html</a></p>
-<p><br>
-</p>
-<p>Are these commands on the same FIFO issue_stream_cmd() uses?</p>
-<p><br>
-</p>
-<p>Thank you!</p>
-Richard Muri
-<p><br>
-</p>
-</div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_157911898491848649mitedu_--
+Please see my comments inline:<div id=3D"yMail_cursorElementTracker_1579122=
+630911"><br></div><div id=3D"yMail_cursorElementTracker_1579122632724"><div=
+ id=3D"yMail_cursorElementTracker_1579122643523">That card should be fine f=
+or streaming, that controller just hasn't been explicitly tested as far as =
+I know.&nbsp;</div><div id=3D"yMail_cursorElementTracker_1579122645279">[SV=
+]: I am TXing data at 50MHz (not for rx) with one channel. Are there any ot=
+her ethernet controllers rested?</div><div id=3D"yMail_cursorElementTracker=
+_1579122645468"><br></div><div id=3D"yMail_cursorElementTracker_15791226454=
+68">Are you planning on using DPDK?</div><div id=3D"yMail_cursorElementTrac=
+ker_1579122633763">[SV]: NO (as I can achieve required sampling rate)</div>=
+</div><div id=3D"yMail_cursorElementTracker_1579122631108"><br><br><div id=
+=3D"ymail_android_signature"><a id=3D"ymail_android_signature_link" href=3D=
+"https://go.onelink.me/107872968?pid=3DInProduct&amp;c=3DGlobal_Internal_YG=
+rowth_AndroidEmailSig__AndroidUsers&amp;af_wl=3Dym&amp;af_sub1=3DInternal&a=
+mp;af_sub2=3DGlobal_YGrowth&amp;af_sub3=3DEmailSignature">Sent from Yahoo M=
+ail on Android</a></div> <br> <blockquote style=3D"margin: 0 0 20px 0;"> <d=
+iv style=3D"font-family:Roboto, sans-serif; color:#6D00F6;"> <div>On Wed, 1=
+5 Jan 2020 at 19:07, Sam Reiter</div><div>&lt;sam.reiter@ettus.com&gt; wrot=
+e:</div> </div> <div style=3D"padding: 10px 0 0 20px; margin: 10px 0 0 0; b=
+order-left: 1px solid #6D00F6;"> <div id=3D"yiv8324057631"><div><div dir=3D=
+"ltr"><div>Santosh,</div><div><br clear=3D"none"></div><div id=3D"yMail_cur=
+sorElementTracker_1579122604386">That card should be fine for streaming, th=
+at controller just hasn't been explicitly tested as far as I know. Are you =
+planning on using DPDK?</div><div id=3D"yMail_cursorElementTracker_15791226=
+07959"><br clear=3D"none"></div><div><div class=3D"yiv8324057631gmail_signa=
+ture" dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter <br cle=
+ar=3D"none"></div></div></div></div></div></div><br clear=3D"none"><div cla=
+ss=3D"yiv8324057631gmail_quote"><div class=3D"yiv8324057631yqt6353199510 yQ=
+TDBase" id=3D"yiv8324057631yqt54110"><div class=3D"yiv8324057631gmail_attr"=
+ dir=3D"ltr">On Wed, Jan 15, 2020 at 12:26 PM voonna santosh via USRP-users=
+ &lt;<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:usrp-users@lists.=
+ettus.com" target=3D"_blank" href=3D"mailto:usrp-users@lists.ettus.com">usr=
+p-users@lists.ettus.com</a>&gt; wrote:<br clear=3D"none"></div><blockquote =
+class=3D"yiv8324057631gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex;"><div><div style=3D"font=
+-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div =
+dir=3D"ltr">Hi There,</div><div dir=3D"ltr">&nbsp; &nbsp;Good morning. As I=
+ could see in the documentation, Ettus recommends "X520 (Ethernet Controlle=
+r)" at PC/host side. Is this a must?&nbsp;</div><div dir=3D"ltr">&nbsp; &nb=
+sp;We are planning to use X552 Ethernet Controller and I am wondering will =
+it cause any issue. Can you please let me know what are the Ethernet Contro=
+llers can be used at PC side for SFP+ ports?</div><div dir=3D"ltr">BR,</div=
+><div dir=3D"ltr">Santosh&nbsp;</div></div></div>__________________________=
+_____________________<br clear=3D"none">
+USRP-users mailing list<br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-use=
+rs@lists.ettus.com</a><br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" target=3D"_blank" href=3D"http://lists.e=
+ttus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
+</blockquote></div></div></div></div> </div> </blockquote></div>
+------=_Part_12134836_1696364099.1579122868759--
 
 
---===============5074052120454224595==
+--===============3240288116037448303==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -308,5 +188,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5074052120454224595==--
+--===============3240288116037448303==--
 
