@@ -2,76 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B49813C234
-	for <lists+usrp-users@lfdr.de>; Wed, 15 Jan 2020 14:03:54 +0100 (CET)
-Received: from [::1] (port=41148 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A09513CA0C
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Jan 2020 17:56:30 +0100 (CET)
+Received: from [::1] (port=45540 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iriKu-0004on-QS; Wed, 15 Jan 2020 08:03:52 -0500
-Received: from bbsoweb.bbso.njit.edu ([97.93.171.158]:37702)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <jihs@bbso.njit.edu>) id 1io1tn-0000mQ-PM
- for usrp-users@lists.ettus.com; Sun, 05 Jan 2020 04:08:39 -0500
-Received: from User (sr091.sweetesttimes.com [192.99.175.113] (may be forged))
- (authenticated bits=0)
- by bbsoweb.bbso.njit.edu (8.14.7/8.14.7) with ESMTP id 00594Lkd044717;
- Sun, 5 Jan 2020 01:04:23 -0800
-Message-Id: <202001050904.00594Lkd044717@bbsoweb.bbso.njit.edu>
-Date: Sun, 5 Jan 2020 01:05:23 -0800
+	id 1irlxv-0004Fc-QE; Wed, 15 Jan 2020 11:56:23 -0500
+Received: from mail-lj1-f180.google.com ([209.85.208.180]:44636)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
+ id 1irlxs-0004BA-Jr
+ for usrp-users@lists.ettus.com; Wed, 15 Jan 2020 11:56:20 -0500
+Received: by mail-lj1-f180.google.com with SMTP id u71so19300677lje.11
+ for <usrp-users@lists.ettus.com>; Wed, 15 Jan 2020 08:56:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4u3ndj84lvd1YuR7htJmJLT7pHPN7nqu7LrWwcc0fxU=;
+ b=oT1dHIczV/IYhTEb3lb1UdRbYOFo0jZorhL/6+h48JTPvuXsxJy57D35ZfxsS2yMvX
+ K3ZF99zZNlDRBfRiYRPqAH6smQx4pogU6pmGM0T+wKEK+vYstJgFTVRzQ4I4McWyfLkL
+ 1cDFTQ/aTGarKEYIQy5UsLUrKQSUunXxTOH5wcaFZ7kxkIX6Z19fHuSyP3tCjA4GphOy
+ jKtNCvcSbN4emusbdzPZWLvYtB3Hd8Dv2NuiKft6+ci7jUAB7HIis4GAs0z4IgJ45ih/
+ Yy6/VI/KOaTR+/kreiYFZMaRXbUsJ4HWixVKyzRkthlTdvtgmsroOZfNKqpHMG8EtNcT
+ 40+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4u3ndj84lvd1YuR7htJmJLT7pHPN7nqu7LrWwcc0fxU=;
+ b=QsDwh9O5Be3H3+Rv7iVVwFmH0MzXQzsfuXEtaphj30C4ReRN8E2tRjr+480PZx8iQY
+ bXGnD47VeaUgiKLq/nQd171MC9tfsXTHpN/o7BTZ/Q3A1hYlk24nd/2GC8rrkcdIQDCu
+ geUv/IQS3Hlp+ocS0MlMEHAny++KJanVvBYOpaBqVdoXY9ecLscLqApsHvRX/Y5pmMpU
+ 0DqWnIBYDAZrA3WCXjOqfyqXWXBha1fUh9xjLpj2dQcKGEFDegAEeXqx8A+4MtZWjAM9
+ Je2m/bt4V8OM9D6hoNsUT+4Rtz3mh0nfmsVCvTvG0GzVA8UniDRNmjvGrNoaEcjSmzG2
+ FgPQ==
+X-Gm-Message-State: APjAAAW9g/Z7QgsZrxSP1zyD7MyviuzHJylYuDnDNJFamOzli0ZxwcEC
+ Dyefj/Wox9asLOVGMsO9bpDmkihYYYw87q4MhLxCsN26
+X-Google-Smtp-Source: APXvYqxxXfdrnjCENrgdQDSOH4Bcp/Do3rsZWHI4v0mK+af7OwT7uZGdDanKbrkmEAIuGXIKuoaEQSZ7oyO7SCjTzNk=
+X-Received: by 2002:a2e:8e85:: with SMTP id z5mr2462429ljk.212.1579107339330; 
+ Wed, 15 Jan 2020 08:55:39 -0800 (PST)
 MIME-Version: 1.0
-X-Priority: 3
-X-MSMail-Priority: Normal
-X-Mailer: Microsoft Outlook Express 6.00.2600.0000
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
-X-Spam-Flag: YES
-X-Spam-Status: Yes, score=38.7 required=1.1 tests=ADVANCE_FEE_5_NEW_MONEY,
- ALL_TRUSTED,AXB_XMAILER_MIMEOLE_OL_024C2,FORGED_MUA_OUTLOOK,
- FORGED_OUTLOOK_HTML,FORGED_OUTLOOK_TAGS,FREEMAIL_FORGED_REPLYTO,
- FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,FROM_MISSPACED,
- FROM_MISSP_EH_MATCH,FROM_MISSP_FREEMAIL,FROM_MISSP_MSFT,FROM_MISSP_USER,
- FROM_MISSP_XPRIO,FSL_CTYPE_WIN1251,FSL_NEW_HELO_USER,HK_NAME_MR_MRS,HK_SCAM,
- HTML_MESSAGE,LOTS_OF_MONEY,MIME_HTML_ONLY,MISSING_HEADERS,MISSING_MID,
- MONEY_FRAUD_8,MONEY_FROM_MISSP,NSL_RCVD_FROM_USER,REPLYTO_WITHOUT_TO_CC,
- SUBJ_ALL_CAPS,TO_NO_BRKTS_FROM_MSSP,UPPERCASE_75_100 autolearn=no
- autolearn_force=no version=3.4.0
-X-Spam-Report: * -3.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
- *  2.5 FSL_CTYPE_WIN1251 Content-Type only seen in 419 spam
- *  1.8 NSL_RCVD_FROM_USER Received from User
- *  0.5 SUBJ_ALL_CAPS Subject is all capitals
- *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
- *      (gessh01[at]gmail.com)
- *  1.2 MISSING_HEADERS Missing To: header
- *  0.0 HTML_MESSAGE BODY: HTML included in message
- *  0.1 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
- *  0.1 MISSING_MID Missing Message-Id: header
- *  1.2 UPPERCASE_75_100 message body is 75-100% uppercase
- *  2.3 FROM_MISSP_MSFT From misspaced + supposed Microsoft tool
- *  2.0 FSL_NEW_HELO_USER Spam's using Helo and User
- *  0.0 FORGED_OUTLOOK_HTML Outlook can't send HTML message only
- *  2.2 FROM_MISSP_USER From misspaced, from "User"
- *  0.6 FORGED_OUTLOOK_TAGS Outlook can't send HTML in this format
- *  1.0 HK_NAME_MR_MRS No description available.
- *  0.0 LOTS_OF_MONEY Huge... sums of money
- *  2.0 HK_SCAM No description available.
- *  2.0 FROM_MISSP_XPRIO Misspaced FROM + X-Priority
- *  1.9 REPLYTO_WITHOUT_TO_CC No description available.
- *  1.3 AXB_XMAILER_MIMEOLE_OL_024C2 Yet another X header trait
- *  2.0 MONEY_FROM_MISSP Lots of money and misspaced From
- *  2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
- *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain different
- *      freemails
- *  2.5 TO_NO_BRKTS_FROM_MSSP Multiple header formatting problems
- *  0.9 FROM_MISSPACED From: missing whitespace
- *  2.0 FROM_MISSP_EH_MATCH From misspaced, matches envelope
- *  2.8 FORGED_MUA_OUTLOOK Forged mail pretending to be from MS Outlook
- *  1.6 FROM_MISSP_FREEMAIL From misspaced + freemail provider
- *  3.0 MONEY_FRAUD_8 Lots of money and very many fraud phrases
- *  0.4 ADVANCE_FEE_5_NEW_MONEY Advance Fee fraud and lots of money
-X-Spam-Level: **************************************
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
- bbsoweb.bbso.njit.edu
-X-Mailman-Approved-At: Wed, 15 Jan 2020 08:03:45 -0500
-Subject: [USRP-users] CAN YOU HELP ME OUT?
+References: <33716e89222c44d1a9064914d0955081@oc11expo22.exchange.mit.edu>
+In-Reply-To: <33716e89222c44d1a9064914d0955081@oc11expo22.exchange.mit.edu>
+Date: Wed, 15 Jan 2020 10:55:27 -0600
+Message-ID: <CANf970ah2WysX3RpyV8DCbwkdd3B9thdXX9rLHFZo6GMx_5bZg@mail.gmail.com>
+To: Richard Joseph Muri <ri28856@mit.edu>
+Subject: Re: [USRP-users] X310 scheduled issue_stream_cmd()
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: MRS HELEN GEORGE via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: gessh01@gmail.com
-Cc: MRS HELEN GEORGE <jihs@bbso.njit.edu>
-Content-Type: multipart/mixed; boundary="===============1487790111895379081=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2566095204484490638=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -100,132 +76,148 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1487790111895379081==
-Content-Type: text/html;
-	charset="Windows-1251"
-Content-Transfer-Encoding: 7bit
+--===============2566095204484490638==
+Content-Type: multipart/alternative; boundary="00000000000005f7a0059c30947b"
 
-<HTML><HEAD><TITLE></TITLE>
-</HEAD>
-<BODY bgcolor=#FFFFFF leftmargin=5 topmargin=5 rightmargin=5 bottommargin=5>
-<FONT size=2 color=#000000 face="Arial">
-<DIV>
-<B><I>GOOD DAY.</B></I></DIV>
-<DIV>
-<B><I>&nbsp;</B></I></DIV>
-<DIV>
-<B><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; URGENT - HELP ME DISTRIBUTE MY $12 MILLION TO HUMANITARIAN.</B></I></DIV>
-<DIV>
-<B><I>&nbsp;</B></I></DIV>
-<DIV>
-<B><I>THIS MAIL MIGHT COME TO YOU AS A SURPRISE AND THE TEMPTATION TO IGNORE</B></I></DIV>
-<DIV>
-<B><I>IT AS UNSERIOUS COULD COME INTO YOUR MIND BUT PLEASE</B></I></DIV>
-<DIV>
-<B><I>CONSIDER IT A DIVINE WISH AND ACCEPT IT WITH A DEEP SENSE OF HUMILITY.</B></I></DIV>
-<DIV>
-<B><I>I AM MRS HELEN GEORGE AND I AM A 61 YEARS OLD WOMAN.</B></I></DIV>
-<DIV>
-<B><I>I AM A SOUTH AFRICAN MARRIED TO A SIERRA LEONIA. I WAS THE</B></I></DIV>
-<DIV>
-<B><I>PRESIDENT/CEO OF OIL COMPANY INTERNATIONAL-AN OIL SERVICING COMPANY IN</B></I></DIV>
-<DIV>
-<B><I>JOHANNESBURG. I WAS ALSO MARRIED WITH NO CHILD.</B></I></DIV>
-<DIV>
-<B><I>MY HUSBAND DIED 3YEARS AGO. BEFORE THIS HAPPENED MY BUSINESS AND</B></I></DIV>
-<DIV>
-<B><I>CONCERN FOR MAKING MONEY WAS ALL I WAS LIVING FOR AND I NEVER REALLY</B></I></DIV>
-<DIV>
-<B><I>CARED ABOUT OTHER PEOPLE. BUT SINCE THE LOSS OF MY HUSBAND AND ALSO</B></I></DIV>
-<DIV>
-<B><I>BECAUSE I HAD HAVE NO CHILD TO CALL MY OWN, I HAVE FOUND A NEW DESIRE</B></I></DIV>
-<DIV>
-<B><I>TO ASSIST THE HELPLESS, I HAVE BEEN HELPING ORPHANS IN</B></I></DIV>
-<DIV>
-<B><I>ORPHANAGES/MOTHERLESS OMES/HUMANITARIANS. I HAVE DONATED SOME MONEY TO</B></I></DIV>
-<DIV>
-<B><I>ORPHANS IN SUDAN,ETHIOPIA, CAMEROON, SPAIN, AUSTRIA, GERMANY AND SOME</B></I></DIV>
-<DIV>
-<B><I>ASIAN COUNTRIES.</B></I></DIV>
-<DIV>
-<B><I>&nbsp;</B></I></DIV>
-<DIV>
-<B><I>IN SUMMARY:- I HAVE 12,000,000.00 (TWELVE MILLION) U. S. DOLLARS WHICH</B></I></DIV>
-<DIV>
-<B><I>I DEPOSITED IN A SECURITY COMPANY IN COTONOU BENIN REPUBLIC AS A</B></I></DIV>
-<DIV>
-<B><I>FAMILY TREASURE &amp; ARTEFACTS, PLEASE I WANT YOU TO NOTE THAT THE</B></I></DIV>
-<DIV>
-<B><I>SECURITY COMPANY DOES NOT KNOW THE REAL CONTENT TO BE MONEY AND I WANT</B></I></DIV>
-<DIV>
-<B><I>YOU TO ASSIST ME IN CLAIMING THE CONSIGNMENT &amp; DISTRIBUTING THE MONEY</B></I></DIV>
-<DIV>
-<B><I>TO CHARITY ORGANIZATIONS, I AGREE TO REWARD YOU WITH PART OF THE MONEY</B></I></DIV>
-<DIV>
-<B><I>FOR YOUR ASSISTANCE, KINDNESS AND PARTICIPATION IN THIS GODLY PROJECT.</B></I></DIV>
-<DIV>
-<B><I>BEFORE I BECAME ILL, I KEPT $12 MILLION IN A LONG-TERM DEPOSIT IN A</B></I></DIV>
-<DIV>
-<B><I>SECURITY COMPANY WHICH I DECLARED AS A FAMILY TREASURE ARTIFIARTS.I AM</B></I></DIV>
-<DIV>
-<B><I>IN THE HOSPITAL WHERE I HAVE BEEN UNDERGOING TREATMENT FOR OESOPHAGEAL</B></I></DIV>
-<DIV>
-<B><I>CANCER AND MY DOCTORS HAVE TOLD ME THAT I HAVE ONLY A FEW MONTHS TO</B></I></DIV>
-<DIV>
-<B><I>LIVE. IT IS MY LAST WISH TO SEE THIS MONEY DISTRIBUTED TO CHARITY</B></I></DIV>
-<DIV>
-<B><I>ORGANIZATIONS.</B></I></DIV>
-<DIV>
-<B><I>BECAUSE MY RELATIVES AND FRIENDS HAVE PLUNDERED SO MUCH OF MY WEALTH</B></I></DIV>
-<DIV>
-<B><I>SINCE MY ILLNESS, I CANNOT LIVE WITH</B></I></DIV>
-<DIV>
-<B><I>THE AGONY OF ENTRUSTING THIS HUGE RESPONSIBILITY TO ANY OF THEM.</B></I></DIV>
-<DIV>
-<B><I>&nbsp;</B></I></DIV>
-<DIV>
-<B><I>PLEASE, I BEG YOU IN THE NAME OF GOD TO HELP ME COLLECT THE $12</B></I></DIV>
-<DIV>
-<B><I>MILLION WHICH I DEPOSIT WITH THE NAME OF MY LATE HUSBAND AS THE NEXT</B></I></DIV>
-<DIV>
-<B><I>OF KIN BECAUSE NOW DUE TO MY HEALTH THE SECURITY COMPANY IS DEMANDING</B></I></DIV>
-<DIV>
-<B><I>FOR A NEXT OF KIN IN OTHER TO GET THE MONEY TRANSFERRED IN OTHER TO</B></I></DIV>
-<DIV>
-<B><I>SEE THAT MY LAST WISH IS ACCOMPLISHED WHICH IS SHARING THE MONEY AMONG</B></I></DIV>
-<DIV>
-<B><I>CHARITY ORGANIZATIONS.</B></I></DIV>
-<DIV>
-<B><I>YOU ARE AT LIBERTY TO USE YOUR DISCRETION TO DISTRIBUTE THE MONEY AND</B></I></DIV>
-<DIV>
-<B><I>FEEL FREE AS WELL TO REIMBURSE YOURSELF WHEN YOU HAVE THE MONEY FOR</B></I></DIV>
-<DIV>
-<B><I>ANY EXPENSES IN DISTRIBUTING THE MONEY TO CHARITY ORGANIZATIONS.</B></I></DIV>
-<DIV>
-<B><I>I AM WILLING TO REWARD YOU FOR YOUR ASSISTANCE AND KINDNESS. KINDLY</B></I></DIV>
-<DIV>
-<B><I>EXPEDITE ACTION AND CONTACT ME VIA EMAIL AT mrshel@zoho.com FOR</B></I></DIV>
-<DIV>
-<B><I>MORE DETAILS.</B></I></DIV>
-<DIV>
-<B><I>MAY THE GOOD LORD BLESS YOU AND YOUR FAMILY?</B></I></DIV>
-<DIV>
-<B><I>BEST REGARDS.</B></I></DIV>
-<DIV>
-<B><I>MRS HELEN GEORGE&nbsp; </B></I></DIV>
-<DIV>
-<B><I>PLZ REPLLY TO MY PRIVATE EMAILBOX: mrshel@zoho.com</B></I></DIV>
-<DIV>
-&nbsp;</DIV>
-<DIV>
-&nbsp;</DIV>
-<DIV>
-&nbsp;</DIV>
-</FONT>
-</BODY></HTML>
+--00000000000005f7a0059c30947b
+Content-Type: text/plain; charset="UTF-8"
+
+Richard,
+
+I believe what you're looking for is the depth of the command queue. For
+the X310, this FIFO has a depth of 16. Any command that you issue to the
+X310 that has a command time set will be held in this FIFO until the
+radio's time matches the command time, at which point the command is
+executed.
+
+You should definitely keep track of the state of the command queue -
+overflowing this FIFO will put the radio in a bad state, usually requiring
+a restart.
+
+https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a191b78b00d051d3d51c2f719361c1fb5
+
+https://files.ettus.com/manual/classuhd_1_1time__spec__t.html
+
+Sam Reiter
+
+On Tue, Jan 14, 2020 at 2:01 PM Richard Joseph Muri via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello,
+>
+>
+> I'm using an X310 with a number of scheduled receives. I suspect there is
+> a FIFO on the USRP that holds the stream_cmd_t until it is time to collect
+> the requested samples. I have not been able to find documentation about the
+> size of this FIFO. Could anybody point me in the proper direction?
+>
+>
+> Do I need to keep track of the number of stream_cmds in the FIFO? Is there
+> some kind of acknowledge I can use to know the stream_cmd has left the
+> FIFO? At the moment I am running an C++ application with two threads, one
+> to issue_stream_cmd(), and one to recv(). I loop each operation, posting a
+> semaphore after each recv() and waiting on a semaphore before every
+> issue_stream_cmd().
+>
+>
+> I found this thread about using set_start_time():
+>
+>
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2016-July/049022.html
+>
+>
+> Are these commands on the same FIFO issue_stream_cmd() uses?
+>
+>
+> Thank you!
+> Richard Muri
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000005f7a0059c30947b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Richard,</div><div><br></div><div>I believe what you&=
+#39;re looking for is the depth of the command queue. For the X310, this FI=
+FO has a depth of 16. Any command that you issue to the X310 that has a com=
+mand time set will be held in this FIFO until the radio&#39;s time matches =
+the command time, at which point the command is executed.</div><div><br></d=
+iv><div>You should definitely keep track of the state of the command queue =
+- overflowing this FIFO will put the radio in a bad state, usually requirin=
+g a restart. <br></div><div><br></div><div><a href=3D"https://files.ettus.c=
+om/manual/classuhd_1_1usrp_1_1multi__usrp.html#a191b78b00d051d3d51c2f719361=
+c1fb5">https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#=
+a191b78b00d051d3d51c2f719361c1fb5</a></div><div><br></div><div><a href=3D"h=
+ttps://files.ettus.com/manual/classuhd_1_1time__spec__t.html">https://files=
+.ettus.com/manual/classuhd_1_1time__spec__t.html</a></div><div><br></div><d=
+iv><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_=
+signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0</div></d=
+iv></div></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Tue, Jan 14, 2020 at 2:01 PM Richard Joseph M=
+uri via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">
 
 
---===============1487790111895379081==
+
+
+<div dir=3D"ltr" style=3D"font-size:12pt;color:rgb(0,0,0);background-color:=
+rgb(255,255,255);font-family:Calibri,Arial,Helvetica,sans-serif">
+<p>Hello,</p>
+<p><br>
+</p>
+<p>I&#39;m using an X310 with a number of scheduled receives. I suspect the=
+re is a FIFO on the USRP that holds the stream_cmd_t until it is time to co=
+llect the requested samples. I have not been able to find documentation abo=
+ut the size of this FIFO. Could anybody
+ point me in the proper direction?</p>
+<p><br>
+</p>
+<p>Do I need to keep track of the number of stream_cmds in the FIFO? Is the=
+re some kind of acknowledge I can use to know the stream_cmd has left the F=
+IFO? At the moment I am running an C++ application with two threads, one to=
+ issue_stream_cmd(), and one to
+ recv(). I loop each operation, posting a semaphore after each recv() and w=
+aiting on a semaphore before every issue_stream_cmd().
+<br>
+</p>
+<p><br>
+</p>
+<p>I found this thread about using set_start_time(): </p>
+<p><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2=
+016-July/049022.html" target=3D"_blank">http://lists.ettus.com/pipermail/us=
+rp-users_lists.ettus.com/2016-July/049022.html</a></p>
+<p><br>
+</p>
+<p>Are these commands on the same FIFO issue_stream_cmd() uses?</p>
+<p><br>
+</p>
+<p>Thank you!</p>
+Richard Muri
+<p><br>
+</p>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000005f7a0059c30947b--
+
+
+--===============2566095204484490638==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -236,4 +228,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1487790111895379081==--
+--===============2566095204484490638==--
+
