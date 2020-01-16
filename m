@@ -2,55 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995F413CEA8
-	for <lists+usrp-users@lfdr.de>; Wed, 15 Jan 2020 22:15:18 +0100 (CET)
-Received: from [::1] (port=55858 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AFAF13D302
+	for <lists+usrp-users@lfdr.de>; Thu, 16 Jan 2020 05:06:17 +0100 (CET)
+Received: from [::1] (port=52636 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1irq0S-0002t3-3h; Wed, 15 Jan 2020 16:15:16 -0500
-Received: from sonic309-21.consmr.mail.ne1.yahoo.com ([66.163.184.147]:41321)
+	id 1irwQ8-0000Q4-Tx; Wed, 15 Jan 2020 23:06:12 -0500
+Received: from mail-vs1-f52.google.com ([209.85.217.52]:35510)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
- id 1irq0O-0002gB-B6
- for usrp-users@lists.ettus.com; Wed, 15 Jan 2020 16:15:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1579122870; bh=E8ypAIf9mvKMtcnh+o7GYciObi9nbbc9KLZEP76Qxl8=;
- h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject;
- b=KgO8GLZXZFs6qoH51AthQWOYQmF5jKzwbcB3ixVyZlh6lInPQqTzLhq2xy9H0dXiorOHc/097IX7NCFaiReumyTaeKwcxu50No+Q8VVtnHYaS7p18arYiAQJWEyo0i/Sagcgg+UfC73ANjYhijZ8JFY/FyRyaRtIANrRE3ZUZhgZZQ4Z8mJplA1AYrS+ps2d/3d1cQheMd9Avh2ZyW7rgyenurCD0hdI/KJJq7/6f7S6X6Nt9gnWBLoPlnC+LbMIo3Hr7FbGyw9v+NZYDYftfFHK2+Zj1sulxIJTxDajbd62YNWD6velEbXgsEa+wTKx0oOZVJ07F4/aBp96F2FOHA==
-X-YMail-OSG: 3Z4bQLwVM1kaHE.K_jbe7.aRLKY1GyMV5ccQUL8eUFxlXLbE7G_6yhkBm0UL5g6
- t9QgiUg.kYNklw34xJcDBZyJ6ARhnfGmXWTdPU5ahJyddYA6L0RLEOOz0KkS0Gs.3f6uhbT8sWU7
- zXZQyi5Ro0miGBD.6vvSg.eM.LIY.ESRXm9ptKMlCJdW38Qp8iTstViViUyDzJUFpzIRSQjG4ESN
- T7GkcBS8LMey0yglpjMFsXdpAburTp2bokmERVAIa5BBvvBnKrjbV1hLeFepjp4rVXZqlt5ikIeN
- 8nlJlNJJHOt2mk2IqNMBE18EVzw2udGjglvGyWiwYm3O0XtN8WL.qVBUOiKs714Xf8fBnhYgCP6o
- kuEdxnGOY0AhqTT47BRVh1mlb8dQh1jhtLnDYIh0fjepdtY.dq0hIKgYKSVT1uGwnq8s2VxoY0nu
- 9qUSjNSkgB0ivThfU7FXYEHuDZgTWlTp1ZUxdl06HU_RyGkMiYsbunK3WIGsaLRwJNcZ59Sd49ry
- O2szcsQz3UWIlYiG4TplUna5cIqq8PVnxEXOaHsOJfGgGQCbf5w1G_PGYx6ifPoEWJ.KtVjlK3uU
- 4Njx8AXsLQhadC5N7ZuVy7LeDYqYFqlT.M_0yRol_SLMDASi6cuLTAZjADw4QXkJwdkyEprBxYd4
- 6DeFB7ABJsiJrtsGbHcovxFb4qs7Bfnk4oSCDbPTbO7TNG65u57YNkHnIjpEDXNEh6ZKFsP2NI.4
- hwtCuddmnfiT9gj9oVVt6q_VkX0cxMMjuhFrrEJrQmnNqnbLu_tK5WlhoWaekcpOWfCvOyWwvV65
- VaySP6j2fHT9dolbKSXh0RQ55EGE7V4CwB6_qEImGzdqSrOMDN.ZUQw625u3K6RqqZ.RSsahjMxW
- DZd4Dovv5hIyAn5cLWyeRPKpRSjt1H_xutDhN3uN_MM2WJkwWnfW.owWl6mSicXpFjSCwO0CxA2j
- QuuA.hv4D_qvFO98QJ9V53ma_Tox4nMuAzWO1eF.sIQY2STFMy1ULrNDgvt49tKJ2hWU0q4GK3Xo
- l752h2gObNPQMeXha3DhMEL.qnYoudsLMrbbYSGRP7rVB8sd_5neDTwpm3xKSTDg.Q5SJXKyAjJ0
- YiL.g13OfJj20pgzfXXYYLHKqzPgopoCTb7s2RsV8MtVcfpCnjv7tQoIuwUdA.n0z7khFnmH09RS
- 5ejsv7radJZUwyGQXfAsQuBrU1TNw3Bun4wmUJe57_4lc2TAfg8iRxzXoBEtbkDUjckjU1SXn5qR
- Hkd.DdfqMVx_5zLjwwEnqDguwR__MXOjR9cH5XS3mWKBYYxssZJga8YCk2mLh.3QaPmcCVNd83Jf
- 0vBOPW3J8YIucP4PIZtz3eJQrPdYyfjJdZcw.lNxsSaWNGt1IppBVOEXQnx3.lLoblJ.oXjOsgDO
- DJomLLQ--
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic309.consmr.mail.ne1.yahoo.com with HTTP; Wed, 15 Jan 2020 21:14:30 +0000
-Date: Wed, 15 Jan 2020 21:14:28 +0000 (UTC)
-To: "sam.reiter@ettus.com" <sam.reiter@ettus.com>
-Message-ID: <564835184.12134837.1579122868761@mail.yahoo.com>
-In-Reply-To: <CANf970Z_4UwAS3gJnQmjB0GwNqVQGZSUjjOW-5FHOHcQyHSngw@mail.gmail.com>
-References: <1991382912.12022218.1579112665200.ref@mail.yahoo.com>
- <1991382912.12022218.1579112665200@mail.yahoo.com>
- <CANf970Z_4UwAS3gJnQmjB0GwNqVQGZSUjjOW-5FHOHcQyHSngw@mail.gmail.com>
+ (Exim 4.92) (envelope-from <amritnagi32@gmail.com>)
+ id 1irwQ5-0000Hd-Du
+ for usrp-users@lists.ettus.com; Wed, 15 Jan 2020 23:06:09 -0500
+Received: by mail-vs1-f52.google.com with SMTP id x123so11876782vsc.2
+ for <usrp-users@lists.ettus.com>; Wed, 15 Jan 2020 20:05:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=7y5FvvV0lthhJ/sr8sUuChNi6EwnEv/eDFu9abwc7wI=;
+ b=W+eb8kU0uqB+hOwA3zOjCenMU6Dd7Kttg/DQ10Z++r98XVoEnZEJ8wK5hwnghyhy/j
+ uTQXFh3Fwi6fKgML+gqO2xBesDoY45UJjSx5ColCt2YNB1+biOPHlUZf3LqJRRaaCjtJ
+ N0qXOLuHJfarh+AbBJPXwG1TJZ/9SBwHm9+n8f7FTBSDerKHJCegFhbv3qe49gXCz2mz
+ H5MVGaVZAUpnOeNflcayFRtCYeCWhlDq2HqkZuYTJE5hfaitxzltbT8YfriqauOb8st0
+ BOm2FYpxm439zLWBiFpftARDWy6Ga6Kvsus4/NEsY/UG9wJ1z9Dq4JKo6P6f1Id8o5p8
+ AxgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=7y5FvvV0lthhJ/sr8sUuChNi6EwnEv/eDFu9abwc7wI=;
+ b=N/kGT9gZuNe8Bx3BFht6T/gFEXxaDXHqlvWasCg8pGgmrBgxbaX4InWuXMHRztql6x
+ 4bQ8+6Y3vNmIRW5TvkwqIk5Q2TstSbQnbOpqbIGLkqWxCCewjSp9Jt9a1XVvWBW3G+BL
+ KJsp0sTwqK6petlC+OoInoUfoJ3q0ed1rmd0iIah5+8bKuj4L++oH/f3936OljIp8BFf
+ MrIpawBSD0ik4lN5vVilsijoKLtIPUtxVuFi0D0ScFnHqk/m3eekzrZVmzSvgxCYoDQX
+ LlpzqknlZkxyQHvU6k91/ulQ1q8yhvIFoWGZpKqwi1bJmTXf7JFHi4QCXwyDasma8UQS
+ W7Ig==
+X-Gm-Message-State: APjAAAWw73PYdSnx2W5uyc8aJQ797hFrQBf1Xpz6Nbx+NjH4O7fBPli8
+ DPZG/HYbuKEzB1jaazUmp32jrlEBg7y82d64hwod1A==
+X-Google-Smtp-Source: APXvYqzMyIZsTAPkcqv/tZoySKgipObuKmmZ4sHogM5byKpxDrMyMEYA7+thN1HBuG1LhlkyhN02VUqWdcGzP1wHlMI=
+X-Received: by 2002:a67:2701:: with SMTP id n1mr301775vsn.103.1579147528541;
+ Wed, 15 Jan 2020 20:05:28 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.14873 YahooMailAndroidMobile YMobile/1.0
- (com.yahoo.mobile.client.android.mail/6.2.4; Android/10; QP1A.190711.020;
- beyond2; samsung; SM-G975F; 5.86; 2047x1080; )
-Subject: Re: [USRP-users] Supported ethernet controllers : X300 and U
+References: <CAA3PG_naMDLB52GhfcSwcr0CsU4aOooc+oQS70Lqvb+yjks7Pw@mail.gmail.com>
+ <5E1CB4A9.2030907@gmail.com>
+In-Reply-To: <5E1CB4A9.2030907@gmail.com>
+Date: Thu, 16 Jan 2020 09:34:50 +0530
+Message-ID: <CAA3PG_=TJqXY2B22ADB7TBvp69gkU_tU0kg7km6MXXAYJqQQZA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] Benchmarking set_tx_freq and set_rx_freq on X310,
+ B210 and N200
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: "santu_voonna@yahoo.com" <santu_voonna@yahoo.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3240288116037448303=="
+From: Amrit Pal Singh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Amrit Pal Singh <amritnagi32@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0189578892078184048=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,105 +76,496 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3240288116037448303==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_12134836_1696364099.1579122868759"
-Content-Length: 5479
+--===============0189578892078184048==
+Content-Type: multipart/alternative; boundary="0000000000007c98ea059c39efab"
 
-------=_Part_12134836_1696364099.1579122868759
-Content-Type: text/plain; charset=UTF-8
+--0000000000007c98ea059c39efab
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Marcus,
+
+Thanks for the inputs. I'll look into these.
+
+Thanks,
+Amrit
+
+On Mon, Jan 13, 2020 at 11:50 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 01/13/2020 05:26 AM, Amrit Pal Singh via USRP-users wrote:
+>
+> Hi All,
+>
+> I am benchmarking the following commands on X310, B210 and N200 on
+> UHD-3.14 version:
+>
+>    1. usrp->set_tx_freq(tune_req, 0);
+>    2. usrp->set_rx_freq(tune_req, 0);
+>
+> I am changing the frequencies inside a for loop for 1000 and 5000 times.
+> The code snippet is as follows:
+>     int count = 5000;
+>     uhd::usrp::multi_usrp::sptr usrp = uhd::usrp::multi_usrp::make(args);
+>     double start = usrp->get_time_now().get_real_secs();
+>     for(int a = 0; a < count; a++){
+>         uhd::tune_request_t tune_req = uhd::tune_request_t(800e6 + (a *
+> 1e6), 0);
+>         tune_req.dsp_freq_policy = uhd::tune_request_t::POLICY_NONE;
+>         tune_req.rf_freq_policy = uhd::tune_request_t::POLICY_AUTO;
+>         //usrp->set_tx_freq(tune_req, 0);
+>         usrp->set_rx_freq(tune_req, 0);
+>     }
+>     std::cout << "time:" << ((usrp->get_time_now().get_real_secs() -
+> start)/count) * 1000 << "(ms)" << std::endl;
+>
+> The following table summarizes the result observed with average time for a
+> single frequency hops and the hop rate as well for both Tx and Rx.
+>
+> X310 test
+>
+>
+>
+> No of hops Tx time (average) ms Tx Hops/second Rx time (average) ms Rx
+> Hops/second
+> 1000 0.0453756 22038.27608 0.0441415 22654.41818
+> 5000 0.051013 19602.84633 0.0457056 21879.15704
+>
+>
+>
+>
+>
+> B210 test
+>
+>
+>
+> No of hops Tx time (average) ms Tx Hops/second Rx time (average) ms Rx
+> Hops/second
+> 1000 3.34055 299.3519031 5.13762 194.6426555
+> 5000 3.35529 298.0368314 4.94233 202.3337171
+>
+>
+>
+>
+>
+> N200 test
+>
+>
+>
+> No of hops Tx time (average) ms Tx Hops/second Rx time (average) ms Rx
+> Hops/second
+> 1000 0.0530515 18849.6084 0.0504478 19822.46996
+> 5000 0.0391015 25574.46645 0.037663 26551.2572
+> As observed, the rate is really slow for B210. I also tested using another
+> B210 and it gave similar results.
+> Could anyone share any insights into these values.
+>
+> Thanks,
+> Amrit
+>
+>
+> Also, see here:
+>
+>
+> https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361?s#fastlock_mode
+>
+> The UHD drivers don't implement "fast lock mode", but if you only have 8
+> frequencies to manage, you could do some coding
+>   and make it work.  But the fact is that for many/most F-H scenarios, you
+> need more than that.  Which requires a lot of
+>   tricky stuff, using those 8 "fast lock" slots as a cache, and doing
+> cache management.  It may not end up being that much
+>   faster.
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000007c98ea059c39efab
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Please see my comments inline:
-That card should be fine for streaming, that controller just hasn't been ex=
-plicitly tested as far as I know.=C2=A0[SV]: I am TXing data at 50MHz (not =
-for rx) with one channel. Are there any other ethernet controllers rested?
-Are you planning on using DPDK?[SV]: NO (as I can achieve required sampling=
- rate)
-
-Sent from Yahoo Mail on Android=20
-=20
-  On Wed, 15 Jan 2020 at 19:07, Sam Reiter<sam.reiter@ettus.com> wrote:   S=
-antosh,
-That card should be fine for streaming, that controller just hasn't been ex=
-plicitly tested as far as I know. Are you planning on using DPDK?
-Sam Reiter=20
-
-On Wed, Jan 15, 2020 at 12:26 PM voonna santosh via USRP-users <usrp-users@=
-lists.ettus.com> wrote:
-
-Hi There,=C2=A0 =C2=A0Good morning. As I could see in the documentation, Et=
-tus recommends "X520 (Ethernet Controller)" at PC/host side. Is this a must=
-?=C2=A0=C2=A0 =C2=A0We are planning to use X552 Ethernet Controller and I a=
-m wondering will it cause any issue. Can you please let me know what are th=
-e Ethernet Controllers can be used at PC side for SFP+ ports?BR,Santosh=C2=
-=A0_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
+<div dir=3D"ltr">Hi Marcus,<div><br></div><div>Thanks=C2=A0for the inputs. =
+I&#39;ll look into these.</div><div><br></div><div>Thanks,</div><div>Amrit<=
+/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Mon, Jan 13, 2020 at 11:50 PM Marcus D. Leech via USRP-users &lt;<a=
+ href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
  =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 01/13/2020 05:26 AM, Amrit Pal Singh
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">Hi All,
+        <div><br>
+        </div>
+        <div>I am benchmarking the following=C2=A0commands on X310, B210 an=
+d
+          N200 on UHD-3.14 version:</div>
+        <div>
+          <ol>
+            <li>usrp-&gt;set_tx_freq(tune_req, 0);</li>
+            <li>usrp-&gt;set_rx_freq(tune_req, 0);</li>
+          </ol>
+          <div>I am changing the frequencies=C2=A0inside a for loop for 100=
+0
+            and 5000 times.</div>
+          <div>The code snippet=C2=A0is as follows:</div>
+          <div>=C2=A0 =C2=A0 int count =3D 5000;</div>
+          <div>=C2=A0 =C2=A0 uhd::usrp::multi_usrp::sptr usrp =3D
+            uhd::usrp::multi_usrp::make(args);<br>
+            =C2=A0 =C2=A0 double start =3D usrp-&gt;get_time_now().get_real=
+_secs();<br>
+            =C2=A0 =C2=A0 for(int a =3D 0; a &lt; count; a++){<br>
+            =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd::tune_request_t tune_req =3D
+            uhd::tune_request_t(800e6 + (a *<br>
+            1e6), 0);<br>
+            =C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req.dsp_freq_policy =3D
+            uhd::tune_request_t::POLICY_NONE;<br>
+            =C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req.rf_freq_policy =3D
+            uhd::tune_request_t::POLICY_AUTO;<br>
+            =C2=A0 =C2=A0 =C2=A0 =C2=A0 //usrp-&gt;set_tx_freq(tune_req, 0)=
+;<br>
+            =C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp-&gt;set_rx_freq(tune_req, 0);<=
+br>
+            =C2=A0 =C2=A0 }<br>
+            =C2=A0 =C2=A0 std::cout &lt;&lt; &quot;time:&quot; &lt;&lt;
+            ((usrp-&gt;get_time_now().get_real_secs() - start)/count) *
+            1000 &lt;&lt; &quot;(ms)&quot; &lt;&lt; std::endl;<br>
+          </div>
+          <div><br>
+          </div>
+          <div>The following=C2=A0table summarizes the result observed with
+            average time for a single frequency hops and the hop rate as
+            well for both Tx and Rx.</div>
+        </div>
+        <div><br>
+        </div>
+        <div>
+          <table dir=3D"ltr" style=3D"table-layout:fixed;font-size:10pt;fon=
+t-family:Arial;width:0px;border-collapse:collapse;border:none" border=3D"1"=
+ cellpadding=3D"0" cellspacing=3D"0">
+            <colgroup><col width=3D"100"><col width=3D"100"><col width=3D"1=
+00"><col width=3D"100"><col width=3D"100"></colgroup><tbody>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(0,0,0) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;paddin=
+g:2px 3px;vertical-align:bottom;font-weight:bold;text-align:center">X310
+                  test</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-ali=
+gn:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-ali=
+gn:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-ali=
+gn:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:2px 3px;vertical-ali=
+gn:bottom"><br>
+                </td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">No of hops</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom">Tx time (average) ms</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom">Tx Hops/second</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">Rx time (average) ms</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">Rx Hops/second</td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:h=
+idden;padding:2px 3px;vertical-align:bottom;text-align:right">1000</td>
+                <td style=3D"overflow:hidden;padding:2px 3px;vertical-align=
+:bottom;text-align:right;border:1px solid rgb(204,204,204)">0.0453756</td>
+                <td style=3D"overflow:hidden;padding:2px 3px;vertical-align=
+:bottom;text-align:right;border:1px solid rgb(204,204,204)">22038.27608</td=
+>
+                <td style=3D"overflow:hidden;padding:2px 3px;vertical-align=
+:bottom;text-align:right;border:1px solid rgb(204,204,204)">0.0441415</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(204,204,204) rgb(204,204,204);overflow:h=
+idden;padding:2px 3px;vertical-align:bottom;text-align:right">22654.41818</=
+td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom;text-align:right">5000</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom;text-align:right">0.051013</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom;text-align:right">19602.84633</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom;text-align:right">0.0457056</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom;text-align:right">21879.15704</td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom;font-weight:bold;text-align:center">B=
+210
+                  test</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">No of hops</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom">Tx time (average) ms</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom">Tx Hops/second</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">Rx time (average) ms</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">Rx Hops/second</td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:h=
+idden;padding:2px 3px;vertical-align:bottom;text-align:right">1000</td>
+                <td style=3D"overflow:hidden;padding:2px 3px;vertical-align=
+:bottom;text-align:right;border:1px solid rgb(204,204,204)">3.34055</td>
+                <td style=3D"overflow:hidden;padding:2px 3px;vertical-align=
+:bottom;text-align:right;border:1px solid rgb(204,204,204)">299.3519031</td=
+>
+                <td style=3D"overflow:hidden;padding:2px 3px;vertical-align=
+:bottom;text-align:right;border:1px solid rgb(204,204,204)">5.13762</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(204,204,204) rgb(204,204,204);overflow:h=
+idden;padding:2px 3px;vertical-align:bottom;text-align:right">194.6426555</=
+td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom;text-align:right">5000</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom;text-align:right">3.35529</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom;text-align:right">298.0368314</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom;text-align:right">4.94233</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom;text-align:right">202.3337171</td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom;font-weight:bold;text-align:center">N=
+200
+                  test</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom"><br>
+                </td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">No of hops</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom">Tx time (average) ms</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom">Tx Hops/second</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">Rx time (average) ms</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom">Rx Hops/second</td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:h=
+idden;padding:2px 3px;vertical-align:bottom;text-align:right">1000</td>
+                <td style=3D"overflow:hidden;padding:2px 3px;vertical-align=
+:bottom;text-align:right;border:1px solid rgb(204,204,204)">0.0530515</td>
+                <td style=3D"overflow:hidden;padding:2px 3px;vertical-align=
+:bottom;text-align:right;border:1px solid rgb(204,204,204)">18849.6084</td>
+                <td style=3D"overflow:hidden;padding:2px 3px;vertical-align=
+:bottom;text-align:right;border:1px solid rgb(204,204,204)">0.0504478</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(204,204,204) rgb(204,204,204);overflow:h=
+idden;padding:2px 3px;vertical-align:bottom;text-align:right">19822.46996</=
+td>
+              </tr>
+              <tr style=3D"height:21px">
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom;text-align:right">5000</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom;text-align:right">0.0391015</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom;text-align:right">25574.46645</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(204,204,204) rgb(0,0,0);overflow:hidden;padding:2px=
+ 3px;vertical-align:bottom;text-align:right">0.037663</td>
+                <td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:2px 3px;vertical-align:bottom;text-align:right">26551.2572</td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        </div>
+        <div>As observed, the rate is really slow for B210. I also
+          tested using another B210 and it gave similar results.=C2=A0</div=
+>
+        <div>Could anyone share any insights into these values.</div>
+        <div><br>
+        </div>
+        <div>Thanks,</div>
+        <div>Amrit</div>
+        <div><br>
+        </div>
+      </div>
+      <br>
+    </blockquote>
+    Also, see here:<br>
+    <br>
+<a href=3D"https://wiki.analog.com/resources/tools-software/linux-drivers/i=
+io-transceiver/ad9361?s#fastlock_mode" target=3D"_blank">https://wiki.analo=
+g.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361?s#fastl=
+ock_mode</a><br>
+    <br>
+    The UHD drivers don&#39;t implement &quot;fast lock mode&quot;, but if =
+you only
+    have 8 frequencies to manage, you could do some coding<br>
+    =C2=A0 and make it work.=C2=A0 But the fact is that for many/most F-H
+    scenarios, you need more than that.=C2=A0 Which requires a lot of<br>
+    =C2=A0 tricky stuff, using those 8 &quot;fast lock&quot; slots as a cac=
+he, and
+    doing cache management.=C2=A0 It may not end up being that much<br>
+    =C2=A0 faster.<br>
+    <br>
+    <br>
+    <br>
+  </div>
 
-------=_Part_12134836_1696364099.1579122868759
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
-Please see my comments inline:<div id=3D"yMail_cursorElementTracker_1579122=
-630911"><br></div><div id=3D"yMail_cursorElementTracker_1579122632724"><div=
- id=3D"yMail_cursorElementTracker_1579122643523">That card should be fine f=
-or streaming, that controller just hasn't been explicitly tested as far as =
-I know.&nbsp;</div><div id=3D"yMail_cursorElementTracker_1579122645279">[SV=
-]: I am TXing data at 50MHz (not for rx) with one channel. Are there any ot=
-her ethernet controllers rested?</div><div id=3D"yMail_cursorElementTracker=
-_1579122645468"><br></div><div id=3D"yMail_cursorElementTracker_15791226454=
-68">Are you planning on using DPDK?</div><div id=3D"yMail_cursorElementTrac=
-ker_1579122633763">[SV]: NO (as I can achieve required sampling rate)</div>=
-</div><div id=3D"yMail_cursorElementTracker_1579122631108"><br><br><div id=
-=3D"ymail_android_signature"><a id=3D"ymail_android_signature_link" href=3D=
-"https://go.onelink.me/107872968?pid=3DInProduct&amp;c=3DGlobal_Internal_YG=
-rowth_AndroidEmailSig__AndroidUsers&amp;af_wl=3Dym&amp;af_sub1=3DInternal&a=
-mp;af_sub2=3DGlobal_YGrowth&amp;af_sub3=3DEmailSignature">Sent from Yahoo M=
-ail on Android</a></div> <br> <blockquote style=3D"margin: 0 0 20px 0;"> <d=
-iv style=3D"font-family:Roboto, sans-serif; color:#6D00F6;"> <div>On Wed, 1=
-5 Jan 2020 at 19:07, Sam Reiter</div><div>&lt;sam.reiter@ettus.com&gt; wrot=
-e:</div> </div> <div style=3D"padding: 10px 0 0 20px; margin: 10px 0 0 0; b=
-order-left: 1px solid #6D00F6;"> <div id=3D"yiv8324057631"><div><div dir=3D=
-"ltr"><div>Santosh,</div><div><br clear=3D"none"></div><div id=3D"yMail_cur=
-sorElementTracker_1579122604386">That card should be fine for streaming, th=
-at controller just hasn't been explicitly tested as far as I know. Are you =
-planning on using DPDK?</div><div id=3D"yMail_cursorElementTracker_15791226=
-07959"><br clear=3D"none"></div><div><div class=3D"yiv8324057631gmail_signa=
-ture" dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter <br cle=
-ar=3D"none"></div></div></div></div></div></div><br clear=3D"none"><div cla=
-ss=3D"yiv8324057631gmail_quote"><div class=3D"yiv8324057631yqt6353199510 yQ=
-TDBase" id=3D"yiv8324057631yqt54110"><div class=3D"yiv8324057631gmail_attr"=
- dir=3D"ltr">On Wed, Jan 15, 2020 at 12:26 PM voonna santosh via USRP-users=
- &lt;<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:usrp-users@lists.=
-ettus.com" target=3D"_blank" href=3D"mailto:usrp-users@lists.ettus.com">usr=
-p-users@lists.ettus.com</a>&gt; wrote:<br clear=3D"none"></div><blockquote =
-class=3D"yiv8324057631gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex;"><div><div style=3D"font=
--family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div =
-dir=3D"ltr">Hi There,</div><div dir=3D"ltr">&nbsp; &nbsp;Good morning. As I=
- could see in the documentation, Ettus recommends "X520 (Ethernet Controlle=
-r)" at PC/host side. Is this a must?&nbsp;</div><div dir=3D"ltr">&nbsp; &nb=
-sp;We are planning to use X552 Ethernet Controller and I am wondering will =
-it cause any issue. Can you please let me know what are the Ethernet Contro=
-llers can be used at PC side for SFP+ ports?</div><div dir=3D"ltr">BR,</div=
-><div dir=3D"ltr">Santosh&nbsp;</div></div></div>__________________________=
-_____________________<br clear=3D"none">
-USRP-users mailing list<br clear=3D"none">
-<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:USRP-users@lists.ettus=
-.com" target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-use=
-rs@lists.ettus.com</a><br clear=3D"none">
-<a rel=3D"nofollow" shape=3D"rect" target=3D"_blank" href=3D"http://lists.e=
-ttus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.co=
-m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
-</blockquote></div></div></div></div> </div> </blockquote></div>
-------=_Part_12134836_1696364099.1579122868759--
+--0000000000007c98ea059c39efab--
 
 
---===============3240288116037448303==
+--===============0189578892078184048==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -188,5 +576,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3240288116037448303==--
+--===============0189578892078184048==--
 
