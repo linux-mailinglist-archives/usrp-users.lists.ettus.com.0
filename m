@@ -2,59 +2,42 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11FD113FA8E
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Jan 2020 21:26:24 +0100 (CET)
-Received: from [::1] (port=37638 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B33113FBB6
+	for <lists+usrp-users@lfdr.de>; Thu, 16 Jan 2020 22:52:32 +0100 (CET)
+Received: from [::1] (port=52424 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1isBic-0007UF-7m; Thu, 16 Jan 2020 15:26:18 -0500
-Received: from mail-qv1-f44.google.com ([209.85.219.44]:41848)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1isBiZ-0007Lm-0p
- for USRP-users@lists.ettus.com; Thu, 16 Jan 2020 15:26:15 -0500
-Received: by mail-qv1-f44.google.com with SMTP id x1so9722555qvr.8
- for <USRP-users@lists.ettus.com>; Thu, 16 Jan 2020 12:25:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=toV7H+y4v1YBiH9jpS/DXugXoTvuWQ8Z2sFWIhaGn24=;
- b=FqX5adU6PcB2PkUVftHWxzhD6YMwrE/iNRbxeGNUBoinyLsIQc6SHinxxzifVG1Wag
- QCrQkI6/y7rVg7AnKIohXU6bOObzPscGo7BFg+Ktvt64rjG743c552gY26xyB8gcUR7V
- 33aDUiS3fQ8r2x31dEGdQko481m3tBYSKBRCegZz1AMUvcD2RYN2rOwRrLjwgQx/nVRX
- JjUWn2B3nzR2wsxJo7xEGG31q7QhgaUAWwhb2J8Cl424QvTEAmHZ3t7KLrJxuQni8p73
- 3TigHehdKXtxgKxHi/T4+YcvUZqsvi2CZ1ifilmS5/IpndlHznon1NHNz5JUhDVaVxvx
- 6Y4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=toV7H+y4v1YBiH9jpS/DXugXoTvuWQ8Z2sFWIhaGn24=;
- b=CnGRekO2i6dUZOEgVTBOqnb3DJkrESTyLy1PvqzBJ69ZMoFcme3P+HcDJp7gHWOKya
- VhIy8wIvxE7l3a8nu+fVv4RIqX/PQM8B7sH0lU25XnjeRglGHJFPX4olonoBNK4el7di
- yboGzS7vWtwhYuKg4UEnOmThnPty0eTQ1EEXHKueAn68WNM58WqlhBvfr8RNi48M8bGq
- 5xV4bh4H0QdZE+O+s52+VYDbXUlzjxVMLHEd3I/7QBVeCk+gLb9iInbZCjSx4gdcuBA8
- 8CS+wyo+sRrztVkYEIXSscKGGDM3YaQVrppvBxXB8lNk4Dxd6zbsnaFvjTKfQnUYjyus
- f/ww==
-X-Gm-Message-State: APjAAAXIc4urk0qSoIlMUcFTR3kOryHRe8TJCLxtL+n/BTW8iDazsRR9
- Efs+6JdxSsLTAk6h+2X7YNdYv0+V0SU=
-X-Google-Smtp-Source: APXvYqxL7DV5ruYQAI7WmC9WDuHIY3iWkGkS5z4TYYJWOmU3bHNOQvPU7/g13LmkcSbMCOI6qiU7WA==
-X-Received: by 2002:a05:6214:c3:: with SMTP id
- f3mr4414712qvs.226.1579206333904; 
- Thu, 16 Jan 2020 12:25:33 -0800 (PST)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.gmail.com with ESMTPSA id s20sm10606250qkj.100.2020.01.16.12.25.33
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 16 Jan 2020 12:25:33 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Thu, 16 Jan 2020 15:25:32 -0500
-Message-Id: <12C3BA73-E38D-4C79-B957-7C09D2475D56@gmail.com>
-References: <1898489352.210189.1579168634008@mail.yahoo.com>
-In-Reply-To: <1898489352.210189.1579168634008@mail.yahoo.com>
-To: voonna santosh <santu_voonna@yahoo.com>
-X-Mailer: iPhone Mail (17C54)
-Subject: Re: [USRP-users] Supported ethernet controllers : X300 and UBX
+	id 1isD42-0004Nt-6U; Thu, 16 Jan 2020 16:52:30 -0500
+Received: from outgoing-exchange-1.mit.edu ([18.9.28.15]:47135)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <ri28856@mit.edu>) id 1isD3y-0004JJ-T4
+ for usrp-users@lists.ettus.com; Thu, 16 Jan 2020 16:52:27 -0500
+Received: from w92exedge3.exchange.mit.edu (W92EXEDGE3.EXCHANGE.MIT.EDU
+ [18.7.73.15])
+ by outgoing-exchange-1.mit.edu (8.14.7/8.12.4) with ESMTP id 00GLq2id005124
+ for <usrp-users@lists.ettus.com>; Thu, 16 Jan 2020 16:52:17 -0500
+Received: from oc11expo22.exchange.mit.edu (18.9.4.84) by
+ w92exedge3.exchange.mit.edu (18.7.73.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1293.2; Thu, 16 Jan 2020 16:49:39 -0500
+Received: from oc11expo22.exchange.mit.edu (18.9.4.84) by
+ oc11expo22.exchange.mit.edu (18.9.4.84) with Microsoft SMTP Server (TLS) id
+ 15.0.1365.1; Thu, 16 Jan 2020 16:51:15 -0500
+Received: from oc11expo22.exchange.mit.edu ([18.9.4.84]) by
+ oc11expo22.exchange.mit.edu ([18.9.4.84]) with mapi id 15.00.1365.000; Thu,
+ 16 Jan 2020 16:51:15 -0500
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: High Throughput scheduled receives
+Thread-Index: AQHVzLRKwvd/+8bo3ECQ0mAxMNK1cw==
+Date: Thu, 16 Jan 2020 21:51:15 +0000
+Message-ID: <1579211475555.38318@mit.edu>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [129.55.200.20]
+MIME-Version: 1.0
+Subject: [USRP-users] High Throughput scheduled receives
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,10 +49,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9210932940161217927=="
+From: "Richard J. Muri via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Richard J. Muri" <ri28856@mit.edu>
+Content-Type: multipart/mixed; boundary="===============3041976039651684415=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,176 +65,327 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============3041976039651684415==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_157921147555538318mitedu_"
 
---===============9210932940161217927==
-Content-Type: multipart/alternative; boundary=Apple-Mail-780ADD0D-D740-4F4B-A131-A2A9117FBD3F
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-780ADD0D-D740-4F4B-A131-A2A9117FBD3F
-Content-Type: text/plain;
-	charset=utf-8
+--_000_157921147555538318mitedu_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-This sounds like a PHY issue, and that level
-Of issue is usually some SFP+ module compatibility issue.=20
-
-The 10GIG MAC in the X310 is implemented in the FPGA, and I believe uses Xil=
-inx Modules within the FPGA.=20
+Hello,
 
 
+I'm developing a UHD C++ application for testing the limits of the scheduli=
+ng granularity I can achieve using an X310 on my host system. I'm running a=
+ Linux box with dual Xeon gold processors and a 10 gigabit ethernet interfa=
+ce to my X310. The X310 is clocked to 100 MSPS.
 
-Sent from my iPhone
 
-> On Jan 16, 2020, at 4:58 AM, voonna santosh via USRP-users <usrp-users@lis=
-ts.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> Hi Sam,
->    The reason for this is that, I am seeing something strange here with fi=
-bre connection. The PC comes up and doesn't negotiate the speed with SDR. No=
-w we are in a situation to find the root cause of this. Either the HW/SW at P=
-C side is causing the issue or HW/SW at PC side is not compatible with SDR.
->=20
-> I have tried following methods at PC side and no luck:
-> Bring down the fibre interface and up again
-> Turned on auto neg and at PC side and no luck
-> Used ethtool to set the speed and no luck
-> Many other option being tried, but doesn't help
->=20
-> All I want:
-> What is(are) the Ethernet controller(s) being used in X300(HW and SW if it=
- is OK to reveal)? This will allow us to check with Intel to select a right c=
-ontroller at PC side
->=20
-> What are the ethernet controllers that are being tested at PC side?=20
->=20
-> Any information in this front would be highly appreciated.
->=20
-> BR,
-> Santosh
->=20
-> On Wednesday, January 15, 2020, 07:07:58 PM GMT, Sam Reiter <sam.reiter@et=
-tus.com> wrote:
->=20
->=20
-> Santosh,
->=20
-> That card should be fine for streaming, that controller just hasn't been e=
-xplicitly tested as far as I know. Are you planning on using DPDK?
->=20
-> Sam Reiter=20
->=20
-> On Wed, Jan 15, 2020 at 12:26 PM voonna santosh via USRP-users <usrp-users=
-@lists.ettus.com> wrote:
-> Hi There,
->    Good morning. As I could see in the documentation, Ettus recommends "X5=
-20 (Ethernet Controller)" at PC/host side. Is this a must?=20
->    We are planning to use X552 Ethernet Controller and I am wondering will=
- it cause any issue. Can you please let me know what are the Ethernet Contro=
-llers can be used at PC side for SFP+ ports?
-> BR,
-> Santosh=20
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+The premise is to simulate a packet arriving and telling the USRP to transm=
+it or receive in the near future. Each packet has a reception/transmission =
+time, and some switching time. During the switching time the USRP does not =
+need to receive or transmit (it can, but the data doesn't matter). I assume=
+ packets arrive in batches, and are all scheduled as fast as possible once =
+the batch arrives. After each batch is a long delay where I spin-lock to si=
+mulate waiting for the next batch to arrive.
 
---Apple-Mail-780ADD0D-D740-4F4B-A131-A2A9117FBD3F
-Content-Type: text/html;
-	charset=utf-8
+
+On the transmit side, I've shown that given an 80% duty cycle tx/switching,=
+ and a batch of ten packets, I can schedule transmissions continuously with=
+out problem on the order of 10s of microseconds (given on the order of mill=
+iseconds initial latency between when the first batch arrives and the first=
+ batch is transmitted). I want to replicate this level of granularity on th=
+e receive side as well, but so far have been unsuccessful. I have however s=
+et the USRP to streaming mode continuous and proven my host can receive con=
+tinuously in packets of the same size as my fine grained scheduling and kee=
+p up without error.
+
+
+I have two main approaches I've tried, scheduling a bunch of packets in adv=
+ance and calling recv and issue_stream_cmd alternately in a  single threade=
+d loop, and creating separate loops for issue_stream_cmd and recv. For the =
+multithreaded approach, I've gotten to a point where the first few thousand=
+ packets are scheduled properly, but after that it falls behind. The recv t=
+hread appears to keep up without issue, but I get late command errors back,=
+ implying the issue_stream_cmd thread is the problem. I've listed some exam=
+ple code below. Any advice on how to improve my issue_stream_cmd latency wo=
+uld be greatly appreciated!
+
+
+Thanks,
+
+Richard
+
+
+// Two threads: send a single command the size of a full batch then pause i=
+n a
+// loop; receive continuously (samples and done mode, atomic var to account=
+ for max number
+// of commands in each thread) See also: rxtest_cmds
+double rxtest_datas(USRPTypes &usrpType)
+{
+    uhd::set_thread_priority_safe(THREAD_PRIORITY);
+
+    // Atomic variable to synchronize start of recv() calls with start of
+    // issue_stream_cmd() calls
+    global_start =3D false;
+    // Ensure we don't exceed the cmd FIFO depth (defined in USRP_constants=
+)
+    global_cmd_num =3D 0;
+
+    // Struct with all the variables used in various rx tests
+    rxtest_vars rx(usrpType);
+
+    // Receive a full batch at a time
+    rx.packets_to_recv =3D rx.packets_to_recv / rx.batch_size;
+
+    // Launch thread to schedule USRP receives
+    std::thread cmd_thread(rxtest_cmds, rx);
+
+    // Buffer to receive into (include full batch in one buffer)
+    std::vector<std::complex<int16_t>> buff(RX_BATCH_SAMPLES);
+    int expected_samps =3D buff.size();
+
+    // timeout used by recv function to collect samples
+    double timeout =3D rx.initial_timeout;
+
+    // Don't start until the other thread has posted its first scheduled re=
+ceive
+    while (global_start =3D=3D false)
+    {
+        // Spin while we wait to start.
+    }
+
+    for (int i =3D 0; i < rx.packets_to_recv; i++)
+    {
+        // Use shorter timeout if this isn't the first packet
+        if (i > 0)
+        {
+            timeout =3D rx.batch_latency;
+        }
+        // Collect received samples from the USRP
+        rx.sample_count =3D rx.streamer->recv(&buff.front(), buff.size(), r=
+x.md, timeout);
+
+        // Post that we took a command off the USRP
+        if (global_cmd_num >=3D 1)
+        {
+            global_cmd_num--;
+        }
+
+        // Did we drop any samples on this slot?
+        if (rx.sample_count !=3D expected_samps)
+        {
+            rx.slot_drops++;
+        }
+
+        // Account for the errors of this slot
+        if (rx.md.error_code !=3D uhd::rx_metadata_t::ERROR_CODE_NONE)
+        {
+            rx.errors++;
+            rx.estruct.incrementRxErrorCount(rx.md.error_code);
+        }
+
+#if COLLECT_MD
+        rx.mdvec[i] =3D rx.md;
+#endif
+    } // end data collection
+
+    printMD(rx, true);
+    cmd_thread.join();
+    return rx.batch_latency;
+}
+
+
+--_000_157921147555538318mitedu_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">This sounds like a PHY issue, and that leve=
-l<div>Of issue is usually some SFP+ module compatibility issue.&nbsp;</div><=
-div><br></div><div>The 10GIG MAC in the X310 is implemented in the FPGA, and=
- I believe uses Xilinx Modules within the FPGA.&nbsp;</div><div><br></div><d=
-iv><br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><b=
-lockquote type=3D"cite">On Jan 16, 2020, at 4:58 AM, voonna santosh via USRP=
--users &lt;usrp-users@lists.ettus.com&gt; wrote:<br><br></blockquote></div><=
-blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div class=3D"ydp36a7a3f2=
-yahoo-style-wrap" style=3D"font-family:Helvetica Neue, Helvetica, Arial, san=
-s-serif;font-size:16px;"><div></div>
-        <div dir=3D"ltr" data-setdir=3D"false">Hi Sam,</div><div dir=3D"ltr"=
- data-setdir=3D"false">&nbsp; &nbsp;The reason for this is that, I am seeing=
- something strange here with fibre connection. The PC comes up and doesn't n=
-egotiate the speed with SDR. Now we are in a situation to find the root caus=
-e of this. Either the HW/SW at PC side is causing the issue or HW/SW at PC s=
-ide is not compatible with SDR.</div><div dir=3D"ltr" data-setdir=3D"false">=
-<br></div><div dir=3D"ltr" data-setdir=3D"false">I have tried following meth=
-ods at PC side and no luck:</div><div dir=3D"ltr" data-setdir=3D"false">Brin=
-g down the fibre interface and up again</div><div dir=3D"ltr" data-setdir=3D=
-"false">Turned on auto neg and at PC side and no luck</div><div dir=3D"ltr" d=
-ata-setdir=3D"false">Used ethtool to set the speed and no luck</div><div dir=
-=3D"ltr" data-setdir=3D"false">Many other option being tried, but doesn't he=
-lp</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" da=
-ta-setdir=3D"false"><b>All I want:</b></div><div dir=3D"ltr" data-setdir=3D"=
-false">What is(are) the Ethernet controller(s) being used in X300(HW and SW i=
-f it is OK to reveal)? This will allow us to check with Intel to select a ri=
-ght controller at PC side</div><div dir=3D"ltr" data-setdir=3D"false"><br></=
-div><div dir=3D"ltr" data-setdir=3D"false">What are the ethernet controllers=
- that are being tested at PC side?&nbsp;</div><div dir=3D"ltr" data-setdir=3D=
-"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Any information in t=
-his front would be highly appreciated.</div><div dir=3D"ltr" data-setdir=3D"=
-false"><br></div><div dir=3D"ltr" data-setdir=3D"false">BR,</div><div dir=3D=
-"ltr" data-setdir=3D"false">Santosh</div><div><br></div>
-       =20
-        </div><div id=3D"yahoo_quoted_9256781730" class=3D"yahoo_quoted">
-            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, sa=
-ns-serif;font-size:13px;color:#26282a;">
-               =20
-                <div>
-                    On Wednesday, January 15, 2020, 07:07:58 PM GMT, Sam Rei=
-ter &lt;sam.reiter@ettus.com&gt; wrote:
-                </div>
-                <div><br></div>
-                <div><br></div>
-                <div><div id=3D"yiv4343609832"><div><div dir=3D"ltr"><div>Sa=
-ntosh,</div><div><br clear=3D"none"></div><div>That card should be fine for s=
-treaming, that controller just hasn't been explicitly tested as far as I kno=
-w. Are you planning on using DPDK?</div><div><br clear=3D"none"></div><div><=
-div class=3D"yiv4343609832gmail_signature" dir=3D"ltr"><div dir=3D"ltr"><div=
-><div dir=3D"ltr">Sam Reiter <br clear=3D"none"></div></div></div></div></di=
-v></div><br clear=3D"none"><div class=3D"yiv4343609832gmail_quote"><div clas=
-s=3D"yiv4343609832yqt6093841100" id=3D"yiv4343609832yqt59140"><div class=3D"=
-yiv4343609832gmail_attr" dir=3D"ltr">On Wed, Jan 15, 2020 at 12:26 PM voonna=
- santosh via USRP-users &lt;<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"ma=
-ilto:usrp-users@lists.ettus.com" target=3D"_blank" href=3D"mailto:usrp-users=
-@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br clear=3D"none=
-"></div><blockquote class=3D"yiv4343609832gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex;"><div>=
-<div style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-=
-size:16px;"><div dir=3D"ltr">Hi There,</div><div dir=3D"ltr">&nbsp; &nbsp;Go=
-od morning. As I could see in the documentation, Ettus recommends "X520 (Eth=
-ernet Controller)" at PC/host side. Is this a must?&nbsp;</div><div dir=3D"l=
-tr">&nbsp; &nbsp;We are planning to use X552 Ethernet Controller and I am wo=
-ndering will it cause any issue. Can you please let me know what are the Eth=
-ernet Controllers can be used at PC side for SFP+ ports?</div><div dir=3D"lt=
-r">BR,</div><div dir=3D"ltr">Santosh&nbsp;</div></div></div>________________=
-_______________________________<br clear=3D"none">
-USRP-users mailing list<br clear=3D"none">
-<a rel=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:USRP-users@lists.ettus.=
-com" target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-users=
-@lists.ettus.com</a><br clear=3D"none">
-<a rel=3D"nofollow" shape=3D"rect" target=3D"_blank" href=3D"http://lists.et=
-tus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
-</blockquote></div></div></div></div></div>
-            </div>
-        </div><span>_______________________________________________</span><b=
-r><span>USRP-users mailing list</span><br><span>USRP-users@lists.ettus.com</=
-span><br><span>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettu=
-s.com</span><br></div></blockquote></div></body></html>=
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
+ottom:0;} --></style>
+</head>
+<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
+FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hello,</p>
+<p><br>
+</p>
+<p>I'm developing a&nbsp;UHD C&#43;&#43; application for testing the limits=
+ of the scheduling granularity I can achieve using an X310 on my host syste=
+m. I'm running a Linux box with dual Xeon gold processors and a 10 gigabit =
+ethernet interface to my X310. The X310 is clocked
+ to 100 MSPS. <br>
+</p>
+<p><br>
+</p>
+<p>The premise is to simulate a packet arriving and telling the USRP to tra=
+nsmit or receive in the near future. Each packet has a reception/transmissi=
+on time, and some switching time. During the switching time the USRP does n=
+ot need to receive or transmit (it
+ can, but the data doesn't matter). I assume packets arrive in batches, and=
+ are all scheduled as fast as possible once the batch arrives. After each b=
+atch is a long delay where I spin-lock to simulate waiting for the next bat=
+ch to arrive.
+<br>
+</p>
+<p><br>
+</p>
+<p>On the transmit side, I've shown that given an 80% duty cycle tx/switchi=
+ng, and a batch of ten packets, I can schedule transmissions continuously w=
+ithout problem on the order of 10s of microseconds (given on the order of m=
+illiseconds initial latency between
+ when the first batch arrives and the first batch is transmitted). I want t=
+o replicate this level of granularity on the receive side as well, but so f=
+ar have been unsuccessful. I have however set the USRP to streaming mode co=
+ntinuous and proven my host can
+ receive continuously in packets of the same size as my fine grained schedu=
+ling and keep up without error.</p>
+<p><br>
+</p>
+<p>I have two main approaches I've tried, scheduling a bunch of packets in =
+advance and calling recv and issue_stream_cmd alternately in a &nbsp;single=
+ threaded loop, and creating separate loops for issue_stream_cmd and recv. =
+For the multithreaded approach, I've
+ gotten to a point where the first few thousand packets are scheduled prope=
+rly, but after that it falls behind. The recv thread appears to keep up wit=
+hout issue, but I get late command errors back, implying the issue_stream_c=
+md thread is the problem. I've listed
+ some example code below. Any advice on how to improve my issue_stream_cmd =
+latency would be greatly appreciated!</p>
+<p><br>
+</p>
+<p>Thanks,</p>
+<p>Richard</p>
+<p><br>
+</p>
+//&nbsp;Two&nbsp;threads:&nbsp;send&nbsp;a&nbsp;single&nbsp;command&nbsp;th=
+e&nbsp;size&nbsp;of&nbsp;a&nbsp;full&nbsp;batch&nbsp;then&nbsp;pause&nbsp;i=
+n&nbsp;a<br>
+//&nbsp;loop;&nbsp;receive&nbsp;continuously&nbsp;(samples&nbsp;and&nbsp;do=
+ne&nbsp;mode,&nbsp;atomic&nbsp;var&nbsp;to&nbsp;account&nbsp;for&nbsp;max&n=
+bsp;number<br>
+//&nbsp;of&nbsp;commands&nbsp;in&nbsp;each&nbsp;thread)&nbsp;See&nbsp;also:=
+&nbsp;rxtest_cmds<br>
+double&nbsp;rxtest_datas(USRPTypes&nbsp;&amp;usrpType)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uhd::set_thread_priority_safe(THREAD_PRIORITY);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Atomic&nbsp;variable&nbsp;to&nbsp;synchroni=
+ze&nbsp;start&nbsp;of&nbsp;recv()&nbsp;calls&nbsp;with&nbsp;start&nbsp;of<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;issue_stream_cmd()&nbsp;calls<br>
+&nbsp;&nbsp;&nbsp;&nbsp;global_start&nbsp;=3D&nbsp;false;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Ensure&nbsp;we&nbsp;don't&nbsp;exceed&nbsp;=
+the&nbsp;cmd&nbsp;FIFO&nbsp;depth&nbsp;(defined&nbsp;in&nbsp;USRP_constants=
+)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;global_cmd_num&nbsp;=3D&nbsp;0;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Struct&nbsp;with&nbsp;all&nbsp;the&nbsp;var=
+iables&nbsp;used&nbsp;in&nbsp;various&nbsp;rx&nbsp;tests<br>
+&nbsp;&nbsp;&nbsp;&nbsp;rxtest_vars&nbsp;rx(usrpType);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Receive&nbsp;a&nbsp;full&nbsp;batch&nbsp;at=
+&nbsp;a&nbsp;time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;rx.packets_to_recv&nbsp;=3D&nbsp;rx.packets_to_recv=
+&nbsp;/&nbsp;rx.batch_size;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Launch&nbsp;thread&nbsp;to&nbsp;schedule&nb=
+sp;USRP&nbsp;receives<br>
+&nbsp;&nbsp;&nbsp;&nbsp;std::thread&nbsp;cmd_thread(rxtest_cmds,&nbsp;rx);<=
+br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Buffer&nbsp;to&nbsp;receive&nbsp;into&nbsp;=
+(include&nbsp;full&nbsp;batch&nbsp;in&nbsp;one&nbsp;buffer)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;std::complex&lt;int16_t&gt;&gt;&nbsp=
+;buff(RX_BATCH_SAMPLES);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;expected_samps&nbsp;=3D&nbsp;buff.size();<=
+br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;timeout&nbsp;used&nbsp;by&nbsp;recv&nbsp;fu=
+nction&nbsp;to&nbsp;collect&nbsp;samples<br>
+&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;timeout&nbsp;=3D&nbsp;rx.initial_timeou=
+t;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Don't&nbsp;start&nbsp;until&nbsp;the&nbsp;o=
+ther&nbsp;thread&nbsp;has&nbsp;posted&nbsp;its&nbsp;first&nbsp;scheduled&nb=
+sp;receive<br>
+&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(global_start&nbsp;=3D=3D&nbsp;false)<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Spin&nbsp;while&nbs=
+p;we&nbsp;wait&nbsp;to&nbsp;start.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=3D&nbsp;0;&nbsp;i&nbsp;&=
+lt;&nbsp;rx.packets_to_recv;&nbsp;i&#43;&#43;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Use&nbsp;shorter&nb=
+sp;timeout&nbsp;if&nbsp;this&nbsp;isn't&nbsp;the&nbsp;first&nbsp;packet<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(i&nbsp;&gt;&nbsp;0=
+)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tim=
+eout&nbsp;=3D&nbsp;rx.batch_latency;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Collect&nbsp;receiv=
+ed&nbsp;samples&nbsp;from&nbsp;the&nbsp;USRP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.sample_count&nbsp;=3D&nb=
+sp;rx.streamer-&gt;recv(&amp;buff.front(),&nbsp;buff.size(),&nbsp;rx.md,&nb=
+sp;timeout);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Post&nbsp;that&nbsp=
+;we&nbsp;took&nbsp;a&nbsp;command&nbsp;off&nbsp;the&nbsp;USRP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(global_cmd_num&nbs=
+p;&gt;=3D&nbsp;1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glo=
+bal_cmd_num--;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Did&nbsp;we&nbsp;dr=
+op&nbsp;any&nbsp;samples&nbsp;on&nbsp;this&nbsp;slot?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(rx.sample_count&nb=
+sp;!=3D&nbsp;expected_samps)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.=
+slot_drops&#43;&#43;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Account&nbsp;for&nb=
+sp;the&nbsp;errors&nbsp;of&nbsp;this&nbsp;slot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(rx.md.error_code&n=
+bsp;!=3D&nbsp;uhd::rx_metadata_t::ERROR_CODE_NONE)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.=
+errors&#43;&#43;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.=
+estruct.incrementRxErrorCount(rx.md.error_code);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+#if&nbsp;COLLECT_MD<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.mdvec[i]&nbsp;=3D&nbsp;r=
+x.md;<br>
+#endif<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;//&nbsp;end&nbsp;data&nbsp;collection<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;printMD(rx,&nbsp;true);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cmd_thread.join();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;rx.batch_latency;<br>
+}
+<p><br>
+</p>
+</body>
+</html>
 
---Apple-Mail-780ADD0D-D740-4F4B-A131-A2A9117FBD3F--
+--_000_157921147555538318mitedu_--
 
 
---===============9210932940161217927==
+--===============3041976039651684415==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -263,5 +396,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9210932940161217927==--
+--===============3041976039651684415==--
 
