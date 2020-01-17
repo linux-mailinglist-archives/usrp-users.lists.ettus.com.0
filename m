@@ -2,42 +2,89 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B33113FBB6
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Jan 2020 22:52:32 +0100 (CET)
-Received: from [::1] (port=52424 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E20371405DF
+	for <lists+usrp-users@lfdr.de>; Fri, 17 Jan 2020 10:13:59 +0100 (CET)
+Received: from [::1] (port=43140 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1isD42-0004Nt-6U; Thu, 16 Jan 2020 16:52:30 -0500
-Received: from outgoing-exchange-1.mit.edu ([18.9.28.15]:47135)
+	id 1isNhR-00041m-GL; Fri, 17 Jan 2020 04:13:53 -0500
+Received: from mail-db8eur05on2112.outbound.protection.outlook.com
+ ([40.107.20.112]:32470 helo=EUR05-DB8-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <ri28856@mit.edu>) id 1isD3y-0004JJ-T4
- for usrp-users@lists.ettus.com; Thu, 16 Jan 2020 16:52:27 -0500
-Received: from w92exedge3.exchange.mit.edu (W92EXEDGE3.EXCHANGE.MIT.EDU
- [18.7.73.15])
- by outgoing-exchange-1.mit.edu (8.14.7/8.12.4) with ESMTP id 00GLq2id005124
- for <usrp-users@lists.ettus.com>; Thu, 16 Jan 2020 16:52:17 -0500
-Received: from oc11expo22.exchange.mit.edu (18.9.4.84) by
- w92exedge3.exchange.mit.edu (18.7.73.15) with Microsoft SMTP Server (TLS) id
- 15.0.1293.2; Thu, 16 Jan 2020 16:49:39 -0500
-Received: from oc11expo22.exchange.mit.edu (18.9.4.84) by
- oc11expo22.exchange.mit.edu (18.9.4.84) with Microsoft SMTP Server (TLS) id
- 15.0.1365.1; Thu, 16 Jan 2020 16:51:15 -0500
-Received: from oc11expo22.exchange.mit.edu ([18.9.4.84]) by
- oc11expo22.exchange.mit.edu ([18.9.4.84]) with mapi id 15.00.1365.000; Thu,
- 16 Jan 2020 16:51:15 -0500
+ (Exim 4.92) (envelope-from <demel@ant.uni-bremen.de>)
+ id 1isNhM-0003xQ-Vx
+ for usrp-users@lists.ettus.com; Fri, 17 Jan 2020 04:13:49 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=On49d5nsMA/cNO+aFkqGz+XPou5Th2EUCVXwhbFeHAT7lUDbovV+uRn8f+sm3B9wS+9cIwKJ33R0FZLPiZPxpDKJhZr6Nfq229oxQKzqCMEuCg5IedHz6W0UHd1UTBm1AmTjKM4ei0qUB9BIUti5aH0JR0o2KOTBOWApbX7iTIe/KaEls/fRSOma8eQBthvsIc5/+CG2kd+jqLGcXaUy5rausPCD9M8oZPK7gT5jfxCxCDmfDXpkvyvMjdpuWEE94uaFjFn6G3P3d70ZMq3oHT3YyIlZSIarRg+/2R+l5H67in559lU/dO9qzePZeZC0mISIjA+uDWHYj8LT8a61/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y/Ob4iFq1nw8JjQxj/lSQ0QpnmfTHI3wA0KkGunk+zE=;
+ b=fTXRRiT4daaewr9RWYKEB8o5DM6eCQwb0OobcfKAdz2jvwXC/v5yRE2beQY61y6f8hPbiV3ZkUvHueyVqgSYsYvWSK1Qx+xulGG6T8w5IYA6Wz0AMdbloYH20Grk3ro2uaP/z/evflwfETxQ3d4PKeUiEpaGaGXKEUlTFMea+Sww6H0ieNrSuN3SQa3lMsAhFyQ0u6+DaXs4eKdHvUVTfAv2K8hJnqSpUie/fpAyGELpOX6aTcssxSy4pwK+E3r63UnVrEK6foQMK8OtVNTTBmBOcVO4eDFAPx1dtbbC72xsZ/0Y/Pg5Fj5VBAWVADvCNtXLPMdbidQNYX2hetpJvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
+ header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y/Ob4iFq1nw8JjQxj/lSQ0QpnmfTHI3wA0KkGunk+zE=;
+ b=hUtlaNF7TVZ+sbpMMop5TAt8wOl8Qjp/Cm34y77QhoFrTB2L300ZnZkr+sh6PHExazFGZR2VswZV45yp04YizgO2kCjtGNFrKdQ3D+z9M+lwIDJbuODCfblst1b7Y9Kw4ZjC8/pXur22SBfKM/NsiG8zXxXo49JclxlqS4KRrSU=
+Received: from VI1PR04MB6112.eurprd04.prod.outlook.com (20.179.27.84) by
+ VI1PR04MB4688.eurprd04.prod.outlook.com (20.177.54.158) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2644.23; Fri, 17 Jan 2020 09:13:05 +0000
+Received: from VI1PR04MB6112.eurprd04.prod.outlook.com
+ ([fe80::cd27:7942:e26c:1d12]) by VI1PR04MB6112.eurprd04.prod.outlook.com
+ ([fe80::cd27:7942:e26c:1d12%7]) with mapi id 15.20.2644.023; Fri, 17 Jan 2020
+ 09:13:05 +0000
+Received: from [134.102.176.97] (134.102.176.97) by
+ AM4PR05CA0025.eurprd05.prod.outlook.com (2603:10a6:205::38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2644.20 via Frontend Transport; Fri, 17 Jan 2020 09:13:05 +0000
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: High Throughput scheduled receives
-Thread-Index: AQHVzLRKwvd/+8bo3ECQ0mAxMNK1cw==
-Date: Thu, 16 Jan 2020 21:51:15 +0000
-Message-ID: <1579211475555.38318@mit.edu>
-Accept-Language: en-US
+Thread-Topic: N310 with lots of 'SU' at higher rates
+Thread-Index: AQHVzRZTygjXa5odLUG/SloLj5DctA==
+Date: Fri, 17 Jan 2020 09:13:05 +0000
+Message-ID: <ceccc27b-4125-23da-d0c4-3eeeb3bd98ef@ant.uni-bremen.de>
+Accept-Language: de-DE, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [129.55.200.20]
+x-clientproxiedby: AM4PR05CA0025.eurprd05.prod.outlook.com (2603:10a6:205::38)
+ To VI1PR04MB6112.eurprd04.prod.outlook.com
+ (2603:10a6:803:fd::20)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=demel@ant.uni-bremen.de; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [134.102.176.97]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 502abf58-d469-42b2-b7bf-08d79b2d763f
+x-ms-traffictypediagnostic: VI1PR04MB4688:
+x-microsoft-antispam-prvs: <VI1PR04MB4688EDDB2CFFAC47FD6D6418A9310@VI1PR04MB4688.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0285201563
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(366004)(39830400003)(346002)(396003)(136003)(376002)(199004)(189003)(52116002)(16526019)(316002)(66446008)(786003)(31696002)(71200400001)(30864003)(66946007)(31686004)(66476007)(26005)(186003)(508600001)(64756008)(16576012)(66556008)(956004)(2616005)(86362001)(2906002)(5660300002)(8676002)(6486002)(81166006)(81156014)(8936002)(6916009)(6706004)(3940600001);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:VI1PR04MB4688;
+ H:VI1PR04MB6112.eurprd04.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:0; MX:1; 
+received-spf: None (protection.outlook.com: ant.uni-bremen.de does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zERtYTv5M7Tb6vpFLalBK6rtBqx0ThUsLTVwrt21cmHgmo6LgcJMN8ZI4XK0A4CW+vZQkZ/7qOTYsLOVG03qoOj1WV79yo9uL/qND/jwns9hFqt2uvM73+ivRcvvYJo6TyV9vawV+qRDC+AvY+Moqj1kZOQKQxbGzqcjmxulGA9Xw8OTRP3e/b0A6KVS7AZnj2MzAAio8FhvIpg9/sM9Gak3OkpBmdPRksfulx+Va8K168P1+RAEOMFP4kCA1dl2OLuKnvEsIOSR8L9ieTDKnHVS+4VZmR88RKnKWj9cBsp7FjxNk1N0M2Ejnsj1Wej/oYMHGttIa6J2hJ/zDU8NH3Bsfoe5sndmq+DImPOxCXA87BpCTCQkXrREym0FfPLoDnsYtR1iN9o/q7ceVmPfS4TQklP1S7kvhUbIhzNh9R5lEMYnZWe+xtsGWwoWhsAGhgrIwY+Ht9oA9YPgXRwZKOfgfh3u30EMp7yAIN7TfMhU3i931L069FO/CrWDV3Ck
+x-ms-exchange-transport-forked: True
+Content-ID: <DCE3253CD974BC44961396998513BE17@eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Subject: [USRP-users] High Throughput scheduled receives
+X-OriginatorOrg: ant.uni-bremen.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 502abf58-d469-42b2-b7bf-08d79b2d763f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2020 09:13:05.6834 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f018440b-2792-4fa0-b2bd-233acaf88ad2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Rv4PI7MZl5FSVPyexiLO1SepEOIgflQ28pYBcmmO/TtsgsNgFte1GhGfm3RXryLeucN47buE7MH189XY4ylYqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4688
+Subject: [USRP-users] N310 with lots of 'SU' at higher rates
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,9 +96,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Richard J. Muri via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Richard J. Muri" <ri28856@mit.edu>
-Content-Type: multipart/mixed; boundary="===============3041976039651684415=="
+From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -65,336 +113,122 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3041976039651684415==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_157921147555538318mitedu_"
+Hi all,
 
---_000_157921147555538318mitedu_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+I use an N310 with Ubuntu 18.04.3 with an Intel X710 and an AMD 3970X.
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; 
+UHD_3.15.0.0-0-gaea0e2de
 
-Hello,
+If I run:
+`./benchmark_rate --args "addr=192.168.20.217" --tx_rate 15.625e6`
+Everything looks fine. It just works without any Underruns etc.
 
+But if I go to:
+`./benchmark_rate --args "addr=192.168.20.217" --tx_rate 31.25e6`
+or
+`./benchmark_rate --args "addr=192.168.20.217" --tx_rate 62.5e6`
 
-I'm developing a UHD C++ application for testing the limits of the scheduli=
-ng granularity I can achieve using an X310 on my host system. I'm running a=
- Linux box with dual Xeon gold processors and a 10 gigabit ethernet interfa=
-ce to my X310. The X310 is clocked to 100 MSPS.
+Things are broken. Especially lots of `SU`s. I append the complete 
+output. I have the same problem in my application.
 
+How do I fix this? Or is there even a fix? I already went through lots 
+of the ettus kb and so far, I didn't find a hint.
 
-The premise is to simulate a packet arriving and telling the USRP to transm=
-it or receive in the near future. Each packet has a reception/transmission =
-time, and some switching time. During the switching time the USRP does not =
-need to receive or transmit (it can, but the data doesn't matter). I assume=
- packets arrive in batches, and are all scheduled as fast as possible once =
-the batch arrives. After each batch is a long delay where I spin-lock to si=
-mulate waiting for the next batch to arrive.
+Cheers
+Johannes
 
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; 
+UHD_3.15.0.0-0-gaea0e2de
+[00:00:00.000003] Creating the usrp device with: addr=192.168.20.217...
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: 
+mgmt_addr=192.168.20.217,type=n3xx,product=n310,serial=XXXXXX,claimed=False,addr=192.168.20.217
+[WARNING] [MPM.RPCServer] A timeout event occured!
+[INFO] [MPM.PeriphManager] init() called with device args 
+`clock_source=internal,product=n310,time_source=internal,mgmt_addr=192.168.20.217'.
+[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)
+[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312)
+[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000011312)
+[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
+[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
+[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)
+[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
+[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
+[INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F0000000000000)
+[INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
+Using Device: Single USRP:
+   Device: N300-Series Device
+   Mboard 0: ni-n3xx-31AFFD4
+   RX Channel: 0
+     RX DSP: 0
+     RX Dboard: A
+     RX Subdev: Magnesium
+   RX Channel: 1
+     RX DSP: 1
+     RX Dboard: A
+     RX Subdev: Magnesium
+   RX Channel: 2
+     RX DSP: 0
+     RX Dboard: B
+     RX Subdev: Magnesium
+   RX Channel: 3
+     RX DSP: 1
+     RX Dboard: B
+     RX Subdev: Magnesium
+   TX Channel: 0
+     TX DSP: 0
+     TX Dboard: A
+     TX Subdev: Magnesium
+   TX Channel: 1
+     TX DSP: 1
+     TX Dboard: A
+     TX Subdev: Magnesium
+   TX Channel: 2
+     TX DSP: 0
+     TX Dboard: B
+     TX Subdev: Magnesium
+   TX Channel: 3
+     TX DSP: 1
+     TX Dboard: B
+     TX Subdev: Magnesium
 
-On the transmit side, I've shown that given an 80% duty cycle tx/switching,=
- and a batch of ten packets, I can schedule transmissions continuously with=
-out problem on the order of 10s of microseconds (given on the order of mill=
-iseconds initial latency between when the first batch arrives and the first=
- batch is transmitted). I want to replicate this level of granularity on th=
-e receive side as well, but so far have been unsuccessful. I have however s=
-et the USRP to streaming mode continuous and proven my host can receive con=
-tinuously in packets of the same size as my fine grained scheduling and kee=
-p up without error.
-
-
-I have two main approaches I've tried, scheduling a bunch of packets in adv=
-ance and calling recv and issue_stream_cmd alternately in a  single threade=
-d loop, and creating separate loops for issue_stream_cmd and recv. For the =
-multithreaded approach, I've gotten to a point where the first few thousand=
- packets are scheduled properly, but after that it falls behind. The recv t=
-hread appears to keep up without issue, but I get late command errors back,=
- implying the issue_stream_cmd thread is the problem. I've listed some exam=
-ple code below. Any advice on how to improve my issue_stream_cmd latency wo=
-uld be greatly appreciated!
-
-
-Thanks,
-
-Richard
-
-
-// Two threads: send a single command the size of a full batch then pause i=
-n a
-// loop; receive continuously (samples and done mode, atomic var to account=
- for max number
-// of commands in each thread) See also: rxtest_cmds
-double rxtest_datas(USRPTypes &usrpType)
-{
-    uhd::set_thread_priority_safe(THREAD_PRIORITY);
-
-    // Atomic variable to synchronize start of recv() calls with start of
-    // issue_stream_cmd() calls
-    global_start =3D false;
-    // Ensure we don't exceed the cmd FIFO depth (defined in USRP_constants=
-)
-    global_cmd_num =3D 0;
-
-    // Struct with all the variables used in various rx tests
-    rxtest_vars rx(usrpType);
-
-    // Receive a full batch at a time
-    rx.packets_to_recv =3D rx.packets_to_recv / rx.batch_size;
-
-    // Launch thread to schedule USRP receives
-    std::thread cmd_thread(rxtest_cmds, rx);
-
-    // Buffer to receive into (include full batch in one buffer)
-    std::vector<std::complex<int16_t>> buff(RX_BATCH_SAMPLES);
-    int expected_samps =3D buff.size();
-
-    // timeout used by recv function to collect samples
-    double timeout =3D rx.initial_timeout;
-
-    // Don't start until the other thread has posted its first scheduled re=
-ceive
-    while (global_start =3D=3D false)
-    {
-        // Spin while we wait to start.
-    }
-
-    for (int i =3D 0; i < rx.packets_to_recv; i++)
-    {
-        // Use shorter timeout if this isn't the first packet
-        if (i > 0)
-        {
-            timeout =3D rx.batch_latency;
-        }
-        // Collect received samples from the USRP
-        rx.sample_count =3D rx.streamer->recv(&buff.front(), buff.size(), r=
-x.md, timeout);
-
-        // Post that we took a command off the USRP
-        if (global_cmd_num >=3D 1)
-        {
-            global_cmd_num--;
-        }
-
-        // Did we drop any samples on this slot?
-        if (rx.sample_count !=3D expected_samps)
-        {
-            rx.slot_drops++;
-        }
-
-        // Account for the errors of this slot
-        if (rx.md.error_code !=3D uhd::rx_metadata_t::ERROR_CODE_NONE)
-        {
-            rx.errors++;
-            rx.estruct.incrementRxErrorCount(rx.md.error_code);
-        }
-
-#if COLLECT_MD
-        rx.mdvec[i] =3D rx.md;
-#endif
-    } // end data collection
-
-    printMD(rx, true);
-    cmd_thread.join();
-    return rx.batch_latency;
-}
+[00:00:04.325114] Setting device timestamp to 0...
+[00:00:04.426672] Testing transmit rate 62.500000 Msps on 1 channels
+UUSUSUSUSUUSUSUSUUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUS[00:00:14.777480] 
+Benchmark complete.
 
 
---_000_157921147555538318mitedu_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
-ottom:0;} --></style>
-</head>
-<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
-FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Hello,</p>
-<p><br>
-</p>
-<p>I'm developing a&nbsp;UHD C&#43;&#43; application for testing the limits=
- of the scheduling granularity I can achieve using an X310 on my host syste=
-m. I'm running a Linux box with dual Xeon gold processors and a 10 gigabit =
-ethernet interface to my X310. The X310 is clocked
- to 100 MSPS. <br>
-</p>
-<p><br>
-</p>
-<p>The premise is to simulate a packet arriving and telling the USRP to tra=
-nsmit or receive in the near future. Each packet has a reception/transmissi=
-on time, and some switching time. During the switching time the USRP does n=
-ot need to receive or transmit (it
- can, but the data doesn't matter). I assume packets arrive in batches, and=
- are all scheduled as fast as possible once the batch arrives. After each b=
-atch is a long delay where I spin-lock to simulate waiting for the next bat=
-ch to arrive.
-<br>
-</p>
-<p><br>
-</p>
-<p>On the transmit side, I've shown that given an 80% duty cycle tx/switchi=
-ng, and a batch of ten packets, I can schedule transmissions continuously w=
-ithout problem on the order of 10s of microseconds (given on the order of m=
-illiseconds initial latency between
- when the first batch arrives and the first batch is transmitted). I want t=
-o replicate this level of granularity on the receive side as well, but so f=
-ar have been unsuccessful. I have however set the USRP to streaming mode co=
-ntinuous and proven my host can
- receive continuously in packets of the same size as my fine grained schedu=
-ling and keep up without error.</p>
-<p><br>
-</p>
-<p>I have two main approaches I've tried, scheduling a bunch of packets in =
-advance and calling recv and issue_stream_cmd alternately in a &nbsp;single=
- threaded loop, and creating separate loops for issue_stream_cmd and recv. =
-For the multithreaded approach, I've
- gotten to a point where the first few thousand packets are scheduled prope=
-rly, but after that it falls behind. The recv thread appears to keep up wit=
-hout issue, but I get late command errors back, implying the issue_stream_c=
-md thread is the problem. I've listed
- some example code below. Any advice on how to improve my issue_stream_cmd =
-latency would be greatly appreciated!</p>
-<p><br>
-</p>
-<p>Thanks,</p>
-<p>Richard</p>
-<p><br>
-</p>
-//&nbsp;Two&nbsp;threads:&nbsp;send&nbsp;a&nbsp;single&nbsp;command&nbsp;th=
-e&nbsp;size&nbsp;of&nbsp;a&nbsp;full&nbsp;batch&nbsp;then&nbsp;pause&nbsp;i=
-n&nbsp;a<br>
-//&nbsp;loop;&nbsp;receive&nbsp;continuously&nbsp;(samples&nbsp;and&nbsp;do=
-ne&nbsp;mode,&nbsp;atomic&nbsp;var&nbsp;to&nbsp;account&nbsp;for&nbsp;max&n=
-bsp;number<br>
-//&nbsp;of&nbsp;commands&nbsp;in&nbsp;each&nbsp;thread)&nbsp;See&nbsp;also:=
-&nbsp;rxtest_cmds<br>
-double&nbsp;rxtest_datas(USRPTypes&nbsp;&amp;usrpType)<br>
-{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;uhd::set_thread_priority_safe(THREAD_PRIORITY);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Atomic&nbsp;variable&nbsp;to&nbsp;synchroni=
-ze&nbsp;start&nbsp;of&nbsp;recv()&nbsp;calls&nbsp;with&nbsp;start&nbsp;of<b=
-r>
-&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;issue_stream_cmd()&nbsp;calls<br>
-&nbsp;&nbsp;&nbsp;&nbsp;global_start&nbsp;=3D&nbsp;false;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Ensure&nbsp;we&nbsp;don't&nbsp;exceed&nbsp;=
-the&nbsp;cmd&nbsp;FIFO&nbsp;depth&nbsp;(defined&nbsp;in&nbsp;USRP_constants=
-)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;global_cmd_num&nbsp;=3D&nbsp;0;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Struct&nbsp;with&nbsp;all&nbsp;the&nbsp;var=
-iables&nbsp;used&nbsp;in&nbsp;various&nbsp;rx&nbsp;tests<br>
-&nbsp;&nbsp;&nbsp;&nbsp;rxtest_vars&nbsp;rx(usrpType);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Receive&nbsp;a&nbsp;full&nbsp;batch&nbsp;at=
-&nbsp;a&nbsp;time<br>
-&nbsp;&nbsp;&nbsp;&nbsp;rx.packets_to_recv&nbsp;=3D&nbsp;rx.packets_to_recv=
-&nbsp;/&nbsp;rx.batch_size;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Launch&nbsp;thread&nbsp;to&nbsp;schedule&nb=
-sp;USRP&nbsp;receives<br>
-&nbsp;&nbsp;&nbsp;&nbsp;std::thread&nbsp;cmd_thread(rxtest_cmds,&nbsp;rx);<=
-br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Buffer&nbsp;to&nbsp;receive&nbsp;into&nbsp;=
-(include&nbsp;full&nbsp;batch&nbsp;in&nbsp;one&nbsp;buffer)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;std::complex&lt;int16_t&gt;&gt;&nbsp=
-;buff(RX_BATCH_SAMPLES);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;expected_samps&nbsp;=3D&nbsp;buff.size();<=
-br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;timeout&nbsp;used&nbsp;by&nbsp;recv&nbsp;fu=
-nction&nbsp;to&nbsp;collect&nbsp;samples<br>
-&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;timeout&nbsp;=3D&nbsp;rx.initial_timeou=
-t;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Don't&nbsp;start&nbsp;until&nbsp;the&nbsp;o=
-ther&nbsp;thread&nbsp;has&nbsp;posted&nbsp;its&nbsp;first&nbsp;scheduled&nb=
-sp;receive<br>
-&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(global_start&nbsp;=3D=3D&nbsp;false)<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Spin&nbsp;while&nbs=
-p;we&nbsp;wait&nbsp;to&nbsp;start.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=3D&nbsp;0;&nbsp;i&nbsp;&=
-lt;&nbsp;rx.packets_to_recv;&nbsp;i&#43;&#43;)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Use&nbsp;shorter&nb=
-sp;timeout&nbsp;if&nbsp;this&nbsp;isn't&nbsp;the&nbsp;first&nbsp;packet<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(i&nbsp;&gt;&nbsp;0=
-)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tim=
-eout&nbsp;=3D&nbsp;rx.batch_latency;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Collect&nbsp;receiv=
-ed&nbsp;samples&nbsp;from&nbsp;the&nbsp;USRP<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.sample_count&nbsp;=3D&nb=
-sp;rx.streamer-&gt;recv(&amp;buff.front(),&nbsp;buff.size(),&nbsp;rx.md,&nb=
-sp;timeout);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Post&nbsp;that&nbsp=
-;we&nbsp;took&nbsp;a&nbsp;command&nbsp;off&nbsp;the&nbsp;USRP<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(global_cmd_num&nbs=
-p;&gt;=3D&nbsp;1)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glo=
-bal_cmd_num--;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Did&nbsp;we&nbsp;dr=
-op&nbsp;any&nbsp;samples&nbsp;on&nbsp;this&nbsp;slot?<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(rx.sample_count&nb=
-sp;!=3D&nbsp;expected_samps)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.=
-slot_drops&#43;&#43;;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Account&nbsp;for&nb=
-sp;the&nbsp;errors&nbsp;of&nbsp;this&nbsp;slot<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(rx.md.error_code&n=
-bsp;!=3D&nbsp;uhd::rx_metadata_t::ERROR_CODE_NONE)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.=
-errors&#43;&#43;;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.=
-estruct.incrementRxErrorCount(rx.md.error_code);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-<br>
-#if&nbsp;COLLECT_MD<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx.mdvec[i]&nbsp;=3D&nbsp;r=
-x.md;<br>
-#endif<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;//&nbsp;end&nbsp;data&nbsp;collection<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;printMD(rx,&nbsp;true);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;cmd_thread.join();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;rx.batch_latency;<br>
-}
-<p><br>
-</p>
-</body>
-</html>
-
---_000_157921147555538318mitedu_--
+Benchmark rate summary:
+   Num received samples:     0
+   Num dropped samples:      0
+   Num overruns detected:    0
+   Num transmitted samples:  154596064
+   Num sequence errors (Tx): 3155
+   Num sequence errors (Rx): 0
+   Num underruns detected:   3163
+   Num late commands:        0
+   Num timeouts (Tx):        0
+   Num timeouts (Rx):        0
 
 
---===============3041976039651684415==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Done!
 
+[ERROR] [UHD] An unexpected exception was caught in a task loop.The task 
+loop will now exit, things may not work.rpc::timeout: Timeout of 10000ms 
+while calling RPC function 'reclaim'
+[ERROR] [RPC] get_log_buf() called without valid claim.
+[ERROR] [UHD] Exception caught in safe-call.
+   in uhd::mpmd::mpmd_mboard_impl::~mpmd_mboard_impl()
+   at 
+/home/johannes/prefix/gnuradio/src/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cpp:311
+dump_logs(); _claimer_task.reset(); _xport_mgr.reset(); if (not 
+rpc->request_with_token<bool>("unclaim")) { 
+uhd::_log::log(uhd::log::warning, 
+"/home/johannes/prefix/gnuradio/src/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cpp", 
+311, "MPMD", boost::this_thread::get_id()) << "Failure to ack 
+unclaim!";; } -> RuntimeError: Error during RPC call to `get_log_buf'. 
+Error message: get_log_buf() called without valid claim.
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3041976039651684415==--
-
