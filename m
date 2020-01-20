@@ -2,60 +2,81 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ACF314212A
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Jan 2020 02:04:00 +0100 (CET)
-Received: from [::1] (port=51946 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA55C1424C4
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Jan 2020 09:05:12 +0100 (CET)
+Received: from [::1] (port=47180 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1itLTy-0006EZ-Vc; Sun, 19 Jan 2020 20:03:58 -0500
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:40665)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1itLTv-0005zR-6i
- for usrp-users@lists.ettus.com; Sun, 19 Jan 2020 20:03:55 -0500
-Received: by mail-qk1-f173.google.com with SMTP id c17so28601788qkg.7
- for <usrp-users@lists.ettus.com>; Sun, 19 Jan 2020 17:03:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=zUSCVehokbZGA3epGZNQ6LvPr07uQ9ULeyWeGiv4rHk=;
- b=NrnscKZkPkY70KSPRJuBJun37GkVJS8NHnRAkBaNn74J+Os5Twnn6cfowrHHnWpk83
- YAThJoAJ6zmlTTAxYWs/+vMSIWb68on/EabrEdEgC8mDgvy+LwQ7cJ6tJtXwq16h3FBF
- cYRe1KPkgBYwzuZmPniX+cUt42hFYhNpYsE6PvY9TrY/VBHk05WjKusYll2NT83oPqRI
- hcwn30pqC5YZfn+fKqdZBO8+VKOUUWCRdXkm5Nk2dNxaV9K2P39R4tnN8YFYJoQFNhgr
- oMJFg66JQEHd16uNDj/b9K9n5ejOCYJQ/9957L7TRkMnz/2wkmVDXehiLxxBOSx76VQa
- LI1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=zUSCVehokbZGA3epGZNQ6LvPr07uQ9ULeyWeGiv4rHk=;
- b=Q+xTZLgr8KG+6zVwOn4K8obYOPSCY2JHshFUCkwCQJ83CmpEUa5w9KK/4dmUjFTzUh
- fPlhspdQbt6dR4CTkM20uARwHIamu7WBxXS61Iswt0EodrkjcV4Nm8uwCR1nvzZzxHUB
- /iyzNPah8bvSE6hq6o2rkt/V/CPXP3yb7WIfF9jCDMMeQz4gNXaNwbieRCfSYm/QFITG
- avDhuEgmRWglZgp/g8dBFdYV07H0Ys5s7st8YiJ2IPIHvBO96AEjZaFAPXQqHdAwCWXN
- sfb+pPAro4s6/OLv2Bm3A8qI8Xar68ZVGcsEqsz6bR3F222nWVpaoTcy63PPeZX4tC2n
- seJg==
-X-Gm-Message-State: APjAAAXy18w4d84fa9Er3Wo0wX0JDSE0Me4gXFkkXpVAcGCPlaIQ6czX
- oA4eN/OuIhdHwssLfuFOxQYhgSx9Lz0=
-X-Google-Smtp-Source: APXvYqx1pKe5vEKRPZZH56DerX+B0TSMsi7HwlPtTfRK8om1nGPzIwFT4zuCaW3JL9f3R1NOQiW3KQ==
-X-Received: by 2002:ae9:f709:: with SMTP id s9mr43708859qkg.463.1579482194457; 
- Sun, 19 Jan 2020 17:03:14 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id f4sm14992175qka.89.2020.01.19.17.03.13
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 19 Jan 2020 17:03:13 -0800 (PST)
-Message-ID: <5E24FC51.7070908@gmail.com>
-Date: Sun, 19 Jan 2020 20:03:13 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1itS3V-0003If-98; Mon, 20 Jan 2020 03:05:05 -0500
+Received: from mail-eopbgr1380135.outbound.protection.outlook.com
+ ([40.107.138.135]:63360 helo=IND01-MA1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <sourin.mondal@vehere.com>)
+ id 1itS3R-0003De-Vz
+ for usrp-users@lists.ettus.com; Mon, 20 Jan 2020 03:05:02 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WAjfwkWJzhkx/4ssTwFtFGZUesrn/4uk7ws60fx7OBH3kf11PUi2cV3eaSaWMfG14Y61pE2+p1XSynhjHEOOmThc2+E9ln9DX9K7S9emoBmvJO1Y+Fiad7OUXuI4TAwJa2m6GhBbd8CgkMencWoX1YZ9V7UYeKzgXb2+x+e8UC4/cEf75gK90eIuyHVwtHz3vc+2bXfsEcJznH/6hUiYmUtkyJ2Hu/J2/6c/aIbNEHK4mZvDUT/5Sp/rwb/vUMr/5sTQUE5/f3v+dPpbQBQuD4VSdUWfYEKSl06cXBzMr7Kn5kgoHDJu5vpRfJ/IUEyqrzlKWZ6ylxyWxBhtl+gEtg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=t7PcRtxOkeZRiDR+AJOZ6A0Prz+mlfQUrALOGezk7bs=;
+ b=DIV1rmrnVGk2oLQWAcZ1t+DEc6YSamM+CfFukOEMv/eei3J+KhT3I686qt01Yq27F6rZ4RGdyHiu1lxAy2S2QRd83Ysy9VAlyDbyoOvAczAhfi4zsTUPuiJWL9rEjI245CSlJLhkv6rCyMPVJxgjyu6YVEwMpWmf1TrC+neMdVrOlrNsqWXBwOmNg/YUt53wjQ1g3GUqPcZM0nC3pbgCqLa4XcdTmJHA1bUqkHEO1elcZMe1p/bOOG+hP+1PxC9nT9hvoF+6Hz9KEd7yRPszBsE0UTQlOj1Mbo2qanO7mKfFLAm0T7TcJe5oBdXFAYzAVBFm2mUdnuc2m15AL6KZew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=t7PcRtxOkeZRiDR+AJOZ6A0Prz+mlfQUrALOGezk7bs=;
+ b=UTJ+U1VKWCo5dLckFk20B29HrZLELBR45HmkRusYikNBUQV+A9Dh0aEFXt6etQ2pb2//CDB1RPDxw23bg6HcL/etlWJ3GU9t1ej7C1knBE/xka6nsjjVyzePnflL/StS75mrty9VMP9Ta+KFT6LhG55QU3PFcDp9vZxqm0Y0PSk=
+Received: from BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM (20.178.169.212) by
+ BMXPR01MB0918.INDPRD01.PROD.OUTLOOK.COM (10.174.218.138) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2644.18; Mon, 20 Jan 2020 08:04:17 +0000
+Received: from BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::7984:e506:fdaf:8504]) by BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::7984:e506:fdaf:8504%7]) with mapi id 15.20.2644.024; Mon, 20 Jan 2020
+ 08:04:17 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: phase-aligning two USRPs without Octoclock
+Thread-Index: AQHVz2bE3GcysuM9wU272v0JQcfgjg==
+Date: Mon, 20 Jan 2020 08:04:17 +0000
+Message-ID: <BMXPR01MB23606E790CA4146BE699BFF58B320@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=sourin.mondal@vehere.com; 
+x-originating-ip: [14.143.49.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 477df7ad-f2ea-4e6f-71c7-08d79d7f58fb
+x-ms-traffictypediagnostic: BMXPR01MB0918:
+x-microsoft-antispam-prvs: <BMXPR01MB091863B58849B441A137692A8B320@BMXPR01MB0918.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 0288CD37D9
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(396003)(346002)(136003)(366004)(376002)(39830400003)(189003)(199004)(76116006)(26005)(66446008)(66556008)(66946007)(66476007)(19627405001)(64756008)(4744005)(7696005)(186003)(33656002)(52536014)(5660300002)(86362001)(6916009)(8936002)(81166006)(81156014)(55236004)(8676002)(316002)(2906002)(508600001)(71200400001)(55016002)(6506007)(9686003)(966005);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BMXPR01MB0918;
+ H:BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: vehere.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 40f1DyU+WedvsdTuTKanXspbqFIYIbHFMeoTlxeFOHnyUIaylfgRWSZMDXNpH/duFgj4/jA2xJ2DlKzJdK7KeRlllB6272LxuG+qFG6u8X+ueQIcQUS2XqKGgRi0zmtiQTvvnFRgdehYpqrKqTAa9no++L3wsHbjAD0wUimyYRqV2DojZ9wsm0opGI0XK/04SvBlLN4zKDuu/oIfTrU67WZFO5P/P6BUW84JmdD5WMNZtYQE1qVBMAUFNrAOSSYseXc+bmvTFWrCmpJSyC4Jo8IXET1DGg0puk1OwHCX5asTKZLCKBxPRE8+TqsP9y2qm2Eco0bsm9EAmWk70GOBwnI5SduVA2avxaN/Jn9VB6TEJFmYzGaNpOVXFoAd/C3vQ0TAiyKU0yY2obfbU8U25mkqNh8g8KU7WymUHI7qA/wd8qcx+edFcZcQ7SXFwUf2XBXm4QGjlEKxuO1qcAi5U08th8k5kpwIFOf+W/Va6YbNZ3PFbY9Ku5pMOxioxDoGYTVMpHAeN/PZB2RbpMiI/w==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAEnX9dG3dQqn9QyMw+gr6aw-HaQOb+aoZ6zYpQeFowrMZyoF9A@mail.gmail.com>
-In-Reply-To: <CAEnX9dG3dQqn9QyMw+gr6aw-HaQOb+aoZ6zYpQeFowrMZyoF9A@mail.gmail.com>
-Subject: Re: [USRP-users] uhd_find_devices - No UHD Devices Found
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 477df7ad-f2ea-4e6f-71c7-08d79d7f58fb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2020 08:04:17.3336 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PyObbGqysG5vO1/Uu3cUfe/EJNCkCeNvRGP/oPYRbVBVek1o8v+JtSm/guC68dZkmBgnVjMIAmGpxsqdjwYzjOtdbFFGiazsRxQM/7GgyZE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BMXPR01MB0918
+Subject: [USRP-users] phase-aligning two USRPs without Octoclock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,10 +88,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: "Sourin Mondal \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Sourin Mondal \(Vehere\)" <sourin.mondal@vehere.com>
+Content-Type: multipart/mixed; boundary="===============8155326081826525047=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,56 +104,123 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 01/19/2020 07:49 PM, Joe crossen via USRP-users wrote:
-> Hi all,
->
-> I have 2 USRP E312 devices.
-> - one has a GNU Radio image
-> - one has a Redhawk SDR image - 
-> https://geontech.com/redhawk-sdr-and-an-ettus-e310/
->
-> With both devices turned on, I am attempting to locate them using 
-> uhd_find_devices (and also the probe command), but it says No UHD 
-> devices Found. I have 2 host PCs, one running Ubuntu, one running CentOS.
->
-> Everything is on the same network. Everything can ping everything.
->
-> I have used Wireshark, and noticed that the uhd_find_devices command 
-> broadcasts a UDP package throughout the network, but there is no 
-> response.
->
-> However, I have noticed that all UHD driver versions are different:
-> - USRP1 (redhawk image) = 3.11.0.1-0
-> - USRP2 (gnuradio image) = 003.009.002
-> - Ubuntu PC = 3.14.1
-> - CentOS PC = 003.010.001.000-0
-> Would this be the problem? if so, how do I go about installing 
-> specific versions of UHD on my PCs? (or possible the USRP devices - 
-> though I would rather not mess with the images)
->
-> Thanks in advance everyone!
-> Joe
->
->
-So, the E310 is *primarily* an embedded device, and there's something 
-called "network mode" that make it behave like a low-performance
-   version of something like the N210.
+--===============8155326081826525047==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BMXPR01MB23606E790CA4146BE699BFF58B320BMXPR01MB2360INDP_"
 
-In order for this to work, a few thing have to be true:
+--_000_BMXPR01MB23606E790CA4146BE699BFF58B320BMXPR01MB2360INDP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-   o You have to be running the same version of UHD on your host and 
-your E310
-   o The host UHD must have been compiled with E310 support
-   o You need to run the 'usrp_e3x0_network_mode' command on the E310 
-(via SSH or the console)
+Following link (fig. 2) shows the cris-cross connections inside USRP to syn=
+chronize (phase align) 4 channels of the USRP.
 
-Don't expect really great performance--perhaps 1 or 2Msps is the max 
-that can be achieved.
+https://kb.ettus.com/Direction_Finding_with_the_USRP%E2%84%A2_X-Series_and_=
+TwinRX%E2%84%A2
+
+If I want to synchronize (phase align) all channels of two USRPs, is there =
+any solution for the synchronization without using Octoclock-G method ?
+
+Regards,
+Sourin
+
+--_000_BMXPR01MB23606E790CA4146BE699BFF58B320BMXPR01MB2360INDP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
+if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
+; display: inline !important">Following link (fig. 2) shows the cris-cross =
+connections inside USRP to synchronize
+ (phase align) 4 channels of the USRP.&nbsp;</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
+if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
+; display: inline !important"><br>
+</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
+if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
+; display: inline !important"><a href=3D"https://kb.ettus.com/Direction_Fin=
+ding_with_the_USRP%E2%84%A2_X-Series_and_TwinRX%E2%84%A2">https://kb.ettus.=
+com/Direction_Finding_with_the_USRP%E2%84%A2_X-Series_and_TwinRX%E2%84%A2</=
+a><br>
+</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
+if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
+; display: inline !important"><br>
+</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
+if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
+; display: inline !important">If I want to synchronize (phase align) all ch=
+annels of two USRPs,<span style=3D"font-family: Roboto, Arial, sans-serif; =
+background-color: rgb(255, 255, 255); display: inline !important">&nbsp;is
+ there any solution for the <span style=3D"font-family: Roboto, Arial, sans=
+-serif; background-color: rgb(255, 255, 255); display: inline !important">
+synchronization without using&nbsp;</span><span style=3D"font-family: Robot=
+o, Arial, sans-serif; background-color: rgb(255, 255, 255); display: inline=
+ !important">Octoclock-G method ?</span></span></span><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
+if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
+; display: inline !important"><span style=3D"font-family: Roboto, Arial, sa=
+ns-serif; background-color: rgb(255, 255, 255); display: inline !important"=
+><span style=3D"font-family: Roboto, Arial, sans-serif; background-color: r=
+gb(255, 255, 255); display: inline !important"><br>
+</span></span></span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
+if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
+; display: inline !important"><span style=3D"font-family: Roboto, Arial, sa=
+ns-serif; background-color: rgb(255, 255, 255); display: inline !important"=
+><span style=3D"font-family: Roboto, Arial, sans-serif; background-color: r=
+gb(255, 255, 255); display: inline !important">Regards,</span></span></span=
+></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
+if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
+; display: inline !important"><span style=3D"font-family: Roboto, Arial, sa=
+ns-serif; background-color: rgb(255, 255, 255); display: inline !important"=
+><span style=3D"font-family: Roboto, Arial, sans-serif; background-color: r=
+gb(255, 255, 255); display: inline !important">Sourin</span></span></span><=
+/div>
+</body>
+</html>
+
+--_000_BMXPR01MB23606E790CA4146BE699BFF58B320BMXPR01MB2360INDP_--
 
 
-
+--===============8155326081826525047==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8155326081826525047==--
+
