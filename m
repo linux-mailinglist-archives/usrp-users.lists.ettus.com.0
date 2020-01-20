@@ -2,62 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D25C14143D
-	for <lists+usrp-users@lfdr.de>; Fri, 17 Jan 2020 23:40:11 +0100 (CET)
-Received: from [::1] (port=48940 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1715F14211E
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Jan 2020 01:50:27 +0100 (CET)
+Received: from [::1] (port=48234 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1isaHc-0002KC-3d; Fri, 17 Jan 2020 17:40:04 -0500
-Received: from mail-qv1-f45.google.com ([209.85.219.45]:43916)
+	id 1itLGn-00055P-NE; Sun, 19 Jan 2020 19:50:21 -0500
+Received: from mail-lf1-f50.google.com ([209.85.167.50]:42646)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1isaHY-0002GN-Qk
- for usrp-users@lists.ettus.com; Fri, 17 Jan 2020 17:40:00 -0500
-Received: by mail-qv1-f45.google.com with SMTP id p2so11437293qvo.10
- for <usrp-users@lists.ettus.com>; Fri, 17 Jan 2020 14:39:40 -0800 (PST)
+ (Exim 4.92) (envelope-from <jmcrossen80@gmail.com>)
+ id 1itLGk-0004zH-AF
+ for usrp-users@lists.ettus.com; Sun, 19 Jan 2020 19:50:18 -0500
+Received: by mail-lf1-f50.google.com with SMTP id y19so22641289lfl.9
+ for <usrp-users@lists.ettus.com>; Sun, 19 Jan 2020 16:49:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=1lapNj6YHnSwISgZiIPW5IPoG6cR4lo8WgwtMNu0cEQ=;
- b=QblOLlLD8+LZUKkT6xxK1MqI8VirqjO2dVtbgN3CXYvSKFALLDfBggxGobJ6YmK8/c
- vT4NZdVPwa++JC9zpdj6HgOxqK/wlL9vE/nErz5RigUBfSt1XtZz6M4V5gispuA7JbgQ
- Q8C/baxmilSFkYrHlcySV9qqBBmWbWqHyE0PJDDuaMryvf2uzryYqnFvlbpJkW6LZVzT
- RcXBqAS/zAA+JSA9g67bFnSSRZmOaIFiy+LQ+n0nAHsqFsGpaonEGLk+B7KMHhzhRpf4
- uGXiavHGFoqCenyQz/+n1vfC6W+vyIZB+u8HfKUqq3paz5SSIWcBPyi0mM+7PIY1U+8O
- qRKQ==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=MeEt4U1nFKazI5GhL9arwaCQy5uOStpmSoY1qUYV5Pc=;
+ b=iBEHtfOUAwYZLXzkc2ZozfuoAlCQ4LF1DUOHxK5EV6Fnueh0LHHRhgSIqrRyBQA7Kq
+ WPmMnRB3n49SeSlYk4ulbyfDEA9XjsxM2GdNvzQtbgYCqSvV8qv9Zlhypf8J4KSgPI45
+ aoffAh9gC/9Ko69uBKAPeXu0N19MXzzUQ8TNBvNdrSfqMyM5W1cE/hkvuYSVpIJWvhJE
+ DybFzUFBPifGb0DyeQA0lXIYmXabx37YcYldtIb22JC3zTehU5nDMPFTrrIpfo6fH6UA
+ FeCc7KUcahyQJkrexzFR3+W2YiWUpIky93dO+/tmpy3aqgLRLZnoWkuVeQ+ir5nCvD95
+ wEsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=1lapNj6YHnSwISgZiIPW5IPoG6cR4lo8WgwtMNu0cEQ=;
- b=IDKcRaOWpAJdpYkZ3+kM3EQIK2n3Z7QJWr5ayxEFrnoov0uJIxGz2EaRQ+Ai+hc2dv
- wJE9GMjgUUBP/IBIepvQuGAaGUV1c5tzv3DJy28gd+z6Z0xVht/RA4WZTqZ4h1cyc+9T
- 0fHH+b505IsV0zanKH2SbttLSuvx+6FrMAGxuU6RQ+WrC6nPQ5gvvdilgzgvz9MOwoiC
- GB9zzCu+kfJjFq2yIG67AItLZT5m0CkEXwKiVhtr1qQN+B6K9ET82AJ6zj3pWUstI7He
- UTU/uWqxTRlAuh0COXEVECaBQTRKTND63VGdZmmtPN0EbEzbHwi0Cg5Eoo17fIwG9nz6
- TN/A==
-X-Gm-Message-State: APjAAAVEzL1bd4CezMgBsW5KKLOL8LqT46eRFWqd5epIgkQjIi+cMIGz
- 5WIK3QTHkVhumg8ValiYHoBdoN6nAA0=
-X-Google-Smtp-Source: APXvYqwMo2tYxQ3KK2NKAYBEN6gNAJgl3IN66gWgOaZV/1xHDjLDqsLlGBd4o3eATXz/O1FuBtg1gw==
-X-Received: by 2002:a05:6214:965:: with SMTP id
- do5mr10028656qvb.202.1579300759836; 
- Fri, 17 Jan 2020 14:39:19 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id c8sm13498794qtv.61.2020.01.17.14.39.19
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 17 Jan 2020 14:39:19 -0800 (PST)
-Message-ID: <5E223796.6050704@gmail.com>
-Date: Fri, 17 Jan 2020 17:39:18 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=MeEt4U1nFKazI5GhL9arwaCQy5uOStpmSoY1qUYV5Pc=;
+ b=K4mbTDw+P5qDdn8ezLaRo1uPmXkIl/opdK+J+GD0LLiVG7bNbh4BcVuvPsAiQs5a5e
+ WyGwFLllsuKG5I2CpQAZfbBVpFIx+ilQPdEMKhRY+raVrmgP7jQmP5dvVGQAufTL9srH
+ IFP8YxHSqLVNfEeMvxElM8B2fmH/5/ZahOBHSAwuKkFDyylAH9/5sfIrM44R8jp5mjPj
+ HDsoujvZunNj3h9z+mADS7GeQqcBl+QkkKUQCJQfZsxXeIqicNt4SKKNVqTuOau56dcJ
+ B5j6tzbF2jLCCsTGa5VOqgQyUbyCp02JmzxECKmg4X4ggb9i7YKbzmf0XMxUFe0z6z0A
+ PUuw==
+X-Gm-Message-State: APjAAAU/5P61aWM8Zb04sS+Ds1IjY8j8b8ZLGkatqo9UD/yyoImxscvO
+ EqAUU/P8qMjeLYQvAc1n6qFt92vBmxiOCUJqSCV1iUCp
+X-Google-Smtp-Source: APXvYqw3VnEYrlR73pgqK/l12axxXRZWa5vBeHP7Fp7bFJn6GwwgDruzb0rlMcEDYtvh1I6BmK5c4KOICCIjjKaTFw0=
+X-Received: by 2002:ac2:4476:: with SMTP id y22mr11732105lfl.169.1579481376414; 
+ Sun, 19 Jan 2020 16:49:36 -0800 (PST)
 MIME-Version: 1.0
-To: Johannes Demel <demel@ant.uni-bremen.de>
-References: <ceccc27b-4125-23da-d0c4-3eeeb3bd98ef@ant.uni-bremen.de>,
- <5E22072D.8050808@gmail.com>
- <VI1PR04MB611209829D6B358B0CB9DE96A9310@VI1PR04MB6112.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB611209829D6B358B0CB9DE96A9310@VI1PR04MB6112.eurprd04.prod.outlook.com>
-Subject: Re: [USRP-users] N310 with lots of 'SU' at higher rates
+Date: Mon, 20 Jan 2020 11:19:24 +1030
+Message-ID: <CAEnX9dG3dQqn9QyMw+gr6aw-HaQOb+aoZ6zYpQeFowrMZyoF9A@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] uhd_find_devices - No UHD Devices Found
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,11 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Joe crossen via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Joe crossen <jmcrossen80@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7870482941329007728=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,169 +71,77 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 01/17/2020 05:36 PM, Johannes Demel wrote:
-> Hi Marcus,
->
-> `sudo ip link set mtu 9000 dev [my10Ginterface]` fixed this issue. Thanks! That totally slipped through.
->
-> Cheers
-> Johannes
-Glad this helped!
+--===============7870482941329007728==
+Content-Type: multipart/alternative; boundary="0000000000005eddf7059c87aa8b"
 
-Looking at your CPU, it should easily be capable, so the MTU issue makes 
-the most sense...
+--0000000000005eddf7059c87aa8b
+Content-Type: text/plain; charset="UTF-8"
 
->
-> ________________________________________
-> Von: USRP-users <usrp-users-bounces@lists.ettus.com> im Auftrag von Marcus D. Leech via USRP-users <usrp-users@lists.ettus.com>
-> Gesendet: Freitag, 17. Januar 2020 20:12
-> An: usrp-users@lists.ettus.com
-> Betreff: Re: [USRP-users] N310 with lots of 'SU' at higher rates
->
-> On 01/17/2020 04:13 AM, Johannes Demel via USRP-users wrote:
->> Hi all,
->>
->> I use an N310 with Ubuntu 18.04.3 with an Intel X710 and an AMD 3970X.
->> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
->> UHD_3.15.0.0-0-gaea0e2de
->>
->> If I run:
->> `./benchmark_rate --args "addr=192.168.20.217" --tx_rate 15.625e6`
->> Everything looks fine. It just works without any Underruns etc.
->>
->> But if I go to:
->> `./benchmark_rate --args "addr=192.168.20.217" --tx_rate 31.25e6`
->> or
->> `./benchmark_rate --args "addr=192.168.20.217" --tx_rate 62.5e6`
->>
->> Things are broken. Especially lots of `SU`s. I append the complete
->> output. I have the same problem in my application.
->>
->> How do I fix this? Or is there even a fix? I already went through lots
->> of the ettus kb and so far, I didn't find a hint.
->>
->> Cheers
->> Johannes
->>
->> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
->> UHD_3.15.0.0-0-gaea0e2de
->> [00:00:00.000003] Creating the usrp device with: addr=192.168.20.217...
->> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
->> mgmt_addr=192.168.20.217,type=n3xx,product=n310,serial=XXXXXX,claimed=False,addr=192.168.20.217
->> [WARNING] [MPM.RPCServer] A timeout event occured!
->> [INFO] [MPM.PeriphManager] init() called with device args
->> `clock_source=internal,product=n310,time_source=internal,mgmt_addr=192.168.20.217'.
->> [INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)
->> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312)
->> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000011312)
->> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
->> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
->> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
->> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)
->> [INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
->> [INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
->> [INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F0000000000000)
->> [INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
->> Using Device: Single USRP:
->>      Device: N300-Series Device
->>      Mboard 0: ni-n3xx-31AFFD4
->>      RX Channel: 0
->>        RX DSP: 0
->>        RX Dboard: A
->>        RX Subdev: Magnesium
->>      RX Channel: 1
->>        RX DSP: 1
->>        RX Dboard: A
->>        RX Subdev: Magnesium
->>      RX Channel: 2
->>        RX DSP: 0
->>        RX Dboard: B
->>        RX Subdev: Magnesium
->>      RX Channel: 3
->>        RX DSP: 1
->>        RX Dboard: B
->>        RX Subdev: Magnesium
->>      TX Channel: 0
->>        TX DSP: 0
->>        TX Dboard: A
->>        TX Subdev: Magnesium
->>      TX Channel: 1
->>        TX DSP: 1
->>        TX Dboard: A
->>        TX Subdev: Magnesium
->>      TX Channel: 2
->>        TX DSP: 0
->>        TX Dboard: B
->>        TX Subdev: Magnesium
->>      TX Channel: 3
->>        TX DSP: 1
->>        TX Dboard: B
->>        TX Subdev: Magnesium
->>
->> [00:00:04.325114] Setting device timestamp to 0...
->> [00:00:04.426672] Testing transmit rate 62.500000 Msps on 1 channels
->> UUSUSUSUSUUSUSUSUUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUS[00:00:14.777480]
->> Benchmark complete.
->>
->>
->> Benchmark rate summary:
->>      Num received samples:     0
->>      Num dropped samples:      0
->>      Num overruns detected:    0
->>      Num transmitted samples:  154596064
->>      Num sequence errors (Tx): 3155
->>      Num sequence errors (Rx): 0
->>      Num underruns detected:   3163
->>      Num late commands:        0
->>      Num timeouts (Tx):        0
->>      Num timeouts (Rx):        0
->>
->>
->> Done!
->>
->> [ERROR] [UHD] An unexpected exception was caught in a task loop.The task
->> loop will now exit, things may not work.rpc::timeout: Timeout of 10000ms
->> while calling RPC function 'reclaim'
->> [ERROR] [RPC] get_log_buf() called without valid claim.
->> [ERROR] [UHD] Exception caught in safe-call.
->>      in uhd::mpmd::mpmd_mboard_impl::~mpmd_mboard_impl()
->>      at
->> /home/johannes/prefix/gnuradio/src/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cpp:311
->> dump_logs(); _claimer_task.reset(); _xport_mgr.reset(); if (not
->> rpc->request_with_token<bool>("unclaim")) {
->> uhd::_log::log(uhd::log::warning,
->> "/home/johannes/prefix/gnuradio/src/uhd/host/lib/usrp/mpmd/mpmd_mboard_impl.cpp",
->> 311, "MPMD", boost::this_thread::get_id()) << "Failure to ack
->> unclaim!";; } -> RuntimeError: Error during RPC call to `get_log_buf'.
->> Error message: get_log_buf() called without valid claim.
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> Could you send us the output of:
->
-> ifconfig
->
-> or
->
-> ip link
->
-> In particular, what is the MTU on your 10G interface?
->
-> Are you running your CPU in "performance" mode or some other,
-> lower-speed mode?
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+Hi all,
+
+I have 2 USRP E312 devices.
+- one has a GNU Radio image
+- one has a Redhawk SDR image -
+https://geontech.com/redhawk-sdr-and-an-ettus-e310/
+
+With both devices turned on, I am attempting to locate them using
+uhd_find_devices (and also the probe command), but it says No UHD devices
+Found. I have 2 host PCs, one running Ubuntu, one running CentOS.
+
+Everything is on the same network. Everything can ping everything.
+
+I have used Wireshark, and noticed that the uhd_find_devices command
+broadcasts a UDP package throughout the network, but there is no response.
+
+However, I have noticed that all UHD driver versions are different:
+- USRP1 (redhawk image) = 3.11.0.1-0
+- USRP2 (gnuradio image) = 003.009.002
+- Ubuntu PC = 3.14.1
+- CentOS PC = 003.010.001.000-0
+Would this be the problem? if so, how do I go about installing specific
+versions of UHD on my PCs? (or possible the USRP devices - though I would
+rather not mess with the images)
+
+Thanks in advance everyone!
+Joe
+
+--0000000000005eddf7059c87aa8b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi all, <br></div><div><br></div><div>I have 2 USRP E=
+312 devices.</div><div>- one has a GNU Radio image <br></div><div>- one has=
+ a Redhawk SDR image - <a href=3D"https://geontech.com/redhawk-sdr-and-an-e=
+ttus-e310/">https://geontech.com/redhawk-sdr-and-an-ettus-e310/</a></div><d=
+iv></div><div><br></div><div>With both devices turned on, I am attempting t=
+o locate them using uhd_find_devices (and also the probe command), but it s=
+ays No UHD devices Found. I have 2 host PCs, one running Ubuntu, one runnin=
+g CentOS.</div><div><br></div><div><div>Everything is on the same network. =
+Everything can ping everything. </div></div><div><br></div><div>I have used=
+ Wireshark, and noticed that the uhd_find_devices command broadcasts a UDP =
+package throughout the network, but there is no response. <br></div><div><b=
+r></div><div><div>However, I have noticed that all UHD driver versions are =
+different:</div><div>- USRP1 (redhawk image) =3D 3.11.0.1-0</div><div>- USR=
+P2 (gnuradio image) =3D 003.009.002</div><div>- Ubuntu PC =3D 3.14.1</div><=
+div>- CentOS PC =3D 003.010.001.000-0</div><div></div><div>Would this be th=
+e problem? if so, how do I go about installing specific versions of UHD on =
+my PCs? (or possible the USRP devices - though I would rather not mess with=
+ the images)</div><div><br></div><div>Thanks in advance everyone!</div><div=
+>Joe<br></div></div></div>
+
+--0000000000005eddf7059c87aa8b--
 
 
+--===============7870482941329007728==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7870482941329007728==--
+
