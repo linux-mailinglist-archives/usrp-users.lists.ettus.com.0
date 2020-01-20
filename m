@@ -2,81 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA55C1424C4
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Jan 2020 09:05:12 +0100 (CET)
-Received: from [::1] (port=47180 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D7D8143144
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Jan 2020 19:09:19 +0100 (CET)
+Received: from [::1] (port=43302 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1itS3V-0003If-98; Mon, 20 Jan 2020 03:05:05 -0500
-Received: from mail-eopbgr1380135.outbound.protection.outlook.com
- ([40.107.138.135]:63360 helo=IND01-MA1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <sourin.mondal@vehere.com>)
- id 1itS3R-0003De-Vz
- for usrp-users@lists.ettus.com; Mon, 20 Jan 2020 03:05:02 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WAjfwkWJzhkx/4ssTwFtFGZUesrn/4uk7ws60fx7OBH3kf11PUi2cV3eaSaWMfG14Y61pE2+p1XSynhjHEOOmThc2+E9ln9DX9K7S9emoBmvJO1Y+Fiad7OUXuI4TAwJa2m6GhBbd8CgkMencWoX1YZ9V7UYeKzgXb2+x+e8UC4/cEf75gK90eIuyHVwtHz3vc+2bXfsEcJznH/6hUiYmUtkyJ2Hu/J2/6c/aIbNEHK4mZvDUT/5Sp/rwb/vUMr/5sTQUE5/f3v+dPpbQBQuD4VSdUWfYEKSl06cXBzMr7Kn5kgoHDJu5vpRfJ/IUEyqrzlKWZ6ylxyWxBhtl+gEtg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t7PcRtxOkeZRiDR+AJOZ6A0Prz+mlfQUrALOGezk7bs=;
- b=DIV1rmrnVGk2oLQWAcZ1t+DEc6YSamM+CfFukOEMv/eei3J+KhT3I686qt01Yq27F6rZ4RGdyHiu1lxAy2S2QRd83Ysy9VAlyDbyoOvAczAhfi4zsTUPuiJWL9rEjI245CSlJLhkv6rCyMPVJxgjyu6YVEwMpWmf1TrC+neMdVrOlrNsqWXBwOmNg/YUt53wjQ1g3GUqPcZM0nC3pbgCqLa4XcdTmJHA1bUqkHEO1elcZMe1p/bOOG+hP+1PxC9nT9hvoF+6Hz9KEd7yRPszBsE0UTQlOj1Mbo2qanO7mKfFLAm0T7TcJe5oBdXFAYzAVBFm2mUdnuc2m15AL6KZew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
- dkim=pass header.d=vehere.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=vehereinteractive.onmicrosoft.com;
- s=selector2-vehereinteractive-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t7PcRtxOkeZRiDR+AJOZ6A0Prz+mlfQUrALOGezk7bs=;
- b=UTJ+U1VKWCo5dLckFk20B29HrZLELBR45HmkRusYikNBUQV+A9Dh0aEFXt6etQ2pb2//CDB1RPDxw23bg6HcL/etlWJ3GU9t1ej7C1knBE/xka6nsjjVyzePnflL/StS75mrty9VMP9Ta+KFT6LhG55QU3PFcDp9vZxqm0Y0PSk=
-Received: from BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM (20.178.169.212) by
- BMXPR01MB0918.INDPRD01.PROD.OUTLOOK.COM (10.174.218.138) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2644.18; Mon, 20 Jan 2020 08:04:17 +0000
-Received: from BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::7984:e506:fdaf:8504]) by BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::7984:e506:fdaf:8504%7]) with mapi id 15.20.2644.024; Mon, 20 Jan 2020
- 08:04:17 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: phase-aligning two USRPs without Octoclock
-Thread-Index: AQHVz2bE3GcysuM9wU272v0JQcfgjg==
-Date: Mon, 20 Jan 2020 08:04:17 +0000
-Message-ID: <BMXPR01MB23606E790CA4146BE699BFF58B320@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=sourin.mondal@vehere.com; 
-x-originating-ip: [14.143.49.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 477df7ad-f2ea-4e6f-71c7-08d79d7f58fb
-x-ms-traffictypediagnostic: BMXPR01MB0918:
-x-microsoft-antispam-prvs: <BMXPR01MB091863B58849B441A137692A8B320@BMXPR01MB0918.INDPRD01.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-forefront-prvs: 0288CD37D9
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(396003)(346002)(136003)(366004)(376002)(39830400003)(189003)(199004)(76116006)(26005)(66446008)(66556008)(66946007)(66476007)(19627405001)(64756008)(4744005)(7696005)(186003)(33656002)(52536014)(5660300002)(86362001)(6916009)(8936002)(81166006)(81156014)(55236004)(8676002)(316002)(2906002)(508600001)(71200400001)(55016002)(6506007)(9686003)(966005);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BMXPR01MB0918;
- H:BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: vehere.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 40f1DyU+WedvsdTuTKanXspbqFIYIbHFMeoTlxeFOHnyUIaylfgRWSZMDXNpH/duFgj4/jA2xJ2DlKzJdK7KeRlllB6272LxuG+qFG6u8X+ueQIcQUS2XqKGgRi0zmtiQTvvnFRgdehYpqrKqTAa9no++L3wsHbjAD0wUimyYRqV2DojZ9wsm0opGI0XK/04SvBlLN4zKDuu/oIfTrU67WZFO5P/P6BUW84JmdD5WMNZtYQE1qVBMAUFNrAOSSYseXc+bmvTFWrCmpJSyC4Jo8IXET1DGg0puk1OwHCX5asTKZLCKBxPRE8+TqsP9y2qm2Eco0bsm9EAmWk70GOBwnI5SduVA2avxaN/Jn9VB6TEJFmYzGaNpOVXFoAd/C3vQ0TAiyKU0yY2obfbU8U25mkqNh8g8KU7WymUHI7qA/wd8qcx+edFcZcQ7SXFwUf2XBXm4QGjlEKxuO1qcAi5U08th8k5kpwIFOf+W/Va6YbNZ3PFbY9Ku5pMOxioxDoGYTVMpHAeN/PZB2RbpMiI/w==
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: vehere.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 477df7ad-f2ea-4e6f-71c7-08d79d7f58fb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2020 08:04:17.3336 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PyObbGqysG5vO1/Uu3cUfe/EJNCkCeNvRGP/oPYRbVBVek1o8v+JtSm/guC68dZkmBgnVjMIAmGpxsqdjwYzjOtdbFFGiazsRxQM/7GgyZE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BMXPR01MB0918
-Subject: [USRP-users] phase-aligning two USRPs without Octoclock
+	id 1itbU8-00083h-0G; Mon, 20 Jan 2020 13:09:12 -0500
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:38689)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1itbU4-0007ys-01
+ for USRP-users@lists.ettus.com; Mon, 20 Jan 2020 13:09:08 -0500
+Received: by mail-qk1-f173.google.com with SMTP id k6so97410qki.5
+ for <USRP-users@lists.ettus.com>; Mon, 20 Jan 2020 10:08:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=9gxGpKQ7MyB3k6VIeuvmES7+z5ipi1CiX+MbJXNQi7s=;
+ b=kQymuxChWCw+n9cbnDDW8L9R2oPK0UmSf1HGlSmnUywNKa9X57L06Fyusk30UpgSJs
+ RF65iqXraTFMGn5KUKmAUxni16W9gmKFwB5xVhmAzEuNsGxpTBiDEk/BbqRaLzWxwqes
+ gtlexmEg/fANU3g/GRgRYHUdAeEmuiv9PvSwZveZ7q3VMCSRabkuGlQDJMk8rQyLHhvT
+ uTYaDuek1AxbepuNo1eefFttGtgzRosP2J+mVJZNWNRzk1VVqn6iHxFVEClycVlipn/p
+ vBoDikMJnKpPBCL7S/bdrjOi3HhbLuf/AvvPyOtbRxgRwkOlNXhVTvFb738dNNqVzE6C
+ rVRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=9gxGpKQ7MyB3k6VIeuvmES7+z5ipi1CiX+MbJXNQi7s=;
+ b=ExHcSnTs5ov2+rALQeuJbEIqWotANYx8yZvDnTEV7c9mFWHe+Lh0MTX9PmJetcVyq5
+ gMSweoOaAoZL4wLwPboZa1XzOb0fNWGfGMCOz3y+2mR22VISzrWTmsC3/FaUQV9bEZ1V
+ aL9WwDjCYkVYdgaBQ92Aimzz85DfS0WJGFWvIaJh4c4YiLZGVTU4PEiDx4AgONYKBxFN
+ 2ipBYfOGQpGsKy/jTL2ZYFzvd0ufLxRPizQ48r+wvh8UyN49pcoHrDj9H6+JZnav9nOf
+ +fztCch+Cjn1uNcxY0Qng5Gq/2zbRzZ563MIG1484KGm+bR93sXi4fXueOeGwWNqvk7d
+ aYHg==
+X-Gm-Message-State: APjAAAW1UX5lUFL+7PuBalRICsAwr7jmyhWK0LMOfeWyf78IagtTp5py
+ FZ1Tth9E8TlQqRnKp8tt6I5v31papcc=
+X-Google-Smtp-Source: APXvYqz9L+vaAwJrUTTow7EkDTHUd7T7qxBqNl1cbsR11YvHLb6MZfYHvT17zMlJdVZJFjFLMUh7wA==
+X-Received: by 2002:ae9:e707:: with SMTP id m7mr762197qka.320.1579543707227;
+ Mon, 20 Jan 2020 10:08:27 -0800 (PST)
+Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
+ [174.95.14.83])
+ by smtp.gmail.com with ESMTPSA id x34sm17996365qtd.20.2020.01.20.10.08.26
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 20 Jan 2020 10:08:26 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Mon, 20 Jan 2020 13:08:25 -0500
+Message-Id: <FC4F7A4E-97C4-4CBD-8E54-305964E29BB2@gmail.com>
+References: <BMXPR01MB23606E790CA4146BE699BFF58B320@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <BMXPR01MB23606E790CA4146BE699BFF58B320@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>
+To: "Sourin Mondal (Vehere)" <sourin.mondal@vehere.com>
+X-Mailer: iPhone Mail (17C54)
+Subject: Re: [USRP-users] phase-aligning two USRPs without Octoclock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,9 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Sourin Mondal \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Sourin Mondal \(Vehere\)" <sourin.mondal@vehere.com>
-Content-Type: multipart/mixed; boundary="===============8155326081826525047=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0017117264485698143=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -104,114 +82,144 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8155326081826525047==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BMXPR01MB23606E790CA4146BE699BFF58B320BMXPR01MB2360INDP_"
 
---_000_BMXPR01MB23606E790CA4146BE699BFF58B320BMXPR01MB2360INDP_
-Content-Type: text/plain; charset="iso-8859-1"
+--===============0017117264485698143==
+Content-Type: multipart/alternative; boundary=Apple-Mail-63A0DE28-A7BF-4660-87A2-948A66F1E7ED
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-63A0DE28-A7BF-4660-87A2-948A66F1E7ED
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Following link (fig. 2) shows the cris-cross connections inside USRP to syn=
-chronize (phase align) 4 channels of the USRP.
+You don=E2=80=99t need an octoclock, but you DO need an external 10Mhz clock=
+ of some sort.=20
 
-https://kb.ettus.com/Direction_Finding_with_the_USRP%E2%84%A2_X-Series_and_=
-TwinRX%E2%84%A2
+Because two oscillators free running won=E2=80=99t maintain any kind of phas=
+e alignment for more than a few cycles. So they need to be phase locked to a=
+ common clock.=20
 
-If I want to synchronize (phase align) all channels of two USRPs, is there =
-any solution for the synchronization without using Octoclock-G method ?
+Sent from my iPhone
 
-Regards,
-Sourin
+> On Jan 20, 2020, at 3:05 AM, Sourin Mondal (Vehere) via USRP-users <usrp-u=
+sers@lists.ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> Following link (fig. 2) shows the cris-cross connections inside USRP to sy=
+nchronize (phase align) 4 channels of the USRP.=20
+>=20
+> https://kb.ettus.com/Direction_Finding_with_the_USRP%E2%84%A2_X-Series_and=
+_TwinRX%E2%84%A2
+>=20
+> If I want to synchronize (phase align) all channels of two USRPs, is there=
+ any solution for the synchronization without using Octoclock-G method ?
+>=20
+> Regards,
+> Sourin
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_000_BMXPR01MB23606E790CA4146BE699BFF58B320BMXPR01MB2360INDP_
-Content-Type: text/html; charset="iso-8859-1"
+--Apple-Mail-63A0DE28-A7BF-4660-87A2-948A66F1E7ED
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
-if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
-; display: inline !important">Following link (fig. 2) shows the cris-cross =
-connections inside USRP to synchronize
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">You don=E2=80=99t need an octoclock, but yo=
+u DO need an external 10Mhz clock of some sort.&nbsp;<div><br></div><div>Bec=
+ause two oscillators free running won=E2=80=99t maintain any kind of phase a=
+lignment for more than a few cycles. So they need to be phase locked to a co=
+mmon clock.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D=
+"ltr"><br><blockquote type=3D"cite">On Jan 20, 2020, at 3:05 AM, Sourin Mond=
+al (Vehere) via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:<br><br>=
+</blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-1=
+">
+
+
+
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-seri=
+f; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255); d=
+isplay: inline !important">Following link (fig. 2) shows the cris-cross conn=
+ections inside USRP to synchronize
  (phase align) 4 channels of the USRP.&nbsp;</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
-if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
-; display: inline !important"><br>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-seri=
+f; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255); d=
+isplay: inline !important"><br>
 </span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
-if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
-; display: inline !important"><a href=3D"https://kb.ettus.com/Direction_Fin=
-ding_with_the_USRP%E2%84%A2_X-Series_and_TwinRX%E2%84%A2">https://kb.ettus.=
-com/Direction_Finding_with_the_USRP%E2%84%A2_X-Series_and_TwinRX%E2%84%A2</=
-a><br>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-seri=
+f; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255); d=
+isplay: inline !important"><a href=3D"https://kb.ettus.com/Direction_Finding=
+_with_the_USRP%E2%84%A2_X-Series_and_TwinRX%E2%84%A2">https://kb.ettus.com/D=
+irection_Finding_with_the_USRP%E2%84%A2_X-Series_and_TwinRX%E2%84%A2</a><br>=
+
 </span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
-if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
-; display: inline !important"><br>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-seri=
+f; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255); d=
+isplay: inline !important"><br>
 </span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
-if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
-; display: inline !important">If I want to synchronize (phase align) all ch=
-annels of two USRPs,<span style=3D"font-family: Roboto, Arial, sans-serif; =
-background-color: rgb(255, 255, 255); display: inline !important">&nbsp;is
- there any solution for the <span style=3D"font-family: Roboto, Arial, sans=
--serif; background-color: rgb(255, 255, 255); display: inline !important">
-synchronization without using&nbsp;</span><span style=3D"font-family: Robot=
-o, Arial, sans-serif; background-color: rgb(255, 255, 255); display: inline=
- !important">Octoclock-G method ?</span></span></span><br>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-seri=
+f; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255); d=
+isplay: inline !important">If I want to synchronize (phase align) all channe=
+ls of two USRPs,<span style=3D"font-family: Roboto, Arial, sans-serif; backg=
+round-color: rgb(255, 255, 255); display: inline !important">&nbsp;is
+ there any solution for the <span style=3D"font-family: Roboto, Arial, sans-=
+serif; background-color: rgb(255, 255, 255); display: inline !important">
+synchronization without using&nbsp;</span><span style=3D"font-family: Roboto=
+, Arial, sans-serif; background-color: rgb(255, 255, 255); display: inline !=
+important">Octoclock-G method ?</span></span></span><br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
-if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
-; display: inline !important"><span style=3D"font-family: Roboto, Arial, sa=
-ns-serif; background-color: rgb(255, 255, 255); display: inline !important"=
-><span style=3D"font-family: Roboto, Arial, sans-serif; background-color: r=
-gb(255, 255, 255); display: inline !important"><br>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-seri=
+f; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255); d=
+isplay: inline !important"><span style=3D"font-family: Roboto, Arial, sans-s=
+erif; background-color: rgb(255, 255, 255); display: inline !important"><spa=
+n style=3D"font-family: Roboto, Arial, sans-serif; background-color: rgb(255=
+, 255, 255); display: inline !important"><br>
 </span></span></span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
-if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
-; display: inline !important"><span style=3D"font-family: Roboto, Arial, sa=
-ns-serif; background-color: rgb(255, 255, 255); display: inline !important"=
-><span style=3D"font-family: Roboto, Arial, sans-serif; background-color: r=
-gb(255, 255, 255); display: inline !important">Regards,</span></span></span=
-></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-ser=
-if; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255)=
-; display: inline !important"><span style=3D"font-family: Roboto, Arial, sa=
-ns-serif; background-color: rgb(255, 255, 255); display: inline !important"=
-><span style=3D"font-family: Roboto, Arial, sans-serif; background-color: r=
-gb(255, 255, 255); display: inline !important">Sourin</span></span></span><=
-/div>
-</body>
-</html>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-seri=
+f; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255); d=
+isplay: inline !important"><span style=3D"font-family: Roboto, Arial, sans-s=
+erif; background-color: rgb(255, 255, 255); display: inline !important"><spa=
+n style=3D"font-family: Roboto, Arial, sans-serif; background-color: rgb(255=
+, 255, 255); display: inline !important">Regards,</span></span></span></div>=
 
---_000_BMXPR01MB23606E790CA4146BE699BFF58B320BMXPR01MB2360INDP_--
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(17, 17, 17); font-family: Roboto, Arial, sans-seri=
+f; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255); d=
+isplay: inline !important"><span style=3D"font-family: Roboto, Arial, sans-s=
+erif; background-color: rgb(255, 255, 255); display: inline !important"><spa=
+n style=3D"font-family: Roboto, Arial, sans-serif; background-color: rgb(255=
+, 255, 255); display: inline !important">Sourin</span></span></span></div>
 
 
---===============8155326081826525047==
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
+r></div></blockquote></div></body></html>=
+
+--Apple-Mail-63A0DE28-A7BF-4660-87A2-948A66F1E7ED--
+
+
+--===============0017117264485698143==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,5 +230,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8155326081826525047==--
+--===============0017117264485698143==--
 
