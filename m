@@ -2,51 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F158144057
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Jan 2020 16:18:10 +0100 (CET)
-Received: from [::1] (port=36518 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 255C414423B
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Jan 2020 17:33:44 +0100 (CET)
+Received: from [::1] (port=60946 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1itvI8-00085b-OH; Tue, 21 Jan 2020 10:18:08 -0500
-Received: from sonic304-21.consmr.mail.ne1.yahoo.com ([66.163.191.147]:39659)
+	id 1itwTF-00068O-Vm; Tue, 21 Jan 2020 11:33:41 -0500
+Received: from mail-qk1-f169.google.com ([209.85.222.169]:40262)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <santu_voonna@yahoo.com>)
- id 1itvI4-0007uZ-Ti
- for usrp-users@lists.ettus.com; Tue, 21 Jan 2020 10:18:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1579619843; bh=0r47cq5T3yizJ0rRpvt5vMzbBnGNvwxlgImwQeP8fgA=;
- h=Date:From:To:Subject:References:From:Subject;
- b=YcJO+Z7me0tpg22wlIt2C/QH+UJKrZLCoPzRKnWlc8kOSyioQlSxRbPcJ+3DOq8PPkgZ6YIiqQoG8B2UlSs/sPKonujTIPoh8UjpPp1XCxoTjQ5xQSpnofMjSqvfR85U+nIG/LkfwnHRVfdSOHKV0Tdhw7YGeN78td9aNyoyZtMnZ6mXjYFn+KP1R5eY6Lh+srlnvQHDEaGIOTQpen6KBw4ab3Ocif/61cX4zP1rUqVGmu693sCjkJWtKtIKNdgFOHj5EFxHdvvPij53GxPuJUdksLOkqI2jI/fufvcIa8sDVf3wG+tmo9OLld8EqWyGVkNxt/rZwuKxGDmUPwvgXA==
-X-YMail-OSG: 58M9mGYVM1lyQ3q_IkXKlrdfdmw.DFllj7s1DToYcxAbOzgGX11GsM9X4IlAjH1
- cZWsdAL0JcFIb.AV4je6jL9eGrdMURDAy_e2TEZEAqooTh26pUXOXcfXYhGWK3FACYf54OpIWgGK
- YTPh9YfHF380raTjoi4yzzf1z_AKDw8wAdZx7Zs5hDeq0WshBRW_cD.fvSalKtxL.RvpXgSwpVI9
- Ef37qQZLAqWgSHfuLtF5ZflaPRXwPRj2V2wvVitudp4l5.0dF_aLXYBhnMtgm4vaOz7fkEx3KymR
- TrT1AH3icosOj4gh7i8yMWAaRDfv37J2bvm6R4NSAEGuZ7rQcZGHQMOfj9LT6C2L.vnsdjLPpbqt
- F2ier6NWra9ApzMd7U2dEbyh0FQiEdq87Zeq2Xd9UoEKVwryhHLSI30MmYkIMf1nXE9qB6I1AWtp
- PxgCJobBkv8z9.VpXWAb8Z7HA1Ar22j0w_3yr5UDcdjRfBVHONjamx05TY6t4eMZlSPfu8xt8Wet
- jMzl3wJTsmtkRETEbcLHHdbDRUOCn3ju5DrAhWtkUQLzoBKXs8_Cfs9_q4qcPtoDv9B35IdKuUKb
- 2MPDQNfiEH1nPwbQ9Vv8d5w7tB0Oaish9wCWqJxPao4raj.L6diKTcKqo9DhHCaytXYKcm9WikTs
- diab2USuLo86AwfVXHOH5isF.FIQB3evoblhwseEG1P2D7qz54uVtsMMg6_meuUcGA1a5g7bwOUw
- g68p7Bi50fsdS3BzXFTupnDaT0.W3ugLARz21c.VvKSs8jR00eUY8_jhIr9zxlba1sR29YIvUtAo
- JVZel2aWNN5XFlQdR0DNQ.yE4HCAZQ.vGEwp__oX.ekzCJPPGIXLubOok49afGt4UOBzknc.Eu3f
- ddrjhpvBsab55Wgn13_SF8OlFHLOMO9BpOTi4TK7fvNv1xbZRC19H2uKRImHxHPtIjY336hEdW6T
- n8LfhNfOSaPn2p_s7Ne9RCh5jjgA7PLyyhLQ72z86z_d3fA2_9QJczjDz_UkKQUnKptj3nAtIrFj
- TV5Kwm2ht7A2Z1ul.7HhKwsEjkrBoyMFiQjWozEYz9.DGfaX9wAhB65GEtcJRn.cn1WwKcjuSmlU
- _dXT2t6GVwAAa0Jh2yq1V3UMR1ADPauZ_quIQNjGiyl0CQZDshxmTl_G9kH5_ge2UZjxObCuvqny
- qW53RQnRzkbX8cwzHLoM9u7zUa1GMMWSr_ye8ouqbqsYF9gOUeYao.A5pSOW3zdDJ1wCtFEv77tp
- eZUMZVSdCG7MYpb4YXDE6IkCXb9CMemclB_NW1lLxCkYywMH0kfQj1NijIpz6wvrG.Di_pca3_6K
- nrNvEEpfFnKlVnM0K4XV37mdG0g0hJxqN
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic304.consmr.mail.ne1.yahoo.com with HTTP; Tue, 21 Jan 2020 15:17:23 +0000
-Date: Tue, 21 Jan 2020 15:17:19 +0000 (UTC)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <573829199.1907169.1579619839390@mail.yahoo.com>
+ (Exim 4.92) (envelope-from <pawellgocyla@gmail.com>)
+ id 1itwTC-00061G-Bh
+ for usrp-users@lists.ettus.com; Tue, 21 Jan 2020 11:33:38 -0500
+Received: by mail-qk1-f169.google.com with SMTP id c17so3290813qkg.7
+ for <usrp-users@lists.ettus.com>; Tue, 21 Jan 2020 08:33:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=eQhiIdDccH7IhEHJVal08iIIlT7nKCoM6yjkz/svOFw=;
+ b=lPWalzscwgKutjiVsAhJXSlERBxWIXhYaUqscv4gdGThPxd21YcrDqJe0RKVAarph1
+ ybkHmJ24+3Mll55qS/f8OflIz7wILfDgrVCrCDnLGJ4DIQolCUH6A5p2V5gZ+p03hGst
+ HgL4YkOjDYHB5Gdn+a2tdFXx8v4TDKWpqxf6P7RC6PH+6/PAubx1AmIjiApuFB7oRPxr
+ DF1z/CVl1P99VUzJ4Ly2usEKFk82qn91EERcwc/5AFDdbw7Z32xr0vo0SDCAOmqrCZMS
+ Bxv6pqAcs6rsglfwzXF9lRbhojr7sH2A2vTwCEB431rAty2tjdK0yDm/K6VBDcZ3G8Tt
+ Cs1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=eQhiIdDccH7IhEHJVal08iIIlT7nKCoM6yjkz/svOFw=;
+ b=V6ClVIbeKorvhvX8iykTShjm+wb2sKSh73z0Ts3rq54JULXmgxEtluT31EuCgQCJ6s
+ 1xHpPPat5RrjerB9yzHw0YEsPDSrrcEufX/P3zJSs0+wDTwSRGZ1bDvd2nokjDPZ4iNB
+ /T1flJGnY4QYp5ZfQPYBjW+eL86HkSXs+A7IuImBhP4kK2TRZ2CUIWX7zbrHVis9zQDY
+ Ffra/vGBxsoVOsoS3LPvm06OcK4Kw6a6Un+Chn0hGhSJufBqS8Dysy9QVu1XLskc6wT4
+ 8vqNvzNdzoWgCdU0RtEaRZj4QSETd5Mzehd+1zKCvxhxScgL8vQr1FigJximdu4j32zi
+ StIw==
+X-Gm-Message-State: APjAAAVwMM3bx8GuNTbVLHY0PXjJj1JRbvtdLyJ+WFtT3buh4JSWVCZx
+ yWCd3lDw3xWXZUzHcF5sYzGdV9CWYeppTsgZb9JF9HuZ
+X-Google-Smtp-Source: APXvYqyzQgLAkoOUvX/hNuIkyPsQzMfpmOixuAtAjZSJNGIhY+I2Z/pmTih3IaZ693chQZWOZvBGtFYtpd/L/J/H0yE=
+X-Received: by 2002:a37:b842:: with SMTP id i63mr5271807qkf.451.1579624377652; 
+ Tue, 21 Jan 2020 08:32:57 -0800 (PST)
 MIME-Version: 1.0
-References: <573829199.1907169.1579619839390.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.15077 YMailNorrin Mozilla/5.0 (Windows NT 10.0; Win64;
- x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117
- Safari/537.36
-Subject: [USRP-users] Ethernet controller speed negotiation issue
+Date: Tue, 21 Jan 2020 17:32:46 +0100
+Message-ID: <CAByKQJ6oU=TSUeptf9wr=LoHehLN_AFEW_bejWTz3JTsp2=8LA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] ettus usrp B200 driver - not working on linux ubuntu
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,9 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: voonna santosh via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: voonna santosh <santu_voonna@yahoo.com>
-Content-Type: multipart/mixed; boundary="===============5299138249092209181=="
+From: =?utf-8?q?Pawe=C5=82_Gocyla_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Pawe=C5=82_Gocyla?= <pawellgocyla@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4043783173266267360=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,50 +71,140 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5299138249092209181==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1907168_331235016.1579619839389"
-Content-Length: 2069
+--===============4043783173266267360==
+Content-Type: multipart/alternative; boundary="000000000000e89a19059ca8f52b"
 
-------=_Part_1907168_331235016.1579619839389
-Content-Type: text/plain; charset=UTF-8
+--000000000000e89a19059ca8f52b
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+I have a problem with ettus usrp B200 on linux ubuntu.
+
+I have made all steps regarding UHD and driver installation with this
+tutorial:
+https://knowledge.ni.com/KnowledgeArticleDetails?id=kA00Z0000015BIZSA2&l=pl-PL
+
+I turned on support for usb 3.0 in vmware settings.
+I installed intel drivers for support of usb 3.0 (on windows host) -> after
+that vmware was finding this device as B200 for a while but after host
+windows restart is identifying this device as before as WestBridge. In
+ubuntu I have warning from vmware workstation that there is a driver error.
+
+In windows host this device is properly identyfied as Ettus Research LLC
+B20/B210. On ubuntu I installed driver via apt - libuhd3.15.0.
+
+uhd_usrp_probe and uhd_find_devices can't find any usrp devices.
+
+lsusb also doesn't recognise this usrp B200 device.
+
+
+I was searching in google for more information but I don't have any ideas
+how to fix it and what is wrong.
+
+Thanks in advance for your help !
+
+--000000000000e89a19059ca8f52b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi There,=C2=A0 =C2=A0Following is the configuration followed by issue desc=
-ription. Have you experienced or someone reported=C2=A0similar issue in the=
- past with X552 Ethernet controllers?
-Centos version: 7.7Ethernet controller: X552SFP adaptor: FTLX8571D3BCV-ITix=
-gbe default version: 5.1.0Updated ixgbe driver to: 5.6.5INTERMITTENT Issue:=
- Some times the link never comes up and even if I bring down and bring up t=
-he interface(ifconfig down/up). Even I tried probing ixgbe(rmmod/modprobe),=
- no luck.
-PLEASE HELP
-BR,Santosh
+<div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"text-align:left;color:rgb(3=
+4,34,34);text-transform:none;text-indent:0px;letter-spacing:normal;font-fam=
+ily:Arial,Helvetica,sans-serif;font-size:13.33px;font-style:normal;font-var=
+iant:normal;font-weight:400;text-decoration:none;word-spacing:0px;white-spa=
+ce:normal">Hello,</div><div style=3D"text-align:left;color:rgb(34,34,34);te=
+xt-transform:none;text-indent:0px;letter-spacing:normal;font-family:Arial,H=
+elvetica,sans-serif;font-size:13.33px;font-style:normal;font-variant:normal=
+;font-weight:400;text-decoration:none;word-spacing:0px;white-space:normal">=
+<br></div><div style=3D"text-align:left;color:rgb(34,34,34);text-transform:=
+none;text-indent:0px;letter-spacing:normal;font-family:Arial,Helvetica,sans=
+-serif;font-size:13.33px;font-style:normal;font-variant:normal;font-weight:=
+400;text-decoration:none;word-spacing:0px;white-space:normal">I have a prob=
+lem with ettus usrp B200=C2=A0on linux ubuntu.</div><div style=3D"text-alig=
+n:left;color:rgb(34,34,34);text-transform:none;text-indent:0px;letter-spaci=
+ng:normal;font-family:Arial,Helvetica,sans-serif;font-size:13.33px;font-sty=
+le:normal;font-variant:normal;font-weight:400;text-decoration:none;word-spa=
+cing:0px;white-space:normal"><br></div><div style=3D"text-align:left;color:=
+rgb(34,34,34);text-transform:none;text-indent:0px;letter-spacing:normal;fon=
+t-family:Arial,Helvetica,sans-serif;font-size:13.33px;font-style:normal;fon=
+t-variant:normal;font-weight:400;text-decoration:none;word-spacing:0px;whit=
+e-space:normal">I have made all steps regarding UHD and driver installation=
+ with this tutorial:</div><div style=3D"text-align:left;color:rgb(34,34,34)=
+;text-transform:none;text-indent:0px;letter-spacing:normal;font-family:Aria=
+l,Helvetica,sans-serif;font-size:13.33px;font-style:normal;font-variant:nor=
+mal;font-weight:400;text-decoration:none;word-spacing:0px;white-space:norma=
+l"><a style=3D"color:rgb(17,85,204)" href=3D"https://knowledge.ni.com/Knowl=
+edgeArticleDetails?id=3DkA00Z0000015BIZSA2&amp;l=3Dpl-PL" target=3D"_blank"=
+>https://knowledge.ni.com/KnowledgeArticleDetails?id=3DkA00Z0000015BIZSA2&a=
+mp;l=3Dpl-PL</a></div><div style=3D"text-align:left;color:rgb(34,34,34);tex=
+t-transform:none;text-indent:0px;letter-spacing:normal;font-family:Arial,He=
+lvetica,sans-serif;font-size:13.33px;font-style:normal;font-variant:normal;=
+font-weight:400;text-decoration:none;word-spacing:0px;white-space:normal"><=
+br></div><div style=3D"text-align:left;color:rgb(34,34,34);text-transform:n=
+one;text-indent:0px;letter-spacing:normal;font-family:Arial,Helvetica,sans-=
+serif;font-size:13.33px;font-style:normal;font-variant:normal;font-weight:4=
+00;text-decoration:none;word-spacing:0px;white-space:normal">I turned on su=
+pport for usb 3.0 in vmware settings.</div><div style=3D"text-align:left;co=
+lor:rgb(34,34,34);text-transform:none;text-indent:0px;letter-spacing:normal=
+;font-family:Arial,Helvetica,sans-serif;font-size:13.33px;font-style:normal=
+;font-variant:normal;font-weight:400;text-decoration:none;word-spacing:0px;=
+white-space:normal">I installed intel drivers for support of usb 3.0 (on wi=
+ndows host) -&gt; after that vmware was finding this device as B200 for a w=
+hile but after host windows restart is identifying this device as before as=
+ WestBridge. In ubuntu I have warning from vmware workstation that there is=
+ a driver error.</div><div style=3D"text-align:left;color:rgb(34,34,34);tex=
+t-transform:none;text-indent:0px;letter-spacing:normal;font-family:Arial,He=
+lvetica,sans-serif;font-size:13.33px;font-style:normal;font-variant:normal;=
+font-weight:400;text-decoration:none;word-spacing:0px;white-space:normal"><=
+br></div><div style=3D"text-align:left;color:rgb(34,34,34);text-transform:n=
+one;text-indent:0px;letter-spacing:normal;font-family:Arial,Helvetica,sans-=
+serif;font-size:13.33px;font-style:normal;font-variant:normal;font-weight:4=
+00;text-decoration:none;word-spacing:0px;white-space:normal">In windows hos=
+t this device is properly identyfied as Ettus Research LLC B20/B210. On ubu=
+ntu I installed driver via apt - libuhd3.15.0.</div><div style=3D"text-alig=
+n:left;color:rgb(34,34,34);text-transform:none;text-indent:0px;letter-spaci=
+ng:normal;font-family:Arial,Helvetica,sans-serif;font-size:13.33px;font-sty=
+le:normal;font-variant:normal;font-weight:400;text-decoration:none;word-spa=
+cing:0px;white-space:normal"><br></div><div style=3D"text-align:left;color:=
+rgb(34,34,34);text-transform:none;text-indent:0px;letter-spacing:normal;fon=
+t-family:Arial,Helvetica,sans-serif;font-size:13.33px;font-style:normal;fon=
+t-variant:normal;font-weight:400;text-decoration:none;word-spacing:0px;whit=
+e-space:normal">uhd_usrp_probe and uhd_find_devices can&#39;t find any usrp=
+ devices.</div><div style=3D"text-align:left;color:rgb(34,34,34);text-trans=
+form:none;text-indent:0px;letter-spacing:normal;font-family:Arial,Helvetica=
+,sans-serif;font-size:13.33px;font-style:normal;font-variant:normal;font-we=
+ight:400;text-decoration:none;word-spacing:0px;white-space:normal"><br></di=
+v><div style=3D"text-align:left;color:rgb(34,34,34);text-transform:none;tex=
+t-indent:0px;letter-spacing:normal;font-family:Arial,Helvetica,sans-serif;f=
+ont-size:13.33px;font-style:normal;font-variant:normal;font-weight:400;text=
+-decoration:none;word-spacing:0px;white-space:normal">lsusb also doesn&#39;=
+t recognise this usrp B200 device.</div><div style=3D"text-align:left;color=
+:rgb(34,34,34);text-transform:none;text-indent:0px;letter-spacing:normal;fo=
+nt-family:Arial,Helvetica,sans-serif;font-size:13.33px;font-style:normal;fo=
+nt-variant:normal;font-weight:400;text-decoration:none;word-spacing:0px;whi=
+te-space:normal"><br></div><div style=3D"text-align:left;color:rgb(34,34,34=
+);text-transform:none;text-indent:0px;letter-spacing:normal;font-family:Ari=
+al,Helvetica,sans-serif;font-size:13.33px;font-style:normal;font-variant:no=
+rmal;font-weight:400;text-decoration:none;word-spacing:0px;white-space:norm=
+al"><br></div><div style=3D"text-align:left;color:rgb(34,34,34);text-transf=
+orm:none;text-indent:0px;letter-spacing:normal;font-family:Arial,Helvetica,=
+sans-serif;font-size:13.33px;font-style:normal;font-variant:normal;font-wei=
+ght:400;text-decoration:none;word-spacing:0px;white-space:normal">I was sea=
+rching in google for more information but I don&#39;t have any ideas how to=
+ fix it and what is wrong.</div><div style=3D"text-align:left;color:rgb(34,=
+34,34);text-transform:none;text-indent:0px;letter-spacing:normal;font-famil=
+y:Arial,Helvetica,sans-serif;font-size:13.33px;font-style:normal;font-varia=
+nt:normal;font-weight:400;text-decoration:none;word-spacing:0px;white-space=
+:normal"><br></div><div style=3D"text-align:left;color:rgb(34,34,34);text-t=
+ransform:none;text-indent:0px;letter-spacing:normal;font-family:Arial,Helve=
+tica,sans-serif;font-size:13.33px;font-style:normal;font-variant:normal;fon=
+t-weight:400;text-decoration:none;word-spacing:0px;white-space:normal">Than=
+ks in advance for your help !</div></div></div>
 
-------=_Part_1907168_331235016.1579619839389
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
-ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
-=3D"ltr" data-setdir=3D"false"><div><div dir=3D"ltr" data-setdir=3D"false">=
-Hi There,</div><div dir=3D"ltr" data-setdir=3D"false">&nbsp; &nbsp;Followin=
-g is the configuration followed by issue description. Have you experienced =
-<span><span style=3D"color: rgb(0, 0, 0); font-family: &quot;Helvetica Neue=
-&quot;, Helvetica, Arial, sans-serif; font-size: 16px;">or someone reported=
-&nbsp;</span></span>similar issue in the past with X552 Ethernet controller=
-s?</div><div><br></div><div>Centos version: 7.7</div><div>Ethernet controll=
-er: X552</div><div>SFP adaptor: FTLX8571D3BCV-IT</div><div>ixgbe default ve=
-rsion: 5.1.0</div><div>Updated ixgbe driver to: 5.6.5</div><div>INTERMITTEN=
-T Issue: Some times the link never comes up and even if I bring down and br=
-ing up the interface(ifconfig down/up). Even I tried probing ixgbe(rmmod/mo=
-dprobe), no luck.</div><div><br></div><div><b>PLEASE HELP</b></div></div><d=
-iv><b><br></b></div><div dir=3D"ltr" data-setdir=3D"false">BR,</div><div di=
-r=3D"ltr" data-setdir=3D"false">Santosh</div><br></div></div></body></html>
-------=_Part_1907168_331235016.1579619839389--
+--000000000000e89a19059ca8f52b--
 
 
---===============5299138249092209181==
+--===============4043783173266267360==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,5 +215,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5299138249092209181==--
+--===============4043783173266267360==--
 
