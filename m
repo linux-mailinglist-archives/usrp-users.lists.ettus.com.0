@@ -2,58 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7595145D28
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jan 2020 21:33:01 +0100 (CET)
-Received: from [::1] (port=35688 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 209F9145D32
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jan 2020 21:38:05 +0100 (CET)
+Received: from [::1] (port=37326 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iuMgL-0001F1-EB; Wed, 22 Jan 2020 15:32:57 -0500
-Received: from mailhub4.oit.umass.edu ([128.119.9.232]:50472)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <xingjian@umass.edu>)
- id 1iuMgH-0001AB-GD; Wed, 22 Jan 2020 15:32:53 -0500
-Received: from mailhub4.oit.umass.edu (localhost [127.0.0.1])
- by localhost (Postfix) with SMTP id 1ABE7C02386E;
- Wed, 22 Jan 2020 15:31:53 -0500 (EST)
-Received: from exchange.umass.edu (it-ex2016-srv4.campus.ads.umass.edu
- [128.119.228.45])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (Client CN "exchange.umass.edu", Issuer "InCommon RSA Server CA" (verified OK))
- by mailhub4.oit.umass.edu (Postfix) with ESMTPS id 0B833C023846;
- Wed, 22 Jan 2020 15:31:53 -0500 (EST)
-Received: from it-ex2016-srv2.campus.ads.umass.edu (128.119.228.43) by
- it-ex2016-srv4.campus.ads.umass.edu (128.119.228.45) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.1779.2; Wed, 22 Jan 2020 15:31:52 -0500
-Received: from it-ex2016-srv2.campus.ads.umass.edu ([128.119.228.43]) by
- it-ex2016-srv2.campus.ads.umass.edu ([128.119.228.43]) with mapi id
- 15.01.1779.004; Wed, 22 Jan 2020 15:31:52 -0500
-To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>,
- "usrp-users-bounces@lists.ettus.com" <usrp-users-bounces@lists.ettus.com>
-Thread-Topic: E312 RFNOC timed command for setup gain
-Thread-Index: AQHV0WLg1yTs5IkxZ0W//iiOWyibug==
-Date: Wed, 22 Jan 2020 20:31:52 +0000
-Message-ID: <2dc6ba577fbc40a293a79f46616d930f@umass.edu>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.119.8.133]
+	id 1iuMlH-0001dz-Td; Wed, 22 Jan 2020 15:38:03 -0500
+Received: from mail-lf1-f42.google.com ([209.85.167.42]:45169)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <saeidh@gmail.com>) id 1iuMlE-0001WL-Je
+ for usrp-users@lists.ettus.com; Wed, 22 Jan 2020 15:38:00 -0500
+Received: by mail-lf1-f42.google.com with SMTP id 203so589342lfa.12
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jan 2020 12:37:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=H76WL6YAQIHpVep96u+MKNmfCFl1GN/K2O85G+Zwt7A=;
+ b=sDX3JPgTNtfYZhIbIcR1sr7OS/YPd/khyyooYZUjBfi7Wp8ahvlBa7zH6X6Wnoflgz
+ 4DlujmQBI1FVoCZ9sjtavIrmC0RQG9C+bkrtRhNzksGnxCkdlLuxqQgTv7Q9UDxKXT06
+ FzGEl28SnSuZneNUhVmmNm9bEH02J9yUjg61KRuYtIGOC2fomf2gLZYVyxU2Egk06J5P
+ 2SyecqcWijvYG/y6Np8uAtjXp3Nqy/03JbdxL3hpdovu0QP6or7InRaTR0WlJGrqSwNf
+ GU1VPwjfubkyv3Kkm76gLg1QPAkLfi79rL0tMOdN5etyrxccvbBSIlT4A58O2C8N4DFf
+ mlnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=H76WL6YAQIHpVep96u+MKNmfCFl1GN/K2O85G+Zwt7A=;
+ b=Y+Mtm/7f3BIycsVTc+ORmShjXKeCE+Cs6RiKAqyEM7GE3/3o2lxLsYKX7npQKFhwwP
+ VeWginwdJiD7QlK4gOmUdYX0tiPJ4QL1eFayoxBJ4wee2LyKP0yfgz842jk6nbmNOU0L
+ kVx/CeO6bPU5Nca8K4DurVWD+6o4jqaOhdmqGrlO/BBscCSkI9KnYVceUnm3bBp4O39X
+ JgXGxp1ZGTLuEjfNL1p4s8HFJ49vCgt2OwiRc93UdMw9+BTph2BkKrinxFpwbsnoDrT3
+ r7hGi+wN79xVLFUgtzYXAwfu9uxjBAM6fDEJJOZs2vauAJeh9AZDe2K6aIwqjjrX/SqM
+ BmKw==
+X-Gm-Message-State: APjAAAWl5wovn81D0eb7z6a/MPtObET1ztA3wIgCJJNRtt7/zaMiUvGS
+ TvmAXfOgRxcCdORrZF9xa25hYCiZqX9uA4+No2zyTeVr
+X-Google-Smtp-Source: APXvYqz43enW63XmiRXsjOEtB6lxrX0fpXcdojdtiTVRNBs8AX4yoVM7b2l171xClw3ym5hRyce4kUYOB8qQ88+4VwM=
+X-Received: by 2002:a19:4a:: with SMTP id 71mr2763698lfa.50.1579725438449;
+ Wed, 22 Jan 2020 12:37:18 -0800 (PST)
 MIME-Version: 1.0
-X-PMX-Spam: Gauge=IIIIIIII, Probability=8%, Report='
- HTML_70_90 0.1, HTML_NO_HTTP 0.1, BODYTEXTH_SIZE_10000_LESS 0,
- BODYTEXTP_SIZE_3000_LESS 0, BODYTEXTP_SIZE_400_LESS 0, BODY_SIZE_2000_2999 0,
- BODY_SIZE_5000_LESS 0, BODY_SIZE_7000_LESS 0, FROM_EDU_TLD 0, NO_CTA_FOUND 0,
- NO_CTA_URI_FOUND 0, NO_URI_FOUND 0, NO_URI_HTTPS 0, WEBMAIL_SOURCE 0,
- WEBMAIL_XOIP 0, WEBMAIL_X_IP_HDR 0, __BODY_TEXT_X4 0, __CT 0,
- __CTYPE_HAS_BOUNDARY 0, __CTYPE_MULTIPART 0, __CTYPE_MULTIPART_ALT 0,
- __HAS_FROM 0, __HAS_HTML 0, __HAS_MSGID 0, __HAS_XOIP 0, __MIME_HTML 0,
- __MIME_TEXT_H 0, __MIME_TEXT_H1 0, __MIME_TEXT_H2 0, __MIME_TEXT_P 0,
- __MIME_TEXT_P1 0, __MIME_TEXT_P2 0, __MIME_VERSION 0, __MSGID_32HEX 0,
- __SANE_MSGID 0, __STYLE_RATWARE_NEG 0, __SUBJ_ALPHA_END 0, __TAG_EXISTS_HTML 0,
- __TO_MALFORMED_2 0, __TO_NO_NAME 0, __URI_NO_MAILTO 0'
-X-WhitelistedRCPT-nohdrfromcallback: Yes
-Subject: [USRP-users] E312 RFNOC timed command for setup gain
+Date: Wed, 22 Jan 2020 15:37:06 -0500
+Message-ID: <CANQ3h38sFEJXws1oHg6tJLiAaoRic8J6rs=JJRBkRLM_TccJPA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] UHD installation, image download fails,
+ unhandled exception
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,9 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Xingjian Chen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Xingjian Chen <xingjian@umass.edu>
-Content-Type: multipart/mixed; boundary="===============4092305112450295727=="
+From: Saeid Hashemi via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Saeid Hashemi <saeidh@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6962865124954574702=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -81,85 +71,131 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4092305112450295727==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_2dc6ba577fbc40a293a79f46616d930fumassedu_"
+--===============6962865124954574702==
+Content-Type: multipart/alternative; boundary="00000000000099fc3b059cc07d07"
 
---_000_2dc6ba577fbc40a293a79f46616d930fumassedu_
-Content-Type: text/plain; charset="iso-8859-1"
+--00000000000099fc3b059cc07d07
+Content-Type: text/plain; charset="UTF-8"
+
+Hello everyone,
+
+During the installation of UHD, I get an unhandled exception when
+downloading images. The resulting output is shown below. Any advice or help
+would be greatly appreciated.
+
+Thank you
+Saeid
+
+
+
+
+
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Suggested packages:
+  gnuradio
+The following NEW packages will be installed:
+  libuhd-dev libuhd003 uhd-host
+0 upgraded, 3 newly installed, 0 to remove and 238 not upgraded.
+Need to get 0 B/10.6 MB of archives.
+After this operation, 51.3 MB of additional disk space will be used.
+Selecting previously unselected package libuhd-dev.
+(Reading database ... 195896 files and directories currently installed.)
+Preparing to unpack .../libuhd-dev_3.14.1.1-0ubuntu1~bionic1_amd64.deb ...
+Unpacking libuhd-dev (3.14.1.1-0ubuntu1~bionic1) ...
+Selecting previously unselected package libuhd003:amd64.
+Preparing to unpack .../libuhd003_3.13.0.1-0ubuntu1~bionic1_amd64.deb ...
+Unpacking libuhd003:amd64 (3.13.0.1-0ubuntu1~bionic1) ...
+Replaced by files in installed package libuhd3.14.1:amd64
+(3.14.1.1-0ubuntu1~bionic1) ...
+Selecting previously unselected package uhd-host.
+Preparing to unpack .../uhd-host_3.14.1.1-0ubuntu1~bionic1_amd64.deb ...
+Unpacking uhd-host (3.14.1.1-0ubuntu1~bionic1) ...
+Setting up libuhd-dev (3.14.1.1-0ubuntu1~bionic1) ...
+Setting up uhd-host (3.14.1.1-0ubuntu1~bionic1) ...
+net.core.rmem_max = 50000000
+net.core.wmem_max = 1048576
+Setting up libuhd003:amd64 (3.13.0.1-0ubuntu1~bionic1) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+uhd-host is already the newest version (3.14.1.1-0ubuntu1~bionic1).
+0 upgraded, 0 newly installed, 0 to remove and 238 not upgraded.
+[INFO] Images destination: /usr/share/uhd/images
+[INFO] No inventory file found at /usr/share/uhd/images/inventory.json.
+Creating an empty one.
+00006 kB / 00006 kB (100%) usrp1_b100_fw_default-g6bea23d.zip
+19756 kB / 19756 kB (100%) x3xx_x310_fpga_default-gbb85bdff.zip
+02757 kB / 02757 kB (100%) usrp2_n210_fpga_default-g6bea23d.zip
+02131 kB / 02131 kB (100%) n230_n230_fpga_default-gbb85bdff.zip
+00522 kB / 00522 kB (100%) usrp1_b100_fpga_default-g6bea23d.zip
+[ERROR] Downloader raised an unhandled exception: HTTPConnectionPool(host='
+files.ettus.com', port=80): Max retries exceeded with url:
+/binaries/cache//b2xx/fpga-bb85bdff/b2xx_b200_fpga_default-gbb85bdff.zip
+(Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at
+0x7f66b46ec890>: Failed to establish a new connection: [Errno 110]
+Connection timed out',))
+You can run this again with the '--verbose' flag to see more information
+If the problem persists, please email the output to: support@ettus.com
+build have failed
+
+--00000000000099fc3b059cc07d07
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-Is there a way to use timed command for E312 rfnoc siggen module for setup =
-gain?
-I am trying something like below. Is this the right way? Thank you.
+<div dir=3D"ltr"><div>Hello everyone,</div><div><br><div>During the install=
+ation of UHD, I get an unhandled exception when downloading images. The res=
+ulting output is shown below. Any advice or help would be greatly appreciat=
+ed.</div><div><br></div><div>Thank you</div><div>Saeid</div><div><br></div>=
+<div><br></div><div><br></div><div><br></div><div><br></div><div><span styl=
+e=3D"font-family:monospace">Reading package lists... Done<br>Building depen=
+dency tree =C2=A0 =C2=A0 =C2=A0 <br>Reading state information... Done<br>Su=
+ggested packages:<br>=C2=A0 gnuradio<br>The following NEW packages will be =
+installed:<br>=C2=A0 libuhd-dev libuhd003 uhd-host<br>0 upgraded, 3 newly i=
+nstalled, 0 to remove and 238 not upgraded.<br>Need to get 0 B/10.6 MB of a=
+rchives.<br>After this operation, 51.3 MB of additional disk space will be =
+used.<br>Selecting previously unselected package libuhd-dev.<br>(Reading da=
+tabase ... 195896 files and directories currently installed.)<br>Preparing =
+to unpack .../libuhd-dev_3.14.1.1-0ubuntu1~bionic1_amd64.deb ...<br>Unpacki=
+ng libuhd-dev (3.14.1.1-0ubuntu1~bionic1) ...<br>Selecting previously unsel=
+ected package libuhd003:amd64.<br>Preparing to unpack .../libuhd003_3.13.0.=
+1-0ubuntu1~bionic1_amd64.deb ...<br>Unpacking libuhd003:amd64 (3.13.0.1-0ub=
+untu1~bionic1) ...<br>Replaced by files in installed package libuhd3.14.1:a=
+md64 (3.14.1.1-0ubuntu1~bionic1) ...<br>Selecting previously unselected pac=
+kage uhd-host.<br>Preparing to unpack .../uhd-host_3.14.1.1-0ubuntu1~bionic=
+1_amd64.deb ...<br>Unpacking uhd-host (3.14.1.1-0ubuntu1~bionic1) ...<br>Se=
+tting up libuhd-dev (3.14.1.1-0ubuntu1~bionic1) ...<br>Setting up uhd-host =
+(3.14.1.1-0ubuntu1~bionic1) ...<br>net.core.rmem_max =3D 50000000<br>net.co=
+re.wmem_max =3D 1048576<br>Setting up libuhd003:amd64 (3.13.0.1-0ubuntu1~bi=
+onic1) ...<br>Processing triggers for libc-bin (2.27-3ubuntu1) ...<br>Proce=
+ssing triggers for man-db (2.8.3-2ubuntu0.1) ...<br>Reading package lists..=
+. Done<br>Building dependency tree =C2=A0 =C2=A0 =C2=A0 <br>Reading state i=
+nformation... Done<br>uhd-host is already the newest version (3.14.1.1-0ubu=
+ntu1~bionic1).<br>0 upgraded, 0 newly installed, 0 to remove and 238 not up=
+graded.<br>[INFO] Images destination: /usr/share/uhd/images<br>[INFO] No in=
+ventory file found at /usr/share/uhd/images/inventory.json. Creating an emp=
+ty one.<br>00006 kB / 00006 kB (100%) usrp1_b100_fw_default-g6bea23d.zip<br=
+>19756 kB / 19756 kB (100%) x3xx_x310_fpga_default-gbb85bdff.zip<br>02757 k=
+B / 02757 kB (100%) usrp2_n210_fpga_default-g6bea23d.zip<br>02131 kB / 0213=
+1 kB (100%) n230_n230_fpga_default-gbb85bdff.zip<br>00522 kB / 00522 kB (10=
+0%) usrp1_b100_fpga_default-g6bea23d.zip<br>[ERROR] Downloader raised an un=
+handled exception: HTTPConnectionPool(host=3D&#39;<a href=3D"http://files.e=
+ttus.com">files.ettus.com</a>&#39;, port=3D80): Max retries exceeded with u=
+rl: /binaries/cache//b2xx/fpga-bb85bdff/b2xx_b200_fpga_default-gbb85bdff.zi=
+p (Caused by NewConnectionError(&#39;&lt;urllib3.connection.HTTPConnection =
+object at 0x7f66b46ec890&gt;: Failed to establish a new connection: [Errno =
+110] Connection timed out&#39;,))<br>You can run this again with the &#39;-=
+-verbose&#39; flag to see more information<br>If the problem persists, plea=
+se email the output to: <a href=3D"mailto:support@ettus.com">support@ettus.=
+com</a><br>build have failed</span><br></div></div></div>
 
-            uhd::time_spec_t cmd_time =3D time_ref + uhd::time_spec_t(i*256=
-/28e6*10*2000*10);
-            ctrl_siggen_ch0->set_command_time(cmd_time);
-            ctrl_siggen_ch0->set_arg<int>("gain", 3086) ;
-
-
-James
-
---_000_2dc6ba577fbc40a293a79f46616d930fumassedu_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p></p>
-<div>Hi,</div>
-<div>Is there a way to use timed command for E312 rfnoc siggen module&nbsp;=
-for setup gain?&nbsp;</div>
-<div>I am trying something like below. Is this the right way?&nbsp;Thank yo=
-u.&nbsp;</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; uhd::time_spec_t cmd_time =
-=3D time_ref &#43; uhd::time_spec_t(i*256/28e6*10*2000*10);</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ctrl_siggen_ch0-&gt;set_comm=
-and_time(cmd_time);</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ctrl_siggen_ch0-&gt;set_arg&=
-lt;int&gt;(&quot;gain&quot;, 3086) ;&nbsp;</div>
-<br>
-<p></p>
-<p>James</p>
-<div id=3D"Signature">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Arial, Helvetica, sans-serif, EmojiF=
-ont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEm=
-oji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;"=
->
-<div style=3D"font-size:12pt; color:#000000; background-color:#FFFFFF; font=
--family:Calibri,Arial,Helvetica,sans-serif">
-<div class=3D"BodyFragment"><font size=3D"2" style=3D"font-size:10pt">
-<div class=3D"PlainText"><span style=3D"font-size:9pt; color:rgb(0,0,0)">
-<p style=3D""><span style=3D"font-size:9pt; color:rgb(0,0,0)"><span style=
-=3D"color:rgb(0,0,0)"><span style=3D"color:rgb(0,0,0)"></span></span></span=
-></p>
-</span></div>
-</font></div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_2dc6ba577fbc40a293a79f46616d930fumassedu_--
+--00000000000099fc3b059cc07d07--
 
 
---===============4092305112450295727==
+--===============6962865124954574702==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -170,5 +206,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4092305112450295727==--
+--===============6962865124954574702==--
 
