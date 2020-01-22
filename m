@@ -2,58 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F3DE145D42
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jan 2020 21:44:34 +0100 (CET)
-Received: from [::1] (port=38854 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F3A145D67
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jan 2020 21:58:59 +0100 (CET)
+Received: from [::1] (port=43944 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iuMrS-00023M-PC; Wed, 22 Jan 2020 15:44:26 -0500
-Received: from mail-qk1-f182.google.com ([209.85.222.182]:38674)
+	id 1iuN5W-0003Gj-F3; Wed, 22 Jan 2020 15:58:58 -0500
+Received: from mail-lf1-f45.google.com ([209.85.167.45]:43335)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iuMrO-0001yp-Rf
- for usrp-users@lists.ettus.com; Wed, 22 Jan 2020 15:44:22 -0500
-Received: by mail-qk1-f182.google.com with SMTP id k6so1151412qki.5
- for <usrp-users@lists.ettus.com>; Wed, 22 Jan 2020 12:44:02 -0800 (PST)
+ (Exim 4.92) (envelope-from <saeidh@gmail.com>) id 1iuN5S-0003AM-Gv
+ for usrp-users@lists.ettus.com; Wed, 22 Jan 2020 15:58:54 -0500
+Received: by mail-lf1-f45.google.com with SMTP id 9so648278lfq.10
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jan 2020 12:58:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=OZ8LcWpt5Uc574FRCRGc4JdbFqgn/4x5bpFiq2qYBcw=;
- b=atFXQjfXSALEnW1n1kkFD4kRThWYlzYzX9sBeXHkng2xX4XHbsx1/JasMANPP40JLf
- UAmSkjI2Ekr0MLu0liGz4eL8q3yGUPp0XkMQkN3WeMPeuD01itU22eUxy5Yuw7RB3dPD
- 8b6MowbtlbgYwld/6qlquTdmqJyil/Fmg8MLUdPgoUj5FrpwS6ffz2ENQrYVwp5NAgtp
- To4A46tqRALqIdHjOFsW7pHFJqzs8X+Ol+jV8sKMwCUqORuNY3r41XT75WXDZ7OXp4l4
- KSolf5HNqR8IsxNdtoMyGDfAgZMhS6G8QtCf7uRccYP3q1r25qWeUsz9Drd8DRvIwrDK
- qxpQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=gpNx8HfoqRtQYu94SnDF7TlJgDwaFRSG+CA9Pdjzw60=;
+ b=o7PV86d/GbZb8NZouf6XI9ywN/Kl8xKzH+qkdMmVC8teFcisi5IJNkwvbLlL6BwY2X
+ jD0CKd7JCoXwiAkssM323nqg5meW1ogpYbykzRPIjJXo18MR8EoKl2KO9XSjBcJesAIL
+ Yq0DZquTxNqrbBEGdKva96cQkQqB5Wxx20RUiLUpMF64GOgPOdncbvVboxOntamr6r9H
+ 52uvRYVf84aUyG5vKt8Ivsyyj6ieUq3SPZ9zIDTNQaR/ufsbRjJC3TdkxwaQWgGkiiNg
+ 4iFwVPKvOMp8lGm9fKsj2+UqFxwDqTCSjZOrZGlIsBSVWoOWi4sVX8JkyXbY7l4872Dr
+ D5cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=OZ8LcWpt5Uc574FRCRGc4JdbFqgn/4x5bpFiq2qYBcw=;
- b=cJo8jpSR3EsTl/955fXuPMpKEHtlxgAch0Mjp+VFtAaFoY1G/weZNB8fmTebrH4q2I
- YplVZCA+K7a2Dr7OArwuM5HA53D0KI8QnY5HgmP9n7U/T7Ja7WSFco6SsqRDIQ1ipNSy
- EICAyrtGcD1gHZMSa6DDypLA97cPO3bHcXhVYw8uzjWhS4Fk5ObwZ8deNzVaopMORRCo
- G7mB+WY0NCm0DDxuZw8JWWKgGpuC67AOEVBlZPBECWpq3nWtsXujURFJJzJRzj0Th7IT
- Uw79uNw5LkufzxljG2/TBuS+fNJjiItQvQT1yLGS19czHkOwEH3za75XWXMKlUTfiZCv
- 1Otw==
-X-Gm-Message-State: APjAAAWQ/8KKjYPKaONaL2D74U1tIxYu0DS1cJFVKM+OG0hiik5T9pbp
- lkPlAiEIgXwufyaB06mSYLzuLhPMKNE=
-X-Google-Smtp-Source: APXvYqy8ctgUtAtGSYZVbZIgFdzC9zvXvNcQovJXEJWX1dLXWQZrEb2Z/6022ebrT29oW5inYmExtg==
-X-Received: by 2002:a37:e317:: with SMTP id y23mr12408707qki.431.1579725822028; 
- Wed, 22 Jan 2020 12:43:42 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id g18sm19313975qki.13.2020.01.22.12.43.41
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 22 Jan 2020 12:43:41 -0800 (PST)
-Message-ID: <5E28B3FC.1080205@gmail.com>
-Date: Wed, 22 Jan 2020 15:43:40 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=gpNx8HfoqRtQYu94SnDF7TlJgDwaFRSG+CA9Pdjzw60=;
+ b=YR2TbqtV0Df8I8myWJt95GPtBA+KwXOi3K6zSZGlUpyB3WpDTiluglFM8WfUfm5AKk
+ 3N966jCmP4g+eXB6fwZcTSmegZKPNxo3kryO1PxQwGKU80P4Dq0rr19odDZaZyurRaxk
+ QMV/GZ2u7rePpmIhPXNyMU0BpHu3MCtyaGUblx1vbsqo+qVY/kCYrAFTQIvRAqtH9wLI
+ 11uLztt18n5GdYiqHFQqW/nV3/7eKR/w1oSuG/Um/2KoPwtTA2Q3LuzaN26JlxNHovhX
+ xWRsN1R7YItkRBbi2hXFhN7o6FEcfRYUpK2h4cb0VFLmkBddbCaPNgxqpL3OsiUMl0Gs
+ 5x9Q==
+X-Gm-Message-State: APjAAAVtR3+j25LgqBw3egda5nVfozYry2DDrhldoefXuwB1DX+v1yC/
+ azzlVYKtmDj3iA1OVdtl0JSGBewQvM5Y6PI+xr8=
+X-Google-Smtp-Source: APXvYqzgVyvX4HG6EkftlDotTXSx8rTxSb1iK7hHm9o+gbn37SfBboN7OSJqmJirU6Jl9v4AAQ2/xYBCkD0kxGKOpLI=
+X-Received: by 2002:ac2:4436:: with SMTP id w22mr2734388lfl.185.1579726693155; 
+ Wed, 22 Jan 2020 12:58:13 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
 References: <CANQ3h38sFEJXws1oHg6tJLiAaoRic8J6rs=JJRBkRLM_TccJPA@mail.gmail.com>
-In-Reply-To: <CANQ3h38sFEJXws1oHg6tJLiAaoRic8J6rs=JJRBkRLM_TccJPA@mail.gmail.com>
+ <5E28B3FC.1080205@gmail.com>
+In-Reply-To: <5E28B3FC.1080205@gmail.com>
+Date: Wed, 22 Jan 2020 15:58:00 -0500
+Message-ID: <CANQ3h3_ncNfM9dDUjheTq_7=PtqAdMog5XYEW_587MjDbwmTtQ@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Subject: Re: [USRP-users] UHD installation, image download fails,
  unhandled exception
 X-BeenThere: usrp-users@lists.ettus.com
@@ -67,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3648982483689874584=="
+From: Saeid Hashemi via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Saeid Hashemi <saeidh@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8517560482410683036=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,22 +76,28 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3648982483689874584==
-Content-Type: multipart/alternative;
- boundary="------------020205060201060106060902"
+--===============8517560482410683036==
+Content-Type: multipart/alternative; boundary="0000000000006346bc059cc0c8f9"
 
-This is a multi-part message in MIME format.
---------------020205060201060106060902
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000006346bc059cc0c8f9
+Content-Type: text/plain; charset="UTF-8"
 
-On 01/22/2020 03:37 PM, Saeid Hashemi via USRP-users wrote:
+Thank you Marcus, I was able to fix it by changing my network, as you
+suggested.
+
+Regards,
+Saeid
+
+On Wed, Jan 22, 2020 at 3:44 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 01/22/2020 03:37 PM, Saeid Hashemi via USRP-users wrote:
+>
 > Hello everyone,
 >
-> During the installation of UHD, I get an unhandled exception when 
-> downloading images. The resulting output is shown below. Any advice or 
-> help would be greatly appreciated.
+> During the installation of UHD, I get an unhandled exception when
+> downloading images. The resulting output is shown below. Any advice or help
+> would be greatly appreciated.
 >
 > Thank you
 > Saeid
@@ -124,7 +123,7 @@ On 01/22/2020 03:37 PM, Saeid Hashemi via USRP-users wrote:
 > Selecting previously unselected package libuhd003:amd64.
 > Preparing to unpack .../libuhd003_3.13.0.1-0ubuntu1~bionic1_amd64.deb ...
 > Unpacking libuhd003:amd64 (3.13.0.1-0ubuntu1~bionic1) ...
-> Replaced by files in installed package libuhd3.14.1:amd64 
+> Replaced by files in installed package libuhd3.14.1:amd64
 > (3.14.1.1-0ubuntu1~bionic1) ...
 > Selecting previously unselected package uhd-host.
 > Preparing to unpack .../uhd-host_3.14.1.1-0ubuntu1~bionic1_amd64.deb ...
@@ -142,55 +141,61 @@ On 01/22/2020 03:37 PM, Saeid Hashemi via USRP-users wrote:
 > uhd-host is already the newest version (3.14.1.1-0ubuntu1~bionic1).
 > 0 upgraded, 0 newly installed, 0 to remove and 238 not upgraded.
 > [INFO] Images destination: /usr/share/uhd/images
-> [INFO] No inventory file found at 
-> /usr/share/uhd/images/inventory.json. Creating an empty one.
+> [INFO] No inventory file found at /usr/share/uhd/images/inventory.json.
+> Creating an empty one.
 > 00006 kB / 00006 kB (100%) usrp1_b100_fw_default-g6bea23d.zip
 > 19756 kB / 19756 kB (100%) x3xx_x310_fpga_default-gbb85bdff.zip
 > 02757 kB / 02757 kB (100%) usrp2_n210_fpga_default-g6bea23d.zip
 > 02131 kB / 02131 kB (100%) n230_n230_fpga_default-gbb85bdff.zip
 > 00522 kB / 00522 kB (100%) usrp1_b100_fpga_default-g6bea23d.zip
-> [ERROR] Downloader raised an unhandled exception: 
-> HTTPConnectionPool(host='files.ettus.com <http://files.ettus.com>', 
-> port=80): Max retries exceeded with url: 
-> /binaries/cache//b2xx/fpga-bb85bdff/b2xx_b200_fpga_default-gbb85bdff.zip 
-> (Caused by NewConnectionError('<urllib3.connection.HTTPConnection 
-> object at 0x7f66b46ec890>: Failed to establish a new connection: 
-> [Errno 110] Connection timed out',))
+> [ERROR] Downloader raised an unhandled exception: HTTPConnectionPool(host='
+> files.ettus.com', port=80): Max retries exceeded with url:
+> /binaries/cache//b2xx/fpga-bb85bdff/b2xx_b200_fpga_default-gbb85bdff.zip
+> (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at
+> 0x7f66b46ec890>: Failed to establish a new connection: [Errno 110]
+> Connection timed out',))
 > You can run this again with the '--verbose' flag to see more information
-> If the problem persists, please email the output to: support@ettus.com 
-> <mailto:support@ettus.com>
+> If the problem persists, please email the output to: support@ettus.com
 > build have failed
+>
+>
+> _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> This looks like a network issue--it cannot connect to files.ettus.com
+>
+> Said issue must be local to you, since I just tried this and it's working
+> fine--so the Ettus server is working properly, you have a local
+>   networking issue.
 >
 >
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-This looks like a network issue--it cannot connect to files.ettus.com
+>
 
-Said issue must be local to you, since I just tried this and it's 
-working fine--so the Ettus server is working properly, you have a local
-   networking issue.
+--0000000000006346bc059cc0c8f9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
---------------020205060201060106060902
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 01/22/2020 03:37 PM, Saeid Hashemi
+<div dir=3D"ltr"><div>Thank you Marcus, I was able to fix it by changing my=
+ network, as you suggested.</div><div><br></div><div>Regards,</div><div>Sae=
+id<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Wed, Jan 22, 2020 at 3:44 PM Marcus D. Leech via USRP-users =
+&lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 01/22/2020 03:37 PM, Saeid Hashemi
       via USRP-users wrote:<br>
     </div>
-    <blockquote
-cite="mid:CANQ3h38sFEJXws1oHg6tJLiAaoRic8J6rs=JJRBkRLM_TccJPA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
         <div>Hello everyone,</div>
         <div><br>
           <div>During the installation of UHD, I get an unhandled
@@ -211,14 +216,14 @@ cite="mid:CANQ3h38sFEJXws1oHg6tJLiAaoRic8J6rs=JJRBkRLM_TccJPA@mail.gmail.com"
           </div>
           <div><br>
           </div>
-          <div><span style="font-family:monospace">Reading package
+          <div><span style=3D"font-family:monospace">Reading package
               lists... Done<br>
-              Building dependency tree       <br>
+              Building dependency tree =C2=A0 =C2=A0 =C2=A0 <br>
               Reading state information... Done<br>
               Suggested packages:<br>
-                gnuradio<br>
+              =C2=A0 gnuradio<br>
               The following NEW packages will be installed:<br>
-                libuhd-dev libuhd003 uhd-host<br>
+              =C2=A0 libuhd-dev libuhd003 uhd-host<br>
               0 upgraded, 3 newly installed, 0 to remove and 238 not
               upgraded.<br>
               Need to get 0 B/10.6 MB of archives.<br>
@@ -242,13 +247,14 @@ cite="mid:CANQ3h38sFEJXws1oHg6tJLiAaoRic8J6rs=JJRBkRLM_TccJPA@mail.gmail.com"
               Unpacking uhd-host (3.14.1.1-0ubuntu1~bionic1) ...<br>
               Setting up libuhd-dev (3.14.1.1-0ubuntu1~bionic1) ...<br>
               Setting up uhd-host (3.14.1.1-0ubuntu1~bionic1) ...<br>
-              net.core.rmem_max = 50000000<br>
-              net.core.wmem_max = 1048576<br>
-              Setting up libuhd003:amd64 (3.13.0.1-0ubuntu1~bionic1) ...<br>
+              net.core.rmem_max =3D 50000000<br>
+              net.core.wmem_max =3D 1048576<br>
+              Setting up libuhd003:amd64 (3.13.0.1-0ubuntu1~bionic1) ...<br=
+>
               Processing triggers for libc-bin (2.27-3ubuntu1) ...<br>
               Processing triggers for man-db (2.8.3-2ubuntu0.1) ...<br>
               Reading package lists... Done<br>
-              Building dependency tree       <br>
+              Building dependency tree =C2=A0 =C2=A0 =C2=A0 <br>
               Reading state information... Done<br>
               uhd-host is already the newest version
               (3.14.1.1-0ubuntu1~bionic1).<br>
@@ -269,47 +275,61 @@ cite="mid:CANQ3h38sFEJXws1oHg6tJLiAaoRic8J6rs=JJRBkRLM_TccJPA@mail.gmail.com"
               00522 kB / 00522 kB (100%)
               usrp1_b100_fpga_default-g6bea23d.zip<br>
               [ERROR] Downloader raised an unhandled exception:
-              HTTPConnectionPool(host='<a moz-do-not-send="true"
-                href="http://files.ettus.com">files.ettus.com</a>',
-              port=80): Max retries exceeded with url:
-              /binaries/cache//b2xx/fpga-bb85bdff/b2xx_b200_fpga_default-gbb85bdff.zip
+              HTTPConnectionPool(host=3D&#39;<a href=3D"http://files.ettus.=
+com" target=3D"_blank">files.ettus.com</a>&#39;,
+              port=3D80): Max retries exceeded with url:
+              /binaries/cache//b2xx/fpga-bb85bdff/b2xx_b200_fpga_default-gb=
+b85bdff.zip
               (Caused by
-              NewConnectionError('&lt;urllib3.connection.HTTPConnection
+              NewConnectionError(&#39;&lt;urllib3.connection.HTTPConnection
               object at 0x7f66b46ec890&gt;: Failed to establish a new
-              connection: [Errno 110] Connection timed out',))<br>
-              You can run this again with the '--verbose' flag to see
+              connection: [Errno 110] Connection timed out&#39;,))<br>
+              You can run this again with the &#39;--verbose&#39; flag to s=
+ee
               more information<br>
-              If the problem persists, please email the output to: <a
-                moz-do-not-send="true" href="mailto:support@ettus.com">support@ettus.com</a><br>
+              If the problem persists, please email the output to: <a href=
+=3D"mailto:support@ettus.com" target=3D"_blank">support@ettus.com</a><br>
               build have failed</span><br>
           </div>
         </div>
       </div>
       <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <fieldset></fieldset>
       <br>
-      <pre wrap="">_______________________________________________
+      <pre>_______________________________________________
 USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
 </pre>
     </blockquote>
     This looks like a network issue--it cannot connect to
-    files.ettus.com<br>
+    <a href=3D"http://files.ettus.com" target=3D"_blank">files.ettus.com</a=
+><br>
     <br>
-    Said issue must be local to you, since I just tried this and it's
+    Said issue must be local to you, since I just tried this and it&#39;s
     working fine--so the Ettus server is working properly, you have a
     local<br>
-      networking issue.<br>
+    =C2=A0 networking issue.<br>
     <br>
     <br>
-  </body>
-</html>
+  </div>
 
---------------020205060201060106060902--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000006346bc059cc0c8f9--
 
 
---===============3648982483689874584==
+--===============8517560482410683036==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -320,5 +340,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3648982483689874584==--
+--===============8517560482410683036==--
 
