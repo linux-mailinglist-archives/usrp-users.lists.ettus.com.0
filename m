@@ -2,59 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D29D3144C79
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jan 2020 08:31:54 +0100 (CET)
-Received: from [::1] (port=50138 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48715145B16
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jan 2020 18:45:38 +0100 (CET)
+Received: from [::1] (port=44672 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iuAUT-0006Cu-4P; Wed, 22 Jan 2020 02:31:53 -0500
-Received: from mail-qt1-f176.google.com ([209.85.160.176]:37826)
+	id 1iuK4L-000668-RX; Wed, 22 Jan 2020 12:45:33 -0500
+Received: from mail-lf1-f41.google.com ([209.85.167.41]:38651)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iuAUP-00067C-SA
- for usrp-users@lists.ettus.com; Wed, 22 Jan 2020 02:31:49 -0500
-Received: by mail-qt1-f176.google.com with SMTP id w47so4897847qtk.4
- for <usrp-users@lists.ettus.com>; Tue, 21 Jan 2020 23:31:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=9tM2D7auaMfzMw7Z96MiRbDydOiXcAG7rZCne1Ej1AY=;
- b=DOkRGJSLjua7+ZTJZmLW7shOeXM9ueH1TxLeL34/oK3yqOtOYbshLVJoVYFFYmC0g3
- iX9/G3St5QsoNy5jiHYNTwIzn4fo7e/gS2+12h0UQMszEhO1m8Loly4nr6Czd6r9SILC
- r7q2K6X4AtQRRg65i4AUnRa/Ab7yjjEcW0qNrFyrqpW9h99EU0WZ76/Lqk63gVjSR3so
- u573JzH72xvezOmOnRLzNM7mVTfPTrzhJrgtdnnoZs4FTjpNo51MomsVYO3XDjzXkx5y
- /7klBtmg1dRd2lEpd55w3Xk4ke+4pjn5Mon4IJzU94RprkbdP89qMCY2lrYu58IWahQn
- ncUQ==
+ (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
+ id 1iuK4I-00060i-Gj
+ for usrp-users@lists.ettus.com; Wed, 22 Jan 2020 12:45:30 -0500
+Received: by mail-lf1-f41.google.com with SMTP id r14so261039lfm.5
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jan 2020 09:45:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/DnD3uE/ftD3cPezRWWYmG6iZSkuzufW1xX3MiSiGpo=;
+ b=wUNhqYFpaS4lqYqdJBRFiM6O1lcThRH3KWcfdrnHOVg1VDefIUrUqZD73Pu9EI12Fa
+ TcfeUOyj3gUs9bUn66mRhM7xF4nto6RB0ZxcjRZgC79pxQjnfFFMBcGqqk4jXcwKR5WA
+ E9/FfU7SkeMWVxqm0bIWdQqK9OrWvPFLUwzfvCTYuCDPal+u6peS00ynan/Zr0rkWdpB
+ Z1PwMg/ZzUHsm51mB1rewUv8ranoogTslLcgtnLASq/IF9z4JPfzYlrf554eFBcZ8GQz
+ zK4fSagz6iIZv18rxJYHP1Y2JlKiiNiPy/JPxa3qI4QGj6L8PA6YQ1GLXBexj5qsojRj
+ 5klA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=9tM2D7auaMfzMw7Z96MiRbDydOiXcAG7rZCne1Ej1AY=;
- b=KkI0OEwOdNxVpvzqy51mfKRx/3XeKHvvx2NzhwL/Baxtj1GRVyEQ2H+UzXgrmdQgj+
- As0WCQYlbRXKh2wHnh5eQi1Z8qenhbYPxY4YhcsR8jhElXZ0Sdy2HIyPkk1sTkoPAUEY
- PYPtePyfPjmc15mf627zleL2NqB69xT+nIHgcV0Fcy6GX/beq1zYtVofMlyhp2C641PH
- 4OUmPJQhEYlan/fRHqIjJZMJ27pKYqmcYHitUrhfZAen2Ebk65+T5DgNWng1n9xLyqrZ
- 3nHiswvrUYbhs7O4mn88ZG9LfaqrHVn9jWAabEsy2NrTPFBfecZKOGuNlpru8vGuHjUI
- ChJw==
-X-Gm-Message-State: APjAAAWVLeGGgsV4yTt0Rs4QaK8l0ozpT5TTCuhNoudYJxZSGSKhbPhR
- 2GahZ4FWLgg0E8xhdjmmk83iYbPIoDQ=
-X-Google-Smtp-Source: APXvYqztg7e+pTfeLNqsBwWDD03MZTiiemoc/iyju3hXY9w6kNdxc5rucr5v2cB/T3jCY0gh/csM1w==
-X-Received: by 2002:ac8:2d0d:: with SMTP id n13mr9073881qta.236.1579678269038; 
- Tue, 21 Jan 2020 23:31:09 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id j1sm18254465qkl.86.2020.01.21.23.31.08
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 21 Jan 2020 23:31:08 -0800 (PST)
-Message-ID: <5E27FA3B.4060705@gmail.com>
-Date: Wed, 22 Jan 2020 02:31:07 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/DnD3uE/ftD3cPezRWWYmG6iZSkuzufW1xX3MiSiGpo=;
+ b=M5fMZG+sa3eNI1h3rce0Y8KizVLeUojQIK1L279C0h+ZpxQJ0WuCsiLpWAGFAtM9f8
+ 8qkCd/Y57e1p93rWVZ6rm1ZqCc06GR7e1n3akYYrOtZq3Cf2yyj5JePOa4QZfWDmHqPu
+ QLPm5T9sjicO70/F4uww7joLsBGFirJgMDdqL4Vpyq0TlcrmmRcj5dFCZ1f8oMgYP0HG
+ mvTMkvF4Y4JM2r4qlxw2Gtfn7zm5bISj3ylp/yhh/96cvD4uhDH3sbab4hpkznxweC+F
+ alQy9UVr7lnXR9U73E81jUB+zDyrEfPcir9XIj5QLyj9avFrLnHAZ1Xpwz5VlCcPvagi
+ Ev3A==
+X-Gm-Message-State: APjAAAWDasb1CBJ6Ds6Fctg8eJOkzwqRxLd60CXRQVLOAJ+ixSWh6+dY
+ TnY6qSOodu9fpJH+sw1a1kfHuFY4jXfBDKorIByO8VRy
+X-Google-Smtp-Source: APXvYqytFioJJbdF49+IHi+fLf8jgEtWFwCaMpaegusIgI0C4VQg1rq6oAAvaM9A7iffToYCqlabC2xSnojcxFa0ZkE=
+X-Received: by 2002:ac2:5a43:: with SMTP id r3mr2425156lfn.150.1579715089221; 
+ Wed, 22 Jan 2020 09:44:49 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAM+1jtcmAXpN2x2fv67+h4pcczT7V9fEi6RW0By=H1XbX78m3A@mail.gmail.com>
-In-Reply-To: <CAM+1jtcmAXpN2x2fv67+h4pcczT7V9fEi6RW0By=H1XbX78m3A@mail.gmail.com>
-Subject: Re: [USRP-users] USRP B210 hardware architecture
+References: <CAE_Rk55U-U6U5+oMuJ7FWFbkzTEro7+zSDDmoVOgePs8rQsQvQ@mail.gmail.com>
+In-Reply-To: <CAE_Rk55U-U6U5+oMuJ7FWFbkzTEro7+zSDDmoVOgePs8rQsQvQ@mail.gmail.com>
+Date: Wed, 22 Jan 2020 11:44:38 -0600
+Message-ID: <CANf970bWhwPN+=1Sq9BD11BJJ2T9jWm0U2yLCnk3-J34VOZgfw@mail.gmail.com>
+To: Daniel Ozer <danielozer22@gmail.com>
+Subject: Re: [USRP-users] Use most of the ddr3 space in x310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3591461088792789520=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7350347462512804430=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,164 +76,76 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3591461088792789520==
-Content-Type: multipart/alternative;
- boundary="------------040401040205010605080702"
+--===============7350347462512804430==
+Content-Type: multipart/alternative; boundary="000000000000bd6192059cbe1483"
 
-This is a multi-part message in MIME format.
---------------040401040205010605080702
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000bd6192059cbe1483
+Content-Type: text/plain; charset="UTF-8"
 
-On 01/22/2020 01:53 AM, massoud pourmandi via USRP-users wrote:
+Daniel,
+
+The X310 has 1Gb of DRAM available to the FPGA. In the stock images, some
+of this DRAM is used for FIFOs between RFNoC blocks. If you were to replace
+these DRAM FIFOs with SRAM (i.e. compile the XGS image for X310), you
+should theoretically be able to leverage all of the X310s DRAM in the
+Replay Block by modifying axi_intercon_2x64_128_bd.
+
+Sam Reiter
+
+On Wed, Jan 15, 2020 at 2:09 AM Daniel Ozer via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello everyone ,
+> I want to load a file using the replay block that will consume almost all
+> the space  of the ddr3 on the device .
+> I saw that replay block has a address range of 32mib which is not enough
+> at all .
+> How can i change the space address of the replay block and what is the max
+> size i can put so i want damage other components in the design?
+> Thank you in advance.
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
-> Dear colleagues,
->
-> we have a USRP B210 in our lab, though, I have some questions 
-> regarding this device.
->
-> First, I can’t find its hardware architecture? I would be glad if you 
-> send me its detailed information.
->
-> I’m using *Gnuradio* as my simulation environment. In this simulator, 
-> when I connect a signal generator with sin wave to USRP B210 with a 
-> const carrier frequency, the output signal probability undertakes a 
-> modulation by USRP carrier frequency. I need to check its hardware 
-> architecture in order to inspect how this modulation is carried out.
->
-> Secondly, I have checked this device’s datasheet, and the datasheet 
-> underlines that this is a full-duplex device. If you check the device, 
-> you will notice two pairs of ports (RFA and RFB).
->
-> How does this duplexity work?
->
-> Thank you for your time.
->
->
-The schematics are here:
 
-http://files.ettus.com/schematics/b200/b210.pdf
+--000000000000bd6192059cbe1483
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-There are two mostly-independent TX and RX channels in the B210.
+<div dir=3D"ltr">Daniel,<div><br></div><div>The X310 has 1Gb of DRAM availa=
+ble to the FPGA. In the stock images, some of this DRAM is used for FIFOs b=
+etween RFNoC blocks. If you were to replace these DRAM FIFOs with SRAM (i.e=
+. compile the XGS image for X310), you should theoretically be able to leve=
+rage all of the X310s DRAM in the Replay Block by modifying=C2=A0<font face=
+=3D"monospace">axi_intercon_2x64_128_bd</font>.</div><div><br clear=3D"all"=
+><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_si=
+gnature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0</div></div=
+></div></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr" class=3D"gmail_attr">On Wed, Jan 15, 2020 at 2:09 AM Daniel Ozer via US=
+RP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists=
+.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"auto">Hello everyone ,<div dir=3D"auto">I want to lo=
+ad a file using the replay block that will consume almost all the space=C2=
+=A0 of the ddr3 on the device .</div><div dir=3D"auto">I saw that replay bl=
+ock has a address range of 32mib which is not enough at all .</div><div dir=
+=3D"auto">How can i change the space address of the replay block and what i=
+s the max size i can put so i want damage other components in the design?</=
+div><div dir=3D"auto">Thank you in advance.=C2=A0=C2=A0</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
-A full-duplex application would have an usrp_source and a usrp_sink in 
-it, configured appropriately.
-
-So, a simple late-night summary of what happens:
-
-When you transmit a baseband signal out of Gnu Radio, it is digitally 
-up-sampled in the FPGA to the sample rate of the DAC in the AD9361
-   chip, where it is mixed with the local-oscillator signal to produce 
-the RF carrier that is transmitted from the antenna.
-
-Conversely, on the receiver side, the signal arrives at the antenna, is 
-mixed down to complex baseband, where it is sampled by the ADC in
-   the AD9361, usually down-sampled in the FPGA, and presented to your 
-application as a stream of complex-baseband samples.
-
-This is broadly-similar for ANY SDR hardware out there, the details 
-differ, but in broad general strokes they are the same.
+--000000000000bd6192059cbe1483--
 
 
-
---------------040401040205010605080702
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 01/22/2020 01:53 AM, massoud
-      pourmandi via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAM+1jtcmAXpN2x2fv67+h4pcczT7V9fEi6RW0By=H1XbX78m3A@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif"><span
-            style="font-size:12pt;line-height:107%;font-family:&quot;Times
-            New Roman&quot;,serif">Dear colleagues,</span></p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif"><span
-            style="font-size:12pt;line-height:107%;font-family:&quot;Times
-            New Roman&quot;,serif">we have a USRP B210 in our lab,
-            though, I have some questions regarding this device.</span></p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif"><span
-            style="font-size:12pt;line-height:107%;font-family:&quot;Times
-            New Roman&quot;,serif">First, I can’t find its hardware
-            architecture?
-            I would be glad if you send me its detailed information. </span></p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif"><span
-            style="font-size:12pt;line-height:107%;font-family:&quot;Times
-            New Roman&quot;,serif">I’m using <b>Gnuradio</b> as my
-            simulation environment. In this simulator, when I connect a
-            signal generator
-            with sin wave to USRP B210 with a const carrier frequency,
-            the output signal probability
-            undertakes a modulation by USRP carrier frequency. I need to
-            check its hardware
-            architecture in order to inspect how this modulation is
-            carried out. </span></p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif"><span
-            style="font-size:12pt;line-height:107%;font-family:&quot;Times
-            New Roman&quot;,serif">Secondly, I have checked this
-            device’s
-            datasheet, and the datasheet underlines that this is a
-            full-duplex device. If you
-            check the device, you will notice two pairs of ports (RFA
-            and RFB).</span></p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif"><span
-            style="font-size:12pt;line-height:107%;font-family:&quot;Times
-            New Roman&quot;,serif">How does this duplexity work?</span></p>
-        <p class="MsoNormal" style="margin:0in 0in
-          8pt;line-height:107%;font-size:11pt;font-family:Calibri,sans-serif"><span
-            style="font-size:12pt;line-height:107%;font-family:&quot;Times
-            New Roman&quot;,serif">Thank you for your time.</span></p>
-      </div>
-      <br>
-    </blockquote>
-    The schematics are here:<br>
-    <br>
-    <a class="moz-txt-link-freetext" href="http://files.ettus.com/schematics/b200/b210.pdf">http://files.ettus.com/schematics/b200/b210.pdf</a><br>
-    <br>
-    There are two mostly-independent TX and RX channels in the B210.<br>
-    <br>
-    A full-duplex application would have an usrp_source and a usrp_sink
-    in it, configured appropriately.<br>
-    <br>
-    So, a simple late-night summary of what happens:<br>
-    <br>
-    When you transmit a baseband signal out of Gnu Radio, it is
-    digitally up-sampled in the FPGA to the sample rate of the DAC in
-    the AD9361<br>
-      chip, where it is mixed with the local-oscillator signal to
-    produce the RF carrier that is transmitted from the antenna.<br>
-    <br>
-    Conversely, on the receiver side, the signal arrives at the antenna,
-    is mixed down to complex baseband, where it is sampled by the ADC in<br>
-      the AD9361, usually down-sampled in the FPGA, and presented to
-    your application as a stream of complex-baseband samples.<br>
-    <br>
-    This is broadly-similar for ANY SDR hardware out there, the details
-    differ, but in broad general strokes they are the same.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------040401040205010605080702--
-
-
---===============3591461088792789520==
+--===============7350347462512804430==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -250,5 +156,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3591461088792789520==--
+--===============7350347462512804430==--
 
