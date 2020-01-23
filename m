@@ -2,49 +2,77 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1FA0145FB9
-	for <lists+usrp-users@lfdr.de>; Thu, 23 Jan 2020 01:13:12 +0100 (CET)
-Received: from [::1] (port=33820 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFA4145FCD
+	for <lists+usrp-users@lfdr.de>; Thu, 23 Jan 2020 01:20:28 +0100 (CET)
+Received: from [::1] (port=35776 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iuQ7O-0007UN-Ly; Wed, 22 Jan 2020 19:13:06 -0500
-Received: from mail-lj1-f182.google.com ([209.85.208.182]:45918)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jmcrossen80@gmail.com>)
- id 1iuQ7K-0007Pf-La
- for usrp-users@lists.ettus.com; Wed, 22 Jan 2020 19:13:02 -0500
-Received: by mail-lj1-f182.google.com with SMTP id j26so1095690ljc.12
- for <usrp-users@lists.ettus.com>; Wed, 22 Jan 2020 16:12:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=hXgY8BG2bvA2qN71jqluuwCfwbhVelO6JUWanL5HCBc=;
- b=WkCgTqsySpH41y9fmHFZu+THcRXdVa0mkDl4m/Xdw/GXs8iOXCvVBbM5EtlqC23RK/
- 17EHeBmvco2b8iYnXICm4owgwBuy+33KkCr7qe4UxhBfoOtOmsg9C+Gpm+M+5qYWw5Db
- 8hbox6NjWZHqdGWEq0Qsbysbaa/pluz/ydWAdlt6Mod9wSHycSXs1aAqMxRsTqaEE5at
- 9NFFjmxlRNL/XiJsM1T7tQw4xKyw0az6wg3mAWiOo3bz1/H6eaIYBU30BiJNTd1mNS8F
- kuM6Vq41NP5YuaY8MM3ZU1SlrJjLC1w9qu/X7ciiGlr6jlDCTFsGYSg5L2ZxBra+wSxP
- 4gZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=hXgY8BG2bvA2qN71jqluuwCfwbhVelO6JUWanL5HCBc=;
- b=VMmuSypP7jN0Yj7B18qqbZHfaXPQvjcP61YY7C8oBNh+uGlNUtSp67OIWuwjoUe9Pp
- cAKSUIHKjY9y9qV9xxnLnd5QHgYGgt5ggXOBtJoVulL+rPYYk4ZOamOrUAWghbTa0Vmr
- en/KFgAsSyrzqlOgF423WgDBNMeH7W3ruiAMNIweLZMPywc3qzmWHRYL4Ac1xW5b3Pzv
- EhqV+FaXw6E77SK7mvzKuwTZcL4ILRyW5ZOmAJJBKRFIWsuCRGuSpZEIj5rpbBZSqXIJ
- jECe+zCowcUDemCMcaGRDWcU8A+Jff8fM3P3BK44UnNdI8Da0EUN1DWSGMNguJ8ZLT3R
- 6n7w==
-X-Gm-Message-State: APjAAAX3aXj11wWxfwVaMCzJ+RXfP1J0aoiQx9/gRmtvjTSimdCku8Hx
- j7pKamO+Xkap4v8rcCc+Ma8eVYbCCPE3BXKbuHLeyANk
-X-Google-Smtp-Source: APXvYqzXFrbgserFCGVG7kKuC2qhx4TvDfUDa3rUuIrGzf7+R0kEA29JcbafSHfK9UiwIoJ+RGvyU8jiGw92KnEKrr0=
-X-Received: by 2002:a05:651c:1129:: with SMTP id
- e9mr20653571ljo.239.1579738340812; 
- Wed, 22 Jan 2020 16:12:20 -0800 (PST)
+	id 1iuQEV-00082s-6F; Wed, 22 Jan 2020 19:20:27 -0500
+Received: from mail-bn8nam11on2090.outbound.protection.outlook.com
+ ([40.107.236.90]:16192 helo=NAM11-BN8-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <ilbeeman@wpi.edu>) id 1iuQEQ-0007t7-VT
+ for usrp-users@lists.ettus.com; Wed, 22 Jan 2020 19:20:23 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R0SauyPE5qHJQik3TTy2EGFWx1DmMlyK2dRyYkd5k0/Kj7nnYUBck9lovPOb2rdcSpTDxSz7EfcOq05t1We8LtZavIN1u+fCI5NFhBVbzrUFn1dY/lWFZrpsifvsHqt0LUXJHmwjvsCK+qT/R/sBN8pEjsT5wTfuFbaQNxlG/s92hOYP48n+S3eZJdHu6H/SmF/v7VHMb8SXHxxLlSfbCMOnoSfbJAnYtVMI32CEhrGNJ/gCUR0g0C7aKR/0Kl6pgtoJZlttSYgFfjm8k1eedfpmfIhENC84+WjPg5dPpP8qCkVCKeHopqw8ebdU3VyM7GpD5DrX8sJLw3i5xyNLNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cvcPJ26ZUnqwkgBkQX0KciCeiL9XQyHwNcMTJbeo/Jg=;
+ b=K3jd+qa7Vs154SYtquI3KQfWvYumiYQckPnh7AqgG8RjEBkikgf8JjR88b69g8Lon7L5+7Lp8ciXEl2NdpQerE7SIXzRtq+cUjfmSZ3DAiAynXpABjqDA9UXxpgKp1J41efvgjnrW5I9jsN8JuDexmzua8AvEaw1YDxY12CXgiUcUYEGBm1Bsg8ZD/8zzADd85i41km/G/H3xzWs4MJEbTLa9upcKw7go/D1UGD9pCOBVS0/msceleiDOcknR9rZHEAet4OMKx32GJbiwvSbUfDATibl+mLJ73zmX6lBVZv+LsCOPkXuy86gMCNsDVmOFSbeg4OOr7+ZfeUQksfFKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wpi.edu; dmarc=pass action=none header.from=wpi.edu; dkim=pass
+ header.d=wpi.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wpi.edu; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cvcPJ26ZUnqwkgBkQX0KciCeiL9XQyHwNcMTJbeo/Jg=;
+ b=cmIaQcJmVd1+pd73z/CzqQV87GrYwbPyyoPRuGqkh6pKSnHtgZ4KrnKQuIO98Nx8yPv0dU5aGHH9L9gmgIiwkqJoNvGQD7COEr0ieAMDfWj/h3FEtw5EeM+Zz5tt0czIss6qNhFiDfzF/J0pwHQxV/V0KuqvFyqHge4dbNtO0a0=
+Received: from BY5PR01MB5761.prod.exchangelabs.com (52.132.255.83) by
+ BY5PR01MB5892.prod.exchangelabs.com (52.132.255.12) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2644.21; Thu, 23 Jan 2020 00:19:41 +0000
+Received: from BY5PR01MB5761.prod.exchangelabs.com ([fe80::9176:296a:ba4:149])
+ by BY5PR01MB5761.prod.exchangelabs.com ([fe80::9176:296a:ba4:149%7])
+ with mapi id 15.20.2644.028; Thu, 23 Jan 2020 00:19:41 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: E312 Multi-channel issues
+Thread-Index: AQHV0X3lIoH4lD4RrkaYW758decsIQ==
+Date: Thu, 23 Jan 2020 00:19:40 +0000
+Message-ID: <BY5PR01MB57614F4C24F534483D32F35DCB0C0@BY5PR01MB5761.prod.exchangelabs.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ilbeeman@wpi.edu; 
+x-originating-ip: [130.215.172.168]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 514b0da1-5529-4871-f1b2-08d79f99f092
+x-ms-traffictypediagnostic: BY5PR01MB5892:
+x-microsoft-antispam-prvs: <BY5PR01MB5892ED263723FDF1B88BA807CB0F0@BY5PR01MB5892.prod.exchangelabs.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 029174C036
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(4636009)(136003)(396003)(39860400002)(376002)(346002)(366004)(199004)(189003)(76116006)(66476007)(66556008)(64756008)(66446008)(66946007)(33656002)(86362001)(71200400001)(478600001)(6506007)(186003)(26005)(5660300002)(7696005)(2906002)(6916009)(9686003)(52536014)(55016002)(81156014)(81166006)(786003)(8676002)(316002)(966005)(8936002)(75432002)(10126625002)(15519875007);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:BY5PR01MB5892;
+ H:BY5PR01MB5761.prod.exchangelabs.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: wpi.edu does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: WTVRD6GUJIgj6xk3zLimO1ekesOxBofLklixNv7jMKv9Wddl9NQQ5x1M3n5TUgPbMUQZRPq4bWsoFDOjTgbqRRtk4L/z3QWAs+3VKgYEg632DvqwSZO1wZ8CsSqV4ng8atkfHAaAi+mTNjU/75LfMYoQ/TEh3gFscJaImsPYrZdm6k4ODbNddgbgGJAjZZ/yvrO8uRg8e+/fK3Pk+nge+NIoEESt5oK8/EMLEyyQichh+gZwgkOs9NcmdS6mSfCx3LNJGQfQSo+T95pzrg1232IaNlc3SUGLT24rzqKdpKtKVtA9grMdz0KNEawYt5MfG8W0KsDG6b0QtsLGSblfSmy9Pt1hzSZO2tYaQF56zoLRSqXX127dioUx67Kr2hdxBSQpXMEZVW0GGmeAbCXoGs6xf1A2ST2f1rDe05Quk1fc4omATn2epPyIB5VzfDV2RblD05dhqxzOx+OrAEh5nSIjt2LEPdmDBYDo2Z1USAhj8g/WB2ynKd7XI93Y/Z6Wj5hm+rIYn8pwG1bXfBL65pLnlckvcFJc2KrLLju/6lnJ4iPbuoseu22iL4N/2Zil
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Date: Thu, 23 Jan 2020 10:42:09 +1030
-Message-ID: <CAEnX9dGbEkF43zt==5ftvefUY1A7vd6FBSUy4GJfWnhpgtof4g@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Read-all USRP parameters
+X-OriginatorOrg: wpi.edu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 514b0da1-5529-4871-f1b2-08d79f99f092
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2020 00:19:40.8880 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 589c76f5-ca15-41f9-884b-55ec15a0672a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: oGN0vfsZ7Wg6NDBj85DE8012nb7B0blZXB5vrT4K36wpx5q0QclIgIjmxA1OPBv0cvP2F+q4Lmp/TngI+7jDMA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR01MB5892
+Subject: [USRP-users] E312 Multi-channel issues
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,9 +84,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Joe crossen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Joe crossen <jmcrossen80@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0889456338772774729=="
+From: "Beeman, Isaac L. via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Beeman, Isaac L." <ilbeeman@wpi.edu>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,159 +101,38 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0889456338772774729==
-Content-Type: multipart/alternative; boundary="000000000000a46c33059cc37e11"
+Hello Group,
 
---000000000000a46c33059cc37e11
-Content-Type: text/plain; charset="UTF-8"
+I am using the E312 to receive on both channels so I can use a dual antenna system to determine the direction the received signal is coming from. I have gotten the GPS, internal IMU working, and single channel RX working. The issue is, when I try to receive on both channels simultaneously, one of the receivers (at random?) is measuring about 20db below the other. Here is a photo of what I mean (https://imgur.com/EtzLjPO shows RX-B being the strong signal) and here is a few lines of data from a different test (showing RX-A as the strong signal):
 
-Hi all,
+sample#,i1,q1,i2,q2
+151,0.372131,0.705048,0.001709,0.003204
+152,0.376495,0.702332,0.001862,0.003296
+153,0.378906,0.699188,0.001770,0.003204
+154,0.387146,0.695160,0.001892,0.003265
+155,0.391083,0.692047,0.001740,0.003235
+156,0.394806,0.689056,0.001740,0.003204
+157,0.399719,0.685974,0.001984,0.003143
+158,0.400391,0.683411,0.001984,0.003082
+159,0.405457,0.679901,0.001892,0.003082
+160,0.408569,0.676788,0.002045,0.003113
+161,0.412811,0.673248,0.001984,0.003052
+162,0.419006,0.669006,0.002106,0.003143
+163,0.420746,0.666077,0.001953,0.003204
+164,0.425323,0.662445,0.001892,0.003082
+165,0.429535,0.659180,0.002075,0.003082
 
-I know there is a manual for this -
-http://files.ettus.com/manual/page_identification.html#id_naming
-Though I'm still having difficulties.
+I have tried everything I can think of: swap out antennas, swap out USRPs, try a wired test, and try different versions of UHD; but found no solution. I even tried directly adjusting for the gain difference, but that just led to a channel with significantly more noise than the other. 
 
-Firstly, can the eeprom of the device be read/changed from the device
-itself?
-I have ssh'd into the USRP, and get the following when attempting to
-read-all:
+All my code is based off of sample code like rx_multi_samples.cpp and rx_samples_to_file.cpp, so I know that there aren't any glaring issues with my code. I also know that it isn't a direct hardware issue because both RX-A and RX-B receive fine on their own and seem to be randomly selected to be the channel receiving at full power when doing multi-channel.
 
-root@ettus-e3xx-sg3:/usr/lib/uhd/utils# ./usrp_burn_mb_eeprom --read-all
-Creating USRP device from address:
-[INFO] [UHD] linux; GNU C++ version 7.3.0; Boost_106400;
-UHD_3.11.0.1-0-unknown
-[WARNING] [UDP] The recv buffer could not be resized sufficiently.
-Target sock buff size: 288000 bytes.
-Actual sock buff size: 163840 bytes.
-See the transport application notes on buffer resizing.
-Please run: sudo sysctl -w net.core.rmem_max=288000
-[WARNING] [UDP] The send buffer could not be resized sufficiently.
-Target sock buff size: 288000 bytes.
-Actual sock buff size: 163840 bytes.
-See the transport application notes on buffer resizing.
-Please run: sudo sysctl -w net.core.wmem_max=288000
-[WARNING] [UDP] The recv buffer could not be resized sufficiently.
-Target sock buff size: 288000 bytes.
-Actual sock buff size: 163840 bytes.
-See the transport application notes on buffer resizing.
-Please run: sudo sysctl -w net.core.rmem_max=288000
-[WARNING] [UDP] The send buffer could not be resized sufficiently.
-Target sock buff size: 288000 bytes.
-Actual sock buff size: 163840 bytes.
-See the transport application notes on buffer resizing.
-Please run: sudo sysctl -w net.core.wmem_max=288000
-[WARNING] [UDP] The recv buffer could not be resized sufficiently.
-Target sock buff size: 288000 bytes.
-Actual sock buff size: 163840 bytes.
-See the transport application notes on buffer resizing.
-Please run: sudo sysctl -w net.core.rmem_max=288000
-[WARNING] [UDP] The send buffer could not be resized sufficiently.
-Target sock buff size: 288000 bytes.
-Actual sock buff size: 163840 bytes.
-See the transport application notes on buffer resizing.
-Please run: sudo sysctl -w net.core.wmem_max=288000
-[INFO] [E300] Detecting internal GPS
-[ERROR] [E300] An error occured making GPSDd interface: RuntimeError:
-Failed to connect to gpsd: can't connect to host/port pair
-[INFO] [E300] Initializing core control...
-[INFO] [E300] Performing register loopback test...
-[INFO] [E300] Register loopback test passed
-Error: RuntimeError: Expected FPGA compatibility number 17.x, but got 16.0:
-The FPGA build is not compatible with the host code build.
-Please run:
+Am I doing something completely wrong? I can't think of anything else to try. I was hoping to test this out in the next couple weeks, so any help would be greatly appreciated.
 
- "/usr/lib/uhd/utils/uhd_images_downloader.py"
+Here is a pastebin of my simplified code: https://pastebin.com/MNmV0CVM 
 
-Failing this, I attempted the same from my host machine (with the USRP
-device in usrp_e3x0_
-network_mode).
-/usr/local/lib/uhd/utils$ ./usrp_burn_mb_eeprom --args="serial=3174549"
---read-all
-This resulted in a very similar output with the error:
-Error: RuntimeError: Expected FPGA compatibility number 255.x, but got 16.0:
-
-*Note: *my host machine is running UHD 3.14.1 and I suspect this doesn't
-help the matter- I've attempted to roll this version back by downloading
-older uhd binaries - https://files.ettus.com/binaries/uhd/
-though was getting all of these dependency issues. I'm new to Linux and
-this has been a head-f**k.
-
-I'm not sure how to troubleshoot this.
-Any advice would be great!
-Thanks,
-Joe
-
---000000000000a46c33059cc37e11
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi all, <br></div><div><br></div><div>I know there is=
- a manual for this - <a href=3D"http://files.ettus.com/manual/page_identifi=
-cation.html#id_naming" target=3D"_blank">http://files.ettus.com/manual/page=
-_identification.html#id_naming</a></div><div></div><div>Though I&#39;m stil=
-l having difficulties. <br></div><div><br></div><div>Firstly, can the eepro=
-m of the device be read/changed from the device itself?</div><div>I have ss=
-h&#39;d into the USRP, and get the following when attempting to read-all:<b=
-r></div><div><br></div><div style=3D"margin-left:40px">root@ettus-e3xx-sg3:=
-/usr/lib/uhd/utils# ./usrp_burn_mb_eeprom --read-all<br>Creating USRP devic=
-e from address: <br>[INFO] [UHD] linux; GNU C++ version 7.3.0; Boost_106400=
-; UHD_3.11.0.1-0-unknown<br>[WARNING] [UDP] The recv buffer could not be re=
-sized sufficiently.<br>Target sock buff size: 288000 bytes.<br>Actual sock =
-buff size: 163840 bytes.<br>See the transport application notes on buffer r=
-esizing.<br>Please run: sudo sysctl -w net.core.rmem_max=3D288000<br>[WARNI=
-NG] [UDP] The send buffer could not be resized sufficiently.<br>Target sock=
- buff size: 288000 bytes.<br>Actual sock buff size: 163840 bytes.<br>See th=
-e transport application notes on buffer resizing.<br>Please run: sudo sysct=
-l -w net.core.wmem_max=3D288000<br>[WARNING] [UDP] The recv buffer could no=
-t be resized sufficiently.<br>Target sock buff size: 288000 bytes.<br>Actua=
-l sock buff size: 163840 bytes.<br>See the transport application notes on b=
-uffer resizing.<br>Please run: sudo sysctl -w net.core.rmem_max=3D288000<br=
->[WARNING] [UDP] The send buffer could not be resized sufficiently.<br>Targ=
-et sock buff size: 288000 bytes.<br>Actual sock buff size: 163840 bytes.<br=
->See the transport application notes on buffer resizing.<br>Please run: sud=
-o sysctl -w net.core.wmem_max=3D288000<br>[WARNING] [UDP] The recv buffer c=
-ould not be resized sufficiently.<br>Target sock buff size: 288000 bytes.<b=
-r>Actual sock buff size: 163840 bytes.<br>See the transport application not=
-es on buffer resizing.<br>Please run: sudo sysctl -w net.core.rmem_max=3D28=
-8000<br>[WARNING] [UDP] The send buffer could not be resized sufficiently.<=
-br>Target sock buff size: 288000 bytes.<br>Actual sock buff size: 163840 by=
-tes.<br>See the transport application notes on buffer resizing.<br>Please r=
-un: sudo sysctl -w net.core.wmem_max=3D288000<br>[INFO] [E300] Detecting in=
-ternal GPS <br>[ERROR] [E300] An error occured making GPSDd interface: Runt=
-imeError: Failed to connect to gpsd: can&#39;t connect to host/port pair<br=
->[INFO] [E300] Initializing core control...<br>[INFO] [E300] Performing reg=
-ister loopback test... <br>[INFO] [E300] Register loopback test passed<br>E=
-rror: RuntimeError: Expected FPGA compatibility number 17.x, but got 16.0:<=
-br>The FPGA build is not compatible with the host code build.<br>Please run=
-:<br><br>=C2=A0&quot;/usr/lib/uhd/utils/uhd_images_downloader.py&quot;<br><=
-/div><div><br></div><div>Failing this, I attempted the same from my host ma=
-chine (with the USRP device in usrp_e3x0_<br></div><div>network_mode). <br>=
-</div><div style=3D"margin-left:40px">/usr/local/lib/uhd/utils$ ./usrp_burn=
-_mb_eeprom --args=3D&quot;serial=3D3174549&quot; --read-all<br></div><div>T=
-his resulted in a very similar output with the error:</div><div style=3D"ma=
-rgin-left:40px">Error: RuntimeError: Expected FPGA compatibility number 255=
-.x, but got 16.0:<br></div><div></div><div><br></div><div><b>Note: </b>my h=
-ost machine is running UHD 3.14.1 and I suspect this doesn&#39;t help the m=
-atter- I&#39;ve attempted to roll this version back by downloading older uh=
-d binaries - <a href=3D"https://files.ettus.com/binaries/uhd/">https://file=
-s.ettus.com/binaries/uhd/</a></div><div>though was getting all of these dep=
-endency issues. I&#39;m new to Linux and this has been a head-f**k.<br></di=
-v><div><br></div><div>I&#39;m not sure how to troubleshoot this.</div><div>=
-Any advice would be great!</div><div>Thanks,</div><div>Joe<br></div></div>
-
---000000000000a46c33059cc37e11--
-
-
---===============0889456338772774729==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Isaac Beeman
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============0889456338772774729==--
-
