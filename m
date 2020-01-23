@@ -2,77 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AFA4145FCD
-	for <lists+usrp-users@lfdr.de>; Thu, 23 Jan 2020 01:20:28 +0100 (CET)
-Received: from [::1] (port=35776 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 671BE1460E4
+	for <lists+usrp-users@lfdr.de>; Thu, 23 Jan 2020 04:16:37 +0100 (CET)
+Received: from [::1] (port=59438 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iuQEV-00082s-6F; Wed, 22 Jan 2020 19:20:27 -0500
-Received: from mail-bn8nam11on2090.outbound.protection.outlook.com
- ([40.107.236.90]:16192 helo=NAM11-BN8-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <ilbeeman@wpi.edu>) id 1iuQEQ-0007t7-VT
- for usrp-users@lists.ettus.com; Wed, 22 Jan 2020 19:20:23 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R0SauyPE5qHJQik3TTy2EGFWx1DmMlyK2dRyYkd5k0/Kj7nnYUBck9lovPOb2rdcSpTDxSz7EfcOq05t1We8LtZavIN1u+fCI5NFhBVbzrUFn1dY/lWFZrpsifvsHqt0LUXJHmwjvsCK+qT/R/sBN8pEjsT5wTfuFbaQNxlG/s92hOYP48n+S3eZJdHu6H/SmF/v7VHMb8SXHxxLlSfbCMOnoSfbJAnYtVMI32CEhrGNJ/gCUR0g0C7aKR/0Kl6pgtoJZlttSYgFfjm8k1eedfpmfIhENC84+WjPg5dPpP8qCkVCKeHopqw8ebdU3VyM7GpD5DrX8sJLw3i5xyNLNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cvcPJ26ZUnqwkgBkQX0KciCeiL9XQyHwNcMTJbeo/Jg=;
- b=K3jd+qa7Vs154SYtquI3KQfWvYumiYQckPnh7AqgG8RjEBkikgf8JjR88b69g8Lon7L5+7Lp8ciXEl2NdpQerE7SIXzRtq+cUjfmSZ3DAiAynXpABjqDA9UXxpgKp1J41efvgjnrW5I9jsN8JuDexmzua8AvEaw1YDxY12CXgiUcUYEGBm1Bsg8ZD/8zzADd85i41km/G/H3xzWs4MJEbTLa9upcKw7go/D1UGD9pCOBVS0/msceleiDOcknR9rZHEAet4OMKx32GJbiwvSbUfDATibl+mLJ73zmX6lBVZv+LsCOPkXuy86gMCNsDVmOFSbeg4OOr7+ZfeUQksfFKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wpi.edu; dmarc=pass action=none header.from=wpi.edu; dkim=pass
- header.d=wpi.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wpi.edu; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cvcPJ26ZUnqwkgBkQX0KciCeiL9XQyHwNcMTJbeo/Jg=;
- b=cmIaQcJmVd1+pd73z/CzqQV87GrYwbPyyoPRuGqkh6pKSnHtgZ4KrnKQuIO98Nx8yPv0dU5aGHH9L9gmgIiwkqJoNvGQD7COEr0ieAMDfWj/h3FEtw5EeM+Zz5tt0czIss6qNhFiDfzF/J0pwHQxV/V0KuqvFyqHge4dbNtO0a0=
-Received: from BY5PR01MB5761.prod.exchangelabs.com (52.132.255.83) by
- BY5PR01MB5892.prod.exchangelabs.com (52.132.255.12) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2644.21; Thu, 23 Jan 2020 00:19:41 +0000
-Received: from BY5PR01MB5761.prod.exchangelabs.com ([fe80::9176:296a:ba4:149])
- by BY5PR01MB5761.prod.exchangelabs.com ([fe80::9176:296a:ba4:149%7])
- with mapi id 15.20.2644.028; Thu, 23 Jan 2020 00:19:41 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: E312 Multi-channel issues
-Thread-Index: AQHV0X3lIoH4lD4RrkaYW758decsIQ==
-Date: Thu, 23 Jan 2020 00:19:40 +0000
-Message-ID: <BY5PR01MB57614F4C24F534483D32F35DCB0C0@BY5PR01MB5761.prod.exchangelabs.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=ilbeeman@wpi.edu; 
-x-originating-ip: [130.215.172.168]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 514b0da1-5529-4871-f1b2-08d79f99f092
-x-ms-traffictypediagnostic: BY5PR01MB5892:
-x-microsoft-antispam-prvs: <BY5PR01MB5892ED263723FDF1B88BA807CB0F0@BY5PR01MB5892.prod.exchangelabs.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 029174C036
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(4636009)(136003)(396003)(39860400002)(376002)(346002)(366004)(199004)(189003)(76116006)(66476007)(66556008)(64756008)(66446008)(66946007)(33656002)(86362001)(71200400001)(478600001)(6506007)(186003)(26005)(5660300002)(7696005)(2906002)(6916009)(9686003)(52536014)(55016002)(81156014)(81166006)(786003)(8676002)(316002)(966005)(8936002)(75432002)(10126625002)(15519875007);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BY5PR01MB5892;
- H:BY5PR01MB5761.prod.exchangelabs.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: wpi.edu does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WTVRD6GUJIgj6xk3zLimO1ekesOxBofLklixNv7jMKv9Wddl9NQQ5x1M3n5TUgPbMUQZRPq4bWsoFDOjTgbqRRtk4L/z3QWAs+3VKgYEg632DvqwSZO1wZ8CsSqV4ng8atkfHAaAi+mTNjU/75LfMYoQ/TEh3gFscJaImsPYrZdm6k4ODbNddgbgGJAjZZ/yvrO8uRg8e+/fK3Pk+nge+NIoEESt5oK8/EMLEyyQichh+gZwgkOs9NcmdS6mSfCx3LNJGQfQSo+T95pzrg1232IaNlc3SUGLT24rzqKdpKtKVtA9grMdz0KNEawYt5MfG8W0KsDG6b0QtsLGSblfSmy9Pt1hzSZO2tYaQF56zoLRSqXX127dioUx67Kr2hdxBSQpXMEZVW0GGmeAbCXoGs6xf1A2ST2f1rDe05Quk1fc4omATn2epPyIB5VzfDV2RblD05dhqxzOx+OrAEh5nSIjt2LEPdmDBYDo2Z1USAhj8g/WB2ynKd7XI93Y/Z6Wj5hm+rIYn8pwG1bXfBL65pLnlckvcFJc2KrLLju/6lnJ4iPbuoseu22iL4N/2Zil
-x-ms-exchange-transport-forked: True
+	id 1iuSyv-00081g-Q6; Wed, 22 Jan 2020 22:16:33 -0500
+Received: from mail-lj1-f176.google.com ([209.85.208.176]:40393)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1iuSys-0007wW-Hj
+ for USRP-users@lists.ettus.com; Wed, 22 Jan 2020 22:16:30 -0500
+Received: by mail-lj1-f176.google.com with SMTP id n18so1499706ljo.7
+ for <USRP-users@lists.ettus.com>; Wed, 22 Jan 2020 19:16:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=SYHU0+wvwlsjb1n2RPOEb75mO8QrL//pyr9E1JOUFbg=;
+ b=rE3EqMdPsdLQvUslA+zYAgIaLil6h/keN68Ced7y8RevmE8bnFrlzqCE/oFVJcLHLn
+ z+ID8gsaHqcqiXAlzJ74F/f62V/3nUr9jd+M/81AzmQAJt0ft21NYt2ZswMbBmWUAGuo
+ fxrZllglxdeVCa2iIRhRX07w8bYyWTgUIovOmvxTEkZRZjUjwEgDRny8yHXnVKzW7sP+
+ iVw9KzlEYVoDqSUnYH8mWs2ikIjriwE/JgDxq1L7eLxA5D1FxAxfR39Zhu8YfHn/KzjM
+ Iuv65eHn6GVYN9aTU2SZV4XPcIuGW0w/9bMj/HCOtOWBIqwAzbrxC+g0u/3cSRSWrT1k
+ oQkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=SYHU0+wvwlsjb1n2RPOEb75mO8QrL//pyr9E1JOUFbg=;
+ b=AwzPxD4if9r9BrbaoOZHDmmySjEYA9edNTWRWuhE2F7J+Jt5XzwcTrFYcxS2zep4l2
+ /BmK+u0NDiELkWh9EEQ0Y2s5zkoaFWLCbjnRS5iMRk4NSHVmZWuoATHMfX8neZn5q636
+ N0ESx9ph5HO6yllbcruYymGpdLUJmB7RWWE5jSdih8K/BZHX0ZHJH6AiTyQHBGE+GoFf
+ wHQIGtbhMoK4xxFQfsMGltL9WJEJbhI48WSSRqBzZvheB1aSSv5N1SDTHL2yjw7hHCsC
+ +LInM/aJg3O4dNAddcr5b0dLeuCpgciURbfsqEohU+neek7u/rxDlO8JTAis4LdSlNCu
+ memg==
+X-Gm-Message-State: APjAAAVTZoZRaUYfn+2dAiA0nMAuRycIHbGKoxpo9qSAIOD9Eg9F5Up+
+ J5aBkN0UAxfMcUwZXYUULLtOEwInemXxtmnKtrqEA8+t
+X-Google-Smtp-Source: APXvYqy914S5Ngohu8ZTd5wTb+mgbQOxtSO/mcPPG2mrIyS7BnkSV8vjvft0xu4CQo2ueZbEsaV8hLNmBlKyGEow8AI=
+X-Received: by 2002:a2e:9157:: with SMTP id q23mr7826405ljg.196.1579749349205; 
+ Wed, 22 Jan 2020 19:15:49 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: wpi.edu
-X-MS-Exchange-CrossTenant-Network-Message-Id: 514b0da1-5529-4871-f1b2-08d79f99f092
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2020 00:19:40.8880 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 589c76f5-ca15-41f9-884b-55ec15a0672a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oGN0vfsZ7Wg6NDBj85DE8012nb7B0blZXB5vrT4K36wpx5q0QclIgIjmxA1OPBv0cvP2F+q4Lmp/TngI+7jDMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR01MB5892
-Subject: [USRP-users] E312 Multi-channel issues
+References: <2dc6ba577fbc40a293a79f46616d930f@umass.edu>
+In-Reply-To: <2dc6ba577fbc40a293a79f46616d930f@umass.edu>
+Date: Wed, 22 Jan 2020 22:15:12 -0500
+Message-ID: <CAL7q81uGokoPr1iYeze-h2q8N7jgqpu23zoAfvfOf8m4uqYbZQ@mail.gmail.com>
+To: Xingjian Chen <xingjian@umass.edu>
+Subject: Re: [USRP-users] E312 RFNOC timed command for setup gain
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,10 +59,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Beeman, Isaac L. via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Beeman, Isaac L." <ilbeeman@wpi.edu>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Cc: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>,
+ "usrp-users-bounces@lists.ettus.com" <usrp-users-bounces@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============1911665804649597635=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -101,38 +77,117 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hello Group,
+--===============1911665804649597635==
+Content-Type: multipart/alternative; boundary="000000000000cb3d11059cc60ed3"
 
-I am using the E312 to receive on both channels so I can use a dual antenna system to determine the direction the received signal is coming from. I have gotten the GPS, internal IMU working, and single channel RX working. The issue is, when I try to receive on both channels simultaneously, one of the receivers (at random?) is measuring about 20db below the other. Here is a photo of what I mean (https://imgur.com/EtzLjPO shows RX-B being the strong signal) and here is a few lines of data from a different test (showing RX-A as the strong signal):
+--000000000000cb3d11059cc60ed3
+Content-Type: text/plain; charset="UTF-8"
 
-sample#,i1,q1,i2,q2
-151,0.372131,0.705048,0.001709,0.003204
-152,0.376495,0.702332,0.001862,0.003296
-153,0.378906,0.699188,0.001770,0.003204
-154,0.387146,0.695160,0.001892,0.003265
-155,0.391083,0.692047,0.001740,0.003235
-156,0.394806,0.689056,0.001740,0.003204
-157,0.399719,0.685974,0.001984,0.003143
-158,0.400391,0.683411,0.001984,0.003082
-159,0.405457,0.679901,0.001892,0.003082
-160,0.408569,0.676788,0.002045,0.003113
-161,0.412811,0.673248,0.001984,0.003052
-162,0.419006,0.669006,0.002106,0.003143
-163,0.420746,0.666077,0.001953,0.003204
-164,0.425323,0.662445,0.001892,0.003082
-165,0.429535,0.659180,0.002075,0.003082
+Hi James,
 
-I have tried everything I can think of: swap out antennas, swap out USRPs, try a wired test, and try different versions of UHD; but found no solution. I even tried directly adjusting for the gain difference, but that just led to a channel with significantly more noise than the other. 
+The Siggen RFNoC block does not support timed commands.
 
-All my code is based off of sample code like rx_multi_samples.cpp and rx_samples_to_file.cpp, so I know that there aren't any glaring issues with my code. I also know that it isn't a direct hardware issue because both RX-A and RX-B receive fine on their own and seem to be randomly selected to be the channel receiving at full power when doing multi-channel.
+Jonathon
 
-Am I doing something completely wrong? I can't think of anything else to try. I was hoping to test this out in the next couple weeks, so any help would be greatly appreciated.
+On Wed, Jan 22, 2020 at 3:32 PM Xingjian Chen via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-Here is a pastebin of my simplified code: https://pastebin.com/MNmV0CVM 
+> Hi,
+> Is there a way to use timed command for E312 rfnoc siggen module for setup
+> gain?
+> I am trying something like below. Is this the right way? Thank you.
+>
+>             uhd::time_spec_t cmd_time = time_ref +
+> uhd::time_spec_t(i*256/28e6*10*2000*10);
+>             ctrl_siggen_ch0->set_command_time(cmd_time);
+>             ctrl_siggen_ch0->set_arg<int>("gain", 3086) ;
+>
+> James
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-Isaac Beeman
+--000000000000cb3d11059cc60ed3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi James,<div><br></div><div>The Siggen RFNoC block does n=
+ot support timed commands.</div><div><br></div><div>Jonathon</div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, J=
+an 22, 2020 at 3:32 PM Xingjian Chen via USRP-users &lt;<a href=3D"mailto:u=
+srp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div id=3D"gmail-m_6997866327582484923divtagdefaultwrapper" style=3D"font-s=
+ize:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D"=
+ltr">
+<p></p>
+<div>Hi,</div>
+<div>Is there a way to use timed command for E312 rfnoc siggen module=C2=A0=
+for setup gain?=C2=A0</div>
+<div>I am trying something like below. Is this the right way?=C2=A0Thank yo=
+u.=C2=A0</div>
+<div><br>
+</div>
+<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd::time_spec_t cmd_time =
+=3D time_ref + uhd::time_spec_t(i*256/28e6*10*2000*10);</div>
+<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ctrl_siggen_ch0-&gt;set_comm=
+and_time(cmd_time);</div>
+<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ctrl_siggen_ch0-&gt;set_arg&=
+lt;int&gt;(&quot;gain&quot;, 3086) ;=C2=A0</div>
+<br>
+<p></p>
+<p>James</p>
+<div id=3D"gmail-m_6997866327582484923Signature">
+<div id=3D"gmail-m_6997866327582484923divtagdefaultwrapper" dir=3D"ltr" sty=
+le=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,s=
+ans-serif,EmojiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot=
+;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,Emoj=
+iSymbols">
+<div style=3D"font-size:12pt;color:rgb(0,0,0);background-color:rgb(255,255,=
+255);font-family:Calibri,Arial,Helvetica,sans-serif">
+<div><font size=3D"2" style=3D"font-size:10pt">
+<div><span style=3D"font-size:9pt;color:rgb(0,0,0)">
+<p><span style=3D"font-size:9pt;color:rgb(0,0,0)"><span style=3D"color:rgb(=
+0,0,0)"><span style=3D"color:rgb(0,0,0)"></span></span></span></p>
+</span></div>
+</font></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000cb3d11059cc60ed3--
+
+
+--===============1911665804649597635==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1911665804649597635==--
+
