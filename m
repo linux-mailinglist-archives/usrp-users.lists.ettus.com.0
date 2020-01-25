@@ -2,60 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2309148EFB
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Jan 2020 20:59:53 +0100 (CET)
-Received: from [::1] (port=39046 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3950F1496AF
+	for <lists+usrp-users@lfdr.de>; Sat, 25 Jan 2020 17:44:40 +0100 (CET)
+Received: from [::1] (port=34032 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iv57N-00022E-37; Fri, 24 Jan 2020 14:59:49 -0500
-Received: from mailhub3.oit.umass.edu ([128.119.9.231]:58538)
- by mm2.emwd.com with esmtps (TLSv1.2:AECDH-AES256-SHA:256)
- (Exim 4.92) (envelope-from <xingjian@umass.edu>) id 1iv57I-0001sV-AF
- for USRP-users@lists.ettus.com; Fri, 24 Jan 2020 14:59:44 -0500
-Received: from mailhub3.oit.umass.edu (localhost [127.0.0.1])
- by localhost (Postfix) with SMTP id DC379C021D57
- for <USRP-users@lists.ettus.com>; Fri, 24 Jan 2020 14:59:03 -0500 (EST)
-Received: from exchange.umass.edu (it-ex2016-srv3.campus.ads.umass.edu
- [128.119.228.44])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (Client CN "exchange.umass.edu", Issuer "InCommon RSA Server CA" (verified OK))
- by mailhub3.oit.umass.edu (Postfix) with ESMTPS id C5C88C021D2A
- for <USRP-users@lists.ettus.com>; Fri, 24 Jan 2020 14:59:03 -0500 (EST)
-Received: from it-ex2016-srv2.campus.ads.umass.edu (128.119.228.43) by
- it-ex2016-srv3.campus.ads.umass.edu (128.119.228.44) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.1779.2; Fri, 24 Jan 2020 14:59:03 -0500
-Received: from it-ex2016-srv2.campus.ads.umass.edu ([128.119.228.43]) by
- it-ex2016-srv2.campus.ads.umass.edu ([128.119.228.43]) with mapi id
- 15.01.1779.004; Fri, 24 Jan 2020 14:59:03 -0500
-To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Thread-Topic: axi_wrapper packet length
-Thread-Index: AQHV0u7x03yoCfF95kWYRl5dmkOMMg==
-Date: Fri, 24 Jan 2020 19:59:03 +0000
-Message-ID: <b4c9e0b251404aa595fdf060fec1c5f6@umass.edu>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.119.8.133]
+	id 1ivOXz-0002Sc-KS; Sat, 25 Jan 2020 11:44:35 -0500
+Received: from mail-ua1-f48.google.com ([209.85.222.48]:41210)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <ejkreinar@gmail.com>) id 1ivOXv-0002Ng-OE
+ for USRP-users@lists.ettus.com; Sat, 25 Jan 2020 11:44:31 -0500
+Received: by mail-ua1-f48.google.com with SMTP id f7so1952483uaa.8
+ for <USRP-users@lists.ettus.com>; Sat, 25 Jan 2020 08:44:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=v4mACRpHvl2r2FSpNP/c3McG+Uw854/HGZOIcsLL8pI=;
+ b=g4dIQicJbV1YOjxn2onA3S2LeUV+eAXGmMnJl9q2lmNwC7xO2qapSCG1CTPpC7CsRY
+ 1IYxSQVQ1oE5tjcVF064yLmzp4R65Ju3hSGw8TeDmH+MQrFgmWiDZHF84oaBKsTaqQqq
+ oDtf6BcJbOGA+lUHXKAP7b97U+6m01Xxq1dkuyQB5bLX4XzH8w/kLGtFfIDNg4GdQH+v
+ I5p2lwCDMAzwkzGAfi7Rkq/lrRxtGzJDm7fFwotnyTuw2g4c+QqAlJhm3qSWNwPsonfG
+ ajz18pAw1FV7cnOIcA/QPAdGEyH2xrqfX/W0uU9dTaEbRfU6c4xapaIyu5qPnlyaYmL2
+ 6lkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=v4mACRpHvl2r2FSpNP/c3McG+Uw854/HGZOIcsLL8pI=;
+ b=GsI7PcCYaN/PKUAgjqgmX5Tm1CIf5r68IiG7ZjBdo27QJqbtWJlH9BhCQyd2Rio8Dg
+ MuJAWYfSQNhKSZgf/ijU5ZiJ8c2Reixyo07r3aBV11ZsNphaGPXAUTluFfzxdWfs6uWp
+ GWnEv2RyBQbITAxCZAL25VFa/C1H9pcltj/I5LkZL6dw8YE1WgseTqLopGGa8KroEqZo
+ 4rKysMsAw+qRkGtu89QIoqgU3mzLe8rCDIC/nBZTCkpD2RZ5j/riw0nMWGgRAMbh2VYU
+ dNUGZhNv/AhjLvVgFJCalO7vo0BZBv27CaM6qcS5+Vgw5UYn//93yaAyZ5T2iIW7K1Wa
+ lHZQ==
+X-Gm-Message-State: APjAAAU41+4psmNOMNlVjo3NTVf4+y5T7hAsGVd+OUQuFVrJPcvWgklL
+ MvVI08f+snRa46vvtH1WyA7jGBpcx25KzLwoKA8=
+X-Google-Smtp-Source: APXvYqzzht4GCEXEHumaTPy6jQMXOBiX5ob5dyOy9AFEb85pLQezvSbGqniH4C25B4T21kmal4EQth3xozydUDwXMxE=
+X-Received: by 2002:ab0:21cb:: with SMTP id u11mr5010720uan.16.1579970630968; 
+ Sat, 25 Jan 2020 08:43:50 -0800 (PST)
 MIME-Version: 1.0
-X-PMX-Spam: Gauge=IIIIIIIII, Probability=9%, Report='
- HTML_70_90 0.1, HTML_NO_HTTP 0.1, SUPERLONG_LINE 0.05,
- BODYTEXTH_SIZE_10000_LESS 0, BODYTEXTP_SIZE_3000_LESS 0,
- BODY_SIZE_10000_PLUS 0, FROM_EDU_TLD 0, NO_CTA_URI_FOUND 0, NO_URI_HTTPS 0,
- PNG_PIXPERBYTE_MED 0, SINGLE_IMG_ATTACH 0, WEBMAIL_SOURCE 0, WEBMAIL_XOIP 0,
- WEBMAIL_X_IP_HDR 0, __ANY_URI 0, __BODY_TEXT_X4 0, __CT 0,
- __CTYPE_HAS_BOUNDARY 0, __CTYPE_MULTIPART 0, __CTYPE_MULTIPART_ALT 0,
- __EXTRA_MPART_TYPE_1 0, __EXTRA_MPART_TYPE_N1 0, __FROM_DOMAIN_NOT_IN_BODY 0,
- __FROM_NAME_NOT_IN_BODY 0, __HAS_ATTACHMENT 0, __HAS_ATTACHMENT1 0,
- __HAS_ATTACHMENT2 0, __HAS_FROM 0, __HAS_HTML 0, __HAS_MSGID 0, __HAS_XOIP 0,
- __IMG_ATTACHED 0, __IMG_THEN_TEXT 0, __MIME_HTML 0, __MIME_TEXT_H 0,
- __MIME_TEXT_H1 0, __MIME_TEXT_H2 0, __MIME_TEXT_P 0, __MIME_TEXT_P1 0,
- __MIME_TEXT_P2 0, __MIME_VERSION 0, __MSGID_32HEX 0, __MULTIPLE_RCPTS_TO_X2 0,
- __PNG_HEIGHT_100 0, __PNG_WIDTH_100 0, __SANE_MSGID 0, 
- __STYLE_RATWARE_NEG 0, __SUBJ_ALPHA_END 0, __TAG_EXISTS_HTML 0,
- __TO_MALFORMED_2 0, __TO_NO_NAME 0, __URI_NO_MAILTO 0, __URI_NO_WWW 0'
-Subject: [USRP-users] axi_wrapper packet length
+References: <b4c9e0b251404aa595fdf060fec1c5f6@umass.edu>
+In-Reply-To: <b4c9e0b251404aa595fdf060fec1c5f6@umass.edu>
+Date: Sat, 25 Jan 2020 11:43:39 -0500
+Message-ID: <CADRnH228c_G56=rMg5d-8huRpWMmR=-Mb+Fk8dG6+7-Sxa6EKQ@mail.gmail.com>
+To: Xingjian Chen <xingjian@umass.edu>
+Content-Type: multipart/mixed; boundary="000000000000372ece059cf99458"
+Subject: Re: [USRP-users] axi_wrapper packet length
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,9 +58,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Xingjian Chen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Xingjian Chen <xingjian@umass.edu>
-Content-Type: multipart/mixed; boundary="===============3884730230429458870=="
+From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: EJ Kreinar <ejkreinar@gmail.com>
+Cc: USRP-users@lists.ettus.com
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,94 +74,140 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3884730230429458870==
-Content-Language: en-US
-Content-Type: multipart/related;
-	boundary="_004_b4c9e0b251404aa595fdf060fec1c5f6umassedu_";
-	type="multipart/alternative"
+--000000000000372ece059cf99458
+Content-Type: multipart/alternative; boundary="000000000000372ecc059cf99456"
 
---_004_b4c9e0b251404aa595fdf060fec1c5f6umassedu_
-Content-Type: multipart/alternative;
-	boundary="_000_b4c9e0b251404aa595fdf060fec1c5f6umassedu_"
+--000000000000372ecc059cf99456
+Content-Type: text/plain; charset="UTF-8"
 
---_000_b4c9e0b251404aa595fdf060fec1c5f6umassedu_
-Content-Type: text/plain; charset="iso-8859-1"
+Hello James,
+
+Can you describe the changes to your "modified siggen"?
+
+It appears the original siggen block sets SIMPLE_MODE to be False, and it
+also sets RESIZE_OUTPUT_PACKET to be True. According to the axi_wrapper,
+this means the payload length set in the s_axis_data_tuser field will
+resize the packet. In practice I haven't seen any issues with siggen block
+like you're describing (though that doesn't mean there's not issues, hah!),
+and in general I've had success with this mode of operation...
+
+So the question becomes why would simply mode be enabled? If it is enabled,
+I wouldn't expect the payload length in tuser to be respected and it may
+even cause some sort of undefined behavior like you see here....
+
+EJ
+
+
+
+
+
+
+On Fri, Jan 24, 2020, 2:59 PM Xingjian Chen via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+>
+> When using a modified Siggen RFNOC module, I noticed that there
+> were missing data points related to axi_wrapper *packet length* when
+> using the simple mode. The last one or two data point of the packet is
+> missing and replaced by the first data point of the next packet, as shown
+> in the picture under below. When I set the samples per packet a different
+> number the spacing between the missing data points changed accordingly. Is
+> there a way to avoid this by modifying the axi_wrapper or its mode? Thank
+> you.
+>
+>
+> James
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000372ecc059cf99456
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"auto"><div dir=3D"auto"></div>Hello James,<div dir=3D"auto"><br=
+></div><div dir=3D"auto">Can you describe the changes to your &quot;modifie=
+d siggen&quot;?=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">It=
+ appears the original siggen block sets SIMPLE_MODE to be False, and it als=
+o sets RESIZE_OUTPUT_PACKET to be True. According to the axi_wrapper, this =
+means the payload length set in the s_axis_data_tuser field will resize the=
+ packet. In practice I haven&#39;t seen any issues with siggen block like y=
+ou&#39;re describing (though that doesn&#39;t mean there&#39;s not issues, =
+hah!), and in general I&#39;ve had success with this mode of operation...</=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">So the question becomes w=
+hy would simply mode be enabled? If it is enabled, I wouldn&#39;t expect th=
+e payload length in tuser to be respected and it may even cause some sort o=
+f undefined behavior like you see here....</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">EJ</div><div dir=3D"auto"><br></div><div dir=3D"auto"><b=
+r></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D=
+"auto"><br></div><div dir=3D"auto"><br><div class=3D"gmail_quote" dir=3D"au=
+to"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jan 24, 2020, 2:59 PM Xin=
+gjian Chen via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"=
+ target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
+border-left:1px #ccc solid;padding-left:1ex">
 
-When using a modified Siggen RFNOC module, I noticed that there were missin=
-g data points related to axi_wrapper packet length when using the simple mo=
-de. The last one or two data point of the packet is missing and replaced by=
- the first data point of the next packet, as shown in the picture under bel=
-ow. When I set the samples per packet a different number the spacing betwee=
-n the missing data points changed accordingly. Is there a way to avoid this=
- by modifying the axi_wrapper or its mode? Thank you.
 
-[cid:edcc4543-2564-447d-ba83-6865310c476a]
 
-James
 
---_000_b4c9e0b251404aa595fdf060fec1c5f6umassedu_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<div dir=3D"ltr">
+<div id=3D"m_-4791399208428452240m_-7409163491916175194divtagdefaultwrapper=
+" style=3D"font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-=
+serif" dir=3D"ltr">
 <p>Hi,</p>
-<p>When using a modified&nbsp;Siggen RFNOC module, I noticed that there wer=
-e&nbsp;missing data points related to axi_wrapper
-<b>packet length</b>&nbsp;when using the simple mode. The last one or two d=
+<p>When using a modified=C2=A0Siggen RFNOC module, I noticed that there wer=
+e=C2=A0missing data points related to axi_wrapper
+<b>packet length</b>=C2=A0when using the simple mode. The last one or two d=
 ata point of the packet is missing and replaced by the first data point of =
 the next packet, as shown in the picture under below. When I set the sample=
 s per packet a different number the spacing
  between the missing data points changed accordingly. Is there a way to avo=
-id this by modifying the axi_wrapper or its mode? Thank you.&nbsp;</p>
-<p><img size=3D"187001" contenttype=3D"image/png" id=3D"img629042" style=3D=
-"max-width: 99.9%; user-select: none;" contextid=3D"img241379" tabindex=3D"=
-0" src=3D"cid:edcc4543-2564-447d-ba83-6865310c476a"><br>
+id this by modifying the axi_wrapper or its mode? Thank you.=C2=A0</p>
+<p><img size=3D"187001" id=3D"m_-4791399208428452240m_-7409163491916175194i=
+mg629042" style=3D"max-width:99.9%" src=3D"cid:edcc4543-2564-447d-ba83-6865=
+310c476a"><br>
 </p>
 <p>James</p>
-<div id=3D"Signature">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Arial, Helvetica, sans-serif, EmojiF=
-ont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEm=
-oji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;"=
->
-<div style=3D"font-size:12pt; color:#000000; background-color:#FFFFFF; font=
--family:Calibri,Arial,Helvetica,sans-serif">
-<div class=3D"BodyFragment"><font size=3D"2" style=3D"font-size:10pt">
-<div class=3D"PlainText"><span style=3D"font-size:9pt; color:rgb(0,0,0)">
-<p style=3D""><span style=3D"font-size:9pt; color:rgb(0,0,0)"><span style=
-=3D"color:rgb(0,0,0)"><span style=3D"color:rgb(0,0,0)"></span></span></span=
-></p>
+<div id=3D"m_-4791399208428452240m_-7409163491916175194Signature">
+<div id=3D"m_-4791399208428452240m_-7409163491916175194divtagdefaultwrapper=
+" dir=3D"ltr" style=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,=
+Arial,Helvetica,sans-serif,EmojiFont,&quot;Apple Color Emoji&quot;,&quot;Se=
+goe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android=
+ Emoji&quot;,EmojiSymbols">
+<div style=3D"font-size:12pt;color:#000000;background-color:#ffffff;font-fa=
+mily:Calibri,Arial,Helvetica,sans-serif">
+<div><font size=3D"2" style=3D"font-size:10pt">
+<div><span style=3D"font-size:9pt;color:rgb(0,0,0)">
+<p><span style=3D"font-size:9pt;color:rgb(0,0,0)"><span style=3D"color:rgb(=
+0,0,0)"><span style=3D"color:rgb(0,0,0)"></span></span></span></p>
 </span></div>
 </font></div>
 </div>
 </div>
 </div>
 </div>
-</body>
-</html>
+</div>
 
---_000_b4c9e0b251404aa595fdf060fec1c5f6umassedu_--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
+ target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
+.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div></div>
 
---_004_b4c9e0b251404aa595fdf060fec1c5f6umassedu_
+--000000000000372ecc059cf99456--
+--000000000000372ece059cf99458
 Content-Type: image/png; name="pastedImage.png"
-Content-Description: pastedImage.png
-Content-Disposition: inline; filename="pastedImage.png"; size=187001;
-	creation-date="Fri, 24 Jan 2020 19:48:27 GMT";
-	modification-date="Fri, 24 Jan 2020 19:48:27 GMT"
-Content-ID: <edcc4543-2564-447d-ba83-6865310c476a>
+Content-Disposition: attachment; filename="pastedImage.png"
 Content-Transfer-Encoding: base64
+Content-ID: <16fdd8b978ef456b1e51>
+X-Attachment-Id: 16fdd8b978ef456b1e51
 
 iVBORw0KGgoAAAANSUhEUgAABfMAAAMxCAIAAADAC74IAAAgAElEQVR4Aey9eXwcxZk+/vackmak
 kTQ6bEmWZVk+MD6xCZcBm5CQxJA1JIEcC4GEJBCS/QHLsrDZfJM9sglJNngJLMTeTchuLs6YsOFI
@@ -3453,11 +3490,7 @@ uAUBRHbcwk0wEgRAAARAAARAAARAAARAAARAAARAAARsEEBkxwYUZIEACIAACIAACIAACIAACIAA
 CIAACICAWxBAZMct3AQjQQAEQAAEQAAEQAAEQAAEQAAEQAAEQMAGAUR2bEBBFgiAAAiAAAiAAAiA
 AAiAAAiAAAiAAAi4BQFEdtzCTTASBEAABEAABEAABEAABEAABEAABEAABGwQQGTHBhRkgQAIgAAI
 gAAIgAAIgAAIgAAIgAAIgIBbEPj/Ro8/QqA212IAAAAASUVORK5CYII=
-
---_004_b4c9e0b251404aa595fdf060fec1c5f6umassedu_--
-
-
---===============3884730230429458870==
+--000000000000372ece059cf99458
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -3468,5 +3501,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3884730230429458870==--
+--000000000000372ece059cf99458--
 
