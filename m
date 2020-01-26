@@ -2,48 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C713149A87
-	for <lists+usrp-users@lfdr.de>; Sun, 26 Jan 2020 12:58:15 +0100 (CET)
-Received: from [::1] (port=53074 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8A0149C26
+	for <lists+usrp-users@lfdr.de>; Sun, 26 Jan 2020 18:48:40 +0100 (CET)
+Received: from [::1] (port=56250 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ivgYM-0008Fp-87; Sun, 26 Jan 2020 06:58:10 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:36076)
+	id 1ivm1S-00036Q-W8; Sun, 26 Jan 2020 12:48:35 -0500
+Received: from mail-qt1-f176.google.com ([209.85.160.176]:41203)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <varban.metodiev@gmail.com>)
- id 1ivgYI-0008BG-Bd
- for usrp-users@lists.ettus.com; Sun, 26 Jan 2020 06:58:06 -0500
-Received: by mail-ot1-f50.google.com with SMTP id g15so5851304otp.3
- for <usrp-users@lists.ettus.com>; Sun, 26 Jan 2020 03:57:46 -0800 (PST)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ivm1P-00032U-Cw
+ for usrp-users@lists.ettus.com; Sun, 26 Jan 2020 12:48:31 -0500
+Received: by mail-qt1-f176.google.com with SMTP id l19so128586qtq.8
+ for <usrp-users@lists.ettus.com>; Sun, 26 Jan 2020 09:48:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=ftobSxMHH6JVKDSR4KkA7t80FAmhE8u2nIbV6D8Tma8=;
- b=VVANR6i1llBPcF1MQYP555v48saJ+LWQ8oOEaII5lDY4pxhuu5vhPFpoAQjiaFWerU
- b0eAJ2THxR9whFDP/XfE39Ky0cGGU8TFcNvO3VKn3IDeqv0qPkpfs4UtwllqVfng1An1
- f0URXKi9P0YnrzErwS00+kmARVrtYJDeu/5DmFiRPH4kK+SIIYflljnQ51Z2655KedJd
- S16DylPxdUKnpwNslRBbGBLYVdtXKyB6sBad1LDAeFg0iQ9bhsSIpSy5LCqaS2Toa4Pc
- /nluMGXMHSwX+ccGZtqq29aQlaX0oV6WFlqZSJVH5gS+F7ALxtDXLVuq+vqjyk83Sg0D
- mZwQ==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=hsJ32V8TYJVYwjrBRYcDlRiqAvRkEVmm+Z8tFynIJ+A=;
+ b=RqomUY36CzRNzs8e6KNhocEtHXWqOF98MHTYC5ctBTvBqGu/O1pAzbvdF7Yuj4ikaQ
+ 0bARbftL8f9/RB94Efmo3FOkHIWPJs4q1W+sasSRKTgVD5K0Ofr/xoeCHBQUzDdiP/by
+ q8mf63NI+owqNKP3fMBcLmtFzaGZiOkA/4qs3w4dOxyoYb7ol7XraP1BxS1yIfIVxgYX
+ Y9ELMhRQ/96lNof7+tN57ZyRgoQn1tvTkq3uDhfvvDn1bxGvaEpBqCa3Z89qlbEiPVUx
+ A3olzcrmVdz7RykYvAE587wn6b9sKPbmJBtgP1wMS0enwTTarQqOGlUKe3mBKhaaDmTk
+ Ot1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=ftobSxMHH6JVKDSR4KkA7t80FAmhE8u2nIbV6D8Tma8=;
- b=r4jDWWM25p/tY41eXkuH3hQURiwv059KjLOIktKjdps2g3gBfiXNidnppRHKC8u4sD
- vbXepJ67HKZXlw1xEi59oWm8a2jt4aPvVGA5p/J2HxNFVSJm1DBJXTu9vt91db9r0Aag
- W3IRfS+kcyCoBhDfTKOJ6uAS2V+H33lcr7gSgu/CewUk372WU8/caK7qpBZXUxIoUs7a
- Ri/UfoEbLjMcyAoy/QqSQi0YMedrJnD+D1MDL00unba4cUUe9ENVRmG16G14wVY9zQK4
- BxXqgXrgUO07XTkggipzK/cfv1FIHgksmT7shugghw40FWC+v72tHMPMZ2JpwvSM+ols
- W1ag==
-X-Gm-Message-State: APjAAAW/GKTkKnIUapAbewPgORcIyvzzTxOqtID0abLvPs9CxNKqNHE4
- OCgSMeTjAHH04Ij+48IYNF1VcDK/XcMs94SN+u1Yn2qJ
-X-Google-Smtp-Source: APXvYqwAEic9+JGjts8z530coPIV3NrIUqRV8xkNbhOu4CKDndfJjA/2SXRGbtRyG+iWOnIrRQ+xNP7lEEzI/DqqbUE=
-X-Received: by 2002:a9d:1ca3:: with SMTP id l35mr8974051ota.271.1580039845226; 
- Sun, 26 Jan 2020 03:57:25 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=hsJ32V8TYJVYwjrBRYcDlRiqAvRkEVmm+Z8tFynIJ+A=;
+ b=BYa6hqgsbWVL9X7bWOGFvT6YMj89Wq8iIQybhY8MLSDfwIiq0MqmcUjDdqbsQI07Fk
+ hz2bCXDiwJLEHFj2IwAP8GhijtusA1HaY1xY+VZ0IiEGaV1BDIfNgKebQdDhniy5jILu
+ G4CvasSrUbro558mG7GjrM2mjGwbknWunk8+zBInE22aw7wAxtLRW4Fy1aE3u92Ct9c7
+ tGK3V1ecWtzZINTMBDHbESCUtifjEO9BXTl6AdPwh0O4tdWl4zz1Ewz7nVvqcd/rwgpy
+ U3jmVvmKq0sxzjzpLlUA0nAgeForRf+ELLvEm3PE8OC4Ys0RnL5ja6vSpqpUMMV595Sc
+ RQSA==
+X-Gm-Message-State: APjAAAW8wDlDtGhPnEahioUV+MNac4ECxzubPocg4GlaFdtgtorcMxhQ
+ IJ3t8am/3N990QpNb2slyOvzsCxDmlU=
+X-Google-Smtp-Source: APXvYqzsG2rJRU24ktXsXMVUXCOkCyueS5Ndtn6RCu6q5OzFVIDjdgDekq7KdMMMYuSJXCOrSFAXSg==
+X-Received: by 2002:aed:2dc2:: with SMTP id i60mr8658505qtd.8.1580060870551;
+ Sun, 26 Jan 2020 09:47:50 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
+ [174.95.14.83])
+ by smtp.googlemail.com with ESMTPSA id x16sm7677740qki.110.2020.01.26.09.47.50
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 26 Jan 2020 09:47:50 -0800 (PST)
+Message-ID: <5E2DD0C5.6010205@gmail.com>
+Date: Sun, 26 Jan 2020 12:47:49 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Sun, 26 Jan 2020 13:57:18 +0200
-Message-ID: <CAKA0MUiUUxp2ko=4A9vM4u1D4tmGP4HKpeGbe5FCKi=_q9WVUw@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Simultaneous TX and RX from the UHD
+To: usrp-users@lists.ettus.com
+References: <CAKA0MUiUUxp2ko=4A9vM4u1D4tmGP4HKpeGbe5FCKi=_q9WVUw@mail.gmail.com>
+In-Reply-To: <CAKA0MUiUUxp2ko=4A9vM4u1D4tmGP4HKpeGbe5FCKi=_q9WVUw@mail.gmail.com>
+Subject: Re: [USRP-users] Simultaneous TX and RX from the UHD
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Varban Metodiev via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Varban Metodiev <varban.metodiev@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2444997795672160926=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,59 +84,40 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2444997795672160926==
-Content-Type: multipart/alternative; boundary="000000000000b4ac37059d09b110"
+On 01/26/2020 06:57 AM, Varban Metodiev via USRP-users wrote:
+> Dear USRP Community,
+>
+> I need to do a realistic loopback TX-RX communication (via a feeder 
+> and attenuator) of my B205mini device.
+>
+> I took the examples from tx_samples_c.c and rx_samples_c.c, and tried 
+> running them as two different POSIX threads. However, this way I could 
+> get only transmission working, without any reception. When trying from 
+> GNU Radio - both the source and sink modules work simultaneously 
+> without any problem, meaning that I have done something really wrong 
+> in my approach...
+>
+> Could you please advise what is the correct structural pattern for 
+> simultaneous RX and TX on a single USRP device via the UHD framework?
+>
+> Best regards,
+> Varban
+>
+Varban:
 
---000000000000b4ac37059d09b110
-Content-Type: text/plain; charset="UTF-8"
+There's an example that does this:
 
-Dear USRP Community,
-
-I need to do a realistic loopback TX-RX communication (via a feeder and
-attenuator) of my B205mini device.
-
-I took the examples from tx_samples_c.c and rx_samples_c.c, and tried
-running them as two different POSIX threads. However, this way I could get
-only transmission working, without any reception. When trying from GNU
-Radio - both the source and sink modules work simultaneously without any
-problem, meaning that I have done something really wrong in my approach...
-
-Could you please advise what is the correct structural pattern for
-simultaneous RX and TX on a single USRP device via the UHD framework?
-
-Best regards,
-Varban
-
---000000000000b4ac37059d09b110
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Dear USRP Community,<div><br></div><div>I need to do a rea=
-listic loopback TX-RX communication (via a feeder and attenuator) of my B20=
-5mini device.=C2=A0=C2=A0<br></div><div><br></div><div>I took the examples =
-from tx_samples_c.c and rx_samples_c.c, and tried running them as two diffe=
-rent POSIX threads. However, this way I could get only=C2=A0transmission wo=
-rking, without any reception. When trying from GNU Radio - both the source =
-and sink modules work simultaneously without any problem, meaning that I ha=
-ve done something really wrong in my approach...=C2=A0</div><div><br></div>=
-<div><div>Could you please advise what is the correct structural pattern fo=
-r simultaneous RX and TX on a single USRP device via the UHD framework?</di=
-v><div><br></div><div>Best regards,</div><div>Varban</div><div></div></div>=
-</div>
-
---000000000000b4ac37059d09b110--
+txrx_loopback_to_file
 
 
---===============2444997795672160926==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+You can look at the source code of that example to get some ideas of how 
+to properly structure such a thing.
+
+
+
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2444997795672160926==--
-
