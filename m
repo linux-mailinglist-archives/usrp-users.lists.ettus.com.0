@@ -2,60 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8A0149C26
-	for <lists+usrp-users@lfdr.de>; Sun, 26 Jan 2020 18:48:40 +0100 (CET)
-Received: from [::1] (port=56250 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D01A149C2D
+	for <lists+usrp-users@lfdr.de>; Sun, 26 Jan 2020 18:57:13 +0100 (CET)
+Received: from [::1] (port=59080 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ivm1S-00036Q-W8; Sun, 26 Jan 2020 12:48:35 -0500
-Received: from mail-qt1-f176.google.com ([209.85.160.176]:41203)
+	id 1ivm9o-0003qF-AZ; Sun, 26 Jan 2020 12:57:12 -0500
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:45657)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1ivm1P-00032U-Cw
- for usrp-users@lists.ettus.com; Sun, 26 Jan 2020 12:48:31 -0500
-Received: by mail-qt1-f176.google.com with SMTP id l19so128586qtq.8
- for <usrp-users@lists.ettus.com>; Sun, 26 Jan 2020 09:48:11 -0800 (PST)
+ id 1ivm9k-0003j6-93
+ for usrp-users@lists.ettus.com; Sun, 26 Jan 2020 12:57:08 -0500
+Received: by mail-qt1-f196.google.com with SMTP id d9so5681629qte.12
+ for <usrp-users@lists.ettus.com>; Sun, 26 Jan 2020 09:56:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
  :in-reply-to:content-transfer-encoding;
- bh=hsJ32V8TYJVYwjrBRYcDlRiqAvRkEVmm+Z8tFynIJ+A=;
- b=RqomUY36CzRNzs8e6KNhocEtHXWqOF98MHTYC5ctBTvBqGu/O1pAzbvdF7Yuj4ikaQ
- 0bARbftL8f9/RB94Efmo3FOkHIWPJs4q1W+sasSRKTgVD5K0Ofr/xoeCHBQUzDdiP/by
- q8mf63NI+owqNKP3fMBcLmtFzaGZiOkA/4qs3w4dOxyoYb7ol7XraP1BxS1yIfIVxgYX
- Y9ELMhRQ/96lNof7+tN57ZyRgoQn1tvTkq3uDhfvvDn1bxGvaEpBqCa3Z89qlbEiPVUx
- A3olzcrmVdz7RykYvAE587wn6b9sKPbmJBtgP1wMS0enwTTarQqOGlUKe3mBKhaaDmTk
- Ot1A==
+ bh=z4e0egRuWtltE1UNA7PK+Psfw0WQBUusnl/GphwmMbU=;
+ b=tFgr6m+qNM2l6ST2naPCQQDx2+JCFYRnyPMNnzkdt0kLKxqmOkpFjE1D9zwffe4EWr
+ M1Zau++TJS/A2GpbOwzhEoU5aZMH9ptyuTow9lAH7kif8mzj2vVnL+pVz8UCRQ9afQ+F
+ XIJsmMbek99oTBgL3x6u+/zO1uNYqD8MQ/7+uzfQek347g9F2Ots7DVuBIfgfQ6Ffr8O
+ kagnoSDIY4IalH4vLBrEXQeu4Piz2wVUJ/e5Euiyb0qyfHoiezfoAxL3a/sFVIvJpSHA
+ /aed6giV7cER7ufHnytFQK0EE1kQikZ82yLp+B0srbZo+XUkpVWqQZ8Sqlc+S6pM+2Gp
+ duug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to:content-transfer-encoding;
- bh=hsJ32V8TYJVYwjrBRYcDlRiqAvRkEVmm+Z8tFynIJ+A=;
- b=BYa6hqgsbWVL9X7bWOGFvT6YMj89Wq8iIQybhY8MLSDfwIiq0MqmcUjDdqbsQI07Fk
- hz2bCXDiwJLEHFj2IwAP8GhijtusA1HaY1xY+VZ0IiEGaV1BDIfNgKebQdDhniy5jILu
- G4CvasSrUbro558mG7GjrM2mjGwbknWunk8+zBInE22aw7wAxtLRW4Fy1aE3u92Ct9c7
- tGK3V1ecWtzZINTMBDHbESCUtifjEO9BXTl6AdPwh0O4tdWl4zz1Ewz7nVvqcd/rwgpy
- U3jmVvmKq0sxzjzpLlUA0nAgeForRf+ELLvEm3PE8OC4Ys0RnL5ja6vSpqpUMMV595Sc
- RQSA==
-X-Gm-Message-State: APjAAAW8wDlDtGhPnEahioUV+MNac4ECxzubPocg4GlaFdtgtorcMxhQ
- IJ3t8am/3N990QpNb2slyOvzsCxDmlU=
-X-Google-Smtp-Source: APXvYqzsG2rJRU24ktXsXMVUXCOkCyueS5Ndtn6RCu6q5OzFVIDjdgDekq7KdMMMYuSJXCOrSFAXSg==
-X-Received: by 2002:aed:2dc2:: with SMTP id i60mr8658505qtd.8.1580060870551;
- Sun, 26 Jan 2020 09:47:50 -0800 (PST)
+ bh=z4e0egRuWtltE1UNA7PK+Psfw0WQBUusnl/GphwmMbU=;
+ b=qjQioTn1qF3PqjWw+UdPXQh6QY1mYvLYoX9lDHjY4GRpykq7vJILeqadcCttF5BCSP
+ BfrKF7a6wpt+2hTDKI0iij5OyH8tzWuEmvmuT7r+Jo3vPKbJ3N2kQ7WAz5QYFhSl3Nw/
+ lfZ6l5v3NSaB4vqqn7JTgCt2FyQ+pNFFP/MYerjqNSgHeRrnzYZOnt4wc47r2N5jUNJv
+ JYTuiD9XmHvRbIa0DSRGGB8mT841uXqizS9a7aft2rKsGHnWOmj302T9hLd5cXX6HISp
+ l6xazI0WYNALQfDCXBtQfee+MuGQ+NceIC12so6KoRYQkNR1Py7LieP5fTNTaMMkmRRI
+ qZyw==
+X-Gm-Message-State: APjAAAWXR/4VcuNyIJ3Ov3y8JWwp7EXtdGDekwRsYeviaDoIUY9QqlkW
+ NT8yKUVvnnDvsVUhBT0u9voBxS2R8vY=
+X-Google-Smtp-Source: APXvYqzSKpxLqJvGsLzqNIKgo8wL2wA++NLvuDpX3hCdVg23xdVyMx7wJpsVfRgZ8OuLbWL3iSo5sw==
+X-Received: by 2002:ac8:4085:: with SMTP id p5mr3894807qtl.132.1580061387450; 
+ Sun, 26 Jan 2020 09:56:27 -0800 (PST)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
  [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id x16sm7677740qki.110.2020.01.26.09.47.50
+ by smtp.googlemail.com with ESMTPSA id z5sm8042291qts.64.2020.01.26.09.56.26
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 26 Jan 2020 09:47:50 -0800 (PST)
-Message-ID: <5E2DD0C5.6010205@gmail.com>
-Date: Sun, 26 Jan 2020 12:47:49 -0500
+ Sun, 26 Jan 2020 09:56:26 -0800 (PST)
+Message-ID: <5E2DD2CA.60502@gmail.com>
+Date: Sun, 26 Jan 2020 12:56:26 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
 To: usrp-users@lists.ettus.com
-References: <CAKA0MUiUUxp2ko=4A9vM4u1D4tmGP4HKpeGbe5FCKi=_q9WVUw@mail.gmail.com>
-In-Reply-To: <CAKA0MUiUUxp2ko=4A9vM4u1D4tmGP4HKpeGbe5FCKi=_q9WVUw@mail.gmail.com>
-Subject: Re: [USRP-users] Simultaneous TX and RX from the UHD
+References: <CAE6G02_pDDd2H5yX8Sf2jqBC7bo1hnqBMgz5-i09NBCBYSoZgQ@mail.gmail.com>
+In-Reply-To: <CAE6G02_pDDd2H5yX8Sf2jqBC7bo1hnqBMgz5-i09NBCBYSoZgQ@mail.gmail.com>
+Subject: Re: [USRP-users] DOA with N310 or X310+TwinRX
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,35 +84,49 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 01/26/2020 06:57 AM, Varban Metodiev via USRP-users wrote:
-> Dear USRP Community,
+On 01/25/2020 11:43 AM, Sammy Welschen via USRP-users wrote:
+> Dear all,
 >
-> I need to do a realistic loopback TX-RX communication (via a feeder 
-> and attenuator) of my B205mini device.
+> I am planning a system with 5-10 channels that is capable of DOA 
+> estimation.
 >
-> I took the examples from tx_samples_c.c and rx_samples_c.c, and tried 
-> running them as two different POSIX threads. However, this way I could 
-> get only transmission working, without any reception. When trying from 
-> GNU Radio - both the source and sink modules work simultaneously 
-> without any problem, meaning that I have done something really wrong 
-> in my approach...
+> Concerning the calibration of the resulting array, would there be a 
+> difference between a system made up of N310 and one made up of X310 
+> with TwinRX boards? Would there be other important differences that 
+> influence estimation performance?
 >
-> Could you please advise what is the correct structural pattern for 
-> simultaneous RX and TX on a single USRP device via the UHD framework?
+> As I understand it, the TwinRX allows LO sharing between the boards in 
+> a single X310, but this would not help me if I have two or three X310. 
+> On the other hand, the N310s could be connected to a shared LO.
 >
-> Best regards,
-> Varban
+> Are the following thoughts correct?
 >
-Varban:
+> Suppose I turn on my system. Then I have to calibrate phase offsets 
+> between channels in any case. Now I change the center frequency. If I 
+> have N310s without shared LO, I have to recalibrate. Same for the 
+> X310s, since LOs are shared only internally. If I have N310s with a 
+> shared LO, I do not have to recalibrate.
+>
+> If I restart the system, I have to recalibrate in any case.
+>
+> The devices would by synchronized with PPS in any case and with the 10 
+> MHz reference if no external LO is used.
+>
+> What is the better choice for DOA estimation (N310 or X310 with TwinRX 
+> or something different)?
+>
+> Thank you very much
+>
+> Sammy
+>
+>
+Sammy:
 
-There's an example that does this:
+Your characterization of the two scenarios is correct.
 
-txrx_loopback_to_file
-
-
-You can look at the source code of that example to get some ideas of how 
-to properly structure such a thing.
-
+There may be some folks on this list who have implemented DOA schemes, 
+but likely few-to-none who have done it on both X310 and N310
+   and can comment on the differences they encountered.
 
 
 
