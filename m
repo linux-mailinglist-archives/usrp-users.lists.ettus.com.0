@@ -2,60 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D01A149C2D
-	for <lists+usrp-users@lfdr.de>; Sun, 26 Jan 2020 18:57:13 +0100 (CET)
-Received: from [::1] (port=59080 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E74149C2E
+	for <lists+usrp-users@lfdr.de>; Sun, 26 Jan 2020 18:58:20 +0100 (CET)
+Received: from [::1] (port=60484 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ivm9o-0003qF-AZ; Sun, 26 Jan 2020 12:57:12 -0500
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:45657)
+	id 1ivmAt-00048n-D9; Sun, 26 Jan 2020 12:58:19 -0500
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:36704)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1ivm9k-0003j6-93
- for usrp-users@lists.ettus.com; Sun, 26 Jan 2020 12:57:08 -0500
-Received: by mail-qt1-f196.google.com with SMTP id d9so5681629qte.12
- for <usrp-users@lists.ettus.com>; Sun, 26 Jan 2020 09:56:48 -0800 (PST)
+ (Exim 4.92) (envelope-from <varban.metodiev@gmail.com>)
+ id 1ivmAp-0003zZ-TY
+ for usrp-users@lists.ettus.com; Sun, 26 Jan 2020 12:58:15 -0500
+Received: by mail-ot1-f50.google.com with SMTP id g15so6323481otp.3
+ for <usrp-users@lists.ettus.com>; Sun, 26 Jan 2020 09:57:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=z4e0egRuWtltE1UNA7PK+Psfw0WQBUusnl/GphwmMbU=;
- b=tFgr6m+qNM2l6ST2naPCQQDx2+JCFYRnyPMNnzkdt0kLKxqmOkpFjE1D9zwffe4EWr
- M1Zau++TJS/A2GpbOwzhEoU5aZMH9ptyuTow9lAH7kif8mzj2vVnL+pVz8UCRQ9afQ+F
- XIJsmMbek99oTBgL3x6u+/zO1uNYqD8MQ/7+uzfQek347g9F2Ots7DVuBIfgfQ6Ffr8O
- kagnoSDIY4IalH4vLBrEXQeu4Piz2wVUJ/e5Euiyb0qyfHoiezfoAxL3a/sFVIvJpSHA
- /aed6giV7cER7ufHnytFQK0EE1kQikZ82yLp+B0srbZo+XUkpVWqQZ8Sqlc+S6pM+2Gp
- duug==
+ h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+ :cc; bh=Em153UBSTMhXebx9ySAFni/zKyBPt9+y7VO15zsoBjk=;
+ b=KGpWANgue0wOINjFZCqvbxYWNSOs2Up+HyEQ4NAyQidwQozq4MxS718WuFRzqmq2yH
+ TyqIYiHtEe1zMtMIvbvI7k7ttsbqoCqnb84Cj3Ugb6mLyJNapM9FJBN1SQY1wLj0sa+/
+ gsNnaFmCIMSchkubmkH2awCdayZ8YpyVw2DiVnZ/uBsHKurqJeXQT+G/6bI0Cku8ZFcN
+ 4rFt05mqL+Wc0F2vfBzC6cmRoCfixhaYbrEP9JJ8yLANuMIp2hWoSDUt8QPWgeypVlYT
+ CtZhf2O1JBg3uhDAfTNWywmJf5qcZigyy6fMpQrpk9FLC6fZb2IlZSfigf2np03Z78Cn
+ WDPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=z4e0egRuWtltE1UNA7PK+Psfw0WQBUusnl/GphwmMbU=;
- b=qjQioTn1qF3PqjWw+UdPXQh6QY1mYvLYoX9lDHjY4GRpykq7vJILeqadcCttF5BCSP
- BfrKF7a6wpt+2hTDKI0iij5OyH8tzWuEmvmuT7r+Jo3vPKbJ3N2kQ7WAz5QYFhSl3Nw/
- lfZ6l5v3NSaB4vqqn7JTgCt2FyQ+pNFFP/MYerjqNSgHeRrnzYZOnt4wc47r2N5jUNJv
- JYTuiD9XmHvRbIa0DSRGGB8mT841uXqizS9a7aft2rKsGHnWOmj302T9hLd5cXX6HISp
- l6xazI0WYNALQfDCXBtQfee+MuGQ+NceIC12so6KoRYQkNR1Py7LieP5fTNTaMMkmRRI
- qZyw==
-X-Gm-Message-State: APjAAAWXR/4VcuNyIJ3Ov3y8JWwp7EXtdGDekwRsYeviaDoIUY9QqlkW
- NT8yKUVvnnDvsVUhBT0u9voBxS2R8vY=
-X-Google-Smtp-Source: APXvYqzSKpxLqJvGsLzqNIKgo8wL2wA++NLvuDpX3hCdVg23xdVyMx7wJpsVfRgZ8OuLbWL3iSo5sw==
-X-Received: by 2002:ac8:4085:: with SMTP id p5mr3894807qtl.132.1580061387450; 
- Sun, 26 Jan 2020 09:56:27 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id z5sm8042291qts.64.2020.01.26.09.56.26
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 26 Jan 2020 09:56:26 -0800 (PST)
-Message-ID: <5E2DD2CA.60502@gmail.com>
-Date: Sun, 26 Jan 2020 12:56:26 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+ :message-id:subject:to:cc;
+ bh=Em153UBSTMhXebx9ySAFni/zKyBPt9+y7VO15zsoBjk=;
+ b=N9gOS4kgNGBfQlcL2vqUcqTDor2X/ucx6J6xmheMvCcOPzE2pzqk4jw7OPjbxLs2Uu
+ kerxDxPgIwfcHLtgn2OT23DrRjD+Wguweyfb/llp+X0oxJzi+j8k0g2gxpjisUzcmFe4
+ 2QQNyFDMK7niN+ESQUH/fTWXygxqPSJa7qTUaadZo3WhLwCHzMSxOiTJtZcUvPrk5wET
+ p02u8xoQ+y4OI2BSJP9BKzg6hHvTJCDfoylb6+8OWSZgBSEeyWof/M3Om9AuATimdZTA
+ mQs7ELiIvtg6h7oE+krrZ02bclF8WByYKU83YbQE32xavuqFGSc88tk/hGVVxtE3Nrgp
+ Kw4g==
+X-Gm-Message-State: APjAAAXH+Yw6aHaYheIBya2fQHBWEBtWLef/md+/48KKGypRFg0KT740
+ dVWCrvamK8pT96NooKZiy1WKrCKe2rbU58EYgKo=
+X-Google-Smtp-Source: APXvYqyzsxOX3edbyOyk011LShDOBrP6rHcmNuC0nDMuPV8Elq72XK8U+9Eo1EIhYs3Z7GROEXuWSES16K6A0VIjUC8=
+X-Received: by 2002:a9d:1ca3:: with SMTP id l35mr9785118ota.271.1580061455165; 
+ Sun, 26 Jan 2020 09:57:35 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAE6G02_pDDd2H5yX8Sf2jqBC7bo1hnqBMgz5-i09NBCBYSoZgQ@mail.gmail.com>
-In-Reply-To: <CAE6G02_pDDd2H5yX8Sf2jqBC7bo1hnqBMgz5-i09NBCBYSoZgQ@mail.gmail.com>
-Subject: Re: [USRP-users] DOA with N310 or X310+TwinRX
+Received: by 2002:ac9:5f87:0:0:0:0:0 with HTTP; Sun, 26 Jan 2020 09:57:34
+ -0800 (PST)
+In-Reply-To: <5E2DD0C5.6010205@gmail.com>
+References: <CAKA0MUiUUxp2ko=4A9vM4u1D4tmGP4HKpeGbe5FCKi=_q9WVUw@mail.gmail.com>
+ <5E2DD0C5.6010205@gmail.com>
+Date: Sun, 26 Jan 2020 19:57:34 +0200
+Message-ID: <CAKA0MUj-theDMW-ri=UxvTeinzS=xGUvNZra8QmcB6xAU=KfyQ@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Subject: Re: [USRP-users] Simultaneous TX and RX from the UHD
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,10 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Varban Metodiev via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Varban Metodiev <varban.metodiev@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6758706293037799913=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,54 +78,127 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 01/25/2020 11:43 AM, Sammy Welschen via USRP-users wrote:
-> Dear all,
->
-> I am planning a system with 5-10 channels that is capable of DOA 
-> estimation.
->
-> Concerning the calibration of the resulting array, would there be a 
-> difference between a system made up of N310 and one made up of X310 
-> with TwinRX boards? Would there be other important differences that 
-> influence estimation performance?
->
-> As I understand it, the TwinRX allows LO sharing between the boards in 
-> a single X310, but this would not help me if I have two or three X310. 
-> On the other hand, the N310s could be connected to a shared LO.
->
-> Are the following thoughts correct?
->
-> Suppose I turn on my system. Then I have to calibrate phase offsets 
-> between channels in any case. Now I change the center frequency. If I 
-> have N310s without shared LO, I have to recalibrate. Same for the 
-> X310s, since LOs are shared only internally. If I have N310s with a 
-> shared LO, I do not have to recalibrate.
->
-> If I restart the system, I have to recalibrate in any case.
->
-> The devices would by synchronized with PPS in any case and with the 10 
-> MHz reference if no external LO is used.
->
-> What is the better choice for DOA estimation (N310 or X310 with TwinRX 
-> or something different)?
->
-> Thank you very much
->
-> Sammy
->
->
-Sammy:
+--===============6758706293037799913==
+Content-Type: multipart/alternative; boundary="000000000000c22d63059d0eb951"
 
-Your characterization of the two scenarios is correct.
+--000000000000c22d63059d0eb951
+Content-Type: text/plain; charset="UTF-8"
 
-There may be some folks on this list who have implemented DOA schemes, 
-but likely few-to-none who have done it on both X310 and N310
-   and can comment on the differences they encountered.
+Hi Marcus,
+
+Thanks a lot!
+
+Best regards,
+Varban
+
+On Sunday, January 26, 2020, Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 01/26/2020 06:57 AM, Varban Metodiev via USRP-users wrote:
+>
+>> Dear USRP Community,
+>>
+>> I need to do a realistic loopback TX-RX communication (via a feeder and
+>> attenuator) of my B205mini device.
+>>
+>> I took the examples from tx_samples_c.c and rx_samples_c.c, and tried
+>> running them as two different POSIX threads. However, this way I could get
+>> only transmission working, without any reception. When trying from GNU
+>> Radio - both the source and sink modules work simultaneously without any
+>> problem, meaning that I have done something really wrong in my approach...
+>>
+>> Could you please advise what is the correct structural pattern for
+>> simultaneous RX and TX on a single USRP device via the UHD framework?
+>>
+>> Best regards,
+>> Varban
+>>
+>> Varban:
+>
+> There's an example that does this:
+>
+> txrx_loopback_to_file
+>
+>
+> You can look at the source code of that example to get some ideas of how
+> to properly structure such a thing.
+>
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000c22d63059d0eb951
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Marcus,<div><br></div><div>Thanks a lot!</div><div><br></div><div>Best r=
+egards,</div><div>Varban<br><br>On Sunday, January 26, 2020, Marcus D. Leec=
+h via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-use=
+rs@lists.ettus.com</a>&gt; wrote:<br><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On 01/2=
+6/2020 06:57 AM, Varban Metodiev via USRP-users wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Dear USRP Community,<br>
+<br>
+I need to do a realistic loopback TX-RX communication (via a feeder and att=
+enuator) of my B205mini device.<br>
+<br>
+I took the examples from tx_samples_c.c and rx_samples_c.c, and tried runni=
+ng them as two different POSIX threads. However, this way I could get only =
+transmission working, without any reception. When trying from GNU Radio - b=
+oth the source and sink modules work simultaneously without any problem, me=
+aning that I have done something really wrong in my approach...<br>
+<br>
+Could you please advise what is the correct structural pattern for simultan=
+eous RX and TX on a single USRP device via the UHD framework?<br>
+<br>
+Best regards,<br>
+Varban<br>
+<br>
+</blockquote>
+Varban:<br>
+<br>
+There&#39;s an example that does this:<br>
+<br>
+txrx_loopback_to_file<br>
+<br>
+<br>
+You can look at the source code of that example to get some ideas of how to=
+ properly structure such a thing.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+______________________________<wbr>_________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman<wbr>/listinfo/usrp-use=
+rs_lists.<wbr>ettus.com</a><br>
+</blockquote></div>
+
+--000000000000c22d63059d0eb951--
 
 
-
+--===============6758706293037799913==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============6758706293037799913==--
+
