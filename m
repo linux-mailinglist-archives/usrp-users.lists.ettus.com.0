@@ -2,64 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 375ED14AC56
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2020 23:59:44 +0100 (CET)
-Received: from [::1] (port=60868 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 548CA14ACB4
+	for <lists+usrp-users@lfdr.de>; Tue, 28 Jan 2020 00:44:50 +0100 (CET)
+Received: from [::1] (port=40190 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iwDM5-0007Yr-0p; Mon, 27 Jan 2020 17:59:41 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:33063)
+	id 1iwE3k-0001NS-4C; Mon, 27 Jan 2020 18:44:48 -0500
+Received: from mail-qk1-f179.google.com ([209.85.222.179]:40419)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1iwDM1-0007HS-CW
- for usrp-users@lists.ettus.com; Mon, 27 Jan 2020 17:59:37 -0500
-Received: by mail-ot1-f50.google.com with SMTP id b18so10199183otp.0
- for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2020 14:59:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=u+P3MtPhk9QRXtB4v9Y147gop5QYibhK4Si6NJNRw4U=;
- b=adP9St35Tk9siPvT+tISk2LzH0Y3uhpAgneViiGFEWKydaOYsFsIlHb6xUIIgGNHRj
- UMF8enVXJ40LGyUaglpx/WqvuCAmOaJjOh/tASQwbyBR+oMyBbhVumwSUPcRtulq+5Yd
- XiZQf4m2Z5rJmFDmxM9cFKYJkitw+gp6o1hpZmnp+Fq7bTB83LWRdiauJ5LnJ4T6gQk7
- Zi7ZbOFfonAm3cX4GL2vtAxqyWzToYDjPl51mEyOWOvSiB/d4NofxUsUXTggMNn3lQHy
- 37dDFP8iRnkRNKEQUOheMkuoHc6vF+ti966SQ2Z19sF/mC0tMRuAK1a+TllCgI6govzF
- YtMA==
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1iwE3g-0001Ea-K1
+ for usrp-users@lists.ettus.com; Mon, 27 Jan 2020 18:44:44 -0500
+Received: by mail-qk1-f179.google.com with SMTP id t204so10730198qke.7
+ for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2020 15:44:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=ErgQwacHBFVE0x/gkSaSLednAmysnuKoHsWmXSFGOos=;
+ b=Vomh2vly2Vv54Gg2375vTM9tFeV+9zNVuqw/IeH6Zu/LQvCPAEE2UF0BUAhS2Zacgx
+ JpcRqudH4uWOfBMIQ5cqdnA1Vy8b8gVzz8oew57zYqonnk6PYH9zh1wjlAQFLuLD03pd
+ BtkPNHVGRkllIcYf2Sumdsr3Rr38yqv0B0WLO+D++GeRnYOIneWQxcLxzk+6ramWsFVb
+ QE+Tl5eK6nZwKWDLj4ZippzP/K7bpG6s22A6EWfGIgS7IhWTu2w/Cg81AA7Rc5N+Maxa
+ nw0s6N4cnrifDAp//7VEbo/Lhto08EMpZ0KtY76h/qQ7n9khwzURuOv1WN6Be7aqrxyp
+ 1OOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=u+P3MtPhk9QRXtB4v9Y147gop5QYibhK4Si6NJNRw4U=;
- b=KImPxjp7vNS/u6W7rFAgFd35KOBMlob6I+T/wr1b40awGaUlETgOBqfQa9n+S0G126
- 9NnqnRaEwvzpWkORikCGHzkCkZoX0LeW9CsRnB0juX1ZtYLwpQAbosFIiijMUjjzrLSv
- JTfsGAIqv1OhQpnGUrvdXayaD2UvRkD8HVEErKNa49pg649FIed5vna/Zo6OALfxZXO7
- +BOEMnLnY6bETcYgsOQYytcG6DBmtNFm2XyAg3c+s+7rGS7CBALZapOOEVzkQirn1T1D
- aFED7YPgIlVPuPXk2rW1zgRd9YCdN7boRN+wLP+Z4VB2SI5ftqtLyzKNtCJfT3QseTOm
- PltA==
-X-Gm-Message-State: APjAAAXMQof3cHKjCSKs9h+nTIZc2KgxKLnI5d5TdoBAFai+9gZPMVHV
- WDgWMsjx8htYLndkas/Ba/5hhu++KfKCiW4K81Vz7g==
-X-Google-Smtp-Source: APXvYqzQbFC5qZfdRecaV39q3PRJZPnLufMWx/VO7FTbyzAhAvAjLdV2BIgS+WlV+dq138hnVTr8F6F9qBn9FVdpnjY=
-X-Received: by 2002:a9d:3d0a:: with SMTP id a10mr14476015otc.327.1580165936575; 
- Mon, 27 Jan 2020 14:58:56 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=ErgQwacHBFVE0x/gkSaSLednAmysnuKoHsWmXSFGOos=;
+ b=iYh5k8PaosQztrsiBaUQ3YkQy1diy3Wr6akI6Ytflv5+yZvEfK/TS9JE1Bsu5Pz784
+ c9bZC9W+tj3SR9vuNsSb3N0e8AOWIm1iBkYzKVfV0MpgXHEhDStyVNapnlqPKNIZ4oIR
+ Dc7AmaPIR1NoRIgy3pGJBA2M2fPNugMiGthtwl/mJD4hcdV7Dmg3yHZWbj8Z1yK9dqD2
+ S/f5nLGPSPATqa4qju436nrV+QU9hDh5nYFljCm1hXVrJj9tB1uD4vQc/WTXxMMg7y2T
+ DJBWCOPwg3DOomuO+LhI9usSJZuAezmjOYm/ICLiD/OWrbQF9Z/XQahm2Yay+inT1tbp
+ jqBA==
+X-Gm-Message-State: APjAAAWqOR2OdEshU+wrA27tsF+cDPgBM9d04kC+hA0SyMDljlqUEHW9
+ R8JE9XOdr65RmCA0QWU56dB5QIATP64=
+X-Google-Smtp-Source: APXvYqzA43cTkeOBQvndZjf1bkL4knINOaswcDFyXHN+Nwn/KzLV+yhEkA1y0Uf6AjcSTV1/bCq2FA==
+X-Received: by 2002:a37:6446:: with SMTP id y67mr19506013qkb.59.1580168643826; 
+ Mon, 27 Jan 2020 15:44:03 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
+ [174.95.14.83])
+ by smtp.googlemail.com with ESMTPSA id o17sm11056860qtq.93.2020.01.27.15.44.02
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 27 Jan 2020 15:44:03 -0800 (PST)
+Message-ID: <5E2F75C2.6010402@gmail.com>
+Date: Mon, 27 Jan 2020 18:44:02 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CAE6G02_pDDd2H5yX8Sf2jqBC7bo1hnqBMgz5-i09NBCBYSoZgQ@mail.gmail.com>
- <5E2DD2CA.60502@gmail.com>
- <CAE6G02_gbpWZENFyB0EuGdDiGfWKBOitqE0VamkNRuqPTd_MgA@mail.gmail.com>
- <1eae252bad4344f2b296e8bb4fb0d278@dlr.de>
- <CAE6G028jQc8Fd8U8-EmTCCZwyKjN5+MJGcEJs5FKvm1PyrNofw@mail.gmail.com>
- <9386a8b56e9b4514bfd076ce7c106cec@dlr.de>
- <CAB__hTSXvtRmb41qd2i5tL-EKG+YbWb-YqEhw6Hoey3Wj_tE6g@mail.gmail.com>
- <CAL263izVZA5A7jpX+5GbCMaVy4Jq=CvZkDd6-ng0xTT9-zb15A@mail.gmail.com>
- <CAB__hTS=qwkz6-y7fKP54dz6Jr8ZR_n6=2Eu11NiyHsHFOYP5A@mail.gmail.com>
- <CAL263iwYWeO-OLvsiUTmLRvWGa_fGsg4hv-MYnppQmCKGtAipQ@mail.gmail.com>
- <CAL263iwTvw6evt9es0RGK1BT+t_=bFhhsNe2NwLe9ap7Yd6FRg@mail.gmail.com>
- <CAB__hTQExE6M5q4jNkM+pbFowL5p65ZErZaTyW0wwkZhL=V96Q@mail.gmail.com>
- <CAB__hTR_jPt0Lit8ZsG5tuAK2drmp6zMWWi_4y7Mj+TYhBcnxA@mail.gmail.com>
- <CAB__hTS7LzLv8Z_ky7vbuAtesW4+D=p49o59Zf5SnBTBk9Gmog@mail.gmail.com>
- <CAL263izzHZtu1MJPRjx2OZ4QsQTALqsoKMnQdqoHyn+xqowbCw@mail.gmail.com>
-In-Reply-To: <CAL263izzHZtu1MJPRjx2OZ4QsQTALqsoKMnQdqoHyn+xqowbCw@mail.gmail.com>
-Date: Mon, 27 Jan 2020 17:58:45 -0500
-Message-ID: <CAB__hTSzNsujXDGSDsd+1j9ph4tSHxik1nshB-uL=bOYas_Q3w@mail.gmail.com>
-To: Nate Temple <nate.temple@ettus.com>
-Subject: Re: [USRP-users] N310 phase jumps with 1 daughterboard
+To: Lukas Haase <lukashaase@gmx.at>
+References: <trinity-488760a4-6923-45b9-a737-f5062f70c125-1579852625874@3c-app-gmx-bs54>
+ <5E2B210C.2060407@gmail.com>
+ <trinity-be35829c-c69e-45b3-a686-731c6fec4502-1580164464056@3c-app-gmx-bs13>
+In-Reply-To: <trinity-be35829c-c69e-45b3-a686-731c6fec4502-1580164464056@3c-app-gmx-bs13>
+Subject: Re: [USRP-users] Exact alignment between gnuradio sample stream and
+ USRP time
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,10 +69,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7813918728942394510=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users@lists.ettus.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,384 +87,160 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7813918728942394510==
-Content-Type: multipart/alternative; boundary="00000000000056346c059d270d77"
-
---00000000000056346c059d270d77
-Content-Type: text/plain; charset="UTF-8"
-
-Sure, I understand the comment about the tagged release.  And, I don't have
-a compelling reason why I can't switch from 3.14 to 3.15.  I have not
-switched yet only because I'm being cautious and 3.14 has worked well for
-me.  But, I will plan to switch - at least for now.
-Rob
-
-On Mon, Jan 27, 2020 at 5:51 PM Nate Temple <nate.temple@ettus.com> wrote:
-
-> Hi Rob,
->
-> Thanks for trying your setup with 3.15.0.0.
->
-> I will see what I can do about getting these fixes backported to 3.14, any
-> changes will need to be on the UHD-3.14 branch (the maint branch for 3.14),
-> we won't be able to apply these changes to 3.14.1.1, as it's a tagged
-> release.
->
-> Regards,
-> Nate Temple
->
-> On Mon, Jan 27, 2020 at 2:46 PM Rob Kossler <rkossler@nd.edu> wrote:
->
->> Nate,
->> After switching to 3.15, I now get consistent results such that the
->> relative phase between channels is as follows:
->> - chan 0 to chan 1: constant
->> - chan 1 to chan 2: constant +/- 180 deg
->> - chan 2 to chan 3: constant
+On 01/27/2020 05:34 PM, Lukas Haase wrote:
+>> Gesendet: Freitag, 24. Januar 2020 um 11:53 Uhr
+>> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
+>> An: "Lukas Haase" <lukashaase@gmx.at>
+>> Cc: usrp-users@lists.ettus.com
+>> Betreff: Re: [USRP-users] Exact alignment between gnuradio sample stream and USRP time
 >>
->> So, it seems that the problem was in 3.14.
->> Rob
+>> On 01/24/2020 02:57 AM, Lukas Haase wrote:
+>>>> On 01/23/2020 12:32 PM, Lukas Haase via USRP-users wrote:
+>>>>> Hi,
+>>>>>
+>>>>> TO MY UNDERSTANDING, the USRP has an internal clock that is different from host clock when running gnuradio (which makes sense because there are buffers etc in between).
+>>>>> Example: I transmit a CW at f=1001, receive it at f=1000 and then use gnuradio to downconvert the remaining 1 MHz I run into trouble (tried it...).
+>>>>>
+>>>>> For this reason, there exist timed commands and the tune_request object with which I can execute commands (LO tuning) at a precice time. For example, with these commands I can phase align tuning between TX/RX at different center frequencies:
+>>>>>
+>>>>>      tune_req_tx = uhd.tune_request(fcenter-1e6, 1e6)
+>>>>>      tune_req_rx = uhd.tune_request(2*fcenter)
+>>>>>      tune_req_rx.args=uhd.device_addr(','.join(["mode_n=integer", "int_n_step=1000e3",]))
+>>>>>      tune_req_tx.args=uhd.device_addr(','.join(["mode_n=integer", "int_n_step=1000e3",]))
+>>>>>
+>>>>>      now = self.uhd_usrp_sink_0.get_time_now()
+>>>>>      self.uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(0.1))
+>>>>>      self.uhd_usrp_source_0.set_command_time(now + uhd.time_spec(0.1))
+>>>>>
+>>>>>      self.uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
+>>>>>      self.uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
+>>>>>
+>>>>>      self.uhd_usrp_source_0.clear_command_time()
+>>>>>      self.uhd_usrp_sink_0.clear_command_time()
+>>>>>
+>>>>> The commands execute execatly at get_time_now() plus 100ms. As far as I understand, these 100ms are to ensure that the host computer has enough time until the USRP processes the clear_command_time function. But it does not relate the exact point in time with anything that exists in gnuradio.
+>>>>>
+>>>>> MY QUESTION: What I am unsure is how to align samples in gnuradio with the time on the USRP. For example, suppose I have an ideal clock signal in gnuradio and I want to perform a timed command EXACTLY at a particular sampling point (e.g. rising edge). How would I go about this?
+>>>>>
+>>>>> The actions I want to execute exactly time aligned with gnuradio include: tuning requests, reading out sensors (PLL sensor when it settled), switching IO pins through the GPIO interface.
+>>>>> For example, I would like to switch a GPIO port exactly once per period of a signal in gnuradio and exactly at the same time (clearly there will be delays but that's OK as long as the delay is fixed).
+>>>>> As another example, I would like to re-tune exactly once in every period of a gnuradio signal. Then I would like to read out when the PLL has settled and generate a binary indicator signal out of it. Plotting the original signal and the indicator signal should tell me exactly (at least sample accuracy) how long the PLL took to settle *relative* to the signal in gnuradio.
+>>>>>
+>>>>>
+>>>>> Thank you very much,
+>>>>> Luke
+>>>> Whatever "dance" you're using to set the USRP time, (presumably
+>>>> something like set_time_unknown_pps), you need to have it derive the
+>>>>      USRP time register from the host time.  The normal code that is
+>>>> emitted in GRC for "unknown_pps" just resets the USRP time to zero.
+>>>>      But you can arrange for it to be the host time (+1 second or
+>>>> something) instead.
+>>>>
+>>>> You haven't indicated whether you're using GRC, or "naked" Gnu Radio
+>>>> programming.
+>>>>
+>>>> General synchronization "things" are discussed in the knowledge base, here:
+>>>>
+>>>> https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices
+>>> Hi Marcus,
+>>>
+>>> Thanks. I went through this page a few times and got synchronization between TX/RX (somewhat) running.
+>>>
+>>> I am using GRC but willing to go "naked" where necessary (my main application will still always be grc+GUI).
+>>>
+>>> I guess I still don't understand what exactly what the "USRP time" is and how it related to sample time.
+>>>
+>>> I do not think it makes sense to lock the USRP time to the host time because the host time is independent from the sample time on the host (in gnuradio). Samples are buffered and depending on CPU load, samples may occur earlier or later than expected by CPU time. Say I generate the signal x[n] and the sample rate is 1kS/s, then in a real-time system I can expect each sample to occur exactly every ms. But on my host with gnuradio this is certainly not the case! x[1000] does not necessarily occur 1 seconds (in CPU time) after x[0].
+>>>
+>>> Again, what I want is I generate x[n] in gnuradio. For every, say, (n mod 1000)==0 I want to execute something on the USRP, for example flipping a GPIO which increases the gain of an amplifier ... exactly at the time when the *USRP* processes this sample. Not the host! Because the USRP, to my understanding, is like a realtime system.
+>>>
+>>> Now say the output of the amplifier is fed again into the USRP RX port and I read it back as y[n] from USRP Source.
+>>>
+>>> I will see the effect of the gain change in y[n] ... many samples after I did the request due to latency. But I want that the relative sample difference between x[n] and y[n] is always constant!
+>>>
+>>> Example:
+>>>
+>>> At x[0]    --> change gain to 1 --> at y[523]  I see gain changes to 1
+>>> At x[1000] --> change gain to 2 --> at y[1523] I see gain changes to 2
+>>> At x[2000] --> change gain to 3 --> at y[2523] I see gain changes to 3
+>>>       ....
+>>>
+>>> I hope this example makes it more clear what I mean.
+>>>
+>>> This is just a toy example; in reality I would build x[n] in gnuradio to be a control signal that aligns all the actions in a predicable manner.
+>>>
+>>> Thanks,
+>>> Luke
+>>>
+>> Sample streams from the USRP are time-stamped.  In Gnu Radio, that
+>> generates a tag when the stream starts, and whenever there's an
+>>    overrun.
 >>
->> On Mon, Jan 27, 2020 at 3:45 PM Rob Kossler <rkossler@nd.edu> wrote:
+>> In the absence of overruns, you know exactly the sample time from
+>> knowing the initial time-stamp, and simply counting samples, since
+>>     the sample-rate is known, and fixed.
 >>
->>> Nate,
->>> So, I retested with 3.14.1.1 and got erratic results (same as last
->>> week).  Now I am attempting to go to 3.15.0.0.  To make things as painless
->>> as possible, I tried to just re-build MPM on the device and then update the
->>> other stuff on the host (rather than flashing a new file system).  However,
->>> MPM doesn't seem to build (see error below). I'm guessing this error is
->>> related to something in the file system that is going to force me to
->>> re-flash the file system.  Can you take a look and let me know if there is
->>> an easier way.
->>> Rob
->>>
->>> root@ni-n3xx-318F043:~/build_mpm# make -j2
->>> [  5%] Built target periphs
->>> [ 10%] Built target dboards
->>> [ 27%] Built target mykonos
->>> [ 32%] Built target spi
->>> [ 34%] Building C object lib/i2c/CMakeFiles/i2c.dir/i2cdev.c.o
->>> Scanning dependencies of target types
->>> [ 36%] Building CXX object lib/types/CMakeFiles/types.dir/lockable.cpp.o
->>> /home/root/uhd/uhd/mpm/lib/i2c/i2cdev.c: In function 'i2cdev_open':
->>> /home/root/uhd/uhd/mpm/lib/i2c/i2cdev.c:26:33: error: 'O_LARGEFILE'
->>> undeclared (first use in this function); did you mean '__O_LARGEFILE'?
->>>      *fd = open(device, O_RDWR | O_LARGEFILE);
->>>                                  ^~~~~~~~~~~
->>>                                  __O_LARGEFILE
->>> /home/root/uhd/uhd/mpm/lib/i2c/i2cdev.c:26:33: note: each undeclared
->>> identifier is reported only once for each function it appears in
->>> make[2]: *** [lib/i2c/CMakeFiles/i2c.dir/build.make:111:
->>> lib/i2c/CMakeFiles/i2c.dir/i2cdev.c.o] Error 1
->>> make[1]: *** [CMakeFiles/Makefile2:466: lib/i2c/CMakeFiles/i2c.dir/all]
->>> Error 2
->>> make[1]: *** Waiting for unfinished jobs....
->>> [ 38%] Building CXX object lib/types/CMakeFiles/types.dir/log_buf.cpp.o
->>> [ 40%] Building CXX object
->>> lib/types/CMakeFiles/types.dir/mmap_regs_iface.cpp.o
->>> [ 40%] Built target types
->>> make: *** [Makefile:141: all] Error 2
->>> root@ni-n3xx-318F043:~/build_mpm#
->>>
->>>
->>> On Mon, Jan 27, 2020 at 2:21 PM Rob Kossler <rkossler@nd.edu> wrote:
->>>
->>>> ok.
->>>>
->>>> Yes, I always use timed tune commands. If that were not happening
->>>> correctly, I don't think I could get consistent results with TwinRx.
->>>>
->>>> I am presently using 3.14.1.1.  I will complete the testing (using
->>>> internal LO) I've already begun with this version and then re-test some/all
->>>> using 3.15.  Assuming that the results are different, it would seem that
->>>> Ettus should consider applying the fixes to the 3.14 branch.
->>>>
->>>> Rob
->>>>
->>>>
->>>> On Mon, Jan 27, 2020 at 2:18 PM Nate Temple <nate.temple@ettus.com>
->>>> wrote:
->>>>
->>>>> Hi Rob,
->>>>>
->>>>> One other thing, if you're not on UHD v3.15.0.0, I'd recommend to
->>>>> update to it. There was some phase reset and accumulator fixes with
->>>>> 3.15.0.0.
->>>>>
->>>>> https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/CHANGELOG#L44
->>>>>
->>>>>
->>>>> Regards,
->>>>> Nate Temple
->>>>>
->>>>> On Mon, Jan 27, 2020 at 11:17 AM Nate Temple <nate.temple@ettus.com>
->>>>> wrote:
->>>>>
->>>>>> Hi Rob,
->>>>>>
->>>>>> You should always use a tune request with a timed command when you
->>>>>> want to align channels.
->>>>>>
->>>>>> One thing you could test is to try using the internal LO and see if
->>>>>> you get different results.
->>>>>>
->>>>>> Also you could try using the integer N tuning mode, but I don't think
->>>>>> it will make any difference for this issue. Checkout this great blog post
->>>>>> on USRP tuning if you haven't seen it before that covers a few more tips on
->>>>>> USRP tuning:
->>>>>> http://www.radio-science.net/2017/12/adventures-in-usrp-tuning.html
->>>>>>
->>>>>> Regards,
->>>>>> Nate Temple
->>>>>>
->>>>>> On Mon, Jan 27, 2020 at 9:33 AM Rob Kossler <rkossler@nd.edu> wrote:
->>>>>>
->>>>>>> Hi Nate,
->>>>>>> I changed the subject as to not further hijack the other thread. Of
->>>>>>> the 16 captures I collected, some of them included a tuning command (but
->>>>>>> using the same timed commands I use for other devices such as TwinRx). But,
->>>>>>> others did not.  For example, for the first two data points below (with
->>>>>>> measured phase difference of -77 and -19 respectively).  I simply issued
->>>>>>> two consecutive timed streaming commands.  So, I was very perplexed by the
->>>>>>> results.
->>>>>>>
->>>>>>> In any event, I plan to re-take the data today both with and without
->>>>>>> a DDC.  Hopefully, if I get rid of the DDC, I will see consistent phase
->>>>>>> results, but we'll see.  Let me know if you have other ideas.
->>>>>>> Rob
->>>>>>>
->>>>>>> On Mon, Jan 27, 2020 at 12:04 PM Nate Temple <nate.temple@ettus.com>
->>>>>>> wrote:
->>>>>>>
->>>>>>>>
->>>>>>>> @Rob: With the current init process of the N310, yes it is required
->>>>>>>> to first set the external LO to 5 GHz.
->>>>>>>>
->>>>>>>> With regards to the offsets you're seeing, I believe you should
->>>>>>>> only see a possible phase difference of 180* within the two channels on the
->>>>>>>> same DB. Are you issuing a tune request at the start of streaming?
->>>>>>>>
->>>>>>>> Regards,
->>>>>>>> Nate Temple
->>>>>>>>
->>>>>>>> On Mon, Jan 27, 2020 at 8:20 AM Rob Kossler via USRP-users <
->>>>>>>> usrp-users@lists.ettus.com> wrote:
->>>>>>>>
->>>>>>>>> Robert, Sammy,
->>>>>>>>> I am presently running some tests which compare the X310/TwinRx
->>>>>>>>> and the N310 with regard to channel-to-channel phase.  In my setup, I have
->>>>>>>>> a signal source that is split 8 ways (1:8 splitter) to feed the 4 channels
->>>>>>>>> of my TwinRx and 4 channels of my N310. I have seen some strange behavior
->>>>>>>>> of the N310 that perhaps Robert has experienced?  Take a look:
->>>>>>>>>
->>>>>>>>>    - For the TwinRx (for which I am a more experienced user with
->>>>>>>>>    LO sharing), I get consistent channel-to-channel phase difference among all
->>>>>>>>>    channels. This is true regardless of power cycles, re-starts of UHD, etc.
->>>>>>>>>    - For the N310 (for which I am a beginner when it comes to
->>>>>>>>>    external LO operation)
->>>>>>>>>       - it seems more complex to run in this mode (as compared to
->>>>>>>>>       TwinRx).  In order to get it to work, I have had to disable startup QEC
->>>>>>>>>       calibration because it seems that the N310 initial cal occurs at 2500 MHz
->>>>>>>>>       RF such that I would need to have my external LO at 5000 MHz for startup
->>>>>>>>>       (during the UHD deveice 'make') and then later switch my external LO to the
->>>>>>>>>       desired RF*2. Is this true?
->>>>>>>>>       - when I run with either external LO or internal LO, I see
->>>>>>>>>       inconsistent channel-to-channel phase results even between the two channels
->>>>>>>>>       of a given daughterboard that share the same LO.  I do not understand how
->>>>>>>>>       this is possible.  My results over 16 captures (with some re-starts of UHD,
->>>>>>>>>       device reboots, and switching between internal/external LO) show the
->>>>>>>>>       following channel-to-channel phase difference between channels 0 and 1
->>>>>>>>>       which share the same LO: (values in degrees) -77, -19, -77, -19, -77, -19,
->>>>>>>>>       -19, 39, -19, -19, -77, -19, -77, 39, -19, -19.  Note that there are only 3
->>>>>>>>>       unique values and the delta happens to be 58 deg, but I don't know what
->>>>>>>>>       that implies...
->>>>>>>>>
->>>>>>>>> Rob
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
-
---00000000000056346c059d270d77
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Sure, I understand the comment about the tagged release.=
-=C2=A0 And, I don&#39;t have a compelling reason why I can&#39;t switch fro=
-m 3.14 to 3.15.=C2=A0 I have not switched yet only because=C2=A0I&#39;m bei=
-ng cautious and 3.14 has worked well for me.=C2=A0 But, I will plan to swit=
-ch - at least for now.<div>Rob</div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 27, 2020 at 5:51 PM Nate Te=
-mple &lt;<a href=3D"mailto:nate.temple@ettus.com">nate.temple@ettus.com</a>=
-&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
- dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,helvet=
-ica,sans-serif">Hi Rob,<br><br>Thanks for trying your setup with 3.15.0.0.<=
-br><br>I will see what I can do about getting these fixes backported to 3.1=
-4, any changes will need to be on the UHD-3.14 branch (the maint branch for=
- 3.14), we won&#39;t be able to apply these changes to 3.14.1.1, as it&#39;=
-s a tagged release.<br><br>Regards,<br>Nate Temple</div></div><br><div clas=
-s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 27, 202=
-0 at 2:46 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_=
-blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex"><div dir=3D"ltr">Nate,<div>After switching to 3.15, I=
- now get consistent results such that the relative phase between channels i=
-s as follows:</div><div>- chan 0 to chan 1: constant</div><div>- chan 1 to =
-chan 2: constant=C2=A0+/- 180 deg</div><div>- chan 2 to chan 3: constant</d=
-iv><div><br></div><div>So, it seems that the problem was in 3.14.</div><div=
->Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Mon, Jan 27, 2020 at 3:45 PM Rob Kossler &lt;<a href=3D"mailto=
-:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Nate,<d=
-iv>So, I retested with 3.14.1.1 and got erratic results (same as last week)=
-.=C2=A0 Now I am attempting to go to 3.15.0.0.=C2=A0 To make things as pain=
-less as possible, I tried to just re-build MPM on the device and then updat=
-e the other stuff on the host (rather than flashing a new file system).=C2=
-=A0 However, MPM doesn&#39;t seem to build (see error below). I&#39;m guess=
-ing this error is related to something in the file system that is going to =
-force me to re-flash the file system.=C2=A0 Can you take a look and let me =
-know if there is an easier way.</div><div>Rob</div><div><br></div><div>root=
-@ni-n3xx-318F043:~/build_mpm# make -j2<br>[ =C2=A05%] Built target periphs<=
-br>[ 10%] Built target dboards<br>[ 27%] Built target mykonos<br>[ 32%] Bui=
-lt target spi<br>[ 34%] Building C object lib/i2c/CMakeFiles/i2c.dir/i2cdev=
-.c.o<br>Scanning dependencies of target types<br>[ 36%] Building CXX object=
- lib/types/CMakeFiles/types.dir/lockable.cpp.o<br><span style=3D"background=
--color:rgb(255,255,0)">/home/root/uhd/uhd/mpm/lib/i2c/i2cdev.c: In function=
- &#39;i2cdev_open&#39;:<br>/home/root/uhd/uhd/mpm/lib/i2c/i2cdev.c:26:33: e=
-rror: &#39;O_LARGEFILE&#39; undeclared (first use in this function); did yo=
-u mean &#39;__O_LARGEFILE&#39;?<br>=C2=A0 =C2=A0 =C2=A0*fd =3D open(device,=
- O_RDWR | O_LARGEFILE);<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~=
-~~~~~~<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0__O_LARGEFILE</span>=
-<br>/home/root/uhd/uhd/mpm/lib/i2c/i2cdev.c:26:33: note: each undeclared id=
-entifier is reported only once for each function it appears in<br>make[2]: =
-*** [lib/i2c/CMakeFiles/i2c.dir/build.make:111: lib/i2c/CMakeFiles/i2c.dir/=
-i2cdev.c.o] Error 1<br>make[1]: *** [CMakeFiles/Makefile2:466: lib/i2c/CMak=
-eFiles/i2c.dir/all] Error 2<br>make[1]: *** Waiting for unfinished jobs....=
-<br>[ 38%] Building CXX object lib/types/CMakeFiles/types.dir/log_buf.cpp.o=
-<br>[ 40%] Building CXX object lib/types/CMakeFiles/types.dir/mmap_regs_ifa=
-ce.cpp.o<br>[ 40%] Built target types<br>make: *** [Makefile:141: all] Erro=
-r 2<br>root@ni-n3xx-318F043:~/build_mpm#=C2=A0<br></div><div><br></div></di=
-v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On M=
-on, Jan 27, 2020 at 2:21 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.e=
-du" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">ok.=C2=A0=C2=A0<div><=
-br></div><div>Yes, I always use timed tune commands. If that were not happe=
-ning correctly, I don&#39;t think I could get consistent results with TwinR=
-x.</div><div><br></div><div>I am presently using 3.14.1.1.=C2=A0 I will com=
-plete the testing (using internal LO) I&#39;ve already begun with this vers=
-ion and then re-test some/all using 3.15.=C2=A0 Assuming that the results a=
-re different, it would seem that Ettus should consider applying the fixes t=
-o the 3.14 branch.</div><div><br></div><div>Rob</div><div><br></div></div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon,=
- Jan 27, 2020 at 2:18 PM Nate Temple &lt;<a href=3D"mailto:nate.temple@ettu=
-s.com" target=3D"_blank">nate.temple@ettus.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=
-=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif">Hi Rob,=
-<br><br>One other thing, if you&#39;re not on UHD v3.15.0.0, I&#39;d recomm=
-end to update to it. There was some phase reset and accumulator fixes with =
-3.15.0.0.<br><br><a href=3D"https://github.com/EttusResearch/uhd/blob/UHD-3=
-.15.LTS/CHANGELOG#L44" target=3D"_blank">https://github.com/EttusResearch/u=
-hd/blob/UHD-3.15.LTS/CHANGELOG#L44</a><br><br><br>Regards,<br>Nate Temple</=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Mon, Jan 27, 2020 at 11:17 AM Nate Temple &lt;<a href=3D"mailto:nate=
-.temple@ettus.com" target=3D"_blank">nate.temple@ettus.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
-<div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-seri=
-f">Hi Rob,<br><br>You should always use a tune request with a timed command=
- when you want to align channels.<br><br>One thing you could test is to try=
- using the internal LO and see if you get different results.<br><br>Also yo=
-u could try using the integer N tuning mode, but I don&#39;t think it will =
-make any difference for this issue. Checkout this great blog post on USRP t=
-uning if you haven&#39;t seen it before that covers a few more tips on USRP=
- tuning: <a href=3D"http://www.radio-science.net/2017/12/adventures-in-usrp=
--tuning.html" target=3D"_blank">http://www.radio-science.net/2017/12/advent=
-ures-in-usrp-tuning.html</a><br><br>Regards,<br>Nate Temple</div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Ja=
-n 27, 2020 at 9:33 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" ta=
-rget=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Nate,</div><div>I=
- changed the subject as to not further hijack the other thread. Of the 16 c=
-aptures I collected, some of them included a tuning command (but using the =
-same timed commands I use for other devices such as TwinRx). But, others di=
-d not.=C2=A0 For example, for the first two data points below (with measure=
-d phase difference of -77 and -19 respectively).=C2=A0 I simply issued two =
-consecutive timed streaming commands.=C2=A0 So, I was very perplexed by the=
- results.</div><div><br></div><div>In any event, I plan to re-take the data=
- today both with and without a DDC.=C2=A0 Hopefully, if I get rid of the DD=
-C, I will see consistent phase results, but we&#39;ll see.=C2=A0 Let me kno=
-w if you have other ideas.</div><div>Rob</div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 27, 2020 at 12:04 PM Na=
-te Temple &lt;<a href=3D"mailto:nate.temple@ettus.com" target=3D"_blank">na=
-te.temple@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div dir=3D"ltr"><div style=3D"font-family:arial,helveti=
-ca,sans-serif"><br>@Rob: With the current init process of the N310, yes it =
-is required to first set the external LO to 5 GHz. <br><br>With regards to =
-the offsets you&#39;re seeing, I believe you should only see a possible pha=
-se difference of 180* within the two channels on the same DB. Are you issui=
-ng a tune request at the start of streaming?<br><br>Regards,<br>Nate Temple=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Mon, Jan 27, 2020 at 8:20 AM Rob Kossler via USRP-users &lt;<a hre=
-f=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.=
-ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr">Robert, Sammy,<div>I am presently running some =
-tests which compare the X310/TwinRx and the N310 with regard to channel-to-=
-channel phase.=C2=A0 In my setup, I have a signal source that is split 8 wa=
-ys (1:8 splitter) to feed the 4 channels of my TwinRx and 4 channels of my =
-N310. I have seen some strange behavior of the N310 that perhaps Robert has=
- experienced?=C2=A0 Take a look:</div><div><ul><li>For the TwinRx (for whic=
-h I am a more experienced user with LO sharing), I get consistent channel-t=
-o-channel phase difference among all channels. This is true regardless of p=
-ower cycles, re-starts of UHD, etc.</li><li>For the N310 (for which I am a =
-beginner when it comes to external LO operation)</li><ul><li>it seems more =
-complex to run in this mode (as compared to TwinRx).=C2=A0 In order to get =
-it to work, I have had to disable startup QEC calibration because it seems =
-that the N310 initial cal occurs at 2500 MHz RF such that I would need to h=
-ave my external LO at 5000 MHz for startup (during the UHD deveice &#39;mak=
-e&#39;) and then later switch my external LO to the desired RF*2. Is this t=
-rue?</li><li>when I run with either external LO or internal LO, I see incon=
-sistent channel-to-channel phase results even between the two channels of a=
- given daughterboard that share the same LO.=C2=A0 I do not understand how =
-this is possible.=C2=A0 My results over 16 captures (with some re-starts of=
- UHD, device reboots, and switching between internal/external LO) show the =
-following channel-to-channel phase difference between channels 0 and 1 whic=
-h share the same LO: (values in degrees) -77, -19, -77, -19, -77, -19, -19,=
- 39, -19, -19, -77, -19, -77, 39, -19, -19.=C2=A0 Note that there are only =
-3 unique values and the delta happens to be 58 deg, but I don&#39;t know wh=
-at that implies...</li></ul></ul><div>Rob</div></div><div><br></div></div><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"><br></div><=
-/div>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-
---00000000000056346c059d270d77--
+>> This is drifting squarely into "how do I do stuff in Gnu Radio", so
+>> there's a better audience for that on the discuss-gnuradio mailng list.
+>>
+>> If this were my problem, I'd probably write a custom block that
+>> "scheduled things", based on knowing the most recent time tag, and
+>>     the current sample count since the most recent time-tag.
+> Hi Marcus,
+>
+> Thanks, that's very useful. I get the idea now. For example, for a frequency hopping system, I would queue the commands for the *next* period using timed commands (and hope that host->USRP is fast enough to process them before the time occurs).
+>
+> But why does the USRP use seconds and fractional seconds (rather than integer cycles etc)? Can this really guarantee proper timing?
+Internally within the FPGA, the time register is just a wide integer 
+register, incremented at whatever the master clock rate is.  But the API
+   presents this in a way that is more portable across different device 
+types.
 
 
---===============7813918728942394510==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+>
+> I can first set the USRP command time to zero (at startup in gnuradio). When I have a signal source going into a "USRP Sink" with samp_rate = 1 MHz and I want to execute a variety of of commands exactly at every 10000 samples, how does my timed command look like? For example, within the work() function of a block I can convert any sample to an absolute sample number from start on (with nitems_read etc.). Would something like
+>
+>      def work(self, input_items, output_items):
+>          // check if "current" sample is within this processing block
+>          // is yes, set timed command for next period
+>          if self.curSamp >= nitems_read && self.curSamp < nitems_read() + len(input_items[0]):
+>             // Hope that 10000/samp_rate is enough time to successfully send commands
+>             // from gnuradio/host to USRP?
+>             set_command_time((self.curSamp+10000) / self.samp_rate)
+>             // tune different RXes to different frequencies
+>             // operate GPIO pins
+>             // ...
+>             clear_command_time()
+>             self.curSamp = self.curSamp + 10000
+>          return 0
+>
+> be what you are thinking of?
+>
+>
+> Thanks,
+> Luke
+Yes, like that.    Provided the PLL can actually re-tune within that 
+interval, etc.
+
+
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7813918728942394510==--
-
