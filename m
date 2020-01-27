@@ -2,86 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F4F1149EE4
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2020 07:01:21 +0100 (CET)
-Received: from [::1] (port=57120 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DD1D149EFB
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2020 07:24:48 +0100 (CET)
+Received: from [::1] (port=59734 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ivxSX-0003Rb-FL; Mon, 27 Jan 2020 01:01:17 -0500
-Received: from mail-eopbgr1390120.outbound.protection.outlook.com
- ([40.107.139.120]:14976 helo=IND01-BO1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <sourin.mondal@vehere.com>)
- id 1ivxSU-0003IX-6b
- for usrp-users@lists.ettus.com; Mon, 27 Jan 2020 01:01:14 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y1tjgefeK1Q6H8CJHvaA0MqhxpPAeC+wWcf3/E8HDXw0wsJcl8etalsB1VhF1WmclQPsoZDraWvpGo2EG2AZVdXcDv9rB2wDa0g2rRyhASOBfEO/YH6CBPD5JncGkVq8++1BIINorof8/WvV8s/XMP5aqhZnsKErtB/6z+jERwc+fw6ZSPhtnnNhQrJQbJSy6chQXUi82jFis72zhn2yRwbwg0w3HBAZlCXdh3eRVGEnjY8Bqn4cKal3kFR/cf3LzCRsKdoOy0bVQpW9an4exAGlBk9d+5zzskPdkUddBxajex49GV70Do/+ITeRvuUDZ3kvRB6HYrwR0NVV0tIt0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TlHR7sb/6pD4quxn7BqY6kU5iRQ1ZWt8oCmG/gO5SWk=;
- b=A8JI5vFipVcgRSNWuUiYcLcbY19/kPUesn27EcTSCrjWKdd2H3au45I+axYIRfAZLpNvp+e4PMXyvmGrlaprURsCdyKEkUxZxWqRBtZdEF2ypkXm1NWM5Y8x+CKHpMmTOl4U6VdXpL9frOecrTBEs7s7Sf2avEbCTz+05TlahGAytF1IYN70J9Gj4IQIE5iP6tcAUzrWE25cHRuMXmT/wbKb1E7dIKedu7ibkVaMxnakScH8WRKQwcsywCafti5BZbekjoaBHdl/vFP/VO2tJ8tAevlYllUXUjY/4rzBgSBJpmcnOCf8snX4cjLEJ5hLRKVZCHaJug9XpttYR2rJug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
- dkim=pass header.d=vehere.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=vehereinteractive.onmicrosoft.com;
- s=selector2-vehereinteractive-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TlHR7sb/6pD4quxn7BqY6kU5iRQ1ZWt8oCmG/gO5SWk=;
- b=GRNO9lCQQGnHwL91YShDypCtgLF9eXYQH2mmOSpqC/FDrBd6dkCCQ/QJBtIxD5UHfKhWHQmcVDnr0zvWAJSEFYPi9lctMCmW7KjVyvOv7HoQWIZzcwPe+qG9twDWH2c/5JQTExU4+icsS/9EzDhNHXoZHmetJWYputZ03/q4i0U=
-Received: from BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM (52.133.131.142) by
- BM1PR0101MB1716.INDPRD01.PROD.OUTLOOK.COM (10.174.222.17) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2665.21; Mon, 27 Jan 2020 06:00:29 +0000
-Received: from BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::55af:ce05:a5fd:705e]) by BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::55af:ce05:a5fd:705e%3]) with mapi id 15.20.2665.017; Mon, 27 Jan 2020
- 06:00:29 +0000
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] phase-aligning two USRPs without Octoclock
-Thread-Index: AQHVz2bE3GcysuM9wU272v0JQcfgjqfz2mmAgAPT/LuAAC1/gIAGMk6p
-Date: Mon, 27 Jan 2020 06:00:29 +0000
-Message-ID: <BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0@BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM>
+	id 1ivxpG-0004Hy-LS; Mon, 27 Jan 2020 01:24:46 -0500
+Received: from mail-qt1-f170.google.com ([209.85.160.170]:36007)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1ivxpC-0004AW-KJ
+ for usrp-users@lists.ettus.com; Mon, 27 Jan 2020 01:24:42 -0500
+Received: by mail-qt1-f170.google.com with SMTP id t13so6171961qto.3
+ for <usrp-users@lists.ettus.com>; Sun, 26 Jan 2020 22:24:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=5ScME334LcO5yb+qFMumG+D0UYh6jMTyse2u0On7VUE=;
+ b=Y/2ln5rc0r4ociNERDFb4hnn6n9v2X+p2HdBZXKsOHv9cxUlatCg7eLPxnL+B5g6l2
+ ndL16sqZ5q1HFAGJ6Q0XdbSQ55Wl6lhVy2CfjwdxcD+naU1SJIkQv+HsZJWmXdZger7a
+ 7U7NkvJOwyxSPLwU6uX/ebM0RVTOPHinLGzhqiZjjJhbQ+3IsXs8Aj0nptj5KugKpZ9Q
+ wO62Le53VElpQK8hSuTeOYa2LrV2px6yinN0lhpnjm++PMSmeRKS+JLcoAXlAzOog7zm
+ kWYqkS0qc+EZi2UTcMO3B3WAv0DYmYRAuj2gzz+NbRTHL5O0Sr2EnNSjXSreFgmo1BSy
+ OpaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=5ScME334LcO5yb+qFMumG+D0UYh6jMTyse2u0On7VUE=;
+ b=Bs0XQefDSpgGld/u8og575iCsp6N/cXQ1kwp5DO7rlEwJ2q2KCSuULITJIH1zSVB1e
+ G2CBEuuCywruvY0hyXIlG3tG4Li1fIrh3/fYqvoliwIOlwxCg5wsjia2pch8JqCg8hFg
+ wdBcI0ZzgI8qMkjUc8/HnIZqjtoy9Y9ZYEcYuERKoGNSyeMgHm945b4Mjx76KXyHfKu/
+ VC/CggRl59b4UJ8TsgAdkJ1TU9x22+gkVJvBIKUCS7rtfpuBLWl0hZPDQde4q9MjYAeB
+ 8QTJ39jpImCCEEKSfMgq7yicDdx4ofe2g6DFpk9RUgNCyFx/6JXpWToXjA42V8yID2qG
+ qGHg==
+X-Gm-Message-State: APjAAAWxVa1jravHGPq8IhhOjddOndad0xpKAi7AMUi8iwn4ZlyOwwGI
+ FhuQ/mwRD7okZqhwujryJQaEDFe5VA4=
+X-Google-Smtp-Source: APXvYqwahRFWsCLhxlPrgWl1tblVkDguwqoV77HihWCSNxUsO0UFBwn77ccMhIH/YllkPGyxa268MA==
+X-Received: by 2002:ac8:3853:: with SMTP id r19mr14516216qtb.69.1580106241815; 
+ Sun, 26 Jan 2020 22:24:01 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
+ [174.95.14.83])
+ by smtp.googlemail.com with ESMTPSA id e64sm9516073qtd.45.2020.01.26.22.24.00
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 26 Jan 2020 22:24:01 -0800 (PST)
+Message-ID: <5E2E8200.8090507@gmail.com>
+Date: Mon, 27 Jan 2020 01:24:00 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: "Sourin Mondal (Vehere)" <sourin.mondal@vehere.com>
 References: <BMXPR01MB23606E790CA4146BE699BFF58B320@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>,
  <FC4F7A4E-97C4-4CBD-8E54-305964E29BB2@gmail.com>
  <BMXPR01MB236051E2B9CC59A25A0F469C8B0F0@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>,
  <5E2948D5.4090603@gmail.com>
-In-Reply-To: <5E2948D5.4090603@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=sourin.mondal@vehere.com; 
-x-originating-ip: [14.143.49.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7f99b9d4-3abd-48c5-365a-08d7a2ee36a7
-x-ms-traffictypediagnostic: BM1PR0101MB1716:
-x-microsoft-antispam-prvs: <BM1PR0101MB17168A6F4059253A7872E8048B0B0@BM1PR0101MB1716.INDPRD01.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 02951C14DC
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(396003)(39830400003)(346002)(136003)(366004)(376002)(189003)(199004)(966005)(5660300002)(508600001)(86362001)(55016002)(316002)(8936002)(66946007)(55236004)(186003)(26005)(19627405001)(76116006)(8676002)(33656002)(81156014)(71200400001)(81166006)(52536014)(7696005)(4326008)(53546011)(6506007)(6916009)(2906002)(64756008)(66556008)(66446008)(9686003)(66476007);
- DIR:OUT; SFP:1102; SCL:1; SRVR:BM1PR0101MB1716;
- H:BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: vehere.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: P8VZzYh2YqO+2gSRwGtYbkqV6h6f/P1baaFEpsIHQKzlJbp0igW6udUAkvuxyKR9rbQgTG+EtWXirTcGoSii/Gc2NbmemVe3amyo2ISC402SzKqDY1UE14TC/5FXgfYBjUp0PTfLCS6JOWxjS/EU5Hx38HvtFHPXLpcYQX8I6oY0fi8Al+T92JLIsv7xKSSoivsSPiF3sHnu5FTFlEvUWbw8Hnx4+kd2iCsR5D+1wXKQdUDqFcOCG2HrTChcXzJ5yaFFr/Va0NpX5oWUo/nvzrYNYx4y6Qp66r40IfnckW7uRMdbD49BynXphBD9ISeurhhZLmcvumk6jcln41Tf0XGr/rJhj4e3DAYkwOlK/0a5iyhimknrnMhrJNfNvF2M98t0cAHRXvKw+cJlUO9oLFK7eG4qZDKvgmZrBhqEaheN/Ndo8O9P3jh04TFPXer0x9GLSUntqQN3GkjgXjkGgOmAqBpjuxiqvV8y5P+nqq4=
-x-ms-exchange-antispam-messagedata: rwHnPX/5eucEAbudP9lGhA+PcKZz6QTufvLgPloDUcszZXWGYkSlnL4Zgc3jqLR4oYptvqEWNBga2yOVcf16uWMc9/P7uFsQY3c8krpRnMpaCOErRDx2ImYt8DrbXcieY4/HkxJfhbtIiFgwNzWknA==
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: vehere.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f99b9d4-3abd-48c5-365a-08d7a2ee36a7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jan 2020 06:00:29.7519 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2BZz/jM90wy++QVY6gkmZNAHz1/fHcg7mrnzlRGAXiOaaLl+SRQNe+U0dboNyZD/Oxin3z/LjkwLD6d1/93SYULRHP/bhmJwgODF/zjD0U8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BM1PR0101MB1716
+ <BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0@BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0@BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM>
 Subject: Re: [USRP-users] phase-aligning two USRPs without Octoclock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -94,10 +70,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Sourin Mondal \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Sourin Mondal \(Vehere\)" <sourin.mondal@vehere.com>
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7877277081749397154=="
+Content-Type: multipart/mixed; boundary="===============8502762153235062249=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -111,158 +87,218 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7877277081749397154==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============8502762153235062249==
 Content-Type: multipart/alternative;
-	boundary="_000_BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0BM1PR0101MB1700_"
+ boundary="------------020206020604080408000905"
 
---_000_BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0BM1PR0101MB1700_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------020206020604080408000905
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Marcus,
+On 01/27/2020 01:00 AM, Sourin Mondal (Vehere) wrote:
+> Hi Marcus,
+>
+> Thanks for the information. Could you please also tell what is the 
+> accuracy with which the phases are aligned between USRP channels, when 
+> we use 10 MHz reference to align, in pico-seconds or nano-seconds?
+>
+> Regards,
+> Sourin
+The answer to that question depends very much on the hardware involved.
 
-Thanks for the information. Could you please also tell what is the accuracy=
- with which the phases are aligned between USRP channels, when we use 10 MH=
-z reference to align, in pico-seconds or nano-seconds?
+In general, two synthesizers locked to the same clock won't have a zero 
+phase *offset* from one another, but will be phase-coherent
+   on an ongoing basis.
 
-Regards,
-Sourin
-________________________________
-From: Marcus D. Leech <patchvonbraun@gmail.com>
-Sent: Thursday, January 23, 2020 12:48 PM
-To: Sourin Mondal (Vehere) <sourin.mondal@vehere.com>
-Subject: Re: [USRP-users] phase-aligning two USRPs without Octoclock
+Now, for *some* types of Ettus hardware, there is special hardware that 
+can arrange to phase-reset during tuning, so that all the participating
+   synthesizers will have small phase-offsets with respect to one another.
 
-On 01/22/2020 11:53 PM, Sourin Mondal (Vehere) wrote:
+We generally talk in terms of degrees, rather than picoseconds or 
+nanoseconds.  Residual phase offsets will typically be under 5 degrees.
 
-Hi Marcus,
-Do I need to use 1 PPS also along with 10 MHz reference? And are there any =
-software commands to be used along with these hardware configuration for sy=
-nchronizing multiple USRPs without octoclock? If so what are those commands=
-?
-
-Regards,
-Sourin
-You would do well to spend some time with this app-note:
-
-https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices
-
-Indeed, there are many app-notes that might be relevant for you.
-
-Along with:
-
-http://files.ettus.com/manual/
+But keep in mind that things like differential heating of cables, and 
+internal circuit in ANY coherent radio can case the phase relationships
+   to drift slightly.
 
 
 
---_000_BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0BM1PR0101MB1700_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+
+> ------------------------------------------------------------------------
+> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
+> *Sent:* Thursday, January 23, 2020 12:48 PM
+> *To:* Sourin Mondal (Vehere) <sourin.mondal@vehere.com>
+> *Subject:* Re: [USRP-users] phase-aligning two USRPs without Octoclock
+> On 01/22/2020 11:53 PM, Sourin Mondal (Vehere) wrote:
+>>
+>> Hi Marcus,
+>> Do I need to use 1 PPS also along with 10 MHz reference? And are 
+>> there any software commands to be used along with these hardware 
+>> configuration for synchronizing multiple USRPs without octoclock? If 
+>> so what are those commands?
+>>
+>> Regards,
+>> Sourin
+> You would do well to spend some time with this app-note:
+>
+> https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices
+>
+> Indeed, there are many app-notes that might be relevant for you.
+>
+> Along with:
+>
+> http://files.ettus.com/manual/
+>
+>
+
+
+--------------020206020604080408000905
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Hi Marcus,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks for the information. Could you please also tell what is the accuracy=
- with which the phases are aligned between USRP channels, when we use 10 MH=
-z reference to align, in pico-seconds or nano-seconds?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Regards,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Sourin</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Marcus D. Leech &lt;p=
-atchvonbraun@gmail.com&gt;<br>
-<b>Sent:</b> Thursday, January 23, 2020 12:48 PM<br>
-<b>To:</b> Sourin Mondal (Vehere) &lt;sourin.mondal@vehere.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] phase-aligning two USRPs without Octoclock=
-</font>
-<div>&nbsp;</div>
-</div>
-<div style=3D"background-color:#FFFFFF">
-<div class=3D"x_moz-cite-prefix">On 01/22/2020 11:53 PM, Sourin Mondal (Veh=
-ere) wrote:<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 01/27/2020 01:00 AM, Sourin Mondal
+      (Vehere) wrote:<br>
+    </div>
+    <blockquote
+cite="mid:BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0@BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Hi Marcus,</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Thanks for the information. Could you please also tell what is
+        the accuracy with which the phases are aligned between USRP
+        channels, when we use 10 MHz reference to align, in pico-seconds
+        or nano-seconds?</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Regards,</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Sourin</div>
+    </blockquote>
+    The answer to that question depends very much on the hardware
+    involved.<br>
+    <br>
+    In general, two synthesizers locked to the same clock won't have a
+    zero phase *offset* from one another, but will be phase-coherent<br>
+      on an ongoing basis.<br>
+    <br>
+    Now, for *some* types of Ettus hardware, there is special hardware
+    that can arrange to phase-reset during tuning, so that all the
+    participating<br>
+      synthesizers will have small phase-offsets with respect to one
+    another.<br>
+    <br>
+    We generally talk in terms of degrees, rather than picoseconds or
+    nanoseconds.  Residual phase offsets will typically be under 5
+    degrees.<br>
+    <br>
+    But keep in mind that things like differential heating of cables,
+    and internal circuit in ANY coherent radio can case the phase
+    relationships<br>
+      to drift slightly.  <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0@BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM"
+      type="cite">
+      <hr style="display:inline-block;width:98%" tabindex="-1">
+      <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
+          color="#000000" face="Calibri, sans-serif"><b>From:</b> Marcus
+          D. Leech <a class="moz-txt-link-rfc2396E" href="mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
+          <b>Sent:</b> Thursday, January 23, 2020 12:48 PM<br>
+          <b>To:</b> Sourin Mondal (Vehere)
+          <a class="moz-txt-link-rfc2396E" href="mailto:sourin.mondal@vehere.com">&lt;sourin.mondal@vehere.com&gt;</a><br>
+          <b>Subject:</b> Re: [USRP-users] phase-aligning two USRPs
+          without Octoclock</font>
+        <div> </div>
+      </div>
+      <div style="background-color:#FFFFFF">
+        <div class="x_moz-cite-prefix">On 01/22/2020 11:53 PM, Sourin
+          Mondal (Vehere) wrote:<br>
+        </div>
+        <blockquote type="cite">
+          <style type="text/css" style="display:none">
 <!--
 p
 	{margin-top:0;
 	margin-bottom:0}
 -->
 </style>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Hi Marcus,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Do I need to use 1 PPS also along with 10 MHz reference? And are there any =
-software commands to be used along with these hardware configuration for sy=
-nchronizing multiple USRPs without octoclock? If so what are those commands=
-?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Regards,&nbsp;</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Sourin</div>
-<div dir=3D"auto">
-<div>
-<blockquote type=3D"cite"></blockquote>
-</div>
-</div>
-</blockquote>
-You would do well to spend some time with this app-note:<br>
-<br>
-<a class=3D"x_moz-txt-link-freetext" href=3D"https://kb.ettus.com/Synchroni=
-zation_and_MIMO_Capability_with_USRP_Devices">https://kb.ettus.com/Synchron=
-ization_and_MIMO_Capability_with_USRP_Devices</a><br>
-<br>
-Indeed, there are many app-notes that might be relevant for you.<br>
-<br>
-Along with:<br>
-<br>
-<a class=3D"x_moz-txt-link-freetext" href=3D"http://files.ettus.com/manual/=
-">http://files.ettus.com/manual/</a><br>
-<br>
-<br>
-</div>
-</body>
+          <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+            font-size:12pt; color:rgb(0,0,0)">
+            <br>
+          </div>
+          <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+            font-size:12pt; color:rgb(0,0,0)">
+            Hi Marcus,</div>
+          <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+            font-size:12pt; color:rgb(0,0,0)">
+            Do I need to use 1 PPS also along with 10 MHz reference? And
+            are there any software commands to be used along with these
+            hardware configuration for synchronizing multiple USRPs
+            without octoclock? If so what are those commands?</div>
+          <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+            font-size:12pt; color:rgb(0,0,0)">
+            <br>
+          </div>
+          <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+            font-size:12pt; color:rgb(0,0,0)">
+            Regards, </div>
+          <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+            font-size:12pt; color:rgb(0,0,0)">
+            Sourin</div>
+          <div dir="auto">
+            <div>
+            </div>
+          </div>
+        </blockquote>
+        You would do well to spend some time with this app-note:<br>
+        <br>
+        <a moz-do-not-send="true" class="x_moz-txt-link-freetext"
+href="https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices">https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices</a><br>
+        <br>
+        Indeed, there are many app-notes that might be relevant for you.<br>
+        <br>
+        Along with:<br>
+        <br>
+        <a moz-do-not-send="true" class="x_moz-txt-link-freetext"
+          href="http://files.ettus.com/manual/">http://files.ettus.com/manual/</a><br>
+        <br>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0BM1PR0101MB1700_--
+--------------020206020604080408000905--
 
 
---===============7877277081749397154==
+--===============8502762153235062249==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -273,5 +309,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7877277081749397154==--
+--===============8502762153235062249==--
 
