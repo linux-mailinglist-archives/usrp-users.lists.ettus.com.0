@@ -2,53 +2,68 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026AA14A65A
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2020 15:40:58 +0100 (CET)
-Received: from [::1] (port=50202 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E751E14A6A2
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Jan 2020 15:57:41 +0100 (CET)
+Received: from [::1] (port=55594 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iw5ZP-00061Z-Ep; Mon, 27 Jan 2020 09:40:55 -0500
-Received: from mail-io1-f68.google.com ([209.85.166.68]:35780)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <sammywelschen@gmail.com>)
- id 1iw5ZL-0005xd-Iq
- for usrp-users@lists.ettus.com; Mon, 27 Jan 2020 09:40:51 -0500
-Received: by mail-io1-f68.google.com with SMTP id h8so10221115iob.2
- for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2020 06:40:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=tMEGgroFgYFLxmQ7FNohwbhPnOz1AXbWu9jq9HnfiSI=;
- b=A3Wnvv1x/XYRBbUMtXYvKQkn60DpAQVXIh1PkCkQSedwM3RXnKkGfeEEwF4GzrMwpB
- izpzkad+5ix9RJiEjyDz0QRbErVZbPVZOlqlhEzccWXdlDYyipfjuH3cg4kXABJvsGsf
- 9l8cdSlyMIM6YOIT659ZzFu3CcGblInt4MDMYCy1dJssuhIADmx1C0d5jpU88m3hVGmS
- BAtKSOMB38B8HRdrzTgkCPOUuigLd8z7iGOvc12u3HHGLVZserT9JXe2tzjFtguh37lQ
- lLj2VB2Q+uvpiS/WN2Z3e/hKQzMJivZ43nIbCI93kbHpDTIKtLY7re1HtdMEnoDCdDJU
- q1jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=tMEGgroFgYFLxmQ7FNohwbhPnOz1AXbWu9jq9HnfiSI=;
- b=OtOs+ZN6V2176xk7Kqy+AxmR2at06NkC33bNJpARzS5UKQb2aIYhRoKYtovk74Wsaz
- j5xN4wzfcGJFdm5IpoI8DSJUd7Uhade7I7Spi1Z2c1RsxDFb8+EXSkSGVJswbSkB8ACr
- eX5i8/jidQuS0+0u1S2P/qprGEkFJ8iIPjk5sfOUk02CyEjae7D1JUYqvx58F4mJNKfw
- Td8MyjanlE/hvXJIMR7M6yjhtndKWZz171KZgoC9+zcUK3aovxojUGkXpooIj53j855I
- E6kh4M60lDPISt9o6WkAw76sEwnyCJGeBLWRNvs08dX+ND4WYUsHdGz11Ny5aVbRHaHB
- LB9g==
-X-Gm-Message-State: APjAAAU9/teQXozsVC7c6ec41qyFgvAhlv9I0kKEra6CcBcsy+XsBR2A
- 5PtOwy7/UXe57iyywNpW7pnhlW9Ugbq3r9QKR2t/1Q==
-X-Google-Smtp-Source: APXvYqzQq6WTjcZsDbhfhfdJP0w8vnRX8GYTQ0ADdQI3GU/x4M6+x8LtNmolW+WLjcaoJ0t74E23cZ5X8Vd8OUnR1cc=
-X-Received: by 2002:a5d:9707:: with SMTP id h7mr13364757iol.112.1580136010484; 
- Mon, 27 Jan 2020 06:40:10 -0800 (PST)
-MIME-Version: 1.0
+	id 1iw5pc-0007L1-Pw; Mon, 27 Jan 2020 09:57:40 -0500
+Received: from mailin.dlr.de ([194.94.201.12]:52617)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <Robert.Poehlmann@dlr.de>)
+ id 1iw5pY-0007DW-Tw
+ for usrp-users@lists.ettus.com; Mon, 27 Jan 2020 09:57:37 -0500
+IronPort-SDR: zAReVsrMExJj8AsRE7Zka8robudD7bbJdZ2Q5EI0BqhWES4kE5ocIkKg24mZm4r4ipyzYgCb9P
+ ofE5+vkhVFtg==
+IronPort-PHdr: =?us-ascii?q?9a23=3AsGVC4hT4Qdmy3vC2uOIvmPTjFtpsv+yvbD5Q0Y?=
+ =?us-ascii?q?Iujvd0So/mwa6zYxSN2/xhgRfzUJnB7Loc0qyK6vymAjZLv8bJ8ChbNsAVDF?=
+ =?us-ascii?q?ld0YRetjdjKfbNMVf8Iv/uYn5yN+V5f3ghwUuGN1NIEt31fVzYry76xzcTHh?=
+ =?us-ascii?q?LiKVg9fbytScbdgMutyu+95YDYbRlWizqhe7NyKwi9oRnMusUMjoZuN6k8xg?=
+ =?us-ascii?q?HHr3dWdOhbxGBlLk+Xkxrg+8u85pFu/zletv4768JMTaD2dLkkQLJFCzgrL3?=
+ =?us-ascii?q?o779DxuxnZSguP6HocUmEInRdNHgPI8hL0UIrvvyXjruZy1zWUMsPwTbAvRD?=
+ =?us-ascii?q?St9LxrRwPyiCcGLDE27mfagdFtga1BoRKhoxt/w5PIYIyQKfFzcL/Rcc8cSG?=
+ =?us-ascii?q?FcWMtaSi5PDZ6mb4YXD+QPI/tWr5XzqVUNoxuxBwisC//gxTJTnHD6wa863v?=
+ =?us-ascii?q?49HQ3a3gEtGc8FvnTOrNXyMacfSee4wrXPzTrYcfxWwyv95JLSfBAmv/6MXb?=
+ =?us-ascii?q?Zwcc/LxkkpEQPIlUifqYj/Pz+Py+sCrXGW4ux9XuyhjG4nrht+ojmpxso0lI?=
+ =?us-ascii?q?bJmp4Vyk3f9Slj3Ik1Iti4RFZ0Yd6lDJtQtzyaOJBsTsw+RGFovSA3waAFt5?=
+ =?us-ascii?q?6jZCUG1YgrywTCZ/GEfIWE+A/vWeiSLDtimn5od6qziwuu/US61+HxVca53E?=
+ =?us-ascii?q?xXoidLkdTArG4B2hzc58SfRPty4ESs1SqK2g3W9u5JIV44mrHeJpMl2bEwmJ?=
+ =?us-ascii?q?4evEHDEyL4lkX5kqqbeVg69ee16unqZKjtqIWGOI9ukA7+N7wjmsm4AeslLA?=
+ =?us-ascii?q?cDR3Ob+eGg1L37+k35XalKguU2kqbHtJDaItwWqKC/DQFb3Ygt6xaxATCl3t?=
+ =?us-ascii?q?ofh3cLMl1Idh2GgIX3IV3OIfb4Deulg1u2ijtk2vTGPqf7DprQMHfPiLbhfb?=
+ =?us-ascii?q?Bj5E5A0Ac/0MxT64hJBrwCL///QFL9udLbAxMjLQC5zP7rCNBn2YMfXWKPDL?=
+ =?us-ascii?q?WZMKTXsVKQ+uwvJPKDa5EPuDbhMfQr/fnugmE5mV8ZeKmmx50XaHajE/t7J0?=
+ =?us-ascii?q?WZe2DgjcofHmsSpAoxUPTqiEGeUT5Uf3uyRLgz5jQ+CIOmA4bMWIStgKed0y?=
+ =?us-ascii?q?e7AJJWYHtLCl+JEXjydoWEX+0AZz6VIs9kijYET6SuS5c91RGysw/306dnLv?=
+ =?us-ascii?q?HO+i0ArJ7jycN16PPJlREp7jF0C8Wd03qRT2FvhG8HWSM23LxioUxm0FuMza?=
+ =?us-ascii?q?94g/kLXeBUsqdSWwI/JIHRy/dxC930cg3Ed9aNDl2hR4P1Lys2S4dl+dgEbl?=
+ =?us-ascii?q?xhXe2lgxDH2iOsBZcZk6bNCJFiofGU5GT4O8sokyWO76ImlVRzGsY=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2GVBgBq+S5e/xiKuApmHAEBAQEBBwE?=
+ =?us-ascii?q?BEQEEBAEBgXuBJYFdE4ExCoQKg0mNc5lRgSs3BQkBAQEBAQEBAQEHARgBCgw?=
+ =?us-ascii?q?BAQKEPgIXgjI4EwIDAQwBAQUBAQEBAQUEAQEChiAMgjsiGVhwAQEBAQEBAQE?=
+ =?us-ascii?q?BAQEBAQEBAQEBAQEBAQEBEgINNh43EgEBHQEBAQEDAQEhCjoHCxACAQgRBAE?=
+ =?us-ascii?q?BARUSAwICAiUBChQJCAIEDgUIgx+BfYENqnh1gTKDfYFNhHyBOI44gRGDEz6?=
+ =?us-ascii?q?CZAEBA4EbDRELKgkfAgeCUYJeBI18glWFXpkpB4FIiDaJI4VKI4NAiyuMEZd?=
+ =?us-ascii?q?EkikCBAIEBQIVgT8qYYEacU+CBGgJRxgNl1+KU3QCAYtGgTOBEAEB?=
+X-IronPort-AV: E=Sophos;i="5.70,370,1574118000"; d="scan'208,217";a="31628250"
+To: <sammywelschen@gmail.com>
+Thread-Topic: [USRP-users] DOA with N310 or X310+TwinRX
+Thread-Index: AQHV057CBRcQ4y9mo0i8w7I8qX+x3Kf9K9oAgAFExoCAABO1AIAAAvAAgAATZ+A=
+Date: Mon, 27 Jan 2020 14:56:54 +0000
+Message-ID: <9386a8b56e9b4514bfd076ce7c106cec@dlr.de>
 References: <CAE6G02_pDDd2H5yX8Sf2jqBC7bo1hnqBMgz5-i09NBCBYSoZgQ@mail.gmail.com>
  <5E2DD2CA.60502@gmail.com>
  <CAE6G02_gbpWZENFyB0EuGdDiGfWKBOitqE0VamkNRuqPTd_MgA@mail.gmail.com>
  <1eae252bad4344f2b296e8bb4fb0d278@dlr.de>
-In-Reply-To: <1eae252bad4344f2b296e8bb4fb0d278@dlr.de>
-Date: Mon, 27 Jan 2020 15:39:54 +0100
-Message-ID: <CAE6G028jQc8Fd8U8-EmTCCZwyKjN5+MJGcEJs5FKvm1PyrNofw@mail.gmail.com>
-To: usrp-users@lists.ettus.com
+ <CAE6G028jQc8Fd8U8-EmTCCZwyKjN5+MJGcEJs5FKvm1PyrNofw@mail.gmail.com>
+In-Reply-To: <CAE6G028jQc8Fd8U8-EmTCCZwyKjN5+MJGcEJs5FKvm1PyrNofw@mail.gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-tm-snts-smtp: 91C3BBFA8F9BBF4FB1F7D9FAF83D93291AF3B34772DE15C32AE0E86AF50686E52000:8
+MIME-Version: 1.0
 Subject: Re: [USRP-users] DOA with N310 or X310+TwinRX
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -61,9 +76,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sammy Welschen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sammy Welschen <sammywelschen@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7992296740971898631=="
+From: Robert via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robert.Poehlmann@dlr.de
+Cc: usrp-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============8430953376676426114=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,305 +93,327 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7992296740971898631==
-Content-Type: multipart/alternative; boundary="0000000000009a12de059d201536"
+--===============8430953376676426114==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9386a8b56e9b4514bfd076ce7c106cecdlrde_"
 
---0000000000009a12de059d201536
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_9386a8b56e9b4514bfd076ce7c106cecdlrde_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thank you for the information Robert! Isn't it 6 GHz? However, 4 GHz would
-also be sufficient for me.
+V2l0aCBleHRlcm5hbCBMTyBpdHMgMzAwIE1IeiDigJMgNCBHSHosIGNoZWNrIGZvb3Rub3RlIFsz
+XSBmcm9tIGh0dHBzOi8vd3d3LmV0dHVzLmNvbS9hbGwtcHJvZHVjdHMvdXNycC1uMzEwLy4gTE8g
+aGFzIHRvIGJlIHN1cHBsaWVkIGF0IHR3aWNlIHRoZSBjYXJyaWVyIGZyZXEuDQoNCkN1cnJlbnRs
+eSB3ZSB1c2UgNCBjaGFubmVscy4gWW91IGNhbiBmaW5kIGFuIGV4YW1wbGUgaG93IHRvIGRvIHRo
+ZSBjYWxpYnJhdGlvbiBoZXJlOiBodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC9nci1k
+b2ENCmdyLWRvYSB3YXMgd3JpdHRlbiBmb3IgVHdpblJYLCBidXQgY2FuIGJlIGFkYXB0ZWQuDQoN
+ClBoYXNlIG5vaXNlIGJlaGF2aW9yIG9mIE4zMTAgYW5kIE4zMjAvMSBjb3VsZCBiZSBkaWZmZXJl
+bnQsIGFzIE4zMTAgdXNlcyBhbiBSRklDIGFuZCBOMzIvMSB1c2UgZGlzY3JldGUgY29tcG9uZW50
+cy4gVGhpcyBjb3VsZCBiZSBpbXBvcnRhbnQgaWYgeW91IHdhbnQgdG8gb3BlcmF0ZSBpbiB0aGUg
+c21hbGwgc2FtcGxlIHJlZ2ltZS4NCg0KDQpGcm9tOiBVU1JQLXVzZXJzIFttYWlsdG86dXNycC11
+c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbV0gT24gQmVoYWxmIE9mIFNhbW15IFdlbHNjaGVu
+IHZpYSBVU1JQLXVzZXJzDQpTZW50OiBNb25kYXksIEphbnVhcnkgMjcsIDIwMjAgMzo0MCBQTQ0K
+VG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNd
+IERPQSB3aXRoIE4zMTAgb3IgWDMxMCtUd2luUlgNCg0KVGhhbmsgeW91IGZvciB0aGUgaW5mb3Jt
+YXRpb24gUm9iZXJ0ISBJc24ndCBpdCA2IEdIej8gSG93ZXZlciwgNCBHSHogd291bGQgYWxzbyBi
+ZSBzdWZmaWNpZW50IGZvciBtZS4NCg0KSG93IG1hbnkgY2hhbm5lbHMgZG9lcyB5b3VyIHN5c3Rl
+bSBoYXZlPyAgSSBzdXBwb3NlIHlvdSB1c2Ugc29tZSBhbGdvcml0aG0gZm9yIHBoYXNlIGNhbGli
+cmF0aW9uIGFmdGVyIHBvd2VyIGN5Y2xpbmc/IEkgcGxhbiB0byBkbyB0aGUgc2FtZSwgc28gdGhl
+IDE4MCBkZWcgYW1iaWd1aXR5IHNob3VsZCBiZSBtYW5hZ2VhYmxlLg0KDQpJIGxvb2tlZCBhdCB0
+aGUgTjMyeCwgaG93ZXZlciwgdGhleSBjb3N0IHR3aWNlIGFzIG11Y2ggYW5kIEkgZG9udCd0IHBs
+YW4gb24gdXNpbmcgMjAwIE1IeiBvZiBiYW5kd2lkdGguIElmIEkgaGF2ZSBhbiBleHRlcm5hbCBM
+TyBzaWduYWwgSSBjYW4gZmVlZCBpdCB0byB0aGUgTjMxMCwgc28gdGhlIG9ubHkgZGlmZmVyZW5j
+ZSBiZXR3ZWVuIE4zMTAgYW5kIE4zMnggaW4gdGhpcyByZWdhcmQgd291bGQgYmUgdGhhdCBJIG5l
+ZWQgdG8gZ2VuZXJhdGUgdGhlIExPIGV4dGVybmFsbHkgd2hlbiB1c2luZyB0aGUgTjMxMCwgcmln
+aHQ/DQoNCjxSb2JlcnQuUG9laGxtYW5uQGRsci5kZTxtYWlsdG86Um9iZXJ0LlBvZWhsbWFubkBk
+bHIuZGU+PiBzY2hyaWViIGFtIE1vLiwgMjcuIEphbi4gMjAyMCwgMTQ6NDI6DQpXZSB1c2UgdGhl
+IE4zMTAgZm9yIERvQSBlc3RpbWF0aW9uLCBob3dldmVyOg0KDQotICAgICAgICAgIHlvdSBhcmUg
+bGltaXRlZCB0byA0IEdIeg0KDQotICAgICAgICAgIGFmdGVyIHBvd2VyLWN5Y2xpbmcgeW91IGdl
+dCBhIDE4MMKwIGFtYmlndWl0eSBiZXR3ZWVuIHRoZSB0d28gcmFkaW9zIChJIGRvIG5vdCBrbm93
+IGlmIHRoaXMgY291bGQgYWxzbyBoYXBwZW4gd2hlbiB5b3UganVzdCBjaGFuZ2UgdGhlIExPIGZy
+ZXF1ZW5jeSkNCg0KSWYgeW91IHdhbnQgdG8gaGF2ZSA+NCBjaGFubmVscywgaGF2ZSBhIGxvb2sg
+YXQgdGhlIG5ldyBOMzIwL04zMjEuIE5vIGV4cGVyaWVuY2Ugd2l0aCB0aG9zZSwgYnV0IGFwcGFy
+ZW50bHkgdGhleSBjYW4gZG8gTE8gZGlzdHJpYnV0aW9uLg0KDQpBbHNvIHRha2UgaW50byBhY2Nv
+dW50IGlmIG1heWJlIGxhdGVyIGluIHRoZSBwcm9qZWN0IHlvdSB3YW50IHRvIGJlIGFibGUgdG8g
+dHJhbnNtaXQsIHdoaWNoIHlvdSBjYW5ub3QgZG8gd2l0aCBUd2luUlguDQoNClJlZ2FyZHMsDQpS
+b2JlcnQNCg0KRnJvbTogVVNSUC11c2VycyBbbWFpbHRvOnVzcnAtdXNlcnMtYm91bmNlc0BsaXN0
+cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+XSBP
+biBCZWhhbGYgT2YgU2FtbXkgV2Vsc2NoZW4gdmlhIFVTUlAtdXNlcnMNClNlbnQ6IE1vbmRheSwg
+SmFudWFyeSAyNywgMjAyMCAyOjE5IFBNDQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
+bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVz
+ZXJzXSBET0Egd2l0aCBOMzEwIG9yIFgzMTArVHdpblJYDQoNClRoYW5rIHlvdSBNYXJjdXMhIFNv
+IHRoZSBOMzEwIHdvdWxkIGJlIHRoZSB3YXkgdG8gZ28/IEkgd2FzIHVuc3VyZSBzaW5jZSB0aGUg
+VHdpblJYIGlzIHJlY29tbWVuZGVkIGZvciBwaGFzZSBjb2hlcmVudCBhcHBsaWNhdGlvbnMuDQoN
+Ck1hcmN1cyBELiBMZWVjaCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gc2NocmllYiBhbSBTby4sIDI2
+LiBKYW4uIDIwMjAsIDE4OjU3Og0KT24gMDEvMjUvMjAyMCAxMTo0MyBBTSwgU2FtbXkgV2Vsc2No
+ZW4gdmlhIFVTUlAtdXNlcnMgd3JvdGU6DQo+IERlYXIgYWxsLA0KPg0KPiBJIGFtIHBsYW5uaW5n
+IGEgc3lzdGVtIHdpdGggNS0xMCBjaGFubmVscyB0aGF0IGlzIGNhcGFibGUgb2YgRE9BDQo+IGVz
+dGltYXRpb24uDQo+DQo+IENvbmNlcm5pbmcgdGhlIGNhbGlicmF0aW9uIG9mIHRoZSByZXN1bHRp
+bmcgYXJyYXksIHdvdWxkIHRoZXJlIGJlIGENCj4gZGlmZmVyZW5jZSBiZXR3ZWVuIGEgc3lzdGVt
+IG1hZGUgdXAgb2YgTjMxMCBhbmQgb25lIG1hZGUgdXAgb2YgWDMxMA0KPiB3aXRoIFR3aW5SWCBi
+b2FyZHM/IFdvdWxkIHRoZXJlIGJlIG90aGVyIGltcG9ydGFudCBkaWZmZXJlbmNlcyB0aGF0DQo+
+IGluZmx1ZW5jZSBlc3RpbWF0aW9uIHBlcmZvcm1hbmNlPw0KPg0KPiBBcyBJIHVuZGVyc3RhbmQg
+aXQsIHRoZSBUd2luUlggYWxsb3dzIExPIHNoYXJpbmcgYmV0d2VlbiB0aGUgYm9hcmRzIGluDQo+
+IGEgc2luZ2xlIFgzMTAsIGJ1dCB0aGlzIHdvdWxkIG5vdCBoZWxwIG1lIGlmIEkgaGF2ZSB0d28g
+b3IgdGhyZWUgWDMxMC4NCj4gT24gdGhlIG90aGVyIGhhbmQsIHRoZSBOMzEwcyBjb3VsZCBiZSBj
+b25uZWN0ZWQgdG8gYSBzaGFyZWQgTE8uDQo+DQo+IEFyZSB0aGUgZm9sbG93aW5nIHRob3VnaHRz
+IGNvcnJlY3Q/DQo+DQo+IFN1cHBvc2UgSSB0dXJuIG9uIG15IHN5c3RlbS4gVGhlbiBJIGhhdmUg
+dG8gY2FsaWJyYXRlIHBoYXNlIG9mZnNldHMNCj4gYmV0d2VlbiBjaGFubmVscyBpbiBhbnkgY2Fz
+ZS4gTm93IEkgY2hhbmdlIHRoZSBjZW50ZXIgZnJlcXVlbmN5LiBJZiBJDQo+IGhhdmUgTjMxMHMg
+d2l0aG91dCBzaGFyZWQgTE8sIEkgaGF2ZSB0byByZWNhbGlicmF0ZS4gU2FtZSBmb3IgdGhlDQo+
+IFgzMTBzLCBzaW5jZSBMT3MgYXJlIHNoYXJlZCBvbmx5IGludGVybmFsbHkuIElmIEkgaGF2ZSBO
+MzEwcyB3aXRoIGENCj4gc2hhcmVkIExPLCBJIGRvIG5vdCBoYXZlIHRvIHJlY2FsaWJyYXRlLg0K
+Pg0KPiBJZiBJIHJlc3RhcnQgdGhlIHN5c3RlbSwgSSBoYXZlIHRvIHJlY2FsaWJyYXRlIGluIGFu
+eSBjYXNlLg0KPg0KPiBUaGUgZGV2aWNlcyB3b3VsZCBieSBzeW5jaHJvbml6ZWQgd2l0aCBQUFMg
+aW4gYW55IGNhc2UgYW5kIHdpdGggdGhlIDEwDQo+IE1IeiByZWZlcmVuY2UgaWYgbm8gZXh0ZXJu
+YWwgTE8gaXMgdXNlZC4NCj4NCj4gV2hhdCBpcyB0aGUgYmV0dGVyIGNob2ljZSBmb3IgRE9BIGVz
+dGltYXRpb24gKE4zMTAgb3IgWDMxMCB3aXRoIFR3aW5SWA0KPiBvciBzb21ldGhpbmcgZGlmZmVy
+ZW50KT8NCj4NCj4gVGhhbmsgeW91IHZlcnkgbXVjaA0KPg0KPiBTYW1teQ0KPg0KPg0KU2FtbXk6
+DQoNCllvdXIgY2hhcmFjdGVyaXphdGlvbiBvZiB0aGUgdHdvIHNjZW5hcmlvcyBpcyBjb3JyZWN0
+Lg0KDQpUaGVyZSBtYXkgYmUgc29tZSBmb2xrcyBvbiB0aGlzIGxpc3Qgd2hvIGhhdmUgaW1wbGVt
+ZW50ZWQgRE9BIHNjaGVtZXMsDQpidXQgbGlrZWx5IGZldy10by1ub25lIHdobyBoYXZlIGRvbmUg
+aXQgb24gYm90aCBYMzEwIGFuZCBOMzEwDQogICBhbmQgY2FuIGNvbW1lbnQgb24gdGhlIGRpZmZl
+cmVuY2VzIHRoZXkgZW5jb3VudGVyZWQuDQoNCg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KVVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0K
+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29tDQo=
 
-How many channels does your system have?  I suppose you use some algorithm
-for phase calibration after power cycling? I plan to do the same, so the
-180 deg ambiguity should be manageable.
+--_000_9386a8b56e9b4514bfd076ce7c106cecdlrde_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I looked at the N32x, however, they cost twice as much and I dont't plan on
-using 200 MHz of bandwidth. If I have an external LO signal I can feed it
-to the N310, so the only difference between N310 and N32x in this regard
-would be that I need to generate the LO externally when using the N310,
-right?
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5tNzU1MjU4OTY2MDM1ODM2NzA2NW1z
+b2xpc3RwYXJhZ3JhcGgsIGxpLm03NTUyNTg5NjYwMzU4MzY3MDY1bXNvbGlzdHBhcmFncmFwaCwg
+ZGl2Lm03NTUyNTg5NjYwMzU4MzY3MDY1bXNvbGlzdHBhcmFncmFwaA0KCXttc28tc3R5bGUtbmFt
+ZTptXzc1NTI1ODk2NjAzNTgzNjcwNjVtc29saXN0cGFyYWdyYXBoOw0KCW1zby1tYXJnaW4tdG9w
+LWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowY207DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG87DQoJbWFyZ2luLWxlZnQ6MGNtOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6
+IlRpbWVzIE5ldyBSb21hbiIsInNlcmlmIjt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5
+bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2Vy
+aWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6
+ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjt9DQpAcGFn
+ZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3
+Mi4wcHQgNzIuMHB0IDcyLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rp
+b24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1
+bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEt
+LVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzpp
+ZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtl
+bmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0i
+cHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibGluZS1oZWlnaHQ6MTYuMHB0O3B1bmN0dWF0aW9uLXdyYXA6c2ltcGxlO3RleHQt
+YXV0b3NwYWNlOm5vbmUiPg0KPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5
+N0QiPldpdGggZXh0ZXJuYWwgTE8gaXRzIDMwMCBNSHog4oCTIDQgR0h6LCBjaGVjayBmb290bm90
+ZSBbM10gZnJvbQ0KPC9zcGFuPjxhIGhyZWY9Imh0dHBzOi8vd3d3LmV0dHVzLmNvbS9hbGwtcHJv
+ZHVjdHMvdXNycC1uMzEwLyI+aHR0cHM6Ly93d3cuZXR0dXMuY29tL2FsbC1wcm9kdWN0cy91c3Jw
+LW4zMTAvPC9hPi4NCjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj5MTyBoYXMgdG8gYmUgc3Vw
+cGxpZWQgYXQgdHdpY2UgdGhlIGNhcnJpZXIgZnJlcS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibGluZS1oZWlnaHQ6MTYuMHB0O3B1bmN0dWF0aW9u
+LXdyYXA6c2ltcGxlO3RleHQtYXV0b3NwYWNlOm5vbmUiPg0KPG86cD4mbmJzcDs8L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
+IzFGNDk3RCI+Q3VycmVudGx5IHdlIHVzZSA0IGNoYW5uZWxzLiBZb3UgY2FuIGZpbmQgYW4gZXhh
+bXBsZSBob3cgdG8gZG8gdGhlIGNhbGlicmF0aW9uIGhlcmU6DQo8L3NwYW4+PGEgaHJlZj0iaHR0
+cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvZ3ItZG9hIj5odHRwczovL2dpdGh1Yi5jb20v
+RXR0dXNSZXNlYXJjaC9nci1kb2E8L2E+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Z3ItZG9hIHdh
+cyB3cml0dGVuIGZvciBUd2luUlgsIGJ1dCBjYW4gYmUgYWRhcHRlZC48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlBoYXNl
+IG5vaXNlIGJlaGF2aW9yIG9mIE4zMTAgYW5kIE4zMjAvMSBjb3VsZCBiZSBkaWZmZXJlbnQsIGFz
+IE4zMTAgdXNlcyBhbiBSRklDIGFuZCBOMzIvMSB1c2UgZGlzY3JldGUgY29tcG9uZW50cy4gVGhp
+cyBjb3VsZCBiZSBpbXBvcnRhbnQgaWYgeW91IHdhbnQgdG8gb3BlcmF0ZQ0KIGluIHRoZSBzbWFs
+bCBzYW1wbGUgcmVnaW1lLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBVU1JQLXVzZXJz
+IFttYWlsdG86dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbV0NCjxiPk9uIEJlaGFs
+ZiBPZiA8L2I+U2FtbXkgV2Vsc2NoZW4gdmlhIFVTUlAtdXNlcnM8YnI+DQo8Yj5TZW50OjwvYj4g
+TW9uZGF5LCBKYW51YXJ5IDI3LCAyMDIwIDM6NDAgUE08YnI+DQo8Yj5Ubzo8L2I+IHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10g
+RE9BIHdpdGggTjMxMCBvciBYMzEwJiM0MztUd2luUlg8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmsgeW91IGZvciB0aGUgaW5mb3JtYXRpb24gUm9iZXJ0
+ISBJc24ndCBpdCA2IEdIej8gSG93ZXZlciwgNCBHSHogd291bGQgYWxzbyBiZSBzdWZmaWNpZW50
+IGZvciBtZS4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+SG93IG1hbnkgY2hhbm5lbHMgZG9lcyB5b3VyIHN5c3RlbSBoYXZlPyZuYnNw
+OyBJIHN1cHBvc2UgeW91IHVzZSBzb21lIGFsZ29yaXRobSBmb3IgcGhhc2UgY2FsaWJyYXRpb24g
+YWZ0ZXIgcG93ZXIgY3ljbGluZz8gSSBwbGFuIHRvIGRvIHRoZSBzYW1lLCBzbyB0aGUgMTgwIGRl
+ZyBhbWJpZ3VpdHkgc2hvdWxkIGJlIG1hbmFnZWFibGUuJm5ic3A7PG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgbG9va2VkIGF0IHRoZSBOMzJ4
+LCBob3dldmVyLCB0aGV5IGNvc3QgdHdpY2UgYXMgbXVjaCBhbmQgSSBkb250J3QgcGxhbiBvbiB1
+c2luZyAyMDAgTUh6IG9mIGJhbmR3aWR0aC4gSWYgSSBoYXZlIGFuIGV4dGVybmFsIExPIHNpZ25h
+bCBJIGNhbiBmZWVkIGl0IHRvIHRoZSBOMzEwLCBzbyB0aGUgb25seSBkaWZmZXJlbmNlIGJldHdl
+ZW4gTjMxMCBhbmQgTjMyeCBpbiB0aGlzIHJlZ2FyZCB3b3VsZCBiZSB0aGF0DQogSSBuZWVkIHRv
+IGdlbmVyYXRlIHRoZSBMTyBleHRlcm5hbGx5IHdoZW4gdXNpbmcgdGhlIE4zMTAsIHJpZ2h0Pzxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
+bmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZsdDs8
+YSBocmVmPSJtYWlsdG86Um9iZXJ0LlBvZWhsbWFubkBkbHIuZGUiPlJvYmVydC5Qb2VobG1hbm5A
+ZGxyLmRlPC9hPiZndDsgc2NocmllYiBhbSBNby4sIDI3LiBKYW4uIDIwMjAsIDE0OjQyOjxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVy
+LWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDYuMHB0O21hcmdp
+bi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
+b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5X
+ZSB1c2UgdGhlIE4zMTAgZm9yIERvQSBlc3RpbWF0aW9uLCBob3dldmVyOjwvc3Bhbj48bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJtNzU1MjU4OTY2MDM1ODM2NzA2NW1zb2xpc3RwYXJhZ3JhcGgi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj4tPC9zcGFuPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6Ny4wcHQ7Y29sb3I6IzFGNDk3RCI+Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L3NwYW4+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
+YW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPnlvdSBhcmUgbGltaXRlZCB0byA0IEdIeg0K
+PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Im03NTUyNTg5NjYwMzU4MzY3MDY1bXNv
+bGlzdHBhcmFncmFwaCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Qi
+Pi08L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo3LjBwdDtjb2xvcjojMUY0OTdEIj4mbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwvc3Bh
+bj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+YWZ0ZXIgcG93ZXIt
+Y3ljbGluZyB5b3UgZ2V0IGEgMTgwwrAgYW1iaWd1aXR5IGJldHdlZW4gdGhlIHR3byByYWRpb3Mg
+KEkgZG8gbm90IGtub3cgaWYgdGhpcyBjb3VsZCBhbHNvIGhhcHBlbiB3aGVuIHlvdSBqdXN0IGNo
+YW5nZSB0aGUgTE8gZnJlcXVlbmN5KTwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRv
+bS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPiZu
+YnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
+c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oywm
+cXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPklmIHlvdSB3YW50IHRvIGhhdmUg
+Jmd0OzQgY2hhbm5lbHMsIGhhdmUgYSBsb29rIGF0IHRoZSBuZXcgTjMyMC9OMzIxLiBObyBleHBl
+cmllbmNlIHdpdGggdGhvc2UsIGJ1dA0KIGFwcGFyZW50bHkgdGhleSBjYW4gZG8gTE8gZGlzdHJp
+YnV0aW9uLjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPiZuYnNwOzwvc3Bhbj48bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
+bHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
+JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkFsc28gdGFrZSBpbnRvIGFjY291bnQgaWYgbWF5YmUgbGF0
+ZXIgaW4gdGhlIHByb2plY3QgeW91IHdhbnQgdG8gYmUgYWJsZSB0byB0cmFuc21pdCwgd2hpY2gg
+eW91IGNhbm5vdA0KIGRvIHdpdGggVHdpblJYLjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
+LWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5
+N0QiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlJlZ2FyZHMsPC9zcGFu
+PjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4t
+dG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Um9iZXJ0PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
+IzFGNDk3RCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
+dXRvIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtU
+YWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90Oywm
+cXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gVVNSUC11c2VycyBbbWFpbHRvOjxhIGhyZWY9Im1haWx0
+bzp1c3JwLXVzZXJzLWJvdW5jZXNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNy
+cC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbTwvYT5dDQo8Yj5PbiBCZWhhbGYgT2YgPC9i
+PlNhbW15IFdlbHNjaGVuIHZpYSBVU1JQLXVzZXJzPGJyPg0KPGI+U2VudDo8L2I+IE1vbmRheSwg
+SmFudWFyeSAyNywgMjAyMCAyOjE5IFBNPGJyPg0KPGI+VG86PC9iPiA8YSBocmVmPSJtYWlsdG86
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQLXVzZXJzXSBE
+T0Egd2l0aCBOMzEwIG9yIFgzMTAmIzQzO1R3aW5SWDwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFy
+Z2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+VGhhbmsgeW91IE1hcmN1cyEgU28gdGhlIE4zMTAgd291
+bGQgYmUgdGhlIHdheSB0byBnbz8gSSB3YXMgdW5zdXJlIHNpbmNlIHRoZSBUd2luUlggaXMgcmVj
+b21tZW5kZWQgZm9yIHBoYXNlIGNvaGVyZW50IGFwcGxpY2F0aW9ucy48bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48
+L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+TWFyY3VzIEQuIExlZWNo
+IHZpYSBVU1JQLXVzZXJzICZsdDs8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7
+IHNjaHJpZWIgYW0gU28uLCAyNi4gSmFuLiAyMDIwLCAxODo1Nzo8bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICND
+Q0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNtIDBjbSA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDtt
+YXJnaW4tdG9wOjUuMHB0O21hcmdpbi1yaWdodDowY207bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG8iPk9uIDAxLzI1LzIwMjAgMTE6NDMgQU0sIFNhbW15IFdlbHNj
+aGVuIHZpYSBVU1JQLXVzZXJzIHdyb3RlOjxicj4NCiZndDsgRGVhciBhbGwsPGJyPg0KJmd0Ozxi
+cj4NCiZndDsgSSBhbSBwbGFubmluZyBhIHN5c3RlbSB3aXRoIDUtMTAgY2hhbm5lbHMgdGhhdCBp
+cyBjYXBhYmxlIG9mIERPQSA8YnI+DQomZ3Q7IGVzdGltYXRpb24uPGJyPg0KJmd0Ozxicj4NCiZn
+dDsgQ29uY2VybmluZyB0aGUgY2FsaWJyYXRpb24gb2YgdGhlIHJlc3VsdGluZyBhcnJheSwgd291
+bGQgdGhlcmUgYmUgYSA8YnI+DQomZ3Q7IGRpZmZlcmVuY2UgYmV0d2VlbiBhIHN5c3RlbSBtYWRl
+IHVwIG9mIE4zMTAgYW5kIG9uZSBtYWRlIHVwIG9mIFgzMTAgPGJyPg0KJmd0OyB3aXRoIFR3aW5S
+WCBib2FyZHM/IFdvdWxkIHRoZXJlIGJlIG90aGVyIGltcG9ydGFudCBkaWZmZXJlbmNlcyB0aGF0
+IDxicj4NCiZndDsgaW5mbHVlbmNlIGVzdGltYXRpb24gcGVyZm9ybWFuY2U/PGJyPg0KJmd0Ozxi
+cj4NCiZndDsgQXMgSSB1bmRlcnN0YW5kIGl0LCB0aGUgVHdpblJYIGFsbG93cyBMTyBzaGFyaW5n
+IGJldHdlZW4gdGhlIGJvYXJkcyBpbiA8YnI+DQomZ3Q7IGEgc2luZ2xlIFgzMTAsIGJ1dCB0aGlz
+IHdvdWxkIG5vdCBoZWxwIG1lIGlmIEkgaGF2ZSB0d28gb3IgdGhyZWUgWDMxMC4gPGJyPg0KJmd0
+OyBPbiB0aGUgb3RoZXIgaGFuZCwgdGhlIE4zMTBzIGNvdWxkIGJlIGNvbm5lY3RlZCB0byBhIHNo
+YXJlZCBMTy48YnI+DQomZ3Q7PGJyPg0KJmd0OyBBcmUgdGhlIGZvbGxvd2luZyB0aG91Z2h0cyBj
+b3JyZWN0Pzxicj4NCiZndDs8YnI+DQomZ3Q7IFN1cHBvc2UgSSB0dXJuIG9uIG15IHN5c3RlbS4g
+VGhlbiBJIGhhdmUgdG8gY2FsaWJyYXRlIHBoYXNlIG9mZnNldHMgPGJyPg0KJmd0OyBiZXR3ZWVu
+IGNoYW5uZWxzIGluIGFueSBjYXNlLiBOb3cgSSBjaGFuZ2UgdGhlIGNlbnRlciBmcmVxdWVuY3ku
+IElmIEkgPGJyPg0KJmd0OyBoYXZlIE4zMTBzIHdpdGhvdXQgc2hhcmVkIExPLCBJIGhhdmUgdG8g
+cmVjYWxpYnJhdGUuIFNhbWUgZm9yIHRoZSA8YnI+DQomZ3Q7IFgzMTBzLCBzaW5jZSBMT3MgYXJl
+IHNoYXJlZCBvbmx5IGludGVybmFsbHkuIElmIEkgaGF2ZSBOMzEwcyB3aXRoIGEgPGJyPg0KJmd0
+OyBzaGFyZWQgTE8sIEkgZG8gbm90IGhhdmUgdG8gcmVjYWxpYnJhdGUuPGJyPg0KJmd0Ozxicj4N
+CiZndDsgSWYgSSByZXN0YXJ0IHRoZSBzeXN0ZW0sIEkgaGF2ZSB0byByZWNhbGlicmF0ZSBpbiBh
+bnkgY2FzZS48YnI+DQomZ3Q7PGJyPg0KJmd0OyBUaGUgZGV2aWNlcyB3b3VsZCBieSBzeW5jaHJv
+bml6ZWQgd2l0aCBQUFMgaW4gYW55IGNhc2UgYW5kIHdpdGggdGhlIDEwIDxicj4NCiZndDsgTUh6
+IHJlZmVyZW5jZSBpZiBubyBleHRlcm5hbCBMTyBpcyB1c2VkLjxicj4NCiZndDs8YnI+DQomZ3Q7
+IFdoYXQgaXMgdGhlIGJldHRlciBjaG9pY2UgZm9yIERPQSBlc3RpbWF0aW9uIChOMzEwIG9yIFgz
+MTAgd2l0aCBUd2luUlggPGJyPg0KJmd0OyBvciBzb21ldGhpbmcgZGlmZmVyZW50KT88YnI+DQom
+Z3Q7PGJyPg0KJmd0OyBUaGFuayB5b3UgdmVyeSBtdWNoPGJyPg0KJmd0Ozxicj4NCiZndDsgU2Ft
+bXk8YnI+DQomZ3Q7PGJyPg0KJmd0Ozxicj4NClNhbW15Ojxicj4NCjxicj4NCllvdXIgY2hhcmFj
+dGVyaXphdGlvbiBvZiB0aGUgdHdvIHNjZW5hcmlvcyBpcyBjb3JyZWN0Ljxicj4NCjxicj4NClRo
+ZXJlIG1heSBiZSBzb21lIGZvbGtzIG9uIHRoaXMgbGlzdCB3aG8gaGF2ZSBpbXBsZW1lbnRlZCBE
+T0Egc2NoZW1lcywgPGJyPg0KYnV0IGxpa2VseSBmZXctdG8tbm9uZSB3aG8gaGF2ZSBkb25lIGl0
+IG9uIGJvdGggWDMxMCBhbmQgTjMxMDxicj4NCiZuYnNwOyAmbmJzcDthbmQgY2FuIGNvbW1lbnQg
+b24gdGhlIGRpZmZlcmVuY2VzIHRoZXkgZW5jb3VudGVyZWQuPGJyPg0KPGJyPg0KPGJyPg0KPGJy
+Pg0KPGJyPg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188
+YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdDxicj4NCjxhIGhyZWY9Im1haWx0bzpVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPlVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPC9hPjxicj4NCjxhIGhyZWY9Imh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmh0dHA6
+Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVz
+LmNvbTwvYT48bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-<Robert.Poehlmann@dlr.de> schrieb am Mo., 27. Jan. 2020, 14:42:
-
-> We use the N310 for DoA estimation, however:
->
-> -          you are limited to 4 GHz
->
-> -          after power-cycling you get a 180=C2=B0 ambiguity between the =
-two
-> radios (I do not know if this could also happen when you just change the =
-LO
-> frequency)
->
->
->
-> If you want to have >4 channels, have a look at the new N320/N321. No
-> experience with those, but apparently they can do LO distribution.
->
->
->
-> Also take into account if maybe later in the project you want to be able
-> to transmit, which you cannot do with TwinRX.
->
->
->
-> Regards,
->
-> Robert
->
->
->
-> *From:* USRP-users [mailto:usrp-users-bounces@lists.ettus.com] *On Behalf
-> Of *Sammy Welschen via USRP-users
-> *Sent:* Monday, January 27, 2020 2:19 PM
-> *To:* usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] DOA with N310 or X310+TwinRX
->
->
->
-> Thank you Marcus! So the N310 would be the way to go? I was unsure since
-> the TwinRX is recommended for phase coherent applications.
->
->
->
-> Marcus D. Leech via USRP-users <usrp-users@lists.ettus.com> schrieb am
-> So., 26. Jan. 2020, 18:57:
->
-> On 01/25/2020 11:43 AM, Sammy Welschen via USRP-users wrote:
-> > Dear all,
-> >
-> > I am planning a system with 5-10 channels that is capable of DOA
-> > estimation.
-> >
-> > Concerning the calibration of the resulting array, would there be a
-> > difference between a system made up of N310 and one made up of X310
-> > with TwinRX boards? Would there be other important differences that
-> > influence estimation performance?
-> >
-> > As I understand it, the TwinRX allows LO sharing between the boards in
-> > a single X310, but this would not help me if I have two or three X310.
-> > On the other hand, the N310s could be connected to a shared LO.
-> >
-> > Are the following thoughts correct?
-> >
-> > Suppose I turn on my system. Then I have to calibrate phase offsets
-> > between channels in any case. Now I change the center frequency. If I
-> > have N310s without shared LO, I have to recalibrate. Same for the
-> > X310s, since LOs are shared only internally. If I have N310s with a
-> > shared LO, I do not have to recalibrate.
-> >
-> > If I restart the system, I have to recalibrate in any case.
-> >
-> > The devices would by synchronized with PPS in any case and with the 10
-> > MHz reference if no external LO is used.
-> >
-> > What is the better choice for DOA estimation (N310 or X310 with TwinRX
-> > or something different)?
-> >
-> > Thank you very much
-> >
-> > Sammy
-> >
-> >
-> Sammy:
->
-> Your characterization of the two scenarios is correct.
->
-> There may be some folks on this list who have implemented DOA schemes,
-> but likely few-to-none who have done it on both X310 and N310
->    and can comment on the differences they encountered.
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
-
---0000000000009a12de059d201536
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto"><div>Thank you for the information Robert! Isn&#39;t it 6=
- GHz? However, 4 GHz would also be sufficient for me.=C2=A0</div><div dir=
-=3D"auto"><br></div><div dir=3D"auto">How many channels does your system ha=
-ve?=C2=A0 I suppose you use some algorithm for phase calibration after powe=
-r cycling? I plan to do the same, so the 180 deg ambiguity should be manage=
-able.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I looked at =
-the N32x, however, they cost twice as much and I dont&#39;t plan on using 2=
-00 MHz of bandwidth. If I have an external LO signal I can feed it to the N=
-310, so the only difference between N310 and N32x in this regard would be t=
-hat I need to generate the LO externally when using the N310, right?</div><=
-div dir=3D"auto"><br><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"lt=
-r" class=3D"gmail_attr"> &lt;<a href=3D"mailto:Robert.Poehlmann@dlr.de">Rob=
-ert.Poehlmann@dlr.de</a>&gt; schrieb am Mo., 27. Jan. 2020, 14:42:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
-px #ccc solid;padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"m_7552589660358367065WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">We use the N310 for DoA e=
-stimation, however:<u></u><u></u></span></p>
-<p class=3D"m_7552589660358367065MsoListParagraph"><u></u><span style=3D"fo=
-nt-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color=
-:#1f497d"><span>-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span></span><u></u><span style=3D"font-size:11.0pt;font-family:&qu=
-ot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">you are limited to 4=
- GHz
-<u></u><u></u></span></p>
-<p class=3D"m_7552589660358367065MsoListParagraph"><u></u><span style=3D"fo=
-nt-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color=
-:#1f497d"><span>-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span></span><u></u><span style=3D"font-size:11.0pt;font-family:&qu=
-ot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">after power-cycling =
-you get a 180=C2=B0 ambiguity between the two radios (I do not know if this=
- could also happen when you just change the LO frequency)<u></u><u></u></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">If you want to have &gt;4=
- channels, have a look at the new N320/N321. No experience with those, but =
-apparently they can do LO distribution.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Also take into account if=
- maybe later in the project you want to be able to transmit, which you cann=
-ot do with TwinRX.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Regards,<u></u><u></u></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Robert<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> USRP-use=
-rs [mailto:<a href=3D"mailto:usrp-users-bounces@lists.ettus.com" target=3D"=
-_blank" rel=3D"noreferrer">usrp-users-bounces@lists.ettus.com</a>]
-<b>On Behalf Of </b>Sammy Welschen via USRP-users<br>
-<b>Sent:</b> Monday, January 27, 2020 2:19 PM<br>
-<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" =
-rel=3D"noreferrer">usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> Re: [USRP-users] DOA with N310 or X310+TwinRX<u></u><u></u>=
-</span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">Thank you Marcus! So the N310 would be the way to go=
-? I was unsure since the TwinRX is recommended for phase coherent applicati=
-ons.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">Marcus D. Leech via USRP-users &lt;<a href=3D"mailto=
-:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-user=
-s@lists.ettus.com</a>&gt; schrieb am So., 26. Jan. 2020, 18:57:<u></u><u></=
-u></p>
-</div>
-<blockquote style=3D"border:none;border-left:solid #cccccc 1.0pt;padding:0c=
-m 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
-<p class=3D"MsoNormal">On 01/25/2020 11:43 AM, Sammy Welschen via USRP-user=
-s wrote:<br>
-&gt; Dear all,<br>
-&gt;<br>
-&gt; I am planning a system with 5-10 channels that is capable of DOA <br>
-&gt; estimation.<br>
-&gt;<br>
-&gt; Concerning the calibration of the resulting array, would there be a <b=
-r>
-&gt; difference between a system made up of N310 and one made up of X310 <b=
-r>
-&gt; with TwinRX boards? Would there be other important differences that <b=
-r>
-&gt; influence estimation performance?<br>
-&gt;<br>
-&gt; As I understand it, the TwinRX allows LO sharing between the boards in=
- <br>
-&gt; a single X310, but this would not help me if I have two or three X310.=
- <br>
-&gt; On the other hand, the N310s could be connected to a shared LO.<br>
-&gt;<br>
-&gt; Are the following thoughts correct?<br>
-&gt;<br>
-&gt; Suppose I turn on my system. Then I have to calibrate phase offsets <b=
-r>
-&gt; between channels in any case. Now I change the center frequency. If I =
-<br>
-&gt; have N310s without shared LO, I have to recalibrate. Same for the <br>
-&gt; X310s, since LOs are shared only internally. If I have N310s with a <b=
-r>
-&gt; shared LO, I do not have to recalibrate.<br>
-&gt;<br>
-&gt; If I restart the system, I have to recalibrate in any case.<br>
-&gt;<br>
-&gt; The devices would by synchronized with PPS in any case and with the 10=
- <br>
-&gt; MHz reference if no external LO is used.<br>
-&gt;<br>
-&gt; What is the better choice for DOA estimation (N310 or X310 with TwinRX=
- <br>
-&gt; or something different)?<br>
-&gt;<br>
-&gt; Thank you very much<br>
-&gt;<br>
-&gt; Sammy<br>
-&gt;<br>
-&gt;<br>
-Sammy:<br>
-<br>
-Your characterization of the two scenarios is correct.<br>
-<br>
-There may be some folks on this list who have implemented DOA schemes, <br>
-but likely few-to-none who have done it on both X310 and N310<br>
-=C2=A0 =C2=A0and can comment on the differences they encountered.<br>
-<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank" rel=3D"noreferrer">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><u></u><u></u></p>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</blockquote></div></div></div>
-
---0000000000009a12de059d201536--
+--_000_9386a8b56e9b4514bfd076ce7c106cecdlrde_--
 
 
---===============7992296740971898631==
+--===============8430953376676426114==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -386,5 +424,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7992296740971898631==--
+--===============8430953376676426114==--
 
