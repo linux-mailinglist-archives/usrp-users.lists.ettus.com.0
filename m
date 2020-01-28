@@ -2,25 +2,25 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7650D14B29B
-	for <lists+usrp-users@lfdr.de>; Tue, 28 Jan 2020 11:31:16 +0100 (CET)
-Received: from [::1] (port=39476 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C182514B311
+	for <lists+usrp-users@lfdr.de>; Tue, 28 Jan 2020 11:53:59 +0100 (CET)
+Received: from [::1] (port=43858 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iwO9D-0007WW-VV; Tue, 28 Jan 2020 05:31:07 -0500
-Received: from mail-eopbgr1390092.outbound.protection.outlook.com
- ([40.107.139.92]:47399 helo=IND01-BO1-obe.outbound.protection.outlook.com)
+	id 1iwOVJ-0000O7-Se; Tue, 28 Jan 2020 05:53:57 -0500
+Received: from mail-eopbgr1390101.outbound.protection.outlook.com
+ ([40.107.139.101]:60240 helo=IND01-BO1-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
  (Exim 4.92) (envelope-from <sourin.mondal@vehere.com>)
- id 1iwO99-0007R6-43
- for usrp-users@lists.ettus.com; Tue, 28 Jan 2020 05:31:03 -0500
+ id 1iwOVF-0000Gw-Jq
+ for usrp-users@lists.ettus.com; Tue, 28 Jan 2020 05:53:54 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Rr+mAXMD0RqxsOWRsU7Nb2U474UpzhXuNg1e681E+d2ZCz11QUzMD+zqWs5ARvYvjci0FIW5MF7HeKvRcN1uyV4QMpVejvPtgMOxa618HxfdG/CHCsNUQkrKBaiSuOuaZiVY0xY3Zw5nKEBVn+9hAI/jy4yqtJD5g0idcdqFZfCE3hiYpIMd8al2BZvEgtkMOxhesu0PK+zk5zq4c94pvgYCYIq50hMj63G+TCGQdKOu/m6GwIVPserfHcW7KN1X2vHBul73hJTlb8nuRGPtsD9OMCuM+RzUNCWWP+PMVGPqR/X6bA1jkJWqNL5dGilUVqbsBUG2RWiZ/+0DlkOsRw==
+ b=MM9o9LlD7EsvplVCDGCKGiT9KlqpgxkwG9NABhUE+lImuvn62XW68Mv3JGxfKprHw4tpgfbDQHLGxtsndSBVez6vBKfOiTQdTgtc0pwR9zgeSOCGgWTXg/vmqvn4vdWg+JhOpsZKDPVLZ7w3ctSnFjuphve3gOItYA6IBDjCAOGzLaL4ZszA4g9th0Bg2XM75Swg/wcaTWNJN1SQ726oG7JFisih4lgOepacfI8H9jADfcgnHF0XtmRhHtsGnPJ93EgoJHaphXmGapQsdkz2+3alKiYByK+w5CQidSWIHXp/kIQaFDfbMAC8yWM0fclLOnU3GxOKlMaAwjjxulFtlQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WHqE78fr2MaHL907ifVvTSOhFujhMR4JwGsJEkC+0Zc=;
- b=akhBFWpyQ5eF2Emvdh3h7xyst1dxVvLJxaB8drLzn44u6Hr4ZaFm96FOA2JgWA5ubVocfiUusARlQL+zLo/zBgi+cUslNZ7mK9aqtoqdR1XC2JLinpcUlHXgF+qI8aLLUXPOqXGuB+Zd4vgICfDJ6rVLasADOGJltaZ7lZoRzLgdFagqcFvj48/wzaMIDKQ4QxHCqYHxgasSwCfC0b17XUSAYSTmHD8586Zk5M2TtyKVnR67xb1JqGocpXNHRBDaiUhs4+f13COU2K7ZJFWSLKzlKOOmQw0zNWzlzbM7g3ZLLenWjrShVyrj365wRyds6M6jzjGRYDdNjBJlEzCjMQ==
+ bh=OK349OzDiKiQpD0kfZm6vKcbvs1B0PlnAE6X1d+baEE=;
+ b=fx/BtbJLn5Jhk6AXsrhSyT6HnIrKzWWXEbTOAXNO9+pxLh8RdFHpEn1FD9/prG9cwA0TTwP0PusHRxb7RT31a+ccicesjYGhLqL1/NY1j0sokw8dNiQngDG6KUog31LjrHwqEgC9af4DA+HyalpRJ1duGKCZWH8t5LOfdzBvAW78H8tuDggO7SV5xqhXIsnDTo1vRm9mXEzXw6Ywa6QhqZQ7u5JVV1BXVR7RhaF8GHO/GWBX9lvDa/ZtLQByZiasp/GJcxSPV2CwZ1EWFUEfyVxVpv9E7+2tL1G2wwaLDo5ibiAQkRLYYcyXWicwG3wNr3r5QITzEHwNccJlMIqmrw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
  dkim=pass header.d=vehere.com; arc=none
@@ -28,21 +28,21 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=vehereinteractive.onmicrosoft.com;
  s=selector2-vehereinteractive-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WHqE78fr2MaHL907ifVvTSOhFujhMR4JwGsJEkC+0Zc=;
- b=BEzpHFlQSCZ7DHjLQW0TlEyUM2T/qHBesEtVeW6E8vm9qbH14U+5ib4Sju+UVlNT16YAPNN4g6DwvflsgUH2yIzdctEPTaHeJPW0ka72Aa+CdnzcH/wQYXs6bH4a7zlDTrMcTWshrgq9C5+cpTbJPw66L1AU0YxuzOeHgEE8YDE=
+ bh=OK349OzDiKiQpD0kfZm6vKcbvs1B0PlnAE6X1d+baEE=;
+ b=fQgtPAW9XRN0thYJR3NuJ3/PdNAhnr+sgZ+agtkdb3+C1jQMgZb+n94YvM9c9VWpwL9v/Et4LlLThJIJH64YPnNJiAc6rhXB8ytHBZUUt4O81xdVnRBlF+i8Mh8g2WtiVZtf1W9GWt8RHuvtK6WmmRQcbiKB8EfV1INw1Mcq8aU=
 Received: from MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM (52.134.141.9) by
- MA1PR0101MB1350.INDPRD01.PROD.OUTLOOK.COM (52.134.139.17) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2665.22; Tue, 28 Jan 2020 10:30:18 +0000
+ MA1PR0101MB1798.INDPRD01.PROD.OUTLOOK.COM (52.134.142.139) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2665.23; Tue, 28 Jan 2020 10:53:09 +0000
 Received: from MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM
  ([fe80::d173:b7a3:2fd3:d7bb]) by MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM
  ([fe80::d173:b7a3:2fd3:d7bb%9]) with mapi id 15.20.2665.026; Tue, 28 Jan 2020
- 10:30:18 +0000
+ 10:53:09 +0000
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Thread-Topic: [USRP-users] phase-aligning two USRPs without Octoclock
-Thread-Index: AQHVz2bE3GcysuM9wU272v0JQcfgjqfz2mmAgAPT/LuAAC1/gIAGMk6pgAAHuQCAAdaR4w==
-Date: Tue, 28 Jan 2020 10:30:17 +0000
-Message-ID: <MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0@MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM>
+Thread-Index: AQHVz2bE3GcysuM9wU272v0JQcfgjqfz2mmAgAPT/LuAAC1/gIAGMk6pgAAHuQCAAdzPKg==
+Date: Tue, 28 Jan 2020 10:53:09 +0000
+Message-ID: <MA1PR0101MB17019C1C64CD5C8E69CFE0118B0A0@MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM>
 References: <BMXPR01MB23606E790CA4146BE699BFF58B320@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>,
  <FC4F7A4E-97C4-4CBD-8E54-305964E29BB2@gmail.com>
  <BMXPR01MB236051E2B9CC59A25A0F469C8B0F0@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>,
@@ -58,32 +58,32 @@ authentication-results: spf=none (sender IP is )
  smtp.mailfrom=sourin.mondal@vehere.com; 
 x-originating-ip: [14.143.49.210]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9043e8e2-0280-4e39-7a98-08d7a3dd1203
-x-ms-traffictypediagnostic: MA1PR0101MB1350:
-x-microsoft-antispam-prvs: <MA1PR0101MB1350F0C4801B747F035DAA168B0A0@MA1PR0101MB1350.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-office365-filtering-correlation-id: 69ef604e-17b7-4f95-83d4-08d7a3e04384
+x-ms-traffictypediagnostic: MA1PR0101MB1798:
+x-microsoft-antispam-prvs: <MA1PR0101MB179816247F0AF76BBC8B24798B0A0@MA1PR0101MB1798.INDPRD01.PROD.OUTLOOK.COM>
 x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 029651C7A1
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(346002)(396003)(136003)(39830400003)(376002)(366004)(189003)(199004)(55016002)(71200400001)(966005)(33656002)(55236004)(7696005)(9686003)(5660300002)(19627405001)(6506007)(53546011)(316002)(52536014)(508600001)(6916009)(86362001)(26005)(186003)(66556008)(8936002)(4326008)(66476007)(8676002)(66946007)(81156014)(64756008)(76116006)(2906002)(81166006)(91956017)(66446008);
- DIR:OUT; SFP:1102; SCL:1; SRVR:MA1PR0101MB1350;
+ SFS:(10019020)(39830400003)(346002)(396003)(366004)(136003)(376002)(189003)(199004)(4326008)(186003)(6916009)(66946007)(66446008)(64756008)(66556008)(66476007)(316002)(508600001)(76116006)(966005)(55236004)(91956017)(6506007)(26005)(53546011)(71200400001)(7696005)(19627405001)(8936002)(2906002)(5660300002)(81156014)(86362001)(9686003)(8676002)(52536014)(55016002)(81166006)(33656002);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:MA1PR0101MB1798;
  H:MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: vehere.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: K9JaCQfUvNms3Btn9pd/h1cGD4Un4/c1zYuxUfVsYHckuH9Cx4HA7bWYnXsKTHPwDwah2ZLkucFuHaxPkDgeOs34BlFTuW5O+LqOXPVw8JVYnzHdx0xiKTUBayI7cn80aS1HAu7HQxRGgG4evmQy8DShliwRs3xgy80zGD6MEbzaEaYBvFLxTceDa3+VDpploCtnl3/zxj8TplxHueeq5SY1uO0oH9rcd61WDz1AKclZeH32MIENQdWUzCQE1BhxJGE8QBwwqIW0oeLy/wqBDhaXOBWR4dPYIIccXVoR1HPdDpoO05jHN46TCraYHrf3NKGsz8G7N44AxcV8n9ynvtKS9H4j6o9AKZ3XfhhJi2uYCkVw0qy4804agWTnSi+bToC3bj3MrcgU+KUuR4+qa1qtt/BDOwewVavGF6rRL3x+tbcIJrDusaI/It0ncE7KGdiT3mJy30xY3R8gmqqe/GV5HNkhxgqPwhgoK3XseDcVyo/XWG3Ry2rBybZQMGL83cgttpi1tO4LvmAGozSnuQ==
-x-ms-exchange-antispam-messagedata: UYu2EZX8EsHjtz9mLYe2InNFNNJsIw9TFAX59/waAfVDGDsEOHHnSkRC+5lU3W+RDDLnImP99PAC3hWX28AcGjt80kw8Y76fTZ2hMgFKQNsboXPo9kZgvDcbIIGUJ3S9LsRGu6NkRD8ezlawNFssQg==
+x-microsoft-antispam-message-info: oqvfMV7Zd7dbRIC/3IHcsUNkVMqVNbpSDRuwIArg9vTmlB8GTzb59X7sscAZ6WWLgwW0KOvjO+N697IbhJ6lCoYQcrUD3UHxzXBf9JUZ3s7CUx0B1LN+34RkxH8DItkJ4apsWSXvbEIhGAWVUag6GeIpJxx52+1EevSKUwHHMf67gNYOkIAqZI6mAcaR2vtIpPNS8Nt0ZED71vRehnAY1D/7XXskp9Lx7u6plLVqnJWPYBzhxdabcXvzDJN9/jJIOCge3AiNqxQ24kkXnR8wJUJMap/vvAwpGNH40n99WgUqs9pSR2NB6EodB3O3eNB7cdC+EvvsEEIjwK4RUq4OV3N/XqG5M7AP4liyecSll3zrn/aObm6maGEcG+s4XD+8CTbN+qxEe07lnUhxquvtnLRBhAyoNmuTkuqlwx5ZO9DUeoPaV0qIkL13FsbGx23BNIJFGkyMrzUwKwPqX0zjdsVJUu+ID+D+XaNbB5iIJXvJjN1r0H5gJEdhYL671a/wp0nfygTbG3C/07LQHk/obA==
+x-ms-exchange-antispam-messagedata: YSoEfM6eKYQqNYkoZPOrELUZ57PSrlVfOcbrn4jXJ3fuNemkKMZ1cOL1VsNW0Ymmn0mg4MPjSL5Fvf42a8L69A/uKAQLZiz2WpU5/7vYGP0HoFnEyPq3CtoRC6syW7FVN0+M2h1pjdRKmqQVFVORFg==
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: vehere.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9043e8e2-0280-4e39-7a98-08d7a3dd1203
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2020 10:30:17.9893 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69ef604e-17b7-4f95-83d4-08d7a3e04384
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2020 10:53:09.6234 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: osSxN1HB6ZQQ3xaQ84Rx6Hxb+yKBCqgb7BhvEj5B5Iz2cEEeMa23BAm/nS1DFxtytxAY76zM+PW4Osx7FU6QScdBstqBrLY6izJcBcgQ2sI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR0101MB1350
+X-MS-Exchange-CrossTenant-userprincipalname: y8s3VftB91qPUkr+gP0AOm6nLik5T4JqbLKVvu8KiTCk40By2ZPoAe6r9uBKpPp3tST5r+hmv/M3Hamy4JUFwdqf52+h4E2ebOsh5CWkuqc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR0101MB1798
 Subject: Re: [USRP-users] phase-aligning two USRPs without Octoclock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -99,7 +99,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: "Sourin Mondal \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Sourin Mondal \(Vehere\)" <sourin.mondal@vehere.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8399783588352467800=="
+Content-Type: multipart/mixed; boundary="===============6266400615710826303=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -113,15 +113,23 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8399783588352467800==
+--===============6266400615710826303==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0MA1PR0101MB1701_"
+	boundary="_000_MA1PR0101MB17019C1C64CD5C8E69CFE0118B0A0MA1PR0101MB1701_"
 
---_000_MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0MA1PR0101MB1701_
+--_000_MA1PR0101MB17019C1C64CD5C8E69CFE0118B0A0MA1PR0101MB1701_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Hi Marcus,
+
+I think my previous email is not sent properly so sending again. Thanks for=
+ the information you provided. This 5 degrees is for what frequency? Are yo=
+u sure its 5 degrees or less? What is the precision?
+
+Regards,
+Sourin
 ________________________________
 From: Marcus D. Leech <patchvonbraun@gmail.com>
 Sent: Monday, January 27, 2020 11:54 AM
@@ -189,7 +197,7 @@ http://files.ettus.com/manual/
 
 
 
---_000_MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0MA1PR0101MB1701_
+--_000_MA1PR0101MB17019C1C64CD5C8E69CFE0118B0A0MA1PR0101MB1701_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -201,6 +209,28 @@ Content-Transfer-Encoding: quoted-printable
 ttom:0;} </style>
 </head>
 <body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi Marcus,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I think my previous email is not sent properly so sending again. Thanks for=
+ the information you provided. This 5 degrees is for what frequency? Are yo=
+u sure its 5 degrees or less? What is the precision?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Regards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Sourin</div>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
@@ -342,10 +372,10 @@ l/">http://files.ettus.com/manual/</a><br>
 </body>
 </html>
 
---_000_MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0MA1PR0101MB1701_--
+--_000_MA1PR0101MB17019C1C64CD5C8E69CFE0118B0A0MA1PR0101MB1701_--
 
 
---===============8399783588352467800==
+--===============6266400615710826303==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -356,5 +386,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8399783588352467800==--
+--===============6266400615710826303==--
 
