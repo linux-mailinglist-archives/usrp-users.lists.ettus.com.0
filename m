@@ -2,56 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 303FB14C390
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Jan 2020 00:34:51 +0100 (CET)
-Received: from [::1] (port=36926 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50DF714C3B1
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Jan 2020 00:43:49 +0100 (CET)
+Received: from [::1] (port=42662 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iwaNd-0005SZ-GK; Tue, 28 Jan 2020 18:34:49 -0500
-Received: from mail-qt1-f171.google.com ([209.85.160.171]:46899)
+	id 1iwaWK-0006k9-8b; Tue, 28 Jan 2020 18:43:48 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:43363)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iwaNZ-0005JN-If
- for usrp-users@lists.ettus.com; Tue, 28 Jan 2020 18:34:45 -0500
-Received: by mail-qt1-f171.google.com with SMTP id e25so11738543qtr.13
- for <usrp-users@lists.ettus.com>; Tue, 28 Jan 2020 15:34:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=lVD5/N1aXLqk4CjtZq7/Lsl4YVDUo7U2lcqJcDgsjvQ=;
- b=Lu+UXIDxPfVrp70gTOk3HHvCsTZI1LDmIJimUfWIiuiSChAYix/Tnu3iU5+E9gbsUS
- uNaObTvsjjMa98bT9KyE4fq2F960FIFa7Okx8VGQY/uCU6+jUpOfzhthxgkQZfyD3nM2
- PCJCHxkE3nPIROLEZaGyZ7hP6E/wz0jMSf1mooZPu88mraBovlmWNMKL4pcRmdG9+ti+
- O5aYl+76DUzJwuNz5FbhS7QX1CQUeDobPKJl8XUB1lfoon0N6LYcnnczMVe04scmbUWu
- JFWCVUAnjcMSWmwdrKvPCnCs/dEqqqZz1jpGnfjt5N/Kg1a3JIbbmQPBoisLsTNjQ2Pp
- 1aLg==
+ (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
+ id 1iwaWG-0006cg-2b
+ for usrp-users@lists.ettus.com; Tue, 28 Jan 2020 18:43:44 -0500
+Received: by mail-oi1-f176.google.com with SMTP id p125so12175504oif.10
+ for <usrp-users@lists.ettus.com>; Tue, 28 Jan 2020 15:43:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=FIQibX7F6XyUGeR3jGbVWa6/eBAfeeFIowH6EDVisuM=;
+ b=TQ74eGKfzikxFYX74CglINrXjiBXXV4EaK1Op/45WQtBPjHl857XOqnDtWzTml3/YJ
+ l/zigNq3L1RKnTZSlm2xVfWNlxcUd/MXish+lyej+1a7gSqCt4WR2UqM8J5xOfacSaB3
+ +o24CAXaSsuWHrtC5xmH0b22E6PcEy7FvkIesmwXcIpN2acGxKxrwKl+V/bh4Whf5iP6
+ Yw7mcuoXosnJSiPL3e5Vs/J/ZmgVlE8tJFHRLEcWj2kocNYEVEfh7bHgrWd5AzgaBH6f
+ +hZzJ2INTAY3nHfLksrS3TlOhKAisHbPwtk8LmBukZpW+VrLATnbs5vmIVIeD9ol4O8F
+ f/1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=lVD5/N1aXLqk4CjtZq7/Lsl4YVDUo7U2lcqJcDgsjvQ=;
- b=RetfOgeTvGEYUDUvXl81WG/jhD88jfKLWC/UISAsMmAP/xCDZxiKw/YHZG2S97yXS+
- aPTomxoXsH5AoBbK68eVplkUVIgV8mwi14z6ZKCuRbL8U+F/RW4P/BxOqr/rpMY6ee5u
- apQB/Pk10Wo9vcR+dq0x2RC850VNP32kkX3RC88wnnIeGkuXSvG9W97j5QyxH1K+pffN
- 0nMH8ViEGofs/3+XdKl2w2mlroLXb9nymlZYpUE6j7HmHT0AhfXXtQHjDtZSMPJmnC4/
- w6MNDyf+V+Wp0LAqfUAZUNT/uOO6BIuICme3RW2mN/HEbGaJ3BhR/zIAZMb3b8zqXF1I
- Ma7Q==
-X-Gm-Message-State: APjAAAVpzJtfEo9wMf4t270I1YRpCFNGjbpLTJZqJSq0Vg7lzC1mt6sc
- 165Aw5P+mpCEv/cUbphlt6ZLHyAQ
-X-Google-Smtp-Source: APXvYqwKEnWKz+KzfcV3THLzRoPgiC+EESTrTz08vn/sgC4C5qmBGpHbIjpxoeLDxA/OB7z1/gDi3g==
-X-Received: by 2002:ac8:7b24:: with SMTP id l4mr23980167qtu.3.1580254444542;
- Tue, 28 Jan 2020 15:34:04 -0800 (PST)
-Received: from [192.168.0.198] ([24.146.32.18])
- by smtp.gmail.com with ESMTPSA id w21sm101300qth.17.2020.01.28.15.34.03
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Jan 2020 15:34:04 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Tue, 28 Jan 2020 18:34:02 -0500
-Message-Id: <04D8FAC9-95EB-4023-98A3-B05998A1193E@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FIQibX7F6XyUGeR3jGbVWa6/eBAfeeFIowH6EDVisuM=;
+ b=pSlAeapf1wl9uwajiHdysbh723r6zu5sbCrCSxvLDkT1pOmdeAzWIoYX2NVeR38trG
+ h7NI8GQ3qj65EO84U8EVFf+X7c6BInrSa9CF0y0cZOOI7QnPogmBzgbgyP1GSdvCoMjX
+ zIRAkoHq1dxA8IizugrzZ2llIAUzPYyl4C8Mj5xkggQJzAHgHAOW6B4RGKf4xucj5KfJ
+ quMqaMiwOqa8MmuCOJtGoxoiQyTVcUgEd2bVAFFEnTvNmM6fB/c6HgebCRO5dNlMZEa8
+ N11GbdCj0kbJ7IDylR8Ypjd5nWEkchiZfvpXiV93F0v5TmVKrb3aTk+H6vN+O9LtHa9M
+ /zMg==
+X-Gm-Message-State: APjAAAUIXHnVDdL81NeLJvYJpU2pvkoIRXC0Xqs+uqSAzxGsBg89S4Eb
+ Qo8qM4/7Qllr3cn+fykyHDDhCt6bCxNm5QRBdWBs63Y4
+X-Google-Smtp-Source: APXvYqwW5fQWqp5jpkykp8vOFU/tQoRtFE7D49joKOWmFU6bT161jU8gt4J6uemZdS/mm+gsGn7W81MTbsUTAVYNpug=
+X-Received: by 2002:a05:6808:683:: with SMTP id
+ k3mr4431655oig.50.1580254983301; 
+ Tue, 28 Jan 2020 15:43:03 -0800 (PST)
+MIME-Version: 1.0
 References: <2CC2C4B3-61AB-453B-8DC7-DAD50E259F11@gmail.com>
-In-Reply-To: <2CC2C4B3-61AB-453B-8DC7-DAD50E259F11@gmail.com>
-To: Austin Adam <austinadam42@gmail.com>
-X-Mailer: iPhone Mail (17C54)
+ <04D8FAC9-95EB-4023-98A3-B05998A1193E@gmail.com>
+In-Reply-To: <04D8FAC9-95EB-4023-98A3-B05998A1193E@gmail.com>
+Date: Tue, 28 Jan 2020 15:44:56 -0800
+Message-ID: <CAL263iwLfvCHSduFxN75yuNxcZmvbjRuap2qPUyUcHSN_8LzXw@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
 Subject: Re: [USRP-users] USRP N310 Performance Issues
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -64,10 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Temple <nate.temple@ettus.com>
 Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1482713630956882825=="
+Content-Type: multipart/mixed; boundary="===============4979089966604374746=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -81,252 +78,339 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============4979089966604374746==
+Content-Type: multipart/alternative; boundary="000000000000ef3bfb059d3bc851"
 
---===============1482713630956882825==
-Content-Type: multipart/alternative; boundary=Apple-Mail-491DC470-A005-4E6C-8049-F2819A8CBFDE
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-491DC470-A005-4E6C-8049-F2819A8CBFDE
-Content-Type: text/plain;
-	charset=utf-8
+--000000000000ef3bfb059d3bc851
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Let=E2=80=99s do some quick math, shall we?
+Hi Austin,
 
-5msps with 16-bit complex =3D=3D 160Mbit/second
-1.25msps with 16-bit complex samples =3D=3D an additional 40mbit-second
+>Is there a way to do it directly via the jtag and using the screen command
+to speak with the N310?
 
-Unless you have super reliable 1Gig wireless infrastructure, this just isn=E2=
-=80=99t going to work. =20
+You could connect to the ARM via JTAG as detailed in the link below, but
+you're better off just SSH'ing into it.
 
-Sent from my iPhone
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connect=
+ing_to_the_ARM_via_SSH
 
-> On Jan 28, 2020, at 6:23 PM, Austin Adam via USRP-users <usrp-users@lists.=
-ettus.com> wrote:
->=20
+Streaming will be very flakey over any sort of wifi. Two options I'd
+suggest exploring:
+
+1) Use fiber to have a direct connection. Aqua multimode fiber is pretty
+cheap and you can have long runs.
+
+2) Put a host computer next to the USRP wherever it is installed, and
+perform your DSP / streaming to that machine, Then connect to that remote
+host via wifi for command and control. You can then stream at lower rate
+your processed data off that host to a dashboard or whatever your
+application is.
+
+Regards,
+Nate Temple
+
+
+
+On Tue, Jan 28, 2020 at 3:34 PM Marcus D Leech <patchvonbraun@gmail.com>
+wrote:
+
+> Let=E2=80=99s do some quick math, shall we?
+>
+> 5msps with 16-bit complex =3D=3D 160Mbit/second
+> 1.25msps with 16-bit complex samples =3D=3D an additional 40mbit-second
+>
+> Unless you have super reliable 1Gig wireless infrastructure, this just
+> isn=E2=80=99t going to work.
+>
+> Sent from my iPhone
+>
+> On Jan 28, 2020, at 6:23 PM, Austin Adam via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
 > =EF=BB=BFHey Nate,
-> Thanks for the quick response as always! I tried editing those files in th=
-e past, but I remember having issues because they were locked or I wasn=E2=80=
-=99t able to actually save any changes that I made. Is there a way to do it d=
-irectly via the jtag and using the screen command to speak with the N310?
->=20
-> Also, unfortunately for the current project I am working on, we really nee=
-d to have a wireless connection to the USRPs via the router. I am sure there=
- is some way to make it work because we can still get data that looks good, i=
-t just starts to get clunky after a few seconds of streaming.
->=20
->=20
->>> On Jan 28, 2020, at 3:07 PM, Nate Temple <nate.temple@ettus.com> wrote:
->>>=20
->> =EF=BB=BF
->> Hi Austin,
->>=20
->> The MTUs on your host and N310 must match. You should modify the systemd c=
-onfiguration on the N310 are restart the whole device or restart systemd-net=
-workd=20
->>=20
->> https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Updat=
+> Thanks for the quick response as always! I tried editing those files in
+> the past, but I remember having issues because they were locked or I wasn=
+=E2=80=99t
+> able to actually save any changes that I made. Is there a way to do it
+> directly via the jtag and using the screen command to speak with the N310=
+?
+>
+> Also, unfortunately for the current project I am working on, we really
+> need to have a wireless connection to the USRPs via the router. I am sure
+> there is some way to make it work because we can still get data that look=
+s
+> good, it just starts to get clunky after a few seconds of streaming.
+>
+>
+> On Jan 28, 2020, at 3:07 PM, Nate Temple <nate.temple@ettus.com> wrote:
+>
+> =EF=BB=BF
+> Hi Austin,
+>
+> The MTUs on your host and N310 must match. You should modify the systemd
+> configuration on the N310 are restart the whole device or restart
+> systemd-networkd
+>
+>
+> https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Updat=
 ing_the_Network_Configurations
->>=20
->> It is not recommended to stream over a wireless connection as the additio=
-nal delay will cause flow control errors. It is also generally recommended t=
-o not have a switch in line as some switches can reorder packets. You should=
- directly connect to the USRP for the streaming interfaces. On the N3xx, it'=
-s fine to access the RJ45 management port via a switch.=20
->>=20
->> Regards,
->> Nate Temple
->>=20
->>=20
->>=20
->>> On Tue, Jan 28, 2020 at 2:52 PM Austin Adam via USRP-users <usrp-users@l=
-ists.ettus.com> wrote:
->>> Hi everyone,
->>> I have a very basic GNU script with just a USRP block and a time sink th=
-at when I run, there are tons of streaming errors with the tx and rx. In GNU=
-, the console is being filled with 'D's and the console for the N210 is gett=
-ing filled with 'U's and 'S's.
->>>=20
->>> My setup is just a USRP N210 connected to the RX LO ports of the N310. I=
- am sending the following command to the N210:
->>>=20
->>> "sudo '/home/austin/workarea-uhd/uhd/host/build/examples/tx_waveforms' -=
--args "addr=3D192.168.10.15,type=3Dusrp2" --freq 3.90000e9 --ant "TX/RX" --s=
-ubdev "A:0" --channels 0 --rate 1.25e6 --gain 29.5"
->>>=20
->>> The USRPs are connected to a router via cat 5e cables, and then my lapto=
-p is connected to the router via wifi. Something I noticed is that when I co=
-nnect to the router via ethernet to my laptop, I don't get any of the perfor=
-mance issues. It seems to only happen over the wifi.
->>>=20
->>> When I run ifconfig on my laptop, my MTU is set to 1500, and on the USRP=
- N310 the MTU on the sfp0 port that we are using is 8000. I wasn't able to c=
-hange the MTU on the N310 because it said the device was in use, but those v=
-alues seem to work fine over ethernet so I didn't look too much into it.
->>>=20
->>> The sample rate on my GNU script is set to 5M for now, and lowering it d=
-oes seem to reduce the amount of 'D's that I get, but also negatively affect=
-s our data.=20
->>>=20
->>> Lastly, here is some output from the N210 that shows the error:
->>>=20
->>> austin@Austin-Blade:~$ sudo '/home/austin/workarea-uhd/uhd/host/build/ex=
-amples/tx_waveforms' --args "addr=3D192.168.10.15,type=3Dusrp2" --freq 3.900=
-00e9 --ant "TX/RX" --subdev "A:0" --channels 0 --rate 1.25e6 --gain 29.5
->>>=20
->>> Creating the usrp device with: addr=3D192.168.10.15,type=3Dusrp2...
->>> [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; UHD_3.14.0.HEAD=
--0-g6875d061
->>> [INFO] [USRP2] Opening a USRP2/N-Series device...
->>> [INFO] [USRP2] Current recv frame size: 1472 bytes
->>> [INFO] [USRP2] Current send frame size: 1472 bytes
->>> Using Device: Single USRP:
->>>   Device: USRP2 / N-Series Device
->>>   Mboard 0: N210r4
->>>   RX Channel: 0
->>>     RX DSP: 0
->>>     RX Dboard: A
->>>     RX Subdev: SBXv3 RX
->>>   TX Channel: 0
->>>     TX DSP: 0
->>>     TX Dboard: A
->>>     TX Subdev: SBXv3 TX
->>>=20
->>> Setting TX Rate: 1.250000 Msps...
->>> Actual TX Rate: 1.250000 Msps...
->>>=20
->>> Setting TX Freq: 3900.000000 MHz...
->>> Setting TX LO Offset: 0.000000 MHz...
->>> Actual TX Freq: 3900.000000 MHz...
->>>=20
->>> Setting TX Gain: 29.500000 dB...
->>> Actual TX Gain: 29.500000 dB...
->>>=20
->>> Setting device timestamp to 0...
->>> Checking TX: LO: locked ...
->>> Press Ctrl + C to stop streaming...
->>> UUUSUUUU[ERROR] [USRP2] Control packet attempt 0, sequence number 470:
->>> RuntimeError: no control response, possible packet loss
->>> UUUSUUUUSUUUUUU^C     =20
->>> Done!
->>>=20
->>> I appreciate any help that anyone has to offer!
->>>=20
->>> Best,
->>> Austin
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> It is not recommended to stream over a wireless connection as the
+> additional delay will cause flow control errors. It is also generally
+> recommended to not have a switch in line as some switches can reorder
+> packets. You should directly connect to the USRP for the streaming
+> interfaces. On the N3xx, it's fine to access the RJ45 management port via=
+ a
+> switch.
+>
+> Regards,
+> Nate Temple
+>
+>
+>
+> On Tue, Jan 28, 2020 at 2:52 PM Austin Adam via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hi everyone,
+>> I have a very basic GNU script with just a USRP block and a time sink
+>> that when I run, there are tons of streaming errors with the tx and rx. =
+In
+>> GNU, the console is being filled with 'D's and the console for the N210 =
+is
+>> getting filled with 'U's and 'S's.
+>>
+>> My setup is just a USRP N210 connected to the RX LO ports of the N310. I
+>> am sending the following command to the N210:
+>>
+>> *"sudo '/home/austin/workarea-uhd/uhd/host/build/examples/tx_waveforms'
+>> --args "addr=3D192.168.10.15,type=3Dusrp2" --freq 3.90000e9 --ant "TX/RX=
+"
+>> --subdev "A:0" --channels 0 --rate 1.25e6 --gain 29.5"*
+>>
+>> The USRPs are connected to a router via cat 5e cables, and then my lapto=
+p
+>> is connected to the router via wifi. Something I noticed is that when I
+>> connect to the router via ethernet to my laptop, I don't get any of the
+>> performance issues. It seems to only happen over the wifi.
+>>
+>> When I run ifconfig on my laptop, my MTU is set to 1500, and on the USRP
+>> N310 the MTU on the sfp0 port that we are using is 8000. I wasn't able t=
+o
+>> change the MTU on the N310 because it said the device was in use, but th=
+ose
+>> values seem to work fine over ethernet so I didn't look too much into it=
+.
+>>
+>> The sample rate on my GNU script is set to 5M for now, and lowering it
+>> does seem to reduce the amount of 'D's that I get, but also negatively
+>> affects our data.
+>>
+>> Lastly, here is some output from the N210 that shows the error:
+>>
+>> *austin@Austin-Blade:~$ sudo '/home/*austin
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> */workarea-uhd/uhd/host/build/examples/tx_waveforms' --args
+>> "addr=3D192.168.10.15,type=3Dusrp2" --freq 3.90000e9 --ant "TX/RX" --sub=
+dev
+>> "A:0" --channels 0 --rate 1.25e6 --gain 29.5Creating the usrp device wit=
+h:
+>> addr=3D192.168.10.15,type=3Dusrp2...[INFO] [UHD] linux; GNU C++ version =
+8.3.0;
+>> Boost_106700; UHD_3.14.0.HEAD-0-g6875d061[INFO] [USRP2] Opening a
+>> USRP2/N-Series device...[INFO] [USRP2] Current recv frame size: 1472
+>> bytes[INFO] [USRP2] Current send frame size: 1472 bytesUsing Device: Sin=
+gle
+>> USRP:  Device: USRP2 / N-Series Device  Mboard 0: N210r4  RX Channel: 0
+>> RX DSP: 0    RX Dboard: A    RX Subdev: SBXv3 RX  TX Channel: 0    TX DS=
+P:
+>> 0    TX Dboard: A    TX Subdev: SBXv3 TXSetting TX Rate: 1.250000
+>> Msps...Actual TX Rate: 1.250000 Msps...Setting TX Freq: 3900.000000
+>> MHz...Setting TX LO Offset: 0.000000 MHz...Actual TX Freq: 3900.000000
+>> MHz...Setting TX Gain: 29.500000 dB...Actual TX Gain: 29.500000
+>> dB...Setting device timestamp to 0...Checking TX: LO: locked ...Press Ct=
+rl
+>> + C to stop streaming...*UUUSUUUU[ERROR] [USRP2] Control packet attempt
+>> 0, sequence number 470:
+>> RuntimeError: no control response, possible packet loss
+>> UUUSUUUUSUUUUUU^C
+>> *      Done!*
+>>
+>> I appreciate any help that anyone has to offer!
+>>
+>> Best,
+>> Austin
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
 
---Apple-Mail-491DC470-A005-4E6C-8049-F2819A8CBFDE
-Content-Type: text/html;
-	charset=utf-8
+--000000000000ef3bfb059d3bc851
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Let=E2=80=99s do some quick math, shall we?=
-<div><br></div><div>5msps with 16-bit complex =3D=3D 160Mbit/second</div><di=
-v>1.25msps with 16-bit complex samples =3D=3D an additional 40mbit-second</d=
-iv><div><br></div><div>Unless you have super reliable 1Gig wireless infrastr=
-ucture, this just isn=E2=80=99t going to work. &nbsp;<br><br><div dir=3D"ltr=
-">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On=
- Jan 28, 2020, at 6:23 PM, Austin Adam via USRP-users &lt;usrp-users@lists.e=
-ttus.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div=
- dir=3D"ltr">=EF=BB=BF<meta http-equiv=3D"content-type" content=3D"text/html=
-; charset=3Dutf-8">Hey Nate,<div>Thanks for the quick response as always! I t=
-ried editing those files in the past, but I remember having issues because t=
-hey were locked or I wasn=E2=80=99t able to actually save any changes that I=
- made. Is there a way to do it directly via the jtag and using the screen co=
-mmand to speak with the N310?</div><div><br></div><div>Also, unfortunately f=
-or the current project I am working on, we really need to have a wireless co=
-nnection to the USRPs via the router. I am sure there is some way to make it=
- work because we can still get data that looks good, it just starts to get c=
-lunky after a few seconds of streaming.<br><div dir=3D"ltr"><br></div><div d=
-ir=3D"ltr"><br><blockquote type=3D"cite">On Jan 28, 2020, at 3:07 PM, Nate T=
-emple &lt;nate.temple@ettus.com&gt; wrote:<br><br></blockquote></div><blockq=
-uote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div class=3D"=
-gmail_default" style=3D"font-family:arial,helvetica,sans-serif">Hi Austin,<b=
-r><br>The MTUs on your host and N310 must match. You should modify the syste=
-md configuration on the N310 are restart the whole device or restart systemd=
--networkd <br><br><a href=3D"https://kb.ettus.com/USRP_N300/N310/N320/N321_G=
-etting_Started_Guide#Updating_the_Network_Configurations">https://kb.ettus.c=
-om/USRP_N300/N310/N320/N321_Getting_Started_Guide#Updating_the_Network_Confi=
-gurations</a><br><br>It is not recommended to stream over a wireless connect=
-ion as the additional delay will cause flow control errors. It is also gener=
-ally recommended to not have a switch in line as some switches can reorder p=
-ackets. You should directly connect to the USRP for the streaming interfaces=
-. On the N3xx, it's fine to access the RJ45 management port via a switch. <b=
-r><br>Regards,<br>Nate Temple<br><br><br></div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jan 28, 2020 at 2:52 P=
-M Austin Adam via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
-m">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><div dir=3D"ltr">Hi everyone,<div>I have a very b=
-asic GNU script with just a USRP block and a time sink that when I run, ther=
-e are tons of streaming errors with the tx and rx. In GNU, the console is be=
-ing filled with 'D's and the console for the N210 is getting filled with 'U'=
-s and 'S's.<br></div><div><br></div><div>My setup is just a USRP N210 connec=
-ted to the RX LO ports of the N310. I am sending the following command to th=
-e N210:</div><div><i><br></i></div><div><i>"sudo '/home/austin/workarea-uhd/=
-uhd/host/build/examples/tx_waveforms' --args "addr=3D192.168.10.15,type=3Dus=
-rp2" --freq 3.90000e9 --ant "TX/RX" --subdev "A:0" --channels 0 --rate 1.25e=
-6 --gain 29.5"</i></div><div><i><br></i></div><div>The USRPs are connected t=
-o a router via cat 5e cables, and then my laptop is connected&nbsp;to the ro=
-uter via wifi. Something I noticed is that when I connect to the router via e=
-thernet&nbsp;to my laptop, I don't get any of the performance issues. It see=
-ms to only happen over the wifi.</div><div><br></div><div>When I run ifconfi=
-g on my laptop, my MTU is set to 1500, and on the USRP N310 the MTU on the s=
-fp0 port that we are using is 8000. I wasn't able to change the MTU on the N=
-310 because it said the device was in use, but those values seem to work fin=
-e over ethernet so I didn't look too much into it.</div><div><br></div><div>=
-The sample rate on my GNU script is set to 5M for now, and lowering it does s=
-eem to reduce the amount of 'D's that I get, but also negatively affects our=
- data.&nbsp;</div><div><br></div><div>Lastly, here is some output from the N=
-210 that shows the error:</div><div><br></div><div><i>austin@Austin-Blade:~$=
- sudo '/home/</i>austin<i>/workarea-uhd/uhd/host/build/examples/tx_waveforms=
-' --args "addr=3D192.168.10.15,type=3Dusrp2" --freq 3.90000e9 --ant "TX/RX" -=
--subdev "A:0" --channels 0 --rate 1.25e6 --gain 29.5<br><br>Creating the usr=
-p device with: addr=3D192.168.10.15,type=3Dusrp2...<br>[INFO] [UHD] linux; G=
-NU C++ version 8.3.0; Boost_106700; UHD_3.14.0.HEAD-0-g6875d061<br>[INFO] [U=
-SRP2] Opening a USRP2/N-Series device...<br>[INFO] [USRP2] Current recv fram=
-e size: 1472 bytes<br>[INFO] [USRP2] Current send frame size: 1472 bytes<br>=
-Using Device: Single USRP:<br>&nbsp; Device: USRP2 / N-Series Device<br>&nbs=
-p; Mboard 0: N210r4<br>&nbsp; RX Channel: 0<br>&nbsp; &nbsp; RX DSP: 0<br>&n=
-bsp; &nbsp; RX Dboard: A<br>&nbsp; &nbsp; RX Subdev: SBXv3 RX<br>&nbsp; TX C=
-hannel: 0<br>&nbsp; &nbsp; TX DSP: 0<br>&nbsp; &nbsp; TX Dboard: A<br>&nbsp;=
- &nbsp; TX Subdev: SBXv3 TX<br><br>Setting TX Rate: 1.250000 Msps...<br>Actu=
-al TX Rate: 1.250000 Msps...<br><br>Setting TX Freq: 3900.000000 MHz...<br>S=
-etting TX LO Offset: 0.000000 MHz...<br>Actual TX Freq: 3900.000000 MHz...<b=
-r><br>Setting TX Gain: 29.500000 dB...<br>Actual TX Gain: 29.500000 dB...<br=
-><br>Setting device timestamp to 0...<br>Checking TX: LO: locked ...<br>Pres=
-s Ctrl + C to stop streaming...<br></i>UUUSUUUU[ERROR] [USRP2] Control packe=
-t attempt 0, sequence number 470:<br>RuntimeError: no control response, poss=
-ible packet loss<br>UUUSUUUUSUUUUUU^C<i>&nbsp; &nbsp; &nbsp;&nbsp;<br>Done!<=
-/i><br></div><div><i><br></i></div><div>I appreciate any help that anyone ha=
-s to offer!</div><div><br></div><div>Best,</div><div>Austin</div></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi Austin,<br><br>&gt;Is there a way to do it directly =
+via the jtag and using the screen command to speak with the N310?<br><br>Yo=
+u could connect to the ARM via JTAG as detailed in the link below, but you&=
+#39;re better off just SSH&#39;ing into it. <br><br><a href=3D"https://kb.e=
+ttus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Connecting_to_the_A=
+RM_via_SSH">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_G=
+uide#Connecting_to_the_ARM_via_SSH</a><br><br>Streaming will be very flakey=
+ over any sort of wifi. Two options I&#39;d suggest exploring:<br><br>1) Us=
+e fiber to have a direct connection. Aqua multimode fiber is pretty cheap a=
+nd you can have long runs. <br><br>2) Put a host computer next to the USRP =
+wherever it is installed, and perform your DSP / streaming to that machine,=
+ Then connect to that remote host via wifi for command and control. You can=
+ then stream at lower rate your processed data off that host to a dashboard=
+ or whatever your application is.<br><br>Regards,<br>Nate Temple<br><br><br=
+></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Tue, Jan 28, 2020 at 3:34 PM Marcus D Leech &lt;<a href=3D"mailto=
+:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Let=E2=
+=80=99s do some quick math, shall we?<div><br></div><div>5msps with 16-bit =
+complex =3D=3D 160Mbit/second</div><div>1.25msps with 16-bit complex sample=
+s =3D=3D an additional 40mbit-second</div><div><br></div><div>Unless you ha=
+ve super reliable 1Gig wireless infrastructure, this just isn=E2=80=99t goi=
+ng to work. =C2=A0<br><br><div dir=3D"ltr">Sent from my iPhone</div><div di=
+r=3D"ltr"><br><blockquote type=3D"cite">On Jan 28, 2020, at 6:23 PM, Austin=
+ Adam via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" targ=
+et=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br><br></blockquote=
+></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BFHey Nate,<div>Th=
+anks for the quick response as always! I tried editing those files in the p=
+ast, but I remember having issues because they were locked or I wasn=E2=80=
+=99t able to actually save any changes that I made. Is there a way to do it=
+ directly via the jtag and using the screen command to speak with the N310?=
+</div><div><br></div><div>Also, unfortunately for the current project I am =
+working on, we really need to have a wireless connection to the USRPs via t=
+he router. I am sure there is some way to make it work because we can still=
+ get data that looks good, it just starts to get clunky after a few seconds=
+ of streaming.<br><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br><blockquo=
+te type=3D"cite">On Jan 28, 2020, at 3:07 PM, Nate Temple &lt;<a href=3D"ma=
+ilto:nate.temple@ettus.com" target=3D"_blank">nate.temple@ettus.com</a>&gt;=
+ wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr=
+">=EF=BB=BF<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-fami=
+ly:arial,helvetica,sans-serif">Hi Austin,<br><br>The MTUs on your host and =
+N310 must match. You should modify the systemd configuration on the N310 ar=
+e restart the whole device or restart systemd-networkd <br><br><a href=3D"h=
+ttps://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Updating=
+_the_Network_Configurations" target=3D"_blank">https://kb.ettus.com/USRP_N3=
+00/N310/N320/N321_Getting_Started_Guide#Updating_the_Network_Configurations=
+</a><br><br>It is not recommended to stream over a wireless connection as t=
+he additional delay will cause flow control errors. It is also generally re=
+commended to not have a switch in line as some switches can reorder packets=
+. You should directly connect to the USRP for the streaming interfaces. On =
+the N3xx, it&#39;s fine to access the RJ45 management port via a switch. <b=
+r><br>Regards,<br>Nate Temple<br><br><br></div></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jan 28, 2020 at 2:52=
+ PM Austin Adam via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi every=
+one,<div>I have a very basic GNU script with just a USRP block and a time s=
+ink that when I run, there are tons of streaming errors with the tx and rx.=
+ In GNU, the console is being filled with &#39;D&#39;s and the console for =
+the N210 is getting filled with &#39;U&#39;s and &#39;S&#39;s.<br></div><di=
+v><br></div><div>My setup is just a USRP N210 connected to the RX LO ports =
+of the N310. I am sending the following command to the N210:</div><div><i><=
+br></i></div><div><i>&quot;sudo &#39;/home/austin/workarea-uhd/uhd/host/bui=
+ld/examples/tx_waveforms&#39; --args &quot;addr=3D192.168.10.15,type=3Dusrp=
+2&quot; --freq 3.90000e9 --ant &quot;TX/RX&quot; --subdev &quot;A:0&quot; -=
+-channels 0 --rate 1.25e6 --gain 29.5&quot;</i></div><div><i><br></i></div>=
+<div>The USRPs are connected to a router via cat 5e cables, and then my lap=
+top is connected=C2=A0to the router via wifi. Something I noticed is that w=
+hen I connect to the router via ethernet=C2=A0to my laptop, I don&#39;t get=
+ any of the performance issues. It seems to only happen over the wifi.</div=
+><div><br></div><div>When I run ifconfig on my laptop, my MTU is set to 150=
+0, and on the USRP N310 the MTU on the sfp0 port that we are using is 8000.=
+ I wasn&#39;t able to change the MTU on the N310 because it said the device=
+ was in use, but those values seem to work fine over ethernet so I didn&#39=
+;t look too much into it.</div><div><br></div><div>The sample rate on my GN=
+U script is set to 5M for now, and lowering it does seem to reduce the amou=
+nt of &#39;D&#39;s that I get, but also negatively affects our data.=C2=A0<=
+/div><div><br></div><div>Lastly, here is some output from the N210 that sho=
+ws the error:</div><div><br></div><div><i>austin@Austin-Blade:~$ sudo &#39;=
+/home/</i>austin<i>/workarea-uhd/uhd/host/build/examples/tx_waveforms&#39; =
+--args &quot;addr=3D192.168.10.15,type=3Dusrp2&quot; --freq 3.90000e9 --ant=
+ &quot;TX/RX&quot; --subdev &quot;A:0&quot; --channels 0 --rate 1.25e6 --ga=
+in 29.5<br><br>Creating the usrp device with: addr=3D192.168.10.15,type=3Du=
+srp2...<br>[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; UHD_3.1=
+4.0.HEAD-0-g6875d061<br>[INFO] [USRP2] Opening a USRP2/N-Series device...<b=
+r>[INFO] [USRP2] Current recv frame size: 1472 bytes<br>[INFO] [USRP2] Curr=
+ent send frame size: 1472 bytes<br>Using Device: Single USRP:<br>=C2=A0 Dev=
+ice: USRP2 / N-Series Device<br>=C2=A0 Mboard 0: N210r4<br>=C2=A0 RX Channe=
+l: 0<br>=C2=A0 =C2=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=
+=A0 RX Subdev: SBXv3 RX<br>=C2=A0 TX Channel: 0<br>=C2=A0 =C2=A0 TX DSP: 0<=
+br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =C2=A0 TX Subdev: SBXv3 TX<br><br>S=
+etting TX Rate: 1.250000 Msps...<br>Actual TX Rate: 1.250000 Msps...<br><br=
+>Setting TX Freq: 3900.000000 MHz...<br>Setting TX LO Offset: 0.000000 MHz.=
+..<br>Actual TX Freq: 3900.000000 MHz...<br><br>Setting TX Gain: 29.500000 =
+dB...<br>Actual TX Gain: 29.500000 dB...<br><br>Setting device timestamp to=
+ 0...<br>Checking TX: LO: locked ...<br>Press Ctrl + C to stop streaming...=
+<br></i>UUUSUUUU[ERROR] [USRP2] Control packet attempt 0, sequence number 4=
+70:<br>RuntimeError: no control response, possible packet loss<br>UUUSUUUUS=
+UUUUUU^C<i>=C2=A0 =C2=A0 =C2=A0=C2=A0<br>Done!</i><br></div><div><i><br></i=
+></div><div>I appreciate any help that anyone has to offer!</div><div><br><=
+/div><div>Best,</div><div>Austin</div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com</a><br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
-</div></blockquote></div><span>_____________________________________________=
-__</span><br><span>USRP-users mailing list</span><br><span>USRP-users@lists.=
-ettus.com</span><br><span>http://lists.ettus.com/mailman/listinfo/usrp-users=
-_lists.ettus.com</span><br></div></blockquote></div></body></html>=
+</div></blockquote></div><span>____________________________________________=
+___</span><br><span>USRP-users mailing list</span><br><span><a href=3D"mail=
+to:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com=
+</a></span><br><span><a href=3D"http://lists.ettus.com/mailman/listinfo/usr=
+p-users_lists.ettus.com" target=3D"_blank">http://lists.ettus.com/mailman/l=
+istinfo/usrp-users_lists.ettus.com</a></span><br></div></blockquote></div><=
+/div></blockquote></div>
 
---Apple-Mail-491DC470-A005-4E6C-8049-F2819A8CBFDE--
+--000000000000ef3bfb059d3bc851--
 
 
---===============1482713630956882825==
+--===============4979089966604374746==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -337,5 +421,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1482713630956882825==--
+--===============4979089966604374746==--
 
