@@ -2,62 +2,89 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 548CA14ACB4
-	for <lists+usrp-users@lfdr.de>; Tue, 28 Jan 2020 00:44:50 +0100 (CET)
-Received: from [::1] (port=40190 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7650D14B29B
+	for <lists+usrp-users@lfdr.de>; Tue, 28 Jan 2020 11:31:16 +0100 (CET)
+Received: from [::1] (port=39476 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iwE3k-0001NS-4C; Mon, 27 Jan 2020 18:44:48 -0500
-Received: from mail-qk1-f179.google.com ([209.85.222.179]:40419)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1iwE3g-0001Ea-K1
- for usrp-users@lists.ettus.com; Mon, 27 Jan 2020 18:44:44 -0500
-Received: by mail-qk1-f179.google.com with SMTP id t204so10730198qke.7
- for <usrp-users@lists.ettus.com>; Mon, 27 Jan 2020 15:44:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=ErgQwacHBFVE0x/gkSaSLednAmysnuKoHsWmXSFGOos=;
- b=Vomh2vly2Vv54Gg2375vTM9tFeV+9zNVuqw/IeH6Zu/LQvCPAEE2UF0BUAhS2Zacgx
- JpcRqudH4uWOfBMIQ5cqdnA1Vy8b8gVzz8oew57zYqonnk6PYH9zh1wjlAQFLuLD03pd
- BtkPNHVGRkllIcYf2Sumdsr3Rr38yqv0B0WLO+D++GeRnYOIneWQxcLxzk+6ramWsFVb
- QE+Tl5eK6nZwKWDLj4ZippzP/K7bpG6s22A6EWfGIgS7IhWTu2w/Cg81AA7Rc5N+Maxa
- nw0s6N4cnrifDAp//7VEbo/Lhto08EMpZ0KtY76h/qQ7n9khwzURuOv1WN6Be7aqrxyp
- 1OOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=ErgQwacHBFVE0x/gkSaSLednAmysnuKoHsWmXSFGOos=;
- b=iYh5k8PaosQztrsiBaUQ3YkQy1diy3Wr6akI6Ytflv5+yZvEfK/TS9JE1Bsu5Pz784
- c9bZC9W+tj3SR9vuNsSb3N0e8AOWIm1iBkYzKVfV0MpgXHEhDStyVNapnlqPKNIZ4oIR
- Dc7AmaPIR1NoRIgy3pGJBA2M2fPNugMiGthtwl/mJD4hcdV7Dmg3yHZWbj8Z1yK9dqD2
- S/f5nLGPSPATqa4qju436nrV+QU9hDh5nYFljCm1hXVrJj9tB1uD4vQc/WTXxMMg7y2T
- DJBWCOPwg3DOomuO+LhI9usSJZuAezmjOYm/ICLiD/OWrbQF9Z/XQahm2Yay+inT1tbp
- jqBA==
-X-Gm-Message-State: APjAAAWqOR2OdEshU+wrA27tsF+cDPgBM9d04kC+hA0SyMDljlqUEHW9
- R8JE9XOdr65RmCA0QWU56dB5QIATP64=
-X-Google-Smtp-Source: APXvYqzA43cTkeOBQvndZjf1bkL4knINOaswcDFyXHN+Nwn/KzLV+yhEkA1y0Uf6AjcSTV1/bCq2FA==
-X-Received: by 2002:a37:6446:: with SMTP id y67mr19506013qkb.59.1580168643826; 
- Mon, 27 Jan 2020 15:44:03 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id o17sm11056860qtq.93.2020.01.27.15.44.02
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 27 Jan 2020 15:44:03 -0800 (PST)
-Message-ID: <5E2F75C2.6010402@gmail.com>
-Date: Mon, 27 Jan 2020 18:44:02 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1iwO9D-0007WW-VV; Tue, 28 Jan 2020 05:31:07 -0500
+Received: from mail-eopbgr1390092.outbound.protection.outlook.com
+ ([40.107.139.92]:47399 helo=IND01-BO1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <sourin.mondal@vehere.com>)
+ id 1iwO99-0007R6-43
+ for usrp-users@lists.ettus.com; Tue, 28 Jan 2020 05:31:03 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Rr+mAXMD0RqxsOWRsU7Nb2U474UpzhXuNg1e681E+d2ZCz11QUzMD+zqWs5ARvYvjci0FIW5MF7HeKvRcN1uyV4QMpVejvPtgMOxa618HxfdG/CHCsNUQkrKBaiSuOuaZiVY0xY3Zw5nKEBVn+9hAI/jy4yqtJD5g0idcdqFZfCE3hiYpIMd8al2BZvEgtkMOxhesu0PK+zk5zq4c94pvgYCYIq50hMj63G+TCGQdKOu/m6GwIVPserfHcW7KN1X2vHBul73hJTlb8nuRGPtsD9OMCuM+RzUNCWWP+PMVGPqR/X6bA1jkJWqNL5dGilUVqbsBUG2RWiZ/+0DlkOsRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WHqE78fr2MaHL907ifVvTSOhFujhMR4JwGsJEkC+0Zc=;
+ b=akhBFWpyQ5eF2Emvdh3h7xyst1dxVvLJxaB8drLzn44u6Hr4ZaFm96FOA2JgWA5ubVocfiUusARlQL+zLo/zBgi+cUslNZ7mK9aqtoqdR1XC2JLinpcUlHXgF+qI8aLLUXPOqXGuB+Zd4vgICfDJ6rVLasADOGJltaZ7lZoRzLgdFagqcFvj48/wzaMIDKQ4QxHCqYHxgasSwCfC0b17XUSAYSTmHD8586Zk5M2TtyKVnR67xb1JqGocpXNHRBDaiUhs4+f13COU2K7ZJFWSLKzlKOOmQw0zNWzlzbM7g3ZLLenWjrShVyrj365wRyds6M6jzjGRYDdNjBJlEzCjMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WHqE78fr2MaHL907ifVvTSOhFujhMR4JwGsJEkC+0Zc=;
+ b=BEzpHFlQSCZ7DHjLQW0TlEyUM2T/qHBesEtVeW6E8vm9qbH14U+5ib4Sju+UVlNT16YAPNN4g6DwvflsgUH2yIzdctEPTaHeJPW0ka72Aa+CdnzcH/wQYXs6bH4a7zlDTrMcTWshrgq9C5+cpTbJPw66L1AU0YxuzOeHgEE8YDE=
+Received: from MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM (52.134.141.9) by
+ MA1PR0101MB1350.INDPRD01.PROD.OUTLOOK.COM (52.134.139.17) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2665.22; Tue, 28 Jan 2020 10:30:18 +0000
+Received: from MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::d173:b7a3:2fd3:d7bb]) by MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::d173:b7a3:2fd3:d7bb%9]) with mapi id 15.20.2665.026; Tue, 28 Jan 2020
+ 10:30:18 +0000
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] phase-aligning two USRPs without Octoclock
+Thread-Index: AQHVz2bE3GcysuM9wU272v0JQcfgjqfz2mmAgAPT/LuAAC1/gIAGMk6pgAAHuQCAAdaR4w==
+Date: Tue, 28 Jan 2020 10:30:17 +0000
+Message-ID: <MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0@MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM>
+References: <BMXPR01MB23606E790CA4146BE699BFF58B320@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>,
+ <FC4F7A4E-97C4-4CBD-8E54-305964E29BB2@gmail.com>
+ <BMXPR01MB236051E2B9CC59A25A0F469C8B0F0@BMXPR01MB2360.INDPRD01.PROD.OUTLOOK.COM>,
+ <5E2948D5.4090603@gmail.com>
+ <BM1PR0101MB1700776C3BCA0679A99CEBE48B0B0@BM1PR0101MB1700.INDPRD01.PROD.OUTLOOK.COM>,
+ <5E2E8200.8090507@gmail.com>
+In-Reply-To: <5E2E8200.8090507@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=sourin.mondal@vehere.com; 
+x-originating-ip: [14.143.49.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9043e8e2-0280-4e39-7a98-08d7a3dd1203
+x-ms-traffictypediagnostic: MA1PR0101MB1350:
+x-microsoft-antispam-prvs: <MA1PR0101MB1350F0C4801B747F035DAA168B0A0@MA1PR0101MB1350.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 029651C7A1
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(346002)(396003)(136003)(39830400003)(376002)(366004)(189003)(199004)(55016002)(71200400001)(966005)(33656002)(55236004)(7696005)(9686003)(5660300002)(19627405001)(6506007)(53546011)(316002)(52536014)(508600001)(6916009)(86362001)(26005)(186003)(66556008)(8936002)(4326008)(66476007)(8676002)(66946007)(81156014)(64756008)(76116006)(2906002)(81166006)(91956017)(66446008);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:MA1PR0101MB1350;
+ H:MA1PR0101MB1701.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: vehere.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: K9JaCQfUvNms3Btn9pd/h1cGD4Un4/c1zYuxUfVsYHckuH9Cx4HA7bWYnXsKTHPwDwah2ZLkucFuHaxPkDgeOs34BlFTuW5O+LqOXPVw8JVYnzHdx0xiKTUBayI7cn80aS1HAu7HQxRGgG4evmQy8DShliwRs3xgy80zGD6MEbzaEaYBvFLxTceDa3+VDpploCtnl3/zxj8TplxHueeq5SY1uO0oH9rcd61WDz1AKclZeH32MIENQdWUzCQE1BhxJGE8QBwwqIW0oeLy/wqBDhaXOBWR4dPYIIccXVoR1HPdDpoO05jHN46TCraYHrf3NKGsz8G7N44AxcV8n9ynvtKS9H4j6o9AKZ3XfhhJi2uYCkVw0qy4804agWTnSi+bToC3bj3MrcgU+KUuR4+qa1qtt/BDOwewVavGF6rRL3x+tbcIJrDusaI/It0ncE7KGdiT3mJy30xY3R8gmqqe/GV5HNkhxgqPwhgoK3XseDcVyo/XWG3Ry2rBybZQMGL83cgttpi1tO4LvmAGozSnuQ==
+x-ms-exchange-antispam-messagedata: UYu2EZX8EsHjtz9mLYe2InNFNNJsIw9TFAX59/waAfVDGDsEOHHnSkRC+5lU3W+RDDLnImP99PAC3hWX28AcGjt80kw8Y76fTZ2hMgFKQNsboXPo9kZgvDcbIIGUJ3S9LsRGu6NkRD8ezlawNFssQg==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-To: Lukas Haase <lukashaase@gmx.at>
-References: <trinity-488760a4-6923-45b9-a737-f5062f70c125-1579852625874@3c-app-gmx-bs54>
- <5E2B210C.2060407@gmail.com>
- <trinity-be35829c-c69e-45b3-a686-731c6fec4502-1580164464056@3c-app-gmx-bs13>
-In-Reply-To: <trinity-be35829c-c69e-45b3-a686-731c6fec4502-1580164464056@3c-app-gmx-bs13>
-Subject: Re: [USRP-users] Exact alignment between gnuradio sample stream and
- USRP time
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9043e8e2-0280-4e39-7a98-08d7a3dd1203
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2020 10:30:17.9893 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: osSxN1HB6ZQQ3xaQ84Rx6Hxb+yKBCqgb7BhvEj5B5Iz2cEEeMa23BAm/nS1DFxtytxAY76zM+PW4Osx7FU6QScdBstqBrLY6izJcBcgQ2sI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR0101MB1350
+Subject: Re: [USRP-users] phase-aligning two USRPs without Octoclock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,11 +96,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: "Sourin Mondal \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Sourin Mondal \(Vehere\)" <sourin.mondal@vehere.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8399783588352467800=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,160 +113,248 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 01/27/2020 05:34 PM, Lukas Haase wrote:
->> Gesendet: Freitag, 24. Januar 2020 um 11:53 Uhr
->> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
->> An: "Lukas Haase" <lukashaase@gmx.at>
->> Cc: usrp-users@lists.ettus.com
->> Betreff: Re: [USRP-users] Exact alignment between gnuradio sample stream and USRP time
->>
->> On 01/24/2020 02:57 AM, Lukas Haase wrote:
->>>> On 01/23/2020 12:32 PM, Lukas Haase via USRP-users wrote:
->>>>> Hi,
->>>>>
->>>>> TO MY UNDERSTANDING, the USRP has an internal clock that is different from host clock when running gnuradio (which makes sense because there are buffers etc in between).
->>>>> Example: I transmit a CW at f=1001, receive it at f=1000 and then use gnuradio to downconvert the remaining 1 MHz I run into trouble (tried it...).
->>>>>
->>>>> For this reason, there exist timed commands and the tune_request object with which I can execute commands (LO tuning) at a precice time. For example, with these commands I can phase align tuning between TX/RX at different center frequencies:
->>>>>
->>>>>      tune_req_tx = uhd.tune_request(fcenter-1e6, 1e6)
->>>>>      tune_req_rx = uhd.tune_request(2*fcenter)
->>>>>      tune_req_rx.args=uhd.device_addr(','.join(["mode_n=integer", "int_n_step=1000e3",]))
->>>>>      tune_req_tx.args=uhd.device_addr(','.join(["mode_n=integer", "int_n_step=1000e3",]))
->>>>>
->>>>>      now = self.uhd_usrp_sink_0.get_time_now()
->>>>>      self.uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(0.1))
->>>>>      self.uhd_usrp_source_0.set_command_time(now + uhd.time_spec(0.1))
->>>>>
->>>>>      self.uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
->>>>>      self.uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
->>>>>
->>>>>      self.uhd_usrp_source_0.clear_command_time()
->>>>>      self.uhd_usrp_sink_0.clear_command_time()
->>>>>
->>>>> The commands execute execatly at get_time_now() plus 100ms. As far as I understand, these 100ms are to ensure that the host computer has enough time until the USRP processes the clear_command_time function. But it does not relate the exact point in time with anything that exists in gnuradio.
->>>>>
->>>>> MY QUESTION: What I am unsure is how to align samples in gnuradio with the time on the USRP. For example, suppose I have an ideal clock signal in gnuradio and I want to perform a timed command EXACTLY at a particular sampling point (e.g. rising edge). How would I go about this?
->>>>>
->>>>> The actions I want to execute exactly time aligned with gnuradio include: tuning requests, reading out sensors (PLL sensor when it settled), switching IO pins through the GPIO interface.
->>>>> For example, I would like to switch a GPIO port exactly once per period of a signal in gnuradio and exactly at the same time (clearly there will be delays but that's OK as long as the delay is fixed).
->>>>> As another example, I would like to re-tune exactly once in every period of a gnuradio signal. Then I would like to read out when the PLL has settled and generate a binary indicator signal out of it. Plotting the original signal and the indicator signal should tell me exactly (at least sample accuracy) how long the PLL took to settle *relative* to the signal in gnuradio.
->>>>>
->>>>>
->>>>> Thank you very much,
->>>>> Luke
->>>> Whatever "dance" you're using to set the USRP time, (presumably
->>>> something like set_time_unknown_pps), you need to have it derive the
->>>>      USRP time register from the host time.  The normal code that is
->>>> emitted in GRC for "unknown_pps" just resets the USRP time to zero.
->>>>      But you can arrange for it to be the host time (+1 second or
->>>> something) instead.
->>>>
->>>> You haven't indicated whether you're using GRC, or "naked" Gnu Radio
->>>> programming.
->>>>
->>>> General synchronization "things" are discussed in the knowledge base, here:
->>>>
->>>> https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices
->>> Hi Marcus,
->>>
->>> Thanks. I went through this page a few times and got synchronization between TX/RX (somewhat) running.
->>>
->>> I am using GRC but willing to go "naked" where necessary (my main application will still always be grc+GUI).
->>>
->>> I guess I still don't understand what exactly what the "USRP time" is and how it related to sample time.
->>>
->>> I do not think it makes sense to lock the USRP time to the host time because the host time is independent from the sample time on the host (in gnuradio). Samples are buffered and depending on CPU load, samples may occur earlier or later than expected by CPU time. Say I generate the signal x[n] and the sample rate is 1kS/s, then in a real-time system I can expect each sample to occur exactly every ms. But on my host with gnuradio this is certainly not the case! x[1000] does not necessarily occur 1 seconds (in CPU time) after x[0].
->>>
->>> Again, what I want is I generate x[n] in gnuradio. For every, say, (n mod 1000)==0 I want to execute something on the USRP, for example flipping a GPIO which increases the gain of an amplifier ... exactly at the time when the *USRP* processes this sample. Not the host! Because the USRP, to my understanding, is like a realtime system.
->>>
->>> Now say the output of the amplifier is fed again into the USRP RX port and I read it back as y[n] from USRP Source.
->>>
->>> I will see the effect of the gain change in y[n] ... many samples after I did the request due to latency. But I want that the relative sample difference between x[n] and y[n] is always constant!
->>>
->>> Example:
->>>
->>> At x[0]    --> change gain to 1 --> at y[523]  I see gain changes to 1
->>> At x[1000] --> change gain to 2 --> at y[1523] I see gain changes to 2
->>> At x[2000] --> change gain to 3 --> at y[2523] I see gain changes to 3
->>>       ....
->>>
->>> I hope this example makes it more clear what I mean.
->>>
->>> This is just a toy example; in reality I would build x[n] in gnuradio to be a control signal that aligns all the actions in a predicable manner.
->>>
->>> Thanks,
->>> Luke
->>>
->> Sample streams from the USRP are time-stamped.  In Gnu Radio, that
->> generates a tag when the stream starts, and whenever there's an
->>    overrun.
->>
->> In the absence of overruns, you know exactly the sample time from
->> knowing the initial time-stamp, and simply counting samples, since
->>     the sample-rate is known, and fixed.
->>
->> This is drifting squarely into "how do I do stuff in Gnu Radio", so
->> there's a better audience for that on the discuss-gnuradio mailng list.
->>
->> If this were my problem, I'd probably write a custom block that
->> "scheduled things", based on knowing the most recent time tag, and
->>     the current sample count since the most recent time-tag.
-> Hi Marcus,
->
-> Thanks, that's very useful. I get the idea now. For example, for a frequency hopping system, I would queue the commands for the *next* period using timed commands (and hope that host->USRP is fast enough to process them before the time occurs).
->
-> But why does the USRP use seconds and fractional seconds (rather than integer cycles etc)? Can this really guarantee proper timing?
-Internally within the FPGA, the time register is just a wide integer 
-register, incremented at whatever the master clock rate is.  But the API
-   presents this in a way that is more portable across different device 
-types.
+--===============8399783588352467800==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0MA1PR0101MB1701_"
+
+--_000_MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0MA1PR0101MB1701_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+________________________________
+From: Marcus D. Leech <patchvonbraun@gmail.com>
+Sent: Monday, January 27, 2020 11:54 AM
+To: Sourin Mondal (Vehere) <sourin.mondal@vehere.com>
+Cc: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] phase-aligning two USRPs without Octoclock
+
+On 01/27/2020 01:00 AM, Sourin Mondal (Vehere) wrote:
+Hi Marcus,
+
+Thanks for the information. Could you please also tell what is the accuracy=
+ with which the phases are aligned between USRP channels, when we use 10 MH=
+z reference to align, in pico-seconds or nano-seconds?
+
+Regards,
+Sourin
+The answer to that question depends very much on the hardware involved.
+
+In general, two synthesizers locked to the same clock won't have a zero pha=
+se *offset* from one another, but will be phase-coherent
+  on an ongoing basis.
+
+Now, for *some* types of Ettus hardware, there is special hardware that can=
+ arrange to phase-reset during tuning, so that all the participating
+  synthesizers will have small phase-offsets with respect to one another.
+
+We generally talk in terms of degrees, rather than picoseconds or nanosecon=
+ds.  Residual phase offsets will typically be under 5 degrees.
+
+But keep in mind that things like differential heating of cables, and inter=
+nal circuit in ANY coherent radio can case the phase relationships
+  to drift slightly.
 
 
->
-> I can first set the USRP command time to zero (at startup in gnuradio). When I have a signal source going into a "USRP Sink" with samp_rate = 1 MHz and I want to execute a variety of of commands exactly at every 10000 samples, how does my timed command look like? For example, within the work() function of a block I can convert any sample to an absolute sample number from start on (with nitems_read etc.). Would something like
->
->      def work(self, input_items, output_items):
->          // check if "current" sample is within this processing block
->          // is yes, set timed command for next period
->          if self.curSamp >= nitems_read && self.curSamp < nitems_read() + len(input_items[0]):
->             // Hope that 10000/samp_rate is enough time to successfully send commands
->             // from gnuradio/host to USRP?
->             set_command_time((self.curSamp+10000) / self.samp_rate)
->             // tune different RXes to different frequencies
->             // operate GPIO pins
->             // ...
->             clear_command_time()
->             self.curSamp = self.curSamp + 10000
->          return 0
->
-> be what you are thinking of?
->
->
-> Thanks,
-> Luke
-Yes, like that.    Provided the PLL can actually re-tune within that 
-interval, etc.
 
 
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
+________________________________
+From: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.=
+com>
+Sent: Thursday, January 23, 2020 12:48 PM
+To: Sourin Mondal (Vehere) <sourin.mondal@vehere.com><mailto:sourin.mondal@=
+vehere.com>
+Subject: Re: [USRP-users] phase-aligning two USRPs without Octoclock
 
+On 01/22/2020 11:53 PM, Sourin Mondal (Vehere) wrote:
+
+Hi Marcus,
+Do I need to use 1 PPS also along with 10 MHz reference? And are there any =
+software commands to be used along with these hardware configuration for sy=
+nchronizing multiple USRPs without octoclock? If so what are those commands=
+?
+
+Regards,
+Sourin
+You would do well to spend some time with this app-note:
+
+https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices
+
+Indeed, there are many app-notes that might be relevant for you.
+
+Along with:
+
+http://files.ettus.com/manual/
+
+
+
+
+--_000_MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0MA1PR0101MB1701_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Marcus D. Leech &lt;p=
+atchvonbraun@gmail.com&gt;<br>
+<b>Sent:</b> Monday, January 27, 2020 11:54 AM<br>
+<b>To:</b> Sourin Mondal (Vehere) &lt;sourin.mondal@vehere.com&gt;<br>
+<b>Cc:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+>
+<b>Subject:</b> Re: [USRP-users] phase-aligning two USRPs without Octoclock=
+</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"background-color:#FFFFFF">
+<div class=3D"x_moz-cite-prefix">On 01/27/2020 01:00 AM, Sourin Mondal (Veh=
+ere) wrote:<br>
+</div>
+<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Hi Marcus,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Thanks for the information. Could you please also tell what is the accuracy=
+ with which the phases are aligned between USRP channels, when we use 10 MH=
+z reference to align, in pico-seconds or nano-seconds?</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Regards,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Sourin</div>
+</blockquote>
+The answer to that question depends very much on the hardware involved.<br>
+<br>
+In general, two synthesizers locked to the same clock won't have a zero pha=
+se *offset* from one another, but will be phase-coherent<br>
+&nbsp; on an ongoing basis.<br>
+<br>
+Now, for *some* types of Ettus hardware, there is special hardware that can=
+ arrange to phase-reset during tuning, so that all the participating<br>
+&nbsp; synthesizers will have small phase-offsets with respect to one anoth=
+er.<br>
+<br>
+We generally talk in terms of degrees, rather than picoseconds or nanosecon=
+ds.&nbsp; Residual phase offsets will typically be under 5 degrees.<br>
+<br>
+But keep in mind that things like differential heating of cables, and inter=
+nal circuit in ANY coherent radio can case the phase relationships<br>
+&nbsp; to drift slightly.&nbsp; <br>
+<br>
+<br>
+<br>
+<br>
+<blockquote type=3D"cite">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font color=3D"#000000" face=3D"Cal=
+ibri, sans-serif" style=3D"font-size:11pt"><b>From:</b> Marcus D. Leech
+<a class=3D"x_moz-txt-link-rfc2396E" href=3D"mailto:patchvonbraun@gmail.com=
+">&lt;patchvonbraun@gmail.com&gt;</a><br>
+<b>Sent:</b> Thursday, January 23, 2020 12:48 PM<br>
+<b>To:</b> Sourin Mondal (Vehere) <a class=3D"x_moz-txt-link-rfc2396E" href=
+=3D"mailto:sourin.mondal@vehere.com">
+&lt;sourin.mondal@vehere.com&gt;</a><br>
+<b>Subject:</b> Re: [USRP-users] phase-aligning two USRPs without Octoclock=
+</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"background-color:#FFFFFF">
+<div class=3D"x_x_moz-cite-prefix">On 01/22/2020 11:53 PM, Sourin Mondal (V=
+ehere) wrote:<br>
+</div>
+<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Hi Marcus,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Do I need to use 1 PPS also along with 10 MHz reference? And are there any =
+software commands to be used along with these hardware configuration for sy=
+nchronizing multiple USRPs without octoclock? If so what are those commands=
+?</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Regards,&nbsp;</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Sourin</div>
+<div dir=3D"auto">
+<div></div>
+</div>
+</blockquote>
+You would do well to spend some time with this app-note:<br>
+<br>
+<a class=3D"x_x_moz-txt-link-freetext" href=3D"https://kb.ettus.com/Synchro=
+nization_and_MIMO_Capability_with_USRP_Devices">https://kb.ettus.com/Synchr=
+onization_and_MIMO_Capability_with_USRP_Devices</a><br>
+<br>
+Indeed, there are many app-notes that might be relevant for you.<br>
+<br>
+Along with:<br>
+<br>
+<a class=3D"x_x_moz-txt-link-freetext" href=3D"http://files.ettus.com/manua=
+l/">http://files.ettus.com/manual/</a><br>
+<br>
+<br>
+</div>
+</blockquote>
+<br>
+</div>
+</body>
+</html>
+
+--_000_MA1PR0101MB170130A6AF3474B5B5C6BF428B0A0MA1PR0101MB1701_--
+
+
+--===============8399783588352467800==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8399783588352467800==--
+
