@@ -2,48 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6784014D00D
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Jan 2020 19:01:58 +0100 (CET)
-Received: from [::1] (port=53646 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C161D14D25C
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Jan 2020 22:18:19 +0100 (CET)
+Received: from [::1] (port=34798 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iwrf1-0005NE-4j; Wed, 29 Jan 2020 13:01:55 -0500
-Received: from mail-lf1-f50.google.com ([209.85.167.50]:46461)
+	id 1iwuj0-0008SE-44; Wed, 29 Jan 2020 16:18:14 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:38104)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <wandrewp@gmail.com>) id 1iwrex-0005Jb-HC
- for usrp-users@lists.ettus.com; Wed, 29 Jan 2020 13:01:51 -0500
-Received: by mail-lf1-f50.google.com with SMTP id z26so285340lfg.13
- for <usrp-users@lists.ettus.com>; Wed, 29 Jan 2020 10:01:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1iwuix-0008NY-5c
+ for usrp-users@lists.ettus.com; Wed, 29 Jan 2020 16:18:11 -0500
+Received: by mail-oi1-f171.google.com with SMTP id l9so1255548oii.5
+ for <usrp-users@lists.ettus.com>; Wed, 29 Jan 2020 13:17:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:from:date:message-id:subject:to;
- bh=Z0M1hMYOUYrbVkczMMt9QEkxY3X5kYx56clVsyirKnA=;
- b=L3Hs2q5QLXvLJL3baf+ZhNCfdZnOIpyUKiha3HB0hSW7I+0hTPYToFKSdgbAAdoogS
- 6x824qpp3HeOtQ3ONJllU5mxQ1Vw/nSs9Ez3WDvQTJpdeGTrtAEdcbFG0zmeoBxvDrd8
- ijHlzgQmIfN8Rdl1nnBe+J34QL7Eg9n46rvINs6ReLgTa/v4WdI4SolB5nLU53cgZ0FQ
- QtKrXl6a0u5ZgnMGS7L0J6pIfkbv/hW737bySXsVT77k/r9/4bnLlE+uBghKlbIJllL4
- /FFSNpmfZSsM/QZ4Bvl3DIXaM7BGQUkOGmXzFY5ChvLTL9qXmmAHSmfA+e/vE8Pc8I51
- A1RA==
+ bh=57KuQPs/QoIJL9hjagqv2gh4c6DiOb7H6xXrjqY0eiw=;
+ b=EVSgQ7oPVa9FSBnXly6vkbtLrIJ7BBUzdwmZc1izlZhtVH7OK10VyZLLFHZCofhVkD
+ tHrjxRRQAviL7WfwOnPzhuetGhXJnsXSezfUkDQBqDWAkcP/SxzmJ76hVl70TcA45uog
+ yV10pNuT9G4uiL9zc4YRjCKl6MuR3cPl/kkdHcnuDI6el6KqmMqWWdXTCjBYV+nT+4JB
+ zIFlPuNCyMH8WZ3X9cHRev0ycTF2yG2kLuR24nrPMz82UbtwdsDuHt+MuUO123XY73tA
+ d/9oHgrEJIndU503oX6iAbNJ12t2y1qpMr0eqvvhECzDziXTuFAq6B/FjebuUIpMXAq0
+ mRSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=Z0M1hMYOUYrbVkczMMt9QEkxY3X5kYx56clVsyirKnA=;
- b=j+bKH2U5WuuAL8snYcnwEbDNMOQUDOTvBRDlZFXFkCooMU4RSdSioOmx4BfR1hKWpY
- oY2pqg4LopaPmbvUJS0XGdyLvFkLWEToICXUMsxGbE5OfiFjjKqt+NHFCMoNjaAJFJ5g
- 633D2YQN9GBkYJ0e5R8HX7yriB1Mb+QuXyvenFshehp5odOmPm3vsphmxROxaUW4L4vN
- a4cMim15MBGXoUPAocong/ZWiLLfZnNVieyLYBLjV6atPnGoPaNaVOAPflOa3FZ5Ssla
- M6WBfBKto6e98Psnfs0+1zS3a4H5OrRZjkzs7k6+PzFahEvkzqxwvtRVJH+V/6vMhFvB
- HxuQ==
-X-Gm-Message-State: APjAAAW/lwiAbh58ewAZIRxr+hncYzO7lVcvFMOHBep+sLDKFEvAJ/77
- ooywU62JYmzo+mddo/ASfgeTFyYFAfwjNcxYrQPZ4D/c/fs=
-X-Google-Smtp-Source: APXvYqy6CZFOBNweGvWY53m40m1EJf79Cyt3qV9ABBkefvpfZMPkDlx6pj4X6wp/uUqbk6HkbDjpcTp60/dKV850Aqo=
-X-Received: by 2002:a19:a07:: with SMTP id 7mr282948lfk.66.1580320869883; Wed,
- 29 Jan 2020 10:01:09 -0800 (PST)
+ bh=57KuQPs/QoIJL9hjagqv2gh4c6DiOb7H6xXrjqY0eiw=;
+ b=WkOEImECbnJgY7IqiWWofYqEsQyIYTJftNvRr19CEkxIvZCnbo4UaCSdiKoF6tn5vi
+ p4/M9SYfA+F0it5gGZ5azY6BmoYFD5OUFH/rOw88vXg2gS+BvecZWwZV/MaYviZJHeiH
+ 0Q18qjQv2JG/F7rKbbKAmFIDxdFTnXAmZ4pINvZU4bnph7eHEUXwk/SHSZQ8XIhBGG3D
+ g8tLQzX+qyLkibNqZI3prMQIl80UlkGPV5LDj0wL3VxL4pHh9L7GJo2M4fwd5fWOgycB
+ OO+Fdtr0mfF0bO3xtzFTSP3eY8zx5iHloBV0x1nZNKK5s6igTG1w7EXDZsfhwKTC1GX1
+ oO/A==
+X-Gm-Message-State: APjAAAWM7Uvj50TR3+/BXv8FA4S1DE/UAiEl5vta6tMG57RzGK2qlOAi
+ iq/pBESo2QPfp3bdgZgJ98dV5tn32NO529aWzGeJCSAuND8=
+X-Google-Smtp-Source: APXvYqwKFpiyUV+mv3OjTq8UEBGrKSWoxurR54OT0hzgDcz9EoClvD4ZARiFft7z+VfQd1bW2VsNFs3jngri1+1emao=
+X-Received: by 2002:aca:889:: with SMTP id 131mr634316oii.3.1580332650102;
+ Wed, 29 Jan 2020 13:17:30 -0800 (PST)
 MIME-Version: 1.0
-Date: Wed, 29 Jan 2020 17:59:27 +0000
-Message-ID: <CAB50+dTNsvRc9atSJnU1mJcLMxSKPr_F_HFd=zhs7F4X0p-WyA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Converting my e310 RFNOC Block from 1 stream to 2
- streams (2 input/output ports)
+Date: Wed, 29 Jan 2020 16:17:19 -0500
+Message-ID: <CAB__hTSeb6wn_EVMtHKOr4cz98yRbkw4VDZpcdXEY1J+XWNN4g@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] RFNOC_OOT_SRCS cleared in top/n3xx/Makefile.srcs
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Andrew Payne via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Andrew Payne <wandrewp@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============3005019044609145740=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,44 +70,57 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hello,
+--===============3005019044609145740==
+Content-Type: multipart/alternative; boundary="0000000000003cc64e059d4dde0d"
 
-I have a working single-channel rfnoc fpga design file for the e310.
-I am using the axi wrapper with simple mode enabled.  Using the UHD
-xml files instead of c++.  2 settings registers.  Got it setup using
-GNURadio. For a while I was running my flowgraph as 2 single stream
-blocks (also building an FPGA image with 2 identical RFNOC blocks)
-doing the same thing, but I decided to consolidate it to 1 block that
-always has 2 streams.  uhd_usrp_probe successfully finds the block
-port, BUT a weird thing is that there is no longer a message
-indicating no block controller was found... (i might have edited the
-noc_block_impl.cc or ctrl file but I do not know).  How can I make
-sure it's just the UHD xml file that's chosen?
+--0000000000003cc64e059d4dde0d
+Content-Type: text/plain; charset="UTF-8"
 
-I'm in the process of converting it to 2 streams, and that's where I
-am getting hung up.  When running the GRC file I now only have
-timeouts on channel 0, where I haven't had them before.
+I have been struggling all day with why I can't build my OOT rfnoc blocks
+for the N310 using v3.15.0.0.  It appears that the problem is that there is
+a file top/n3xx/Makefile.srcs that is clearing the RFNOC_OOT_SRCS variable
+after it is set in the users OOT makefile. I just commented the line in
+top/n3xx/Makefile.srcs and that seems to do the trick.  Is this a known
+issue?
 
-I've based my conversion on the noc_block_ddc design since that one
-can do 2 channels.  So beyond that I have updated my UHD XML file and
-the Gnuradio XML file.  Some notable things I have changed:
 
-UHD XML file:
-1. added 2 more sink/source ports so I now have in0, in1, out0, out1.
-2. added 2 more arg blocks to the 2 I already had (2 settings
-registers but they apply to 2 ports, so 4 total arg blocks now).
+# Makefile.n3xx.inc
+...
+include $(BASE_DIR)/n3xx/Makefile.OOT.inc
+include $(BASE_DIR)/n3xx/Makefile.srcs
+...
 
-Verilog design file:
-Updated closely following noc_block_ddc, generating 2 axi wrappers and
-user IP, etc.  Made sure to change rb_stb to 2'b11 for the noc_shell
-input paramter.
+# Makefile.srcs
+RFNOC_OOT_SRCS = \
 
-Any guidance is helpful.
+--0000000000003cc64e059d4dde0d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Andrew
+<div dir=3D"ltr"><div>I have been struggling all day with why I can&#39;t b=
+uild my OOT rfnoc blocks for the N310 using v3.15.0.0.=C2=A0 It appears tha=
+t the problem is that there is a file top/n3xx/Makefile.srcs that is cleari=
+ng the RFNOC_OOT_SRCS variable after it is set in the users OOT makefile. I=
+ just commented the line in top/n3xx/Makefile.srcs and that seems to do the=
+ trick.=C2=A0 Is this a known issue?</div><div><br></div><div><br></div># M=
+akefile.n3xx.inc<div>...<br><div>include $(BASE_DIR)/n3xx/Makefile.OOT.inc<=
+br>include $(BASE_DIR)/n3xx/Makefile.srcs<br></div></div><div>...</div><div=
+><br></div><div># Makefile.srcs</div><div>RFNOC_OOT_SRCS =3D \<br></div></d=
+iv>
+
+--0000000000003cc64e059d4dde0d--
+
+
+--===============3005019044609145740==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3005019044609145740==--
+
