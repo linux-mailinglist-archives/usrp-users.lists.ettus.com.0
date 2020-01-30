@@ -2,50 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2296514D317
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Jan 2020 23:28:53 +0100 (CET)
-Received: from [::1] (port=54942 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BED114E0DB
+	for <lists+usrp-users@lfdr.de>; Thu, 30 Jan 2020 19:36:18 +0100 (CET)
+Received: from [::1] (port=48520 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iwvpI-0005fQ-RM; Wed, 29 Jan 2020 17:28:48 -0500
-Received: from mail-lf1-f49.google.com ([209.85.167.49]:41861)
+	id 1ixEfl-0005bh-WC; Thu, 30 Jan 2020 13:36:14 -0500
+Received: from mail-vs1-f41.google.com ([209.85.217.41]:40466)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <wandrewp@gmail.com>) id 1iwvpF-0005ao-Cp
- for usrp-users@lists.ettus.com; Wed, 29 Jan 2020 17:28:45 -0500
-Received: by mail-lf1-f49.google.com with SMTP id m30so828859lfp.8
- for <usrp-users@lists.ettus.com>; Wed, 29 Jan 2020 14:28:25 -0800 (PST)
+ (Exim 4.92) (envelope-from <richard.bell4@gmail.com>)
+ id 1ixEfi-0005SA-Cr
+ for USRP-users@lists.ettus.com; Thu, 30 Jan 2020 13:36:10 -0500
+Received: by mail-vs1-f41.google.com with SMTP id g23so2708292vsr.7
+ for <USRP-users@lists.ettus.com>; Thu, 30 Jan 2020 10:35:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YxoXkM2n+H7tK6FmCSGriCD2wh9kI8e4Tc/7LFgqxT4=;
- b=ME+wrYZtgMArIipA2hFMGmSam4yJrAH/+TOanuIeRdMAzbJPJVnphB6680GD7EP5cX
- M0s/x1ggH81Hsqg+N7GzfzHhQlmfaHdXiRVgLidI6g4Fsuv0aGq7etx+60aGgDMUyZSF
- WTh5Y2mtXp38S5otU1O4/vBYwATveznyFIiXrSPCz3T0NUVPnBzYC8NNftiaMxv8Bo24
- laxj6uEhM4zuIcdfM5+AadYv/Nx0M6IXUpYXZDEoYiU99veyRFlBPQJObGPuv+BkdTNy
- l5P8dcUiffbAibwcTJyFPLEU0seaEPb3ThNFA5ZTJRW/Ui1SOtlEXBDaGE0PvN4JGrIY
- zMEQ==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=i6QdiUgTbIWOsz2XeA4ataBub1EjCTePCh8NQAdDsLk=;
+ b=iZu5VfP6QE3HBOuKrGt55TscnJoE2Cee6ha7bZ1Q53NT0M0HgMOwIDXHIa+FF2S3iQ
+ J4Lc1RLePSc1TSRIB3UFDjBXTYf9ZOOa4G6RSjhXADwcekIf1v08FQYe2zdmVJ5HAQIL
+ nJKLrCYexUmPQNubuh8qXGT2AXfRV8GcofMQxZdZAWKLqsrhfJeiieXzvksm3VVw0xnz
+ YCyZ5CuYs5ejO9yw0Xav11uyxdoXai9c2ITjrnwwUepKbmNgWZzQtSa2i+vKyDNVKaNL
+ gHaIYdOdq2mYa2jZ39l6JgdAZLt44+T6ZDNrcI+xfIc4WtB0GMeaAighUigosDDUTSVX
+ cqgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=YxoXkM2n+H7tK6FmCSGriCD2wh9kI8e4Tc/7LFgqxT4=;
- b=W/S9s5cg+oFpfRUzc1ZLc5kZWkm6nigeZvDTOSmQ8QBFISY6KttBrseL98z9/BdYIT
- JyFGIJwN1xbRB02sYQN/qyvsWpvvijR4Hnv3KwL3J6I1hpNuXCYJSEoRygJwHjDWP+Ds
- oQpan4gQG92OzIWczPwSMKF7BB8YMjXzQSoujjYTZUFtfBQySxwkgQ4lnmihwRodwhTS
- JiNnXETTvTT+efBqao8EAH8oLeBjxVEySAqgvpqe0cqiT3w0ZBtjhQq7eQJcgE/mw3yL
- QByAOSZtlCS82fZv1nBxlM918a+WCq7hmKNwsd/Mt0hVehnpjYmvwBX/7Ol0Ma3PYIxg
- /jHw==
-X-Gm-Message-State: APjAAAWh3T0PO071OPmnl+BoJHEMJgEhxH8VtjA8q+grqztpimvrTh+0
- 6mJI0M/iTX5jMuMDlTw9ndoVQIOrh43mHhsIRuU=
-X-Google-Smtp-Source: APXvYqwrzFiaxJygOSS3/7ewPo8GOvFZW2yMuxCSnpxipjIHrcxy90oqoZ1lfwLoK9DKgCyCh1rnw2opi0wAJJ1g62c=
-X-Received: by 2002:a19:5f05:: with SMTP id t5mr795870lfb.149.1580336884028;
- Wed, 29 Jan 2020 14:28:04 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=i6QdiUgTbIWOsz2XeA4ataBub1EjCTePCh8NQAdDsLk=;
+ b=RyWYTQ7B3lQ3SmuK7kVB8umg2uxr9RFl3jWwCCTAg+9MEZIOdP3OUSh1hO0uGKzhUK
+ w5oh7LaafuhSHWDC4n3hPxV8JCxrjOwlEGgz8USGXOqH6Vt9qUVWrDQfZ9HkpKeAuTyS
+ /72Z4uuizlug6G7hABYmtZeNoei/hVuw8y5TV7mQhQn5ltAG/4Fq+9p3fJ9Q6KWJdMH1
+ QScQgYi7wTACkLd50usGKOHtA4EY+neRja6PPy75xAQa+JZj7KSXKm5soRpWBMJyOnZc
+ 2K6n9gersjEUn7ZRYSPzE4WsCpjqDnUzx9NdbrHuF4Wu9HUy3cG7AkUcYqaX6tHn51b2
+ Y69g==
+X-Gm-Message-State: APjAAAVkVbloEQCIVmd+i3lvbdmyzilH7/vYMZGGf70P/YEXZ5+S/iAB
+ npEL9XCmrFWLBsDmKpQxreceiJ3jngty+PjdswJhQkJb
+X-Google-Smtp-Source: APXvYqz1I/vo/nyTZqk93DQI7YEeyZ/ksMp9xRaBx3cl50iFlRiR9Nj66xeIFPszi6+7Y9eNSYq7amsmAGo8kzPJmAE=
+X-Received: by 2002:a67:fb14:: with SMTP id d20mr4048212vsr.136.1580409329551; 
+ Thu, 30 Jan 2020 10:35:29 -0800 (PST)
 MIME-Version: 1.0
-References: <CAB__hTSeb6wn_EVMtHKOr4cz98yRbkw4VDZpcdXEY1J+XWNN4g@mail.gmail.com>
-In-Reply-To: <CAB__hTSeb6wn_EVMtHKOr4cz98yRbkw4VDZpcdXEY1J+XWNN4g@mail.gmail.com>
-Date: Wed, 29 Jan 2020 17:27:53 -0500
-Message-ID: <CAB50+dR9Cmiwps1k=NAabw-xkJ8gibFhKt=1wOFhrhfH5CCo1A@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Subject: Re: [USRP-users] RFNOC_OOT_SRCS cleared in top/n3xx/Makefile.srcs
+Date: Thu, 30 Jan 2020 10:35:18 -0800
+Message-ID: <CAMMoi3shY_pfUQUEo9Ct0KD2zZiNop_KF12P8nr=bLB7k8Wh5A@mail.gmail.com>
+To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Subject: [USRP-users] Maintaining USRP Carrier Frequency Lock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Andrew Payne via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Andrew Payne <wandrewp@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1915141312128958820=="
+From: Richard Bell via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Richard Bell <richard.bell4@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0944977240607134881=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,75 +71,57 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1915141312128958820==
-Content-Type: multipart/alternative; boundary="00000000000099199a059d4eda3d"
+--===============0944977240607134881==
+Content-Type: multipart/alternative; boundary="000000000000b00ed0059d5fb8d0"
 
---00000000000099199a059d4eda3d
+--000000000000b00ed0059d5fb8d0
 Content-Type: text/plain; charset="UTF-8"
 
-I had the same issues! I just ended up putting my verilog file paths in
-Makefile.n3xx.inc and it works. This might need to be fixed unless I did
-something wrong.
+Hello,
 
-On Wed, Jan 29, 2020 at 16:18 Rob Kossler via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+I am trying to collect serveral data sets through USRP X300's. Assume each
+collection is 1000 samples long and is initiated by a user typing a button
+on the keyboard. Each time the user hits a key 1000 samples are collected
+and stored to a file. The time between each collect is defined by the user
+hitting the key.
 
-> I have been struggling all day with why I can't build my OOT rfnoc blocks
-> for the N310 using v3.15.0.0.  It appears that the problem is that there is
-> a file top/n3xx/Makefile.srcs that is clearing the RFNOC_OOT_SRCS variable
-> after it is set in the users OOT makefile. I just commented the line in
-> top/n3xx/Makefile.srcs and that seems to do the trick.  Is this a known
-> issue?
->
->
-> # Makefile.n3xx.inc
-> ...
-> include $(BASE_DIR)/n3xx/Makefile.OOT.inc
-> include $(BASE_DIR)/n3xx/Makefile.srcs
-> ...
->
-> # Makefile.srcs
-> RFNOC_OOT_SRCS = \
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+I need to make sure the USRPs are not loosing carrier lock between these
+collections. I want the USRPs to stay locked to whatever center frequency
+is set and sit there for the length of the time the user wants to collect
+data sets. What is the best way to ensure this?
 
---00000000000099199a059d4eda3d
+For example, if I use GNU Radio and head blocks feeding into file sinks
+with calls to tb.start and tb.stop, does the call to tb.stop cause the USRP
+to forget the carrier it was locked to and start over again on the next
+call to tb.start? Can I call tb.start multiple times without a call to
+tb.stop?
+
+Thank for any help you can provide.
+
+--000000000000b00ed0059d5fb8d0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><div dir=3D"auto">I had the same issues! I just ended up putting my ve=
-rilog file paths in Makefile.n3xx.inc and it works. This might need to be f=
-ixed unless I did something wrong.=C2=A0</div></div><div><br><div class=3D"=
-gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jan 29, 2020 at =
-16:18 Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ett=
-us.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex"><div dir=3D"ltr"><div>I have been struggling all day with wh=
-y I can&#39;t build my OOT rfnoc blocks for the N310 using v3.15.0.0.=C2=A0=
- It appears that the problem is that there is a file top/n3xx/Makefile.srcs=
- that is clearing the RFNOC_OOT_SRCS variable after it is set in the users =
-OOT makefile. I just commented the line in top/n3xx/Makefile.srcs and that =
-seems to do the trick.=C2=A0 Is this a known issue?</div><div><br></div><di=
-v><br></div># Makefile.n3xx.inc<div>...<br><div>include $(BASE_DIR)/n3xx/Ma=
-kefile.OOT.inc<br>include $(BASE_DIR)/n3xx/Makefile.srcs<br></div></div><di=
-v>...</div><div><br></div><div># Makefile.srcs</div><div>RFNOC_OOT_SRCS =3D=
- \<br></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I am trying to collec=
+t serveral data sets through USRP X300&#39;s. Assume each collection is 100=
+0 samples long and is initiated by a user typing a button on the keyboard. =
+Each time the user hits a key 1000 samples are collected and stored to a fi=
+le. The time between each collect is defined by the user hitting the key.</=
+div><div><br></div><div>I need to make sure the USRPs are not loosing carri=
+er lock between these collections. I want the USRPs to stay locked to whate=
+ver center frequency is set and sit there for the length of the time the us=
+er wants to collect data sets. What is the best way to ensure this?</div><d=
+iv><br></div><div>For example, if I use GNU Radio and head blocks feeding i=
+nto file sinks with calls to tb.start and tb.stop, does the call to tb.stop=
+ cause the USRP to forget the carrier it was locked to and start over again=
+ on the next call to tb.start? Can I call tb.start multiple times without a=
+ call to tb.stop? <br></div><div><br></div><div>Thank for any help you can =
+provide.<br></div></div>
 
---00000000000099199a059d4eda3d--
+--000000000000b00ed0059d5fb8d0--
 
 
---===============1915141312128958820==
+--===============0944977240607134881==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,5 +132,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1915141312128958820==--
+--===============0944977240607134881==--
 
