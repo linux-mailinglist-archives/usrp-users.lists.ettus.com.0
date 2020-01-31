@@ -2,55 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99CAF14F09D
-	for <lists+usrp-users@lfdr.de>; Fri, 31 Jan 2020 17:30:15 +0100 (CET)
-Received: from [::1] (port=40680 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 590B614F21C
+	for <lists+usrp-users@lfdr.de>; Fri, 31 Jan 2020 19:23:30 +0100 (CET)
+Received: from [::1] (port=43138 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ixZBL-0006zv-5f; Fri, 31 Jan 2020 11:30:11 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:44761)
+	id 1ixaww-00060M-PW; Fri, 31 Jan 2020 13:23:26 -0500
+Received: from mail-lf1-f41.google.com ([209.85.167.41]:37518)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1ixZBF-0006ux-DN
- for usrp-users@lists.ettus.com; Fri, 31 Jan 2020 11:30:05 -0500
-Received: by mail-ot1-f50.google.com with SMTP id h9so7066568otj.11
- for <usrp-users@lists.ettus.com>; Fri, 31 Jan 2020 08:29:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=30u/oNhMaU8xopfyXLcZxuL1wEZGgMoWLOGxa6HmBc8=;
- b=WusR1WF/LS/uQHRfiti3Q4iwWqIj03Uw/l3eYJfyxEGcXuAqx3FrfIz7dEsDaH+8QM
- qk5WvzEUKYtWGXQwUkLQw9Lkpoovz9gCvr/rOVNSsOFOdnYcvIW9j6t2GN5/ZfLBIn8Y
- puwufZkxNuQwMXTOv0oiw3pl12ChHbceNVG+HNer+t1+Vvv7a/eSuHkvSEqQF8ZXvSjQ
- izx95BqqvGlfnwhLAGDrcXMZViSEyCeSgLHL/F0bznhGB2ba0WKs89BJsayg9HwydBKw
- SvONYb1rg7yXPbLFukbMAvgXm+qi7voTRDgUdFac3T74Yo53uVraDqgq3jCP+Wn2O5pf
- yKhA==
+ (Exim 4.92) (envelope-from <mbraun@gnuradio.org>) id 1ixaws-0005vc-4B
+ for usrp-users@lists.ettus.com; Fri, 31 Jan 2020 13:23:22 -0500
+Received: by mail-lf1-f41.google.com with SMTP id b15so5550606lfc.4
+ for <usrp-users@lists.ettus.com>; Fri, 31 Jan 2020 10:23:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gnuradio-org.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=Iz5slXuWt5Qpc1ELDT/FhiRUN2MaPzE8rUQDInQUPmM=;
+ b=iTUn4P3njdLHlcwTBQ2Ct75zOuAMZ4JHly1Y7Zq1sVQ41gB1c0uN+oZhRb1LR44cfB
+ DpFhTD4wslfUj5oQl58rZiRDQPWd1bMqFZQjuUJdQnHZyTff0Qkl+AvXx1WbewxRSZK9
+ nxlUFNR77YtfEAf9uJqPgaeiBOSbcQtd5LEnxx036ft3cZW2oB4t62NEFYI+AsLJ7dxm
+ wNcjeQf0pRtyieb/GTlKBncBcL5aUnygN+5+/jIH9awFTFd1eSpOlsN5wRjJBV00VbL1
+ 10is6iGNy+uunMnfI3/UEfSkynkE5hK8TTZaV8XR63LADsSNTMCcdrISy9fj+1loZ5o/
+ 0isg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=30u/oNhMaU8xopfyXLcZxuL1wEZGgMoWLOGxa6HmBc8=;
- b=sbs8cdws1nq285FrzPiQC8pfvU39Hcb20OfK+SqatSwAD0Gk+gHKGjbaCAlHhIdP78
- nMZExzhPph62a/9YQBiAdyYbudIz4lGxTbASCiSqIAnzrGguknpvgtaf1DbO5nqUkH2H
- spM7w/2WXi2ZT2iIOyM7t7y7dUtLEwc4fRWpo5/MSo5iHGW851ZT3UNQnCbdGXiuNAJ0
- 0D6e1OJkl+vXfBR4og8MTvEKTq00XBXXCJs4D6mSHDUAmxh7pMCGO4NGKQu36c5Qauip
- faxO3XaALO6GS3ulRY1VNycHh9OV1CtinDFAb8HBIKvDuE/0a8UQmWgjCGsKmguN+7fZ
- RQ6w==
-X-Gm-Message-State: APjAAAXGMf6XQ0llCc2Hh+9knd2ZwgEJ/KM/3jOUObVVX7PSP+8brFoc
- bh2kGRAaUxmFivcHoR++BhNT8d3O1VD3T6nG7QSjAZj1
-X-Google-Smtp-Source: APXvYqyXJlVg+TQYRsdGiY7UbwgNt2VGec6LbHiTMxbuoZ6RDeRAfU/ubL6MkzNGdUpaRN8mOp7jc9jTCnh/yRvb4P0=
-X-Received: by 2002:a05:6830:95:: with SMTP id
- a21mr8353013oto.171.1580488164417; 
- Fri, 31 Jan 2020 08:29:24 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=Iz5slXuWt5Qpc1ELDT/FhiRUN2MaPzE8rUQDInQUPmM=;
+ b=kVEO2IIDyybj3JLt36B5rZJAqweUOCwpCSQCDt0mffWMIxnUwWJCSs2XMkM5co7WP3
+ +9jjNpj9hsiNr4Sl2XEfubVX/SMojJmyBzBZ4/NDLpZY4qLLwBJugqgLbBuJ/aOyD98U
+ vwzNJq3oukzUVxT3qX4q3cZfju13//UpIrgYcdLFEoW6U8Ik9nIOMM6DSZ4aatSamyFB
+ L7CkeN/+KmsrNsVOjJvrG9vCPzFoV2SVkasVIZ9eEPSOagnChbh9EAHcHoORQrzWkTb+
+ PkEEomy//Hcnr3V7/91llNgdPwZES6IrqPe+aVO9lhQXwteuXKUVYphTaZaEtx9KD2N3
+ RpUQ==
+X-Gm-Message-State: APjAAAWMGw+BmPR3VLiiqNPWG0zbPN13rxX+gSVRI79YgR59ZyiaQOgz
+ eojCM9z7+1X64ryVHmZXzKMp3TCk4DUlFdmZR1nQcA==
+X-Google-Smtp-Source: APXvYqyxP/p5B8n2bJLVOEUXmVhbWlKUDLSzQVzfkOpiMmkumHKRqII/1+NqZJt/c96HqNml2PW+3dsZzGDxepq+utE=
+X-Received: by 2002:ac2:59dd:: with SMTP id x29mr6035931lfn.95.1580494960593; 
+ Fri, 31 Jan 2020 10:22:40 -0800 (PST)
 MIME-Version: 1.0
-References: <d509cd368f8d4167a1fdff12613c35a2@dlr.de>
- <CAL263iwKA_R=30JEohT88GPAP6xm-V1VLSL2mNtk1UbJJ9bJPw@mail.gmail.com>
- <CAL263iyqgz_ALuntLoCcpum7k20eXKEXYHUZhqNouUr9r7cwig@mail.gmail.com>
- <CAB__hTSTZwsM7gbsPNfm8tADxyZ=wgnCqRGbK1EDub787nEKeg@mail.gmail.com>
- <CAB__hTRiihYRt+KzOGf1J0js5X7z7O4iPWE_FeZV7uH9m25_bg@mail.gmail.com>
-In-Reply-To: <CAB__hTRiihYRt+KzOGf1J0js5X7z7O4iPWE_FeZV7uH9m25_bg@mail.gmail.com>
-Date: Fri, 31 Jan 2020 11:29:13 -0500
-Message-ID: <CAB__hTQwrzbiJDc+3ywNtcJvaQmUhpcpe5F9bvBdhnXv=8DhEA@mail.gmail.com>
-To: Nate Temple <nate.temple@ettus.com>
-Subject: Re: [USRP-users] Default RFNoC image for N310 does not compile
+Date: Fri, 31 Jan 2020 10:22:29 -0800
+Message-ID: <CAH_xppFmW7dRBzPEdkDfgN3pk60f-J5Zj1QyBhFk2K7Az6ccDQ@mail.gmail.com>
+To: discuss-gnuradio@gnu.org, 
+ "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] GNU Radio Conference 2020: Call for Participation!
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,10 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0772815157833837819=="
+From: Martin Braun via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Martin Braun <martin@gnuradio.org>
+Content-Type: multipart/mixed; boundary="===============1548604163518868708=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,418 +72,167 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0772815157833837819==
-Content-Type: multipart/alternative; boundary="0000000000009cde32059d721378"
+--===============1548604163518868708==
+Content-Type: multipart/alternative; boundary="000000000000b21f2e059d73a837"
 
---0000000000009cde32059d721378
+--000000000000b21f2e059d73a837
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The issue is solved now.  At first I didn't realize that the patch was
-related to the build of the DDR IP component, so when I rebuilt without
-clean-ing, the DDR output files were not re-built.  I deleted the DDR IP
-folder in the build-ip folder and re-ran the build and now it is past the
-point where the error occurred.  Sorry for the false alarm.
-Rob
+GRCon 2020 celebrates and showcases the substantial and remarkable progress
+of GNU Radio over the past two decades. We invite developers and users from
+the GNU Radio community to present your projects, presentations, papers,
+posters, and problems at GNU Radio Conference 2020.
 
-On Thu, Jan 30, 2020 at 3:43 PM Rob Kossler <rkossler@nd.edu> wrote:
+GRCon20 will be held September 14-18, 2020 in Charlotte, North Carolina,
+USA. <http://localhost:1313/grcon/grcon20/charlotte>
 
-> Hi Nate,
-> I encountered the "Conflicting VCC voltages in bank 32" error while trying
-> to build an N310 XG RFNOC image on v3.15.0.0 and noticed your user's list
-> email below which indicated that Vivado 2018.3 requires patch AR71898 in
-> order to overcome a bug causing this error. However, after installing the
-> patch I am still getting the error.  Perhaps the patch is not installed
-> correctly, but the build log file (see snippets below) seems to indicate
-> that it is. The second line in the log file shows "# Vivado v2018.3_AR71898
-> (64-bit)" which to me indicates that it sees the patch. However, you will
-> find the build error mentioned above toward the end of the log.  Any ideas?
-> Is there another way to determine if the patch is successfully installed?
->
-> Rob
->
-> #-----------------------------------------------------------
-> # Vivado v2018.3_AR71898 (64-bit)
-> # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
-> # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-> # Start of session at: Thu Jan 30 11:51:43 2020
-> # Process ID: 6739
-> # Current directory: /afs/
-> crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/build-N310_RFNOC_XG
-> # Command line: vivado -mode batch -source /afs/
-> crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/build_n3xx.tcl
-> -log build.log -journal n3xx.jou
-> # Log file: /afs/
-> crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/build-N310_RFNOC_XG/build.log
-> # Journal file: /afs/
-> crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/build-N310_RFNOC_XG/n3xx.jou
-> #-----------------------------------------------------------
-> ...
-> ...
-> ...
-> Attempting to get a license for feature 'Implementation' and/or device
-> 'xc7z100'
-> INFO: [Common 17-349] Got license for feature 'Implementation' and/or
-> device 'xc7z100'
-> INFO: [Common 17-1540] The version limit for your license is '2019.07' and
-> has expired for new software. A version limit expiration means that,
-> although you may be able to continue to use the current version of tools or
-> IP with this license, you will not be eligible for any updates or new
-> releases.
-> INFO: [DRC 23-27] Running DRC with 8 threads
-> INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
-> INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for
-> more information.
-> Running DRC as a precondition to command place_design
-> INFO: [DRC 23-27] Running DRC with 8 threads
-> ERROR: [DRC BIVC-1] Bank IO standard Vcc: Conflicting Vcc voltages in bank
-> 34. For example, the following two ports in this bank have conflicting
-> VCCOs:
-> ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=1.500) and ddr3_addr[15]
-> (LVCMOS18, requiring VCCO=1.800)
-> WARNING: [DRC CHECK-3] Report rule limit reached: REQP-1839 rule limit
-> reached: 20 violations have been found.
-> WARNING: [DRC CHECK-3] Report rule limit reached: REQP-1840 rule limit
-> reached: 20 violations have been found.
-> ...
-> ...
-> ...
-> INFO: [Vivado_Tcl 4-198] DRC finished with 1 Errors, 52 Warnings
-> INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for
-> more information.
-> ERROR: [Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.
-> INFO: [Common 17-83] Releasing license: Implementation
-> 34 Infos, 63 Warnings, 0 Critical Warnings and 2 Errors encountered.
-> place_design failed
-> place_design: Time (s): cpu = 00:01:07 ; elapsed = 00:00:58 . Memory (MB):
-> peak = 9161.891 ; gain = 0.000 ; free physical = 43703 ; free virtual =
-> 93417
-> ERROR: [Common 17-39] 'place_design' failed due to earlier errors.
->
->     while executing
-> "place_design -directive $pla_dir"
->     (procedure "vivado_strategies::implement_design" line 23)
->     invoked from within
-> "vivado_strategies::implement_design $n3xx_strategy"
->     (file "/afs/
-> crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/build_n3xx.tcl"
-> line 28)
-> INFO: [Common 17-206] Exiting Vivado at Thu Jan 30 12:40:04 2020...
->
->
->>
->>
->> On Mon, Dec 9, 2019 at 2:43 PM Nate Temple via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->>> Hi Robert,
->>>
->>> So this is a bug related to Vivado, you will need to install this linked
->>> below patch and it should resolve it.
->>>
->>> https://www.xilinx.com/support/answers/71898.html
->>>
->>> Regards,
->>> Nate Temple
->>>
->>> On Mon, Dec 9, 2019 at 10:38 AM Nate Temple <nate.temple@ettus.com>
->>> wrote:
->>>
->>>> Hi Robert,
->>>>
->>>> Thanks for the bug report.
->>>>
->>>> If you're just trying to use RFNoC at this point, I would recommend to
->>>> stick with the latest stable release, which at this time is v3.14.1.1.
->>>>
->>>> Note, 3.14.x.x UHD will require Vivado 2017.4.
->>>>
->>>>
->>>> Regards,
->>>> Nate Temple
->>>>
->>>> On Mon, Dec 9, 2019 at 7:33 AM Robert via USRP-users <
->>>> usrp-users@lists.ettus.com> wrote:
->>>>
->>>>> Hi all!
->>>>>
->>>>> I tried to compile the default RFNoC image for the N310, using UHD on
->>>>> tag v3.15.0.0-rc2 and Xilinx Vivado 2018.3.1.
->>>>>
->>>>> Running "make N310_RFNOC_XG", the IP cores are compiled successfully,
->>>>> but then Vivado shows the following errors:
->>>>>
->>>>> ERROR: [Synth 8-524] part-select [15:8] out of range of prefix
->>>>> 'STR_SINK_FIFOSIZE'
->>>>> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
->>>>> ERROR: [Synth 8-521] parameter assignment could not be resolved to a
->>>>> constant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]
->>>>> ERROR: [Synth 8-196] conditional expression could not be resolved to a
->>>>> constant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:239]
->>>>> WARNING: [Synth 8-693] zero replication count - replication ignored
->>>>> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:26]
->>>>> WARNING: [Synth 8-693] zero replication count - replication ignored
->>>>> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:27]
->>>>> WARNING: [Synth 8-693] zero replication count - replication ignored
->>>>> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:31]
->>>>> ERROR: [Synth 8-6156] failed synthesizing module
->>>>> 'noc_shell__parameterized9'
->>>>> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:21]
->>>>> ERROR: [Synth 8-6156] failed synthesizing module 'noc_block_fosphor'
->>>>> [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_block_fosphor.v:8]
->>>>> ERROR: [Synth 8-6156] failed synthesizing module 'n3xx_core'
->>>>> [/usr/local/src/uhd/fpga-src/usrp3/top/n3xx/n3xx_core.v:17]
->>>>> ERROR: [Synth 8-6156] failed synthesizing module 'n3xx'
->>>>> [/usr/local/src/uhd/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]
->>>>>
->>>>> The full build.log file is attached. I did not modify any files, just
->>>>> trying to compile the RFNoC example as provided.
->>>>>
->>>>>
->>>>>
->>>>>
->>>>> Btw I also tried to build the default image with "make N310_XG", this
->>>>> one compiles but failed later during DRC:
->>>>>
->>>>> [DRC BIVC-1] Bank IO standard Vcc: Conflicting Vcc voltages in bank
->>>>> 34. For example, the following two ports in this bank have conflicting
->>>>> VCCOs:
->>>>> ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=1.500) and ddr3_addr[15]
->>>>> (LVCMOS18, requiring VCCO=1.800)
->>>>> [Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>
->>>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
+You may make one or more submissions under the following categories for
+presentation at GRCon. In addition to submitting a presentation, you may
+submit a paper to the Technical Proceedings of GRCon20. You do not need to
+submit a paper to the Proceedings in order to present at GRCon.
+*Talks* are 30 minutes long, including 5 minutes reserved for audience
+questions. Each presentation should be a slide-deck that can be shared
+publicly (PDF) after the conference. Real-world results using GNU Radio and
+hardware will be favored over simulation-only work.
 
---0000000000009cde32059d721378
+Talks will be recorded and published on the GNU Radio YouTube channel after
+the conference.
+
+*Papers* can be submitted with or without a talk. Authors are encouraged to
+attend the conference, but it is not a requirement for paper acceptance.
+Detailed real-world results using GNU Radio are encouraged.
+
+*Workshops* are 1=E2=80=934 hours long, and should have an educational or =
+=E2=80=9CHow-To=E2=80=9D
+approach, with a large hands on portion. If slides are used, they should be
+publicly shareable (PDF) after the conference.
+
+*Lightning Talks* are very concise (4-5 minutes), talks on topics of high
+interest to GNU Radio users and developers, and provide a chance for new
+presenters to share their use cases, projects or demos.
+
+*Posters* can display any type of material that you believe is interesting
+to the community, and while most posters are technical, they don=E2=80=99t =
+have to
+be.
+
+To submit your content for the conference, visit the submission page for
+more details and instructions:
+https://www.gnuradio.org/grcon/grcon20/submit/
+
+*Dates*
+
+Submission deadlines are split into two rounds:
+
+First round closes *17 April 2020*. Final round closes *1 September 2020*.
+
+All contributions submitted by 17 April 2020 will get a final decisions of
+acceptance by *29 June 2020*. All contributions submitted between 17 April
+and 1 September will be accepted/rejected on a rolling basis. We do not
+guarantee a notification deadline for submissions after 17 April.
+Submissions for presentations may close sooner than 1 September if all
+available speaker slots are taken.
+
+If you have questions or need assistance with the submission system, or
+have content that doesn't quite fit and you want to talk it over, please
+email us at grcon@gnuradio.org.
+
+If your submission is accepted, you *must* register for the conference or
+your talk will be dropped from the schedule. Please use the speaker
+registration in this case in order to lock in the regular price.
+
+Please note that submitting a paper to the Technical Proceedings is *not*
+required to submit a Talk, Tutorial, or Poster, but is *strongly*
+encouraged. You also do *not* need to attend the conference to publish in
+the Technical Proceedings.
+
+
+We are looking forward to your submissions!
+
+--The GNU Radio Conference Committee
+
+--000000000000b21f2e059d73a837
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">The issue is solved now.=C2=A0 At first I=
- didn&#39;t realize that the patch was related to the build of the DDR IP c=
-omponent, so when I rebuilt without clean-ing, the DDR output files were no=
-t re-built.=C2=A0 I deleted the DDR IP folder in the build-ip=C2=A0folder a=
-nd re-ran the build and now it is past the point where the error occurred.=
-=C2=A0 Sorry for the false alarm.<div>Rob</div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 30, 2020 at 3:43=
- PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
-dir=3D"ltr"><div dir=3D"ltr">Hi Nate,</div><div dir=3D"ltr">I encountered t=
-he &quot;Conflicting VCC voltages in bank 32&quot; error while trying to bu=
-ild an N310 XG RFNOC image on v3.15.0.0 and noticed your user&#39;s list em=
-ail below which indicated that Vivado 2018.3 requires patch AR71898 in orde=
-r to overcome a bug causing this error. However, after installing the patch=
- I am still getting the error.=C2=A0 Perhaps the patch is not installed cor=
-rectly, but the build log file (see snippets below) seems to indicate that =
-it is. The second line in the log file shows &quot;# Vivado v2018.3_AR71898=
- (64-bit)&quot; which to me indicates that it sees the patch. However, you =
-will find the build error mentioned above toward the end of the log.=C2=A0 =
-Any ideas? Is there another way to determine if the patch is successfully i=
-nstalled?</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Rob</div><div cl=
-ass=3D"gmail_quote"><div><br></div><font face=3D"monospace">#--------------=
----------------------------------------------<br># <span style=3D"backgroun=
-d-color:rgb(255,255,0)">Vivado v2018.3_AR71898 (64-bit)</span><br># SW Buil=
-d 2405991 on Thu Dec =C2=A06 23:36:41 MST 2018<br># IP Build 2404404 on Fri=
- Dec =C2=A07 01:43:56 MST 2018<br># Start of session at: Thu Jan 30 11:51:4=
-3 2020<br># Process ID: 6739<br># Current directory: /afs/<a href=3D"http:/=
-/crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/bu=
-ild-N310_RFNOC_XG" target=3D"_blank">crc.nd.edu/user/r/rkossler/uhd/UHD-3.1=
-5.0.0/uhd/fpga-src/usrp3/top/n3xx/build-N310_RFNOC_XG</a><br># Command line=
-: vivado -mode batch -source /afs/<a href=3D"http://crc.nd.edu/user/r/rkoss=
-ler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/build_n3xx.tcl" target=3D"=
-_blank">crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/=
-n3xx/build_n3xx.tcl</a> -log build.log -journal n3xx.jou<br># Log file: /af=
-s/<a href=3D"http://crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-sr=
-c/usrp3/top/n3xx/build-N310_RFNOC_XG/build.log" target=3D"_blank">crc.nd.ed=
-u/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/build-N310_R=
-FNOC_XG/build.log</a><br># Journal file: /afs/<a href=3D"http://crc.nd.edu/=
-user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/build-N310_RFN=
-OC_XG/n3xx.jou" target=3D"_blank">crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0=
-.0/uhd/fpga-src/usrp3/top/n3xx/build-N310_RFNOC_XG/n3xx.jou</a><br>#-------=
-----------------------------------------------------<br></font><div><font f=
-ace=3D"monospace">...</font></div><div><font face=3D"monospace">...</font><=
-/div><div><font face=3D"monospace">...</font></div><font face=3D"monospace"=
->Attempting to get a license for feature &#39;Implementation&#39; and/or de=
-vice &#39;xc7z100&#39;<br>INFO: [Common 17-349] Got license for feature &#3=
-9;Implementation&#39; and/or device &#39;xc7z100&#39;<br>INFO: [Common 17-1=
-540] The version limit for your license is &#39;2019.07&#39; and has expire=
-d for new software. A version limit expiration means that, although you may=
- be able to continue to use the current version of tools or IP with this li=
-cense, you will not be eligible for any updates or new releases.<br>INFO: [=
-DRC 23-27] Running DRC with 8 threads<br>INFO: [Vivado_Tcl 4-198] DRC finis=
-hed with 0 Errors<br>INFO: [Vivado_Tcl 4-199] Please refer to the DRC repor=
-t (report_drc) for more information.<br>Running DRC as a precondition to co=
-mmand place_design<br>INFO: [DRC 23-27] Running DRC with 8 threads<br><font=
- color=3D"#ff0000">ERROR: [DRC BIVC-1] Bank IO standard Vcc: Conflicting Vc=
-c voltages in bank 34. For example, the following two ports in this bank ha=
-ve conflicting VCCOs: </font>=C2=A0<br>ddr3_ck_p[0] (DIFF_SSTL15, requiring=
- VCCO=3D1.500) and ddr3_addr[15] (LVCMOS18, requiring VCCO=3D1.800)<br>WARN=
-ING: [DRC CHECK-3] Report rule limit reached: REQP-1839 rule limit reached:=
- 20 violations have been found.<br>WARNING: [DRC CHECK-3] Report rule limit=
- reached: REQP-1840 rule limit reached: 20 violations have been found.<br><=
-/font><div><font face=3D"monospace">...</font></div><div><font face=3D"mono=
-space">...</font></div><div><font face=3D"monospace">...</font></div><div><=
-font face=3D"monospace">INFO: [Vivado_Tcl 4-198] DRC finished with 1 Errors=
-, 52 Warnings<br>INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (r=
-eport_drc) for more information.<br><font color=3D"#ff0000">ERROR: [Vivado_=
-Tcl 4-23] Error(s) found during DRC. Placer not run.</font><br>INFO: [Commo=
-n 17-83] Releasing license: Implementation<br>34 Infos, 63 Warnings, 0 Crit=
-ical Warnings and 2 Errors encountered.<br>place_design failed<br>place_des=
-ign: Time (s): cpu =3D 00:01:07 ; elapsed =3D 00:00:58 . Memory (MB): peak =
-=3D 9161.891 ; gain =3D 0.000 ; free physical =3D 43703 ; free virtual =3D =
-93417<br><font color=3D"#ff0000">ERROR: [Common 17-39] &#39;place_design&#3=
-9; failed due to earlier errors.<br></font><br>=C2=A0 =C2=A0 while executin=
-g<br>&quot;place_design -directive $pla_dir&quot;<br>=C2=A0 =C2=A0 (procedu=
-re &quot;vivado_strategies::implement_design&quot; line 23)<br>=C2=A0 =C2=
-=A0 invoked from within<br>&quot;vivado_strategies::implement_design $n3xx_=
-strategy&quot;<br>=C2=A0 =C2=A0 (file &quot;/afs/<a href=3D"http://crc.nd.e=
-du/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga-src/usrp3/top/n3xx/build_n3xx.=
-tcl" target=3D"_blank">crc.nd.edu/user/r/rkossler/uhd/UHD-3.15.0.0/uhd/fpga=
--src/usrp3/top/n3xx/build_n3xx.tcl</a>&quot; line 28)<br>INFO: [Common 17-2=
-06] Exiting Vivado at Thu Jan 30 12:40:04 2020...<br></font></div><div>=C2=
-=A0<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
-ltr"><div dir=3D"ltr"><div><br></div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 9, 2019 at 2:43 PM Nate Te=
-mple via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" targe=
-t=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div style=3D"font-=
-family:arial,helvetica,sans-serif">Hi Robert, <br></div><div style=3D"font-=
-family:arial,helvetica,sans-serif"><br></div><div style=3D"font-family:aria=
-l,helvetica,sans-serif">So this is a bug related to Vivado, you will need t=
-o install this linked below patch and it should resolve it.</div><div style=
-=3D"font-family:arial,helvetica,sans-serif"><br></div><div style=3D"font-fa=
-mily:arial,helvetica,sans-serif"><a href=3D"https://www.xilinx.com/support/=
-answers/71898.html" target=3D"_blank">https://www.xilinx.com/support/answer=
-s/71898.html</a></div><div style=3D"font-family:arial,helvetica,sans-serif"=
-><br></div><div style=3D"font-family:arial,helvetica,sans-serif">Regards,</=
-div><div style=3D"font-family:arial,helvetica,sans-serif">Nate Temple<br></=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Mon, Dec 9, 2019 at 10:38 AM Nate Temple &lt;<a href=3D"mailto:nate.=
-temple@ettus.com" target=3D"_blank">nate.temple@ettus.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><=
-div style=3D"font-family:arial,helvetica,sans-serif">Hi Robert,<br><br>Than=
-ks for the bug report. <br><br>If you&#39;re just trying to use RFNoC at th=
-is point, I would recommend to stick with the latest stable release, which =
-at this time is v3.14.1.1. <br><br>Note, 3.14.x.x UHD will require Vivado 2=
-017.4.<br><br><br>Regards,<br>Nate Temple</div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 9, 2019 at 7:33 =
-AM Robert via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr"><p>GRCon 2020 celebrates and showcases the substantial and=
+ remarkable progress of
+GNU Radio over the past two decades. We invite developers and users from th=
+e GNU
+Radio community to present your projects, presentations, papers, posters, a=
+nd
+problems at GNU Radio Conference 2020. <br></p><p>GRCon20 will be held Sept=
+ember 14-18, 2020 in Charlotte, North Carolina, USA.<a href=3D"http://local=
+host:1313/grcon/grcon20/charlotte"></a></p><p>You may make one or more subm=
+issions under the following categories for
+presentation at GRCon. In addition to submitting a presentation, you may su=
+bmit
+a paper to the Technical Proceedings of GRCon20. You do not need to submit =
+a
+paper to the Proceedings in order to present at GRCon.</p><strong>Talks</st=
+rong> are 30 minutes long, including 5 minutes reserved for audience
+questions. Each presentation should be a slide-deck that can be shared publ=
+icly
+(PDF) after the conference. Real-world results using GNU Radio and hardware
+will be favored over simulation-only work.
+<p>Talks will be recorded and published on the GNU Radio YouTube channel af=
+ter the
+conference.</p>
+<p><strong>Papers</strong> can be submitted with or without a talk.  Author=
+s are encouraged to
+attend the conference, but it is not a requirement for paper acceptance.
+Detailed real-world results using GNU Radio are encouraged.</p>
+<p><strong>Workshops</strong> are 1=E2=80=934 hours long, and should have a=
+n educational or =E2=80=9CHow-To=E2=80=9D
+approach, with a large hands on portion. If slides are used, they should be
+publicly shareable (PDF) after the conference.</p>
+<p><strong>Lightning Talks</strong> are very concise (4-5 minutes), talks o=
+n topics of high
+interest to GNU Radio users and developers, and provide a chance for new
+presenters to share their use cases, projects or demos.</p>
+<p><strong>Posters</strong> can display any type of material that you belie=
+ve is interesting to
+the community, and while most posters are technical, they don=E2=80=99t hav=
+e to be.</p>
+<p>To submit your content for the conference, visit the submission page for=
+ more details and instructions: <a href=3D"https://www.gnuradio.org/grcon/g=
+rcon20/submit/">https://www.gnuradio.org/grcon/grcon20/submit/</a></p><p><f=
+ont size=3D"4"><b>Dates</b></font></p><p>Submission deadlines are split int=
+o two rounds: <br></p><p>First round closes <strong>17 April 2020</strong>.=
+  Final round closes <strong>1 September 2020</strong>.</p>
+<p>All contributions submitted by 17 April 2020 will get a final decisions =
+of
+acceptance by <strong>29 June 2020</strong>. All contributions submitted be=
+tween 17 April and 1 September will be
+accepted/rejected on a rolling basis. We do not guarantee a notification
+deadline for submissions after 17 April. Submissions for presentations may =
+close
+sooner than 1 September if all available speaker slots are taken. <br>
+</p><p>If you have questions or need assistance with the submission system,=
+ or have
+content that doesn&#39;t quite fit and you want to talk it over, please ema=
+il us at
+<a href=3D"mailto:grcon@gnuradio.org"><code>grcon@gnuradio.org</code></a>.<=
+/p>
+<p>If your submission is accepted, you <strong>must</strong> register for t=
+he conference or
+your talk will be dropped from the schedule. Please use the speaker registr=
+ation
+in this case in order to lock in the regular price.</p>
+<p>Please note that submitting a paper to the Technical Proceedings is <str=
+ong>not</strong>
+required to submit a Talk, Tutorial, or Poster, but is <strong>strongly</st=
+rong> encouraged.
+You also do <strong>not</strong> need to attend the conference to publish i=
+n the Technical
+Proceedings.</p><p><br></p><p>We are looking forward to your submissions!</=
+p><p>--The GNU Radio Conference Committee<br></p></div>
+
+--000000000000b21f2e059d73a837--
 
 
-
-
-<div dir=3D"ltr">
-<div id=3D"gmail-m_8769560295678703687gmail-m_216852075526711976gmail-m_209=
-4307889833480045gmail-m_-7724419252963540251gmail-m_1503436027014080033divt=
-agdefaultwrapper" style=3D"font-size:12pt;color:rgb(0,0,0);font-family:Cali=
-bri,Helvetica,sans-serif" dir=3D"ltr">
-<p></p>
-<div>Hi all!</div>
-<div><br>
-</div>
-<div>I tried to compile the default RFNoC image for the N310, using UHD on =
-tag v3.15.0.0-rc2 and Xilinx Vivado 2018.3.1.
-<br>
-</div>
-<div><br>
-</div>
-<div>Running<code> &quot;make</code><code> N310_RFNOC_XG&quot;, the IP core=
-s are compiled successfully, but then Vivado shows the following errors:</c=
-ode></div>
-<div><code></code><br>
-</div>
-<div>ERROR: [Synth 8-524] part-select [15:8] out of range of prefix &#39;ST=
-R_SINK_FIFOSIZE&#39; [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell=
-.v:270]<br>
-ERROR: [Synth 8-521] parameter assignment could not be resolved to a consta=
-nt [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:270]<br>
-ERROR: [Synth 8-196] conditional expression could not be resolved to a cons=
-tant [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:239]<br>
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:26]<br>
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:27]<br>
-WARNING: [Synth 8-693] zero replication count - replication ignored [/usr/l=
-ocal/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:31]<br>
-ERROR: [Synth 8-6156] failed synthesizing module &#39;noc_shell__parameteri=
-zed9&#39; [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_shell.v:21]<br>
-ERROR: [Synth 8-6156] failed synthesizing module &#39;noc_block_fosphor&#39=
-; [/usr/local/src/uhd/fpga-src/usrp3/lib/rfnoc/noc_block_fosphor.v:8]<br>
-ERROR: [Synth 8-6156] failed synthesizing module &#39;n3xx_core&#39; [/usr/=
-local/src/uhd/fpga-src/usrp3/top/n3xx/n3xx_core.v:17]<br>
-ERROR: [Synth 8-6156] failed synthesizing module &#39;n3xx&#39; [/usr/local=
-/src/uhd/fpga-src/usrp3/top/n3xx/dboards/mg/n3xx.v:13]</div>
-<div><br>
-</div>
-<div>The full build.log file is attached. I did not modify any files, just =
-trying to compile the RFNoC example as provided.<br>
-</div>
-<p></p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p>Btw I also tried to build the default image with &quot;make N310_XG&quot=
-;, this one compiles but failed later during DRC:</p>
-<p></p>
-<div>[DRC BIVC-1] Bank IO standard Vcc: Conflicting Vcc voltages in bank 34=
-. For example, the following two ports in this bank have conflicting VCCOs:
-<br>
-ddr3_ck_p[0] (DIFF_SSTL15, requiring VCCO=3D1.500) and ddr3_addr[15] (LVCMO=
-S18, requiring VCCO=3D1.800)<br>
-</div>
-<div>
-<div>[Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.<br>
-<br>
-</div>
-<br>
-</div>
-<p></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-</blockquote></div></div>
-</blockquote></div></div>
-
---0000000000009cde32059d721378--
-
-
---===============0772815157833837819==
+--===============1548604163518868708==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -501,5 +243,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0772815157833837819==--
+--===============1548604163518868708==--
 
