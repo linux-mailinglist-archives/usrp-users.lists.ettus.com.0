@@ -2,58 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 486FD15055D
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Feb 2020 12:37:35 +0100 (CET)
-Received: from [::1] (port=42628 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE314150DC1
+	for <lists+usrp-users@lfdr.de>; Mon,  3 Feb 2020 17:46:47 +0100 (CET)
+Received: from [::1] (port=58098 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iya2m-0002rZ-8E; Mon, 03 Feb 2020 06:37:32 -0500
-Received: from smtp12.smtpout.orange.fr ([80.12.242.134]:30440
- helo=smtp.smtpout.orange.fr)
- by mm2.emwd.com with esmtps (TLSv1:DHE-RSA-AES128-SHA:128)
- (Exim 4.92) (envelope-from <olivier.ravard@novagrid.com>)
- id 1iya2i-0002hX-Bh
- for usrp-users@lists.ettus.com; Mon, 03 Feb 2020 06:37:28 -0500
-Received: from pc114.home ([90.32.50.240]) by mwinf5d35 with ME
- id yBcm2100K5AwZbN03Bcmwr; Mon, 03 Feb 2020 12:36:47 +0100
-X-ME-Helo: pc114.home
-X-ME-Auth: Y2hyaXN0aWFuZS5yYXZhcmRAd2FuYWRvby5mcg==
-X-ME-Date: Mon, 03 Feb 2020 12:36:47 +0100
-X-ME-IP: 90.32.50.240
-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>,
- Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
+	id 1iyes0-00012z-Hw; Mon, 03 Feb 2020 11:46:44 -0500
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:40611)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
+ id 1iyerw-0000z9-PL
+ for usrp-users@lists.ettus.com; Mon, 03 Feb 2020 11:46:40 -0500
+Received: by mail-qk1-f175.google.com with SMTP id t204so14839609qke.7
+ for <usrp-users@lists.ettus.com>; Mon, 03 Feb 2020 08:46:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=5MVa/qTtIMWz8ktOjTsiHEu2Bc85hpkHat7Vb1ZZI2g=;
+ b=SEOUWy8WDO+LAnelZexnRdOkaw05arW5Dk8SZuovaD4QHTpQI8yQlDa3MToPDv6gvp
+ 5ipbEZDLAobsAohvbeX7EaJl9rmsx8zke033Av3/ss1dW4DWwMDhE+8137VW1wAoOMhn
+ NxeUgTLvr2x3MRCc+MHWu/Zlsohl9fGzCgK18cB5sMZD3TgPUp3afYBqCpQDQvR44EKn
+ IwZ7BBLbnYJ/JPXPcCkByqWND8374k5wkciE5hotkl3QLR78rbYHp8o+4JKikTVy5dau
+ 855pjbp6oIlWWyPGq37A/oH4W0ExHyRSbEQN6VPyoaTxVg1k9/q7o+bB+bChilGEW9cS
+ jbTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=5MVa/qTtIMWz8ktOjTsiHEu2Bc85hpkHat7Vb1ZZI2g=;
+ b=lKTNgCEYi7O20H2IOtvss0f6VXuzQAJYwZjbgOJhJyeRKrWhYHsfvCTsHibN+B80l9
+ tfoG00S/zCd0bfh5qwu+nISgcmL8WYEw0NKfwQsY6/J0ca2XWLTutIwDFFLmp6gawwE4
+ ng2hjt49zoWdSmnfHxPpKPHCcOeg7NCIUPa6IKa5aAZqkiR/9SppOm/Rg4hO3yto43DN
+ zC+r+mBGh2eXX5A90uFNfRRzzOvaPMrK1SGulgLt56qD0+8KBiZ9l0VIya0ltFA0wNRJ
+ lesSXUjMVO5kF2Dlg/8/kZSCT4fqWvrUjs16TNwGQJQUeyGsyV5AJNjdADS80+nyoiZm
+ wzvA==
+X-Gm-Message-State: APjAAAVp7px74uwncHfep6hFYBDSlvgkvENLHaYjtZWLU9dLx0ish8ob
+ KRQlyrxohgantZciYPrV5SgQQik9
+X-Google-Smtp-Source: APXvYqwt0QXHuPRebtcCeZ/xxOPy5nmpJyXu2MsDaOwumAXvdTvs/xO1H5IWZCMDh4/viqzH2ahipA==
+X-Received: by 2002:a37:9fce:: with SMTP id
+ i197mr23641050qke.466.1580748359982; 
+ Mon, 03 Feb 2020 08:45:59 -0800 (PST)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
+ [174.95.14.83])
+ by smtp.googlemail.com with ESMTPSA id m23sm9899727qtp.6.2020.02.03.08.45.58
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 03 Feb 2020 08:45:59 -0800 (PST)
+Message-ID: <5E384E46.9070604@gmail.com>
+Date: Mon, 03 Feb 2020 11:45:58 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <4964800f-842c-e3f0-4969-3e48b93b0975@novagrid.com>
  <3c5972f65acf079e9d16fbbfd39a169f79979d32.camel@ettus.com>
-Autocrypt: addr=olivier.ravard@novagrid.com; prefer-encrypt=mutual; keydata=
- mQENBFOZoNIBCACgxTvpz/Sw5h89QVOm048NN/oUpnQRhzEGH4l+ckDFY7v4h3wN43Dx8ami
- +Rc3JyqyOaQU0tTKFPesELckfm00NBLBv2FxbTcA05EI3zZRMHamEyigz2CK78Jolv/ydWFE
- HssruREi+ol7cswsKkoAxi6N5+OUmby6Bi6g3QuZkqQ3gVcpuaK7lNjd43rnF/V7keBfPfv+
- poqvfScPAE4PcgZ54uFEEBK+P7PaIs1j94Yn0C++LzA3s5g56Oad8U8ruoffLWSwZozY2C+i
- 6iME3tD+QNHy08JWZlKIegL7nn74dRyvcjhOoT+yzur3Du7btw9qLjD6S/Cbk+SxpGYTABEB
- AAG0LE9saXZpZXIgUmF2YXJkIDxvbGl2aWVyLnJhdmFyZEBub3ZhZ3JpZC5jb20+iQE4BBMB
- AgAiAhsjBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAUCV2k34AAKCRAQ4yLlBdy0jefHB/40
- uwjnt4PKpqFt29AhkG/u2DKmrwH837B7XLS3Ml03MmxB+F8EgmEAgZQElY9JNWMvZJGzlszz
- kFJ0dJMqIDp1+2v2Kv0gJwFG8HK5kXgFLwHR+T0WBJXzZ4YArgP7d4JZetoMZMEDHq7XyOTj
- HGUWDvhHdGIvgLPq+AabtMXXJCh9aALmPM8w/E8dQJ60SGRDE24kwUoJWm5p6xlsOx7DBj0v
- PpZcy2ows6eVgL8oyFFdyhQMkjlcbC51A3TlMdSRAphK2F/+HviqR/R/cGeKimHvQShbsD/7
- dwcT/Rxk9sm4oGSKVRr2/A9oJatmguQf92VhzohKlx0Kn/T6KJF3uQENBFOZoNIBCADAS/CX
- /9IegJKNtRZ1o5YDN+eCrQtdbXFJWIS4dPboyVTaJNv/G/1flQHbddKFjZ3UytxSB+mYVpuT
- t+z4ZFfoEp802RWlxo2K1wcQaSqf5kJ29AuX4PaT+/FdKkiABNUv9+kgN3vNhRyHqlhjCn8w
- RgvzbEzPiE5RFn0l7qf9zuc8z1qo8s/B/3WVbAKnJ8GmR7ODHJ4s9g95Ms4WwB+vhdN0dm5j
- /Rk2oOt4YIew3OsrsqaXQn4kPHc7L2eA87J6uuyxBisD4nuyakFzsHQN8Rim5di1g1QpXWPK
- VvSKFHlPNhVd1VZLPUY5WKCFOWZZiRNDQdI7kVKKa8WrRWc5ABEBAAGJAR8EGAECAAkCGwwF
- AldpN+AACgkQEOMi5QXctI1mfwf9F3a8HvD6oNmbOS4yOjBE2ZKp6oyKVOhU3W71hMab6Qcf
- OcdKGu4thm7EvfLE3lWjvaFS/nhPv8al9oLOfbin8nYLb88sHbKuxNdX6IRm4Gf4T88Ul6Ph
- k1zOO7G65uMXfCoA9XsxzwyM0cBZTApYR/bS5+iWlNh2+PhPYWI2ZfadA6eHwbKZ4dXibFuz
- l8Xcx9APaDmq3SZUNJElM/l3CiE6mURXjSpRDGN+MWBHFB9YKfC3A71Wd1cdvcf9sIsKDdDa
- F4CY4evZaWI1nUfSK27yr/wInKhZMbu7UHVf51dE8WLjLZAMi3hK+iG3yiTC4IgNYjR3y7yo
- rF52fiUwYA==
-Message-ID: <7802e95a-d7eb-2c88-62e3-aae06d541b24@novagrid.com>
-Date: Mon, 3 Feb 2020 12:36:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
-MIME-Version: 1.0
-In-Reply-To: <3c5972f65acf079e9d16fbbfd39a169f79979d32.camel@ettus.com>
+ <7802e95a-d7eb-2c88-62e3-aae06d541b24@novagrid.com>
+In-Reply-To: <7802e95a-d7eb-2c88-62e3-aae06d541b24@novagrid.com>
 Subject: Re: [USRP-users] X300 connecting 10Gb/s using baseT
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -66,9 +70,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Olivier Ravard via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olivier Ravard <olivier.ravard@novagrid.com>
-Content-Type: multipart/mixed; boundary="===============3066240061969025838=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,93 +87,49 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============3066240061969025838==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="aBfasWhaPhNn7VrPQBkMU9nklnPZseK50"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---aBfasWhaPhNn7VrPQBkMU9nklnPZseK50
-Content-Type: multipart/mixed; boundary="6voLK6uNmzFnjvsAORc78LdwSIzcjJBCn"
-
---6voLK6uNmzFnjvsAORc78LdwSIzcjJBCn
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
-Content-Language: en-US
-
-VGhlIGdyZWVuIGxlZCBhdCB0aGUgYmFjayBvZiB0aGUgZGV2aWNlIChwb3J0IDEpIGlzIG9u
-IGFuZCB0aGUgc2Vjb25kIG9uIChvcmFuZ2UpIGJsaW5rCnNvbWUgdGltZXMuClRoZSAibGlu
-ayIgbGVkIGF0IHRoZSBmcm9udCBvZiB0aGUgZGV2aWNlIG5vdCBibGluay4KClRoZSByZXN1
-bHQgb2YgZXRodG9vbCBvbiB0aGUgbGludXggbWFjaGluZSBmb3IgdGhpcyBpbnRlcmZhY2Ug
-aXMgdGhlIGZvbGxvd2luZzoKCgrCoMKgwqDCoMKgwqDCoCBTdXBwb3J0ZWQgcG9ydHM6IFsg
-VFAgXQrCoMKgwqDCoMKgwqDCoCBTdXBwb3J0ZWQgbGluayBtb2RlczrCoMKgIDEwMDBiYXNl
-VC9GdWxsCsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIDEwMDAwYmFzZVQvRnVsbArCoMKgwqDCoMKgwqDCoCBTdXBwb3J0
-ZWQgcGF1c2UgZnJhbWUgdXNlOiBTeW1tZXRyaWMgUmVjZWl2ZS1vbmx5CsKgwqDCoMKgwqDC
-oMKgIFN1cHBvcnRzIGF1dG8tbmVnb3RpYXRpb246IFllcwrCoMKgwqDCoMKgwqDCoCBTdXBw
-b3J0ZWQgRkVDIG1vZGVzOiBOb3QgcmVwb3J0ZWQKwqDCoMKgwqDCoMKgwqAgQWR2ZXJ0aXNl
-ZCBsaW5rIG1vZGVzOsKgIDEwMDBiYXNlVC9GdWxsCsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDEwMDAwYmFzZVQvRnVs
-bArCoMKgwqDCoMKgwqDCoCBBZHZlcnRpc2VkIHBhdXNlIGZyYW1lIHVzZTogU3ltbWV0cmlj
-CsKgwqDCoMKgwqDCoMKgIEFkdmVydGlzZWQgYXV0by1uZWdvdGlhdGlvbjogWWVzCsKgwqDC
-oMKgwqDCoMKgIEFkdmVydGlzZWQgRkVDIG1vZGVzOiBOb3QgcmVwb3J0ZWQKwqDCoMKgwqDC
-oMKgwqAgU3BlZWQ6IDEwMDBNYi9zCsKgwqDCoMKgwqDCoMKgIER1cGxleDogRnVsbArCoMKg
-wqDCoMKgwqDCoCBQb3J0OiBUd2lzdGVkIFBhaXIKwqDCoMKgwqDCoMKgwqAgUEhZQUQ6IDEy
-CsKgwqDCoMKgwqDCoMKgIFRyYW5zY2VpdmVyOiBpbnRlcm5hbArCoMKgwqDCoMKgwqDCoCBB
-dXRvLW5lZ290aWF0aW9uOiBvbgrCoMKgwqDCoMKgwqDCoCBNREktWDogVW5rbm93bgrCoMKg
-wqDCoMKgwqDCoCBTdXBwb3J0cyBXYWtlLW9uOiBnCsKgwqDCoMKgwqDCoMKgIFdha2Utb246
-IGcKwqDCoMKgwqDCoMKgwqAgQ3VycmVudCBtZXNzYWdlIGxldmVsOiAweDAwMDAwMDAwICgw
-KQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAKwqDCoMKgwqDCoMKgwqAgTGluayBkZXRlY3RlZDogeWVzCgpJdCBzZWVtcyB0
-aGF0IG9ubHkgMTAwMCBNYi9zIGlzIG5lZ29jaWF0ZWQuCgpPbGl2aWVyIFJhdmFyZApOb3Zh
-R3JpZCBTLkEuUy4KCkxlIDAzLzAyLzIwMjAgw6AgMTI6MjAsIE1hcmN1cyBNw7xsbGVyIGEg
-w6ljcml0wqA6Cj4gSGkgT2xpdmllciwKPgo+IGFsbCB0aGlzIGlzIGJhc2ljYWxseSBzdGFu
-ZGFyZCBFdGhlcm5ldCwgc28gaXQgKnNob3VsZCogd29yay4KPiBEbyB0aGUgbGluayBpbmRp
-Y2F0b3IgTEVEcyBvbiB0aGUgVVNSUCBibGluaz8KPgo+IEJlc3QgcmVnYXJkcywKPiBNYXJj
-dXMKPiBPbiBNb24sIDIwMjAtMDItMDMgYXQgMTI6MTQgKzAxMDAsIE9saXZpZXIgUmF2YXJk
-IHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+PiBIZWxsbywKPj4KPj4gSXMgaXQgcG9zc2libGUg
-dG8gY29ubmVjdCBhIFgzMDAgZGV2aWNlIHRvIGEgMTBHYi9zIEJhc2VUIG5ldHdvcmsKPj4g
-dXNpbmcgdGhlIFNGUCsgdG8gUko0NQo+PiBhZGFwdGF0b3IgPwo+Pgo+PiBJIGRvIHRoaXMg
-dGVzdCBidXQgSSBhbSB1bmFibG1lIHRvIHBpbmcgdGhlIGRldmljZSAodXNpbmcKPj4gMTky
-LjE2OC40MC4yIGlwIG9uIHBvcnQgMSkKPj4KPj4gcmVnYXJkcywKPj4KPj4gT2xpdmllcgo+
-Pgo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xwo+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbQo+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
-c2Vyc19saXN0cy5ldHR1cy5jb20K
-
---6voLK6uNmzFnjvsAORc78LdwSIzcjJBCn--
-
---aBfasWhaPhNn7VrPQBkMU9nklnPZseK50
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEo6IEs2M8HtVrgPe4EOMi5QXctI0FAl44Bc4ACgkQEOMi5QXc
-tI1i/gf+NRytpTo27nFG6KCRM8w5zGpS2eaRKpSVAjzlCVKh+NF3lGGMa83lWSue
-rMCjj8hUIUg6pInq6dXuvX0THuaUVNLeS7JVh9OpDS+MBgHErcSt+VEl4ysuwNaU
-RjM2c37XFgj+urr33NiGb/c20mwYNboVeM/Syj4Rf+6O+vXeSnNIAc6Wt+6LXh6z
-Vk3r+Ek08sRE6EyY4sFWb/E3/9z149b63boYfXtOme9T0/mfH0V5fFIUO8ZlVtar
-YfptXCPFO689kU7F5WIPCKhw1GiMjl5sP4+xl5lQZbVjTMGpog0Huapz4kgEXGid
-TvxzYLWE2UtV9GzSiD0wcBeSnC96zg==
-=Uk82
------END PGP SIGNATURE-----
-
---aBfasWhaPhNn7VrPQBkMU9nklnPZseK50--
+On 02/03/2020 06:36 AM, Olivier Ravard via USRP-users wrote:
+> The green led at the back of the device (port 1) is on and the second on (orange) blink
+> some times.
+> The "link" led at the front of the device not blink.
+>
+> The result of ethtool on the linux machine for this interface is the following:
+>
+>
+>          Supported ports: [ TP ]
+>          Supported link modes:   1000baseT/Full
+>                                  10000baseT/Full
+>          Supported pause frame use: Symmetric Receive-only
+>          Supports auto-negotiation: Yes
+>          Supported FEC modes: Not reported
+>          Advertised link modes:  1000baseT/Full
+>                                  10000baseT/Full
+>          Advertised pause frame use: Symmetric
+>          Advertised auto-negotiation: Yes
+>          Advertised FEC modes: Not reported
+>          Speed: 1000Mb/s
+>          Duplex: Full
+>          Port: Twisted Pair
+>          PHYAD: 12
+>          Transceiver: internal
+>          Auto-negotiation: on
+>          MDI-X: Unknown
+>          Supports Wake-on: g
+>          Wake-on: g
+>          Current message level: 0x00000000 (0)
+>                                
+>          Link detected: yes
+>
+> It seems that only 1000 Mb/s is negociated.
+>
+> Olivier Ravard
+> NovaGrid S.A.S.
+>
+What type of SFP-to-RJ45 module do you have?  Are you sure that it is 
+designed for 10GBaseT?  What type of cable are you using?
 
 
---===============3066240061969025838==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3066240061969025838==--
-
