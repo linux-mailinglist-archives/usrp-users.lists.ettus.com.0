@@ -2,59 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B444C151709
-	for <lists+usrp-users@lfdr.de>; Tue,  4 Feb 2020 09:27:43 +0100 (CET)
-Received: from [::1] (port=37442 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 885E91518B8
+	for <lists+usrp-users@lfdr.de>; Tue,  4 Feb 2020 11:21:42 +0100 (CET)
+Received: from [::1] (port=53484 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1iytYZ-0008Nv-3K; Tue, 04 Feb 2020 03:27:39 -0500
-Received: from smtp03.smtpout.orange.fr ([80.12.242.125]:43658
- helo=smtp.smtpout.orange.fr)
- by mm2.emwd.com with esmtps (TLSv1:DHE-RSA-AES128-SHA:128)
- (Exim 4.92) (envelope-from <olivier.ravard@novagrid.com>)
- id 1iytYU-0008JI-RT
- for usrp-users@lists.ettus.com; Tue, 04 Feb 2020 03:27:35 -0500
-Received: from pc114.home ([90.32.50.240]) by mwinf5d58 with ME
- id yYSs2100F5AwZbN03YSse8; Tue, 04 Feb 2020 09:26:53 +0100
-X-ME-Helo: pc114.home
-X-ME-Auth: Y2hyaXN0aWFuZS5yYXZhcmRAd2FuYWRvby5mcg==
-X-ME-Date: Tue, 04 Feb 2020 09:26:53 +0100
-X-ME-IP: 90.32.50.240
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
+	id 1iyvKr-0003yt-Ub; Tue, 04 Feb 2020 05:21:37 -0500
+Received: from mail-wr1-f47.google.com ([209.85.221.47]:34912)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <marcus.mueller@ettus.com>)
+ id 1iyvKn-0003sv-WD
+ for usrp-users@lists.ettus.com; Tue, 04 Feb 2020 05:21:34 -0500
+Received: by mail-wr1-f47.google.com with SMTP id w12so11328823wrt.2
+ for <usrp-users@lists.ettus.com>; Tue, 04 Feb 2020 02:21:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:organization
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=iE7y5G+CXJnCgtHRylrt4bXuFmqV8EIeR8IRaLmXcz8=;
+ b=HPuJooz3iLt46sSoket79xu/rkDpShcipwbVq+g9mhAECD8Oq2AXXtIzdtKVTCbMNu
+ a2nk4TMhOUEgd0YL4hw8GOpEIgwPpO5Q4FUzsMrdwspgY2XhN9NRG4Azp76J0ync59F3
+ 8v5+7tI004fhQ6Wk/wglqd7oLV4w5Q7r3bqfXz0G6iQEmiXnKje0mSlp7TYA9kVZ8aLp
+ S0Atelfl0YV1ZhI/oBEAUL+RNK0xIKaVvl6GAQQ+XVDubQG3tnRf2geFks7ejYT8/Tic
+ Kro5mRXusdUYGuyIEfqUF5lujd8z+Gad3aKhxOweIHLpv6yNZuGFVnJb2yKG1RJvCf8s
+ kkYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=iE7y5G+CXJnCgtHRylrt4bXuFmqV8EIeR8IRaLmXcz8=;
+ b=YIoLRLXsRQ/oGJb9eD7UC7jK/LPUhST6g4yX+hpbadyHSqkPXeFCNRPNOGER7t7Gb7
+ iBQZMGvpsRIkK0V+DLPwI+RkOLZY9t9IQlh5uYXkhOUnAVoouEc4AHUoY8iUHvWDVnkr
+ W0I2KoBpG2HlUCUqG01sU1t/xp1h0Kx1Nly37eEkXxqv18l/lrpNfArFM2iRTbO58aYJ
+ t1d1sqAfFa51n/CixwQzaDhzqFsC7KYe2QUqqgxxL9DwHhj01crlR9JuLnVNNasQw5UF
+ WVO1pNRl+Uw1JMtj0sBKs0hYIdRtRYa2pIRAZHRj/EC/7mAYnANBC71R9CMivpp40btH
+ ejqg==
+X-Gm-Message-State: APjAAAVNe6D9d4Mh1wJtApMoQDM3bo4PkJmX6J3QbtYEwCS4OjmB8vvr
+ xXjmATeSrDvKVtQ6+ZscBSHW+r39
+X-Google-Smtp-Source: APXvYqzKwHBpCCK2ixiYeyHbag7+jQHU/SUjQkGlLDWFKw4olnoFDi8doJW8tufeR/PCReqiTezVZw==
+X-Received: by 2002:a5d:540f:: with SMTP id g15mr20516219wrv.86.1580811652987; 
+ Tue, 04 Feb 2020 02:20:52 -0800 (PST)
+Received: from racer.hostalia.de (static.239.3.12.49.clients.your-server.de.
+ [49.12.3.239])
+ by smtp.gmail.com with ESMTPSA id v17sm29005386wrt.91.2020.02.04.02.20.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 04 Feb 2020 02:20:52 -0800 (PST)
+Message-ID: <f6e720011a181b21ee3d95ca843ec5cb497c1f6f.camel@ettus.com>
+To: Olivier Ravard <olivier.ravard@novagrid.com>, "Marcus D. Leech"
+ <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
+Date: Tue, 04 Feb 2020 11:20:49 +0100
+In-Reply-To: <1a37b784-232a-1f7a-a1cd-6031ccc0f992@novagrid.com>
 References: <4964800f-842c-e3f0-4969-3e48b93b0975@novagrid.com>
  <3c5972f65acf079e9d16fbbfd39a169f79979d32.camel@ettus.com>
  <7802e95a-d7eb-2c88-62e3-aae06d541b24@novagrid.com>
  <5E384E46.9070604@gmail.com>
-Autocrypt: addr=olivier.ravard@novagrid.com; prefer-encrypt=mutual; keydata=
- mQENBFOZoNIBCACgxTvpz/Sw5h89QVOm048NN/oUpnQRhzEGH4l+ckDFY7v4h3wN43Dx8ami
- +Rc3JyqyOaQU0tTKFPesELckfm00NBLBv2FxbTcA05EI3zZRMHamEyigz2CK78Jolv/ydWFE
- HssruREi+ol7cswsKkoAxi6N5+OUmby6Bi6g3QuZkqQ3gVcpuaK7lNjd43rnF/V7keBfPfv+
- poqvfScPAE4PcgZ54uFEEBK+P7PaIs1j94Yn0C++LzA3s5g56Oad8U8ruoffLWSwZozY2C+i
- 6iME3tD+QNHy08JWZlKIegL7nn74dRyvcjhOoT+yzur3Du7btw9qLjD6S/Cbk+SxpGYTABEB
- AAG0LE9saXZpZXIgUmF2YXJkIDxvbGl2aWVyLnJhdmFyZEBub3ZhZ3JpZC5jb20+iQE4BBMB
- AgAiAhsjBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAUCV2k34AAKCRAQ4yLlBdy0jefHB/40
- uwjnt4PKpqFt29AhkG/u2DKmrwH837B7XLS3Ml03MmxB+F8EgmEAgZQElY9JNWMvZJGzlszz
- kFJ0dJMqIDp1+2v2Kv0gJwFG8HK5kXgFLwHR+T0WBJXzZ4YArgP7d4JZetoMZMEDHq7XyOTj
- HGUWDvhHdGIvgLPq+AabtMXXJCh9aALmPM8w/E8dQJ60SGRDE24kwUoJWm5p6xlsOx7DBj0v
- PpZcy2ows6eVgL8oyFFdyhQMkjlcbC51A3TlMdSRAphK2F/+HviqR/R/cGeKimHvQShbsD/7
- dwcT/Rxk9sm4oGSKVRr2/A9oJatmguQf92VhzohKlx0Kn/T6KJF3uQENBFOZoNIBCADAS/CX
- /9IegJKNtRZ1o5YDN+eCrQtdbXFJWIS4dPboyVTaJNv/G/1flQHbddKFjZ3UytxSB+mYVpuT
- t+z4ZFfoEp802RWlxo2K1wcQaSqf5kJ29AuX4PaT+/FdKkiABNUv9+kgN3vNhRyHqlhjCn8w
- RgvzbEzPiE5RFn0l7qf9zuc8z1qo8s/B/3WVbAKnJ8GmR7ODHJ4s9g95Ms4WwB+vhdN0dm5j
- /Rk2oOt4YIew3OsrsqaXQn4kPHc7L2eA87J6uuyxBisD4nuyakFzsHQN8Rim5di1g1QpXWPK
- VvSKFHlPNhVd1VZLPUY5WKCFOWZZiRNDQdI7kVKKa8WrRWc5ABEBAAGJAR8EGAECAAkCGwwF
- AldpN+AACgkQEOMi5QXctI1mfwf9F3a8HvD6oNmbOS4yOjBE2ZKp6oyKVOhU3W71hMab6Qcf
- OcdKGu4thm7EvfLE3lWjvaFS/nhPv8al9oLOfbin8nYLb88sHbKuxNdX6IRm4Gf4T88Ul6Ph
- k1zOO7G65uMXfCoA9XsxzwyM0cBZTApYR/bS5+iWlNh2+PhPYWI2ZfadA6eHwbKZ4dXibFuz
- l8Xcx9APaDmq3SZUNJElM/l3CiE6mURXjSpRDGN+MWBHFB9YKfC3A71Wd1cdvcf9sIsKDdDa
- F4CY4evZaWI1nUfSK27yr/wInKhZMbu7UHVf51dE8WLjLZAMi3hK+iG3yiTC4IgNYjR3y7yo
- rF52fiUwYA==
-Message-ID: <1a37b784-232a-1f7a-a1cd-6031ccc0f992@novagrid.com>
-Date: Tue, 4 Feb 2020 09:26:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+ <1a37b784-232a-1f7a-a1cd-6031ccc0f992@novagrid.com>
+Organization: Ettus Research
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-In-Reply-To: <5E384E46.9070604@gmail.com>
 Subject: Re: [USRP-users] X300 connecting 10Gb/s using baseT
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -67,9 +73,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Olivier Ravard via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Olivier Ravard <olivier.ravard@novagrid.com>
-Content-Type: multipart/mixed; boundary="===============5192379243290074378=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: Marcus =?ISO-8859-1?Q?M=FCller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,93 +91,47 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============5192379243290074378==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="B4SgQG1ipY9FM5LSwz4YKp1UTjDG24dUa"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---B4SgQG1ipY9FM5LSwz4YKp1UTjDG24dUa
-Content-Type: multipart/mixed; boundary="PthFfZUTQjejQj6EzaUtVM4Px85VrtooT"
-
---PthFfZUTQjejQj6EzaUtVM4Px85VrtooT
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
-Content-Language: en-US
-
-CkxlIDAzLzAyLzIwMjAgw6AgMTc6NDUsIE1hcmN1cyBELiBMZWVjaCB2aWEgVVNSUC11c2Vy
-cyBhIMOpY3JpdMKgOgo+IE9uIDAyLzAzLzIwMjAgMDY6MzYgQU0sIE9saXZpZXIgUmF2YXJk
-IHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+PiBUaGUgZ3JlZW4gbGVkIGF0IHRoZSBiYWNrIG9m
-IHRoZSBkZXZpY2UgKHBvcnQgMSkgaXMgb24gYW5kIHRoZSBzZWNvbmQgb24gKG9yYW5nZSkg
-YmxpbmsKPj4gc29tZSB0aW1lcy4KPj4gVGhlICJsaW5rIiBsZWQgYXQgdGhlIGZyb250IG9m
-IHRoZSBkZXZpY2Ugbm90IGJsaW5rLgo+Pgo+PiBUaGUgcmVzdWx0IG9mIGV0aHRvb2wgb24g
-dGhlIGxpbnV4IG1hY2hpbmUgZm9yIHRoaXMgaW50ZXJmYWNlIGlzIHRoZSBmb2xsb3dpbmc6
-Cj4+Cj4+Cj4+IMKgwqDCoMKgwqDCoMKgwqAgU3VwcG9ydGVkIHBvcnRzOiBbIFRQIF0KPj4g
-wqDCoMKgwqDCoMKgwqDCoCBTdXBwb3J0ZWQgbGluayBtb2RlczrCoMKgIDEwMDBiYXNlVC9G
-dWxsCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgMTAwMDBiYXNlVC9GdWxsCj4+IMKgwqDCoMKgwqDCoMKgwqAg
-U3VwcG9ydGVkIHBhdXNlIGZyYW1lIHVzZTogU3ltbWV0cmljIFJlY2VpdmUtb25seQo+PiDC
-oMKgwqDCoMKgwqDCoMKgIFN1cHBvcnRzIGF1dG8tbmVnb3RpYXRpb246IFllcwo+PiDCoMKg
-wqDCoMKgwqDCoMKgIFN1cHBvcnRlZCBGRUMgbW9kZXM6IE5vdCByZXBvcnRlZAo+PiDCoMKg
-wqDCoMKgwqDCoMKgIEFkdmVydGlzZWQgbGluayBtb2RlczrCoCAxMDAwYmFzZVQvRnVsbAo+
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIDEwMDAwYmFzZVQvRnVsbAo+PiDCoMKgwqDCoMKgwqDCoMKgIEFkdmVy
-dGlzZWQgcGF1c2UgZnJhbWUgdXNlOiBTeW1tZXRyaWMKPj4gwqDCoMKgwqDCoMKgwqDCoCBB
-ZHZlcnRpc2VkIGF1dG8tbmVnb3RpYXRpb246IFllcwo+PiDCoMKgwqDCoMKgwqDCoMKgIEFk
-dmVydGlzZWQgRkVDIG1vZGVzOiBOb3QgcmVwb3J0ZWQKPj4gwqDCoMKgwqDCoMKgwqDCoCBT
-cGVlZDogMTAwME1iL3MKPj4gwqDCoMKgwqDCoMKgwqDCoCBEdXBsZXg6IEZ1bGwKPj4gwqDC
-oMKgwqDCoMKgwqDCoCBQb3J0OiBUd2lzdGVkIFBhaXIKPj4gwqDCoMKgwqDCoMKgwqDCoCBQ
-SFlBRDogMTIKPj4gwqDCoMKgwqDCoMKgwqDCoCBUcmFuc2NlaXZlcjogaW50ZXJuYWwKPj4g
-wqDCoMKgwqDCoMKgwqDCoCBBdXRvLW5lZ290aWF0aW9uOiBvbgo+PiDCoMKgwqDCoMKgwqDC
-oMKgIE1ESS1YOiBVbmtub3duCj4+IMKgwqDCoMKgwqDCoMKgwqAgU3VwcG9ydHMgV2FrZS1v
-bjogZwo+PiDCoMKgwqDCoMKgwqDCoMKgIFdha2Utb246IGcKPj4gwqDCoMKgwqDCoMKgwqDC
-oCBDdXJyZW50IG1lc3NhZ2UgbGV2ZWw6IDB4MDAwMDAwMDAgKDApCj4+IMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCDCoMKg
-wqDCoMKgwqDCoMKgIExpbmsgZGV0ZWN0ZWQ6IHllcwo+Pgo+PiBJdCBzZWVtcyB0aGF0IG9u
-bHkgMTAwMCBNYi9zIGlzIG5lZ29jaWF0ZWQuCj4+Cj4+IE9saXZpZXIgUmF2YXJkCj4+IE5v
-dmFHcmlkIFMuQS5TLgo+Pgo+IFdoYXQgdHlwZSBvZiBTRlAtdG8tUko0NSBtb2R1bGUgZG8g
-eW91IGhhdmU/wqAgQXJlIHlvdSBzdXJlIHRoYXQgaXQgaXMgZGVzaWduZWQgZm9yCj4gMTBH
-QmFzZVQ/wqAgV2hhdCB0eXBlIG9mIGNhYmxlIGFyZSB5b3UgdXNpbmc/CkkgYW0gdXNpbmcg
-dGhlIFNGUC10by1SSjQ1IG1vZHVsZSBwcm92aWRlZCBieSBldHR1cy4gSXQgc2VlbXMgdGhh
-dCBpdCBpcyBzcGVjaWZpZWQgb25seQpmb3IgMUdCL3MuIEkgd2lsbCB0ZXN0IHdpdGgKYmV0
-dGVyIGFkYXB0YXRvcnMuCj4KPgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xp
-c3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
-
---PthFfZUTQjejQj6EzaUtVM4Px85VrtooT--
-
---B4SgQG1ipY9FM5LSwz4YKp1UTjDG24dUa
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEo6IEs2M8HtVrgPe4EOMi5QXctI0FAl45KswACgkQEOMi5QXc
-tI3diQf/WbLMMp2uGkV5xo5xp5gxV1eyl/1xJR1mYyVNXmDT6kBtkUZmCN0AH7jh
-KHR+cblP7JVopi8rs8Ha7J5q4IFYZzEy2Np6gzmqQlTnBxPHsGboukn2IO0+jFhr
-MsFzvkU4enLZB5fYtP/vIOHBmP9OJFwlxLaZt3boRPm9PeqXlPteTUOUEZuisJ6E
-rsp1TAHvRjaHFPIDDd0NfKyifUSosw2R6w0QtzHOJ7zo1UqBLw+mQ5NESn9ZA819
-lF29WKaLYYVIz+Y4iW/qkiyzSO2rSk9lQyTpUzTAYlsmBhPICeyvVf7qdVa4esH9
-vyeaubAcNtQ+XxYyCXoHOmMDzQR6Aw==
-=WwgT
------END PGP SIGNATURE-----
-
---B4SgQG1ipY9FM5LSwz4YKp1UTjDG24dUa--
-
-
---===============5192379243290074378==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5192379243290074378==--
-
+QWgsIG15IGJhZCwgSSB3YXMgYXNzdW1pbmcgeW91IGhhZCBhIDEwR0Jhc2UtVCBTRlArIG1vZHVs
+ZS4gU29ycnkgZm9yCnRoZSBjb25mdXNpb24uCk9uIFR1ZSwgMjAyMC0wMi0wNCBhdCAwOToyNiAr
+MDEwMCwgT2xpdmllciBSYXZhcmQgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gTGUgMDMvMDIvMjAy
+MCDDoCAxNzo0NSwgTWFyY3VzIEQuIExlZWNoIHZpYSBVU1JQLXVzZXJzIGEgw6ljcml0IDoKPiA+
+IE9uIDAyLzAzLzIwMjAgMDY6MzYgQU0sIE9saXZpZXIgUmF2YXJkIHZpYSBVU1JQLXVzZXJzIHdy
+b3RlOgo+ID4gPiBUaGUgZ3JlZW4gbGVkIGF0IHRoZSBiYWNrIG9mIHRoZSBkZXZpY2UgKHBvcnQg
+MSkgaXMgb24gYW5kIHRoZQo+ID4gPiBzZWNvbmQgb24gKG9yYW5nZSkgYmxpbmsKPiA+ID4gc29t
+ZSB0aW1lcy4KPiA+ID4gVGhlICJsaW5rIiBsZWQgYXQgdGhlIGZyb250IG9mIHRoZSBkZXZpY2Ug
+bm90IGJsaW5rLgo+ID4gPiAKPiA+ID4gVGhlIHJlc3VsdCBvZiBldGh0b29sIG9uIHRoZSBsaW51
+eCBtYWNoaW5lIGZvciB0aGlzIGludGVyZmFjZSBpcwo+ID4gPiB0aGUgZm9sbG93aW5nOgo+ID4g
+PiAKPiA+ID4gCj4gPiA+ICAgICAgICAgIFN1cHBvcnRlZCBwb3J0czogWyBUUCBdCj4gPiA+ICAg
+ICAgICAgIFN1cHBvcnRlZCBsaW5rIG1vZGVzOiAgIDEwMDBiYXNlVC9GdWxsCj4gPiA+ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDEwMDAwYmFzZVQvRnVsbAo+ID4gPiAgICAgICAg
+ICBTdXBwb3J0ZWQgcGF1c2UgZnJhbWUgdXNlOiBTeW1tZXRyaWMgUmVjZWl2ZS1vbmx5Cj4gPiA+
+ICAgICAgICAgIFN1cHBvcnRzIGF1dG8tbmVnb3RpYXRpb246IFllcwo+ID4gPiAgICAgICAgICBT
+dXBwb3J0ZWQgRkVDIG1vZGVzOiBOb3QgcmVwb3J0ZWQKPiA+ID4gICAgICAgICAgQWR2ZXJ0aXNl
+ZCBsaW5rIG1vZGVzOiAgMTAwMGJhc2VUL0Z1bGwKPiA+ID4gICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgMTAwMDBiYXNlVC9GdWxsCj4gPiA+ICAgICAgICAgIEFkdmVydGlzZWQgcGF1
+c2UgZnJhbWUgdXNlOiBTeW1tZXRyaWMKPiA+ID4gICAgICAgICAgQWR2ZXJ0aXNlZCBhdXRvLW5l
+Z290aWF0aW9uOiBZZXMKPiA+ID4gICAgICAgICAgQWR2ZXJ0aXNlZCBGRUMgbW9kZXM6IE5vdCBy
+ZXBvcnRlZAo+ID4gPiAgICAgICAgICBTcGVlZDogMTAwME1iL3MKPiA+ID4gICAgICAgICAgRHVw
+bGV4OiBGdWxsCj4gPiA+ICAgICAgICAgIFBvcnQ6IFR3aXN0ZWQgUGFpcgo+ID4gPiAgICAgICAg
+ICBQSFlBRDogMTIKPiA+ID4gICAgICAgICAgVHJhbnNjZWl2ZXI6IGludGVybmFsCj4gPiA+ICAg
+ICAgICAgIEF1dG8tbmVnb3RpYXRpb246IG9uCj4gPiA+ICAgICAgICAgIE1ESS1YOiBVbmtub3du
+Cj4gPiA+ICAgICAgICAgIFN1cHBvcnRzIFdha2Utb246IGcKPiA+ID4gICAgICAgICAgV2FrZS1v
+bjogZwo+ID4gPiAgICAgICAgICBDdXJyZW50IG1lc3NhZ2UgbGV2ZWw6IDB4MDAwMDAwMDAgKDAp
+Cj4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBMaW5rIGRldGVj
+dGVkOiB5ZXMKPiA+ID4gCj4gPiA+IEl0IHNlZW1zIHRoYXQgb25seSAxMDAwIE1iL3MgaXMgbmVn
+b2NpYXRlZC4KPiA+ID4gCj4gPiA+IE9saXZpZXIgUmF2YXJkCj4gPiA+IE5vdmFHcmlkIFMuQS5T
+Lgo+ID4gPiAKPiA+IFdoYXQgdHlwZSBvZiBTRlAtdG8tUko0NSBtb2R1bGUgZG8geW91IGhhdmU/
+ICBBcmUgeW91IHN1cmUgdGhhdCBpdAo+ID4gaXMgZGVzaWduZWQgZm9yCj4gPiAxMEdCYXNlVD8g
+IFdoYXQgdHlwZSBvZiBjYWJsZSBhcmUgeW91IHVzaW5nPwo+IEkgYW0gdXNpbmcgdGhlIFNGUC10
+by1SSjQ1IG1vZHVsZSBwcm92aWRlZCBieSBldHR1cy4gSXQgc2VlbXMgdGhhdCBpdAo+IGlzIHNw
+ZWNpZmllZCBvbmx5Cj4gZm9yIDFHQi9zLiBJIHdpbGwgdGVzdCB3aXRoCj4gYmV0dGVyIGFkYXB0
+YXRvcnMuCj4gPiAKPiA+IAo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KPiA+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gPiBVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbQo+ID4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZv
+L3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xp
+c3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
+bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
