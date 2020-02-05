@@ -2,51 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BA4B153940
-	for <lists+usrp-users@lfdr.de>; Wed,  5 Feb 2020 20:45:54 +0100 (CET)
-Received: from [::1] (port=46988 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D13E3153A80
+	for <lists+usrp-users@lfdr.de>; Wed,  5 Feb 2020 22:53:40 +0100 (CET)
+Received: from [::1] (port=41252 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1izQcT-0001zf-5Y; Wed, 05 Feb 2020 14:45:53 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:42837)
+	id 1izSc4-0000p9-Ra; Wed, 05 Feb 2020 16:53:36 -0500
+Received: from mail-lj1-f172.google.com ([209.85.208.172]:43550)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <nate.temple@ettus.com>)
- id 1izQcP-0001st-Nk
- for usrp-users@lists.ettus.com; Wed, 05 Feb 2020 14:45:49 -0500
-Received: by mail-oi1-f179.google.com with SMTP id j132so1990124oih.9
- for <usrp-users@lists.ettus.com>; Wed, 05 Feb 2020 11:45:29 -0800 (PST)
+ (Exim 4.92) (envelope-from <martin.braun@ettus.com>)
+ id 1izSc1-0000lr-99
+ for usrp-users@lists.ettus.com; Wed, 05 Feb 2020 16:53:33 -0500
+Received: by mail-lj1-f172.google.com with SMTP id a13so3874854ljm.10
+ for <usrp-users@lists.ettus.com>; Wed, 05 Feb 2020 13:53:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=X9VaGrM0OpfW5SLqF+AfipdL+QjEZC5Ggltcbktj7Iw=;
- b=lHwXowuniVWBWU1eKR3jT+Jer4rzm3fIr1g+CzfsDV9n+NN0MT+ux6NNAAC255WD5L
- kbzV1vz5RTbdPQ82bZesRcvGs+DbvOjJUwvM8aUe8mCMvyw14Va3Ro+NmVGEkAGVwx3P
- kDcsvL4YVXl0cCkpMAX7MILV884hkL6LKnGGffsmo+P6tA0lAQDfb5CD1DVC81AN5f+E
- g6xe5TBGcUcqq+DQK6W77gfHTodH5inpFMJSQPTFxsSuroZ8obA7vt5SPGVCFgwDVGkb
- HdCna+xqiIYauZr3ViYKpv6PmlXEnmky6ZuxmGONVSbhuZScNBUP2xLz5uaZTtv2c2u3
- jh3w==
+ :cc; bh=TymXSPrKK5k5JbbYf07PskH9xd8QtDYqOBNVvBM76Ds=;
+ b=zfKKFuwGZ4c7Z7AwoafXgrtNRQgpA4o9GNaWZi8ED36a1p673gQrHJb1q9b4dlZBTl
+ b2Tf01wRaVMhpuWjEQwW/0AgXLjlzGwQvHzAKU6RL4OBhGgW8o2JttxDBBR30AXu1gmk
+ CXAo/lKtwDIA+xERl5mej+ypoSnq0OB9BAvKO6gxTA0C2EgoYGPQdve1V7ExM0Ua4FMp
+ jttpY6Gep4T8SJbbws6FZJjTi/QrwqDI0brPaH08reJ69/B2sUcGkoW7dCta+8OhuIbZ
+ OBJxbBzutMK7Eq3rLBlTYkxsMhDg3ebpdJ70iy3/Qs59ysRH8ab3prnWlqxaQC1fAheG
+ qa8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=X9VaGrM0OpfW5SLqF+AfipdL+QjEZC5Ggltcbktj7Iw=;
- b=QY8ZjRJ6517JhR/CpNAvleWzA83bSpd4TDdHAiUql4tPNG6hH6tjvhoNj+KOJjjDbB
- VCl70hVsI/XTmN6oog7ao9gQqvnh+ZbtIcNvyJaFDphOdKvImy+GVv2ABpDMnLTbirr3
- 9Wkf3T3WoavQmmampAJzTFaUrw1/92N9XaKN3BPvrXK3bfQefCyzU8Z4dzdBh1FlI8G+
- MbZ4fK6pyvPdUx4rwr1LJhUj5ka6pEKWEZKnfAL+xE7UQRMEHabdrkaZDzjAilCXJ7PD
- g7qltJcsvveC1fMNoeMMnI7solndFa0fAXUgukxYkDzhNbk+ga80zHdpN1zQ1n+QjVbF
- 5YVw==
-X-Gm-Message-State: APjAAAWrkiQKbUP91GPY4ZQ2kMoVs2A/PyogCHICh7WJpVFQ9hf684K/
- 0d3OczNQgZIQsgAYlzWHwJOLCMbzoc3HgjNFqp27jdrD
-X-Google-Smtp-Source: APXvYqzXv1Slm3KsE88LbpPJ7O+U4Yq8b4YBhAomYSQun/yyauNKUHlpCNCy1gdqBKTU1O0B7y5ky5W3J+3J0psFHSs=
-X-Received: by 2002:aca:45c1:: with SMTP id s184mr4318624oia.158.1580931908881; 
- Wed, 05 Feb 2020 11:45:08 -0800 (PST)
+ bh=TymXSPrKK5k5JbbYf07PskH9xd8QtDYqOBNVvBM76Ds=;
+ b=iml1nzY57jszFfuDVZotSmahOgK4ukKJIHK3LCa8OduV6jTQIMiLQOePoIsjxrzlvE
+ CQ72B1Eh/tVrYpSTcly0qmOLWMQz+13NbvTJDPDQkH62/0aM6QqNnnN+c1FvHrClL2GP
+ MjXiUsZW+wMAlQcwMDtwX5Wy3S78sjnaMsVXNjtHvwSfAhsTUNd8u5gepM4pD1RI7Ygi
+ WSgCBk1YhBzNbvt5bp2EZCepO6rM4ZSB1Cs38FHTE4gjPKqaIyhWTLyvK06WXhuDXVwd
+ m/i4dvF3aAXJ799S4lDZ6S57hGWqecW3sEXnDS5LRVD5C5QpW6JyCa8Z6xaZrzQLydH8
+ 77Mg==
+X-Gm-Message-State: APjAAAWjrL2LgrAwSiPjXnRKc/dun9xbfFa+9i01hO3oh+f3Ilsq4suA
+ GMUFsUesDpt+09LXibjKeVlUWVmu5bmpH3U+5KwX4+Bi
+X-Google-Smtp-Source: APXvYqz27hUUPdpJZBtRbGKXs3ApzDSK2nTWZTtO9ZQ+J3duJEmM6VjctK1tjRfOwB3ahrP+mn/rsSrwoTTkIYxk1K0=
+X-Received: by 2002:a2e:8916:: with SMTP id d22mr22393137lji.19.1580939571899; 
+ Wed, 05 Feb 2020 13:52:51 -0800 (PST)
 MIME-Version: 1.0
 References: <CAFOi1A4kwawxH_Wp96xymVWWbhUi8S4gsRc9c479iqHrmKEu5Q@mail.gmail.com>
  <BN6PR19MB16355A86D6C73792BE7A6CA4A4020@BN6PR19MB1635.namprd19.prod.outlook.com>
 In-Reply-To: <BN6PR19MB16355A86D6C73792BE7A6CA4A4020@BN6PR19MB1635.namprd19.prod.outlook.com>
-Date: Wed, 5 Feb 2020 11:46:53 -0800
-Message-ID: <CAL263ixZ=SQ1VynFomUETMv3xXGGs5d3xdc0HkScZGf2T5AOxw@mail.gmail.com>
+Date: Wed, 5 Feb 2020 13:52:40 -0800
+Message-ID: <CAFOi1A4+TSFGc1fajK+tdRZQBrg1M6ahSCtoLT28VRHWruJHAg@mail.gmail.com>
 To: Jeff S <e070832@hotmail.com>
 Subject: Re: [USRP-users] [UHD] FPGA code will be merged back into the UHD
  repository
@@ -61,10 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nate Temple via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nate Temple <nate.temple@ettus.com>
+From: Martin Braun via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Martin Braun <martin.braun@ettus.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6487533294203249383=="
+Content-Type: multipart/mixed; boundary="===============1262830934699853777=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,25 +78,20 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6487533294203249383==
-Content-Type: multipart/alternative; boundary="000000000000d7f235059dd964fb"
+--===============1262830934699853777==
+Content-Type: multipart/alternative; boundary="00000000000098410d059ddb2d81"
 
---000000000000d7f235059dd964fb
+--00000000000098410d059ddb2d81
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Jeff,
+To add to Nate's answer,
 
-Yes, it will change the process slightly, you will no longer need to do a
---recursive clone of the UHD repo (to pull in the FPGA repo submodule).
+if you're staying on UHD-3.15.LTS, then the current process is unchanged.
+For master, we'll need new App Notes as Nate said.
 
-We will be updating the applications notes to be in sync with 4.0/master
-soon.
+--M
 
-Regards,
-Nate Temple
-
-On Wed, Feb 5, 2020 at 11:42 AM Jeff S via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+On Wed, Feb 5, 2020 at 11:42 AM Jeff S <e070832@hotmail.com> wrote:
 
 > Will this significantly change the Application Notes (AN-823) for RFNoC
 > Development?  Or is it just removing the git fpga?
@@ -180,26 +175,20 @@ usrp-users@lists.ettus.com> wrote:
 > Please respond to this thread with questions. Thanks!
 >
 > --Martin
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000d7f235059dd964fb
+--00000000000098410d059ddb2d81
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hi Jeff,<br><br>Yes, it will change the process slightl=
-y, you will no longer need to do a --recursive clone of the UHD repo (to pu=
-ll in the FPGA repo submodule).<br><br>We will be updating the applications=
- notes to be in sync with 4.0/master soon.<br><br>Regards,<br>Nate Temple</=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Wed, Feb 5, 2020 at 11:42 AM Jeff S via USRP-users &lt;<a href=3D"ma=
-ilto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr"><div>To add to Nate&#39;s answer,</div><div><br></div><div=
+>if you&#39;re staying on UHD-3.15.LTS, then the current process is unchang=
+ed. For master, we&#39;ll need new App Notes as Nate said.</div><div><br></=
+div><div>--M<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Wed, Feb 5, 2020 at 11:42 AM Jeff S &lt;<a href=3D=
+"mailto:e070832@hotmail.com">e070832@hotmail.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex">
 
 
 
@@ -227,15 +216,15 @@ Thx,</div>
 :rgb(0,0,0)">
 Jeff<br>
 </div>
-<div id=3D"gmail-m_2411256278676929026Signature">
+<div id=3D"gmail-m_2181023344409971764Signature">
 <div>
-<div id=3D"gmail-m_2411256278676929026appendonsend"></div>
+<div id=3D"gmail-m_2181023344409971764appendonsend"></div>
 <div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
 :rgb(0,0,0)">
 <br>
 </div>
 <hr style=3D"display:inline-block;width:98%">
-<div id=3D"gmail-m_2411256278676929026divRplyFwdMsg" dir=3D"ltr"><font styl=
+<div id=3D"gmail-m_2181023344409971764divRplyFwdMsg" dir=3D"ltr"><font styl=
 e=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From=
 :</b> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus.com" =
 target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt; on behalf of M=
@@ -342,19 +331,12 @@ and git blame.</div>
 </div>
 </div>
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000d7f235059dd964fb--
+--00000000000098410d059ddb2d81--
 
 
---===============6487533294203249383==
+--===============1262830934699853777==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -365,5 +347,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6487533294203249383==--
+--===============1262830934699853777==--
 
