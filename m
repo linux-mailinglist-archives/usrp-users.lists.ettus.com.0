@@ -2,47 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AC3A154256
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2020 11:48:01 +0100 (CET)
-Received: from [::1] (port=39170 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B311546DE
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2020 15:54:39 +0100 (CET)
+Received: from [::1] (port=46360 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1izehR-0000vr-7t; Thu, 06 Feb 2020 05:47:57 -0500
-Received: from sainfoin-smtp-out.extra.cea.fr ([132.167.192.228]:54404)
+	id 1iziY5-0005Hs-8I; Thu, 06 Feb 2020 09:54:33 -0500
+Received: from sainfoin-smtp-out.extra.cea.fr ([132.167.192.228]:48085)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
  (Exim 4.92) (envelope-from <rodolphe.bertolini@cea.fr>)
- id 1izehN-0000sM-G8
- for usrp-users@lists.ettus.com; Thu, 06 Feb 2020 05:47:53 -0500
+ id 1iziY1-0005Dt-Nf
+ for usrp-users@lists.ettus.com; Thu, 06 Feb 2020 09:54:29 -0500
 Received: from pisaure.intra.cea.fr (pisaure.intra.cea.fr [132.166.88.21])
  by sainfoin-sys.extra.cea.fr (8.14.7/8.14.7/CEAnet-Internet-out-4.0) with
- ESMTP id 016AlB5K027587
- for <usrp-users@lists.ettus.com>; Thu, 6 Feb 2020 11:47:11 +0100
+ ESMTP id 016Erl4C022256
+ for <usrp-users@lists.ettus.com>; Thu, 6 Feb 2020 15:53:47 +0100
 Received: from pisaure.intra.cea.fr (localhost [127.0.0.1])
- by localhost (Postfix) with SMTP id A15D1204854
- for <usrp-users@lists.ettus.com>; Thu,  6 Feb 2020 11:47:11 +0100 (CET)
+ by localhost (Postfix) with SMTP id D120B201B9F
+ for <usrp-users@lists.ettus.com>; Thu,  6 Feb 2020 15:53:47 +0100 (CET)
 Received: from muguet1-smtp-out.intra.cea.fr (muguet1-smtp-out.intra.cea.fr
  [132.166.192.12])
- by pisaure.intra.cea.fr (Postfix) with ESMTP id 94B11200B9A
- for <usrp-users@lists.ettus.com>; Thu,  6 Feb 2020 11:47:11 +0100 (CET)
-Received: from EXCAH-B2.intra.cea.fr (excah-b2.intra.cea.fr [132.166.88.87])
+ by pisaure.intra.cea.fr (Postfix) with ESMTP id B90F5204D76
+ for <usrp-users@lists.ettus.com>; Thu,  6 Feb 2020 15:53:47 +0100 (CET)
+Received: from EXCAH-A2.intra.cea.fr (excah-a2.intra.cea.fr [132.166.88.76])
  by muguet1-sys.intra.cea.fr (8.14.7/8.14.7/CEAnet-Internet-out-4.0) with ESMTP
- id 016AlAP2028191
- for <usrp-users@lists.ettus.com>; Thu, 6 Feb 2020 11:47:10 +0100
+ id 016ErlwQ014613
+ for <usrp-users@lists.ettus.com>; Thu, 6 Feb 2020 15:53:47 +0100
 Received: from EXDAG0-B2.intra.cea.fr ([fe80::d079:8496:6c6c:9b1f]) by
- EXCAH-B2.intra.cea.fr ([fe80::6d9a:7f48:7b8f:6abc%11]) with mapi id
- 14.03.0468.000; Thu, 6 Feb 2020 11:47:11 +0100
+ EXCAH-A2.intra.cea.fr ([fe80::1424:a20d:95ab:8077%10]) with mapi id
+ 14.03.0468.000; Thu, 6 Feb 2020 15:53:47 +0100
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] DPDK runtime error 
-Thread-Index: AQHV3Npj3RPgjgI/YkyB6ztO59GGxQ==
-Date: Thu, 6 Feb 2020 10:47:11 +0000
-Message-ID: <F479266F97CCAE47854721C82406934E1D04F16D@EXDAG0-B2.intra.cea.fr>
+Thread-Topic: [USRP-users] DPDK runtime error
+Thread-Index: AQHV3Npj3RPgjgI/YkyB6ztO59GGxagOMO38
+Date: Thu, 6 Feb 2020 14:53:47 +0000
+Message-ID: <F479266F97CCAE47854721C82406934E1D04F1A8@EXDAG0-B2.intra.cea.fr>
+References: <F479266F97CCAE47854721C82406934E1D04F16D@EXDAG0-B2.intra.cea.fr>
+In-Reply-To: <F479266F97CCAE47854721C82406934E1D04F16D@EXDAG0-B2.intra.cea.fr>
 Accept-Language: fr-FR, en-US
 Content-Language: fr-FR
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [132.166.88.110]
+x-originating-ip: [132.166.88.109]
 x-tm-as-product-ver: SMEX-11.0.0.4179-8.100.1062-23234.003
-x-tm-as-result: No--23.127400-0.000000-31
+x-tm-as-result: No--22.454300-0.000000-31
 x-tm-as-user-approved-sender: Yes
 x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
@@ -60,7 +62,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: BERTOLINI Rodolphe via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: BERTOLINI Rodolphe <rodolphe.bertolini@cea.fr>
-Content-Type: multipart/mixed; boundary="===============8040039763599635758=="
+Content-Type: multipart/mixed; boundary="===============6138688303536818542=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,14 +76,83 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8040039763599635758==
+--===============6138688303536818542==
 Content-Language: fr-FR
 Content-Type: multipart/alternative;
-	boundary="_000_F479266F97CCAE47854721C82406934E1D04F16DEXDAG0B2intrace_"
+	boundary="_000_F479266F97CCAE47854721C82406934E1D04F1A8EXDAG0B2intrace_"
 
---_000_F479266F97CCAE47854721C82406934E1D04F16DEXDAG0B2intrace_
+--_000_F479266F97CCAE47854721C82406934E1D04F1A8EXDAG0B2intrace_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Hello again,
+
+There seemed to have wrong rights on file, because after changing rights an=
+d editing the file I had this error:
+
+
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.15.0.HEAD-0-=
+gaea0e2de
+EAL: Detected 28 lcore(s)
+EAL: No free hugepages reported in hugepages-1048576kB
+EAL: Probing VFIO support...
+EAL: VFIO support initialized
+EAL: PCI device 0000:00:1f.6 on NUMA socket 0
+EAL:   probe driver: 8086:15b9 net_e1000_em
+EAL: PCI device 0000:17:00.0 on NUMA socket 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL:   using IOMMU type 1 (Type 1)
+EAL: Ignore mapping IO port bar(2)
+EAL: PCI device 0000:17:00.1 on NUMA socket 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL: Ignore mapping IO port bar(2)
+EAL: PCI device 0000:45:00.0 on NUMA socket 0
+EAL:   probe driver: 8086:1563 net_ixgbe
+EAL: PCI device 0000:45:00.1 on NUMA socket 0
+EAL:   probe driver: 8086:1563 net_ixgbe
+EAL: Error - exiting with code: 1
+  Cause: Requested inactive lcore 3 for port 0
+
+
+I solved this error by editing again the conf file (it seems that I had to =
+remove dpdk-io-core lines)
+
+Now I have again the IPv4 assignement error, with the following configurati=
+on :
+
+[use-dpdk=3D1]
+dpdk-mtu=3D9000
+;dpdk-driver=3D/usr/local/lib/dpdk-pmds/
+dpdk-driver=3D/usr/lib/x86_64-linux-gnu/dpdk-17.11-drivers/
+dpdk-corelist=3D2-4
+dpdk-num-mbufs=3D4096
+dpdk-mbuf-cache-size=3D316
+[dpdk-mac=3Df8:f2:1e:29:c5:14]
+dpdk-lcore =3D 3
+;dpdk-io-cpu =3D 3
+dpdk-ipv4 =3D 192.168.30.2/24
+[dpdk-mac=3Df8:f2:1e:29:c5:15]
+dpdk-lcore =3D 4
+;dpdk-io-cpu =3D 4
+dpdk-ipv4 =3D 192.168.40.2/24
+;dpdk-num-desc=3D4096
+
+It tells me :
+
+EAL: Please set IPv4 address for port 0 before opening socket
+
+I don't get what is wrong. Must both SFP ports of the USRP be plugged, to t=
+he host?
+
+Regards,
+Rodolphe
+
+________________________________
+De : USRP-users [usrp-users-bounces@lists.ettus.com] de la part de BERTOLIN=
+I Rodolphe via USRP-users [usrp-users@lists.ettus.com]
+Envoy=E9 : jeudi 6 f=E9vrier 2020 11:47
+=C0 : usrp-users@lists.ettus.com
+Objet : Re: [USRP-users] DPDK runtime error
 
 Hello,
 Sorry if I had better to create an other thread.
@@ -193,7 +264,7 @@ Desc: not available
 URL: <http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/attachmen=
 ts/20200109/4fa5e5a7/attachment.vcf>
 
---_000_F479266F97CCAE47854721C82406934E1D04F16DEXDAG0B2intrace_
+--_000_F479266F97CCAE47854721C82406934E1D04F1A8EXDAG0B2intrace_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -207,11 +278,122 @@ p=0A=
 	{margin-top:0;=0A=
 	margin-bottom:0}=0A=
 -->=0A=
-</style><style type=3D"text/css" id=3D"owaParaStyle"></style>
+</style><style type=3D"text/css" id=3D"owaParaStyle">=0A=
+<!--=0A=
+-->=0A=
+</style>
 </head>
 <body dir=3D"ltr" fpstyle=3D"1" ocsi=3D"0">
 <div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
 10pt;">
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">
+<div>Hello again, <br>
+</div>
+<div><br>
+</div>
+<div>There seemed to have wrong rights on file, because after changing righ=
+ts and editing the file I had this error:</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>[INFO] [UHD] linux; GNU C&#43;&#43; version 7.4.0; Boost_106501; UHD_3=
+.15.0.HEAD-0-gaea0e2de<br>
+EAL: Detected 28 lcore(s)<br>
+EAL: No free hugepages reported in hugepages-1048576kB<br>
+EAL: Probing VFIO support...<br>
+EAL: VFIO support initialized<br>
+EAL: PCI device 0000:00:1f.6 on NUMA socket 0<br>
+EAL:&nbsp;&nbsp; probe driver: 8086:15b9 net_e1000_em<br>
+EAL: PCI device 0000:17:00.0 on NUMA socket 0<br>
+EAL:&nbsp;&nbsp; probe driver: 8086:10fb net_ixgbe<br>
+EAL:&nbsp;&nbsp; using IOMMU type 1 (Type 1)<br>
+EAL: Ignore mapping IO port bar(2)<br>
+EAL: PCI device 0000:17:00.1 on NUMA socket 0<br>
+EAL:&nbsp;&nbsp; probe driver: 8086:10fb net_ixgbe<br>
+EAL: Ignore mapping IO port bar(2)<br>
+EAL: PCI device 0000:45:00.0 on NUMA socket 0<br>
+EAL:&nbsp;&nbsp; probe driver: 8086:1563 net_ixgbe<br>
+EAL: PCI device 0000:45:00.1 on NUMA socket 0<br>
+EAL:&nbsp;&nbsp; probe driver: 8086:1563 net_ixgbe<br>
+</div>
+<div>EAL: Error - exiting with code: 1<br>
+&nbsp; Cause: Requested inactive lcore 3 for port 0</div>
+<div><br>
+</div>
+<div><br>
+</div>
+I solved this error by editing again the conf file (it seems that I had to =
+remove dpdk-io-core lines)</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt"><br>
+</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">Now I have again the IPv4 assignement error, with the following config=
+uration :</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt"><br>
+</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">[use-dpdk=3D1]<br>
+dpdk-mtu=3D9000<br>
+;dpdk-driver=3D/usr/local/lib/dpdk-pmds/<br>
+dpdk-driver=3D/usr/lib/x86_64-linux-gnu/dpdk-17.11-drivers/<br>
+dpdk-corelist=3D2-4<br>
+dpdk-num-mbufs=3D4096<br>
+dpdk-mbuf-cache-size=3D316<br>
+[dpdk-mac=3Df8:f2:1e:29:c5:14]<br>
+dpdk-lcore =3D 3<br>
+;dpdk-io-cpu =3D 3<br>
+dpdk-ipv4 =3D 192.168.30.2/24<br>
+[dpdk-mac=3Df8:f2:1e:29:c5:15]<br>
+dpdk-lcore =3D 4<br>
+;dpdk-io-cpu =3D 4<br>
+dpdk-ipv4 =3D 192.168.40.2/24<br>
+;dpdk-num-desc=3D4096<br>
+</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt"><br>
+</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">It tells me :</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt"><br>
+</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">EAL: Please set IPv4 address for port 0 before opening socket<br>
+</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt"><br>
+</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">I don't get what is wrong. Must both SFP ports of the USRP be plugged,=
+ to the host?</div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">
+<div><br>
+</div>
+<div>Regards,</div>
+<div>Rodolphe<br>
+</div>
+<div><br>
+</div>
+<div style=3D"font-family:Times New Roman; color:#000000; font-size:16px">
+<hr tabindex=3D"-1">
+<div id=3D"divRpF480553" style=3D"direction:ltr"><font size=3D"2" face=3D"T=
+ahoma" color=3D"#000000"><b>De :</b> USRP-users [usrp-users-bounces@lists.e=
+ttus.com] de la part de BERTOLINI Rodolphe via USRP-users [usrp-users@lists=
+.ettus.com]<br>
+<b>Envoy=E9 :</b> jeudi 6 f=E9vrier 2020 11:47<br>
+<b>=C0 :</b> usrp-users@lists.ettus.com<br>
+<b>Objet :</b> Re: [USRP-users] DPDK runtime error<br>
+</font><br>
+</div>
+<div></div>
+<div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">
 <div>Hello,</div>
 <div>Sorry if I had better to create an other thread.</div>
 <div><br>
@@ -260,8 +442,7 @@ with UHD 3.15?<br>
 <div>Regards,</div>
 <div>Rodolphe<br>
 </div>
-<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
-">
+<div style=3D"font-family:Times New Roman; color:#000000; font-size:16px">
 <hr tabindex=3D"-1">
 <pre>Hi Aaron,=0A=
 =0A=
@@ -291,8 +472,9 @@ On 1/8/2020 17:31, Aaron Rossetto via USRP-users wrote:=0A=
 </i>&gt;<i>=0A=
 </i>&gt;<i>=0A=
 </i>&gt;<i> From: USRP-users &lt;<a href=3D"http://lists.ettus.com/mailman/=
-listinfo/usrp-users_lists.ettus.com">usrp-users-bounces at lists.ettus.com<=
-/a>&gt; On Behalf Of Florian Kaltenberger via USRP-users=0A=
+listinfo/usrp-users_lists.ettus.com" rel=3D"noopener noreferrer" target=3D"=
+_blank">usrp-users-bounces at lists.ettus.com</a>&gt; On Behalf Of Florian =
+Kaltenberger via USRP-users=0A=
 </i>&gt;<i> Sent: Wednesday, January 8, 2020 10:10 AM=0A=
 </i>&gt;<i> Subject: [EXTERNAL] Re:&nbsp;&nbsp;&nbsp; DPDK runtime error=0A=
 </i>&gt;<i>=0A=
@@ -325,24 +507,26 @@ that DPDK requires to address the device by its PCI address while UHD still=
 </i>&gt;<i> _______________________________________________=0A=
 </i>&gt;<i> USRP-users mailing list=0A=
 </i>&gt;<i> <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_l=
-ists.ettus.com">USRP-users at lists.ettus.com</a>=0A=
+ists.ettus.com" rel=3D"noopener noreferrer" target=3D"_blank">USRP-users at=
+ lists.ettus.com</a>=0A=
 </i>&gt;<i> <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_l=
-ists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com</a>=0A=
+ists.ettus.com" rel=3D"noopener noreferrer" target=3D"_blank">http://lists.=
+ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>=0A=
 </i>-- =0A=
 Follow us on Google&#43; &lt;<a href=3D"https://plus.google.com/&#43;Openai=
-rinterfaceOrg">https://plus.google.com/&#43;OpenairinterfaceOrg</a>&gt;, =
-=0A=
-LinkedIn &lt;<a href=3D"https://www.linkedin.com/company/openairinterface">=
-https://www.linkedin.com/company/openairinterface</a>&gt;, or Twitter =0A=
-&lt;<a href=3D"https://twitter.com/osalliance5g">https://twitter.com/osalli=
-ance5g</a>&gt;!=0A=
+rinterfaceOrg" rel=3D"noopener noreferrer" target=3D"_blank">https://plus.g=
+oogle.com/&#43;OpenairinterfaceOrg</a>&gt;, =0A=
+LinkedIn &lt;<a href=3D"https://www.linkedin.com/company/openairinterface" =
+rel=3D"noopener noreferrer" target=3D"_blank">https://www.linkedin.com/comp=
+any/openairinterface</a>&gt;, or Twitter =0A=
+&lt;<a href=3D"https://twitter.com/osalliance5g" rel=3D"noopener noreferrer=
+" target=3D"_blank">https://twitter.com/osalliance5g</a>&gt;!=0A=
 -------------- next part --------------=0A=
 An HTML attachment was scrubbed...=0A=
 URL: &lt;<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus=
-.com/attachments/20200109/4fa5e5a7/attachment.html">http://lists.ettus.com/=
-pipermail/usrp-users_lists.ettus.com/attachments/20200109/4fa5e5a7/attachme=
-nt.html</a>&gt;=0A=
+.com/attachments/20200109/4fa5e5a7/attachment.html" rel=3D"noopener norefer=
+rer" target=3D"_blank">http://lists.ettus.com/pipermail/usrp-users_lists.et=
+tus.com/attachments/20200109/4fa5e5a7/attachment.html</a>&gt;=0A=
 -------------- next part --------------=0A=
 A non-text attachment was scrubbed...=0A=
 Name: florian_kaltenberger.vcf=0A=
@@ -350,18 +534,22 @@ Type: text/x-vcard=0A=
 Size: 274 bytes=0A=
 Desc: not available=0A=
 URL: &lt;<a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus=
-.com/attachments/20200109/4fa5e5a7/attachment.vcf">http://lists.ettus.com/p=
-ipermail/usrp-users_lists.ettus.com/attachments/20200109/4fa5e5a7/attachmen=
-t.vcf</a>&gt;</pre>
+.com/attachments/20200109/4fa5e5a7/attachment.vcf" rel=3D"noopener noreferr=
+er" target=3D"_blank">http://lists.ettus.com/pipermail/usrp-users_lists.ett=
+us.com/attachments/20200109/4fa5e5a7/attachment.vcf</a>&gt;</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </body>
 </html>
 
---_000_F479266F97CCAE47854721C82406934E1D04F16DEXDAG0B2intrace_--
+--_000_F479266F97CCAE47854721C82406934E1D04F1A8EXDAG0B2intrace_--
 
 
---===============8040039763599635758==
+--===============6138688303536818542==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -372,5 +560,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8040039763599635758==--
+--===============6138688303536818542==--
 
