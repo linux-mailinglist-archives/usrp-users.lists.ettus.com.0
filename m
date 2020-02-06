@@ -2,61 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A52154936
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2020 17:30:10 +0100 (CET)
-Received: from [::1] (port=59286 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F51154A92
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2020 18:52:59 +0100 (CET)
+Received: from [::1] (port=40228 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1izk2b-0001Mv-5g; Thu, 06 Feb 2020 11:30:09 -0500
-Received: from mail-qk1-f179.google.com ([209.85.222.179]:43368)
+	id 1izlKi-0002qu-Ko; Thu, 06 Feb 2020 12:52:56 -0500
+Received: from mail-lj1-f169.google.com ([209.85.208.169]:40783)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1izk2X-0001E3-OX
- for usrp-users@lists.ettus.com; Thu, 06 Feb 2020 11:30:05 -0500
-Received: by mail-qk1-f179.google.com with SMTP id j20so6107930qka.10
- for <usrp-users@lists.ettus.com>; Thu, 06 Feb 2020 08:29:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=y8iBtqfpjUq6Fqz/pAYMrEihB9XUmPIZyfeyNBMfwHY=;
- b=mWWDOeIBYE9aKZx+WjElDiFDURy4AOWYBZenxms9Z/NBBQ5d5UcFcdRjqG6nRkbjJ1
- Aqm1G2Q4mP9pqqQliIcRU6NeDiiGXUqbck/Jqx2iDIeQb4jgcD6F6pK8ZciGxFGYMVeQ
- 2PowvRCLEIc7o1wGQ1hO/JIOEokogyCBqrXVuHmusKOJdnPLya8sCrxh1pXQz4wJ8c8w
- pvRRKoWDug2dcN/0UZdr/9tS8teIctdPLK06whg5YOI770O6RaSGXFkcepc5vAzEGmJr
- +cSwcMUEn5KPoqbfiPx7XopZruSUyOr/q+jogFAy+Iw48R8dwIpaifXuxlGw/EjWTLsy
- 7vIg==
+ (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
+ id 1izlKe-0002ka-R5
+ for usrp-users@lists.ettus.com; Thu, 06 Feb 2020 12:52:53 -0500
+Received: by mail-lj1-f169.google.com with SMTP id n18so7054309ljo.7
+ for <usrp-users@lists.ettus.com>; Thu, 06 Feb 2020 09:52:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9pHaoSsIW3wHgRJU4Q8pJ+aEB5bxxzOutK69Yi5GNZ4=;
+ b=QRA0yOs5B6FFQkQEzPHZq/rjlvOu/mbkopdPDXW6sVQrZSYxDzI10/2CuQub7s2+B7
+ NhiNevetWBZcTnGuJjJA28nx4ZRPBFQmgfnDzLVrxuGgcO6ZeKawVn8Q7zF4FF8gLI8R
+ K0eqL9hXQXru6VMHUatb+Xtot9E1p26GQrNg2vmrgZioTY7OKHliyQBYql2/DVfip83/
+ B4HfDTvCo+XpBriyG44HcRcHMjKqjMe/sQSZwNDD6WhdEaxOkgWZHX0H+nvkXmi3Hbv+
+ wjiJ9WCKVgElZ5+f5hEXqEpOQZ/m4BgLkHVhnJx+OYpQyoI8b/IB2A87VUKggTXFifO6
+ ORFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=y8iBtqfpjUq6Fqz/pAYMrEihB9XUmPIZyfeyNBMfwHY=;
- b=hR4h5CbcpeaaP13+vNDFeab22Yq2xR+8FpMYNtL8LeZxhpW3Cm21objRC5Wsxwgfaj
- BNMla/jnY4Zs3IordoZYxBiQjQ7rVDJUcCN59XT0lAJdxt8L2MM+rN4s8G0hx2KOJ6+W
- qj+LscAqXmTDMjxOiBq+PU3Nrwd3ZAxHE3N7P8a3ItM4bsSGAamKZf3p1LyAOiuikEoE
- H1ODQLBeJXR0To5iVtJinFzRffx07KOy08PMDEKSVoELkIgJ1TM7b2O7NOOWsjYwGrs2
- AaSlBwurA/g2CtsgrTys1aAxUZlW/o5uQbMLyoXkziRc0QfO2bS5+hiFLkhTxhpJY7E7
- dglA==
-X-Gm-Message-State: APjAAAX2aC0O70Z8jA2ofwyEJNtoWb7x3nNqUHaSBx6VYrTvzMMlqFbr
- Yf3EermkYDYRyx4IR+xpP3MKNn9k
-X-Google-Smtp-Source: APXvYqwiu6UHGMFONKT8X5MWHdRv0FIKofEUCj7Sg+OrMnpzW43AmY+hFmz4cL0R0aBu7iNFTAzOUw==
-X-Received: by 2002:a05:620a:911:: with SMTP id
- v17mr3360910qkv.94.1581006565011; 
- Thu, 06 Feb 2020 08:29:25 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id g6sm1883125qtp.53.2020.02.06.08.29.24
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 06 Feb 2020 08:29:24 -0800 (PST)
-Message-ID: <5E3C3EE3.5060200@gmail.com>
-Date: Thu, 06 Feb 2020 11:29:23 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9pHaoSsIW3wHgRJU4Q8pJ+aEB5bxxzOutK69Yi5GNZ4=;
+ b=Q/dMGVjZ6QtYhnI0WQHxtohsPS4TSVidcEX655uuPQuMcqAfybLDPpbLP2Erc+e+o3
+ +kC7Y4ocy6Z9BBy7UVCr+wWTgfYbHGYKC4prpl4SRH7IghbWgTTIV9hGJTb3uuKkTSAR
+ 7YT9+7hUXVXpd2HjM2xVwX7b6sizJheHgrcicQnGwGmLBZGVHtVw3F+J2+9L56Z+2s76
+ synyDLaPWSQvvf0nOqx63VWwpte5nBiHdRTlmlY0sYbo9a5O3MIpzs+LVKSKEt27s3Vk
+ jLjdD7CxwRXD08qr8oo7OfwL1U80IQMlBfHHvVAcmo99Iqaf8LsQRtimTuapAg92L9dh
+ 8dNA==
+X-Gm-Message-State: APjAAAViEA5VrZze12ZFfrI9FEF8bt6mt23FyQ3tqe9N2G0rrTmAkxs+
+ /P2ZNpucEZp36Fr/BD+lht9BOTKICk+E3HIXgx9/WdV0
+X-Google-Smtp-Source: APXvYqxU/huCGO7KuAqQ5iB5wOVQbSc6LTTql6SJeM7ODFeT8xeq9/ciljiAbcbP+OLXg0S/nwoOT+fQFulZ+mzrRNQ=
+X-Received: by 2002:a2e:86c8:: with SMTP id n8mr2725123ljj.205.1581011531409; 
+ Thu, 06 Feb 2020 09:52:11 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <86368074.393649.1581004383613.ref@mail.yahoo.com>
- <86368074.393649.1581004383613@mail.yahoo.com>
-In-Reply-To: <86368074.393649.1581004383613@mail.yahoo.com>
-Subject: Re: [USRP-users] Getting time from USRP X300
+References: <mailman.52.1580835604.21324.usrp-users_lists.ettus.com@lists.ettus.com>
+ <CANgrtSX+XF7_pR_L9tD_YfcHXfMeNxhbV=pdDyjnznyaNOm-OQ@mail.gmail.com>
+ <5E3B3C15.50004@gmail.com>
+In-Reply-To: <5E3B3C15.50004@gmail.com>
+Date: Thu, 6 Feb 2020 11:51:59 -0600
+Message-ID: <CANf970Y89v2PQseXmiLu7rq6a8CvYWcBS05FDMB324LnvViEkg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Subject: Re: [USRP-users] USRP filter delay
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,9 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0470436968074173430=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2825740276962238373=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,146 +78,299 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0470436968074173430==
-Content-Type: multipart/alternative;
- boundary="------------080101090404090302070000"
+--===============2825740276962238373==
+Content-Type: multipart/alternative; boundary="000000000000b7671a059debeeae"
 
-This is a multi-part message in MIME format.
---------------080101090404090302070000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000b7671a059debeeae
+Content-Type: text/plain; charset="UTF-8"
 
-On 02/06/2020 10:53 AM, voonna santosh via USRP-users wrote:
-> Hi There,
->    I would like to connect external GPS antenna to X300 and get the 
-> time once GPS is locked. Can you please throw pointers on following 
-> things:
+Timestamps on RX samples are put in the CHDR Header by the Radio Core and
+are not changed by the DDC downstream, except for the case of interpolation
+/ decimation. But even in this case, the remaining samples should still be
+repackaged with timestamps consistent with those given by the Radio Core.
+
+Timestamps on TX samples are assigned on the host machine and compared
+against vita_time in the radio core before they are transmitted (in USRPs
+that support timed TX and RX).
+
+All of that said, the b2xx doesn't support timed operations that interface
+with the AD936x, including timed TX and RX. As I understand it the group
+delay on RX samples would be from Antenna -> AD936x > Radio Core, and this
+delay would be non-deterministic. No additional delay (from a CHDR
+timestamp perspective) is introduced downstream.
+
+Sam
+
+On Wed, Feb 5, 2020 at 4:05 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 02/04/2020 04:05 PM, YENDstudio . via USRP-users wrote:
 >
->   * Does X300 support specific GPS antennas? If so can you please let
->     me know ?
+>   Hi Markus,
 >
-Any of the dozens of active GPS antenna on the market will work just fine.
-
->   * How do I know that X300's GPS is locked? Is there any API to query
->     for GPS lock status?
->   * Once GPS is locked what is the API to get the time?
+> Yes, I am using a timed-command. The loopback delay is about 50 samples.
+> Checking from the UHD API, I can see that there are three digital filters
+> (FIR_1,HB_1,2,3) enabled. The FIR filter alone has 128 taps, and the group
+> delay would exceed what I measured. I am now suspecting that the timestamps
+> are taken at the ADC/DAC rather than at the TX/RX controller (before DUC
+> and after DDC), or the group delay introduced by the digital filters has
+> been compensated. In this case, the loopback delay I measured only shows
+> only the Analog filters' delay which can be predicted.
 >
-The 'query_gpsdo_sensors' utility will show you how to use the GPSDO API.
-
-
->   * Is it possible to use X300 as NTP server? If so how could I
->     achieve it?
+> I will check AD9361's datasheet but I am still unsure of how the
+> timestamps are interpreted; whether the DUC/DDC filter delay is taken into
+> consideration. Otherwise, even while using a GPS PPS trigger, there would
+> be an offset between the start of the TX signal (measured at the antenna)
+> and the actual GPS time. Personally, it would make sense to compensate for
+> DDC/DUC delays by the UHD driver/firmware based on the selected digital
+> filters and the interpolation & decimation factors.
 >
-No, it has no NTP support.   GPS-based NTP servers are now quite cheap, 
-so you should probably look into one of those.
-
-
-
 >
-> BR,
-> Santosh
+>
+> My understanding is that timing on the B200 is referred to the host
+> transport stream, and NOT after the DUC/DDC filters.  Which means that
+>   for any given master-clock/host-sample-rate configuration, it would need
+> to be characterized by the end user.
+>
+> There have been improvements in this regard with other hardware (X3xx, for
+> example), but I'm about 70% certain that the timing on the
+>   B200 is relative to the host transport as it enters/leaves the DSP chain.
+>
+>
+>
+>>
+>>
+>> ---------- Forwarded message ----------
+>> From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+>> To: usrp-users@lists.ettus.com
+>> Cc:
+>> Bcc:
+>> Date: Mon, 03 Feb 2020 12:40:48 -0500
+>> Subject: Re: [USRP-users] USRP filter delay
+>> On 02/02/2020 04:40 AM, YENDstudio . via USRP-users wrote:
+>> > Hi,
+>> >
+>> > I want to know the actual timestamp of TX and RX signals at the RF
+>> > antenna. For this I have add/subtract the group delay introduced by
+>> > digital filters in the TX and the RX paths from the UHD timestamp.
+>> > Through loopback test, I am able to calculate the aggregate delay, but
+>> > cannot know the TX delay and the RX delay separately. The UHD driver
+>> > has APIs to get the list of filters used in the signal paths. But my
+>> > calculated values do not match with the loopback delay I measured.
+>> > Could someone help me with this? I am using USRPB200 set with 30.72
+>> > MHz master clock rate and 1.92 MHz sampling rate.
+>> >
+>> > Regards!
+>> >
+>> >
+>> So, you use a timed transmit sequence, or you just note the time the
+>> samples left your application?  Latency measured through the entire
+>>    stack will be MUCH larger, and variable, than if measured using a
+>> timed-command transmit sequence.
+>>
+>> Quite apart from the analog delay that Nick has already mentioned,
+>> filter-delay will be "shared" between filters in the FPGA, and filters
+>> in the
+>>    AD9361 chip--there's a kind of "shared" DSP going on there.  The
+>> AD9361 datasheet might be a fruitful place to look at DUC/DDC filter
+>>    latencies within the chip.
+>>
+>>
+>>
+>
+> _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 >
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
+--000000000000b7671a059debeeae
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------080101090404090302070000
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 02/06/2020 10:53 AM, voonna santosh
+<div dir=3D"ltr"><div>Timestamps on RX samples are put in the CHDR Header b=
+y the Radio Core and are not changed by the DDC downstream, except for the =
+case of interpolation / decimation. But even in this case, the remaining sa=
+mples should still be repackaged with timestamps consistent with those give=
+n by the Radio Core.</div><div><br></div><div>Timestamps on TX samples are =
+assigned on the host machine and compared against vita_time in the radio co=
+re before they are transmitted (in USRPs that support timed TX and RX). <br=
+></div><div><br></div><div>All of that said, the b2xx doesn&#39;t support t=
+imed operations that interface with the AD936x, including timed TX and RX. =
+As I understand it the group delay on RX samples would be from Antenna -&gt=
+; AD936x &gt; Radio Core, and this delay would be non-deterministic. No add=
+itional delay (from a CHDR timestamp perspective) is introduced downstream.=
+=C2=A0 <br></div><div><br></div><div><div><div><div dir=3D"ltr" class=3D"gm=
+ail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><di=
+v dir=3D"ltr">Sam<br></div></div></div></div></div></div></div></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb =
+5, 2020 at 4:05 PM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usr=
+p-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 02/04/2020 04:05 PM, YENDstudio .
       via USRP-users wrote:<br>
     </div>
-    <blockquote cite="mid:86368074.393649.1581004383613@mail.yahoo.com"
-      type="cite">
-      <div class="yahoo-style-wrap" style="font-family:Helvetica Neue,
-        Helvetica, Arial, sans-serif;font-size:16px;">
-        <div dir="ltr" data-setdir="false">Hi There,</div>
-        <div dir="ltr" data-setdir="false">   I would like to connect
-          external GPS antenna to X300 and get the time once GPS is
-          locked. Can you please throw pointers on following things:</div>
-        <div dir="ltr" data-setdir="false">
-          <ul>
-            <li>Does X300 support specific GPS antennas? If so can you
-              please let me know ?</li>
-          </ul>
+    <blockquote type=3D"cite">
+      <div dir=3D"auto">
+        <div class=3D"gmail_quote" dir=3D"auto">
+          <div dir=3D"ltr" class=3D"gmail_attr">=C2=A0 Hi Markus,</div>
+          <div dir=3D"ltr" class=3D"gmail_attr"><br>
+          </div>
+          <div dir=3D"ltr" class=3D"gmail_attr">Yes, I am using a
+            timed-command. The loopback delay is about 50 samples.
+            Checking from the UHD API, I can see that there are three
+            digital filters (FIR_1,HB_1,2,3) enabled. The FIR filter
+            alone has 128 taps, and the group delay would exceed what I
+            measured. I am now suspecting that the timestamps are taken
+            at the ADC/DAC rather than at the TX/RX controller (before
+            DUC and after DDC), or the group delay introduced by the
+            digital filters has been compensated. In this case, the
+            loopback delay I measured only shows only the Analog
+            filters&#39; delay which can be predicted.</div>
+          <div dir=3D"ltr" class=3D"gmail_attr"><br>
+          </div>
+          <div dir=3D"ltr" class=3D"gmail_attr">I will check=C2=A0<span sty=
+le=3D"font-family:sans-serif">AD9361&#39;s datasheet but I am
+              still unsure of how the timestamps are interpreted;
+              whether the DUC/DDC filter delay is taken into
+              consideration. Otherwise, even while using a GPS PPS
+              trigger, there would be an offset between the start of the
+              TX signal (measured at the antenna) and the actual GPS
+              time. Personally, it would make sense to compensate for
+              DDC/DUC delays by the UHD driver/firmware based on the
+              selected digital filters and the interpolation &amp;
+              decimation factors.</span></div>
+          <div dir=3D"ltr" class=3D"gmail_attr"><span style=3D"font-family:=
+sans-serif"><br>
+            </span></div>
+          <div dir=3D"ltr" class=3D"gmail_attr"><span style=3D"font-family:=
+sans-serif"><br>
+            </span></div>
+          <div dir=3D"ltr" class=3D"gmail_attr"><br>
+          </div>
         </div>
       </div>
     </blockquote>
-    Any of the dozens of active GPS antenna on the market will work just
-    fine.<br>
+    My understanding is that timing on the B200 is referred to the host
+    transport stream, and NOT after the DUC/DDC filters.=C2=A0 Which means
+    that<br>
+    =C2=A0 for any given master-clock/host-sample-rate configuration, it
+    would need to be characterized by the end user.<br>
     <br>
-    <blockquote cite="mid:86368074.393649.1581004383613@mail.yahoo.com"
-      type="cite">
-      <div class="yahoo-style-wrap" style="font-family:Helvetica Neue,
-        Helvetica, Arial, sans-serif;font-size:16px;">
-        <div dir="ltr" data-setdir="false">
-          <ul>
-            <li>How do I know that X300's GPS is locked? Is there any
-              API to query for GPS lock status?</li>
-            <li>Once GPS is locked what is the API to get the time? <br>
-            </li>
-          </ul>
+    There have been improvements in this regard with other hardware
+    (X3xx, for example), but I&#39;m about 70% certain that the timing on
+    the<br>
+    =C2=A0 B200 is relative to the host transport as it enters/leaves the D=
+SP
+    chain.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"auto">
+        <div class=3D"gmail_quote" dir=3D"auto">
+          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+            <br>
+            <br>
+            <br>
+            ---------- Forwarded message ----------<br>
+            From:=C2=A0&quot;Marcus D. Leech&quot; &lt;<a href=3D"mailto:pa=
+tchvonbraun@gmail.com" rel=3D"noreferrer" target=3D"_blank">patchvonbraun@g=
+mail.com</a>&gt;<br>
+            To:=C2=A0<a href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"n=
+oreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+            Cc:=C2=A0<br>
+            Bcc:=C2=A0<br>
+            Date:=C2=A0Mon, 03 Feb 2020 12:40:48 -0500<br>
+            Subject:=C2=A0Re: [USRP-users] USRP filter delay<br>
+            On 02/02/2020 04:40 AM, YENDstudio . via USRP-users wrote:<br>
+            &gt; Hi,<br>
+            &gt;<br>
+            &gt; I want to know the actual timestamp of TX and RX
+            signals at the RF <br>
+            &gt; antenna. For this I have add/subtract the group delay
+            introduced by <br>
+            &gt; digital filters in the TX and the RX paths from the UHD
+            timestamp. <br>
+            &gt; Through loopback test, I am able to calculate the
+            aggregate delay, but <br>
+            &gt; cannot know the TX delay and the RX delay separately.
+            The UHD driver <br>
+            &gt; has APIs to get the list of filters used in the signal
+            paths. But my <br>
+            &gt; calculated values do not match with the loopback delay
+            I measured. <br>
+            &gt; Could someone help me with this? I am using USRPB200
+            set with 30.72 <br>
+            &gt; MHz master clock rate and 1.92 MHz sampling rate.<br>
+            &gt;<br>
+            &gt; Regards!<br>
+            &gt;<br>
+            &gt;<br>
+            So, you use a timed transmit sequence, or you just note the
+            time the <br>
+            samples left your application?=C2=A0 Latency measured through t=
+he
+            entire<br>
+            =C2=A0 =C2=A0stack will be MUCH larger, and variable, than if m=
+easured
+            using a <br>
+            timed-command transmit sequence.<br>
+            <br>
+            Quite apart from the analog delay that Nick has already
+            mentioned, <br>
+            filter-delay will be &quot;shared&quot; between filters in the =
+FPGA,
+            and filters <br>
+            in the<br>
+            =C2=A0 =C2=A0AD9361 chip--there&#39;s a kind of &quot;shared&qu=
+ot; DSP going on
+            there.=C2=A0 The <br>
+            AD9361 datasheet might be a fruitful place to look at
+            DUC/DDC filter<br>
+            =C2=A0 =C2=A0latencies within the chip.<br>
+            <br>
+            <br>
+          </blockquote>
         </div>
-      </div>
-    </blockquote>
-    The 'query_gpsdo_sensors' utility will show you how to use the GPSDO
-    API.<br>
-    <br>
-    <br>
-    <blockquote cite="mid:86368074.393649.1581004383613@mail.yahoo.com"
-      type="cite">
-      <div class="yahoo-style-wrap" style="font-family:Helvetica Neue,
-        Helvetica, Arial, sans-serif;font-size:16px;">
-        <div dir="ltr" data-setdir="false">
-          <ul>
-            <li>Is it possible to use X300 as NTP server? If so how
-              could I achieve it?</li>
-          </ul>
-        </div>
-      </div>
-    </blockquote>
-    No, it has no NTP support.   GPS-based NTP servers are now quite
-    cheap, so you should probably look into one of those.<br>
-    <br>
-    <br>
-    <br>
-    <blockquote cite="mid:86368074.393649.1581004383613@mail.yahoo.com"
-      type="cite">
-      <div class="yahoo-style-wrap" style="font-family:Helvetica Neue,
-        Helvetica, Arial, sans-serif;font-size:16px;">
-        <div dir="ltr" data-setdir="false"><br>
-        </div>
-        <div dir="ltr" data-setdir="false">BR,</div>
-        <div dir="ltr" data-setdir="false">Santosh</div>
       </div>
       <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <fieldset></fieldset>
       <br>
-      <pre wrap="">_______________________________________________
+      <pre>_______________________________________________
 USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
 </pre>
     </blockquote>
     <br>
-  </body>
-</html>
+  </div>
 
---------------080101090404090302070000--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000b7671a059debeeae--
 
 
---===============0470436968074173430==
+--===============2825740276962238373==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -234,5 +381,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0470436968074173430==--
+--===============2825740276962238373==--
 
