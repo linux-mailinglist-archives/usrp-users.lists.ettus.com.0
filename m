@@ -2,54 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F51154A92
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2020 18:52:59 +0100 (CET)
-Received: from [::1] (port=40228 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 135D7154D84
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Feb 2020 21:49:37 +0100 (CET)
+Received: from [::1] (port=49676 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1izlKi-0002qu-Ko; Thu, 06 Feb 2020 12:52:56 -0500
-Received: from mail-lj1-f169.google.com ([209.85.208.169]:40783)
+	id 1izo5Q-0005c8-7C; Thu, 06 Feb 2020 15:49:20 -0500
+Received: from mail-lf1-f48.google.com ([209.85.167.48]:43479)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1izlKe-0002ka-R5
- for usrp-users@lists.ettus.com; Thu, 06 Feb 2020 12:52:53 -0500
-Received: by mail-lj1-f169.google.com with SMTP id n18so7054309ljo.7
- for <usrp-users@lists.ettus.com>; Thu, 06 Feb 2020 09:52:32 -0800 (PST)
+ id 1izo5M-0005YN-1K
+ for usrp-users@lists.ettus.com; Thu, 06 Feb 2020 15:49:16 -0500
+Received: by mail-lf1-f48.google.com with SMTP id 9so21479lfq.10
+ for <usrp-users@lists.ettus.com>; Thu, 06 Feb 2020 12:48:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=9pHaoSsIW3wHgRJU4Q8pJ+aEB5bxxzOutK69Yi5GNZ4=;
- b=QRA0yOs5B6FFQkQEzPHZq/rjlvOu/mbkopdPDXW6sVQrZSYxDzI10/2CuQub7s2+B7
- NhiNevetWBZcTnGuJjJA28nx4ZRPBFQmgfnDzLVrxuGgcO6ZeKawVn8Q7zF4FF8gLI8R
- K0eqL9hXQXru6VMHUatb+Xtot9E1p26GQrNg2vmrgZioTY7OKHliyQBYql2/DVfip83/
- B4HfDTvCo+XpBriyG44HcRcHMjKqjMe/sQSZwNDD6WhdEaxOkgWZHX0H+nvkXmi3Hbv+
- wjiJ9WCKVgElZ5+f5hEXqEpOQZ/m4BgLkHVhnJx+OYpQyoI8b/IB2A87VUKggTXFifO6
- ORFw==
+ :cc; bh=YzbbHgPgUTTWgdIoGu9unwy2xRBAm+r7oCQ9zwO4WNM=;
+ b=x4QlY34II85X2DZ6s8fya6DbCwOkIutaJ02kI99u6KxyEHg/zMVkeP+ZKmiLVkI1kB
+ XrcHJLOsVafaNcP08/B1ExavY9YPZPF6SHiTptt/5lcwxAgwfuBXwSLzu2CVhb4MMbPs
+ 518HVPnyGmcaY0HyVQiexmAApu1XlSjkzwyyBsNGCblDxH/CfAsUvFiUkRcYT6OTlHjB
+ 9EImUOVujvWXqKlh7qUK2rC7M+CbHEJLhUqycRA2UOYnv8e05Rqx+t/p8G1jZLIxpleq
+ qaADmwMb96GKacx2iRonoiGYdxGJNQcYBJu4vqxD4+haBa9VKla0eL5dKqPL7SOhMeOQ
+ +b1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=9pHaoSsIW3wHgRJU4Q8pJ+aEB5bxxzOutK69Yi5GNZ4=;
- b=Q/dMGVjZ6QtYhnI0WQHxtohsPS4TSVidcEX655uuPQuMcqAfybLDPpbLP2Erc+e+o3
- +kC7Y4ocy6Z9BBy7UVCr+wWTgfYbHGYKC4prpl4SRH7IghbWgTTIV9hGJTb3uuKkTSAR
- 7YT9+7hUXVXpd2HjM2xVwX7b6sizJheHgrcicQnGwGmLBZGVHtVw3F+J2+9L56Z+2s76
- synyDLaPWSQvvf0nOqx63VWwpte5nBiHdRTlmlY0sYbo9a5O3MIpzs+LVKSKEt27s3Vk
- jLjdD7CxwRXD08qr8oo7OfwL1U80IQMlBfHHvVAcmo99Iqaf8LsQRtimTuapAg92L9dh
- 8dNA==
-X-Gm-Message-State: APjAAAViEA5VrZze12ZFfrI9FEF8bt6mt23FyQ3tqe9N2G0rrTmAkxs+
- /P2ZNpucEZp36Fr/BD+lht9BOTKICk+E3HIXgx9/WdV0
-X-Google-Smtp-Source: APXvYqxU/huCGO7KuAqQ5iB5wOVQbSc6LTTql6SJeM7ODFeT8xeq9/ciljiAbcbP+OLXg0S/nwoOT+fQFulZ+mzrRNQ=
-X-Received: by 2002:a2e:86c8:: with SMTP id n8mr2725123ljj.205.1581011531409; 
- Thu, 06 Feb 2020 09:52:11 -0800 (PST)
+ bh=YzbbHgPgUTTWgdIoGu9unwy2xRBAm+r7oCQ9zwO4WNM=;
+ b=XVIKEe8Eau1aEzMbJadOK758jRqCtE8tNsj6PkuYEB3e320G8EidfC4IvzjqAMIkTc
+ d2Q4SsE1EnxP1lZd82a9qR7MVpQ8FiksT/wCCSq4+1elPC6v5E7xzjgsizqQ2AHZlEn7
+ MWGk+KxMNx30/7hjthgDhxss5K1/8v6Ujx2AZqF8+bvzofQZKbjfuZTMqZxsKseh4sic
+ /UX5u0BJ75E1lX7jUV+BWDfTZzZU8+R/gBFqLxnyAtvsS6gh/akAXfXZtqzqQiGmqWRU
+ hxCWrnNreSu/XeoTHwrb1HK/kyZgeA93TRJyWS7sUIu6LH++8wtbMK3jvt+Dgs38tTLU
+ Rb/w==
+X-Gm-Message-State: APjAAAUoxx/XJb+sCKwDc1Dh+/f0r5uBUR3wHO6q+zK/9BuTV/JNGaP7
+ n5tRdfeBSqVEoFxTPQCKupoTdsc+Dcv8ljsjDAECeXfj
+X-Google-Smtp-Source: APXvYqzHbn29MdZ7+EJm9zIawpFaFonyzz1zBB8Tqp4n1lL+vMYCRXmZ6Pt0efqpHuKoOHbnl3jfr/W4yCwGdpMQRSA=
+X-Received: by 2002:a05:6512:407:: with SMTP id
+ u7mr2706592lfk.146.1581022114568; 
+ Thu, 06 Feb 2020 12:48:34 -0800 (PST)
 MIME-Version: 1.0
-References: <mailman.52.1580835604.21324.usrp-users_lists.ettus.com@lists.ettus.com>
- <CANgrtSX+XF7_pR_L9tD_YfcHXfMeNxhbV=pdDyjnznyaNOm-OQ@mail.gmail.com>
- <5E3B3C15.50004@gmail.com>
-In-Reply-To: <5E3B3C15.50004@gmail.com>
-Date: Thu, 6 Feb 2020 11:51:59 -0600
-Message-ID: <CANf970Y89v2PQseXmiLu7rq6a8CvYWcBS05FDMB324LnvViEkg@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Subject: Re: [USRP-users] USRP filter delay
+References: <CAB__hTQfZ7J+ma2vkX-owQ0v97Z6oNrT-VKqZ1Mb2AFzGuhnVw@mail.gmail.com>
+In-Reply-To: <CAB__hTQfZ7J+ma2vkX-owQ0v97Z6oNrT-VKqZ1Mb2AFzGuhnVw@mail.gmail.com>
+Date: Thu, 6 Feb 2020 14:48:23 -0600
+Message-ID: <CANf970Y9TVKQaTwokR2SapNBaoE9A15iUin0_NT-WtGXU6BwmA@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Subject: Re: [USRP-users] Error "clock synchronizer offset" loading N310
+ rfnoc image
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,7 +64,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Sam Reiter <sam.reiter@ettus.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2825740276962238373=="
+Content-Type: multipart/mixed; boundary="===============3372597954810327278=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,108 +78,297 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2825740276962238373==
-Content-Type: multipart/alternative; boundary="000000000000b7671a059debeeae"
+--===============3372597954810327278==
+Content-Type: multipart/alternative; boundary="000000000000856f3c059dee65f9"
 
---000000000000b7671a059debeeae
+--000000000000856f3c059dee65f9
 Content-Type: text/plain; charset="UTF-8"
 
-Timestamps on RX samples are put in the CHDR Header by the Radio Core and
-are not changed by the DDC downstream, except for the case of interpolation
-/ decimation. But even in this case, the remaining samples should still be
-repackaged with timestamps consistent with those given by the Radio Core.
+Rob,
 
-Timestamps on TX samples are assigned on the host machine and compared
-against vita_time in the radio core before they are transmitted (in USRPs
-that support timed TX and RX).
+I'm not sure what the implications would be, but you could try recompiling
+UHD with an updated *trace_delay_offset* and/or *offset_error* threshold:
 
-All of that said, the b2xx doesn't support timed operations that interface
-with the AD936x, including timed TX and RX. As I understand it the group
-delay on RX samples would be from Antenna -> AD936x > Radio Core, and this
-delay would be non-deterministic. No additional delay (from a CHDR
-timestamp perspective) is introduced downstream.
+https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/mpm/python/usrp_mpm/dboard_manager/mg_init.py#L212
 
-Sam
+I'm not sure why your custom RFNoC block would change the measured
+propagation delay though.... on the surface, it seems like that would
+strictly be a characteristic of the motherboard.
 
-On Wed, Feb 5, 2020 at 4:05 PM Marcus D. Leech via USRP-users <
+Sam Reiter
+
+On Fri, Jan 31, 2020 at 4:28 PM Rob Kossler via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> On 02/04/2020 04:05 PM, YENDstudio . via USRP-users wrote:
+> Hi,
+> I just successfully built an N310 rfnoc XG image (build rpt attached) with
+> some custom blocks using fpga-src version v3.15.0.0, but I can't load the
+> image successfully on the device.  Below you will find four consecutive
+> commands (highlighted in yellow) where I do the following:
 >
->   Hi Markus,
+>    1. uhd_image_loader to load my custom image (results show "clock
+>    synchronizer offset" error)
+>    2. uhd_usrp_probe (results show "'NoneType' object has no attribute
+>    'get'" error)
+>    3. uhd_image_loader to load default XG image (no errors)
+>    4. uhd_usrp_probe (no errors)
 >
-> Yes, I am using a timed-command. The loopback delay is about 50 samples.
-> Checking from the UHD API, I can see that there are three digital filters
-> (FIR_1,HB_1,2,3) enabled. The FIR filter alone has 128 taps, and the group
-> delay would exceed what I measured. I am now suspecting that the timestamps
-> are taken at the ADC/DAC rather than at the TX/RX controller (before DUC
-> and after DDC), or the group delay introduced by the digital filters has
-> been compensated. In this case, the loopback delay I measured only shows
-> only the Analog filters' delay which can be predicted.
->
-> I will check AD9361's datasheet but I am still unsure of how the
-> timestamps are interpreted; whether the DUC/DDC filter delay is taken into
-> consideration. Otherwise, even while using a GPS PPS trigger, there would
-> be an offset between the start of the TX signal (measured at the antenna)
-> and the actual GPS time. Personally, it would make sense to compensate for
-> DDC/DUC delays by the UHD driver/firmware based on the selected digital
-> filters and the interpolation & decimation factors.
+> I have tried multiple times but I am getting the same results each time. I
+> have tried rebooting the N310, but still the same results.  Any suggestions?
+> Rob
 >
 >
+> $ uhd_image_loader --args="type=n3xx,addr=192.168.64.2"
+> --fpga-path=usrp_n310_fpga_RFNOC_XG.bit
+> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+> mgmt_addr=192.168.64.2,type=n3xx,product=n310,serial=318F043,claimed=False,skip_init=1
+> [INFO] [MPMD] Claimed device without full initialization.
+> [WARNING] [MPMD IMAGE LOADER] RuntimeError: Component file does not exist:
+> /home/irisheyes1/uhd_nd/fpga_images/n310/v3.15.0.0/20200131_ddc-duc-txarb-radarfilter3-fifo/build/usrp_n310_fpga_RFNOC_XG.dts
+> [INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.
+> [INFO] [MPM.PeriphManager] Updating component `fpga'
+> [INFO] [MPM.RPCServer] Resetting peripheral manager.
+> [INFO] [MPM.PeriphManager] Device serial number: 318F043
+> [INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).
+> [INFO] [MPM.PeriphManager] init() called with device args
+> `time_source=internal,clock_source=internal'.
+> [ERROR] [MPM.Magnesium-0.init] Clock synchronizer measured an offset of
+> 132.5 ps!
+> [INFO] [MPMD IMAGE LOADER] Update component function succeeded.
+> [WARNING] [MPM.PeriphManager] Failed to initialize device on boot: Clock
+> synchronizer measured an offset of 132.5 ps!
 >
-> My understanding is that timing on the B200 is referred to the host
-> transport stream, and NOT after the DUC/DDC filters.  Which means that
->   for any given master-clock/host-sample-rate configuration, it would need
-> to be characterized by the end user.
+> $ uhd_usrp_probe --args="addr=192.168.64.2"
+> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+> mgmt_addr=192.168.64.2,type=n3xx,product=n310,serial=318F043,claimed=False,addr=192.168.64.2
+> [ERROR] [RPC] 'NoneType' object has no attribute 'get'
+> [INFO] [MPM.PeriphManager] init() called with device args
+> `time_source=internal,clock_source=internal,product=n310,mgmt_addr=192.168.64.2'.
+> [ERROR] [MPM.RPCServer] init() failed with error: 'NoneType' object has no
+> attribute 'get'
+> Error: RuntimeError: Error during RPC call to `init'. Error message:
+> 'NoneType' object has no attribute 'get'
 >
-> There have been improvements in this regard with other hardware (X3xx, for
-> example), but I'm about 70% certain that the timing on the
->   B200 is relative to the host transport as it enters/leaves the DSP chain.
+> $ uhd_image_loader --args="type=n3xx,addr=192.168.64.2,fpga=XG"
+> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+> mgmt_addr=192.168.64.2,type=n3xx,product=n310,serial=318F043,claimed=False,skip_init=1
+> [INFO] [MPMD] Claimed device without full initialization.
+> [INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.
+> [INFO] [MPM.PeriphManager] Updating component `fpga'
+> [INFO] [MPM.PeriphManager] Updating component `dts'
+> [INFO] [MPM.RPCServer] Resetting peripheral manager.
+> [INFO] [MPM.PeriphManager] Device serial number: 318F043
+> [INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).
+> [INFO] [MPM.PeriphManager] init() called with device args
+> `clock_source=internal,time_source=internal'.
+> [INFO] [MPMD IMAGE LOADER] Update component function succeeded.
 >
->
->
->>
->>
->> ---------- Forwarded message ----------
->> From: "Marcus D. Leech" <patchvonbraun@gmail.com>
->> To: usrp-users@lists.ettus.com
->> Cc:
->> Bcc:
->> Date: Mon, 03 Feb 2020 12:40:48 -0500
->> Subject: Re: [USRP-users] USRP filter delay
->> On 02/02/2020 04:40 AM, YENDstudio . via USRP-users wrote:
->> > Hi,
->> >
->> > I want to know the actual timestamp of TX and RX signals at the RF
->> > antenna. For this I have add/subtract the group delay introduced by
->> > digital filters in the TX and the RX paths from the UHD timestamp.
->> > Through loopback test, I am able to calculate the aggregate delay, but
->> > cannot know the TX delay and the RX delay separately. The UHD driver
->> > has APIs to get the list of filters used in the signal paths. But my
->> > calculated values do not match with the loopback delay I measured.
->> > Could someone help me with this? I am using USRPB200 set with 30.72
->> > MHz master clock rate and 1.92 MHz sampling rate.
->> >
->> > Regards!
->> >
->> >
->> So, you use a timed transmit sequence, or you just note the time the
->> samples left your application?  Latency measured through the entire
->>    stack will be MUCH larger, and variable, than if measured using a
->> timed-command transmit sequence.
->>
->> Quite apart from the analog delay that Nick has already mentioned,
->> filter-delay will be "shared" between filters in the FPGA, and filters
->> in the
->>    AD9361 chip--there's a kind of "shared" DSP going on there.  The
->> AD9361 datasheet might be a fruitful place to look at DUC/DDC filter
->>    latencies within the chip.
->>
->>
->>
->
-> _______________________________________________
-> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> $ uhd_usrp_probe --args="addr=192.168.64.2"
+> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+> mgmt_addr=192.168.64.2,type=n3xx,product=n310,serial=318F043,claimed=False,addr=192.168.64.2
+> [INFO] [MPM.PeriphManager] init() called with device args
+> `time_source=internal,clock_source=internal,product=n310,mgmt_addr=192.168.64.2'.
+> [INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)
+> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312)
+> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000011312)
+> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
+> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)
+> [INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
+>   _____________________________________________________
+>  /
+> |       Device: N300-Series Device
+> |     _____________________________________________________
+> |    /
+> |   |       Mboard: ni-n3xx-318F043
+> |   |   eeprom_version: 2
+> |   |   mpm_version: 3.15.0.0-gaea0e2de
+> |   |   pid: 16962
+> |   |   product: n310
+> |   |   rev: 7
+> |   |   rpc_connection: remote
+> |   |   serial: 318F043
+> |   |   type: n3xx
+> |   |   MPM Version: 1.2
+> |   |   FPGA Version: 5.3
+> |   |   FPGA git hash: fde2a94.clean
+> |   |   RFNoC capable: Yes
+> |   |
+> |   |   Time sources:  internal, external, gpsdo, sfp0
+> |   |   Clock sources: external, internal, gpsdo
+> |   |   Sensors: gps_tpv, gps_locked, ref_locked, fan, gps_sky, temp,
+> gps_gpgga, gps_time
+> |   |     _____________________________________________________
+> |   |    /
+> |   |   |       RX Dboard: A
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       RX Frontend: 0
+> |   |   |   |   Name: Magnesium
+> |   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
+> |   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+> |   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
+> |   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+> |   |   |   |   Connection Type: IQ
+> |   |   |   |   Uses LO offset: No
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       RX Frontend: 1
+> |   |   |   |   Name: Magnesium
+> |   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
+> |   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+> |   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
+> |   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+> |   |   |   |   Connection Type: IQ
+> |   |   |   |   Uses LO offset: No
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       RX Codec: A
+> |   |   |   |   Name: AD9371 Dual ADC
+> |   |   |   |   Gain Elements: None
+> |   |     _____________________________________________________
+> |   |    /
+> |   |   |       RX Dboard: B
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       RX Frontend: 0
+> |   |   |   |   Name: Magnesium
+> |   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
+> |   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+> |   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
+> |   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+> |   |   |   |   Connection Type: IQ
+> |   |   |   |   Uses LO offset: No
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       RX Frontend: 1
+> |   |   |   |   Name: Magnesium
+> |   |   |   |   Antennas: TX/RX, RX2, CAL, LOCAL
+> |   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+> |   |   |   |   Gain range all: 0.0 to 75.0 step 0.5 dB
+> |   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+> |   |   |   |   Connection Type: IQ
+> |   |   |   |   Uses LO offset: No
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       RX Codec: B
+> |   |   |   |   Name: AD9371 Dual ADC
+> |   |   |   |   Gain Elements: None
+> |   |     _____________________________________________________
+> |   |    /
+> |   |   |       TX Dboard: A
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       TX Frontend: 0
+> |   |   |   |   Name: Magnesium
+> |   |   |   |   Antennas: TX/RX
+> |   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+> |   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
+> |   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+> |   |   |   |   Connection Type: IQ
+> |   |   |   |   Uses LO offset: No
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       TX Frontend: 1
+> |   |   |   |   Name: Magnesium
+> |   |   |   |   Antennas: TX/RX
+> |   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+> |   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
+> |   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+> |   |   |   |   Connection Type: IQ
+> |   |   |   |   Uses LO offset: No
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       TX Codec: A
+> |   |   |   |   Name: AD9371 Dual DAC
+> |   |   |   |   Gain Elements: None
+> |   |     _____________________________________________________
+> |   |    /
+> |   |   |       TX Dboard: B
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       TX Frontend: 0
+> |   |   |   |   Name: Magnesium
+> |   |   |   |   Antennas: TX/RX
+> |   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+> |   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
+> |   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+> |   |   |   |   Connection Type: IQ
+> |   |   |   |   Uses LO offset: No
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       TX Frontend: 1
+> |   |   |   |   Name: Magnesium
+> |   |   |   |   Antennas: TX/RX
+> |   |   |   |   Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked
+> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+> |   |   |   |   Gain range all: 0.0 to 65.0 step 0.5 dB
+> |   |   |   |   Gain range rfic: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range dsa: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Gain range amp: 0.0 to 0.0 step 0.0 dB
+> |   |   |   |   Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz
+> |   |   |   |   Connection Type: IQ
+> |   |   |   |   Uses LO offset: No
+> |   |   |     _____________________________________________________
+> |   |   |    /
+> |   |   |   |       TX Codec: B
+> |   |   |   |   Name: AD9371 Dual DAC
+> |   |   |   |   Gain Elements: None
+> |   |     _____________________________________________________
+> |   |    /
+> |   |   |       RFNoC blocks on this device:
+> |   |   |
+> |   |   |   * Replay_0
+> |   |   |   * Radio_0
+> |   |   |   * Radio_1
+> |   |   |   * DDC_0
+> |   |   |   * DDC_1
+> |   |   |   * DUC_0
+> |   |   |   * DUC_1
+> |   |   |   * FIFO_0
+> |   |   |   * FIFO_1
+> |   |   |   * FIFO_2
+> |   |   |   * FIFO_3
 >
 >
 > _______________________________________________
@@ -188,176 +377,262 @@ usrp-users@lists.ettus.com> wrote:
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000b7671a059debeeae
+--000000000000856f3c059dee65f9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Timestamps on RX samples are put in the CHDR Header b=
-y the Radio Core and are not changed by the DDC downstream, except for the =
-case of interpolation / decimation. But even in this case, the remaining sa=
-mples should still be repackaged with timestamps consistent with those give=
-n by the Radio Core.</div><div><br></div><div>Timestamps on TX samples are =
-assigned on the host machine and compared against vita_time in the radio co=
-re before they are transmitted (in USRPs that support timed TX and RX). <br=
-></div><div><br></div><div>All of that said, the b2xx doesn&#39;t support t=
-imed operations that interface with the AD936x, including timed TX and RX. =
-As I understand it the group delay on RX samples would be from Antenna -&gt=
-; AD936x &gt; Radio Core, and this delay would be non-deterministic. No add=
-itional delay (from a CHDR timestamp perspective) is introduced downstream.=
-=C2=A0 <br></div><div><br></div><div><div><div><div dir=3D"ltr" class=3D"gm=
-ail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><di=
-v dir=3D"ltr">Sam<br></div></div></div></div></div></div></div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb =
-5, 2020 at 4:05 PM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usr=
-p-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div>On 02/04/2020 04:05 PM, YENDstudio .
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"auto">
-        <div class=3D"gmail_quote" dir=3D"auto">
-          <div dir=3D"ltr" class=3D"gmail_attr">=C2=A0 Hi Markus,</div>
-          <div dir=3D"ltr" class=3D"gmail_attr"><br>
-          </div>
-          <div dir=3D"ltr" class=3D"gmail_attr">Yes, I am using a
-            timed-command. The loopback delay is about 50 samples.
-            Checking from the UHD API, I can see that there are three
-            digital filters (FIR_1,HB_1,2,3) enabled. The FIR filter
-            alone has 128 taps, and the group delay would exceed what I
-            measured. I am now suspecting that the timestamps are taken
-            at the ADC/DAC rather than at the TX/RX controller (before
-            DUC and after DDC), or the group delay introduced by the
-            digital filters has been compensated. In this case, the
-            loopback delay I measured only shows only the Analog
-            filters&#39; delay which can be predicted.</div>
-          <div dir=3D"ltr" class=3D"gmail_attr"><br>
-          </div>
-          <div dir=3D"ltr" class=3D"gmail_attr">I will check=C2=A0<span sty=
-le=3D"font-family:sans-serif">AD9361&#39;s datasheet but I am
-              still unsure of how the timestamps are interpreted;
-              whether the DUC/DDC filter delay is taken into
-              consideration. Otherwise, even while using a GPS PPS
-              trigger, there would be an offset between the start of the
-              TX signal (measured at the antenna) and the actual GPS
-              time. Personally, it would make sense to compensate for
-              DDC/DUC delays by the UHD driver/firmware based on the
-              selected digital filters and the interpolation &amp;
-              decimation factors.</span></div>
-          <div dir=3D"ltr" class=3D"gmail_attr"><span style=3D"font-family:=
-sans-serif"><br>
-            </span></div>
-          <div dir=3D"ltr" class=3D"gmail_attr"><span style=3D"font-family:=
-sans-serif"><br>
-            </span></div>
-          <div dir=3D"ltr" class=3D"gmail_attr"><br>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    My understanding is that timing on the B200 is referred to the host
-    transport stream, and NOT after the DUC/DDC filters.=C2=A0 Which means
-    that<br>
-    =C2=A0 for any given master-clock/host-sample-rate configuration, it
-    would need to be characterized by the end user.<br>
-    <br>
-    There have been improvements in this regard with other hardware
-    (X3xx, for example), but I&#39;m about 70% certain that the timing on
-    the<br>
-    =C2=A0 B200 is relative to the host transport as it enters/leaves the D=
-SP
-    chain.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite">
-      <div dir=3D"auto">
-        <div class=3D"gmail_quote" dir=3D"auto">
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-            <br>
-            <br>
-            <br>
-            ---------- Forwarded message ----------<br>
-            From:=C2=A0&quot;Marcus D. Leech&quot; &lt;<a href=3D"mailto:pa=
-tchvonbraun@gmail.com" rel=3D"noreferrer" target=3D"_blank">patchvonbraun@g=
-mail.com</a>&gt;<br>
-            To:=C2=A0<a href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"n=
-oreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-            Cc:=C2=A0<br>
-            Bcc:=C2=A0<br>
-            Date:=C2=A0Mon, 03 Feb 2020 12:40:48 -0500<br>
-            Subject:=C2=A0Re: [USRP-users] USRP filter delay<br>
-            On 02/02/2020 04:40 AM, YENDstudio . via USRP-users wrote:<br>
-            &gt; Hi,<br>
-            &gt;<br>
-            &gt; I want to know the actual timestamp of TX and RX
-            signals at the RF <br>
-            &gt; antenna. For this I have add/subtract the group delay
-            introduced by <br>
-            &gt; digital filters in the TX and the RX paths from the UHD
-            timestamp. <br>
-            &gt; Through loopback test, I am able to calculate the
-            aggregate delay, but <br>
-            &gt; cannot know the TX delay and the RX delay separately.
-            The UHD driver <br>
-            &gt; has APIs to get the list of filters used in the signal
-            paths. But my <br>
-            &gt; calculated values do not match with the loopback delay
-            I measured. <br>
-            &gt; Could someone help me with this? I am using USRPB200
-            set with 30.72 <br>
-            &gt; MHz master clock rate and 1.92 MHz sampling rate.<br>
-            &gt;<br>
-            &gt; Regards!<br>
-            &gt;<br>
-            &gt;<br>
-            So, you use a timed transmit sequence, or you just note the
-            time the <br>
-            samples left your application?=C2=A0 Latency measured through t=
-he
-            entire<br>
-            =C2=A0 =C2=A0stack will be MUCH larger, and variable, than if m=
-easured
-            using a <br>
-            timed-command transmit sequence.<br>
-            <br>
-            Quite apart from the analog delay that Nick has already
-            mentioned, <br>
-            filter-delay will be &quot;shared&quot; between filters in the =
-FPGA,
-            and filters <br>
-            in the<br>
-            =C2=A0 =C2=A0AD9361 chip--there&#39;s a kind of &quot;shared&qu=
-ot; DSP going on
-            there.=C2=A0 The <br>
-            AD9361 datasheet might be a fruitful place to look at
-            DUC/DDC filter<br>
-            =C2=A0 =C2=A0latencies within the chip.<br>
-            <br>
-            <br>
-          </blockquote>
-        </div>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <br>
-      <pre>_______________________________________________
-USRP-users mailing list
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
-sts.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </div>
-
+<div dir=3D"ltr"><div>Rob,</div><div><br></div><div>I&#39;m not sure what t=
+he implications would be, but you could try recompiling UHD with an updated=
+ <span class=3D"gmail-pl-s1"><b>trace_delay_offset</b> and/or <b>offset_err=
+or</b> threshold</span>:</div><div><br></div><div><a href=3D"https://github=
+.com/EttusResearch/uhd/blob/UHD-3.15.LTS/mpm/python/usrp_mpm/dboard_manager=
+/mg_init.py#L212">https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/mp=
+m/python/usrp_mpm/dboard_manager/mg_init.py#L212</a></div><div><br></div><d=
+iv>I&#39;m not sure why your custom RFNoC block would change the measured p=
+ropagation delay though.... on the surface, it seems like that would strict=
+ly be a characteristic of the motherboard.<br></div><div><br></div><div><di=
+v><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signat=
+ure"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0</div></div></d=
+iv></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Fri, Jan 31, 2020 at 4:28 PM Rob Kossler via USRP-u=
+sers &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ett=
+us.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
+:1ex"><div dir=3D"ltr"><div><div>Hi,</div><div>I just successfully built an=
+ N310 rfnoc XG image (build rpt attached) with some custom blocks using fpg=
+a-src version v3.15.0.0, but I can&#39;t load the image successfully on the=
+ device.=C2=A0 Below you will find four consecutive commands (highlighted i=
+n yellow) where I do the following:</div><div><ol><li>uhd_image_loader to l=
+oad my custom image (results show &quot;clock synchronizer offset&quot; err=
+or)</li><li>uhd_usrp_probe (results show &quot;&#39;NoneType&#39; object ha=
+s no attribute &#39;get&#39;&quot; error)</li><li>uhd_image_loader to load =
+default XG image (no errors)</li><li>uhd_usrp_probe (no errors)</li></ol></=
+div><div>I have tried multiple times but I am getting the same results each=
+ time. I have tried rebooting the N310, but still the same results.=C2=A0 A=
+ny suggestions?</div><div>Rob</div><div><br></div><div><br></div><div>$ <sp=
+an style=3D"background-color:rgb(255,255,0)">uhd_image_loader --args=3D&quo=
+t;type=3Dn3xx,addr=3D192.168.64.2&quot; --fpga-path=3Dusrp_n310_fpga_RFNOC_=
+XG.bit</span> <br>[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; =
+UHD_3.15.0.HEAD-0-gaea0e2de<br>[INFO] [MPMD] Initializing 1 device(s) in pa=
+rallel with args: mgmt_addr=3D192.168.64.2,type=3Dn3xx,product=3Dn310,seria=
+l=3D318F043,claimed=3DFalse,skip_init=3D1<br>[INFO] [MPMD] Claimed device w=
+ithout full initialization.<br><font color=3D"#ff9900">[WARNING] [MPMD IMAG=
+E LOADER] RuntimeError: Component file does not exist: /home/irisheyes1/uhd=
+_nd/fpga_images/n310/v3.15.0.0/20200131_ddc-duc-txarb-radarfilter3-fifo/bui=
+ld/usrp_n310_fpga_RFNOC_XG.dts</font><br>[INFO] [MPMD IMAGE LOADER] Startin=
+g update. This may take a while.<br>[INFO] [MPM.PeriphManager] Updating com=
+ponent `fpga&#39;<br>[INFO] [MPM.RPCServer] Resetting peripheral manager.<b=
+r>[INFO] [MPM.PeriphManager] Device serial number: 318F043<br>[INFO] [MPM.P=
+eriphManager] Initialized 2 daughterboard(s).<br>[INFO] [MPM.PeriphManager]=
+ init() called with device args `time_source=3Dinternal,clock_source=3Dinte=
+rnal&#39;.<br><span style=3D"background-color:rgb(255,255,255)"><font color=
+=3D"#ff0000">[ERROR] [MPM.Magnesium-0.init] Clock synchronizer measured an =
+offset of 132.5 ps!</font></span><br>[INFO] [MPMD IMAGE LOADER] Update comp=
+onent function succeeded.<br><font color=3D"#ff9900">[WARNING] [MPM.PeriphM=
+anager] Failed to initialize device on boot: Clock synchronizer measured an=
+ offset of 132.5 ps!</font><br><br></div><div>$ <span style=3D"background-c=
+olor:rgb(255,255,0)">uhd_usrp_probe --args=3D&quot;addr=3D192.168.64.2&quot=
+;</span><br>[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.=
+15.0.HEAD-0-gaea0e2de<br>[INFO] [MPMD] Initializing 1 device(s) in parallel=
+ with args: mgmt_addr=3D192.168.64.2,type=3Dn3xx,product=3Dn310,serial=3D31=
+8F043,claimed=3DFalse,addr=3D192.168.64.2<br><font color=3D"#ff0000">[ERROR=
+] [RPC] &#39;NoneType&#39; object has no attribute &#39;get&#39;</font><br>=
+[INFO] [MPM.PeriphManager] init() called with device args `time_source=3Din=
+ternal,clock_source=3Dinternal,product=3Dn310,mgmt_addr=3D192.168.64.2&#39;=
+.<br><font color=3D"#ff0000">[ERROR] [MPM.RPCServer] init() failed with err=
+or: &#39;NoneType&#39; object has no attribute &#39;get&#39;<br>Error: Runt=
+imeError: Error during RPC call to `init&#39;. Error message: &#39;NoneType=
+&#39; object has no attribute &#39;get&#39;</font><br></div></div><div><fon=
+t color=3D"#ff0000"><br></font></div><div>$ <span style=3D"background-color=
+:rgb(255,255,0)">uhd_image_loader --args=3D&quot;type=3Dn3xx,addr=3D192.168=
+.64.2,fpga=3DXG&quot;</span><br>[INFO] [UHD] linux; GNU C++ version 7.4.0; =
+Boost_106501; UHD_3.15.0.HEAD-0-gaea0e2de<br>[INFO] [MPMD] Initializing 1 d=
+evice(s) in parallel with args: mgmt_addr=3D192.168.64.2,type=3Dn3xx,produc=
+t=3Dn310,serial=3D318F043,claimed=3DFalse,skip_init=3D1<br>[INFO] [MPMD] Cl=
+aimed device without full initialization.<br>[INFO] [MPMD IMAGE LOADER] Sta=
+rting update. This may take a while.<br>[INFO] [MPM.PeriphManager] Updating=
+ component `fpga&#39;<br>[INFO] [MPM.PeriphManager] Updating component `dts=
+&#39;<br>[INFO] [MPM.RPCServer] Resetting peripheral manager.<br>[INFO] [MP=
+M.PeriphManager] Device serial number: 318F043<br>[INFO] [MPM.PeriphManager=
+] Initialized 2 daughterboard(s).<br>[INFO] [MPM.PeriphManager] init() call=
+ed with device args `clock_source=3Dinternal,time_source=3Dinternal&#39;.<b=
+r>[INFO] [MPMD IMAGE LOADER] Update component function succeeded.<div><br><=
+div>$ <span style=3D"background-color:rgb(255,255,0)">uhd_usrp_probe --args=
+=3D&quot;addr=3D192.168.64.2&quot;</span><br>[INFO] [UHD] linux; GNU C++ ve=
+rsion 7.4.0; Boost_106501; UHD_3.15.0.HEAD-0-gaea0e2de<br>[INFO] [MPMD] Ini=
+tializing 1 device(s) in parallel with args: mgmt_addr=3D192.168.64.2,type=
+=3Dn3xx,product=3Dn310,serial=3D318F043,claimed=3DFalse,addr=3D192.168.64.2=
+<br>[INFO] [MPM.PeriphManager] init() called with device args `time_source=
+=3Dinternal,clock_source=3Dinternal,product=3Dn310,mgmt_addr=3D192.168.64.2=
+&#39;.<br>[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00=
+000000004)<br>[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD=
+100000011312)<br>[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x1=
+2AD100000011312)<br>[INFO] [0/DDC_0] Initializing block control (NOC ID: 0x=
+DDC0000000000000)<br>[INFO] [0/DDC_1] Initializing block control (NOC ID: 0=
+xDDC0000000000000)<br>[INFO] [0/DUC_0] Initializing block control (NOC ID: =
+0xD0C0000000000002)<br>[INFO] [0/DUC_1] Initializing block control (NOC ID:=
+ 0xD0C0000000000002)<br>[INFO] [0/FIFO_0] Initializing block control (NOC I=
+D: 0xF1F0000000000000)<br>[INFO] [0/FIFO_1] Initializing block control (NOC=
+ ID: 0xF1F0000000000000)<br>[INFO] [0/FIFO_2] Initializing block control (N=
+OC ID: 0xF1F0000000000000)<br>[INFO] [0/FIFO_3] Initializing block control =
+(NOC ID: 0xF1F0000000000000)<br>=C2=A0 ____________________________________=
+_________________<br>=C2=A0/<br>| =C2=A0 =C2=A0 =C2=A0 Device: N300-Series =
+Device<br>| =C2=A0 =C2=A0 _________________________________________________=
+____<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Mboard: ni-n3xx=
+-318F043<br>| =C2=A0 | =C2=A0 eeprom_version: 2<br>| =C2=A0 | =C2=A0 mpm_ve=
+rsion: 3.15.0.0-gaea0e2de<br>| =C2=A0 | =C2=A0 pid: 16962<br>| =C2=A0 | =C2=
+=A0 product: n310<br>| =C2=A0 | =C2=A0 rev: 7<br>| =C2=A0 | =C2=A0 rpc_conn=
+ection: remote<br>| =C2=A0 | =C2=A0 serial: 318F043<br>| =C2=A0 | =C2=A0 ty=
+pe: n3xx<br>| =C2=A0 | =C2=A0 MPM Version: 1.2<br>| =C2=A0 | =C2=A0 FPGA Ve=
+rsion: 5.3<br>| =C2=A0 | =C2=A0 FPGA git hash: fde2a94.clean<br>| =C2=A0 | =
+=C2=A0 RFNoC capable: Yes<br>| =C2=A0 | =C2=A0 <br>| =C2=A0 | =C2=A0 Time s=
+ources: =C2=A0internal, external, gpsdo, sfp0<br>| =C2=A0 | =C2=A0 Clock so=
+urces: external, internal, gpsdo<br>| =C2=A0 | =C2=A0 Sensors: gps_tpv, gps=
+_locked, ref_locked, fan, gps_sky, temp, gps_gpgga, gps_time<br>| =C2=A0 | =
+=C2=A0 =C2=A0 _____________________________________________________<br>| =
+=C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Dboa=
+rd: A<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ________________________________=
+_____________________<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =
+=C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Frontend: 0<br>| =C2=A0 | =C2=A0 =
+| =C2=A0 | =C2=A0 Name: Magnesium<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 An=
+tennas: TX/RX, RX2, CAL, LOCAL<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Senso=
+rs: lo_locked, lowband_lo_locked, ad9371_lo_locked<br>| =C2=A0 | =C2=A0 | =
+=C2=A0 | =C2=A0 Freq range: 1.000 to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =
+=C2=A0 | =C2=A0 Gain range all: 0.0 to 75.0 step 0.5 dB<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 | =C2=A0 Gain range rfic: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 |=
+ =C2=A0 | =C2=A0 | =C2=A0 Gain range dsa: 0.0 to 0.0 step 0.0 dB<br>| =C2=
+=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range amp: 0.0 to 0.0 step 0.0 dB<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 100000000.=
+0 step 0.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br=
+>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 =C2=A0 _____________________________________________________<b=
+r>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0=
+ =C2=A0 =C2=A0 RX Frontend: 1<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: =
+Magnesium<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX, RX2, CAL,=
+ LOCAL<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, lowband_l=
+o_locked, ad9371_lo_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq rang=
+e: 1.000 to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range =
+all: 0.0 to 75.0 step 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain ra=
+nge rfic: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gai=
+n range dsa: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =
+Gain range amp: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=
+=A0 Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz<br>| =C2=A0 | =
+=C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>| =C2=A0 | =C2=A0 | =C2=A0 =
+| =C2=A0 Uses LO offset: No<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 __________=
+___________________________________________<br>| =C2=A0 | =C2=A0 | =C2=A0 =
+=C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Codec: A<br=
+>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: AD9371 Dual ADC<br>| =C2=A0 | =
+=C2=A0 | =C2=A0 | =C2=A0 Gain Elements: None<br>| =C2=A0 | =C2=A0 =C2=A0 __=
+___________________________________________________<br>| =C2=A0 | =C2=A0 =
+=C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Dboard: B<br>| =C2=
+=A0 | =C2=A0 | =C2=A0 =C2=A0 ______________________________________________=
+_______<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0=
+ | =C2=A0 =C2=A0 =C2=A0 RX Frontend: 0<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=
+=A0 Name: Magnesium<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX,=
+ RX2, CAL, LOCAL<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked,=
+ lowband_lo_locked, ad9371_lo_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0=
+ Freq range: 1.000 to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 G=
+ain range all: 0.0 to 75.0 step 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=
+=A0 Gain range rfic: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 |=
+ =C2=A0 Gain range dsa: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=
+=A0 | =C2=A0 Gain range amp: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =
+=C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz<br>|=
+ =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>| =C2=A0 | =C2=A0=
+ | =C2=A0 | =C2=A0 Uses LO offset: No<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =
+_____________________________________________________<br>| =C2=A0 | =C2=A0 =
+| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Fr=
+ontend: 1<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: Magnesium<br>| =C2=
+=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX, RX2, CAL, LOCAL<br>| =C2=A0=
+ | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, lowband_lo_locked, ad9371_l=
+o_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 1.000 to 6000.0=
+00 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range all: 0.0 to 75.0 s=
+tep 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range rfic: 0.0 to 0=
+.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range dsa: 0.0 t=
+o 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range amp: 0.=
+0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range=
+: 20000000.0 to 100000000.0 step 0.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=
+=A0 Connection Type: IQ<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offs=
+et: No<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 _______________________________=
+______________________<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =
+=C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Codec: B<br>| =C2=A0 | =C2=A0 | =
+=C2=A0 | =C2=A0 Name: AD9371 Dual ADC<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=
+=A0 Gain Elements: None<br>| =C2=A0 | =C2=A0 =C2=A0 _______________________=
+______________________________<br>| =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =
+=C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Dboard: A<br>| =C2=A0 | =C2=A0 | =C2=A0 =
+=C2=A0 _____________________________________________________<br>| =C2=A0 | =
+=C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=
+=A0 TX Frontend: 0<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: Magnesium<b=
+r>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX<br>| =C2=A0 | =C2=A0 =
+| =C2=A0 | =C2=A0 Sensors: lo_locked, lowband_lo_locked, ad9371_lo_locked<b=
+r>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 1.000 to 6000.000 MHz<br>=
+| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range all: 0.0 to 65.0 step 0.5 dB=
+<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range rfic: 0.0 to 0.0 step 0.=
+0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range dsa: 0.0 to 0.0 step=
+ 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range amp: 0.0 to 0.0 s=
+tep 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000=
+.0 to 100000000.0 step 0.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connec=
+tion Type: IQ<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>=
+| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 _________________________________________=
+____________<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =
+=C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 1<br>| =C2=A0 | =C2=A0 | =C2=A0 =
+| =C2=A0 Name: Magnesium<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: T=
+X/RX<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, lowband_lo_=
+locked, ad9371_lo_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range:=
+ 1.000 to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range al=
+l: 0.0 to 65.0 step 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain rang=
+e rfic: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain =
+range dsa: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Ga=
+in range amp: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0=
+ Bandwidth range: 20000000.0 to 100000000.0 step 0.0 Hz<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>| =C2=A0 | =C2=A0 | =C2=A0 | =
+=C2=A0 Uses LO offset: No<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ____________=
+_________________________________________<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=
+=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Codec: A<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: AD9371 Dual DAC<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 | =C2=A0 Gain Elements: None<br>| =C2=A0 | =C2=A0 =C2=A0 _____=
+________________________________________________<br>| =C2=A0 | =C2=A0 =C2=
+=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Dboard: B<br>| =C2=A0 |=
+ =C2=A0 | =C2=A0 =C2=A0 ___________________________________________________=
+__<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =
+=C2=A0 =C2=A0 =C2=A0 TX Frontend: 0<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =
+Name: Magnesium<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX<br>|=
+ =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, lowband_lo_locked, a=
+d9371_lo_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 1.000 to=
+ 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range all: 0.0 to=
+ 65.0 step 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range rfic: 0=
+.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range dsa=
+: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range =
+amp: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidt=
+h range: 20000000.0 to 100000000.0 step 0.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=
+=A0 | =C2=A0 Connection Type: IQ<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Use=
+s LO offset: No<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ______________________=
+_______________________________<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 1<br>| =C2=A0 =
+| =C2=A0 | =C2=A0 | =C2=A0 Name: Magnesium<br>| =C2=A0 | =C2=A0 | =C2=A0 | =
+=C2=A0 Antennas: TX/RX<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sensors: lo_l=
+ocked, lowband_lo_locked, ad9371_lo_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 | =
+=C2=A0 Freq range: 1.000 to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =
+=C2=A0 Gain range all: 0.0 to 65.0 step 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=
+=A0 | =C2=A0 Gain range rfic: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=A0 |=
+ =C2=A0 | =C2=A0 Gain range dsa: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 | =C2=A0 Gain range amp: 0.0 to 0.0 step 0.0 dB<br>| =C2=A0 | =
+=C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 100000000.0 step 0.=
+0 Hz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>| =C2=A0=
+ | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>| =C2=A0 | =C2=A0 | =C2=
+=A0 =C2=A0 _____________________________________________________<br>| =C2=
+=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0=
+ =C2=A0 TX Codec: B<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: AD9371 Dua=
+l DAC<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain Elements: None<br>| =C2=
+=A0 | =C2=A0 =C2=A0 _____________________________________________________<b=
+r>| =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RFN=
+oC blocks on this device:<br>| =C2=A0 | =C2=A0 | =C2=A0 <br>| =C2=A0 | =C2=
+=A0 | =C2=A0 * Replay_0<br>| =C2=A0 | =C2=A0 | =C2=A0 * Radio_0<br>| =C2=A0=
+ | =C2=A0 | =C2=A0 * Radio_1<br>| =C2=A0 | =C2=A0 | =C2=A0 * DDC_0<br>| =C2=
+=A0 | =C2=A0 | =C2=A0 * DDC_1<br>| =C2=A0 | =C2=A0 | =C2=A0 * DUC_0<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 * DUC_1<br>| =C2=A0 | =C2=A0 | =C2=A0 * FIFO_0<br>=
+| =C2=A0 | =C2=A0 | =C2=A0 * FIFO_1<br>| =C2=A0 | =C2=A0 | =C2=A0 * FIFO_2<=
+br>| =C2=A0 | =C2=A0 | =C2=A0 * FIFO_3<br><br></div><div><br></div></div></=
+div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -367,10 +642,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000b7671a059debeeae--
+--000000000000856f3c059dee65f9--
 
 
---===============2825740276962238373==
+--===============3372597954810327278==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -381,5 +656,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2825740276962238373==--
+--===============3372597954810327278==--
 
