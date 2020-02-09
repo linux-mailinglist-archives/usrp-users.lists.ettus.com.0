@@ -2,50 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB47F1567BB
-	for <lists+usrp-users@lfdr.de>; Sat,  8 Feb 2020 21:50:55 +0100 (CET)
-Received: from [::1] (port=34858 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2684D156B57
+	for <lists+usrp-users@lfdr.de>; Sun,  9 Feb 2020 17:31:15 +0100 (CET)
+Received: from [::1] (port=38472 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j0X3y-0000GQ-4R; Sat, 08 Feb 2020 15:50:50 -0500
-Received: from mail-io1-f51.google.com ([209.85.166.51]:36251)
+	id 1j0pUD-0001AF-Fg; Sun, 09 Feb 2020 11:31:09 -0500
+Received: from mail-lf1-f44.google.com ([209.85.167.44]:46591)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <bistromath@gmail.com>)
- id 1j0X3u-0000Bu-Lc
- for usrp-users@lists.ettus.com; Sat, 08 Feb 2020 15:50:46 -0500
-Received: by mail-io1-f51.google.com with SMTP id d15so3393434iog.3
- for <usrp-users@lists.ettus.com>; Sat, 08 Feb 2020 12:50:26 -0800 (PST)
+ (Exim 4.92) (envelope-from <wandrewp@gmail.com>) id 1j0pU9-000158-Mi
+ for usrp-users@lists.ettus.com; Sun, 09 Feb 2020 11:31:05 -0500
+Received: by mail-lf1-f44.google.com with SMTP id z26so2443768lfg.13
+ for <usrp-users@lists.ettus.com>; Sun, 09 Feb 2020 08:30:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Ao4t43CQr2npoPWccz03EnifBMct2tjXDyOQTxsOX20=;
- b=h4F2ObZ6ye1Kl5oPvC1V2cS0saDMF1Rc8y4IrplgI0iKz796I6HCXPhOzpuiruqtmO
- k4lfP1qNH20l5t0YP4OE+rBtsiPYJAVbbMLb8lr4RLOw4EJ6D+WVWN66vVkdNI2LdplA
- 6oNMXyw+e/hzxFfVAB4jUcJ456uZ0yrKdRjqbMCFYvDuYa9sejLK2H0tkJ9ZYc7Qd3s+
- A/I29b5/HyT0pYqPYiGZr5L/slWUCMASD2r7fZoV0A6oabbRlgB/RVb719ulEZLvPrG+
- as6prNtlLAdshpVR6h7CqhqbI7WwP3SIg7R5CtApEKcroVOr85+T4T6ud7HnjsrLGvqO
- yKZg==
+ :cc; bh=vX+iLwUKwsdvlgNozqoGA5qr0f0YcmVOuKnjq0pu+KA=;
+ b=uW/XqDnRQIH2ugA/Oq08dad7txevhdevdK0d7kgTZV74CqpmQdZ5ws+sKL/nhlAW+8
+ Ot0dC6jT2WAp8Y5GVhvbDsmfQgB1deBX09aQBgT3fzZ7gPup+Hm6d7Sp6B2SmvivwU5T
+ BOZWwiE3rMdJcQUQkuxuSYK+xAIiuojk8HlofIq7yFVG4NHj5FBObti63hfW00dGfCx0
+ bjB7PMKYUFKXXWOl+qzRIVc2D3eK/H/X303GJ5HXlmhYzA8bLg6HWRYyi8Gl2eISsUCf
+ yKwEjlnpd9LeEilOFbJ0eSYJC54ZpC/Ietu2ngIz1V1LQWAonVlpPbkt/ooM42CtoaJK
+ d50Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Ao4t43CQr2npoPWccz03EnifBMct2tjXDyOQTxsOX20=;
- b=fVZ2WCrJXbZ9Lq2AQYFZPfPKDt4aUpLs25vxMk/cu9SA02dPhPrJmfsqn+GjQFeCPF
- 8fabC246aogvxVEV9+tA7w7wA4U1Kfi6Hnlf6YkJp1G1a9W7JcZ1XPZ/cmfYmQ32Mmac
- MKFa5IKwJ5tsDlxKyjfVOwm1dDtftEgMbcbbKn6N68fjVBaSdVEY4c/Yp4WhRwHYrs1o
- 068Rs6MTIl7KjQ84DfBBbMMceRlI15L5LtxmZ/L8nn1N7uCVvvKNuxi1kwM6fMUpKFkg
- Tcl2l0olY9ScZZfKMe1blJv+95obLEN/XCUs6dJnEDLYu4pe3k4/I0x/S9AjSCGQ/5V3
- XFJA==
-X-Gm-Message-State: APjAAAVK7ITb3U921Ii1LZqFNuT7vCFElqjIchqOIuOAGMr80DzCIoni
- 1ECWzdbUGPEd3lcNcJF1ZsYPXW5cat2SnakZC5w=
-X-Google-Smtp-Source: APXvYqyCQKxC44APJKFmaZMK4fX/CsAUkhPrA8oP2O6ByYx9/QMN+GaCyXVdtR+QWnLIYHAiQKHUnr5hCvscYbv5RcI=
-X-Received: by 2002:a02:85e8:: with SMTP id d95mr4114967jai.92.1581195005925; 
- Sat, 08 Feb 2020 12:50:05 -0800 (PST)
+ bh=vX+iLwUKwsdvlgNozqoGA5qr0f0YcmVOuKnjq0pu+KA=;
+ b=ZoSwx9DwiMgVPJX10Z8d9D87g0NcR3/EwPOYJi+Z8J9FMDXSpZ2uiaOQJzE5pVey5T
+ CzXUOLol8lMDj4jko3re/+rTyMEJ6SNn5x4Q47bHPlDWNoMdysGtgg2903axomYdg1wo
+ UWQ2C+gNr7xhthjT8tiH9wfGzZtisauUMAMR2yTDgWUY1zNc7P81ljkJZIH1IfadofVq
+ vL/FAE0UxzrRYWujD4eKRhPIeN/F9ypJLuQYU+HOfkDrysC9beAoU7CK3nsDbPI5wSSu
+ rT+WKm/9kwiDZBq0WnhMBgFOFRSXJoCLeZH5bof4pxm3JTWPqTN8EJhCBCRnXY+zDbjc
+ lRWw==
+X-Gm-Message-State: APjAAAV8/zVgxt8KWZG8YVn9HHuXWen2xEneCOUsnZVmpSB7BmPSrzZ7
+ InhzJfibjobd9t/W+vim9sZpYGc+bz8dHzDAWB4=
+X-Google-Smtp-Source: APXvYqz216fVBYVB+1glG3CVx3bSD3wVIS0TRPe8UzlP8aLG8UOlA89f8vAvUW6h6/ZOflxtU8DI3BYu7+OQun6Ylmc=
+X-Received: by 2002:a19:f811:: with SMTP id a17mr3718021lff.182.1581265824245; 
+ Sun, 09 Feb 2020 08:30:24 -0800 (PST)
 MIME-Version: 1.0
 References: <CAB50+dRf+cguaJvQwr-rZr8nXqHxqBqYh7=8-YXp_w7rG2=t5Q@mail.gmail.com>
-In-Reply-To: <CAB50+dRf+cguaJvQwr-rZr8nXqHxqBqYh7=8-YXp_w7rG2=t5Q@mail.gmail.com>
-Date: Sat, 8 Feb 2020 12:49:49 -0800
-Message-ID: <CA+JMMq_jm5ixJ6ZDMk6QkNVrGpX+LS+f4pCUBR4uBeSL_ztnKA@mail.gmail.com>
-To: Andrew Payne <wandrewp@gmail.com>
+ <CA+JMMq_jm5ixJ6ZDMk6QkNVrGpX+LS+f4pCUBR4uBeSL_ztnKA@mail.gmail.com>
+In-Reply-To: <CA+JMMq_jm5ixJ6ZDMk6QkNVrGpX+LS+f4pCUBR4uBeSL_ztnKA@mail.gmail.com>
+Date: Sun, 9 Feb 2020 11:30:13 -0500
+Message-ID: <CAB50+dReYWSmUpLJy9KR_y98URDVqa_f-e-5ET-OttBfS979Yw@mail.gmail.com>
+To: Nick Foster <bistromath@gmail.com>
 Subject: Re: [USRP-users] noc_block_addsub_tb.sv - number of samples/packets.
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -58,10 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nick Foster <bistromath@gmail.com>
+From: Andrew Payne via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Andrew Payne <wandrewp@gmail.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8180635883149341751=="
+Content-Type: multipart/mixed; boundary="===============4739546539431589687=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,51 +75,64 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8180635883149341751==
-Content-Type: multipart/alternative; boundary="000000000000a61f7d059e16a689"
+--===============4739546539431589687==
+Content-Type: multipart/alternative; boundary="000000000000bfeddf059e2723d1"
 
---000000000000a61f7d059e16a689
+--000000000000bfeddf059e2723d1
 Content-Type: text/plain; charset="UTF-8"
 
-The NOC bus is 64 bits wide. This means each item in the testbench data
-array is 2 samples {16i, 16q, 16i, 16q}. The testbench is failing because
-you're reading past the end of the input data array.
+Yeah but if I change the upper limit of the transmit and receive loops to
+be 256, none of the results come back from noc_block_addsub.
 
-On Sat, Feb 8, 2020 at 5:04 AM Andrew Payne via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+On Sat, Feb 8, 2020 at 15:50 Nick Foster <bistromath@gmail.com> wrote:
 
-> Hello,
+> The NOC bus is 64 bits wide. This means each item in the testbench data
+> array is 2 samples {16i, 16q, 16i, 16q}. The testbench is failing because
+> you're reading past the end of the input data array.
 >
-> I'm running and slightly modifying the simulation testbench for the
-> RFNOC addsub module.  I've noticed that the for loop in test case 4
-> goes to SPP/2 - that upper limit is what I'm modifying to learn how
-> packets work in the NOC shell.  So it passes as a stock testbench, and
-> after modifying it to run to SPP (256), the entire test case 4 fails,
-> with every return from the noc block being "x" (undriven as I
-> understand it).  Why does the test fail when I increase the upper
-> limit of tests?
+> On Sat, Feb 8, 2020 at 5:04 AM Andrew Payne via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
-> Thanks,
-> Andrew
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>> Hello,
+>>
+>> I'm running and slightly modifying the simulation testbench for the
+>> RFNOC addsub module.  I've noticed that the for loop in test case 4
+>> goes to SPP/2 - that upper limit is what I'm modifying to learn how
+>> packets work in the NOC shell.  So it passes as a stock testbench, and
+>> after modifying it to run to SPP (256), the entire test case 4 fails,
+>> with every return from the noc block being "x" (undriven as I
+>> understand it).  Why does the test fail when I increase the upper
+>> limit of tests?
+>>
+>> Thanks,
+>> Andrew
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 
---000000000000a61f7d059e16a689
+--000000000000bfeddf059e2723d1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">The NOC bus is 64 bits wide. This means each item in the t=
-estbench data array is 2 samples {16i, 16q, 16i, 16q}. The testbench is fai=
-ling because you&#39;re reading past the end of the input data array.<br></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Sat, Feb 8, 2020 at 5:04 AM Andrew Payne via USRP-users &lt;<a href=3D"mai=
-lto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello,<br>
+<div><div dir=3D"auto">Yeah but if I change the upper limit of the transmit=
+ and receive loops to be 256, none of the results come back from noc_block_=
+addsub.=C2=A0</div></div><div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Sat, Feb 8, 2020 at 15:50 Nick Foster &lt;<a hre=
+f=3D"mailto:bistromath@gmail.com">bistromath@gmail.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
+t:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">The NOC bus is 64 bits =
+wide. This means each item in the testbench data array is 2 samples {16i, 1=
+6q, 16i, 16q}. The testbench is failing because you&#39;re reading past the=
+ end of the input data array.<br></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Sat, Feb 8, 2020 at 5:04 AM Andrew Payn=
+e via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
+=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex">Hello,<br>
 <br>
 I&#39;m running and slightly modifying the simulation testbench for the<br>
 RFNOC addsub module.=C2=A0 I&#39;ve noticed that the for loop in test case =
@@ -143,11 +156,12 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div></div>
 
---000000000000a61f7d059e16a689--
+--000000000000bfeddf059e2723d1--
 
 
---===============8180635883149341751==
+--===============4739546539431589687==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -158,5 +172,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8180635883149341751==--
+--===============4739546539431589687==--
 
