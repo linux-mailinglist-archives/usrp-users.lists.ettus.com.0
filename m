@@ -2,48 +2,44 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C377156D2B
-	for <lists+usrp-users@lfdr.de>; Mon, 10 Feb 2020 01:30:07 +0100 (CET)
-Received: from [::1] (port=52356 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07BB11575D7
+	for <lists+usrp-users@lfdr.de>; Mon, 10 Feb 2020 13:45:35 +0100 (CET)
+Received: from [::1] (port=35470 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j0wxd-0005U4-St; Sun, 09 Feb 2020 19:30:01 -0500
-Received: from mail-lj1-f180.google.com ([209.85.208.180]:35934)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jmcrossen80@gmail.com>)
- id 1j0wxa-0005QF-7g
- for usrp-users@lists.ettus.com; Sun, 09 Feb 2020 19:29:58 -0500
-Received: by mail-lj1-f180.google.com with SMTP id r19so5143985ljg.3
- for <usrp-users@lists.ettus.com>; Sun, 09 Feb 2020 16:29:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=FPMoHdC/XMPWHZnxHVXx7FtB+jBe2NvQEoaSrEIeLPI=;
- b=Pbe+UuGG4t/zjMALhCQR6MNujfSz41IYk5t42l4g3MamsYL9Q974KP9UFnyEx6UTiK
- xJ60oW/gcfOe/CQ6KeySt0HIlPcpY2+d/lZ6CFQ5Qv0WGhGFQefSDYUuTWVhV0/D0boF
- fYxFxSsLhTOkAoJwZTtmvWhiLIPnDpXZcYbGyXTINgTe9qRuQbhMkMSFspgVRb5cu8C1
- 7bbXQUhyrGmS3SzQdndRqCxXyU1frRvnR965Pyu0hVssih7mFktmTUDB091QyxMvsDLm
- Jrm4WeJhdARbA7zw5YRV82KWJ+zQf2RWf/PK7N/4alnU+MJDe4GY/b7VAO1i4uX65KYz
- Wzzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=FPMoHdC/XMPWHZnxHVXx7FtB+jBe2NvQEoaSrEIeLPI=;
- b=bHGHX3gQVNDBVoVwUfynka+Gj7uVZz3rhx42ScBPtFXvzPpZfGzFOgJRSSVjVcMiO9
- ZJtonuPnReFdZw2o1ytKj4V5WymcOdKqM9N8XXBiLEXcMbS1y9M+5wIs0btLAl1vHeja
- y8xOvRgkrKFbB755bixtRPCjCLMmJg2JG/OUu27a6nID2DeHDrrmfk8PNyTm+zhj6eKW
- 2mG4Eg+hdgkIDeGmCJc4q6q7BpkmbP9dYADKngyjki8o3r5as70So7O01eYW2GTXyC9v
- TtLL8kdWRCBmclu3ldnDpLEMobSWqsAGx93yuBptrY4LJ0aYALCTl4h1hPZXfYvtOb8S
- jk6g==
-X-Gm-Message-State: APjAAAUZahhMsEpOGAV481N6t8QuZ1GvyGm9OcQdUNzmrXNIWUv/cTvl
- +Ah0rzhOOmjWiSh+Ib7BUiDxDf3PXf4rymnh97GBT2lQ
-X-Google-Smtp-Source: APXvYqzUC0GGZ3QOTUjtishjsyyuRg2KdOdlCLgy1W9kkenuQfUmFk58B14muCNgrUJbqEeMQHSPgvR6NYdLZ8xrtwA=
-X-Received: by 2002:a2e:9744:: with SMTP id f4mr6511744ljj.267.1581294556504; 
- Sun, 09 Feb 2020 16:29:16 -0800 (PST)
-MIME-Version: 1.0
-Date: Mon, 10 Feb 2020 10:59:05 +1030
-Message-ID: <CAEnX9dE3FAPR362qf0c_SbuaU2OzgrLggLC3nXr43hacn6gCjA@mail.gmail.com>
+	id 1j18RM-0006nl-6r; Mon, 10 Feb 2020 07:45:28 -0500
+Received: from smtpsal1.cc.upv.es ([158.42.249.61]:39826 helo=smtpsalv.upv.es)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ (Exim 4.92) (envelope-from <borieher@iteam.upv.es>)
+ id 1j18RI-0006jW-84
+ for usrp-users@lists.ettus.com; Mon, 10 Feb 2020 07:45:24 -0500
+Received: from smtpx.upv.es (smtpxv.cc.upv.es [158.42.249.46])
+ by smtpsalv.upv.es (8.14.7/8.14.7) with ESMTP id 01ACigbm031017
+ (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+ for <usrp-users@lists.ettus.com>; Mon, 10 Feb 2020 13:44:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=upv.es; s=default;
+ t=1581338682; bh=XgK0CKAWYYV9/+A/DFv/e8wYlb7NvR5SfR4+114j9IM=;
+ h=To:From:Subject:Date:From;
+ b=cDipuy1LlZPQ2wkee2KW8pTfoGMozeyNeq9e4iI2T8KBWRXHd2eITcTYgrjthXRk4
+ HWFVuIucBWq2L3quWNio/XsT/b1IAYHHGhbSq517/R4On+l0fE/JZQs005agkB3O1c
+ vUf8IfSh6qFmN17g3UhD5XYWjRUSDBFQhwJ0Uobp7tFMPSV0wke1BdbPx8eD7abegN
+ 1Uha0eoS4pnytdfhv19jV2o6bIaWU353GntVAjbtbrN4NS8LL/YiJJKNHC0lJmtrPZ
+ 34zp2doCWRs4kN9PYKZJblfNOPrg2ImfcZI5d47ShQh/kkkK5Vrothmo0Qp//bHI23
+ 9ohTbtkkDqEwA==
+Received: from smtp.upv.es (smtpv.cc.upv.es [158.42.249.16])
+ by smtpx.upv.es (8.14.7/8.14.7) with ESMTP id 01ACigmD026572
+ for <usrp-users@lists.ettus.com>; Mon, 10 Feb 2020 13:44:42 +0100
+Received: from [158.42.160.88] (mcg59.iteam.upv.es [158.42.160.88])
+ by smtp.upv.es (8.14.7/8.14.7) with ESMTP id 01ACigvS009018
+ for <usrp-users@lists.ettus.com>; Mon, 10 Feb 2020 13:44:42 +0100
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] RedhawkSDR and E312
+Message-ID: <49e170dd-3e0d-587a-0520-936fbe758b99@iteam.upv.es>
+Date: Mon, 10 Feb 2020 13:44:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+MIME-Version: 1.0
+Content-Language: en-US
+Subject: [USRP-users] Synchronize USRP using Octoclock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,9 +51,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Joe crossen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Joe crossen <jmcrossen80@gmail.com>
-Content-Type: multipart/mixed; boundary="===============9017258088343138370=="
+From: =?utf-8?q?Borja_I=C3=B1esta_Hern=C3=A1ndez_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Borja_I=c3=b1esta_Hern=c3=a1ndez?= <borieher@iteam.upv.es>
+Content-Type: multipart/mixed; boundary="===============7659508206237929493=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,50 +68,95 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9017258088343138370==
-Content-Type: multipart/alternative; boundary="00000000000053678f059e2dd414"
+This is a multi-part message in MIME format.
+--===============7659508206237929493==
+Content-Type: multipart/alternative;
+ boundary="------------DAE92956F9F4C1E49B0659DD"
+Content-Language: en-US
 
---00000000000053678f059e2dd414
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------DAE92956F9F4C1E49B0659DD
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 Hi all,
 
-I have an E312 and have managed to successfully receive RF and visualize in
-the Redhawk IDE.
-i.e.,
-Launched domain on the IDE.
-Launched device manager on the USRP (using nodeBooter command) - which
-appears in the IDE domain.
-Once connected, I am able to plot the device outputs from the IDE.
+I just set up an Octoclock-G using the guide and now I can ping my 
+device. But checking the test_clock_sync example with my x310 USRP 
+something seems to be working bad. I run ./test_clock_synch --clock-args 
+addr=CLOCK_ADDRESS --usrp-args serial=USRP_SERIAL and every time it has 
+a 1 second offset between the USRP and the Octoclock in all the 
+comparisons. The clock in the USRP is always one second delayed.
 
-However I am unable to get the USRP to transmit a waveform created in the
-IDE.
-I can't figure out how to connect the waveform to the transmission port...
-Has anyone been able to achieve this?
+And in the test_clock_synch example changing: *(*times)[mboard] = 
+usrp->**get_time_now**(mboard)**.**get_full_secs**();*
 
-Thank you,
-Joe
+to: *(*times)[mboard] = 
+usrp->**get_time_last_pps**(mboard).**get_full_secs**();
+*
 
---00000000000053678f059e2dd414
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Works every time.
 
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I have an E312 and h=
-ave managed to successfully receive RF and visualize in the Redhawk IDE.</d=
-iv><div>i.e.,=C2=A0</div><div>Launched domain on the IDE.</div><div>Launche=
-d device manager on the USRP (using nodeBooter command) - which appears in =
-the IDE domain.</div><div></div><div>Once connected, I am able to plot the =
-device outputs from the IDE.</div><div><br></div><div>However I am unable t=
-o get the USRP to transmit a waveform created in the IDE. <br></div><div>I =
-can&#39;t figure out how to connect the waveform to the transmission port..=
-. <br></div><div></div><div>Has anyone been able to achieve this? <br></div=
-><div><br></div><div>Thank you,</div><div>Joe<br></div><div><br></div><div>=
-<br></div><div><br></div><div><br></div></div>
+So, does anyone know why my USRP is one second delayed when I use 
+get_time_now() even if its supossed to work? Can I assume that my USRP 
+is synchronized to the Octoclock when im using get_time_last_pps()?
 
---00000000000053678f059e2dd414--
+For my tests I have used this modified version of test_clock_synch 
+created to work with two USRPs but only using it with one. 
+https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210.cpp 
+the code is from Urban Hankansson thread 
+http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2015-January/012227.html
+
+Thanks, Borja.
 
 
---===============9017258088343138370==
+--------------DAE92956F9F4C1E49B0659DD
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Hi all,</p>
+    <p>I just set up an Octoclock-G using the guide and now I can ping
+      my device. But checking the test_clock_sync example with my x310
+      USRP something seems to be working bad. I run ./test_clock_synch
+      --clock-args addr=CLOCK_ADDRESS --usrp-args serial=USRP_SERIAL and
+      every time it has a 1 second offset between the USRP and the
+      Octoclock in all the comparisons. The clock in the USRP is always
+      one second delayed.<br>
+    </p>
+    <p>And in the test_clock_synch example changing: <b>(*times)[mboard]
+        = usrp-&gt;</b><b><span class="pl-c1">get_time_now</span></b><b>(mboard)</b><b>.</b><b><span
+          class="pl-c1">get_full_secs</span></b><b>();</b> <br>
+    </p>
+    <p>to: <b>(*times)[mboard] = usrp-&gt;</b><b><span class="pl-c1">get_time_last_pps</span></b><b>(mboard).</b><b><span
+          class="pl-c1">get_full_secs</span></b><b>(); <br>
+      </b></p>
+    <p>Works every time. <br>
+    </p>
+    <p>So, does anyone know why my USRP is one second delayed when I use
+      get_time_now() even if its supossed to work? Can I assume that my
+      USRP is synchronized to the Octoclock when im using
+      get_time_last_pps()?</p>
+    <p>For my tests I have used this modified version of
+      test_clock_synch created to work with two USRPs but only using it
+      with one.
+<a class="moz-txt-link-freetext" href="https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210.cpp">https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210.cpp</a>
+      the code is from Urban Hankansson thread
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2015-January/012227.html">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2015-January/012227.html</a></p>
+    <p>Thanks, Borja.<br>
+    </p>
+  </body>
+</html>
+
+--------------DAE92956F9F4C1E49B0659DD--
+
+
+--===============7659508206237929493==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,5 +167,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9017258088343138370==--
+--===============7659508206237929493==--
 
