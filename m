@@ -2,46 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E45F2157D46
-	for <lists+usrp-users@lfdr.de>; Mon, 10 Feb 2020 15:19:08 +0100 (CET)
-Received: from [::1] (port=47350 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE8D158E8A
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Feb 2020 13:32:43 +0100 (CET)
+Received: from [::1] (port=52634 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j19ty-0002FN-0t; Mon, 10 Feb 2020 09:19:06 -0500
-Received: from smtpsal1.cc.upv.es ([158.42.249.61]:35594 helo=smtpsalv.upv.es)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <borieher@iteam.upv.es>)
- id 1j19tu-0002AV-QF
- for usrp-users@lists.ettus.com; Mon, 10 Feb 2020 09:19:03 -0500
-Received: from smtpx.upv.es (smtpxv.cc.upv.es [158.42.249.46])
- by smtpsalv.upv.es (8.14.7/8.14.7) with ESMTP id 01AEILR8023268
- (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
- for <usrp-users@lists.ettus.com>; Mon, 10 Feb 2020 15:18:21 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=upv.es; s=default;
- t=1581344301; bh=gc3D47/2TDFy/iyKvdziXz5z5qNJuQE81DdjfnOZtLM=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=bZKpT4ozhhTswf4itmaa44HkT5GIKxrrTn91SM1rwNuGf09MWFD+oC5foXKP9F9v6
- gmLIiaqaGDyLvm09n45F8XyGQj9ic16OaDY1XxoVYT9nCOgJCtRSPkwkZs9hxvPvPE
- 1sQ5RSU53ebQ9P7OZYDhV9Lq8rK3A0eZWOZV0nN3eQu1nmij3sJ8oh35E5mg1T+kaE
- kBnmhcmCqpDtnwK5Qhc+29tcDIXhpEzIwqfaurE57TQ3EquYInTjuFJHp/U2aF7OOa
- UDj45wlceiGDEW4JnzL1ORC7BI3/3nMy8sEu6gUVH2XLvQNUVGieuEvzt9seebKqyF
- Ma4TbOGKQYAaQ==
-Received: from smtp.upv.es (smtpv.cc.upv.es [158.42.249.16])
- by smtpx.upv.es (8.14.7/8.14.7) with ESMTP id 01AEILDc015363
- for <usrp-users@lists.ettus.com>; Mon, 10 Feb 2020 15:18:21 +0100
-Received: from [158.42.160.88] (mcg59.iteam.upv.es [158.42.160.88])
- by smtp.upv.es (8.14.7/8.14.7) with ESMTP id 01AEIKcw005455
- for <usrp-users@lists.ettus.com>; Mon, 10 Feb 2020 15:18:20 +0100
-To: usrp-users@lists.ettus.com
-References: <49e170dd-3e0d-587a-0520-936fbe758b99@iteam.upv.es>
-Message-ID: <6a8529df-c323-db63-d55e-d1f5d22504ee@iteam.upv.es>
-Date: Mon, 10 Feb 2020 15:17:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+	id 1j1UiR-0008LW-Tu; Tue, 11 Feb 2020 07:32:35 -0500
+Received: from mail-io1-f47.google.com ([209.85.166.47]:44963)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <francisco.albani@gmail.com>)
+ id 1j1UiO-0008I5-Ao
+ for usrp-users@lists.ettus.com; Tue, 11 Feb 2020 07:32:32 -0500
+Received: by mail-io1-f47.google.com with SMTP id z16so11474349iod.11
+ for <usrp-users@lists.ettus.com>; Tue, 11 Feb 2020 04:32:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=v2EhxtQrDwWDCzTquyCLaongOsksmBie3GM5njT08ys=;
+ b=g0UaBBy+gK7sdGrlOxBmOxYrbkDBNKod80xdywW/4EX2+9qPt5RvyM8ZSTiCbb+q4M
+ EvhgMyxIFN9wnh8NS1scDSHShz5mzlDekvwMDI0yI9hFMV7KLyaiDrARDuKgt3xfyHTs
+ 9M/NOsuMWepIzfm/cGn2zAXH2pZSu2h3qKtD6gztC4qdbJ6Za0GHxbDvNhFEaUAc7Com
+ VYPOdjXU95mWicCqsxyYxCO2Nwxszuz1nI8i2ISNb/enVoQf7HJxt8/K+vLV0nvAudpU
+ Q6gziZlR3yJTlXYXrr2F9I/dGmPhYKKYX7X/tV2ycJZlzxbzk8PJYNSiAIf/ra5aJQaz
+ I33w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=v2EhxtQrDwWDCzTquyCLaongOsksmBie3GM5njT08ys=;
+ b=qGmkoiZ1KKX3DyeB3dAqqY9kGxJ+RNGLUNy5qubYQt4B+nRZL3iYlTtU8M/hwVa6uN
+ GDwJaNgzSXILBw3acofFxgjuHR0XI9CII6veA7dbI7AyqOqOLk+OL5DN0IUwzT7KukQo
+ G4tykhhHL/7mfBdxbq/q7eGAJMfX31ZaNPs3hX6Ne2j3Kl/srFP3mk7cSO6xzB7sTOzX
+ QdA8UPrHEdIbo9KRM+aDtPg4JT0eQcMuTZq2CBdZ8pSQqUhaUMhjSn3oYas9y3u2HLCb
+ IUGgdJO1bA3UcYJuLZS96YYTi+LNFbQjIHBL88ovDuWQSCEhF2CNvwMo+jCU3rQxc9Sv
+ 9Jaw==
+X-Gm-Message-State: APjAAAXRFSrW7tlrZBFWS3VaJmrcJehDDq9TafGWKKILiFiRZb0/A9dw
+ VjDDT2IEImw8YyJKFlLJpGhg6zKSTwKxZdPIaCXKYMCn
+X-Google-Smtp-Source: APXvYqxYBjc9XBvCKIEN/drUpq7BuCqorHc7/ug1NEGQCVkjKv2U2Dba3272Z+c9notGRTM7wJtQIGA/JuaA3NpVemk=
+X-Received: by 2002:a6b:600f:: with SMTP id r15mr12672288iog.54.1581424311451; 
+ Tue, 11 Feb 2020 04:31:51 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <49e170dd-3e0d-587a-0520-936fbe758b99@iteam.upv.es>
-Content-Language: en-US
-Subject: Re: [USRP-users] Synchronize USRP using Octoclock
+Date: Tue, 11 Feb 2020 09:31:40 -0300
+Message-ID: <CAAGU92=dt=MqR=+H9hU8S9QPNpdOMMWBaiFB7BGHrtZJOitO2w@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Can underflows in any way be bad for hardware in the
+ long term?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,10 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Borja_I=C3=B1esta_Hern=C3=A1ndez_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Borja_I=c3=b1esta_Hern=c3=a1ndez?= <borieher@iteam.upv.es>
-Content-Type: multipart/mixed; boundary="===============5625445834688913868=="
+From: Francisco Albani via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Francisco Albani <francisco.albani@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7558815146901747257=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,138 +72,47 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============5625445834688913868==
-Content-Type: multipart/alternative;
- boundary="------------DE848816805F058E68010502"
-Content-Language: en-US
+--===============7558815146901747257==
+Content-Type: multipart/alternative; boundary="00000000000052c20a059e4c0a82"
 
-This is a multi-part message in MIME format.
---------------DE848816805F058E68010502
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--00000000000052c20a059e4c0a82
+Content-Type: text/plain; charset="UTF-8"
 
-Hey all,
+Hi!
 
-Running the 
-https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210.cpp 
-example with two USRPs works. Even if I use get_time_now() instead of 
-get_time_last_pps(). So I don't know why the example shipped with uhd 
-doesn't work.
+I've been using USRPs many years yet it never occurred to me to ask that
+question.
 
-Thanks, Borja.
+Of course one should avoid using an application in a regime of many
+underflows, BUT, just for the sake of the question suppose I came up with a
+setup that does what I want while throwing a lot of them, are there any
+implications to the weariness of any piece of hardware? For example turning
+on and off the TX chain.
 
-El 10/2/20 a las 13:44, Borja Iñesta Hernández via USRP-users escribió:
->
-> Hi all,
->
-> I just set up an Octoclock-G using the guide and now I can ping my 
-> device. But checking the test_clock_sync example with my x310 USRP 
-> something seems to be working bad. I run ./test_clock_synch 
-> --clock-args addr=CLOCK_ADDRESS --usrp-args serial=USRP_SERIAL and 
-> every time it has a 1 second offset between the USRP and the Octoclock 
-> in all the comparisons. The clock in the USRP is always one second 
-> delayed.
->
-> And in the test_clock_synch example changing: *(*times)[mboard] = 
-> usrp->**get_time_now**(mboard)**.**get_full_secs**();*
->
-> to: *(*times)[mboard] = 
-> usrp->**get_time_last_pps**(mboard).**get_full_secs**();
-> *
->
-> Works every time.
->
-> So, does anyone know why my USRP is one second delayed when I use 
-> get_time_now() even if its supossed to work? Can I assume that my USRP 
-> is synchronized to the Octoclock when im using get_time_last_pps()?
->
-> For my tests I have used this modified version of test_clock_synch 
-> created to work with two USRPs but only using it with one. 
-> https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210.cpp 
-> the code is from Urban Hankansson thread 
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2015-January/012227.html
->
-> Thanks, Borja.
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+Will a radiation environment change the conclusion?
 
---------------DE848816805F058E68010502
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Bye and thanks for your help!
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hey all,</p>
-    <p>Running the <a class="moz-txt-link-freetext"
-href="https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210.cpp">https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210.cpp</a>
-      example with two USRPs works. Even if I use get_time_now() instead
-      of get_time_last_pps(). So I don't know why the example shipped
-      with uhd doesn't work.</p>
-    <p>Thanks, Borja.<br>
-    </p>
-    <div class="moz-cite-prefix">El 10/2/20 a las 13:44, Borja Iñesta
-      Hernández via USRP-users escribió:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:49e170dd-3e0d-587a-0520-936fbe758b99@iteam.upv.es">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <p>Hi all,</p>
-      <p>I just set up an Octoclock-G using the guide and now I can ping
-        my device. But checking the test_clock_sync example with my x310
-        USRP something seems to be working bad. I run ./test_clock_synch
-        --clock-args addr=CLOCK_ADDRESS --usrp-args serial=USRP_SERIAL
-        and every time it has a 1 second offset between the USRP and the
-        Octoclock in all the comparisons. The clock in the USRP is
-        always one second delayed.<br>
-      </p>
-      <p>And in the test_clock_synch example changing: <b>(*times)[mboard]
-          = usrp-&gt;</b><b><span class="pl-c1">get_time_now</span></b><b>(mboard)</b><b>.</b><b><span
-            class="pl-c1">get_full_secs</span></b><b>();</b> <br>
-      </p>
-      <p>to: <b>(*times)[mboard] = usrp-&gt;</b><b><span class="pl-c1">get_time_last_pps</span></b><b>(mboard).</b><b><span
-            class="pl-c1">get_full_secs</span></b><b>(); <br>
-        </b></p>
-      <p>Works every time. <br>
-      </p>
-      <p>So, does anyone know why my USRP is one second delayed when I
-        use get_time_now() even if its supossed to work? Can I assume
-        that my USRP is synchronized to the Octoclock when im using
-        get_time_last_pps()?</p>
-      <p>For my tests I have used this modified version of
-        test_clock_synch created to work with two USRPs but only using
-        it with one.
-        <a class="moz-txt-link-freetext"
-href="https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210.cpp"
-          moz-do-not-send="true">https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210.cpp</a>
-        the code is from Urban Hankansson thread
-        <a class="moz-txt-link-freetext"
-href="http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2015-January/012227.html"
-          moz-do-not-send="true">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2015-January/012227.html</a></p>
-      <p>Thanks, Borja.<br>
-      </p>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-  </body>
-</html>
+Francisco.
 
---------------DE848816805F058E68010502--
+--00000000000052c20a059e4c0a82
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi!</div><div><br></div><div>I&#39;ve been using USRP=
+s many years yet it never occurred to me to ask that question.</div><div><b=
+r></div><div>Of course one should avoid using an application in a regime of=
+ many underflows, BUT, just for the sake of the question suppose I came up =
+with a setup that does what I want while throwing a lot of them, are there =
+any implications to the weariness of any piece of hardware? For example tur=
+ning on and off the TX chain.<br></div><div><br></div><div>Will a radiation=
+ environment change the conclusion?</div><div><br></div><div>Bye and thanks=
+ for your help!</div><div><br></div><div>Francisco.<br></div></div>
+
+--00000000000052c20a059e4c0a82--
 
 
---===============5625445834688913868==
+--===============7558815146901747257==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -212,5 +123,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5625445834688913868==--
+--===============7558815146901747257==--
 
