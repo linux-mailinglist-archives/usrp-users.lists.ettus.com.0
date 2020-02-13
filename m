@@ -2,54 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BC815CAE8
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Feb 2020 20:08:04 +0100 (CET)
-Received: from [::1] (port=38054 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FDAF15CDB3
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Feb 2020 23:01:52 +0100 (CET)
+Received: from [::1] (port=38624 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j2JqC-0003p5-37; Thu, 13 Feb 2020 14:08:00 -0500
-Received: from mail-lf1-f52.google.com ([209.85.167.52]:37893)
+	id 1j2MYL-0005el-Jd; Thu, 13 Feb 2020 17:01:45 -0500
+Received: from mail-lj1-f180.google.com ([209.85.208.180]:34498)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1j2Jq8-0003jg-1y
- for usrp-users@lists.ettus.com; Thu, 13 Feb 2020 14:07:56 -0500
-Received: by mail-lf1-f52.google.com with SMTP id r14so5036680lfm.5
- for <usrp-users@lists.ettus.com>; Thu, 13 Feb 2020 11:07:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ynhdD8LszjhfXh9gLAJSkaM6jzp+FtrDgD0h3myAM2I=;
- b=DU9REwwPQaPffOpq1gHBRRrz3z07wAcuD5sZGfdHT+golQKC/Dy4aNoyNbSf0W7Tps
- ifdG+ihrf91MV1Jt6tCvY4K3fOF4SL3uW71AKiMBVxyX6G01dYVimVvGRgFMbfW04Z4Y
- 8qbl0Ka9XfvO6Dz/lGRLsf0uppDU3qhI8qkyBmzCQW5Pdg1UHgDzUITXXU3mzmGt/ERK
- jjpvlKAK+2vVbCPlBN7nuQcGhAeHpWd8c+6hX9REP/AZJ7H+ZbnF4perWq2YV/TLCgQh
- MjZU5g1GtVn3MLSi3/uTVLfUMkO1bMkT/7Do4fJdwVzjUJ9zKY383LdLBmfyoQXTtVqK
- iXsA==
+ (Exim 4.92) (envelope-from <hazelnutvt04@gmail.com>)
+ id 1j2MYI-0005Yy-Ht
+ for usrp-users@lists.ettus.com; Thu, 13 Feb 2020 17:01:42 -0500
+Received: by mail-lj1-f180.google.com with SMTP id x7so8416953ljc.1
+ for <usrp-users@lists.ettus.com>; Thu, 13 Feb 2020 14:01:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=K2nCvr9OiTiZzo/xBHNdy8T9J5ZYGLj30Kc1hhjv8lQ=;
+ b=kk+LtiUzJbhMMuVN0wjbgDk5YA2/F5T9CY+pLkjbs1nXbOXTa8ur6GY/nTH/mDCjvK
+ gNlcYh+SW6oun1pvuj5zboap2bL0+XiQ22i2Vdd+Nz8BzCIMpaMNZkLP5322kD/V3LsS
+ axHDUvl1AEb7biV/n3QhBtvpW8IENoFgK3v13gfnhf3j7SxyaZtdU3Ykihoh6jyfO+M3
+ Ndczp21RstExgCnf6NY45tLw6OzyHz2xGd9kWgXFemEUeBLPYR+2Y4NdRY8hsGNvdWit
+ Vq8B50VlSXQ7O7E4k5yWBk9bPFV2yr6jTauS0EjOUeafmzRGr4hG7Oip+gzm8z35JEcK
+ M2xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ynhdD8LszjhfXh9gLAJSkaM6jzp+FtrDgD0h3myAM2I=;
- b=sPQsQOY3N4cVMR0xldcLJy/MoUrA8aqeuSUbo8kk0UMtEeV8WM85f6gUfmPbnwzib5
- cu3jXQb2KUAOkBf1MeFpW0ChY1R5JKNjZeSm6pvKYIS0JdzHh94xW11jUl0FVrub+b1d
- 3cmXpN8KJfot8RC0KbXXOFsFzXADr2jMpFSx6OcIKX+Wz1YEH7rqmU9Y+mWjhd4Jr7QD
- CeR6QZpIwn1bo0g21wf2FYn/F0sQCZGSVFYlmwslMf3b6Mdeu2Mapaztlr5r28fsPKO7
- TsWUqEHK1mZTaMjyia4KBllzVVGBgHdIYodxHZibjympFYo8fATxox69IcNI4lurFJCo
- /vzQ==
-X-Gm-Message-State: APjAAAVmDz06GFVj7ywJpYcDj6iyRLj9qrVwIL1TPwAbxtf8Us25Azp6
- 43rq1gm6ZC3CenciubmMsJqKkloPABT18I0V/C0CHpm9
-X-Google-Smtp-Source: APXvYqyGMS7Z72+8k2iGnmD1Ayp01bIhCqd1xzXx0U1Mn731Yt2VDbvJCfx1CsXDqQ63lZFp6yHZKqucfYIgu82KKnU=
-X-Received: by 2002:ac2:5339:: with SMTP id f25mr10061164lfh.180.1581620834742; 
- Thu, 13 Feb 2020 11:07:14 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=K2nCvr9OiTiZzo/xBHNdy8T9J5ZYGLj30Kc1hhjv8lQ=;
+ b=XWtItFY4+cXkObT8GlEU/vvC0XkylrLVc9Feus1ipOTcQpIrpIuzQZ+jI/YQC9Vo85
+ Tirg2B1btuHFpNgKtdREQ0lUx9NmOWJuxfM7n0GKv35IxKN90ljWs4EHY9l0Vix/IYB0
+ OsDLpel6aoXpNd3+L/vei5bWiIx/UoH/CzuNhJ+ngr5vPHLcY9JaQPSJjw9R+lo7flnS
+ 48dJTx2SGw0ZoWsEt6k6JdzNgiK3/8kW4PrnaMnfWPavqvfM1OjAOAfqbUJFhzmpWjAS
+ eyLn9rTMKR6Z9SbzhylHAF762EGyFLY6shxKWNIPNJSGAGu1aDNhO9nRdoDWR3vAcffc
+ L4+w==
+X-Gm-Message-State: APjAAAV7o9On4LgKxYZvFQaaTeWoy/XX+YLnm3wwNw97LNp8ot3JXnMn
+ oE5XI8HnRPvg+wNqv8Gru1RMsKLFf27TKjp1s5bvbhEd
+X-Google-Smtp-Source: APXvYqwhQkpPUmS9XRRJ+LB0LK7a3TVGM4/3r8v9IexAKz5fBqYqTgQCCNRvM2WBg/48HzQjKaEyzX96vBrS9w50rhI=
+X-Received: by 2002:a2e:8e70:: with SMTP id t16mr12470706ljk.73.1581631260615; 
+ Thu, 13 Feb 2020 14:01:00 -0800 (PST)
 MIME-Version: 1.0
-References: <dbe0e0b485ba4b2786c97ea5e0a0eee2@NAEACRANXE02V.nadsusea.nads.navy.mil>
-In-Reply-To: <dbe0e0b485ba4b2786c97ea5e0a0eee2@NAEACRANXE02V.nadsusea.nads.navy.mil>
-Date: Thu, 13 Feb 2020 14:06:38 -0500
-Message-ID: <CAL7q81uzuFsY4rE5ZEN1aWYwJ8qR0cf=9toQ3fuVGKOrNGmEmQ@mail.gmail.com>
-To: "Payne, William Andrew (Andrew) CIV USN NSWC CD CRANE ID (USA)"
- <andrew.payne1@navy.mil>
-Subject: Re: [USRP-users] RFNOC: 2 input/2 output block,
- synchronizing their outputs to GNURadio host
+Date: Thu, 13 Feb 2020 17:00:49 -0500
+Message-ID: <CABD0DOtHt4p2w3x0xfKNTcFb0q8K3LsgYczx71bfDKR7mM-d+g@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Confusing Errors after Tweaking
+ recv_frame_size/num_recv_frames
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,11 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
- "matt.pegram@ni.com" <matt.pegram@ni.com>
-Content-Type: multipart/mixed; boundary="===============2184489648264259694=="
+From: Glenn Hazelwood via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Glenn Hazelwood <hazelnutvt04@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5032813987230104849=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,120 +72,127 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2184489648264259694==
-Content-Type: multipart/alternative; boundary="0000000000000649d7059e79cc43"
+--===============5032813987230104849==
+Content-Type: multipart/alternative; boundary="000000000000746b64059e7c39a8"
 
---0000000000000649d7059e79cc43
+--000000000000746b64059e7c39a8
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Andrew,
+Background
+--------------------------
+I am using a B205mini connected to a Jetson Xavier AGX (8 Nvidia Carmel CPU
+cores) with 16GB RAM and set to the max power profile (2.26GHz CPU) via USB
+3.0. The Jetson is running Ubuntu 18.04.2 LTS (GNU/Linux 4.9.140-tegra
+aarch64). I am using 'GNU C++ version 7.4.0; Boost_106501;
+UHD_3.15.0.0-124-geb448043'
 
-Are you able to run any of the in-tree RFNoC blocks on your E310 without
-this error? Does your block work if you make it 1 input / 1 output? Also,
-do you have access to an X310? If so, can you try running your block on
-there and see if it works?
+My sample rate is 24Msps. Eventually I want to try to use the GPU to
+process samples.
+I had one pthread for receiving the samples and another pthread for
+processing the samples. I used a std::queue with mutexes to send samples
+between the threads. But I was getting overflow errors. I commented out my
+sample processing and just focused on the one thread getting the samples
+(rx_stream->recv() in a while loop) without overflowing. I should also add
+that I am incrementing the rx freq by 24 MHz and changing the tuning
+frequency (usrp->set_rx_freq()) every 16 packets. (I believe that this freq
+changing is blocking the recv() from being called often enough to make sure
+that my app keeps up with samples the USRP is trying to give it)
 
-Jonathon
+Errors From recv_frame_size/num_recv_frame Settings?
+------------------------------------------------------------------
+I was hoping to buy myself some leeway with the delay involved in changing
+the RX freq? I have seen various responses on this mailing list and in the
+USRP documentation about
+setting the recv_frame_size and num_recv_frames so that the USB is able to
+use a larger buffer. get_max_num_samps() returns 2040 for me. My cpu_format
+is fc32 and my otw_format is sc12.
 
-On Thu, Feb 13, 2020 at 7:10 AM Payne, William Andrew (Andrew) CIV USN NSWC
-CD CRANE ID (USA) via USRP-users <usrp-users@lists.ettus.com> wrote:
+I tried recv_frame_size=16320, num_recv_frames=512
+and still got the 'ERROR_CODE_OVERFLOW'
 
-> Hi,
->
-> I am trying to solve what I think is a timing issue with my RFNOC design.
-> I have an E310 running UHD 3.15LTS/GNUradio 3.7/gr-ettus.
->
-> I have created a custom RFNOC block for GNUradio without much custom
-> logic, I've managed to just reuse code blocks from the uhd-fpga repo in
-> lib/rfnoc.  In particular, I am using the following blocks in this order:
-> complex to magphase (ISE IP in lib/rfnoc) -> moving_sum -> keep_one_in_n ->
-> fifo with size 5 (so I don't have to have RFNOC:FIFO blocks taking up room
-> in the FPGA).  For moving_sum I'm trying to use 511 as the sum length and
-> for keep_one_in_n I am using 512.  I have made this block a permanent 2
-> input/2 output block by setting those parameters in noc_shell
-> instantiation.  I am using the axi_wrappers (0 and 1) with SIMPLE MODE set
-> to 0, and simply utilizing the cvita_hdr_modify.v IP exactly as utilized in
-> the noc_block_keep_one_in_n.v block to set the tuser headers.
->
-> In Vivado behavioral simulation the data correctly flows through but what
-> I am unsure about is the fact that after synthesizing and loading the FPGA
-> bit file into the e310 and running my flowgraph, it just repeatedly prints
-> out timeout on channel 0.   By the way this code does work on just a single
-> input/single output application but I want to consolidate it into a single
-> GRC block to save space on the relatively small FPGA.  What do I need to do
-> to sync the 2 e310 rx2 channels so they arrive close to on-time in GRC?  Or
-> is that probably not the problem?  I assume I should be looking at how it's
-> done in noc_block_ddc/duc as they have implemented timed samples within
-> those?
->
-> Thanks,
-> Andrew
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+Then I tried recv_frame_size=16320, num_recv_frames=1024 ("Case 1")
+and immediately got this error:
+terminate called after throwing an instance of
+'boost::exception_detail::clone_impl<boost::exception_detail::error_info_injector<boost::lock_error>
+>'
+  what():  boost: mutex lock failed in pthread_mutex_lock: Invalid argument
+Aborted
 
---0000000000000649d7059e79cc43
+Then I tried num_recv_frames=1024 ("Case 2")
+and immediately got this error:
+terminate called after throwing an instance of 'uhd::io_error'
+  what():  EnvironmentError: IOError: usb rx6 transfer status:
+LIBUSB_TRANSFER_ERROR
+Aborted
+
+"The Point"
+----------------------------
+I don't understand why setting the recv_frame_size to 16320 appears to
+cause causes a 'failed mutex lock', but leaving it out causes a USB
+transfer error.
+
+Glenn Hazelwood
+-- 
+Diftor heh smusma
+-Famous Vulcan Phrase ;)
+
+--000000000000746b64059e7c39a8
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Andrew,<div><br></div><div></div><div>=
-Are you able to run any of the in-tree RFNoC blocks on your E310 without th=
-is error? Does your block work if you make it 1 input / 1 output? Also, do =
-you have access to an X310? If so, can you try running your block on there =
-and see if it works?</div><div><br></div><div>Jonathon</div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 13,=
- 2020 at 7:10 AM Payne, William Andrew (Andrew) CIV USN NSWC CD CRANE ID (U=
-SA) via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-u=
-sers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex">Hi,<br>
-<br>
-I am trying to solve what I think is a timing issue with my RFNOC design.=
-=C2=A0 I have an E310 running UHD 3.15LTS/GNUradio 3.7/gr-ettus.<br>
-<br>
-I have created a custom RFNOC block for GNUradio without much custom logic,=
- I&#39;ve managed to just reuse code blocks from the uhd-fpga repo in lib/r=
-fnoc.=C2=A0 In particular, I am using the following blocks in this order: c=
-omplex to magphase (ISE IP in lib/rfnoc) -&gt; moving_sum -&gt; keep_one_in=
-_n -&gt; fifo with size 5 (so I don&#39;t have to have RFNOC:FIFO blocks ta=
-king up room in the FPGA).=C2=A0 For moving_sum I&#39;m trying to use 511 a=
-s the sum length and for keep_one_in_n I am using 512.=C2=A0 I have made th=
-is block a permanent 2 input/2 output block by setting those parameters in =
-noc_shell instantiation.=C2=A0 I am using the axi_wrappers (0 and 1) with S=
-IMPLE MODE set to 0, and simply utilizing the cvita_hdr_modify.v IP exactly=
- as utilized in the noc_block_keep_one_in_n.v block to set the tuser header=
-s.<br>
-<br>
-In Vivado behavioral simulation the data correctly flows through but what I=
- am unsure about is the fact that after synthesizing and loading the FPGA b=
-it file into the e310 and running my flowgraph, it just repeatedly prints o=
-ut timeout on channel 0. =C2=A0 By the way this code does work on just a si=
-ngle input/single output application but I want to consolidate it into a si=
-ngle GRC block to save space on the relatively small FPGA.=C2=A0 What do I =
-need to do to sync the 2 e310 rx2 channels so they arrive close to on-time =
-in GRC?=C2=A0 Or is that probably not the problem?=C2=A0 I assume I should =
-be looking at how it&#39;s done in noc_block_ddc/duc as they have implement=
-ed timed samples within those?<br>
-<br>
-Thanks,<br>
-Andrew<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div>Background</div><div>----------------------=
+----</div>I am using a B205mini connected to a Jetson Xavier AGX (8 Nvidia =
+Carmel CPU cores) with 16GB RAM and set to the max power profile (2.26GHz C=
+PU) via USB 3.0. The Jetson is running Ubuntu 18.04.2 LTS (GNU/Linux 4.9.14=
+0-tegra aarch64). I am using &#39;GNU C++ version 7.4.0; Boost_106501; UHD_=
+3.15.0.0-124-geb448043&#39;<div><br></div><div>My sample rate is 24Msps. Ev=
+entually I want to try to use the GPU to process samples.=C2=A0<div>I had o=
+ne pthread for receiving the samples and another pthread for processing the=
+ samples. I used a=C2=A0std::queue with mutexes to send samples between the=
+ threads. But I was getting overflow errors. I commented out my sample proc=
+essing and just focused on the one thread getting the samples (rx_stream-&g=
+t;recv() in a while loop) without overflowing. I should also add that I am =
+incrementing the rx freq by 24 MHz and changing the tuning frequency (usrp-=
+&gt;set_rx_freq()) every 16 packets. (I believe that this freq changing is =
+blocking the recv() from being called often enough to make sure that my app=
+ keeps up with samples the USRP is trying to give it)<br></div><div><div><b=
+r></div><div>Errors From recv_frame_size/num_recv_frame Settings?</div><div=
+>------------------------------------------------------------------</div><d=
+iv>I was hoping to buy myself some leeway with the delay involved in changi=
+ng the RX freq? I have seen various responses on this mailing list and in t=
+he USRP documentation about<br clear=3D"all"><div>setting the recv_frame_si=
+ze and num_recv_frames so that the USB is able to use a larger buffer. get_=
+max_num_samps() returns 2040 for me. My cpu_format is fc32 and my otw_forma=
+t is sc12.=C2=A0</div><div><br></div><div>I tried recv_frame_size=3D16320, =
+num_recv_frames=3D512<br></div><div>and still got the &#39;ERROR_CODE_OVERF=
+LOW&#39;</div><div><br></div><div>Then I tried recv_frame_size=3D16320, num=
+_recv_frames=3D1024 (&quot;Case 1&quot;)</div><div>and immediately got this=
+ error:</div><div>terminate called after throwing an instance of &#39;boost=
+::exception_detail::clone_impl&lt;boost::exception_detail::error_info_injec=
+tor&lt;boost::lock_error&gt; &gt;&#39;<br>=C2=A0 what(): =C2=A0boost: mutex=
+ lock failed in pthread_mutex_lock: Invalid argument</div><div><div>Aborted=
+</div></div><div><br></div><div>Then I tried=C2=A0num_recv_frames=3D1024 (&=
+quot;Case 2&quot;)</div><div>and immediately got this error:</div><div>term=
+inate called after throwing an instance of &#39;uhd::io_error&#39;<br>=C2=
+=A0 what(): =C2=A0EnvironmentError: IOError: usb rx6 transfer status: LIBUS=
+B_TRANSFER_ERROR<br>Aborted<br></div><div><br></div><div>&quot;The Point&qu=
+ot;</div><div>----------------------------</div><div>I don&#39;t understand=
+ why setting the recv_frame_size to 16320 appears to cause causes a &#39;fa=
+iled mutex lock&#39;,=C2=A0but leaving it out causes a USB transfer error.<=
+/div><div><br></div><div>Glenn Hazelwood<br></div>-- <br><div dir=3D"ltr" c=
+lass=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span style=
+=3D"line-height:19.0469px;background-color:rgb(255,255,255)"><font color=3D=
+"#000000" face=3D"trebuchet ms, sans-serif">Diftor heh smusma<br></font></s=
+pan></div><div><span style=3D"line-height:19.0469px;background-color:rgb(25=
+5,255,255)"><font color=3D"#000000" face=3D"trebuchet ms, sans-serif">-Famo=
+us Vulcan Phrase ;)<br></font></span></div></div></div></div></div></div></=
+div></div></div></div></div></div></div>
 
---0000000000000649d7059e79cc43--
+--000000000000746b64059e7c39a8--
 
 
---===============2184489648264259694==
+--===============5032813987230104849==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,5 +203,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2184489648264259694==--
+--===============5032813987230104849==--
 
