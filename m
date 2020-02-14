@@ -2,58 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F1A015D48B
-	for <lists+usrp-users@lfdr.de>; Fri, 14 Feb 2020 10:18:38 +0100 (CET)
-Received: from [::1] (port=60360 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7333815FA36
+	for <lists+usrp-users@lfdr.de>; Sat, 15 Feb 2020 00:09:55 +0100 (CET)
+Received: from [::1] (port=42724 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j2X7N-0005r3-8e; Fri, 14 Feb 2020 04:18:37 -0500
-Received: from mail-wr1-f41.google.com ([209.85.221.41]:41557)
+	id 1j2k5l-0005zP-RN; Fri, 14 Feb 2020 18:09:49 -0500
+Received: from mail-wm1-f54.google.com ([209.85.128.54]:54354)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <simon@sdr-radio.com>) id 1j2X7K-0005jM-3y
- for usrp-users@lists.ettus.com; Fri, 14 Feb 2020 04:18:34 -0500
-Received: by mail-wr1-f41.google.com with SMTP id c9so10046561wrw.8
- for <usrp-users@lists.ettus.com>; Fri, 14 Feb 2020 01:18:13 -0800 (PST)
+ (Exim 4.92) (envelope-from <simon@sdr-radio.com>) id 1j2k5h-0005vi-Rx
+ for usrp-users@lists.ettus.com; Fri, 14 Feb 2020 18:09:45 -0500
+Received: by mail-wm1-f54.google.com with SMTP id g1so11615584wmh.4
+ for <usrp-users@lists.ettus.com>; Fri, 14 Feb 2020 15:09:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=sdr-radio-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:subject:date:message-id:mime-version:thread-index
  :content-language;
- bh=P9JpCUhFYnbZPziBskd7N0KCTKfYQljQPolb+jwx0ro=;
- b=sgqPF+WHswZojDWMqytKxxbp8+OA9h9pIr3a9KITDy53v4Bj2AA3E5i8DGluGQgbro
- 0T5CSP8zCHTq9SybddAB5Eeg+w8awUqQhcCa+6cv4I7xmhDWsrZGm+gc6KXGGc6Xac7y
- mY7Hfbs0Wgfem3hYBxUDb7a55WgX7cU43G1kXjuWfiO+bHc9ngqas17GeKYuqM+f0Sus
- PX9kNCNkLiTH/z8UyXXK8yUaA9eZyEgAnbhpOVAXYs2IrXtnxC/398uFh8pJzhQuNaxc
- 4wOOWnqg7fuFuVnEONNIJQMS6jOvqHbqQhiYiXJBLE+QQCEPbR+8PEE+OOHVnqNN9LUj
- J71g==
+ bh=kBSj1RdVmoY0F787IpIeKcmZDoMtu9qyG5p8jX1vO20=;
+ b=PWmvHY3UgnBXi267zP7TLaRvijFiAQk9RQubnxtMf+vXE0zeRXqOqzOg+t9fJIXFfg
+ XAtnN8pT8UDjK6POb8a9BRVxduJKgrF8Srop3XH3rF2ZxLaBI9z6irKZad76OHRK9eaR
+ kbnEWBC42eFED/qP4bx4Ne0gPEuRBOuPnqQ0DefaqeUB9+akw+iKtvhj/Aa0jr5lDJRG
+ /o3fSDBx5P7JxPn/YDqSUNlAW3Qllhq9mk2kOL5mSLsAnL8fPO9plkyqiNWsCmgG3eNM
+ QITj1Xyy+jMQl4WupxswtG+mkAJO6gtGhHueNhsLrVpJSxrG0sWIPvHZFztHhCArXq8K
+ bLCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:subject:date:message-id:mime-version
  :thread-index:content-language;
- bh=P9JpCUhFYnbZPziBskd7N0KCTKfYQljQPolb+jwx0ro=;
- b=fA6XpLxa9W/V7fE26Kpm4280oIw+DhgoBfF8nLJoOPipqqlInFNkcuH/M0DYGW3t8s
- 3aBaaCiWmkAgtsO0UHCDb0DegY1/U7uZhuUYGSb3pIShXWPn3l08rBDkNLWJlQ1k37gH
- 38gQ8KfMADy5M7zjjFFHfOqHrzmRiEH/t3g8Iz4PwafoISwaT7eIPqlDYBuHcsvV0wik
- ZxsCq2Eno1NXa4l4/NSNcepEYP7xNPlAR4IkzFJxFpyfOVA0jx3jJ9GL1SXPu6VdGUtZ
- 9nKxAJBZ7o6A+KYqYmgt6mxS9jn7v7mB+7oEqZHMOgcyJCTpWSxqXDviujMC9hXtE2el
- lipg==
-X-Gm-Message-State: APjAAAUJOTtXfjqvJk/Y/9RTFR5eg8Y+T5f1UoU5A/xRENVbSxrczy+R
- 3t1ES3HyKssXcH/7PIu++KinBZYOR/A=
-X-Google-Smtp-Source: APXvYqwmjAcFabvRDsi2HXnWDN/c93Pe6Hi+h3SMAHXv4S5obJQQa+IdYlhy3KkwL98qdIkcNEQSPw==
-X-Received: by 2002:adf:81c2:: with SMTP id 60mr2923380wra.8.1581671872703;
- Fri, 14 Feb 2020 01:17:52 -0800 (PST)
+ bh=kBSj1RdVmoY0F787IpIeKcmZDoMtu9qyG5p8jX1vO20=;
+ b=Nn/SYS+8niWTvnfPIM8H7pp2MV1UhUm2E0YZ3OcFtzJ9G4ygMq1DYyt1Z5aOuf6FM6
+ /eUEMcGQBe63sfmTZCB9+qm/3eRcLH5wkr+H5fzBVRf7saUdhjRlmJSbQHgQ/kNTKsKM
+ OtZLCjeMjqEoA4eOeO0NSYYgzRiS61rvUTiERX/RqESyTd4iF4Xj+yembxE2Tm+Lj070
+ EULH9FHg07thJRkcvfSpHKiOWTrjjgm9lgAKeImhjlNJhFLktmoYLlnX4ErWKTxiWyzK
+ 2TssmUitdlPWzF9vOVWlb76h8my06vv2xkLyZtnwa+geceXXHCwVp6Z1isd7OB6UeFtZ
+ PTSQ==
+X-Gm-Message-State: APjAAAViKrvb5CIK3M/OOf2aOC7aM9fiEjk3jVdfbhmIjKnNejcxPYct
+ AUtU4ALhsz3RC9YUjTnf7uDqo3KDj7o=
+X-Google-Smtp-Source: APXvYqxqdsdxX+IfMKVxcU/giD0PZJFjk88Vx+/V2N3mLqX6l+xcB01DNyh7k8pDAVtFlESM18UYbw==
+X-Received: by 2002:a05:600c:20c6:: with SMTP id
+ y6mr6943317wmm.95.1581721744481; 
+ Fri, 14 Feb 2020 15:09:04 -0800 (PST)
 Received: from Beasty (blackbeauty.sdr-radio.com. [81.174.138.141])
- by smtp.gmail.com with ESMTPSA id b10sm6343482wrw.61.2020.02.14.01.17.51
+ by smtp.gmail.com with ESMTPSA id s1sm8978342wro.66.2020.02.14.15.09.03
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 14 Feb 2020 01:17:52 -0800 (PST)
+ Fri, 14 Feb 2020 15:09:03 -0800 (PST)
 To: <usrp-users@lists.ettus.com>
-Date: Fri, 14 Feb 2020 09:17:50 -0000
-Message-ID: <00ac01d5e317$a13cffa0$e3b6fee0$@sdr-radio.com>
+Date: Fri, 14 Feb 2020 23:09:03 -0000
+Message-ID: <261901d5e38b$c0295070$407bf150$@sdr-radio.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdXjF04vouUy/pyfS2qoPIwau4VWGw==
+Thread-Index: AdXji2dpBmt8x+VORgC+LEK5wXAgDA==
 Content-Language: en-gb
-Subject: [USRP-users] UHD v4 Compiled
+Subject: [USRP-users] UHD 4.0.0 X310 Images
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,7 +68,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Simon G4ELI via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: simon@sdr-radio.com
-Content-Type: multipart/mixed; boundary="===============2305717918868446998=="
+Content-Type: multipart/mixed; boundary="===============6824490823676782368=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,14 +84,14 @@ X-Source-Dir:
 
 This is a multipart message in MIME format.
 
---===============2305717918868446998==
+--===============6824490823676782368==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_00AD_01D5E317.A13D4DC0"
+	boundary="----=_NextPart_000_261A_01D5E38B.C02AFE20"
 Content-Language: en-gb
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_00AD_01D5E317.A13D4DC0
+------=_NextPart_000_261A_01D5E38B.C02AFE20
 Content-Type: text/plain;
 	charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
@@ -99,14 +100,17 @@ Hi,
 
  
 
-After many years I've just got back into the world of Ettus. I've downloaded
-and compiled v4 for using boost 1.70 with VS2019 for 32 and 64-bit flavours
-of Windows.
+Having compiled UHD from the latest source master branch, I'm looking for
+the X310 images for a user, apparently we're looking for FPGA 38.
 
  
 
-I do understand that Windows is a minority target for UHD users, this is
-confirming that it's fine with W10.
+"Exception 0000054F (1359), RuntimeError: Expected FPGA compatibility number
+38, but got 36"
+
+ 
+
+Any ideas please?
 
  
 
@@ -117,7 +121,7 @@ https://www.sdr-radio.com
  
 
 
-------=_NextPart_000_00AD_01D5E317.A13D4DC0
+------=_NextPart_000_261A_01D5E38B.C02AFE20
 Content-Type: text/html;
 	charset="US-ASCII"
 Content-Transfer-Encoding: quoted-printable
@@ -165,23 +169,24 @@ div.WordSection1
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
 link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
 class=3DMsoNormal>Hi,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>After many =
-years I&#8217;ve just got back into the world of Ettus. I&#8217;ve =
-downloaded and compiled v4 for using boost 1.70 with VS2019 for 32 and =
-64-bit flavours of Windows.<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I do =
-understand that Windows is a minority target for UHD users, this is =
-confirming that it&#8217;s fine with W10.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Having =
+compiled UHD from the latest source master branch, I&#8217;m looking for =
+the X310 images for a user, apparently we&#8217;re looking for FPGA =
+38.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>&#8220;Exception 0000054F (1359), RuntimeError: =
+Expected FPGA compatibility number 38, but got =
+36&#8221;<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Any ideas please?<o:p></o:p></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
 style=3D'mso-fareast-language:EN-GB'>Simon Brown, =
 G4ELI<o:p></o:p></span></p><p class=3DMsoNormal><span =
 style=3D'mso-fareast-language:EN-GB'>https://www.sdr-radio.com<o:p></o:p>=
 </span></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_00AD_01D5E317.A13D4DC0--
+------=_NextPart_000_261A_01D5E38B.C02AFE20--
 
 
 
---===============2305717918868446998==
+--===============6824490823676782368==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -192,6 +197,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2305717918868446998==--
+--===============6824490823676782368==--
 
 
