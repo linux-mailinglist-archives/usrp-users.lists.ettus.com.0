@@ -2,58 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8518015D46A
-	for <lists+usrp-users@lfdr.de>; Fri, 14 Feb 2020 10:13:35 +0100 (CET)
-Received: from [::1] (port=58536 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1A015D48B
+	for <lists+usrp-users@lfdr.de>; Fri, 14 Feb 2020 10:18:38 +0100 (CET)
+Received: from [::1] (port=60360 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j2X2O-0005S2-Ay; Fri, 14 Feb 2020 04:13:28 -0500
-Received: from mail-wr1-f53.google.com ([209.85.221.53]:41898)
+	id 1j2X7N-0005r3-8e; Fri, 14 Feb 2020 04:18:37 -0500
+Received: from mail-wr1-f41.google.com ([209.85.221.41]:41557)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <simon@sdr-radio.com>) id 1j2X2K-0005N5-Um
- for usrp-users@lists.ettus.com; Fri, 14 Feb 2020 04:13:25 -0500
-Received: by mail-wr1-f53.google.com with SMTP id c9so10029310wrw.8
- for <usrp-users@lists.ettus.com>; Fri, 14 Feb 2020 01:13:04 -0800 (PST)
+ (Exim 4.92) (envelope-from <simon@sdr-radio.com>) id 1j2X7K-0005jM-3y
+ for usrp-users@lists.ettus.com; Fri, 14 Feb 2020 04:18:34 -0500
+Received: by mail-wr1-f41.google.com with SMTP id c9so10046561wrw.8
+ for <usrp-users@lists.ettus.com>; Fri, 14 Feb 2020 01:18:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=sdr-radio-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:subject:date:message-id:mime-version:thread-index
  :content-language;
- bh=LZ6q02vjC9cwIVxecT5/8qcDMQmx8ZlSveUerlaooEI=;
- b=DwQkNDCWqHnNDxbwv4yU6OXzmWN2o+Y9Its5seg/4Xh3OZRZtD6Qb8rJmHGnh44sZv
- Tk3NmBW7tu8wQjbYwC9atIY9ytG8eZ02iopVwF9nzVNbI2LzrZL/mGYu+7/CFfjTV8Rh
- 0KJtl0mxUkaFcVAD+dv2fA2lhBCdq+r/oEedEA2ZfUnGSKvxvu7Vp85sinFSgqP1lIcQ
- OgqhvYKzB/jf1PjsjdrIGCK0qRLHqI0H3qQIxCRPWZaN4H+J+D7ag2jTast7tyagqVe5
- uTTG6bQBfagRVEcVJPZ1T+7R7AKy1BrFXACFae6jSCQb7S2omkTux4VM0KRww2MQb70d
- Qqag==
+ bh=P9JpCUhFYnbZPziBskd7N0KCTKfYQljQPolb+jwx0ro=;
+ b=sgqPF+WHswZojDWMqytKxxbp8+OA9h9pIr3a9KITDy53v4Bj2AA3E5i8DGluGQgbro
+ 0T5CSP8zCHTq9SybddAB5Eeg+w8awUqQhcCa+6cv4I7xmhDWsrZGm+gc6KXGGc6Xac7y
+ mY7Hfbs0Wgfem3hYBxUDb7a55WgX7cU43G1kXjuWfiO+bHc9ngqas17GeKYuqM+f0Sus
+ PX9kNCNkLiTH/z8UyXXK8yUaA9eZyEgAnbhpOVAXYs2IrXtnxC/398uFh8pJzhQuNaxc
+ 4wOOWnqg7fuFuVnEONNIJQMS6jOvqHbqQhiYiXJBLE+QQCEPbR+8PEE+OOHVnqNN9LUj
+ J71g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:subject:date:message-id:mime-version
  :thread-index:content-language;
- bh=LZ6q02vjC9cwIVxecT5/8qcDMQmx8ZlSveUerlaooEI=;
- b=WYajkXPGzwe9WG52fQHbnk6ZGEqFmQf+TDMXFpIJjGQ7ggeLwqyv7QsFxEGUfJmswV
- mo4i/sLX8r/It7Y6LgOSOCl9kRJCjR8ut++GL2xkSUB8wl3Z0/rZjyac77QjB+Oc2ouW
- sd2i7nlRd21kDQJ9loIXWRWwWAnI9dks4pMAGttok0uuvjAR2k8+55tT9wGx0eX/kXmz
- qLXjvP1l400LZ67LUKNko9w1OUyU/LykamRqn6YEUJNv2PkFp6IlV252r9H4X8JWIr/q
- w1KGaLrOMWBXdMKVBC1gpPOxLJvZRQsDGZGXbKzQkGgrPw7j2CJeJLF12mZLJFRKMEyy
- NCwA==
-X-Gm-Message-State: APjAAAWZG4/5Eau7s4RCQLYVvkhyyzSZiErHjeYluCoDlBL6YDgswI0S
- I0xKuNU1BFzmxWxQwRzVvwnE2EQPGDE=
-X-Google-Smtp-Source: APXvYqwRgzJf6y1zCF2pVN0/L5HKqEYyXqjipmgnpzxfGG3CTw0EmRG35XpMUlY4Csa47+YsZVUolQ==
-X-Received: by 2002:adf:f484:: with SMTP id l4mr2995809wro.207.1581671563502; 
- Fri, 14 Feb 2020 01:12:43 -0800 (PST)
+ bh=P9JpCUhFYnbZPziBskd7N0KCTKfYQljQPolb+jwx0ro=;
+ b=fA6XpLxa9W/V7fE26Kpm4280oIw+DhgoBfF8nLJoOPipqqlInFNkcuH/M0DYGW3t8s
+ 3aBaaCiWmkAgtsO0UHCDb0DegY1/U7uZhuUYGSb3pIShXWPn3l08rBDkNLWJlQ1k37gH
+ 38gQ8KfMADy5M7zjjFFHfOqHrzmRiEH/t3g8Iz4PwafoISwaT7eIPqlDYBuHcsvV0wik
+ ZxsCq2Eno1NXa4l4/NSNcepEYP7xNPlAR4IkzFJxFpyfOVA0jx3jJ9GL1SXPu6VdGUtZ
+ 9nKxAJBZ7o6A+KYqYmgt6mxS9jn7v7mB+7oEqZHMOgcyJCTpWSxqXDviujMC9hXtE2el
+ lipg==
+X-Gm-Message-State: APjAAAUJOTtXfjqvJk/Y/9RTFR5eg8Y+T5f1UoU5A/xRENVbSxrczy+R
+ 3t1ES3HyKssXcH/7PIu++KinBZYOR/A=
+X-Google-Smtp-Source: APXvYqwmjAcFabvRDsi2HXnWDN/c93Pe6Hi+h3SMAHXv4S5obJQQa+IdYlhy3KkwL98qdIkcNEQSPw==
+X-Received: by 2002:adf:81c2:: with SMTP id 60mr2923380wra.8.1581671872703;
+ Fri, 14 Feb 2020 01:17:52 -0800 (PST)
 Received: from Beasty (blackbeauty.sdr-radio.com. [81.174.138.141])
- by smtp.gmail.com with ESMTPSA id x7sm6347207wrq.41.2020.02.14.01.12.42
+ by smtp.gmail.com with ESMTPSA id b10sm6343482wrw.61.2020.02.14.01.17.51
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 14 Feb 2020 01:12:42 -0800 (PST)
+ Fri, 14 Feb 2020 01:17:52 -0800 (PST)
 To: <usrp-users@lists.ettus.com>
-Date: Fri, 14 Feb 2020 09:12:40 -0000
-Message-ID: <007501d5e316$e8f05d70$bad11850$@sdr-radio.com>
+Date: Fri, 14 Feb 2020 09:17:50 -0000
+Message-ID: <00ac01d5e317$a13cffa0$e3b6fee0$@sdr-radio.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdXjFsOSrBeVpV93TgGPQSrV7Jhdnw==
+Thread-Index: AdXjF04vouUy/pyfS2qoPIwau4VWGw==
 Content-Language: en-gb
-Subject: [USRP-users] Clock Source
+Subject: [USRP-users] UHD v4 Compiled
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,7 +67,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Simon G4ELI via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: simon@sdr-radio.com
-Content-Type: multipart/mixed; boundary="===============6801285074079723333=="
+Content-Type: multipart/mixed; boundary="===============2305717918868446998=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,14 +83,14 @@ X-Source-Dir:
 
 This is a multipart message in MIME format.
 
---===============6801285074079723333==
+--===============2305717918868446998==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0076_01D5E316.E8F0AB90"
+	boundary="----=_NextPart_000_00AD_01D5E317.A13D4DC0"
 Content-Language: en-gb
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_0076_01D5E316.E8F0AB90
+------=_NextPart_000_00AD_01D5E317.A13D4DC0
 Content-Type: text/plain;
 	charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
@@ -99,9 +99,14 @@ Hi,
 
  
 
-If I set the clock source on the B200 to 'external' how can I verify that
-the B200 has indeed locked to the external reference? The lo_locked sensor
-always returns true, even when no external reference is connected.
+After many years I've just got back into the world of Ettus. I've downloaded
+and compiled v4 for using boost 1.70 with VS2019 for 32 and 64-bit flavours
+of Windows.
+
+ 
+
+I do understand that Windows is a minority target for UHD users, this is
+confirming that it's fine with W10.
 
  
 
@@ -112,7 +117,7 @@ https://www.sdr-radio.com
  
 
 
-------=_NextPart_000_0076_01D5E316.E8F0AB90
+------=_NextPart_000_00AD_01D5E317.A13D4DC0
 Content-Type: text/html;
 	charset="US-ASCII"
 Content-Transfer-Encoding: quoted-printable
@@ -160,20 +165,23 @@ div.WordSection1
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
 link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
 class=3DMsoNormal>Hi,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>If I set the =
-clock source on the B200 to &#8216;external&#8217; how can I verify that =
-the B200 has indeed locked to the external reference? The lo_locked =
-sensor always returns true, even when no external reference is =
-connected.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-GB'>Simon =
-Brown, G4ELI<o:p></o:p></span></p><p class=3DMsoNormal><span =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>After many =
+years I&#8217;ve just got back into the world of Ettus. I&#8217;ve =
+downloaded and compiled v4 for using boost 1.70 with VS2019 for 32 and =
+64-bit flavours of Windows.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I do =
+understand that Windows is a minority target for UHD users, this is =
+confirming that it&#8217;s fine with W10.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-GB'>Simon Brown, =
+G4ELI<o:p></o:p></span></p><p class=3DMsoNormal><span =
 style=3D'mso-fareast-language:EN-GB'>https://www.sdr-radio.com<o:p></o:p>=
 </span></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_0076_01D5E316.E8F0AB90--
+------=_NextPart_000_00AD_01D5E317.A13D4DC0--
 
 
 
---===============6801285074079723333==
+--===============2305717918868446998==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -184,6 +192,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6801285074079723333==--
+--===============2305717918868446998==--
 
 
