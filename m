@@ -2,36 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E61F7160621
-	for <lists+usrp-users@lfdr.de>; Sun, 16 Feb 2020 21:01:02 +0100 (CET)
-Received: from [::1] (port=52430 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9FC160F78
+	for <lists+usrp-users@lfdr.de>; Mon, 17 Feb 2020 11:03:37 +0100 (CET)
+Received: from [::1] (port=40604 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j3Q63-0004qm-5k; Sun, 16 Feb 2020 15:00:55 -0500
-Received: from mordac.selfhost.de ([82.98.82.6]:37355
- helo=outgoing.selfhost.de)
- by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
- (Exim 4.92) (envelope-from <harald.fritzsche@dd0vs.de>)
- id 1j3Q60-0004mm-9v
- for usrp-users@lists.ettus.com; Sun, 16 Feb 2020 15:00:52 -0500
-Received: (qmail 17670 invoked from network); 16 Feb 2020 20:00:10 -0000
-Received: from unknown (HELO raspberrypi)
- (postmaster@tgzpzdss.mail.selfhost.de@92.117.244.17)
- by mailout.selfhost.de with ESMTPA; 16 Feb 2020 20:00:10 -0000
-Received: from [92.117.244.17] (helo=dd0vs.de)
- by raspberrypi with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.89) (envelope-from <harald.fritzsche@dd0vs.de>)
- id 1j3Q5J-0001vf-Az
- for usrp-users@lists.ettus.com; Sun, 16 Feb 2020 21:00:09 +0100
-Date: Sun, 16 Feb 2020 21:00:06 +0100
-To: usrp-users@lists.ettus.com
-Message-ID: <20200216210006.14ff17aa@dd0vs.de>
-In-Reply-To: <20200216170920.7f8d8e5f@dd0vs.de>
-References: <20200216170920.7f8d8e5f@dd0vs.de>
-Organization: DD0VS
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; arm-unknown-linux-gnueabihf)
+	id 1j3dFU-00013X-Hu; Mon, 17 Feb 2020 05:03:32 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:35593)
+ by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (Exim 4.92) (envelope-from <varban.metodiev@gmail.com>)
+ id 1j3dFQ-0000yu-TD
+ for usrp-users@lists.ettus.com; Mon, 17 Feb 2020 05:03:28 -0500
+Received: by mail-oi1-f170.google.com with SMTP id b18so16169761oie.2
+ for <usrp-users@lists.ettus.com>; Mon, 17 Feb 2020 02:03:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=93sgq9u4pKjZ8HHR07PW4TdvpbmHobBun12nvAhPUwE=;
+ b=fezWfoa21uLMrCHQlwd9wpbbAWoB3JGu9bE95lVTbFFZ0WU3HbZVYTmTZv+pp8lN30
+ e13n1v+JQbLxRaXCzsebHsFTL6fFBClQHxr/nv6AuTNg+a2FLc+sKOXCCJXglEoQAE/G
+ THZ5sNYE4AplcIeShiO/cjBeZGpVK+hOLmkMsPJIFzkWgx6UwMG/XKJD4rwgV0kzHy+c
+ GsdFn4P8ZCYZifqFmybXuVhckZUEz1jF3alhTKndLBEouFdeyvMIyd3VxNhwVSIFVsfy
+ wkPQt8eerwZMLzwK1GMp7ie+2ZG0QQZHVsTtTR7EDR/rLEuQnEQfZaKQTutFZ4V9eHne
+ CmeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=93sgq9u4pKjZ8HHR07PW4TdvpbmHobBun12nvAhPUwE=;
+ b=KASJfXLGP1FXfgnN7YbF8u3lMNih7XjCjL0uxwYeH7GF0N5kbFHIl2U0aO7OaiTMJq
+ 6fx1GCx1zhPLjNWe8bDTDyxCExhsDd4ElZLyoh122ZPt6rquLUB+xa2Gl09Tq035dOoI
+ yDNRPeiBkcAbV+pci/XqzhA7G7CJXXJuFTfd+orjcRGIEEhKhGi+XWvfsvaIDgSTQJhs
+ BN2DamlDOcFF6iSWWlEfxmmvWgwf/AqlVo91/WtqBmyNcQ6koa6Q7jgRfsembBf1mXLQ
+ FCuCtJGZd0hEi+HJvryjEfC9jfTaivh5KCdA8guPSJC8VQnDnB4vJdQnqACkZOAlDBLU
+ nxwg==
+X-Gm-Message-State: APjAAAUAp0OzedWHSlqDSeqq6c0FMguUyDW1yAVKUSL1nzu1UGlNJtfO
+ ECNU5wNQuDwsm2nNEOWrA5AFU3iYaRbKUhh1wocQ0KFjJFc=
+X-Google-Smtp-Source: APXvYqweHN5hP54/zrIgVqxMougrK7pqrS8qwPPHJBPt7OkpCaC7XrVH+jfrq43jc3+qdQOIwxHwYHhUxnpEzsmQCSU=
+X-Received: by 2002:a54:4e96:: with SMTP id c22mr9921545oiy.110.1581933767803; 
+ Mon, 17 Feb 2020 02:02:47 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [USRP-users] B200mini GPIO - does not work as expected
+Date: Mon, 17 Feb 2020 12:01:36 +0200
+Message-ID: <CAKA0MUgBBu3m5cbL4J_Amy-97TNE=GBGThLPK35OARkV5mZxEg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Polling the "sample_rx" via a user defined register
+ (B205mini)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,10 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Harald Fritzsche \(DD0VS\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Harald Fritzsche \(DD0VS\)" <harald.fritzsche@dd0vs.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Varban Metodiev via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Varban Metodiev <varban.metodiev@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1087135098407716490=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -60,65 +72,81 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hello All,
+--===============1087135098407716490==
+Content-Type: multipart/alternative; boundary="00000000000049c747059ec2a8df"
 
-got it running.
-Here is the code :-)
-        // GPIO PIN 1 is used for TX/RX Control manual (no ATR)
-        // GPIO PIN 2-4 are used for Band Setting manual (no ATR)
-        // -> 0x0F is the mask , 0x0 -> manual (0x1 = ATR)
-        usrp->set_gpio_attr("FP0", "CTRL", 0x00, 0x0F);  
-        // setting Data DiRection 0x1 = output
-        usrp->set_gpio_attr("FP0", "DDR", 0x0f, 0x0F);
-        // reset GPIO pin 0,1,2,3
-        usrp->set_gpio_attr("FP0", "OUT", 0x00, 0x0F);
+--00000000000049c747059ec2a8df
+Content-Type: text/plain; charset="UTF-8"
 
-Main issue is in the line with "DDR" :-) (0x0f was 0x01) in combination
-with a typo later in the code which covered the issue.
+Dear all,
 
-Regards vy73
-Harald
-DD0VS
+After exposing the *sample_rx* from radio_legacy.v
+<https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/radio_200/radio_legacy.v>
+to
+a user defined register and sampling it at rising edge of the *strobe_rx*,
+I am now getting random 32-bit values when polling it from the UHD (instead
+of a constant that indicates a "zero" reception). I am doing this with
+disconnected antenna using a modified rx_samples C++ example application.
 
-Am Sun, 16 Feb 2020 17:09:20 +0100
-schrieb "Harald Fritzsche \(DD0VS\) via USRP-users"
-<usrp-users@lists.ettus.com>:
+I have the following questions:
+1) How should I interpret the 32-variable?
+2) Is the strobe_rx the correct signal that indicates new sample arrival?
+2) Do I need new_rx_control?
 
-> Hello All,
-> 
-> i am am using SoDaRadio on a Raspberry Pi4 with B200mini. Operation is
-> confirmed, but w/o GPIO because original software is not enabling the
-> use of GPIOs for B200mini.
-> Now i want to make use of the GPIOs to trigger switching a TX/RX
-> relay.
-> 
-> I am sending this:
-> 
-> // GPIO PIN 1 is used for TX/RX Control manual (no ATR)
-> // GPIO PIN 2-4 are used for Band Setting manual (no ATR)
-> // -> 0x0F is the mask , 0x0 -> manual (0x1 = ATR)
-> usrp->set_gpio_attr("FP0", "CTRL", 0x000, 0x00F);  
-> // setting Data DiRection 0x1 = output
-> usrp->set_gpio_attr("FP0", "DDR", 0x1, 0x00F);
-> // reset GPIO pin 0,1,2,3
-> usrp->set_gpio_attr("FP0", "OUT", 0x000, 0x00F);
-> 
-> I would expect that GPIO pins 0,1,2,3 are set to 0V, but alle PIN are
-> high as after poweroff.
-> 
-> Need your help.
-> 
-> Regards vy73
-> Harald 
-> DD0VS
-> 
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+Have I done this correctly in general, or there is something completely
+wrong in my approach?
 
+Thanks,
+Varban
+
+--00000000000049c747059ec2a8df
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Dear all,<div><br></div><div>After exposing the <b><i>samp=
+le_rx</i></b> from=C2=A0<a href=3D"https://github.com/EttusResearch/uhd/blo=
+b/master/fpga/usrp3/lib/radio_200/radio_legacy.v">radio_legacy.v</a>=C2=A0t=
+o a user defined register and sampling it at rising edge of the <span style=
+=3D"color:rgb(36,41,46);font-family:SFMono-Regular,Consolas,&quot;Liberatio=
+n Mono&quot;,Menlo,monospace;font-size:12px;white-space:pre"><i style=3D"fo=
+nt-weight:bold">strobe_rx</i>, I am now getting random 32-bit values when p=
+olling it from the UHD (instead of a constant that indicates a &quot;zero&q=
+uot; reception). I am doing this with disconnected antenna using a modified=
+ rx_samples C++ example application. </span></div><div><font color=3D"#2429=
+2e" face=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace"><s=
+pan style=3D"font-size:12px;white-space:pre"><br></span></font></div><div><=
+font color=3D"#24292e" face=3D"SFMono-Regular, Consolas, Liberation Mono, M=
+enlo, monospace"><span style=3D"font-size:12px;white-space:pre">I have the =
+following questions:</span></font></div><div><font color=3D"#24292e" face=
+=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace"><span styl=
+e=3D"font-size:12px;white-space:pre">1) How should I interpret the 32-varia=
+ble?</span></font></div><div><font color=3D"#24292e" face=3D"SFMono-Regular=
+, Consolas, Liberation Mono, Menlo, monospace"><span style=3D"font-size:12p=
+x;white-space:pre">2) Is the strobe_rx the correct signal that indicates ne=
+w sample arrival?</span></font></div><div><div><font color=3D"#24292e" face=
+=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace"><span styl=
+e=3D"font-size:12px;white-space:pre">2) Do I need </span></font><span style=
+=3D"color:rgb(34,134,58);font-family:SFMono-Regular,Consolas,&quot;Liberati=
+on Mono&quot;,Menlo,monospace;font-size:12px;white-space:pre">new_rx_contro=
+l</span><span style=3D"font-size:12px;white-space:pre;color:rgb(36,41,46);f=
+ont-family:SFMono-Regular,Consolas,&quot;Liberation Mono&quot;,Menlo,monosp=
+ace">?</span></div><div></div></div><div><br></div><div>Have I done=C2=A0th=
+is correctly in general, or there is something completely wrong in my appro=
+ach?=C2=A0</div><div><br></div><div>Thanks,</div><div>Varban</div></div>
+
+--00000000000049c747059ec2a8df--
+
+
+--===============1087135098407716490==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1087135098407716490==--
+
