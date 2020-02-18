@@ -2,53 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E78162A07
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Feb 2020 17:05:18 +0100 (CET)
-Received: from [::1] (port=55094 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29004162A3C
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Feb 2020 17:18:47 +0100 (CET)
+Received: from [::1] (port=35958 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j45N7-0000My-A0; Tue, 18 Feb 2020 11:05:17 -0500
-Received: from mail-lf1-f54.google.com ([209.85.167.54]:36145)
+	id 1j45a9-0002UE-Mv; Tue, 18 Feb 2020 11:18:45 -0500
+Received: from mail-lj1-f178.google.com ([209.85.208.178]:44400)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
  (Exim 4.92) (envelope-from <sam.reiter@ettus.com>)
- id 1j45N3-00007f-9L
- for usrp-users@lists.ettus.com; Tue, 18 Feb 2020 11:05:13 -0500
-Received: by mail-lf1-f54.google.com with SMTP id f24so14914660lfh.3
- for <usrp-users@lists.ettus.com>; Tue, 18 Feb 2020 08:04:53 -0800 (PST)
+ id 1j45a5-00022I-LC
+ for usrp-users@lists.ettus.com; Tue, 18 Feb 2020 11:18:41 -0500
+Received: by mail-lj1-f178.google.com with SMTP id q8so23579024ljj.11
+ for <usrp-users@lists.ettus.com>; Tue, 18 Feb 2020 08:18:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Xac3o7yRH/d5opq1/wpyfied8MoxVebQ40/n5cdL0BU=;
- b=ae98s8VSU4fiKoIDrlN0GZcFvzRarkJORVl/9ILN9zNK8EWej5XP1oua3EjcnqJn+B
- 0kdadeTaq5yrciYogyzGTSTwCS3yW2tRtQu664TY9+IwdT9yLpFDMyXwJvxzomACayQ4
- Mq9cCGMGHoBgh72iCdGmllxNudwv8ETKLmP3XTqH3Ry8AiZXhVt9X5zUvKOOuWScxtz1
- swKj/46CA2waQFXO+xpBZSRHltD7Bn27HSfoH9EuQ0e88BR6vu1qhhN3USJR1rMfG0hp
- aby+C+f5MLbr9PMO/rJsFRt3rgQLJIlEK4T98051nVS20DsOIbWI1sg1hUxutu70tb6k
- y0kQ==
+ :cc; bh=QtfguHRGBQgtEnUzf76NuypUjTTFRkMtrsd+6gAeOjQ=;
+ b=dm/8LrTinrwcWCboCYB56VHyHOhmPZdYI9vCvN4RF3N9ziKRXS6HXrayhSP5GKZ6YO
+ tZpu0hvy9Nh6sRrCAWTUBee3+jEUTwLjrIlUZZp/9+jLUGfji6yqDupjMbSGbaDnbEq1
+ ojjP2NU2+7XG0pdo77tnb3DuxSa+Bq9NsqrlXv/cz/AZfpqCtJ6agf4ivlLi056UpcIS
+ nKpHrI9F5PwJOdA/1QxkN+Ck82I7prfVV+AbaYTJjY04CfmYcOZv+YncDEPZ+CkaGEii
+ 0Plz8OWNwQ09rBhMjrjl77MAGZ/CRlboMHaWhHgZ1togKBE6hOTU2YyfWdtmtXfADiUO
+ 5pRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Xac3o7yRH/d5opq1/wpyfied8MoxVebQ40/n5cdL0BU=;
- b=AoQp/Pf1TApIUhVN7Tgk5jsVB8d1UPrVfFYmGQigNsA9qAwAV/pRqMk6+vxxc0Punn
- Slrt1wCXdu9NU90WMeCbPcRyIISfioPTXsQuDtB7H0G9b4TzRhDnP5+/4KhP1LL58K0B
- r5/X/ncLVM3mWiXZ1koyl+x3YcEW5t4eTqqjuB0zitHiTCdVr7e/yGigXk/PZuMuppZB
- U/m3SYnTFE3O3kdri+tSCpN/pGFccIQO41EEZ4BAwsCRlnN4W24BlHkumFwTzQ7hzrhO
- mmlhFk0l3fx0XnRhIaiCH4PyrHJK2y6nkI6tGSdclmYLFHLRkKN8/IBWSzSgHswAGJ1X
- 1Saw==
-X-Gm-Message-State: APjAAAWFmA5fFmvCmscydpPljE00Gg5koGK78lFYS9QnttknVCrhJzzn
- ki9qzbTiG3spjF6CsqDyrSOb5or2F4NklAmwgII8VCxG
-X-Google-Smtp-Source: APXvYqw/mOmiV50/IIEkttKBxSFMj2VVaLbKr6qr4SC98mRuwmpXSvJjLIpjJMol//zQ2K2/z6DbEx8b18j3f/wLpOs=
-X-Received: by 2002:a05:6512:407:: with SMTP id
- u7mr10577608lfk.146.1582041872093; 
- Tue, 18 Feb 2020 08:04:32 -0800 (PST)
+ bh=QtfguHRGBQgtEnUzf76NuypUjTTFRkMtrsd+6gAeOjQ=;
+ b=A/lJWNtfXE4BkgUZi+i1qvXqA5MEVOCLLOp+EwN0+8iKII/a9icwDQVtfdUag2rjL5
+ 4XyUfWlaoFOU2qPlZm/Tp+XL+LIhwHlqzYl7xXQqW5H79e1iQYtkBMGuIfwkNW4Fpmh3
+ mJ+Ak9r6iFphZejZH8ALFXTnQNx5jOIziX34Ryitw1L19g/HcoJIFNT9/HqnwJhxOoYU
+ faO6XF1XWSF1K8yi/yMmIEDOowtV/I88KKez4O0/IS0vJrxOG5fy8hjshmt3DncC6fF4
+ leF+EPVz2QMW1PuI4WyiicygWHmN8OlfIjZkMdTOJ6FCe2pw4PMKxNW49SX1xztyv0yF
+ 82GQ==
+X-Gm-Message-State: APjAAAXIj2+lessWW6atQYY48/n0BFmhXrGpeVxK0G2O0W21pmGITYZr
+ d9t6EsmLTzSn44PYsM8H34cCQWuathH58y3BJyHMCARl
+X-Google-Smtp-Source: APXvYqy2f+fwjoEuxEbvDYtPNnP0Vhe6WKFUltWzbs1UwVAr4DEiexCNvfFydnWLMzCYaio+N7fcEc+YvuYg7Lhkkuw=
+X-Received: by 2002:a2e:9841:: with SMTP id e1mr12988141ljj.23.1582042680163; 
+ Tue, 18 Feb 2020 08:18:00 -0800 (PST)
 MIME-Version: 1.0
-References: <00ac01d5e317$a13cffa0$e3b6fee0$@sdr-radio.com>
-In-Reply-To: <00ac01d5e317$a13cffa0$e3b6fee0$@sdr-radio.com>
-Date: Tue, 18 Feb 2020 10:04:20 -0600
-Message-ID: <CANf970a56gSVUFpCRwwdMdMa1PCRAYAGVHnuUxfdNDKx920WcA@mail.gmail.com>
-To: simon@sdr-radio.com
-Subject: Re: [USRP-users] UHD v4 Compiled
+References: <920c3ec0-af6b-8585-a2bc-84e35450e085@upc.edu>
+ <CAB__hTS2to9GJraPTx=krJzWu7hnv0dyX7rmuJjq7cut+_wAyw@mail.gmail.com>
+In-Reply-To: <CAB__hTS2to9GJraPTx=krJzWu7hnv0dyX7rmuJjq7cut+_wAyw@mail.gmail.com>
+Date: Tue, 18 Feb 2020 10:17:49 -0600
+Message-ID: <CANf970YCf2scR63XMV-m6-nhcN4o_q-qiRGqSB6VjTNJ4mTDpg@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Subject: Re: [USRP-users] Using DDC/DUC frequency in RFNoC
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,8 +62,9 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8408177328143322586=="
+Cc: Adria <adria.amezaga@upc.edu>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0302800943117483366=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,97 +78,153 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8408177328143322586==
-Content-Type: multipart/alternative; boundary="000000000000ce6369059edbd306"
+--===============0302800943117483366==
+Content-Type: multipart/alternative; boundary="000000000000f88dbc059edc037b"
 
---000000000000ce6369059edbd306
+--000000000000f88dbc059edc037b
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Simon,
-
-The current UHD 4 on master is not a released version, so be patient if you
-run into any snags. That being said, you should be good to compile and run
-on Windows. I put together a guide a little while ago for building on
-Windows. It will almost certainly need some massaging for 4.0, but feel
-free to message me directly at support@ettus.com if you need build
-assistance. I'll try to roll that into a later version of the build
-instructions:
-
-https://kb.ettus.com/Building_and_Installing_the_USRP_Open_Source_Toolchain=
-_(UHD_and_GNU_Radio)_on_Windows
-
-All that being said, if you want to run on a released version, I'd
-recommend building the 3.15.LTS branch.
+I'll also add in that you need to set the frequency tuning policies to
+POLICY_MANUAL before you can change rf_freq or dsp_freq independently.
 
 Sam Reiter
 
-On Fri, Feb 14, 2020 at 3:18 AM Simon G4ELI via USRP-users <
+On Mon, Feb 17, 2020 at 12:13 PM Rob Kossler via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Hi,
+> Hi Adri=C3=A0,
+> If you are trying to use 'timed' commands, perhaps the problem is the
+> signal generator block.  If I remember correctly, this block does not
+> support timed commands.  This means that the resulting data stream will n=
+ot
+> include a time stamp and thus if you try to tune the DDC or DUC using a
+> timed command, it will delay the command until the appropriate time stamp
+> is seen (which will never occur in your case).  If you are not using time=
+d
+> commands, then just ignore this....
+> Rob
 >
+> On Thu, Feb 13, 2020 at 6:40 PM Adria via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
->
-> After many years I=E2=80=99ve just got back into the world of Ettus. I=E2=
-=80=99ve
-> downloaded and compiled v4 for using boost 1.70 with VS2019 for 32 and
-> 64-bit flavours of Windows.
->
->
->
-> I do understand that Windows is a minority target for UHD users, this is
-> confirming that it=E2=80=99s fine with W10.
->
->
->
-> Simon Brown, G4ELI
->
-> https://www.sdr-radio.com
->
->
+>> Dear all,
+>>
+>> I'm trying to tune the output and input frequency of an X310 + UBX-160.
+>> I instantiate the radio block and the DDC and DUC blocks and connect the=
+m.
+>>
+>> The TX chain is like this: [Signal generator] -> [DUC] -> [Radio block].
+>>
+>> My intention is to use the DUC only for frequency tuning, since I set
+>> the UBX synthesizers to Integer-N mode.
+>>
+>> The fact is that configure the DUC frequency by setting the "freq"
+>> parameter using the set_param call has no effect.
+>>
+>> Trying to set the DUC frequency using tune_request through the dsp_freq
+>> parameter has no effect either.
+>>
+>> My other question is about the Integer-N tuning. Is there a way to set
+>> the integer mode without using the tune_request object? I expected to be
+>> able to do that using radio_ctrl.
+>>
+>> I am sure I'm missing something but I don't know where else to look, so
+>> any help would be appreciated.
+>>
+>> I'm using UHD 3.14.
+>>
+>> Thanks!
+>>
+>>
+>> Adri=C3=A0 Am=C3=A9zaga
+>>
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000ce6369059edbd306
+--000000000000f88dbc059edc037b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Simon,</div><div><br></div><div>The current UHD 4 on =
-master is not a released version, so be patient if you run into any snags. =
-That being said, you should be good to compile and run on Windows. I put to=
-gether a guide a little while ago for building on Windows. It will almost c=
-ertainly need some massaging for 4.0, but feel free to message me directly =
-at <a href=3D"mailto:support@ettus.com">support@ettus.com</a> if you need b=
-uild assistance. I&#39;ll try to roll that into a later version of the buil=
-d instructions:</div><div><br></div><div><a href=3D"https://kb.ettus.com/Bu=
-ilding_and_Installing_the_USRP_Open_Source_Toolchain_(UHD_and_GNU_Radio)_on=
-_Windows">https://kb.ettus.com/Building_and_Installing_the_USRP_Open_Source=
-_Toolchain_(UHD_and_GNU_Radio)_on_Windows<br><br></a></div><div>All that be=
-ing said, if you want to run on a released version, I&#39;d recommend build=
-ing the 3.15.LTS branch.<br></div><div><br></div><div><div><div dir=3D"ltr"=
- class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"l=
-tr"><div><div dir=3D"ltr">Sam Reiter=C2=A0</div></div></div></div></div></d=
-iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Fri, Feb 14, 2020 at 3:18 AM Simon G4ELI via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div lang=
-=3D"EN-GB"><div class=3D"gmail-m_8628671299005924394WordSection1"><p class=
-=3D"MsoNormal">Hi,<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u>=
-</u></p><p class=3D"MsoNormal">After many years I=E2=80=99ve just got back =
-into the world of Ettus. I=E2=80=99ve downloaded and compiled v4 for using =
-boost 1.70 with VS2019 for 32 and 64-bit flavours of Windows.<u></u><u></u>=
-</p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">I=
- do understand that Windows is a minority target for UHD users, this is con=
-firming that it=E2=80=99s fine with W10.<u></u><u></u></p><p class=3D"MsoNo=
-rmal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal"><span>Simon Brown, G4E=
-LI<u></u><u></u></span></p><p class=3D"MsoNormal"><span><a href=3D"https://=
-www.sdr-radio.com" target=3D"_blank">https://www.sdr-radio.com</a><u></u><u=
-></u></span></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div></div>=
+<div dir=3D"ltr"><div>I&#39;ll also add in that you need to set the frequen=
+cy tuning policies to POLICY_MANUAL before you can change rf_freq or dsp_fr=
+eq independently.</div><div><br></div><div><div><div dir=3D"ltr" class=3D"g=
+mail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><d=
+iv dir=3D"ltr">Sam Reiter</div></div></div></div></div></div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 17=
+, 2020 at 12:13 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-us=
+ers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D=
+"ltr">Hi Adri=C3=A0,<div>If you are trying to use &#39;timed&#39; commands,=
+ perhaps the problem is the signal generator block.=C2=A0 If I remember cor=
+rectly, this block does not support timed commands.=C2=A0 This means that t=
+he resulting data stream will not include a time stamp=C2=A0and thus if you=
+ try to tune the DDC or DUC using a timed command, it will delay the comman=
+d until the appropriate time stamp is seen (which will never occur in your =
+case).=C2=A0 If you are not using timed commands, then just ignore this....=
+</div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Thu, Feb 13, 2020 at 6:40 PM Adria via USRP-users &l=
+t;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-user=
+s@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">Dear all,<br>
+<br>
+I&#39;m trying to tune the output and input frequency of an X310 + UBX-160.=
+ <br>
+I instantiate the radio block and the DDC and DUC blocks and connect them.<=
+br>
+<br>
+The TX chain is like this: [Signal generator] -&gt; [DUC] -&gt; [Radio bloc=
+k].<br>
+<br>
+My intention is to use the DUC only for frequency tuning, since I set <br>
+the UBX synthesizers to Integer-N mode.<br>
+<br>
+The fact is that configure the DUC frequency by setting the &quot;freq&quot=
+; <br>
+parameter using the set_param call has no effect.<br>
+<br>
+Trying to set the DUC frequency using tune_request through the dsp_freq <br=
+>
+parameter has no effect either.<br>
+<br>
+My other question is about the Integer-N tuning. Is there a way to set <br>
+the integer mode without using the tune_request object? I expected to be <b=
+r>
+able to do that using radio_ctrl.<br>
+<br>
+I am sure I&#39;m missing something but I don&#39;t know where else to look=
+, so <br>
+any help would be appreciated.<br>
+<br>
+I&#39;m using UHD 3.14.<br>
+<br>
+Thanks!<br>
+<br>
+<br>
+Adri=C3=A0 Am=C3=A9zaga<br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -177,10 +234,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000ce6369059edbd306--
+--000000000000f88dbc059edc037b--
 
 
---===============8408177328143322586==
+--===============0302800943117483366==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -191,5 +248,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8408177328143322586==--
+--===============0302800943117483366==--
 
