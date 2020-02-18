@@ -2,50 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28FBB16197F
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Feb 2020 19:13:38 +0100 (CET)
-Received: from [::1] (port=57186 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BCEA1625BC
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Feb 2020 12:47:16 +0100 (CET)
+Received: from [::1] (port=38166 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j3ktf-0000Da-P9; Mon, 17 Feb 2020 13:13:31 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:40922)
+	id 1j41LH-0003iZ-OR; Tue, 18 Feb 2020 06:47:07 -0500
+Received: from mail-il1-f170.google.com ([209.85.166.170]:38400)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1j3ktc-0008VG-LI
- for usrp-users@lists.ettus.com; Mon, 17 Feb 2020 13:13:28 -0500
-Received: by mail-ot1-f45.google.com with SMTP id i6so16958615otr.7
- for <usrp-users@lists.ettus.com>; Mon, 17 Feb 2020 10:13:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=OGBQ9rLjHReWXsBWY35dSGloCWPekXxVHTGMTiOf2Qo=;
- b=PvjWlJaJ/FEt9SQm6GiAl65YI3zsRunxaAGX6UBQZfImLDb5alOpkBYLaAzFlOlfJe
- OVGPtyTWC8bxL7NTPyVesNmpzGEmgLnvI/78v9HMpwz6e41wMChF2zszfpWrGFjlvBjJ
- d+3mo8roHcHY084Yth+kUtZcK7oUWummbYzzEC1S/ctYsYwY4Y6TxX2a0hNec4GP5aQH
- k9fqta/egAMi9H32jphjA0bdTbCdUhoctIL5eoVP29L2zSe1GMWFaXExDPEQTyQ78Mk/
- ydmwWt1WwuMHLXf3IwPctKoBSaJU561QtQv9C06BMnvGbAxxQ1fyzR+MXpCQsozBOKWC
- byuA==
+ (Exim 4.92) (envelope-from <adray0001@gmail.com>) id 1j41LC-0003d9-W5
+ for usrp-users@lists.ettus.com; Tue, 18 Feb 2020 06:47:03 -0500
+Received: by mail-il1-f170.google.com with SMTP id f5so17055831ilq.5
+ for <usrp-users@lists.ettus.com>; Tue, 18 Feb 2020 03:46:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=IuDgHVzG6uE+fqiCggaDPCU8zQD+NFgEsdkbsi77ABs=;
+ b=Nx+aVRH415QW7NrzslLoz3Mr1mGPkG/z8Ejo+muPRYKMZpzsnaXs1EwXN4OHKcKfAG
+ cgwwQ0BRrIQcdSPV/KWIlgH6bsEV22Rz192vaKstuF2eUij4gB0dMEgxULXEyj5w4WB8
+ Qcrlhr7JwUmDYudmtdfm0NzlC2VMwyZnfPyxzJcvOradmjOcC9OXg/RcIveHrZ3Onor0
+ X6a87zKLqOPZEhOZjF/P0lPDAk4Yd8hB0fvB77Of5KL0XnXtyIV2t6+9lqyk0NPGmic3
+ u4VTJQQJ0RVoVnUK7W4oG5QCX72EXWL7WT0P6xa8/SMwnbsf/3iK/s4u1IALntPn2Mb9
+ /LOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=OGBQ9rLjHReWXsBWY35dSGloCWPekXxVHTGMTiOf2Qo=;
- b=GwTDu0mq6iDERdSaUv6m2/KKyjX66pLvNiCS04DoMbB3rNN6M360eY0iz+NoBul2xW
- 3bm9zNN1IYXY6h/Mbc2TtWnASbJ94HO6RmPv+heWIN74wjs6J31fYzg+a+lgKBGHF5Rw
- QXOZ0T4EuW7J77AD+uewPUdvCleGj2I8Wjo02ygRjea6Upz2C8zg7JUb6InS91shHt3c
- leoA0xBjiVZYQTAM5rPnLkiGwUFGnf9PhDJSZaY9zXxiprtD8i8A4aq1udMvzyTuXNot
- E4WXCQ7qbKPK0s+vlpPOci4VgFhg7qiCZ9pFXD/aNf2AMQi44QFuo3GY7S7pXFlFS/wG
- okuA==
-X-Gm-Message-State: APjAAAWP1hS3cr1bXfFWhSwKQDNYsY7mIOISn40M8Lf7TKEBCLOvPXMf
- lYDzG7svhDkRj0GDz3xpX20rNrV+kCN/XeJuTQCPXw==
-X-Google-Smtp-Source: APXvYqzhJDNoAXgkaWyiBJPtiMI+a4VnRpzS9q0u4nMiti+jIZkreZa0m67Dp3eQyjNTyVaoXjXpk1OTx9a9/5EGikQ=
-X-Received: by 2002:a9d:2c2a:: with SMTP id f39mr12706890otb.301.1581963167724; 
- Mon, 17 Feb 2020 10:12:47 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=IuDgHVzG6uE+fqiCggaDPCU8zQD+NFgEsdkbsi77ABs=;
+ b=omtQ+lbuYie9kgMMH21YAD0j7W9S4lwo4YXXKj4Kmj9r+XtStNXqJYkbV/iZAaO9+C
+ jBkGH65540hDFSNR73HugA3qsPXbhWj71tQGQxvNyFn60LRazdzxNdCA81YO3UF2b+/R
+ UL74cYabeYAnV4tFj9h3miUiom1/hUPoIYwJ/eEFL0oASPxEbyS/aR5Vd/qnBziP9jqT
+ oTYtBBrfJnkr12GY5amVH6Da6qaC6KiIoJLeFhlAHybIJXSuMZFEK6XKDq6uh8tbk5oh
+ hwovgJ3124K7fsUIbKCt0cvYFKYlCaNuwAYQkLKinLabCRMZM9G9OgM7mFR1WnnH+Kzx
+ 4eFw==
+X-Gm-Message-State: APjAAAW7Ma+6E4sbUQ/F5Q8+zgYNwj6G0xz7dd00L5S/BkrYfymqiOiB
+ si62hnzcjcf4fRxsC2kI0Ntfm+0dv+PxDyuGTshKlQu2
+X-Google-Smtp-Source: APXvYqxihwF1troE7SKlmssNLrDJr0vRbaZwCZQqTnGnlY6QM5DhaF52NnQIDFvpyL1WYkuvbAD/TMsm1UDbtO6IttI=
+X-Received: by 2002:a92:b712:: with SMTP id k18mr19630529ili.259.1582026382149; 
+ Tue, 18 Feb 2020 03:46:22 -0800 (PST)
 MIME-Version: 1.0
-References: <920c3ec0-af6b-8585-a2bc-84e35450e085@upc.edu>
-In-Reply-To: <920c3ec0-af6b-8585-a2bc-84e35450e085@upc.edu>
-Date: Mon, 17 Feb 2020 13:12:37 -0500
-Message-ID: <CAB__hTS2to9GJraPTx=krJzWu7hnv0dyX7rmuJjq7cut+_wAyw@mail.gmail.com>
-To: Adria <adria.amezaga@upc.edu>
-Subject: Re: [USRP-users] Using DDC/DUC frequency in RFNoC
+Date: Tue, 18 Feb 2020 13:44:40 +0200
+Message-ID: <CAPRRyxv+0=ua07b9kHXYU2K6QA8wuuKHKgzjgbWcfXq4xxVtUQ@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Buffer clearing after error 'D' USRP N210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0504861185262862931=="
+From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6270693236282081731=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,133 +70,36 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0504861185262862931==
-Content-Type: multipart/alternative; boundary="000000000000a969d7059ec980a7"
+--===============6270693236282081731==
+Content-Type: multipart/alternative; boundary="000000000000888e54059ed83873"
 
---000000000000a969d7059ec980a7
+--000000000000888e54059ed83873
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Adri=C3=A0,
-If you are trying to use 'timed' commands, perhaps the problem is the
-signal generator block.  If I remember correctly, this block does not
-support timed commands.  This means that the resulting data stream will not
-include a time stamp and thus if you try to tune the DDC or DUC using a
-timed command, it will delay the command until the appropriate time stamp
-is seen (which will never occur in your case).  If you are not using timed
-commands, then just ignore this....
-Rob
+Hello. I use the N210 board for scanning with frequency tuning. And
+with the 'D' error, I have problems with correctly detecting the
+signal frequency. In this regard, the question. How do I flush the
+buffer in N210?
 
-On Thu, Feb 13, 2020 at 6:40 PM Adria via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Dear all,
->
-> I'm trying to tune the output and input frequency of an X310 + UBX-160.
-> I instantiate the radio block and the DDC and DUC blocks and connect them=
-.
->
-> The TX chain is like this: [Signal generator] -> [DUC] -> [Radio block].
->
-> My intention is to use the DUC only for frequency tuning, since I set
-> the UBX synthesizers to Integer-N mode.
->
-> The fact is that configure the DUC frequency by setting the "freq"
-> parameter using the set_param call has no effect.
->
-> Trying to set the DUC frequency using tune_request through the dsp_freq
-> parameter has no effect either.
->
-> My other question is about the Integer-N tuning. Is there a way to set
-> the integer mode without using the tune_request object? I expected to be
-> able to do that using radio_ctrl.
->
-> I am sure I'm missing something but I don't know where else to look, so
-> any help would be appreciated.
->
-> I'm using UHD 3.14.
->
-> Thanks!
->
->
-> Adri=C3=A0 Am=C3=A9zaga
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000a969d7059ec980a7
+--000000000000888e54059ed83873
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Adri=C3=A0,<div>If you are trying to u=
-se &#39;timed&#39; commands, perhaps the problem is the signal generator bl=
-ock.=C2=A0 If I remember correctly, this block does not support timed comma=
-nds.=C2=A0 This means that the resulting data stream will not include a tim=
-e stamp=C2=A0and thus if you try to tune the DDC or DUC using a timed comma=
-nd, it will delay the command until the appropriate time stamp is seen (whi=
-ch will never occur in your case).=C2=A0 If you are not using timed command=
-s, then just ignore this....</div><div>Rob</div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 13, 2020 at 6:4=
-0 PM Adria via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"=
->usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex">Dear all,<br>
-<br>
-I&#39;m trying to tune the output and input frequency of an X310 + UBX-160.=
- <br>
-I instantiate the radio block and the DDC and DUC blocks and connect them.<=
-br>
-<br>
-The TX chain is like this: [Signal generator] -&gt; [DUC] -&gt; [Radio bloc=
-k].<br>
-<br>
-My intention is to use the DUC only for frequency tuning, since I set <br>
-the UBX synthesizers to Integer-N mode.<br>
-<br>
-The fact is that configure the DUC frequency by setting the &quot;freq&quot=
-; <br>
-parameter using the set_param call has no effect.<br>
-<br>
-Trying to set the DUC frequency using tune_request through the dsp_freq <br=
->
-parameter has no effect either.<br>
-<br>
-My other question is about the Integer-N tuning. Is there a way to set <br>
-the integer mode without using the tune_request object? I expected to be <b=
-r>
-able to do that using radio_ctrl.<br>
-<br>
-I am sure I&#39;m missing something but I don&#39;t know where else to look=
-, so <br>
-any help would be appreciated.<br>
-<br>
-I&#39;m using UHD 3.14.<br>
-<br>
-Thanks!<br>
-<br>
-<br>
-Adri=C3=A0 Am=C3=A9zaga<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+<div dir=3D"ltr"><div class=3D"gmail-oSioSc"><div id=3D"gmail-tw-target"><d=
+iv id=3D"gmail-kAz1tf" class=3D"gmail-g9WsWb"><div class=3D"gmail-tw-ta-con=
+tainer gmail-tw-nfl" id=3D"gmail-tw-target-text-container" tabindex=3D"0"><=
+pre class=3D"gmail-tw-data-text gmail-tw-text-large gmail-tw-ta" id=3D"gmai=
+l-tw-target-text" style=3D"text-align:left" dir=3D"ltr"><span style=3D"font=
+-family:arial,sans-serif"><font size=3D"2"><span lang=3D"en">Hello. I use t=
+he N210 board for scanning with frequency tuning. And with the &#39;D&#39; =
+error, I have problems with correctly detecting the signal frequency. In th=
+is regard, the question. How do I flush the buffer in N210?</span></font></=
+span></pre></div></div></div></div></div>
 
---000000000000a969d7059ec980a7--
+--000000000000888e54059ed83873--
 
 
---===============0504861185262862931==
+--===============6270693236282081731==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -211,5 +110,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0504861185262862931==--
+--===============6270693236282081731==--
 
