@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C38D616634D
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2020 17:40:07 +0100 (CET)
-Received: from [::1] (port=34692 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7721663B1
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2020 18:01:08 +0100 (CET)
+Received: from [::1] (port=56400 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j4ors-0003HW-ES; Thu, 20 Feb 2020 11:40:04 -0500
-Received: from mail-io1-f49.google.com ([209.85.166.49]:42842)
+	id 1j4pCF-00080v-Jy; Thu, 20 Feb 2020 12:01:07 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:44570)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <alvaropr97@gmail.com>)
- id 1j4oro-00034S-4b
- for USRP-users@lists.ettus.com; Thu, 20 Feb 2020 11:40:00 -0500
-Received: by mail-io1-f49.google.com with SMTP id z1so5361702iom.9
- for <USRP-users@lists.ettus.com>; Thu, 20 Feb 2020 08:39:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1j4pBX-0004P7-FR
+ for usrp-users@lists.ettus.com; Thu, 20 Feb 2020 12:00:23 -0500
+Received: by mail-ot1-f51.google.com with SMTP id h9so4289158otj.11
+ for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2020 09:00:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=14MBGkS5QNBjaARNctddqQ7PorQXIdvvKgqLGAc4e6E=;
- b=PhO1YgK4NkvnAuEBQSOB4+r30DZDIUrRQfJgCjNM/uoerLok/Nmcm8szAn/Ka63g7+
- QcNMl0cPIw1TsBcTJC4Y/pJIK0/9FwTI6TO+LPz4AZgpxEmov673KVoPLiL1J0u5d7Cb
- SgULdrH/IstN2qcbPktuBXwpxIEbsfmrxuO+RTM46eRp0pVZ1GWlU4ojG1dp9r6Z+/Mt
- hZhJlaojZEQZLtB2aNw3x34YEzmk7sfnkLYSiw/hju+yPA9z5ti+UhyQbukFZuE/gmLM
- XdsWKCz0+2fIsN6NfyIr9QREVrd+bzjjWJZAFoMg8OXwf+vhYLhboPCtp3JdeVHhVMlx
- O4/Q==
+ :cc; bh=U7D7zV2PQ7ILpNXZ0iWAIdwp6ZIGdon69CJFOa6ccrQ=;
+ b=WcWRedUJPaqJns+rAIFh5Jox2xLysZC6h9txaqHluRpWha2nTZYRuH3rPMV+qFkthF
+ aozW1f+GbHQvaBX6Znc/PNDtddzrpZEKylHV2NhfNlC7vS3DhJ1RUV3+tRijAk/hnTUv
+ Yg7yWvfUCog5kumzlMjyPr2xPGCTljVtWHg9Ydv6mlfiNNHv3rAZWUDvr/us2Q4UdJGe
+ PBtHob7Vg0iDQvYOOtqD8AeToFboMSyH2YcslXezOfV0YX9rFBXRU8lNg9byMuyjNYKI
+ GVFvURDUPAdDZeOge2liU7aAqecvMyV/Ezzh1ArSiPNAHrgp8Bytd8D7s6BebaqH/O6Y
+ 01AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=14MBGkS5QNBjaARNctddqQ7PorQXIdvvKgqLGAc4e6E=;
- b=IlkAFrf/yPf7Xe7fMbCWUKOXkcL12nl38NS5iyWsIkwBduF32dtHVQLUFIcEogPlRP
- 8qkwKBEprCbfu3gwgof4sPwYPNnoHj2JzWJHq+fzy6QPxeZ80sKKVKHlQRlrnM2mzJUK
- 46yBgDIUJv/VsGbi2otbVd3BIEY9vUXfTAs3a+pT1IhsTwO5KrLrfk9ACV/7+EohRM69
- u8r0Ft5tkfnoQ921hvF8HQb5SITC16iEiscmwYY4s+mLUqqzzfOKoU6+IU9rVtBSs0wa
- NPM/NkuHeF8L30FS6P+DPsv9ZQEs+G4QQi9JKtk/xHuGhm/qGDitZfbH4SzzGpwQAFbu
- h5VQ==
-X-Gm-Message-State: APjAAAWZe8Ez6YKrlmTGRJRRmqqQ/RvwbQv3fnlnkbmkh/M2sXKSO4fu
- egnKTsKqAiHqWBLsrSEd0/PTt22DxxTW+yjsNw==
-X-Google-Smtp-Source: APXvYqxr1VFV5qWgKLFK2y5ZuSi6ZHa/eiK53Ccqi/rr7hWfvQQpJTv1f07i8u7kxyPVWqVc8zf2x6wdcNnzNETkVmw=
-X-Received: by 2002:a02:9988:: with SMTP id a8mr26850727jal.33.1582216746530; 
- Thu, 20 Feb 2020 08:39:06 -0800 (PST)
+ bh=U7D7zV2PQ7ILpNXZ0iWAIdwp6ZIGdon69CJFOa6ccrQ=;
+ b=G0MUjDTsihk8aqXJddMkM8lHsnFVheO2+RardDTq2RdFsYPCdddHVEHUnHxVUE53OA
+ A/5fw+qf0bxW4rJrcGuSn7/CMJwKVL8r8weizbOYkTxrWkAWmn1ZKB+J82GVMq0MEgjt
+ kZe8pCtdL8ZoH4hRJOYEdUAETDPyeOt0QB+0LiG07cOk/dWsS/9DiP5n8g2fzwSLqZ1Z
+ gLYpriL9hukd3RJKsVqshZA1ayNF59/F36y1E4qquvh7mMGqi5ZsIfYuGrgmUmg71/QV
+ G3xh5aBe/HcB07Ev35GuYMjN+gajn6bi3I66mCtkIuMHAk5SAzA0A4RKtOiY7W3S+x55
+ s3/A==
+X-Gm-Message-State: APjAAAVeDMJz2wJyOVSF3dxW5dzFw+OqG2zjqaZ7aSh+2cf57o35Lk+q
+ jSY7DlNhbAIiZ+OcOtyDwjh77YWrww7N5h4MrMWfg5hdm41JRA==
+X-Google-Smtp-Source: APXvYqwkt265zDCN/tskeuYkOVqIoPAFebcws40fBJl9PjcL5tW7QsqZn22lorxA1zBdc48pyZyyhjCeFZnaQJ0w+jg=
+X-Received: by 2002:a05:6830:124b:: with SMTP id
+ s11mr23862896otp.333.1582217982312; 
+ Thu, 20 Feb 2020 08:59:42 -0800 (PST)
 MIME-Version: 1.0
-References: <CAAZMsC1pUq22iiHVHAvGjETvdYDActPOVOGruR=dKLgbh535Gg@mail.gmail.com>
- <E01AEA46-6030-4BFF-91CE-0535F84D2FF5@gmail.com>
-In-Reply-To: <E01AEA46-6030-4BFF-91CE-0535F84D2FF5@gmail.com>
-Date: Thu, 20 Feb 2020 17:38:54 +0100
-Message-ID: <CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Subject: Re: [USRP-users] GNU Radio UHD Blocks Resolution
+References: <105801d5e7ff$f7f2aa10$e7d7fe30$@sdr-radio.com>
+In-Reply-To: <105801d5e7ff$f7f2aa10$e7d7fe30$@sdr-radio.com>
+Date: Thu, 20 Feb 2020 11:59:31 -0500
+Message-ID: <CAGNhwTPXJP3j6xNmpjwom-+BEKf11Vv=EmYHxLK+Wd=o6YpCTw@mail.gmail.com>
+To: simon@sdr-radio.com
+Subject: Re: [USRP-users] UHD 3.15 LTS, X310 performance
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Alvaro Pendas via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Alvaro Pendas <alvaropr97@gmail.com>
-Cc: USRP-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============8785930509290614569=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: USRP list <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2004805031162931744=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,211 +77,118 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8785930509290614569==
-Content-Type: multipart/alternative; boundary="000000000000227c87059f048b0a"
+--===============2004805031162931744==
+Content-Type: multipart/alternative; boundary="000000000000cb0e0a059f04d45d"
 
---000000000000227c87059f048b0a
+--000000000000cb0e0a059f04d45d
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-However, the way I see it, this represents a problem in the receiving part.
-Let me put it this way: the max output of the ADC is 1, and that
-corresponds with the max input. That max input would represent the case
-when you receive a high power signal and you set your drive amplifier next
-to its max.
-So, If you are receiving a low power QPSK signal, with your gain set to 30
-dB, the output of your ADC would use a really small part of the range
-(let's say from -0.05 to 0.05). However, if your digital levels go from -1
-to 1 and are represented with 12 bits, using such a small part of the range
-would make the quantization error a problem.
+Hi Simon - When you say "but performance is not great" ... beyond CPU load:
+do you get good Tx and Rx rates (e.g., if you run "benchmark_rate") without
+underruns / overflows / late packets (etc)? What is the MTU set to for this
+ENET link? 1 GbE or 10 GbE? Can you provide a little more detail for us to
+work with here? Thx! - MLD
+
+On Thu, Feb 20, 2020 at 10:11 AM Simon G4ELI via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+>
+>
+>
+> Now using UDB 3.15 LTZ instead of UHD 4.0 and a user=E2=80=99s X310 works=
+ but
+> performance is not great:
+>
+>
+>
+>    - CPU load high,
+>    - MTU size results in only 364 samples per buffer which I believe to
+>    indirectly cause the high CPU.
+>
+>
+>
+> I=E2=80=99ve not found much on the Ettus site apart from ensuring the MTU=
+ size is
+> correct, so the question is: how on earth do I get better streaming from
+> the X310?
+>
+>
+>
+> As I=E2=80=99m compiling 3.15 LTS from source making changes is easy.
+>
+>
+>
+> Simon Brown, G4ELI
+>
+> https://www.sdr-radio.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
 
+--=20
+Michael Dickens
+Ettus Research Technical Support
+Email: support@ettus.com
+Web: https://ettus.com/
 
-El mi=C3=A9., 19 feb. 2020 a las 20:04, Marcus D Leech (<patchvonbraun@gmai=
-l.com>)
-escribi=C3=B3:
-
-> Indeed. You=E2=80=99d have to use an external calibration source at sever=
-al places
-> over your parameter space (frequency gain sample rate)
->
-> Sent from my iPhone
->
-> On Feb 19, 2020, at 1:54 PM, Alvaro Pendas <alvaropr97@gmail.com> wrote:
->
-> =EF=BB=BF
-> Marcus thank your for your answer,
->
-> First of all, you are right, the range is -1 to 1 (instead of 0 to 1 as I
-> said before). So, for example, in the receiving part, the values you get
-> out of the UHD Source have a linear relationship with the voltage of the
-> analog signal, but I understand there is no easy way to calculate that
-> level with the only information of the GNU Radio samples. Is that correct=
-?
->
-> El mi=C3=A9., 19 feb. 2020 a las 19:22, Marcus D. Leech via USRP-users (<
-> usrp-users@lists.ettus.com>) escribi=C3=B3:
->
->> On 02/19/2020 12:01 PM, Alvaro Pendas via USRP-users wrote:
->> > Hello,
->> > I am using GNU Radio and the USRP B200. I have noticed that for the
->> > GNU block UHD: USRP Sink, the values you pass to the block must be in
->> > the range 0 to 1. I guess that means if you do not want to lose
->> > resolution you must ensure that you use the full range, that is to
->> > say, your minimum is 0 or close to 0, and your max is 1 or close to 1.
->> > Am I correct?
->> >
->> > On the other hand, what are the meaning of the values produce by the
->> > block UHD: USRP Source? They must be related to the signal power, but
->> > I am not sure about their range. Is the minimum value that block can
->> > produce the min of the ADC output, and the max, the max of the ADC
->> > output? With the USRP B200 the ADC resolution is 12 bits, are the min
->> > and the max always set with the same value, or does it depend on the
->> > USRP configuration?
->> >
->> > I am using GNU Radio right now, but probably, just knowing how this
->> > works with UHD would be enough to understand the rest.
->> >
->> > Thank you for your time,
->> >
->> > Alvaro
->> >
->> Gnu radio generally likes to have baesband data streams scaled into
->> {-1.0,+1.0} which are linearly related to instantaneous voltages at
->>    the antenna of the hardware.
->>
->> To a first approximation, a value near +1.0 or -1.0 will drive the ADC
->> to its maximum +/- value.  But that's only an approximation, since the
->>    signal is processed a fair amount (linearly) prior to reaching the
->> ADC/DAC, and with analog hardware there's no way of ensuring that
->>    a max value wont' over-drive the analog hardware.
->>
->> Power of a sinusoidal signal is proportional to the  I*I + Q*Q --
->> remember we're dealing with *voltages* here, so ohms law applies...
->>
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-
---000000000000227c87059f048b0a
+--000000000000cb0e0a059f04d45d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>However, the way I see it, this represents a problem =
-in the receiving part. Let me put it this way: the max output of the ADC is=
- 1, and that corresponds with the max input. That max input would represent=
- the case when you receive a high power signal and you set your drive ampli=
-fier next to its max.<br></div><div>So, If you are receiving a low power QP=
-SK signal, with your gain set to 30 dB, the output of your ADC would use a =
-really small part of the range (let&#39;s say from -0.05 to 0.05). However,=
- if your digital levels go from -1 to 1 and are represented with 12 bits, u=
-sing such a small part of the range would make the quantization error a pro=
-blem.</div><div><br></div><div><br> </div></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">El mi=C3=A9., 19 feb. 2020 a las =
-20:04, Marcus D Leech (&lt;<a href=3D"mailto:patchvonbraun@gmail.com">patch=
-vonbraun@gmail.com</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><div dir=3D"auto">Indeed. You=E2=80=99d have to =
-use an external calibration source at several places over your parameter sp=
-ace (frequency gain sample rate)<br><br><div dir=3D"ltr">Sent from my iPhon=
-e</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Feb 19, 2020, at 1=
-:54 PM, Alvaro Pendas &lt;<a href=3D"mailto:alvaropr97@gmail.com" target=3D=
-"_blank">alvaropr97@gmail.com</a>&gt; wrote:<br><br></blockquote></div><blo=
-ckquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>Marcu=
-s thank your for your answer,</div><div><br></div><p style=3D"color:rgb(14,=
-16,26);background:transparent none repeat scroll 0% 0%;margin-top:0pt;margi=
-n-bottom:0pt"><span style=3D"color:rgb(14,16,26);background:transparent non=
-e repeat scroll 0% 0%;margin-top:0pt;margin-bottom:0pt">First
- of all, you are right, the range is -1 to 1 (instead of 0 to 1 as I=20
-said before). So, for example, in the receiving part, the values you get
- out of the UHD Source have</span><strong style=3D"color:rgb(14,16,26);back=
-ground:transparent none repeat scroll 0% 0%;margin-top:0pt;margin-bottom:0p=
-t"><span style=3D"color:rgb(14,16,26);background:transparent none repeat sc=
-roll 0% 0%;margin-top:0pt;margin-bottom:0pt">=C2=A0</span></strong><span st=
-yle=3D"color:rgb(14,16,26);background:transparent none repeat scroll 0% 0%;=
-margin-top:0pt;margin-bottom:0pt">a
- linear relationship with the voltage of the analog signal, but I=20
-understand there is no easy way to calculate that level with the only=20
-information of the GNU Radio samples. Is that correct?</span></p></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El mi=C3=
-=A9., 19 feb. 2020 a las 19:22, Marcus D. Leech via USRP-users (&lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex">On 02/19/2020 12:01 PM, Alvaro Pendas via USRP-users wrote=
-:<br>
-&gt; Hello,<br>
-&gt; I am using GNU Radio and the USRP B200. I have noticed that for the <b=
-r>
-&gt; GNU block UHD: USRP Sink, the values you pass to the block must be in =
-<br>
-&gt; the range 0 to 1. I guess that means if you do not want to lose <br>
-&gt; resolution you must ensure that you use the full range, that is to <br=
->
-&gt; say, your minimum is 0 or close to 0, and your max is 1 or close to 1.=
- <br>
-&gt; Am I correct?<br>
-&gt;<br>
-&gt; On the other hand, what are the meaning of the values produce by the <=
-br>
-&gt; block UHD: USRP Source? They must be related to the signal power, but =
-<br>
-&gt; I am not sure about their range. Is the minimum value that block can <=
-br>
-&gt; produce the min of the ADC output, and the max, the max of the ADC <br=
->
-&gt; output? With the USRP B200 the ADC resolution is 12 bits, are the min =
-<br>
-&gt; and the max always set with the same value, or does it depend on the <=
-br>
-&gt; USRP configuration?<br>
-&gt;<br>
-&gt; I am using GNU Radio right now, but probably, just knowing how this <b=
-r>
-&gt; works with UHD would be enough to understand the rest.<br>
-&gt;<br>
-&gt; Thank you for your time,<br>
-&gt;<br>
-&gt; Alvaro<br>
-&gt;<br>
-Gnu radio generally likes to have baesband data streams scaled into <br>
-{-1.0,+1.0} which are linearly related to instantaneous voltages at<br>
-=C2=A0 =C2=A0the antenna of the hardware.<br>
-<br>
-To a first approximation, a value near +1.0 or -1.0 will drive the ADC <br>
-to its maximum +/- value.=C2=A0 But that&#39;s only an approximation, since=
- the<br>
-=C2=A0 =C2=A0signal is processed a fair amount (linearly) prior to reaching=
- the <br>
-ADC/DAC, and with analog hardware there&#39;s no way of ensuring that<br>
-=C2=A0 =C2=A0a max value wont&#39; over-drive the analog hardware.<br>
-<br>
-Power of a sinusoidal signal is proportional to the=C2=A0 I*I + Q*Q -- <br>
-remember we&#39;re dealing with *voltages* here, so ohms law applies...<br>
-<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
+<div dir=3D"ltr">Hi Simon - When you say &quot;but performance is not great=
+&quot; ... beyond CPU load: do you get good Tx and Rx rates (e.g., if you r=
+un &quot;benchmark_rate&quot;) without underruns / overflows / late packets=
+ (etc)? What is the MTU set to for this ENET link? 1 GbE or 10 GbE? Can you=
+ provide a little more detail for us to work with here? Thx! - MLD</div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, F=
+eb 20, 2020 at 10:11 AM Simon G4ELI via USRP-users &lt;<a href=3D"mailto:us=
+rp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex"><div lang=3D"EN-GB"><di=
+v class=3D"gmail-m_-1039429921645581786WordSection1"><p class=3D"MsoNormal"=
+>Hi,<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p cla=
+ss=3D"MsoNormal">Now using UDB 3.15 LTZ instead of UHD 4.0 and a user=E2=80=
+=99s X310 works but performance is not great:<u></u><u></u></p><p class=3D"=
+MsoNormal"><u></u>=C2=A0<u></u></p><ul style=3D"margin-top:0cm" type=3D"dis=
+c"><li class=3D"gmail-m_-1039429921645581786MsoListParagraph" style=3D"marg=
+in-left:0cm">CPU load high,<u></u><u></u></li><li class=3D"gmail-m_-1039429=
+921645581786MsoListParagraph" style=3D"margin-left:0cm">MTU size results in=
+ only 364 samples per buffer which I believe to indirectly cause the high C=
+PU.<u></u><u></u></li></ul><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><=
+p class=3D"MsoNormal">I=E2=80=99ve not found much on the Ettus site apart f=
+rom ensuring the MTU size is correct, so the question is: how on earth do I=
+ get better streaming from the X310?<u></u><u></u></p><p class=3D"MsoNormal=
+"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">As I=E2=80=99m compiling 3=
+.15 LTS from source making changes is easy.<u></u><u></u></p><p class=3D"Ms=
+oNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal"><span>Simon Brown, =
+G4ELI<u></u><u></u></span></p><p class=3D"MsoNormal"><span><a href=3D"https=
+://www.sdr-radio.com" target=3D"_blank">https://www.sdr-radio.com</a><u></u=
+><u></u></span></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div></d=
+iv>_______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</div></blockquote></div></blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael D=
+ickens<br>Ettus Research Technical Support<br>Email: <a href=3D"mailto:supp=
+ort@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"h=
+ttps://ettus.com/" target=3D"_blank">https://ettus.com/</a></div></div></di=
+v></div>
 
---000000000000227c87059f048b0a--
+--000000000000cb0e0a059f04d45d--
 
 
---===============8785930509290614569==
+--===============2004805031162931744==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -291,5 +199,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8785930509290614569==--
+--===============2004805031162931744==--
 
