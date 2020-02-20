@@ -2,61 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9C4516664D
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2020 19:28:53 +0100 (CET)
-Received: from [::1] (port=34972 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6E9A1666B1
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2020 19:55:40 +0100 (CET)
+Received: from [::1] (port=47226 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j4qZA-0001JJ-EF; Thu, 20 Feb 2020 13:28:52 -0500
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:32962)
+	id 1j4qz3-0004cx-MU; Thu, 20 Feb 2020 13:55:37 -0500
+Received: from mail-io1-f44.google.com ([209.85.166.44]:41034)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1j4qZ7-0000nU-5M
- for USRP-users@lists.ettus.com; Thu, 20 Feb 2020 13:28:49 -0500
-Received: by mail-qk1-f173.google.com with SMTP id h4so4533752qkm.0
- for <USRP-users@lists.ettus.com>; Thu, 20 Feb 2020 10:28:29 -0800 (PST)
+ (Exim 4.92) (envelope-from <alvaropr97@gmail.com>)
+ id 1j4qz0-0004Uf-0h
+ for USRP-users@lists.ettus.com; Thu, 20 Feb 2020 13:55:34 -0500
+Received: by mail-io1-f44.google.com with SMTP id m25so5853162ioo.8
+ for <USRP-users@lists.ettus.com>; Thu, 20 Feb 2020 10:55:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=LQ1F5dUkplpJTOyijNyBdRo8uu7aAEyaDxJw86zqEq0=;
- b=do6PVRsPilHlOU3uG+9ePHbPvWfjOVmWdz7ukWJa/JHlnygPyGB6XaTsWz3Q42LXvM
- mL8bdG2nLU/thBQGmYsUll105I9VVy2i+NbdocBXG4tPAjgo125rwgEy6cBhgVdxtFs1
- oS9ny0ghSxP2I7CgV/m3CFu5nLBdPuTCP8qqALQITRa/H/zOLvaf+m0FIzFnmD75YfZ4
- xmDNR0BjbfOh3IoenylB9qdsNM4OKjsG8NE819mz1Rwc/PXlxu94jlEDEuI2WF8XXYxn
- yjVQkz+8BR3wDR848Q8EgoDAWSVKuQwGTZouPBv7D4YJ+otReWbiEUZZFgxj0x/HT/dR
- vRdg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Rl5YXg6+SpL3Sh6b1wZI/qCqIbK5s7ghTLrx+RNRKwg=;
+ b=o8SUupk99D0MEPhLno2tsOEK7KB3Gcf0U2nsGCPX89emsQ3gl0oYPAge534DCFGA+v
+ RdyLKnecIlR3qoIIMjSwPf3A0iMdJ1xEIxCDDEc++XBrpr9CY+kMMy4KC8p6LcXU0JFD
+ OKNs+xwRP5DDaIFOYcQtHI75IWdYbyv7wiM4wNu/Fsu8opixm4y4AhvIbzmNzc/6zkwg
+ D+nEKKcc7JgBybjhtr2JuHTLYJw5+eyqyGmbhYpJzCIbwIWe4Oo3c8I+Pir01nZk327E
+ QJ8tDerY7znPiqJGJciS4gAmIlBAxKOfYulAcXgwwv4iegRTZck9M+b0LuDNrXe7vgah
+ 0lYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=LQ1F5dUkplpJTOyijNyBdRo8uu7aAEyaDxJw86zqEq0=;
- b=PMXoPe4NpX+ulstqRUldUhKDC+0uoYf1J9yED8a0FrDa7oqO6PGcu9qwkBgD8fIwKK
- jLrrpF8ymBGK3jrs6NfchuUug2dYg5qatndPgY8TKdaKhq5553IQelBcM9XfYRyOk0U9
- VjSR6m4eM73U/m8P7Z2irQcM9x18U1dIcAf/JibHtKhscvn7TWx+Cu6F7CJu1GWARa81
- UFKsOE7dsElXUp6U8UvIv30T1btaVSiX5XVqMKR96zo64/8nkee4o6J7we6wNK+YlpsX
- 7JcYpS/PY1WYdSBapj0yH7BJBjdpI9355lom5dJukb708UOFXZcvA+YVL6UVKMfZi1Oo
- HmUw==
-X-Gm-Message-State: APjAAAVhqSUlQM87JkfuRDa7w7kRCTdkeD4nXAjCmQ7JA+8F4WKABlEO
- ial2LRcFobXddFGRboZHrmNHb1a5Og0=
-X-Google-Smtp-Source: APXvYqy4fF5B5+SSCoi9uWlWnTKtzLfWm6KT8+IDGG1Q8QBQSr6tkSDFk0qE5qQjX67uehHPdQT3pg==
-X-Received: by 2002:a05:620a:1436:: with SMTP id
- k22mr29075465qkj.24.1582223288423; 
- Thu, 20 Feb 2020 10:28:08 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id e64sm158625qtd.45.2020.02.20.10.28.07
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 20 Feb 2020 10:28:07 -0800 (PST)
-Message-ID: <5E4ECFB7.4060504@gmail.com>
-Date: Thu, 20 Feb 2020 13:28:07 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Rl5YXg6+SpL3Sh6b1wZI/qCqIbK5s7ghTLrx+RNRKwg=;
+ b=ovkOpX2l0+pzxnqUA/kWlC8F9B1lvIDvcyeMNmDIMAlhEXRdSCO+Axn+AWv0eetU8W
+ YtsmTmcWOmVyVYHJAnCQoFX8FbfGsELz+SYx2QqcILjU5JovqvR0U2u9J4hKVaiCx7Um
+ vaMzlffhrvSivgF8HdhkCQnZZoWMHdT0fnDQu51+s6ptVUjLARVoR/8Xwv10mf37J1ua
+ 2MsjuzVIsOPNX1Qt/QJUi5Ugr6bKvEwJ00iH1mEx5cfufl5Fmf2Y3GUQk3h8WKEqsTeB
+ +4MvltFINCWZhfs7BIUT/iIqWoFvjW8kHAU/DUEZef7s8Bn6zm/ttHFhLntoHa+9bCJk
+ s6sQ==
+X-Gm-Message-State: APjAAAWCCELCXxMjvbKHE7UURhaCFeC4e4mUOGkznu0+S1FNt9SFSUTX
+ 6AL6ksFkPVhOWJ5OnoJvmjEjPlp1DIsC8sKDbA==
+X-Google-Smtp-Source: APXvYqyrKgt+oJTmJ1JLaxjZuXd1XrJ7xPieIBECgHLplq2TiFjrhfjCnxnjh4snU1xMIHn2V5+nCrZ8DPqslG+YY2w=
+X-Received: by 2002:a6b:e506:: with SMTP id y6mr638905ioc.209.1582224893334;
+ Thu, 20 Feb 2020 10:54:53 -0800 (PST)
 MIME-Version: 1.0
-To: Alvaro Pendas <alvaropr97@gmail.com>
 References: <CAAZMsC1pUq22iiHVHAvGjETvdYDActPOVOGruR=dKLgbh535Gg@mail.gmail.com>
  <E01AEA46-6030-4BFF-91CE-0535F84D2FF5@gmail.com>
  <CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com>
-In-Reply-To: <CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com>
+ <5E4ECFB7.4060504@gmail.com>
+In-Reply-To: <5E4ECFB7.4060504@gmail.com>
+Date: Thu, 20 Feb 2020 19:54:41 +0100
+Message-ID: <CAAZMsC3LNfsJir6Dejw7f-jerOvLuJWVLyrb9C2YRs4_dhzL1Q@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Subject: Re: [USRP-users] GNU Radio UHD Blocks Resolution
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -69,10 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+From: Alvaro Pendas via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Alvaro Pendas <alvaropr97@gmail.com>
 Cc: USRP-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============5024603640648085660=="
+Content-Type: multipart/mixed; boundary="===============3152038532694082496=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,145 +78,167 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============5024603640648085660==
-Content-Type: multipart/alternative;
- boundary="------------090909080404060801080900"
+--===============3152038532694082496==
+Content-Type: multipart/alternative; boundary="000000000000b8d887059f06700d"
 
-This is a multi-part message in MIME format.
---------------090909080404060801080900
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000b8d887059f06700d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 02/20/2020 11:38 AM, Alvaro Pendas wrote:
-> However, the way I see it, this represents a problem in the receiving 
-> part. Let me put it this way: the max output of the ADC is 1, and that 
-> corresponds with the max input. That max input would represent the 
-> case when you receive a high power signal and you set your drive 
-> amplifier next to its max.
-> So, If you are receiving a low power QPSK signal, with your gain set 
-> to 30 dB, the output of your ADC would use a really small part of the 
-> range (let's say from -0.05 to 0.05). However, if your digital levels 
-> go from -1 to 1 and are represented with 12 bits, using such a small 
-> part of the range would make the quantization error a problem.
+I get what you mean, but maybe I did not explain myself correctly. Let's
+forget about GNU Radio and focus on the ADC. The ADC resolution is 12 bits,
+so it has 4096 digital levels. The question here is, does the usrp adapts
+those levels to the signal it is receiving at each moment? If that
+adaptation does not exist, the ACD is going to use all the 4096 only when
+the analog input signal is close to the input max of the ADC. Otherwise,
+only some of those levels are used. For example, half of them (2048) if the
+level of the ACD input is half the max.
+
+Also, mind that, in the receiving part, I think that what you explained is
+not completely right. I am working with a QPSK receiver and I demodulate
+the symbols correctly (with a lot of noise), but the output of the UHD:USRP
+Source are actually about 0.0003. That's why I'm afraid of the problem I've
+mentioned above.
+
+Thank you for your patient.
+
+El jue., 20 feb. 2020 a las 19:28, Marcus D. Leech (<patchvonbraun@gmail.co=
+m>)
+escribi=C3=B3:
+
+> On 02/20/2020 11:38 AM, Alvaro Pendas wrote:
 >
-Gnu Radio uses a floating-point {-1.0, 1.0} representation, which UHD 
-*scales* into a range that is appropriate for whatever hardware
-   you're using.
-
-So, your 0.05 is scaled to about 102 by UHD prior to presentation to the 
-DAC, and conversely in the receive direction.
-
-
+> However, the way I see it, this represents a problem in the receiving
+> part. Let me put it this way: the max output of the ADC is 1, and that
+> corresponds with the max input. That max input would represent the case
+> when you receive a high power signal and you set your drive amplifier nex=
+t
+> to its max.
+> So, If you are receiving a low power QPSK signal, with your gain set to 3=
+0
+> dB, the output of your ADC would use a really small part of the range
+> (let's say from -0.05 to 0.05). However, if your digital levels go from -=
+1
+> to 1 and are represented with 12 bits, using such a small part of the ran=
+ge
+> would make the quantization error a problem.
+>
+> Gnu Radio uses a floating-point {-1.0, 1.0} representation, which UHD
+> *scales* into a range that is appropriate for whatever hardware
+>   you're using.
+>
+> So, your 0.05 is scaled to about 102 by UHD prior to presentation to the
+> DAC, and conversely in the receive direction.
 >
 >
-> El mié., 19 feb. 2020 a las 20:04, Marcus D Leech 
-> (<patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>>) escribió:
 >
->     Indeed. You’d have to use an external calibration source at
->     several places over your parameter space (frequency gain sample rate)
 >
->     Sent from my iPhone
+> El mi=C3=A9., 19 feb. 2020 a las 20:04, Marcus D Leech (<
+> patchvonbraun@gmail.com>) escribi=C3=B3:
 >
->>     On Feb 19, 2020, at 1:54 PM, Alvaro Pendas <alvaropr97@gmail.com
->>     <mailto:alvaropr97@gmail.com>> wrote:
+>> Indeed. You=E2=80=99d have to use an external calibration source at seve=
+ral
+>> places over your parameter space (frequency gain sample rate)
 >>
->>     ﻿
->>     Marcus thank your for your answer,
+>> Sent from my iPhone
 >>
->>     First of all, you are right, the range is -1 to 1 (instead of 0
->>     to 1 as I said before). So, for example, in the receiving part,
->>     the values you get out of the UHD Source have**a linear
->>     relationship with the voltage of the analog signal, but I
->>     understand there is no easy way to calculate that level with the
->>     only information of the GNU Radio samples. Is that correct?
+>> On Feb 19, 2020, at 1:54 PM, Alvaro Pendas <alvaropr97@gmail.com> wrote:
 >>
+>> =EF=BB=BF
+>> Marcus thank your for your answer,
 >>
->>     El mié., 19 feb. 2020 a las 19:22, Marcus D. Leech via USRP-users
->>     (<usrp-users@lists.ettus.com
->>     <mailto:usrp-users@lists.ettus.com>>) escribió:
+>> First of all, you are right, the range is -1 to 1 (instead of 0 to 1 as =
+I
+>> said before). So, for example, in the receiving part, the values you get
+>> out of the UHD Source have a linear relationship with the voltage of the
+>> analog signal, but I understand there is no easy way to calculate that
+>> level with the only information of the GNU Radio samples. Is that correc=
+t?
 >>
->>         On 02/19/2020 12:01 PM, Alvaro Pendas via USRP-users wrote:
->>         > Hello,
->>         > I am using GNU Radio and the USRP B200. I have noticed that
->>         for the
->>         > GNU block UHD: USRP Sink, the values you pass to the block
->>         must be in
->>         > the range 0 to 1. I guess that means if you do not want to
->>         lose
->>         > resolution you must ensure that you use the full range,
->>         that is to
->>         > say, your minimum is 0 or close to 0, and your max is 1 or
->>         close to 1.
->>         > Am I correct?
->>         >
->>         > On the other hand, what are the meaning of the values
->>         produce by the
->>         > block UHD: USRP Source? They must be related to the signal
->>         power, but
->>         > I am not sure about their range. Is the minimum value that
->>         block can
->>         > produce the min of the ADC output, and the max, the max of
->>         the ADC
->>         > output? With the USRP B200 the ADC resolution is 12 bits,
->>         are the min
->>         > and the max always set with the same value, or does it
->>         depend on the
->>         > USRP configuration?
->>         >
->>         > I am using GNU Radio right now, but probably, just knowing
->>         how this
->>         > works with UHD would be enough to understand the rest.
->>         >
->>         > Thank you for your time,
->>         >
->>         > Alvaro
->>         >
->>         Gnu radio generally likes to have baesband data streams
->>         scaled into
->>         {-1.0,+1.0} which are linearly related to instantaneous
->>         voltages at
->>            the antenna of the hardware.
+>> El mi=C3=A9., 19 feb. 2020 a las 19:22, Marcus D. Leech via USRP-users (=
+<
+>> usrp-users@lists.ettus.com>) escribi=C3=B3:
 >>
->>         To a first approximation, a value near +1.0 or -1.0 will
->>         drive the ADC
->>         to its maximum +/- value.  But that's only an approximation,
->>         since the
->>            signal is processed a fair amount (linearly) prior to
->>         reaching the
->>         ADC/DAC, and with analog hardware there's no way of ensuring that
->>            a max value wont' over-drive the analog hardware.
+>>> On 02/19/2020 12:01 PM, Alvaro Pendas via USRP-users wrote:
+>>> > Hello,
+>>> > I am using GNU Radio and the USRP B200. I have noticed that for the
+>>> > GNU block UHD: USRP Sink, the values you pass to the block must be in
+>>> > the range 0 to 1. I guess that means if you do not want to lose
+>>> > resolution you must ensure that you use the full range, that is to
+>>> > say, your minimum is 0 or close to 0, and your max is 1 or close to 1=
+.
+>>> > Am I correct?
+>>> >
+>>> > On the other hand, what are the meaning of the values produce by the
+>>> > block UHD: USRP Source? They must be related to the signal power, but
+>>> > I am not sure about their range. Is the minimum value that block can
+>>> > produce the min of the ADC output, and the max, the max of the ADC
+>>> > output? With the USRP B200 the ADC resolution is 12 bits, are the min
+>>> > and the max always set with the same value, or does it depend on the
+>>> > USRP configuration?
+>>> >
+>>> > I am using GNU Radio right now, but probably, just knowing how this
+>>> > works with UHD would be enough to understand the rest.
+>>> >
+>>> > Thank you for your time,
+>>> >
+>>> > Alvaro
+>>> >
+>>> Gnu radio generally likes to have baesband data streams scaled into
+>>> {-1.0,+1.0} which are linearly related to instantaneous voltages at
+>>>    the antenna of the hardware.
+>>>
+>>> To a first approximation, a value near +1.0 or -1.0 will drive the ADC
+>>> to its maximum +/- value.  But that's only an approximation, since the
+>>>    signal is processed a fair amount (linearly) prior to reaching the
+>>> ADC/DAC, and with analog hardware there's no way of ensuring that
+>>>    a max value wont' over-drive the analog hardware.
+>>>
+>>> Power of a sinusoidal signal is proportional to the  I*I + Q*Q --
+>>> remember we're dealing with *voltages* here, so ohms law applies...
+>>>
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
 >>
->>         Power of a sinusoidal signal is proportional to the I*I + Q*Q --
->>         remember we're dealing with *voltages* here, so ohms law
->>         applies...
->>
->>
->>
->>
->>         _______________________________________________
->>         USRP-users mailing list
->>         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
+>
 
+--000000000000b8d887059f06700d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------090909080404060801080900
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 02/20/2020 11:38 AM, Alvaro Pendas
+<div dir=3D"ltr">I get what you mean, but maybe I did not explain myself co=
+rrectly. Let&#39;s forget about GNU Radio and focus on the ADC. The ADC res=
+olution is 12 bits, so it has 4096 digital levels. The question here is, do=
+es the usrp adapts those levels to the signal it is receiving at each momen=
+t? If that adaptation does not exist, the ACD is going to use all the 4096 =
+only when the analog input signal is close to the input max of the ADC. Oth=
+erwise, only some of those levels are used. For example, half of them (2048=
+) if the level of the ACD input is half the max.<br><br>Also, mind that, in=
+ the receiving part, I think that what you explained is not completely righ=
+t. I am working with a QPSK receiver and I demodulate the symbols correctly=
+ (with a lot of noise), but the output of the UHD:USRP Source are actually =
+about 0.0003. That&#39;s why I&#39;m afraid of the problem I&#39;ve mention=
+ed above.<br><br>Thank you for your patient.</div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">El jue., 20 feb. 2020 a las 19:=
+28, Marcus D. Leech (&lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvo=
+nbraun@gmail.com</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 02/20/2020 11:38 AM, Alvaro Pendas
       wrote:<br>
     </div>
-    <blockquote
-cite="mid:CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
         <div>However, the way I see it, this represents a problem in the
           receiving part. Let me put it this way: the max output of the
           ADC is 1, and that corresponds with the max input. That max
@@ -233,7 +247,7 @@ cite="mid:CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com"
         </div>
         <div>So, If you are receiving a low power QPSK signal, with your
           gain set to 30 dB, the output of your ADC would use a really
-          small part of the range (let's say from -0.05 to 0.05).
+          small part of the range (let&#39;s say from -0.05 to 0.05).
           However, if your digital levels go from -1 to 1 and are
           represented with 12 bits, using such a small part of the range
           would make the quantization error a problem.</div>
@@ -243,83 +257,76 @@ cite="mid:CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com"
     </blockquote>
     Gnu Radio uses a floating-point {-1.0, 1.0} representation, which
     UHD *scales* into a range that is appropriate for whatever hardware<br>
-      you're using.<br>
+    =C2=A0 you&#39;re using.<br>
     <br>
     So, your 0.05 is scaled to about 102 by UHD prior to presentation to
     the DAC, and conversely in the receive direction.<br>
     <br>
     <br>
-    <blockquote
-cite="mid:CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
         <div><br>
         </div>
       </div>
       <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">El mié., 19 feb. 2020 a las
-          20:04, Marcus D Leech (&lt;<a moz-do-not-send="true"
-            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;)
-          escribió:<br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">El mi=C3=A9., 19 feb. 2020 a =
+las
+          20:04, Marcus D Leech (&lt;<a href=3D"mailto:patchvonbraun@gmail.=
+com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;)
+          escribi=C3=B3:<br>
         </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir="auto">Indeed. You’d have to use an external
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div dir=3D"auto">Indeed. You=E2=80=99d have to use an external
             calibration source at several places over your parameter
             space (frequency gain sample rate)<br>
             <br>
-            <div dir="ltr">Sent from my iPhone</div>
-            <div dir="ltr"><br>
-              <blockquote type="cite">On Feb 19, 2020, at 1:54 PM,
-                Alvaro Pendas &lt;<a moz-do-not-send="true"
-                  href="mailto:alvaropr97@gmail.com" target="_blank">alvaropr97@gmail.com</a>&gt;
+            <div dir=3D"ltr">Sent from my iPhone</div>
+            <div dir=3D"ltr"><br>
+              <blockquote type=3D"cite">On Feb 19, 2020, at 1:54 PM,
+                Alvaro Pendas &lt;<a href=3D"mailto:alvaropr97@gmail.com" t=
+arget=3D"_blank">alvaropr97@gmail.com</a>&gt;
                 wrote:<br>
                 <br>
               </blockquote>
             </div>
-            <blockquote type="cite">
-              <div dir="ltr">﻿
-                <div dir="ltr">
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">=EF=BB=BF
+                <div dir=3D"ltr">
                   <div>Marcus thank your for your answer,</div>
                   <div><br>
                   </div>
-                  <p style="color:rgb(14,16,26);background:transparent
-                    none repeat scroll 0%
-                    0%;margin-top:0pt;margin-bottom:0pt"><span
-                      style="color:rgb(14,16,26);background:transparent
-                      none repeat scroll 0%
-                      0%;margin-top:0pt;margin-bottom:0pt">First of all,
+                  <p style=3D"color:rgb(14,16,26);background:transparent no=
+ne repeat scroll 0% 0%;margin-top:0pt;margin-bottom:0pt"><span style=3D"col=
+or:rgb(14,16,26);background:transparent none repeat scroll 0% 0%;margin-top=
+:0pt;margin-bottom:0pt">First of all,
                       you are right, the range is -1 to 1 (instead of 0
                       to 1 as I said before). So, for example, in the
                       receiving part, the values you get out of the UHD
-                      Source have</span><strong
-                      style="color:rgb(14,16,26);background:transparent
-                      none repeat scroll 0%
-                      0%;margin-top:0pt;margin-bottom:0pt"><span
-                        style="color:rgb(14,16,26);background:transparent
-                        none repeat scroll 0%
-                        0%;margin-top:0pt;margin-bottom:0pt"> </span></strong><span
-                      style="color:rgb(14,16,26);background:transparent
-                      none repeat scroll 0%
-                      0%;margin-top:0pt;margin-bottom:0pt">a linear
+                      Source have</span><strong style=3D"color:rgb(14,16,26=
+);background:transparent none repeat scroll 0% 0%;margin-top:0pt;margin-bot=
+tom:0pt"><span style=3D"color:rgb(14,16,26);background:transparent none rep=
+eat scroll 0% 0%;margin-top:0pt;margin-bottom:0pt">=C2=A0</span></strong><s=
+pan style=3D"color:rgb(14,16,26);background:transparent none repeat scroll =
+0% 0%;margin-top:0pt;margin-bottom:0pt">a linear
                       relationship with the voltage of the analog
                       signal, but I understand there is no easy way to
                       calculate that level with the only information of
                       the GNU Radio samples. Is that correct?</span></p>
                 </div>
                 <br>
-                <div class="gmail_quote">
-                  <div dir="ltr" class="gmail_attr">El mié., 19 feb.
+                <div class=3D"gmail_quote">
+                  <div dir=3D"ltr" class=3D"gmail_attr">El mi=C3=A9., 19 fe=
+b.
                     2020 a las 19:22, Marcus D. Leech via USRP-users
-                    (&lt;<a moz-do-not-send="true"
-                      href="mailto:usrp-users@lists.ettus.com"
-                      target="_blank">usrp-users@lists.ettus.com</a>&gt;)
-                    escribió:<br>
+                    (&lt;<a href=3D"mailto:usrp-users@lists.ettus.com" targ=
+et=3D"_blank">usrp-users@lists.ettus.com</a>&gt;)
+                    escribi=C3=B3:<br>
                   </div>
-                  <blockquote class="gmail_quote" style="margin:0px 0px
-                    0px 0.8ex;border-left:1px solid
-                    rgb(204,204,204);padding-left:1ex">On 02/19/2020
+                  <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 02/1=
+9/2020
                     12:01 PM, Alvaro Pendas via USRP-users wrote:<br>
                     &gt; Hello,<br>
                     &gt; I am using GNU Radio and the USRP B200. I have
@@ -361,21 +368,25 @@ cite="mid:CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com"
                     streams scaled into <br>
                     {-1.0,+1.0} which are linearly related to
                     instantaneous voltages at<br>
-                       the antenna of the hardware.<br>
+                    =C2=A0 =C2=A0the antenna of the hardware.<br>
                     <br>
                     To a first approximation, a value near +1.0 or -1.0
                     will drive the ADC <br>
-                    to its maximum +/- value.  But that's only an
+                    to its maximum +/- value.=C2=A0 But that&#39;s only an
                     approximation, since the<br>
-                       signal is processed a fair amount (linearly)
+                    =C2=A0 =C2=A0signal is processed a fair amount (linearl=
+y)
                     prior to reaching the <br>
-                    ADC/DAC, and with analog hardware there's no way of
+                    ADC/DAC, and with analog hardware there&#39;s no way of
                     ensuring that<br>
-                       a max value wont' over-drive the analog hardware.<br>
+                    =C2=A0 =C2=A0a max value wont&#39; over-drive the analo=
+g hardware.<br>
                     <br>
-                    Power of a sinusoidal signal is proportional to the 
+                    Power of a sinusoidal signal is proportional to the=C2=
+=A0
                     I*I + Q*Q -- <br>
-                    remember we're dealing with *voltages* here, so ohms
+                    remember we&#39;re dealing with *voltages* here, so ohm=
+s
                     law applies...<br>
                     <br>
                     <br>
@@ -383,12 +394,11 @@ cite="mid:CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com"
                     <br>
                     _______________________________________________<br>
                     USRP-users mailing list<br>
-                    <a moz-do-not-send="true"
-                      href="mailto:USRP-users@lists.ettus.com"
-                      target="_blank">USRP-users@lists.ettus.com</a><br>
-                    <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                      rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+                    <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D=
+"_blank">USRP-users@lists.ettus.com</a><br>
+                    <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp=
+-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.e=
+ttus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
                   </blockquote>
                 </div>
               </div>
@@ -398,13 +408,14 @@ href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
       </div>
     </blockquote>
     <br>
-  </body>
-</html>
+  </div>
 
---------------090909080404060801080900--
+</blockquote></div>
+
+--000000000000b8d887059f06700d--
 
 
---===============5024603640648085660==
+--===============3152038532694082496==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -415,5 +426,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5024603640648085660==--
+--===============3152038532694082496==--
 
