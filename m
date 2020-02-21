@@ -2,63 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A051666D7
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Feb 2020 20:08:15 +0100 (CET)
-Received: from [::1] (port=51016 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25C23166CBB
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Feb 2020 03:13:51 +0100 (CET)
+Received: from [::1] (port=54266 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j4rBG-0005UT-Ac; Thu, 20 Feb 2020 14:08:14 -0500
-Received: from mail-qk1-f169.google.com ([209.85.222.169]:41227)
+	id 1j4xp0-00028c-Kc; Thu, 20 Feb 2020 21:13:42 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:38485)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <patchvonbraun@gmail.com>)
- id 1j4rBC-0005Lw-GI
- for USRP-users@lists.ettus.com; Thu, 20 Feb 2020 14:08:10 -0500
-Received: by mail-qk1-f169.google.com with SMTP id d11so4597546qko.8
- for <USRP-users@lists.ettus.com>; Thu, 20 Feb 2020 11:07:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=we4MqQ7GBCP5fUUWdYU9nYOSJJ/c9uQjsfOgqn41J4s=;
- b=YejknsHAFQcODfGVHQHGScqtdbELJs0xnILphIjdQEvss2IOj9QXknmu0GdnZGNrkz
- mVbY4P5OmxL+QPpbl9hTMiwTPTsOlGVXLK68nQds6VAuRyH0HBQJ1PtfgY4gHeloryH5
- uHTqY14VrJQLBU+aX2VZE1/mEgaS7xXwL1AeML/OW7WmpDpkpzLrmYJhVlYgpwfJ5qWZ
- 9WrnA4C3lvdvod7hPDv+Ra2IpfwNF3dfc1g6FcPwffEupgec3SLoW7T9hQtqeeYsz+xU
- ROxdRt/f63VcU+FIrfHYyrvgAEYZvM2JQnnz1BD5mf7BKEk28D/2dbjKS6ZTBW8vwreJ
- oYjw==
+ (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1j4xox-00022b-6E
+ for usrp-users@lists.ettus.com; Thu, 20 Feb 2020 21:13:39 -0500
+Received: by mail-oi1-f171.google.com with SMTP id r137so125914oie.5
+ for <usrp-users@lists.ettus.com>; Thu, 20 Feb 2020 18:13:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=Qvy8SBslbuPFytl5quy4QyWx8++NGYLQ0LP6jlxJJGA=;
+ b=GAk27yoM3JUxooXRPz1xH37Yuz5AEeIEDlcY9D+CshB2steYXCPJn9SzEjQDpT6q44
+ PZ9Y0jyI02I0L7u11+hJk5/x9cv28MRwiOcBhidk2oxqJ717DoEsbckO7D6yEEQf8N9U
+ Ea9wz68hPwev2a2PbgOPT2hwAgSdy9T0oVyHK1MV3cE7hji/HFzYzpUS2cZz/75qBOYV
+ WzDqPf6+1slKo0qTUkyw+FLX2BEBb0omB9zwiCwqqLCKJ/HmK1dQtUQ+eOappGF4K6ZG
+ xFyqHkO6bjbXi9aqeHQUb2PC9tmkuXBui0Pbk1RcRO+N7HQpoaykaxPCcPn9FejLv21r
+ Lb6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=we4MqQ7GBCP5fUUWdYU9nYOSJJ/c9uQjsfOgqn41J4s=;
- b=S3wxIPS0mTGfdD37HHhanzC93+YNClOJNuzoFlYQUZ94Dsop9/QA2yhjg9Fi68fJCm
- yFhlm/GCfaM9aComnRPfy7jezpVvwwyNZCWFV0eJ5bE6Ot9Xc5oQ8FyQlWuWdRoh0qhZ
- oZgWFdQsal4vrOHxgkiludApnzzcgnQw3EVR21/wACmQDzpPw6jiAp1N2HKXSw2dofJj
- QHDCBASx16RytiXDdD/NDm9rgCQ3ITeT54f5S0tDOAdpxQG/16qzuR3wpZ/f5B9PgUWu
- ygE4g/DGaQh/vMF/3ns8FuA17rJJfFSlle1CSoLl7tJgOPjQvC5h8FulfFYKHcaao7NO
- E0fw==
-X-Gm-Message-State: APjAAAWA38GzVdozjcntN0vS4OFxGYYfpt5uvOGh6XDzCU0p0cIot9w1
- yY15nIvAeeaDP3lFz/xJOpMIlme5jFg=
-X-Google-Smtp-Source: APXvYqwf7fCEBv1dbd2Z3vnuHAEwnhpujUmHWdZkz2ItMQ4c9MzEXyAjbkic9nrEP5RBNv4zpfMtfA==
-X-Received: by 2002:a37:a717:: with SMTP id q23mr30140911qke.169.1582225648249; 
- Thu, 20 Feb 2020 11:07:28 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id p50sm265834qtf.5.2020.02.20.11.07.26
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 20 Feb 2020 11:07:26 -0800 (PST)
-Message-ID: <5E4ED8EE.4090601@gmail.com>
-Date: Thu, 20 Feb 2020 14:07:26 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=Qvy8SBslbuPFytl5quy4QyWx8++NGYLQ0LP6jlxJJGA=;
+ b=UejTG/j7VuDvSkaYA+NRuaN4FnusWkYjBILaJaENEEev9eCrIoohdqXl71pCfLZcxW
+ ITEvUjV6FtkSNVSkltazKXaAoJ+5nuTIIFfc8rDNMx5aquNQ5cIvIceiXgA0E1vHUzj+
+ JLhs1debU4IMLziJktSXvIR1DgHlA010pec0zPha4SzSAnH5LMTLygSCmOz+H/HErmQK
+ yhoP+SFkitte6GVs/kJTuB9yVnkDJ7It0UTH/ZumIumZEG1DBzrxCY+mytwIW5DOYZZ4
+ xyM6wfvGVkOq8+JS1p8s/P/hJ9PKQixbhpVGFeGYjp47Xzczk/cmjh0WePJIzwtaOlzX
+ ToFA==
+X-Gm-Message-State: APjAAAXSX2BQq4MUjegoirxeCONNcmt1QOK/coV9zkk+p0gqhdxqZ51+
+ 7uS1GgGK0hxazgMCO22d5VIbxpKrdtmlbH/tX/mKTY0IoQtgwQ==
+X-Google-Smtp-Source: APXvYqyl9tfzxwcvk+t1B3EcUuwp7C0Ev4CJn+bf0owOMd29JW8nPXps7Z1+Kozx6PEV6KCkaaUZ1lm5CbQQHfjGDZo=
+X-Received: by 2002:aca:52d0:: with SMTP id g199mr91224oib.153.1582251178018; 
+ Thu, 20 Feb 2020 18:12:58 -0800 (PST)
 MIME-Version: 1.0
-To: Alvaro Pendas <alvaropr97@gmail.com>
-References: <CAAZMsC1pUq22iiHVHAvGjETvdYDActPOVOGruR=dKLgbh535Gg@mail.gmail.com>
- <E01AEA46-6030-4BFF-91CE-0535F84D2FF5@gmail.com>
- <CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com>
- <5E4ECFB7.4060504@gmail.com>
- <CAAZMsC3LNfsJir6Dejw7f-jerOvLuJWVLyrb9C2YRs4_dhzL1Q@mail.gmail.com>
-In-Reply-To: <CAAZMsC3LNfsJir6Dejw7f-jerOvLuJWVLyrb9C2YRs4_dhzL1Q@mail.gmail.com>
-Subject: Re: [USRP-users] GNU Radio UHD Blocks Resolution
+Date: Thu, 20 Feb 2020 21:12:46 -0500
+Message-ID: <CAB__hTR_xTy6MvgwhDqa9aSqXpCtGrK8JadJQoifL65dDcajvA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="00000000000069dc30059f0c8fa7"
+Subject: [USRP-users] Vivado IP locked issue
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,10 +55,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: USRP-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============0709130936571412625=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,438 +70,806 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0709130936571412625==
-Content-Type: multipart/alternative;
- boundary="------------060307080005070208020707"
+--00000000000069dc30059f0c8fa7
+Content-Type: multipart/alternative; boundary="00000000000069dc2d059f0c8fa5"
 
-This is a multi-part message in MIME format.
---------------060307080005070208020707
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--00000000000069dc2d059f0c8fa5
+Content-Type: text/plain; charset="UTF-8"
 
-On 02/20/2020 01:54 PM, Alvaro Pendas wrote:
-> I get what you mean, but maybe I did not explain myself correctly. 
-> Let's forget about GNU Radio and focus on the ADC. The ADC resolution 
-> is 12 bits, so it has 4096 digital levels. The question here is, does 
-> the usrp adapts those levels to the signal it is receiving at each 
-> moment? If that adaptation does not exist, the ACD is going to use all 
-> the 4096 only when the analog input signal is close to the input max 
-> of the ADC. Otherwise, only some of those levels are used. For 
-> example, half of them (2048) if the level of the ACD input is half the 
-> max.
->
-You're talking about AGC -- no, it does not do AGC by default.  AGC 
-strategies are generally best left to the downstream application.
+Hi,
+I am having a problem with a Block Memory Generator IP that is working with
+2017.4 but is giving me issues with 2018.3. I have tried to upgrade the IP
+as well as re-creating the IP from scratch in 2018.3, but I still get the
+same failure (see below).  I have attached the IP created from scratch in
+2018.3.  Any suggestions?  I am not very experienced with FPGA development
+in general or Vivado specifically, so it is likely that I am missing
+something obvious.
 
-> Also, mind that, in the receiving part, I think that what you 
-> explained is not completely right. I am working with a QPSK receiver 
-> and I demodulate the symbols correctly (with a lot of noise), but the 
-> output of the UHD:USRP Source are actually about 0.0003. That's why 
-> I'm afraid of the problem I've mentioned above.
-Something to be aware of is that increasing gain beyond the level where 
-SNR no longer improves, just gives you a louder (signal+noise), but
-   does nothing to improve SNR.   Keep in mind that on the B2xx, the 
-maximum gain setting in RX is about 72dB, so if you're using a setting of
-   30dB (you mentioned that setting before), then you still have 40dB of 
-head-room in the RX gain setting...
+By the way, I am using the webpack (free) version of Vivado and attempting
+to build for the E310.
+
+Rob
 
 
->
-> Thank you for your patient.
->
-> El jue., 20 feb. 2020 a las 19:28, Marcus D. Leech 
-> (<patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>>) escribió:
->
->     On 02/20/2020 11:38 AM, Alvaro Pendas wrote:
->>     However, the way I see it, this represents a problem in the
->>     receiving part. Let me put it this way: the max output of the ADC
->>     is 1, and that corresponds with the max input. That max input
->>     would represent the case when you receive a high power signal and
->>     you set your drive amplifier next to its max.
->>     So, If you are receiving a low power QPSK signal, with your gain
->>     set to 30 dB, the output of your ADC would use a really small
->>     part of the range (let's say from -0.05 to 0.05). However, if
->>     your digital levels go from -1 to 1 and are represented with 12
->>     bits, using such a small part of the range would make the
->>     quantization error a problem.
->>
->     Gnu Radio uses a floating-point {-1.0, 1.0} representation, which
->     UHD *scales* into a range that is appropriate for whatever hardware
->       you're using.
->
->     So, your 0.05 is scaled to about 102 by UHD prior to presentation
->     to the DAC, and conversely in the receive direction.
->
->
->>
->>
->>     El mié., 19 feb. 2020 a las 20:04, Marcus D Leech
->>     (<patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>>)
->>     escribió:
->>
->>         Indeed. You’d have to use an external calibration source at
->>         several places over your parameter space (frequency gain
->>         sample rate)
->>
->>         Sent from my iPhone
->>
->>>         On Feb 19, 2020, at 1:54 PM, Alvaro Pendas
->>>         <alvaropr97@gmail.com <mailto:alvaropr97@gmail.com>> wrote:
->>>
->>>         ﻿
->>>         Marcus thank your for your answer,
->>>
->>>         First of all, you are right, the range is -1 to 1 (instead
->>>         of 0 to 1 as I said before). So, for example, in the
->>>         receiving part, the values you get out of the UHD Source
->>>         have**a linear relationship with the voltage of the analog
->>>         signal, but I understand there is no easy way to calculate
->>>         that level with the only information of the GNU Radio
->>>         samples. Is that correct?
->>>
->>>
->>>         El mié., 19 feb. 2020 a las 19:22, Marcus D. Leech via
->>>         USRP-users (<usrp-users@lists.ettus.com
->>>         <mailto:usrp-users@lists.ettus.com>>) escribió:
->>>
->>>             On 02/19/2020 12:01 PM, Alvaro Pendas via USRP-users wrote:
->>>             > Hello,
->>>             > I am using GNU Radio and the USRP B200. I have noticed
->>>             that for the
->>>             > GNU block UHD: USRP Sink, the values you pass to the
->>>             block must be in
->>>             > the range 0 to 1. I guess that means if you do not
->>>             want to lose
->>>             > resolution you must ensure that you use the full
->>>             range, that is to
->>>             > say, your minimum is 0 or close to 0, and your max is
->>>             1 or close to 1.
->>>             > Am I correct?
->>>             >
->>>             > On the other hand, what are the meaning of the values
->>>             produce by the
->>>             > block UHD: USRP Source? They must be related to the
->>>             signal power, but
->>>             > I am not sure about their range. Is the minimum value
->>>             that block can
->>>             > produce the min of the ADC output, and the max, the
->>>             max of the ADC
->>>             > output? With the USRP B200 the ADC resolution is 12
->>>             bits, are the min
->>>             > and the max always set with the same value, or does it
->>>             depend on the
->>>             > USRP configuration?
->>>             >
->>>             > I am using GNU Radio right now, but probably, just
->>>             knowing how this
->>>             > works with UHD would be enough to understand the rest.
->>>             >
->>>             > Thank you for your time,
->>>             >
->>>             > Alvaro
->>>             >
->>>             Gnu radio generally likes to have baesband data streams
->>>             scaled into
->>>             {-1.0,+1.0} which are linearly related to instantaneous
->>>             voltages at
->>>                the antenna of the hardware.amazon
->>>
->>>             To a first approximation, a value near +1.0 or -1.0 will
->>>             drive the ADC
->>>             to its maximum +/- value.  But that's only an
->>>             approximation, since the
->>>                signal is processed a fair amount (linearly) prior to
->>>             reaching the
->>>             ADC/DAC, and with analog hardware there's no way of
->>>             ensuring that
->>>                a max value wont' over-drive the analog hardware.
->>>
->>>             Power of a sinusoidal signal is proportional to the  I*I
->>>             + Q*Q --
->>>             remember we're dealing with *voltages* here, so ohms law
->>>             applies...
->>>
->>>
->>>
->>>
->>>             _______________________________________________
->>>             USRP-users mailing list
->>>             USRP-users@lists.ettus.com
->>>             <mailto:USRP-users@lists.ettus.com>
->>>             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->
+kossler@kossler-ThinkPad-P51:~/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_block_txarb_tb$
+make xsim
+BUILDER: Checking tools...
+* GNU bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)
+* Python 2.7.17
+* Vivado v2018.3 (64-bit)
+========================================================
+BUILDER: Building IP axi_mem_64k
+========================================================
+BUILDER: Staging IP in build directory...
+BUILDER: Reserving IP location:
+/home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k
+BUILDER: Retargeting IP to part kintex7/xc7z020/clg484/-3...
+BUILDER: Building IP...
+[00:00:00] Executing command: vivado -mode batch -source
+/home/kossler/uhd/UHD-3.15/uhd/fpga-src/usrp3/tools/scripts/viv_generate_ip.tcl
+-log axi_mem_64k.log -nojournal
+WARNING: [IP_Flow 19-2162] IP 'axi_mem_64k' is locked:
+CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the
+following file is locked:
+/home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k/axi_mem_64k.xci
+CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for the
+following file is locked:
+/home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k/axi_mem_64k.xci
 
+--00000000000069dc2d059f0c8fa5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------060307080005070208020707
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+<div dir=3D"ltr">Hi,<div>I am having a problem with a Block Memory Generato=
+r IP that is working with 2017.4 but is giving me issues with 2018.3. I hav=
+e tried to upgrade the IP as well as re-creating the IP from scratch in 201=
+8.3, but I still get the same failure (see below).=C2=A0 I have attached th=
+e IP created from scratch in 2018.3.=C2=A0 Any suggestions?=C2=A0 I am not =
+very experienced with FPGA development in general or Vivado specifically, s=
+o it is likely that I am missing something obvious.</div><div><br></div><di=
+v>By the way, I am using the webpack (free) version of Vivado and attemptin=
+g to build for the E310.</div><div><br></div><div>Rob</div><div><br><div><b=
+r></div><div>kossler@kossler-ThinkPad-P51:~/nd_overhaul/uhd_nd/rfnoc/testbe=
+nches/noc_block_txarb_tb$ make xsim<br>BUILDER: Checking tools...<br>* GNU =
+bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)<br>* Python 2.7.17<br=
+>* Vivado v2018.3 (64-bit)<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>BUILDER: Building IP ax=
+i_mem_64k<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>BUILDER: Staging IP in build directory=
+...<br>BUILDER: Reserving IP location: /home/kossler/nd_overhaul/uhd_nd/rfn=
+oc/testbenches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k<br>B=
+UILDER: Retargeting IP to part kintex7/xc7z020/clg484/-3...<br>BUILDER: Bui=
+lding IP...<br>[00:00:00] Executing command: vivado -mode batch -source /ho=
+me/kossler/uhd/UHD-3.15/uhd/fpga-src/usrp3/tools/scripts/viv_generate_ip.tc=
+l -log axi_mem_64k.log -nojournal<br><font color=3D"#0b5394">WARNING: [IP_F=
+low 19-2162] IP &#39;axi_mem_64k&#39; is locked:</font><br><font color=3D"#=
+b45f06">CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for =
+the following file is locked: /home/kossler/nd_overhaul/uhd_nd/rfnoc/testbe=
+nches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k/axi_mem_64k.x=
+ci<br>CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for=
+ the following file is locked: /home/kossler/nd_overhaul/uhd_nd/rfnoc/testb=
+enches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k/axi_mem_64k.=
+xci</font><br></div></div></div>
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 02/20/2020 01:54 PM, Alvaro Pendas
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAAZMsC3LNfsJir6Dejw7f-jerOvLuJWVLyrb9C2YRs4_dhzL1Q@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">I get what you mean, but maybe I did not explain
-        myself correctly. Let's forget about GNU Radio and focus on the
-        ADC. The ADC resolution is 12 bits, so it has 4096 digital
-        levels. The question here is, does the usrp adapts those levels
-        to the signal it is receiving at each moment? If that adaptation
-        does not exist, the ACD is going to use all the 4096 only when
-        the analog input signal is close to the input max of the ADC.
-        Otherwise, only some of those levels are used. For example, half
-        of them (2048) if the level of the ACD input is half the max.<br>
-        <br>
-      </div>
-    </blockquote>
-    You're talking about AGC -- no, it does not do AGC by default.  AGC
-    strategies are generally best left to the downstream application.<br>
-    <br>
-    <blockquote
-cite="mid:CAAZMsC3LNfsJir6Dejw7f-jerOvLuJWVLyrb9C2YRs4_dhzL1Q@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Also, mind that, in the receiving part, I think
-        that what you explained is not completely right. I am working
-        with a QPSK receiver and I demodulate the symbols correctly
-        (with a lot of noise), but the output of the UHD:USRP Source are
-        actually about 0.0003. That's why I'm afraid of the problem I've
-        mentioned above.<br>
-      </div>
-    </blockquote>
-    Something to be aware of is that increasing gain beyond the level
-    where SNR no longer improves, just gives you a louder
-    (signal+noise), but<br>
-      does nothing to improve SNR.   Keep in mind that on the B2xx, the
-    maximum gain setting in RX is about 72dB, so if you're using a
-    setting of<br>
-      30dB (you mentioned that setting before), then you still have 40dB
-    of head-room in the RX gain setting...<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CAAZMsC3LNfsJir6Dejw7f-jerOvLuJWVLyrb9C2YRs4_dhzL1Q@mail.gmail.com"
-      type="cite">
-      <div dir="ltr"><br>
-        Thank you for your patient.</div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">El jue., 20 feb. 2020 a las
-          19:28, Marcus D. Leech (&lt;<a moz-do-not-send="true"
-            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;)
-          escribió:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div bgcolor="#FFFFFF">
-            <div>On 02/20/2020 11:38 AM, Alvaro Pendas wrote:<br>
-            </div>
-            <blockquote type="cite">
-              <div dir="ltr">
-                <div>However, the way I see it, this represents a
-                  problem in the receiving part. Let me put it this way:
-                  the max output of the ADC is 1, and that corresponds
-                  with the max input. That max input would represent the
-                  case when you receive a high power signal and you set
-                  your drive amplifier next to its max.<br>
-                </div>
-                <div>So, If you are receiving a low power QPSK signal,
-                  with your gain set to 30 dB, the output of your ADC
-                  would use a really small part of the range (let's say
-                  from -0.05 to 0.05). However, if your digital levels
-                  go from -1 to 1 and are represented with 12 bits,
-                  using such a small part of the range would make the
-                  quantization error a problem.</div>
-                <div><br>
-                </div>
-              </div>
-            </blockquote>
-            Gnu Radio uses a floating-point {-1.0, 1.0} representation,
-            which UHD *scales* into a range that is appropriate for
-            whatever hardware<br>
-              you're using.<br>
-            <br>
-            So, your 0.05 is scaled to about 102 by UHD prior to
-            presentation to the DAC, and conversely in the receive
-            direction.<br>
-            <br>
-            <br>
-            <blockquote type="cite">
-              <div dir="ltr">
-                <div><br>
-                </div>
-              </div>
-              <br>
-              <div class="gmail_quote">
-                <div dir="ltr" class="gmail_attr">El mié., 19 feb. 2020
-                  a las 20:04, Marcus D Leech (&lt;<a
-                    moz-do-not-send="true"
-                    href="mailto:patchvonbraun@gmail.com"
-                    target="_blank">patchvonbraun@gmail.com</a>&gt;)
-                  escribió:<br>
-                </div>
-                <blockquote class="gmail_quote" style="margin:0px 0px
-                  0px 0.8ex;border-left:1px solid
-                  rgb(204,204,204);padding-left:1ex">
-                  <div dir="auto">Indeed. You’d have to use an external
-                    calibration source at several places over your
-                    parameter space (frequency gain sample rate)<br>
-                    <br>
-                    <div dir="ltr">Sent from my iPhone</div>
-                    <div dir="ltr"><br>
-                      <blockquote type="cite">On Feb 19, 2020, at 1:54
-                        PM, Alvaro Pendas &lt;<a moz-do-not-send="true"
-                          href="mailto:alvaropr97@gmail.com"
-                          target="_blank">alvaropr97@gmail.com</a>&gt;
-                        wrote:<br>
-                        <br>
-                      </blockquote>
-                    </div>
-                    <blockquote type="cite">
-                      <div dir="ltr">﻿
-                        <div dir="ltr">
-                          <div>Marcus thank your for your answer,</div>
-                          <div><br>
-                          </div>
-                          <p
-                            style="color:rgb(14,16,26);background:transparent
-                            none repeat scroll 0%
-                            0%;margin-top:0pt;margin-bottom:0pt"><span
-                              style="color:rgb(14,16,26);background:transparent
-                              none repeat scroll 0%
-                              0%;margin-top:0pt;margin-bottom:0pt">First
-                              of all, you are right, the range is -1 to
-                              1 (instead of 0 to 1 as I said before).
-                              So, for example, in the receiving part,
-                              the values you get out of the UHD Source
-                              have</span><strong
-                              style="color:rgb(14,16,26);background:transparent
-                              none repeat scroll 0%
-                              0%;margin-top:0pt;margin-bottom:0pt"><span
-                                style="color:rgb(14,16,26);background:transparent
-                                none repeat scroll 0%
-                                0%;margin-top:0pt;margin-bottom:0pt"> </span></strong><span
-                              style="color:rgb(14,16,26);background:transparent
-                              none repeat scroll 0%
-                              0%;margin-top:0pt;margin-bottom:0pt">a
-                              linear relationship with the voltage of
-                              the analog signal, but I understand there
-                              is no easy way to calculate that level
-                              with the only information of the GNU Radio
-                              samples. Is that correct?</span></p>
-                        </div>
-                        <br>
-                        <div class="gmail_quote">
-                          <div dir="ltr" class="gmail_attr">El mié., 19
-                            feb. 2020 a las 19:22, Marcus D. Leech via
-                            USRP-users (&lt;<a moz-do-not-send="true"
-                              href="mailto:usrp-users@lists.ettus.com"
-                              target="_blank">usrp-users@lists.ettus.com</a>&gt;)
+--00000000000069dc2d059f0c8fa5--
+--00000000000069dc30059f0c8fa7
+Content-Type: application/octet-stream; name="axi_mem_64k.xci"
+Content-Disposition: attachment; filename="axi_mem_64k.xci"
+Content-Transfer-Encoding: base64
+Content-ID: <f_k6vj84ba0>
+X-Attachment-Id: f_k6vj84ba0
 
-                            escribió:<br>
-                          </div>
-                          <blockquote class="gmail_quote"
-                            style="margin:0px 0px 0px
-                            0.8ex;border-left:1px solid
-                            rgb(204,204,204);padding-left:1ex">On
-                            02/19/2020 12:01 PM, Alvaro Pendas via
-                            USRP-users wrote:<br>
-                            &gt; Hello,<br>
-                            &gt; I am using GNU Radio and the USRP B200.
-                            I have noticed that for the <br>
-                            &gt; GNU block UHD: USRP Sink, the values
-                            you pass to the block must be in <br>
-                            &gt; the range 0 to 1. I guess that means if
-                            you do not want to lose <br>
-                            &gt; resolution you must ensure that you use
-                            the full range, that is to <br>
-                            &gt; say, your minimum is 0 or close to 0,
-                            and your max is 1 or close to 1. <br>
-                            &gt; Am I correct?<br>
-                            &gt;<br>
-                            &gt; On the other hand, what are the meaning
-                            of the values produce by the <br>
-                            &gt; block UHD: USRP Source? They must be
-                            related to the signal power, but <br>
-                            &gt; I am not sure about their range. Is the
-                            minimum value that block can <br>
-                            &gt; produce the min of the ADC output, and
-                            the max, the max of the ADC <br>
-                            &gt; output? With the USRP B200 the ADC
-                            resolution is 12 bits, are the min <br>
-                            &gt; and the max always set with the same
-                            value, or does it depend on the <br>
-                            &gt; USRP configuration?<br>
-                            &gt;<br>
-                            &gt; I am using GNU Radio right now, but
-                            probably, just knowing how this <br>
-                            &gt; works with UHD would be enough to
-                            understand the rest.<br>
-                            &gt;<br>
-                            &gt; Thank you for your time,<br>
-                            &gt;<br>
-                            &gt; Alvaro<br>
-                            &gt;<br>
-                            Gnu radio generally likes to have baesband
-                            data streams scaled into <br>
-                            {-1.0,+1.0} which are linearly related to
-                            instantaneous voltages at<br>
-                               the antenna of the hardware.amazon<br>
-                            <br>
-                            To a first approximation, a value near +1.0
-                            or -1.0 will drive the ADC <br>
-                            to its maximum +/- value.  But that's only
-                            an approximation, since the<br>
-                               signal is processed a fair amount
-                            (linearly) prior to reaching the <br>
-                            ADC/DAC, and with analog hardware there's no
-                            way of ensuring that<br>
-                               a max value wont' over-drive the analog
-                            hardware.<br>
-                            <br>
-                            Power of a sinusoidal signal is proportional
-                            to the  I*I + Q*Q -- <br>
-                            remember we're dealing with *voltages* here,
-                            so ohms law applies...<br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-_______________________________________________<br>
-                            USRP-users mailing list<br>
-                            <a moz-do-not-send="true"
-                              href="mailto:USRP-users@lists.ettus.com"
-                              target="_blank">USRP-users@lists.ettus.com</a><br>
-                            <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-                          </blockquote>
-                        </div>
-                      </div>
-                    </blockquote>
-                  </div>
-                </blockquote>
-              </div>
-            </blockquote>
-            <br>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------060307080005070208020707--
-
-
---===============0709130936571412625==
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHNwaXJpdDpkZXNpZ24geG1s
+bnM6eGlsaW54PSJodHRwOi8vd3d3LnhpbGlueC5jb20iIHhtbG5zOnNwaXJpdD0iaHR0cDovL3d3
+dy5zcGlyaXRjb25zb3J0aXVtLm9yZy9YTUxTY2hlbWEvU1BJUklULzE2ODUtMjAwOSIgeG1sbnM6
+eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSI+CiAgPHNwaXJp
+dDp2ZW5kb3I+eGlsaW54LmNvbTwvc3Bpcml0OnZlbmRvcj4KICA8c3Bpcml0OmxpYnJhcnk+eGNp
+PC9zcGlyaXQ6bGlicmFyeT4KICA8c3Bpcml0Om5hbWU+dW5rbm93bjwvc3Bpcml0Om5hbWU+CiAg
+PHNwaXJpdDp2ZXJzaW9uPjEuMDwvc3Bpcml0OnZlcnNpb24+CiAgPHNwaXJpdDpjb21wb25lbnRJ
+bnN0YW5jZXM+CiAgICA8c3Bpcml0OmNvbXBvbmVudEluc3RhbmNlPgogICAgICA8c3Bpcml0Omlu
+c3RhbmNlTmFtZT5heGlfbWVtXzY0azwvc3Bpcml0Omluc3RhbmNlTmFtZT4KICAgICAgPHNwaXJp
+dDpjb21wb25lbnRSZWYgc3Bpcml0OnZlbmRvcj0ieGlsaW54LmNvbSIgc3Bpcml0OmxpYnJhcnk9
+ImlwIiBzcGlyaXQ6bmFtZT0iYmxrX21lbV9nZW4iIHNwaXJpdDp2ZXJzaW9uPSI4LjQiLz4KICAg
+ICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWVzPgogICAgICAgIDxzcGlyaXQ6Y29u
+ZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQUREUkJMT0NLX1JBTkdF
+LlNfMS5NZW0wIj40MDk2PC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAg
+IDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVT
+SUZQQVJBTV9WQUxVRS5BWElMSVRFX1NMQVZFX1NfQVhJLkFERFJfV0lEVEgiPjMyPC9zcGlyaXQ6
+Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxl
+bWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElMSVRFX1NM
+QVZFX1NfQVhJLkFSVVNFUl9XSURUSCI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJl
+bmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5BV1VTRVJfV0lEVEgi
+PjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25m
+aWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVF
+LkFYSUxJVEVfU0xBVkVfU19BWEkuQlVTRVJfV0lEVEgiPjA8L3NwaXJpdDpjb25maWd1cmFibGVF
+bGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bp
+cml0OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuQ0xL
+X0RPTUFJTiIvPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJp
+dDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElMSVRFX1NMQVZFX1NfQVhJLkRBVEFf
+V0lEVEgiPjMyPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJB
+TV9WQUxVRS5BWElMSVRFX1NMQVZFX1NfQVhJLkZSRVFfSFoiPjEwMDAwMDAwMDwvc3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFW
+RV9TX0FYSS5IQVNfQlJFU1AiPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAg
+ICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlk
+PSJCVVNJRlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuSEFTX0JVUlNUIj4wPC9zcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxl
+RWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElMSVRF
+X1NMQVZFX1NfQVhJLkhBU19DQUNIRSI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJl
+bmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5IQVNfTE9DSyI+MDwv
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJ
+TElURV9TTEFWRV9TX0FYSS5IQVNfUFJPVCI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRW
+YWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVm
+ZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5IQVNfUU9TIj4w
+PC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5B
+WElMSVRFX1NMQVZFX1NfQVhJLkhBU19SRUdJT04iPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVt
+ZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0
+OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuSEFTX1JS
+RVNQIj4xPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6
+Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9W
+QUxVRS5BWElMSVRFX1NMQVZFX1NfQVhJLkhBU19XU1RSQiI+MTwvc3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBz
+cGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5J
+RF9XSURUSCI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFS
+QU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5JTlNFUlRfVklQIj4wPC9zcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElMSVRFX1NMQVZFX1Nf
+QVhJLk1BWF9CVVJTVF9MRU5HVEgiPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+
+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5j
+ZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuTlVNX1JFQURfT1VUU1RB
+TkRJTkciPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJp
+dDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFN
+X1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuTlVNX1JFQURfVEhSRUFEUyI+MTwvc3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFW
+RV9TX0FYSS5OVU1fV1JJVEVfT1VUU1RBTkRJTkciPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVt
+ZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0
+OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuTlVNX1dS
+SVRFX1RIUkVBRFMiPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAg
+PHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJ
+RlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuUEhBU0UiPjAuMDAwPC9zcGlyaXQ6Y29u
+ZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVu
+dFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElMSVRFX1NMQVZF
+X1NfQVhJLlBST1RPQ09MIj5BWEk0TElURTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJl
+bmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5SRUFEX1dSSVRFX01P
+REUiPlJFQURfV1JJVEU8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAg
+PHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJ
+RlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuUlVTRVJfQklUU19QRVJfQllURSI+MDwv
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJ
+TElURV9TTEFWRV9TX0FYSS5SVVNFUl9XSURUSCI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6
+cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5TVVBQT1JU
+U19OQVJST1dfQlVSU1QiPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAg
+ICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJC
+VVNJRlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuV1VTRVJfQklUU19QRVJfQllURSI+
+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUu
+QVhJTElURV9TTEFWRV9TX0FYSS5XVVNFUl9XSURUSCI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGly
+aXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZFX1NfQVhJLkFERFJfV0lE
+VEgiPjMyPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6
+Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9W
+QUxVRS5BWElfU0xBVkVfU19BWEkuQVJVU0VSX1dJRFRIIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxl
+RWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNw
+aXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElfU0xBVkVfU19BWEkuQVdVU0VS
+X1dJRFRIIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJB
+TV9WQUxVRS5BWElfU0xBVkVfU19BWEkuQlVTRVJfV0lEVEgiPjA8L3NwaXJpdDpjb25maWd1cmFi
+bGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUg
+c3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5DTEtf
+RE9NQUlOIi8+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0
+OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5EQVRBX1dJRFRI
+Ij4zMjwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFM
+VUUuQVhJX1NMQVZFX1NfQVhJLkZSRVFfSFoiPjEwMDAwMDAwMDwvc3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBz
+cGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZFX1NfQVhJLkhBU19C
+UkVTUCI+MTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0
+OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1f
+VkFMVUUuQVhJX1NMQVZFX1NfQVhJLkhBU19CVVJTVCI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGly
+aXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZFX1NfQVhJLkhBU19DQUNI
+RSI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFM
+VUUuQVhJX1NMQVZFX1NfQVhJLkhBU19MT0NLIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVu
+dFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpy
+ZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElfU0xBVkVfU19BWEkuSEFTX1BST1QiPjA8
+L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1
+cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFY
+SV9TTEFWRV9TX0FYSS5IQVNfUU9TIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVl
+PgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVu
+Y2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElfU0xBVkVfU19BWEkuSEFTX1JFR0lPTiI+MDwvc3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NM
+QVZFX1NfQVhJLkhBU19SUkVTUCI+MTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4K
+ICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNl
+SWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZFX1NfQVhJLkhBU19XU1RSQiI+MTwvc3Bpcml0
+OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZF
+X1NfQVhJLklEX1dJRFRIIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAg
+ICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0i
+QlVTSUZQQVJBTV9WQUxVRS5BWElfU0xBVkVfU19BWEkuSU5TRVJUX1ZJUCI+MDwvc3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZFX1Nf
+QVhJLk1BWF9CVVJTVF9MRU5HVEgiPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+
+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5j
+ZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5OVU1fUkVBRF9PVVRTVEFORElO
+RyI+MTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFM
+VUUuQVhJX1NMQVZFX1NfQVhJLk5VTV9SRUFEX1RIUkVBRFMiPjE8L3NwaXJpdDpjb25maWd1cmFi
+bGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUg
+c3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5OVU1f
+V1JJVEVfT1VUU1RBTkRJTkciPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAg
+ICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlk
+PSJCVVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5OVU1fV1JJVEVfVEhSRUFEUyI+MTwv
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJ
+X1NMQVZFX1NfQVhJLlBIQVNFIj4wLjAwMDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJl
+bmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZFX1NfQVhJLlBST1RPQ09MIj5BWEk0TElU
+RTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUu
+QVhJX1NMQVZFX1NfQVhJLlJFQURfV1JJVEVfTU9ERSI+UkVBRF9XUklURTwvc3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRW
+YWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZFX1NfQVhJ
+LlJVU0VSX0JJVFNfUEVSX0JZVEUiPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+
+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5j
+ZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5SVVNFUl9XSURUSCI+MDwvc3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NM
+QVZFX1NfQVhJLlNVUFBPUlRTX05BUlJPV19CVVJTVCI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGly
+aXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZFX1NfQVhJLldVU0VSX0JJ
+VFNfUEVSX0JZVEUiPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAg
+PHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJ
+RlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5XVVNFUl9XSURUSCI+MDwvc3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRW
+YWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQlJBTV9QT1JUQS5NQVNU
+RVJfVFlQRSI+T1RIRVI8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAg
+PHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJ
+RlBBUkFNX1ZBTFVFLkJSQU1fUE9SVEEuTUVNX0VDQyI+Tk9ORTwvc3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBz
+cGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQlJBTV9QT1JUQS5NRU1fU0laRSI+
+ODE5Mjwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFM
+VUUuQlJBTV9QT1JUQS5NRU1fV0lEVEgiPjMyPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZl
+cmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5CUkFNX1BPUlRBLlJFQURfTEFURU5DWSI+MTwvc3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQlJBTV9Q
+T1JUQS5SRUFEX1dSSVRFX01PREUiLz4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQlJBTV9QT1JUQi5N
+QVNURVJfVFlQRSI+T1RIRVI8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAg
+ICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJC
+VVNJRlBBUkFNX1ZBTFVFLkJSQU1fUE9SVEIuTUVNX0VDQyI+Tk9ORTwvc3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQlJBTV9QT1JUQi5NRU1fU0la
+RSI+ODE5Mjwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0
+OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1f
+VkFMVUUuQlJBTV9QT1JUQi5NRU1fV0lEVEgiPjMyPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVu
+dFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpy
+ZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5CUkFNX1BPUlRCLlJFQURfTEFURU5DWSI+MTwv
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQlJB
+TV9QT1JUQi5SRUFEX1dSSVRFX01PREUiLz4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQ0xLLkFDTEsu
+Q0xLX0RPTUFJTiIvPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNw
+aXJpdDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5DTEsuQUNMSy5GUkVRX0haIj4xMDAw
+MDAwMDA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpj
+b25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZB
+TFVFLkNMSy5BQ0xLLklOU0VSVF9WSVAiPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVy
+ZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkNMSy5BQ0xLLlBIQVNFIj4wLjAwMDwvc3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuUlNULkFSRVNFVE4u
+SU5TRVJUX1ZJUCI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVM
+UEFSQU1fVkFMVUUuQ19BRERSQV9XSURUSCI+MTY8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50
+VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJl
+ZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfQUREUkJfV0lEVEgiPjE2PC9zcGlyaXQ6Y29u
+ZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVu
+dFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX0FMR09SSVRITSI+
+MTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUu
+Q19BWElfSURfV0lEVEgiPjQ8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAg
+ICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJN
+T0RFTFBBUkFNX1ZBTFVFLkNfQVhJX1NMQVZFX1RZUEUiPjE8L3NwaXJpdDpjb25maWd1cmFibGVF
+bGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bp
+cml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfQVhJX1RZUEUiPjA8L3NwaXJpdDpj
+b25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVt
+ZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfQllURV9TSVpF
+Ij44PC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29u
+ZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxV
+RS5DX0NPTU1PTl9DTEsiPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAg
+ICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJN
+T0RFTFBBUkFNX1ZBTFVFLkNfQ09VTlRfMThLX0JSQU0iPjA8L3NwaXJpdDpjb25maWd1cmFibGVF
+bGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bp
+cml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfQ09VTlRfMzZLX0JSQU0iPjY0PC9z
+cGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJh
+YmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX0NU
+UkxfRUNDX0FMR08iPk5PTkU8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAg
+ICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJN
+T0RFTFBBUkFNX1ZBTFVFLkNfREVGQVVMVF9EQVRBIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxl
+bWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJp
+dDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX0RJU0FCTEVfV0FSTl9CSFZfQ09MTCI+
+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUu
+Q19ESVNBQkxFX1dBUk5fQkhWX1JBTkdFIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZl
+cmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX0VMQUJPUkFUSU9OX0RJUiI+Li88L3NwaXJpdDpj
+b25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVt
+ZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfRU5BQkxFXzMy
+QklUX0FERFJFU1MiPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAg
+PHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RF
+TFBBUkFNX1ZBTFVFLkNfRU5fREVFUFNMRUVQX1BJTiI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGly
+aXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19FTl9FQ0NfUElQRSI+MDwvc3Bpcml0
+OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19FTl9SREFE
+RFJBX0NIRyI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFS
+QU1fVkFMVUUuQ19FTl9SREFERFJCX0NIRyI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRW
+YWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVm
+ZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19FTl9TQUZFVFlfQ0tUIj4xPC9zcGlyaXQ6Y29u
+ZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVu
+dFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX0VOX1NIVVRET1dO
+X1BJTiI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0
+OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1f
+VkFMVUUuQ19FTl9TTEVFUF9QSU4iPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+
+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5j
+ZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfRVNUX1BPV0VSX1NVTU1BUlkiPkVzdGltYXRlZCBQb3dl
+ciBmb3IgSVAgICAgIDogICAgIDIxLjAxODA5OCBtVzwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6
+cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19GQU1JTFkiPnp5bnE8L3NwaXJpdDpjb25m
+aWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50
+VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfSEFTX0FYSV9JRCI+
+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUu
+Q19IQVNfRU5BIj4xPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxz
+cGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQ
+QVJBTV9WQUxVRS5DX0hBU19FTkIiPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+
+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5j
+ZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfSEFTX0lOSkVDVEVSUiI+MDwvc3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19IQVNfTUVNX09VVFBVVF9S
+RUdTX0EiPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJp
+dDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFN
+X1ZBTFVFLkNfSEFTX01FTV9PVVRQVVRfUkVHU19CIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxl
+bWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJp
+dDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX0hBU19NVVhfT1VUUFVUX1JFR1NfQSI+
+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUu
+Q19IQVNfTVVYX09VVFBVVF9SRUdTX0IiPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVy
+ZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfSEFTX1JFR0NFQSI+MDwvc3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19IQVNfUkVHQ0VCIj4wPC9z
+cGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJh
+YmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX0hB
+U19SU1RBIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJB
+TV9WQUxVRS5DX0hBU19SU1RCIj4xPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgog
+ICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJ
+ZD0iTU9ERUxQQVJBTV9WQUxVRS5DX0hBU19TT0ZURUNDX0lOUFVUX1JFR1NfQSI+MDwvc3Bpcml0
+OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19IQVNfU09G
+VEVDQ19PVVRQVVRfUkVHU19CIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgog
+ICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJ
+ZD0iTU9ERUxQQVJBTV9WQUxVRS5DX0lOSVRBX1ZBTCI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGly
+aXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19JTklUQl9WQUwiPjA8L3NwaXJpdDpj
+b25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVt
+ZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfSU5JVF9GSUxF
+Ij5heGlfbWVtXzY0ay5tZW08L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAg
+ICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJN
+T0RFTFBBUkFNX1ZBTFVFLkNfSU5JVF9GSUxFX05BTUUiPm5vX2NvZV9maWxlX2xvYWRlZDwvc3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19JTlRF
+UkZBQ0VfVFlQRSI+MTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVM
+UEFSQU1fVkFMVUUuQ19MT0FEX0lOSVRfRklMRSI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6
+cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19NRU1fVFlQRSI+MTwvc3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRW
+YWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19NVVhfUElQRUxJTkVf
+U1RBR0VTIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJB
+TV9WQUxVRS5DX1BSSU1fVFlQRSI+MTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4K
+ICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNl
+SWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19SRUFEX0RFUFRIX0EiPjY1NTM2PC9zcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX1JFQURfREVQVEhfQiI+
+NjU1MzY8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpj
+b25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZB
+TFVFLkNfUkVBRF9MQVRFTkNZX0EiPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+
+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5j
+ZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfUkVBRF9MQVRFTkNZX0IiPjE8L3NwaXJpdDpjb25maWd1
+cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfUkVBRF9XSURUSF9BIj4z
+Mjwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUu
+Q19SRUFEX1dJRFRIX0IiPjMyPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAg
+ICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0i
+TU9ERUxQQVJBTV9WQUxVRS5DX1JTVFJBTV9BIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVu
+dFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpy
+ZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX1JTVFJBTV9CIj4wPC9zcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX1JTVF9QUklPUklUWV9B
+Ij5DRTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFM
+VUUuQ19SU1RfUFJJT1JJVFlfQiI+Q0U8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+
+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5j
+ZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfU0lNX0NPTExJU0lPTl9DSEVDSyI+Tk9ORTwvc3Bpcml0
+OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19VU0VfQlJB
+TV9CTE9DSyI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFS
+QU1fVkFMVUUuQ19VU0VfQllURV9XRUEiPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVy
+ZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfVVNFX0JZVEVfV0VCIj4xPC9zcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX1VTRV9ERUZBVUxUX0RB
+VEEiPjE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpj
+b25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZB
+TFVFLkNfVVNFX0VDQyI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAg
+ICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1P
+REVMUEFSQU1fVkFMVUUuQ19VU0VfU09GVEVDQyI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6
+cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19VU0VfVVJBTSI+MDwvc3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRW
+YWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19XRUFfV0lEVEgiPjQ8
+L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1
+cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNf
+V0VCX1dJRFRIIj40PC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxz
+cGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQ
+QVJBTV9WQUxVRS5DX1dSSVRFX0RFUFRIX0EiPjY1NTM2PC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxl
+bWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJp
+dDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX1dSSVRFX0RFUFRIX0IiPjY1NTM2PC9z
+cGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJh
+YmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iTU9ERUxQQVJBTV9WQUxVRS5DX1dS
+SVRFX01PREVfQSI+UkVBRF9GSVJTVDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4K
+ICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNl
+SWQ9Ik1PREVMUEFSQU1fVkFMVUUuQ19XUklURV9NT0RFX0IiPlJFQURfRklSU1Q8L3NwaXJpdDpj
+b25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVt
+ZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfV1JJVEVfV0lE
+VEhfQSI+MzI8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJp
+dDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJNT0RFTFBBUkFN
+X1ZBTFVFLkNfV1JJVEVfV0lEVEhfQiI+MzI8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVy
+ZW5jZUlkPSJNT0RFTFBBUkFNX1ZBTFVFLkNfWERFVklDRUZBTUlMWSI+enlucTwvc3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkFYSV9JRF9XaWR0aCI+NDwv
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkFYSV9TbGF2
+ZV9UeXBlIj5QZXJpcGhlcmFsX1NsYXZlPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVl
+PgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVu
+Y2VJZD0iUEFSQU1fVkFMVUUuQVhJX1R5cGUiPkFYSTRfTGl0ZTwvc3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBz
+cGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkFkZGl0aW9uYWxfSW5wdXRzX2Zvcl9Qb3dl
+cl9Fc3RpbWF0aW9uIj5mYWxzZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAg
+ICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9
+IlBBUkFNX1ZBTFVFLkFsZ29yaXRobSI+TWluaW11bV9BcmVhPC9zcGlyaXQ6Y29uZmlndXJhYmxl
+RWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNw
+aXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuQXNzdW1lX1N5bmNocm9ub3VzX0NsayI+dHJ1
+ZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkJ5dGVf
+U2l6ZSI+ODwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0
+OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVF
+LkNUUkxfRUNDX0FMR08iPk5PTkU8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAg
+ICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlk
+PSJQQVJBTV9WQUxVRS5Db2VfRmlsZSI+bm9fY29lX2ZpbGVfbG9hZGVkPC9zcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuQ29sbGlzaW9uX1dhcm5pbmdzIj5O
+T05FPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29u
+ZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuQ29t
+cG9uZW50X05hbWUiPmF4aV9tZW1fNjRrPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVl
+PgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVu
+Y2VJZD0iUEFSQU1fVkFMVUUuRGlzYWJsZV9Db2xsaXNpb25fV2FybmluZ3MiPmZhbHNlPC9zcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxl
+RWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuRGlzYWJsZV9PdXRf
+b2ZfUmFuZ2VfV2FybmluZ3MiPmZhbHNlPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVl
+PgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVu
+Y2VJZD0iUEFSQU1fVkFMVUUuRUNDIj5mYWxzZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRW
+YWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVm
+ZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkVOX0RFRVBTTEVFUF9QSU4iPmZhbHNlPC9zcGlyaXQ6Y29u
+ZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVu
+dFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuRU5fRUNDX1BJUEUiPmZhbHNl
+PC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuRU5fU0FG
+RVRZX0NLVCI+dHJ1ZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFN
+X1ZBTFVFLkVOX1NIVVRET1dOX1BJTiI+ZmFsc2U8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50
+VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJl
+ZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5FTl9TTEVFUF9QSU4iPmZhbHNlPC9zcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuRW5hYmxlXzMyYml0X0FkZHJlc3Mi
+PmZhbHNlPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6
+Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUu
+RW5hYmxlX0EiPlVzZV9FTkFfUGluPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgog
+ICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJ
+ZD0iUEFSQU1fVkFMVUUuRW5hYmxlX0IiPlVzZV9FTkJfUGluPC9zcGlyaXQ6Y29uZmlndXJhYmxl
+RWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNw
+aXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuRXJyb3JfSW5qZWN0aW9uX1R5cGUiPlNpbmds
+ZV9CaXRfRXJyb3JfSW5qZWN0aW9uPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgog
+ICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJ
+ZD0iUEFSQU1fVkFMVUUuRmlsbF9SZW1haW5pbmdfTWVtb3J5X0xvY2F0aW9ucyI+dHJ1ZTwvc3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkludGVyZmFjZV9U
+eXBlIj5BWEk0PC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFM
+VUUuTG9hZF9Jbml0X0ZpbGUiPmZhbHNlPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVl
+PgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVu
+Y2VJZD0iUEFSQU1fVkFMVUUuTUVNX0ZJTEUiPm5vX21lbV9sb2FkZWQ8L3NwaXJpdDpjb25maWd1
+cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5NZW1vcnlfVHlwZSI+U2ltcGxlX0R1
+YWxfUG9ydF9SQU08L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNw
+aXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJQQVJBTV9W
+QUxVRS5PcGVyYXRpbmdfTW9kZV9BIj5SRUFEX0ZJUlNUPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxl
+bWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJp
+dDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuT3BlcmF0aW5nX01vZGVfQiI+UkVBRF9GSVJTVDwv
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLk91dHB1dF9S
+ZXNldF9WYWx1ZV9BIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAg
+IDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFS
+QU1fVkFMVUUuT3V0cHV0X1Jlc2V0X1ZhbHVlX0IiPjA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVt
+ZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0
+OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5QUklNX3R5cGVfdG9fSW1wbGVtZW50Ij5CUkFNPC9z
+cGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJh
+YmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuUGlwZWxpbmVf
+U3RhZ2VzIj4wPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFM
+VUUuUG9ydF9BX0Nsb2NrIj4xMDA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAg
+ICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlk
+PSJQQVJBTV9WQUxVRS5Qb3J0X0FfRW5hYmxlX1JhdGUiPjEwMDwvc3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBz
+cGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlBvcnRfQV9Xcml0ZV9SYXRlIj41MDwvc3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlBvcnRfQl9DbG9j
+ayI+MTAwPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6
+Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUu
+UG9ydF9CX0VuYWJsZV9SYXRlIj4xMDA8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+
+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5j
+ZUlkPSJQQVJBTV9WQUxVRS5Qb3J0X0JfV3JpdGVfUmF0ZSI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBz
+cGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlByaW1pdGl2ZSI+OGt4Mjwvc3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1l
+bnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlJEX0FERFJfQ0hOR19BIj5m
+YWxzZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlJE
+X0FERFJfQ0hOR19CIj5mYWxzZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAg
+ICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9
+IlBBUkFNX1ZBTFVFLlJFQURfTEFURU5DWV9BIj4xPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVu
+dFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpy
+ZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuUkVBRF9MQVRFTkNZX0IiPjE8L3NwaXJpdDpjb25maWd1
+cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5SZWFkX1dpZHRoX0EiPjMyPC9zcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxl
+RWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuUmVhZF9XaWR0aF9C
+Ij4zMjwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlJl
+Z2lzdGVyX1BvcnRBX091dHB1dF9vZl9NZW1vcnlfQ29yZSI+ZmFsc2U8L3NwaXJpdDpjb25maWd1
+cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5SZWdpc3Rlcl9Qb3J0QV9PdXRwdXRf
+b2ZfTWVtb3J5X1ByaW1pdGl2ZXMiPmZhbHNlPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZl
+cmVuY2VJZD0iUEFSQU1fVkFMVUUuUmVnaXN0ZXJfUG9ydEJfT3V0cHV0X29mX01lbW9yeV9Db3Jl
+Ij5mYWxzZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0
+OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVF
+LlJlZ2lzdGVyX1BvcnRCX091dHB1dF9vZl9NZW1vcnlfUHJpbWl0aXZlcyI+ZmFsc2U8L3NwaXJp
+dDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVF
+bGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5SZW1haW5pbmdfTWVt
+b3J5X0xvY2F0aW9ucyI+MDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAg
+ICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBB
+UkFNX1ZBTFVFLlJlc2V0X01lbW9yeV9MYXRjaF9BIj5mYWxzZTwvc3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBz
+cGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlJlc2V0X01lbW9yeV9MYXRjaF9CIj5mYWxz
+ZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlJlc2V0
+X1ByaW9yaXR5X0EiPkNFPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAg
+IDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFS
+QU1fVkFMVUUuUmVzZXRfUHJpb3JpdHlfQiI+Q0U8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50
+VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJl
+ZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5SZXNldF9UeXBlIj5BU1lOQzwvc3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlVzZV9BWElfSUQiPmZhbHNlPC9zcGly
+aXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxl
+RWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuVXNlX0J5dGVfV3Jp
+dGVfRW5hYmxlIj50cnVlPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAg
+IDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFS
+QU1fVkFMVUUuVXNlX0Vycm9yX0luamVjdGlvbl9QaW5zIj5mYWxzZTwvc3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlVzZV9SRUdDRUFfUGluIj5mYWxzZTwv
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3Vy
+YWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlVzZV9SRUdD
+RUJfUGluIj5mYWxzZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8
+c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFN
+X1ZBTFVFLlVzZV9SU1RBX1BpbiI+ZmFsc2U8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVy
+ZW5jZUlkPSJQQVJBTV9WQUxVRS5Vc2VfUlNUQl9QaW4iPnRydWU8L3NwaXJpdDpjb25maWd1cmFi
+bGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUg
+c3Bpcml0OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5Xcml0ZV9EZXB0aF9BIj42NTUzNjwvc3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJs
+ZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLldyaXRlX1dpZHRo
+X0EiPjMyPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6
+Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUu
+V3JpdGVfV2lkdGhfQiI+MzI8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAg
+ICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJQ
+QVJBTV9WQUxVRS5lY2N0eXBlIj5Ob19FQ0M8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFs
+dWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVy
+ZW5jZUlkPSJQQVJBTV9WQUxVRS5yZWdpc3Rlcl9wb3J0YV9pbnB1dF9vZl9zb2Z0ZWNjIj5mYWxz
+ZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZp
+Z3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLnJlZ2lz
+dGVyX3BvcnRiX291dHB1dF9vZl9zb2Z0ZWNjIj5mYWxzZTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVs
+ZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGly
+aXQ6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLnNvZnRlY2MiPmZhbHNlPC9zcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZh
+bHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUudXNlX2JyYW1fYmxvY2siPlN0YW5k
+X0Fsb25lPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6
+Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUFJPSkVDVF9QQVJB
+TS5BUkNISVRFQ1RVUkUiPnp5bnE8L3NwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAg
+ICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlk
+PSJQUk9KRUNUX1BBUkFNLkJBU0VfQk9BUkRfUEFSVCIvPgogICAgICAgIDxzcGlyaXQ6Y29uZmln
+dXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUFJPSkVDVF9QQVJBTS5CT0FS
+RF9DT05ORUNUSU9OUyIvPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVl
+IHNwaXJpdDpyZWZlcmVuY2VJZD0iUFJPSkVDVF9QQVJBTS5ERVZJQ0UiPnhjN3owMjA8L3NwaXJp
+dDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVF
+bGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJQUk9KRUNUX1BBUkFNLlBBQ0tBR0UiPmNs
+ZzQ4NDwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bpcml0OmNv
+bmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBST0pFQ1RfUEFSQU0u
+UFJFRkhETCI+VkVSSUxPRzwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAg
+ICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBS
+T0pFQ1RfUEFSQU0uU0lMSUNPTl9SRVZJU0lPTiIvPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJh
+YmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0iUFJPSkVDVF9QQVJBTS5TSU1VTEFU
+T1JfTEFOR1VBR0UiPk1JWEVEPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAg
+ICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJpdDpyZWZlcmVuY2VJZD0i
+UFJPSkVDVF9QQVJBTS5TUEVFREdSQURFIj4tMzwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRW
+YWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVm
+ZXJlbmNlSWQ9IlBST0pFQ1RfUEFSQU0uVEVNUEVSQVRVUkVfR1JBREUiLz4KICAgICAgICA8c3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlBST0pFQ1Rf
+UEFSQU0uVVNFX1JESV9DVVNUT01JWkFUSU9OIj5UUlVFPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxl
+bWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNwaXJp
+dDpyZWZlcmVuY2VJZD0iUFJPSkVDVF9QQVJBTS5VU0VfUkRJX0dFTkVSQVRJT04iPlRSVUU8L3Nw
+aXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFi
+bGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJSVU5USU1FX1BBUkFNLklQQ09OVEVY
+VCI+SVBfRmxvdzwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAgICAgICA8c3Bp
+cml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9IlJVTlRJTUVf
+UEFSQU0uSVBSRVZJU0lPTiI+Mjwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZT4KICAg
+ICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJlbmNlSWQ9
+IlJVTlRJTUVfUEFSQU0uTUFOQUdFRCI+VFJVRTwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRW
+YWx1ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVm
+ZXJlbmNlSWQ9IlJVTlRJTUVfUEFSQU0uT1VUUFVURElSIj4uPC9zcGlyaXQ6Y29uZmlndXJhYmxl
+RWxlbWVudFZhbHVlPgogICAgICAgIDxzcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlIHNw
+aXJpdDpyZWZlcmVuY2VJZD0iUlVOVElNRV9QQVJBTS5TRUxFQ1RFRFNJTU1PREVMIi8+CiAgICAg
+ICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUgc3Bpcml0OnJlZmVyZW5jZUlkPSJS
+VU5USU1FX1BBUkFNLlNIQVJFRERJUiI+Ljwvc3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1
+ZT4KICAgICAgICA8c3Bpcml0OmNvbmZpZ3VyYWJsZUVsZW1lbnRWYWx1ZSBzcGlyaXQ6cmVmZXJl
+bmNlSWQ9IlJVTlRJTUVfUEFSQU0uU1dWRVJTSU9OIj4yMDE4LjM8L3NwaXJpdDpjb25maWd1cmFi
+bGVFbGVtZW50VmFsdWU+CiAgICAgICAgPHNwaXJpdDpjb25maWd1cmFibGVFbGVtZW50VmFsdWUg
+c3Bpcml0OnJlZmVyZW5jZUlkPSJSVU5USU1FX1BBUkFNLlNZTlRIRVNJU0ZMT1ciPk9VVF9PRl9D
+T05URVhUPC9zcGlyaXQ6Y29uZmlndXJhYmxlRWxlbWVudFZhbHVlPgogICAgICA8L3NwaXJpdDpj
+b25maWd1cmFibGVFbGVtZW50VmFsdWVzPgogICAgICA8c3Bpcml0OnZlbmRvckV4dGVuc2lvbnM+
+CiAgICAgICAgPHhpbGlueDpjb21wb25lbnRJbnN0YW5jZUV4dGVuc2lvbnM+CiAgICAgICAgICA8
+eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZvcz4KICAgICAgICAgICAgPHhpbGlueDpjb25maWdFbGVt
+ZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFW
+RV9TX0FYSS5BUlVTRVJfV0lEVEgiIHhpbGlueDp2YWx1ZVNvdXJjZT0iY29uc3RhbnQiLz4KICAg
+ICAgICAgICAgPHhpbGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IkJV
+U0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5BV1VTRVJfV0lEVEgiIHhpbGlueDp2
+YWx1ZVNvdXJjZT0iY29uc3RhbnQiLz4KICAgICAgICAgICAgPHhpbGlueDpjb25maWdFbGVtZW50
+SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFWRV9T
+X0FYSS5CVVNFUl9XSURUSCIgeGlsaW54OnZhbHVlU291cmNlPSJjb25zdGFudCIvPgogICAgICAg
+ICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iQlVTSUZQ
+QVJBTV9WQUxVRS5BWElMSVRFX1NMQVZFX1NfQVhJLkhBU19CVVJTVCIgeGlsaW54OnZhbHVlU291
+cmNlPSJhdXRvIi8+CiAgICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8geGlsaW54
+OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuSEFTX0NB
+Q0hFIiB4aWxpbng6dmFsdWVTb3VyY2U9ImNvbnN0YW50Ii8+CiAgICAgICAgICAgIDx4aWxpbng6
+Y29uZmlnRWxlbWVudEluZm8geGlsaW54OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFY
+SUxJVEVfU0xBVkVfU19BWEkuSEFTX0xPQ0siIHhpbGlueDp2YWx1ZVNvdXJjZT0iY29uc3RhbnQi
+Lz4KICAgICAgICAgICAgPHhpbGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNl
+SWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5IQVNfUFJPVCIgeGlsaW54
+OnZhbHVlU291cmNlPSJjb25zdGFudCIvPgogICAgICAgICAgICA8eGlsaW54OmNvbmZpZ0VsZW1l
+bnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElMSVRFX1NMQVZF
+X1NfQVhJLkhBU19RT1MiIHhpbGlueDp2YWx1ZVNvdXJjZT0iY29uc3RhbnQiLz4KICAgICAgICAg
+ICAgPHhpbGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IkJVU0lGUEFS
+QU1fVkFMVUUuQVhJTElURV9TTEFWRV9TX0FYSS5IQVNfUkVHSU9OIiB4aWxpbng6dmFsdWVTb3Vy
+Y2U9ImNvbnN0YW50Ii8+CiAgICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8geGls
+aW54OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuUFJP
+VE9DT0wiIHhpbGlueDp2YWx1ZVNvdXJjZT0iYXV0byIvPgogICAgICAgICAgICA8eGlsaW54OmNv
+bmZpZ0VsZW1lbnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElM
+SVRFX1NMQVZFX1NfQVhJLlJVU0VSX1dJRFRIIiB4aWxpbng6dmFsdWVTb3VyY2U9ImNvbnN0YW50
+Ii8+CiAgICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8geGlsaW54OnJlZmVyZW5j
+ZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSUxJVEVfU0xBVkVfU19BWEkuV1VTRVJfV0lEVEgiIHhp
+bGlueDp2YWx1ZVNvdXJjZT0iY29uc3RhbnQiLz4KICAgICAgICAgICAgPHhpbGlueDpjb25maWdF
+bGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZF
+X1NfQVhJLkFSVVNFUl9XSURUSCIgeGlsaW54OnZhbHVlU291cmNlPSJjb25zdGFudCIvPgogICAg
+ICAgICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iQlVT
+SUZQQVJBTV9WQUxVRS5BWElfU0xBVkVfU19BWEkuQVdVU0VSX1dJRFRIIiB4aWxpbng6dmFsdWVT
+b3VyY2U9ImNvbnN0YW50Ii8+CiAgICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8g
+eGlsaW54OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5CVVNF
+Ul9XSURUSCIgeGlsaW54OnZhbHVlU291cmNlPSJjb25zdGFudCIvPgogICAgICAgICAgICA8eGls
+aW54OmNvbmZpZ0VsZW1lbnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxV
+RS5BWElfU0xBVkVfU19BWEkuSEFTX0JVUlNUIiB4aWxpbng6dmFsdWVTb3VyY2U9ImF1dG8iLz4K
+ICAgICAgICAgICAgPHhpbGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9
+IkJVU0lGUEFSQU1fVkFMVUUuQVhJX1NMQVZFX1NfQVhJLkhBU19DQUNIRSIgeGlsaW54OnZhbHVl
+U291cmNlPSJjb25zdGFudCIvPgogICAgICAgICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZv
+IHhpbGlueDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElfU0xBVkVfU19BWEkuSEFT
+X0xPQ0siIHhpbGlueDp2YWx1ZVNvdXJjZT0iY29uc3RhbnQiLz4KICAgICAgICAgICAgPHhpbGlu
+eDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IkJVU0lGUEFSQU1fVkFMVUUu
+QVhJX1NMQVZFX1NfQVhJLkhBU19QUk9UIiB4aWxpbng6dmFsdWVTb3VyY2U9ImNvbnN0YW50Ii8+
+CiAgICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8geGlsaW54OnJlZmVyZW5jZUlk
+PSJCVVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5IQVNfUU9TIiB4aWxpbng6dmFsdWVT
+b3VyY2U9ImNvbnN0YW50Ii8+CiAgICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8g
+eGlsaW54OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5IQVNf
+UkVHSU9OIiB4aWxpbng6dmFsdWVTb3VyY2U9ImNvbnN0YW50Ii8+CiAgICAgICAgICAgIDx4aWxp
+bng6Y29uZmlnRWxlbWVudEluZm8geGlsaW54OnJlZmVyZW5jZUlkPSJCVVNJRlBBUkFNX1ZBTFVF
+LkFYSV9TTEFWRV9TX0FYSS5QUk9UT0NPTCIgeGlsaW54OnZhbHVlU291cmNlPSJhdXRvIi8+CiAg
+ICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8geGlsaW54OnJlZmVyZW5jZUlkPSJC
+VVNJRlBBUkFNX1ZBTFVFLkFYSV9TTEFWRV9TX0FYSS5SVVNFUl9XSURUSCIgeGlsaW54OnZhbHVl
+U291cmNlPSJjb25zdGFudCIvPgogICAgICAgICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZv
+IHhpbGlueDpyZWZlcmVuY2VJZD0iQlVTSUZQQVJBTV9WQUxVRS5BWElfU0xBVkVfU19BWEkuV1VT
+RVJfV0lEVEgiIHhpbGlueDp2YWx1ZVNvdXJjZT0iY29uc3RhbnQiLz4KICAgICAgICAgICAgPHhp
+bGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkFY
+SV9TbGF2ZV9UeXBlIiB4aWxpbng6dmFsdWVTb3VyY2U9InVzZXIiLz4KICAgICAgICAgICAgPHhp
+bGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkFY
+SV9UeXBlIiB4aWxpbng6dmFsdWVTb3VyY2U9InVzZXIiLz4KICAgICAgICAgICAgPHhpbGlueDpj
+b25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkFzc3VtZV9T
+eW5jaHJvbm91c19DbGsiIHhpbGlueDp2YWx1ZVNvdXJjZT0idXNlciIvPgogICAgICAgICAgICA8
+eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUu
+Qnl0ZV9TaXplIiB4aWxpbng6dmFsdWVTb3VyY2U9InVzZXIiLz4KICAgICAgICAgICAgPHhpbGlu
+eDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkNvbGxp
+c2lvbl9XYXJuaW5ncyIgeGlsaW54OnZhbHVlU291cmNlPSJ1c2VyIi8+CiAgICAgICAgICAgIDx4
+aWxpbng6Y29uZmlnRWxlbWVudEluZm8geGlsaW54OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5F
+Tl9TQUZFVFlfQ0tUIiB4aWxpbng6dmFsdWVTb3VyY2U9InVzZXIiLz4KICAgICAgICAgICAgPHhp
+bGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkVu
+YWJsZV9CIiB4aWxpbng6dmFsdWVTb3VyY2U9InVzZXIiLz4KICAgICAgICAgICAgPHhpbGlueDpj
+b25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLkZpbGxfUmVt
+YWluaW5nX01lbW9yeV9Mb2NhdGlvbnMiIHhpbGlueDp2YWx1ZVNvdXJjZT0idXNlciIvPgogICAg
+ICAgICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iUEFS
+QU1fVkFMVUUuSW50ZXJmYWNlX1R5cGUiIHhpbGlueDp2YWx1ZVNvdXJjZT0idXNlciIvPgogICAg
+ICAgICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iUEFS
+QU1fVkFMVUUuTWVtb3J5X1R5cGUiIHhpbGlueDp2YWx1ZVNvdXJjZT0idXNlciIvPgogICAgICAg
+ICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iUEFSQU1f
+VkFMVUUuT3BlcmF0aW5nX01vZGVfQSIgeGlsaW54OnZhbHVlU291cmNlPSJ1c2VyIi8+CiAgICAg
+ICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8geGlsaW54OnJlZmVyZW5jZUlkPSJQQVJB
+TV9WQUxVRS5PcGVyYXRpbmdfTW9kZV9CIiB4aWxpbng6dmFsdWVTb3VyY2U9InVzZXIiLz4KICAg
+ICAgICAgICAgPHhpbGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IlBB
+UkFNX1ZBTFVFLlBvcnRfQl9DbG9jayIgeGlsaW54OnZhbHVlU291cmNlPSJ1c2VyIi8+CiAgICAg
+ICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8geGlsaW54OnJlZmVyZW5jZUlkPSJQQVJB
+TV9WQUxVRS5Qb3J0X0JfRW5hYmxlX1JhdGUiIHhpbGlueDp2YWx1ZVNvdXJjZT0idXNlciIvPgog
+ICAgICAgICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZvIHhpbGlueDpyZWZlcmVuY2VJZD0i
+UEFSQU1fVkFMVUUuUmVhZF9XaWR0aF9BIiB4aWxpbng6dmFsdWVTb3VyY2U9InVzZXIiLz4KICAg
+ICAgICAgICAgPHhpbGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxpbng6cmVmZXJlbmNlSWQ9IlBB
+UkFNX1ZBTFVFLlJlYWRfV2lkdGhfQiIgeGlsaW54OnZhbHVlU291cmNlPSJ1c2VyIi8+CiAgICAg
+ICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8geGlsaW54OnJlZmVyZW5jZUlkPSJQQVJB
+TV9WQUxVRS5SZWdpc3Rlcl9Qb3J0QV9PdXRwdXRfb2ZfTWVtb3J5X1ByaW1pdGl2ZXMiIHhpbGlu
+eDp2YWx1ZVNvdXJjZT0idXNlciIvPgogICAgICAgICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJ
+bmZvIHhpbGlueDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuUmVzZXRfVHlwZSIgeGlsaW54OnZh
+bHVlU291cmNlPSJ1c2VyIi8+CiAgICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8g
+eGlsaW54OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5Vc2VfQVhJX0lEIiB4aWxpbng6dmFsdWVT
+b3VyY2U9InVzZXIiLz4KICAgICAgICAgICAgPHhpbGlueDpjb25maWdFbGVtZW50SW5mbyB4aWxp
+bng6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLlVzZV9CeXRlX1dyaXRlX0VuYWJsZSIgeGlsaW54
+OnZhbHVlU291cmNlPSJ1c2VyIi8+CiAgICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudElu
+Zm8geGlsaW54OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5Vc2VfUlNUQl9QaW4iIHhpbGlueDp2
+YWx1ZVNvdXJjZT0idXNlciIvPgogICAgICAgICAgICA8eGlsaW54OmNvbmZpZ0VsZW1lbnRJbmZv
+IHhpbGlueDpyZWZlcmVuY2VJZD0iUEFSQU1fVkFMVUUuV3JpdGVfRGVwdGhfQSIgeGlsaW54OnZh
+bHVlU291cmNlPSJ1c2VyIi8+CiAgICAgICAgICAgIDx4aWxpbng6Y29uZmlnRWxlbWVudEluZm8g
+eGlsaW54OnJlZmVyZW5jZUlkPSJQQVJBTV9WQUxVRS5Xcml0ZV9XaWR0aF9BIiB4aWxpbng6dmFs
+dWVTb3VyY2U9InVzZXIiLz4KICAgICAgICAgICAgPHhpbGlueDpjb25maWdFbGVtZW50SW5mbyB4
+aWxpbng6cmVmZXJlbmNlSWQ9IlBBUkFNX1ZBTFVFLldyaXRlX1dpZHRoX0IiIHhpbGlueDp2YWx1
+ZVNvdXJjZT0idXNlciIvPgogICAgICAgICAgPC94aWxpbng6Y29uZmlnRWxlbWVudEluZm9zPgog
+ICAgICAgIDwveGlsaW54OmNvbXBvbmVudEluc3RhbmNlRXh0ZW5zaW9ucz4KICAgICAgPC9zcGly
+aXQ6dmVuZG9yRXh0ZW5zaW9ucz4KICAgIDwvc3Bpcml0OmNvbXBvbmVudEluc3RhbmNlPgogIDwv
+c3Bpcml0OmNvbXBvbmVudEluc3RhbmNlcz4KPC9zcGlyaXQ6ZGVzaWduPgo=
+--00000000000069dc30059f0c8fa7
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -529,5 +880,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0709130936571412625==--
+--00000000000069dc30059f0c8fa7--
 
