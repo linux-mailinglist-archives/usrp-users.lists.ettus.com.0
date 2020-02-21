@@ -2,66 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2281D167025
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Feb 2020 08:24:03 +0100 (CET)
-Received: from [::1] (port=55660 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E879616815C
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Feb 2020 16:21:24 +0100 (CET)
+Received: from [::1] (port=50372 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j52fI-00083P-DX; Fri, 21 Feb 2020 02:24:00 -0500
-Received: from mail-wr1-f54.google.com ([209.85.221.54]:37118)
+	id 1j5A7E-0000Mb-DU; Fri, 21 Feb 2020 10:21:20 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:42697)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <simon@sdr-radio.com>) id 1j52fE-0007vp-2H
- for USRP-users@lists.ettus.com; Fri, 21 Feb 2020 02:23:56 -0500
-Received: by mail-wr1-f54.google.com with SMTP id w15so782962wru.4
- for <USRP-users@lists.ettus.com>; Thu, 20 Feb 2020 23:23:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sdr-radio-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:references:in-reply-to:subject:date:message-id:mime-version
- :thread-index:content-language;
- bh=cg9/zjntKd7dBPFOr/a5HloW3r6IAy9+ZNIcGOifeVA=;
- b=crAJGuz7hZBZ829DkGYHK7MIYGELepUDxWxS7ZJuR9hcxoQlSLsrtrpZKNNixD56A5
- QihrcWUNPOeAh/COjT+YXlJGLviK/G5WLogElQMp6SA0y7NdLdSPvDHtA4CjWw3++yis
- 5fzQC6NnTkssQyLFtOr0I3SXHVdSIscxqbBQrBJE/l7fcCM9AHJAIGJrLg5RL/8kT7IY
- hgU7FXZenRTV/2Gh5tW89GhjucHWdHKm63YPm+HljIwVGz8u5nXnvWEehMqaQ6ATITQa
- CvnjKDZprlqMkbdWApQeyaS1ZrRrFRUmXsokThO7qZee+6lhVMUHC9V8NJvFO+4tUH90
- VIJQ==
+ (Exim 4.92) (envelope-from <rkossler@nd.edu>) id 1j5A7A-0000BH-EZ
+ for usrp-users@lists.ettus.com; Fri, 21 Feb 2020 10:21:16 -0500
+Received: by mail-oi1-f178.google.com with SMTP id j132so1888442oih.9
+ for <usrp-users@lists.ettus.com>; Fri, 21 Feb 2020 07:20:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=rnPKu2ITRwcnfVgTnmPByhIy70xOb01H6qVMbNUEJKI=;
+ b=gXmCCMFWSSBIKpHkLzt+DE8DCZINKwpnCamgfB8tJ66U1s4acXGK3HwUJWK6/eW7O3
+ Cummg4xkB15DAVTYr7jh/IoVEaD1OSpYF38rRYgRBkuMWZdSZs9twZSTsWySdNoV/OmJ
+ XXY4+NaQpsO9BcCFVMBh5MbaokfTRGh2pSLoe3E30np7nGdW1tRf6kMn9TkFwWtKknj9
+ a+aiWdJ/XdYSG6y0xaLuFjI+j4pb2ZGewKHVw0MWhbLEET+Nz17w6KvmX9iDL9P5DQUn
+ 4dnD5WaCP18ThuaTi3enrrUrPuEIRrg1rkvsxpEbAGso2cxhl3z/XX/NzWWwh6+ux48A
+ Bdfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:references:in-reply-to:subject:date
- :message-id:mime-version:thread-index:content-language;
- bh=cg9/zjntKd7dBPFOr/a5HloW3r6IAy9+ZNIcGOifeVA=;
- b=amQ/i89TmXZAkAyzGWOpjPkmGDeGjbATVCmQGyUTMZ7CENjlUI/KByU+KTFNXFjH9F
- FRiFYbtzwg5RPQtqouhuvh0I+QERnppIH/lRWpbIl48OynjN/guNd8R77HOkGvzp6OvD
- 0VTepf5SggCsXTwmdESb73V2y4UbCBfhEdAtzwrR0iZB3TMiUkqgAohVUZ8Bu0i6qpYD
- P6pMCFvX2fI1F0Rs1WRqy1yELG2JMH3dpVFLJ/0VC3R0L6plF5fOGMrhFOXKQ3MtAMzV
- 5spqVB7tYZw+2i+QbxvjVMdjL52o/KU31RR4FciPWLe8V0FujFhsq/rYJJq3KfzAlqPi
- trbA==
-X-Gm-Message-State: APjAAAWrovltp3JlIlQhRFGjKA/ajFii/xJTN3wozZLfyjPTUqb8a85T
- 2G0w9/F/VckqjhgJIM7wNxcIbS+zzyo=
-X-Google-Smtp-Source: APXvYqx0gMFd7NTYri2iCvR4u33EIOOHbBWUrTzVGQDKtvu/yGVPbv9CjHd9aFJXxP6Xwd5YEhpl4A==
-X-Received: by 2002:adf:df03:: with SMTP id y3mr47139215wrl.260.1582269794936; 
- Thu, 20 Feb 2020 23:23:14 -0800 (PST)
-Received: from Beasty (blackbeauty.sdr-radio.com. [81.174.138.141])
- by smtp.gmail.com with ESMTPSA id u4sm2874926wrt.37.2020.02.20.23.23.13
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 20 Feb 2020 23:23:14 -0800 (PST)
-To: "'Kyeong Su Shin'" <ksshin@postech.ac.kr>,
-	<USRP-users@lists.ettus.com>
-References: <CAAZMsC1pUq22iiHVHAvGjETvdYDActPOVOGruR=dKLgbh535Gg@mail.gmail.com>
- <E01AEA46-6030-4BFF-91CE-0535F84D2FF5@gmail.com>
- <CAAZMsC2Do=wLYC-tzKAW8hCezdsZ1zpEtRwN_VtxBgcEXAg8NA@mail.gmail.com>
- <5E4ECFB7.4060504@gmail.com>
- <CAAZMsC3LNfsJir6Dejw7f-jerOvLuJWVLyrb9C2YRs4_dhzL1Q@mail.gmail.com>,
- <5E4ED8EE.4090601@gmail.com>
- <PS2P216MB07061A6D78A0432E8E1D23E693120@PS2P216MB0706.KORP216.PROD.OUTLOOK.COM>
-In-Reply-To: <PS2P216MB07061A6D78A0432E8E1D23E693120@PS2P216MB0706.KORP216.PROD.OUTLOOK.COM>
-Date: Fri, 21 Feb 2020 07:23:10 -0000
-Message-ID: <038001d5e887$c5aac5f0$510051d0$@sdr-radio.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=rnPKu2ITRwcnfVgTnmPByhIy70xOb01H6qVMbNUEJKI=;
+ b=gXLrgqBuV8vTHwxhpIPjoXGWqx4B0DPzN/Ob6t7O/4jbA+O0wC6rMGC5dWeCpCikjm
+ mxwZ7Cbj0ZrOIbqgDiNviFEKTFQ7tbF18mToqD/7nGkKy76sILznMjv5m+1lPu0lFFy0
+ FwRBymgP2Hqub9bAHQYbZ+fE4jvnl73AdNK8GpIX27V/HuoBQuWhPOeSd+mIAJijUvKf
+ MjgN/8fQcdISKSch5jTavB1GCMNcxjb0Y5NPz2VUv0Whx85EIte/dOOPpPKY57AABKul
+ nwm2eNgBXzOP3yLWeTuYfs4Zrvh+WRLKtOIbK+kT8SLo/m+OlQX4Bn0qM2eg+TRsJm2J
+ 5KrQ==
+X-Gm-Message-State: APjAAAXCU4abIQxt6TdDqbU7oM6+v7iaPFEVg7TJEFL+L3EoMRazHm5t
+ UVc2gQDKc3es0hxHnclhjnyI1XoQlYezKTIKxRL9OQ==
+X-Google-Smtp-Source: APXvYqwJ8q3UdBA1zt3qOxJ/HYqeSu7EIk80yRI9LPRSZfqAa1y3UAI8IReFDoNZWf41Rrcao0BtuMDZHZfLWNGthTo=
+X-Received: by 2002:aca:52d0:: with SMTP id g199mr2265111oib.153.1582298435549; 
+ Fri, 21 Feb 2020 07:20:35 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFz3ap/GzqisYsJmSz6rs1ey82oYAGJvOAfAWmunEcBnlL/DALK31L0AV5wqioB2C/5saiUuScg
-Content-Language: en-gb
-Subject: Re: [USRP-users] GNU Radio UHD Blocks Resolution
+References: <CAB__hTR_xTy6MvgwhDqa9aSqXpCtGrK8JadJQoifL65dDcajvA@mail.gmail.com>
+ <CA+JMMq8EpTeVBvr8X=mCeBg32_ETmvJrPr5siBok6Sq9bsOJGw@mail.gmail.com>
+ <CAB__hTR0RYWOXW-JME5zugCQVuqu1XejgN2MBBZwFfdYZ0_NDw@mail.gmail.com>
+ <CAL7q81sKNQ_gM4_NicTE_w3tQhm4Hr9Xn6ri7P1QDK3svh7SuQ@mail.gmail.com>
+In-Reply-To: <CAL7q81sKNQ_gM4_NicTE_w3tQhm4Hr9Xn6ri7P1QDK3svh7SuQ@mail.gmail.com>
+Date: Fri, 21 Feb 2020 10:20:24 -0500
+Message-ID: <CAB__hTTcn4CovxN_MgYAZPCO0+r3J9BJW-FmtxzEM2HF1ED1qw@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Subject: Re: [USRP-users] Vivado IP locked issue
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Simon G4ELI via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: simon@sdr-radio.com
-Content-Type: multipart/mixed; boundary="===============1931470916214659588=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2175383281080728130=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,135 +77,183 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multipart message in MIME format.
+--===============2175383281080728130==
+Content-Type: multipart/alternative; boundary="0000000000002e3a88059f1790a8"
 
---===============1931470916214659588==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0381_01D5E887.C5AB3B20"
-Content-Language: en-gb
+--0000000000002e3a88059f1790a8
+Content-Type: text/plain; charset="UTF-8"
 
-This is a multipart message in MIME format.
+The problem was I had not changed the ARCH to zynq in viv_sim_preamble.mak
+- it was still at kintex7.  For some reason this worked with 3.14 (Viv
+2017.4).  Thanks for your help.
+Rob
 
-------=_NextPart_000_0381_01D5E887.C5AB3B20
-Content-Type: text/plain;
-	charset="utf-8"
+On Thu, Feb 20, 2020 at 10:48 PM Jonathon Pendlum <
+jonathon.pendlum@ettus.com> wrote:
+
+> Try removing all xml files you have in your OOT IP directory.
+>
+> On Thu, Feb 20, 2020 at 10:22 PM Rob Kossler via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Unfortunately, I already tried that but no luck.
+>>
+>> On Thu, Feb 20, 2020 at 9:54 PM Nick Foster <bistromath@gmail.com> wrote:
+>>
+>>>
+>>> /home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_block_txarb_tb/build-ip/
+>>>
+>>> Wipe that whole directory and try it again. If you want to be selective
+>>> and save some time you can wipe only the axi_mem_64k directory.
+>>>
+>>> On Thu, Feb 20, 2020 at 6:13 PM Rob Kossler via USRP-users <
+>>> usrp-users@lists.ettus.com> wrote:
+>>>
+>>>> Hi,
+>>>> I am having a problem with a Block Memory Generator IP that is working
+>>>> with 2017.4 but is giving me issues with 2018.3. I have tried to upgrade
+>>>> the IP as well as re-creating the IP from scratch in 2018.3, but I still
+>>>> get the same failure (see below).  I have attached the IP created from
+>>>> scratch in 2018.3.  Any suggestions?  I am not very experienced with FPGA
+>>>> development in general or Vivado specifically, so it is likely that I am
+>>>> missing something obvious.
+>>>>
+>>>> By the way, I am using the webpack (free) version of Vivado and
+>>>> attempting to build for the E310.
+>>>>
+>>>> Rob
+>>>>
+>>>>
+>>>> kossler@kossler-ThinkPad-P51:~/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_block_txarb_tb$
+>>>> make xsim
+>>>> BUILDER: Checking tools...
+>>>> * GNU bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)
+>>>> * Python 2.7.17
+>>>> * Vivado v2018.3 (64-bit)
+>>>> ========================================================
+>>>> BUILDER: Building IP axi_mem_64k
+>>>> ========================================================
+>>>> BUILDER: Staging IP in build directory...
+>>>> BUILDER: Reserving IP location:
+>>>> /home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k
+>>>> BUILDER: Retargeting IP to part kintex7/xc7z020/clg484/-3...
+>>>> BUILDER: Building IP...
+>>>> [00:00:00] Executing command: vivado -mode batch -source
+>>>> /home/kossler/uhd/UHD-3.15/uhd/fpga-src/usrp3/tools/scripts/viv_generate_ip.tcl
+>>>> -log axi_mem_64k.log -nojournal
+>>>> WARNING: [IP_Flow 19-2162] IP 'axi_mem_64k' is locked:
+>>>> CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the
+>>>> following file is locked:
+>>>> /home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k/axi_mem_64k.xci
+>>>> CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for
+>>>> the following file is locked:
+>>>> /home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k/axi_mem_64k.xci
+>>>>
+>>> _______________________________________________
+>>>> USRP-users mailing list
+>>>> USRP-users@lists.ettus.com
+>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>
+>>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
+
+--0000000000002e3a88059f1790a8
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"ltr">The problem was I had not changed the ARCH to zynq in viv_=
+sim_preamble.mak - it was still at kintex7.=C2=A0 For some reason this work=
+ed with 3.14 (Viv 2017.4).=C2=A0 Thanks for your help.<div>Rob</div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu,=
+ Feb 20, 2020 at 10:48 PM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.p=
+endlum@ettus.com">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Try removing a=
+ll xml files you have in your OOT=C2=A0IP directory.</div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 20, 2020 at=
+ 10:22 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-users@lists=
+.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div dir=3D"au=
+to">Unfortunately, I already tried that but no luck.=C2=A0</div></div><div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu=
+, Feb 20, 2020 at 9:54 PM Nick Foster &lt;<a href=3D"mailto:bistromath@gmai=
+l.com" target=3D"_blank">bistromath@gmail.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><font co=
+lor=3D"#b45f06">/home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches/noc_bloc=
+k_txarb_tb/build-ip/<br></font></div><div><br></div><div>Wipe that whole di=
+rectory and try it again. If you want to be selective and save some time yo=
+u can wipe only the axi_mem_64k directory.<br></div></div><br><div class=3D=
+"gmail_quote"></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Thu, Feb 20, 2020 at 6:13 PM Rob Kossler via USRP-users &lt;<a=
+ href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@li=
+sts.ettus.com</a>&gt; wrote:<br></div></div><div class=3D"gmail_quote"><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex"></blockquote></div><div class=
+=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr">Hi,<div>I am having a problem with a Block Memory Generator IP tha=
+t is working with 2017.4 but is giving me issues with 2018.3. I have tried =
+to upgrade the IP as well as re-creating the IP from scratch in 2018.3, but=
+ I still get the same failure (see below).=C2=A0 I have attached the IP cre=
+ated from scratch in 2018.3.=C2=A0 Any suggestions?=C2=A0 I am not very exp=
+erienced with FPGA development in general or Vivado specifically, so it is =
+likely that I am missing something obvious.</div><div><br></div><div>By the=
+ way, I am using the webpack (free) version of Vivado and attempting to bui=
+ld for the E310.</div><div><br></div><div>Rob</div><div><br><div><br></div>=
+<div>kossler@kossler-ThinkPad-P51:~/nd_overhaul/uhd_nd/rfnoc/testbenches/no=
+c_block_txarb_tb$ make xsim<br>BUILDER: Checking tools...<br>* GNU bash, ve=
+rsion 4.4.20(1)-release (x86_64-pc-linux-gnu)<br>* Python 2.7.17<br>* Vivad=
+o v2018.3 (64-bit)<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>BUILDER: Building IP axi_mem_=
+64k<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>BUILDER: Staging IP in build directory...<br=
+>BUILDER: Reserving IP location: /home/kossler/nd_overhaul/uhd_nd/rfnoc/tes=
+tbenches/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k<br>BUILDER=
+: Retargeting IP to part kintex7/xc7z020/clg484/-3...<br>BUILDER: Building =
+IP...<br>[00:00:00] Executing command: vivado -mode batch -source /home/kos=
+sler/uhd/UHD-3.15/uhd/fpga-src/usrp3/tools/scripts/viv_generate_ip.tcl -log=
+ axi_mem_64k.log -nojournal<br><font color=3D"#0b5394">WARNING: [IP_Flow 19=
+-2162] IP &#39;axi_mem_64k&#39; is locked:</font><br><font color=3D"#b45f06=
+">CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the fo=
+llowing file is locked: /home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches/=
+noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k/axi_mem_64k.xci<br>=
+CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for the f=
+ollowing file is locked: /home/kossler/nd_overhaul/uhd_nd/rfnoc/testbenches=
+/noc_block_txarb_tb/build-ip/xc7z020clg484-3/axi_mem_64k/axi_mem_64k.xci</f=
+ont><br></div></div></div></blockquote></div><div class=3D"gmail_quote"><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex">
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
 
-=20
-
-The ADALM-Pluto uses the AD9363 / AD9364 and is a member of the AD9631 =
-family. This has AGC which is set via the in_voltage0_gain_control_mode =
-parameter and works very well indeed, making the cheap and cheerful =
-Pluto a very usable SDR.
-
-=20
-
-Simon Brown, G4ELI
-
-https://www.sdr-radio.com
-
-=20
-
-From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of =
-Kyeong Su Shin via USRP-users
-
-=20
-
--I think AD9361 (used in B200) has a hardware AGC (not turned on by =
-default). However, as Marcus mentioned, it is best left to the =
-application. Without knowing the signals and the channel conditions, AGC =
-designers must make many assumptions which may be incorrect or make the =
-performance suboptimal. You can give it a shot, but the best way is to =
-roll your own AGC (you can change the gain level of your USRP on the =
-fly).
-
-=20
-
-
-------=_NextPart_000_0381_01D5E887.C5AB3B20
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle21
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'>Hi,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>The =
-ADALM-Pluto uses the AD9363 / AD9364 and is a member of the AD9631 =
-family. This has AGC which is set via the in_voltage0_gain_control_mode =
-parameter and works very well indeed, making the cheap and cheerful =
-Pluto a very usable SDR.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><p =
-class=3DMsoNormal>Simon Brown, G4ELI<o:p></o:p></p><p =
-class=3DMsoNormal>https://www.sdr-radio.com<o:p></o:p></p></div><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><di=
-v style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm'><p class=3DMsoNormal><b><span =
-lang=3DEN-US>From:</span></b><span lang=3DEN-US> USRP-users =
-&lt;usrp-users-bounces@lists.ettus.com&gt; <b>On Behalf Of </b>Kyeong Su =
-Shin via USRP-users</span><span =
-style=3D'font-size:12.0pt;color:black'><o:p></o:p></span></p></div></div>=
-<div><div><div><p class=3DMsoNormal><span =
-style=3D'font-size:12.0pt;color:black'><o:p>&nbsp;</o:p></span></p></div>=
-<div><p class=3DMsoNormal><span =
-style=3D'font-size:12.0pt;color:black'>-I think AD9361 (used in B200) =
-has a hardware AGC (not turned on by default). However, as Marcus =
-mentioned, it is best left to the application. Without knowing the =
-signals and the channel conditions, AGC designers must make many =
-assumptions which may be incorrect or make the performance suboptimal. =
-You can give it a shot, but the best way is to roll your own AGC (you =
-can change the gain level of your USRP on the =
-fly).<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:12.0pt;color:black'><o:p>&nbsp;</o:p></span></p></div>=
-</div></div></div></body></html>
-------=_NextPart_000_0381_01D5E887.C5AB3B20--
+--0000000000002e3a88059f1790a8--
 
 
-
---===============1931470916214659588==
+--===============2175383281080728130==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -228,6 +264,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1931470916214659588==--
-
+--===============2175383281080728130==--
 
