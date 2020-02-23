@@ -2,59 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D21169687
-	for <lists+usrp-users@lfdr.de>; Sun, 23 Feb 2020 08:24:07 +0100 (CET)
-Received: from [::1] (port=59830 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84D41169792
+	for <lists+usrp-users@lfdr.de>; Sun, 23 Feb 2020 13:37:47 +0100 (CET)
+Received: from [::1] (port=41240 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j5lcN-0004Vm-6x; Sun, 23 Feb 2020 02:23:59 -0500
-Received: from mail-wm1-f42.google.com ([209.85.128.42]:35969)
+	id 1j5qVy-0005xv-DC; Sun, 23 Feb 2020 07:37:42 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:36374)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <simon@sdr-radio.com>) id 1j5lcJ-0004R3-P0
- for usrp-users@lists.ettus.com; Sun, 23 Feb 2020 02:23:55 -0500
-Received: by mail-wm1-f42.google.com with SMTP id p17so6098739wma.1
- for <usrp-users@lists.ettus.com>; Sat, 22 Feb 2020 23:23:35 -0800 (PST)
+ (Exim 4.92) (envelope-from <michael.dickens@ettus.com>)
+ id 1j5qVu-0005pS-VF
+ for usrp-users@lists.ettus.com; Sun, 23 Feb 2020 07:37:39 -0500
+Received: by mail-oi1-f180.google.com with SMTP id c16so6401646oic.3
+ for <usrp-users@lists.ettus.com>; Sun, 23 Feb 2020 04:37:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sdr-radio-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:references:in-reply-to:subject:date:message-id
- :mime-version:content-language:thread-index;
- bh=bfHT+reCHOcqifpAvT2xTA89H4gn5SzQE5nasmm1YKE=;
- b=hb81gSQkH0pWEfLjLUfN8qox0OnDYD7gqNxipakgrsN7d8WjkpE5tRAoEVU/4rOEQu
- xOwO93Yd2/w7Ui/u/o2F/kymExswdJTJg+4MPj7icz7UkWOwcQC3P8nxBcx1FOUrX6dH
- yTBCG4YxJctRi/YlnNcM0pbN9r6JC7CWg1YWPMcjVR4B7WL1PeHmtXMudmDamAIyZIq4
- UoPdU0JJzymAuMy8sqgODOXY1r5aqfwJl8LKrlAepYZZOLFJUO+rjMAnHaUO6HXb+Ze6
- 2xGdw5gnRdFLc3AKxU6PjYosGqCELVsl1R3POBl9zoZC7XzoDc4cWXYz0LpZBPaAXW3I
- APTA==
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=sX4URE7uqT7JFnZVHRySoWxjAj3OviRbhvg7DjuAUrQ=;
+ b=IKtSERu1AAUnyPzVFsetpQohnYxnaY7fEMjNdtr5a69PDMcSTwt2GTjLzq+KOzj2y/
+ oA1NuaHJOZ1IF+qU2GSaT1VFa+MakE/OdFVpUqVfSQj2KhNrrwxh6zK1nVjhVGwW2t4y
+ XVhZLgyx++ZRskHfGdXs1MMPDoglNrBjffOxEjW+Dto/kPCFhUIuQGGTI+UcxREQVQze
+ 0tKNhe2WdnBjT0JgxA39zeMucv3vPkXHRMaOeUy4vh2iHsFNvCYFrf6RuYVFdi1vfx4S
+ DuyWwGonVvIyxRoHulGJiFPXSIiU2aePx0VdwOaCY4kz71w6RNf93zHIeHWFnrXtSImZ
+ BfUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
- :message-id:mime-version:content-language:thread-index;
- bh=bfHT+reCHOcqifpAvT2xTA89H4gn5SzQE5nasmm1YKE=;
- b=d9iLjzhS++xExC7dKEWexBVLPh1MaqWYLjgY+hu9F9FhptRTMp+a6GwP50GWmVlWlt
- kAgNe2e+5y2DPS6zabXZncw0Ukphd/9T5Y7Kt9KQyxf7FsqaVEoIZHW5tqEhOqtKTjcq
- IcBwvKGwvaMe+EgyupvfptI6u8PnspDz3RtNc4niRZ2++aRHrR0TGIi4DFLaY3b+uaKn
- jTwVIveaLZ2yUrtsMYLFmbThxsRF3+8RvF4YCvJnud97q+823wZNn2+nO8kRPE/uRAzw
- Tx+AGSHLoeQrrpNKoljgn7Y5T/zvF4W/Iu7jVb0F4rxL5TXn17Of/UvhN88/k/FKYVqV
- Y9VQ==
-X-Gm-Message-State: APjAAAVzhzTf01Fb65Ghbt7AH0BaBgasa4Em000KrjYogWLO5C0F3Vn/
- a3rihBeNEEwfzZX1IUwdzD/M9lnWHqM=
-X-Google-Smtp-Source: APXvYqwq1sB5atAy+am2u9fXnc3PoXlROwh/co6GjbhZWU9L2FNWyUHYrtuK5wqDMXuYBoONuIjWRg==
-X-Received: by 2002:a7b:c750:: with SMTP id w16mr14259094wmk.46.1582442594465; 
- Sat, 22 Feb 2020 23:23:14 -0800 (PST)
-Received: from Beasty (blackbeauty.sdr-radio.com. [81.174.138.141])
- by smtp.gmail.com with ESMTPSA id l17sm12007009wro.77.2020.02.22.23.23.13
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 22 Feb 2020 23:23:13 -0800 (PST)
-To: "'Michael Dickens'" <michael.dickens@ettus.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=sX4URE7uqT7JFnZVHRySoWxjAj3OviRbhvg7DjuAUrQ=;
+ b=EntQjvqCw7frlBDsdJ1/2fDCLKPT95YeMYtYTEwvNu2xk5WswgNNvKuqahM86p0FOP
+ z0ZU211JWu/7RKy06ZX5Iwjuh8pHjbPH3wP268oEF8hpzwfZlhClYt44kRgtEZlzkq/Q
+ NtMjbpU2hXlGLasT1s7yfyWnzvvEwIxzGdidQ0PMVVcIM8LHZrVtKVTb9Dg9jOgIN2MB
+ V4CRJ4p6+nNi14qABkQtLSaWs7HFdwp72KgkTOVW5CH5QmDmclKWk7m1yrzqn4fCdCUZ
+ xGWsPqD5e59JhxQtIJUgo2uaH43MT2/Zbdr4ZUgHxoTBMfbfStrsewyP14YgT6JrGgXW
+ wyog==
+X-Gm-Message-State: APjAAAUzaGaSCSfVQujv+B9uv+YNpVL2YhI5pZ2C1n4Hg1+c8iFrqv5T
+ eWLzOZ2+Fj67A6U42Iz1qlHytKMROh8PPA2zeH8wcdrQ4D4=
+X-Google-Smtp-Source: APXvYqywnaCZw9iRKGSir2MbWWFZ8x4c7traiw10H6rEyaQsTQh7vjo+Ts1VBYQROdGfTQxT2mI3EfC0ZTOkXqLXF7U=
+X-Received: by 2002:a05:6808:48b:: with SMTP id
+ z11mr8699528oid.38.1582461418227; 
+ Sun, 23 Feb 2020 04:36:58 -0800 (PST)
+MIME-Version: 1.0
 References: <105801d5e7ff$f7f2aa10$e7d7fe30$@sdr-radio.com>
  <CAGNhwTPXJP3j6xNmpjwom-+BEKf11Vv=EmYHxLK+Wd=o6YpCTw@mail.gmail.com>
-In-Reply-To: <CAGNhwTPXJP3j6xNmpjwom-+BEKf11Vv=EmYHxLK+Wd=o6YpCTw@mail.gmail.com>
-Date: Sun, 23 Feb 2020 07:23:11 -0000
-Message-ID: <04d301d5ea1a$1adf0390$509d0ab0$@sdr-radio.com>
-MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-gb
-Thread-Index: AQDk0sAzSrXrVBWYNNDpVaYUXmmmUAJVzJxyqfffeNA=
+ <04d301d5ea1a$1adf0390$509d0ab0$@sdr-radio.com>
+In-Reply-To: <04d301d5ea1a$1adf0390$509d0ab0$@sdr-radio.com>
+Date: Sun, 23 Feb 2020 07:36:47 -0500
+Message-ID: <CAGNhwTPiw9JnZ9Duo2wrpyi7UUVUzrjth4JiBzJjWqE4HVhoAQ@mail.gmail.com>
+To: simon@sdr-radio.com
 Subject: Re: [USRP-users] UHD 3.15 LTS, X310 performance
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -67,10 +62,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Simon G4ELI via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: simon@sdr-radio.com
-Cc: 'USRP list' <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7397378164363351195=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: USRP list <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4002340222994763161=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,213 +79,105 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multipart message in MIME format.
+--===============4002340222994763161==
+Content-Type: multipart/alternative; boundary="000000000000b46021059f3d828b"
 
---===============7397378164363351195==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_04D4_01D5EA1A.1ADFC6E0"
-Content-Language: en-gb
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_04D4_01D5EA1A.1ADFC6E0
-Content-Type: text/plain;
-	charset="utf-8"
+--000000000000b46021059f3d828b
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+That's great to hear, Simon! Cheers! - MLD
 
-=20
+On Sun, Feb 23, 2020 at 2:23 AM <simon@sdr-radio.com> wrote:
 
-Some feedback: I=E2=80=99ve been reading the UHD code and now have the =
-X310 running well albeit at 20Msps as the user has only GigE, but =
-he=E2=80=99s buying a 10 GigE card  and does have a =
-=E2=80=98stonking=E2=80=99 Windows PC so I=E2=80=99ll document the =
-experience. I expect we=E2=80=99ll stream sustained at 50 Msps, quite =
-possibly much more.
+> Hi,
+>
+>
+>
+> Some feedback: I=E2=80=99ve been reading the UHD code and now have the X3=
+10
+> running well albeit at 20Msps as the user has only GigE, but he=E2=80=99s=
+ buying a
+> 10 GigE card  and does have a =E2=80=98stonking=E2=80=99 Windows PC so I=
+=E2=80=99ll document the
+> experience. I expect we=E2=80=99ll stream sustained at 50 Msps, quite pos=
+sibly much
+> more.
+>
+>
+>
+> My B200 is streaming superbly at 28 Msps on a mid-range PC.
+>
+>
+>
+> Simon Brown, G4ELI
+>
+> https://www.sdr-radio.com
+>
+>
+>
+> *From:* Michael Dickens <michael.dickens@ettus.com>
+>
+>
+>
+> Hi Simon - When you say "but performance is not great" ... beyond CPU
+> load: do you get good Tx and Rx rates (e.g., if you run "benchmark_rate")
+> without underruns / overflows / late packets (etc)? What is the MTU set t=
+o
+> for this ENET link? 1 GbE or 10 GbE? Can you provide a little more detail
+> for us to work with here? Thx! - MLD
+>
 
-=20
 
-My B200 is streaming superbly at 28 Msps on a mid-range PC.
+--=20
+Michael Dickens
+Ettus Research Technical Support
+Email: support@ettus.com
+Web: https://ettus.com/
 
-=20
-
-Simon Brown, G4ELI
-
-https://www.sdr-radio.com
-
-=20
-
-From: Michael Dickens <michael.dickens@ettus.com>=20
-
-=20
-
-Hi Simon - When you say "but performance is not great" ... beyond CPU =
-load: do you get good Tx and Rx rates (e.g., if you run =
-"benchmark_rate") without underruns / overflows / late packets (etc)? =
-What is the MTU set to for this ENET link? 1 GbE or 10 GbE? Can you =
-provide a little more detail for us to work with here? Thx! - MLD
-
-
-------=_NextPart_000_04D4_01D5EA1A.1ADFC6E0
-Content-Type: text/html;
-	charset="utf-8"
+--000000000000b46021059f3d828b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:317422409;
-	mso-list-template-ids:-383384836;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:36.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:72.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:108.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:144.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:180.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:216.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:252.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:288.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:324.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'>Hi,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Some =
-feedback: I=E2=80=99ve been reading the UHD code and now have the X310 =
-running well albeit at 20Msps as the user has only GigE, but =
-he=E2=80=99s buying a 10 GigE card=C2=A0 and does have a =
-=E2=80=98stonking=E2=80=99 Windows PC so I=E2=80=99ll document the =
-experience. I expect we=E2=80=99ll stream sustained at 50 Msps, quite =
-possibly much more.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>My B200 is =
-streaming superbly at 28 Msps on a mid-range PC.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal>Simon Brown, G4ELI<o:p></o:p></p><p =
-class=3DMsoNormal>https://www.sdr-radio.com<o:p></o:p></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><span lang=3DEN-US>From:</span></b><span =
-lang=3DEN-US> Michael Dickens &lt;michael.dickens@ettus.com&gt; =
-<o:p></o:p></span></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p =
-class=3DMsoNormal>Hi Simon - When you say &quot;but performance is not =
-great&quot; ... beyond CPU load: do you get good Tx and Rx rates (e.g., =
-if you run &quot;benchmark_rate&quot;) without underruns / overflows / =
-late packets (etc)? What is the MTU set to for this ENET link? 1 GbE or =
-10 GbE? Can you provide a little more detail for us to work with here? =
-Thx! - MLD<o:p></o:p></p></div></div></body></html>
-------=_NextPart_000_04D4_01D5EA1A.1ADFC6E0--
+<div dir=3D"ltr">That&#39;s=C2=A0great to hear, Simon! Cheers! - MLD</div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun,=
+ Feb 23, 2020 at 2:23 AM &lt;<a href=3D"mailto:simon@sdr-radio.com">simon@s=
+dr-radio.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div lang=3D"EN-GB"><div class=3D"gmail-m_-51512278372053156Wor=
+dSection1"><p class=3D"MsoNormal"><span>Hi,<u></u><u></u></span></p><p clas=
+s=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"=
+><span>Some feedback: I=E2=80=99ve been reading the UHD code and now have t=
+he X310 running well albeit at 20Msps as the user has only GigE, but he=E2=
+=80=99s buying a 10 GigE card=C2=A0 and does have a =E2=80=98stonking=E2=80=
+=99 Windows PC so I=E2=80=99ll document the experience. I expect we=E2=80=
+=99ll stream sustained at 50 Msps, quite possibly much more.<u></u><u></u><=
+/span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p cl=
+ass=3D"MsoNormal"><span>My B200 is streaming superbly at 28 Msps on a mid-r=
+ange PC.<u></u><u></u></span></p><p class=3D"MsoNormal"><span><u></u>=C2=A0=
+<u></u></span></p><p class=3D"MsoNormal">Simon Brown, G4ELI<u></u><u></u></=
+p><p class=3D"MsoNormal"><a href=3D"https://www.sdr-radio.com" target=3D"_b=
+lank">https://www.sdr-radio.com</a><u></u><u></u></p><p class=3D"MsoNormal"=
+><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><b><span lang=
+=3D"EN-US">From:</span></b><span lang=3D"EN-US"> Michael Dickens &lt;<a hre=
+f=3D"mailto:michael.dickens@ettus.com" target=3D"_blank">michael.dickens@et=
+tus.com</a>&gt; <u></u><u></u></span></p><p class=3D"MsoNormal"><u></u>=C2=
+=A0<u></u></p><div><p class=3D"MsoNormal">Hi Simon - When you say &quot;but=
+ performance is not great&quot; ... beyond CPU load: do you get good Tx and=
+ Rx rates (e.g., if you run &quot;benchmark_rate&quot;) without underruns /=
+ overflows / late packets (etc)? What is the MTU set to for this ENET link?=
+ 1 GbE or 10 GbE? Can you provide a little more detail for us to work with =
+here? Thx! - MLD<u></u><u></u></p></div></div></div></blockquote></div><br =
+clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signatu=
+re"><div dir=3D"ltr"><div><div dir=3D"ltr">Michael Dickens<br>Ettus Researc=
+h Technical Support<br>Email: <a href=3D"mailto:support@ettus.com" target=
+=3D"_blank">support@ettus.com</a><br>Web: <a href=3D"https://ettus.com/" ta=
+rget=3D"_blank">https://ettus.com/</a></div></div></div></div>
+
+--000000000000b46021059f3d828b--
 
 
-
---===============7397378164363351195==
+--===============4002340222994763161==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -301,6 +188,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7397378164363351195==--
-
+--===============4002340222994763161==--
 
