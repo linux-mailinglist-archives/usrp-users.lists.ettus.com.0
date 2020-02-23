@@ -2,50 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F2EF168C05
-	for <lists+usrp-users@lfdr.de>; Sat, 22 Feb 2020 03:20:22 +0100 (CET)
-Received: from [::1] (port=47178 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D21169687
+	for <lists+usrp-users@lfdr.de>; Sun, 23 Feb 2020 08:24:07 +0100 (CET)
+Received: from [::1] (port=59830 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j5KOu-00079i-9Y; Fri, 21 Feb 2020 21:20:16 -0500
-Received: from mail-lj1-f180.google.com ([209.85.208.180]:35024)
+	id 1j5lcN-0004Vm-6x; Sun, 23 Feb 2020 02:23:59 -0500
+Received: from mail-wm1-f42.google.com ([209.85.128.42]:35969)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <ejkreinar@gmail.com>) id 1j5KOq-00072k-Qq
- for USRP-users@lists.ettus.com; Fri, 21 Feb 2020 21:20:12 -0500
-Received: by mail-lj1-f180.google.com with SMTP id q8so4193426ljb.2
- for <USRP-users@lists.ettus.com>; Fri, 21 Feb 2020 18:19:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tcmeTfEbDCprI8ogLrcyG8sTGY0XtEOBS0r2QIGh5a0=;
- b=dafUXId1/bYog3NSvsabPC18dFIT9bmyv1LERlwtLh51ZXigi2nlyf1GUcNNrZxuNH
- j6fllk4nuzvC74QsovgbWf44LTKaTzIjnKIuc+GkX2dLLJ/cchccCpaMyp0MINkjuf6J
- 3rqz/u3lT5PqDqAaezKq/slas1RDjmzZJZJ4U0DN1NxaVzROVTxHZIfTj/8XIWHI2RZE
- zuQutGtx/cngruXDseuVcw9/OA1auJnKgC5hVx/Ug9EuQWVqMB/0HhPYHkD8/iCzg5gH
- 0Kg9mqreMq3+7dHa8cMBCN53dqVa6/3/O5KS3pKAhv/l3Axa3eeDG3lxh0ZvJAW2kehs
- sy/w==
+ (Exim 4.92) (envelope-from <simon@sdr-radio.com>) id 1j5lcJ-0004R3-P0
+ for usrp-users@lists.ettus.com; Sun, 23 Feb 2020 02:23:55 -0500
+Received: by mail-wm1-f42.google.com with SMTP id p17so6098739wma.1
+ for <usrp-users@lists.ettus.com>; Sat, 22 Feb 2020 23:23:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sdr-radio-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:references:in-reply-to:subject:date:message-id
+ :mime-version:content-language:thread-index;
+ bh=bfHT+reCHOcqifpAvT2xTA89H4gn5SzQE5nasmm1YKE=;
+ b=hb81gSQkH0pWEfLjLUfN8qox0OnDYD7gqNxipakgrsN7d8WjkpE5tRAoEVU/4rOEQu
+ xOwO93Yd2/w7Ui/u/o2F/kymExswdJTJg+4MPj7icz7UkWOwcQC3P8nxBcx1FOUrX6dH
+ yTBCG4YxJctRi/YlnNcM0pbN9r6JC7CWg1YWPMcjVR4B7WL1PeHmtXMudmDamAIyZIq4
+ UoPdU0JJzymAuMy8sqgODOXY1r5aqfwJl8LKrlAepYZZOLFJUO+rjMAnHaUO6HXb+Ze6
+ 2xGdw5gnRdFLc3AKxU6PjYosGqCELVsl1R3POBl9zoZC7XzoDc4cWXYz0LpZBPaAXW3I
+ APTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tcmeTfEbDCprI8ogLrcyG8sTGY0XtEOBS0r2QIGh5a0=;
- b=hMjloq6t2U6SbrJremDfwaZ2ytJIP886PX7/bkxh/c1GfljIX0j2Q6hfWi4NNYHNHw
- qZJZ1G8XkcqRQ5lHKEpXH0f0vjm3FmkEpctSbip4GvRBaO6KUtHoOyld6e7dwcx5sb1v
- YDVRpvWfc41n+2FQcGmfdE+UpDr3Adi2lUV2NwhMBqXlFKVJsHKsfwh0P6yICEfVxlGz
- R3BsZROu8FHX0MM0BcHVAHQRKml2YOmVk60RqNMkq5ePphcHTnfFcP9tYsR3XgYUVIy0
- e9uQSaEA0xaEJ1UcMOeBsElVGHiYBUe0NLj54qXjhduJEEKNw1NrWj9MQf0OxIsE+byg
- El8w==
-X-Gm-Message-State: APjAAAWTT0y2PSgwZ1HlCJ5aOQctHC7DZbg4vpA16wOwT1BYkge925a7
- bTWyMrx+ioy5DhQ0A1oocofd6N3WO6qt/bReTo0=
-X-Google-Smtp-Source: APXvYqy6B6I5PtEY1bs8U4pP12dRRiPamjn8e+jqODI95o3DIintZdTMRQnwAmBBsJ6NaN9rK050yN8KsTHX7bDtXBs=
-X-Received: by 2002:a2e:7d01:: with SMTP id y1mr24808404ljc.100.1582337971559; 
- Fri, 21 Feb 2020 18:19:31 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
+ :message-id:mime-version:content-language:thread-index;
+ bh=bfHT+reCHOcqifpAvT2xTA89H4gn5SzQE5nasmm1YKE=;
+ b=d9iLjzhS++xExC7dKEWexBVLPh1MaqWYLjgY+hu9F9FhptRTMp+a6GwP50GWmVlWlt
+ kAgNe2e+5y2DPS6zabXZncw0Ukphd/9T5Y7Kt9KQyxf7FsqaVEoIZHW5tqEhOqtKTjcq
+ IcBwvKGwvaMe+EgyupvfptI6u8PnspDz3RtNc4niRZ2++aRHrR0TGIi4DFLaY3b+uaKn
+ jTwVIveaLZ2yUrtsMYLFmbThxsRF3+8RvF4YCvJnud97q+823wZNn2+nO8kRPE/uRAzw
+ Tx+AGSHLoeQrrpNKoljgn7Y5T/zvF4W/Iu7jVb0F4rxL5TXn17Of/UvhN88/k/FKYVqV
+ Y9VQ==
+X-Gm-Message-State: APjAAAVzhzTf01Fb65Ghbt7AH0BaBgasa4Em000KrjYogWLO5C0F3Vn/
+ a3rihBeNEEwfzZX1IUwdzD/M9lnWHqM=
+X-Google-Smtp-Source: APXvYqwq1sB5atAy+am2u9fXnc3PoXlROwh/co6GjbhZWU9L2FNWyUHYrtuK5wqDMXuYBoONuIjWRg==
+X-Received: by 2002:a7b:c750:: with SMTP id w16mr14259094wmk.46.1582442594465; 
+ Sat, 22 Feb 2020 23:23:14 -0800 (PST)
+Received: from Beasty (blackbeauty.sdr-radio.com. [81.174.138.141])
+ by smtp.gmail.com with ESMTPSA id l17sm12007009wro.77.2020.02.22.23.23.13
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sat, 22 Feb 2020 23:23:13 -0800 (PST)
+To: "'Michael Dickens'" <michael.dickens@ettus.com>
+References: <105801d5e7ff$f7f2aa10$e7d7fe30$@sdr-radio.com>
+ <CAGNhwTPXJP3j6xNmpjwom-+BEKf11Vv=EmYHxLK+Wd=o6YpCTw@mail.gmail.com>
+In-Reply-To: <CAGNhwTPXJP3j6xNmpjwom-+BEKf11Vv=EmYHxLK+Wd=o6YpCTw@mail.gmail.com>
+Date: Sun, 23 Feb 2020 07:23:11 -0000
+Message-ID: <04d301d5ea1a$1adf0390$509d0ab0$@sdr-radio.com>
 MIME-Version: 1.0
-References: <CA+JMMq-fdsxg05hjVTtN2PZuMYjZ0XRLQ4R8jYTrTL8qrB5mOg@mail.gmail.com>
-In-Reply-To: <CA+JMMq-fdsxg05hjVTtN2PZuMYjZ0XRLQ4R8jYTrTL8qrB5mOg@mail.gmail.com>
-Date: Fri, 21 Feb 2020 21:19:19 -0500
-Message-ID: <CADRnH20VZcEfe7fZe1QWS3SATcwVDJupNx6edRXe9989ioXtQA@mail.gmail.com>
-To: Nick Foster <bistromath@gmail.com>
-Subject: Re: [USRP-users] Block parameters in NOC block testbenches
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-gb
+Thread-Index: AQDk0sAzSrXrVBWYNNDpVaYUXmmmUAJVzJxyqfffeNA=
+Subject: Re: [USRP-users] UHD 3.15 LTS, X310 performance
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,10 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: EJ Kreinar <ejkreinar@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4767915791894060806=="
+From: Simon G4ELI via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: simon@sdr-radio.com
+Cc: 'USRP list' <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7397378164363351195=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,82 +84,213 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4767915791894060806==
-Content-Type: multipart/alternative; boundary="000000000000b5a32c059f20c498"
+This is a multipart message in MIME format.
 
---000000000000b5a32c059f20c498
-Content-Type: text/plain; charset="UTF-8"
+--===============7397378164363351195==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_04D4_01D5EA1A.1ADFC6E0"
+Content-Language: en-gb
 
-Hi Nick,
+This is a multipart message in MIME format.
 
-I feel like you might be looking for something like this-- just a defparam
-inside the testbench after the RFNOC_ADD_BLOCK macro?
-https://gitlab.com/theseus-cores/theseus-cores/-/blob/master/fpga-rfnoc/testbenches/noc_block_ddc_1_to_n_tb/noc_block_ddc_1_to_n_tb.sv#L25
-
-Let me know if you had something else in mind though...
-EJ
-
-On Fri, Feb 21, 2020, 3:16 PM Nick Foster via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi all,
->
-> I'm wondering if there's any good way to instantiate blocks in testbenches
-> with testbench-defined block parameters. The macro `RFNOC_ADD_BLOCK takes
-> care of defining all the NOC bus interfaces, but there's no place to define
-> block parameters.
->
-> Say I have a NOC block which takes a parameter N_TAPS. How can I
-> instantiate the block in the testbench with a testbench-defined N_TAPS
-> parameter without setting it as the default in the block's module?
->
-> Nick
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000b5a32c059f20c498
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_04D4_01D5EA1A.1ADFC6E0
+Content-Type: text/plain;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto"><div dir=3D"auto">Hi Nick,<div dir=3D"auto"><br></div><di=
-v dir=3D"auto">I feel like you might be looking for something like this-- j=
-ust a defparam inside the testbench after the RFNOC_ADD_BLOCK macro?=C2=A0<=
-a href=3D"https://gitlab.com/theseus-cores/theseus-cores/-/blob/master/fpga=
--rfnoc/testbenches/noc_block_ddc_1_to_n_tb/noc_block_ddc_1_to_n_tb.sv#L25" =
-target=3D"_blank" rel=3D"noreferrer">https://gitlab.com/theseus-cores/these=
-us-cores/-/blob/master/fpga-rfnoc/testbenches/noc_block_ddc_1_to_n_tb/noc_b=
-lock_ddc_1_to_n_tb.sv#L25</a></div><div dir=3D"auto"><br></div><div dir=3D"=
-auto">Let me know if you had something else in mind though...</div><div dir=
-=3D"auto">EJ</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Fri, Feb 21, 2020, 3:16 PM Nick Foster via USRP-users =
-&lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"=
-noreferrer">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
-;padding-left:1ex"><div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I=
-&#39;m wondering if there&#39;s any good way to instantiate blocks in testb=
-enches with testbench-defined block parameters. The macro `RFNOC_ADD_BLOCK =
-takes care of defining all the NOC bus interfaces, but there&#39;s no place=
- to define block parameters. <br></div><div><br></div><div>Say I have a NOC=
- block which takes a parameter N_TAPS. How can I instantiate the block in t=
-he testbench with a testbench-defined N_TAPS parameter without setting it a=
-s the default in the block&#39;s module?</div><div><br></div><div>Nick<br><=
-/div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
- target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
-.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+Hi,
 
---000000000000b5a32c059f20c498--
+=20
+
+Some feedback: I=E2=80=99ve been reading the UHD code and now have the =
+X310 running well albeit at 20Msps as the user has only GigE, but =
+he=E2=80=99s buying a 10 GigE card  and does have a =
+=E2=80=98stonking=E2=80=99 Windows PC so I=E2=80=99ll document the =
+experience. I expect we=E2=80=99ll stream sustained at 50 Msps, quite =
+possibly much more.
+
+=20
+
+My B200 is streaming superbly at 28 Msps on a mid-range PC.
+
+=20
+
+Simon Brown, G4ELI
+
+https://www.sdr-radio.com
+
+=20
+
+From: Michael Dickens <michael.dickens@ettus.com>=20
+
+=20
+
+Hi Simon - When you say "but performance is not great" ... beyond CPU =
+load: do you get good Tx and Rx rates (e.g., if you run =
+"benchmark_rate") without underruns / overflows / late packets (etc)? =
+What is the MTU set to for this ENET link? 1 GbE or 10 GbE? Can you =
+provide a little more detail for us to work with here? Thx! - MLD
 
 
---===============4767915791894060806==
+------=_NextPart_000_04D4_01D5EA1A.1ADFC6E0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:317422409;
+	mso-list-template-ids:-383384836;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>Hi,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Some =
+feedback: I=E2=80=99ve been reading the UHD code and now have the X310 =
+running well albeit at 20Msps as the user has only GigE, but =
+he=E2=80=99s buying a 10 GigE card=C2=A0 and does have a =
+=E2=80=98stonking=E2=80=99 Windows PC so I=E2=80=99ll document the =
+experience. I expect we=E2=80=99ll stream sustained at 50 Msps, quite =
+possibly much more.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>My B200 is =
+streaming superbly at 28 Msps on a mid-range PC.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal>Simon Brown, G4ELI<o:p></o:p></p><p =
+class=3DMsoNormal>https://www.sdr-radio.com<o:p></o:p></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><b><span lang=3DEN-US>From:</span></b><span =
+lang=3DEN-US> Michael Dickens &lt;michael.dickens@ettus.com&gt; =
+<o:p></o:p></span></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p =
+class=3DMsoNormal>Hi Simon - When you say &quot;but performance is not =
+great&quot; ... beyond CPU load: do you get good Tx and Rx rates (e.g., =
+if you run &quot;benchmark_rate&quot;) without underruns / overflows / =
+late packets (etc)? What is the MTU set to for this ENET link? 1 GbE or =
+10 GbE? Can you provide a little more detail for us to work with here? =
+Thx! - MLD<o:p></o:p></p></div></div></body></html>
+------=_NextPart_000_04D4_01D5EA1A.1ADFC6E0--
+
+
+
+--===============7397378164363351195==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -160,5 +301,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4767915791894060806==--
+--===============7397378164363351195==--
+
 
