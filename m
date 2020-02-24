@@ -2,54 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FEEF16AFA6
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2020 19:48:47 +0100 (CET)
-Received: from [::1] (port=33222 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0342716AFF0
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Feb 2020 20:05:29 +0100 (CET)
+Received: from [::1] (port=35706 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.92)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j6Imc-0005gw-3L; Mon, 24 Feb 2020 13:48:46 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:38997)
+	id 1j6J2k-0006hd-0u; Mon, 24 Feb 2020 14:05:26 -0500
+Received: from mail-wr1-f49.google.com ([209.85.221.49]:45371)
  by mm2.emwd.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (Exim 4.92) (envelope-from <neel.pandeya@ettus.com>)
- id 1j6ImY-0005Yr-FX
- for usrp-users@lists.ettus.com; Mon, 24 Feb 2020 13:48:42 -0500
-Received: by mail-ot1-f44.google.com with SMTP id 77so9686152oty.6
- for <usrp-users@lists.ettus.com>; Mon, 24 Feb 2020 10:48:22 -0800 (PST)
+ (Exim 4.92) (envelope-from <simon@sdr-radio.com>) id 1j6J2g-0006VM-L4
+ for usrp-users@lists.ettus.com; Mon, 24 Feb 2020 14:05:22 -0500
+Received: by mail-wr1-f49.google.com with SMTP id g3so11668293wrs.12
+ for <usrp-users@lists.ettus.com>; Mon, 24 Feb 2020 11:05:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=cmYaKi+HaUSAhoaVfKSvwmSRo0/OUq5BuX5LjnzNNvw=;
- b=L9XUuQUKxfKhWpfLBm2LI7Hgi3GSbMeGqbowSETXZS5Irh+F9Sc2SdBi6aL3yS+6q3
- x5owLFCglWOpGYPxD9TmngXFGPv0Ktc0MTjC09fH/Canw1837kvB+BDrKmiHlsyTm+iA
- RDQio2kAlUOqbzRcjZABBQaq8fUBa1Dx6IAmX/TROn1I1TIeEnh9h9dbkQYEwx5ElY1X
- M0hMRt/NjBKMtXQE6btsUfPKVjkvXHtD0CU9NuwVi7ZWbZ5gutuDTcmDoJ2/eupACuce
- ODAedX8mv5mtwerEI02y4/xbipfk4t1Y8K/i6kl5WDvw9ppk4AV2scWsXxeoBHtzXyUV
- gwfg==
+ d=sdr-radio-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:subject:date:message-id:mime-version:thread-index
+ :content-language;
+ bh=lqCYLohQk735EyewE8nduyPd0vl1OUdcd7hTrQuNhHQ=;
+ b=ukYTMGyfh9nu1aMjxaT/mTjNVOHhYFkNRJkASBtLtWufc8kXsDNBw52X2xQmi3kvx+
+ SYobNN5Xcc3yyjwiHbFrZMKZ/lomDqVKtUKfrMda5G/OxY7JDNA0qpY2jVJU71WLmjG/
+ KUkipri8FljCXikOeersTjzBurKXmV6ErhIsTSf+7PlQSlzVTwPvurSfIj9wTz1CWteI
+ n0NpB0150Ego38SAfJvcYkAdchlSGTYUUWh+UlOCm3/O+jT4AOOIcxHCb5y8vIPMz5e2
+ hLtBAYzTar8qs/lmUjZYjoM2FSSVtOkD24MrkHjnyQwy2Jl8Wha/7tlPFV8Hz/ONUeZR
+ xiRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=cmYaKi+HaUSAhoaVfKSvwmSRo0/OUq5BuX5LjnzNNvw=;
- b=NetpMt0AqmA2P+OlPQP2HDBehfJei11wkCuY6qBdSRBc/S32CoMg4jRZWt5ZpNAh8h
- KMDTB1neIVN9ZIaHZgze07f8wx/KjqfaVRQVpTHFXX+lEBh4sD3fTnVIfG9TaqGEthej
- Xfp7eoIeesFbB14heCTVbgisW7vNu1My8apbZkz52q1VWJy+cstyzYIsru4bK7AiEhO9
- BEAYKdrZfgBXAznFVaMWUW9aMTI8PRvnyIaGIP0AQhCwe11v7TsF2zfG1UN387ceAdri
- 1UwZsoxLmE1+HXfzPKZ4c56GHGTJmOLOE8/rYAOdor6JI9MqSKZsq29tcLzKz7a/hF64
- tVZg==
-X-Gm-Message-State: APjAAAWFNHjcNBaWSq8qVz0UqPcw1ePQ3eTbI5MNoiZXLrxuP8qD6J/3
- 2zrEUKJe80NPqV3Br+Ew/SdzHEKgif7rHNbdWhFRtSDz
-X-Google-Smtp-Source: APXvYqykJ4MBl0p8FJVue1SiGmPvlFF9cFPJvejosEab5iGpj00J9/+XGhlZ9UuSt/6bI658TYqeI2T2pUxjhRVUJhE=
-X-Received: by 2002:a9d:6647:: with SMTP id q7mr43043599otm.35.1582570081754; 
- Mon, 24 Feb 2020 10:48:01 -0800 (PST)
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :thread-index:content-language;
+ bh=lqCYLohQk735EyewE8nduyPd0vl1OUdcd7hTrQuNhHQ=;
+ b=lvv31cMsj8mxF9saIf8yVRnlBMUpbeGOeqjq/hZNGtp5LnX/bfcmRRU2iOEpVAIWj5
+ bmiFb7f8rpdVGP5mU+6oucm7cNzdFaS8TQlwK+Vlh/pWR7RKVyWDOCJmg25O+pqYdLDv
+ iQDcsvJWdtGHfKBCXuP3PjdW+4zojYERqom7MWu9phgVKH4DrntOqXFZxT62GqBh1VNk
+ LUBJEplhLtplV/caYLUoBiH0UA+g4+ifnn8LFSu/oiod/H/wwnvKasiMj4VjolIw0n2T
+ PJErmVUNFRURslN3YxLASM5cBmJxQvU6bgBtSD+dEN8jQMFb2OlqWOxPCpoSdWA9kg9I
+ /J6Q==
+X-Gm-Message-State: APjAAAU7AqefE/ks0DQAIrsKAn6mW3JQelIIeVho7nHnSVRtET+gKQNP
+ OXl2UKoyzkgBLeb4+8pbDDNQWx8Rj6M=
+X-Google-Smtp-Source: APXvYqwzT9N0AginReUYj3oz7Ks+4AcNeMhN49Jzv8wC6qhSlhiBqPt9p8HMuY+0ON5TB3HufSHBMw==
+X-Received: by 2002:a5d:550f:: with SMTP id b15mr9439359wrv.19.1582571081375; 
+ Mon, 24 Feb 2020 11:04:41 -0800 (PST)
+Received: from Beasty (blackbeauty.sdr-radio.com. [81.174.138.141])
+ by smtp.gmail.com with ESMTPSA id s15sm20125125wrp.4.2020.02.24.11.04.40
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 24 Feb 2020 11:04:40 -0800 (PST)
+To: <usrp-users@lists.ettus.com>
+Date: Mon, 24 Feb 2020 19:04:39 -0000
+Message-ID: <220001d5eb45$43fe7cc0$cbfb7640$@sdr-radio.com>
 MIME-Version: 1.0
-References: <trinity-dcbc347f-cd14-4dcb-890c-9783cc458a06-1582568562308@3c-app-gmx-bs61>
- <CAKJyDk+=5pTvDycx5hWuesTJCZCnX6m-ydEH6d1KtPaMT238pA@mail.gmail.com>
-In-Reply-To: <CAKJyDk+=5pTvDycx5hWuesTJCZCnX6m-ydEH6d1KtPaMT238pA@mail.gmail.com>
-Date: Mon, 24 Feb 2020 12:47:25 -0600
-Message-ID: <CACaXmv8xBkTaWyph1kOxg_pUirLLqWpbS1Pe2cp0O=pZpHS-6w@mail.gmail.com>
-To: Lukas Haase <lukashaase@gmx.at>
-Subject: Re: [USRP-users] USRP X310 over PCIe: Recommended setup? (Windows,
- Linux, which one?)
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdXrROuOty0RfVkATM2T5TMKs+ccjQ==
+Content-Language: en-gb
+Subject: [USRP-users] E310, 3.15 LTS, Windows
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,10 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1939159244179661462=="
+From: Simon G4ELI via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: simon@sdr-radio.com
+Content-Type: multipart/mixed; boundary="===============8545368850973736171=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,185 +81,114 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1939159244179661462==
-Content-Type: multipart/alternative; boundary="0000000000008e2e28059f56cffa"
+This is a multipart message in MIME format.
 
---0000000000008e2e28059f56cffa
-Content-Type: text/plain; charset="UTF-8"
+--===============8545368850973736171==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_2201_01D5EB45.43FECAE0"
+Content-Language: en-gb
 
-Hello Lukas:
+This is a multipart message in MIME format.
 
-Do you have the option of using 10 Gbps Ethernet?
+------=_NextPart_000_2201_01D5EB45.43FECAE0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-It will provide you the equivalent performance on the X300/X310 as the PCIe
-interface.
+Hi All,
 
-The Intel X710-DA2 network card works very well out-of-the-box with Ubuntu
-18.04 and 19.10.
+ 
 
-Most people using Linux and GNU Radio with the X300/X310 use Ethernet,
-instead of PCIe.
+A user cannot 'see' his E310 using 3.15 LTS compiled from source by me. The
+E310 is connected by Ethernet GigE.
 
---Neel Pandeya
+ 
+
+I'm wondering if there's something special needed or if there's a magic
+option I should enable in the source - the ENABLE_E300 option is checked,
+all looks good to me.
+
+ 
+
+There is a second person who will soon be testing just in case it's finger
+trouble.
+
+ 
+
+Simon Brown, G4ELI
+
+https://www.sdr-radio.com
+
+ 
 
 
-
-On Mon, 24 Feb 2020 at 12:38, Robin Coxe via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi Lukas.   Most USRP X310 Linux users employ 10gigE to connect to the
-> host PC.  PCIe on the USRP X310 uses a proprietary ASIC and the driver is,
-> as you discovered, built on an obsolete kernel.  You could attempt to
-> appeal directly to NI for support if switching to 10 gigE isn't an option
-> for you.
->
-> -Robin
->
->
-> On Mon, Feb 24, 2020 at 10:23 AM Lukas Haase via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi,
->>
->> I have used USRP X310 over PCIe and gnuradio on Windows for quite a bit.
->> I suffered from large connectivity issues so I wanted to switch to Linux
->> for quite some time. Also, I need to start modifying gnuradio/uhd source
->> which is even more painful in Windows.
->>
->> I set up an Ubuntu 18.04 system (which is not exactly new) and in the
->> last step Linux NI RIO Installation fails. And
->> https://files.ettus.com/manual/page_ni_rio_kernel.html states:
->> "Currently, the latest supported kernel version is 4.2.x.". What a bummer!
->>
->> Is there any way to get USRP X310 + PCIe working on Ubuntu 18.04?
->> If not, what is the recommended setup when someone needs PCIe, gnuradio,
->> source code?
->> I would really prefer a Debian-like Linux system that's not completely
->> outdated (such as pre-bionic).
->>
->> Best,
->> Lukas
->>
->>
->> PS:
->>
->> $ lsb_release -a
->> No LSB modules are available.
->> Distributor ID: Ubuntu
->> Description:    Ubuntu 18.04.4 LTS
->> Release:        18.04
->> Codename:       bionic
->> $ uname -a
->> Linux station 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59
->> UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000008e2e28059f56cffa
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_2201_01D5EB45.43FECAE0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">Hello Lukas:</div><div class=3D"gmail_default" style=3D"font-fa=
-mily:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"fo=
-nt-family:verdana,sans-serif">Do you have the option of using 10 Gbps Ether=
-net?</div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif"><br></div><div class=3D"gmail_default" style=3D"font-family:verdana,sa=
-ns-serif">It will provide you the equivalent performance on the X300/X310 a=
-s the PCIe interface.</div><div class=3D"gmail_default" style=3D"font-famil=
-y:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-=
-family:verdana,sans-serif">The Intel X710-DA2 network card works very well =
-out-of-the-box with Ubuntu 18.04 and 19.10.</div><div class=3D"gmail_defaul=
-t" style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_d=
-efault" style=3D"font-family:verdana,sans-serif">Most people using Linux an=
-d GNU Radio with the X300/X310 use Ethernet, instead of PCIe.<br></div><div=
- class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br></div=
-><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif">--Ne=
-el Pandeya</div><div class=3D"gmail_default" style=3D"font-family:verdana,s=
-ans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:verd=
-ana,sans-serif"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Mon, 24 Feb 2020 at 12:38, Robin Coxe via USRP=
--users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.e=
-ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr">Hi Lukas.=C2=A0 =C2=A0Most USRP X310 Linux users e=
-mploy 10gigE to connect to the host PC.=C2=A0 PCIe on the USRP X310 uses a =
-proprietary ASIC and the driver is, as you discovered, built on an obsolete=
- kernel.=C2=A0 You could attempt to appeal directly to NI for support if sw=
-itching to 10 gigE isn&#39;t an option for you.<div><br></div><div>-Robin<b=
-r><div><br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
-" class=3D"gmail_attr">On Mon, Feb 24, 2020 at 10:23 AM Lukas Haase via USR=
-P-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"=
->usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex">Hi,<br>
-<br>
-I have used USRP X310 over PCIe and gnuradio on Windows for quite a bit. I =
-suffered from large connectivity issues so I wanted to switch to Linux for =
-quite some time. Also, I need to start modifying gnuradio/uhd source which =
-is even more painful in Windows.<br>
-<br>
-I set up an Ubuntu 18.04 system (which is not exactly new) and in the last =
-step Linux NI RIO Installation fails. And <a href=3D"https://files.ettus.co=
-m/manual/page_ni_rio_kernel.html" rel=3D"noreferrer" target=3D"_blank">http=
-s://files.ettus.com/manual/page_ni_rio_kernel.html</a> states: &quot;Curren=
-tly, the latest supported kernel version is 4.2.x.&quot;. What a bummer!<br=
->
-<br>
-Is there any way to get USRP X310 + PCIe working on Ubuntu 18.04?<br>
-If not, what is the recommended setup when someone needs PCIe, gnuradio, so=
-urce code?<br>
-I would really prefer a Debian-like Linux system that&#39;s not completely =
-outdated (such as pre-bionic).<br>
-<br>
-Best,<br>
-Lukas<br>
-<br>
-<br>
-PS:<br>
-<br>
-$ lsb_release -a<br>
-No LSB modules are available.<br>
-Distributor ID: Ubuntu<br>
-Description:=C2=A0 =C2=A0 Ubuntu 18.04.4 LTS<br>
-Release:=C2=A0 =C2=A0 =C2=A0 =C2=A0 18.04<br>
-Codename:=C2=A0 =C2=A0 =C2=A0 =C2=A0bionic<br>
-$ uname -a<br>
-Linux station 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UT=
-C 2020 x86_64 x86_64 x86_64 GNU/Linux<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000008e2e28059f56cffa--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hi All,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>A user =
+cannot &#8216;see&#8217; his E310 using 3.15 LTS compiled from source by =
+me. The E310 is connected by Ethernet GigE.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I&#8217;m =
+wondering if there&#8217;s something special needed or if there&#8217;s =
+a magic option I should enable in the source &#8211; the ENABLE_E300 =
+option is checked, all looks good to me.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>There is a =
+second person who will soon be testing just in case it&#8217;s finger =
+trouble.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-GB'>Simon =
+Brown, G4ELI<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-GB'>https://www.sdr-radio.com<o:p></o:p>=
+</span></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_2201_01D5EB45.43FECAE0--
 
 
---===============1939159244179661462==
+
+--===============8545368850973736171==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -267,5 +199,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1939159244179661462==--
+--===============8545368850973736171==--
+
 
