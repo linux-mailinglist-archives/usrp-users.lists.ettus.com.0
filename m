@@ -2,53 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7CC16EE60
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Feb 2020 19:51:24 +0100 (CET)
-Received: from [::1] (port=51452 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29BC416F0C7
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Feb 2020 22:00:48 +0100 (CET)
+Received: from [::1] (port=52506 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j6fIg-0002Xa-6U; Tue, 25 Feb 2020 13:51:22 -0500
-Received: from mail-lf1-f51.google.com ([209.85.167.51]:37693)
+	id 1j6hJt-0007KI-62; Tue, 25 Feb 2020 16:00:45 -0500
+Received: from mail-wr1-f46.google.com ([209.85.221.46]:39215)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1j6fIb-0002Qd-U9
- for usrp-users@lists.ettus.com; Tue, 25 Feb 2020 13:51:18 -0500
-Received: by mail-lf1-f51.google.com with SMTP id b15so10547005lfc.4
- for <usrp-users@lists.ettus.com>; Tue, 25 Feb 2020 10:50:57 -0800 (PST)
+ (Exim 4.93) (envelope-from <simon@sdr-radio.com>) id 1j6hJo-0007E2-Pk
+ for usrp-users@lists.ettus.com; Tue, 25 Feb 2020 16:00:40 -0500
+Received: by mail-wr1-f46.google.com with SMTP id y17so337734wrn.6
+ for <usrp-users@lists.ettus.com>; Tue, 25 Feb 2020 13:00:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=nfBCPbtsA2eMnwcOy3E5LZGnaW/tARMFh5off2u2ejo=;
- b=MsUnR8D5UWSg4Hqs2Ev7qgeHPHpGyJiWF4cryVxzG1JZWmTKryamXDlyaGw0O0SykV
- MMcgNX5N+dvt9hI2TJnw/CrbvRXBUvGLgkHvUwAAplDSsrVvdGmUg1byrcUkPpo2WEMS
- TOreGQ88WlugftR1QiLxKNSnPlFpg+Cmy+i+j7UWW00iia2zFUvAwA7PT78EGVRxrpby
- Di7riaca24nwCOEgNuSDwhQMQ8BDLjGsnvcZFhCSlIkLpmPSx62ylExptXZKt/t+vE4W
- gZvIzOM5AvMiIPU3g4crA4yBkpBoLhTHXSJidOqJiGt9saWoBLGj870TuVCN4XbXOHXu
- S+lQ==
+ d=sdr-radio-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:subject:date:message-id:mime-version:content-language
+ :thread-index; bh=eC3NzQ2HzrQ4/isFMLEiWyac+ONTVWZVhSjLWhB+g7E=;
+ b=1BnckbnZrXU0kSFZrJXRMqVzShmlddJLWqfU4RtopS6flOtv/SX/chv2vsVRUuy7xV
+ jQs0ZuTGzGBtvWmg7cVXr2xxSyuNiEjBBjnIExtUDqY3slo19pMLRe+KSpszW9KoVX04
+ y0TYLw0+9agWNdCbrA+wgb48QWSoqFTJJSTm9NUahY8z5bo7+Ds9TWiezl44IA2OA2c4
+ CsA6pOwhViFZ/+c9/RFXQKp9w6GGWo6l/fGg5BLtu9GfG0inZ+VRAhYYL4cmu2oqpZiN
+ pO12/v5iZPuwHuSmrnlt3VZnBtqBVvp/z/RSDTPWfSOxJkfMLhrUeLEwXZg2nYFqm6EN
+ GwpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=nfBCPbtsA2eMnwcOy3E5LZGnaW/tARMFh5off2u2ejo=;
- b=OL3yw4MFAsP49v2Sl5o8QWiaV/5Tnjugd75HhTi6dGiR2QB2OpWHLdzNb2/F9BkvP3
- cFx+WgnPh6mkd8F1pq60uX/i9aWBcItIUmeGpcVA2JDiVLw1BJga9CxGU8/gVRkdxeNB
- kzjypBS9vaIHFhnLgVUIRdfAI6hiAomNj7Px109kfKcfbVIENK1nse7Yb/Dy9RVeuKbf
- w4A7kjYKOhk0MlUuGyOKNlrn83/ohn81L1K0x1PVrQ9h/2tr7UKkCh3nvoxiPwSoCGS0
- tJ41Vx3SFpNW2Nkt5gi0S2GTyZbyadTdPRsYYYessDMSeqwLpe3HRPdaOKSQ3GUFac0n
- cl1A==
-X-Gm-Message-State: APjAAAXH/QG1WV3xy88n7FTqq6Qs2of573GjgE1mdkMCuZ5HiI2lMKlw
- D/d4zp0Iw086u+glvKNWBbQqhPOzxrISjcfRBs5Dl6JT
-X-Google-Smtp-Source: APXvYqwYgciTMs1oYq2CSl3vbODkhLKi0z3lwuSTHURNaodCX7HvcFqD3k2cx/WAh7nqJxCuio43V3f6nMn42gVJz5w=
-X-Received: by 2002:a19:4344:: with SMTP id m4mr131041lfj.140.1582656636693;
- Tue, 25 Feb 2020 10:50:36 -0800 (PST)
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-language:thread-index;
+ bh=eC3NzQ2HzrQ4/isFMLEiWyac+ONTVWZVhSjLWhB+g7E=;
+ b=NLnW3HMS/zGlymcs3j5n7q339TAj1Ar2qD9VBLTJEj2OErRda+Q1ti1QX8IrZs16ab
+ BaVb42YvsLaenwna0L+DyMXkD4mZ3HFBDtxDSb+CUEBgkSmk2Oyr/EgrBLGJMfTUU1dK
+ upRzUmYyVc2N2C0zOmA48zhf9y/o3Ka2BdScsfz0o8xOpjqjwvwvugWONUG4JMGgSwSO
+ J9UELxB/HEOq2X4LTm+NLBxTtgiEVmbuEGghXqgGO6JtIMdupKwUQR4TU0bHZC6lkLCT
+ TwDcInyvj7EmJwXnBprUS+rZex79KDjUPg6axXJ0dTvw6PCL2GZN3hQnT+FyGP0UPFP3
+ qGGg==
+X-Gm-Message-State: APjAAAXeMhIaJoeLxfN3UoBMVOgEhn9X2jzhqr2s8dZuaVo3df/4xMIf
+ pLakGGErZHJLS4OkPJddg5vusFpYtOM=
+X-Google-Smtp-Source: APXvYqzlnre0PYxPFhicKAqRefbyokhz3+dGQhYO/cUcH9LvForBdw3ZqjTZpV4X9BNY+PM0/N0PEg==
+X-Received: by 2002:a5d:4252:: with SMTP id s18mr920364wrr.380.1582664399229; 
+ Tue, 25 Feb 2020 12:59:59 -0800 (PST)
+Received: from Beasty (blackbeauty.sdr-radio.com. [81.174.138.141])
+ by smtp.gmail.com with ESMTPSA id 133sm5873704wme.32.2020.02.25.12.59.58
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 25 Feb 2020 12:59:58 -0800 (PST)
+To: <usrp-users@lists.ettus.com>
+Date: Tue, 25 Feb 2020 20:59:55 -0000
+Message-ID: <245301d5ec1e$8889e490$999dadb0$@sdr-radio.com>
 MIME-Version: 1.0
-References: <CAKA0MUgBBu3m5cbL4J_Amy-97TNE=GBGThLPK35OARkV5mZxEg@mail.gmail.com>
-In-Reply-To: <CAKA0MUgBBu3m5cbL4J_Amy-97TNE=GBGThLPK35OARkV5mZxEg@mail.gmail.com>
-Date: Tue, 25 Feb 2020 13:50:00 -0500
-Message-ID: <CAL7q81s_PahAkzJo9hMSseQQWymB1d3Cu3Gk3ZhSsKw_q2jAiw@mail.gmail.com>
-To: Varban Metodiev <varban.metodiev@gmail.com>
-Subject: Re: [USRP-users] Polling the "sample_rx" via a user defined
- register (B205mini)
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-gb
+Thread-Index: AdXsHVqu+y5Fz5WGQUStmB3YewVigg==
+Subject: [USRP-users] Closing Connection, X310 Problem
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,10 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5173807840454253673=="
+From: Simon G4ELI via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: simon@sdr-radio.com
+Content-Type: multipart/mixed; boundary="===============1681616399306390245=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,149 +80,395 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5173807840454253673==
-Content-Type: multipart/alternative; boundary="000000000000a1c75f059f6af633"
+This is a multipart message in MIME format.
 
---000000000000a1c75f059f6af633
-Content-Type: text/plain; charset="UTF-8"
+--===============1681616399306390245==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_2454_01D5EC1E.888C0770"
+Content-Language: en-gb
 
-Hi Varban,
+This is a multipart message in MIME format.
 
-I am now getting random 32-bit values when polling it from the UHD (instead
-> of a constant that indicates a "zero" reception)
+------=_NextPart_000_2454_01D5EC1E.888C0770
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+ 
+
+Question is in two related parts.
+
+ 
+
+ 
+
+1 Closing Connection
+
+ 
+
+In 3.10.0 when I was finished streaming data I would call
+
+ 
+
+1.	m_usrp->reset() and 
+2.	m_rx_stream->reset()
+
+ 
+
+but in 3.15 LTS I don't see a way to reset / discard the pointers returned
+from uhd::usrp::multi_usrp::make and m_usrp->get_rx_stream. The reset calls
+no longer exist.
+
+ 
+
+So, how do I correctly do this? 
+
+ 
+
+ 
+
+ 
+
+2 X310
+
+ 
+
+[Note - only a problem with the X310, B200 works well]
+
+ 
+
+When I want to change the sample rate, for example from 1 Msps to 10 Msps:
+
+ 
+
+1.	Close (see above)
+2.	Create new m_usrp via uhd::usrp::multi_usrp::make
+3.	Set new sample rate
+4.	Call m_usrp->get_rs_stream but I get an exception: exception
+0000054F (1359), RuntimeError: On node 0/DDC_0, output port 0 is already
+connected 
+
+ 
+
+So this refers back to 1 - how do I get the connection to the X310 fully
+closed?
+
+ 
+
+ 
+
+TIA
+
+ 
+
+Simon Brown, G4ELI
+
+https://www.sdr-radio.com
+
+ 
 
 
-Even with the antenna disconnected you can expect some LSBs to toggle due
-to inherent receiver noise.
-
-1) How should I interpret the 32-variable?
->
-
-It is a short complex int where the upper 16-bits are I and the lower
-16-bits are Q.
-
-
-> 2) Is the strobe_rx the correct signal that indicates new sample arrival?
->
-
-Yes
-
-
-> 2) Do I need new_rx_control?
-
-
-No
-
-Have I done this correctly in general, or there is something completely
-> wrong in my approach?
-
-
-What do you want to accomplish?
-
-Jonathon
-
-On Mon, Feb 17, 2020 at 5:03 AM Varban Metodiev via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Dear all,
->
-> After exposing the *sample_rx* from radio_legacy.v
-> <https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/radio_200/radio_legacy.v> to
-> a user defined register and sampling it at rising edge of the *strobe_rx*,
-> I am now getting random 32-bit values when polling it from the UHD (instead
-> of a constant that indicates a "zero" reception). I am doing this with
-> disconnected antenna using a modified rx_samples C++ example application.
->
-> I have the following questions:
-> 1) How should I interpret the 32-variable?
-> 2) Is the strobe_rx the correct signal that indicates new sample arrival?
-> 2) Do I need new_rx_control?
->
-> Have I done this correctly in general, or there is something completely
-> wrong in my approach?
->
-> Thanks,
-> Varban
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000a1c75f059f6af633
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_2454_01D5EC1E.888C0770
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Varban,<div><br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex">I am now getting random 32-bit values when polling it from=
- the UHD (instead of a constant that indicates a &quot;zero&quot; reception=
-)</blockquote><div><br></div><div>Even with the antenna disconnected you ca=
-n expect some LSBs to toggle due to inherent receiver noise.=C2=A0</div><di=
-v><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">1) How should=
- I interpret the 32-variable?<br></blockquote><div><br></div><div>It is a s=
-hort complex int where the upper 16-bits are I and the lower 16-bits are Q.=
-</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">2)=
- Is the strobe_rx the correct signal that indicates new sample arrival?<br>=
-</blockquote><div><br></div><div>Yes</div><div>=C2=A0</div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">2) Do I need new_rx_control?</blockquote>=
-<div><br></div><div>No</div><div><br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">Have I done this correctly in general, or there is someth=
-ing completely wrong in my approach?=C2=A0</blockquote><div><br></div><div>=
-What do you want to accomplish?=C2=A0</div><div><br></div><div>Jonathon</di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Mon, Feb 17, 2020 at 5:03 AM Varban Metodiev via USRP-users &lt;<a hre=
-f=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">Dear all,<div><br></div><div>After exposing the <b><i>sample_rx</i=
-></b> from=C2=A0<a href=3D"https://github.com/EttusResearch/uhd/blob/master=
-/fpga/usrp3/lib/radio_200/radio_legacy.v" target=3D"_blank">radio_legacy.v<=
-/a>=C2=A0to a user defined register and sampling it at rising edge of the <=
-span style=3D"color:rgb(36,41,46);font-family:SFMono-Regular,Consolas,&quot=
-;Liberation Mono&quot;,Menlo,monospace;font-size:12px;white-space:pre-wrap"=
-><i style=3D"font-weight:bold">strobe_rx</i>, I am now getting random 32-bi=
-t values when polling it from the UHD (instead of a constant that indicates=
- a &quot;zero&quot; reception). I am doing this with disconnected antenna u=
-sing a modified rx_samples C++ example application. </span></div><div><font=
- color=3D"#24292e" face=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo=
-, monospace"><span style=3D"font-size:12px;white-space:pre-wrap"><br></span=
-></font></div><div><font color=3D"#24292e" face=3D"SFMono-Regular, Consolas=
-, Liberation Mono, Menlo, monospace"><span style=3D"font-size:12px;white-sp=
-ace:pre-wrap">I have the following questions:</span></font></div><div><font=
- color=3D"#24292e" face=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo=
-, monospace"><span style=3D"font-size:12px;white-space:pre-wrap">1) How sho=
-uld I interpret the 32-variable?</span></font></div><div><font color=3D"#24=
-292e" face=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace">=
-<span style=3D"font-size:12px;white-space:pre-wrap">2) Is the strobe_rx the=
- correct signal that indicates new sample arrival?</span></font></div><div>=
-<div><font color=3D"#24292e" face=3D"SFMono-Regular, Consolas, Liberation M=
-ono, Menlo, monospace"><span style=3D"font-size:12px;white-space:pre-wrap">=
-2) Do I need </span></font><span style=3D"color:rgb(34,134,58);font-family:=
-SFMono-Regular,Consolas,&quot;Liberation Mono&quot;,Menlo,monospace;font-si=
-ze:12px;white-space:pre-wrap">new_rx_control</span><span style=3D"font-size=
-:12px;white-space:pre-wrap;color:rgb(36,41,46);font-family:SFMono-Regular,C=
-onsolas,&quot;Liberation Mono&quot;,Menlo,monospace">?</span></div><div></d=
-iv></div><div><br></div><div>Have I done=C2=A0this correctly in general, or=
- there is something completely wrong in my approach?=C2=A0</div><div><br></=
-div><div>Thanks,</div><div>Varban</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1163278703;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1368578720 134807567 134807577 134807579 =
+134807567 134807577 134807579 134807567 134807577 134807579;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1
+	{mso-list-id:1467039996;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1858019480 134807553 134807555 134807557 =
+134807553 134807555 134807557 134807553 134807555 134807557;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:2074110930;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1733442374 134807567 134807555 134807557 =
+134807553 134807555 134807557 134807553 134807555 134807557;}
+@list l2:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hi,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Question is =
+in two related parts.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>1 Closing =
+Connection<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>In 3.10.0 when I was finished streaming data I would =
+call<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><ol =
+style=3D'margin-top:0cm' start=3D1 type=3D1><li class=3DMsoListParagraph =
+style=3D'margin-left:0cm;mso-list:l2 level1 lfo3'>m_usrp-&gt;reset() and =
+<o:p></o:p></li><li class=3DMsoListParagraph =
+style=3D'margin-left:0cm;mso-list:l2 level1 =
+lfo3'>m_rx_stream-&gt;reset()<o:p></o:p></li></ol><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>but in 3.15 =
+LTS I don&#8217;t see a way to reset / discard the pointers returned =
+from uhd::usrp::multi_usrp::make and m_usrp-&gt;get_rx_stream. The reset =
+calls no longer exist.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>So, how do I =
+correctly do this? <o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>2 =
+X310<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>[Note &#8211; only a problem with the X310, B200 works =
+well]<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>When I want to change the sample rate, for example =
+from 1 Msps to 10 Msps:<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><ol style=3D'margin-top:0cm' =
+start=3D1 type=3D1><li class=3DMsoListParagraph =
+style=3D'margin-left:0cm;mso-list:l0 level1 lfo2'>Close (see =
+above)<o:p></o:p></li><li class=3DMsoListParagraph =
+style=3D'margin-left:0cm;mso-list:l0 level1 lfo2'>Create new m_usrp via =
+uhd::usrp::multi_usrp::make<o:p></o:p></li><li class=3DMsoListParagraph =
+style=3D'margin-left:0cm;mso-list:l0 level1 lfo2'>Set new sample =
+rate<o:p></o:p></li><li class=3DMsoListParagraph =
+style=3D'margin-left:0cm;mso-list:l0 level1 lfo2'>Call =
+m_usrp-&gt;get_rs_stream but I get an exception: exception 0000054F =
+(1359), RuntimeError: On node 0/DDC_0, output port 0 is already =
+connected <o:p></o:p></li></ol><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>So this =
+refers back to 1 &#8211; how do I get the connection to the X310 fully =
+closed?<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>TIA<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-GB'>Simon Brown, =
+G4ELI<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-GB'>https://www.sdr-radio.com<o:p></o:p>=
+</span></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_2454_01D5EC1E.888C0770--
 
---000000000000a1c75f059f6af633--
 
 
---===============5173807840454253673==
+--===============1681616399306390245==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -230,5 +479,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5173807840454253673==--
+--===============1681616399306390245==--
+
 
