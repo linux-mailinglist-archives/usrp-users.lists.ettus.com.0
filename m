@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EF7E170695
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Feb 2020 18:50:20 +0100 (CET)
-Received: from [::1] (port=40966 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17509170AFD
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Feb 2020 23:01:16 +0100 (CET)
+Received: from [::1] (port=34400 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j70p8-0001jm-F6; Wed, 26 Feb 2020 12:50:18 -0500
-Received: from mout.gmx.net ([212.227.15.15]:37291)
+	id 1j74jt-000488-MI; Wed, 26 Feb 2020 17:01:09 -0500
+Received: from mail-lf1-f46.google.com ([209.85.167.46]:45636)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1j70p4-0001JZ-3t
- for usrp-users@lists.ettus.com; Wed, 26 Feb 2020 12:50:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1582739373;
- bh=whNNGdaW1AzDL52N+NKqG/Twt3qwsTmbHMCaspDBpLs=;
- h=X-UI-Sender-Class:From:To:Subject:Date;
- b=V4Z4w3JvJzX5B2wHw0n/+Nnb4yXiNu29XGLVEdLIe/ThzI9JcLcP3WqO66SKTpuoq
- /ck3NiQNAH6u04iJoi7VzXF7DggmYwSXKvCviHWeXsQvakMoIZOgXvX4d3UXCr3D0p
- BhnofXMe6J07Q9Ge0aLtvZCJjoO/qJSvLqlyQ62E=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bs74.server.lan [172.19.170.217]) (via HTTP); Wed, 26 Feb 2020
- 18:49:32 +0100
+ (Exim 4.93) (envelope-from <sam.reiter@ettus.com>)
+ id 1j74jq-0003wR-8t
+ for usrp-users@lists.ettus.com; Wed, 26 Feb 2020 17:01:06 -0500
+Received: by mail-lf1-f46.google.com with SMTP id z5so452821lfd.12
+ for <usrp-users@lists.ettus.com>; Wed, 26 Feb 2020 14:00:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=z7xLcfYopBZU3/+l83ewfNKUaBGPCqUIXzBdgtsZCZs=;
+ b=Lgr1jc95VS2xOV+85M/pqOTfoJTB5e5Y7hx5o3HP+/yYbOd+xXHLhjxAZAs9quCGhG
+ sk6Z66EeF6Vh80EseCGPaxrhi2Z7OyWir6arqhEJC0bM1c4+JmxyzySQSSY29hSm0Pxv
+ WzCuDOj+xUwd+n3xKmieFCqTBA79l/rFjgJVkxLGpIXCslSCtikL2MfahTzf5K/govo/
+ LsC9eBmC1YDcuf3ZEVPXqosjmjky0M/LD5Gk9iS2nJ4Dr8fIocYaSP9s1Ikf/yYeeTrg
+ FvYvTCtrtgn+2tv5pdW+8TuT7D0MuszZ7Xk2qmxRh85yNHS0jjDj/z7OkiX95yMW7hJ2
+ 6D7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=z7xLcfYopBZU3/+l83ewfNKUaBGPCqUIXzBdgtsZCZs=;
+ b=IxnOKmx6ycQGkaahlXDT5/QvQMClUISyNP7P2Z4wY9hdim7F7oRlQhr/J3h3QVwLes
+ 53t2FjG8NcIW2bee8HGTl8LU/xtm8bSV1X6ylS1NGrHnXbkxiwJBXwvoCMFBGgJ9pN+2
+ gQ2D3h8eE5XqVD30DM5ApAqXSbef9KHVkLfa9VcceaeZzK8hdlY0eTd2MRYzh9lF6LEp
+ S2RSpzVWBAZBpSkK61CJD21G3ELbAjTyOYziUxE9sxaiUgPaRtvW7A/BGfBK2vnlCitU
+ KayLOhyBHNVNtLOhKN1Z+F1HV2HsY4yvUU8J4f3hSJ1wGvREoQYk+yJCxL5XusolAWlG
+ ZGhw==
+X-Gm-Message-State: ANhLgQ0FyM5GJb3BEG/qK0JCWc9LgAR5FR9wEjy52wI1OnN5d9dYgcbk
+ dcZQCvdJQkHkHsp+EP3Op6OSP8ZD9+jXkIPau2uvBeTF
+X-Google-Smtp-Source: ADFU+vtlxfkzwHjyIs7qkkC6Lh3IVogeA39Q+owjJrrt1a5NPYi7rHwxasqg/OFLfdOLECx54IBn3grl48BA3gq1qHE=
+X-Received: by 2002:ac2:4c84:: with SMTP id d4mr375455lfl.89.1582754424966;
+ Wed, 26 Feb 2020 14:00:24 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-dc464465-b71b-40a8-9a5e-b1ac252681b1-1582739372927@3c-app-gmx-bs74>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Wed, 26 Feb 2020 18:49:32 +0100
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:qAoKMBgZ+Ftajpgy1S7IZLe3nLVklP7C5KYCf5vq1Kylz63wegItIKtVB1IbVvKIgmqL+
- i39YceAmivAHoU/vXYcyIzVkjzHs9oOO6blKhkmCIXDfHAcT0ihAzh6qAFTKiwyC+7AwWSeiMjqh
- eLJjYK2Q+zHMuoA0RhQk/U6MoSvLEKmocQF9LAceWyD8z+pLJUgo6Xsn5wjzGWEfltkBmfv9aUTu
- FmObVV7XpZfTKlbYS/yG87vHcuqt+lrIgcg98PUUID5PcFnIMHOH7RrwkyTgnzPrJgrnU801ctHi
- 7k=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:bU9gsV8KIyY=:OZN4bHTwsXZyYN1CGIk2ND
- PoBWtLKWiNjj4hRGaa0Z2klkj9ACvLIQNI8RgpKAa48+dM3LXq43jJOMScgM/hnk581OjwVPk
- v9q0Sto3ZwISv3qEKL3IR+Yw/fWy2E1E3LV7CjIzPzgZiLb1RB5uF0p3rT1++lbdL9P6jryWd
- dOc0HN1C2Mrlv7x3fo+eltLw4qvEZUw2sQY31TpZu1DRfVGgnbmipFJLWBprVWtDzXIObmMM8
- kzPL8QCSnj4okaFtUpfxFBEw6LfaA8hEOFJL/63mgbL0ndRvY/y+TIDUAtJzF7mLJu6kdbFLp
- E5pVOIiHdljaWlcRe68t47vvl9n3F/VkZDlkEI0q+R56wHmB2szVVfy7RgGorwkxoHfnZNlY1
- NLrTUH8Rt4ScQESuaxj6NlsMOcBDkJ59l+uoWJDvHqTPNMjoJ6G/kf9g7TJMMOpL8hODxG/6G
- Pm3xEchHciWTluibXIyhjr5ASVPCU3R21ZgejfDXu9UJZZNGNGzAAX9mc6e1jUeA/qcdsyKp3
- xcIlqGwfPkOuW08kq+Teyz0V/8W5MIZRxIxZEP2VdIiSFW8CEbk/7gR/Di3yoQjV3z66oSO3f
- AK9HWQ5dIQ1cO9yPsLUvlJDCTOK4PPA6FvOfdjxYRyuRLsqHdamOReqjrJ1WYo7qdIllv5vff
- RSSUb95tKLp+XKhOGm+yrrsD30lmRv4xHqLHolk4AMxKrW05fLihDBWURzS0DLwBzVuo=
-Subject: [USRP-users] Crash when adding device_addr to tune_request.args
+References: <ba63240fb17d46748536af0129370e74@tudelft.nl>
+In-Reply-To: <ba63240fb17d46748536af0129370e74@tudelft.nl>
+Date: Wed, 26 Feb 2020 16:00:14 -0600
+Message-ID: <CANf970Yv1mt7gaCrLtF9obkWFF5WotkkjcyHBy9CvqOKYUgz=w@mail.gmail.com>
+To: Cherif Diouf <C.E.V.Diouf@tudelft.nl>
+Subject: Re: [USRP-users] X310 SFP 10G-Ethernet Interface Kit
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2849239056614306105=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,40 +76,117 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi,
+--===============2849239056614306105==
+Content-Type: multipart/alternative; boundary="00000000000044642f059f81bb7a"
 
-I have added a usrp_block_impl::_cmd_handler_freq2 which adds "args" to the tune_request object:
+--00000000000044642f059f81bb7a
+Content-Type: text/plain; charset="UTF-8"
 
-void usrp_block_impl::_cmd_handler_freq2(const pmt::pmt_t& freq_,
-                                        int chan,
-                                        const pmt::pmt_t& msg)
-{
-    double freq = pmt::to_double(freq_);
-    ::uhd::tune_request_t new_tune_reqest(freq);
-    if (pmt::dict_has_key(msg, cmd_lo_offset_key())) {
-        double lo_offset =
-            pmt::to_double(pmt::dict_ref(msg, cmd_lo_offset_key(), pmt::PMT_NIL));
-        new_tune_reqest = ::uhd::tune_request_t(freq, lo_offset);
-    }
+Cherif,
 
-    new_tune_reqest.args = ::uhd::device_addr_t("mode_n=integer");
-    _update_curr_tune_req(new_tune_reqest, chan);
-}
+The recommended equivalent accessories for 10GbE can be found here:
 
-This makes gnuradio crash when I send the "freq2" message together with "looffset". The segfault happens in usrp_block_impl::_cmd_handler_looffset. For reference, the gdb backtrace is shown here: https://paste.ubuntu.com/p/wYG54D5QRy/
+https://www.ettus.com/all-products/10gige-kit/
 
-Is there anything wrong with that?
+https://www.ettus.com/all-products/10gige-1m/
 
-Thanks,
-Luke
+Note that there are a number of other compatible cards and cables that can
+be found outside of the ettus.com site as well, but the above hardware has
+been tested for compatibility.
+
+Sam
+
+On Wed, Feb 26, 2020 at 8:11 AM Cherif Diouf via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi
+>
+>
+>
+> Ettus is proposing an X310 compatible SFP 1G Ethernet Interface Kit in
+> this link:  https://www.ettus.com/all-products/1gige-kit/.
+>
+> Where a 10G compatible Interface Kit can be found? Otherwise are there
+> some other alternatives to connect the X310 SFP interface to a common
+> Ethernet interface.
+>
+>
+>
+> Best Regards
+>
+> Cherif
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000044642f059f81bb7a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Cherif,<div><br></div><div>The recommended equivalent acce=
+ssories for 10GbE can be found here:</div><div><br></div><div><a href=3D"ht=
+tps://www.ettus.com/all-products/10gige-kit/">https://www.ettus.com/all-pro=
+ducts/10gige-kit/</a></div><div><br></div><div><a href=3D"https://www.ettus=
+.com/all-products/10gige-1m/">https://www.ettus.com/all-products/10gige-1m/=
+</a></div><div><br></div><div>Note that there are a number of other compati=
+ble cards and cables that can be found outside of the <a href=3D"http://ett=
+us.com">ettus.com</a> site as well, but the above hardware has been tested =
+for compatibility.</div><div><br clear=3D"all"><div><div dir=3D"ltr" class=
+=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><d=
+iv><div dir=3D"ltr">Sam=C2=A0</div></div></div></div></div></div></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Fe=
+b 26, 2020 at 8:11 AM Cherif Diouf via USRP-users &lt;<a href=3D"mailto:usr=
+p-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">
 
 
-PS: I wanted to confirm: If I want to use integer-N PLL with a given stepsize, do I really have to add this to every single tune_request_t object or could I add it to the the device addr string of the USRP Source/Sink device? (Disclaimer: this doesn't seem to work though ...)
 
 
 
+<div lang=3D"NL">
+<div class=3D"gmail-m_7377110879031416071WordSection1">
+<p class=3D"MsoNormal">Hi<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Ettus is proposing an X310 comp=
+atible SFP 1G Ethernet Interface Kit in this link: =C2=A0<a href=3D"https:/=
+/www.ettus.com/all-products/1gige-kit/" target=3D"_blank">https://www.ettus=
+.com/all-products/1gige-kit/</a>.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Where a 10G compatible Interfac=
+e Kit can be found? Otherwise are there some other alternatives to connect =
+the X310 SFP interface to a common Ethernet interface.<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Best Regards<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Cherif<u></u><u></u></span></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000044642f059f81bb7a--
+
+
+--===============2849239056614306105==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2849239056614306105==--
+
