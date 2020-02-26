@@ -2,59 +2,105 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E2B116F2C6
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Feb 2020 23:54:04 +0100 (CET)
-Received: from [::1] (port=53424 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A86C316F9DA
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Feb 2020 09:41:32 +0100 (CET)
+Received: from [::1] (port=56074 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j6j5U-0002ck-7J; Tue, 25 Feb 2020 17:54:00 -0500
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:40843)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1j6j5Q-00021V-LZ
- for usrp-users@lists.ettus.com; Tue, 25 Feb 2020 17:53:56 -0500
-Received: by mail-qk1-f171.google.com with SMTP id b7so843763qkl.7
- for <usrp-users@lists.ettus.com>; Tue, 25 Feb 2020 14:53:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=OIInWdc1FpELfi8jeczg6DAQpHxdvBC4XxuSGU92EWY=;
- b=TtqhU71Z0sakyXaG+tejnYar6/PJl4fCNL5R+/hr0cN+aN15dudW3/SbU2vVDbVjcs
- CvTFxcGtqhYvSw0hEpSiQ+R5Ey2rsE68GiDprfhqikmgjfmPBcYdl/6+Wd+MKFP75jiV
- Ls51qh33seaZ/JlOctWqlX6XND1rSqJmgPF26PpazuyrCFyn3s4kvS0LWEqk/Cv5P3PM
- nttenlQjkKJH6OvKflSPJS0DAJK8Z/snKbCZ7Fa3fIObEGWZNHd0ysU9ENY8m3tUtkcj
- kSjXv0zA6/tfFjMSncWoTLj3hlvqtG+lOk6H6miQ/CaLrluMnG3GKFOn9CiZueAFwctf
- OMLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=OIInWdc1FpELfi8jeczg6DAQpHxdvBC4XxuSGU92EWY=;
- b=ILCdtgg8oYbYD8J4GwLrBgJAq0Lkhs/LgIPj/OfH3LdlrB9jUQyWt30W9xb6eWQ+Jy
- kepYonU2tPAkMW4m5Q/XM4BowAdtG123jcW+Tq2Xt7lvUbAjHeZjQ/1uNtpl8AhAJmEw
- uI0+rn+JiFWYIGGDZMoqXO3j3DWfATi4ikBun5v7nRR25YZNUJY5/e7tMXuEgQbpca0U
- JpPimqV0nTgATDnc2pAdAZwicMaiTlMUDZ0qHbPjUnfKqED3XJkeTOnEtFxdeCH8iOWV
- 75XwBwTG6lRoJTHO/lNqKx/qpsxzSwelLm2Jp4jqnnkyP6KKOCh1CLsOAlDKv2NGaZZm
- dKhA==
-X-Gm-Message-State: APjAAAXde91ah1LQzScY7k5xru4wxwbkYwb891GzqwvDiyQApt4AQ3VH
- Wjp+eF+RLLhPjJHkQyNc4Lr89S3nuh0=
-X-Google-Smtp-Source: APXvYqynP2jus8aDtKqa4mbH/A/ixBOqEKsqycUQSkfeEO6dCKHg5pHzQbjgoVie4diL8Mzk5dEw7Q==
-X-Received: by 2002:ae9:dcc1:: with SMTP id q184mr1446048qkf.480.1582671195897; 
- Tue, 25 Feb 2020 14:53:15 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id e20sm57028qka.39.2020.02.25.14.53.15
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 25 Feb 2020 14:53:15 -0800 (PST)
-Message-ID: <5E55A55A.3080009@gmail.com>
-Date: Tue, 25 Feb 2020 17:53:14 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1j6sFw-0000sS-Qi; Wed, 26 Feb 2020 03:41:24 -0500
+Received: from mx1.itsystems.it ([62.94.30.103]:42860)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <p.palana@itsystems.it>)
+ id 1j6sFs-0000oT-8b
+ for usrp-users@lists.ettus.com; Wed, 26 Feb 2020 03:41:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=itsystems.it; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=wWxRvt32jkhFODTdn3vNXEmmDADDWdTOQPwFeqCX6rA=; b=MTh7WOh2wwHoYzrxkh1rpYUQVf
+ PI1yj2xfbJV3by9b2Mizq3C5+hGfSPST3xPoDx3xRNuKL8qcf7DImqbNY34OLC08zfWcsZ19B6DDp
+ 9isdEnIFjX+DQfP2MvXILEjrBwsWXp+jzkdR/zGuKabAiKDp1Gr/U2i8xsEOjE6B2li0=;
+Received: from [10.10.0.138]
+ by mx1.itsystems.it with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ (Exim 4.90_1) (envelope-from <p.palana@itsystems.it>)
+ id 1j6sEk-0005yc-28
+ for usrp-users@lists.ettus.com; Wed, 26 Feb 2020 08:40:13 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <c8cd447d-acde-1201-1dbb-1562017c2153@itsystems.it>
+Openpgp: preference=signencrypt
+Autocrypt: addr=p.palana@itsystems.it; prefer-encrypt=mutual; keydata=
+ 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
+ Hv257PEMJkU=
+Message-ID: <d2ea76a1-88d2-517b-0137-2c4e1783f69f@itsystems.it>
+Date: Wed, 26 Feb 2020 09:40:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <245301d5ec1e$8889e490$999dadb0$@sdr-radio.com>
-In-Reply-To: <245301d5ec1e$8889e490$999dadb0$@sdr-radio.com>
-Subject: Re: [USRP-users] Closing Connection, X310 Problem
+In-Reply-To: <c8cd447d-acde-1201-1dbb-1562017c2153@itsystems.it>
+Content-Language: en-US
+X-Spam-Score: -2.9 (--)
+X-Spam-Report: Spam detection software,
+ running on the system "v-mx.virt.itsystems.it", 
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ Content preview:  Hello Rob, Hello Marcus, thank you for your answers. They
+ make perfect sense. Have a good day Paolo On 25/02/20 14:43, Paolo Palana
+ via USRP-users wrote: > Hello to all the mailing list. > > I've a little
+ problem
+ in setting the rx frequency on my n310 when I need > to acquire from all
+ 4 channels. > [...] 
+ Content analysis details:   (-2.9 points, 5.0 required)
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -1.0 ALL_TRUSTED            Passed through trusted hosts only via SMTP
+ -1.9 BAYES_00               BODY: Bayes spam probability is 0 to 1%
+ [score: 0.0001]
+Subject: Re: [USRP-users] linuhd 3.14.1.1 Problem in setting rx frequecy on
+ n310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,9 +112,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1611790969103763360=="
+From: Paolo Palana via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Paolo Palana <p.palana@itsystems.it>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,449 +129,39 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============1611790969103763360==
-Content-Type: multipart/alternative;
- boundary="------------030700020903040501050401"
-
-This is a multi-part message in MIME format.
---------------030700020903040501050401
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-
-On 02/25/2020 03:59 PM, Simon G4ELI via USRP-users wrote:
->
-> Hi,
->
-> Question is in two related parts.
->
-> 1 Closing Connection
->
-> In 3.10.0 when I was finished streaming data I would call
->
->  1. m_usrp->reset() and
->  2. m_rx_stream->reset()
->
-> but in 3.15 LTS I don’t see a way to reset / discard the pointers 
-> returned from uhd::usrp::multi_usrp::make and m_usrp->get_rx_stream. 
-> The reset calls no longer exist.
->
-> So, how do I correctly do this?
->
-You should just be able to call the destructor:
-
-https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a6c904057108e52d685b27496a11518db
-
-
-> 2 X310
->
-> [Note – only a problem with the X310, B200 works well]
->
-> When I want to change the sample rate, for example from 1 Msps to 10 Msps:
->
->  1. Close (see above)
->  2. Create new m_usrp via uhd::usrp::multi_usrp::make
->  3. Set new sample rate
->  4. Call m_usrp->get_rs_stream but I get an exception: exception
->     0000054F (1359), RuntimeError: On node 0/DDC_0, output port 0 is
->     already connected
->
-> So this refers back to 1 – how do I get the connection to the X310 
-> fully closed?
->
-The X310 takes 15-20 seconds to reset itself internally when you close 
-the session with it.  There's never any reason to recreate the USRP
-   object just to change the sample rate.  So if your frequency-changing 
-code does that, and expects the USRP to "come back" immediately
-   after you've reset it, there'll be some strange behavior at the 
-network level.  So, yeah, sample-rate change shouldn't need anything so
-   "drastic".
-
-
-
-
-> TIA
->
-> Simon Brown, G4ELI
->
-> https://www.sdr-radio.com
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-
---------------030700020903040501050401
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 02/25/2020 03:59 PM, Simon G4ELI via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote cite="mid:245301d5ec1e$8889e490$999dadb0$@sdr-radio.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1163278703;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1368578720 134807567 134807577 134807579 134807567 134807577 134807579 134807567 134807577 134807579;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1
-	{mso-list-id:1467039996;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1858019480 134807553 134807555 134807557 134807553 134807555 134807557 134807553 134807555 134807557;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:2074110930;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1733442374 134807567 134807555 134807557 134807553 134807555 134807557 134807553 134807555 134807557;}
-@list l2:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Hi,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Question is in two related parts.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">1 Closing Connection<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">In 3.10.0 when I was finished streaming
-          data I would call<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <ol style="margin-top:0cm" start="1" type="1">
-          <li class="MsoListParagraph"
-            style="margin-left:0cm;mso-list:l2 level1 lfo3">m_usrp-&gt;reset()
-            and <o:p></o:p></li>
-          <li class="MsoListParagraph"
-            style="margin-left:0cm;mso-list:l2 level1 lfo3">m_rx_stream-&gt;reset()<o:p></o:p></li>
-        </ol>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">but in 3.15 LTS I don’t see a way to reset
-          / discard the pointers returned from
-          uhd::usrp::multi_usrp::make and m_usrp-&gt;get_rx_stream. The
-          reset calls no longer exist.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">So, how do I correctly do this? <o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-      </div>
-    </blockquote>
-    You should just be able to call the destructor:<br>
-    <br>
-<a class="moz-txt-link-freetext" href="https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a6c904057108e52d685b27496a11518db">https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a6c904057108e52d685b27496a11518db</a><br>
-    <br>
-    <br>
-    <blockquote cite="mid:245301d5ec1e$8889e490$999dadb0$@sdr-radio.com"
-      type="cite">
-      <div class="WordSection1">
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">2 X310<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">[Note – only a problem with the X310, B200
-          works well]<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">When I want to change the sample rate, for
-          example from 1 Msps to 10 Msps:<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <ol style="margin-top:0cm" start="1" type="1">
-          <li class="MsoListParagraph"
-            style="margin-left:0cm;mso-list:l0 level1 lfo2">Close (see
-            above)<o:p></o:p></li>
-          <li class="MsoListParagraph"
-            style="margin-left:0cm;mso-list:l0 level1 lfo2">Create new
-            m_usrp via uhd::usrp::multi_usrp::make<o:p></o:p></li>
-          <li class="MsoListParagraph"
-            style="margin-left:0cm;mso-list:l0 level1 lfo2">Set new
-            sample rate<o:p></o:p></li>
-          <li class="MsoListParagraph"
-            style="margin-left:0cm;mso-list:l0 level1 lfo2">Call
-            m_usrp-&gt;get_rs_stream but I get an exception: exception
-            0000054F (1359), RuntimeError: On node 0/DDC_0, output port
-            0 is already connected <o:p></o:p></li>
-        </ol>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">So this refers back to 1 – how do I get the
-          connection to the X310 fully closed?</p>
-      </div>
-    </blockquote>
-    The X310 takes 15-20 seconds to reset itself internally when you
-    close the session with it.  There's never any reason to recreate the
-    USRP<br>
-      object just to change the sample rate.  So if your
-    frequency-changing code does that, and expects the USRP to "come
-    back" immediately<br>
-      after you've reset it, there'll be some strange behavior at the
-    network level.  So, yeah, sample-rate change shouldn't need anything
-    so<br>
-      "drastic".<br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <blockquote cite="mid:245301d5ec1e$8889e490$999dadb0$@sdr-radio.com"
-      type="cite">
-      <div class="WordSection1">
-        <p class="MsoNormal"><o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">TIA<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-GB">Simon
-            Brown, G4ELI<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-GB"><a class="moz-txt-link-freetext" href="https://www.sdr-radio.com">https://www.sdr-radio.com</a><o:p></o:p></span></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------030700020903040501050401--
-
-
---===============1611790969103763360==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1611790969103763360==--
-
+SGVsbG8gUm9iLCBIZWxsbyBNYXJjdXMsCnRoYW5rIHlvdSBmb3IgeW91ciBhbnN3ZXJzLiBUaGV5
+IG1ha2UgcGVyZmVjdCBzZW5zZS4KCkhhdmUgYSBnb29kIGRheQpQYW9sbwoKCk9uIDI1LzAyLzIw
+IDE0OjQzLCBQYW9sbyBQYWxhbmEgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gSGVsbG8gdG8gYWxs
+IHRoZSBtYWlsaW5nIGxpc3QuCj4KPiBJJ3ZlIGEgbGl0dGxlIHByb2JsZW0gaW4gc2V0dGluZyB0
+aGUgcnggZnJlcXVlbmN5IG9uIG15IG4zMTAgd2hlbiBJIG5lZWQKPiB0byBhY3F1aXJlIGZyb20g
+YWxsIDQgY2hhbm5lbHMuCj4KPiBJIHVzZSB0aGUgbjMxMCBkaXJlY3RseSBpbiBteSBwcm9ncmFt
+IHVzaW5nIGxpYnVoZC4gVGhlIGNvZGUgSSB1c2UgaW4KPiBvcmRlciB0byBzZXQgdGhlIHJ4X2Zy
+ZXF1ZW5jeSBpczoKPgo+IMKgwqDCoCBGaXJzdCBvZiBhbGwgc2V0IHRoZSBzdWJkZXZzOgo+Cj4g
+wqDCoMKgIMKgwqDCoMKgIGlmKHZtLmNvdW50KCJzdWJkZXYiKSl7Cj4gwqDCoMKgIMKgwqAgwqAg
+wqDCoMKgwqDCoMKgIG1Vc3JwLT5zZXRfcnhfc3ViZGV2X3NwZWMobVN1YkRldik7Cj4gwqDCoMKg
+IMKgwqDCoCB9Cj4KPiDCoMKgwqAgwqDCoMKgIC4uLi4uLi4uLi4uLgo+Cj4gwqDCoMKgIMKgwqDC
+oMKgIGZvcihzaXplX3QgaT0wOyBpPG1GcmVxcy5zaXplKCk7IGkrKykKPiDCoMKgwqAgwqDCoMKg
+IHsKPiDCoMKgwqAgwqDCoCDCoCDCoMKgIGNvdXQgPDwgYm9vc3Q6OmZvcm1hdCgiU2V0dGluZyBj
+aGFuICVkIEZyZXE6ICVmIE1IeCIpICUgKGkpCj4gJSAobUZyZXFzW2ldLzFlNikgPDwgZW5kbDsK
+PiDCoMKgwqDCoMKgwqDCoCDCoMKgwqAgdWhkOjp0dW5lX3JlcXVlc3RfdCB0dW5lX3JlcXVlc3Qo
+bUZyZXFzW2ldKTsKPiDCoMKgwqAgwqDCoMKgwqDCoMKgwqAgdHVuZV9yZXF1ZXN0LmFyZ3MgPSB1
+aGQ6OmRldmljZV9hZGRyX3QoIm1vZGVfbj1pbnRlZ2VyIik7Cj4gwqDCoMKgIMKgwqAgwqAgwqDC
+oCBtVXNycC0+c2V0X3J4X2ZyZXEodHVuZV9yZXF1ZXN0LCBpKTsKPiDCoMKgwqDCoMKgwqDCoCDC
+oMKgwqAgY291dCA8PCBib29zdDo6Zm9ybWF0KCJOZXcgUlggRnJlcSBjaGFuICVkOiAlZiBNSHou
+Li4iKSAlIGkKPiAlIChtVXNycC0+Z2V0X3J4X2ZyZXEoaSkvMWU2KSA8PCBlbmRsIDw8IGVuZGw7
+Cj4gwqDCoMKgIMKgwqDCoCB9Cj4KPgo+IFRoZSBvdXRwdXQgSSBjYW4gc2VlIG9uIG15IGNvbnNv
+bGUgY29uZmlybSB0aGF0IGV2ZXJ5IGNoYW5uZWwgc2hvdWxkCj4gaGF2ZSB0aGUgcmlndGggZnJl
+cXVlbmN5Lgo+Cj4gT2YgY291cnNlIHRoaXMgaXMgbm90IHRoZSBjYXNlLgo+Cj4KPiBTdXBwb3Nl
+IEkgd29udCBhY3F1aXJlIGZyb20gQTowIFJYMiAoaWYgSSB1c2UgVFgvUlggaXMgdGhlIHNhbWUp
+IGFuZCBBOjEKPiBSWDLCoCB0dW5pbmcgdGhlIGZpcnN0IGRldmljZSBhdCA2NTQuMCBNSFoKPgo+
+IGFuZCB0aGUgc2Vjb25kIHRvIDg5Ni44IE1IWi4gV2hhdCBoYXBwZW4gaXMgdGhhdCBib3RoIGNo
+YW5uZWxzIGFyZSB0dW5lZAo+IHRvIHRoZSBsYXN0IGZyZXF1ZW5jeSAoSSdtIHN1cmUgb2YgaXQg
+YmVjYXVzZSBJIHRlc3RlZCBpdCB3aXRoIGEgc2lnbmFsCj4gZ2VuZXJhdG9yKS4KPgo+IEknbSB1
+bmFibGUgdG8gdW5kZXJzdGFuZCB3aHkgdGhpcyBoYXBwZW4uIEFueSBoZWxwIGlzIGFwcmVjaWF0
+ZWQuCj4KPiBUaGFuayB5b3UKPgo+Cj4KPgo+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
+dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
+bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
