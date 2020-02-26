@@ -2,105 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86C316F9DA
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Feb 2020 09:41:32 +0100 (CET)
-Received: from [::1] (port=56074 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23C5716FA14
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Feb 2020 09:58:25 +0100 (CET)
+Received: from [::1] (port=57902 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j6sFw-0000sS-Qi; Wed, 26 Feb 2020 03:41:24 -0500
-Received: from mx1.itsystems.it ([62.94.30.103]:42860)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <p.palana@itsystems.it>)
- id 1j6sFs-0000oT-8b
- for usrp-users@lists.ettus.com; Wed, 26 Feb 2020 03:41:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=itsystems.it; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wWxRvt32jkhFODTdn3vNXEmmDADDWdTOQPwFeqCX6rA=; b=MTh7WOh2wwHoYzrxkh1rpYUQVf
- PI1yj2xfbJV3by9b2Mizq3C5+hGfSPST3xPoDx3xRNuKL8qcf7DImqbNY34OLC08zfWcsZ19B6DDp
- 9isdEnIFjX+DQfP2MvXILEjrBwsWXp+jzkdR/zGuKabAiKDp1Gr/U2i8xsEOjE6B2li0=;
-Received: from [10.10.0.138]
- by mx1.itsystems.it with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.90_1) (envelope-from <p.palana@itsystems.it>)
- id 1j6sEk-0005yc-28
- for usrp-users@lists.ettus.com; Wed, 26 Feb 2020 08:40:13 +0000
+	id 1j6sWL-00029F-6z; Wed, 26 Feb 2020 03:58:21 -0500
+Received: from relais-inet.orange.com ([80.12.66.40]:17477)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93) (envelope-from <louisadrien.dufrene@orange.com>)
+ id 1j6sWG-00022d-Ol
+ for usrp-users@lists.ettus.com; Wed, 26 Feb 2020 03:58:16 -0500
+Received: from opfedar01.francetelecom.fr (unknown [xx.xx.xx.2])
+ by opfedar21.francetelecom.fr (ESMTP service) with ESMTP id 48S8nq5Kgpz7tqt
+ for <usrp-users@lists.ettus.com>; Wed, 26 Feb 2020 09:57:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=orange.com;
+ s=ORANGE001; t=1582707455;
+ bh=rgSLzzkJO3e5FuD6ZGlTiQtgtSTdv+Uq+2jZYbxPAzw=;
+ h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
+ b=b4FAYkn98p9WeCpw6SliKsbVGQb7CNiwFFJzz0IGFN+X0vWPiPH7NSNp1X+UOjE1E
+ hWfSX0x+f7ann5xtlV95YLIB4TJS6gP8kSqkh9WC/J3hHB9b5ls2rorVkkVfhLVXXA
+ JRMOpQurizSmwFMD64MilA8CFCDYucSjL59edGu7YgQ0s5CTWOrGJ6NENeuKsf+1+s
+ ageMVHTG3bv7rUDZwUvbjQNSrsDM6iCcetU/0c2QNtfXiHLXkUj62nG8USdWmf4a9e
+ 3I4Nh13cmtPpVrbt6BrKJYEta5nJhDl38a0GVpG3tAnLsPfeL9y/o4R5EXYCmNsSL5
+ gdq0Vk8jc3Aow==
+Received: from Exchangemail-eme6.itn.ftgroup (unknown [xx.xx.13.92])
+ by opfedar01.francetelecom.fr (ESMTP service) with ESMTP id 48S8nq4WjfzBrLM
+ for <usrp-users@lists.ettus.com>; Wed, 26 Feb 2020 09:57:35 +0100 (CET)
+Received: from OPEXCAUBM21.corporate.adroot.infra.ftgroup
+ ([fe80::d42b:2e80:86c2:5905]) by OPEXCAUBM34.corporate.adroot.infra.ftgroup
+ ([::1]) with mapi id 14.03.0468.000; Wed, 26 Feb 2020 09:57:35 +0100
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <c8cd447d-acde-1201-1dbb-1562017c2153@itsystems.it>
-Openpgp: preference=signencrypt
-Autocrypt: addr=p.palana@itsystems.it; prefer-encrypt=mutual; keydata=
- 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
- Hv257PEMJkU=
-Message-ID: <d2ea76a1-88d2-517b-0137-2c4e1783f69f@itsystems.it>
-Date: Wed, 26 Feb 2020 09:40:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <c8cd447d-acde-1201-1dbb-1562017c2153@itsystems.it>
+Thread-Topic: Strange noise floor at "high" SNR
+Thread-Index: AdXsgswNczUFLv/cRsKFYVmkhMmEYg==
+Date: Wed, 26 Feb 2020 08:57:34 +0000
+Message-ID: <14812_1582707455_5E5632FF_14812_320_1_AD065CF42EAFA14D8B2A641BCA414A3550EB3094@OPEXCAUBM21.corporate.adroot.infra.ftgroup>
+Accept-Language: fr-FR, en-US
 Content-Language: en-US
-X-Spam-Score: -2.9 (--)
-X-Spam-Report: Spam detection software,
- running on the system "v-mx.virt.itsystems.it", 
- has NOT identified this incoming email as spam.  The original
- message has been attached to this so you can view it or label
- similar future email.  If you have any questions, see
- the administrator of that system for details.
- Content preview:  Hello Rob, Hello Marcus, thank you for your answers. They
- make perfect sense. Have a good day Paolo On 25/02/20 14:43, Paolo Palana
- via USRP-users wrote: > Hello to all the mailing list. > > I've a little
- problem
- in setting the rx frequency on my n310 when I need > to acquire from all
- 4 channels. > [...] 
- Content analysis details:   (-2.9 points, 5.0 required)
- pts rule name              description
- ---- ---------------------- --------------------------------------------------
- -1.0 ALL_TRUSTED            Passed through trusted hosts only via SMTP
- -1.9 BAYES_00               BODY: Bayes spam probability is 0 to 1%
- [score: 0.0001]
-Subject: Re: [USRP-users] linuhd 3.14.1.1 Problem in setting rx frequecy on
- n310
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.114.13.245]
+MIME-Version: 1.0
+Subject: [USRP-users] Strange noise floor at "high" SNR
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Paolo Palana via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Paolo Palana <p.palana@itsystems.it>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Louis-Adrien DUFRENE via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: louisadrien.dufrene@orange.com
+Content-Type: multipart/mixed; boundary="===============3899143307687096024=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -129,39 +71,279 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGVsbG8gUm9iLCBIZWxsbyBNYXJjdXMsCnRoYW5rIHlvdSBmb3IgeW91ciBhbnN3ZXJzLiBUaGV5
-IG1ha2UgcGVyZmVjdCBzZW5zZS4KCkhhdmUgYSBnb29kIGRheQpQYW9sbwoKCk9uIDI1LzAyLzIw
-IDE0OjQzLCBQYW9sbyBQYWxhbmEgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gSGVsbG8gdG8gYWxs
-IHRoZSBtYWlsaW5nIGxpc3QuCj4KPiBJJ3ZlIGEgbGl0dGxlIHByb2JsZW0gaW4gc2V0dGluZyB0
-aGUgcnggZnJlcXVlbmN5IG9uIG15IG4zMTAgd2hlbiBJIG5lZWQKPiB0byBhY3F1aXJlIGZyb20g
-YWxsIDQgY2hhbm5lbHMuCj4KPiBJIHVzZSB0aGUgbjMxMCBkaXJlY3RseSBpbiBteSBwcm9ncmFt
-IHVzaW5nIGxpYnVoZC4gVGhlIGNvZGUgSSB1c2UgaW4KPiBvcmRlciB0byBzZXQgdGhlIHJ4X2Zy
-ZXF1ZW5jeSBpczoKPgo+IMKgwqDCoCBGaXJzdCBvZiBhbGwgc2V0IHRoZSBzdWJkZXZzOgo+Cj4g
-wqDCoMKgIMKgwqDCoMKgIGlmKHZtLmNvdW50KCJzdWJkZXYiKSl7Cj4gwqDCoMKgIMKgwqAgwqAg
-wqDCoMKgwqDCoMKgIG1Vc3JwLT5zZXRfcnhfc3ViZGV2X3NwZWMobVN1YkRldik7Cj4gwqDCoMKg
-IMKgwqDCoCB9Cj4KPiDCoMKgwqAgwqDCoMKgIC4uLi4uLi4uLi4uLgo+Cj4gwqDCoMKgIMKgwqDC
-oMKgIGZvcihzaXplX3QgaT0wOyBpPG1GcmVxcy5zaXplKCk7IGkrKykKPiDCoMKgwqAgwqDCoMKg
-IHsKPiDCoMKgwqAgwqDCoCDCoCDCoMKgIGNvdXQgPDwgYm9vc3Q6OmZvcm1hdCgiU2V0dGluZyBj
-aGFuICVkIEZyZXE6ICVmIE1IeCIpICUgKGkpCj4gJSAobUZyZXFzW2ldLzFlNikgPDwgZW5kbDsK
-PiDCoMKgwqDCoMKgwqDCoCDCoMKgwqAgdWhkOjp0dW5lX3JlcXVlc3RfdCB0dW5lX3JlcXVlc3Qo
-bUZyZXFzW2ldKTsKPiDCoMKgwqAgwqDCoMKgwqDCoMKgwqAgdHVuZV9yZXF1ZXN0LmFyZ3MgPSB1
-aGQ6OmRldmljZV9hZGRyX3QoIm1vZGVfbj1pbnRlZ2VyIik7Cj4gwqDCoMKgIMKgwqAgwqAgwqDC
-oCBtVXNycC0+c2V0X3J4X2ZyZXEodHVuZV9yZXF1ZXN0LCBpKTsKPiDCoMKgwqDCoMKgwqDCoCDC
-oMKgwqAgY291dCA8PCBib29zdDo6Zm9ybWF0KCJOZXcgUlggRnJlcSBjaGFuICVkOiAlZiBNSHou
-Li4iKSAlIGkKPiAlIChtVXNycC0+Z2V0X3J4X2ZyZXEoaSkvMWU2KSA8PCBlbmRsIDw8IGVuZGw7
-Cj4gwqDCoMKgIMKgwqDCoCB9Cj4KPgo+IFRoZSBvdXRwdXQgSSBjYW4gc2VlIG9uIG15IGNvbnNv
-bGUgY29uZmlybSB0aGF0IGV2ZXJ5IGNoYW5uZWwgc2hvdWxkCj4gaGF2ZSB0aGUgcmlndGggZnJl
-cXVlbmN5Lgo+Cj4gT2YgY291cnNlIHRoaXMgaXMgbm90IHRoZSBjYXNlLgo+Cj4KPiBTdXBwb3Nl
-IEkgd29udCBhY3F1aXJlIGZyb20gQTowIFJYMiAoaWYgSSB1c2UgVFgvUlggaXMgdGhlIHNhbWUp
-IGFuZCBBOjEKPiBSWDLCoCB0dW5pbmcgdGhlIGZpcnN0IGRldmljZSBhdCA2NTQuMCBNSFoKPgo+
-IGFuZCB0aGUgc2Vjb25kIHRvIDg5Ni44IE1IWi4gV2hhdCBoYXBwZW4gaXMgdGhhdCBib3RoIGNo
-YW5uZWxzIGFyZSB0dW5lZAo+IHRvIHRoZSBsYXN0IGZyZXF1ZW5jeSAoSSdtIHN1cmUgb2YgaXQg
-YmVjYXVzZSBJIHRlc3RlZCBpdCB3aXRoIGEgc2lnbmFsCj4gZ2VuZXJhdG9yKS4KPgo+IEknbSB1
-bmFibGUgdG8gdW5kZXJzdGFuZCB3aHkgdGhpcyBoYXBwZW4uIEFueSBoZWxwIGlzIGFwcmVjaWF0
-ZWQuCj4KPiBUaGFuayB5b3UKPgo+Cj4KPgo+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
-dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCgoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
-bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+
+--===============3899143307687096024==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_AD065CF42EAFA14D8B2A641BCA414A3550EB3094OPEXCAUBM21corp_"
+
+
+--_000_AD065CF42EAFA14D8B2A641BCA414A3550EB3094OPEXCAUBM21corp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hello everyone,
+
+I am using a USRP B210 with the Python (3.7.6) API with UHD 3.15 (from cond=
+a-forge).
+
+RF setup is as follow: one USRP, one TX/RX connected with a SMA cable, 60 d=
+B attenuator, central freq is 1GHz, sampling rate is 1,6 MHz (oversampling =
+value is 4) and RX gain is fixed to 50 dB.
+I send burst of data composed of a zadoff-chu 256 followed by a payload mod=
+ulated with M-QAM and Gray mapping. This is a wideband transmission, there =
+is no additional filtering, nor OFDM modulation.
+
+I use a 1031-long ZC sequence to locate the frame.
+In reception, I use the 256-long ZC sequence to fine synch (select the righ=
+t sample version to go back to symbol rate), to estimate the channel (1-tap=
+) and more especially the phase shift, and to estimate the SNR.
+
+I could confirm the performance for 4-QAM and 16-QAM. BER vs SNR performanc=
+e curves obtained in experimentation follow perfectly the theoretical curve=
+s for AWGN.
+
+However not in the case of the 64-QAM. Actually, I can't obtain a SNR above=
+ 22 / 23 dB, independently of the QAM order used.
+To increase the SNR and draw the performance curves, I simply increase the =
+TX gain. I start getting some problem from 45/50 dB.
+
+I observe a noise floor which looks like classic AWGN, but which is increas=
+ing with the TX gain, since the estimated SNR is constant at 22.5 dB.
+
+I have also confirm the performances of the 4-QAM, 16-QAM and 64-QAM in sim=
+ulation on AWGN channel.
+
+At the moment I have no clue of what is happening. I have manually activate=
+d dc offset and iq imbalance correction based on UHD API to be sure.
+
+What do I miss? I can provide more information if needed.
+
+Best regards,
+Louis-Adrien
+
+___________________________________________________________________________=
+______________________________________________
+
+Ce message et ses pieces jointes peuvent contenir des informations confiden=
+tielles ou privilegiees et ne doivent donc
+pas etre diffuses, exploites ou copies sans autorisation. Si vous avez recu=
+ ce message par erreur, veuillez le signaler
+a l'expediteur et le detruire ainsi que les pieces jointes. Les messages el=
+ectroniques etant susceptibles d'alteration,
+Orange decline toute responsabilite si ce message a ete altere, deforme ou =
+falsifie. Merci.
+
+This message and its attachments may contain confidential or privileged inf=
+ormation that may be protected by law;
+they should not be distributed, used or copied without authorisation.
+If you have received this email in error, please notify the sender and dele=
+te this message and its attachments.
+As emails may be altered, Orange is not liable for messages that have been =
+modified, changed or falsified.
+Thank you.
+
+
+--_000_AD065CF42EAFA14D8B2A641BCA414A3550EB3094OPEXCAUBM21corp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+tax=3D"http://schemas.microsoft.com/sharepoint/taxonomy/soap/" xmlns:tns=3D=
+"http://schemas.microsoft.com/sharepoint/soap/recordsrepository/" xmlns:sps=
+up=3D"http://microsoft.com/webservices/SharePointPortalServer/UserProfileSe=
+rvice" xmlns:mml=3D"http://www.w3.org/1998/Math/MathML" xmlns:st=3D"&#1;" x=
+mlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"FR" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello everyone,<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I am using a USRP B210 with the=
+ Python (3.7.6) API with UHD 3.15 (from conda-forge).<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">RF setup is as follow: one USRP=
+, one TX/RX connected with a SMA cable, 60 dB attenuator, central freq is 1=
+GHz, sampling rate is 1,6 MHz (oversampling value is 4) and RX gain is fixe=
+d to 50 dB.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I send burst of data composed o=
+f a zadoff-chu 256 followed by a payload modulated with M-QAM and Gray mapp=
+ing. This is a wideband transmission, there is no additional filtering, nor=
+ OFDM modulation.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I use a 1031-long ZC sequence t=
+o locate the frame.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">In reception, I use the 256-lon=
+g ZC sequence to fine synch (select the right sample version to go back to =
+symbol rate), to estimate the channel (1-tap) and more especially the phase=
+ shift, and to estimate the SNR.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I could confirm the performance=
+ for 4-QAM and 16-QAM. BER vs SNR performance curves obtained in experiment=
+ation follow perfectly the theoretical curves for AWGN.<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">However not in the case of the =
+64-QAM. Actually, I can&#8217;t obtain a SNR above 22 / 23 dB, independentl=
+y of the QAM order used.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">To increase the SNR and draw th=
+e performance curves, I simply increase the TX gain. I start getting some p=
+roblem from 45/50 dB.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I observe a noise floor which l=
+ooks like classic AWGN, but which is increasing with the TX gain, since the=
+ estimated SNR is constant at 22.5 dB.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have also confirm the perform=
+ances of the 4-QAM, 16-QAM and 64-QAM in simulation on AWGN channel.<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">At the moment I have no clue of=
+ what is happening. I have manually activated dc offset and iq imbalance co=
+rrection based on UHD API to be sure.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">What do I miss? I can provide m=
+ore information if needed.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Louis-Adrien<o:p></o:p></span><=
+/p>
+</div>
+<PRE>______________________________________________________________________=
+___________________________________________________
+
+Ce message et ses pieces jointes peuvent contenir des informations confiden=
+tielles ou privilegiees et ne doivent donc
+pas etre diffuses, exploites ou copies sans autorisation. Si vous avez recu=
+ ce message par erreur, veuillez le signaler
+a l'expediteur et le detruire ainsi que les pieces jointes. Les messages el=
+ectroniques etant susceptibles d'alteration,
+Orange decline toute responsabilite si ce message a ete altere, deforme ou =
+falsifie. Merci.
+
+This message and its attachments may contain confidential or privileged inf=
+ormation that may be protected by law;
+they should not be distributed, used or copied without authorisation.
+If you have received this email in error, please notify the sender and dele=
+te this message and its attachments.
+As emails may be altered, Orange is not liable for messages that have been =
+modified, changed or falsified.
+Thank you.
+</PRE></body>
+</html>
+
+--_000_AD065CF42EAFA14D8B2A641BCA414A3550EB3094OPEXCAUBM21corp_--
+
+
+--===============3899143307687096024==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3899143307687096024==--
+
