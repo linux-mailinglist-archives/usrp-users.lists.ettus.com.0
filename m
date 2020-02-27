@@ -2,61 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 242CD172867
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Feb 2020 20:15:13 +0100 (CET)
-Received: from [::1] (port=44602 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 369C4172970
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Feb 2020 21:28:37 +0100 (CET)
+Received: from [::1] (port=33246 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j7Ocn-000431-7K; Thu, 27 Feb 2020 14:15:09 -0500
-Received: from mail-qv1-f65.google.com ([209.85.219.65]:41063)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <ryan.volz@gmail.com>) id 1j7Oci-0003wK-No
- for usrp-users@lists.ettus.com; Thu, 27 Feb 2020 14:15:04 -0500
-Received: by mail-qv1-f65.google.com with SMTP id s7so117717qvn.8
- for <usrp-users@lists.ettus.com>; Thu, 27 Feb 2020 11:14:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=iG0NrGNsuhk7N89gjLoM+UZzRAwfN+5XR+A5RU+uL0Y=;
- b=hX8TEeaaPVkCpyb6wmV3np3ejq7YF7nYzSWRC3OfkwNw0hBm7lQKHrdlciYV2OAsYx
- x1RndsiEBpsjxDFqdQ/xYU/M2JlgpB0SKhY3J6hXHXbOxQqM2FUQnCUL+pa8cX21a1r2
- WwWdeB0AXRl95Zpw0IipOdwzI5NxLGR3X4RquaAsC4p+IaeAfqFoiu/0lzV+HgrhNSaB
- YV53RA3fLHIJClL+tUfaIxOVfa5peX4aYHVpRxsSefBuNuOaDvC8kp9GNyGh8tNwP/sL
- sz70DgOrndcqAkFGPGPiU9zuw/PDFq07hUEE7mbUBFNrb9ofGs9O29cLM61P8SjqotLz
- K3wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=iG0NrGNsuhk7N89gjLoM+UZzRAwfN+5XR+A5RU+uL0Y=;
- b=mRj7KmZHSQNcGTYPR/LMJGhQLVx7molxVjg5XmmwoMcTWinqwvdqEtz/Qkm6n1PCDH
- hEgDfvEMeO4Q2XdmSeJDusTeReT1Ttg/XQsLTYZQFmDQb/niX1gNJHfN42cVt/4f2TWq
- J3s7OhiEHJ1X6PkxFs9tBOf0+RVofjC7IPDZvT/LvDxiXIMwiTpJaG06/Z9Og3bPoNei
- 2NOa4k4tAI8skME+2D5kXEQv8OkS6cIbwdexdmNY8RBjCOsLlak/tFyRLesz5pgl5Kmr
- XyLvUQEI16eGP/owkKT4y6g+Pdfgtf3DkbJ08tQpMN34UMfxdHES0Ec5qVxkdCOkmAKn
- mGSw==
-X-Gm-Message-State: APjAAAUh/fLj5GtII724pG0dPCrHD85xIL29/A7q5CKhImk9uBpokt76
- gxdflmK/frf41vm9mhH+0ZwtvCxN
-X-Google-Smtp-Source: APXvYqx6vitJP4nhaA3cAKYKAhptM63yBQ9kq5lby7nyLf3D6gxzt7abYlO/l4Ff3cwbDEBb9XKxjQ==
-X-Received: by 2002:a0c:ca94:: with SMTP id a20mr410833qvk.150.1582830861845; 
- Thu, 27 Feb 2020 11:14:21 -0800 (PST)
-Received: from [192.52.65.74] ([192.52.65.74])
- by smtp.googlemail.com with ESMTPSA id h8sm3609330qtm.51.2020.02.27.11.14.21
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 27 Feb 2020 11:14:21 -0800 (PST)
-To: usrp-users@lists.ettus.com
-References: <MW2PR1901MB213772B28ED4FF5A4190EDB2C6EB0@MW2PR1901MB2137.namprd19.prod.outlook.com>
-Message-ID: <9f23fc20-5685-e0a2-0b00-ee3ab68ca8f6@gmail.com>
-Date: Thu, 27 Feb 2020 14:14:20 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+	id 1j7Plp-00063f-Mf; Thu, 27 Feb 2020 15:28:33 -0500
+Received: from mout.gmx.net ([212.227.17.20]:43703)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1j7Pll-0005pt-9D
+ for usrp-users@lists.ettus.com; Thu, 27 Feb 2020 15:28:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1582835268;
+ bh=VgfA3AFOvuTs4q1R1Fz5JvjrXTshGOT8ZdmceSLpDO8=;
+ h=X-UI-Sender-Class:From:To:Subject:Date;
+ b=RSJlfsjj1ir3sxXlHz1b1pNMot4XFQj2C5EWZwRkqTKLloCODzunSiVGzZNsCsVHy
+ wkcOob8BsyV8jIVOAUgCsC2fPnh7TbixNw+GW8eLF10/z3RwYSZVLGObtvlnzTzOXz
+ yrbfuhFmLw6Z6vOrMVc5gBfZI6pL6wuZhlyFp0/E=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
+ (3c-app-gmx-bap31.server.lan [172.19.172.101]) (via HTTP); Thu, 27 Feb 2020
+ 21:27:48 +0100
 MIME-Version: 1.0
-In-Reply-To: <MW2PR1901MB213772B28ED4FF5A4190EDB2C6EB0@MW2PR1901MB2137.namprd19.prod.outlook.com>
-Content-Language: en-CA
-Subject: Re: [USRP-users] Building and Installing UHD with RFNoC and
- GNURadio 3.8 from source with Tensorflow 2.0 integration
+Message-ID: <trinity-da66474f-e02c-44ba-a6fb-4eb618308885-1582835268116@3c-app-gmx-bap31>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Thu, 27 Feb 2020 21:27:48 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:yDtGkIcyEGAoGHB1dDvTL2yl6RPVJo6pYRLxV/hezCT9G/Pj9ViOMDEDAj2C/uDP3tkrT
+ Ihb4Kx1g7GUmwdFrKTwyGb7FXk+goiyjbMLgxcDUfWY1FwDv7gTYpjlJVfV2Quxn0oHmHagCglVk
+ Pro/Yub2s6UadvloOl7KLK7CY5GNiQpe6fJvtMAzB6wz2b9lijQR971zOhU1SrhAyuwAtMY4zL4G
+ 7zkx1CAiEqryPs7zT/0TxvmV8R79OAE8yulqiXHGjVJpzIeVGutB8nsRInuSKSzzW+h1THMzND3i
+ nk=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:JMPASX9uq2U=:XVvGFqL3zDVNN6+Na1sVtn
+ owji1lEUDVQiAdGRfUZOYRgw9Jr/vCaDRFC1m8cgeWj0BAgteXZc30KzWtQN4N8NxedenCpCn
+ agcE3RBKEAIzrDdKefXD4PGI/I0eTPsI8A3Xog8f1WRD+U3JX9F2wcqT4RHR0LUgSZLzRJVvY
+ hOr5RjmbecFVyr9EqxLpbBp5LjbqZa5U+iJQy3axoTMpDiek30TmMo5Yuu24BOqJEMAunSMNk
+ Fkbz6MLQ8HzcExIT6O1efaA2ZkZDgzIyDO7YqSYK+pNMHiik6ScYpBC29yeeJvkeGmILBmuks
+ +NXjygpad9A+PN9yL0S88ul3pGccXLMnpPG61ywBqVs3T5E/6GC0L57Ig4+HhPsdzhuB2r3wU
+ MK/bYvwqw9WeDY/TibLLxfnlLmrbYURwjJBM1mQR5tFljU/TjizUwPTmmFvGg9guDaJbHCMUc
+ qoto33G9J8Ei9dfnTYPiFhy7cqwbqbgtrIpNuoMxl8rNDF9BD6uBwlxoP9v5NJ5Q5GAr31RLO
+ ISNh0Lo16HyZ4A2X3ueUviLCOQN5+On0QBMT5i4HdezlUA/aT/mUxQN8aLaTsWO5MbcjZ7kZs
+ EXPjtz1xBVaAIa2MgfnZuB+etx36vVGsRNhpijamqcPA0F6DNrtMV9E3iumd+NzN1JyMIjaO+
+ PQVcUPmRxmaShrKj/vHWKg1MgW8hAUG6dUSrBadta5k8mBXnhYpw2/FrY0YWYQ95BfVI=
+Subject: [USRP-users] How do timed commands work for two blocks (USRP
+ Sink+USRP Source)?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,8 +60,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ryan Volz via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ryan Volz <ryan.volz@gmail.com>
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
@@ -85,28 +77,68 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Jerrid,
+How do these timed commands work exactly when using USRP Source together with USRP Sink? (I need to phase-align RX and TX hence use timed commands at the same time).
+Since they are both internally use the same hardware device (and board) I feel timed commands sent to both blocks result in some unpredictable results (at least for me).
 
-I made some conda packages for UHD and GNU Radio 3.8 that are available on conda-forge: https://conda-forge.org/. That might be a good way for you to get things running in the same python environment. The UHD package does include the Python API. The only caveat is that the GNU Radio package does not include gnuradio-companion if you need to use that (GTK 3 is not available yet for the GUI).
+For simplicity, consider this simple test setup: Loopback configuration (TX into RX via 30dB attentuator); transmit a 1MHz baseband signal into USRP Sink. Then, use just retuning via DSP:
 
-Cheers,
-Ryan
+    # dsp_freq changes every time this code is called:
+    #dsp_freq = 0
+    dsp_freq = 100e3
+    tune_req_tx = uhd.tune_request()
+    tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
+    tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+    tune_req_tx.rf_freq = 900e6
+    tune_req_tx.dsp_freq = -dsp_freq
 
-On 2/27/20 1:32 PM, Jerrid Plymale via USRP-users wrote:
-> Hey all,
-> 
-> So I need some direction for what I am trying to do as I am not sure that it is even possible. We are using machine learning in the project I am working on, and would like to incorporate that into GNURadio if possible. So I am currently using an anaconda environment set up with python3.7 and Tensorflow GPU 2.0 for the machine learning development. I would like to set up an installation for UHD with RFNoC and GNURadio 3.8 using this conda environment such that it uses python3.7 and has all of the python libraries that the conda environment does (like Tensorflow GPU 2.0). Can anyone point me in the right direction for guides that can help me achieve this or instruct me directly? Is this even possible? Would I have to just set up UHD with the Python API to integrate Tensorflow GPU 2.0 into the script? Any and all insight/information on this topic would be greatly appreciated.
-> 
-> Best Regards,
-> 
-> Jerrid
-> 
-> 
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> 
+    tune_req_rx = uhd.tune_request()
+    tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
+    tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+    tune_req_rx.rf_freq = 900e6
+    tune_req_rx.dsp_freq = dsp_freq
+
+    res1 = uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
+    res2 = uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
+
+This code works exactly as expected ... my received baseband signal always stays at 1 MHz (the retuning is transparent to my baseband!) but the phase always changes.
+This makes sense because I do not use timed commands and hence the DUC/DDC is not aligned properly.
+
+Now I change to this code:
+
+    tune_req_tx = uhd.tune_request()
+    tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
+    tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+    tune_req_tx.rf_freq = rf_freq
+    tune_req_tx.dsp_freq = -dsp_freq
+
+    tune_req_rx = uhd.tune_request()
+    tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
+    tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+    tune_req_rx.rf_freq = rf_freq
+    tune_req_rx.dsp_freq = dsp_freq
+
+    # create timed command:
+    now = usrp_sink.get_time_now()
+    uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(0.2))
+    uhd_usrp_source_0.set_command_time(now + uhd.time_spec(0.2))
+    res1 = uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
+    res2 = uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
+    uhd_usrp_sink_0.clear_command_time()
+    uhd_usrp_source_0.clear_command_time()
+
+Suddenly my frequency is offset by 100kHz. This makes totally no sense!
+
+As I mentioned above, I assume the reason is that all these timed commands eventually arrive on the same hardware and maybe overwrite themselves in a way creating unpredictable behavior.
+
+So, what is the correct way to do it (with USRP Source/Sink blocks in gnuradio)??
+
+Thanks
+Lukas
+
+
+PS: If it's multiple receiver blocks I can use the same USRP Source block with Num Channels > 1. I guess that would make live easier. But I have TX+RX to phase align.
+
+
 
 _______________________________________________
 USRP-users mailing list
