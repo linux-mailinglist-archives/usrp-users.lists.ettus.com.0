@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 369C4172970
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Feb 2020 21:28:37 +0100 (CET)
-Received: from [::1] (port=33246 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32123172D59
+	for <lists+usrp-users@lfdr.de>; Fri, 28 Feb 2020 01:31:44 +0100 (CET)
+Received: from [::1] (port=43662 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j7Plp-00063f-Mf; Thu, 27 Feb 2020 15:28:33 -0500
-Received: from mout.gmx.net ([212.227.17.20]:43703)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1j7Pll-0005pt-9D
- for usrp-users@lists.ettus.com; Thu, 27 Feb 2020 15:28:29 -0500
+	id 1j7TZ5-0002Le-2p; Thu, 27 Feb 2020 19:31:39 -0500
+Received: from mout.gmx.net ([212.227.17.22]:56073)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1j7TZ1-0002HG-Ke
+ for usrp-users@lists.ettus.com; Thu, 27 Feb 2020 19:31:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1582835268;
- bh=VgfA3AFOvuTs4q1R1Fz5JvjrXTshGOT8ZdmceSLpDO8=;
+ s=badeba3b8450; t=1582849854;
+ bh=jfTYJOJsURk0AkvR1n2EGoFnfiD/ugD7PvO4AmwzNDU=;
  h=X-UI-Sender-Class:From:To:Subject:Date;
- b=RSJlfsjj1ir3sxXlHz1b1pNMot4XFQj2C5EWZwRkqTKLloCODzunSiVGzZNsCsVHy
- wkcOob8BsyV8jIVOAUgCsC2fPnh7TbixNw+GW8eLF10/z3RwYSZVLGObtvlnzTzOXz
- yrbfuhFmLw6Z6vOrMVc5gBfZI6pL6wuZhlyFp0/E=
+ b=QYzBFH2kPLMo0DuIkfGeKIRRPJP5i5/V5LWdBj730cjpdxxG/VoJE4lsIq7eN47OD
+ QojJKDsFdZ94CVvEjgZhIONG6A5BwZeFIbpbg+Y5kAV97jFiXt2/iYQwWYUMH2NEpL
+ AicYNUW94vW0B5nAKW/FU8Bav8Fcpt9BAYWolYZQ=
 X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
 Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bap31.server.lan [172.19.172.101]) (via HTTP); Thu, 27 Feb 2020
- 21:27:48 +0100
+ (3c-app-gmx-bs05.server.lan [172.19.170.54]) (via HTTP); Fri, 28 Feb 2020
+ 01:30:54 +0100
 MIME-Version: 1.0
-Message-ID: <trinity-da66474f-e02c-44ba-a6fb-4eb618308885-1582835268116@3c-app-gmx-bap31>
+Message-ID: <trinity-5b1cc46b-5622-4f42-8dcb-1c6d41c98fe3-1582849854366@3c-app-gmx-bs05>
 To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Thu, 27 Feb 2020 21:27:48 +0100
+Date: Fri, 28 Feb 2020 01:30:54 +0100
 Importance: normal
 Sensitivity: Normal
 X-Priority: 3
-X-Provags-ID: V03:K1:yDtGkIcyEGAoGHB1dDvTL2yl6RPVJo6pYRLxV/hezCT9G/Pj9ViOMDEDAj2C/uDP3tkrT
- Ihb4Kx1g7GUmwdFrKTwyGb7FXk+goiyjbMLgxcDUfWY1FwDv7gTYpjlJVfV2Quxn0oHmHagCglVk
- Pro/Yub2s6UadvloOl7KLK7CY5GNiQpe6fJvtMAzB6wz2b9lijQR971zOhU1SrhAyuwAtMY4zL4G
- 7zkx1CAiEqryPs7zT/0TxvmV8R79OAE8yulqiXHGjVJpzIeVGutB8nsRInuSKSzzW+h1THMzND3i
- nk=
+X-Provags-ID: V03:K1:ZX0Ie69bQdI/bcHHsV2gRX+MdAINxcBnSSUm+YRe3tepBBw0LjPeLLNNEpbexlWN3Zvoh
+ um8z5J+s2lOzFC3sg+jjvAzdJjFFsN4hGd/PXZG5v4YEyssevj7r5I1nmn4S/cRCceJn6Bwh/Jxb
+ pbT7worNJdBR/dJuZHiy/CgCltyrRgk4bqoQlZ9IqT1B8gNqElZmTOC00nEwUaT0mxgwfGg1g7G4
+ uszVg7y3l1m94S5/7r6OqAwmOCfwtNyu9/C7d5x2Ahm1sd0a52IRNK1auPEYmJzKTXp3dm4LCNCF
+ y0=
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:JMPASX9uq2U=:XVvGFqL3zDVNN6+Na1sVtn
- owji1lEUDVQiAdGRfUZOYRgw9Jr/vCaDRFC1m8cgeWj0BAgteXZc30KzWtQN4N8NxedenCpCn
- agcE3RBKEAIzrDdKefXD4PGI/I0eTPsI8A3Xog8f1WRD+U3JX9F2wcqT4RHR0LUgSZLzRJVvY
- hOr5RjmbecFVyr9EqxLpbBp5LjbqZa5U+iJQy3axoTMpDiek30TmMo5Yuu24BOqJEMAunSMNk
- Fkbz6MLQ8HzcExIT6O1efaA2ZkZDgzIyDO7YqSYK+pNMHiik6ScYpBC29yeeJvkeGmILBmuks
- +NXjygpad9A+PN9yL0S88ul3pGccXLMnpPG61ywBqVs3T5E/6GC0L57Ig4+HhPsdzhuB2r3wU
- MK/bYvwqw9WeDY/TibLLxfnlLmrbYURwjJBM1mQR5tFljU/TjizUwPTmmFvGg9guDaJbHCMUc
- qoto33G9J8Ei9dfnTYPiFhy7cqwbqbgtrIpNuoMxl8rNDF9BD6uBwlxoP9v5NJ5Q5GAr31RLO
- ISNh0Lo16HyZ4A2X3ueUviLCOQN5+On0QBMT5i4HdezlUA/aT/mUxQN8aLaTsWO5MbcjZ7kZs
- EXPjtz1xBVaAIa2MgfnZuB+etx36vVGsRNhpijamqcPA0F6DNrtMV9E3iumd+NzN1JyMIjaO+
- PQVcUPmRxmaShrKj/vHWKg1MgW8hAUG6dUSrBadta5k8mBXnhYpw2/FrY0YWYQ95BfVI=
-Subject: [USRP-users] How do timed commands work for two blocks (USRP
+X-UI-Out-Filterresults: notjunk:1;V03:K0:MMi4YSNUvGU=:E5mC16Wy8f+NZBipmblvf/
+ 3DqXfIF+amQWjDPWow9GKTOOxJ8TSI356TipiM3mukhO6K2VndNe2bQiazty5iZxxC0SIqx4V
+ L+PaGAEjw7+t1tySYciJoA1PIn7IJHJIS/vCs/XmLZ08Jzf+II1YwyVic1gGW2rdebNmmcEPQ
+ YMBg1NpjILKhKKGVEyoiZbLKHnxWFYOEsHOlDHc+X8cKGTbQBTrDw6JTmwW5+zgv9EeihLPg6
+ /WUqz55APh/RtEYIjKunIJRmLjpwCIuXsBYLfrw5hpzeWKxPhoc0vMaRduCVDHzeAJZww2mY1
+ djnuq62XLhHEDwg4pMDhS1MlCir399wQ34/L0corpMTFPnOVh6bMCNyLBeP+US6mbwHME12dl
+ xqAtLqXFEubWsJjo6a0s6J6+RdFvRwAnpf11UmrC+qJCXdBNWgynTh3JV2znv+nQWWPeNHrKC
+ igALjM0dTqDhL+2Uyn7nnU9hlFiP08crm4I+gm6QZ/sWomjRC9GlWyt/ahgKdwQQ4HkIhkpt1
+ Qc7sLePoa6AiO/pwFVGmLUqmpu/Khu1ehLdbXUl3xNQyEV2zuAIEjI4GA3xHs0b3to/rF8KDQ
+ ENJX6vr1AtK+sT1JXqybN8IYTUm//Xyp1ZAYKlSsG7XCzfnV/bF7PoOiZq3mxtJI31mQxRgeN
+ m8fAC5Qg7C/Q3H4jAXRnH/ObTMsaNr3r408sYvmdHz4C0Pl6hkvn1+FhujXtgshBsdec=
+Subject: Re: [USRP-users] How do timed commands work for two blocks (USRP
  Sink+USRP Source)?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -77,66 +77,106 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-How do these timed commands work exactly when using USRP Source together with USRP Sink? (I need to phase-align RX and TX hence use timed commands at the same time).
-Since they are both internally use the same hardware device (and board) I feel timed commands sent to both blocks result in some unpredictable results (at least for me).
+A quick update which may make things easier to debug: I am observing TX/RX on a spectrum analyzer and see if the frequency changes.
+As soon as I enable timed command, the tune command is ignored!
 
-For simplicity, consider this simple test setup: Loopback configuration (TX into RX via 30dB attentuator); transmit a 1MHz baseband signal into USRP Sink. Then, use just retuning via DSP:
+For simplicity, I am completely removing the RX parts (uhd_usrp_source_0).
 
-    # dsp_freq changes every time this code is called:
-    #dsp_freq = 0
-    dsp_freq = 100e3
-    tune_req_tx = uhd.tune_request()
-    tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
-    tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
-    tune_req_tx.rf_freq = 900e6
-    tune_req_tx.dsp_freq = -dsp_freq
+Now this works:
 
-    tune_req_rx = uhd.tune_request()
-    tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
-    tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
-    tune_req_rx.rf_freq = 900e6
-    tune_req_rx.dsp_freq = dsp_freq
+tune_req_tx = uhd.tune_request()
+tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
+tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+tune_req_tx.rf_freq = 900e6
+tune_req_tx.dsp_freq = -2e6
 
-    res1 = uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
-    res2 = uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
+now = usrp_sink.get_time_now()
+#usrp_sink.set_command_time(now + uhd.time_spec(1))
+res1 = usrp_sink.set_center_freq(  tune_req_tx, 0)
+usrp_sink.clear_command_time()
 
-This code works exactly as expected ... my received baseband signal always stays at 1 MHz (the retuning is transparent to my baseband!) but the phase always changes.
-This makes sense because I do not use timed commands and hence the DUC/DDC is not aligned properly.
+When this code is executed, the signal jumps by 2 MHz at the spectrum analyzer.
 
-Now I change to this code:
+Now I only uncomment set_timed_command above:
 
-    tune_req_tx = uhd.tune_request()
-    tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
-    tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
-    tune_req_tx.rf_freq = rf_freq
-    tune_req_tx.dsp_freq = -dsp_freq
+usrp_sink.set_command_time(now + uhd.time_spec(1))
 
-    tune_req_rx = uhd.tune_request()
-    tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
-    tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
-    tune_req_rx.rf_freq = rf_freq
-    tune_req_rx.dsp_freq = dsp_freq
+and repeat. NO frequency change any more!
 
-    # create timed command:
-    now = usrp_sink.get_time_now()
-    uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(0.2))
-    uhd_usrp_source_0.set_command_time(now + uhd.time_spec(0.2))
-    res1 = uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
-    res2 = uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
-    uhd_usrp_sink_0.clear_command_time()
-    uhd_usrp_source_0.clear_command_time()
+That means as soon as I use timed command (set_command_time) for changing the DSP frequency on a TX it is just IGNORED!
 
-Suddenly my frequency is offset by 100kHz. This makes totally no sense!
+This must be a bug ... or do I really do something fundamentally wrong?
 
-As I mentioned above, I assume the reason is that all these timed commands eventually arrive on the same hardware and maybe overwrite themselves in a way creating unpredictable behavior.
 
-So, what is the correct way to do it (with USRP Source/Sink blocks in gnuradio)??
+USRP X310 with 2xUBX-160. TX/RX from dautherboard 1 is connected to spectrum analyzer.
 
-Thanks
+
+Thank you!
 Lukas
 
 
-PS: If it's multiple receiver blocks I can use the same USRP Source block with Num Channels > 1. I guess that would make live easier. But I have TX+RX to phase align.
+
+Lukas Haase wrote:
+> How do these timed commands work exactly when using USRP Source together with USRP Sink? (I need to phase-align RX and TX hence use timed commands at the same time).
+> Since they are both internally use the same hardware device (and board) I feel timed commands sent to both blocks result in some unpredictable results (at least for me).
+>
+> For simplicity, consider this simple test setup: Loopback configuration (TX into RX via 30dB attentuator); transmit a 1MHz baseband signal into USRP Sink. Then, use just retuning via DSP:
+>
+>     # dsp_freq changes every time this code is called:
+>     #dsp_freq = 0
+>     dsp_freq = 100e3
+>     tune_req_tx = uhd.tune_request()
+>     tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
+>     tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+>     tune_req_tx.rf_freq = 900e6
+>     tune_req_tx.dsp_freq = -dsp_freq
+>
+>     tune_req_rx = uhd.tune_request()
+>     tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
+>     tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+>     tune_req_rx.rf_freq = 900e6
+>     tune_req_rx.dsp_freq = dsp_freq
+>
+>     res1 = uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
+>     res2 = uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
+>
+> This code works exactly as expected ... my received baseband signal always stays at 1 MHz (the retuning is transparent to my baseband!) but the phase always changes.
+> This makes sense because I do not use timed commands and hence the DUC/DDC is not aligned properly.
+>
+> Now I change to this code:
+>
+>     tune_req_tx = uhd.tune_request()
+>     tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
+>     tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+>     tune_req_tx.rf_freq = rf_freq
+>     tune_req_tx.dsp_freq = -dsp_freq
+>
+>     tune_req_rx = uhd.tune_request()
+>     tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
+>     tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+>     tune_req_rx.rf_freq = rf_freq
+>     tune_req_rx.dsp_freq = dsp_freq
+>
+>     # create timed command:
+>     now = usrp_sink.get_time_now()
+>     uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(0.2))
+>     uhd_usrp_source_0.set_command_time(now + uhd.time_spec(0.2))
+>     res1 = uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
+>     res2 = uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
+>     uhd_usrp_sink_0.clear_command_time()
+>     uhd_usrp_source_0.clear_command_time()
+>
+> Suddenly my frequency is offset by 100kHz. This makes totally no sense!
+>
+> As I mentioned above, I assume the reason is that all these timed commands eventually arrive on the same hardware and maybe overwrite themselves in a way creating unpredictable behavior.
+>
+> So, what is the correct way to do it (with USRP Source/Sink blocks in gnuradio)??
+>
+> Thanks
+> Lukas
+>
+>
+> PS: If it's multiple receiver blocks I can use the same USRP Source block with Num Channels > 1. I guess that would make live easier. But I have TX+RX to phase align.
 
 
 
