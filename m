@@ -2,53 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32123172D59
-	for <lists+usrp-users@lfdr.de>; Fri, 28 Feb 2020 01:31:44 +0100 (CET)
-Received: from [::1] (port=43662 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2900217352A
+	for <lists+usrp-users@lfdr.de>; Fri, 28 Feb 2020 11:19:41 +0100 (CET)
+Received: from [::1] (port=56088 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j7TZ5-0002Le-2p; Thu, 27 Feb 2020 19:31:39 -0500
-Received: from mout.gmx.net ([212.227.17.22]:56073)
+	id 1j7ck2-00008D-Dn; Fri, 28 Feb 2020 05:19:34 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:38430)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1j7TZ1-0002HG-Ke
- for usrp-users@lists.ettus.com; Thu, 27 Feb 2020 19:31:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1582849854;
- bh=jfTYJOJsURk0AkvR1n2EGoFnfiD/ugD7PvO4AmwzNDU=;
- h=X-UI-Sender-Class:From:To:Subject:Date;
- b=QYzBFH2kPLMo0DuIkfGeKIRRPJP5i5/V5LWdBj730cjpdxxG/VoJE4lsIq7eN47OD
- QojJKDsFdZ94CVvEjgZhIONG6A5BwZeFIbpbg+Y5kAV97jFiXt2/iYQwWYUMH2NEpL
- AicYNUW94vW0B5nAKW/FU8Bav8Fcpt9BAYWolYZQ=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bs05.server.lan [172.19.170.54]) (via HTTP); Fri, 28 Feb 2020
- 01:30:54 +0100
+ (Exim 4.93) (envelope-from <cogwsn@gmail.com>) id 1j7cjz-0008HL-6Z
+ for usrp-users@lists.ettus.com; Fri, 28 Feb 2020 05:19:31 -0500
+Received: by mail-ot1-f41.google.com with SMTP id z9so2096789oth.5
+ for <usrp-users@lists.ettus.com>; Fri, 28 Feb 2020 02:19:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=GJbpK/I3VaAi+Ulhy0VlOAtOQVVDAkrzeEABC2I6ajI=;
+ b=T7wCmyq0YsGcL6SSTjzg4GgCsq41Vwapk/MXUcLM3rIWzd74qzOvkr9Zl/ReDXLBAv
+ mYyaaLOkPM4hRpNQK5Vsyzdttvwa7FnYRnU9WBR900VGdge1s6c6dCuCnx48RMZEZ5WI
+ qCexu1y0QajQF5gCIUw3TLb25RoyZCzDI4pf/k/TCrNza17GxqqzKY1w81BYhkEZ2l0P
+ b+lveIbgZ0tmBSkFXza5tUMT+dWsIZn/2MXcK409VyLSPgLfWq5/zPXh68KNNtYKN1DH
+ 56ODkPLywOj3jFGzucUywA3gB3p2xhoTnEWacc5aOiXdhlVx8F38RxQiKUxZjgVFdzAp
+ vBfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=GJbpK/I3VaAi+Ulhy0VlOAtOQVVDAkrzeEABC2I6ajI=;
+ b=FhYmEY2Zo4uZHWY5tFt3B/5hz+ZhSzvEgXB8Qs0BQF67hxpwHk8+IRzLYB0HFk03RC
+ pcalX3xUTZn2tc5WP8ryEA0P67stU7gs+vY5xL8GGAXsN/TTEo4C+IPUssKHt4oJFyvN
+ BdbvTkgr74m5gZF2A8yZaOtSFP39erWiKBGocq0qG0q/WNBq1ejgRCojZxXBHbEr95fw
+ EdKr5NJhwkm3YY35jryz0KcIKCbLZrlREOYWGc1eovLMdBhF6qW/54mGasr6NN/bbRRh
+ O94uHadfi+OeEPQ7Jg92lIsChLfU+Gut2a7tENlGycclIeATrykqPQ9nwBiQ6faWb5GE
+ k7Kw==
+X-Gm-Message-State: APjAAAUl7pP0QgRLtA/9F4GHA7R7Nw9eT6AGrjQLjNv4ncV3XfXP4BQi
+ AR4rOJ4ccHkrBq1W8fULcyXxEAOrbXidsFpBz3gSlntb
+X-Google-Smtp-Source: APXvYqyht+MdfQMcla8UC/xRQgxn4gjj1P/4zusz/2s4AArr7fS7IK4yWwh1Cvre5IXUurWeWTxHQ09ArSGSDcM5MNo=
+X-Received: by 2002:a9d:7309:: with SMTP id e9mr2830097otk.260.1582885130433; 
+ Fri, 28 Feb 2020 02:18:50 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-5b1cc46b-5622-4f42-8dcb-1c6d41c98fe3-1582849854366@3c-app-gmx-bs05>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Fri, 28 Feb 2020 01:30:54 +0100
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:ZX0Ie69bQdI/bcHHsV2gRX+MdAINxcBnSSUm+YRe3tepBBw0LjPeLLNNEpbexlWN3Zvoh
- um8z5J+s2lOzFC3sg+jjvAzdJjFFsN4hGd/PXZG5v4YEyssevj7r5I1nmn4S/cRCceJn6Bwh/Jxb
- pbT7worNJdBR/dJuZHiy/CgCltyrRgk4bqoQlZ9IqT1B8gNqElZmTOC00nEwUaT0mxgwfGg1g7G4
- uszVg7y3l1m94S5/7r6OqAwmOCfwtNyu9/C7d5x2Ahm1sd0a52IRNK1auPEYmJzKTXp3dm4LCNCF
- y0=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:MMi4YSNUvGU=:E5mC16Wy8f+NZBipmblvf/
- 3DqXfIF+amQWjDPWow9GKTOOxJ8TSI356TipiM3mukhO6K2VndNe2bQiazty5iZxxC0SIqx4V
- L+PaGAEjw7+t1tySYciJoA1PIn7IJHJIS/vCs/XmLZ08Jzf+II1YwyVic1gGW2rdebNmmcEPQ
- YMBg1NpjILKhKKGVEyoiZbLKHnxWFYOEsHOlDHc+X8cKGTbQBTrDw6JTmwW5+zgv9EeihLPg6
- /WUqz55APh/RtEYIjKunIJRmLjpwCIuXsBYLfrw5hpzeWKxPhoc0vMaRduCVDHzeAJZww2mY1
- djnuq62XLhHEDwg4pMDhS1MlCir399wQ34/L0corpMTFPnOVh6bMCNyLBeP+US6mbwHME12dl
- xqAtLqXFEubWsJjo6a0s6J6+RdFvRwAnpf11UmrC+qJCXdBNWgynTh3JV2znv+nQWWPeNHrKC
- igALjM0dTqDhL+2Uyn7nnU9hlFiP08crm4I+gm6QZ/sWomjRC9GlWyt/ahgKdwQQ4HkIhkpt1
- Qc7sLePoa6AiO/pwFVGmLUqmpu/Khu1ehLdbXUl3xNQyEV2zuAIEjI4GA3xHs0b3to/rF8KDQ
- ENJX6vr1AtK+sT1JXqybN8IYTUm//Xyp1ZAYKlSsG7XCzfnV/bF7PoOiZq3mxtJI31mQxRgeN
- m8fAC5Qg7C/Q3H4jAXRnH/ObTMsaNr3r408sYvmdHz4C0Pl6hkvn1+FhujXtgshBsdec=
-Subject: Re: [USRP-users] How do timed commands work for two blocks (USRP
- Sink+USRP Source)?
+Date: Fri, 28 Feb 2020 11:18:39 +0100
+Message-ID: <CAOExtcQvFTexKtz9HE84-0PU2NoGDN89cmQpEjr7XPedNSCGyw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Device Recovery N210: JTAG programmer
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Sumit Kumar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sumit Kumar <cogwsn@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2321425112516807338=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,110 +70,71 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-A quick update which may make things easier to debug: I am observing TX/RX on a spectrum analyzer and see if the frequency changes.
-As soon as I enable timed command, the tune command is ignored!
+--===============2321425112516807338==
+Content-Type: multipart/alternative; boundary="000000000000eb76da059fa0290b"
 
-For simplicity, I am completely removing the RX parts (uhd_usrp_source_0).
+--000000000000eb76da059fa0290b
+Content-Type: text/plain; charset="UTF-8"
 
-Now this works:
+Hi,
+I have 3 bricked N210 to be recovered. I was following the post
+https://kb.ettus.com/N200/N210_Device_Recovery
 
-tune_req_tx = uhd.tune_request()
-tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
-tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
-tune_req_tx.rf_freq = 900e6
-tune_req_tx.dsp_freq = -2e6
+It says JTAG programmer and in the picture I can see the model no. is
+DLC9G.
 
-now = usrp_sink.get_time_now()
-#usrp_sink.set_command_time(now + uhd.time_spec(1))
-res1 = usrp_sink.set_center_freq(  tune_req_tx, 0)
-usrp_sink.clear_command_time()
-
-When this code is executed, the signal jumps by 2 MHz at the spectrum analyzer.
-
-Now I only uncomment set_timed_command above:
-
-usrp_sink.set_command_time(now + uhd.time_spec(1))
-
-and repeat. NO frequency change any more!
-
-That means as soon as I use timed command (set_command_time) for changing the DSP frequency on a TX it is just IGNORED!
-
-This must be a bug ... or do I really do something fundamentally wrong?
+I found something on Amazon which has the same model number but does not
+looks the same. Can anyone confirm if this is correct.
+https://www.amazon.fr/Plate-Forme-Compatible-lautolaveuse-programmable-XILINX/dp/B07Y7PBBGQ/ref=sr_1_1?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=DLC9G&qid=1582884943&sr=8-1
 
 
-USRP X310 with 2xUBX-160. TX/RX from dautherboard 1 is connected to spectrum analyzer.
+Regards
+-- 
+-- 
+Sumit kumar
+Postdoc
+SnT, Luxembourg
+
+--000000000000eb76da059fa0290b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,=C2=A0<div>I have 3 bricked N210 to be recovered. I was=
+ following the post=C2=A0</div><div><a href=3D"https://kb.ettus.com/N200/N2=
+10_Device_Recovery">https://kb.ettus.com/N200/N210_Device_Recovery</a>=C2=
+=A0</div><div><br></div><div>It says=C2=A0<span style=3D"color:rgb(0,0,0);f=
+ont-family:&quot;Lucida Sans Unicode&quot;,&quot;Lucida Grande&quot;,sans-s=
+erif;font-size:14px">JTAG programmer and in the picture I can see the model=
+ no. is DLC9G.=C2=A0</span></div><div><br></div><div>I found something on A=
+mazon which has the same model number but does not looks the same. Can anyo=
+ne confirm if this is correct.=C2=A0</div><div><a href=3D"https://www.amazo=
+n.fr/Plate-Forme-Compatible-lautolaveuse-programmable-XILINX/dp/B07Y7PBBGQ/=
+ref=3Dsr_1_1?__mk_fr_FR=3D%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;keywords=3DDL=
+C9G&amp;qid=3D1582884943&amp;sr=3D8-1">https://www.amazon.fr/Plate-Forme-Co=
+mpatible-lautolaveuse-programmable-XILINX/dp/B07Y7PBBGQ/ref=3Dsr_1_1?__mk_f=
+r_FR=3D%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;keywords=3DDLC9G&amp;qid=3D15828=
+84943&amp;sr=3D8-1</a>=C2=A0</div><div><div><br></div><div>Regards</div>-- =
+<br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_sign=
+ature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span style=3D"color:rgb(136,=
+136,136);font-size:12.8px">--=C2=A0</span><br style=3D"color:rgb(136,136,13=
+6);font-size:12.8px"><div style=3D"color:rgb(136,136,136);font-size:12.8px"=
+>Sumit kumar<br>Postdoc</div><div style=3D"color:rgb(136,136,136);font-size=
+:12.8px">SnT, Luxembourg</div><div style=3D"color:rgb(136,136,136);font-siz=
+e:12.8px"><br></div><br></div></div></div></div></div></div>
+
+--000000000000eb76da059fa0290b--
 
 
-Thank you!
-Lukas
-
-
-
-Lukas Haase wrote:
-> How do these timed commands work exactly when using USRP Source together with USRP Sink? (I need to phase-align RX and TX hence use timed commands at the same time).
-> Since they are both internally use the same hardware device (and board) I feel timed commands sent to both blocks result in some unpredictable results (at least for me).
->
-> For simplicity, consider this simple test setup: Loopback configuration (TX into RX via 30dB attentuator); transmit a 1MHz baseband signal into USRP Sink. Then, use just retuning via DSP:
->
->     # dsp_freq changes every time this code is called:
->     #dsp_freq = 0
->     dsp_freq = 100e3
->     tune_req_tx = uhd.tune_request()
->     tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
->     tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
->     tune_req_tx.rf_freq = 900e6
->     tune_req_tx.dsp_freq = -dsp_freq
->
->     tune_req_rx = uhd.tune_request()
->     tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
->     tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
->     tune_req_rx.rf_freq = 900e6
->     tune_req_rx.dsp_freq = dsp_freq
->
->     res1 = uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
->     res2 = uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
->
-> This code works exactly as expected ... my received baseband signal always stays at 1 MHz (the retuning is transparent to my baseband!) but the phase always changes.
-> This makes sense because I do not use timed commands and hence the DUC/DDC is not aligned properly.
->
-> Now I change to this code:
->
->     tune_req_tx = uhd.tune_request()
->     tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
->     tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
->     tune_req_tx.rf_freq = rf_freq
->     tune_req_tx.dsp_freq = -dsp_freq
->
->     tune_req_rx = uhd.tune_request()
->     tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_MANUAL
->     tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
->     tune_req_rx.rf_freq = rf_freq
->     tune_req_rx.dsp_freq = dsp_freq
->
->     # create timed command:
->     now = usrp_sink.get_time_now()
->     uhd_usrp_sink_0.set_command_time(now + uhd.time_spec(0.2))
->     uhd_usrp_source_0.set_command_time(now + uhd.time_spec(0.2))
->     res1 = uhd_usrp_sink_0.set_center_freq(  tune_req_tx, 0)
->     res2 = uhd_usrp_source_0.set_center_freq(tune_req_rx, 0)
->     uhd_usrp_sink_0.clear_command_time()
->     uhd_usrp_source_0.clear_command_time()
->
-> Suddenly my frequency is offset by 100kHz. This makes totally no sense!
->
-> As I mentioned above, I assume the reason is that all these timed commands eventually arrive on the same hardware and maybe overwrite themselves in a way creating unpredictable behavior.
->
-> So, what is the correct way to do it (with USRP Source/Sink blocks in gnuradio)??
->
-> Thanks
-> Lukas
->
->
-> PS: If it's multiple receiver blocks I can use the same USRP Source block with Num Channels > 1. I guess that would make live easier. But I have TX+RX to phase align.
-
-
+--===============2321425112516807338==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2321425112516807338==--
+
