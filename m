@@ -2,56 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AB4F176A70
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 03:08:23 +0100 (CET)
-Received: from [::1] (port=55284 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E779177084
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 08:53:56 +0100 (CET)
+Received: from [::1] (port=45310 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j8wyp-0004EP-Cj; Mon, 02 Mar 2020 21:08:19 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:35419)
+	id 1j92N9-0000dK-QJ; Tue, 03 Mar 2020 02:53:47 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:41032)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <neel.pandeya@ettus.com>)
- id 1j8wyl-00049X-ID
- for usrp-users@lists.ettus.com; Mon, 02 Mar 2020 21:08:15 -0500
-Received: by mail-ot1-f43.google.com with SMTP id v10so1493080otp.2
- for <usrp-users@lists.ettus.com>; Mon, 02 Mar 2020 18:07:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.93) (envelope-from <cogwsn@gmail.com>) id 1j92N6-0000ZG-3K
+ for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 02:53:44 -0500
+Received: by mail-ot1-f42.google.com with SMTP id v19so2071798ote.8
+ for <usrp-users@lists.ettus.com>; Mon, 02 Mar 2020 23:53:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1LSm0J6hDBei86BLHl1H1strWP+CO6/t/dtJWLZZgAw=;
- b=JC5BOtPkFftGc9xGjZ2+06G+OZ33fue/zayTxHrHmQ2tlAS0Jhqmq+s+GgxNuHj4XZ
- A6Ds7vv5t14CLUf7/A2TmHMYa+PTwoyIm70pXlMgt3DVcMSZWbZskyHI32MSJHFnTJwl
- lQt3KqpxBuJxnEIx2SIRD1iXlOcfJWKDsMNo6IALmfM/T4NM2J0iXm25J6CX0tv7+9q1
- i0I0qxXe6HQbhNZy+xvVdN+yv8YqK2nS+HY2ZA+TOjP4YNmDAUeazPP/XqBnAh3Bjdyy
- I3Sh5cvDTPgZMLOG4iQ4mjxBBnrXkaO9y9KYXx1g9CFWHP7ZLzQo+8PWkIhXS3MJvewk
- gbEg==
+ :cc; bh=9kRuz8RvI0oEMXOkEEjscJQ55PNdCtjJqRSFU/HIs4Q=;
+ b=rRsEbY03e6KZ4aZDY59X4Owo6CQ0tBlG/qpXkGvbtnxq7mG7NFRPxqcNE5YArxzq51
+ /thK9mY7xR5pWgEVub7H+C44+u2hvY+BtV/gL9DuMFwJL7Asc5eZV/gbQescJjnVCGEY
+ DXcfME8PSfOdSkW/LN2KX/SGyjRPEVtfglfWVKeDVhwKl8dq+G1RILZLqRNj5wC8u6Pe
+ FuLF7BNG46W/hXn1iNE8yyHe8wOZYL8BYHv3gDrddIsb2olXw3AqUof+YTkixYTOlPZM
+ 6cTV2eouGsIz4t2Pc1AWvn4GJuynYp7KqCoKI8ML8qSGcbp6eFN3CHicvzJICDmJQIFR
+ 5Cyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=1LSm0J6hDBei86BLHl1H1strWP+CO6/t/dtJWLZZgAw=;
- b=nYpECs+nY0tp/GM/KUQfdIKKpCoto1N+9ieW1Nox2Lf/HpaIn/lO2B1ZiuszkO+EEv
- qJiAwuB2D95w849CFLxxuJlDVf2YCisgD20LV2SDx5JFy7Icums0aYyZBp8FDJJxOrXZ
- OpHgAmTtobsKiPktiUBWxDEajojDeMVT0mnbHNmlIkCX5CgnA0tMUu0IkxFr520nYYtI
- yPLe7kG4HWrtiERnMPwR2MRE87slJA3dBdOZCHMwEZrwpNwrDRKz3wqeurZYrd7fp+oD
- 6FjI1mtMAgxv8Bv0JTGhRC7gQb8IcNSBJgM6Al8X+/Yoo1eGOIAiAvDyYQzd8rYMW9NG
- 76ew==
-X-Gm-Message-State: ANhLgQ1AH/rMggT9J32TkLhuB9JcnTJSNC8CPOIsIc5sbVliARyXvrqE
- kRHfLgLRRqA979EFcGBvJqA37+xBsdod/0Knpqux4tPJ
-X-Google-Smtp-Source: ADFU+vsBsmmbGBIqarW8A5Fc/ZpkeVym+iCdz9dFo0Of6plL6p7Vc6JmEvylA+/h1TdVyGgXc3Z8wPCNNqd09ojhnuk=
-X-Received: by 2002:a9d:23e4:: with SMTP id t91mr1668511otb.125.1583201254176; 
- Mon, 02 Mar 2020 18:07:34 -0800 (PST)
+ bh=9kRuz8RvI0oEMXOkEEjscJQ55PNdCtjJqRSFU/HIs4Q=;
+ b=uVoevK2WmYNRRzDjG730Tvp5vHDYSYH+C8uqs0VPaazRTPw1GiIaTQnEsMMQFc72IX
+ gcSx7WWZ7GuuaVoZQKfMFhDEBbYsonY8CGOkWMkTdoq0LuC6alFUIQ3c5IQu2LYJ/NSj
+ r4wOPc9eouJG4K43A3Bma6WRKdYTOsJ20gR1hoOkJyPv1AFpV2aTbzgnrmV7HWrgqHHk
+ AbCCwc+LMKKmjSSAdzmWnAvoask8xF945P9Y59jyIphGBOa01aV/Pm2x3HH2/SbJbebc
+ hPLBuFrwXDvi4XIRz71p3HGDrdI9yCNG+oz/orNpVBCAzA6+50emTl2L6utcpPCt6Xgr
+ MzIQ==
+X-Gm-Message-State: ANhLgQ1ijpxYaw1xUO9tfYRvSA6JEepc3ua7J9kezO/xBkgmYIejb8z6
+ +DiJqibtwRo5fdlvCFlhoIM2x2U0XgRcWIkg840=
+X-Google-Smtp-Source: ADFU+vu5E/gNs4g8ZYbHyXvOBfW33h8UHHyHmi9TnmIwsAq6l2Hg33enAdaSKYgiZa319tRD80yoIX3V2XXaqMwPgmQ=
+X-Received: by 2002:a05:6830:4cd:: with SMTP id
+ s13mr2364750otd.181.1583221983380; 
+ Mon, 02 Mar 2020 23:53:03 -0800 (PST)
 MIME-Version: 1.0
-References: <trinity-dcbc347f-cd14-4dcb-890c-9783cc458a06-1582568562308@3c-app-gmx-bs61>
- <CAKJyDk+=5pTvDycx5hWuesTJCZCnX6m-ydEH6d1KtPaMT238pA@mail.gmail.com>
- <CACaXmv8xBkTaWyph1kOxg_pUirLLqWpbS1Pe2cp0O=pZpHS-6w@mail.gmail.com>
- <trinity-fcbb0c51-4113-4f87-b5f6-44d5d14e80c3-1583166240891@3c-app-gmx-bap72>
-In-Reply-To: <trinity-fcbb0c51-4113-4f87-b5f6-44d5d14e80c3-1583166240891@3c-app-gmx-bap72>
-Date: Mon, 2 Mar 2020 20:06:57 -0600
-Message-ID: <CACaXmv_HdCwSw2oAQkerkAg0-jd7LBwTmhpxHrCdKtcdaNgVcw@mail.gmail.com>
-To: Lukas Haase <lukashaase@gmx.at>
-Subject: Re: [USRP-users] USRP X310 over PCIe: Recommended setup? (Windows,
- Linux, which one?)
+References: <CAOExtcQvFTexKtz9HE84-0PU2NoGDN89cmQpEjr7XPedNSCGyw@mail.gmail.com>
+ <CA+JMMq_-oACR766JM8z_UV3RiHC-OXpnVfCM7v5G-xf=E_ogqw@mail.gmail.com>
+In-Reply-To: <CA+JMMq_-oACR766JM8z_UV3RiHC-OXpnVfCM7v5G-xf=E_ogqw@mail.gmail.com>
+Date: Tue, 3 Mar 2020 08:52:52 +0100
+Message-ID: <CAOExtcQ4ODmrcWELGnBoU69kZCRriWU5xTnkKFvcgxwW=J_ECg@mail.gmail.com>
+To: Nick Foster <bistromath@gmail.com>
+Subject: Re: [USRP-users] Device Recovery N210: JTAG programmer
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0683369993813350353=="
+From: Sumit Kumar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sumit Kumar <cogwsn@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2205900463495586406=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,328 +76,123 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0683369993813350353==
-Content-Type: multipart/alternative; boundary="0000000000005d0224059fe9c465"
+--===============2205900463495586406==
+Content-Type: multipart/alternative; boundary="000000000000eb893a059fee9780"
 
---0000000000005d0224059fe9c465
+--000000000000eb893a059fee9780
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Lukas:
+Thanks Nick. I have ordered HS3.
+Regards
+Sumit
 
-Yes, I would recommend using the Intel X710-DA2.  It should work solidly
-out-of-the-box with Ubuntu 18.04.4 and 19.10.
+On Fri, Feb 28, 2020 at 7:38 PM Nick Foster <bistromath@gmail.com> wrote:
 
-You will need SFP+ modules, and the 10Gtek module in your Amazon.com link
-should work, although we have never tested that specific module before.  We
-have successfully used other 10Gtek modules before, but I do not recall
-which specific model.  I can dig up this information later, if you need it.
-
-I would suggest using a cable that already has SFP terminations [1,2,3].
-
-Please let me know if you have any further questions.
-
-[1] https://www.ettus.com/all-products/10gige-dc/
-
-[2] https://www.ettus.com/all-products/10gige-1m/
-
-[3] https://www.ettus.com/all-products/10gige-3m/
-
---Neel Pandeya
-
-
-
-On Mon, 2 Mar 2020 at 10:24, Lukas Haase <lukashaase@gmx.at> wrote:
-
-> Hi Neel,
+> Sumit,
 >
-> Thank you!
+> Any JTAG programmer which is compatible with Xilinx iMPACT should work
+> fine. I can recommend the solutions from Digilent (HS2, HS3) or Xilinx
+> (Platform USB II).
 >
-> I think moving forward this might be a better solution. Since I have no
-> experience with it:
+> Nick
 >
-> 1. I'll just go with your Intel X710-DA2 recommendation (
-> https://www.amazon.com/Intel-Ethernet-Converged-X710-DA2-X710DA2/dp/B00NJ3ZC26)
-> but I think I need some SFP+ module, right?
+> On Fri, Feb 28, 2020 at 2:19 AM Sumit Kumar via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
-> 2. Does it matter which SFP+ module I use? Any recommendation? What about
-> this one?
-> https://www.amazon.com/10Gtek-SFP-10G-T-S-Compatible-10GBase-T-Transceiver/dp/B01KFBFL16
->
-> 3. Would you even recommend using glass fibre instead of copper?
->
-> Thanks,
-> Luke
->
->
-> PS: As a first step I am trying Wheberth's auggestion right now but my
-> experience with NI RIO on Windows was very poor so I want to opt for 10Gbe
-> in the long run
->
->
->
->
->
-> Gesendet: Montag, 24. Februar 2020 um 13:47 Uhr
-> Von: "Neel Pandeya" <neel.pandeya@ettus.com>
-> An: "Lukas Haase" <lukashaase@gmx.at>
-> Cc: "Ettus Mail List" <usrp-users@lists.ettus.com>
-> Betreff: Re: [USRP-users] USRP X310 over PCIe: Recommended setup?
-> (Windows, Linux, which one?)
->
-> Hello Lukas:
->
-> Do you have the option of using 10 Gbps Ethernet?
->
-> It will provide you the equivalent performance on the X300/X310 as the
-> PCIe interface.
->
-> The Intel X710-DA2 network card works very well out-of-the-box with Ubuntu
-> 18.04 and 19.10.
->
-> Most people using Linux and GNU Radio with the X300/X310 use Ethernet,
-> instead of PCIe.
->
-> --Neel Pandeya
->
->
->
-> On Mon, 24 Feb 2020 at 12:38, Robin Coxe via USRP-users <
-> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:
-> Hi Lukas.   Most USRP X310 Linux users employ 10gigE to connect to the
-> host PC.  PCIe on the USRP X310 uses a proprietary ASIC and the driver is,
-> as you discovered, built on an obsolete kernel.  You could attempt to
-> appeal directly to NI for support if switching to 10 gigE isn't an option
-> for you.
->
-> -Robin
->
->
-> On Mon, Feb 24, 2020 at 10:23 AM Lukas Haase via USRP-users <
-> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:Hi,
->
-> I have used USRP X310 over PCIe and gnuradio on Windows for quite a bit. I
-> suffered from large connectivity issues so I wanted to switch to Linux for
-> quite some time. Also, I need to start modifying gnuradio/uhd source which
-> is even more painful in Windows.
->
-> I set up an Ubuntu 18.04 system (which is not exactly new) and in the last
-> step Linux NI RIO Installation fails. And
-> https://files.ettus.com/manual/page_ni_rio_kernel.html[https://files.ettus.com/manual/page_ni_rio_kernel.html]
-> states: "Currently, the latest supported kernel version is 4.2.x.". What a
-> bummer!
->
-> Is there any way to get USRP X310 + PCIe working on Ubuntu 18.04?
-> If not, what is the recommended setup when someone needs PCIe, gnuradio,
-> source code?
-> I would really prefer a Debian-like Linux system that's not completely
-> outdated (such as pre-bionic).
->
-> Best,
-> Lukas
->
->
-> PS:
->
-> $ lsb_release -a
-> No LSB modules are available.
-> Distributor ID: Ubuntu
-> Description:    Ubuntu 18.04.4 LTS
-> Release:        18.04
-> Codename:       bionic
-> $ uname -a
-> Linux station 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59
-> UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]
->
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_______________________________________________
-> USRP-users
-> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_______________________________________________USRP-users>
-> mailing list
-> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>> Hi,
+>> I have 3 bricked N210 to be recovered. I was following the post
+>> https://kb.ettus.com/N200/N210_Device_Recovery
+>>
+>> It says JTAG programmer and in the picture I can see the model no. is
+>> DLC9G.
+>>
+>> I found something on Amazon which has the same model number but does not
+>> looks the same. Can anyone confirm if this is correct.
+>>
+>> https://www.amazon.fr/Plate-Forme-Compatible-lautolaveuse-programmable-XILINX/dp/B07Y7PBBGQ/ref=sr_1_1?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=DLC9G&qid=1582884943&sr=8-1
+>>
+>>
+>> Regards
+>> --
+>> --
+>> Sumit kumar
+>> Postdoc
+>> SnT, Luxembourg
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 
---0000000000005d0224059fe9c465
+-- 
+-- 
+Sumit kumar
+Postdoc
+SnT, Luxembourg
+
+--000000000000eb893a059fee9780
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-family:verdana,sans-serif">Hello Lukas:</div><div class=3D"gmail_default"=
- style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_def=
-ault" style=3D"font-family:verdana,sans-serif">Yes, I would recommend using=
- the Intel X710-DA2.=C2=A0 It should work solidly out-of-the-box with Ubunt=
-u 18.04.4 and 19.10.<br></div><div class=3D"gmail_default" style=3D"font-fa=
-mily:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"fo=
-nt-family:verdana,sans-serif">You will need SFP+ modules, and the 10Gtek mo=
-dule in your Amazon.com link should work, although we have never tested tha=
-t specific module before.=C2=A0 We have successfully used other 10Gtek modu=
-les before, but I do not recall which specific model.=C2=A0 I can dig up th=
-is information later, if you need it.<br></div><div class=3D"gmail_default"=
- style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_def=
-ault" style=3D"font-family:verdana,sans-serif">I would suggest using a cabl=
-e that already has SFP terminations [1,2,3].<br></div><div class=3D"gmail_d=
-efault" style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gm=
-ail_default" style=3D"font-family:verdana,sans-serif">Please let me know if=
- you have any further questions.</div><div class=3D"gmail_default" style=3D=
-"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" sty=
-le=3D"font-family:verdana,sans-serif">[1] <a href=3D"https://www.ettus.com/=
-all-products/10gige-dc/">https://www.ettus.com/all-products/10gige-dc/</a><=
-/div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif">=
-<br></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif">[2] <a href=3D"https://www.ettus.com/all-products/10gige-1m/">https://=
-www.ettus.com/all-products/10gige-1m/</a></div><div class=3D"gmail_default"=
- style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_def=
-ault" style=3D"font-family:verdana,sans-serif">[3] <a href=3D"https://www.e=
-ttus.com/all-products/10gige-3m/">https://www.ettus.com/all-products/10gige=
--3m/</a></div><div class=3D"gmail_default" style=3D"font-family:verdana,san=
-s-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:verdan=
-a,sans-serif">--Neel Pandeya</div><div class=3D"gmail_default" style=3D"fon=
-t-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif"><br></div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, 2 Mar 2020 at 10:24, =
-Lukas Haase &lt;<a href=3D"mailto:lukashaase@gmx.at">lukashaase@gmx.at</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Ne=
-el,<br>
-<br>
-Thank you!<br>
-<br>
-I think moving forward this might be a better solution. Since I have no exp=
-erience with it:<br>
-<br>
-1. I&#39;ll just go with your Intel X710-DA2 recommendation (<a href=3D"htt=
-ps://www.amazon.com/Intel-Ethernet-Converged-X710-DA2-X710DA2/dp/B00NJ3ZC26=
-" rel=3D"noreferrer" target=3D"_blank">https://www.amazon.com/Intel-Etherne=
-t-Converged-X710-DA2-X710DA2/dp/B00NJ3ZC26</a>) but I think I need some SFP=
-+ module, right?<br>
-<br>
-2. Does it matter which SFP+ module I use? Any recommendation? What about t=
-his one? <a href=3D"https://www.amazon.com/10Gtek-SFP-10G-T-S-Compatible-10=
-GBase-T-Transceiver/dp/B01KFBFL16" rel=3D"noreferrer" target=3D"_blank">htt=
-ps://www.amazon.com/10Gtek-SFP-10G-T-S-Compatible-10GBase-T-Transceiver/dp/=
-B01KFBFL16</a><br>
-<br>
-3. Would you even recommend using glass fibre instead of copper?<br>
-<br>
-Thanks,<br>
-Luke<br>
-<br>
-<br>
-PS: As a first step I am trying Wheberth&#39;s auggestion right now but my =
-experience with NI RIO on Windows was very poor so I want to opt for 10Gbe =
-in the long run<br>
-<br>
-=C2=A0<br>
-=C2=A0<br>
-=C2=A0<br>
-<br>
-Gesendet:=C2=A0Montag, 24. Februar 2020 um 13:47 Uhr<br>
-Von:=C2=A0&quot;Neel Pandeya&quot; &lt;<a href=3D"mailto:neel.pandeya@ettus=
-.com" target=3D"_blank">neel.pandeya@ettus.com</a>&gt;<br>
-An:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
-arget=3D"_blank">lukashaase@gmx.at</a>&gt;<br>
-Cc:=C2=A0&quot;Ettus Mail List&quot; &lt;<a href=3D"mailto:usrp-users@lists=
-.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-Betreff:=C2=A0Re: [USRP-users] USRP X310 over PCIe: Recommended setup? (Win=
-dows, Linux, which one?)<br>
-<br>
-Hello Lukas:<br>
-=C2=A0<br>
-Do you have the option of using 10 Gbps Ethernet?<br>
-=C2=A0<br>
-It will provide you the equivalent performance on the X300/X310 as the PCIe=
- interface.<br>
-=C2=A0<br>
-The Intel X710-DA2 network card works very well out-of-the-box with Ubuntu =
-18.04 and 19.10.<br>
-=C2=A0<br>
-Most people using Linux and GNU Radio with the X300/X310 use Ethernet, inst=
-ead of PCIe.<br>
-=C2=A0<br>
---Neel Pandeya<br>
-=C2=A0<br>
-=C2=A0=C2=A0<br>
-<br>
-On Mon, 24 Feb 2020 at 12:38, Robin Coxe via USRP-users &lt;<a href=3D"mail=
-to:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com=
-</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"=
->usrp-users@lists.ettus.com</a>]&gt; wrote:<br>
-Hi Lukas.=C2=A0 =C2=A0Most USRP X310 Linux users employ 10gigE to connect t=
-o the host PC.=C2=A0 PCIe on the USRP X310 uses a proprietary ASIC and the =
-driver is, as you discovered, built on an obsolete kernel.=C2=A0 You could =
-attempt to appeal directly to NI for support if switching to 10 gigE isn&#3=
-9;t an option for you.<br>
-=C2=A0<br>
--Robin<br>
-=C2=A0=C2=A0<br>
-<br>
-On Mon, Feb 24, 2020 at 10:23 AM Lukas Haase via USRP-users &lt;<a href=3D"=
-mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus=
-.com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bl=
-ank">usrp-users@lists.ettus.com</a>]&gt; wrote:Hi,<br>
-<br>
-I have used USRP X310 over PCIe and gnuradio on Windows for quite a bit. I =
-suffered from large connectivity issues so I wanted to switch to Linux for =
-quite some time. Also, I need to start modifying gnuradio/uhd source which =
-is even more painful in Windows.<br>
-<br>
-I set up an Ubuntu 18.04 system (which is not exactly new) and in the last =
-step Linux NI RIO Installation fails. And <a href=3D"https://files.ettus.co=
-m/manual/page_ni_rio_kernel.html%5Bhttps://files.ettus.com/manual/page_ni_r=
-io_kernel.html%5D" rel=3D"noreferrer" target=3D"_blank">https://files.ettus=
-.com/manual/page_ni_rio_kernel.html[https://files.ettus.com/manual/page_ni_=
-rio_kernel.html]</a> states: &quot;Currently, the latest supported kernel v=
-ersion is 4.2.x.&quot;. What a bummer!<br>
-<br>
-Is there any way to get USRP X310 + PCIe working on Ubuntu 18.04?<br>
-If not, what is the recommended setup when someone needs PCIe, gnuradio, so=
-urce code?<br>
-I would really prefer a Debian-like Linux system that&#39;s not completely =
-outdated (such as pre-bionic).<br>
-<br>
-Best,<br>
-Lukas<br>
-<br>
-<br>
-PS:<br>
-<br>
-$ lsb_release -a<br>
-No LSB modules are available.<br>
-Distributor ID: Ubuntu<br>
-Description:=C2=A0 =C2=A0 Ubuntu 18.04.4 LTS<br>
-Release:=C2=A0 =C2=A0 =C2=A0 =C2=A0 18.04<br>
-Codename:=C2=A0 =C2=A0 =C2=A0 =C2=A0bionic<br>
-$ uname -a<br>
-Linux station 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UT=
-C 2020 x86_64 x86_64 x86_64 GNU/Linux<br>
-<br>
-<br>
+<div dir=3D"ltr">Thanks Nick. I have ordered HS3.=C2=A0<div>Regards</div><d=
+iv>Sumit</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Fri, Feb 28, 2020 at 7:38 PM Nick Foster &lt;<a href=3D"=
+mailto:bistromath@gmail.com">bistromath@gmail.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Sumi=
+t, <br></div><div><br></div><div>Any JTAG programmer which is compatible wi=
+th Xilinx iMPACT should work fine. I can recommend the solutions from Digil=
+ent (HS2, HS3) or Xilinx (Platform USB II).</div><div><br></div><div>Nick<b=
+r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Fri, Feb 28, 2020 at 2:19 AM Sumit Kumar via USRP-users &lt;<a h=
+ref=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@list=
+s.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr">Hi,=C2=A0<div>I have 3 bricked N210 to be recov=
+ered. I was following the post=C2=A0</div><div><a href=3D"https://kb.ettus.=
+com/N200/N210_Device_Recovery" target=3D"_blank">https://kb.ettus.com/N200/=
+N210_Device_Recovery</a>=C2=A0</div><div><br></div><div>It says=C2=A0<span =
+style=3D"color:rgb(0,0,0);font-family:&quot;Lucida Sans Unicode&quot;,&quot=
+;Lucida Grande&quot;,sans-serif;font-size:14px">JTAG programmer and in the =
+picture I can see the model no. is DLC9G.=C2=A0</span></div><div><br></div>=
+<div>I found something on Amazon which has the same model number but does n=
+ot looks the same. Can anyone confirm if this is correct.=C2=A0</div><div><=
+a href=3D"https://www.amazon.fr/Plate-Forme-Compatible-lautolaveuse-program=
+mable-XILINX/dp/B07Y7PBBGQ/ref=3Dsr_1_1?__mk_fr_FR=3D%C3%85M%C3%85%C5%BD%C3=
+%95%C3%91&amp;keywords=3DDLC9G&amp;qid=3D1582884943&amp;sr=3D8-1" target=3D=
+"_blank">https://www.amazon.fr/Plate-Forme-Compatible-lautolaveuse-programm=
+able-XILINX/dp/B07Y7PBBGQ/ref=3Dsr_1_1?__mk_fr_FR=3D%C3%85M%C3%85%C5%BD%C3%=
+95%C3%91&amp;keywords=3DDLC9G&amp;qid=3D1582884943&amp;sr=3D8-1</a>=C2=A0</=
+div><div><div><br></div><div>Regards</div>-- <br><div dir=3D"ltr"><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><span style=3D"color:rgb(136,136,136);font-s=
+ize:12.8px">--=C2=A0</span><br style=3D"color:rgb(136,136,136);font-size:12=
+.8px"><div style=3D"color:rgb(136,136,136);font-size:12.8px">Sumit kumar<br=
+>Postdoc</div><div style=3D"color:rgb(136,136,136);font-size:12.8px">SnT, L=
+uxembourg</div><div style=3D"color:rgb(136,136,136);font-size:12.8px"><br><=
+/div><br></div></div></div></div></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
-rget=3D"_blank">USRP-users@lists.ettus.com</a>]<br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om_______________________________________________USRP-users" rel=3D"norefer=
-rer" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_l=
-ists.ettus.com_______________________________________________<br>
-USRP-users</a> mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
-rget=3D"_blank">USRP-users@lists.ettus.com</a>]<br>
+lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span sty=
+le=3D"color:rgb(136,136,136);font-size:12.8px">--=C2=A0</span><br style=3D"=
+color:rgb(136,136,136);font-size:12.8px"><div style=3D"color:rgb(136,136,13=
+6);font-size:12.8px">Sumit kumar<br>Postdoc</div><div style=3D"color:rgb(13=
+6,136,136);font-size:12.8px">SnT, Luxembourg</div><div style=3D"color:rgb(1=
+36,136,136);font-size:12.8px"><br></div><br></div></div></div></div>
 
---0000000000005d0224059fe9c465--
+--000000000000eb893a059fee9780--
 
 
---===============0683369993813350353==
+--===============2205900463495586406==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -412,5 +203,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0683369993813350353==--
+--===============2205900463495586406==--
 
