@@ -2,53 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168EB177E20
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 18:48:49 +0100 (CET)
-Received: from [::1] (port=44548 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3688177E68
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 19:25:54 +0100 (CET)
+Received: from [::1] (port=53812 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j9Bey-0008FR-1M; Tue, 03 Mar 2020 12:48:48 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:42585)
+	id 1j9CEo-0003xs-Cs; Tue, 03 Mar 2020 13:25:50 -0500
+Received: from mail-lf1-f47.google.com ([209.85.167.47]:42561)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1j9Bet-00088g-Uf
- for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 12:48:43 -0500
-Received: by mail-oi1-f173.google.com with SMTP id l12so3875849oil.9
- for <usrp-users@lists.ettus.com>; Tue, 03 Mar 2020 09:48:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ (Exim 4.93) (envelope-from <sam.reiter@ettus.com>)
+ id 1j9CEk-0003oe-6Z
+ for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 13:25:46 -0500
+Received: by mail-lf1-f47.google.com with SMTP id t21so2576079lfe.9
+ for <usrp-users@lists.ettus.com>; Tue, 03 Mar 2020 10:25:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=hR79hZRhBvu0bM1pQ+XDrF7Xfv06kvxPA5Ih5vCBOjk=;
- b=UTGnxvOcaXnFlrRYuRvfrCq91anCyTcH+5UZgP0oLV5OLygeLqAkV8PgtaJX89Irmv
- BlclXana1JRxhLSwUkCYYbpB7GoiUJSaX4o8czoRgeTkG1PCxgsWLM5RZ7QFby+g1hzW
- AbLeH0JBYhG2wH53yWQsgFXh08TDXw/IWpn188CVyCWy9z66Rr4Tju1Q/r6ZluZEL3Na
- tLM2V4s3DGdL5on31hCPoiDJ8TvPxt29SGQeP6ZdAxawXArzwnD4Q1kFYd6crTbpnRMR
- KEhJdZw9phtv90NOwBUSwUhJw7py7eIFPdqSG8KGXccinebp1XCeexXl6HXN4PGlol9S
- 9e5g==
+ :cc; bh=htNmpvgahEqANRfS4p0DT7Z2Zwzm+mg+869iDyLaJUw=;
+ b=lfDmH+oufV2rYSRJ6Gw6eRP4vVJLxUaWZjBnOwCYQh3xs0IgqqkAmdCY9I2wCr3uIA
+ 4VmkS8McO8FRC/Cd67244gq3xGONV+bYsnBimSdEKBlRWA5SoZI+oiTcnLLB+yT7uyao
+ kwISadptESpAIVUQ3CKwzucMBHTQEdG7dWLw1YlMxPynoNHlUnksHFsfs2LCTROY3L5C
+ jwQS5s4WRlqliBY581W4vVzAYeDzETP1kzxRZZOzrvh/08ICXMR941QTWWLoOwYwMmHe
+ qPoG7T0sJkgHBy2cfptLkhqQqSTRFRS/HBGOn5FVy4qTVdAmerupfbDc7kCQhl9/4K5u
+ cXuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=hR79hZRhBvu0bM1pQ+XDrF7Xfv06kvxPA5Ih5vCBOjk=;
- b=pTSKyk3FrdWfJM57Yc5ym0EMpQDeOjG+vnV69TVfzACnR0AbRHI9IRisdJC3jKkD9X
- eMj0eLHx4p1JVRWYPCuctvCLDOOt4997EmlufXd+vyxte8oe0Iyqb45Ut6vp7a3ZVRb4
- au7m+wb7Gm5vMrdfoK1DzBPFulywOEgkpqfHy0fn9AXF4Yqa+PE4+XqVlfQ31cFwGwEZ
- Wq+HuMPye7RVDK7eR3BAoRgDeesFEiiAEadQo900dwR/RxoxohihwTrHg/2DpiewkR76
- r2KqwIgI+HngPWTob36UmCBLzWNFhV2xfLb2lcOMf1MXVgGx4TGBcAIUFfndrLnC1P3N
- 0kRQ==
-X-Gm-Message-State: ANhLgQ12VfrG5rzheBcj4ZGKvLt25XcHGFPbg1wZI5dzMlxhhKCgcGyY
- J8y+u8t4N/IULYskYSQk5xsjuj4I9NSwrLzO78AEGA==
-X-Google-Smtp-Source: ADFU+vtmwtXDKTT+0Tb/qL06w8pZh5Kf1xE+oKACQ1XfGsd65fqytopRdWZBKQNdFGfQd9wwDW/pAtV95ZyUzHyukS8=
-X-Received: by 2002:aca:cdd1:: with SMTP id d200mr3082666oig.153.1583257683135; 
- Tue, 03 Mar 2020 09:48:03 -0800 (PST)
+ bh=htNmpvgahEqANRfS4p0DT7Z2Zwzm+mg+869iDyLaJUw=;
+ b=mzoSr/BgUs6CEOH93FQY7SgJfUZt1uLGFyGbkhR0DvJJcPZI8FKA4uZ7LFCCG2vniA
+ Sh+Q+xe/KFgogH15JGdGEgi2MP535e3jaQvQTEuI8oOrIfAq/FsPVetbOedQlTedT309
+ PlaiBqkvmberNJLUXS5vEY8aYD2UlhSA/fmdh5xb4CCMiGIN5tfKiX+tfmaLLD02znaL
+ h5yvS3djgYoqukqL8QFMIsN6PPGsD0cJ+7AgfDWq2r7Xu0LUBoeFsFkhHcXzKE9GW5+4
+ DCDysXN0cXd89g0b3u7M+B0ni5vOeoguA9+xW6e8Aegs7OY9lEkI0v7TJmn74W/CH/zj
+ b2xQ==
+X-Gm-Message-State: ANhLgQ315NJG+tM9KdE5R7/5uiKLqktfDhdlHD1WVE4EC2eTW7zLG8hx
+ 9nzR/xwtu40SBw7UAdt1zXBJAZ3h1CnGJfNvYXB/SBj9
+X-Google-Smtp-Source: ADFU+vuj84f+kK7JQlDPZ0s0KpJMEWqax2psKQoMht6XkynptI48FyUKGd1eA7GNprWNMKB07h8kr+ET3tOGv/6WUDI=
+X-Received: by 2002:ac2:4316:: with SMTP id l22mr3595305lfh.150.1583259904847; 
+ Tue, 03 Mar 2020 10:25:04 -0800 (PST)
 MIME-Version: 1.0
 References: <trinity-6d081d85-efab-4ee6-9dfd-d15b3f6ff1b5-1583161440082@3c-app-gmx-bs64>
  <CAB__hTSgAJcWu=AwsRYs6HmGYMOqk1kAKC4fFgmVWVd8Fw0THQ@mail.gmail.com>
  <CANf970YbM=F5UBzKQsQ2jGH4X=BKScx1YbNJ=TFhEKfDg-XBww@mail.gmail.com>
  <trinity-1e499bef-ac0a-4580-ad27-647e1755c34a-1583256550568@3c-app-gmx-bap50>
  <CAB__hTSY-dv9UTwZTRaOF5bLN3Sk0JF5onD3XBYP8tZB-9BvrA@mail.gmail.com>
-In-Reply-To: <CAB__hTSY-dv9UTwZTRaOF5bLN3Sk0JF5onD3XBYP8tZB-9BvrA@mail.gmail.com>
-Date: Tue, 3 Mar 2020 12:47:52 -0500
-Message-ID: <CAB__hTQQJHsraknp0OTQTUukBPq3MCggN_ASZvhD=O28-r71TQ@mail.gmail.com>
-To: Lukas Haase <lukashaase@gmx.at>
+ <CAB__hTQQJHsraknp0OTQTUukBPq3MCggN_ASZvhD=O28-r71TQ@mail.gmail.com>
+In-Reply-To: <CAB__hTQQJHsraknp0OTQTUukBPq3MCggN_ASZvhD=O28-r71TQ@mail.gmail.com>
+Date: Tue, 3 Mar 2020 12:25:04 -0600
+Message-ID: <CANf970YD3OT81FT9jB5uSyGpWo7pQibuw65YT2BXhDg=bUR_bg@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
 Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
  timed command
 X-BeenThere: usrp-users@lists.ettus.com
@@ -62,10 +65,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5691401412054038805=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: Lukas Haase <lukashaase@gmx.at>,
+ "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8353408819081884883=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,231 +83,287 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5691401412054038805==
-Content-Type: multipart/alternative; boundary="000000000000cac5a4059ff6e70a"
+--===============8353408819081884883==
+Content-Type: multipart/alternative; boundary="000000000000374090059ff76ccc"
 
---000000000000cac5a4059ff6e70a
+--000000000000374090059ff76ccc
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Also, note that there is no corresponding issue on receive because the Rx
-radio always inserts the time stamp in the sample stream. So, I guess you
-would not see this with the DDC.
-Rob
+Everything Rob is saying is dead on - the "sense of time" for the radio is
+a 64-bit counter within the radio core that other blocks (like the DDC and
+DUC) don't have access to. Those blocks need to derive a sense of time from
+the timestamps of CHDR packets passing through them. I just wrapped up a
+new app note that covers this (among other synchronization-related topics):
 
-On Tue, Mar 3, 2020 at 12:43 PM Rob Kossler <rkossler@nd.edu> wrote:
+https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#=
+Clocking_and_Timekeeping_in_the_USRP
 
-> Hi Lukas,
-> The FPGA image on the USRP is divided into blocks such as the DUC block
-> and the Radio block.  The latter controls the RF daughterboard and has
-> access to the device clock.  So, when you provide a timed command to the
-> Radio block (such as for tuning the RF) it can implement the command at t=
-he
-> specified time by comparing to the device clock.  The DUC block does not
-> have access to the MB clock and so when you give it a timed command, it
-> monitors the incoming sample stream to extract the time. If the sample
-> stream does not include a time stamp, the command never executes.  Don't
-> think of this as a bug, but rather as a design limitation.
->
-> When I work directly with UHD from C++, I use the function
-> rx_streamer::issue_stream_command() which has options to stream data with
-> no time stamp or with a time stamp.  When using timed commands with DUC o=
-r
-> DDC, I must include the time stamp or else the command will never be
-> executed.  But, with GR, I don't know how to specify the corresponding
-> options.
+Lukas, I would doubt that this is an undiscovered bug as much as it is an
+issue with implementation. If this were in C++, you'd want to set the
+'has_time_spec' and 'time_spec' fields of your TX metadata for at least 1
+packet to impart a sense of time on the DUC:
+
+https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html
+
+I just spoke with someone on my end who said you need to use stream tags to
+do this, but again, I don't currently have much direction for how that
+would be implemented in your code.
+
+Sam Reiter
+
+On Tue, Mar 3, 2020 at 11:48 AM Rob Kossler <rkossler@nd.edu> wrote:
+
+> Also, note that there is no corresponding issue on receive because the Rx
+> radio always inserts the time stamp in the sample stream. So, I guess you
+> would not see this with the DDC.
 > Rob
 >
-> On Tue, Mar 3, 2020 at 12:29 PM Lukas Haase <lukashaase@gmx.at> wrote:
+> On Tue, Mar 3, 2020 at 12:43 PM Rob Kossler <rkossler@nd.edu> wrote:
 >
->> Hi Sam, Hi Rob,
+>> Hi Lukas,
+>> The FPGA image on the USRP is divided into blocks such as the DUC block
+>> and the Radio block.  The latter controls the RF daughterboard and has
+>> access to the device clock.  So, when you provide a timed command to the
+>> Radio block (such as for tuning the RF) it can implement the command at =
+the
+>> specified time by comparing to the device clock.  The DUC block does not
+>> have access to the MB clock and so when you give it a timed command, it
+>> monitors the incoming sample stream to extract the time. If the sample
+>> stream does not include a time stamp, the command never executes.  Don't
+>> think of this as a bug, but rather as a design limitation.
 >>
->> Thanks for following up on this!
->> I am very happy you were able to reproduce this ... which means that at
->> least an issue exists :)
->>
->> What Sam suggests makes sense even though hard to believe for me:
->>
->> 1. How could something like that go unnoticed for so long? (I am sure I
->> am not the first performing digital tuning)
->> 2. In the past I got successful phase coherence using automatic tuning
->> (passing center frequency + offset to tune_request_t and using integer-N
->> tuning) using timed commands. This did not work reliably and only for
->> certain frequencies but in my opinion this should have INCLUDED the DUC
->> tuning. If the DUC retune wouldn't have been executed as part of this
->> automatic tuning, I could not have gotten phase coherence (and actually,
->> not even the desired frequency).
->>
->> The reason why I am only doing DUC tuning now is to avoid all the hassle
->> with integer-N tuning, PLL retuning and settling time.
->>
->> Sam, what is the "radio block" you were talking about?
->>
->> Anyway, would it be worthwile to attempt debugging this is absence of gr=
-?
->> The only reason this prevented me from doing is that I would need to
->> manually create the baseband samples and continuously stream them out wh=
-ile
->> in parallel do the retuning.
->> I am not too familiar with UHD on its own but I assume this would be ver=
-y
->> complicated, require multithreading etc.
->> Do you have any demo code that could be easily modified for this scenari=
-o?
->>
->> Best,
->> Lukas
->>
->>
->> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 12:08 Uhr
->> Von: "Sam Reiter" <sam.reiter@ettus.com>
->> An: "Rob Kossler" <rkossler@nd.edu>
->> Cc: "Lukas Haase" <lukashaase@gmx.at>, "USRP-users@lists.ettus.com" <
->> usrp-users@lists.ettus.com>
->> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when usin=
-g
->> a timed command
->>
->> For what it's worth, I was able to reproduce the behavior described here=
-,
->> but didn't get to dig into it much. My leading suspicion would be what R=
-ob
->> mentioned about timestamping. Lukas' code sets a command time, but I'm n=
-ot
->> clear on how timestamp metadata for packets being sent to the radio are
->> handled. Might be a good question to loop the discuss-gnuradio mailing l=
-ist
->> in on?
->>
->>
->>
->> Sam Reiter
->>
->> On Tue, Mar 3, 2020 at 10:59 AM Rob Kossler via USRP-users <
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:
->> I wonder if the issue is related to a missing time stamp on the baseband
->> samples going from GR to UHD.  If the stream does not have a time stamp,
->> the DUC is unable to apply the timed command because the DUC does not
->> really know the time - it must pull the time from the streaming samples.
->> This is in contrast to the radio block which does have access to time an=
-d
->> can apply timed commands by referring to the motherboard clock.
->>
->> I am not too familiar with GR so I'm not sure how to know if GR is
->> putting a time stamp on the streaming samples.
+>> When I work directly with UHD from C++, I use the function
+>> rx_streamer::issue_stream_command() which has options to stream data wit=
+h
+>> no time stamp or with a time stamp.  When using timed commands with DUC =
+or
+>> DDC, I must include the time stamp or else the command will never be
+>> executed.  But, with GR, I don't know how to specify the corresponding
+>> options.
 >> Rob
 >>
->> On Mon, Mar 2, 2020 at 10:04 AM Lukas Haase via USRP-users <
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:Hi
->> Marcus,
+>> On Tue, Mar 3, 2020 at 12:29 PM Lukas Haase <lukashaase@gmx.at> wrote:
 >>
->> Thank you that would be amazing!
+>>> Hi Sam, Hi Rob,
+>>>
+>>> Thanks for following up on this!
+>>> I am very happy you were able to reproduce this ... which means that at
+>>> least an issue exists :)
+>>>
+>>> What Sam suggests makes sense even though hard to believe for me:
+>>>
+>>> 1. How could something like that go unnoticed for so long? (I am sure I
+>>> am not the first performing digital tuning)
+>>> 2. In the past I got successful phase coherence using automatic tuning
+>>> (passing center frequency + offset to tune_request_t and using integer-=
+N
+>>> tuning) using timed commands. This did not work reliably and only for
+>>> certain frequencies but in my opinion this should have INCLUDED the DUC
+>>> tuning. If the DUC retune wouldn't have been executed as part of this
+>>> automatic tuning, I could not have gotten phase coherence (and actually=
+,
+>>> not even the desired frequency).
+>>>
+>>> The reason why I am only doing DUC tuning now is to avoid all the hassl=
+e
+>>> with integer-N tuning, PLL retuning and settling time.
+>>>
+>>> Sam, what is the "radio block" you were talking about?
+>>>
+>>> Anyway, would it be worthwile to attempt debugging this is absence of g=
+r?
+>>> The only reason this prevented me from doing is that I would need to
+>>> manually create the baseband samples and continuously stream them out w=
+hile
+>>> in parallel do the retuning.
+>>> I am not too familiar with UHD on its own but I assume this would be
+>>> very complicated, require multithreading etc.
+>>> Do you have any demo code that could be easily modified for this
+>>> scenario?
+>>>
+>>> Best,
+>>> Lukas
+>>>
+>>>
+>>> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 12:08 Uhr
+>>> Von: "Sam Reiter" <sam.reiter@ettus.com>
+>>> An: "Rob Kossler" <rkossler@nd.edu>
+>>> Cc: "Lukas Haase" <lukashaase@gmx.at>, "USRP-users@lists.ettus.com" <
+>>> usrp-users@lists.ettus.com>
+>>> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when
+>>> using a timed command
+>>>
+>>> For what it's worth, I was able to reproduce the behavior described
+>>> here, but didn't get to dig into it much. My leading suspicion would be
+>>> what Rob mentioned about timestamping. Lukas' code sets a command time,=
+ but
+>>> I'm not clear on how timestamp metadata for packets being sent to the r=
+adio
+>>> are handled. Might be a good question to loop the discuss-gnuradio mail=
+ing
+>>> list in on?
+>>>
+>>>
+>>>
+>>> Sam Reiter
+>>>
+>>> On Tue, Mar 3, 2020 at 10:59 AM Rob Kossler via USRP-users <
+>>> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:
+>>> I wonder if the issue is related to a missing time stamp on the baseban=
+d
+>>> samples going from GR to UHD.  If the stream does not have a time stamp=
+,
+>>> the DUC is unable to apply the timed command because the DUC does not
+>>> really know the time - it must pull the time from the streaming samples=
+.
+>>> This is in contrast to the radio block which does have access to time a=
+nd
+>>> can apply timed commands by referring to the motherboard clock.
+>>>
+>>> I am not too familiar with GR so I'm not sure how to know if GR is
+>>> putting a time stamp on the streaming samples.
+>>> Rob
+>>>
+>>> On Mon, Mar 2, 2020 at 10:04 AM Lukas Haase via USRP-users <
+>>> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:Hi
+>>> Marcus,
+>>>
+>>> Thank you that would be amazing!
+>>>
+>>> I followed the tutorial and built everything from source:
+>>>
+>>> $ lsb_release -a
+>>> No LSB modules are available.
+>>> Distributor ID: Ubuntu
+>>> Description:    Ubuntu 18.04.4 LTS
+>>> Release:        18.04
+>>> Codename:       bionic
+>>> $ uname -a
+>>> Linux sdr 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UT=
+C
+>>> 2020 x86_64 x86_64 x86_64 GNU/Linux
+>>> $ cd uhd
+>>> $ git status
+>>> HEAD detached at v3.15.0.0
+>>> $ cd ../gnuradio
+>>> $ git status
+>>> HEAD detached at v3.7.14.0
+>>>
+>>>
+>>> Thank you!
+>>>
+>>> Lukas
+>>>
+>>>
+>>>
+>>> PS: For some reason I sometimes do not get responses from this list. I
+>>> just saw it looking at the mailman archives. Hence I cannot respond (to
+>>> keep headers intact) but need to create a new message and manually "quo=
+te".
+>>> I hope that still preserves the context somehow.
+>>>
+>>>
+>>>
+>>> Marcus Leech wrote:
+>>> > On 02/28/2020 01:01 PM, Lukas Haase via USRP-users wrote:
+>>> >> Hi again,
+>>> >>
+>>> >> I created a minimum example (gnuradio) that shows the issue describe=
+d
+>>> below.
+>>> >> To summarize: Retuning to a different dsp frequency on an USRP X310
+>>> (+UBX160) does not work (command ignored) ONLY if a timed command (in
+>>> future is used).
+>>> >> The code shows it in a simple manner. Commenting out the single line
+>>> with set_command_time makes the example work.
+>>> >>
+>>> >> I am absolutely out of ideas and would appreciate any input!
+>>> >>
+>>> >> Best,
+>>> >> Lukas
+>>> > Lukas.
+>>> >
+>>> > Thanks for sticking with this.  I'll have a discussion with Ettus R&D
+>>> to
+>>> > see if this is a known issue and/or if there's a workaround.
+>>> >
+>>> > Remind me which version of UHD you're using?
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]
+>>>
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_____=
+__________________________________________
+>>> USRP-users
+>>> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com____=
+___________________________________________USRP-users>
+>>> mailing list
+>>> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
 >>
->> I followed the tutorial and built everything from source:
->>
->> $ lsb_release -a
->> No LSB modules are available.
->> Distributor ID: Ubuntu
->> Description:    Ubuntu 18.04.4 LTS
->> Release:        18.04
->> Codename:       bionic
->> $ uname -a
->> Linux sdr 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UTC
->> 2020 x86_64 x86_64 x86_64 GNU/Linux
->> $ cd uhd
->> $ git status
->> HEAD detached at v3.15.0.0
->> $ cd ../gnuradio
->> $ git status
->> HEAD detached at v3.7.14.0
->>
->>
->> Thank you!
->>
->> Lukas
->>
->>
->>
->> PS: For some reason I sometimes do not get responses from this list. I
->> just saw it looking at the mailman archives. Hence I cannot respond (to
->> keep headers intact) but need to create a new message and manually "quot=
-e".
->> I hope that still preserves the context somehow.
->>
->>
->>
->> Marcus Leech wrote:
->> > On 02/28/2020 01:01 PM, Lukas Haase via USRP-users wrote:
->> >> Hi again,
->> >>
->> >> I created a minimum example (gnuradio) that shows the issue described
->> below.
->> >> To summarize: Retuning to a different dsp frequency on an USRP X310
->> (+UBX160) does not work (command ignored) ONLY if a timed command (in
->> future is used).
->> >> The code shows it in a simple manner. Commenting out the single line
->> with set_command_time makes the example work.
->> >>
->> >> I am absolutely out of ideas and would appreciate any input!
->> >>
->> >> Best,
->> >> Lukas
->> > Lukas.
->> >
->> > Thanks for sticking with this.  I'll have a discussion with Ettus R&D =
-to
->> > see if this is a known issue and/or if there's a workaround.
->> >
->> > Remind me which version of UHD you're using?
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]
->>
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com______=
-_________________________________________
->> USRP-users
->> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_____=
-__________________________________________USRP-users>
->> mailing list
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
 
---000000000000cac5a4059ff6e70a
+--000000000000374090059ff76ccc
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Also, note that there is no corresponding issue on receive=
- because the Rx radio always inserts the time stamp=C2=A0in the sample stre=
-am. So, I guess you would not see this with the DDC.<div>Rob</div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, M=
-ar 3, 2020 at 12:43 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">r=
-kossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex"><div dir=3D"ltr"><div>Hi Lukas,</div><div>The FPGA image on t=
-he USRP is divided into blocks such as the DUC block and the Radio block.=
-=C2=A0 The latter controls the RF daughterboard and has access to the devic=
-e clock.=C2=A0 So, when you provide a timed command to the Radio block (suc=
-h as for tuning the RF) it can implement the command at the specified time =
-by comparing to the device clock.=C2=A0 The DUC block does not have access =
-to the MB clock and so when you give it a timed command, it monitors the in=
-coming sample stream to extract the time. If the sample stream does not inc=
-lude a time stamp, the command never executes.=C2=A0 Don&#39;t think of thi=
-s as a bug, but rather as a design limitation.</div><div><br></div><div>Whe=
-n I work directly with UHD from C++, I use the function rx_streamer::issue_=
-stream_command() which has options to stream data with no time stamp or wit=
-h a time stamp.=C2=A0 When using timed commands with DUC or DDC, I must inc=
-lude the time stamp or else the command will never be executed.=C2=A0 But, =
-with GR, I don&#39;t know how to specify the corresponding options.</div><d=
-iv>Rob</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Tue, Mar 3, 2020 at 12:29 PM Lukas Haase &lt;<a href=3D"mailto:luk=
-ashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex">Hi Sam, Hi Rob, <br>
+<div dir=3D"ltr">Everything Rob is saying is dead on - the &quot;sense of t=
+ime&quot; for the radio is a 64-bit counter within the radio core that othe=
+r blocks (like the DDC and DUC) don&#39;t have access to. Those blocks need=
+ to derive a sense of time from the timestamps of CHDR packets passing thro=
+ugh them. I just wrapped up a new app note that covers this (among other sy=
+nchronization-related topics):<div><br></div><div><a href=3D"https://kb.ett=
+us.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#Clocking_and_T=
+imekeeping_in_the_USRP">https://kb.ettus.com/Synchronizing_USRP_Events_Usin=
+g_Timed_Commands_in_UHD#Clocking_and_Timekeeping_in_the_USRP</a></div><div>=
+<br></div><div>Lukas, I would doubt that this is an undiscovered bug as muc=
+h as it is an issue with implementation. If this were in C++, you&#39;d wan=
+t to set the &#39;has_time_spec&#39; and &#39;time_spec&#39; fields of your=
+ TX metadata for at least 1 packet to impart a sense of time on the DUC:</d=
+iv><div><br></div><div><a href=3D"https://files.ettus.com/manual/structuhd_=
+1_1tx__metadata__t.html">https://files.ettus.com/manual/structuhd_1_1tx__me=
+tadata__t.html</a><br><div><br></div><div>I just spoke with someone on my e=
+nd who said you need to use stream tags to do this, but again, I don&#39;t =
+currently have much direction for how that would be implemented in your cod=
+e.</div><div><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signatu=
+re" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"lt=
+r">Sam Reiter=C2=A0</div></div></div></div></div></div></div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 3,=
+ 2020 at 11:48 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossl=
+er@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr">Also, note that there is no corresponding issue=
+ on receive because the Rx radio always inserts the time stamp=C2=A0in the =
+sample stream. So, I guess you would not see this with the DDC.<div>Rob</di=
+v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
+">On Tue, Mar 3, 2020 at 12:43 PM Rob Kossler &lt;<a href=3D"mailto:rkossle=
+r@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Lukas,<=
+/div><div>The FPGA image on the USRP is divided into blocks such as the DUC=
+ block and the Radio block.=C2=A0 The latter controls the RF daughterboard =
+and has access to the device clock.=C2=A0 So, when you provide a timed comm=
+and to the Radio block (such as for tuning the RF) it can implement the com=
+mand at the specified time by comparing to the device clock.=C2=A0 The DUC =
+block does not have access to the MB clock and so when you give it a timed =
+command, it monitors the incoming sample stream to extract the time. If the=
+ sample stream does not include a time stamp, the command never executes.=
+=C2=A0 Don&#39;t think of this as a bug, but rather as a design limitation.=
+</div><div><br></div><div>When I work directly with UHD from C++, I use the=
+ function rx_streamer::issue_stream_command() which has options to stream d=
+ata with no time stamp or with a time stamp.=C2=A0 When using timed command=
+s with DUC or DDC, I must include the time stamp or else the command will n=
+ever be executed.=C2=A0 But, with GR, I don&#39;t know how to specify the c=
+orresponding options.</div><div>Rob</div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 3, 2020 at 12:29 PM Lukas Ha=
+ase &lt;<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@g=
+mx.at</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">Hi Sam, Hi Rob, <br>
 <br>
 Thanks for following up on this!<br>
 I am very happy you were able to reproduce this ... which means that at lea=
@@ -462,11 +522,12 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div></div>
 </blockquote></div>
+</blockquote></div>
 
---000000000000cac5a4059ff6e70a--
+--000000000000374090059ff76ccc--
 
 
---===============5691401412054038805==
+--===============8353408819081884883==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -477,5 +538,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5691401412054038805==--
+--===============8353408819081884883==--
 
