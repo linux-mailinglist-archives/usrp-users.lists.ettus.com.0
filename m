@@ -2,58 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FE28177D76
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 18:30:07 +0100 (CET)
-Received: from [::1] (port=60082 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88618177D7E
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 18:32:26 +0100 (CET)
+Received: from [::1] (port=33366 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j9BMi-0004rZ-F8; Tue, 03 Mar 2020 12:29:56 -0500
-Received: from mout.gmx.net ([212.227.17.20]:60911)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1j9BMd-0004OZ-Ts
- for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 12:29:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1583256550;
- bh=zsIdz2yQTKHrX6IBNFb33etJMmxHqVKqUFk221fQRuo=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=dX59cJAo0kRXvlm48Tjv8UL3GQfRZuJGUoDvLKnfFt0mH+TcINdXgGsmyDlmDZpou
- WavZF3G4XDXeGGbX0uOH3+sVs23/Lo71bMszZPweROaOq4p4mhpxwLFuuDml/740gz
- /+OTKMkxpTToFlOopMOfhKqawHODgYf4cHOD4L58=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bap50.server.lan [172.19.172.120]) (via HTTP); Tue, 3 Mar 2020
- 18:29:10 +0100
+	id 1j9BP7-0005Eg-Nd; Tue, 03 Mar 2020 12:32:25 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:41679)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1j9BP4-00057C-4Q
+ for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 12:32:22 -0500
+Received: by mail-ot1-f52.google.com with SMTP id v19so3802034ote.8
+ for <usrp-users@lists.ettus.com>; Tue, 03 Mar 2020 09:32:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=p6DnuFpVwMz8DDgmMpQG0dfP32Ncpnoemz1j7JnpHUE=;
+ b=f2UUs+o5XzqFXJuhahh8JLkhpIbMl9cHRbMzXFdYtOcE6IBapfzNkfog77/xjkJj9v
+ TIjFfTZ/evC/n/DN9RefAtnfXmbJ+hCKqXEA4vYkPF5mDqoA89UWu97ctQq/DduUhvIV
+ 0mSuVBqnE9/nd2bWNoyAUOf32ozfDc6fpVVketseP6hH4gTEyhVEeG+neNSiRRO1V5/z
+ lHft9zngg7vc83U0x/kjv9DJHpMwEBqzb29mVaBZ1TfG6IeYjsqMMskMqO/LHHXcLCLS
+ Xb5d5KmAY1KZZFXc1UXgogh2r+4wRFWGl+ep7GZDKolXwj86QP2tLnotPpHMjfc7931K
+ D2nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=p6DnuFpVwMz8DDgmMpQG0dfP32Ncpnoemz1j7JnpHUE=;
+ b=pbpvye+78soz9IeAcab69Z4xgRnkTMxwchHnlnf8sQnWGvyeFD3rt5x2Nn1JVJ1XT+
+ 5mdI18rq5ajBG2NKYmhQf4vxa3YZnn+pcqStREQZ2I1IwJ1pZhMZNsJ1BDAa8lmLkN7h
+ /tWjfi46hINlY/DutjhWv98XbFwWorJDsS4bb8akV0EhKBgBw2ALd4pG34xpi73b5NBn
+ hXXjWsm6CSZNob/LwF8QBboh5KWEoPj/YuGK/qwwMWPz9KcCd79eMj9yZlNgmESZrQxA
+ EoQqyUJUWZVIBj9Ga/klTzZJ9G0yjLa3hwtr4PYg/4Nk2GcNlKt6F9HMZiUlkRPs296s
+ Z5YQ==
+X-Gm-Message-State: ANhLgQ31IHbHQpUPLhjCUYu++8Rv4M9kR5hcakhxIL8cf+nvSCsZiZfL
+ 1ofoDxsBL4RayOfm5fUTAn2VhWAjXwRpRk+S1N5GBA==
+X-Google-Smtp-Source: ADFU+vvAl/aBPc4SkhMcOfziJ5DjRvZjxhZtsj6uv2O7O/mcK+50XhQkKpr2a+DR1OIdQ2pYKLdBBnjkExYTjXjpXhg=
+X-Received: by 2002:a9d:7d0c:: with SMTP id v12mr4188647otn.171.1583256700881; 
+ Tue, 03 Mar 2020 09:31:40 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-1e499bef-ac0a-4580-ad27-647e1755c34a-1583256550568@3c-app-gmx-bap50>
-To: "Sam Reiter" <sam.reiter@ettus.com>
-Date: Tue, 3 Mar 2020 18:29:10 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CANf970YbM=F5UBzKQsQ2jGH4X=BKScx1YbNJ=TFhEKfDg-XBww@mail.gmail.com>
-References: <trinity-6d081d85-efab-4ee6-9dfd-d15b3f6ff1b5-1583161440082@3c-app-gmx-bs64>
- <CAB__hTSgAJcWu=AwsRYs6HmGYMOqk1kAKC4fFgmVWVd8Fw0THQ@mail.gmail.com>
- <CANf970YbM=F5UBzKQsQ2jGH4X=BKScx1YbNJ=TFhEKfDg-XBww@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:g8lv9xAawWmSD5AYykdNoURENVZLZtM0XSC8WG1Yjc6rgxLPmMcsVywUlrhXLsEbIhfHm
- s4n+UfBp2KZoMvlfSsv2JUObwW/jtSuRK1VBza1mhPhJj9WxDI0kScEhz/Llc/eDpezlfFV9LJJA
- 2/rkBgUNVk6sZiBFkKxzVs34DatqMyfesE00vTFXcc7IIlnCGtizuOdE+/N91xCy6YKCvpwmF2bo
- WN/nDeLcf360rexGOG4OJlHJreWYpPK8FObG9hvXWiqcL8jhUWBZXslkml5/3RxtO+w+BTHNJFtL
- NU=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:HBJsx53FKYM=:771+WH4+7MQJj/WkIMSkf6
- NAr1RGNzEDakPjmEY6p3blqtQiNrs1LmEBSyr0uc7cBNv4AP0C0ABvLrzYutSRpnl+feXgBNu
- 0Mi/p0VNe3TYOavV3GavReFawWybV0OX/9zX/Eb7KBOcxUM7G6+EghHQJHtL1ntfOrcjBjHOL
- sKu9Vzb/N452fYmi2xzfXXnRSZ2/4DCdvoSIc02GiT1H9OloyplRG/Dw0gvYpMe+3//GtLvTn
- rTFnz25xHzjhkGXDbOVTDWnYXdMAJJtElI4ALw1RcofRlytWLCnzxi8gxKQ2Jg5QFIx2UTLF8
- tFaeJ+Xr6vJrT3w0Xf4l98JB81RnvamhJPwyMFjGKSGoLXCkAw/VdyTGzwMbhdXz+mWhL4J8A
- 6Jcczqix7hggwD6PCJC+uA4V+J0DR/d4zCDTa69uGmR1WNJUVCsOVFaLS3GGu0NW9sTWOGtXP
- kUCyVBILaq7hvyCELkS9Vuy2MSBIgcywTSc4909CuwtG0fxmfEvO12ql835mEhmxCEvI1tZLs
- hDsUOXTX6/VWo1FmUwPcER5Rtqai36st1YyQ8KSE101P7VW7KKhEGApZMpawNkUmJn9OFbPcJ
- r2msL++js5Q3HRuaNyhwlE3fw+pwic4U/hz7iFRUD4EYepU5GEjxM/IUJUUUPQatYnVir/una
- LUk1jDQIyFkbMO76dVyKqp2+pDXdzDO+Owscw0aUo3k99c81yQb2LAVBW4TBfDEG/RCQ=
-Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
- timed command
+References: <1994044559.834986.1582780917804.ref@mail.yahoo.com>
+ <1994044559.834986.1582780917804@mail.yahoo.com>
+In-Reply-To: <1994044559.834986.1582780917804@mail.yahoo.com>
+Date: Tue, 3 Mar 2020 12:31:28 -0500
+Message-ID: <CAB__hTT=tXe=hpWaESU8YVrWpG8BjvZtQ5kTZY9YxJihGc+TBg@mail.gmail.com>
+To: dspspouse@aol.com
+Subject: Re: [USRP-users] USRP N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,12 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
- Rob Kossler <rkossler@nd.edu>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5217961549915108921=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,92 +75,151 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgU2FtLCBIaSBSb2IsIAoKVGhhbmtzIGZvciBmb2xsb3dpbmcgdXAgb24gdGhpcyEKSSBhbSB2
-ZXJ5IGhhcHB5IHlvdSB3ZXJlIGFibGUgdG8gcmVwcm9kdWNlIHRoaXMgLi4uIHdoaWNoIG1lYW5z
-IHRoYXQgYXQgbGVhc3QgYW4gaXNzdWUgZXhpc3RzIDopCgpXaGF0IFNhbSBzdWdnZXN0cyBtYWtl
-cyBzZW5zZSBldmVuIHRob3VnaCBoYXJkIHRvIGJlbGlldmUgZm9yIG1lOgoKMS4gSG93IGNvdWxk
-IHNvbWV0aGluZyBsaWtlIHRoYXQgZ28gdW5ub3RpY2VkIGZvciBzbyBsb25nPyAoSSBhbSBzdXJl
-IEkgYW0gbm90IHRoZSBmaXJzdCBwZXJmb3JtaW5nIGRpZ2l0YWwgdHVuaW5nKQoyLiBJbiB0aGUg
-cGFzdCBJIGdvdCBzdWNjZXNzZnVsIHBoYXNlIGNvaGVyZW5jZSB1c2luZyBhdXRvbWF0aWMgdHVu
-aW5nIChwYXNzaW5nIGNlbnRlciBmcmVxdWVuY3kgKyBvZmZzZXQgdG8gdHVuZV9yZXF1ZXN0X3Qg
-YW5kIHVzaW5nIGludGVnZXItTiB0dW5pbmcpIHVzaW5nIHRpbWVkIGNvbW1hbmRzLiBUaGlzIGRp
-ZCBub3Qgd29yayByZWxpYWJseSBhbmQgb25seSBmb3IgY2VydGFpbiBmcmVxdWVuY2llcyBidXQg
-aW4gbXkgb3BpbmlvbiB0aGlzIHNob3VsZCBoYXZlIElOQ0xVREVEIHRoZSBEVUMgdHVuaW5nLiBJ
-ZiB0aGUgRFVDIHJldHVuZSB3b3VsZG4ndCBoYXZlIGJlZW4gZXhlY3V0ZWQgYXMgcGFydCBvZiB0
-aGlzIGF1dG9tYXRpYyB0dW5pbmcsIEkgY291bGQgbm90IGhhdmUgZ290dGVuIHBoYXNlIGNvaGVy
-ZW5jZSAoYW5kIGFjdHVhbGx5LCBub3QgZXZlbiB0aGUgZGVzaXJlZCBmcmVxdWVuY3kpLgoKVGhl
-IHJlYXNvbiB3aHkgSSBhbSBvbmx5IGRvaW5nIERVQyB0dW5pbmcgbm93IGlzIHRvIGF2b2lkIGFs
-bCB0aGUgaGFzc2xlIHdpdGggaW50ZWdlci1OIHR1bmluZywgUExMIHJldHVuaW5nIGFuZCBzZXR0
-bGluZyB0aW1lLgoKU2FtLCB3aGF0IGlzIHRoZSAicmFkaW8gYmxvY2siIHlvdSB3ZXJlIHRhbGtp
-bmcgYWJvdXQ/CgpBbnl3YXksIHdvdWxkIGl0IGJlIHdvcnRod2lsZSB0byBhdHRlbXB0IGRlYnVn
-Z2luZyB0aGlzIGlzIGFic2VuY2Ugb2YgZ3I/ClRoZSBvbmx5IHJlYXNvbiB0aGlzIHByZXZlbnRl
-ZCBtZSBmcm9tIGRvaW5nIGlzIHRoYXQgSSB3b3VsZCBuZWVkIHRvIG1hbnVhbGx5IGNyZWF0ZSB0
-aGUgYmFzZWJhbmQgc2FtcGxlcyBhbmQgY29udGludW91c2x5IHN0cmVhbSB0aGVtIG91dCB3aGls
-ZSBpbiBwYXJhbGxlbCBkbyB0aGUgcmV0dW5pbmcuCkkgYW0gbm90IHRvbyBmYW1pbGlhciB3aXRo
-IFVIRCBvbiBpdHMgb3duIGJ1dCBJIGFzc3VtZSB0aGlzIHdvdWxkIGJlIHZlcnkgY29tcGxpY2F0
-ZWQsIHJlcXVpcmUgbXVsdGl0aHJlYWRpbmcgZXRjLgpEbyB5b3UgaGF2ZSBhbnkgZGVtbyBjb2Rl
-IHRoYXQgY291bGQgYmUgZWFzaWx5IG1vZGlmaWVkIGZvciB0aGlzIHNjZW5hcmlvPwoKQmVzdCwK
-THVrYXMKCgpHZXNlbmRldDrCoERpZW5zdGFnLCAwMy4gTcOkcnogMjAyMCB1bSAxMjowOCBVaHIK
-Vm9uOsKgIlNhbSBSZWl0ZXIiIDxzYW0ucmVpdGVyQGV0dHVzLmNvbT4KQW46wqAiUm9iIEtvc3Ns
-ZXIiIDxya29zc2xlckBuZC5lZHU+CkNjOsKgIkx1a2FzIEhhYXNlIiA8bHVrYXNoYWFzZUBnbXgu
-YXQ+LCAiVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbT4KQmV0cmVmZjrCoFJlOiBbVVNSUC11c2Vyc10gVVNSUCBYMzEwIGlnbm9yZWQgRFNQIHJl
-dHVuaW5nIG9uIFRYIHdoZW4gdXNpbmcgYSB0aW1lZCBjb21tYW5kCgpGb3Igd2hhdCBpdCdzIHdv
-cnRoLCBJIHdhcyBhYmxlIHRvIHJlcHJvZHVjZSB0aGUgYmVoYXZpb3IgZGVzY3JpYmVkIGhlcmUs
-IGJ1dCBkaWRuJ3QgZ2V0IHRvIGRpZyBpbnRvIGl0IG11Y2guIE15IGxlYWRpbmcgc3VzcGljaW9u
-IHdvdWxkIGJlIHdoYXQgUm9iIG1lbnRpb25lZCBhYm91dCB0aW1lc3RhbXBpbmcuIEx1a2FzJyBj
-b2RlIHNldHMgYSBjb21tYW5kIHRpbWUsIGJ1dCBJJ20gbm90IGNsZWFyIG9uIGhvdyB0aW1lc3Rh
-bXAgbWV0YWRhdGEgZm9yIHBhY2tldHMgYmVpbmcgc2VudCB0byB0aGUgcmFkaW8gYXJlIGhhbmRs
-ZWQuIE1pZ2h0IGJlIGEgZ29vZCBxdWVzdGlvbiB0byBsb29wIHRoZSBkaXNjdXNzLWdudXJhZGlv
-IG1haWxpbmcgbGlzdCBpbiBvbj8KCsKgCgpTYW0gUmVpdGVywqDCoAoKT24gVHVlLCBNYXIgMywg
-MjAyMCBhdCAxMDo1OSBBTSBSb2IgS29zc2xlciB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXT4gd3JvdGU6
-Ckkgd29uZGVyIGlmIHRoZSBpc3N1ZSBpcyByZWxhdGVkIHRvIGEgbWlzc2luZyB0aW1lIHN0YW1w
-IG9uIHRoZSBiYXNlYmFuZCBzYW1wbGVzIGdvaW5nIGZyb20gR1IgdG8gVUhELsKgIElmIHRoZSBz
-dHJlYW0gZG9lcyBub3QgaGF2ZSBhIHRpbWUgc3RhbXAsIHRoZSBEVUMgaXMgdW5hYmxlIHRvIGFw
-cGx5IHRoZSB0aW1lZCBjb21tYW5kIGJlY2F1c2UgdGhlIERVQyBkb2VzIG5vdCByZWFsbHkga25v
-dyB0aGUgdGltZSAtIGl0IG11c3QgcHVsbCB0aGUgdGltZSBmcm9tIHRoZSBzdHJlYW1pbmcgc2Ft
-cGxlcy4gVGhpcyBpcyBpbiBjb250cmFzdCB0byB0aGUgcmFkaW8gYmxvY2sgd2hpY2ggZG9lcyBo
-YXZlIGFjY2VzcyB0byB0aW1lIGFuZCBjYW4gYXBwbHkgdGltZWQgY29tbWFuZHMgYnkgcmVmZXJy
-aW5nIHRvIHRoZSBtb3RoZXJib2FyZCBjbG9jay4KwqAKSSBhbSBub3QgdG9vIGZhbWlsaWFyIHdp
-dGggR1Igc28gSSdtIG5vdCBzdXJlIGhvdyB0byBrbm93IGlmIEdSIGlzIHB1dHRpbmcgYSB0aW1l
-IHN0YW1wIG9uIHRoZSBzdHJlYW1pbmcgc2FtcGxlcy4KUm9iwqAKCk9uIE1vbiwgTWFyIDIsIDIw
-MjAgYXQgMTA6MDQgQU0gTHVrYXMgSGFhc2UgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV0+IHdyb3RlOkhp
-IE1hcmN1cywKClRoYW5rIHlvdSB0aGF0IHdvdWxkIGJlIGFtYXppbmchCgpJIGZvbGxvd2VkIHRo
-ZSB0dXRvcmlhbCBhbmQgYnVpbHQgZXZlcnl0aGluZyBmcm9tIHNvdXJjZToKCiQgbHNiX3JlbGVh
-c2UgLWEKTm8gTFNCIG1vZHVsZXMgYXJlIGF2YWlsYWJsZS4KRGlzdHJpYnV0b3IgSUQ6IFVidW50
-dQpEZXNjcmlwdGlvbjrCoCDCoCBVYnVudHUgMTguMDQuNCBMVFMKUmVsZWFzZTrCoCDCoCDCoCDC
-oCAxOC4wNApDb2RlbmFtZTrCoCDCoCDCoCDCoGJpb25pYwokIHVuYW1lIC1hCkxpbnV4IHNkciA1
-LjMuMC00MC1nZW5lcmljICMzMn4xOC4wNC4xLVVidW50dSBTTVAgTW9uIEZlYiAzIDE0OjA1OjU5
-IFVUQyAyMDIwIHg4Nl82NCB4ODZfNjQgeDg2XzY0IEdOVS9MaW51eAokIGNkIHVoZAokIGdpdCBz
-dGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My4xNS4wLjAKJCBjZCAuLi9nbnVyYWRpbwokIGdpdCBz
-dGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My43LjE0LjAKCgpUaGFuayB5b3UhCgpMdWthcwoKCgpQ
-UzogRm9yIHNvbWUgcmVhc29uIEkgc29tZXRpbWVzIGRvIG5vdCBnZXQgcmVzcG9uc2VzIGZyb20g
-dGhpcyBsaXN0LiBJIGp1c3Qgc2F3IGl0IGxvb2tpbmcgYXQgdGhlIG1haWxtYW4gYXJjaGl2ZXMu
-IEhlbmNlIEkgY2Fubm90IHJlc3BvbmQgKHRvIGtlZXAgaGVhZGVycyBpbnRhY3QpIGJ1dCBuZWVk
-IHRvIGNyZWF0ZSBhIG5ldyBtZXNzYWdlIGFuZCBtYW51YWxseSAicXVvdGUiLiBJIGhvcGUgdGhh
-dCBzdGlsbCBwcmVzZXJ2ZXMgdGhlIGNvbnRleHQgc29tZWhvdy4KCgoKTWFyY3VzIExlZWNoIHdy
-b3RlOgo+IE9uIDAyLzI4LzIwMjAgMDE6MDEgUE0sIEx1a2FzIEhhYXNlIHZpYSBVU1JQLXVzZXJz
-IHdyb3RlOgo+PiBIaSBhZ2FpbiwKPj4KPj4gSSBjcmVhdGVkIGEgbWluaW11bSBleGFtcGxlIChn
-bnVyYWRpbykgdGhhdCBzaG93cyB0aGUgaXNzdWUgZGVzY3JpYmVkIGJlbG93Lgo+PiBUbyBzdW1t
-YXJpemU6IFJldHVuaW5nIHRvIGEgZGlmZmVyZW50IGRzcCBmcmVxdWVuY3kgb24gYW4gVVNSUCBY
-MzEwICgrVUJYMTYwKSBkb2VzIG5vdCB3b3JrIChjb21tYW5kIGlnbm9yZWQpIE9OTFkgaWYgYSB0
-aW1lZCBjb21tYW5kIChpbiBmdXR1cmUgaXMgdXNlZCkuCj4+IFRoZSBjb2RlIHNob3dzIGl0IGlu
-IGEgc2ltcGxlIG1hbm5lci4gQ29tbWVudGluZyBvdXQgdGhlIHNpbmdsZSBsaW5lIHdpdGggc2V0
-X2NvbW1hbmRfdGltZSBtYWtlcyB0aGUgZXhhbXBsZSB3b3JrLgo+Pgo+PiBJIGFtIGFic29sdXRl
-bHkgb3V0IG9mIGlkZWFzIGFuZCB3b3VsZCBhcHByZWNpYXRlIGFueSBpbnB1dCEKPj4KPj4gQmVz
-dCwKPj4gTHVrYXMKPiBMdWthcy4KPgo+IFRoYW5rcyBmb3Igc3RpY2tpbmcgd2l0aCB0aGlzLsKg
-IEknbGwgaGF2ZSBhIGRpc2N1c3Npb24gd2l0aCBFdHR1cyBSJkQgdG8KPiBzZWUgaWYgdGhpcyBp
-cyBhIGtub3duIGlzc3VlIGFuZC9vciBpZiB0aGVyZSdzIGEgd29ya2Fyb3VuZC4KPgo+IFJlbWlu
-ZCBtZSB3aGljaCB2ZXJzaW9uIG9mIFVIRCB5b3UncmUgdXNpbmc/CgoKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
-ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbV0KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
-bGlzdHMuZXR0dXMuY29tX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21b
-bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXQpodHRwOi8vbGlzdHMuZXR0dXMuY29t
-L21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBs
-aXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFp
-bG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============5217961549915108921==
+Content-Type: multipart/alternative; boundary="0000000000003ed4a2059ff6ad8c"
+
+--0000000000003ed4a2059ff6ad8c
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Len,
+I have run some testing of this capability.  A few remarks:
+
+   - In my test setup, I had a signal generator running into a 1:4 splitter
+   with outputs connected to the four N310 Rx2 inputs.  I used another signal
+   generator as the LO source running into a 1:2 splitter with outputs
+   connected to the N310 Rx LO inputs with amplitude near 3 dBm
+   <https://kb.ettus.com/N300/N310#Front_Panel> at N310 LO inputs.
+   - When using external LO, the RF range is limited to a max of 4 GHz
+   (rather than 6 GHz which is the limit with internal LO)
+   - I had problems with UHD 3.14 because there was some bug related to
+   resetting the phase of the DDC.  I had success with 3.15. But even with
+   success, there is still a 180 degree ambiguity between channels 1/2 and
+   channels 3/4.  I am not certain regarding the circumstances that can cause
+   the ambiguity to flip, but I think it only occurs at application startup
+   such that once your application is running, you can expect consistent
+   results with no ambiguity flips.
+   - When you launch your application and create a usrp device instance,
+   the UHD software will automatically try to run some IQ calibrations
+   (RX_QEC_INIT) expecting that the RF is at 2.5 GHz, which implies that your
+   external LO must be at 5 GHz at startup.  After startup is complete (and
+   this calibration is complete) you can change the freq of your LO and retune
+   the RF of the various channels keeping in mind that the external LO must
+   always be twice the desired RF.  If you want to avoid the startup
+   calibration (with LO at 5 GHz), you can specify explicitly which
+   calibrations
+   <https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_mg_calibrations>
+   you want using the device args and choose not to run RX_QEC_INIT. But, I'm
+   not sure if skipping this calibration could have negative effects on signal
+   quality.
+
+Let me know if you have questions.
+Rob
+
+
+On Thu, Feb 27, 2020 at 12:22 AM Len via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Folks,
+> I'm looking for information from any subscriber(s) to this forum that have
+> successfully used the USRP N310 to provide 4 Rx channels which are both
+> coherent and synchronized.  I've heard this could be challenging and I know
+> people have been able to do this successfully so I was wondering where I
+> might find some detailed information/instructions on how best to accomplish
+> this.  I was told this forum would be a good place to start.  So any block
+> diagrams illustrating the Master LO and Master Clock hookups needed along
+> with any available calibration procedure(s) describing how to actually
+> check/verify coherence and synchronization between the 4 channels would be
+> great.
+>
+>
+> Thanks,
+> Len
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000003ed4a2059ff6ad8c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Len,</div><div>I have run some testing of this cap=
+ability.=C2=A0 A few remarks:</div><div><ul><li>In my test setup, I had a s=
+ignal generator running into a 1:4 splitter with outputs connected to the f=
+our N310 Rx2 inputs.=C2=A0 I used another signal generator as the LO source=
+ running into a 1:2 splitter with outputs connected to the N310 Rx LO input=
+s with amplitude <a href=3D"https://kb.ettus.com/N300/N310#Front_Panel">nea=
+r 3 dBm</a> at N310 LO inputs.</li><li>When using external LO, the RF range=
+ is limited to a max of 4 GHz (rather than 6 GHz which is the limit with in=
+ternal LO)</li><li>I had problems with UHD 3.14 because there was some bug =
+related to resetting the phase of the DDC.=C2=A0 I had success with 3.15. B=
+ut even with success, there is still a 180 degree ambiguity between channel=
+s 1/2 and channels 3/4.=C2=A0 I am not certain regarding the circumstances =
+that can cause the ambiguity to flip, but I think it only occurs at applica=
+tion startup such that once your application is running, you can expect con=
+sistent results with no ambiguity flips.</li><li>When you launch your appli=
+cation and create a usrp device instance, the UHD software will automatical=
+ly try to run some IQ calibrations (RX_QEC_INIT) expecting that the RF is a=
+t 2.5 GHz, which implies that your external LO must be at 5 GHz at startup.=
+=C2=A0 After startup is complete (and this calibration is complete) you can=
+ change the freq of your LO and retune the RF of the various channels keepi=
+ng in mind that the external=C2=A0LO must always be twice the desired RF.=
+=C2=A0 If you want to avoid the startup calibration (with LO at 5 GHz), you=
+ can specify explicitly which <a href=3D"https://files.ettus.com/manual/pag=
+e_usrp_n3xx.html#n3xx_mg_calibrations">calibrations</a> you want using the =
+device args and choose not to run RX_QEC_INIT. But, I&#39;m not sure if ski=
+pping this calibration could have negative effects on signal quality.</li><=
+/ul><div>Let me know if you have questions.</div><div>Rob</div><div><br></d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Thu, Feb 27, 2020 at 12:22 AM Len via USRP-users &lt;<a href=3D"mailt=
+o:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div style=3D"color:black;font:10pt arial">Folks,
+<div>I&#39;m looking for information from any subscriber(s) to this forum t=
+hat have successfully used the USRP N310 to provide 4 Rx channels which are=
+ both coherent and synchronized.=C2=A0 I&#39;ve heard this could be challen=
+ging and I know people have been able to do this successfully so I was wond=
+ering where I might find some detailed information/instructions on how best=
+ to accomplish this.=C2=A0 I was told this forum would be a good place to s=
+tart.=C2=A0 So any block diagrams illustrating the Master LO and Master Clo=
+ck hookups needed along with any available calibration procedure(s) describ=
+ing how to actually check/verify coherence and synchronization between the =
+4 channels would be great.</div>
+
+<div><br>
+</div>
+
+<div><br>
+</div>
+
+<div>Thanks,</div>
+
+<div>Len=C2=A0 =C2=A0 =C2=A0</div>
+</div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--0000000000003ed4a2059ff6ad8c--
+
+
+--===============5217961549915108921==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5217961549915108921==--
+
