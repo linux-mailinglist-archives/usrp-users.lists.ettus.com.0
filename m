@@ -2,54 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BECB177E94
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 19:45:06 +0100 (CET)
-Received: from [::1] (port=35456 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CF417838B
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 21:01:01 +0100 (CET)
+Received: from [::1] (port=51552 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j9CXR-0006m5-F9; Tue, 03 Mar 2020 13:45:05 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:39362)
+	id 1j9Dit-000764-Bd; Tue, 03 Mar 2020 15:00:59 -0500
+Received: from mout.gmx.net ([212.227.17.22]:56375)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1j9CXN-0006eM-LP
- for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 13:45:01 -0500
-Received: by mail-oi1-f169.google.com with SMTP id r16so4097218oie.6
- for <usrp-users@lists.ettus.com>; Tue, 03 Mar 2020 10:44:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1HUtB0sehd/iG6iO6z/q+jdCCyVBiDOmHjVxRNAlIIo=;
- b=LlI/P/o9uo1ggPhcQ1ZfBEjR/348jdCHz4YfSlPlh43Lr1q4Sm+o9VzbSDG+CS07Yx
- wr2ZatyZbOPC1X2zs30HVPbV+Xuxl2qHmdpolMb3+mi1H9eXBJo7V9+lWyC6xcADf1df
- vVmQejOmlGYEeRnf1q2WEDM/9u5Wmrs3XcNiCP6Xui+b44DmEH2M3/IQeWvk5t9CdCVK
- zWkustkPuo50AYhCjA2QFBUVya+LA38tD+gFFljeGcEFbgOTx94G4lAYxf1KqdkiH+Sy
- DPTrQo4tC8uhJpOUhfklkBrIkxb1xC7jQYBYEAlOwpN6W/rCRgqD7BctrVLwnjpllOci
- AERw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=1HUtB0sehd/iG6iO6z/q+jdCCyVBiDOmHjVxRNAlIIo=;
- b=saNwCJgPblezXKv07dVsg3V97oYoBL7oxrULKQuKwRM6JAzJY2b8yjo5LFbWT8N1Ze
- zmq7rMoK7+8Bfr//ZOaIEwFJUneYq8O9V2CV3OvlZ/frMqDObYEEURq59zMeNAK8tdNZ
- XLkujQHYljEWLhMi5BYehrSZc5Rc/Hzo/1Cp38im6mr9dX3LyqHpx8doyHFxmfLST6f7
- X6DVPN9T8FlGG9K5PrYImlYNEiDY+pYaZvjkBHra1xZo6t8zCdWQbXUCmINCjoR4x1x4
- wB4qNP6XDD5RTEzVRbJlwSTYmhIYJMuyxqlUaV+BsQGKjajLOhFo6lOpotwTlrKw0kpM
- YglQ==
-X-Gm-Message-State: ANhLgQ138wTL+ZikjsgGOuwV4WSnwIhNoBSHUMfbPbAG5EmeLJvO3zRi
- IqfYVtgYmNoouAncWzJZMv2iECyk03tOErB5Wq2SwQ==
-X-Google-Smtp-Source: ADFU+vv87zzcT8ev9C82uyVZA4V/TxrTXii1uX5yaNOCnYpjkrYkwJkhsbBw18GvPGaKS2VuJxgisQswjtrnHjroqI0=
-X-Received: by 2002:aca:4587:: with SMTP id s129mr3331920oia.124.1583261060821; 
- Tue, 03 Mar 2020 10:44:20 -0800 (PST)
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1j9Dio-0006yF-V9
+ for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 15:00:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1583265613;
+ bh=alqD68czngUJjmmv5IowAejtocbTh6AY+w3qEBLb2pk=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=M5QwmUedTA7u23IaMqTpKd2uNQkAOm2jMsU0NvMnmtIYOO1qbhxOWzChrvWV5uInl
+ HFcmeP20i/TydR17MXsiMsXMdUdrBbejWP577vtoxp+hfBmSN8kjS2o2vkur9cgJSF
+ tIaBXjgo1XqOXlpEz38cqWp6oJs/2GryzqCLGork=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
+ (3c-app-gmx-bap50.server.lan [172.19.172.120]) (via HTTP); Tue, 3 Mar 2020
+ 21:00:13 +0100
 MIME-Version: 1.0
-References: <1994044559.834986.1582780917804.ref@mail.yahoo.com>
- <1994044559.834986.1582780917804@mail.yahoo.com>
- <CAB__hTT=tXe=hpWaESU8YVrWpG8BjvZtQ5kTZY9YxJihGc+TBg@mail.gmail.com>
- <5E5E9753.9040502@gmail.com>
- <CANf970Z2rDB5Mz87xrTCpXdJHYz39A999zxNR39oqVZJrOremQ@mail.gmail.com>
-In-Reply-To: <CANf970Z2rDB5Mz87xrTCpXdJHYz39A999zxNR39oqVZJrOremQ@mail.gmail.com>
-Date: Tue, 3 Mar 2020 13:44:09 -0500
-Message-ID: <CAB__hTRb5Og1qFj9PVk4q3LyKXboYc0EKVXMZKGDXXKPFJ5d_g@mail.gmail.com>
-To: Sam Reiter <sam.reiter@ettus.com>
-Subject: Re: [USRP-users] USRP N310
+Message-ID: <trinity-fe7ab6e0-b371-42cb-88b1-463ee693e2f2-1583265613551@3c-app-gmx-bap50>
+To: "Sam Reiter" <sam.reiter@ettus.com>
+Date: Tue, 3 Mar 2020 21:00:13 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <CANf970YD3OT81FT9jB5uSyGpWo7pQibuw65YT2BXhDg=bUR_bg@mail.gmail.com>
+References: <trinity-6d081d85-efab-4ee6-9dfd-d15b3f6ff1b5-1583161440082@3c-app-gmx-bs64>
+ <CAB__hTSgAJcWu=AwsRYs6HmGYMOqk1kAKC4fFgmVWVd8Fw0THQ@mail.gmail.com>
+ <CANf970YbM=F5UBzKQsQ2jGH4X=BKScx1YbNJ=TFhEKfDg-XBww@mail.gmail.com>
+ <trinity-1e499bef-ac0a-4580-ad27-647e1755c34a-1583256550568@3c-app-gmx-bap50>
+ <CAB__hTSY-dv9UTwZTRaOF5bLN3Sk0JF5onD3XBYP8tZB-9BvrA@mail.gmail.com>
+ <CAB__hTQQJHsraknp0OTQTUukBPq3MCggN_ASZvhD=O28-r71TQ@mail.gmail.com>
+ <CANf970YD3OT81FT9jB5uSyGpWo7pQibuw65YT2BXhDg=bUR_bg@mail.gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:Z559OO6CsI7BkIHUhM5cz57xOD1iFBj16W+gMy0Dco3rJbOuaLLqX0T8oASD+UN6JUMEn
+ hY78lRw4kuBJMedJZa0JISuyvHnnkgkBTiN+cFSwRH9fX0+cStbc+Vljv1yD9J9+1wJCuAybcn+a
+ IBKigV5GA/WQbeEwIJ9d1GwCHw48PklzYBpg3cP3MvgbtTUbZ888pyaQS201I+0zwlvE0H8DStQ3
+ TLfyludbr1hAvoNSlPVkzthJbtxwhYosoNPePzJPXIfRQyTUCnllo4VlvOSzoATXas7sWHEunIg3
+ GI=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:k6ezPbJOLwo=:ewi22ySSeMW0c8Nhan/K/m
+ dpdIiE8mOd0pcQT1Yfxor2tIqy37cW4mYMsrqYlfT4m4mL3l3cFqaPy9VW0ELlRANl9lLdXV3
+ V42vmNVH6w1l05wVIMAGrJcSsuxkv49id59CrO/Et0eAAuOx0aqYzeVvx6w0TQ+W6J2stB/4D
+ rqbWU/lj1+1KSrs+ekgel6ZOerrv6kagp3/ko4FoT0tKvdbMSedWwVYBd/AGk4VGYg2P0aV3n
+ JEcVFEyPp9+Z335uQoj4mQL5Je2cW8GKCSsUNeEP+BjdQOfqT/cbZKSso0EfTa006OaceQ1b9
+ MjIZfOmyDbm/D5oypQSs5sH6Y3o31UGz7KF0Rjnsy7/dYQynnDdTLSkC9p3tTIAQKqOuktA5c
+ FgdplbnY5zqM91SE8m6xJ+2pQdfk0VMArHcZFRJLGe/HE0Ve87/YAHslKQV+Egy5e7tEs7Nql
+ QlP/xbXsnKhVG9Ab8FS4mx7H+N2t7b7amfin7LR/CnqQQX2rcDmJfJqShBNao8Mw4wqTrERAI
+ RDYiY7i5YQ7GsusgbyxufJJZ9jHUNqVeNGYzuWwbKH8fscKrVQPQv4aqTrjhxwfDDsHaf0dED
+ Fn93UDzMSNEO4N+Ah3rai8t+uryVyzVWE4FksYfOhHVIyXkwyQ8GbFa+n8+ZKBbX4Q7oCBj0s
+ jXYUp1PtBNTNt9QmF2HzlZ+urxWZlNqCE4oq3le8/UVm85uoxRLswMiQy5tCn8+mi1YU=
+Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
+ timed command
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,10 +69,12 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8570705051836096958=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
+ Rob Kossler <rkossler@nd.edu>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,287 +88,238 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8570705051836096958==
-Content-Type: multipart/alternative; boundary="0000000000001e2b2b059ff7b1b7"
-
---0000000000001e2b2b059ff7b1b7
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Sam,
-Just tolerate it.  I don't have any compensation algorithm.
-Rob
-
-On Tue, Mar 3, 2020 at 1:41 PM Sam Reiter <sam.reiter@ettus.com> wrote:
-
-> Rob,
->
-> Question for you - is your usecase one where you can simply tolerate that
-> 180 degree ambiguity? Or do you have a routine in your code to characterize
-> and compensate for it on each run?
->
-> Sam Reiter
->
-> On Tue, Mar 3, 2020 at 11:44 AM Marcus D. Leech via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> On 03/03/2020 12:31 PM, Rob Kossler via USRP-users wrote:
->>
->> Hi Len,
->> I have run some testing of this capability.  A few remarks:
->>
->>    - In my test setup, I had a signal generator running into a 1:4
->>    splitter with outputs connected to the four N310 Rx2 inputs.  I used
->>    another signal generator as the LO source running into a 1:2 splitter with
->>    outputs connected to the N310 Rx LO inputs with amplitude near 3 dBm
->>    <https://kb.ettus.com/N300/N310#Front_Panel> at N310 LO inputs.
->>    - When using external LO, the RF range is limited to a max of 4 GHz
->>    (rather than 6 GHz which is the limit with internal LO)
->>    - I had problems with UHD 3.14 because there was some bug related to
->>    resetting the phase of the DDC.  I had success with 3.15. But even with
->>    success, there is still a 180 degree ambiguity between channels 1/2 and
->>    channels 3/4.  I am not certain regarding the circumstances that can cause
->>    the ambiguity to flip, but I think it only occurs at application startup
->>    such that once your application is running, you can expect consistent
->>    results with no ambiguity flips.
->>
->> This is probably due to the 2XLO phase-splitter inside the AD9371
->> chips--it's based on a flip-flop, whose initial state is unpredictable.  Any
->>   2XLO phase-splitter has this property--including on the WBX
->> daughtercard used on N210/X310 etc.  The mixer has a 2XLO phase-splitter,
->>   so also shows this 180deg phase ambiguity.
->>
->>
->>
->>    - When you launch your application and create a usrp device instance,
->>    the UHD software will automatically try to run some IQ calibrations
->>    (RX_QEC_INIT) expecting that the RF is at 2.5 GHz, which implies that your
->>    external LO must be at 5 GHz at startup.  After startup is complete (and
->>    this calibration is complete) you can change the freq of your LO and retune
->>    the RF of the various channels keeping in mind that the external LO must
->>    always be twice the desired RF.  If you want to avoid the startup
->>    calibration (with LO at 5 GHz), you can specify explicitly which
->>    calibrations
->>    <https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_mg_calibrations>
->>    you want using the device args and choose not to run RX_QEC_INIT. But, I'm
->>    not sure if skipping this calibration could have negative effects on signal
->>    quality.
->>
->> Let me know if you have questions.
->> Rob
->>
->>
->> On Thu, Feb 27, 2020 at 12:22 AM Len via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->>> Folks,
->>> I'm looking for information from any subscriber(s) to this forum that
->>> have successfully used the USRP N310 to provide 4 Rx channels which are
->>> both coherent and synchronized.  I've heard this could be challenging and I
->>> know people have been able to do this successfully so I was wondering where
->>> I might find some detailed information/instructions on how best to
->>> accomplish this.  I was told this forum would be a good place to start.  So
->>> any block diagrams illustrating the Master LO and Master Clock hookups
->>> needed along with any available calibration procedure(s) describing how to
->>> actually check/verify coherence and synchronization between the 4 channels
->>> would be great.
->>>
->>>
->>> Thanks,
->>> Len
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
->>
->> _______________________________________________
->> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-
---0000000000001e2b2b059ff7b1b7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Sam,<div>Just tolerate it.=C2=A0 I don&#39;t have any c=
-ompensation algorithm.</div><div>Rob</div></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 3, 2020 at 1:41 PM Sa=
-m Reiter &lt;<a href=3D"mailto:sam.reiter@ettus.com">sam.reiter@ettus.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv dir=3D"ltr">Rob,<br><br>Question for you - is your usecase one where you=
- can simply tolerate that 180 degree ambiguity? Or do you have a routine in=
- your code to characterize and compensate for it on each run?<br><br>Sam Re=
-iter</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Tue, Mar 3, 2020 at 11:44 AM Marcus D. Leech via USRP-users &lt;<a h=
-ref=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@list=
-s.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div>On 03/03/2020 12:31 PM, Rob Kossler via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div>Hi Len,</div>
-        <div>I have run some testing of this capability.=C2=A0 A few remark=
-s:</div>
-        <div>
-          <ul>
-            <li>In my test setup, I had a signal generator running into
-              a 1:4 splitter with outputs connected to the four N310 Rx2
-              inputs.=C2=A0 I used another signal generator as the LO sourc=
-e
-              running into a 1:2 splitter with outputs connected to the
-              N310 Rx LO inputs with amplitude <a href=3D"https://kb.ettus.=
-com/N300/N310#Front_Panel" target=3D"_blank">near 3
-                dBm</a> at N310 LO inputs.</li>
-            <li>When using external LO, the RF range is limited to a max
-              of 4 GHz (rather than 6 GHz which is the limit with
-              internal LO)</li>
-            <li>I had problems with UHD 3.14 because there was some bug
-              related to resetting the phase of the DDC.=C2=A0 I had succes=
-s
-              with 3.15. But even with success, there is still a 180
-              degree ambiguity between channels 1/2 and channels 3/4.=C2=A0=
- I
-              am not certain regarding the circumstances that can cause
-              the ambiguity to flip, but I think it only occurs at
-              application startup such that once your application is
-              running, you can expect consistent results with no
-              ambiguity flips.</li>
-          </ul>
-        </div>
-      </div>
-    </blockquote>
-    This is probably due to the 2XLO phase-splitter inside the AD9371
-    chips--it&#39;s based on a flip-flop, whose initial state is
-    unpredictable.=C2=A0 Any<br>
-    =C2=A0 2XLO phase-splitter has this property--including on the WBX
-    daughtercard used on N210/X310 etc.=C2=A0 The mixer has a 2XLO
-    phase-splitter,<br>
-    =C2=A0 so also shows this 180deg phase ambiguity.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div>
-          <ul>
-            <li>When you launch your application and create a usrp
-              device instance, the UHD software will automatically try
-              to run some IQ calibrations (RX_QEC_INIT) expecting that
-              the RF is at 2.5 GHz, which implies that your external LO
-              must be at 5 GHz at startup.=C2=A0 After startup is complete
-              (and this calibration is complete) you can change the freq
-              of your LO and retune the RF of the various channels
-              keeping in mind that the external=C2=A0LO must always be twic=
-e
-              the desired RF.=C2=A0 If you want to avoid the startup
-              calibration (with LO at 5 GHz), you can specify explicitly
-              which <a href=3D"https://files.ettus.com/manual/page_usrp_n3x=
-x.html#n3xx_mg_calibrations" target=3D"_blank">calibrations</a>
-              you want using the device args and choose not to run
-              RX_QEC_INIT. But, I&#39;m not sure if skipping this
-              calibration could have negative effects on signal quality.</l=
-i>
-          </ul>
-          <div>Let me know if you have questions.</div>
-          <div>Rob</div>
-          <div><br>
-          </div>
-        </div>
-        <br>
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 27, 2020 at
-            12:22 AM Len via USRP-users &lt;<a href=3D"mailto:usrp-users@li=
-sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-            <div style=3D"color:black;font:10pt arial">Folks,
-              <div>I&#39;m looking for information from any subscriber(s) t=
-o
-                this forum that have successfully used the USRP N310 to
-                provide 4 Rx channels which are both coherent and
-                synchronized.=C2=A0 I&#39;ve heard this could be challengin=
-g and
-                I know people have been able to do this successfully so
-                I was wondering where I might find some detailed
-                information/instructions on how best to accomplish
-                this.=C2=A0 I was told this forum would be a good place to
-                start.=C2=A0 So any block diagrams illustrating the Master =
-LO
-                and Master Clock hookups needed along with any available
-                calibration procedure(s) describing how to actually
-                check/verify coherence and synchronization between the 4
-                channels would be great.</div>
-              <div><br>
-              </div>
-              <div><br>
-              </div>
-              <div>Thanks,</div>
-              <div>Len=C2=A0 =C2=A0 =C2=A0</div>
-            </div>
-            _______________________________________________<br>
-            USRP-users mailing list<br>
-            <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank"=
->USRP-users@lists.ettus.com</a><br>
-            <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_l=
-ists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com=
-/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-          </blockquote>
-        </div>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <br>
-      <pre>_______________________________________________
-USRP-users mailing list
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
-sts.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-
---0000000000001e2b2b059ff7b1b7--
-
-
---===============8570705051836096958==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8570705051836096958==--
-
+SGkgU2FtLCBIaSBSb2IsCgpUaGlzIG1ha2VzIHNvIG11Y2ggc2Vuc2UhCkkgdGhpbmsgeW91IGFy
+ZSByaWdodC4KQW5kIGluZGVlZCwgdGhlIGlzc3VlIEkgZm91bmQgb25seSB3aXRoIFRYLCBub3Qg
+UlguCgoKQ291bGQgeW91IHRoaW5rIG9mIGEgcG9zc2libGUgaGFjayBzZW5kaW5nIGEgImR1bW15
+IGNvbW1hbmQiIHRvIHRoZSBSRiBib2FyZCBhbG9uZyB3aXRoIHRoZSB0aW1lZCB0dW5pbmcgcmVx
+dWVzdD8KCgpSZWdhcmRpbmcgdGhlIHNlbmRpbmcgb2YgdGltZSBzdGFtcHMgaW4gdGhlIFRYIGlu
+IGdyLXVoZCwgSSBhbSBjb25mdXNlZCB0aG91Z2guIEkgZG8gdGhpbmsgdGhpcyBJUyBoYXBwZW5p
+bmcuIEkgcmVwcm9kdWNlIHRoZSB3b3JrIGZ1bmN0aW9uIG9mICJVU1JQIFNpbmsiIGhlcmU6Cgpp
+bnQgdXNycF9zaW5rX2ltcGw6OndvcmsoaW50IG5vdXRwdXRfaXRlbXMsCiAgICAgICAgICAgICAg
+ICAgICAgICAgICBncl92ZWN0b3JfY29uc3Rfdm9pZF9zdGFyJiBpbnB1dF9pdGVtcywKICAgICAg
+ICAgICAgICAgICAgICAgICAgIGdyX3ZlY3Rvcl92b2lkX3N0YXImIG91dHB1dF9pdGVtcykKewog
+ICAgaW50IG5pbnB1dF9pdGVtcyA9IG5vdXRwdXRfaXRlbXM7IC8vIGN1eiBpdCdzIGEgc3luYyBi
+bG9jawoKICAgIC8vIGRlZmF1bHQgdG8gc2VuZCBhIG1pZC1idXJzdCBwYWNrZXQKICAgIF9tZXRh
+ZGF0YS5zdGFydF9vZl9idXJzdCA9IGZhbHNlOwogICAgX21ldGFkYXRhLmVuZF9vZl9idXJzdCA9
+IGZhbHNlOwoKICAgIC8vIGNvbGxlY3QgdGFncyBpbiB0aGlzIHdvcmsoKQogICAgY29uc3QgdWlu
+dDY0X3Qgc2FtcDBfY291bnQgPSBuaXRlbXNfcmVhZCgwKTsKICAgIGdldF90YWdzX2luX3Jhbmdl
+KF90YWdzLCAwLCBzYW1wMF9jb3VudCwgc2FtcDBfY291bnQgKyBuaW5wdXRfaXRlbXMpOwogICAg
+aWYgKG5vdCBfdGFncy5lbXB0eSgpKQogICAgICAgIHRoaXMtPnRhZ193b3JrKG5pbnB1dF9pdGVt
+cyk7CgogICAgaWYgKG5vdCBwbXQ6OmlzX251bGwoX2xlbmd0aF90YWdfa2V5KSkgewogICAgICAg
+IC8vIGNoZWNrIGlmIHRoZXJlIGlzIGRhdGEgbGVmdCB0byBzZW5kIGZyb20gYSBidXJzdCB0YWdn
+ZWQgd2l0aCBsZW5ndGhfdGFnCiAgICAgICAgLy8gSWYgYSBidXJzdCBpcyBzdGFydGVkIGR1cmlu
+ZyB0aGlzIGNhbGwgdG8gd29yaygpLCB0YWdfd29yaygpIHNob3VsZCBoYXZlCiAgICAgICAgLy8g
+YmVlbiBjYWxsZWQgYW5kIHdlIHNob3VsZCBoYXZlIF9uaXRlbXNfdG9fc2VuZCA+IDAuCiAgICAg
+ICAgaWYgKF9uaXRlbXNfdG9fc2VuZCA+IDApIHsKICAgICAgICAgICAgbmlucHV0X2l0ZW1zID0g
+c3RkOjptaW48bG9uZz4oX25pdGVtc190b19zZW5kLCBuaW5wdXRfaXRlbXMpOwogICAgICAgICAg
+ICAvLyBpZiB3ZSBydW4gb3V0IG9mIGl0ZW1zIHRvIHNlbmQsIGl0J3MgdGhlIGVuZCBvZiB0aGUg
+YnVyc3QKICAgICAgICAgICAgaWYgKF9uaXRlbXNfdG9fc2VuZCAtIGxvbmcobmlucHV0X2l0ZW1z
+KSA9PSAwKQogICAgICAgICAgICAgICAgX21ldGFkYXRhLmVuZF9vZl9idXJzdCA9IHRydWU7CiAg
+ICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgLy8gVGhlcmUgaXMgYSB0YWcgZ2FwIHNpbmNlIG5v
+IGxlbmd0aF90YWcgd2FzIGZvdW5kIGltbWVkaWF0ZWx5IGZvbGxvd2luZwogICAgICAgICAgICAv
+LyB0aGUgbGFzdCBzYW1wbGUgb2YgdGhlIHByZXZpb3VzIGJ1cnN0LiBEcm9wIHNhbXBsZXMgdW50
+aWwgdGhlIG5leHQKICAgICAgICAgICAgLy8gbGVuZ3RoX3RhZyBpcyBmb3VuZC4gTm90aWZ5IHRo
+ZSB1c2VyIG9mIHRoZSB0YWcgZ2FwLgogICAgICAgICAgICBzdGQ6OmNlcnIgPDwgInRHIiA8PCBz
+dGQ6OmZsdXNoOwogICAgICAgICAgICAvLyBpbmNyZW1lbnQgdGhlIHRpbWVzcGVjIGJ5IHRoZSBu
+dW1iZXIgb2Ygc2FtcGxlcyBkcm9wcGVkCiAgICAgICAgICAgIF9tZXRhZGF0YS50aW1lX3NwZWMg
+Kz0gOjp1aGQ6OnRpbWVfc3BlY190KDAsIG5pbnB1dF9pdGVtcywgX3NhbXBsZV9yYXRlKTsKICAg
+ICAgICAgICAgcmV0dXJuIG5pbnB1dF9pdGVtczsKICAgICAgICB9CiAgICB9CgogICAgYm9vc3Q6
+OnRoaXNfdGhyZWFkOjpkaXNhYmxlX2ludGVycnVwdGlvbiBkaXNhYmxlX2ludGVycnVwdDsKI2lm
+ZGVmIEdSX1VIRF9VU0VfU1RSRUFNX0FQSQogICAgLy8gc2VuZCBhbGwgbmlucHV0X2l0ZW1zIHdp
+dGggbWV0YWRhdGEKICAgIGNvbnN0IHNpemVfdCBudW1fc2VudCA9IF90eF9zdHJlYW0tPnNlbmQo
+aW5wdXRfaXRlbXMsIG5pbnB1dF9pdGVtcywgX21ldGFkYXRhLCAxLjApOwojZWxzZQogICAgY29u
+c3Qgc2l6ZV90IG51bV9zZW50ID0gX2Rldi0+Z2V0X2RldmljZSgpLT5zZW5kKGlucHV0X2l0ZW1z
+LAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5p
+bnB1dF9pdGVtcywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBfbWV0YWRhdGEsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgKl90eXBlLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIDo6dWhkOjpkZXZpY2U6OlNFTkRfTU9ERV9GVUxMX0JVRkYsCiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMS4wKTsK
+I2VuZGlmCiAgICBib29zdDo6dGhpc190aHJlYWQ6OnJlc3RvcmVfaW50ZXJydXB0aW9uIHJlc3Rv
+cmVfaW50ZXJydXB0KGRpc2FibGVfaW50ZXJydXB0KTsKCiAgICAvLyBpZiB1c2luZyBsZW5ndGhf
+dGFncywgZGVjcmVtZW50IGl0ZW1zIGxlZnQgdG8gc2VuZCBieSB0aGUgbnVtYmVyIG9mIHNhbXBs
+ZXMgc2VudAogICAgaWYgKG5vdCBwbXQ6OmlzX251bGwoX2xlbmd0aF90YWdfa2V5KSAmJiBfbml0
+ZW1zX3RvX3NlbmQgPiAwKSB7CiAgICAgICAgX25pdGVtc190b19zZW5kIC09IGxvbmcobnVtX3Nl
+bnQpOwogICAgfQoKICAgIC8vIGluY3JlbWVudCB0aGUgdGltZXNwZWMgYnkgdGhlIG51bWJlciBv
+ZiBzYW1wbGVzIHNlbnQKICAgIF9tZXRhZGF0YS50aW1lX3NwZWMgKz0gOjp1aGQ6OnRpbWVfc3Bl
+Y190KDAsIG51bV9zZW50LCBfc2FtcGxlX3JhdGUpOwoKICAgIC8vIFNvbWUgcG9zdC1wcm9jZXNz
+aW5nIHRhc2tzIGlmIHdlIGFjdHVhbGx5IHRyYW5zbWl0dGVkIHRoZSBlbnRpcmUgYnVyc3QKICAg
+IGlmIChub3QgX3BlbmRpbmdfY21kcy5lbXB0eSgpICYmIG51bV9zZW50ID09IHNpemVfdChuaW5w
+dXRfaXRlbXMpKSB7CiAgICAgICAgR1JfTE9HX0RFQlVHKGRfZGVidWdfbG9nZ2VyLAogICAgICAg
+ICAgICAgICAgICAgICBib29zdDo6Zm9ybWF0KCJFeGVjdXRpbmcgJWQgcGVuZGluZyBjb21tYW5k
+cy4iKSAlCiAgICAgICAgICAgICAgICAgICAgICAgICBfcGVuZGluZ19jbWRzLnNpemUoKSk7CiAg
+ICAgICAgQk9PU1RfRk9SRUFDSCAoY29uc3QgcG10OjpwbXRfdCYgY21kX3BtdCwgX3BlbmRpbmdf
+Y21kcykgewogICAgICAgICAgICBtc2dfaGFuZGxlcl9jb21tYW5kKGNtZF9wbXQpOwogICAgICAg
+IH0KICAgICAgICBfcGVuZGluZ19jbWRzLmNsZWFyKCk7CiAgICB9CgogICAgcmV0dXJuIG51bV9z
+ZW50Owp9CgpGcm9tIHRoaXMgY29kZSwgaXQgY2FuIGJlIHNlZW4gdGhhdCB0aGUgZGF0YSBpcyB0
+cmFuc21pdHRlZCBpbmNsdWRpbmcgX21ldGFkYXRhOgoKY29uc3Qgc2l6ZV90IG51bV9zZW50ID0g
+X3R4X3N0cmVhbS0+c2VuZChpbnB1dF9pdGVtcywgbmlucHV0X2l0ZW1zLCBfbWV0YWRhdGEsIDEu
+MCk7CgpUaGUgInRpbWVfc3BlYyIgaXMgdXBkYXRlZCBmb3IgZWFjaCBibG9jayB0aGF0IGlzIHNl
+bnQgb3V0OgoKX21ldGFkYXRhLnRpbWVfc3BlYyArPSA6OnVoZDo6dGltZV9zcGVjX3QoMCwgbnVt
+X3NlbnQsIF9zYW1wbGVfcmF0ZSk7CgpOb3cgeW91IG1lbnRpb25lZCAiaGFzX3RpbWVfc3BlYyIg
+YmVsb3cuIEkgZXh0ZW5kZWQgdG8gY29kZSBpbiB0aGUgZm9sbG93aW5nIHdheToKCiAgICAvLyBp
+bmNyZW1lbnQgdGhlIHRpbWVzcGVjIGJ5IHRoZSBudW1iZXIgb2Ygc2FtcGxlcyBzZW50CiAgICBf
+bWV0YWRhdGEudGltZV9zcGVjICs9IDo6dWhkOjp0aW1lX3NwZWNfdCgwLCBudW1fc2VudCwgX3Nh
+bXBsZV9yYXRlKTsKICAgIEdSX0xPR19ERUJVRyhkX2RlYnVnX2xvZ2dlciwgYm9vc3Q6OmZvcm1h
+dCgiU2V0dGluZyBtZXRhZGF0YSB0aW1lX3NwZWM6ICVkOiVmIikgJSBfbWV0YWRhdGEudGltZV9z
+cGVjLmdldF9mdWxsX3NlY3MoKSAlIF9tZXRhZGF0YS50aW1lX3NwZWMuZ2V0X2ZyYWNfc2Vjcygp
+KTsKICAgIF9tZXRhZGF0YS5oYXNfdGltZV9zcGVjID0gdHJ1ZTsKCgpUbyBteSB1bmRlcnN0YW5k
+aW5nLCBnci11aGQgbm93IHBhc3NlcyB0aGUgY29ycmVjdCB0aW1lc3RhbXBzIG9uIHRvIFVIRC4K
+SG93ZXZlciwgdGhlIHRpbWVkIGNvbW1hbmQgaXMgc3RpbGwgaWdub3JlZC4KCgpUaGFua3MsCkx1
+a2FzCgoKUFM6IEkgd2lsbCBhdHRlbXB0IHRvIHVzZSB0aGUgdGFnZ2VkIHN0cmVhbSAuLi4gYnV0
+IHRoZW4gSSB3aWxsIGhhdmUgdGhlIGlzc3VlIHRoYXQgSSBuZWVkIHRvIHR1bmUgVFggKnBsdXMq
+IFJYIGF0IHRoZSBzYW1lIHRpbWUhIEZ1cnRoZXJtb3JlLCB0aGUgc3RyZWFtaW5nIHRhZ3MgQVBJ
+IGlzIHN1cGVyIHJ1ZGltZW50YXJ5LiBBbHNvLCBza2ltbWluZyB0aGUgc291cmNlIGNvZGUgZm9y
+IHRoZSB0YWcgcHJvY2Vzc2luZywgSSBhbSBub3Qgc3VyZSBpZiB0aGlzIHdvdWxkIGNoYW5nZSBh
+bnl0aGluZy4KCgoKCsKgCsKgCsKgCgpHZXNlbmRldDrCoERpZW5zdGFnLCAwMy4gTcOkcnogMjAy
+MCB1bSAxMzoyNSBVaHIKVm9uOsKgIlNhbSBSZWl0ZXIiIDxzYW0ucmVpdGVyQGV0dHVzLmNvbT4K
+QW46wqAiUm9iIEtvc3NsZXIiIDxya29zc2xlckBuZC5lZHU+CkNjOsKgIkx1a2FzIEhhYXNlIiA8
+bHVrYXNoYWFzZUBnbXguYXQ+LCAiVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIDx1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbT4KQmV0cmVmZjrCoFJlOiBbVVNSUC11c2Vyc10gVVNSUCBYMzEw
+IGlnbm9yZWQgRFNQIHJldHVuaW5nIG9uIFRYIHdoZW4gdXNpbmcgYSB0aW1lZCBjb21tYW5kCgpF
+dmVyeXRoaW5nIFJvYiBpcyBzYXlpbmcgaXMgZGVhZCBvbiAtIHRoZSAic2Vuc2Ugb2YgdGltZSIg
+Zm9yIHRoZSByYWRpbyBpcyBhIDY0LWJpdCBjb3VudGVyIHdpdGhpbiB0aGUgcmFkaW8gY29yZSB0
+aGF0IG90aGVyIGJsb2NrcyAobGlrZSB0aGUgRERDIGFuZCBEVUMpIGRvbid0IGhhdmUgYWNjZXNz
+IHRvLiBUaG9zZSBibG9ja3MgbmVlZCB0byBkZXJpdmUgYSBzZW5zZSBvZiB0aW1lIGZyb20gdGhl
+IHRpbWVzdGFtcHMgb2YgQ0hEUiBwYWNrZXRzIHBhc3NpbmcgdGhyb3VnaCB0aGVtLiBJIGp1c3Qg
+d3JhcHBlZCB1cCBhIG5ldyBhcHAgbm90ZSB0aGF0IGNvdmVycyB0aGlzIChhbW9uZyBvdGhlciBz
+eW5jaHJvbml6YXRpb24tcmVsYXRlZCB0b3BpY3MpOgrCoApodHRwczovL2tiLmV0dHVzLmNvbS9T
+eW5jaHJvbml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRCNDbG9j
+a2luZ19hbmRfVGltZWtlZXBpbmdfaW5fdGhlX1VTUlAKwqAKTHVrYXMsIEkgd291bGQgZG91YnQg
+dGhhdCB0aGlzIGlzIGFuIHVuZGlzY292ZXJlZCBidWcgYXMgbXVjaCBhcyBpdCBpcyBhbiBpc3N1
+ZSB3aXRoIGltcGxlbWVudGF0aW9uLiBJZiB0aGlzIHdlcmUgaW4gQysrLCB5b3UnZCB3YW50IHRv
+IHNldCB0aGUgJ2hhc190aW1lX3NwZWMnIGFuZCAndGltZV9zcGVjJyBmaWVsZHMgb2YgeW91ciBU
+WCBtZXRhZGF0YSBmb3IgYXQgbGVhc3QgMSBwYWNrZXQgdG8gaW1wYXJ0IGEgc2Vuc2Ugb2YgdGlt
+ZSBvbiB0aGUgRFVDOgrCoApodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvc3RydWN0dWhk
+XzFfMXR4X19tZXRhZGF0YV9fdC5odG1sW2h0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9z
+dHJ1Y3R1aGRfMV8xdHhfX21ldGFkYXRhX190Lmh0bWxdCsKgCkkganVzdCBzcG9rZSB3aXRoIHNv
+bWVvbmUgb24gbXkgZW5kIHdobyBzYWlkIHlvdSBuZWVkIHRvIHVzZSBzdHJlYW0gdGFncyB0byBk
+byB0aGlzLCBidXQgYWdhaW4sIEkgZG9uJ3QgY3VycmVudGx5IGhhdmUgbXVjaCBkaXJlY3Rpb24g
+Zm9yIGhvdyB0aGF0IHdvdWxkIGJlIGltcGxlbWVudGVkIGluIHlvdXIgY29kZS4KwqAKClNhbSBS
+ZWl0ZXLCoMKgCgpPbiBUdWUsIE1hciAzLCAyMDIwIGF0IDExOjQ4IEFNIFJvYiBLb3NzbGVyIDxy
+a29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV0+IHdyb3RlOgpBbHNvLCBub3Rl
+IHRoYXQgdGhlcmUgaXMgbm8gY29ycmVzcG9uZGluZyBpc3N1ZSBvbiByZWNlaXZlIGJlY2F1c2Ug
+dGhlIFJ4IHJhZGlvIGFsd2F5cyBpbnNlcnRzIHRoZSB0aW1lIHN0YW1wwqBpbiB0aGUgc2FtcGxl
+IHN0cmVhbS4gU28sIEkgZ3Vlc3MgeW91IHdvdWxkIG5vdCBzZWUgdGhpcyB3aXRoIHRoZSBEREMu
+ClJvYsKgCgpPbiBUdWUsIE1hciAzLCAyMDIwIGF0IDEyOjQzIFBNIFJvYiBLb3NzbGVyIDxya29z
+c2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV0+IHdyb3RlOgoKSGkgTHVrYXMsClRo
+ZSBGUEdBIGltYWdlIG9uIHRoZSBVU1JQIGlzIGRpdmlkZWQgaW50byBibG9ja3Mgc3VjaCBhcyB0
+aGUgRFVDIGJsb2NrIGFuZCB0aGUgUmFkaW8gYmxvY2suwqAgVGhlIGxhdHRlciBjb250cm9scyB0
+aGUgUkYgZGF1Z2h0ZXJib2FyZCBhbmQgaGFzIGFjY2VzcyB0byB0aGUgZGV2aWNlIGNsb2NrLsKg
+IFNvLCB3aGVuIHlvdSBwcm92aWRlIGEgdGltZWQgY29tbWFuZCB0byB0aGUgUmFkaW8gYmxvY2sg
+KHN1Y2ggYXMgZm9yIHR1bmluZyB0aGUgUkYpIGl0IGNhbiBpbXBsZW1lbnQgdGhlIGNvbW1hbmQg
+YXQgdGhlIHNwZWNpZmllZCB0aW1lIGJ5IGNvbXBhcmluZyB0byB0aGUgZGV2aWNlIGNsb2NrLsKg
+IFRoZSBEVUMgYmxvY2sgZG9lcyBub3QgaGF2ZSBhY2Nlc3MgdG8gdGhlIE1CIGNsb2NrIGFuZCBz
+byB3aGVuIHlvdSBnaXZlIGl0IGEgdGltZWQgY29tbWFuZCwgaXQgbW9uaXRvcnMgdGhlIGluY29t
+aW5nIHNhbXBsZSBzdHJlYW0gdG8gZXh0cmFjdCB0aGUgdGltZS4gSWYgdGhlIHNhbXBsZSBzdHJl
+YW0gZG9lcyBub3QgaW5jbHVkZSBhIHRpbWUgc3RhbXAsIHRoZSBjb21tYW5kIG5ldmVyIGV4ZWN1
+dGVzLsKgIERvbid0IHRoaW5rIG9mIHRoaXMgYXMgYSBidWcsIGJ1dCByYXRoZXIgYXMgYSBkZXNp
+Z24gbGltaXRhdGlvbi4KwqAKV2hlbiBJIHdvcmsgZGlyZWN0bHkgd2l0aCBVSEQgZnJvbSBDKyss
+IEkgdXNlIHRoZSBmdW5jdGlvbiByeF9zdHJlYW1lcjo6aXNzdWVfc3RyZWFtX2NvbW1hbmQoKSB3
+aGljaCBoYXMgb3B0aW9ucyB0byBzdHJlYW0gZGF0YSB3aXRoIG5vIHRpbWUgc3RhbXAgb3Igd2l0
+aCBhIHRpbWUgc3RhbXAuwqAgV2hlbiB1c2luZyB0aW1lZCBjb21tYW5kcyB3aXRoIERVQyBvciBE
+REMsIEkgbXVzdCBpbmNsdWRlIHRoZSB0aW1lIHN0YW1wIG9yIGVsc2UgdGhlIGNvbW1hbmQgd2ls
+bCBuZXZlciBiZSBleGVjdXRlZC7CoCBCdXQsIHdpdGggR1IsIEkgZG9uJ3Qga25vdyBob3cgdG8g
+c3BlY2lmeSB0aGUgY29ycmVzcG9uZGluZyBvcHRpb25zLgpSb2LCoAoKT24gVHVlLCBNYXIgMywg
+MjAyMCBhdCAxMjoyOSBQTSBMdWthcyBIYWFzZSA8bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1
+a2FzaGFhc2VAZ214LmF0XT4gd3JvdGU6SGkgU2FtLCBIaSBSb2IsCgpUaGFua3MgZm9yIGZvbGxv
+d2luZyB1cCBvbiB0aGlzIQpJIGFtIHZlcnkgaGFwcHkgeW91IHdlcmUgYWJsZSB0byByZXByb2R1
+Y2UgdGhpcyAuLi4gd2hpY2ggbWVhbnMgdGhhdCBhdCBsZWFzdCBhbiBpc3N1ZSBleGlzdHMgOikK
+CldoYXQgU2FtIHN1Z2dlc3RzIG1ha2VzIHNlbnNlIGV2ZW4gdGhvdWdoIGhhcmQgdG8gYmVsaWV2
+ZSBmb3IgbWU6CgoxLiBIb3cgY291bGQgc29tZXRoaW5nIGxpa2UgdGhhdCBnbyB1bm5vdGljZWQg
+Zm9yIHNvIGxvbmc/IChJIGFtIHN1cmUgSSBhbSBub3QgdGhlIGZpcnN0IHBlcmZvcm1pbmcgZGln
+aXRhbCB0dW5pbmcpCjIuIEluIHRoZSBwYXN0IEkgZ290IHN1Y2Nlc3NmdWwgcGhhc2UgY29oZXJl
+bmNlIHVzaW5nIGF1dG9tYXRpYyB0dW5pbmcgKHBhc3NpbmcgY2VudGVyIGZyZXF1ZW5jeSArIG9m
+ZnNldCB0byB0dW5lX3JlcXVlc3RfdCBhbmQgdXNpbmcgaW50ZWdlci1OIHR1bmluZykgdXNpbmcg
+dGltZWQgY29tbWFuZHMuIFRoaXMgZGlkIG5vdCB3b3JrIHJlbGlhYmx5IGFuZCBvbmx5IGZvciBj
+ZXJ0YWluIGZyZXF1ZW5jaWVzIGJ1dCBpbiBteSBvcGluaW9uIHRoaXMgc2hvdWxkIGhhdmUgSU5D
+TFVERUQgdGhlIERVQyB0dW5pbmcuIElmIHRoZSBEVUMgcmV0dW5lIHdvdWxkbid0IGhhdmUgYmVl
+biBleGVjdXRlZCBhcyBwYXJ0IG9mIHRoaXMgYXV0b21hdGljIHR1bmluZywgSSBjb3VsZCBub3Qg
+aGF2ZSBnb3R0ZW4gcGhhc2UgY29oZXJlbmNlIChhbmQgYWN0dWFsbHksIG5vdCBldmVuIHRoZSBk
+ZXNpcmVkIGZyZXF1ZW5jeSkuCgpUaGUgcmVhc29uIHdoeSBJIGFtIG9ubHkgZG9pbmcgRFVDIHR1
+bmluZyBub3cgaXMgdG8gYXZvaWQgYWxsIHRoZSBoYXNzbGUgd2l0aCBpbnRlZ2VyLU4gdHVuaW5n
+LCBQTEwgcmV0dW5pbmcgYW5kIHNldHRsaW5nIHRpbWUuCgpTYW0sIHdoYXQgaXMgdGhlICJyYWRp
+byBibG9jayIgeW91IHdlcmUgdGFsa2luZyBhYm91dD8KCkFueXdheSwgd291bGQgaXQgYmUgd29y
+dGh3aWxlIHRvIGF0dGVtcHQgZGVidWdnaW5nIHRoaXMgaXMgYWJzZW5jZSBvZiBncj8KVGhlIG9u
+bHkgcmVhc29uIHRoaXMgcHJldmVudGVkIG1lIGZyb20gZG9pbmcgaXMgdGhhdCBJIHdvdWxkIG5l
+ZWQgdG8gbWFudWFsbHkgY3JlYXRlIHRoZSBiYXNlYmFuZCBzYW1wbGVzIGFuZCBjb250aW51b3Vz
+bHkgc3RyZWFtIHRoZW0gb3V0IHdoaWxlIGluIHBhcmFsbGVsIGRvIHRoZSByZXR1bmluZy4KSSBh
+bSBub3QgdG9vIGZhbWlsaWFyIHdpdGggVUhEIG9uIGl0cyBvd24gYnV0IEkgYXNzdW1lIHRoaXMg
+d291bGQgYmUgdmVyeSBjb21wbGljYXRlZCwgcmVxdWlyZSBtdWx0aXRocmVhZGluZyBldGMuCkRv
+IHlvdSBoYXZlIGFueSBkZW1vIGNvZGUgdGhhdCBjb3VsZCBiZSBlYXNpbHkgbW9kaWZpZWQgZm9y
+IHRoaXMgc2NlbmFyaW8/CgpCZXN0LApMdWthcwoKCkdlc2VuZGV0OsKgRGllbnN0YWcsIDAzLiBN
+w6RyeiAyMDIwIHVtIDEyOjA4IFVocgpWb246wqAiU2FtIFJlaXRlciIgPHNhbS5yZWl0ZXJAZXR0
+dXMuY29tW21haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbV0+CkFuOsKgIlJvYiBLb3NzbGVyIiA8
+cmtvc3NsZXJAbmQuZWR1W21haWx0bzpya29zc2xlckBuZC5lZHVdPgpDYzrCoCJMdWthcyBIYWFz
+ZSIgPGx1a2FzaGFhc2VAZ214LmF0W21haWx0bzpsdWthc2hhYXNlQGdteC5hdF0+LCAiVVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXSIg
+PHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbV0+CkJldHJlZmY6wqBSZTogW1VTUlAtdXNlcnNdIFVTUlAgWDMxMCBpZ25vcmVkIERTUCBy
+ZXR1bmluZyBvbiBUWCB3aGVuIHVzaW5nIGEgdGltZWQgY29tbWFuZAoKRm9yIHdoYXQgaXQncyB3
+b3J0aCwgSSB3YXMgYWJsZSB0byByZXByb2R1Y2UgdGhlIGJlaGF2aW9yIGRlc2NyaWJlZCBoZXJl
+LCBidXQgZGlkbid0IGdldCB0byBkaWcgaW50byBpdCBtdWNoLiBNeSBsZWFkaW5nIHN1c3BpY2lv
+biB3b3VsZCBiZSB3aGF0IFJvYiBtZW50aW9uZWQgYWJvdXQgdGltZXN0YW1waW5nLiBMdWthcycg
+Y29kZSBzZXRzIGEgY29tbWFuZCB0aW1lLCBidXQgSSdtIG5vdCBjbGVhciBvbiBob3cgdGltZXN0
+YW1wIG1ldGFkYXRhIGZvciBwYWNrZXRzIGJlaW5nIHNlbnQgdG8gdGhlIHJhZGlvIGFyZSBoYW5k
+bGVkLiBNaWdodCBiZSBhIGdvb2QgcXVlc3Rpb24gdG8gbG9vcCB0aGUgZGlzY3Vzcy1nbnVyYWRp
+byBtYWlsaW5nIGxpc3QgaW4gb24/CgrCoAoKU2FtIFJlaXRlcsKgwqAKCk9uIFR1ZSwgTWFyIDMs
+IDIwMjAgYXQgMTA6NTkgQU0gUm9iIEtvc3NsZXIgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbV1dPiB3cm90ZToKSSB3b25kZXIgaWYgdGhlIGlzc3VlIGlzIHJlbGF0ZWQgdG8gYSBtaXNz
+aW5nIHRpbWUgc3RhbXAgb24gdGhlIGJhc2ViYW5kIHNhbXBsZXMgZ29pbmcgZnJvbSBHUiB0byBV
+SEQuwqAgSWYgdGhlIHN0cmVhbSBkb2VzIG5vdCBoYXZlIGEgdGltZSBzdGFtcCwgdGhlIERVQyBp
+cyB1bmFibGUgdG8gYXBwbHkgdGhlIHRpbWVkIGNvbW1hbmQgYmVjYXVzZSB0aGUgRFVDIGRvZXMg
+bm90IHJlYWxseSBrbm93IHRoZSB0aW1lIC0gaXQgbXVzdCBwdWxsIHRoZSB0aW1lIGZyb20gdGhl
+IHN0cmVhbWluZyBzYW1wbGVzLiBUaGlzIGlzIGluIGNvbnRyYXN0IHRvIHRoZSByYWRpbyBibG9j
+ayB3aGljaCBkb2VzIGhhdmUgYWNjZXNzIHRvIHRpbWUgYW5kIGNhbiBhcHBseSB0aW1lZCBjb21t
+YW5kcyBieSByZWZlcnJpbmcgdG8gdGhlIG1vdGhlcmJvYXJkIGNsb2NrLgrCoApJIGFtIG5vdCB0
+b28gZmFtaWxpYXIgd2l0aCBHUiBzbyBJJ20gbm90IHN1cmUgaG93IHRvIGtub3cgaWYgR1IgaXMg
+cHV0dGluZyBhIHRpbWUgc3RhbXAgb24gdGhlIHN0cmVhbWluZyBzYW1wbGVzLgpSb2LCoAoKT24g
+TW9uLCBNYXIgMiwgMjAyMCBhdCAxMDowNCBBTSBMdWthcyBIYWFzZSB2aWEgVVNSUC11c2VycyA8
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tXVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tXV0+IHdyb3RlOkhpIE1hcmN1cywKClRoYW5rIHlvdSB0aGF0IHdvdWxk
+IGJlIGFtYXppbmchCgpJIGZvbGxvd2VkIHRoZSB0dXRvcmlhbCBhbmQgYnVpbHQgZXZlcnl0aGlu
+ZyBmcm9tIHNvdXJjZToKCiQgbHNiX3JlbGVhc2UgLWEKTm8gTFNCIG1vZHVsZXMgYXJlIGF2YWls
+YWJsZS4KRGlzdHJpYnV0b3IgSUQ6IFVidW50dQpEZXNjcmlwdGlvbjrCoCDCoCBVYnVudHUgMTgu
+MDQuNCBMVFMKUmVsZWFzZTrCoCDCoCDCoCDCoCAxOC4wNApDb2RlbmFtZTrCoCDCoCDCoCDCoGJp
+b25pYwokIHVuYW1lIC1hCkxpbnV4IHNkciA1LjMuMC00MC1nZW5lcmljICMzMn4xOC4wNC4xLVVi
+dW50dSBTTVAgTW9uIEZlYiAzIDE0OjA1OjU5IFVUQyAyMDIwIHg4Nl82NCB4ODZfNjQgeDg2XzY0
+IEdOVS9MaW51eAokIGNkIHVoZAokIGdpdCBzdGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My4xNS4w
+LjAKJCBjZCAuLi9nbnVyYWRpbwokIGdpdCBzdGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My43LjE0
+LjAKCgpUaGFuayB5b3UhCgpMdWthcwoKCgpQUzogRm9yIHNvbWUgcmVhc29uIEkgc29tZXRpbWVz
+IGRvIG5vdCBnZXQgcmVzcG9uc2VzIGZyb20gdGhpcyBsaXN0LiBJIGp1c3Qgc2F3IGl0IGxvb2tp
+bmcgYXQgdGhlIG1haWxtYW4gYXJjaGl2ZXMuIEhlbmNlIEkgY2Fubm90IHJlc3BvbmQgKHRvIGtl
+ZXAgaGVhZGVycyBpbnRhY3QpIGJ1dCBuZWVkIHRvIGNyZWF0ZSBhIG5ldyBtZXNzYWdlIGFuZCBt
+YW51YWxseSAicXVvdGUiLiBJIGhvcGUgdGhhdCBzdGlsbCBwcmVzZXJ2ZXMgdGhlIGNvbnRleHQg
+c29tZWhvdy4KCgoKTWFyY3VzIExlZWNoIHdyb3RlOgo+IE9uIDAyLzI4LzIwMjAgMDE6MDEgUE0s
+IEx1a2FzIEhhYXNlIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+PiBIaSBhZ2FpbiwKPj4KPj4gSSBj
+cmVhdGVkIGEgbWluaW11bSBleGFtcGxlIChnbnVyYWRpbykgdGhhdCBzaG93cyB0aGUgaXNzdWUg
+ZGVzY3JpYmVkIGJlbG93Lgo+PiBUbyBzdW1tYXJpemU6IFJldHVuaW5nIHRvIGEgZGlmZmVyZW50
+IGRzcCBmcmVxdWVuY3kgb24gYW4gVVNSUCBYMzEwICgrVUJYMTYwKSBkb2VzIG5vdCB3b3JrIChj
+b21tYW5kIGlnbm9yZWQpIE9OTFkgaWYgYSB0aW1lZCBjb21tYW5kIChpbiBmdXR1cmUgaXMgdXNl
+ZCkuCj4+IFRoZSBjb2RlIHNob3dzIGl0IGluIGEgc2ltcGxlIG1hbm5lci4gQ29tbWVudGluZyBv
+dXQgdGhlIHNpbmdsZSBsaW5lIHdpdGggc2V0X2NvbW1hbmRfdGltZSBtYWtlcyB0aGUgZXhhbXBs
+ZSB3b3JrLgo+Pgo+PiBJIGFtIGFic29sdXRlbHkgb3V0IG9mIGlkZWFzIGFuZCB3b3VsZCBhcHBy
+ZWNpYXRlIGFueSBpbnB1dCEKPj4KPj4gQmVzdCwKPj4gTHVrYXMKPiBMdWthcy4KPgo+IFRoYW5r
+cyBmb3Igc3RpY2tpbmcgd2l0aCB0aGlzLsKgIEknbGwgaGF2ZSBhIGRpc2N1c3Npb24gd2l0aCBF
+dHR1cyBSJkQgdG8KPiBzZWUgaWYgdGhpcyBpcyBhIGtub3duIGlzc3VlIGFuZC9vciBpZiB0aGVy
+ZSdzIGEgd29ya2Fyb3VuZC4KPgo+IFJlbWluZCBtZSB3aGljaCB2ZXJzaW9uIG9mIFVIRCB5b3Un
+cmUgdXNpbmc/CgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21h
+aWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dCmh0dHA6Ly9saXN0
+cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnNb
+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29tX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19V
+U1JQLXVzZXJzXSBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRv
+OlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV0KaHR0cDovL2xpc3RzLmV0
+dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tW2h0dHA6
+Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVz
+LmNvbV0KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVT
+UlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9s
+aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
+bQo=
