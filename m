@@ -2,58 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 120871783DD
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 21:23:39 +0100 (CET)
-Received: from [::1] (port=60020 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C49261784F2
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 22:33:35 +0100 (CET)
+Received: from [::1] (port=49878 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j9E4n-0001KY-FQ; Tue, 03 Mar 2020 15:23:37 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:46764)
+	id 1j9FAS-0002GH-JX; Tue, 03 Mar 2020 16:33:32 -0500
+Received: from mail-lj1-f172.google.com ([209.85.208.172]:42636)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1j9E4j-0001DT-Mw
- for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 15:23:33 -0500
-Received: by mail-ot1-f53.google.com with SMTP id g96so4361897otb.13
- for <usrp-users@lists.ettus.com>; Tue, 03 Mar 2020 12:23:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ (Exim 4.93) (envelope-from <sam.reiter@ettus.com>)
+ id 1j9FAN-0002AA-VH
+ for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 16:33:28 -0500
+Received: by mail-lj1-f172.google.com with SMTP id q19so4290024ljp.9
+ for <usrp-users@lists.ettus.com>; Tue, 03 Mar 2020 13:33:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Jhekkx2bVolBeA/Et1yLEaElWroOg03Y1jDKqnOiBJ0=;
- b=HBinzlXXHzuxCRyxsFunohyX2eruj5lQ6kkr9ivCoBOyXMfQovrSVEgbTFkVxyRqTE
- yrklAWzorWUAZyF/ueYjFJcvJVCZ+Lz8EhTI4DmCeXFSWxsEu6IG4um2UmSVawfURZDZ
- JcSfF5xT5SGzR1i+UQ1w3d4E0B3Y7ad7ilMD2lbd6seEpgZ1LRZekp+Crj6VBwz28YIx
- j/HhbbTHDwJ5e3e7gqJExOZmR7+HNrR7vmkjPY83EPavR1m/LLTDEPONI1rwe+q7GkqI
- ZOfkYwiG7j7sOJYtpmYYxsTkJRl+WE9QYfIv+A8WAQbIDgqj6M/zeIMK4ZmjpANm6m8M
- CvZg==
+ :cc; bh=JvGmAMZT3FOQQi7V/maAORgEFhjFfP/BzJ19mmKkZnM=;
+ b=ad6wuTgv5n7tOcPo5hjh/k55slM1kRPjnXG9unrscBM7iD6JYh5/AOSRBYzl5z/zeO
+ 7GWVXZnq+8A2s4Lx6z87TR0JxT6WcOJspicIPpgpdoLTRJzy51zLPM/GFC7NEo5epfOt
+ 0FAquBb1SsTlmqpLNPlB4LgniUXiiyDd8Kw7WACVfuDa0iuwgNKfMcr878hnjZrDkCQw
+ JiVYR9lTPoMSSwtzwNg4IL5CLsXZAOAuucWlVPrIRqRqKn/HwuBVOEMsESXTvK0ym1oP
+ eF27g+KkDfRur35RXUvYPYTYVilNDv2ra/9IV2x4EPL2NxKFFIqERFtAUT7c0DCeZd3i
+ +FdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Jhekkx2bVolBeA/Et1yLEaElWroOg03Y1jDKqnOiBJ0=;
- b=cwQ8yyWLPrtBYiHA5YiMCDuzJEKISmy0qd19e8rENaayR9YpgXe4mmyvz82+2FZgev
- OK39BaO0rOwhzyM4IPWeJAJzof3jwxN5P9+P9/RvPLdT625MBV5nv8EwtsH283FqC5eX
- pYfSsyZFa8CATI0M2yXUa6AoI0fL9A56OH/4T+egHZ3G1GIXv/yEKDHNv1Qpzy0QkaKp
- 0uYlL9TxhOW2NjvOrCDvcU+WWKxwTSWiUrcoy8nOEUm2wS8XIjs8wqXaTmkZouVBTpba
- uj1sHkiDScwPp36F8xow+jHR4PLgrTsLi17mW82ysMFcZlsy7U8omPtX0cfsX6eYFQLt
- XJhg==
-X-Gm-Message-State: ANhLgQ0OkMfjBPeQ+mv3GiQ/qwK/JnbKwrPlD1ZhNIT9JfUomAxd7ei6
- G7hotzX85w0IG+U4fdmPmEtUEBm7DakS9YvRGcrkaQ==
-X-Google-Smtp-Source: ADFU+vsrBSTUDB3m1VndKXxqRE8F0MbFQN+VHBpPWIuaZtgPtXYZvkPCCxtorZpiRmMI+9+lbF0EN01Whys7YmbeORA=
-X-Received: by 2002:a9d:7a97:: with SMTP id l23mr4690162otn.302.1583266972822; 
- Tue, 03 Mar 2020 12:22:52 -0800 (PST)
+ bh=JvGmAMZT3FOQQi7V/maAORgEFhjFfP/BzJ19mmKkZnM=;
+ b=aMJk37yiRfD6wW1zo8lx3YMLwVxaNtSlVRALfOLQ7hII0cG9IL5Gk9Uv9MR4/ursRw
+ 484maCD980I3HiKEN71Eg+v6CQGf4HpKXVUZH1KVj5JNTDG/Dr381MF2Ql5HY2OoyuD8
+ Hcp1d+/gCf0OO3yT+WIWU7czKCfVZkIBMJnA1jI78Is9leXh/D3xMUAzWQ7WIUWsn9OK
+ zdDldUZ6qrurWmpGDTodJc6oE9mBc7/0/4wJVEkQQKXQMFYBwjIrgTZQzPdlLPYxZQWl
+ dajyX/DaKZi+WVHo+IWVk5Tse8aBElUHV9nmvmuYuxRVjdK9JwCxaldsShUJ0IX4va43
+ usfg==
+X-Gm-Message-State: ANhLgQ2fd472IbDNo3Vl4aHQXAEufL2GnqDorHhO66YJzAdXSQhcwbbq
+ HKcCwAoo/6H1h9jTM85/z6qqTnC8pdPpckR8BGaft1UG
+X-Google-Smtp-Source: ADFU+vsi8j8qqpcMkc5RtI7/FY7m1rNUj+sKujlu2JfXIINHQWFzWh/FfmCUYuaa0naYS2D8dOLazWn26rFWRs2fA5g=
+X-Received: by 2002:a2e:8512:: with SMTP id j18mr3472342lji.12.1583271166781; 
+ Tue, 03 Mar 2020 13:32:46 -0800 (PST)
 MIME-Version: 1.0
-References: <trinity-6d081d85-efab-4ee6-9dfd-d15b3f6ff1b5-1583161440082@3c-app-gmx-bs64>
- <CAB__hTSgAJcWu=AwsRYs6HmGYMOqk1kAKC4fFgmVWVd8Fw0THQ@mail.gmail.com>
- <CANf970YbM=F5UBzKQsQ2jGH4X=BKScx1YbNJ=TFhEKfDg-XBww@mail.gmail.com>
- <trinity-1e499bef-ac0a-4580-ad27-647e1755c34a-1583256550568@3c-app-gmx-bap50>
- <CAB__hTSY-dv9UTwZTRaOF5bLN3Sk0JF5onD3XBYP8tZB-9BvrA@mail.gmail.com>
- <CAB__hTQQJHsraknp0OTQTUukBPq3MCggN_ASZvhD=O28-r71TQ@mail.gmail.com>
- <CANf970YD3OT81FT9jB5uSyGpWo7pQibuw65YT2BXhDg=bUR_bg@mail.gmail.com>
- <trinity-fe7ab6e0-b371-42cb-88b1-463ee693e2f2-1583265613551@3c-app-gmx-bap50>
-In-Reply-To: <trinity-fe7ab6e0-b371-42cb-88b1-463ee693e2f2-1583265613551@3c-app-gmx-bap50>
-Date: Tue, 3 Mar 2020 15:22:41 -0500
-Message-ID: <CAB__hTRSUQC8POObAroyx9j8s+GYZ0P-DF4O63i7Yrre6OyYkQ@mail.gmail.com>
-To: Lukas Haase <lukashaase@gmx.at>
-Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
- timed command
+References: <CAPRRyxuRAKSsG9h6QsFnkT8SFi9Q=MrCLLE2CNNxNn=A0ccF4Q@mail.gmail.com>
+In-Reply-To: <CAPRRyxuRAKSsG9h6QsFnkT8SFi9Q=MrCLLE2CNNxNn=A0ccF4Q@mail.gmail.com>
+Date: Tue, 3 Mar 2020 15:32:45 -0600
+Message-ID: <CANf970a3a-ZPbP5TRRXnPsm9ir6TZboqjrw=ofwZus+8BnUovw@mail.gmail.com>
+To: Ivan Zahartchuk <adray0001@gmail.com>
+Subject: Re: [USRP-users] Buffer clearing after error 'D' USRP N210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0565891766358606478=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5272317050107454713=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,858 +76,72 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0565891766358606478==
-Content-Type: multipart/alternative; boundary="000000000000802b56059ff9116f"
+--===============5272317050107454713==
+Content-Type: multipart/alternative; boundary="0000000000007abead059ffa0bae"
 
---000000000000802b56059ff9116f
+--0000000000007abead059ffa0bae
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-I did a quick google search using "gnuradio uhd timed tx streaming". I
-found that the GR usrp_sink
-<https://www.gnuradio.org/doc/sphinx-3.7.7/uhd.html> has the function
-"set_start_time" which seems to be what you need.  The question is: what
-time do you set?  Probably just something like "get_time_now() + 0.1". It
-may be a bit tricky since this value is to be set before starting the flow
-graph.  Maybe you could set it to some fixed constant like 0.5 and then
-when the flow graph starts you could execute a command to set_time_now() to
-0.0.  Anyway, if this advice doesn't pan out, perhaps just search around a
-bit in GR archives.  I'm sure others have successfully streamed with timed
-Tx commands.
-Rob
+Ivan,
 
-On Tue, Mar 3, 2020 at 3:00 PM Lukas Haase <lukashaase@gmx.at> wrote:
+To flush the RX buffer, I think your best bet is to destroy and recreate
+the streamer. That being said, [D]ropped packets are usually indicative of
+some deeper host issue. Are you able to run without dropping packets at
+lower rates?
 
-> Hi Sam, Hi Rob,
->
-> This makes so much sense!
-> I think you are right.
-> And indeed, the issue I found only with TX, not RX.
->
->
-> Could you think of a possible hack sending a "dummy command" to the RF
-> board along with the timed tuning request?
->
->
-> Regarding the sending of time stamps in the TX in gr-uhd, I am confused
-> though. I do think this IS happening. I reproduce the work function of
-> "USRP Sink" here:
->
-> int usrp_sink_impl::work(int noutput_items,
->                          gr_vector_const_void_star& input_items,
->                          gr_vector_void_star& output_items)
-> {
->     int ninput_items =3D noutput_items; // cuz it's a sync block
->
->     // default to send a mid-burst packet
->     _metadata.start_of_burst =3D false;
->     _metadata.end_of_burst =3D false;
->
->     // collect tags in this work()
->     const uint64_t samp0_count =3D nitems_read(0);
->     get_tags_in_range(_tags, 0, samp0_count, samp0_count + ninput_items);
->     if (not _tags.empty())
->         this->tag_work(ninput_items);
->
->     if (not pmt::is_null(_length_tag_key)) {
->         // check if there is data left to send from a burst tagged with
-> length_tag
->         // If a burst is started during this call to work(), tag_work()
-> should have
->         // been called and we should have _nitems_to_send > 0.
->         if (_nitems_to_send > 0) {
->             ninput_items =3D std::min<long>(_nitems_to_send, ninput_items=
-);
->             // if we run out of items to send, it's the end of the burst
->             if (_nitems_to_send - long(ninput_items) =3D=3D 0)
->                 _metadata.end_of_burst =3D true;
->         } else {
->             // There is a tag gap since no length_tag was found
-> immediately following
->             // the last sample of the previous burst. Drop samples until
-> the next
->             // length_tag is found. Notify the user of the tag gap.
->             std::cerr << "tG" << std::flush;
->             // increment the timespec by the number of samples dropped
->             _metadata.time_spec +=3D ::uhd::time_spec_t(0, ninput_items,
-> _sample_rate);
->             return ninput_items;
->         }
->     }
->
->     boost::this_thread::disable_interruption disable_interrupt;
-> #ifdef GR_UHD_USE_STREAM_API
->     // send all ninput_items with metadata
->     const size_t num_sent =3D _tx_stream->send(input_items, ninput_items,
-> _metadata, 1.0);
-> #else
->     const size_t num_sent =3D _dev->get_device()->send(input_items,
->                                                      ninput_items,
->                                                      _metadata,
->                                                      *_type,
->
->  ::uhd::device::SEND_MODE_FULL_BUFF,
->                                                      1.0);
-> #endif
->     boost::this_thread::restore_interruption
-> restore_interrupt(disable_interrupt);
->
->     // if using length_tags, decrement items left to send by the number o=
-f
-> samples sent
->     if (not pmt::is_null(_length_tag_key) && _nitems_to_send > 0) {
->         _nitems_to_send -=3D long(num_sent);
->     }
->
->     // increment the timespec by the number of samples sent
->     _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate=
-);
->
->     // Some post-processing tasks if we actually transmitted the entire
-> burst
->     if (not _pending_cmds.empty() && num_sent =3D=3D size_t(ninput_items)=
-) {
->         GR_LOG_DEBUG(d_debug_logger,
->                      boost::format("Executing %d pending commands.") %
->                          _pending_cmds.size());
->         BOOST_FOREACH (const pmt::pmt_t& cmd_pmt, _pending_cmds) {
->             msg_handler_command(cmd_pmt);
->         }
->         _pending_cmds.clear();
->     }
->
->     return num_sent;
-> }
->
-> From this code, it can be seen that the data is transmitted including
-> _metadata:
->
-> const size_t num_sent =3D _tx_stream->send(input_items, ninput_items,
-> _metadata, 1.0);
->
-> The "time_spec" is updated for each block that is sent out:
->
-> _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate);
->
-> Now you mentioned "has_time_spec" below. I extended to code in the
-> following way:
->
->     // increment the timespec by the number of samples sent
->     _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate=
-);
->     GR_LOG_DEBUG(d_debug_logger, boost::format("Setting metadata
-> time_spec: %d:%f") % _metadata.time_spec.get_full_secs() %
-> _metadata.time_spec.get_frac_secs());
->     _metadata.has_time_spec =3D true;
->
->
-> To my understanding, gr-uhd now passes the correct timestamps on to UHD.
-> However, the timed command is still ignored.
->
->
-> Thanks,
-> Lukas
->
->
-> PS: I will attempt to use the tagged stream ... but then I will have the
-> issue that I need to tune TX *plus* RX at the same time! Furthermore, the
-> streaming tags API is super rudimentary. Also, skimming the source code f=
-or
-> the tag processing, I am not sure if this would change anything.
->
->
->
->
->
->
->
->
-> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 13:25 Uhr
-> Von: "Sam Reiter" <sam.reiter@ettus.com>
-> An: "Rob Kossler" <rkossler@nd.edu>
-> Cc: "Lukas Haase" <lukashaase@gmx.at>, "USRP-users@lists.ettus.com" <
-> usrp-users@lists.ettus.com>
-> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using
-> a timed command
->
-> Everything Rob is saying is dead on - the "sense of time" for the radio i=
-s
-> a 64-bit counter within the radio core that other blocks (like the DDC an=
-d
-> DUC) don't have access to. Those blocks need to derive a sense of time fr=
-om
-> the timestamps of CHDR packets passing through them. I just wrapped up a
-> new app note that covers this (among other synchronization-related topics=
-):
->
->
-> https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UH=
-D#Clocking_and_Timekeeping_in_the_USRP
->
-> Lukas, I would doubt that this is an undiscovered bug as much as it is an
-> issue with implementation. If this were in C++, you'd want to set the
-> 'has_time_spec' and 'time_spec' fields of your TX metadata for at least 1
-> packet to impart a sense of time on the DUC:
->
->
-> https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html[https://=
-files.ettus.com/manual/structuhd_1_1tx__metadata__t.html]
->
-> I just spoke with someone on my end who said you need to use stream tags
-> to do this, but again, I don't currently have much direction for how that
-> would be implemented in your code.
->
->
-> Sam Reiter
->
-> On Tue, Mar 3, 2020 at 11:48 AM Rob Kossler <rkossler@nd.edu[mailto:
-> rkossler@nd.edu]> wrote:
-> Also, note that there is no corresponding issue on receive because the Rx
-> radio always inserts the time stamp in the sample stream. So, I guess you
-> would not see this with the DDC.
-> Rob
->
-> On Tue, Mar 3, 2020 at 12:43 PM Rob Kossler <rkossler@nd.edu[mailto:
-> rkossler@nd.edu]> wrote:
->
-> Hi Lukas,
-> The FPGA image on the USRP is divided into blocks such as the DUC block
-> and the Radio block.  The latter controls the RF daughterboard and has
-> access to the device clock.  So, when you provide a timed command to the
-> Radio block (such as for tuning the RF) it can implement the command at t=
-he
-> specified time by comparing to the device clock.  The DUC block does not
-> have access to the MB clock and so when you give it a timed command, it
-> monitors the incoming sample stream to extract the time. If the sample
-> stream does not include a time stamp, the command never executes.  Don't
-> think of this as a bug, but rather as a design limitation.
->
-> When I work directly with UHD from C++, I use the function
-> rx_streamer::issue_stream_command() which has options to stream data with
-> no time stamp or with a time stamp.  When using timed commands with DUC o=
-r
-> DDC, I must include the time stamp or else the command will never be
-> executed.  But, with GR, I don't know how to specify the corresponding
-> options.
-> Rob
->
-> On Tue, Mar 3, 2020 at 12:29 PM Lukas Haase <lukashaase@gmx.at[mailto:
-> lukashaase@gmx.at]> wrote:Hi Sam, Hi Rob,
->
-> Thanks for following up on this!
-> I am very happy you were able to reproduce this ... which means that at
-> least an issue exists :)
->
-> What Sam suggests makes sense even though hard to believe for me:
->
-> 1. How could something like that go unnoticed for so long? (I am sure I a=
-m
-> not the first performing digital tuning)
-> 2. In the past I got successful phase coherence using automatic tuning
-> (passing center frequency + offset to tune_request_t and using integer-N
-> tuning) using timed commands. This did not work reliably and only for
-> certain frequencies but in my opinion this should have INCLUDED the DUC
-> tuning. If the DUC retune wouldn't have been executed as part of this
-> automatic tuning, I could not have gotten phase coherence (and actually,
-> not even the desired frequency).
->
-> The reason why I am only doing DUC tuning now is to avoid all the hassle
-> with integer-N tuning, PLL retuning and settling time.
->
-> Sam, what is the "radio block" you were talking about?
->
-> Anyway, would it be worthwile to attempt debugging this is absence of gr?
-> The only reason this prevented me from doing is that I would need to
-> manually create the baseband samples and continuously stream them out whi=
-le
-> in parallel do the retuning.
-> I am not too familiar with UHD on its own but I assume this would be very
-> complicated, require multithreading etc.
-> Do you have any demo code that could be easily modified for this scenario=
-?
->
-> Best,
-> Lukas
->
->
-> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 12:08 Uhr
-> Von: "Sam Reiter" <sam.reiter@ettus.com[mailto:sam.reiter@ettus.com]>
-> An: "Rob Kossler" <rkossler@nd.edu[mailto:rkossler@nd.edu]>
-> Cc: "Lukas Haase" <lukashaase@gmx.at[mailto:lukashaase@gmx.at]>, "
-> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]" <
-> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]>
-> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using
-> a timed command
->
-> For what it's worth, I was able to reproduce the behavior described here,
-> but didn't get to dig into it much. My leading suspicion would be what Ro=
-b
-> mentioned about timestamping. Lukas' code sets a command time, but I'm no=
-t
-> clear on how timestamp metadata for packets being sent to the radio are
-> handled. Might be a good question to loop the discuss-gnuradio mailing li=
-st
-> in on?
->
->
->
-> Sam Reiter
->
-> On Tue, Mar 3, 2020 at 10:59 AM Rob Kossler via USRP-users <
-> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
-> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]]> wrote:
-> I wonder if the issue is related to a missing time stamp on the baseband
-> samples going from GR to UHD.  If the stream does not have a time stamp,
-> the DUC is unable to apply the timed command because the DUC does not
-> really know the time - it must pull the time from the streaming samples.
-> This is in contrast to the radio block which does have access to time and
-> can apply timed commands by referring to the motherboard clock.
->
-> I am not too familiar with GR so I'm not sure how to know if GR is puttin=
-g
-> a time stamp on the streaming samples.
-> Rob
->
-> On Mon, Mar 2, 2020 at 10:04 AM Lukas Haase via USRP-users <
-> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
-> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]]> wrote:Hi
-> Marcus,
->
-> Thank you that would be amazing!
->
-> I followed the tutorial and built everything from source:
->
-> $ lsb_release -a
-> No LSB modules are available.
-> Distributor ID: Ubuntu
-> Description:    Ubuntu 18.04.4 LTS
-> Release:        18.04
-> Codename:       bionic
-> $ uname -a
-> Linux sdr 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UTC
-> 2020 x86_64 x86_64 x86_64 GNU/Linux
-> $ cd uhd
-> $ git status
-> HEAD detached at v3.15.0.0
-> $ cd ../gnuradio
-> $ git status
-> HEAD detached at v3.7.14.0
->
->
-> Thank you!
->
-> Lukas
->
->
->
-> PS: For some reason I sometimes do not get responses from this list. I
-> just saw it looking at the mailman archives. Hence I cannot respond (to
-> keep headers intact) but need to create a new message and manually "quote=
-".
-> I hope that still preserves the context somehow.
->
->
->
-> Marcus Leech wrote:
-> > On 02/28/2020 01:01 PM, Lukas Haase via USRP-users wrote:
-> >> Hi again,
-> >>
-> >> I created a minimum example (gnuradio) that shows the issue described
-> below.
-> >> To summarize: Retuning to a different dsp frequency on an USRP X310
-> (+UBX160) does not work (command ignored) ONLY if a timed command (in
-> future is used).
-> >> The code shows it in a simple manner. Commenting out the single line
-> with set_command_time makes the example work.
-> >>
-> >> I am absolutely out of ideas and would appreciate any input!
-> >>
-> >> Best,
-> >> Lukas
-> > Lukas.
-> >
-> > Thanks for sticking with this.  I'll have a discussion with Ettus R&D t=
-o
-> > see if this is a known issue and/or if there's a workaround.
-> >
-> > Remind me which version of UHD you're using?
->
->
+Sam Reiter
+
+
+On Mon, Feb 24, 2020 at 4:02 AM Ivan Zahartchuk via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello. I use the N210 board for scanning with frequency tuning. And with the 'D' error, I have problems with correctly detecting the signal frequency. In this regard, the question. How do I flush the buffer in N210?
 >
 > _______________________________________________
 > USRP-users mailing list
-> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
-> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]]
->
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_______=
-________________________________________
->
-> USRP-users[http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus=
-.com_______________________________________________USRP-users]
-> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com______=
-_________________________________________USRP-users%5Bhttp://lists.ettus.co=
-m/mailman/listinfo/usrp-users_lists.ettus.com______________________________=
-_________________USRP-users%5D>
-> mailing list
-> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
-> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]]
->
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com[http:/=
-/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com]
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000802b56059ff9116f
+--0000000000007abead059ffa0bae
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I did a quick google search using &quot;gnuradio uhd timed=
- tx streaming&quot;. I found that the GR <a href=3D"https://www.gnuradio.or=
-g/doc/sphinx-3.7.7/uhd.html">usrp_sink</a> has the function &quot;set_start=
-_time&quot; which seems to be what you need.=C2=A0 The question is: what ti=
-me do you set?=C2=A0 Probably just something like &quot;get_time_now()=C2=
-=A0+ 0.1&quot;. It may be a bit tricky since this value is to be set before=
- starting the flow graph.=C2=A0 Maybe you could set it to some fixed consta=
-nt like 0.5 and then when the flow graph starts you could execute a command=
- to set_time_now() to 0.0.=C2=A0 Anyway, if this advice doesn&#39;t pan out=
-, perhaps just search around a bit in GR archives.=C2=A0 I&#39;m sure other=
-s have successfully streamed with timed Tx commands.<div>Rob</div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, M=
-ar 3, 2020 at 3:00 PM Lukas Haase &lt;<a href=3D"mailto:lukashaase@gmx.at">=
-lukashaase@gmx.at</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex">Hi Sam, Hi Rob,<br>
-<br>
-This makes so much sense!<br>
-I think you are right.<br>
-And indeed, the issue I found only with TX, not RX.<br>
-<br>
-<br>
-Could you think of a possible hack sending a &quot;dummy command&quot; to t=
-he RF board along with the timed tuning request?<br>
-<br>
-<br>
-Regarding the sending of time stamps in the TX in gr-uhd, I am confused tho=
-ugh. I do think this IS happening. I reproduce the work function of &quot;U=
-SRP Sink&quot; here:<br>
-<br>
-int usrp_sink_impl::work(int noutput_items,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0gr_vector_const_void_star&amp; input_items,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0gr_vector_void_star&amp; output_items)<br>
-{<br>
-=C2=A0 =C2=A0 int ninput_items =3D noutput_items; // cuz it&#39;s a sync bl=
-ock<br>
-<br>
-=C2=A0 =C2=A0 // default to send a mid-burst packet<br>
-=C2=A0 =C2=A0 _metadata.start_of_burst =3D false;<br>
-=C2=A0 =C2=A0 _metadata.end_of_burst =3D false;<br>
-<br>
-=C2=A0 =C2=A0 // collect tags in this work()<br>
-=C2=A0 =C2=A0 const uint64_t samp0_count =3D nitems_read(0);<br>
-=C2=A0 =C2=A0 get_tags_in_range(_tags, 0, samp0_count, samp0_count + ninput=
-_items);<br>
-=C2=A0 =C2=A0 if (not _tags.empty())<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 this-&gt;tag_work(ninput_items);<br>
-<br>
-=C2=A0 =C2=A0 if (not pmt::is_null(_length_tag_key)) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 // check if there is data left to send from a b=
-urst tagged with length_tag<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 // If a burst is started during this call to wo=
-rk(), tag_work() should have<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 // been called and we should have _nitems_to_se=
-nd &gt; 0.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (_nitems_to_send &gt; 0) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ninput_items =3D std::min&lt;long=
-&gt;(_nitems_to_send, ninput_items);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // if we run out of items to send=
-, it&#39;s the end of the burst<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (_nitems_to_send - long(ninput=
-_items) =3D=3D 0)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 _metadata.end_of_bu=
-rst =3D true;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 } else {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // There is a tag gap since no le=
-ngth_tag was found immediately following<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // the last sample of the previou=
-s burst. Drop samples until the next<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // length_tag is found. Notify th=
-e user of the tag gap.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 std::cerr &lt;&lt; &quot;tG&quot;=
- &lt;&lt; std::flush;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // increment the timespec by the =
-number of samples dropped<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 _metadata.time_spec +=3D ::uhd::t=
-ime_spec_t(0, ninput_items, _sample_rate);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return ninput_items;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-=C2=A0 =C2=A0 }<br>
-<br>
-=C2=A0 =C2=A0 boost::this_thread::disable_interruption disable_interrupt;<b=
-r>
-#ifdef GR_UHD_USE_STREAM_API<br>
-=C2=A0 =C2=A0 // send all ninput_items with metadata<br>
-=C2=A0 =C2=A0 const size_t num_sent =3D _tx_stream-&gt;send(input_items, ni=
-nput_items, _metadata, 1.0);<br>
-#else<br>
-=C2=A0 =C2=A0 const size_t num_sent =3D _dev-&gt;get_device()-&gt;send(inpu=
-t_items,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ninput_items,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0_metadata,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*_type,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0::uhd::device::SEND_MODE_FULL_BUFF=
-,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01.0);<br>
-#endif<br>
-=C2=A0 =C2=A0 boost::this_thread::restore_interruption restore_interrupt(di=
-sable_interrupt);<br>
-<br>
-=C2=A0 =C2=A0 // if using length_tags, decrement items left to send by the =
-number of samples sent<br>
-=C2=A0 =C2=A0 if (not pmt::is_null(_length_tag_key) &amp;&amp; _nitems_to_s=
-end &gt; 0) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 _nitems_to_send -=3D long(num_sent);<br>
-=C2=A0 =C2=A0 }<br>
-<br>
-=C2=A0 =C2=A0 // increment the timespec by the number of samples sent<br>
-=C2=A0 =C2=A0 _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sam=
-ple_rate);<br>
-<br>
-=C2=A0 =C2=A0 // Some post-processing tasks if we actually transmitted the =
-entire burst<br>
-=C2=A0 =C2=A0 if (not _pending_cmds.empty() &amp;&amp; num_sent =3D=3D size=
-_t(ninput_items)) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 GR_LOG_DEBUG(d_debug_logger,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0boost::format(&quot;Executing %d pending commands.&quot;) %<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0_pending_cmds.size());<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 BOOST_FOREACH (const pmt::pmt_t&amp; cmd_pmt, _=
-pending_cmds) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 msg_handler_command(cmd_pmt);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 _pending_cmds.clear();<br>
-=C2=A0 =C2=A0 }<br>
-<br>
-=C2=A0 =C2=A0 return num_sent;<br>
-}<br>
-<br>
-From this code, it can be seen that the data is transmitted including _meta=
-data:<br>
-<br>
-const size_t num_sent =3D _tx_stream-&gt;send(input_items, ninput_items, _m=
-etadata, 1.0);<br>
-<br>
-The &quot;time_spec&quot; is updated for each block that is sent out:<br>
-<br>
-_metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate);<br>
-<br>
-Now you mentioned &quot;has_time_spec&quot; below. I extended to code in th=
-e following way:<br>
-<br>
-=C2=A0 =C2=A0 // increment the timespec by the number of samples sent<br>
-=C2=A0 =C2=A0 _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sam=
-ple_rate);<br>
-=C2=A0 =C2=A0 GR_LOG_DEBUG(d_debug_logger, boost::format(&quot;Setting meta=
-data time_spec: %d:%f&quot;) % _metadata.time_spec.get_full_secs() % _metad=
-ata.time_spec.get_frac_secs());<br>
-=C2=A0 =C2=A0 _metadata.has_time_spec =3D true;<br>
-<br>
-<br>
-To my understanding, gr-uhd now passes the correct timestamps on to UHD.<br=
->
-However, the timed command is still ignored.<br>
-<br>
-<br>
-Thanks,<br>
-Lukas<br>
-<br>
-<br>
-PS: I will attempt to use the tagged stream ... but then I will have the is=
-sue that I need to tune TX *plus* RX at the same time! Furthermore, the str=
-eaming tags API is super rudimentary. Also, skimming the source code for th=
-e tag processing, I am not sure if this would change anything.<br>
-<br>
-<br>
-<br>
-<br>
-=C2=A0<br>
-=C2=A0<br>
-=C2=A0<br>
-<br>
-Gesendet:=C2=A0Dienstag, 03. M=C3=A4rz 2020 um 13:25 Uhr<br>
-Von:=C2=A0&quot;Sam Reiter&quot; &lt;<a href=3D"mailto:sam.reiter@ettus.com=
-" target=3D"_blank">sam.reiter@ettus.com</a>&gt;<br>
-An:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" tar=
-get=3D"_blank">rkossler@nd.edu</a>&gt;<br>
-Cc:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
-arget=3D"_blank">lukashaase@gmx.at</a>&gt;, &quot;<a href=3D"mailto:USRP-us=
-ers@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&quot;=
- &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
-sers@lists.ettus.com</a>&gt;<br>
-Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
-ing a timed command<br>
-<br>
-Everything Rob is saying is dead on - the &quot;sense of time&quot; for the=
- radio is a 64-bit counter within the radio core that other blocks (like th=
-e DDC and DUC) don&#39;t have access to. Those blocks need to derive a sens=
-e of time from the timestamps of CHDR packets passing through them. I just =
-wrapped up a new app note that covers this (among other synchronization-rel=
-ated topics):<br>
-=C2=A0<br>
-<a href=3D"https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Comma=
-nds_in_UHD#Clocking_and_Timekeeping_in_the_USRP" rel=3D"noreferrer" target=
-=3D"_blank">https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Comm=
-ands_in_UHD#Clocking_and_Timekeeping_in_the_USRP</a><br>
-=C2=A0<br>
-Lukas, I would doubt that this is an undiscovered bug as much as it is an i=
-ssue with implementation. If this were in C++, you&#39;d want to set the &#=
-39;has_time_spec&#39; and &#39;time_spec&#39; fields of your TX metadata fo=
-r at least 1 packet to impart a sense of time on the DUC:<br>
-=C2=A0<br>
-<a href=3D"https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html=
-%5Bhttps://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5D" rel=
-=3D"noreferrer" target=3D"_blank">https://files.ettus.com/manual/structuhd_=
-1_1tx__metadata__t.html[https://files.ettus.com/manual/structuhd_1_1tx__met=
-adata__t.html]</a><br>
-=C2=A0<br>
-I just spoke with someone on my end who said you need to use stream tags to=
- do this, but again, I don&#39;t currently have much direction for how that=
- would be implemented in your code.<br>
-=C2=A0<br>
-<br>
-Sam Reiter=C2=A0=C2=A0<br>
-<br>
-On Tue, Mar 3, 2020 at 11:48 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@=
-nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
-sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]&gt; wrote:<br>
-Also, note that there is no corresponding issue on receive because the Rx r=
-adio always inserts the time stamp=C2=A0in the sample stream. So, I guess y=
-ou would not see this with the DDC.<br>
-Rob=C2=A0<br>
-<br>
-On Tue, Mar 3, 2020 at 12:43 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@=
-nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
-sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]&gt; wrote:<br>
-<br>
-Hi Lukas,<br>
-The FPGA image on the USRP is divided into blocks such as the DUC block and=
- the Radio block.=C2=A0 The latter controls the RF daughterboard and has ac=
-cess to the device clock.=C2=A0 So, when you provide a timed command to the=
- Radio block (such as for tuning the RF) it can implement the command at th=
-e specified time by comparing to the device clock.=C2=A0 The DUC block does=
- not have access to the MB clock and so when you give it a timed command, i=
-t monitors the incoming sample stream to extract the time. If the sample st=
-ream does not include a time stamp, the command never executes.=C2=A0 Don&#=
-39;t think of this as a bug, but rather as a design limitation.<br>
-=C2=A0<br>
-When I work directly with UHD from C++, I use the function rx_streamer::iss=
-ue_stream_command() which has options to stream data with no time stamp or =
-with a time stamp.=C2=A0 When using timed commands with DUC or DDC, I must =
-include the time stamp or else the command will never be executed.=C2=A0 Bu=
-t, with GR, I don&#39;t know how to specify the corresponding options.<br>
-Rob=C2=A0<br>
-<br>
-On Tue, Mar 3, 2020 at 12:29 PM Lukas Haase &lt;<a href=3D"mailto:lukashaas=
-e@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:=
-lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt; wrote:Hi Sa=
-m, Hi Rob,<br>
-<br>
-Thanks for following up on this!<br>
-I am very happy you were able to reproduce this ... which means that at lea=
-st an issue exists :)<br>
-<br>
-What Sam suggests makes sense even though hard to believe for me:<br>
-<br>
-1. How could something like that go unnoticed for so long? (I am sure I am =
-not the first performing digital tuning)<br>
-2. In the past I got successful phase coherence using automatic tuning (pas=
-sing center frequency + offset to tune_request_t and using integer-N tuning=
-) using timed commands. This did not work reliably and only for certain fre=
-quencies but in my opinion this should have INCLUDED the DUC tuning. If the=
- DUC retune wouldn&#39;t have been executed as part of this automatic tunin=
-g, I could not have gotten phase coherence (and actually, not even the desi=
-red frequency).<br>
-<br>
-The reason why I am only doing DUC tuning now is to avoid all the hassle wi=
-th integer-N tuning, PLL retuning and settling time.<br>
-<br>
-Sam, what is the &quot;radio block&quot; you were talking about?<br>
-<br>
-Anyway, would it be worthwile to attempt debugging this is absence of gr?<b=
-r>
-The only reason this prevented me from doing is that I would need to manual=
-ly create the baseband samples and continuously stream them out while in pa=
-rallel do the retuning.<br>
-I am not too familiar with UHD on its own but I assume this would be very c=
-omplicated, require multithreading etc.<br>
-Do you have any demo code that could be easily modified for this scenario?<=
-br>
-<br>
-Best,<br>
-Lukas<br>
-<br>
-<br>
-Gesendet:=C2=A0Dienstag, 03. M=C3=A4rz 2020 um 12:08 Uhr<br>
-Von:=C2=A0&quot;Sam Reiter&quot; &lt;<a href=3D"mailto:sam.reiter@ettus.com=
-" target=3D"_blank">sam.reiter@ettus.com</a>[mailto:<a href=3D"mailto:sam.r=
-eiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>]&gt;<br>
-An:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" tar=
-get=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkossler@nd.edu=
-" target=3D"_blank">rkossler@nd.edu</a>]&gt;<br>
-Cc:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
-arget=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@=
-gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt;, &quot;<a href=3D"mail=
-to:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com=
-</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank"=
->USRP-users@lists.ettus.com</a>]&quot; &lt;<a href=3D"mailto:usrp-users@lis=
-ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a hr=
-ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
-.ettus.com</a>]&gt;<br>
-Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
-ing a timed command<br>
-<br>
-For what it&#39;s worth, I was able to reproduce the behavior described her=
-e, but didn&#39;t get to dig into it much. My leading suspicion would be wh=
-at Rob mentioned about timestamping. Lukas&#39; code sets a command time, b=
-ut I&#39;m not clear on how timestamp metadata for packets being sent to th=
-e radio are handled. Might be a good question to loop the discuss-gnuradio =
-mailing list in on?<br>
-<br>
-=C2=A0<br>
-<br>
-Sam Reiter=C2=A0=C2=A0<br>
-<br>
-On Tue, Mar 3, 2020 at 10:59 AM Rob Kossler via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
-com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
-nk">usrp-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lis=
-ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a hr=
-ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
-.ettus.com</a>]]&gt; wrote:<br>
-I wonder if the issue is related to a missing time stamp on the baseband sa=
-mples going from GR to UHD.=C2=A0 If the stream does not have a time stamp,=
- the DUC is unable to apply the timed command because the DUC does not real=
-ly know the time - it must pull the time from the streaming samples. This i=
-s in contrast to the radio block which does have access to time and can app=
-ly timed commands by referring to the motherboard clock.<br>
-=C2=A0<br>
-I am not too familiar with GR so I&#39;m not sure how to know if GR is putt=
-ing a time stamp on the streaming samples.<br>
-Rob=C2=A0<br>
-<br>
-On Mon, Mar 2, 2020 at 10:04 AM Lukas Haase via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
-com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
-nk">usrp-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lis=
-ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a hr=
-ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
-.ettus.com</a>]]&gt; wrote:Hi Marcus,<br>
-<br>
-Thank you that would be amazing!<br>
-<br>
-I followed the tutorial and built everything from source:<br>
-<br>
-$ lsb_release -a<br>
-No LSB modules are available.<br>
-Distributor ID: Ubuntu<br>
-Description:=C2=A0 =C2=A0 Ubuntu 18.04.4 LTS<br>
-Release:=C2=A0 =C2=A0 =C2=A0 =C2=A0 18.04<br>
-Codename:=C2=A0 =C2=A0 =C2=A0 =C2=A0bionic<br>
-$ uname -a<br>
-Linux sdr 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UTC 20=
-20 x86_64 x86_64 x86_64 GNU/Linux<br>
-$ cd uhd<br>
-$ git status<br>
-HEAD detached at v3.15.0.0<br>
-$ cd ../gnuradio<br>
-$ git status<br>
-HEAD detached at v3.7.14.0<br>
-<br>
-<br>
-Thank you!<br>
-<br>
-Lukas<br>
-<br>
-<br>
-<br>
-PS: For some reason I sometimes do not get responses from this list. I just=
- saw it looking at the mailman archives. Hence I cannot respond (to keep he=
-aders intact) but need to create a new message and manually &quot;quote&quo=
-t;. I hope that still preserves the context somehow.<br>
-<br>
-<br>
-<br>
-Marcus Leech wrote:<br>
-&gt; On 02/28/2020 01:01 PM, Lukas Haase via USRP-users wrote:<br>
-&gt;&gt; Hi again,<br>
-&gt;&gt;<br>
-&gt;&gt; I created a minimum example (gnuradio) that shows the issue descri=
-bed below.<br>
-&gt;&gt; To summarize: Retuning to a different dsp frequency on an USRP X31=
-0 (+UBX160) does not work (command ignored) ONLY if a timed command (in fut=
-ure is used).<br>
-&gt;&gt; The code shows it in a simple manner. Commenting out the single li=
-ne with set_command_time makes the example work.<br>
-&gt;&gt;<br>
-&gt;&gt; I am absolutely out of ideas and would appreciate any input!<br>
-&gt;&gt;<br>
-&gt;&gt; Best,<br>
-&gt;&gt; Lukas<br>
-&gt; Lukas.<br>
-&gt;<br>
-&gt; Thanks for sticking with this.=C2=A0 I&#39;ll have a discussion with E=
-ttus R&amp;D to<br>
-&gt; see if this is a known issue and/or if there&#39;s a workaround.<br>
-&gt;<br>
-&gt; Remind me which version of UHD you&#39;re using?<br>
-<br>
-<br>
-<br>
+<div dir=3D"ltr">Ivan,<div><br></div><div>To flush the RX buffer, I think y=
+our best bet is to destroy and recreate the streamer. That being said, [D]r=
+opped packets are usually indicative of some deeper host issue. Are you abl=
+e to run without dropping packets at lower rates?</div><div><br clear=3D"al=
+l"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_=
+signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam Reiter=C2=A0<div><br>=
+</div></div></div></div></div></div></div></div><br><div class=3D"gmail_quo=
+te"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 24, 2020 at 4:02 AM I=
+van Zahartchuk via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.=
+com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div><di=
+v id=3D"gmail-m_-6680724724514635520gmail-m_-264610968090117436gmail-tw-tar=
+get"><div id=3D"gmail-m_-6680724724514635520gmail-m_-264610968090117436gmai=
+l-kAz1tf"><div id=3D"gmail-m_-6680724724514635520gmail-m_-26461096809011743=
+6gmail-tw-target-text-container"><pre id=3D"gmail-m_-6680724724514635520gma=
+il-m_-264610968090117436gmail-tw-target-text" style=3D"text-align:left" dir=
+=3D"ltr"><span style=3D"font-family:arial,sans-serif"><font size=3D"2"><spa=
+n lang=3D"en">Hello. I use the N210 board for scanning with frequency tunin=
+g. And with the &#39;D&#39; error, I have problems with correctly detecting=
+ the signal frequency. In this regard, the question. How do I flush the buf=
+fer in N210?</span></font></span></pre></div></div></div></div></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
-rget=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:US=
-RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[=
-mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP=
--users@lists.ettus.com</a>]]<br>
+lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om_______________________________________________USRP-users%5Bhttp://lists.=
-ettus.com/mailman/listinfo/usrp-users_lists.ettus.com______________________=
-_________________________USRP-users%5D" rel=3D"noreferrer" target=3D"_blank=
-">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_______=
-________________________________________<br>
-USRP-users[http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om_______________________________________________USRP-users]</a> mailing li=
-st<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
-rget=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:US=
-RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[=
-mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP=
--users@lists.ettus.com</a>]]<br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D"=
- rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listin=
-fo/usrp-users_lists.ettus.com[http://lists.ettus.com/mailman/listinfo/usrp-=
-users_lists.ettus.com]</a><br>
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000802b56059ff9116f--
+--0000000000007abead059ffa0bae--
 
 
---===============0565891766358606478==
+--===============5272317050107454713==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -944,5 +152,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0565891766358606478==--
+--===============5272317050107454713==--
 
