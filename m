@@ -2,56 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB0F1785B4
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Mar 2020 23:36:45 +0100 (CET)
-Received: from [::1] (port=36750 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B53178615
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Mar 2020 00:00:33 +0100 (CET)
+Received: from [::1] (port=39872 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j9G9W-0001gK-RL; Tue, 03 Mar 2020 17:36:38 -0500
-Received: from mail-lj1-f175.google.com ([209.85.208.175]:37056)
+	id 1j9GWe-0003zD-FF; Tue, 03 Mar 2020 18:00:32 -0500
+Received: from mail-lj1-f173.google.com ([209.85.208.173]:34725)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <sam.reiter@ettus.com>)
- id 1j9G9S-0001Xi-Uv
- for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 17:36:35 -0500
-Received: by mail-lj1-f175.google.com with SMTP id q23so5401064ljm.4
- for <usrp-users@lists.ettus.com>; Tue, 03 Mar 2020 14:36:14 -0800 (PST)
+ id 1j9GWa-0003rH-Hc
+ for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 18:00:28 -0500
+Received: by mail-lj1-f173.google.com with SMTP id x7so5455345ljc.1
+ for <usrp-users@lists.ettus.com>; Tue, 03 Mar 2020 15:00:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0qJFdbD5yt3xkRiYCqOVVx8QZE9Akd+rDKFUBIfjj5g=;
- b=sV2v0Zu9t7U8+4WYKHGzCHSJQqpxiYwMWs7oATOPamJvgTdTi3ecRwpYdxg3ZpGEM5
- m8w/b+0ULIvbdaXsM4A721lEfyS8lApF237PIkvWw1g5/aYtFRR36c1quk1A38pRubTa
- WlagArXq75SZ9NMUTSZxSU5DYk0jMRCl/dnT0dVTVSQX1JyNuLUPmmPx6gOasJD0MKER
- XjheyO4FC2a8SA/ZXREzOQWQG/NL2IiC2UtMc4HZ1JS2CSAqmubvq/5F+2BYtMuP57e5
- tSoQCJwnwRI0rgYuBQP7eSpMEiGJ2ixBhWEqmVu3K+0Rf0+tfpuGWE6L7fwQLlASS9lE
- 4FqA==
+ :cc; bh=XTXX1GhcRuFSzK6F7Ve9uO01OobsejU8rbq7hvjJwiE=;
+ b=F7Cc29122w8CEAvUy1+3FuGdpgwcSTQsSLl+JBqZ43ifimZwLPQRoAcAaqo3xah48v
+ TpKkYOywaPd8NVDwOn3j1lPTyRHzntfn1q640Kmlhkv04fbGsMcbreJocBQISAtRUepu
+ EbQrEEomLlFssUodt0LgVzpc9kyPhqvVp6Pf9IRsSXN1s5VQcFA93uxBkzIMIpWKVVhP
+ JRECRzgRkxO0818chtmERFzkHR/Ccf9FPY+e99nMb2DJ10jTmtJqPRs9HvHBdfHoXNr+
+ 8GjyXY/I0RPyjzjZ8OSFBGasTPTnprBrPvCaIsw76eZLvDcVkl0V9X2SJKK2a2oSEoBB
+ NTHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=0qJFdbD5yt3xkRiYCqOVVx8QZE9Akd+rDKFUBIfjj5g=;
- b=A9q71AzeVpethft+utNUp8HehqoPLxIHRNV714Fa3W/TnkVZbiQso8uCtxr1JQtwQ8
- Xq6aI2xqDANLqhh5UtWGT8aOqG+nPHDR2fjQo+NFnoV/Z2jS4PHNT68HYo55vlV5JH9T
- ShQqu0xL4xJme7iuiUZn14qPRZ4zKInr2TFySuzhP8+V1mBnNSaYjG2vYamGeojN43Cs
- Y4ANToyp0BJ6cwlCgiJ++iNl46Mn3TUMKhq20pt5fAqBjRpxE/4ma53cyw81uEqUNYIE
- 5CtZqEAy/atJc7UpFYeRwihJARNA1/UoCkMRoPCtB0uSL5ZfR/BzgbXRkpxI6DyMcQPK
- g1Ew==
-X-Gm-Message-State: ANhLgQ0L6ZVf03yFSUuPeRQmaZr6q6ilgUjvh3lctnJ7jIW7kplnEKL8
- J9v36QHMWFxbaFJ8hPg+i6oQ8ofcJt3cCZ9VrhY9rwIA
-X-Google-Smtp-Source: ADFU+vt8Wn7oY6LoMV6HX5JXePUPMiFVzFIshUdS1NJ1HItVPjLCr2fru+NExVCVxZ+tFWOv/h6u5H2OFlufj85K4Ns=
-X-Received: by 2002:a05:651c:21b:: with SMTP id
- y27mr100373ljn.164.1583274953629; 
- Tue, 03 Mar 2020 14:35:53 -0800 (PST)
+ bh=XTXX1GhcRuFSzK6F7Ve9uO01OobsejU8rbq7hvjJwiE=;
+ b=OGGYT6jfwskZJnXJuxvDcGTglFxY2HnIZWNy0EFHqx/f5EnmnsAtBVAerIHjStC6eq
+ 2zUk9AAkO+ueYmEegdUpOqVbb1PgLyhRhmfk7QXMwJbGHH0FBhihJyjtZBSU7+hB1QJQ
+ XgW3DxRhE6/KXZmnXzWFCTFad/J11AEBFEP54IUnoG2LadV8VU6Z+l3v9Jsn4raZAY7K
+ mVYqTqqLeo8n1a6gQM8TSYtOjYquUNVdlEb7n/KrxIvnOFb+KtZzVLR01uCIrz9W2Jcz
+ NpcsCYstDEFuTc4kh8Cd0oWT8iQ7+Pk2QxYDX50zehKdysOpfxmuRF/684l3TCBJ/B4q
+ vj2w==
+X-Gm-Message-State: ANhLgQ1TacGYB/I5oL1ezjsNBJ7kvkT3Rvmq+P6cf+BlH1e82gebHJdJ
+ 84reYGqJTgrZK7W16sSsqNT2B1KQYrdzabozdtYXbVod
+X-Google-Smtp-Source: ADFU+vtIpMIvF4TZA8vjvCt2yRKPn4WrZ6bmA7Gg6TNQi6Mb5Md0td2XPVuIsNUPpzRzOWPiewX4981bUZqVJAU3s+4=
+X-Received: by 2002:a2e:5454:: with SMTP id y20mr124105ljd.23.1583276387328;
+ Tue, 03 Mar 2020 14:59:47 -0800 (PST)
 MIME-Version: 1.0
-References: <26020d4c1e714ec59a1c4f79f2963cb7@mbda-systems.com>
- <5E541933.5060300@gmail.com>
- <2c20231e381c47e5a727d71104f3631b@mbda-systems.com>
-In-Reply-To: <2c20231e381c47e5a727d71104f3631b@mbda-systems.com>
-Date: Tue, 3 Mar 2020 16:35:52 -0600
-Message-ID: <CANf970bsnoqR5Kh4n4thN6kWY8F8H2ZCs6a_3NnFDG0iNhp5Cg@mail.gmail.com>
-To: "VAILLANT.Etienne" <etienne.vaillant@mbda-systems.com>
-Subject: Re: [USRP-users] *** BULK *** Re: Issues using TwinRX and x310
- (phase shift)
+References: <49e170dd-3e0d-587a-0520-936fbe758b99@iteam.upv.es>
+ <6a8529df-c323-db63-d55e-d1f5d22504ee@iteam.upv.es>
+In-Reply-To: <6a8529df-c323-db63-d55e-d1f5d22504ee@iteam.upv.es>
+Date: Tue, 3 Mar 2020 16:59:46 -0600
+Message-ID: <CANf970Z3v1D0Yv-bsaZu2CzNmaQbU-3AUG-od5d1tfoqRsXJqQ@mail.gmail.com>
+To: =?UTF-8?B?Qm9yamEgScOxZXN0YSBIZXJuw6FuZGV6?= <borieher@iteam.upv.es>
+Subject: Re: [USRP-users] Synchronize USRP using Octoclock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,8 +62,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Sam Reiter <sam.reiter@ettus.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0770203414624170988=="
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6588788862063419086=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,220 +77,81 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0770203414624170988==
-Content-Type: multipart/alternative; boundary="000000000000317b4b059ffaedfd"
+--===============6588788862063419086==
+Content-Type: multipart/alternative; boundary="000000000000a5f463059ffb42fb"
 
---000000000000317b4b059ffaedfd
+--000000000000a5f463059ffb42fb
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Etienne VAILLANT,
+Hey Borja,
 
-It's also worth noting that you need to do some work on the generated
-python flowgraph outside of GRC to ensure a consistent phase relationship
-between channels. Namely, you need to make sure the following criteria are
-met on a TwinRX system:
+Is this still on your radar? I know that there have been a handful of
+timing fixes added to the 3.15-LTS branch of UHD that might be worth trying
+out. It could also be an issue with the example - I'm not sure I've spent
+much time with ./test_clock_synch, but I'd be interested in testing this
+out if it's still an issue on the latest versions of UHD.
 
-   1. All USRPs share a common reference clock (10MHz Ref)
-   2. All USRPs share a common sense of time (PPS)
-   3. LOs are shared
-   4. DSP tuning is synchronous
-   5. Streaming is started synchronously
+-Sam
 
-If it's a single X310, don't worry about 1 and 2 - the internal reference
-and PPS are fine. Sounds like you're sharing LOs correctly for number 3.
-For number 5 I believe you can set a stream start time in your USRP source
-block, and number 4 requires you implement timed commands in the generated
-python code (all cordics in the FPGA need to be synchronously reset within
-the DDC). We've actually been discussing something really similar in the
-thread [[Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
-timed command]]. This is dealing with some TX nuances which shouldn't be an
-issue for you if you're just doing RX.
-
-Sam Reiter
-
-On Thu, Feb 27, 2020 at 7:03 AM VAILLANT.Etienne via USRP-users <
+On Mon, Feb 10, 2020 at 8:19 AM Borja I=C3=B1esta Hern=C3=A1ndez via USRP-u=
+sers <
 usrp-users@lists.ettus.com> wrote:
 
-> Hi Marcus,
+> Hey all,
 >
+> Running the
+> https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210=
+.cpp
+> example with two USRPs works. Even if I use get_time_now() instead of
+> get_time_last_pps(). So I don't know why the example shipped with uhd
+> doesn't work.
 >
->
-> Thank you for your answer.
->
-> I have upgrade my system to UHD 3.13.0.2 and GRC 3.7.13.4 and I still hav=
-e
-> those random phase shifts.
->
->
->
-> Please find attached my flow-graph and some screenshots of what I get whe=
-n
-> I start the acquisition (before and after manually shifting the phase
-> between channels).
->
-> I have also added the warnings I got when I click on play in GRC, plus th=
-e
-> results of 12 identical acquisitions as an example (12 successive clicks =
-on
-> SAVE).
->
->
->
-> Thanks very much for your support.
->
->
->
-> Best regards,
->
-> Etienne.
->
->
->
-> *De :* USRP-users <usrp-users-bounces@lists.ettus.com> *De la part de*
-> Marcus D. Leech via USRP-users
-> *Envoy=C3=A9 :* lundi 24 f=C3=A9vrier 2020 19:43
-> *=C3=80 :* usrp-users@lists.ettus.com
-> *Objet :* *** BULK *** Re: [USRP-users] Issues using TwinRX and x310
-> (phase shift)
->
->
->
->
-> -------------------------------------------------------------------------=
--------------------------------------------------------------
-> Attention, ce courriel provient d Internet. L emetteur n est peut-etre pa=
-s
-> celui que vous pensez.
-> Merci de considerer ce point en lisant ce courriel, en y repondant, ou en
-> cliquant sur les liens.
->
-> -------------------------------------------------------------------------=
--------------------------------------------------------------
->
-> On 02/24/2020 05:06 AM, VAILLANT.Etienne via USRP-users wrote:
+> Thanks, Borja.
+> El 10/2/20 a las 13:44, Borja I=C3=B1esta Hern=C3=A1ndez via USRP-users e=
+scribi=C3=B3:
 >
 > Hi all,
 >
->
->
-> I would like to perform DOA measurements and I am using a USRP x310 with
-> two TwinRX.
->
->
->
-> First I am trying to perform some very basic tests in order to understand
-> what I am doing: I generate a CW at 1850 MHz, going through a power
-> splitter (4-ways 0=C2=B0), feeding the 4 inputs of the two TwinRX (A:0, A=
-:1 and
-> B:0, B:1).
->
-> I save the raw IQ data via Gnuradio Companion in a file and I repeat the
-> procedure several times, generating several files. All the files are save=
-d
-> with the same USRP tuning (I don=E2=80=99t stop or retune the signal/USRP=
- between
-> two acquisitions). Basically I just click on a *Save* QT GUI Check Box in
-> GRC many times which triggers a *File Sink* block and thus generates as
-> many files.
->
->
->
-> Then I want to re-plot the signals from the IQ data via Matlab, and my
-> problem is that I get some different phase shift between the signals.
-> Please find attached a screenshot of 12 identical acquisitions (12
-> successive clicks on *Save*). What is important to me is the phase shift
-> between the two signals, and I expected it to be identical in all cases
-> (since all the acquisitions are identical). It seems to be OK for almost
-> all the acquisitions, except for the 8, 9 and 10, where the phase shift i=
+> I just set up an Octoclock-G using the guide and now I can ping my device=
+.
+> But checking the test_clock_sync example with my x310 USRP something seem=
 s
-> different from all the others (and the three of them look identical=E2=80=
-=A6). I
-> have perform this test several times and every time some random
-> acquisitions are shifted from the others (sometimes there are 2 or 3
-> different values of phase shift, it is not always 90=C2=B0 or else).
+> to be working bad. I run ./test_clock_synch --clock-args addr=3DCLOCK_ADD=
+RESS
+> --usrp-args serial=3DUSRP_SERIAL and every time it has a 1 second offset
+> between the USRP and the Octoclock in all the comparisons. The clock in t=
+he
+> USRP is always one second delayed.
 >
+> And in the test_clock_synch example changing: *(*times)[mboard] =3D usrp-=
+>*
+> *get_time_now**(mboard)**.**get_full_secs**();*
 >
+> to: *(*times)[mboard] =3D usrp->**get_time_last_pps**(mboard).*
+> *get_full_secs*
+> *(); *
 >
-> There is something I misunderstood or I do wrong but I can=E2=80=99t find=
- what. I
-> have read some people with a similar issue discussing about the function
-> *set_time_now()* but I don=E2=80=99t really know how to deal with it.
+> Works every time.
 >
+> So, does anyone know why my USRP is one second delayed when I use
+> get_time_now() even if its supossed to work? Can I assume that my USRP is
+> synchronized to the Octoclock when im using get_time_last_pps()?
 >
+> For my tests I have used this modified version of test_clock_synch create=
+d
+> to work with two USRPs but only using it with one.
+> https://github.com/Borjis131/USRP-tests/blob/master/test_clock_synch_b210=
+.cpp
+> the code is from Urban Hankansson thread
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2015-January/=
+012227.html
 >
-> To acquire the signal I am using either * UHD: USRP Source* block with 4
-> channels or the *TwinRX USRP Source* block. In the first case, LO
-> parameters are the following:
+> Thanks, Borja.
 >
-> -          Ch0 Source Internal / export True
->
-> -          Ch1 Source Companion / export False
->
-> -          Ch2 Source External / export False
->
-> -          Ch3 Source External / export False
->
->
->
-> I work on *Ubuntu* 18.04 (I can=E2=80=99t change since some other activit=
-ies rely
-> on this computer).
->
-> -          *GRC* 3.7.10.1 (minimum version required for *gr-doa*
-> application)
->
-> -          *UHD* 3.10.3.0 (with the v3.10.1.0 recommended for *gr-doa *ap=
-plication,
-> my TwinRX were not detected (*Unknown*) via *uhd_usrp_probe*)
->
-> -          *gr-doa* installed from source but all the make test have
-> failed (I guess this is another topic since I don=E2=80=99t use *gr-doa*
-> functions in my basic test presented above?).
->
->
->
-> I am quite a new comer to this SDR world, thus any help would be much
-> appreciated, thanks very much in advance!
->
->
->
-> Kind regards,
->
->
->
-> *Etienne VAILLANT*
->
->
->
->
->
-> Perhaps you could share your GRC flow-graph with us?
->
-> Also, there have been some phase-offset fixes in later versions of UHD,
-> but it's not clear at this point whether that applies in your case or not=
-,
->   which is where having the GRC flow-graph to look at would be useful.
->
-> Cheers
->
-> _________________________________________________________________________=
-__________________________________________________________
->
-> This email and any attachments are confidential to the intended recipient=
- and may also be privileged.
-> If you are not the intended recipient please delete it from your system a=
-nd notify the sender.
-> You should not copy it or use it for any purpose nor disclose or distribu=
-te its contents to any other person.
->
->
-> Ce courriel et ses pieces-jointes sont envoyes de maniere confidentielle =
-et doivent etre traites avec attention.
-> Si vous n'etes pas le destinataire, merci de le detruire et d'en informer=
- son auteur.
-> Vous ne devez pas copier, utiliser, reveler ou diffuser son contenu a qui=
-conque.
+> _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/m=
+ailman/listinfo/usrp-users_lists.ettus.com
 >
 > _______________________________________________
 > USRP-users mailing list
@@ -301,232 +159,85 @@ conque.
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000317b4b059ffaedfd
+--000000000000a5f463059ffb42fb
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Etienne VAILLANT,<div><br></div><div>It&#39;s also worth n=
-oting that you need to do some work on the generated python flowgraph outsi=
-de of GRC to ensure a consistent phase relationship between channels. Namel=
-y, you need to make sure the following criteria are met on a TwinRX system:=
-</div><div><ol><li>All USRPs share a common reference clock (10MHz Ref)</li=
-><li>All USRPs share a common sense of time (PPS)</li><li>LOs are shared=C2=
-=A0</li><li>DSP tuning is synchronous</li><li>Streaming is started synchron=
-ously</li></ol></div><div>If it&#39;s a single X310, don&#39;t worry about =
-1 and 2 - the internal reference and PPS are fine. Sounds like you&#39;re s=
-haring LOs correctly for number 3. For number 5 I believe you can set a str=
-eam start time in your USRP source block, and number 4 requires=C2=A0you im=
-plement timed commands in the generated python code (all cordics in the FPG=
-A need to be synchronously reset within the DDC). We&#39;ve actually been d=
-iscussing something=C2=A0really similar in the thread [[Re: [USRP-users] US=
-RP X310 ignored DSP retuning on TX when using a timed command]]. This is de=
-aling with some TX nuances which shouldn&#39;t be an issue for you if you&#=
-39;re just doing RX.</div><div><br clear=3D"all"><div><div dir=3D"ltr" data=
--smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sam R=
-eiter=C2=A0</div></div></div></div></div></div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 27, 2020 at 7:03=
- AM VAILLANT.Etienne via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.=
-ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div bgcolor=3D"white" lang=3D"FR">
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-Hi Marcus,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-<u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-Thank you for your answer.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-I have upgrade my system to UHD 3.13.0.2 and GRC 3.7.13.4 and I still have =
-those random phase shifts.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-<u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-Please find attached my flow-graph and some screenshots of what I get when =
-I start the acquisition (before and after manually shifting the phase betwe=
-en channels).<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-I have also added the warnings I got when I click on play in GRC, plus the =
-results of 12 identical acquisitions as an example (12 successive clicks on=
- SAVE).<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-<u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-Thanks very much for your support.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-<u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-Best regards,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-Etienne.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)">=
-<u></u>=C2=A0<u></u></span></p>
-<div>
-<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
-top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
-<p class=3D"MsoNormal"><b><span style=3D"color:windowtext">De=C2=A0:</span>=
-</b><span style=3D"color:windowtext"> USRP-users &lt;<a href=3D"mailto:usrp=
--users-bounces@lists.ettus.com" target=3D"_blank">usrp-users-bounces@lists.=
-ettus.com</a>&gt;
-<b>De la part de</b> Marcus D. Leech via USRP-users<br>
-<b>Envoy=C3=A9=C2=A0:</b> lundi 24 f=C3=A9vrier 2020 19:43<br>
-<b>=C3=80=C2=A0:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a><br>
-<b>Objet=C2=A0:</b> *** BULK *** Re: [USRP-users] Issues using TwinRX and x=
-310 (phase shift)<u></u><u></u></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">-------=
----------------------------------------------------------------------------=
-----------------------------------------------------<br>
-Attention, ce courriel provient d Internet. L emetteur n est peut-etre pas =
-celui que=C2=A0vous pensez.
-<br>
-Merci de considerer ce point en lisant ce courriel, en y repondant, ou en c=
-liquant sur les liens.<br>
----------------------------------------------------------------------------=
------------------------------------------------------------</span><span sty=
-le=3D"font-size:12pt"><u></u><u></u></span></p>
-<div>
-<p class=3D"MsoNormal">On 02/24/2020 05:06 AM, VAILLANT.Etienne via USRP-us=
-ers wrote:<u></u><u></u></p>
-</div>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Hi all,</span><u></u><u></u></p=
->
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">I would like to perform DOA mea=
-surements and I am using a USRP x310 with two TwinRX.</span><u></u><u></u><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">First I am trying to perform so=
-me very basic tests in order to understand what I am doing: I generate a CW=
- at 1850 MHz, going through a power splitter (4-ways 0=C2=B0), feeding the =
-4 inputs of the two TwinRX (A:0, A:1 and
- B:0, B:1).</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">I save the raw IQ data via Gnur=
-adio Companion in a file and I repeat the procedure several times, generati=
-ng several files. All the files are saved with the same USRP tuning (I don=
-=E2=80=99t stop or retune the signal/USRP between
- two acquisitions). Basically I just click on a <i>Save</i> QT GUI Check Bo=
-x in GRC many times which triggers a
-<i>File Sink</i> block and thus generates as many files.</span><u></u><u></=
-u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Then I want to re-plot the sign=
-als from the IQ data via Matlab, and my problem is that I get some differen=
-t phase shift between the signals. Please find attached a screenshot of 12 =
-identical acquisitions (12 successive
- clicks on <i>Save</i>). What is important to me is the phase shift between=
- the two signals, and I expected it to be identical in all cases (since all=
- the acquisitions are identical). It seems to be OK for almost all the acqu=
-isitions, except for the 8, 9 and
- 10, where the phase shift is different from all the others (and the three =
-of them look identical=E2=80=A6). I have perform this test several times an=
-d every time some random acquisitions are shifted from the others (sometime=
-s there are 2 or 3 different values of phase
- shift, it is not always 90=C2=B0 or else).</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">There is something I misunderst=
-ood or I do wrong but I can=E2=80=99t find what. I have read some people wi=
-th a similar issue discussing about the function
-<i>set_time_now()</i> but I don=E2=80=99t really know how to deal with it.<=
-/span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">To acquire the signal I am usin=
-g either <i>
-UHD: USRP Source</i> block with 4 channels or the <i>TwinRX USRP Source</i>=
- block. In the first case, LO parameters are the following:</span><u></u><u=
-></u></p>
-<p><u></u><span>-<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><span lang=3D"EN-GB">Ch0 Source Internal / export True=
-</span><u></u><u></u></p>
-<p><u></u><span>-<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><span lang=3D"EN-GB">Ch1 Source Companion / export Fal=
-se</span><u></u><u></u></p>
-<p><u></u><span>-<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><span lang=3D"EN-GB">Ch2 Source External / export Fals=
-e</span><u></u><u></u></p>
-<p><u></u><span>-<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><span lang=3D"EN-GB">Ch3 Source External / export Fals=
-e</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">I work on <i>Ubuntu</i> 18.04 (=
-I can=E2=80=99t change since some other activities rely on this computer).<=
-/span><u></u><u></u></p>
-<p><u></u><span>-<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><i><span lang=3D"EN-GB">GRC</span></i><span lang=3D"EN=
--GB"> 3.7.10.1 (minimum version required for
-<i>gr-doa</i> application)</span><u></u><u></u></p>
-<p><u></u><span>-<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><i><span lang=3D"EN-GB">UHD</span></i><span lang=3D"EN=
--GB"> 3.10.3.0 (with the v3.10.1.0 recommended for
-<i>gr-doa </i>application, my TwinRX were not detected (<i>Unknown</i>) via=
- <i>uhd_usrp_probe</i>)</span><u></u><u></u></p>
-<p><u></u><span>-<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><i><span lang=3D"EN-GB">gr-doa</span></i><span lang=3D=
-"EN-GB"> installed from source but all the make test have failed (I guess t=
-his is another topic since I don=E2=80=99t use
-<i>gr-doa</i> functions in my basic test presented above?). </span><u></u><=
-u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">I am quite a new comer to this =
-SDR world, thus any help would be much appreciated, thanks very much in adv=
-ance!</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Kind regards,</span><u></u><u><=
-/u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><b><span>Etienne VAILLANT</span></b><u></u><u></u></=
-p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:&quot;Time=
-s New Roman&quot;,serif"><u></u>=C2=A0<u></u></span></p>
-</blockquote>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><span style=3D"font-siz=
-e:12pt;font-family:&quot;Times New Roman&quot;,serif">Perhaps you could sha=
-re your GRC flow-graph with us?<br>
-<br>
-Also, there have been some phase-offset fixes in later versions of UHD, but=
- it&#39;s not clear at this point whether that applies in your case or not,=
-<br>
-=C2=A0 which is where having the GRC flow-graph to look at would be useful.=
-<br>
-<br>
-Cheers<u></u><u></u></span></p>
-</div>
-<pre>______________________________________________________________________=
-_____________________________________________________________
-
-This email and any attachments are confidential to the intended recipient a=
-nd may also be privileged.
-If you are not the intended recipient please delete it from your system and=
- notify the sender.=20
-You should not copy it or use it for any purpose nor disclose or distribute=
- its contents to any other person.
-=20
-
-Ce courriel et ses pieces-jointes sont envoyes de maniere confidentielle et=
- doivent etre traites avec attention.
-Si vous n&#39;etes pas le destinataire, merci de le detruire et d&#39;en in=
-former son auteur.=20
-Vous ne devez pas copier, utiliser, reveler ou diffuser son contenu a quico=
-nque.
-</pre></div>
+<div dir=3D"ltr">Hey Borja,<br><br>Is this still on your radar? I know that=
+ there have been a handful of timing fixes added to the 3.15-LTS branch of =
+UHD that might be worth trying out. It could also be an issue with the exam=
+ple - I&#39;m not sure I&#39;ve spent much time with ./test_clock_synch, bu=
+t I&#39;d be interested in testing this out if it&#39;s still an issue on t=
+he latest versions of UHD. <br><br>-Sam</div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 10, 2020 at 8:19 AM Borj=
+a I=C3=B1esta Hern=C3=A1ndez via USRP-users &lt;<a href=3D"mailto:usrp-user=
+s@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <p>Hey all,</p>
+    <p>Running the <a href=3D"https://github.com/Borjis131/USRP-tests/blob/=
+master/test_clock_synch_b210.cpp" target=3D"_blank">https://github.com/Borj=
+is131/USRP-tests/blob/master/test_clock_synch_b210.cpp</a>
+      example with two USRPs works. Even if I use get_time_now() instead
+      of get_time_last_pps(). So I don&#39;t know why the example shipped
+      with uhd doesn&#39;t work.</p>
+    <p>Thanks, Borja.<br>
+    </p>
+    <div>El 10/2/20 a las 13:44, Borja I=C3=B1esta
+      Hern=C3=A1ndez via USRP-users escribi=C3=B3:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <p>Hi all,</p>
+      <p>I just set up an Octoclock-G using the guide and now I can ping
+        my device. But checking the test_clock_sync example with my x310
+        USRP something seems to be working bad. I run ./test_clock_synch
+        --clock-args addr=3DCLOCK_ADDRESS --usrp-args serial=3DUSRP_SERIAL
+        and every time it has a 1 second offset between the USRP and the
+        Octoclock in all the comparisons. The clock in the USRP is
+        always one second delayed.<br>
+      </p>
+      <p>And in the test_clock_synch example changing: <b>(*times)[mboard]
+          =3D usrp-&gt;</b><b><span>get_time_now</span></b><b>(mboard)</b><=
+b>.</b><b><span>get_full_secs</span></b><b>();</b> <br>
+      </p>
+      <p>to: <b>(*times)[mboard] =3D usrp-&gt;</b><b><span>get_time_last_pp=
+s</span></b><b>(mboard).</b><b><span>get_full_secs</span></b><b>(); <br>
+        </b></p>
+      <p>Works every time. <br>
+      </p>
+      <p>So, does anyone know why my USRP is one second delayed when I
+        use get_time_now() even if its supossed to work? Can I assume
+        that my USRP is synchronized to the Octoclock when im using
+        get_time_last_pps()?</p>
+      <p>For my tests I have used this modified version of
+        test_clock_synch created to work with two USRPs but only using
+        it with one.
+        <a href=3D"https://github.com/Borjis131/USRP-tests/blob/master/test=
+_clock_synch_b210.cpp" target=3D"_blank">https://github.com/Borjis131/USRP-=
+tests/blob/master/test_clock_synch_b210.cpp</a>
+        the code is from Urban Hankansson thread
+        <a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.=
+com/2015-January/012227.html" target=3D"_blank">http://lists.ettus.com/pipe=
+rmail/usrp-users_lists.ettus.com/2015-January/012227.html</a></p>
+      <p>Thanks, Borja.<br>
+      </p>
+      <br>
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
+</pre>
+    </blockquote>
+  </div>
 
 _______________________________________________<br>
 USRP-users mailing list<br>
@@ -537,10 +248,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000317b4b059ffaedfd--
+--000000000000a5f463059ffb42fb--
 
 
---===============0770203414624170988==
+--===============6588788862063419086==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -551,5 +262,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0770203414624170988==--
+--===============6588788862063419086==--
 
