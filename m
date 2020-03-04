@@ -2,34 +2,44 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A6E179647
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Mar 2020 18:06:49 +0100 (CET)
-Received: from [::1] (port=55736 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F54C179677
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Mar 2020 18:14:42 +0100 (CET)
+Received: from [::1] (port=60816 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j9XTp-0002X7-Bs; Wed, 04 Mar 2020 12:06:45 -0500
-Received: from mout.gmx.net ([212.227.17.21]:59359)
+	id 1j9XbV-0003lA-Cv; Wed, 04 Mar 2020 12:14:41 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:42855)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1j9XTk-0002RZ-VR
- for usrp-users@lists.ettus.com; Wed, 04 Mar 2020 12:06:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1583341559;
- bh=Zl9dONF05Dh4DBDYyo/3KeObc2TJtkN0IqhGqtGPK3k=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=kEegvgWR4pBAIk/F/3wJDAjPPTUB5KxMQeXUsvaKIhetnJsJENYi+QbazXnHaf+PP
- xtPU73qqkCYmzojrPn97Q20Oq8rShT5EPiOKT3IHWcHPQ96v0ScvAzxJis5SETiz8O
- XaZBVsl+y1uQbsyaWFA7pkz7yQFS50aHducn2jt4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bs76.server.lan [172.19.170.224]) (via HTTP); Wed, 4 Mar 2020
- 18:05:59 +0100
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1j9XbR-0003b9-Ct
+ for usrp-users@lists.ettus.com; Wed, 04 Mar 2020 12:14:37 -0500
+Received: by mail-oi1-f180.google.com with SMTP id l12so2830095oil.9
+ for <usrp-users@lists.ettus.com>; Wed, 04 Mar 2020 09:14:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=iQow7sQxW5FgEcfhO8G3mWdn5PrGDaoxkgGxqVv0Djc=;
+ b=N2agdD2hhFJYZDRvDLsLc53KyLCRlvNteXt0+tWxbigPg3SDd9Cx2UnUNtc7WNx/dJ
+ kdwJvik8ZPEkEJR0DtESlzo4Bz/b58BRKNlFsTC2qTXn58eEMOF0Wu0eU0QAIphEckvV
+ DH1HQYXtCq1FmmXp39MIotobIo+5XUo1n1xyFvDOZw8KjWW4eSVO9PivF4C8xJoGfHYH
+ 30ZZnyJV2J81u1cBvH2r6Mi2aNnqG/InBtFJOBggNfFZFdT4BHd22KiZMFcgwZU1kKV8
+ x9QaN9FnBe+df1oMmE4aWmO/wiv7s0z564gE5+2cBLJkQvhWZ6qFX1hLMzcIk8pjpAOK
+ GIUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=iQow7sQxW5FgEcfhO8G3mWdn5PrGDaoxkgGxqVv0Djc=;
+ b=iiGoLa3pEEJYGrr29tK5GqBA053UOKuzTbjgRjaJbBScVl/Ln6t1OZqOfNSEzkGXo/
+ lxxQAIgSZbsguko8X2T7d8G8bi0FsgFfE4trXaMBbGNCnd+m1YMz7301UvqYlbBjo5/D
+ kIeWNiH7412Wkpfdl/LuoFmrrZI9LrDDitCdsEs9ceeeY8trtBrqZXrZoHUqwKhR62tW
+ dDswVOJS2Qx4Pgv4r4Egt1MD/MiSu7W24GyszFf3bKyrLuZ6+MPkeONvYpCx+hwOjT6g
+ Dvn4kQrDCpl/Nfnt9JV8lPnX9CNTxV2JGltMObNR5TDjzvHEGGyUxpg5HGoNPV0Jfihu
+ tQZg==
+X-Gm-Message-State: ANhLgQ0bBOwvFnZxbcVYbMINKBBkk+GsCLaqHe021clAD0I2kPl42eE/
+ 88g7cG3LO5Rlb4h/vX7Z6oK01EVFLzJefojNDvkDfQ==
+X-Google-Smtp-Source: ADFU+vv3H9EIrcsJaouDmdSszZmvHuuKlsxGBYUwGOyew3fphPzrM82PkJKqVd/n6Almr1n/AGAZMKJkjJHhCJXPMfo=
+X-Received: by 2002:aca:d694:: with SMTP id n142mr2419457oig.73.1583342036409; 
+ Wed, 04 Mar 2020 09:13:56 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-7389928b-dd10-4c8f-8360-db579e25a6ed-1583341559746@3c-app-gmx-bs76>
-To: "Rob Kossler" <rkossler@nd.edu>
-Date: Wed, 4 Mar 2020 18:05:59 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CAB__hTRSUQC8POObAroyx9j8s+GYZ0P-DF4O63i7Yrre6OyYkQ@mail.gmail.com>
 References: <trinity-6d081d85-efab-4ee6-9dfd-d15b3f6ff1b5-1583161440082@3c-app-gmx-bs64>
  <CAB__hTSgAJcWu=AwsRYs6HmGYMOqk1kAKC4fFgmVWVd8Fw0THQ@mail.gmail.com>
  <CANf970YbM=F5UBzKQsQ2jGH4X=BKScx1YbNJ=TFhEKfDg-XBww@mail.gmail.com>
@@ -39,25 +49,11 @@ References: <trinity-6d081d85-efab-4ee6-9dfd-d15b3f6ff1b5-1583161440082@3c-app-g
  <CANf970YD3OT81FT9jB5uSyGpWo7pQibuw65YT2BXhDg=bUR_bg@mail.gmail.com>
  <trinity-fe7ab6e0-b371-42cb-88b1-463ee693e2f2-1583265613551@3c-app-gmx-bap50>
  <CAB__hTRSUQC8POObAroyx9j8s+GYZ0P-DF4O63i7Yrre6OyYkQ@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:3OwG7QYxw5r0hMdK9JtGdfUU22R1bjE9MfNvx47cP4/gA0yB5YOdU4T16LQeXcA7EPMNJ
- mrhKLJ8WkUSB/L46Nmnpvv+0qYbB1zLYse3K+iH58dS7XCJWbMVwRYT8kyVJLOaAfNQR6qpDKsX0
- GFNAaKiqF1Hm9vgpDzBkcLhQwCqqtREqD2Se2HXIdzvKPiHyJjM3CRc1b1ct400mAIfbZYKhWZv7
- xTNaS2tkDjhwDHY311ahcNJEXDhkwmfqFNU4KkIZiESAdlIc9aHPTlK5/WhlzyQaN9b6ue/qImCv
- Hw=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:s2BeSnIvFkM=:c/WWebTL7rvjIW5zqtjLh/
- 3IwiDDz2olzCML9MxLRSxt37TBbh/VtUoO/552fdl1IazvQMGlJ19iVpVEDeh2p1Th8ejdCyH
- MUAd+YKEoOoxOVoYYzjrnXtPYvEOdLSMk302c3ppNk2uo1JZx3LplJmKp2joFsxwsjhPoYNi7
- 2874spYlSZMPGhQ9DR3wBbCTfavhphNqK98csRfMXbj2xTS2IMamM3UJs91SJ8RZWpFGwn2gU
- Gg9EYkryl93XymBfdDhXUkkMBCf2Cf/2XMy84fPDmeyY3PtAJYyoPAq+9DdaNLBysM8lF+IeS
- UcjzXm8v8AXSUnYDzWzOgiVmmTHN7n2KRK3Ii9febYIcQ9lms87j1v0SImRW+EHr0+QiwZM5t
- B2r34+WGKpzrgar/GbRI0y0L96QlPxZYNavrCoYh6ry/ZGe4e6tt/TfpagANxQ+wc+Ojo+ghh
- xH5bS4Aw45cHGAF8PlS9GfVtY5Nw1pt2FzUHZ5SJ6QItv9fdADJ6BH6IqAHgx+OFdkBDNldDl
- GjSE0BtJ6z+ePL/W30eEP9e8IUycL3JD1xNuUksJtxqphLa0GbmnG6AfeF7Qa16thT8aM07/F
- zc1Tw+zyeHcXaiBzrfpCh8TrRfaqqD4xZSoQqdOO0DjIIUhMtxpWxHK0DuZwmIwy82594uF9N
- f4gNwJjFxgxrOrz3+qtgrHLSE/paopONE7CPhMUZhityf/aFr2faY6jMbRAuV2ZiK1yI=
+ <trinity-7389928b-dd10-4c8f-8360-db579e25a6ed-1583341559746@3c-app-gmx-bs76>
+In-Reply-To: <trinity-7389928b-dd10-4c8f-8360-db579e25a6ed-1583341559746@3c-app-gmx-bs76>
+Date: Wed, 4 Mar 2020 12:13:45 -0500
+Message-ID: <CAB__hTSG1d_XEYv2WowP4zRoL7cqb94wirb5LRG1oGL7zMAh6g@mail.gmail.com>
+To: Lukas Haase <lukashaase@gmx.at>
 Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
  timed command
 X-BeenThere: usrp-users@lists.ettus.com
@@ -71,11 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8336550814382878247=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,339 +84,1167 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgUm9iLAoKMS4pIEkgZG8gbm90IHJlYWxseSB1bmRlcnN0YW5kIGhvdyAic2V0X3N0YXJ0X3Rp
-bWUiIGlzIHJlbGF0ZWQgdG8gbXkgcHJvYmxlbSBhbmQgd2h5IHRoaXMgaXMgd2hhdCBJIG5lZWQu
-IEJhc2VkIG9uIG15IGV4cGVyaW1lbnRzLCB0aGUgdGltZSBpcyBhdXRvbWF0aWNhbGx5IHNldCB0
-byAwIHdoZW4gdGhlIGZsb3cgZGlhZ3JhbSBzdGFydHMuCgpJIGFtIGFsc28gc3VyZSBvdGhlcnMg
-bXVzdCBoYXZlIHVzZWQgdGltZWQgVFgrUlggYnV0IGl0IGRvZXMgbm90IHNlZW0gc28uIE5vIGtp
-ZGRpbmcsIEkgYW0gd29ya2luZyBvbiB0aGlzIHNpbmNlIERlYyBhbmQgSSBzdGlsbCBkbyBub3Qg
-aGF2ZSBpdCB3b3JraW5nLiBJIGxlZnQgbXkgdHJhY2VzIHZhcmlvdXMgdGltZXMgb24gdGhpcyBh
-bmQgdGhlIGdudXJhZGlvIG1haWxpbmcgbGlzdCBidXQgSSBkaWQgbm90IGdldCBoZWxwLgoKMi4p
-IEkgaGF2ZSBwbGF5ZWQgYXJvdW5kIHVzaW5nIHN0cmVhbSB0YWdzIGFuZCB3YXMgdmVyeSBoYXBw
-eSB0aGF0IGl0IHdvcmtlZCBidXQgSSBmb3VuZCBub3cgdGhhdCB0aGlzIGlzIGJlY2F1c2UgZ3It
-dWhkIGRvZXMgTk9UIGF0dGFjaCBhIGNvbW1hbmQgdGltZSBhbHRob3VnaCB0aGUgZG9jdW1lbnRh
-dGlvbiBzYXlzIHNvLgoKaHR0cHM6Ly93d3cuZ251cmFkaW8ub3JnL2RvYy9kb3h5Z2VuL2NsYXNz
-Z3JfMV8xdWhkXzFfMXVzcnBfX3NpbmsuaHRtbDoKdHhfY29tbWFuZCB0YWcuIFRoZSBjb21tYW5k
-IGlzIGF0dGFjaGVkIHRvIGEgc2FtcGxlLCBhbmQgd2lsbCBleGVjdXRlZCBiZWZvcmUgdGhlIHNh
-bXBsZSBpcyB0cmFuc21pdHRlZCwgYW5kIGFmdGVyIHRoZSBwcmV2aW91cyBzYW1wbGUuCgpIb3dl
-dmVyLCBpbiB0aGUgY29kZSAodXNycF9zaW5rX2ltcGwuY2M6NDMzLCB1c3JwX3NpbmtfaW1wbDo6
-dGFnX3dvcmspOgoKICAgICAgICBlbHNlIGlmIChwbXQ6OmVxdWFsKGtleSwgQ09NTUFORF9LRVkp
-KSB7CiAgICAgICAgICAgIGlmIChteV90YWdfY291bnQgIT0gc2FtcDBfY291bnQpIHsKICAgICAg
-ICAgICAgICAgIG1heF9jb3VudCA9IG15X3RhZ19jb3VudDsKICAgICAgICAgICAgICAgIGJyZWFr
-OwogICAgICAgICAgICB9CiAgICAgICAgICAgIC8vIFRPRE8gc2V0IHRoZSBjb21tYW5kIHRpbWUg
-ZnJvbSB0aGUgc2FtcGxlIHRpbWUKICAgICAgICAgICAgbXNnX2hhbmRsZXJfY29tbWFuZCh2YWx1
-ZSk7CiAgICAgICAgfQoKMy4pIFNvIEkgYW0gcmVhbGx5IGJhY2sgdG8gdGhlIHN0YXJ0LiBXaGF0
-IGlzIGdlbmVyYWxseSBhIGJpdCBhbm5veWluZyBpcyB0aGF0IEkgaGF2ZSB0d28gb2JqZWN0cyBm
-b3IgdGhlIHNhbWUgZGV2aWNlICgqb25lKiBVU1JQIGFuZCAiVVNSUCBTb3VyY2UiKyJVU1JQIFNp
-bmsiLCBib3RoIHdpdGggdGhlaXIgaW5kZXBlbmRlbnQgdWhkOjp1c3JwOjptdWx0aV91c3JwIG9i
-amVjdHMuIE15IHF1ZXN0aW9uIGlzLCBpcyBpdCBwb3NzaWJsZSB0byBqdXN0IHVzZSAiVVNSUCBT
-b3VyY2UiICh0aGlzIGlzIHdoZXJlIHRpbWVkIGNvbW1hbmRzIHdvcmspIHRvIGV4ZWN1dGUgdGhl
-IHJldHVuaW5nIGZvciAqYm90aCogUlgrVFg/CgozLmEuKSBHaXZlbjogWDMxMCB3aXRoIDJ4VUJY
-LTE2MC4gV2hhdCBpcyB0aGUgc3ViZGV2IHNwZWMgaWYgSSB3YW50ZWQgdG8gcmVjZWl2ZSBvbiBh
-bGwgRk9VUiBpbnB1dHM/PwpUaGUgcHJvYmxlbSBpcyB0aGF0IGJvdGggUlggYW5kIFRYIGZyb250
-ZW5kcyBoYXZlIHRoZSBzYW1lIG5hbWUgIjAiIChhY2NvcmRpbmcgdG8gdWhkX3VzcnBfcHJvYmUp
-LgoKVHdvIHJlY2VpdmVycywgcmVjZWl2aW5nIGJvdGggZnJvbSAiVFgvUlgiIGlucHV0IG9mIGVh
-Y2ggVUJYLTE2MCB3b3VsZCBiZSB0cml2aWFsOiAiQTowIEI6MCIuIEhvd2V2ZXIsIGhvdyBkbyBJ
-IGFkZHJlc3MgIlJYMiI/IEludHVpdGl2ZWx5ICJBOjAgQToxIEI6MCBCOjEiIGJ1dCBhcyBzYWlk
-LCBib3RoICJUWC9SWCIgYW5kICJSWDIiIGFyZSBuYW1lZCAiMCIuCldoYXQgd291bGQgSSBkbyBp
-ZiBJIHdhbnRlZCB0byB0cmFuc21pdCBmcm9tICJUWC9SWCIgb2YgdGhlIHNlY29uZCBVQlggYW5k
-IHJlY2VpdmUgb24gYWxsIG90aGVyIGJvYXJkcz8KCk9uIHRoZSBVU1JQIFNpbms6ICJCOjAiCk9u
-IHRoZSBVU1AgU291cmNlIGludHVpdGl2ZWx5OiAiQTowIEE6MSBCOjEiIGJ1dCB0aGF0J3Mgd3Jv
-bmcuCgozLmIuKSBJbiBnciwgdGhlcmUgd2lsbCBiZSB0d28gbXVsdGlfdXNycCBvYmplY3RzOiBP
-bmUgZm9yIHRoZSByZWNlaXZlciAobWVtYmVyIHZhcmlhYmxlIG9mIFVTUlAgU291cmNlKSBhbmQg
-b25lIGZvciB0aGUgdHJhbnNtaXR0ZXIgKG1lbWJlciB2YXJpYWJsZSBvZiBVU1JQIFNpbmspLgpD
-YW4gSSBzZXQgdXAgYSBVU1JQIFNvdXJjZSB0aGF0IGhhcyB0d28gY2hhbm5lbHMgd2hlcmUgdGhl
-IHNlY29uZCBvbmUgaXMgYWN0dWFsbHkgYSBUWCBjaGFubmVsPyAob25seSB1c2VkIGZvciByZXR1
-bmluZyB2aWEgdGltZWQgY29tbWFuZHMpPwoKClRoYW5rcywKTHVrYXMKCgrCoArCoAoKR2VzZW5k
-ZXQ6wqBEaWVuc3RhZywgMDMuIE3DpHJ6IDIwMjAgdW0gMTU6MjIgVWhyClZvbjrCoCJSb2IgS29z
-c2xlciIgPHJrb3NzbGVyQG5kLmVkdT4KQW46wqAiTHVrYXMgSGFhc2UiIDxsdWthc2hhYXNlQGdt
-eC5hdD4KQ2M6wqAiU2FtIFJlaXRlciIgPHNhbS5yZWl0ZXJAZXR0dXMuY29tPiwgIlVTUlAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tIiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+CkJldHJlZmY6
-wqBSZTogW1VTUlAtdXNlcnNdIFVTUlAgWDMxMCBpZ25vcmVkIERTUCByZXR1bmluZyBvbiBUWCB3
-aGVuIHVzaW5nIGEgdGltZWQgY29tbWFuZAoKSSBkaWQgYSBxdWljayBnb29nbGUgc2VhcmNoIHVz
-aW5nICJnbnVyYWRpbyB1aGQgdGltZWQgdHggc3RyZWFtaW5nIi4gSSBmb3VuZCB0aGF0IHRoZSBH
-UiB1c3JwX3NpbmtbaHR0cHM6Ly93d3cuZ251cmFkaW8ub3JnL2RvYy9zcGhpbngtMy43LjcvdWhk
-Lmh0bWxdIGhhcyB0aGUgZnVuY3Rpb24gInNldF9zdGFydF90aW1lIiB3aGljaCBzZWVtcyB0byBi
-ZSB3aGF0IHlvdSBuZWVkLsKgIFRoZSBxdWVzdGlvbiBpczogd2hhdCB0aW1lIGRvIHlvdSBzZXQ/
-wqAgUHJvYmFibHkganVzdCBzb21ldGhpbmcgbGlrZSAiZ2V0X3RpbWVfbm93KCnCoCsgMC4xIi4g
-SXQgbWF5IGJlIGEgYml0IHRyaWNreSBzaW5jZSB0aGlzIHZhbHVlIGlzIHRvIGJlIHNldCBiZWZv
-cmUgc3RhcnRpbmcgdGhlIGZsb3cgZ3JhcGguwqAgTWF5YmUgeW91IGNvdWxkIHNldCBpdCB0byBz
-b21lIGZpeGVkIGNvbnN0YW50IGxpa2UgMC41IGFuZCB0aGVuIHdoZW4gdGhlIGZsb3cgZ3JhcGgg
-c3RhcnRzIHlvdSBjb3VsZCBleGVjdXRlIGEgY29tbWFuZCB0byBzZXRfdGltZV9ub3coKSB0byAw
-LjAuwqAgQW55d2F5LCBpZiB0aGlzIGFkdmljZSBkb2Vzbid0IHBhbiBvdXQsIHBlcmhhcHMganVz
-dCBzZWFyY2ggYXJvdW5kIGEgYml0IGluIEdSIGFyY2hpdmVzLsKgIEknbSBzdXJlIG90aGVycyBo
-YXZlIHN1Y2Nlc3NmdWxseSBzdHJlYW1lZCB3aXRoIHRpbWVkIFR4IGNvbW1hbmRzLgpSb2LCoAoK
-T24gVHVlLCBNYXIgMywgMjAyMCBhdCAzOjAwIFBNIEx1a2FzIEhhYXNlIDxsdWthc2hhYXNlQGdt
-eC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdPiB3cm90ZToKCkhpIFNhbSwgSGkgUm9iLAoK
-VGhpcyBtYWtlcyBzbyBtdWNoIHNlbnNlIQpJIHRoaW5rIHlvdSBhcmUgcmlnaHQuCkFuZCBpbmRl
-ZWQsIHRoZSBpc3N1ZSBJIGZvdW5kIG9ubHkgd2l0aCBUWCwgbm90IFJYLgoKCkNvdWxkIHlvdSB0
-aGluayBvZiBhIHBvc3NpYmxlIGhhY2sgc2VuZGluZyBhICJkdW1teSBjb21tYW5kIiB0byB0aGUg
-UkYgYm9hcmQgYWxvbmcgd2l0aCB0aGUgdGltZWQgdHVuaW5nIHJlcXVlc3Q/CgoKUmVnYXJkaW5n
-IHRoZSBzZW5kaW5nIG9mIHRpbWUgc3RhbXBzIGluIHRoZSBUWCBpbiBnci11aGQsIEkgYW0gY29u
-ZnVzZWQgdGhvdWdoLiBJIGRvIHRoaW5rIHRoaXMgSVMgaGFwcGVuaW5nLiBJIHJlcHJvZHVjZSB0
-aGUgd29yayBmdW5jdGlvbiBvZiAiVVNSUCBTaW5rIiBoZXJlOgoKaW50IHVzcnBfc2lua19pbXBs
-Ojp3b3JrKGludCBub3V0cHV0X2l0ZW1zLArCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoGdyX3ZlY3Rvcl9jb25zdF92b2lkX3N0YXImIGlucHV0X2l0ZW1zLArCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoGdyX3ZlY3Rvcl92b2lkX3N0YXImIG91dHB1dF9p
-dGVtcykKewrCoCDCoCBpbnQgbmlucHV0X2l0ZW1zID0gbm91dHB1dF9pdGVtczsgLy8gY3V6IGl0
-J3MgYSBzeW5jIGJsb2NrCgrCoCDCoCAvLyBkZWZhdWx0IHRvIHNlbmQgYSBtaWQtYnVyc3QgcGFj
-a2V0CsKgIMKgIF9tZXRhZGF0YS5zdGFydF9vZl9idXJzdCA9IGZhbHNlOwrCoCDCoCBfbWV0YWRh
-dGEuZW5kX29mX2J1cnN0ID0gZmFsc2U7CgrCoCDCoCAvLyBjb2xsZWN0IHRhZ3MgaW4gdGhpcyB3
-b3JrKCkKwqAgwqAgY29uc3QgdWludDY0X3Qgc2FtcDBfY291bnQgPSBuaXRlbXNfcmVhZCgwKTsK
-wqAgwqAgZ2V0X3RhZ3NfaW5fcmFuZ2UoX3RhZ3MsIDAsIHNhbXAwX2NvdW50LCBzYW1wMF9jb3Vu
-dCArIG5pbnB1dF9pdGVtcyk7CsKgIMKgIGlmIChub3QgX3RhZ3MuZW1wdHkoKSkKwqAgwqAgwqAg
-wqAgdGhpcy0+dGFnX3dvcmsobmlucHV0X2l0ZW1zKTsKCsKgIMKgIGlmIChub3QgcG10Ojppc19u
-dWxsKF9sZW5ndGhfdGFnX2tleSkpIHsKwqAgwqAgwqAgwqAgLy8gY2hlY2sgaWYgdGhlcmUgaXMg
-ZGF0YSBsZWZ0IHRvIHNlbmQgZnJvbSBhIGJ1cnN0IHRhZ2dlZCB3aXRoIGxlbmd0aF90YWcKwqAg
-wqAgwqAgwqAgLy8gSWYgYSBidXJzdCBpcyBzdGFydGVkIGR1cmluZyB0aGlzIGNhbGwgdG8gd29y
-aygpLCB0YWdfd29yaygpIHNob3VsZCBoYXZlCsKgIMKgIMKgIMKgIC8vIGJlZW4gY2FsbGVkIGFu
-ZCB3ZSBzaG91bGQgaGF2ZSBfbml0ZW1zX3RvX3NlbmQgPiAwLgrCoCDCoCDCoCDCoCBpZiAoX25p
-dGVtc190b19zZW5kID4gMCkgewrCoCDCoCDCoCDCoCDCoCDCoCBuaW5wdXRfaXRlbXMgPSBzdGQ6
-Om1pbjxsb25nPihfbml0ZW1zX3RvX3NlbmQsIG5pbnB1dF9pdGVtcyk7CsKgIMKgIMKgIMKgIMKg
-IMKgIC8vIGlmIHdlIHJ1biBvdXQgb2YgaXRlbXMgdG8gc2VuZCwgaXQncyB0aGUgZW5kIG9mIHRo
-ZSBidXJzdArCoCDCoCDCoCDCoCDCoCDCoCBpZiAoX25pdGVtc190b19zZW5kIC0gbG9uZyhuaW5w
-dXRfaXRlbXMpID09IDApCsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIF9tZXRhZGF0YS5lbmRfb2Zf
-YnVyc3QgPSB0cnVlOwrCoCDCoCDCoCDCoCB9IGVsc2UgewrCoCDCoCDCoCDCoCDCoCDCoCAvLyBU
-aGVyZSBpcyBhIHRhZyBnYXAgc2luY2Ugbm8gbGVuZ3RoX3RhZyB3YXMgZm91bmQgaW1tZWRpYXRl
-bHkgZm9sbG93aW5nCsKgIMKgIMKgIMKgIMKgIMKgIC8vIHRoZSBsYXN0IHNhbXBsZSBvZiB0aGUg
-cHJldmlvdXMgYnVyc3QuIERyb3Agc2FtcGxlcyB1bnRpbCB0aGUgbmV4dArCoCDCoCDCoCDCoCDC
-oCDCoCAvLyBsZW5ndGhfdGFnIGlzIGZvdW5kLiBOb3RpZnkgdGhlIHVzZXIgb2YgdGhlIHRhZyBn
-YXAuCsKgIMKgIMKgIMKgIMKgIMKgIHN0ZDo6Y2VyciA8PCAidEciIDw8IHN0ZDo6Zmx1c2g7CsKg
-IMKgIMKgIMKgIMKgIMKgIC8vIGluY3JlbWVudCB0aGUgdGltZXNwZWMgYnkgdGhlIG51bWJlciBv
-ZiBzYW1wbGVzIGRyb3BwZWQKwqAgwqAgwqAgwqAgwqAgwqAgX21ldGFkYXRhLnRpbWVfc3BlYyAr
-PSA6OnVoZDo6dGltZV9zcGVjX3QoMCwgbmlucHV0X2l0ZW1zLCBfc2FtcGxlX3JhdGUpOwrCoCDC
-oCDCoCDCoCDCoCDCoCByZXR1cm4gbmlucHV0X2l0ZW1zOwrCoCDCoCDCoCDCoCB9CsKgIMKgIH0K
-CsKgIMKgIGJvb3N0Ojp0aGlzX3RocmVhZDo6ZGlzYWJsZV9pbnRlcnJ1cHRpb24gZGlzYWJsZV9p
-bnRlcnJ1cHQ7CiNpZmRlZiBHUl9VSERfVVNFX1NUUkVBTV9BUEkKwqAgwqAgLy8gc2VuZCBhbGwg
-bmlucHV0X2l0ZW1zIHdpdGggbWV0YWRhdGEKwqAgwqAgY29uc3Qgc2l6ZV90IG51bV9zZW50ID0g
-X3R4X3N0cmVhbS0+c2VuZChpbnB1dF9pdGVtcywgbmlucHV0X2l0ZW1zLCBfbWV0YWRhdGEsIDEu
-MCk7CiNlbHNlCsKgIMKgIGNvbnN0IHNpemVfdCBudW1fc2VudCA9IF9kZXYtPmdldF9kZXZpY2Uo
-KS0+c2VuZChpbnB1dF9pdGVtcywKwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBuaW5wdXRfaXRlbXMs
-CsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgX21ldGFkYXRhLArCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCpfdHlwZSwKwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA6OnVoZDo6ZGV2aWNlOjpTRU5EX01PREVf
-RlVMTF9CVUZGLArCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDEuMCk7CiNlbmRpZgrCoCDCoCBib29z
-dDo6dGhpc190aHJlYWQ6OnJlc3RvcmVfaW50ZXJydXB0aW9uIHJlc3RvcmVfaW50ZXJydXB0KGRp
-c2FibGVfaW50ZXJydXB0KTsKCsKgIMKgIC8vIGlmIHVzaW5nIGxlbmd0aF90YWdzLCBkZWNyZW1l
-bnQgaXRlbXMgbGVmdCB0byBzZW5kIGJ5IHRoZSBudW1iZXIgb2Ygc2FtcGxlcyBzZW50CsKgIMKg
-IGlmIChub3QgcG10Ojppc19udWxsKF9sZW5ndGhfdGFnX2tleSkgJiYgX25pdGVtc190b19zZW5k
-ID4gMCkgewrCoCDCoCDCoCDCoCBfbml0ZW1zX3RvX3NlbmQgLT0gbG9uZyhudW1fc2VudCk7CsKg
-IMKgIH0KCsKgIMKgIC8vIGluY3JlbWVudCB0aGUgdGltZXNwZWMgYnkgdGhlIG51bWJlciBvZiBz
-YW1wbGVzIHNlbnQKwqAgwqAgX21ldGFkYXRhLnRpbWVfc3BlYyArPSA6OnVoZDo6dGltZV9zcGVj
-X3QoMCwgbnVtX3NlbnQsIF9zYW1wbGVfcmF0ZSk7CgrCoCDCoCAvLyBTb21lIHBvc3QtcHJvY2Vz
-c2luZyB0YXNrcyBpZiB3ZSBhY3R1YWxseSB0cmFuc21pdHRlZCB0aGUgZW50aXJlIGJ1cnN0CsKg
-IMKgIGlmIChub3QgX3BlbmRpbmdfY21kcy5lbXB0eSgpICYmIG51bV9zZW50ID09IHNpemVfdChu
-aW5wdXRfaXRlbXMpKSB7CsKgIMKgIMKgIMKgIEdSX0xPR19ERUJVRyhkX2RlYnVnX2xvZ2dlciwK
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBib29zdDo6Zm9ybWF0KCJFeGVjdXRpbmcg
-JWQgcGVuZGluZyBjb21tYW5kcy4iKSAlCsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgX3BlbmRpbmdfY21kcy5zaXplKCkpOwrCoCDCoCDCoCDCoCBCT09TVF9GT1JFQUNIIChj
-b25zdCBwbXQ6OnBtdF90JiBjbWRfcG10LCBfcGVuZGluZ19jbWRzKSB7CsKgIMKgIMKgIMKgIMKg
-IMKgIG1zZ19oYW5kbGVyX2NvbW1hbmQoY21kX3BtdCk7CsKgIMKgIMKgIMKgIH0KwqAgwqAgwqAg
-wqAgX3BlbmRpbmdfY21kcy5jbGVhcigpOwrCoCDCoCB9CgrCoCDCoCByZXR1cm4gbnVtX3NlbnQ7
-Cn0KCkZyb20gdGhpcyBjb2RlLCBpdCBjYW4gYmUgc2VlbiB0aGF0IHRoZSBkYXRhIGlzIHRyYW5z
-bWl0dGVkIGluY2x1ZGluZyBfbWV0YWRhdGE6Cgpjb25zdCBzaXplX3QgbnVtX3NlbnQgPSBfdHhf
-c3RyZWFtLT5zZW5kKGlucHV0X2l0ZW1zLCBuaW5wdXRfaXRlbXMsIF9tZXRhZGF0YSwgMS4wKTsK
-ClRoZSAidGltZV9zcGVjIiBpcyB1cGRhdGVkIGZvciBlYWNoIGJsb2NrIHRoYXQgaXMgc2VudCBv
-dXQ6CgpfbWV0YWRhdGEudGltZV9zcGVjICs9IDo6dWhkOjp0aW1lX3NwZWNfdCgwLCBudW1fc2Vu
-dCwgX3NhbXBsZV9yYXRlKTsKCk5vdyB5b3UgbWVudGlvbmVkICJoYXNfdGltZV9zcGVjIiBiZWxv
-dy4gSSBleHRlbmRlZCB0byBjb2RlIGluIHRoZSBmb2xsb3dpbmcgd2F5OgoKwqAgwqAgLy8gaW5j
-cmVtZW50IHRoZSB0aW1lc3BlYyBieSB0aGUgbnVtYmVyIG9mIHNhbXBsZXMgc2VudArCoCDCoCBf
-bWV0YWRhdGEudGltZV9zcGVjICs9IDo6dWhkOjp0aW1lX3NwZWNfdCgwLCBudW1fc2VudCwgX3Nh
-bXBsZV9yYXRlKTsKwqAgwqAgR1JfTE9HX0RFQlVHKGRfZGVidWdfbG9nZ2VyLCBib29zdDo6Zm9y
-bWF0KCJTZXR0aW5nIG1ldGFkYXRhIHRpbWVfc3BlYzogJWQ6JWYiKSAlIF9tZXRhZGF0YS50aW1l
-X3NwZWMuZ2V0X2Z1bGxfc2VjcygpICUgX21ldGFkYXRhLnRpbWVfc3BlYy5nZXRfZnJhY19zZWNz
-KCkpOwrCoCDCoCBfbWV0YWRhdGEuaGFzX3RpbWVfc3BlYyA9IHRydWU7CgoKVG8gbXkgdW5kZXJz
-dGFuZGluZywgZ3ItdWhkIG5vdyBwYXNzZXMgdGhlIGNvcnJlY3QgdGltZXN0YW1wcyBvbiB0byBV
-SEQuCkhvd2V2ZXIsIHRoZSB0aW1lZCBjb21tYW5kIGlzIHN0aWxsIGlnbm9yZWQuCgoKVGhhbmtz
-LApMdWthcwoKClBTOiBJIHdpbGwgYXR0ZW1wdCB0byB1c2UgdGhlIHRhZ2dlZCBzdHJlYW0gLi4u
-IGJ1dCB0aGVuIEkgd2lsbCBoYXZlIHRoZSBpc3N1ZSB0aGF0IEkgbmVlZCB0byB0dW5lIFRYICpw
-bHVzKiBSWCBhdCB0aGUgc2FtZSB0aW1lISBGdXJ0aGVybW9yZSwgdGhlIHN0cmVhbWluZyB0YWdz
-IEFQSSBpcyBzdXBlciBydWRpbWVudGFyeS4gQWxzbywgc2tpbW1pbmcgdGhlIHNvdXJjZSBjb2Rl
-IGZvciB0aGUgdGFnIHByb2Nlc3NpbmcsIEkgYW0gbm90IHN1cmUgaWYgdGhpcyB3b3VsZCBjaGFu
-Z2UgYW55dGhpbmcuCgoKCgrCoArCoArCoAoKR2VzZW5kZXQ6wqBEaWVuc3RhZywgMDMuIE3DpHJ6
-IDIwMjAgdW0gMTM6MjUgVWhyClZvbjrCoCJTYW0gUmVpdGVyIiA8c2FtLnJlaXRlckBldHR1cy5j
-b21bbWFpbHRvOnNhbS5yZWl0ZXJAZXR0dXMuY29tXT4KQW46wqAiUm9iIEtvc3NsZXIiIDxya29z
-c2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV0+CkNjOsKgIkx1a2FzIEhhYXNlIiA8
-bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XT4sICJVU1JQLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dIiA8dXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-XT4KQmV0cmVmZjrCoFJlOiBbVVNSUC11c2Vyc10gVVNSUCBYMzEwIGlnbm9yZWQgRFNQIHJldHVu
-aW5nIG9uIFRYIHdoZW4gdXNpbmcgYSB0aW1lZCBjb21tYW5kCgpFdmVyeXRoaW5nIFJvYiBpcyBz
-YXlpbmcgaXMgZGVhZCBvbiAtIHRoZSAic2Vuc2Ugb2YgdGltZSIgZm9yIHRoZSByYWRpbyBpcyBh
-IDY0LWJpdCBjb3VudGVyIHdpdGhpbiB0aGUgcmFkaW8gY29yZSB0aGF0IG90aGVyIGJsb2NrcyAo
-bGlrZSB0aGUgRERDIGFuZCBEVUMpIGRvbid0IGhhdmUgYWNjZXNzIHRvLiBUaG9zZSBibG9ja3Mg
-bmVlZCB0byBkZXJpdmUgYSBzZW5zZSBvZiB0aW1lIGZyb20gdGhlIHRpbWVzdGFtcHMgb2YgQ0hE
-UiBwYWNrZXRzIHBhc3NpbmcgdGhyb3VnaCB0aGVtLiBJIGp1c3Qgd3JhcHBlZCB1cCBhIG5ldyBh
-cHAgbm90ZSB0aGF0IGNvdmVycyB0aGlzIChhbW9uZyBvdGhlciBzeW5jaHJvbml6YXRpb24tcmVs
-YXRlZCB0b3BpY3MpOgrCoApodHRwczovL2tiLmV0dHVzLmNvbS9TeW5jaHJvbml6aW5nX1VTUlBf
-RXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRCNDbG9ja2luZ19hbmRfVGltZWtlZXBp
-bmdfaW5fdGhlX1VTUlBbaHR0cHM6Ly9rYi5ldHR1cy5jb20vU3luY2hyb25pemluZ19VU1JQX0V2
-ZW50c19Vc2luZ19UaW1lZF9Db21tYW5kc19pbl9VSEQjQ2xvY2tpbmdfYW5kX1RpbWVrZWVwaW5n
-X2luX3RoZV9VU1JQXQrCoApMdWthcywgSSB3b3VsZCBkb3VidCB0aGF0IHRoaXMgaXMgYW4gdW5k
-aXNjb3ZlcmVkIGJ1ZyBhcyBtdWNoIGFzIGl0IGlzIGFuIGlzc3VlIHdpdGggaW1wbGVtZW50YXRp
-b24uIElmIHRoaXMgd2VyZSBpbiBDKyssIHlvdSdkIHdhbnQgdG8gc2V0IHRoZSAnaGFzX3RpbWVf
-c3BlYycgYW5kICd0aW1lX3NwZWMnIGZpZWxkcyBvZiB5b3VyIFRYIG1ldGFkYXRhIGZvciBhdCBs
-ZWFzdCAxIHBhY2tldCB0byBpbXBhcnQgYSBzZW5zZSBvZiB0aW1lIG9uIHRoZSBEVUM6CsKgCmh0
-dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9zdHJ1Y3R1aGRfMV8xdHhfX21ldGFkYXRhX190
-Lmh0bWxbaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3N0cnVjdHVoZF8xXzF0eF9fbWV0
-YWRhdGFfX3QuaHRtbF1baHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3N0cnVjdHVoZF8x
-XzF0eF9fbWV0YWRhdGFfX3QuaHRtbCU1Qmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9z
-dHJ1Y3R1aGRfMV8xdHhfX21ldGFkYXRhX190Lmh0bWwlNURdCsKgCkkganVzdCBzcG9rZSB3aXRo
-IHNvbWVvbmUgb24gbXkgZW5kIHdobyBzYWlkIHlvdSBuZWVkIHRvIHVzZSBzdHJlYW0gdGFncyB0
-byBkbyB0aGlzLCBidXQgYWdhaW4sIEkgZG9uJ3QgY3VycmVudGx5IGhhdmUgbXVjaCBkaXJlY3Rp
-b24gZm9yIGhvdyB0aGF0IHdvdWxkIGJlIGltcGxlbWVudGVkIGluIHlvdXIgY29kZS4KwqAKClNh
-bSBSZWl0ZXLCoMKgCgpPbiBUdWUsIE1hciAzLCAyMDIwIGF0IDExOjQ4IEFNIFJvYiBLb3NzbGVy
-IDxya29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1bbWFpbHRvOnJrb3NzbGVy
-QG5kLmVkdVttYWlsdG86cmtvc3NsZXJAbmQuZWR1XV0+IHdyb3RlOgpBbHNvLCBub3RlIHRoYXQg
-dGhlcmUgaXMgbm8gY29ycmVzcG9uZGluZyBpc3N1ZSBvbiByZWNlaXZlIGJlY2F1c2UgdGhlIFJ4
-IHJhZGlvIGFsd2F5cyBpbnNlcnRzIHRoZSB0aW1lIHN0YW1wwqBpbiB0aGUgc2FtcGxlIHN0cmVh
-bS4gU28sIEkgZ3Vlc3MgeW91IHdvdWxkIG5vdCBzZWUgdGhpcyB3aXRoIHRoZSBEREMuClJvYsKg
-CgpPbiBUdWUsIE1hciAzLCAyMDIwIGF0IDEyOjQzIFBNIFJvYiBLb3NzbGVyIDxya29zc2xlckBu
-ZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1bbWFpbHRvOnJrb3NzbGVyQG5kLmVkdVttYWls
-dG86cmtvc3NsZXJAbmQuZWR1XV0+IHdyb3RlOgoKSGkgTHVrYXMsClRoZSBGUEdBIGltYWdlIG9u
-IHRoZSBVU1JQIGlzIGRpdmlkZWQgaW50byBibG9ja3Mgc3VjaCBhcyB0aGUgRFVDIGJsb2NrIGFu
-ZCB0aGUgUmFkaW8gYmxvY2suwqAgVGhlIGxhdHRlciBjb250cm9scyB0aGUgUkYgZGF1Z2h0ZXJi
-b2FyZCBhbmQgaGFzIGFjY2VzcyB0byB0aGUgZGV2aWNlIGNsb2NrLsKgIFNvLCB3aGVuIHlvdSBw
-cm92aWRlIGEgdGltZWQgY29tbWFuZCB0byB0aGUgUmFkaW8gYmxvY2sgKHN1Y2ggYXMgZm9yIHR1
-bmluZyB0aGUgUkYpIGl0IGNhbiBpbXBsZW1lbnQgdGhlIGNvbW1hbmQgYXQgdGhlIHNwZWNpZmll
-ZCB0aW1lIGJ5IGNvbXBhcmluZyB0byB0aGUgZGV2aWNlIGNsb2NrLsKgIFRoZSBEVUMgYmxvY2sg
-ZG9lcyBub3QgaGF2ZSBhY2Nlc3MgdG8gdGhlIE1CIGNsb2NrIGFuZCBzbyB3aGVuIHlvdSBnaXZl
-IGl0IGEgdGltZWQgY29tbWFuZCwgaXQgbW9uaXRvcnMgdGhlIGluY29taW5nIHNhbXBsZSBzdHJl
-YW0gdG8gZXh0cmFjdCB0aGUgdGltZS4gSWYgdGhlIHNhbXBsZSBzdHJlYW0gZG9lcyBub3QgaW5j
-bHVkZSBhIHRpbWUgc3RhbXAsIHRoZSBjb21tYW5kIG5ldmVyIGV4ZWN1dGVzLsKgIERvbid0IHRo
-aW5rIG9mIHRoaXMgYXMgYSBidWcsIGJ1dCByYXRoZXIgYXMgYSBkZXNpZ24gbGltaXRhdGlvbi4K
-wqAKV2hlbiBJIHdvcmsgZGlyZWN0bHkgd2l0aCBVSEQgZnJvbSBDKyssIEkgdXNlIHRoZSBmdW5j
-dGlvbiByeF9zdHJlYW1lcjo6aXNzdWVfc3RyZWFtX2NvbW1hbmQoKSB3aGljaCBoYXMgb3B0aW9u
-cyB0byBzdHJlYW0gZGF0YSB3aXRoIG5vIHRpbWUgc3RhbXAgb3Igd2l0aCBhIHRpbWUgc3RhbXAu
-wqAgV2hlbiB1c2luZyB0aW1lZCBjb21tYW5kcyB3aXRoIERVQyBvciBEREMsIEkgbXVzdCBpbmNs
-dWRlIHRoZSB0aW1lIHN0YW1wIG9yIGVsc2UgdGhlIGNvbW1hbmQgd2lsbCBuZXZlciBiZSBleGVj
-dXRlZC7CoCBCdXQsIHdpdGggR1IsIEkgZG9uJ3Qga25vdyBob3cgdG8gc3BlY2lmeSB0aGUgY29y
-cmVzcG9uZGluZyBvcHRpb25zLgpSb2LCoAoKT24gVHVlLCBNYXIgMywgMjAyMCBhdCAxMjoyOSBQ
-TSBMdWthcyBIYWFzZSA8bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0
-XVttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XV0+IHdy
-b3RlOkhpIFNhbSwgSGkgUm9iLAoKVGhhbmtzIGZvciBmb2xsb3dpbmcgdXAgb24gdGhpcyEKSSBh
-bSB2ZXJ5IGhhcHB5IHlvdSB3ZXJlIGFibGUgdG8gcmVwcm9kdWNlIHRoaXMgLi4uIHdoaWNoIG1l
-YW5zIHRoYXQgYXQgbGVhc3QgYW4gaXNzdWUgZXhpc3RzIDopCgpXaGF0IFNhbSBzdWdnZXN0cyBt
-YWtlcyBzZW5zZSBldmVuIHRob3VnaCBoYXJkIHRvIGJlbGlldmUgZm9yIG1lOgoKMS4gSG93IGNv
-dWxkIHNvbWV0aGluZyBsaWtlIHRoYXQgZ28gdW5ub3RpY2VkIGZvciBzbyBsb25nPyAoSSBhbSBz
-dXJlIEkgYW0gbm90IHRoZSBmaXJzdCBwZXJmb3JtaW5nIGRpZ2l0YWwgdHVuaW5nKQoyLiBJbiB0
-aGUgcGFzdCBJIGdvdCBzdWNjZXNzZnVsIHBoYXNlIGNvaGVyZW5jZSB1c2luZyBhdXRvbWF0aWMg
-dHVuaW5nIChwYXNzaW5nIGNlbnRlciBmcmVxdWVuY3kgKyBvZmZzZXQgdG8gdHVuZV9yZXF1ZXN0
-X3QgYW5kIHVzaW5nIGludGVnZXItTiB0dW5pbmcpIHVzaW5nIHRpbWVkIGNvbW1hbmRzLiBUaGlz
-IGRpZCBub3Qgd29yayByZWxpYWJseSBhbmQgb25seSBmb3IgY2VydGFpbiBmcmVxdWVuY2llcyBi
-dXQgaW4gbXkgb3BpbmlvbiB0aGlzIHNob3VsZCBoYXZlIElOQ0xVREVEIHRoZSBEVUMgdHVuaW5n
-LiBJZiB0aGUgRFVDIHJldHVuZSB3b3VsZG4ndCBoYXZlIGJlZW4gZXhlY3V0ZWQgYXMgcGFydCBv
-ZiB0aGlzIGF1dG9tYXRpYyB0dW5pbmcsIEkgY291bGQgbm90IGhhdmUgZ290dGVuIHBoYXNlIGNv
-aGVyZW5jZSAoYW5kIGFjdHVhbGx5LCBub3QgZXZlbiB0aGUgZGVzaXJlZCBmcmVxdWVuY3kpLgoK
-VGhlIHJlYXNvbiB3aHkgSSBhbSBvbmx5IGRvaW5nIERVQyB0dW5pbmcgbm93IGlzIHRvIGF2b2lk
-IGFsbCB0aGUgaGFzc2xlIHdpdGggaW50ZWdlci1OIHR1bmluZywgUExMIHJldHVuaW5nIGFuZCBz
-ZXR0bGluZyB0aW1lLgoKU2FtLCB3aGF0IGlzIHRoZSAicmFkaW8gYmxvY2siIHlvdSB3ZXJlIHRh
-bGtpbmcgYWJvdXQ/CgpBbnl3YXksIHdvdWxkIGl0IGJlIHdvcnRod2lsZSB0byBhdHRlbXB0IGRl
-YnVnZ2luZyB0aGlzIGlzIGFic2VuY2Ugb2YgZ3I/ClRoZSBvbmx5IHJlYXNvbiB0aGlzIHByZXZl
-bnRlZCBtZSBmcm9tIGRvaW5nIGlzIHRoYXQgSSB3b3VsZCBuZWVkIHRvIG1hbnVhbGx5IGNyZWF0
-ZSB0aGUgYmFzZWJhbmQgc2FtcGxlcyBhbmQgY29udGludW91c2x5IHN0cmVhbSB0aGVtIG91dCB3
-aGlsZSBpbiBwYXJhbGxlbCBkbyB0aGUgcmV0dW5pbmcuCkkgYW0gbm90IHRvbyBmYW1pbGlhciB3
-aXRoIFVIRCBvbiBpdHMgb3duIGJ1dCBJIGFzc3VtZSB0aGlzIHdvdWxkIGJlIHZlcnkgY29tcGxp
-Y2F0ZWQsIHJlcXVpcmUgbXVsdGl0aHJlYWRpbmcgZXRjLgpEbyB5b3UgaGF2ZSBhbnkgZGVtbyBj
-b2RlIHRoYXQgY291bGQgYmUgZWFzaWx5IG1vZGlmaWVkIGZvciB0aGlzIHNjZW5hcmlvPwoKQmVz
-dCwKTHVrYXMKCgpHZXNlbmRldDrCoERpZW5zdGFnLCAwMy4gTcOkcnogMjAyMCB1bSAxMjowOCBV
-aHIKVm9uOsKgIlNhbSBSZWl0ZXIiIDxzYW0ucmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJl
-aXRlckBldHR1cy5jb21dW21haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJl
-aXRlckBldHR1cy5jb21dXT4KQW46wqAiUm9iIEtvc3NsZXIiIDxya29zc2xlckBuZC5lZHVbbWFp
-bHRvOnJrb3NzbGVyQG5kLmVkdV1bbWFpbHRvOnJrb3NzbGVyQG5kLmVkdVttYWlsdG86cmtvc3Ns
-ZXJAbmQuZWR1XV0+CkNjOsKgIkx1a2FzIEhhYXNlIiA8bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRv
-Omx1a2FzaGFhc2VAZ214LmF0XVttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2Fz
-aGFhc2VAZ214LmF0XV0+LCAiVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOlVTUlAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21b
-bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV0iIDx1c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzp1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXT4K
-QmV0cmVmZjrCoFJlOiBbVVNSUC11c2Vyc10gVVNSUCBYMzEwIGlnbm9yZWQgRFNQIHJldHVuaW5n
-IG9uIFRYIHdoZW4gdXNpbmcgYSB0aW1lZCBjb21tYW5kCgpGb3Igd2hhdCBpdCdzIHdvcnRoLCBJ
-IHdhcyBhYmxlIHRvIHJlcHJvZHVjZSB0aGUgYmVoYXZpb3IgZGVzY3JpYmVkIGhlcmUsIGJ1dCBk
-aWRuJ3QgZ2V0IHRvIGRpZyBpbnRvIGl0IG11Y2guIE15IGxlYWRpbmcgc3VzcGljaW9uIHdvdWxk
-IGJlIHdoYXQgUm9iIG1lbnRpb25lZCBhYm91dCB0aW1lc3RhbXBpbmcuIEx1a2FzJyBjb2RlIHNl
-dHMgYSBjb21tYW5kIHRpbWUsIGJ1dCBJJ20gbm90IGNsZWFyIG9uIGhvdyB0aW1lc3RhbXAgbWV0
-YWRhdGEgZm9yIHBhY2tldHMgYmVpbmcgc2VudCB0byB0aGUgcmFkaW8gYXJlIGhhbmRsZWQuIE1p
-Z2h0IGJlIGEgZ29vZCBxdWVzdGlvbiB0byBsb29wIHRoZSBkaXNjdXNzLWdudXJhZGlvIG1haWxp
-bmcgbGlzdCBpbiBvbj8KCsKgCgpTYW0gUmVpdGVywqDCoAoKT24gVHVlLCBNYXIgMywgMjAyMCBh
-dCAxMDo1OSBBTSBSb2IgS29zc2xlciB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86dXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV1b
-bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dXT4gd3JvdGU6Ckkgd29uZGVyIGlmIHRoZSBpc3N1ZSBp
-cyByZWxhdGVkIHRvIGEgbWlzc2luZyB0aW1lIHN0YW1wIG9uIHRoZSBiYXNlYmFuZCBzYW1wbGVz
-IGdvaW5nIGZyb20gR1IgdG8gVUhELsKgIElmIHRoZSBzdHJlYW0gZG9lcyBub3QgaGF2ZSBhIHRp
-bWUgc3RhbXAsIHRoZSBEVUMgaXMgdW5hYmxlIHRvIGFwcGx5IHRoZSB0aW1lZCBjb21tYW5kIGJl
-Y2F1c2UgdGhlIERVQyBkb2VzIG5vdCByZWFsbHkga25vdyB0aGUgdGltZSAtIGl0IG11c3QgcHVs
-bCB0aGUgdGltZSBmcm9tIHRoZSBzdHJlYW1pbmcgc2FtcGxlcy4gVGhpcyBpcyBpbiBjb250cmFz
-dCB0byB0aGUgcmFkaW8gYmxvY2sgd2hpY2ggZG9lcyBoYXZlIGFjY2VzcyB0byB0aW1lIGFuZCBj
-YW4gYXBwbHkgdGltZWQgY29tbWFuZHMgYnkgcmVmZXJyaW5nIHRvIHRoZSBtb3RoZXJib2FyZCBj
-bG9jay4KwqAKSSBhbSBub3QgdG9vIGZhbWlsaWFyIHdpdGggR1Igc28gSSdtIG5vdCBzdXJlIGhv
-dyB0byBrbm93IGlmIEdSIGlzIHB1dHRpbmcgYSB0aW1lIHN0YW1wIG9uIHRoZSBzdHJlYW1pbmcg
-c2FtcGxlcy4KUm9iwqAKCk9uIE1vbiwgTWFyIDIsIDIwMjAgYXQgMTA6MDQgQU0gTHVrYXMgSGFh
-c2UgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-W21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzp1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzp1
-c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b21dXV0+IHdyb3RlOkhpIE1hcmN1cywKClRoYW5rIHlvdSB0aGF0IHdvdWxkIGJlIGFtYXppbmch
-CgpJIGZvbGxvd2VkIHRoZSB0dXRvcmlhbCBhbmQgYnVpbHQgZXZlcnl0aGluZyBmcm9tIHNvdXJj
-ZToKCiQgbHNiX3JlbGVhc2UgLWEKTm8gTFNCIG1vZHVsZXMgYXJlIGF2YWlsYWJsZS4KRGlzdHJp
-YnV0b3IgSUQ6IFVidW50dQpEZXNjcmlwdGlvbjrCoCDCoCBVYnVudHUgMTguMDQuNCBMVFMKUmVs
-ZWFzZTrCoCDCoCDCoCDCoCAxOC4wNApDb2RlbmFtZTrCoCDCoCDCoCDCoGJpb25pYwokIHVuYW1l
-IC1hCkxpbnV4IHNkciA1LjMuMC00MC1nZW5lcmljICMzMn4xOC4wNC4xLVVidW50dSBTTVAgTW9u
-IEZlYiAzIDE0OjA1OjU5IFVUQyAyMDIwIHg4Nl82NCB4ODZfNjQgeDg2XzY0IEdOVS9MaW51eAok
-IGNkIHVoZAokIGdpdCBzdGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My4xNS4wLjAKJCBjZCAuLi9n
-bnVyYWRpbwokIGdpdCBzdGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My43LjE0LjAKCgpUaGFuayB5
-b3UhCgpMdWthcwoKCgpQUzogRm9yIHNvbWUgcmVhc29uIEkgc29tZXRpbWVzIGRvIG5vdCBnZXQg
-cmVzcG9uc2VzIGZyb20gdGhpcyBsaXN0LiBJIGp1c3Qgc2F3IGl0IGxvb2tpbmcgYXQgdGhlIG1h
-aWxtYW4gYXJjaGl2ZXMuIEhlbmNlIEkgY2Fubm90IHJlc3BvbmQgKHRvIGtlZXAgaGVhZGVycyBp
-bnRhY3QpIGJ1dCBuZWVkIHRvIGNyZWF0ZSBhIG5ldyBtZXNzYWdlIGFuZCBtYW51YWxseSAicXVv
-dGUiLiBJIGhvcGUgdGhhdCBzdGlsbCBwcmVzZXJ2ZXMgdGhlIGNvbnRleHQgc29tZWhvdy4KCgoK
-TWFyY3VzIExlZWNoIHdyb3RlOgo+IE9uIDAyLzI4LzIwMjAgMDE6MDEgUE0sIEx1a2FzIEhhYXNl
-IHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+PiBIaSBhZ2FpbiwKPj4KPj4gSSBjcmVhdGVkIGEgbWlu
-aW11bSBleGFtcGxlIChnbnVyYWRpbykgdGhhdCBzaG93cyB0aGUgaXNzdWUgZGVzY3JpYmVkIGJl
-bG93Lgo+PiBUbyBzdW1tYXJpemU6IFJldHVuaW5nIHRvIGEgZGlmZmVyZW50IGRzcCBmcmVxdWVu
-Y3kgb24gYW4gVVNSUCBYMzEwICgrVUJYMTYwKSBkb2VzIG5vdCB3b3JrIChjb21tYW5kIGlnbm9y
-ZWQpIE9OTFkgaWYgYSB0aW1lZCBjb21tYW5kIChpbiBmdXR1cmUgaXMgdXNlZCkuCj4+IFRoZSBj
-b2RlIHNob3dzIGl0IGluIGEgc2ltcGxlIG1hbm5lci4gQ29tbWVudGluZyBvdXQgdGhlIHNpbmds
-ZSBsaW5lIHdpdGggc2V0X2NvbW1hbmRfdGltZSBtYWtlcyB0aGUgZXhhbXBsZSB3b3JrLgo+Pgo+
-PiBJIGFtIGFic29sdXRlbHkgb3V0IG9mIGlkZWFzIGFuZCB3b3VsZCBhcHByZWNpYXRlIGFueSBp
-bnB1dCEKPj4KPj4gQmVzdCwKPj4gTHVrYXMKPiBMdWthcy4KPgo+IFRoYW5rcyBmb3Igc3RpY2tp
-bmcgd2l0aCB0aGlzLsKgIEknbGwgaGF2ZSBhIGRpc2N1c3Npb24gd2l0aCBFdHR1cyBSJkQgdG8K
-PiBzZWUgaWYgdGhpcyBpcyBhIGtub3duIGlzc3VlIGFuZC9vciBpZiB0aGVyZSdzIGEgd29ya2Fy
-b3VuZC4KPgo+IFJlbWluZCBtZSB3aGljaCB2ZXJzaW9uIG9mIFVIRCB5b3UncmUgdXNpbmc/CgoK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21h
-aWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQ
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21d
-XV0KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
-dHMuZXR0dXMuY29tX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KVVNSUC11c2Vyc1todHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
-cC11c2Vyc19saXN0cy5ldHR1cy5jb21fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX1VTUlAtdXNlcnNdW2h0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
-aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fVVNSUC11c2VycyU1Qmh0dHA6Ly9saXN0cy5ldHR1cy5j
-b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fVVNSUC11c2VycyU1RF0gbWFpbGlu
-ZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQ
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXV0KaHR0cDov
-L2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMu
-Y29tW2h0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
-c3RzLmV0dHVzLmNvbV1baHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
-cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tJTVCaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
-L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tJTVEXQoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
-VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
-L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============8336550814382878247==
+Content-Type: multipart/alternative; boundary="000000000000a39cb705a00a8ba0"
+
+--000000000000a39cb705a00a8ba0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Lukas,
+Let me respond to #1 right away.  The "set_start_time" function sets the
+time of the tx stream.  It does not set the "clock time" on the usrp.  If
+you are indeed correct that the "clock time" on the usrp is initialized to
+0.0 at the start of the GR run, then you are lucky and all you should need
+to do is use the "set_start_time" function with a time spec of something
+like 0.2 or 0.5 (any time after 0.0 with perhaps a little delay built in).
+To see if it is working, you could set the time spec to something very
+large like 5.0 or 10.0 and then you should see the GR run start up but no
+Tx for the next 5 or 10 seconds.  Then the Tx should start.  Does that make
+sense?
+Rob
+
+
+On Wed, Mar 4, 2020 at 12:06 PM Lukas Haase <lukashaase@gmx.at> wrote:
+
+> Hi Rob,
+>
+> 1.) I do not really understand how "set_start_time" is related to my
+> problem and why this is what I need. Based on my experiments, the time is
+> automatically set to 0 when the flow diagram starts.
+>
+> I am also sure others must have used timed TX+RX but it does not seem so.
+> No kidding, I am working on this since Dec and I still do not have it
+> working. I left my traces various times on this and the gnuradio mailing
+> list but I did not get help.
+>
+> 2.) I have played around using stream tags and was very happy that it
+> worked but I found now that this is because gr-uhd does NOT attach a
+> command time although the documentation says so.
+>
+> https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.html:
+> tx_command tag. The command is attached to a sample, and will executed
+> before the sample is transmitted, and after the previous sample.
+>
+> However, in the code (usrp_sink_impl.cc:433, usrp_sink_impl::tag_work):
+>
+>         else if (pmt::equal(key, COMMAND_KEY)) {
+>             if (my_tag_count !=3D samp0_count) {
+>                 max_count =3D my_tag_count;
+>                 break;
+>             }
+>             // TODO set the command time from the sample time
+>             msg_handler_command(value);
+>         }
+>
+> 3.) So I am really back to the start. What is generally a bit annoying is
+> that I have two objects for the same device (*one* USRP and "USRP
+> Source"+"USRP Sink", both with their independent uhd::usrp::multi_usrp
+> objects. My question is, is it possible to just use "USRP Source" (this i=
+s
+> where timed commands work) to execute the retuning for *both* RX+TX?
+>
+> 3.a.) Given: X310 with 2xUBX-160. What is the subdev spec if I wanted to
+> receive on all FOUR inputs??
+> The problem is that both RX and TX frontends have the same name "0"
+> (according to uhd_usrp_probe).
+>
+> Two receivers, receiving both from "TX/RX" input of each UBX-160 would be
+> trivial: "A:0 B:0". However, how do I address "RX2"? Intuitively "A:0 A:1
+> B:0 B:1" but as said, both "TX/RX" and "RX2" are named "0".
+> What would I do if I wanted to transmit from "TX/RX" of the second UBX an=
+d
+> receive on all other boards?
+>
+> On the USRP Sink: "B:0"
+> On the USP Source intuitively: "A:0 A:1 B:1" but that's wrong.
+>
+> 3.b.) In gr, there will be two multi_usrp objects: One for the receiver
+> (member variable of USRP Source) and one for the transmitter (member
+> variable of USRP Sink).
+> Can I set up a USRP Source that has two channels where the second one is
+> actually a TX channel? (only used for retuning via timed commands)?
+>
+>
+> Thanks,
+> Lukas
+>
+>
+>
+>
+>
+> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 15:22 Uhr
+> Von: "Rob Kossler" <rkossler@nd.edu>
+> An: "Lukas Haase" <lukashaase@gmx.at>
+> Cc: "Sam Reiter" <sam.reiter@ettus.com>, "USRP-users@lists.ettus.com" <
+> usrp-users@lists.ettus.com>
+> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using
+> a timed command
+>
+> I did a quick google search using "gnuradio uhd timed tx streaming". I
+> found that the GR usrp_sink[
+> https://www.gnuradio.org/doc/sphinx-3.7.7/uhd.html] has the function
+> "set_start_time" which seems to be what you need.  The question is: what
+> time do you set?  Probably just something like "get_time_now() + 0.1". It
+> may be a bit tricky since this value is to be set before starting the flo=
+w
+> graph.  Maybe you could set it to some fixed constant like 0.5 and then
+> when the flow graph starts you could execute a command to set_time_now() =
+to
+> 0.0.  Anyway, if this advice doesn't pan out, perhaps just search around =
+a
+> bit in GR archives.  I'm sure others have successfully streamed with time=
+d
+> Tx commands.
+> Rob
+>
+> On Tue, Mar 3, 2020 at 3:00 PM Lukas Haase <lukashaase@gmx.at[mailto:
+> lukashaase@gmx.at]> wrote:
+>
+> Hi Sam, Hi Rob,
+>
+> This makes so much sense!
+> I think you are right.
+> And indeed, the issue I found only with TX, not RX.
+>
+>
+> Could you think of a possible hack sending a "dummy command" to the RF
+> board along with the timed tuning request?
+>
+>
+> Regarding the sending of time stamps in the TX in gr-uhd, I am confused
+> though. I do think this IS happening. I reproduce the work function of
+> "USRP Sink" here:
+>
+> int usrp_sink_impl::work(int noutput_items,
+>                          gr_vector_const_void_star& input_items,
+>                          gr_vector_void_star& output_items)
+> {
+>     int ninput_items =3D noutput_items; // cuz it's a sync block
+>
+>     // default to send a mid-burst packet
+>     _metadata.start_of_burst =3D false;
+>     _metadata.end_of_burst =3D false;
+>
+>     // collect tags in this work()
+>     const uint64_t samp0_count =3D nitems_read(0);
+>     get_tags_in_range(_tags, 0, samp0_count, samp0_count + ninput_items);
+>     if (not _tags.empty())
+>         this->tag_work(ninput_items);
+>
+>     if (not pmt::is_null(_length_tag_key)) {
+>         // check if there is data left to send from a burst tagged with
+> length_tag
+>         // If a burst is started during this call to work(), tag_work()
+> should have
+>         // been called and we should have _nitems_to_send > 0.
+>         if (_nitems_to_send > 0) {
+>             ninput_items =3D std::min<long>(_nitems_to_send, ninput_items=
+);
+>             // if we run out of items to send, it's the end of the burst
+>             if (_nitems_to_send - long(ninput_items) =3D=3D 0)
+>                 _metadata.end_of_burst =3D true;
+>         } else {
+>             // There is a tag gap since no length_tag was found
+> immediately following
+>             // the last sample of the previous burst. Drop samples until
+> the next
+>             // length_tag is found. Notify the user of the tag gap.
+>             std::cerr << "tG" << std::flush;
+>             // increment the timespec by the number of samples dropped
+>             _metadata.time_spec +=3D ::uhd::time_spec_t(0, ninput_items,
+> _sample_rate);
+>             return ninput_items;
+>         }
+>     }
+>
+>     boost::this_thread::disable_interruption disable_interrupt;
+> #ifdef GR_UHD_USE_STREAM_API
+>     // send all ninput_items with metadata
+>     const size_t num_sent =3D _tx_stream->send(input_items, ninput_items,
+> _metadata, 1.0);
+> #else
+>     const size_t num_sent =3D _dev->get_device()->send(input_items,
+>                                                      ninput_items,
+>                                                      _metadata,
+>                                                      *_type,
+>
+>  ::uhd::device::SEND_MODE_FULL_BUFF,
+>                                                      1.0);
+> #endif
+>     boost::this_thread::restore_interruption
+> restore_interrupt(disable_interrupt);
+>
+>     // if using length_tags, decrement items left to send by the number o=
+f
+> samples sent
+>     if (not pmt::is_null(_length_tag_key) && _nitems_to_send > 0) {
+>         _nitems_to_send -=3D long(num_sent);
+>     }
+>
+>     // increment the timespec by the number of samples sent
+>     _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate=
+);
+>
+>     // Some post-processing tasks if we actually transmitted the entire
+> burst
+>     if (not _pending_cmds.empty() && num_sent =3D=3D size_t(ninput_items)=
+) {
+>         GR_LOG_DEBUG(d_debug_logger,
+>                      boost::format("Executing %d pending commands.") %
+>                          _pending_cmds.size());
+>         BOOST_FOREACH (const pmt::pmt_t& cmd_pmt, _pending_cmds) {
+>             msg_handler_command(cmd_pmt);
+>         }
+>         _pending_cmds.clear();
+>     }
+>
+>     return num_sent;
+> }
+>
+> From this code, it can be seen that the data is transmitted including
+> _metadata:
+>
+> const size_t num_sent =3D _tx_stream->send(input_items, ninput_items,
+> _metadata, 1.0);
+>
+> The "time_spec" is updated for each block that is sent out:
+>
+> _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate);
+>
+> Now you mentioned "has_time_spec" below. I extended to code in the
+> following way:
+>
+>     // increment the timespec by the number of samples sent
+>     _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate=
+);
+>     GR_LOG_DEBUG(d_debug_logger, boost::format("Setting metadata
+> time_spec: %d:%f") % _metadata.time_spec.get_full_secs() %
+> _metadata.time_spec.get_frac_secs());
+>     _metadata.has_time_spec =3D true;
+>
+>
+> To my understanding, gr-uhd now passes the correct timestamps on to UHD.
+> However, the timed command is still ignored.
+>
+>
+> Thanks,
+> Lukas
+>
+>
+> PS: I will attempt to use the tagged stream ... but then I will have the
+> issue that I need to tune TX *plus* RX at the same time! Furthermore, the
+> streaming tags API is super rudimentary. Also, skimming the source code f=
+or
+> the tag processing, I am not sure if this would change anything.
+>
+>
+>
+>
+>
+>
+>
+>
+> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 13:25 Uhr
+> Von: "Sam Reiter" <sam.reiter@ettus.com[mailto:sam.reiter@ettus.com]>
+> An: "Rob Kossler" <rkossler@nd.edu[mailto:rkossler@nd.edu]>
+> Cc: "Lukas Haase" <lukashaase@gmx.at[mailto:lukashaase@gmx.at]>, "
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]" <
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]>
+> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using
+> a timed command
+>
+> Everything Rob is saying is dead on - the "sense of time" for the radio i=
+s
+> a 64-bit counter within the radio core that other blocks (like the DDC an=
+d
+> DUC) don't have access to. Those blocks need to derive a sense of time fr=
+om
+> the timestamps of CHDR packets passing through them. I just wrapped up a
+> new app note that covers this (among other synchronization-related topics=
+):
+>
+>
+> https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UH=
+D#Clocking_and_Timekeeping_in_the_USRP[https://kb.ettus.com/Synchronizing_U=
+SRP_Events_Using_Timed_Commands_in_UHD#Clocking_and_Timekeeping_in_the_USRP=
+]
+>
+> Lukas, I would doubt that this is an undiscovered bug as much as it is an
+> issue with implementation. If this were in C++, you'd want to set the
+> 'has_time_spec' and 'time_spec' fields of your TX metadata for at least 1
+> packet to impart a sense of time on the DUC:
+>
+>
+> https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html[https://=
+files.ettus.com/manual/structuhd_1_1tx__metadata__t.html][https://files.ett=
+us.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ettus.com/m=
+anual/structuhd_1_1tx__metadata__t.html%5D]
+> <https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps=
+://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5D%5Bhttps://fi=
+les.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ettu=
+s.com/manual/structuhd_1_1tx__metadata__t.html%5D%5D>
+>
+> I just spoke with someone on my end who said you need to use stream tags
+> to do this, but again, I don't currently have much direction for how that
+> would be implemented in your code.
+>
+>
+> Sam Reiter
+>
+> On Tue, Mar 3, 2020 at 11:48 AM Rob Kossler <rkossler@nd.edu[mailto:
+> rkossler@nd.edu][mailto:rkossler@nd.edu[mailto:rkossler@nd.edu]]> wrote:
+> Also, note that there is no corresponding issue on receive because the Rx
+> radio always inserts the time stamp in the sample stream. So, I guess you
+> would not see this with the DDC.
+> Rob
+>
+> On Tue, Mar 3, 2020 at 12:43 PM Rob Kossler <rkossler@nd.edu[mailto:
+> rkossler@nd.edu][mailto:rkossler@nd.edu[mailto:rkossler@nd.edu]]> wrote:
+>
+> Hi Lukas,
+> The FPGA image on the USRP is divided into blocks such as the DUC block
+> and the Radio block.  The latter controls the RF daughterboard and has
+> access to the device clock.  So, when you provide a timed command to the
+> Radio block (such as for tuning the RF) it can implement the command at t=
+he
+> specified time by comparing to the device clock.  The DUC block does not
+> have access to the MB clock and so when you give it a timed command, it
+> monitors the incoming sample stream to extract the time. If the sample
+> stream does not include a time stamp, the command never executes.  Don't
+> think of this as a bug, but rather as a design limitation.
+>
+> When I work directly with UHD from C++, I use the function
+> rx_streamer::issue_stream_command() which has options to stream data with
+> no time stamp or with a time stamp.  When using timed commands with DUC o=
+r
+> DDC, I must include the time stamp or else the command will never be
+> executed.  But, with GR, I don't know how to specify the corresponding
+> options.
+> Rob
+>
+> On Tue, Mar 3, 2020 at 12:29 PM Lukas Haase <lukashaase@gmx.at[mailto:
+> lukashaase@gmx.at][mailto:lukashaase@gmx.at[mailto:lukashaase@gmx.at]]>
+> wrote:Hi Sam, Hi Rob,
+>
+> Thanks for following up on this!
+> I am very happy you were able to reproduce this ... which means that at
+> least an issue exists :)
+>
+> What Sam suggests makes sense even though hard to believe for me:
+>
+> 1. How could something like that go unnoticed for so long? (I am sure I a=
+m
+> not the first performing digital tuning)
+> 2. In the past I got successful phase coherence using automatic tuning
+> (passing center frequency + offset to tune_request_t and using integer-N
+> tuning) using timed commands. This did not work reliably and only for
+> certain frequencies but in my opinion this should have INCLUDED the DUC
+> tuning. If the DUC retune wouldn't have been executed as part of this
+> automatic tuning, I could not have gotten phase coherence (and actually,
+> not even the desired frequency).
+>
+> The reason why I am only doing DUC tuning now is to avoid all the hassle
+> with integer-N tuning, PLL retuning and settling time.
+>
+> Sam, what is the "radio block" you were talking about?
+>
+> Anyway, would it be worthwile to attempt debugging this is absence of gr?
+> The only reason this prevented me from doing is that I would need to
+> manually create the baseband samples and continuously stream them out whi=
+le
+> in parallel do the retuning.
+> I am not too familiar with UHD on its own but I assume this would be very
+> complicated, require multithreading etc.
+> Do you have any demo code that could be easily modified for this scenario=
+?
+>
+> Best,
+> Lukas
+>
+>
+> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 12:08 Uhr
+> Von: "Sam Reiter" <sam.reiter@ettus.com[mailto:sam.reiter@ettus.com
+> ][mailto:sam.reiter@ettus.com[mailto:sam.reiter@ettus.com]]>
+> An: "Rob Kossler" <rkossler@nd.edu[mailto:rkossler@nd.edu][mailto:
+> rkossler@nd.edu[mailto:rkossler@nd.edu]]>
+> Cc: "Lukas Haase" <lukashaase@gmx.at[mailto:lukashaase@gmx.at][mailto:
+> lukashaase@gmx.at[mailto:lukashaase@gmx.at]]>, "USRP-users@lists.ettus.co=
+m
+> [mailto:USRP-users@lists.ettus.com][mailto:USRP-users@lists.ettus.com
+> [mailto:USRP-users@lists.ettus.com]]" <usrp-users@lists.ettus.com[mailto:
+> usrp-users@lists.ettus.com][mailto:usrp-users@lists.ettus.com[mailto:
+> usrp-users@lists.ettus.com]]>
+> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using
+> a timed command
+>
+> For what it's worth, I was able to reproduce the behavior described here,
+> but didn't get to dig into it much. My leading suspicion would be what Ro=
+b
+> mentioned about timestamping. Lukas' code sets a command time, but I'm no=
+t
+> clear on how timestamp metadata for packets being sent to the radio are
+> handled. Might be a good question to loop the discuss-gnuradio mailing li=
+st
+> in on?
+>
+>
+>
+> Sam Reiter
+>
+> On Tue, Mar 3, 2020 at 10:59 AM Rob Kossler via USRP-users <
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]][mailto:
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]]]> wrote:
+> I wonder if the issue is related to a missing time stamp on the baseband
+> samples going from GR to UHD.  If the stream does not have a time stamp,
+> the DUC is unable to apply the timed command because the DUC does not
+> really know the time - it must pull the time from the streaming samples.
+> This is in contrast to the radio block which does have access to time and
+> can apply timed commands by referring to the motherboard clock.
+>
+> I am not too familiar with GR so I'm not sure how to know if GR is puttin=
+g
+> a time stamp on the streaming samples.
+> Rob
+>
+> On Mon, Mar 2, 2020 at 10:04 AM Lukas Haase via USRP-users <
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]][mailto:
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]]]> wrote:Hi
+> Marcus,
+>
+> Thank you that would be amazing!
+>
+> I followed the tutorial and built everything from source:
+>
+> $ lsb_release -a
+> No LSB modules are available.
+> Distributor ID: Ubuntu
+> Description:    Ubuntu 18.04.4 LTS
+> Release:        18.04
+> Codename:       bionic
+> $ uname -a
+> Linux sdr 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UTC
+> 2020 x86_64 x86_64 x86_64 GNU/Linux
+> $ cd uhd
+> $ git status
+> HEAD detached at v3.15.0.0
+> $ cd ../gnuradio
+> $ git status
+> HEAD detached at v3.7.14.0
+>
+>
+> Thank you!
+>
+> Lukas
+>
+>
+>
+> PS: For some reason I sometimes do not get responses from this list. I
+> just saw it looking at the mailman archives. Hence I cannot respond (to
+> keep headers intact) but need to create a new message and manually "quote=
+".
+> I hope that still preserves the context somehow.
+>
+>
+>
+> Marcus Leech wrote:
+> > On 02/28/2020 01:01 PM, Lukas Haase via USRP-users wrote:
+> >> Hi again,
+> >>
+> >> I created a minimum example (gnuradio) that shows the issue described
+> below.
+> >> To summarize: Retuning to a different dsp frequency on an USRP X310
+> (+UBX160) does not work (command ignored) ONLY if a timed command (in
+> future is used).
+> >> The code shows it in a simple manner. Commenting out the single line
+> with set_command_time makes the example work.
+> >>
+> >> I am absolutely out of ideas and would appreciate any input!
+> >>
+> >> Best,
+> >> Lukas
+> > Lukas.
+> >
+> > Thanks for sticking with this.  I'll have a discussion with Ettus R&D t=
+o
+> > see if this is a known issue and/or if there's a workaround.
+> >
+> > Remind me which version of UHD you're using?
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]][mailto:
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]]]
+>
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_______=
+________________________________________
+>
+> USRP-users[http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus=
+.com_______________________________________________USRP-users][http://lists=
+.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_____________________=
+__________________________USRP-users%5Bhttp://lists.ettus.com/mailman/listi=
+nfo/usrp-users_lists.ettus.com_____________________________________________=
+__USRP-users%5D]
+> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com______=
+_________________________________________USRP-users%5Bhttp://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com______________________________=
+_________________USRP-users%5D%5Bhttp://lists.ettus.com/mailman/listinfo/us=
+rp-users_lists.ettus.com_______________________________________________USRP=
+-users%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
+_______________________________________________USRP-users%5D%5D>
+> mailing list
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]][mailto:
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]]]
+>
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com[http:/=
+/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com][http://lists.=
+ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettus.=
+com/mailman/listinfo/usrp-users_lists.ettus.com%5D]
+> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhtt=
+p://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%5Bhttp:/=
+/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lists=
+.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%5D>
+>
+
+--000000000000a39cb705a00a8ba0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Lukas,</div><div>Let me respond to #1 right away.=
+=C2=A0 The &quot;set_start_time&quot; function sets the time of the tx stre=
+am.=C2=A0 It does not set the &quot;clock time&quot; on the usrp.=C2=A0 If =
+you are indeed correct that the &quot;clock time&quot; on the usrp is initi=
+alized to 0.0 at the start of the GR run, then you are lucky and all you sh=
+ould need to do is use the &quot;set_start_time&quot; function with a time =
+spec of something like 0.2 or 0.5 (any time after 0.0 with perhaps a little=
+ delay built in).=C2=A0 To see if it is working, you could set the time spe=
+c to something very large like 5.0 or 10.0 and then you should see the GR r=
+un start up but no Tx for the next 5 or 10 seconds.=C2=A0 Then the Tx shoul=
+d start.=C2=A0 Does that make sense?</div><div>Rob</div><div><br></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Ma=
+r 4, 2020 at 12:06 PM Lukas Haase &lt;<a href=3D"mailto:lukashaase@gmx.at">=
+lukashaase@gmx.at</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">Hi Rob,<br>
+<br>
+1.) I do not really understand how &quot;set_start_time&quot; is related to=
+ my problem and why this is what I need. Based on my experiments, the time =
+is automatically set to 0 when the flow diagram starts.<br>
+<br>
+I am also sure others must have used timed TX+RX but it does not seem so. N=
+o kidding, I am working on this since Dec and I still do not have it workin=
+g. I left my traces various times on this and the gnuradio mailing list but=
+ I did not get help.<br>
+<br>
+2.) I have played around using stream tags and was very happy that it worke=
+d but I found now that this is because gr-uhd does NOT attach a command tim=
+e although the documentation says so.<br>
+<br>
+<a href=3D"https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sin=
+k.html" rel=3D"noreferrer" target=3D"_blank">https://www.gnuradio.org/doc/d=
+oxygen/classgr_1_1uhd_1_1usrp__sink.html</a>:<br>
+tx_command tag. The command is attached to a sample, and will executed befo=
+re the sample is transmitted, and after the previous sample.<br>
+<br>
+However, in the code (usrp_sink_impl.cc:433, usrp_sink_impl::tag_work):<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 else if (pmt::equal(key, COMMAND_KEY)) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (my_tag_count !=3D samp0_count=
+) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 max_count =3D my_ta=
+g_count;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // TODO set the command time from=
+ the sample time<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 msg_handler_command(value);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
+3.) So I am really back to the start. What is generally a bit annoying is t=
+hat I have two objects for the same device (*one* USRP and &quot;USRP Sourc=
+e&quot;+&quot;USRP Sink&quot;, both with their independent uhd::usrp::multi=
+_usrp objects. My question is, is it possible to just use &quot;USRP Source=
+&quot; (this is where timed commands work) to execute the retuning for *bot=
+h* RX+TX?<br>
+<br>
+3.a.) Given: X310 with 2xUBX-160. What is the subdev spec if I wanted to re=
+ceive on all FOUR inputs??<br>
+The problem is that both RX and TX frontends have the same name &quot;0&quo=
+t; (according to uhd_usrp_probe).<br>
+<br>
+Two receivers, receiving both from &quot;TX/RX&quot; input of each UBX-160 =
+would be trivial: &quot;A:0 B:0&quot;. However, how do I address &quot;RX2&=
+quot;? Intuitively &quot;A:0 A:1 B:0 B:1&quot; but as said, both &quot;TX/R=
+X&quot; and &quot;RX2&quot; are named &quot;0&quot;.<br>
+What would I do if I wanted to transmit from &quot;TX/RX&quot; of the secon=
+d UBX and receive on all other boards?<br>
+<br>
+On the USRP Sink: &quot;B:0&quot;<br>
+On the USP Source intuitively: &quot;A:0 A:1 B:1&quot; but that&#39;s wrong=
+.<br>
+<br>
+3.b.) In gr, there will be two multi_usrp objects: One for the receiver (me=
+mber variable of USRP Source) and one for the transmitter (member variable =
+of USRP Sink).<br>
+Can I set up a USRP Source that has two channels where the second one is ac=
+tually a TX channel? (only used for retuning via timed commands)?<br>
+<br>
+<br>
+Thanks,<br>
+Lukas<br>
+<br>
+<br>
+=C2=A0<br>
+=C2=A0<br>
+<br>
+Gesendet:=C2=A0Dienstag, 03. M=C3=A4rz 2020 um 15:22 Uhr<br>
+Von:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" ta=
+rget=3D"_blank">rkossler@nd.edu</a>&gt;<br>
+An:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
+arget=3D"_blank">lukashaase@gmx.at</a>&gt;<br>
+Cc:=C2=A0&quot;Sam Reiter&quot; &lt;<a href=3D"mailto:sam.reiter@ettus.com"=
+ target=3D"_blank">sam.reiter@ettus.com</a>&gt;, &quot;<a href=3D"mailto:US=
+RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&=
+quot; &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">u=
+srp-users@lists.ettus.com</a>&gt;<br>
+Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
+ing a timed command<br>
+<br>
+I did a quick google search using &quot;gnuradio uhd timed tx streaming&quo=
+t;. I found that the GR usrp_sink[<a href=3D"https://www.gnuradio.org/doc/s=
+phinx-3.7.7/uhd.html" rel=3D"noreferrer" target=3D"_blank">https://www.gnur=
+adio.org/doc/sphinx-3.7.7/uhd.html</a>] has the function &quot;set_start_ti=
+me&quot; which seems to be what you need.=C2=A0 The question is: what time =
+do you set?=C2=A0 Probably just something like &quot;get_time_now()=C2=A0+ =
+0.1&quot;. It may be a bit tricky since this value is to be set before star=
+ting the flow graph.=C2=A0 Maybe you could set it to some fixed constant li=
+ke 0.5 and then when the flow graph starts you could execute a command to s=
+et_time_now() to 0.0.=C2=A0 Anyway, if this advice doesn&#39;t pan out, per=
+haps just search around a bit in GR archives.=C2=A0 I&#39;m sure others hav=
+e successfully streamed with timed Tx commands.<br>
+Rob=C2=A0<br>
+<br>
+On Tue, Mar 3, 2020 at 3:00 PM Lukas Haase &lt;<a href=3D"mailto:lukashaase=
+@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:l=
+ukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt; wrote:<br>
+<br>
+Hi Sam, Hi Rob,<br>
+<br>
+This makes so much sense!<br>
+I think you are right.<br>
+And indeed, the issue I found only with TX, not RX.<br>
+<br>
+<br>
+Could you think of a possible hack sending a &quot;dummy command&quot; to t=
+he RF board along with the timed tuning request?<br>
+<br>
+<br>
+Regarding the sending of time stamps in the TX in gr-uhd, I am confused tho=
+ugh. I do think this IS happening. I reproduce the work function of &quot;U=
+SRP Sink&quot; here:<br>
+<br>
+int usrp_sink_impl::work(int noutput_items,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0gr_vector_const_void_star&amp; input_items,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0gr_vector_void_star&amp; output_items)<br>
+{<br>
+=C2=A0 =C2=A0 int ninput_items =3D noutput_items; // cuz it&#39;s a sync bl=
+ock<br>
+<br>
+=C2=A0 =C2=A0 // default to send a mid-burst packet<br>
+=C2=A0 =C2=A0 _metadata.start_of_burst =3D false;<br>
+=C2=A0 =C2=A0 _metadata.end_of_burst =3D false;<br>
+<br>
+=C2=A0 =C2=A0 // collect tags in this work()<br>
+=C2=A0 =C2=A0 const uint64_t samp0_count =3D nitems_read(0);<br>
+=C2=A0 =C2=A0 get_tags_in_range(_tags, 0, samp0_count, samp0_count + ninput=
+_items);<br>
+=C2=A0 =C2=A0 if (not _tags.empty())<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 this-&gt;tag_work(ninput_items);<br>
+<br>
+=C2=A0 =C2=A0 if (not pmt::is_null(_length_tag_key)) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 // check if there is data left to send from a b=
+urst tagged with length_tag<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 // If a burst is started during this call to wo=
+rk(), tag_work() should have<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 // been called and we should have _nitems_to_se=
+nd &gt; 0.<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (_nitems_to_send &gt; 0) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ninput_items =3D std::min&lt;long=
+&gt;(_nitems_to_send, ninput_items);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // if we run out of items to send=
+, it&#39;s the end of the burst<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (_nitems_to_send - long(ninput=
+_items) =3D=3D 0)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 _metadata.end_of_bu=
+rst =3D true;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 } else {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // There is a tag gap since no le=
+ngth_tag was found immediately following<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // the last sample of the previou=
+s burst. Drop samples until the next<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // length_tag is found. Notify th=
+e user of the tag gap.<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 std::cerr &lt;&lt; &quot;tG&quot;=
+ &lt;&lt; std::flush;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // increment the timespec by the =
+number of samples dropped<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 _metadata.time_spec +=3D ::uhd::t=
+ime_spec_t(0, ninput_items, _sample_rate);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return ninput_items;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 boost::this_thread::disable_interruption disable_interrupt;<b=
+r>
+#ifdef GR_UHD_USE_STREAM_API<br>
+=C2=A0 =C2=A0 // send all ninput_items with metadata<br>
+=C2=A0 =C2=A0 const size_t num_sent =3D _tx_stream-&gt;send(input_items, ni=
+nput_items, _metadata, 1.0);<br>
+#else<br>
+=C2=A0 =C2=A0 const size_t num_sent =3D _dev-&gt;get_device()-&gt;send(inpu=
+t_items,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ninput_items,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0_metadata,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*_type,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0::uhd::device::SEND_MODE_FULL_BUFF=
+,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01.0);<br>
+#endif<br>
+=C2=A0 =C2=A0 boost::this_thread::restore_interruption restore_interrupt(di=
+sable_interrupt);<br>
+<br>
+=C2=A0 =C2=A0 // if using length_tags, decrement items left to send by the =
+number of samples sent<br>
+=C2=A0 =C2=A0 if (not pmt::is_null(_length_tag_key) &amp;&amp; _nitems_to_s=
+end &gt; 0) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 _nitems_to_send -=3D long(num_sent);<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 // increment the timespec by the number of samples sent<br>
+=C2=A0 =C2=A0 _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sam=
+ple_rate);<br>
+<br>
+=C2=A0 =C2=A0 // Some post-processing tasks if we actually transmitted the =
+entire burst<br>
+=C2=A0 =C2=A0 if (not _pending_cmds.empty() &amp;&amp; num_sent =3D=3D size=
+_t(ninput_items)) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 GR_LOG_DEBUG(d_debug_logger,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0boost::format(&quot;Executing %d pending commands.&quot;) %<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0_pending_cmds.size());<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 BOOST_FOREACH (const pmt::pmt_t&amp; cmd_pmt, _=
+pending_cmds) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 msg_handler_command(cmd_pmt);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 _pending_cmds.clear();<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 return num_sent;<br>
+}<br>
+<br>
+From this code, it can be seen that the data is transmitted including _meta=
+data:<br>
+<br>
+const size_t num_sent =3D _tx_stream-&gt;send(input_items, ninput_items, _m=
+etadata, 1.0);<br>
+<br>
+The &quot;time_spec&quot; is updated for each block that is sent out:<br>
+<br>
+_metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate);<br>
+<br>
+Now you mentioned &quot;has_time_spec&quot; below. I extended to code in th=
+e following way:<br>
+<br>
+=C2=A0 =C2=A0 // increment the timespec by the number of samples sent<br>
+=C2=A0 =C2=A0 _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sam=
+ple_rate);<br>
+=C2=A0 =C2=A0 GR_LOG_DEBUG(d_debug_logger, boost::format(&quot;Setting meta=
+data time_spec: %d:%f&quot;) % _metadata.time_spec.get_full_secs() % _metad=
+ata.time_spec.get_frac_secs());<br>
+=C2=A0 =C2=A0 _metadata.has_time_spec =3D true;<br>
+<br>
+<br>
+To my understanding, gr-uhd now passes the correct timestamps on to UHD.<br=
+>
+However, the timed command is still ignored.<br>
+<br>
+<br>
+Thanks,<br>
+Lukas<br>
+<br>
+<br>
+PS: I will attempt to use the tagged stream ... but then I will have the is=
+sue that I need to tune TX *plus* RX at the same time! Furthermore, the str=
+eaming tags API is super rudimentary. Also, skimming the source code for th=
+e tag processing, I am not sure if this would change anything.<br>
+<br>
+<br>
+<br>
+<br>
+=C2=A0<br>
+=C2=A0<br>
+=C2=A0<br>
+<br>
+Gesendet:=C2=A0Dienstag, 03. M=C3=A4rz 2020 um 13:25 Uhr<br>
+Von:=C2=A0&quot;Sam Reiter&quot; &lt;<a href=3D"mailto:sam.reiter@ettus.com=
+" target=3D"_blank">sam.reiter@ettus.com</a>[mailto:<a href=3D"mailto:sam.r=
+eiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>]&gt;<br>
+An:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" tar=
+get=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkossler@nd.edu=
+" target=3D"_blank">rkossler@nd.edu</a>]&gt;<br>
+Cc:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
+arget=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@=
+gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt;, &quot;<a href=3D"mail=
+to:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com=
+</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank"=
+>USRP-users@lists.ettus.com</a>]&quot; &lt;<a href=3D"mailto:usrp-users@lis=
+ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a hr=
+ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
+.ettus.com</a>]&gt;<br>
+Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
+ing a timed command<br>
+<br>
+Everything Rob is saying is dead on - the &quot;sense of time&quot; for the=
+ radio is a 64-bit counter within the radio core that other blocks (like th=
+e DDC and DUC) don&#39;t have access to. Those blocks need to derive a sens=
+e of time from the timestamps of CHDR packets passing through them. I just =
+wrapped up a new app note that covers this (among other synchronization-rel=
+ated topics):<br>
+=C2=A0<br>
+<a href=3D"https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Comma=
+nds_in_UHD#Clocking_and_Timekeeping_in_the_USRP[https://kb.ettus.com/Synchr=
+onizing_USRP_Events_Using_Timed_Commands_in_UHD%23Clocking_and_Timekeeping_=
+in_the_USRP]" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus.com/Syn=
+chronizing_USRP_Events_Using_Timed_Commands_in_UHD#Clocking_and_Timekeeping=
+_in_the_USRP[https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Com=
+mands_in_UHD#Clocking_and_Timekeeping_in_the_USRP]</a><br>
+=C2=A0<br>
+Lukas, I would doubt that this is an undiscovered bug as much as it is an i=
+ssue with implementation. If this were in C++, you&#39;d want to set the &#=
+39;has_time_spec&#39; and &#39;time_spec&#39; fields of your TX metadata fo=
+r at least 1 packet to impart a sense of time on the DUC:<br>
+=C2=A0<br>
+<a href=3D"https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html=
+%5Bhttps://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5D%5Bht=
+tps://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps://fi=
+les.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5D%5D" rel=3D"norefe=
+rrer" target=3D"_blank">https://files.ettus.com/manual/structuhd_1_1tx__met=
+adata__t.html[https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.h=
+tml][https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhtt=
+ps://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5D]</a><br>
+=C2=A0<br>
+I just spoke with someone on my end who said you need to use stream tags to=
+ do this, but again, I don&#39;t currently have much direction for how that=
+ would be implemented in your code.<br>
+=C2=A0<br>
+<br>
+Sam Reiter=C2=A0=C2=A0<br>
+<br>
+On Tue, Mar 3, 2020 at 11:48 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@=
+nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
+sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>][mailto:<a href=3D"mailt=
+o:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"=
+mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]]&gt; wrote:<=
+br>
+Also, note that there is no corresponding issue on receive because the Rx r=
+adio always inserts the time stamp=C2=A0in the sample stream. So, I guess y=
+ou would not see this with the DDC.<br>
+Rob=C2=A0<br>
+<br>
+On Tue, Mar 3, 2020 at 12:43 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@=
+nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
+sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>][mailto:<a href=3D"mailt=
+o:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"=
+mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]]&gt; wrote:<=
+br>
+<br>
+Hi Lukas,<br>
+The FPGA image on the USRP is divided into blocks such as the DUC block and=
+ the Radio block.=C2=A0 The latter controls the RF daughterboard and has ac=
+cess to the device clock.=C2=A0 So, when you provide a timed command to the=
+ Radio block (such as for tuning the RF) it can implement the command at th=
+e specified time by comparing to the device clock.=C2=A0 The DUC block does=
+ not have access to the MB clock and so when you give it a timed command, i=
+t monitors the incoming sample stream to extract the time. If the sample st=
+ream does not include a time stamp, the command never executes.=C2=A0 Don&#=
+39;t think of this as a bug, but rather as a design limitation.<br>
+=C2=A0<br>
+When I work directly with UHD from C++, I use the function rx_streamer::iss=
+ue_stream_command() which has options to stream data with no time stamp or =
+with a time stamp.=C2=A0 When using timed commands with DUC or DDC, I must =
+include the time stamp or else the command will never be executed.=C2=A0 Bu=
+t, with GR, I don&#39;t know how to specify the corresponding options.<br>
+Rob=C2=A0<br>
+<br>
+On Tue, Mar 3, 2020 at 12:29 PM Lukas Haase &lt;<a href=3D"mailto:lukashaas=
+e@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:=
+lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>][mailto:<a href=
+=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailt=
+o:<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at<=
+/a>]]&gt; wrote:Hi Sam, Hi Rob,<br>
+<br>
+Thanks for following up on this!<br>
+I am very happy you were able to reproduce this ... which means that at lea=
+st an issue exists :)<br>
+<br>
+What Sam suggests makes sense even though hard to believe for me:<br>
+<br>
+1. How could something like that go unnoticed for so long? (I am sure I am =
+not the first performing digital tuning)<br>
+2. In the past I got successful phase coherence using automatic tuning (pas=
+sing center frequency + offset to tune_request_t and using integer-N tuning=
+) using timed commands. This did not work reliably and only for certain fre=
+quencies but in my opinion this should have INCLUDED the DUC tuning. If the=
+ DUC retune wouldn&#39;t have been executed as part of this automatic tunin=
+g, I could not have gotten phase coherence (and actually, not even the desi=
+red frequency).<br>
+<br>
+The reason why I am only doing DUC tuning now is to avoid all the hassle wi=
+th integer-N tuning, PLL retuning and settling time.<br>
+<br>
+Sam, what is the &quot;radio block&quot; you were talking about?<br>
+<br>
+Anyway, would it be worthwile to attempt debugging this is absence of gr?<b=
+r>
+The only reason this prevented me from doing is that I would need to manual=
+ly create the baseband samples and continuously stream them out while in pa=
+rallel do the retuning.<br>
+I am not too familiar with UHD on its own but I assume this would be very c=
+omplicated, require multithreading etc.<br>
+Do you have any demo code that could be easily modified for this scenario?<=
+br>
+<br>
+Best,<br>
+Lukas<br>
+<br>
+<br>
+Gesendet:=C2=A0Dienstag, 03. M=C3=A4rz 2020 um 12:08 Uhr<br>
+Von:=C2=A0&quot;Sam Reiter&quot; &lt;<a href=3D"mailto:sam.reiter@ettus.com=
+" target=3D"_blank">sam.reiter@ettus.com</a>[mailto:<a href=3D"mailto:sam.r=
+eiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>][mailto:<a href=
+=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>=
+[mailto:<a href=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam.reite=
+r@ettus.com</a>]]&gt;<br>
+An:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" tar=
+get=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkossler@nd.edu=
+" target=3D"_blank">rkossler@nd.edu</a>][mailto:<a href=3D"mailto:rkossler@=
+nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
+sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]]&gt;<br>
+Cc:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
+arget=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@=
+gmx.at" target=3D"_blank">lukashaase@gmx.at</a>][mailto:<a href=3D"mailto:l=
+ukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D=
+"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]]&gt;, &=
+quot;<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.co=
+m" target=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mail=
+to:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com=
+</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank"=
+>USRP-users@lists.ettus.com</a>]]&quot; &lt;<a href=3D"mailto:usrp-users@li=
+sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a h=
+ref=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@list=
+s.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" targe=
+t=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-u=
+sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>]]&gt=
+;<br>
+Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
+ing a timed command<br>
+<br>
+For what it&#39;s worth, I was able to reproduce the behavior described her=
+e, but didn&#39;t get to dig into it much. My leading suspicion would be wh=
+at Rob mentioned about timestamping. Lukas&#39; code sets a command time, b=
+ut I&#39;m not clear on how timestamp metadata for packets being sent to th=
+e radio are handled. Might be a good question to loop the discuss-gnuradio =
+mailing list in on?<br>
+<br>
+=C2=A0<br>
+<br>
+Sam Reiter=C2=A0=C2=A0<br>
+<br>
+On Tue, Mar 3, 2020 at 10:59 AM Rob Kossler via USRP-users &lt;<a href=3D"m=
+ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
+com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
+nk">usrp-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lis=
+ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a hr=
+ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
+.ettus.com</a>]][mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" targe=
+t=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-u=
+sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>][mai=
+lto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
+ers@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com=
+" target=3D"_blank">usrp-users@lists.ettus.com</a>]]]&gt; wrote:<br>
+I wonder if the issue is related to a missing time stamp on the baseband sa=
+mples going from GR to UHD.=C2=A0 If the stream does not have a time stamp,=
+ the DUC is unable to apply the timed command because the DUC does not real=
+ly know the time - it must pull the time from the streaming samples. This i=
+s in contrast to the radio block which does have access to time and can app=
+ly timed commands by referring to the motherboard clock.<br>
+=C2=A0<br>
+I am not too familiar with GR so I&#39;m not sure how to know if GR is putt=
+ing a time stamp on the streaming samples.<br>
+Rob=C2=A0<br>
+<br>
+On Mon, Mar 2, 2020 at 10:04 AM Lukas Haase via USRP-users &lt;<a href=3D"m=
+ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
+com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
+nk">usrp-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lis=
+ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a hr=
+ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
+.ettus.com</a>]][mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" targe=
+t=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-u=
+sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>][mai=
+lto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
+ers@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com=
+" target=3D"_blank">usrp-users@lists.ettus.com</a>]]]&gt; wrote:Hi Marcus,<=
+br>
+<br>
+Thank you that would be amazing!<br>
+<br>
+I followed the tutorial and built everything from source:<br>
+<br>
+$ lsb_release -a<br>
+No LSB modules are available.<br>
+Distributor ID: Ubuntu<br>
+Description:=C2=A0 =C2=A0 Ubuntu 18.04.4 LTS<br>
+Release:=C2=A0 =C2=A0 =C2=A0 =C2=A0 18.04<br>
+Codename:=C2=A0 =C2=A0 =C2=A0 =C2=A0bionic<br>
+$ uname -a<br>
+Linux sdr 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UTC 20=
+20 x86_64 x86_64 x86_64 GNU/Linux<br>
+$ cd uhd<br>
+$ git status<br>
+HEAD detached at v3.15.0.0<br>
+$ cd ../gnuradio<br>
+$ git status<br>
+HEAD detached at v3.7.14.0<br>
+<br>
+<br>
+Thank you!<br>
+<br>
+Lukas<br>
+<br>
+<br>
+<br>
+PS: For some reason I sometimes do not get responses from this list. I just=
+ saw it looking at the mailman archives. Hence I cannot respond (to keep he=
+aders intact) but need to create a new message and manually &quot;quote&quo=
+t;. I hope that still preserves the context somehow.<br>
+<br>
+<br>
+<br>
+Marcus Leech wrote:<br>
+&gt; On 02/28/2020 01:01 PM, Lukas Haase via USRP-users wrote:<br>
+&gt;&gt; Hi again,<br>
+&gt;&gt;<br>
+&gt;&gt; I created a minimum example (gnuradio) that shows the issue descri=
+bed below.<br>
+&gt;&gt; To summarize: Retuning to a different dsp frequency on an USRP X31=
+0 (+UBX160) does not work (command ignored) ONLY if a timed command (in fut=
+ure is used).<br>
+&gt;&gt; The code shows it in a simple manner. Commenting out the single li=
+ne with set_command_time makes the example work.<br>
+&gt;&gt;<br>
+&gt;&gt; I am absolutely out of ideas and would appreciate any input!<br>
+&gt;&gt;<br>
+&gt;&gt; Best,<br>
+&gt;&gt; Lukas<br>
+&gt; Lukas.<br>
+&gt;<br>
+&gt; Thanks for sticking with this.=C2=A0 I&#39;ll have a discussion with E=
+ttus R&amp;D to<br>
+&gt; see if this is a known issue and/or if there&#39;s a workaround.<br>
+&gt;<br>
+&gt; Remind me which version of UHD you&#39;re using?<br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
+rget=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:US=
+RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[=
+mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP=
+-users@lists.ettus.com</a>]][mailto:<a href=3D"mailto:USRP-users@lists.ettu=
+s.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"m=
+ailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.=
+com</a>][mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_bl=
+ank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lis=
+ts.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>]]]<br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om_______________________________________________USRP-users%5Bhttp://lists.=
+ettus.com/mailman/listinfo/usrp-users_lists.ettus.com______________________=
+_________________________USRP-users%5D%5Bhttp://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com___________________________________________=
+____USRP-users%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.e=
+ttus.com_______________________________________________USRP-users%5D%5D" re=
+l=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/=
+usrp-users_lists.ettus.com_______________________________________________<b=
+r>
+USRP-users[http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om_______________________________________________USRP-users][http://lists.e=
+ttus.com/mailman/listinfo/usrp-users_lists.ettus.com_______________________=
+________________________USRP-users%5Bhttp://lists.ettus.com/mailman/listinf=
+o/usrp-users_lists.ettus.com_______________________________________________=
+USRP-users%5D]</a> mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
+rget=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:US=
+RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[=
+mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP=
+-users@lists.ettus.com</a>]][mailto:<a href=3D"mailto:USRP-users@lists.ettu=
+s.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"m=
+ailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.=
+com</a>][mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_bl=
+ank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lis=
+ts.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>]]]<br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%=
+5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp=
+://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%5D" rel=
+=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/u=
+srp-users_lists.ettus.com[http://lists.ettus.com/mailman/listinfo/usrp-user=
+s_lists.ettus.com][http://lists.ettus.com/mailman/listinfo/usrp-users_lists=
+.ettus.com%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus=
+.com%5D]</a><br>
+</blockquote></div></div>
+
+--000000000000a39cb705a00a8ba0--
+
+
+--===============8336550814382878247==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8336550814382878247==--
+
