@@ -2,63 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6731517868F
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Mar 2020 00:42:07 +0100 (CET)
-Received: from [::1] (port=57092 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A6E179647
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Mar 2020 18:06:49 +0100 (CET)
+Received: from [::1] (port=55736 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j9HAs-0001ol-CP; Tue, 03 Mar 2020 18:42:06 -0500
-Received: from mail-qt1-f171.google.com ([209.85.160.171]:46674)
+	id 1j9XTp-0002X7-Bs; Wed, 04 Mar 2020 12:06:45 -0500
+Received: from mout.gmx.net ([212.227.17.21]:59359)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1j9HAo-0001E3-BF
- for usrp-users@lists.ettus.com; Tue, 03 Mar 2020 18:42:02 -0500
-Received: by mail-qt1-f171.google.com with SMTP id i14so13432qtv.13
- for <usrp-users@lists.ettus.com>; Tue, 03 Mar 2020 15:41:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=jT+BGqoP5xERHI5SZms/epZo2wXnf90jXAlZlNMvuEY=;
- b=ksv9eW0TSBd/LDgwmGAkU2GiqITv8kjJ1iLrWVPphv2R3Z/f4lnmDLAYziSnvKQPlm
- dg4QiPcMOKY1hNRwrMSf6WrdHMxVXJYPIePPOGgsI4xY8agE6CO5IMdhSghjjFE1Il03
- gOl8WYJYKnotpxaXbEH9nlV0R6f7j+BvI22KhuhOM10B0rBJunk/k9j+T4cRA9Av5o5g
- z95KAXRhMUF6kbavlGcp0jIWTf+SB3snL8gpF2oZ7NShywHl5/VncbCuCzKLFXW4iW9U
- hfsy/wdDRRMsLayWIyeGFaldqdpXRppym2oGUPGdYI6zbvKW7WWdOX00TlWKt/xgUBkM
- dfTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=jT+BGqoP5xERHI5SZms/epZo2wXnf90jXAlZlNMvuEY=;
- b=rOzzFfqqcMRCakEHlgKDhIqkY+Z1fiHky0B2mdm5fQlS7F82PE5Ovaay0SER0v/zMp
- EfEyxtpS2JUe2WtzKZnJP8eyNYfhjnebU8X5z0RiwfyX9xVuMS/V6YkErAwGXwUIyWa0
- CRV/Ox4t+ERybVHUXob9LV0eDQXfinHj8FbsU9kzmt04zoMOeo4gsBCgOAhNMWcz3j/6
- /qzwyos84jHou9t9NqQrAoFZVr02f85NclRdF/WENbKdDjbjWSNoiaeaRcHZEFr9QiMG
- g8ttTAhIj/55iatIOi8EL4pfMdFAA1RL0pSI1grYYrws6coCfQ8FbFGnJlpwhtxLq5yg
- 6Y1A==
-X-Gm-Message-State: ANhLgQ3CEEqXAmp4JNLy4rp0WsoOcYbUdfHHs2dBQbwsGTDyWX5nKXuv
- HjLIbezXXhXAJtL6S2rRjhoKsijqyww=
-X-Google-Smtp-Source: ADFU+vv9F+a7Lz+jepA9FbITxa9epNexMnv/G3azr/+g+JhaeI7IdcprPSTQAmf678SWyVEfMkRtRw==
-X-Received: by 2002:aed:304e:: with SMTP id 72mr63547qte.113.1583278881623;
- Tue, 03 Mar 2020 15:41:21 -0800 (PST)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-83.dsl.bell.ca.
- [174.95.14.83])
- by smtp.googlemail.com with ESMTPSA id 4sm1632260qkm.22.2020.03.03.15.41.20
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 03 Mar 2020 15:41:20 -0800 (PST)
-Message-ID: <5E5EEB20.9000800@gmail.com>
-Date: Tue, 03 Mar 2020 18:41:20 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1j9XTk-0002RZ-VR
+ for usrp-users@lists.ettus.com; Wed, 04 Mar 2020 12:06:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1583341559;
+ bh=Zl9dONF05Dh4DBDYyo/3KeObc2TJtkN0IqhGqtGPK3k=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=kEegvgWR4pBAIk/F/3wJDAjPPTUB5KxMQeXUsvaKIhetnJsJENYi+QbazXnHaf+PP
+ xtPU73qqkCYmzojrPn97Q20Oq8rShT5EPiOKT3IHWcHPQ96v0ScvAzxJis5SETiz8O
+ XaZBVsl+y1uQbsyaWFA7pkz7yQFS50aHducn2jt4=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
+ (3c-app-gmx-bs76.server.lan [172.19.170.224]) (via HTTP); Wed, 4 Mar 2020
+ 18:05:59 +0100
 MIME-Version: 1.0
-To: Nick Foster <bistromath@gmail.com>
-References: <CAAGU92=dt=MqR=+H9hU8S9QPNpdOMMWBaiFB7BGHrtZJOitO2w@mail.gmail.com>
- <CANf970YBJtSR5L8-4ZiiCf-HyWgquD9xb02tZ_UHv-GG9TCsJw@mail.gmail.com>
- <5E5EE64A.3060605@gmail.com>
- <CA+JMMq-aAM3DHm+SowK0FVSrHwTQqH9tokydTpMz5jWHSC+wWQ@mail.gmail.com>
-In-Reply-To: <CA+JMMq-aAM3DHm+SowK0FVSrHwTQqH9tokydTpMz5jWHSC+wWQ@mail.gmail.com>
-Subject: Re: [USRP-users] Can underflows in any way be bad for hardware in
- the long term?
+Message-ID: <trinity-7389928b-dd10-4c8f-8360-db579e25a6ed-1583341559746@3c-app-gmx-bs76>
+To: "Rob Kossler" <rkossler@nd.edu>
+Date: Wed, 4 Mar 2020 18:05:59 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <CAB__hTRSUQC8POObAroyx9j8s+GYZ0P-DF4O63i7Yrre6OyYkQ@mail.gmail.com>
+References: <trinity-6d081d85-efab-4ee6-9dfd-d15b3f6ff1b5-1583161440082@3c-app-gmx-bs64>
+ <CAB__hTSgAJcWu=AwsRYs6HmGYMOqk1kAKC4fFgmVWVd8Fw0THQ@mail.gmail.com>
+ <CANf970YbM=F5UBzKQsQ2jGH4X=BKScx1YbNJ=TFhEKfDg-XBww@mail.gmail.com>
+ <trinity-1e499bef-ac0a-4580-ad27-647e1755c34a-1583256550568@3c-app-gmx-bap50>
+ <CAB__hTSY-dv9UTwZTRaOF5bLN3Sk0JF5onD3XBYP8tZB-9BvrA@mail.gmail.com>
+ <CAB__hTQQJHsraknp0OTQTUukBPq3MCggN_ASZvhD=O28-r71TQ@mail.gmail.com>
+ <CANf970YD3OT81FT9jB5uSyGpWo7pQibuw65YT2BXhDg=bUR_bg@mail.gmail.com>
+ <trinity-fe7ab6e0-b371-42cb-88b1-463ee693e2f2-1583265613551@3c-app-gmx-bap50>
+ <CAB__hTRSUQC8POObAroyx9j8s+GYZ0P-DF4O63i7Yrre6OyYkQ@mail.gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:3OwG7QYxw5r0hMdK9JtGdfUU22R1bjE9MfNvx47cP4/gA0yB5YOdU4T16LQeXcA7EPMNJ
+ mrhKLJ8WkUSB/L46Nmnpvv+0qYbB1zLYse3K+iH58dS7XCJWbMVwRYT8kyVJLOaAfNQR6qpDKsX0
+ GFNAaKiqF1Hm9vgpDzBkcLhQwCqqtREqD2Se2HXIdzvKPiHyJjM3CRc1b1ct400mAIfbZYKhWZv7
+ xTNaS2tkDjhwDHY311ahcNJEXDhkwmfqFNU4KkIZiESAdlIc9aHPTlK5/WhlzyQaN9b6ue/qImCv
+ Hw=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:s2BeSnIvFkM=:c/WWebTL7rvjIW5zqtjLh/
+ 3IwiDDz2olzCML9MxLRSxt37TBbh/VtUoO/552fdl1IazvQMGlJ19iVpVEDeh2p1Th8ejdCyH
+ MUAd+YKEoOoxOVoYYzjrnXtPYvEOdLSMk302c3ppNk2uo1JZx3LplJmKp2joFsxwsjhPoYNi7
+ 2874spYlSZMPGhQ9DR3wBbCTfavhphNqK98csRfMXbj2xTS2IMamM3UJs91SJ8RZWpFGwn2gU
+ Gg9EYkryl93XymBfdDhXUkkMBCf2Cf/2XMy84fPDmeyY3PtAJYyoPAq+9DdaNLBysM8lF+IeS
+ UcjzXm8v8AXSUnYDzWzOgiVmmTHN7n2KRK3Ii9febYIcQ9lms87j1v0SImRW+EHr0+QiwZM5t
+ B2r34+WGKpzrgar/GbRI0y0L96QlPxZYNavrCoYh6ry/ZGe4e6tt/TfpagANxQ+wc+Ojo+ghh
+ xH5bS4Aw45cHGAF8PlS9GfVtY5Nw1pt2FzUHZ5SJ6QItv9fdADJ6BH6IqAHgx+OFdkBDNldDl
+ GjSE0BtJ6z+ePL/W30eEP9e8IUycL3JD1xNuUksJtxqphLa0GbmnG6AfeF7Qa16thT8aM07/F
+ zc1Tw+zyeHcXaiBzrfpCh8TrRfaqqD4xZSoQqdOO0DjIIUhMtxpWxHK0DuZwmIwy82594uF9N
+ f4gNwJjFxgxrOrz3+qtgrHLSE/paopONE7CPhMUZhityf/aFr2faY6jMbRAuV2ZiK1yI=
+Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
+ timed command
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,10 +71,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3244988937148200299=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,256 +89,339 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3244988937148200299==
-Content-Type: multipart/alternative;
- boundary="------------000004050905010708080604"
-
-This is a multi-part message in MIME format.
---------------000004050905010708080604
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 03/03/2020 06:35 PM, Nick Foster wrote:
-> Nothing in the USRP will be damaged. It's up to you to ensure that 
-> your subsequent RF chain will handle it. There are a few, rare 
-> configurations which come to mind where it would be a Bad Thing to 
-> suddenly pulse power on a millisecond timescale with extremely high 
-> bandwidth.
->
->  1. Using your USRP to drive a linear accelerator (don't laugh, it's
->     been done)
->  2. Using your USRP to drive an extremely high power tube-based AM
->     transmitter
->  3. Using your USRP to drive an amplifier which is not unconditionally
->     stable
->
-> Outside of these you're probably fine.
->
-> Nick
-Even there, it would very much depend on what the resulting 
-step-function looked like.  I certainly wouldn't want to do the 
-experiment on,
-   let's say, the D-region radar at Arecibo :) :)
-
-
->
-> On Tue, Mar 3, 2020 at 3:21 PM Marcus D. Leech via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     On 03/03/2020 06:16 PM, Sam Reiter via USRP-users wrote:
->>     Hey Francisco,
->>
->>     Interesting question. I remember reading this when it was
->>     initially posted, giving it some thought, and promptly forgetting
->>     to respond. It's a question that is difficult to give a "yes" or
->>     "no" to. Similar to statistics, I think the answer to this
->>     question only comes by disproving the null hypothesis that "no
->>     part of the signal chain is damaged with an underflow". If you
->>     can't prove that damage will occur, then you're probably in the
->>     clear, but you also can't be positive that the null hypothesis is
->>     true. That being said, I don't think underflows are bad for the
->>     hardware in any way.
->>
->>     An underflow is typically caused when a bottleneck on the host
->>     side prevents data from filling USRP buffers quickly enough to be
->>     pushed through the DAC at the requested rate. As I see it, the
->>     only place in the signal chain that /might/ exhibit unexpected
->>     behavior in the face of samples not being present would be at the
->>     DAC (don't ask me why, but that would be my best guess). The way
->>     UHD operates, the DAC and ADC are initialized and running as soon
->>     as the streamer objects in UHD are initialized, and they sit
->>     there processing nothing (similar to an underflow state) until a
->>     TX stream command from the host tells the USRP radio core to
->>     release it's queued samples to the converter(s).
->>
->>     Maybe that was all nonsense. In any case, I wouldn't worry about
->>     radio damage, I'd worry about fixing your underflows :)
->>
->>     Best,
->>
->>     Sam Reiter
->>
->     I'd have to agree with Sam here.
->
->     An underflow on the TX will just mean that whatever the DAC last
->     saw will be presented to the analog interface during the underflow
->     period.
->       Which means perhaps a few microseconds of no level change coming
->     out of the DAC.   Not a problem at all, as far as I know.
->
->     The main thing is to optimize your code/computer-hardware to
->     prevent them.
->
->
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
-
---------------000004050905010708080604
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 03/03/2020 06:35 PM, Nick Foster
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CA+JMMq-aAM3DHm+SowK0FVSrHwTQqH9tokydTpMz5jWHSC+wWQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div>Nothing in the USRP will be damaged. It's up to you to
-          ensure that your subsequent RF chain will handle it. There are
-          a few, rare configurations which come to mind where it would
-          be a Bad Thing to suddenly pulse power on a millisecond
-          timescale with extremely high bandwidth.<br>
-        </div>
-        <div>
-          <ol>
-            <li>Using your USRP to drive a linear accelerator (don't
-              laugh, it's been done)</li>
-            <li>Using your USRP to drive an extremely high power
-              tube-based AM transmitter<br>
-            </li>
-            <li>Using your USRP to drive an amplifier which is not
-              unconditionally stable</li>
-          </ol>
-          <div>Outside of these you're probably fine.</div>
-          <div><br>
-          </div>
-          <div>Nick<br>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    Even there, it would very much depend on what the resulting
-    step-function looked like.  I certainly wouldn't want to do the
-    experiment on,<br>
-      let's say, the D-region radar at Arecibo :) :)<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CA+JMMq-aAM3DHm+SowK0FVSrHwTQqH9tokydTpMz5jWHSC+wWQ@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Tue, Mar 3, 2020 at 3:21 PM
-          Marcus D. Leech via USRP-users &lt;<a moz-do-not-send="true"
-            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div bgcolor="#FFFFFF">
-            <div>On 03/03/2020 06:16 PM, Sam Reiter via USRP-users
-              wrote:<br>
-            </div>
-            <blockquote type="cite">
-              <div dir="ltr">Hey Francisco,
-                <div><br>
-                </div>
-                <div>
-                  <div>Interesting question. I remember reading this
-                    when it was initially posted, giving it some
-                    thought, and promptly forgetting to respond. It's a
-                    question that is difficult to give a "yes" or "no"
-                    to. Similar to statistics, I think the answer to
-                    this question only comes by disproving the null
-                    hypothesis that "no part of the signal chain is
-                    damaged with an underflow". If you can't prove that
-                    damage will occur, then you're probably in the
-                    clear, but you also can't be positive that the null
-                    hypothesis is true. That being said, I don't think
-                    underflows are bad for the hardware in any way. <br>
-                  </div>
-                </div>
-                <div><br>
-                </div>
-                <div> An underflow is typically caused when a bottleneck
-                  on the host side prevents data from filling USRP
-                  buffers quickly enough to be pushed through the DAC at
-                  the requested rate. As I see it, the only place in the
-                  signal chain that <i>might</i> exhibit unexpected
-                  behavior in the face of samples not being present
-                  would be at the DAC (don't ask me why, but that would
-                  be my best guess). The way UHD operates, the DAC and
-                  ADC are initialized and running as soon as the
-                  streamer objects in UHD are initialized, and they sit
-                  there processing nothing (similar to an underflow
-                  state) until a TX stream command from the host tells
-                  the USRP radio core to release it's queued samples to
-                  the converter(s). </div>
-                <div><br>
-                </div>
-                <div>Maybe that was all nonsense. In any case, I
-                  wouldn't worry about radio damage, I'd worry about
-                  fixing your underflows :) </div>
-                <div><br>
-                </div>
-                <div>Best,</div>
-                <div><br>
-                </div>
-                <div>
-                  <div>
-                    <div dir="ltr">
-                      <div dir="ltr">
-                        <div>
-                          <div dir="ltr">Sam Reiter </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <br>
-            </blockquote>
-            I'd have to agree with Sam here.<br>
-            <br>
-            An underflow on the TX will just mean that whatever the DAC
-            last saw will be presented to the analog interface during
-            the underflow period.<br>
-              Which means perhaps a few microseconds of no level change
-            coming out of the DAC.   Not a problem at all, as far as I
-            know.<br>
-            <br>
-            The main thing is to optimize your code/computer-hardware to
-            prevent them.<br>
-            <br>
-            <br>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a moz-do-not-send="true"
-            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------000004050905010708080604--
-
-
---===============3244988937148200299==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3244988937148200299==--
-
+SGkgUm9iLAoKMS4pIEkgZG8gbm90IHJlYWxseSB1bmRlcnN0YW5kIGhvdyAic2V0X3N0YXJ0X3Rp
+bWUiIGlzIHJlbGF0ZWQgdG8gbXkgcHJvYmxlbSBhbmQgd2h5IHRoaXMgaXMgd2hhdCBJIG5lZWQu
+IEJhc2VkIG9uIG15IGV4cGVyaW1lbnRzLCB0aGUgdGltZSBpcyBhdXRvbWF0aWNhbGx5IHNldCB0
+byAwIHdoZW4gdGhlIGZsb3cgZGlhZ3JhbSBzdGFydHMuCgpJIGFtIGFsc28gc3VyZSBvdGhlcnMg
+bXVzdCBoYXZlIHVzZWQgdGltZWQgVFgrUlggYnV0IGl0IGRvZXMgbm90IHNlZW0gc28uIE5vIGtp
+ZGRpbmcsIEkgYW0gd29ya2luZyBvbiB0aGlzIHNpbmNlIERlYyBhbmQgSSBzdGlsbCBkbyBub3Qg
+aGF2ZSBpdCB3b3JraW5nLiBJIGxlZnQgbXkgdHJhY2VzIHZhcmlvdXMgdGltZXMgb24gdGhpcyBh
+bmQgdGhlIGdudXJhZGlvIG1haWxpbmcgbGlzdCBidXQgSSBkaWQgbm90IGdldCBoZWxwLgoKMi4p
+IEkgaGF2ZSBwbGF5ZWQgYXJvdW5kIHVzaW5nIHN0cmVhbSB0YWdzIGFuZCB3YXMgdmVyeSBoYXBw
+eSB0aGF0IGl0IHdvcmtlZCBidXQgSSBmb3VuZCBub3cgdGhhdCB0aGlzIGlzIGJlY2F1c2UgZ3It
+dWhkIGRvZXMgTk9UIGF0dGFjaCBhIGNvbW1hbmQgdGltZSBhbHRob3VnaCB0aGUgZG9jdW1lbnRh
+dGlvbiBzYXlzIHNvLgoKaHR0cHM6Ly93d3cuZ251cmFkaW8ub3JnL2RvYy9kb3h5Z2VuL2NsYXNz
+Z3JfMV8xdWhkXzFfMXVzcnBfX3NpbmsuaHRtbDoKdHhfY29tbWFuZCB0YWcuIFRoZSBjb21tYW5k
+IGlzIGF0dGFjaGVkIHRvIGEgc2FtcGxlLCBhbmQgd2lsbCBleGVjdXRlZCBiZWZvcmUgdGhlIHNh
+bXBsZSBpcyB0cmFuc21pdHRlZCwgYW5kIGFmdGVyIHRoZSBwcmV2aW91cyBzYW1wbGUuCgpIb3dl
+dmVyLCBpbiB0aGUgY29kZSAodXNycF9zaW5rX2ltcGwuY2M6NDMzLCB1c3JwX3NpbmtfaW1wbDo6
+dGFnX3dvcmspOgoKICAgICAgICBlbHNlIGlmIChwbXQ6OmVxdWFsKGtleSwgQ09NTUFORF9LRVkp
+KSB7CiAgICAgICAgICAgIGlmIChteV90YWdfY291bnQgIT0gc2FtcDBfY291bnQpIHsKICAgICAg
+ICAgICAgICAgIG1heF9jb3VudCA9IG15X3RhZ19jb3VudDsKICAgICAgICAgICAgICAgIGJyZWFr
+OwogICAgICAgICAgICB9CiAgICAgICAgICAgIC8vIFRPRE8gc2V0IHRoZSBjb21tYW5kIHRpbWUg
+ZnJvbSB0aGUgc2FtcGxlIHRpbWUKICAgICAgICAgICAgbXNnX2hhbmRsZXJfY29tbWFuZCh2YWx1
+ZSk7CiAgICAgICAgfQoKMy4pIFNvIEkgYW0gcmVhbGx5IGJhY2sgdG8gdGhlIHN0YXJ0LiBXaGF0
+IGlzIGdlbmVyYWxseSBhIGJpdCBhbm5veWluZyBpcyB0aGF0IEkgaGF2ZSB0d28gb2JqZWN0cyBm
+b3IgdGhlIHNhbWUgZGV2aWNlICgqb25lKiBVU1JQIGFuZCAiVVNSUCBTb3VyY2UiKyJVU1JQIFNp
+bmsiLCBib3RoIHdpdGggdGhlaXIgaW5kZXBlbmRlbnQgdWhkOjp1c3JwOjptdWx0aV91c3JwIG9i
+amVjdHMuIE15IHF1ZXN0aW9uIGlzLCBpcyBpdCBwb3NzaWJsZSB0byBqdXN0IHVzZSAiVVNSUCBT
+b3VyY2UiICh0aGlzIGlzIHdoZXJlIHRpbWVkIGNvbW1hbmRzIHdvcmspIHRvIGV4ZWN1dGUgdGhl
+IHJldHVuaW5nIGZvciAqYm90aCogUlgrVFg/CgozLmEuKSBHaXZlbjogWDMxMCB3aXRoIDJ4VUJY
+LTE2MC4gV2hhdCBpcyB0aGUgc3ViZGV2IHNwZWMgaWYgSSB3YW50ZWQgdG8gcmVjZWl2ZSBvbiBh
+bGwgRk9VUiBpbnB1dHM/PwpUaGUgcHJvYmxlbSBpcyB0aGF0IGJvdGggUlggYW5kIFRYIGZyb250
+ZW5kcyBoYXZlIHRoZSBzYW1lIG5hbWUgIjAiIChhY2NvcmRpbmcgdG8gdWhkX3VzcnBfcHJvYmUp
+LgoKVHdvIHJlY2VpdmVycywgcmVjZWl2aW5nIGJvdGggZnJvbSAiVFgvUlgiIGlucHV0IG9mIGVh
+Y2ggVUJYLTE2MCB3b3VsZCBiZSB0cml2aWFsOiAiQTowIEI6MCIuIEhvd2V2ZXIsIGhvdyBkbyBJ
+IGFkZHJlc3MgIlJYMiI/IEludHVpdGl2ZWx5ICJBOjAgQToxIEI6MCBCOjEiIGJ1dCBhcyBzYWlk
+LCBib3RoICJUWC9SWCIgYW5kICJSWDIiIGFyZSBuYW1lZCAiMCIuCldoYXQgd291bGQgSSBkbyBp
+ZiBJIHdhbnRlZCB0byB0cmFuc21pdCBmcm9tICJUWC9SWCIgb2YgdGhlIHNlY29uZCBVQlggYW5k
+IHJlY2VpdmUgb24gYWxsIG90aGVyIGJvYXJkcz8KCk9uIHRoZSBVU1JQIFNpbms6ICJCOjAiCk9u
+IHRoZSBVU1AgU291cmNlIGludHVpdGl2ZWx5OiAiQTowIEE6MSBCOjEiIGJ1dCB0aGF0J3Mgd3Jv
+bmcuCgozLmIuKSBJbiBnciwgdGhlcmUgd2lsbCBiZSB0d28gbXVsdGlfdXNycCBvYmplY3RzOiBP
+bmUgZm9yIHRoZSByZWNlaXZlciAobWVtYmVyIHZhcmlhYmxlIG9mIFVTUlAgU291cmNlKSBhbmQg
+b25lIGZvciB0aGUgdHJhbnNtaXR0ZXIgKG1lbWJlciB2YXJpYWJsZSBvZiBVU1JQIFNpbmspLgpD
+YW4gSSBzZXQgdXAgYSBVU1JQIFNvdXJjZSB0aGF0IGhhcyB0d28gY2hhbm5lbHMgd2hlcmUgdGhl
+IHNlY29uZCBvbmUgaXMgYWN0dWFsbHkgYSBUWCBjaGFubmVsPyAob25seSB1c2VkIGZvciByZXR1
+bmluZyB2aWEgdGltZWQgY29tbWFuZHMpPwoKClRoYW5rcywKTHVrYXMKCgrCoArCoAoKR2VzZW5k
+ZXQ6wqBEaWVuc3RhZywgMDMuIE3DpHJ6IDIwMjAgdW0gMTU6MjIgVWhyClZvbjrCoCJSb2IgS29z
+c2xlciIgPHJrb3NzbGVyQG5kLmVkdT4KQW46wqAiTHVrYXMgSGFhc2UiIDxsdWthc2hhYXNlQGdt
+eC5hdD4KQ2M6wqAiU2FtIFJlaXRlciIgPHNhbS5yZWl0ZXJAZXR0dXMuY29tPiwgIlVTUlAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tIiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+CkJldHJlZmY6
+wqBSZTogW1VTUlAtdXNlcnNdIFVTUlAgWDMxMCBpZ25vcmVkIERTUCByZXR1bmluZyBvbiBUWCB3
+aGVuIHVzaW5nIGEgdGltZWQgY29tbWFuZAoKSSBkaWQgYSBxdWljayBnb29nbGUgc2VhcmNoIHVz
+aW5nICJnbnVyYWRpbyB1aGQgdGltZWQgdHggc3RyZWFtaW5nIi4gSSBmb3VuZCB0aGF0IHRoZSBH
+UiB1c3JwX3NpbmtbaHR0cHM6Ly93d3cuZ251cmFkaW8ub3JnL2RvYy9zcGhpbngtMy43LjcvdWhk
+Lmh0bWxdIGhhcyB0aGUgZnVuY3Rpb24gInNldF9zdGFydF90aW1lIiB3aGljaCBzZWVtcyB0byBi
+ZSB3aGF0IHlvdSBuZWVkLsKgIFRoZSBxdWVzdGlvbiBpczogd2hhdCB0aW1lIGRvIHlvdSBzZXQ/
+wqAgUHJvYmFibHkganVzdCBzb21ldGhpbmcgbGlrZSAiZ2V0X3RpbWVfbm93KCnCoCsgMC4xIi4g
+SXQgbWF5IGJlIGEgYml0IHRyaWNreSBzaW5jZSB0aGlzIHZhbHVlIGlzIHRvIGJlIHNldCBiZWZv
+cmUgc3RhcnRpbmcgdGhlIGZsb3cgZ3JhcGguwqAgTWF5YmUgeW91IGNvdWxkIHNldCBpdCB0byBz
+b21lIGZpeGVkIGNvbnN0YW50IGxpa2UgMC41IGFuZCB0aGVuIHdoZW4gdGhlIGZsb3cgZ3JhcGgg
+c3RhcnRzIHlvdSBjb3VsZCBleGVjdXRlIGEgY29tbWFuZCB0byBzZXRfdGltZV9ub3coKSB0byAw
+LjAuwqAgQW55d2F5LCBpZiB0aGlzIGFkdmljZSBkb2Vzbid0IHBhbiBvdXQsIHBlcmhhcHMganVz
+dCBzZWFyY2ggYXJvdW5kIGEgYml0IGluIEdSIGFyY2hpdmVzLsKgIEknbSBzdXJlIG90aGVycyBo
+YXZlIHN1Y2Nlc3NmdWxseSBzdHJlYW1lZCB3aXRoIHRpbWVkIFR4IGNvbW1hbmRzLgpSb2LCoAoK
+T24gVHVlLCBNYXIgMywgMjAyMCBhdCAzOjAwIFBNIEx1a2FzIEhhYXNlIDxsdWthc2hhYXNlQGdt
+eC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdPiB3cm90ZToKCkhpIFNhbSwgSGkgUm9iLAoK
+VGhpcyBtYWtlcyBzbyBtdWNoIHNlbnNlIQpJIHRoaW5rIHlvdSBhcmUgcmlnaHQuCkFuZCBpbmRl
+ZWQsIHRoZSBpc3N1ZSBJIGZvdW5kIG9ubHkgd2l0aCBUWCwgbm90IFJYLgoKCkNvdWxkIHlvdSB0
+aGluayBvZiBhIHBvc3NpYmxlIGhhY2sgc2VuZGluZyBhICJkdW1teSBjb21tYW5kIiB0byB0aGUg
+UkYgYm9hcmQgYWxvbmcgd2l0aCB0aGUgdGltZWQgdHVuaW5nIHJlcXVlc3Q/CgoKUmVnYXJkaW5n
+IHRoZSBzZW5kaW5nIG9mIHRpbWUgc3RhbXBzIGluIHRoZSBUWCBpbiBnci11aGQsIEkgYW0gY29u
+ZnVzZWQgdGhvdWdoLiBJIGRvIHRoaW5rIHRoaXMgSVMgaGFwcGVuaW5nLiBJIHJlcHJvZHVjZSB0
+aGUgd29yayBmdW5jdGlvbiBvZiAiVVNSUCBTaW5rIiBoZXJlOgoKaW50IHVzcnBfc2lua19pbXBs
+Ojp3b3JrKGludCBub3V0cHV0X2l0ZW1zLArCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoGdyX3ZlY3Rvcl9jb25zdF92b2lkX3N0YXImIGlucHV0X2l0ZW1zLArCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoGdyX3ZlY3Rvcl92b2lkX3N0YXImIG91dHB1dF9p
+dGVtcykKewrCoCDCoCBpbnQgbmlucHV0X2l0ZW1zID0gbm91dHB1dF9pdGVtczsgLy8gY3V6IGl0
+J3MgYSBzeW5jIGJsb2NrCgrCoCDCoCAvLyBkZWZhdWx0IHRvIHNlbmQgYSBtaWQtYnVyc3QgcGFj
+a2V0CsKgIMKgIF9tZXRhZGF0YS5zdGFydF9vZl9idXJzdCA9IGZhbHNlOwrCoCDCoCBfbWV0YWRh
+dGEuZW5kX29mX2J1cnN0ID0gZmFsc2U7CgrCoCDCoCAvLyBjb2xsZWN0IHRhZ3MgaW4gdGhpcyB3
+b3JrKCkKwqAgwqAgY29uc3QgdWludDY0X3Qgc2FtcDBfY291bnQgPSBuaXRlbXNfcmVhZCgwKTsK
+wqAgwqAgZ2V0X3RhZ3NfaW5fcmFuZ2UoX3RhZ3MsIDAsIHNhbXAwX2NvdW50LCBzYW1wMF9jb3Vu
+dCArIG5pbnB1dF9pdGVtcyk7CsKgIMKgIGlmIChub3QgX3RhZ3MuZW1wdHkoKSkKwqAgwqAgwqAg
+wqAgdGhpcy0+dGFnX3dvcmsobmlucHV0X2l0ZW1zKTsKCsKgIMKgIGlmIChub3QgcG10Ojppc19u
+dWxsKF9sZW5ndGhfdGFnX2tleSkpIHsKwqAgwqAgwqAgwqAgLy8gY2hlY2sgaWYgdGhlcmUgaXMg
+ZGF0YSBsZWZ0IHRvIHNlbmQgZnJvbSBhIGJ1cnN0IHRhZ2dlZCB3aXRoIGxlbmd0aF90YWcKwqAg
+wqAgwqAgwqAgLy8gSWYgYSBidXJzdCBpcyBzdGFydGVkIGR1cmluZyB0aGlzIGNhbGwgdG8gd29y
+aygpLCB0YWdfd29yaygpIHNob3VsZCBoYXZlCsKgIMKgIMKgIMKgIC8vIGJlZW4gY2FsbGVkIGFu
+ZCB3ZSBzaG91bGQgaGF2ZSBfbml0ZW1zX3RvX3NlbmQgPiAwLgrCoCDCoCDCoCDCoCBpZiAoX25p
+dGVtc190b19zZW5kID4gMCkgewrCoCDCoCDCoCDCoCDCoCDCoCBuaW5wdXRfaXRlbXMgPSBzdGQ6
+Om1pbjxsb25nPihfbml0ZW1zX3RvX3NlbmQsIG5pbnB1dF9pdGVtcyk7CsKgIMKgIMKgIMKgIMKg
+IMKgIC8vIGlmIHdlIHJ1biBvdXQgb2YgaXRlbXMgdG8gc2VuZCwgaXQncyB0aGUgZW5kIG9mIHRo
+ZSBidXJzdArCoCDCoCDCoCDCoCDCoCDCoCBpZiAoX25pdGVtc190b19zZW5kIC0gbG9uZyhuaW5w
+dXRfaXRlbXMpID09IDApCsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIF9tZXRhZGF0YS5lbmRfb2Zf
+YnVyc3QgPSB0cnVlOwrCoCDCoCDCoCDCoCB9IGVsc2UgewrCoCDCoCDCoCDCoCDCoCDCoCAvLyBU
+aGVyZSBpcyBhIHRhZyBnYXAgc2luY2Ugbm8gbGVuZ3RoX3RhZyB3YXMgZm91bmQgaW1tZWRpYXRl
+bHkgZm9sbG93aW5nCsKgIMKgIMKgIMKgIMKgIMKgIC8vIHRoZSBsYXN0IHNhbXBsZSBvZiB0aGUg
+cHJldmlvdXMgYnVyc3QuIERyb3Agc2FtcGxlcyB1bnRpbCB0aGUgbmV4dArCoCDCoCDCoCDCoCDC
+oCDCoCAvLyBsZW5ndGhfdGFnIGlzIGZvdW5kLiBOb3RpZnkgdGhlIHVzZXIgb2YgdGhlIHRhZyBn
+YXAuCsKgIMKgIMKgIMKgIMKgIMKgIHN0ZDo6Y2VyciA8PCAidEciIDw8IHN0ZDo6Zmx1c2g7CsKg
+IMKgIMKgIMKgIMKgIMKgIC8vIGluY3JlbWVudCB0aGUgdGltZXNwZWMgYnkgdGhlIG51bWJlciBv
+ZiBzYW1wbGVzIGRyb3BwZWQKwqAgwqAgwqAgwqAgwqAgwqAgX21ldGFkYXRhLnRpbWVfc3BlYyAr
+PSA6OnVoZDo6dGltZV9zcGVjX3QoMCwgbmlucHV0X2l0ZW1zLCBfc2FtcGxlX3JhdGUpOwrCoCDC
+oCDCoCDCoCDCoCDCoCByZXR1cm4gbmlucHV0X2l0ZW1zOwrCoCDCoCDCoCDCoCB9CsKgIMKgIH0K
+CsKgIMKgIGJvb3N0Ojp0aGlzX3RocmVhZDo6ZGlzYWJsZV9pbnRlcnJ1cHRpb24gZGlzYWJsZV9p
+bnRlcnJ1cHQ7CiNpZmRlZiBHUl9VSERfVVNFX1NUUkVBTV9BUEkKwqAgwqAgLy8gc2VuZCBhbGwg
+bmlucHV0X2l0ZW1zIHdpdGggbWV0YWRhdGEKwqAgwqAgY29uc3Qgc2l6ZV90IG51bV9zZW50ID0g
+X3R4X3N0cmVhbS0+c2VuZChpbnB1dF9pdGVtcywgbmlucHV0X2l0ZW1zLCBfbWV0YWRhdGEsIDEu
+MCk7CiNlbHNlCsKgIMKgIGNvbnN0IHNpemVfdCBudW1fc2VudCA9IF9kZXYtPmdldF9kZXZpY2Uo
+KS0+c2VuZChpbnB1dF9pdGVtcywKwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBuaW5wdXRfaXRlbXMs
+CsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgX21ldGFkYXRhLArCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCpfdHlwZSwKwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA6OnVoZDo6ZGV2aWNlOjpTRU5EX01PREVf
+RlVMTF9CVUZGLArCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDEuMCk7CiNlbmRpZgrCoCDCoCBib29z
+dDo6dGhpc190aHJlYWQ6OnJlc3RvcmVfaW50ZXJydXB0aW9uIHJlc3RvcmVfaW50ZXJydXB0KGRp
+c2FibGVfaW50ZXJydXB0KTsKCsKgIMKgIC8vIGlmIHVzaW5nIGxlbmd0aF90YWdzLCBkZWNyZW1l
+bnQgaXRlbXMgbGVmdCB0byBzZW5kIGJ5IHRoZSBudW1iZXIgb2Ygc2FtcGxlcyBzZW50CsKgIMKg
+IGlmIChub3QgcG10Ojppc19udWxsKF9sZW5ndGhfdGFnX2tleSkgJiYgX25pdGVtc190b19zZW5k
+ID4gMCkgewrCoCDCoCDCoCDCoCBfbml0ZW1zX3RvX3NlbmQgLT0gbG9uZyhudW1fc2VudCk7CsKg
+IMKgIH0KCsKgIMKgIC8vIGluY3JlbWVudCB0aGUgdGltZXNwZWMgYnkgdGhlIG51bWJlciBvZiBz
+YW1wbGVzIHNlbnQKwqAgwqAgX21ldGFkYXRhLnRpbWVfc3BlYyArPSA6OnVoZDo6dGltZV9zcGVj
+X3QoMCwgbnVtX3NlbnQsIF9zYW1wbGVfcmF0ZSk7CgrCoCDCoCAvLyBTb21lIHBvc3QtcHJvY2Vz
+c2luZyB0YXNrcyBpZiB3ZSBhY3R1YWxseSB0cmFuc21pdHRlZCB0aGUgZW50aXJlIGJ1cnN0CsKg
+IMKgIGlmIChub3QgX3BlbmRpbmdfY21kcy5lbXB0eSgpICYmIG51bV9zZW50ID09IHNpemVfdChu
+aW5wdXRfaXRlbXMpKSB7CsKgIMKgIMKgIMKgIEdSX0xPR19ERUJVRyhkX2RlYnVnX2xvZ2dlciwK
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBib29zdDo6Zm9ybWF0KCJFeGVjdXRpbmcg
+JWQgcGVuZGluZyBjb21tYW5kcy4iKSAlCsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgX3BlbmRpbmdfY21kcy5zaXplKCkpOwrCoCDCoCDCoCDCoCBCT09TVF9GT1JFQUNIIChj
+b25zdCBwbXQ6OnBtdF90JiBjbWRfcG10LCBfcGVuZGluZ19jbWRzKSB7CsKgIMKgIMKgIMKgIMKg
+IMKgIG1zZ19oYW5kbGVyX2NvbW1hbmQoY21kX3BtdCk7CsKgIMKgIMKgIMKgIH0KwqAgwqAgwqAg
+wqAgX3BlbmRpbmdfY21kcy5jbGVhcigpOwrCoCDCoCB9CgrCoCDCoCByZXR1cm4gbnVtX3NlbnQ7
+Cn0KCkZyb20gdGhpcyBjb2RlLCBpdCBjYW4gYmUgc2VlbiB0aGF0IHRoZSBkYXRhIGlzIHRyYW5z
+bWl0dGVkIGluY2x1ZGluZyBfbWV0YWRhdGE6Cgpjb25zdCBzaXplX3QgbnVtX3NlbnQgPSBfdHhf
+c3RyZWFtLT5zZW5kKGlucHV0X2l0ZW1zLCBuaW5wdXRfaXRlbXMsIF9tZXRhZGF0YSwgMS4wKTsK
+ClRoZSAidGltZV9zcGVjIiBpcyB1cGRhdGVkIGZvciBlYWNoIGJsb2NrIHRoYXQgaXMgc2VudCBv
+dXQ6CgpfbWV0YWRhdGEudGltZV9zcGVjICs9IDo6dWhkOjp0aW1lX3NwZWNfdCgwLCBudW1fc2Vu
+dCwgX3NhbXBsZV9yYXRlKTsKCk5vdyB5b3UgbWVudGlvbmVkICJoYXNfdGltZV9zcGVjIiBiZWxv
+dy4gSSBleHRlbmRlZCB0byBjb2RlIGluIHRoZSBmb2xsb3dpbmcgd2F5OgoKwqAgwqAgLy8gaW5j
+cmVtZW50IHRoZSB0aW1lc3BlYyBieSB0aGUgbnVtYmVyIG9mIHNhbXBsZXMgc2VudArCoCDCoCBf
+bWV0YWRhdGEudGltZV9zcGVjICs9IDo6dWhkOjp0aW1lX3NwZWNfdCgwLCBudW1fc2VudCwgX3Nh
+bXBsZV9yYXRlKTsKwqAgwqAgR1JfTE9HX0RFQlVHKGRfZGVidWdfbG9nZ2VyLCBib29zdDo6Zm9y
+bWF0KCJTZXR0aW5nIG1ldGFkYXRhIHRpbWVfc3BlYzogJWQ6JWYiKSAlIF9tZXRhZGF0YS50aW1l
+X3NwZWMuZ2V0X2Z1bGxfc2VjcygpICUgX21ldGFkYXRhLnRpbWVfc3BlYy5nZXRfZnJhY19zZWNz
+KCkpOwrCoCDCoCBfbWV0YWRhdGEuaGFzX3RpbWVfc3BlYyA9IHRydWU7CgoKVG8gbXkgdW5kZXJz
+dGFuZGluZywgZ3ItdWhkIG5vdyBwYXNzZXMgdGhlIGNvcnJlY3QgdGltZXN0YW1wcyBvbiB0byBV
+SEQuCkhvd2V2ZXIsIHRoZSB0aW1lZCBjb21tYW5kIGlzIHN0aWxsIGlnbm9yZWQuCgoKVGhhbmtz
+LApMdWthcwoKClBTOiBJIHdpbGwgYXR0ZW1wdCB0byB1c2UgdGhlIHRhZ2dlZCBzdHJlYW0gLi4u
+IGJ1dCB0aGVuIEkgd2lsbCBoYXZlIHRoZSBpc3N1ZSB0aGF0IEkgbmVlZCB0byB0dW5lIFRYICpw
+bHVzKiBSWCBhdCB0aGUgc2FtZSB0aW1lISBGdXJ0aGVybW9yZSwgdGhlIHN0cmVhbWluZyB0YWdz
+IEFQSSBpcyBzdXBlciBydWRpbWVudGFyeS4gQWxzbywgc2tpbW1pbmcgdGhlIHNvdXJjZSBjb2Rl
+IGZvciB0aGUgdGFnIHByb2Nlc3NpbmcsIEkgYW0gbm90IHN1cmUgaWYgdGhpcyB3b3VsZCBjaGFu
+Z2UgYW55dGhpbmcuCgoKCgrCoArCoArCoAoKR2VzZW5kZXQ6wqBEaWVuc3RhZywgMDMuIE3DpHJ6
+IDIwMjAgdW0gMTM6MjUgVWhyClZvbjrCoCJTYW0gUmVpdGVyIiA8c2FtLnJlaXRlckBldHR1cy5j
+b21bbWFpbHRvOnNhbS5yZWl0ZXJAZXR0dXMuY29tXT4KQW46wqAiUm9iIEtvc3NsZXIiIDxya29z
+c2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV0+CkNjOsKgIkx1a2FzIEhhYXNlIiA8
+bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XT4sICJVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dIiA8dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+XT4KQmV0cmVmZjrCoFJlOiBbVVNSUC11c2Vyc10gVVNSUCBYMzEwIGlnbm9yZWQgRFNQIHJldHVu
+aW5nIG9uIFRYIHdoZW4gdXNpbmcgYSB0aW1lZCBjb21tYW5kCgpFdmVyeXRoaW5nIFJvYiBpcyBz
+YXlpbmcgaXMgZGVhZCBvbiAtIHRoZSAic2Vuc2Ugb2YgdGltZSIgZm9yIHRoZSByYWRpbyBpcyBh
+IDY0LWJpdCBjb3VudGVyIHdpdGhpbiB0aGUgcmFkaW8gY29yZSB0aGF0IG90aGVyIGJsb2NrcyAo
+bGlrZSB0aGUgRERDIGFuZCBEVUMpIGRvbid0IGhhdmUgYWNjZXNzIHRvLiBUaG9zZSBibG9ja3Mg
+bmVlZCB0byBkZXJpdmUgYSBzZW5zZSBvZiB0aW1lIGZyb20gdGhlIHRpbWVzdGFtcHMgb2YgQ0hE
+UiBwYWNrZXRzIHBhc3NpbmcgdGhyb3VnaCB0aGVtLiBJIGp1c3Qgd3JhcHBlZCB1cCBhIG5ldyBh
+cHAgbm90ZSB0aGF0IGNvdmVycyB0aGlzIChhbW9uZyBvdGhlciBzeW5jaHJvbml6YXRpb24tcmVs
+YXRlZCB0b3BpY3MpOgrCoApodHRwczovL2tiLmV0dHVzLmNvbS9TeW5jaHJvbml6aW5nX1VTUlBf
+RXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRCNDbG9ja2luZ19hbmRfVGltZWtlZXBp
+bmdfaW5fdGhlX1VTUlBbaHR0cHM6Ly9rYi5ldHR1cy5jb20vU3luY2hyb25pemluZ19VU1JQX0V2
+ZW50c19Vc2luZ19UaW1lZF9Db21tYW5kc19pbl9VSEQjQ2xvY2tpbmdfYW5kX1RpbWVrZWVwaW5n
+X2luX3RoZV9VU1JQXQrCoApMdWthcywgSSB3b3VsZCBkb3VidCB0aGF0IHRoaXMgaXMgYW4gdW5k
+aXNjb3ZlcmVkIGJ1ZyBhcyBtdWNoIGFzIGl0IGlzIGFuIGlzc3VlIHdpdGggaW1wbGVtZW50YXRp
+b24uIElmIHRoaXMgd2VyZSBpbiBDKyssIHlvdSdkIHdhbnQgdG8gc2V0IHRoZSAnaGFzX3RpbWVf
+c3BlYycgYW5kICd0aW1lX3NwZWMnIGZpZWxkcyBvZiB5b3VyIFRYIG1ldGFkYXRhIGZvciBhdCBs
+ZWFzdCAxIHBhY2tldCB0byBpbXBhcnQgYSBzZW5zZSBvZiB0aW1lIG9uIHRoZSBEVUM6CsKgCmh0
+dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9zdHJ1Y3R1aGRfMV8xdHhfX21ldGFkYXRhX190
+Lmh0bWxbaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3N0cnVjdHVoZF8xXzF0eF9fbWV0
+YWRhdGFfX3QuaHRtbF1baHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3N0cnVjdHVoZF8x
+XzF0eF9fbWV0YWRhdGFfX3QuaHRtbCU1Qmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9z
+dHJ1Y3R1aGRfMV8xdHhfX21ldGFkYXRhX190Lmh0bWwlNURdCsKgCkkganVzdCBzcG9rZSB3aXRo
+IHNvbWVvbmUgb24gbXkgZW5kIHdobyBzYWlkIHlvdSBuZWVkIHRvIHVzZSBzdHJlYW0gdGFncyB0
+byBkbyB0aGlzLCBidXQgYWdhaW4sIEkgZG9uJ3QgY3VycmVudGx5IGhhdmUgbXVjaCBkaXJlY3Rp
+b24gZm9yIGhvdyB0aGF0IHdvdWxkIGJlIGltcGxlbWVudGVkIGluIHlvdXIgY29kZS4KwqAKClNh
+bSBSZWl0ZXLCoMKgCgpPbiBUdWUsIE1hciAzLCAyMDIwIGF0IDExOjQ4IEFNIFJvYiBLb3NzbGVy
+IDxya29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1bbWFpbHRvOnJrb3NzbGVy
+QG5kLmVkdVttYWlsdG86cmtvc3NsZXJAbmQuZWR1XV0+IHdyb3RlOgpBbHNvLCBub3RlIHRoYXQg
+dGhlcmUgaXMgbm8gY29ycmVzcG9uZGluZyBpc3N1ZSBvbiByZWNlaXZlIGJlY2F1c2UgdGhlIFJ4
+IHJhZGlvIGFsd2F5cyBpbnNlcnRzIHRoZSB0aW1lIHN0YW1wwqBpbiB0aGUgc2FtcGxlIHN0cmVh
+bS4gU28sIEkgZ3Vlc3MgeW91IHdvdWxkIG5vdCBzZWUgdGhpcyB3aXRoIHRoZSBEREMuClJvYsKg
+CgpPbiBUdWUsIE1hciAzLCAyMDIwIGF0IDEyOjQzIFBNIFJvYiBLb3NzbGVyIDxya29zc2xlckBu
+ZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1bbWFpbHRvOnJrb3NzbGVyQG5kLmVkdVttYWls
+dG86cmtvc3NsZXJAbmQuZWR1XV0+IHdyb3RlOgoKSGkgTHVrYXMsClRoZSBGUEdBIGltYWdlIG9u
+IHRoZSBVU1JQIGlzIGRpdmlkZWQgaW50byBibG9ja3Mgc3VjaCBhcyB0aGUgRFVDIGJsb2NrIGFu
+ZCB0aGUgUmFkaW8gYmxvY2suwqAgVGhlIGxhdHRlciBjb250cm9scyB0aGUgUkYgZGF1Z2h0ZXJi
+b2FyZCBhbmQgaGFzIGFjY2VzcyB0byB0aGUgZGV2aWNlIGNsb2NrLsKgIFNvLCB3aGVuIHlvdSBw
+cm92aWRlIGEgdGltZWQgY29tbWFuZCB0byB0aGUgUmFkaW8gYmxvY2sgKHN1Y2ggYXMgZm9yIHR1
+bmluZyB0aGUgUkYpIGl0IGNhbiBpbXBsZW1lbnQgdGhlIGNvbW1hbmQgYXQgdGhlIHNwZWNpZmll
+ZCB0aW1lIGJ5IGNvbXBhcmluZyB0byB0aGUgZGV2aWNlIGNsb2NrLsKgIFRoZSBEVUMgYmxvY2sg
+ZG9lcyBub3QgaGF2ZSBhY2Nlc3MgdG8gdGhlIE1CIGNsb2NrIGFuZCBzbyB3aGVuIHlvdSBnaXZl
+IGl0IGEgdGltZWQgY29tbWFuZCwgaXQgbW9uaXRvcnMgdGhlIGluY29taW5nIHNhbXBsZSBzdHJl
+YW0gdG8gZXh0cmFjdCB0aGUgdGltZS4gSWYgdGhlIHNhbXBsZSBzdHJlYW0gZG9lcyBub3QgaW5j
+bHVkZSBhIHRpbWUgc3RhbXAsIHRoZSBjb21tYW5kIG5ldmVyIGV4ZWN1dGVzLsKgIERvbid0IHRo
+aW5rIG9mIHRoaXMgYXMgYSBidWcsIGJ1dCByYXRoZXIgYXMgYSBkZXNpZ24gbGltaXRhdGlvbi4K
+wqAKV2hlbiBJIHdvcmsgZGlyZWN0bHkgd2l0aCBVSEQgZnJvbSBDKyssIEkgdXNlIHRoZSBmdW5j
+dGlvbiByeF9zdHJlYW1lcjo6aXNzdWVfc3RyZWFtX2NvbW1hbmQoKSB3aGljaCBoYXMgb3B0aW9u
+cyB0byBzdHJlYW0gZGF0YSB3aXRoIG5vIHRpbWUgc3RhbXAgb3Igd2l0aCBhIHRpbWUgc3RhbXAu
+wqAgV2hlbiB1c2luZyB0aW1lZCBjb21tYW5kcyB3aXRoIERVQyBvciBEREMsIEkgbXVzdCBpbmNs
+dWRlIHRoZSB0aW1lIHN0YW1wIG9yIGVsc2UgdGhlIGNvbW1hbmQgd2lsbCBuZXZlciBiZSBleGVj
+dXRlZC7CoCBCdXQsIHdpdGggR1IsIEkgZG9uJ3Qga25vdyBob3cgdG8gc3BlY2lmeSB0aGUgY29y
+cmVzcG9uZGluZyBvcHRpb25zLgpSb2LCoAoKT24gVHVlLCBNYXIgMywgMjAyMCBhdCAxMjoyOSBQ
+TSBMdWthcyBIYWFzZSA8bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0
+XVttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XV0+IHdy
+b3RlOkhpIFNhbSwgSGkgUm9iLAoKVGhhbmtzIGZvciBmb2xsb3dpbmcgdXAgb24gdGhpcyEKSSBh
+bSB2ZXJ5IGhhcHB5IHlvdSB3ZXJlIGFibGUgdG8gcmVwcm9kdWNlIHRoaXMgLi4uIHdoaWNoIG1l
+YW5zIHRoYXQgYXQgbGVhc3QgYW4gaXNzdWUgZXhpc3RzIDopCgpXaGF0IFNhbSBzdWdnZXN0cyBt
+YWtlcyBzZW5zZSBldmVuIHRob3VnaCBoYXJkIHRvIGJlbGlldmUgZm9yIG1lOgoKMS4gSG93IGNv
+dWxkIHNvbWV0aGluZyBsaWtlIHRoYXQgZ28gdW5ub3RpY2VkIGZvciBzbyBsb25nPyAoSSBhbSBz
+dXJlIEkgYW0gbm90IHRoZSBmaXJzdCBwZXJmb3JtaW5nIGRpZ2l0YWwgdHVuaW5nKQoyLiBJbiB0
+aGUgcGFzdCBJIGdvdCBzdWNjZXNzZnVsIHBoYXNlIGNvaGVyZW5jZSB1c2luZyBhdXRvbWF0aWMg
+dHVuaW5nIChwYXNzaW5nIGNlbnRlciBmcmVxdWVuY3kgKyBvZmZzZXQgdG8gdHVuZV9yZXF1ZXN0
+X3QgYW5kIHVzaW5nIGludGVnZXItTiB0dW5pbmcpIHVzaW5nIHRpbWVkIGNvbW1hbmRzLiBUaGlz
+IGRpZCBub3Qgd29yayByZWxpYWJseSBhbmQgb25seSBmb3IgY2VydGFpbiBmcmVxdWVuY2llcyBi
+dXQgaW4gbXkgb3BpbmlvbiB0aGlzIHNob3VsZCBoYXZlIElOQ0xVREVEIHRoZSBEVUMgdHVuaW5n
+LiBJZiB0aGUgRFVDIHJldHVuZSB3b3VsZG4ndCBoYXZlIGJlZW4gZXhlY3V0ZWQgYXMgcGFydCBv
+ZiB0aGlzIGF1dG9tYXRpYyB0dW5pbmcsIEkgY291bGQgbm90IGhhdmUgZ290dGVuIHBoYXNlIGNv
+aGVyZW5jZSAoYW5kIGFjdHVhbGx5LCBub3QgZXZlbiB0aGUgZGVzaXJlZCBmcmVxdWVuY3kpLgoK
+VGhlIHJlYXNvbiB3aHkgSSBhbSBvbmx5IGRvaW5nIERVQyB0dW5pbmcgbm93IGlzIHRvIGF2b2lk
+IGFsbCB0aGUgaGFzc2xlIHdpdGggaW50ZWdlci1OIHR1bmluZywgUExMIHJldHVuaW5nIGFuZCBz
+ZXR0bGluZyB0aW1lLgoKU2FtLCB3aGF0IGlzIHRoZSAicmFkaW8gYmxvY2siIHlvdSB3ZXJlIHRh
+bGtpbmcgYWJvdXQ/CgpBbnl3YXksIHdvdWxkIGl0IGJlIHdvcnRod2lsZSB0byBhdHRlbXB0IGRl
+YnVnZ2luZyB0aGlzIGlzIGFic2VuY2Ugb2YgZ3I/ClRoZSBvbmx5IHJlYXNvbiB0aGlzIHByZXZl
+bnRlZCBtZSBmcm9tIGRvaW5nIGlzIHRoYXQgSSB3b3VsZCBuZWVkIHRvIG1hbnVhbGx5IGNyZWF0
+ZSB0aGUgYmFzZWJhbmQgc2FtcGxlcyBhbmQgY29udGludW91c2x5IHN0cmVhbSB0aGVtIG91dCB3
+aGlsZSBpbiBwYXJhbGxlbCBkbyB0aGUgcmV0dW5pbmcuCkkgYW0gbm90IHRvbyBmYW1pbGlhciB3
+aXRoIFVIRCBvbiBpdHMgb3duIGJ1dCBJIGFzc3VtZSB0aGlzIHdvdWxkIGJlIHZlcnkgY29tcGxp
+Y2F0ZWQsIHJlcXVpcmUgbXVsdGl0aHJlYWRpbmcgZXRjLgpEbyB5b3UgaGF2ZSBhbnkgZGVtbyBj
+b2RlIHRoYXQgY291bGQgYmUgZWFzaWx5IG1vZGlmaWVkIGZvciB0aGlzIHNjZW5hcmlvPwoKQmVz
+dCwKTHVrYXMKCgpHZXNlbmRldDrCoERpZW5zdGFnLCAwMy4gTcOkcnogMjAyMCB1bSAxMjowOCBV
+aHIKVm9uOsKgIlNhbSBSZWl0ZXIiIDxzYW0ucmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJl
+aXRlckBldHR1cy5jb21dW21haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJl
+aXRlckBldHR1cy5jb21dXT4KQW46wqAiUm9iIEtvc3NsZXIiIDxya29zc2xlckBuZC5lZHVbbWFp
+bHRvOnJrb3NzbGVyQG5kLmVkdV1bbWFpbHRvOnJrb3NzbGVyQG5kLmVkdVttYWlsdG86cmtvc3Ns
+ZXJAbmQuZWR1XV0+CkNjOsKgIkx1a2FzIEhhYXNlIiA8bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRv
+Omx1a2FzaGFhc2VAZ214LmF0XVttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2Fz
+aGFhc2VAZ214LmF0XV0+LCAiVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOlVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21b
+bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV0iIDx1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzp1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXT4K
+QmV0cmVmZjrCoFJlOiBbVVNSUC11c2Vyc10gVVNSUCBYMzEwIGlnbm9yZWQgRFNQIHJldHVuaW5n
+IG9uIFRYIHdoZW4gdXNpbmcgYSB0aW1lZCBjb21tYW5kCgpGb3Igd2hhdCBpdCdzIHdvcnRoLCBJ
+IHdhcyBhYmxlIHRvIHJlcHJvZHVjZSB0aGUgYmVoYXZpb3IgZGVzY3JpYmVkIGhlcmUsIGJ1dCBk
+aWRuJ3QgZ2V0IHRvIGRpZyBpbnRvIGl0IG11Y2guIE15IGxlYWRpbmcgc3VzcGljaW9uIHdvdWxk
+IGJlIHdoYXQgUm9iIG1lbnRpb25lZCBhYm91dCB0aW1lc3RhbXBpbmcuIEx1a2FzJyBjb2RlIHNl
+dHMgYSBjb21tYW5kIHRpbWUsIGJ1dCBJJ20gbm90IGNsZWFyIG9uIGhvdyB0aW1lc3RhbXAgbWV0
+YWRhdGEgZm9yIHBhY2tldHMgYmVpbmcgc2VudCB0byB0aGUgcmFkaW8gYXJlIGhhbmRsZWQuIE1p
+Z2h0IGJlIGEgZ29vZCBxdWVzdGlvbiB0byBsb29wIHRoZSBkaXNjdXNzLWdudXJhZGlvIG1haWxp
+bmcgbGlzdCBpbiBvbj8KCsKgCgpTYW0gUmVpdGVywqDCoAoKT24gVHVlLCBNYXIgMywgMjAyMCBh
+dCAxMDo1OSBBTSBSb2IgS29zc2xlciB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV1b
+bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dXT4gd3JvdGU6Ckkgd29uZGVyIGlmIHRoZSBpc3N1ZSBp
+cyByZWxhdGVkIHRvIGEgbWlzc2luZyB0aW1lIHN0YW1wIG9uIHRoZSBiYXNlYmFuZCBzYW1wbGVz
+IGdvaW5nIGZyb20gR1IgdG8gVUhELsKgIElmIHRoZSBzdHJlYW0gZG9lcyBub3QgaGF2ZSBhIHRp
+bWUgc3RhbXAsIHRoZSBEVUMgaXMgdW5hYmxlIHRvIGFwcGx5IHRoZSB0aW1lZCBjb21tYW5kIGJl
+Y2F1c2UgdGhlIERVQyBkb2VzIG5vdCByZWFsbHkga25vdyB0aGUgdGltZSAtIGl0IG11c3QgcHVs
+bCB0aGUgdGltZSBmcm9tIHRoZSBzdHJlYW1pbmcgc2FtcGxlcy4gVGhpcyBpcyBpbiBjb250cmFz
+dCB0byB0aGUgcmFkaW8gYmxvY2sgd2hpY2ggZG9lcyBoYXZlIGFjY2VzcyB0byB0aW1lIGFuZCBj
+YW4gYXBwbHkgdGltZWQgY29tbWFuZHMgYnkgcmVmZXJyaW5nIHRvIHRoZSBtb3RoZXJib2FyZCBj
+bG9jay4KwqAKSSBhbSBub3QgdG9vIGZhbWlsaWFyIHdpdGggR1Igc28gSSdtIG5vdCBzdXJlIGhv
+dyB0byBrbm93IGlmIEdSIGlzIHB1dHRpbmcgYSB0aW1lIHN0YW1wIG9uIHRoZSBzdHJlYW1pbmcg
+c2FtcGxlcy4KUm9iwqAKCk9uIE1vbiwgTWFyIDIsIDIwMjAgYXQgMTA6MDQgQU0gTHVrYXMgSGFh
+c2UgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+W21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzp1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzp1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b21dXV0+IHdyb3RlOkhpIE1hcmN1cywKClRoYW5rIHlvdSB0aGF0IHdvdWxkIGJlIGFtYXppbmch
+CgpJIGZvbGxvd2VkIHRoZSB0dXRvcmlhbCBhbmQgYnVpbHQgZXZlcnl0aGluZyBmcm9tIHNvdXJj
+ZToKCiQgbHNiX3JlbGVhc2UgLWEKTm8gTFNCIG1vZHVsZXMgYXJlIGF2YWlsYWJsZS4KRGlzdHJp
+YnV0b3IgSUQ6IFVidW50dQpEZXNjcmlwdGlvbjrCoCDCoCBVYnVudHUgMTguMDQuNCBMVFMKUmVs
+ZWFzZTrCoCDCoCDCoCDCoCAxOC4wNApDb2RlbmFtZTrCoCDCoCDCoCDCoGJpb25pYwokIHVuYW1l
+IC1hCkxpbnV4IHNkciA1LjMuMC00MC1nZW5lcmljICMzMn4xOC4wNC4xLVVidW50dSBTTVAgTW9u
+IEZlYiAzIDE0OjA1OjU5IFVUQyAyMDIwIHg4Nl82NCB4ODZfNjQgeDg2XzY0IEdOVS9MaW51eAok
+IGNkIHVoZAokIGdpdCBzdGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My4xNS4wLjAKJCBjZCAuLi9n
+bnVyYWRpbwokIGdpdCBzdGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My43LjE0LjAKCgpUaGFuayB5
+b3UhCgpMdWthcwoKCgpQUzogRm9yIHNvbWUgcmVhc29uIEkgc29tZXRpbWVzIGRvIG5vdCBnZXQg
+cmVzcG9uc2VzIGZyb20gdGhpcyBsaXN0LiBJIGp1c3Qgc2F3IGl0IGxvb2tpbmcgYXQgdGhlIG1h
+aWxtYW4gYXJjaGl2ZXMuIEhlbmNlIEkgY2Fubm90IHJlc3BvbmQgKHRvIGtlZXAgaGVhZGVycyBp
+bnRhY3QpIGJ1dCBuZWVkIHRvIGNyZWF0ZSBhIG5ldyBtZXNzYWdlIGFuZCBtYW51YWxseSAicXVv
+dGUiLiBJIGhvcGUgdGhhdCBzdGlsbCBwcmVzZXJ2ZXMgdGhlIGNvbnRleHQgc29tZWhvdy4KCgoK
+TWFyY3VzIExlZWNoIHdyb3RlOgo+IE9uIDAyLzI4LzIwMjAgMDE6MDEgUE0sIEx1a2FzIEhhYXNl
+IHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+PiBIaSBhZ2FpbiwKPj4KPj4gSSBjcmVhdGVkIGEgbWlu
+aW11bSBleGFtcGxlIChnbnVyYWRpbykgdGhhdCBzaG93cyB0aGUgaXNzdWUgZGVzY3JpYmVkIGJl
+bG93Lgo+PiBUbyBzdW1tYXJpemU6IFJldHVuaW5nIHRvIGEgZGlmZmVyZW50IGRzcCBmcmVxdWVu
+Y3kgb24gYW4gVVNSUCBYMzEwICgrVUJYMTYwKSBkb2VzIG5vdCB3b3JrIChjb21tYW5kIGlnbm9y
+ZWQpIE9OTFkgaWYgYSB0aW1lZCBjb21tYW5kIChpbiBmdXR1cmUgaXMgdXNlZCkuCj4+IFRoZSBj
+b2RlIHNob3dzIGl0IGluIGEgc2ltcGxlIG1hbm5lci4gQ29tbWVudGluZyBvdXQgdGhlIHNpbmds
+ZSBsaW5lIHdpdGggc2V0X2NvbW1hbmRfdGltZSBtYWtlcyB0aGUgZXhhbXBsZSB3b3JrLgo+Pgo+
+PiBJIGFtIGFic29sdXRlbHkgb3V0IG9mIGlkZWFzIGFuZCB3b3VsZCBhcHByZWNpYXRlIGFueSBp
+bnB1dCEKPj4KPj4gQmVzdCwKPj4gTHVrYXMKPiBMdWthcy4KPgo+IFRoYW5rcyBmb3Igc3RpY2tp
+bmcgd2l0aCB0aGlzLsKgIEknbGwgaGF2ZSBhIGRpc2N1c3Npb24gd2l0aCBFdHR1cyBSJkQgdG8K
+PiBzZWUgaWYgdGhpcyBpcyBhIGtub3duIGlzc3VlIGFuZC9vciBpZiB0aGVyZSdzIGEgd29ya2Fy
+b3VuZC4KPgo+IFJlbWluZCBtZSB3aGljaCB2ZXJzaW9uIG9mIFVIRCB5b3UncmUgdXNpbmc/CgoK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21h
+aWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21d
+XV0KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KVVNSUC11c2Vyc1todHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
+cC11c2Vyc19saXN0cy5ldHR1cy5jb21fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX1VTUlAtdXNlcnNdW2h0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fVVNSUC11c2VycyU1Qmh0dHA6Ly9saXN0cy5ldHR1cy5j
+b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fVVNSUC11c2VycyU1RF0gbWFpbGlu
+ZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXV0KaHR0cDov
+L2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMu
+Y29tW2h0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
+c3RzLmV0dHVzLmNvbV1baHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tJTVCaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tJTVEXQoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
