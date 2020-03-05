@@ -2,52 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FD6D17AA0C
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Mar 2020 17:03:14 +0100 (CET)
-Received: from [::1] (port=52432 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E50717AA36
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Mar 2020 17:11:17 +0100 (CET)
+Received: from [::1] (port=54804 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j9sxq-0001Nj-Fv; Thu, 05 Mar 2020 11:03:10 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:41123)
+	id 1j9t5g-0002DD-Eq; Thu, 05 Mar 2020 11:11:16 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:39004)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1j9sxn-0001HW-1n
- for usrp-users@lists.ettus.com; Thu, 05 Mar 2020 11:03:07 -0500
-Received: by mail-oi1-f179.google.com with SMTP id i1so6448574oie.8
- for <usrp-users@lists.ettus.com>; Thu, 05 Mar 2020 08:02:46 -0800 (PST)
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1j9t5c-00022q-Pp
+ for USRP-users@lists.ettus.com; Thu, 05 Mar 2020 11:11:12 -0500
+Received: by mail-ot1-f54.google.com with SMTP id x97so6208060ota.6
+ for <USRP-users@lists.ettus.com>; Thu, 05 Mar 2020 08:10:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6GiQtnsUfIQzFQ6I6KTg1dtw5PsVuzcl/bM8BSfTUpY=;
- b=MtaS5F23+HGCE4bmDyin1HIKNkPphCqTiOJdd3c9h79b+2bNoHRjnKCNeGnYv/r5mn
- WsihKfz7diPLd4qsKc5orIvOpAmQHPojkNIjYdCC1txmqpG9X6YrqiifRmgUJX/o5OM7
- nqyvr00QQTUNPL3vwCcujJjnIYP1rY+efu9KtaYU60IeKIIJJFvO1YW+2WO/vDtHPHH5
- K49vRf50qYjjVrEwA5iYFt4KDmpvVRVVWlLaPAxXEM9cUS0rvQCN8cLk1JadbCgaK1Ty
- vVrdY+LsplhLNleTQdQ2dGpB0mvRBasrlfA/54ExPxGi2i301JEjSQcbzj481Zxu+/zs
- W4eQ==
+ :cc; bh=KCsQwmnU5f7v4DXRS5jCt5VbukyMnHvdEsJR0oFaBHI=;
+ b=YzVbhqfTRts9w4kcgzJecL1sF228ZjFiqe+A8OWJRugV0254odmnEHCqQL2/gTcrOV
+ JYqj2f468m9Z7H14N+ZizPp9d3CSeOV+HBEjka/xhp6m7Q45uY65KS1FqCN0NFFGO2Kc
+ gYs5K4DIHxapa5eFrkBLq3bZWeIRDC2KPUrioJCfgcotI5vEbTi3n5qhEi++YNO96VpE
+ tOR8WWsqiA3a4TbOqL7E4nrbvev+KSnOAPsE9LevMmr42Uy8MFfC8dUNT/apRWwS9GK0
+ XY2Ivr3fyhiF2yXVCxBTC/4iiwNSNdwcWafw7SFMKlmEhOm6vS/umgzzJMZsSyOLViBX
+ ZsqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=6GiQtnsUfIQzFQ6I6KTg1dtw5PsVuzcl/bM8BSfTUpY=;
- b=gKA5/b3ycJa/ET4Qae/9ug0lvHn7qcjNM9mwV+C+KZCROkl57Izj6f6IwQuW9FBH/u
- bdFiQVtHaZtqBFiBMggr+rfi7tI+pnsGPebBgl1Rjxi71CA9jl2AOoBNX5NQDpvajACY
- FHXHj/GQdgAxJ8lrZVYSV8CMvvyQarItTn/irXb9cDdnODv0Ipfhk7YHzueC9hrVrDQc
- Ne+n1oyXVxVfD1JdE7AYxOE+zPsh/EHFrlJzoti2tKUXZCnGNnKQajGcFzcTURDZe0Ej
- jt1Y+GX5/FZ7B4yebUjMhlYXoHX8uJb0jW9UTy73RSU6YsalZbiM0cHsdQD7urb05l66
- wKpw==
-X-Gm-Message-State: ANhLgQ0Ay6vzJEbu0B5v3DhxZpO6bw8QY9GfyIb7YKPTfbvrL98xQmul
- Xi0Df+GEVJW9pw706qvLDC1CBHsid308rq+vvAExWw==
-X-Google-Smtp-Source: ADFU+vthQICwwpRhNCVMD/DLQ+0s3nsHGXn2HOZ6mGoyKREtRtvihhfvei+hNbQ9CrK9v7fCr52nxBzMTWy1p68FfLc=
-X-Received: by 2002:a05:6808:4e:: with SMTP id
- v14mr6165202oic.70.1583424146333; 
- Thu, 05 Mar 2020 08:02:26 -0800 (PST)
+ bh=KCsQwmnU5f7v4DXRS5jCt5VbukyMnHvdEsJR0oFaBHI=;
+ b=D/CQZfFgCsew9m70mV95xIQJB1mPq/fQV6o2/8SefKGeg+bp6R800A9wuYrlFdvNct
+ H4tlXq0KTEY7UJpa9EhpE+aauUQNUHovAhGGn8HnYD64mRy7eJoGQF70yO/0V1ODGYOr
+ nw+FlmcWOHHFCl+jI96RGaIJ4aMngLLpUCXQcT76tUyb8LdotpfiNoo4VQZomsMkOpNS
+ 7R4hpk3JqH0WcMxSz5dZH4Iw9OzQsjLFoIgPCGW7wvo46axbxN9LoUfDYnyM+cy4ON5n
+ vo+nOGFekgr4w++lkEYwE3cnQWni361Q1cxMb0oopRP/b8ynpzTsP55PJ15oNFttsg77
+ FSzA==
+X-Gm-Message-State: ANhLgQ3ztLpaO3MV9gYE20wZXISE/dLcPF4SMjTRp1jCAJKIGm6izkcg
+ Rc66U1U0CXwaDNywMYLdljYhMFzgSwMFIsyyh0Pvsg==
+X-Google-Smtp-Source: ADFU+vumZ6sVdUk6529wTa/UOqUzd3cU/Zcf1SbOvMVKM6iHKbfUfC6c8RTZJH5r6R8UubqV+GJaJzgf+/UZ3ur5cF4=
+X-Received: by 2002:a05:6830:150:: with SMTP id
+ j16mr7209370otp.301.1583424631983; 
+ Thu, 05 Mar 2020 08:10:31 -0800 (PST)
 MIME-Version: 1.0
-References: <CANZpvRrDj5ZyvNmmeBoT1W6o76MezH7mePEPO2UQimtWoXWMGw@mail.gmail.com>
-In-Reply-To: <CANZpvRrDj5ZyvNmmeBoT1W6o76MezH7mePEPO2UQimtWoXWMGw@mail.gmail.com>
-Date: Thu, 5 Mar 2020 11:02:15 -0500
-Message-ID: <CAB__hTTbtK61CWVCQ51aBLmQfncu36E=5KF3UBV5eU0iJDSaVw@mail.gmail.com>
-To: =?UTF-8?Q?Piotr_Gaw=C5=82owicz?= <gawlowicz@tu-berlin.de>
-Subject: Re: [USRP-users] MATLAB WLAN toolbox,
- CBX-120 daughterboard and COTS NIC
+References: <CABN-bdvmvYTF6+c8G5cppUQ-fFnVTLAi6pLECviJJSJF10rZqQ@mail.gmail.com>
+In-Reply-To: <CABN-bdvmvYTF6+c8G5cppUQ-fFnVTLAi6pLECviJJSJF10rZqQ@mail.gmail.com>
+Date: Thu, 5 Mar 2020 11:10:21 -0500
+Message-ID: <CAB__hTRi7W+wbKG7O7fok0Q_M41G7ViyncTXYd-C8oNp4tf23w@mail.gmail.com>
+To: ALEJANDRO BLANCO PIZARRO <100283180@alumnos.uc3m.es>
+Subject: Re: [USRP-users] Synchronization and coherence channels x310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,8 +60,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0429228842213237588=="
+Cc: alejandro.blanco@imdea.org, usrp-users <USRP-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8862355370706335368=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,164 +75,100 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0429228842213237588==
-Content-Type: multipart/alternative; boundary="000000000000c59ad105a01da9d7"
+--===============8862355370706335368==
+Content-Type: multipart/alternative; boundary="000000000000b8077405a01dc65f"
 
---000000000000c59ad105a01da9d7
+--000000000000b8077405a01dc65f
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Piotr,
-A couple of comments
+Hi Alejandro,
+Phase sync is not possible with CBX
+<https://kb.ettus.com/CBX#Phase_Synchronization>.  Time sync and freq sync
+should work, but keep in mind the following:
 
-   - regarding setting the dboard_clock_rate, is this needed?  I don't know
-   what the value should be for the CBX so my suggestion would be to elimin=
-ate
-   this argument so that UHD uses default settings (unless you know this is=
- a
-   good value)
-   - regarding the "master_clock_rate" and the "rate", your command line
-   shows an incompatibility of these 2 parameters.  The rate should be an
-   integer division (preferably some multiple of 2 or even better 4) of the
-   master_clock_rate - so perhaps 25e6 or 33.3e6.  Alternatively, it was
-   previously possible to set the master_clock_rate to 184.32 MHz so that y=
-ou
-   could get a rate of 30.72 MHz, but I'm not sure if this is still support=
-ed.
-   Of course, this all depends on your sample rate assumption in your wavef=
-orm
-   file.
+   - The actual freq transmitted is a function of the quantized LO setting
+   and the more finely quantized DUC setting.  The final value is not
+   necessarily "exactly" what you ask for. So, the delta between your 2
+   signals may not be exactly 80 MHz (perhaps off by a fraction of a hertz
+   because of the quantizations).
+   - The two transmissions do not share the same LO. Each channel has its
+   own PLL that is locked to the 10 MHz ref, but there will be some
+   variability between the two PLL
 
-I'm not sure that either of these will help, but wanted to pass it along.
 Rob
 
-On Thu, Mar 5, 2020 at 5:32 AM Piotr Gaw=C5=82owicz via USRP-users <
+
+On Thu, Mar 5, 2020 at 10:29 AM ALEJANDRO BLANCO PIZARRO via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Hi,
+> Dear USRP community,
 >
-> Recently, I have started playing with the Matlab WLAN toolbox. So far, I
-> have managed to generate a waveform of 802.11n frame, transmit it using
-> USPR x310 with UBX-160 daughterboard and successfully receive the frame
-> using commercial-off-the-shelf (COTS) hardware - Intel Wireless-AC 9260
-> NIC. The setup also works perfectly when using USRP B205mini.
+> I am trying to send 160MHz WiFI signal by a x310. Unfortunately, I do not
+> have the UBX which allows bandwidth of 160MHz, so I am using two CBX of
+> 120MHz each one.
 >
-> However, when I transmit the waveform using CBX-120 daughterboard (in the
-> same x310 USRP), is not received by the COTS Intel NIC. I want to play wi=
-th
-> MIMO and I need to use CBX-120 daughterboard as we have 4 of them and onl=
-y
-> one UBX-160. I tested all of our 4 CBX-120 daughterboards with the same
-> result.
+> We properly split the 160MHz wifi signal into two 80MHz signals. Our aim
+> is to send each 80MHz signal by one of the CBX so that we can transmit the
+> whole bandwidth. We transmit each signal in two 80MHz WiFi channels
+> (contiguous channels).
 >
-> I use exactly the same command in case of CBX-120 and UBX-160 (both in
-> same x310 USRP so I change subdev parameter), ie.:
-> ./tx_samples_from_file
-> --args=3D"type=3Dx300,addr=3D192.168.10.2,master_clock_rate=3D200e6,dboar=
-d_clock_rate=3D50e6"
-> --subdev A:0 --type=3Dshort --rate=3D30e6 --freq 2412e6 --gain=3D25 --rep=
-eat
-> --delay=3D1 --file 80211n_waveform.dat
+> The issue is that we are using a commercial router as a receiver and it
+> cannot detect the 160MHz signal (80 + 80). I am wondering if the two CBX of
+> the x310 are completely synchronized or not. From my point of view, the
+> clock and the PLL should be the same for the two CBX but, is there
+> something that I am missing? Because the central frequencies are not the
+> same for the transmission, so I do not know if this creates synchronization
+> or carrier frequency offset issues.
 >
-> I have noticed that Connection Type is different in the case of CBX-120
-> and UBX-160, i.e. IQ vs QI,  and generated waveforms accordingly in MATLA=
-B,
-> but without success.
+> I do really appreciate any information you can provide about time,
+> frequency and phase synchronization of the two daughterboards using
+> different central frequencies.
 >
-> I connected USRP RF outputs to WiFi NIC using RF cable (with 45dB
-> attenuation), but still, the same effect, i.e. UBX-160 works, CBX-120 doe=
-s
-> not work.
-> In the case of UBX-160, the RSSI of the received frame equals -55dBm (as
-> reported by NIC), so it is still a pretty good link.
->
-> After running the calibration procedure (as described here
-> https://files.ettus.com/manual/page_calibration.html), the CBX-120
-> started working somehow, i.e. some frames are received but not really
-> reliably (only few out of tens transmitted frames are received). In the
-> case of UBX-160, all frames are received correctly (of course over the
-> cable).
-> The frame is generated with MCS 0 (BPSK, and code rate 1/2), so it is ver=
-y
-> robust and can be received with SNR of 3dB.
->
-> I have tested also a couple of the UHD versions and hence FPGA images, bu=
-t
-> with the same result.
-> Can someone explain what is the difference between CBX-120 and UBX-160
-> daughterboards that cause the described behavior? Should I set some more
-> parameters to overwrite default ones in the case of CBX-120 to achieve
-> better results?
->
-> Best Regards,
-> Piotr Gawlowicz
+> Best,
+> Alejandro
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000c59ad105a01da9d7
+--000000000000b8077405a01dc65f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Piotr,<div>A couple of comments</div><=
-div><ul><li>regarding setting the dboard_clock_rate, is this needed?=C2=A0 =
-I don&#39;t know what the value should be for the CBX so my suggestion woul=
-d be to eliminate this argument so that UHD uses default settings (unless y=
-ou know this is a good value)</li><li>regarding the &quot;master_clock_rate=
-&quot; and the &quot;rate&quot;, your command line shows an incompatibility=
- of these 2 parameters.=C2=A0 The rate should be an integer division (prefe=
-rably some multiple of 2 or even better 4) of the master_clock_rate - so pe=
-rhaps 25e6 or 33.3e6.=C2=A0 Alternatively, it was previously possible to se=
-t the master_clock_rate to 184.32 MHz so that you could get a rate of 30.72=
- MHz, but I&#39;m not sure if this is still supported. Of course, this all =
-depends on your sample rate assumption in your waveform file.</li></ul><div=
->I&#39;m not sure that either of these will help, but wanted to pass it alo=
-ng.</div></div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Thu, Mar 5, 2020 at 5:32 AM Piotr Gaw=C5=
-=82owicz via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">u=
+<div dir=3D"ltr">Hi Alejandro,<div>Phase sync is not possible with <a href=
+=3D"https://kb.ettus.com/CBX#Phase_Synchronization">CBX</a>.=C2=A0 Time syn=
+c and freq sync should work, but keep in mind the following:</div><div><ul>=
+<li>The actual freq transmitted is a function of the quantized LO setting a=
+nd the more finely quantized DUC setting.=C2=A0 The final value is not nece=
+ssarily &quot;exactly&quot; what you ask for. So, the delta between your 2 =
+signals may not be exactly 80 MHz (perhaps off by a fraction of a hertz bec=
+ause of the quantizations).</li><li>The two transmissions do not share the =
+same LO. Each channel has its own PLL that is locked to the 10 MHz ref, but=
+ there will be some variability between the two PLL=C2=A0</li></ul><div>Rob=
+</div></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Thu, Mar 5, 2020 at 10:29 AM ALEJANDRO BLANCO=
+ PIZARRO via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">u=
 srp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
 l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi, <br></div><div><br></div=
-><div>Recently, I have started playing with the Matlab WLAN toolbox. So far=
-, I have managed to generate a=20
-waveform of 802.11n frame, transmit it using USPR x310 with UBX-160=20
-daughterboard and successfully receive the frame using commercial-off-the-s=
-helf (COTS) hardware - Intel Wireless-AC 9260 NIC.=20
-The setup also works perfectly when using USRP B205mini. =C2=A0</div><br>Ho=
-wever,
- when I transmit the waveform using CBX-120 daughterboard (in the same=20
-x310 USRP), is not received by the COTS Intel NIC. I want to play with=20
-MIMO and I need to use CBX-120 daughterboard as we have 4 of them and only =
-one UBX-160. I tested all of our 4 CBX-120 daughterboards with the same res=
-ult.<br><br>I use exactly the same command in case of CBX-120 and UBX-160 (=
-both in same x310 USRP so I change subdev parameter), ie.:<br>./tx_samples_=
-from_file --args=3D&quot;type=3Dx300,addr=3D192.168.10.2,master_clock_rate=
-=3D200e6,dboard_clock_rate=3D50e6&quot;
- --subdev A:0 --type=3Dshort --rate=3D30e6 --freq 2412e6 --gain=3D25 --repe=
-at=20
---delay=3D1 --file 80211n_waveform.dat<br><br>I have noticed that=20
-Connection Type is different in the case of CBX-120 and UBX-160, i.e. IQ
- vs QI, =C2=A0and generated waveforms accordingly in MATLAB, but without=20
-success.<br><br>I connected USRP RF outputs to WiFi NIC using RF cable=20
-(with 45dB attenuation), but still, the same effect, i.e. UBX-160 works,
- CBX-120 does not work.<br>In the case of UBX-160, the RSSI of the received=
- frame equals -55dBm (as reported by NIC), so it is still a pretty good lin=
-k.<br><br>After running the calibration procedure (as described here <a hre=
-f=3D"https://files.ettus.com/manual/page_calibration.html" target=3D"_blank=
-">https://files.ettus.com/manual/page_calibration.html</a>),
- the CBX-120 started working somehow, i.e. some frames are received but=20
-not really reliably (only few out of tens transmitted frames are=20
-received). In the case of UBX-160, all frames are received correctly (of
- course over the cable).<br>The frame is generated with MCS 0 (BPSK, and co=
-de rate 1/2), so it is very robust and can be received with SNR of 3dB. <br=
-><br>I have tested also a couple of the UHD versions and hence FPGA images,=
- but with the same result.<br>Can someone explain what is the difference be=
-tween CBX-120 and UBX-160=20
-daughterboards that cause the described behavior? Should I set some more pa=
-rameters to overwrite default ones in the case of CBX-120 to achieve better=
- results? <br><br>Best Regards,<br>Piotr Gawlowicz</div>
+4,204);padding-left:1ex"><div dir=3D"ltr"><div>Dear USRP community,</div><d=
+iv><br></div><div>I am trying to send 160MHz WiFI signal by a x310. Unfortu=
+nately, I do not have the UBX which allows bandwidth of 160MHz, so I am usi=
+ng two CBX of 120MHz each one.</div><div><br></div><div>We properly split t=
+he 160MHz wifi signal into two 80MHz signals. Our aim is to send each 80MHz=
+ signal by one of the CBX so that we can transmit the whole bandwidth. We t=
+ransmit each signal in two 80MHz WiFi channels (contiguous channels).<br></=
+div><div></div><div><br></div><div> The issue is that we are using a commer=
+cial router as a receiver and it cannot detect the 160MHz signal (80 + 80).=
+ I am wondering if the two CBX of the x310 are completely synchronized or n=
+ot. From my point of view, the clock and the PLL should be the same for the=
+ two CBX but, is there something that I am missing? Because the central fre=
+quencies are not the same for the transmission, so I do not know if this cr=
+eates synchronization or carrier frequency offset issues.</div><div><br></d=
+iv><div>I do really appreciate any information you can provide about time, =
+frequency and phase synchronization of the two daughterboards using differe=
+nt central frequencies.</div><div><br></div><div>Best,</div><div>Alejandro<=
+br></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -241,12 +176,12 @@ lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+</blockquote></div>
 
---000000000000c59ad105a01da9d7--
+--000000000000b8077405a01dc65f--
 
 
---===============0429228842213237588==
+--===============8862355370706335368==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -257,5 +192,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0429228842213237588==--
+--===============8862355370706335368==--
 
