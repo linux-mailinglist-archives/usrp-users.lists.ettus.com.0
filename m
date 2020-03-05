@@ -2,51 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E50717AA36
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Mar 2020 17:11:17 +0100 (CET)
-Received: from [::1] (port=54804 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 432DF17AAAF
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Mar 2020 17:40:43 +0100 (CET)
+Received: from [::1] (port=60734 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1j9t5g-0002DD-Eq; Thu, 05 Mar 2020 11:11:16 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:39004)
+	id 1j9tY7-0004wD-Kd; Thu, 05 Mar 2020 11:40:39 -0500
+Received: from mail-lj1-f175.google.com ([209.85.208.175]:47080)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1j9t5c-00022q-Pp
- for USRP-users@lists.ettus.com; Thu, 05 Mar 2020 11:11:12 -0500
-Received: by mail-ot1-f54.google.com with SMTP id x97so6208060ota.6
- for <USRP-users@lists.ettus.com>; Thu, 05 Mar 2020 08:10:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ (Exim 4.93) (envelope-from <sam.reiter@ettus.com>)
+ id 1j9tY3-0004o2-NK
+ for usrp-users@lists.ettus.com; Thu, 05 Mar 2020 11:40:35 -0500
+Received: by mail-lj1-f175.google.com with SMTP id h18so6789948ljl.13
+ for <usrp-users@lists.ettus.com>; Thu, 05 Mar 2020 08:40:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=KCsQwmnU5f7v4DXRS5jCt5VbukyMnHvdEsJR0oFaBHI=;
- b=YzVbhqfTRts9w4kcgzJecL1sF228ZjFiqe+A8OWJRugV0254odmnEHCqQL2/gTcrOV
- JYqj2f468m9Z7H14N+ZizPp9d3CSeOV+HBEjka/xhp6m7Q45uY65KS1FqCN0NFFGO2Kc
- gYs5K4DIHxapa5eFrkBLq3bZWeIRDC2KPUrioJCfgcotI5vEbTi3n5qhEi++YNO96VpE
- tOR8WWsqiA3a4TbOqL7E4nrbvev+KSnOAPsE9LevMmr42Uy8MFfC8dUNT/apRWwS9GK0
- XY2Ivr3fyhiF2yXVCxBTC/4iiwNSNdwcWafw7SFMKlmEhOm6vS/umgzzJMZsSyOLViBX
- ZsqA==
+ :cc; bh=J2IzTfVNbypV7p427Fq0RZykVsvIrhpiCG3Nx6jMnRk=;
+ b=DMOrLO+8YkCsozFtJ19qEmyW2R2ObASSoFtFURzBCxXORVXX8gHpZfFUDQVOVfJ9R3
+ HJCbMxVO9jjSTNca+4UTO/wq+p6JZv+aswU1B54dPaY7J9iQGo/z12qkUey+VCykOpIJ
+ 1Sb0Q6UTWAXgsjApuJSRTsAiWYXnKwe8Knmb3L9RVqJDHOQrBFUml8NwnvsTMu1MhAUg
+ v0Z9nZO/tjxNsQCbudQIO9JlSxune5gOleg/bKkgBKHKr4UUMCvYh6qq3eLtDdn4o5cT
+ PIYd8jt32auijdAt6g3RR5qJxKNXguNvMFFHgyKZq94ZH5NcIy8ZpnZxQTHV58S4iltT
+ C5qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=KCsQwmnU5f7v4DXRS5jCt5VbukyMnHvdEsJR0oFaBHI=;
- b=D/CQZfFgCsew9m70mV95xIQJB1mPq/fQV6o2/8SefKGeg+bp6R800A9wuYrlFdvNct
- H4tlXq0KTEY7UJpa9EhpE+aauUQNUHovAhGGn8HnYD64mRy7eJoGQF70yO/0V1ODGYOr
- nw+FlmcWOHHFCl+jI96RGaIJ4aMngLLpUCXQcT76tUyb8LdotpfiNoo4VQZomsMkOpNS
- 7R4hpk3JqH0WcMxSz5dZH4Iw9OzQsjLFoIgPCGW7wvo46axbxN9LoUfDYnyM+cy4ON5n
- vo+nOGFekgr4w++lkEYwE3cnQWni361Q1cxMb0oopRP/b8ynpzTsP55PJ15oNFttsg77
- FSzA==
-X-Gm-Message-State: ANhLgQ3ztLpaO3MV9gYE20wZXISE/dLcPF4SMjTRp1jCAJKIGm6izkcg
- Rc66U1U0CXwaDNywMYLdljYhMFzgSwMFIsyyh0Pvsg==
-X-Google-Smtp-Source: ADFU+vumZ6sVdUk6529wTa/UOqUzd3cU/Zcf1SbOvMVKM6iHKbfUfC6c8RTZJH5r6R8UubqV+GJaJzgf+/UZ3ur5cF4=
-X-Received: by 2002:a05:6830:150:: with SMTP id
- j16mr7209370otp.301.1583424631983; 
- Thu, 05 Mar 2020 08:10:31 -0800 (PST)
+ bh=J2IzTfVNbypV7p427Fq0RZykVsvIrhpiCG3Nx6jMnRk=;
+ b=kDsBfyMEjlxCa9KuWiD6qGhFkhktfF9NpG7c1WAriUvJ0wFKixsmK9v6zfyVCaK55W
+ Hk9XaNAoiVOXVM3LRNK65hFP6QPGmoYsUeipF7W0MAEhrdgGw59bSewnN8/VnZnc7vJJ
+ 0qrrtsKs7fH23BUQ4ZhnKuXyJdrQPQ4BIa+82mnzobNy8Ci5d5b3OdJH+OsPtQFqLF3q
+ ONlLyHNqG/2kfEexZcxgf5xICW+EwcPku94P9hW8E/pWKIR0+YAuclK17tnwBhl06NKx
+ 2+4ykPw0euCgE7NnV3SjN515pJIZFfXg5LLTKCvKYuZMdVwMG0jIFyHnkDYEW1LDXTgq
+ Hvww==
+X-Gm-Message-State: ANhLgQ3TjTzhSNuxaOMa/NA+BiqyBU4TPc6+Z2zF2ND+LH2yRwvK3YPk
+ SZD7wWbJf/frXl9yI3jseU8iolP7v5mTWpBvXFinRkYl
+X-Google-Smtp-Source: ADFU+vtTT7mjlN2zmYcBdrSxYdK5rvf28zhD+qX2GDt+z9yWzuvNgGW4DaT1eFh/JR4VKHePYLfjaEC8nTMpT4twqOI=
+X-Received: by 2002:a2e:85d8:: with SMTP id h24mr2806181ljj.230.1583426394449; 
+ Thu, 05 Mar 2020 08:39:54 -0800 (PST)
 MIME-Version: 1.0
-References: <CABN-bdvmvYTF6+c8G5cppUQ-fFnVTLAi6pLECviJJSJF10rZqQ@mail.gmail.com>
-In-Reply-To: <CABN-bdvmvYTF6+c8G5cppUQ-fFnVTLAi6pLECviJJSJF10rZqQ@mail.gmail.com>
-Date: Thu, 5 Mar 2020 11:10:21 -0500
-Message-ID: <CAB__hTRi7W+wbKG7O7fok0Q_M41G7ViyncTXYd-C8oNp4tf23w@mail.gmail.com>
-To: ALEJANDRO BLANCO PIZARRO <100283180@alumnos.uc3m.es>
-Subject: Re: [USRP-users] Synchronization and coherence channels x310
+References: <7fe1a8ca-30af-dcc8-2533-e553cb794651@iqo.uni-hannover.de>
+In-Reply-To: <7fe1a8ca-30af-dcc8-2533-e553cb794651@iqo.uni-hannover.de>
+Date: Thu, 5 Mar 2020 10:39:42 -0600
+Message-ID: <CANf970Yo0TsXDdsoyqPxfCQ7b=sYjUUdToDeyBtrPEEjY=Q6Ww@mail.gmail.com>
+To: Knut Stolzenberg <stolzenberg@iqo.uni-hannover.de>
+Subject: Re: [USRP-users] Trigger Output
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: alejandro.blanco@imdea.org, usrp-users <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8862355370706335368=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============9147311524054555047=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,100 +76,201 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8862355370706335368==
-Content-Type: multipart/alternative; boundary="000000000000b8077405a01dc65f"
+--===============9147311524054555047==
+Content-Type: multipart/alternative; boundary="000000000000c4fddb05a01e2f4b"
 
---000000000000b8077405a01dc65f
+--000000000000c4fddb05a01e2f4b
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Alejandro,
-Phase sync is not possible with CBX
-<https://kb.ettus.com/CBX#Phase_Synchronization>.  Time sync and freq sync
-should work, but keep in mind the following:
+Hey Knut,
 
-   - The actual freq transmitted is a function of the quantized LO setting
-   and the more finely quantized DUC setting.  The final value is not
-   necessarily "exactly" what you ask for. So, the delta between your 2
-   signals may not be exactly 80 MHz (perhaps off by a fraction of a hertz
-   because of the quantizations).
-   - The two transmissions do not share the same LO. Each channel has its
-   own PLL that is locked to the 10 MHz ref, but there will be some
-   variability between the two PLL
+Reading a GPIO line requires that the GPIO state be sent back to the host,
+processed, and then acted upon (in your case, sending a stream command to
+the radio). There is going to be a good amount of latency and jitter built
+into this.
 
-Rob
+The alternative, which I would strongly recommend, would be to have the
+USRP source the trigger. This can be set up really easily with ATR - an
+FPGA functionality that coordinates GPIO states with radio TX/RX states.
+I'd expect your TX start and GPIO state change to be coincident on the
+order of nanoseconds. Checkout the gpio.cpp shipping example for more info:
 
+https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/gpio.c=
+pp
 
-On Thu, Mar 5, 2020 at 10:29 AM ALEJANDRO BLANCO PIZARRO via USRP-users <
+If you need to differ the time between TX beginning and GPIO changing
+state, you can use timed commands on both and force the offset.
+
+Sam
+
+On Thu, Mar 5, 2020 at 9:02 AM Knut Stolzenberg via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Dear USRP community,
+> Hello,
 >
-> I am trying to send 160MHz WiFI signal by a x310. Unfortunately, I do not
-> have the UBX which allows bandwidth of 160MHz, so I am using two CBX of
-> 120MHz each one.
+> I have set up a trigger for my X310 using the Pin 2 of the GPIO Front
+> Panel. The Trigger is a TTL signal fed to the Pin. But we experience a
+> jitter of ~100=C2=B5s between the Trigger and the SDR starting to send
+> data.Is it possible to reduce this latency/ jittering to <10=C2=B5s. If n=
+ot
+> is it possible to use e.g. Pin 6 as a trigger output, which signalises
+> when the SDR starts to send data? How would I implement this in the
+> code? This would be interesting to me, since I could then synchronise my
+> experiment to the SDR and not vice versa.
 >
-> We properly split the 160MHz wifi signal into two 80MHz signals. Our aim
-> is to send each 80MHz signal by one of the CBX so that we can transmit the
-> whole bandwidth. We transmit each signal in two 80MHz WiFi channels
-> (contiguous channels).
+> The code we use for setting up the trigger is pretty similar to what is
+> on the ettus knowledge base. The important bits are these:
 >
-> The issue is that we are using a commercial router as a receiver and it
-> cannot detect the 160MHz signal (80 + 80). I am wondering if the two CBX of
-> the x310 are completely synchronized or not. From my point of view, the
-> clock and the PLL should be the same for the two CBX but, is there
-> something that I am missing? Because the central frequencies are not the
-> same for the transmission, so I do not know if this creates synchronization
-> or carrier frequency offset issues.
+> ...
 >
-> I do really appreciate any information you can provide about time,
-> frequency and phase synchronization of the two daughterboards using
-> different central frequencies.
+> ...
 >
-> Best,
-> Alejandro
+> ...
+>
+> //Declarate Pin 2 as Trigger Input -> this is used for the triggered mode
+> #define MAN_GPIO_MASK (1 << 2)
+> #define AMP_GPIO_MASK (1 << 6)
+> #define ATR_MASKS (AMP_GPIO_MASK | MAN_GPIO_MASK)
+> // set up our values for ATR control: 1 for ATR, 0 for manual
+> #define ATR_CONTROL (AMP_GPIO_MASK & ~MAN_GPIO_MASK)
+> // set up the GPIO directions: 1 for output, 0 for input
+> #define GPIO_DDR  (AMP_GPIO_MASK & ~MAN_GPIO_MASK)
+> ....
+>
+> ....
+>
+> ....
+>
+> usrp->set_gpio_attr("FP0", "CTRL", 0, ATR_MASKS);
+>          usrp->set_gpio_attr("FP0", "DDR", 0, ATR_MASKS);
+>
+>          while (true)
+>                  if (0 !=3D usrp->get_gpio_attr("FP0", "READBACK", 0)) {
+>                      /*here should be Pin 6 or "output trigger" high*/
+>                      for (int i =3D 0; i < line; i++) { /*send data to th=
+e
+> SDR*/
+>                          tx_stream->send(
+>                              buff_ptrs[i], spb, md
+>                          );
+>                      }
+>                     /*here should be Pin 6 or "output trigger" low
+>              }
+>          }
+>
+>
+> Sincerely,
+>
+> Knut
+>
+>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000b8077405a01dc65f
+--000000000000c4fddb05a01e2f4b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Alejandro,<div>Phase sync is not possible with <a href=
-=3D"https://kb.ettus.com/CBX#Phase_Synchronization">CBX</a>.=C2=A0 Time syn=
-c and freq sync should work, but keep in mind the following:</div><div><ul>=
-<li>The actual freq transmitted is a function of the quantized LO setting a=
-nd the more finely quantized DUC setting.=C2=A0 The final value is not nece=
-ssarily &quot;exactly&quot; what you ask for. So, the delta between your 2 =
-signals may not be exactly 80 MHz (perhaps off by a fraction of a hertz bec=
-ause of the quantizations).</li><li>The two transmissions do not share the =
-same LO. Each channel has its own PLL that is locked to the 10 MHz ref, but=
- there will be some variability between the two PLL=C2=A0</li></ul><div>Rob=
-</div></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Thu, Mar 5, 2020 at 10:29 AM ALEJANDRO BLANCO=
- PIZARRO via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">u=
-srp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex"><div dir=3D"ltr"><div>Dear USRP community,</div><d=
-iv><br></div><div>I am trying to send 160MHz WiFI signal by a x310. Unfortu=
-nately, I do not have the UBX which allows bandwidth of 160MHz, so I am usi=
-ng two CBX of 120MHz each one.</div><div><br></div><div>We properly split t=
-he 160MHz wifi signal into two 80MHz signals. Our aim is to send each 80MHz=
- signal by one of the CBX so that we can transmit the whole bandwidth. We t=
-ransmit each signal in two 80MHz WiFi channels (contiguous channels).<br></=
-div><div></div><div><br></div><div> The issue is that we are using a commer=
-cial router as a receiver and it cannot detect the 160MHz signal (80 + 80).=
- I am wondering if the two CBX of the x310 are completely synchronized or n=
-ot. From my point of view, the clock and the PLL should be the same for the=
- two CBX but, is there something that I am missing? Because the central fre=
-quencies are not the same for the transmission, so I do not know if this cr=
-eates synchronization or carrier frequency offset issues.</div><div><br></d=
-iv><div>I do really appreciate any information you can provide about time, =
-frequency and phase synchronization of the two daughterboards using differe=
-nt central frequencies.</div><div><br></div><div>Best,</div><div>Alejandro<=
-br></div></div>
+<div dir=3D"ltr"><div>Hey Knut,</div><div><br></div><div>Reading a GPIO lin=
+e requires that the GPIO state be sent back to the host, processed, and the=
+n acted upon (in your case, sending a stream command to the radio). There i=
+s going to be a good amount of latency and jitter built into this. <br></di=
+v><div><br></div><div>The alternative, which I would strongly recommend, wo=
+uld be to have the USRP source the trigger. This can be set up really easil=
+y with ATR - an FPGA functionality that coordinates GPIO states with radio =
+TX/RX states. I&#39;d expect your TX start and GPIO state change to be coin=
+cident on the order of nanoseconds. Checkout the gpio.cpp shipping example =
+for more info:</div><div><br></div><div><a href=3D"https://github.com/Ettus=
+Research/uhd/blob/UHD-3.15.LTS/host/examples/gpio.cpp">https://github.com/E=
+ttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/gpio.cpp</a></div><div><br=
+></div><div>If you need to differ the time between TX beginning and GPIO ch=
+anging state, you can use timed commands on both and force the offset. <br>=
+</div><div><br></div><div><div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Sa=
+m<br></div></div></div></div></div></div></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Mar 5, 2020 at 9:02 AM Knu=
+t Stolzenberg via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.c=
+om">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex">Hello,<br>
+<br>
+I have set up a trigger for my X310 using the Pin 2 of the GPIO Front <br>
+Panel. The Trigger is a TTL signal fed to the Pin. But we experience a <br>
+jitter of ~100=C2=B5s between the Trigger and the SDR starting to send <br>
+data.Is it possible to reduce this latency/ jittering to &lt;10=C2=B5s. If =
+not <br>
+is it possible to use e.g. Pin 6 as a trigger output, which signalises <br>
+when the SDR starts to send data? How would I implement this in the <br>
+code? This would be interesting to me, since I could then synchronise my <b=
+r>
+experiment to the SDR and not vice versa.<br>
+<br>
+The code we use for setting up the trigger is pretty similar to what is <br=
+>
+on the ettus knowledge base. The important bits are these:<br>
+<br>
+...<br>
+<br>
+...<br>
+<br>
+...<br>
+<br>
+//Declarate Pin 2 as Trigger Input -&gt; this is used for the triggered mod=
+e<br>
+#define MAN_GPIO_MASK (1 &lt;&lt; 2)<br>
+#define AMP_GPIO_MASK (1 &lt;&lt; 6)<br>
+#define ATR_MASKS (AMP_GPIO_MASK | MAN_GPIO_MASK)<br>
+// set up our values for ATR control: 1 for ATR, 0 for manual<br>
+#define ATR_CONTROL (AMP_GPIO_MASK &amp; ~MAN_GPIO_MASK)<br>
+// set up the GPIO directions: 1 for output, 0 for input<br>
+#define GPIO_DDR=C2=A0 (AMP_GPIO_MASK &amp; ~MAN_GPIO_MASK)<br>
+....<br>
+<br>
+....<br>
+<br>
+....<br>
+<br>
+usrp-&gt;set_gpio_attr(&quot;FP0&quot;, &quot;CTRL&quot;, 0, ATR_MASKS);<br=
+>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 usrp-&gt;set_gpio_attr(&quot;FP=
+0&quot;, &quot;DDR&quot;, 0, ATR_MASKS);<br>
+<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 while (true)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 if (0 !=3D usrp-&gt;get_gpio_attr(&quot;FP0&quot;, &quot;READBACK&qu=
+ot;, 0)) {<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0 /*here should be Pin 6 or &quot;output trigger&qu=
+ot; high*/<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0 for (int i =3D 0; i &lt; line; i++) { /*send data=
+ to the <br>
+SDR*/<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 tx_stream-&gt;send(<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 buff_ptrs[i=
+], spb, md<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 );<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0 }<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 /*here should be Pin 6 or &quot;output trigger&quo=
+t; low<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 }<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 }<br>
+<br>
+<br>
+Sincerely,<br>
+<br>
+Knut<br>
+<br>
+<br>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -178,10 +280,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000b8077405a01dc65f--
+--000000000000c4fddb05a01e2f4b--
 
 
---===============8862355370706335368==
+--===============9147311524054555047==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -192,5 +294,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8862355370706335368==--
+--===============9147311524054555047==--
 
