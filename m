@@ -2,40 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 538851832A3
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Mar 2020 15:16:57 +0100 (CET)
-Received: from [::1] (port=44526 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 309D9183707
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Mar 2020 18:13:52 +0100 (CET)
+Received: from [::1] (port=47240 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jCOdU-0008Nr-2f; Thu, 12 Mar 2020 10:16:32 -0400
-Received: from mail-pl1-f178.google.com ([209.85.214.178]:35556)
+	id 1jCRP0-0005mQ-Hg; Thu, 12 Mar 2020 13:13:46 -0400
+Received: from mout.gmx.net ([212.227.15.19]:57019)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <sivan.toledo@gmail.com>)
- id 1jCOdQ-0008Jn-9G
- for usrp-users@lists.ettus.com; Thu, 12 Mar 2020 10:16:28 -0400
-Received: by mail-pl1-f178.google.com with SMTP id g6so2730887plt.2
- for <usrp-users@lists.ettus.com>; Thu, 12 Mar 2020 07:16:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=8eePA6NZpomVb67oW8Iqg02sKgQVGg+wLJjwHoeHvSk=;
- b=IM9ITZidplG0WD+Mc5bvqLIPYtC2+BHwgt+PhyGOYvpqlfnuSeuLkrJGU07BV7wbWN
- IqrXih3Gkeg5JSrt6CiqxVgyCBQnmOqGZVHfQLVqAg8lKe7UhUT4WXsdKcVDMocT9lP1
- ATRMXD39PPKs6znk+tnrvESVbnmwAkzDKyIeeqIy+ZzRU5i/KMkaz0PmKry8yQ8TiJQ/
- RrvnnfKrFDm63iwLJlxwuOvbVVvnr4NFe0OiXpZtBG313drc0+E3c65vzJHqyzewNDP3
- 8BMywJLI5MNdExGRwh7UTAvQ8cLRYaLtaQrTZKcjLUgdYnYMFZeUN9s501aGnZFKtLca
- 5gTQ==
-X-Gm-Message-State: ANhLgQ3shiwMbmBB69IhkHgl8CKQUnuZqXTAgNZR9APd0zBBspLGntnp
- ZhoRI6tOwzFNIcPqr2PyAPtv7eU7aviN65tXYSZT1H+3
-X-Google-Smtp-Source: ADFU+vtbk0ibupKi34irtT5RBVdmldgsgIgIKnNeCdVATiD/rXVw4wMRc93tgO4KY5BooDxK+t6A+GK8IgNKjdpkwEA=
-X-Received: by 2002:a17:902:c1d1:: with SMTP id
- c17mr2460436plc.184.1584022547100; 
- Thu, 12 Mar 2020 07:15:47 -0700 (PDT)
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jCROv-0005gY-P9
+ for usrp-users@lists.ettus.com; Thu, 12 Mar 2020 13:13:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1584033180;
+ bh=Uv1Ut60lNdpbHYVVfFNRpwz2aYQHExMmS8jTuY7MXKU=;
+ h=X-UI-Sender-Class:From:To:Subject:Date;
+ b=SofHvMHNHcNDKMOxKJkwmFLxCTFCdC5KGq74w+6CPBvpxhxugoL3A+wsYDkOJ14/i
+ 4JK4GSddVeGFnFKEz9mLH8nEMRpIMkdTFPEiY8kevJ+pcK93C/Vj5aocQrN9TpDMTm
+ gPjcX+lAD70MnOUi9zheUdh8Z0+6xc1HOIn3sR0U=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
+ (3c-app-gmx-bs38.server.lan [172.19.170.90]) (via HTTP); Thu, 12 Mar 2020
+ 18:13:00 +0100
 MIME-Version: 1.0
-Date: Thu, 12 Mar 2020 16:15:33 +0200
-Message-ID: <CAOL_ruGaxApG2ctKe40qvF+gVjc=mHH0fgXCikTr_Ln1iRkMzQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] packet size in uhd_rx_streamer_recv
+Message-ID: <trinity-5b10284f-32d3-4490-bb54-a0be4d201ad3-1584033180591@3c-app-gmx-bs38>
+To: "USRP-userslists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Thu, 12 Mar 2020 18:13:00 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:PlCOkpxwqwiwDvtzUv5aUW/2SFIY73yRTLu2CrOPMkrGAZ79kohfxAxRusc22flL7d4Sq
+ CJ1U0bs/Iy2rzci0WCy/clXBbdgmRuYREhs9uRbU9MQjg8C4Zp5iGvfeAos/vIfPJ28UWDdWq1cN
+ F4JaVhPfb2m3UNRmIGmeUcyG+AKdtgfUt3/Wtz/lk9NAs8fmPLvD2mzs32vsV7Vto7RZT6DxRK9f
+ yzjNg2XUny1A/jQK7EyP8BZi15zELxuWYCf0ezYAmdA6Mazhsh88DsUtv8CLB80rZEMEd2y34rWO
+ r4=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:TjZ1GsdCz0I=:cl6MvyYjWE8gNYwr+bUXJJ
+ Q+hIl9VRy+EcNT0Z5sjiTA4DgU4dNcSSqk4/hhfB0m5Nsy1KHOMY3pZNmNTo/O16ZpuWX2QY2
+ WZ3rJR1vUoIbVBFa1GaWavW4qoVngwr2++pjZOMc31tRNmtHYLhuIJlFqolpzlP/nwgDWpVXz
+ UxCbsM6JPEOxnR2gmS+JyQOOcMAjP+Xpx8rgOD0q1+OmPi3wnmK/IuwgE+js0+ifgUy7QQIaO
+ 99WqJthnCRrUMg+PvwibP1KCrmEpLWvX7y52nFVqIr6Gk+bmQFfHn9Rm2CLQdxK3nRZcagrJ/
+ WBNs79r+qoJrkHqD/qjTpQu50gu1W1sB49vthdUC2C4UHjwGlH3FQ8nd4xjtsQ7+nKvp/ND+o
+ W7ZbL8i5QI8GveuF8kE156QZEoU0w53t36CWedJ3UB0Yt207X3dwegQ4+0fLJFNBxMoABRBkr
+ vvWEZdJBS7YXPNRZqbd/MuW1np+TpX8kfIL+QFFIeGYGHZkHIPt/5yMMg+pGEyZO/JB5Htcao
+ n5+O/qZ3rbwjSV9rjKmE/QCPlQckd0GpKS10Y0j3sk/LH2f1vWTgzNpcU0D2JxSn4rkHLhcpx
+ nZP87iFKW4KSPodH3Kdt/cUviJfmUC9bmlfPQEib9R1au6d9+ePzk2/Ry7vx5oRNDQXf8+KgD
+ SoG9drkt0979VGKfyl1TO4MzuxkRYnRn2zayHPaS8TDziZPbDL7QZH+T7s6YpP/QoUZs=
+Subject: [USRP-users] Timed commands (still) not executed properly: command
+ time is in the past
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sivan Toledo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sivan Toledo <stoledo@tau.ac.il>
-Content-Type: multipart/mixed; boundary="===============3511385416550326438=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -63,56 +77,75 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3511385416550326438==
-Content-Type: multipart/alternative; boundary="0000000000003c78d205a0a8fdd4"
+Hi,
 
---0000000000003c78d205a0a8fdd4
-Content-Type: text/plain; charset="UTF-8"
+After being able to tune RX and TX separately, I still do not get phase coherency.
 
-I have a code that has been running fine for several years. It
-calls uhd_rx_streamer_recv and expects the same # of packets as in the
-first call, which is typically 2044 samples.
+To debug, I added the following debug statements to set_tx_freq and set_rx_freq in uhd/host/lib/usrp/multi_usrp.cpp:
 
-I am porting the code now to an NVDIA Jeston TX2 platform (the CPU is
-64-bit multicore ARM) and I am getting a lot of cases where I get shorter
-packets, 651 samples.
+    tune_result_t set_tx_freq(const tune_request_t &tune_request, size_t chan){
+#if 1
+        try {
+            time_spec_t now  = _tree->access<time_spec_t>(mb_root(0) / "time/now").get();
+            time_spec_t when = _tree->access<time_spec_t>(mb_root(0) / "time/cmd").get();
+            UHD_LOGGER_WARNING("MULTI_USRP") << boost::format("Tune TX at %d:%f for %d:%f") % now.get_full_secs() % now.get_frac_secs() % when.get_full_secs() % when.get_frac_secs();
+        } catch(...) {}
+#endif
 
-This is with a B210.
+and for RX:
 
-Is there something I can do to get it to deliver the same # samples in
-every packet (this will keep my code simple) or do I have to expect UHD to
-deliver a variable # of samples per packet?
+#if 1
+        try
+        {
+            time_spec_t now  = _tree->access<time_spec_t>(mb_root(0) / "time/now").get();
+            time_spec_t when = _tree->access<time_spec_t>(mb_root(0) / "time/cmd").get();
+            UHD_LOGGER_WARNING("MULTI_USRP") << boost::format("Tune RX at %d:%f for %d:%f") % now.get_full_secs() % now.get_frac_secs() % when.get_full_secs() % when.get_frac_secs();
+        } catch(...){}
+#endif
 
-Thanks, Sivan Toledo
+I use the following python code to send the timed commands from within gnuradio:
 
---0000000000003c78d205a0a8fdd4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  tune_req_rx = uhd.tune_request()
+  tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_NONE
+  tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+  tune_req_rx.dsp_freq = -dsp_freq
 
-<div dir=3D"ltr">I have a code that has been running fine for several years=
-. It calls=C2=A0uhd_rx_streamer_recv and expects the same # of packets as i=
-n the first call, which is typically 2044 samples.=C2=A0<div><br></div><div=
->I am porting the code now to an NVDIA=C2=A0Jeston TX2 platform (the CPU is=
- 64-bit multicore ARM) and I am getting a lot of cases where I get shorter =
-packets, 651 samples.</div><div><br></div><div>This is with a B210.=C2=A0</=
-div><div><br></div><div>Is there something I can do to get it to deliver th=
-e same # samples in every packet (this will keep my code simple) or do I ha=
-ve to expect UHD to deliver a variable # of samples per packet?=C2=A0</div>=
-<div><br></div><div>Thanks, Sivan Toledo</div><div><br></div></div>
+  tune_req_tx = uhd.tune_request()
+  tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_NONE
+  tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+  tune_req_tx.dsp_freq = dsp_freq
 
---0000000000003c78d205a0a8fdd4--
+  exec_time = usrp_sink.get_time_now() + uhd.time_spec(1)
+  usrp_sink.set_command_time(exec_time)
+  usrp_source.set_command_time(exec_time)
+
+  res1 = usrp_source.set_center_freq(tune_req_rx, 1)
+  res2 = usrp_sink.set_center_freq(tune_req_tx)
+
+  usrp_sink.clear_command_time()
+  usrp_source.clear_command_time()
+
+As can be seen, I request the commands to be executed 1s from now. I only have one MBoard but two channels (X310+2xUBX160).
+
+Now when I execute this code I can see:
+
+[WARNING] [MULTI_USRP] Tune RX at 16:0.423319 for 16:0.423318
+[WARNING] [MULTI_USRP] Tune TX at 16:0.423493 for 16:0.423318
+
+It can be seen that the command time (while being the same for RX+TX) is NOT in the future as compared to the current time. If this is true then it's no surprise I don't see phase coherence (=constant phase offset for one dsp_freq).
 
 
---===============3511385416550326438==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+HOW ON EARTH can that be?
+
+
+Lukas
+
+
+PS: I tried adding larger time offsets but no change
+
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3511385416550326438==--
-
