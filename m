@@ -2,53 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309D9183707
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Mar 2020 18:13:52 +0100 (CET)
-Received: from [::1] (port=47240 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B90D8183AA7
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Mar 2020 21:32:24 +0100 (CET)
+Received: from [::1] (port=41548 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jCRP0-0005mQ-Hg; Thu, 12 Mar 2020 13:13:46 -0400
-Received: from mout.gmx.net ([212.227.15.19]:57019)
+	id 1jCUV6-0002iZ-La; Thu, 12 Mar 2020 16:32:16 -0400
+Received: from mail-pl1-f175.google.com ([209.85.214.175]:40064)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jCROv-0005gY-P9
- for usrp-users@lists.ettus.com; Thu, 12 Mar 2020 13:13:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1584033180;
- bh=Uv1Ut60lNdpbHYVVfFNRpwz2aYQHExMmS8jTuY7MXKU=;
- h=X-UI-Sender-Class:From:To:Subject:Date;
- b=SofHvMHNHcNDKMOxKJkwmFLxCTFCdC5KGq74w+6CPBvpxhxugoL3A+wsYDkOJ14/i
- 4JK4GSddVeGFnFKEz9mLH8nEMRpIMkdTFPEiY8kevJ+pcK93C/Vj5aocQrN9TpDMTm
- gPjcX+lAD70MnOUi9zheUdh8Z0+6xc1HOIn3sR0U=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bs38.server.lan [172.19.170.90]) (via HTTP); Thu, 12 Mar 2020
- 18:13:00 +0100
+ (Exim 4.93) (envelope-from <mitch.grabner@gmail.com>)
+ id 1jCUV2-0002Yk-Qe
+ for usrp-users@lists.ettus.com; Thu, 12 Mar 2020 16:32:12 -0400
+Received: by mail-pl1-f175.google.com with SMTP id h11so3114354plk.7
+ for <usrp-users@lists.ettus.com>; Thu, 12 Mar 2020 13:31:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2g153KSCXhllMqqar4Zcr20/vavt037MoaVieERLcKs=;
+ b=hjD1p4LO7gdUCYVKMrnArnzFeaghaAJlgYMyKDNKbN3PDHNyNwoOqXQUrkXVeeHdQw
+ wfNCnvpiAPC/4FYmbpw377ysZH90f+Z0O3g8n9OwqDnhvyPVJLv0Yj0LXavJkJ9MFRP4
+ mWVR5MmPZuHLc0Lf/oqlqk4CFCEnse4EUimedrPRp5GKxBa2vESi4aE7J0F39pHoOnl4
+ oaH+GDlPi+CkLYyDFHFD4bdjw1faefnFJuwqTVVJgdh5JUCmQvWbhsTXs7m0P3DkeUsv
+ 1z8zLf+D7VeHh5nyDV/5YsS1iCC6UFQh4/sutIfNPijR7dO20fRKg3Y5oZnFDKxzngmD
+ t71w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2g153KSCXhllMqqar4Zcr20/vavt037MoaVieERLcKs=;
+ b=gcp/leAt630Af11mV55C82IGXO7+hVYTZvYco2eWRtEVWIS1YqnrU1pMnR227/zz+H
+ uFlc4qBfPlCNRzGj8C3YPfWQdtg25Lh78MD1ep4weP6urxMwoTq690EhXsRkyG+S9Kyy
+ FBcpdzGa/V9/P+TXs2AcMaOnGq4UKxL1IEq7Mj5noYDd6DCRlTOUI1S80WkbqL0inFPA
+ yy3gy7YAxuaB2575n3nxdY2VUup171qCnS28z7og4xHV6yWWLDqIaOzK7i8SlhS/jSpo
+ K0gH0MSiTUPcijUSayU0Om80nqsZRuAj9jqvzwPqWXKE3XR010Bbw/n+zbPmRdxJaNzd
+ VNZQ==
+X-Gm-Message-State: ANhLgQ0yP1OgGj85+YjcqL0IdKsREhlsPQTwTszDMULAFx/yiwvdy4QO
+ srkk7XKmD5BWLwyMcdbypClgKxu1kaCqZxLYFM0=
+X-Google-Smtp-Source: ADFU+vtqski+kVhYOefQKkrFC9QgqUoOsfq3uepuBpnd8GbnM/UyJH08QtkccQjBd5w2XlzezLvuPFobX7WQhDv+fb0=
+X-Received: by 2002:a17:902:7203:: with SMTP id
+ ba3mr9441366plb.249.1584045091814; 
+ Thu, 12 Mar 2020 13:31:31 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-5b10284f-32d3-4490-bb54-a0be4d201ad3-1584033180591@3c-app-gmx-bs38>
-To: "USRP-userslists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Thu, 12 Mar 2020 18:13:00 +0100
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:PlCOkpxwqwiwDvtzUv5aUW/2SFIY73yRTLu2CrOPMkrGAZ79kohfxAxRusc22flL7d4Sq
- CJ1U0bs/Iy2rzci0WCy/clXBbdgmRuYREhs9uRbU9MQjg8C4Zp5iGvfeAos/vIfPJ28UWDdWq1cN
- F4JaVhPfb2m3UNRmIGmeUcyG+AKdtgfUt3/Wtz/lk9NAs8fmPLvD2mzs32vsV7Vto7RZT6DxRK9f
- yzjNg2XUny1A/jQK7EyP8BZi15zELxuWYCf0ezYAmdA6Mazhsh88DsUtv8CLB80rZEMEd2y34rWO
- r4=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:TjZ1GsdCz0I=:cl6MvyYjWE8gNYwr+bUXJJ
- Q+hIl9VRy+EcNT0Z5sjiTA4DgU4dNcSSqk4/hhfB0m5Nsy1KHOMY3pZNmNTo/O16ZpuWX2QY2
- WZ3rJR1vUoIbVBFa1GaWavW4qoVngwr2++pjZOMc31tRNmtHYLhuIJlFqolpzlP/nwgDWpVXz
- UxCbsM6JPEOxnR2gmS+JyQOOcMAjP+Xpx8rgOD0q1+OmPi3wnmK/IuwgE+js0+ifgUy7QQIaO
- 99WqJthnCRrUMg+PvwibP1KCrmEpLWvX7y52nFVqIr6Gk+bmQFfHn9Rm2CLQdxK3nRZcagrJ/
- WBNs79r+qoJrkHqD/qjTpQu50gu1W1sB49vthdUC2C4UHjwGlH3FQ8nd4xjtsQ7+nKvp/ND+o
- W7ZbL8i5QI8GveuF8kE156QZEoU0w53t36CWedJ3UB0Yt207X3dwegQ4+0fLJFNBxMoABRBkr
- vvWEZdJBS7YXPNRZqbd/MuW1np+TpX8kfIL+QFFIeGYGHZkHIPt/5yMMg+pGEyZO/JB5Htcao
- n5+O/qZ3rbwjSV9rjKmE/QCPlQckd0GpKS10Y0j3sk/LH2f1vWTgzNpcU0D2JxSn4rkHLhcpx
- nZP87iFKW4KSPodH3Kdt/cUviJfmUC9bmlfPQEib9R1au6d9+ePzk2/Ry7vx5oRNDQXf8+KgD
- SoG9drkt0979VGKfyl1TO4MzuxkRYnRn2zayHPaS8TDziZPbDL7QZH+T7s6YpP/QoUZs=
-Subject: [USRP-users] Timed commands (still) not executed properly: command
- time is in the past
+References: <trinity-5b10284f-32d3-4490-bb54-a0be4d201ad3-1584033180591@3c-app-gmx-bs38>
+In-Reply-To: <trinity-5b10284f-32d3-4490-bb54-a0be4d201ad3-1584033180591@3c-app-gmx-bs38>
+Date: Thu, 12 Mar 2020 16:31:20 -0400
+Message-ID: <CAGXuw=iYfgU-N4YHfdnaPgUCvWXcCrE1Gd+PxXqNspvYgw60Vg@mail.gmail.com>
+To: Lukas Haase <lukashaase@gmx.at>
+Subject: Re: [USRP-users] Timed commands (still) not executed properly:
+ command time is in the past
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Mitch Grabner via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mitch Grabner <mitch.grabner@gmail.com>
+Cc: "USRP-userslists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5444472462669073347=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,75 +77,245 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi,
+--===============5444472462669073347==
+Content-Type: multipart/alternative; boundary="00000000000001825d05a0ae3ded"
 
-After being able to tune RX and TX separately, I still do not get phase coherency.
+--00000000000001825d05a0ae3ded
+Content-Type: text/plain; charset="UTF-8"
 
-To debug, I added the following debug statements to set_tx_freq and set_rx_freq in uhd/host/lib/usrp/multi_usrp.cpp:
+Hi Lukas,
 
-    tune_result_t set_tx_freq(const tune_request_t &tune_request, size_t chan){
-#if 1
-        try {
-            time_spec_t now  = _tree->access<time_spec_t>(mb_root(0) / "time/now").get();
-            time_spec_t when = _tree->access<time_spec_t>(mb_root(0) / "time/cmd").get();
-            UHD_LOGGER_WARNING("MULTI_USRP") << boost::format("Tune TX at %d:%f for %d:%f") % now.get_full_secs() % now.get_frac_secs() % when.get_full_secs() % when.get_frac_secs();
-        } catch(...) {}
-#endif
+I've had success doing a TX tune at some exec_time_tx (where exec_time_tx
+is time_now() + some_delay) and then tuning RX at some exec_time_rx which
+is exec_time_tx + trx_offset. As long as the trx_offset is the same between
+runs, you should see phase coherence. I also like to use
+get_time_last_pps() instead of get_time_now() to allow this to work across
+distributed nodes.
 
-and for RX:
+p.s. make sure you sleep the thread until after your command time to make
+sure the LOs are locked.
 
-#if 1
-        try
-        {
-            time_spec_t now  = _tree->access<time_spec_t>(mb_root(0) / "time/now").get();
-            time_spec_t when = _tree->access<time_spec_t>(mb_root(0) / "time/cmd").get();
-            UHD_LOGGER_WARNING("MULTI_USRP") << boost::format("Tune RX at %d:%f for %d:%f") % now.get_full_secs() % now.get_frac_secs() % when.get_full_secs() % when.get_frac_secs();
-        } catch(...){}
-#endif
+V/r,
+Mitch
 
-I use the following python code to send the timed commands from within gnuradio:
+On Thu, Mar 12, 2020 at 1:13 PM Lukas Haase via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-  tune_req_rx = uhd.tune_request()
-  tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_NONE
-  tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
-  tune_req_rx.dsp_freq = -dsp_freq
+> Hi,
+>
+> After being able to tune RX and TX separately, I still do not get phase
+> coherency.
+>
+> To debug, I added the following debug statements to set_tx_freq and
+> set_rx_freq in uhd/host/lib/usrp/multi_usrp.cpp:
+>
+>     tune_result_t set_tx_freq(const tune_request_t &tune_request, size_t
+> chan){
+> #if 1
+>         try {
+>             time_spec_t now  = _tree->access<time_spec_t>(mb_root(0) /
+> "time/now").get();
+>             time_spec_t when = _tree->access<time_spec_t>(mb_root(0) /
+> "time/cmd").get();
+>             UHD_LOGGER_WARNING("MULTI_USRP") << boost::format("Tune TX at
+> %d:%f for %d:%f") % now.get_full_secs() % now.get_frac_secs() %
+> when.get_full_secs() % when.get_frac_secs();
+>         } catch(...) {}
+> #endif
+>
+> and for RX:
+>
+> #if 1
+>         try
+>         {
+>             time_spec_t now  = _tree->access<time_spec_t>(mb_root(0) /
+> "time/now").get();
+>             time_spec_t when = _tree->access<time_spec_t>(mb_root(0) /
+> "time/cmd").get();
+>             UHD_LOGGER_WARNING("MULTI_USRP") << boost::format("Tune RX at
+> %d:%f for %d:%f") % now.get_full_secs() % now.get_frac_secs() %
+> when.get_full_secs() % when.get_frac_secs();
+>         } catch(...){}
+> #endif
+>
+> I use the following python code to send the timed commands from within
+> gnuradio:
+>
+>   tune_req_rx = uhd.tune_request()
+>   tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_NONE
+>   tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+>   tune_req_rx.dsp_freq = -dsp_freq
+>
+>   tune_req_tx = uhd.tune_request()
+>   tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_NONE
+>   tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
+>   tune_req_tx.dsp_freq = dsp_freq
+>
+>   exec_time = usrp_sink.get_time_now() + uhd.time_spec(1)
+>   usrp_sink.set_command_time(exec_time)
+>   usrp_source.set_command_time(exec_time)
+>
+>   res1 = usrp_source.set_center_freq(tune_req_rx, 1)
+>   res2 = usrp_sink.set_center_freq(tune_req_tx)
+>
+>   usrp_sink.clear_command_time()
+>   usrp_source.clear_command_time()
+>
+> As can be seen, I request the commands to be executed 1s from now. I only
+> have one MBoard but two channels (X310+2xUBX160).
+>
+> Now when I execute this code I can see:
+>
+> [WARNING] [MULTI_USRP] Tune RX at 16:0.423319 for 16:0.423318
+> [WARNING] [MULTI_USRP] Tune TX at 16:0.423493 for 16:0.423318
+>
+> It can be seen that the command time (while being the same for RX+TX) is
+> NOT in the future as compared to the current time. If this is true then
+> it's no surprise I don't see phase coherence (=constant phase offset for
+> one dsp_freq).
+>
+>
+> HOW ON EARTH can that be?
+>
+>
+> Lukas
+>
+>
+> PS: I tried adding larger time offsets but no change
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-  tune_req_tx = uhd.tune_request()
-  tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_NONE
-  tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL
-  tune_req_tx.dsp_freq = dsp_freq
+--00000000000001825d05a0ae3ded
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-  exec_time = usrp_sink.get_time_now() + uhd.time_spec(1)
-  usrp_sink.set_command_time(exec_time)
-  usrp_source.set_command_time(exec_time)
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Lukas,</div><div><br></div><div>I=
+&#39;ve had success doing a TX tune at some exec_time_tx (where exec_time_t=
+x is time_now() + some_delay) and then tuning RX at some exec_time_rx which=
+ is exec_time_tx + trx_offset. As long as the trx_offset is the same betwee=
+n runs, you should see phase coherence. I also like to use get_time_last_pp=
+s() instead of get_time_now() to allow this to work across distributed node=
+s.</div><div><br></div><div>p.s. make sure you sleep the thread until after=
+ your command time to make sure the LOs are locked.</div><div><br></div><di=
+v>V/r,</div><div>Mitch<br></div></div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Thu, Mar 12, 2020 at 1:13 PM Lukas Haase=
+ via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-user=
+s@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">Hi,<br>
+<br>
+After being able to tune RX and TX separately, I still do not get phase coh=
+erency.<br>
+<br>
+To debug, I added the following debug statements to set_tx_freq and set_rx_=
+freq in uhd/host/lib/usrp/multi_usrp.cpp:<br>
+<br>
+=C2=A0 =C2=A0 tune_result_t set_tx_freq(const tune_request_t &amp;tune_requ=
+est, size_t chan){<br>
+#if 1<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 try {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 time_spec_t now=C2=A0 =3D _tree-&=
+gt;access&lt;time_spec_t&gt;(mb_root(0) / &quot;time/now&quot;).get();<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 time_spec_t when =3D _tree-&gt;ac=
+cess&lt;time_spec_t&gt;(mb_root(0) / &quot;time/cmd&quot;).get();<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 UHD_LOGGER_WARNING(&quot;MULTI_US=
+RP&quot;) &lt;&lt; boost::format(&quot;Tune TX at %d:%f for %d:%f&quot;) % =
+now.get_full_secs() % now.get_frac_secs() % when.get_full_secs() % when.get=
+_frac_secs();<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 } catch(...) {}<br>
+#endif<br>
+<br>
+and for RX:<br>
+<br>
+#if 1<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 try<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 time_spec_t now=C2=A0 =3D _tree-&=
+gt;access&lt;time_spec_t&gt;(mb_root(0) / &quot;time/now&quot;).get();<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 time_spec_t when =3D _tree-&gt;ac=
+cess&lt;time_spec_t&gt;(mb_root(0) / &quot;time/cmd&quot;).get();<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 UHD_LOGGER_WARNING(&quot;MULTI_US=
+RP&quot;) &lt;&lt; boost::format(&quot;Tune RX at %d:%f for %d:%f&quot;) % =
+now.get_full_secs() % now.get_frac_secs() % when.get_full_secs() % when.get=
+_frac_secs();<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 } catch(...){}<br>
+#endif<br>
+<br>
+I use the following python code to send the timed commands from within gnur=
+adio:<br>
+<br>
+=C2=A0 tune_req_rx =3D uhd.tune_request()<br>
+=C2=A0 tune_req_rx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE<br>
+=C2=A0 tune_req_rx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL<br>
+=C2=A0 tune_req_rx.dsp_freq =3D -dsp_freq<br>
+<br>
+=C2=A0 tune_req_tx =3D uhd.tune_request()<br>
+=C2=A0 tune_req_tx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE<br>
+=C2=A0 tune_req_tx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL<br>
+=C2=A0 tune_req_tx.dsp_freq =3D dsp_freq<br>
+<br>
+=C2=A0 exec_time =3D usrp_sink.get_time_now() + uhd.time_spec(1)<br>
+=C2=A0 usrp_sink.set_command_time(exec_time)<br>
+=C2=A0 usrp_source.set_command_time(exec_time)<br>
+<br>
+=C2=A0 res1 =3D usrp_source.set_center_freq(tune_req_rx, 1)<br>
+=C2=A0 res2 =3D usrp_sink.set_center_freq(tune_req_tx)<br>
+<br>
+=C2=A0 usrp_sink.clear_command_time()<br>
+=C2=A0 usrp_source.clear_command_time()<br>
+<br>
+As can be seen, I request the commands to be executed 1s from now. I only h=
+ave one MBoard but two channels (X310+2xUBX160).<br>
+<br>
+Now when I execute this code I can see:<br>
+<br>
+[WARNING] [MULTI_USRP] Tune RX at 16:0.423319 for 16:0.423318<br>
+[WARNING] [MULTI_USRP] Tune TX at 16:0.423493 for 16:0.423318<br>
+<br>
+It can be seen that the command time (while being the same for RX+TX) is NO=
+T in the future as compared to the current time. If this is true then it&#3=
+9;s no surprise I don&#39;t see phase coherence (=3Dconstant phase offset f=
+or one dsp_freq).<br>
+<br>
+<br>
+HOW ON EARTH can that be?<br>
+<br>
+<br>
+Lukas<br>
+<br>
+<br>
+PS: I tried adding larger time offsets but no change<br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br></div>
 
-  res1 = usrp_source.set_center_freq(tune_req_rx, 1)
-  res2 = usrp_sink.set_center_freq(tune_req_tx)
-
-  usrp_sink.clear_command_time()
-  usrp_source.clear_command_time()
-
-As can be seen, I request the commands to be executed 1s from now. I only have one MBoard but two channels (X310+2xUBX160).
-
-Now when I execute this code I can see:
-
-[WARNING] [MULTI_USRP] Tune RX at 16:0.423319 for 16:0.423318
-[WARNING] [MULTI_USRP] Tune TX at 16:0.423493 for 16:0.423318
-
-It can be seen that the command time (while being the same for RX+TX) is NOT in the future as compared to the current time. If this is true then it's no surprise I don't see phase coherence (=constant phase offset for one dsp_freq).
+--00000000000001825d05a0ae3ded--
 
 
-HOW ON EARTH can that be?
-
-
-Lukas
-
-
-PS: I tried adding larger time offsets but no change
-
-
+--===============5444472462669073347==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5444472462669073347==--
+
