@@ -2,53 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A19BE1848CF
-	for <lists+usrp-users@lfdr.de>; Fri, 13 Mar 2020 15:08:20 +0100 (CET)
-Received: from [::1] (port=34798 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 693EB1849EF
+	for <lists+usrp-users@lfdr.de>; Fri, 13 Mar 2020 15:50:35 +0100 (CET)
+Received: from [::1] (port=48604 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jCkz5-0000uD-BN; Fri, 13 Mar 2020 10:08:19 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:42702)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jCkz0-0000n0-P6
- for usrp-users@lists.ettus.com; Fri, 13 Mar 2020 10:08:14 -0400
-Received: by mail-ot1-f42.google.com with SMTP id 66so10180069otd.9
- for <usrp-users@lists.ettus.com>; Fri, 13 Mar 2020 07:07:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tSwR758MWsOChi2spyot6OLuzoStJ8BzqP1ECItFXKM=;
- b=CPv+VPUz37qJro0+a/t0Rmjeg/mB9cPeHaq3NsnxAHucJHKrPGHylGEi6NBcxZhMsc
- Q3kX3+iCmWFpDw5gvygjXHa+ORStBELxrgCbA0o1AuYot3BYuvf3xlpBJqHFAaSYIrJ9
- /VxX8+wdGceMgh/2A2P1LYA2PU+SkS7N6FjmRKFZ87nd3u+u9hpNgNXAyw0/pFHBvxjj
- riSGKctQWPdEzC9qRlFEzHEHYDDq5WnZGfEfU++sgu3ljMkJsdHSkqdKPCPTAKTxL9LU
- LtXowCAgiwRTRJVnG25oHetbSTRjOicZmGBQtWadbIgs8C940lLokRJKGqkbtN3NvzdN
- ulHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tSwR758MWsOChi2spyot6OLuzoStJ8BzqP1ECItFXKM=;
- b=lndVubAuFwUWdMjctigGoTI6W6HD5BzhMTPewxkpd2cMBclHuxksTlHnZ2OsObTOMg
- 4QCOBi5ELQbYjYWhp0MTP/t+oiu7B1AF8f3K5nETpZqIe7nkHxvNS2PXoZvuP1iIy1Qa
- pt7sLmYRzjtInzBDNe2PWU7Qb9Na+3PnyrCsg4bqXZdJwPHB2UWrU7eCKz8L882d/AIr
- wxoeHjByTVoQ1kDgJH90CgOvuAKDvBnHvnuX9/cgux3b2qkNIiLq1S9xmyCwbzOcxUcA
- LcCKEbbl+n/a3CvdwIJzFkdVlygJh/bbu3/kass7mwQLlPCeagM6KkoCwljTRZMi+LVN
- qMDA==
-X-Gm-Message-State: ANhLgQ1iYzw5TuJLXYywViZaDetDl6ycxiiJ7c7yfwXDQeooQfxzd7aH
- DdQylAQgBobb0es1gJuudjW3+MiVN84zZ6LKcl7Mtw==
-X-Google-Smtp-Source: ADFU+vsRa8ME+k3vfco07RLxVoOrj6AYktTTdQdyCxFYLqpOchG2emTluOfa+1ZWqasg5dPS1tpmgExMGjmAUia3Fhc=
-X-Received: by 2002:a05:6830:3090:: with SMTP id
- f16mr10753948ots.211.1584108453325; 
- Fri, 13 Mar 2020 07:07:33 -0700 (PDT)
+	id 1jCldx-0004YF-LQ; Fri, 13 Mar 2020 10:50:33 -0400
+Received: from mout.gmx.net ([212.227.17.20]:45809)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jCldt-0004Po-JU
+ for usrp-users@lists.ettus.com; Fri, 13 Mar 2020 10:50:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1584110988;
+ bh=DgbUhSBN1fxGQpiLGtl1/fgAvJHsrhkZA8w2VgxstdQ=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=aLKcEb1HYpWupa2Ek8goxD1NnhfuHtqJ2n3KEgPF66qSy5zB9RP5h3BQYQWuV9jnl
+ vIs56a3V0qjNbqswkMs/glLN5kXKT+Y4X0hO5E4OZ2gbzaaEySxrXZqGWZncUK1aRt
+ HJdZpGaRamRtVp5iSXMlwwIiOC3fHFBCWVIiGa1U=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [67.216.63.255] ([67.216.63.255]) by web-mail.gmx.net
+ (3c-app-gmx-bs31.server.lan [172.19.170.83]) (via HTTP); Fri, 13 Mar 2020
+ 15:49:48 +0100
 MIME-Version: 1.0
+Message-ID: <trinity-19a48b4d-02fc-452d-b52b-57a06d684669-1584110988090@3c-app-gmx-bs31>
+To: "Rob Kossler" <rkossler@nd.edu>
+Date: Fri, 13 Mar 2020 15:49:48 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <CAB__hTRm4hNPnfX4usHGA-hdc5WZ_=AnHVjJnZj7rGYM8xb0Tw@mail.gmail.com>
 References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
  <38CFC8D2-9645-4412-9873-9612B897C5EB@gmail.com>
  <trinity-c8914290-4845-4675-98c6-2e02b41f536e-1584075584965@3c-app-gmx-bap08>
  <CAB__hTRm4hNPnfX4usHGA-hdc5WZ_=AnHVjJnZj7rGYM8xb0Tw@mail.gmail.com>
-In-Reply-To: <CAB__hTRm4hNPnfX4usHGA-hdc5WZ_=AnHVjJnZj7rGYM8xb0Tw@mail.gmail.com>
-Date: Fri, 13 Mar 2020 10:07:19 -0400
-Message-ID: <CAB__hTQOdK3Y3rEbVOGtkS9L-SE2aQ3JkyfueQZAmS_h4ULETg@mail.gmail.com>
-To: Lukas Haase <lukashaase@gmx.at>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:Eaav0mRRnrkDFEe3ke+r7scdbm+mqNkud6yDLTB3ejbsT5uedJ8xLaL57GGxGHfca2BXW
+ Lmcz5kP4JnrxA0Q0pOtUzbZ7n4nEvjnyyHDYC0apZHMuiLNkr4ktG5N+lQppzpsPfewvUQOkxeJO
+ ucyfItMMjLf8mr8PC9/ndHwE1hxfBvvvrhD31ossORPsANmMXDurzrXbS+zasctb/A8wf+ClOcmS
+ R6MBFomNOzfgNhL+rfvkPhJwHE3qj5H+Muh82CO/N/uvzd36sUiW3bSFMfLu0xcbl1y1Y4g+m+Iv
+ 4w=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:zGCq2ZwM6jI=:dGN+UT0BOvMv+LsA53i9ln
+ k9bRLqIKvgjfp4isuBl9ylsGgaP5jEa6jOfpWuMrQ6obKkRqvxgOgQyjHLmZY2YpbJjrtr3+W
+ iYmHnwUh3N95wCWhyELw99cuUIPiQRWzw/J+26AhkHcyFXlBa8hpb5DHka7nMOuZdigccp+k+
+ 8dqEdX9pLyJRBKF6pd9ZsNyfYLPh1vDyOtrWgNewlEv31sLgQgg5zVDj+ruU9g3Nado85EmiM
+ bTnRXXkAai5UQWfyjNYNJmBWcSIvsIoH20UcHqFdm+JXD/gBg9l56IIxUws4+YqcK3cvu1usx
+ HBvwL7x+Guu1Q10VJAqE7h1uyNUyw2hxvvM27Zcfa5WT3VnVWR7O/eCjVA1KzwrNStuN0MJjU
+ m9yN3WLLm6v9mzvj8R2NRCrMLkYQZWZfMagQBSdrtWhBmPd4w56OYt+HSOl13Mlf1J4OoZ2Jm
+ fHYygl/I6P1gM/rfzAesrls8Pxvf/LTDVnNmZ3VJltGf6a/r+Qn40ZRuq5wM2GoDueWmE/cbP
+ HrxlwBqFumAvRIYo38UnO2S4Gt4Xuh2py1cC0jAy6zfJ1olmG38vbqDvB5s1Xmi7fYjyMaSUy
+ 1yinNAaj7bqcvSsls+YOG4V3BykoNjPuSon8nrCoPVM0jBocQYmF7r6F2x3VVAtxqnjTlgqy6
+ LQhkmIT/mF8eSRAaRBg+wUdsvuE3IUMeyqkChBwiTkfUzjBaEdGV8bGfokL+f6VHEn7w=
 Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
  timed command
 X-BeenThere: usrp-users@lists.ettus.com
@@ -62,10 +66,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6122479644412279263=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,1755 +84,784 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6122479644412279263==
-Content-Type: multipart/alternative; boundary="000000000000a6459c05a0bcfd53"
-
---000000000000a6459c05a0bcfd53
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Also, is it true that now you can successfully tune both RF and DSP at the
-desired command time (but the remaining problem is that the Rx phase is not
-consistent when after you tune to a new frequency and then tune back to the
-original)? If this is not correct, please explain again.
-Rob
-
-On Fri, Mar 13, 2020 at 9:53 AM Rob Kossler <rkossler@nd.edu> wrote:
-
-> Lukas,
-> Can you confirm the exact git hash for both UHD and the FPGA image you ar=
-e
-> using? Perhaps the easiest way is to run uhd_usrp_probe.
-> Rob
->
-> On Fri, Mar 13, 2020 at 1:00 AM Lukas Haase <lukashaase@gmx.at> wrote:
->
->> Dear Marcus, Dear Rob,
->>
->> Thank you very much for these tips with "Unknown PPS", stream 2 streams
->> and the explanation of set_start_time. That makes sense.
->>
->> Since then I spent hours and hours every day on TX+RX but STILL no
->> synchronized phase for dspfreq!
->> Timed commands seem to work.
->> Also, in general, synchronization.
->> With this code, I get my long desired cohrent phase between TX+RX but
->> ONLY if I do not touch dsp tuning (and only use the PLL in integer-N mod=
-e):
->>
->>         tune_req_rx =3D uhd.tune_request()
->>         tune_req_rx.rf_freq_policy =3D uhd.tune_request.POLICY_MANUAL
->>         tune_req_rx.dsp_freq_policy =3D uhd.tune_request.POLICY_NONE #
->> IMPORTANT!
->>         tune_req_rx.rf_freq =3D rf_freq
->>         tune_req_tx.dsp_freq =3D -dsp_freq
->>         tune_req_rx.args=3Duhd.device_addr(','.join(["mode_n=3Dinteger",
->> "int_n_step=3D1000e3",]))
->>
->>         tune_req_tx =3D uhd.tune_request()
->>         tune_req_tx.rf_freq_policy =3D uhd.tune_request.POLICY_MANUAL
->>         tune_req_tx.dsp_freq_policy =3D uhd.tune_request.POLICY_NONE #
->> IMPORTANT!
->>         tune_req_tx.rf_freq =3D rf_freq
->>         tune_req_tx.dsp_freq =3D dsp_freq
->>         tune_req_tx.args=3Duhd.device_addr(','.join(["mode_n=3Dinteger",
->> "int_n_step=3D1000e3",]))
->>
->>         now =3D usrp_sink.get_time_now()
->>         when =3D now + uhd.time_spec(1.0)
->>         print("Clicked to switch R-T-X frf=3D" + str(rf_freq) + ", fdsp=
-=3D" +
->> str(dsp_freq) + " at " + str(now.get_full_secs()) + ":" +
->> str(now.get_frac_secs()) + " for " + str(when.get_full_secs()) + ":" +
->> str(when.get_frac_secs()))
->>
->>         usrp_sink.set_command_time(when)
->>         usrp_source.set_command_time(when)
->>         res2 =3D usrp_sink.set_center_freq(tune_req_tx)       # "TX/RX" =
-of
->> first UBX160 is transmitter
->>         res1 =3D usrp_source.set_center_freq(tune_req_rx, 1)  # "RX2" of
->> second UBX160 is receiver
->>         usrp_sink.clear_command_time()
->>         usrp_source.clear_command_time()
->>
->> With phase coherence I mean if I read out the received phase and I switc=
-h
->> between f1 and f2, I always get the same phase for f1 and f2, respective=
-ly.
->>
->> But if I set dsp_freq_policy to MANUAL (or I add an LO offset which also
->> required dsp retuning) I just don't get any coherent phase.
->>
->> I used the tricks you mentioned:
->>
->> - I use unknown PPS in both which makes USRP time start at zero (tested)
->> - Both "USRP Source" and "USRP Sink" have 2 channels (and one of each
->> connects to Null Source/Sink). This should ensure that stream start time=
- is
->> set! (tested)
->> - Even if not, I also used explicitely
->>    tb.uhd_usrp_source_0.set_start_time(uhd.time_spec(10))
->>    tb.uhd_usrp_sink_0.set_start_time(uhd.time_spec(10))
->>   at the beginning of my flow graph. I see no signal until 10s, as
->> expected
->> - I experimented with "tx_time" and stream tags but for some reason many
->> timed I get flooded with L's
->>
->>
->> Can it be that there is another bug lurking somewhere deep in the USRP
->> firmware?
->>
->> Thanks,
->> Lukas
->>
->>
->>
->> Gesendet: Mittwoch, 04. M=C3=A4rz 2020 um 19:27 Uhr
->> Von: "Marcus D Leech" <patchvonbraun@gmail.com>
->> An: "Rob Kossler" <rkossler@nd.edu>
->> Cc: "Lukas Haase" <lukashaase@gmx.at>, "USRP-users@lists.ettus.com" <
->> usrp-users@lists.ettus.com>
->> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when usin=
-g
->> a timed command
->>
->> When you select one of the PPS synch options in a GRC USRP block it will
->> set the time to zero.
->>
->> Easy enough to modify the code to do something more sophisticated, but
->> knowing that it will be set to zero helps you know how to proceed.
->>
->>
->> Sent from my iPhone
->>  On Mar 4, 2020, at 12:43 PM, Rob Kossler via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->> =EF=BB=BF
->>
->> Regarding #2)
->> I don't think that what you want is a "command" tag, but rather a "time
->> stamp tag" which I believe is "tx_time" based on the link you provided t=
-o
->> the documentation.  The documentation says, "The timestamp tag value is =
-a
->> PMT tuple of the following: (uint64 seconds, double fractional seconds)"=
-.
->> If I am correct, perhaps the code snipped you provided will not come int=
-o
->> play.
->>
->> Just to be clear, I don't think you should need to do both #1 and #2.
->> But, I "believe" that either method should be possible to accomplish the
->> goal of attaching a time stamp to the streaming.
->>
->> Also, keep in mind that the time stamp that you provide to the DUC block
->> for the freq change is related to the time stamp you attach to the
->> streaming samples.  Let me explain with a few remarks:
->>
->> If you apply the time stamp of 0.5 to the streaming samples, then the
->> first sample will have time 0.5 and then UHD will keep track of all
->> subsequent samples to know the absolute time of any given sample.  I am
->> assuming that once you start transmitting you will keep transmitting
->> continuously until the flow graph ends.If you then start hopping your DU=
-C
->> with time stamps such as 0.6, 0.7, 0.8, etc, then UHD should apply the h=
-op
->> at the correct part of the stream since it knows the time of each
->> sample.But, be sure that you know for certain that the UHD time is truly
->> set to zero at the start of the run.  Otherwise, if it is at some arbitr=
-ary
->> value at startup such as 9876.1 seconds, and you are using time stamps t=
-o
->> set your DUC tuning such as "get_time_now()+0.5", then it will want to
->> apply the tuning at 9876.6 seconds. Thus, if you time stamped your tx
->> stream at 0.5 seconds, you will have a long time to wait before the tuni=
-ng
->> occurs.
->> Rob
->>
->> On Wed, Mar 4, 2020 at 12:13 PM Rob Kossler <rkossler@nd.edu[mailto:
->> rkossler@nd.edu]> wrote:
->>
->> Hi Lukas,
->> Let me respond to #1 right away.  The "set_start_time" function sets the
->> time of the tx stream.  It does not set the "clock time" on the usrp.  I=
-f
->> you are indeed correct that the "clock time" on the usrp is initialized =
-to
->> 0.0 at the start of the GR run, then you are lucky and all you should ne=
-ed
->> to do is use the "set_start_time" function with a time spec of something
->> like 0.2 or 0.5 (any time after 0.0 with perhaps a little delay built in=
-).
->> To see if it is working, you could set the time spec to something very
->> large like 5.0 or 10.0 and then you should see the GR run start up but n=
-o
->> Tx for the next 5 or 10 seconds.  Then the Tx should start.  Does that m=
-ake
->> sense?
->> Rob
->>
->>
->> On Wed, Mar 4, 2020 at 12:06 PM Lukas Haase <lukashaase@gmx.at[mailto:
->> lukashaase@gmx.at]> wrote:Hi Rob,
->>
->> 1.) I do not really understand how "set_start_time" is related to my
->> problem and why this is what I need. Based on my experiments, the time i=
-s
->> automatically set to 0 when the flow diagram starts.
->>
->> I am also sure others must have used timed TX+RX but it does not seem so=
-.
->> No kidding, I am working on this since Dec and I still do not have it
->> working. I left my traces various times on this and the gnuradio mailing
->> list but I did not get help.
->>
->> 2.) I have played around using stream tags and was very happy that it
->> worked but I found now that this is because gr-uhd does NOT attach a
->> command time although the documentation says so.
->>
->>
->> https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.html[h=
-ttps://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.html]
->> :
->> tx_command tag. The command is attached to a sample, and will executed
->> before the sample is transmitted, and after the previous sample.
->>
->> However, in the code (usrp_sink_impl.cc:433, usrp_sink_impl::tag_work):
->>
->>         else if (pmt::equal(key, COMMAND_KEY)) {
->>             if (my_tag_count !=3D samp0_count) {
->>                 max_count =3D my_tag_count;
->>                 break;
->>             }
->>             // TODO set the command time from the sample time
->>             msg_handler_command(value);
->>         }
->>
->> 3.) So I am really back to the start. What is generally a bit annoying i=
-s
->> that I have two objects for the same device (*one* USRP and "USRP
->> Source"+"USRP Sink", both with their independent uhd::usrp::multi_usrp
->> objects. My question is, is it possible to just use "USRP Source" (this =
-is
->> where timed commands work) to execute the retuning for *both* RX+TX?
->>
->> 3.a.) Given: X310 with 2xUBX-160. What is the subdev spec if I wanted to
->> receive on all FOUR inputs??
->> The problem is that both RX and TX frontends have the same name "0"
->> (according to uhd_usrp_probe).
->>
->> Two receivers, receiving both from "TX/RX" input of each UBX-160 would b=
-e
->> trivial: "A:0 B:0". However, how do I address "RX2"? Intuitively "A:0 A:=
-1
->> B:0 B:1" but as said, both "TX/RX" and "RX2" are named "0".
->> What would I do if I wanted to transmit from "TX/RX" of the second UBX
->> and receive on all other boards?
->>
->> On the USRP Sink: "B:0"
->> On the USP Source intuitively: "A:0 A:1 B:1" but that's wrong.
->>
->> 3.b.) In gr, there will be two multi_usrp objects: One for the receiver
->> (member variable of USRP Source) and one for the transmitter (member
->> variable of USRP Sink).
->> Can I set up a USRP Source that has two channels where the second one is
->> actually a TX channel? (only used for retuning via timed commands)?
->>
->>
->> Thanks,
->> Lukas
->>
->>
->>
->>
->>
->> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 15:22 Uhr
->> Von: "Rob Kossler" <rkossler@nd.edu[mailto:rkossler@nd.edu]>
->> An: "Lukas Haase" <lukashaase@gmx.at[mailto:lukashaase@gmx.at]>
->> Cc: "Sam Reiter" <sam.reiter@ettus.com[mailto:sam.reiter@ettus.com]>, "
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]" <
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]>
->> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when usin=
-g
->> a timed command
->>
->> I did a quick google search using "gnuradio uhd timed tx streaming". I
->> found that the GR usrp_sink[
->> https://www.gnuradio.org/doc/sphinx-3.7.7/uhd.html[https://www.gnuradio.=
-org/doc/sphinx-3.7.7/uhd.html]]
->> has the function "set_start_time" which seems to be what you need.  The
->> question is: what time do you set?  Probably just something like
->> "get_time_now() + 0.1". It may be a bit tricky since this value is to be
->> set before starting the flow graph.  Maybe you could set it to some fixe=
-d
->> constant like 0.5 and then when the flow graph starts you could execute =
-a
->> command to set_time_now() to 0.0.  Anyway, if this advice doesn't pan ou=
-t,
->> perhaps just search around a bit in GR archives.  I'm sure others have
->> successfully streamed with timed Tx commands.
->> Rob
->>
->> On Tue, Mar 3, 2020 at 3:00 PM Lukas Haase <lukashaase@gmx.at[mailto:
->> lukashaase@gmx.at][mailto:lukashaase@gmx.at[mailto:lukashaase@gmx.at]]>
->> wrote:
->>
->> Hi Sam, Hi Rob,
->>
->> This makes so much sense!
->> I think you are right.
->> And indeed, the issue I found only with TX, not RX.
->>
->>
->> Could you think of a possible hack sending a "dummy command" to the RF
->> board along with the timed tuning request?
->>
->>
->> Regarding the sending of time stamps in the TX in gr-uhd, I am confused
->> though. I do think this IS happening. I reproduce the work function of
->> "USRP Sink" here:
->>
->> int usrp_sink_impl::work(int noutput_items,
->>                          gr_vector_const_void_star& input_items,
->>                          gr_vector_void_star& output_items)
->> {
->>     int ninput_items =3D noutput_items; // cuz it's a sync block
->>
->>     // default to send a mid-burst packet
->>     _metadata.start_of_burst =3D false;
->>     _metadata.end_of_burst =3D false;
->>
->>     // collect tags in this work()
->>     const uint64_t samp0_count =3D nitems_read(0);
->>     get_tags_in_range(_tags, 0, samp0_count, samp0_count + ninput_items)=
-;
->>     if (not _tags.empty())
->>         this->tag_work(ninput_items);
->>
->>     if (not pmt::is_null(_length_tag_key)) {
->>         // check if there is data left to send from a burst tagged with
->> length_tag
->>         // If a burst is started during this call to work(), tag_work()
->> should have
->>         // been called and we should have _nitems_to_send > 0.
->>         if (_nitems_to_send > 0) {
->>             ninput_items =3D std::min<long>(_nitems_to_send, ninput_item=
-s);
->>             // if we run out of items to send, it's the end of the burst
->>             if (_nitems_to_send - long(ninput_items) =3D=3D 0)
->>                 _metadata.end_of_burst =3D true;
->>         } else {
->>             // There is a tag gap since no length_tag was found
->> immediately following
->>             // the last sample of the previous burst. Drop samples until
->> the next
->>             // length_tag is found. Notify the user of the tag gap.
->>             std::cerr << "tG" << std::flush;
->>             // increment the timespec by the number of samples dropped
->>             _metadata.time_spec +=3D ::uhd::time_spec_t(0, ninput_items,
->> _sample_rate);
->>             return ninput_items;
->>         }
->>     }
->>
->>     boost::this_thread::disable_interruption disable_interrupt;
->> #ifdef GR_UHD_USE_STREAM_API
->>     // send all ninput_items with metadata
->>     const size_t num_sent =3D _tx_stream->send(input_items, ninput_items=
-,
->> _metadata, 1.0);
->> #else
->>     const size_t num_sent =3D _dev->get_device()->send(input_items,
->>                                                      ninput_items,
->>                                                      _metadata,
->>                                                      *_type,
->>
->>  ::uhd::device::SEND_MODE_FULL_BUFF,
->>                                                      1.0);
->> #endif
->>     boost::this_thread::restore_interruption
->> restore_interrupt(disable_interrupt);
->>
->>     // if using length_tags, decrement items left to send by the number
->> of samples sent
->>     if (not pmt::is_null(_length_tag_key) && _nitems_to_send > 0) {
->>         _nitems_to_send -=3D long(num_sent);
->>     }
->>
->>     // increment the timespec by the number of samples sent
->>     _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rat=
-e);
->>
->>     // Some post-processing tasks if we actually transmitted the entire
->> burst
->>     if (not _pending_cmds.empty() && num_sent =3D=3D size_t(ninput_items=
-)) {
->>         GR_LOG_DEBUG(d_debug_logger,
->>                      boost::format("Executing %d pending commands.") %
->>                          _pending_cmds.size());
->>         BOOST_FOREACH (const pmt::pmt_t& cmd_pmt, _pending_cmds) {
->>             msg_handler_command(cmd_pmt);
->>         }
->>         _pending_cmds.clear();
->>     }
->>
->>     return num_sent;
->> }
->>
->> From this code, it can be seen that the data is transmitted including
->> _metadata:
->>
->> const size_t num_sent =3D _tx_stream->send(input_items, ninput_items,
->> _metadata, 1.0);
->>
->> The "time_spec" is updated for each block that is sent out:
->>
->> _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate);
->>
->> Now you mentioned "has_time_spec" below. I extended to code in the
->> following way:
->>
->>     // increment the timespec by the number of samples sent
->>     _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rat=
-e);
->>     GR_LOG_DEBUG(d_debug_logger, boost::format("Setting metadata
->> time_spec: %d:%f") % _metadata.time_spec.get_full_secs() %
->> _metadata.time_spec.get_frac_secs());
->>     _metadata.has_time_spec =3D true;
->>
->>
->> To my understanding, gr-uhd now passes the correct timestamps on to UHD.
->> However, the timed command is still ignored.
->>
->>
->> Thanks,
->> Lukas
->>
->>
->> PS: I will attempt to use the tagged stream ... but then I will have the
->> issue that I need to tune TX *plus* RX at the same time! Furthermore, th=
-e
->> streaming tags API is super rudimentary. Also, skimming the source code =
-for
->> the tag processing, I am not sure if this would change anything.
->>
->>
->>
->>
->>
->>
->>
->>
->> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 13:25 Uhr
->> Von: "Sam Reiter" <sam.reiter@ettus.com[mailto:sam.reiter@ettus.com
->> ][mailto:sam.reiter@ettus.com[mailto:sam.reiter@ettus.com]]>
->> An: "Rob Kossler" <rkossler@nd.edu[mailto:rkossler@nd.edu][mailto:
->> rkossler@nd.edu[mailto:rkossler@nd.edu]]>
->> Cc: "Lukas Haase" <lukashaase@gmx.at[mailto:lukashaase@gmx.at][mailto:
->> lukashaase@gmx.at[mailto:lukashaase@gmx.at]]>, "
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]]" <
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]]>
->> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when usin=
-g
->> a timed command
->>
->> Everything Rob is saying is dead on - the "sense of time" for the radio
->> is a 64-bit counter within the radio core that other blocks (like the DD=
-C
->> and DUC) don't have access to. Those blocks need to derive a sense of ti=
-me
->> from the timestamps of CHDR packets passing through them. I just wrapped=
- up
->> a new app note that covers this (among other synchronization-related
->> topics):
->>
->>
->> https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_U=
-HD#Clocking_and_Timekeeping_in_the_USRP[https://kb.ettus.com/Synchronizing_=
-USRP_Events_Using_Timed_Commands_in_UHD#Clocking_and_Timekeeping_in_the_USR=
-P][https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_U=
-HD#Clocking_and_Timekeeping_in_the_USRP[https://kb.ettus.com/Synchronizing_=
-USRP_Events_Using_Timed_Commands_in_UHD%23Clocking_and_Timekeeping_in_the_U=
-SRP]]
->> <https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_=
-UHD#Clocking_and_Timekeeping_in_the_USRP[https://kb.ettus.com/Synchronizing=
-_USRP_Events_Using_Timed_Commands_in_UHD%23Clocking_and_Timekeeping_in_the_=
-USRP][https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_i=
-n_UHD%23Clocking_and_Timekeeping_in_the_USRP[https://kb.ettus.com/Synchroni=
-zing_USRP_Events_Using_Timed_Commands_in_UHD%23Clocking_and_Timekeeping_in_=
-the_USRP]]>
->>
->> Lukas, I would doubt that this is an undiscovered bug as much as it is a=
-n
->> issue with implementation. If this were in C++, you'd want to set the
->> 'has_time_spec' and 'time_spec' fields of your TX metadata for at least =
-1
->> packet to impart a sense of time on the DUC:
->>
->>
->> https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html[https:/=
-/files.ettus.com/manual/structuhd_1_1tx__metadata__t.html][https://files.et=
-tus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ettus.com/=
-manual/structuhd_1_1tx__metadata__t.html%5D][https://files.ettus.com/manual=
-/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ettus.com/manual/structu=
-hd_1_1tx__metadata__t.html%5D%5Bhttps://files.ettus.com/manual/structuhd_1_=
-1tx__metadata__t.html%5Bhttps://files.ettus.com/manual/structuhd_1_1tx__met=
-adata__t.html%5D%5D]
->> <https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttp=
-s://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5D%5Bhttps://f=
-iles.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ett=
-us.com/manual/structuhd_1_1tx__metadata__t.html%5D%5D%5Bhttps://files.ettus=
-.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ettus.com/man=
-ual/structuhd_1_1tx__metadata__t.html%5D%5Bhttps://files.ettus.com/manual/s=
-tructuhd_1_1tx__metadata__t.html%5Bhttps://files.ettus.com/manual/structuhd=
-_1_1tx__metadata__t.html%5D%5D%5D>
->>
->> I just spoke with someone on my end who said you need to use stream tags
->> to do this, but again, I don't currently have much direction for how tha=
-t
->> would be implemented in your code.
->>
->>
->> Sam Reiter
->>
->> On Tue, Mar 3, 2020 at 11:48 AM Rob Kossler <rkossler@nd.edu[mailto:
->> rkossler@nd.edu][mailto:rkossler@nd.edu[mailto:rkossler@nd.edu]][mailto:
->> rkossler@nd.edu[mailto:rkossler@nd.edu][mailto:rkossler@nd.edu[mailto:
->> rkossler@nd.edu]]]> wrote:
->> Also, note that there is no corresponding issue on receive because the R=
-x
->> radio always inserts the time stamp in the sample stream. So, I guess yo=
-u
->> would not see this with the DDC.
->> Rob
->>
->> On Tue, Mar 3, 2020 at 12:43 PM Rob Kossler <rkossler@nd.edu[mailto:
->> rkossler@nd.edu][mailto:rkossler@nd.edu[mailto:rkossler@nd.edu]][mailto:
->> rkossler@nd.edu[mailto:rkossler@nd.edu][mailto:rkossler@nd.edu[mailto:
->> rkossler@nd.edu]]]> wrote:
->>
->> Hi Lukas,
->> The FPGA image on the USRP is divided into blocks such as the DUC block
->> and the Radio block.  The latter controls the RF daughterboard and has
->> access to the device clock.  So, when you provide a timed command to the
->> Radio block (such as for tuning the RF) it can implement the command at =
-the
->> specified time by comparing to the device clock.  The DUC block does not
->> have access to the MB clock and so when you give it a timed command, it
->> monitors the incoming sample stream to extract the time. If the sample
->> stream does not include a time stamp, the command never executes.  Don't
->> think of this as a bug, but rather as a design limitation.
->>
->> When I work directly with UHD from C++, I use the function
->> rx_streamer::issue_stream_command() which has options to stream data wit=
-h
->> no time stamp or with a time stamp.  When using timed commands with DUC =
-or
->> DDC, I must include the time stamp or else the command will never be
->> executed.  But, with GR, I don't know how to specify the corresponding
->> options.
->> Rob
->>
->> On Tue, Mar 3, 2020 at 12:29 PM Lukas Haase <lukashaase@gmx.at[mailto:
->> lukashaase@gmx.at][mailto:lukashaase@gmx.at[mailto:lukashaase@gmx.at
->> ]][mailto:lukashaase@gmx.at[mailto:lukashaase@gmx.at][mailto:
->> lukashaase@gmx.at[mailto:lukashaase@gmx.at]]]> wrote:Hi Sam, Hi Rob,
->>
->> Thanks for following up on this!
->> I am very happy you were able to reproduce this ... which means that at
->> least an issue exists :)
->>
->> What Sam suggests makes sense even though hard to believe for me:
->>
->> 1. How could something like that go unnoticed for so long? (I am sure I
->> am not the first performing digital tuning)
->> 2. In the past I got successful phase coherence using automatic tuning
->> (passing center frequency + offset to tune_request_t and using integer-N
->> tuning) using timed commands. This did not work reliably and only for
->> certain frequencies but in my opinion this should have INCLUDED the DUC
->> tuning. If the DUC retune wouldn't have been executed as part of this
->> automatic tuning, I could not have gotten phase coherence (and actually,
->> not even the desired frequency).
->>
->> The reason why I am only doing DUC tuning now is to avoid all the hassle
->> with integer-N tuning, PLL retuning and settling time.
->>
->> Sam, what is the "radio block" you were talking about?
->>
->> Anyway, would it be worthwile to attempt debugging this is absence of gr=
-?
->> The only reason this prevented me from doing is that I would need to
->> manually create the baseband samples and continuously stream them out wh=
-ile
->> in parallel do the retuning.
->> I am not too familiar with UHD on its own but I assume this would be ver=
-y
->> complicated, require multithreading etc.
->> Do you have any demo code that could be easily modified for this scenari=
-o?
->>
->> Best,
->> Lukas
->>
->>
->> Gesendet: Dienstag, 03. M=C3=A4rz 2020 um 12:08 Uhr
->> Von: "Sam Reiter" <sam.reiter@ettus.com[mailto:sam.reiter@ettus.com
->> ][mailto:sam.reiter@ettus.com[mailto:sam.reiter@ettus.com]][mailto:
->> sam.reiter@ettus.com[mailto:sam.reiter@ettus.com][mailto:
->> sam.reiter@ettus.com[mailto:sam.reiter@ettus.com]]]>
->> An: "Rob Kossler" <rkossler@nd.edu[mailto:rkossler@nd.edu][mailto:
->> rkossler@nd.edu[mailto:rkossler@nd.edu]][mailto:rkossler@nd.edu[mailto:
->> rkossler@nd.edu][mailto:rkossler@nd.edu[mailto:rkossler@nd.edu]]]>
->> Cc: "Lukas Haase" <lukashaase@gmx.at[mailto:lukashaase@gmx.at][mailto:
->> lukashaase@gmx.at[mailto:lukashaase@gmx.at]][mailto:lukashaase@gmx.at
->> [mailto:lukashaase@gmx.at][mailto:lukashaase@gmx.at[mailto:
->> lukashaase@gmx.at]]]>, "USRP-users@lists.ettus.com[mailto:
->> USRP-users@lists.ettus.com][mailto:USRP-users@lists.ettus.com[mailto:
->> USRP-users@lists.ettus.com]][mailto:USRP-users@lists.ettus.com[mailto:
->> USRP-users@lists.ettus.com][mailto:USRP-users@lists.ettus.com[mailto:
->> USRP-users@lists.ettus.com]]]" <usrp-users@lists.ettus.com[mailto:
->> usrp-users@lists.ettus.com][mailto:usrp-users@lists.ettus.com[mailto:
->> usrp-users@lists.ettus.com]][mailto:usrp-users@lists.ettus.com[mailto:
->> usrp-users@lists.ettus.com][mailto:usrp-users@lists.ettus.com[mailto:
->> usrp-users@lists.ettus.com]]]>
->> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when usin=
-g
->> a timed command
->>
->> For what it's worth, I was able to reproduce the behavior described here=
-,
->> but didn't get to dig into it much. My leading suspicion would be what R=
-ob
->> mentioned about timestamping. Lukas' code sets a command time, but I'm n=
-ot
->> clear on how timestamp metadata for packets being sent to the radio are
->> handled. Might be a good question to loop the discuss-gnuradio mailing l=
-ist
->> in on?
->>
->>
->>
->> Sam Reiter
->>
->> On Tue, Mar 3, 2020 at 10:59 AM Rob Kossler via USRP-users <
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]]][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]]]]> wrote:
->> I wonder if the issue is related to a missing time stamp on the baseband
->> samples going from GR to UHD.  If the stream does not have a time stamp,
->> the DUC is unable to apply the timed command because the DUC does not
->> really know the time - it must pull the time from the streaming samples.
->> This is in contrast to the radio block which does have access to time an=
-d
->> can apply timed commands by referring to the motherboard clock.
->>
->> I am not too familiar with GR so I'm not sure how to know if GR is
->> putting a time stamp on the streaming samples.
->> Rob
->>
->> On Mon, Mar 2, 2020 at 10:04 AM Lukas Haase via USRP-users <
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]]][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com][mailto:
->> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]]]]>
->> wrote:Hi Marcus,
->>
->> Thank you that would be amazing!
->>
->> I followed the tutorial and built everything from source:
->>
->> $ lsb_release -a
->> No LSB modules are available.
->> Distributor ID: Ubuntu
->> Description:    Ubuntu 18.04.4 LTS
->> Release:        18.04
->> Codename:       bionic
->> $ uname -a
->> Linux sdr 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UTC
->> 2020 x86_64 x86_64 x86_64 GNU/Linux
->> $ cd uhd
->> $ git status
->> HEAD detached at v3.15.0.0
->> $ cd ../gnuradio
->> $ git status
->> HEAD detached at v3.7.14.0
->>
->>
->> Thank you!
->>
->> Lukas
->>
->>
->>
->> PS: For some reason I sometimes do not get responses from this list. I
->> just saw it looking at the mailman archives. Hence I cannot respond (to
->> keep headers intact) but need to create a new message and manually "quot=
-e".
->> I hope that still preserves the context somehow.
->>
->>
->>
->> Marcus Leech wrote:
->> > On 02/28/2020 01:01 PM, Lukas Haase via USRP-users wrote:
->> >> Hi again,
->> >>
->> >> I created a minimum example (gnuradio) that shows the issue described
->> below.
->> >> To summarize: Retuning to a different dsp frequency on an USRP X310
->> (+UBX160) does not work (command ignored) ONLY if a timed command (in
->> future is used).
->> >> The code shows it in a simple manner. Commenting out the single line
->> with set_command_time makes the example work.
->> >>
->> >> I am absolutely out of ideas and would appreciate any input!
->> >>
->> >> Best,
->> >> Lukas
->> > Lukas.
->> >
->> > Thanks for sticking with this.  I'll have a discussion with Ettus R&D =
-to
->> > see if this is a known issue and/or if there's a workaround.
->> >
->> > Remind me which version of UHD you're using?
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]]][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]]]]
->>
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com______=
-_________________________________________
->>
->> USRP-users[http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettu=
-s.com_______________________________________________USRP-users][http://list=
-s.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com____________________=
-___________________________USRP-users%5Bhttp://lists.ettus.com/mailman/list=
-info/usrp-users_lists.ettus.com____________________________________________=
-___USRP-users%5D][http://lists.ettus.com/mailman/listinfo/usrp-users_lists.=
-ettus.com_______________________________________________USRP-users%5Bhttp:/=
-/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_______________=
-________________________________USRP-users%5D%5Bhttp://lists.ettus.com/mail=
-man/listinfo/usrp-users_lists.ettus.com____________________________________=
-___________USRP-users%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_=
-lists.ettus.com_______________________________________________USRP-users%5D=
-%5D]
->> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_____=
-__________________________________________USRP-users%5Bhttp://lists.ettus.c=
-om/mailman/listinfo/usrp-users_lists.ettus.com_____________________________=
-__________________USRP-users%5D%5Bhttp://lists.ettus.com/mailman/listinfo/u=
-srp-users_lists.ettus.com_______________________________________________USR=
-P-users%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m_______________________________________________USRP-users%5D%5D%5Bhttp://l=
-ists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com_________________=
-______________________________USRP-users%5Bhttp://lists.ettus.com/mailman/l=
-istinfo/usrp-users_lists.ettus.com_________________________________________=
-______USRP-users%5D%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_li=
-sts.ettus.com_______________________________________________USRP-users%5Bht=
-tp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com___________=
-____________________________________USRP-users%5D%5D%5D>
->> mailing list
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]]][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com][mailto:
->> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]]]]
->>
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com[http:=
-//lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com][http://lists=
-.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettus=
-.com/mailman/listinfo/usrp-users_lists.ettus.com%5D][http://lists.ettus.com=
-/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettus.com/mailm=
-an/listinfo/usrp-users_lists.ettus.com%5D%5Bhttp://lists.ettus.com/mailman/=
-listinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettus.com/mailman/listin=
-fo/usrp-users_lists.ettus.com%5D%5D]_______________________________________=
-________
->> USRP-users
->> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bht=
-tp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%5Bhttp:=
-//lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://list=
-s.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%5D%5Bhttp://list=
-s.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettu=
-s.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%5Bhttp://lists.ettus.c=
-om/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettus.com/mai=
-lman/listinfo/usrp-users_lists.ettus.com%5D%5D%5D__________________________=
-_____________________USRP-users>
->> mailing list
->> USRP-users@lists.ettus.com
->>
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com[http:=
-//lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com]
->>
->
-
---000000000000a6459c05a0bcfd53
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Also, is it true that now you can success=
-fully tune both RF and DSP at the desired command time (but the remaining p=
-roblem is that the Rx phase is not consistent when after you tune to a new =
-frequency and then tune back to the original)? If this is not correct, plea=
-se explain again.</div><div>Rob</div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Fri, Mar 13, 2020 at 9:53 AM Rob Kossler =
-&lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Luka=
-s,<div>Can you confirm the exact git hash for both UHD and the FPGA image y=
-ou are using? Perhaps the easiest way is to run uhd_usrp_probe.</div><div>R=
-ob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Fri, Mar 13, 2020 at 1:00 AM Lukas Haase &lt;<a href=3D"mailto:l=
-ukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex">Dear Marcus, Dear Rob,=
-<br>
-<br>
-Thank you very much for these tips with &quot;Unknown PPS&quot;, stream 2 s=
-treams and the explanation of set_start_time. That makes sense.<br>
-<br>
-Since then I spent hours and hours every day on TX+RX but STILL no synchron=
-ized phase for dspfreq!<br>
-Timed commands seem to work.<br>
-Also, in general, synchronization.<br>
-With this code, I get my long desired cohrent phase between TX+RX but ONLY =
-if I do not touch dsp tuning (and only use the PLL in integer-N mode):<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_rx =3D uhd.tune_request()<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_rx.rf_freq_policy =3D uhd.tune_request=
-.POLICY_MANUAL<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_rx.dsp_freq_policy =3D uhd.tune_reques=
-t.POLICY_NONE # IMPORTANT!<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_rx.rf_freq =3D rf_freq<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_tx.dsp_freq =3D -dsp_freq<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_rx.args=3Duhd.device_addr(&#39;,&#39;.=
-join([&quot;mode_n=3Dinteger&quot;, &quot;int_n_step=3D1000e3&quot;,]))<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_tx =3D uhd.tune_request()<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_tx.rf_freq_policy =3D uhd.tune_request=
-.POLICY_MANUAL<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_tx.dsp_freq_policy =3D uhd.tune_reques=
-t.POLICY_NONE # IMPORTANT!<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_tx.rf_freq =3D rf_freq<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_tx.dsp_freq =3D dsp_freq<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 tune_req_tx.args=3Duhd.device_addr(&#39;,&#39;.=
-join([&quot;mode_n=3Dinteger&quot;, &quot;int_n_step=3D1000e3&quot;,]))<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 now =3D usrp_sink.get_time_now()<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 when =3D now + uhd.time_spec(1.0)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 print(&quot;Clicked to switch R-T-X frf=3D&quot=
-; + str(rf_freq) + &quot;, fdsp=3D&quot; + str(dsp_freq) + &quot; at &quot;=
- + str(now.get_full_secs()) + &quot;:&quot; + str(now.get_frac_secs()) + &q=
-uot; for &quot; + str(when.get_full_secs()) + &quot;:&quot; + str(when.get_=
-frac_secs()))<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp_sink.set_command_time(when)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp_source.set_command_time(when)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 res2 =3D usrp_sink.set_center_freq(tune_req_tx)=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0# &quot;TX/RX&quot; of first UBX160 is transmitt=
-er<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 res1 =3D usrp_source.set_center_freq(tune_req_r=
-x, 1)=C2=A0 # &quot;RX2&quot; of second UBX160 is receiver<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp_sink.clear_command_time()<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp_source.clear_command_time()<br>
-<br>
-With phase coherence I mean if I read out the received phase and I switch b=
-etween f1 and f2, I always get the same phase for f1 and f2, respectively.<=
-br>
-<br>
-But if I set dsp_freq_policy to MANUAL (or I add an LO offset which also re=
-quired dsp retuning) I just don&#39;t get any coherent phase.<br>
-<br>
-I used the tricks you mentioned:<br>
-<br>
-- I use unknown PPS in both which makes USRP time start at zero (tested)<br=
->
-- Both &quot;USRP Source&quot; and &quot;USRP Sink&quot; have 2 channels (a=
-nd one of each connects to Null Source/Sink). This should ensure that strea=
-m start time is set! (tested)<br>
-- Even if not, I also used explicitely<br>
-=C2=A0 =C2=A0tb.uhd_usrp_source_0.set_start_time(uhd.time_spec(10))<br>
-=C2=A0 =C2=A0tb.uhd_usrp_sink_0.set_start_time(uhd.time_spec(10))<br>
-=C2=A0 at the beginning of my flow graph. I see no signal until 10s, as exp=
-ected<br>
-- I experimented with &quot;tx_time&quot; and stream tags but for some reas=
-on many timed I get flooded with L&#39;s<br>
-<br>
-<br>
-Can it be that there is another bug lurking somewhere deep in the USRP firm=
-ware?<br>
-<br>
-Thanks,<br>
-Lukas<br>
-<br>
-<br>
-<br>
-Gesendet:=C2=A0Mittwoch, 04. M=C3=A4rz 2020 um 19:27 Uhr<br>
-Von:=C2=A0&quot;Marcus D Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@gm=
-ail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;<br>
-An:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" tar=
-get=3D"_blank">rkossler@nd.edu</a>&gt;<br>
-Cc:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
-arget=3D"_blank">lukashaase@gmx.at</a>&gt;, &quot;<a href=3D"mailto:USRP-us=
-ers@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&quot;=
- &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
-sers@lists.ettus.com</a>&gt;<br>
-Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
-ing a timed command<br>
-<br>
-When you select one of the PPS synch options in a GRC USRP block it will se=
-t the time to zero.=C2=A0<br>
-=C2=A0<br>
-Easy enough to modify the code to do something more sophisticated, but know=
-ing that it will be set to zero helps you know how to proceed.=C2=A0<br>
-=C2=A0<br>
-=C2=A0<br>
-Sent from my iPhone<br>
-=C2=A0On Mar 4, 2020, at 12:43 PM, Rob Kossler via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>&gt; wrote:<br>
-=C2=A0<br>
-=EF=BB=BF<br>
-<br>
-Regarding #2)<br>
-I don&#39;t think that what you want is a &quot;command&quot; tag, but rath=
-er a &quot;time stamp tag&quot; which I believe is &quot;tx_time&quot; base=
-d on the link you provided to the documentation.=C2=A0 The documentation sa=
-ys, &quot;The timestamp tag value is a PMT tuple of the following: (uint64 =
-seconds, double fractional seconds)&quot;.=C2=A0 If I am correct, perhaps t=
-he code snipped you provided will not come into play.<br>
-=C2=A0<br>
-Just to be clear, I don&#39;t think you should need to do both #1 and #2.=
-=C2=A0 But, I &quot;believe&quot; that either method should be possible to =
-accomplish the goal of attaching a time stamp to the streaming.=C2=A0=C2=A0=
-<br>
-=C2=A0<br>
-Also, keep in mind that the time stamp that you provide to the DUC block fo=
-r the freq change is related to the time stamp you attach to the streaming =
-samples.=C2=A0 Let me explain with a few remarks:<br>
-<br>
-If you apply the time stamp of 0.5 to the streaming samples, then the first=
- sample will have time 0.5 and then UHD will keep track of all subsequent s=
-amples to know the absolute time of any given sample.=C2=A0 I am assuming t=
-hat once you start transmitting you will keep transmitting continuously unt=
-il the flow graph ends.If you then start hopping your DUC with time stamps =
-such as 0.6, 0.7, 0.8, etc, then UHD should apply the hop at the correct pa=
-rt of the stream since it knows the time of each sample.But, be sure that y=
-ou know for certain that the UHD time is truly set to zero at the start of =
-the run.=C2=A0 Otherwise, if it is at some arbitrary value at startup such =
-as 9876.1 seconds, and you are using time stamps to set your DUC tuning suc=
-h as &quot;get_time_now()+0.5&quot;, then it will want to apply the tuning =
-at 9876.6 seconds. Thus, if you time stamped your tx stream at 0.5 seconds,=
- you will have a long time to wait before the tuning occurs.=C2=A0=C2=A0<br=
->
-Rob=C2=A0<br>
-<br>
-On Wed, Mar 4, 2020 at 12:13 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@=
-nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
-sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]&gt; wrote:<br>
-<br>
-Hi Lukas,<br>
-Let me respond to #1 right away.=C2=A0 The &quot;set_start_time&quot; funct=
-ion sets the time of the tx stream.=C2=A0 It does not set the &quot;clock t=
-ime&quot; on the usrp.=C2=A0 If you are indeed correct that the &quot;clock=
- time&quot; on the usrp is initialized to 0.0 at the start of the GR run, t=
-hen you are lucky and all you should need to do is use the &quot;set_start_=
-time&quot; function with a time spec of something like 0.2 or 0.5 (any time=
- after 0.0 with perhaps a little delay built in).=C2=A0 To see if it is wor=
-king, you could set the time spec to something very large like 5.0 or 10.0 =
-and then you should see the GR run start up but no Tx for the next 5 or 10 =
-seconds.=C2=A0 Then the Tx should start.=C2=A0 Does that make sense?<br>
-Rob<br>
-=C2=A0=C2=A0<br>
-<br>
-On Wed, Mar 4, 2020 at 12:06 PM Lukas Haase &lt;<a href=3D"mailto:lukashaas=
-e@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:=
-lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt; wrote:Hi Ro=
-b,<br>
-<br>
-1.) I do not really understand how &quot;set_start_time&quot; is related to=
- my problem and why this is what I need. Based on my experiments, the time =
-is automatically set to 0 when the flow diagram starts.<br>
-<br>
-I am also sure others must have used timed TX+RX but it does not seem so. N=
-o kidding, I am working on this since Dec and I still do not have it workin=
-g. I left my traces various times on this and the gnuradio mailing list but=
- I did not get help.<br>
-<br>
-2.) I have played around using stream tags and was very happy that it worke=
-d but I found now that this is because gr-uhd does NOT attach a command tim=
-e although the documentation says so.<br>
-<br>
-<a href=3D"https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sin=
-k.html%5Bhttps://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.=
-html%5D" rel=3D"noreferrer" target=3D"_blank">https://www.gnuradio.org/doc/=
-doxygen/classgr_1_1uhd_1_1usrp__sink.html[https://www.gnuradio.org/doc/doxy=
-gen/classgr_1_1uhd_1_1usrp__sink.html]</a>:<br>
-tx_command tag. The command is attached to a sample, and will executed befo=
-re the sample is transmitted, and after the previous sample.<br>
-<br>
-However, in the code (usrp_sink_impl.cc:433, usrp_sink_impl::tag_work):<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 else if (pmt::equal(key, COMMAND_KEY)) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (my_tag_count !=3D samp0_count=
-) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 max_count =3D my_ta=
-g_count;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // TODO set the command time from=
- the sample time<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 msg_handler_command(value);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-<br>
-3.) So I am really back to the start. What is generally a bit annoying is t=
-hat I have two objects for the same device (*one* USRP and &quot;USRP Sourc=
-e&quot;+&quot;USRP Sink&quot;, both with their independent uhd::usrp::multi=
-_usrp objects. My question is, is it possible to just use &quot;USRP Source=
-&quot; (this is where timed commands work) to execute the retuning for *bot=
-h* RX+TX?<br>
-<br>
-3.a.) Given: X310 with 2xUBX-160. What is the subdev spec if I wanted to re=
-ceive on all FOUR inputs??<br>
-The problem is that both RX and TX frontends have the same name &quot;0&quo=
-t; (according to uhd_usrp_probe).<br>
-<br>
-Two receivers, receiving both from &quot;TX/RX&quot; input of each UBX-160 =
-would be trivial: &quot;A:0 B:0&quot;. However, how do I address &quot;RX2&=
-quot;? Intuitively &quot;A:0 A:1 B:0 B:1&quot; but as said, both &quot;TX/R=
-X&quot; and &quot;RX2&quot; are named &quot;0&quot;.<br>
-What would I do if I wanted to transmit from &quot;TX/RX&quot; of the secon=
-d UBX and receive on all other boards?<br>
-<br>
-On the USRP Sink: &quot;B:0&quot;<br>
-On the USP Source intuitively: &quot;A:0 A:1 B:1&quot; but that&#39;s wrong=
-.<br>
-<br>
-3.b.) In gr, there will be two multi_usrp objects: One for the receiver (me=
-mber variable of USRP Source) and one for the transmitter (member variable =
-of USRP Sink).<br>
-Can I set up a USRP Source that has two channels where the second one is ac=
-tually a TX channel? (only used for retuning via timed commands)?<br>
-<br>
-<br>
-Thanks,<br>
-Lukas<br>
-<br>
-<br>
-=C2=A0<br>
-=C2=A0<br>
-<br>
-Gesendet:=C2=A0Dienstag, 03. M=C3=A4rz 2020 um 15:22 Uhr<br>
-Von:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" ta=
-rget=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkossler@nd.ed=
-u" target=3D"_blank">rkossler@nd.edu</a>]&gt;<br>
-An:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
-arget=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@=
-gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt;<br>
-Cc:=C2=A0&quot;Sam Reiter&quot; &lt;<a href=3D"mailto:sam.reiter@ettus.com"=
- target=3D"_blank">sam.reiter@ettus.com</a>[mailto:<a href=3D"mailto:sam.re=
-iter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>]&gt;, &quot;<a h=
-ref=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@list=
-s.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=
-=3D"_blank">USRP-users@lists.ettus.com</a>]&quot; &lt;<a href=3D"mailto:usr=
-p-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[m=
-ailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-=
-users@lists.ettus.com</a>]&gt;<br>
-Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
-ing a timed command<br>
-<br>
-I did a quick google search using &quot;gnuradio uhd timed tx streaming&quo=
-t;. I found that the GR usrp_sink[<a href=3D"https://www.gnuradio.org/doc/s=
-phinx-3.7.7/uhd.html%5Bhttps://www.gnuradio.org/doc/sphinx-3.7.7/uhd.html%5=
-D" rel=3D"noreferrer" target=3D"_blank">https://www.gnuradio.org/doc/sphinx=
--3.7.7/uhd.html[https://www.gnuradio.org/doc/sphinx-3.7.7/uhd.html]</a>] ha=
-s the function &quot;set_start_time&quot; which seems to be what you need.=
-=C2=A0 The question is: what time do you set?=C2=A0 Probably just something=
- like &quot;get_time_now()=C2=A0+ 0.1&quot;. It may be a bit tricky since t=
-his value is to be set before starting the flow graph.=C2=A0 Maybe you coul=
-d set it to some fixed constant like 0.5 and then when the flow graph start=
-s you could execute a command to set_time_now() to 0.0.=C2=A0 Anyway, if th=
-is advice doesn&#39;t pan out, perhaps just search around a bit in GR archi=
-ves.=C2=A0 I&#39;m sure others have successfully streamed with timed Tx com=
-mands.<br>
-Rob=C2=A0<br>
-<br>
-On Tue, Mar 3, 2020 at 3:00 PM Lukas Haase &lt;<a href=3D"mailto:lukashaase=
-@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:l=
-ukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>][mailto:<a href=
-=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailt=
-o:<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at<=
-/a>]]&gt; wrote:<br>
-<br>
-Hi Sam, Hi Rob,<br>
-<br>
-This makes so much sense!<br>
-I think you are right.<br>
-And indeed, the issue I found only with TX, not RX.<br>
-<br>
-<br>
-Could you think of a possible hack sending a &quot;dummy command&quot; to t=
-he RF board along with the timed tuning request?<br>
-<br>
-<br>
-Regarding the sending of time stamps in the TX in gr-uhd, I am confused tho=
-ugh. I do think this IS happening. I reproduce the work function of &quot;U=
-SRP Sink&quot; here:<br>
-<br>
-int usrp_sink_impl::work(int noutput_items,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0gr_vector_const_void_star&amp; input_items,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0gr_vector_void_star&amp; output_items)<br>
-{<br>
-=C2=A0 =C2=A0 int ninput_items =3D noutput_items; // cuz it&#39;s a sync bl=
-ock<br>
-<br>
-=C2=A0 =C2=A0 // default to send a mid-burst packet<br>
-=C2=A0 =C2=A0 _metadata.start_of_burst =3D false;<br>
-=C2=A0 =C2=A0 _metadata.end_of_burst =3D false;<br>
-<br>
-=C2=A0 =C2=A0 // collect tags in this work()<br>
-=C2=A0 =C2=A0 const uint64_t samp0_count =3D nitems_read(0);<br>
-=C2=A0 =C2=A0 get_tags_in_range(_tags, 0, samp0_count, samp0_count + ninput=
-_items);<br>
-=C2=A0 =C2=A0 if (not _tags.empty())<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 this-&gt;tag_work(ninput_items);<br>
-<br>
-=C2=A0 =C2=A0 if (not pmt::is_null(_length_tag_key)) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 // check if there is data left to send from a b=
-urst tagged with length_tag<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 // If a burst is started during this call to wo=
-rk(), tag_work() should have<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 // been called and we should have _nitems_to_se=
-nd &gt; 0.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (_nitems_to_send &gt; 0) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ninput_items =3D std::min&lt;long=
-&gt;(_nitems_to_send, ninput_items);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // if we run out of items to send=
-, it&#39;s the end of the burst<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (_nitems_to_send - long(ninput=
-_items) =3D=3D 0)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 _metadata.end_of_bu=
-rst =3D true;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 } else {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // There is a tag gap since no le=
-ngth_tag was found immediately following<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // the last sample of the previou=
-s burst. Drop samples until the next<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // length_tag is found. Notify th=
-e user of the tag gap.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 std::cerr &lt;&lt; &quot;tG&quot;=
- &lt;&lt; std::flush;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 // increment the timespec by the =
-number of samples dropped<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 _metadata.time_spec +=3D ::uhd::t=
-ime_spec_t(0, ninput_items, _sample_rate);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return ninput_items;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-=C2=A0 =C2=A0 }<br>
-<br>
-=C2=A0 =C2=A0 boost::this_thread::disable_interruption disable_interrupt;<b=
-r>
-#ifdef GR_UHD_USE_STREAM_API<br>
-=C2=A0 =C2=A0 // send all ninput_items with metadata<br>
-=C2=A0 =C2=A0 const size_t num_sent =3D _tx_stream-&gt;send(input_items, ni=
-nput_items, _metadata, 1.0);<br>
-#else<br>
-=C2=A0 =C2=A0 const size_t num_sent =3D _dev-&gt;get_device()-&gt;send(inpu=
-t_items,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ninput_items,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0_metadata,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*_type,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0::uhd::device::SEND_MODE_FULL_BUFF=
-,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01.0);<br>
-#endif<br>
-=C2=A0 =C2=A0 boost::this_thread::restore_interruption restore_interrupt(di=
-sable_interrupt);<br>
-<br>
-=C2=A0 =C2=A0 // if using length_tags, decrement items left to send by the =
-number of samples sent<br>
-=C2=A0 =C2=A0 if (not pmt::is_null(_length_tag_key) &amp;&amp; _nitems_to_s=
-end &gt; 0) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 _nitems_to_send -=3D long(num_sent);<br>
-=C2=A0 =C2=A0 }<br>
-<br>
-=C2=A0 =C2=A0 // increment the timespec by the number of samples sent<br>
-=C2=A0 =C2=A0 _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sam=
-ple_rate);<br>
-<br>
-=C2=A0 =C2=A0 // Some post-processing tasks if we actually transmitted the =
-entire burst<br>
-=C2=A0 =C2=A0 if (not _pending_cmds.empty() &amp;&amp; num_sent =3D=3D size=
-_t(ninput_items)) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 GR_LOG_DEBUG(d_debug_logger,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0boost::format(&quot;Executing %d pending commands.&quot;) %<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0_pending_cmds.size());<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 BOOST_FOREACH (const pmt::pmt_t&amp; cmd_pmt, _=
-pending_cmds) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 msg_handler_command(cmd_pmt);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 _pending_cmds.clear();<br>
-=C2=A0 =C2=A0 }<br>
-<br>
-=C2=A0 =C2=A0 return num_sent;<br>
-}<br>
-<br>
-From this code, it can be seen that the data is transmitted including _meta=
-data:<br>
-<br>
-const size_t num_sent =3D _tx_stream-&gt;send(input_items, ninput_items, _m=
-etadata, 1.0);<br>
-<br>
-The &quot;time_spec&quot; is updated for each block that is sent out:<br>
-<br>
-_metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sample_rate);<br>
-<br>
-Now you mentioned &quot;has_time_spec&quot; below. I extended to code in th=
-e following way:<br>
-<br>
-=C2=A0 =C2=A0 // increment the timespec by the number of samples sent<br>
-=C2=A0 =C2=A0 _metadata.time_spec +=3D ::uhd::time_spec_t(0, num_sent, _sam=
-ple_rate);<br>
-=C2=A0 =C2=A0 GR_LOG_DEBUG(d_debug_logger, boost::format(&quot;Setting meta=
-data time_spec: %d:%f&quot;) % _metadata.time_spec.get_full_secs() % _metad=
-ata.time_spec.get_frac_secs());<br>
-=C2=A0 =C2=A0 _metadata.has_time_spec =3D true;<br>
-<br>
-<br>
-To my understanding, gr-uhd now passes the correct timestamps on to UHD.<br=
->
-However, the timed command is still ignored.<br>
-<br>
-<br>
-Thanks,<br>
-Lukas<br>
-<br>
-<br>
-PS: I will attempt to use the tagged stream ... but then I will have the is=
-sue that I need to tune TX *plus* RX at the same time! Furthermore, the str=
-eaming tags API is super rudimentary. Also, skimming the source code for th=
-e tag processing, I am not sure if this would change anything.<br>
-<br>
-<br>
-<br>
-<br>
-=C2=A0<br>
-=C2=A0<br>
-=C2=A0<br>
-<br>
-Gesendet:=C2=A0Dienstag, 03. M=C3=A4rz 2020 um 13:25 Uhr<br>
-Von:=C2=A0&quot;Sam Reiter&quot; &lt;<a href=3D"mailto:sam.reiter@ettus.com=
-" target=3D"_blank">sam.reiter@ettus.com</a>[mailto:<a href=3D"mailto:sam.r=
-eiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>][mailto:<a href=
-=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>=
-[mailto:<a href=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam.reite=
-r@ettus.com</a>]]&gt;<br>
-An:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" tar=
-get=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkossler@nd.edu=
-" target=3D"_blank">rkossler@nd.edu</a>][mailto:<a href=3D"mailto:rkossler@=
-nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
-sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]]&gt;<br>
-Cc:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
-arget=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@=
-gmx.at" target=3D"_blank">lukashaase@gmx.at</a>][mailto:<a href=3D"mailto:l=
-ukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D=
-"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]]&gt;, &=
-quot;<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.co=
-m" target=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mail=
-to:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com=
-</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank"=
->USRP-users@lists.ettus.com</a>]]&quot; &lt;<a href=3D"mailto:usrp-users@li=
-sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a h=
-ref=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@list=
-s.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" targe=
-t=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-u=
-sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>]]&gt=
-;<br>
-Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
-ing a timed command<br>
-<br>
-Everything Rob is saying is dead on - the &quot;sense of time&quot; for the=
- radio is a 64-bit counter within the radio core that other blocks (like th=
-e DDC and DUC) don&#39;t have access to. Those blocks need to derive a sens=
-e of time from the timestamps of CHDR packets passing through them. I just =
-wrapped up a new app note that covers this (among other synchronization-rel=
-ated topics):<br>
-=C2=A0<br>
-<a href=3D"https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Comma=
-nds_in_UHD#Clocking_and_Timekeeping_in_the_USRP[https://kb.ettus.com/Synchr=
-onizing_USRP_Events_Using_Timed_Commands_in_UHD%23Clocking_and_Timekeeping_=
-in_the_USRP][https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Com=
-mands_in_UHD%23Clocking_and_Timekeeping_in_the_USRP[https://kb.ettus.com/Sy=
-nchronizing_USRP_Events_Using_Timed_Commands_in_UHD%23Clocking_and_Timekeep=
-ing_in_the_USRP]]" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus.co=
-m/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#Clocking_and_Timeke=
-eping_in_the_USRP[https://kb.ettus.com/Synchronizing_USRP_Events_Using_Time=
-d_Commands_in_UHD#Clocking_and_Timekeeping_in_the_USRP][https://kb.ettus.co=
-m/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#Clocking_and_Timeke=
-eping_in_the_USRP[https://kb.ettus.com/Synchronizing_USRP_Events_Using_Time=
-d_Commands_in_UHD%23Clocking_and_Timekeeping_in_the_USRP]]</a><br>
-=C2=A0<br>
-Lukas, I would doubt that this is an undiscovered bug as much as it is an i=
-ssue with implementation. If this were in C++, you&#39;d want to set the &#=
-39;has_time_spec&#39; and &#39;time_spec&#39; fields of your TX metadata fo=
-r at least 1 packet to impart a sense of time on the DUC:<br>
-=C2=A0<br>
-<a href=3D"https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html=
-%5Bhttps://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5D%5Bht=
-tps://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps://fi=
-les.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5D%5D%5Bhttps://file=
-s.ettus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ettus.=
-com/manual/structuhd_1_1tx__metadata__t.html%5D%5Bhttps://files.ettus.com/m=
-anual/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ettus.com/manual/st=
-ructuhd_1_1tx__metadata__t.html%5D%5D%5D" rel=3D"noreferrer" target=3D"_bla=
-nk">https://files.ettus.com/manual/structuhd_1_1tx__metadata__t.html[https:=
-//files.ettus.com/manual/structuhd_1_1tx__metadata__t.html][https://files.e=
-ttus.com/manual/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ettus.com=
-/manual/structuhd_1_1tx__metadata__t.html%5D][https://files.ettus.com/manua=
-l/structuhd_1_1tx__metadata__t.html%5Bhttps://files.ettus.com/manual/struct=
-uhd_1_1tx__metadata__t.html%5D%5Bhttps://files.ettus.com/manual/structuhd_1=
-_1tx__metadata__t.html%5Bhttps://files.ettus.com/manual/structuhd_1_1tx__me=
-tadata__t.html%5D%5D]</a><br>
-=C2=A0<br>
-I just spoke with someone on my end who said you need to use stream tags to=
- do this, but again, I don&#39;t currently have much direction for how that=
- would be implemented in your code.<br>
-=C2=A0<br>
-<br>
-Sam Reiter=C2=A0=C2=A0<br>
-<br>
-On Tue, Mar 3, 2020 at 11:48 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@=
-nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
-sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>][mailto:<a href=3D"mailt=
-o:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"=
-mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]][mailto:<a h=
-ref=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto=
-:<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>][=
-mailto:<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu=
-</a>[mailto:<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@n=
-d.edu</a>]]]&gt; wrote:<br>
-Also, note that there is no corresponding issue on receive because the Rx r=
-adio always inserts the time stamp=C2=A0in the sample stream. So, I guess y=
-ou would not see this with the DDC.<br>
-Rob=C2=A0<br>
-<br>
-On Tue, Mar 3, 2020 at 12:43 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@=
-nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
-sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>][mailto:<a href=3D"mailt=
-o:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"=
-mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]][mailto:<a h=
-ref=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto=
-:<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>][=
-mailto:<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu=
-</a>[mailto:<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@n=
-d.edu</a>]]]&gt; wrote:<br>
-<br>
-Hi Lukas,<br>
-The FPGA image on the USRP is divided into blocks such as the DUC block and=
- the Radio block.=C2=A0 The latter controls the RF daughterboard and has ac=
-cess to the device clock.=C2=A0 So, when you provide a timed command to the=
- Radio block (such as for tuning the RF) it can implement the command at th=
-e specified time by comparing to the device clock.=C2=A0 The DUC block does=
- not have access to the MB clock and so when you give it a timed command, i=
-t monitors the incoming sample stream to extract the time. If the sample st=
-ream does not include a time stamp, the command never executes.=C2=A0 Don&#=
-39;t think of this as a bug, but rather as a design limitation.<br>
-=C2=A0<br>
-When I work directly with UHD from C++, I use the function rx_streamer::iss=
-ue_stream_command() which has options to stream data with no time stamp or =
-with a time stamp.=C2=A0 When using timed commands with DUC or DDC, I must =
-include the time stamp or else the command will never be executed.=C2=A0 Bu=
-t, with GR, I don&#39;t know how to specify the corresponding options.<br>
-Rob=C2=A0<br>
-<br>
-On Tue, Mar 3, 2020 at 12:29 PM Lukas Haase &lt;<a href=3D"mailto:lukashaas=
-e@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:=
-lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>][mailto:<a href=
-=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailt=
-o:<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at<=
-/a>]][mailto:<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukasha=
-ase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank=
-">lukashaase@gmx.at</a>][mailto:<a href=3D"mailto:lukashaase@gmx.at" target=
-=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@gmx.a=
-t" target=3D"_blank">lukashaase@gmx.at</a>]]]&gt; wrote:Hi Sam, Hi Rob,<br>
-<br>
-Thanks for following up on this!<br>
-I am very happy you were able to reproduce this ... which means that at lea=
-st an issue exists :)<br>
-<br>
-What Sam suggests makes sense even though hard to believe for me:<br>
-<br>
-1. How could something like that go unnoticed for so long? (I am sure I am =
-not the first performing digital tuning)<br>
-2. In the past I got successful phase coherence using automatic tuning (pas=
-sing center frequency + offset to tune_request_t and using integer-N tuning=
-) using timed commands. This did not work reliably and only for certain fre=
-quencies but in my opinion this should have INCLUDED the DUC tuning. If the=
- DUC retune wouldn&#39;t have been executed as part of this automatic tunin=
-g, I could not have gotten phase coherence (and actually, not even the desi=
-red frequency).<br>
-<br>
-The reason why I am only doing DUC tuning now is to avoid all the hassle wi=
-th integer-N tuning, PLL retuning and settling time.<br>
-<br>
-Sam, what is the &quot;radio block&quot; you were talking about?<br>
-<br>
-Anyway, would it be worthwile to attempt debugging this is absence of gr?<b=
-r>
-The only reason this prevented me from doing is that I would need to manual=
-ly create the baseband samples and continuously stream them out while in pa=
-rallel do the retuning.<br>
-I am not too familiar with UHD on its own but I assume this would be very c=
-omplicated, require multithreading etc.<br>
-Do you have any demo code that could be easily modified for this scenario?<=
-br>
-<br>
-Best,<br>
-Lukas<br>
-<br>
-<br>
-Gesendet:=C2=A0Dienstag, 03. M=C3=A4rz 2020 um 12:08 Uhr<br>
-Von:=C2=A0&quot;Sam Reiter&quot; &lt;<a href=3D"mailto:sam.reiter@ettus.com=
-" target=3D"_blank">sam.reiter@ettus.com</a>[mailto:<a href=3D"mailto:sam.r=
-eiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>][mailto:<a href=
-=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>=
-[mailto:<a href=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam.reite=
-r@ettus.com</a>]][mailto:<a href=3D"mailto:sam.reiter@ettus.com" target=3D"=
-_blank">sam.reiter@ettus.com</a>[mailto:<a href=3D"mailto:sam.reiter@ettus.=
-com" target=3D"_blank">sam.reiter@ettus.com</a>][mailto:<a href=3D"mailto:s=
-am.reiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com</a>[mailto:<a h=
-ref=3D"mailto:sam.reiter@ettus.com" target=3D"_blank">sam.reiter@ettus.com<=
-/a>]]]&gt;<br>
-An:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" tar=
-get=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkossler@nd.edu=
-" target=3D"_blank">rkossler@nd.edu</a>][mailto:<a href=3D"mailto:rkossler@=
-nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D"mailto:rkos=
-sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]][mailto:<a href=3D"mail=
-to:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto:<a href=3D=
-"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>][mailto:<a h=
-ref=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>[mailto=
-:<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>]]=
-]&gt;<br>
-Cc:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
-arget=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@=
-gmx.at" target=3D"_blank">lukashaase@gmx.at</a>][mailto:<a href=3D"mailto:l=
-ukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D=
-"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]][mailto=
-:<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</=
-a>[mailto:<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase=
-@gmx.at</a>][mailto:<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank">=
-lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@gmx.at" target=3D=
-"_blank">lukashaase@gmx.at</a>]]]&gt;, &quot;<a href=3D"mailto:USRP-users@l=
-ists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[mailto:<a =
-href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lis=
-ts.ettus.com</a>][mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" targ=
-et=3D"_blank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-=
-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>]][m=
-ailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-=
-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.c=
-om" target=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mai=
-lto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.co=
-m</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank=
-">USRP-users@lists.ettus.com</a>]]]&quot; &lt;<a href=3D"mailto:usrp-users@=
-lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a=
- href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@li=
-sts.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" tar=
-get=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp=
--users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>]][=
-mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp=
--users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.=
-com" target=3D"_blank">usrp-users@lists.ettus.com</a>][mailto:<a href=3D"ma=
-ilto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.c=
-om</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blan=
-k">usrp-users@lists.ettus.com</a>]]]&gt;<br>
-Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
-ing a timed command<br>
-<br>
-For what it&#39;s worth, I was able to reproduce the behavior described her=
-e, but didn&#39;t get to dig into it much. My leading suspicion would be wh=
-at Rob mentioned about timestamping. Lukas&#39; code sets a command time, b=
-ut I&#39;m not clear on how timestamp metadata for packets being sent to th=
-e radio are handled. Might be a good question to loop the discuss-gnuradio =
-mailing list in on?<br>
-<br>
-=C2=A0<br>
-<br>
-Sam Reiter=C2=A0=C2=A0<br>
-<br>
-On Tue, Mar 3, 2020 at 10:59 AM Rob Kossler via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
-com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
-nk">usrp-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lis=
-ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a hr=
-ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
-.ettus.com</a>]][mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" targe=
-t=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-u=
-sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>][mai=
-lto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com=
-" target=3D"_blank">usrp-users@lists.ettus.com</a>]]][mailto:<a href=3D"mai=
-lto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.co=
-m</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank=
-">usrp-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lists=
-.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>]][mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-us=
-ers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>][mail=
-to:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-use=
-rs@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com"=
- target=3D"_blank">usrp-users@lists.ettus.com</a>]]]]&gt; wrote:<br>
-I wonder if the issue is related to a missing time stamp on the baseband sa=
-mples going from GR to UHD.=C2=A0 If the stream does not have a time stamp,=
- the DUC is unable to apply the timed command because the DUC does not real=
-ly know the time - it must pull the time from the streaming samples. This i=
-s in contrast to the radio block which does have access to time and can app=
-ly timed commands by referring to the motherboard clock.<br>
-=C2=A0<br>
-I am not too familiar with GR so I&#39;m not sure how to know if GR is putt=
-ing a time stamp on the streaming samples.<br>
-Rob=C2=A0<br>
-<br>
-On Mon, Mar 2, 2020 at 10:04 AM Lukas Haase via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
-com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
-nk">usrp-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lis=
-ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a hr=
-ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
-.ettus.com</a>]][mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" targe=
-t=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-u=
-sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>][mai=
-lto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com=
-" target=3D"_blank">usrp-users@lists.ettus.com</a>]]][mailto:<a href=3D"mai=
-lto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.co=
-m</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank=
-">usrp-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:usrp-users@lists=
-.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>]][mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-us=
-ers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>][mail=
-to:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-use=
-rs@lists.ettus.com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com"=
- target=3D"_blank">usrp-users@lists.ettus.com</a>]]]]&gt; wrote:Hi Marcus,<=
-br>
-<br>
-Thank you that would be amazing!<br>
-<br>
-I followed the tutorial and built everything from source:<br>
-<br>
-$ lsb_release -a<br>
-No LSB modules are available.<br>
-Distributor ID: Ubuntu<br>
-Description:=C2=A0 =C2=A0 Ubuntu 18.04.4 LTS<br>
-Release:=C2=A0 =C2=A0 =C2=A0 =C2=A0 18.04<br>
-Codename:=C2=A0 =C2=A0 =C2=A0 =C2=A0bionic<br>
-$ uname -a<br>
-Linux sdr 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UTC 20=
-20 x86_64 x86_64 x86_64 GNU/Linux<br>
-$ cd uhd<br>
-$ git status<br>
-HEAD detached at v3.15.0.0<br>
-$ cd ../gnuradio<br>
-$ git status<br>
-HEAD detached at v3.7.14.0<br>
-<br>
-<br>
-Thank you!<br>
-<br>
-Lukas<br>
-<br>
-<br>
-<br>
-PS: For some reason I sometimes do not get responses from this list. I just=
- saw it looking at the mailman archives. Hence I cannot respond (to keep he=
-aders intact) but need to create a new message and manually &quot;quote&quo=
-t;. I hope that still preserves the context somehow.<br>
-<br>
-<br>
-<br>
-Marcus Leech wrote:<br>
-&gt; On 02/28/2020 01:01 PM, Lukas Haase via USRP-users wrote:<br>
-&gt;&gt; Hi again,<br>
-&gt;&gt;<br>
-&gt;&gt; I created a minimum example (gnuradio) that shows the issue descri=
-bed below.<br>
-&gt;&gt; To summarize: Retuning to a different dsp frequency on an USRP X31=
-0 (+UBX160) does not work (command ignored) ONLY if a timed command (in fut=
-ure is used).<br>
-&gt;&gt; The code shows it in a simple manner. Commenting out the single li=
-ne with set_command_time makes the example work.<br>
-&gt;&gt;<br>
-&gt;&gt; I am absolutely out of ideas and would appreciate any input!<br>
-&gt;&gt;<br>
-&gt;&gt; Best,<br>
-&gt;&gt; Lukas<br>
-&gt; Lukas.<br>
-&gt;<br>
-&gt; Thanks for sticking with this.=C2=A0 I&#39;ll have a discussion with E=
-ttus R&amp;D to<br>
-&gt; see if this is a known issue and/or if there&#39;s a workaround.<br>
-&gt;<br>
-&gt; Remind me which version of UHD you&#39;re using?<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
-rget=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:US=
-RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[=
-mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP=
--users@lists.ettus.com</a>]][mailto:<a href=3D"mailto:USRP-users@lists.ettu=
-s.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"m=
-ailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.=
-com</a>][mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_bl=
-ank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lis=
-ts.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>]]][mailto:<a=
- href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@li=
-sts.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" targ=
-et=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:USRP=
--users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[ma=
-ilto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a>]][mailto:<a href=3D"mailto:USRP-users@lists.ettus.=
-com" target=3D"_blank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"mai=
-lto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.co=
-m</a>][mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blan=
-k">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists=
-.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>]]]]<br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om_______________________________________________USRP-users%5Bhttp://lists.=
-ettus.com/mailman/listinfo/usrp-users_lists.ettus.com______________________=
-_________________________USRP-users%5D%5Bhttp://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com___________________________________________=
-____USRP-users%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.e=
-ttus.com_______________________________________________USRP-users%5D%5D%5Bh=
-ttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com__________=
-_____________________________________USRP-users%5Bhttp://lists.ettus.com/ma=
-ilman/listinfo/usrp-users_lists.ettus.com__________________________________=
-_____________USRP-users%5D%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-u=
-sers_lists.ettus.com_______________________________________________USRP-use=
-rs%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com____=
-___________________________________________USRP-users%5D%5D%5D" rel=3D"nore=
-ferrer" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-user=
-s_lists.ettus.com_______________________________________________<br>
-USRP-users[http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om_______________________________________________USRP-users][http://lists.e=
-ttus.com/mailman/listinfo/usrp-users_lists.ettus.com_______________________=
-________________________USRP-users%5Bhttp://lists.ettus.com/mailman/listinf=
-o/usrp-users_lists.ettus.com_______________________________________________=
-USRP-users%5D][http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ett=
-us.com_______________________________________________USRP-users%5Bhttp://li=
-sts.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com__________________=
-_____________________________USRP-users%5D%5Bhttp://lists.ettus.com/mailman=
-/listinfo/usrp-users_lists.ettus.com_______________________________________=
-________USRP-users%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lis=
-ts.ettus.com_______________________________________________USRP-users%5D%5D=
-]</a> mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
-rget=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:US=
-RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[=
-mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP=
--users@lists.ettus.com</a>]][mailto:<a href=3D"mailto:USRP-users@lists.ettu=
-s.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"m=
-ailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.=
-com</a>][mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_bl=
-ank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lis=
-ts.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>]]][mailto:<a=
- href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@li=
-sts.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" targ=
-et=3D"_blank">USRP-users@lists.ettus.com</a>][mailto:<a href=3D"mailto:USRP=
--users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>[ma=
-ilto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a>]][mailto:<a href=3D"mailto:USRP-users@lists.ettus.=
-com" target=3D"_blank">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"mai=
-lto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.co=
-m</a>][mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blan=
-k">USRP-users@lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists=
-.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>]]]]<br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%=
-5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp=
-://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%5D%5Bhttp=
-://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lis=
-ts.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D%5Bhttp://lists.=
-ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettus.=
-com/mailman/listinfo/usrp-users_lists.ettus.com%5D%5D%5D___________________=
-____________________________USRP-users" rel=3D"noreferrer" target=3D"_blank=
-">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com[http:/=
-/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com][http://lists.=
-ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettus.=
-com/mailman/listinfo/usrp-users_lists.ettus.com%5D][http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com%5D%5Bhttp://lists.ettus.com/mailman/l=
-istinfo/usrp-users_lists.ettus.com%5Bhttp://lists.ettus.com/mailman/listinf=
-o/usrp-users_lists.ettus.com%5D%5D]________________________________________=
-_______<br>
-USRP-users</a> mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om%5Bhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com%5D"=
- rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listin=
-fo/usrp-users_lists.ettus.com[http://lists.ettus.com/mailman/listinfo/usrp-=
-users_lists.ettus.com]</a><br>
-</blockquote></div>
-</blockquote></div></div>
-
---000000000000a6459c05a0bcfd53--
-
-
---===============6122479644412279263==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6122479644412279263==--
-
+SGkgUm9iLAoKRXhhY3QgZ2l0IHRhZ3MgSSBhbSB3b3JraW5nIHdpdGggKGJvdGggbGF0ZXN0IHN0
+YWJsZSB2ZXJzaW9ucyk6Cgp1aGQkIGdpdCBzdGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My4xNS4w
+LjAKZ251cmFkaW8kIGdpdCBzdGF0dXMKSEVBRCBkZXRhY2hlZCBhdCB2My43LjE0LjAKCk1ENSBo
+YXNoZXMgb2YgbXkgaW1hZ2U6CgokIG1kNXN1bSAvdXNyL2xvY2FsL3NoYXJlL3VoZC9pbWFnZXMv
+dXNycF94MzEwX2ZwZ2FfSEcqCjIwMDU4MjFhN2I1YTc3MWRmOTQ2MGFmMjlkZjA3ZGY5ICAvdXNy
+L2xvY2FsL3NoYXJlL3VoZC9pbWFnZXMvdXNycF94MzEwX2ZwZ2FfSEcuYml0CjIzZGJiODE4MWQ0
+MzZhNDg5OGFlMDA0MDBjZGU4YWU4ICAvdXNyL2xvY2FsL3NoYXJlL3VoZC9pbWFnZXMvdXNycF94
+MzEwX2ZwZ2FfSEcubHZiaXR4CmRjNTVjYWZlNWM4Y2ExMWIyODY3NGM4MzMyNjRiYmY3ICAvdXNy
+L2xvY2FsL3NoYXJlL3VoZC9pbWFnZXMvdXNycF94MzEwX2ZwZ2FfSEcucnB0CgpBbmQgb3V0cHV0
+IG9mIHVoZF91c3JwX3Byb2JlOgoKJCB1aGRfdXNycF9wcm9iZQpbSU5GT10gW1VIRF0gbGludXg7
+IEdOVSBDKysgdmVyc2lvbiA3LjQuMDsgQm9vc3RfMTA2NTAxOyBVSERfMy4xNS4wLkhFQUQtMC1n
+YWVhMGUyZGUKW0lORk9dIFtYMzAwXSBYMzAwIGluaXRpYWxpemF0aW9uIHNlcXVlbmNlLi4uCltJ
+TkZPXSBbWDMwMF0gTWF4aW11bSBmcmFtZSBzaXplOiA4MDAwIGJ5dGVzLgpbSU5GT10gW1gzMDBd
+IFJhZGlvIDF4IGNsb2NrOiAyMDAgTUh6CltJTkZPXSBbMC9EbWFGSUZPXzBdIEluaXRpYWxpemlu
+ZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RjFGMEQwMDAwMDAwMDAwMCkKW0lORk9dIFswL0Rt
+YUZJRk9fMF0gQklTVCBwYXNzZWQgKFRocm91Z2hwdXQ6IDEyOTIgTUIvcykKW0lORk9dIFswL0Rt
+YUZJRk9fMF0gQklTVCBwYXNzZWQgKFRocm91Z2hwdXQ6IDEzMDAgTUIvcykKW0lORk9dIFswL1Jh
+ZGlvXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTJBRDEwMDAwMDAw
+MDAwMSkKW0lORk9dIFswL1JhZGlvXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0Mg
+SUQ6IDB4MTJBRDEwMDAwMDAwMDAwMSkKW0lORk9dIFswL0REQ18wXSBJbml0aWFsaXppbmcgYmxv
+Y2sgY29udHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAwMDApCltJTkZPXSBbMC9ERENfMV0g
+SW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEREMwMDAwMDAwMDAwMDAwKQpb
+SU5GT10gWzAvRFVDXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RDBD
+MDAwMDAwMDAwMDAwMCkKW0lORk9dIFswL0RVQ18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJv
+bCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDApCiAgX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KIC8KfCAgICAgICBEZXZpY2U6IFgtU2VyaWVz
+IERldmljZQp8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwp8ICAgIC8KfCAgIHwgICAgICAgTWJvYXJkOiBYMzEwCnwgICB8ICAgcmV2aXNp
+b246IDExCnwgICB8ICAgcmV2aXNpb25fY29tcGF0OiA3CnwgICB8ICAgcHJvZHVjdDogMzA4MTgK
+fCAgIHwgICBtYWMtYWRkcjA6IDAwOjgwOjJmOjI2Ojg3OmY2CnwgICB8ICAgbWFjLWFkZHIxOiAw
+MDo4MDoyZjoyNjo4NzpmNwp8ICAgfCAgIGdhdGV3YXk6IDE5Mi4xNjguMTAuMQp8ICAgfCAgIGlw
+LWFkZHIwOiAxOTIuMTY4LjEwLjIKfCAgIHwgICBzdWJuZXQwOiAyNTUuMjU1LjI1NS4wCnwgICB8
+ICAgaXAtYWRkcjE6IDE5Mi4xNjguMjAuMgp8ICAgfCAgIHN1Ym5ldDE6IDI1NS4yNTUuMjU1LjAK
+fCAgIHwgICBpcC1hZGRyMjogMTkyLjE2OC4zMC4yCnwgICB8ICAgc3VibmV0MjogMjU1LjI1NS4y
+NTUuMAp8ICAgfCAgIGlwLWFkZHIzOiAxOTIuMTY4LjQwLjIKfCAgIHwgICBzdWJuZXQzOiAyNTUu
+MjU1LjI1NS4wCnwgICB8ICAgc2VyaWFsOiAzMUEwQzdBCnwgICB8ICAgRlcgVmVyc2lvbjogNi4w
+CnwgICB8ICAgRlBHQSBWZXJzaW9uOiAzNi4wCnwgICB8ICAgRlBHQSBnaXQgaGFzaDogZmRlMmE5
+NAp8ICAgfCAgIFJGTm9DIGNhcGFibGU6IFllcwp8ICAgfAp8ICAgfCAgIFRpbWUgc291cmNlczog
+IGludGVybmFsLCBleHRlcm5hbCwgZ3BzZG8KfCAgIHwgICBDbG9jayBzb3VyY2VzOiBpbnRlcm5h
+bCwgZXh0ZXJuYWwsIGdwc2RvCnwgICB8ICAgU2Vuc29yczogcmVmX2xvY2tlZAp8ICAgfCAgICAg
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAg
+IHwgICAgLwp8ICAgfCAgIHwgICAgICAgUlggRGJvYXJkOiBBCnwgICB8ICAgfCAgIElEOiBVQlgt
+MTYwIHYyICgweDAwN2UpCnwgICB8ICAgfCAgIFNlcmlhbDogMzE5RDA0RAp8ICAgfCAgIHwgICAg
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwg
+ICB8ICAgfCAgICAvCnwgICB8ICAgfCAgIHwgICAgICAgUlggRnJvbnRlbmQ6IDAKfCAgIHwgICB8
+ICAgfCAgIE5hbWU6IFVCWCBSWAp8ICAgfCAgIHwgICB8ICAgQW50ZW5uYXM6IFRYL1JYLCBSWDIs
+IENBTAp8ICAgfCAgIHwgICB8ICAgU2Vuc29yczogbG9fbG9ja2VkCnwgICB8ICAgfCAgIHwgICBG
+cmVxIHJhbmdlOiAxMC4wMDAgdG8gNjAwMC4wMDAgTUh6CnwgICB8ICAgfCAgIHwgICBHYWluIHJh
+bmdlIFBHQTA6IDAuMCB0byAzMS41IHN0ZXAgMC41IGRCCnwgICB8ICAgfCAgIHwgICBCYW5kd2lk
+dGggcmFuZ2U6IDE2MDAwMDAwMC4wIHRvIDE2MDAwMDAwMC4wIHN0ZXAgMC4wIEh6CnwgICB8ICAg
+fCAgIHwgICBDb25uZWN0aW9uIFR5cGU6IElRCnwgICB8ICAgfCAgIHwgICBVc2VzIExPIG9mZnNl
+dDogTm8KfCAgIHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwp8ICAgfCAgIHwgICAgLwp8ICAgfCAgIHwgICB8ICAgICAgIFJYIENv
+ZGVjOiBBCnwgICB8ICAgfCAgIHwgICBOYW1lOiBhZHM2MnA0OAp8ICAgfCAgIHwgICB8ICAgR2Fp
+biByYW5nZSBkaWdpdGFsOiAwLjAgdG8gNi4wIHN0ZXAgMC41IGRCCnwgICB8ICAgICBfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgICAv
+CnwgICB8ICAgfCAgICAgICBSWCBEYm9hcmQ6IEIKfCAgIHwgICB8ICAgSUQ6IFVCWC0xNjAgdjIg
+KDB4MDA3ZSkKfCAgIHwgICB8ICAgU2VyaWFsOiAzMUEwMDQ4CnwgICB8ICAgfCAgICAgX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICB8
+ICAgIC8KfCAgIHwgICB8ICAgfCAgICAgICBSWCBGcm9udGVuZDogMAp8ICAgfCAgIHwgICB8ICAg
+TmFtZTogVUJYIFJYCnwgICB8ICAgfCAgIHwgICBBbnRlbm5hczogVFgvUlgsIFJYMiwgQ0FMCnwg
+ICB8ICAgfCAgIHwgICBTZW5zb3JzOiBsb19sb2NrZWQKfCAgIHwgICB8ICAgfCAgIEZyZXEgcmFu
+Z2U6IDEwLjAwMCB0byA2MDAwLjAwMCBNSHoKfCAgIHwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgUEdB
+MDogMC4wIHRvIDMxLjUgc3RlcCAwLjUgZEIKfCAgIHwgICB8ICAgfCAgIEJhbmR3aWR0aCByYW5n
+ZTogMTYwMDAwMDAwLjAgdG8gMTYwMDAwMDAwLjAgc3RlcCAwLjAgSHoKfCAgIHwgICB8ICAgfCAg
+IENvbm5lY3Rpb24gVHlwZTogSVEKfCAgIHwgICB8ICAgfCAgIFVzZXMgTE8gb2Zmc2V0OiBObwp8
+ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCnwgICB8ICAgfCAgICAvCnwgICB8ICAgfCAgIHwgICAgICAgUlggQ29kZWM6IEIK
+fCAgIHwgICB8ICAgfCAgIE5hbWU6IGFkczYycDQ4CnwgICB8ICAgfCAgIHwgICBHYWluIHJhbmdl
+IGRpZ2l0YWw6IDAuMCB0byA2LjAgc3RlcCAwLjUgZEIKfCAgIHwgICAgIF9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgIC8KfCAgIHwg
+ICB8ICAgICAgIFRYIERib2FyZDogQQp8ICAgfCAgIHwgICBJRDogVUJYLTE2MCB2MiAoMHgwMDdk
+KQp8ICAgfCAgIHwgICBTZXJpYWw6IDMxOUQwNEQKfCAgIHwgICB8ICAgICBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgIHwgICAgLwp8
+ICAgfCAgIHwgICB8ICAgICAgIFRYIEZyb250ZW5kOiAwCnwgICB8ICAgfCAgIHwgICBOYW1lOiBV
+QlggVFgKfCAgIHwgICB8ICAgfCAgIEFudGVubmFzOiBUWC9SWCwgQ0FMCnwgICB8ICAgfCAgIHwg
+ICBTZW5zb3JzOiBsb19sb2NrZWQKfCAgIHwgICB8ICAgfCAgIEZyZXEgcmFuZ2U6IDEwLjAwMCB0
+byA2MDAwLjAwMCBNSHoKfCAgIHwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgUEdBMDogMC4wIHRvIDMx
+LjUgc3RlcCAwLjUgZEIKfCAgIHwgICB8ICAgfCAgIEJhbmR3aWR0aCByYW5nZTogMTYwMDAwMDAw
+LjAgdG8gMTYwMDAwMDAwLjAgc3RlcCAwLjAgSHoKfCAgIHwgICB8ICAgfCAgIENvbm5lY3Rpb24g
+VHlwZTogUUkKfCAgIHwgICB8ICAgfCAgIFVzZXMgTE8gb2Zmc2V0OiBObwp8ICAgfCAgIHwgICAg
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwg
+ICB8ICAgfCAgICAvCnwgICB8ICAgfCAgIHwgICAgICAgVFggQ29kZWM6IEEKfCAgIHwgICB8ICAg
+fCAgIE5hbWU6IGFkOTE0Ngp8ICAgfCAgIHwgICB8ICAgR2FpbiBFbGVtZW50czogTm9uZQp8ICAg
+fCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KfCAgIHwgICAgLwp8ICAgfCAgIHwgICAgICAgVFggRGJvYXJkOiBCCnwgICB8ICAgfCAgIElE
+OiBVQlgtMTYwIHYyICgweDAwN2QpCnwgICB8ICAgfCAgIFNlcmlhbDogMzFBMDA0OAp8ICAgfCAg
+IHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCnwgICB8ICAgfCAgICAvCnwgICB8ICAgfCAgIHwgICAgICAgVFggRnJvbnRlbmQ6IDAKfCAg
+IHwgICB8ICAgfCAgIE5hbWU6IFVCWCBUWAp8ICAgfCAgIHwgICB8ICAgQW50ZW5uYXM6IFRYL1JY
+LCBDQUwKfCAgIHwgICB8ICAgfCAgIFNlbnNvcnM6IGxvX2xvY2tlZAp8ICAgfCAgIHwgICB8ICAg
+RnJlcSByYW5nZTogMTAuMDAwIHRvIDYwMDAuMDAwIE1Iegp8ICAgfCAgIHwgICB8ICAgR2FpbiBy
+YW5nZSBQR0EwOiAwLjAgdG8gMzEuNSBzdGVwIDAuNSBkQgp8ICAgfCAgIHwgICB8ICAgQmFuZHdp
+ZHRoIHJhbmdlOiAxNjAwMDAwMDAuMCB0byAxNjAwMDAwMDAuMCBzdGVwIDAuMCBIegp8ICAgfCAg
+IHwgICB8ICAgQ29ubmVjdGlvbiBUeXBlOiBRSQp8ICAgfCAgIHwgICB8ICAgVXNlcyBMTyBvZmZz
+ZXQ6IE5vCnwgICB8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KfCAgIHwgICB8ICAgIC8KfCAgIHwgICB8ICAgfCAgICAgICBUWCBD
+b2RlYzogQgp8ICAgfCAgIHwgICB8ICAgTmFtZTogYWQ5MTQ2CnwgICB8ICAgfCAgIHwgICBHYWlu
+IEVsZW1lbnRzOiBOb25lCnwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgICAvCnwgICB8ICAgfCAgICAgICBSRk5vQyBi
+bG9ja3Mgb24gdGhpcyBkZXZpY2U6CnwgICB8ICAgfAp8ICAgfCAgIHwgICAqIERtYUZJRk9fMAp8
+ICAgfCAgIHwgICAqIFJhZGlvXzAKfCAgIHwgICB8ICAgKiBSYWRpb18xCnwgICB8ICAgfCAgICog
+RERDXzAKfCAgIHwgICB8ICAgKiBERENfMQp8ICAgfCAgIHwgICAqIERVQ18wCnwgICB8ICAgfCAg
+ICogRFVDXzEKCgpUaGFua3MhCkx1a2FzCsKgCsKgCgpHZXNlbmRldDrCoEZyZWl0YWcsIDEzLiBN
+w6RyeiAyMDIwIHVtIDA5OjUzIFVocgpWb246wqAiUm9iIEtvc3NsZXIiIDxya29zc2xlckBuZC5l
+ZHU+CkFuOsKgIkx1a2FzIEhhYXNlIiA8bHVrYXNoYWFzZUBnbXguYXQ+CkNjOsKgIk1hcmN1cyBE
+IExlZWNoIiA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+LCAiVVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KQmV0cmVmZjrCoFJlOiBbVVNSUC11
+c2Vyc10gVVNSUCBYMzEwIGlnbm9yZWQgRFNQIHJldHVuaW5nIG9uIFRYIHdoZW4gdXNpbmcgYSB0
+aW1lZCBjb21tYW5kCgpMdWthcywKQ2FuIHlvdSBjb25maXJtIHRoZSBleGFjdCBnaXQgaGFzaCBm
+b3IgYm90aCBVSEQgYW5kIHRoZSBGUEdBIGltYWdlIHlvdSBhcmUgdXNpbmc/IFBlcmhhcHMgdGhl
+IGVhc2llc3Qgd2F5IGlzIHRvIHJ1biB1aGRfdXNycF9wcm9iZS4KUm9iwqAKCk9uIEZyaSwgTWFy
+IDEzLCAyMDIwIGF0IDE6MDAgQU0gTHVrYXMgSGFhc2UgPGx1a2FzaGFhc2VAZ214LmF0W21haWx0
+bzpsdWthc2hhYXNlQGdteC5hdF0+IHdyb3RlOkRlYXIgTWFyY3VzLCBEZWFyIFJvYiwKClRoYW5r
+IHlvdSB2ZXJ5IG11Y2ggZm9yIHRoZXNlIHRpcHMgd2l0aCAiVW5rbm93biBQUFMiLCBzdHJlYW0g
+MiBzdHJlYW1zIGFuZCB0aGUgZXhwbGFuYXRpb24gb2Ygc2V0X3N0YXJ0X3RpbWUuIFRoYXQgbWFr
+ZXMgc2Vuc2UuCgpTaW5jZSB0aGVuIEkgc3BlbnQgaG91cnMgYW5kIGhvdXJzIGV2ZXJ5IGRheSBv
+biBUWCtSWCBidXQgU1RJTEwgbm8gc3luY2hyb25pemVkIHBoYXNlIGZvciBkc3BmcmVxIQpUaW1l
+ZCBjb21tYW5kcyBzZWVtIHRvIHdvcmsuCkFsc28sIGluIGdlbmVyYWwsIHN5bmNocm9uaXphdGlv
+bi4KV2l0aCB0aGlzIGNvZGUsIEkgZ2V0IG15IGxvbmcgZGVzaXJlZCBjb2hyZW50IHBoYXNlIGJl
+dHdlZW4gVFgrUlggYnV0IE9OTFkgaWYgSSBkbyBub3QgdG91Y2ggZHNwIHR1bmluZyAoYW5kIG9u
+bHkgdXNlIHRoZSBQTEwgaW4gaW50ZWdlci1OIG1vZGUpOgoKwqAgwqAgwqAgwqAgdHVuZV9yZXFf
+cnggPSB1aGQudHVuZV9yZXF1ZXN0KCkKwqAgwqAgwqAgwqAgdHVuZV9yZXFfcngucmZfZnJlcV9w
+b2xpY3kgPSB1aGQudHVuZV9yZXF1ZXN0LlBPTElDWV9NQU5VQUwKwqAgwqAgwqAgwqAgdHVuZV9y
+ZXFfcnguZHNwX2ZyZXFfcG9saWN5ID0gdWhkLnR1bmVfcmVxdWVzdC5QT0xJQ1lfTk9ORSAjIElN
+UE9SVEFOVCEKwqAgwqAgwqAgwqAgdHVuZV9yZXFfcngucmZfZnJlcSA9IHJmX2ZyZXEKwqAgwqAg
+wqAgwqAgdHVuZV9yZXFfdHguZHNwX2ZyZXEgPSAtZHNwX2ZyZXEKwqAgwqAgwqAgwqAgdHVuZV9y
+ZXFfcnguYXJncz11aGQuZGV2aWNlX2FkZHIoJywnLmpvaW4oWyJtb2RlX249aW50ZWdlciIsICJp
+bnRfbl9zdGVwPTEwMDBlMyIsXSkpCgrCoCDCoCDCoCDCoCB0dW5lX3JlcV90eCA9IHVoZC50dW5l
+X3JlcXVlc3QoKQrCoCDCoCDCoCDCoCB0dW5lX3JlcV90eC5yZl9mcmVxX3BvbGljeSA9IHVoZC50
+dW5lX3JlcXVlc3QuUE9MSUNZX01BTlVBTArCoCDCoCDCoCDCoCB0dW5lX3JlcV90eC5kc3BfZnJl
+cV9wb2xpY3kgPSB1aGQudHVuZV9yZXF1ZXN0LlBPTElDWV9OT05FICMgSU1QT1JUQU5UIQrCoCDC
+oCDCoCDCoCB0dW5lX3JlcV90eC5yZl9mcmVxID0gcmZfZnJlcQrCoCDCoCDCoCDCoCB0dW5lX3Jl
+cV90eC5kc3BfZnJlcSA9IGRzcF9mcmVxCsKgIMKgIMKgIMKgIHR1bmVfcmVxX3R4LmFyZ3M9dWhk
+LmRldmljZV9hZGRyKCcsJy5qb2luKFsibW9kZV9uPWludGVnZXIiLCAiaW50X25fc3RlcD0xMDAw
+ZTMiLF0pKQoKwqAgwqAgwqAgwqAgbm93ID0gdXNycF9zaW5rLmdldF90aW1lX25vdygpCsKgIMKg
+IMKgIMKgIHdoZW4gPSBub3cgKyB1aGQudGltZV9zcGVjKDEuMCkKwqAgwqAgwqAgwqAgcHJpbnQo
+IkNsaWNrZWQgdG8gc3dpdGNoIFItVC1YIGZyZj0iICsgc3RyKHJmX2ZyZXEpICsgIiwgZmRzcD0i
+ICsgc3RyKGRzcF9mcmVxKSArICIgYXQgIiArIHN0cihub3cuZ2V0X2Z1bGxfc2VjcygpKSArICI6
+IiArIHN0cihub3cuZ2V0X2ZyYWNfc2VjcygpKSArICIgZm9yICIgKyBzdHIod2hlbi5nZXRfZnVs
+bF9zZWNzKCkpICsgIjoiICsgc3RyKHdoZW4uZ2V0X2ZyYWNfc2VjcygpKSkKCsKgIMKgIMKgIMKg
+IHVzcnBfc2luay5zZXRfY29tbWFuZF90aW1lKHdoZW4pCsKgIMKgIMKgIMKgIHVzcnBfc291cmNl
+LnNldF9jb21tYW5kX3RpbWUod2hlbikKwqAgwqAgwqAgwqAgcmVzMiA9IHVzcnBfc2luay5zZXRf
+Y2VudGVyX2ZyZXEodHVuZV9yZXFfdHgpwqAgwqAgwqAgwqAjICJUWC9SWCIgb2YgZmlyc3QgVUJY
+MTYwIGlzIHRyYW5zbWl0dGVyCsKgIMKgIMKgIMKgIHJlczEgPSB1c3JwX3NvdXJjZS5zZXRfY2Vu
+dGVyX2ZyZXEodHVuZV9yZXFfcngsIDEpwqAgIyAiUlgyIiBvZiBzZWNvbmQgVUJYMTYwIGlzIHJl
+Y2VpdmVyCsKgIMKgIMKgIMKgIHVzcnBfc2luay5jbGVhcl9jb21tYW5kX3RpbWUoKQrCoCDCoCDC
+oCDCoCB1c3JwX3NvdXJjZS5jbGVhcl9jb21tYW5kX3RpbWUoKQoKV2l0aCBwaGFzZSBjb2hlcmVu
+Y2UgSSBtZWFuIGlmIEkgcmVhZCBvdXQgdGhlIHJlY2VpdmVkIHBoYXNlIGFuZCBJIHN3aXRjaCBi
+ZXR3ZWVuIGYxIGFuZCBmMiwgSSBhbHdheXMgZ2V0IHRoZSBzYW1lIHBoYXNlIGZvciBmMSBhbmQg
+ZjIsIHJlc3BlY3RpdmVseS4KCkJ1dCBpZiBJIHNldCBkc3BfZnJlcV9wb2xpY3kgdG8gTUFOVUFM
+IChvciBJIGFkZCBhbiBMTyBvZmZzZXQgd2hpY2ggYWxzbyByZXF1aXJlZCBkc3AgcmV0dW5pbmcp
+IEkganVzdCBkb24ndCBnZXQgYW55IGNvaGVyZW50IHBoYXNlLgoKSSB1c2VkIHRoZSB0cmlja3Mg
+eW91IG1lbnRpb25lZDoKCi0gSSB1c2UgdW5rbm93biBQUFMgaW4gYm90aCB3aGljaCBtYWtlcyBV
+U1JQIHRpbWUgc3RhcnQgYXQgemVybyAodGVzdGVkKQotIEJvdGggIlVTUlAgU291cmNlIiBhbmQg
+IlVTUlAgU2luayIgaGF2ZSAyIGNoYW5uZWxzIChhbmQgb25lIG9mIGVhY2ggY29ubmVjdHMgdG8g
+TnVsbCBTb3VyY2UvU2luaykuIFRoaXMgc2hvdWxkIGVuc3VyZSB0aGF0IHN0cmVhbSBzdGFydCB0
+aW1lIGlzIHNldCEgKHRlc3RlZCkKLSBFdmVuIGlmIG5vdCwgSSBhbHNvIHVzZWQgZXhwbGljaXRl
+bHkKwqAgwqB0Yi51aGRfdXNycF9zb3VyY2VfMC5zZXRfc3RhcnRfdGltZSh1aGQudGltZV9zcGVj
+KDEwKSkKwqAgwqB0Yi51aGRfdXNycF9zaW5rXzAuc2V0X3N0YXJ0X3RpbWUodWhkLnRpbWVfc3Bl
+YygxMCkpCsKgIGF0IHRoZSBiZWdpbm5pbmcgb2YgbXkgZmxvdyBncmFwaC4gSSBzZWUgbm8gc2ln
+bmFsIHVudGlsIDEwcywgYXMgZXhwZWN0ZWQKLSBJIGV4cGVyaW1lbnRlZCB3aXRoICJ0eF90aW1l
+IiBhbmQgc3RyZWFtIHRhZ3MgYnV0IGZvciBzb21lIHJlYXNvbiBtYW55IHRpbWVkIEkgZ2V0IGZs
+b29kZWQgd2l0aCBMJ3MKCgpDYW4gaXQgYmUgdGhhdCB0aGVyZSBpcyBhbm90aGVyIGJ1ZyBsdXJr
+aW5nIHNvbWV3aGVyZSBkZWVwIGluIHRoZSBVU1JQIGZpcm13YXJlPwoKVGhhbmtzLApMdWthcwoK
+CgpHZXNlbmRldDrCoE1pdHR3b2NoLCAwNC4gTcOkcnogMjAyMCB1bSAxOToyNyBVaHIKVm9uOsKg
+Ik1hcmN1cyBEIExlZWNoIiA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb21bbWFpbHRvOnBhdGNodm9u
+YnJhdW5AZ21haWwuY29tXT4KQW46wqAiUm9iIEtvc3NsZXIiIDxya29zc2xlckBuZC5lZHVbbWFp
+bHRvOnJrb3NzbGVyQG5kLmVkdV0+CkNjOsKgIkx1a2FzIEhhYXNlIiA8bHVrYXNoYWFzZUBnbXgu
+YXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XT4sICJVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dIiA8dXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXT4KQmV0cmVmZjrCoFJl
+OiBbVVNSUC11c2Vyc10gVVNSUCBYMzEwIGlnbm9yZWQgRFNQIHJldHVuaW5nIG9uIFRYIHdoZW4g
+dXNpbmcgYSB0aW1lZCBjb21tYW5kCgpXaGVuIHlvdSBzZWxlY3Qgb25lIG9mIHRoZSBQUFMgc3lu
+Y2ggb3B0aW9ucyBpbiBhIEdSQyBVU1JQIGJsb2NrIGl0IHdpbGwgc2V0IHRoZSB0aW1lIHRvIHpl
+cm8uwqAKwqAKRWFzeSBlbm91Z2ggdG8gbW9kaWZ5IHRoZSBjb2RlIHRvIGRvIHNvbWV0aGluZyBt
+b3JlIHNvcGhpc3RpY2F0ZWQsIGJ1dCBrbm93aW5nIHRoYXQgaXQgd2lsbCBiZSBzZXQgdG8gemVy
+byBoZWxwcyB5b3Uga25vdyBob3cgdG8gcHJvY2VlZC7CoArCoArCoApTZW50IGZyb20gbXkgaVBo
+b25lCsKgT24gTWFyIDQsIDIwMjAsIGF0IDEyOjQzIFBNLCBSb2IgS29zc2xlciB2aWEgVVNSUC11
+c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tXT4gd3JvdGU6CsKgCu+7vwoKUmVnYXJkaW5nICMyKQpJIGRvbid0IHRoaW5rIHRo
+YXQgd2hhdCB5b3Ugd2FudCBpcyBhICJjb21tYW5kIiB0YWcsIGJ1dCByYXRoZXIgYSAidGltZSBz
+dGFtcCB0YWciIHdoaWNoIEkgYmVsaWV2ZSBpcyAidHhfdGltZSIgYmFzZWQgb24gdGhlIGxpbmsg
+eW91IHByb3ZpZGVkIHRvIHRoZSBkb2N1bWVudGF0aW9uLsKgIFRoZSBkb2N1bWVudGF0aW9uIHNh
+eXMsICJUaGUgdGltZXN0YW1wIHRhZyB2YWx1ZSBpcyBhIFBNVCB0dXBsZSBvZiB0aGUgZm9sbG93
+aW5nOiAodWludDY0IHNlY29uZHMsIGRvdWJsZSBmcmFjdGlvbmFsIHNlY29uZHMpIi7CoCBJZiBJ
+IGFtIGNvcnJlY3QsIHBlcmhhcHMgdGhlIGNvZGUgc25pcHBlZCB5b3UgcHJvdmlkZWQgd2lsbCBu
+b3QgY29tZSBpbnRvIHBsYXkuCsKgCkp1c3QgdG8gYmUgY2xlYXIsIEkgZG9uJ3QgdGhpbmsgeW91
+IHNob3VsZCBuZWVkIHRvIGRvIGJvdGggIzEgYW5kICMyLsKgIEJ1dCwgSSAiYmVsaWV2ZSIgdGhh
+dCBlaXRoZXIgbWV0aG9kIHNob3VsZCBiZSBwb3NzaWJsZSB0byBhY2NvbXBsaXNoIHRoZSBnb2Fs
+IG9mIGF0dGFjaGluZyBhIHRpbWUgc3RhbXAgdG8gdGhlIHN0cmVhbWluZy7CoMKgCsKgCkFsc28s
+IGtlZXAgaW4gbWluZCB0aGF0IHRoZSB0aW1lIHN0YW1wIHRoYXQgeW91IHByb3ZpZGUgdG8gdGhl
+IERVQyBibG9jayBmb3IgdGhlIGZyZXEgY2hhbmdlIGlzIHJlbGF0ZWQgdG8gdGhlIHRpbWUgc3Rh
+bXAgeW91IGF0dGFjaCB0byB0aGUgc3RyZWFtaW5nIHNhbXBsZXMuwqAgTGV0IG1lIGV4cGxhaW4g
+d2l0aCBhIGZldyByZW1hcmtzOgoKSWYgeW91IGFwcGx5IHRoZSB0aW1lIHN0YW1wIG9mIDAuNSB0
+byB0aGUgc3RyZWFtaW5nIHNhbXBsZXMsIHRoZW4gdGhlIGZpcnN0IHNhbXBsZSB3aWxsIGhhdmUg
+dGltZSAwLjUgYW5kIHRoZW4gVUhEIHdpbGwga2VlcCB0cmFjayBvZiBhbGwgc3Vic2VxdWVudCBz
+YW1wbGVzIHRvIGtub3cgdGhlIGFic29sdXRlIHRpbWUgb2YgYW55IGdpdmVuIHNhbXBsZS7CoCBJ
+IGFtIGFzc3VtaW5nIHRoYXQgb25jZSB5b3Ugc3RhcnQgdHJhbnNtaXR0aW5nIHlvdSB3aWxsIGtl
+ZXAgdHJhbnNtaXR0aW5nIGNvbnRpbnVvdXNseSB1bnRpbCB0aGUgZmxvdyBncmFwaCBlbmRzLklm
+IHlvdSB0aGVuIHN0YXJ0IGhvcHBpbmcgeW91ciBEVUMgd2l0aCB0aW1lIHN0YW1wcyBzdWNoIGFz
+IDAuNiwgMC43LCAwLjgsIGV0YywgdGhlbiBVSEQgc2hvdWxkIGFwcGx5IHRoZSBob3AgYXQgdGhl
+IGNvcnJlY3QgcGFydCBvZiB0aGUgc3RyZWFtIHNpbmNlIGl0IGtub3dzIHRoZSB0aW1lIG9mIGVh
+Y2ggc2FtcGxlLkJ1dCwgYmUgc3VyZSB0aGF0IHlvdSBrbm93IGZvciBjZXJ0YWluIHRoYXQgdGhl
+IFVIRCB0aW1lIGlzIHRydWx5IHNldCB0byB6ZXJvIGF0IHRoZSBzdGFydCBvZiB0aGUgcnVuLsKg
+IE90aGVyd2lzZSwgaWYgaXQgaXMgYXQgc29tZSBhcmJpdHJhcnkgdmFsdWUgYXQgc3RhcnR1cCBz
+dWNoIGFzIDk4NzYuMSBzZWNvbmRzLCBhbmQgeW91IGFyZSB1c2luZyB0aW1lIHN0YW1wcyB0byBz
+ZXQgeW91ciBEVUMgdHVuaW5nIHN1Y2ggYXMgImdldF90aW1lX25vdygpKzAuNSIsIHRoZW4gaXQg
+d2lsbCB3YW50IHRvIGFwcGx5IHRoZSB0dW5pbmcgYXQgOTg3Ni42IHNlY29uZHMuIFRodXMsIGlm
+IHlvdSB0aW1lIHN0YW1wZWQgeW91ciB0eCBzdHJlYW0gYXQgMC41IHNlY29uZHMsIHlvdSB3aWxs
+IGhhdmUgYSBsb25nIHRpbWUgdG8gd2FpdCBiZWZvcmUgdGhlIHR1bmluZyBvY2N1cnMuwqDCoApS
+b2LCoAoKT24gV2VkLCBNYXIgNCwgMjAyMCBhdCAxMjoxMyBQTSBSb2IgS29zc2xlciA8cmtvc3Ns
+ZXJAbmQuZWR1W21haWx0bzpya29zc2xlckBuZC5lZHVdW21haWx0bzpya29zc2xlckBuZC5lZHVb
+bWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1dPiB3cm90ZToKCkhpIEx1a2FzLApMZXQgbWUgcmVzcG9u
+ZCB0byAjMSByaWdodCBhd2F5LsKgIFRoZSAic2V0X3N0YXJ0X3RpbWUiIGZ1bmN0aW9uIHNldHMg
+dGhlIHRpbWUgb2YgdGhlIHR4IHN0cmVhbS7CoCBJdCBkb2VzIG5vdCBzZXQgdGhlICJjbG9jayB0
+aW1lIiBvbiB0aGUgdXNycC7CoCBJZiB5b3UgYXJlIGluZGVlZCBjb3JyZWN0IHRoYXQgdGhlICJj
+bG9jayB0aW1lIiBvbiB0aGUgdXNycCBpcyBpbml0aWFsaXplZCB0byAwLjAgYXQgdGhlIHN0YXJ0
+IG9mIHRoZSBHUiBydW4sIHRoZW4geW91IGFyZSBsdWNreSBhbmQgYWxsIHlvdSBzaG91bGQgbmVl
+ZCB0byBkbyBpcyB1c2UgdGhlICJzZXRfc3RhcnRfdGltZSIgZnVuY3Rpb24gd2l0aCBhIHRpbWUg
+c3BlYyBvZiBzb21ldGhpbmcgbGlrZSAwLjIgb3IgMC41IChhbnkgdGltZSBhZnRlciAwLjAgd2l0
+aCBwZXJoYXBzIGEgbGl0dGxlIGRlbGF5IGJ1aWx0IGluKS7CoCBUbyBzZWUgaWYgaXQgaXMgd29y
+a2luZywgeW91IGNvdWxkIHNldCB0aGUgdGltZSBzcGVjIHRvIHNvbWV0aGluZyB2ZXJ5IGxhcmdl
+IGxpa2UgNS4wIG9yIDEwLjAgYW5kIHRoZW4geW91IHNob3VsZCBzZWUgdGhlIEdSIHJ1biBzdGFy
+dCB1cCBidXQgbm8gVHggZm9yIHRoZSBuZXh0IDUgb3IgMTAgc2Vjb25kcy7CoCBUaGVuIHRoZSBU
+eCBzaG91bGQgc3RhcnQuwqAgRG9lcyB0aGF0IG1ha2Ugc2Vuc2U/ClJvYgrCoMKgCgpPbiBXZWQs
+IE1hciA0LCAyMDIwIGF0IDEyOjA2IFBNIEx1a2FzIEhhYXNlIDxsdWthc2hhYXNlQGdteC5hdFtt
+YWlsdG86bHVrYXNoYWFzZUBnbXguYXRdW21haWx0bzpsdWthc2hhYXNlQGdteC5hdFttYWlsdG86
+bHVrYXNoYWFzZUBnbXguYXRdXT4gd3JvdGU6SGkgUm9iLAoKMS4pIEkgZG8gbm90IHJlYWxseSB1
+bmRlcnN0YW5kIGhvdyAic2V0X3N0YXJ0X3RpbWUiIGlzIHJlbGF0ZWQgdG8gbXkgcHJvYmxlbSBh
+bmQgd2h5IHRoaXMgaXMgd2hhdCBJIG5lZWQuIEJhc2VkIG9uIG15IGV4cGVyaW1lbnRzLCB0aGUg
+dGltZSBpcyBhdXRvbWF0aWNhbGx5IHNldCB0byAwIHdoZW4gdGhlIGZsb3cgZGlhZ3JhbSBzdGFy
+dHMuCgpJIGFtIGFsc28gc3VyZSBvdGhlcnMgbXVzdCBoYXZlIHVzZWQgdGltZWQgVFgrUlggYnV0
+IGl0IGRvZXMgbm90IHNlZW0gc28uIE5vIGtpZGRpbmcsIEkgYW0gd29ya2luZyBvbiB0aGlzIHNp
+bmNlIERlYyBhbmQgSSBzdGlsbCBkbyBub3QgaGF2ZSBpdCB3b3JraW5nLiBJIGxlZnQgbXkgdHJh
+Y2VzIHZhcmlvdXMgdGltZXMgb24gdGhpcyBhbmQgdGhlIGdudXJhZGlvIG1haWxpbmcgbGlzdCBi
+dXQgSSBkaWQgbm90IGdldCBoZWxwLgoKMi4pIEkgaGF2ZSBwbGF5ZWQgYXJvdW5kIHVzaW5nIHN0
+cmVhbSB0YWdzIGFuZCB3YXMgdmVyeSBoYXBweSB0aGF0IGl0IHdvcmtlZCBidXQgSSBmb3VuZCBu
+b3cgdGhhdCB0aGlzIGlzIGJlY2F1c2UgZ3ItdWhkIGRvZXMgTk9UIGF0dGFjaCBhIGNvbW1hbmQg
+dGltZSBhbHRob3VnaCB0aGUgZG9jdW1lbnRhdGlvbiBzYXlzIHNvLgoKaHR0cHM6Ly93d3cuZ251
+cmFkaW8ub3JnL2RvYy9kb3h5Z2VuL2NsYXNzZ3JfMV8xdWhkXzFfMXVzcnBfX3NpbmsuaHRtbFto
+dHRwczovL3d3dy5nbnVyYWRpby5vcmcvZG9jL2RveHlnZW4vY2xhc3Nncl8xXzF1aGRfMV8xdXNy
+cF9fc2luay5odG1sXVtodHRwczovL3d3dy5nbnVyYWRpby5vcmcvZG9jL2RveHlnZW4vY2xhc3Nn
+cl8xXzF1aGRfMV8xdXNycF9fc2luay5odG1sJTVCaHR0cHM6Ly93d3cuZ251cmFkaW8ub3JnL2Rv
+Yy9kb3h5Z2VuL2NsYXNzZ3JfMV8xdWhkXzFfMXVzcnBfX3NpbmsuaHRtbCU1RF06CnR4X2NvbW1h
+bmQgdGFnLiBUaGUgY29tbWFuZCBpcyBhdHRhY2hlZCB0byBhIHNhbXBsZSwgYW5kIHdpbGwgZXhl
+Y3V0ZWQgYmVmb3JlIHRoZSBzYW1wbGUgaXMgdHJhbnNtaXR0ZWQsIGFuZCBhZnRlciB0aGUgcHJl
+dmlvdXMgc2FtcGxlLgoKSG93ZXZlciwgaW4gdGhlIGNvZGUgKHVzcnBfc2lua19pbXBsLmNjOjQz
+MywgdXNycF9zaW5rX2ltcGw6OnRhZ193b3JrKToKCsKgIMKgIMKgIMKgIGVsc2UgaWYgKHBtdDo6
+ZXF1YWwoa2V5LCBDT01NQU5EX0tFWSkpIHsKwqAgwqAgwqAgwqAgwqAgwqAgaWYgKG15X3RhZ19j
+b3VudCAhPSBzYW1wMF9jb3VudCkgewrCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBtYXhfY291bnQg
+PSBteV90YWdfY291bnQ7CsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGJyZWFrOwrCoCDCoCDCoCDC
+oCDCoCDCoCB9CsKgIMKgIMKgIMKgIMKgIMKgIC8vIFRPRE8gc2V0IHRoZSBjb21tYW5kIHRpbWUg
+ZnJvbSB0aGUgc2FtcGxlIHRpbWUKwqAgwqAgwqAgwqAgwqAgwqAgbXNnX2hhbmRsZXJfY29tbWFu
+ZCh2YWx1ZSk7CsKgIMKgIMKgIMKgIH0KCjMuKSBTbyBJIGFtIHJlYWxseSBiYWNrIHRvIHRoZSBz
+dGFydC4gV2hhdCBpcyBnZW5lcmFsbHkgYSBiaXQgYW5ub3lpbmcgaXMgdGhhdCBJIGhhdmUgdHdv
+IG9iamVjdHMgZm9yIHRoZSBzYW1lIGRldmljZSAoKm9uZSogVVNSUCBhbmQgIlVTUlAgU291cmNl
+IisiVVNSUCBTaW5rIiwgYm90aCB3aXRoIHRoZWlyIGluZGVwZW5kZW50IHVoZDo6dXNycDo6bXVs
+dGlfdXNycCBvYmplY3RzLiBNeSBxdWVzdGlvbiBpcywgaXMgaXQgcG9zc2libGUgdG8ganVzdCB1
+c2UgIlVTUlAgU291cmNlIiAodGhpcyBpcyB3aGVyZSB0aW1lZCBjb21tYW5kcyB3b3JrKSB0byBl
+eGVjdXRlIHRoZSByZXR1bmluZyBmb3IgKmJvdGgqIFJYK1RYPwoKMy5hLikgR2l2ZW46IFgzMTAg
+d2l0aCAyeFVCWC0xNjAuIFdoYXQgaXMgdGhlIHN1YmRldiBzcGVjIGlmIEkgd2FudGVkIHRvIHJl
+Y2VpdmUgb24gYWxsIEZPVVIgaW5wdXRzPz8KVGhlIHByb2JsZW0gaXMgdGhhdCBib3RoIFJYIGFu
+ZCBUWCBmcm9udGVuZHMgaGF2ZSB0aGUgc2FtZSBuYW1lICIwIiAoYWNjb3JkaW5nIHRvIHVoZF91
+c3JwX3Byb2JlKS4KClR3byByZWNlaXZlcnMsIHJlY2VpdmluZyBib3RoIGZyb20gIlRYL1JYIiBp
+bnB1dCBvZiBlYWNoIFVCWC0xNjAgd291bGQgYmUgdHJpdmlhbDogIkE6MCBCOjAiLiBIb3dldmVy
+LCBob3cgZG8gSSBhZGRyZXNzICJSWDIiPyBJbnR1aXRpdmVseSAiQTowIEE6MSBCOjAgQjoxIiBi
+dXQgYXMgc2FpZCwgYm90aCAiVFgvUlgiIGFuZCAiUlgyIiBhcmUgbmFtZWQgIjAiLgpXaGF0IHdv
+dWxkIEkgZG8gaWYgSSB3YW50ZWQgdG8gdHJhbnNtaXQgZnJvbSAiVFgvUlgiIG9mIHRoZSBzZWNv
+bmQgVUJYIGFuZCByZWNlaXZlIG9uIGFsbCBvdGhlciBib2FyZHM/CgpPbiB0aGUgVVNSUCBTaW5r
+OiAiQjowIgpPbiB0aGUgVVNQIFNvdXJjZSBpbnR1aXRpdmVseTogIkE6MCBBOjEgQjoxIiBidXQg
+dGhhdCdzIHdyb25nLgoKMy5iLikgSW4gZ3IsIHRoZXJlIHdpbGwgYmUgdHdvIG11bHRpX3VzcnAg
+b2JqZWN0czogT25lIGZvciB0aGUgcmVjZWl2ZXIgKG1lbWJlciB2YXJpYWJsZSBvZiBVU1JQIFNv
+dXJjZSkgYW5kIG9uZSBmb3IgdGhlIHRyYW5zbWl0dGVyIChtZW1iZXIgdmFyaWFibGUgb2YgVVNS
+UCBTaW5rKS4KQ2FuIEkgc2V0IHVwIGEgVVNSUCBTb3VyY2UgdGhhdCBoYXMgdHdvIGNoYW5uZWxz
+IHdoZXJlIHRoZSBzZWNvbmQgb25lIGlzIGFjdHVhbGx5IGEgVFggY2hhbm5lbD8gKG9ubHkgdXNl
+ZCBmb3IgcmV0dW5pbmcgdmlhIHRpbWVkIGNvbW1hbmRzKT8KCgpUaGFua3MsCkx1a2FzCgoKwqAK
+wqAKCkdlc2VuZGV0OsKgRGllbnN0YWcsIDAzLiBNw6RyeiAyMDIwIHVtIDE1OjIyIFVocgpWb246
+wqAiUm9iIEtvc3NsZXIiIDxya29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1b
+bWFpbHRvOnJrb3NzbGVyQG5kLmVkdVttYWlsdG86cmtvc3NsZXJAbmQuZWR1XV0+CkFuOsKgIkx1
+a2FzIEhhYXNlIiA8bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XVtt
+YWlsdG86bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XV0+CkNjOsKg
+IlNhbSBSZWl0ZXIiIDxzYW0ucmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJlaXRlckBldHR1
+cy5jb21dW21haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJlaXRlckBldHR1
+cy5jb21dXT4sICJVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXSIgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+W21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dPgpCZXRyZWZm
+OsKgUmU6IFtVU1JQLXVzZXJzXSBVU1JQIFgzMTAgaWdub3JlZCBEU1AgcmV0dW5pbmcgb24gVFgg
+d2hlbiB1c2luZyBhIHRpbWVkIGNvbW1hbmQKCkkgZGlkIGEgcXVpY2sgZ29vZ2xlIHNlYXJjaCB1
+c2luZyAiZ251cmFkaW8gdWhkIHRpbWVkIHR4IHN0cmVhbWluZyIuIEkgZm91bmQgdGhhdCB0aGUg
+R1IgdXNycF9zaW5rW2h0dHBzOi8vd3d3LmdudXJhZGlvLm9yZy9kb2Mvc3BoaW54LTMuNy43L3Vo
+ZC5odG1sW2h0dHBzOi8vd3d3LmdudXJhZGlvLm9yZy9kb2Mvc3BoaW54LTMuNy43L3VoZC5odG1s
+XVtodHRwczovL3d3dy5nbnVyYWRpby5vcmcvZG9jL3NwaGlueC0zLjcuNy91aGQuaHRtbCU1Qmh0
+dHBzOi8vd3d3LmdudXJhZGlvLm9yZy9kb2Mvc3BoaW54LTMuNy43L3VoZC5odG1sJTVEXV0gaGFz
+IHRoZSBmdW5jdGlvbiAic2V0X3N0YXJ0X3RpbWUiIHdoaWNoIHNlZW1zIHRvIGJlIHdoYXQgeW91
+IG5lZWQuwqAgVGhlIHF1ZXN0aW9uIGlzOiB3aGF0IHRpbWUgZG8geW91IHNldD/CoCBQcm9iYWJs
+eSBqdXN0IHNvbWV0aGluZyBsaWtlICJnZXRfdGltZV9ub3coKcKgKyAwLjEiLiBJdCBtYXkgYmUg
+YSBiaXQgdHJpY2t5IHNpbmNlIHRoaXMgdmFsdWUgaXMgdG8gYmUgc2V0IGJlZm9yZSBzdGFydGlu
+ZyB0aGUgZmxvdyBncmFwaC7CoCBNYXliZSB5b3UgY291bGQgc2V0IGl0IHRvIHNvbWUgZml4ZWQg
+Y29uc3RhbnQgbGlrZSAwLjUgYW5kIHRoZW4gd2hlbiB0aGUgZmxvdyBncmFwaCBzdGFydHMgeW91
+IGNvdWxkIGV4ZWN1dGUgYSBjb21tYW5kIHRvIHNldF90aW1lX25vdygpIHRvIDAuMC7CoCBBbnl3
+YXksIGlmIHRoaXMgYWR2aWNlIGRvZXNuJ3QgcGFuIG91dCwgcGVyaGFwcyBqdXN0IHNlYXJjaCBh
+cm91bmQgYSBiaXQgaW4gR1IgYXJjaGl2ZXMuwqAgSSdtIHN1cmUgb3RoZXJzIGhhdmUgc3VjY2Vz
+c2Z1bGx5IHN0cmVhbWVkIHdpdGggdGltZWQgVHggY29tbWFuZHMuClJvYsKgCgpPbiBUdWUsIE1h
+ciAzLCAyMDIwIGF0IDM6MDAgUE0gTHVrYXMgSGFhc2UgPGx1a2FzaGFhc2VAZ214LmF0W21haWx0
+bzpsdWthc2hhYXNlQGdteC5hdF1bbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0W21haWx0bzpsdWth
+c2hhYXNlQGdteC5hdF1dW21haWx0bzpsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFz
+ZUBnbXguYXRdW21haWx0bzpsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXgu
+YXRdXV0+IHdyb3RlOgoKSGkgU2FtLCBIaSBSb2IsCgpUaGlzIG1ha2VzIHNvIG11Y2ggc2Vuc2Uh
+CkkgdGhpbmsgeW91IGFyZSByaWdodC4KQW5kIGluZGVlZCwgdGhlIGlzc3VlIEkgZm91bmQgb25s
+eSB3aXRoIFRYLCBub3QgUlguCgoKQ291bGQgeW91IHRoaW5rIG9mIGEgcG9zc2libGUgaGFjayBz
+ZW5kaW5nIGEgImR1bW15IGNvbW1hbmQiIHRvIHRoZSBSRiBib2FyZCBhbG9uZyB3aXRoIHRoZSB0
+aW1lZCB0dW5pbmcgcmVxdWVzdD8KCgpSZWdhcmRpbmcgdGhlIHNlbmRpbmcgb2YgdGltZSBzdGFt
+cHMgaW4gdGhlIFRYIGluIGdyLXVoZCwgSSBhbSBjb25mdXNlZCB0aG91Z2guIEkgZG8gdGhpbmsg
+dGhpcyBJUyBoYXBwZW5pbmcuIEkgcmVwcm9kdWNlIHRoZSB3b3JrIGZ1bmN0aW9uIG9mICJVU1JQ
+IFNpbmsiIGhlcmU6CgppbnQgdXNycF9zaW5rX2ltcGw6OndvcmsoaW50IG5vdXRwdXRfaXRlbXMs
+CsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgZ3JfdmVjdG9yX2NvbnN0X3Zv
+aWRfc3RhciYgaW5wdXRfaXRlbXMsCsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgZ3JfdmVjdG9yX3ZvaWRfc3RhciYgb3V0cHV0X2l0ZW1zKQp7CsKgIMKgIGludCBuaW5wdXRf
+aXRlbXMgPSBub3V0cHV0X2l0ZW1zOyAvLyBjdXogaXQncyBhIHN5bmMgYmxvY2sKCsKgIMKgIC8v
+IGRlZmF1bHQgdG8gc2VuZCBhIG1pZC1idXJzdCBwYWNrZXQKwqAgwqAgX21ldGFkYXRhLnN0YXJ0
+X29mX2J1cnN0ID0gZmFsc2U7CsKgIMKgIF9tZXRhZGF0YS5lbmRfb2ZfYnVyc3QgPSBmYWxzZTsK
+CsKgIMKgIC8vIGNvbGxlY3QgdGFncyBpbiB0aGlzIHdvcmsoKQrCoCDCoCBjb25zdCB1aW50NjRf
+dCBzYW1wMF9jb3VudCA9IG5pdGVtc19yZWFkKDApOwrCoCDCoCBnZXRfdGFnc19pbl9yYW5nZShf
+dGFncywgMCwgc2FtcDBfY291bnQsIHNhbXAwX2NvdW50ICsgbmlucHV0X2l0ZW1zKTsKwqAgwqAg
+aWYgKG5vdCBfdGFncy5lbXB0eSgpKQrCoCDCoCDCoCDCoCB0aGlzLT50YWdfd29yayhuaW5wdXRf
+aXRlbXMpOwoKwqAgwqAgaWYgKG5vdCBwbXQ6OmlzX251bGwoX2xlbmd0aF90YWdfa2V5KSkgewrC
+oCDCoCDCoCDCoCAvLyBjaGVjayBpZiB0aGVyZSBpcyBkYXRhIGxlZnQgdG8gc2VuZCBmcm9tIGEg
+YnVyc3QgdGFnZ2VkIHdpdGggbGVuZ3RoX3RhZwrCoCDCoCDCoCDCoCAvLyBJZiBhIGJ1cnN0IGlz
+IHN0YXJ0ZWQgZHVyaW5nIHRoaXMgY2FsbCB0byB3b3JrKCksIHRhZ193b3JrKCkgc2hvdWxkIGhh
+dmUKwqAgwqAgwqAgwqAgLy8gYmVlbiBjYWxsZWQgYW5kIHdlIHNob3VsZCBoYXZlIF9uaXRlbXNf
+dG9fc2VuZCA+IDAuCsKgIMKgIMKgIMKgIGlmIChfbml0ZW1zX3RvX3NlbmQgPiAwKSB7CsKgIMKg
+IMKgIMKgIMKgIMKgIG5pbnB1dF9pdGVtcyA9IHN0ZDo6bWluPGxvbmc+KF9uaXRlbXNfdG9fc2Vu
+ZCwgbmlucHV0X2l0ZW1zKTsKwqAgwqAgwqAgwqAgwqAgwqAgLy8gaWYgd2UgcnVuIG91dCBvZiBp
+dGVtcyB0byBzZW5kLCBpdCdzIHRoZSBlbmQgb2YgdGhlIGJ1cnN0CsKgIMKgIMKgIMKgIMKgIMKg
+IGlmIChfbml0ZW1zX3RvX3NlbmQgLSBsb25nKG5pbnB1dF9pdGVtcykgPT0gMCkKwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgX21ldGFkYXRhLmVuZF9vZl9idXJzdCA9IHRydWU7CsKgIMKgIMKgIMKg
+IH0gZWxzZSB7CsKgIMKgIMKgIMKgIMKgIMKgIC8vIFRoZXJlIGlzIGEgdGFnIGdhcCBzaW5jZSBu
+byBsZW5ndGhfdGFnIHdhcyBmb3VuZCBpbW1lZGlhdGVseSBmb2xsb3dpbmcKwqAgwqAgwqAgwqAg
+wqAgwqAgLy8gdGhlIGxhc3Qgc2FtcGxlIG9mIHRoZSBwcmV2aW91cyBidXJzdC4gRHJvcCBzYW1w
+bGVzIHVudGlsIHRoZSBuZXh0CsKgIMKgIMKgIMKgIMKgIMKgIC8vIGxlbmd0aF90YWcgaXMgZm91
+bmQuIE5vdGlmeSB0aGUgdXNlciBvZiB0aGUgdGFnIGdhcC4KwqAgwqAgwqAgwqAgwqAgwqAgc3Rk
+OjpjZXJyIDw8ICJ0RyIgPDwgc3RkOjpmbHVzaDsKwqAgwqAgwqAgwqAgwqAgwqAgLy8gaW5jcmVt
+ZW50IHRoZSB0aW1lc3BlYyBieSB0aGUgbnVtYmVyIG9mIHNhbXBsZXMgZHJvcHBlZArCoCDCoCDC
+oCDCoCDCoCDCoCBfbWV0YWRhdGEudGltZV9zcGVjICs9IDo6dWhkOjp0aW1lX3NwZWNfdCgwLCBu
+aW5wdXRfaXRlbXMsIF9zYW1wbGVfcmF0ZSk7CsKgIMKgIMKgIMKgIMKgIMKgIHJldHVybiBuaW5w
+dXRfaXRlbXM7CsKgIMKgIMKgIMKgIH0KwqAgwqAgfQoKwqAgwqAgYm9vc3Q6OnRoaXNfdGhyZWFk
+OjpkaXNhYmxlX2ludGVycnVwdGlvbiBkaXNhYmxlX2ludGVycnVwdDsKI2lmZGVmIEdSX1VIRF9V
+U0VfU1RSRUFNX0FQSQrCoCDCoCAvLyBzZW5kIGFsbCBuaW5wdXRfaXRlbXMgd2l0aCBtZXRhZGF0
+YQrCoCDCoCBjb25zdCBzaXplX3QgbnVtX3NlbnQgPSBfdHhfc3RyZWFtLT5zZW5kKGlucHV0X2l0
+ZW1zLCBuaW5wdXRfaXRlbXMsIF9tZXRhZGF0YSwgMS4wKTsKI2Vsc2UKwqAgwqAgY29uc3Qgc2l6
+ZV90IG51bV9zZW50ID0gX2Rldi0+Z2V0X2RldmljZSgpLT5zZW5kKGlucHV0X2l0ZW1zLArCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoG5pbnB1dF9pdGVtcywKwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBf
+bWV0YWRhdGEsCsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgKl90eXBlLArCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoDo6dWhkOjpkZXZpY2U6OlNFTkRfTU9ERV9GVUxMX0JVRkYsCsKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgMS4wKTsKI2VuZGlmCsKgIMKgIGJvb3N0Ojp0aGlzX3RocmVhZDo6cmVzdG9yZV9p
+bnRlcnJ1cHRpb24gcmVzdG9yZV9pbnRlcnJ1cHQoZGlzYWJsZV9pbnRlcnJ1cHQpOwoKwqAgwqAg
+Ly8gaWYgdXNpbmcgbGVuZ3RoX3RhZ3MsIGRlY3JlbWVudCBpdGVtcyBsZWZ0IHRvIHNlbmQgYnkg
+dGhlIG51bWJlciBvZiBzYW1wbGVzIHNlbnQKwqAgwqAgaWYgKG5vdCBwbXQ6OmlzX251bGwoX2xl
+bmd0aF90YWdfa2V5KSAmJiBfbml0ZW1zX3RvX3NlbmQgPiAwKSB7CsKgIMKgIMKgIMKgIF9uaXRl
+bXNfdG9fc2VuZCAtPSBsb25nKG51bV9zZW50KTsKwqAgwqAgfQoKwqAgwqAgLy8gaW5jcmVtZW50
+IHRoZSB0aW1lc3BlYyBieSB0aGUgbnVtYmVyIG9mIHNhbXBsZXMgc2VudArCoCDCoCBfbWV0YWRh
+dGEudGltZV9zcGVjICs9IDo6dWhkOjp0aW1lX3NwZWNfdCgwLCBudW1fc2VudCwgX3NhbXBsZV9y
+YXRlKTsKCsKgIMKgIC8vIFNvbWUgcG9zdC1wcm9jZXNzaW5nIHRhc2tzIGlmIHdlIGFjdHVhbGx5
+IHRyYW5zbWl0dGVkIHRoZSBlbnRpcmUgYnVyc3QKwqAgwqAgaWYgKG5vdCBfcGVuZGluZ19jbWRz
+LmVtcHR5KCkgJiYgbnVtX3NlbnQgPT0gc2l6ZV90KG5pbnB1dF9pdGVtcykpIHsKwqAgwqAgwqAg
+wqAgR1JfTE9HX0RFQlVHKGRfZGVidWdfbG9nZ2VyLArCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoGJvb3N0Ojpmb3JtYXQoIkV4ZWN1dGluZyAlZCBwZW5kaW5nIGNvbW1hbmRzLiIpICUK
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBfcGVuZGluZ19jbWRzLnNpemUo
+KSk7CsKgIMKgIMKgIMKgIEJPT1NUX0ZPUkVBQ0ggKGNvbnN0IHBtdDo6cG10X3QmIGNtZF9wbXQs
+IF9wZW5kaW5nX2NtZHMpIHsKwqAgwqAgwqAgwqAgwqAgwqAgbXNnX2hhbmRsZXJfY29tbWFuZChj
+bWRfcG10KTsKwqAgwqAgwqAgwqAgfQrCoCDCoCDCoCDCoCBfcGVuZGluZ19jbWRzLmNsZWFyKCk7
+CsKgIMKgIH0KCsKgIMKgIHJldHVybiBudW1fc2VudDsKfQoKRnJvbSB0aGlzIGNvZGUsIGl0IGNh
+biBiZSBzZWVuIHRoYXQgdGhlIGRhdGEgaXMgdHJhbnNtaXR0ZWQgaW5jbHVkaW5nIF9tZXRhZGF0
+YToKCmNvbnN0IHNpemVfdCBudW1fc2VudCA9IF90eF9zdHJlYW0tPnNlbmQoaW5wdXRfaXRlbXMs
+IG5pbnB1dF9pdGVtcywgX21ldGFkYXRhLCAxLjApOwoKVGhlICJ0aW1lX3NwZWMiIGlzIHVwZGF0
+ZWQgZm9yIGVhY2ggYmxvY2sgdGhhdCBpcyBzZW50IG91dDoKCl9tZXRhZGF0YS50aW1lX3NwZWMg
+Kz0gOjp1aGQ6OnRpbWVfc3BlY190KDAsIG51bV9zZW50LCBfc2FtcGxlX3JhdGUpOwoKTm93IHlv
+dSBtZW50aW9uZWQgImhhc190aW1lX3NwZWMiIGJlbG93LiBJIGV4dGVuZGVkIHRvIGNvZGUgaW4g
+dGhlIGZvbGxvd2luZyB3YXk6CgrCoCDCoCAvLyBpbmNyZW1lbnQgdGhlIHRpbWVzcGVjIGJ5IHRo
+ZSBudW1iZXIgb2Ygc2FtcGxlcyBzZW50CsKgIMKgIF9tZXRhZGF0YS50aW1lX3NwZWMgKz0gOjp1
+aGQ6OnRpbWVfc3BlY190KDAsIG51bV9zZW50LCBfc2FtcGxlX3JhdGUpOwrCoCDCoCBHUl9MT0df
+REVCVUcoZF9kZWJ1Z19sb2dnZXIsIGJvb3N0Ojpmb3JtYXQoIlNldHRpbmcgbWV0YWRhdGEgdGlt
+ZV9zcGVjOiAlZDolZiIpICUgX21ldGFkYXRhLnRpbWVfc3BlYy5nZXRfZnVsbF9zZWNzKCkgJSBf
+bWV0YWRhdGEudGltZV9zcGVjLmdldF9mcmFjX3NlY3MoKSk7CsKgIMKgIF9tZXRhZGF0YS5oYXNf
+dGltZV9zcGVjID0gdHJ1ZTsKCgpUbyBteSB1bmRlcnN0YW5kaW5nLCBnci11aGQgbm93IHBhc3Nl
+cyB0aGUgY29ycmVjdCB0aW1lc3RhbXBzIG9uIHRvIFVIRC4KSG93ZXZlciwgdGhlIHRpbWVkIGNv
+bW1hbmQgaXMgc3RpbGwgaWdub3JlZC4KCgpUaGFua3MsCkx1a2FzCgoKUFM6IEkgd2lsbCBhdHRl
+bXB0IHRvIHVzZSB0aGUgdGFnZ2VkIHN0cmVhbSAuLi4gYnV0IHRoZW4gSSB3aWxsIGhhdmUgdGhl
+IGlzc3VlIHRoYXQgSSBuZWVkIHRvIHR1bmUgVFggKnBsdXMqIFJYIGF0IHRoZSBzYW1lIHRpbWUh
+IEZ1cnRoZXJtb3JlLCB0aGUgc3RyZWFtaW5nIHRhZ3MgQVBJIGlzIHN1cGVyIHJ1ZGltZW50YXJ5
+LiBBbHNvLCBza2ltbWluZyB0aGUgc291cmNlIGNvZGUgZm9yIHRoZSB0YWcgcHJvY2Vzc2luZywg
+SSBhbSBub3Qgc3VyZSBpZiB0aGlzIHdvdWxkIGNoYW5nZSBhbnl0aGluZy4KCgoKCsKgCsKgCsKg
+CgpHZXNlbmRldDrCoERpZW5zdGFnLCAwMy4gTcOkcnogMjAyMCB1bSAxMzoyNSBVaHIKVm9uOsKg
+IlNhbSBSZWl0ZXIiIDxzYW0ucmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJlaXRlckBldHR1
+cy5jb21dW21haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJlaXRlckBldHR1
+cy5jb21dXVttYWlsdG86c2FtLnJlaXRlckBldHR1cy5jb21bbWFpbHRvOnNhbS5yZWl0ZXJAZXR0
+dXMuY29tXVttYWlsdG86c2FtLnJlaXRlckBldHR1cy5jb21bbWFpbHRvOnNhbS5yZWl0ZXJAZXR0
+dXMuY29tXV1dPgpBbjrCoCJSb2IgS29zc2xlciIgPHJrb3NzbGVyQG5kLmVkdVttYWlsdG86cmtv
+c3NsZXJAbmQuZWR1XVttYWlsdG86cmtvc3NsZXJAbmQuZWR1W21haWx0bzpya29zc2xlckBuZC5l
+ZHVdXVttYWlsdG86cmtvc3NsZXJAbmQuZWR1W21haWx0bzpya29zc2xlckBuZC5lZHVdW21haWx0
+bzpya29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1dXT4KQ2M6wqAiTHVrYXMg
+SGFhc2UiIDxsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdW21haWx0
+bzpsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdXVttYWlsdG86bHVr
+YXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XVttYWlsdG86bHVrYXNoYWFz
+ZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XV1dPiwgIlVTUlAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOlVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1d
+W21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb21dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNS
+UC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXV0iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVtt
+YWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXVttYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+XVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tXV1dPgpCZXRyZWZmOsKgUmU6IFtVU1JQLXVzZXJzXSBVU1JQIFgzMTAgaWdu
+b3JlZCBEU1AgcmV0dW5pbmcgb24gVFggd2hlbiB1c2luZyBhIHRpbWVkIGNvbW1hbmQKCkV2ZXJ5
+dGhpbmcgUm9iIGlzIHNheWluZyBpcyBkZWFkIG9uIC0gdGhlICJzZW5zZSBvZiB0aW1lIiBmb3Ig
+dGhlIHJhZGlvIGlzIGEgNjQtYml0IGNvdW50ZXIgd2l0aGluIHRoZSByYWRpbyBjb3JlIHRoYXQg
+b3RoZXIgYmxvY2tzIChsaWtlIHRoZSBEREMgYW5kIERVQykgZG9uJ3QgaGF2ZSBhY2Nlc3MgdG8u
+IFRob3NlIGJsb2NrcyBuZWVkIHRvIGRlcml2ZSBhIHNlbnNlIG9mIHRpbWUgZnJvbSB0aGUgdGlt
+ZXN0YW1wcyBvZiBDSERSIHBhY2tldHMgcGFzc2luZyB0aHJvdWdoIHRoZW0uIEkganVzdCB3cmFw
+cGVkIHVwIGEgbmV3IGFwcCBub3RlIHRoYXQgY292ZXJzIHRoaXMgKGFtb25nIG90aGVyIHN5bmNo
+cm9uaXphdGlvbi1yZWxhdGVkIHRvcGljcyk6CsKgCmh0dHBzOi8va2IuZXR0dXMuY29tL1N5bmNo
+cm9uaXppbmdfVVNSUF9FdmVudHNfVXNpbmdfVGltZWRfQ29tbWFuZHNfaW5fVUhEI0Nsb2NraW5n
+X2FuZF9UaW1la2VlcGluZ19pbl90aGVfVVNSUFtodHRwczovL2tiLmV0dHVzLmNvbS9TeW5jaHJv
+bml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRCNDbG9ja2luZ19h
+bmRfVGltZWtlZXBpbmdfaW5fdGhlX1VTUlBdW2h0dHBzOi8va2IuZXR0dXMuY29tL1N5bmNocm9u
+aXppbmdfVVNSUF9FdmVudHNfVXNpbmdfVGltZWRfQ29tbWFuZHNfaW5fVUhEI0Nsb2NraW5nX2Fu
+ZF9UaW1la2VlcGluZ19pbl90aGVfVVNSUFtodHRwczovL2tiLmV0dHVzLmNvbS9TeW5jaHJvbml6
+aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRCUyM0Nsb2NraW5nX2Fu
+ZF9UaW1la2VlcGluZ19pbl90aGVfVVNSUF1dW2h0dHBzOi8va2IuZXR0dXMuY29tL1N5bmNocm9u
+aXppbmdfVVNSUF9FdmVudHNfVXNpbmdfVGltZWRfQ29tbWFuZHNfaW5fVUhEI0Nsb2NraW5nX2Fu
+ZF9UaW1la2VlcGluZ19pbl90aGVfVVNSUFtodHRwczovL2tiLmV0dHVzLmNvbS9TeW5jaHJvbml6
+aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRCUyM0Nsb2NraW5nX2Fu
+ZF9UaW1la2VlcGluZ19pbl90aGVfVVNSUF1baHR0cHM6Ly9rYi5ldHR1cy5jb20vU3luY2hyb25p
+emluZ19VU1JQX0V2ZW50c19Vc2luZ19UaW1lZF9Db21tYW5kc19pbl9VSEQlMjNDbG9ja2luZ19h
+bmRfVGltZWtlZXBpbmdfaW5fdGhlX1VTUlBbaHR0cHM6Ly9rYi5ldHR1cy5jb20vU3luY2hyb25p
+emluZ19VU1JQX0V2ZW50c19Vc2luZ19UaW1lZF9Db21tYW5kc19pbl9VSEQlMjNDbG9ja2luZ19h
+bmRfVGltZWtlZXBpbmdfaW5fdGhlX1VTUlBdXV0KwqAKTHVrYXMsIEkgd291bGQgZG91YnQgdGhh
+dCB0aGlzIGlzIGFuIHVuZGlzY292ZXJlZCBidWcgYXMgbXVjaCBhcyBpdCBpcyBhbiBpc3N1ZSB3
+aXRoIGltcGxlbWVudGF0aW9uLiBJZiB0aGlzIHdlcmUgaW4gQysrLCB5b3UnZCB3YW50IHRvIHNl
+dCB0aGUgJ2hhc190aW1lX3NwZWMnIGFuZCAndGltZV9zcGVjJyBmaWVsZHMgb2YgeW91ciBUWCBt
+ZXRhZGF0YSBmb3IgYXQgbGVhc3QgMSBwYWNrZXQgdG8gaW1wYXJ0IGEgc2Vuc2Ugb2YgdGltZSBv
+biB0aGUgRFVDOgrCoApodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvc3RydWN0dWhkXzFf
+MXR4X19tZXRhZGF0YV9fdC5odG1sW2h0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9zdHJ1
+Y3R1aGRfMV8xdHhfX21ldGFkYXRhX190Lmh0bWxdW2h0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21h
+bnVhbC9zdHJ1Y3R1aGRfMV8xdHhfX21ldGFkYXRhX190Lmh0bWwlNUJodHRwczovL2ZpbGVzLmV0
+dHVzLmNvbS9tYW51YWwvc3RydWN0dWhkXzFfMXR4X19tZXRhZGF0YV9fdC5odG1sJTVEXVtodHRw
+czovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvc3RydWN0dWhkXzFfMXR4X19tZXRhZGF0YV9fdC5o
+dG1sJTVCaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3N0cnVjdHVoZF8xXzF0eF9fbWV0
+YWRhdGFfX3QuaHRtbCU1RCU1Qmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9zdHJ1Y3R1
+aGRfMV8xdHhfX21ldGFkYXRhX190Lmh0bWwlNUJodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51
+YWwvc3RydWN0dWhkXzFfMXR4X19tZXRhZGF0YV9fdC5odG1sJTVEJTVEXVtodHRwczovL2ZpbGVz
+LmV0dHVzLmNvbS9tYW51YWwvc3RydWN0dWhkXzFfMXR4X19tZXRhZGF0YV9fdC5odG1sJTVCaHR0
+cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3N0cnVjdHVoZF8xXzF0eF9fbWV0YWRhdGFfX3Qu
+aHRtbCU1RCU1Qmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9zdHJ1Y3R1aGRfMV8xdHhf
+X21ldGFkYXRhX190Lmh0bWwlNUJodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvc3RydWN0
+dWhkXzFfMXR4X19tZXRhZGF0YV9fdC5odG1sJTVEJTVEJTVCaHR0cHM6Ly9maWxlcy5ldHR1cy5j
+b20vbWFudWFsL3N0cnVjdHVoZF8xXzF0eF9fbWV0YWRhdGFfX3QuaHRtbCU1Qmh0dHBzOi8vZmls
+ZXMuZXR0dXMuY29tL21hbnVhbC9zdHJ1Y3R1aGRfMV8xdHhfX21ldGFkYXRhX190Lmh0bWwlNUQl
+NUJodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvc3RydWN0dWhkXzFfMXR4X19tZXRhZGF0
+YV9fdC5odG1sJTVCaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3N0cnVjdHVoZF8xXzF0
+eF9fbWV0YWRhdGFfX3QuaHRtbCU1RCU1RCU1RF0KwqAKSSBqdXN0IHNwb2tlIHdpdGggc29tZW9u
+ZSBvbiBteSBlbmQgd2hvIHNhaWQgeW91IG5lZWQgdG8gdXNlIHN0cmVhbSB0YWdzIHRvIGRvIHRo
+aXMsIGJ1dCBhZ2FpbiwgSSBkb24ndCBjdXJyZW50bHkgaGF2ZSBtdWNoIGRpcmVjdGlvbiBmb3Ig
+aG93IHRoYXQgd291bGQgYmUgaW1wbGVtZW50ZWQgaW4geW91ciBjb2RlLgrCoAoKU2FtIFJlaXRl
+csKgwqAKCk9uIFR1ZSwgTWFyIDMsIDIwMjAgYXQgMTE6NDggQU0gUm9iIEtvc3NsZXIgPHJrb3Nz
+bGVyQG5kLmVkdVttYWlsdG86cmtvc3NsZXJAbmQuZWR1XVttYWlsdG86cmtvc3NsZXJAbmQuZWR1
+W21haWx0bzpya29zc2xlckBuZC5lZHVdXVttYWlsdG86cmtvc3NsZXJAbmQuZWR1W21haWx0bzpy
+a29zc2xlckBuZC5lZHVdW21haWx0bzpya29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5k
+LmVkdV1dXVttYWlsdG86cmtvc3NsZXJAbmQuZWR1W21haWx0bzpya29zc2xlckBuZC5lZHVdW21h
+aWx0bzpya29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1dW21haWx0bzpya29z
+c2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1bbWFpbHRvOnJrb3NzbGVyQG5kLmVk
+dVttYWlsdG86cmtvc3NsZXJAbmQuZWR1XV1dXT4gd3JvdGU6CkFsc28sIG5vdGUgdGhhdCB0aGVy
+ZSBpcyBubyBjb3JyZXNwb25kaW5nIGlzc3VlIG9uIHJlY2VpdmUgYmVjYXVzZSB0aGUgUnggcmFk
+aW8gYWx3YXlzIGluc2VydHMgdGhlIHRpbWUgc3RhbXDCoGluIHRoZSBzYW1wbGUgc3RyZWFtLiBT
+bywgSSBndWVzcyB5b3Ugd291bGQgbm90IHNlZSB0aGlzIHdpdGggdGhlIEREQy4KUm9iwqAKCk9u
+IFR1ZSwgTWFyIDMsIDIwMjAgYXQgMTI6NDMgUE0gUm9iIEtvc3NsZXIgPHJrb3NzbGVyQG5kLmVk
+dVttYWlsdG86cmtvc3NsZXJAbmQuZWR1XVttYWlsdG86cmtvc3NsZXJAbmQuZWR1W21haWx0bzpy
+a29zc2xlckBuZC5lZHVdXVttYWlsdG86cmtvc3NsZXJAbmQuZWR1W21haWx0bzpya29zc2xlckBu
+ZC5lZHVdW21haWx0bzpya29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1dXVtt
+YWlsdG86cmtvc3NsZXJAbmQuZWR1W21haWx0bzpya29zc2xlckBuZC5lZHVdW21haWx0bzpya29z
+c2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1dW21haWx0bzpya29zc2xlckBuZC5l
+ZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1bbWFpbHRvOnJrb3NzbGVyQG5kLmVkdVttYWlsdG86
+cmtvc3NsZXJAbmQuZWR1XV1dXT4gd3JvdGU6CgpIaSBMdWthcywKVGhlIEZQR0EgaW1hZ2Ugb24g
+dGhlIFVTUlAgaXMgZGl2aWRlZCBpbnRvIGJsb2NrcyBzdWNoIGFzIHRoZSBEVUMgYmxvY2sgYW5k
+IHRoZSBSYWRpbyBibG9jay7CoCBUaGUgbGF0dGVyIGNvbnRyb2xzIHRoZSBSRiBkYXVnaHRlcmJv
+YXJkIGFuZCBoYXMgYWNjZXNzIHRvIHRoZSBkZXZpY2UgY2xvY2suwqAgU28sIHdoZW4geW91IHBy
+b3ZpZGUgYSB0aW1lZCBjb21tYW5kIHRvIHRoZSBSYWRpbyBibG9jayAoc3VjaCBhcyBmb3IgdHVu
+aW5nIHRoZSBSRikgaXQgY2FuIGltcGxlbWVudCB0aGUgY29tbWFuZCBhdCB0aGUgc3BlY2lmaWVk
+IHRpbWUgYnkgY29tcGFyaW5nIHRvIHRoZSBkZXZpY2UgY2xvY2suwqAgVGhlIERVQyBibG9jayBk
+b2VzIG5vdCBoYXZlIGFjY2VzcyB0byB0aGUgTUIgY2xvY2sgYW5kIHNvIHdoZW4geW91IGdpdmUg
+aXQgYSB0aW1lZCBjb21tYW5kLCBpdCBtb25pdG9ycyB0aGUgaW5jb21pbmcgc2FtcGxlIHN0cmVh
+bSB0byBleHRyYWN0IHRoZSB0aW1lLiBJZiB0aGUgc2FtcGxlIHN0cmVhbSBkb2VzIG5vdCBpbmNs
+dWRlIGEgdGltZSBzdGFtcCwgdGhlIGNvbW1hbmQgbmV2ZXIgZXhlY3V0ZXMuwqAgRG9uJ3QgdGhp
+bmsgb2YgdGhpcyBhcyBhIGJ1ZywgYnV0IHJhdGhlciBhcyBhIGRlc2lnbiBsaW1pdGF0aW9uLgrC
+oApXaGVuIEkgd29yayBkaXJlY3RseSB3aXRoIFVIRCBmcm9tIEMrKywgSSB1c2UgdGhlIGZ1bmN0
+aW9uIHJ4X3N0cmVhbWVyOjppc3N1ZV9zdHJlYW1fY29tbWFuZCgpIHdoaWNoIGhhcyBvcHRpb25z
+IHRvIHN0cmVhbSBkYXRhIHdpdGggbm8gdGltZSBzdGFtcCBvciB3aXRoIGEgdGltZSBzdGFtcC7C
+oCBXaGVuIHVzaW5nIHRpbWVkIGNvbW1hbmRzIHdpdGggRFVDIG9yIEREQywgSSBtdXN0IGluY2x1
+ZGUgdGhlIHRpbWUgc3RhbXAgb3IgZWxzZSB0aGUgY29tbWFuZCB3aWxsIG5ldmVyIGJlIGV4ZWN1
+dGVkLsKgIEJ1dCwgd2l0aCBHUiwgSSBkb24ndCBrbm93IGhvdyB0byBzcGVjaWZ5IHRoZSBjb3Jy
+ZXNwb25kaW5nIG9wdGlvbnMuClJvYsKgCgpPbiBUdWUsIE1hciAzLCAyMDIwIGF0IDEyOjI5IFBN
+IEx1a2FzIEhhYXNlIDxsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRd
+W21haWx0bzpsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdXVttYWls
+dG86bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XVttYWlsdG86bHVr
+YXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XV1dW21haWx0bzpsdWthc2hh
+YXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdW21haWx0bzpsdWthc2hhYXNlQGdt
+eC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdXVttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRb
+bWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XVttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRv
+Omx1a2FzaGFhc2VAZ214LmF0XV1dXT4gd3JvdGU6SGkgU2FtLCBIaSBSb2IsCgpUaGFua3MgZm9y
+IGZvbGxvd2luZyB1cCBvbiB0aGlzIQpJIGFtIHZlcnkgaGFwcHkgeW91IHdlcmUgYWJsZSB0byBy
+ZXByb2R1Y2UgdGhpcyAuLi4gd2hpY2ggbWVhbnMgdGhhdCBhdCBsZWFzdCBhbiBpc3N1ZSBleGlz
+dHMgOikKCldoYXQgU2FtIHN1Z2dlc3RzIG1ha2VzIHNlbnNlIGV2ZW4gdGhvdWdoIGhhcmQgdG8g
+YmVsaWV2ZSBmb3IgbWU6CgoxLiBIb3cgY291bGQgc29tZXRoaW5nIGxpa2UgdGhhdCBnbyB1bm5v
+dGljZWQgZm9yIHNvIGxvbmc/IChJIGFtIHN1cmUgSSBhbSBub3QgdGhlIGZpcnN0IHBlcmZvcm1p
+bmcgZGlnaXRhbCB0dW5pbmcpCjIuIEluIHRoZSBwYXN0IEkgZ290IHN1Y2Nlc3NmdWwgcGhhc2Ug
+Y29oZXJlbmNlIHVzaW5nIGF1dG9tYXRpYyB0dW5pbmcgKHBhc3NpbmcgY2VudGVyIGZyZXF1ZW5j
+eSArIG9mZnNldCB0byB0dW5lX3JlcXVlc3RfdCBhbmQgdXNpbmcgaW50ZWdlci1OIHR1bmluZykg
+dXNpbmcgdGltZWQgY29tbWFuZHMuIFRoaXMgZGlkIG5vdCB3b3JrIHJlbGlhYmx5IGFuZCBvbmx5
+IGZvciBjZXJ0YWluIGZyZXF1ZW5jaWVzIGJ1dCBpbiBteSBvcGluaW9uIHRoaXMgc2hvdWxkIGhh
+dmUgSU5DTFVERUQgdGhlIERVQyB0dW5pbmcuIElmIHRoZSBEVUMgcmV0dW5lIHdvdWxkbid0IGhh
+dmUgYmVlbiBleGVjdXRlZCBhcyBwYXJ0IG9mIHRoaXMgYXV0b21hdGljIHR1bmluZywgSSBjb3Vs
+ZCBub3QgaGF2ZSBnb3R0ZW4gcGhhc2UgY29oZXJlbmNlIChhbmQgYWN0dWFsbHksIG5vdCBldmVu
+IHRoZSBkZXNpcmVkIGZyZXF1ZW5jeSkuCgpUaGUgcmVhc29uIHdoeSBJIGFtIG9ubHkgZG9pbmcg
+RFVDIHR1bmluZyBub3cgaXMgdG8gYXZvaWQgYWxsIHRoZSBoYXNzbGUgd2l0aCBpbnRlZ2VyLU4g
+dHVuaW5nLCBQTEwgcmV0dW5pbmcgYW5kIHNldHRsaW5nIHRpbWUuCgpTYW0sIHdoYXQgaXMgdGhl
+ICJyYWRpbyBibG9jayIgeW91IHdlcmUgdGFsa2luZyBhYm91dD8KCkFueXdheSwgd291bGQgaXQg
+YmUgd29ydGh3aWxlIHRvIGF0dGVtcHQgZGVidWdnaW5nIHRoaXMgaXMgYWJzZW5jZSBvZiBncj8K
+VGhlIG9ubHkgcmVhc29uIHRoaXMgcHJldmVudGVkIG1lIGZyb20gZG9pbmcgaXMgdGhhdCBJIHdv
+dWxkIG5lZWQgdG8gbWFudWFsbHkgY3JlYXRlIHRoZSBiYXNlYmFuZCBzYW1wbGVzIGFuZCBjb250
+aW51b3VzbHkgc3RyZWFtIHRoZW0gb3V0IHdoaWxlIGluIHBhcmFsbGVsIGRvIHRoZSByZXR1bmlu
+Zy4KSSBhbSBub3QgdG9vIGZhbWlsaWFyIHdpdGggVUhEIG9uIGl0cyBvd24gYnV0IEkgYXNzdW1l
+IHRoaXMgd291bGQgYmUgdmVyeSBjb21wbGljYXRlZCwgcmVxdWlyZSBtdWx0aXRocmVhZGluZyBl
+dGMuCkRvIHlvdSBoYXZlIGFueSBkZW1vIGNvZGUgdGhhdCBjb3VsZCBiZSBlYXNpbHkgbW9kaWZp
+ZWQgZm9yIHRoaXMgc2NlbmFyaW8/CgpCZXN0LApMdWthcwoKCkdlc2VuZGV0OsKgRGllbnN0YWcs
+IDAzLiBNw6RyeiAyMDIwIHVtIDEyOjA4IFVocgpWb246wqAiU2FtIFJlaXRlciIgPHNhbS5yZWl0
+ZXJAZXR0dXMuY29tW21haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbV1bbWFpbHRvOnNhbS5yZWl0
+ZXJAZXR0dXMuY29tW21haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbV1dW21haWx0bzpzYW0ucmVp
+dGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJlaXRlckBldHR1cy5jb21dW21haWx0bzpzYW0ucmVp
+dGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJlaXRlckBldHR1cy5jb21dXV1bbWFpbHRvOnNhbS5y
+ZWl0ZXJAZXR0dXMuY29tW21haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbV1bbWFpbHRvOnNhbS5y
+ZWl0ZXJAZXR0dXMuY29tW21haWx0bzpzYW0ucmVpdGVyQGV0dHVzLmNvbV1dW21haWx0bzpzYW0u
+cmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJlaXRlckBldHR1cy5jb21dW21haWx0bzpzYW0u
+cmVpdGVyQGV0dHVzLmNvbVttYWlsdG86c2FtLnJlaXRlckBldHR1cy5jb21dXV1dPgpBbjrCoCJS
+b2IgS29zc2xlciIgPHJrb3NzbGVyQG5kLmVkdVttYWlsdG86cmtvc3NsZXJAbmQuZWR1XVttYWls
+dG86cmtvc3NsZXJAbmQuZWR1W21haWx0bzpya29zc2xlckBuZC5lZHVdXVttYWlsdG86cmtvc3Ns
+ZXJAbmQuZWR1W21haWx0bzpya29zc2xlckBuZC5lZHVdW21haWx0bzpya29zc2xlckBuZC5lZHVb
+bWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1dXVttYWlsdG86cmtvc3NsZXJAbmQuZWR1W21haWx0bzpy
+a29zc2xlckBuZC5lZHVdW21haWx0bzpya29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5k
+LmVkdV1dW21haWx0bzpya29zc2xlckBuZC5lZHVbbWFpbHRvOnJrb3NzbGVyQG5kLmVkdV1bbWFp
+bHRvOnJrb3NzbGVyQG5kLmVkdVttYWlsdG86cmtvc3NsZXJAbmQuZWR1XV1dXT4KQ2M6wqAiTHVr
+YXMgSGFhc2UiIDxsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdW21h
+aWx0bzpsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdXVttYWlsdG86
+bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XVttYWlsdG86bHVrYXNo
+YWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214LmF0XV1dW21haWx0bzpsdWthc2hhYXNl
+QGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdW21haWx0bzpsdWthc2hhYXNlQGdteC5h
+dFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdXVttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRbbWFp
+bHRvOmx1a2FzaGFhc2VAZ214LmF0XVttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1
+a2FzaGFhc2VAZ214LmF0XV1dXT4sICJVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXVttYWlsdG86VVNSUC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWls
+dG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tXV1dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVtt
+YWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86VVNS
+UC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+XV1dXSIgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzp1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXV1bbWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWls
+dG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXV1dPgpCZXRyZWZmOsKg
+UmU6IFtVU1JQLXVzZXJzXSBVU1JQIFgzMTAgaWdub3JlZCBEU1AgcmV0dW5pbmcgb24gVFggd2hl
+biB1c2luZyBhIHRpbWVkIGNvbW1hbmQKCkZvciB3aGF0IGl0J3Mgd29ydGgsIEkgd2FzIGFibGUg
+dG8gcmVwcm9kdWNlIHRoZSBiZWhhdmlvciBkZXNjcmliZWQgaGVyZSwgYnV0IGRpZG4ndCBnZXQg
+dG8gZGlnIGludG8gaXQgbXVjaC4gTXkgbGVhZGluZyBzdXNwaWNpb24gd291bGQgYmUgd2hhdCBS
+b2IgbWVudGlvbmVkIGFib3V0IHRpbWVzdGFtcGluZy4gTHVrYXMnIGNvZGUgc2V0cyBhIGNvbW1h
+bmQgdGltZSwgYnV0IEknbSBub3QgY2xlYXIgb24gaG93IHRpbWVzdGFtcCBtZXRhZGF0YSBmb3Ig
+cGFja2V0cyBiZWluZyBzZW50IHRvIHRoZSByYWRpbyBhcmUgaGFuZGxlZC4gTWlnaHQgYmUgYSBn
+b29kIHF1ZXN0aW9uIHRvIGxvb3AgdGhlIGRpc2N1c3MtZ251cmFkaW8gbWFpbGluZyBsaXN0IGlu
+IG9uPwoKwqAKClNhbSBSZWl0ZXLCoMKgCgpPbiBUdWUsIE1hciAzLCAyMDIwIGF0IDEwOjU5IEFN
+IFJvYiBLb3NzbGVyIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVtt
+YWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXVttYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+XVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tXV1dW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXVttYWlsdG86dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWls
+dG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tXV1dXVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21b
+bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOnVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bV1dXVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tXVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dXV1d
+PiB3cm90ZToKSSB3b25kZXIgaWYgdGhlIGlzc3VlIGlzIHJlbGF0ZWQgdG8gYSBtaXNzaW5nIHRp
+bWUgc3RhbXAgb24gdGhlIGJhc2ViYW5kIHNhbXBsZXMgZ29pbmcgZnJvbSBHUiB0byBVSEQuwqAg
+SWYgdGhlIHN0cmVhbSBkb2VzIG5vdCBoYXZlIGEgdGltZSBzdGFtcCwgdGhlIERVQyBpcyB1bmFi
+bGUgdG8gYXBwbHkgdGhlIHRpbWVkIGNvbW1hbmQgYmVjYXVzZSB0aGUgRFVDIGRvZXMgbm90IHJl
+YWxseSBrbm93IHRoZSB0aW1lIC0gaXQgbXVzdCBwdWxsIHRoZSB0aW1lIGZyb20gdGhlIHN0cmVh
+bWluZyBzYW1wbGVzLiBUaGlzIGlzIGluIGNvbnRyYXN0IHRvIHRoZSByYWRpbyBibG9jayB3aGlj
+aCBkb2VzIGhhdmUgYWNjZXNzIHRvIHRpbWUgYW5kIGNhbiBhcHBseSB0aW1lZCBjb21tYW5kcyBi
+eSByZWZlcnJpbmcgdG8gdGhlIG1vdGhlcmJvYXJkIGNsb2NrLgrCoApJIGFtIG5vdCB0b28gZmFt
+aWxpYXIgd2l0aCBHUiBzbyBJJ20gbm90IHN1cmUgaG93IHRvIGtub3cgaWYgR1IgaXMgcHV0dGlu
+ZyBhIHRpbWUgc3RhbXAgb24gdGhlIHN0cmVhbWluZyBzYW1wbGVzLgpSb2LCoAoKT24gTW9uLCBN
+YXIgMiwgMjAyMCBhdCAxMDowNCBBTSBMdWthcyBIYWFzZSB2aWEgVVNSUC11c2VycyA8dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVtt
+YWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tXV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+W21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dXVttYWlsdG86dXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tXV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0
+bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dXV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1d
+W21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb21dW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXV1bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOnVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0
+bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb21dW21haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb21dXV1dXT4gd3JvdGU6SGkgTWFyY3VzLAoKVGhhbmsgeW91IHRoYXQg
+d291bGQgYmUgYW1hemluZyEKCkkgZm9sbG93ZWQgdGhlIHR1dG9yaWFsIGFuZCBidWlsdCBldmVy
+eXRoaW5nIGZyb20gc291cmNlOgoKJCBsc2JfcmVsZWFzZSAtYQpObyBMU0IgbW9kdWxlcyBhcmUg
+YXZhaWxhYmxlLgpEaXN0cmlidXRvciBJRDogVWJ1bnR1CkRlc2NyaXB0aW9uOsKgIMKgIFVidW50
+dSAxOC4wNC40IExUUwpSZWxlYXNlOsKgIMKgIMKgIMKgIDE4LjA0CkNvZGVuYW1lOsKgIMKgIMKg
+IMKgYmlvbmljCiQgdW5hbWUgLWEKTGludXggc2RyIDUuMy4wLTQwLWdlbmVyaWMgIzMyfjE4LjA0
+LjEtVWJ1bnR1IFNNUCBNb24gRmViIDMgMTQ6MDU6NTkgVVRDIDIwMjAgeDg2XzY0IHg4Nl82NCB4
+ODZfNjQgR05VL0xpbnV4CiQgY2QgdWhkCiQgZ2l0IHN0YXR1cwpIRUFEIGRldGFjaGVkIGF0IHYz
+LjE1LjAuMAokIGNkIC4uL2dudXJhZGlvCiQgZ2l0IHN0YXR1cwpIRUFEIGRldGFjaGVkIGF0IHYz
+LjcuMTQuMAoKClRoYW5rIHlvdSEKCkx1a2FzCgoKClBTOiBGb3Igc29tZSByZWFzb24gSSBzb21l
+dGltZXMgZG8gbm90IGdldCByZXNwb25zZXMgZnJvbSB0aGlzIGxpc3QuIEkganVzdCBzYXcgaXQg
+bG9va2luZyBhdCB0aGUgbWFpbG1hbiBhcmNoaXZlcy4gSGVuY2UgSSBjYW5ub3QgcmVzcG9uZCAo
+dG8ga2VlcCBoZWFkZXJzIGludGFjdCkgYnV0IG5lZWQgdG8gY3JlYXRlIGEgbmV3IG1lc3NhZ2Ug
+YW5kIG1hbnVhbGx5ICJxdW90ZSIuIEkgaG9wZSB0aGF0IHN0aWxsIHByZXNlcnZlcyB0aGUgY29u
+dGV4dCBzb21laG93LgoKCgpNYXJjdXMgTGVlY2ggd3JvdGU6Cj4gT24gMDIvMjgvMjAyMCAwMTow
+MSBQTSwgTHVrYXMgSGFhc2UgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+IEhpIGFnYWluLAo+Pgo+
+PiBJIGNyZWF0ZWQgYSBtaW5pbXVtIGV4YW1wbGUgKGdudXJhZGlvKSB0aGF0IHNob3dzIHRoZSBp
+c3N1ZSBkZXNjcmliZWQgYmVsb3cuCj4+IFRvIHN1bW1hcml6ZTogUmV0dW5pbmcgdG8gYSBkaWZm
+ZXJlbnQgZHNwIGZyZXF1ZW5jeSBvbiBhbiBVU1JQIFgzMTAgKCtVQlgxNjApIGRvZXMgbm90IHdv
+cmsgKGNvbW1hbmQgaWdub3JlZCkgT05MWSBpZiBhIHRpbWVkIGNvbW1hbmQgKGluIGZ1dHVyZSBp
+cyB1c2VkKS4KPj4gVGhlIGNvZGUgc2hvd3MgaXQgaW4gYSBzaW1wbGUgbWFubmVyLiBDb21tZW50
+aW5nIG91dCB0aGUgc2luZ2xlIGxpbmUgd2l0aCBzZXRfY29tbWFuZF90aW1lIG1ha2VzIHRoZSBl
+eGFtcGxlIHdvcmsuCj4+Cj4+IEkgYW0gYWJzb2x1dGVseSBvdXQgb2YgaWRlYXMgYW5kIHdvdWxk
+IGFwcHJlY2lhdGUgYW55IGlucHV0IQo+Pgo+PiBCZXN0LAo+PiBMdWthcwo+IEx1a2FzLgo+Cj4g
+VGhhbmtzIGZvciBzdGlja2luZyB3aXRoIHRoaXMuwqAgSSdsbCBoYXZlIGEgZGlzY3Vzc2lvbiB3
+aXRoIEV0dHVzIFImRCB0bwo+IHNlZSBpZiB0aGlzIGlzIGEga25vd24gaXNzdWUgYW5kL29yIGlm
+IHRoZXJlJ3MgYSB3b3JrYXJvdW5kLgo+Cj4gUmVtaW5kIG1lIHdoaWNoIHZlcnNpb24gb2YgVUhE
+IHlvdSdyZSB1c2luZz8KCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86VVNSUC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV1bbWFpbHRv
+OlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbV1dXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFp
+bHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV1bbWFpbHRvOlVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1b
+bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbV1dXV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpV
+U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzpVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0
+bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb21dXV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21h
+aWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21d
+XV1dXQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
+aXN0cy5ldHR1cy5jb21fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpVU1JQLXVzZXJzW2h0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
+c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fVVNSUC11c2Vyc11baHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19VU1JQLXVzZXJzJTVCaHR0cDovL2xpc3RzLmV0dHVz
+LmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19VU1JQLXVzZXJzJTVEXVtodHRw
+Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
+cy5jb21fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX1VTUlAt
+dXNlcnMlNUJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vy
+c19saXN0cy5ldHR1cy5jb21fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX1VTUlAtdXNlcnMlNUQlNUJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
+dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb21fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX1VTUlAtdXNlcnMlNUJodHRwOi8vbGlzdHMuZXR0dXMuY29t
+L21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb21fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX1VTUlAtdXNlcnMlNUQlNURdW2h0dHA6
+Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVz
+LmNvbV9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fVVNSUC11
+c2VycyU1Qmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJz
+X2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fVVNSUC11c2VycyU1RCU1Qmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0
+aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fVVNSUC11c2VycyU1Qmh0dHA6Ly9saXN0cy5ldHR1cy5jb20v
+bWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fVVNSUC11c2VycyU1RCU1RCU1Qmh0dHA6
+Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVz
+LmNvbV9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fVVNSUC11
+c2VycyU1Qmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJz
+X2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fVVNSUC11c2VycyU1RCU1Qmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0
+aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fVVNSUC11c2VycyU1Qmh0dHA6Ly9saXN0cy5ldHR1cy5jb20v
+bWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbV9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fVVNSUC11c2VycyU1RCU1RCU1RF0gbWFp
+bGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpV
+U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXV1bbWFp
+bHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbV1bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbV1dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVtt
+YWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dXV1dW21haWx0bzpV
+U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b21dW21haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb21dXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRv
+OlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV1dW21haWx0bzpVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dW21h
+aWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb21dXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOlVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tXVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21b
+bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXV1dXV0KaHR0cDovL2xpc3RzLmV0dHVz
+LmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tW2h0dHA6Ly9s
+aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
+bV1baHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tJTVCaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tJTVEXVtodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20lNUJodHRwOi8vbGlzdHMuZXR0
+dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20lNUQlNUJo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20lNUJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
+c2Vyc19saXN0cy5ldHR1cy5jb20lNUQlNURdX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KVVNSUC11c2Vyc1todHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20lNUJodHRwOi8vbGlzdHMuZXR0
+dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20lNUQlNUJo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20lNUJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
+c2Vyc19saXN0cy5ldHR1cy5jb20lNUQlNUQlNUJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20lNUJodHRwOi8vbGlzdHMuZXR0
+dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20lNUQlNUJo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20lNUJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
+c2Vyc19saXN0cy5ldHR1cy5jb20lNUQlNUQlNURfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX1VTUlAtdXNlcnNdIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbVttYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dCmh0dHA6Ly9s
+aXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNv
+bVtodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0
+cy5ldHR1cy5jb21dW2h0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3Jw
+LXVzZXJzX2xpc3RzLmV0dHVzLmNvbSU1Qmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbSU1RF0KCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
