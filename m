@@ -2,60 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C80F01869B5
-	for <lists+usrp-users@lfdr.de>; Mon, 16 Mar 2020 12:03:13 +0100 (CET)
-Received: from [::1] (port=37384 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FDCB1872F9
+	for <lists+usrp-users@lfdr.de>; Mon, 16 Mar 2020 20:04:20 +0100 (CET)
+Received: from [::1] (port=45240 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jDnWW-0004Sp-Sk; Mon, 16 Mar 2020 07:03:08 -0400
-Received: from dnsmx.mpb.li ([185.16.174.81]:44548)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <matthias@mpb.li>) id 1jDnWT-0004OM-PR
- for usrp-users@lists.ettus.com; Mon, 16 Mar 2020 07:03:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mpb.li;
- s=20191222; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:
- Message-ID:Subject:From:To:Sender:Reply-To:Cc:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=voQH28A9LqZ8wdYR+NK7KfKeVf6QapKWdhs3NqHtAz8=; b=MglbsR5OH6IESzOscHicX8uXLC
- Scv2UAcbJYMIob5JgH2+pBiIB99O5RZn0gJfN61gYBbrK4kIjDRHI6/IEtxCsj9yBOrrbIHSnJeGP
- TF/BLfAIFiC+cNrCukGXYbO1eSM2OhsOqhBVNEJxieNxIic7za2rsvCCQZ7wPtnMItNcSN7NfnhoX
- 6FXFF+amkWL5Ycvex1qdzXLWtHCDbdzznCGhZe/We9f2UyhxJex3/0FWK4QoCUtgH9zQz8mXlg3sA
- eRhHBHJyw0A8h6SVnNxSr3FhvFBYjw7XeimnRumlt5xLQnXZd0LWqv9ItA4p1iJ2LqTpBtQysCinZ
- KeJh8bfQ==;
-Received: from adslgva0461.worldcom.ch ([83.172.200.7] helo=[172.30.201.59])
- by dnsmx.mpb.li with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.92) (envelope-from <matthias@mpb.li>) id 1jDnVo-0007S1-5K
- for usrp-users@lists.ettus.com; Mon, 16 Mar 2020 12:02:24 +0100
-To: usrp-users@lists.ettus.com
-Autocrypt: addr=matthias@mpb.li; prefer-encrypt=mutual; keydata=
- mQGiBEYMuHcRBACA+gOZ2kLr+D9EbTZaM+8FKSrB+W92gi82LlSnWIx5vQ2bs4u+3ZMGT4WB
- +euKj49/bQ99CoEDB94dGWDrVol3Qxx39UIhL8VSJpHMKQZaa7fHJgOeZLCyjM+qTm/yWcIC
- ND2n8CgJc6oRqmD8l/nRQqHTceSaYPJSIc82QC05zwCgsL7inGV7Xhb8kSJt4B1vOLUG1XMD
- /2swxqZ3QkER90QFGwThUhsPbscl7jVBUWalqHb8n7aM+CrxMuevS/dpOVRA1nEGGgWzEtfs
- UGEKMR7feOf9dnajULnUogLUboIlUrlL+JAwR0uGvI+wynOHMJEcWYhIZG43BQPLJrMitHyE
- HnTjCvZSEsnrDE31GBSCyIyLCkwtA/97MwVUBw0LxsLWK9fnNhuymjWWA07b2keNVUmETVPj
- KeyicE7d8xZUeyrm5JnBj61wm7PeeZBf+pq2mEDqdputuNNPuh8o7rYxua1Vc3HKbz068gN+
- YmA3yVLAEs1aJ5s+5KyP/aGVygSi5td0mNnqzlCfFntIPj3v1LS21pI+SrQjTWF0dGhpYXMg
- QnLDpG5kbGkgPG1hdHRoaWFzQG1wYi5saT6IggQTEQIAQgIbIwYLCQgHAwIGFQgCCQoLBBYC
- AwECHgECF4ACGQEWIQRQgfjVU8jOSc2gZI3uThRyhIPRdAUCXGq2XwUJGiBk6AAKCRDuThRy
- hIPRdA4gAJ90A0IL44gVL09jh3zq8hiT0rQ0XgCgnCYTCybgTT3KDcVV8gUPb8yMXB65AQ0E
- Rgy4eRAEAM99KgY6ujv19er4CU9lTx1Cuc6B9jHqlDutB921+1BKeCJcniz1d0z94+ZfTbJd
- UI/1TnXDPOPjJ3tJB4Nca/p2vwoOruW62yw9rCGV8qgFKSWEg+MqGs7Ks9Zk+xNHqL7Pg8Nr
- 1rxkjTFNiDJABAHNuhg+U/2krnSP0ws25m+XAAQLA/9ibdsVCgSqCFkgnFTLnydQOSr4f6aT
- PeH1cZB6vgIZemt4mtnVrCKIYNSyUEwN05mlNR2hcXfaRyFRw2hhAVmqO5bYkLtrvXn2BLs9
- 6lgyF/12tF7x7LydFPcdTPiu4MsP+rzOYlHUk5onqippMMfY6hv6exTB2dWSaeLgPqPclYhm
- BBgRAgAmAhsMFiEEUIH41VPIzknNoGSN7k4UcoSD0XQFAlxqtnMFCRogZPoACgkQ7k4UcoSD
- 0XR1jgCdFz+aNIwDAbw75m0bivIINrQWIOcAn3s0DBAg48EhAFrPUuloCtLKbKm4
-Message-ID: <1104df7c-06f1-a407-d811-70ceb4cab721@mpb.li>
-Date: Mon, 16 Mar 2020 12:02:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+	id 1jDv26-00060n-5u; Mon, 16 Mar 2020 15:04:14 -0400
+Received: from mail-qv1-f44.google.com ([209.85.219.44]:46449)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
+ id 1jDv23-0005qe-1U
+ for usrp-users@lists.ettus.com; Mon, 16 Mar 2020 15:04:11 -0400
+Received: by mail-qv1-f44.google.com with SMTP id m2so9455026qvu.13
+ for <usrp-users@lists.ettus.com>; Mon, 16 Mar 2020 12:03:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to:cc;
+ bh=1VpEjiIvJvqpPJY5t/q5t36flbP1vLFcfzGOOgQbJms=;
+ b=qJGHkTjGy1SwBZRQntmqh8yVelVovt8odQPjWuYGQPKsVNbYy6U30belX6Ppfudmb/
+ Vr8Ctyy6vp42qk32ce+bPHTm4N7OJDBHDHt81fUxjwSgirikzgXs5ZodvcSQY4FwTTLK
+ PMHenOdGnTNiWexUq+UpWjrruJnT7TmYArW26iOUwoNVxCRJxmvfGq+LlBifrq2RxUpI
+ p+vXtCN0TN/ubvd8tgDAk7arTXSZ1B5c7yz2pDEpbZJO64RN0yfmkbPrRK1wGBIImwbS
+ jyRh81KtNKh4p/i+3j3D2yrDtI7M7pdRvPANPaH4I8bC6P+ulnZMCwin6Qn3lI9DwgFn
+ fj/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+ bh=1VpEjiIvJvqpPJY5t/q5t36flbP1vLFcfzGOOgQbJms=;
+ b=i9fr5g8uE49gYRIq2HkZri1rNZ3X7NMUsevuyQfkR82CZJBwvMyIYexUl3re1aqiWC
+ 8TW14V1oOaBy4A6Tp4gE8l7hIYST/YV8vjB8Q+IxPhpeMrKYtzG5NrjV7bxnycB1DEPX
+ cAje/rdZLP0KyhHSFulFNaDxWIYONf5K46t8oPsYWufTJBo8afi9WJo5bAdpFMn/Ul7r
+ NaLXUuakEc8LlSh2M2CtZZK2OkPAZ+cXsPKklgkHx49fj45SJgeSKyraFbU6pCO2TSub
+ ftMObpdGHpLW3lVPhVDuq1kykzuMPAT7nXGtCjKhGtjiNjx3tAFY4oczLYcMxF4Sa2cy
+ BHlQ==
+X-Gm-Message-State: ANhLgQ1Rs+1W+aCqPlHDfkwdwhqW7ho8WyDlFWcjopUh+GnUTyBHeSld
+ SuqzQ1zhS6bszFNqYS+hhtqQWyBg0PCqLQ/VuLBsvQ==
+X-Google-Smtp-Source: ADFU+vsWzsTXqS7/GX13+zox40msw4Pzy/gxqLUSxQjzouo9/fZX1YkmAnh/0yu6lGn7otbQCVaOcGnCTrYjLHQN1Zk=
+X-Received: by 2002:a0c:bf05:: with SMTP id m5mr1323039qvi.26.1584385410250;
+ Mon, 16 Mar 2020 12:03:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: en-US-large
-Subject: [USRP-users] Does linking against UHD require linking against
- boost_thread ?
+Date: Tue, 17 Mar 2020 03:03:19 +0800
+Message-ID: <CACjmV_k87A4VzxoQm3h4fs8RAP=+3At9isCCzspzO+Awu+fARQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Using DPDK with AQC107
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,11 +55,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Matthias_Br=C3=A4ndli_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Matthias_Br=c3=a4ndli?= <matthias@mpb.li>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: guowang qiu via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: guowang qiu <qiu.guowang007@gmail.com>
+Cc: Damon Qiu <qiu.guowang007@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2594357381710681026=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,41 +72,113 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hello all,
+--===============2594357381710681026==
+Content-Type: multipart/alternative; boundary="00000000000090bbf905a0fd79bb"
 
-Could it be that at some point in time, linking against boost_thread
-became necessary for programs that link against uhd?
+--00000000000090bbf905a0fd79bb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-ODR-DabMod [1] uses pkgconfig to find out how to properly link against
-libuhd, whose .pc file [2] lists -lboost_system but not -lboost_thread.
-ODR-DabMod isn't using Boost::Thread anymore (since about one year).
+Hi everyone,
 
-Linking fails (Arch Linux) with
+I am trying to connect my notebook to X310 with a thunderbolt 3 to
+10GNBase-T module, which has a AQC107 chirp.
+The notebook can find the X310 without DPDK. But it could not find the
+device with DPDK. Is there any suggestion?
 
-  CXXLD    odr-dabmod
-/usr/bin/ld: src/output/odr_dabmod-UHD.o: undefined reference to symbol
-'_ZTIN5boost6detail16thread_data_baseE'
-/usr/bin/ld: /usr/lib/libboost_thread.so.1.72.0: error adding symbols:
-DSO missing from command line
+UHD Version: 4.0, the master branch.
+DPDK: 18.11 (supporting Aquantia=E2=80=99s AQtion family of chipsets:
+AQC107/AQC108/AQC109 )
+Ubuntu: 18.04
 
-and works if I manually add -lboost_thread to my LDFLAGS.
+root@sdr:~# dpdk-devbind --status-dev net
+Network devices using DPDK-compatible driver
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+0000:3c:00.0 'AQC107 NBase-T/IEEE 802.3bz Ethernet Controller [AQtion]
+87b1' drv=3Dvfio-pci unused=3Datlantic
+Network devices using kernel driver
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+0000:00:1f.6 'Ethernet Connection (7) I219-LM 15bb' if=3Deno1 drv=3De1000e
+unused=3Dvfio-pci *Active*
+Other Network devices
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+0000:6f:00.0 'Device 2723' unused=3Dvfio-pci
 
-Same on a debian machine that has boost 1.67.
+root@sdr:~# uhd_find_devices --args=3Duse_dpdk=3D1,addr=3D192.168.60.2
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+UHD_4.0.0.0-505-g1393553d
+EAL: Detected 12 lcore(s)
+EAL: Detected 1 NUMA nodes
+EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
+EAL: No free hugepages reported in hugepages-1048576kB
+EAL: Probing VFIO support...
+EAL: VFIO support initialized
+EAL: PCI device 0000:00:1f.6 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:15bb net_e1000_em
+EAL: PCI device 0000:3c:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 1d6a:87b1 net_atlantic
+EAL:   using IOMMU type 1 (Type 1)
+[ERROR] [DPDK] Could not find route to destination address 192.168.60.2
+[ERROR] [X300] X300 Network discovery error RuntimeError: DPDK: Could not
+find route to destination address 192.168.60.2
+No UHD Devices Found
+Device with port_id=3D0 already stopped
 
-I am still a bit confused about why and when it started failing though,
-so I prefer asking before opening an issue. Thanks in advance for your
-insight.
+Best regards,
+Damon
 
-Cheers,
-mpb
+--00000000000090bbf905a0fd79bb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-[1]
-https://github.com/Opendigitalradio/ODR-DabMod/
+<div dir=3D"ltr">Hi everyone,<br><br>I am trying to connect my notebook to =
+X310 with a thunderbolt 3 to 10GNBase-T module, which has a AQC107 chirp. <=
+br>The notebook can find the X310 without DPDK. But it could not find the d=
+evice with DPDK. Is there any suggestion?<br><br>UHD Version: 4.0, the mast=
+er branch.<br>DPDK: 18.11 (supporting Aquantia=E2=80=99s AQtion family of c=
+hipsets: AQC107/AQC108/AQC109 )<br>Ubuntu: 18.04<br><br>root@sdr:~# dpdk-de=
+vbind --status-dev net<br>Network devices using DPDK-compatible driver<br>=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:3c:00.0 &=
+#39;AQC107 NBase-T/IEEE 802.3bz Ethernet Controller [AQtion] 87b1&#39; drv=
+=3Dvfio-pci unused=3Datlantic<br>Network devices using kernel driver<br>=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:00:1f.6 &#39;Ethernet Connection (7) I2=
+19-LM 15bb&#39; if=3Deno1 drv=3De1000e unused=3Dvfio-pci *Active*<br>Other =
+Network devices<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D<br>0000:6f:00.0 &#39;Device 2723&#39; unused=3Dvfio-pci<br><br>ro=
+ot@sdr:~# uhd_find_devices --args=3Duse_dpdk=3D1,addr=3D192.168.60.2<br>[IN=
+FO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_4.0.0.0-505-g1393=
+553d<br>EAL: Detected 12 lcore(s)<br>EAL: Detected 1 NUMA nodes<br>EAL: Mul=
+ti-process socket /var/run/dpdk/rte/mp_socket<br>EAL: No free hugepages rep=
+orted in hugepages-1048576kB<br>EAL: Probing VFIO support...<br>EAL: VFIO s=
+upport initialized<br>EAL: PCI device 0000:00:1f.6 on NUMA socket -1<br>EAL=
+: =C2=A0 Invalid NUMA socket, default to 0<br>EAL: =C2=A0 probe driver: 808=
+6:15bb net_e1000_em<br>EAL: PCI device 0000:3c:00.0 on NUMA socket -1<br>EA=
+L: =C2=A0 Invalid NUMA socket, default to 0<br>EAL: =C2=A0 probe driver: 1d=
+6a:87b1 net_atlantic<br>EAL: =C2=A0 using IOMMU type 1 (Type 1)<br>[ERROR] =
+[DPDK] Could not find route to destination address 192.168.60.2<br>[ERROR] =
+[X300] X300 Network discovery error RuntimeError: DPDK: Could not find rout=
+e to destination address 192.168.60.2<br>No UHD Devices Found<br>Device wit=
+h port_id=3D0 already stopped<br><br>Best regards,<br>Damon<br></div>
 
-[2]
-https://github.com/EttusResearch/uhd/blob/master/host/uhd.pc.in
+--00000000000090bbf905a0fd79bb--
+
+
+--===============2594357381710681026==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2594357381710681026==--
+
