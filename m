@@ -2,52 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ECC1189C32
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Mar 2020 13:44:00 +0100 (CET)
-Received: from [::1] (port=41314 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C638C189D68
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Mar 2020 14:55:35 +0100 (CET)
+Received: from [::1] (port=36878 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jEY3C-0002JM-1D; Wed, 18 Mar 2020 08:43:58 -0400
-Received: from mail-ed1-f48.google.com ([209.85.208.48]:46135)
+	id 1jEZAT-0008Gi-MB; Wed, 18 Mar 2020 09:55:33 -0400
+Received: from mail-wr1-f53.google.com ([209.85.221.53]:33962)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bertolini.rodolphe@gmail.com>)
- id 1jEY37-00024U-TD
- for usrp-users@lists.ettus.com; Wed, 18 Mar 2020 08:43:54 -0400
-Received: by mail-ed1-f48.google.com with SMTP id ca19so30728506edb.13
- for <usrp-users@lists.ettus.com>; Wed, 18 Mar 2020 05:43:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DzktUSNmSQAsndsxOwkNXrx9QMac6oDcOtbyCvk1Tg0=;
- b=EqukmoKuW5fwSr1etnDS+NSgr4az4Yp3CMk9Lh+JqnQoeGoKutIc2A2FT2nqZer0C/
- xdA6W+2NpfUcgzeNn6Dy1NK1P4E0bGLoFQlUxGXNOeMCprcgfUCJqbqVAJZwsiPx6AlK
- OpgxeS3YzJbuLmBnGLtPrMIjr/SpMW5XDJpsuFwfvcBx1VqG6BKeIhpmwnxljOlq06JU
- FwxB9tEWE7nqYeVSgfX6C7Nzdn0+IwE7Br23ACsRwlcjgxqKP8l0UMXoJeoWwUua0gH0
- XuF9hDT3rSFGr99PTs/44/TMa5ioJzU5zydRai/0DShq6mYQXmfZ1rFjjXLC9tp3V9EO
- K4rg==
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1jEZAP-00089u-Rd
+ for usrp-users@lists.ettus.com; Wed, 18 Mar 2020 09:55:29 -0400
+Received: by mail-wr1-f53.google.com with SMTP id z15so30490260wrl.1
+ for <usrp-users@lists.ettus.com>; Wed, 18 Mar 2020 06:55:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=zjni3Tfpn9GP4BlNWool4XtyANUDq78mphwVmzBKNFA=;
+ b=xn3v+5c9z0TtdrNu/sjzecnwn/QAOLcYCjBIaKhxs+GrymeDej1HEFBjCTy+Qkjor8
+ I4u903uKQtltMjdTLuqPbeBaGcGuELIIIRrn9Se6pt1GL8IJhdUZFUsVaDcYqL5xYe7j
+ d/OfWi0kOd3xbSLEARsfLIbcmQ6yw3lFnhm7WYPQ0k/dK47KffIPoPvrQw+lyb/dQFD5
+ o7wP+0+8QWhWn2ugfsXlZzDN3Q3wFQSulDm2l3VhJcGn9sHOE9zxRTVAumyzk2Nd5zQ6
+ jIAm4eHKLreLUJXrnSd/PEUZRLQx+BaruLUXZ/ymvj2Bv6uYm+H9hldTjEPb9osWVnjH
+ 5+cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=DzktUSNmSQAsndsxOwkNXrx9QMac6oDcOtbyCvk1Tg0=;
- b=uQLlP5WbxyqIeW/ggJDbKb9yNKRjZ8hPbdU1ZOnjryYUkhgtkLDR06n4ogZcEpuj7u
- kTdlY31Q1EEJfbUq3rOq9fO1Y/o6RuoiCN0/x/j6USNKa2eNu9aaqFnfrLpcV+NHUX/M
- YizFqIIdK7mYr/XgLjQwqnoOa0I+xmOdMMaEVIU6sLlUkp035nvakEL86fNw/Q9anVJP
- BuLJTSf+MavNgDEjAeyypuEPZTkwqi7/cbZyEUUjnXIxAhKvUrtHfFx3V0Soop3Hi921
- vmU/CJvBFahuTDY4AL9S9pz6C/B1HAJCytTk77sxbcKuZ+C7dehSOOEBIyRtFeYIOt7i
- iQXA==
-X-Gm-Message-State: ANhLgQ3BRkd4mSNGDTYZlz8vyAJft1jtnwCTizrwiD56dpfBJpO0mLrq
- WJr2+/eJYPdaaWZLcffGFNFsNnhlEgSPMvgwxDs=
-X-Google-Smtp-Source: ADFU+vt1Cg+ztwnBLAAHXmid5o3/Oj5YG5msWKjZoMM/qXkl/yN2sZo84jB9o/bLLhxowPouClXr7KKgaiXeOyfCiOI=
-X-Received: by 2002:a17:906:33c9:: with SMTP id
- w9mr4011532eja.382.1584535392641; 
- Wed, 18 Mar 2020 05:43:12 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=zjni3Tfpn9GP4BlNWool4XtyANUDq78mphwVmzBKNFA=;
+ b=uezAzS9CqzlLv2ueGxWpkHe95Hr/J0PvIKIju8mjnbKuVMnu85PDJxtD7NXlkATwJQ
+ qC3yJKq958X94ptz4uF2jAVKr/O98ygV7uKPNHWrFW9BkinHnKmqGpsZop/y1JIhWhaH
+ WFIZyO3co2mZOFn0cj8QXUhDHAPrMc6Dktj2JGXdrFMXf/glGqmZi4cP5lLpUgAr7CUV
+ HpA+v95sss52HyzhDdKgcAZ/xIQJvPbn08vtioHuO20nH+E4GooQX2E+wst2rmPEzJgY
+ CJd82KgABoOgwNCaVShLOOTIO5lvYUrr2h5B+SMouGmn9qezXAzeuf4u1AJV2Lbxuvte
+ mpCg==
+X-Gm-Message-State: ANhLgQ1Tw/ZIcyjsYMZ34VqF08qH/hy4EX4jhflmL5jZitiYriIEYdCk
+ voGW5feU8wJwjBEEVYyGH05az1etE8Fmsw==
+X-Google-Smtp-Source: ADFU+vs0VMzk1npbdTZ144CtMcOR8ZsCK2tz59yH58VNUBki4LueFfWrhxzyHwCrty3IYec3Ui45qQ==
+X-Received: by 2002:a5d:474b:: with SMTP id o11mr5493691wrs.4.1584539688196;
+ Wed, 18 Mar 2020 06:54:48 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-146.hsi.kabel-badenwuerttemberg.de. [46.223.163.146])
+ by smtp.gmail.com with ESMTPSA id t124sm4092306wmg.13.2020.03.18.06.54.46
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 18 Mar 2020 06:54:47 -0700 (PDT)
+To: usrp-users@lists.ettus.com
 References: <CAKaLowSaOhC6L9B4axxwV0=eq=PXzwRoCn22kqyfu529rTr7Dw@mail.gmail.com>
  <1661e285-c25d-8272-0e49-1d0f896033b4@comcast.net>
-In-Reply-To: <1661e285-c25d-8272-0e49-1d0f896033b4@comcast.net>
-Date: Wed, 18 Mar 2020 13:43:01 +0100
-Message-ID: <CAKaLowQZETbs6g=Ry5wGxuV7cJRM7eQWKmh1zyDDtHLrYuOxvQ@mail.gmail.com>
-To: Ron Economos <w6rz@comcast.net>
+ <CAKaLowQZETbs6g=Ry5wGxuV7cJRM7eQWKmh1zyDDtHLrYuOxvQ@mail.gmail.com>
+Message-ID: <0d486110-0f4a-9605-ae9a-b68075c797e5@ettus.com>
+Date: Wed, 18 Mar 2020 14:54:46 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+MIME-Version: 1.0
+In-Reply-To: <CAKaLowQZETbs6g=Ry5wGxuV7cJRM7eQWKmh1zyDDtHLrYuOxvQ@mail.gmail.com>
+Content-Language: en-US
 Subject: Re: [USRP-users] Apologize if duplicate : UHD 3.15 isn't using USB
  3.0 although Linux driver are loaded
 X-BeenThere: usrp-users@lists.ettus.com
@@ -61,10 +73,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rodolphe Bertolini via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rodolphe Bertolini <bertolini.rodolphe@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1674548386037026190=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,244 +91,82 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1674548386037026190==
-Content-Type: multipart/alternative; boundary="000000000000366bd005a1206577"
-
---000000000000366bd005a1206577
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello Ron, (I resend the email, I forgot to "reply to all")
-Thank you for your quick feedback.
-
-Ok I understand. More information, lspci gives me :
-00:14.0 USB controller: Intel Corporation Cannon Lake PCH USB 3.1 xHCI Host
-Controller (rev 10)
-So I don't get why doesn't Ubuntu enables USB 3.0 with the B210.
-
-My problems looks like this one
-http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-July/05732=
-3.html
-
-The output of lsusb -t is similar, with "Driver=3D(none)"
-A message of above mentioned thread suggests to enable 3.0 option in BIOS,
-however I don't have such option. And even if I had, I didn't not change
-anything between reboot / session switch so I really don't understand where
-this regression is coming from.
-Also I did the "solution" mentioned by the author :
-
-uhd_image_loader --args=3D"type=3Db200,reset"
-
-
-Which did not improve the situation.
-
-
-Thank you again
-
-Rodolphe
-
-Le mer. 18 mars 2020 =C3=A0 12:02, Ron Economos via USRP-users <
-usrp-users@lists.ettus.com> a =C3=A9crit :
-
-> dmesg should say "new SuperSpeed USB device number X using xhci_hcd" or
-> "new SuperSpeed Gen 1 USB device number X using xhci_hcd" if you have a
-> newer kernel.
->
-> "high-speed" means USB 2.0.
->
-> Ron
-> On 3/18/20 03:41, Rodolphe Bertolini via USRP-users wrote:
->
-> Dear all,
->
-> I have been using a USRP B210 on a laptop for months now. For reasons, I
-> switched to another Linux session, and using this session UHD fails to ta=
-lk
-> to B210 over USB 3.0
->
-> dmesg tells me it is using the xhci_hcd driver (which I believe is the
-> driver for USB 3.0), and is also mentioning  "new high-speed USB", which
-> leads me to think that USB 3.0 link is well recognized and active:
->
-> [  306.133028] usb 1-1: new high-speed USB device number 16 using xhci_hc=
-d
-> [  306.260349] usb 1-1: New USB device found, idVendor=3D2500, idProduct=
-=3D0020
-> [  306.260351] usb 1-1: New USB device strings: Mfr=3D1, Product=3D2,
-> SerialNumber=3D3
-> [  306.260352] usb 1-1: Product: USRP B200
-> [  306.260354] usb 1-1: Manufacturer: Ettus Research LLC
-> [  306.260355] usb 1-1: SerialNumber: 31B9289
->
-> However, when running any uhd command line, it fails using USB 3.0:
->
-> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800;
-> UHD_3.15.0.0-release
-> [INFO] [B200] Detected Device: B210
-> [INFO] [B200] Operating over USB 2.
->
-> I have also tried with UHD 3.14.1, no improvement.
->
-> I remember having a similar issue (maybe the same?) that had been solved
-> with something related to udev, but I sadly didn't take any note of this.
->
-> Do you have any hint?
->
-> Thank you.
-> Regards,
-> Rodolphe
->
-> _______________________________________________
-> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/m=
-ailman/listinfo/usrp-users_lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000366bd005a1206577
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello Ron, (I resend the email, I forgot to &quot;rep=
-ly to all&quot;)<br></div><div>Thank you for your quick feedback.</div><div=
-><br></div><div>Ok I understand. More information, lspci gives me : <br></d=
-iv><div>00:14.0 USB controller: Intel Corporation Cannon Lake PCH USB 3.1 x=
-HCI Host Controller (rev 10)</div><div>So I don&#39;t get why doesn&#39;t U=
-buntu enables USB 3.0 with the B210.<br></div><div><br></div><div>My proble=
-ms looks like this one <a href=3D"http://lists.ettus.com/pipermail/usrp-use=
-rs_lists.ettus.com/2018-July/057323.html" target=3D"_blank">http://lists.et=
-tus.com/pipermail/usrp-users_lists.ettus.com/2018-July/057323.html</a></div=
-><div><br></div><div>The output of lsusb -t is similar, with &quot;Driver=
-=3D(none)&quot;<br></div>A
- message of above mentioned thread suggests to enable 3.0 option in=20
-BIOS, however I don&#39;t have such option. And even if I had, I didn&#39;t=
- not=20
-change anything between reboot / session switch so I really don&#39;t=20
-understand where this regression is coming from.<div>Also I did the &quot;s=
-olution&quot; mentioned by the author :</div><div><p class=3D"MsoNormal"><s=
-pan lang=3D"EN-US"><span>uhd_image_loader
-            --args=3D&quot;type=3Db200,reset&quot;</span></span></p><p clas=
-s=3D"MsoNormal"><br></p><p class=3D"MsoNormal">Which did not improve the si=
-tuation.</p><p class=3D"MsoNormal"><br></p><p class=3D"MsoNormal"><span lan=
-g=3D"EN-US"><span></span><span></span></span></p></div><div>Thank you again=
-</div><font color=3D"#888888"><div><br></div><div>Rodolphe</div></font></di=
-v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=
-=C2=A0mer. 18 mars 2020 =C3=A0=C2=A012:02, Ron Economos via USRP-users &lt;=
-<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a=
->&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <p>dmesg should say &quot;new SuperSpeed USB device number X using
-      xhci_hcd&quot; or &quot;new SuperSpeed Gen 1 USB device number X usin=
-g
-      xhci_hcd&quot; if you have a newer kernel.</p>
-    <p>&quot;high-speed&quot; means USB 2.0.<br>
-    </p>
-    <p>Ron<br>
-    </p>
-    <div>On 3/18/20 03:41, Rodolphe Bertolini
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div>Dear all,</div>
-        <div><br>
-        </div>
-        <div>I have been using a USRP B210 on a laptop for months now.
-          For reasons, I switched to another Linux session, and using
-          this session UHD fails to talk to B210 over USB 3.0<br>
-        </div>
-        <div><br>
-        </div>
-        <div>dmesg tells me it is using the xhci_hcd driver (which I
-          believe is the driver for USB 3.0), and is also mentioning=C2=A0
-          &quot;new high-speed USB&quot;, which leads me to think that USB =
-3.0
-          link is well recognized and active:</div>
-        <div><br>
-        </div>
-        <div>[ =C2=A0306.133028] usb 1-1: new high-speed USB device number =
-16
-          using xhci_hcd<br>
-          [ =C2=A0306.260349] usb 1-1: New USB device found, idVendor=3D250=
-0,
-          idProduct=3D0020<br>
-          [ =C2=A0306.260351] usb 1-1: New USB device strings: Mfr=3D1,
-          Product=3D2, SerialNumber=3D3<br>
-          [ =C2=A0306.260352] usb 1-1: Product: USRP B200<br>
-          [ =C2=A0306.260354] usb 1-1: Manufacturer: Ettus Research LLC<br>
-          [ =C2=A0306.260355] usb 1-1: SerialNumber: 31B9289</div>
-        <div><br>
-        </div>
-        <div>However, when running any uhd command line, it fails using
-          USB 3.0:</div>
-        <div><br>
-        </div>
-        <div>[INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
-          Boost_105800; UHD_3.15.0.0-release<br>
-          [INFO] [B200] Detected Device: B210<br>
-          [INFO] [B200] Operating over USB 2.</div>
-        <div><br>
-        </div>
-        <div>I have also tried with UHD 3.14.1, no improvement.</div>
-        <div><br>
-        </div>
-        <div>I remember having a similar issue (maybe the same?) that
-          had been solved with something related to udev, but I sadly
-          didn&#39;t take any note of this.</div>
-        <div><br>
-        </div>
-        <div>Do you have any hint?</div>
-        <div><br>
-        </div>
-        <div>Thank you.<br>
-        </div>
-        <div>Regards,</div>
-        <div>Rodolphe</div>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
-sts.ettus.com</a>
-</pre>
-    </blockquote>
-  </div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000366bd005a1206577--
-
-
---===============1674548386037026190==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1674548386037026190==--
-
+SGkgUm9kb2xwaGUsCgpmaXJzdCBvZiBhbGwsIGNoZWNrIHdoZXRoZXIgeW91J3JlIGFjdHVhbGx5
+IGRlYWxpbmcgd2l0aCBhIFVTQjMgcG9ydC4gSQprbm93LCBzb3VuZHMgc3RyYW5nZSwgYnV0IGlm
+IGl0J3Mgbm90IGJsdWUgYW5kIGRvZXNuJ3QgaGF2ZSBtb3JlIHRoYW4KZm91ciB2aXNpYmxlIGNv
+bnRhY3RzLCBpdCdzIG5vdCBzdGFuZGFyZC1jb21wbGlhbnQgVVNCMy4gVGhlIGZhY3QgdGhhdApp
+dCdzIGF0dGFjaGVkIHRvIGEgeEhDSSBkb2Vzbid0IGl0c2VsZiBtZWFuIGl0IGNhbiBkbyBVU0Iz
+LgoKVGhlbiwgSSBjYW4ndCBxdWl0ZSByZW1lbWJlciB3aGV0aGVyIHRoZSBVU0IgY29udHJvbGxl
+ciBvbiB0aGUgQjIwMAp3b3VsZCBldmVuIHJlZ2lzdGVyIGFzIFVTQjMgYmVmb3JlIHRoZSBpbml0
+aWFsIGZpcm13YXJlIGlzIGxvYWRlZC4gVHJ5CnRoZSBmb2xsb3dpbmc6IEluIG9uZSB0ZXJtaW5h
+bCB3aW5kb3csIHJ1biBgZG1lc2cgLUh3eGAuIFBsdWcgaW4gdGhlClVTUlAsIGFuZCBzZWUgaG93
+IGl0IGFwcGVhcnMgb24gdGhlIGJ1cyAoaXQgc2VlbXMsIGFzIFVTQjIgaGlnaC1zcGVlZApkZXZp
+Y2UpLiBBZnRlciB0aGF0LCBpbiBhbm90aGVyIHRlcm1pbmFsLCB5b3UnZCBydW4gYHVoZF9maW5k
+X2RldmljZXNgLAphbmQgc2VlIHdoZXRoZXIgdGhlIGRldmljZSByZS1lbnVtZXJhdGVzIGFzIFVT
+QjMgU3VwZXJTcGVlZCBkZXZpY2UuCgpCZXN0IHJlZ2FyZHMsCk1hcmN1cwoKT24gMTguMDMuMjAg
+MTM6NDMsIFJvZG9scGhlIEJlcnRvbGluaSB2aWEgVVNSUC11c2VycyB3cm90ZToKPiBIZWxsbyBS
+b24sIChJIHJlc2VuZCB0aGUgZW1haWwsIEkgZm9yZ290IHRvICJyZXBseSB0byBhbGwiKQo+IFRo
+YW5rIHlvdSBmb3IgeW91ciBxdWljayBmZWVkYmFjay4KPiAKPiBPayBJIHVuZGVyc3RhbmQuIE1v
+cmUgaW5mb3JtYXRpb24sIGxzcGNpIGdpdmVzIG1lIDoKPiAwMDoxNC4wIFVTQiBjb250cm9sbGVy
+OiBJbnRlbCBDb3Jwb3JhdGlvbiBDYW5ub24gTGFrZSBQQ0ggVVNCIDMuMSB4SENJCj4gSG9zdCBD
+b250cm9sbGVyIChyZXYgMTApCj4gU28gSSBkb24ndCBnZXQgd2h5IGRvZXNuJ3QgVWJ1bnR1IGVu
+YWJsZXMgVVNCIDMuMCB3aXRoIHRoZSBCMjEwLgo+IAo+IE15IHByb2JsZW1zIGxvb2tzIGxpa2Ug
+dGhpcyBvbmUKPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL3BpcGVybWFpbC91c3JwLXVzZXJzX2xp
+c3RzLmV0dHVzLmNvbS8yMDE4LUp1bHkvMDU3MzIzLmh0bWwKPiAKPiBUaGUgb3V0cHV0IG9mIGxz
+dXNiIC10IGlzIHNpbWlsYXIsIHdpdGggIkRyaXZlcj0obm9uZSkiCj4gQSBtZXNzYWdlIG9mIGFi
+b3ZlIG1lbnRpb25lZCB0aHJlYWQgc3VnZ2VzdHMgdG8gZW5hYmxlIDMuMCBvcHRpb24gaW4KPiBC
+SU9TLCBob3dldmVyIEkgZG9uJ3QgaGF2ZSBzdWNoIG9wdGlvbi4gQW5kIGV2ZW4gaWYgSSBoYWQs
+IEkgZGlkbid0IG5vdAo+IGNoYW5nZSBhbnl0aGluZyBiZXR3ZWVuIHJlYm9vdCAvIHNlc3Npb24g
+c3dpdGNoIHNvIEkgcmVhbGx5IGRvbid0Cj4gdW5kZXJzdGFuZCB3aGVyZSB0aGlzIHJlZ3Jlc3Np
+b24gaXMgY29taW5nIGZyb20uCj4gQWxzbyBJIGRpZCB0aGUgInNvbHV0aW9uIiBtZW50aW9uZWQg
+YnkgdGhlIGF1dGhvciA6Cj4gCj4gdWhkX2ltYWdlX2xvYWRlciAtLWFyZ3M9InR5cGU9YjIwMCxy
+ZXNldCIKPiAKPiAKPiBXaGljaCBkaWQgbm90IGltcHJvdmUgdGhlIHNpdHVhdGlvbi4KPiAKPiAK
+PiBUaGFuayB5b3UgYWdhaW4KPiAKPiBSb2RvbHBoZQo+IAo+IExlwqBtZXIuIDE4IG1hcnMgMjAy
+MCDDoMKgMTI6MDIsIFJvbiBFY29ub21vcyB2aWEgVVNSUC11c2Vycwo+IDx1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbSA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gYSDDqWNy
+aXTCoDoKPiAKPiAgICAgZG1lc2cgc2hvdWxkIHNheSAibmV3IFN1cGVyU3BlZWQgVVNCIGRldmlj
+ZSBudW1iZXIgWCB1c2luZyB4aGNpX2hjZCIKPiAgICAgb3IgIm5ldyBTdXBlclNwZWVkIEdlbiAx
+IFVTQiBkZXZpY2UgbnVtYmVyIFggdXNpbmcgeGhjaV9oY2QiIGlmIHlvdQo+ICAgICBoYXZlIGEg
+bmV3ZXIga2VybmVsLgo+IAo+ICAgICAiaGlnaC1zcGVlZCIgbWVhbnMgVVNCIDIuMC4KPiAKPiAg
+ICAgUm9uCj4gCj4gICAgIE9uIDMvMTgvMjAgMDM6NDEsIFJvZG9scGhlIEJlcnRvbGluaSB2aWEg
+VVNSUC11c2VycyB3cm90ZToKPj4gICAgIERlYXIgYWxsLAo+Pgo+PiAgICAgSSBoYXZlIGJlZW4g
+dXNpbmcgYSBVU1JQIEIyMTAgb24gYSBsYXB0b3AgZm9yIG1vbnRocyBub3cuIEZvcgo+PiAgICAg
+cmVhc29ucywgSSBzd2l0Y2hlZCB0byBhbm90aGVyIExpbnV4IHNlc3Npb24sIGFuZCB1c2luZyB0
+aGlzCj4+ICAgICBzZXNzaW9uIFVIRCBmYWlscyB0byB0YWxrIHRvIEIyMTAgb3ZlciBVU0IgMy4w
+Cj4+Cj4+ICAgICBkbWVzZyB0ZWxscyBtZSBpdCBpcyB1c2luZyB0aGUgeGhjaV9oY2QgZHJpdmVy
+ICh3aGljaCBJIGJlbGlldmUgaXMKPj4gICAgIHRoZSBkcml2ZXIgZm9yIFVTQiAzLjApLCBhbmQg
+aXMgYWxzbyBtZW50aW9uaW5nwqAgIm5ldyBoaWdoLXNwZWVkCj4+ICAgICBVU0IiLCB3aGljaCBs
+ZWFkcyBtZSB0byB0aGluayB0aGF0IFVTQiAzLjAgbGluayBpcyB3ZWxsIHJlY29nbml6ZWQKPj4g
+ICAgIGFuZCBhY3RpdmU6Cj4+Cj4+ICAgICBbIMKgMzA2LjEzMzAyOF0gdXNiIDEtMTogbmV3IGhp
+Z2gtc3BlZWQgVVNCIGRldmljZSBudW1iZXIgMTYgdXNpbmcKPj4gICAgIHhoY2lfaGNkCj4+ICAg
+ICBbIMKgMzA2LjI2MDM0OV0gdXNiIDEtMTogTmV3IFVTQiBkZXZpY2UgZm91bmQsIGlkVmVuZG9y
+PTI1MDAsCj4+ICAgICBpZFByb2R1Y3Q9MDAyMAo+PiAgICAgWyDCoDMwNi4yNjAzNTFdIHVzYiAx
+LTE6IE5ldyBVU0IgZGV2aWNlIHN0cmluZ3M6IE1mcj0xLCBQcm9kdWN0PTIsCj4+ICAgICBTZXJp
+YWxOdW1iZXI9Mwo+PiAgICAgWyDCoDMwNi4yNjAzNTJdIHVzYiAxLTE6IFByb2R1Y3Q6IFVTUlAg
+QjIwMAo+PiAgICAgWyDCoDMwNi4yNjAzNTRdIHVzYiAxLTE6IE1hbnVmYWN0dXJlcjogRXR0dXMg
+UmVzZWFyY2ggTExDCj4+ICAgICBbIMKgMzA2LjI2MDM1NV0gdXNiIDEtMTogU2VyaWFsTnVtYmVy
+OiAzMUI5Mjg5Cj4+Cj4+ICAgICBIb3dldmVyLCB3aGVuIHJ1bm5pbmcgYW55IHVoZCBjb21tYW5k
+IGxpbmUsIGl0IGZhaWxzIHVzaW5nIFVTQiAzLjA6Cj4+Cj4+ICAgICBbSU5GT10gW1VIRF0gbGlu
+dXg7IEdOVSBDKysgdmVyc2lvbiA1LjQuMCAyMDE2MDYwOTsgQm9vc3RfMTA1ODAwOwo+PiAgICAg
+VUhEXzMuMTUuMC4wLXJlbGVhc2UKPj4gICAgIFtJTkZPXSBbQjIwMF0gRGV0ZWN0ZWQgRGV2aWNl
+OiBCMjEwCj4+ICAgICBbSU5GT10gW0IyMDBdIE9wZXJhdGluZyBvdmVyIFVTQiAyLgo+Pgo+PiAg
+ICAgSSBoYXZlIGFsc28gdHJpZWQgd2l0aCBVSEQgMy4xNC4xLCBubyBpbXByb3ZlbWVudC4KPj4K
+Pj4gICAgIEkgcmVtZW1iZXIgaGF2aW5nIGEgc2ltaWxhciBpc3N1ZSAobWF5YmUgdGhlIHNhbWU/
+KSB0aGF0IGhhZCBiZWVuCj4+ICAgICBzb2x2ZWQgd2l0aCBzb21ldGhpbmcgcmVsYXRlZCB0byB1
+ZGV2LCBidXQgSSBzYWRseSBkaWRuJ3QgdGFrZSBhbnkKPj4gICAgIG5vdGUgb2YgdGhpcy4KPj4K
+Pj4gICAgIERvIHlvdSBoYXZlIGFueSBoaW50Pwo+Pgo+PiAgICAgVGhhbmsgeW91Lgo+PiAgICAg
+UmVnYXJkcywKPj4gICAgIFJvZG9scGhlCj4+Cj4+ICAgICBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwo+PiAgICAgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
+Pj4gICAgIFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb20+Cj4+ICAgICBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGlu
+Zm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAgICAgX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KPiAgICAgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
+PiAgICAgVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbT4KPiAgICAgaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZv
+L3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApV
+U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4v
+bGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
