@@ -2,77 +2,70 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 583ED189FDB
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Mar 2020 16:39:42 +0100 (CET)
-Received: from [::1] (port=48950 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DEF618A01E
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Mar 2020 17:02:46 +0100 (CET)
+Received: from [::1] (port=44810 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jEanF-00014k-HJ; Wed, 18 Mar 2020 11:39:41 -0400
-Received: from mail-dm6nam10olkn2067.outbound.protection.outlook.com
- ([40.92.41.67]:64993 helo=NAM10-DM6-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <e070832@hotmail.com>) id 1jEanA-0000xA-Ue
- for usrp-users@lists.ettus.com; Wed, 18 Mar 2020 11:39:36 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C+wT7Aitx43ZTGC3Mc7imyIpoYo85y6JXVuNSocfFe3bmBVXecAjKrDcHYOpfQFmuerj2v32QPC0sgsmn2iLu/jPYINNjbu1vLorDouU8p62WcAi50Bztg9OoL+fryfgVGq/APf1MRhkr2oSf7XVCuHIgtfhULH5rEkjcIzpOLPxe0i0c5CHZMO2LnhgwBETLSiUDyWv/IpfR/ToHKPLoL13p5lEwqdfd7JVCx56lGYnqhRSc6Kvec8LhV74fcdoM6SU62haErPtL+kGesKnMN1hpOJ5BIVIo2NySpCxkwmFnRdcgFANq2cGP08mVF0zIMNZ4+k/ISecD6JnAP39xA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s2dD8vZO5iegDUICSB75v9J00/PpkY+Ms3nOf9briiw=;
- b=SRYAgJX732mq7y3+y1Zc7pduszZT5pr1Xc4llvhjM0ibAiYpa20H0bWrH3a+XqGVpAhqeZnGZUJVj2hcJUNDUlvdadWSO1ooKDj0WXFTHmBtzGD1J2FaqW35UxmWTnapvg9JCbaFUS8OgHrY92lcMGLP9pfYqHdpSdINrYy+4qsJz24JM8PUQtZW9C+G5FfouWsBH5vW51Z9tNDnI5WZFO9QaF0PTKAeiAxIg/nsQ4PYRtnWkCPNX6u82f/lt65OgE4YEtYLLgzY8hEikdv9myTMFFOQGSe2dtKjh4o1ZdJ9uo+I/YP+37nvQHKeKRf3mwQ7uMhg5IhANJl6LnDk4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s2dD8vZO5iegDUICSB75v9J00/PpkY+Ms3nOf9briiw=;
- b=ecGBm+arJqtTyv95S6PDIWs9/u45/PJAaE7uXzsIvHyy7zEyhzEk/A05t055Svvr/VEpPCoMerUdfOVWBaXPdlbBREhrPS4weZ46K0E/6v+ZrZUWLxWYLRNZTM3dMxfhUfZ1qsBjRFq9oyfBVSJ+8RFOvQWAWcKu1+xhnSwDShFL1CIuu0BBNi2EliAfwG+S0Dg6/mDcQkTuuhPODbMIYCtWmAC45snJXkcYgkhCLG9YPIFXod4g1VgRz0EQv4UeRtx4v6Se3gASLRmyW9+TcuNpEt1JldSCdItyqdT6cXLeswXnfpHT9f5nYIO1oVGYK5e8zxyIRrCgfPtuG0kKAQ==
-Received: from DM6NAM10FT020.eop-nam10.prod.protection.outlook.com
- (2a01:111:e400:7e86::3c) by
- DM6NAM10HT071.eop-nam10.prod.protection.outlook.com (2a01:111:e400:7e86::305)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.13; Wed, 18 Mar
- 2020 15:38:55 +0000
-Received: from DM6PR19MB2668.namprd19.prod.outlook.com (10.13.152.60) by
- DM6NAM10FT020.mail.protection.outlook.com (10.13.152.115) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.13 via Frontend Transport; Wed, 18 Mar 2020 15:38:55 +0000
-Received: from DM6PR19MB2668.namprd19.prod.outlook.com
- ([fe80::d5b1:1ab1:8cb6:b6e2]) by DM6PR19MB2668.namprd19.prod.outlook.com
- ([fe80::d5b1:1ab1:8cb6:b6e2%5]) with mapi id 15.20.2835.017; Wed, 18 Mar 2020
- 15:38:55 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: rfnocmodtool Problem
-Thread-Index: AQHV/Tlz9GkWyHEWDUCXGgJHyqYEEA==
-Date: Wed, 18 Mar 2020 15:38:55 +0000
-Message-ID: <DM6PR19MB26684C7F45F8467E94025D64A4F70@DM6PR19MB2668.namprd19.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:DB0351519C195C0F001B112AE08633D430085EF07C9F70D18362DD77B21AF171;
- UpperCasedChecksum:96E523D291BE75E2C638335B41782ACA5F9E77566BF65B6068FADA9425CCFBB9;
- SizeAsReceived:6643; Count:42
-x-tmn: [/6JiTaoN+KPE0HdRAnsWuKXe1tmIqrA5]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 42
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: 608f9ea7-cfb8-4ad4-0103-08d7cb527800
-x-ms-traffictypediagnostic: DM6NAM10HT071:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: A85uK8Jp8jnlUkcEAewpqiX9m3t5J4AUEOUcsJkdNRXPp9UQG9WQbuUQ1wPQyZh5ik1oayvAIR0wfyzQ7blee+lAhFFCS9xz2GKiSQs2TUld1jEjfGCh4l+A+ULQxjwa960tl0t9oOlSxrsn8UZ761DYx79YBZKT4w+5lTK6pWed98gRu64J4LDbOQGPkrlUgP1z/4kGHtMrUvtJSd4wpWxno4G6MiDs1cHlvSczVjs=
-x-ms-exchange-antispam-messagedata: gIoZYcVgwnxdUnJk7nA9d8XYzkx7t3h0wNLT5QbkCr5uE+l4WCkFQ+EuZj+pow4YgpnQ2VL36xx3OhHpS3WzFvmtJmiLAX3Nne+PN6cSL0VzQVD9znXpkthUYdl8LeOP3sBPmvd3I8ggbDaUIQkZbw==
-x-ms-exchange-transport-forked: True
+	id 1jEb9Z-0005qv-5W; Wed, 18 Mar 2020 12:02:45 -0400
+Received: from mail-wr1-f44.google.com ([209.85.221.44]:44927)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1jEb9V-0005iZ-Lu
+ for usrp-users@lists.ettus.com; Wed, 18 Mar 2020 12:02:41 -0400
+Received: by mail-wr1-f44.google.com with SMTP id y2so15604952wrn.11
+ for <usrp-users@lists.ettus.com>; Wed, 18 Mar 2020 09:02:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=Ls0eraQVRfOqio/JC7sOUXONrIxTzms0TqPP8a/6nJA=;
+ b=vxCB7Ft8ftsROeGYBAZC/RLgkiCTRcEwGBe0eKqDgCb8ekLJzjKt9ClLLTU+nTWs2T
+ N5BPa86UzM4yyXuqLCy1O9iNGk70Kv2vLdVPwh60Xl+WFQKSxne3cz88Ina/lSJvt4xJ
+ qPxx4a5sQSsLk8xTDAKcCXqXJ8vYDpICgT5YrpQTl2ia6gzjdBLmkBkezjYDSNlSP4Bp
+ 01HP3J9VKqxpIVh3ElUUOi550CnskQdJw8D0H5ok5Cn5Wem7LS+HNSa3vuO3Tuj+Q4aa
+ 0Zz/x5aoGqx1D/fsB0QewbVVpT8Mgzt5rz/E37yFmYyuySGxFioYXgXcV/cViaoGjScI
+ NXIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=Ls0eraQVRfOqio/JC7sOUXONrIxTzms0TqPP8a/6nJA=;
+ b=pqDiKnkx24AaRH88rfc60L2kBlXrnFJylQgkh41zNVfheClwRwZqxTK3AwNv/UGP3B
+ Ury0SOAhME5AdBjErRzSE7ztvdku/z0KolDV5Z/CXf7/aq1ETXjoHX6kKSGg5cxhRbPm
+ q+BmY4uZgARbrzPU7iIpHmP1mOgaCzPsBVZmPjeCj0bIGxRO4cadvzStkJrxHF/LqLvJ
+ 4NUaq688b/QRW1WtjHf0iEbCcagZlqiN39v0Bs6aA5W+ACeN9LvypKdnxn2ipYvx3PuD
+ FjB7NgKeNa18Sk7jivMXlXhVv1x5+zEfqPicEiiotXe7f6nwSsJ8V/UPRc9ro/yJu3Cp
+ 7+LA==
+X-Gm-Message-State: ANhLgQ35rgSsTzFkgmdXajH13Ylf2G1t9TApY53UfnZIszHipX7cSiQL
+ wuFg2YobTuhP9FFGQm075RxqG1zQj4uguA==
+X-Google-Smtp-Source: ADFU+vsMEOR5Er2ghr3cWmtJl8L+vkXOAtpMkJep2uwDENeip8vWeGd8V5BRIsbIA7Tex4KlM76NrQ==
+X-Received: by 2002:adf:f1ce:: with SMTP id z14mr4300491wro.68.1584547320103; 
+ Wed, 18 Mar 2020 09:02:00 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-146.hsi.kabel-badenwuerttemberg.de. [46.223.163.146])
+ by smtp.gmail.com with ESMTPSA id q8sm4417222wmg.6.2020.03.18.09.01.58
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 18 Mar 2020 09:01:58 -0700 (PDT)
+To: Rodolphe Bertolini <bertolini.rodolphe@gmail.com>
+References: <CAKaLowSaOhC6L9B4axxwV0=eq=PXzwRoCn22kqyfu529rTr7Dw@mail.gmail.com>
+ <1661e285-c25d-8272-0e49-1d0f896033b4@comcast.net>
+ <CAKaLowQZETbs6g=Ry5wGxuV7cJRM7eQWKmh1zyDDtHLrYuOxvQ@mail.gmail.com>
+ <0d486110-0f4a-9605-ae9a-b68075c797e5@ettus.com>
+ <dcddce1b-6d5c-9139-d2c9-61f88dfd1743@eurecom.fr>
+ <CAKaLowTQ3GEHZgksydU0pVm1ewHQjR810ZcVZObfLedX9w53+w@mail.gmail.com>
+ <00072490-e939-e531-5917-aa617f204ada@ettus.com>
+ <CAKaLowQkki_q1HSij8gmtusRJtkOzDP3pbKvQhKj9Sz1syRuEQ@mail.gmail.com>
+Message-ID: <c2323f72-a120-209b-0ea8-ffd1e0dc6c52@ettus.com>
+Date: Wed, 18 Mar 2020 17:01:57 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 608f9ea7-cfb8-4ad4-0103-08d7cb527800
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2020 15:38:55.5988 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6NAM10HT071
-Subject: [USRP-users] rfnocmodtool Problem
+In-Reply-To: <CAKaLowQkki_q1HSij8gmtusRJtkOzDP3pbKvQhKj9Sz1syRuEQ@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] Apologize if duplicate : UHD 3.15 isn't using USB
+ 3.0 although Linux driver are loaded
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,9 +77,12 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jeff S <e070832@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============4803562702122887704=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -100,137 +96,194 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4803562702122887704==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM6PR19MB26684C7F45F8467E94025D64A4F70DM6PR19MB2668namp_"
-
---_000_DM6PR19MB26684C7F45F8467E94025D64A4F70DM6PR19MB2668namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-I'm still going through the "Getting Started with RFNoC Development" guide =
-at https://kb.ettus.com/Getting_Started_with_RFNoC_Development, and I am at=
- the rfnocmodtool section.  I do the following command and get the error re=
-sponse:
-
-
-$ which rfnocmodtool
-/usr/local/bin/rfnocmodtool
-
-$ rfnocmodtool --help Traceback (most recent call last): File "/usr/local/b=
-in/rfnocmodtool", line 7, in <module> from ettus.rfnoc_modtool import * Fil=
-e "/usr/local/lib/python2.7/dist-packages/ettus/rfnoc_modtool/__init__.py",=
- line 25, in <module> from .grc_xml_generator import GRCXMLGenerator File "=
-/usr/local/lib/python2.7/dist-packages/ettus/rfnoc_modtool/grc_xml_generato=
-r.py", line 4, in <module> from .util_functions import is_number, xml_inden=
-t File "/usr/local/lib/python2.7/dist-packages/ettus/rfnoc_modtool/util_fun=
-ctions.py", line 8, in <module> from builtins import input ImportError: No =
-module named builtins
-
-$ uhd_config_info --version
-UHD 4.0.0.rfnoc-devel-702-geec24d7b
-
-Is this something obvious that I'm missing?  Something that didn't get inst=
-alled?
-
-I used the manual creation of the environment, and I was able to build an i=
-mage (higher in the referenced guide), so it seems like the installation is=
- correct.  I did not see the same issue from previous search hits relating =
-to rfnocmodtool, but I could have missed a relevant answer.
-
-Thanks,
-Jeff
-
---_000_DM6PR19MB26684C7F45F8467E94025D64A4F70DM6PR19MB2668namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-I'm still going through the &quot;Getting Started with RFNoC Development&qu=
-ot; guide at <a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_Dev=
-elopment" id=3D"LPNoLP252897">
-https://kb.ettus.com/Getting_Started_with_RFNoC_Development</a>, and I am a=
-t the rfnocmodtool section.&nbsp; I do the following command and get the er=
-ror response:</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<blockquote style=3D"margin-top: 0px; margin-bottom: 0px;">
-<pre><pre>$ which rfnocmodtool =0A=
-/usr/local/bin/rfnocmodtool</pre>$ rfnocmodtool --help=0A=
-Traceback (most recent call last):=0A=
-  File &quot;/usr/local/bin/rfnocmodtool&quot;, line 7, in &lt;module&gt;=
-=0A=
-    from ettus.rfnoc_modtool import *=0A=
-  File &quot;/usr/local/lib/python2.7/dist-packages/ettus/rfnoc_modtool/__i=
-nit__.py&quot;, line 25, in &lt;module&gt;=0A=
-    from .grc_xml_generator import GRCXMLGenerator=0A=
-  File &quot;/usr/local/lib/python2.7/dist-packages/ettus/rfnoc_modtool/grc=
-_xml_generator.py&quot;, line 4, in &lt;module&gt;=0A=
-    from .util_functions import is_number, xml_indent=0A=
-  File &quot;/usr/local/lib/python2.7/dist-packages/ettus/rfnoc_modtool/uti=
-l_functions.py&quot;, line 8, in &lt;module&gt;=0A=
-    from builtins import input=0A=
-ImportError: No module named builtins<br></pre>
-<pre><pre>$ uhd_config_info --version=0A=
-UHD 4.0.0.rfnoc-devel-702-geec24d7b</pre></pre>
-</blockquote>
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-</div>
-<div>Is this something obvious that I'm missing?&nbsp; Something that didn'=
-t get installed?<br>
-</div>
-<div><br>
-</div>
-<div>I used the manual creation of the environment, and I was able to build=
- an image (higher in the referenced guide), so it seems like the installati=
-on is correct.&nbsp; I did not see the same issue from previous search hits=
- relating to rfnocmodtool, but I could
- have missed a relevant answer.<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Thanks,</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Jeff<br>
-</div>
-</body>
-</html>
-
---_000_DM6PR19MB26684C7F45F8467E94025D64A4F70DM6PR19MB2668namp_--
-
-
---===============4803562702122887704==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4803562702122887704==--
-
+SHVoLCB0aGF0J3Mga2luZCBvZiBzYWQsIGJlY2F1c2UgaXQgd2FzIG15IGxhc3Qgc3RyYXcgOigK
+Ck9uIDE4LjAzLjIwIDE1OjM2LCBSb2RvbHBoZSBCZXJ0b2xpbmkgd3JvdGU6Cj4gTWFyY3VzLAo+
+IFVTQiBwbHVnIGlzIHJvdGF0ZWQgKGZyb20gcm93IGlzIGF0IHRvcCksIGJ1dCB5ZXMgSSBnZXQg
+dGhlIGV4YWN0IHNhbWUKPiBwb3J0IGFzIHlvdXIuCj4gVGhhbmsgeW91Cj4gUmVnYXJkcywKPiBS
+b2RvbHBoZQo+IAo+IExlwqBtZXIuIDE4IG1hcnMgMjAyMCDDoMKgMTY6MjAsIE1hcmN1cyBNw7xs
+bGVyIHZpYSBVU1JQLXVzZXJzCj4gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxtYWlsdG86
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+PiBhIMOpY3JpdMKgOgo+IAo+ICAgICBIaSBSb2Rv
+bHBoZSwKPiAKPiAgICAgY29uc2lkZXJpbmcgdGhpcyBpcyBhcyBjb25mdXNpbmcgdG8gbWUgYXMg
+dG8geW91OiBJIHRvb2sgYSBwaWN0dXJlIG9mIG15Cj4gICAgIFVTQjMgcG9ydC4gV2hlbiBsb29r
+aW5nIGF0IGFuIG9ibGlxdWUgYW5nbGUgYXQgeW91cnMsIGRvIHlvdSBzZWUgdGhlCj4gICAgIGZp
+dmUgZnJvbnQtcm93IGJyb256ZS9nb2xkIGNvbnRhY3RzIHNob3duIGluIHRoZSBhdHRhY2hlZCBw
+aG90bz8KPiAKPiAgICAgQmVzdCByZWdhcmRzLAo+ICAgICBNYXJjdXMKPiAKPiAgICAgT24gMTgu
+MDMuMjAgMTQ6MzMsIFJvZG9scGhlIEJlcnRvbGluaSB2aWEgVVNSUC11c2VycyB3cm90ZToKPiAg
+ICAgPiBUaGFua3MgdG8gYm90aCBvZiB5b3UuCj4gICAgID4KPiAgICAgPiBUaGUgcG9ydCBpcyBi
+bGFjaywgYnV0IGl0IGhhcyBiZWVuIHdvcmtpbmcgZm9yIGZldyBtb250aHMgdW50aWwgSQo+ICAg
+ICA+IHNodXRkb3duIC8gY2hhbmdlIHNlc3Npb24gKEkgY2FuJ3QgbG9nIGJhY2sgdG8gcHJldmlv
+dXMgc2Vzc2lvbiBmb3IKPiAgICAgPiByZWFzb25zKSBzbyBJIGJlbGlldmUgdGhhdCB0aGUgcG9y
+dCBieSBpdHNlbGYgaXNuJ3QgdGhlIGJhZCBndXkuCj4gICAgID4KPiAgICAgPiBJdCBrZWVwcyBh
+cHBlYXJpbmcgYXMgVVNCIDIgKCJoaWdoLXNwZWVkIikgd2hlbiBJIHBsdWcgaXQgYW5kIGFsc28K
+PiAgICAgd2hlbgo+ICAgICA+IEkgcnVuIHVoZF9maW5kX2RldmljZXMKPiAgICAgPgo+ICAgICA+
+IEBDZWRyaWMgSSBtYWRlIHN1cmUgdG8gcGx1ZyBhdCBtYXggYm90aCBlbmRzCj4gICAgID4KPiAg
+ICAgPiBUaGFuayB5b3UgYWdhaW4KPiAgICAgPiBSZWdhcmRzLAo+ICAgICA+IFJvZG9scGhlCj4g
+ICAgID4KPiAgICAgPiBMZcKgbWVyLiAxOCBtYXJzIDIwMjAgw6DCoDE1OjAyLCBDZWRyaWMgUm91
+eCB2aWEgVVNSUC11c2Vycwo+ICAgICA+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFp
+bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+ICAgICA8bWFpbHRvOnVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tCj4gICAgIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+Pj4gYSDDqWNyaXTCoDoKPiAgICAgPgo+ICAgICA+wqAgwqAgwqBIaSwKPiAgICAgPgo+ICAgICA+
+wqAgwqAgwqBiZSBhbHNvIHN1cmUgdG8gcGx1ZyB0aGUgY2FibGUgZmlybWx5IG9uIGJvdGgKPiAg
+ICAgPsKgIMKgIMKgZW5kcy4gSSd2ZSBzZWVuIGl0IG1vcmUgdGhhbiBvbmNlIHdpdGggYSBjYWJs
+ZQo+ICAgICA+wqAgwqAgwqAiaGFsZi1wbHVnZ2VkIiBhbmQgdGhlbiBpdCBiZWNvbWVzIHVzYjIs
+IG5vdCB1c2IzLgo+ICAgICA+Cj4gICAgID7CoCDCoCDCoE15IDIgY2VudHMuCj4gICAgID4KPiAg
+ICAgPsKgIMKgIMKgUmVnYXJkcywKPiAgICAgPsKgIMKgIMKgQ8OpZHJpYy4KPiAgICAgPgo+ICAg
+ICA+wqAgwqAgwqBPbiAzLzE4LzIwIDI6NTQgUE0sIE1hcmN1cyBNw7xsbGVyIHZpYSBVU1JQLXVz
+ZXJzIHdyb3RlOgo+ICAgICA+wqAgwqAgwqA+IEhpIFJvZG9scGhlLAo+ICAgICA+wqAgwqAgwqA+
+Cj4gICAgID7CoCDCoCDCoD4gZmlyc3Qgb2YgYWxsLCBjaGVjayB3aGV0aGVyIHlvdSdyZSBhY3R1
+YWxseSBkZWFsaW5nIHdpdGggYSBVU0IzCj4gICAgID7CoCDCoCDCoHBvcnQuIEkKPiAgICAgPsKg
+IMKgIMKgPiBrbm93LCBzb3VuZHMgc3RyYW5nZSwgYnV0IGlmIGl0J3Mgbm90IGJsdWUgYW5kIGRv
+ZXNuJ3QgaGF2ZQo+ICAgICBtb3JlIHRoYW4KPiAgICAgPsKgIMKgIMKgPiBmb3VyIHZpc2libGUg
+Y29udGFjdHMsIGl0J3Mgbm90IHN0YW5kYXJkLWNvbXBsaWFudCBVU0IzLiBUaGUKPiAgICAgZmFj
+dCB0aGF0Cj4gICAgID7CoCDCoCDCoD4gaXQncyBhdHRhY2hlZCB0byBhIHhIQ0kgZG9lc24ndCBp
+dHNlbGYgbWVhbiBpdCBjYW4gZG8gVVNCMy4KPiAgICAgPsKgIMKgIMKgPgo+ICAgICA+wqAgwqAg
+wqA+IFRoZW4sIEkgY2FuJ3QgcXVpdGUgcmVtZW1iZXIgd2hldGhlciB0aGUgVVNCIGNvbnRyb2xs
+ZXIgb24KPiAgICAgdGhlIEIyMDAKPiAgICAgPsKgIMKgIMKgPiB3b3VsZCBldmVuIHJlZ2lzdGVy
+IGFzIFVTQjMgYmVmb3JlIHRoZSBpbml0aWFsIGZpcm13YXJlIGlzCj4gICAgIGxvYWRlZC4gVHJ5
+Cj4gICAgID7CoCDCoCDCoD4gdGhlIGZvbGxvd2luZzogSW4gb25lIHRlcm1pbmFsIHdpbmRvdywg
+cnVuIGBkbWVzZyAtSHd4YC4KPiAgICAgUGx1ZyBpbiB0aGUKPiAgICAgPsKgIMKgIMKgPiBVU1JQ
+LCBhbmQgc2VlIGhvdyBpdCBhcHBlYXJzIG9uIHRoZSBidXMgKGl0IHNlZW1zLCBhcyBVU0IyCj4g
+ICAgIGhpZ2gtc3BlZWQKPiAgICAgPsKgIMKgIMKgPiBkZXZpY2UpLiBBZnRlciB0aGF0LCBpbiBh
+bm90aGVyIHRlcm1pbmFsLCB5b3UnZCBydW4KPiAgICAgPsKgIMKgIMKgYHVoZF9maW5kX2Rldmlj
+ZXNgLAo+ICAgICA+wqAgwqAgwqA+IGFuZCBzZWUgd2hldGhlciB0aGUgZGV2aWNlIHJlLWVudW1l
+cmF0ZXMgYXMgVVNCMyBTdXBlclNwZWVkCj4gICAgIGRldmljZS4KPiAgICAgPsKgIMKgIMKgPgo+
+ICAgICA+wqAgwqAgwqA+IEJlc3QgcmVnYXJkcywKPiAgICAgPsKgIMKgIMKgPiBNYXJjdXMKPiAg
+ICAgPsKgIMKgIMKgPgo+ICAgICA+wqAgwqAgwqA+IE9uIDE4LjAzLjIwIDEzOjQzLCBSb2RvbHBo
+ZSBCZXJ0b2xpbmkgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gICAgID7CoCDCoCDCoD4+IEhlbGxv
+IFJvbiwgKEkgcmVzZW5kIHRoZSBlbWFpbCwgSSBmb3Jnb3QgdG8gInJlcGx5IHRvIGFsbCIpCj4g
+ICAgID7CoCDCoCDCoD4+IFRoYW5rIHlvdSBmb3IgeW91ciBxdWljayBmZWVkYmFjay4KPiAgICAg
+PsKgIMKgIMKgPj4KPiAgICAgPsKgIMKgIMKgPj4gT2sgSSB1bmRlcnN0YW5kLiBNb3JlIGluZm9y
+bWF0aW9uLCBsc3BjaSBnaXZlcyBtZSA6Cj4gICAgID7CoCDCoCDCoD4+IDAwOjE0LjAgVVNCIGNv
+bnRyb2xsZXI6IEludGVsIENvcnBvcmF0aW9uIENhbm5vbiBMYWtlIFBDSAo+ICAgICBVU0IgMy4x
+Cj4gICAgID7CoCDCoCDCoHhIQ0kKPiAgICAgPsKgIMKgIMKgPj4gSG9zdCBDb250cm9sbGVyIChy
+ZXYgMTApCj4gICAgID7CoCDCoCDCoD4+IFNvIEkgZG9uJ3QgZ2V0IHdoeSBkb2Vzbid0IFVidW50
+dSBlbmFibGVzIFVTQiAzLjAgd2l0aCB0aGUKPiAgICAgQjIxMC4KPiAgICAgPsKgIMKgIMKgPj4K
+PiAgICAgPsKgIMKgIMKgPj4gTXkgcHJvYmxlbXMgbG9va3MgbGlrZSB0aGlzIG9uZQo+ICAgICA+
+wqAgwqAgwqA+Pgo+ICAgICA+wqAgwqAKPiAgICAgwqBodHRwOi8vbGlzdHMuZXR0dXMuY29tL3Bp
+cGVybWFpbC91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbS8yMDE4LUp1bHkvMDU3MzIzLmh0bWwK
+PiAgICAgPsKgIMKgIMKgPj4KPiAgICAgPsKgIMKgIMKgPj4gVGhlIG91dHB1dCBvZiBsc3VzYiAt
+dCBpcyBzaW1pbGFyLCB3aXRoICJEcml2ZXI9KG5vbmUpIgo+ICAgICA+wqAgwqAgwqA+PiBBIG1l
+c3NhZ2Ugb2YgYWJvdmUgbWVudGlvbmVkIHRocmVhZCBzdWdnZXN0cyB0byBlbmFibGUgMy4wCj4g
+ICAgIG9wdGlvbiBpbgo+ICAgICA+wqAgwqAgwqA+PiBCSU9TLCBob3dldmVyIEkgZG9uJ3QgaGF2
+ZSBzdWNoIG9wdGlvbi4gQW5kIGV2ZW4gaWYgSSBoYWQsIEkKPiAgICAgPsKgIMKgIMKgZGlkbid0
+IG5vdAo+ICAgICA+wqAgwqAgwqA+PiBjaGFuZ2UgYW55dGhpbmcgYmV0d2VlbiByZWJvb3QgLyBz
+ZXNzaW9uIHN3aXRjaCBzbyBJIHJlYWxseQo+ICAgICBkb24ndAo+ICAgICA+wqAgwqAgwqA+PiB1
+bmRlcnN0YW5kIHdoZXJlIHRoaXMgcmVncmVzc2lvbiBpcyBjb21pbmcgZnJvbS4KPiAgICAgPsKg
+IMKgIMKgPj4gQWxzbyBJIGRpZCB0aGUgInNvbHV0aW9uIiBtZW50aW9uZWQgYnkgdGhlIGF1dGhv
+ciA6Cj4gICAgID7CoCDCoCDCoD4+Cj4gICAgID7CoCDCoCDCoD4+IHVoZF9pbWFnZV9sb2FkZXIg
+LS1hcmdzPSJ0eXBlPWIyMDAscmVzZXQiCj4gICAgID7CoCDCoCDCoD4+Cj4gICAgID7CoCDCoCDC
+oD4+Cj4gICAgID7CoCDCoCDCoD4+IFdoaWNoIGRpZCBub3QgaW1wcm92ZSB0aGUgc2l0dWF0aW9u
+Lgo+ICAgICA+wqAgwqAgwqA+Pgo+ICAgICA+wqAgwqAgwqA+Pgo+ICAgICA+wqAgwqAgwqA+PiBU
+aGFuayB5b3UgYWdhaW4KPiAgICAgPsKgIMKgIMKgPj4KPiAgICAgPsKgIMKgIMKgPj4gUm9kb2xw
+aGUKPiAgICAgPsKgIMKgIMKgPj4KPiAgICAgPsKgIMKgIMKgPj4gTGXCoG1lci4gMTggbWFycyAy
+MDIwIMOgwqAxMjowMiwgUm9uIEVjb25vbW9zIHZpYSBVU1JQLXVzZXJzCj4gICAgID7CoCDCoCDC
+oD4+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+ICAgICA8bWFpbHRvOnVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tPgo+ICAgICA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+IDxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pgo+ICAgICA+wqAgwqAgwqA8bWFp
+bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gICAgIDxtYWlsdG86dXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20+Cj4gICAgID7CoCDCoCDCoDxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20KPiAgICAgPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+Pj4gYSDD
+qWNyaXTCoDoKPiAgICAgPsKgIMKgIMKgPj4KPiAgICAgPsKgIMKgIMKgPj7CoCDCoCDCoGRtZXNn
+IHNob3VsZCBzYXkgIm5ldyBTdXBlclNwZWVkIFVTQiBkZXZpY2UgbnVtYmVyIFggdXNpbmcKPiAg
+ICAgPsKgIMKgIMKgeGhjaV9oY2QiCj4gICAgID7CoCDCoCDCoD4+wqAgwqAgwqBvciAibmV3IFN1
+cGVyU3BlZWQgR2VuIDEgVVNCIGRldmljZSBudW1iZXIgWCB1c2luZwo+ICAgICB4aGNpX2hjZCIK
+PiAgICAgPsKgIMKgIMKgaWYgeW91Cj4gICAgID7CoCDCoCDCoD4+wqAgwqAgwqBoYXZlIGEgbmV3
+ZXIga2VybmVsLgo+ICAgICA+wqAgwqAgwqA+Pgo+ICAgICA+wqAgwqAgwqA+PsKgIMKgIMKgImhp
+Z2gtc3BlZWQiIG1lYW5zIFVTQiAyLjAuCj4gICAgID7CoCDCoCDCoD4+Cj4gICAgID7CoCDCoCDC
+oD4+wqAgwqAgwqBSb24KPiAgICAgPsKgIMKgIMKgPj4KPiAgICAgPsKgIMKgIMKgPj7CoCDCoCDC
+oE9uIDMvMTgvMjAgMDM6NDEsIFJvZG9scGhlIEJlcnRvbGluaSB2aWEgVVNSUC11c2VycyB3cm90
+ZToKPiAgICAgPsKgIMKgIMKgPj4+wqAgwqAgwqBEZWFyIGFsbCwKPiAgICAgPsKgIMKgIMKgPj4+
+Cj4gICAgID7CoCDCoCDCoD4+PsKgIMKgIMKgSSBoYXZlIGJlZW4gdXNpbmcgYSBVU1JQIEIyMTAg
+b24gYSBsYXB0b3AgZm9yIG1vbnRocwo+ICAgICBub3cuIEZvcgo+ICAgICA+wqAgwqAgwqA+Pj7C
+oCDCoCDCoHJlYXNvbnMsIEkgc3dpdGNoZWQgdG8gYW5vdGhlciBMaW51eCBzZXNzaW9uLCBhbmQK
+PiAgICAgdXNpbmcgdGhpcwo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoCDCoHNlc3Npb24gVUhEIGZh
+aWxzIHRvIHRhbGsgdG8gQjIxMCBvdmVyIFVTQiAzLjAKPiAgICAgPsKgIMKgIMKgPj4+Cj4gICAg
+ID7CoCDCoCDCoD4+PsKgIMKgIMKgZG1lc2cgdGVsbHMgbWUgaXQgaXMgdXNpbmcgdGhlIHhoY2lf
+aGNkIGRyaXZlciAod2hpY2ggSQo+ICAgICA+wqAgwqAgwqBiZWxpZXZlIGlzCj4gICAgID7CoCDC
+oCDCoD4+PsKgIMKgIMKgdGhlIGRyaXZlciBmb3IgVVNCIDMuMCksIGFuZCBpcyBhbHNvIG1lbnRp
+b25pbmfCoCAibmV3Cj4gICAgIGhpZ2gtc3BlZWQKPiAgICAgPsKgIMKgIMKgPj4+wqAgwqAgwqBV
+U0IiLCB3aGljaCBsZWFkcyBtZSB0byB0aGluayB0aGF0IFVTQiAzLjAgbGluayBpcyB3ZWxsCj4g
+ICAgID7CoCDCoCDCoHJlY29nbml6ZWQKPiAgICAgPsKgIMKgIMKgPj4+wqAgwqAgwqBhbmQgYWN0
+aXZlOgo+ICAgICA+wqAgwqAgwqA+Pj4KPiAgICAgPsKgIMKgIMKgPj4+wqAgwqAgwqBbIMKgMzA2
+LjEzMzAyOF0gdXNiIDEtMTogbmV3IGhpZ2gtc3BlZWQgVVNCIGRldmljZQo+ICAgICBudW1iZXIg
+MTYKPiAgICAgPsKgIMKgIMKgdXNpbmcKPiAgICAgPsKgIMKgIMKgPj4+wqAgwqAgwqB4aGNpX2hj
+ZAo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoCDCoFsgwqAzMDYuMjYwMzQ5XSB1c2IgMS0xOiBOZXcg
+VVNCIGRldmljZSBmb3VuZCwKPiAgICAgaWRWZW5kb3I9MjUwMCwKPiAgICAgPsKgIMKgIMKgPj4+
+wqAgwqAgwqBpZFByb2R1Y3Q9MDAyMAo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoCDCoFsgwqAzMDYu
+MjYwMzUxXSB1c2IgMS0xOiBOZXcgVVNCIGRldmljZSBzdHJpbmdzOiBNZnI9MSwKPiAgICAgPsKg
+IMKgIMKgUHJvZHVjdD0yLAo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoCDCoFNlcmlhbE51bWJlcj0z
+Cj4gICAgID7CoCDCoCDCoD4+PsKgIMKgIMKgWyDCoDMwNi4yNjAzNTJdIHVzYiAxLTE6IFByb2R1
+Y3Q6IFVTUlAgQjIwMAo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoCDCoFsgwqAzMDYuMjYwMzU0XSB1
+c2IgMS0xOiBNYW51ZmFjdHVyZXI6IEV0dHVzIFJlc2VhcmNoIExMQwo+ICAgICA+wqAgwqAgwqA+
+Pj7CoCDCoCDCoFsgwqAzMDYuMjYwMzU1XSB1c2IgMS0xOiBTZXJpYWxOdW1iZXI6IDMxQjkyODkK
+PiAgICAgPsKgIMKgIMKgPj4+Cj4gICAgID7CoCDCoCDCoD4+PsKgIMKgIMKgSG93ZXZlciwgd2hl
+biBydW5uaW5nIGFueSB1aGQgY29tbWFuZCBsaW5lLCBpdCBmYWlscyB1c2luZwo+ICAgICA+wqAg
+wqAgwqBVU0IgMy4wOgo+ICAgICA+wqAgwqAgwqA+Pj4KPiAgICAgPsKgIMKgIMKgPj4+wqAgwqAg
+wqBbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA1LjQuMCAyMDE2MDYwOTsKPiAg
+ICAgPsKgIMKgIMKgQm9vc3RfMTA1ODAwOwo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoCDCoFVIRF8z
+LjE1LjAuMC1yZWxlYXNlCj4gICAgID7CoCDCoCDCoD4+PsKgIMKgIMKgW0lORk9dIFtCMjAwXSBE
+ZXRlY3RlZCBEZXZpY2U6IEIyMTAKPiAgICAgPsKgIMKgIMKgPj4+wqAgwqAgwqBbSU5GT10gW0Iy
+MDBdIE9wZXJhdGluZyBvdmVyIFVTQiAyLgo+ICAgICA+wqAgwqAgwqA+Pj4KPiAgICAgPsKgIMKg
+IMKgPj4+wqAgwqAgwqBJIGhhdmUgYWxzbyB0cmllZCB3aXRoIFVIRCAzLjE0LjEsIG5vIGltcHJv
+dmVtZW50Lgo+ICAgICA+wqAgwqAgwqA+Pj4KPiAgICAgPsKgIMKgIMKgPj4+wqAgwqAgwqBJIHJl
+bWVtYmVyIGhhdmluZyBhIHNpbWlsYXIgaXNzdWUgKG1heWJlIHRoZSBzYW1lPykKPiAgICAgdGhh
+dCBoYWQKPiAgICAgPsKgIMKgIMKgYmVlbgo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoCDCoHNvbHZl
+ZCB3aXRoIHNvbWV0aGluZyByZWxhdGVkIHRvIHVkZXYsIGJ1dCBJIHNhZGx5IGRpZG4ndAo+ICAg
+ICA+wqAgwqAgwqB0YWtlIGFueQo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoCDCoG5vdGUgb2YgdGhp
+cy4KPiAgICAgPsKgIMKgIMKgPj4+Cj4gICAgID7CoCDCoCDCoD4+PsKgIMKgIMKgRG8geW91IGhh
+dmUgYW55IGhpbnQ/Cj4gICAgID7CoCDCoCDCoD4+Pgo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoCDC
+oFRoYW5rIHlvdS4KPiAgICAgPsKgIMKgIMKgPj4+wqAgwqAgwqBSZWdhcmRzLAo+ICAgICA+wqAg
+wqAgwqA+Pj7CoCDCoCDCoFJvZG9scGhlCj4gICAgID7CoCDCoCDCoD4+Pgo+ICAgICA+wqAgwqAg
+wqA+Pj7CoCDCoCDCoF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCj4gICAgID7CoCDCoCDCoD4+PsKgIMKgIMKgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiAg
+ICAgPsKgIMKgIMKgPj4+wqAgwqAgwqBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+ICAgICA8
+bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+ICAgICA+wqAgwqAgwqA8bWFpbHRv
+OlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb20+Pgo+ICAgICA+wqAgwqAgwqA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tCj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4gICAgIDxt
+YWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbT4+Pgo+ICAgICA+wqAgwqAgwqA+Pj7CoCDCoAo+ICAgICA+wqAgwqAKPiAgICAg
+wqDCoGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
+c3RzLmV0dHVzLmNvbQo+ICAgICA+wqAgwqAgwqA+PsKgIMKgIMKgX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiAgICAgPsKgIMKgIMKgPj7CoCDCoCDCoFVT
+UlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gICAgID7CoCDCoCDCoD4+wqAgwqAgwqBVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbQo+ICAgICA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Pgo+ICAgICA+wqAgwqAgwqA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gICAg
+IDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pgo+ICAgICA+wqAgwqAgwqA8bWFp
+bHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20+Cj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20g
+PG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+Pgo+ICAgICA+wqAgwqAgwqA+PsKg
+IMKgCj4gICAgID7CoCDCoAo+ICAgICDCoMKgaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gICAgID7CoCDCoCDCoD4+Cj4g
+ICAgID7CoCDCoCDCoD4+Cj4gICAgID7CoCDCoCDCoD4+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCj4gICAgID7CoCDCoCDCoD4+IFVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0Cj4gICAgID7CoCDCoCDCoD4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4g
+ICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4gICAgIDxtYWlsdG86VVNS
+UC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bT4+Cj4gICAgID7CoCDCoCDCoD4+Cj4gICAgIGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1h
+bi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+ICAgICA+wqAgwqAgwqA+Pgo+
+ICAgICA+wqAgwqAgwqA+Cj4gICAgID7CoCDCoCDCoD4gX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KPiAgICAgPsKgIMKgIMKgPiBVU1JQLXVzZXJzIG1haWxp
+bmcgbGlzdAo+ICAgICA+wqAgwqAgwqA+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gICAg
+IDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4gICAgIDxtYWlsdG86VVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+
+Cj4gICAgID7CoCDCoCDCoD4KPiAgICAgaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xp
+c3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gICAgID7CoCDCoCDCoD4KPiAgICAg
+Pgo+ICAgICA+Cj4gICAgID7CoCDCoCDCoF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCj4gICAgID7CoCDCoCDCoFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4g
+ICAgID7CoCDCoCDCoFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxtYWlsdG86VVNSUC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20+Cj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+Cj4gICAgID7CoCDCoCDCoGh0
+dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0
+dHVzLmNvbQo+ICAgICA+Cj4gICAgID4KPiAgICAgPiBfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwo+ICAgICA+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4g
+ICAgID4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbT4KPiAgICAgPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGlu
+Zm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAgICAgPgo+ICAgICBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ICAgICBVU1JQLXVzZXJzIG1haWxp
+bmcgbGlzdAo+ICAgICBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVTUlAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPgo+ICAgICBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4v
+bGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
