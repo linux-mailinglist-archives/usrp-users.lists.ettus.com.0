@@ -2,50 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BBD918A8F6
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 00:06:47 +0100 (CET)
-Received: from [::1] (port=44988 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCA0E18A96E
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 00:47:05 +0100 (CET)
+Received: from [::1] (port=59854 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jEhlp-0004Uc-TY; Wed, 18 Mar 2020 19:06:41 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:39243)
+	id 1jEiOu-0000Xf-8I; Wed, 18 Mar 2020 19:47:04 -0400
+Received: from mout.gmx.net ([212.227.17.22]:59425)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jEhlm-0004Qr-K0
- for usrp-users@lists.ettus.com; Wed, 18 Mar 2020 19:06:38 -0400
-Received: by mail-ot1-f43.google.com with SMTP id r2so449833otn.6
- for <usrp-users@lists.ettus.com>; Wed, 18 Mar 2020 16:06:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Aoi1MXgjUzSWvZ0wxHi2TGpxV8rtDHAi0vQrNI99NLY=;
- b=E1BpGQEgbpyukR2W84d+G0K1AyAmd6MNGBrJXVwsguCBGeTTsjuU/2lpnQCg685r1m
- U1eNkG4q6nDbMvfG/ds1z/UrBSwpETZNt5b6HQIkEZ9LzQssH0YUd+6S8C2TtexV7MyM
- h6u0IQlndlJXX4cBE1Ws/J2vyBT+v3ZkVWsPNNU1D8l2LK4DT8gUXK/TugTjAGFso683
- WL7k6bdEgD4uT4e0Amj7MeIhHJEXzOoo2qU1LoWjRlZ2F4KxkejfRLidfBDN4EYr4jpF
- 1G9LLiNS+tMVfD6CBrUyqhoMT6V5Anh/CMIkTloz2VPptHE7zsklI9hLghXAyrdoLcZv
- vYZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Aoi1MXgjUzSWvZ0wxHi2TGpxV8rtDHAi0vQrNI99NLY=;
- b=nIlvwhm69zrQWsZLjyiiFaK8lXtjUSGSyH6Jvy5DcLrpcPuWKRfBR6Xy1xTGgpL/D7
- FSXHmlrIUP7EVwOAdElGqrXlH+551CCWxqOdAcN6eTSEr0b4V9iU3C2GuXjlr0cqcjID
- cB9VAmLAyVu2h90rsnNpDYot+cBF2XvMZQmT6fGZ+L+hyOVOU+bkM7oSxqG5FNFvm+2A
- BmO3AzDzvda1K66oNGDB4RREc3H7Xjvg4hWNsh46gV53qETLXFTUL2UJucYwAE2LTrwL
- zxXo9d7g7txfrFIA+wX4i0sRHBOLb2Wxfi2HuVU6dtJRqegJrV5wlRrntCrgpA4JOFtF
- tjww==
-X-Gm-Message-State: ANhLgQ0/FZHmpmiQGZO+b0YIaxIeP2j/TjO9+pWYcmeq2AK5zJJYGotM
- PULO92dM74K4BTuAYrmsckGAJUFRu+1tVRL0sSg9BA==
-X-Google-Smtp-Source: ADFU+vt2pQnjqx3kw7u7VAurkrMhRIzRN8xhodAjOTs4NUD2UZ01U0OyASxiQBgx1H5jLe3m+/sE9hfAdxRd9YXIoCk=
-X-Received: by 2002:a05:6830:c5:: with SMTP id x5mr3222oto.302.1584572757675; 
- Wed, 18 Mar 2020 16:05:57 -0700 (PDT)
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jEiOq-0000Na-CL
+ for usrp-users@lists.ettus.com; Wed, 18 Mar 2020 19:47:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1584575179;
+ bh=mtGasvKpzw4vdcFBTvPryAkMEIEl3ACj7KI6XS6/Lnk=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=b45aXef53KQxsuJ5dd9SQ19vPNg86XMxyaI9WoqrJPE/Ou32r90QVJ3Iv3kNpL0s2
+ SpGCLIrKuD8I+1OeyF98tBgUsEYwMChW5Jo9i0uRf7Mo4YeodVWnfD+g54TKV1bO/+
+ BBCSizFM9cKkSu3jLCzY8saz4Y4Pj/ZcI2xIxk6M=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
+ (3c-app-gmx-bap69.server.lan [172.19.172.69]) (via HTTP); Thu, 19 Mar 2020
+ 00:46:19 +0100
 MIME-Version: 1.0
-References: <MN2PR09MB40771E0415D6D2E283CB54B7D9F70@MN2PR09MB4077.namprd09.prod.outlook.com>
-In-Reply-To: <MN2PR09MB40771E0415D6D2E283CB54B7D9F70@MN2PR09MB4077.namprd09.prod.outlook.com>
-Date: Wed, 18 Mar 2020 19:05:46 -0400
-Message-ID: <CAB__hTR_VZW-2g6W537-0yc+Ayq5QGMTRGssE-tth91zxyh=mA@mail.gmail.com>
-To: "Long, Jeffrey P." <jplong@mitre.org>
-Subject: Re: [USRP-users] RFNOC uhd api vs traditional
+Message-ID: <trinity-67ab4cfd-a450-4253-8edf-2d22a808d058-1584575179099@3c-app-gmx-bap69>
+To: "Rob Kossler" <rkossler@nd.edu>
+Date: Thu, 19 Mar 2020 00:46:19 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <CAB__hTRpVTqng7XcOgrCe5yCYUNZf8ZJVwj-nu8ScZJuf9ctvw@mail.gmail.com>
+References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
+ <38CFC8D2-9645-4412-9873-9612B897C5EB@gmail.com>
+ <trinity-c8914290-4845-4675-98c6-2e02b41f536e-1584075584965@3c-app-gmx-bap08>
+ <CAB__hTRm4hNPnfX4usHGA-hdc5WZ_=AnHVjJnZj7rGYM8xb0Tw@mail.gmail.com>
+ <CAB__hTQOdK3Y3rEbVOGtkS9L-SE2aQ3JkyfueQZAmS_h4ULETg@mail.gmail.com>
+ <trinity-f6784e7e-a386-4c2d-9853-5909919d6c1c-1584111163445@3c-app-gmx-bs31>
+ <CAB__hTSCG9vJDyfos8Vo51uun6+GVO0z2MKiAnwB5RxbQroHug@mail.gmail.com>
+ <trinity-25b958ae-2910-49fd-a252-cca35e698948-1584115895450@3c-app-gmx-bs64>
+ <CAB__hTRpVTqng7XcOgrCe5yCYUNZf8ZJVwj-nu8ScZJuf9ctvw@mail.gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:sMoMgoQ6sf0FngiWL99ryBl4aIpwEL4IPrzfDtOXp9wkZGkOk/uBzvNHln43zljgD6uOJ
+ 6oIz131Yl7kxK9REoeZVQvhoTgIgCQ5HZu7XTD5EBW7Ce17YtCZaxYUunpe3aBRafp7ERJREyAAk
+ 9jMVlV2sRdgesf9Oo0QK1lz8s6m2aX26IMRZjcw5RQBRGgAsLWliWmRKvDAkmSkScJUVtIg4yyek
+ g2bChVXWjMmBoq3Fo1lY22iN3PNucSIYsByLrT1bcUY7X/rAVr7LN9O/no2NyHyyMwi3E5FSosNU
+ ms=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:AlHlcr7JTMc=:FJ5CoMYvx4zmbxWTZPV0zf
+ JJr+j/WGBjrDqzj1aX/s82gKFuHcPej047zftD7cm2HdZfcbWvxnuefwp3SbYX2Ga7rrF+gc3
+ VoBj475kbiIsKHb8RmuRSmZhYZzwo/fR2kQpBuclmmjLwqZH55vuqUeieLJIvULOxoI11ueRE
+ Z6wanIMk0eRyPJ1ql9Dk0XPB4KPu4NSN3TKyvBBlaSZqUF778QKrRETkAUeOA+VYB8HZugrpx
+ z7E1PmQYYlngULel1fgAvu6q8YAcuiCBfK9l6FBImMdtO26Fyygan5VY68gmzUN9nfTHD5etj
+ McqW0NL1dYB/BaPD7uS0Tzj3IrYmh1urpIaj99B/QXv1nQz4GPbzogzjjNtgIibSpV+kOjiCt
+ gy6GlqobPxVU943U0rEecP9n1t4Ab1xBAwOMRS6LG8qYJS6NE/C5/s+7g0Ps5oiR8zpO+f7xt
+ 51BirOlEPDt6r0Et5biMb5XFXmRCco0NKtdwGQJhTrK/Q5zGCPNrWmIRr/Q3BPzrwr0opBOHL
+ sLwHCPRxGBdCh/rMhJIpFX5sRcZEObhzwmAidtFyXW9n+U3LjnehaCbSIAx2GiMYsi8i43Yr2
+ tQ9u8K/nDZsXQPof2l43Ue+mQcB39hh7wrf1GiJl+GExS4QjGNeBxM4f1weZ43cO/V6/rRtvG
+ sKEXFLI6x+NjvXs3+Pal38T2nlkcuTZFb6eOIIl0HMvXWO3GrBx8VQa9vc1N5wSxHAe4=
+Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
+ timed command
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,10 +71,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8207179547040811053=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8587319041690154936=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,200 +88,207 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8207179547040811053==
-Content-Type: multipart/alternative; boundary="00000000000057bd2e05a12918e6"
+--===============8587319041690154936==
+Content-Type: text/html; charset=UTF-8
 
---00000000000057bd2e05a12918e6
-Content-Type: text/plain; charset="UTF-8"
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Hi Rob,</div>
 
-Hi Jeff,
-I have been using UHD with custom RFNoC and an N310.  Here are a few
-remarks:
+<div>&nbsp;</div>
 
-   - I am surprised that you can't run multi_usrp with an N310 once you
-   remove DDCs and DUCs.  I thought that multi_usrp had the smarts to
-   essentially skip the DUC and DDC if either the blocks were missing or if
-   the user explicitly specified skip_duc, skip_duc in the make args (see
-   legacy_compat.cpp).  But, even if this worked as expected, it still
-   wouldn't solve your issue of handling custom flow graphs.
-   - I believe you are correct in saying that certain functions are not
-   provided outside of multi_usrp.  Because of this, I had to create my own
-   class, 'my_rfnoc_usrp', which inherited multi_usrp.hpp and I essentially
-   copied the code from muti_usrp_impl for all functions that didn't have an
-   equivalent rfnoc function. But this was not a trivial task.  If you are
-   only interested in a few select functions, you could just copy the code
-   from multi_usrp_impl for those functions.
-   - I believe you are correct in saying that 'master' changes this
-   architecture.  From what I understand, 'master' is the better approach in
-   the long run, but I'm just not sure how stable this new branch is in
-   comparison to 3.15.LTS. And, these changes go along with some pretty major
-   changes on the FPGA side.  So, moving to 'master' may be a pretty big
-   undertaking.
-   - You should not use rfnoc dev branch as this has been dormant for a
-   long time (a couple of years)
+<div>I think the issue is really having two usrp_multi devices with timed commands and same timestmap or similar. From your tests below:</div>
 
-Rob
+<div>&nbsp;</div>
 
+<div>1.) I can <strong>confirm </strong>that the relative phase between two RX in your suggested test is always the same! In fact, it is always 4.56 rad, even across restarts and for different frequencies! That somewhat makes sense because the phase offset is now only dependent on the difference between the two channels (fixed) and cable lengths from the splitter (fixed). I verified by removing the timed command on usrp source, the phase offset becomes random after each retune. Of course, this is independent of TX tuning (timed vs. not). For reference, this is the code used:</div>
 
-On Tue, Mar 17, 2020 at 8:59 PM Long, Jeffrey P. via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+<div>&nbsp;</div>
 
-> I have been working on applications to control a N310 directly using the
-> uhd api. As I work with the code I am noticing there is a difference in the
-> way you bring up a usrp in what I will call the traditional (legacy)
-> uhd::multi_usrp::make() approach vs the newer uhd::device3::make approach
-> which seems to only appear in the examples that are specifically rfnoc. I
-> realize you can use the legacy approach and examples to run on the N310 but
-> as soon as I start modifying the FPGA image and manually take out the DDC
-> and DUC for example it does not like that and seg faults. I am guessing it
-> is looking for those blocks and doing a whole rfnoc block enumeration thing
-> under hood and getting mad? I have been successful using the rfnoc
-> (device3) examples on my tweaked FPGA image and I am currently using 3.15
-> LTS.
->
->
->
-> So I would like to do the following and am asking how best to proceed?
->
->
->
-> -I want to remove DDC and DUC blocks from the FPGA build to make room for
-> my own stuff.
->
->
->
-> -I would like to have full uhd api capability and it appears some things
-> are missing like the sensor query that seems to be available only via
-> multi_usrp using the traditional approach. If you look at the rfnoc
-> examples they have TODOs in those sections.
->
->
->
-> I did notice that in the latest master branch there is a mb_controller
-> class that looks like it might make that stuff available. It makes sense to
-> me that the radio_ctrl would not have that motherboard type stuff but in
-> the lastest release branch it only seems to be available via the
-> traditional multi-usrp approach.
->
->
->
-> So do I need to use the master branch if I want full capability using the
-> newer api or is there some other way to get to things like the sensor
-> query? Or should I use the rfnoc dev branch? It seems master has more than
-> even rfnoc at this point.
->
->
->
-> Thanks
->
-> Jeff Long
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+<div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_rx = uhd.tune_request()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_NONE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_rx.dsp_freq = -dsp_freq</div>
 
---00000000000057bd2e05a12918e6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_tx = uhd.tune_request()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_NONE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_tx.dsp_freq = dsp_freq</div>
 
-<div dir=3D"ltr"><div>Hi Jeff,</div><div>I have been using UHD with custom =
-RFNoC and an N310.=C2=A0 Here are a few remarks:</div><div><ul><li>I am sur=
-prised that you can&#39;t run multi_usrp with an N310 once you remove DDCs =
-and DUCs.=C2=A0 I thought that multi_usrp had the smarts to essentially ski=
-p the DUC and DDC if either the blocks were missing or if the user explicit=
-ly=C2=A0specified skip_duc, skip_duc in the make args (see legacy_compat.cp=
-p).=C2=A0 But, even if this worked as expected, it still wouldn&#39;t solve=
- your issue of handling custom flow graphs.</li><li>I believe you are corre=
-ct in saying that certain functions are not provided outside=C2=A0of multi_=
-usrp.=C2=A0 Because of this, I had to create my own class, &#39;my_rfnoc_us=
-rp&#39;, which inherited multi_usrp.hpp and I essentially copied the code f=
-rom muti_usrp_impl for all functions that didn&#39;t have an equivalent rfn=
-oc function. But this was not a trivial task.=C2=A0 If you are only interes=
-ted in a few select functions, you could just copy the code from multi_usrp=
-_impl for those functions.</li><li>I believe you are correct in saying that=
- &#39;master&#39; changes this architecture.=C2=A0 From what I understand, =
-&#39;master&#39; is the better approach in the long run, but I&#39;m just n=
-ot sure how stable this new branch is in comparison to 3.15.LTS. And, these=
- changes go along with some pretty major changes on the FPGA side.=C2=A0 So=
-, moving to &#39;master&#39; may be a pretty big undertaking.</li><li>You s=
-hould not use rfnoc dev branch as this has been dormant for a long time (a =
-couple of years)</li></ul><div>Rob</div><div><br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 17, 2020=
- at 8:59 PM Long, Jeffrey P. via USRP-users &lt;<a href=3D"mailto:usrp-user=
-s@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
-1px solid rgb(204,204,204);padding-left:1ex">
+<div>&nbsp;</div>
 
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; now = usrp_sink.get_time_now()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; when = now + uhd.time_spec(1.0)</div>
+&nbsp;
 
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp_sink.set_command_time(when)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp_source.set_command_time(when)</div>
 
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res1 = usrp_sink.set_center_freq(tune_req_tx)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # TX<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res2 = usrp_source.set_center_freq(tune_req_rx, 0)&nbsp; #RX1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res3 = usrp_source.set_center_freq(tune_req_rx, 1)&nbsp; #RX2</div>
 
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_1157109616836196797WordSection1">
-<p class=3D"MsoNormal">I have been working on applications to control a N31=
-0 directly using the uhd api. As I work with the code I am noticing there i=
-s a difference in the way you bring up a usrp in what I will call the tradi=
-tional (legacy) uhd::multi_usrp::make()
- approach vs the newer uhd::device3::make approach which seems to only appe=
-ar in the examples that are specifically rfnoc. I realize you can use the l=
-egacy approach and examples to run on the N310 but as soon as I start modif=
-ying the FPGA image and manually
- take out the DDC and DUC for example it does not like that and seg faults.=
- I am guessing it is looking for those blocks and doing a whole rfnoc block=
- enumeration thing under hood and getting mad? I have been successful using=
- the rfnoc (device3) examples on
- my tweaked FPGA image and I am currently using 3.15 LTS.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">So I would like to do the following and am asking ho=
-w best to proceed?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">-I want to remove DDC and DUC blocks from the FPGA b=
-uild to make room for my own stuff.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">-I would like to have full uhd api capability and it=
- appears some things are missing like the sensor query that seems to be ava=
-ilable only via multi_usrp using the traditional approach. If you look at t=
-he rfnoc examples they have TODOs
- in those sections.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I did notice that in the latest master branch there =
-is a mb_controller class that looks like it might make that stuff available=
-. It makes sense to me that the radio_ctrl would not have that motherboard =
-type stuff but in the lastest release
- branch it only seems to be available via the traditional multi-usrp approa=
-ch.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">So do I need to use the master branch if I want full=
- capability using the newer api or is there some other way to get to things=
- like the sensor query? Or should I use the rfnoc dev branch? It seems mast=
-er has more than even rfnoc at this
- point. <u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks<u></u><u></u></p>
-<p class=3D"MsoNormal">Jeff Long<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp_sink.clear_command_time()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp_source.clear_command_time()</div>
 </div>
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+<div>&nbsp;
+<div>
+<div>2.) I also tried your second suggestion. Before reading on, you wanna guess what the outcome is?</div>
 
---00000000000057bd2e05a12918e6--
+<div>I connected &quot;TX/RX&quot; to &quot;RX2&quot; on UBX #1 (TX1 --&gt; RX1) and &quot;TX/RX&quot; to &quot;RX2&quot; on UBX #2 (TX2 --&gt; RX2). In absence of a second 30dB attenuator I used two antennas closely spaced together. For reference, my code looks now like:</div>
+
+<div>&nbsp;</div>
+
+<div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_rx = uhd.tune_request()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_rx.rf_freq_policy = uhd.tune_request.POLICY_NONE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_rx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_rx.dsp_freq = -dsp_freq</div>
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_tx = uhd.tune_request()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_tx.rf_freq_policy = uhd.tune_request.POLICY_NONE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_tx.dsp_freq_policy = uhd.tune_request.POLICY_MANUAL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_req_tx.dsp_freq = dsp_freq</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; now = usrp_sink.get_time_now()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; when = now + uhd.time_spec(1.0)</div>
+&nbsp;
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp_sink.set_command_time(when)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp_source.set_command_time(when)</div>
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res1 = usrp_sink.set_center_freq(tune_req_tx, 0)&nbsp; &nbsp;&nbsp; # TX1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res2 = usrp_sink.set_center_freq(tune_req_tx, 1)&nbsp;&nbsp;&nbsp;&nbsp; # TX2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res3 = usrp_source.set_center_freq(tune_req_rx, 0) # RX1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res4 = usrp_source.set_center_freq(tune_req_rx, 1) # RX2</div>
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp_sink.clear_command_time()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp_source.clear_command_time()</div>
+</div>
+
+<div>&nbsp;</div>
+
+<div>I again look at the <strong>relative phase</strong> of RX1 and RX2 (obtained by dividing the two) and guess what: Also now the relative phase stays constant! (This time it actually slightly varies from 3.0 rad to 3.7 rad between two different frequencies).</div>
+
+<div>What does that mean? I think it means that TX must be tuned coherently and RX must be tuned coherently, i.e., timed commands generally work for multiple TX&#39;s and multiple RX&#39;s <strong>individually</strong>. Do I get that right?</div>
+
+<div>&nbsp;</div>
+
+<div>What doesn&#39;t seem to work is RX+TX <strong>together</strong>.</div>
+
+<div>&nbsp;</div>
+
+<div>I am very desperately asking if you had coherent TX+RX setup working at any point or know somebody who did. It would be so much worth to know if this is something that never worked to begin with or if I&#39;m just doing something wrong. On the other hand I don&#39;t want to believe being the only person on the planet having tried TX+RX phase coherent operation :-/</div>
+
+<div>&nbsp;</div>
+Any other further suggestions on how to continue debugging with the above in mind would be helpful too.
+
+<div>&nbsp;</div>
+
+<div>In my opinion there are two options left:</div>
+
+<div>1.) There is still a nondeterministic delay between the TX and RX timed commands (to my understanding, even a constant delay would result in coherent phase)</div>
+
+<div>2.) While the phase accumulators in RX are set to the same values (and in TX as well), they may be set to a different, random value.</div>
+
+<div>&nbsp;</div>
+
+<div>However, I don&#39;t really know how to test these.</div>
+
+<div>&nbsp;</div>
+
+<div>Thanks,</div>
+
+<div>Lukas</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div style="margin: 10.0px 5.0px 5.0px 10.0px;padding: 10.0px 0 10.0px 10.0px;border-left: 2.0px solid rgb(195,217,229);">
+<div style="margin: 0 0 10.0px 0;"><b>Gesendet:</b>&nbsp;Freitag, 13. M&auml;rz 2020 um 12:27 Uhr<br/>
+<b>Von:</b>&nbsp;&quot;Rob Kossler&quot; &lt;rkossler@nd.edu&gt;<br/>
+<b>An:</b>&nbsp;&quot;Lukas Haase&quot; &lt;lukashaase@gmx.at&gt;<br/>
+<b>Cc:</b>&nbsp;&quot;Marcus D Leech&quot; &lt;patchvonbraun@gmail.com&gt;, &quot;USRP-users@lists.ettus.com&quot; &lt;usrp-users@lists.ettus.com&gt;<br/>
+<b>Betreff:</b>&nbsp;Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a timed command</div>
+
+<div>
+<div>
+<div>Ok, great.&nbsp; I am trying to think of ways to now add the phase measurement.&nbsp; Ideas...</div>
+
+<div>
+<ul>
+	<li>In order to get consistent phase, you would need to tune Rx and Tx DSP at the same time (rather than below where you are only tuning one of them).&nbsp; So, assuming that this will not produce consistent phase results, then maybe try the following idea...</li>
+	<li>If you want to check just Rx DSP tuning (with fixed Tx DSP tuning), you could try a 2 channel Rx measurement where the Tx is split externally with 1:2 splitter in order to drive both Rx0 and Rx1.&nbsp; Then, measure the relative phase Rx0/Rx1 and then tune back and forth between two Rx DSP freqs to see if the relative phase on Rx remains constant.&nbsp; If so, this would give you good confidence that Rx DSP tuning is indeed happening synchronously</li>
+	<li>Assuming that the Rx IS synchronous in the step above (perhaps a bad assumption, but here goes), you could then check TX DSP tuning (with fixed Rx DSP tuning) by using two Tx and two Rx channels with Tx0 connected to Rx0 and Tx1 connected to Rx1.&nbsp; At this point we are confident that Rx DSP tuning is synchronous so any synchronous misbehavior would imply a Tx sync problem.</li>
+</ul>
+
+<div>Sorry I can&#39;t think of better ideas.&nbsp;&nbsp;</div>
+
+<div>Rob</div>
+</div>
+&nbsp;
+
+<div class="gmail_quote">
+<div class="gmail_attr">On Fri, Mar 13, 2020 at 12:12 PM Lukas Haase &lt;<a href="mailto:lukashaase@gmx.at" onclick="parent.window.location.href=&#39;mailto:lukashaase@gmx.at&#39;; return false;" target="_blank">lukashaase@gmx.at</a>&gt; wrote:</div>
+
+<blockquote class="gmail_quote" style="margin: 0.0px 0.0px 0.0px 0.8ex;border-left: 1.0px solid rgb(204,204,204);padding-left: 1.0ex;">Hi Rob,<br/>
+<br/>
+1.) yes, works(*)<br/>
+2.) yes, works(*)<br/>
+<br/>
+(*): qualitatively. I set the timed command to &quot;get_current_time() + uhd.time_spec(2.0)&quot; and I see the chance 2 seconds after my click on the screen. I cannot (do not know how) check if it actually happens at sample-precicse location.<br/>
+<br/>
+Great, any ideas to simplify the setup would nice. I just don&#39;t know how I could continue to debugging the phase.<br/>
+<br/>
+Best,<br/>
+Luke<br/>
+<br/>
+<br/>
+Gesendet:&nbsp;Freitag, 13. M&auml;rz 2020 um 11:08 Uhr<br/>
+Von:&nbsp;&quot;Rob Kossler&quot; &lt;<a href="mailto:rkossler@nd.edu" onclick="parent.window.location.href=&#39;mailto:rkossler@nd.edu&#39;; return false;" target="_blank">rkossler@nd.edu</a>&gt;<br/>
+An:&nbsp;&quot;Lukas Haase&quot; &lt;<a href="mailto:lukashaase@gmx.at" onclick="parent.window.location.href=&#39;mailto:lukashaase@gmx.at&#39;; return false;" target="_blank">lukashaase@gmx.at</a>&gt;<br/>
+Cc:&nbsp;&quot;Marcus D Leech&quot; &lt;<a href="mailto:patchvonbraun@gmail.com" onclick="parent.window.location.href=&#39;mailto:patchvonbraun@gmail.com&#39;; return false;" target="_blank">patchvonbraun@gmail.com</a>&gt;, &quot;<a href="mailto:USRP-users@lists.ettus.com" onclick="parent.window.location.href=&#39;mailto:USRP-users@lists.ettus.com&#39;; return false;" target="_blank">USRP-users@lists.ettus.com</a>&quot; &lt;<a href="mailto:usrp-users@lists.ettus.com" onclick="parent.window.location.href=&#39;mailto:usrp-users@lists.ettus.com&#39;; return false;" target="_blank">usrp-users@lists.ettus.com</a>&gt;<br/>
+Betreff:&nbsp;Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a timed command<br/>
+<br/>
+Thanks Lukas,<br/>
+I wanted to confirm that you did not have an older version of FPGA firmware because there was a DDC/DUC bug fix[<a href="https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e69b1c6798771e6d" target="_blank">https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e69b1c6798771e6d</a>] related to phase.&nbsp; However, the version you provided with uhd_usrp_probe confirms that you have the bug fix included.&nbsp; So, this is not the problem.&nbsp;<br/>
+&nbsp;<br/>
+From what you said, I assume that you can successfully do the following:<br/>
+1) with Rx tuning fixed (no re-tuning at all), tune Tx DSP only (do not change TX RF) and you can see the frequency change at the specified command time (i.e., if you specify the command time 1 sec in the future, the change does not occur until 1 sec in the future).<br/>
+2) opposite of #1: with Tx tuning fixed, tune Rx DSP only and you can see the frequency change at the specified command time.<br/>
+&nbsp;<br/>
+I am trying to simplify the issue by removing RF tuning completely and by tuning only 1 of Rx/Tx at a time.&nbsp; Perhaps this will help lead to the answer.<br/>
+Rob<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;<br/>
+<br/>
+On Fri, Mar 13, 2020 at 10:53 AM Lukas Haase &lt;<a href="mailto:lukashaase@gmx.at" onclick="parent.window.location.href=&#39;mailto:lukashaase@gmx.at&#39;; return false;" target="_blank">lukashaase@gmx.at</a>[mailto:<a href="mailto:lukashaase@gmx.at" onclick="parent.window.location.href=&#39;mailto:lukashaase@gmx.at&#39;; return false;" target="_blank">lukashaase@gmx.at</a>]&gt; wrote:Hi again Rob,<br/>
+<br/>
+Yes, I confirm:<br/>
+<br/>
+1.) Finally I get the commands to execute at the same time (TX and RX individually and both at the same time)<br/>
+2.) Yes, the phase is random after each retune, even when I retune back to the same frequency<br/>
+3.) (2) is only true if it includes *DSP* retuning. With naalog retuning (+integer-N retuning) I get phase coherence, as expected.<br/>
+<br/>
+I actually expected the PLL retuning much more challenging than the DSP retuning but for some reason it seems to be the opposite...<br/>
+<br/>
+Thanks,<br/>
+Lukas<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div></body></html>
 
 
---===============8207179547040811053==
+--===============8587319041690154936==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -278,5 +299,4 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8207179547040811053==--
-
+--===============8587319041690154936==--
