@@ -2,67 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830E9189F81
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Mar 2020 16:20:55 +0100 (CET)
-Received: from [::1] (port=42066 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E3E189FC4
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Mar 2020 16:37:13 +0100 (CET)
+Received: from [::1] (port=47298 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jEaV1-0007uA-1D; Wed, 18 Mar 2020 11:20:51 -0400
-Received: from mail-wm1-f51.google.com ([209.85.128.51]:50961)
+	id 1jEakp-0000l1-0M; Wed, 18 Mar 2020 11:37:11 -0400
+Received: from mail-ed1-f46.google.com ([209.85.208.46]:39969)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1jEaUv-0007hd-UZ
- for usrp-users@lists.ettus.com; Wed, 18 Mar 2020 11:20:46 -0400
-Received: by mail-wm1-f51.google.com with SMTP id z13so3884994wml.0
- for <usrp-users@lists.ettus.com>; Wed, 18 Mar 2020 08:20:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language;
- bh=jpQCPfXaS5+YFNeFhOLNNSp2jdRUf6h/wqsEQoD0U9Q=;
- b=QCj82aYBnrgcGm5SDuxXG4UBHpHzayVmQLUtlc5NOOaB+3SlsjGNHUeM/RFQ7gso5C
- JO7mrDwTeuHvnDGjBvYcuXFcJyCcApKL0QDpZ33iVENAheFg6jZ1qcLn2JspG/SHiK1V
- KFNlue8/JZnbckSUhbl5D1JmPrjQYRhNTPeSmKoraBx5MJ9mMQbCW20LEtKLYjQ4AMnK
- R/c7L5ScEl3wmuV4RyomKr+k9QaWGf616hepcRH5pWPiIm6P7p1aBcTdFwa25imXHUh+
- QtkLIwYv+mvLDhTnx8hd+Ow/8nUXYVTWDfdC069YklhImhk3ICEJqrneOhSh0RQ3pZhl
- AFCA==
+ (Exim 4.93) (envelope-from <bertolini.rodolphe@gmail.com>)
+ id 1jEakk-0000cm-83
+ for usrp-users@lists.ettus.com; Wed, 18 Mar 2020 11:37:06 -0400
+Received: by mail-ed1-f46.google.com with SMTP id a24so31479470edy.7
+ for <usrp-users@lists.ettus.com>; Wed, 18 Mar 2020 08:36:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=kecM0jTQn0dHbMRlzpzSpn/cvVfZsW7DeNn72TqTVrM=;
+ b=Iu+v0IPMByQgFdg4iFAqxrUSqcQf5nSlLqSSMgHChOPZW3yVyzcAUz5hDFxNYU+v0O
+ s8KFo0OdAkixuA1lwRGYWIjhnoZMYXhpQ4UUE3VZzPYRqseIpy4PvS5XFqC9BpwNJ0R/
+ ZV8/USaZVsRhSPtN2zSa32I9WwoQ8xS6zChnx2B83JSVLASCzeYR5VlegNsrqPp/lkyO
+ qBi1H/xynaXzHJJGy2DLF78yv1MCy0Iblp87xyz8fTJn/ziGNChSKcdZ6Oow063Ia9AM
+ KvQ6BAdDyydk5TQ3Z9tBY7kP7kN/diA6vjb+IwxBk3SvMiOVaSvmlC4AAwkf5vjSvWz5
+ uCSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language;
- bh=jpQCPfXaS5+YFNeFhOLNNSp2jdRUf6h/wqsEQoD0U9Q=;
- b=b6kxnEL6kvna7wQYaaK20jwOEwgyV4Gu+X1F9u6mBDMJ33LNhCtiSWtSCeVDrBRvg0
- 4natjDXF+iMPgA0Q97a/+FoUD+VVr3PjaL8wAw/N2e71E7dNpSO1ncRXnhEFQ/dJjbzw
- 3nvV1+JAb5zHZTO1Qs3lVFlBAG+kKTCxUMRbxSeuZTSrhw02YuDEOMApdU7qvwiPO8uh
- muaFQok1RBkFnWNnzPJCWDHXhxnOgc8Q4f9ZnO9dZB3qybh7yFL3jQJc1keyI69LSVjL
- ECH+pKHW0FZfSw7ChJkBVnom9a8TFhZPDyP+rwyjhDugQeCwNGmAniQYhynBdjOmKksJ
- qqUA==
-X-Gm-Message-State: ANhLgQ3461VoPc0OIZbQOC06cUlssfLiXoWdIKSJbvwgY1yUH/5hRUFz
- sdszwma5xU8aVvu/SAqH3agCbl7JMDm81w==
-X-Google-Smtp-Source: ADFU+vv+tw+6FJZpmXsaPnWIh8syRmtpGWQVoHuHEcduH6Q61RcGjGvI5fyVVFr9oYLcVclvU2VCCw==
-X-Received: by 2002:a1c:7c0d:: with SMTP id x13mr5566726wmc.44.1584544804308; 
- Wed, 18 Mar 2020 08:20:04 -0700 (PDT)
-Received: from [192.168.128.8]
- (HSI-KBW-46-223-163-146.hsi.kabel-badenwuerttemberg.de. [46.223.163.146])
- by smtp.gmail.com with ESMTPSA id u1sm9710821wrt.78.2020.03.18.08.20.02
- for <usrp-users@lists.ettus.com>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 18 Mar 2020 08:20:02 -0700 (PDT)
-To: usrp-users@lists.ettus.com
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=kecM0jTQn0dHbMRlzpzSpn/cvVfZsW7DeNn72TqTVrM=;
+ b=OIQ6K2wTEBm/uKDn4HbDpInCNpZMXors9wyAOr0scQkzn+DAG2XGB5IbMYJRNy+hyB
+ onKuNKEn2d+82Sp7GAz57bH7HcCILgQLcWFowB3/U0AF78v+MAf0tyJZ/yQp4tYbSpCq
+ KayHRoalkk7K5v0p2H+QkkOVDAUmdEkKBfE+BqfZi8ZjXeKGdt7x1wE6p288TY6Fhy2o
+ 9D2XnNuBz7lysrlgpYKP+UEqQnJC7y5shZRlFxA6USWphWw32+GMQ8NN2Wbe3cQok0/s
+ ns5N0gZvGfuECFJS19M5y9M6lh1XnLtQD/uWRsDdaLNYFaXac4g9ec16l+UK2/j/sX1V
+ dPkg==
+X-Gm-Message-State: ANhLgQ1WJAlRsfIMeUsppO+iOn99lIvHGy9tc/JffH1YLxBsrqXwibpO
+ Gc4Dgfzj7SZ/zHx6S7ogtl1lApN+2d8ACueMfC5rlg==
+X-Google-Smtp-Source: ADFU+vvhu46V3YEniXENAroHPbbqx4eXNvBv7+s8dpDC6QfC9+H8cY8+7VEadhUovh9YXO4c94rMLDver8mOrMpcuEc=
+X-Received: by 2002:a05:6402:38e:: with SMTP id
+ o14mr4583186edv.356.1584545785044; 
+ Wed, 18 Mar 2020 08:36:25 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAKaLowSaOhC6L9B4axxwV0=eq=PXzwRoCn22kqyfu529rTr7Dw@mail.gmail.com>
  <1661e285-c25d-8272-0e49-1d0f896033b4@comcast.net>
  <CAKaLowQZETbs6g=Ry5wGxuV7cJRM7eQWKmh1zyDDtHLrYuOxvQ@mail.gmail.com>
  <0d486110-0f4a-9605-ae9a-b68075c797e5@ettus.com>
  <dcddce1b-6d5c-9139-d2c9-61f88dfd1743@eurecom.fr>
  <CAKaLowTQ3GEHZgksydU0pVm1ewHQjR810ZcVZObfLedX9w53+w@mail.gmail.com>
-Message-ID: <00072490-e939-e531-5917-aa617f204ada@ettus.com>
-Date: Wed, 18 Mar 2020 16:20:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
-MIME-Version: 1.0
-In-Reply-To: <CAKaLowTQ3GEHZgksydU0pVm1ewHQjR810ZcVZObfLedX9w53+w@mail.gmail.com>
-Content-Type: multipart/mixed; boundary="------------E640F5491C4443B23C23CD0C"
-Content-Language: en-US
+ <00072490-e939-e531-5917-aa617f204ada@ettus.com>
+In-Reply-To: <00072490-e939-e531-5917-aa617f204ada@ettus.com>
+Date: Wed, 18 Mar 2020 15:36:12 +0100
+Message-ID: <CAKaLowQkki_q1HSij8gmtusRJtkOzDP3pbKvQhKj9Sz1syRuEQ@mail.gmail.com>
+To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
 Subject: Re: [USRP-users] Apologize if duplicate : UHD 3.15 isn't using USB
  3.0 although Linux driver are loaded
 X-BeenThere: usrp-users@lists.ettus.com
@@ -76,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+From: Rodolphe Bertolini via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rodolphe Bertolini <bertolini.rodolphe@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7495117497519394313=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -92,1612 +83,578 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---------------E640F5491C4443B23C23CD0C
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--===============7495117497519394313==
+Content-Type: multipart/alternative; boundary="000000000000a5e3c905a122d0e4"
 
-Hi Rodolphe,
+--000000000000a5e3c905a122d0e4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-considering this is as confusing to me as to you: I took a picture of my
-USB3 port. When looking at an oblique angle at yours, do you see the
-five front-row bronze/gold contacts shown in the attached photo?
+Marcus,
+USB plug is rotated (from row is at top), but yes I get the exact same port
+as your.
+Thank you
+Regards,
+Rodolphe
 
-Best regards,
-Marcus
+Le mer. 18 mars 2020 =C3=A0 16:20, Marcus M=C3=BCller via USRP-users <
+usrp-users@lists.ettus.com> a =C3=A9crit :
 
-On 18.03.20 14:33, Rodolphe Bertolini via USRP-users wrote:
-> Thanks to both of you.
-> 
-> The port is black, but it has been working for few months until I
-> shutdown / change session (I can't log back to previous session for
-> reasons) so I believe that the port by itself isn't the bad guy.
-> 
-> It keeps appearing as USB 2 ("high-speed") when I plug it and also when
-> I run uhd_find_devices
-> 
-> @Cedric I made sure to plug at max both ends
-> 
-> Thank you again
-> Regards,
-> Rodolphe
-> 
-> Le mer. 18 mars 2020 à 15:02, Cedric Roux via USRP-users
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> a écrit :
-> 
->     Hi,
-> 
->     be also sure to plug the cable firmly on both
->     ends. I've seen it more than once with a cable
->     "half-plugged" and then it becomes usb2, not usb3.
-> 
->     My 2 cents.
-> 
->     Regards,
->     Cédric.
-> 
->     On 3/18/20 2:54 PM, Marcus Müller via USRP-users wrote:
->     > Hi Rodolphe,
->     >
->     > first of all, check whether you're actually dealing with a USB3
->     port. I
->     > know, sounds strange, but if it's not blue and doesn't have more than
->     > four visible contacts, it's not standard-compliant USB3. The fact that
->     > it's attached to a xHCI doesn't itself mean it can do USB3.
->     >
->     > Then, I can't quite remember whether the USB controller on the B200
->     > would even register as USB3 before the initial firmware is loaded. Try
->     > the following: In one terminal window, run `dmesg -Hwx`. Plug in the
->     > USRP, and see how it appears on the bus (it seems, as USB2 high-speed
->     > device). After that, in another terminal, you'd run
->     `uhd_find_devices`,
->     > and see whether the device re-enumerates as USB3 SuperSpeed device.
->     >
->     > Best regards,
->     > Marcus
->     >
->     > On 18.03.20 13:43, Rodolphe Bertolini via USRP-users wrote:
->     >> Hello Ron, (I resend the email, I forgot to "reply to all")
->     >> Thank you for your quick feedback.
->     >>
->     >> Ok I understand. More information, lspci gives me :
->     >> 00:14.0 USB controller: Intel Corporation Cannon Lake PCH USB 3.1
->     xHCI
->     >> Host Controller (rev 10)
->     >> So I don't get why doesn't Ubuntu enables USB 3.0 with the B210.
->     >>
->     >> My problems looks like this one
->     >>
->     http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-July/057323.html
->     >>
->     >> The output of lsusb -t is similar, with "Driver=(none)"
->     >> A message of above mentioned thread suggests to enable 3.0 option in
->     >> BIOS, however I don't have such option. And even if I had, I
->     didn't not
->     >> change anything between reboot / session switch so I really don't
->     >> understand where this regression is coming from.
->     >> Also I did the "solution" mentioned by the author :
->     >>
->     >> uhd_image_loader --args="type=b200,reset"
->     >>
->     >>
->     >> Which did not improve the situation.
->     >>
->     >>
->     >> Thank you again
->     >>
->     >> Rodolphe
->     >>
->     >> Le mer. 18 mars 2020 à 12:02, Ron Economos via USRP-users
->     >> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
->     <mailto:usrp-users@lists.ettus.com
->     <mailto:usrp-users@lists.ettus.com>>> a écrit :
->     >>
->     >>     dmesg should say "new SuperSpeed USB device number X using
->     xhci_hcd"
->     >>     or "new SuperSpeed Gen 1 USB device number X using xhci_hcd"
->     if you
->     >>     have a newer kernel.
->     >>
->     >>     "high-speed" means USB 2.0.
->     >>
->     >>     Ron
->     >>
->     >>     On 3/18/20 03:41, Rodolphe Bertolini via USRP-users wrote:
->     >>>     Dear all,
->     >>>
->     >>>     I have been using a USRP B210 on a laptop for months now. For
->     >>>     reasons, I switched to another Linux session, and using this
->     >>>     session UHD fails to talk to B210 over USB 3.0
->     >>>
->     >>>     dmesg tells me it is using the xhci_hcd driver (which I
->     believe is
->     >>>     the driver for USB 3.0), and is also mentioning  "new high-speed
->     >>>     USB", which leads me to think that USB 3.0 link is well
->     recognized
->     >>>     and active:
->     >>>
->     >>>     [  306.133028] usb 1-1: new high-speed USB device number 16
->     using
->     >>>     xhci_hcd
->     >>>     [  306.260349] usb 1-1: New USB device found, idVendor=2500,
->     >>>     idProduct=0020
->     >>>     [  306.260351] usb 1-1: New USB device strings: Mfr=1,
->     Product=2,
->     >>>     SerialNumber=3
->     >>>     [  306.260352] usb 1-1: Product: USRP B200
->     >>>     [  306.260354] usb 1-1: Manufacturer: Ettus Research LLC
->     >>>     [  306.260355] usb 1-1: SerialNumber: 31B9289
->     >>>
->     >>>     However, when running any uhd command line, it fails using
->     USB 3.0:
->     >>>
->     >>>     [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
->     Boost_105800;
->     >>>     UHD_3.15.0.0-release
->     >>>     [INFO] [B200] Detected Device: B210
->     >>>     [INFO] [B200] Operating over USB 2.
->     >>>
->     >>>     I have also tried with UHD 3.14.1, no improvement.
->     >>>
->     >>>     I remember having a similar issue (maybe the same?) that had
->     been
->     >>>     solved with something related to udev, but I sadly didn't
->     take any
->     >>>     note of this.
->     >>>
->     >>>     Do you have any hint?
->     >>>
->     >>>     Thank you.
->     >>>     Regards,
->     >>>     Rodolphe
->     >>>
->     >>>     _______________________________________________
->     >>>     USRP-users mailing list
->     >>>     USRP-users@lists.ettus.com
->     <mailto:USRP-users@lists.ettus.com>
->     <mailto:USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>>
->     >>>   
->      http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->     >>     _______________________________________________
->     >>     USRP-users mailing list
->     >>     USRP-users@lists.ettus.com
->     <mailto:USRP-users@lists.ettus.com>
->     <mailto:USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>>
->     >>   
->      http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->     >>
->     >>
->     >> _______________________________________________
->     >> USRP-users mailing list
->     >> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->     >>
->     >
->     > _______________________________________________
->     > USRP-users mailing list
->     > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->     >
-> 
-> 
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> 
-> 
+> Hi Rodolphe,
+>
+> considering this is as confusing to me as to you: I took a picture of my
+> USB3 port. When looking at an oblique angle at yours, do you see the
+> five front-row bronze/gold contacts shown in the attached photo?
+>
+> Best regards,
+> Marcus
+>
+> On 18.03.20 14:33, Rodolphe Bertolini via USRP-users wrote:
+> > Thanks to both of you.
+> >
+> > The port is black, but it has been working for few months until I
+> > shutdown / change session (I can't log back to previous session for
+> > reasons) so I believe that the port by itself isn't the bad guy.
+> >
+> > It keeps appearing as USB 2 ("high-speed") when I plug it and also when
+> > I run uhd_find_devices
+> >
+> > @Cedric I made sure to plug at max both ends
+> >
+> > Thank you again
+> > Regards,
+> > Rodolphe
+> >
+> > Le mer. 18 mars 2020 =C3=A0 15:02, Cedric Roux via USRP-users
+> > <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> a
+> =C3=A9crit :
+> >
+> >     Hi,
+> >
+> >     be also sure to plug the cable firmly on both
+> >     ends. I've seen it more than once with a cable
+> >     "half-plugged" and then it becomes usb2, not usb3.
+> >
+> >     My 2 cents.
+> >
+> >     Regards,
+> >     C=C3=A9dric.
+> >
+> >     On 3/18/20 2:54 PM, Marcus M=C3=BCller via USRP-users wrote:
+> >     > Hi Rodolphe,
+> >     >
+> >     > first of all, check whether you're actually dealing with a USB3
+> >     port. I
+> >     > know, sounds strange, but if it's not blue and doesn't have more
+> than
+> >     > four visible contacts, it's not standard-compliant USB3. The fact
+> that
+> >     > it's attached to a xHCI doesn't itself mean it can do USB3.
+> >     >
+> >     > Then, I can't quite remember whether the USB controller on the B2=
+00
+> >     > would even register as USB3 before the initial firmware is loaded=
+.
+> Try
+> >     > the following: In one terminal window, run `dmesg -Hwx`. Plug in
+> the
+> >     > USRP, and see how it appears on the bus (it seems, as USB2
+> high-speed
+> >     > device). After that, in another terminal, you'd run
+> >     `uhd_find_devices`,
+> >     > and see whether the device re-enumerates as USB3 SuperSpeed devic=
+e.
+> >     >
+> >     > Best regards,
+> >     > Marcus
+> >     >
+> >     > On 18.03.20 13:43, Rodolphe Bertolini via USRP-users wrote:
+> >     >> Hello Ron, (I resend the email, I forgot to "reply to all")
+> >     >> Thank you for your quick feedback.
+> >     >>
+> >     >> Ok I understand. More information, lspci gives me :
+> >     >> 00:14.0 USB controller: Intel Corporation Cannon Lake PCH USB 3.=
+1
+> >     xHCI
+> >     >> Host Controller (rev 10)
+> >     >> So I don't get why doesn't Ubuntu enables USB 3.0 with the B210.
+> >     >>
+> >     >> My problems looks like this one
+> >     >>
+> >
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-July/057=
+323.html
+> >     >>
+> >     >> The output of lsusb -t is similar, with "Driver=3D(none)"
+> >     >> A message of above mentioned thread suggests to enable 3.0 optio=
+n
+> in
+> >     >> BIOS, however I don't have such option. And even if I had, I
+> >     didn't not
+> >     >> change anything between reboot / session switch so I really don'=
+t
+> >     >> understand where this regression is coming from.
+> >     >> Also I did the "solution" mentioned by the author :
+> >     >>
+> >     >> uhd_image_loader --args=3D"type=3Db200,reset"
+> >     >>
+> >     >>
+> >     >> Which did not improve the situation.
+> >     >>
+> >     >>
+> >     >> Thank you again
+> >     >>
+> >     >> Rodolphe
+> >     >>
+> >     >> Le mer. 18 mars 2020 =C3=A0 12:02, Ron Economos via USRP-users
+> >     >> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
+> >     <mailto:usrp-users@lists.ettus.com
+> >     <mailto:usrp-users@lists.ettus.com>>> a =C3=A9crit :
+> >     >>
+> >     >>     dmesg should say "new SuperSpeed USB device number X using
+> >     xhci_hcd"
+> >     >>     or "new SuperSpeed Gen 1 USB device number X using xhci_hcd"
+> >     if you
+> >     >>     have a newer kernel.
+> >     >>
+> >     >>     "high-speed" means USB 2.0.
+> >     >>
+> >     >>     Ron
+> >     >>
+> >     >>     On 3/18/20 03:41, Rodolphe Bertolini via USRP-users wrote:
+> >     >>>     Dear all,
+> >     >>>
+> >     >>>     I have been using a USRP B210 on a laptop for months now. F=
+or
+> >     >>>     reasons, I switched to another Linux session, and using thi=
+s
+> >     >>>     session UHD fails to talk to B210 over USB 3.0
+> >     >>>
+> >     >>>     dmesg tells me it is using the xhci_hcd driver (which I
+> >     believe is
+> >     >>>     the driver for USB 3.0), and is also mentioning  "new
+> high-speed
+> >     >>>     USB", which leads me to think that USB 3.0 link is well
+> >     recognized
+> >     >>>     and active:
+> >     >>>
+> >     >>>     [  306.133028] usb 1-1: new high-speed USB device number 16
+> >     using
+> >     >>>     xhci_hcd
+> >     >>>     [  306.260349] usb 1-1: New USB device found, idVendor=3D25=
+00,
+> >     >>>     idProduct=3D0020
+> >     >>>     [  306.260351] usb 1-1: New USB device strings: Mfr=3D1,
+> >     Product=3D2,
+> >     >>>     SerialNumber=3D3
+> >     >>>     [  306.260352] usb 1-1: Product: USRP B200
+> >     >>>     [  306.260354] usb 1-1: Manufacturer: Ettus Research LLC
+> >     >>>     [  306.260355] usb 1-1: SerialNumber: 31B9289
+> >     >>>
+> >     >>>     However, when running any uhd command line, it fails using
+> >     USB 3.0:
+> >     >>>
+> >     >>>     [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
+> >     Boost_105800;
+> >     >>>     UHD_3.15.0.0-release
+> >     >>>     [INFO] [B200] Detected Device: B210
+> >     >>>     [INFO] [B200] Operating over USB 2.
+> >     >>>
+> >     >>>     I have also tried with UHD 3.14.1, no improvement.
+> >     >>>
+> >     >>>     I remember having a similar issue (maybe the same?) that ha=
+d
+> >     been
+> >     >>>     solved with something related to udev, but I sadly didn't
+> >     take any
+> >     >>>     note of this.
+> >     >>>
+> >     >>>     Do you have any hint?
+> >     >>>
+> >     >>>     Thank you.
+> >     >>>     Regards,
+> >     >>>     Rodolphe
+> >     >>>
+> >     >>>     _______________________________________________
+> >     >>>     USRP-users mailing list
+> >     >>>     USRP-users@lists.ettus.com
+> >     <mailto:USRP-users@lists.ettus.com>
+> >     <mailto:USRP-users@lists.ettus.com <mailto:
+> USRP-users@lists.ettus.com>>
+> >     >>>
+> >      http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >     >>     _______________________________________________
+> >     >>     USRP-users mailing list
+> >     >>     USRP-users@lists.ettus.com
+> >     <mailto:USRP-users@lists.ettus.com>
+> >     <mailto:USRP-users@lists.ettus.com <mailto:
+> USRP-users@lists.ettus.com>>
+> >     >>
+> >      http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >     >>
+> >     >>
+> >     >> _______________________________________________
+> >     >> USRP-users mailing list
+> >     >> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+> >     >>
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >     >>
+> >     >
+> >     > _______________________________________________
+> >     > USRP-users mailing list
+> >     > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+> >     > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
+m
+> >     >
+> >
+> >
+> >     _______________________________________________
+> >     USRP-users mailing list
+> >     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+> >     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> 
+>
 
---------------E640F5491C4443B23C23CD0C
-Content-Type: image/jpeg;
- name="usb3.jpg"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
- filename="usb3.jpg"
+--000000000000a5e3c905a122d0e4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-/9j/4AAQSkZJRgABAQEBXgFeAAD/4b4ARXhpZgAASUkqAAgAAAALAA4BAgAMAAAAkgAAAA8B
-AgAIAAAAngAAABABAgAGAAAApgAAABIBAwABAAAAAQAAABoBBQABAAAArAAAABsBBQABAAAA
-tAAAACgBAwABAAAAAgAAADEBAgANAAAAvAAAADIBAgAUAAAAygAAABMCAwABAAAAAgAAAGmH
-BAABAAAA3gAAAK6cAABTQU1TVU5HIENTQwBTQU1TVU5HAE5YMzAwAF4BAAABAAAAXgEAAAEA
-AABHSU1QIDIuMTAuMTQAADIwMjA6MDM6MTggMTY6MTc6MjMAHgCaggUAAQAAAEwCAACdggUA
-AQAAAFQCAAAiiAMAAQAAAAIAAAAniAMAAQAAAMgAAAAAkAcABAAAADAyMjEDkAIAFAAAAFwC
-AAAEkAIAFAAAAHACAAABkQcABAAAAAECAwAEkgoAAQAAAIQCAAAFkgUAAQAAAIwCAAAHkgMA
-AQAAAAUAAAAIkgMAAQAAAAAAAAAJkgMAAQAAAAEAAAAKkgUAAQAAAJQCAAB8kgcA8JkAAJwC
-AACGkgcAEwAAAIycAAAAoAcABAAAADAxMDABoAMAAQAAAAEAAAACoAQAAQAAAGAVAAADoAQA
-AQAAAEAOAAAXogMAAQAAAAIAAAACpAMAAQAAAAIAAAADpAMAAQAAAAAAAAAEpAUAAQAAAKCc
-AAAFpAMAAQAAABsAAAAGpAMAAQAAAAAAAAAIpAMAAQAAAAAAAAAJpAMAAQAAAAAAAAAKpAMA
-AQAAAAAAAAAApQIABgAAAKicAAAAAAAAAQAAAFAAAAAjAAAACgAAADIwMjA6MDM6MTggMTc6
-MTQ6MTMAMjAyMDowMzoxOCAxNzoxNDoxMwD9////CgAAAGoBAABkAAAAEgAAAAEAAAAfAAIA
-BwABAAAAAAAAAAMABwABAAAAOAAAAAQABwAQAAAAegEAAA4ABwACAAAAAAAAACAABwACAAAA
-AAAAACIABwABAAAAAAAAACUABwABAAAAAAAAACoABwAEAAAAAAAAADoABwACAAAAAAAAADsA
-BwACAAAAAAAAADwABwABAAAAAAAAAD0ABwAFAAAAigEAAD4ABwABAAAAAAAAAD8ABwACAAAA
-AAAAAEAABwABAAAAAAAAAEoABwAHAAAAkAEAAFAABwABAAAAAAAAAGAABwBwFwAAmAEAAIAA
-BwDwVQAACBkAAKAABwA0IQAA+G4AAMAABwAACAAALJAAAMcABwCkAQAALJgAAOAABwABAAAA
-AAAAAAABBwABAAAAAAAAACABBwABAAAAAAAAAEABBwACAAAAAAAAAAKgBwABAAAAAAAAAEMA
-CgABAAAA0JkAAAGgAgANAAAA2JkAAAEABwAEAAAAMDEwMCEAAwAFAAAA5pkAAAAAAAAAAAAe
-AACaWgAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/qv+qAQOKBkUGjgRuA84HzgGdAPIA4gC2AA8B
-5gBHAQcBYwFqBJYDMwUFBbUDcwLvAyQCQAE6AYgBGwOxBLYCHAHTAHsAfQByAOUDjwM9Ax4C
-DQNBAzoCjQL2Ao8CdgUsBa0CvgC/AHUAcwCDA4kDGgM9AnUCsAJBAmMDKwTfBGQHgwquBBwC
-pwH+ACcB/gH9AQUC6QH9AUECiwIYAxME+wUGCrMOxw+WBOEBugKTAkUAPgA6ADoAPgBFAEYA
-SQBHAEgATQBRAIQATwLgAtsCLARnAGcAaQBvAHsAnQCPAI0AkgCuANoAIgFxAQ8BsQCtAJkB
-7gF/AIEAXgCIAGQAcgCQAKIAsgDUACYBSAH0ADUBBwH1AI4AcgBhAFYAUgA1AGsAlgDCAKYA
-tgD1AKgBEgGrAPQANAGEAHgAbABVAF0AWQBoAIsA1QCkAKgA0wCGAZ0AaACAACsBhgCIAHgA
-WABoAGAAagCGAN8AnQCiAMsA9QC0AGwAnAAVAYgAfgBmAGAAZwBeAF4AeQDbAJQAoAC6AN4A
-zwBxAGQAsQB0AGoAWABpAGcAWwBgAGgAyACAAJEArQDRAN0AbwBVAFQA7wIMA0gCTAHXAqsA
-OwBbAFMAQwBnAFoAgwBlAIsAzwF7AUkChwK5Ae4AcgHGAHAAbACIAC8B7wE8AXgATQAxADEA
-LAB0AVEBMAHFAB4BLQHIAOMABQHiAPMBMgIqAUgASAAwAC4ASQFNASQB0QDmAPgAzgAwAXEB
-rgGdAhgE9QHyAL4AeACGALsAvAC/ALQAuwDRAOkAFwFtARACdAO2BeMGCQLaADoBMAEXABUA
-FAAUABUAGAAXABgAGAAYABoAHAAvABkBZQFGAeoBLwAwADIANQA6AEcAQgBBAEMAUQBnAJIA
-vQCgAGUATwDaAKIAKgAvACMANQAqADAAPQBXAFUAXwCIAJsAewCWAH8AaQArACQAHwAcABsA
-EgAjADUAaQBDADkATQCLAGIAQgBdAHQAKAAlACIAHAAeAB0AIgAxAHcAQgA1AEAAhwAzACYA
-MABvACkALAAnAB0AIgAgACQAMAB+ADsAMgA+AEwAOQAmADkAaQAqACgAIQAgACIAHwAfADAA
-fQA0ADEAOQBEAD8AJwAlAEQAIwAhAB0AIgAiAB4AIAAoAHIALAAuADcAQwBGACYAHgAkAIoG
-PwaEBHkD4QfTAZ8A8wDkALcAEAHlAEUBDQFsAYIEqAMtBfcErgN5AvkDJwI+ATcBhQEXA6QE
-qAIcAdYAggCEAHkA7QOXA0YDIgISA0UDNQKEAuwCiAJkBRoFqgLAAMQAfAB7AI0DlAMjA0IC
-eAKxAj4CXAMfBNAELwdGCVkEFAKgAf0AKgEFAgQCCwLtAf8BQgKJAhQDCATqBecJ/wzpDEkE
-1wGqAoMCRwBAADsAPABAAEcARwBLAEkASQBOAFIAhQA4AsQCxgIMBGYAZQBnAGsAeACaAIsA
-iQCNAKcA0QAUAV4B+gClAKgAhgH6AY0AigBlAI8AaAB3AJYAmwCzANkAKwFFAewALwECAfIA
-oACAAG4AYgBdADsAeQCkALsAsADNABIBuwEZAa8A+QA+AZcAiQB8AGEAawBmAHcAmQDMAK4A
-vgDwAJYBsQBtAIEAMAGZAJoAiABkAHcAbQB4AJQA1QCsALgA5wAUAc0AdQCfAB0BmgCPAHQA
-bQB2AGoAawCCANIApAC3ANMA/ADrAHoAZQC2AIUAeQBiAHYAdABnAGwAcQC/AI8ApADCAOoA
-+AB1AFgAVwBRA8kC7wEfAg4FJQFkAJoAkgB3AKwAjgDHAJwAzwBuAvUBwgIfAtABhgGFAmkB
-3gDgABUB+gHDAmsBnwCHAEIARAA/AHkCRQIUAmEB+gElAowBzgEcAtABxQPxAnABdgB1ADwA
-PABDAkIC/AF1AZoByQGKAVwC8wJ2A0sFFAgRAx4B4QB5AJAARQFDAUkBOgFLAX4BuQEhAtkC
-PgQfB0oLHQzEAv8AdgFWATAAKgAnACgAKwAvADIANAAyADMANwA4AFoALwFrAZIBNgI2ADQA
-NAA4AD8AVABMAEwATgBdAHEAiQCqAGEARABeAKsAVwFKAEoANABMADQAOQBKAEIAUgBmAIcA
-nQBwAJEAfQCKAFcARAA4ADEALwAfAD0AVQBMAFUAbACTABsBsABlAJUAuQBNAEUAPQAwADMA
-MQA6AE0ATgBUAGMAfQD7AFkAPwBRALsATgBOAEQAMgA5ADUAOgBJAFAAUgBfAHkAkQBnAEAA
-ZQCmAFAASQA6ADYAOQA0ADUAPgBNAFAAXQBuAIQAegBEAEAAaABEAD0AMwA8ADoANAA2ADYA
-RwBHAFQAZQB7AIMARgA2ACoAwwNZA2IChwKKBLEAfwDwAKEApQDSAMgAjwEGAo4CXgRqA9gC
-zAL8AZoBawJyAfIA/gB8AocCHAMWAiMB4wHrASUCygI/AhkCxQFXARoC7wF+Ac4BLQRVAsMD
-ZgScAWsBsgGgAdYBHgIgAtEBcwGwAcYB1gFgBBQEfwSUBisHbQT9AUYC4QFgAoUBtgEtAl8C
-+QLwA+gEPAZ6Bv8G9giHDGIMrgQuApIDZgL/ABwBMwFGAWMBdAGAAaYBeAFQAU4BUgFGAZwE
-vgT4AtgEhgCfAMoABQFIAeMBgAKcA4gC6wHBAbcBNwJYBPkCbAIWBNYARgBEADsAUgA7AEsA
-XgBqAHQAjgC6AKIBKgMcAuoBwAFMADkAOwAvAC4AJQBEAGMAegBjAHcAwQDxAIYApQA2AcAA
-SQBCAD8AMgA3ADQAQABbAIUAWgBsAIkA1gBPAGMAwQDDAEsATABCADsAPgA4AEEAjQA6AV0A
-ZgCAAJEAXwBiAKEAsQBbAFgARwBNAFQASgBTAKgAUgFvAHwAjQCbAHwAdABWAMoAUABOAEQA
-UgBVAE8AWQCJAOcAbgB7AIwAnACLAG0AQgBjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMMBqQEqAe0ApQFDAC4A
-VgA4ADwATwBQAJUAvgDzALIBSAFZAWUB5QCWAOIAhABTAFYA2wDzAEwB7gBwAK4AsgDFAPwA
-1wDFAKUAfADDALAAhQCgAGwBzABhAd4BrgCDAKAAmgCrAMUAxwCpAIYAnACiAKUAegFlAYoB
-RQKOAt4B4AD4ANIAAQGKAJoAwQDQAAIBXwHLAdsCegJnAg0DVgRvBCQC8gCRAR0BUQBbAGMA
-agB0AHsAfwCZAIEAcQBxAHcAdQBsAnUCagFjAjEAOgBJAF0AcgClANwArAHiAKwApQCxABkB
-hAK0AScBOwJGABcAGAAVAB8AGAAeACkAOAAzAD4AVQDYALEBFwHqANYAFgARABIADgAOAAwA
-FgAmAEIAIgAlADwAUQAxAD4AdQBIABYAFAATABAAEQAQABQAJABKAB4AIQAqAEkAGgAlAEMA
-SAAXABgAFQATABQAEgAVAEEArwAfAB8AJgAtAB4AIgA4AEIAGwAbABYAGAAaABcAGwBQALwA
-IgAlACsALgAmACgAHwBJABgAGAAVABoAGwAZABwAPwCAACQAJwAuADEALQAlABcAKwC/A1MD
-XQKPApMEsQB/APEAoQClANIAxwCVAR4CpAJ5BHcD0gLEAvkBngFvAnIB8AD7AHcChAITAw0C
-JQH5AQYCPQLfAkICHQLJAVkBHQLwAXsBxwEiBE8CuANbBKABcwHKAboB7gEiAiUC1QF1AbIB
-xQHSAVcECARzBHwGFAdfBPcBQwLpAWgCiAG4ASwCXQLxAs8DlAQwBd4FyAbQCE8M+guTBCQC
-ggNYAv8AHAEzAUYBYwF0AX8BmQFxAU8BSwFJAUMBZASIBN4CqwSGAJ4AyQADAUUB4QFyAuwC
-cwLlAboBrAEcAgsExwJVAuYD3gBOAEoAQQBXAD4AUABgAGcAdwCTAMAAlAEMAwwC3QG2AVcA
-QQBEADcANQAqAE0AagB3AG4AhwDTAPwAigCoADcBxgBVAEwASQA5AEAAPQBKAGIAgABlAHsA
-mwDhAFoAZQDDAMgAVwBXAEwAQwBIAEAASgCRAC0BaAB1AJMApABtAGYAowC3AGgAZABRAFgA
-YABUAF0AqgBEAX8AjwCgALEAjgB4AFcAzwBcAFkATQBdAGAAWQBlAIwA3gB8AIsAnACvAJoA
-cABGAGYAzAFzARIBngH3AnEAVgChAG8AbwCIAHoA+gA1AYoBjQIfAloBNwEFAQgBkgH6AKwA
-uADCAaIBzgEeAbQAJQEjAVIBywFvAVsBJgHjAGEBTgEMAUkB/wKrAYcCegLgAOcA+wDsABcB
-YgFgAS8B9gAfATUBRwElA+oCNgOxBPMEiQITAUQB9gBHAQUBKQGDAawBIwLhAqoDcATeBCgF
-fQb0CNUIcQI5AfcBOgG+ANIA4gDvAAMBDQEXASsBEQHwAPIA8gDeAP4BGAJ+AU8CWQBqAIoA
-tADmAFYB0AGkAtkBWgEvARIBFAGTARoBOgGaAZEAKQAnACEALwAfACcAMAAtADkARgBWALMA
-RgHlAPAA2gAuACIAIgAcABsAFQAmADUAMAA4AEcAfACeAFQAZgDFAHMAKwAmACQAHAAeAB4A
-JQAvADEAMwBAAFIAiAAsAD4AhQB6ACwALAAmACIAIgAfACQAQAB0ADQAPABMAFUANgA/AG0A
-awA3ADQAKgAtADAAKwAwAEsAfgBBAEoAVABdAEkATQA4AIIAMAAvACkAMQAyAC8ANQA/AFcA
-QABIAFIAXQBSAEkAKgAzANoCpwL2AZIBVwOgAEcAaQBUAHwAoABkAHUAUwB2ACMBHQFvAkAC
-nAEEAYsBHwGeAJkAwQA4ARQCYwGRAGQAPAA+ADoA2QG1AY8BAAFeAW0BAQEpAVgBKQGPAlEC
-NgFUAGUAPAA+AMYBwAGCARQBKAE/AQgBjQHpAUICaQO6BWcCEwHOAIcApAALAQYBBQH0APoA
-FgE5AXwB9gHiAtoEBwjHCXQC5wBdAUsBJwAiACAAHwAiACYAJAAkACEAIwAmACkANwAbAXcB
-hAE+AjYAMwAzADMAOABHAEEAPwBBAE0AYQB/AK4AgwBYAFsAwwD7AEIAQgAxAEUAMwA4AEUA
-RwBVAGgAkgCeAHcAjgCAAJMAVwBBADgALwAsABwAOABLAFUAUgBiAIUAxQCKAGgAdwCeAEwA
-QQA3AC4AMAAsADYASABcAFAAWgByAN4AVgAtAEEAnABIAEkAQQAuADYAMQA1AEEAXgBNAFMA
-bAB/AF4ANgBSAJYASwBFADgALwA1AC4ALwA7AFwASABRAF8AdgBqAD4ALABoAEEAOQAtADMA
-MgAsAC0ALwBSAD0ARwBVAGgAbAAwADMAKQDXAqUC9QGTAVYDngBHAGkAVAB7AJ8AZAB1AFMA
-dwAlAR8BgAJIAqYBDAGYAUMBuACnAHwBXQFXApsBxQD5APwAFgFkAfABxgGcAQ8BdgGHARYB
-QQFYAsQBugL8Ap8B1AAzAR4BPwHeAdgBmgEuAUUBXQFNAaoCxgInA7ED4AVdA5UBnQFVAWIB
-OgE8AW0BbAGiAQcCewJZAwYESAQUBg4JrAr1A5UBbgIsArUAxwDUAN0A9AARASQBDAH0AMYA
-yQDtAKwAygIfA3QCiwNyAH0AkQCxANkALAFjAYMCwwE4ASABGwE4AYICDgJvAZ8C+ABDAEQA
-MwBHADYAOwBJAEsAWQBrAJYA9gA0Aq8BYAFkAVgAQwA6ADAALQAdADoATQBXAFQAZACHAMgA
-jgB4AOoApgBOAEMAOQAwADIALQA4AEoAXgBSAFwAdADhAFcANQCCALIASwBLAEMANQA3ADMA
-NwBHAJkAWQBVAG4AgABgAEsAdwCfAFQAUABCADkAQAA4ADoAUADTAGEAXQBsAIIAcwBOAEIA
-hwBMAEkAOwBBAEUAPABCAEoAogBUAFsAaQB7AHgASQBEAD4AOwBfAGAAOwBvAHAAOwBgAFAA
-OwBfAFoAAQAAAAAAAAAAAKAAVABAAAAAAAAAAAEAAQACAAAAAAABAFwAAAAAAL4ChQEAAAAA
-AAAAAAEAEgDGADsAAAAAAAEAYQAQAAEABAAAAAEAAAADAFQAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAbgAEAAIADQAAAAAAAAAAAAAAAAAAAAAA/v+yAo8AXAC+AoUBpwKgA2UD5P96AOT/
-5P8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFwC8PwAAAADlAAAAAAAAAAAAAAAAAAAA
-AAAAAOT/5P8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7AGAA
-UAAQADsAXwBgAAEAOwBfAGAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAA7AF8AYAA7AGAAYAAYAMYAOQA7AGAAUAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAEA
-BgAAAGEAEAAQAFoAOwAAAAAARQAyADIAMgBiAE0AbgBRAIcDYgWjAu8EAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAAAAAAAAAAAAgKAAAICgAA
-CAoAAAgKAAAICgAACAoAAAgKAAAICgAACAoAAAgKAAAICgAACAoAAAgKAAAICgAACAoAAAgK
-AAAICgAACAoAAAgKAAAICgAACAoAAAgKAAAICgAACAoAAAgKAAAICgAACAoAAAgKAAAICgAA
-CAoAAAgKAAAICgAACAoAAAMFAAADBQAAAwUAAAEEAAABBAAAAQQAAAEEAAAGCAAABggAAAED
-AAABAwAAAQMAAAEDAAABAwAAAQMAAAEDAAABAwAAAQMAAAEDAAABAwAAAQMAAAEDAAABAwAA
-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
-AAAAFQAAABMAAAAVAAAAFQAAABUAAAAWAAAAFAAAABMAAAAWAAAAFgAAABQAAAASAAAAFgAA
-ABkAAAAdAAAAHAAAACEAAAAhAAAAIgAAACQAAAApAAAAKgAAACkAAAApAAAAKwAAACoAAAAs
-AAAAKgAAACwAAAArAAAAKwAAACwAAAAqAAAAKgAAACwAAAAtAAAAKwAAAC0AAAAsAAAAAgAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAABAgMEBQYHCAkKCwwNDg8QERL/////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-//8jIyggICggHhweIyYgICMjIygmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYm
-JiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYm
-JiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYm
-JiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYm
-JiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmLjedoYN+gICAgICA
-gICAf4GAgICAgICAgICAgIGigIBXCxUSCAkICQgJCAgJCQgJCAkICQgICAgICQgJCAkICAgJ
-CAkICQgJCAgICQgJCAkICQgKIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADJ
-AAACEAAAAxcAAAcBAAAATwAAAhAAAACQAAAHAQEBAAAAAAAAAAAAAAAAAMkAAAIQAAADFwAA
-BwEAAABPAAACEAAAAJAAAAcBAQFgtAAAAAAAAAAAAAAAyQAAAhAAAAMXAAAHAQAAAE8AAAIQ
-AAAAkAAABwEBAQAAAAAAAAAAAAAAAACoAAAB4AAAAScAAALQAAAASAAAAeAAAAA6AAAC0AEB
-DUAAAAAAAAAAAAAAABAAAAIQAAAAOAAABwEAAAAoAAACEAAAAF4AAAcBEw0AAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAeAAAAFAAAAgwAAABQ
-AAACHQAAAAAAAAAAAAEAAAAAAVsAAAJSAAAAEgAAAAAAAAABAAD7dwAAADcAANNzAAAAHgAA
-AycAAABAAAAAMAAAAFAAAABgAAAAkAAAAAEAAAACAAAAAAAAAAAAAAABAAAAqQAAAv0AAAAC
-AAAAAAAAAAAAAAAGAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAACMAAAA7AAAAhQAA
-AAEAAABvAAAAAQAAAHoAAAGQAAAAOwAAADsAAAAjAAAAIAAAAF8AAACJAAAAiQADAAAAAAAV
-AAATiAAAAAAAAAAAAAAAAAAAAAEAAAADAAAAAAAAAAAABAAAAAAAAQAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAcAAAAA
-AAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAeAAAAAAAA
-AAAAAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2UXAANlIQADZSAAA2Uq
-AANmsgAAAAAAAAAAAANm4AADZuQAAAABAAAAAAAQAAIAAAAAAAAACQAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAHf8v+YABgAAAAAA/wAAAP8AAAD/AAAA/wAAAAgAAAD/AAAA/wAAAa0AAAHW
-AAAAQAAAAP8AAASwAAAXcAAAA+gAAAAA/////wAAAIkAAAr6AAAAAAAAAAAAAAEgAAAAqAAA
-AEgAAABIAAAAAAAAAAAAAALQAAAB4AAAAA0AAAAEAAAABAAAAAQAAAAQAAAAAAAAAtsAADcC
-AAACEwAAAAAAAALZAAAvtAAAAtsAAC+0AAAC2QAAL7QAAAJdAAAAqQAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAABoAAAGtAAAB1gAAAAEAAAAA
-AAAAAAAAAKkAAAAAAAABtgAAArkAAAAAAAAC2wAAAacAACcQAAAAAwAAAEQAAADIAAAAAAAA
-AAD/////AAAAAAAAAMMAAAC8AAAAAAAAAAAAAAAAAAAAAgAAAzUAAAAsAAAAAAAAAAAAAAfQ
-AAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABUAAAAZ
-AAAC3wAAAAAAAAC+AAAAAAAAABMAAAC0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALQAA
-AP8AAAABAAAAAAAAAAEAAAAGAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaAAAAF2
-AAAAAAAAAAAAAAABAAAAqQAAAAEAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvtAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAALWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AtsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH9/f39/f39/f39/f39/
-f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/
-f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/
-f39/f39/f39/f39/f39/f39/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAA2V/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/
-f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/
-f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/AAADiAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAGMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-QVdCABQBCAAAAAAAAAAAACcAAAAAAAAAAAAAAACwAwAAQAYAAKAFAABQAwAAsAMAAPAFAAAg
-BgAAAAAAALADAADwBQAAIAYAAAAAAAEAAAAAAAAAAAAAANwBAAAU7P//ZjQAAGYmAAAzswAA
-AMAAACAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAwAHGAAAjMMCAAAAAQBmhwEA6b4CAAAA
-AQC+hQEAv5MCAAAAAQBZnAEA0qECAAAAAQC1hwEAvQQBAAAAAQDK/gAAAAAAAAAAAAAAAAAA
-AAAAAIHJAgAAAAEAWIABAAMKAgAAAAEAETQCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHqq
-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
-WgAwAAEAAAAXAEQAKwABAAAABREBgFAiAoBYmQlAWpkJQAURAYAFEQGAlREBgJURAYCVEQGA
-lREBgJURAYCVEQGAlREBgJURAYCVEQGAlREBgBIRAYAVEQGABREBgAURAYBYmQlAWZkJQGKZ
-CYCVEQGABREBgJURAYCVEQGAlREBgAURAYAFEQGAlREBgJURAYCVEQGAlREBgBURAYCVEQGA
-FREBgAURAYAFEQGAlREBgJURAYCVEQGAlREBgAURAYAFEQGABREBgAURAYAFEQGABREBgAUR
-AYCVEQGAlREBgJURAYAlMwOAJTMDgJURAYCVEQGABREBgAURAYAFEQGAlREBgJURAYCVEQGA
-BREBgAURAYAFEQGABREBgAURAYAFEQGABREBgJURAYCVEQGAlREBgJURAYCVEQGABREBgJUR
-AYCVEQGABREBgAURAYAFEQGABREBgAURAYAFEQGAhZkJgAURAYAFEQGABREBgAURAYAFEQGA
-YJkJgJURAYBymQmAYpkJgAYRAYAGEQGABhEBgAYRAYAFEQGABhEBgAURAYAFEQGABREBgAUR
-AYAFEQGABREBgAURAYAFEQGAlREBgGCZCYBgmQmAcpkJgGiZCUBwmQmAlREBgJURAYCVEQGA
-lREBgJURAYAFEQGABREBgAURAYCNEQFABREBgAURAYAFEQGAlREBgHKZCYBlVQWAZVUFgHKZ
-CYBlVQWAYZkJgAURAYCVEQGAl5kJgJeZCYCXmQmAl5kJgJeZCYCXmQmAl5kJgJeZCYCXmQmA
-lREBgJURAYBimQmAYZkJgGCZCYBimQmAYpkJgGGZCYCVEQGAl5kJgJeZCYCXmQmAl5kJgJeZ
-CYCXmQmAl5kJgJeZCYCVEQGAl5kJgJURAYCVEQGAlREBgJURAYCVEQGAlREBgJURAYCVEQGA
-l5kJgJeZCYCXmQmAl5kJgJeZCYCXmQmAl5kJgJeZCYCXmQmAZWYGgJeZCYCXmQmAlREBgJUR
-AYCXmQmAl5kJgJURAYCVEQGAlREBgJeZCYCXmQmAl5kJgJeZCYCXmQmAl5kJgJeZCYCXmQmA
-lREBgGVmBoCXmQmAl5kJgJURAYCVEQGAl5kJgJeZCYCVEQGAlREBgJURAYCXmQmAl5kJgJeZ
-CYCXmQmAl5kJgJeZCYCXmQmAl5kJgJURAYBlVQWAl5kJgJURAYCVEQGAlREBgJURAYCXmQmA
-l5kJgJURAYCVEQGAl5kJgJeZCYCXmQmAl5kJgJeZCYCXmQmAl5kJgJeZCYCVEQGAZWYGgJeZ
-CYCVEQGAlREBgJURAYCVEQGAl5kJgJeZCYCXmQmAlREBgL0EAQAAAAEAyv4AAAAAAQAAAAEA
-AAABAAAAAAAHAAcAANICAAAAAQAAXAEAAHwDAAAAAQAAXAEA92cDAAAAAQAAXAEASCwAAAEA
-AADYLAgAMAAAAAIAAAARAAAADQAAAAAAAAABAAAAEAAAAAsAAAABAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvwAAAMj////5////9f///6QAAADn////BAAAANf/
-//+lAAAATQAAAJYAAAAdAAAA0f///6X///+KAAAAigAAAI3////p////gAAAAAAAAAAAAAAA
-gAAAAAAAAQDMDQAAABAAAFEIAAAhDQAAABAAAIIJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEkhP0MBAAAAaAIAAFAXZwAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAABwAAAFoAAABkAAAAOwAAAIUAAABfAgAA5QAAAAEA
-AAAAAAAAXwIAAP////////////////////8EAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA
-AALDAocBAAEAAAAAAAAAACXrYT9eJBG+AAACAMMCAAAAAQAAAAEAAIcBAAAAAAAAAAAAAAAA
-AAAAAAAAvwAAAMj////5////9f///6QAAADn////BAAAANf///+lAAAATQAAAJYAAAAdAAAA
-0f///6X///+KAAAAigAAAI3////p////gAAAAAAAAAAAAAAAgAAAAI9YDhAAAAAABgAAAAwA
-AAAYAAAAMQAAAGIAAADFAAAAYAEAADACAAAXAwAA5QMAAOgEAACMBgAAHQkAALgMAACJEQAA
-FhgAAFoeAAD/HwAAAAAAAAMAAAAGAAAADAAAABoAAAAzAAAAaQAAALIAAAAHAQAAUwEAAIoB
-AADFAQAAEgIAAGoCAADXAgAASQMAAK4DAADvAwAA/wMAAP//AAD/fxkU////AP//PwAAAAAA
-gAAAAAABAACAAQAAAAIAAIACAAAAAwAAgAMAAP8DAAABAAAAAQAAAAAAAAAAAAAAAAAAAIAA
-AAAAAAAAeBVnAAAAAACUN0KrAAAAAIAAAAAAAQAAgAEAAAACAACAAgAAAAMAAIADAAD/AwAA
-NDdCq4AoABaIN0KrAAAAAAABAgAAAAAA6DGftPw3QqvEAWu0AQAAAAAAAAD///9//////wEA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYAAAACQEAAGNv
-bG9yPSMwMDAwMDA4MCB3cmFwPWNoYXIgbGVmdF9tYXJnaW49NCByaWdodF9tYXJnaW49NCBm
-b250X3NvdXJjZT0vdXNyL3NoYXJlL2VsZW1lbnRhcnkvdGhlbWVzL2RlZmF1bHQuZWRqIGZv
-bnRfc2l6ZT0xMC4wMDAwMDAgZm9udD1TYW5zAHMvZGVmYVDThAAAAAAA8NKEABApEgBlPTEw
-LjAwMBQAAAAjAgAAfQ8AAHInZW09JysgZm9udIDThAAAAAAAINOEADMrEgBpbms9AAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAABOWDIwMF8wMTExODEAAAAA//8AAAAAAAAAAAAAAAAAAFNBTVNVTkcg
-Q1NDAAoAAAAKAAAAMjIvMTAACAAAAQQAAQAAAAABAAABAQQAAQAAAG8AAAACAQMAAwAAABSd
-AAADAQMAAQAAAAYAAAAGAQMAAQAAAAYAAAAVAQMAAQAAAAMAAAABAgQAAQAAABqdAAACAgQA
-AQAAAN4gAAAAAAAACAAIAAgA/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJ
-CQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/
-2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy
-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
-4fp/yay/1TePwRtIjfyZ/Z7n8ef2vmfvZ//Z
---------------E640F5491C4443B23C23CD0C
+<div dir=3D"ltr"><div>Marcus,</div><div>USB plug is rotated (from row is at=
+ top), but yes I get the exact same port as your.</div><div>Thank you<br></=
+div><div>Regards,</div><div>Rodolphe<br></div></div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mer. 18 mars 2020 =C3=
+=A0=C2=A016:20, Marcus M=C3=BCller via USRP-users &lt;<a href=3D"mailto:usr=
+p-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&g=
+t; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex">Hi Rodolphe,<br>
+<br>
+considering this is as confusing to me as to you: I took a picture of my<br=
+>
+USB3 port. When looking at an oblique angle at yours, do you see the<br>
+five front-row bronze/gold contacts shown in the attached photo?<br>
+<br>
+Best regards,<br>
+Marcus<br>
+<br>
+On 18.03.20 14:33, Rodolphe Bertolini via USRP-users wrote:<br>
+&gt; Thanks to both of you.<br>
+&gt; <br>
+&gt; The port is black, but it has been working for few months until I<br>
+&gt; shutdown / change session (I can&#39;t log back to previous session fo=
+r<br>
+&gt; reasons) so I believe that the port by itself isn&#39;t the bad guy.<b=
+r>
+&gt; <br>
+&gt; It keeps appearing as USB 2 (&quot;high-speed&quot;) when I plug it an=
+d also when<br>
+&gt; I run uhd_find_devices<br>
+&gt; <br>
+&gt; @Cedric I made sure to plug at max both ends<br>
+&gt; <br>
+&gt; Thank you again<br>
+&gt; Regards,<br>
+&gt; Rodolphe<br>
+&gt; <br>
+&gt; Le=C2=A0mer. 18 mars 2020 =C3=A0=C2=A015:02, Cedric Roux via USRP-user=
+s<br>
+&gt; &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">us=
+rp-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mailto:usrp-users@lists.=
+ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;&gt; a =C3=
+=A9crit=C2=A0:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Hi,<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0be also sure to plug the cable firmly on both<br>
+&gt;=C2=A0 =C2=A0 =C2=A0ends. I&#39;ve seen it more than once with a cable<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0&quot;half-plugged&quot; and then it becomes usb2, =
+not usb3.<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0My 2 cents.<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Regards,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0C=C3=A9dric.<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0On 3/18/20 2:54 PM, Marcus M=C3=BCller via USRP-use=
+rs wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; Hi Rodolphe,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; first of all, check whether you&#39;re actuall=
+y dealing with a USB3<br>
+&gt;=C2=A0 =C2=A0 =C2=A0port. I<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; know, sounds strange, but if it&#39;s not blue=
+ and doesn&#39;t have more than<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; four visible contacts, it&#39;s not standard-c=
+ompliant USB3. The fact that<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; it&#39;s attached to a xHCI doesn&#39;t itself=
+ mean it can do USB3.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; Then, I can&#39;t quite remember whether the U=
+SB controller on the B200<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; would even register as USB3 before the initial=
+ firmware is loaded. Try<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; the following: In one terminal window, run `dm=
+esg -Hwx`. Plug in the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; USRP, and see how it appears on the bus (it se=
+ems, as USB2 high-speed<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; device). After that, in another terminal, you&=
+#39;d run<br>
+&gt;=C2=A0 =C2=A0 =C2=A0`uhd_find_devices`,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; and see whether the device re-enumerates as US=
+B3 SuperSpeed device.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; Best regards,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; Marcus<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; On 18.03.20 13:43, Rodolphe Bertolini via USRP=
+-users wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; Hello Ron, (I resend the email, I forgot t=
+o &quot;reply to all&quot;)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; Thank you for your quick feedback.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; Ok I understand. More information, lspci g=
+ives me :<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; 00:14.0 USB controller: Intel Corporation =
+Cannon Lake PCH USB 3.1<br>
+&gt;=C2=A0 =C2=A0 =C2=A0xHCI<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; Host Controller (rev 10)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; So I don&#39;t get why doesn&#39;t Ubuntu =
+enables USB 3.0 with the B210.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; My problems looks like this one<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"http://lists.ettus.com/pipermail/usrp-us=
+ers_lists.ettus.com/2018-July/057323.html" rel=3D"noreferrer" target=3D"_bl=
+ank">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-July/=
+057323.html</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; The output of lsusb -t is similar, with &q=
+uot;Driver=3D(none)&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; A message of above mentioned thread sugges=
+ts to enable 3.0 option in<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; BIOS, however I don&#39;t have such option=
+. And even if I had, I<br>
+&gt;=C2=A0 =C2=A0 =C2=A0didn&#39;t not<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; change anything between reboot / session s=
+witch so I really don&#39;t<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; understand where this regression is coming=
+ from.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; Also I did the &quot;solution&quot; mentio=
+ned by the author :<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; uhd_image_loader --args=3D&quot;type=3Db20=
+0,reset&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; Which did not improve the situation.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; Thank you again<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; Rodolphe<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; Le=C2=A0mer. 18 mars 2020 =C3=A0=C2=A012:0=
+2, Ron Economos via USRP-users<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; &lt;<a href=3D"mailto:usrp-users@lists.ett=
+us.com" target=3D"_blank">usrp-users@lists.ettus.com</a> &lt;mailto:<a href=
+=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
+ttus.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;&gt;&gt; a =C3=A9=
+crit=C2=A0:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =C2=A0dmesg should say &quot;=
+new SuperSpeed USB device number X using<br>
+&gt;=C2=A0 =C2=A0 =C2=A0xhci_hcd&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =C2=A0or &quot;new SuperSpeed=
+ Gen 1 USB device number X using xhci_hcd&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0if you<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =C2=A0have a newer kernel.<br=
+>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =C2=A0&quot;high-speed&quot; =
+means USB 2.0.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =C2=A0Ron<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =C2=A0On 3/18/20 03:41, Rodol=
+phe Bertolini via USRP-users wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Dear all,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0I have been using a=
+ USRP B210 on a laptop for months now. For<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0reasons, I switched=
+ to another Linux session, and using this<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0session UHD fails t=
+o talk to B210 over USB 3.0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0dmesg tells me it i=
+s using the xhci_hcd driver (which I<br>
+&gt;=C2=A0 =C2=A0 =C2=A0believe is<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0the driver for USB =
+3.0), and is also mentioning=C2=A0 &quot;new high-speed<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0USB&quot;, which le=
+ads me to think that USB 3.0 link is well<br>
+&gt;=C2=A0 =C2=A0 =C2=A0recognized<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0and active:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0[ =C2=A0306.133028]=
+ usb 1-1: new high-speed USB device number 16<br>
+&gt;=C2=A0 =C2=A0 =C2=A0using<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0xhci_hcd<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0[ =C2=A0306.260349]=
+ usb 1-1: New USB device found, idVendor=3D2500,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0idProduct=3D0020<br=
+>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0[ =C2=A0306.260351]=
+ usb 1-1: New USB device strings: Mfr=3D1,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Product=3D2,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0SerialNumber=3D3<br=
+>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0[ =C2=A0306.260352]=
+ usb 1-1: Product: USRP B200<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0[ =C2=A0306.260354]=
+ usb 1-1: Manufacturer: Ettus Research LLC<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0[ =C2=A0306.260355]=
+ usb 1-1: SerialNumber: 31B9289<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0However, when runni=
+ng any uhd command line, it fails using<br>
+&gt;=C2=A0 =C2=A0 =C2=A0USB 3.0:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0[INFO] [UHD] linux;=
+ GNU C++ version 5.4.0 20160609;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Boost_105800;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0UHD_3.15.0.0-releas=
+e<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0[INFO] [B200] Detec=
+ted Device: B210<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0[INFO] [B200] Opera=
+ting over USB 2.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0I have also tried w=
+ith UHD 3.14.1, no improvement.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0I remember having a=
+ similar issue (maybe the same?) that had<br>
+&gt;=C2=A0 =C2=A0 =C2=A0been<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0solved with somethi=
+ng related to udev, but I sadly didn&#39;t<br>
+&gt;=C2=A0 =C2=A0 =C2=A0take any<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0note of this.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Do you have any hin=
+t?<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Thank you.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Regards,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Rodolphe<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0___________________=
+____________________________<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0USRP-users mailing =
+list<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:U=
+SRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=
+=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.e=
+ttus.com</a>&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0=C2=A0<a href=3D"http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http=
+://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =C2=A0_______________________=
+________________________<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =C2=A0USRP-users mailing list=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:USRP-=
+users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=
+=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.e=
+ttus.com</a>&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0=C2=A0<a href=3D"http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http=
+://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; __________________________________________=
+_____<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; USRP-users mailing list<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.c=
+om" target=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=3D"=
+mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus=
+.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/=
+listinfo/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">h=
+ttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; ______________________________________________=
+_<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; USRP-users mailing list<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" =
+target=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mail=
+to:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com=
+</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; <a href=3D"http://lists.ettus.com/mailman/list=
+info/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http:=
+//lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt; <br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0_______________________________________________<br>
+&gt;=C2=A0 =C2=A0 =C2=A0USRP-users mailing list<br>
+&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:USRP-users@lists.ettus.com" targe=
+t=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mailto:US=
+RP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&=
+gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"http://lists.ettus.com/mailman/listinfo/=
+usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lis=
+ts.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt; <br>
+&gt; <br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt; <br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000a5e3c905a122d0e4--
+
+
+--===============7495117497519394313==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1708,5 +665,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---------------E640F5491C4443B23C23CD0C--
+--===============7495117497519394313==--
 
