@@ -2,45 +2,44 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A00918ADF2
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 09:07:43 +0100 (CET)
-Received: from [::1] (port=39384 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E9E318AE39
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 09:18:57 +0100 (CET)
+Received: from [::1] (port=41548 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jEqDJ-0006pn-3M; Thu, 19 Mar 2020 04:07:37 -0400
-Received: from mail-ed1-f52.google.com ([209.85.208.52]:44113)
+	id 1jEqOC-0007Kg-2a; Thu, 19 Mar 2020 04:18:52 -0400
+Received: from mail-ed1-f53.google.com ([209.85.208.53]:41495)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <bertolini.rodolphe@gmail.com>)
- id 1jEqDF-0006kq-AB
- for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 04:07:33 -0400
-Received: by mail-ed1-f52.google.com with SMTP id z3so1435987edq.11
- for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 01:07:13 -0700 (PDT)
+ id 1jEqO7-0007EV-Kp
+ for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 04:18:47 -0400
+Received: by mail-ed1-f53.google.com with SMTP id v6so1490245edw.8
+ for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 01:18:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=kLmT43ernJPgg3vJ0JXUelNgbyW3yqGbvvzltXMJFJY=;
- b=rVirNQRSEph3BJiWYr4H/27Xahno4r+LnE8J05QzeAaiPpChmqnRODj2DL3OLenEwt
- 4GI/MRYWhCGov16g6fZHzoIr57DJAbAVKKHe+ywIEOWqLFLh8oWqPgZoI1KzXUy02BfZ
- U5PlP8YPdi0IYidm9leR35s+Rq8iIi6TfvhbCepK8yPgYom7mp+9MzPE0g93m+0Jwudy
- QLzufmLAIF9Sf5C6RObDU0ZNX+IRBewlBQ16CKQZjCqVV1TD8Z8cgqOsRQp+EVmYd54i
- mjEKtXAsWmmtbjde6ZJ758qVUb9mYKu+XfohlakSa7e7WEsRtV4WiYzelM9nw9e5mzuY
- KMqw==
+ :cc; bh=irtsfglvJDDVzPzDdqJTyKSd6NfG7qggFcM7NiJb4K4=;
+ b=kw6y9XZi1bDSROdZWzPA7ttXaWbLsqo6jHtLA8TbqAFUf4myKGy2eaiEEZtvbuIcfe
+ sPkH6ky47OIC4+So9O7Vdc8aaI4w3HkFt62JKa+BzuSrWb6Mf4PM6bZ8xitSIDnaKl3j
+ LcZ0aOcs2YswQo8/ML36lYucBHUpd9svqCo9tR0xdoj/ka2x+RgkL7Ao535AZqbnoPng
+ XWNbhwrTdOL7WlgCl0ma/M9JMODxyc4TeqcARhovV2ZA1CutJRrwmdOQpzSdbhhpHPbm
+ YyNRGz2b8vdYgxtH4o40SLvTkeTxxMMdOcQJf+tQgbyRCEtWUBekuqaOplYMujDzeLDv
+ o+BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=kLmT43ernJPgg3vJ0JXUelNgbyW3yqGbvvzltXMJFJY=;
- b=QbIiUNjrWm3ri/7vcjWHzACdsUZOZZbx1A+3V+yKzRhlijTibTZeah7v0c2zIezZiY
- u5hF91SLT3Qsf84DjBUTkGX6USPkBj51g6I1CpTlqIouPyzCmz4gTV45gpm055fXSI0n
- YZ1sLj2iEGC7LnFMrJckzmONTNuukm68ta2QaRs+nFGyLlF+Ih7UdGm9uxyYBoOrB0k8
- C83CjmafsaR1awTJY6dD20o9jQxdDYxlSvoQs9gVU4g39jIPuVav0Q7QAcHgV116urBo
- SHSgSVCcRQaP06C8OkcwaRUAhwjAnxkDqIfA2svRZ/4Jl67fMUHcjm7pFRQbCO6GS6in
- bwEQ==
-X-Gm-Message-State: ANhLgQ1MGuPT115z7mz4ryKjCQSyqF8Vih8YzyTEDliWmk5K3ZNGouud
- fdL9ZF+QhAoqsZwDf79rn847+RRpBznZATDnHlc=
-X-Google-Smtp-Source: ADFU+vu0zciG86/elF5YkE0psFmtoOsGqRS/MNpFG7ja2/4suqHEa08q802/zhSN37RCPCoWIctFG4UanosHv5Qstpo=
-X-Received: by 2002:a17:906:fc1c:: with SMTP id
- ov28mr1998365ejb.149.1584605212074; 
- Thu, 19 Mar 2020 01:06:52 -0700 (PDT)
+ bh=irtsfglvJDDVzPzDdqJTyKSd6NfG7qggFcM7NiJb4K4=;
+ b=QuHa53BnrXHNG9cvmD8ktFR8jmb9EN4k1GT79ZmWmRWwtUZ6b7Yc5ieYjjDLdL3KHn
+ VFxezl20qxUJZitE3D9+eukN+KZKokG+ebQxR77RPDkZSRRlnPO/ik8Txic5iwYnge6O
+ yqwxCay7EJ0VcDcn/UoGcxUOdJtL5/19qqj61bzpEj5//wkki7DgKqPf+YyorE5DXzO2
+ I3oMOeSAtMdJHLkgizYhUXcaOfxlf48e6G3WRhaDpzAgZ8NUdjIJ6GUKexoCGT8paBW1
+ p3CUFst99DjUsXqTDeM6+zaKdO9208aF9TJBIWME4Q2yg3W1+xLlje4weUlc/+Ny3LpP
+ 6XKw==
+X-Gm-Message-State: ANhLgQ0H+izH1PUzR8A6d4OREkY1Tsqy5VL5nb+T7+NBqMoHBkD/+HDw
+ XTvao0lWgAR8fbTAEHsetSHIFlUs5rS/e/9VtMA=
+X-Google-Smtp-Source: ADFU+vuCKWFCRd71y846t2loOtJ5xz4HPElWzKdu8t8JJtlEqHTonBwzHomTv/huNZxFU7tivflNqejLYyYsJGdz4vo=
+X-Received: by 2002:a50:fd0d:: with SMTP id i13mr1450387eds.263.1584605886548; 
+ Thu, 19 Mar 2020 01:18:06 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAKaLowSaOhC6L9B4axxwV0=eq=PXzwRoCn22kqyfu529rTr7Dw@mail.gmail.com>
  <1661e285-c25d-8272-0e49-1d0f896033b4@comcast.net>
@@ -51,9 +50,10 @@ References: <CAKaLowSaOhC6L9B4axxwV0=eq=PXzwRoCn22kqyfu529rTr7Dw@mail.gmail.com>
  <00072490-e939-e531-5917-aa617f204ada@ettus.com>
  <CAKaLowQkki_q1HSij8gmtusRJtkOzDP3pbKvQhKj9Sz1syRuEQ@mail.gmail.com>
  <f57b84f3-22dd-629a-cfa3-4e3bbe01cf5e@gmail.com>
-In-Reply-To: <f57b84f3-22dd-629a-cfa3-4e3bbe01cf5e@gmail.com>
-Date: Thu, 19 Mar 2020 09:06:40 +0100
-Message-ID: <CAKaLowTYMnyzOL4zYpmzAMEGE9j5GfPKgWYQKJpvs07QHMonYw@mail.gmail.com>
+ <CAKaLowTYMnyzOL4zYpmzAMEGE9j5GfPKgWYQKJpvs07QHMonYw@mail.gmail.com>
+In-Reply-To: <CAKaLowTYMnyzOL4zYpmzAMEGE9j5GfPKgWYQKJpvs07QHMonYw@mail.gmail.com>
+Date: Thu, 19 Mar 2020 09:17:55 +0100
+Message-ID: <CAKaLowQ77qcZfCiY3r+6U5eub8PNJzEKr1qEn9gHgaA64UXKdQ@mail.gmail.com>
 To: Cinaed Simson <cinaed.simson@gmail.com>
 Subject: Re: [USRP-users] Apologize if duplicate : UHD 3.15 isn't using USB
  3.0 although Linux driver are loaded
@@ -71,7 +71,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Rodolphe Bertolini via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rodolphe Bertolini <bertolini.rodolphe@gmail.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2017152098829002663=="
+Content-Type: multipart/mixed; boundary="===============4927016621061150945=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,333 +85,381 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2017152098829002663==
-Content-Type: multipart/alternative; boundary="000000000000c6651405a130a68e"
+--===============4927016621061150945==
+Content-Type: multipart/alternative; boundary="000000000000fa0e1005a130ce84"
 
---000000000000c6651405a130a68e
+--000000000000fa0e1005a130ce84
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Cinaed,
+Also lsusb -t gives me this :
 
-Thank you.
-Output is empty (except at FIXME warning : "FIXME: alloc bigger buffer for
-device capability descriptors").
-However, without filtering I have something like this :
+# lsusb -t
+/:  Bus 02.Port 1: Dev 1, Class=3Droot_hub, Driver=3Dxhci_hcd/10p, 10000M
+/:  Bus 01.Port 1: Dev 1, Class=3Droot_hub, Driver=3Dxhci_hcd/16p, 480M
+    |__ Port 1: Dev 5, If 0, Class=3DVendor Specific Class, Driver=3D, 480M
+    |__ Port 10: Dev 2, If 0, Class=3DApplication Specific Interface,
+Driver=3D, 12M
+    |__ Port 10: Dev 2, If 1, Class=3DChip/SmartCard, Driver=3D, 12M
+    |__ Port 11: Dev 3, If 0, Class=3DVideo, Driver=3Duvcvideo, 480M
+    |__ Port 11: Dev 3, If 1, Class=3DVideo, Driver=3Duvcvideo, 480M
 
-Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Device Descriptor:
-  bLength                18
-  bDescriptorType         1
-  bcdUSB               3.10
-...
-      bInterfaceProtocol      0 Full speed (or root) hub
 
-I think that this bus is USB 3.0 capable, but for some reason the
-"superspeed" is not activated.
-Also no information about data rate is given about this bus.
+Also erratum : I don't "think" that the bus is 3.0 capable, I am "sure",
+because I had USRP b210 working for few months over 3.0.
 
-Regards,
 Rodolphe
 
-Le mer. 18 mars 2020 =C3=A0 20:29, Cinaed Simson via USRP-users <
-usrp-users@lists.ettus.com> a =C3=A9crit :
+Le jeu. 19 mars 2020 =C3=A0 09:06, Rodolphe Bertolini <
+bertolini.rodolphe@gmail.com> a =C3=A9crit :
 
-> A USB3 port is  SuperSpeed port.
+> Cinaed,
 >
-> For a quick check, try
+> Thank you.
+> Output is empty (except at FIXME warning : "FIXME: alloc bigger buffer fo=
+r
+> device capability descriptors").
+> However, without filtering I have something like this :
 >
->   lsusb -v | grep 5Gbps
+> Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+> Device Descriptor:
+>   bLength                18
+>   bDescriptorType         1
+>   bcdUSB               3.10
+> ...
+>       bInterfaceProtocol      0 Full speed (or root) hub
 >
-> to confirm you have at least 1 working USB3 port.
+> I think that this bus is USB 3.0 capable, but for some reason the
+> "superspeed" is not activated.
+> Also no information about data rate is given about this bus.
 >
-> And then you can check the port speed where the device is connected using
-> lsusb -v.
->
-> -- Cinaed
->
->
->
-> On 3/18/20 7:36 AM, Rodolphe Bertolini via USRP-users wrote:
->
-> Marcus,
-> USB plug is rotated (from row is at top), but yes I get the exact same
-> port as your.
-> Thank you
 > Regards,
 > Rodolphe
 >
-> Le mer. 18 mars 2020 =C3=A0 16:20, Marcus M=C3=BCller via USRP-users <
+> Le mer. 18 mars 2020 =C3=A0 20:29, Cinaed Simson via USRP-users <
 > usrp-users@lists.ettus.com> a =C3=A9crit :
 >
->> Hi Rodolphe,
+>> A USB3 port is  SuperSpeed port.
 >>
->> considering this is as confusing to me as to you: I took a picture of my
->> USB3 port. When looking at an oblique angle at yours, do you see the
->> five front-row bronze/gold contacts shown in the attached photo?
+>> For a quick check, try
 >>
->> Best regards,
->> Marcus
+>>   lsusb -v | grep 5Gbps
 >>
->> On 18.03.20 14:33, Rodolphe Bertolini via USRP-users wrote:
->> > Thanks to both of you.
->> >
->> > The port is black, but it has been working for few months until I
->> > shutdown / change session (I can't log back to previous session for
->> > reasons) so I believe that the port by itself isn't the bad guy.
->> >
->> > It keeps appearing as USB 2 ("high-speed") when I plug it and also whe=
+>> to confirm you have at least 1 working USB3 port.
+>>
+>> And then you can check the port speed where the device is connected usin=
+g
+>> lsusb -v.
+>>
+>> -- Cinaed
+>>
+>>
+>>
+>> On 3/18/20 7:36 AM, Rodolphe Bertolini via USRP-users wrote:
+>>
+>> Marcus,
+>> USB plug is rotated (from row is at top), but yes I get the exact same
+>> port as your.
+>> Thank you
+>> Regards,
+>> Rodolphe
+>>
+>> Le mer. 18 mars 2020 =C3=A0 16:20, Marcus M=C3=BCller via USRP-users <
+>> usrp-users@lists.ettus.com> a =C3=A9crit :
+>>
+>>> Hi Rodolphe,
+>>>
+>>> considering this is as confusing to me as to you: I took a picture of m=
+y
+>>> USB3 port. When looking at an oblique angle at yours, do you see the
+>>> five front-row bronze/gold contacts shown in the attached photo?
+>>>
+>>> Best regards,
+>>> Marcus
+>>>
+>>> On 18.03.20 14:33, Rodolphe Bertolini via USRP-users wrote:
+>>> > Thanks to both of you.
+>>> >
+>>> > The port is black, but it has been working for few months until I
+>>> > shutdown / change session (I can't log back to previous session for
+>>> > reasons) so I believe that the port by itself isn't the bad guy.
+>>> >
+>>> > It keeps appearing as USB 2 ("high-speed") when I plug it and also wh=
+en
+>>> > I run uhd_find_devices
+>>> >
+>>> > @Cedric I made sure to plug at max both ends
+>>> >
+>>> > Thank you again
+>>> > Regards,
+>>> > Rodolphe
+>>> >
+>>> > Le mer. 18 mars 2020 =C3=A0 15:02, Cedric Roux via USRP-users
+>>> > <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> a
+>>> =C3=A9crit :
+>>> >
+>>> >     Hi,
+>>> >
+>>> >     be also sure to plug the cable firmly on both
+>>> >     ends. I've seen it more than once with a cable
+>>> >     "half-plugged" and then it becomes usb2, not usb3.
+>>> >
+>>> >     My 2 cents.
+>>> >
+>>> >     Regards,
+>>> >     C=C3=A9dric.
+>>> >
+>>> >     On 3/18/20 2:54 PM, Marcus M=C3=BCller via USRP-users wrote:
+>>> >     > Hi Rodolphe,
+>>> >     >
+>>> >     > first of all, check whether you're actually dealing with a USB3
+>>> >     port. I
+>>> >     > know, sounds strange, but if it's not blue and doesn't have mor=
+e
+>>> than
+>>> >     > four visible contacts, it's not standard-compliant USB3. The
+>>> fact that
+>>> >     > it's attached to a xHCI doesn't itself mean it can do USB3.
+>>> >     >
+>>> >     > Then, I can't quite remember whether the USB controller on the
+>>> B200
+>>> >     > would even register as USB3 before the initial firmware is
+>>> loaded. Try
+>>> >     > the following: In one terminal window, run `dmesg -Hwx`. Plug i=
 n
->> > I run uhd_find_devices
->> >
->> > @Cedric I made sure to plug at max both ends
->> >
->> > Thank you again
->> > Regards,
->> > Rodolphe
->> >
->> > Le mer. 18 mars 2020 =C3=A0 15:02, Cedric Roux via USRP-users
->> > <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> a
->> =C3=A9crit :
->> >
->> >     Hi,
->> >
->> >     be also sure to plug the cable firmly on both
->> >     ends. I've seen it more than once with a cable
->> >     "half-plugged" and then it becomes usb2, not usb3.
->> >
->> >     My 2 cents.
->> >
->> >     Regards,
->> >     C=C3=A9dric.
->> >
->> >     On 3/18/20 2:54 PM, Marcus M=C3=BCller via USRP-users wrote:
->> >     > Hi Rodolphe,
->> >     >
->> >     > first of all, check whether you're actually dealing with a USB3
->> >     port. I
->> >     > know, sounds strange, but if it's not blue and doesn't have more
->> than
->> >     > four visible contacts, it's not standard-compliant USB3. The fac=
-t
->> that
->> >     > it's attached to a xHCI doesn't itself mean it can do USB3.
->> >     >
->> >     > Then, I can't quite remember whether the USB controller on the
->> B200
->> >     > would even register as USB3 before the initial firmware is
->> loaded. Try
->> >     > the following: In one terminal window, run `dmesg -Hwx`. Plug in
->> the
->> >     > USRP, and see how it appears on the bus (it seems, as USB2
->> high-speed
->> >     > device). After that, in another terminal, you'd run
->> >     `uhd_find_devices`,
->> >     > and see whether the device re-enumerates as USB3 SuperSpeed
->> device.
->> >     >
->> >     > Best regards,
->> >     > Marcus
->> >     >
->> >     > On 18.03.20 13:43, Rodolphe Bertolini via USRP-users wrote:
->> >     >> Hello Ron, (I resend the email, I forgot to "reply to all")
->> >     >> Thank you for your quick feedback.
->> >     >>
->> >     >> Ok I understand. More information, lspci gives me :
->> >     >> 00:14.0 USB controller: Intel Corporation Cannon Lake PCH USB 3=
-.1
->> >     xHCI
->> >     >> Host Controller (rev 10)
->> >     >> So I don't get why doesn't Ubuntu enables USB 3.0 with the B210=
-.
->> >     >>
->> >     >> My problems looks like this one
->> >     >>
->> >
->> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-July/05=
-7323.html
->> >     >>
->> >     >> The output of lsusb -t is similar, with "Driver=3D(none)"
->> >     >> A message of above mentioned thread suggests to enable 3.0
->> option in
->> >     >> BIOS, however I don't have such option. And even if I had, I
->> >     didn't not
->> >     >> change anything between reboot / session switch so I really don=
-'t
->> >     >> understand where this regression is coming from.
->> >     >> Also I did the "solution" mentioned by the author :
->> >     >>
->> >     >> uhd_image_loader --args=3D"type=3Db200,reset"
->> >     >>
->> >     >>
->> >     >> Which did not improve the situation.
->> >     >>
->> >     >>
->> >     >> Thank you again
->> >     >>
->> >     >> Rodolphe
->> >     >>
->> >     >> Le mer. 18 mars 2020 =C3=A0 12:02, Ron Economos via USRP-users
->> >     >> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
->> >     <mailto:usrp-users@lists.ettus.com
->> >     <mailto:usrp-users@lists.ettus.com>>> a =C3=A9crit :
->> >     >>
->> >     >>     dmesg should say "new SuperSpeed USB device number X using
->> >     xhci_hcd"
->> >     >>     or "new SuperSpeed Gen 1 USB device number X using xhci_hcd=
-"
->> >     if you
->> >     >>     have a newer kernel.
->> >     >>
->> >     >>     "high-speed" means USB 2.0.
->> >     >>
->> >     >>     Ron
->> >     >>
->> >     >>     On 3/18/20 03:41, Rodolphe Bertolini via USRP-users wrote:
->> >     >>>     Dear all,
->> >     >>>
->> >     >>>     I have been using a USRP B210 on a laptop for months now.
->> For
->> >     >>>     reasons, I switched to another Linux session, and using th=
-is
->> >     >>>     session UHD fails to talk to B210 over USB 3.0
->> >     >>>
->> >     >>>     dmesg tells me it is using the xhci_hcd driver (which I
->> >     believe is
->> >     >>>     the driver for USB 3.0), and is also mentioning  "new
->> high-speed
->> >     >>>     USB", which leads me to think that USB 3.0 link is well
->> >     recognized
->> >     >>>     and active:
->> >     >>>
->> >     >>>     [  306.133028] usb 1-1: new high-speed USB device number 1=
-6
->> >     using
->> >     >>>     xhci_hcd
->> >     >>>     [  306.260349] usb 1-1: New USB device found, idVendor=3D2=
-500,
->> >     >>>     idProduct=3D0020
->> >     >>>     [  306.260351] usb 1-1: New USB device strings: Mfr=3D1,
->> >     Product=3D2,
->> >     >>>     SerialNumber=3D3
->> >     >>>     [  306.260352] usb 1-1: Product: USRP B200
->> >     >>>     [  306.260354] usb 1-1: Manufacturer: Ettus Research LLC
->> >     >>>     [  306.260355] usb 1-1: SerialNumber: 31B9289
->> >     >>>
->> >     >>>     However, when running any uhd command line, it fails using
->> >     USB 3.0:
->> >     >>>
->> >     >>>     [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
->> >     Boost_105800;
->> >     >>>     UHD_3.15.0.0-release
->> >     >>>     [INFO] [B200] Detected Device: B210
->> >     >>>     [INFO] [B200] Operating over USB 2.
->> >     >>>
->> >     >>>     I have also tried with UHD 3.14.1, no improvement.
->> >     >>>
->> >     >>>     I remember having a similar issue (maybe the same?) that h=
-ad
->> >     been
->> >     >>>     solved with something related to udev, but I sadly didn't
->> >     take any
->> >     >>>     note of this.
->> >     >>>
->> >     >>>     Do you have any hint?
->> >     >>>
->> >     >>>     Thank you.
->> >     >>>     Regards,
->> >     >>>     Rodolphe
->> >     >>>
->> >     >>>     _______________________________________________
->> >     >>>     USRP-users mailing list
->> >     >>>     USRP-users@lists.ettus.com
->> >     <mailto:USRP-users@lists.ettus.com>
->> >     <mailto:USRP-users@lists.ettus.com <mailto:
->> USRP-users@lists.ettus.com>>
->> >     >>>
->> >      http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
+>>> the
+>>> >     > USRP, and see how it appears on the bus (it seems, as USB2
+>>> high-speed
+>>> >     > device). After that, in another terminal, you'd run
+>>> >     `uhd_find_devices`,
+>>> >     > and see whether the device re-enumerates as USB3 SuperSpeed
+>>> device.
+>>> >     >
+>>> >     > Best regards,
+>>> >     > Marcus
+>>> >     >
+>>> >     > On 18.03.20 13:43, Rodolphe Bertolini via USRP-users wrote:
+>>> >     >> Hello Ron, (I resend the email, I forgot to "reply to all")
+>>> >     >> Thank you for your quick feedback.
+>>> >     >>
+>>> >     >> Ok I understand. More information, lspci gives me :
+>>> >     >> 00:14.0 USB controller: Intel Corporation Cannon Lake PCH USB
+>>> 3.1
+>>> >     xHCI
+>>> >     >> Host Controller (rev 10)
+>>> >     >> So I don't get why doesn't Ubuntu enables USB 3.0 with the B21=
+0.
+>>> >     >>
+>>> >     >> My problems looks like this one
+>>> >     >>
+>>> >
+>>> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-July/0=
+57323.html
+>>> >     >>
+>>> >     >> The output of lsusb -t is similar, with "Driver=3D(none)"
+>>> >     >> A message of above mentioned thread suggests to enable 3.0
+>>> option in
+>>> >     >> BIOS, however I don't have such option. And even if I had, I
+>>> >     didn't not
+>>> >     >> change anything between reboot / session switch so I really
+>>> don't
+>>> >     >> understand where this regression is coming from.
+>>> >     >> Also I did the "solution" mentioned by the author :
+>>> >     >>
+>>> >     >> uhd_image_loader --args=3D"type=3Db200,reset"
+>>> >     >>
+>>> >     >>
+>>> >     >> Which did not improve the situation.
+>>> >     >>
+>>> >     >>
+>>> >     >> Thank you again
+>>> >     >>
+>>> >     >> Rodolphe
+>>> >     >>
+>>> >     >> Le mer. 18 mars 2020 =C3=A0 12:02, Ron Economos via USRP-users
+>>> >     >> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com=
+>
+>>> >     <mailto:usrp-users@lists.ettus.com
+>>> >     <mailto:usrp-users@lists.ettus.com>>> a =C3=A9crit :
+>>> >     >>
+>>> >     >>     dmesg should say "new SuperSpeed USB device number X using
+>>> >     xhci_hcd"
+>>> >     >>     or "new SuperSpeed Gen 1 USB device number X using xhci_hc=
+d"
+>>> >     if you
+>>> >     >>     have a newer kernel.
+>>> >     >>
+>>> >     >>     "high-speed" means USB 2.0.
+>>> >     >>
+>>> >     >>     Ron
+>>> >     >>
+>>> >     >>     On 3/18/20 03:41, Rodolphe Bertolini via USRP-users wrote:
+>>> >     >>>     Dear all,
+>>> >     >>>
+>>> >     >>>     I have been using a USRP B210 on a laptop for months now.
+>>> For
+>>> >     >>>     reasons, I switched to another Linux session, and using
+>>> this
+>>> >     >>>     session UHD fails to talk to B210 over USB 3.0
+>>> >     >>>
+>>> >     >>>     dmesg tells me it is using the xhci_hcd driver (which I
+>>> >     believe is
+>>> >     >>>     the driver for USB 3.0), and is also mentioning  "new
+>>> high-speed
+>>> >     >>>     USB", which leads me to think that USB 3.0 link is well
+>>> >     recognized
+>>> >     >>>     and active:
+>>> >     >>>
+>>> >     >>>     [  306.133028] usb 1-1: new high-speed USB device number =
+16
+>>> >     using
+>>> >     >>>     xhci_hcd
+>>> >     >>>     [  306.260349] usb 1-1: New USB device found,
+>>> idVendor=3D2500,
+>>> >     >>>     idProduct=3D0020
+>>> >     >>>     [  306.260351] usb 1-1: New USB device strings: Mfr=3D1,
+>>> >     Product=3D2,
+>>> >     >>>     SerialNumber=3D3
+>>> >     >>>     [  306.260352] usb 1-1: Product: USRP B200
+>>> >     >>>     [  306.260354] usb 1-1: Manufacturer: Ettus Research LLC
+>>> >     >>>     [  306.260355] usb 1-1: SerialNumber: 31B9289
+>>> >     >>>
+>>> >     >>>     However, when running any uhd command line, it fails usin=
+g
+>>> >     USB 3.0:
+>>> >     >>>
+>>> >     >>>     [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
+>>> >     Boost_105800;
+>>> >     >>>     UHD_3.15.0.0-release
+>>> >     >>>     [INFO] [B200] Detected Device: B210
+>>> >     >>>     [INFO] [B200] Operating over USB 2.
+>>> >     >>>
+>>> >     >>>     I have also tried with UHD 3.14.1, no improvement.
+>>> >     >>>
+>>> >     >>>     I remember having a similar issue (maybe the same?) that
+>>> had
+>>> >     been
+>>> >     >>>     solved with something related to udev, but I sadly didn't
+>>> >     take any
+>>> >     >>>     note of this.
+>>> >     >>>
+>>> >     >>>     Do you have any hint?
+>>> >     >>>
+>>> >     >>>     Thank you.
+>>> >     >>>     Regards,
+>>> >     >>>     Rodolphe
+>>> >     >>>
+>>> >     >>>     _______________________________________________
+>>> >     >>>     USRP-users mailing list
+>>> >     >>>     USRP-users@lists.ettus.com
+>>> >     <mailto:USRP-users@lists.ettus.com>
+>>> >     <mailto:USRP-users@lists.ettus.com <mailto:
+>>> USRP-users@lists.ettus.com>>
+>>> >     >>>
+>>> >
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>> >     >>     _______________________________________________
+>>> >     >>     USRP-users mailing list
+>>> >     >>     USRP-users@lists.ettus.com
+>>> >     <mailto:USRP-users@lists.ettus.com>
+>>> >     <mailto:USRP-users@lists.ettus.com <mailto:
+>>> USRP-users@lists.ettus.com>>
+>>> >     >>
+>>> >
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>> >     >>
+>>> >     >>
+>>> >     >> _______________________________________________
+>>> >     >> USRP-users mailing list
+>>> >     >> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>> >     >>
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>> >     >>
+>>> >     >
+>>> >     > _______________________________________________
+>>> >     > USRP-users mailing list
+>>> >     > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>> >     >
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>> >     >
+>>> >
+>>> >
+>>> >     _______________________________________________
+>>> >     USRP-users mailing list
+>>> >     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>> >     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
 m
->> >     >>     _______________________________________________
->> >     >>     USRP-users mailing list
->> >     >>     USRP-users@lists.ettus.com
->> >     <mailto:USRP-users@lists.ettus.com>
->> >     <mailto:USRP-users@lists.ettus.com <mailto:
->> USRP-users@lists.ettus.com>>
->> >     >>
->> >      http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m
->> >     >>
->> >     >>
->> >     >> _______________________________________________
->> >     >> USRP-users mailing list
->> >     >> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->> >     >>
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> >     >>
->> >     >
->> >     > _______________________________________________
->> >     > USRP-users mailing list
->> >     > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->> >     >
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> >     >
->> >
->> >
->> >     _______________________________________________
->> >     USRP-users mailing list
->> >     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->> >     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> >
->> >
->> > _______________________________________________
->> > USRP-users mailing list
->> > USRP-users@lists.ettus.com
->> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> >
+>>> >
+>>> >
+>>> > _______________________________________________
+>>> > USRP-users mailing list
+>>> > USRP-users@lists.ettus.com
+>>> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>> >
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
+>>
+>> _______________________________________________
+>> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >> _______________________________________________
 >> USRP-users mailing list
 >> USRP-users@lists.ettus.com
 >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >>
 >
-> _______________________________________________
-> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/m=
-ailman/listinfo/usrp-users_lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
 
---000000000000c6651405a130a68e
+--000000000000fa0e1005a130ce84
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Cinaed,</div><div><br></div><div>Thank you.</div><div=
->Output is empty (except at FIXME warning : &quot;FIXME: alloc bigger buffe=
-r for device capability descriptors&quot;).</div><div>However, without filt=
-ering I have something like this :</div><div><br></div><div>Bus 002 Device =
-001: ID 1d6b:0003 Linux Foundation <span style=3D"color:rgb(255,0,0)">3.0 <=
-/span>root hub<br>Device Descriptor:<br>=C2=A0 bLength =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A018<br>=C2=A0 bDescriptorType =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 1<br><span style=3D"color:rgb(255,0,0)">=C2=A0 bcdUSB =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 3.10</span><br></div><div>...=
-</div><div><span style=3D"color:rgb(255,0,0)">=C2=A0 =C2=A0 =C2=A0 bInterfa=
-ceProtocol =C2=A0 =C2=A0 =C2=A00 Full speed (or root) hub</span></div><div>=
-<span style=3D"color:rgb(255,0,0)"><br></span></div><div><span style=3D"col=
-or:rgb(255,0,0)"><font color=3D"#000000">I think that this bus is USB 3.0 c=
-apable, but for some reason the &quot;superspeed&quot; is not activated.</f=
-ont><br></span></div><div><span style=3D"color:rgb(0,0,0)">Also no informat=
-ion about data rate is given about this bus.</span></div><div><span style=
-=3D"color:rgb(0,0,0)"><br></span></div><div><span style=3D"color:rgb(0,0,0)=
-">Regards,</span></div><div><span style=3D"color:rgb(0,0,0)">Rodolphe</span=
-><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">Le=C2=A0mer. 18 mars 2020 =C3=A0=C2=A020:29, Cinaed Simson via U=
-SRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@list=
-s.ettus.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex">
+<div dir=3D"ltr"><div>Also lsusb -t gives me this :</div><div><br></div><di=
+v># lsusb -t<br>/: =C2=A0<span style=3D"color:rgb(255,0,0)">Bus 02.Port 1: =
+Dev 1</span>, Class=3Droot_hub, Driver=3Dxhci_hcd/10p, <span style=3D"color=
+:rgb(255,0,0)">10000M</span><br>/: =C2=A0Bus 01.Port 1: Dev 1, Class=3Droot=
+_hub, Driver=3Dxhci_hcd/16p, 480M<br>=C2=A0 =C2=A0 |__ Port 1: Dev 5, If 0,=
+ Class=3DVendor Specific Class, Driver=3D, 480M<br>=C2=A0 =C2=A0 |__ Port 1=
+0: Dev 2, If 0, Class=3DApplication Specific Interface, Driver=3D, 12M<br>=
+=C2=A0 =C2=A0 |__ Port 10: Dev 2, If 1, Class=3DChip/SmartCard, Driver=3D, =
+12M<br>=C2=A0 =C2=A0 |__ Port 11: Dev 3, If 0, Class=3DVideo, Driver=3Duvcv=
+ideo, 480M<br>=C2=A0 =C2=A0 |__ Port 11: Dev 3, If 1, Class=3DVideo, Driver=
+=3Duvcvideo, 480M</div><div><br></div><div><br></div><div>Also erratum : I =
+don&#39;t &quot;think&quot; that the bus is 3.0 capable, I am &quot;sure&qu=
+ot;, because I had USRP b210 working for few months over 3.0.</div><div><br=
+></div><div>Rodolphe<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">Le=C2=A0jeu. 19 mars 2020 =C3=A0=C2=A009:06, =
+Rodolphe Bertolini &lt;<a href=3D"mailto:bertolini.rodolphe@gmail.com">bert=
+olini.rodolphe@gmail.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Cinaed,</div><di=
+v><br></div><div>Thank you.</div><div>Output is empty (except at FIXME warn=
+ing : &quot;FIXME: alloc bigger buffer for device capability descriptors&qu=
+ot;).</div><div>However, without filtering I have something like this :</di=
+v><div><br></div><div>Bus 002 Device 001: ID 1d6b:0003 Linux Foundation <sp=
+an style=3D"color:rgb(255,0,0)">3.0 </span>root hub<br>Device Descriptor:<b=
+r>=C2=A0 bLength =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A018<=
+br>=C2=A0 bDescriptorType =C2=A0 =C2=A0 =C2=A0 =C2=A0 1<br><span style=3D"c=
+olor:rgb(255,0,0)">=C2=A0 bcdUSB =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 3.10</span><br></div><div>...</div><div><span style=3D"color:rgb(255=
+,0,0)">=C2=A0 =C2=A0 =C2=A0 bInterfaceProtocol =C2=A0 =C2=A0 =C2=A00 Full s=
+peed (or root) hub</span></div><div><span style=3D"color:rgb(255,0,0)"><br>=
+</span></div><div><span style=3D"color:rgb(255,0,0)"><font color=3D"#000000=
+">I think that this bus is USB 3.0 capable, but for some reason the &quot;s=
+uperspeed&quot; is not activated.</font><br></span></div><div><span style=
+=3D"color:rgb(0,0,0)">Also no information about data rate is given about th=
+is bus.</span></div><div><span style=3D"color:rgb(0,0,0)"><br></span></div>=
+<div><span style=3D"color:rgb(0,0,0)">Regards,</span></div><div><span style=
+=3D"color:rgb(0,0,0)">Rodolphe</span><br></div></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mer. 18 mars 2020 =
+=C3=A0=C2=A020:29, Cinaed Simson via USRP-users &lt;<a href=3D"mailto:usrp-=
+users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;=
+ a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">
  =20
    =20
  =20
@@ -854,11 +902,12 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
 
---000000000000c6651405a130a68e--
+--000000000000fa0e1005a130ce84--
 
 
---===============2017152098829002663==
+--===============4927016621061150945==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -869,5 +918,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2017152098829002663==--
+--===============4927016621061150945==--
 
