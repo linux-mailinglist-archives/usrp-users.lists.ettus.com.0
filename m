@@ -2,50 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA4E18AEE0
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 10:01:45 +0100 (CET)
-Received: from [::1] (port=54486 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4D4218AEE1
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 10:02:55 +0100 (CET)
+Received: from [::1] (port=55884 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jEr3b-0001y1-Lc; Thu, 19 Mar 2020 05:01:39 -0400
-Received: from mx1.ffi.no ([128.39.8.71]:36280)
+	id 1jEr4o-0002Dq-Lc; Thu, 19 Mar 2020 05:02:54 -0400
+Received: from mx2.ffi.no ([128.39.8.72]:42584)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.93) (envelope-from <Arne-Magnus-Tveita.Loken@ffi.no>)
- id 1jEr3Y-0001rn-KJ
- for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 05:01:36 -0400
-Received: from mx1.ffi.no (mx1.ffi.no [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 910F6136065
- for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 10:00:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffi.no; s=a1912-1;
- t=1584608454; bh=KLb2s1KB2z1/a4dyJlOvMsfJyww/iyT85zWaebwpM+g=;
+ id 1jEr4k-00026p-Ap
+ for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 05:02:50 -0400
+Received: from mx2.ffi.no (mx2.ffi.no [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 979EE72065
+ for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 10:02:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffi.no; s=b1912-1;
+ t=1584608528; bh=VJ7RfwJr0RK431N/p7/Kwn6q8nsz8oKU+J+aTdSYJ2c=;
  h=From;
- b=vFQurvrKiMli9iUjF+qvxXLDNv34PeEqNv5ewUa8R6w9C+1kCAYMILSwmBX4WFtjT
- a+OSGlM55oan3i+zoMu7EMluNeHzMjAXxuWMRlYPcRlqpQBXVyEjoTygbX/3WjuCf0
- 5UkpXHcFqfzVuym8JIuu34BY93axP0E24bi79oZe6fyo4lIAeE5U5LiCsBysqmgBoO
- rUoYXy6mv4kTxkPeEDfrx2ShrLzYK1YEuvH/QJdoHissJJKLxVMWhAnQgd31JY8tvB
- q2+63PYcXr/zXwfEp4m0PNnxjREKs1RSJNAvoOwCq3p2DsCWfEehxpm8reSVMFct2h
- jMhhe3zFY+5Tw==
-Received: from mx1.ffi.no (mx1.ffi.no [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 79B27136055
- for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 10:00:54 +0100 (CET)
+ b=aoJ4UoxEKZKepQ5iC5WTAEyKs9V/j+vMLxk+Bx0HM8j+4RUl1whoWQmbD1q+WvTfh
+ 7Sazt66n1PQgAe3e4HfghR13uBj2EqQJ5rqvJUDRcFXbOkujfRpwi+Y/v/q3MSF5z6
+ XhfAdB97eyRw1H6CUpQ4zyYoT50sbTqnzbBop6LTh7Cn6xwAchOStWzqcKvexRqJP7
+ mTCYKuT/EIg7XOKnp8iIJcsty2Jqt2a4z+EWYWt3Cfn/xftyp01lhzGwRiOQD4rgP/
+ VrpuZ1jyizamD//tmt6vFMHdLXHy1Vr1Pr/C+cylLntj2qhsVsaXKOO2bAfVRpOtud
+ Mdpq2ogOCo0EQ==
+Received: from mx2.ffi.no (mx2.ffi.no [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 7D1D872063
+ for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 10:02:08 +0100 (CET)
 Received: from mx1.ffi.no (HBU-POST1.ffi.no [193.156.99.110])
- by mx1.ffi.no (Postfix) with ESMTP
- for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 10:00:54 +0100 (CET)
+ by mx2.ffi.no (Postfix) with ESMTP
+ for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 10:02:08 +0100 (CET)
 Received: from HBU-POST2.ffi.no ([fe80::39ff:54c7:aafd:ce7]) by
  HBU-POST1.ffi.no ([193.156.99.110]) with mapi id 14.03.0487.000; Thu, 19 Mar
- 2020 10:00:55 +0100
+ 2020 10:02:09 +0100
 To: <usrp-users@lists.ettus.com>
 Thread-Topic: Re: [USRP-users] rfnocmodtool Problem
-Thread-Index: AdX9zILSzYmOqCx9SciFc4ftztQ9Nw==
-Date: Thu, 19 Mar 2020 09:00:53 +0000
-Message-ID: <62A0069FDCF7384987935A4861E7EC3A576EA5F7@HBU-POST2.ffi.no>
+Thread-Index: AdX9zQI/Ns8HZjswQ2KMd3Wvq65mUQ==
+Date: Thu, 19 Mar 2020 09:02:06 +0000
+Message-ID: <62A0069FDCF7384987935A4861E7EC3A576EA606@HBU-POST2.ffi.no>
 Accept-Language: nb-NO, en-US
 Content-Language: nb-NO
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [193.156.99.108]
 x-tm-as-product-ver: SMEX-10.2.0.1135-8.000.1202-25300.005
-x-tm-as-result: No--12.026600-8.000000-31
+x-tm-as-result: No--13.988600-8.000000-31
 x-tm-as-user-approved-sender: No
 x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
@@ -65,7 +65,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: =?utf-8?q?Arne_Magnus_Tveita_L=C3=B8ken_via_USRP-users?=
  <usrp-users@lists.ettus.com>
 Reply-To: Arne-Magnus-Tveita.Loken@ffi.no
-Content-Type: multipart/mixed; boundary="===============4082067708736011853=="
+Content-Type: multipart/mixed; boundary="===============0105789286072342590=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,14 +79,26 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4082067708736011853==
+--===============0105789286072342590==
 Content-Language: nb-NO
 Content-Type: multipart/alternative;
-	boundary="_000_62A0069FDCF7384987935A4861E7EC3A576EA5F7HBUPOST2ffino_"
+	boundary="_000_62A0069FDCF7384987935A4861E7EC3A576EA606HBUPOST2ffino_"
 
---_000_62A0069FDCF7384987935A4861E7EC3A576EA5F7HBUPOST2ffino_
+--_000_62A0069FDCF7384987935A4861E7EC3A576EA606HBUPOST2ffino_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Sorry for the slight typo, I meant
+
+$ apt install python-future
+
+Best regards,
+Arne
+
+Fra: L=F8ken, Arne Magnus Tveita
+Sendt: torsdag 19. mars 2020 10:01
+Til: 'usrp-users@lists.ettus.com' <usrp-users@lists.ettus.com>
+Emne: Re: [USRP-users] rfnocmodtool Problem
 
 Hi Jeff,
 
@@ -100,7 +112,7 @@ Best regards,
 Arne
 
 
---_000_62A0069FDCF7384987935A4861E7EC3A576EA5F7HBUPOST2ffino_
+--_000_62A0069FDCF7384987935A4861E7EC3A576EA606HBUPOST2ffino_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -138,17 +150,28 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:#954F72;
 	text-decoration:underline;}
-span.EpostStil17
-	{mso-style-type:personal-compose;
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EpostStil18
+	{mso-style-type:personal;
 	font-family:"Calibri",sans-serif;
 	color:#1F497D;
 	font-weight:normal;
 	font-style:normal;
 	text-decoration:none none;}
+span.EpostStil19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:612.0pt 792.0pt;
 	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
@@ -163,6 +186,37 @@ div.WordSection1
 </head>
 <body lang=3D"NO-BOK" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D">Sorry f=
+or the slight typo, I meant<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D"><o:p>&n=
+bsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D">$ apt i=
+nstall python-future<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D"><o:p>&n=
+bsp;</o:p></span></p>
+<div>
+<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><i><span style=3D"font-=
+size:7.5pt;font-family:&quot;Verdana&quot;,sans-serif;color:#4A6E90;mso-far=
+east-language:NO-BOK">Best regards,<o:p></o:p></span></i></p>
+<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><i><span style=3D"font-=
+size:9.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:#4A6E90;mso-far=
+east-language:NO-BOK">Arne<o:p></o:p></span></i></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"mso-fareast-language:NO-BOK">Fra:<=
+/span></b><span style=3D"mso-fareast-language:NO-BOK"> L=F8ken, Arne Magnus=
+ Tveita
+<br>
+<b>Sendt:</b> torsdag 19. mars 2020 10:01<br>
+<b>Til:</b> 'usrp-users@lists.ettus.com' &lt;usrp-users@lists.ettus.com&gt;=
+<br>
+<b>Emne:</b> Re: [USRP-users] rfnocmodtool Problem<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi Jeff,<o:p></o:p></s=
 pan></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
@@ -188,11 +242,11 @@ east-language:NO-BOK">Arne<o:p></o:p></span></i></p>
 </body>
 </html>
 
---_000_62A0069FDCF7384987935A4861E7EC3A576EA5F7HBUPOST2ffino_--
+--_000_62A0069FDCF7384987935A4861E7EC3A576EA606HBUPOST2ffino_--
 
 
 
---===============4082067708736011853==
+--===============0105789286072342590==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,6 +257,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4082067708736011853==--
+--===============0105789286072342590==--
 
 
