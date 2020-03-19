@@ -2,43 +2,43 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B3F818C183
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 21:36:04 +0100 (CET)
-Received: from [::1] (port=33560 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5229018C2BF
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 23:11:14 +0100 (CET)
+Received: from [::1] (port=38680 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jF1ta-0006Ia-N6; Thu, 19 Mar 2020 16:36:02 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:33328)
+	id 1jF3Ne-0006Wv-DQ; Thu, 19 Mar 2020 18:11:10 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:43365)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jF1tX-0006BY-4i
- for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 16:35:59 -0400
-Received: by mail-ot1-f50.google.com with SMTP id x26so3883678otk.0
- for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 13:35:38 -0700 (PDT)
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jF3Na-0006S6-Dm
+ for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 18:11:06 -0400
+Received: by mail-ot1-f41.google.com with SMTP id a6so4078757otb.10
+ for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 15:10:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+ncpcR8lHoiPZmJqIyoaSi/RH2i5LzkG2p5SbD+wkgA=;
- b=XN6u23xX0345MjAg2sTdze0sWExGX9Wx4K2nvgeGbKnPsdNrInk+HUIRNovhcYNTDb
- ov65FrbAwSxbluRN7yqxQyIShNjerhOc0rKenscJNP5NtE3ZOULPh10k9/mzJddgE4ll
- MyoLuWy866ZgbhcBPPwvTA6S4oAvtEARDY/EN/7QGr1TNWXzARzZmAVMmxJrGac3Qq6e
- G94ZX7JtnhPOsj6xwXKiVY8OTaJQhiiGdFq1mp/jXECdBb569X2lacLTKtepPnza8d7e
- KjRaXlYlgGFR/85ZjBGxrD1wcBfehini+PHOtG+5clC/NwDK8CXxIb6V5tpNYa9BJg3g
- XZJA==
+ :cc; bh=R7WsnwZoY4zdtrdJ1rkFZn/S9Gxtz/U+XR625m6lfqs=;
+ b=KPNHn+/eAdoM30Gm1Bl0c3VptxB+Sq+0JUeaVAfZHTZEi6FDHB1EFMM0idQe13cbJy
+ fXqZsAKLgZfUSHP8n0mfITi9Apzygc9WW0YZVc2xRY9N05d0pqHwQTKGNbDjjK0Y1L2d
+ 8vAYCPTSQhYfVoSSfANlMTH+MSfghMTJvlaHVxNZppnPrACVfVPN5p0fwUFY/VsovUdJ
+ uAgb7QdD3vNkNp4UCi68KT/EbigFQlZKGWNIQJoyACTEIiTKRdLcf6p0GGASBIom0KOF
+ 7l0s8EOOnDzc7DUCrXF+/yhHBWNle9AdoPTykoKPgwz7NgOY443zhNFKGH9dYH51ZsWH
+ YsZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=+ncpcR8lHoiPZmJqIyoaSi/RH2i5LzkG2p5SbD+wkgA=;
- b=mmrXIqy7QxLwgdsSq88FoWbBl9MAuq+tPa1RqnMieixOgG1qZVCOUpt5Xqn9+JE/yt
- iv9rMCLFtRNxh+dPjz87Fys6BhjxZTZaTof3eL0T/jbPB/fkBx5Z8TeYo8pXs7UlkGC/
- lpByIYxLz/nlfccRR1LVZC+VBuCyvMUv7h4VYB5eEje7VZhowre8iWOv0GQqljCvcVhh
- 6ViBxFg3i2U1XTq5NPKny4tlbPcU/VJg2M6x1sEx8ISd/gWu3etQfnzhsWnPzoNHzNKY
- 1UFhnVRwcwPFSPHapCu4H4JMOf7ylspcDJO/MxpOhgsLBLF4z54uJq1e0TlQSoKBRieb
- LrAQ==
-X-Gm-Message-State: ANhLgQ0MXLGHCYtVlt4xitP++/FSvuxjeLuERkRYvVHh6Rl1VKWDmM7W
- izHVqBff3GTQbH5M+0eb/Iqwcv2C0rrU9aSxAJQf8kGwc5U=
-X-Google-Smtp-Source: ADFU+vu/pl0pCH+mfybJDF5vQJierz5d8DOJsXxk7oQmI2xHscXRStaEgbxsNoxhB5s6B2B1ed1UGYSh46AJuaA+oEE=
-X-Received: by 2002:a9d:171e:: with SMTP id i30mr3990338ota.327.1584650118123; 
- Thu, 19 Mar 2020 13:35:18 -0700 (PDT)
+ bh=R7WsnwZoY4zdtrdJ1rkFZn/S9Gxtz/U+XR625m6lfqs=;
+ b=Lc1ylE1JxXJgVaTyE12JWm8zaMyiGNPw3H+NGn0g3MEvOZBGgNVVg5G8u725/bUShc
+ nWu8pXmj24l4lw7J60iTA3IaWugRTSykSSAOYnUtq7+2pVuRrrDmj3hvWohmXsiZAF2Y
+ J1razj8oPjwizARuZycB0VEAXHbOdCMXzHW3HErerJ84eaWBPk1catHO40NMt97Gh5dH
+ xwBWtLBjO55HfDJdDGwfQz2ZxyLwYO70c7kpHfOzDvwk57dWd5Fo1z567jiwNJ6R5/2r
+ n7JtDUUZiht6PT2BZHVDnebCsYWjZv+e4vAp6Qbnngup4jCRoSSpgxPrck1sNVnF+QD6
+ QGQw==
+X-Gm-Message-State: ANhLgQ3Rr2RArBtdCynzTuRxhixMAj984Z5+bH2yym02xJxGykZ8W6Yf
+ VzTgehDCD4Somb7C0sKdRnKZgl5G5TtoWXHqfiTxeyNi
+X-Google-Smtp-Source: ADFU+vtPm7yrtbu5LxFqWt7N6agIDKDDGlER4+epN/yStR8ExrihOvq5quL777ioLD+osVj/+Wq5HuI1zieikkmSD8M=
+X-Received: by 2002:a05:6830:c5:: with SMTP id x5mr372044oto.302.1584655824858; 
+ Thu, 19 Mar 2020 15:10:24 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
  <38CFC8D2-9645-4412-9873-9612B897C5EB@gmail.com>
@@ -52,9 +52,10 @@ References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
  <trinity-67ab4cfd-a450-4253-8edf-2d22a808d058-1584575179099@3c-app-gmx-bap69>
  <CAB__hTRoRNft0M8VCFGDS0ytLGbq0Fz48Zych-U5UD3jcutNzA@mail.gmail.com>
  <trinity-bbe82f54-edda-4533-b4c8-9b1bde054edc-1584649222876@3c-app-gmx-bap79>
-In-Reply-To: <trinity-bbe82f54-edda-4533-b4c8-9b1bde054edc-1584649222876@3c-app-gmx-bap79>
-Date: Thu, 19 Mar 2020 16:35:06 -0400
-Message-ID: <CAB__hTRvq+xojKA0-kB0-JJjOURf9ZLVURcAwyHxtt6_-J1_bg@mail.gmail.com>
+ <CAB__hTRvq+xojKA0-kB0-JJjOURf9ZLVURcAwyHxtt6_-J1_bg@mail.gmail.com>
+In-Reply-To: <CAB__hTRvq+xojKA0-kB0-JJjOURf9ZLVURcAwyHxtt6_-J1_bg@mail.gmail.com>
+Date: Thu, 19 Mar 2020 18:10:13 -0400
+Message-ID: <CAB__hTRZCez=FerC_MUiyDMXoEb4LH+cgHqAUfoE859UUO0POg@mail.gmail.com>
 To: Lukas Haase <lukashaase@gmx.at>
 Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
  timed command
@@ -72,7 +73,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1640887009392694165=="
+Content-Type: multipart/mixed; boundary="===============3660127001318416935=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,444 +87,507 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1640887009392694165==
-Content-Type: multipart/alternative; boundary="0000000000006284ab05a13b1bcb"
+--===============3660127001318416935==
+Content-Type: multipart/alternative; boundary="000000000000885af605a13c6f91"
 
---0000000000006284ab05a13b1bcb
+--000000000000885af605a13c6f91
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Lukas,
-Just before receiving your email, I ran the following with my custom c++ &
-matlab software using X310/UBX-160 with the connections I described.  The
-following shows the output which is very consistent.  I used a 100 tone
-multi-tone waveform spread over 4 MHz bandwidth (using 5 MS/s sample rate
-on Tx and Rx).  Note the consistency of results as I toggled between 2
-frequencies: 2450 and 2460 MHz.
+Ok. I modified my code to be more like yours...
 
-My method was the following:
+   - toggling dsp freq rather than LO freq
+   - LO at 900 MHz
+   - external connections Tx0 =3D> Splitter_1x2 =3D> both Rx0 and Rx1
+   - Previously, I was starting / stopping both Rx & Tx in between each
+   test.  Now, I added a mode where the Tx is on continuously, and the Rx
+   starts & stops for each test after the dsp freq change
 
-   - Tx waveform was 500 points long
-   - Rx capture was 5000 points long
-   - Compute cross-correlation (using Matlab xcorr) as follows: xcorr(rx0,
-   conj(tx)) AND xcorr(rx0,conj(rx1))
-   - Find the correlation peak (which was very pronounced) which shows the
-   sample delay between the two signals.  Extract the phase at the peak
+The results are the following:
 
-Oops, I just realized that I used a constant DSP freq (10 MHz) and I
-changed the LO freq in my test.  I will try again with moving the DSP freq
-instead.
+   - In the first mode where both Tx and Rx start/stop at each test, I get
+   consistent group delay (as measured by the correlation peak index) for b=
+oth
+   Rx-Rx and Rx-Tx.  But for phase, the Rx-Rx phase is consistent, but the
+   Rx-Tx phase seems random
+   - In the second mode where Tx is on continuously and I start/stop Rx
+   after each dsp freq change, the group delay is constant for Rx-Rx but
+   random for Rx-Tx.  The phase results are constant for Rx-Rx but random f=
+or
+   Rx-Tx.
+
+Regarding the 2nd mode, this makes sense to me.  But, for the 1st mode, I
+don't understand why the Rx-Tx phase seems random. Still thinking about
+it....
 Rob
 
-Test 1: freq =3D 2450.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -121.8
-  Rx0/Rx1 xcorr peak at index 115 with phase -95.7
-Test 2: freq =3D 2460.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -58.7
-  Rx0/Rx1 xcorr peak at index 115 with phase 13.1
-Test 3: freq =3D 2450.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -121.7
-  Rx0/Rx1 xcorr peak at index 115 with phase -95.8
-Test 4: freq =3D 2460.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -58.6
-  Rx0/Rx1 xcorr peak at index 115 with phase 13.0
-Test 5: freq =3D 2450.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -121.7
-  Rx0/Rx1 xcorr peak at index 115 with phase -95.8
-Test 6: freq =3D 2460.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -58.8
-  Rx0/Rx1 xcorr peak at index 115 with phase 12.7
-Test 7: freq =3D 2450.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -121.8
-  Rx0/Rx1 xcorr peak at index 115 with phase -95.9
-Test 8: freq =3D 2460.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -58.7
-  Rx0/Rx1 xcorr peak at index 115 with phase 12.9
-Test 9: freq =3D 2450.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -121.8
-  Rx0/Rx1 xcorr peak at index 115 with phase -95.8
-Test 10: freq =3D 2460.0 MHz
-  Rx0/Tx0 xcorr peak at index 108 with phase -58.7
-  Rx0/Rx1 xcorr peak at index 115 with phase 12.9
->>
 
+On Thu, Mar 19, 2020 at 4:35 PM Rob Kossler <rkossler@nd.edu> wrote:
 
-On Thu, Mar 19, 2020 at 4:21 PM Lukas Haase <lukashaase@gmx.at> wrote:
-
-> Hi Rob,
+> Lukas,
+> Just before receiving your email, I ran the following with my custom c++ =
+&
+> matlab software using X310/UBX-160 with the connections I described.  The
+> following shows the output which is very consistent.  I used a 100 tone
+> multi-tone waveform spread over 4 MHz bandwidth (using 5 MS/s sample rate
+> on Tx and Rx).  Note the consistency of results as I toggled between 2
+> frequencies: 2450 and 2460 MHz.
 >
-> Yes, I confirm your conclusion.
+> My method was the following:
 >
+>    - Tx waveform was 500 points long
+>    - Rx capture was 5000 points long
+>    - Compute cross-correlation (using Matlab xcorr) as follows:
+>    xcorr(rx0, conj(tx)) AND xcorr(rx0,conj(rx1))
+>    - Find the correlation peak (which was very pronounced) which shows
+>    the sample delay between the two signals.  Extract the phase at the pe=
+ak
 >
->    - I calculate the relative phase by dividing the outputs of both
->    receivers. To understand better, note that I have an additional "IF st=
-age"
->    in my own signal flow such that I exclude DC offset correction etc. th=
-e
->    USRP may perform. This is the block diagram of the transmitter part:
->    https://snipboard.io/YFgIKs.jpg . I send "exp(1j*1MHz*t) . This shows
->    the receiver part: https://snipboard.io/i9jLJg.jpg . I multiply the
->    received signal with exp(-1j*1MHz*t) and filter them. Then I divide bo=
-th
->    streams and take the phase part. I take a moving average (for
->    flucatuations), add pi and display the number.
->    - https://snipboard.io/YFgIKs.jpg https://snipboard.io/YFgIKs.jpg
->    https://snipboard.io/YFgIKs.jpg That's so nice, thank you!! My code is
->    here: http://paste.ubuntu.com/p/MbCJfPGzYW/ . I'm not sure if you have
->    gnuradio(and QT) installed but if yes, simply "python2 switch_on_click=
-.py"
->    should do. Let me quickly elaborate how it works:
->       - Class "switch_on_click" implements a normal gnuradio flow with
->       USRP transmitter and receiver.
->       - It also uses a custom module together with buttons and a probe
->       block to call functions upon clicking on a button
->       - The callback functions are defined in class "blk"
->       - The most important is "def button_rtx_handler" on line 106 which
->       is executed when user clicks on button "Switch RTX (together)"
->    - Again, thank you for trying this out!! If it works, would you mind
->    sharing this code then? I may be able to check then where it breaks on=
- my
->    system
->    - I use 900 MHz as default center frequency (and "rf_freq"). When
->    clicking, I jump between dsp_freq=3D0 and dsp_freq=3D500e3. As to my w=
-aveform,
->    you can infer from my screenshots and code above: I am transmitting an=
-d
->    receiving a 1MHz waveform (which acts as an additional "IF stage"). Th=
-e
->    received signal is then downconcerted from 1MHz to DC. I use 5 MSsps
->    sampling rate.
->
->
-> Again, thank you SO much.
->
-> Best,
-> Lukas
->
->
-> *Gesendet:* Donnerstag, 19. M=C3=A4rz 2020 um 10:43 Uhr
-> *Von:* "Rob Kossler" <rkossler@nd.edu>
-> *An:* "Lukas Haase" <lukashaase@gmx.at>
-> *Cc:* "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-> *Betreff:* Re: [USRP-users] USRP X310 ignored DSP retuning on TX when
-> using a timed command
-> Hi Lukas,
-> So, the conclusion is that your Rx0-to-Rx1 relative phase is nearly
-> constant such that it seems that both Rx0/Rx1 are phase coherent and
-> Tx0/Tx1 are phase coherent.  But, phase from Tx-to-Rx is random.  Please
-> correct me if that is wrong.
->
-> I have a few comments:
->
->    - How do you measure/calculate the relative phase?
->    - Can you send me the full Python code to look at?  As I mentioned
->    previously, I am not too good at gnuradio/Python, but I might be able =
-to
->    spot something.
->    - As to your question, I always use synchronous measurements.  And,
->    I'm confident that my Rx-to-Rx phase is coherent.  But, I haven't real=
-ly
->    looked at Tx-to-Rx in a while so I will do so later today.  Here are t=
-he
->    steps I plan to take:
->       1. Connect Tx0 to Rx1.  Note that there is a pretty strong leakage
->       signal from Tx0 to Rx0 so I don't really need to provide a physical
->       connection in order to get a signal on Rx0.  The signal attenuation=
- in this
->       leakage path is approx 40 dB so it is not too much different than t=
-he
->       signal level I will receive on Rx1 if I use an external 30 dB atten=
-uator.
->       2. Set Rx and Tx frequency to freq 1
->       3. Measure and note the relative phase for Rx0/Tx0 and Rx1/Tx0 for
->       freq 1
->       4. Set Rx and Tx frequency to freq 2
->       5. Measure and note the relative phase for Rx0/Tx0 and Rx1/Tx0 for
->       freq 2
->       6. Repeat steps 2-5 a few times to ensure that the measurements are
->       repeatable
->    - Questions: what should I use for freq 1 and freq 2?  What waveform
->    are you transmitting?  What sample rates for Tx and Rx?
->
+> Oops, I just realized that I used a constant DSP freq (10 MHz) and I
+> changed the LO freq in my test.  I will try again with moving the DSP fre=
+q
+> instead.
 > Rob
 >
+> Test 1: freq =3D 2450.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -121.8
+>   Rx0/Rx1 xcorr peak at index 115 with phase -95.7
+> Test 2: freq =3D 2460.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -58.7
+>   Rx0/Rx1 xcorr peak at index 115 with phase 13.1
+> Test 3: freq =3D 2450.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -121.7
+>   Rx0/Rx1 xcorr peak at index 115 with phase -95.8
+> Test 4: freq =3D 2460.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -58.6
+>   Rx0/Rx1 xcorr peak at index 115 with phase 13.0
+> Test 5: freq =3D 2450.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -121.7
+>   Rx0/Rx1 xcorr peak at index 115 with phase -95.8
+> Test 6: freq =3D 2460.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -58.8
+>   Rx0/Rx1 xcorr peak at index 115 with phase 12.7
+> Test 7: freq =3D 2450.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -121.8
+>   Rx0/Rx1 xcorr peak at index 115 with phase -95.9
+> Test 8: freq =3D 2460.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -58.7
+>   Rx0/Rx1 xcorr peak at index 115 with phase 12.9
+> Test 9: freq =3D 2450.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -121.8
+>   Rx0/Rx1 xcorr peak at index 115 with phase -95.8
+> Test 10: freq =3D 2460.0 MHz
+>   Rx0/Tx0 xcorr peak at index 108 with phase -58.7
+>   Rx0/Rx1 xcorr peak at index 115 with phase 12.9
+> >>
 >
 >
-> On Wed, Mar 18, 2020 at 7:47 PM Lukas Haase via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
+> On Thu, Mar 19, 2020 at 4:21 PM Lukas Haase <lukashaase@gmx.at> wrote:
 >
 >> Hi Rob,
 >>
->> I think the issue is really having two usrp_multi devices with timed
->> commands and same timestmap or similar. From your tests below:
+>> Yes, I confirm your conclusion.
 >>
->> 1.) I can *confirm *that the relative phase between two RX in your
->> suggested test is always the same! In fact, it is always 4.56 rad, even
->> across restarts and for different frequencies! That somewhat makes sense
->> because the phase offset is now only dependent on the difference between
->> the two channels (fixed) and cable lengths from the splitter (fixed). I
->> verified by removing the timed command on usrp source, the phase offset
->> becomes random after each retune. Of course, this is independent of TX
->> tuning (timed vs. not). For reference, this is the code used:
 >>
->>         tune_req_rx =3D uhd.tune_request()
->>         tune_req_rx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
->>         tune_req_rx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
->>         tune_req_rx.dsp_freq =3D -dsp_freq
->>         tune_req_tx =3D uhd.tune_request()
->>         tune_req_tx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
->>         tune_req_tx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
->>         tune_req_tx.dsp_freq =3D dsp_freq
+>>    - I calculate the relative phase by dividing the outputs of both
+>>    receivers. To understand better, note that I have an additional "IF s=
+tage"
+>>    in my own signal flow such that I exclude DC offset correction etc. t=
+he
+>>    USRP may perform. This is the block diagram of the transmitter part:
+>>    https://snipboard.io/YFgIKs.jpg . I send "exp(1j*1MHz*t) . This shows
+>>    the receiver part: https://snipboard.io/i9jLJg.jpg . I multiply the
+>>    received signal with exp(-1j*1MHz*t) and filter them. Then I divide b=
+oth
+>>    streams and take the phase part. I take a moving average (for
+>>    flucatuations), add pi and display the number.
+>>    - https://snipboard.io/YFgIKs.jpg https://snipboard.io/YFgIKs.jpg
+>>    https://snipboard.io/YFgIKs.jpg That's so nice, thank you!! My code
+>>    is here: http://paste.ubuntu.com/p/MbCJfPGzYW/ . I'm not sure if you
+>>    have gnuradio(and QT) installed but if yes, simply "python2
+>>    switch_on_click.py" should do. Let me quickly elaborate how it works:
+>>       - Class "switch_on_click" implements a normal gnuradio flow with
+>>       USRP transmitter and receiver.
+>>       - It also uses a custom module together with buttons and a probe
+>>       block to call functions upon clicking on a button
+>>       - The callback functions are defined in class "blk"
+>>       - The most important is "def button_rtx_handler" on line 106 which
+>>       is executed when user clicks on button "Switch RTX (together)"
+>>    - Again, thank you for trying this out!! If it works, would you mind
+>>    sharing this code then? I may be able to check then where it breaks o=
+n my
+>>    system
+>>    - I use 900 MHz as default center frequency (and "rf_freq"). When
+>>    clicking, I jump between dsp_freq=3D0 and dsp_freq=3D500e3. As to my =
+waveform,
+>>    you can infer from my screenshots and code above: I am transmitting a=
+nd
+>>    receiving a 1MHz waveform (which acts as an additional "IF stage"). T=
+he
+>>    received signal is then downconcerted from 1MHz to DC. I use 5 MSsps
+>>    sampling rate.
 >>
->>         now =3D usrp_sink.get_time_now()
->>         when =3D now + uhd.time_spec(1.0)
 >>
->>         usrp_sink.set_command_time(when)
->>         usrp_source.set_command_time(when)
->>         res1 =3D usrp_sink.set_center_freq(tune_req_tx)          # TX
->>         res2 =3D usrp_source.set_center_freq(tune_req_rx, 0)  #RX1
->>         res3 =3D usrp_source.set_center_freq(tune_req_rx, 1)  #RX2
->>         usrp_sink.clear_command_time()
->>         usrp_source.clear_command_time()
+>> Again, thank you SO much.
 >>
->> 2.) I also tried your second suggestion. Before reading on, you wanna
->> guess what the outcome is?
->> I connected "TX/RX" to "RX2" on UBX #1 (TX1 --> RX1) and "TX/RX" to "RX2=
-"
->> on UBX #2 (TX2 --> RX2). In absence of a second 30dB attenuator I used t=
-wo
->> antennas closely spaced together. For reference, my code looks now like:
->>
->>         tune_req_rx =3D uhd.tune_request()
->>         tune_req_rx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
->>         tune_req_rx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
->>         tune_req_rx.dsp_freq =3D -dsp_freq
->>         tune_req_tx =3D uhd.tune_request()
->>         tune_req_tx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
->>         tune_req_tx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
->>         tune_req_tx.dsp_freq =3D dsp_freq
->>
->>         now =3D usrp_sink.get_time_now()
->>         when =3D now + uhd.time_spec(1.0)
->>
->>         usrp_sink.set_command_time(when)
->>         usrp_source.set_command_time(when)
->>         res1 =3D usrp_sink.set_center_freq(tune_req_tx, 0)     # TX1
->>         res2 =3D usrp_sink.set_center_freq(tune_req_tx, 1)     # TX2
->>         res3 =3D usrp_source.set_center_freq(tune_req_rx, 0) # RX1
->>         res4 =3D usrp_source.set_center_freq(tune_req_rx, 1) # RX2
->>         usrp_sink.clear_command_time()
->>         usrp_source.clear_command_time()
->>
->> I again look at the *relative phase* of RX1 and RX2 (obtained by
->> dividing the two) and guess what: Also now the relative phase stays
->> constant! (This time it actually slightly varies from 3.0 rad to 3.7 rad
->> between two different frequencies).
->> What does that mean? I think it means that TX must be tuned coherently
->> and RX must be tuned coherently, i.e., timed commands generally work for
->> multiple TX's and multiple RX's *individually*. Do I get that right?
->>
->> What doesn't seem to work is RX+TX *together*.
->>
->> I am very desperately asking if you had coherent TX+RX setup working at
->> any point or know somebody who did. It would be so much worth to know if
->> this is something that never worked to begin with or if I'm just doing
->> something wrong. On the other hand I don't want to believe being the onl=
-y
->> person on the planet having tried TX+RX phase coherent operation :-/
->>
->> Any other further suggestions on how to continue debugging with the abov=
-e
->> in mind would be helpful too.
->>
->> In my opinion there are two options left:
->> 1.) There is still a nondeterministic delay between the TX and RX timed
->> commands (to my understanding, even a constant delay would result in
->> coherent phase)
->> 2.) While the phase accumulators in RX are set to the same values (and i=
-n
->> TX as well), they may be set to a different, random value.
->>
->> However, I don't really know how to test these.
->>
->> Thanks,
+>> Best,
 >> Lukas
 >>
 >>
->> *Gesendet:* Freitag, 13. M=C3=A4rz 2020 um 12:27 Uhr
+>> *Gesendet:* Donnerstag, 19. M=C3=A4rz 2020 um 10:43 Uhr
 >> *Von:* "Rob Kossler" <rkossler@nd.edu>
 >> *An:* "Lukas Haase" <lukashaase@gmx.at>
->> *Cc:* "Marcus D Leech" <patchvonbraun@gmail.com>, "
->> USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+>> *Cc:* "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 >> *Betreff:* Re: [USRP-users] USRP X310 ignored DSP retuning on TX when
 >> using a timed command
->> Ok, great.  I am trying to think of ways to now add the phase
->> measurement.  Ideas...
+>> Hi Lukas,
+>> So, the conclusion is that your Rx0-to-Rx1 relative phase is nearly
+>> constant such that it seems that both Rx0/Rx1 are phase coherent and
+>> Tx0/Tx1 are phase coherent.  But, phase from Tx-to-Rx is random.  Please
+>> correct me if that is wrong.
 >>
->>    - In order to get consistent phase, you would need to tune Rx and Tx
->>    DSP at the same time (rather than below where you are only tuning one=
- of
->>    them).  So, assuming that this will not produce consistent phase resu=
-lts,
->>    then maybe try the following idea...
->>    - If you want to check just Rx DSP tuning (with fixed Tx DSP tuning),
->>    you could try a 2 channel Rx measurement where the Tx is split extern=
-ally
->>    with 1:2 splitter in order to drive both Rx0 and Rx1.  Then, measure =
+>> I have a few comments:
+>>
+>>    - How do you measure/calculate the relative phase?
+>>    - Can you send me the full Python code to look at?  As I mentioned
+>>    previously, I am not too good at gnuradio/Python, but I might be able=
+ to
+>>    spot something.
+>>    - As to your question, I always use synchronous measurements.  And,
+>>    I'm confident that my Rx-to-Rx phase is coherent.  But, I haven't rea=
+lly
+>>    looked at Tx-to-Rx in a while so I will do so later today.  Here are =
 the
->>    relative phase Rx0/Rx1 and then tune back and forth between two Rx DS=
-P
->>    freqs to see if the relative phase on Rx remains constant.  If so, th=
-is
->>    would give you good confidence that Rx DSP tuning is indeed happening
->>    synchronously
->>    - Assuming that the Rx IS synchronous in the step above (perhaps a
->>    bad assumption, but here goes), you could then check TX DSP tuning (w=
-ith
->>    fixed Rx DSP tuning) by using two Tx and two Rx channels with Tx0 con=
-nected
->>    to Rx0 and Tx1 connected to Rx1.  At this point we are confident that=
- Rx
->>    DSP tuning is synchronous so any synchronous misbehavior would imply =
-a Tx
->>    sync problem.
+>>    steps I plan to take:
+>>       1. Connect Tx0 to Rx1.  Note that there is a pretty strong leakage
+>>       signal from Tx0 to Rx0 so I don't really need to provide a physica=
+l
+>>       connection in order to get a signal on Rx0.  The signal attenuatio=
+n in this
+>>       leakage path is approx 40 dB so it is not too much different than =
+the
+>>       signal level I will receive on Rx1 if I use an external 30 dB atte=
+nuator.
+>>       2. Set Rx and Tx frequency to freq 1
+>>       3. Measure and note the relative phase for Rx0/Tx0 and Rx1/Tx0 for
+>>       freq 1
+>>       4. Set Rx and Tx frequency to freq 2
+>>       5. Measure and note the relative phase for Rx0/Tx0 and Rx1/Tx0 for
+>>       freq 2
+>>       6. Repeat steps 2-5 a few times to ensure that the measurements
+>>       are repeatable
+>>    - Questions: what should I use for freq 1 and freq 2?  What waveform
+>>    are you transmitting?  What sample rates for Tx and Rx?
 >>
->> Sorry I can't think of better ideas.
 >> Rob
 >>
->> On Fri, Mar 13, 2020 at 12:12 PM Lukas Haase <lukashaase@gmx.at> wrote:
+>>
+>>
+>> On Wed, Mar 18, 2020 at 7:47 PM Lukas Haase via USRP-users <
+>> usrp-users@lists.ettus.com> wrote:
 >>
 >>> Hi Rob,
 >>>
->>> 1.) yes, works(*)
->>> 2.) yes, works(*)
+>>> I think the issue is really having two usrp_multi devices with timed
+>>> commands and same timestmap or similar. From your tests below:
 >>>
->>> (*): qualitatively. I set the timed command to "get_current_time() +
->>> uhd.time_spec(2.0)" and I see the chance 2 seconds after my click on th=
+>>> 1.) I can *confirm *that the relative phase between two RX in your
+>>> suggested test is always the same! In fact, it is always 4.56 rad, even
+>>> across restarts and for different frequencies! That somewhat makes sens=
 e
->>> screen. I cannot (do not know how) check if it actually happens at
->>> sample-precicse location.
+>>> because the phase offset is now only dependent on the difference betwee=
+n
+>>> the two channels (fixed) and cable lengths from the splitter (fixed). I
+>>> verified by removing the timed command on usrp source, the phase offset
+>>> becomes random after each retune. Of course, this is independent of TX
+>>> tuning (timed vs. not). For reference, this is the code used:
 >>>
->>> Great, any ideas to simplify the setup would nice. I just don't know ho=
-w
->>> I could continue to debugging the phase.
+>>>         tune_req_rx =3D uhd.tune_request()
+>>>         tune_req_rx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
+>>>         tune_req_rx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
+>>>         tune_req_rx.dsp_freq =3D -dsp_freq
+>>>         tune_req_tx =3D uhd.tune_request()
+>>>         tune_req_tx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
+>>>         tune_req_tx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
+>>>         tune_req_tx.dsp_freq =3D dsp_freq
 >>>
->>> Best,
->>> Luke
+>>>         now =3D usrp_sink.get_time_now()
+>>>         when =3D now + uhd.time_spec(1.0)
 >>>
+>>>         usrp_sink.set_command_time(when)
+>>>         usrp_source.set_command_time(when)
+>>>         res1 =3D usrp_sink.set_center_freq(tune_req_tx)          # TX
+>>>         res2 =3D usrp_source.set_center_freq(tune_req_rx, 0)  #RX1
+>>>         res3 =3D usrp_source.set_center_freq(tune_req_rx, 1)  #RX2
+>>>         usrp_sink.clear_command_time()
+>>>         usrp_source.clear_command_time()
 >>>
->>> Gesendet: Freitag, 13. M=C3=A4rz 2020 um 11:08 Uhr
->>> Von: "Rob Kossler" <rkossler@nd.edu>
->>> An: "Lukas Haase" <lukashaase@gmx.at>
->>> Cc: "Marcus D Leech" <patchvonbraun@gmail.com>, "
->>> USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
->>> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when
->>> using a timed command
+>>> 2.) I also tried your second suggestion. Before reading on, you wanna
+>>> guess what the outcome is?
+>>> I connected "TX/RX" to "RX2" on UBX #1 (TX1 --> RX1) and "TX/RX" to
+>>> "RX2" on UBX #2 (TX2 --> RX2). In absence of a second 30dB attenuator I
+>>> used two antennas closely spaced together. For reference, my code looks=
+ now
+>>> like:
 >>>
->>> Thanks Lukas,
->>> I wanted to confirm that you did not have an older version of FPGA
->>> firmware because there was a DDC/DUC bug fix[
->>> https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e6=
-9b1c6798771e6d]
->>> related to phase.  However, the version you provided with uhd_usrp_prob=
-e
->>> confirms that you have the bug fix included.  So, this is not the probl=
-em.
+>>>         tune_req_rx =3D uhd.tune_request()
+>>>         tune_req_rx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
+>>>         tune_req_rx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
+>>>         tune_req_rx.dsp_freq =3D -dsp_freq
+>>>         tune_req_tx =3D uhd.tune_request()
+>>>         tune_req_tx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
+>>>         tune_req_tx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
+>>>         tune_req_tx.dsp_freq =3D dsp_freq
 >>>
->>> From what you said, I assume that you can successfully do the following=
-:
->>> 1) with Rx tuning fixed (no re-tuning at all), tune Tx DSP only (do not
->>> change TX RF) and you can see the frequency change at the specified com=
-mand
->>> time (i.e., if you specify the command time 1 sec in the future, the ch=
-ange
->>> does not occur until 1 sec in the future).
->>> 2) opposite of #1: with Tx tuning fixed, tune Rx DSP only and you can
->>> see the frequency change at the specified command time.
+>>>         now =3D usrp_sink.get_time_now()
+>>>         when =3D now + uhd.time_spec(1.0)
 >>>
->>> I am trying to simplify the issue by removing RF tuning completely and
->>> by tuning only 1 of Rx/Tx at a time.  Perhaps this will help lead to th=
-e
->>> answer.
->>> Rob
+>>>         usrp_sink.set_command_time(when)
+>>>         usrp_source.set_command_time(when)
+>>>         res1 =3D usrp_sink.set_center_freq(tune_req_tx, 0)     # TX1
+>>>         res2 =3D usrp_sink.set_center_freq(tune_req_tx, 1)     # TX2
+>>>         res3 =3D usrp_source.set_center_freq(tune_req_rx, 0) # RX1
+>>>         res4 =3D usrp_source.set_center_freq(tune_req_rx, 1) # RX2
+>>>         usrp_sink.clear_command_time()
+>>>         usrp_source.clear_command_time()
 >>>
+>>> I again look at the *relative phase* of RX1 and RX2 (obtained by
+>>> dividing the two) and guess what: Also now the relative phase stays
+>>> constant! (This time it actually slightly varies from 3.0 rad to 3.7 ra=
+d
+>>> between two different frequencies).
+>>> What does that mean? I think it means that TX must be tuned coherently
+>>> and RX must be tuned coherently, i.e., timed commands generally work fo=
+r
+>>> multiple TX's and multiple RX's *individually*. Do I get that right?
 >>>
+>>> What doesn't seem to work is RX+TX *together*.
 >>>
->>> On Fri, Mar 13, 2020 at 10:53 AM Lukas Haase <lukashaase@gmx.at[mailto:
->>> lukashaase@gmx.at]> wrote:Hi again Rob,
+>>> I am very desperately asking if you had coherent TX+RX setup working at
+>>> any point or know somebody who did. It would be so much worth to know i=
+f
+>>> this is something that never worked to begin with or if I'm just doing
+>>> something wrong. On the other hand I don't want to believe being the on=
+ly
+>>> person on the planet having tried TX+RX phase coherent operation :-/
 >>>
->>> Yes, I confirm:
+>>> Any other further suggestions on how to continue debugging with the
+>>> above in mind would be helpful too.
 >>>
->>> 1.) Finally I get the commands to execute at the same time (TX and RX
->>> individually and both at the same time)
->>> 2.) Yes, the phase is random after each retune, even when I retune back
->>> to the same frequency
->>> 3.) (2) is only true if it includes *DSP* retuning. With naalog retunin=
-g
->>> (+integer-N retuning) I get phase coherence, as expected.
+>>> In my opinion there are two options left:
+>>> 1.) There is still a nondeterministic delay between the TX and RX timed
+>>> commands (to my understanding, even a constant delay would result in
+>>> coherent phase)
+>>> 2.) While the phase accumulators in RX are set to the same values (and
+>>> in TX as well), they may be set to a different, random value.
 >>>
->>> I actually expected the PLL retuning much more challenging than the DSP
->>> retuning but for some reason it seems to be the opposite...
+>>> However, I don't really know how to test these.
 >>>
 >>> Thanks,
 >>> Lukas
 >>>
 >>>
+>>> *Gesendet:* Freitag, 13. M=C3=A4rz 2020 um 12:27 Uhr
+>>> *Von:* "Rob Kossler" <rkossler@nd.edu>
+>>> *An:* "Lukas Haase" <lukashaase@gmx.at>
+>>> *Cc:* "Marcus D Leech" <patchvonbraun@gmail.com>, "
+>>> USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+>>> *Betreff:* Re: [USRP-users] USRP X310 ignored DSP retuning on TX when
+>>> using a timed command
+>>> Ok, great.  I am trying to think of ways to now add the phase
+>>> measurement.  Ideas...
 >>>
+>>>    - In order to get consistent phase, you would need to tune Rx and Tx
+>>>    DSP at the same time (rather than below where you are only tuning on=
+e of
+>>>    them).  So, assuming that this will not produce consistent phase res=
+ults,
+>>>    then maybe try the following idea...
+>>>    - If you want to check just Rx DSP tuning (with fixed Tx DSP
+>>>    tuning), you could try a 2 channel Rx measurement where the Tx is sp=
+lit
+>>>    externally with 1:2 splitter in order to drive both Rx0 and Rx1.  Th=
+en,
+>>>    measure the relative phase Rx0/Rx1 and then tune back and forth betw=
+een two
+>>>    Rx DSP freqs to see if the relative phase on Rx remains constant.  I=
+f so,
+>>>    this would give you good confidence that Rx DSP tuning is indeed hap=
+pening
+>>>    synchronously
+>>>    - Assuming that the Rx IS synchronous in the step above (perhaps a
+>>>    bad assumption, but here goes), you could then check TX DSP tuning (=
+with
+>>>    fixed Rx DSP tuning) by using two Tx and two Rx channels with Tx0 co=
+nnected
+>>>    to Rx0 and Tx1 connected to Rx1.  At this point we are confident tha=
+t Rx
+>>>    DSP tuning is synchronous so any synchronous misbehavior would imply=
+ a Tx
+>>>    sync problem.
+>>>
+>>> Sorry I can't think of better ideas.
+>>> Rob
+>>>
+>>> On Fri, Mar 13, 2020 at 12:12 PM Lukas Haase <lukashaase@gmx.at> wrote:
+>>>
+>>>> Hi Rob,
+>>>>
+>>>> 1.) yes, works(*)
+>>>> 2.) yes, works(*)
+>>>>
+>>>> (*): qualitatively. I set the timed command to "get_current_time() +
+>>>> uhd.time_spec(2.0)" and I see the chance 2 seconds after my click on t=
+he
+>>>> screen. I cannot (do not know how) check if it actually happens at
+>>>> sample-precicse location.
+>>>>
+>>>> Great, any ideas to simplify the setup would nice. I just don't know
+>>>> how I could continue to debugging the phase.
+>>>>
+>>>> Best,
+>>>> Luke
+>>>>
+>>>>
+>>>> Gesendet: Freitag, 13. M=C3=A4rz 2020 um 11:08 Uhr
+>>>> Von: "Rob Kossler" <rkossler@nd.edu>
+>>>> An: "Lukas Haase" <lukashaase@gmx.at>
+>>>> Cc: "Marcus D Leech" <patchvonbraun@gmail.com>, "
+>>>> USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+>>>> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when
+>>>> using a timed command
+>>>>
+>>>> Thanks Lukas,
+>>>> I wanted to confirm that you did not have an older version of FPGA
+>>>> firmware because there was a DDC/DUC bug fix[
+>>>> https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e=
+69b1c6798771e6d]
+>>>> related to phase.  However, the version you provided with uhd_usrp_pro=
+be
+>>>> confirms that you have the bug fix included.  So, this is not the prob=
+lem.
+>>>>
+>>>> From what you said, I assume that you can successfully do the followin=
+g:
+>>>> 1) with Rx tuning fixed (no re-tuning at all), tune Tx DSP only (do no=
+t
+>>>> change TX RF) and you can see the frequency change at the specified co=
+mmand
+>>>> time (i.e., if you specify the command time 1 sec in the future, the c=
+hange
+>>>> does not occur until 1 sec in the future).
+>>>> 2) opposite of #1: with Tx tuning fixed, tune Rx DSP only and you can
+>>>> see the frequency change at the specified command time.
+>>>>
+>>>> I am trying to simplify the issue by removing RF tuning completely and
+>>>> by tuning only 1 of Rx/Tx at a time.  Perhaps this will help lead to t=
+he
+>>>> answer.
+>>>> Rob
+>>>>
+>>>>
+>>>>
+>>>> On Fri, Mar 13, 2020 at 10:53 AM Lukas Haase <lukashaase@gmx.at[mailto=
+:
+>>>> lukashaase@gmx.at]> wrote:Hi again Rob,
+>>>>
+>>>> Yes, I confirm:
+>>>>
+>>>> 1.) Finally I get the commands to execute at the same time (TX and RX
+>>>> individually and both at the same time)
+>>>> 2.) Yes, the phase is random after each retune, even when I retune bac=
+k
+>>>> to the same frequency
+>>>> 3.) (2) is only true if it includes *DSP* retuning. With naalog
+>>>> retuning (+integer-N retuning) I get phase coherence, as expected.
+>>>>
+>>>> I actually expected the PLL retuning much more challenging than the DS=
+P
+>>>> retuning but for some reason it seems to be the opposite...
+>>>>
+>>>> Thanks,
+>>>> Lukas
+>>>>
+>>>>
+>>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
+>>
 
---0000000000006284ab05a13b1bcb
+--000000000000885af605a13c6f91
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Lukas,</div><div>Just before receiving your email, I =
-ran the following with my custom c++ &amp; matlab software using X310/UBX-1=
-60 with the connections I described.=C2=A0 The following shows the output w=
-hich is very consistent.=C2=A0 I used a 100 tone multi-tone waveform spread=
- over 4 MHz bandwidth (using 5 MS/s sample rate on Tx and Rx).=C2=A0 Note t=
-he consistency of results as I toggled between 2 frequencies: 2450 and 2460=
- MHz. <br></div><div><br></div><div>My method was the following:</div><div>=
-<ul><li>Tx waveform was 500 points long</li><li>Rx capture was 5000 points =
-long</li><li>Compute cross-correlation (using Matlab xcorr) as follows: xco=
-rr(rx0, conj(tx)) AND xcorr(rx0,conj(rx1))</li><li>Find the correlation pea=
-k (which was very pronounced) which shows the sample delay between the two =
-signals.=C2=A0 Extract the phase at the peak</li></ul><div>Oops, I just rea=
-lized that I used a constant DSP freq (10 MHz) and I changed the LO freq in=
- my test.=C2=A0 I will try again with moving the DSP freq instead.<br></div=
-><div>Rob<br></div></div><div><span style=3D"font-family:monospace"><br></s=
-pan></div><div><span style=3D"font-family:monospace">Test 1: freq =3D 2450.=
-0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -121.8<br>=C2=A0=
- Rx0/Rx1 xcorr peak at index 115 with phase -95.7<br>Test 2: freq =3D 2460.=
-0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58.7<br>=C2=A0 =
-Rx0/Rx1 xcorr peak at index 115 with phase 13.1<br>Test 3: freq =3D 2450.0 =
-MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -121.7<br>=C2=A0 R=
-x0/Rx1 xcorr peak at index 115 with phase -95.8<br>Test 4: freq =3D 2460.0 =
-MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58.6<br>=C2=A0 Rx=
-0/Rx1 xcorr peak at index 115 with phase 13.0<br>Test 5: freq =3D 2450.0 MH=
-z<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -121.7<br>=C2=A0 Rx0=
-/Rx1 xcorr peak at index 115 with phase -95.8<br>Test 6: freq =3D 2460.0 MH=
-z<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58.8<br>=C2=A0 Rx0/=
-Rx1 xcorr peak at index 115 with phase 12.7<br>Test 7: freq =3D 2450.0 MHz<=
-br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -121.8<br>=C2=A0 Rx0/R=
-x1 xcorr peak at index 115 with phase -95.9<br>Test 8: freq =3D 2460.0 MHz<=
-br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58.7<br>=C2=A0 Rx0/Rx=
-1 xcorr peak at index 115 with phase 12.9<br>Test 9: freq =3D 2450.0 MHz<br=
->=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -121.8<br>=C2=A0 Rx0/Rx1=
- xcorr peak at index 115 with phase -95.8<br>Test 10: freq =3D 2460.0 MHz<b=
-r>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58.7<br>=C2=A0 Rx0/Rx1=
- xcorr peak at index 115 with phase 12.9<br>&gt;&gt; <br></span></div><div>=
-<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Thu, Mar 19, 2020 at 4:21 PM Lukas Haase &lt;<a href=3D"mailto:lukas=
-haase@gmx.at">lukashaase@gmx.at</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div><div style=3D"font-family:Verdana;fon=
-t-size:12px"><div>Hi Rob,</div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div><span style=3D"font-family:arial,san=
+s-serif">Ok. I modified my code to be more like yours...</span></div><div><=
+ul><li><span style=3D"font-family:arial,sans-serif">toggling dsp freq rathe=
+r than LO freq</span></li><li><span style=3D"font-family:arial,sans-serif">=
+LO at 900 MHz</span></li><li><span style=3D"font-family:arial,sans-serif">e=
+xternal connections Tx0 =3D&gt; Splitter_1x2 =3D&gt; both Rx0 and Rx1</span=
+></li><li><span style=3D"font-family:arial,sans-serif">Previously, I was st=
+arting / stopping both Rx &amp; Tx in between each test.=C2=A0 Now, I added=
+ a mode where the Tx is on continuously, and the Rx starts &amp; stops for =
+each test after the dsp freq change</span></li></ul><div>The results are th=
+e following:</div><ul><li>In the first mode where both Tx and Rx start/stop=
+ at each test, I get consistent group delay (as measured by the correlation=
+ peak index) for both Rx-Rx and Rx-Tx.=C2=A0 But for phase, the Rx-Rx phase=
+ is consistent, but the Rx-Tx phase seems random</li><li>In the second mode=
+ where Tx is on continuously and I start/stop Rx after each dsp freq change=
+, the group delay is constant for Rx-Rx but random for Rx-Tx.=C2=A0 The pha=
+se results are constant for Rx-Rx but random for Rx-Tx.</li></ul><div>Regar=
+ding the 2nd mode, this makes sense to me.=C2=A0 But, for the 1st mode, I d=
+on&#39;t understand=C2=A0why the Rx-Tx phase seems random. Still thinking a=
+bout it....</div><div>Rob<br></div></div><br></div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Mar 19, 2020 at 4:35 P=
+M Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkos=
+sler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div>Lukas,</div><div>Just before receiving you=
+r email, I ran the following with my custom c++ &amp; matlab software using=
+ X310/UBX-160 with the connections I described.=C2=A0 The following shows t=
+he output which is very consistent.=C2=A0 I used a 100 tone multi-tone wave=
+form spread over 4 MHz bandwidth (using 5 MS/s sample rate on Tx and Rx).=
+=C2=A0 Note the consistency of results as I toggled between 2 frequencies: =
+2450 and 2460 MHz. <br></div><div><br></div><div>My method was the followin=
+g:</div><div><ul><li>Tx waveform was 500 points long</li><li>Rx capture was=
+ 5000 points long</li><li>Compute cross-correlation (using Matlab xcorr) as=
+ follows: xcorr(rx0, conj(tx)) AND xcorr(rx0,conj(rx1))</li><li>Find the co=
+rrelation peak (which was very pronounced) which shows the sample delay bet=
+ween the two signals.=C2=A0 Extract the phase at the peak</li></ul><div>Oop=
+s, I just realized that I used a constant DSP freq (10 MHz) and I changed t=
+he LO freq in my test.=C2=A0 I will try again with moving the DSP freq inst=
+ead.<br></div><div>Rob<br></div></div><div><span style=3D"font-family:monos=
+pace"><br></span></div><div><span style=3D"font-family:monospace">Test 1: f=
+req =3D 2450.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -12=
+1.8<br>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase -95.7<br>Test 2: f=
+req =3D 2460.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58=
+.7<br>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase 13.1<br>Test 3: fre=
+q =3D 2450.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -121.=
+7<br>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase -95.8<br>Test 4: fre=
+q =3D 2460.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58.6=
+<br>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase 13.0<br>Test 5: freq =
+=3D 2450.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -121.7<=
+br>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase -95.8<br>Test 6: freq =
+=3D 2460.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58.8<b=
+r>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase 12.7<br>Test 7: freq =
+=3D 2450.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -121.8<=
+br>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase -95.9<br>Test 8: freq =
+=3D 2460.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58.7<b=
+r>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase 12.9<br>Test 9: freq =
+=3D 2450.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -121.8<=
+br>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase -95.8<br>Test 10: freq=
+ =3D 2460.0 MHz<br>=C2=A0 Rx0/Tx0 xcorr peak at index 108 with phase -58.7<=
+br>=C2=A0 Rx0/Rx1 xcorr peak at index 115 with phase 12.9<br>&gt;&gt; <br><=
+/span></div><div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Thu, Mar 19, 2020 at 4:21 PM Lukas Haase &lt;<a hre=
+f=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div=
+ style=3D"font-family:Verdana;font-size:12px"><div>Hi Rob,</div>
 
 <div>=C2=A0</div>
 
@@ -1042,11 +1106,12 @@ sts.ettus.com</a></blockquote>
 </div>
 </div></div></div>
 </blockquote></div></div>
+</blockquote></div></div>
 
---0000000000006284ab05a13b1bcb--
+--000000000000885af605a13c6f91--
 
 
---===============1640887009392694165==
+--===============3660127001318416935==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1057,5 +1122,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1640887009392694165==--
+--===============3660127001318416935==--
 
