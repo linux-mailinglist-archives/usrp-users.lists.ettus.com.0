@@ -2,81 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 109B518B1EA
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 12:02:15 +0100 (CET)
-Received: from [::1] (port=41576 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA5418B9A8
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 15:44:50 +0100 (CET)
+Received: from [::1] (port=54676 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jEswF-0004FO-Ie; Thu, 19 Mar 2020 07:02:11 -0400
-Received: from mail-dm6nam10olkn2021.outbound.protection.outlook.com
- ([40.92.41.21]:2927 helo=NAM10-DM6-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <e070832@hotmail.com>) id 1jEswB-00048v-8N
- for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 07:02:07 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e2cQA3q6kYjDwhaBpxllMEYKwSU7yls5Jf45Uu3rRxtQ/KdUf+n86QEYHYl3W1JLIMr+D4gbvnOkH0ubmF+sDjgDQ+Cj4cN5Ki12pb6i57f6OKnYUwabXIbUmudooAc7E6kiD5eUd35WkxO6Sas6SG9T9pqVQSHSj0S+PeXsSCqAw4mSotpTq2o1VaqBFQg8iI+PSSRg8Vhq218pxIsvyXrkMtJXBH2qh9htVeGt0Gcebw2wSwR1dXN1g7Bev6KAslza7LK/36A3zSpKZdcSp2BEiObP0NSiePShW9Xu3aXvQ+nXh4WaJ48MIxRMebfwQUW8ONXmFyNFLKU8qIpOTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8ja4GpoF53n5LWWUVgVPJV9tPdQQbscciMWDnjK6bcA=;
- b=QUu0x9l98ba/xavPxXN9SZZC6j7I1U1ZmIav6FvjDqzH+W6BYiwns7TAnm6DvSex4Y7qzRdkA1zUWrcJ6aSo51wkM5RonNxpgFJx3dMGDSt6KDPvCz3wtwv+CzuXsbTHYaRXtDlvrP6MljxHfzWKO+KJbJAL3LOVM1cfaQJwHiyzwW1YMD1Ia58pfHKAaIe57fstP5oj8Q01wENMwTgifhhPlp87aV3A+xVK2Hwin65r+Smaj54CYa6fg+7eG4FY/MZoJsQqZun+MAEG1F3wFyKM0edox6+rdgFMwnjPQBMf119qAZsPJkORv8ORndiI1S5IQPjvX8Xdq+buowgXlQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8ja4GpoF53n5LWWUVgVPJV9tPdQQbscciMWDnjK6bcA=;
- b=g+L8dyw0Mdb0rzYRKwfKsCGgz1sWAaHhF9uYTjCj+WFVDp3M1KDDG5SgxzlP2OKb/8/ifA1DLc8Rp+4X4CDaBv9N9saW0OWOwkr+8iaHbAW0pN8srIEKj95oFsLGXF2GgkQRRq+oWBmEbagY3UqUq90PGHN5Oql6vt/8zPj8923Jmjonwa6PEojEI9lDAZEUcSUHupA/pbMFHNC7pbYzI48tAHcw21Dlwa+S8tUPb1+88C3t/QxO+F/7P8TCfoLSE0CSCAH/4BWUXc0wqN4kZud9Y7WMxAeBeqTbAjY1TT7DXypFt/gEhanoIBcJ16JPWsdAsRGdy4lGKZD1bTzYBw==
-Received: from DM6NAM10FT033.eop-nam10.prod.protection.outlook.com
- (2a01:111:e400:7e86::33) by
- DM6NAM10HT142.eop-nam10.prod.protection.outlook.com (2a01:111:e400:7e86::118)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.13; Thu, 19 Mar
- 2020 11:01:26 +0000
-Received: from DM6PR19MB2668.namprd19.prod.outlook.com (10.13.152.58) by
- DM6NAM10FT033.mail.protection.outlook.com (10.13.152.148) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.13 via Frontend Transport; Thu, 19 Mar 2020 11:01:26 +0000
-Received: from DM6PR19MB2668.namprd19.prod.outlook.com
- ([fe80::d5b1:1ab1:8cb6:b6e2]) by DM6PR19MB2668.namprd19.prod.outlook.com
- ([fe80::d5b1:1ab1:8cb6:b6e2%5]) with mapi id 15.20.2835.017; Thu, 19 Mar 2020
- 11:01:26 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
- "Arne-Magnus-Tveita.Loken@ffi.no" <Arne-Magnus-Tveita.Loken@ffi.no>
-Thread-Topic: Re: [USRP-users] rfnocmodtool Problem
-Thread-Index: AdX9zQI/Ns8HZjswQ2KMd3Wvq65mUQAEFRu5
-Date: Thu, 19 Mar 2020 11:01:26 +0000
-Message-ID: <DM6PR19MB2668B462795DED7671830A58A4F40@DM6PR19MB2668.namprd19.prod.outlook.com>
-References: <62A0069FDCF7384987935A4861E7EC3A576EA606@HBU-POST2.ffi.no>
-In-Reply-To: <62A0069FDCF7384987935A4861E7EC3A576EA606@HBU-POST2.ffi.no>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:E94E7C6357D403DFB302B6501E6C35D7CF469C03C5CE7B891E3AC4A25B3841D7;
- UpperCasedChecksum:F80783DE9E6CF7597520E7D08C1C5555C7CC00149F021F18E7E1A12BDBC5404F;
- SizeAsReceived:6953; Count:45
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [q1SsiKNE75idAYyaiCAbjM/OJXqa80Hp]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 45
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: d4e09368-1302-4d2f-1b0d-08d7cbf4de8b
-x-ms-traffictypediagnostic: DM6NAM10HT142:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: oWlrdxlkOGHSyNHBMmRAF+j89n7/uS30vs5BLyKdt17Hi9Tt2iR7ozSdmSZCpJFNL8Dq2OqwNW8bS5i/BcGkRspm3KbbmGy7KW2sap+plh/fbaGmcRXJKRG2Vajp8gsVXsRbuh4gxVKbKv9u9inqNgrZnh72lxslpGwEtabSPN3dk59rr6pCrKTKEkXGcopO
-x-ms-exchange-antispam-messagedata: HvcWUh53WIRTLKO8hCF77hjiAzNSBhGnEogYrzbMz9PxYle5aVgLfEoNjFzi8Y0pUg6ANQtMmyZaa1jjwpF/KOwWHfaQvgnkAoEcFnyi740VhIjSfZyP/Cm137iEdafk4BM+8WYQhagwRqVJv1EtdA==
-x-ms-exchange-transport-forked: True
+	id 1jEwPd-0000M2-Ex; Thu, 19 Mar 2020 10:44:45 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:32858)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jEwPZ-0000IN-Vz
+ for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 10:44:42 -0400
+Received: by mail-oi1-f176.google.com with SMTP id r7so2959700oij.0
+ for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 07:44:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=FAoNmq+p412t5E2HmFG+VDbN6XecOTK6ayavrOsK0Ws=;
+ b=Bpo44eWFvYrp/vhWmrAG03HB68zb8dt8DhUO13FQGTy2SroStgeTj5dBrTTH87shpL
+ yPPH0+5Zq3jW53FLz/L34xFbdhSYfGN0yQSGnJJjSF+5lGtcHU98jF9MbvcRLrm8uWj2
+ 05ZEusSA7FpHhR4weUrxK8f9tiHV27oJSYJwFWZtcSi2zUWxoX2I+WemcVBU/pa5iwYE
+ fp+gGkJLdrSS0D7A/V/Y20WeZ6HfGZ/miG1PZkiSlV4QAxcXhibok/3034V2JrBdxQ/t
+ nqAdVLnOl4A5yPZt1fMJ3opkWeQHQO/J7NWBKNfCCbnRVq+YSzvgiLL5HkrR9tH+Ighd
+ 8vNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FAoNmq+p412t5E2HmFG+VDbN6XecOTK6ayavrOsK0Ws=;
+ b=jNv0o04jBH6458Nz3rWLl/JqhNKANCcFbVfr2N+dkUm4RddnU3ocCyfmG3Focik2F9
+ 3bkDsNJ24Has65wI9GorD7M4Cpai2HmOgOJoa9VnKltsy0vli82NYb/1LXjkrc3K+gI0
+ bHSnsnB9zkZSGzDCOnvRSPHzDdh5/G1gPmcZMzyX19U6oQxNdWoV0IjmJLmvFg0E/vHy
+ kmbNA9jF/gpuFvsJTdL7tBJD/wIsLavTmfAZCkExzngxGstUPm3tIc2H0S3MD493wJJI
+ XYyeUYpmC6SoPSvo4X6fv3wbrj4zmoPgM+HxhUWNQFawvstmf7B34wY/dbAKGYZvXkig
+ 7cgg==
+X-Gm-Message-State: ANhLgQ12WrWWnN9UsmYMIJ+WO4IYWkVRbNzhD/vOsJ0Bu97wYqWWWKYJ
+ BkzINvosgT5o6yTodTD/L22JhCr5dLoYYy6DMbf4JA==
+X-Google-Smtp-Source: ADFU+vtmJ0CEkF24R6+7Y9phtcdxAz/dowXW4IdUQAdnKVFtbmTX/4XwGTd2PIGSgDDvwkUmTgLNHj97tpNtXftsQnA=
+X-Received: by 2002:aca:ef82:: with SMTP id n124mr2499646oih.73.1584629041001; 
+ Thu, 19 Mar 2020 07:44:01 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4e09368-1302-4d2f-1b0d-08d7cbf4de8b
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2020 11:01:26.1372 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6NAM10HT142
-Subject: Re: [USRP-users] rfnocmodtool Problem
+References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
+ <38CFC8D2-9645-4412-9873-9612B897C5EB@gmail.com>
+ <trinity-c8914290-4845-4675-98c6-2e02b41f536e-1584075584965@3c-app-gmx-bap08>
+ <CAB__hTRm4hNPnfX4usHGA-hdc5WZ_=AnHVjJnZj7rGYM8xb0Tw@mail.gmail.com>
+ <CAB__hTQOdK3Y3rEbVOGtkS9L-SE2aQ3JkyfueQZAmS_h4ULETg@mail.gmail.com>
+ <trinity-f6784e7e-a386-4c2d-9853-5909919d6c1c-1584111163445@3c-app-gmx-bs31>
+ <CAB__hTSCG9vJDyfos8Vo51uun6+GVO0z2MKiAnwB5RxbQroHug@mail.gmail.com>
+ <trinity-25b958ae-2910-49fd-a252-cca35e698948-1584115895450@3c-app-gmx-bs64>
+ <CAB__hTRpVTqng7XcOgrCe5yCYUNZf8ZJVwj-nu8ScZJuf9ctvw@mail.gmail.com>
+ <trinity-67ab4cfd-a450-4253-8edf-2d22a808d058-1584575179099@3c-app-gmx-bap69>
+In-Reply-To: <trinity-67ab4cfd-a450-4253-8edf-2d22a808d058-1584575179099@3c-app-gmx-bap69>
+Date: Thu, 19 Mar 2020 10:43:48 -0400
+Message-ID: <CAB__hTRoRNft0M8VCFGDS0ytLGbq0Fz48Zych-U5UD3jcutNzA@mail.gmail.com>
+To: Lukas Haase <lukashaase@gmx.at>
+Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
+ timed command
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jeff S <e070832@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============2676577556443020703=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6638449204607439096=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -104,150 +84,640 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2676577556443020703==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM6PR19MB2668B462795DED7671830A58A4F40DM6PR19MB2668namp_"
+--===============6638449204607439096==
+Content-Type: multipart/alternative; boundary="00000000000017365f05a1363398"
 
---_000_DM6PR19MB2668B462795DED7671830A58A4F40DM6PR19MB2668namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000017365f05a1363398
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-QXJuZSwNCg0KVGhhdCBzZWVtcyB0byBoYXZlIHdvcmtlZCEgIChNYXliZSBpdCBzaG91bGQgYmUg
-aW4gdGhlIEV0dHVzIEtCIGRlcGVuZGVuY3kgbGlzdD8pDQoNClRoYW5rIHlvdSBtdWNoLCBhbmQg
-bm8gd29ycmllcyBvbiB0aGUgdHlwbyEgIPCfmYINCg0KUmVnYXJkcywNCkplZmYNCg0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMt
-Ym91bmNlc0BsaXN0cy5ldHR1cy5jb20+IG9uIGJlaGFsZiBvZiBBcm5lIE1hZ251cyBUdmVpdGEg
-TMO4a2VuIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClNlbnQ6
-IFRodXJzZGF5LCBNYXJjaCAxOSwgMjAyMCA0OjAyIEFNDQpUbzogdXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU3ViamVjdDogUmU6IFtVU1JQ
-LXVzZXJzXSByZm5vY21vZHRvb2wgUHJvYmxlbQ0KDQoNClNvcnJ5IGZvciB0aGUgc2xpZ2h0IHR5
-cG8sIEkgbWVhbnQNCg0KDQoNCiQgYXB0IGluc3RhbGwgcHl0aG9uLWZ1dHVyZQ0KDQoNCg0KQmVz
-dCByZWdhcmRzLA0KDQpBcm5lDQoNCg0KDQpGcmE6IEzDuGtlbiwgQXJuZSBNYWdudXMgVHZlaXRh
-DQpTZW5kdDogdG9yc2RhZyAxOS4gbWFycyAyMDIwIDEwOjAxDQpUaWw6ICd1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbScgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KRW1uZTogUmU6IFtV
-U1JQLXVzZXJzXSByZm5vY21vZHRvb2wgUHJvYmxlbQ0KDQoNCg0KSGkgSmVmZiwNCg0KDQoNCkFz
-IGZhciBhcyBJIGNhbiB0ZWxsLCB0aGlzIGlzIG5vdCBhbiBpc3N1ZSB3aXRoIFJGTm9DOyB5b3Ug
-c2ltcGx5IHNlZW0gdG8gYmUgbWlzc2luZyAoYXQgbGVhc3Qgb25lKSBQeXRob24gbW9kdWxlLiBJ
-ZiB5b3XigJlyZSBvbiBVYnVudHUsIHRyeSB0aGUgZm9sbG93aW5nOg0KDQoNCg0KJCBhcHQgaW5z
-dGFsbCBweWhvbi1mdXR1cmUNCg0KDQoNCkJlc3QgcmVnYXJkcywNCg0KQXJuZQ0KDQoNCg==
+Hi Lukas,
+So, the conclusion is that your Rx0-to-Rx1 relative phase is nearly
+constant such that it seems that both Rx0/Rx1 are phase coherent and
+Tx0/Tx1 are phase coherent.  But, phase from Tx-to-Rx is random.  Please
+correct me if that is wrong.
 
---_000_DM6PR19MB2668B462795DED7671830A58A4F40DM6PR19MB2668namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I have a few comments:
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJn
-YigwLCAwLCAwKTsiPg0KQXJuZSw8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxp
-YnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigw
-LCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJy
-aSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwg
-MCwgMCk7Ij4NClRoYXQgc2VlbXMgdG8gaGF2ZSB3b3JrZWQhJm5ic3A7IChNYXliZSBpdCBzaG91
-bGQgYmUgaW4gdGhlIEV0dHVzIEtCIGRlcGVuZGVuY3kgbGlzdD8pPC9kaXY+DQo8ZGl2IHN0eWxl
-PSJmb250LWZhbWlseTogQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
-IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0i
-Zm9udC1mYW1pbHk6IENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpUaGFuayB5b3UgbXVjaCwgYW5kIG5vIHdvcnJp
-ZXMgb24gdGhlIHR5cG8hJm5ic3A7IDxzcGFuIGlkPSLwn5mCIj7wn5mCPC9zcGFuPjxicj4NCjwv
-ZGl2Pg0KPGRpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBIZWx2ZXRpY2Es
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJy
-Pg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgSGVsdmV0aWNhLCBz
-YW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NClJlZ2Fy
-ZHMsPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgSGVsdmV0aWNhLCBz
-YW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkplZmY8
-YnI+DQo8L2Rpdj4NCjxkaXYgaWQ9IlNpZ25hdHVyZSI+DQo8ZGl2Pg0KPGRpdiBpZD0iYXBwZW5k
-b25zZW5kIj48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksSGVsdmV0aWNh
-LHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwv
-ZGl2Pg0KPGhyIHRhYmluZGV4PSItMSIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrOyB3aWR0
-aDo5OCUiPg0KPGRpdiBpZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IHN0eWxlPSJm
-b250LXNpemU6MTFwdCIgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgY29sb3I9IiMwMDAwMDAi
-PjxiPkZyb206PC9iPiBVU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzLWJvdW5jZXNAbGlzdHMuZXR0
-dXMuY29tJmd0OyBvbiBiZWhhbGYgb2YgQXJuZSBNYWdudXMgVHZlaXRhIEzDuGtlbiB2aWEgVVNS
-UC11c2VycyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U2VudDo8
-L2I+IFRodXJzZGF5LCBNYXJjaCAxOSwgMjAyMCA0OjAyIEFNPGJyPg0KPGI+VG86PC9iPiB1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbSAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7
-PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gcmZub2Ntb2R0b29sIFByb2Js
-ZW08L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGxhbmc9Ik5PLUJPSyI+
-DQo8ZGl2IGNsYXNzPSJ4X1dvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0ieF9Nc29Ob3JtYWwiIHN0
-eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7IGZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1p
-bHk6ICZxdW90O0NhbGlicmkmcXVvdDssIHNhbnMtc2VyaWY7Ij4NCjxzcGFuIHN0eWxlPSJjb2xv
-cjojMUY0OTdEIiBsYW5nPSJFTi1VUyI+U29ycnkgZm9yIHRoZSBzbGlnaHQgdHlwbywgSSBtZWFu
-dDwvc3Bhbj48L3A+DQo8cCBjbGFzcz0ieF9Nc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAw
-Y20gMC4wMDAxcHQ7IGZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1pbHk6ICZxdW90O0NhbGlicmkm
-cXVvdDssIHNhbnMtc2VyaWY7Ij4NCjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIiBsYW5nPSJF
-Ti1VUyI+Jm5ic3A7PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJ4X01zb05vcm1hbCIgc3R5bGU9Im1h
-cmdpbjogMGNtIDBjbSAwLjAwMDFwdDsgZm9udC1zaXplOiAxMXB0OyBmb250LWZhbWlseTogJnF1
-b3Q7Q2FsaWJyaSZxdW90Oywgc2Fucy1zZXJpZjsiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5
-N0QiIGxhbmc9IkVOLVVTIj4kIGFwdCBpbnN0YWxsIHB5dGhvbi1mdXR1cmU8L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9InhfTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyBm
-b250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiAmcXVvdDtDYWxpYnJpJnF1b3Q7LCBzYW5zLXNl
-cmlmOyI+DQo8c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCIgbGFuZz0iRU4tVVMiPiZuYnNwOzwv
-c3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9InhfTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAw
-Y20gMGNtIDAuMDAwMXB0OyBmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiAmcXVvdDtDYWxp
-YnJpJnF1b3Q7LCBzYW5zLXNlcmlmO2xpbmUtaGVpZ2h0OjEyLjBwdCI+DQo8aT48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjcuNXB0OyBmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMt
-c2VyaWY7IGNvbG9yOiM0QTZFOTAiPkJlc3QgcmVnYXJkcyw8L3NwYW4+PC9pPjwvcD4NCjxwIGNs
-YXNzPSJ4X01zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsgZm9udC1z
-aXplOiAxMXB0OyBmb250LWZhbWlseTogJnF1b3Q7Q2FsaWJyaSZxdW90Oywgc2Fucy1zZXJpZjts
-aW5lLWhlaWdodDoxMi4wcHQiPg0KPGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDsgZm9u
-dC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmOyBjb2xvcjojNEE2RTkwIj5B
-cm5lPC9zcGFuPjwvaT48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJ4X01zb05vcm1hbCIgc3R5bGU9
-Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsgZm9udC1zaXplOiAxMXB0OyBmb250LWZhbWlseTog
-JnF1b3Q7Q2FsaWJyaSZxdW90Oywgc2Fucy1zZXJpZjsiPg0KJm5ic3A7PC9wPg0KPGRpdj4NCjxk
-aXYgc3R5bGU9ImJvcmRlcjpub25lOyBib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7IHBh
-ZGRpbmc6My4wcHQgMGNtIDBjbSAwY20iPg0KPHAgY2xhc3M9InhfTXNvTm9ybWFsIiBzdHlsZT0i
-bWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyBmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiAm
-cXVvdDtDYWxpYnJpJnF1b3Q7LCBzYW5zLXNlcmlmOyI+DQo8Yj48c3BhbiBzdHlsZT0iIj5GcmE6
-PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iIj4gTMO4a2VuLCBBcm5lIE1hZ251cyBUdmVpdGEgPGJy
-Pg0KPGI+U2VuZHQ6PC9iPiB0b3JzZGFnIDE5LiBtYXJzIDIwMjAgMTA6MDE8YnI+DQo8Yj5UaWw6
-PC9iPiAndXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20nICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbSZndDs8YnI+DQo8Yj5FbW5lOjwvYj4gUmU6IFtVU1JQLXVzZXJzXSByZm5vY21vZHRv
-b2wgUHJvYmxlbTwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9InhfTXNvTm9y
-bWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyBmb250LXNpemU6IDExcHQ7IGZv
-bnQtZmFtaWx5OiAmcXVvdDtDYWxpYnJpJnF1b3Q7LCBzYW5zLXNlcmlmOyI+DQombmJzcDs8L3A+
-DQo8cCBjbGFzcz0ieF9Nc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7
-IGZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1pbHk6ICZxdW90O0NhbGlicmkmcXVvdDssIHNhbnMt
-c2VyaWY7Ij4NCjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj5IaSBKZWZmLDwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0ieF9Nc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7
-IGZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1pbHk6ICZxdW90O0NhbGlicmkmcXVvdDssIHNhbnMt
-c2VyaWY7Ij4NCjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9InhfTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyBm
-b250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiAmcXVvdDtDYWxpYnJpJnF1b3Q7LCBzYW5zLXNl
-cmlmOyI+DQo8c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCIgbGFuZz0iRU4tVVMiPkFzIGZhciBh
-cyBJIGNhbiB0ZWxsLCB0aGlzIGlzIG5vdCBhbiBpc3N1ZSB3aXRoIFJGTm9DOyB5b3Ugc2ltcGx5
-IHNlZW0gdG8gYmUgbWlzc2luZyAoYXQgbGVhc3Qgb25lKSBQeXRob24gbW9kdWxlLiBJZiB5b3Xi
-gJlyZSBvbiBVYnVudHUsIHRyeSB0aGUgZm9sbG93aW5nOjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-eF9Nc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7IGZvbnQtc2l6ZTog
-MTFwdDsgZm9udC1mYW1pbHk6ICZxdW90O0NhbGlicmkmcXVvdDssIHNhbnMtc2VyaWY7Ij4NCjxz
-cGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJ4X01zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsg
-Zm9udC1zaXplOiAxMXB0OyBmb250LWZhbWlseTogJnF1b3Q7Q2FsaWJyaSZxdW90Oywgc2Fucy1z
-ZXJpZjsiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiIGxhbmc9IkVOLVVTIj4kIGFwdCBp
-bnN0YWxsIHB5aG9uLWZ1dHVyZTwvc3Bhbj48L3A+DQo8cCBjbGFzcz0ieF9Nc29Ob3JtYWwiIHN0
-eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7IGZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1p
-bHk6ICZxdW90O0NhbGlicmkmcXVvdDssIHNhbnMtc2VyaWY7Ij4NCjxzcGFuIHN0eWxlPSJjb2xv
-cjojMUY0OTdEIiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJ4X01z
-b05vcm1hbCIgc3R5bGU9Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsgZm9udC1zaXplOiAxMXB0
-OyBmb250LWZhbWlseTogJnF1b3Q7Q2FsaWJyaSZxdW90Oywgc2Fucy1zZXJpZjtsaW5lLWhlaWdo
-dDoxMi4wcHQiPg0KPGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo3LjVwdDsgZm9udC1mYW1pbHk6
-JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmOyBjb2xvcjojNEE2RTkwIj5CZXN0IHJlZ2Fy
-ZHMsPC9zcGFuPjwvaT48L3A+DQo8cCBjbGFzcz0ieF9Nc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46
-IDBjbSAwY20gMC4wMDAxcHQ7IGZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1pbHk6ICZxdW90O0Nh
-bGlicmkmcXVvdDssIHNhbnMtc2VyaWY7bGluZS1oZWlnaHQ6MTIuMHB0Ij4NCjxpPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6OS4wcHQ7IGZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fu
-cy1zZXJpZjsgY29sb3I6IzRBNkU5MCI+QXJuZTwvc3Bhbj48L2k+PC9wPg0KPHAgY2xhc3M9Inhf
-TXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyBmb250LXNpemU6IDEx
-cHQ7IGZvbnQtZmFtaWx5OiAmcXVvdDtDYWxpYnJpJnF1b3Q7LCBzYW5zLXNlcmlmOyI+DQombmJz
-cDs8L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0K
-PC9odG1sPg0K
+   - How do you measure/calculate the relative phase?
+   - Can you send me the full Python code to look at?  As I mentioned
+   previously, I am not too good at gnuradio/Python, but I might be able to
+   spot something.
+   - As to your question, I always use synchronous measurements.  And, I'm
+   confident that my Rx-to-Rx phase is coherent.  But, I haven't really loo=
+ked
+   at Tx-to-Rx in a while so I will do so later today.  Here are the steps =
+I
+   plan to take:
+      1. Connect Tx0 to Rx1.  Note that there is a pretty strong leakage
+      signal from Tx0 to Rx0 so I don't really need to provide a physical
+      connection in order to get a signal on Rx0.  The signal
+attenuation in this
+      leakage path is approx 40 dB so it is not too much different than the
+      signal level I will receive on Rx1 if I use an external 30 dB attenua=
+tor.
+      2. Set Rx and Tx frequency to freq 1
+      3. Measure and note the relative phase for Rx0/Tx0 and Rx1/Tx0 for
+      freq 1
+      4. Set Rx and Tx frequency to freq 2
+      5. Measure and note the relative phase for Rx0/Tx0 and Rx1/Tx0 for
+      freq 2
+      6. Repeat steps 2-5 a few times to ensure that the measurements are
+      repeatable
+   - Questions: what should I use for freq 1 and freq 2?  What waveform are
+   you transmitting?  What sample rates for Tx and Rx?
 
---_000_DM6PR19MB2668B462795DED7671830A58A4F40DM6PR19MB2668namp_--
+Rob
 
 
---===============2676577556443020703==
+
+On Wed, Mar 18, 2020 at 7:47 PM Lukas Haase via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi Rob,
+>
+> I think the issue is really having two usrp_multi devices with timed
+> commands and same timestmap or similar. From your tests below:
+>
+> 1.) I can *confirm *that the relative phase between two RX in your
+> suggested test is always the same! In fact, it is always 4.56 rad, even
+> across restarts and for different frequencies! That somewhat makes sense
+> because the phase offset is now only dependent on the difference between
+> the two channels (fixed) and cable lengths from the splitter (fixed). I
+> verified by removing the timed command on usrp source, the phase offset
+> becomes random after each retune. Of course, this is independent of TX
+> tuning (timed vs. not). For reference, this is the code used:
+>
+>         tune_req_rx =3D uhd.tune_request()
+>         tune_req_rx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
+>         tune_req_rx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
+>         tune_req_rx.dsp_freq =3D -dsp_freq
+>         tune_req_tx =3D uhd.tune_request()
+>         tune_req_tx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
+>         tune_req_tx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
+>         tune_req_tx.dsp_freq =3D dsp_freq
+>
+>         now =3D usrp_sink.get_time_now()
+>         when =3D now + uhd.time_spec(1.0)
+>
+>         usrp_sink.set_command_time(when)
+>         usrp_source.set_command_time(when)
+>         res1 =3D usrp_sink.set_center_freq(tune_req_tx)          # TX
+>         res2 =3D usrp_source.set_center_freq(tune_req_rx, 0)  #RX1
+>         res3 =3D usrp_source.set_center_freq(tune_req_rx, 1)  #RX2
+>         usrp_sink.clear_command_time()
+>         usrp_source.clear_command_time()
+>
+> 2.) I also tried your second suggestion. Before reading on, you wanna
+> guess what the outcome is?
+> I connected "TX/RX" to "RX2" on UBX #1 (TX1 --> RX1) and "TX/RX" to "RX2"
+> on UBX #2 (TX2 --> RX2). In absence of a second 30dB attenuator I used tw=
+o
+> antennas closely spaced together. For reference, my code looks now like:
+>
+>         tune_req_rx =3D uhd.tune_request()
+>         tune_req_rx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
+>         tune_req_rx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
+>         tune_req_rx.dsp_freq =3D -dsp_freq
+>         tune_req_tx =3D uhd.tune_request()
+>         tune_req_tx.rf_freq_policy =3D uhd.tune_request.POLICY_NONE
+>         tune_req_tx.dsp_freq_policy =3D uhd.tune_request.POLICY_MANUAL
+>         tune_req_tx.dsp_freq =3D dsp_freq
+>
+>         now =3D usrp_sink.get_time_now()
+>         when =3D now + uhd.time_spec(1.0)
+>
+>         usrp_sink.set_command_time(when)
+>         usrp_source.set_command_time(when)
+>         res1 =3D usrp_sink.set_center_freq(tune_req_tx, 0)     # TX1
+>         res2 =3D usrp_sink.set_center_freq(tune_req_tx, 1)     # TX2
+>         res3 =3D usrp_source.set_center_freq(tune_req_rx, 0) # RX1
+>         res4 =3D usrp_source.set_center_freq(tune_req_rx, 1) # RX2
+>         usrp_sink.clear_command_time()
+>         usrp_source.clear_command_time()
+>
+> I again look at the *relative phase* of RX1 and RX2 (obtained by dividing
+> the two) and guess what: Also now the relative phase stays constant! (Thi=
+s
+> time it actually slightly varies from 3.0 rad to 3.7 rad between two
+> different frequencies).
+> What does that mean? I think it means that TX must be tuned coherently an=
+d
+> RX must be tuned coherently, i.e., timed commands generally work for
+> multiple TX's and multiple RX's *individually*. Do I get that right?
+>
+> What doesn't seem to work is RX+TX *together*.
+>
+> I am very desperately asking if you had coherent TX+RX setup working at
+> any point or know somebody who did. It would be so much worth to know if
+> this is something that never worked to begin with or if I'm just doing
+> something wrong. On the other hand I don't want to believe being the only
+> person on the planet having tried TX+RX phase coherent operation :-/
+>
+> Any other further suggestions on how to continue debugging with the above
+> in mind would be helpful too.
+>
+> In my opinion there are two options left:
+> 1.) There is still a nondeterministic delay between the TX and RX timed
+> commands (to my understanding, even a constant delay would result in
+> coherent phase)
+> 2.) While the phase accumulators in RX are set to the same values (and in
+> TX as well), they may be set to a different, random value.
+>
+> However, I don't really know how to test these.
+>
+> Thanks,
+> Lukas
+>
+>
+> *Gesendet:* Freitag, 13. M=C3=A4rz 2020 um 12:27 Uhr
+> *Von:* "Rob Kossler" <rkossler@nd.edu>
+> *An:* "Lukas Haase" <lukashaase@gmx.at>
+> *Cc:* "Marcus D Leech" <patchvonbraun@gmail.com>, "
+> USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+> *Betreff:* Re: [USRP-users] USRP X310 ignored DSP retuning on TX when
+> using a timed command
+> Ok, great.  I am trying to think of ways to now add the phase
+> measurement.  Ideas...
+>
+>    - In order to get consistent phase, you would need to tune Rx and Tx
+>    DSP at the same time (rather than below where you are only tuning one =
+of
+>    them).  So, assuming that this will not produce consistent phase resul=
+ts,
+>    then maybe try the following idea...
+>    - If you want to check just Rx DSP tuning (with fixed Tx DSP tuning),
+>    you could try a 2 channel Rx measurement where the Tx is split externa=
+lly
+>    with 1:2 splitter in order to drive both Rx0 and Rx1.  Then, measure t=
+he
+>    relative phase Rx0/Rx1 and then tune back and forth between two Rx DSP
+>    freqs to see if the relative phase on Rx remains constant.  If so, thi=
+s
+>    would give you good confidence that Rx DSP tuning is indeed happening
+>    synchronously
+>    - Assuming that the Rx IS synchronous in the step above (perhaps a bad
+>    assumption, but here goes), you could then check TX DSP tuning (with f=
+ixed
+>    Rx DSP tuning) by using two Tx and two Rx channels with Tx0 connected =
+to
+>    Rx0 and Tx1 connected to Rx1.  At this point we are confident that Rx =
+DSP
+>    tuning is synchronous so any synchronous misbehavior would imply a Tx =
+sync
+>    problem.
+>
+> Sorry I can't think of better ideas.
+> Rob
+>
+> On Fri, Mar 13, 2020 at 12:12 PM Lukas Haase <lukashaase@gmx.at> wrote:
+>
+>> Hi Rob,
+>>
+>> 1.) yes, works(*)
+>> 2.) yes, works(*)
+>>
+>> (*): qualitatively. I set the timed command to "get_current_time() +
+>> uhd.time_spec(2.0)" and I see the chance 2 seconds after my click on the
+>> screen. I cannot (do not know how) check if it actually happens at
+>> sample-precicse location.
+>>
+>> Great, any ideas to simplify the setup would nice. I just don't know how
+>> I could continue to debugging the phase.
+>>
+>> Best,
+>> Luke
+>>
+>>
+>> Gesendet: Freitag, 13. M=C3=A4rz 2020 um 11:08 Uhr
+>> Von: "Rob Kossler" <rkossler@nd.edu>
+>> An: "Lukas Haase" <lukashaase@gmx.at>
+>> Cc: "Marcus D Leech" <patchvonbraun@gmail.com>, "
+>> USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+>> Betreff: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when usin=
+g
+>> a timed command
+>>
+>> Thanks Lukas,
+>> I wanted to confirm that you did not have an older version of FPGA
+>> firmware because there was a DDC/DUC bug fix[
+>> https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e69=
+b1c6798771e6d]
+>> related to phase.  However, the version you provided with uhd_usrp_probe
+>> confirms that you have the bug fix included.  So, this is not the proble=
+m.
+>>
+>> From what you said, I assume that you can successfully do the following:
+>> 1) with Rx tuning fixed (no re-tuning at all), tune Tx DSP only (do not
+>> change TX RF) and you can see the frequency change at the specified comm=
+and
+>> time (i.e., if you specify the command time 1 sec in the future, the cha=
+nge
+>> does not occur until 1 sec in the future).
+>> 2) opposite of #1: with Tx tuning fixed, tune Rx DSP only and you can se=
+e
+>> the frequency change at the specified command time.
+>>
+>> I am trying to simplify the issue by removing RF tuning completely and b=
+y
+>> tuning only 1 of Rx/Tx at a time.  Perhaps this will help lead to the
+>> answer.
+>> Rob
+>>
+>>
+>>
+>> On Fri, Mar 13, 2020 at 10:53 AM Lukas Haase <lukashaase@gmx.at[mailto:
+>> lukashaase@gmx.at]> wrote:Hi again Rob,
+>>
+>> Yes, I confirm:
+>>
+>> 1.) Finally I get the commands to execute at the same time (TX and RX
+>> individually and both at the same time)
+>> 2.) Yes, the phase is random after each retune, even when I retune back
+>> to the same frequency
+>> 3.) (2) is only true if it includes *DSP* retuning. With naalog retuning
+>> (+integer-N retuning) I get phase coherence, as expected.
+>>
+>> I actually expected the PLL retuning much more challenging than the DSP
+>> retuning but for some reason it seems to be the opposite...
+>>
+>> Thanks,
+>> Lukas
+>>
+>>
+>>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000017365f05a1363398
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Lukas,<div>So, the conclusion is that =
+your Rx0-to-Rx1 relative phase is nearly constant such that it seems that b=
+oth Rx0/Rx1 are phase coherent and Tx0/Tx1 are phase coherent.=C2=A0 But, p=
+hase from Tx-to-Rx is random.=C2=A0 Please correct me if that is wrong.=C2=
+=A0=C2=A0</div><div><br></div><div>I have a few comments:</div><div><ul><li=
+>How do you measure/calculate the relative phase?</li><li>Can you send me t=
+he full Python code to look at?=C2=A0 As I mentioned previously, I am not t=
+oo good at gnuradio/Python, but I might be able to spot something.</li><li>=
+As to your question, I always use synchronous measurements.=C2=A0 And, I&#3=
+9;m confident that my Rx-to-Rx phase is coherent.=C2=A0 But, I haven&#39;t =
+really looked at Tx-to-Rx in a while so I will do so later today.=C2=A0 Her=
+e are the steps I plan to take:</li><ol><li>Connect Tx0 to Rx1.=C2=A0 Note =
+that there is a pretty strong leakage signal from Tx0 to Rx0 so I don&#39;t=
+ really need to provide a physical connection in order to get a signal on R=
+x0.=C2=A0 The signal attenuation in this leakage path is approx 40 dB so it=
+ is not too much different than the signal level I will receive on Rx1 if I=
+ use an external 30 dB attenuator.</li><li>Set Rx and Tx frequency to freq =
+1</li><li>Measure and note the relative phase for Rx0/Tx0 and Rx1/Tx0 for f=
+req 1</li><li>Set Rx and Tx frequency to freq 2</li><li>Measure and note th=
+e relative phase for Rx0/Tx0 and Rx1/Tx0 for freq 2</li><li>Repeat steps 2-=
+5 a few times to ensure that the measurements are repeatable</li></ol><li>Q=
+uestions: what should I use for freq 1 and freq 2?=C2=A0 What waveform are =
+you transmitting?=C2=A0 What sample rates for Tx and Rx?</li></ul><div>Rob<=
+/div></div><div><br></div></div><div dir=3D"ltr"><div dir=3D"ltr"><br></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On We=
+d, Mar 18, 2020 at 7:47 PM Lukas Haase via USRP-users &lt;<a href=3D"mailto=
+:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv><div style=3D"font-family:Verdana;font-size:12px"><div>Hi Rob,</div>
+
+<div>=C2=A0</div>
+
+<div>I think the issue is really having two usrp_multi devices with timed c=
+ommands and same timestmap or similar. From your tests below:</div>
+
+<div>=C2=A0</div>
+
+<div>1.) I can <strong>confirm </strong>that the relative phase between two=
+ RX in your suggested test is always the same! In fact, it is always 4.56 r=
+ad, even across restarts and for different frequencies! That somewhat makes=
+ sense because the phase offset is now only dependent on the difference bet=
+ween the two channels (fixed) and cable lengths from the splitter (fixed). =
+I verified by removing the timed command on usrp source, the phase offset b=
+ecomes random after each retune. Of course, this is independent of TX tunin=
+g (timed vs. not). For reference, this is the code used:</div>
+
+<div>=C2=A0</div>
+
+<div>
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_rx =3D uhd.tune_re=
+quest()<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_rx.rf_freq_policy =3D u=
+hd.tune_request.POLICY_NONE<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_rx.dsp_freq_policy =3D =
+uhd.tune_request.POLICY_MANUAL<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_rx.dsp_freq =3D -dsp_fr=
+eq</div>
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_tx =3D uhd.tune_re=
+quest()<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_tx.rf_freq_policy =3D u=
+hd.tune_request.POLICY_NONE<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_tx.dsp_freq_policy =3D =
+uhd.tune_request.POLICY_MANUAL<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_tx.dsp_freq =3D dsp_fre=
+q</div>
+
+<div>=C2=A0</div>
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 now =3D usrp_sink.get_time_=
+now()<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 when =3D now + uhd.time_spec(1.0=
+)</div>
+=C2=A0
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp_sink.set_command_time(=
+when)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp_source.set_command_time(whe=
+n)</div>
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 res1 =3D usrp_sink.set_cent=
+er_freq(tune_req_tx)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+# TX<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 res2 =3D usrp_source.set_center_=
+freq(tune_req_rx, 0)=C2=A0 #RX1<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 res3 =3D usrp_source.set_center_=
+freq(tune_req_rx, 1)=C2=A0 #RX2</div>
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp_sink.clear_command_tim=
+e()<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp_source.clear_command_time()=
+</div>
+</div>
+
+<div>=C2=A0
+<div>
+<div>2.) I also tried your second suggestion. Before reading on, you wanna =
+guess what the outcome is?</div>
+
+<div>I connected &quot;TX/RX&quot; to &quot;RX2&quot; on UBX #1 (TX1 --&gt;=
+ RX1) and &quot;TX/RX&quot; to &quot;RX2&quot; on UBX #2 (TX2 --&gt; RX2). =
+In absence of a second 30dB attenuator I used two antennas closely spaced t=
+ogether. For reference, my code looks now like:</div>
+
+<div>=C2=A0</div>
+
+<div>
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_rx =3D uhd.tune_re=
+quest()<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_rx.rf_freq_policy =3D u=
+hd.tune_request.POLICY_NONE<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_rx.dsp_freq_policy =3D =
+uhd.tune_request.POLICY_MANUAL<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_rx.dsp_freq =3D -dsp_fr=
+eq</div>
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_tx =3D uhd.tune_re=
+quest()<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_tx.rf_freq_policy =3D u=
+hd.tune_request.POLICY_NONE<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_tx.dsp_freq_policy =3D =
+uhd.tune_request.POLICY_MANUAL<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tune_req_tx.dsp_freq =3D dsp_fre=
+q</div>
+
+<div>=C2=A0</div>
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 now =3D usrp_sink.get_time_=
+now()<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 when =3D now + uhd.time_spec(1.0=
+)</div>
+=C2=A0
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp_sink.set_command_time(=
+when)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp_source.set_command_time(whe=
+n)</div>
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 res1 =3D usrp_sink.set_cent=
+er_freq(tune_req_tx, 0)=C2=A0 =C2=A0=C2=A0 # TX1<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 res2 =3D usrp_sink.set_center_fr=
+eq(tune_req_tx, 1)=C2=A0=C2=A0=C2=A0=C2=A0 # TX2<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 res3 =3D usrp_source.set_center_=
+freq(tune_req_rx, 0) # RX1<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 res4 =3D usrp_source.set_center_=
+freq(tune_req_rx, 1) # RX2</div>
+
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp_sink.clear_command_tim=
+e()<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp_source.clear_command_time()=
+</div>
+</div>
+
+<div>=C2=A0</div>
+
+<div>I again look at the <strong>relative phase</strong> of RX1 and RX2 (ob=
+tained by dividing the two) and guess what: Also now the relative phase sta=
+ys constant! (This time it actually slightly varies from 3.0 rad to 3.7 rad=
+ between two different frequencies).</div>
+
+<div>What does that mean? I think it means that TX must be tuned coherently=
+ and RX must be tuned coherently, i.e., timed commands generally work for m=
+ultiple TX&#39;s and multiple RX&#39;s <strong>individually</strong>. Do I =
+get that right?</div>
+
+<div>=C2=A0</div>
+
+<div>What doesn&#39;t seem to work is RX+TX <strong>together</strong>.</div=
+>
+
+<div>=C2=A0</div>
+
+<div>I am very desperately asking if you had coherent TX+RX setup working a=
+t any point or know somebody who did. It would be so much worth to know if =
+this is something that never worked to begin with or if I&#39;m just doing =
+something wrong. On the other hand I don&#39;t want to believe being the on=
+ly person on the planet having tried TX+RX phase coherent operation :-/</di=
+v>
+
+<div>=C2=A0</div>
+Any other further suggestions on how to continue debugging with the above i=
+n mind would be helpful too.
+
+<div>=C2=A0</div>
+
+<div>In my opinion there are two options left:</div>
+
+<div>1.) There is still a nondeterministic delay between the TX and RX time=
+d commands (to my understanding, even a constant delay would result in cohe=
+rent phase)</div>
+
+<div>2.) While the phase accumulators in RX are set to the same values (and=
+ in TX as well), they may be set to a different, random value.</div>
+
+<div>=C2=A0</div>
+
+<div>However, I don&#39;t really know how to test these.</div>
+
+<div>=C2=A0</div>
+
+<div>Thanks,</div>
+
+<div>Lukas</div>
+
+<div>=C2=A0</div>
+
+<div>=C2=A0</div>
+
+<div style=3D"margin:10px 5px 5px 10px;padding:10px 0px 10px 10px;border-le=
+ft:2px solid rgb(195,217,229)">
+<div style=3D"margin:0px 0px 10px"><b>Gesendet:</b>=C2=A0Freitag, 13. M=C3=
+=A4rz 2020 um 12:27 Uhr<br>
+<b>Von:</b>=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.=
+edu" target=3D"_blank">rkossler@nd.edu</a>&gt;<br>
+<b>An:</b>=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gm=
+x.at" target=3D"_blank">lukashaase@gmx.at</a>&gt;<br>
+<b>Cc:</b>=C2=A0&quot;Marcus D Leech&quot; &lt;<a href=3D"mailto:patchvonbr=
+aun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;, &quot;<a =
+href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lis=
+ts.ettus.com</a>&quot; &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Betreff:</b>=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX =
+when using a timed command</div>
+
+<div>
+<div>
+<div>Ok, great.=C2=A0 I am trying to think of ways to now add the phase mea=
+surement.=C2=A0 Ideas...</div>
+
+<div>
+<ul>
+	<li>In order to get consistent phase, you would need to tune Rx and Tx DSP=
+ at the same time (rather than below where you are only tuning one of them)=
+.=C2=A0 So, assuming that this will not produce consistent phase results, t=
+hen maybe try the following idea...</li>
+	<li>If you want to check just Rx DSP tuning (with fixed Tx DSP tuning), yo=
+u could try a 2 channel Rx measurement where the Tx is split externally wit=
+h 1:2 splitter in order to drive both Rx0 and Rx1.=C2=A0 Then, measure the =
+relative phase Rx0/Rx1 and then tune back and forth between two Rx DSP freq=
+s to see if the relative phase on Rx remains constant.=C2=A0 If so, this wo=
+uld give you good confidence that Rx DSP tuning is indeed happening synchro=
+nously</li>
+	<li>Assuming that the Rx IS synchronous in the step above (perhaps a bad a=
+ssumption, but here goes), you could then check TX DSP tuning (with fixed R=
+x DSP tuning) by using two Tx and two Rx channels with Tx0 connected to Rx0=
+ and Tx1 connected to Rx1.=C2=A0 At this point we are confident that Rx DSP=
+ tuning is synchronous so any synchronous misbehavior would imply a Tx sync=
+ problem.</li>
+</ul>
+
+<div>Sorry I can&#39;t think of better ideas.=C2=A0=C2=A0</div>
+
+<div>Rob</div>
+</div>
+=C2=A0
+
+<div class=3D"gmail_quote">
+<div class=3D"gmail_attr">On Fri, Mar 13, 2020 at 12:12 PM Lukas Haase &lt;=
+<a href=3D"mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a=
+>&gt; wrote:</div>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">Hi Rob,<br>
+<br>
+1.) yes, works(*)<br>
+2.) yes, works(*)<br>
+<br>
+(*): qualitatively. I set the timed command to &quot;get_current_time() + u=
+hd.time_spec(2.0)&quot; and I see the chance 2 seconds after my click on th=
+e screen. I cannot (do not know how) check if it actually happens at sample=
+-precicse location.<br>
+<br>
+Great, any ideas to simplify the setup would nice. I just don&#39;t know ho=
+w I could continue to debugging the phase.<br>
+<br>
+Best,<br>
+Luke<br>
+<br>
+<br>
+Gesendet:=C2=A0Freitag, 13. M=C3=A4rz 2020 um 11:08 Uhr<br>
+Von:=C2=A0&quot;Rob Kossler&quot; &lt;<a href=3D"mailto:rkossler@nd.edu" ta=
+rget=3D"_blank">rkossler@nd.edu</a>&gt;<br>
+An:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
+arget=3D"_blank">lukashaase@gmx.at</a>&gt;<br>
+Cc:=C2=A0&quot;Marcus D Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@gma=
+il.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;, &quot;<a href=3D=
+"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettu=
+s.com</a>&quot; &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D=
+"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+Betreff:=C2=A0Re: [USRP-users] USRP X310 ignored DSP retuning on TX when us=
+ing a timed command<br>
+<br>
+Thanks Lukas,<br>
+I wanted to confirm that you did not have an older version of FPGA firmware=
+ because there was a DDC/DUC bug fix[<a href=3D"https://github.com/EttusRes=
+earch/fpga/commit/0b2364653405612a6d5dfaa0e69b1c6798771e6d" target=3D"_blan=
+k">https://github.com/EttusResearch/fpga/commit/0b2364653405612a6d5dfaa0e69=
+b1c6798771e6d</a>] related to phase.=C2=A0 However, the version you provide=
+d with uhd_usrp_probe confirms that you have the bug fix included.=C2=A0 So=
+, this is not the problem.=C2=A0<br>
+=C2=A0<br>
+From what you said, I assume that you can successfully do the following:<br=
+>
+1) with Rx tuning fixed (no re-tuning at all), tune Tx DSP only (do not cha=
+nge TX RF) and you can see the frequency change at the specified command ti=
+me (i.e., if you specify the command time 1 sec in the future, the change d=
+oes not occur until 1 sec in the future).<br>
+2) opposite of #1: with Tx tuning fixed, tune Rx DSP only and you can see t=
+he frequency change at the specified command time.<br>
+=C2=A0<br>
+I am trying to simplify the issue by removing RF tuning completely and by t=
+uning only 1 of Rx/Tx at a time.=C2=A0 Perhaps this will help lead to the a=
+nswer.<br>
+Rob<br>
+=C2=A0<br>
+=C2=A0=C2=A0<br>
+<br>
+On Fri, Mar 13, 2020 at 10:53 AM Lukas Haase &lt;<a href=3D"mailto:lukashaa=
+se@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto=
+:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt; wrote:Hi a=
+gain Rob,<br>
+<br>
+Yes, I confirm:<br>
+<br>
+1.) Finally I get the commands to execute at the same time (TX and RX indiv=
+idually and both at the same time)<br>
+2.) Yes, the phase is random after each retune, even when I retune back to =
+the same frequency<br>
+3.) (2) is only true if it includes *DSP* retuning. With naalog retuning (+=
+integer-N retuning) I get phase coherence, as expected.<br>
+<br>
+I actually expected the PLL retuning much more challenging than the DSP ret=
+uning but for some reason it seems to be the opposite...<br>
+<br>
+Thanks,<br>
+Lukas<br>
+=C2=A0<br>
+=C2=A0=C2=A0<br>
+=C2=A0</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+</div>
+
+--00000000000017365f05a1363398--
+
+
+--===============6638449204607439096==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -258,5 +728,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2676577556443020703==--
+--===============6638449204607439096==--
 
