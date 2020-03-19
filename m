@@ -2,62 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E47FA18BE5A
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 18:42:24 +0100 (CET)
-Received: from [::1] (port=50650 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3808B18BF22
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Mar 2020 19:13:53 +0100 (CET)
+Received: from [::1] (port=38230 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jEzBX-0006vO-AM; Thu, 19 Mar 2020 13:42:23 -0400
-Received: from mail-wr1-f54.google.com ([209.85.221.54]:36819)
+	id 1jEzfz-0001xG-Ns; Thu, 19 Mar 2020 14:13:51 -0400
+Received: from mail-wm1-f54.google.com ([209.85.128.54]:37686)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1jEzBT-0006oP-MN
- for USRP-users@lists.ettus.com; Thu, 19 Mar 2020 13:42:19 -0400
-Received: by mail-wr1-f54.google.com with SMTP id s5so4215255wrg.3
- for <USRP-users@lists.ettus.com>; Thu, 19 Mar 2020 10:41:59 -0700 (PDT)
+ id 1jEzfv-0001YQ-4R
+ for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 14:13:47 -0400
+Received: by mail-wm1-f54.google.com with SMTP id d1so3476214wmb.2
+ for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 11:13:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:message-id:date:user-agent:mime-version
  :in-reply-to:content-language:content-transfer-encoding;
- bh=afTHTpAUiDwG9cbJXwONsQjGmVLRzLoZfDF0pJ9L2Q8=;
- b=C3yHu1WTSJ6zxrMQzuXSo452t3xM5JxRhIZ+HDuTDMSB8HP6tIqCzIsdUOVCH9+MZp
- +P4ryvvSbwaiW1uOBPE0tTb+U+RGcm+gvb3iiZ1PM/MMzJRsjxJYLIdwHRZRy2ayXpjM
- 1l1rIwGOKZKPRQfLONBOHIJTco/WxQool7pqOwAZiAash8tH1usE10UH+w3q3NJOggIk
- VU6RHlUaEZJJ6TbzksOyIvyxe4w+R6UoCiQHqOQn1nYDd09uIztfkFxuM9u6BIVDGI9q
- BRe3sdD0gn/W3eiTjCG+3A4RUM6IETwhBEZfsxU/WmvGLnol5T8yGNYRYlKGSRSurUTf
- 7Jnw==
+ bh=BVJaB8Fh2TATXLTK0pUPk0a52a5AUHm37yQChpo73wM=;
+ b=uD2W4jlBIgNwiEzf5qRXZLMZN7+U8jBKK3H6bJwpxLrpmfNXEIv95tGZKnZyK0hn9A
+ LgDnKcGdPbgxiOdjUgkzAt6Dxq+rQ/KcdGlW6GEaXS1viXBmpD6Xec/QMsq5H7D4OEQc
+ UsYy4cfYrSWunAnqXYyC7anJ4/Fplg+lLeyRkVvQ39V9pIiX8MGaO0aX83iEyqfEa/2x
+ ad3gzuQvgzBxuOtnJPRn4c0TrwdtuI85H60PiM0qA2LZOcFBEkkA0OpcPtJfleRnX2Se
+ yilvhvKPZg1MyLVv2rMjd9i8bI8iLhuiCcocvgCLg5thYAeGyjQMYCEfzneEaOQxRNU8
+ Dyig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=afTHTpAUiDwG9cbJXwONsQjGmVLRzLoZfDF0pJ9L2Q8=;
- b=nMxAJBX+ozGRa+1BC0ej4GDn2H3oX/jasuML5D5jrb2ekMrlvP62z5q640TxIlPiHA
- +dgB40A1T4G2OF44DIrzB82bW5NRAu4S45uPalkD2RNeSUYSp1BRR8m2295lRGplfz5J
- HGPWxlScv1ruMADF63xE/WFVKY5+eszrptyLlfSZ5MeoMIowoGPRH3bVIohGlpCMtOJW
- flEX0+HAZTSQ3Bd++x64ULcpiwnR982mYWAuG1DL/xtO/hN2qKpe2DMLOm3Hhuu9dltO
- 3UZRxpodf/Rc0/NJjFYR8aaA6WalCAdjSsChd2ZNLf8Er/khEDjTk6p6GxptdOeQpjkM
- 561Q==
-X-Gm-Message-State: ANhLgQ0QxMdvIQxZn0DvKAaovzwYG67Ho3BgwhI1MkU4LlUkiXlSL9rj
- ALRBWZT0/lpV0HR3QZhs/IbE6OLXP+kRZA==
-X-Google-Smtp-Source: ADFU+vvAeqLLClnd6NUfMUtciNSH3AIRFBxd4paN5tHU5CQcBd97Drms3RBFiZcQtKFOZzTPLfR89A==
-X-Received: by 2002:adf:df91:: with SMTP id z17mr5336908wrl.97.1584639698682; 
- Thu, 19 Mar 2020 10:41:38 -0700 (PDT)
+ bh=BVJaB8Fh2TATXLTK0pUPk0a52a5AUHm37yQChpo73wM=;
+ b=lKM8PN/0FFbGkYs1AtsEWaLhlyOOfuoBrTxezd4L7SF0JNsW4re+ejXqnVNhJO7QBB
+ H+bl8+wbntm7DrHOfczuBQ0CaZaUNutMS96122A+RxZvptfuZFdVrvfc+Wo/gLvtQ76T
+ l1qP9d4JQ5sW8CnKJyNR/n31CiZ3yoMk6IAJKSO5oUEBwRFqWys9bv4CAginpYpGRgvp
+ OJym4FGUr+7/Y9ipjcZZkVq7t2UP8cADPet/f5dXFKXfO2V9iVX4lSy+2jbpcO3BAD4d
+ NDceMM15ht0YwVTWEoULLrLpgm/pujfDZBwgSZ3j55fc1IMKpJvotozPNke+MRlBFqMl
+ QoVw==
+X-Gm-Message-State: ANhLgQ2bD9Z72qeY0lsJEDkEcW+1SVApIp2kWohhVFzFWzpM6SWciGML
+ yp2RsmZbRFlSZHevDsLh9EfkJyqpAVflOQ==
+X-Google-Smtp-Source: ADFU+vs8Oep0T54FIjXdka+OCST7SSLYHJTJs/oNx/MX3x/awvQ33fwG9Wq4jDmRGI6xuYka5k58zA==
+X-Received: by 2002:a7b:c185:: with SMTP id y5mr5111048wmi.179.1584641585708; 
+ Thu, 19 Mar 2020 11:13:05 -0700 (PDT)
 Received: from [192.168.128.8]
  (HSI-KBW-46-223-163-146.hsi.kabel-badenwuerttemberg.de. [46.223.163.146])
- by smtp.gmail.com with ESMTPSA id p10sm4608871wrx.81.2020.03.19.10.41.37
+ by smtp.gmail.com with ESMTPSA id b80sm4383922wme.24.2020.03.19.11.13.04
+ for <usrp-users@lists.ettus.com>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 19 Mar 2020 10:41:37 -0700 (PDT)
-To: Basse Ang <b4ss3k@gmail.com>, USRP-users@lists.ettus.com, support@ettus.com
-References: <CACcka+344PO4uhAemdNLmEwGw+sGucMiXPuRkzFcY6ikwegU7g@mail.gmail.com>
-Message-ID: <4cf13326-747a-1330-807f-da552be3b714@ettus.com>
-Date: Thu, 19 Mar 2020 18:41:36 +0100
+ Thu, 19 Mar 2020 11:13:05 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+References: <CACjmV_k87A4VzxoQm3h4fs8RAP=+3At9isCCzspzO+Awu+fARQ@mail.gmail.com>
+Message-ID: <a5841ef5-b15b-54b4-d2ed-c2c54aa5850b@ettus.com>
+Date: Thu, 19 Mar 2020 19:13:04 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.6.0
 MIME-Version: 1.0
-In-Reply-To: <CACcka+344PO4uhAemdNLmEwGw+sGucMiXPuRkzFcY6ikwegU7g@mail.gmail.com>
+In-Reply-To: <CACjmV_k87A4VzxoQm3h4fs8RAP=+3At9isCCzspzO+Awu+fARQ@mail.gmail.com>
 Content-Language: en-US
-Subject: Re: [USRP-users] UHD SSL Error
+Subject: Re: [USRP-users] Using DPDK with AQC107
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,8 +73,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
  <usrp-users@lists.ettus.com>
 Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,89 +88,47 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Basse,
-
-knowing our downloader, this is very likely a problem on your side: Is
-it possible you have a HTTP proxy set up that does SSL tunneling, but
-you've forgot to install the CA certificate, so that you don't trust
-your own proxy?
-
-Can you share the full output of
-
-echo "http_proxy ${http_proxy} https_proxy ${https_proxy}"
-
-and
-
-/usr/lib/uhd/utils/uhd_images_downloader.py --help
-/usr/lib/uhd/utils/uhd_images_downloader.py -V
-
-please?
-
-Best regards,
-Marcus
-
-On 19.03.20 16:35, Basse Ang wrote:
-> Hi
-> 
-> just tried to install UHD into my ubuntu 14 hosts. doing for 2 months, I
-> always ended with this error:
-> 
-> oai@oai:~$ /usr/lib/uhd/utils/uhd_images_downloader.py
-> [INFO] Images destination: /usr/share/uhd/images
-> [INFO] No inventory file found at /usr/share/uhd/images/inventory.json.
-> Creating an empty one.
-> [ERROR] Downloader raised an unhandled exception: [Errno 1] _ssl.c:510:
-> error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate
-> verify failed
-> You can run this again with the '--verbose' flag to see more information
-> If the problem persists, please email the output to: support@ettus.com
-> <mailto:support@ettus.com>
-> oai@oai:~$ /usr/lib/uhd/utils/uhd_images_downloader.py --verbose
-> [INFO] Images destination: /usr/share/uhd/images
-> [INFO] No inventory file found at /usr/share/uhd/images/inventory.json.
-> Creating an empty one.
-> [DEBUG] URLs to download:
-> usrp1/fpga-6bea23d/usrp1_b100_fw_default-g6bea23d.zip
-> x3xx/fpga-bb85bdff/x3xx_x310_fpga_default-gbb85bdff.zip
-> usrp2/fpga-6bea23d/usrp2_n210_fpga_default-g6bea23d.zip
-> n230/fpga-bb85bdff/n230_n230_fpga_default-gbb85bdff.zip
-> usrp1/fpga-6bea23d/usrp1_b100_fpga_default-g6bea23d.zip
-> b2xx/fpga-bb85bdff/b2xx_b200_fpga_default-gbb85bdff.zip
-> usrp2/fpga-6bea23d/usrp2_n200_fpga_default-g6bea23d.zip
-> e3xx/fpga-bb85bdff/e3xx_e320_fpga_default-gbb85bdff.zip
-> n3xx/fpga-bb85bdff/n3xx_n310_fpga_default-gbb85bdff.zip
-> b2xx/fpga-bb85bdff/b2xx_b205mini_fpga_default-gbb85bdff.zip
-> x3xx/fpga-bb85bdff/x3xx_x300_fpga_default-gbb85bdff.zip
-> octoclock/uhd-14000041/octoclock_octoclock_fw_default-g14000041.zip
-> usrp2/fpga-6bea23d/usrp2_usrp2_fw_default-g6bea23d.zip
-> usrp2/fpga-6bea23d/usrp2_n200_fw_default-g6bea23d.zip
-> usrp2/fpga-6bea23d/usrp2_usrp2_fpga_default-g6bea23d.zip
-> b2xx/uhd-2bdad498/b2xx_common_fw_default-g2bdad498.zip
-> n3xx/fpga-bb85bdff/n3xx_n320_fpga_default-gbb85bdff.zip
-> b2xx/fpga-bb85bdff/b2xx_b200mini_fpga_default-gbb85bdff.zip
-> usrp1/fpga-6bea23d/usrp1_usrp1_fpga_default-g6bea23d.zip
-> usb/uhd-14000041/usb_common_windrv_default-g14000041.zip
-> usrp2/fpga-6bea23d/usrp2_n210_fw_default-g6bea23d.zip
-> n3xx/fpga-bb85bdff/n3xx_n300_fpga_default-gbb85bdff.zip
-> e3xx/fpga-bb85bdff/e3xx_e310_fpga_default-gbb85bdff.zip
-> b2xx/fpga-bb85bdff/b2xx_b210_fpga_default-gbb85bdff.zip
-> [ERROR] Downloader raised an unhandled exception: [Errno 1] _ssl.c:510:
-> error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate
-> verify failed
-> You can run this again with the '--verbose' flag to see more information
-> If the problem persists, please email the output to: support@ettus.com
-> <mailto:support@ettus.com>
-> oai@oai:~$
-> 
-> 
-> I have already udate my certificate, but it does not help.
-> 
-> could anyone help me to figure out what should I do?
-> 
-> Thank you
-> Bass
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+SGkgRGFtb24sCgp0aGlzIHNvdW5kcyBsaWtlIERQREsgaXMgd29ya2luZywgYnV0IHNvbWV0aGlu
+ZydzIG5vdCAxMDAlIGNvcnJlY3RseQpjb25maWd1cmVkLiBXaGF0IGRvZXMgeW91ciBkcGRrLWlw
+djQ9IGxpbmUgc2F5PwoKQmVzdCByZWdhcmRzLApNYXJjdXMKCgpPbiAxNi4wMy4yMCAyMDowMywg
+Z3Vvd2FuZyBxaXUgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gSGkgZXZlcnlvbmUsCj4gCj4gSSBh
+bSB0cnlpbmcgdG8gY29ubmVjdCBteSBub3RlYm9vayB0byBYMzEwIHdpdGggYSB0aHVuZGVyYm9s
+dCAzIHRvCj4gMTBHTkJhc2UtVCBtb2R1bGUsIHdoaWNoIGhhcyBhIEFRQzEwNyBjaGlycC4KPiBU
+aGUgbm90ZWJvb2sgY2FuIGZpbmQgdGhlIFgzMTAgd2l0aG91dCBEUERLLiBCdXQgaXQgY291bGQg
+bm90IGZpbmQgdGhlCj4gZGV2aWNlIHdpdGggRFBESy4gSXMgdGhlcmUgYW55IHN1Z2dlc3Rpb24/
+Cj4gCj4gVUhEIFZlcnNpb246IDQuMCwgdGhlIG1hc3RlciBicmFuY2guCj4gRFBESzogMTguMTEg
+KHN1cHBvcnRpbmcgQXF1YW50aWHigJlzIEFRdGlvbiBmYW1pbHkgb2YgY2hpcHNldHM6Cj4gQVFD
+MTA3L0FRQzEwOC9BUUMxMDkgKQo+IFVidW50dTogMTguMDQKPiAKPiByb290QHNkcjp+IyBkcGRr
+LWRldmJpbmQgLS1zdGF0dXMtZGV2IG5ldAo+IE5ldHdvcmsgZGV2aWNlcyB1c2luZyBEUERLLWNv
+bXBhdGlibGUgZHJpdmVyCj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT0KPiAwMDAwOjNjOjAwLjAgJ0FRQzEwNyBOQmFzZS1UL0lFRUUgODAyLjNieiBFdGhlcm5l
+dCBDb250cm9sbGVyIFtBUXRpb25dCj4gODdiMScgZHJ2PXZmaW8tcGNpIHVudXNlZD1hdGxhbnRp
+Ywo+IE5ldHdvcmsgZGV2aWNlcyB1c2luZyBrZXJuZWwgZHJpdmVyCj4gPT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT0KPiAwMDAwOjAwOjFmLjYgJ0V0aGVybmV0IENvbm5lY3Rpb24g
+KDcpIEkyMTktTE0gMTViYicgaWY9ZW5vMSBkcnY9ZTEwMDBlCj4gdW51c2VkPXZmaW8tcGNpICpB
+Y3RpdmUqCj4gT3RoZXIgTmV0d29yayBkZXZpY2VzCj4gPT09PT09PT09PT09PT09PT09PT09Cj4g
+MDAwMDo2ZjowMC4wICdEZXZpY2UgMjcyMycgdW51c2VkPXZmaW8tcGNpCj4gCj4gcm9vdEBzZHI6
+fiMgdWhkX2ZpbmRfZGV2aWNlcyAtLWFyZ3M9dXNlX2RwZGs9MSxhZGRyPTE5Mi4xNjguNjAuMgo+
+IFtJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDcuNC4wOyBCb29zdF8xMDY1MDE7
+Cj4gVUhEXzQuMC4wLjAtNTA1LWcxMzkzNTUzZAo+IEVBTDogRGV0ZWN0ZWQgMTIgbGNvcmUocykK
+PiBFQUw6IERldGVjdGVkIDEgTlVNQSBub2Rlcwo+IEVBTDogTXVsdGktcHJvY2VzcyBzb2NrZXQg
+L3Zhci9ydW4vZHBkay9ydGUvbXBfc29ja2V0Cj4gRUFMOiBObyBmcmVlIGh1Z2VwYWdlcyByZXBv
+cnRlZCBpbiBodWdlcGFnZXMtMTA0ODU3NmtCCj4gRUFMOiBQcm9iaW5nIFZGSU8gc3VwcG9ydC4u
+Lgo+IEVBTDogVkZJTyBzdXBwb3J0IGluaXRpYWxpemVkCj4gRUFMOiBQQ0kgZGV2aWNlIDAwMDA6
+MDA6MWYuNiBvbiBOVU1BIHNvY2tldCAtMQo+IEVBTDogwqAgSW52YWxpZCBOVU1BIHNvY2tldCwg
+ZGVmYXVsdCB0byAwCj4gRUFMOiDCoCBwcm9iZSBkcml2ZXI6IDgwODY6MTViYiBuZXRfZTEwMDBf
+ZW0KPiBFQUw6IFBDSSBkZXZpY2UgMDAwMDozYzowMC4wIG9uIE5VTUEgc29ja2V0IC0xCj4gRUFM
+OiDCoCBJbnZhbGlkIE5VTUEgc29ja2V0LCBkZWZhdWx0IHRvIDAKPiBFQUw6IMKgIHByb2JlIGRy
+aXZlcjogMWQ2YTo4N2IxIG5ldF9hdGxhbnRpYwo+IEVBTDogwqAgdXNpbmcgSU9NTVUgdHlwZSAx
+IChUeXBlIDEpCj4gW0VSUk9SXSBbRFBES10gQ291bGQgbm90IGZpbmQgcm91dGUgdG8gZGVzdGlu
+YXRpb24gYWRkcmVzcyAxOTIuMTY4LjYwLjIKPiBbRVJST1JdIFtYMzAwXSBYMzAwIE5ldHdvcmsg
+ZGlzY292ZXJ5IGVycm9yIFJ1bnRpbWVFcnJvcjogRFBESzogQ291bGQKPiBub3QgZmluZCByb3V0
+ZSB0byBkZXN0aW5hdGlvbiBhZGRyZXNzIDE5Mi4xNjguNjAuMgo+IE5vIFVIRCBEZXZpY2VzIEZv
+dW5kCj4gRGV2aWNlIHdpdGggcG9ydF9pZD0wIGFscmVhZHkgc3RvcHBlZAo+IAo+IEJlc3QgcmVn
+YXJkcywKPiBEYW1vbgo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
+ZXJzX2xpc3RzLmV0dHVzLmNvbQo+IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
+cnNfbGlzdHMuZXR0dXMuY29tCg==
