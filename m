@@ -2,36 +2,35 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BADD18D6A4
-	for <lists+usrp-users@lfdr.de>; Fri, 20 Mar 2020 19:15:46 +0100 (CET)
-Received: from [::1] (port=33496 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3AC18D6B8
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Mar 2020 19:21:10 +0100 (CET)
+Received: from [::1] (port=35730 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jFMBM-0002AE-68; Fri, 20 Mar 2020 14:15:44 -0400
-Received: from mout.gmx.net ([212.227.15.18]:54753)
+	id 1jFMGb-0002fz-Qq; Fri, 20 Mar 2020 14:21:09 -0400
+Received: from mout.gmx.net ([212.227.15.15]:55323)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jFMBI-000209-5N
- for usrp-users@lists.ettus.com; Fri, 20 Mar 2020 14:15:40 -0400
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jFMGX-0002XF-33
+ for usrp-users@lists.ettus.com; Fri, 20 Mar 2020 14:21:05 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1584728098;
- bh=tzHvdy1YB4PMNE1d67oZQJ374/eVSzh8h4IYs3SSR8A=;
+ s=badeba3b8450; t=1584728424;
+ bh=wrQ0GylpFUUdYc4sqx2aGH8JUYbfqtxsuOOP/6TzEsA=;
  h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=hYLykDRXthVwp6mVqd+Yd2XBGanJ4lU2pJ1x9o+PXzXRuT1/+nd9z0HKhVX/29zig
- aOOLvxIwyoW871vOTGsoJIY8BDF7u9D6a8SdweewBQsKE+QgA1CWz1V27QbjCUHYJE
- 0AunrA9YKqJj3QAwziUeH5VZqX5ixE5xqmaLt6+0=
+ b=NMMwTJXkfBUP1n5Esi3r2d1KMAW8j0SrR5sBJEaD7UQJYmddw0Kq/P/u/T/wxmx/a
+ 13MY0lPClX8CKJSlkxy16mX+uWVq10l2bH4J+ez5vdBUNVULqOV0ZjZOtUhU2QWyTO
+ GNCKkLXbasSwQcdpAAk1VzJ76oWUghC8I9BZVMQE=
 X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
 Received: from [67.216.63.255] ([67.216.63.255]) by web-mail.gmx.net
  (3c-app-gmx-bs46.server.lan [172.19.170.98]) (via HTTP); Fri, 20 Mar 2020
- 19:14:58 +0100
+ 19:20:23 +0100
 MIME-Version: 1.0
-Message-ID: <trinity-d1bc073c-a88e-4fb0-bb22-190d86085835-1584728098676@3c-app-gmx-bs46>
+Message-ID: <trinity-4b23c7f1-48d7-45c1-b686-3a64d6136a81-1584728423677@3c-app-gmx-bs46>
 To: "Rob Kossler" <rkossler@nd.edu>
-Date: Fri, 20 Mar 2020 19:14:58 +0100
+Date: Fri, 20 Mar 2020 19:20:23 +0100
 Importance: normal
 Sensitivity: Normal
-In-Reply-To: <CAB__hTRBmcCMPmBDF2yOdShYDcd4r=xM6gzLWwkGRT0baRsRHg@mail.gmail.com>
+In-Reply-To: <CAB__hTSnwqCS4FZ-KeOH-cSN+cSt+ffbqwwzep8k9cuo-8QWRg@mail.gmail.com>
 References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
- <trinity-f6784e7e-a386-4c2d-9853-5909919d6c1c-1584111163445@3c-app-gmx-bs31>
  <CAB__hTSCG9vJDyfos8Vo51uun6+GVO0z2MKiAnwB5RxbQroHug@mail.gmail.com>
  <trinity-25b958ae-2910-49fd-a252-cca35e698948-1584115895450@3c-app-gmx-bs64>
  <CAB__hTRpVTqng7XcOgrCe5yCYUNZf8ZJVwj-nu8ScZJuf9ctvw@mail.gmail.com>
@@ -45,25 +44,26 @@ References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
  <trinity-b354461c-be4f-4e66-9954-c96301c941ae-1584663388615@3c-app-gmx-bs55>
  <CAB__hTRA0w1PtReqjDwTRnmo8vF+hD1KUZkt1XdA_xmiFD635g@mail.gmail.com>
  <CAB__hTRBmcCMPmBDF2yOdShYDcd4r=xM6gzLWwkGRT0baRsRHg@mail.gmail.com>
+ <CAB__hTSnwqCS4FZ-KeOH-cSN+cSt+ffbqwwzep8k9cuo-8QWRg@mail.gmail.com>
 X-UI-Message-Type: mail
 X-Priority: 3
-X-Provags-ID: V03:K1:2z/wWPck5k0lcLYIKyqAPQ+h1YifL0gtflmkG7j5i9qz4cWfUC0rDE4fp7yN8afkc+Otp
- yyfcaXEtgCSbV2oWUdZMGpNwsInEgevNr/d91Y4kLujkdbm3aEOUotJmFCk0NVvSUYl8Djo9DHH9
- mUoMhcgiPEk4pOP/+Pv+3mZ5/fPcICuEtlXxEfNsJlMiaIaWUIZyBLF6IgLjs/eyGgs2Dk3WP3gC
- 7/1uzglX85QICGIaWbjRoO5GkxUqfGFWPgAUfvtfFIONlY0StSlJuFOyR0HeQwb9mWPUW7X2BecT
- JM=
+X-Provags-ID: V03:K1:bEaD7BzAuTxmCXYJcqGo9Z/1mO1/qb+pLB90PJCymb9/fH74+oYTAlR3qRAsbpoNS7f3l
+ 2UlnMF/42ycZCykl9ytquCTxgUtnTAZCAH84P5zkdYJReaa03V4P10at8UEpPlL4+LJjiRsK0EJO
+ niMMrQnvmwwB1HHH+y1k/I9IwfVIOodEfee3IxEHE5P9reUN1L95ywNTeyBIHD6z0gSG38framdK
+ 9N0cQ1+FgKyFuTGVZ1QoRPbXRSnLomxbzKdrAIes1XPHHA60bgglFhBOmzO5DiLDEWJZuSfS9XBe
+ qk=
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:NJb1W09+ubA=:6x6DoATQORXOnlbF1pJfCw
- k7780nxECHj9GCTgQBAe4t0UxMHHm2ErRgVOsNk7+vQ7P0GDc64azoMO507MaRNyDnpjC0ZKc
- virKO6s90P8oHrx9WvlX5Xxo1KzjiIu4vzSGvbWQkF/6RNzWWKacQIGQrM7V99lkNZr4OaIxq
- /mXHOoV8vpRC1cy0Wi1eNQLiMvrvyvzplQJz6fayRElD8y4KssY2YH6GlqrxpolqMa0OtFDVW
- tfHPCZZ5gJgD5+dRpkK3+XxZSzIfd3JZe3K40vRHK2k43JehqA7Gxed+4n6vGjDeX7tyEarJK
- u5NVgjKar9hNT4TOZmpQ/vjySb39dNLCmIIwST1/s1MvAzt2heq4ciGTt3IbXqtqjZk87GmaS
- OjuXWOg0RrHhUuIyzOEgj9sloOZBwJX6PlXyd7wFtIbu35Ag1KZeG5EN059fIIEb3OubVLLGj
- D1UI8otd1WYnqt9rZq4BhfWKEZpEM6MBqLFJg/iMNbIEuTl47b6X9Q0BwzVHGR2ubT46e62f6
- sTMsZyveYDDOhjK6gelLCJaRMappBatz4TBpdKYeCLRn0uBQmaSeGGFcMoRFjmS8uwJ/rAhML
- oG33YIJaLc7ZGYcilyR4/LV5b00FNLb873gagMsGRSJ9F0oAxnutebFORHb4+kkFXveGckvwg
- j1QFdGPZqXNVPa2Tg56iB+N2C5CwVHI1DsMLNt43VcsJwGBhF9xbI/XvuUV+ZLa1P4ZE=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:cirLcRC4Veg=:PqJCmd/i55Fu0Utnn46U0g
+ Jir6IOeGyY5bNBraUDBmyOCmUhMq17pGkO+lR3aHhcBrlVd2LZRlxSOAKs+A4W7bG2v0vSwWH
+ IP8GHuQsscWjzS5hAHQHhhPohxvoyo4rOx5qP+7hmsVU8zZBrIj5RdPIieoh+2V+5JSmuTopu
+ U8KULqdJaB4TuF7O/aAZUgkA9eBVDO/khveWOazwV6/Mn3izQwTujRxd77U8yWCjStIz4s8AM
+ 2LTHTKtTPYPVFZXxiaXWA/baGuxo/8Qw7uJMAeqwK5t1mY+PMRo9/LhNr2f1kdxmb2zs2jmLr
+ W1XbIILeZprjdrqCTAVZuXag29sj94ZL6LQgCXiOrqZ2DYtEeOe9k+tk39E/seGtNj21EFq6z
+ f46GTF9hy4/n7+UGH5bnC9gFqZBbSl9CYfVRldHheHv3g+Wzu6OgtHw2Ilpcb65GPHOY93oqj
+ 67kWtYnbXPrxJgkFmA07qR4Jzb09UA+oZaKjLsNPJYJ3XC6cBOxpjeqQIvDTB+cdHO2p/PWGX
+ s7+ErN/nu9T511yXVdWfq0Xc1ronUx3CKMlFtM0h39RZx/P4YqCVkOc3K/4dLoJfO6CmC11Sv
+ wazgr4KIFbJsHtFLifawiUVb/UTMJm/2BiSdz+Y6f16rChHL/7FAyQ3XyeDdcgyJNMyd1uarU
+ xxMx455cxNceTneJtm1eTfaRqVntv+dqZFddTZrNX/HHDfjszPGaFrO7uW8ClX2B5mic=
 Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
  timed command
 X-BeenThere: usrp-users@lists.ettus.com
@@ -80,7 +80,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Lukas Haase <lukashaase@gmx.at>
 Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0551931700445051214=="
+Content-Type: multipart/mixed; boundary="===============4176536847529556046=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -94,51 +94,53 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0551931700445051214==
+--===============4176536847529556046==
 Content-Type: text/html; charset=UTF-8
 
 <html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Hi Rob,</div>
 
 <div>&nbsp;</div>
 
-<div>Thanks again so much for reproducing the setup.</div>
-
-<div>Based on Cases 1-4 this is consistent which what I get and it really feels good that you are able to reproduce it.</div>
-
-<div>
-<div>&nbsp;</div>
-
-<div>I have been wrapping my head around WHY can happen for TX/RX but not for TX/TX or RX/RX. It&#39;s really hard to imagine to me why if everything clearly happens at the same time. One thought that I had:</div>
-
-<ul>
-	<li>At time X, when the frequency is tuned, the phase accumulator is actually NOT reset to zero, to my knowledge. All that happens is that the phase increment is updated, such that at the next run, the LO signal is &quot;current_value+1/freq_new/resolution&quot; instead of &quot;current_value+1/old_freq/resolution&quot;.</li>
-	<li>The one thing that&#39;s different between TX and RX is the sign ... can it be that phase coherence is somehow lost because of the different sign?</li>
-</ul>
-
-<div>Next, really sorry for confusing you with the block diagram. I use gnuradio-companion where it&#39;s really easy to connect/disconnect lines. And I used them for transparently switching between the cases &quot;absolute phase RX1&quot;, &quot;absolute phase RX2&quot; and &quot;relative phase RX1-RX2&quot; ... by just rewiring and recreating the block diagram. Hence I added the annotations in https://snipboard.io/i9jLJg.jpg : &quot;Take this for RX1&quot;, &quot;Take this for RX2&quot;, &quot;Take this for rel. phase&quot;. Again, sorry that this was inconsistent between the screenshot and the code. I had rewired it to absolute phase at that point.</div>
+<div>That&#39;s a good point and I thought about this very early on but figures it would not matter because the phase of the &quot;Tx signal source&quot; is just constant.</div>
 
 <div>&nbsp;</div>
 
-<div>Great idea with the multiply_conjugate_cc block, I haven&#39;t thought of this yet. Thank for for sending your updated code ... I will continue with that now ...</div>
+<div>In terms of phase we could think of it as &quot;phase_we_want_to_measure + phase_of_tx_source&quot;. But since phase_of_tx_source does not change over runs, it shouldn&#39;t cause any differences. However, it was 2 months ago when I did this. I will have another look at it with your code.</div>
 
 <div>&nbsp;</div>
 
+<div>Thanks for pointing out the LO synchronization. When you say &quot;from run to run&quot;, you mean when I quit/execute again the python script for example, right? I was sure that I had to take this as a fact for now. I am not familiar with the option of synchronizing the LO settings. In all the docs (e.g. https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices, https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD) I have not read about it. Can you elaborate on this?</div>
+
 <div>&nbsp;</div>
 
-<div>Best,</div>
+<div>Thanks again,</div>
 
 <div>Lukas</div>
 
 <div>&nbsp;</div>
 
 <div>&nbsp;
+<div>&nbsp;
 <div name="quote" style="margin:10px 5px 5px 10px; padding: 10px 0 10px 10px; border-left:2px solid #C3D9E5; word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
-<div style="margin:0 0 10px 0;"><b>Gesendet:</b>&nbsp;Freitag, 20. M&auml;rz 2020 um 12:04 Uhr<br/>
+<div style="margin:0 0 10px 0;"><b>Gesendet:</b>&nbsp;Freitag, 20. M&auml;rz 2020 um 13:44 Uhr<br/>
 <b>Von:</b>&nbsp;&quot;Rob Kossler&quot; &lt;rkossler@nd.edu&gt;<br/>
 <b>An:</b>&nbsp;&quot;Lukas Haase&quot; &lt;lukashaase@gmx.at&gt;, usrp-users &lt;usrp-users@lists.ettus.com&gt;<br/>
 <b>Betreff:</b>&nbsp;Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a timed command</div>
 
 <div name="quoted-content">
+<div>
+<div>OK.&nbsp; Thinking about it a little more, I think that perhaps the tx-to-rx phase measurement methodology was flawed.&nbsp; So, maybe this is not any issue.&nbsp; I changed the Python (new version attached) to send the gnuradio Tx signal source (which also drives Tx0 and Tx1) to one input of the multiply_conjugate (replacing Rx1 which previously was the other input).&nbsp; When I run, now the phase &quot;walks&quot;, but always over the same range of values.&nbsp; When I retune Tx0 and Rx0, the &quot;walk&quot; resets but still walks over the same range.&nbsp; As to why the phase walks, I don&#39;t know the answer right off.</div>
+
+<div>&nbsp;</div>
+
+<div>On a separate topic, I noticed that your code does not synchronize the LO setting.&nbsp; This means that the RF phase between the channels could vary from run to run.</div>
+</div>
+&nbsp;
+
+<div class="gmail_quote">
+<div class="gmail_attr">On Fri, Mar 20, 2020 at 12:04 PM Rob Kossler &lt;<a href="mailto:rkossler@nd.edu" onclick="parent.window.location.href=&#39;mailto:rkossler@nd.edu&#39;; return false;" target="_blank">rkossler@nd.edu</a>&gt; wrote:</div>
+
+<blockquote class="gmail_quote" style="margin: 0.0px 0.0px 0.0px 0.8ex;border-left: 1.0px solid rgb(204,204,204);padding-left: 1.0ex;">
 <div>
 <div>Lukas,</div>
 
@@ -705,13 +707,15 @@ USRP-users mailing list<br/>
 </div>
 </blockquote>
 </div>
+</blockquote>
+</div>
 </div>
 </div>
 </div>
 </div></div></body></html>
 
 
---===============0551931700445051214==
+--===============4176536847529556046==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -722,4 +726,4 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0551931700445051214==--
+--===============4176536847529556046==--
