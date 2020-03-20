@@ -2,59 +2,72 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3A3E18C577
-	for <lists+usrp-users@lfdr.de>; Fri, 20 Mar 2020 03:49:14 +0100 (CET)
-Received: from [::1] (port=60748 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 420BE18C621
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Mar 2020 04:52:11 +0100 (CET)
+Received: from [::1] (port=37690 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jF7if-0001EZ-7Q; Thu, 19 Mar 2020 22:49:09 -0400
-Received: from mail-qk1-f181.google.com ([209.85.222.181]:42304)
+	id 1jF8hb-0003X8-Jd; Thu, 19 Mar 2020 23:52:07 -0400
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:40659)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jF7ib-00011S-0w
- for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 22:49:05 -0400
-Received: by mail-qk1-f181.google.com with SMTP id e11so5481646qkg.9
- for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 19:48:44 -0700 (PDT)
+ id 1jF8hX-0003S9-PV
+ for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 23:52:03 -0400
+Received: by mail-qk1-f175.google.com with SMTP id l25so706201qki.7
+ for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 20:51:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=eP+DJT6JpLEny6ESJkvh9LvMsnKtjr17YuXd0ph+Nrw=;
- b=GbGGVAprxZpfyACWHNLFUZoX0YQClcBdfnuowPVOIMqnoUx5KJtCi9fbCfJYvb+4vl
- v6U0zIrvgHw/0aVfveQHiyYMUGXZC8CSdgD6Dblk37JVxm9TRgVK9zQsfGM2SbvmG9CG
- ZVYUssu10Mt+uxIYVEkCvoYEuLekBhQvQYmFgntXzTzGplAy38IVxUQ/XcsM/G9Igrdv
- U9xqEQPBtucZ+HJ4J02WXc8nMkvbzJ4aBzD7y+8R1JHAtH0CCxgioqHtEM/Tjd3JjpRe
- VqM/nhEi23fEpWAm8/UX3GXn4YkdZCaPKROVd5Xt57N4KUSc9OwTUJk5j8oXih2zrcDH
- jdeg==
+ :in-reply-to; bh=M/n3l1AQRQ7+uwe3c6RTBY02j2d6F5Wgj2QDsgb14cw=;
+ b=h0ME2kjYIrLRfrhFzKTdKMiw1KnC/P0Aty8iaOA28yO56ds/ctgGiC5jo49PFvhzDk
+ E834fKzR0t7t2ipDj+JVrWF4anWCaVmCvPF5OvEdeQL5IP4Xwvz8dgGXSzGnfnCq0jBe
+ Tkam23yzGdneFjXPJM9WuP/2zt3yap4/M64OTTJvOyiWkr+Bq+InbvkSLfpRCYS000Yw
+ lBRIROqqa7S5zMzZcx/T+ueUwdn4R+I1JMPIVHtVwV4lNX6x610GrXRpo9k/D1/Edyau
+ 0HR7GNUVWUNM/qqRlDfRwCxitoDrP0gLdSEbYa5oLNX1X94ZQCk7rNYVWrQgI9w0Kd9d
+ u5+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=eP+DJT6JpLEny6ESJkvh9LvMsnKtjr17YuXd0ph+Nrw=;
- b=jabIQJZgqjtgl+RT8rADhWSiJQE9bfhlQdMxaaZj07IXKW5t/demoFTtjoDxYxw4Uf
- QXE0sIhrpHWi/+XrHfHpe+Tie5MjkJ/y3xmKkSEzcjvIeVlE8gVc6Op5k077vfZT6XWJ
- 3Duum6HQSHi+Qcucx8OePs/tJ34LwE8W4pvWmmwe5MLYtkuZ4pjR1Jd1UEP+QVcZ01YF
- HQFhm5yBVEvEPq1Se69JijBgFPHISzbFGdZh1LzQUafuhw8MjbIhv3L62GD3IIiH5/5t
- P9ahz+cyNxvBetKRhzbfj9LMoThtIOOodvX7r4y+C1XuhrCXtr7OiTyRGB3AAei8ZGt3
- 6Bkg==
-X-Gm-Message-State: ANhLgQ2qFAtIOK0AEIJKhzopjaoOIwLX4521S0rl139oXqwhUfCfopLq
- 1f5yquIPKBnevA5YYDIIuUYTkqLj
-X-Google-Smtp-Source: ADFU+vslecUwf2yyEJlzgy1kMpUOwf9S81iIlpdIo1JMDKON2uhQtKoAwXo2I0K3e0SsDr/SUpAC8w==
-X-Received: by 2002:a37:92c4:: with SMTP id u187mr5772300qkd.466.1584672504161; 
- Thu, 19 Mar 2020 19:48:24 -0700 (PDT)
+ bh=M/n3l1AQRQ7+uwe3c6RTBY02j2d6F5Wgj2QDsgb14cw=;
+ b=dImF9wKAzIetk5O9MOOxz1TS10LayWL64+x+HjA/oP7Ejw1rB13a22afbngEVEh1hP
+ E6jb0z4LG5AqorUxOoJJJGXmC15l1nvFf+z0XowXGe7TgHC83/a5ZhMt8/7XOxoeQjN5
+ rH7/U2pyo2bo5UWSzcTBhL9/jbo/zhk6EeJHLREuPBKbZX5lDJ2LQWV50XIM+d+w+fbA
+ RC/kHKSZVTuME3w0NUFwJqDIENikqiKOjJDmsf7RmLuZWSBN1xlr6Ddgu5oEuMtRwroS
+ PjnHkH/Q02t5YWD+xw1D4pVYMy37aJwKPw9cpqTu+VvsfH2lXgb7v0rs4EFxYWkR2qOF
+ jdCw==
+X-Gm-Message-State: ANhLgQ3b9c4pydUdtNH8+O6aVrBrUnSedEOq5PisCBcS6j0HW1LUQr7p
+ COluRj+CY24QGTIJa0jfp6v54ejp
+X-Google-Smtp-Source: ADFU+vtlO9j+Y/9o234SOMvaCPoC8qwDfA8QtSTWEDWbghPlhpQ3moSVhxT3dA34L+mq5tGcyC0gBA==
+X-Received: by 2002:a37:4bd1:: with SMTP id y200mr4345205qka.205.1584676282613; 
+ Thu, 19 Mar 2020 20:51:22 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-12-204.dsl.bell.ca.
  [174.95.12.204])
- by smtp.googlemail.com with ESMTPSA id n21sm2705120qtn.17.2020.03.19.19.48.23
+ by smtp.googlemail.com with ESMTPSA id 2sm3000715qtp.33.2020.03.19.20.51.21
+ for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 19 Mar 2020 19:48:23 -0700 (PDT)
-Message-ID: <5E742EF6.6020803@gmail.com>
-Date: Thu, 19 Mar 2020 22:48:22 -0400
+ Thu, 19 Mar 2020 20:51:22 -0700 (PDT)
+Message-ID: <5E743DB8.3090203@gmail.com>
+Date: Thu, 19 Mar 2020 23:51:20 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>, 
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <10F7328F6AD1354BA6DD787687B66B9001A304FD2A@Maui.in.dynetics.com>
-In-Reply-To: <10F7328F6AD1354BA6DD787687B66B9001A304FD2A@Maui.in.dynetics.com>
-Subject: Re: [USRP-users] MTU Issues after upgrading to UHD 3.15.0
+To: usrp-users@lists.ettus.com
+References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
+ <trinity-f6784e7e-a386-4c2d-9853-5909919d6c1c-1584111163445@3c-app-gmx-bs31>
+ <CAB__hTSCG9vJDyfos8Vo51uun6+GVO0z2MKiAnwB5RxbQroHug@mail.gmail.com>
+ <trinity-25b958ae-2910-49fd-a252-cca35e698948-1584115895450@3c-app-gmx-bs64>
+ <CAB__hTRpVTqng7XcOgrCe5yCYUNZf8ZJVwj-nu8ScZJuf9ctvw@mail.gmail.com>
+ <trinity-67ab4cfd-a450-4253-8edf-2d22a808d058-1584575179099@3c-app-gmx-bap69>
+ <CAB__hTRoRNft0M8VCFGDS0ytLGbq0Fz48Zych-U5UD3jcutNzA@mail.gmail.com>
+ <trinity-bbe82f54-edda-4533-b4c8-9b1bde054edc-1584649222876@3c-app-gmx-bap79>
+ <CAB__hTRvq+xojKA0-kB0-JJjOURf9ZLVURcAwyHxtt6_-J1_bg@mail.gmail.com>
+ <CAB__hTRZCez=FerC_MUiyDMXoEb4LH+cgHqAUfoE859UUO0POg@mail.gmail.com>
+ <CAB__hTTfEYVEQAZvVLfR1GJHyWfz_uwCTDREX+4vsHWHi1MpOw@mail.gmail.com>
+ <CAB__hTSojeJRcHo899zVCqXQPA=f+DamUq06TA88xNVWE3SRyg@mail.gmail.com>
+ <trinity-b354461c-be4f-4e66-9954-c96301c941ae-1584663388615@3c-app-gmx-bs55>
+In-Reply-To: <trinity-b354461c-be4f-4e66-9954-c96301c941ae-1584663388615@3c-app-gmx-bs55>
+Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
+ timed command
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,7 +81,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4987404845434030425=="
+Content-Type: multipart/mixed; boundary="===============5401063083542694304=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,64 +96,76 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============4987404845434030425==
+--===============5401063083542694304==
 Content-Type: multipart/alternative;
- boundary="------------090104050803030405040005"
+ boundary="------------050808090509070301010506"
 
 This is a multi-part message in MIME format.
---------------090104050803030405040005
+--------------050808090509070301010506
 Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 03/19/2020 09:17 PM, Carmichael, Ryan via USRP-users wrote:
+On 03/19/2020 08:16 PM, Lukas Haase via USRP-users wrote:
+> Hi Rob,
+> Sorry I really should have ran the python file before uploading. The 
+> issue was that I combined to files into one and forgot to remove the 
+> imported file.
+> Here is a new one (tested): http://paste.ubuntu.com/p/VsGRmsbZQ5/
+> Thanks for reporting your results .... very interesting!
+> Why do you think second mode makes sense to you? (assuming you are 
+> using timed commands to to retune TX+RX at the same time)
+> In general, it seems to me that things are related to streaming 
+> start/stop. Maybe things are reset when streaming starts/ends but not 
+> when re-tuning?
+> Maybe this is what Marcus was mentioning: resetting phase accumulator 
+> vs. "increment register is updated with the new phase increment"?
+> MAYBE stopping/starting resets the phase accumulator to zero and just 
+> timed retuning doesn't reset anything. But still, my question is left 
+> why this would result in a random phase offset between DUC and DDC.
+> Thanks again!!
+> Lukas
 >
-> I have 4 SFI/SFP+ NICs, shown below (Intel 82599ES), although right 
-> now I only have two of them connected to anything (the X310 in question)
->
-> 0b:00.0 Ethernet controller: Intel Corporation 82599ES 10-Gigabit 
-> SFI/SFP+ Network Connection (rev 01)
->
-> 0b:00.1 Ethernet controller: Intel Corporation 82599ES 10-Gigabit 
-> SFI/SFP+ Network Connection (rev 01)
->
-> 0d:00.0 Ethernet controller: Intel Corporation 82599ES 10-Gigabit 
-> SFI/SFP+ Network Connection (rev 01)
->
-> 0d:00.1 Ethernet controller: Intel Corporation 82599ES 10-Gigabit 
-> SFI/SFP+ Network Connection (rev 01)
->
-> Although I’m only testing with 1 right now, I have 2 X310s connected, 
-> each with two SFP+. IPs of one radio is 192.168.40.2/30.2 and the 
-> other radio is 192.168.130.1/140.1.
->
-> I do have another non-10Gb card connected to a separate device with a 
-> 192 subnet.
->
-> Ifconfig for the 192.x devices is:
->
-> inet 192.168.130.99  netmask 255.255.255.0  broadcast 192.168.130.255
->
-> inet 192.168.140.98  netmask 255.255.255.0  broadcast 192.168.140.255
->
-> inet 192.168.30.99  netmask 255.255.255.0  broadcast 192.168.30.255
->
-> inet 192.168.40.99  netmask 255.255.255.0  broadcast 192.168.40.255
->
-> inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
->
-> The NICs are direct connected to the radios via the SFP+ so don’t 
-> think the IP stack could be sending the data to the X310s any other 
-> way (or is there something else I should check?). The args we pass 
-> into  uhd::usrp::multi_usrp::make are:
->
-> addr=192.168.30.2, second_addr=192.168.40.2,send_frame_size=9000
->
->
-*Might be useful to do a ping -s 8500 to the X310, and see if it works.
+So, having spent a couple of hours snooping around the X3xx FPGA code, 
+where Verilog is not one of my native languages, I have come to
+   a bit of a conclusion about the ways things work.  Now, keep in mind, 
+this is like me reading War and Peace in the original Russian, and as
+   an English speaker, coming the vague conclusion that "It was about 
+Russia".
 
-*
+There's a "settings bus" within the FPGA that is implemented with AXI 
+FIFO modules.  If your command (which results, most often in
+   having to "set" one or more registers via the settings bus) is not a 
+timed command, it enters the FIFO, and then is "executed" one
+   clock later.  If it has a time associated with it, then it is 
+withdrawn when that time has been reached in "vita_time".  Note that 
+since this
+   is a FIFO, commands that are to be executed "at the same time" will 
+be serialized by the inherent FIFO nature of execution.
 
---------------090104050803030405040005
+So, with two DDC settings and two DUC settings all sitting in the FIFO, 
+their actual execution times will be 'spread' over (as far as I can tell)
+   4 clocks cycles of the FIFO, or about 20nsec.  Now in the case where 
+multiple X3xx are involved, the FIFO will look identical across all
+   the units, and will execute at the same time, but still be 
+serialized.  But if you have two DDC settings across a pair of X3xx, the 
+settings
+   will execute at exactly the same time, since they will in effect be 
+executing in parallel.   Put another way, with shared clocks, and a common
+   "view" of system time, parallel FIFOs will get drained in the same 
+order and at the same rate.
+
+Someone with a better understanding of the FPGA really should 
+comment.    But this is my (albeit incomplete) understanding of the
+   settings-bus logic the FPGA.
+
+Now, even having said THIS, since you'd expect the FIFO to be 
+deterministic.  So, you'd not expect there to be large random
+   phase offsets that differ from run to run, I think.
+
+
+
+
+--------------050808090509070301010506
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
@@ -150,204 +175,99 @@ Content-Transfer-Encoding: 8bit
       http-equiv="Content-Type">
   </head>
   <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 03/19/2020 09:17 PM, Carmichael,
-      Ryan via USRP-users wrote:<br>
+    <div class="moz-cite-prefix">On 03/19/2020 08:16 PM, Lukas Haase via
+      USRP-users wrote:<br>
     </div>
     <blockquote
-cite="mid:10F7328F6AD1354BA6DD787687B66B9001A304FD2A@Maui.in.dynetics.com"
+cite="mid:trinity-b354461c-be4f-4e66-9954-c96301c941ae-1584663388615@3c-app-gmx-bs55"
       type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]-->
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";
-	color:black;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Consolas",serif;
-	color:black;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle22
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">I
-            have 4 SFI/SFP+ NICs, shown below (Intel 82599ES), although
-            right now I only have two of them connected to anything (the
-            X310 in question)<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">0b:00.0
-            Ethernet controller: Intel Corporation 82599ES 10-Gigabit
-            SFI/SFP+ Network Connection (rev 01)<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">0b:00.1
-            Ethernet controller: Intel Corporation 82599ES 10-Gigabit
-            SFI/SFP+ Network Connection (rev 01)<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">0d:00.0
-            Ethernet controller: Intel Corporation 82599ES 10-Gigabit
-            SFI/SFP+ Network Connection (rev 01)<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">0d:00.1
-            Ethernet controller: Intel Corporation 82599ES 10-Gigabit
-            SFI/SFP+ Network Connection (rev 01)<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Although
-            I’m only testing with 1 right now, I have 2 X310s connected,
-            each with two SFP+. IPs of one radio is 192.168.40.2/30.2
-            and the other radio is 192.168.130.1/140.1.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">I
-            do have another non-10Gb card connected to a separate device
-            with a 192 subnet.
-            <o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Ifconfig
-            for the 192.x devices is:<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">inet
-            192.168.130.99  netmask 255.255.255.0  broadcast
-            192.168.130.255<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">inet
-            192.168.140.98  netmask 255.255.255.0  broadcast
-            192.168.140.255<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">inet
-            192.168.30.99  netmask 255.255.255.0  broadcast
-            192.168.30.255<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">inet
-            192.168.40.99  netmask 255.255.255.0  broadcast
-            192.168.40.255<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">inet
-            192.168.122.1  netmask 255.255.255.0  broadcast
-            192.168.122.255<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">The
-            NICs are direct connected to the radios via the SFP+ so
-            don’t think the IP stack could be sending the data to the
-            X310s any other way (or is there something else I should
-            check?). The args we pass into  uhd::usrp::multi_usrp::make
-            are:<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">addr=192.168.30.2,
-            second_addr=192.168.40.2,send_frame_size=9000<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
-        <br>
+      <div style="font-family: Verdana;font-size: 12.0px;">
+        <div>Hi Rob,</div>
+        <div> </div>
+        <div>Sorry I really should have ran the python file before
+          uploading. The issue was that I combined to files into one and
+          forgot to remove the imported file.</div>
+        <div>Here is a new one (tested):
+          <a class="moz-txt-link-freetext" href="http://paste.ubuntu.com/p/VsGRmsbZQ5/">http://paste.ubuntu.com/p/VsGRmsbZQ5/</a></div>
+        <div> </div>
+        <div> </div>
+        <div>Thanks for reporting your results .... very interesting!</div>
+        <div> </div>
+        <div>Why do you think second mode makes sense to you? (assuming
+          you are using timed commands to to retune TX+RX at the same
+          time)</div>
+        <div> </div>
+        <div>In general, it seems to me that things are related to
+          streaming start/stop. Maybe things are reset when streaming
+          starts/ends but not when re-tuning?</div>
+        <div> </div>
+        <div>Maybe this is what Marcus was mentioning: resetting phase
+          accumulator vs. "increment register is updated with the new
+          phase increment"?</div>
+        <div> </div>
+        <div>MAYBE stopping/starting resets the phase accumulator to
+          zero and just timed retuning doesn't reset anything. But
+          still, my question is left why this would result in a random
+          phase offset between DUC and DDC.</div>
+        <div> </div>
+        <div>Thanks again!!</div>
+        <div>Lukas</div>
+        <div> 
+          <br>
+        </div>
       </div>
     </blockquote>
-    <b>Might be useful to do a ping -s 8500 to the X310, and see if it
-      works.<br>
-      <br>
-    </b>
+    So, having spent a couple of hours snooping around the X3xx FPGA
+    code, where Verilog is not one of my native languages, I have come
+    to<br>
+      a bit of a conclusion about the ways things work.  Now, keep in
+    mind, this is like me reading War and Peace in the original Russian,
+    and as<br>
+      an English speaker, coming the vague conclusion that "It was about
+    Russia".<br>
+    <br>
+    There's a "settings bus" within the FPGA that is implemented with
+    AXI FIFO modules.  If your command (which results, most often in<br>
+      having to "set" one or more registers via the settings bus) is not
+    a timed command, it enters the FIFO, and then is "executed" one<br>
+      clock later.  If it has a time associated with it, then it is
+    withdrawn when that time has been reached in "vita_time".  Note that
+    since this<br>
+      is a FIFO, commands that are to be executed "at the same time"
+    will be serialized by the inherent FIFO nature of execution.<br>
+    <br>
+    So, with two DDC settings and two DUC settings all sitting in the
+    FIFO, their actual execution times will be 'spread' over (as far as
+    I can tell)<br>
+      4 clocks cycles of the FIFO, or about 20nsec.  Now in the case
+    where multiple X3xx are involved, the FIFO will look identical
+    across all<br>
+      the units, and will execute at the same time, but still be
+    serialized.  But if you have two DDC settings across a pair of X3xx,
+    the settings<br>
+      will execute at exactly the same time, since they will in effect
+    be executing in parallel.   Put another way, with shared clocks, and
+    a common<br>
+      "view" of system time, parallel FIFOs will get drained in the same
+    order and at the same rate.<br>
+    <br>
+    Someone with a better understanding of the FPGA really should
+    comment.    But this is my (albeit incomplete) understanding of the<br>
+      settings-bus logic the FPGA.<br>
+    <br>
+    Now, even having said THIS, since you'd expect the FIFO to be
+    deterministic.  So, you'd not expect there to be large random<br>
+      phase offsets that differ from run to run, I think.<br>
+    <br>
+    <br>
+    <br>
   </body>
 </html>
 
---------------090104050803030405040005--
+--------------050808090509070301010506--
 
 
---===============4987404845434030425==
+--===============5401063083542694304==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -358,5 +278,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4987404845434030425==--
+--===============5401063083542694304==--
 
