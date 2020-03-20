@@ -2,60 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F74F18C440
-	for <lists+usrp-users@lfdr.de>; Fri, 20 Mar 2020 01:26:24 +0100 (CET)
-Received: from [::1] (port=35954 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7553718C453
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Mar 2020 01:43:51 +0100 (CET)
+Received: from [::1] (port=44968 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jF5UR-000207-Jy; Thu, 19 Mar 2020 20:26:19 -0400
-Received: from mail-qk1-f176.google.com ([209.85.222.176]:34795)
+	id 1jF5lO-00047g-1K; Thu, 19 Mar 2020 20:43:50 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:35817)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jF5UN-0001s5-Ra
- for usrp-users@lists.ettus.com; Thu, 19 Mar 2020 20:26:15 -0400
-Received: by mail-qk1-f176.google.com with SMTP id f3so5295083qkh.1
- for <usrp-users@lists.ettus.com>; Thu, 19 Mar 2020 17:25:55 -0700 (PDT)
+ (Exim 4.93) (envelope-from <b4ss3k@gmail.com>) id 1jF5lK-0003tb-91
+ for USRP-users@lists.ettus.com; Thu, 19 Mar 2020 20:43:46 -0400
+Received: by mail-lf1-f65.google.com with SMTP id m15so3210285lfp.2
+ for <USRP-users@lists.ettus.com>; Thu, 19 Mar 2020 17:43:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=AzOlzdIqrn0SlQ8exCHA446jMY/z+zdAjojmLd5/nDw=;
- b=sNPSiOH0TM6bMvIGRFPOx0s2QXr1/KQDnGFz2diqm4atoFH3+rAKyDQhtZ390nwA94
- XO7FfaO57wDxZUZx0kDGgM3XBv8OMjdSkKgsZ8v06zGZ4m7RSYqyhrgMiuRk2rq1yDum
- ie5tlaHmsTxoOLVqopM8V3Q6OYR/vDZaO9Mog+r43tIBu/KgQFG8Hh85u4Ut/0GzogJO
- EkkOqmTvJ7371K6IIUwibAHKsGAdIdh/vNPnm+ADLkwBwQV0omZYldA4dS2YkdqsT02p
- I6mhHbuSQdG+qrxHiiKBAFaF/F76ZiizS1vWpBJ/Hg/kqc2stB3lwpLoyUPnanZ3pXe1
- BxRA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9e4WgcvO/l6e1sQPd1XDOdX8Hm+xFe7mAQH02dbdj8Y=;
+ b=sdJLBJ+OIpo6VFpxdiWWWBODdSxl9Nrbc4zWAS3+CQTEAZoMoCQ/alJlSsmiMntDor
+ LsJhW05p/efvbq837+cDHueBqwr+Sz6Vrn0cGyXAINc/8RWoWg1Fup+BfZZpIUxstlDE
+ huLnbtvoK15c+Au+xADjrKyZmeu1ZihtODHHbf+OFwFyTNWwa/bgOxWdglKvBZUwUU8g
+ WuDqTXHS4sJnKCAInwkcxFWuVy8CB0pA6qij4/Zq3ER395rvMzvzTsYtROJnYhe6zMwE
+ /4ZQUG3jlhpa1bwj3q8cf4mgyuZLjBl4wiIEcU4PVyXNlvAPvAoyJr9zmITkBRa5E2dV
+ JdPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=AzOlzdIqrn0SlQ8exCHA446jMY/z+zdAjojmLd5/nDw=;
- b=oyClFXyVtaprt1nB2AVKFZDzr/M+Dfjb0s0JlLmLGJeNDN5OAtEVIoayfT3sXTGBeU
- B3EMRbkQ1IF7ppLwEL5XjjkbuTVLl47RGWt2M424pwQpDDDD6awcey6dH50BZ7CN/aun
- QpGLUJLH/MD7t7dSAqtS9onAyhXGfiR6gA/N4tNYwha6wV5Ky42RcLIlhj+Z2SD95NNP
- XZLmFP3SEZmZ/ptR+ogEZ9sa11W1+XaFiswe+RlhnbBMW5JQB8Nt84XwfKJChrUZev1N
- o3+OxGSVExVHa8xsRkgeznemhXwvNgB+0VK7a1u7O098FbAeVXgaR/fiSHL+tg39EXKD
- qFMA==
-X-Gm-Message-State: ANhLgQ03aJVrMS7cc2tg+98Q99Kf219DfbwxPGNFdRuCdstslTamIhHp
- 1WiOAt/jirxmmVddwAkfqbM+8c/L
-X-Google-Smtp-Source: ADFU+vvg9MSkbAMDeQrVqqWcziE8vA7O60ctkygZa8KDj7dnrwh3xIZhdFBlhLcv0j4QvYBUCI0mvQ==
-X-Received: by 2002:a37:c444:: with SMTP id h4mr3521779qkm.120.1584663935046; 
- Thu, 19 Mar 2020 17:25:35 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-12-204.dsl.bell.ca.
- [174.95.12.204])
- by smtp.googlemail.com with ESMTPSA id r3sm2938232qkd.3.2020.03.19.17.25.33
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 19 Mar 2020 17:25:34 -0700 (PDT)
-Message-ID: <5E740D7D.8060202@gmail.com>
-Date: Thu, 19 Mar 2020 20:25:33 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9e4WgcvO/l6e1sQPd1XDOdX8Hm+xFe7mAQH02dbdj8Y=;
+ b=t+5lgUlGhVyw8wRCDyY/rTDhlocQ+2qGd8vp2E/TvkS0/OPocqP3JY9mDAieun3PVg
+ q3zkBP4OP0VH4SmexlkKbtz+fL7Q9p2a75YIUcJHwCjOUekvCAYnXpZS8pyhJGLJ+lIU
+ E0UKvwhrELP5c7cvtrvKwV396tOltbSQcLWmocgsudZ9Wj2FhW4be1q/+CX+mG9ljPQB
+ DakuYYCzu2W7F5rZbHrYZAAEOUXUTZqTmxXDbKvPxPaOUOq7Hp43TOH8k7YJsXF7d2Du
+ 1yGk68M3SHOBC07bEN2xk5FQcLblZhM7muirIM57zEmQFslkC3/l24DL3hskIdhVQrW1
+ w5Dg==
+X-Gm-Message-State: ANhLgQ2JM/E2Lc4+PhvBhxcmpq61TY8SJDPtg7SD4yDJVJ9yY9h78Oel
+ ovQ4rLjfFoyxY6yQalbA66u6rLkX7xyWqhKjPNA=
+X-Google-Smtp-Source: ADFU+vtyV7y/R1SQkQmWH5mjP2ohDt59rmW6IiO9MdYVNart0DbcxdJZH1+jyFRoIfQEtRZAC3xsO8v7AiWEZ8dQZ90=
+X-Received: by 2002:a19:c511:: with SMTP id w17mr3458593lfe.119.1584664984980; 
+ Thu, 19 Mar 2020 17:43:04 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <10F7328F6AD1354BA6DD787687B66B9001A304FBD9@Maui.in.dynetics.com>
- <CACaXmv_torvH6MBuU5XfgS2euYBMAkkb1T6HGBFYF5C=JNWb4A@mail.gmail.com>
-In-Reply-To: <CACaXmv_torvH6MBuU5XfgS2euYBMAkkb1T6HGBFYF5C=JNWb4A@mail.gmail.com>
-Subject: Re: [USRP-users] MTU Issues after upgrading to UHD 3.15.0
+References: <CACcka+344PO4uhAemdNLmEwGw+sGucMiXPuRkzFcY6ikwegU7g@mail.gmail.com>
+ <4cf13326-747a-1330-807f-da552be3b714@ettus.com>
+In-Reply-To: <4cf13326-747a-1330-807f-da552be3b714@ettus.com>
+Date: Thu, 19 Mar 2020 20:42:53 -0400
+Message-ID: <CACcka+1CygH+Ey_vShR8+oXs-sEsaEN5+o4dj20BD9psgGh7gw@mail.gmail.com>
+To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+Subject: Re: [USRP-users] UHD SSL Error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,9 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7079561751772166580=="
+From: Basse Ang via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Basse Ang <b4ss3k@gmail.com>
+Cc: USRP-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============1749886992870527047=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,570 +75,419 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============7079561751772166580==
-Content-Type: multipart/alternative;
- boundary="------------030704070800040504050205"
+--===============1749886992870527047==
+Content-Type: multipart/alternative; boundary="00000000000084922705a13e918c"
 
-This is a multi-part message in MIME format.
---------------030704070800040504050205
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--00000000000084922705a13e918c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/19/2020 08:09 PM, Neel Pandeya via USRP-users wrote:
-> Which 10 Gbps network card are you using?
->
-> --Neel Pandeya
->
->
-Also, are you certain that your IP stack is actually routing to one of 
-those two cards?
+hi Marcus,
 
+Thank you for your reply.
 
->
-> On Thu, 19 Mar 2020 at 10:50, Carmichael, Ryan via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     I had an application running with 3.11.1 libraries and and my X310
->     corresponding firmware. After building and installing 3.15.0 on my
->     system and flashing the X310, everything seemed okay.
->
->     However, we now get this error when starting up:
->
->     *[WARNING] [X300] You requested a send frame size of (9000) but
->     your NIC's max frame size is (8000).Please verify your NIC's MTU
->     setting using 'ip link' or set the send_frame_size argument
->     appropriately.UHD will use the auto-detected max frame size for
->     this connection.*
->     *
->     *
->     And when we start to transmit, odd errors like this show up (what
->     is 'this can cause 27.0464' trying to tell me?):
->
->     *[WARNING] [MULTI_USRP] The total sum of rates (66.666667 MSps on
->     1 channels) exceeds the maximum capacity of the connection
->     (overflows (O) MSps).
->     This can cause 27.0464.*
->
->     I'm using 10Gb NICs that again, worked fine with 3.11. The MTUs
->     are set to 9000 (I've also tried 9001, 9100, nothing seems to
->     change the warning).
->
->     *ip link*
->     *6: enp13s0f0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq
->     state UP mode DEFAULT group default qlen 1000
->         link/ether f8:f2:1e:42:e1:d4 brd ff:ff:ff:ff:ff:ff
->     7: enp13s0f1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq
->     state UP mode DEFAULT group default qlen 1000
->         link/ether f8:f2:1e:42:e1:d5 brd ff:ff:ff:ff:ff:ff*
->     *
->     *
->     The usrp_probe output is below. Any ideas on what is happening?
->
->     *uhd_usrp_probe --args="addr=192.168.30.2"
->     [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat
->     4.8.5-39); Boost_106700; UHD_3.15.0.0-7-g8d228dbe
->     [INFO] [X300] X300 initialization sequence...
->     [INFO] [X300] Maximum frame size: 8000 bytes.
->     [INFO] [X300] Radio 1x clock: 200 MHz
->     [INFO] [GPS] No GPSDO found
->     [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
->     0xF1F0D00000000000)
->     [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1321 MB/s)
->     [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1300 MB/s)
->     [INFO] [0/Radio_0] Initializing block control (NOC ID:
->     0x12AD100000000001)
->     [INFO] [0/Radio_1] Initializing block control (NOC ID:
->     0x12AD100000000001)
->     [INFO] [0/DDC_0] Initializing block control (NOC ID:
->     0xDDC0000000000000)
->     [INFO] [0/DDC_1] Initializing block control (NOC ID:
->     0xDDC0000000000000)
->     [INFO] [0/DUC_0] Initializing block control (NOC ID:
->     0xD0C0000000000000)
->     [INFO] [0/DUC_1] Initializing block control (NOC ID:
->     0xD0C0000000000000)
->     _____________________________________________________
->      /
->     |       Device: X-Series Device
->     | _____________________________________________________
->     |    /
->     |   |       Mboard: X310
->     |   |   revision: 11
->     |   |   revision_compat: 7
->     |   |   product: 30818
->     |   |   mac-addr0: 00:80:2f:24:d2:a9
->     |   |   mac-addr1: 00:80:2f:24:d2:aa
->     |   |   gateway: 192.168.10.1
->     |   |   ip-addr0: 192.168.10.2
->     |   |   subnet0: 255.255.255.0
->     |   |   ip-addr1: 192.168.20.2
->     |   |   subnet1: 255.255.255.0
->     |   |   ip-addr2: 192.168.30.2
->     |   |   subnet2: 255.255.255.0
->     |   |   ip-addr3: 192.168.40.2
->     |   |   subnet3: 255.255.255.0
->     |   |   serial: 318D6DF
->     |   |   FW Version: 6.0
->     |   |   FPGA Version: 36.0
->     |   |   FPGA git hash: 9ba275d
->     |   |   RFNoC capable: Yes
->     |   |
->     |   |   Time sources:  internal, external, gpsdo
->     |   |   Clock sources: internal, external, gpsdo
->     |   |   Sensors: ref_locked
->     |   | _____________________________________________________
->     |   |    /
->     |   |   |       RX Dboard: A
->     |   |   |   ID: UBX-160 v2 (0x007e)
->     |   |   |   Serial: 3185BEE
->     |   |   | _____________________________________________________
->     |   |   |    /
->     |   |   |   |       RX Frontend: 0
->     |   |   |   |   Name: UBX RX
->     |   |   |   |   Antennas: TX/RX, RX2, CAL
->     |   |   |   |   Sensors: lo_locked
->     |   |   |   |   Freq range: 10.000 to 6000.000 MHz
->     |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
->     |   |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step
->     0.0 Hz
->     |   |   |   |   Connection Type: IQ
->     |   |   |   |   Uses LO offset: No
->     |   |   | _____________________________________________________
->     |   |   |    /
->     |   |   |   |       RX Codec: A
->     |   |   |   |   Name: ads62p48
->     |   |   |   |   Gain range digital: 0.0 to 6.0 step 0.5 dB
->     |   | _____________________________________________________
->     |   |    /
->     |   |   |       RX Dboard: B
->     |   |   |   ID: UBX-160 v2 (0x007e)
->     |   |   |   Serial: 3185CA1
->     |   |   | _____________________________________________________
->     |   |   |    /
->     |   |   |   |       RX Frontend: 0
->     |   |   |   |   Name: UBX RX
->     |   |   |   |   Antennas: TX/RX, RX2, CAL
->     |   |   |   |   Sensors: lo_locked
->     |   |   |   |   Freq range: 10.000 to 6000.000 MHz
->     |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
->     |   |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step
->     0.0 Hz
->     |   |   |   |   Connection Type: IQ
->     |   |   |   |   Uses LO offset: No
->     |   |   | _____________________________________________________
->     |   |   |    /
->     |   |   |   |       RX Codec: B
->     |   |   |   |   Name: ads62p48
->     |   |   |   |   Gain range digital: 0.0 to 6.0 step 0.5 dB
->     |   | _____________________________________________________
->     |   |    /
->     |   |   |       TX Dboard: A
->     |   |   |   ID: UBX-160 v2 (0x007d)
->     |   |   |   Serial: 3185BEE
->     |   |   | _____________________________________________________
->     |   |   |    /
->     |   |   |   |       TX Frontend: 0
->     |   |   |   |   Name: UBX TX
->     |   |   |   |   Antennas: TX/RX, CAL
->     |   |   |   |   Sensors: lo_locked
->     |   |   |   |   Freq range: 10.000 to 6000.000 MHz
->     |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
->     |   |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step
->     0.0 Hz
->     |   |   |   |   Connection Type: QI
->     |   |   |   |   Uses LO offset: No
->     |   |   | _____________________________________________________
->     |   |   |    /
->     |   |   |   |       TX Codec: A
->     |   |   |   |   Name: ad9146
->     |   |   |   |   Gain Elements: None
->     |   | _____________________________________________________
->     |   |    /
->     |   |   |       TX Dboard: B
->     |   |   |   ID: UBX-160 v2 (0x007d)
->     |   |   |   Serial: 3185CA1
->     |   |   | _____________________________________________________
->     |   |   |    /
->     |   |   |   |       TX Frontend: 0
->     |   |   |   |   Name: UBX TX
->     |   |   |   |   Antennas: TX/RX, CAL
->     |   |   |   |   Sensors: lo_locked
->     |   |   |   |   Freq range: 10.000 to 6000.000 MHz
->     |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
->     |   |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step
->     0.0 Hz
->     |   |   |   |   Connection Type: QI
->     |   |   |   |   Uses LO offset: No
->     |   |   | _____________________________________________________
->     |   |   |    /
->     |   |   |   |       TX Codec: B
->     |   |   |   |   Name: ad9146
->     |   |   |   |   Gain Elements: None
->     |   | _____________________________________________________
->     |   |    /
->     |   |   |       RFNoC blocks on this device:
->     |   |   |
->     |   |   |   * DmaFIFO_0
->     |   |   |   * Radio_0
->     |   |   |   * Radio_1
->     |   |   |   * DDC_0
->     |   |   |   * DDC_1
->     |   |   |   * DUC_0
->     |   |   |   * DUC_1*
->
->     Thanks,
->     Ryan
->     /
->     ------------------------------------------------------------------------
->
->     The information contained in this message, and any attachments,
->     may contain privileged and/or proprietary information that is
->     intended solely for the person or entity to which it is addressed.
->     Moreover, it may contain export restricted technical data
->     controlled by Export Administration Regulations (EAR) or the
->     International Traffic in Arms Regulations (ITAR). Any review,
->     retransmission, dissemination, or re-export to foreign or domestic
->     entities by anyone other than the intended recipient in accordance
->     with EAR and/or ITAR regulations is prohibited.
->
->     /
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+this is the output:
 
+Please run:
 
---------------030704070800040504050205
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+ "/usr/lib/uhd/utils/uhd_images_downloader.py"
+No UHD Devices Found
+oai@oai:~$ sudo /usr/lib/uhd/utils/uhd_images_downloader.py
+[INFO] Images destination: /usr/share/uhd/images
+[INFO] No inventory file found at /usr/share/uhd/images/inventory.json.
+Creating an empty one.
+[ERROR] Downloader raised an unhandled exception: [Errno 1] _ssl.c:510:
+error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify
+failed
+You can run this again with the '--verbose' flag to see more information
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 03/19/2020 08:09 PM, Neel Pandeya
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CACaXmv_torvH6MBuU5XfgS2euYBMAkkb1T6HGBFYF5C=JNWb4A@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_default"
-          style="font-family:verdana,sans-serif">Which 10 Gbps network
-          card are you using?</div>
-        <div class="gmail_default"
-          style="font-family:verdana,sans-serif"><br>
-        </div>
-        <div class="gmail_default"
-          style="font-family:verdana,sans-serif">--Neel Pandeya</div>
-        <div class="gmail_default"
-          style="font-family:verdana,sans-serif"><br>
-        </div>
-        <div class="gmail_default"
-          style="font-family:verdana,sans-serif"><br>
-        </div>
-      </div>
-    </blockquote>
-    Also, are you certain that your IP stack is actually routing to one
-    of those two cards?<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CACaXmv_torvH6MBuU5XfgS2euYBMAkkb1T6HGBFYF5C=JNWb4A@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Thu, 19 Mar 2020 at 10:50,
-          Carmichael, Ryan via USRP-users &lt;<a moz-do-not-send="true"
-            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <div
-              style="direction:ltr;font-family:Tahoma;color:rgb(0,0,0);font-size:10pt">
-              <div>I had an application running with 3.11.1 libraries
-                and and my X310 corresponding firmware. After building
-                and installing 3.15.0 on my system and flashing the
-                X310, everything seemed okay.<br>
-              </div>
-              <div><br>
-              </div>
-              <div>However, we now get this error when starting up:</div>
-              <div><br>
-              </div>
-              <div><b>[WARNING] [X300] You requested a send frame size
-                  of (9000) but your NIC's max frame size is
-                  (8000).Please verify your NIC's MTU setting using 'ip
-                  link' or set the send_frame_size argument
-                  appropriately.UHD will use the auto-detected max frame
-                  size for this connection.</b></div>
-              <div><b><br>
-                </b></div>
-              <div>And when we start to transmit, odd errors like this
-                show up (what is 'this can cause 27.0464' trying to tell
-                me?):</div>
-              <div><br>
-              </div>
-              <div><b>[WARNING] [MULTI_USRP] The total sum of rates
-                  (66.666667 MSps on 1 channels) exceeds the maximum
-                  capacity of the connection (overflows (O) MSps).<br>
-                  This can cause 27.0464.</b></div>
-              <div><br>
-              </div>
-              <div>I'm using 10Gb NICs that again, worked fine with
-                3.11. The MTUs are set to 9000 (I've also tried 9001,
-                9100, nothing seems to change the warning).</div>
-              <div><br>
-              </div>
-              <div><b>ip link</b></div>
-              <div><b>6: enp13s0f0:
-                  &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9000 qdisc
-                  mq state UP mode DEFAULT group default qlen 1000<br>
-                      link/ether f8:f2:1e:42:e1:d4 brd ff:ff:ff:ff:ff:ff<br>
-                  7: enp13s0f1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;
-                  mtu 9000 qdisc mq state UP mode DEFAULT group default
-                  qlen 1000<br>
-                      link/ether f8:f2:1e:42:e1:d5 brd ff:ff:ff:ff:ff:ff</b></div>
-              <div><b><br>
-                </b></div>
-              <div>The usrp_probe output is below. Any ideas on what is
-                happening?</div>
-              <div><br>
-              </div>
-              <div><b>uhd_usrp_probe --args="addr=192.168.30.2"<br>
-                  [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623
-                  (Red Hat 4.8.5-39); Boost_106700;
-                  UHD_3.15.0.0-7-g8d228dbe<br>
-                  [INFO] [X300] X300 initialization sequence...<br>
-                  [INFO] [X300] Maximum frame size: 8000 bytes.<br>
-                  [INFO] [X300] Radio 1x clock: 200 MHz<br>
-                  [INFO] [GPS] No GPSDO found<br>
-                  [INFO] [0/DmaFIFO_0] Initializing block control (NOC
-                  ID: 0xF1F0D00000000000)<br>
-                  [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1321
-                  MB/s)<br>
-                  [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1300
-                  MB/s)<br>
-                  [INFO] [0/Radio_0] Initializing block control (NOC ID:
-                  0x12AD100000000001)<br>
-                  [INFO] [0/Radio_1] Initializing block control (NOC ID:
-                  0x12AD100000000001)<br>
-                  [INFO] [0/DDC_0] Initializing block control (NOC ID:
-                  0xDDC0000000000000)<br>
-                  [INFO] [0/DDC_1] Initializing block control (NOC ID:
-                  0xDDC0000000000000)<br>
-                  [INFO] [0/DUC_0] Initializing block control (NOC ID:
-                  0xD0C0000000000000)<br>
-                  [INFO] [0/DUC_1] Initializing block control (NOC ID:
-                  0xD0C0000000000000)<br>
-                   
-                  _____________________________________________________<br>
-                   /<br>
-                  |       Device: X-Series Device<br>
-                  |    
-                  _____________________________________________________<br>
-                  |    /<br>
-                  |   |       Mboard: X310<br>
-                  |   |   revision: 11<br>
-                  |   |   revision_compat: 7<br>
-                  |   |   product: 30818<br>
-                  |   |   mac-addr0: 00:80:2f:24:d2:a9<br>
-                  |   |   mac-addr1: 00:80:2f:24:d2:aa<br>
-                  |   |   gateway: 192.168.10.1<br>
-                  |   |   ip-addr0: 192.168.10.2<br>
-                  |   |   subnet0: 255.255.255.0<br>
-                  |   |   ip-addr1: 192.168.20.2<br>
-                  |   |   subnet1: 255.255.255.0<br>
-                  |   |   ip-addr2: 192.168.30.2<br>
-                  |   |   subnet2: 255.255.255.0<br>
-                  |   |   ip-addr3: 192.168.40.2<br>
-                  |   |   subnet3: 255.255.255.0<br>
-                  |   |   serial: 318D6DF<br>
-                  |   |   FW Version: 6.0<br>
-                  |   |   FPGA Version: 36.0<br>
-                  |   |   FPGA git hash: 9ba275d<br>
-                  |   |   RFNoC capable: Yes<br>
-                  |   |<br>
-                  |   |   Time sources:  internal, external, gpsdo<br>
-                  |   |   Clock sources: internal, external, gpsdo<br>
-                  |   |   Sensors: ref_locked<br>
-                  |   |    
-                  _____________________________________________________<br>
-                  |   |    /<br>
-                  |   |   |       RX Dboard: A<br>
-                  |   |   |   ID: UBX-160 v2 (0x007e)<br>
-                  |   |   |   Serial: 3185BEE<br>
-                  |   |   |    
-                  _____________________________________________________<br>
-                  |   |   |    /<br>
-                  |   |   |   |       RX Frontend: 0<br>
-                  |   |   |   |   Name: UBX RX<br>
-                  |   |   |   |   Antennas: TX/RX, RX2, CAL<br>
-                  |   |   |   |   Sensors: lo_locked<br>
-                  |   |   |   |   Freq range: 10.000 to 6000.000 MHz<br>
-                  |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5
-                  dB<br>
-                  |   |   |   |   Bandwidth range: 160000000.0 to
-                  160000000.0 step 0.0 Hz<br>
-                  |   |   |   |   Connection Type: IQ<br>
-                  |   |   |   |   Uses LO offset: No<br>
-                  |   |   |    
-                  _____________________________________________________<br>
-                  |   |   |    /<br>
-                  |   |   |   |       RX Codec: A<br>
-                  |   |   |   |   Name: ads62p48<br>
-                  |   |   |   |   Gain range digital: 0.0 to 6.0 step
-                  0.5 dB<br>
-                  |   |    
-                  _____________________________________________________<br>
-                  |   |    /<br>
-                  |   |   |       RX Dboard: B<br>
-                  |   |   |   ID: UBX-160 v2 (0x007e)<br>
-                  |   |   |   Serial: 3185CA1<br>
-                  |   |   |    
-                  _____________________________________________________<br>
-                  |   |   |    /<br>
-                  |   |   |   |       RX Frontend: 0<br>
-                  |   |   |   |   Name: UBX RX<br>
-                  |   |   |   |   Antennas: TX/RX, RX2, CAL<br>
-                  |   |   |   |   Sensors: lo_locked<br>
-                  |   |   |   |   Freq range: 10.000 to 6000.000 MHz<br>
-                  |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5
-                  dB<br>
-                  |   |   |   |   Bandwidth range: 160000000.0 to
-                  160000000.0 step 0.0 Hz<br>
-                  |   |   |   |   Connection Type: IQ<br>
-                  |   |   |   |   Uses LO offset: No<br>
-                  |   |   |    
-                  _____________________________________________________<br>
-                  |   |   |    /<br>
-                  |   |   |   |       RX Codec: B<br>
-                  |   |   |   |   Name: ads62p48<br>
-                  |   |   |   |   Gain range digital: 0.0 to 6.0 step
-                  0.5 dB<br>
-                  |   |    
-                  _____________________________________________________<br>
-                  |   |    /<br>
-                  |   |   |       TX Dboard: A<br>
-                  |   |   |   ID: UBX-160 v2 (0x007d)<br>
-                  |   |   |   Serial: 3185BEE<br>
-                  |   |   |    
-                  _____________________________________________________<br>
-                  |   |   |    /<br>
-                  |   |   |   |       TX Frontend: 0<br>
-                  |   |   |   |   Name: UBX TX<br>
-                  |   |   |   |   Antennas: TX/RX, CAL<br>
-                  |   |   |   |   Sensors: lo_locked<br>
-                  |   |   |   |   Freq range: 10.000 to 6000.000 MHz<br>
-                  |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5
-                  dB<br>
-                  |   |   |   |   Bandwidth range: 160000000.0 to
-                  160000000.0 step 0.0 Hz<br>
-                  |   |   |   |   Connection Type: QI<br>
-                  |   |   |   |   Uses LO offset: No<br>
-                  |   |   |    
-                  _____________________________________________________<br>
-                  |   |   |    /<br>
-                  |   |   |   |       TX Codec: A<br>
-                  |   |   |   |   Name: ad9146<br>
-                  |   |   |   |   Gain Elements: None<br>
-                  |   |    
-                  _____________________________________________________<br>
-                  |   |    /<br>
-                  |   |   |       TX Dboard: B<br>
-                  |   |   |   ID: UBX-160 v2 (0x007d)<br>
-                  |   |   |   Serial: 3185CA1<br>
-                  |   |   |    
-                  _____________________________________________________<br>
-                  |   |   |    /<br>
-                  |   |   |   |       TX Frontend: 0<br>
-                  |   |   |   |   Name: UBX TX<br>
-                  |   |   |   |   Antennas: TX/RX, CAL<br>
-                  |   |   |   |   Sensors: lo_locked<br>
-                  |   |   |   |   Freq range: 10.000 to 6000.000 MHz<br>
-                  |   |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5
-                  dB<br>
-                  |   |   |   |   Bandwidth range: 160000000.0 to
-                  160000000.0 step 0.0 Hz<br>
-                  |   |   |   |   Connection Type: QI<br>
-                  |   |   |   |   Uses LO offset: No<br>
-                  |   |   |    
-                  _____________________________________________________<br>
-                  |   |   |    /<br>
-                  |   |   |   |       TX Codec: B<br>
-                  |   |   |   |   Name: ad9146<br>
-                  |   |   |   |   Gain Elements: None<br>
-                  |   |    
-                  _____________________________________________________<br>
-                  |   |    /<br>
-                  |   |   |       RFNoC blocks on this device:<br>
-                  |   |   |<br>
-                  |   |   |   * DmaFIFO_0<br>
-                  |   |   |   * Radio_0<br>
-                  |   |   |   * Radio_1<br>
-                  |   |   |   * DDC_0<br>
-                  |   |   |   * DDC_1<br>
-                  |   |   |   * DUC_0<br>
-                  |   |   |   * DUC_1</b></div>
-              <div><br>
-              </div>
-              <div>Thanks,</div>
-              <div>Ryan<br>
-              </div>
-            </div>
-            <i><br>
-              <hr>
-              <p style="font-size:8pt;line-height:9pt">The information
-                contained in this message, and any attachments, may
-                contain privileged and/or proprietary information that
-                is intended solely for the person or entity to which it
-                is addressed. Moreover, it may contain export restricted
-                technical data controlled by Export Administration
-                Regulations (EAR) or the International Traffic in Arms
-                Regulations (ITAR). Any review, retransmission,
-                dissemination, or re-export to foreign or domestic
-                entities by anyone other than the intended recipient in
-                accordance with EAR and/or ITAR regulations is
-                prohibited.</p>
-            </i>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a moz-do-not-send="true"
-            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
+If the problem persists, please email the output to: support@ettus.com
+*oai@oai:~$  echo "http_proxy ${http_proxy} https_proxy ${https_proxy}"*
+http_proxy  https_proxy
 
---------------030704070800040504050205--
+*oai@oai:~$  /usr/lib/uhd/utils/uhd_images_downloader.py --help*
+usage: uhd_images_downloader.py [-h] [-t TYPES] [-i INSTALL_LOCATION]
+                                [-m MANIFEST_LOCATION] [-I
+INVENTORY_LOCATION]
+                                [-l] [--url-only] [--buffer-size
+BUFFER_SIZE]
+                                [--download-limit DOWNLOAD_LIMIT]
+                                [--http-proxy HTTP_PROXY] [-b BASE_URL] [-k=
+]
+                                [-T] [-y] [-n] [--refetch] [-V] [-q] [-v]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TYPES, --types TYPES
+                        RegEx to select image sets from the manifest file.
+                        (default: None)
+  -i INSTALL_LOCATION, --install-location INSTALL_LOCATION
+                        Set custom install location for images (default:
+None)
+  -m MANIFEST_LOCATION, --manifest-location MANIFEST_LOCATION
+                        Set custom location for the manifest file (default:
+)
+  -I INVENTORY_LOCATION, --inventory-location INVENTORY_LOCATION
+                        Set custom location for the inventory file
+(default: )
+  -l, --list-targets    Print targets in the manifest file to stdout, and
+                        exit. To get relative paths only, specify an empty
+                        base URL (-b ''). (default: False)
+  --url-only            With -l, only print the URLs, nothing else.
+(default:
+                        False)
+  --buffer-size BUFFER_SIZE
+                        Set download buffer size (default: 8192)
+  --download-limit DOWNLOAD_LIMIT
+                        Set threshold for download limits. Any download
+larger
+                        than this will require approval, either
+interactively,
+                        or by providing --yes. (default: 104857600)
+  --http-proxy HTTP_PROXY
+                        Specify HTTP proxy in the format
+                        http://user:pass@1.2.3.4:port If this this option i=
+s
+                        not given, the environment variable HTTP_PROXY can
+                        also be used to specify a proxy. (default: None)
+  -b BASE_URL, --base-url BASE_URL
+                        Set base URL for images download location (default:
+                        http://files.ettus.com/binaries/cache/)
+  -k, --keep            Keep the downloaded images archives in the image
+                        directory (default: False)
+  -T, --test            Verify the downloaded archives before extracting
+them
+                        (default: False)
+  -y, --yes             Answer all questions with 'yes' (for scripting
+                        purposes). (default: False)
+  -n, --dry-run         Print selected target without actually downloading
+                        them. (default: False)
+  --refetch             Ignore the inventory file and download all images.
+                        (default: False)
+  -V, --version         show program's version number and exit
+  -q, --quiet           Decrease verbosity level (default: 0)
+  -v, --verbose         Increase verbosity level (default: 0)
+
+*oai@oai:~$  /usr/lib/uhd/utils/uhd_images_downloader.py -V*
+3.14.1.1-release
+
+regards
+Bass
+
+On Thu, Mar 19, 2020 at 1:41 PM Marcus M=C3=BCller <marcus.mueller@ettus.co=
+m>
+wrote:
+
+> Hi Basse,
+>
+> knowing our downloader, this is very likely a problem on your side: Is
+> it possible you have a HTTP proxy set up that does SSL tunneling, but
+> you've forgot to install the CA certificate, so that you don't trust
+> your own proxy?
+>
+> Can you share the full output of
+>
+> echo "http_proxy ${http_proxy} https_proxy ${https_proxy}"
+>
+> and
+>
+> /usr/lib/uhd/utils/uhd_images_downloader.py --help
+> /usr/lib/uhd/utils/uhd_images_downloader.py -V
+>
+> please?
+>
+> Best regards,
+> Marcus
+>
+> On 19.03.20 16:35, Basse Ang wrote:
+> > Hi
+> >
+> > just tried to install UHD into my ubuntu 14 hosts. doing for 2 months, =
+I
+> > always ended with this error:
+> >
+> > oai@oai:~$ /usr/lib/uhd/utils/uhd_images_downloader.py
+> > [INFO] Images destination: /usr/share/uhd/images
+> > [INFO] No inventory file found at /usr/share/uhd/images/inventory.json.
+> > Creating an empty one.
+> > [ERROR] Downloader raised an unhandled exception: [Errno 1] _ssl.c:510:
+> > error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate
+> > verify failed
+> > You can run this again with the '--verbose' flag to see more informatio=
+n
+> > If the problem persists, please email the output to: support@ettus.com
+> > <mailto:support@ettus.com>
+> > oai@oai:~$ /usr/lib/uhd/utils/uhd_images_downloader.py --verbose
+> > [INFO] Images destination: /usr/share/uhd/images
+> > [INFO] No inventory file found at /usr/share/uhd/images/inventory.json.
+> > Creating an empty one.
+> > [DEBUG] URLs to download:
+> > usrp1/fpga-6bea23d/usrp1_b100_fw_default-g6bea23d.zip
+> > x3xx/fpga-bb85bdff/x3xx_x310_fpga_default-gbb85bdff.zip
+> > usrp2/fpga-6bea23d/usrp2_n210_fpga_default-g6bea23d.zip
+> > n230/fpga-bb85bdff/n230_n230_fpga_default-gbb85bdff.zip
+> > usrp1/fpga-6bea23d/usrp1_b100_fpga_default-g6bea23d.zip
+> > b2xx/fpga-bb85bdff/b2xx_b200_fpga_default-gbb85bdff.zip
+> > usrp2/fpga-6bea23d/usrp2_n200_fpga_default-g6bea23d.zip
+> > e3xx/fpga-bb85bdff/e3xx_e320_fpga_default-gbb85bdff.zip
+> > n3xx/fpga-bb85bdff/n3xx_n310_fpga_default-gbb85bdff.zip
+> > b2xx/fpga-bb85bdff/b2xx_b205mini_fpga_default-gbb85bdff.zip
+> > x3xx/fpga-bb85bdff/x3xx_x300_fpga_default-gbb85bdff.zip
+> > octoclock/uhd-14000041/octoclock_octoclock_fw_default-g14000041.zip
+> > usrp2/fpga-6bea23d/usrp2_usrp2_fw_default-g6bea23d.zip
+> > usrp2/fpga-6bea23d/usrp2_n200_fw_default-g6bea23d.zip
+> > usrp2/fpga-6bea23d/usrp2_usrp2_fpga_default-g6bea23d.zip
+> > b2xx/uhd-2bdad498/b2xx_common_fw_default-g2bdad498.zip
+> > n3xx/fpga-bb85bdff/n3xx_n320_fpga_default-gbb85bdff.zip
+> > b2xx/fpga-bb85bdff/b2xx_b200mini_fpga_default-gbb85bdff.zip
+> > usrp1/fpga-6bea23d/usrp1_usrp1_fpga_default-g6bea23d.zip
+> > usb/uhd-14000041/usb_common_windrv_default-g14000041.zip
+> > usrp2/fpga-6bea23d/usrp2_n210_fw_default-g6bea23d.zip
+> > n3xx/fpga-bb85bdff/n3xx_n300_fpga_default-gbb85bdff.zip
+> > e3xx/fpga-bb85bdff/e3xx_e310_fpga_default-gbb85bdff.zip
+> > b2xx/fpga-bb85bdff/b2xx_b210_fpga_default-gbb85bdff.zip
+> > [ERROR] Downloader raised an unhandled exception: [Errno 1] _ssl.c:510:
+> > error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate
+> > verify failed
+> > You can run this again with the '--verbose' flag to see more informatio=
+n
+> > If the problem persists, please email the output to: support@ettus.com
+> > <mailto:support@ettus.com>
+> > oai@oai:~$
+> >
+> >
+> > I have already udate my certificate, but it does not help.
+> >
+> > could anyone help me to figure out what should I do?
+> >
+> > Thank you
+> > Bass
+>
+
+--00000000000084922705a13e918c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div><div>hi Marcus,<br><br></div>Thank y=
+ou for your reply.<br><br></div>this is the output:<br><br>Please run:<br><=
+br>=C2=A0&quot;/usr/lib/uhd/utils/uhd_images_downloader.py&quot;<br>No UHD =
+Devices Found<br>oai@oai:~$ sudo /usr/lib/uhd/utils/uhd_images_downloader.p=
+y<br>[INFO] Images destination: /usr/share/uhd/images<br>[INFO] No inventor=
+y file found at /usr/share/uhd/images/inventory.json. Creating an empty one=
+.<br>[ERROR] Downloader raised an unhandled exception: [Errno 1] _ssl.c:510=
+: error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verif=
+y failed<br>You can run this again with the &#39;--verbose&#39; flag to see=
+ more information<br><br>If the problem persists, please email the output t=
+o: <a href=3D"mailto:support@ettus.com">support@ettus.com</a><br><b>oai@oai=
+:~$=C2=A0 echo &quot;http_proxy ${http_proxy} https_proxy ${https_proxy}&qu=
+ot;</b><br>http_proxy=C2=A0 https_proxy <br><br><b>oai@oai:~$=C2=A0 /usr/li=
+b/uhd/utils/uhd_images_downloader.py --help</b><br>usage: uhd_images_downlo=
+ader.py [-h] [-t TYPES] [-i INSTALL_LOCATION]<br>=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 [-m MANIFEST_LOCATION] [-I INVENTORY_LOCATION]<br>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 [-l] [--url-only] [--buffer-size BUFFER_SIZE]<br>=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 [--download-limit DOWNLOAD_LIMIT]<br>=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 [--http-proxy HTTP_PROXY] [-b BASE_URL=
+] [-k]<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 [-T] [-y] [-n] [--refetch]=
+ [-V] [-q] [-v]<br><br>optional arguments:<br>=C2=A0 -h, --help=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 show this help messa=
+ge and exit<br>=C2=A0 -t TYPES, --types TYPES<br>=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RegEx to select image sets from the=
+ manifest file.<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 (default: None)<br>=C2=A0 -i INSTALL_LOCATION, --install-location=
+ INSTALL_LOCATION<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 Set custom install location for images (default: None)<br>=C2=A0 =
+-m MANIFEST_LOCATION, --manifest-location MANIFEST_LOCATION<br>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Set custom location for=
+ the manifest file (default: )<br>=C2=A0 -I INVENTORY_LOCATION, --inventory=
+-location INVENTORY_LOCATION<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 Set custom location for the inventory file (default: =
+)<br>=C2=A0 -l, --list-targets=C2=A0=C2=A0=C2=A0 Print targets in the manif=
+est file to stdout, and<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 exit. To get relative paths only, specify an empty<br>=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 base URL (-b &=
+#39;&#39;). (default: False)<br>=C2=A0 --url-only=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 With -l, only print the URLs, no=
+thing else. (default:<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 False)<br>=C2=A0 --buffer-size BUFFER_SIZE<br>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Set download buffer siz=
+e (default: 8192)<br>=C2=A0 --download-limit DOWNLOAD_LIMIT<br>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Set threshold for downl=
+oad limits. Any download larger<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 than this will require approval, either interactiv=
+ely,<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 or=
+ by providing --yes. (default: 104857600)<br>=C2=A0 --http-proxy HTTP_PROXY=
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Speci=
+fy HTTP proxy in the format<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 http://user:pass@1.2.3.4:port If this this option is<=
+br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 not give=
+n, the environment variable HTTP_PROXY can<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 also be used to specify a proxy. (defa=
+ult: None)<br>=C2=A0 -b BASE_URL, --base-url BASE_URL<br>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Set base URL for images downl=
+oad location (default:<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 <a href=3D"http://files.ettus.com/binaries/cache/">http://f=
+iles.ettus.com/binaries/cache/</a>)<br>=C2=A0 -k, --keep=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Keep the downloaded images=
+ archives in the image<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 directory (default: False)<br>=C2=A0 -T, --test=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Verify the downloade=
+d archives before extracting them<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 (default: False)<br>=C2=A0 -y, --yes=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Answer all =
+questions with &#39;yes&#39; (for scripting<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 purposes). (default: False)<br>=C2=A0 =
+-n, --dry-run=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Print selecte=
+d target without actually downloading<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 them. (default: False)<br>=C2=A0 --refetch=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ig=
+nore the inventory file and download all images.<br>=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (default: False)<br>=C2=A0 -V, -=
+-version=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 show program&#39;s=
+ version number and exit<br>=C2=A0 -q, --quiet=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Decrease verbosity level (default: 0)<br>=
+=C2=A0 -v, --verbose=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Increa=
+se verbosity level (default: 0)<br><br><b>oai@oai:~$=C2=A0 /usr/lib/uhd/uti=
+ls/uhd_images_downloader.py -V</b><br>3.14.1.1-release<br><br></div><div>re=
+gards<br></div><div>Bass<br></div></div><br><div class=3D"gmail_quote"><div=
+ class=3D"gmail_attr" dir=3D"ltr">On Thu, Mar 19, 2020 at 1:41 PM Marcus M=
+=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com">marcus.mueller@e=
+ttus.com</a>&gt; wrote:<br></div><blockquote style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex" class=3D"gmail=
+_quote">Hi Basse,<br>
+<br>
+knowing our downloader, this is very likely a problem on your side: Is<br>
+it possible you have a HTTP proxy set up that does SSL tunneling, but<br>
+you&#39;ve forgot to install the CA certificate, so that you don&#39;t trus=
+t<br>
+your own proxy?<br>
+<br>
+Can you share the full output of<br>
+<br>
+echo &quot;http_proxy ${http_proxy} https_proxy ${https_proxy}&quot;<br>
+<br>
+and<br>
+<br>
+/usr/lib/uhd/utils/uhd_images_downloader.py --help<br>
+/usr/lib/uhd/utils/uhd_images_downloader.py -V<br>
+<br>
+please?<br>
+<br>
+Best regards,<br>
+Marcus<br>
+<br>
+On 19.03.20 16:35, Basse Ang wrote:<br>
+&gt; Hi<br>
+&gt; <br>
+&gt; just tried to install UHD into my ubuntu 14 hosts. doing for 2 months,=
+ I<br>
+&gt; always ended with this error:<br>
+&gt; <br>
+&gt; oai@oai:~$ /usr/lib/uhd/utils/uhd_images_downloader.py<br>
+&gt; [INFO] Images destination: /usr/share/uhd/images<br>
+&gt; [INFO] No inventory file found at /usr/share/uhd/images/inventory.json=
+.<br>
+&gt; Creating an empty one.<br>
+&gt; [ERROR] Downloader raised an unhandled exception: [Errno 1] _ssl.c:510=
+:<br>
+&gt; error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate<br=
+>
+&gt; verify failed<br>
+&gt; You can run this again with the &#39;--verbose&#39; flag to see more i=
+nformation<br>
+&gt; If the problem persists, please email the output to: <a target=3D"_bla=
+nk" href=3D"mailto:support@ettus.com">support@ettus.com</a><br>
+&gt; &lt;mailto:<a target=3D"_blank" href=3D"mailto:support@ettus.com">supp=
+ort@ettus.com</a>&gt;<br>
+&gt; oai@oai:~$ /usr/lib/uhd/utils/uhd_images_downloader.py --verbose<br>
+&gt; [INFO] Images destination: /usr/share/uhd/images<br>
+&gt; [INFO] No inventory file found at /usr/share/uhd/images/inventory.json=
+.<br>
+&gt; Creating an empty one.<br>
+&gt; [DEBUG] URLs to download:<br>
+&gt; usrp1/fpga-6bea23d/usrp1_b100_fw_default-g6bea23d.zip<br>
+&gt; x3xx/fpga-bb85bdff/x3xx_x310_fpga_default-gbb85bdff.zip<br>
+&gt; usrp2/fpga-6bea23d/usrp2_n210_fpga_default-g6bea23d.zip<br>
+&gt; n230/fpga-bb85bdff/n230_n230_fpga_default-gbb85bdff.zip<br>
+&gt; usrp1/fpga-6bea23d/usrp1_b100_fpga_default-g6bea23d.zip<br>
+&gt; b2xx/fpga-bb85bdff/b2xx_b200_fpga_default-gbb85bdff.zip<br>
+&gt; usrp2/fpga-6bea23d/usrp2_n200_fpga_default-g6bea23d.zip<br>
+&gt; e3xx/fpga-bb85bdff/e3xx_e320_fpga_default-gbb85bdff.zip<br>
+&gt; n3xx/fpga-bb85bdff/n3xx_n310_fpga_default-gbb85bdff.zip<br>
+&gt; b2xx/fpga-bb85bdff/b2xx_b205mini_fpga_default-gbb85bdff.zip<br>
+&gt; x3xx/fpga-bb85bdff/x3xx_x300_fpga_default-gbb85bdff.zip<br>
+&gt; octoclock/uhd-14000041/octoclock_octoclock_fw_default-g14000041.zip<br=
+>
+&gt; usrp2/fpga-6bea23d/usrp2_usrp2_fw_default-g6bea23d.zip<br>
+&gt; usrp2/fpga-6bea23d/usrp2_n200_fw_default-g6bea23d.zip<br>
+&gt; usrp2/fpga-6bea23d/usrp2_usrp2_fpga_default-g6bea23d.zip<br>
+&gt; b2xx/uhd-2bdad498/b2xx_common_fw_default-g2bdad498.zip<br>
+&gt; n3xx/fpga-bb85bdff/n3xx_n320_fpga_default-gbb85bdff.zip<br>
+&gt; b2xx/fpga-bb85bdff/b2xx_b200mini_fpga_default-gbb85bdff.zip<br>
+&gt; usrp1/fpga-6bea23d/usrp1_usrp1_fpga_default-g6bea23d.zip<br>
+&gt; usb/uhd-14000041/usb_common_windrv_default-g14000041.zip<br>
+&gt; usrp2/fpga-6bea23d/usrp2_n210_fw_default-g6bea23d.zip<br>
+&gt; n3xx/fpga-bb85bdff/n3xx_n300_fpga_default-gbb85bdff.zip<br>
+&gt; e3xx/fpga-bb85bdff/e3xx_e310_fpga_default-gbb85bdff.zip<br>
+&gt; b2xx/fpga-bb85bdff/b2xx_b210_fpga_default-gbb85bdff.zip<br>
+&gt; [ERROR] Downloader raised an unhandled exception: [Errno 1] _ssl.c:510=
+:<br>
+&gt; error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate<br=
+>
+&gt; verify failed<br>
+&gt; You can run this again with the &#39;--verbose&#39; flag to see more i=
+nformation<br>
+&gt; If the problem persists, please email the output to: <a target=3D"_bla=
+nk" href=3D"mailto:support@ettus.com">support@ettus.com</a><br>
+&gt; &lt;mailto:<a target=3D"_blank" href=3D"mailto:support@ettus.com">supp=
+ort@ettus.com</a>&gt;<br>
+&gt; oai@oai:~$<br>
+&gt; <br>
+&gt; <br>
+&gt; I have already udate my certificate, but it does not help.<br>
+&gt; <br>
+&gt; could anyone help me to figure out what should I do?<br>
+&gt; <br>
+&gt; Thank you<br>
+&gt; Bass<br>
+</blockquote></div>
+
+--00000000000084922705a13e918c--
 
 
---===============7079561751772166580==
+--===============1749886992870527047==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -657,5 +498,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7079561751772166580==--
+--===============1749886992870527047==--
 
