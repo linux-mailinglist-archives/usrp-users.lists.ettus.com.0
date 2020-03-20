@@ -2,57 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C296A18CD7B
-	for <lists+usrp-users@lfdr.de>; Fri, 20 Mar 2020 13:09:02 +0100 (CET)
-Received: from [::1] (port=50826 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 431F418CE65
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Mar 2020 14:03:34 +0100 (CET)
+Received: from [::1] (port=58256 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jFGST-0001xc-PB; Fri, 20 Mar 2020 08:09:01 -0400
-Received: from barracuda.dynetics.com ([204.154.192.66]:58982)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
- (Exim 4.93)
- (envelope-from <btv1==34826e458e2==Ryan.Carmichael@dynetics.com>)
- id 1jFGSP-0001pL-GB
- for usrp-users@lists.ettus.com; Fri, 20 Mar 2020 08:08:57 -0400
-X-ASG-Debug-ID: 1584706752-1030374ec6682a30001-5wTQH4
-Received: from MX2.in.dynetics.com (MX2.in.dynetics.com [10.1.15.131]) by
- barracuda.dynetics.com with ESMTP id mb0RRKhGOgVGAI0o (version=TLSv1.2
- cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO) for
- <usrp-users@lists.ettus.com>; Fri, 20 Mar 2020 07:19:12 -0500 (CDT)
-X-Barracuda-Envelope-From: Ryan.Carmichael@dynetics.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.1.15.131
-Received: from MAUI.in.dynetics.com ([169.254.1.66]) by MX2.in.dynetics.com
- ([10.1.15.131]) with mapi id 14.03.0487.000; Fri, 20 Mar 2020 07:08:16 -0500
-X-Barracuda-RBL-IP: 169.254.1.66
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] MTU Issues after upgrading to UHD 3.15.0
-X-ASG-Orig-Subj: Re: [USRP-users] MTU Issues after upgrading to UHD 3.15.0
-Thread-Index: AdX+sDvIQpqCGWDvRpqNJscyG3RHWA==
-Date: Fri, 20 Mar 2020 12:08:16 +0000
-Message-ID: <10F7328F6AD1354BA6DD787687B66B9001A304FD87@Maui.in.dynetics.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.120.16.101]
+	id 1jFHJE-0001g7-CS; Fri, 20 Mar 2020 09:03:32 -0400
+Received: from mail-wm1-f52.google.com ([209.85.128.52]:51544)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1jFHJA-0001ZC-R0
+ for USRP-users@lists.ettus.com; Fri, 20 Mar 2020 09:03:28 -0400
+Received: by mail-wm1-f52.google.com with SMTP id c187so6408665wme.1
+ for <USRP-users@lists.ettus.com>; Fri, 20 Mar 2020 06:03:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=db7iadBEPkXAMH8KLF1aLDnOoQh59OAQCEP9hwekqf4=;
+ b=VxrzDwiqXztiRdHH4Ailu5lpplt3q0YUMkYk0+W4wSf0+2LuhdLz8v51MqP8nK1SV/
+ rT/L3S5HFWkmIXAKPGcvGLLOl5vCh4p5nH6kbkyULJ7cPJ3GjAuIyLmDl+mQyThcsCdy
+ 9E3LV0TBkXYLC66aNL49VYYcKvKJR3RrlV79o3lZeT5VvQ/3Rva5oaZw+r8zDJ63wzFp
+ QWfFRjfR0D33iDj2K3pko7nBdbL4hCRz/UWRK1xBaN/DwZTnGKMSwlK+B450hI7OS+tz
+ E+KCQm18H5cuO4nl8JC3AldkYxtNRWfy7u6q/mvPTswWrwD1FbKLvfG6BKAwTEQw5vPv
+ qjBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=db7iadBEPkXAMH8KLF1aLDnOoQh59OAQCEP9hwekqf4=;
+ b=NcT+U0+WoonEB30xhTyU8J7Hde9+5Q5kT0HA4hXvWQQT2MgChSn9fX0JQTV0GNpEN4
+ sFsBWvtZdUmBpBeHtnOGHcss0nBxGbs8PnIur2Zuje7pXXVIglboFSoxUKTFUUeCdfF0
+ 0n8DZX0uODMKII5cSNBTBcXaoyd6oQmqdSWuI64fAX63W9yUdL9B3X2lV/skY5t6oSSI
+ oAH4aYBuCQScwkto0y95outSfWETyEWVYPfnLIEFo/yPLS4Iu3NhJ/oXDMWDAu1ROf7T
+ ozaD3WcpkUffNSnw9wLaLLV1lQYhOO+n6kUOpLajg0Rn5i+zILXzwCHNB1Jq8tOLXbgA
+ G5qg==
+X-Gm-Message-State: ANhLgQ04PEeRDLgUj9na2H5kMvf0ebCiKGTlf0rW8dsFSKfOcvSSx7kV
+ LzNcLn9vONhWIVWur90yOG4n2nip
+X-Google-Smtp-Source: ADFU+vtbw72fFE4+LpMIynWwpoRVnejQE4wcrEFtR7iTipTXoVvGtt55iYKkZzTBa4ZfdkZ4c0Tw1A==
+X-Received: by 2002:a7b:c051:: with SMTP id u17mr9237870wmc.150.1584709367571; 
+ Fri, 20 Mar 2020 06:02:47 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-146.hsi.kabel-badenwuerttemberg.de. [46.223.163.146])
+ by smtp.gmail.com with ESMTPSA id c85sm7862297wmd.48.2020.03.20.06.02.46
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 20 Mar 2020 06:02:46 -0700 (PDT)
+To: Basse Ang <b4ss3k@gmail.com>
+References: <CACcka+344PO4uhAemdNLmEwGw+sGucMiXPuRkzFcY6ikwegU7g@mail.gmail.com>
+ <4cf13326-747a-1330-807f-da552be3b714@ettus.com>
+ <CACcka+1CygH+Ey_vShR8+oXs-sEsaEN5+o4dj20BD9psgGh7gw@mail.gmail.com>
+Message-ID: <76a63330-3b04-76bb-bbdb-42a3138f9727@ettus.com>
+Date: Fri, 20 Mar 2020 14:02:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-X-Barracuda-Connect: MX2.in.dynetics.com[10.1.15.131]
-X-Barracuda-Start-Time: 1584706752
-X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA384
-X-Barracuda-URL: https://barracuda.in.dynetics.com:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at dynetics.com
-X-Barracuda-Scan-Msg-Size: 7631
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No,
- SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
- QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.80726
- Rule breakdown below
- pts rule name              description
- ---- ---------------------- --------------------------------------------------
- 0.00 HTML_MESSAGE           BODY: HTML included in message
-Subject: Re: [USRP-users] MTU Issues after upgrading to UHD 3.15.0
+In-Reply-To: <CACcka+1CygH+Ey_vShR8+oXs-sEsaEN5+o4dj20BD9psgGh7gw@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] UHD SSL Error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,9 +71,12 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Carmichael, Ryan via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>
-Content-Type: multipart/mixed; boundary="===============8897458970867303329=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Cc: USRP-users@lists.ettus.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,236 +90,168 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8897458970867303329==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_10F7328F6AD1354BA6DD787687B66B9001A304FD87Mauiindynetic_"
-
---_000_10F7328F6AD1354BA6DD787687B66B9001A304FD87Mauiindynetic_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-So, interestingly, that does not work. Around ping -s 8100 it stops working=
-.
-
-Sounds like this may either be a Linux networking issue or NIC issue rather=
- than a UHD issue. I will investigate and see what's happening there.
-
-Perhaps this was always an issue even with 3.11 but it wasn't being reporte=
-d?
-
-- Ryan
-
-From: Marcus D. Leech <patchvonbraun@gmail.com>
-Sent: Thursday, March 19, 2020 9:48 PM
-To: Carmichael, Ryan <Ryan.Carmichael@dynetics.com>; usrp-users@lists.ettus=
-.com
-Subject: [EXTERNAL] Re: [USRP-users] MTU Issues after upgrading to UHD 3.15=
-.0
-
-
-Might be useful to do a ping -s 8500 to the X310, and see if it works.
-
-________________________________
-
-The information contained in this message, and any attachments, may contain=
- privileged and/or proprietary information that is intended solely for the =
-person or entity to which it is addressed. Moreover, it may contain export =
-restricted technical data controlled by Export Administration Regulations (=
-EAR) or the International Traffic in Arms Regulations (ITAR). Any review, r=
-etransmission, dissemination, or re-export to foreign or domestic entities =
-by anyone other than the intended recipient in accordance with EAR and/or I=
-TAR regulations is prohibited.
-
---_000_10F7328F6AD1354BA6DD787687B66B9001A304FD87Mauiindynetic_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";
-	color:black;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;
-	color:black;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle22
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle23
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle25
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body bgcolor=3D"white" lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D">So, interestingly, that does not work=
-. Around ping &#8211;s 8100 it stops working.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D">Sounds like this may either be a Linu=
-x networking issue or NIC issue rather than a UHD issue. I will investigate=
- and see what&#8217;s happening there.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D">Perhaps this was always an issue even=
- with 3.11 but it wasn&#8217;t being reported?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D">- Ryan<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif;color:windowtext">From:</span></b><span style=3D"=
-font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:windowtex=
-t"> Marcus D. Leech &lt;patchvonbraun@gmail.com&gt;
-<br>
-<b>Sent:</b> Thursday, March 19, 2020 9:48 PM<br>
-<b>To:</b> Carmichael, Ryan &lt;Ryan.Carmichael@dynetics.com&gt;; usrp-user=
-s@lists.ettus.com<br>
-<b>Subject:</b> [EXTERNAL] Re: [USRP-users] MTU Issues after upgrading to U=
-HD 3.15.0</span><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&q=
-uot;,sans-serif;color:#1F497D">&nbsp;</span><span style=3D"font-size:11.0pt=
-;font-family:&quot;Calibri&quot;,sans-serif;color:windowtext"><o:p></o:p></=
-span></p>
-</div>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</blockquote>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><b>Might be useful to=
- do a ping -s 8500 to the X310, and see if it works.</b><o:p></o:p></p>
-</div>
-<i><br>
-<hr>
-<p style=3D"font-size:8pt; line-height:9pt; font-style:monospace">The infor=
-mation contained in this message, and any attachments, may contain privileg=
-ed and/or proprietary information that is intended solely for the person or=
- entity to which it is addressed.
- Moreover, it may contain export restricted technical data controlled by Ex=
-port Administration Regulations (EAR) or the International Traffic in Arms =
-Regulations (ITAR). Any review, retransmission, dissemination, or re-export=
- to foreign or domestic entities
- by anyone other than the intended recipient in accordance with EAR and/or =
-ITAR regulations is prohibited.</p>
-</i>
-</body>
-</html>
-
---_000_10F7328F6AD1354BA6DD787687B66B9001A304FD87Mauiindynetic_--
-
-
---===============8897458970867303329==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8897458970867303329==--
-
+CkhleSBCYXNzZSwKCndoaWxlIEkgY2FuJ3QgcmVwcm9kdWNlLCBJIGNhbiB2ZXJpZnkgdGhhdCB0
+aGVyZSBpbmRlZWQgc2VlbXMgdG8gYmUgYQpzbGlnaHQgcHJvYmxlbSB3aXRoIHRoZSBPQ1NQIHZl
+cmlmaWNhdGlvbi4gV2UnbGwgbG9vayBpbnRvIHRoaXMuCgpCZXN0IHJlZ2FyZHMsCk1hcmN1cwoK
+T24gMjAuMDMuMjAgMDE6NDIsIEJhc3NlIEFuZyB3cm90ZToKPiBoaSBNYXJjdXMsCj4gCj4gVGhh
+bmsgeW91IGZvciB5b3VyIHJlcGx5Lgo+IAo+IHRoaXMgaXMgdGhlIG91dHB1dDoKPiAKPiBQbGVh
+c2UgcnVuOgo+IAo+IMKgIi91c3IvbGliL3VoZC91dGlscy91aGRfaW1hZ2VzX2Rvd25sb2FkZXIu
+cHkiCj4gTm8gVUhEIERldmljZXMgRm91bmQKPiBvYWlAb2FpOn4kIHN1ZG8gL3Vzci9saWIvdWhk
+L3V0aWxzL3VoZF9pbWFnZXNfZG93bmxvYWRlci5weQo+IFtJTkZPXSBJbWFnZXMgZGVzdGluYXRp
+b246IC91c3Ivc2hhcmUvdWhkL2ltYWdlcwo+IFtJTkZPXSBObyBpbnZlbnRvcnkgZmlsZSBmb3Vu
+ZCBhdCAvdXNyL3NoYXJlL3VoZC9pbWFnZXMvaW52ZW50b3J5Lmpzb24uCj4gQ3JlYXRpbmcgYW4g
+ZW1wdHkgb25lLgo+IFtFUlJPUl0gRG93bmxvYWRlciByYWlzZWQgYW4gdW5oYW5kbGVkIGV4Y2Vw
+dGlvbjogW0Vycm5vIDFdIF9zc2wuYzo1MTA6Cj4gZXJyb3I6MTQwOTAwODY6U1NMIHJvdXRpbmVz
+OlNTTDNfR0VUX1NFUlZFUl9DRVJUSUZJQ0FURTpjZXJ0aWZpY2F0ZQo+IHZlcmlmeSBmYWlsZWQK
+PiBZb3UgY2FuIHJ1biB0aGlzIGFnYWluIHdpdGggdGhlICctLXZlcmJvc2UnIGZsYWcgdG8gc2Vl
+IG1vcmUgaW5mb3JtYXRpb24KPiAKPiBJZiB0aGUgcHJvYmxlbSBwZXJzaXN0cywgcGxlYXNlIGVt
+YWlsIHRoZSBvdXRwdXQgdG86IHN1cHBvcnRAZXR0dXMuY29tCj4gPG1haWx0bzpzdXBwb3J0QGV0
+dHVzLmNvbT4KPiAqb2FpQG9haTp+JMKgIGVjaG8gImh0dHBfcHJveHkgJHtodHRwX3Byb3h5fSBo
+dHRwc19wcm94eSAke2h0dHBzX3Byb3h5fSIqCj4gaHR0cF9wcm94ecKgIGh0dHBzX3Byb3h5Cj4g
+Cj4gKm9haUBvYWk6fiTCoCAvdXNyL2xpYi91aGQvdXRpbHMvdWhkX2ltYWdlc19kb3dubG9hZGVy
+LnB5IC0taGVscCoKPiB1c2FnZTogdWhkX2ltYWdlc19kb3dubG9hZGVyLnB5IFstaF0gWy10IFRZ
+UEVTXSBbLWkgSU5TVEFMTF9MT0NBVElPTl0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBbLW0gTUFOSUZFU1RfTE9DQVRJT05d
+IFstSQo+IElOVkVOVE9SWV9MT0NBVElPTl0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBbLWxdIFstLXVybC1vbmx5XSBbLS1i
+dWZmZXItc2l6ZQo+IEJVRkZFUl9TSVpFXQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFstLWRvd25sb2FkLWxpbWl0IERPV05M
+T0FEX0xJTUlUXQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIFstLWh0dHAtcHJveHkgSFRUUF9QUk9YWV0gWy1iIEJBU0VfVVJM
+XSBbLWtdCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgWy1UXSBbLXldIFstbl0gWy0tcmVmZXRjaF0gWy1WXSBbLXFdIFstdl0K
+PiAKPiBvcHRpb25hbCBhcmd1bWVudHM6Cj4gwqAgLWgsIC0taGVscMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgc2hvdyB0aGlzIGhlbHAgbWVzc2FnZSBhbmQgZXhpdAo+IMKgIC10IFRZUEVTLCAtLXR5
+cGVzIFRZUEVTCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBSZWdFeCB0byBzZWxlY3QgaW1hZ2Ugc2V0cyBmcm9tIHRoZSBtYW5pZmVzdCBmaWxlLgo+IMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKGRlZmF1bHQ6IE5v
+bmUpCj4gwqAgLWkgSU5TVEFMTF9MT0NBVElPTiwgLS1pbnN0YWxsLWxvY2F0aW9uIElOU1RBTExf
+TE9DQVRJT04KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IFNldCBjdXN0b20gaW5zdGFsbCBsb2NhdGlvbiBmb3IgaW1hZ2VzIChkZWZhdWx0Ogo+IE5vbmUp
+Cj4gwqAgLW0gTUFOSUZFU1RfTE9DQVRJT04sIC0tbWFuaWZlc3QtbG9jYXRpb24gTUFOSUZFU1Rf
+TE9DQVRJT04KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IFNldCBjdXN0b20gbG9jYXRpb24gZm9yIHRoZSBtYW5pZmVzdCBmaWxlCj4gKGRlZmF1bHQ6ICkK
+PiDCoCAtSSBJTlZFTlRPUllfTE9DQVRJT04sIC0taW52ZW50b3J5LWxvY2F0aW9uIElOVkVOVE9S
+WV9MT0NBVElPTgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgU2V0IGN1c3RvbSBsb2NhdGlvbiBmb3IgdGhlIGludmVudG9yeSBmaWxlCj4gKGRlZmF1bHQ6
+ICkKPiDCoCAtbCwgLS1saXN0LXRhcmdldHPCoMKgwqAgUHJpbnQgdGFyZ2V0cyBpbiB0aGUgbWFu
+aWZlc3QgZmlsZSB0byBzdGRvdXQsIGFuZAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgZXhpdC4gVG8gZ2V0IHJlbGF0aXZlIHBhdGhzIG9ubHksIHNwZWNp
+ZnkgYW4gZW1wdHkKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIGJhc2UgVVJMICgtYiAnJykuIChkZWZhdWx0OiBGYWxzZSkKPiDCoCAtLXVybC1vbmx5wqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBXaXRoIC1sLCBvbmx5IHByaW50IHRoZSBVUkxzLCBub3RoaW5n
+IGVsc2UuCj4gKGRlZmF1bHQ6Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBGYWxzZSkKPiDCoCAtLWJ1ZmZlci1zaXplIEJVRkZFUl9TSVpFCj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBTZXQgZG93bmxvYWQgYnVm
+ZmVyIHNpemUgKGRlZmF1bHQ6IDgxOTIpCj4gwqAgLS1kb3dubG9hZC1saW1pdCBET1dOTE9BRF9M
+SU1JVAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgU2V0
+IHRocmVzaG9sZCBmb3IgZG93bmxvYWQgbGltaXRzLiBBbnkgZG93bmxvYWQKPiBsYXJnZXIKPiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHRoYW4gdGhpcyB3
+aWxsIHJlcXVpcmUgYXBwcm92YWwsIGVpdGhlcgo+IGludGVyYWN0aXZlbHksCj4gwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBvciBieSBwcm92aWRpbmcgLS15
+ZXMuIChkZWZhdWx0OiAxMDQ4NTc2MDApCj4gwqAgLS1odHRwLXByb3h5IEhUVFBfUFJPWFkKPiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFNwZWNpZnkgSFRU
+UCBwcm94eSBpbiB0aGUgZm9ybWF0Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCBodHRwOi8vdXNlcjpwYXNzQDEuMi4zLjQ6cG9ydCBJZiB0aGlzIHRoaXMg
+b3B0aW9uIGlzCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBub3QgZ2l2ZW4sIHRoZSBlbnZpcm9ubWVudCB2YXJpYWJsZSBIVFRQX1BST1hZIGNhbgo+IMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYWxzbyBiZSB1c2Vk
+IHRvIHNwZWNpZnkgYSBwcm94eS4gKGRlZmF1bHQ6IE5vbmUpCj4gwqAgLWIgQkFTRV9VUkwsIC0t
+YmFzZS11cmwgQkFTRV9VUkwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIFNldCBiYXNlIFVSTCBmb3IgaW1hZ2VzIGRvd25sb2FkIGxvY2F0aW9uIChkZWZh
+dWx0Ogo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaHR0
+cDovL2ZpbGVzLmV0dHVzLmNvbS9iaW5hcmllcy9jYWNoZS8pCj4gwqAgLWssIC0ta2VlcMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgS2VlcCB0aGUgZG93bmxvYWRlZCBpbWFnZXMgYXJjaGl2ZXMgaW4g
+dGhlIGltYWdlCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBkaXJlY3RvcnkgKGRlZmF1bHQ6IEZhbHNlKQo+IMKgIC1ULCAtLXRlc3TCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIFZlcmlmeSB0aGUgZG93bmxvYWRlZCBhcmNoaXZlcyBiZWZvcmUgZXh0cmFjdGlu
+Zwo+IHRoZW0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IChkZWZhdWx0OiBGYWxzZSkKPiDCoCAteSwgLS15ZXPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+QW5zd2VyIGFsbCBxdWVzdGlvbnMgd2l0aCAneWVzJyAoZm9yIHNjcmlwdGluZwo+IMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcHVycG9zZXMpLiAoZGVmYXVs
+dDogRmFsc2UpCj4gwqAgLW4sIC0tZHJ5LXJ1bsKgwqDCoMKgwqDCoMKgwqAgUHJpbnQgc2VsZWN0
+ZWQgdGFyZ2V0IHdpdGhvdXQgYWN0dWFsbHkgZG93bmxvYWRpbmcKPiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHRoZW0uIChkZWZhdWx0OiBGYWxzZSkKPiDC
+oCAtLXJlZmV0Y2jCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgSWdub3JlIHRoZSBpbnZlbnRvcnkg
+ZmlsZSBhbmQgZG93bmxvYWQgYWxsIGltYWdlcy4KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIChkZWZhdWx0OiBGYWxzZSkKPiDCoCAtViwgLS12ZXJzaW9u
+wqDCoMKgwqDCoMKgwqDCoCBzaG93IHByb2dyYW0ncyB2ZXJzaW9uIG51bWJlciBhbmQgZXhpdAo+
+IMKgIC1xLCAtLXF1aWV0wqDCoMKgwqDCoMKgwqDCoMKgwqAgRGVjcmVhc2UgdmVyYm9zaXR5IGxl
+dmVsIChkZWZhdWx0OiAwKQo+IMKgIC12LCAtLXZlcmJvc2XCoMKgwqDCoMKgwqDCoMKgIEluY3Jl
+YXNlIHZlcmJvc2l0eSBsZXZlbCAoZGVmYXVsdDogMCkKPiAKPiAqb2FpQG9haTp+JMKgIC91c3Iv
+bGliL3VoZC91dGlscy91aGRfaW1hZ2VzX2Rvd25sb2FkZXIucHkgLVYqCj4gMy4xNC4xLjEtcmVs
+ZWFzZQo+IAo+IHJlZ2FyZHMKPiBCYXNzCj4gCj4gT24gVGh1LCBNYXIgMTksIDIwMjAgYXQgMTo0
+MSBQTSBNYXJjdXMgTcO8bGxlciA8bWFyY3VzLm11ZWxsZXJAZXR0dXMuY29tCj4gPG1haWx0bzpt
+YXJjdXMubXVlbGxlckBldHR1cy5jb20+PiB3cm90ZToKPiAKPiAgICAgSGkgQmFzc2UsCj4gCj4g
+ICAgIGtub3dpbmcgb3VyIGRvd25sb2FkZXIsIHRoaXMgaXMgdmVyeSBsaWtlbHkgYSBwcm9ibGVt
+IG9uIHlvdXIgc2lkZTogSXMKPiAgICAgaXQgcG9zc2libGUgeW91IGhhdmUgYSBIVFRQIHByb3h5
+IHNldCB1cCB0aGF0IGRvZXMgU1NMIHR1bm5lbGluZywgYnV0Cj4gICAgIHlvdSd2ZSBmb3Jnb3Qg
+dG8gaW5zdGFsbCB0aGUgQ0EgY2VydGlmaWNhdGUsIHNvIHRoYXQgeW91IGRvbid0IHRydXN0Cj4g
+ICAgIHlvdXIgb3duIHByb3h5Pwo+IAo+ICAgICBDYW4geW91IHNoYXJlIHRoZSBmdWxsIG91dHB1
+dCBvZgo+IAo+ICAgICBlY2hvICJodHRwX3Byb3h5ICR7aHR0cF9wcm94eX0gaHR0cHNfcHJveHkg
+JHtodHRwc19wcm94eX0iCj4gCj4gICAgIGFuZAo+IAo+ICAgICAvdXNyL2xpYi91aGQvdXRpbHMv
+dWhkX2ltYWdlc19kb3dubG9hZGVyLnB5IC0taGVscAo+ICAgICAvdXNyL2xpYi91aGQvdXRpbHMv
+dWhkX2ltYWdlc19kb3dubG9hZGVyLnB5IC1WCj4gCj4gICAgIHBsZWFzZT8KPiAKPiAgICAgQmVz
+dCByZWdhcmRzLAo+ICAgICBNYXJjdXMKPiAKPiAgICAgT24gMTkuMDMuMjAgMTY6MzUsIEJhc3Nl
+IEFuZyB3cm90ZToKPiAgICAgPiBIaQo+ICAgICA+Cj4gICAgID4ganVzdCB0cmllZCB0byBpbnN0
+YWxsIFVIRCBpbnRvIG15IHVidW50dSAxNCBob3N0cy4gZG9pbmcgZm9yIDIKPiAgICAgbW9udGhz
+LCBJCj4gICAgID4gYWx3YXlzIGVuZGVkIHdpdGggdGhpcyBlcnJvcjoKPiAgICAgPgo+ICAgICA+
+IG9haUBvYWk6fiQgL3Vzci9saWIvdWhkL3V0aWxzL3VoZF9pbWFnZXNfZG93bmxvYWRlci5weQo+
+ICAgICA+IFtJTkZPXSBJbWFnZXMgZGVzdGluYXRpb246IC91c3Ivc2hhcmUvdWhkL2ltYWdlcwo+
+ICAgICA+IFtJTkZPXSBObyBpbnZlbnRvcnkgZmlsZSBmb3VuZCBhdAo+ICAgICAvdXNyL3NoYXJl
+L3VoZC9pbWFnZXMvaW52ZW50b3J5Lmpzb24uCj4gICAgID4gQ3JlYXRpbmcgYW4gZW1wdHkgb25l
+Lgo+ICAgICA+IFtFUlJPUl0gRG93bmxvYWRlciByYWlzZWQgYW4gdW5oYW5kbGVkIGV4Y2VwdGlv
+bjogW0Vycm5vIDFdCj4gICAgIF9zc2wuYzo1MTA6Cj4gICAgID4gZXJyb3I6MTQwOTAwODY6U1NM
+IHJvdXRpbmVzOlNTTDNfR0VUX1NFUlZFUl9DRVJUSUZJQ0FURTpjZXJ0aWZpY2F0ZQo+ICAgICA+
+IHZlcmlmeSBmYWlsZWQKPiAgICAgPiBZb3UgY2FuIHJ1biB0aGlzIGFnYWluIHdpdGggdGhlICct
+LXZlcmJvc2UnIGZsYWcgdG8gc2VlIG1vcmUKPiAgICAgaW5mb3JtYXRpb24KPiAgICAgPiBJZiB0
+aGUgcHJvYmxlbSBwZXJzaXN0cywgcGxlYXNlIGVtYWlsIHRoZSBvdXRwdXQgdG86Cj4gICAgIHN1
+cHBvcnRAZXR0dXMuY29tIDxtYWlsdG86c3VwcG9ydEBldHR1cy5jb20+Cj4gICAgID4gPG1haWx0
+bzpzdXBwb3J0QGV0dHVzLmNvbSA8bWFpbHRvOnN1cHBvcnRAZXR0dXMuY29tPj4KPiAgICAgPiBv
+YWlAb2FpOn4kIC91c3IvbGliL3VoZC91dGlscy91aGRfaW1hZ2VzX2Rvd25sb2FkZXIucHkgLS12
+ZXJib3NlCj4gICAgID4gW0lORk9dIEltYWdlcyBkZXN0aW5hdGlvbjogL3Vzci9zaGFyZS91aGQv
+aW1hZ2VzCj4gICAgID4gW0lORk9dIE5vIGludmVudG9yeSBmaWxlIGZvdW5kIGF0Cj4gICAgIC91
+c3Ivc2hhcmUvdWhkL2ltYWdlcy9pbnZlbnRvcnkuanNvbi4KPiAgICAgPiBDcmVhdGluZyBhbiBl
+bXB0eSBvbmUuCj4gICAgID4gW0RFQlVHXSBVUkxzIHRvIGRvd25sb2FkOgo+ICAgICA+IHVzcnAx
+L2ZwZ2EtNmJlYTIzZC91c3JwMV9iMTAwX2Z3X2RlZmF1bHQtZzZiZWEyM2QuemlwCj4gICAgID4g
+eDN4eC9mcGdhLWJiODViZGZmL3gzeHhfeDMxMF9mcGdhX2RlZmF1bHQtZ2JiODViZGZmLnppcAo+
+ICAgICA+IHVzcnAyL2ZwZ2EtNmJlYTIzZC91c3JwMl9uMjEwX2ZwZ2FfZGVmYXVsdC1nNmJlYTIz
+ZC56aXAKPiAgICAgPiBuMjMwL2ZwZ2EtYmI4NWJkZmYvbjIzMF9uMjMwX2ZwZ2FfZGVmYXVsdC1n
+YmI4NWJkZmYuemlwCj4gICAgID4gdXNycDEvZnBnYS02YmVhMjNkL3VzcnAxX2IxMDBfZnBnYV9k
+ZWZhdWx0LWc2YmVhMjNkLnppcAo+ICAgICA+IGIyeHgvZnBnYS1iYjg1YmRmZi9iMnh4X2IyMDBf
+ZnBnYV9kZWZhdWx0LWdiYjg1YmRmZi56aXAKPiAgICAgPiB1c3JwMi9mcGdhLTZiZWEyM2QvdXNy
+cDJfbjIwMF9mcGdhX2RlZmF1bHQtZzZiZWEyM2QuemlwCj4gICAgID4gZTN4eC9mcGdhLWJiODVi
+ZGZmL2UzeHhfZTMyMF9mcGdhX2RlZmF1bHQtZ2JiODViZGZmLnppcAo+ICAgICA+IG4zeHgvZnBn
+YS1iYjg1YmRmZi9uM3h4X24zMTBfZnBnYV9kZWZhdWx0LWdiYjg1YmRmZi56aXAKPiAgICAgPiBi
+Mnh4L2ZwZ2EtYmI4NWJkZmYvYjJ4eF9iMjA1bWluaV9mcGdhX2RlZmF1bHQtZ2JiODViZGZmLnpp
+cAo+ICAgICA+IHgzeHgvZnBnYS1iYjg1YmRmZi94M3h4X3gzMDBfZnBnYV9kZWZhdWx0LWdiYjg1
+YmRmZi56aXAKPiAgICAgPiBvY3RvY2xvY2svdWhkLTE0MDAwMDQxL29jdG9jbG9ja19vY3RvY2xv
+Y2tfZndfZGVmYXVsdC1nMTQwMDAwNDEuemlwCj4gICAgID4gdXNycDIvZnBnYS02YmVhMjNkL3Vz
+cnAyX3VzcnAyX2Z3X2RlZmF1bHQtZzZiZWEyM2QuemlwCj4gICAgID4gdXNycDIvZnBnYS02YmVh
+MjNkL3VzcnAyX24yMDBfZndfZGVmYXVsdC1nNmJlYTIzZC56aXAKPiAgICAgPiB1c3JwMi9mcGdh
+LTZiZWEyM2QvdXNycDJfdXNycDJfZnBnYV9kZWZhdWx0LWc2YmVhMjNkLnppcAo+ICAgICA+IGIy
+eHgvdWhkLTJiZGFkNDk4L2IyeHhfY29tbW9uX2Z3X2RlZmF1bHQtZzJiZGFkNDk4LnppcAo+ICAg
+ICA+IG4zeHgvZnBnYS1iYjg1YmRmZi9uM3h4X24zMjBfZnBnYV9kZWZhdWx0LWdiYjg1YmRmZi56
+aXAKPiAgICAgPiBiMnh4L2ZwZ2EtYmI4NWJkZmYvYjJ4eF9iMjAwbWluaV9mcGdhX2RlZmF1bHQt
+Z2JiODViZGZmLnppcAo+ICAgICA+IHVzcnAxL2ZwZ2EtNmJlYTIzZC91c3JwMV91c3JwMV9mcGdh
+X2RlZmF1bHQtZzZiZWEyM2QuemlwCj4gICAgID4gdXNiL3VoZC0xNDAwMDA0MS91c2JfY29tbW9u
+X3dpbmRydl9kZWZhdWx0LWcxNDAwMDA0MS56aXAKPiAgICAgPiB1c3JwMi9mcGdhLTZiZWEyM2Qv
+dXNycDJfbjIxMF9md19kZWZhdWx0LWc2YmVhMjNkLnppcAo+ICAgICA+IG4zeHgvZnBnYS1iYjg1
+YmRmZi9uM3h4X24zMDBfZnBnYV9kZWZhdWx0LWdiYjg1YmRmZi56aXAKPiAgICAgPiBlM3h4L2Zw
+Z2EtYmI4NWJkZmYvZTN4eF9lMzEwX2ZwZ2FfZGVmYXVsdC1nYmI4NWJkZmYuemlwCj4gICAgID4g
+YjJ4eC9mcGdhLWJiODViZGZmL2IyeHhfYjIxMF9mcGdhX2RlZmF1bHQtZ2JiODViZGZmLnppcAo+
+ICAgICA+IFtFUlJPUl0gRG93bmxvYWRlciByYWlzZWQgYW4gdW5oYW5kbGVkIGV4Y2VwdGlvbjog
+W0Vycm5vIDFdCj4gICAgIF9zc2wuYzo1MTA6Cj4gICAgID4gZXJyb3I6MTQwOTAwODY6U1NMIHJv
+dXRpbmVzOlNTTDNfR0VUX1NFUlZFUl9DRVJUSUZJQ0FURTpjZXJ0aWZpY2F0ZQo+ICAgICA+IHZl
+cmlmeSBmYWlsZWQKPiAgICAgPiBZb3UgY2FuIHJ1biB0aGlzIGFnYWluIHdpdGggdGhlICctLXZl
+cmJvc2UnIGZsYWcgdG8gc2VlIG1vcmUKPiAgICAgaW5mb3JtYXRpb24KPiAgICAgPiBJZiB0aGUg
+cHJvYmxlbSBwZXJzaXN0cywgcGxlYXNlIGVtYWlsIHRoZSBvdXRwdXQgdG86Cj4gICAgIHN1cHBv
+cnRAZXR0dXMuY29tIDxtYWlsdG86c3VwcG9ydEBldHR1cy5jb20+Cj4gICAgID4gPG1haWx0bzpz
+dXBwb3J0QGV0dHVzLmNvbSA8bWFpbHRvOnN1cHBvcnRAZXR0dXMuY29tPj4KPiAgICAgPiBvYWlA
+b2FpOn4kCj4gICAgID4KPiAgICAgPgo+ICAgICA+IEkgaGF2ZSBhbHJlYWR5IHVkYXRlIG15IGNl
+cnRpZmljYXRlLCBidXQgaXQgZG9lcyBub3QgaGVscC4KPiAgICAgPgo+ICAgICA+IGNvdWxkIGFu
+eW9uZSBoZWxwIG1lIHRvIGZpZ3VyZSBvdXQgd2hhdCBzaG91bGQgSSBkbz8KPiAgICAgPgo+ICAg
+ICA+IFRoYW5rIHlvdQo+ICAgICA+IEJhc3MKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
+c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
