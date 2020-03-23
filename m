@@ -2,50 +2,98 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD4618E74D
-	for <lists+usrp-users@lfdr.de>; Sun, 22 Mar 2020 08:13:36 +0100 (CET)
-Received: from [::1] (port=36460 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64BE919003D
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Mar 2020 22:27:19 +0100 (CET)
+Received: from [::1] (port=34764 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jFunc-0004oH-EM; Sun, 22 Mar 2020 03:13:32 -0400
-Received: from sonic310-13.consmr.mail.bf2.yahoo.com ([74.6.135.123]:44180)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <dspspouse@aol.com>) id 1jFunY-0004jB-BG
- for usrp-users@lists.ettus.com; Sun, 22 Mar 2020 03:13:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aol.com; s=a2048;
- t=1584861167; bh=EJ4Z5yRb2SbdDpXwFg/jpAyo0/4sEIAswQwk3Vjd4oE=;
- h=Date:From:To:Subject:References:From:Subject;
- b=tML4eZBB2ihkiCm2PWZKP2pH7ZvwchlQw8b/2jbG/GPofCd+RR6sz8i1X/8wdunj9k5/e9yuPGFPI/5l4vx06h7O3auINRYIYGsDxXsgR+5DAMPD1f0NvIC7hP7oQMag2PSH8dtKgeeZaJuBitsFwPDgU0vj+dgiwgPSMD9odMkLah/4v5AZ/KQFLg4fpzJk+ry3fpzKPNEgFA2qEYzI7nPNxYti5cMkrfdiGA7sBc0y0KQGWBfd8L/iEpinShGB4/wl4PUgp+hEy+a+YREX0ZW1zLsia8CNC0jKf50v9I0z9knr4O20KTFS+C9/ROHzFPWFmHtHtO2DBpg5jYGIKA==
-X-YMail-OSG: TZhdbboVM1nxeLKApGFBjM9sY7lmTnjgGZkukkxXD4kvgZifiw_zUzcA1T.0NWt
- udZgPGybcRly2bQ2rAmZkqstdY_HzWplpglhOXJ6Myx_sTWjFFEZJfennBqW.tzXHODa7lv1RMgW
- xGEuxs6Ys.T17cRLtFBtqCFRYAGtOGCCncvnB6j9aAkVWz8jtEnVIB.ZqBspH1SYKEUVAjNoT3Ma
- iKqIZFCbrGzZgfFDyf6Uk5XlcxBwVy3Hu5wEcUQycOjBwowh9wwFWTLerqTFzaJjk66_L4Ecsalx
- UFjefosodIQ1C5DXg0YOAz0EHqOS4zl7u3sCSsFgtoXvl4Rrtz.vACynNZNYEqQczBUkg43iHjoA
- 3zungd3O49hdOSgfLTJrOHAhmpAQak7.HgSX7PMieB_Ah8jRxmM0ZKXxQUGudV7Olkta3UrYKymh
- 4izSb10dSYYX810co6pQcnwYUY0Fsu_PWtFVtZGwDoo7AKHgMqWRi1E85oxRZiP3fxZGtxtBNQKk
- kl7cifiWKh8WSqB_GPPMWCthTztlemes7TZhNxRYY0yrrA6HbpUtqlDY_vMGDmuu89L.3uR9ZA9H
- pBCOpX04Fbxoh4x6jAzf89XnyIzhTxBS2pKVzY_WGq_Aa1JX4XALVl2jhM99XJ3PJwJ70zWcra_A
- EdnWDFkKLZIKpU.S_zBiSoausgidYc.xhqip3pV4ysRUFvawj_4XqrcPgJDWoj3ver6fR9vgqJFS
- GsHQ7QN8qfq.ogjdo3AgdjScjehKutYHSSzZOnGJ8NwhXACTI7yszUJTIOVZL6_86Mwo2Tjz94cw
- GFyb.TK20FaNSGgyN1dEfyPe0j11swuZNM8zLPQxhcassaw6P1azeqjqEFHtFr0_6S9qXZWaSmqq
- bbVbFHdQMtENBa0509HYnzh004kJOfNW1G_73BG.H2uktVpzpdH3rSu..3shYXawhhSBsEpXWc3C
- LXgai4zpYhDTxg4Dz6LtNDg79EF8vq74oU0ENTL1Q.a_riZvKJjwM.21lE5yyYhPeDReA4tBSgM_
- f6U.lbp2WPzFZ_g4h6UPMIMh0S5IRqxIvoOiWJHc0Oo_TXBJpwNzZxnq9p9GAMnymrr.1zymx80y
- e48NdxtaD00TmdwXVpwocKy.5wQJPFrVeetxK.IpZb5Uiixxl.84zeACI0zURwe9_WVDHlbHDF7u
- 3ePY7RRXdFHSqkqZIyFyDwkKnrz0Qq0iKgUcYA5srJkt9KXReTOqsV51Ol9q8nY2O_hhZur2_XZ8
- dP.4ioLmeDQa6edh4Has3lfHMQSskZAxhSCimoLdlgoFfejAlpLNCAnQyjMi58VVz46ZvN607Kn4
- 50AS71P2bLBg-
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic310.consmr.mail.bf2.yahoo.com with HTTP; Sun, 22 Mar 2020 07:12:47 +0000
-Date: Sun, 22 Mar 2020 07:12:44 +0000 (UTC)
-To: usrp-users@lists.ettus.com
-Message-ID: <94457129.62162.1584861164076@mail.yahoo.com>
+	id 1jGUbJ-0006oz-Vx; Mon, 23 Mar 2020 17:27:13 -0400
+Received: from smtpvbsrv1.mitre.org ([198.49.146.234]:38436)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93) (envelope-from <jplong@mitre.org>) id 1jGUbG-0006jW-MG
+ for usrp-users@lists.ettus.com; Mon, 23 Mar 2020 17:27:10 -0400
+Received: from smtpvbsrv1.mitre.org (localhost.localdomain [127.0.0.1])
+ by localhost (Postfix) with SMTP id 44802332010
+ for <usrp-users@lists.ettus.com>; Mon, 23 Mar 2020 17:26:30 -0400 (EDT)
+Received: from smtprhbv1.mitre.org (unknown [129.83.19.196])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by smtpvbsrv1.mitre.org (Postfix) with ESMTPS id 3B15633200B
+ for <usrp-users@lists.ettus.com>; Mon, 23 Mar 2020 17:26:30 -0400 (EDT)
+Received: from mbfesmtp-mgt.mitre.org (unknown [198.49.146.235])
+ by smtprhbv1.mitre.org (Postfix) with ESMTP id 2EE1293646D
+ for <usrp-users@lists.ettus.com>; Mon, 23 Mar 2020 17:26:30 -0400 (EDT)
+Received: by mbfesmtp-mgt.mitre.org (Postfix, from userid 600)
+ id 48mS9y1DRhzlbL; Mon, 23 Mar 2020 21:25:53 +0000 (UTC)
+Received: from GCC02-BL0-obe.outbound.protection.outlook.com
+ (mail-bl2gcc02lp2103.outbound.protection.outlook.com [104.47.64.103])
+ by mbfesmtp-mgt.mitre.org (Postfix) with ESMTPS id 48mS9B1pwFzlYj
+ for <usrp-users@lists.ettus.com>; Mon, 23 Mar 2020 21:25:50 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kaCvu6zVgsMVOdWT5Q2X5SG/2tJPV/cz6t+tiherZ2KjQcQvaT0mJ4nciz4UevLLvaovNaHl7rBmk4zxmTVzH71rfsqdQxvk+ah4J1/8PFYDeNwC3S4BtiYz0yD4p3X4s2AD7akmPVGc7f8Z5svruGJvKMYthWLclJFehgiwRTRQb9D6faS/A2aEpMJSIpqHheRvdqVhHPdJumHe7HwYURmFB5UVWOqlFQKfyE0ztFzremutD4uIN4ZfrB/cux/89UJrm82EP8PvvzLhgPr6xJL1tNqa3ANYw59bS6wx/1VKBmIm8FOgcYCkeZsC4+z4oK3RPCg1+tW1eJG1VdBXPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UIaA2KsLn4g0qgr8zyha1N0NkQ0rj1EPb3dAs7tT7RQ=;
+ b=HyuZgPTzqbHGr8JFcDGYAk0Qw+dxrNOa1Vtx8ui6g+ArEp1fN0KTf+V0QeEpLmmrBDfOk0qPsQlfsewuuTm3BCuCkx31KrJi0Ubh4EKIhUGvoli6S7T8v2NWO2oPZox+OpkMXbIhQzLSuwrjEvMA0kAqY39MTHGATvPvAbBv9u8nSBnt4YSPuBhYyEZ4yzEe2b3afMKx6mgdqxvjWD6PH2VKyjWsyR2MKDFO+qMyVtWBLE3kZAuNGS9sZbX9rZPGbCjGcNuhx5NwSn3AfKM3QRU+xZWOpnRqerLZW2o6AANQuiMFni/uhSliYFq6VMBy/r+OEe8NPh/QPvgrd8whzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mitre.org; dmarc=pass action=none header.from=mitre.org;
+ dkim=pass header.d=mitre.org; arc=none
+Received: from MN2PR09MB4077.namprd09.prod.outlook.com (2603:10b6:208:1b8::12)
+ by MN2PR09MB4763.namprd09.prod.outlook.com (2603:10b6:208:216::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.18; Mon, 23 Mar
+ 2020 21:25:49 +0000
+Received: from MN2PR09MB4077.namprd09.prod.outlook.com
+ ([fe80::d011:291a:11f9:82df]) by MN2PR09MB4077.namprd09.prod.outlook.com
+ ([fe80::d011:291a:11f9:82df%5]) with mapi id 15.20.2835.021; Mon, 23 Mar 2020
+ 21:25:49 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: E320 GPS staying locked?
+Thread-Index: AdYBWZ8OlJa3/75sRXGkEZMnb+p9og==
+Date: Mon, 23 Mar 2020 21:25:49 +0000
+Message-ID: <MN2PR09MB407777596E9014B53CBEC704D9F00@MN2PR09MB4077.namprd09.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=jplong@mitre.org; 
+x-originating-ip: [192.160.51.86]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: c686db39-3e18-4e17-51e2-08d7cf70c231
+x-ms-traffictypediagnostic: MN2PR09MB4763:
+x-microsoft-antispam-prvs: <MN2PR09MB4763F722B97B085819FCF725D9F00@MN2PR09MB4763.namprd09.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0351D213B3
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(136003)(376002)(396003)(366004)(346002)(39860400002)(7696005)(5660300002)(6506007)(2906002)(4744005)(316002)(52536014)(81166006)(81156014)(8676002)(6916009)(478600001)(8936002)(71200400001)(26005)(9686003)(186003)(86362001)(55016002)(33656002)(64756008)(66476007)(76116006)(66946007)(66446008)(66556008);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR09MB4763;
+ H:MN2PR09MB4077.namprd09.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; 
+received-spf: None (protection.outlook.com: mitre.org does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kZ2F/2kfQ8V7xwrYQtpg+O+rcUQQUdpZ9/NYcGjdRdQTks4crjqV6ZC7fgsDhKIeGic3bDCkFl0WJHGw94j7aeQlJA+80cx1UrvIcb57N49PzNJs0FaZlKMVKldnPOyeLxpPbtRl3U51c0mGXQZfjNbOiVWVAoAtt6TDCGGP9raBIlCdwWkABVuHEGD8KuW6eUdSR/3hFQua2kwRNjsAVqvvBr083jBg3xOxaNMnRYEtIvKqcI6EJl6DoleTENB+c5NT4IgGjP2SP6vpBCJ6FtOzW29tc7Z4CmtplfvKRzv6CXtjZqgAa0wmYwLA+Bs3QBBrSl3Li8f3qIZeIj52wQ0WXyOFs89MpvKpzWakUIFEqEeiURRX3tch1gOF0GJce7zJqpsZnnDlo5ArmrHVe2qqt9LQlr6Pa7ZyX7bev26aAwZytwGV6dzLpqojT2g5
+x-ms-exchange-antispam-messagedata: nwKLS4/Mb7jAhAhvW5IWcjjz9yIr0sinkPm0VQcY5qaxwxKOCwECRv9I8prms7vnMVKgIp8IeWJch3bSfiXMLkRDbvQZ8NmjiaG7Cmj3tPnrrK+u1sZRprfKuNLf3ZJCI6b0vbjJMNH/GAxG4KlCUA==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <94457129.62162.1584861164076.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.15518 aolwebmail Mozilla/5.0 (Windows NT 6.1; Win64;
- x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149
- Safari/537.36
-Subject: [USRP-users] USRP N321/N320 combo
+X-OriginatorOrg: mitre.org
+X-MS-Exchange-CrossTenant-Network-Message-Id: c686db39-3e18-4e17-51e2-08d7cf70c231
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Mar 2020 21:25:49.5474 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c620dc48-1d50-4952-8b39-df4d54d74d82
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DBfU7gXA/eu6WTQq1a/WgZCNte6OcMa8Jqk5KkZHi9U0I9CaNqx8xQzvkW6uNonuvmHJgufXBQdabc6NrFh+Gw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR09MB4763
+X-MITRE: 8GQsMWxq66rxk57w
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mitre.org;
+ h=from:to:subject:date:message-id:content-type:mime-version; s=selector1;
+ bh=UIaA2KsLn4g0qgr8zyha1N0NkQ0rj1EPb3dAs7tT7RQ=;
+ b=fDJ39eXU2P6R3CW9hIDibzeaNjnHVUWY5DIZwWHJHx10klVElFsxMZXxz0m9j+lhp2eFo+E17Jtz3W+CFLhet8zSRGtOcpsc3gD+RahjAlyW5HgGZSs1XZbKM3lj+JGZeN2Pki2g7/pqIK2uiv9KmhAuZRdHKiY1wwKuPZgSk3Q=
+Subject: [USRP-users] E320 GPS staying locked?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,9 +105,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Len via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: dspspouse@aol.com
-Content-Type: multipart/mixed; boundary="===============7419415568878077275=="
+From: "Long, Jeffrey P. via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Long, Jeffrey P." <jplong@mitre.org>
+Content-Type: multipart/mixed; boundary="===============5549708766449449539=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,103 +121,95 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7419415568878077275==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_62161_1948630503.1584861164075"
-Content-Length: 4194
+--===============5549708766449449539==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR09MB407777596E9014B53CBEC704D9F00MN2PR09MB4077namp_"
 
-------=_Part_62161_1948630503.1584861164075
-Content-Type: text/plain; charset=UTF-8
+--_000_MN2PR09MB407777596E9014B53CBEC704D9F00MN2PR09MB4077namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-All,I need 4 Rx ports which are cohered and synchronous so I'm going to con=
-nect up the N321 and N320 USRP SDRs per the recommendation in the Ettus doc=
-s and app notes.=C2=A0 Both the N321 and N320 will be configured to provide=
- Command and Control (e.g. Management) using the 1 GigE port and data strea=
-ming using the 10 GigE port (e.g. SFP1).=C2=A0 All ports being used in this=
- configuration, namely the two 1 GigE ports and the two 10 GigE ports, are =
-to be connected to a server.=C2=A0 We'd like to conserve ports on the serve=
-r so the plan is to use a network switch to handle the Command and Control =
-traffic and a separate 10 GigE switch to handle the streaming data.=C2=A0 W=
-hile I don't think using a network switch to handle the Command and Control=
- traffic will cause a problem, I'm less certain about using a network switc=
-h to handle simultaneous streaming Rx data from both SDRs.=C2=A0 I would th=
-ink there could be issues with packet collisions, dropped packets and/or in=
-correct packet ordering just to name a few.=C2=A0 However, computer network=
-ing is not my strong point so I can't be certain if my concerns are valid.=
-=C2=A0=C2=A0
-To that end I have the following questions:1) Has=C2=A0anyone in the commun=
-ity tried using network switches between the SFP1 10 GigE ports and a serve=
-r instead of just straight point to point connections and was it successful=
-??
-2) If not successful, what problems were typically encountered??=C2=A0=C2=
-=A0
-3) If successful, what 10 GigE switches (e.g. make, model number, etc...) d=
-o you recommend for my application described above??
+Has anyone had issues with the E320 GPS locking or staying locked? I have a=
+ LabSat GNSS simulator that I am reliably able to get a E310, X310, and eve=
+n a N310 to lock to however the E320 I just got will occasionally lock and =
+then fall out almost immediately. I used mender to up it to 3.15LTS and eve=
+rything else works pretty well. I run the e320bist on the gpsdo and it repo=
+rts it mostly being unlocked but occasionally it will lock for a minute or =
+so. When it does lock I can run the query gpsdo immediately after and it wi=
+ll report locked but again it only lasts for a min or so.
 
-Thanks,Len=C2=A0 =C2=A0 =C2=A0 =C2=A0
-------=_Part_62161_1948630503.1584861164075
-Content-Type: text/html; charset=UTF-8
+Thanks
+Jeff
+
+--_000_MN2PR09MB407777596E9014B53CBEC704D9F00MN2PR09MB4077namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-
-<div style=3D"color:black;font: 10pt arial;">All,
-<div>I need 4 Rx ports which are cohered and synchronous so I'm going to co=
-nnect up the N321 and N320 USRP SDRs per the recommendation in the Ettus do=
-cs and app notes.&nbsp; Both the N321 and N320 will be configured to provid=
-e Command and Control (e.g. Management) using the 1 GigE port and data stre=
-aming using the 10 GigE port (e.g. SFP1).&nbsp; All ports being used in thi=
-s configuration, namely the two 1 GigE ports and the two 10 GigE ports, are=
- to be connected to a server.&nbsp; We'd like to conserve ports on the serv=
-er so the plan is to use a network switch to handle the Command and Control=
- traffic and a separate 10 GigE switch to handle the streaming data.&nbsp; =
-While I don't think using a network switch to handle the Command and Contro=
-l traffic will cause a problem, I'm less certain about using a network swit=
-ch to handle simultaneous streaming Rx data from both SDRs.&nbsp; I would t=
-hink there could be issues with packet collisions, dropped packets and/or i=
-ncorrect packet ordering just to name a few.&nbsp; However, computer networ=
-king is not my strong point so I can't be certain if my concerns are valid.=
-&nbsp;&nbsp;</div>
-
-<div><br>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Has anyone had issues with the E320 GPS locking or s=
+taying locked? I have a LabSat GNSS simulator that I am reliably able to ge=
+t a E310, X310, and even a N310 to lock to however the E320 I just got will=
+ occasionally lock and then fall out
+ almost immediately. I used mender to up it to 3.15LTS and everything else =
+works pretty well. I run the e320bist on the gpsdo and it reports it mostly=
+ being unlocked but occasionally it will lock for a minute or so. When it d=
+oes lock I can run the query gpsdo
+ immediately after and it will report locked but again it only lasts for a =
+min or so.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
+<p class=3D"MsoNormal">Jeff<o:p></o:p></p>
 </div>
+</body>
+</html>
 
-<div>To that end I have the following questions:</div>
-
-<div>1) Has&nbsp;<span style=3D"font-size: 10pt;">anyone in the community t=
-ried using network switches between the SFP1 10 GigE ports and a server ins=
-tead of just straight point to point connections and was it successful??</s=
-pan></div>
-
-<div><span style=3D"font-size: 10pt;"><br>
-</span></div>
-
-<div><span style=3D"font-size: 10pt;">2) If not successful, what problems w=
-ere typically encountered??&nbsp;&nbsp;</span></div>
-
-<div><span style=3D"font-size: 10pt;"><br>
-</span></div>
-
-<div><span style=3D"font-size: 10pt;">3) If successful, what 10 GigE switch=
-es (e.g. make, model number, etc...) do you recommend for my application de=
-scribed above??</span></div>
-
-<div><span style=3D"font-size: 10pt;"><br>
-</span></div>
-
-<div><span style=3D"font-size: 10pt;"><br>
-</span></div>
-
-<div><span style=3D"font-size: 10pt;">Thanks,</span></div>
-
-<div><span style=3D"font-size: 10pt;">Len&nbsp; &nbsp; &nbsp; &nbsp;</span>=
-</div>
-</div>
-
-------=_Part_62161_1948630503.1584861164075--
+--_000_MN2PR09MB407777596E9014B53CBEC704D9F00MN2PR09MB4077namp_--
 
 
---===============7419415568878077275==
+--===============5549708766449449539==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -180,5 +220,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7419415568878077275==--
+--===============5549708766449449539==--
 
