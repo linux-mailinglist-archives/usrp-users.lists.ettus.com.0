@@ -2,56 +2,34 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB227190412
-	for <lists+usrp-users@lfdr.de>; Tue, 24 Mar 2020 05:05:07 +0100 (CET)
-Received: from [::1] (port=34698 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB793190479
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Mar 2020 05:25:20 +0100 (CET)
+Received: from [::1] (port=37892 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jGaoM-0007ag-E6; Tue, 24 Mar 2020 00:05:06 -0400
-Received: from mail-qt1-f175.google.com ([209.85.160.175]:39593)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jGaoI-0007UC-5V
- for usrp-users@lists.ettus.com; Tue, 24 Mar 2020 00:05:02 -0400
-Received: by mail-qt1-f175.google.com with SMTP id f20so13939889qtq.6
- for <usrp-users@lists.ettus.com>; Mon, 23 Mar 2020 21:04:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=Yn0BQmM2Hl8DET3upPKr8MDb92zX9wpKm8Cg0KdhzYw=;
- b=BKzNr13nU7SRZnNIQ3AQsmKfhd10sIWi3r5skyz6Fy02E4m7Yfd4X0bhtcMcAfoDAX
- TQRTpM5UtHAWKUPniLWNJ3we9yG0WqJl2jJb1fIxEY9qPFE+kdd0ZnP/7HJ3qioEcBrt
- X45ke0IGYSACdm5DJwudEbOWqoqaKzyGsASUonsFIV2+mULqYSip4Gf0HSWIeib/BArz
- nDphOJVAH/fn32wVzZqJEQU/gxCY0TjBrSDrD1hWVVXW/VIWonCUFV+H/bdDEB/pdZ3f
- JkuyIdX6G1+7+5GKR4UUSyCqczyPXgCqX5LUl6P6P222LcNdsu1A62Q784NHSUt4Jht4
- FZHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=Yn0BQmM2Hl8DET3upPKr8MDb92zX9wpKm8Cg0KdhzYw=;
- b=US+FAIhLRHq2udAII/CTWe2iYgXjraMRSA6WIifMsewLUcWnXVJBz9ojPS4V12plLr
- Af9NX5pTFCjkS4MWDR5l2Kf3r7RFranpCj2Q6K2n9i4dBNMONXWa01rn/j7adaA7DOlX
- I8nSBUZ4wD4TrPRLficO5GsclSpLow1dYoJEqDB4+opTdO7SHaSMI/I6wVMRs9wRK6+P
- PRjulmOnvNCLZf4dD+ceOeMcj2kbIY+ghj9Pa8JCn+K5TiUUH1BqwNgVJeMQtE/Fwv9O
- rJvQObRnWVe9Rb2yJBBKcriuuCwbvk+7/R17KUqzAz0LBcbSssZXQ83Bfk/PcN7+TskN
- GnBg==
-X-Gm-Message-State: ANhLgQ1MOFfa7IBIr3LOhMgQ7yLzxtai7S9MnBhK1eQqliLBQ7SgbzIZ
- 452ISElMDkGtj/VakOMPTAVymOXQ
-X-Google-Smtp-Source: ADFU+vte2noboFki3SkMJ2Bojqy6XG3ELD45wy3fvnjf12MzSyjo5Qa1JcW58zuyVtoJ8YjCcpDf3Q==
-X-Received: by 2002:ac8:60d7:: with SMTP id i23mr8912275qtm.381.1585022661282; 
- Mon, 23 Mar 2020 21:04:21 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-12-204.dsl.bell.ca.
- [174.95.12.204])
- by smtp.googlemail.com with ESMTPSA id d22sm14110497qte.93.2020.03.23.21.04.20
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 23 Mar 2020 21:04:20 -0700 (PDT)
-Message-ID: <5E7986C3.7040406@gmail.com>
-Date: Tue, 24 Mar 2020 00:04:19 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1jGb7t-0000AQ-LG; Tue, 24 Mar 2020 00:25:17 -0400
+Received: from mout.gmx.net ([212.227.17.20]:33719)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jGb7p-0008VF-D5
+ for usrp-users@lists.ettus.com; Tue, 24 Mar 2020 00:25:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1585023872;
+ bh=RwpApbHlbyF/OAomi3qFLbudKaBsIbgoRn3ZBWdYHwA=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=ZDsSChYlveKgDoBxUbjRdZj5caSLinZQ8KPyyjj/vQOM7YR/MMxB5zN/1JAFFqHQe
+ hMbiP6tyKsBUHjBn3E+9/hMz8iczd9pVpy1wHJnySR3tjL13cAxvbJGA6EFqWV/BM7
+ 2ByjhQ/o9uYFfNxjqp9G1jMRPL2kiql1lhOQKJ6s=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [67.216.63.255] ([67.216.63.255]) by web-mail.gmx.net
+ (3c-app-gmx-bs25.server.lan [172.19.170.77]) (via HTTP); Tue, 24 Mar 2020
+ 05:24:32 +0100
 MIME-Version: 1.0
-To: Lukas Haase <lukashaase@gmx.at>
+Message-ID: <trinity-7c07112b-2119-4cd9-a79a-d3dc63ef7cbf-1585023872132@3c-app-gmx-bs25>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Date: Tue, 24 Mar 2020 05:24:32 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <5E7986C3.7040406@gmail.com>
 References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
  <38CFC8D2-9645-4412-9873-9612B897C5EB@gmail.com>
  <trinity-c8914290-4845-4675-98c6-2e02b41f536e-1584075584965@3c-app-gmx-bap08>
@@ -62,7 +40,26 @@ References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
  <trinity-d7f908f5-bedb-43b2-b687-8e8632475dc0-1585019285999@3c-app-gmx-bap77>
  <5E798004.4040903@gmail.com>
  <trinity-8a4afc9a-c9ff-426e-a6a7-ec6963a37102-1585022022604@3c-app-gmx-bs25>
-In-Reply-To: <trinity-8a4afc9a-c9ff-426e-a6a7-ec6963a37102-1585022022604@3c-app-gmx-bs25>
+ <5E7986C3.7040406@gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:p5xGjfFKfK0PtpiGx9U8bFHpPusnXBkzKrQ1zdBaMIYmjC1mCd4nc/zac/byto0EHaaY3
+ LAptAzPGS1kWPGMcUr5/P99swDi4y99EFPrZK+ln49vpuaSA/Sq/Y1RAjMzgFa+KbQqomo/hA1lL
+ kUWnuZH3nfS2n+fK4j47HUTyBYTFlMoyXOr8+3t+vAzGz/t0KFXKHoH7JhWYGTWGDsfxvzgvtsnx
+ euzJohx+GSBhK38DnbZ32wkOlHkriZev+yPS/PgA+/JgKLYLTWqR4t+TU2k9t471ctkPAdodFRkn
+ fo=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:M8qHuhAhITo=:imeqfrp/CqT+zZx+LWJhb5
+ PDqYXLue+5gSZaKIat8F0rmZdD0N2guxVbVarAKdtElCNyIaNDxlAmowrs8gTEFh+MH1EYSJ1
+ s09XLiAx3ORnbcj4rljOrM6k5efGG+asOMgF6y+rzj0uLVHmgE7b5AP5lQDhBdRH068ATV9Fo
+ cszhi8rSCal8+xB1PYp37I1HMzuvNUv12AKqH0QZajS/kOp2er9/IC07ZmEfFq8v0HY8Ws/gL
+ MMqHQgubiA8BkFRCwQiHNb4tZunAm8U13KZhkihMvOkGLes6BM/NTSRV1EZpDHv+ymZEADlYK
+ y5GtAtPQadcq2s6gLwDiLH9DZj7cxAZtCnvQz+JdJn4ks3sSLacwRn52AMtD76w4PnCbeGzyw
+ vWOMyJLfZQ/hGNkDzqsCHw5MZcRHzmTClABLc//KMGQZWiNiEzA1do6PjgXcp2dCXPrvo0o07
+ eO4zG77NWZlgXwThvui0RRsVENON2cPM5C8tZfyfr+kmeVPajmpnkoMOb6pem9+ROTJ1uKyTg
+ IHXINHfYUP/IauOLcc6PVEU3xqUF2RUyUjIZtFO/ArGF80keG6/HtDdcXLiYQbGILzcwg53Jc
+ 3k7T5BkauLxDo4qMldjtkPF0Slc9dUnwR8Ua/CGRc8IYxSWHQMCWmmFbv3dv7B0YEw2BxY9GI
+ +rcYXuBMskdxWuTQMuqjSPjPUuZPib9FXbLDUiefWfCLtR+xF5S8O5EXg/cfbMsJ751E=
 Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
  timed command
 X-BeenThere: usrp-users@lists.ettus.com
@@ -76,12 +73,12 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
  Rob Kossler <rkossler@nd.edu>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -95,89 +92,116 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMDMvMjMvMjAyMCAxMTo1MyBQTSwgTHVrYXMgSGFhc2Ugd3JvdGU6Cj4gSGkgTWFyY3VzLAo+
-Cj4+IEdlc2VuZGV0OiBNb250YWcsIDIzLiBNw6RyeiAyMDIwIHVtIDIzOjM1IFVocgo+PiBWb246
-ICJNYXJjdXMgRC4gTGVlY2giIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4KPj4gQW46ICJMdWth
-cyBIYWFzZSIgPGx1a2FzaGFhc2VAZ214LmF0Pgo+PiBDYzogIlJvYiBLb3NzbGVyIiA8cmtvc3Ns
-ZXJAbmQuZWR1PiwgIlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiA8dXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20+Cj4+IEJldHJlZmY6IFJlOiBbVVNSUC11c2Vyc10gVVNSUCBYMzEwIGlnbm9y
-ZWQgRFNQIHJldHVuaW5nIG9uIFRYIHdoZW4gdXNpbmcgYSB0aW1lZCBjb21tYW5kCj4+Cj4+IE9u
-IDAzLzIzLzIwMjAgMTE6MDggUE0sIEx1a2FzIEhhYXNlIHdyb3RlOgo+Pj4gSGkgTWFyY3VzLAo+
-Pj4KPj4+PiBHZXNlbmRldDogRnJlaXRhZywgMTMuIE3DpHJ6IDIwMjAgdW0gMTM6MjkgVWhyCj4+
-Pj4gVm9uOiAiTWFyY3VzIEQuIExlZWNoIiA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+Cj4+Pj4g
-QW46ICJMdWthcyBIYWFzZSIgPGx1a2FzaGFhc2VAZ214LmF0PiwgIlJvYiBLb3NzbGVyIiA8cmtv
-c3NsZXJAbmQuZWR1Pgo+Pj4+IENjOiAiVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIDx1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPj4+PiBCZXRyZWZmOiBSZTogW1VTUlAtdXNlcnNdIFVT
-UlAgWDMxMCBpZ25vcmVkIERTUCByZXR1bmluZyBvbiBUWCB3aGVuIHVzaW5nIGEgdGltZWQgY29t
-bWFuZAo+Pj4+Cj4+Pj4gT24gMDMvMTMvMjAyMCAxMDo1MiBBTSwgTHVrYXMgSGFhc2Ugd3JvdGU6
-Cj4+Pj4+IEhpIGFnYWluIFJvYiwKPj4+Pj4KPj4+Pj4gWWVzLCBJIGNvbmZpcm06Cj4+Pj4+Cj4+
-Pj4+IDEuKSBGaW5hbGx5IEkgZ2V0IHRoZSBjb21tYW5kcyB0byBleGVjdXRlIGF0IHRoZSBzYW1l
-IHRpbWUgKFRYIGFuZCBSWCBpbmRpdmlkdWFsbHkgYW5kIGJvdGggYXQgdGhlIHNhbWUgdGltZSkK
-Pj4+Pj4gMi4pIFllcywgdGhlIHBoYXNlIGlzIHJhbmRvbSBhZnRlciBlYWNoIHJldHVuZSwgZXZl
-biB3aGVuIEkgcmV0dW5lIGJhY2sgdG8gdGhlIHNhbWUgZnJlcXVlbmN5Cj4+Pj4+IDMuKSAoMikg
-aXMgb25seSB0cnVlIGlmIGl0IGluY2x1ZGVzICpEU1AqIHJldHVuaW5nLiBXaXRoIG5hYWxvZyBy
-ZXR1bmluZyAoK2ludGVnZXItTiByZXR1bmluZykgSSBnZXQgcGhhc2UgY29oZXJlbmNlLCBhcyBl
-eHBlY3RlZC4KPj4+Pj4KPj4+Pj4gSSBhY3R1YWxseSBleHBlY3RlZCB0aGUgUExMIHJldHVuaW5n
-IG11Y2ggbW9yZSBjaGFsbGVuZ2luZyB0aGFuIHRoZSBEU1AgcmV0dW5pbmcgYnV0IGZvciBzb21l
-IHJlYXNvbiBpdCBzZWVtcyB0byBiZSB0aGUgb3Bwb3NpdGUuLi4KPj4+PiBJdCBkZXBlbmRzIG9u
-IHdoZXRoZXIgdGhlIHBoYXNlLWFjY3VtdWxhdG9yIGluIHRoZSBEU1AgaXMgcmVzZXQgdG8gemVy
-bywKPj4+PiBvciB3aGV0aGVyIGp1c3QgdGhlIGluY3JlbWVudCByZWdpc3RlciBpcyB1cGRhdGVk
-IHdpdGggdGhlCj4+Pj4gICAgICBuZXcgcGhhc2UgaW5jcmVtZW50LiAgIFRoZXJlIGFyZSBnb29k
-IGFyZ3VtZW50cyBmb3IgYm90aCBhcHByb2FjaGVzLgo+Pj4gSSBqdXN0IHdhbnRlZCB0byBjaGVj
-ayBpbiBhZ2FpbiBpZiB5b3Uga25vdyBob3cgdGhpcyBpcyBpbXBsZW1lbnRlZCBhbmQgaG93IHlv
-dXIgdGhvdWdodHMgYXJlIHJlZ2FyZGluZyB0dW5pbmcgaW4gYm90aCBjYXNlcy4gTXkgdGFrZToK
-Pj4+Cj4+PiBDYXNlICMxOiBQaGFzZSBhY2N1bXVsYXRvciBhbmQgaW5jcmVtZW50IHJlZ2lzdGVy
-IGlzIHJlc2V0Lgo+Pj4gICAgICAtIFRoaXMgcmVzdWx0cyBpbiB0cmFuc2llbnRzIHdoZW4gcmUt
-dHVuaW5nIGZyZXF1ZW5jeSBiZWNhdXNlIHRoZSBtaXhlciBMTyBhbHdheXMgKHJlLSlzdGFydHMg
-YXQgemVybyBwaGFzZS4KPj4+ICAgICAgLSBTaW5jZSB0aGlzIGNvbXBsZXRlbHkgZGVmaW5lcyB0
-aGUgc3RhdGUgb2YgdGhlIEREQy9EVUMsIEkgaW1hZ2luZSBwaGFzZSBjb2hlcmVuY2UgbXVzdCBi
-ZSBwcmVzZXJ2ZWQgYXNzdW1pbmcgdGhlIHJlc2V0cyBpbiBUWCBhbmQgUlggaGFwcGVuIGV4YWN0
-bHkgYXQgdGhlIHNhbWUgdGltZSAod2hpY2ggaXMgc3RpbGwgbm90IGNlcnRhaW4gdG8gbWUpCj4K
-Pgo+Cj4gSSBoYXZlIGFjdHVhbGx5IGFsd2F5cyB3b25kZXJlZCBIT1cgdGhlc2UgbWFnaWMgdGlt
-ZWQgY29tbWFuZHMgYWN0dWFsbHkgd29yay4KPgo+IFRoZSBGUEdBIGhhcyBhIGNsb2NrIHdoaWNo
-IHRvIG15IGtub3dsZWRnZSBpcyB0aGUgc3lzdGVtIGNsb2NrIHdoaWNoIGlzIDIwMCBNSHouIENh
-bGwgdGhpcyBjbG9jayAiY2xrIi4KPiBCdXQgdGhpcyBpcyBhbHNvIHRoZSBzYW1wbGUgcmF0ZS4K
-PiBTbyBldmVyeXRoaW5nIHRoYXQgb3BlcmF0ZXMgb24gYSBzYW1wbGUgbGV2ZWwgYWNjdXJhY3kg
-bXVzdCBleGVjdXRlIHdpdGhpbiBvbmUgY2xvY2sgY3ljbGUgd2hpY2ggc2VlbXMgaGFyZCB0byBt
-ZS4KPgo+IElmIEkgcXVldWUgMTYgdGltZWQgY29tbWFuZHMgaG93IGNhbiB0aGV5IHJlYWxseSBi
-ZSBleGVjdXRlZCBhdCB0aGUgc2FtZSBjbG9jayBjeWNsZT8KV2VsbCwgeW91IGhhdmUgdG8gcmVt
-ZW1iZXIgdGhhdCBGUEdBcyBhcmUgaW5oZXJlbnRseSBtYXNzaXZlbHktcGFyYWxsZWwgCm5hbm8t
-Y29tcHV0ZXJzLiAgQnV0IGluIFRISVMgY2FzZSwgaXQgbG9va3MgdG8gbWUgbGlrZSB0aGVyZSdz
-CiAgIGEgRklGTywgYW5kIGVsZW1lbnRzIG9uIGl0IGFyZSBwcm9jZXNzZWQgb25lIGF0IGEgdGlt
-ZS4gIEluIGFuIEZQR0EsIAphbGwga2luZHMgb2YgInN0dWZmIiBjYW4gaGFwcGVuIGF0IHRoZSBz
-YW1lIHRpbWUsIGJlY2F1c2UgaXQncwogICBhIHdoYWNrIG9mIHNvbWV3aGF0LWluZGVwZW5kZW50
-IGxvZ2ljIGNlbGxzIChvciwgYWN0dWFsbHksIExVVHMsIGJ1dCAKdGhhdCdzIGFuIGltcGxlbWVu
-dGF0aW9uIGlzc3VlKS4KCgo+Cj4+IEFjY29yZGluZyB0byBteSBzdHVkeSBvZiB0aGUgRlBHQSBj
-b2RlLCB0aGUgcmVnaXN0ZXIgc2V0cyBhcmUgc2VyaWFsaXplZAo+PiB3aXRoaW4gdGhlIHRpbWVk
-LWNvbW1hbmQgRklGTywgd2hpY2ggaXMgYW4gQVhJIEZJRk8sIHdoaWNoIG1lYW5zCj4+ICAgICB0
-aGF0IHNhaWQgY29tbWFuZHMgbWF5IGJlIHNwcmVhZCBvdmVyIHNldmVyYWwgMTBzIG9mIG5hbm9z
-ZWNvbmRzIGluCj4gSXMgdGhpcyBhbiBhbHRlcm5hdGl2ZSB3YXkgb2Ygc2F5aW5nICJ0aW1lZCBj
-b21tYW5kcyBhY3R1YWxseSBkbyBOT1QgZXhlY3V0ZSBhdCB0aGUgc2FtZSB0aW1lIG9uIHRoZSB4
-MzEwIiBvciBhbHRlcm5hdGl2ZWx5ICJUaGUgeDMxMCBkb2VzIGFjdHVhbGx5IE5PVCBzdXBwb3J0
-IHBoYXNlIGNvaGVyZW50IG9wZXJhdGlvbiI/Ckkgd29uJ3QgZ28gdGhhdCBmYXIsIGJlY2F1c2Ug
-SSdtIG5vdCBhbiBGUEdBIGV4cGVydC4gIEJ1dCB0aGUgd2hvbGUgCiJzeW5jaHJvbml6ZSB0aGUg
-dGhpbmdzIiB2aWEgdGltZWQgY29tbWFuZHMgd2FzIG9yaWdpbmFsbHkgaW50ZW5kZWQgdG8KICAg
-YWxsb3cgc3luY2hyb25pemF0b24gKmFjcm9zcyogbXVsdGlwbGUgVVNSUCB1bml0cy4gIFdoaWNo
-IHdpbGwgd29yaywgCmFjY29yZGluZyB0byBteSBhbmFseXNpcywgYmVjYXVzZSB0aG9zZSBGSUZP
-cyB3aWxsIGFsbCBiZSBleGVjdXRlZAogICBpbiBsb2NrLXN0ZXAgKmFjcm9zcyogdGhlIFVTUlBz
-IGludm9sdmVkLiAgQnV0IHdpdGhpbiBhIFVTUlAsIEkgdGhpbmsgCnRoaW5ncyBhcmUgYSBiaXQg
-bXVya2llci4KPgo+IFRoYXQgd291bGQgY29tZSBwcmV0dHkgbXVjaCB0byBhIHNob2NrLgo+Cj4g
-SXQgd291bGQgZXhwbGFpbiB3aHkgcGhhc2UgY29oZXJlbmNlIHdvcmtzIHdpdGggYW5hbG9nLW9u
-bHkgdHVuaW5nIChhc3N1bWluZyBvbmUgc2luZ2xlIHJlZ2lzdGVyIHNldCBpcyBzdWZmaWNpZW50
-IGZvciBhbmFsb2cgdHVuaW5nKS4KPgo+IE9uIHRoZSBvdGhlciBoYW5kLCBpdCB3b3VsZCBub3Qg
-ZXhwbGFpbiB3aHkgUlgtUlggcGhhc2UgY29oZXJlbmNlIChvciBUWC1UWCkgd29ya3MuIEluIHRo
-YXQgY2FzZSwgb25seSB0aGUgdHdvIEREQ3MgYXJlIHVzZWQuIEJ1dCB0aGVyZSBhcmUgc3RpbGwg
-c2V2ZXJhbCByZWdpc3RlciBzZXRzIHdoaWNoIHdvdWxkIGVxdWFsbHkgYnJlYWsgc3R1ZmYuCkxp
-a2UgSSBzYWlkLCBJJ20gbm90IGFuIGV4cGVydCBhdCBGUEdBIHN0dWZmLCBhbmQgSSdtIGhvcGlu
-ZyBzb21lb25lIAptb3JlIHByaWVzdGx5IHRoYW4gbWUgY2FuIGNvbW1lbnQuCgpBYnNvbHV0ZSBw
-aGFzZSBjb2hlcmVuY2UgKHdpdGggcHJlZGljdGFibGUvemVybyBwaGFzZS1vZmZzZXQpIGlzLCBp
-biAKcHJhY3RpY2UsIGluY3JlZGlibHkgaGFyZCB0byBhY2hpZXZlLS1QQVJUSUNVTEFSTFkgUEhB
-U0UgT0ZGU0VULgogICBXaGljaCBpcyB3aHkgbW9zdCBmaWVsZGVkIFJGIHN5c3RlbXMgd29yayBq
-dXN0IGZpbmUgd2l0aCAid29iYmx5IiAKcGhhc2Utb2Zmc2V0LCB3aXRoIG1lY2hhbmlzbXMgdG8g
-ZmFjdG9yIGl0IG91dCAiYXQgc3RhcnR1cCIgKGZvciB3aGF0ZXZlcgogICBkZWZpbml0aW9uIG9m
-ICJzdGFydCB1cCIgaXMgYXBwcm9wcmlhdGUpLgoKSSBob3BlIHRoYXQgc29tZW9uZSB3aXRoIGJl
-dHRlciB1bmRlcnN0YW5kaW5nIG9mIHRoZSB0aW1lZC1jb21tYW5kIEZJRk8gCmNhbiBjaGltZSBp
-biBhbmQgdGVsbCBtZSB0aGF0IEknbSBjb21wbGV0ZWx5IHdyb25nLgoKCgoKPgo+IEx1a2FzCj4K
-PgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
-dXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0
-cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+Hi Marcus,
+
+> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
+> On 03/23/2020 11:53 PM, Lukas Haase wrote:
+> >> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
+> >> On 03/23/2020 11:08 PM, Lukas Haase wrote:
+> >>> Hi Marcus,
+> >>>> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
+> >>>> On 03/13/2020 10:52 AM, Lukas Haase wrote:
+> >>>>> Hi again Rob,
+> >>>>>
+> >>>>> Yes, I confirm:
+> >>>>>
+> >>>>> 1.) Finally I get the commands to execute at the same time (TX and RX individually and both at the same time)
+> >>>>> 2.) Yes, the phase is random after each retune, even when I retune back to the same frequency
+> >>>>> 3.) (2) is only true if it includes *DSP* retuning. With naalog retuning (+integer-N retuning) I get phase coherence, as expected.
+> >>>>>
+> >>>>> I actually expected the PLL retuning much more challenging than the DSP retuning but for some reason it seems to be the opposite...
+> >>>> It depends on whether the phase-accumulator in the DSP is reset to zero,
+> >>>> or whether just the increment register is updated with the
+> >>>>      new phase increment.   There are good arguments for both approaches.
+> >>> I just wanted to check in again if you know how this is implemented and how your thoughts are regarding tuning in both cases. My take:
+> >>>
+> >>> Case #1: Phase accumulator and increment register is reset.
+> >>>      - This results in transients when re-tuning frequency because the mixer LO always (re-)starts at zero phase.
+> >>>      - Since this completely defines the state of the DDC/DUC, I imagine phase coherence must be preserved assuming the resets in TX and RX happen exactly at the same time (which is still not certain to me)
+> >
+> >
+> >
+> > I have actually always wondered HOW these magic timed commands actually work.
+> >
+> > The FPGA has a clock which to my knowledge is the system clock which is 200 MHz. Call this clock "clk".
+> > But this is also the sample rate.
+> > So everything that operates on a sample level accuracy must execute within one clock cycle which seems hard to me.
+> >
+> > If I queue 16 timed commands how can they really be executed at the same clock cycle?
+> Well, you have to remember that FPGAs are inherently massively-parallel
+> nano-computers.  But in THIS case, it looks to me like there's
+>    a FIFO, and elements on it are processed one at a time.  In an FPGA,
+> all kinds of "stuff" can happen at the same time, because it's
+>    a whack of somewhat-independent logic cells (or, actually, LUTs, but
+> that's an implementation issue).
+
+I would have two possible solutions but both of them are non-trivial:
+
+1. As you say, parallelism. For each of N supported timed commands, the decoding of the timed commands is cloned
+2. If the timed commands are enough clock cycles in the future, they can be decoded immideately once they come in. For each type of register they set, they set the following: value of the register. Clock cycle at which it should occur. Then we would have something like:
+  reg [31:0] cycle_number; //  how to handle overflow? commands can be a max of 1/200e6 * 2^32 seconds in advance
+  always @(posedge clk) begin
+    cycle_number <= cycle_number + 1;
+    if cycle_number == when_to_set_phase_accumulator_register
+      phase_accumulator <= data_for_phase_accumulator;
+    if cycle_number == when_to_set_phase_increment_register
+      phase_increment <= data_for_phase_increment;
+  end
+
+
+> >> According to my study of the FPGA code, the register sets are serialized
+> >> within the timed-command FIFO, which is an AXI FIFO, which means
+> >>     that said commands may be spread over several 10s of nanoseconds in
+> > Is this an alternative way of saying "timed commands actually do NOT execute at the same time on the x310" or alternatively "The x310 does actually NOT support phase coherent operation"?
+> I won't go that far, because I'm not an FPGA expert.  But the whole
+> "synchronize the things" via timed commands was originally intended to
+>    allow synchronizaton *across* multiple USRP units.  Which will work,
+> according to my analysis, because those FIFOs will all be executed
+>    in lock-step *across* the USRPs involved.  But within a USRP, I think
+> things are a bit murkier.
+> >
+> > That would come pretty much to a shock.
+> >
+> > It would explain why phase coherence works with analog-only tuning (assuming one single register set is sufficient for analog tuning).
+> >
+> > On the other hand, it would not explain why RX-RX phase coherence (or TX-TX) works. In that case, only the two DDCs are used. But there are still several register sets which would equally break stuff.
+> Like I said, I'm not an expert at FPGA stuff, and I'm hoping someone
+> more priestly than me can comment.
+
+That'd be amazing.
+
+> Absolute phase coherence (with predictable/zero phase-offset) is, in
+> practice, incredibly hard to achieve--PARTICULARLY PHASE OFFSET.
+>    Which is why most fielded RF systems work just fine with "wobbly"
+> phase-offset, with mechanisms to factor it out "at startup" (for whatever
+>    definition of "start up" is appropriate).
+
+I know it is hard to achieve and I know normal *comm* systems do not care.
+BUT: There is a large class of practically relevent applications that require TX/RX phase coherence: Ranging and radar.
+Everything that that needs to deduce time of flight (=range) via carrier phase shift.
+If it's just one frequency we can again calibrate.
+But to make systems robust, they use multiple frequencies and obtain phase shifts from diverse (hopped) frequencies.
+Yes, it's hard to implement but these systems do exist, have been built and work.
+
+(I am also aware that there are other options to implement these systems outside of USRP/SDR context: a single PLL for both TX/RX with potential freq dividers/multipliers, coupling transmitted signal harmonics back, bandpass filter and use as RX LO etc).
+
+In other words: How would you implement such a ranging system with USRP?
+
+Currently I only see two options that work but none of them are acceptable:
+Option 1: Use analog only tuning. But this is not flexible because it only works with integer-N tuning (poor resolution) and has huge settling timed
+Option 2: Do everything (=hopping) in software on the host computer, e.g. within gnuradio. But this requires unnecessary huge data rates (200MSsps)
+
+> I hope that someone with better understanding of the timed-command FIFO
+> can chime in and tell me that I'm completely wrong.
+
+Indeed much appreciated.
+
+
+Thanks,
+Lukas
+
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
