@@ -2,61 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E03A1905C1
-	for <lists+usrp-users@lfdr.de>; Tue, 24 Mar 2020 07:29:53 +0100 (CET)
-Received: from [::1] (port=36934 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2D91911F5
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Mar 2020 14:49:10 +0100 (CET)
+Received: from [::1] (port=55058 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jGd4Q-0007qV-Un; Tue, 24 Mar 2020 02:29:50 -0400
-Received: from mail-pj1-f45.google.com ([209.85.216.45]:34250)
+	id 1jGjvW-0005lL-5e; Tue, 24 Mar 2020 09:49:06 -0400
+Received: from mail-lj1-f173.google.com ([209.85.208.173]:41784)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <ianb@ionconcepts.com>)
- id 1jGd4M-0007kL-I4
- for usrp-users@lists.ettus.com; Tue, 24 Mar 2020 02:29:46 -0400
-Received: by mail-pj1-f45.google.com with SMTP id q16so879528pje.1
- for <usrp-users@lists.ettus.com>; Mon, 23 Mar 2020 23:29:26 -0700 (PDT)
+ (Exim 4.93) (envelope-from <sam.reiter@ettus.com>)
+ id 1jGjvS-0005gN-Px
+ for usrp-users@lists.ettus.com; Tue, 24 Mar 2020 09:49:02 -0400
+Received: by mail-lj1-f173.google.com with SMTP id n17so8297844lji.8
+ for <usrp-users@lists.ettus.com>; Tue, 24 Mar 2020 06:48:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ionconcepts-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=oLAoQdR3jfPq/Uj3nfzHANq9GRdocA6N3whA/spjJYI=;
- b=kXqOxBARRw5H0NTRrkYxOTmMjs+sHdMD6CwjsObIUgkYZ6LB3iDJlRaDPydyIkJ6Ts
- rHJClbVNNRGGoWPowPJf071Jlc23D2vIlycpQStEOsxAOJ51nZKLapZX5l9UKQFmD22Q
- i2WVeZUHV4lMOxUr202mLyYOO9NIxBmlQ0pPmG2c/d7NaM9I0ZOq36m705fpIcqLnQ66
- X65Gt53O+1HFxWqg+i4e66ijiimsoSnMaJmi4B0QwwI8styB8MLT+Sok9h+HRaXIKPKB
- /m6T8zU32aWv1CIj8Xow9+4m4jZ9Je/A2LUEZWp0dxl1zjjrE71GO6WJtmcThpDdwqI/
- iIRA==
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=O7IvMWqFKcQPU/Ll1z3DfztPRZyMB5AwXGB2XznVYCw=;
+ b=ktsR6CfBp8gbqf6Fb8HjMaTH4bWsYz/oQLr1GZB4z1eMymt30y+nm3+TnnnR2Wr3LD
+ W+WFZ092Vc/xIFj8ofzw0E1S44Ml67uf32m9R6cLCL2bZ1TFmgYxDWmfe2fgE/EgU8D2
+ GrLfKPszEhgoHRFEI8hJAvbCO2Rs+WTJvxezNyt/0o2KQNgaLmbWN/lBsCoL5NW5Y4Sj
+ LuC4c1v/Igz5ynhHuM/3d9OLxY8KHkdqy+z5m3tfQkpwPdCJn30d4kQ8HMxMsPxg4+aw
+ Al5aCE0PQxDnAuLEv81UnVcUXQNKqJu75LdOulpyGVqjOs2G4qlx7mW/Ixm1RRwrnz+c
+ IgTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=oLAoQdR3jfPq/Uj3nfzHANq9GRdocA6N3whA/spjJYI=;
- b=CewoRc3rMv6gLB2HO0wnbakynQPMe8y5+deg0Gba+BLs9V1aB6cUFsYluqgGr1WKKR
- 8dFUTjjT/V2atDbKo4ewyzRPiJ+eszTdv9561YuZyCSzmDP01Zm2YCRKoeYGa9S60W73
- Au/wDFmhl0UqlwNbQ6INz1qfsReEyGurNqMdx9+V95MBgEELRchaoB0EzSSonoYMM610
- xf4hKnJMqojdCi4eB4tR0/lEngjWHORicvYtCnW706ifUteHMhZl8JIcUu3uCyp4hj04
- 88ju0xoHrkyqRduRXnk00VDKy7FYZNEJyncndJnl4oPW56hm1K1I5Un1ihpg+2zZcDYi
- Y6Cw==
-X-Gm-Message-State: ANhLgQ3CtqMqMQ7Y0Tu35iudiN+/wBTT25ox2RbMX/ERtN8zgiLKWb9h
- xMWmDCqxuJ63mRGcdnWzbk/U1C4D4CM=
-X-Google-Smtp-Source: ADFU+vte8H50quQ1JnH7O3Wc7TKC6SJ5dT7+Yz9wXrmjOV64TC6K5ACp0x1ugfOJwjad7CcV0GaoTw==
-X-Received: by 2002:a17:902:bc4a:: with SMTP id
- t10mr2829219plz.199.1585031345538; 
- Mon, 23 Mar 2020 23:29:05 -0700 (PDT)
-Received: from pox-laden-system.localdomain
- (c-73-222-38-19.hsd1.ca.comcast.net. [73.222.38.19])
- by smtp.gmail.com with ESMTPSA id y142sm15742039pfc.53.2020.03.23.23.29.04
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 23 Mar 2020 23:29:05 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-In-Reply-To: <a997d14f-080d-a30c-6400-2cd1766842cb@ettus.com>
-Date: Mon, 23 Mar 2020 23:29:02 -0700
-Message-Id: <834000BB-7082-4963-BC19-BF23E223F248@ionconcepts.com>
-References: <104f4e36-8a58-3f3b-0b9b-5d33f21b1c55@gmail.com>
- <a997d14f-080d-a30c-6400-2cd1766842cb@ettus.com>
-To: =?utf-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-X-Mailer: Apple Mail (2.3273)
-Subject: Re: [USRP-users] X310 broadcasting ICMP - information request
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=O7IvMWqFKcQPU/Ll1z3DfztPRZyMB5AwXGB2XznVYCw=;
+ b=mzghVlYT14sF4W2Ag9ri0QVWpQVGcI/pcq6i+h7KjnRFkEcIsH4JaLCPLlfce/AsGx
+ sGIvd4NF6D89l6PXKvrhkFyQi0DySSENiiLHUQDCqqo0cGtcD9yN90fy44DEGeP9k85Z
+ leVZ8SvkDfjZxVwW3uo3VjAIOdeXzP6vx5TEzIdBXBLlaoJy2HVZpEimEsf5HaIuCE24
+ tGiMFRt8ugNCu9mtmWhU8ZrjUk4kNBW0ZDhc8LxKPw2M0ydTtqeKN4pidpCzUbiLcZXq
+ VlX1wkNxWyJhPh0TLuWdk4b7f82INmHCIBkr56sowvzEyaSWDAySGZeemxvOqfSdD3WB
+ MbeA==
+X-Gm-Message-State: ANhLgQ2Pb9jv1ZIZ9dqkqTNynWrWO/ag6nNc1cnxBStqqom5LfmP3ipW
+ F3ZBGC5qwVwBniEAqcp3jyAcTGlU4GJzapUuIwVsYR0O
+X-Google-Smtp-Source: ADFU+vsnJYEHhDPlrjGL3u/Np7kSaOS/O7a7Qc8amXSNBjJAPvSnDTbp/FDcxb0tNiws9BgpfNfwXsZ0V/iy1g6oFs8=
+X-Received: by 2002:a2e:9d98:: with SMTP id c24mr6791441ljj.137.1585057701327; 
+ Tue, 24 Mar 2020 06:48:21 -0700 (PDT)
+MIME-Version: 1.0
+References: <MN2PR09MB407777596E9014B53CBEC704D9F00@MN2PR09MB4077.namprd09.prod.outlook.com>
+In-Reply-To: <MN2PR09MB407777596E9014B53CBEC704D9F00@MN2PR09MB4077.namprd09.prod.outlook.com>
+Date: Tue, 24 Mar 2020 08:48:20 -0500
+Message-ID: <CANf970bcHZZPWg-VQ-xNtxd5eYWWTEW+kQUGfPyC1M-ddrXKvg@mail.gmail.com>
+To: "Long, Jeffrey P." <jplong@mitre.org>
+Subject: Re: [USRP-users] E320 GPS staying locked?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,11 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ian Buckley via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ian Buckley <ianb@ionconcepts.com>
-Cc: usrp-users@lists.ettus.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter@ettus.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============1949556016343000468=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,68 +76,120 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T2xkIHRocmVhZCBidXQgZm9yIHRoZSBzYWtlIG9mIGEga25vd2xlZGdlIGFyY2hpdmU6IFRoZSBJ
-Q01QIElSIHRyYWZmaWMgaXMgdGhlIFgzMTAgTGluayBzdGF0ZSByb3V0aW5nIHRhYmxlIHVwZGF0
-ZXPigKZpdOKAmXMgdW5pcXVlIHRvIHRoZSBYMzEwLCBub3QgcHJlc2VudCBpbiB0aGUgTjIxMApB
-bmQgSSBhbHNvLCBvbmx5IHRvbmlnaHQsIG9ic2VydmVkIG90aGVyIFgzMTAgZmlybXdhcmUgZHJp
-dmVuIG5ldHdvcmsgc2VydmljZXMgcnVubmluZyBhdCB+M3ggdGhlIGludGVydmFsIEkgZXhwZWN0
-ZWQgTWFyY3Vz4oCmc28gc29tZXRoaW5nIGlzIG9mZiBnbG9iYWxseSBpbiB0aGUgZmlybXdhcmUg
-b3IgdGhlIHRpbWVyIHJlZ2lzdGVyIHRoYXQgZHJpdmVzIGl0LgotSWFuCgo+IE9uIEphbiA2LCAy
-MDE3LCBhdCA2OjU1IEFNLCBNYXJjdXMgTcO8bGxlciB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+IAo+IEhpIFZsYWRpY2EsCj4gCj4gZXJyLCB0aGF0
-J3MgYSBzdHJhbmdlIHByb2JsZW07IGFyZSB5b3Ugc3VyZSB5b3Ugd2FudCB0byBjaGFuZ2UgdGhl
-Cj4gYmVoYXZpb3VyIG9mIHlvdXIgU0RSIGRldmljZXMgdG8gc3VpdCB0aGUgc2VjdXJpdHkgcHJv
-ZHVjdCB0aGF0IHlvdSBwYXkKPiBmb3IsIGluIG9yZGVyIHRvIG1ha2UgeW91ciBuZXR3b3JrIGVh
-c2llciB0byBzZWN1cmU/IEZyYW5rbHksIGlmIHRoYXQKPiBwcm9kdWN0IG1ha2VzIGFueSBwcm9i
-bGVtczogSXQgbG9va3MgbGlrZSBzb21lIHNvZnR3YXJlIHRoYXQgcnVucyBvbiBhCj4gcGxhaW4g
-TGludXggc3lzdGVtLCBwcm9iYWJseS4gVXNlIGVidGFibGVzIHRvIHNpbXBseSBtYWtlIHRoYXQg
-c3lzdGVtCj4gZGVhZiB0byBwYWNrZXRzIGNvbWluZyBmcm9tIHlvdXIgVVNSUCdzIE1BQyBhZGRy
-ZXNzLiBPciwgaWYgeW91ciBsb2NhbAo+IHN3aXRjaCBhbGxvd3MgdGhhdCwgc2ltcGx5IHB1dCB0
-aGUgVVNSUCBpbiBhIHNlcGFyYXRlIFZMQU4uCj4gCj4gQnkgdGhlIHdheSwgdGhlIE4yMTAgYWxz
-byBhbnN3ZXJzIHdpdGggYnJvYWRjYXN0IHBhY2tldHMgdG8gZGlzY292ZXJ5Cj4gcmVxdWVzdHMs
-IGlmIEkgcmVtZW1iZXIgY29ycmVjdGx5LiBTbyBpZiB0aGF0IHByb2JsZW0gcmVhbGx5IGlzCj4g
-WDMxMC1zcGVjaWZpYywgdGhlbiBpdCdzIHByb2JhYmx5IGR1ZSB0byB0aGUgcGVyaW9kaWMgZ3Jh
-dGl0aW91cyBBUlAKPiBwYWNrZXRzIChnYXJwLFsxXSkuIFRoYXQgaXMsIHRoZSBYMzAwIGluZm9y
-bXMgdGhlIGRldmljZXMgb24gdGhlIG5ldHdvcmsKPiBhYm91dCB0aGUgZmFjdCB0aGF0IHRoZSBJ
-UCBhZGRyZXNzIGl0IGhhcyBpcyBhbnN3ZXJlZCBieSBpdHMgTUFDCj4gYWRkcmVzczsgdGhhdCB3
-YXksIHRoZXJlJ3MgYW4gQVJQIHRhYmxlIGVudHJ5IGZvciB0aGUgWDMxMC4gWW91IGNhbgo+IGFj
-dHVhbGx5IGp1c3QgYnVpbGQgdGhlIGZpcm13YXJlIHlvdXJzZWxmIGFuZCBjb21tZW50IG91dCB0
-aGUgZ2FycCgpCj4gY2FsbCwgaWYgeW91J3JlIGluY2xpbmVkIHRvIGRvIHNvLCB0aGVuCj4gCj4g
-VG8gYmUgaG9uZXN0LCBJIHNlZSBhIHN0cmFuZ2UgYmVoYXZpb3VyIHJlbGF0ZWQgdG8gdGhhdDsg
-bmFtZWx5LCB0aGUKPiBmaXJtd2FyZSBpbiB4MzAwX21haW4uYyBbMl0gY2xhaW1zIHRoYXQgdGhl
-IGdhcnAoKSBmdW5jdGlvbiBnZXRzIGNhbGxlZAo+IGV2ZXJ5IChyb3VnaGx5LCBpbnRlZ2VyIGRp
-dmlzaW9uLi4uKSAxIG1pbGxpc2Vjb25kLCBhbmQgdGhlIGdhcnAoKQo+IGZ1bmN0aW9uIHRoZW4g
-b25seSBkb2VzIHNvbWV0aGluZyBldmVyeSA2MCwwMDAgY2FsbHMg4oCTIGkuZS4gb25lIHBhY2tl
-dAo+IGV2ZXJ5IG1pbnV0ZS4gSSBqdXN0IGxpc3RlbmVkIGZvciB0aG9zZSwgYW5kIHRoZXkgZG9u
-J3QgaGFwcGVuIGF0IDYwcwo+IHBlcmlvZHMsIGJ1dCBhdCAxOTIuNjVzIHBlcmlvZHMuIFdoaWNo
-IGlzIGtpbmQgb2Ygc3RyYW5nZS4gSSdsbCByYWlzZQo+IHRoaXMgd2l0aCB0aGUgb3RoZXJzLgo+
-IAo+IEJlc3QgcmVnYXJkcywKPiAKPiBNYXJjdXMKPiAKPiBbMV0gaHR0cHM6Ly93aWtpLndpcmVz
-aGFyay5vcmcvR3JhdHVpdG91c19BUlAKPiBbMl0KPiBodHRwczovL2dpdGh1Yi5jb20vRXR0dXNS
-ZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvZmlybXdhcmUvdXNycDMveDMwMC94MzAwX21haW4uYyNM
-NDUyCj4gCj4gT24gMDYuMDEuMjAxNyAxNTowMywgVmxhZGljYSBTYXJrIHZpYSBVU1JQLXVzZXJz
-IHdyb3RlOgo+PiBIaSB0aGVyZSwKPj4gCj4+IEkgaGF2ZSBhIGZldyBYMzEwcy4gU29tZSBvZiB0
-aGVtIGFyZSBjb25uZWN0ZWQgdG8gYSBkZXNrdG9wIFBDIGJ1dCBJCj4+IHdhbnQgdG8gYWNjZXNz
-IHNvbWUgb2YgdGhlbSB2aWEgbXkgbGFwdG9wLiB0aGUgbGFwdG9wIGlzIGNvbm5lY3RlZCB0bwo+
-PiBhIGxvY2FsIHN3aXRjaCBhbmQgdGhlIFgzMTAgaXMgYWxzbyBjb25uZWN0ZWQgdG8gaXQuIElu
-IG9yZGVyIHRvIGhhdmUKPj4gaW50ZXJuZXQgYWNjZXNzIHRoZSBzd2l0Y2ggaXMgY29ubmVjdGVk
-IHRvIHRoZSB3YWxsIGV0aGVybmV0IHBsdWcuCj4+IFRoaXMgcGx1ZyBpcyBtb25pdG9yZWQgYnkg
-bWFjbW9uIGFuZCBkaXNjb25uZWN0cyB0aGUgcGx1ZyBmcm9tIExBTiwgaWYKPj4gc3RyYW5nZSBt
-YWMgYXBwZWFycy4KPj4gCj4+IFRoZSBwcm9ibGVtIGFwcGVhcnMgZHVlIHRvIHRoZSBJQ01QIGlu
-Zm9ybWF0aW9uIHJlcXVlc3QgZnJhbWVzCj4+IGJyb2FkY2FzdGVkIGJ5IHRoZSBYMzEwLiBTaW5j
-ZSB0aGlzIGlzIGEgYnJvYWRjYXN0LCBpdCBpcyBhbHNvCj4+IGZvcndhcmRlZCB0byB0aGUgd2Fs
-bCBwbHVnIGFuZCB0aGUgbWFjbW9uIGRpc2Nvbm5lY3RzIGl0IGZyb20gdGhlIExBTi4KPj4gCj4+
-IAo+PiBXaXRoIHRoZSBOMjEwIEkgZGlkbid0IGhhZCB0aG9zZSBwcm9ibGVtcywgcHJvYmFibHkg
-YmVjYXVzZSB0aGV5IGRvCj4+IG5vdCB0cmFuc21pdCBicm9hZGNhc3RzLgo+PiAKPj4gVGhlIHBy
-b2JsZW0gaXMgdGhhdCBpIGhhdmUgYWxyZWFkeSBhIGZldyBtYWMgYWRkcmVzc2VzIGluIHRoZSBt
-YWNtb24KPj4gYW5kIGVudGVyaW5nIG1vcmUgd291bGQgcmVxdWlyZSBhZGRpdGlvbmFsIGxpY2Vu
-c2VzLgo+PiAKPj4gSXMgdGhlcmUgY2hhbmNlIHRvIGRpc2FibGUgdGhlc2UgYnJvYWRjYXN0cz8K
-Pj4gCj4+IEJSLAo+PiBWbGFkaQo+PiAKPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20KPj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
-bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCj4gCj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+
-IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
-bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
-VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
-L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============1949556016343000468==
+Content-Type: multipart/alternative; boundary="0000000000003c959305a19a0118"
+
+--0000000000003c959305a19a0118
+Content-Type: text/plain; charset="UTF-8"
+
+Hey Jeff,
+
+What type of GPS antenna are you using? 3.3V or 5V? If it's compatible with
+X310 & other USRPs, I would imagine you'll be good to go with the E320...
+Do you see the locked / unlocked status change between consecutive runs of
+something like gpsmon on the E320?
+
+There were some early-ish runs of the E320 that are eligible for a GPSDO
+rework, feel free to send support@ettus.com a direct email with your E320's
+serial number and I can see if yours is one of the affected units.
+
+Sam Reiter
+
+On Mon, Mar 23, 2020 at 4:27 PM Long, Jeffrey P. via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Has anyone had issues with the E320 GPS locking or staying locked? I have
+> a LabSat GNSS simulator that I am reliably able to get a E310, X310, and
+> even a N310 to lock to however the E320 I just got will occasionally lock
+> and then fall out almost immediately. I used mender to up it to 3.15LTS and
+> everything else works pretty well. I run the e320bist on the gpsdo and it
+> reports it mostly being unlocked but occasionally it will lock for a minute
+> or so. When it does lock I can run the query gpsdo immediately after and it
+> will report locked but again it only lasts for a min or so.
+>
+>
+>
+> Thanks
+>
+> Jeff
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000003c959305a19a0118
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
+mail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div c=
+lass=3D"gmail_default" style=3D"font-family:verdana,sans-serif">Hey Jeff,=
+=C2=A0</div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-=
+serif"><br></div><div class=3D"gmail_default" style=3D"font-family:verdana,=
+sans-serif">What type of GPS antenna are you using? 3.3V or=C2=A05V? If it&=
+#39;s compatible with X310 &amp; other USRPs, I would imagine you&#39;ll be=
+ good to go with the E320... Do you see the locked / unlocked status change=
+ between consecutive runs of something like gpsmon on the E320?</div><div c=
+lass=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br></div><=
+div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif">There =
+were some early-ish runs of the E320 that are eligible for a GPSDO rework, =
+feel free to send <a href=3D"mailto:support@ettus.com">support@ettus.com</a=
+> a direct email with your E320&#39;s serial number and I can see if yours =
+is one of the affected units.</div><div class=3D"gmail_default" style=3D"fo=
+nt-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=
+=3D"font-family:verdana,sans-serif">Sam Reiter</div></div></div></div></div=
+></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Mon, Mar 23, 2020 at 4:27 PM Long, Jeffrey P. via USRP-user=
+s &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-5100932759653853636WordSection1">
+<p class=3D"MsoNormal">Has anyone had issues with the E320 GPS locking or s=
+taying locked? I have a LabSat GNSS simulator that I am reliably able to ge=
+t a E310, X310, and even a N310 to lock to however the E320 I just got will=
+ occasionally lock and then fall out
+ almost immediately. I used mender to up it to 3.15LTS and everything else =
+works pretty well. I run the e320bist on the gpsdo and it reports it mostly=
+ being unlocked but occasionally it will lock for a minute or so. When it d=
+oes lock I can run the query gpsdo
+ immediately after and it will report locked but again it only lasts for a =
+min or so.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks<u></u><u></u></p>
+<p class=3D"MsoNormal">Jeff<u></u><u></u></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000003c959305a19a0118--
+
+
+--===============1949556016343000468==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1949556016343000468==--
+
