@@ -2,71 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1CAA19048D
-	for <lists+usrp-users@lfdr.de>; Tue, 24 Mar 2020 05:44:00 +0100 (CET)
-Received: from [::1] (port=40540 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E03A1905C1
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Mar 2020 07:29:53 +0100 (CET)
+Received: from [::1] (port=36934 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jGbPz-0000z2-7p; Tue, 24 Mar 2020 00:43:59 -0400
-Received: from mail-qt1-f175.google.com ([209.85.160.175]:37507)
+	id 1jGd4Q-0007qV-Un; Tue, 24 Mar 2020 02:29:50 -0400
+Received: from mail-pj1-f45.google.com ([209.85.216.45]:34250)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jGbPv-0000rt-PF
- for usrp-users@lists.ettus.com; Tue, 24 Mar 2020 00:43:55 -0400
-Received: by mail-qt1-f175.google.com with SMTP id d12so11534974qtj.4
- for <usrp-users@lists.ettus.com>; Mon, 23 Mar 2020 21:43:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=jiR6ftoCGK89kkII7f7n/iVfoJzjhJJPqxXZPQTp9qU=;
- b=NdOnWgrlpNoGDc5rbjxYrtQBiNUepxg/xED74xApFvj347KmB0WzTpV6G8YG8j+oZP
- EOI2USbZZ4FCA50eHSHG3jIcY38FqdI74VQvS2oZToVpo36hxygIie7itEe3QSxvk+4C
- MnQTWgWbnQy+PZT6jcC8Z/TsGuuSFZexYjH7YbUYzPXgHJzTph6wvc3LWHzkxC4jQjhw
- 67XpBMAvn2Slg1hcXF7xP1bWbJIMV+T0KEp9jGrPfECm/WLOdAk6M67uMLVgY+qP4dwl
- iiNOX7iVmTldF1dkMvvaPiIPeRXCHcJ63mV3BX/EZQb7frYQhfjILRP9DgLphUP3s8aJ
- 3nMA==
+ (Exim 4.93) (envelope-from <ianb@ionconcepts.com>)
+ id 1jGd4M-0007kL-I4
+ for usrp-users@lists.ettus.com; Tue, 24 Mar 2020 02:29:46 -0400
+Received: by mail-pj1-f45.google.com with SMTP id q16so879528pje.1
+ for <usrp-users@lists.ettus.com>; Mon, 23 Mar 2020 23:29:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ionconcepts-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=oLAoQdR3jfPq/Uj3nfzHANq9GRdocA6N3whA/spjJYI=;
+ b=kXqOxBARRw5H0NTRrkYxOTmMjs+sHdMD6CwjsObIUgkYZ6LB3iDJlRaDPydyIkJ6Ts
+ rHJClbVNNRGGoWPowPJf071Jlc23D2vIlycpQStEOsxAOJ51nZKLapZX5l9UKQFmD22Q
+ i2WVeZUHV4lMOxUr202mLyYOO9NIxBmlQ0pPmG2c/d7NaM9I0ZOq36m705fpIcqLnQ66
+ X65Gt53O+1HFxWqg+i4e66ijiimsoSnMaJmi4B0QwwI8styB8MLT+Sok9h+HRaXIKPKB
+ /m6T8zU32aWv1CIj8Xow9+4m4jZ9Je/A2LUEZWp0dxl1zjjrE71GO6WJtmcThpDdwqI/
+ iIRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=jiR6ftoCGK89kkII7f7n/iVfoJzjhJJPqxXZPQTp9qU=;
- b=RVrj1r4K+Ztj+/qvTYMqP9oG49LMHRWbadp7fqtvzpKfh5tGx2+7R9AwwrMf6OK1Az
- jpjZnfBiGfb5Zkfdt5GSVtcz/YZsBU2YhGvgn6Rxh97DgpBzxvo2qDiECsZA8BHcuQux
- TcOBRiJgBZpK1bJj/8OIm0Ey20Sx8kZvOqKp+EgHCyzbSvhtO8oEJbKynS033j8lN07r
- C9JUlgZ52H7SmKc7HoHtVaXuQEqoKtZDqV1MYb9GczwArZYQOwJNdewvXOkYwM8Mafoj
- bJkJK4F2ddzRQdsspj5wRaSpHiDvnCPrAgIl7kXtHUg5PvETpK04bECC3tEMzZTfqnhI
- KvVA==
-X-Gm-Message-State: ANhLgQ0eV/YVqkBoLzjL7A7PNfZ0fdkFM/Lg4rdETYKJBI3TEmCSpvaO
- X4tsvkoqJpVAYvzOiQsuSGJa85As
-X-Google-Smtp-Source: ADFU+vsfZxfSeDiSOPrxFm1lPv00qW6rRL4JoFfF3CPh6un9dLBeh1MYWtXJOaX3Z5sPGgYUazeOHQ==
-X-Received: by 2002:ac8:6697:: with SMTP id d23mr15546408qtp.8.1585024993911; 
- Mon, 23 Mar 2020 21:43:13 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-12-204.dsl.bell.ca.
- [174.95.12.204])
- by smtp.googlemail.com with ESMTPSA id v75sm12753179qkb.22.2020.03.23.21.43.12
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=oLAoQdR3jfPq/Uj3nfzHANq9GRdocA6N3whA/spjJYI=;
+ b=CewoRc3rMv6gLB2HO0wnbakynQPMe8y5+deg0Gba+BLs9V1aB6cUFsYluqgGr1WKKR
+ 8dFUTjjT/V2atDbKo4ewyzRPiJ+eszTdv9561YuZyCSzmDP01Zm2YCRKoeYGa9S60W73
+ Au/wDFmhl0UqlwNbQ6INz1qfsReEyGurNqMdx9+V95MBgEELRchaoB0EzSSonoYMM610
+ xf4hKnJMqojdCi4eB4tR0/lEngjWHORicvYtCnW706ifUteHMhZl8JIcUu3uCyp4hj04
+ 88ju0xoHrkyqRduRXnk00VDKy7FYZNEJyncndJnl4oPW56hm1K1I5Un1ihpg+2zZcDYi
+ Y6Cw==
+X-Gm-Message-State: ANhLgQ3CtqMqMQ7Y0Tu35iudiN+/wBTT25ox2RbMX/ERtN8zgiLKWb9h
+ xMWmDCqxuJ63mRGcdnWzbk/U1C4D4CM=
+X-Google-Smtp-Source: ADFU+vte8H50quQ1JnH7O3Wc7TKC6SJ5dT7+Yz9wXrmjOV64TC6K5ACp0x1ugfOJwjad7CcV0GaoTw==
+X-Received: by 2002:a17:902:bc4a:: with SMTP id
+ t10mr2829219plz.199.1585031345538; 
+ Mon, 23 Mar 2020 23:29:05 -0700 (PDT)
+Received: from pox-laden-system.localdomain
+ (c-73-222-38-19.hsd1.ca.comcast.net. [73.222.38.19])
+ by smtp.gmail.com with ESMTPSA id y142sm15742039pfc.53.2020.03.23.23.29.04
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 23 Mar 2020 21:43:12 -0700 (PDT)
-Message-ID: <5E798FDF.8090403@gmail.com>
-Date: Tue, 24 Mar 2020 00:43:11 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: Lukas Haase <lukashaase@gmx.at>
-References: <CAB__hTT=qkX=vq7tuG9ugXnL57o_YXzig1j1d9Cf3sB-vhzdfg@mail.gmail.com>
- <38CFC8D2-9645-4412-9873-9612B897C5EB@gmail.com>
- <trinity-c8914290-4845-4675-98c6-2e02b41f536e-1584075584965@3c-app-gmx-bap08>
- <CAB__hTRm4hNPnfX4usHGA-hdc5WZ_=AnHVjJnZj7rGYM8xb0Tw@mail.gmail.com>
- <CAB__hTQOdK3Y3rEbVOGtkS9L-SE2aQ3JkyfueQZAmS_h4ULETg@mail.gmail.com>
- <trinity-f6784e7e-a386-4c2d-9853-5909919d6c1c-1584111163445@3c-app-gmx-bs31>
- <5E6BC2E8.20108@gmail.com>
- <trinity-d7f908f5-bedb-43b2-b687-8e8632475dc0-1585019285999@3c-app-gmx-bap77>
- <5E798004.4040903@gmail.com>
- <trinity-8a4afc9a-c9ff-426e-a6a7-ec6963a37102-1585022022604@3c-app-gmx-bs25>
- <5E7986C3.7040406@gmail.com>
- <trinity-7c07112b-2119-4cd9-a79a-d3dc63ef7cbf-1585023872132@3c-app-gmx-bs25>
-In-Reply-To: <trinity-7c07112b-2119-4cd9-a79a-d3dc63ef7cbf-1585023872132@3c-app-gmx-bs25>
-Subject: Re: [USRP-users] USRP X310 ignored DSP retuning on TX when using a
- timed command
+ Mon, 23 Mar 2020 23:29:05 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+In-Reply-To: <a997d14f-080d-a30c-6400-2cd1766842cb@ettus.com>
+Date: Mon, 23 Mar 2020 23:29:02 -0700
+Message-Id: <834000BB-7082-4963-BC19-BF23E223F248@ionconcepts.com>
+References: <104f4e36-8a58-3f3b-0b9b-5d33f21b1c55@gmail.com>
+ <a997d14f-080d-a30c-6400-2cd1766842cb@ettus.com>
+To: =?utf-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+X-Mailer: Apple Mail (2.3273)
+Subject: Re: [USRP-users] X310 broadcasting ICMP - information request
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,12 +68,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
- Rob Kossler <rkossler@nd.edu>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Ian Buckley via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ian Buckley <ianb@ionconcepts.com>
+Cc: usrp-users@lists.ettus.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -97,98 +86,68 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 03/24/2020 12:24 AM, Lukas Haase wrote:
-> Hi Marcus,
->
-> I would have two possible solutions but both of them are non-trivial:
->
-> 1. As you say, parallelism. For each of N supported timed commands, the decoding of the timed commands is cloned
-> 2. If the timed commands are enough clock cycles in the future, they can be decoded immideately once they come in. For each type of register they set, they set the following: value of the register. Clock cycle at which it should occur. Then we would have something like:
->    reg [31:0] cycle_number; //  how to handle overflow? commands can be a max of 1/200e6 * 2^32 seconds in advance
->    always @(posedge clk) begin
->      cycle_number <= cycle_number + 1;
->      if cycle_number == when_to_set_phase_accumulator_register
->        phase_accumulator <= data_for_phase_accumulator;
->      if cycle_number == when_to_set_phase_increment_register
->        phase_increment <= data_for_phase_increment;
->    end
-Right, but the timed-command FIFO handler doesn't really *KNOW* anything 
-about the semantics of the registers its setting, and indeed, given
-   the large variety of daughter-cards, and other "things" it probably 
-shouldn't *KNOW* too much about anything, because that, among other things,
-   makes the code MUCH harder to maintain, and occupies more room in the 
-limited-space FPGA.
-
-
->
->
->> Absolute phase coherence (with predictable/zero phase-offset) is, in
->> practice, incredibly hard to achieve--PARTICULARLY PHASE OFFSET.
->>     Which is why most fielded RF systems work just fine with "wobbly"
->> phase-offset, with mechanisms to factor it out "at startup" (for whatever
->>     definition of "start up" is appropriate).
-> I know it is hard to achieve and I know normal *comm* systems do not care.
-> BUT: There is a large class of practically relevent applications that require TX/RX phase coherence: Ranging and radar.
-> Everything that that needs to deduce time of flight (=range) via carrier phase shift.
-> If it's just one frequency we can again calibrate.
-> But to make systems robust, they use multiple frequencies and obtain phase shifts from diverse (hopped) frequencies.
-> Yes, it's hard to implement but these systems do exist, have been built and work.
-Yup, those systems have hardware that "understands" all of the subtle 
-semantics of the application at hand.
-
->
-> (I am also aware that there are other options to implement these systems outside of USRP/SDR context: a single PLL for both TX/RX with potential freq dividers/multipliers, coupling transmitted signal harmonics back, bandpass filter and use as RX LO etc).
-The problem with the "marvelous generality" of an SDR solution (whether 
-it's USRP or something else) is that there are *specific* applications
-   that don't necessarily slide easily into the model of "marvelous 
-generality".
-
-Your application seems to have two things that are sometimes hard to 
-achieve in a generic SDR:
-
-      o Rapid frequency hopping  (RF synthesizers for rapid 
-frequency-hopping systems are often designed very differently than for
-         more-general systems).
-
-      o Predictable and reliable phase-offset across hops.  [That is, 
-hop to X, hop to Y, come back to X, and have an expectation of the same 
-systemic
-         phase offset].
-
-
->
-> In other words: How would you implement such a ranging system with USRP?
->
-> Currently I only see two options that work but none of them are acceptable:
-> Option 1: Use analog only tuning. But this is not flexible because it only works with integer-N tuning (poor resolution) and has huge settling timed
-> Option 2: Do everything (=hopping) in software on the host computer, e.g. within gnuradio. But this requires unnecessary huge data rates (200MSsps)
-Option 2 leaves you in a situation where the hardware isn't changing 
-across hops.  I agree that it carries a heavy implementation burden on
-   the software side.
-
-There's a 3rd option you didn't mention:
-
-Implement application-specific "stuff" in the FPGA, using either the 
-RFNoC framework or "raw".  RFNoC and the whole open-source FPGA code
-   were designed to allow that, and many Ettus customers do custom 
-things in the FPGA specifically because the as-shipped architecture doesn't
-   quite fit their application model.  That is, as I'll re-iterate, an 
-attribute of highly-generalized systems--they have this natural tendency to
-   not deal well speciic "edge cases".
-
-
->
->> I hope that someone with better understanding of the timed-command FIFO
->> can chime in and tell me that I'm completely wrong.
-> Indeed much appreciated.
->
->
-> Thanks,
-> Lukas
->
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+T2xkIHRocmVhZCBidXQgZm9yIHRoZSBzYWtlIG9mIGEga25vd2xlZGdlIGFyY2hpdmU6IFRoZSBJ
+Q01QIElSIHRyYWZmaWMgaXMgdGhlIFgzMTAgTGluayBzdGF0ZSByb3V0aW5nIHRhYmxlIHVwZGF0
+ZXPigKZpdOKAmXMgdW5pcXVlIHRvIHRoZSBYMzEwLCBub3QgcHJlc2VudCBpbiB0aGUgTjIxMApB
+bmQgSSBhbHNvLCBvbmx5IHRvbmlnaHQsIG9ic2VydmVkIG90aGVyIFgzMTAgZmlybXdhcmUgZHJp
+dmVuIG5ldHdvcmsgc2VydmljZXMgcnVubmluZyBhdCB+M3ggdGhlIGludGVydmFsIEkgZXhwZWN0
+ZWQgTWFyY3Vz4oCmc28gc29tZXRoaW5nIGlzIG9mZiBnbG9iYWxseSBpbiB0aGUgZmlybXdhcmUg
+b3IgdGhlIHRpbWVyIHJlZ2lzdGVyIHRoYXQgZHJpdmVzIGl0LgotSWFuCgo+IE9uIEphbiA2LCAy
+MDE3LCBhdCA2OjU1IEFNLCBNYXJjdXMgTcO8bGxlciB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+IAo+IEhpIFZsYWRpY2EsCj4gCj4gZXJyLCB0aGF0
+J3MgYSBzdHJhbmdlIHByb2JsZW07IGFyZSB5b3Ugc3VyZSB5b3Ugd2FudCB0byBjaGFuZ2UgdGhl
+Cj4gYmVoYXZpb3VyIG9mIHlvdXIgU0RSIGRldmljZXMgdG8gc3VpdCB0aGUgc2VjdXJpdHkgcHJv
+ZHVjdCB0aGF0IHlvdSBwYXkKPiBmb3IsIGluIG9yZGVyIHRvIG1ha2UgeW91ciBuZXR3b3JrIGVh
+c2llciB0byBzZWN1cmU/IEZyYW5rbHksIGlmIHRoYXQKPiBwcm9kdWN0IG1ha2VzIGFueSBwcm9i
+bGVtczogSXQgbG9va3MgbGlrZSBzb21lIHNvZnR3YXJlIHRoYXQgcnVucyBvbiBhCj4gcGxhaW4g
+TGludXggc3lzdGVtLCBwcm9iYWJseS4gVXNlIGVidGFibGVzIHRvIHNpbXBseSBtYWtlIHRoYXQg
+c3lzdGVtCj4gZGVhZiB0byBwYWNrZXRzIGNvbWluZyBmcm9tIHlvdXIgVVNSUCdzIE1BQyBhZGRy
+ZXNzLiBPciwgaWYgeW91ciBsb2NhbAo+IHN3aXRjaCBhbGxvd3MgdGhhdCwgc2ltcGx5IHB1dCB0
+aGUgVVNSUCBpbiBhIHNlcGFyYXRlIFZMQU4uCj4gCj4gQnkgdGhlIHdheSwgdGhlIE4yMTAgYWxz
+byBhbnN3ZXJzIHdpdGggYnJvYWRjYXN0IHBhY2tldHMgdG8gZGlzY292ZXJ5Cj4gcmVxdWVzdHMs
+IGlmIEkgcmVtZW1iZXIgY29ycmVjdGx5LiBTbyBpZiB0aGF0IHByb2JsZW0gcmVhbGx5IGlzCj4g
+WDMxMC1zcGVjaWZpYywgdGhlbiBpdCdzIHByb2JhYmx5IGR1ZSB0byB0aGUgcGVyaW9kaWMgZ3Jh
+dGl0aW91cyBBUlAKPiBwYWNrZXRzIChnYXJwLFsxXSkuIFRoYXQgaXMsIHRoZSBYMzAwIGluZm9y
+bXMgdGhlIGRldmljZXMgb24gdGhlIG5ldHdvcmsKPiBhYm91dCB0aGUgZmFjdCB0aGF0IHRoZSBJ
+UCBhZGRyZXNzIGl0IGhhcyBpcyBhbnN3ZXJlZCBieSBpdHMgTUFDCj4gYWRkcmVzczsgdGhhdCB3
+YXksIHRoZXJlJ3MgYW4gQVJQIHRhYmxlIGVudHJ5IGZvciB0aGUgWDMxMC4gWW91IGNhbgo+IGFj
+dHVhbGx5IGp1c3QgYnVpbGQgdGhlIGZpcm13YXJlIHlvdXJzZWxmIGFuZCBjb21tZW50IG91dCB0
+aGUgZ2FycCgpCj4gY2FsbCwgaWYgeW91J3JlIGluY2xpbmVkIHRvIGRvIHNvLCB0aGVuCj4gCj4g
+VG8gYmUgaG9uZXN0LCBJIHNlZSBhIHN0cmFuZ2UgYmVoYXZpb3VyIHJlbGF0ZWQgdG8gdGhhdDsg
+bmFtZWx5LCB0aGUKPiBmaXJtd2FyZSBpbiB4MzAwX21haW4uYyBbMl0gY2xhaW1zIHRoYXQgdGhl
+IGdhcnAoKSBmdW5jdGlvbiBnZXRzIGNhbGxlZAo+IGV2ZXJ5IChyb3VnaGx5LCBpbnRlZ2VyIGRp
+dmlzaW9uLi4uKSAxIG1pbGxpc2Vjb25kLCBhbmQgdGhlIGdhcnAoKQo+IGZ1bmN0aW9uIHRoZW4g
+b25seSBkb2VzIHNvbWV0aGluZyBldmVyeSA2MCwwMDAgY2FsbHMg4oCTIGkuZS4gb25lIHBhY2tl
+dAo+IGV2ZXJ5IG1pbnV0ZS4gSSBqdXN0IGxpc3RlbmVkIGZvciB0aG9zZSwgYW5kIHRoZXkgZG9u
+J3QgaGFwcGVuIGF0IDYwcwo+IHBlcmlvZHMsIGJ1dCBhdCAxOTIuNjVzIHBlcmlvZHMuIFdoaWNo
+IGlzIGtpbmQgb2Ygc3RyYW5nZS4gSSdsbCByYWlzZQo+IHRoaXMgd2l0aCB0aGUgb3RoZXJzLgo+
+IAo+IEJlc3QgcmVnYXJkcywKPiAKPiBNYXJjdXMKPiAKPiBbMV0gaHR0cHM6Ly93aWtpLndpcmVz
+aGFyay5vcmcvR3JhdHVpdG91c19BUlAKPiBbMl0KPiBodHRwczovL2dpdGh1Yi5jb20vRXR0dXNS
+ZXNlYXJjaC91aGQvYmxvYi9tYXN0ZXIvZmlybXdhcmUvdXNycDMveDMwMC94MzAwX21haW4uYyNM
+NDUyCj4gCj4gT24gMDYuMDEuMjAxNyAxNTowMywgVmxhZGljYSBTYXJrIHZpYSBVU1JQLXVzZXJz
+IHdyb3RlOgo+PiBIaSB0aGVyZSwKPj4gCj4+IEkgaGF2ZSBhIGZldyBYMzEwcy4gU29tZSBvZiB0
+aGVtIGFyZSBjb25uZWN0ZWQgdG8gYSBkZXNrdG9wIFBDIGJ1dCBJCj4+IHdhbnQgdG8gYWNjZXNz
+IHNvbWUgb2YgdGhlbSB2aWEgbXkgbGFwdG9wLiB0aGUgbGFwdG9wIGlzIGNvbm5lY3RlZCB0bwo+
+PiBhIGxvY2FsIHN3aXRjaCBhbmQgdGhlIFgzMTAgaXMgYWxzbyBjb25uZWN0ZWQgdG8gaXQuIElu
+IG9yZGVyIHRvIGhhdmUKPj4gaW50ZXJuZXQgYWNjZXNzIHRoZSBzd2l0Y2ggaXMgY29ubmVjdGVk
+IHRvIHRoZSB3YWxsIGV0aGVybmV0IHBsdWcuCj4+IFRoaXMgcGx1ZyBpcyBtb25pdG9yZWQgYnkg
+bWFjbW9uIGFuZCBkaXNjb25uZWN0cyB0aGUgcGx1ZyBmcm9tIExBTiwgaWYKPj4gc3RyYW5nZSBt
+YWMgYXBwZWFycy4KPj4gCj4+IFRoZSBwcm9ibGVtIGFwcGVhcnMgZHVlIHRvIHRoZSBJQ01QIGlu
+Zm9ybWF0aW9uIHJlcXVlc3QgZnJhbWVzCj4+IGJyb2FkY2FzdGVkIGJ5IHRoZSBYMzEwLiBTaW5j
+ZSB0aGlzIGlzIGEgYnJvYWRjYXN0LCBpdCBpcyBhbHNvCj4+IGZvcndhcmRlZCB0byB0aGUgd2Fs
+bCBwbHVnIGFuZCB0aGUgbWFjbW9uIGRpc2Nvbm5lY3RzIGl0IGZyb20gdGhlIExBTi4KPj4gCj4+
+IAo+PiBXaXRoIHRoZSBOMjEwIEkgZGlkbid0IGhhZCB0aG9zZSBwcm9ibGVtcywgcHJvYmFibHkg
+YmVjYXVzZSB0aGV5IGRvCj4+IG5vdCB0cmFuc21pdCBicm9hZGNhc3RzLgo+PiAKPj4gVGhlIHBy
+b2JsZW0gaXMgdGhhdCBpIGhhdmUgYWxyZWFkeSBhIGZldyBtYWMgYWRkcmVzc2VzIGluIHRoZSBt
+YWNtb24KPj4gYW5kIGVudGVyaW5nIG1vcmUgd291bGQgcmVxdWlyZSBhZGRpdGlvbmFsIGxpY2Vu
+c2VzLgo+PiAKPj4gSXMgdGhlcmUgY2hhbmNlIHRvIGRpc2FibGUgdGhlc2UgYnJvYWRjYXN0cz8K
+Pj4gCj4+IEJSLAo+PiBWbGFkaQo+PiAKPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20KPj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
+bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCj4gCj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+
+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
+bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
