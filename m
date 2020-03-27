@@ -2,86 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36CE019531E
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Mar 2020 09:42:47 +0100 (CET)
-Received: from [::1] (port=45770 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE7A9195F74
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Mar 2020 21:16:09 +0100 (CET)
+Received: from [::1] (port=34170 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jHkZd-0005xH-OP; Fri, 27 Mar 2020 04:42:41 -0400
-Received: from mail-eopbgr40132.outbound.protection.outlook.com
- ([40.107.4.132]:46936 helo=EUR03-DB5-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
- id 1jHkZZ-0005te-GZ
- for usrp-users@lists.ettus.com; Fri, 27 Mar 2020 04:42:37 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EI8c4ufu+kPJN4k9CHtrC9g0lvlVtT9QDuE5vc/4RZWubt28neXG3c9DvjyOpBb3VvwD92L29StTS8kOH0d4PVf3fzW8GdnlfS3dBMgyVb5++bww9je+EWIOiH2ZAcgX3oCO/kGnuW01JO7ByOAJVnpNjv4zKY1q5rHyOfdUmRqAx6/f0FH7yfExKuSGkV4IfuRKbmH9zrWIMG4DpOJdw6xxLtOH8S4UKK9uj88SHCnv/pb5G1SMov1g8vLqOHYBbXkEOvKvsLOklkjcrIxKqqtWM/ckD7rFuyNGbdvHbJ5zxQLFyqwwnCAfONLo+oLTimZaYu7Ai4gyfwtzOq6+Yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aRCUG8M/5PfNBCR1Z/+ovVjDZBIxwBGpe/eFTzGuXQg=;
- b=VScwvK+5nPmm3NkbFkW2BxN91hEEclw2Tp44tYkIDepHF5NjW0msvGU5lIkdAziynjaPG9GzNC1Yw53bQH8PZaLw8xcaXK52KAr4d00E7mFqFkrKcuB9KCF3WidLe0slefJUXfmKCtafjR5RCFmGHKklMyjc8oR6k87kM/un8BfmJ1Uj5Lth41sAmsnkKBWV4UY5PysQr+PvKJhN1vWvrkFA4w5PCfoUttsciauURgNb9LzdPkMmJhZHpf16dJ9IrXBMfJ7wqD/m3Koqc2ckSPeWaBfr9aBh0NLKuc40Dt4ln0YNXdZNkdHJ88lWiBIpiMv4h5Zm9EoGOQUHF5AkKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
- header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aRCUG8M/5PfNBCR1Z/+ovVjDZBIxwBGpe/eFTzGuXQg=;
- b=K0iB9bnaSUHLa98nA3eTpRW8C634Tz82conoTcQCdWdJahYav8sOwvoiCv28rPEBWqYZ0iQWAVpT0zDPGOKu33Nl7La1kaFd1/1v1wqnD4/vPE33JPTabJCYuVYj6kiM1N9wxzeqEb4ai7402Cm7xLz8yftUl5Mqa/OJPUkmywg=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=demel@ant.uni-bremen.de; 
-Received: from AM6PR0402MB3398.eurprd04.prod.outlook.com (52.133.19.15) by
- AM6PR0402MB3798.eurprd04.prod.outlook.com (52.133.29.29) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.19; Fri, 27 Mar 2020 08:41:55 +0000
-Received: from AM6PR0402MB3398.eurprd04.prod.outlook.com
- ([fe80::91ba:d0f9:3491:9c20]) by AM6PR0402MB3398.eurprd04.prod.outlook.com
- ([fe80::91ba:d0f9:3491:9c20%7]) with mapi id 15.20.2835.023; Fri, 27 Mar 2020
- 08:41:54 +0000
+	id 1jHvOe-00082g-76; Fri, 27 Mar 2020 16:16:04 -0400
+Received: from barracuda1.dynetics.com ([204.154.192.63]:50364
+ helo=barracuda.dynetics.com)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93)
+ (envelope-from <btv1==3555c421da2==Ryan.Carmichael@dynetics.com>)
+ id 1jHvOa-0007ro-Bf
+ for usrp-users@lists.ettus.com; Fri, 27 Mar 2020 16:16:00 -0400
+X-ASG-Debug-ID: 1585340316-10620d75e97b7b10001-5wTQH4
+Received: from MX2.in.dynetics.com (MX2.in.dynetics.com [10.1.15.131]) by
+ barracuda.dynetics.com with ESMTP id VTT60q8TFNPTFFEC (version=TLSv1.2
+ cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO) for
+ <usrp-users@lists.ettus.com>; Fri, 27 Mar 2020 15:18:36 -0500 (CDT)
+X-Barracuda-Envelope-From: Ryan.Carmichael@dynetics.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.1.15.131
+Received: from MAUI.in.dynetics.com ([169.254.1.66]) by MX2.in.dynetics.com
+ ([10.1.15.131]) with mapi id 14.03.0487.000; Fri, 27 Mar 2020 15:15:18 -0500
+X-Barracuda-RBL-IP: 169.254.1.66
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <c94fdf66-0e4a-4d70-9456-208a25085ee2@ant.uni-bremen.de>
-Date: Fri, 27 Mar 2020 09:41:52 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Thread-Topic: X310 UHD 3.15 Lockups
+X-ASG-Orig-Subj: X310 UHD 3.15 Lockups
+Thread-Index: AdYEchXhhu8WromjQ/a/AI0tN7tQ0Q==
+Date: Fri, 27 Mar 2020 20:15:17 +0000
+Message-ID: <10F7328F6AD1354BA6DD787687B66B9001A3050C3A@Maui.in.dynetics.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-ClientProxiedBy: FR2P281CA0035.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:14::22) To AM6PR0402MB3398.eurprd04.prod.outlook.com
- (2603:10a6:209:6::15)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.120.128.231]
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from rangun.ant.uni-bremen.de
- (2003:ca:7f06:5700:f8dd:6748:d0a3:8664) by
- FR2P281CA0035.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:14::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.20 via Frontend Transport; Fri, 27 Mar 2020 08:41:54 +0000
-X-Originating-IP: [2003:ca:7f06:5700:f8dd:6748:d0a3:8664]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c273d120-99db-4a72-8dab-08d7d22ab3d1
-X-MS-TrafficTypeDiagnostic: AM6PR0402MB3798:
-X-Microsoft-Antispam-PRVS: <AM6PR0402MB379839AB0CE5D7817BC29267A9CC0@AM6PR0402MB3798.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-Forefront-PRVS: 0355F3A3AE
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM6PR0402MB3398.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10019020)(136003)(39830400003)(376002)(346002)(396003)(366004)(186003)(316002)(2616005)(8676002)(5660300002)(6916009)(786003)(16526019)(7116003)(66476007)(81156014)(508600001)(8936002)(6486002)(81166006)(31696002)(86362001)(7696005)(2906002)(31686004)(66556008)(66946007)(52116002);
- DIR:OUT; SFP:1102; 
-Received-SPF: None (protection.outlook.com: ant.uni-bremen.de does not
- designate permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6UZC30Ioi8JXjxHqmn7if4gxJ8V2wEiz86V8TozCVaXt6xzZByiL9F2q1gsTo+fl7RJM8fuDMJV5qok985Guu3/DLfgGWPlU2Y0lLJOeZDxnuKBXs1V3wfXy8TOD9gBrcFDtZoaiwZUxzCWdpSmXKHvolDd/OUHPHnjEzrJWu4IINOrUZ5e/1bXs7sf2lCvL95x8AcxC3UcwVnv07Q5pqw+YhepDfjFh81C89SvRAwBBkfyYvusjS1sOskA0+FQNZpIq0LuMNkBEoj88xQgSaI69Yo2zfw4yKd+VKvODlsvQ4Ykzu03cCUpWNwHbf+Cz7dnpULU1I2Zc0y1ZzlfgU7b8s1nCnYQTEDoj8g2qOdUrSCChVTvIIuoaspUhvMgOjMiXM2r4svt2Bi89YEP6vPzdQR+PnP/R0LJedHxXwGT0hAYV4yLHyWK+1kTFmofs
-X-MS-Exchange-AntiSpam-MessageData: ZFrC3krN6XeoENjtkczHbDXHiAPs47r/nurRppdG7DtM8nMi3ASTnqmmi7I8uxsQ2VQjK4jT9W3ma60EXNYer4mB0oFwn3UPfTKsLd0gnYtHVHodSWL4VSbIWFqPpCULaRDIhmnGOFlWlprDS/0k+QoiEDqdCHFLQjE5pCVqQi44vmYY77wCFz/pJqzpXb1y0yGUStihnK4S4PlI+bEeCg==
-X-OriginatorOrg: ant.uni-bremen.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: c273d120-99db-4a72-8dab-08d7d22ab3d1
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2020 08:41:54.5317 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3ISb9jOt+ci7IKv52nYi89j66KDrwOrKUWwUs3jzV5lZBC3kjViXGaUEJ91LmXZSdwccA/uvZ/kUpF/2Sa9lQg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0402MB3798
-Subject: [USRP-users] N310 remote management
+X-Barracuda-Connect: MX2.in.dynetics.com[10.1.15.131]
+X-Barracuda-Start-Time: 1585340316
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA384
+X-Barracuda-URL: https://barracuda.in.dynetics.com:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at dynetics.com
+X-Barracuda-Scan-Msg-Size: 7201
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No,
+ SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
+ QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.80838
+ Rule breakdown below
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ 0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: [USRP-users] X310 UHD 3.15 Lockups
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,10 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: "Carmichael, Ryan via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>
+Content-Type: multipart/mixed; boundary="===============5117878982390072512=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -110,41 +81,219 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi all,
+--===============5117878982390072512==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_10F7328F6AD1354BA6DD787687B66B9001A3050C3AMauiindynetic_"
 
-last week I set up the N310s we have with UHD3.15LTS to run in our 
-network. By now, most of them are not accessible remotely anymore. Since 
-I don't have physical access to them anymore, I'd like to figure out a 
-way to reliably manage them before someone fixes the immediate issue for me.
+--_000_10F7328F6AD1354BA6DD787687B66B9001A3050C3AMauiindynetic_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I've seen 2 error patterns.
+I recently updated from 3.11.1 to 3.15LTS to try to resolve a receive locku=
+p problem, however it still appears to be happening (albeit seemingly less =
+frequently).
 
-1. A N310 may not get a lock on its PLL anymore. Even after a reboot or 
-"force_reinit=1"
+Essentially, stream->recv() gets into a state where it never returns, even =
+though we are using the default timeout (0.1). Verified via debugger that r=
+ecv() itself is just hanging.
 
-2. N310s disappear from the network. Or they are unresponsive or I can't 
-log into them via ssh anymore to reboot them.
+We essentially have a function A that roughly looks like the code below (I'=
+m not leaving much out). We call this function A over and over quite freque=
+ntly. Are there any red flags here?
 
-I use Ubuntu 18.04 with UHD3.15LTS without any RFNoC.
+A() {
+    uhd::stream_cmd_t rxStreamCmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_=
+AND_DONE);
+    rxStreamCmd.stream_now =3D true;
+    rxStreamCmd.time_spec =3D uhd::time_spec_t();
+    rxStreamCmd.num_samps =3D nSamples_a;
 
-Currently, all N310s are only connected via an SFP+ port. In the past, I 
-had issues with an additional connection via the management port. So I 
-currently do not connect them via the management port.
+    rxStream ->issue_stream_cmd(rxStreamCmd);
 
-Does it help to connect the USRPs via their management port? Would I be 
-able to manage them more reliably?
+    numReceived =3D 0;
+    uhd::rx_metadata_t metaData
 
-How do I make this setup work? Is it sufficient to assign them to 
-different subnets? Can I assign them different IP addresses on the same 
-subnet? Do I need to physically separate the two networks?
+    while (numReceived < nSamples_a) {
+        .
+        .
+        // calculate numLeftToRead
+        .
+        .
+        uint samplesReceived =3D rxStream->recv(buffer, numLeftToRead, meta=
+Data);
+        .
+        .
+        // calculate numReceived
+    }
+}
 
-It would be great to hear from people's experience how to set up their 
-N310s.
+This "lockup" typically does not require the radio to be restarted, just my=
+ application.
 
-Cheers
-Johannes
+________________________________
+
+The information contained in this message, and any attachments, may contain=
+ privileged and/or proprietary information that is intended solely for the =
+person or entity to which it is addressed. Moreover, it may contain export =
+restricted technical data controlled by Export Administration Regulations (=
+EAR) or the International Traffic in Arms Regulations (ITAR). Any review, r=
+etransmission, dissemination, or re-export to foreign or domestic entities =
+by anyone other than the intended recipient in accordance with EAR and/or I=
+TAR regulations is prohibited.
+
+--_000_10F7328F6AD1354BA6DD787687B66B9001A3050C3AMauiindynetic_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I recently updated from 3.11.1 to 3.15LTS to try to =
+resolve a receive lockup problem, however it still appears to be happening =
+(albeit seemingly less frequently).
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Essentially, stream-&gt;recv() gets into a state whe=
+re it never returns, even though we are using the default timeout (0.1). Ve=
+rified via debugger that recv() itself is just hanging.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We essentially have a function A that roughly looks =
+like the code below (I&#8217;m not leaving much out). We call this function=
+ A over and over quite frequently. Are there any red flags here?<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">A() {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; &nbsp;&nbsp;uhd::stream_cmd_t rxStreamCmd(uhd=
+::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; rxStreamCmd.stream_now =3D true;<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; rxStreamCmd.time_spec =3D uhd::ti=
+me_spec_t();<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; rxStreamCmd.num_samps =3D nSample=
+s_a;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; rxStream -&gt;issue_stream_cmd(rx=
+StreamCmd);<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; numReceived =3D 0;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; uhd::rx_metadata_t metaData<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; while (numReceived &lt; nSamples_=
+a) {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // calcul=
+ate numLeftToRead<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint samp=
+lesReceived =3D rxStream-&gt;recv(buffer, numLeftToRead, metaData);<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // calcul=
+ate numReceived<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; }<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">This &#8220;lockup&#8221; typically does not require=
+ the radio to be restarted, just my application.
+<o:p></o:p></p>
+</div>
+<i><br>
+<hr>
+<p style=3D"font-size:8pt; line-height:9pt; font-style:monospace">The infor=
+mation contained in this message, and any attachments, may contain privileg=
+ed and/or proprietary information that is intended solely for the person or=
+ entity to which it is addressed.
+ Moreover, it may contain export restricted technical data controlled by Ex=
+port Administration Regulations (EAR) or the International Traffic in Arms =
+Regulations (ITAR). Any review, retransmission, dissemination, or re-export=
+ to foreign or domestic entities
+ by anyone other than the intended recipient in accordance with EAR and/or =
+ITAR regulations is prohibited.</p>
+</i>
+</body>
+</html>
+
+--_000_10F7328F6AD1354BA6DD787687B66B9001A3050C3AMauiindynetic_--
+
+
+--===============5117878982390072512==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5117878982390072512==--
+
