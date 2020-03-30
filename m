@@ -2,76 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C55B2197A05
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Mar 2020 12:59:37 +0200 (CEST)
-Received: from [::1] (port=35464 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9CB0197E9D
+	for <lists+usrp-users@lfdr.de>; Mon, 30 Mar 2020 16:37:55 +0200 (CEST)
+Received: from [::1] (port=39036 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jIs8i-00009f-8d; Mon, 30 Mar 2020 06:59:32 -0400
-Received: from mail1.bemta25.messagelabs.com ([195.245.230.1]:49181)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Joern.Skorstad@Nkom.no>)
- id 1jIs87-0007v5-2X
- for USRP-users@lists.ettus.com; Mon, 30 Mar 2020 06:58:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=s1;
- t=1585565893; i=@nkom.no;
- bh=Z5blrGKJ/sK02Z9RrBc4iSczQ8YDO4BLGU22bMxGEZc=;
- h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
- b=lwwIUCW4O23jYFqi5MN2xr8oNYT5TSDkNx1h2PrkHcH7uogAt/HACJ6mP9c+yRzdG
- aTythZg3hkj47cafFdN+7EX2fMg8N8Et0uJTE6SOKDQv3v6XHk98GltKE6eWPgcLrE
- yyomh9mJOw2nsSh9qOlK8LgethTOctBaHjq1Fc6VvWXL+NnfnUCrxJDJRxpVj6l2RJ
- RdLeLeBGfP2FBEAY4sd1W01HXF4iwH3XwtpTYaW9q1R2cvrcAsekrGgSoLqJ67KNoA
- l16dIQgoChTxGWiATWQQJpUujvqBq73PByvkoJy34y383Qp/33bGSyly23am7yH79o
- 7cSJ83Ec7twag==
-Received: from [100.112.195.56] (using TLSv1.2 with cipher
- DHE-RSA-AES256-GCM-SHA384 (256 bits))
- by server-1.bemta.az-a.eu-west-1.aws.symcld.net id 1F/EF-26674-5C0D18E5;
- Mon, 30 Mar 2020 10:58:13 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrNKsWRWlGSWpSXmKPExsWS+5KNV/fIhcY
- 4g/ZvVhYXOuewOzB6TFx5iDmAMYo1My8pvyKBNeNnzxO2ghnyFc9bohoYz0l3MXJyCAm0MEpc
- 6PcHsdkEHCVWb//MAmKLCNhKTN17A8wWFrCXOP54GTNE3EXi35QDbBC2nsThT8tZuxg5OFgEV
- CV+3AEL8wrYScz8c44JJMwoICsxt4kXJMwsIC4x4+gdsIkSAgISS/acZ4awRSVePv7HCmHLSr
- TfmM4GYVtJ9P//yAhha0oc/PsZqkZB4tzWM1A18hL7X05hhpifJnHoyEomiBMEJU7OfMIygVF
- 4FpLVs5CUzUJSBhHXk7gxdQobhK0tsWzha2YIW1dixr9DLMjiCxjZVzFaJBVlpmeU5CZm5uga
- GhjoGhoa6RpaGukaGZvoJVbpJuqlluqWpxaX6BrqJZYX6xVX5ibnpOjlpZZsYgTGV0rBgVc7G
- E+ufa93iFGSg0lJlLfpZGOcEF9SfkplRmJxRnxRaU5q8SFGGQ4OJQlen3NAOcGi1PTUirTMHG
- Csw6QlOHiURHh9zgOleYsLEnOLM9MhUqcYXTkmvJy7iJmj4eg8IPlx1RIg+R1M3nwPJIVY8vL
- zUqXEedeDNAuANGeU5sGNhqWpS4yyUsK8jAwMDEI8BalFuZklqPKvGMU5GJWEeWeCTOHJzCuB
- u+AV0HFMQMcFNteDHFeSiJCSamAyf79o04pMqxNRiS89FTh2lM6+0v5ZIehNcMSu3QXXw/ZPL
- nVSf1qn+VNDp+v/dmshqxKPBpZpdyLW/ju9vl13o2PPywNLbA2vv2RPX7GmWIG9vP3T1UDJhl
- eT5x5iWBqY/XW2VNo6We2VMQnBCc+KKrZuuHL8G7tOWGLr/dbHDxacXntAtGlZrc9bzj0+F9o
- TOYJOra34/Ouszt3VxYzvIzN+BGSU7T28aO18OQffLpl/sa8yNthvSDVfXJD9J/9nnuIXzuQF
- d74FH4uKiX582VuO/YGErGVEn5nK6ViLhfaf2F5GsMj2P/1qYqzzSzh+yRk1RoOy4wuZC3dMj
- lo0Udztaprr1ejjJ6YkRYcqsRRnJBpqMRcVJwIA9aGwbs4DAAA=
-X-Env-Sender: Joern.Skorstad@Nkom.no
-X-Msg-Ref: server-25.tower-264.messagelabs.com!1585565892!3199877!1
-X-Originating-IP: [109.233.6.13]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.50.1; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 473 invoked from network); 30 Mar 2020 10:58:12 -0000
-Received: from unknown (HELO smtp.nkom.no) (109.233.6.13)
- by server-25.tower-264.messagelabs.com with ECDHE-RSA-AES256-SHA encrypted
- SMTP; 30 Mar 2020 10:58:12 -0000
-Received: from EXMBX01.npta.no ([10.10.2.97]) by EXCAS.npta.no ([::1]) with
- mapi id 14.03.0487.000; Mon, 30 Mar 2020 12:58:12 +0200
-To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Thread-Topic: New E310 doesn't boot without console cable plugged in
-Thread-Index: AdYGgJclF+3wFkarTImpqkP/IksL0A==
-Date: Mon, 30 Mar 2020 10:58:11 +0000
-Message-ID: <D71B2B9BB39CE44CACCAB6646DF20CFD562D5F5B@exmbx01>
-Accept-Language: nb-NO, en-US
-Content-Language: nb-NO
+	id 1jIvXz-0000Pd-5l; Mon, 30 Mar 2020 10:37:51 -0400
+Received: from barracuda1.dynetics.com ([204.154.192.63]:38380
+ helo=barracuda.dynetics.com)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93)
+ (envelope-from <btv1==358e1521017==Ryan.Carmichael@dynetics.com>)
+ id 1jIvXv-0008TW-1i
+ for usrp-users@lists.ettus.com; Mon, 30 Mar 2020 10:37:47 -0400
+X-ASG-Debug-ID: 1585579226-10620d75e984be40001-5wTQH4
+Received: from MX5.in.dynetics.com (MX5.in.dynetics.com [10.1.15.132]) by
+ barracuda.dynetics.com with ESMTP id NSO39m4xHs9aE88E (version=TLSv1.2
+ cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO);
+ Mon, 30 Mar 2020 09:40:26 -0500 (CDT)
+X-Barracuda-Envelope-From: Ryan.Carmichael@dynetics.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.1.15.132
+Received: from MAUI.in.dynetics.com ([169.254.1.66]) by MX5.in.dynetics.com
+ ([10.1.15.132]) with mapi id 14.03.0487.000; Mon, 30 Mar 2020 09:37:04 -0500
+X-Barracuda-RBL-IP: 169.254.1.66
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] X310 UHD 3.15 Lockups
+X-ASG-Orig-Subj: Re: [USRP-users] X310 UHD 3.15 Lockups
+Thread-Index: AdYGoK21XHfs/jMVQMeE8T+fPN0OqA==
+Date: Mon, 30 Mar 2020 14:37:04 +0000
+Message-ID: <10F7328F6AD1354BA6DD787687B66B9001A3050D6A@Maui.in.dynetics.com>
+Accept-Language: en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.1.57]
-x-tm-as-product-ver: SMEX-11.0.0.1251-8.100.1062-25322.003
-x-tm-as-result: No--17.467600-8.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+x-originating-ip: [10.120.129.78]
 MIME-Version: 1.0
-Subject: [USRP-users] New E310 doesn't boot without console cable plugged in
+X-Barracuda-Connect: MX5.in.dynetics.com[10.1.15.132]
+X-Barracuda-Start-Time: 1585579226
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA384
+X-Barracuda-URL: https://barracuda.in.dynetics.com:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at dynetics.com
+X-Barracuda-Scan-Msg-Size: 10953
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No,
+ SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
+ QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.80897
+ Rule breakdown below
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ 0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: Re: [USRP-users] X310 UHD 3.15 Lockups
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,10 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Skorstad=2CJ=C3=B8rn_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?iso-8859-1?Q?Skorstad=2CJ=F8rn?= <Joern.Skorstad@Nkom.no>
-Content-Type: multipart/mixed; boundary="===============5323411431991817315=="
+From: "Carmichael, Ryan via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>
+Content-Type: multipart/mixed; boundary="===============6747782572188648537=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -100,121 +81,218 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5323411431991817315==
-Content-Language: nb-NO
+--===============6747782572188648537==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_D71B2B9BB39CE44CACCAB6646DF20CFD562D5F5Bexmbx01_"
+	boundary="_000_10F7328F6AD1354BA6DD787687B66B9001A3050D6AMauiindynetic_"
 
---_000_D71B2B9BB39CE44CACCAB6646DF20CFD562D5F5Bexmbx01_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--_000_10F7328F6AD1354BA6DD787687B66B9001A3050D6AMauiindynetic_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi all,
+RnJvbTogU2FtIFJlaXRlciA8c2FtLnJlaXRlcjhAZ21haWwuY29tPg0KU2VudDogU3VuZGF5LCBN
+YXJjaCAyOSwgMjAyMCAxOjE1IFBNDQpUbzogQ2FybWljaGFlbCwgUnlhbiA8Unlhbi5DYXJtaWNo
+YWVsQGR5bmV0aWNzLmNvbT4NCkNjOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVj
+dDogW0VYVEVSTkFMXSBSZTogW1VTUlAtdXNlcnNdIFgzMTAgVUhEIDMuMTUgTG9ja3Vwcw0KDQpJ
+IHdvdWxkIHN1c3BlY3QgdGhhdCB5b3VyIHNldHRpbmcgb2YgdGhlIHRpbWVfc3BlYyB3aXRoIGFu
+IHVuaW5pdGlhbGl6ZWQgdmFsdWUgY291bGQgYmUgYSBwcm9ibGVtLiByeF9tdWx0aV9zYW1wbGVz
+IHNldHMgdXAgbXVsdGktY2hhbm5lbCBSWCB3aXRoIGFuIGluaXRpYWxpemVkIHRpbWVfc3BlYzoN
+Cg0KaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2IvVUhELTMuMTUuTFRT
+L2hvc3QvZXhhbXBsZXMvcnhfbXVsdGlfc2FtcGxlcy5jcHANCg0KQ2FuIHlvdSBjb21waWxlIGFu
+ZCBydW4gdGhhdCBleGFtcGxlIG9uIDMuMTU/DQoNCi1TYW0NCg0KDQoNClNhbSwNCg0KVGhhbmtz
+IGZvciB0aGUgc3VnZ2VzdGlvbi4gdGltZV9zcGVjIHVuaW5pdGlhbGl6ZWQgdGFrZXMgdGhlIGRl
+ZmF1bHQgb2YgemVybywgcmlnaHQ/DQoNCklmIEkgcnVuIHJ4X211bHRpX3NhbXBsZXMgd2l0aCAt
+LXNlY3MgMCwgSSBnZXQgYW4gZXJyb3Ig4oCcRXJyb3I6IFJlY2VpdmVyIGVycm9yIEVSUk9SX0NP
+REVfTEFURV9DT01NQU5E4oCdLCB3aGljaCB3ZSBhcmVu4oCZdCBzZWVpbmcgaW4gb3VyIHVzYWdl
+IChpbnN0ZWFkIHdlIGp1c3Qgc2VlIGl0IG5ldmVyIHJldHVybikuDQoNCklmIEkgcnVuIHJ4X211
+bHRpX3NhbXBsZXMgd2l0aCBhbm90aGVyIHZhbHVlIChsaWtlIC0tc2VjcyAwLjEpIGl0IHdvcmtz
+IGZpbmUuDQoNCkJ1dCB0aGUgY29kZSBJIHNob3dlZCB3b3JrcyA5OS45JSBvZiB0aGUgdGltZS4g
+QnV0IHdoZW4gd2UgcnVuIGl0IGZvciBob3VycyBvbiBlbmQsIGl0IGV2ZW50dWFsbHkgbG9ja3Mg
+dXAuIEkgY2FuIHRyeSBydW5uaW5nIHJ4X211bHRpX3NhbXBsZXMgd2l0aCBhIHZlcnkgbGFyZ2Ug
+LS1uc2FtcHMgYnV0IHRoYXQgdGVzdGluZyB3aWxsIHRha2UgYSB3aGlsZS4NCg0KVGhhbmtzLA0K
+Unlhbg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KDQpUaGUgaW5mb3JtYXRp
+b24gY29udGFpbmVkIGluIHRoaXMgbWVzc2FnZSwgYW5kIGFueSBhdHRhY2htZW50cywgbWF5IGNv
+bnRhaW4gcHJpdmlsZWdlZCBhbmQvb3IgcHJvcHJpZXRhcnkgaW5mb3JtYXRpb24gdGhhdCBpcyBp
+bnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBwZXJzb24gb3IgZW50aXR5IHRvIHdoaWNoIGl0IGlzIGFk
+ZHJlc3NlZC4gTW9yZW92ZXIsIGl0IG1heSBjb250YWluIGV4cG9ydCByZXN0cmljdGVkIHRlY2hu
+aWNhbCBkYXRhIGNvbnRyb2xsZWQgYnkgRXhwb3J0IEFkbWluaXN0cmF0aW9uIFJlZ3VsYXRpb25z
+IChFQVIpIG9yIHRoZSBJbnRlcm5hdGlvbmFsIFRyYWZmaWMgaW4gQXJtcyBSZWd1bGF0aW9ucyAo
+SVRBUikuIEFueSByZXZpZXcsIHJldHJhbnNtaXNzaW9uLCBkaXNzZW1pbmF0aW9uLCBvciByZS1l
+eHBvcnQgdG8gZm9yZWlnbiBvciBkb21lc3RpYyBlbnRpdGllcyBieSBhbnlvbmUgb3RoZXIgdGhh
+biB0aGUgaW50ZW5kZWQgcmVjaXBpZW50IGluIGFjY29yZGFuY2Ugd2l0aCBFQVIgYW5kL29yIElU
+QVIgcmVndWxhdGlvbnMgaXMgcHJvaGliaXRlZC4NCg==
 
-we have recently purchased 2 USRP E310 radios, P/N 156333H-D1L. Both of the=
-m are stuck with all LEDS on when switched on, unless I connect the USB ser=
-ial console cable before switching on, then they boot normally. Both booted=
- with the original SD-card, unmodified.
+--_000_10F7328F6AD1354BA6DD787687B66B9001A3050D6AMauiindynetic_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-If I connect the console cable after powering on (all leds on) and press En=
-ter the U-boot prompt is shown. If I write boot the system boots normally a=
-gain. Looks like the autoboot countdown isn't starting without the console =
-attached?
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
+CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
+MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
+IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0
+b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcg
+Um9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnANCgl7
+bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdp
+bi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6
+MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIs
+c2VyaWY7fQ0KcC5Nc29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNv
+TGlzdFBhcmFncmFwaA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowaW47
+DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltYXJnaW4tYm90dG9tOjBpbjsNCgltYXJnaW4tbGVmdDou
+NWluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9y
+bWFsMCwgZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0
+b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9u
+dC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkNCgl7
+bXNvLXN0eWxlLXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2Vy
+aWY7DQoJY29sb3I6IzFGNDk3RDt9DQpzcGFuLkVtYWlsU3R5bGUyMA0KCXttc28tc3R5bGUtdHlw
+ZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0K
+CWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhw
+b3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29y
+ZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBp
+biAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi8qIExp
+c3QgRGVmaW5pdGlvbnMgKi8NCkBsaXN0IGwwDQoJe21zby1saXN0LWlkOjE2MDA5ODk4OTk7DQoJ
+bXNvLWxpc3QtdHlwZTpoeWJyaWQ7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOjM1MTg1NDQ4NiAt
+MTExOTk3NTMxNiA2NzY5ODY5MSA2NzY5ODY5MyA2NzY5ODY4OSA2NzY5ODY5MSA2NzY5ODY5MyA2
+NzY5ODY4OSA2NzY5ODY5MSA2NzY5ODY5Mzt9DQpAbGlzdCBsMDpsZXZlbDENCgl7bXNvLWxldmVs
+LXN0YXJ0LWF0OjI1NjsNCgltc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxl
+dmVsLXRleHQ6LTsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVy
+LXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OiJDYWxp
+YnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWZvbnQtZmFtaWx5OkNhbGlicmk7fQ0KQGxp
+c3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2
+ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXIt
+cG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6IkNvdXJp
+ZXIgTmV3Ijt9DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVs
+bGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCglt
+c28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZv
+bnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDQNCgl7bXNvLWxldmVsLW51bWJl
+ci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0
+b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6
+LS4yNWluOw0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxl
+dmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Om87DQoJbXNvLWxldmVs
+LXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQt
+aW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCkBsaXN0IGwwOmxl
+dmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6
+74KnOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRp
+b246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6V2luZ2RpbmdzO30N
+CkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNv
+LWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1u
+dW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6
+U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxs
+ZXQ7DQoJbXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28t
+bGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQt
+ZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1i
+ZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1z
+dG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50
+Oi0uMjVpbjsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0Kb2wNCgl7bWFyZ2luLWJvdHRvbTow
+aW47fQ0KdWwNCgl7bWFyZ2luLWJvdHRvbTowaW47fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBt
+c28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYi
+IC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
+bGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0K
+PC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0i
+RU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
+b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3Nw
+YW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
+bGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IFNhbSBSZWl0ZXIgJmx0O3NhbS5yZWl0ZXI4QGdtYWls
+LmNvbSZndDsNCjxicj4NCjxiPlNlbnQ6PC9iPiBTdW5kYXksIE1hcmNoIDI5LCAyMDIwIDE6MTUg
+UE08YnI+DQo8Yj5Ubzo8L2I+IENhcm1pY2hhZWwsIFJ5YW4gJmx0O1J5YW4uQ2FybWljaGFlbEBk
+eW5ldGljcy5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bTxicj4NCjxiPlN1YmplY3Q6PC9iPiBbRVhURVJOQUxdIFJlOiBbVVNSUC11c2Vyc10gWDMxMCBV
+SEQgMy4xNSBMb2NrdXBzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSB3
+b3VsZCBzdXNwZWN0IHRoYXQgeW91ciBzZXR0aW5nIG9mIHRoZSB0aW1lX3NwZWMgd2l0aCBhbiB1
+bmluaXRpYWxpemVkIHZhbHVlIGNvdWxkIGJlIGEgcHJvYmxlbS4gcnhfbXVsdGlfc2FtcGxlcyBz
+ZXRzIHVwIG11bHRpLWNoYW5uZWwgUlggd2l0aCBhbiBpbml0aWFsaXplZCB0aW1lX3NwZWM6PG86
+cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
+cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YSBocmVmPSJodHRw
+czovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvYmxvYi9VSEQtMy4xNS5MVFMvaG9zdC9l
+eGFtcGxlcy9yeF9tdWx0aV9zYW1wbGVzLmNwcCI+aHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVz
+ZWFyY2gvdWhkL2Jsb2IvVUhELTMuMTUuTFRTL2hvc3QvZXhhbXBsZXMvcnhfbXVsdGlfc2FtcGxl
+cy5jcHA8L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPkNhbiB5b3UgY29tcGlsZSBhbmQgcnVuIHRoYXQgZXhhbXBsZSBvbiAzLjE1PzxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4tU2FtPHNw
+YW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXYgc3R5
+bGU9Im1zby1lbGVtZW50OnBhcmEtYm9yZGVyLWRpdjtib3JkZXI6bm9uZTtib3JkZXItYm90dG9t
+OnNvbGlkIHdpbmRvd3RleHQgMS4wcHQ7cGFkZGluZzowaW4gMGluIDEuMHB0IDBpbiI+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYm9yZGVyOm5vbmU7cGFkZGluZzowaW4iPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
+cy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlNhbSw8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoYW5rcyBmb3IgdGhlIHN1
+Z2dlc3Rpb24uIHRpbWVfc3BlYyB1bmluaXRpYWxpemVkIHRha2VzIHRoZSBkZWZhdWx0IG9mIHpl
+cm8sIHJpZ2h0Pw0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5J
+ZiBJIHJ1biByeF9tdWx0aV9zYW1wbGVzIHdpdGggLS1zZWNzIDAsIEkgZ2V0IGFuIGVycm9yIOKA
+nEVycm9yOiBSZWNlaXZlciBlcnJvciBFUlJPUl9DT0RFX0xBVEVfQ09NTUFOROKAnSwgd2hpY2gg
+d2UgYXJlbuKAmXQgc2VlaW5nIGluIG91ciB1c2FnZSAoaW5zdGVhZCB3ZSBqdXN0DQogc2VlIGl0
+IG5ldmVyIHJldHVybikuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
+Ij5JZiBJIHJ1biByeF9tdWx0aV9zYW1wbGVzIHdpdGggYW5vdGhlciB2YWx1ZSAobGlrZSAtLXNl
+Y3MgMC4xKSBpdCB3b3JrcyBmaW5lLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+IzFGNDk3RCI+QnV0IHRoZSBjb2RlIEkgc2hvd2VkIHdvcmtzIDk5LjklIG9mIHRoZSB0aW1lLiBC
+dXQgd2hlbiB3ZSBydW4gaXQgZm9yIGhvdXJzIG9uIGVuZCwgaXQgZXZlbnR1YWxseSBsb2NrcyB1
+cC4gSSBjYW4gdHJ5IHJ1bm5pbmcgcnhfbXVsdGlfc2FtcGxlcyB3aXRoIGEgdmVyeSBsYXJnZQ0K
+IC0tbnNhbXBzIGJ1dCB0aGF0IHRlc3Rpbmcgd2lsbCB0YWtlIGEgd2hpbGUuPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMx
+RjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UaGFua3MsPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
+PlJ5YW4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxp
+Pjxicj4NCjxocj4NCjxwIHN0eWxlPSJmb250LXNpemU6OHB0OyBsaW5lLWhlaWdodDo5cHQ7IGZv
+bnQtc3R5bGU6bW9ub3NwYWNlIj5UaGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgbWVz
+c2FnZSwgYW5kIGFueSBhdHRhY2htZW50cywgbWF5IGNvbnRhaW4gcHJpdmlsZWdlZCBhbmQvb3Ig
+cHJvcHJpZXRhcnkgaW5mb3JtYXRpb24gdGhhdCBpcyBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBw
+ZXJzb24gb3IgZW50aXR5IHRvIHdoaWNoIGl0IGlzIGFkZHJlc3NlZC4NCiBNb3Jlb3ZlciwgaXQg
+bWF5IGNvbnRhaW4gZXhwb3J0IHJlc3RyaWN0ZWQgdGVjaG5pY2FsIGRhdGEgY29udHJvbGxlZCBi
+eSBFeHBvcnQgQWRtaW5pc3RyYXRpb24gUmVndWxhdGlvbnMgKEVBUikgb3IgdGhlIEludGVybmF0
+aW9uYWwgVHJhZmZpYyBpbiBBcm1zIFJlZ3VsYXRpb25zIChJVEFSKS4gQW55IHJldmlldywgcmV0
+cmFuc21pc3Npb24sIGRpc3NlbWluYXRpb24sIG9yIHJlLWV4cG9ydCB0byBmb3JlaWduIG9yIGRv
+bWVzdGljIGVudGl0aWVzDQogYnkgYW55b25lIG90aGVyIHRoYW4gdGhlIGludGVuZGVkIHJlY2lw
+aWVudCBpbiBhY2NvcmRhbmNlIHdpdGggRUFSIGFuZC9vciBJVEFSIHJlZ3VsYXRpb25zIGlzIHBy
+b2hpYml0ZWQuPC9wPg0KPC9pPg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-We have an E310 P/N 156333F-D1L from earlier, which is booting =ABnormally=
-=BB. Is there some firmware upgrade to install? If so, where to find it? As=
- far as I can see current firmware on the unit is v. 2.2.
+--_000_10F7328F6AD1354BA6DD787687B66B9001A3050D6AMauiindynetic_--
 
 
-BR
-Jorn Skorstad
-
---_000_D71B2B9BB39CE44CACCAB6646DF20CFD562D5F5Bexmbx01_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EpostStil17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"NO-BOK" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">we have recently purchased 2 USRP E310 radios, P/N 1=
-56333H-D1L. Both of them are stuck with all LEDS on when switched on, unles=
-s I connect the USB serial console cable before switching on, then they boo=
-t normally. Both booted with the original
- SD-card, unmodified.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">If I connect the console cable after powering on (al=
-l leds on) and press Enter the U-boot prompt is shown. If I write boot the =
-system boots normally again. Looks like the autoboot countdown isn&#8217;t =
-starting without the console attached?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">We have an E310 P/N 156333F-D1L from earlier, which =
-is booting =ABnormally=BB. Is there some firmware upgrade to install? If so=
-, where to find it? As far as I can see current firmware on the unit is v. =
-2.2.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">BR<o:p></o:p></p>
-<p class=3D"MsoNormal">Jorn Skorstad <o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_D71B2B9BB39CE44CACCAB6646DF20CFD562D5F5Bexmbx01_--
-
-
---===============5323411431991817315==
+--===============6747782572188648537==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -225,5 +303,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5323411431991817315==--
+--===============6747782572188648537==--
 
